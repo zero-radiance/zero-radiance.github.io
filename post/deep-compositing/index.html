@@ -82,15 +82,15 @@
         <div class="article-entry" itemprop="articleBody">
             <p>Most graphics programmers are familiar with the concept of <a href="http://jcgt.org/published/0004/02/03/">alpha</a>. It has two interpretations - geometrical and optical. The former corresponds to coverage, while the latter refers to opacity.</p>
 
-<p>Regular compositing assumes non-overlapping objects. Typically, the <a href="https://graphics.pixar.com/library/Compositing/">over operator</a> is used. It implies that one of the objects is in front of the other, and therefore attenuates its contribution to the image.</p>
+<p>Regular compositing assumes non-overlapping objects. Typically, the <a href="https://graphics.pixar.com/library/Compositing/">over operator</a> is used. It implies that one of the objects is in front of the other, and thereby attenuates its contribution to the image.</p>
 
 <p>This blog post will cover <a href="https://graphics.pixar.com/library/DeepCompositing/">deep compositing</a>. </p>
 
-<p>It assumes the optical interpretation of alpha, and implies that objects overlap along a certain depth interval (e.g. along the ray).</p>
+<p>It assumes the optical interpretation of alpha, and implies that objects overlap within a certain depth interval (e.g. along the ray).</p>
 
 <p>As the name implies, the technique can be used to composite volumetric effects stored in 3D texture <a href="https://rmanwiki.pixar.com/display/REN/Arbitrary+Output+Variables">AOVs</a>, such as renders of clouds or smoke.</p>
 
-<p>Another notable application is temporal reprojection for voxel-based volumetric lighting. As detailed in my <a href="http://advances.realtimerendering.com/s2018/index.htm">Siggraph 2018 presentation</a>, one way of performing temporal integration of volumetrics is to compute ray sub-integrals (along with associated opacity), store them in a 3D texture, and then look them up during the next frame. This involves both resampling (filtering) and rescaling, and both of these operations must be linear in order to not cause any artifacts in motion.</p>
+<p>Another notable application is temporal reprojection for voxel-based volumetric lighting. As detailed in my <a href="http://advances.realtimerendering.com/s2018/index.htm">Siggraph 2018 presentation</a>, one way of performing temporal integration of volumetrics is to compute ray sub-integrals (along with associated opacity), store them in a 3D texture, and then look them up during the next frame. This involves both resampling (filtering) and rescaling, and both of these operations must be linear in order to not cause  artifacts in motion.</p>
 
 <p>Deep compositing is a solved problem. The <a href="https://graphics.pixar.com/library/DeepCompositing/">paper by Tom Duff</a> gives a detailed description of the algorithm, the mathematics involved, as well as several applications.</p>
 
@@ -109,13 +109,13 @@ blend(A, B, t) = exp(lerp(log(A), log(B), t))
 
 <p>Note that you can drop negations from the definitions of <code>log(X)</code> and <code>exp(Y)</code> for convenience.</p>
 
-<p>If you take a look at the derivation in Duff&rsquo;s paper, it assumes that both pixels taking part in the blend operation correspond to objects overlapping the same depth interval. This presents a problem in the context of voxel-based volumetrics, since voxels sizes can vary dramatically, making blending of voxels corresponding to depth intervals of different sizes a requirement to support reprojection during camera motion.</p>
+<p>If you take a look at the derivation in Duff&rsquo;s paper, it assumes that both pixels taking part in the blend operation correspond to objects overlapping the same depth interval. This presents a problem in the context of voxel-based volumetrics, since voxels sizes can vary dramatically, making blending of voxels corresponding to different depth intervals (of different sizes) a requirement to support reprojection during camera motion.</p>
 
-<p>In my Siggraph talk, I proposed a solution, which is to linearize pixels with respect to the size of the interval, normalize them (divide by the size), and then use Duff&rsquo;s blending algorithm. While the idea was conceptually sound, I wasn&rsquo;t able to find the correct solution for linearization and normalization before the conference deadline, and ended up presenting an ad-hoc method.</p>
+<p>In my Siggraph talk, I proposed a solution, which is to linearize pixels with respect to the size of the interval, normalize them (divide by the size), and then use Duff&rsquo;s blending algorithm. While the idea was conceptually sound, I wasn&rsquo;t able to find the correct solution for linearization and normalization before the conference deadline, and ended up presenting an ad-hoc method instead.</p>
 
-<p>Turns out, the correct solution is very simple, and requires no additional transformations. Duff&rsquo;s log transform actually performs linearization - this is why he is able to use linear interpolation formula. It&rsquo;s possible to reason about this mathematically, but I found the intuition by thinking about the physical interpretation of the transformation.</p>
+<p>Turns out, the correct solution is very simple, and requires no additional transformations. Duff&rsquo;s log transform actually performs linearization - this is why he is able to use the linear interpolation formula. It&rsquo;s possible to reason about this mathematically, but I found thinking about the physical interpretation of the transformation more intuitive.</p>
 
-<p>Given a homgeneous participating medium under constant illumination, the value of the in-scattered radiance integral along the ray segment (which is identical to the weight given by <a href="https://cs.dartmouth.edu/wjarosz/publications/novak18monte.html">free-path sampling</a> in the Monte Carlo context) is proportional to:</p>
+<p>Given a homogeneous participating medium under constant illumination, the value of the in-scattered radiance integral along the ray segment (which is identical to the weight given by <a href="https://cs.dartmouth.edu/wjarosz/publications/novak18monte.html">free-path sampling</a> in the Monte Carlo context) is proportional to:</p>
 
 <pre><code class="language-c++">L_o = c * L_i * OpacityFromOpticalDepth(k * x) / k
 </code></pre>
@@ -133,13 +133,14 @@ blend(A, B, t) = exp(lerp(log(A), log(B), t))
 log(P) = {c * L_i * x, -k * x}
 </code></pre>
 
-<p>As we can see, <code>log(P)</code> is a linear function of <code>x</code>, as well as of incoming radiance <code>L_i</code>.
-This makes the normalization operation trivial.</p>
+<p>As we can see, <code>log(P)</code> is a linear function of <code>x</code>, as well as of the incoming radiance <code>L_i</code>.</p>
+
+<p>This makes the normalization operation trivial:</p>
 
 <pre><code class="language-c++">N = log(P) / x = {c * L_i, -k}
 </code></pre>
 
-<p>This quantity can be interpreted as some kind of density along (the unit interval of) the ray, represented as a pair of scaled incoming radiance and extinction.</p>
+<p>This quantity can be interpreted as density along (the unit interval of) the ray, represented as a pair of (rescaled) incoming radiance and extinction.</p>
 
 <p>To sum up, linear blending of two pixels <code>P_1</code> and <code>P_2</code> of two different sizes <code>x_1</code> and <code>x_2</code> should be performed as follows:</p>
 
