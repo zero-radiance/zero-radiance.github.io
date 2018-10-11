@@ -92,6 +92,24 @@
 
 <p>Another notable application is temporal reprojection for voxel-based volumetric lighting. As detailed in my <a href="http://advances.realtimerendering.com/s2018/index.htm">Siggraph 2018 presentation</a>, one way of performing temporal integration of volumetrics is to compute ray sub-integrals (along with associated opacity), store them in a 3D texture, and then look them up during the next frame. This involves both resampling (filtering) and rescaling, and both of these operations must be linear in order to not cause  artifacts in motion.</p>
 
+
+<figure>
+    
+        <img src="/img/reproj_artifact.png" alt="Reprojection artifact" />
+    
+    
+    <figcaption>
+        <p>
+        Moving the camera within the infinite fog at a high speed can reveal reprojection issues. If you squint hard enough, you can see the DirectX logo.
+        
+            
+        
+        </p> 
+    </figcaption>
+    
+</figure>
+
+
 <p>Deep compositing is a solved problem. The <a href="https://graphics.pixar.com/library/DeepCompositing/">paper by Tom Duff</a> gives a detailed description of the algorithm, the mathematics involved, as well as several applications.</p>
 
 <p>To sum it up, a deep pixel or voxel (represented as a pair of color and opacity) is assumed to be in the <strong>exp</strong> space. Filtering and compositing should happen in the <strong>log</strong> space.</p>
@@ -152,6 +170,25 @@ log(P) = {c * L_i * x, -k * x}
 In that case, we compute <code>B_1 = B * x_1</code>.</li>
 <li>Delinearize: convert back to color and opacity by computing <code>E_1 = exp(B_1)</code>.</li>
 </ol>
+
+<p>Despite the derivation assuming constant illumination, we apply the same technique to all light types (once per voxel, not once per light) with good results.</p>
+
+
+<figure>
+    
+        <img src="/img/reproj_spot.png" alt="Reprojection with a spot light" />
+    
+    
+    <figcaption>
+        <p>
+        The new reprojection technique works well for directional, point and spot lights.
+        
+            
+        
+        </p> 
+    </figcaption>
+    
+</figure>
         </div>
 
         

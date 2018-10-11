@@ -24,6 +24,8 @@ As the name implies, the technique can be used to composite volumetric effects s
 
 Another notable application is temporal reprojection for voxel-based volumetric lighting. As detailed in my [Siggraph 2018 presentation](http://advances.realtimerendering.com/s2018/index.htm), one way of performing temporal integration of volumetrics is to compute ray sub-integrals (along with associated opacity), store them in a 3D texture, and then look them up during the next frame. This involves both resampling (filtering) and rescaling, and both of these operations must be linear in order to not cause  artifacts in motion.
 
+{{< figure src="/img/reproj_artifact.png" alt="Reprojection artifact" caption="Moving the camera within the infinite fog at a high speed can reveal reprojection issues. If you squint hard enough, you can see the DirectX logo." >}}
+
 Deep compositing is a solved problem. The [paper by Tom Duff](https://graphics.pixar.com/library/DeepCompositing/) gives a detailed description of the algorithm, the mathematics involved, as well as several applications.
 
 To sum it up, a deep pixel or voxel (represented as a pair of color and opacity) is assumed to be in the **exp** space. Filtering and compositing should happen in the **log** space.
@@ -87,3 +89,7 @@ To sum up, linear blending of two pixels `P_1` and `P_2` of two different sizes 
 1. Denormalize: let's say that `(x_1 <= x_2)` and we want to blend all of `P_1` with a fraction of `P_2` of size `x_1`.
 In that case, we compute `B_1 = B * x_1`.
 1. Delinearize: convert back to color and opacity by computing `E_1 = exp(B_1)`.
+
+Despite the derivation assuming constant illumination, we apply the same technique to all light types (once per voxel, not once per light) with good results.
+
+{{< figure src="/img/reproj_spot.png" alt="Reprojection with a spot light" caption="The new reprojection technique works well for directional, point and spot lights." >}}
