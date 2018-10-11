@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Zero Radiance</title>
+    <link>https://zero-radiance.github.io/</link>
+    <description>Recent content on Zero Radiance</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <lastBuildDate>Thu, 11 Oct 2018 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="https://zero-radiance.github.io/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Deep Compositing and Reprojection</title>
+      <link>https://zero-radiance.github.io/post/deep-compositing/</link>
+      <pubDate>Thu, 11 Oct 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://zero-radiance.github.io/post/deep-compositing/</guid>
+      <description>&lt;p&gt;Most graphics programmers are familiar with the concept of &lt;a href=&#34;http://jcgt.org/published/0004/02/03/&#34;&gt;alpha&lt;/a&gt;. It has two interpretations - geometrical and optical. The former corresponds to coverage, while the latter refers to opacity.&lt;/p&gt;
+
+&lt;p&gt;Regular compositing assumes non-overlapping objects. Typically, the &lt;a href=&#34;https://graphics.pixar.com/library/Compositing/&#34;&gt;over operator&lt;/a&gt; is used. It implies that one of the objects is in front of the other, and therefore attenuates its contribution to the image.&lt;/p&gt;
+
+&lt;p&gt;This blog post will cover &lt;a href=&#34;https://graphics.pixar.com/library/DeepCompositing/&#34;&gt;deep compositing&lt;/a&gt;. &lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>About</title>
+      <link>https://zero-radiance.github.io/about/</link>
+      <pubDate>Wed, 10 Oct 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://zero-radiance.github.io/about/</guid>
+      <description>My name is Evgenii Golubev, and I am a graphics programmer at Unity. Welcome to my blog!
+You can contact me by email or follow me on Twitter.</description>
+    </item>
+    
+    <item>
+      <title>Theme Reference</title>
+      <link>https://zero-radiance.github.io/theme-reference/</link>
+      <pubDate>Sun, 23 Jul 2017 16:20:16 +0200</pubDate>
+      
+      <guid>https://zero-radiance.github.io/theme-reference/</guid>
+      <description>&lt;p&gt;This is a post to help showing the &lt;em&gt;complete&lt;/em&gt; rules of this theme.&lt;/p&gt;
+
+&lt;p&gt;A &lt;strong&gt;summary&lt;/strong&gt; is set, the rest is below a &lt;code&gt;&amp;lt;!-- more --&amp;gt;;&lt;/code&gt; tag.&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Blending on Zero Radiance</title>
+    <link>https://zero-radiance.github.io/tags/blending/</link>
+    <description>Recent content in Blending on Zero Radiance</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <lastBuildDate>Thu, 11 Oct 2018 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="https://zero-radiance.github.io/tags/blending/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Deep Compositing and Reprojection</title>
+      <link>https://zero-radiance.github.io/post/deep-compositing/</link>
+      <pubDate>Thu, 11 Oct 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://zero-radiance.github.io/post/deep-compositing/</guid>
+      <description>&lt;p&gt;Most graphics programmers are familiar with the concept of &lt;a href=&#34;http://jcgt.org/published/0004/02/03/&#34;&gt;alpha&lt;/a&gt;. It has two interpretations - geometrical and optical. The former corresponds to coverage, while the latter refers to opacity.&lt;/p&gt;
+
+&lt;p&gt;Regular compositing assumes non-overlapping objects. Typically, the &lt;a href=&#34;https://graphics.pixar.com/library/Compositing/&#34;&gt;over operator&lt;/a&gt; is used. It implies that one of the objects is in front of the other, and therefore attenuates its contribution to the image.&lt;/p&gt;
+
+&lt;p&gt;This blog post will cover &lt;a href=&#34;https://graphics.pixar.com/library/DeepCompositing/&#34;&gt;deep compositing&lt;/a&gt;. &lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

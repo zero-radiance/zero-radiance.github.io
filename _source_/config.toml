@@ -1,0 +1,7 @@
+baseurl = "https://zero-radiance.github.io"
+title = "Zero Radiance"
+author = "Evgenii Golubev"
+theme = "minos"
+
+[Params]
+SmartToc = true

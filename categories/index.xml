@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Categories on Zero Radiance</title>
+    <link>https://zero-radiance.github.io/categories/</link>
+    <description>Recent content in Categories on Zero Radiance</description>
+    <generator>Hugo -- gohugo.io</generator>
+    
+	<atom:link href="https://zero-radiance.github.io/categories/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Graphics</title>
+      <link>https://zero-radiance.github.io/categories/graphics/</link>
+      <pubDate>Thu, 11 Oct 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://zero-radiance.github.io/categories/graphics/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Math</title>
+      <link>https://zero-radiance.github.io/categories/math/</link>
+      <pubDate>Thu, 11 Oct 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://zero-radiance.github.io/categories/math/</guid>
+      <description></description>
+    </item>
+    
+  </channel>
+</rss>

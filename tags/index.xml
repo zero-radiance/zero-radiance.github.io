@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Tags on Zero Radiance</title>
+    <link>https://zero-radiance.github.io/tags/</link>
+    <description>Recent content in Tags on Zero Radiance</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <lastBuildDate>Thu, 11 Oct 2018 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="https://zero-radiance.github.io/tags/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Alpha</title>
+      <link>https://zero-radiance.github.io/tags/alpha/</link>
+      <pubDate>Thu, 11 Oct 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://zero-radiance.github.io/tags/alpha/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Blending</title>
+      <link>https://zero-radiance.github.io/tags/blending/</link>
+      <pubDate>Thu, 11 Oct 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://zero-radiance.github.io/tags/blending/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Compositing</title>
+      <link>https://zero-radiance.github.io/tags/compositing/</link>
+      <pubDate>Thu, 11 Oct 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://zero-radiance.github.io/tags/compositing/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Reprojection</title>
+      <link>https://zero-radiance.github.io/tags/reprojection/</link>
+      <pubDate>Thu, 11 Oct 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://zero-radiance.github.io/tags/reprojection/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Volume Rendering</title>
+      <link>https://zero-radiance.github.io/tags/volume-rendering/</link>
+      <pubDate>Thu, 11 Oct 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://zero-radiance.github.io/tags/volume-rendering/</guid>
+      <description></description>
+    </item>
+    
+  </channel>
+</rss>
