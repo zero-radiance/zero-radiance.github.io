@@ -33,16 +33,5 @@
 You can contact me by email or follow me on Twitter.</description>
     </item>
     
-    <item>
-      <title>Theme Reference</title>
-      <link>https://zero-radiance.github.io/theme-reference/</link>
-      <pubDate>Sun, 23 Jul 2017 16:20:16 +0200</pubDate>
-      
-      <guid>https://zero-radiance.github.io/theme-reference/</guid>
-      <description>&lt;p&gt;This is a post to help showing the &lt;em&gt;complete&lt;/em&gt; rules of this theme.&lt;/p&gt;
-
-&lt;p&gt;A &lt;strong&gt;summary&lt;/strong&gt; is set, the rest is below a &lt;code&gt;&amp;lt;!-- more --&amp;gt;;&lt;/code&gt; tag.&lt;/p&gt;</description>
-    </item>
-    
   </channel>
 </rss>
