@@ -55,7 +55,7 @@ Given a homogeneous participating medium under constant illumination, the value 
 L_o = c * L_i * OpacityFromOpticalDepth(k * x) / k
 ```
 
-where `k` is the extinction coefficient and `x` is the length of the integral. Their product is the optical depth `d`.
+where `k` is the extinction coefficient and `x` is the length of the interval. Their product is the optical depth `d`.
 
 The full value of the pixel `P` (including its opacity) is thus:
 
