@@ -90,7 +90,7 @@
 
 <p>As the name implies, the technique can be used to composite volumetric effects stored in 3D texture <a href="https://rmanwiki.pixar.com/display/REN/Arbitrary+Output+Variables">AOVs</a>, such as renders of clouds or smoke.</p>
 
-<p>Another notable application is temporal reprojection for voxel-based volumetric lighting. As detailed in my <a href="http://advances.realtimerendering.com/s2018/index.htm">Siggraph 2018 presentation</a>, one way of performing temporal integration of volumetrics is to compute ray sub-integrals (along with associated opacity), store them in a 3D texture, and then look them up during the next frame. This involves both resampling (filtering) and rescaling, and both of these operations must be linear in order to not cause  artifacts in motion.</p>
+<p>Another notable application is temporal reprojection for voxel-based volumetric lighting. As detailed in my <a href="http://advances.realtimerendering.com/s2018/index.htm">Siggraph 2018 presentation</a>, one way of performing temporal integration of volumetrics is to compute ray sub-integrals (along with associated opacity), store them in a 3D texture, and then look them up during the next frame. This involves both resampling (filtering) and rescaling, and both of these operations must be linear in order to not cause artifacts such as unexpected changes in brightness during camera motion.</p>
 
 
 <figure>
@@ -112,7 +112,7 @@
 
 <p>Deep compositing is a solved problem. The <a href="https://graphics.pixar.com/library/DeepCompositing/">paper by Tom Duff</a> gives a detailed description of the algorithm, the mathematics involved, as well as several applications.</p>
 
-<p>To sum it up, a deep pixel or voxel (represented as a pair of color and opacity) is assumed to be in the <strong>exp</strong> space. Filtering and compositing should happen in the <strong>log</strong> space.</p>
+<p>To sum it up, a deep pixel or voxel (represented as a pair of color and opacity) is assumed to be in the <strong>exp</strong> space. To ensure that filtering and compositing operations are linear, they should operate on <strong>log</strong>-transformed values.</p>
 
 <p>The transformations are given as follows:</p>
 

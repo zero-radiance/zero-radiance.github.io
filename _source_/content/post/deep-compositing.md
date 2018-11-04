@@ -9,7 +9,6 @@ tags: [
 	"Reprojection",
 	"Volume Rendering",
 	]
-summary: "lalala"
 ---
 
 Most graphics programmers are familiar with the concept of [alpha](http://jcgt.org/published/0004/02/03/). It has two interpretations - geometrical and optical. The former corresponds to coverage, while the latter refers to opacity.
@@ -22,13 +21,13 @@ It assumes the optical interpretation of alpha, and implies that objects overlap
 
 As the name implies, the technique can be used to composite volumetric effects stored in 3D texture [AOVs](https://rmanwiki.pixar.com/display/REN/Arbitrary+Output+Variables), such as renders of clouds or smoke.
 
-Another notable application is temporal reprojection for voxel-based volumetric lighting. As detailed in my [Siggraph 2018 presentation](http://advances.realtimerendering.com/s2018/index.htm), one way of performing temporal integration of volumetrics is to compute ray sub-integrals (along with associated opacity), store them in a 3D texture, and then look them up during the next frame. This involves both resampling (filtering) and rescaling, and both of these operations must be linear in order to not cause  artifacts in motion.
+Another notable application is temporal reprojection for voxel-based volumetric lighting. As detailed in my [Siggraph 2018 presentation](http://advances.realtimerendering.com/s2018/index.htm), one way of performing temporal integration of volumetrics is to compute ray sub-integrals (along with associated opacity), store them in a 3D texture, and then look them up during the next frame. This involves both resampling (filtering) and rescaling, and both of these operations must be linear in order to not cause artifacts such as unexpected changes in brightness during camera motion.
 
 {{< figure src="/img/reproj_artifact.png" alt="Reprojection artifact" caption="Moving the camera within the infinite fog at a high speed can reveal reprojection issues. If you squint hard enough, you can see the DirectX logo." >}}
 
 Deep compositing is a solved problem. The [paper by Tom Duff](https://graphics.pixar.com/library/DeepCompositing/) gives a detailed description of the algorithm, the mathematics involved, as well as several applications.
 
-To sum it up, a deep pixel or voxel (represented as a pair of color and opacity) is assumed to be in the **exp** space. Filtering and compositing should happen in the **log** space.
+To sum it up, a deep pixel or voxel (represented as a pair of color and opacity) is assumed to be in the **exp** space. To ensure that filtering and compositing operations are linear, they should operate on **log**-transformed values.
 
 The transformations are given as follows:
 
