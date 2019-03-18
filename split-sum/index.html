@@ -86,7 +86,7 @@
 
 <p>But why does it work so well, and is there a better way to pre-filter? Let&rsquo;s find out.</p>
 
-<p>If we ignore the participating media in the scene, we can compute the outgoing radiance in the view direction as the integral of the incoming radiance weighted by the BRDF over the projected hemisphere.</p>
+<p>To compute the outgoing radiance in the view direction, we need to evaluate the integral of the incoming radiance weighted by the BRDF over the projected hemisphere.</p>
 
 <p>$$ L_o = \int_{\Omega} L_i(l) f(\alpha,v,n,l) \langle n,l \rangle dl $$</p>
 
@@ -95,7 +95,7 @@
 <p>$$ L_o \approx \int_{\Omega} L_i(l) \langle n,l \rangle dl \int_{\Omega} f(\alpha,v,n,l) \langle n,l \rangle dl $$</p>
 
 <p>The first integral is stored in the pre-filtered cubemap, and is the biggest source of error, since it does not account for the view direction. The second integral can be precomputed and reconstructed exactly at runtime.
-In practice, during cubemap pre-filtering, Brian suggests to distribute samples according to the GGX distribution, which <a href="https://seblagarde.files.wordpress.com/2015/07/course_notes_moving_frostbite_to_pbr_v32.pdf">may be surprising</a> given the absence of the BRDF within the integral.</p>
+In practice, during the cubemap pre-filtering step, Brian suggests to place samples according to the GGX distribution, which <a href="https://seblagarde.files.wordpress.com/2015/07/course_notes_moving_frostbite_to_pbr_v32.pdf">may be surprising</a> given the absence of the BRDF within the integral.</p>
 
 <p>We can do things slightly differently. What follows is the implementation we&rsquo;ve been using in Unity&rsquo;s HD Render Pipeline for a couple of years.</p>
 
@@ -111,9 +111,9 @@ In practice, during cubemap pre-filtering, Brian suggests to distribute samples 
 
 <p>$$ L_p(\alpha,v,n) \approx \frac{ \int_{\Omega} L_i(l) f(\alpha,n,n,l) \langle n,l \rangle dl }{ \int_{\Omega} f(\alpha,n,n,l) \langle n,l \rangle dl} $$</p>
 
-<p>It is now more clear why samples of the first integral need to be distributed according to the BRDF.</p>
+<p>It is now more clear why the pre-filtering step requires sampling according to the BRDF.</p>
 
-<p>We still solve the first integral using Monte-Carlo. After importance sampling and simplification, we arrive at the following expression:</p>
+<p>We still solve the integral using Monte-Carlo. After importance sampling and simplification, we arrive at the following expression:</p>
 
 <p>$$ L_p(\alpha,v,n) \approx \frac{ \sum L_i(l) F(\langle h,l \rangle) G(\alpha,n,l) }{ \sum F(\langle h,l \rangle) G(\alpha,n,l) } = \frac{ \sum L_i(l) W }{ \sum W } $$</p>
 
@@ -123,7 +123,7 @@ In practice, during cubemap pre-filtering, Brian suggests to distribute samples 
 
 <p>will cause it to cancel out. I tried using the full Fresnel-Schlick expression with different reflectance values, and observed no visible differences in practice. To be honest, I am not sure why.</p>
 
-<p>Finally, should you use this method over Brian&rsquo;s? The only difference is the weighting, which in his case is further approximated by the following expression:</p>
+<p>Finally, does the new method produce superior results in practice? The only difference is the weighting function, which in Brian&rsquo;s case is further approximated by the following expression:</p>
 
 <p>$$ W = FG \approx \langle n,l \rangle $$</p>
 
