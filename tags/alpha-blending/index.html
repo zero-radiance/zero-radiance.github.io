@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>About // Zero Radiance</title>
+    <title>Alpha Blending // Zero Radiance</title>
 
         <meta charset="utf-8">
     <meta http-equiv="content-type" content="text/html; charset=utf-8">
@@ -9,14 +9,14 @@
     <meta name="description" content="">
     <meta name="keywords" content="">
     <meta name="author" content="">
-        <meta property="og:title" content="About" />
+        <meta property="og:title" content="Alpha Blending" />
     <meta property="og:description" content="" />
     <meta property="og:type" content="website" />
     <meta property="og:locale" content="en_US" />
-    <meta property="og:url" content="https://zero-radiance.github.io/about/" />
+    <meta property="og:url" content="https://zero-radiance.github.io/tags/alpha-blending/" />
     
 
-    <link href="" rel="alternate" type="application/rss+xml" title="Zero Radiance" />
+    <link href="https://zero-radiance.github.io/tags/alpha-blending/index.xml" rel="alternate" type="application/rss+xml" title="Zero Radiance" />
     <link rel="shortcut icon" href="/favicon.png">
 
     <link href="https://zero-radiance.github.io/webfonts/ptserif/main.css" rel='stylesheet' type='text/css'>
@@ -28,7 +28,6 @@
     
     <meta name="generator" content="Hugo 0.54.0" />
 </head>
-
 
 <body>
 <div id="container">
@@ -50,88 +49,28 @@
     </div>
 </header>
     <section id="main" class="outer">
-        <article class="article article-type-post" itemscope itemprop="blogPost">
-    <div class="article-inner">
-        
-        <header class="article-header">
-            <h1 class="article-title" itemprop="name">About</h1>
-        </header>
-        
-        <div class="article-meta">
-            <a href="/about/" class="article-date">
-                <time datetime='2018-10-10T00:00:00.000&#43;00:00' itemprop="datePublished">2018-10-10</time>
+        <section class="archives-wrap">
+            <div class="archive-tag-wrap">
+                <span class="archive-tag">#Alpha Blending</span>
+            </div>
+            <div class="archives">
+                
+                <article class="archive-article archive-type-post">
+    <div class="archive-article-inner">
+        <header class="archive-article-header">
+            <a href="/post/deep-compositing/" class="archive-article-date">
+                <time datetime='2018-10-11T00:00:00.000&#43;00:00' itemprop="datePublished">2018 Oct 11</time>
             </a>
-            
-            
-            
-        </div>
-        <div class="article-entry" itemprop="articleBody">
-            <p>My name is Evgenii Golubev, and I am a graphics programmer at Unity. Welcome to my blog!</p>
-
-<p>You can contact me by <a href="mailto:firstname.lastname@outlook.com">email</a> or follow me on <a href="https://twitter.com/zalbard">Twitter</a>.</p>
-
-        </div>
-
-        
-        
-        
-
-        
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.slim.min.js" integrity="sha256-/SIrNqv8h6QGKDuNoLGA4iret+kyesCkHGzVUUV0shc=" crossorigin="anonymous"></script>
-        <script>
-            (function() {
-                var $toc = $('#TableOfContents');
-                if ($toc.length > 0) {
-                    var $window = $(window);
-
-                    function onScroll(){
-                        var currentScroll = $window.scrollTop();
-                        var h = $('.article-entry h1, .article-entry h2, .article-entry h3, .article-entry h4, .article-entry h5, .article-entry h6');
-                        var id = "";
-                        h.each(function (i, e) {
-                            e = $(e);
-                            if (e.offset().top - 10 <= currentScroll) {
-                                id = e.attr('id');
-                            }
-                        });
-                        var active = $toc.find('a.active');
-                        if (active.length == 1 && active.eq(0).attr('href') == '#' + id) return true;
-
-                        active.each(function (i, e) {
-                            $(e).removeClass('active').siblings('ul').hide();
-                        });
-                        $toc.find('a[href="#' + id + '"]').parentsUntil('#TableOfContents').each(function (i, e) {
-                            $(e).children('a').addClass('active').siblings('ul').show();
-                        });
-                    }
-
-                    $window.on('scroll', onScroll);
-                    $(document).ready(function() {
-                        $toc.find('a').parent('li').find('ul').hide();
-                        onScroll();
-                        document.getElementsByClassName('article-toc')[0].style.display = '';
-                    });
-                }
-            })();
-        </script>
-        
-
-
-        
+            <h1 itemprop="name">
+                <a class="archive-article-title" href="/post/deep-compositing/">Deep Compositing and Reprojection</a>
+            </h1>
+        </header>
     </div>
-    <nav id="article-nav">
-    
-    <a href="/post/deep-compositing/" id="article-nav-newer" class="article-nav-link-wrap">
-        <div class="article-nav-title"><span>&lt;</span>&nbsp;
-            Deep Compositing and Reprojection
-        </div>
-    </a>
-    
-    
-</nav>
 </article>
-
+                
+            </div></section>
         
+
     </section>
     <footer id="footer">
     <div class="outer">

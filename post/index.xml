@@ -20,7 +20,7 @@
 
 &lt;p&gt;Regular compositing assumes non-overlapping objects. Typically, the &lt;a href=&#34;https://graphics.pixar.com/library/Compositing/&#34;&gt;over operator&lt;/a&gt; is used. It implies that one of the objects is in front of the other, and thereby attenuates its contribution to the image.&lt;/p&gt;
 
-&lt;p&gt;This blog post will cover &lt;a href=&#34;https://graphics.pixar.com/library/DeepCompositing/&#34;&gt;deep compositing&lt;/a&gt;. &lt;/p&gt;</description>
+&lt;p&gt;This blog post will cover &lt;a href=&#34;https://graphics.pixar.com/library/DeepCompositing/&#34;&gt;deep compositing&lt;/a&gt;.&lt;/p&gt;</description>
     </item>
     
   </channel>

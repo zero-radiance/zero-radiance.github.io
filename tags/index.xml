@@ -11,20 +11,11 @@
     
     
     <item>
-      <title>Alpha</title>
-      <link>https://zero-radiance.github.io/tags/alpha/</link>
+      <title>Alpha Blending</title>
+      <link>https://zero-radiance.github.io/tags/alpha-blending/</link>
       <pubDate>Thu, 11 Oct 2018 00:00:00 +0000</pubDate>
       
-      <guid>https://zero-radiance.github.io/tags/alpha/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Blending</title>
-      <link>https://zero-radiance.github.io/tags/blending/</link>
-      <pubDate>Thu, 11 Oct 2018 00:00:00 +0000</pubDate>
-      
-      <guid>https://zero-radiance.github.io/tags/blending/</guid>
+      <guid>https://zero-radiance.github.io/tags/alpha-blending/</guid>
       <description></description>
     </item>
     
@@ -38,11 +29,38 @@
     </item>
     
     <item>
+      <title>Cubemap Pre Filtering</title>
+      <link>https://zero-radiance.github.io/tags/cubemap-pre-filtering/</link>
+      <pubDate>Sun, 17 Mar 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://zero-radiance.github.io/tags/cubemap-pre-filtering/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Ibl</title>
+      <link>https://zero-radiance.github.io/tags/ibl/</link>
+      <pubDate>Sun, 17 Mar 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://zero-radiance.github.io/tags/ibl/</guid>
+      <description></description>
+    </item>
+    
+    <item>
       <title>Reprojection</title>
       <link>https://zero-radiance.github.io/tags/reprojection/</link>
       <pubDate>Thu, 11 Oct 2018 00:00:00 +0000</pubDate>
       
       <guid>https://zero-radiance.github.io/tags/reprojection/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Split Sum Approximation</title>
+      <link>https://zero-radiance.github.io/tags/split-sum-approximation/</link>
+      <pubDate>Sun, 17 Mar 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://zero-radiance.github.io/tags/split-sum-approximation/</guid>
       <description></description>
     </item>
     

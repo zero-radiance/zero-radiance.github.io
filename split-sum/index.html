@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Alternative Take on the Split Sum Approximation for Cubemap Pre-filtering // Zero Radiance</title>
+
+        <meta charset="utf-8">
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+    <meta name="description" content="">
+    <meta name="keywords" content="">
+    <meta name="author" content="">
+        <meta property="og:title" content="Alternative Take on the Split Sum Approximation for Cubemap Pre-filtering" />
+    <meta property="og:description" content="" />
+    <meta property="og:type" content="website" />
+    <meta property="og:locale" content="en_US" />
+    <meta property="og:url" content="https://zero-radiance.github.io/split-sum/" />
+    
+
+    <link href="" rel="alternate" type="application/rss+xml" title="Zero Radiance" />
+    <link rel="shortcut icon" href="/favicon.png">
+
+    <link href="https://zero-radiance.github.io/webfonts/ptserif/main.css" rel='stylesheet' type='text/css'>
+    <link href="https://zero-radiance.github.io/webfonts/source-code-pro/main.css" rel="stylesheet" type="text/css">
+
+    <link rel="stylesheet" href="https://zero-radiance.github.io/css/style.css">
+
+    <link href="http://gmpg.org/xfn/11" rel="profile">
+    
+    <meta name="generator" content="Hugo 0.54.0" />
+</head>
+
+
+<body>
+<div id="container">
+    <header id="header">
+    <div id="header-outer" class="outer">
+        <div id="header-inner" class="inner">
+            <a id="main-nav-toggle" class="nav-icon" href="javascript:;"></a>
+            <a id="logo" class="logo-text" href="https://zero-radiance.github.io/">Zero Radiance</a>
+            <nav id="main-nav">
+                
+                <a class="main-nav-link" href="/about/">About</a>
+                
+            </nav>
+            <nav id="sub-nav">
+                <div id="search-form-wrap">
+                </div>
+            </nav>
+        </div>
+    </div>
+</header>
+    <section id="main" class="outer">
+        <article class="article article-type-post" itemscope itemprop="blogPost">
+    <div class="article-inner">
+        
+        <header class="article-header">
+            <h1 class="article-title" itemprop="name">Alternative Take on the Split Sum Approximation for Cubemap Pre-filtering</h1>
+        </header>
+        
+        <div class="article-meta">
+            <a href="/split-sum/" class="article-date">
+                <time datetime='2019-03-17T00:00:00.000&#43;00:00' itemprop="datePublished">2019-03-17</time>
+            </a>
+            
+            
+            <div class="post-categories">
+                <div class="article-category">
+                    
+                    
+                    <a class="article-category-link" href="https://zero-radiance.github.io//categories/graphics">Graphics</a>
+                    
+                    
+                    <span>&gt;</span>
+                    
+                    <a class="article-category-link" href="https://zero-radiance.github.io//categories/math">Math</a>
+                    
+                </div>
+            </div>
+            
+            
+        </div>
+        <div class="article-entry" itemprop="articleBody">
+            <p>Pre-filtered cubemaps remain an important source of indirect illumination for those of us who still haven&rsquo;t purchased a Turing graphics card.</p>
+
+<p>To my knowledge, most implementations use the <a href="https://cdn2.unrealengine.com/Resources/files/2013SiggraphPresentationsNotes-26915738.pdf">split sum approximation</a> originally introduced by Brian Karis. It&rsquo;s a simple technique, and generally works well given the inherent view independence limitation.</p>
+
+<p>But why does it work so well, and is there a better way to pre-filter? Let&rsquo;s find out.</p>
+
+<p>If we ignore the participating media in the scene, we can compute the outgoing radiance in the view direction as the integral of the incoming radiance weighted by the BRDF over the projected hemisphere.</p>
+
+<p>$$ L_o = \int_{\Omega} L_i(l) f(\alpha,v,n,l) \langle n,l \rangle dl $$</p>
+
+<p>Brian&rsquo;s solution is to split the integral in two:</p>
+
+<p>$$ L_o \approx \int_{\Omega} L_i(l) \langle n,l \rangle dl \int_{\Omega} f(\alpha,v,n,l) \langle n,l \rangle dl $$</p>
+
+<p>The first integral is stored in the pre-filtered cubemap, and is the biggest source of error, since it does not account for the view direction. The second integral can be precomputed and reconstructed exactly at runtime.
+In practice, during cubemap pre-filtering, Brian suggests to distribute samples according to the GGX distribution, which <a href="https://seblagarde.files.wordpress.com/2015/07/course_notes_moving_frostbite_to_pbr_v32.pdf">may be surprising</a> given the absence of the BRDF within the integral.</p>
+
+<p>We can do things slightly differently. What follows is the implementation we&rsquo;ve been using in Unity&rsquo;s HD Render Pipeline for a couple of years.</p>
+
+<p>First, we note that we can compute the exact value of the second integral, so it makes perfect sense to keep it. Therefore, we can start with the following expression:</p>
+
+<p>$$ L_o = L_p(\alpha,v,n) \int_{\Omega} f(\alpha,v,n,l) \langle n,l \rangle dl $$</p>
+
+<p>After substituting into the first equation and solving for <em>L<sub>p</sub></em>, we arrive at the following expression:</p>
+
+<p>$$ L_o = \frac{ \int_{\Omega} L_i(l) f(\alpha,v,n,l) \langle n,l \rangle dl }{ \int_{\Omega} f(\alpha,v,n,l) \langle n,l \rangle dl} \int_{\Omega} f(\alpha,v,n,l) \langle n,l \rangle dl $$</p>
+
+<p>In this form, the IBL solution is exact. In practice, since we are memory-limited, we retain Brian&rsquo;s approximation by assuming that the normal and the view vectors are aligned. This results in a normalized radially symmetric filter around the normal.</p>
+
+<p>$$ L_p(\alpha,v,n) \approx \frac{ \int_{\Omega} L_i(l) f(\alpha,n,n,l) \langle n,l \rangle dl }{ \int_{\Omega} f(\alpha,n,n,l) \langle n,l \rangle dl} $$</p>
+
+<p>It is now more clear why samples of the first integral need to be distributed according to the BRDF.</p>
+
+<p>We still solve the first integral using Monte-Carlo. After importance sampling and simplification, we arrive at the following expression:</p>
+
+<p>$$ L_p(\alpha,v,n) \approx \frac{ \sum L_i(l) F(\langle h,l \rangle) G(\alpha,n,l) }{ \sum F(\langle h,l \rangle) G(\alpha,n,l) } = \frac{ \sum L_i(l) W }{ \sum W } $$</p>
+
+<p>The only remaining snag is the Fresnel term, which depends both on the reflectance and the half-angle. Using</p>
+
+<p>$$ F \approx const $$</p>
+
+<p>will cause it to cancel out. I tried using the full Fresnel-Schlick expression with different reflectance values, and observed no visible differences in practice. To be honest, I am not sure why.</p>
+
+<p>Finally, should you use this method over Brian&rsquo;s? The only difference is the weighting, which in his case is further approximated by the following expression:</p>
+
+<p>$$ W = FG \approx \langle n,l \rangle $$</p>
+
+<p>I did some testing, and the results are pretty similar. You may notice a slight difference in saturation at the bottom of the sphere, but there&rsquo;s nothing groundbreaking.</p>
+
+<figure>
+    <img src="/img/split_sum.png"
+         alt="Comparison of two techniques"/> 
+</figure>
+
+
+<p>It is possible to further improve the quality of the results by pre-filtering using MIS, or performing more intelligent runtime filtering of the pre-filtered cubemap at runtime. But that&rsquo;s that&rsquo;s another story for another time.</p>
+        </div>
+
+        
+        
+        
+
+        
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.slim.min.js" integrity="sha256-/SIrNqv8h6QGKDuNoLGA4iret+kyesCkHGzVUUV0shc=" crossorigin="anonymous"></script>
+        <script>
+            (function() {
+                var $toc = $('#TableOfContents');
+                if ($toc.length > 0) {
+                    var $window = $(window);
+
+                    function onScroll(){
+                        var currentScroll = $window.scrollTop();
+                        var h = $('.article-entry h1, .article-entry h2, .article-entry h3, .article-entry h4, .article-entry h5, .article-entry h6');
+                        var id = "";
+                        h.each(function (i, e) {
+                            e = $(e);
+                            if (e.offset().top - 10 <= currentScroll) {
+                                id = e.attr('id');
+                            }
+                        });
+                        var active = $toc.find('a.active');
+                        if (active.length == 1 && active.eq(0).attr('href') == '#' + id) return true;
+
+                        active.each(function (i, e) {
+                            $(e).removeClass('active').siblings('ul').hide();
+                        });
+                        $toc.find('a[href="#' + id + '"]').parentsUntil('#TableOfContents').each(function (i, e) {
+                            $(e).children('a').addClass('active').siblings('ul').show();
+                        });
+                    }
+
+                    $window.on('scroll', onScroll);
+                    $(document).ready(function() {
+                        $toc.find('a').parent('li').find('ul').hide();
+                        onScroll();
+                        document.getElementsByClassName('article-toc')[0].style.display = '';
+                    });
+                }
+            })();
+        </script>
+        
+
+
+        
+        <footer class="article-footer">
+            <ul class="article-tag-list">
+                
+                <li class="article-tag-list-item">
+                    <a class="article-tag-list-link" href="https://zero-radiance.github.io//tags/cubemap-pre-filtering">Cubemap Pre-filtering
+                    </a>
+                </li>
+                
+                <li class="article-tag-list-item">
+                    <a class="article-tag-list-link" href="https://zero-radiance.github.io//tags/split-sum-approximation">Split Sum Approximation
+                    </a>
+                </li>
+                
+                <li class="article-tag-list-item">
+                    <a class="article-tag-list-link" href="https://zero-radiance.github.io//tags/ibl">IBL
+                    </a>
+                </li>
+                
+            </ul>
+        </footer>
+        
+    </div>
+    <nav id="article-nav">
+    
+    
+    <a href="/post/deep-compositing/" id="article-nav-older" class="article-nav-link-wrap">
+        <div class="article-nav-title">Deep Compositing and Reprojection&nbsp;<span>&gt;</span></div>
+    </a>
+    
+</nav>
+</article>
+
+        
+    </section>
+    <footer id="footer">
+    <div class="outer">
+        <div id="footer-info" class="inner">
+            &copy; 2019 Zero Radiance&nbsp;
+            Powered by <a href="https://gohugo.io" target="_blank">Hugo</a> with theme <a href="https://github.com/carsonip/hugo-theme-minos">Minos</a>
+        </div>
+    </div>
+    
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.9.0/styles/tomorrow-night.min.css" integrity="sha256-2wL88NKUqvJi/ExflDzkzUumjUM73mcK2gBvBBeLvTk=" crossorigin="anonymous" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.9.0/highlight.min.js" integrity="sha256-KbfTjB0WZ8vvXngdpJGY3Yp3xKk+tttbqClO11anCIU=" crossorigin="anonymous"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+
+    
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.7.1/katex.min.css" integrity="sha384-wITovz90syo1dJWVh32uuETPVEtGigN07tkttEqPv+uR2SE/mbQcG7ATL28aI9H0" crossorigin="anonymous">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.7.1/katex.min.js" integrity="sha384-/y1Nn9+QQAipbNQWU65krzJralCnuOasHncUFXGkdwntGeSvQicrYkiUBwsgUqc1" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.7.1/contrib/auto-render.min.js" integrity="sha256-ExtbCSBuYA7kq1Pz362ibde9nnsHYPt6JxuxYeZbU+c=" crossorigin="anonymous"></script>
+        <script>renderMathInElement(document.body);</script>
+    
+    <script>
+        document.getElementById('main-nav-toggle').addEventListener('click', function () {
+            var header = document.getElementById('header');
+            if (header.classList.contains('mobile-on')) {
+                header.classList.remove('mobile-on');
+            } else {
+                header.classList.add('mobile-on');
+            }
+        });
+    </script>
+</footer>
+</div>
+</body>
+</html>

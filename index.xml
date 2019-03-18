@@ -5,10 +5,23 @@
     <link>https://zero-radiance.github.io/</link>
     <description>Recent content on Zero Radiance</description>
     <generator>Hugo -- gohugo.io</generator>
-    <lastBuildDate>Thu, 11 Oct 2018 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Sun, 17 Mar 2019 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="https://zero-radiance.github.io/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Alternative Take on the Split Sum Approximation for Cubemap Pre-filtering</title>
+      <link>https://zero-radiance.github.io/split-sum/</link>
+      <pubDate>Sun, 17 Mar 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://zero-radiance.github.io/split-sum/</guid>
+      <description>&lt;p&gt;Pre-filtered cubemaps remain an important source of indirect illumination for those of us who still haven&amp;rsquo;t purchased a Turing graphics card.&lt;/p&gt;
+
+&lt;p&gt;To my knowledge, most implementations use the &lt;a href=&#34;https://cdn2.unrealengine.com/Resources/files/2013SiggraphPresentationsNotes-26915738.pdf&#34;&gt;split sum approximation&lt;/a&gt; originally introduced by Brian Karis. It&amp;rsquo;s a simple technique, and generally works well given the inherent view independence limitation.&lt;/p&gt;
+
+&lt;p&gt;But why does it work so well, and is there a better way to pre-filter? Let&amp;rsquo;s find out.&lt;/p&gt;</description>
+    </item>
     
     <item>
       <title>Deep Compositing and Reprojection</title>
@@ -20,7 +33,7 @@
 
 &lt;p&gt;Regular compositing assumes non-overlapping objects. Typically, the &lt;a href=&#34;https://graphics.pixar.com/library/Compositing/&#34;&gt;over operator&lt;/a&gt; is used. It implies that one of the objects is in front of the other, and thereby attenuates its contribution to the image.&lt;/p&gt;
 
-&lt;p&gt;This blog post will cover &lt;a href=&#34;https://graphics.pixar.com/library/DeepCompositing/&#34;&gt;deep compositing&lt;/a&gt;. &lt;/p&gt;</description>
+&lt;p&gt;This blog post will cover &lt;a href=&#34;https://graphics.pixar.com/library/DeepCompositing/&#34;&gt;deep compositing&lt;/a&gt;.&lt;/p&gt;</description>
     </item>
     
     <item>
