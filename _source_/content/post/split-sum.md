@@ -4,8 +4,8 @@ date: 2019-04-02
 categories: [ "Graphics", "Math" ]
 tags: [
 	"Cubemap Pre-filtering",
+	"Image-Based Lighting",
 	"Split Sum Approximation",
-	"IBL",
 	]
 ---
 
