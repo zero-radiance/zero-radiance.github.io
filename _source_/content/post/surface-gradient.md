@@ -1,6 +1,6 @@
 ---
 draft: true
-title: "Understanding the Surface Gradient"
+title: "Exploring the Surface Gradient"
 date: 2019-04-06T15:39:51-07:00
 categories: [ "Graphics", "Math" ]
 tags: [
@@ -12,162 +12,197 @@ tags: [
 
 Realistic rendering at high frame rates remains at the core of real-time computer graphics. High performance and high fidelity are often at odds, requiring clever tricks and approximations to reach the desired quality bar.
 
-One of the oldest tricks in the book is [bump mapping](https://www.microsoft.com/en-us/research/publication/simulation-of-wrinkled-surfaces/). Introduced in 1978 by Jimm Blinn, it is a simple way to add mesoscopic detail without increasing the geometric complexity of the scene. Most modern real-time renderers support a variation of this technique called normal mapping. While it's fast and easy to use, certain operations, such as [normal map blending](https://blog.selfshadow.com/publications/blending-in-detail/), can be a challenge. This is where the so-called "surface gradient framework" comes into play.
+One of the oldest tricks in the book is [bump mapping](https://www.microsoft.com/en-us/research/publication/simulation-of-wrinkled-surfaces/). Introduced in 1978 by Jimm Blinn, it is a simple way to add mesoscopic detail without increasing the geometric complexity of the scene. Most modern real-time renderers support a variation of this technique called normal mapping. While it's fast and easy to use, certain operations, such as blending, are [not as easy as they seem](https://blog.selfshadow.com/publications/blending-in-detail/). This is where the so-called "surface gradient framework" comes into play.
 
-The surface gradient framework is a set of tools to transform and combine normal maps originally introduced by Morten S. Mikkelsen in his 2010 paper titled ["Bump Mapping Unparametrized Surfaces on the GPU"
-](http://jbit.net/~sparky/sfgrad_bump/mm_sfgrad_bump.pdf), and further extended to handle triplanar mapping in his subsequent [blog post](http://mmikkelsen3d.blogspot.com/2013/10/volume-height-maps-and-triplanar-bump.html). While there's nothing wrong with these two, to really understand what's going on, it really helps to also read his [thesis](http://image.diku.dk/projects/media/morten.mikkelsen.08.pdf), and at 109 pages, that's quite a time investment.
+The surface gradient framework is a set of tools to transform and combine normal (or bump) maps originally introduced by Morten S. Mikkelsen in his 2010 paper titled ["Bump Mapping Unparametrized Surfaces on the GPU"
+](http://jbit.net/~sparky/sfgrad_bump/mm_sfgrad_bump.pdf), and further extended to handle triplanar mapping in his subsequent [blog post](http://mmikkelsen3d.blogspot.com/2013/10/volume-height-maps-and-triplanar-bump.html). While there's nothing wrong with these two publications, to really understand what's going on, it really helps to also read his [thesis](http://image.diku.dk/projects/media/morten.mikkelsen.08.pdf), and at 109 pages, it's quite a time investment.
 
 Instead, I will attempt to give a shorter derivation, assuming no prior knowledge of the topic, starting from the the first principles. Still with me? Let's dive in.
 
 <!--more-->
 
-## Definitions
+## Preliminaries, Part 1: Tangent Frame
 
+We start with a 3D surface \\(S\\). Assume that it has some unique 2D parametrization, e.i. an injective (one to one) mapping from a parametric 2D coordinate to an object-space 3D coordinate:
 
+$$ \tag{1} S(u,v) = \lbrace x,y,z \rbrace.  $$
 
-[Blinn 1978]     James F. Blinn,      Simulation of Wrinkled Surfaces.
-[Mikkelsen 2008] Morten S. Mikkelsen, Simulation of Wrinkled Surfaces Revisited.
-[Mikkelsen 2010] Morten S. Mikkelsen, Bump Mapping Unparametrized Surfaces on the GPU.
+You can think of it as a transformation from a 2D plane to a 3D surface. The injectivity requirement is differentiability in disguise, the property we will heavily lean on during the derivation.
 
-// TODO: object scale mess
+Application of an affine transformation yields a set of texture coordinates:
 
-0. Definitions
+$$ \tag{2} \lbrace s,t \rbrace = \lbrace au+c, bv+d \rbrace. $$
 
-{a, b} - column vector
-[A, B] - matrix composed of two column vectors
-A~u    - derivative of A w.r.t. u: A~u = ∂A/∂u
+While it's often called a UV set, we'll stick to using \\(\lbrace u,v \rbrace\\) for unique values and \\(\lbrace s,t \rbrace\\) for scaled-translated ones. Note that we don't care about a particular surface parametrization: we can use UV-mapping, planar mapping, or something else entirely.
 
-{u, v} - known surface parametrization
-{s, t} - texture coordinates after an affine transformation: {s, t} = {a * u + b, c * v + d}
-K      - object scale matrix, non-uniform
+Armed with the surface parametrization, we can compute the tangent and the bitangent at the surface point:
 
-H      - scalar bump (height) map
-G_h    - gradient  of bump map: G_h = {H~u, H~v} = {∂H/∂u, ∂H/∂v}
-T_h    - tangent   of bump map: G_h = {1, 0, H~u} / ||{1, 0, H~u}||
-T_h    - bitangent of bump map: G_h = {0, 1, H~v} / ||{0, 1, H~v}||
-N_h    - normal    of bump map: N_h = {-H~u, -H~v, 1} / ||{-H~u, -H~v, 1}||
+$$ \tag{3} T(u,v) = \frac{\partial S}{\partial u}, \quad B(u,v) = \frac{\partial S}{\partial v}. $$
 
-P      - geometric surface with a known parametrization (e.g. a triangle or a quad): P(u, v) = {P.x, P.y, P.z}
-T_p    - tangent   of geometric surface: T_p = P~u = ∂P/∂u, not normalized, not orthogonal to B_p
-B_p    - bitangent of geometric surface: B_p = P~v = ∂P/∂v, not normalized, not orthogonal to T_p
-N_p    - normal    of geometric surface: N_p = (T_p x B_p) / ||T_p x B_p||
-F_p    - tangent frame (matrix) of geometric surface: F_p = [T_p, B_p, N_p]
+These two vectors span the tangent plane, and are typically neither mutually orthogonal nor of unit length. It's important to remember that they are not independent from the surface parametrization. We can use them to compute the geometric normal of the surface (which becomes independent once normalized):
 
-S      - smooth surface given by interpolated vertex normals
-T_s    - tangent   of smooth surface
-B_s    - bitangent of smooth surface
-N_s    - normal    of smooth surface
+$$ \tag{4} N(u,v) = \frac{T \times B}{|| T \times B ||}. $$
 
-D      - displaced ("bumped") surface
-T_d    - tangent   of displaced surface
-B_d    - bitangent of displaced surface
-N_d    - normal    of displaced surface
-G_d    - gradient  of displaced surface
+This completes the tangent frame, which can be represented as a tangent-to-object-space matrix:
 
-B'u
-B`u
-B~u
+$$ \tag{5} M\_{tangent}(u,v) = [T | B | N]. $$
 
-1.1. Bump Mapping of a Geometric Surface (u, v)
+The math can be easily extended to account for an object-to-world transformation by chaining matrix transformations.
 
-Originally, Blinn proposed the following equation [Blinn 1978, section 2]:
+## Preliminaries, Part 2: Height Maps
 
-D(u, v) = P(u, v) + H(u, v) * N_p(u, v)                                                             (1)
+The simplest representation of a tangent-space normal (or bump) map is a height map \\(h = h(s,t)\\). Geometrically, a height map defines an implicit surface of the form \\(z=z(x,y)\\), or
 
-This equation applies a displacement in world units (e.g. in meters).
+$$ \tag{6} f(x,y,z) = z - z(x,y) = 0. $$
 
-T_d = D~u = (P + H * N_p)~u = T_p + H~u * N_p + H * N_p~u                                           (2)
-B_d = D~v = (P + H * N_p)~v = B_p + H~v * N_p + H * N_p~v                                           (3)
+The direction of the height map normal is given by the *gradient of the surface*:
 
-Using Blinn's approximation [Blinn 1978, section 2]:
+$$ \tag{7} G(x,y,z) = \frac{\partial f}{\partial x} I + \frac{\partial f}{\partial y} J + \frac{\partial f}{\partial z} K, $$
 
-// TODO: not a good approximation with smooth normals?
-// TODO: double check what Morten does
-N_p~u -> 0, N_p~v -> 0                                                                              (4)
-T_d ≈ T_p + H~u * N_p                                                                               (5)
-B_d ≈ B_p + H~v * N_p                                                                               (6)
+where \\(\lbrace I,J,K \rbrace\\) is a set of orthonormal basis vectors. Substitution of the height map equation readily yields the following expression:
 
-N_d = (T_d x B_d) / ||T_d x B_d||                                                                   (7)
-N_d ≈ (T_p x (B_p + H~v * N_p) + (H~u * N_p) x (B_p + H~v * N_p)) / ||...||                         (8)
-N_d ≈ ((T_p x B_p) + H~v * (T_p x N_p) + H~u * (N_p x B_p) + H~u * H~v * (N_p x N_p)) / ||...||     (9)
-N_d ≈ ((T_p x B_p) + H~v * (T_p x N_p) + H~u * (N_p x B_p)) / ||...||                               (10)
+$$ \tag{8} G(s,t) = -\frac{\partial h}{\partial s} I -\frac{\partial h}{\partial t} J + K = \lbrace -\frac{\partial h}{\partial s}, -\frac{\partial h}{\partial t}, 1 \rbrace, $$
 
-We can rescale both the numerator and the denominator by (1 / ||T_p x B_p||):
+where \\({\partial h}/{\partial s}\\) and \\({\partial h}/{\partial t}\\) are the slopes of the height map. To avoid confusion with Morten's *surface gradient*, we'll refer to \\(G\\) as the *height map gradient*. The coordinates are given w.r.t. the basis vectors of the tangent space.
 
-N_d ≈ (N_p + H~v * (T_p x N_p) / ||T_p x B_p|| + H~u * (N_p x B_p) / ||T_p x B_p||) / ||...||       (11)
+It's convenient to get the surface re-parametrization induced by the texture coordinates out of the way:
 
-We can define the (rescaled) gradient of the displaced surface as follows:
+$$ \tag{9} G(u,v) = \lbrace -\frac{\partial h}{\partial s} \frac{\partial s}{\partial u}, -\frac{\partial h}{\partial t} \frac{\partial t}{\partial v}, 1 \rbrace = \lbrace -a \frac{\partial h}{\partial s}, -b \frac{\partial h}{\partial t}, 1 \rbrace. $$
 
-G_d = H~u * (B_p x N_p) / ||T_p x B_p|| + H~v * (N_p x T_p) / ||T_p x B_p||                         (12)
-N_d ≈ (N_p - G_d) / ||...||                                                                         (13)
+This simply means that we need to rescale the slopes in order to adjust the displacements as we tile the texture.
 
-Notice that the surface gradient is simply the height map gradient after a change of basis from
-[{1, 0}, {0, 1}] to [(B_p x N_p) / ||T_p x B_p||, (N_p x T_p) / ||T_p x B_p||].
+For completeness, we can convert a tangent-space normal into the slope (gradient) form in the following way:
 
-Using the matrix notation [Mikkelsen 2008, section 2.2], we can define the tangent-to-world
-transformation F_p and its inverse F_p⁻¹:
+$$ \tag{10} G(s,t) = \lbrace - \frac{\partial h}{\partial s}, - \frac{\partial h}{\partial t}, 1 \rbrace = \frac{N\_{t}}{n\_{t,z}}, $$
 
-F_p      = [T_p, B_p, N_p]                                                                          (14)
-F_p⁻¹    = adj(F_p) / det(F_p)                                                                      (15)
-det(F_p) = (T_p x B_p) · N_p = ||T_p x B_p||                                                        (16)
-adj(F_p) = [B_p x N_p, N_p x T_p, T_p x B_p]ᵀ                                                       (17)
-F_p⁻¹    = (1 / ||T_p x B_p||) * [B_p x N_p, N_p x T_p, T_p x B_p]ᵀ                                 (18)
+$$ \tag{11} G(u,v) = \lbrace -\frac{\partial h}{\partial s} \frac{\partial s}{\partial u}, -\frac{\partial h}{\partial t} \frac{\partial t}{\partial v}, 1 \rbrace = \lbrace a \frac{n\_{t,x}}{n\_{t,z}}, b \frac{n\_{t,y}}{n\_{t,z}}, 1 \rbrace = M\_{tile} \frac{N\_{t}}{n\_{t,z}}. $$
 
-Using the inverse-transpose allows us to reformulate the bump mapping equation (13) as a
-tangent-to-world transformation:
+To perturb the surface using the height map, we need to perform a change of basis from the orthonormal tangent-space set \\(\lbrace I,J,K \rbrace\\) to our previously defined object-space set \\(\lbrace T,B,N \rbrace\\). Doing this correctly is slightly more involved than it may seem at first glance.
 
-N_d ≈ ((F_p⁻¹)ᵀ * {-H~u, -H~v, 1}) / ||...||                                                        (19)
-N_d ≈ ((F_p⁻¹)ᵀ * N_h) / ||...||                                                                    (20)
+## Preliminaries, Part 3: Wrinkled Surfaces
 
-1.2. Bump Mapping of a Reparametrized Geometric Surface (s, t)
+The original formulation of bump maps defines a height-mapped surface by applying a perturbation along the normal of the original surface. Note that this is the right place to apply the object's scale matrix, as it should affect the displacements (ultimately, by scaling the slopes):
 
-The extension to scaled and biased texture coordinates is fairly straightforward.
-One issue to be aware of is that the new parametrization may not be orientation preserving,
-e.i. the tangent frame may flip. We need to make sure that the resulting normal is not flipped.
+$$ \tag{12} P(u, v) = M\_{scale} \Big( S(u, v) + h(u, v) N(u, v) \Big). $$
 
-D(s, t) = P(s, t) + H(s, t) * N_p(s, t)                                                             (21)
+Just as we did before, we can take derivatives of this equation to compute the perturbed normal.
 
-T_d = D~s = (P + H * N_p)~s ≈ P~s + H~s * N_p                                                       (22)
-B_d = D~t = (P + H * N_p)~t ≈ P~t + H~t * N_p                                                       (23)
+$$ \tag{13} T_p(u,v) = \frac{\partial P}{\partial u}
+					 = M\_{scale}(T + \frac{\partial h}{\partial u} N + h \frac{\partial N}{\partial u})
+					 \approx M\_{scale}(T + \frac{\partial h}{\partial u} N), $$
+$$ \tag{14} B_p(u,v) = \frac{\partial P}{\partial v}
+					 = M\_{scale}(B + \frac{\partial h}{\partial v} N + h \frac{\partial N}{\partial v})
+					 \approx M\_{scale}(B + \frac{\partial h}{\partial v} N). $$
 
+Jim claims that for small displacements and moderately curved surfaces, the last term is negligibly small and can be set to 0. For those interested, Morten verifies that this is indeed the case in his [thesis](http://image.diku.dk/projects/media/morten.mikkelsen.08.pdf) [TODO: MORTEN - MORE PRECISE REF NEEDED].
 
-N_d = (T_d x B_d) / ((T_p x B_p) · N_p)
+We can compute the perturbed normal by taking the cross product:
 
+$$ \tag{15} N_p(u,v) = \frac{T_p \times B_p}{|| T_p \times B_p ||}
+					 \approx \frac{1}{|| T_p \times B_p ||} \Big((M\_{scale}(T + \frac{\partial h}{\partial u} N)) \times
+					 ( M\_{scale}(B + \frac{\partial h}{\partial v} N)) \Big). $$
 
+We can move the matrix outside of the brackets with the help of the following [identity](https://en.wikipedia.org/wiki/Cross_product#Algebraic_properties):
 
+$$ \tag{16} (MA) \times (MB) = (\mathrm{det}(M))(M^{-1})^{\mathrm{T}}(A \times B)
+							 = (\mathrm{cof}(M)) (A \times B), $$
 
-1.3. Accounting for Object Scale
+$$ \tag{17} N_p(u,v) \approx \frac{\mathrm{cof}(M\_{scale})}{|| T_p \times B_p ||} \Big((T + \frac{\partial h}{\partial u} N) \times (B + \frac{\partial h}{\partial v} N)\Big). $$
 
-Blinn's original formulation causes the displaced surface to flatten as the scale of the object
-is increased [Blinn 1978, section 4]. Assuming that we operate in the object space for simplicity,
-one solution is to rescale both the surface and the displacement along the normal:
+It's instructive to expand the cross product:
 
-D(u, v) = K * (P(u, v) + H(u, v) * N_p(u, v))                                                       (21)
-D(u, v) = P_k(u, v) + H(u, v) * N_p_k(u, v)                                                         (22)
+$$ \tag{18} N_p(u,v) \approx \frac{\mathrm{cof}(M\_{scale})}{|| T_p \times B_p ||} \Big((T \times B) + \frac{\partial h}{\partial u} (N \times B) + \frac{\partial h}{\partial v} (T \times N) + \frac{\partial h}{\partial u} \frac{\partial h}{\partial v} (N \times N)\Big). $$
 
-If operating in the world space rather than the object space, the scale vector K needs to be rotated
-from the object to the world space, and then the the math below still holds.
+The last term vanishes because the value of the cross product is 0:
 
-T_d ≈ T_p_k + H~u * N_p_k                                                                            (23)
-B_d ≈ B_p_k + H~v * N_p_k                                                                            (24)
-N_d = (T_d x B_d) / ||T_d x B_d||                                                                   (25)
-N_d ≈ (T_p_k x (B_p_k + H~v * N_p_k) + (H~u * N_p_k) x (B_p_k + H~v * N_p_k)) / ||...||                (26)
-N_d ≈ ((T_p_k x B_p_k) + H~v * (T_p_k x N_p_k_k) + H~u * (N_p_k_k x B_p)) / ||...||                   (25)
-N_d ≈ (N_p + H~v * (T_p x N_p_k) / ||T_p x B_p|| + H~u * (N_p_k x B_p) / ||T_p x B_p||) / ||...||     (25)
+$$ \tag{19} N_p(u,v) \approx \frac{\mathrm{cof}(M\_{scale})}{|| T_p \times B_p ||} \Big(N + \frac{\partial h}{\partial u} (N \times B) + \frac{\partial h}{\partial v} (T \times N)\Big). $$
 
-This means that the new surface gradient is a distorted version of the original one.
+If we swap the operands of cross products, this equation will take a familiar form:
 
-Using the matrix notation, ...
+$$ \tag{20} N_p(u,v) \approx \frac{\mathrm{cof}(M\_{scale})}{|| T_p \times B_p ||} [B \times N | N \times T | N] \lbrace -\frac{\partial h}{\partial u}, -\frac{\partial h}{\partial v}, 1 \rbrace. $$
 
-F_p      = [T_p, B_p, N_p_k]                                                                        (25)
-F_p⁻¹    = adj(F_p) / det(F_p)                                                                      (26)
-det(F_p) = (T_p x B_p) · N_p_k                                                                      (27)
-adj(F_p) = [B_p x N_p_k, N_p_k x T_p, T_p x B_p]ᵀ                                                   (28)
-F_p⁻¹    = (1 / ((T_p x B_p) · N_p_k)) * [B_p x N_p_k, N_p_k x T_p, T_p x B_p]ᵀ                     (29)
+$$ \tag{21} N_p(u,v) \approx \frac{||T \times B||}{|| T_p \times B_p ||} (\mathrm{cof}(M\_{scale})) (M\_{tangent}^{-1})^{\mathrm{T}}G, $$
 
-N_d ≈ ((F_p⁻¹)ᵀ * {-H~u, -H~v, 1}) / ||...||                                                          (30)
-N_d ≈ ((T_p x B_p) / ((T_p x B_p) · N_p_k))
+where
 
+$$ \tag{22} M\_{tangent}^{-1}(u,v) = \frac{\mathrm{adj}(M\_{tangent})}{\mathrm{det}(M\_{tangent})}
+                                   = \frac{[B \times N | N \times T | T \times B]^{\mathrm{T}}}{(T \times B) \boldsymbol{\cdot} N}
+                                   = \frac{[B \times N | N \times T | N]^{\mathrm{T}}}{||T \times B||}. $$
 
+The first term of the equation (21) can be a bit surprising. Intuitively, it accounts for the change of volume from the old to the new coordinate frame. Since it's a non-negative scalar, it does not modify the direction of the normal, and we can take care of it by normalizing the resulting vector.
 
-2. Bump Mapping of a Smooth Surface
+The important part is, since normals are [bivectors](https://en.wikipedia.org/wiki/Bivector#Geometric_interpretation), they are transformed by the inverse-transpose of the matrix. Conversely, projection of an (unscaled) object-space normal into the tangent space is performed using the transpose:
+
+$$ \tag{23} N_o(u,v) = \frac{(M\_{tangent}^{-1})^{\mathrm{T}} G}{|| (M\_{tangent}^{-1})^{\mathrm{T}} G ||}, $$
+
+$$ \tag{24} \frac{(M\_{tangent})^{\mathrm{T}} N_o}{|| (M\_{tangent})^{\mathrm{T}} N_o ||} = (M\_{tangent})^{\mathrm{T}} (M\_{tangent}^{-1})^{\mathrm{T}} G, $$
+
+$$ \tag{25} \frac{(M\_{tangent})^{\mathrm{T}} N_o}{|| (M\_{tangent})^{\mathrm{T}} N_o ||} = (M\_{tangent}^{-1} M\_{tangent})^{\mathrm{T}} G = G. $$
+
+## Surface Gradient Framework
+
+Morten defines the surface gradient as the projection of the height map gradient onto the tangent plane:
+
+$$ \tag{26} \Gamma(u,v) = (M\_{tangent}^{-1})^{\mathrm{T}} \lbrace \frac{\partial h}{\partial u}, \frac{\partial h}{\partial v}, 0 \rbrace = N - (M\_{tangent}^{-1})^{\mathrm{T}} G. !!!!! denom !!!!!$$
+
+By definition, it is a vector in the tangent plane with the direction pointing up along the steepest slope and the magnitude of the rate at which height increases in that direction.
+Given the surface gradient, it's easy to obtain ("resolve") the perturbed normal:
+
+$$ \tag{27} N_p(u,v) = \frac{(\mathrm{cof}(M\_{scale}))(N - \Gamma)}{|| (\mathrm{cof}(M\_{scale}))(N - \Gamma) ||}. $$
+
+Why is it useful? Since it's just a matrix transformation, the surface gradient is a linear operator, which, combined with the fact that the derivative is a linear operator as well, makes many common operations straightforward. Additionally, the surface gradient, like the surface normal, is independent from the surface parametrization. And finally, the surface gradient is compact, since we do not need to retain the entire tangent frame.
+
+#### 1. Rescaling the Height Map
+
+Want to flatten the normal map, or make it more bumpy? Simply rescale the surface gradient:
+
+$$ \tag{28} \alpha \Gamma(u,v) = (M\_{tangent}^{-1})^{\mathrm{T}} \lbrace \frac{\partial}{\partial u} (\alpha h), \frac{\partial}{\partial v} (\alpha h), 0 \rbrace. $$
+
+#### 2. Combining Height Maps
+
+Due to linearity, combining height maps is straightforward:
+
+$$ \tag{29} \alpha \Gamma\_{1}(u,v) + \beta \Gamma\_{2}(u,v) = (M\_{tangent}^{-1})^{\mathrm{T}} \lbrace \frac{\partial}{\partial u} (\alpha h_1 + \beta h_2) , \frac{\partial}{\partial v}(\alpha h_1 + \beta h_2), 0 \rbrace. $$
+
+#### 3. Object-Space Normals
+
+Object-space normals are considered *already perturbed*, e.i. they do not depend on the normal of the surface. Nevertheless, it's convenient to process them within the same framework. It's worth keeping in mind that object-space normals retrieved from a texture should be affected by the object's scale.
+
+$$ \tag{30} N_p(u,v) = \frac{(\mathrm{cof}(M\_{scale})) N_o}{|| (\mathrm{cof}(M\_{scale})) N_o ||}, $$
+
+$$ \tag{31} N_o(u,v) = \frac{N - \Gamma}{||N - \Gamma||}. $$
+
+While we can solve this equation by projecting the object-space normal onto the tangent plane using equations (25) and (26), it's more efficient to find the solution geometrically:
+
+{{< figure src="/img/grad_obj.png" alt="Surface gradient and the object-space normal." >}}
+
+$$ \tag{32} \Gamma(u,v) = N - (N - \Gamma) = N -\frac{N_o}{\langle N,N_o \rangle}. $$
+
+This formula will give correct results even for negative values of the dot product (just make sure not to divide by 0). It is also independent from the surface parametrization -- the way we compute texture coordinates does not matter.
+
+#### 4. Planar Mapping
+
+One of the alternatives to UV-mapping is to obtain texture coordinates by projecting the mesh onto a plane.
+
+We will consider two types of normals stored within the normal map -- object-space normals and tangent-space normals. The solution for the object-space normals is given in the previous section. Here, we will find a solution for the tangent-space normal maps.
+
+Without loss of generality, let's consider using the X-Y plane for planar mapping. Our surface \\(S\\) then becomes a height map w.r.t. this plane (we assume that this is a suitable parametrization for the particular surface):
+
+$$ \tag{33} z = z(x, y),  $$
+$$ \tag{34} \lbrace u,v \rbrace = \lbrace x,y \rbrace. $$
+
+Let's complete the tangent frame for the new surface parametrization:
+
+$$ \tag{35} T(u,v) = \frac{\partial S}{\partial u} = \lbrace 1, 0, \frac{\partial z}{\partial u} \rbrace, \quad B(u,v) = \frac{\partial S}{\partial v} = \lbrace 0, 1, \frac{\partial z}{\partial v} \rbrace. $$
+
+Recall the equation (10) which relates the height map gradient and the height map normal:
+
+$$ \tag{36} T(u,v) = \lbrace 1, 0, -\frac{n\_{x}}{n\_{z}} \rbrace, \quad B(u,v) = \lbrace 0, 1, -\frac{n\_{y}}{n\_{z}} \rbrace. $$
+
+This completes the TBN for the new surface parametrization, and we can now use the equation (26) to compute the surface gradient:
+
+$$ \tag{37} \Gamma(u,v) = N - (M\_{tangent}^{-1})^{\mathrm{T}} G. $$
+
+#### 5. Tri-Planar Mapping
+
+...
