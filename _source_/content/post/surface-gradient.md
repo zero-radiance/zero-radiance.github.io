@@ -55,8 +55,6 @@ $$ \tag{6} (M\_{tangent}^{-1}(u,v))^{\mathrm{T}} = \frac{\mathrm{cof}(M\_{tangen
                   = \frac{[B \times N | N \times T | T \times B]}{(T \times B) \boldsymbol{\cdot} N}
                   = \Bigg[\frac{B \times N}{\Vert T \times B \Vert} \Bigg| \frac{N \times T}{\Vert T \times B \Vert} \Bigg| N\Bigg]. $$
 
-The math can be easily extended to account for an object-to-world transformation by chaining matrix transformations.
-
 ## Preliminaries, Part 2: Height Maps
 
 The simplest representation of a tangent-space normal (or bump) map is a height map \\(h = h(s,t)\\). Geometrically, a height map defines an implicit surface of the form \\(z=z(x,y)\\), or
@@ -141,16 +139,26 @@ $$ \tag{24} \frac{(M\_{tangent})^{\mathrm{T}} N_o}{\Vert (M\_{tangent})^{\mathrm
 
 $$ \tag{25} \frac{(M\_{tangent})^{\mathrm{T}} N_o}{\Vert (M\_{tangent})^{\mathrm{T}} N_o \Vert} = (M\_{tangent}^{-1} M\_{tangent})^{\mathrm{T}} G = G. $$
 
+"This seems quite expensive", you may say. Does correctness come at a high cost? Not really.
+
+Let's say we just have a tangent-space normal map, which we would like to tile and perhaps scale, and that's it. To compute the perturbed normal in the world space, all we have to do is the following:
+
+$$ \tag{26} N_w(u,v) \approx \frac{\big( M\_{rot} (\mathrm{cof}(M\_{scale})) (M\_{tangent}^{-1})^{\mathrm{T}} \big) M\_{tile} N\_{t} / n\_{t,z}}{\Vert \big( M\_{rot} (\mathrm{cof}(M\_{scale})) (M\_{tangent}^{-1})^{\mathrm{T}} \big) M\_{tile} N\_{t} / n\_{t,z} \Vert}, $$
+
+$$ \tag{27} N_w(u,v) \approx \frac{M\_{world} M\_{tile} N\_{t}}{\Vert M\_{world} M\_{tile} N\_{t} \Vert}. $$
+
+The tangent-space-normal-to-world matrix \\(M\_{world}\\) can be precomputed, and all that's left to do at runtime is a few multiplications and one normalization.
+
 ## Surface Gradient Framework
 
 Morten defines the surface gradient as the projection of the height map gradient onto the tangent plane:
 
-$$ \tag{26} \Gamma(u,v) = (M\_{tangent}^{-1})^{\mathrm{T}} \lbrace \frac{\partial h}{\partial u}, \frac{\partial h}{\partial v}, 0 \rbrace = N - (M\_{tangent}^{-1})^{\mathrm{T}} G.$$
+$$ \tag{28} \Gamma(u,v) = (M\_{tangent}^{-1})^{\mathrm{T}} \lbrace \frac{\partial h}{\partial u}, \frac{\partial h}{\partial v}, 0 \rbrace = N - (M\_{tangent}^{-1})^{\mathrm{T}} G.$$
 
 By definition, it is a vector in the tangent plane with the direction pointing up along the steepest slope and the magnitude of the rate at which height increases in that direction.
 Given the surface gradient, it's easy to obtain ("resolve") the perturbed normal:
 
-$$ \tag{27} N_p(u,v) = \frac{(\mathrm{cof}(M\_{scale}))(N - \Gamma)}{\Vert (\mathrm{cof}(M\_{scale}))(N - \Gamma) \Vert}. $$
+$$ \tag{29} N_p(u,v) = \frac{(\mathrm{cof}(M\_{scale}))(N - \Gamma)}{\Vert (\mathrm{cof}(M\_{scale}))(N - \Gamma) \Vert}. $$
 
 Why is it useful? Since it's just a matrix transformation, the surface gradient is a linear operator, which, combined with the fact that the derivative is a linear operator as well, makes many common operations straightforward. Additionally, the surface gradient, like the surface normal, is independent from the surface parametrization. And finally, the surface gradient is compact, since we do not need to retain the entire tangent frame.
 
@@ -158,29 +166,33 @@ Why is it useful? Since it's just a matrix transformation, the surface gradient 
 
 Want to flatten the normal map, or make it more bumpy? Simply rescale the surface gradient:
 
-$$ \tag{28} \alpha \Gamma(u,v) = (M\_{tangent}^{-1})^{\mathrm{T}} \lbrace \frac{\partial}{\partial u} (\alpha h), \frac{\partial}{\partial v} (\alpha h), 0 \rbrace. $$
+$$ \tag{30} \alpha \Gamma(u,v) = (M\_{tangent}^{-1})^{\mathrm{T}} \lbrace \frac{\partial}{\partial u} (\alpha h), \frac{\partial}{\partial v} (\alpha h), 0 \rbrace. $$
 
 #### 2. Combining Height Maps
 
 Due to linearity, combining height maps is straightforward:
 
-$$ \tag{29} \alpha \Gamma\_{1}(u,v) + \beta \Gamma\_{2}(u,v) = (M\_{tangent}^{-1})^{\mathrm{T}} \lbrace \frac{\partial}{\partial u} (\alpha h_1 + \beta h_2) , \frac{\partial}{\partial v}(\alpha h_1 + \beta h_2), 0 \rbrace. $$
+$$ \tag{31} \alpha \Gamma\_{1}(u,v) + \beta \Gamma\_{2}(u,v) = (M\_{tangent}^{-1})^{\mathrm{T}} \lbrace \frac{\partial}{\partial u} (\alpha h_1 + \beta h_2) , \frac{\partial}{\partial v}(\alpha h_1 + \beta h_2), 0 \rbrace. $$
 
 #### 3. Object-Space Normals
 
 Object-space normals are considered *already perturbed*, e.i. they do not depend on the normal of the surface. Nevertheless, it's convenient to process them within the same framework. It's worth keeping in mind that object-space normals retrieved from a texture should be affected by the object's scale.
 
-$$ \tag{30} N_p(u,v) = \frac{(\mathrm{cof}(M\_{scale})) N_o}{ \Vert (\mathrm{cof}(M\_{scale})) N_o \Vert }, $$
+$$ \tag{32} N_p(u,v) = \frac{(\mathrm{cof}(M\_{scale})) N_o}{ \Vert (\mathrm{cof}(M\_{scale})) N_o \Vert }, $$
 
-$$ \tag{31} N_o(u,v) = \frac{N - \Gamma}{ \Vert N - \Gamma \Vert }. $$
+$$ \tag{33} N_o(u,v) = \frac{N - \Gamma}{ \Vert N - \Gamma \Vert }. $$
 
-While we can solve this equation by projecting the object-space normal onto the tangent plane using equations (25) and (26), it's more efficient to find the solution geometrically:
+While we can solve this equation by projecting the object-space normal onto the tangent plane using equations (25) and (28), it's more efficient to find the solution geometrically:
 
 {{< figure src="/img/grad_obj.png" alt="Surface gradient and the object-space normal." >}}
 
-$$ \tag{32} \Gamma(u,v) = N - (N - \Gamma) = N -\frac{N_o}{\langle N,N_o \rangle}. $$
+$$ \tag{34} \Gamma(u,v) = N - (N - \Gamma) = N - G_o = N -\frac{N_o}{( N_o \boldsymbol{\cdot} N)}. $$
 
 This formula will give correct results even for negative values of the dot product (just make sure not to divide by 0). It is also independent from the surface parametrization -- the way we compute texture coordinates does not matter.
+
+The equation (34) can be generalized to work with arbitrary object-space gradients. Using the same geometric intuition, projection onto the tangent plane can be performed in the following way:
+
+$$ \tag{35} \Gamma(u,v) =  (G_o \boldsymbol{\cdot} N) N - G_o. $$
 
 #### 4. Planar Mapping
 
@@ -190,20 +202,25 @@ We will consider two types of normals stored within the normal map -- object-spa
 
 Without loss of generality, let's consider the X-Y plane for planar mapping. Our surface \\(S\\) then becomes a height map w.r.t. this plane (we assume that this is a suitable parametrization for the particular surface):
 
-$$ \tag{33} z = z(x, y), $$
-$$ \tag{34} \lbrace u,v \rbrace = \lbrace x,y \rbrace. $$
+$$ \tag{36} z = z(x, y), $$
+$$ \tag{37} \lbrace u,v \rbrace = \lbrace x,y \rbrace. $$
 
 Let's complete the tangent frame for the new surface parametrization:
 
-$$ \tag{35} T(u,v) = \frac{\partial S}{\partial u} = \lbrace 1, 0, \frac{\partial z}{\partial u} \rbrace, \quad B(u,v) = \frac{\partial S}{\partial v} = \lbrace 0, 1, \frac{\partial z}{\partial v} \rbrace. $$
+$$ \tag{38} T(u,v) = \frac{\partial S}{\partial u} = \lbrace 1, 0, \frac{\partial z}{\partial u} \rbrace, \quad B(u,v) = \frac{\partial S}{\partial v} = \lbrace 0, 1, \frac{\partial z}{\partial v} \rbrace. $$
 
 Recall the equation (11) which relates the height map gradient and the height map normal:
 
-$$ \tag{36} T(u,v) = \lbrace 1, 0, -\frac{n\_{x}}{n\_{z}} \rbrace, \quad B(u,v) = \lbrace 0, 1, -\frac{n\_{y}}{n\_{z}} \rbrace. $$
+$$ \tag{39} T(u,v) = \lbrace 1, 0, -\frac{n\_{x}}{n\_{z}} \rbrace, \quad B(u,v) = \lbrace 0, 1, -\frac{n\_{y}}{n\_{z}} \rbrace. $$
 
-This completes the TBN for the new surface parametrization, and we can now use the equation (26) to compute the surface gradient:
+This completes the TBN for the new surface parametrization, and we can now use the equation (28) to compute the surface gradient: (flip???)
 
-$$ \tag{37} \Gamma(u,v) = N - (M\_{tangent}^{-1})^{\mathrm{T}} G. $$
+$$ \tag{40} \Gamma(u,v) = -\frac{[B \times N | N \times T | 0] }{(T \times B) \boldsymbol{\cdot} N} G, $$
+
+$$ \tag{41} \Gamma(u,v) = -\frac{[\lbrace n_y^2/n_z+n_z, -n_x n_y/n_z, -n_x \rbrace | \lbrace -n_x n_y/n_z, n_x^2/n_z+n_z, -n_y \rbrace | 0] }{1 / \sqrt{n_z^2}} G, $$
+
+$$ \tag{42} \Gamma(u,v) = -\mathrm{sign}(n_z) [\lbrace n_y^2+n_z^2, -n_x n_y, -n_x n_z \rbrace | \lbrace -n_x n_y, n_x^2+n_z^2, -n_y n_z \rbrace | 0] G, $$
+
 
 #### 5. Tri-Planar Mapping
 
