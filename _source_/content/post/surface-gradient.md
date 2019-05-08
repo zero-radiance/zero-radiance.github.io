@@ -29,7 +29,7 @@ $$ \tag{1} S(u,v) = \lbrace x,y,z \rbrace. $$
 
 You can think of it as a transformation from a 2D plane to a 3D surface. The injectivity requirement is differentiability in disguise, the property we will heavily lean on during the derivation.
 
-Application of an affine transformation yields a set of transformed texture coordinates:
+Application of an affine transformation yields a set of transformed texture coordinates, which is something that's often done to tile and translate the texture at runtime:
 
 $$ \tag{2} \lbrace s,t \rbrace = \lbrace au+c, bv+d \rbrace. $$
 
@@ -57,7 +57,7 @@ $$ \tag{6} \begin{aligned}
     &= \Bigg[\frac{B \times N}{\langle T \times B, N \rangle} \Bigg| \frac{N \times T}{\langle T \times B, N \rangle} \Bigg| N\Bigg].
 \end{aligned} $$
 
-It's important to note that, in practice, the surface parametrization used to derive the normal may be different from the texture coordinate parametrization. This means that it's possible to encounter a mesh with vertex normals \\(N\\) pointing in the direction opposite from \\((T \times B)\\). Luckily, the math is on our side, and using the full matrix inversion procedure as described above works in all cases. More details can be found in  Morten's [thesis](http://image.diku.dk/projects/media/morten.mikkelsen.08.pdf) (see Section 2.4).
+It's important to note that, in practice, the surface parametrization used to derive the normal may be different from the texture coordinate parametrization. This means that it's possible to encounter a mesh with vertex normals \\(N\\) pointing in the direction opposite from \\((T \times B)\\). Of course, we always want to use the forward-facing normal \\(N\\). Luckily, the math is on our side, and using the full matrix inversion procedure as described above works in all cases. More details about surface re-parametrization can be found in Morten's [thesis](http://image.diku.dk/projects/media/morten.mikkelsen.08.pdf) (see Section 2.4).
 
 ## Preliminaries, Part 2: Height Maps
 
@@ -106,10 +106,10 @@ $$ \tag{15} B_p(u,v) = \frac{\partial P}{\partial v}
 
 Jim claims that for small displacements and moderately curved surfaces, the last term is negligibly small and can be set to 0. For those interested, Morten verifies that this is indeed the case in his [thesis](http://image.diku.dk/projects/media/morten.mikkelsen.08.pdf) (see Section 2.6).
 
-We can compute the perturbed normal by taking the cross product:
+We can compute the perturbed normal by taking the cross product. Just as before, we replace normalization in the denominator with the scalar triple product to avoid flipped normals:
 
-$$ \tag{16} N_p(u,v) = \frac{T_p \times B_p}{\Vert T_p \times B_p \Vert}
-					 \approx \frac{1}{\Vert T_p \times B_p \Vert} \Big((M\_{scale}(T + \frac{\partial h}{\partial u} N)) \times
+$$ \tag{16} N_p(u,v) = \frac{T_p \times B_p}{\langle T_p \times B_p, N \rangle}
+					 \approx \frac{1}{\langle T_p \times B_p, N \rangle} \Big((M\_{scale}(T + \frac{\partial h}{\partial u} N)) \times
 					 ( M\_{scale}(B + \frac{\partial h}{\partial v} N)) \Big). $$
 
 We can move the matrix outside of the brackets with the help of the following [identity](https://en.wikipedia.org/wiki/Cross_product#Algebraic_properties):
@@ -117,23 +117,23 @@ We can move the matrix outside of the brackets with the help of the following [i
 $$ \tag{17} (MA) \times (MB) = (\mathrm{det}(M))(M^{-1})^{\mathrm{T}}(A \times B)
 							 = (\mathrm{cof}(M)) (A \times B), $$
 
-$$ \tag{18} N_p(u,v) \approx \frac{\mathrm{cof}(M\_{scale})}{\Vert T_p \times B_p \Vert} \Big((T + \frac{\partial h}{\partial u} N) \times (B + \frac{\partial h}{\partial v} N)\Big). $$
+$$ \tag{18} N_p(u,v) \approx \frac{\mathrm{cof}(M\_{scale})}{\langle T_p \times B_p, N \rangle} \Big((T + \frac{\partial h}{\partial u} N) \times (B + \frac{\partial h}{\partial v} N)\Big). $$
 
 It's instructive to expand the cross product:
 
-$$ \tag{19} N_p(u,v) \approx \frac{\mathrm{cof}(M\_{scale})}{\Vert T_p \times B_p \Vert} \Big((T \times B) + \frac{\partial h}{\partial u} (N \times B) + \frac{\partial h}{\partial v} (T \times N) + \frac{\partial h}{\partial u} \frac{\partial h}{\partial v} (N \times N)\Big). $$
+$$ \tag{19} N_p(u,v) \approx \frac{\mathrm{cof}(M\_{scale})}{\langle T_p \times B_p, N \rangle} \Big((T \times B) + \frac{\partial h}{\partial u} (N \times B) + \frac{\partial h}{\partial v} (T \times N) + \frac{\partial h}{\partial u} \frac{\partial h}{\partial v} (N \times N)\Big). $$
 
 The last term vanishes because the value of the cross product is 0:
 
-$$ \tag{20} N_p(u,v) \approx \frac{\mathrm{cof}(M\_{scale})}{\Vert T_p \times B_p \Vert} \Big((T \times B) + \frac{\partial h}{\partial u} (N \times B) + \frac{\partial h}{\partial v} (T \times N)\Big). $$
+$$ \tag{20} N_p(u,v) \approx \frac{\mathrm{cof}(M\_{scale})}{\langle T_p \times B_p, N \rangle} \Big((T \times B) + \frac{\partial h}{\partial u} (N \times B) + \frac{\partial h}{\partial v} (T \times N)\Big). $$
 
 If we swap the operands of cross products, this equation will take a familiar form:
 
-$$ \tag{21} N_p(u,v) \approx \frac{\Vert T \times B \Vert}{\Vert T_p \times B_p \Vert} \mathrm{cof}(M\_{scale}) \frac{[B \times N | N \times T | T \times B]}{\Vert T \times B \Vert} \lbrace -\frac{\partial h}{\partial u}, -\frac{\partial h}{\partial v}, 1 \rbrace, $$
+$$ \tag{21} N_p(u,v) \approx \frac{\langle T \times B, N \rangle}{\langle T_p \times B_p, N \rangle} \mathrm{cof}(M\_{scale}) \frac{[B \times N | N \times T | T \times B]}{\langle T \times B, N \rangle} \lbrace -\frac{\partial h}{\partial u}, -\frac{\partial h}{\partial v}, 1 \rbrace, $$
 
-$$ \tag{22} N_p(u,v) \approx \frac{\Vert T \times B \Vert}{\Vert T_p \times B_p \Vert} \mathrm{cof}(M\_{scale}) (M\_{tangent}^{-1})^{\mathrm{T}}G. $$
+$$ \tag{22} N_p(u,v) \approx \frac{\langle T \times B, N \rangle}{\langle T_p \times B_p, N \rangle} \mathrm{cof}(M\_{scale}) (M\_{tangent}^{-1})^{\mathrm{T}}G. $$
 
-The first term of the equation (22) can be a bit surprising. Intuitively, it accounts for the change of volume from the old to the new coordinate frame. Since it's a non-negative scalar, it does not modify the direction of the normal, and we can take care of it by normalizing the resulting vector.
+The first term of the equation (22) can be a bit surprising. Intuitively, it accounts for the change of volume from the old to the new coordinate frame. Since it's a non-negative scalar (negative signs of dot products, if present, cancel out), it does not modify the direction of the normal, and we can take care of it by normalizing the resulting vector.
 
 The important part is, since normals are [bivectors](https://en.wikipedia.org/wiki/Bivector#Geometric_interpretation), they are transformed by the inverse-transpose of the matrix. Conversely, projection of an (unscaled) object-space normal into the tangent space is performed using the transpose:
 
@@ -211,7 +211,7 @@ Recall the equation (11) which relates the height map gradient and the height ma
 
 $$ \tag{37} T(u,v) = \lbrace 1, 0, -\frac{n\_{x}}{n\_{z}} \rbrace, \quad B(u,v) = \lbrace 0, 1, -\frac{n\_{y}}{n\_{z}} \rbrace. $$
 
-This completes the TBN for the new surface parametrization, and we can now use the equation (28) to compute the surface gradient (note that we must use the scalar triple product here to make sure that the tangent frame does not flip):
+This completes the TBN for the new surface parametrization, and we can now use the equation (28) to compute the surface gradient:
 
 $$ \tag{38} \Gamma(u,v) = -\frac{[B \times N | N \times T | 0] }{\langle T \times B, N \rangle} G, $$
 
