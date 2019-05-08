@@ -61,3 +61,7 @@ I did some testing, and the results are pretty similar. You may notice a slight 
 {{< figure src="/img/split_sum.png" alt="Comparison of two techniques" >}}
 
 It is possible to further improve the quality of the results by pre-filtering using MIS, or performing more intelligent filtering of the pre-filtered cubemap at runtime. But that is another story for another time.
+
+## Acknowledgments
+
+I would like to thank Brian Karis for reviewing this blog post and offering thoughtful comments.

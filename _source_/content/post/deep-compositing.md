@@ -91,3 +91,7 @@ In that case, we compute `B_1 = B * x_1`.
 Despite the derivation assuming constant illumination, we apply the same technique to all light types (once per voxel, not once per light) with good results.
 
 {{< figure src="/img/reproj_spot.png" alt="Reprojection with a spot light" caption="The new reprojection technique works well for directional, point and spot lights." >}}
+
+## Acknowledgments
+
+I would like to thank Sebastien Lagarde for reviewing this blog post and offering thoughtful comments.

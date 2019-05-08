@@ -14,7 +14,7 @@ Realistic rendering at high frame rates remains at the core of real-time compute
 
 One of the oldest tricks in the book is [bump mapping](https://www.microsoft.com/en-us/research/publication/simulation-of-wrinkled-surfaces/). Introduced in 1978 by Jimm Blinn, it is a simple way to add mesoscopic detail without increasing the geometric complexity of the scene. Most modern real-time renderers support a variation of this technique called normal mapping. While it's fast and easy to use, certain operations, such as blending, are [not as easy as they seem](https://blog.selfshadow.com/publications/blending-in-detail/). This is where the so-called "surface gradient framework" comes into play.
 
-The surface gradient framework is a set of tools to transform and combine normal (or bump) maps originally introduced by Morten S. Mikkelsen in his 2010 paper titled ["Bump Mapping Unparametrized Surfaces on the GPU"
+The surface gradient framework is a set of tools to transform and combine normal (or bump) maps originally introduced by Morten Mikkelsen in his 2010 paper titled ["Bump Mapping Unparametrized Surfaces on the GPU"
 ](https://www.dropbox.com/s/l1yl164jb3rhomq/mm_sfgrad_bump.pdf), and further extended to handle triplanar mapping in his subsequent [blog post](http://mmikkelsen3d.blogspot.com/2013/10/volume-height-maps-and-triplanar-bump.html). While there's nothing wrong with these two publications, to really understand what's going on, it really helps to also read his [thesis](http://image.diku.dk/projects/media/morten.mikkelsen.08.pdf), and at 109 pages, it's quite a time investment.
 
 Instead, I will attempt to give a shorter derivation, assuming no prior knowledge of the topic, starting from the the first principles. Still with me? Let's dive in.
@@ -225,4 +225,10 @@ TODO: is there another way to derive this? Maybe perform some kind of change of 
 
 Tri-planar mapping is an efficient alternative to storing already perturbed (object- or world-space) normals using an octahedral or lat-long projection. Instead, 3x 2D textures for X-Y, Y-Z and Z-X planes (akin to a cube map) are [usually employed](http://www.slideshare.net/icastano/cascades-demo-secrets).
 
+TODO: Recap the [blog post](http://mmikkelsen3d.blogspot.com/2013/10/volume-height-maps-and-triplanar-bump.html)...
 
+## Conclusion
+
+## Acknowledgments
+
+I would like to thank Jim Blinn and Morten Mikkelsen for reviewing this blog post, offering thoughtful comments and answering my questions.
