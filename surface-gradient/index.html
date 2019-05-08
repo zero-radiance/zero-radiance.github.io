@@ -1,0 +1,450 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Exploring the Surface Gradient // Zero Radiance</title>
+
+        <meta charset="utf-8">
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+    <meta name="description" content="">
+    <meta name="keywords" content="">
+    <meta name="author" content="">
+        <meta property="og:title" content="Exploring the Surface Gradient" />
+    <meta property="og:description" content="" />
+    <meta property="og:type" content="website" />
+    <meta property="og:locale" content="en_US" />
+    <meta property="og:url" content="https://zero-radiance.github.io/surface-gradient/" />
+    
+
+    <link href="" rel="alternate" type="application/rss+xml" title="Zero Radiance" />
+    <link rel="shortcut icon" href="/favicon.png">
+
+    <link href="https://zero-radiance.github.io/webfonts/ptserif/main.css" rel='stylesheet' type='text/css'>
+    <link href="https://zero-radiance.github.io/webfonts/source-code-pro/main.css" rel="stylesheet" type="text/css">
+
+    <link rel="stylesheet" href="https://zero-radiance.github.io/css/style.css">
+
+    <meta name="generator" content="Hugo 0.54.0" />
+</head>
+
+
+<body>
+<div id="container">
+    <header id="header">
+    <div id="header-outer" class="outer">
+        <div id="header-inner" class="inner">
+            <a id="main-nav-toggle" class="nav-icon" href="javascript:;"></a>
+            <a id="logo" class="logo-text" href="https://zero-radiance.github.io/">Zero Radiance</a>
+            <nav id="main-nav">
+                
+                <a class="main-nav-link" href="/about/">About</a>
+                
+            </nav>
+            <nav id="sub-nav">
+                <div id="search-form-wrap">
+                </div>
+            </nav>
+        </div>
+    </div>
+</header>
+
+    <section id="main" class="outer">
+        <article class="article article-type-post" itemscope itemprop="blogPost">
+    <div class="article-inner">
+        
+        <header class="article-header">
+            <h1 class="article-title" itemprop="name">Exploring the Surface Gradient</h1>
+        </header>
+        
+        <div class="article-meta">
+            <a href="/surface-gradient/" class="article-date">
+                <time datetime='2019-04-06T15:39:51.000-07:00' itemprop="datePublished">2019-04-06</time>
+            </a>
+            
+            
+            <div class="post-categories">
+                <div class="article-category">
+                    
+                    
+                    <a class="article-category-link" href="https://zero-radiance.github.io//categories/graphics">Graphics</a>
+                    
+                    
+                    <span>&gt;</span>
+                    
+                    <a class="article-category-link" href="https://zero-radiance.github.io//categories/math">Math</a>
+                    
+                </div>
+            </div>
+            
+            
+        </div>
+        <div class="article-entry" itemprop="articleBody">
+            <p>Realistic rendering at high frame rates remains at the core of real-time computer graphics. High performance and high fidelity are often at odds, requiring clever tricks and approximations to reach the desired quality bar.</p>
+
+<p>One of the oldest tricks in the book is <a href="https://www.microsoft.com/en-us/research/publication/simulation-of-wrinkled-surfaces/">bump mapping</a>. Introduced in 1978 by Jimm Blinn, it is a simple way to add mesoscopic detail without increasing the geometric complexity of the scene. Most modern real-time renderers support a variation of this technique called normal mapping. While it&rsquo;s fast and easy to use, certain operations, such as blending, are <a href="https://blog.selfshadow.com/publications/blending-in-detail/">not as easy as they seem</a>. This is where the so-called &ldquo;surface gradient framework&rdquo; comes into play.</p>
+
+<p>The surface gradient framework is a set of tools to transform and combine normal (or bump) maps originally introduced by Morten Mikkelsen in his 2010 paper titled <a href="https://www.dropbox.com/s/l1yl164jb3rhomq/mm_sfgrad_bump.pdf">&ldquo;Bump Mapping Unparametrized Surfaces on the GPU&rdquo;
+</a>, and further extended to handle triplanar mapping in his subsequent <a href="http://mmikkelsen3d.blogspot.com/2013/10/volume-height-maps-and-triplanar-bump.html">blog post</a>. While there&rsquo;s nothing wrong with these two publications, to really understand what&rsquo;s going on, it really helps to also read his <a href="http://image.diku.dk/projects/media/morten.mikkelsen.08.pdf">thesis</a>, and at 109 pages, it&rsquo;s quite a time investment.</p>
+
+<p>Instead, I will attempt to give a shorter derivation, assuming no prior knowledge of the topic, starting from the the first principles. Still with me? Let&rsquo;s dive in.</p>
+
+<h2 id="preliminaries-part-1-tangent-frame">Preliminaries, Part 1: Tangent Frame</h2>
+
+<p>We start with a 3D surface \(S\). Assume that it has some unique 2D parametrization, e.i. an injective (one to one) mapping from a 2D texture coordinate to an object-space 3D coordinate:</p>
+
+<p>$$ \tag{1} S(u,v) = \lbrace x,y,z \rbrace. $$</p>
+
+<p>You can think of it as a transformation from a 2D plane to a 3D surface. The injectivity requirement is differentiability in disguise, the property we will heavily lean on during the derivation.</p>
+
+<p>Application of an affine transformation yields a set of transformed texture coordinates, which is something that&rsquo;s often done to tile and translate the texture at runtime:</p>
+
+<p>$$ \tag{2} \lbrace s,t \rbrace = \lbrace au+c, bv+d \rbrace. $$</p>
+
+<p>While it&rsquo;s often called a UV set, we&rsquo;ll stick to using \(\lbrace u,v \rbrace\) for unique values and \(\lbrace s,t \rbrace\) for scaled-translated ones. Note that we don&rsquo;t care about a particular surface parametrization: we can use UV-mapping, planar mapping, or something else entirely.</p>
+
+<p>Armed with the surface parametrization, we can compute the tangent and the bitangent at the surface point:</p>
+
+<p>$$ \tag{3} T(u,v) = \frac{\partial S}{\partial u}, \quad B(u,v) = \frac{\partial S}{\partial v}. $$</p>
+
+<p>These two vectors span the tangent plane, and are typically neither mutually orthogonal nor of unit length. It&rsquo;s important to remember that they are not independent from the surface parametrization.</p>
+
+<p>We can use them to compute the geometric normal of the surface. To make the normal independent from the surface parametrization, it should be normalized:</p>
+
+<p>$$ \tag{4} N(u,v) = \frac{T \times B}{\Vert T \times B \Vert}. $$</p>
+
+<p>This completes the tangent frame, which can be represented as a (scaled) tangent-to-object-space matrix:</p>
+
+<p>$$ \tag{5} M_{tangent}(u,v) = [T | B | N]. $$</p>
+
+<p>We will need the inverse of the matrix going forward:</p>
+
+<p>$$ \tag{6} \begin{aligned}
+    (M_{tangent}^{-1}(u,v))^{\mathrm{T}} = \frac{\mathrm{cof}(M_{tangent})}{\mathrm{det}(M_{tangent})}
+    &amp;= \frac{[B \times N | N \times T | T \times B]}{\langle T \times B, N \rangle} \cr
+    &amp;= \Bigg[\frac{B \times N}{\langle T \times B, N \rangle} \Bigg| \frac{N \times T}{\langle T \times B, N \rangle} \Bigg| N\Bigg].
+\end{aligned} $$</p>
+
+<p>It&rsquo;s important to note that, in practice, the surface parametrization used to derive the normal may be different from the texture coordinate parametrization. This means that it&rsquo;s possible to encounter a mesh with vertex normals \(N\) pointing in the direction opposite from \((T \times B)\). Of course, we always want to use the forward-facing normal \(N\). Luckily, the math is on our side, and using the full matrix inversion procedure as described above works in all cases. More details about surface re-parametrization can be found in Morten&rsquo;s <a href="http://image.diku.dk/projects/media/morten.mikkelsen.08.pdf">thesis</a> (see Section 2.4).</p>
+
+<h2 id="preliminaries-part-2-height-maps">Preliminaries, Part 2: Height Maps</h2>
+
+<p>The simplest representation of a tangent-space normal (or bump) map is a height map \(h = h(s,t)\). Geometrically, a height map defines an implicit surface of the form \(z=z(x,y)\), or</p>
+
+<p>$$ \tag{7} f(x,y,z) = z - z(x,y) = 0. $$</p>
+
+<p>The direction of the height map normal is given by the <em>gradient of the surface</em>:</p>
+
+<p>$$ \tag{8} \nabla f(x,y,z) = \frac{\partial f}{\partial x} I + \frac{\partial f}{\partial y} J + \frac{\partial f}{\partial z} K, $$</p>
+
+<p>where \(\lbrace I,J,K \rbrace\) is a set of orthonormal basis vectors. Substitution of the height map equation readily yields the following expression:</p>
+
+<p>$$ \tag{9} G(s,t) = -\frac{\partial h}{\partial s} I -\frac{\partial h}{\partial t} J + K = \lbrace -\frac{\partial h}{\partial s}, -\frac{\partial h}{\partial t}, 1 \rbrace, $$</p>
+
+<p>where \({\partial h}/{\partial s}\) and \({\partial h}/{\partial t}\) are the slopes of the height map. To avoid confusion with Morten&rsquo;s <em>surface gradient</em>, we&rsquo;ll refer to \(G\) as the <em>height map gradient</em>. The coordinates are given w.r.t. the basis vectors of the tangent space.</p>
+
+<p>It&rsquo;s convenient to get the re-parametrization induced by transformed texture coordinates out of the way:</p>
+
+<p>$$ \tag{10} G(u,v) = \lbrace -\frac{\partial h}{\partial s} \frac{\partial s}{\partial u}, -\frac{\partial h}{\partial t} \frac{\partial t}{\partial v}, 1 \rbrace = \lbrace -a \frac{\partial h}{\partial s}, -b \frac{\partial h}{\partial t}, 1 \rbrace. $$</p>
+
+<p>This simply means that we need to rescale the slopes in order to adjust the displacements as we tile the texture.</p>
+
+<p>For completeness, we can convert a tangent-space normal into the slope (gradient) form in the following way:</p>
+
+<p>$$ \tag{11} G(s,t) = \lbrace - \frac{\partial h}{\partial s}, - \frac{\partial h}{\partial t}, 1 \rbrace = \frac{N_{t}}{n_{t,z}}, $$</p>
+
+<p>$$ \tag{12} G(u,v) = \lbrace -\frac{\partial h}{\partial s} \frac{\partial s}{\partial u}, -\frac{\partial h}{\partial t} \frac{\partial t}{\partial v}, 1 \rbrace = \lbrace a \frac{n_{t,x}}{n_{t,z}}, b \frac{n_{t,y}}{n_{t,z}}, 1 \rbrace = M_{tile} \frac{N_{t}}{n_{t,z}}. $$</p>
+
+<p>To perturb the surface using the height map, we need to perform a change of basis from the orthonormal tangent-space set \(\lbrace I,J,K \rbrace\) to our previously defined object-space set \(\lbrace T,B,N \rbrace\). Doing this correctly is slightly more involved than it may seem at first glance.</p>
+
+<h2 id="preliminaries-part-3-wrinkled-surfaces">Preliminaries, Part 3: Wrinkled Surfaces</h2>
+
+<p>The original formulation of bump mapping defines a height-mapped surface by applying a perturbation along the normal of the original surface. Note that this is the right place to apply the object&rsquo;s scale matrix, as it should affect the displacements (ultimately, by scaling the slopes):</p>
+
+<p>$$ \tag{13} P(u, v) = M_{scale} \Big( S(u, v) + h(u, v) N(u, v) \Big). $$</p>
+
+<p>Just as we did before, we can take derivatives of this equation to compute the perturbed normal.</p>
+
+<p>$$ \tag{14} T_p(u,v) = \frac{\partial P}{\partial u}
+                     = M_{scale}(T + \frac{\partial h}{\partial u} N + h \frac{\partial N}{\partial u})
+                     \approx M_{scale}(T + \frac{\partial h}{\partial u} N), $$
+$$ \tag{15} B_p(u,v) = \frac{\partial P}{\partial v}
+                     = M_{scale}(B + \frac{\partial h}{\partial v} N + h \frac{\partial N}{\partial v})
+                     \approx M_{scale}(B + \frac{\partial h}{\partial v} N). $$</p>
+
+<p>Jim claims that for small displacements and moderately curved surfaces, the last term is negligibly small and can be set to 0. For those interested, Morten verifies that this is indeed the case in his <a href="http://image.diku.dk/projects/media/morten.mikkelsen.08.pdf">thesis</a> (see Section 2.6).</p>
+
+<p>We can compute the perturbed normal by taking the cross product. Just as before, we replace normalization in the denominator with the scalar triple product to avoid flipped normals:</p>
+
+<p>$$ \tag{16} N_p(u,v) = \frac{T_p \times B_p}{\langle T_p \times B_p, N \rangle}
+                     \approx \frac{1}{\langle T_p \times B_p, N \rangle} \Big((M_{scale}(T + \frac{\partial h}{\partial u} N)) \times
+                     ( M_{scale}(B + \frac{\partial h}{\partial v} N)) \Big). $$</p>
+
+<p>We can move the matrix outside of the brackets with the help of the following <a href="https://en.wikipedia.org/wiki/Cross_product#Algebraic_properties">identity</a>:</p>
+
+<p>$$ \tag{17} (MA) \times (MB) = (\mathrm{det}(M))(M^{-1})^{\mathrm{T}}(A \times B)
+                             = (\mathrm{cof}(M)) (A \times B), $$</p>
+
+<p>$$ \tag{18} N_p(u,v) \approx \frac{\mathrm{cof}(M_{scale})}{\langle T_p \times B_p, N \rangle} \Big((T + \frac{\partial h}{\partial u} N) \times (B + \frac{\partial h}{\partial v} N)\Big). $$</p>
+
+<p>It&rsquo;s instructive to expand the cross product:</p>
+
+<p>$$ \tag{19} N_p(u,v) \approx \frac{\mathrm{cof}(M_{scale})}{\langle T_p \times B_p, N \rangle} \Big((T \times B) + \frac{\partial h}{\partial u} (N \times B) + \frac{\partial h}{\partial v} (T \times N) + \frac{\partial h}{\partial u} \frac{\partial h}{\partial v} (N \times N)\Big). $$</p>
+
+<p>The last term vanishes because the value of the cross product is 0:</p>
+
+<p>$$ \tag{20} N_p(u,v) \approx \frac{\mathrm{cof}(M_{scale})}{\langle T_p \times B_p, N \rangle} \Big((T \times B) + \frac{\partial h}{\partial u} (N \times B) + \frac{\partial h}{\partial v} (T \times N)\Big). $$</p>
+
+<p>If we swap the operands of cross products, this equation will take a familiar form:</p>
+
+<p>$$ \tag{21} N_p(u,v) \approx \frac{\langle T \times B, N \rangle}{\langle T_p \times B_p, N \rangle} \mathrm{cof}(M_{scale}) \frac{[B \times N | N \times T | T \times B]}{\langle T \times B, N \rangle} \lbrace -\frac{\partial h}{\partial u}, -\frac{\partial h}{\partial v}, 1 \rbrace, $$</p>
+
+<p>$$ \tag{22} N_p(u,v) \approx \frac{\langle T \times B, N \rangle}{\langle T_p \times B_p, N \rangle} \mathrm{cof}(M_{scale}) (M_{tangent}^{-1})^{\mathrm{T}}G. $$</p>
+
+<p>The first term of the equation (22) can be a bit surprising. Intuitively, it accounts for the change of volume from the old to the new coordinate frame. Since it&rsquo;s a non-negative scalar (negative signs of dot products, if present, cancel out), it does not modify the direction of the normal, and we can take care of it by normalizing the resulting vector.</p>
+
+<p>The important part is, since normals are <a href="https://en.wikipedia.org/wiki/Bivector#Geometric_interpretation">bivectors</a>, they are transformed by the inverse-transpose of the matrix. Conversely, projection of an (unscaled) object-space normal into the tangent space is performed using the transpose:</p>
+
+<p>$$ \tag{23} N_o(u,v) = \frac{(M_{tangent}^{-1})^{\mathrm{T}} G}{\Vert (M_{tangent}^{-1})^{\mathrm{T}} G \Vert}, $$</p>
+
+<p>$$ \tag{24} \frac{(M_{tangent})^{\mathrm{T}} N_o}{\Vert (M_{tangent})^{\mathrm{T}} N_o \Vert} = (M_{tangent})^{\mathrm{T}} (M_{tangent}^{-1})^{\mathrm{T}} G = (M_{tangent}^{-1} M_{tangent})^{\mathrm{T}} G = G. $$</p>
+
+<p>&ldquo;This seems quite expensive&rdquo;, you may say. Does correctness come at a high cost? Not really.</p>
+
+<p>Let&rsquo;s say we just have a tangent-space normal map, which we would like to tile and perhaps scale, and that&rsquo;s it. To compute the perturbed normal in the world space, all we have to do is the following:</p>
+
+<p>$$ \tag{25} N_w(u,v) \approx \frac{\big( M_{rot} (\mathrm{cof}(M_{scale})) (M_{tangent}^{-1})^{\mathrm{T}} \big) M_{tile} N_{t} / n_{t,z}}{\Vert \big( M_{rot} (\mathrm{cof}(M_{scale})) (M_{tangent}^{-1})^{\mathrm{T}} \big) M_{tile} N_{t} / n_{t,z} \Vert}, $$</p>
+
+<p>$$ \tag{26} N_w(u,v) \approx \frac{M_{world} M_{tile} N_{t}}{\Vert M_{world} M_{tile} N_{t} \Vert}. $$</p>
+
+<p>The tangent-space-normal-to-world matrix \(M_{world}\) can be precomputed, and all that&rsquo;s left to do at runtime is a few multiplications and one normalization.</p>
+
+<h2 id="surface-gradient-framework">Surface Gradient Framework</h2>
+
+<p>Morten defines the surface gradient as the projection of the height map gradient onto the tangent plane:</p>
+
+<p>$$ \tag{27} \Gamma(u,v) = (M_{tangent}^{-1})^{\mathrm{T}} \lbrace \frac{\partial h}{\partial u}, \frac{\partial h}{\partial v}, 0 \rbrace = N - (M_{tangent}^{-1})^{\mathrm{T}} G.$$</p>
+
+<p>By definition, it is a vector in the tangent plane with the direction pointing up along the steepest slope and the magnitude of the rate at which height increases in that direction.
+Given the surface gradient, it&rsquo;s easy to obtain (&ldquo;resolve&rdquo;) the perturbed normal:</p>
+
+<p>$$ \tag{28} N_p(u,v) = \frac{(\mathrm{cof}(M_{scale}))(N - \Gamma)}{\Vert (\mathrm{cof}(M_{scale}))(N - \Gamma) \Vert}. $$</p>
+
+<p>Why is it useful? Since it&rsquo;s just a matrix transformation, the surface gradient is a linear operator, which, combined with the fact that the derivative is a linear operator as well, makes many common operations straightforward. Additionally, the surface gradient, like the surface normal, is independent from the surface parametrization. And finally, the surface gradient is compact, since we do not need to retain the entire tangent frame.</p>
+
+<h4 id="1-rescaling-the-height-map">1. Rescaling the Height Map</h4>
+
+<p>Want to flatten the normal map, or make it more bumpy? Simply rescale the surface gradient:</p>
+
+<p>$$ \tag{29} \alpha \Gamma(u,v) = (M_{tangent}^{-1})^{\mathrm{T}} \lbrace \frac{\partial}{\partial u} (\alpha h), \frac{\partial}{\partial v} (\alpha h), 0 \rbrace. $$</p>
+
+<h4 id="2-combining-height-maps">2. Combining Height Maps</h4>
+
+<p>Due to linearity, combining height maps is straightforward:</p>
+
+<p>$$ \tag{30} \alpha \Gamma_{1}(u,v) + \beta \Gamma_{2}(u,v) = (M_{tangent}^{-1})^{\mathrm{T}} \lbrace \frac{\partial}{\partial u} (\alpha h_1 + \beta h_2) , \frac{\partial}{\partial v}(\alpha h_1 + \beta h_2), 0 \rbrace. $$</p>
+
+<h4 id="3-object-space-normals">3. Object-Space Normals</h4>
+
+<p>Object-space normals are considered <em>already perturbed</em>, e.i. they do not depend on the normal of the surface. Nevertheless, it&rsquo;s convenient to process them within the same framework. It&rsquo;s worth keeping in mind that object-space normals retrieved from a texture should be affected by the object&rsquo;s scale.</p>
+
+<p>$$ \tag{31} N_p(u,v) = \frac{(\mathrm{cof}(M_{scale})) N_o}{ \Vert (\mathrm{cof}(M_{scale})) N_o \Vert }, $$</p>
+
+<p>$$ \tag{32} N_o(u,v) = \frac{N - \Gamma}{ \Vert N - \Gamma \Vert }. $$</p>
+
+<p>While we can solve this equation by projecting the object-space normal onto the tangent plane using equations (24) and (27), it&rsquo;s more efficient to find the solution geometrically:</p>
+
+<figure>
+    <img src="/img/grad_obj.png"
+         alt="Surface gradient and the object-space normal."/> 
+</figure>
+
+
+<p>$$ \tag{33} \Gamma(u,v) = N - (N - \Gamma) = N - G_o = N -\frac{N_o}{\langle N_o, N \rangle}. $$</p>
+
+<p>This formula will give correct results even for negative values of the dot product, as well as non-unit normals \(N_o\) (just make sure not to divide by 0). It is also independent from the surface parametrization &ndash; the way we compute texture coordinates does not matter.</p>
+
+<h4 id="4-planar-mapping">4. Planar Mapping</h4>
+
+<p>One of the alternatives to UV-mapping is to obtain texture coordinates by projecting the mesh onto a plane. We will consider two types of normals stored within the normal map &ndash; already perturbed (e.g. object-space) normals and tangent-space normals.</p>
+
+<p>The solution for already perturbed normals is given in the previous section. Normals can be in any (not just object) space, as long as both \(N\) and \(N_o\) are represented with respect to the same frame; due to the independence from the surface parametrization, everything just works.</p>
+
+<p>Let&rsquo;s find a solution for tangent-space normals. Without loss of generality, let&rsquo;s consider the X-Y plane for planar mapping. Our surface \(S\) then becomes a height map w.r.t. this plane (we assume that this is a suitable parametrization for the particular surface):</p>
+
+<p>$$ \tag{34} z = z(x, y), $$
+$$ \tag{35} \lbrace u,v \rbrace = \lbrace x,y \rbrace. $$</p>
+
+<p>Let&rsquo;s complete the tangent frame for the new surface parametrization:</p>
+
+<p>$$ \tag{36} T(u,v) = \frac{\partial S}{\partial u} = \lbrace 1, 0, \frac{\partial z}{\partial u} \rbrace, \quad B(u,v) = \frac{\partial S}{\partial v} = \lbrace 0, 1, \frac{\partial z}{\partial v} \rbrace. $$</p>
+
+<p>Recall the equation (11) which relates the height map gradient and the height map normal:</p>
+
+<p>$$ \tag{37} T(u,v) = \lbrace 1, 0, -\frac{n_{x}}{n_{z}} \rbrace, \quad B(u,v) = \lbrace 0, 1, -\frac{n_{y}}{n_{z}} \rbrace. $$</p>
+
+<p>This completes the TBN for the new surface parametrization, and we can now use the equation (28) to compute the surface gradient:</p>
+
+<p>$$ \tag{38} \Gamma(u,v) = -\frac{[B \times N | N \times T | 0] }{\langle T \times B, N \rangle} G, $$</p>
+
+<p>$$ \tag{39} \Gamma(u,v) = -\frac{[\lbrace n_y^2/n_z+n_z, -n_x n_y/n_z, -n_x \rbrace | \lbrace -n_x n_y/n_z, n_x^2/n_z+n_z, -n_y \rbrace | 0] }{(n_x^2 + n_y^2 + n_z^2) / n_z} G, $$</p>
+
+<p>$$ \tag{40} \Gamma(u,v) = -[\lbrace n_y^2+n_z^2, -n_x n_y, -n_x n_z \rbrace | \lbrace -n_x n_y, n_x^2+n_z^2, -n_y n_z \rbrace | 0] G. $$</p>
+
+<p>TODO: is there another way to derive this? Maybe perform some kind of change of variables?</p>
+
+<h4 id="5-tri-planar-mapping">5. Tri-Planar Mapping</h4>
+
+<p>Tri-planar mapping is an efficient alternative to storing already perturbed (object- or world-space) normals using an octahedral or lat-long projection. Instead, 3x 2D textures for X-Y, Y-Z and Z-X planes (akin to a cube map) are <a href="http://www.slideshare.net/icastano/cascades-demo-secrets">usually employed</a>.</p>
+
+<p>TODO: Recap the <a href="http://mmikkelsen3d.blogspot.com/2013/10/volume-height-maps-and-triplanar-bump.html">blog post</a>&hellip;</p>
+
+<h2 id="conclusion">Conclusion</h2>
+
+<h2 id="acknowledgments">Acknowledgments</h2>
+
+<p>I would like to thank Jim Blinn and Morten Mikkelsen for reviewing this blog post, offering thoughtful comments and answering my questions.</p>
+        </div>
+
+        
+        
+        <div class="article-toc" style="display:none;">
+            <h3>Contents</h3>
+            <nav id="TableOfContents">
+<ul>
+<li>
+<ul>
+<li><a href="#preliminaries-part-1-tangent-frame">Preliminaries, Part 1: Tangent Frame</a></li>
+<li><a href="#preliminaries-part-2-height-maps">Preliminaries, Part 2: Height Maps</a></li>
+<li><a href="#preliminaries-part-3-wrinkled-surfaces">Preliminaries, Part 3: Wrinkled Surfaces</a></li>
+<li><a href="#surface-gradient-framework">Surface Gradient Framework</a>
+<ul>
+<li>
+<ul>
+<li><a href="#1-rescaling-the-height-map">1. Rescaling the Height Map</a></li>
+<li><a href="#2-combining-height-maps">2. Combining Height Maps</a></li>
+<li><a href="#3-object-space-normals">3. Object-Space Normals</a></li>
+<li><a href="#4-planar-mapping">4. Planar Mapping</a></li>
+<li><a href="#5-tri-planar-mapping">5. Tri-Planar Mapping</a></li>
+</ul></li>
+</ul></li>
+<li><a href="#conclusion">Conclusion</a></li>
+<li><a href="#acknowledgments">Acknowledgments</a></li>
+</ul></li>
+</ul>
+</nav>
+        </div>
+        
+        
+
+        
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.slim.min.js" integrity="sha256-/SIrNqv8h6QGKDuNoLGA4iret+kyesCkHGzVUUV0shc=" crossorigin="anonymous"></script>
+        <script>
+            (function() {
+                var $toc = $('#TableOfContents');
+                if ($toc.length > 0) {
+                    var $window = $(window);
+
+                    function onScroll(){
+                        var currentScroll = $window.scrollTop();
+                        var h = $('.article-entry h1, .article-entry h2, .article-entry h3, .article-entry h4, .article-entry h5, .article-entry h6');
+                        var id = "";
+                        h.each(function (i, e) {
+                            e = $(e);
+                            if (e.offset().top - 10 <= currentScroll) {
+                                id = e.attr('id');
+                            }
+                        });
+                        var active = $toc.find('a.active');
+                        if (active.length == 1 && active.eq(0).attr('href') == '#' + id) return true;
+
+                        active.each(function (i, e) {
+                            $(e).removeClass('active').siblings('ul').hide();
+                        });
+                        $toc.find('a[href="#' + id + '"]').parentsUntil('#TableOfContents').each(function (i, e) {
+                            $(e).children('a').addClass('active').siblings('ul').show();
+                        });
+                    }
+
+                    $window.on('scroll', onScroll);
+                    $(document).ready(function() {
+                        $toc.find('a').parent('li').find('ul').hide();
+                        onScroll();
+                        document.getElementsByClassName('article-toc')[0].style.display = '';
+                    });
+                }
+            })();
+        </script>
+        
+
+
+        
+        <footer class="article-footer">
+            <ul class="article-tag-list">
+                
+                <li class="article-tag-list-item">
+                    <a class="article-tag-list-link" href="https://zero-radiance.github.io//tags/height-mapping">Height Mapping
+                    </a>
+                </li>
+                
+                <li class="article-tag-list-item">
+                    <a class="article-tag-list-link" href="https://zero-radiance.github.io//tags/normal-mapping">Normal Mapping
+                    </a>
+                </li>
+                
+                <li class="article-tag-list-item">
+                    <a class="article-tag-list-link" href="https://zero-radiance.github.io//tags/surface-gradient">Surface Gradient
+                    </a>
+                </li>
+                
+            </ul>
+        </footer>
+        
+    </div>
+    <nav id="article-nav">
+    
+    
+    <a href="/post/split-sum/" id="article-nav-older" class="article-nav-link-wrap">
+        <div class="article-nav-title">Alternative Take on the Split Sum Approximation for Cubemap Pre-filtering&nbsp;<span>&gt;</span></div>
+    </a>
+    
+</nav>
+
+</article>
+
+        
+    </section>
+    <footer id="footer">
+    <div class="outer">
+        <div id="footer-info" class="inner">
+            &copy; 2019 Zero Radiance
+            <br />
+            Powered by <a href="https://gohugo.io" target="_blank">Hugo</a> with theme <a href="https://github.com/carsonip/hugo-theme-minos" target="_blank">Minos</a>
+        </div>
+    </div>
+    
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.9.0/styles/tomorrow-night.min.css" integrity="sha256-2wL88NKUqvJi/ExflDzkzUumjUM73mcK2gBvBBeLvTk=" crossorigin="anonymous" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.9.0/highlight.min.js" integrity="sha256-KbfTjB0WZ8vvXngdpJGY3Yp3xKk+tttbqClO11anCIU=" crossorigin="anonymous"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+
+    
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.10.1/dist/katex.min.css" integrity="sha384-dbVIfZGuN1Yq7/1Ocstc1lUEm+AT+/rCkibIcC/OmWo5f0EA48Vf8CytHzGrSwbQ" crossorigin="anonymous">
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.10.1/dist/katex.min.js" integrity="sha384-2BKqo+exmr9su6dir+qCw08N2ZKRucY4PrGQPPWU1A7FtlCGjmEGFqXCv5nyM5Ij" crossorigin="anonymous"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.10.1/dist/contrib/auto-render.min.js" integrity="sha384-kWPLUVMOks5AQFrykwIup5lo0m3iMkkHrD0uJ4H5cjeGihAutqP0yW0J6dpFiVkI" crossorigin="anonymous"
+    onload="renderMathInElement(document.body, {strict: false});"></script>
+    
+    <script>
+        document.getElementById('main-nav-toggle').addEventListener('click', function () {
+            var header = document.getElementById('header');
+            if (header.classList.contains('mobile-on')) {
+                header.classList.remove('mobile-on');
+            } else {
+                header.classList.add('mobile-on');
+            }
+        });
+    </script>
+</footer>
+
+</div>
+</body>
+</html>

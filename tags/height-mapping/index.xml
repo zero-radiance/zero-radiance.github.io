@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Graphics on Zero Radiance</title>
-    <link>https://zero-radiance.github.io/categories/graphics/</link>
-    <description>Recent content in Graphics on Zero Radiance</description>
+    <title>Height Mapping on Zero Radiance</title>
+    <link>https://zero-radiance.github.io/tags/height-mapping/</link>
+    <description>Recent content in Height Mapping on Zero Radiance</description>
     <generator>Hugo -- gohugo.io</generator>
     <lastBuildDate>Sat, 06 Apr 2019 15:39:51 -0700</lastBuildDate>
     
-	<atom:link href="https://zero-radiance.github.io/categories/graphics/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://zero-radiance.github.io/tags/height-mapping/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
@@ -24,32 +24,6 @@
 &lt;/a&gt;, and further extended to handle triplanar mapping in his subsequent &lt;a href=&#34;http://mmikkelsen3d.blogspot.com/2013/10/volume-height-maps-and-triplanar-bump.html&#34;&gt;blog post&lt;/a&gt;. While there&amp;rsquo;s nothing wrong with these two publications, to really understand what&amp;rsquo;s going on, it really helps to also read his &lt;a href=&#34;http://image.diku.dk/projects/media/morten.mikkelsen.08.pdf&#34;&gt;thesis&lt;/a&gt;, and at 109 pages, it&amp;rsquo;s quite a time investment.&lt;/p&gt;
 
 &lt;p&gt;Instead, I will attempt to give a shorter derivation, assuming no prior knowledge of the topic, starting from the the first principles. Still with me? Let&amp;rsquo;s dive in.&lt;/p&gt;</description>
-    </item>
-    
-    <item>
-      <title>Alternative Take on the Split Sum Approximation for Cubemap Pre-filtering</title>
-      <link>https://zero-radiance.github.io/post/split-sum/</link>
-      <pubDate>Tue, 02 Apr 2019 00:00:00 +0000</pubDate>
-      
-      <guid>https://zero-radiance.github.io/post/split-sum/</guid>
-      <description>&lt;p&gt;Pre-filtered cubemaps remain an important source of indirect illumination for those of us who still haven&amp;rsquo;t purchased a Turing graphics card.&lt;/p&gt;
-
-&lt;p&gt;To my knowledge, most implementations use the &lt;a href=&#34;https://cdn2.unrealengine.com/Resources/files/2013SiggraphPresentationsNotes-26915738.pdf&#34;&gt;split sum approximation&lt;/a&gt; originally introduced by Brian Karis. It is a simple technique, and generally works well given the inherent view independence limitation.&lt;/p&gt;
-
-&lt;p&gt;But why does it work so well, and is there a better way to pre-filter? Let&amp;rsquo;s find out.&lt;/p&gt;</description>
-    </item>
-    
-    <item>
-      <title>Deep Compositing and Reprojection</title>
-      <link>https://zero-radiance.github.io/post/deep-compositing/</link>
-      <pubDate>Thu, 11 Oct 2018 00:00:00 +0000</pubDate>
-      
-      <guid>https://zero-radiance.github.io/post/deep-compositing/</guid>
-      <description>&lt;p&gt;Most graphics programmers are familiar with the concept of &lt;a href=&#34;http://jcgt.org/published/0004/02/03/&#34;&gt;alpha&lt;/a&gt;. It has two interpretations - geometrical and optical. The former corresponds to coverage, while the latter refers to opacity.&lt;/p&gt;
-
-&lt;p&gt;Regular compositing assumes non-overlapping objects. Typically, the &lt;a href=&#34;https://graphics.pixar.com/library/Compositing/&#34;&gt;over operator&lt;/a&gt; is used. It implies that one of the objects is in front of the other, and thereby attenuates its contribution to the image.&lt;/p&gt;
-
-&lt;p&gt;This blog post will cover &lt;a href=&#34;https://graphics.pixar.com/library/DeepCompositing/&#34;&gt;deep compositing&lt;/a&gt;.&lt;/p&gt;</description>
     </item>
     
   </channel>

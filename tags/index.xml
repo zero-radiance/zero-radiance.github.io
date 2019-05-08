@@ -38,11 +38,29 @@
     </item>
     
     <item>
-      <title>Ibl</title>
-      <link>https://zero-radiance.github.io/tags/ibl/</link>
+      <title>Height Mapping</title>
+      <link>https://zero-radiance.github.io/tags/height-mapping/</link>
+      <pubDate>Sat, 06 Apr 2019 15:39:51 -0700</pubDate>
+      
+      <guid>https://zero-radiance.github.io/tags/height-mapping/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Image Based Lighting</title>
+      <link>https://zero-radiance.github.io/tags/image-based-lighting/</link>
       <pubDate>Tue, 02 Apr 2019 00:00:00 +0000</pubDate>
       
-      <guid>https://zero-radiance.github.io/tags/ibl/</guid>
+      <guid>https://zero-radiance.github.io/tags/image-based-lighting/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Normal Mapping</title>
+      <link>https://zero-radiance.github.io/tags/normal-mapping/</link>
+      <pubDate>Sat, 06 Apr 2019 15:39:51 -0700</pubDate>
+      
+      <guid>https://zero-radiance.github.io/tags/normal-mapping/</guid>
       <description></description>
     </item>
     
@@ -61,6 +79,15 @@
       <pubDate>Tue, 02 Apr 2019 00:00:00 +0000</pubDate>
       
       <guid>https://zero-radiance.github.io/tags/split-sum-approximation/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Surface Gradient</title>
+      <link>https://zero-radiance.github.io/tags/surface-gradient/</link>
+      <pubDate>Sat, 06 Apr 2019 15:39:51 -0700</pubDate>
+      
+      <guid>https://zero-radiance.github.io/tags/surface-gradient/</guid>
       <description></description>
     </item>
     

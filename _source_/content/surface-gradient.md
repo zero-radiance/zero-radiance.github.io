@@ -1,5 +1,5 @@
 ---
-draft: true
+hidden: true
 title: "Exploring the Surface Gradient"
 date: 2019-04-06T15:39:51-07:00
 categories: [ "Graphics", "Math" ]
