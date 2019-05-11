@@ -190,13 +190,13 @@ While we can solve this equation by projecting the object-space normal onto the 
 
 $$ \tag{33} \Gamma(u,v) = N - (N - \Gamma) = N - G_o = N -\frac{N_o}{\langle N_o, N \rangle}. $$
 
-This formula will give correct results even for negative values of the dot product, as well as non-unit normals \\(N_o\\) (just make sure not to divide by 0). It is also independent from the surface parametrization -- the way we compute texture coordinates does not matter.
+This formula will give correct results even for negative values of the dot product, as well as non-unit normals (or gradients) \\(N_o\\). It is also independent from the surface parametrization -- the way we compute texture coordinates does not matter.
 
 #### 4. Planar Mapping
 
-One of the alternatives to UV-mapping is to obtain texture coordinates by projecting the mesh onto a plane. We will consider two types of normals stored within the normal map -- already perturbed (e.g. object-space) normals and tangent-space normals.
+One of the alternatives to UV-mapping is to obtain texture coordinates by projecting the mesh onto a plane. Typically, the normals are stored in one of the three spaces: object space, plane space (spanned by the principal axes of the plane and their normalized cross product), or tangent space.
 
-The solution for already perturbed normals is given in the previous section. Normals can be in any (not just object) space, as long as both \\(N\\) and \\(N_o\\) are represented with respect to the same frame; due to the independence from the surface parametrization, everything just works.
+The solution for the already perturbed (e.g. object-space or plane-space) normals is given in the previous section. Normals can be in any space, as long as both \\(N\\) and \\(N_o\\) are represented with respect to the same frame; due to the independence from the surface parametrization, everything just works. The only subtlety is accounting for tiling of the plane-space normals, which can be achieved as per equation (12).
 
 Let's find a solution for tangent-space normals. Without loss of generality, let's consider the X-Y plane for planar mapping. Our surface \\(S\\) then becomes a height map w.r.t. this plane (we assume that this is a suitable parametrization for the particular surface):
 
@@ -211,7 +211,7 @@ Recall the equation (11) which relates the height map gradient and the height ma
 
 $$ \tag{37} T(u,v) = \lbrace 1, 0, -\frac{n\_{x}}{n\_{z}} \rbrace, \quad B(u,v) = \lbrace 0, 1, -\frac{n\_{y}}{n\_{z}} \rbrace. $$
 
-This completes the TBN for the new surface parametrization, and we can now use the equation (28) to compute the surface gradient:
+This completes the TBN for the new surface parametrization, and we can now use the equation (27) to compute the surface gradient:
 
 $$ \tag{38} \Gamma(u,v) = -\frac{[B \times N | N \times T | 0] }{\langle T \times B, N \rangle} G, $$
 
