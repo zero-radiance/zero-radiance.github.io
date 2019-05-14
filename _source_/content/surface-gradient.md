@@ -236,7 +236,9 @@ TODO: is there another way to derive this? Maybe perform some kind of change of 
 
 #### 5. Tri-Planar Mapping
 
-Tri-planar mapping is an efficient alternative to storing already perturbed normals in a cube map, or using an octahedral or lat-long projection. Instead, the same 2D texture is reused three times for [X-Y, Y-Z and Z-X planes](http://www.slideshare.net/icastano/cascades-demo-secrets). You can think of it as a cube map with all 6 faces of the cube using the same planar map. The same normal map spaces supported by planar mapping are supported here. In fact, the math is exactly the same - the only difference is that you have to do it (up to) three times, and blend the results using the weight function which depends on the direction of the surface normal.
+Tri-planar mapping is an efficient alternative to storing already perturbed normals in a cube map, or using an octahedral or lat-long projection. Instead, the same 2D texture is reused three times for [X-Y, Y-Z and Z-X planes](http://www.slideshare.net/icastano/cascades-demo-secrets). You can think of it as a cube map with all 6 faces of the cube using the same planar map. The same normal map spaces supported by planar mapping are supported here. In fact, the math is almost exactly the same - the only difference is that you have to do it (up to) three times, and blend the results using the weight function which depends on the direction of the surface normal.
+
+But how do we blend the normals? If we convert them into the surface gradient form, blending becomes simple and meaningful. The only remaining catch is that the resulting gradient
 
 
 
