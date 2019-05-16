@@ -23,7 +23,9 @@
 &lt;p&gt;The surface gradient framework is a set of tools to transform and combine normal (or bump) maps originally introduced by Morten Mikkelsen in his 2010 paper titled &lt;a href=&#34;https://www.dropbox.com/s/l1yl164jb3rhomq/mm_sfgrad_bump.pdf&#34;&gt;&amp;ldquo;Bump Mapping Unparametrized Surfaces on the GPU&amp;rdquo;
 &lt;/a&gt;, and further extended to handle triplanar mapping in his subsequent &lt;a href=&#34;http://mmikkelsen3d.blogspot.com/2013/10/volume-height-maps-and-triplanar-bump.html&#34;&gt;blog post&lt;/a&gt;. While there&amp;rsquo;s nothing wrong with these two publications, to really understand what&amp;rsquo;s going on, it really helps to also read his &lt;a href=&#34;http://image.diku.dk/projects/media/morten.mikkelsen.08.pdf&#34;&gt;thesis&lt;/a&gt;, and at 109 pages, it&amp;rsquo;s quite a time investment.&lt;/p&gt;
 
-&lt;p&gt;Instead, I will attempt to give a shorter derivation, assuming no prior knowledge of the topic, starting from the the first principles. Still with me? Let&amp;rsquo;s dive in.&lt;/p&gt;</description>
+&lt;p&gt;Instead, I will attempt to give a shorter derivation, assuming no prior knowledge of the topic, starting from the the first principles. As with any derivation, the results will be theoretical in nature, and it&amp;rsquo;s important to understand the practical aspects. Your renderer probably doesn&amp;rsquo;t implement normal mapping this way (but maybe it should), your artists are probably used to the wrong but convenient way of doing it for the last two decades, and your baking tool is trying to minimize the damage by reversing all of your hacks during the mesh generation step. Still, in my opinion, it&amp;rsquo;s important to understand the right way to do things, so that you can make an informed decision to do things differently, if necessary, and understand the implications of doing so.&lt;/p&gt;
+
+&lt;p&gt;Still with me? Let&amp;rsquo;s dive in.&lt;/p&gt;</description>
     </item>
     
   </channel>
