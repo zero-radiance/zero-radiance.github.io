@@ -61,7 +61,7 @@ $$ \tag{6} \begin{aligned}
 
 It's important to note that, in practice, the surface parametrization used to derive the normal may be different from the texture coordinate parametrization. This means that it's possible to encounter a mesh with vertex normals \\(N\\) pointing in the direction opposite from \\((T \times B)\\). Of course, we always want to use the forward-facing normal \\(N\\). Luckily, the math is on our side, and using the full matrix inversion procedure as described above works in all cases. More details about surface re-parametrization can be found in Morten's [thesis](http://image.diku.dk/projects/media/morten.mikkelsen.08.pdf) (see Section 2.4).
 
-## Preliminaries, Part 2: Height Maps
+## Preliminaries, Part 2: Height Maps and Volumes
 
 The simplest representation of a tangent-space normal (or bump) map is the height map \\(h = h(s,t)\\). A height map is a 2D subset (slice) of a 3D height volume, where each location in space corresponds to a height value. A height volume is a scalar field. The [gradient](https://en.wikipedia.org/wiki/Gradient) of a scalar field is a vector field. For a height volume, the *volume gradient* points in the direction of the greatest height increase rate, with the magnitude corresponding to this rate:
 
@@ -69,7 +69,7 @@ $$ \tag{7} \nabla h(s,t,r) = \frac{\partial h}{\partial s} I + \frac{\partial h}
 
 where \\(\lbrace I,J,K \rbrace\\) is the set of orthonormal basis vectors.
 
-For a height map, the gradient is located on the base plane (of 0 height) of the height map, with the direction and the magnitude corresponding to its steepest slope (\\({\partial h}/{\partial s}\\) and \\({\partial h}/{\partial t}\\) are the slopes of the height map). You can think of it as taking the vector pointing up along the steepest slope of the height map, and orthographically projecting it onto the base plane.
+For a height map, the gradient is located on the base plane (of 0 height) of the height map, with the direction and the magnitude corresponding to its steepest slope (\\({\partial h}/{\partial s}\\) and \\({\partial h}/{\partial t}\\) are the slopes of the height map).
 
 There are two ways to compute the gradient: one is to realize that the rate at which the height changes along the third dimension is zero, and the other one is to project the volume gradient along the normal of the base plane:
 
