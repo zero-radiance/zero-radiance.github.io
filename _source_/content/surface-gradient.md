@@ -109,7 +109,11 @@ To perturb the surface using the height map, we need to perform a change of basi
 
 ## Preliminaries, Part 3: Wrinkled Surfaces
 
-The [original formulation](https://www.microsoft.com/en-us/research/publication/simulation-of-wrinkled-surfaces/) of bump mapping defines a height-mapped surface by applying a perturbation along the normal of the original surface. Note that this is the right place to apply the object's scale matrix, as it should affect the displacements (ultimately, by scaling the slopes):
+The [original formulation](https://www.microsoft.com/en-us/research/publication/simulation-of-wrinkled-surfaces/) of bump mapping defines a height-mapped surface by applying a perturbation along the normal of the original surface.
+
+{{< figure src="/img/bump_map.png" caption="Bump mapping as depicted by Jim Blinn in his original paper." >}}
+
+Note that this is the right place to apply the object's scale matrix, as it should affect the displacements (ultimately, by scaling the slopes):
 
 $$ \tag{16} P(u, v) = M\_{scale} \Big( S(u, v) + h(u, v) N(u, v) \Big). $$
 
