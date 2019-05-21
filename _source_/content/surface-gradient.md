@@ -175,13 +175,15 @@ The tangent-normal-to-world matrix \\(M\_{world}\\) can be precomputed, and all 
 
 ## Surface Gradient Framework
 
-The [surface gradient](https://en.wikipedia.org/wiki/Surface_gradient) is defined as the orthographic projection of the volume gradient onto the tangent plane (assuming both vectors are in the same space, compare to the equation (8)):
+The [surface gradient](https://en.wikipedia.org/wiki/Surface_gradient) is defined as the orthographic projection of the volume gradient onto the tangent plane (compare to the equation (8)):
 
 $$ \tag{30} \Gamma(u,v) = \nabla h - \langle \nabla h, N \rangle N. $$
 
-In another words, it is the projected gradient transformed from the tangent space into the object space:
+In other words, it is the projected gradient transformed from the tangent space into the object space:
 
 $$ \tag{31} \Gamma(u,v) = N - (M\_{tangent}^{-1})^{\mathrm{T}} G = (M\_{tangent}^{-1})^{\mathrm{T}} \gamma = \frac{[B \times N | N \times T] }{\langle T \times B, N \rangle} \gamma. $$
+
+All participating vectors must use the same frame of reference.
 
 Why are these two definitions equivalent? We can use the definition of the directional derivative, that for any vector \\(W\\), \\(\partial h / \partial w = \langle \nabla h, W \rangle\\):
 
