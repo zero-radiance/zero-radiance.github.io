@@ -104,13 +104,13 @@
 
 <p>In our notation, we will always use \(\lbrace u,v \rbrace\) for unique values and \(\lbrace s,t \rbrace\) for scaled-translated ones. Note that we don&rsquo;t care about a particular surface parametrization: we can use UV-mapping, planar mapping, or something else entirely.</p>
 
-<p>Armed with the surface parametrization, we can compute the tangent and the bitangent at the surface point:</p>
+<p>Armed with the surface parametrization, we can compute two tangent vectors at the surface point:</p>
 
 <p>$$ \tag{3} T(u,v) = \frac{\partial S}{\partial u}, \quad B(u,v) = \frac{\partial S}{\partial v}. $$</p>
 
-<p>These two vectors span the tangent plane, and are typically neither mutually orthogonal nor of unit length. It&rsquo;s important to remember that they are dependent on the surface parametrization.</p>
+<p>These two vectors span the <a href="http://web.mit.edu/hyperbook/Patrikalakis-Maekawa-Cho/node27.html">tangent plane</a>, and are typically neither mutually orthogonal nor of unit length. It&rsquo;s important to remember that they are dependent on the surface parametrization. You may be used to calling them <a href="http://www.terathon.com/code/tangent.html">&ldquo;the tangent&rdquo; and &ldquo;the bitangent&rdquo;</a>, when, strictly speaking, the tangent plane contains infinitely many unique tangent vectors, and the term <a href="https://en.wikipedia.org/wiki/Bitangent">bitangent</a> is only defined for curves.</p>
 
-<p>We can use them to compute the geometric normal of the surface. To make the normal independent from the surface parametrization, it should be normalized:</p>
+<p>We can use these two tangent vectors to compute the geometric normal of the surface. To make the normal independent from the surface parametrization, it should be normalized:</p>
 
 <p>$$ \tag{4} N(u,v) = \frac{T \times B}{\Vert T \times B \Vert}. $$</p>
 
@@ -128,9 +128,9 @@
 
 <p>It&rsquo;s important to note that, in practice, the surface parametrization used to derive the normal may be different from the texture coordinate parametrization. This means that it&rsquo;s possible to encounter a mesh with vertex normals \(N\) pointing in the direction opposite from \((T \times B)\). Of course, we always want to use the forward-facing normal \(N\). Luckily, the math is on our side, and using the full matrix inversion procedure as described above works in all cases. More details about surface re-parametrization can be found in Morten&rsquo;s <a href="http://image.diku.dk/projects/media/morten.mikkelsen.08.pdf">thesis</a> (see Section 2.4).</p>
 
-<h2 id="preliminaries-part-2-height-maps">Preliminaries, Part 2: Height Maps</h2>
+<h2 id="preliminaries-part-2-height-maps-and-height-volumes">Preliminaries, Part 2: Height Maps and Height Volumes</h2>
 
-<p>The simplest representation of a tangent-space normal (or bump) map is the height map \(h = h(s,t)\). A height map is a 2D subset (slice) of a 3D height volume, where each location in space corresponds to a height value. A height volume is a scalar field. The <a href="https://en.wikipedia.org/wiki/Gradient">gradient</a> of a scalar field is a vector field. For a height volume, the <em>volume gradient</em> points in the direction of the greatest height increase rate, with the magnitude corresponding to this rate:</p>
+<p>The simplest representation of a tangent-space normal (or bump) map is the height map \(z = h(s,t)\). A height map is a 2D subset (slice) of a 3D height volume, where each location in space corresponds to a height value. A height volume is a scalar field. The <a href="https://en.wikipedia.org/wiki/Gradient">gradient</a> of a scalar field is a vector field. For a height volume, the <em>volume gradient</em> points in the direction of the greatest height increase rate, with the magnitude corresponding to this rate:</p>
 
 <p>$$ \tag{7} \nabla h(s,t,r) = \frac{\partial h}{\partial s} I + \frac{\partial h}{\partial t} J + \frac{\partial h}{\partial r} K = \Big\lbrace \frac{\partial h}{\partial s}, \frac{\partial h}{\partial t}, \frac{\partial h}{\partial r} \Big\rbrace^{\mathrm{T}}, $$</p>
 
@@ -144,9 +144,9 @@
 
 <p>We will refer to \( \gamma \) as the <em>projected gradient</em>. It is the fundamental quantity which makes bump mapping with both height maps and height volumes possible.</p>
 
-<p>Geometrically, a height map defines an implicit surface of the form \(z=z(x,y)\), or</p>
+<p>Geometrically, a height map defines an implicit surface of the form:</p>
 
-<p>$$ \tag{9} f(x,y,z) = z - z(x,y) = 0. $$</p>
+<p>$$ \tag{9} f(x,y,z) = z - h(x,y) = 0. $$</p>
 
 <p>The upward-facing direction of the height map normal is given by the <em>gradient of the implicit surface</em>:</p>
 
@@ -307,7 +307,7 @@ $$ \tag{18} B_p(u,v) = \frac{\partial P}{\partial v}
 
 <p>Without loss of generality, let&rsquo;s consider the X-Y plane for planar mapping. Our surface \(S\) then becomes a height map w.r.t. this plane (we assume that this is a suitable parametrization for the particular surface):</p>
 
-<p>$$ \tag{39} z = z(x, y), $$
+<p>$$ \tag{39} z = h(x, y), $$
 $$ \tag{40} \lbrace u,v \rbrace^{\mathrm{T}} = \lbrace x,y \rbrace^{\mathrm{T}}. $$</p>
 
 <p>Let&rsquo;s complete the tangent frame for the new surface parametrization:</p>
@@ -355,7 +355,7 @@ $$ \tag{40} \lbrace u,v \rbrace^{\mathrm{T}} = \lbrace x,y \rbrace^{\mathrm{T}}.
     &amp;+ Z \frac{\partial}{\partial z} (w(n_y,n_z) h_x(y,z) + w(n_z,n_x) h_y(z,x)).
 \end{aligned} $$</p>
 
-<p>The expression is a little complicated, particularly because both the height and the weighting functions depend on the position, so we would need to apply the product rule in order to compute the derivative. Instead, Morten employs a simplification (the same one we used in the section 3), assuming that the normals and, as a result, the weights vary slowly w.r.t. the position:</p>
+<p>The expression is a little complicated, particularly because both the height and the weighting functions depend on the position, so we would need to apply the product rule in order to compute the derivative. Instead, Morten employs a simplification (the same one Jim Blinn employs in section 3), assuming that the normals and, as a result, the weights vary slowly w.r.t. the position:</p>
 
 <p>$$ \tag{48} \frac{\partial N}{\partial x} = \frac{\partial N}{\partial y} = \frac{\partial N}{\partial z} = 0. $$</p>
 
@@ -402,7 +402,7 @@ $$ \tag{40} \lbrace u,v \rbrace^{\mathrm{T}} = \lbrace x,y \rbrace^{\mathrm{T}}.
 <li>
 <ul>
 <li><a href="#preliminaries-part-1-tangent-frame">Preliminaries, Part 1: Tangent Frame</a></li>
-<li><a href="#preliminaries-part-2-height-maps">Preliminaries, Part 2: Height Maps</a></li>
+<li><a href="#preliminaries-part-2-height-maps-and-height-volumes">Preliminaries, Part 2: Height Maps and Height Volumes</a></li>
 <li><a href="#preliminaries-part-3-wrinkled-surfaces">Preliminaries, Part 3: Wrinkled Surfaces</a></li>
 <li><a href="#surface-gradient-framework">Surface Gradient Framework</a>
 <ul>
