@@ -232,7 +232,7 @@ While we can solve this equation by projecting the object-space normal onto the 
 
 {{< figure src="/img/grad_obj.png" alt="Surface gradient and the object-space normal." >}}
 
-$$ \tag{38} \Gamma(u,v) = N - (N - \Gamma) = N -\frac{N_o}{\langle N_o, N \rangle}. $$
+$$ \tag{38} \Gamma(u,v) = N - (N - \Gamma) = N - G_o = N -\frac{N_o}{\langle N_o, N \rangle}. $$
 
 This formula rescales the normal to obtain the corresponding height map gradient which satisfied the condition \\(\langle N,G \rangle = 1\\). It produces correct results even for negative values of the dot product, as well as non-unit normals \\(N_o\\). In fact, normals can be in any space, as long as both \\(N\\) and \\(N_o\\) are represented with respect to the same frame of reference. Since we only deal with normals and the surface gradient, this formulation is also independent from the surface parametrization -- the way we compute the texture coordinates does not matter.
 
