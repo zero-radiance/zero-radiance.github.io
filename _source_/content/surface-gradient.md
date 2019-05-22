@@ -266,7 +266,11 @@ $$ \tag{44} \begin{aligned}
 
 #### 5. Tri-Planar Mapping
 
-Tri-planar mapping is an efficient alternative to storing already perturbed normals in a cube map, or using an octahedral or lat-long projection. Instead, the same 2D texture can be reused (up to) three times for [X-Y, Y-Z and Z-X planes](http://www.slideshare.net/icastano/cascades-demo-secrets) (of course, nothing prevents us from using 3 different textures at the cost of a larger memory footprint). You can think of it as a cube map with all 6 faces of the cube using the same planar map. The same normal map spaces supported by planar mapping are supported here. In fact, the math is almost exactly the same - the only difference is that you have to do it (up to) three times, and blend the results using the weighting function which depends on the direction of the surface normal.
+Tri-planar mapping is an efficient alternative to storing already perturbed normals in a cube map, or using an octahedral or lat-long projection. Instead, the same 2D texture can be reused (up to) three times for [X-Y, Y-Z and Z-X planes](http://www.slideshare.net/icastano/cascades-demo-secrets) (of course, nothing prevents us from using 3 different textures at the cost of a larger memory footprint). You can think of it as a cube map with all 6 faces of the cube using the same planar map.
+
+{{< figure src="/img/triplanar.png" alt="Triplanar mapping." >}}
+
+The same normal map spaces supported by planar mapping are supported here. In fact, the math is almost exactly the same - the only difference is that you have to do it (up to) three times, and blend the results using the weighting function which depends on the direction of the surface normal.
 
 But how do we blend the resulting normals? If we convert them into the surface gradient form, linear blending becomes meaningful. For object-space normals, all we have to do is blend three surface gradients (one per plane) computed using the equation (38):
 

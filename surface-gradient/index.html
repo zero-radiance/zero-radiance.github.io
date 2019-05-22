@@ -313,7 +313,7 @@ $$ \tag{18} B_p(u,v) = \frac{\partial P}{\partial v}
 </figure>
 
 
-<p>$$ \tag{38} \Gamma(u,v) = N - (N - \Gamma) = N -\frac{N_o}{\langle N_o, N \rangle}. $$</p>
+<p>$$ \tag{38} \Gamma(u,v) = N - (N - \Gamma) = N - G_o = N -\frac{N_o}{\langle N_o, N \rangle}. $$</p>
 
 <p>This formula rescales the normal to obtain the corresponding height map gradient which satisfied the condition \(\langle N,G \rangle = 1\). It produces correct results even for negative values of the dot product, as well as non-unit normals \(N_o\). In fact, normals can be in any space, as long as both \(N\) and \(N_o\) are represented with respect to the same frame of reference. Since we only deal with normals and the surface gradient, this formulation is also independent from the surface parametrization &ndash; the way we compute the texture coordinates does not matter.</p>
 
@@ -347,7 +347,15 @@ $$ \tag{40} \lbrace u,v \rbrace^{\mathrm{T}} = \lbrace x,y \rbrace^{\mathrm{T}}.
 
 <h4 id="5-tri-planar-mapping">5. Tri-Planar Mapping</h4>
 
-<p>Tri-planar mapping is an efficient alternative to storing already perturbed normals in a cube map, or using an octahedral or lat-long projection. Instead, the same 2D texture can be reused (up to) three times for <a href="http://www.slideshare.net/icastano/cascades-demo-secrets">X-Y, Y-Z and Z-X planes</a> (of course, nothing prevents us from using 3 different textures at the cost of a larger memory footprint). You can think of it as a cube map with all 6 faces of the cube using the same planar map. The same normal map spaces supported by planar mapping are supported here. In fact, the math is almost exactly the same - the only difference is that you have to do it (up to) three times, and blend the results using the weighting function which depends on the direction of the surface normal.</p>
+<p>Tri-planar mapping is an efficient alternative to storing already perturbed normals in a cube map, or using an octahedral or lat-long projection. Instead, the same 2D texture can be reused (up to) three times for <a href="http://www.slideshare.net/icastano/cascades-demo-secrets">X-Y, Y-Z and Z-X planes</a> (of course, nothing prevents us from using 3 different textures at the cost of a larger memory footprint). You can think of it as a cube map with all 6 faces of the cube using the same planar map.</p>
+
+<figure>
+    <img src="/img/triplanar.png"
+         alt="Triplanar mapping."/> 
+</figure>
+
+
+<p>The same normal map spaces supported by planar mapping are supported here. In fact, the math is almost exactly the same - the only difference is that you have to do it (up to) three times, and blend the results using the weighting function which depends on the direction of the surface normal.</p>
 
 <p>But how do we blend the resulting normals? If we convert them into the surface gradient form, linear blending becomes meaningful. For object-space normals, all we have to do is blend three surface gradients (one per plane) computed using the equation (38):</p>
 
