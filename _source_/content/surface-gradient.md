@@ -12,7 +12,7 @@ tags: [
 
 Realistic rendering at high frame rates remains at the core of real-time computer graphics. High performance and high fidelity are often at odds, requiring clever tricks and approximations to reach the desired quality bar.
 
-One of the oldest tricks in the book is [bump mapping](https://www.microsoft.com/en-us/research/publication/simulation-of-wrinkled-surfaces/). Introduced in 1978 by Jimm Blinn, it is a simple way to add mesoscopic detail without increasing the geometric complexity of the scene. Most modern real-time renderers support a variation of this technique called normal mapping. While it's fast and easy to use, certain operations, such as blending, are [not as easy as they seem](https://blog.selfshadow.com/publications/blending-in-detail/). This is where the so-called "surface gradient framework" comes into play.
+One of the oldest tricks in the book is [bump mapping](https://www.microsoft.com/en-us/research/publication/simulation-of-wrinkled-surfaces/). Introduced in 1978 by Jim Blinn, it is a simple way to add mesoscopic detail without increasing the geometric complexity of the scene. Most modern real-time renderers support a variation of this technique called normal mapping. While it's fast and easy to use, certain operations, such as blending, are [not as easy as they seem](https://blog.selfshadow.com/publications/blending-in-detail/). This is where the so-called "surface gradient framework" comes into play.
 
 The surface gradient framework is a set of tools to transform and combine normal (or bump) maps originally introduced by Morten Mikkelsen in his 2010 paper titled ["Bump Mapping Unparametrized Surfaces on the GPU"
 ](https://www.dropbox.com/s/l1yl164jb3rhomq/mm_sfgrad_bump.pdf), and further extended to handle triplanar mapping in his subsequent [blog post](http://mmikkelsen3d.blogspot.com/2013/10/volume-height-maps-and-triplanar-bump.html). While there's nothing wrong with these two publications, to really understand what's going on, it really helps to also read his [thesis](http://image.diku.dk/projects/media/morten.mikkelsen.08.pdf), and at 109 pages, it's quite a time investment.
@@ -37,13 +37,13 @@ $$ \tag{2} \lbrace s,t \rbrace^{\mathrm{T}} = \lbrace au+c, bv+d \rbrace^{\mathr
 
 In our notation, we will always use \\(\lbrace u,v \rbrace\\) for unique values and \\(\lbrace s,t \rbrace\\) for scaled-translated ones. Note that we don't care about a particular surface parametrization: we can use UV-mapping, planar mapping, or something else entirely.
 
-Armed with the surface parametrization, we can compute the tangent and the bitangent at the surface point:
+Armed with the surface parametrization, we can compute two tangent vectors at the surface point:
 
 $$ \tag{3} T(u,v) = \frac{\partial S}{\partial u}, \quad B(u,v) = \frac{\partial S}{\partial v}. $$
 
-These two vectors span the tangent plane, and are typically neither mutually orthogonal nor of unit length. It's important to remember that they are dependent on the surface parametrization.
+These two vectors span the [tangent plane](http://web.mit.edu/hyperbook/Patrikalakis-Maekawa-Cho/node27.html), and are typically neither mutually orthogonal nor of unit length. It's important to remember that they are dependent on the surface parametrization. You may be used to calling them ["the tangent" and "the bitangent"](http://www.terathon.com/code/tangent.html), when, strictly speaking, the tangent plane contains infinitely many unique tangent vectors, and the term [bitangent](https://en.wikipedia.org/wiki/Bitangent) is only defined for curves.
 
-We can use them to compute the geometric normal of the surface. To make the normal independent from the surface parametrization, it should be normalized:
+We can use these two tangent vectors to compute the geometric normal of the surface. To make the normal independent from the surface parametrization, it should be normalized:
 
 $$ \tag{4} N(u,v) = \frac{T \times B}{\Vert T \times B \Vert}. $$
 
@@ -63,7 +63,7 @@ It's important to note that, in practice, the surface parametrization used to de
 
 ## Preliminaries, Part 2: Height Maps and Volumes
 
-The simplest representation of a tangent-space normal (or bump) map is the height map \\(h = h(s,t)\\). A height map is a 2D subset (slice) of a 3D height volume, where each location in space corresponds to a height value. A height volume is a scalar field. The [gradient](https://en.wikipedia.org/wiki/Gradient) of a scalar field is a vector field. For a height volume, the *volume gradient* points in the direction of the greatest height increase rate, with the magnitude corresponding to this rate:
+The simplest representation of a tangent-space normal (or bump) map is the height map \\(z = h(s,t)\\). A height map is a 2D subset (slice) of a 3D height volume, where each location in space corresponds to a height value. A height volume is a scalar field. The [gradient](https://en.wikipedia.org/wiki/Gradient) of a scalar field is a vector field. For a height volume, the *volume gradient* points in the direction of the greatest height increase rate, with the magnitude corresponding to this rate:
 
 $$ \tag{7} \nabla h(s,t,r) = \frac{\partial h}{\partial s} I + \frac{\partial h}{\partial t} J + \frac{\partial h}{\partial r} K = \Big\lbrace \frac{\partial h}{\partial s}, \frac{\partial h}{\partial t}, \frac{\partial h}{\partial r} \Big\rbrace^{\mathrm{T}}, $$
 
@@ -77,9 +77,9 @@ $$ \tag{8} \gamma(s,t) = \frac{\partial h}{\partial s} I + \frac{\partial h}{\pa
 
 We will refer to \\( \gamma \\) as the *projected gradient*. It is the fundamental quantity which makes bump mapping with both height maps and height volumes possible.
 
-Geometrically, a height map defines an implicit surface of the form \\(z=z(x,y)\\), or
+Geometrically, a height map defines an implicit surface of the form:
 
-$$ \tag{9} f(x,y,z) = z - z(x,y) = 0. $$
+$$ \tag{9} f(x,y,z) = z - h(x,y) = 0. $$
 
 The upward-facing direction of the height map normal is given by the *gradient of the implicit surface*:
 
@@ -92,6 +92,8 @@ $$ \tag{11} G(s,t) = K - \frac{\partial h}{\partial s} I - \frac{\partial h}{\pa
 $$ \tag{12} G(s,t) = K - \gamma. $$
 
 We will refer to \\(G\\) as the *height map gradient*. Note that \\(\langle G, K \rangle\\) is always 1.
+
+{{< figure src="/img/height_map.png" alt="Height map and its gradient." >}}
 
 It's convenient to get the re-parametrization induced by transformed texture coordinates out of the way:
 
@@ -109,7 +111,11 @@ To perturb the surface using the height map, we need to perform a change of basi
 
 ## Preliminaries, Part 3: Wrinkled Surfaces
 
-The [original formulation](https://www.microsoft.com/en-us/research/publication/simulation-of-wrinkled-surfaces/) of bump mapping defines a height-mapped surface by applying a perturbation along the normal of the original surface. Note that this is the right place to apply the object's scale matrix, as it should affect the displacements (ultimately, by scaling the slopes):
+The [original formulation](https://www.microsoft.com/en-us/research/publication/simulation-of-wrinkled-surfaces/) of bump mapping defines a height-mapped surface by applying a perturbation along the normal of the original surface.
+
+{{< figure src="/img/bump_map.png" caption="Bump mapping as depicted by Jim Blinn in his original paper." >}}
+
+Note that this is the right place to apply the object's scale matrix, as it should affect the displacements (ultimately, by scaling the slopes):
 
 $$ \tag{16} P(u, v) = M\_{scale} \Big( S(u, v) + h(u, v) N(u, v) \Big). $$
 
@@ -171,13 +177,15 @@ The tangent-normal-to-world matrix \\(M\_{world}\\) can be precomputed, and all 
 
 ## Surface Gradient Framework
 
-The [surface gradient](https://en.wikipedia.org/wiki/Surface_gradient) is defined as the orthographic projection of the volume gradient onto the tangent plane (assuming both vectors are in the same space, compare to the equation (8)):
+The [surface gradient](https://en.wikipedia.org/wiki/Surface_gradient) is defined as the orthographic projection of the volume gradient onto the tangent plane (compare to the equation (8)):
 
 $$ \tag{30} \Gamma(u,v) = \nabla h - \langle \nabla h, N \rangle N. $$
 
-In another words, it is the projected gradient transformed from the tangent space into the object space:
+In other words, it is the projected gradient transformed from the tangent space into the object space:
 
 $$ \tag{31} \Gamma(u,v) = N - (M\_{tangent}^{-1})^{\mathrm{T}} G = (M\_{tangent}^{-1})^{\mathrm{T}} \gamma = \frac{[B \times N | N \times T] }{\langle T \times B, N \rangle} \gamma. $$
+
+All participating vectors must use the same frame of reference.
 
 Why are these two definitions equivalent? We can use the definition of the directional derivative, that for any vector \\(W\\), \\(\partial h / \partial w = \langle \nabla h, W \rangle\\):
 
@@ -224,7 +232,7 @@ While we can solve this equation by projecting the object-space normal onto the 
 
 {{< figure src="/img/grad_obj.png" alt="Surface gradient and the object-space normal." >}}
 
-$$ \tag{38} \Gamma(u,v) = N - (N - \Gamma) = N -\frac{N_o}{\langle N_o, N \rangle}. $$
+$$ \tag{38} \Gamma(u,v) = N - (N - \Gamma) = N - G_o = N -\frac{N_o}{\langle N_o, N \rangle}. $$
 
 This formula rescales the normal to obtain the corresponding height map gradient which satisfied the condition \\(\langle N,G \rangle = 1\\). It produces correct results even for negative values of the dot product, as well as non-unit normals \\(N_o\\). In fact, normals can be in any space, as long as both \\(N\\) and \\(N_o\\) are represented with respect to the same frame of reference. Since we only deal with normals and the surface gradient, this formulation is also independent from the surface parametrization -- the way we compute the texture coordinates does not matter.
 
@@ -236,7 +244,7 @@ The solution for the already perturbed (e.g. object-space) normals is given in t
 
 Without loss of generality, let's consider the X-Y plane for planar mapping. Our surface \\(S\\) then becomes a height map w.r.t. this plane (we assume that this is a suitable parametrization for the particular surface):
 
-$$ \tag{39} z = z(x, y), $$
+$$ \tag{39} z = h(x, y), $$
 $$ \tag{40} \lbrace u,v \rbrace^{\mathrm{T}} = \lbrace x,y \rbrace^{\mathrm{T}}. $$
 
 Let's complete the tangent frame for the new surface parametrization:
@@ -258,7 +266,11 @@ $$ \tag{44} \begin{aligned}
 
 #### 5. Tri-Planar Mapping
 
-Tri-planar mapping is an efficient alternative to storing already perturbed normals in a cube map, or using an octahedral or lat-long projection. Instead, the same 2D texture can be reused (up to) three times for [X-Y, Y-Z and Z-X planes](http://www.slideshare.net/icastano/cascades-demo-secrets) (of course, nothing prevents us from using 3 different textures at the cost of a larger memory footprint). You can think of it as a cube map with all 6 faces of the cube using the same planar map. The same normal map spaces supported by planar mapping are supported here. In fact, the math is almost exactly the same - the only difference is that you have to do it (up to) three times, and blend the results using the weighting function which depends on the direction of the surface normal.
+Tri-planar mapping is an efficient alternative to storing already perturbed normals in a cube map, or using an octahedral or lat-long projection. Instead, the same 2D texture can be reused (up to) three times for [X-Y, Y-Z and Z-X planes](http://www.slideshare.net/icastano/cascades-demo-secrets) (of course, nothing prevents us from using 3 different textures at the cost of a larger memory footprint). You can think of it as a cube map with all 6 faces of the cube using the same planar map.
+
+{{< figure src="/img/triplanar.png" alt="Triplanar mapping." >}}
+
+The same normal map spaces supported by planar mapping are supported here. In fact, the math is almost exactly the same - the only difference is that you have to do it (up to) three times, and blend the results using the weighting function which depends on the direction of the surface normal.
 
 But how do we blend the resulting normals? If we convert them into the surface gradient form, linear blending becomes meaningful. For object-space normals, all we have to do is blend three surface gradients (one per plane) computed using the equation (38):
 
@@ -284,7 +296,7 @@ $$ \tag{47} \begin{aligned}
     &+ Z \frac{\partial}{\partial z} (w(n_y,n_z) h_x(y,z) + w(n_z,n_x) h_y(z,x)).
 \end{aligned} $$
 
-The expression is a little complicated, particularly because both the height and the weighting functions depend on the position, so we would need to apply the product rule in order to compute the derivative. Instead, Morten employs a simplification (the same one we used in the section 3), assuming that the normals and, as a result, the weights vary slowly w.r.t. the position:
+The expression is a little complicated, particularly because both the height and the weighting functions depend on the position, so we would need to apply the product rule in order to compute the derivative. Instead, Morten employs a simplification (the same one Jim Blinn employs in section 3), assuming that the normals and, as a result, the weights vary slowly w.r.t. the position:
 
 $$ \tag{48} \frac{\partial N}{\partial x} = \frac{\partial N}{\partial y} = \frac{\partial N}{\partial z} = 0. $$
 
