@@ -160,6 +160,12 @@
 
 <p>We will refer to \(G\) as the <em>height map gradient</em>. Note that \(\langle G, K \rangle\) is always 1.</p>
 
+<figure>
+    <img src="/img/height_map.png"
+         alt="Height map and its gradient."/> 
+</figure>
+
+
 <p>It&rsquo;s convenient to get the re-parametrization induced by transformed texture coordinates out of the way:</p>
 
 <p>$$ \tag{13} G(u,v) = \Big\lbrace -\frac{\partial h}{\partial s} \frac{\partial s}{\partial u}, -\frac{\partial h}{\partial t} \frac{\partial t}{\partial v}, 1 \Big\rbrace^{\mathrm{T}} = \Big\lbrace -a \frac{\partial h}{\partial s}, -b \frac{\partial h}{\partial t}, 1 \Big\rbrace^{\mathrm{T}}. $$</p>
@@ -176,7 +182,17 @@
 
 <h2 id="preliminaries-part-3-wrinkled-surfaces">Preliminaries, Part 3: Wrinkled Surfaces</h2>
 
-<p>The <a href="https://www.microsoft.com/en-us/research/publication/simulation-of-wrinkled-surfaces/">original formulation</a> of bump mapping defines a height-mapped surface by applying a perturbation along the normal of the original surface. Note that this is the right place to apply the object&rsquo;s scale matrix, as it should affect the displacements (ultimately, by scaling the slopes):</p>
+<p>The <a href="https://www.microsoft.com/en-us/research/publication/simulation-of-wrinkled-surfaces/">original formulation</a> of bump mapping defines a height-mapped surface by applying a perturbation along the normal of the original surface.</p>
+
+<figure>
+    <img src="/img/bump_map.png"
+         alt="Bump mapping as depicted by Jim Blinn in his original paper."/> <figcaption>
+            <p>Bump mapping as depicted by Jim Blinn in his original paper.</p>
+        </figcaption>
+</figure>
+
+
+<p>Note that this is the right place to apply the object&rsquo;s scale matrix, as it should affect the displacements (ultimately, by scaling the slopes):</p>
 
 <p>$$ \tag{16} P(u, v) = M_{scale} \Big( S(u, v) + h(u, v) N(u, v) \Big). $$</p>
 
@@ -238,13 +254,15 @@ $$ \tag{18} B_p(u,v) = \frac{\partial P}{\partial v}
 
 <h2 id="surface-gradient-framework">Surface Gradient Framework</h2>
 
-<p>The <a href="https://en.wikipedia.org/wiki/Surface_gradient">surface gradient</a> is defined as the orthographic projection of the volume gradient onto the tangent plane (assuming both vectors are in the same space, compare to the equation (8)):</p>
+<p>The <a href="https://en.wikipedia.org/wiki/Surface_gradient">surface gradient</a> is defined as the orthographic projection of the volume gradient onto the tangent plane (compare to the equation (8)):</p>
 
 <p>$$ \tag{30} \Gamma(u,v) = \nabla h - \langle \nabla h, N \rangle N. $$</p>
 
-<p>In another words, it is the projected gradient transformed from the tangent space into the object space:</p>
+<p>In other words, it is the projected gradient transformed from the tangent space into the object space:</p>
 
 <p>$$ \tag{31} \Gamma(u,v) = N - (M_{tangent}^{-1})^{\mathrm{T}} G = (M_{tangent}^{-1})^{\mathrm{T}} \gamma = \frac{[B \times N | N \times T] }{\langle T \times B, N \rangle} \gamma. $$</p>
+
+<p>All participating vectors must use the same frame of reference.</p>
 
 <p>Why are these two definitions equivalent? We can use the definition of the directional derivative, that for any vector \(W\), \(\partial h / \partial w = \langle \nabla h, W \rangle\):</p>
 

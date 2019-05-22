@@ -93,6 +93,8 @@ $$ \tag{12} G(s,t) = K - \gamma. $$
 
 We will refer to \\(G\\) as the *height map gradient*. Note that \\(\langle G, K \rangle\\) is always 1.
 
+{{< figure src="/img/height_map.png" alt="Height map and its gradient." >}}
+
 It's convenient to get the re-parametrization induced by transformed texture coordinates out of the way:
 
 $$ \tag{13} G(u,v) = \Big\lbrace -\frac{\partial h}{\partial s} \frac{\partial s}{\partial u}, -\frac{\partial h}{\partial t} \frac{\partial t}{\partial v}, 1 \Big\rbrace^{\mathrm{T}} = \Big\lbrace -a \frac{\partial h}{\partial s}, -b \frac{\partial h}{\partial t}, 1 \Big\rbrace^{\mathrm{T}}. $$
