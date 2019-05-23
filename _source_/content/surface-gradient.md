@@ -270,7 +270,7 @@ Tri-planar mapping is an efficient alternative to storing already perturbed norm
 
 {{< figure src="/img/triplanar.png" alt="Triplanar mapping." >}}
 
-The same normal map spaces supported by planar mapping are supported here. In fact, the math is almost exactly the same - the only difference is that you have to do it (up to) three times, and blend the results using the weighting function which depends on the direction of the surface normal.
+The same normal map spaces supported by planar mapping are supported here. In fact, the math is almost exactly the same - the only difference is that we have to do it (up to) three times, and blend the results using the weighting function which depends on the direction of the surface normal.
 
 But how do we blend the resulting normals? If we convert them into the surface gradient form, linear blending becomes meaningful. For object-space normals, all we have to do is blend three surface gradients (one per plane) computed using the equation (38):
 
@@ -280,7 +280,7 @@ $$ \tag{45} \Gamma(x,y,z) = N - w(n_x,n_y) \frac{N_1}{\langle N_1, N \rangle}
 
 where \\(w\\) is the weighting function, and the normals of X-Y, Y-Z and Z-X planes are labelled as \\(N_1\\), \\(N_2\\) and \\(N_3\\), respectively.
 
-You can also blend three surface gradients obtained using the tangent-space math from the previous section. However, there's a more efficient solution presented by Morten in his [blog post](http://mmikkelsen3d.blogspot.com/2013/10/volume-height-maps-and-triplanar-bump.html).
+To support tangent-space normal maps, we can also blend three surface gradients obtained using the math from the previous section. However, there's a more efficient solution presented by Morten in his [blog post](http://mmikkelsen3d.blogspot.com/2013/10/volume-height-maps-and-triplanar-bump.html).
 
 Imagine a height volume defined using three height maps as follows:
 
@@ -321,7 +321,7 @@ $$ \tag{50} \begin{aligned}
     &= \Big[\lbrace 1 - n_x^2, -n_x n_y, -n_x n_z \rbrace^{\mathrm{T}} \Big| \lbrace -n_x n_y, 1 - n_y^2, -n_y n_z \rbrace^{\mathrm{T}}\Big] \Big\lbrace \frac{\partial h}{\partial x}, \frac{\partial h}{\partial y} \Big\rbrace^{\mathrm{T}}.
 \end{aligned} $$
 
-As we recall that our planar mapping example assumes that \\( \lbrace u,v \rbrace^{\mathrm{T}} = \lbrace x,y \rbrace^{\mathrm{T}} \\), we can see that the two equations are identical.
+If we recall that our planar mapping example assumes that \\( \lbrace u,v \rbrace^{\mathrm{T}} = \lbrace x,y \rbrace^{\mathrm{T}} \\), we can see that the two expressions are indeed identical.
 
 ## Conclusion
 
