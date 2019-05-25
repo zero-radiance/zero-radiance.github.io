@@ -67,7 +67,12 @@ The simplest representation of a tangent-space normal (or bump) map is the heigh
 
 A height volume is a [scalar field](https://en.wikipedia.org/wiki/Scalar_field). The [gradient](https://en.wikipedia.org/wiki/Gradient) of a scalar field is a [vector field](https://en.wikipedia.org/wiki/Vector_field). For a height volume, the *volume gradient*  is a vector which points in the direction of the greatest height increase rate, with the magnitude corresponding to this rate:
 
-$$ \tag{7} \nabla h(s,t,r) = \frac{\partial h}{\partial s} I + \frac{\partial h}{\partial t} J + \frac{\partial h}{\partial r} K = \Big[ \frac{\partial h}{\partial s} \Big| \frac{\partial h}{\partial t} \Big| \frac{\partial h}{\partial r} \Big]^{\mathrm{T}}, $$
+$$ \tag{7} \nabla h(s,t,r) = \frac{\partial h}{\partial s} I + \frac{\partial h}{\partial t} J + \frac{\partial h}{\partial r} K =
+\begin{bmatrix}
+    \partial h / \partial s \cr
+    \partial h / \partial t \cr
+    \partial h / \partial r
+\end{bmatrix}, $$
 
 where \\(\lbrace I,J,K \rbrace\\) is the orthonormal set of basis vectors that form the frame of reference of the height volume.
 
@@ -87,7 +92,7 @@ $$ \tag{10} G(x,y,z) = \nabla f(x,y,z) = \frac{\partial f}{\partial x} I + \frac
 
 Substitution of the height map equation readily yields the following expression:
 
-$$ \tag{11} G(s,t) = K - \frac{\partial h}{\partial s} I - \frac{\partial h}{\partial t} J = \begin{bmatrix} -\partial h / \partial s \cr -\partial h / \partial t \cr 1\end{bmatrix}, $$
+$$ \tag{11} G(s,t) = K - \frac{\partial h}{\partial s} I - \frac{\partial h}{\partial t} J = \begin{bmatrix} -\partial h / \partial s \cr -\partial h / \partial t \cr 1 \end{bmatrix}, $$
 
 $$ \tag{12} G(s,t) = K - \gamma. $$
 
@@ -97,15 +102,35 @@ We will refer to \\(G\\) as the *height map gradient*. Note that \\(\langle G, K
 
 It's convenient to get the re-parametrization induced by transformed texture coordinates out of the way:
 
-$$ \tag{13} G(u,v) = \Big\lbrace -\frac{\partial h}{\partial s} \frac{\partial s}{\partial u}, -\frac{\partial h}{\partial t} \frac{\partial t}{\partial v}, 1 \Big\rbrace^{\mathrm{T}} = \Big\lbrace -a \frac{\partial h}{\partial s}, -b \frac{\partial h}{\partial t}, 1 \Big\rbrace^{\mathrm{T}}. $$
+$$ \tag{13} G(u,v) =
+\begin{bmatrix}
+    -\partial h / \partial s \cdot \partial s / \partial u \cr
+    -\partial h / \partial t \cdot \partial t / \partial v \cr
+    1
+\end{bmatrix} =
+\begin{bmatrix}
+    -a \cdot \partial h / \partial s \cr
+    -b \cdot \partial h / \partial t \cr
+    1
+\end{bmatrix}. $$
 
 This simply means that we need to rescale the slopes in order to adjust the displacements as we tile the texture.
 
 For completeness, we can convert a tangent-space (height map) normal into the slope (gradient) form in the following way:
 
-$$ \tag{14} G(s,t) = \Big\lbrace - \frac{\partial h}{\partial s}, - \frac{\partial h}{\partial t}, 1 \Big\rbrace^{\mathrm{T}} = \frac{N\_{t}}{n\_{t,z}}, $$
+$$ \tag{14} G(s,t) = \begin{bmatrix} -\partial h / \partial s \cr -\partial h / \partial t \cr 1 \end{bmatrix} = \frac{N\_{t}}{n\_{t,z}}, $$
 
-$$ \tag{15} G(u,v) = \Big\lbrace -\frac{\partial h}{\partial s} \frac{\partial s}{\partial u}, -\frac{\partial h}{\partial t} \frac{\partial t}{\partial v}, 1 \Big\rbrace^{\mathrm{T}} = \Big\lbrace a \frac{n\_{t,x}}{n\_{t,z}}, b \frac{n\_{t,y}}{n\_{t,z}}, 1 \Big\rbrace^{\mathrm{T}} = M\_{tile} \frac{N\_{t}}{n\_{t,z}}. $$
+$$ \tag{15} G(u,v) =
+\begin{bmatrix}
+    -a \cdot \partial h / \partial s \cr
+    -b \cdot \partial h / \partial t \cr
+    1
+\end{bmatrix} =
+\begin{bmatrix}
+    -a \cdot n\_{t,x} / n\_{t,z} \cr
+    -b \cdot n\_{t,y} / n\_{t,z} \cr
+    1
+\end{bmatrix} = M\_{tile} \frac{N\_{t}}{n\_{t,z}}. $$
 
 To perturb the surface using the height map, we need to perform a change of basis from the orthonormal tangent-space set \\(\lbrace I,J,K \rbrace\\) to our previously defined object-space set \\(\lbrace T,B,N \rbrace\\). Doing this correctly is slightly more involved than it may seem at first glance.
 
@@ -153,7 +178,12 @@ $$ \tag{23} N_p(u,v) \approx \frac{\mathrm{cof}(M\_{scale})}{\langle T_p \times 
 
 If we swap the operands of cross products, this equation will take a familiar form:
 
-$$ \tag{24} N_p(u,v) \approx \frac{\langle T \times B, N \rangle}{\langle T_p \times B_p, N \rangle} \mathrm{cof}(M\_{scale}) \frac{[B \times N | N \times T | T \times B]}{\langle T \times B, N \rangle} \Big\lbrace -\frac{\partial h}{\partial u}, -\frac{\partial h}{\partial v}, 1 \Big\rbrace^{\mathrm{T}}, $$
+$$ \tag{24} N_p(u,v) \approx \frac{\langle T \times B, N \rangle}{\langle T_p \times B_p, N \rangle} \mathrm{cof}(M\_{scale}) \frac{[B \times N | N \times T | T \times B]}{\langle T \times B, N \rangle}
+\begin{bmatrix}
+    - \partial h / \partial u \cr
+    - \partial h / \partial v \cr
+    1
+\end{bmatrix}, $$
 
 $$ \tag{25} N_p(u,v) \approx \frac{\langle T \times B, N \rangle}{\langle T_p \times B_p, N \rangle} \mathrm{cof}(M\_{scale}) (M\_{tangent}^{-1})^{\mathrm{T}}G. $$
 
@@ -183,17 +213,28 @@ $$ \tag{30} \Gamma(u,v) = \nabla h - \langle \nabla h, N \rangle N. $$
 
 In other words, it is the projected gradient transformed from the tangent space into the object space:
 
-$$ \tag{31} \Gamma(u,v) = N - (M\_{tangent}^{-1})^{\mathrm{T}} G = (M\_{tangent}^{-1})^{\mathrm{T}} \gamma = \frac{[B \times N | N \times T] }{\langle T \times B, N \rangle} \gamma. $$
+$$ \tag{31} \Gamma(u,v) = (M\_{tangent}^{-1})^{\mathrm{T}} \gamma = \frac{[B \times N | N \times T] }{\langle T \times B, N \rangle} \gamma. $$
 
-All participating vectors must use the same frame of reference.
-
-Why are these two definitions equivalent? We can use the definition of the directional derivative, that for any vector \\(W\\), \\(\partial h / \partial w = \langle \nabla h, W \rangle\\):
+Why are these two formulas equivalent? We can use the definition of the [directional derivative](https://en.wikipedia.org/wiki/Directional_derivative), which says that for any vector \\(W\\), \\(\partial h / \partial w = \langle \nabla h, W \rangle\\):
 
 $$ \tag{32} \begin{aligned}
     \gamma(u,v) &= (M\_{tangent})^{\mathrm{T}} \Gamma \cr
                 &= (M\_{tangent})^{\mathrm{T}} (\nabla h - \langle \nabla h, N \rangle N) \cr
-                &= \Big\lbrace \frac{\partial h}{\partial u}, \frac{\partial h}{\partial v}, \langle \nabla h, N \rangle \Big\rbrace^{\mathrm{T}} - \Big\lbrace 0, 0, \langle \nabla h, N \rangle \ \Big\rbrace^{\mathrm{T}} \cr
-                &= \Big\lbrace \frac{\partial h}{\partial u}, \frac{\partial h}{\partial v}, 0 \Big\rbrace^{\mathrm{T}}.
+                &= \begin{bmatrix}
+                    \partial h / \partial u \cr
+                    \partial h / \partial v \cr
+                    \langle \nabla h, N \rangle
+                \end{bmatrix} -
+                \begin{bmatrix}
+                    0 \cr
+                    0 \cr
+                    \langle \nabla h, N \rangle
+                \end{bmatrix}
+                = \begin{bmatrix}
+                    \partial h / \partial u \cr
+                    \partial h / \partial v \cr
+                    0
+                \end{bmatrix}.
 \end{aligned} $$
 
 By definition, the surface gradient is a vector in the tangent plane with the direction pointing up along the steepest slope and with the magnitude of the rate at which height increases in that direction.
@@ -208,13 +249,13 @@ Why is it useful? Since it's just a matrix transformation, the surface gradient 
 
 Want to flatten the normal map, or make it more bumpy? Simply rescale the surface gradient:
 
-$$ \tag{34} \alpha \Gamma(u,v) = (M\_{tangent}^{-1})^{\mathrm{T}} \Big\lbrace \frac{\partial}{\partial u} (\alpha h), \frac{\partial}{\partial v} (\alpha h), 0 \Big\rbrace^{\mathrm{T}}. $$
+$$ \tag{34} \alpha \Gamma(u,v) = (M\_{tangent}^{-1})^{\mathrm{T}} \Big[ \frac{\partial}{\partial u} (\alpha h), \frac{\partial}{\partial v} (\alpha h), 0 \Big]^{\mathrm{T}}. $$
 
 #### 2. Combining Height Maps
 
 Due to linearity, combining height maps is straightforward:
 
-$$ \tag{35} \alpha \Gamma\_{1}(u,v) + \beta \Gamma\_{2}(u,v) = (M\_{tangent}^{-1})^{\mathrm{T}} \Big\lbrace \frac{\partial}{\partial u} (\alpha h_1 + \beta h_2) , \frac{\partial}{\partial v}(\alpha h_1 + \beta h_2), 0 \Big\rbrace^{\mathrm{T}}. $$
+$$ \tag{35} \alpha \Gamma\_{1}(u,v) + \beta \Gamma\_{2}(u,v) = (M\_{tangent}^{-1})^{\mathrm{T}} \Big[ \frac{\partial}{\partial u} (\alpha h_1 + \beta h_2) , \frac{\partial}{\partial v}(\alpha h_1 + \beta h_2), 0 \Big]^{\mathrm{T}}. $$
 
 Clearly, linear blends of surface gradients are more meaningful than blends of normals themselves.
 
@@ -245,24 +286,37 @@ The solution for the already perturbed (e.g. object-space) normals is given in t
 Without loss of generality, let's consider the X-Y plane for planar mapping. Our surface \\(S\\) then becomes a height map w.r.t. this plane (we assume that this is a suitable parametrization for the particular surface):
 
 $$ \tag{39} z = h(x, y), $$
-$$ \tag{40} \lbrace u,v \rbrace^{\mathrm{T}} = \lbrace x,y \rbrace^{\mathrm{T}}. $$
+$$ \tag{40} \begin{bmatrix} u \cr v \end{bmatrix} = \begin{bmatrix} x \cr y \end{bmatrix}. $$
 
 Let's complete the tangent frame for the new surface parametrization:
 
-$$ \tag{41} T(u,v) = \frac{\partial S}{\partial u} = \Big\lbrace 1, 0, \frac{\partial z}{\partial u} \Big\rbrace^{\mathrm{T}}, \quad B(u,v) = \frac{\partial S}{\partial v} = \Big\lbrace 0, 1, \frac{\partial z}{\partial v} \Big\rbrace^{\mathrm{T}}. $$
+$$ \tag{41} T(u,v) = \frac{\partial S}{\partial u} = \Big[ 1, 0, \frac{\partial z}{\partial u} \Big]^{\mathrm{T}}, \quad B(u,v) = \frac{\partial S}{\partial v} = \Big[ 0, 1, \frac{\partial z}{\partial v} \Big]^{\mathrm{T}}. $$
 
 Recall the equation (14) which relates the height map gradient and the height map normal (which, in our interpretation, is the surface normal). We can use it to compute the values of partial derivatives:
 
-$$ \tag{42} T(u,v) = \Big\lbrace 1, 0, -\frac{n\_{x}}{n\_{z}} \Big\rbrace^{\mathrm{T}}, \quad B(u,v) = \Big\lbrace 0, 1, -\frac{n\_{y}}{n\_{z}} \Big\rbrace^{\mathrm{T}}. $$
+$$ \tag{42} T(u,v) = \Big[ 1, 0, -\frac{n\_{x}}{n\_{z}} \Big]^{\mathrm{T}}, \quad B(u,v) = \Big[ 0, 1, -\frac{n\_{y}}{n\_{z}} \Big]^{\mathrm{T}}. $$
 
 This completes the TBN for the new surface parametrization, and we can now use the equation (31) to compute the surface gradient:
 
-$$ \tag{43} \Gamma(u,v) = \frac{\Big[\lbrace n_y^2/n_z+n_z, -n_x n_y/n_z, -n_x \rbrace^{\mathrm{T}} \Big| \lbrace -n_x n_y/n_z, n_x^2/n_z+n_z, -n_y \rbrace^{\mathrm{T}}\Big] }{(n_x^2 + n_y^2 + n_z^2) / n_z} \gamma, $$
+$$ \tag{43} \Gamma(u,v) = \frac{1}{(n_x^2 + n_y^2 + n_z^2) / n_z}
+\begin{bmatrix}
+    n_y^2/n_z+n_z & -n_x n_y/n_z  \cr
+    -n_x n_y/n_z  & n_x^2/n_z+n_z \cr
+    -n_x          & -n_y
+\end{bmatrix} \gamma, $$
 
-$$ \tag{44} \begin{aligned}
-\Gamma(u,v) &= \Big[\lbrace n_y^2+n_z^2, -n_x n_y, -n_x n_z \rbrace^{\mathrm{T}} \Big| \lbrace -n_x n_y, n_x^2+n_z^2, -n_y n_z \rbrace^{\mathrm{T}}\Big] \gamma \cr
-            &= \Big[\lbrace 1 - n_x^2, -n_x n_y, -n_x n_z \rbrace^{\mathrm{T}} \Big| \lbrace -n_x n_y, 1 - n_y^2, -n_y n_z \rbrace^{\mathrm{T}}\Big] \gamma.
-\end{aligned} $$
+$$ \tag{44}
+\Gamma(u,v) =
+\begin{bmatrix}
+    n_y^2+n_z^2 & -n_x n_y    \cr
+    -n_x n_y    & n_x^2+n_z^2 \cr
+    -n_x n_z    & -n_y n_z
+\end{bmatrix} \gamma =
+\begin{bmatrix}
+    1 - n_x^2 & -n_x n_y    \cr
+    -n_x n_y    & 1 - n_y^2 \cr
+    -n_x n_z    & -n_y n_z
+\end{bmatrix} \gamma. $$
 
 #### 5. Tri-Planar Mapping
 
@@ -314,14 +368,19 @@ To verify correctness, let's compare it with the equation (44) for the X-Y plane
 $$ \tag{50} \begin{aligned}
 \Gamma(x,y)
     &= \nabla h - \langle \nabla h, N \rangle N \cr
-    &= \Big\lbrace \frac{\partial h}{\partial x}, \frac{\partial h}{\partial y}, 0 \Big\rbrace^{\mathrm{T}}
-    - \Big \langle \Big\lbrace \frac{\partial h}{\partial x}, \frac{\partial h}{\partial y}, 0 \Big\rbrace^{\mathrm{T}}, N \Big \rangle N \cr
-    &= \Big\lbrace \frac{\partial h}{\partial x}, \frac{\partial h}{\partial y}, 0 \Big\rbrace^{\mathrm{T}}
+    &= \Big[ \frac{\partial h}{\partial x}, \frac{\partial h}{\partial y}, 0 \Big]^{\mathrm{T}}
+    - \Big \langle \Big[ \frac{\partial h}{\partial x}, \frac{\partial h}{\partial y}, 0 \Big]^{\mathrm{T}}, N \Big \rangle N \cr
+    &= \Big[ \frac{\partial h}{\partial x}, \frac{\partial h}{\partial y}, 0 \Big]^{\mathrm{T}}
     - \frac{\partial h}{\partial x} n_x N - \frac{\partial h}{\partial y} n_y N \cr
-    &= \Big[\lbrace 1 - n_x^2, -n_x n_y, -n_x n_z \rbrace^{\mathrm{T}} \Big| \lbrace -n_x n_y, 1 - n_y^2, -n_y n_z \rbrace^{\mathrm{T}}\Big] \Big\lbrace \frac{\partial h}{\partial x}, \frac{\partial h}{\partial y} \Big\rbrace^{\mathrm{T}}.
+    &=
+\begin{bmatrix}
+    1 - n_x^2 & -n_x n_y    \cr
+    -n_x n_y    & 1 - n_y^2 \cr
+    -n_x n_z    & -n_y n_z
+\end{bmatrix} \begin{bmatrix} \partial h / \partial x \cr \partial h / \partial y \end{bmatrix}.
 \end{aligned} $$
 
-If we recall that our planar mapping example assumes that \\( \lbrace u,v \rbrace^{\mathrm{T}} = \lbrace x,y \rbrace^{\mathrm{T}} \\), we can see that the two expressions are indeed identical.
+If we recall that our planar mapping example assumes that \\( [ u,v ]^{\mathrm{T}} = [ x,y ]^{\mathrm{T}} \\), we can see that the two expressions are indeed identical.
 
 ## Conclusion
 
