@@ -12,12 +12,12 @@ tags: [
 
 Realistic rendering at high frame rates remains at the core of real-time computer graphics. High performance and high fidelity are often at odds, requiring clever tricks and approximations to reach the desired quality bar.
 
-One of the oldest tricks in the book is [bump mapping](https://www.microsoft.com/en-us/research/publication/simulation-of-wrinkled-surfaces/). Introduced in 1978 by Jim Blinn, it is a simple way to add mesoscopic detail without increasing the geometric complexity of the scene. Most modern real-time renderers support a variation of this technique called normal mapping. While it's fast and easy to use, certain operations, such as blending, are [not as easy as they seem](https://blog.selfshadow.com/publications/blending-in-detail/). This is where the so-called "surface gradient framework" comes into play.
+One of the oldest tricks in the book is [bump mapping](https://www.microsoft.com/en-us/research/publication/simulation-of-wrinkled-surfaces/). Introduced in 1978 by Jim Blinn, it is a simple way to add mesoscopic detail without increasing the geometric complexity of the scene. Most modern real-time renderers support a variation of this technique called normal mapping. While it's fast and easy to use, certain operations, such as blending, are [not as simple as they seem](https://blog.selfshadow.com/publications/blending-in-detail/). This is where the so-called "surface gradient framework" comes into play.
 
-The surface gradient framework is a set of tools to transform and combine normal (or bump) maps originally introduced by Morten Mikkelsen in his 2010 paper titled ["Bump Mapping Unparametrized Surfaces on the GPU"
+The surface gradient framework is a set of tools to transform and combine bump (and normal) maps originally introduced by Morten Mikkelsen in his 2010 paper titled ["Bump Mapping Unparametrized Surfaces on the GPU"
 ](https://www.dropbox.com/s/l1yl164jb3rhomq/mm_sfgrad_bump.pdf), and further extended to handle triplanar mapping in his subsequent [blog post](http://mmikkelsen3d.blogspot.com/2013/10/volume-height-maps-and-triplanar-bump.html). While there's nothing wrong with these two publications, to really understand what's going on, it really helps to also read his [thesis](http://image.diku.dk/projects/media/morten.mikkelsen.08.pdf), and at 109 pages, it's quite a time investment.
 
-Instead, I will attempt to give a shorter derivation, assuming no prior knowledge of the topic, starting from the the first principles. As with any derivation, the results will be theoretical in nature, and it's important to understand the practical aspects. Your renderer probably doesn't implement normal mapping this way (but maybe it should), your artists are probably used to the wrong but convenient way of doing it for the last two decades, and your baking tool is trying to minimize the damage by reversing all of your hacks during the mesh generation step. Still, in my opinion, it's important to understand the right way to do things, so that you can make an informed decision to do things differently, if necessary, and understand the implications of doing so.
+Instead, I will attempt to give a shorter derivation, assuming no prior knowledge of the topic, starting from the the first principles. As with any derivation, the results will be theoretical in nature, and it's important to understand the practical aspects. Your renderer probably doesn't implement normal mapping this way (but maybe it should), your artists are probably used to the wrong but convenient way they've been doing it for the last four decades (feeling old yet?), and your baking tool is trying to minimize the damage by accounting for all of your hacks during the mesh generation step. Still, in my opinion, it's important to understand the right way of doing things, so that you can make an informed decision to do things differently, if necessary, and understand the implications of doing so.
 
 Still with me? Let's dive in.
 
@@ -25,23 +25,23 @@ Still with me? Let's dive in.
 
 ## Preliminaries, Part 1: Tangent Frame
 
-We start with a 3D surface \\(S\\). Assume that it has a unique 2D parametrization, e.i. an injective (one to one) mapping from a 2D texture coordinate to an object-space 3D coordinate:
+We start with a 3D surface \\(S\\). Assume that it has a unique 2D parametrization, e.i. an [injective](https://en.wikipedia.org/wiki/Injective_function) (one to one) mapping from a 2D texture coordinate to an object-space 3D coordinate:
 
-$$ \tag{1} S(u,v) = \lbrace x,y,z \rbrace^{\mathrm{T}}. $$
+$$ \tag{1} S(u,v) = \begin{bmatrix} x \cr y \cr z \end{bmatrix}. $$
 
 You can think of it as a transformation from a 2D plane to a 3D surface. The injectivity requirement is differentiability in disguise, the property we will heavily lean on during the derivation.
 
 Application of an affine transformation yields a set of transformed texture coordinates, which is something that's often done to tile and translate the texture at runtime:
 
-$$ \tag{2} \lbrace s,t \rbrace^{\mathrm{T}} = \lbrace au+c, bv+d \rbrace^{\mathrm{T}}. $$
+$$ \tag{2} \begin{bmatrix} s \cr t \end{bmatrix} = \begin{bmatrix} au+c \cr bv+d \end{bmatrix}. $$
 
-In our notation, we will always use \\(\lbrace u,v \rbrace\\) for unique values and \\(\lbrace s,t \rbrace\\) for scaled-translated ones. Note that we don't care about a particular surface parametrization: we can use UV-mapping, planar mapping, or something else entirely.
+In our notation, we will always use \\([u,v]^{\mathrm{T}}\\) for unique values and \\([s,t]^{\mathrm{T}}\\) for scaled-translated ones. Note that we don't care about a particular surface parametrization: we can use UV-mapping, planar mapping, or something else entirely.
 
 Armed with the surface parametrization, we can compute two tangent vectors at the surface point:
 
 $$ \tag{3} T(u,v) = \frac{\partial S}{\partial u}, \quad B(u,v) = \frac{\partial S}{\partial v}. $$
 
-These two vectors span the [tangent plane](http://web.mit.edu/hyperbook/Patrikalakis-Maekawa-Cho/node27.html), and are typically neither mutually orthogonal nor of unit length. It's important to remember that they are dependent on the surface parametrization. You may be used to calling them ["the tangent" and "the bitangent"](http://www.terathon.com/code/tangent.html), when, strictly speaking, the tangent plane contains infinitely many unique tangent vectors, and the term [bitangent](https://en.wikipedia.org/wiki/Bitangent) is only defined for curves.
+These two vectors span the [tangent plane](http://web.mit.edu/hyperbook/Patrikalakis-Maekawa-Cho/node27.html), and are typically neither mutually orthogonal nor of unit length. It's important to remember that they depend on the surface parametrization. You may be used to calling them ["the tangent" and "the bitangent"](http://www.terathon.com/code/tangent.html), when, strictly speaking, the tangent plane contains infinitely many unique tangent vectors, and the term [bitangent](https://en.wikipedia.org/wiki/Bitangent) is only defined for curves.
 
 We can use these two tangent vectors to compute the geometric normal of the surface. To make the normal independent from the surface parametrization, it should be normalized:
 
@@ -51,7 +51,7 @@ This completes the tangent frame, which can be represented as a tangent-to-objec
 
 $$ \tag{5} M\_{tangent}(u,v) = [T | B | N]. $$
 
-We will need the inverse of the matrix going forward:
+We will need the [inverse](http://www.emptyloop.com/technotes/A%20tutorial%20on%20inverting%203%20by%203%20matrices%20with%20cross%20products.pdf) of the matrix going forward:
 
 $$ \tag{6} \begin{aligned}
     (M\_{tangent}^{-1}(u,v))^{\mathrm{T}} = \frac{\mathrm{cof}(M\_{tangent})}{\mathrm{det}(M\_{tangent})}
@@ -63,15 +63,15 @@ It's important to note that, in practice, the surface parametrization used to de
 
 ## Preliminaries, Part 2: Height Maps and Volumes
 
-The simplest representation of a tangent-space normal (or bump) map is the height map \\(z = h(s,t)\\). A height map is a 2D subset (slice) of a 3D height volume, where each location in space corresponds to a height value. A height volume is a scalar field. The [gradient](https://en.wikipedia.org/wiki/Gradient) of a scalar field is a vector field. For a height volume, the *volume gradient* points in the direction of the greatest height increase rate, with the magnitude corresponding to this rate:
+The simplest representation of a tangent-space normal (or bump) map is the height map \\(z = h(s,t)\\). A height map \\( h(s,t) \\) is a 2D subset (slice) of a 3D height volume \\( h(s,t,r) \\), with each location in space corresponding to a height (or scalar displacement) value.
 
-$$ \tag{7} \nabla h(s,t,r) = \frac{\partial h}{\partial s} I + \frac{\partial h}{\partial t} J + \frac{\partial h}{\partial r} K = \Big\lbrace \frac{\partial h}{\partial s}, \frac{\partial h}{\partial t}, \frac{\partial h}{\partial r} \Big\rbrace^{\mathrm{T}}, $$
+A height volume is a [scalar field](https://en.wikipedia.org/wiki/Scalar_field). The [gradient](https://en.wikipedia.org/wiki/Gradient) of a scalar field is a [vector field](https://en.wikipedia.org/wiki/Vector_field). For a height volume, the *volume gradient*  is a vector which points in the direction of the greatest height increase rate, with the magnitude corresponding to this rate:
 
-where \\(\lbrace I,J,K \rbrace\\) is the set of orthonormal basis vectors.
+$$ \tag{7} \nabla h(s,t,r) = \frac{\partial h}{\partial s} I + \frac{\partial h}{\partial t} J + \frac{\partial h}{\partial r} K = \Big[ \frac{\partial h}{\partial s} \Big| \frac{\partial h}{\partial t} \Big| \frac{\partial h}{\partial r} \Big]^{\mathrm{T}}, $$
 
-For a height map, the gradient is located on the base plane (of 0 height) of the height map, with the direction and the magnitude corresponding to its steepest slope (\\({\partial h}/{\partial s}\\) and \\({\partial h}/{\partial t}\\) are the slopes of the height map).
+where \\(\lbrace I,J,K \rbrace\\) is the orthonormal set of basis vectors which form the frame of reference of the height volume.
 
-There are two ways to compute the gradient: one is to realize that the rate at which the height changes along the third dimension is zero, and the other one is to project the volume gradient along the normal of the base plane:
+There are two ways to compute the volume gradient for a height map: one is to realize that the rate at which the scalar field changes along the third axis is zero (consider extending the height map to three dimensions by infinite replication/stacking), and the other one is to project the volume gradient onto the base plane along its normal:
 
 $$ \tag{8} \gamma(s,t) = \frac{\partial h}{\partial s} I + \frac{\partial h}{\partial t} J = \nabla h - \langle \nabla h, K \rangle K. $$
 
@@ -87,7 +87,7 @@ $$ \tag{10} \nabla f(x,y,z) = \frac{\partial f}{\partial x} I + \frac{\partial f
 
 Substitution of the height map equation readily yields the following expression:
 
-$$ \tag{11} G(s,t) = K - \frac{\partial h}{\partial s} I - \frac{\partial h}{\partial t} J = \Big\lbrace -\frac{\partial h}{\partial s}, -\frac{\partial h}{\partial t}, 1 \Big\rbrace^{\mathrm{T}}, $$
+$$ \tag{11} G(s,t) = K - \frac{\partial h}{\partial s} I - \frac{\partial h}{\partial t} J = \Big[ -\frac{\partial h}{\partial s} \Big| -\frac{\partial h}{\partial t} \Big| 1 \Big]^{\mathrm{T}}, $$
 
 $$ \tag{12} G(s,t) = K - \gamma. $$
 
