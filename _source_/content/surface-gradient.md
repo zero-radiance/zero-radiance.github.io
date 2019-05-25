@@ -14,10 +14,10 @@ Realistic rendering at high frame rates remains at the core of real-time compute
 
 One of the oldest tricks in the book is [bump mapping](https://www.microsoft.com/en-us/research/publication/simulation-of-wrinkled-surfaces/). Introduced in 1978 by Jim Blinn, it is a simple way to add mesoscopic detail without increasing the geometric complexity of the scene. Most modern real-time renderers support a variation of this technique called normal mapping. While it's fast and easy to use, certain operations, such as blending, are [not as simple as they seem](https://blog.selfshadow.com/publications/blending-in-detail/). This is where the so-called "surface gradient framework" comes into play.
 
-The surface gradient framework is a set of tools to transform and combine bump (and normal) maps originally introduced by Morten Mikkelsen in his 2010 paper titled ["Bump Mapping Unparametrized Surfaces on the GPU"
+The surface gradient framework is a set of tools to transform and combine normal (or bump) maps originally introduced by Morten Mikkelsen in his 2010 paper titled ["Bump Mapping Unparametrized Surfaces on the GPU"
 ](https://www.dropbox.com/s/l1yl164jb3rhomq/mm_sfgrad_bump.pdf), and further extended to handle triplanar mapping in his subsequent [blog post](http://mmikkelsen3d.blogspot.com/2013/10/volume-height-maps-and-triplanar-bump.html). While there's nothing wrong with these two publications, to really understand what's going on, it really helps to also read his [thesis](http://image.diku.dk/projects/media/morten.mikkelsen.08.pdf), and at 109 pages, it's quite a time investment.
 
-Instead, I will attempt to give a shorter derivation, assuming no prior knowledge of the topic, starting from the the first principles. As with any derivation, the results will be theoretical in nature, and it's important to understand the practical aspects. Your renderer probably doesn't implement normal mapping this way (but maybe it should), your artists are probably used to the wrong but convenient way they've been doing it for the last four decades (feeling old yet?), and your baking tool is trying to minimize the damage by accounting for all of your hacks during the mesh generation step. Still, in my opinion, it's important to understand the right way of doing things, so that you can make an informed decision to do things differently, if necessary, and understand the implications of doing so.
+Instead, I will attempt to give a shorter derivation, assuming no prior knowledge of the topic, starting from the the first principles. As with any derivation, the results will be theoretical in nature, and it's important to understand the practical aspects. Your renderer probably doesn't implement normal mapping this way (but maybe it should), your artists are probably used to the wrong but convenient way they've been doing it for the last four decades (feeling old yet?), and your baking tool is trying to minimize the damage by accounting for all of your hacks during the mesh generation step. Still, in my opinion, it's important to understand the right way of doing things, so that, when necessary, you can make an informed decision to do things differently and understand the implications of doing so.
 
 Still with me? Let's dive in.
 
@@ -41,7 +41,7 @@ Armed with the surface parametrization, we can compute two tangent vectors at th
 
 $$ \tag{3} T(u,v) = \frac{\partial S}{\partial u}, \quad B(u,v) = \frac{\partial S}{\partial v}. $$
 
-These two vectors span the [tangent plane](http://web.mit.edu/hyperbook/Patrikalakis-Maekawa-Cho/node27.html), and are typically neither mutually orthogonal nor of unit length. It's important to remember that they depend on the surface parametrization. You may be used to calling them ["the tangent" and "the bitangent"](http://www.terathon.com/code/tangent.html), when, strictly speaking, the tangent plane contains infinitely many unique tangent vectors, and the term [bitangent](https://en.wikipedia.org/wiki/Bitangent) is only defined for curves.
+These two vectors span the [tangent plane](http://web.mit.edu/hyperbook/Patrikalakis-Maekawa-Cho/node27.html), and are typically neither mutually orthogonal nor of unit length. It's important to remember that they depend on the surface parametrization. You may be used to calling them ["the tangent" and "the bitangent"](http://www.terathon.com/code/tangent.html), when, strictly speaking, the tangent plane contains infinitely many unique tangent vectors, and, to my knowledge, the term [bitangent](https://en.wikipedia.org/wiki/Bitangent) is only defined for curves.
 
 We can use these two tangent vectors to compute the geometric normal of the surface. To make the normal independent from the surface parametrization, it should be normalized:
 
@@ -69,9 +69,9 @@ A height volume is a [scalar field](https://en.wikipedia.org/wiki/Scalar_field).
 
 $$ \tag{7} \nabla h(s,t,r) = \frac{\partial h}{\partial s} I + \frac{\partial h}{\partial t} J + \frac{\partial h}{\partial r} K = \Big[ \frac{\partial h}{\partial s} \Big| \frac{\partial h}{\partial t} \Big| \frac{\partial h}{\partial r} \Big]^{\mathrm{T}}, $$
 
-where \\(\lbrace I,J,K \rbrace\\) is the orthonormal set of basis vectors which form the frame of reference of the height volume.
+where \\(\lbrace I,J,K \rbrace\\) is the orthonormal set of basis vectors that form the frame of reference of the height volume.
 
-There are two ways to compute the volume gradient for a height map: one is to realize that the rate at which the scalar field changes along the third axis is zero (consider extending the height map to three dimensions by infinite replication/stacking), and the other one is to project the volume gradient onto the base plane along its normal:
+There are two equivalent ways to compute the volume gradient for a height map: one is to realize that the rate at which the scalar field changes along the third axis is zero (consider extending the height map to three dimensions by infinite replication/stacking), and the other one is to project the volume gradient onto the base plane along its normal:
 
 $$ \tag{8} \gamma(s,t) = \frac{\partial h}{\partial s} I + \frac{\partial h}{\partial t} J = \nabla h - \langle \nabla h, K \rangle K. $$
 
@@ -83,11 +83,11 @@ $$ \tag{9} f(x,y,z) = z - h(x,y) = 0. $$
 
 The upward-facing direction of the height map normal is given by the *gradient of the implicit surface*:
 
-$$ \tag{10} \nabla f(x,y,z) = \frac{\partial f}{\partial x} I + \frac{\partial f}{\partial y} J + \frac{\partial f}{\partial z} K, $$
+$$ \tag{10} G(x,y,z) = \nabla f(x,y,z) = \frac{\partial f}{\partial x} I + \frac{\partial f}{\partial y} J + \frac{\partial f}{\partial z} K, $$
 
 Substitution of the height map equation readily yields the following expression:
 
-$$ \tag{11} G(s,t) = K - \frac{\partial h}{\partial s} I - \frac{\partial h}{\partial t} J = \Big[ -\frac{\partial h}{\partial s} \Big| -\frac{\partial h}{\partial t} \Big| 1 \Big]^{\mathrm{T}}, $$
+$$ \tag{11} G(s,t) = K - \frac{\partial h}{\partial s} I - \frac{\partial h}{\partial t} J = \begin{bmatrix} -\partial h / \partial s \cr -\partial h / \partial t \cr 1\end{bmatrix}, $$
 
 $$ \tag{12} G(s,t) = K - \gamma. $$
 
