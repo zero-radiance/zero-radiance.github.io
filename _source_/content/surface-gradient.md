@@ -336,7 +336,7 @@ where \\(w\\) is the weighting function, and the normals of X-Y, Y-Z and Z-X pla
 
 To support tangent-space normal maps, we can also blend three surface gradients obtained using the math from the previous section. However, there's a more efficient solution presented by Morten in his [blog post](http://mmikkelsen3d.blogspot.com/2013/10/volume-height-maps-and-triplanar-bump.html).
 
-Imagine a height volume defined using three height maps as follows:
+Imagine a height volume defined using three height maps (recall the infinite replication/stacking analogy) as follows:
 
 $$ \tag{46} h(x,y,z) = w(n_x,n_y) h_z(x,y) + w(n_y,n_z) h_x(y,z) + w(n_z,n_x) h_y(z,x), $$
 
