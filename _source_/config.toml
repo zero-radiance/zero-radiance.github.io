@@ -6,3 +6,6 @@ theme = "minos"
 [Params]
 SmartToc = true
 katex = true
+
+[blackfriday]
+smartypants = false

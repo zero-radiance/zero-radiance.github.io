@@ -116,11 +116,11 @@ blend(A, B, t) = exp(lerp(log(A), log(B), t))
 
 <p>Note that you can drop negations from the definitions of <code>log(X)</code> and <code>exp(Y)</code> for convenience.</p>
 
-<p>If you take a look at the derivation in Duff&rsquo;s paper, it assumes that both pixels taking part in the blend operation correspond to objects overlapping the same depth interval. This presents a problem in the context of voxel-based volumetrics, since voxels sizes can vary dramatically, making blending of voxels corresponding to different depth intervals (of different sizes) a requirement to support reprojection during camera motion.</p>
+<p>If you take a look at the derivation in Duff's paper, it assumes that both pixels taking part in the blend operation correspond to objects overlapping the same depth interval. This presents a problem in the context of voxel-based volumetrics, since voxels sizes can vary dramatically, making blending of voxels corresponding to different depth intervals (of different sizes) a requirement to support reprojection during camera motion.</p>
 
-<p>In my Siggraph talk, I proposed a solution, which is to linearize pixels with respect to the size of the interval, normalize them (divide by the size), and then use Duff&rsquo;s blending algorithm. While the idea was conceptually sound, I wasn&rsquo;t able to find the correct solution for linearization and normalization before the conference deadline, and ended up presenting an ad-hoc method instead.</p>
+<p>In my Siggraph talk, I proposed a solution, which is to linearize pixels with respect to the size of the interval, normalize them (divide by the size), and then use Duff's blending algorithm. While the idea was conceptually sound, I wasn't able to find the correct solution for linearization and normalization before the conference deadline, and ended up presenting an ad-hoc method instead.</p>
 
-<p>Turns out, the correct solution is very simple, and requires no additional transformations. Duff&rsquo;s log transform actually performs linearization - this is why he is able to use the linear interpolation formula. It&rsquo;s possible to reason about this mathematically, but I found thinking about the physical interpretation of the transformation more intuitive.</p>
+<p>Turns out, the correct solution is very simple, and requires no additional transformations. Duff's log transform actually performs linearization - this is why he is able to use the linear interpolation formula. It's possible to reason about this mathematically, but I found thinking about the physical interpretation of the transformation more intuitive.</p>
 
 <p>Given a homogeneous participating medium under constant illumination, the value of the in-scattered radiance integral along the ray segment (which is identical to the weight given by <a href="https://cs.dartmouth.edu/wjarosz/publications/novak18monte.html">free-path sampling</a> in the Monte Carlo context) is proportional to:</p>
 
@@ -134,7 +134,7 @@ blend(A, B, t) = exp(lerp(log(A), log(B), t))
 <pre><code class="language-c++">P = {c * L_i * OpacityFromOpticalDepth(k * x) / k, OpacityFromOpticalDepth(k * x)}
 </code></pre>
 
-<p>Let&rsquo;s apply the log transform to <code>P</code> and simplify:</p>
+<p>Let's apply the log transform to <code>P</code> and simplify:</p>
 
 <pre><code class="language-c++">log(P) = {(k * x) / P.a * c * L_i * OpacityFromOpticalDepth(k * x) / k, -(k * x)}
 log(P) = {c * L_i * x, -k * x}
@@ -155,7 +155,7 @@ log(P) = {c * L_i * x, -k * x}
 <li>Linearize: compute <code>log(P_1)</code> and <code>log(P_2)</code>.</li>
 <li>Normalize: compute <code>N_1 = log(P_1) / x_1</code> and <code>N_2 = log(P_2) / x_2</code>.</li>
 <li>Blend: compute <code>B = lerp(N_1, N_2, t)</code>.</li>
-<li>Denormalize: let&rsquo;s say that <code>(x_1 &lt;= x_2)</code> and we want to blend all of <code>P_1</code> with a fraction of <code>P_2</code> of size <code>x_1</code>.
+<li>Denormalize: let's say that <code>(x_1 &lt;= x_2)</code> and we want to blend all of <code>P_1</code> with a fraction of <code>P_2</code> of size <code>x_1</code>.
 In that case, we compute <code>B_1 = B * x_1</code>.</li>
 <li>Delinearize: convert back to color and opacity by computing <code>E_1 = exp(B_1)</code>.</li>
 </ol>

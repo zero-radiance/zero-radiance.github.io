@@ -79,24 +79,24 @@
             
         </div>
         <div class="article-entry" itemprop="articleBody">
-            <p>Pre-filtered cubemaps remain an important source of indirect illumination for those of us who still haven&rsquo;t purchased a Turing graphics card.</p>
+            <p>Pre-filtered cubemaps remain an important source of indirect illumination for those of us who still haven't purchased a Turing graphics card.</p>
 
 <p>To my knowledge, most implementations use the <a href="https://cdn2.unrealengine.com/Resources/files/2013SiggraphPresentationsNotes-26915738.pdf">split sum approximation</a> originally introduced by Brian Karis. It is a simple technique, and generally works well given the inherent view independence limitation.</p>
 
-<p>But why does it work so well, and is there a better way to pre-filter? Let&rsquo;s find out.</p>
+<p>But why does it work so well, and is there a better way to pre-filter? Let's find out.</p>
 
 <p>To compute the outgoing radiance in the view direction, we need to evaluate the integral of the incoming radiance weighted by the BRDF over the projected hemisphere.</p>
 
 <p>$$ L_o = \int_{\Omega} L_i(l) f(\alpha,v,n,l) \langle n,l \rangle dl $$</p>
 
-<p>Brian&rsquo;s solution is to split the integral in two:</p>
+<p>Brian's solution is to split the integral in two:</p>
 
 <p>$$ L_o \approx \int_{\Omega} L_i(l) \langle n,l \rangle dl \int_{\Omega} f(\alpha,v,n,l) \langle n,l \rangle dl $$</p>
 
 <p>The first integral is stored in the pre-filtered cubemap, and is the biggest source of error, since it does not account for the view direction. The second integral can be precomputed and reconstructed exactly at runtime.
 In practice, during the cubemap pre-filtering step, Brian suggests to place samples according to the GGX distribution, which <a href="https://seblagarde.files.wordpress.com/2015/07/course_notes_moving_frostbite_to_pbr_v32.pdf">may be surprising</a> given the absence of the BRDF within the integral.</p>
 
-<p>We can do things slightly differently. Here is the way pre-filtering works in Unity&rsquo;s HD Render Pipeline.</p>
+<p>We can do things slightly differently. Here is the way pre-filtering works in Unity's HD Render Pipeline.</p>
 
 <p>First, we note that we can compute the exact value of the second integral, so it makes perfect sense to keep it. Therefore, we can start with the following expression:</p>
 
@@ -106,7 +106,7 @@ In practice, during the cubemap pre-filtering step, Brian suggests to place samp
 
 <p>$$ L_o = \frac{ \int_{\Omega} L_i(l) f(\alpha,v,n,l) \langle n,l \rangle dl }{ \int_{\Omega} f(\alpha,v,n,l) \langle n,l \rangle dl} \int_{\Omega} f(\alpha,v,n,l) \langle n,l \rangle dl $$</p>
 
-<p>In this form, the IBL solution is exact. In practice, since we are memory-limited, we retain Brian&rsquo;s approximation by assuming that the normal and the view vectors are aligned. This results in a normalized radially symmetric filter around the normal.</p>
+<p>In this form, the IBL solution is exact. In practice, since we are memory-limited, we retain Brian's approximation by assuming that the normal and the view vectors are aligned. This results in a normalized radially symmetric filter around the normal.</p>
 
 <p>$$ L_p(\alpha,v,n) \approx \frac{ \int_{\Omega} L_i(l) f(\alpha,n,n,l) \langle n,l \rangle dl }{ \int_{\Omega} f(\alpha,n,n,l) \langle n,l \rangle dl} $$</p>
 
@@ -122,7 +122,7 @@ In practice, during the cubemap pre-filtering step, Brian suggests to place samp
 
 <p>will cause it to cancel out. I tried using the full Fresnel-Schlick expression with different reflectance values, and observed no visible difference in practice. At first, I was really puzzled as to why. Turns out, Fresnel-Schlick is <a href="https://www.desmos.com/calculator/u5unsfrcbe">nearly constant</a> for angles up to 45 degrees, so this is indeed a reasonable approximation for most roughness values. My thanks to Brian for the explanation and the graph.</p>
 
-<p>Finally, does the new method produce superior results in practice? The only difference is the weighting function, which, in Brian&rsquo;s case, is further approximated by the following expression:</p>
+<p>Finally, does the new method produce superior results in practice? The only difference is the weighting function, which, in Brian's case, is further approximated by the following expression:</p>
 
 <p>$$ W = FG \approx \langle n,l \rangle $$</p>
 

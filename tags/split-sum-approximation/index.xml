@@ -16,11 +16,11 @@
       <pubDate>Tue, 02 Apr 2019 00:00:00 +0000</pubDate>
       
       <guid>https://zero-radiance.github.io/post/split-sum/</guid>
-      <description>&lt;p&gt;Pre-filtered cubemaps remain an important source of indirect illumination for those of us who still haven&amp;rsquo;t purchased a Turing graphics card.&lt;/p&gt;
+      <description>&lt;p&gt;Pre-filtered cubemaps remain an important source of indirect illumination for those of us who still haven&#39;t purchased a Turing graphics card.&lt;/p&gt;
 
 &lt;p&gt;To my knowledge, most implementations use the &lt;a href=&#34;https://cdn2.unrealengine.com/Resources/files/2013SiggraphPresentationsNotes-26915738.pdf&#34;&gt;split sum approximation&lt;/a&gt; originally introduced by Brian Karis. It is a simple technique, and generally works well given the inherent view independence limitation.&lt;/p&gt;
 
-&lt;p&gt;But why does it work so well, and is there a better way to pre-filter? Let&amp;rsquo;s find out.&lt;/p&gt;</description>
+&lt;p&gt;But why does it work so well, and is there a better way to pre-filter? Let&#39;s find out.&lt;/p&gt;</description>
     </item>
     
   </channel>
