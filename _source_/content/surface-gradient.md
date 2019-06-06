@@ -92,7 +92,7 @@ $$ \tag{10} G(x,y,z) = \nabla f(x,y,z) = \frac{\partial f}{\partial x} I + \frac
 
 Substitution of the height map equation readily yields the following expression:
 
-$$ \tag{11} G(s,t) = K - \frac{\partial h}{\partial s} I - \frac{\partial h}{\partial t} J = \begin{bmatrix} -\partial h / \partial s \cr -\partial h / \partial t \cr 1 \end{bmatrix}, $$
+$$ \tag{11} G(s,t) = - \frac{\partial h}{\partial s} I - \frac{\partial h}{\partial t} J + K = \begin{bmatrix} -\partial h / \partial s \cr -\partial h / \partial t \cr 1 \end{bmatrix}, $$
 
 $$ \tag{12} G(s,t) = K - \gamma. $$
 
@@ -116,9 +116,9 @@ $$ \tag{13} G(u,v) =
 
 This simply means that we need to rescale the slopes in order to adjust the displacements as we tile the texture.
 
-For completeness, we can convert a tangent-space (height map) normal into the slope (gradient) form in the following way:
+For completeness, we can convert a tangent-space (height map) normal \\( N\_{t} = [n\_{t,1}, n\_{t,2}, n\_{t,3}]^{\mathrm{T}} \\) into the slope (gradient) form in the following way:
 
-$$ \tag{14} G(s,t) = \begin{bmatrix} -\partial h / \partial s \cr -\partial h / \partial t \cr 1 \end{bmatrix} = \frac{N\_{t}}{n\_{t,z}}, $$
+$$ \tag{14} G(s,t) = \begin{bmatrix} -\partial h / \partial s \cr -\partial h / \partial t \cr 1 \end{bmatrix} = \frac{N\_{t}}{n\_{t,3}}, $$
 
 $$ \tag{15} G(u,v) =
 \begin{bmatrix}
@@ -127,10 +127,10 @@ $$ \tag{15} G(u,v) =
     1
 \end{bmatrix} =
 \begin{bmatrix}
-    -a \cdot n\_{t,x} / n\_{t,z} \cr
-    -b \cdot n\_{t,y} / n\_{t,z} \cr
+    -a \cdot n\_{t,1} / n\_{t,3} \cr
+    -b \cdot n\_{t,2} / n\_{t,3} \cr
     1
-\end{bmatrix} = M\_{tile} \frac{N\_{t}}{n\_{t,z}}. $$
+\end{bmatrix} = M\_{tile} \frac{N\_{t}}{n\_{t,3}}. $$
 
 To perturb the surface using the height map, we need to perform a change of basis from the orthonormal tangent-space set \\(\lbrace I,J,K \rbrace\\) to our previously defined object-space set \\(\lbrace T,B,N \rbrace\\). Doing this correctly is slightly more involved than it may seem at first glance.
 
@@ -140,7 +140,7 @@ The [original formulation](https://www.microsoft.com/en-us/research/publication/
 
 {{< figure src="/img/bump_map.png" caption="Bump mapping as depicted by Jim Blinn in his original paper." >}}
 
-Note that this is the right place to apply the object's scale matrix, as it should affect the displacements (ultimately, by scaling the slopes):
+Note that this is the right place to apply the object's scale matrix \\( M\_{scale} \\), as it should affect the displacements (ultimately, by scaling the slopes):
 
 $$ \tag{16} P(u, v) = M\_{scale} \Big( S(u, v) + h(u, v) N(u, v) \Big). $$
 
@@ -199,11 +199,11 @@ $$ \tag{27} \frac{(M\_{tangent})^{\mathrm{T}} N_o}{\Vert (M\_{tangent})^{\mathrm
 
 Let's say we just have a tangent-space normal map, which we would like to tile and perhaps scale, and that's it. To compute the perturbed normal in the world space, all we have to do is the following:
 
-$$ \tag{28} N_w(u,v) \approx \frac{\big( M\_{rot} (\mathrm{cof}(M\_{scale})) (M\_{tangent}^{-1})^{\mathrm{T}} \big) M\_{tile} N\_{t} / n\_{t,z}}{\Vert \big( M\_{rot} (\mathrm{cof}(M\_{scale})) (M\_{tangent}^{-1})^{\mathrm{T}} \big) M\_{tile} N\_{t} / n\_{t,z} \Vert}, $$
+$$ \tag{28} N_w(u,v) \approx \frac{\big( M\_{rot} (\mathrm{cof}(M\_{scale})) (M\_{tangent}^{-1})^{\mathrm{T}} \big) M\_{tile} N\_{t} / n\_{t,3}}{\Vert \big( M\_{rot} (\mathrm{cof}(M\_{scale})) (M\_{tangent}^{-1})^{\mathrm{T}} \big) M\_{tile} N\_{t} / n\_{t,3} \Vert}, $$
 
 $$ \tag{29} N_w(u,v) \approx \frac{M\_{world} M\_{tile} N\_{t}}{\Vert M\_{world} M\_{tile} N\_{t} \Vert}. $$
 
-The tangent-normal-to-world matrix \\(M\_{world}\\) can be precomputed, and all that's left to do at runtime is a few multiplications and one normalization.
+The tangent-normal-to-world matrix \\(M\_{world}\\) can be precomputed (with the object's rotation matrix \\(M\_{rot}\\) folded in), and all that's left to do at runtime is a few multiplications and one normalization.
 
 ## Surface Gradient Framework
 
