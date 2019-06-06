@@ -153,7 +153,7 @@ $$ \tag{18} B_p(u,v) = \frac{\partial P}{\partial v}
                      = M\_{scale}(B + \frac{\partial h}{\partial v} N + h \frac{\partial N}{\partial v})
                      \approx M\_{scale}(B + \frac{\partial h}{\partial v} N). $$
 
-Jim Blinn claims that for small displacements and moderately curved surfaces, the last term is negligibly small and can be set to 0. For those interested, Morten verifies that this is indeed the case in his [thesis](http://image.diku.dk/projects/media/morten.mikkelsen.08.pdf) (see Section 2.6).
+Jim Blinn claims that for small displacements and moderately curved surfaces, partial derivatives \\( \partial N / \partial u \\) and \\( \partial N / \partial v \\) are negligibly small and can be set to 0. For those interested, Morten verifies the validity of this approximation in his [thesis](http://image.diku.dk/projects/media/morten.mikkelsen.08.pdf) (see Section 2.6).
 
 We can compute the perturbed normal by taking the cross product. Just as before, we replace normalization in the denominator with the scalar triple product to avoid flipped normals:
 
