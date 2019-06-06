@@ -63,7 +63,7 @@ It's important to note that, in practice, the surface parametrization used to de
 
 ## Preliminaries, Part 2: Height Maps and Volumes
 
-The simplest representation of a tangent-space normal (or bump) map is the height map \\(z = h(s,t)\\). A height map \\( h(s,t) \\) is a 2D subset (slice) of a 3D height volume \\( h(s,t,r) \\), with each location in space corresponding to a height (or scalar displacement) value.
+The simplest representation of a tangent-space normal (or bump) map is the height map \\(z = h(s,t)\\). A height map \\( h(s,t) \\) is a 2D subset (slice) of a 3D height volume \\( h(s,t,r) \\), where we use the \\( r \\) coordinate for the third dimension. Given a height volume, each location in space corresponds to a height (or scalar displacement) value. It's possible define a height volume using a [noise function](https://en.wikipedia.org/wiki/Perlin_noise), or by combining several height maps in a certain way (as we will see later).
 
 A height volume is a [scalar field](https://en.wikipedia.org/wiki/Scalar_field). The [gradient](https://en.wikipedia.org/wiki/Gradient) of a scalar field is a [vector field](https://en.wikipedia.org/wiki/Vector_field). For a height volume, the *volume gradient*  is a vector which points in the direction of the greatest height increase rate, with the magnitude corresponding to this rate:
 
