@@ -108,7 +108,7 @@
 
 <p>$$ \tag{3} T(u,v) = \frac{\partial S}{\partial u}, \quad B(u,v) = \frac{\partial S}{\partial v}. $$</p>
 
-<p>These two vectors span the <a href="http://web.mit.edu/hyperbook/Patrikalakis-Maekawa-Cho/node27.html">tangent plane</a>, and are typically neither mutually orthogonal nor of unit length. It's important to remember that they depend on the surface parametrization. You may be used to calling them <a href="http://www.terathon.com/code/tangent.html">&quot;the tangent&quot; and &quot;the bitangent&quot;</a>, when, strictly speaking, the tangent plane contains infinitely many unique tangent vectors, and, to my knowledge, the term <a href="https://en.wikipedia.org/wiki/Bitangent">bitangent</a> is only defined for curves.</p>
+<p>These two vectors span the <a href="http://web.mit.edu/hyperbook/Patrikalakis-Maekawa-Cho/node27.html">tangent plane</a>, and are typically neither mutually orthogonal nor of unit length. It's important to remember that they depend on the surface parametrization. You may be used to calling them <a href="http://www.terathon.com/code/tangent.html">&quot;the tangent&quot; and &quot;the bitangent&quot;</a>, when, strictly speaking, the tangent plane contains <a href="http://math.etsu.edu/multicalc/prealpha/Chap3/Chap3-6/part1.htm">infinitely many</a> unique tangent vectors, and, to my knowledge, the term <a href="https://en.wikipedia.org/wiki/Bitangent">bitangent</a> is only defined for curves.</p>
 
 <p>We can use these two tangent vectors to compute the geometric normal of the surface. To make the normal independent from the surface parametrization, it should be normalized:</p>
 
@@ -117,6 +117,14 @@
 <p>This completes the tangent frame, which can be represented as a tangent-to-object-space matrix:</p>
 
 <p>$$ \tag{5} M_{tangent}(u,v) = [T | B | N]. $$</p>
+
+<figure>
+    <img src="/img/tbn.png"
+         alt="T, B and N vectors of a quadric shown in red, green and blue, respectively."/> <figcaption>
+            <p>T, B and N vectors of a quadric shown in red, green and blue, respectively.</p>
+        </figcaption>
+</figure>
+
 
 <p>We will need the <a href="http://www.emptyloop.com/technotes/A%20tutorial%20on%20inverting%203%20by%203%20matrices%20with%20cross%20products.pdf">inverse</a> of the matrix going forward:</p>
 
@@ -350,7 +358,9 @@ $$ \tag{18} B_p(u,v) = \frac{\partial P}{\partial v}
 
 <figure>
     <img src="/img/grad_obj.png"
-         alt="Surface gradient and the object-space normal."/> 
+         alt="Surface gradient and the object-space normal."/> <figcaption>
+            <p>Surface gradient and the object-space normal.</p>
+        </figcaption>
 </figure>
 
 

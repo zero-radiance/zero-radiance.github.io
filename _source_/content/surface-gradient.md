@@ -41,7 +41,7 @@ Armed with the surface parametrization, we can compute two tangent vectors at th
 
 $$ \tag{3} T(u,v) = \frac{\partial S}{\partial u}, \quad B(u,v) = \frac{\partial S}{\partial v}. $$
 
-These two vectors span the [tangent plane](http://web.mit.edu/hyperbook/Patrikalakis-Maekawa-Cho/node27.html), and are typically neither mutually orthogonal nor of unit length. It's important to remember that they depend on the surface parametrization. You may be used to calling them ["the tangent" and "the bitangent"](http://www.terathon.com/code/tangent.html), when, strictly speaking, the tangent plane contains infinitely many unique tangent vectors, and, to my knowledge, the term [bitangent](https://en.wikipedia.org/wiki/Bitangent) is only defined for curves.
+These two vectors span the [tangent plane](http://web.mit.edu/hyperbook/Patrikalakis-Maekawa-Cho/node27.html), and are typically neither mutually orthogonal nor of unit length. It's important to remember that they depend on the surface parametrization. You may be used to calling them ["the tangent" and "the bitangent"](http://www.terathon.com/code/tangent.html), when, strictly speaking, the tangent plane contains [infinitely many](http://math.etsu.edu/multicalc/prealpha/Chap3/Chap3-6/part1.htm) unique tangent vectors, and, to my knowledge, the term [bitangent](https://en.wikipedia.org/wiki/Bitangent) is only defined for curves.
 
 We can use these two tangent vectors to compute the geometric normal of the surface. To make the normal independent from the surface parametrization, it should be normalized:
 
@@ -50,6 +50,8 @@ $$ \tag{4} N(u,v) = \frac{T \times B}{\Vert T \times B \Vert}. $$
 This completes the tangent frame, which can be represented as a tangent-to-object-space matrix:
 
 $$ \tag{5} M\_{tangent}(u,v) = [T | B | N]. $$
+
+{{< figure src="/img/tbn.png" caption="T, B and N vectors of a quadric shown in red, green and blue, respectively." >}}
 
 We will need the [inverse](http://www.emptyloop.com/technotes/A%20tutorial%20on%20inverting%203%20by%203%20matrices%20with%20cross%20products.pdf) of the matrix going forward:
 
@@ -271,7 +273,7 @@ It's interesting to compare the last equation with the equation (12), and to see
 
 While we can solve this equation by projecting the object-space normal onto the tangent plane using the equations (27) and (31), it's more efficient to find the solution geometrically:
 
-{{< figure src="/img/grad_obj.png" alt="Surface gradient and the object-space normal." >}}
+{{< figure src="/img/grad_obj.png" caption="Surface gradient and the object-space normal." >}}
 
 $$ \tag{38} \Gamma(u,v) = N - (N - \Gamma) = N - G_o = N -\frac{N_o}{\langle N_o, N \rangle}. $$
 
