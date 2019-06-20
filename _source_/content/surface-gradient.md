@@ -51,7 +51,7 @@ This completes the tangent frame, which can be represented as a tangent-to-objec
 
 $$ \tag{5} M\_{tangent}(u,v) = [T | B | N]. $$
 
-{{< figure src="/img/tbn.png" caption="T, B and N vectors of a quadric shown in red, green and blue, respectively." >}}
+{{< figure src="/img/tbn.png" caption="*T, B and N vectors of a quadric shown in red, green and blue, respectively.*" >}}
 
 We will need the [inverse](http://www.emptyloop.com/technotes/A%20tutorial%20on%20inverting%203%20by%203%20matrices%20with%20cross%20products.pdf) of the matrix going forward:
 
@@ -142,7 +142,7 @@ To perturb the surface using the height map, we need to perform a change of basi
 
 The [original formulation](https://www.microsoft.com/en-us/research/publication/simulation-of-wrinkled-surfaces/) of bump mapping defines a height-mapped surface by applying a perturbation along the normal of the original surface.
 
-{{< figure src="/img/bump_map.png" caption="Bump mapping as depicted by Jim Blinn in his original paper." >}}
+{{< figure src="/img/bump_map.png" caption="*Bump mapping as depicted by Jim Blinn in his original paper.*" >}}
 
 Note that this is the right place to apply the object's scale matrix \\( M\_{scale} \\), as it should affect the displacements (ultimately, by scaling the slopes):
 
@@ -277,7 +277,7 @@ It's interesting to compare the last equation with the equation (12), and to see
 
 While we can solve this equation for \\(\Gamma\\) by projecting the object-space normal onto the tangent plane using the equations (27) and (31), it's more efficient to find the solution geometrically:
 
-{{< figure src="/img/grad_obj.png" caption="Surface gradient and the object-space normal." >}}
+{{< figure src="/img/grad_obj.png" caption="*Surface gradient and the object-space normal.*" >}}
 
 $$ \tag{38} \Gamma(u,v) = N - (N - \Gamma) = N - G_o = N -\frac{N_o}{\langle N_o, N \rangle}. $$
 
