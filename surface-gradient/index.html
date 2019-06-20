@@ -304,11 +304,11 @@ $$ \tag{18} B_p(u,v) = \frac{\partial P}{\partial v}
 
 <p>$$ \tag{31} \Gamma(u,v) = (M_{tangent}^{-1})^{\mathrm{T}} \gamma = \frac{[B \times N | N \times T] }{\langle T \times B, N \rangle} \gamma. $$</p>
 
-<p>Why are these two formulas equivalent? We can use the definition of the <a href="https://en.wikipedia.org/wiki/Directional_derivative">directional derivative</a>, which says that for any vector \(W\), \(\partial h / \partial w = \langle \nabla h, W \rangle\):</p>
+<p>Why are these two formulas equivalent? We can use the definition of the <a href="https://en.wikipedia.org/wiki/Directional_derivative">directional derivative</a>, which says that along any vector \(W\) with its associated scalar parameter \(w\), \(\partial h / \partial w = \langle \nabla h, W \rangle\). Therefore,</p>
 
 <p>$$ \tag{32} \begin{aligned}
     \gamma(u,v) &amp;= (M_{tangent})^{\mathrm{T}} \Gamma \cr
-                &amp;= (M_{tangent})^{\mathrm{T}} (\nabla h - \langle \nabla h, N \rangle N) \cr
+                &amp;= [T | B | N]^{\mathrm{T}} (\nabla h - \langle \nabla h, N \rangle N) \cr
                 &amp;= \begin{bmatrix}
                     \partial h / \partial u \cr
                     \partial h / \partial v \cr

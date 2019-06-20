@@ -221,11 +221,11 @@ In other words, it is the projected gradient transformed from the tangent space 
 
 $$ \tag{31} \Gamma(u,v) = (M\_{tangent}^{-1})^{\mathrm{T}} \gamma = \frac{[B \times N | N \times T] }{\langle T \times B, N \rangle} \gamma. $$
 
-Why are these two formulas equivalent? We can use the definition of the [directional derivative](https://en.wikipedia.org/wiki/Directional_derivative), which says that for any vector \\(W\\), \\(\partial h / \partial w = \langle \nabla h, W \rangle\\):
+Why are these two formulas equivalent? We can use the definition of the [directional derivative](https://en.wikipedia.org/wiki/Directional_derivative), which says that along any vector \\(W\\) with its associated scalar parameter \\(w\\), \\(\partial h / \partial w = \langle \nabla h, W \rangle\\). Therefore,
 
 $$ \tag{32} \begin{aligned}
     \gamma(u,v) &= (M\_{tangent})^{\mathrm{T}} \Gamma \cr
-                &= (M\_{tangent})^{\mathrm{T}} (\nabla h - \langle \nabla h, N \rangle N) \cr
+                &= [T | B | N]^{\mathrm{T}} (\nabla h - \langle \nabla h, N \rangle N) \cr
                 &= \begin{bmatrix}
                     \partial h / \partial u \cr
                     \partial h / \partial v \cr
