@@ -356,7 +356,7 @@ $$ \tag{47} \begin{aligned}
     &+ Z \frac{\partial}{\partial z} (w(n_y,n_z) h_x(y,z) + w(n_z,n_x) h_y(z,x)).
 \end{aligned} $$
 
-The expression is a little complicated, particularly because both the height and the weighting functions depend on the position, so we would need to apply the product rule in order to compute the derivative. Instead, Morten employs a simplification (the same one Jim Blinn employs in section 3), assuming that the normals and, as a result, the weights vary slowly w.r.t. the position:
+The expression is a little complicated, particularly because both the height and the weighting functions depend on the position, so we would need to apply the product rule in order to compute the derivative. Instead, Morten employs a simplification (identical to the one in the "Wrinkled Surfaces" section), assuming that the normals and, as a result, the weights vary slowly w.r.t. the position:
 
 $$ \tag{48} \frac{\partial N}{\partial x} = \frac{\partial N}{\partial y} = \frac{\partial N}{\partial z} = 0. $$
 
