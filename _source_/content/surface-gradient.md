@@ -61,6 +61,8 @@ $$ \tag{6} \begin{aligned}
     &= \Bigg[\frac{B \times N}{\langle T \times B, N \rangle} \Bigg| \frac{N \times T}{\langle T \times B, N \rangle} \Bigg| N\Bigg].
 \end{aligned} $$
 
+In the formula above, \\(\mathrm{det}(M)\\) is the [determinant](https://en.wikipedia.org/wiki/Determinant#3_%C3%97_3_matrices), and \\(\mathrm{cof}(M)\\) is the [cofactor matrix](https://en.wikipedia.org/wiki/Minor_(linear_algebra)#Inverse_of_a_matrix).
+
 It's important to note that, in practice, the surface parametrization used to derive the normal may be different from the texture coordinate parametrization. This means that it's possible to encounter a mesh with vertex normals \\(N\\) pointing in the direction opposite from \\((T \times B)\\). Of course, we always want to use the forward-facing normal \\(N\\). Luckily, the math is on our side, and using the full matrix inversion procedure as described above works in all cases. More details about surface re-parametrization can be found in Morten's [thesis](http://image.diku.dk/projects/media/morten.mikkelsen.08.pdf) (see Section 2.4).
 
 ## Preliminaries, Part 2: Height Maps and Volumes
@@ -167,6 +169,8 @@ We can move the matrix outside of the brackets with the help of the following [i
 
 $$ \tag{20} (MA) \times (MB) = (\mathrm{det}(M))(M^{-1})^{\mathrm{T}}(A \times B)
                              = (\mathrm{cof}(M)) (A \times B), $$
+
+where \\(\mathrm{cof}(M)\\) is the [cofactor matrix](https://en.wikipedia.org/wiki/Minor_(linear_algebra)#Inverse_of_a_matrix).
 
 $$ \tag{21} N_p(u,v) \approx \frac{\mathrm{cof}(M\_{scale})}{\langle T_p \times B_p, N \rangle} \Big((T + \frac{\partial h}{\partial u} N) \times (B + \frac{\partial h}{\partial v} N)\Big). $$
 
