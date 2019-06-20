@@ -275,7 +275,7 @@ $$ \tag{37} N_o(u,v) = \frac{G_o}{ \Vert G_o \Vert } = \frac{N - \Gamma}{ \Vert 
 
 It's interesting to compare the last equation with the equation (12), and to see that they indeed match (up to the normalization factor).
 
-While we can solve this equation by projecting the object-space normal onto the tangent plane using the equations (27) and (31), it's more efficient to find the solution geometrically:
+While we can solve this equation for \\(\Gamma\\) by projecting the object-space normal onto the tangent plane using the equations (27) and (31), it's more efficient to find the solution geometrically:
 
 {{< figure src="/img/grad_obj.png" caption="Surface gradient and the object-space normal." >}}
 
