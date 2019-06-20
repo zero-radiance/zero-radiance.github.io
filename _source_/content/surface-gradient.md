@@ -396,4 +396,4 @@ Due to space and time constraints, I am unable to include more details. I encour
 
 ## Acknowledgments
 
-I would like to thank Jim Blinn and Brian Karis for reviewing this blog post and offering thoughtful comments, and Morten Mikkelsen for answering my questions.
+I would like to thank Jim Blinn and Brian Karis for reviewing this blog post and offering thoughtful comments. Special thanks to Morten Mikkelsen for answering my questions.
