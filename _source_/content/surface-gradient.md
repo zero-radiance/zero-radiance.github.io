@@ -390,9 +390,9 @@ If we recall that our planar mapping example assumes that \\( [ u,v ]^{\mathrm{T
 
 ## Conclusion
 
-The surface gradient framework offers powerful tools for processing all kinds of bump maps: height maps, height volumes, normal maps, in any space or frame of reference. At its core is the original bump mapping algorithm of Jim Blinn, which stands the test of time.
+The surface gradient framework offers powerful tools for processing different representations of bump maps: height maps, height volumes, normal maps, in any space or frame of reference. At its core is the original bump mapping algorithm of Jim Blinn, which stands the test of time.
 
-Due to space and time constraints, I am unable to include more details. I encourage the reader to check the references to learn more about the subject.
+If you want to learn more, I encourage you to check out the papers referenced in the introduction. They contain plenty of interesting details which will help you master of the intricate subject of bump mapping.
 
 ## Acknowledgments
 
