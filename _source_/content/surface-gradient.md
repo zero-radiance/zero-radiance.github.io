@@ -195,7 +195,7 @@ $$ \tag{25} N_p(u,v) \approx \frac{\langle T \times B, N \rangle}{\langle T_p \t
 
 The first term of the equation (25) can be a bit surprising. Intuitively, it accounts for the change of volume from the old to the new coordinate frame. Since it's a non-negative scalar (negative signs of dot products, if present, cancel out), it does not modify the direction of the normal, and we can take care of it by normalizing the resulting vector.
 
-The important part is, since normals (and gradients) are [bivectors](https://en.wikipedia.org/wiki/Bivector#Geometric_interpretation), they are transformed by the inverse-transpose of the matrix. Conversely, projection of an (unscaled) object-space normal into the tangent space is performed using the transpose:
+The important part is, since normals (and gradients) are [pseudovectors](https://en.wikipedia.org/wiki/Pseudovector) (also known as [antivectors](https://en.wikipedia.org/wiki/Antivector)), they are transformed by the inverse-transpose of the matrix. Conversely, projection of an (unscaled) object-space normal into the tangent space is performed using the transpose:
 
 $$ \tag{26} N_o(u,v) = \frac{(M\_{tangent}^{-1})^{\mathrm{T}} G}{\Vert (M\_{tangent}^{-1})^{\mathrm{T}} G \Vert}, $$
 
