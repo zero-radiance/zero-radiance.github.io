@@ -90,7 +90,7 @@ Geometrically, a height map defines an implicit surface of the form:
 
 $$ \tag{9} f(x,y,z) = z - h(x,y) = 0. $$
 
-The upward-facing direction of the height map normal is given by the *gradient of the implicit surface*:
+The upward-facing direction of the height map normal is given by the gradient of the implicit surface:
 
 $$ \tag{10} G(x,y,z) = \nabla f(x,y,z) = \frac{\partial f}{\partial x} I + \frac{\partial f}{\partial y} J + \frac{\partial f}{\partial z} K, $$
 
@@ -100,7 +100,7 @@ $$ \tag{11} G(s,t) = - \frac{\partial h}{\partial s} I - \frac{\partial h}{\part
 
 $$ \tag{12} G(s,t) = K - \gamma. $$
 
-We will refer to \\(G\\) as the *height map gradient*. Note that \\(\langle G, K \rangle\\) is always 1.
+We will refer to \\(G\\) as the *implicit gradient*. Note that \\(\langle G, K \rangle\\) is always 1.
 
 {{< figure src="/img/height_map.png" alt="Height map and its gradient." >}}
 
@@ -281,7 +281,7 @@ While we can solve this equation for \\(\Gamma\\) by projecting the object-space
 
 $$ \tag{38} \Gamma(u,v) = N - (N - \Gamma) = N - G_o = N -\frac{N_o}{\langle N_o, N \rangle}. $$
 
-This formula rescales the normal to obtain the corresponding height map gradient which satisfied the condition \\(\langle N,G \rangle = 1\\). It produces correct results even for negative values of the dot product, as well as non-unit normals \\(N_o\\). In fact, normals can be in any space, as long as both \\(N\\) and \\(N_o\\) are represented with respect to the same frame of reference. Since we only deal with normals and the surface gradient, this formulation is also independent from the surface parametrization -- the way we compute the texture coordinates does not matter.
+This formula rescales the normal to obtain the corresponding implicit gradient which satisfied the condition \\(\langle N,G \rangle = 1\\). It produces correct results even for negative values of the dot product, as well as non-unit normals \\(N_o\\). In fact, normals can be in any space, as long as both \\(N\\) and \\(N_o\\) are represented with respect to the same frame of reference. Since we only deal with normals and the surface gradient, this formulation is also independent from the surface parametrization -- the way we compute the texture coordinates does not matter.
 
 #### 4. Planar Mapping
 
@@ -298,7 +298,7 @@ Let's complete the tangent frame for the new surface parametrization:
 
 $$ \tag{41} T(u,v) = \frac{\partial S}{\partial u} = \Big[ 1, 0, \frac{\partial z}{\partial u} \Big]^{\mathrm{T}}, \quad B(u,v) = \frac{\partial S}{\partial v} = \Big[ 0, 1, \frac{\partial z}{\partial v} \Big]^{\mathrm{T}}. $$
 
-Recall the equation (14) which relates the height map gradient and the height map normal (which, in our interpretation, is the surface normal). We can use it to compute the values of partial derivatives:
+Recall the equation (14) which relates the implicit gradient and the height map normal (which, in our interpretation, is the surface normal). We can use it to compute the values of partial derivatives:
 
 $$ \tag{42} T(u,v) = \Big[ 1, 0, -\frac{n\_{x}}{n\_{z}} \Big]^{\mathrm{T}}, \quad B(u,v) = \Big[ 0, 1, -\frac{n\_{y}}{n\_{z}} \Big]^{\mathrm{T}}. $$
 
