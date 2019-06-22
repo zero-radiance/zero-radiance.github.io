@@ -90,7 +90,7 @@ Geometrically, a height map defines an implicit surface of the form:
 
 $$ \tag{9} f(x,y,z) = z - h(x,y) = 0. $$
 
-The upward-facing direction of the height map normal is given by the gradient of the implicit surface:
+The upward-facing direction of the height map normal is given by the [gradient of the implicit surface](https://en.wikipedia.org/wiki/Implicit_surface#Tangent_plane_and_normal_vector):
 
 $$ \tag{10} G(x,y,z) = \nabla f(x,y,z) = \frac{\partial f}{\partial x} I + \frac{\partial f}{\partial y} J + \frac{\partial f}{\partial z} K, $$
 
