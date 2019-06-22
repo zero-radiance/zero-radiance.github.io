@@ -84,7 +84,7 @@ There are two equivalent ways to compute the volume gradient for a height map: o
 
 $$ \tag{8} \gamma(s,t) = \frac{\partial h}{\partial s} I + \frac{\partial h}{\partial t} J = \nabla h - \langle \nabla h, K \rangle K. $$
 
-We will refer to \\( \gamma \\) as the *projected gradient*. It is the fundamental quantity which makes bump mapping with both height maps and height volumes possible.
+We will refer to \\( \gamma \\) as the *projected gradient*. It is the fundamental quantity which makes bump mapping with both height maps and height volumes possible. For a height map, you can also interpret it as the *height map gradient*, which means that the height map gradient can be obtained by projecting the *volume gradient* along the normal.
 
 Geometrically, a height map defines an implicit surface of the form:
 
