@@ -199,7 +199,7 @@ The important part is, since normals (and gradients) are [pseudovectors](https:/
 
 $$ \tag{26} N_o(u,v) = \frac{(M\_{tangent}^{-1})^{\mathrm{T}} G}{\Vert (M\_{tangent}^{-1})^{\mathrm{T}} G \Vert}, $$
 
-$$ \tag{27} \frac{(M\_{tangent})^{\mathrm{T}} N_o}{\Vert (M\_{tangent})^{\mathrm{T}} N_o \Vert} = (M\_{tangent})^{\mathrm{T}} (M\_{tangent}^{-1})^{\mathrm{T}} G = (M\_{tangent}^{-1} M\_{tangent})^{\mathrm{T}} G = G. $$
+$$ \tag{27} (M\_{tangent})^{\mathrm{T}} N_o = \frac{(M\_{tangent})^{\mathrm{T}}(M\_{tangent}^{-1})^{\mathrm{T}} G}{\Vert (M\_{tangent}^{-1})^{\mathrm{T}} G \Vert} = \frac{(M\_{tangent}^{-1} M\_{tangent})^{\mathrm{T}} G}{\Vert (M\_{tangent}^{-1})^{\mathrm{T}} G \Vert} = \frac{G}{\Vert (M\_{tangent}^{-1})^{\mathrm{T}} G \Vert}. $$
 
 "This seems quite expensive", you may say. Does correctness come at a high cost? Not really.
 
