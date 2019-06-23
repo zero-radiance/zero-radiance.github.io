@@ -1,21 +1,21 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Height Mapping on Zero Radiance</title>
-    <link>https://zero-radiance.github.io/tags/height-mapping/</link>
-    <description>Recent content in Height Mapping on Zero Radiance</description>
+    <title>Bump Mapping on Zero Radiance</title>
+    <link>https://zero-radiance.github.io/tags/bump-mapping/</link>
+    <description>Recent content in Bump Mapping on Zero Radiance</description>
     <generator>Hugo -- gohugo.io</generator>
-    <lastBuildDate>Sat, 06 Apr 2019 15:39:51 -0700</lastBuildDate>
+    <lastBuildDate>Sun, 23 Jun 2019 00:00:00 +0000</lastBuildDate>
     
-	<atom:link href="https://zero-radiance.github.io/tags/height-mapping/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://zero-radiance.github.io/tags/bump-mapping/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>Normal Mapping Using the Surface Gradient</title>
-      <link>https://zero-radiance.github.io/surface-gradient/</link>
-      <pubDate>Sat, 06 Apr 2019 15:39:51 -0700</pubDate>
+      <link>https://zero-radiance.github.io/post/surface-gradient/</link>
+      <pubDate>Sun, 23 Jun 2019 00:00:00 +0000</pubDate>
       
-      <guid>https://zero-radiance.github.io/surface-gradient/</guid>
+      <guid>https://zero-radiance.github.io/post/surface-gradient/</guid>
       <description>&lt;p&gt;Realistic rendering at high frame rates remains at the core of real-time computer graphics. High performance and high fidelity are often at odds, requiring clever tricks and approximations to reach the desired quality bar.&lt;/p&gt;
 
 &lt;p&gt;One of the oldest tricks in the book is &lt;a href=&#34;https://www.microsoft.com/en-us/research/publication/simulation-of-wrinkled-surfaces/&#34;&gt;bump mapping&lt;/a&gt;. Introduced in 1978 by Jim Blinn, it is a simple way to add mesoscopic detail without increasing the geometric complexity of the scene. Most modern real-time renderers support a variation of this technique called normal mapping. While it&#39;s fast and easy to use, certain operations, such as blending, are &lt;a href=&#34;https://blog.selfshadow.com/publications/blending-in-detail/&#34;&gt;not as simple as they seem&lt;/a&gt;. This is where the so-called &amp;quot;surface gradient framework&amp;quot; comes into play.&lt;/p&gt;

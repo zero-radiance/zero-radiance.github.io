@@ -1,10 +1,9 @@
 ---
-hidden: true
 title: "Normal Mapping Using the Surface Gradient"
-date: 2019-04-06T15:39:51-07:00
+date: 2019-06-23
 categories: [ "Graphics", "Math" ]
 tags: [
-    "Height Mapping",
+    "Bump Mapping",
     "Normal Mapping",
     "Surface Gradient",
     ]

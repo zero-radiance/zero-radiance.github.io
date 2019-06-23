@@ -5,10 +5,28 @@
     <link>https://zero-radiance.github.io/post/</link>
     <description>Recent content in Posts on Zero Radiance</description>
     <generator>Hugo -- gohugo.io</generator>
-    <lastBuildDate>Tue, 02 Apr 2019 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Sun, 23 Jun 2019 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="https://zero-radiance.github.io/post/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Normal Mapping Using the Surface Gradient</title>
+      <link>https://zero-radiance.github.io/post/surface-gradient/</link>
+      <pubDate>Sun, 23 Jun 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://zero-radiance.github.io/post/surface-gradient/</guid>
+      <description>&lt;p&gt;Realistic rendering at high frame rates remains at the core of real-time computer graphics. High performance and high fidelity are often at odds, requiring clever tricks and approximations to reach the desired quality bar.&lt;/p&gt;
+
+&lt;p&gt;One of the oldest tricks in the book is &lt;a href=&#34;https://www.microsoft.com/en-us/research/publication/simulation-of-wrinkled-surfaces/&#34;&gt;bump mapping&lt;/a&gt;. Introduced in 1978 by Jim Blinn, it is a simple way to add mesoscopic detail without increasing the geometric complexity of the scene. Most modern real-time renderers support a variation of this technique called normal mapping. While it&#39;s fast and easy to use, certain operations, such as blending, are &lt;a href=&#34;https://blog.selfshadow.com/publications/blending-in-detail/&#34;&gt;not as simple as they seem&lt;/a&gt;. This is where the so-called &amp;quot;surface gradient framework&amp;quot; comes into play.&lt;/p&gt;
+
+&lt;p&gt;The surface gradient framework is a set of tools to transform and combine normal (or bump) maps originally introduced by Morten Mikkelsen in his 2010 paper titled &lt;a href=&#34;https://www.dropbox.com/s/l1yl164jb3rhomq/mm_sfgrad_bump.pdf&#34;&gt;&amp;quot;Bump Mapping Unparametrized Surfaces on the GPU&amp;quot;
+&lt;/a&gt;, and further extended to handle triplanar mapping in his subsequent &lt;a href=&#34;http://mmikkelsen3d.blogspot.com/2013/10/volume-height-maps-and-triplanar-bump.html&#34;&gt;blog post&lt;/a&gt;. While there&#39;s nothing wrong with these two publications, to really understand what&#39;s going on, it really helps to also read his &lt;a href=&#34;http://image.diku.dk/projects/media/morten.mikkelsen.08.pdf&#34;&gt;thesis&lt;/a&gt;, and at 109 pages, it&#39;s quite a time investment.&lt;/p&gt;
+
+&lt;p&gt;Instead, I will attempt to give a shorter derivation, assuming no prior knowledge of the topic, starting from the the first principles. As with any derivation, the results will be theoretical in nature, and it&#39;s important to understand the practical aspects. Your renderer probably doesn&#39;t implement normal mapping this way (but maybe it should), your artists are probably used to the wrong but convenient way they&#39;ve been doing it for decades, and your baking tool is trying to minimize the damage by reversing all of your hacks during the mesh generation step. Still, in my opinion, it&#39;s important to understand the right way of doing things, so that, when necessary, you can make an informed decision to do things differently (optimize) and understand the implications of doing so.&lt;/p&gt;
+
+&lt;p&gt;Still with me? Let&#39;s dive in.&lt;/p&gt;</description>
+    </item>
     
     <item>
       <title>Alternative Take on the Split Sum Approximation for Cubemap Pre-filtering</title>

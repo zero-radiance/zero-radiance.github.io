@@ -3,8 +3,8 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
-    <loc>https://zero-radiance.github.io/surface-gradient/</loc>
-    <lastmod>2019-04-06T15:39:51-07:00</lastmod>
+    <loc>https://zero-radiance.github.io/post/surface-gradient/</loc>
+    <lastmod>2019-06-23T00:00:00+00:00</lastmod>
   </url>
   
   <url>
@@ -29,6 +29,12 @@
   </url>
   
   <url>
+    <loc>https://zero-radiance.github.io/tags/bump-mapping/</loc>
+    <lastmod>2019-06-23T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
     <loc>https://zero-radiance.github.io/categories/</loc>
     <priority>0</priority>
   </url>
@@ -47,13 +53,7 @@
   
   <url>
     <loc>https://zero-radiance.github.io/categories/graphics/</loc>
-    <lastmod>2019-04-06T15:39:51-07:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>https://zero-radiance.github.io/tags/height-mapping/</loc>
-    <lastmod>2019-04-06T15:39:51-07:00</lastmod>
+    <lastmod>2019-06-23T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -65,19 +65,19 @@
   
   <url>
     <loc>https://zero-radiance.github.io/categories/math/</loc>
-    <lastmod>2019-04-06T15:39:51-07:00</lastmod>
+    <lastmod>2019-06-23T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>https://zero-radiance.github.io/tags/normal-mapping/</loc>
-    <lastmod>2019-04-06T15:39:51-07:00</lastmod>
+    <lastmod>2019-06-23T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>https://zero-radiance.github.io/post/</loc>
-    <lastmod>2019-04-02T00:00:00+00:00</lastmod>
+    <lastmod>2019-06-23T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -95,7 +95,7 @@
   
   <url>
     <loc>https://zero-radiance.github.io/tags/surface-gradient/</loc>
-    <lastmod>2019-04-06T15:39:51-07:00</lastmod>
+    <lastmod>2019-06-23T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -113,7 +113,7 @@
   
   <url>
     <loc>https://zero-radiance.github.io/</loc>
-    <lastmod>2019-04-06T15:39:51-07:00</lastmod>
+    <lastmod>2019-06-23T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
