@@ -42,11 +42,11 @@ blend(A, B, t) = exp(lerp(log(A), log(B), t))
 
 Note that you can drop negations from the definitions of `log(X)` and `exp(Y)` for convenience.
 
-If you take a look at the derivation in Duff's paper, it assumes that both pixels taking part in the blend operation correspond to objects overlapping the same depth interval. This presents a problem in the context of voxel-based volumetrics, since voxels sizes can vary dramatically, making blending of voxels corresponding to different depth intervals (of different sizes) a requirement to support reprojection during camera motion.
+If you take a look at the derivation in Tom's paper, it assumes that both pixels taking part in the blend operation correspond to objects overlapping the same depth interval. This presents a problem in the context of voxel-based volumetrics, since voxels sizes can vary dramatically, making blending of voxels corresponding to different depth intervals (of different sizes) a requirement to support reprojection during camera motion.
 
-In my Siggraph talk, I proposed a solution, which is to linearize pixels with respect to the size of the interval, normalize them (divide by the size), and then use Duff's blending algorithm. While the idea was conceptually sound, I wasn't able to find the correct solution for linearization and normalization before the conference deadline, and ended up presenting an ad-hoc method instead.
+In my Siggraph talk, I proposed a solution, which is to linearize pixels with respect to the size of the interval, normalize them (divide by the size), and then use Tom's blending algorithm. While the idea was conceptually sound, I wasn't able to find the correct solution for linearization and normalization before the conference deadline, and ended up presenting an ad-hoc method instead.
 
-Turns out, the correct solution is very simple, and requires no additional transformations. Duff's log transform actually performs linearization - this is why he is able to use the linear interpolation formula. It's possible to reason about this mathematically, but I found thinking about the physical interpretation of the transformation more intuitive.
+Turns out, the correct solution is very simple, and requires no additional transformations. Tom's log transform actually performs linearization - this is why he is able to use the linear interpolation formula. It's possible to reason about this mathematically, but I found thinking about the physical interpretation of the transformation more intuitive.
 
 Given a homogeneous participating medium under constant illumination, the value of the in-scattered radiance integral along the ray segment (which is identical to the weight given by [free-path sampling](https://cs.dartmouth.edu/wjarosz/publications/novak18monte.html) in the Monte Carlo context) is proportional to:
 
