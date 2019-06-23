@@ -13,14 +13,14 @@ Realistic rendering at high frame rates remains at the core of real-time compute
 
 One of the oldest tricks in the book is [bump mapping](https://www.microsoft.com/en-us/research/publication/simulation-of-wrinkled-surfaces/). Introduced in 1978 by Jim Blinn, it is a simple way to add mesoscopic detail without increasing the geometric complexity of the scene. Most modern real-time renderers support a variation of this technique called normal mapping. While it's fast and easy to use, certain operations, such as blending, are [not as simple as they seem](https://blog.selfshadow.com/publications/blending-in-detail/). This is where the so-called "surface gradient framework" comes into play.
 
+<!--more-->
+
 The surface gradient framework is a set of tools to transform and combine normal (or bump) maps originally introduced by Morten Mikkelsen in his 2010 paper titled ["Bump Mapping Unparametrized Surfaces on the GPU"
 ](https://www.dropbox.com/s/l1yl164jb3rhomq/mm_sfgrad_bump.pdf), and further extended to handle triplanar mapping in his subsequent [blog post](http://mmikkelsen3d.blogspot.com/2013/10/volume-height-maps-and-triplanar-bump.html). While there's nothing wrong with these two publications, to really understand what's going on, it really helps to also read his [thesis](http://image.diku.dk/projects/media/morten.mikkelsen.08.pdf), and at 109 pages, it's quite a time investment.
 
 Instead, I will attempt to give a shorter derivation, assuming no prior knowledge of the topic, starting from the the first principles. As with any derivation, the results will be theoretical in nature, and it's important to understand the practical aspects. Your renderer probably doesn't implement normal mapping this way (but maybe it should), your artists are probably used to the wrong but convenient way they've been doing it for decades, and your baking tool is trying to minimize the damage by reversing all of your hacks during the mesh generation step. Still, in my opinion, it's important to understand the right way of doing things, so that, when necessary, you can make an informed decision to do things differently (optimize) and understand the implications of doing so.
 
 Still with me? Let's dive in.
-
-<!--more-->
 
 ## Preliminaries, Part 1: Tangent Frame
 
