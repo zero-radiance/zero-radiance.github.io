@@ -20,17 +20,17 @@ $$ \tag{1} \bm{\sigma_t} = \bm{\sigma_a} + \bm{\sigma_s} $$
 
 is the [attenuation](https://en.wikipedia.org/wiki/Attenuation_coefficient) (or extinction) coefficient, which gives the probability of absorption or out-scattering as light travels through the volume. All these coefficients are typically spectral (vary with wavelength), and can be represented as vectors (boldface notation).
 
-A more [artist-friendly](http://www.pbr-book.org/3ed-2018/Volume_Scattering/Volume_Scattering_Processes.html#Out-ScatteringandAttenuation) parametrization uses the single-scattering (volume) albedo \\(\bm{\alpha_v}\\)
+A more [artist-friendly](http://www.pbr-book.org/3ed-2018/Volume_Scattering/Volume_Scattering_Processes.html#Out-ScatteringandAttenuation) parametrization uses the single-scattering (volume) albedo \\(\bm{\alpha}\\):
 
-$$ \tag{2} \bm{\alpha_v} = \frac{\bm{\sigma_s}}{\bm{\sigma_t}} $$
+$$ \tag{2} \bm{\alpha} = \frac{\bm{\sigma_s}}{\bm{\sigma_t}} $$
 
 and the (also spectral!) mean free path \\(\bm{d}\\)
 
-$$ \tag{3} \bm{d} = \frac{1}{\bm{\sigma_s}}. $$
+$$ \tag{3} \bm{d} = \frac{1}{\bm{\sigma_t}}. $$
 
 Integral of the attenuation coefficient along the ray segment from the point \\(\bm{x}\\) to the point \\(\bm{y}\\) corresponds to the [optical depth](https://en.wikipedia.org/wiki/Optical_depth) (or optical thickness):
 
-$$ \tag{4} \bm{\tau}(\bm{x}, \bm{y}) = \int\_{0}^{\Vert \bm{y} - \bm{x} \Vert} \bm{\sigma_t}(\bm{x} + s \frac{\bm{y} - \bm{x}}{\Vert \bm{y} - \bm{x} \Vert}) ds, $$
+$$ \tag{4} \bm{\tau}(\bm{x}, \bm{y}) = \int\_{0}^{\Vert \bm{y} - \bm{x} \Vert} \bm{\sigma_t} \Bigg(\bm{x} + s \frac{\bm{y} - \bm{x}}{\Vert \bm{y} - \bm{x} \Vert} \Bigg) ds, $$
 
 Once we know optical depth, it's easy to compute transmittance using the [Beer-Lamber law](https://en.wikipedia.org/wiki/Beer%E2%80%93Lambert_law):
 
@@ -39,6 +39,8 @@ $$ \tag{5} \bm{T}(\bm{x}, \bm{y}) = e^{-\bm{\tau}(\bm{x}, \bm{y})}, $$
 While optical depth can take any non-negative value, transmittance is restricted to the unit interval \\([0, 1]\\). Opacity is, then,
 
 $$ \tag{6} \bm{O}(\bm{x}, \bm{y}) = 1 - \bm{T}(\bm{x}, \bm{y}). $$
+
+It's worth briefly mentioning how transmittance and optical depth are composited in presence of several overlapping participating media. Optical depth is additive, while transmittance is multiplicative.
 
 To shade our (non-emissive) medium, we must evaluate the [recursive in-scattering integral](http://www.pbr-book.org/3ed-2018/Light_Transport_II_Volume_Rendering/The_Equation_of_Transfer.html) along the ray:
 
@@ -64,7 +66,10 @@ where the sample locations \\(\bm{y_i}\\) are distributed according to the [PDF]
 
 We can importance sample the integrand using the analytic product (effectively, by assuming that the value of the nested integral varies slowly). This means that we must choose the PDF that is proportional to the analytic product (since the PDF determines the sample distribution). A valid PDF integrates to 1 over its domain (which, in our case, spans the range from 0 to \\(t\_{max}\\)), so we must normalize the analytic product using the value of its integral:
 
-$$ \tag{10} \bm{I}(\bm{x}, \bm{v}, t) = \int\_{0}^{t} \bm{T}(\bm{x},\bm{x} + s \bm{v}) \bm{\sigma_s}(\bm{x} + s \bm{v}) ds, $$
+$$ \tag{10} \bm{I}(\bm{x}, \bm{v}, t)
+	= \int\_{0}^{t} \bm{T}(\bm{x},\bm{x} + s \bm{v}) \bm{\sigma_s}(\bm{x} + s \bm{v}) ds
+	= \bm{\alpha} \int\_{0}^{t} \bm{\sigma_t}(\bm{x} + s \bm{v}) e^{-\int\_{0}^{s} \bm{\sigma_t}(\bm{x} + u \bm{v}) du} ds
+$$
 
 $$ \tag{11} p(\bm{x}, \bm{y}) = \frac{T(\bm{x},\bm{y}) \sigma_s(\bm{y})}{I(\bm{x}, \frac{\bm{y} - \bm{x}}{\Vert \bm{y} - \bm{x} \Vert}, t\_{max})}. $$
 
@@ -100,61 +105,113 @@ $$ \tag{15} \rho_c = k. $$
 
 This formulation makes computing optical depth (Equation 4) and transmittance (Equation 5) easy:
 
-$$ \tag{16} \bm{\tau_c}(\bm{x}, \bm{y}) = \Vert \bm{y} - \bm{x} \Vert k \bm{\mu_t}, $$
-
-$$ \tag{17} \bm{T_c}(\bm{x}, \bm{y}) = e^{-\Vert \bm{y} - \bm{x} \Vert k \bm{\mu_t}}. $$
+$$ \tag{16} \bm{\tau_c}(\bm{x}, \bm{y}) = \bm{\mu_t} k \Vert \bm{y} - \bm{x} \Vert, $$
 
 The value of the integral (Equation 8) is thus:
 
-$$ \tag{18} \bm{I_c}(\bm{x}, \bm{v}, t)
-	= k \bm{\mu_s} \int\_{0}^{t} e^{-s k \bm{\mu_t}} ds
-	= \frac{\bm{\sigma_s}}{\bm{\sigma_t}} (1 - e^{-t k \bm{\mu_t}}).
+$$ \tag{17} \bm{I_c}(\bm{x}, \bm{v}, t)
+	= \bm{\alpha} \bm{\mu_t} k \int\_{0}^{t} e^{-\bm{\mu_t} k s} ds
+	= \bm{\alpha} (1 - e^{-\bm{\mu_t} k t}).
 $$
 
-We can recognize that the value of this integral has a more simple form:
+We can immediately recognize that the meaning of the integral:
 
-$$ \tag{19} \bm{I_c}(\bm{x}, \bm{v}, t) = \bm{\alpha_v} \bm{O}(\bm{x}, \bm{x} + t \bm{v}), $$
+$$ \tag{18} \bm{I_c}(\bm{x}, \bm{v}, t) = \bm{\alpha} \bm{O}(\bm{x}, \bm{x} + t \bm{v}), $$
 
 which is simply the product of volume albedo and volume opacity (Equations 2 and 6).
 
-### Linear Variation of Density with Height in Rectangular Coordinates
+### Linear Variation of Density with Altitude in Rectangular Coordinates
 
-This is your typical "linear height fog on flat Earth" case. Density varies with the third (\\(z\\)) coordinate:
+This is your typical "linear height fog on flat Earth" case. Density varies with the third (\\(z\\)) coordinate, which we interpret as the altitude:
 
-$$ \tag{20} \rho\_{lp}(\bm{x}) = m x_3 + k. $$
+$$ \tag{19} \rho\_{lp}(\bm{x}) = m x_3 + k. $$
 
-It is a generalization of the homogeneous medium (\\(m = 0\\)).
+It is a generalization of homogeneous media, which can be obtained by setting \\(m = 0\\).
 
 Expressions of optical depth and transmittance remain fairly simple:
 
-$$ \tag{21} \begin{aligned}
+$$ \tag{20} \begin{aligned}
 \bm{\tau\_{lp}}(\bm{x}, \bm{y})
-	&= \bm{\mu_t} \int\_{0}^{\Vert \bm{y} - \bm{x} \Vert} \Big( m \Big(x_3 + s \frac{y_3 - x_3}{\Vert \bm{y} - \bm{x} \Vert}\Big) + k \Big) ds \cr
-	&= \bm{\mu_t} \Vert \bm{y} - \bm{x} \Vert (m x_3 + k) + \bm{\mu_t} m \frac{y_3 - x_3}{\Vert \bm{y} - \bm{x} \Vert} \int\_{0}^{\Vert \bm{y} - \bm{x} \Vert} s ds \cr
-	&= \bm{\mu_t} \Vert \bm{y} - \bm{x} \Vert (m x_3 + k) + \frac{1}{2} \bm{\mu_t} m (y_3 - x_3) \Vert \bm{y} - \bm{x} \Vert \cr
-	&= \bm{\mu_t} \Vert \bm{y} - \bm{x} \Vert \Big(m \frac{x_3 + y_3}{2} + k \Big)
+	&= \bm{\mu_t} \int\_{0}^{t = \Vert \bm{y} - \bm{x} \Vert} \Big( m \big(x_3 + s (y_3 - x_3) / t \big) + k \Big) ds \cr
+	&= \bm{\mu_t} (m x_3 + k) t + \bm{\mu_t} (y_3 - x_3) \frac{m}{t} \int\_{0}^{t} s ds \cr
+	&= \bm{\mu_t} (m x_3 + k) t + \bm{\mu_t} m \frac{y_3 - x_3}{2} t \cr
+	&= \bm{\mu_t} \Big(m \frac{x_3 + y_3}{2} + k \Big) t,
 \end{aligned} $$
 
-$$ \tag{22} \bm{T\_{lp}}(\bm{x}, \bm{y}) = e^{-\bm{\tau\_{lp}}(\bm{x}, \bm{y})}. $$
+which is the product of the average attenuation coefficient and the length of the interval, as expected.
 
-The integral becomes a little bit complicated, but, with a little bit of effort, we can solve it:
+The integral looks a little bit complicated:
 
-$$ \tag{23} \bm{I\_{lp}}(\bm{x}, \bm{v}, t)
-	= \bm{\mu_s} \int\_{0}^{t} e^{- s \bm{\mu_t} (m (x_3 + s v_3 / 2) + k)} \Big(m (x_3 + s v_3) + k \Big) ds
+$$ \tag{21} \bm{I\_{lp}}(\bm{x}, \bm{v}, t)
+	= \bm{\alpha} \bm{\mu_t} \int\_{0}^{t} \big(m (x_3 + s v_3) + k \big) e^{- \bm{\mu_t} \big(m (x_3 + s v_3 / 2) + k \big) s} ds
 $$
 
-The process is a little tedious, but if you plug this expression into a computer algebra system, you will get the following result:
+If you plug this expression into a computer algebra system, you will get the following result:
 
-$$ \tag{24} \bm{I\_{lp}}(\bm{x}, \bm{v}, t)
-	= \frac{\bm{\sigma_s}}{\bm{\sigma_t}} \Big(1 - e^{- t \bm{\mu_t} (m (x_3 + t v_3 / 2) + k)} \Big)
-	= \bm{\alpha_v} \bm{O}(\bm{x}, \bm{x} + t \bm{v}). $$
+$$ \tag{22} \bm{I\_{lp}}(\bm{x}, \bm{v}, t)
+	= \bm{\alpha} \Big(1 - e^{- \bm{\mu_t} \big(m (x_3 + t v_3 / 2) + k \big) t} \Big)
+	= \bm{\alpha} \bm{O}(\bm{x}, \bm{x} + t \bm{v}). $$
+
+This expression looks [familiar](https://www.youtube.com/watch?v=z_KmNZNT5xw). Indeed, it has the same form as the Equation 18.
+
+### Exponential Variation of Density with Altitude in Rectangular Coordinates
+
+We can replace the linear density function with an exponential:
+
+$$ \tag{23} \rho\_{ep}(\bm{x}) = k e^{-x_3 / H}, $$
+
+where \\(H\\) is the [scale height](https://en.wikipedia.org/wiki/Scale_height), measured in meters. Another way to think about it is as of a reciprocal of the falloff exponent \\(n\\):
+
+$$ \tag{24} \rho\_{ep}(\bm{x}) = k e^{-n x_3}. $$
+
+Setting \\(n = 0\\) results in a homogeneous medium.
+
+Plugging this in into the equation of optical depth, we obtain the following expression:
+
+$$ \tag{25} \begin{aligned}
+\bm{\tau\_{ep}}(\bm{x}, \bm{y})
+	&= \bm{\mu_t} \int\_{0}^{t = \Vert \bm{y} - \bm{x} \Vert} k e^{-n \big(x_3 + s (y_3 - x_3) / t \big)} ds \cr
+	&= \bm{\mu_t} k e^{-n x_3} \int\_{0}^{t = \Vert \bm{y} - \bm{x} \Vert} e^{-s n (y_3 - x_3) / t} ds \cr
+	&= \bm{\mu_t} k t e^{-n x_3} \frac{1 - e^{-n (y_3 - x_3)}}{n (y_3 - x_3)} \cr
+	&= \bm{\mu_t} k t \frac{e^{-n x_3} - e^{-n y_3}}{n (y_3 - x_3)}.
+\end{aligned} $$
+
+We can still integrate transmittance analytically (if you think that's complicated, wait until you see read next section):
+
+$$ \tag{26} \begin{aligned}
+\bm{I\_{ep}}(\bm{x}, \bm{v}, t)
+	&= \bm{\alpha} \bm{\mu_t} \int\_{0}^{t} k e^{-n (x_3 + s v_3)} \mathrm{exp} \Bigg( - \bm{\mu_t} k s e^{-n x_3} \frac{1 - e^{-n \big((x_3 + s v_3) - x_3 \big)}}{n \big((x_3 + s v_3) - x_3 \big)} \Bigg) ds \cr
+	&= \bm{\alpha} \bm{\mu_t} k e^{-n x_3} \int\_{0}^{t} e^{-n s v_3} \mathrm{exp} \Bigg( - \bm{\mu_t} k s e^{-n x_3} \frac{1 - e^{-n s v_3}}{n s v_3} \Bigg) ds \cr
+	&= \bm{\alpha} \bm{\mu_t} k e^{-n x_3} \int\_{0}^{t} e^{-n s v_3} \mathrm{exp} \Bigg( - \bm{\mu_t} k e^{-n x_3} \frac{1 - e^{-n s v_3}}{n v_3} \Bigg) ds \cr
+	&= \bm{\alpha} \bm{\mu_t} k e^{-n x_3} \mathrm{exp} \Bigg( -\bm{\mu_t} \frac{k e^{-n x_3}}{n v_3} \Bigg) \int\_{0}^{t} e^{-n s v_3} \mathrm{exp} \Bigg( \bm{\mu_t} \frac{k e^{-n x_3}}{n v_3} e^{-n s v_3} \Bigg) ds.
+\end{aligned} $$
+
+Let's simplify the calculation via the following substitution:
+
+$$ \tag{27} \beta = \frac{k e^{-n x_3}}{n v_3}. $$
+
+The integral then becomes
+
+$$ \tag{28} \begin{aligned}
+\bm{I\_{ep}}(\bm{x}, \bm{v}, t)
+	&= \bm{\alpha} \bm{\mu_t} k e^{-n x_3} e^{- \bm{\mu_t} \beta} \int\_{0}^{t} e^{\bm{\mu_t} \beta e^{-n s v_3}} e^{-n s v_3} ds \cr
+	&= \bm{\alpha} \bm{\mu_t} k e^{-n x_3} e^{- \bm{\mu_t} \beta} \frac{e^{\bm{\mu_t} \beta} - e^{\bm{\mu_t} \beta e^{-n t v_3}}}{\bm{\mu_t} \beta n v_3} \cr
+	&= \bm{\alpha} e^{- \bm{\mu_t} \beta} \Big( e^{\bm{\mu_t} \beta} - e^{\bm{\mu_t} \beta e^{-n t v_3}} \Big) \cr
+	&= \bm{\alpha} \Big( 1 - e^{- \bm{\mu_t} \beta + \bm{\mu_t} \beta e^{-n t v_3}} \Big) \cr
+	&= \bm{\alpha} \Big( 1 - e^{- \bm{\mu_t} \beta (1 - e^{-n t v_3} )} \Big) \cr
+	&= \bm{\alpha} \Bigg( 1 - \mathrm{exp} \Big( - \bm{\mu_t} k t e^{-n x_3} \frac{1 - e^{-n t v_3}}{n t v_3} \Big) \Bigg).
+\end{aligned} $$
+
+Comparing the result to the equation 25, we can observe that, [again](https://www.youtube.com/watch?v=MDpuTqBI0RM),
+
+$$ \tag{29} \bm{I\_{ep}}(\bm{x}, \bm{v}, t) = \bm{\alpha} \bm{O}(\bm{x}, \bm{x} + t \bm{v}). $$
+
+### Exponential Variation of Density with Altitude in Spherical Coordinates
+
+
 
 You may have just had a little [déjà vu](https://www.youtube.com/watch?v=z_KmNZNT5xw)...
-
-### Exponential Variation of Density with Height in Rectangular Coordinates
-
-
-
 Spectral coefficients... Hero wavelength? Average coefficient? Single sample MIS?
+Note that for RGB surface albedo, it's not just 3 spectral samples, but rather the response of the trichromatic visual system to a complicated spectral distribution.
 
 https://www.youtube.com/watch?v=z_KmNZNT5xw
