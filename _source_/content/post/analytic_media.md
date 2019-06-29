@@ -10,7 +10,7 @@ tags: [
     ]
 ---
 
-Rendering of participating media is an important aspect of every modern renderer. When I say participating media, it's not talking about just not fog, fire and smoke - *everything is volumetric*. All matter is composed of [particles](https://en.wikipedia.org/wiki/Elementary_particle), which can be sparsely (e.g. in a gas) or densely (e.g. in a solid) packed in space. Whether you consider the particle or the wave nature of [light](https://en.wikipedia.org/wiki/Light), it penetrates all matter (yes, even [metals](http://webhome.phy.duke.edu/~qelectron/group/group_reading_Born_and_Wolf.pdf)) to a certain degree, and interacts with its particles along the way. The nature and the degree of "participation" depends on the material in question.
+Rendering of participating media is an important aspect of every modern renderer. When I say participating media, it's not talking about just not fog, fire and smoke - *everything is volumetric*. All matter is composed of [atoms](https://en.wikipedia.org/wiki/Atom), which can be sparsely (e.g. in a gas) or densely (e.g. in a solid) packed in space. Whether you consider the particle or the wave nature of [light](https://en.wikipedia.org/wiki/Light), it penetrates all matter (yes, even [metals](http://webhome.phy.duke.edu/~qelectron/group/group_reading_Born_and_Wolf.pdf)) to a certain degree, and interacts with its atoms along the way. The nature and the degree of "participation" depends on the material in question.
 
 <!--more-->
 
@@ -20,11 +20,11 @@ $$ \tag{1} \bm{\sigma_t} = \bm{\sigma_a} + \bm{\sigma_s} $$
 
 is the [attenuation](https://en.wikipedia.org/wiki/Attenuation_coefficient) (or extinction) coefficient, which gives the probability of absorption or out-scattering as light travels through the volume. All these coefficients are typically spectral (vary with wavelength), and can be represented as vectors (boldface notation).
 
-A more [artist-friendly](http://www.pbr-book.org/3ed-2018/Volume_Scattering/Volume_Scattering_Processes.html#Out-ScatteringandAttenuation) parametrization uses the single-scattering (volume) albedo \\(\bm{\alpha}\\):
+A more artist-friendly parametrization uses the [single-scattering (volume) albedo](https://en.wikipedia.org/wiki/Single-scattering_albedo) \\(\bm{\alpha}\\):
 
 $$ \tag{2} \bm{\alpha} = \frac{\bm{\sigma_s}}{\bm{\sigma_t}} $$
 
-and the (also spectral!) mean free path \\(\bm{d}\\)
+and the (also spectral!) [mean free path](https://en.wikipedia.org/wiki/Mean_free_path) \\(\bm{d}\\)
 
 $$ \tag{3} \bm{d} = \frac{1}{\bm{\sigma_t}}. $$
 
@@ -62,9 +62,9 @@ $$ \tag{9} L(\bm{x}, \bm{v})
 	\approx \frac{1}{N} \sum\_{i=1}^{N} \frac{T(\bm{x},\bm{y_i}) \sigma_s(\bm{y_i}) L_s(\bm{y_i}, \bm{v})}{p(\bm{x}, \bm{y_i})},
 $$
 
-where the sample locations \\(\bm{y_i}\\) are distributed according to the [PDF](https://en.wikipedia.org/wiki/Probability_density_function) \\(p\\).
+where sample locations \\(\bm{y_i}\\) are distributed according to the [PDF](https://en.wikipedia.org/wiki/Probability_density_function) \\(p\\).
 
-We can importance sample the integrand using the analytic product (effectively, by assuming that the value of the nested integral varies slowly). This means that we must choose the PDF that is proportional to the analytic product (since the PDF determines the sample distribution). A valid PDF integrates to 1 over its domain (which, in our case, spans the range from 0 to \\(t\_{max}\\)), so we must normalize the analytic product using the value of its integral:
+We can [importance sample](http://www.pbr-book.org/3ed-2018/Monte_Carlo_Integration/Importance_Sampling.html) the integrand using the analytic product (effectively, by assuming that the value of \\(\bm{L_s}\\) varies slowly). This means that we must choose the PDF that is proportional to the analytic product (since the PDF determines the sample distribution). A valid PDF integrates to 1 over its domain (which, in our case, spans the range from 0 to \\(t\_{max}\\)), so we must normalize the analytic product using the value of its integral:
 
 $$ \tag{10} \bm{I}(\bm{x}, \bm{v}, t)
 	= \int\_{0}^{t} \bm{T}(\bm{x},\bm{x} + s \bm{v}) \bm{\sigma_s}(\bm{x} + s \bm{v}) ds
@@ -87,7 +87,7 @@ $$
 
 Clearly, there is some utility in being able to evaluate this integral. Let's take a closer look at some examples.
 
-## Types of Analytic Participating Media
+# Types of Analytic Participating Media
 
 Sometimes, it's convenient to specify the concentration (density) of the medium, and not just its effective optical properties. For example, the attenuation coefficient can be computed using the following formula:
 
@@ -97,9 +97,9 @@ where \\(\rho\\) is the [volumetric mass density](https://en.wikipedia.org/wiki/
 
 If your background is in real-time rendering, you may have heard of [constant, linear and exponential fog](http://www.terathon.com/lengyel/Lengyel-UnifiedFog.pdf). These names refer to variation of density, typically with respect to height, and can be used to model height fog and atmospheric scattering.
 
-### Constant Density
+## Constant Density
 
-A constant (or homogeneous) medium has the same density value across the entire volume:
+A constant (or homogeneous) medium has uniform density across the entire volume:
 
 $$ \tag{15} \rho_c = k. $$
 
@@ -120,13 +120,13 @@ $$ \tag{18} \bm{I_c}(\bm{x}, \bm{v}, t) = \bm{\alpha} \bm{O}(\bm{x}, \bm{x} + t 
 
 which is simply the product of volume albedo and volume opacity (Equations 2 and 6).
 
-### Linear Variation of Density with Altitude in Rectangular Coordinates
+## Linear Variation of Density with Altitude in Rectangular Coordinates
 
 This is your typical "linear height fog on flat Earth" case. Density varies with the third (\\(z\\)) coordinate, which we interpret as the altitude:
 
 $$ \tag{19} \rho\_{lp}(\bm{x}) = m x_3 + k. $$
 
-It is a generalization of homogeneous media, which can be obtained by setting \\(m = 0\\).
+This formulation can be reduced to homogeneous media by setting \\(m = 0\\).
 
 Expressions of optical depth and transmittance remain fairly simple:
 
@@ -154,13 +154,13 @@ $$ \tag{22} \bm{I\_{lp}}(\bm{x}, \bm{v}, t)
 
 This expression looks [familiar](https://www.youtube.com/watch?v=z_KmNZNT5xw). Indeed, it has the same form as the Equation 18.
 
-### Exponential Variation of Density with Altitude in Rectangular Coordinates
+## Exponential Variation of Density with Altitude in Rectangular Coordinates
 
 We can replace the linear density function with an exponential:
 
 $$ \tag{23} \rho\_{ep}(\bm{x}) = k e^{-x_3 / H}, $$
 
-where \\(H\\) is the [scale height](https://en.wikipedia.org/wiki/Scale_height), measured in meters. Another way to think about it is as of a reciprocal of the falloff exponent \\(n\\):
+where \\(H\\) is the [scale height](https://en.wikipedia.org/wiki/Scale_height), measured in meters. Another way to think about it is as of the reciprocal of the falloff exponent \\(n\\):
 
 $$ \tag{24} \rho\_{ep}(\bm{x}) = k e^{-n x_3}. $$
 
@@ -176,7 +176,7 @@ $$ \tag{25} \begin{aligned}
 	&= \bm{\mu_t} k t \frac{e^{-n x_3} - e^{-n y_3}}{n (y_3 - x_3)}.
 \end{aligned} $$
 
-We can still integrate transmittance analytically (if you think that's complicated, wait until you see read next section):
+We can still integrate transmittance analytically (if you think that's complicated, wait until you see read the next section):
 
 $$ \tag{26} \begin{aligned}
 \bm{I\_{ep}}(\bm{x}, \bm{v}, t)
@@ -206,8 +206,17 @@ Comparing the result to the equation 25, we can observe that, [again](https://ww
 
 $$ \tag{29} \bm{I\_{ep}}(\bm{x}, \bm{v}, t) = \bm{\alpha} \bm{O}(\bm{x}, \bm{x} + t \bm{v}). $$
 
-### Exponential Variation of Density with Altitude in Spherical Coordinates
+## Exponential Variation of Density with Altitude in Spherical Coordinates
 
+This is where things get interesting. We would like to model an exponential density distribution on a spherical planet:
+
+$$ \tag{30} \rho\_{es}(\bm{x}) = k e^{-(\Vert \bm{x} - \bm{c} \Vert - R) / H} = k e^{-n (\Vert \bm{x} - \bm{c} \Vert - R)}, $$
+
+where \\(\bm{c}\\) is the center of the planet, \\(R\\) is its radius, and \\(H\\) is the [scale height](https://en.wikipedia.org/wiki/Scale_height) as before. In this case, \\(k\\) represents the density at the sea level.
+
+Before we proceed with the derivation, it's helpful to understand the geometric setting, otherwise the risk of confusion is rather high. Personally, I found the article by Christian Schüler in [GPU Gems 3](http://www.gameenginegems.net/gemsdb/article.php?id=1133) to be very helpful.
+
+### Geometric Configuration
 
 
 You may have just had a little [déjà vu](https://www.youtube.com/watch?v=z_KmNZNT5xw)...
