@@ -68,7 +68,7 @@ We can [importance sample](http://www.pbr-book.org/3ed-2018/Monte_Carlo_Integrat
 
 $$ \tag{10} \bm{I}(\bm{x}, \bm{v}, t)
 	= \int\_{0}^{t} \bm{T}(\bm{x},\bm{x} + s \bm{v}) \bm{\sigma_s}(\bm{x} + s \bm{v}) ds
-	= \bm{\alpha} \int\_{0}^{t} \bm{\sigma_t}(\bm{x} + s \bm{v}) e^{-\int\_{0}^{s} \bm{\sigma_t}(\bm{x} + u \bm{v}) du} ds
+	= \int\_{0}^{t} \bm{\alpha}(\bm{x} + s \bm{v}) \bm{\sigma_t}(\bm{x} + s \bm{v}) e^{-\int\_{0}^{s} \bm{\sigma_t}(\bm{x} + u \bm{v}) du} ds
 $$
 
 $$ \tag{11} p(\bm{x}, \bm{y}) = \frac{T(\bm{x},\bm{y}) \sigma_s(\bm{y})}{I(\bm{x}, \frac{\bm{y} - \bm{x}}{\Vert \bm{y} - \bm{x} \Vert}, t\_{max})}. $$
@@ -96,6 +96,8 @@ $$ \tag{14} \bm{\sigma_t} = \rho \bm{\mu_t}, $$
 where \\(\rho\\) is the [volumetric mass density](https://en.wikipedia.org/wiki/Mass_density) (measured in units of \\(kg/m^{3}\\)) and \\(\bm{\mu_t}\\) is the [mass attenuation coefficient](https://en.wikipedia.org/wiki/Mass_attenuation_coefficient) (in units of \\(m^{2}/kg\\)).
 
 If your background is in real-time rendering, you may have heard of [constant, linear and exponential fog](http://www.terathon.com/lengyel/Lengyel-UnifiedFog.pdf). These names refer to variation of density, typically with respect to height, and can be used to model height fog and atmospheric scattering.
+
+All of these types of participating media assume that values of the volume albedo \\(\bm{\alpha}\\) and the mass attenuation coefficient \\(\bm{\mu_t}\\) are *constant* across the entire volume.
 
 ## Constant Density
 
@@ -210,13 +212,34 @@ $$ \tag{29} \bm{I\_{ep}}(\bm{x}, \bm{v}, t) = \bm{\alpha} \bm{O}(\bm{x}, \bm{x} 
 
 This is where things get interesting. We would like to model an exponential density distribution on a spherical planet:
 
-$$ \tag{30} \rho\_{es}(\bm{x}) = k e^{-(\Vert \bm{x} - \bm{c} \Vert - R) / H} = k e^{-n (\Vert \bm{x} - \bm{c} \Vert - R)}, $$
+$$ \tag{30} \rho\_{es}(\bm{x}) = k e^{-h(\bm{x}) / H} = k e^{-(\Vert \bm{x} - \bm{c} \Vert - R) / H} = k e^{-n (\Vert \bm{x} - \bm{c} \Vert - R)}, $$
 
-where \\(\bm{c}\\) is the center of the planet, \\(R\\) is its radius, and \\(H\\) is the [scale height](https://en.wikipedia.org/wiki/Scale_height) as before. In this case, \\(k\\) represents the density at the sea level.
+where \\(\bm{c}\\) is the center of the planet, \\(R\\) is its radius, \\(h\\) is the altitude, and \\(H\\) is the [scale height](https://en.wikipedia.org/wiki/Scale_height) as before. In this case, \\(k\\) represents the density at the sea level.
 
 Before we proceed with the derivation, it's helpful to understand the geometric setting, otherwise the risk of confusion is rather high. Personally, I found the article by Christian Schüler in [GPU Gems 3](http://www.gameenginegems.net/gemsdb/article.php?id=1133) to be very helpful.
 
 ### Geometric Configuration
+
+Our goal is to simplify using the inherent complete spherical symmetry of the problem. Please take a look at the diagram below:
+
+{{< figure src="/img/spherical_param.png">}}
+
+We start by recognizing that every ordered pair of position and direction \\(\lbrace \bm{x}, \bm{v} \rbrace\\) can be represented as a pair of radial distance and zenith angle \\(\lbrace r, \theta \rbrace\\).
+
+In order to find the parametric equation of the radial distance, we can use a right triangle with legs \\(r_0\\) and \\(t_0\\) corresponding to the initial pair of position and direction \\(\lbrace r, \theta \rbrace\\):
+
+$$ \tag{31} r_0(r, \theta) = r \mathrm{sin}(\theta), $$
+$$ \tag{32} t_0(r, \theta) = r \mathrm{cos}(\theta). $$
+
+The expression of optical depth is then:
+
+$$ \tag{33} \begin{aligned}
+\bm{\tau\_{es}}(\bm{x}, \bm{y})
+	&= \bm{\mu_t} \int\_{0}^{t = \Vert \bm{y} - \bm{x} \Vert} k e^{-n h(s)} ds \cr
+	&= \bm{\mu_t} \int\_{0}^{t = \Vert \bm{y} - \bm{x} \Vert} k e^{-n (\sqrt{r_0(\bm{x}, \bm{y})^2 + (t_0(\bm{x}, \bm{y}) + s)^2} - R)} ds.
+\end{aligned} $$
+
+
 
 
 You may have just had a little [déjà vu](https://www.youtube.com/watch?v=z_KmNZNT5xw)...
