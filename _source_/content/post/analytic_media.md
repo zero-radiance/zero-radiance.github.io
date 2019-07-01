@@ -216,17 +216,17 @@ $$ \tag{30} \rho\_{es}(\bm{x}) = k e^{-h(\bm{x}) / H} = k e^{-(\Vert \bm{x} - \b
 
 where \\(\bm{c}\\) is the center of the planet, \\(R\\) is its radius, \\(h\\) is the altitude, and \\(H\\) is the [scale height](https://en.wikipedia.org/wiki/Scale_height) as before. In this case, \\(k\\) represents the density at the sea level.
 
-Before we proceed with the derivation, it's helpful to understand the geometric setting, otherwise the risk of confusion is rather high. Personally, I found the article by Christian Schüler in [GPU Gems 3](http://www.gameenginegems.net/gemsdb/article.php?id=1133) to be very helpful.
+Before we proceed with the derivation, it's helpful to understand the geometric setting (after all, a picture is worth a thousand words). Personally, I found the article by Christian Schüler in [GPU Gems 3](http://www.gameenginegems.net/gemsdb/article.php?id=1133) to be a very helpful introduction to the relevant concepts, and I encourage you to check it out if you have questions after reading my explanation below.
 
 ### Geometric Configuration
 
-Our goal is to simplify using the inherent complete spherical symmetry of the problem. Please take a look at the diagram below:
+Our goal is to simplify the problem using the inherent spherical symmetry of the setting. Please take a look at the diagram below:
 
 {{< figure src="/img/spherical_param.png">}}
 
-We start by recognizing that every ordered pair of position and direction \\(\lbrace \bm{x}, \bm{v} \rbrace\\) can be represented as a pair of radial distance and zenith angle \\(\lbrace r, \theta \rbrace\\).
+We start by recognizing the fact that every ordered pair of position and direction \\(\lbrace \bm{x}, \bm{v} \rbrace\\) can be represented as a pair of radial distance and zenith angle \\(\lbrace r, \theta \rbrace\\).
 
-In order to find the parametric equation of the radial distance, we can use a right triangle with legs \\(r_0\\) and \\(t_0\\) corresponding to the initial pair of position and direction \\(\lbrace r, \theta \rbrace\\):
+In order to find the parametric equation of the radial distance along the ray, we can use a right triangle with legs \\(r_0\\) and \\(t_0\\) corresponding to the initial pair of position and direction \\(\lbrace r, \theta \rbrace\\):
 
 $$ \tag{31} r_0(r, \theta) = r \mathrm{sin}(\theta), $$
 $$ \tag{32} t_0(r, \theta) = r \mathrm{cos}(\theta). $$
@@ -236,11 +236,29 @@ The expression of optical depth is then:
 $$ \tag{33} \begin{aligned}
 \bm{\tau\_{es}}(\bm{x}, \bm{y})
 	&= \bm{\mu_t} \int\_{0}^{t = \Vert \bm{y} - \bm{x} \Vert} k e^{-n h(s)} ds \cr
-	&= \bm{\mu_t} \int\_{0}^{t = \Vert \bm{y} - \bm{x} \Vert} k e^{-n (\sqrt{r_0(\bm{x}, \bm{y})^2 + (t_0(\bm{x}, \bm{y}) + s)^2} - R)} ds.
+	&= \bm{\mu_t} \int\_{0}^{t = \Vert \bm{y} - \bm{x} \Vert} k e^{-n (\sqrt{r_0^2 + (t_0 + s)^2} - R)} ds \cr
+	&= \bm{\mu_t} \int\_{0}^{t = \Vert \bm{y} - \bm{x} \Vert} k e^{-n (\sqrt{(r \mathrm{sin}(\theta))^2 + (r \mathrm{cos}(\theta) + s)^2} - R)} ds \cr
+	&= \bm{\mu_t} \int\_{0}^{t = \Vert \bm{y} - \bm{x} \Vert} k e^{-n (\sqrt{r^2 + 2 r s \mathrm{cos}(\theta) + s^2} - R)} ds \cr
+	&= \bm{\mu_t} \frac{k}{n} e^{-n (r - R)} \int\_{0}^{t = \Vert \bm{y} - \bm{x} \Vert} n e^{n (r - \sqrt{r^2 + 2 r s \mathrm{cos}(\theta) + s^2})} ds.
 \end{aligned} $$
 
+The resulting integral is very complex. (Don't believe me? Try evaluate it analytically!). In order to make our life easier, we will factor out the nested integral, and extend the upper limit of integration to infinity. With the following change of variables:
 
+$$ \tag{34} z = r n \qquad u = s n, $$
 
+the nested integral then becomes what is known in the physics community as the [Chapman](https://en.wikipedia.org/wiki/Chapman_function) (or obliquity) function :
+
+$$ \tag{35} C_h(z, \theta) = \int\_{0}^{\infty} e^{z - \sqrt{z^2 + 2 z u \mathrm{cos}(\theta) + u^2}} du. $$
+
+It's interesting to consider the physical meaning of the function. Generally speaking, the value of a line integral of density (such as given by \\(\bm{\tau} / \bm{\mu_t}\\)) corresponds to mass. The integral
+
+$$ \tag{36} \int\_{h = (r - R)}^{\infty} k e^{-n s} ds = \frac{k}{n} e^{-n h} $$
+
+corresponds to the mass of the vertical column starting at height \\(h\\).
+
+Optical depth, then, is the *product* of the mass of the vertical column *times* the value of the obliquity function (which, intuitively, transforms the vertical column into an oblique one) *times* the mass attenuation coefficient.
+
+\\(\Chi\\)
 
 You may have just had a little [déjà vu](https://www.youtube.com/watch?v=z_KmNZNT5xw)...
 Spectral coefficients... Hero wavelength? Average coefficient? Single sample MIS?
