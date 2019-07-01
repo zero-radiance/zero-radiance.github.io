@@ -50,7 +50,7 @@ $$
 
 where \\(\bm{L}\\) is the amount of radiance at a certain position \\(\bm{x}\\) in a certain direction \\(\bm{v}\\), and \\(f\\) denotes the [phase function](http://www.pbr-book.org/3ed-2018/Volume_Scattering/Phase_Functions.html). To simplify notation, the maximum distance \\(t\_{max}\\) along the ray (which could correspond to the distance to the closest surface) is kept implicit.
 
-We can evaluate this integral using one of the [Monte Carlo](http://www.pbr-book.org/3ed-2018/Monte_Carlo_Integration.html) methods. The first step is to split it into two parts: the part we can evaluate analytically, and the part we can not precompute. We can group the product of transmittance and the scattering coefficient together, and leave the nested integral as the unknown term:
+We can evaluate this integral using one of the [Monte Carlo](http://www.pbr-book.org/3ed-2018/Monte_Carlo_Integration.html) methods. The first step is to split it into two parts: the part we can evaluate analyticly, and the part we can not precompute. We can group the product of transmittance and the scattering coefficient together, and leave the nested integral as the unknown term:
 
 $$ \tag{8} \bm{L}(\bm{x}, \bm{v})
 	= \int\_{0}^{t\_{max}} \bm{T}(\bm{x},\bm{x} + s \bm{v}) \bm{\sigma_s}(\bm{x} + s \bm{v}) \bm{L_s}(\bm{x} + s \bm{v}, \bm{v}) ds.
@@ -178,7 +178,7 @@ $$ \tag{25} \begin{aligned}
 	&= \bm{\mu_t} k t \frac{e^{-n x_3} - e^{-n y_3}}{n (y_3 - x_3)}.
 \end{aligned} $$
 
-We can still integrate transmittance analytically (if you think that's complicated, wait until you see read the next section):
+We can still integrate transmittance analyticly (if you think that's complicated, wait until you see read the next section):
 
 $$ \tag{26} \begin{aligned}
 \bm{I\_{ep}}(\bm{x}, \bm{v}, t)
@@ -226,10 +226,10 @@ Our goal is to simplify the problem using the inherent spherical symmetry of the
 
 We start by recognizing the fact that every ordered pair of position and direction \\(\lbrace \bm{x}, \bm{v} \rbrace\\) can be represented as a pair of radial distance and zenith angle \\(\lbrace r, \theta \rbrace\\).
 
-In order to find the parametric equation of the radial distance along the ray, we can use a right triangle with legs \\(r_0\\) and \\(t_0\\) corresponding to the initial pair of position and direction \\(\lbrace r, \theta \rbrace\\):
+In order to find the parametric equation of altitude \\(h\\) along the ray, we can use a right triangle with legs \\(r_0\\) and \\(t_0\\) corresponding to the initial pair of position and direction \\(\lbrace r, \theta \rbrace\\):
 
-$$ \tag{31} r_0(r, \theta) = r \mathrm{sin}(\theta), $$
-$$ \tag{32} t_0(r, \theta) = r \mathrm{cos}(\theta). $$
+$$ \tag{31} r_0(r, \theta) = r \mathrm{sin}{\theta}, $$
+$$ \tag{32} t_0(r, \theta) = r \mathrm{cos}{\theta}. $$
 
 The expression of optical depth is then:
 
@@ -237,28 +237,56 @@ $$ \tag{33} \begin{aligned}
 \bm{\tau\_{es}}(\bm{x}, \bm{y})
 	&= \bm{\mu_t} \int\_{0}^{t = \Vert \bm{y} - \bm{x} \Vert} k e^{-n h(s)} ds \cr
 	&= \bm{\mu_t} \int\_{0}^{t = \Vert \bm{y} - \bm{x} \Vert} k e^{-n (\sqrt{r_0^2 + (t_0 + s)^2} - R)} ds \cr
-	&= \bm{\mu_t} \int\_{0}^{t = \Vert \bm{y} - \bm{x} \Vert} k e^{-n (\sqrt{(r \mathrm{sin}(\theta))^2 + (r \mathrm{cos}(\theta) + s)^2} - R)} ds \cr
-	&= \bm{\mu_t} \int\_{0}^{t = \Vert \bm{y} - \bm{x} \Vert} k e^{-n (\sqrt{r^2 + 2 r s \mathrm{cos}(\theta) + s^2} - R)} ds \cr
-	&= \bm{\mu_t} \frac{k}{n} e^{-n (r - R)} \int\_{0}^{t = \Vert \bm{y} - \bm{x} \Vert} n e^{n (r - \sqrt{r^2 + 2 r s \mathrm{cos}(\theta) + s^2})} ds.
+	&= \bm{\mu_t} \int\_{0}^{t = \Vert \bm{y} - \bm{x} \Vert} k e^{-n (\sqrt{(r \mathrm{sin}{\theta})^2 + (r \mathrm{cos}{\theta} + s)^2} - R)} ds \cr
+	&= \bm{\mu_t} \int\_{0}^{t = \Vert \bm{y} - \bm{x} \Vert} k e^{-n (\sqrt{r^2 + 2 r s \mathrm{cos}{\theta} + s^2} - R)} ds \cr
+	&= \bm{\mu_t} \frac{k}{n} e^{-n (r - R)} \int\_{0}^{t = \Vert \bm{y} - \bm{x} \Vert} e^{n (r - \sqrt{r^2 + 2 r s \mathrm{cos}{\theta} + s^2})} n ds.
 \end{aligned} $$
 
-The resulting integral is very complex. (Don't believe me? Try evaluate it analytically!). In order to make our life easier, we will factor out the nested integral, and extend the upper limit of integration to infinity. With the following change of variables:
+The resulting integral is very complex. (Don't believe me? Try evaluating it analyticly!). In order to make our life easier, we will factor out the nested integral, and extend the upper limit of integration to infinity. With the following change of variables:
 
 $$ \tag{34} z = r n \qquad u = s n, $$
 
-the nested integral then becomes what is known in the physics community as the [Chapman](https://en.wikipedia.org/wiki/Chapman_function) (or obliquity) function :
+the nested integral then becomes what is known in the physics community as the [Chapman function](https://en.wikipedia.org/wiki/Chapman_function) (or obliquity function, or the relative optical air mass) \\(C\\):
 
-$$ \tag{35} C_h(z, \theta) = \int\_{0}^{\infty} e^{z - \sqrt{z^2 + 2 z u \mathrm{cos}(\theta) + u^2}} du. $$
+$$ \tag{35} C(z, \theta) = \int\_{0}^{\infty} e^{z - \sqrt{z^2 + 2 z u \mathrm{cos}{\theta} + u^2}} du. $$
 
 It's interesting to consider the physical meaning of the function. Generally speaking, the value of a line integral of density (such as given by \\(\bm{\tau} / \bm{\mu_t}\\)) corresponds to mass. The integral
 
 $$ \tag{36} \int\_{h = (r - R)}^{\infty} k e^{-n s} ds = \frac{k}{n} e^{-n h} $$
 
-corresponds to the mass of the vertical column starting at height \\(h\\).
+corresponds to mass of the vertical column starting at height \\(h\\).
 
-Optical depth, then, is the *product* of the mass of the vertical column *times* the value of the obliquity function (which, intuitively, transforms the vertical column into an oblique one) *times* the mass attenuation coefficient.
+Optical depth, then, is the *product* of the mass of the vertical column *and* the value of the obliquity function (which, intuitively, gives the absolute optical air mass along the ray) *times* the mass attenuation coefficient.
 
-\\(\Chi\\)
+### Exploring the Chapman Function
+
+It's always a good idea to explore a function visually, with a graph. Let's do that.
+
+{{< figure src="/img/chapman_ref.png" caption="*Plot of the Chapman function for a fixed value of \\(r = 6600\\).*">}}
+
+Above, I plotted values of the Chapman function (vertical axis) varying with the angle \\(\theta\\) (horizontal axis, in degrees) for different values of the scale height \\(H\\): \\(1\\) (dark blue), \\(10\\) (orange), \\(20\\) (green), \\(40\\) (red), \\(60\\) (purple), \\(80\\) (brown), \\(100\\) (light blue).
+Arguably, the first two are the most important ones, as they roughly correspond to scale heights of aerosols and air in Earth's atmosphere. It's also interesting to support larger values to model [other planets](https://en.wikipedia.org/wiki/Scale_height#Planetary_examples).
+
+Being an obliquity function, its value for the angle \\(\theta = 0\\) is always \\(1\\). It also slowly varies with angle, as long as the angle is far from the horizon (which suggests an opportunity for a small angle optimization).
+
+The Chapman function for \\(\theta\\) angles up to 90 degrees has an [analytic expression](https://en.wikipedia.org/wiki/Closed-form_expression#Analytic_expression) \[[Kocifaj 1996](http://adsabs.harvard.edu/abs/1996CoSka..26...23K)\]:
+
+$$ \tag{37} C_u(z, \theta) = \frac{1}{2} \mathrm{cos}{\theta} + \frac{1}{2} e^{\frac{1}{2} (\sqrt{z} \mathrm{cos}{\theta})^2} \sqrt{\frac{\pi}{2}} \Big(\frac{1}{\sqrt{z}} + 2 \sqrt{z} - \sqrt{z} (\mathrm{cos}{\theta})^2 \Big) \mathrm{erfc}{\Big(\frac{1}{\sqrt{2}} \sqrt{z} \mathrm{cos}{\theta}\Big)}, $$
+
+which, unfortunately, is not [closed-form](https://en.wikipedia.org/wiki/Closed-form_expression#Analytic_expression), since it contains the [complementary error function](http://mathworld.wolfram.com/Erfc.html) \\(\mathrm{erfc}\\). We can also observe that it is actually a function of \\(\sqrt{z}\\) and \\(\mathrm{cos}{\theta}\\). For the zenith angle of 90 degrees, it reduces to
+
+$$ \tag{38} C_h(z) = \frac{1}{2} \sqrt{\frac{\pi}{2}} (\frac{1}{\sqrt{z}} + 2 \sqrt{z}). $$
+
+Beyond the 90 degree angle, the following identity can be used:
+
+$$ \tag{39} C_l(z, \theta) = 2 e^{z - z \mathrm{sin}{\theta}} C_h(z \mathrm{sin}{\theta}) - C_u(z, \pi - \theta), $$
+
+which means that we must find the position along the ray where the ray direction is orthogonal to the surface normal, evaluate the horizontal Chapman function there (twice, forwards and backwards, e.i. along the entire line), and subtract the value of the Chapman function at the original position with the reversed direction, which gives us the value of the integral along the desired ray segment.
+
+Note that a practical implementation does not need to evaluate \\(C_u\\) for angles greater than 90 degrees, since we can evaluate the function with the \\(\vert \mathrm{cos}{\theta} \vert\\) argument both above and below the horizon.
+
+
+{{< figure src="/img/chapman_chris.png" caption="*Plot of an approximation of the Chapman function by Christian Schüler for a fixed value of \\(r = 6600\\).*">}}
 
 You may have just had a little [déjà vu](https://www.youtube.com/watch?v=z_KmNZNT5xw)...
 Spectral coefficients... Hero wavelength? Average coefficient? Single sample MIS?
