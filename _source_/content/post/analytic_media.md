@@ -329,11 +329,10 @@ float ChapmanUpperApprox(float z, float absCosTheta)
 
 float ChapmanHorizontal(float z)
 {
-    float k = sqrt(PI * 0.5) * 0.5;
     float r = rsqrt(z);
     float s = z * r; // sqrt(z)
 
-    return k * (r + 2 * s);
+    return 0.626657 * (r + 2 * s);
 }
 
 // z = (r * n), logScale = -n * (r - R).
