@@ -260,18 +260,18 @@ Optical depth, then, is the *product* of the mass of the vertical column *and* t
 
 ### Exploring the Chapman Function
 
-It's always a good idea to explore a function visually, with a graph. Let's do that.
+It's always a good idea to examine a function visually, as a graph. Let's do that.
 
-{{< figure src="/img/chapman_ref.png" caption="*Plot of the Chapman function for a fixed value of \\(r = 6600\\).*">}}
+{{< figure src="/img/chapman_ref.png" caption="*Plot of the Chapman function for \\(r = 6600\\).*">}}
 
 Above, I plotted values of the Chapman function (vertical axis) varying with the angle \\(\theta\\) (horizontal axis, in degrees) for different values of the scale height \\(H\\): \\(1\\) (dark blue), \\(10\\) (orange), \\(20\\) (green), \\(40\\) (red), \\(60\\) (purple), \\(80\\) (brown), \\(100\\) (light blue).
-Arguably, the first two are the most important ones, as they roughly correspond to scale heights of aerosols and air in Earth's atmosphere. It's also interesting to support larger values to model [other planets](https://en.wikipedia.org/wiki/Scale_height#Planetary_examples).
+Arguably, the first two are the most important, since they roughly correspond to scale heights of aerosols and air of Earth's atmosphere. It's also interesting to support larger values to model atmospheres on [other planets](https://en.wikipedia.org/wiki/Scale_height#Planetary_examples).
 
-Being an obliquity function, its value for the angle \\(\theta = 0\\) is always \\(1\\). It also slowly varies with angle, as long as the angle is far from the horizon (which suggests an opportunity for a small angle optimization).
+Being an obliquity function, its value for the angle \\(\theta = 0\\) is always \\(1\\). It also varies slowly, as long as the angle is far from the horizon (which suggests an opportunity for a small angle optimization).
 
 The Chapman function for \\(\theta\\) angles up to 90 degrees has an [analytic expression](https://en.wikipedia.org/wiki/Closed-form_expression#Analytic_expression) \[[Kocifaj 1996](http://adsabs.harvard.edu/abs/1996CoSka..26...23K)\]:
 
-$$ \tag{37} C_u(z, \theta) = \frac{1}{2} \mathrm{cos}{\theta} + \frac{1}{2} e^{\frac{1}{2} (\sqrt{z} \mathrm{cos}{\theta})^2} \sqrt{\frac{\pi}{2}} \Big(\frac{1}{\sqrt{z}} + 2 \sqrt{z} - \sqrt{z} (\mathrm{cos}{\theta})^2 \Big) \mathrm{erfc}{\Big(\frac{1}{\sqrt{2}} \sqrt{z} \mathrm{cos}{\theta}\Big)}, $$
+$$ \tag{37} C_u(z, \theta) = \frac{1}{2} \mathrm{cos}{\theta} + \frac{1}{2} \sqrt{\frac{\pi}{2}} \Big(\frac{1}{\sqrt{z}} + 2 \sqrt{z} - \sqrt{z} (\mathrm{cos}{\theta})^2 \Big) \Big[ e^{\big( \frac{1}{\sqrt{2}} \sqrt{z} \mathrm{cos}{\theta} \big)^2} \mathrm{erfc}{\Big(\frac{1}{\sqrt{2}} \sqrt{z} \mathrm{cos}{\theta}\Big)} \Big], $$
 
 which, unfortunately, is not [closed-form](https://en.wikipedia.org/wiki/Closed-form_expression#Analytic_expression), since it contains the [complementary error function](http://mathworld.wolfram.com/Erfc.html) \\(\mathrm{erfc}\\). We can also observe that it is actually a function of \\(\sqrt{z}\\) and \\(\mathrm{cos}{\theta}\\). For the zenith angle of 90 degrees, it reduces to
 
@@ -281,12 +281,31 @@ Beyond the 90 degree angle, the following identity can be used:
 
 $$ \tag{39} C_l(z, \theta) = 2 e^{z - z \mathrm{sin}{\theta}} C_h(z \mathrm{sin}{\theta}) - C_u(z, \pi - \theta), $$
 
-which means that we must find the position along the ray where the ray direction is orthogonal to the surface normal, evaluate the horizontal Chapman function there (twice, forwards and backwards, e.i. along the entire line), and subtract the value of the Chapman function at the original position with the reversed direction, which gives us the value of the integral along the desired ray segment.
+which means that we must find a position along the ray where the ray direction is orthogonal to the surface normal, evaluate the horizontal Chapman function there (twice, forwards and backwards, e.i. along the entire line), and subtract the value of the Chapman function at the original position with the reverse direction, which isolates the integral to the desired segment along the ray.
 
-Note that a practical implementation does not need to evaluate \\(C_u\\) for angles greater than 90 degrees, since we can evaluate the function with the \\(\vert \mathrm{cos}{\theta} \vert\\) argument both above and below the horizon.
+Note that a practical implementation does not need to evaluate \\(C_u\\) for angles greater than 90 degrees, since we can evaluate the function with the \\(\vert \mathrm{cos}{\theta} \vert\\) in all cases.
 
+Christian Schüler in proposes an approximation for \\(C_u\\) in his [GPU Gems 3](http://www.gameenginegems.net/gemsdb/article.php?id=1133) article:
 
-{{< figure src="/img/chapman_chris.png" caption="*Plot of an approximation of the Chapman function by Christian Schüler for a fixed value of \\(r = 6600\\).*">}}
+$$ \tag{40} C_u(z, \theta) = \frac{C_h(z)}{(C_h(z) - 1) \mathrm{cos}{\theta} + 1}. $$
+
+It's a very good approximation, especially considering the cost.
+
+{{< figure src="/img/chapman_chris.png" caption="*Plot of the approximation of the Chapman function by Christian Schüler for \\(r = 6600\\).*">}}
+
+However, if you care about accuracy, and plot the the relative error graph, it paints a slightly less attractive picture.
+
+{{< figure src="/img/chapman_chris_error.png" caption="*Relative error plot of the approximation of the Chapman function by Christian Schüler for \\(r = 6600\\).*">}}
+
+The physics literature has [many approximations](https://agupubs.onlinelibrary.wiley.com/doi/pdf/10.1029/2011JD016706) of the Chapman function. Unfortunately, most of them are specific to Earth's atmosphere.
+
+Instead, we can choose a different, and ultimately simpler approach. Instead of approximating the entire function (for which we have an analytic expression), all we have to do is approximate \\(\mathrm{erfc}\\) (or, more specifically, the term of Equation 37 inside the square brackets). Luckily, the physics literature already has a [solution](https://rmets.onlinelibrary.wiley.com/doi/full/10.1002/asl.154) we can use:
+
+$$ \tag{41} e^{x^2} \mathrm{erfc}(x) = \frac{2.911}{(2.911 - 1) \sqrt{\pi x^2} + \sqrt{\pi x^2 + 2.911^2}}. $$
+
+The new approximation has up to 50 times lower relative error, and is acceptable for out use case.
+
+{{< figure src="/img/chapman_erfc_error.png" caption="*Relative error plot of the approximation of the Chapman function by Christian Schüler for \\(r = 6600\\).*">}}
 
 You may have just had a little [déjà vu](https://www.youtube.com/watch?v=z_KmNZNT5xw)...
 Spectral coefficients... Hero wavelength? Average coefficient? Single sample MIS?
