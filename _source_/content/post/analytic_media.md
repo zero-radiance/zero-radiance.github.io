@@ -299,7 +299,7 @@ However, if you care about accuracy, and plot the the relative error graph, it p
 
 The physics literature has [many approximations](https://agupubs.onlinelibrary.wiley.com/doi/pdf/10.1029/2011JD016706) of the Chapman function. Unfortunately, most of them are specific to Earth's atmosphere.
 
-Instead, we can choose a different, and ultimately simpler approach. Instead of approximating the entire function (for which we have an analytic expression), all we have to do is approximate \\(\mathrm{erfc}\\) (or, more specifically, the term of Equation 37 inside the square brackets). Luckily, the physics literature already has a [solution](https://rmets.onlinelibrary.wiley.com/doi/full/10.1002/asl.154) we can use:
+Instead, we can choose a different, and ultimately simpler approach. Instead of approximating the entire function (for which we have an analytic expression), all we have to do is approximate \\(\mathrm{erfc}\\) (or, more specifically, the term of Equation 37 inside the square brackets). Luckily, the physics literature already has a good [approximation](https://rmets.onlinelibrary.wiley.com/doi/full/10.1002/asl.154) we can use:
 
 $$ \tag{41} e^{x^2} \mathrm{erfc}(x) = \frac{2.911}{(2.911 - 1) \sqrt{\pi x^2} + \sqrt{\pi x^2 + 2.911^2}}. $$
 
@@ -312,6 +312,50 @@ For reference, our full numerical approximation of the upper part of the Chapman
 $$ \tag{42} C_{u-a}(z, a) = \frac{a}{2} + \frac{0.761643 (1 + z (2 - a^2))}{a z + \sqrt{z (1.47721 + 0.273828 z a^2)}}, $$
 
 where \\(a = \vert \mathrm{cos}{\theta} \vert\\).
+
+Note that, depending on the composition of the atmosphere, the Chapman function can take on huge values (even exceeding FLT_MAX). A simple solution is to combine it with the \\( e^{-n (r - R)} = e^{\mathrm{logScale}} \\) term from the optical depth Equation 33.
+
+For the reference, sample code is listed below:
+
+```c++
+float ChapmanUpperApprox(float z, float absCosTheta)
+{
+	float a = absCosTheta;
+    float n = 0.761643 * ((1 + 2 * z) - (a * a * z));
+    float d = a * z + sqrt(z * (1.47721 + 0.273828 * (a * a * z)));
+
+    return 0.5 * a + (n * rcp(d));
+}
+
+float ChapmanHorizontal(float z)
+{
+    float k = sqrt(PI * 0.5) * 0.5;
+    float r = rsqrt(z);
+    float s = z * r; // sqrt(z)
+
+    return k * (r + 2 * s);
+}
+
+// z = (r * n), logScale = -n * (r - R).
+float RescaledChapmanFunction(float z, float cosTheta, float logScale)
+{
+    // cos(Pi - chi) = -cos(chi).
+    float ch = ChapmanUpperApprox(z, abs(cosTheta)) * exp(logScale);
+
+    if (cosTheta < 0)
+    {
+    	// x = z * sin(theta).
+        // Ch(z, theta) = 2 * exp(z - x) * Ch(x, Pi/2) - Ch(z, Pi - theta).
+        float x = z * sqrt(saturate(1 - cosTheta * cosTheta));
+        float a = exp(z - x + logScale);
+        float b = 2 * ChapmanHorizontal(x);
+
+        ch = a * b - ch;
+    }
+
+    return ch;
+}
+```
 
 You may have just had a little [déjà vu](https://www.youtube.com/watch?v=z_KmNZNT5xw)...
 Spectral coefficients... Hero wavelength? Average coefficient? Single sample MIS?
