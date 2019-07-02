@@ -244,17 +244,35 @@ $$ \tag{33} \begin{aligned}
 
 The resulting integral is very complex. (Don't believe me? Try evaluating it analyticly!). In order to make our life easier, we will factor out the nested integral, and extend the upper limit of integration to infinity. With the following change of variables:
 
-$$ \tag{34} z = r n \qquad u = s n, $$
+$$ \tag{34} z = n r \qquad u = n s, $$
 
-the nested integral then becomes what is known in the physics community as the [Chapman function](https://en.wikipedia.org/wiki/Chapman_function) (or obliquity function, or the relative optical air mass) \\(C\\):
+the nested integral becomes what is known in the physics community as the [Chapman function](https://en.wikipedia.org/wiki/Chapman_function) (or the obliquity function, or the relative optical air mass) \\(C\\):
 
 $$ \tag{35} C(z, \theta) = \int\_{0}^{\infty} e^{z - \sqrt{z^2 + 2 z u \mathrm{cos}{\theta} + u^2}} du. $$
 
-It's interesting to consider the physical meaning of the function. Generally speaking, the value of a line integral of density (such as given by \\(\bm{\tau} / \bm{\mu_t}\\)) corresponds to mass. The integral
+It's convenient to define the rescaled Chapman function \\(C_r\\):
 
-$$ \tag{36} \int\_{h = (r - R)}^{\infty} k e^{-n s} ds = \frac{k}{n} e^{-n h} $$
+$$ \tag{36} C_r(z, \mathrm{cos}{\theta}) = \int\_{0}^{\infty} e^{-\sqrt{z^2 + 2 z u \mathrm{cos}{\theta} + u^2}} du, $$
 
-corresponds to mass of the vertical column starting at height \\(h\\).
+which has a better numerical behavior (the Chapman function can take on huge values, even exceeding FLT_MAX), and further simplifies the expression of optical depth:
+
+$$ \tag{37}
+\bm{\tau\_{es}}(\bm{x}, \bm{y})
+	= \bm{\mu_t} \frac{k}{n} e^{n R} \Bigg( C_r \Big(n \Vert \bm{x} - \bm{c} \Vert, \mathrm{cos}{(\bm{x}, \bm{c}, \bm{y}, \bm{x})} \Big) - C_r \Big(n \Vert \bm{y} - \bm{c} \Vert, \mathrm{cos}{(\bm{y}, \bm{c}, \bm{y}, \bm{x})} \Big) \Bigg), $$
+
+where
+
+$$ \tag{38}
+\mathrm{cos}{(\bm{x}, \bm{c}, \bm{y}, \bm{x})}
+	= \Big\langle \frac{\bm{x} - \bm{c}}{\Vert \bm{x} - \bm{c} \Vert}, \frac{\bm{y} - \bm{x}}{\Vert \bm{y} - \bm{x} \Vert} \Big\rangle $$
+
+is a shorthand for the cosine of the angle between the normal vector and the viewing direction. What the Equation 37 says is that we should evaluate the optical depth integral (to infinity) twice, at the start and at the end of the interval, and subtract the results.
+
+It's interesting to consider the physical meaning of the Chapman function. Generally speaking, the value of a line integral of density (such as given by \\(\bm{\tau} / \bm{\mu_t}\\)) corresponds to mass. Therefore, the integral
+
+$$ \tag{39} \int\_{h = (r - R)}^{\infty} k e^{-n s} ds = \frac{k}{n} e^{-n h} $$
+
+corresponds to mass of an infinitely tall vertical column starting at height \\(h\\).
 
 Optical depth, then, is the *product* of the mass of the vertical column *and* the value of the obliquity function (which, intuitively, gives the absolute optical air mass along the ray) *times* the mass attenuation coefficient.
 
@@ -271,23 +289,23 @@ Being an obliquity function, its value for the angle \\(\theta = 0\\) is always 
 
 The Chapman function for \\(\theta\\) angles up to 90 degrees has an [analytic expression](https://en.wikipedia.org/wiki/Closed-form_expression#Analytic_expression) \[[Kocifaj 1996](http://adsabs.harvard.edu/abs/1996CoSka..26...23K)\]:
 
-$$ \tag{37} C_u(z, \theta) = \frac{1}{2} \mathrm{cos}{\theta} + \frac{1}{2} \sqrt{\frac{\pi}{2}} \Big(\frac{1}{\sqrt{z}} + 2 \sqrt{z} - \sqrt{z} (\mathrm{cos}{\theta})^2 \Big) \Big[ e^{\big( \frac{1}{\sqrt{2}} \sqrt{z} \mathrm{cos}{\theta} \big)^2} \mathrm{erfc}{\Big(\frac{1}{\sqrt{2}} \sqrt{z} \mathrm{cos}{\theta}\Big)} \Big], $$
+$$ \tag{40} C_u(z, \theta) = \frac{1}{2} \mathrm{cos}{\theta} + \frac{1}{2} \sqrt{\frac{\pi}{2}} \Big(\frac{1}{\sqrt{z}} + 2 \sqrt{z} - \sqrt{z} (\mathrm{cos}{\theta})^2 \Big) \Big[ e^{\big( \frac{1}{\sqrt{2}} \sqrt{z} \mathrm{cos}{\theta} \big)^2} \mathrm{erfc}{\Big(\frac{1}{\sqrt{2}} \sqrt{z} \mathrm{cos}{\theta}\Big)} \Big], $$
 
-which, unfortunately, is not [closed-form](https://en.wikipedia.org/wiki/Closed-form_expression#Analytic_expression), since it contains the [complementary error function](http://mathworld.wolfram.com/Erfc.html) \\(\mathrm{erfc}\\). We can also observe that it is actually a function of \\(\sqrt{z}\\) and \\(\mathrm{cos}{\theta}\\). For the zenith angle of 90 degrees, it reduces to
+which, unfortunately, is not [closed-form](https://en.wikipedia.org/wiki/Closed-form_expression#Analytic_expression), since it contains the [complementary error function](http://mathworld.wolfram.com/Erfc.html) \\(\mathrm{erfc}\\).
 
-$$ \tag{38} C_h(z) = \frac{1}{2} \sqrt{\frac{\pi}{2}} (\frac{1}{\sqrt{z}} + 2 \sqrt{z}). $$
+For the zenith angle of 90 degrees, it reduces to
+
+$$ \tag{41} C_h(z) = \frac{1}{2} \sqrt{\frac{\pi}{2}} (\frac{1}{\sqrt{z}} + 2 \sqrt{z}). $$
 
 Beyond the 90 degree angle, the following identity can be used:
 
-$$ \tag{39} C_l(z, \theta) = 2 e^{z - z \mathrm{sin}{\theta}} C_h(z \mathrm{sin}{\theta}) - C_u(z, \pi - \theta), $$
+$$ \tag{42} C_l(z, \theta) = 2 e^{z - z \mathrm{sin}{\theta}} C_h(z \mathrm{sin}{\theta}) - C_u(z, \pi - \theta), $$
 
 which means that we must find a position along the ray where the ray direction is orthogonal to the surface normal, evaluate the horizontal Chapman function there (twice, forwards and backwards, e.i. along the entire line), and subtract the value of the Chapman function at the original position with the reverse direction, which isolates the integral to the desired segment along the ray.
 
-Note that a practical implementation does not need to evaluate \\(C_u\\) for angles greater than 90 degrees, since we can evaluate the function with the \\(\vert \mathrm{cos}{\theta} \vert\\) in all cases.
-
 Christian Schüler in proposes an approximation for \\(C_u\\) in his [GPU Gems 3](http://www.gameenginegems.net/gemsdb/article.php?id=1133) article:
 
-$$ \tag{40} C_{u-cs}(z, \theta) = \frac{C_h(z)}{(C_h(z) - 1) \mathrm{cos}{\theta} + 1}. $$
+$$ \tag{43} C_{u\\_cs}(z, \theta) = \frac{C_h(z)}{(C_h(z) - 1) \mathrm{cos}{\theta} + 1}. $$
 
 It's a very good approximation, especially considering the cost.
 
@@ -299,32 +317,28 @@ However, if you care about accuracy, and plot the the relative error graph, it p
 
 The physics literature has [many approximations](https://agupubs.onlinelibrary.wiley.com/doi/pdf/10.1029/2011JD016706) of the Chapman function. Unfortunately, most of them are specific to Earth's atmosphere.
 
-Instead, we can choose a different, and ultimately simpler approach. Instead of approximating the entire function (for which we have an analytic expression), all we have to do is approximate \\(\mathrm{erfc}\\) (or, more specifically, the term of Equation 37 inside the square brackets). Luckily, the physics literature already has a good [approximation](https://rmets.onlinelibrary.wiley.com/doi/full/10.1002/asl.154) we can use:
+Instead, we can take a different, simpler approach. Instead of approximating the entire function (for which we have an analytic expression), all we have to do is approximate \\(\mathrm{erfc}\\) (or, more specifically, the term of the Equation 40 inside the square brackets). Luckily, the physics literature already has a good [approximation](https://rmets.onlinelibrary.wiley.com/doi/full/10.1002/asl.154) we can use:
 
-$$ \tag{41} e^{x^2} \mathrm{erfc}(x) = \frac{2.911}{(2.911 - 1) \sqrt{\pi x^2} + \sqrt{\pi x^2 + 2.911^2}}. $$
+$$ \tag{44} e^{x^2} \mathrm{erfc}(x) = \frac{2.911}{(2.911 - 1) \sqrt{\pi x^2} + \sqrt{\pi x^2 + 2.911^2}}. $$
 
 The new approximation has up to 50 times lower relative error, and is acceptable for out use case.
 
-{{< figure src="/img/chapman_erfc_error.png" caption="*Relative error plot of the approximation of the Chapman function by Christian Schüler for \\(r = 6600\\).*">}}
+{{< figure src="/img/chapman_erfc_error.png" caption="*Relative error plot of the new approximation of the Chapman function for \\(r = 6600\\).*">}}
 
 For reference, our full numerical approximation of the upper part of the Chapman function is:
 
-$$ \tag{42} C_{u-a}(z, a) = \frac{a}{2} + \frac{0.761643 (1 + z (2 - a^2))}{a z + \sqrt{z (1.47721 + 0.273828 z a^2)}}, $$
-
-where \\(a = \vert \mathrm{cos}{\theta} \vert\\).
-
-Note that, depending on the composition of the atmosphere, the Chapman function can take on huge values (even exceeding FLT_MAX). A simple solution is to combine it with the \\( e^{-n (r - R)} = e^{\mathrm{logScale}} \\) term from the optical depth Equation 33.
+$$ \tag{45} C_{u\\_a}(z, \theta) = \frac{\mathrm{cos}{\theta}}{2} + \frac{0.761643 (1 + z (2 - \mathrm{cos}^2{\theta}))}{a z + \sqrt{z (1.47721 + 0.273828 z \mathrm{cos}^2{\theta})}}. $$
 
 For the reference, sample code is listed below:
 
 ```c++
-float ChapmanUpperApprox(float z, float absCosTheta)
+float ChapmanUpperApprox(float z, float cosTheta)
 {
-	float a = absCosTheta;
-    float n = 0.761643 * ((1 + 2 * z) - (a * a * z));
-    float d = a * z + sqrt(z * (1.47721 + 0.273828 * (a * a * z)));
+	float c = cosTheta;
+    float n = 0.761643 * ((1 + 2 * z) - (c * c * z));
+    float d = c * z + sqrt(z * (1.47721 + 0.273828 * (c * c * z)));
 
-    return 0.5 * a + (n * rcp(d));
+    return 0.5 * c + (n * rcp(d));
 }
 
 float ChapmanHorizontal(float z)
@@ -335,18 +349,18 @@ float ChapmanHorizontal(float z)
     return 0.626657 * (r + 2 * s);
 }
 
-// z = (r * n), logScale = -n * (r - R).
-float RescaledChapmanFunction(float z, float cosTheta, float logScale)
+// z = (r * n).
+float RescaledChapmanFunction(float z, float cosTheta)
 {
-    // cos(Pi - chi) = -cos(chi).
-    float ch = ChapmanUpperApprox(z, abs(cosTheta)) * exp(logScale);
+    // cos(Pi - theta) = -cos(theta).
+    float ch = ChapmanUpperApprox(z, abs(cosTheta)) * exp(-z); // Scaling adds 'exp'
 
     if (cosTheta < 0)
     {
     	// x = z * sin(theta).
         // Ch(z, theta) = 2 * exp(z - x) * Ch(x, Pi/2) - Ch(z, Pi - theta).
         float x = z * sqrt(saturate(1 - cosTheta * cosTheta));
-        float a = exp(z - x + logScale);
+        float a = exp(-x); // Scaling cancels out 'z'
         float b = 2 * ChapmanHorizontal(x);
 
         ch = a * b - ch;
@@ -356,8 +370,13 @@ float RescaledChapmanFunction(float z, float cosTheta, float logScale)
 }
 ```
 
-You may have just had a little [déjà vu](https://www.youtube.com/watch?v=z_KmNZNT5xw)...
+A small but important note is that we can always use \\( \vert \mathrm{cos}{\theta} \vert \\) since, if the angle is greater than 90 degrees, the direction is reversed, and the cosine is negated.
+
+
+
+
+
+---
+
 Spectral coefficients... Hero wavelength? Average coefficient? Single sample MIS?
 Note that for RGB surface albedo, it's not just 3 spectral samples, but rather the response of the trichromatic visual system to a complicated spectral distribution.
-
-https://www.youtube.com/watch?v=z_KmNZNT5xw
