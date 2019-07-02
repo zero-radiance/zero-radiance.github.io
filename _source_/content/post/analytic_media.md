@@ -287,7 +287,7 @@ Note that a practical implementation does not need to evaluate \\(C_u\\) for ang
 
 Christian Schüler in proposes an approximation for \\(C_u\\) in his [GPU Gems 3](http://www.gameenginegems.net/gemsdb/article.php?id=1133) article:
 
-$$ \tag{40} C_u(z, \theta) = \frac{C_h(z)}{(C_h(z) - 1) \mathrm{cos}{\theta} + 1}. $$
+$$ \tag{40} C_{u-cs}(z, \theta) = \frac{C_h(z)}{(C_h(z) - 1) \mathrm{cos}{\theta} + 1}. $$
 
 It's a very good approximation, especially considering the cost.
 
@@ -306,6 +306,12 @@ $$ \tag{41} e^{x^2} \mathrm{erfc}(x) = \frac{2.911}{(2.911 - 1) \sqrt{\pi x^2} +
 The new approximation has up to 50 times lower relative error, and is acceptable for out use case.
 
 {{< figure src="/img/chapman_erfc_error.png" caption="*Relative error plot of the approximation of the Chapman function by Christian Schüler for \\(r = 6600\\).*">}}
+
+For reference, our full numerical approximation of the upper part of the Chapman function is:
+
+$$ \tag{42} C_{u-a}(z, a) = \frac{a}{2} + \frac{0.761643 (1 + z (2 - a^2))}{a z + \sqrt{z (1.47721 + 0.273828 z a^2)}}, $$
+
+where \\(a = \vert \mathrm{cos}{\theta} \vert\\).
 
 You may have just had a little [déjà vu](https://www.youtube.com/watch?v=z_KmNZNT5xw)...
 Spectral coefficients... Hero wavelength? Average coefficient? Single sample MIS?
