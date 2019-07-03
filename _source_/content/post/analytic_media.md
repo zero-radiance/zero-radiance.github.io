@@ -210,11 +210,11 @@ $$ \tag{29} \bm{I\_{ep}}(\bm{x}, \bm{v}, t) = \bm{\alpha} \bm{O}(\bm{x}, \bm{x} 
 
 ## Exponential Variation of Density with Altitude in Spherical Coordinates
 
-This is where things get interesting. We would like to model an exponential density distribution on a spherical planet:
+This is where things get interesting. We would like to model an exponential density distribution on in spherical coordinates:
 
 $$ \tag{30} \rho\_{es}(\bm{x}) = k e^{-h(\bm{x}) / H} = k e^{-(\Vert \bm{x} - \bm{c} \Vert - R) / H} = k e^{-n (\Vert \bm{x} - \bm{c} \Vert - R)}, $$
 
-where \\(\bm{c}\\) is the center of the planet, \\(R\\) is its radius, \\(h\\) is the altitude, and \\(H\\) is the [scale height](https://en.wikipedia.org/wiki/Scale_height) as before. In this case, \\(k\\) represents the density at the sea level.
+where \\(\bm{c}\\) is the center of the planet, \\(R\\) is its radius, \\(h\\) is the altitude, and \\(H\\) is the [scale height](https://en.wikipedia.org/wiki/Scale_height) as before. In this context, \\(k\\) and \\(\bm{\mu_t} k\\) represent density and the value of the attenuation coefficient at the sea level, respectively.
 
 Before we proceed with the derivation, it's helpful to understand the geometric setting (after all, a picture is worth a thousand words). Personally, I found the article by Christian Schüler in [GPU Gems 3](http://www.gameenginegems.net/gemsdb/article.php?id=1133) to be a very helpful introduction to the relevant concepts, and I encourage you to check it out if you have questions after reading my explanation below.
 
@@ -268,7 +268,7 @@ $$ \tag{38}
 \mathrm{cos}{(\bm{x}, \bm{y})}
 	= \Big\langle \frac{\bm{x}}{\Vert \bm{x} \Vert}, \frac{\bm{y}}{\Vert \bm{y} \Vert} \Big\rangle $$
 
-is a shorthand for the cosine of the angle between the normal vector and the viewing direction. What the Equation 37 says is that we should evaluate the optical depth integral (to infinity) twice, at the start and at the end of the interval, and subtract the results.
+is a shorthand for the cosine of the angle between the normal vector and the viewing direction. What the Equation 37 says is that we should evaluate the optical depth integral (along the entire ray, from 0 to \\(\infty\\)) twice, at the start and at the end of the interval, and subtract the results.
 
 It's interesting to consider the physical meaning of the Chapman function. Generally speaking, the value of a line integral of density (such as given by \\(\bm{\tau} / \bm{\mu_t}\\)) corresponds to mass. Therefore, the integral
 
@@ -285,9 +285,9 @@ It's always a good idea to examine a function visually, as a graph. Let's do tha
 {{< figure src="/img/chapman_ref.png" caption="*Plot of the Chapman function for \\(r = 6600\\).*">}}
 
 Above, I plotted values of the Chapman function (vertical axis) varying with the angle \\(\theta\\) (horizontal axis, in degrees) for different values of the scale height \\(H\\): \\(1\\) (dark blue), \\(10\\) (orange), \\(20\\) (green), \\(40\\) (red), \\(60\\) (purple), \\(80\\) (brown), \\(100\\) (light blue).
-Arguably, the first two are the most important, since they roughly correspond to scale heights of aerosols and air of Earth's atmosphere. It's also interesting to support larger values to model atmospheres on [other planets](https://en.wikipedia.org/wiki/Scale_height#Planetary_examples).
+Arguably, the first two are the most important, since they roughly correspond to scale heights of aerosols and air of Earth's atmosphere. It's also nice to support larger values to model atmospheres on [other planets](https://en.wikipedia.org/wiki/Scale_height#Planetary_examples).
 
-Being an obliquity function, its value for the angle \\(\theta = 0\\) is always \\(1\\). It also varies slowly, as long as the angle is far from the horizon (which suggests an opportunity for a small angle optimization).
+Being an obliquity function, its value for the angle \\(\theta = 0\\) is always \\(1\\). The function varies slowly, as long as the angle is far from the horizon (which suggests an opportunity for a [small angle approximation](https://en.wikipedia.org/wiki/Small-angle_approximation)).
 
 The Chapman function for \\(\theta\\) angles up to 90 degrees has an [analytic expression](https://en.wikipedia.org/wiki/Closed-form_expression#Analytic_expression) \[[Kocifaj 1996](http://adsabs.harvard.edu/abs/1996CoSka..26...23K)\]:
 
@@ -303,13 +303,13 @@ Beyond the 90 degree angle, the following identity can be used:
 
 $$ \tag{42} C_l(z, \theta) = 2 e^{z - z \mathrm{sin}{\theta}} C_h(z \mathrm{sin}{\theta}) - C_u(z, \pi - \theta), $$
 
-which means that we must find a position along the ray where the ray direction is orthogonal to the surface normal, evaluate the horizontal Chapman function there (twice, forwards and backwards, e.i. along the entire line), and subtract the value of the Chapman function at the original position with the reverse direction, which isolates the integral to the desired segment along the ray.
+which means that we must find a position along the ray where the ray direction is orthogonal to the surface normal (see the diagram in the previous section), evaluate the horizontal Chapman function there (integrate twice, forwards and backwards, e.i. along the entire line, from \\(-\infty\\) to \\(\infty\\)), and subtract the value of the Chapman function at the original position with the reverse direction, which isolates the integral to the desired segment along the ray.
 
-Christian Schüler in proposes an approximation for \\(C_u\\) in his [GPU Gems 3](http://www.gameenginegems.net/gemsdb/article.php?id=1133) article:
+Christian Schüler proposes an approximation for \\(C_u\\) in his [GPU Gems 3](http://www.gameenginegems.net/gemsdb/article.php?id=1133) article:
 
 $$ \tag{43} C_{u\\_cs}(z, \theta) = \frac{C_h(z)}{(C_h(z) - 1) \mathrm{cos}{\theta} + 1}. $$
 
-It's a very good approximation, especially considering the cost.
+It's a pretty good approximation, especially considering the cost.
 
 {{< figure src="/img/chapman_chris.png" caption="*Plot of the approximation of the Chapman function by Christian Schüler for \\(r = 6600\\).*">}}
 
@@ -327,11 +327,11 @@ The new approximation has up to 50 times lower relative error, and is acceptable
 
 {{< figure src="/img/chapman_erfc_error.png" caption="*Relative error plot of the new approximation of the Chapman function for \\(r = 6600\\).*">}}
 
-For reference, our full numerical approximation of the upper part of the Chapman function is:
+For reference, the full numerical approximation of the upper part of the Chapman function is:
 
 $$ \tag{45} C_{u\\_a}(z, \theta) = \frac{\mathrm{cos}{\theta}}{2} + \frac{0.761643 (1 + z (2 - \mathrm{cos}^2{\theta}))}{a z + \sqrt{z (1.47721 + 0.273828 z \mathrm{cos}^2{\theta})}}. $$
 
-For the reference, sample code is listed below:
+Sample code which implements the Equation 36 is listed below.
 
 ```c++
 float ChapmanUpperApprox(float z, float cosTheta)
@@ -372,7 +372,7 @@ float RescaledChapmanFunction(float z, float Z, float cosTheta)
 }
 ```
 
-A small but important note is that we can always use \\( \vert \mathrm{cos}{\theta} \vert \\) since, if the angle is greater than 90 degrees, the direction is reversed, and the cosine is negated.
+A small but important note is that we can always use \\( \vert \mathrm{cos}{\theta} \vert \\) since, even if the angle is greater than 90 degrees, the evaluation direction is reversed, and the cosine is negated.
 
 
 
