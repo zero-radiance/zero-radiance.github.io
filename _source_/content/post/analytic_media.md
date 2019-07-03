@@ -244,7 +244,7 @@ $$ \tag{33} \begin{aligned}
 
 The resulting integral is very complex. (Don't believe me? Try evaluating it analyticly!). In order to make our life easier, we will factor out the nested integral, and extend the upper limit of integration to infinity. With the following change of variables:
 
-$$ \tag{34} z = n r \qquad u = n s, $$
+$$ \tag{34} z = n r \qquad Z = n R \qquad u = n s, $$
 
 the nested integral becomes what is known in the physics community as the [Chapman function](https://en.wikipedia.org/wiki/Chapman_function) (or the obliquity function, or the relative optical air mass) \\(C\\):
 
@@ -252,19 +252,21 @@ $$ \tag{35} C(z, \theta) = \int\_{0}^{\infty} e^{z - \sqrt{z^2 + 2 z u \mathrm{c
 
 It's convenient to define the rescaled Chapman function \\(C_r\\):
 
-$$ \tag{36} C_r(z, \mathrm{cos}{\theta}) = \int\_{0}^{\infty} e^{-\sqrt{z^2 + 2 z u \mathrm{cos}{\theta} + u^2}} du, $$
+$$ \tag{36} C_r(z, Z, \mathrm{cos}{\theta}) = \int\_{0}^{\infty} e^{Z - \sqrt{z^2 + 2 z u \mathrm{cos}{\theta} + u^2}} du, $$
 
-which has a better numerical behavior (the Chapman function can take on huge values, even exceeding FLT_MAX), and further simplifies the expression of optical depth:
+which has a better numerical behavior, and further simplifies the expression of optical depth:
 
-$$ \tag{37}
+$$ \tag{37} \begin{aligned}
 \bm{\tau\_{es}}(\bm{x}, \bm{y})
-	= \bm{\mu_t} \frac{k}{n} e^{n R} \Bigg( C_r \Big(n \Vert \bm{x} - \bm{c} \Vert, \mathrm{cos}{(\bm{x}, \bm{c}, \bm{y}, \bm{x})} \Big) - C_r \Big(n \Vert \bm{y} - \bm{c} \Vert, \mathrm{cos}{(\bm{y}, \bm{c}, \bm{y}, \bm{x})} \Big) \Bigg), $$
+	= \bm{\mu_t} \frac{k}{n} \Bigg( &C_r \Big(n \Vert \bm{x} - \bm{c} \Vert, n R, \mathrm{cos}{(\bm{x} - \bm{c}, \bm{y} - \bm{x})} \Big) - \cr
+	&C_r \Big(n \Vert \bm{y} - \bm{c} \Vert, n R, \mathrm{cos}{(\bm{y} - \bm{c}, \bm{y} - \bm{x})} \Big) \Bigg),
+\end{aligned} $$
 
 where
 
 $$ \tag{38}
-\mathrm{cos}{(\bm{x}, \bm{c}, \bm{y}, \bm{x})}
-	= \Big\langle \frac{\bm{x} - \bm{c}}{\Vert \bm{x} - \bm{c} \Vert}, \frac{\bm{y} - \bm{x}}{\Vert \bm{y} - \bm{x} \Vert} \Big\rangle $$
+\mathrm{cos}{(\bm{x}, \bm{y})}
+	= \Big\langle \frac{\bm{x}}{\Vert \bm{x} \Vert}, \frac{\bm{y}}{\Vert \bm{y} \Vert} \Big\rangle $$
 
 is a shorthand for the cosine of the angle between the normal vector and the viewing direction. What the Equation 37 says is that we should evaluate the optical depth integral (to infinity) twice, at the start and at the end of the interval, and subtract the results.
 
@@ -349,18 +351,18 @@ float ChapmanHorizontal(float z)
     return 0.626657 * (r + 2 * s);
 }
 
-// z = (r * n).
-float RescaledChapmanFunction(float z, float cosTheta)
+// z = (n * r), Z = (n * R).
+float RescaledChapmanFunction(float z, float Z, float cosTheta)
 {
     // cos(Pi - theta) = -cos(theta).
-    float ch = ChapmanUpperApprox(z, abs(cosTheta)) * exp(-z); // Scaling adds 'exp'
+    float ch = ChapmanUpperApprox(z, abs(cosTheta)) * exp(-z + Z); // Rescaling adds 'exp'
 
     if (cosTheta < 0)
     {
     	// x = z * sin(theta).
         // Ch(z, theta) = 2 * exp(z - x) * Ch(x, Pi/2) - Ch(z, Pi - theta).
         float x = z * sqrt(saturate(1 - cosTheta * cosTheta));
-        float a = exp(-x); // Scaling cancels out 'z'
+        float a = exp(-x + Z); // Rescaling cancels out 'z' and adds 'Z'
         float b = 2 * ChapmanHorizontal(x);
 
         ch = a * b - ch;
