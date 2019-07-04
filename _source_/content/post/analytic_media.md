@@ -352,7 +352,7 @@ float ChapmanHorizontal(float z)
     return 0.626657 * (r + 2 * s);
 }
 
-// z = (n * r), Z = (n * R).
+// z = (r / H), Z = (R / H).
 float RescaledChapmanFunction(float z, float Z, float cosTheta)
 {
     float sinTheta = sqrt(saturate(1 - cosTheta * cosTheta));
@@ -362,8 +362,8 @@ float RescaledChapmanFunction(float z, float Z, float cosTheta)
 
     if (cosTheta < 0)
     {
-        // z_0 = n * r_0 = (n * r) * sin(theta) = z * sin(theta).
         // Ch(z, theta) = 2 * exp(z - z_0) * Ch(z_0, Pi/2) - Ch(z, Pi - theta).
+        // z_0 = r_0 / H = (r / H) * sin(theta) = z * sin(theta).
         float z_0 = z * sinTheta;
         float a   = 2 * ChapmanHorizontal(z_0);
         float b   = exp(Z - z_0); // Rescaling cancels out 'z' and adds 'Z'
@@ -405,6 +405,9 @@ $$ \tag{47} \mathrm{sin}{\gamma} = \frac{\mathrm{opposite}}{\mathrm{hypotenuse}}
 Sample code is listed below.
 
 ```c++
+float R, rcpR, H, rcpH, Z;
+float3 C, seaLevelAttenuationCoefficient;
+
 float ComputeCosineOfHorizonAngle(float r)
 {
     float sinHoriz = R * rcp(r);
@@ -415,26 +418,27 @@ float ComputeCosineOfHorizonAngle(float r)
 float3 EvaluateOpticalDepthAlongRay(float3 X, float3 V)
 {
     float r = distance(X, C);
-    float z = n * r;
+    float z = r * rcpH;
 
     float cosHoriz = ComputeCosineOfHorizonAngle(r);
-    float cosTheta = dot(X - C, V) * rcp(r);                      // Normalize
+    float cosTheta = dot(X - C, V) * rcp(r);
     float sinTheta = sqrt(saturate(1 - cosTheta * cosTheta));
 
+	// cos(Pi - theta) = -cos(theta).
     float ch = ChapmanUpperApprox(z, abs(cosTheta)) * exp(Z - z); // Rescaling adds 'exp'
 
     if (cosTheta < cosHoriz) // Below horizon, intersect sphere
     {
-        float sinGamma = (r / R) * sinTheta;
+        float sinGamma = (r  * sinTheta) * rcpR;
         float cosGamma = sqrt(saturate(1 - sinGamma * sinGamma));
-        float chL      = ChapmanUpperApprox(Z, cosGamma); // No need to rescale
+        float chL      = ChapmanUpperApprox(Z, cosGamma);
 
         ch = chL - ch;
     }
-    else if (cosTheta < 0)   // Above horizon, lower hemisphere
+    else if (cosTheta < 0) // Above horizon, lower hemisphere
     {
-        // z_0 = n * r_0 = (n * r) * sin(theta) = z * sin(theta).
         // Ch(z, theta) = 2 * exp(z - z_0) * Ch(z_0, Pi/2) - Ch(z, Pi - theta).
+        // z_0 = r_0 / H = (r / H) * sin(theta) = z * sin(theta).
         float z_0  = z * sinTheta;
         float a    = 2 * ChapmanHorizontal(z_0);
         float b    = exp(Z - z_0); // Rescaling cancels out 'z' and adds 'Z'
@@ -443,7 +447,7 @@ float3 EvaluateOpticalDepthAlongRay(float3 X, float3 V)
         ch = chL - ch;
     }
 
-    return ch * H * seaLevelAttenuationCoefficient; // H = 1/n
+    return ch * H * seaLevelAttenuationCoefficient;
 }
 ```
 
