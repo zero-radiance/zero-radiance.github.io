@@ -45,7 +45,7 @@ It's worth briefly mentioning how transmittance and optical depth are composited
 To shade our (non-emissive) medium, we must evaluate the [recursive in-scattering integral](http://www.pbr-book.org/3ed-2018/Light_Transport_II_Volume_Rendering/The_Equation_of_Transfer.html) along the ray:
 
 $$ \tag{7} \bm{L}(\bm{x}, \bm{v})
-	= \int\_{0}^{t\_{max}} \bm{T}(\bm{x},\bm{x} + s \bm{v}) \bm{\sigma_s}(\bm{x} + s \bm{v}) \int\_{S^2} f(\bm{x} + s \bm{v}, \bm{v},\bm{l}) \bm{L}(\bm{x} + s \bm{v}, \bm{l}) \bm{dl} ds,
+    = \int\_{0}^{t\_{max}} \bm{T}(\bm{x},\bm{x} + s \bm{v}) \bm{\sigma_s}(\bm{x} + s \bm{v}) \int\_{S^2} f(\bm{x} + s \bm{v}, \bm{v},\bm{l}) \bm{L}(\bm{x} + s \bm{v}, \bm{l}) \bm{dl} ds,
 $$
 
 where \\(\bm{L}\\) is the amount of radiance at a certain position \\(\bm{x}\\) in a certain direction \\(\bm{v}\\), and \\(f\\) denotes the [phase function](http://www.pbr-book.org/3ed-2018/Volume_Scattering/Phase_Functions.html). To simplify notation, the maximum distance \\(t\_{max}\\) along the ray (which could correspond to the distance to the closest surface) is kept implicit.
@@ -53,13 +53,13 @@ where \\(\bm{L}\\) is the amount of radiance at a certain position \\(\bm{x}\\) 
 We can evaluate this integral using one of the [Monte Carlo](http://www.pbr-book.org/3ed-2018/Monte_Carlo_Integration.html) methods. The first step is to split it into two parts: the part we can evaluate analyticly, and the part we can not precompute. We can group the product of transmittance and the scattering coefficient together, and leave the nested integral as the unknown term:
 
 $$ \tag{8} \bm{L}(\bm{x}, \bm{v})
-	= \int\_{0}^{t\_{max}} \bm{T}(\bm{x},\bm{x} + s \bm{v}) \bm{\sigma_s}(\bm{x} + s \bm{v}) \bm{L_s}(\bm{x} + s \bm{v}, \bm{v}) ds.
+    = \int\_{0}^{t\_{max}} \bm{T}(\bm{x},\bm{x} + s \bm{v}) \bm{\sigma_s}(\bm{x} + s \bm{v}) \bm{L_s}(\bm{x} + s \bm{v}, \bm{v}) ds.
 $$
 
 The [Monte Carlo estimate](http://www.pbr-book.org/3ed-2018/Monte_Carlo_Integration/The_Monte_Carlo_Estimator.html) of the in-scattering integral (for a **single wavelength**) takes the following form:
 
 $$ \tag{9} L(\bm{x}, \bm{v})
-	\approx \frac{1}{N} \sum\_{i=1}^{N} \frac{T(\bm{x},\bm{y_i}) \sigma_s(\bm{y_i}) L_s(\bm{y_i}, \bm{v})}{p(\bm{x}, \bm{y_i})},
+    \approx \frac{1}{N} \sum\_{i=1}^{N} \frac{T(\bm{x},\bm{y_i}) \sigma_s(\bm{y_i}) L_s(\bm{y_i}, \bm{v})}{p(\bm{x}, \bm{y_i})},
 $$
 
 where sample locations \\(\bm{y_i}\\) are distributed according to the [PDF](https://en.wikipedia.org/wiki/Probability_density_function) \\(p\\).
@@ -81,9 +81,9 @@ $$ \tag{12} L(\bm{x}, \bm{v}) \approx I(\bm{x}, \bm{v}, t\_{max}) \frac{1}{N} \s
 Additionally, in order to distribute the samples according to the PDF, we must be able to [invert](http://www.pbr-book.org/3ed-2018/Monte_Carlo_Integration/Sampling_Random_Variables.html#TheInversionMethod) the [CDF](https://en.wikipedia.org/wiki/Cumulative_distribution_function) \\(P\\), which, again, contains the integral \\(I\\):
 
 $$ \tag{13} P(\bm{x}, \bm{v}, t)
-	= \int\_{0}^{t} p(\bm{x}, \bm{x} + s \bm{v}) ds
-	= \int\_{0}^{t} \frac{T(\bm{x},\bm{x} + s \bm{v}) \sigma_s(\bm{x} + s \bm{v})}{I(\bm{x}, \bm{v}, t\_{max})} ds
-	= \frac{I(\bm{x}, \bm{v}, t)}{I(\bm{x}, \bm{v}, t\_{max})}.
+    = \int\_{0}^{t} p(\bm{x}, \bm{x} + s \bm{v}) ds
+    = \int\_{0}^{t} \frac{T(\bm{x},\bm{x} + s \bm{v}) \sigma_s(\bm{x} + s \bm{v})}{I(\bm{x}, \bm{v}, t\_{max})} ds
+    = \frac{I(\bm{x}, \bm{v}, t)}{I(\bm{x}, \bm{v}, t\_{max})}.
 $$
 
 Clearly, there is some utility in being able to evaluate this integral. Let's take a closer look at some examples.
@@ -113,8 +113,8 @@ $$ \tag{16} \bm{\tau_c}(\bm{x}, \bm{y}) = \bm{\mu_t} k \Vert \bm{y} - \bm{x} \Ve
 The value of the integral (Equation 8) is thus:
 
 $$ \tag{17} \bm{I_c}(\bm{x}, \bm{v}, t)
-	= \bm{\alpha} \bm{\mu_t} k \int\_{0}^{t} e^{-\bm{\mu_t} k s} ds
-	= \bm{\alpha} (1 - e^{-\bm{\mu_t} k t}).
+    = \bm{\alpha} \bm{\mu_t} k \int\_{0}^{t} e^{-\bm{\mu_t} k s} ds
+    = \bm{\alpha} (1 - e^{-\bm{\mu_t} k t}).
 $$
 
 We can immediately recognize that the meaning of the integral:
@@ -135,10 +135,10 @@ Expressions of optical depth and transmittance remain fairly simple:
 
 $$ \tag{20} \begin{aligned}
 \bm{\tau\_{lp}}(\bm{x}, \bm{y})
-	&= \bm{\mu_t} \int\_{0}^{t = \Vert \bm{y} - \bm{x} \Vert} \Big( m \big(x_3 + s (y_3 - x_3) / t \big) + k \Big) ds \cr
-	&= \bm{\mu_t} (m x_3 + k) t + \bm{\mu_t} (y_3 - x_3) \frac{m}{t} \int\_{0}^{t} s ds \cr
-	&= \bm{\mu_t} (m x_3 + k) t + \bm{\mu_t} m \frac{y_3 - x_3}{2} t \cr
-	&= \bm{\mu_t} \Big(m \frac{x_3 + y_3}{2} + k \Big) t,
+    &= \bm{\mu_t} \int\_{0}^{t = \Vert \bm{y} - \bm{x} \Vert} \Big( m \big(x_3 + s (y_3 - x_3) / t \big) + k \Big) ds \cr
+    &= \bm{\mu_t} (m x_3 + k) t + \bm{\mu_t} (y_3 - x_3) \frac{m}{t} \int\_{0}^{t} s ds \cr
+    &= \bm{\mu_t} (m x_3 + k) t + \bm{\mu_t} m \frac{y_3 - x_3}{2} t \cr
+    &= \bm{\mu_t} \Big(m \frac{x_3 + y_3}{2} + k \Big) t,
 \end{aligned} $$
 
 which is the product of the average attenuation coefficient and the length of the interval, as expected.
@@ -146,14 +146,14 @@ which is the product of the average attenuation coefficient and the length of th
 The integral looks a little bit complicated:
 
 $$ \tag{21} \bm{I\_{lp}}(\bm{x}, \bm{v}, t)
-	= \bm{\alpha} \bm{\mu_t} \int\_{0}^{t} \big(m (x_3 + s v_3) + k \big) e^{- \bm{\mu_t} \big(m (x_3 + s v_3 / 2) + k \big) s} ds
+    = \bm{\alpha} \bm{\mu_t} \int\_{0}^{t} \big(m (x_3 + s v_3) + k \big) e^{- \bm{\mu_t} \big(m (x_3 + s v_3 / 2) + k \big) s} ds
 $$
 
 If you plug this expression into a [computer algebra system](https://en.wikipedia.org/wiki/Computer_algebra_system), you will get the following result:
 
 $$ \tag{22} \bm{I\_{lp}}(\bm{x}, \bm{v}, t)
-	= \bm{\alpha} \Big(1 - e^{- \bm{\mu_t} \big(m (x_3 + t v_3 / 2) + k \big) t} \Big)
-	= \bm{\alpha} \bm{O}(\bm{x}, \bm{x} + t \bm{v}). $$
+    = \bm{\alpha} \Big(1 - e^{- \bm{\mu_t} \big(m (x_3 + t v_3 / 2) + k \big) t} \Big)
+    = \bm{\alpha} \bm{O}(\bm{x}, \bm{x} + t \bm{v}). $$
 
 This expression looks [familiar](https://www.youtube.com/watch?v=z_KmNZNT5xw). Indeed, it has the same form as the Equation 18.
 
@@ -173,20 +173,20 @@ Plugging this in into the equation of optical depth, we obtain the following exp
 
 $$ \tag{25} \begin{aligned}
 \bm{\tau\_{ep}}(\bm{x}, \bm{y})
-	&= \bm{\mu_t} \int\_{0}^{t = \Vert \bm{y} - \bm{x} \Vert} k e^{-n \big(x_3 + s (y_3 - x_3) / t \big)} ds \cr
-	&= \bm{\mu_t} k e^{-n x_3} \int\_{0}^{t = \Vert \bm{y} - \bm{x} \Vert} e^{-s n (y_3 - x_3) / t} ds \cr
-	&= \bm{\mu_t} k t e^{-n x_3} \frac{1 - e^{-n (y_3 - x_3)}}{n (y_3 - x_3)} \cr
-	&= \bm{\mu_t} k t \frac{e^{-n x_3} - e^{-n y_3}}{n (y_3 - x_3)}.
+    &= \bm{\mu_t} \int\_{0}^{t = \Vert \bm{y} - \bm{x} \Vert} k e^{-n \big(x_3 + s (y_3 - x_3) / t \big)} ds \cr
+    &= \bm{\mu_t} k e^{-n x_3} \int\_{0}^{t = \Vert \bm{y} - \bm{x} \Vert} e^{-s n (y_3 - x_3) / t} ds \cr
+    &= \bm{\mu_t} k t e^{-n x_3} \frac{1 - e^{-n (y_3 - x_3)}}{n (y_3 - x_3)} \cr
+    &= \bm{\mu_t} k t \frac{e^{-n x_3} - e^{-n y_3}}{n (y_3 - x_3)}.
 \end{aligned} $$
 
 We can still integrate transmittance analytically (if you think that's complicated, wait until you see read the next section):
 
 $$ \tag{26} \begin{aligned}
 \bm{I\_{ep}}(\bm{x}, \bm{v}, t)
-	&= \bm{\alpha} \bm{\mu_t} \int\_{0}^{t} k e^{-n (x_3 + s v_3)} \mathrm{exp} \Bigg( - \bm{\mu_t} k s e^{-n x_3} \frac{1 - e^{-n \big((x_3 + s v_3) - x_3 \big)}}{n \big((x_3 + s v_3) - x_3 \big)} \Bigg) ds \cr
-	&= \bm{\alpha} \bm{\mu_t} k e^{-n x_3} \int\_{0}^{t} e^{-n s v_3} \mathrm{exp} \Bigg( - \bm{\mu_t} k s e^{-n x_3} \frac{1 - e^{-n s v_3}}{n s v_3} \Bigg) ds \cr
-	&= \bm{\alpha} \bm{\mu_t} k e^{-n x_3} \int\_{0}^{t} e^{-n s v_3} \mathrm{exp} \Bigg( - \bm{\mu_t} k e^{-n x_3} \frac{1 - e^{-n s v_3}}{n v_3} \Bigg) ds \cr
-	&= \bm{\alpha} \bm{\mu_t} k e^{-n x_3} \mathrm{exp} \Bigg( -\bm{\mu_t} \frac{k e^{-n x_3}}{n v_3} \Bigg) \int\_{0}^{t} e^{-n s v_3} \mathrm{exp} \Bigg( \bm{\mu_t} \frac{k e^{-n x_3}}{n v_3} e^{-n s v_3} \Bigg) ds.
+    &= \bm{\alpha} \bm{\mu_t} \int\_{0}^{t} k e^{-n (x_3 + s v_3)} \mathrm{exp} \Bigg( - \bm{\mu_t} k s e^{-n x_3} \frac{1 - e^{-n \big((x_3 + s v_3) - x_3 \big)}}{n \big((x_3 + s v_3) - x_3 \big)} \Bigg) ds \cr
+    &= \bm{\alpha} \bm{\mu_t} k e^{-n x_3} \int\_{0}^{t} e^{-n s v_3} \mathrm{exp} \Bigg( - \bm{\mu_t} k s e^{-n x_3} \frac{1 - e^{-n s v_3}}{n s v_3} \Bigg) ds \cr
+    &= \bm{\alpha} \bm{\mu_t} k e^{-n x_3} \int\_{0}^{t} e^{-n s v_3} \mathrm{exp} \Bigg( - \bm{\mu_t} k e^{-n x_3} \frac{1 - e^{-n s v_3}}{n v_3} \Bigg) ds \cr
+    &= \bm{\alpha} \bm{\mu_t} k e^{-n x_3} \mathrm{exp} \Bigg( -\bm{\mu_t} \frac{k e^{-n x_3}}{n v_3} \Bigg) \int\_{0}^{t} e^{-n s v_3} \mathrm{exp} \Bigg( \bm{\mu_t} \frac{k e^{-n x_3}}{n v_3} e^{-n s v_3} \Bigg) ds.
 \end{aligned} $$
 
 Let's simplify the calculation via the following substitution:
@@ -197,12 +197,12 @@ The integral then becomes
 
 $$ \tag{28} \begin{aligned}
 \bm{I\_{ep}}(\bm{x}, \bm{v}, t)
-	&= \bm{\alpha} \bm{\mu_t} k e^{-n x_3} e^{- \bm{\mu_t} \beta} \int\_{0}^{t} e^{\bm{\mu_t} \beta e^{-n s v_3}} e^{-n s v_3} ds \cr
-	&= \bm{\alpha} \bm{\mu_t} k e^{-n x_3} e^{- \bm{\mu_t} \beta} \frac{e^{\bm{\mu_t} \beta} - e^{\bm{\mu_t} \beta e^{-n t v_3}}}{\bm{\mu_t} \beta n v_3} \cr
-	&= \bm{\alpha} e^{- \bm{\mu_t} \beta} \Big( e^{\bm{\mu_t} \beta} - e^{\bm{\mu_t} \beta e^{-n t v_3}} \Big) \cr
-	&= \bm{\alpha} \Big( 1 - e^{- \bm{\mu_t} \beta + \bm{\mu_t} \beta e^{-n t v_3}} \Big) \cr
-	&= \bm{\alpha} \Big( 1 - e^{- \bm{\mu_t} \beta (1 - e^{-n t v_3} )} \Big) \cr
-	&= \bm{\alpha} \Bigg( 1 - \mathrm{exp} \Big( - \bm{\mu_t} k t e^{-n x_3} \frac{1 - e^{-n t v_3}}{n t v_3} \Big) \Bigg).
+    &= \bm{\alpha} \bm{\mu_t} k e^{-n x_3} e^{- \bm{\mu_t} \beta} \int\_{0}^{t} e^{\bm{\mu_t} \beta e^{-n s v_3}} e^{-n s v_3} ds \cr
+    &= \bm{\alpha} \bm{\mu_t} k e^{-n x_3} e^{- \bm{\mu_t} \beta} \frac{e^{\bm{\mu_t} \beta} - e^{\bm{\mu_t} \beta e^{-n t v_3}}}{\bm{\mu_t} \beta n v_3} \cr
+    &= \bm{\alpha} e^{- \bm{\mu_t} \beta} \Big( e^{\bm{\mu_t} \beta} - e^{\bm{\mu_t} \beta e^{-n t v_3}} \Big) \cr
+    &= \bm{\alpha} \Big( 1 - e^{- \bm{\mu_t} \beta + \bm{\mu_t} \beta e^{-n t v_3}} \Big) \cr
+    &= \bm{\alpha} \Big( 1 - e^{- \bm{\mu_t} \beta (1 - e^{-n t v_3} )} \Big) \cr
+    &= \bm{\alpha} \Bigg( 1 - \mathrm{exp} \Big( - \bm{\mu_t} k t e^{-n x_3} \frac{1 - e^{-n t v_3}}{n t v_3} \Big) \Bigg).
 \end{aligned} $$
 
 Comparing the result to the equation 25, we can observe that, [again](https://www.youtube.com/watch?v=MDpuTqBI0RM),
@@ -211,7 +211,7 @@ $$ \tag{29} \bm{I\_{ep}}(\bm{x}, \bm{v}, t) = \bm{\alpha} \bm{O}(\bm{x}, \bm{x} 
 
 ## Exponential Variation of Density with Altitude in Spherical Coordinates
 
-This is where things get interesting. We would like to model an exponential density distribution on a spherical planet:
+This is where things get interesting. We would like to model an exponential density distribution on in spherical coordinates:
 
 $$ \tag{30} \rho\_{es}(\bm{x}) = k e^{-h(\bm{x}) / H} = k e^{-(\Vert \bm{x} - \bm{c} \Vert - R) / H} = k e^{-n (\Vert \bm{x} - \bm{c} \Vert - R)}, $$
 
@@ -236,11 +236,11 @@ The expression of optical depth is then:
 
 $$ \tag{33} \begin{aligned}
 \bm{\tau\_{es}}(\bm{x}, \bm{y})
-	&= \bm{\mu_t} \int\_{0}^{t = \Vert \bm{y} - \bm{x} \Vert} k e^{-n h(s)} ds \cr
-	&= \bm{\mu_t} \int\_{0}^{t = \Vert \bm{y} - \bm{x} \Vert} k e^{-n (\sqrt{r_0^2 + (t_0 + s)^2} - R)} ds \cr
-	&= \bm{\mu_t} \int\_{0}^{t = \Vert \bm{y} - \bm{x} \Vert} k e^{-n (\sqrt{(r \mathrm{sin}{\theta})^2 + (r \mathrm{cos}{\theta} + s)^2} - R)} ds \cr
-	&= \bm{\mu_t} \int\_{0}^{t = \Vert \bm{y} - \bm{x} \Vert} k e^{-n (\sqrt{r^2 + 2 r s \mathrm{cos}{\theta} + s^2} - R)} ds \cr
-	&= \bm{\mu_t} \frac{k}{n} e^{-n (r - R)} \int\_{0}^{t = \Vert \bm{y} - \bm{x} \Vert} e^{n (r - \sqrt{r^2 + 2 r s \mathrm{cos}{\theta} + s^2})} n ds.
+    &= \bm{\mu_t} \int\_{0}^{t = \Vert \bm{y} - \bm{x} \Vert} k e^{-n h(s)} ds \cr
+    &= \bm{\mu_t} \int\_{0}^{t = \Vert \bm{y} - \bm{x} \Vert} k e^{-n (\sqrt{r_0^2 + (t_0 + s)^2} - R)} ds \cr
+    &= \bm{\mu_t} \int\_{0}^{t = \Vert \bm{y} - \bm{x} \Vert} k e^{-n (\sqrt{(r \mathrm{sin}{\theta})^2 + (r \mathrm{cos}{\theta} + s)^2} - R)} ds \cr
+    &= \bm{\mu_t} \int\_{0}^{t = \Vert \bm{y} - \bm{x} \Vert} k e^{-n (\sqrt{r^2 + 2 r s \mathrm{cos}{\theta} + s^2} - R)} ds \cr
+    &= \bm{\mu_t} \frac{k}{n} e^{-n (r - R)} \int\_{0}^{t = \Vert \bm{y} - \bm{x} \Vert} e^{n (r - \sqrt{r^2 + 2 r s \mathrm{cos}{\theta} + s^2})} n ds.
 \end{aligned} $$
 
 The resulting integral is very complex. (Don't believe me? Try evaluating it analyticly!). In order to make our life easier, we will factor out the nested integral, and extend the upper limit of integration to infinity. With the following change of variables:
@@ -253,14 +253,14 @@ $$ \tag{35} C(z, \theta) = \int\_{0}^{\infty} e^{z - \sqrt{z^2 + 2 z u \mathrm{c
 
 It's convenient to define the rescaled Chapman function \\(C_r\\):
 
-$$ \tag{36} C_r(z, Z, \mathrm{cos}{\theta}) = \int\_{0}^{\infty} e^{Z - \sqrt{z^2 + 2 z u \mathrm{cos}{\theta} + u^2}} du, $$
+$$ \tag{36} C_r(z, Z, \mathrm{cos}{\theta}) = e^{Z - z} C(z, \theta) = \int\_{0}^{\infty} e^{Z - \sqrt{z^2 + 2 z u \mathrm{cos}{\theta} + u^2}} du, $$
 
 which has a better numerical behavior, and further simplifies the expression of optical depth:
 
 $$ \tag{37} \begin{aligned}
 \bm{\tau\_{es}}(\bm{x}, \bm{y})
-	= \bm{\mu_t} \frac{k}{n} \Bigg( &C_r \Big(n \Vert \bm{x} - \bm{c} \Vert, n R, \mathrm{cos}{(\bm{x} - \bm{c}, \bm{y} - \bm{x})} \Big) - \cr
-	&C_r \Big(n \Vert \bm{y} - \bm{c} \Vert, n R, \mathrm{cos}{(\bm{y} - \bm{c}, \bm{y} - \bm{x})} \Big) \Bigg),
+    = \bm{\mu_t} \frac{k}{n} \Bigg( &C_r \Big(n \Vert \bm{x} - \bm{c} \Vert, n R, \mathrm{cos}{(\bm{x} - \bm{c}, \bm{y} - \bm{x})} \Big) - \cr
+    &C_r \Big(n \Vert \bm{y} - \bm{c} \Vert, n R, \mathrm{cos}{(\bm{y} - \bm{c}, \bm{y} - \bm{x})} \Big) \Bigg),
 \end{aligned} $$
 
 where
@@ -269,7 +269,7 @@ $$ \tag{38}
 \mathrm{cos}{(\bm{n}, \bm{v})}
 	= \Big\langle \frac{\bm{n}}{\Vert \bm{n} \Vert}, \frac{\bm{v}}{\Vert \bm{v} \Vert} \Big\rangle $$
 
-is a shorthand for the cosine of the angle between the normal vector and the viewing direction. What the Equation 37 says is that we should evaluate the optical depth integral along the ray (to infinity) twice, at the start and at the end of the interval, and subtract the results.
+is a shorthand for the cosine of the angle between the normal vector and the viewing direction. What the Equation 37 says is that we should evaluate the optical depth integral (along the entire ray, from 0 to \\(\infty\\)) twice, at the start and at the end of the interval, and subtract the results.
 
 It's interesting to consider the physical meaning of the Chapman function. Generally speaking, the value of a line integral of density (such as given by \\(\bm{\tau} / \bm{\mu_t}\\)) corresponds to mass. Therefore, the integral
 
@@ -285,10 +285,10 @@ It's always a good idea to examine a function visually, as a graph. Let's do tha
 
 {{< figure src="/img/chapman_ref.png" caption="*Plot of the Chapman function for \\(r = 6600\\).*">}}
 
-Above, I plotted values of the Chapman function (vertical axis) varying with the angle \\(\theta\\) (horizontal axis, in degrees) for different values of the scale height \\(H\\): \\(1\\) (blue), \\(10\\) (orange), \\(20\\) (green), \\(40\\) (red), \\(60\\) (purple), \\(80\\) (brown), \\(100\\) (cyan).
-Arguably, the first two are the most important, since they roughly correspond to scale heights of aerosols and air of Earth's atmosphere. It's also interesting to support larger values to model atmospheres on [other planets](https://en.wikipedia.org/wiki/Scale_height#Planetary_examples).
+Above, I plotted values of the Chapman function (vertical axis) varying with the angle \\(\theta\\) (horizontal axis, in degrees) for different values of the scale height \\(H\\): \\(1\\) (dark blue), \\(10\\) (orange), \\(20\\) (green), \\(40\\) (red), \\(60\\) (purple), \\(80\\) (brown), \\(100\\) (cyan).
+Arguably, the first two are the most important, since they roughly correspond to scale heights of aerosols and air of Earth's atmosphere. It's also nice to support larger values to model atmospheres on [other planets](https://en.wikipedia.org/wiki/Scale_height#Planetary_examples).
 
-Being an obliquity function, \\(C(z, 0) = 1\\). It also varies slowly, as long as the angle is far from the horizon (which suggests an opportunity for a small angle optimization).
+Being an obliquity function, \\(C(z, 0) = 1\\). The function varies slowly, as long as the angle is far from the horizon (which suggests an opportunity for a [small angle approximation](https://en.wikipedia.org/wiki/Small-angle_approximation)).
 
 The Chapman function for \\(\theta\\) angles up to 90 degrees has an [analytic expression](https://en.wikipedia.org/wiki/Closed-form_expression#Analytic_expression) \[[Kocifaj 1996](http://adsabs.harvard.edu/abs/1996CoSka..26...23K)\]:
 
@@ -304,13 +304,13 @@ Beyond the 90 degree angle, the following identity can be used:
 
 $$ \tag{42} C_l(z, \theta) = 2 e^{z - z \mathrm{sin}{\theta}} C_h(z \mathrm{sin}{\theta}) - C_u(z, \pi - \theta), $$
 
-which means that we must find a position along the ray where the ray direction is orthogonal to the surface normal, evaluate the horizontal Chapman function there (twice, forwards and backwards, e.i. along the entire line), and subtract the value of the Chapman function at the original position with the reverse direction, which isolates the integral to the desired segment along the ray.
+which means that we must find a position \\(\bm{P}\\) (sometimes called the [periapsis](https://en.wikipedia.org/wiki/Apsis) point) along the ray where the ray direction is orthogonal to the surface normal (see the diagram in the previous section), evaluate the horizontal Chapman function there (integrate twice, forwards and backwards, e.i. along the entire line, from \\(-\infty\\) to \\(\infty\\)), and subtract the value of the Chapman function at the original position with the reversed direction (to the atmospheric boundary), which isolates the integral to the desired segment along the ray.
 
-Christian Schüler in proposes an approximation for \\(C_u\\) in his [GPU Gems 3](http://www.gameenginegems.net/gemsdb/article.php?id=1133) article:
+Christian Schüler proposes an approximation for \\(C_u\\) in his [GPU Gems 3](http://www.gameenginegems.net/gemsdb/article.php?id=1133) article:
 
 $$ \tag{43} C_{u\\_cs}(z, \theta) = \frac{C_h(z)}{(C_h(z) - 1) \mathrm{cos}{\theta} + 1}. $$
 
-It's a very good approximation, especially considering the cost.
+It's a pretty good approximation, especially considering the cost.
 
 {{< figure src="/img/chapman_chris.png" caption="*Plot of the approximation of the Chapman function by Christian Schüler for \\(r = 6600\\).*">}}
 
@@ -328,16 +328,16 @@ The new approximation has up to 50 times lower relative error, and is acceptable
 
 {{< figure src="/img/chapman_erfc_error.png" caption="*Relative error plot of the new approximation of the Chapman function for \\(r = 6600\\).*">}}
 
-For reference, our full numerical approximation of the upper part of the Chapman function is:
+For reference, the full numerical approximation of the upper part of the Chapman function is:
 
 $$ \tag{45} C_{u\\_a}(z, \theta) = \frac{\mathrm{cos}{\theta}}{2} + \frac{0.761643 (1 + z (2 - \mathrm{cos}^2{\theta}))}{a z + \sqrt{z (1.47721 + 0.273828 z \mathrm{cos}^2{\theta})}}. $$
 
-For the reference, sample code is listed below:
+Sample code which implements the Equation 36 is listed below.
 
 ```c++
 float ChapmanUpperApprox(float z, float cosTheta)
 {
-	float c = cosTheta;
+    float c = cosTheta;
     float n = 0.761643 * ((1 + 2 * z) - (c * c * z));
     float d = c * z + sqrt(z * (1.47721 + 0.273828 * (c * c * z)));
 
@@ -355,29 +355,99 @@ float ChapmanHorizontal(float z)
 // z = (n * r), Z = (n * R).
 float RescaledChapmanFunction(float z, float Z, float cosTheta)
 {
+    float sinTheta = sqrt(saturate(1 - cosTheta * cosTheta));
+
     // cos(Pi - theta) = -cos(theta).
-    float ch = ChapmanUpperApprox(z, abs(cosTheta)) * exp(-z + Z); // Rescaling adds 'exp'
+    float ch = ChapmanUpperApprox(z, abs(cosTheta)) * exp(Z - z); // Rescaling adds 'exp'
 
     if (cosTheta < 0)
     {
-    	// x = z * sin(theta).
-        // Ch(z, theta) = 2 * exp(z - x) * Ch(x, Pi/2) - Ch(z, Pi - theta).
-        float x = z * sqrt(saturate(1 - cosTheta * cosTheta));
-        float a = exp(-x + Z); // Rescaling cancels out 'z' and adds 'Z'
-        float b = 2 * ChapmanHorizontal(x);
+        // z_0 = n * r_0 = (n * r) * sin(theta) = z * sin(theta).
+        // Ch(z, theta) = 2 * exp(z - z_0) * Ch(z_0, Pi/2) - Ch(z, Pi - theta).
+        float z_0 = z * sinTheta;
+        float a    = 2 * ChapmanHorizontal(z_0);
+        float b    = exp(Z - z_0); // Rescaling cancels out 'z' and adds 'Z'
+        float ch_2 = a * b;
 
-        ch = a * b - ch;
+        ch = ch_2 - ch;
     }
 
     return ch;
 }
 ```
 
-A small but important note is that we can always use \\( \vert \mathrm{cos}{\theta} \vert \\) since, if the angle is greater than 90 degrees, the direction is reversed, and the cosine is negated.
+A small but important note is that we can always use \\( \vert \mathrm{cos}{\theta} \vert \\) since, even if the angle is greater than 90 degrees, the evaluation direction is reversed, and the cosine is negated.
 
+### Evaluating Optical Depth Using the Chapman Function
 
+A numerical approximation of the Chapman function, in conjunction with the Equation 37, allows us to evaluate optical depth over an arbitrary ray segment.
 
+However, since the approximation of the Chapman function contains a branch (upper/lower hemisphere), using the full formulation may be unnecessarily complex for many use cases.
 
+For example, an implementation of the [Precomputed Atmospheric Scattering](https://dl.acm.org/citation.cfm?id=2383467) paper requires an ability to evaluate optical depth along the ray, where the ray may hit either nothing, or the spherical planet.
+
+First, we need to know whether the ray points above the horizon. Since the "horizon" ray always intersects the planet at the 90 degree angle with respect to the normal at the intersection point, the (obtuse) zenith angle of the horizon \\( \mathrm{cos}{\theta_h} \\) at the query point can be found using basic trigonometry:
+
+$$ \tag{46} \mathrm{cos}{\theta_h} = -\frac{\mathrm{adjacent}}{\mathrm{hypotenuse}} = -\frac{\sqrt{r^2 - R^2}}{r} = -\sqrt{1 - (R/r)^2}. $$
+
+If the ray points above the horizon, the regular Chapman function gets the job done. And if the ray points below the horizon, it may seem that we need to evaluate the full Chapman function twice (as per Equation 37), once at the starting point, where the ray points into the lower hemisphere, and once at the intersection point (with the same ray direction).
+
+However, it is more efficient to change the order of traversal of the ray segment, and flip the ray direction. Since \\(\bm{\tau}(\bm{x}, \bm{y}) = \bm{\tau}(\bm{y}, \bm{x})\\), we can begin evaluation at the intersection point (using the upper part of the Chapman function, and with \\(r = R\\)), and subtract the value of the (again) upper part of the Chapman function at the query point using the reversed direction.
+
+Please take a look at the updated diagram below:
+
+{{< figure src="/img/spherical_param.png">}}
+
+Using basic trigonometry, we can deduce the cosine of the angle at the intersection point:
+
+$$ \tag{47} \mathrm{sin}{\gamma} = \frac{\mathrm{opposite}}{\mathrm{hypotenuse}} = \frac{r_0}{R} = \frac{r \mathrm{sin}{\theta}}{R} \qquad \mathrm{cos}{\gamma} = \sqrt{1 - \mathrm{sin}^2{\gamma}} $$
+
+Sample code is listed below.
+
+```c++
+float ComputeCosineOfHorizonAngle(float r)
+{
+    float sinHoriz = R * rcp(r);
+    return -sqrt(saturate(1 - sinHoriz * sinHoriz));
+}
+
+// Ray equation: (X + t * V).
+float3 EvaluateOpticalDepthAlongRay(float3 X, float3 V)
+{
+    float r = distance(X, C);
+    float z = n * r;
+
+    float cosHoriz = ComputeCosineOfHorizonAngle(r);
+    float cosTheta = dot(X - C, V) * rcp(r);                      // Normalize
+    float sinTheta = sqrt(saturate(1 - cosTheta * cosTheta));
+
+    float ch = ChapmanUpperApprox(z, abs(cosTheta)) * exp(Z - z); // Rescaling adds 'exp'
+
+    if (cosTheta < cosHoriz) // Below horizon, intersect sphere
+    {
+        float sinGamma = (r / R) * sinTheta;
+        float cosGamma = sqrt(saturate(1 - sinGamma * sinGamma));
+        float ch_2     = ChapmanUpperApprox(Z, cosGamma); // No need to rescale
+
+        ch = ch_2 - ch;
+    }
+    else if (cosTheta < 0)   // Above horizon, lower hemisphere
+    {
+        // z_0 = n * r_0 = (n * r) * sin(theta) = z * sin(theta).
+        // Ch(z, theta) = 2 * exp(z - z_0) * Ch(z_0, Pi/2) - Ch(z, Pi - theta).
+        float z_0  = z * sinTheta;
+        float a    = 2 * ChapmanHorizontal(z_0);
+        float b    = exp(Z - z_0); // Rescaling cancels out 'z' and adds 'Z'
+        float ch_2 = a * b;
+
+        ch = ch_2 - ch;
+    }
+
+    return ch * H * seaLevelAttenuationCoefficient; // H = 1/n
+}
+```
+
+If desired, it is possible to reduce divergence by utilizing `ChapmanUpperApprox` (with the cosine value of 0) instead of `ChapmanHorizontal`, but I will retain this version for clarity of exposition.
 
 ---
 
