@@ -14,7 +14,7 @@ Rendering of participating media is an important aspect of every modern renderer
 
 <!--more-->
 
-Light-material interaction is usually quantified in terms of absorption (conversion of the electromagnetic energy of photons into the kinetic energy of atoms, which manifests itself as the reduction of light intensity) and scattering (change of direction). Therefore, it is common to describe participating media using the *absorption coefficient* \\(\bm{\sigma_a}\\) and the *scattering coefficient* \\(\bm{\sigma_s}\\). These coefficients give the probability of the corresponding event (absorption or scattering, respectively) as the photon travels the distance of 1 meter through the medium, which implies that the units of measurement are \\(m^{-1}\\).
+Light-material interaction is usually quantified in terms of absorption (conversion of  electromagnetic energy of photons into kinetic energy of atoms, which manifests itself as the reduction of light intensity) and scattering (change of direction). Therefore, it is common to describe participating media using the *absorption coefficient* \\(\bm{\sigma_a}\\) and the *scattering coefficient* \\(\bm{\sigma_s}\\). These coefficients give the probability of the corresponding event (absorption and scattering, respectively) as the photon travels the distance of 1 meter through the medium, which implies the units of measurement are \\(m^{-1}\\).
 
 $$ \tag{1} \bm{\sigma_t} = \bm{\sigma_a} + \bm{\sigma_s} $$
 
@@ -32,7 +32,7 @@ Integral of the attenuation coefficient along the ray segment from the point \\(
 
 $$ \tag{4} \bm{\tau}(\bm{x}, \bm{y}) = \int\_{0}^{\Vert \bm{y} - \bm{x} \Vert} \bm{\sigma_t} \Bigg(\bm{x} + s \frac{\bm{y} - \bm{x}}{\Vert \bm{y} - \bm{x} \Vert} \Bigg) ds, $$
 
-Once we know optical depth, it's easy to compute transmittance using the [Beer-Lamber law](https://en.wikipedia.org/wiki/Beer%E2%80%93Lambert_law):
+Given the value of optical depth, it's easy to compute transmittance using the [Beer–Lambert–Bouguer law](https://en.wikipedia.org/wiki/Beer%E2%80%93Lambert_law):
 
 $$ \tag{5} \bm{T}(\bm{x}, \bm{y}) = e^{-\bm{\tau}(\bm{x}, \bm{y})}, $$
 
@@ -40,7 +40,7 @@ While optical depth can take any non-negative value, transmittance is restricted
 
 $$ \tag{6} \bm{O}(\bm{x}, \bm{y}) = 1 - \bm{T}(\bm{x}, \bm{y}). $$
 
-It's worth briefly mentioning how transmittance and optical depth are composited in presence of several overlapping participating media. Optical depth is additive, while transmittance is multiplicative.
+It's worth briefly mentioning how transmittance and optical depth are composited in presence of several overlapping participating media: optical depth is additive, while transmittance is multiplicative.
 
 To shade our (non-emissive) medium, we must evaluate the [recursive in-scattering integral](http://www.pbr-book.org/3ed-2018/Light_Transport_II_Volume_Rendering/The_Equation_of_Transfer.html) along the ray:
 
@@ -64,16 +64,17 @@ $$
 
 where sample locations \\(\bm{y_i}\\) are distributed according to the [PDF](https://en.wikipedia.org/wiki/Probability_density_function) \\(p\\).
 
-We can [importance sample](http://www.pbr-book.org/3ed-2018/Monte_Carlo_Integration/Importance_Sampling.html) the integrand using the analytic product (effectively, by assuming that the value of \\(\bm{L_s}\\) varies slowly). This means that we must choose the PDF that is proportional to the analytic product (since the PDF determines the sample distribution). A valid PDF integrates to 1 over its domain (which, in our case, spans the range from 0 to \\(t\_{max}\\)), so we must normalize the analytic product using the value of its integral:
+We can [importance sample](http://www.pbr-book.org/3ed-2018/Monte_Carlo_Integration/Importance_Sampling.html) the integrand according to the analytic product (effectively, by assuming that the value of \\(\bm{L_s}\\) varies slowly). This means that we must choose the PDF that is proportional to the analytic product (since the PDF determines the sample distribution). A valid PDF integrates to 1 over its domain (which, in our case, spans the range from 0 to \\(t\_{max}\\)), so we must normalize the analytic product using the value of its integral:
 
-$$ \tag{10} \bm{I}(\bm{x}, \bm{v}, t)
-	= \int\_{0}^{t} \bm{T}(\bm{x},\bm{x} + s \bm{v}) \bm{\sigma_s}(\bm{x} + s \bm{v}) ds
-	= \int\_{0}^{t} \bm{\alpha}(\bm{x} + s \bm{v}) \bm{\sigma_t}(\bm{x} + s \bm{v}) e^{-\int\_{0}^{s} \bm{\sigma_t}(\bm{x} + u \bm{v}) du} ds
-$$
+$$ \tag{10} \begin{aligned}
+\bm{I}(\bm{x}, \bm{v}, t)
+	&= \int\_{0}^{t} \bm{T}(\bm{x},\bm{x} + s \bm{v}) \bm{\sigma_s}(\bm{x} + s \bm{v}) ds \cr
+	&= \int\_{0}^{t} e^{-\int\_{0}^{s} \bm{\sigma_t}(\bm{x} + u \bm{v}) du} \Big( \bm{\alpha}(\bm{x} + s \bm{v}) \bm{\sigma_t}(\bm{x} + s \bm{v}) \Big) ds,
+\end{aligned} $$
 
 $$ \tag{11} p(\bm{x}, \bm{y}) = \frac{T(\bm{x},\bm{y}) \sigma_s(\bm{y})}{I(\bm{x}, \frac{\bm{y} - \bm{x}}{\Vert \bm{y} - \bm{x} \Vert}, t\_{max})}. $$
 
-This radically simplifies the value of the estimate:
+This radically simplifies evaluation of the estimate:
 
 $$ \tag{12} L(\bm{x}, \bm{v}) \approx I(\bm{x}, \bm{v}, t\_{max}) \frac{1}{N} \sum\_{i=1}^{N} L_s(\bm{y_i}, \bm{v}). $$
 
@@ -148,7 +149,7 @@ $$ \tag{21} \bm{I\_{lp}}(\bm{x}, \bm{v}, t)
 	= \bm{\alpha} \bm{\mu_t} \int\_{0}^{t} \big(m (x_3 + s v_3) + k \big) e^{- \bm{\mu_t} \big(m (x_3 + s v_3 / 2) + k \big) s} ds
 $$
 
-If you plug this expression into a computer algebra system, you will get the following result:
+If you plug this expression into a [computer algebra system](https://en.wikipedia.org/wiki/Computer_algebra_system), you will get the following result:
 
 $$ \tag{22} \bm{I\_{lp}}(\bm{x}, \bm{v}, t)
 	= \bm{\alpha} \Big(1 - e^{- \bm{\mu_t} \big(m (x_3 + t v_3 / 2) + k \big) t} \Big)
@@ -178,7 +179,7 @@ $$ \tag{25} \begin{aligned}
 	&= \bm{\mu_t} k t \frac{e^{-n x_3} - e^{-n y_3}}{n (y_3 - x_3)}.
 \end{aligned} $$
 
-We can still integrate transmittance analyticly (if you think that's complicated, wait until you see read the next section):
+We can still integrate transmittance analytically (if you think that's complicated, wait until you see read the next section):
 
 $$ \tag{26} \begin{aligned}
 \bm{I\_{ep}}(\bm{x}, \bm{v}, t)
@@ -220,7 +221,7 @@ Before we proceed with the derivation, it's helpful to understand the geometric 
 
 ### Geometric Configuration
 
-Our goal is to simplify the problem using the inherent spherical symmetry of the setting. Please take a look at the diagram below:
+Our goal is to simplify the problem using its inherent spherical symmetry. Please take a look at the diagram below:
 
 {{< figure src="/img/spherical_param.png">}}
 
@@ -244,7 +245,7 @@ $$ \tag{33} \begin{aligned}
 
 The resulting integral is very complex. (Don't believe me? Try evaluating it analyticly!). In order to make our life easier, we will factor out the nested integral, and extend the upper limit of integration to infinity. With the following change of variables:
 
-$$ \tag{34} z = n r \qquad Z = n R \qquad u = n s, $$
+$$ \tag{34} u = n s \qquad z = n r \qquad Z = n R, $$
 
 the nested integral becomes what is known in the physics community as the [Chapman function](https://en.wikipedia.org/wiki/Chapman_function) (or the obliquity function, or the relative optical air mass) \\(C\\):
 
@@ -265,10 +266,10 @@ $$ \tag{37} \begin{aligned}
 where
 
 $$ \tag{38}
-\mathrm{cos}{(\bm{x}, \bm{y})}
-	= \Big\langle \frac{\bm{x}}{\Vert \bm{x} \Vert}, \frac{\bm{y}}{\Vert \bm{y} \Vert} \Big\rangle $$
+\mathrm{cos}{(\bm{n}, \bm{v})}
+	= \Big\langle \frac{\bm{n}}{\Vert \bm{n} \Vert}, \frac{\bm{v}}{\Vert \bm{v} \Vert} \Big\rangle $$
 
-is a shorthand for the cosine of the angle between the normal vector and the viewing direction. What the Equation 37 says is that we should evaluate the optical depth integral (to infinity) twice, at the start and at the end of the interval, and subtract the results.
+is a shorthand for the cosine of the angle between the normal vector and the viewing direction. What the Equation 37 says is that we should evaluate the optical depth integral along the ray (to infinity) twice, at the start and at the end of the interval, and subtract the results.
 
 It's interesting to consider the physical meaning of the Chapman function. Generally speaking, the value of a line integral of density (such as given by \\(\bm{\tau} / \bm{\mu_t}\\)) corresponds to mass. Therefore, the integral
 
@@ -284,10 +285,10 @@ It's always a good idea to examine a function visually, as a graph. Let's do tha
 
 {{< figure src="/img/chapman_ref.png" caption="*Plot of the Chapman function for \\(r = 6600\\).*">}}
 
-Above, I plotted values of the Chapman function (vertical axis) varying with the angle \\(\theta\\) (horizontal axis, in degrees) for different values of the scale height \\(H\\): \\(1\\) (dark blue), \\(10\\) (orange), \\(20\\) (green), \\(40\\) (red), \\(60\\) (purple), \\(80\\) (brown), \\(100\\) (light blue).
+Above, I plotted values of the Chapman function (vertical axis) varying with the angle \\(\theta\\) (horizontal axis, in degrees) for different values of the scale height \\(H\\): \\(1\\) (blue), \\(10\\) (orange), \\(20\\) (green), \\(40\\) (red), \\(60\\) (purple), \\(80\\) (brown), \\(100\\) (cyan).
 Arguably, the first two are the most important, since they roughly correspond to scale heights of aerosols and air of Earth's atmosphere. It's also interesting to support larger values to model atmospheres on [other planets](https://en.wikipedia.org/wiki/Scale_height#Planetary_examples).
 
-Being an obliquity function, its value for the angle \\(\theta = 0\\) is always \\(1\\). It also varies slowly, as long as the angle is far from the horizon (which suggests an opportunity for a small angle optimization).
+Being an obliquity function, \\(C(z, 0) = 1\\). It also varies slowly, as long as the angle is far from the horizon (which suggests an opportunity for a small angle optimization).
 
 The Chapman function for \\(\theta\\) angles up to 90 degrees has an [analytic expression](https://en.wikipedia.org/wiki/Closed-form_expression#Analytic_expression) \[[Kocifaj 1996](http://adsabs.harvard.edu/abs/1996CoSka..26...23K)\]:
 
