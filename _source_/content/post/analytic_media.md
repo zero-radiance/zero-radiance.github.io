@@ -286,7 +286,7 @@ It's always a good idea to examine a function visually, as a graph. Let's do tha
 {{< figure src="/img/chapman_ref.png" caption="*Plot of the Chapman function for \\(r = 6600\\).*">}}
 
 Above, I plotted values of the Chapman function (vertical axis) varying with the angle \\(\theta\\) (horizontal axis, in degrees) for different values of the scale height \\(H\\): \\(1\\) (dark blue), \\(10\\) (orange), \\(20\\) (green), \\(40\\) (red), \\(60\\) (purple), \\(80\\) (brown), \\(100\\) (cyan).
-Arguably, the first two are the most important, since they roughly correspond to scale heights of aerosols and air of Earth's atmosphere. It's also nice to support larger values to model atmospheres on [other planets](https://en.wikipedia.org/wiki/Scale_height#Planetary_examples).
+Arguably, the first two are the most important, since they roughly correspond to scale heights of aerosols and air of Earth's atmosphere. It's also nice to be able to support larger values to model atmospheres on [other planets](https://en.wikipedia.org/wiki/Scale_height#Planetary_examples).
 
 Being an obliquity function, \\(C(z, 0) = 1\\). The function varies slowly, as long as the angle is far from the horizon (which suggests an opportunity for a [small angle approximation](https://en.wikipedia.org/wiki/Small-angle_approximation)).
 
@@ -304,7 +304,7 @@ Beyond the 90 degree angle, the following identity can be used:
 
 $$ \tag{42} C_l(z, \theta) = 2 e^{z - z \mathrm{sin}{\theta}} C_h(z \mathrm{sin}{\theta}) - C_u(z, \pi - \theta), $$
 
-which means that we must find a position \\(\bm{P}\\) (sometimes called the [periapsis](https://en.wikipedia.org/wiki/Apsis) point) along the ray where the ray direction is orthogonal to the surface normal (see the diagram in the previous section), evaluate the horizontal Chapman function there (integrate twice, forwards and backwards, e.i. along the entire line, from \\(-\infty\\) to \\(\infty\\)), and subtract the value of the Chapman function at the original position with the reversed direction (to the atmospheric boundary), which isolates the integral to the desired segment along the ray.
+which means that we must find a position \\(\bm{p}\\) (sometimes called the [periapsis](https://en.wikipedia.org/wiki/Apsis) point) along the ray where the ray direction is orthogonal to the surface normal (see the diagram in the previous section), evaluate the horizontal Chapman function there (integrate twice, forwards and backwards, e.i. along the entire line, from \\(-\infty\\) to \\(\infty\\)), and subtract the value of the Chapman function at the original position with the reversed direction (to the atmospheric boundary), which isolates the integral to the desired segment along the ray.
 
 Christian Schüler proposes an approximation for \\(C_u\\) in his [GPU Gems 3](http://www.gameenginegems.net/gemsdb/article.php?id=1133) article:
 
@@ -365,34 +365,34 @@ float RescaledChapmanFunction(float z, float Z, float cosTheta)
         // z_0 = n * r_0 = (n * r) * sin(theta) = z * sin(theta).
         // Ch(z, theta) = 2 * exp(z - z_0) * Ch(z_0, Pi/2) - Ch(z, Pi - theta).
         float z_0 = z * sinTheta;
-        float a    = 2 * ChapmanHorizontal(z_0);
-        float b    = exp(Z - z_0); // Rescaling cancels out 'z' and adds 'Z'
-        float ch_2 = a * b;
+        float a   = 2 * ChapmanHorizontal(z_0);
+        float b   = exp(Z - z_0); // Rescaling cancels out 'z' and adds 'Z'
+        float chL = a * b;
 
-        ch = ch_2 - ch;
+        ch = chL - ch;
     }
 
     return ch;
 }
 ```
 
-A small but important note is that we can always use \\( \vert \mathrm{cos}{\theta} \vert \\) since, even if the angle is greater than 90 degrees, the evaluation direction is reversed, and the cosine is negated.
+A small but important note is that we can always use \\( \vert \mathrm{cos}{\theta} \vert \\) to evaluate the upper part of the Chapman function since, even if the angle is greater than 90 degrees, the evaluation direction is reversed, and the cosine is negated.
 
 ### Evaluating Optical Depth Using the Chapman Function
 
 A numerical approximation of the Chapman function, in conjunction with the Equation 37, allows us to evaluate optical depth over an arbitrary ray segment.
 
-However, since the approximation of the Chapman function contains a branch (upper/lower hemisphere), using the full formulation may be unnecessarily complex for many use cases.
+However, since the approximation of the Chapman function contains a branch (upper/lower hemisphere), using the full formulation may be unnecessarily expensive for many use cases.
 
-For example, an implementation of the [Precomputed Atmospheric Scattering](https://dl.acm.org/citation.cfm?id=2383467) paper requires an ability to evaluate optical depth along the ray, where the ray may hit either nothing, or the spherical planet.
+For example, an implementation of the [Precomputed Atmospheric Scattering](https://dl.acm.org/citation.cfm?id=2383467) paper requires an ability to evaluate optical depth along the ray, where the ray may hit either the spherical planet, or nothing at all.
 
-First, we need to know whether the ray points above the horizon. Since the "horizon" ray always intersects the planet at the 90 degree angle with respect to the normal at the intersection point, the (obtuse) zenith angle of the horizon \\( \mathrm{cos}{\theta_h} \\) at the query point can be found using basic trigonometry:
+To start with, we need to know whether the ray points above the horizon. Since the "horizon" ray always intersects the planet at the 90 degree angle with respect to the normal at the intersection point, the (obtuse) zenith angle of the horizon \\( \mathrm{cos}{\theta_h} \\) at the query point can be found using basic trigonometry:
 
 $$ \tag{46} \mathrm{cos}{\theta_h} = -\frac{\mathrm{adjacent}}{\mathrm{hypotenuse}} = -\frac{\sqrt{r^2 - R^2}}{r} = -\sqrt{1 - (R/r)^2}. $$
 
-If the ray points above the horizon, the regular Chapman function gets the job done. And if the ray points below the horizon, it may seem that we need to evaluate the full Chapman function twice (as per Equation 37), once at the starting point, where the ray points into the lower hemisphere, and once at the intersection point (with the same ray direction).
+If the ray points above the horizon, the regular Chapman function gets the job done. And if the ray points below the horizon, it may seem that we need to evaluate the full Chapman function twice (as per Equation 37), once at the starting point, where the ray points into the lower hemisphere, and once at the intersection point (using the same ray direction).
 
-However, it is more efficient to change the order of traversal of the ray segment, and flip the ray direction. Since \\(\bm{\tau}(\bm{x}, \bm{y}) = \bm{\tau}(\bm{y}, \bm{x})\\), we can begin evaluation at the intersection point (using the upper part of the Chapman function, and with \\(r = R\\)), and subtract the value of the (again) upper part of the Chapman function at the query point using the reversed direction.
+However, we can utilize the fact that \\(\bm{\tau}(\bm{x}, \bm{y}) = \bm{\tau}(\bm{y}, \bm{x})\\), and instead consider the ray segment \\(\bm{yx}\\) which starts at the intersection point \\(\bm{y}\\). We can begin evaluation using the upper part of the Chapman function (with \\(r = R\\)), and subtract the value of the (again) upper part of the Chapman function at the query point \\(\bm{x}\\) using the reversed direction.
 
 Please take a look at the updated diagram below:
 
@@ -427,9 +427,9 @@ float3 EvaluateOpticalDepthAlongRay(float3 X, float3 V)
     {
         float sinGamma = (r / R) * sinTheta;
         float cosGamma = sqrt(saturate(1 - sinGamma * sinGamma));
-        float ch_2     = ChapmanUpperApprox(Z, cosGamma); // No need to rescale
+        float chL      = ChapmanUpperApprox(Z, cosGamma); // No need to rescale
 
-        ch = ch_2 - ch;
+        ch = chL - ch;
     }
     else if (cosTheta < 0)   // Above horizon, lower hemisphere
     {
@@ -438,9 +438,9 @@ float3 EvaluateOpticalDepthAlongRay(float3 X, float3 V)
         float z_0  = z * sinTheta;
         float a    = 2 * ChapmanHorizontal(z_0);
         float b    = exp(Z - z_0); // Rescaling cancels out 'z' and adds 'Z'
-        float ch_2 = a * b;
+        float chL  = a * b;
 
-        ch = ch_2 - ch;
+        ch = chL - ch;
     }
 
     return ch * H * seaLevelAttenuationCoefficient; // H = 1/n
