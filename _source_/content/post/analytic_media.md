@@ -219,7 +219,7 @@ where \\(\bm{c}\\) is the center of the planet, \\(R\\) is its radius, \\(h\\) i
 
 Before we proceed with the derivation, it's helpful to understand the geometric setting (after all, a picture is worth a thousand words). Personally, I found the article by Christian Schüler in [GPU Gems 3](http://www.gameenginegems.net/gemsdb/article.php?id=1133) to be a very helpful introduction to the relevant concepts, and I encourage you to check it out if you have questions after reading my explanation below.
 
-### Geometric Configuration
+### Geometric Configuration of a Spherical Atmosphere
 
 Our goal is to simplify the problem using its inherent spherical symmetry. Please take a look at the diagram below:
 
@@ -279,7 +279,7 @@ corresponds to mass of an infinitely tall vertical column starting at height \\(
 
 Optical depth, then, is the *product* of the mass of the vertical column *and* the value of the obliquity function (which, intuitively, gives the absolute optical air mass along the ray) *times* the mass attenuation coefficient.
 
-### Exploring the Chapman Function
+### Examining the Chapman Function
 
 It's always a good idea to examine a function visually, as a graph. Let's do that.
 
