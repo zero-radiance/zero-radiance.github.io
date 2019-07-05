@@ -396,7 +396,7 @@ However, we can utilize the fact that \\(\bm{\tau}(\bm{x}, \bm{y}) = \bm{\tau}(\
 
 Please take a look at the updated diagram below:
 
-{{< figure src="/img/spherical_param.png">}}
+{{< figure src="/img/spherical_param_2.png">}}
 
 Using basic trigonometry, we can deduce the cosine of the angle at the intersection point:
 
