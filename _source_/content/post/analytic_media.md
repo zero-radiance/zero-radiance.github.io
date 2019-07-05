@@ -386,9 +386,14 @@ However, since the approximation of the Chapman function contains a branch (uppe
 
 For example, an implementation of the [Precomputed Atmospheric Scattering](https://dl.acm.org/citation.cfm?id=2383467) paper requires an ability to evaluate optical depth along the ray, where the ray may hit either the spherical planet, or nothing at all.
 
-To start with, we need to know whether the ray points above the horizon. Since the "horizon" ray always intersects the planet at the 90 degree angle with respect to the normal at the intersection point, the (obtuse) zenith angle of the horizon \\( \mathrm{cos}{\theta_h} \\) at the query point can be found using basic trigonometry:
+To start with, we need to know whether the ray points above the horizon.
+
+{{< figure src="/img/spherical_param_2.png">}}
+
+Since the "horizon" ray always intersects the planet at the 90 degree angle with respect to the normal at the intersection point, the (obtuse) horizon angle \\( \mathrm{cos}{\theta_h} \\) at the query point can be found using basic trigonometry:
 
 $$ \tag{46} \mathrm{cos}{\theta_h} = -\frac{\mathrm{adjacent}}{\mathrm{hypotenuse}} = -\frac{\sqrt{r^2 - R^2}}{r} = -\sqrt{1 - (R/r)^2}. $$
+
 
 If the ray points above the horizon, the regular Chapman function gets the job done. And if the ray points below the horizon, it may seem that we need to evaluate the full Chapman function twice (as per Equation 37), once at the starting point, where the ray points into the lower hemisphere, and once at the intersection point (using the same ray direction).
 
@@ -396,7 +401,7 @@ However, we can utilize the fact that \\(\bm{\tau}(\bm{x}, \bm{y}) = \bm{\tau}(\
 
 Please take a look at the updated diagram below:
 
-{{< figure src="/img/spherical_param_2.png">}}
+{{< figure src="/img/spherical_param_3.png">}}
 
 Using basic trigonometry, we can deduce the cosine of the angle at the intersection point:
 
