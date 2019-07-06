@@ -338,8 +338,8 @@ Sample code which implements the Equation 36 is listed below.
 float ChapmanUpperApprox(float z, float cosTheta)
 {
     float c = cosTheta;
-    float n = 0.761643 * ((1 + 2 * z) - (c * c * z));
-    float d = c * z + sqrt(z * (1.47721 + 0.273828 * (c * c * z)));
+    float n = 0.761643 * ((1 + 2 * z) - (z * c * c));
+    float d = z * c + sqrt(z * (1.47721 + 0.273828 * (z * c * c)));
 
     return 0.5 * c + (n * rcp(d));
 }
@@ -434,7 +434,7 @@ float3 EvaluateOpticalDepthAlongRay(float3 X, float3 V)
 
     if (cosTheta < cosHoriz) // Below horizon, intersect sphere
     {
-        float sinGamma = (r  * sinTheta) * rcpR;
+        float sinGamma = (r * sinTheta) * rcpR;
         float cosGamma = sqrt(saturate(1 - sinGamma * sinGamma));
         float chL      = ChapmanUpperApprox(Z, cosGamma);
 
@@ -457,6 +457,12 @@ float3 EvaluateOpticalDepthAlongRay(float3 X, float3 V)
 ```
 
 If desired, it is possible to reduce divergence by utilizing `ChapmanUpperApprox` (with the cosine value of 0) instead of `ChapmanHorizontal`, but I will retain this version for clarity of exposition.
+
+### Computing Transmittance Integrals Using the Chapman Function
+
+Around 10 pages earlier, we were quite interested in evaluating the extinction-transmittance integral (Equations 10, 18, 22, 29). What about our spherical exponential distributions? Is the value of the integral still identical to opacity?
+
+Unsurprisingly, trying to evaluate the integral analytically is an unsurmountable task. However, that shouldn't stop us from finding out the answer. We can still evaluate the integral numerically, and since we know the likely outcome, we can simply plot and compare the two.
 
 ---
 
