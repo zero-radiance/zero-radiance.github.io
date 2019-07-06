@@ -232,7 +232,7 @@ In order to find the parametric equation of altitude \\(h\\) along the ray, we c
 $$ \tag{31} r_0(r, \theta) = r \mathrm{sin}{\theta}, $$
 $$ \tag{32} t_0(r, \theta) = r \mathrm{cos}{\theta}. $$
 
-The expression of optical depth is then:
+If we ignore [atmospheric refraction](https://en.wikipedia.org/wiki/Atmospheric_refraction), we obtain the following expression for optical depth:
 
 $$ \tag{33} \begin{aligned}
 \bm{\tau\_{es}}(\bm{x}, \bm{y})
@@ -322,7 +322,7 @@ However, if you care about accuracy, and plot the the relative error graph, it p
 
 The physics literature has [many approximations](https://agupubs.onlinelibrary.wiley.com/doi/pdf/10.1029/2011JD016706) of the Chapman function. Unfortunately, most of them are specific to Earth's atmosphere.
 
-Instead, we can take a different, simpler approach. Instead of approximating the entire function (for which we have an analytic expression), all we have to do is approximate \\(\mathrm{erfc}\\) (or, more specifically, the term of the Equation 40 inside the square brackets). Luckily, the physics literature already has an efficient [approximation](https://rmets.onlinelibrary.wiley.com/doi/full/10.1002/asl.154) (for positive values of \\(x\\)) we can use:
+Instead, we can take a different, simpler approach. Instead of approximating the entire function (for which we have an analytic expression), all we have to do is approximate \\(\mathrm{erfc}\\) (or, more specifically, the term of the Equation 40 inside the square brackets). Luckily, the physics literature already has an efficient [approximation](https://rmets.onlinelibrary.wiley.com/doi/full/10.1002/asl.154) (for positive values of \\(x\\)) which we can use:
 
 $$ \tag{44} e^{x^2} \mathrm{erfc}(x) = \frac{2.911}{(2.911 - 1) \sqrt{\pi x^2} + \sqrt{\pi x^2 + 2.911^2}}. $$
 
