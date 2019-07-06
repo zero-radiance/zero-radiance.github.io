@@ -294,7 +294,9 @@ The Chapman function has an [analytic expression](https://en.wikipedia.org/wiki/
 
 $$ \tag{40} C(z, \theta) = \frac{1}{2} \mathrm{cos}{\theta} + \frac{1}{2} \Big(\frac{1}{\sqrt{z}} + 2 \sqrt{z} - \sqrt{z} (\mathrm{cos}{\theta})^2 \Big) \sqrt{\frac{\pi}{2}} \Big[ e^{\big( \frac{1}{\sqrt{2}} \sqrt{z} \mathrm{cos}{\theta} \big)^2} \mathrm{erfc}{\Big(\frac{1}{\sqrt{2}} \sqrt{z} \mathrm{cos}{\theta}\Big)} \Big], $$
 
-which, unfortunately, is not [closed-form](https://en.wikipedia.org/wiki/Closed-form_expression#Analytic_expression), since it contains the [complementary error function](http://mathworld.wolfram.com/Erfc.html) \\(\mathrm{erfc}\\). Note that, even after expending a considerable amount of time and effort, I have been unable to re-derive this expression (as an author, please share your derivations, you're supposed to write an article, not hand out math homework). I have a nagging suspicion that this is not a full analytic solution, but rather a truncated series expansion (similar to [this one](https://www.sciencedirect.com/science/article/pii/S0022407300001072)). Also, while the formula does work for angles beyond 90 degrees, the error compared to the numerically evaluated integral can get very large.
+which, unfortunately, is not [closed-form](https://en.wikipedia.org/wiki/Closed-form_expression#Analytic_expression), since it contains the [complementary error function](http://mathworld.wolfram.com/Erfc.html) \\(\mathrm{erfc}\\).
+
+Note that, even after expending a considerable amount of time and effort, I have been unable to re-derive this expression (dear authors, please share your derivations, you're supposed to write helpful articles, not hand out math homework). I have a nagging suspicion that this is not a full analytic solution, but rather a truncated series expansion (similar to [this one](https://www.sciencedirect.com/science/article/pii/S0022407300001072)). Also, while the formula does work for angles beyond 90 degrees, the error compared to the numerically evaluated integral can get very large rather quickly.
 
 For the zenith angle of 90 degrees, it reduces to
 
