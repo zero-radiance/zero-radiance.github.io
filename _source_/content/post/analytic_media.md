@@ -66,24 +66,23 @@ where sample locations \\(\bm{y_i}\\) are distributed according to the [PDF](htt
 
 We can [importance sample](http://www.pbr-book.org/3ed-2018/Monte_Carlo_Integration/Importance_Sampling.html) the integrand according to the analytic product (effectively, by assuming that the value of \\(\bm{L_s}\\) varies slowly). This means that we must choose the PDF that is proportional to the analytic product (since the PDF determines the sample distribution). A valid PDF integrates to 1 over its domain (which, in our case, spans the range from 0 to \\(t\_{max}\\)), so we must normalize the analytic product using the value of its integral:
 
-$$ \tag{10} \begin{aligned}
-\bm{I}(\bm{x}, \bm{v}, t)
-	&= \int\_{0}^{t} \bm{T}(\bm{x},\bm{x} + s \bm{v}) \bm{\sigma_s}(\bm{x} + s \bm{v}) ds \cr
-	&= \int\_{0}^{t} e^{-\int\_{0}^{s} \bm{\sigma_t}(\bm{x} + u \bm{v}) du} \Big( \bm{\alpha}(\bm{x} + s \bm{v}) \bm{\sigma_t}(\bm{x} + s \bm{v}) \Big) ds,
-\end{aligned} $$
+$$ \tag{10}
+\bm{A}(\bm{x}, \bm{v}, t)
+	= \int\_{0}^{t} \bm{T}(\bm{x},\bm{x} + s \bm{v}) \bm{\sigma_s}(\bm{x} + s \bm{v}) ds,
+$$
 
-$$ \tag{11} p(\bm{x}, \bm{y}) = \frac{T(\bm{x},\bm{y}) \sigma_s(\bm{y})}{I(\bm{x}, \frac{\bm{y} - \bm{x}}{\Vert \bm{y} - \bm{x} \Vert}, t\_{max})}. $$
+$$ \tag{11} p(\bm{x}, \bm{y}) = \frac{T(\bm{x},\bm{y}) \sigma_s(\bm{y})}{A(\bm{x}, \frac{\bm{y} - \bm{x}}{\Vert \bm{y} - \bm{x} \Vert}, t\_{max})}. $$
 
 This radically simplifies evaluation of the estimate:
 
-$$ \tag{12} L(\bm{x}, \bm{v}) \approx I(\bm{x}, \bm{v}, t\_{max}) \frac{1}{N} \sum\_{i=1}^{N} L_s(\bm{y_i}, \bm{v}). $$
+$$ \tag{12} L(\bm{x}, \bm{v}) \approx A(\bm{x}, \bm{v}, t\_{max}) \frac{1}{N} \sum\_{i=1}^{N} L_s(\bm{y_i}, \bm{v}). $$
 
-Additionally, in order to distribute the samples according to the PDF, we must be able to [invert](http://www.pbr-book.org/3ed-2018/Monte_Carlo_Integration/Sampling_Random_Variables.html#TheInversionMethod) the [CDF](https://en.wikipedia.org/wiki/Cumulative_distribution_function) \\(P\\), which, again, contains the integral \\(I\\):
+Additionally, in order to distribute the samples according to the PDF, we must be able to [invert](http://www.pbr-book.org/3ed-2018/Monte_Carlo_Integration/Sampling_Random_Variables.html#TheInversionMethod) the [CDF](https://en.wikipedia.org/wiki/Cumulative_distribution_function) \\(P\\), which, again, contains the integral \\(A\\):
 
 $$ \tag{13} P(\bm{x}, \bm{v}, t)
     = \int\_{0}^{t} p(\bm{x}, \bm{x} + s \bm{v}) ds
-    = \int\_{0}^{t} \frac{T(\bm{x},\bm{x} + s \bm{v}) \sigma_s(\bm{x} + s \bm{v})}{I(\bm{x}, \bm{v}, t\_{max})} ds
-    = \frac{I(\bm{x}, \bm{v}, t)}{I(\bm{x}, \bm{v}, t\_{max})}.
+    = \int\_{0}^{t} \frac{T(\bm{x},\bm{x} + s \bm{v}) \sigma_s(\bm{x} + s \bm{v})}{A(\bm{x}, \bm{v}, t\_{max})} ds
+    = \frac{A(\bm{x}, \bm{v}, t)}{A(\bm{x}, \bm{v}, t\_{max})}.
 $$
 
 Clearly, there is some utility in being able to evaluate this integral. Let's take a closer look at some examples.
@@ -98,42 +97,52 @@ where \\(\rho\\) is the [volumetric mass density](https://en.wikipedia.org/wiki/
 
 If your background is in real-time rendering, you may have heard of [constant, linear and exponential fog](http://www.terathon.com/lengyel/Lengyel-UnifiedFog.pdf). These names refer to variation of density, typically with respect to height, and can be used to model height fog and atmospheric scattering.
 
-All of these types of participating media assume that values of the volume albedo \\(\bm{\alpha}\\) and the mass attenuation coefficient \\(\bm{\mu_t}\\) are *constant* across the entire volume.
+All of these types of participating media assume a constant albedo value, which leads to a simplified expression of the analytic integral:
+
+$$ \tag{15} \begin{aligned}
+\bm{A}(\bm{x}, \bm{v}, t)
+	&= \int\_{0}^{t} \bm{\sigma_s}(\bm{x} + s \bm{v}) \bm{T}(\bm{x},\bm{x} + s \bm{v})  ds \cr
+	&= \int\_{0}^{t} \Big( \bm{\alpha}(\bm{x} + s \bm{v}) \bm{\sigma_t}(\bm{x} + s \bm{v}) \Big) \bm{T}(\bm{x},\bm{x} + s \bm{v})  ds \cr
+	&\approx \bm{\alpha} \int\_{0}^{t} \bm{\sigma_t}(\bm{x} + s \bm{v}) \bm{T}(\bm{x},\bm{x} + s \bm{v}) ds \cr
+	&= \bm{\alpha} \bm{I}(\bm{x}, \bm{v}, t).
+\end{aligned} $$
+
+We will refer to \\(\bm{I}\\) as the *extinction-transmittance integral*.
 
 ## Constant Density
 
 A constant (or homogeneous) medium has uniform density across the entire volume:
 
-$$ \tag{15} \rho_c = k. $$
+$$ \tag{16} \rho_c = k. $$
 
 This formulation makes computing optical depth (Equation 4) and transmittance (Equation 5) easy:
 
-$$ \tag{16} \bm{\tau_c}(\bm{x}, \bm{y}) = \bm{\mu_t} k \Vert \bm{y} - \bm{x} \Vert, $$
+$$ \tag{17} \bm{\tau_c}(\bm{x}, \bm{y}) = \bm{\mu_t} k \Vert \bm{y} - \bm{x} \Vert, $$
 
 The value of the integral (Equation 8) is thus:
 
-$$ \tag{17} \bm{I_c}(\bm{x}, \bm{v}, t)
-    = \bm{\alpha} \bm{\mu_t} k \int\_{0}^{t} e^{-\bm{\mu_t} k s} ds
-    = \bm{\alpha} (1 - e^{-\bm{\mu_t} k t}).
+$$ \tag{18} \bm{I_c}(\bm{x}, \bm{v}, t)
+    = \bm{\mu_t} k \int\_{0}^{t} e^{-\bm{\mu_t} k s} ds
+    = 1 - e^{-\bm{\mu_t} k t}.
 $$
 
 We can immediately recognize that the meaning of the integral:
 
-$$ \tag{18} \bm{I_c}(\bm{x}, \bm{v}, t) = \bm{\alpha} \bm{O}(\bm{x}, \bm{x} + t \bm{v}), $$
+$$ \tag{19} \bm{I_c}(\bm{x}, \bm{v}, t) = \bm{O}(\bm{x}, \bm{x} + t \bm{v}), $$
 
-which is simply the product of volume albedo and volume opacity (Equations 2 and 6).
+which is simply volume opacity (Equation 6).
 
 ## Linear Variation of Density with Altitude in Rectangular Coordinates
 
 This is your typical "linear height fog on flat Earth" case. Density varies with the third (\\(z\\)) coordinate, which we interpret as the altitude:
 
-$$ \tag{19} \rho\_{lp}(\bm{x}) = m x_3 + k. $$
+$$ \tag{20} \rho\_{lp}(\bm{x}) = m x_3 + k. $$
 
 This formulation can be reduced to homogeneous media by setting \\(m = 0\\).
 
 Expressions of optical depth and transmittance remain fairly simple:
 
-$$ \tag{20} \begin{aligned}
+$$ \tag{21} \begin{aligned}
 \bm{\tau\_{lp}}(\bm{x}, \bm{y})
     &= \bm{\mu_t} \int\_{0}^{t = \Vert \bm{y} - \bm{x} \Vert} \Big( m \big(x_3 + s (y_3 - x_3) / t \big) + k \Big) ds \cr
     &= \bm{\mu_t} (m x_3 + k) t + \bm{\mu_t} (y_3 - x_3) \frac{m}{t} \int\_{0}^{t} s ds \cr
@@ -145,33 +154,33 @@ which is the product of the average attenuation coefficient and the length of th
 
 The integral looks a little bit complicated:
 
-$$ \tag{21} \bm{I\_{lp}}(\bm{x}, \bm{v}, t)
-    = \bm{\alpha} \bm{\mu_t} \int\_{0}^{t} \big(m (x_3 + s v_3) + k \big) e^{- \bm{\mu_t} \big(m (x_3 + s v_3 / 2) + k \big) s} ds
+$$ \tag{22} \bm{I\_{lp}}(\bm{x}, \bm{v}, t)
+    = \bm{\mu_t} \int\_{0}^{t} \big(m (x_3 + s v_3) + k \big) e^{- \bm{\mu_t} \big(m (x_3 + s v_3 / 2) + k \big) s} ds
 $$
 
 If you plug this expression into a [computer algebra system](https://en.wikipedia.org/wiki/Computer_algebra_system), you will get the following result:
 
-$$ \tag{22} \bm{I\_{lp}}(\bm{x}, \bm{v}, t)
-    = \bm{\alpha} \Big(1 - e^{- \bm{\mu_t} \big(m (x_3 + t v_3 / 2) + k \big) t} \Big)
-    = \bm{\alpha} \bm{O}(\bm{x}, \bm{x} + t \bm{v}). $$
+$$ \tag{23} \bm{I\_{lp}}(\bm{x}, \bm{v}, t)
+    = 1 - e^{- \bm{\mu_t} \big(m (x_3 + t v_3 / 2) + k \big) t}
+    = \bm{O}(\bm{x}, \bm{x} + t \bm{v}), $$
 
-This expression looks [familiar](https://www.youtube.com/watch?v=z_KmNZNT5xw). Indeed, it has the same form as the Equation 18.
+which, [surprisingly](https://www.youtube.com/watch?v=z_KmNZNT5xw), exactly matches the form of the Equation 19.
 
 ## Exponential Variation of Density with Altitude in Rectangular Coordinates
 
 We can replace the linear density function with an exponential:
 
-$$ \tag{23} \rho\_{ep}(\bm{x}) = k e^{-x_3 / H}, $$
+$$ \tag{24} \rho\_{ep}(\bm{x}) = k e^{-x_3 / H}, $$
 
 where \\(H\\) is the [scale height](https://en.wikipedia.org/wiki/Scale_height), measured in meters. Another way to think about it is as of the reciprocal of the falloff exponent \\(n\\):
 
-$$ \tag{24} \rho\_{ep}(\bm{x}) = k e^{-n x_3}. $$
+$$ \tag{25} \rho\_{ep}(\bm{x}) = k e^{-n x_3}. $$
 
 Setting \\(n = 0\\) results in a homogeneous medium.
 
 Plugging this in into the equation of optical depth, we obtain the following expression:
 
-$$ \tag{25} \begin{aligned}
+$$ \tag{26} \begin{aligned}
 \bm{\tau\_{ep}}(\bm{x}, \bm{y})
     &= \bm{\mu_t} \int\_{0}^{t = \Vert \bm{y} - \bm{x} \Vert} k e^{-n \big(x_3 + s (y_3 - x_3) / t \big)} ds \cr
     &= \bm{\mu_t} k e^{-n x_3} \int\_{0}^{t = \Vert \bm{y} - \bm{x} \Vert} e^{-s n (y_3 - x_3) / t} ds \cr
@@ -181,39 +190,39 @@ $$ \tag{25} \begin{aligned}
 
 We can still integrate transmittance analytically (if you think that's complicated, wait until you see read the next section):
 
-$$ \tag{26} \begin{aligned}
+$$ \tag{27} \begin{aligned}
 \bm{I\_{ep}}(\bm{x}, \bm{v}, t)
-    &= \bm{\alpha} \bm{\mu_t} \int\_{0}^{t} k e^{-n (x_3 + s v_3)} \mathrm{exp} \Bigg( - \bm{\mu_t} k s e^{-n x_3} \frac{1 - e^{-n \big((x_3 + s v_3) - x_3 \big)}}{n \big((x_3 + s v_3) - x_3 \big)} \Bigg) ds \cr
-    &= \bm{\alpha} \bm{\mu_t} k e^{-n x_3} \int\_{0}^{t} e^{-n s v_3} \mathrm{exp} \Bigg( - \bm{\mu_t} k s e^{-n x_3} \frac{1 - e^{-n s v_3}}{n s v_3} \Bigg) ds \cr
-    &= \bm{\alpha} \bm{\mu_t} k e^{-n x_3} \int\_{0}^{t} e^{-n s v_3} \mathrm{exp} \Bigg( - \bm{\mu_t} k e^{-n x_3} \frac{1 - e^{-n s v_3}}{n v_3} \Bigg) ds \cr
-    &= \bm{\alpha} \bm{\mu_t} k e^{-n x_3} \mathrm{exp} \Bigg( -\bm{\mu_t} \frac{k e^{-n x_3}}{n v_3} \Bigg) \int\_{0}^{t} e^{-n s v_3} \mathrm{exp} \Bigg( \bm{\mu_t} \frac{k e^{-n x_3}}{n v_3} e^{-n s v_3} \Bigg) ds.
+    &= \bm{\mu_t} \int\_{0}^{t} k e^{-n (x_3 + s v_3)} \mathrm{exp} \Bigg( - \bm{\mu_t} k s e^{-n x_3} \frac{1 - e^{-n \big((x_3 + s v_3) - x_3 \big)}}{n \big((x_3 + s v_3) - x_3 \big)} \Bigg) ds \cr
+    &= \bm{\mu_t} k e^{-n x_3} \int\_{0}^{t} e^{-n s v_3} \mathrm{exp} \Bigg( - \bm{\mu_t} k s e^{-n x_3} \frac{1 - e^{-n s v_3}}{n s v_3} \Bigg) ds \cr
+    &= \bm{\mu_t} k e^{-n x_3} \int\_{0}^{t} e^{-n s v_3} \mathrm{exp} \Bigg( - \bm{\mu_t} k e^{-n x_3} \frac{1 - e^{-n s v_3}}{n v_3} \Bigg) ds \cr
+    &= \bm{\mu_t} k e^{-n x_3} \mathrm{exp} \Bigg( -\bm{\mu_t} \frac{k e^{-n x_3}}{n v_3} \Bigg) \int\_{0}^{t} e^{-n s v_3} \mathrm{exp} \Bigg( \bm{\mu_t} \frac{k e^{-n x_3}}{n v_3} e^{-n s v_3} \Bigg) ds.
 \end{aligned} $$
 
 Let's simplify the calculation via the following substitution:
 
-$$ \tag{27} \beta = \frac{k e^{-n x_3}}{n v_3}. $$
+$$ \tag{28} \beta = \frac{k e^{-n x_3}}{n v_3}. $$
 
 The integral then becomes
 
-$$ \tag{28} \begin{aligned}
+$$ \tag{29} \begin{aligned}
 \bm{I\_{ep}}(\bm{x}, \bm{v}, t)
-    &= \bm{\alpha} \bm{\mu_t} k e^{-n x_3} e^{- \bm{\mu_t} \beta} \int\_{0}^{t} e^{\bm{\mu_t} \beta e^{-n s v_3}} e^{-n s v_3} ds \cr
-    &= \bm{\alpha} \bm{\mu_t} k e^{-n x_3} e^{- \bm{\mu_t} \beta} \frac{e^{\bm{\mu_t} \beta} - e^{\bm{\mu_t} \beta e^{-n t v_3}}}{\bm{\mu_t} \beta n v_3} \cr
-    &= \bm{\alpha} e^{- \bm{\mu_t} \beta} \Big( e^{\bm{\mu_t} \beta} - e^{\bm{\mu_t} \beta e^{-n t v_3}} \Big) \cr
-    &= \bm{\alpha} \Big( 1 - e^{- \bm{\mu_t} \beta + \bm{\mu_t} \beta e^{-n t v_3}} \Big) \cr
-    &= \bm{\alpha} \Big( 1 - e^{- \bm{\mu_t} \beta (1 - e^{-n t v_3} )} \Big) \cr
-    &= \bm{\alpha} \Bigg( 1 - \mathrm{exp} \Big( - \bm{\mu_t} k t e^{-n x_3} \frac{1 - e^{-n t v_3}}{n t v_3} \Big) \Bigg).
+    &= \bm{\mu_t} k e^{-n x_3} e^{- \bm{\mu_t} \beta} \int\_{0}^{t} e^{\bm{\mu_t} \beta e^{-n s v_3}} e^{-n s v_3} ds \cr
+    &= \bm{\mu_t} k e^{-n x_3} e^{- \bm{\mu_t} \beta} \frac{e^{\bm{\mu_t} \beta} - e^{\bm{\mu_t} \beta e^{-n t v_3}}}{\bm{\mu_t} \beta n v_3} \cr
+    &= e^{- \bm{\mu_t} \beta} \Big( e^{\bm{\mu_t} \beta} - e^{\bm{\mu_t} \beta e^{-n t v_3}} \Big) \cr
+    &= 1 - e^{- \bm{\mu_t} \beta + \bm{\mu_t} \beta e^{-n t v_3}} \cr
+    &= 1 - e^{- \bm{\mu_t} \beta (1 - e^{-n t v_3} )} \cr
+    &= 1 - \mathrm{exp} \Bigg( - \bm{\mu_t} k t e^{-n x_3} \frac{1 - e^{-n t v_3}}{n t v_3} \Bigg).
 \end{aligned} $$
 
-Comparing the result to the equation 25, we can observe that, [again](https://www.youtube.com/watch?v=MDpuTqBI0RM),
+Comparing the result to the equation 26, we can observe that, [again](https://www.youtube.com/watch?v=MDpuTqBI0RM),
 
-$$ \tag{29} \bm{I\_{ep}}(\bm{x}, \bm{v}, t) = \bm{\alpha} \bm{O}(\bm{x}, \bm{x} + t \bm{v}). $$
+$$ \tag{30} \bm{I\_{ep}}(\bm{x}, \bm{v}, t) = \bm{O}(\bm{x}, \bm{x} + t \bm{v}). $$
 
 ## Exponential Variation of Density with Altitude in Spherical Coordinates
 
 This is where things get interesting. We would like to model an exponential density distribution on in spherical coordinates:
 
-$$ \tag{30} \rho\_{es}(\bm{x}) = k e^{-h(\bm{x}) / H} = k e^{-(\Vert \bm{x} - \bm{c} \Vert - R) / H} = k e^{-n (\Vert \bm{x} - \bm{c} \Vert - R)}, $$
+$$ \tag{31} \rho\_{es}(\bm{x}) = k e^{-h(\bm{x}) / H} = k e^{-(\Vert \bm{x} - \bm{c} \Vert - R) / H} = k e^{-n (\Vert \bm{x} - \bm{c} \Vert - R)}, $$
 
 where \\(\bm{c}\\) is the center of the planet, \\(R\\) is its radius, \\(h\\) is the altitude, and \\(H\\) is the [scale height](https://en.wikipedia.org/wiki/Scale_height) as before. In this context, \\(k\\) and \\(\bm{\mu_t} k\\) represent density and the value of the attenuation coefficient at the sea level, respectively.
 
@@ -229,12 +238,12 @@ We start by recognizing the fact that every ordered pair of position and directi
 
 In order to find the parametric equation of altitude \\(h\\) along the ray, we can use a right triangle with legs \\(r_0\\) and \\(t_0\\) corresponding to the initial pair of position and direction \\(\lbrace r, \theta \rbrace\\):
 
-$$ \tag{31} r_0(r, \theta) = r \mathrm{sin}{\theta}, $$
-$$ \tag{32} t_0(r, \theta) = r \mathrm{cos}{\theta}. $$
+$$ \tag{32} r_0(r, \theta) = r \mathrm{sin}{\theta}, $$
+$$ \tag{33} t_0(r, \theta) = r \mathrm{cos}{\theta}. $$
 
 If we ignore [atmospheric refraction](https://en.wikipedia.org/wiki/Atmospheric_refraction), we obtain the following expression for optical depth:
 
-$$ \tag{33} \begin{aligned}
+$$ \tag{34} \begin{aligned}
 \bm{\tau\_{es}}(\bm{x}, \bm{y})
     &= \bm{\mu_t} \int\_{0}^{t = \Vert \bm{y} - \bm{x} \Vert} k e^{-n h(s)} ds \cr
     &= \bm{\mu_t} \int\_{0}^{t = \Vert \bm{y} - \bm{x} \Vert} k e^{-n (\sqrt{r_0^2 + (t_0 + s)^2} - R)} ds \cr
@@ -245,19 +254,19 @@ $$ \tag{33} \begin{aligned}
 
 The resulting integral is very complex. (Don't believe me? Try evaluating it analyticly!). In order to make our life easier, we will factor out the nested integral, and extend the upper limit of integration to infinity. With the following change of variables:
 
-$$ \tag{34} u = n s \qquad z = n r \qquad Z = n R, $$
+$$ \tag{35} u = n s \qquad z = n r \qquad Z = n R, $$
 
 the nested integral becomes what is known in the physics community as the [Chapman function](https://en.wikipedia.org/wiki/Chapman_function) (or the obliquity function, or the relative optical air mass) \\(C\\):
 
-$$ \tag{35} C(z, \theta) = \int\_{0}^{\infty} e^{z - \sqrt{z^2 + 2 z u \mathrm{cos}{\theta} + u^2}} du. $$
+$$ \tag{36} C(z, \theta) = \int\_{0}^{\infty} e^{z - \sqrt{z^2 + 2 z u \mathrm{cos}{\theta} + u^2}} du. $$
 
 It's convenient to define the rescaled Chapman function \\(C_r\\):
 
-$$ \tag{36} C_r(z, Z, \mathrm{cos}{\theta}) = e^{Z - z} C(z, \theta) = \int\_{0}^{\infty} e^{Z - \sqrt{z^2 + 2 z u \mathrm{cos}{\theta} + u^2}} du, $$
+$$ \tag{37} C_r(z, Z, \mathrm{cos}{\theta}) = e^{Z - z} C(z, \theta) = \int\_{0}^{\infty} e^{Z - \sqrt{z^2 + 2 z u \mathrm{cos}{\theta} + u^2}} du, $$
 
 which has a better numerical behavior, and further simplifies the expression of optical depth:
 
-$$ \tag{37} \begin{aligned}
+$$ \tag{38} \begin{aligned}
 \bm{\tau\_{es}}(\bm{x}, \bm{y})
     = \bm{\mu_t} \frac{k}{n} \Bigg( &C_r \Big(n \Vert \bm{x} - \bm{c} \Vert, n R, \mathrm{cos}{(\bm{x} - \bm{c}, \bm{y} - \bm{x})} \Big) - \cr
     &C_r \Big(n \Vert \bm{y} - \bm{c} \Vert, n R, \mathrm{cos}{(\bm{y} - \bm{c}, \bm{y} - \bm{x})} \Big) \Bigg),
@@ -265,17 +274,17 @@ $$ \tag{37} \begin{aligned}
 
 where
 
-$$ \tag{38}
+$$ \tag{39}
 \mathrm{cos}{(\bm{n}, \bm{v})}
 	= \Big\langle \frac{\bm{n}}{\Vert \bm{n} \Vert}, \frac{\bm{v}}{\Vert \bm{v} \Vert} \Big\rangle $$
 
-is a shorthand for the cosine of the angle between the normal vector and the viewing direction. What the Equation 37 says is that we should evaluate the optical depth integral (along the entire ray, from 0 to \\(\infty\\)) twice, at the start and at the end of the interval, and subtract the results.
+is a shorthand for the cosine of the angle between the normal vector and the viewing direction. What the Equation 38 says is that we should evaluate the optical depth integral (along the entire ray, from 0 to \\(\infty\\)) twice, at the start and at the end of the interval, and subtract the results.
 
 From the practical standpoint, it's worth noting that, for short distances, this expression of optical depth can be well approximated by its "rectangular" version, potentially saving many ALU instructions.
 
 It's interesting to consider the physical meaning of the Chapman function. Generally speaking, the value of a line integral of density (such as given by \\(\bm{\tau} / \bm{\mu_t}\\)) corresponds to mass. Therefore, the integral
 
-$$ \tag{39} \int\_{h = (r - R)}^{\infty} k e^{-n s} ds = \frac{k}{n} e^{-n h} $$
+$$ \tag{40} \int\_{h = (r - R)}^{\infty} k e^{-n s} ds = \frac{k}{n} e^{-n h} $$
 
 corresponds to mass of an infinitely tall vertical column starting at height \\(h\\).
 
@@ -294,7 +303,7 @@ Being an obliquity function, \\(C(z, 0) = 1\\). The function varies slowly, as l
 
 The Chapman function has an [analytic expression](https://en.wikipedia.org/wiki/Closed-form_expression#Analytic_expression) derived by [Miroslav Kocifaj](https://ui.adsabs.harvard.edu/abs/1996CoSka..26...23K/abstract):
 
-$$ \tag{40} C(z, \theta) = \frac{1}{2} \mathrm{cos}{\theta} + \frac{1}{2} \Big(\frac{1}{\sqrt{z}} + 2 \sqrt{z} - \sqrt{z} (\mathrm{cos}{\theta})^2 \Big) \sqrt{\frac{\pi}{2}} \Big[ e^{\big( \frac{1}{\sqrt{2}} \sqrt{z} \mathrm{cos}{\theta} \big)^2} \mathrm{erfc}{\Big(\frac{1}{\sqrt{2}} \sqrt{z} \mathrm{cos}{\theta}\Big)} \Big], $$
+$$ \tag{41} C(z, \theta) = \frac{1}{2} \mathrm{cos}{\theta} + \frac{1}{2} \Big(\frac{1}{\sqrt{z}} + 2 \sqrt{z} - \sqrt{z} (\mathrm{cos}{\theta})^2 \Big) \sqrt{\frac{\pi}{2}} \Big[ e^{\big( \frac{1}{\sqrt{2}} \sqrt{z} \mathrm{cos}{\theta} \big)^2} \mathrm{erfc}{\Big(\frac{1}{\sqrt{2}} \sqrt{z} \mathrm{cos}{\theta}\Big)} \Big], $$
 
 which, unfortunately, is not [closed-form](https://en.wikipedia.org/wiki/Closed-form_expression#Analytic_expression), since it contains the [complementary error function](http://mathworld.wolfram.com/Erfc.html) \\(\mathrm{erfc}\\).
 
@@ -302,17 +311,17 @@ Note that, even after expending a considerable amount of time and effort, I have
 
 For the zenith angle of 90 degrees, it reduces to
 
-$$ \tag{41} C_h(z) = \frac{1}{2} \sqrt{\frac{\pi}{2}} (\frac{1}{\sqrt{z}} + 2 \sqrt{z}). $$
+$$ \tag{42} C_h(z) = \frac{1}{2} \sqrt{\frac{\pi}{2}} (\frac{1}{\sqrt{z}} + 2 \sqrt{z}). $$
 
 Beyond the 90 degree angle, the following identity can be used:
 
-$$ \tag{42} C_l(z, \theta) = 2 e^{z - z \mathrm{sin}{\theta}} C_h(z \mathrm{sin}{\theta}) - C(z, \pi - \theta), $$
+$$ \tag{43} C_l(z, \theta) = 2 e^{z - z \mathrm{sin}{\theta}} C_h(z \mathrm{sin}{\theta}) - C(z, \pi - \theta), $$
 
 which means that we must find a position \\(\bm{p}\\) (sometimes called the [periapsis](https://en.wikipedia.org/wiki/Apsis) point) along the ray where the ray direction is orthogonal to the surface normal (see the diagram in the previous section), evaluate the horizontal Chapman function there (integrate twice, forwards and backwards, e.i. along the entire line, from \\(-\infty\\) to \\(\infty\\)), and subtract the value of the Chapman function at the original position with the reversed direction (to the atmospheric boundary), which isolates the integral to the desired segment along the ray.
 
 Christian Schüler proposes an approximation of the Chapman function for the upper hemisphere in his [GPU Gems 3](http://www.gameenginegems.net/gemsdb/article.php?id=1133) article:
 
-$$ \tag{43} C_{u\\_cs}(z, \theta) = \frac{C_h(z)}{(C_h(z) - 1) \mathrm{cos}{\theta} + 1}. $$
+$$ \tag{44} C_{u\\_cs}(z, \theta) \approx \frac{C_h(z)}{(C_h(z) - 1) \mathrm{cos}{\theta} + 1}. $$
 
 It's a pretty good approximation, especially considering the cost.
 
@@ -324,9 +333,9 @@ However, if you care about accuracy, and plot the the relative error graph, it p
 
 The physics literature has [many approximations](https://agupubs.onlinelibrary.wiley.com/doi/pdf/10.1029/2011JD016706) of the Chapman function. Unfortunately, most of them are specific to Earth's atmosphere.
 
-Instead, we can take a different, simpler approach. Instead of approximating the entire function (for which we have an analytic expression), all we have to do is approximate \\(\mathrm{erfc}\\) (or, more specifically, the term of the Equation 40 inside the square brackets). Luckily, the physics literature already has an efficient [approximation](https://rmets.onlinelibrary.wiley.com/doi/full/10.1002/asl.154) (for positive values of \\(x\\)) which we can use:
+Instead, we can take a different, simpler approach. Instead of approximating the entire function (for which we have an analytic expression), all we have to do is approximate \\(\mathrm{erfc}\\) (or, more specifically, the term of the Equation 41 inside the square brackets). Luckily, the physics literature already has an efficient [approximation](https://rmets.onlinelibrary.wiley.com/doi/full/10.1002/asl.154) (for positive values of \\(x\\)) which we can use:
 
-$$ \tag{44} e^{x^2} \mathrm{erfc}(x) = \frac{2.911}{(2.911 - 1) \sqrt{\pi x^2} + \sqrt{\pi x^2 + 2.911^2}}. $$
+$$ \tag{45} e^{x^2} \mathrm{erfc}(x) \approx \frac{2.911}{(2.911 - 1) \sqrt{\pi x^2} + \sqrt{\pi x^2 + 2.911^2}}. $$
 
 The new approximation has up to 50 times lower relative error, and is acceptable for out use case.
 
@@ -334,9 +343,9 @@ The new approximation has up to 50 times lower relative error, and is acceptable
 
 For reference, the full numerical approximation of the Chapman function for the upper hemisphere is:
 
-$$ \tag{45} C_{u\\_a}(z, \theta) = \frac{\mathrm{cos}{\theta}}{2} + \frac{0.761643 (1 + z (2 - \mathrm{cos}^2{\theta}))}{z \mathrm{cos}{\theta} + \sqrt{z (1.47721 + 0.273828 z \mathrm{cos}^2{\theta})}}. $$
+$$ \tag{46} C_{u\\_a}(z, \theta) \approx \frac{\mathrm{cos}{\theta}}{2} + \frac{0.761643 (1 + z (2 - \mathrm{cos}^2{\theta}))}{z \mathrm{cos}{\theta} + \sqrt{z (1.47721 + 0.273828 z \mathrm{cos}^2{\theta})}}. $$
 
-Sample code which implements the Equation 36 is listed below.
+Sample code which implements the Equation 37 is listed below.
 
 ```c++
 float ChapmanUpperApprox(float z, float cosTheta)
@@ -384,7 +393,7 @@ A small but important note is that we can always use \\( \vert \mathrm{cos}{\the
 
 ### Evaluating Optical Depth Using the Chapman Function
 
-A numerical approximation of the Chapman function, in conjunction with the Equation 37, allows us to evaluate optical depth over an arbitrary ray segment.
+A numerical approximation of the Chapman function, in conjunction with the Equation 38, allows us to evaluate optical depth over an arbitrary ray segment.
 
 However, since the approximation of the Chapman function contains a branch (upper/lower hemisphere), using the full formulation may be unnecessarily expensive for many use cases.
 
@@ -396,10 +405,9 @@ To start with, we need to know whether the ray points above the horizon.
 
 Since the "horizon" ray always intersects the planet at the 90 degree angle with respect to the normal at the intersection point, the (obtuse) horizon angle \\( \mathrm{cos}{\theta_h} \\) at the query point can be found using basic trigonometry:
 
-$$ \tag{46} \mathrm{cos}{\theta_h} = -\frac{\mathrm{adjacent}}{\mathrm{hypotenuse}} = -\frac{\sqrt{r^2 - R^2}}{r} = -\sqrt{1 - (R/r)^2}. $$
+$$ \tag{47} \mathrm{cos}{\theta_h} = -\frac{\mathrm{adjacent}}{\mathrm{hypotenuse}} = -\frac{\sqrt{r^2 - R^2}}{r} = -\sqrt{1 - (R/r)^2}. $$
 
-
-If the ray points above the horizon, the regular Chapman function gets the job done. And if the ray points below the horizon, it may seem that we need to evaluate the full Chapman function twice (as per Equation 37), once at the starting point, where the ray points into the lower hemisphere, and once at the intersection point (using the same ray direction).
+If the ray points above the horizon, the regular Chapman function gets the job done. And if the ray points below the horizon, it may seem that we need to evaluate the full Chapman function twice (as per Equation 38), once at the starting point, where the ray points into the lower hemisphere, and once at the intersection point (using the same ray direction).
 
 However, we can utilize the fact that \\(\bm{\tau}(\bm{x}, \bm{y}) = \bm{\tau}(\bm{y}, \bm{x})\\), and instead consider the ray segment \\(\bm{yx}\\) which starts at the intersection point \\(\bm{y}\\). We can begin evaluation using the upper part of the Chapman function (with \\(r = R\\)), and subtract the value of the (again) upper part of the Chapman function at the query point \\(\bm{x}\\) using the reversed direction.
 
@@ -409,7 +417,7 @@ Please take a look at the updated diagram below:
 
 Using basic trigonometry, we can deduce the cosine of the angle at the intersection point:
 
-$$ \tag{47} \mathrm{sin}{\gamma} = \frac{\mathrm{opposite}}{\mathrm{hypotenuse}} = \frac{r_0}{R} = \frac{r \mathrm{sin}{\theta}}{R} \qquad \mathrm{cos}{\gamma} = \sqrt{1 - \mathrm{sin}^2{\gamma}} $$
+$$ \tag{48} \mathrm{sin}{\gamma} = \frac{\mathrm{opposite}}{\mathrm{hypotenuse}} = \frac{r_0}{R} = \frac{r \mathrm{sin}{\theta}}{R} \qquad \mathrm{cos}{\gamma} = \sqrt{1 - \mathrm{sin}^2{\gamma}} $$
 
 Sample code is listed below.
 
@@ -464,13 +472,13 @@ If desired, it is possible to reduce divergence by utilizing `ChapmanUpperApprox
 
 ### Computing Transmittance Integrals Using the Chapman Function
 
-Around 10 pages earlier, we were quite interested in evaluating the extinction-transmittance integral (Equations 10, 18, 22, 29). What about our spherical exponential distributions? Is the value of the integral still identical to opacity?
+Around 10 pages earlier, we were quite interested in evaluating the extinction-transmittance integral (Equations 15, 19, 23, 30). What about our spherical exponential distributions? Is the value of the integral still identical to opacity?
 
 Unsurprisingly, trying to evaluate the integral analytically is an unsurmountable task. However, that shouldn't stop us from finding the answer. We can still evaluate the integral numerically, and since we know the likely outcome, we can simply plot and compare the two results.
 
 Experimentally, we are able to verify that, indeed, the rule holds true:
 
-$$ \tag{48} \bm{I\_{es}}(\bm{x}, \bm{v}, t) = \bm{\alpha} \bm{O}(\bm{x}, \bm{x} + t \bm{v}). $$
+$$ \tag{49} \bm{I\_{es}}(\bm{x}, \bm{v}, t) = \bm{O}(\bm{x}, \bm{x} + t \bm{v}). $$
 
 Plot:
 
