@@ -271,6 +271,8 @@ $$ \tag{38}
 
 is a shorthand for the cosine of the angle between the normal vector and the viewing direction. What the Equation 37 says is that we should evaluate the optical depth integral (along the entire ray, from 0 to \\(\infty\\)) twice, at the start and at the end of the interval, and subtract the results.
 
+From the practical standpoint, it's worth noting that, for short distances, this expression of optical depth can be well approximated by its "rectangular" version, potentially saving many ALU instructions.
+
 It's interesting to consider the physical meaning of the Chapman function. Generally speaking, the value of a line integral of density (such as given by \\(\bm{\tau} / \bm{\mu_t}\\)) corresponds to mass. Therefore, the integral
 
 $$ \tag{39} \int\_{h = (r - R)}^{\infty} k e^{-n s} ds = \frac{k}{n} e^{-n h} $$
