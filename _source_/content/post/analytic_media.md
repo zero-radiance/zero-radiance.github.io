@@ -132,17 +132,25 @@ $$ \tag{19} \bm{I_c}(\bm{x}, \bm{v}, t) = \bm{O}(\bm{x}, \bm{x} + t \bm{v}), $$
 
 which is simply volume opacity (Equation 6).
 
+The sampling "recipe" for distance \\(t\\) can be found by [inverting](http://www.pbr-book.org/3ed-2018/Monte_Carlo_Integration/Sampling_Random_Variables.html#TheInversionMethod) the [CDF](https://en.wikipedia.org/wiki/Cumulative_distribution_function) the CDF \\(P^-1(u)\\) (Equation 13):
+
+$$ \tag{20} t = P^{-1}(\bm{x}, \bm{v}, \xi)
+	= -\frac{\mathrm{log}(1 - \xi (1 - e^{-\mu_t k t\_{max}}))}{\mu_t k}
+	= -\frac{\mathrm{log}(1 - \xi O(\bm{x}, \bm{x} + t\_{max} \bm{v}))}{\mu_t k}, $$
+
+which is consistent with [other publications](https://cs.dartmouth.edu/~wjarosz/publications/novak18monte.html).
+
 ## Linear Variation of Density with Altitude in Rectangular Coordinates
 
 This is your typical "linear height fog on flat Earth" case. Density varies with the third (\\(z\\)) coordinate, which we interpret as the altitude:
 
-$$ \tag{20} \rho\_{lp}(\bm{x}) = m x_3 + k. $$
+$$ \tag{21} \rho\_{lp}(\bm{x}) = m x_3 + k. $$
 
 This formulation can be reduced to homogeneous media by setting \\(m = 0\\).
 
 Expressions of optical depth and transmittance remain fairly simple:
 
-$$ \tag{21} \begin{aligned}
+$$ \tag{22} \begin{aligned}
 \bm{\tau\_{lp}}(\bm{x}, \bm{y})
     &= \bm{\mu_t} \int\_{0}^{t = \Vert \bm{y} - \bm{x} \Vert} \Big( m \big(x_3 + s (y_3 - x_3) / t \big) + k \Big) ds \cr
     &= \bm{\mu_t} (m x_3 + k) t + \bm{\mu_t} (y_3 - x_3) \frac{m}{t} \int\_{0}^{t} s ds \cr
@@ -154,17 +162,26 @@ which is the product of the average attenuation coefficient and the length of th
 
 The integral looks a little bit complicated:
 
-$$ \tag{22} \bm{I\_{lp}}(\bm{x}, \bm{v}, t)
+$$ \tag{23} \bm{I\_{lp}}(\bm{x}, \bm{v}, t)
     = \bm{\mu_t} \int\_{0}^{t} \big(m (x_3 + s v_3) + k \big) e^{- \bm{\mu_t} \big(m (x_3 + s v_3 / 2) + k \big) s} ds
 $$
 
 If you plug this expression into a [computer algebra system](https://en.wikipedia.org/wiki/Computer_algebra_system), you will get the following result:
 
-$$ \tag{23} \bm{I\_{lp}}(\bm{x}, \bm{v}, t)
+$$ \tag{24} \bm{I\_{lp}}(\bm{x}, \bm{v}, t)
     = 1 - e^{- \bm{\mu_t} \big(m (x_3 + t v_3 / 2) + k \big) t}
     = \bm{O}(\bm{x}, \bm{x} + t \bm{v}), $$
 
 which, [surprisingly](https://www.youtube.com/watch?v=z_KmNZNT5xw), exactly matches the form of the Equation 19.
+
+The sampling "recipe" for distance \\(t\\) is given by the following formula:
+
+$$ \tag{25}
+	t = -\frac{k + m x_3}{m v_3}
+	+ \mathrm{sign}(v_3) \sqrt{\Bigg( \frac{k + m x_3}{m v_3} \Bigg)^2 - 2 \frac{\mathrm{log} \big(1 - \xi O(\bm{x}, \bm{x} + t\_{max} \bm{v}) \big)}{\mu_t m v_3}},
+$$
+
+where the \\(\mathrm{sign}\\) function returns \\(1\\) or \\(-1\\). Please note that this "recipe" is not well-defined for \\(m = 0\\).
 
 ## Exponential Variation of Density with Altitude in Rectangular Coordinates
 
@@ -482,7 +499,7 @@ $$ \tag{49} \bm{I\_{es}}(\bm{x}, \bm{v}, t) = \bm{O}(\bm{x}, \bm{x} + t \bm{v}).
 
 Plot:
 
-{{< figure src="/img/ext_transm_int.png" caption="*Plot of the extinction-transmittance integral for \\(\bm{\sigma_t} = 0.01, r = 6450, R = 6400,\\) and varying \\(H\\).*">}}
+{{< figure src="/img/ext_transm_int.png" caption="*Plot of the extinction-transmittance integral for \\(\mu_t k = 0.01, r = 6450, R = 6400,\\) and varying \\(H\\).*">}}
 
 ---
 
