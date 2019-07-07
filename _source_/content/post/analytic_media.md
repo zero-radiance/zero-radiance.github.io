@@ -36,7 +36,7 @@ Given the value of optical depth, it's easy to compute transmittance using the [
 
 $$ \tag{5} \bm{T}(\bm{x}, \bm{y}) = e^{-\bm{\tau}(\bm{x}, \bm{y})}, $$
 
-While optical depth can take any non-negative value, transmittance is restricted to the unit interval \\([0, 1]\\). Opacity is, then,
+While optical depth can take any non-negative value, transmittance is restricted to the unit interval \\([0, 1]\\). Volume opacity is, then,
 
 $$ \tag{6} \bm{O}(\bm{x}, \bm{y}) = 1 - \bm{T}(\bm{x}, \bm{y}). $$
 
@@ -464,7 +464,15 @@ If desired, it is possible to reduce divergence by utilizing `ChapmanUpperApprox
 
 Around 10 pages earlier, we were quite interested in evaluating the extinction-transmittance integral (Equations 10, 18, 22, 29). What about our spherical exponential distributions? Is the value of the integral still identical to opacity?
 
-Unsurprisingly, trying to evaluate the integral analytically is an unsurmountable task. However, that shouldn't stop us from finding out the answer. We can still evaluate the integral numerically, and since we know the likely outcome, we can simply plot and compare the two.
+Unsurprisingly, trying to evaluate the integral analytically is an unsurmountable task. However, that shouldn't stop us from finding the answer. We can still evaluate the integral numerically, and since we know the likely outcome, we can simply plot and compare the two results.
+
+Experimentally, we are able to verify that, indeed, the rule holds true:
+
+$$ \tag{48} \bm{I\_{es}}(\bm{x}, \bm{v}, t) = \bm{\alpha} \bm{O}(\bm{x}, \bm{x} + t \bm{v}). $$
+
+Plot:
+
+{{< figure src="/img/ext_transm_int.png" caption="*Plot of the extinction-transmittance integral for \\(\bm{\sigma_t} = 0.01, r = 6450, R = 6400,\\) and varying \\(H\\).*">}}
 
 ---
 
