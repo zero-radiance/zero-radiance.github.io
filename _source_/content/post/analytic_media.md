@@ -239,6 +239,8 @@ Inversion of the CDF allows us to sample the distance \\(t\\):
 
 $$ \tag{33} t = \frac{1}{n v_3} \Bigg( \mathrm{log}(\mu_t k) - \mathrm{log} \Big( \mu_t k + n v_3 e^{n x_3} \mathrm{log} \big(1 - \xi O(\bm{x}, \bm{x} + t\_{max} \bm{v}) \big) \Big) \Bigg). $$
 
+Please note that using the value \\(n = 0\\) requires special treatment.
+
 ## Exponential Variation of Density with Altitude in Spherical Coordinates
 
 This is where things get interesting. We would like to model an exponential density distribution on in spherical coordinates:
