@@ -495,6 +495,16 @@ float3 EvaluateOpticalDepthAlongRay(float3 X, float3 V)
 
 If desired, it is possible to reduce divergence by utilizing `ChapmanUpperApprox` (with the cosine value of 0) instead of `ChapmanHorizontal`, but I will retain this version for clarity of exposition.
 
+Now, let's tackle the most general case of evaluating optical depth between two points \\(\bm{x}\\) and \\(\bm{y}\\). It may seem complex at first, when, in fact, it's very similar to the problem we just solved. All we have to do is evaluate optical depth along the ray \\(\lbrace \bm{x}, \bm{xy} \rbrace\\), and subtract it from the optical depth along the ray \\(\lbrace \bm{y}, \bm{xy} \rbrace\\).
+
+When trying to evaluate optical depth along the ray segment \\(\bm{xy}\\), we have to consider three distinct possibilities:
+
+1. \\(\langle \bm{xy}, \bm{n}(\bm{x}) \rangle \geq 0 \\), which means that the ray points into the upper hemisphere with respect to the normal at the point \\(\bm{x}\\). This also means it points into the upper hemisphere at any point \\(\bm{y}\\) along the ray (I don't have a rigorous proof, but if you sketch it, it's fairly obvious).
+
+2. \\(\langle \bm{xy}, \bm{n}(\bm{x}) \rangle < 0 \\) and \\(\langle \bm{xy}, \bm{n}(\bm{y}) \rangle < 0 \\). That's an easy one, just imagine a ray pointing straight down towards the planet. Luckily enough, it's easy to solve, we just replace the segment \\(\bm{xy}\\) with the segment \\(\bm{yx}\\) and fall back to the case 1. An easy way to detect this one is to ...
+
+3. \\(\langle \bm{xy}, \bm{n}(\bm{x}) \rangle < 0 \\) and \\(\langle \bm{xy}, \bm{n}(\bm{y}) \rangle \geq 0 \\). This is may seem like the most expensive case, when, in reality, it's not. As always, there's a trick. The trick is to find a point along the segment at which the segment is exactly parallel to the ground. That way, we can invoke the horizontal Chapman function twice to obtain the optical depth along the entire line, just as we did for the lower hemisphere case. Then, we subtract the optical depth along the ray pointing in the upper hemisphere, and that gives us the optical depth along the original segment \\(\bm{xy}\\).
+
 ### Sampling Exponential Media in Spherical Coordinates
 
 Around 10 pages earlier, we were quite interested in evaluating the extinction-transmittance integral (Equations 15, 19, 24, 32). What about our spherical exponential distributions? Is the value of the integral still identical to opacity?
