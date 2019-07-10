@@ -401,11 +401,9 @@ float RescaledChapmanFunction(float z, float Z, float cosTheta)
         // Ch(z, theta) = 2 * exp(z - z_0) * Ch(z_0, Pi/2) - Ch(z, Pi - theta).
         // z_0 = r_0 / H = (r / H) * sin(theta) = z * sin(theta).
         float z_0 = z * sinTheta;
-        float a   = 2 * ChapmanHorizontal(z_0);
-        float b   = exp(Z - z_0); // Rescaling cancels out 'z' and adds 'Z'
-        float chL = a * b;
+        float chP = ChapmanHorizontal(z_0) * exp(Z - z_0); // Rescaling adds 'exp'
 
-        ch = chL - ch;
+        ch = 2 * chP - ch;
     }
 
     return ch;
@@ -475,20 +473,18 @@ float3 EvaluateOpticalDepthAlongRay(float3 X, float3 V)
     {
         float sinGamma = (r * sinTheta) * rcpR;
         float cosGamma = sqrt(saturate(1 - sinGamma * sinGamma));
-        float chL      = ChapmanUpperApprox(Z, cosGamma);
+        float chY      = ChapmanUpperApprox(Z, cosGamma);
 
-        ch = chL - ch;
+        ch = chY - ch;
     }
     else if (cosTheta < 0) // Above horizon, lower hemisphere
     {
         // Ch(z, theta) = 2 * exp(z - z_0) * Ch(z_0, Pi/2) - Ch(z, Pi - theta).
         // z_0 = r_0 / H = (r / H) * sin(theta) = z * sin(theta).
-        float z_0  = z * sinTheta;
-        float a    = 2 * ChapmanHorizontal(z_0);
-        float b    = exp(Z - z_0); // Rescaling cancels out 'z' and adds 'Z'
-        float chL  = a * b;
+        float z_0 = z * sinTheta;
+        float chP = ChapmanHorizontal(z_0) * exp(Z - z_0); // Rescaling adds 'exp'
 
-        ch = chL - ch;
+        ch = 2 * chP - ch;
     }
 
     return ch * H * seaLevelAttenuationCoefficient;
@@ -497,15 +493,69 @@ float3 EvaluateOpticalDepthAlongRay(float3 X, float3 V)
 
 If desired, it is possible to reduce divergence by utilizing `ChapmanUpperApprox` (with the cosine value of 0) instead of `ChapmanHorizontal`, but I will retain this version for clarity of exposition.
 
-Now, let's tackle the most general case of evaluating optical depth between two points \\(\bm{x}\\) and \\(\bm{y}\\). It may seem complex at first, when, in fact, it's very similar to the problem we just solved. All we have to do is evaluate optical depth along the ray \\(\lbrace \bm{x}, \bm{xy} \rbrace\\), and subtract it from the optical depth along the ray \\(\lbrace \bm{y}, \bm{xy} \rbrace\\).
+Now, let's tackle the most general case of evaluating optical depth between two points \\(\bm{x}\\) and \\(\bm{y}\\). It may seem complex at first, when, in fact, it's very similar to the problem we just solved. We have to consider three distinct possibilities:
 
-When trying to evaluate optical depth along the ray segment \\(\bm{xy}\\), we have to consider three distinct possibilities:
+1. \\(\langle \bm{xy}, \bm{n}(\bm{x}) \rangle \geq 0 \\), which means that the ray points into the upper hemisphere with respect to the normal at the point \\(\bm{x}\\). This also means it points into the upper hemisphere at any point \\(\bm{y}\\) along the ray (I don't have a rigorous proof, but it's fairly obvious if you sketch it). We simply use the Equation 41, which we simplify by replacing \\(C\\) with \\(C_u\\) which is restricted to the upper hemisphere:
 
-1. \\(\langle \bm{xy}, \bm{n}(\bm{x}) \rangle \geq 0 \\), which means that the ray points into the upper hemisphere with respect to the normal at the point \\(\bm{x}\\). This also means it points into the upper hemisphere at any point \\(\bm{y}\\) along the ray (I don't have a rigorous proof, but if you sketch it, it's fairly obvious).
+$$ \tag{53}
+\bm{\tau\_{es}}(\bm{x}, \bm{y})
+    = \bm{\tau\_{es}}(z_x, \theta_x, z_y, \theta_y)
+    = \bm{\mu_t} \frac{k}{n} \Bigg( e^{Z - z_x} C_u(z_x, \theta_x) - e^{Z - z_y} C_u(z_y, \theta_y) \Bigg).
+$$
 
-2. \\(\langle \bm{xy}, \bm{n}(\bm{x}) \rangle < 0 \\) and \\(\langle \bm{xy}, \bm{n}(\bm{y}) \rangle < 0 \\). That's an easy one, just imagine a ray pointing straight down towards the planet. Luckily enough, it's easy to solve, we just replace the segment \\(\bm{xy}\\) with the segment \\(\bm{yx}\\) and fall back to the case 1. An easy way to detect this one is to ...
+2. \\(\langle \bm{xy}, \bm{n}(\bm{x}) \rangle < 0 \\) and \\(\langle \bm{xy}, \bm{n}(\bm{y}) \rangle < 0 \\) occurs e.g. when looking straight down. It's also easy to handle, we just flip the direction (by taking the absolute value of the cosine), replace the segment \\(\bm{xy}\\) with the segment \\(\bm{yx}\\) and fall back to the case 1.
 
-3. \\(\langle \bm{xy}, \bm{n}(\bm{x}) \rangle < 0 \\) and \\(\langle \bm{xy}, \bm{n}(\bm{y}) \rangle \geq 0 \\). This is may seem like the most expensive case, when, in reality, it's not. As always, there's a trick. The trick is to find a point along the segment at which the segment is exactly parallel to the ground. That way, we can invoke the horizontal Chapman function twice to obtain the optical depth along the entire line, just as we did for the lower hemisphere case. Then, we subtract the optical depth along the ray pointing in the upper hemisphere, and that gives us the optical depth along the original segment \\(\bm{xy}\\).
+3. \\(\langle \bm{xy}, \bm{n}(\bm{x}) \rangle < 0 \\) and \\(\langle \bm{xy}, \bm{n}(\bm{y}) \rangle \geq 0 \\). This is the most complicated case. The idea is to find a point along the segment at which the segment is exactly parallel to the ground, which is basically our "above horizon, lower hemisphere" case from before, evaluate the integral along the entire line there, and subtract the tail ends to clip the line segment.
+
+Sample code is listed below.
+
+```c++
+float R, rcpR, H, rcpH, Z;
+float3 C, seaLevelAttenuationCoefficient;
+
+float3 EvaluateOpticalDepthAlongRaySegment(float3 X, float3 Y)
+{
+    float3 V = normalize(Y - X);
+
+    float rX = distance(X, C);
+    float rY = distance(Y, C);
+
+    float zX = rX * rcpH;
+    float zY = rY * rcpH;
+
+    float cosThetaX = dot(X - C, V) * rcp(rX);
+    float cosThetaY = dot(Y - C, V) * rcp(rY);
+
+    float sinThetaX = sqrt(saturate(1 - cosThetaX * cosThetaX));
+
+    // Potentially swap X and Y.
+    // Convention: at the point Y, the ray points up.
+    // The sign function below is expected to NEVER return 0,
+    // otherwise we would 0 out the cosine instead of performing a sign flip.
+    cosThetaX *= sign(cosThetaY);
+
+    float chX = ChapmanUpperApprox(zX, abs(cosThetaX)) * exp(Z - zX);
+    float chY = ChapmanUpperApprox(zY, abs(cosThetaY)) * exp(Z - zY);
+
+    float ch;
+
+    if (cosThetaX < 0) // Above horizon, lower hemisphere
+    {
+        // z_0 = r_0 / H = (r / H) * sin(theta) = z * sin(theta).
+        float z_0 = zX * sinThetaX;
+        float chP = ChapmanHorizontal(z_0) * exp(Z - z_0);
+
+        // ch = 2 * chP - chX - chY = (chP - chX) - (chY - chP).
+        chX = chP - chX;
+        chY = chY - chP;
+    }
+
+    // We may have swapped X and Y.
+    float ch = abs(chX - chY);
+
+    return ch * H * seaLevelAttenuationCoefficient;
+}
+```
 
 ### Sampling Exponential Media in Spherical Coordinates
 
