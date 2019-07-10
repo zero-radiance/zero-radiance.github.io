@@ -495,17 +495,21 @@ If desired, it is possible to reduce divergence by utilizing `ChapmanUpperApprox
 
 Now, let's tackle the most general case of evaluating optical depth between two points \\(\bm{x}\\) and \\(\bm{y}\\). It may seem complex at first, when, in fact, it's very similar to the problem we just solved. We have to consider three distinct possibilities:
 
-1. \\(\langle \bm{xy}, \bm{n}(\bm{x}) \rangle \geq 0 \\), which means that the ray points into the upper hemisphere with respect to the normal at the point \\(\bm{x}\\). This also means it points into the upper hemisphere at any point \\(\bm{y}\\) along the ray (I don't have a rigorous proof, but it's fairly obvious if you sketch it). We simply use the Equation 41, which we simplify by replacing \\(C\\) with \\(C_u\\) which is restricted to the upper hemisphere:
+1\. \\(\langle \bm{xy}, \bm{n}(\bm{x}) \rangle \geq 0 \\), which means that the ray points into the upper hemisphere with respect to the normal at the point \\(\bm{x}\\). This also means it points into the upper hemisphere at any point \\(\bm{y}\\) along the ray (I don't have a rigorous proof, but it's fairly obvious if you sketch it). We simply use the Equation 41, which we simplify by replacing \\(C\\) with \\(C_u\\) which is restricted to the upper hemisphere:
 
 $$ \tag{53}
-\bm{\tau\_{es}}(\bm{x}, \bm{y})
-    = \bm{\tau\_{es}}(z_x, \theta_x, z_y, \theta_y)
+\bm{\tau\_{u}}(z_x, \theta_x, z_y, \theta_y)
     = \bm{\mu_t} \frac{k}{n} \Bigg( e^{Z - z_x} C_u(z_x, \theta_x) - e^{Z - z_y} C_u(z_y, \theta_y) \Bigg).
 $$
 
-2. \\(\langle \bm{xy}, \bm{n}(\bm{x}) \rangle < 0 \\) and \\(\langle \bm{xy}, \bm{n}(\bm{y}) \rangle < 0 \\) occurs e.g. when looking straight down. It's also easy to handle, we just flip the direction (by taking the absolute value of the cosine), replace the segment \\(\bm{xy}\\) with the segment \\(\bm{yx}\\) and fall back to the case 1.
+2\. \\(\langle \bm{xy}, \bm{n}(\bm{x}) \rangle < 0 \\) and \\(\langle \bm{xy}, \bm{n}(\bm{y}) \rangle < 0 \\) occurs e.g. when looking straight down. It's also easy to handle, we just flip the direction (by taking the absolute value of the cosine), replace the segment \\(\bm{xy}\\) with the segment \\(\bm{yx}\\) and fall back to the case 1.
 
-3. \\(\langle \bm{xy}, \bm{n}(\bm{x}) \rangle < 0 \\) and \\(\langle \bm{xy}, \bm{n}(\bm{y}) \rangle \geq 0 \\). This is the most complicated case. The idea is to find a point along the segment at which the segment is exactly parallel to the ground, which is basically our "above horizon, lower hemisphere" case from before, evaluate the integral along the entire line there, and subtract the tail ends to clip the line segment.
+3\. \\(\langle \bm{xy}, \bm{n}(\bm{x}) \rangle < 0 \\) and \\(\langle \bm{xy}, \bm{n}(\bm{y}) \rangle \geq 0 \\). This is the most complicated case. The idea is to find the periapsis point \\(\bm{p}\\) along the segment at which the ray is parallel to the ground, which is basically our "above horizon, lower hemisphere" case from before, evaluate the integral (twice) along the entire line there, and subtract the tail ends to clip the line segment.
+
+$$ \tag{54}
+\bm{\tau\_{l}}(z_x, \theta_x, z_y, \theta_y)
+    = \bm{\mu_t} \frac{k}{n} \Bigg( 2 e^{Z - z_x \mathrm{sin}{\theta_x}} C_h(z_x \mathrm{sin}{\theta_x}) - e^{Z - z_x} C_u(z_x, \theta_x) - e^{Z - z_y} C_u(z_y, \theta_y) \Bigg).
+$$
 
 Sample code is listed below.
 
@@ -565,7 +569,7 @@ Unsurprisingly, trying to evaluate the integral analytically is an unsurmountabl
 
 Experimentally, we are able to verify that, indeed, the rule holds true:
 
-$$ \tag{53} \bm{I\_{es}}(\bm{x}, \bm{v}, t) = \bm{O}(\bm{x}, \bm{x} + t \bm{v}). $$
+$$ \tag{55} \bm{I\_{es}}(\bm{x}, \bm{v}, t) = \bm{O}(\bm{x}, \bm{x} + t \bm{v}). $$
 
 You can find one of the two plots (they both look identical) below.
 
