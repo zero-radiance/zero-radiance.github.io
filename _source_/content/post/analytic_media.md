@@ -135,8 +135,8 @@ which is simply volume opacity (Equation 6).
 The sampling "recipe" for distance \\(t\\) can be found by [inverting](http://www.pbr-book.org/3ed-2018/Monte_Carlo_Integration/Sampling_Random_Variables.html#TheInversionMethod) the [CDF](https://en.wikipedia.org/wiki/Cumulative_distribution_function) the CDF \\(P^-1(u)\\) (Equation 13):
 
 $$ \tag{20} t = P^{-1}(\bm{x}, \bm{v}, \xi)
-	= -\frac{\mathrm{log}(1 - \xi (1 - e^{-\mu_t k t\_{max}}))}{\mu_t k}
-	= -\frac{\mathrm{log}(1 - \xi O(\bm{x}, \bm{x} + t\_{max} \bm{v}))}{\mu_t k}, $$
+	= -\frac{\mathrm{log}(1 - \xi O(\bm{x}, \bm{x} + t\_{max} \bm{v}))}{\mu_t k}
+	= -\frac{\mathrm{log}(1 - \xi (1 - e^{-\mu_t k t\_{max}}))}{\mu_t k}, $$
 
 which is consistent with [other publications](https://cs.dartmouth.edu/~wjarosz/publications/novak18monte.html).
 
@@ -444,7 +444,7 @@ that determines the value of the Chapman function below horizon:
 
 $$ \tag{52} C_b(z, \theta, Z, \gamma) = C_u(Z, \mathrm{cos}{\gamma}) - C_u(z, \vert \mathrm{cos}{\theta} \vert). $$
 
-Sample code is listed below.
+Sample code is listed below. While it's possible to use the `RescaledChapmanFunction`, this implementation is slightly more efficient.
 
 ```c++
 float R, rcpR, H, rcpH, Z;
@@ -498,18 +498,19 @@ Now, let's tackle the most general case of evaluating optical depth between two 
 1\. \\(\mathrm{cos}(\bm{x} - \bm{c}, \bm{y} - \bm{x}) \geq 0 \\), which means that the ray points into the upper hemisphere with respect to the normal at the point \\(\bm{x}\\). This also means it points into the upper hemisphere at any point \\(\bm{y}\\) along the ray (I don't have a rigorous proof, but it's fairly obvious if you sketch it). We simply use the Equation 41, which we simplify by replacing \\(C\\) with \\(C_u\\) which is restricted to the upper hemisphere:
 
 $$ \tag{53}
-\bm{\tau\_{u}}(z_x, \theta_x, z_y, \theta_y)
+\bm{\tau\_{uu}}(z_x, \theta_x, z_y, \theta_y)
     = \bm{\mu_t} \frac{k}{n} \Bigg( e^{Z - z_x} C_u(z_x, \theta_x) - e^{Z - z_y} C_u(z_y, \theta_y) \Bigg).
 $$
 
 2\. \\(\mathrm{cos}(\bm{x} - \bm{c}, \bm{y} - \bm{x}) < 0 \\) and \\(\mathrm{cos}(\bm{y} - \bm{c}, \bm{y} - \bm{x}) \rangle < 0 \\) occurs e.g. when looking straight down. It's also easy to handle, we just flip the direction (by taking the absolute value of the cosine), replace the segment \\(\bm{xy}\\) with the segment \\(\bm{yx}\\) and fall back to the case 1.
 
-3\. \\(\mathrm{cos}(\bm{x} - \bm{c}, \bm{y} - \bm{x}) \rangle < 0 \\) and \\(\mathrm{cos}(\bm{y} - \bm{c}, \bm{y} - \bm{x})  \rangle \geq 0 \\). This is the most complicated case. The idea is to find the periapsis point \\(\bm{p}\\) along the segment at which the ray is parallel to the ground, which is basically our "above horizon, lower hemisphere" case from before, evaluate the integral (twice) along the entire line there, and subtract the tail ends to clip the line segment.
+3\. \\(\mathrm{cos}(\bm{x} - \bm{c}, \bm{y} - \bm{x}) \rangle < 0 \\) and \\(\mathrm{cos}(\bm{y} - \bm{c}, \bm{y} - \bm{x})  \rangle \geq 0 \\). This is the most complicated case, since we have to evaluate the Chapman function three times, twice using the position of \\(\bm{x}\\) with the direction pointing into the lower hemisphere, and once using the position of \\(\bm{y}\\) with the ray pointing in the upper hemisphere.
 
-$$ \tag{54}
-\bm{\tau\_{l}}(z_x, \theta_x, z_y, \theta_y)
-    = \bm{\mu_t} \frac{k}{n} \Bigg( 2 e^{Z - z_x \mathrm{sin}{\theta_x}} C_h(z_x \mathrm{sin}{\theta_x}) - e^{Z - z_x} C_u(z_x, \theta_x) - e^{Z - z_y} C_u(z_y, \theta_y) \Bigg).
-$$
+$$ \tag{54} \begin{aligned}
+\bm{\tau\_{ul}}(z_x, \theta_x, z_y, \theta_y)
+    &= \bm{\mu_t} \frac{k}{n} \Bigg( e^{Z - z_x} C_l(z_x, \theta_x) - e^{Z - z_y} C_u(z_y, \theta_y) \Bigg) \cr
+    &= \bm{\mu_t} \frac{k}{n} \Bigg( 2 e^{Z - z_x \mathrm{sin}{\theta_x}} C_h(z_x \mathrm{sin}{\theta_x}) - e^{Z - z_x} C_u(z_x, \theta_x) - e^{Z - z_y} C_u(z_y, \theta_y) \Bigg).
+\end{aligned} $$
 
 Sample code is listed below.
 
@@ -530,27 +531,14 @@ float3 EvaluateOpticalDepthAlongRaySegment(float3 X, float3 Y)
     float cosThetaX = dot(X - C, V) * rcp(rX);
     float cosThetaY = dot(Y - C, V) * rcp(rY);
 
-    float sinThetaX = sqrt(saturate(1 - cosThetaX * cosThetaX));
-
     // Potentially swap X and Y.
     // Convention: at the point Y, the ray points up.
-    // The sign function below is expected to NEVER return 0,
+    // The sign (not signum!) function below is expected to NEVER return 0,
     // otherwise we would 0 out the cosine instead of performing a sign flip.
     cosThetaX *= sign(cosThetaY);
 
-    float chX = ChapmanUpperApprox(zX, abs(cosThetaX)) * exp(Z - zX);
+    float chX = RescaledChapmanFunction(zX, Z, cosThetaX);
     float chY = ChapmanUpperApprox(zY, abs(cosThetaY)) * exp(Z - zY);
-
-    if (cosThetaX < 0) // Above horizon, lower hemisphere
-    {
-        // z_0 = r_0 / H = (r / H) * sin(theta) = z * sin(theta).
-        float z_0 = zX * sinThetaX;
-        float chP = ChapmanHorizontal(z_0) * exp(Z - z_0);
-
-        // ch = 2 * chP - chX - chY = (chP - chX) - (chY - chP).
-        chX = chP - chX;
-        chY = chY - chP;
-    }
 
     // We may have swapped X and Y.
     float ch = abs(chX - chY);
