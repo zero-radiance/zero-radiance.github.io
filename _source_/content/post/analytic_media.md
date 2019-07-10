@@ -247,7 +247,7 @@ This is where things get interesting. We would like to model an exponential dens
 
 $$ \tag{34} \rho\_{es}(\bm{x}) = k e^{-h(\bm{x}) / H} = k e^{-(\Vert \bm{x} - \bm{c} \Vert - R) / H} = k e^{-n (\Vert \bm{x} - \bm{c} \Vert - R)}, $$
 
-where \\(\bm{c}\\) is the center of the planet, \\(R\\) is its radius, \\(h\\) is the altitude, and \\(H\\) is the [scale height](https://en.wikipedia.org/wiki/Scale_height) as before. In this context, \\(k\\) and \\(\bm{\mu_t} k\\) represent density and the value of the attenuation coefficient at the sea level, respectively.
+where \\(\bm{c}\\) is the center of the planet, \\(R\\) is its radius, \\(h\\) is the altitude, and \\(H\\) is the [scale height](https://en.wikipedia.org/wiki/Scale_height) as before. In this context, \\(k\\) and \\(\bm{\mu_t} k\\) represent the density and the value of the attenuation coefficient at the sea level, respectively.
 
 Before we proceed with the derivation, it's helpful to understand the geometric setting (after all, a picture is worth a thousand words). Personally, I found the article by Christian Schüler in [GPU Gems 3](http://www.gameenginegems.net/gemsdb/article.php?id=1133) to be a very helpful introduction to the relevant concepts, and I encourage you to check it out if you have questions after reading my explanation below.
 
@@ -264,7 +264,7 @@ In order to find the parametric equation of altitude \\(h\\) along the ray, we c
 $$ \tag{35} r_0(r, \theta) = r \mathrm{sin}{\theta}, $$
 $$ \tag{36} t_0(r, \theta) = r \mathrm{cos}{\theta}. $$
 
-If we ignore [atmospheric refraction](https://en.wikipedia.org/wiki/Atmospheric_refraction), we obtain the following expression for optical depth:
+If we ignore [atmospheric refraction](https://en.wikipedia.org/wiki/Atmospheric_refraction), we obtain the following expression of optical depth:
 
 $$ \tag{37} \begin{aligned}
 \bm{\tau\_{es}}(\bm{x}, \bm{y})
@@ -275,7 +275,7 @@ $$ \tag{37} \begin{aligned}
     &= \bm{\mu_t} \frac{k}{n} e^{-n (r - R)} \int\_{0}^{t = \Vert \bm{y} - \bm{x} \Vert} e^{n (r - \sqrt{r^2 + 2 r s \mathrm{cos}{\theta} + s^2})} n ds.
 \end{aligned} $$
 
-The resulting integral is very complex. (Don't believe me? Try evaluating it analyticly!). In order to make our life easier, we will factor out the nested integral, and extend the upper limit of integration to infinity. With the following change of variables:
+The resulting integral is very complex. (Don't believe me? Try evaluating it analytically!). In order to make our life easier, we will factor out the nested integral, and extend the upper limit of integration to infinity. With the following change of variables:
 
 $$ \tag{38} u = n s \qquad z = n r \qquad Z = n R, $$
 
@@ -301,15 +301,15 @@ $$ \tag{42}
 \mathrm{cos}{(\bm{n}, \bm{v})}
 	= \Big\langle \frac{\bm{n}}{\Vert \bm{n} \Vert}, \frac{\bm{v}}{\Vert \bm{v} \Vert} \Big\rangle $$
 
-is a shorthand for the cosine of the angle between the normal vector and the viewing direction. What the Equation 41 says is that we should evaluate the optical depth integral (along the entire ray, from 0 to \\(\infty\\)) twice, at the start and at the end of the interval, and subtract the results.
+is a shorthand for the cosine of the angle between the normal and the vector vector. What the Equation 41 says is that we should evaluate the optical depth integral (along the entire ray, from 0 to \\(\infty\\)) twice, at the start and at the end of the interval, and subtract the results.
 
-From the practical standpoint, it's worth noting that, for short distances, this expression of optical depth can be well approximated by its "rectangular" version, potentially saving many ALU instructions.
+From the practical standpoint, it's worth noting that, for short distances, this expression of optical depth can be well approximated by its "rectangular" version (which ignores the curvature), potentially saving many ALU instructions.
 
 It's interesting to consider the physical meaning of the Chapman function. Generally speaking, the value of a line integral of density (such as given by \\(\bm{\tau} / \bm{\mu_t}\\)) corresponds to mass. Therefore, the integral
 
 $$ \tag{43} \int\_{h = (r - R)}^{\infty} k e^{-n s} ds = \frac{k}{n} e^{-n h} $$
 
-corresponds to mass of an infinitely tall vertical column starting at height \\(h\\).
+corresponds to mass of an infinitely tall vertical column with its lower end at height \\(h\\).
 
 Optical depth, then, is the *product* of the mass of the vertical column *and* the value of the obliquity function (which, intuitively, gives the absolute optical air mass along the ray) *times* the mass attenuation coefficient.
 
@@ -340,7 +340,7 @@ Beyond the 90 degree angle, the following identity can be used:
 
 $$ \tag{46} C_l(z, \theta) = 2 e^{z - z \mathrm{sin}{\theta}} C_h(z \mathrm{sin}{\theta}) - C(z, \pi - \theta), $$
 
-which means that we must find a position \\(\bm{p}\\) (sometimes called the [periapsis](https://en.wikipedia.org/wiki/Apsis) point) along the ray where the ray direction is orthogonal to the surface normal (see the diagram in the previous section), evaluate the horizontal Chapman function there (integrate twice, forwards and backwards, e.i. along the entire line, from \\(-\infty\\) to \\(\infty\\)), and subtract the value of the Chapman function at the original position with the reversed direction (to the atmospheric boundary), which isolates the integral to the desired segment along the ray.
+which means that we must find a position \\(\bm{p}\\) (sometimes called the [periapsis](https://en.wikipedia.org/wiki/Apsis) point, see the diagram in the previous section) along the ray where the ray direction is orthogonal to the surface normal, evaluate the horizontal Chapman function there (integrate twice, forwards and backwards, e.i. along the entire line, from \\(-\infty\\) to \\(\infty\\)), and subtract the value of the Chapman function at the original position with the reversed direction (towards the atmospheric boundary), which isolates the integral to the desired ray segment.
 
 Christian Schüler proposes an approximation of the Chapman function for the upper hemisphere in his [GPU Gems 3](http://www.gameenginegems.net/gemsdb/article.php?id=1133) article:
 
@@ -356,11 +356,11 @@ However, if you care about accuracy, and plot the the relative error graph, it p
 
 The physics literature has [many approximations](https://agupubs.onlinelibrary.wiley.com/doi/pdf/10.1029/2011JD016706) of the Chapman function. Unfortunately, most of them are specific to Earth's atmosphere.
 
-Instead, we can take a different, simpler approach. Instead of approximating the entire function (for which we have an analytic expression), all we have to do is approximate \\(\mathrm{erfc}\\) (or, more specifically, the term of the Equation 44 inside the square brackets). Luckily, the physics literature already has an efficient [approximation](https://rmets.onlinelibrary.wiley.com/doi/full/10.1002/asl.154) (for positive values of \\(x\\)) which we can use:
+Instead, we can take a different, simpler approach. Instead of approximating the entire function (for which we have an analytic expression), all we have to do is approximate \\(\mathrm{erfc}\\) (or, more specifically, the term of the Equation 44 inside the square brackets). Luckily, the physics literature already has an efficient [approximation](https://rmets.onlinelibrary.wiley.com/doi/full/10.1002/asl.154) (for positive values of \\(x\\)) that we can use:
 
 $$ \tag{48} e^{x^2} \mathrm{erfc}(x) \approx \frac{2.911}{(2.911 - 1) \sqrt{\pi x^2} + \sqrt{\pi x^2 + 2.911^2}}. $$
 
-The new approximation has up to 50 times lower relative error, and is acceptable for out use case.
+The resulting approximation of the Chapman function has up to 50 times lower relative error, and is acceptable for our use case.
 
 {{< figure src="/img/chapman_erfc_error.png" caption="*Relative error plot of the new approximation of the Chapman function for \\(r = 6600\\).*">}}
 
@@ -410,33 +410,33 @@ float RescaledChapmanFunction(float z, float Z, float cosTheta)
 }
 ```
 
-A small but important note is that we can always use \\( \vert \mathrm{cos}{\theta} \vert \\) to evaluate the upper part of the Chapman function since, even if the angle is greater than 90 degrees, the evaluation direction is reversed, and the cosine is negated.
+A small but important note is that we can always use \\( \vert \mathrm{cos}{\theta} \vert \\) to evaluate the upper part of the Chapman function since, even if the angle is greater than 90 degrees, the ray direction is reversed, and the cosine is negated.
 
 ### Evaluating Optical Depth Using the Chapman Function
 
-A numerical approximation of the Chapman function, in conjunction with the Equation 41, allows us to evaluate optical depth over an arbitrary ray segment.
+A numerical approximation of the Chapman function, in conjunction with the Equation 41, allows us to evaluate optical depth along an arbitrary ray segment.
 
 However, since the approximation of the Chapman function contains a branch (upper/lower hemisphere), using the full formulation may be unnecessarily expensive for many use cases.
 
 For example, an implementation of the [Precomputed Atmospheric Scattering](https://dl.acm.org/citation.cfm?id=2383467) paper requires an ability to evaluate optical depth along the ray, where the ray may hit either the spherical planet, or nothing at all.
 
-To start with, we need to know whether the ray points above the horizon.
+To start with, we may want to know whether the ray intersects the planet, or, in other words, whether it points above the horizon.
 
 {{< figure src="/img/spherical_param_2.png">}}
 
-Since the "horizon" ray always intersects the planet at the 90 degree angle with respect to the normal at the intersection point, the (obtuse) horizon angle \\( \mathrm{cos}{\theta_h} \\) at the query point can be found using basic trigonometry:
+Since a "horizon" ray always intersects the planet at the 90 degree angle with respect to the normal at the intersection point, the (obtuse) horizon angle \\( \mathrm{cos}{\theta_h} \\) at the query point can be found using basic trigonometry:
 
 $$ \tag{50} \mathrm{cos}{\theta_h} = -\frac{\mathrm{adjacent}}{\mathrm{hypotenuse}} = -\frac{\sqrt{r^2 - R^2}}{r} = -\sqrt{1 - (R/r)^2}. $$
 
-If the ray points above the horizon, the regular Chapman function gets the job done. And if the ray points below the horizon, it may seem that we need to evaluate the full Chapman function twice (as per Equation 38), once at the starting point, where the ray points into the lower hemisphere, and once at the intersection point (using the same ray direction).
-
-However, we can utilize the fact that \\(\bm{\tau}(\bm{x}, \bm{y}) = \bm{\tau}(\bm{y}, \bm{x})\\), and instead consider the ray segment \\(\bm{yx}\\) which starts at the intersection point \\(\bm{y}\\). We can begin evaluation using the upper part of the Chapman function (with \\(r = R\\)), and subtract the value of the (again) upper part of the Chapman function at the query point \\(\bm{x}\\) using the reversed direction.
+If the ray points above the horizon, the regular Chapman function gets the job done. And if the ray points below the horizon, it may seem that we need to evaluate the full Chapman function twice (as per Equation 41), once at the starting point \\(\bm{x}\\), where the ray points into the lower hemisphere, and once at the intersection point \\(\bm{y}\\) (using the same ray direction).
 
 Please take a look at the updated diagram below:
 
 {{< figure src="/img/spherical_param_3.png">}}
 
-Using basic trigonometry, we can deduce the cosine of the angle at the intersection point:
+However, we can utilize the fact that \\(\bm{\tau}(\bm{x}, \bm{y}) = \bm{\tau}(\bm{y}, \bm{x})\\), and instead consider the ray segment \\(\bm{yx}\\) which starts at the intersection point \\(\bm{y}\\) and has a reversed direction.
+
+Using basic trigonometry, we can deduce the cosine of the angle at the intersection point
 
 $$ \tag{51} \mathrm{sin}{\gamma} = \frac{\mathrm{opposite}}{\mathrm{hypotenuse}} = \frac{r_0}{R} = \frac{r \mathrm{sin}{\theta}}{R} \qquad \mathrm{cos}{\gamma} = \sqrt{1 - \mathrm{sin}^2{\gamma}} $$
 
@@ -493,18 +493,18 @@ float3 EvaluateOpticalDepthAlongRay(float3 X, float3 V)
 
 If desired, it is possible to reduce divergence by utilizing `ChapmanUpperApprox` (with the cosine value of 0) instead of `ChapmanHorizontal`, but I will retain this version for clarity of exposition.
 
-Now, let's tackle the most general case of evaluating optical depth between two points \\(\bm{x}\\) and \\(\bm{y}\\). It may seem complex at first, when, in fact, it's very similar to the problem we just solved. We have to consider three distinct possibilities:
+Now, let's tackle the most general case of evaluating optical depth between two points \\(\bm{x}\\) and \\(\bm{y}\\). It may seem really complex at first, when, in fact, it's very similar to the problem we just solved. We have to consider three distinct possibilities:
 
-1\. \\(\langle \bm{xy}, \bm{n}(\bm{x}) \rangle \geq 0 \\), which means that the ray points into the upper hemisphere with respect to the normal at the point \\(\bm{x}\\). This also means it points into the upper hemisphere at any point \\(\bm{y}\\) along the ray (I don't have a rigorous proof, but it's fairly obvious if you sketch it). We simply use the Equation 41, which we simplify by replacing \\(C\\) with \\(C_u\\) which is restricted to the upper hemisphere:
+1\. \\(\mathrm{cos}(\bm{x} - \bm{c}, \bm{y} - \bm{x}) \geq 0 \\), which means that the ray points into the upper hemisphere with respect to the normal at the point \\(\bm{x}\\). This also means it points into the upper hemisphere at any point \\(\bm{y}\\) along the ray (I don't have a rigorous proof, but it's fairly obvious if you sketch it). We simply use the Equation 41, which we simplify by replacing \\(C\\) with \\(C_u\\) which is restricted to the upper hemisphere:
 
 $$ \tag{53}
 \bm{\tau\_{u}}(z_x, \theta_x, z_y, \theta_y)
     = \bm{\mu_t} \frac{k}{n} \Bigg( e^{Z - z_x} C_u(z_x, \theta_x) - e^{Z - z_y} C_u(z_y, \theta_y) \Bigg).
 $$
 
-2\. \\(\langle \bm{xy}, \bm{n}(\bm{x}) \rangle < 0 \\) and \\(\langle \bm{xy}, \bm{n}(\bm{y}) \rangle < 0 \\) occurs e.g. when looking straight down. It's also easy to handle, we just flip the direction (by taking the absolute value of the cosine), replace the segment \\(\bm{xy}\\) with the segment \\(\bm{yx}\\) and fall back to the case 1.
+2\. \\(\mathrm{cos}(\bm{x} - \bm{c}, \bm{y} - \bm{x}) < 0 \\) and \\(\mathrm{cos}(\bm{y} - \bm{c}, \bm{y} - \bm{x}) \rangle < 0 \\) occurs e.g. when looking straight down. It's also easy to handle, we just flip the direction (by taking the absolute value of the cosine), replace the segment \\(\bm{xy}\\) with the segment \\(\bm{yx}\\) and fall back to the case 1.
 
-3\. \\(\langle \bm{xy}, \bm{n}(\bm{x}) \rangle < 0 \\) and \\(\langle \bm{xy}, \bm{n}(\bm{y}) \rangle \geq 0 \\). This is the most complicated case. The idea is to find the periapsis point \\(\bm{p}\\) along the segment at which the ray is parallel to the ground, which is basically our "above horizon, lower hemisphere" case from before, evaluate the integral (twice) along the entire line there, and subtract the tail ends to clip the line segment.
+3\. \\(\mathrm{cos}(\bm{x} - \bm{c}, \bm{y} - \bm{x}) \rangle < 0 \\) and \\(\mathrm{cos}(\bm{y} - \bm{c}, \bm{y} - \bm{x})  \rangle \geq 0 \\). This is the most complicated case. The idea is to find the periapsis point \\(\bm{p}\\) along the segment at which the ray is parallel to the ground, which is basically our "above horizon, lower hemisphere" case from before, evaluate the integral (twice) along the entire line there, and subtract the tail ends to clip the line segment.
 
 $$ \tag{54}
 \bm{\tau\_{l}}(z_x, \theta_x, z_y, \theta_y)
@@ -561,15 +561,15 @@ float3 EvaluateOpticalDepthAlongRaySegment(float3 X, float3 Y)
 
 ### Sampling Exponential Media in Spherical Coordinates
 
-Around 10 pages earlier, we were quite interested in evaluating the extinction-transmittance integral (Equations 15, 19, 24, 32). What about our spherical exponential distributions? Is the value of the integral still identical to opacity?
+Around 10 pages before, we were quite interested in evaluating the extinction-transmittance integral (Equations 15, 19, 24, 32). What about our spherical exponential distributions? Is the value of the integral still identical to opacity?
 
 Unsurprisingly, trying to evaluate the integral analytically is an unsurmountable task. However, that shouldn't stop us from finding the answer. We can still evaluate the integral numerically, and since we know the likely outcome, we can simply plot and compare the two results.
 
-Experimentally, we are able to verify that, indeed, the rule holds true:
+Experimentally, it's possible to verify that, indeed, the rule holds true:
 
 $$ \tag{55} \bm{I\_{es}}(\bm{x}, \bm{v}, t) = \bm{O}(\bm{x}, \bm{x} + t \bm{v}). $$
 
-You can find one of the two plots (they both look identical) below.
+You can find the plot of the extinction-transmittance integral below.
 
 {{< figure src="/img/ext_transm_int.png" caption="*Plot of the extinction-transmittance integral for \\(\mu_t k = 0.01, r = 6450, R = 6400,\\) and varying \\(H\\).*">}}
 
