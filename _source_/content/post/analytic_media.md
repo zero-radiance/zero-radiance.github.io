@@ -541,8 +541,6 @@ float3 EvaluateOpticalDepthAlongRaySegment(float3 X, float3 Y)
     float chX = ChapmanUpperApprox(zX, abs(cosThetaX)) * exp(Z - zX);
     float chY = ChapmanUpperApprox(zY, abs(cosThetaY)) * exp(Z - zY);
 
-    float ch;
-
     if (cosThetaX < 0) // Above horizon, lower hemisphere
     {
         // z_0 = r_0 / H = (r / H) * sin(theta) = z * sin(theta).
