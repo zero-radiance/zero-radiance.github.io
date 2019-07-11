@@ -281,11 +281,11 @@ $$ \tag{38} u = n s \qquad z = n r \qquad Z = n R, $$
 
 the nested integral becomes what is known in the physics community as the [Chapman function](https://en.wikipedia.org/wiki/Chapman_function) (or the obliquity function, or the relative optical air mass) \\(C\\):
 
-$$ \tag{39} C(z, \theta) = \int\_{0}^{\infty} e^{z - \sqrt{z^2 + 2 z u \mathrm{cos}{\theta} + u^2}} du. $$
+$$ \tag{39} C(z, \mathrm{cos}{\theta}) = \int\_{0}^{\infty} e^{z - \sqrt{z^2 + 2 z u \mathrm{cos}{\theta} + u^2}} du. $$
 
 It's convenient to define the rescaled Chapman function \\(C_r\\):
 
-$$ \tag{40} C_r(z, Z, \mathrm{cos}{\theta}) = e^{Z - z} C(z, \theta) = \int\_{0}^{\infty} e^{Z - \sqrt{z^2 + 2 z u \mathrm{cos}{\theta} + u^2}} du, $$
+$$ \tag{40} C_r(z, Z, \mathrm{cos}{\theta}) = e^{Z - z} C(z, \mathrm{cos}{\theta}) = \int\_{0}^{\infty} e^{Z - \sqrt{z^2 + 2 z u \mathrm{cos}{\theta} + u^2}} du, $$
 
 which has a better numerical behavior, and further simplifies the expression of optical depth:
 
@@ -326,7 +326,7 @@ Being an obliquity function, \\(C(z, 0) = 1\\). The function varies slowly, as l
 
 The Chapman function has an [analytic expression](https://en.wikipedia.org/wiki/Closed-form_expression#Analytic_expression) derived by [Miroslav Kocifaj](https://ui.adsabs.harvard.edu/abs/1996CoSka..26...23K/abstract):
 
-$$ \tag{44} C(z, \theta) = \frac{1}{2} \mathrm{cos}{\theta} + \frac{1}{2} \Big(\frac{1}{\sqrt{z}} + 2 \sqrt{z} - \sqrt{z} (\mathrm{cos}{\theta})^2 \Big) \sqrt{\frac{\pi}{2}} \Big[ e^{\big( \frac{1}{\sqrt{2}} \sqrt{z} \mathrm{cos}{\theta} \big)^2} \mathrm{erfc}{\Big(\frac{1}{\sqrt{2}} \sqrt{z} \mathrm{cos}{\theta}\Big)} \Big], $$
+$$ \tag{44} C(z, \mathrm{cos}{\theta}) = \frac{1}{2} \mathrm{cos}{\theta} + \frac{1}{2} \Big(\frac{1}{\sqrt{z}} + 2 \sqrt{z} - \sqrt{z} (\mathrm{cos}{\theta})^2 \Big) \sqrt{\frac{\pi}{2}} \Big[ e^{\big( \frac{1}{\sqrt{2}} \sqrt{z} \mathrm{cos}{\theta} \big)^2} \mathrm{erfc}{\Big(\frac{1}{\sqrt{2}} \sqrt{z} \mathrm{cos}{\theta}\Big)} \Big], $$
 
 which, unfortunately, is not [closed-form](https://en.wikipedia.org/wiki/Closed-form_expression#Analytic_expression), since it contains the [complementary error function](http://mathworld.wolfram.com/Erfc.html) \\(\mathrm{erfc}\\).
 
@@ -338,13 +338,13 @@ $$ \tag{45} C_h(z) = \frac{1}{2} \sqrt{\frac{\pi}{2}} (\frac{1}{\sqrt{z}} + 2 \s
 
 Beyond the 90 degree angle, the following identity can be used:
 
-$$ \tag{46} C_l(z, \theta) = 2 e^{z - z \mathrm{sin}{\theta}} C_h(z \mathrm{sin}{\theta}) - C(z, \pi - \theta), $$
+$$ \tag{46} C_l(z, \mathrm{cos}{\theta}) = 2 e^{z - z \mathrm{sin}{\theta}} C_h(z \mathrm{sin}{\theta}) - C(z, -\mathrm{cos}{\theta}), $$
 
 which means that we must find a position \\(\bm{p}\\) (sometimes called the [periapsis](https://en.wikipedia.org/wiki/Apsis) point, see the diagram in the previous section) along the ray where the ray direction is orthogonal to the surface normal, evaluate the horizontal Chapman function there (integrate twice, forwards and backwards, e.i. along the entire line, from \\(-\infty\\) to \\(\infty\\)), and subtract the value of the Chapman function at the original position with the reversed direction (towards the atmospheric boundary), which isolates the integral to the desired ray segment.
 
 Christian Schüler proposes an approximation of the Chapman function for the upper hemisphere in his [GPU Gems 3](http://www.gameenginegems.net/gemsdb/article.php?id=1133) article:
 
-$$ \tag{47} C_{u\\_cs}(z, \theta) \approx \frac{C_h(z)}{(C_h(z) - 1) \mathrm{cos}{\theta} + 1}. $$
+$$ \tag{47} C_{u\\_cs}(z, \mathrm{cos}{\theta}) \approx \frac{C_h(z)}{(C_h(z) - 1) \mathrm{cos}{\theta} + 1}. $$
 
 It's a pretty good approximation, especially considering the cost.
 
@@ -366,7 +366,7 @@ The resulting approximation of the Chapman function has up to 50 times lower rel
 
 For reference, the full numerical approximation of the Chapman function for the upper hemisphere is:
 
-$$ \tag{49} C_{u\\_a}(z, \theta) \approx \frac{\mathrm{cos}{\theta}}{2} + \frac{0.761643 (1 + z (2 - \mathrm{cos}^2{\theta}))}{z \mathrm{cos}{\theta} + \sqrt{z (1.47721 + 0.273828 z \mathrm{cos}^2{\theta})}}. $$
+$$ \tag{49} C_{u\\_a}(z, \mathrm{cos}{\theta}) \approx \frac{\mathrm{cos}{\theta}}{2} + \frac{0.761643 (1 + z (2 - \mathrm{cos}^2{\theta}))}{z \mathrm{cos}{\theta} + \sqrt{z (1.47721 + 0.273828 z \mathrm{cos}^2{\theta})}}. $$
 
 Sample code which implements the Equation 40 is listed below.
 
@@ -442,7 +442,7 @@ $$ \tag{51} \mathrm{sin}{\gamma} = \frac{\mathrm{opposite}}{\mathrm{hypotenuse}}
 
 that determines the value of the Chapman function below horizon:
 
-$$ \tag{52} C_b(z, \theta, Z, \gamma) = C_u(Z, \mathrm{cos}{\gamma}) - C_u(z, \vert \mathrm{cos}{\theta} \vert). $$
+$$ \tag{52} C_b(z, \mathrm{cos}{\theta}, Z, \mathrm{cos}{\gamma}) = C_u(Z, \mathrm{cos}{\gamma}) - C_u(z, \vert \mathrm{cos}{\theta} \vert). $$
 
 Sample code is listed below. While it's possible to use the `RescaledChapmanFunction`, this implementation is slightly more efficient.
 
@@ -498,8 +498,8 @@ Now, let's tackle the most general case of evaluating optical depth between two 
 1\. \\(\mathrm{cos}(\bm{x} - \bm{c}, \bm{y} - \bm{x}) \geq 0 \\), which means that the ray points into the upper hemisphere with respect to the normal at the point \\(\bm{x}\\). This also means it points into the upper hemisphere at any point \\(\bm{y}\\) along the ray (I don't have a rigorous proof, but it's fairly obvious if you sketch it). We simply use the Equation 41, which we simplify by replacing \\(C\\) with \\(C_u\\) which is restricted to the upper hemisphere:
 
 $$ \tag{53}
-\bm{\tau\_{uu}}(z_x, \theta_x, z_y, \theta_y)
-    = \bm{\mu_t} \frac{k}{n} \Bigg( e^{Z - z_x} C_u(z_x, \theta_x) - e^{Z - z_y} C_u(z_y, \theta_y) \Bigg).
+\bm{\tau\_{uu}}(z_x, \mathrm{cos}{\theta_x}, z_y, \mathrm{cos}{\theta_y})
+    = \bm{\mu_t} \frac{k}{n} \Bigg( e^{Z - z_x} C_u(z_x, \mathrm{cos}{\theta_x}) - e^{Z - z_y} C_u(z_y, \mathrm{cos}{\theta_y}) \Bigg),
 $$
 
 2\. \\(\mathrm{cos}(\bm{x} - \bm{c}, \bm{y} - \bm{x}) < 0 \\) and \\(\mathrm{cos}(\bm{y} - \bm{c}, \bm{y} - \bm{x}) \rangle < 0 \\) occurs e.g. when looking straight down. It's also easy to handle, we just flip the direction (by taking the absolute value of the cosine), replace the segment \\(\bm{xy}\\) with the segment \\(\bm{yx}\\) and fall back to the case 1.
@@ -507,9 +507,8 @@ $$
 3\. \\(\mathrm{cos}(\bm{x} - \bm{c}, \bm{y} - \bm{x}) \rangle < 0 \\) and \\(\mathrm{cos}(\bm{y} - \bm{c}, \bm{y} - \bm{x})  \rangle \geq 0 \\). This is the most complicated case, since we have to evaluate the Chapman function three times, twice using the position of \\(\bm{x}\\) with the direction pointing into the lower hemisphere, and once using the position of \\(\bm{y}\\) with the ray pointing in the upper hemisphere.
 
 $$ \tag{54} \begin{aligned}
-\bm{\tau\_{ul}}(z_x, \theta_x, z_y, \theta_y)
-    &= \bm{\mu_t} \frac{k}{n} \Bigg( e^{Z - z_x} C_l(z_x, \theta_x) - e^{Z - z_y} C_u(z_y, \theta_y) \Bigg) \cr
-    &= \bm{\mu_t} \frac{k}{n} \Bigg( 2 e^{Z - z_x \mathrm{sin}{\theta_x}} C_h(z_x \mathrm{sin}{\theta_x}) - e^{Z - z_x} C_u(z_x, \theta_x) - e^{Z - z_y} C_u(z_y, \theta_y) \Bigg).
+\bm{\tau\_{ul}}(z_x, \mathrm{cos}{\theta_x}, z_y, \mathrm{cos}{\theta_y})
+    &= \bm{\mu_t} \frac{k}{n} \Bigg( e^{Z - z_x} C_l(z_x, \mathrm{cos}{\theta_x}) - e^{Z - z_y} C_u(z_y, \mathrm{cos}{\theta_y}) \Bigg).
 \end{aligned} $$
 
 Sample code is listed below.
@@ -561,7 +560,47 @@ You can find the plot of the extinction-transmittance integral below.
 
 {{< figure src="/img/ext_transm_int.png" caption="*Plot of the extinction-transmittance integral for \\(\mu_t k = 0.01, r = 6450, R = 6400,\\) and varying \\(H\\).*">}}
 
+To sample proportionally to opacity, we need to find a way to invert the CDF (Equation 13). The analysis presented in the previous section indicates that there are two cases we must consider: the ray either points into the same (upper) hemisphere at both endpoints (Equation 53), or into the opposite ones (Equation 54).
+
+First, let's establish some useful identities. Recalling the Equation 37,
+
+$$ \tag{56} \begin{aligned}
+\mathcal{R}(\bm{x}, \bm{v}, t)
+    &= \sqrt{r_0^2 + (t_0 + t)^2} \cr
+    &= \sqrt{\big( \Vert \bm{x}-\bm{c} \Vert \mathrm{sin}(\bm{x}-\bm{c}, \bm{v}) \big)^2 + \big(\Vert \bm{x}-\bm{c} \Vert \mathrm{cos}(\bm{x}-\bm{c}, \bm{v}) + t \big)^2} \cr
+    &= \sqrt{\Vert \bm{x}-\bm{c} \Vert^2 \big(1 - \mathrm{cos}(\bm{x}-\bm{c}, \bm{v}) \big)^2 + \big(\Vert \bm{x}-\bm{c} \Vert \mathrm{cos}(\bm{x}-\bm{c}, \bm{v}) + t \big)^2} \cr
+    &= \sqrt{\langle \bm{x}-\bm{c}, \bm{x}-\bm{c} \rangle - \langle \bm{x}-\bm{c}, \bm{v} \rangle^2 + \big(\langle \bm{x}-\bm{c}, \bm{v} \rangle + t \big)^2} \cr
+    &= \sqrt{\langle \bm{x}-\bm{c}, \bm{x}-\bm{c} \rangle + t \big(t + 2 \langle \bm{x}-\bm{c}, \bm{v} \rangle \big)} \cr
+    &= \sqrt{r_x^2 + t \big(t + 2 r_x \mathrm{cos}{\theta_x} \big)},
+\end{aligned} $$
+
+$$ \tag{57}
+\mathcal{C}(\bm{x}, \bm{v}, t)
+    = \frac{t_0 + t}{\mathcal{R}(\bm{x}, \bm{v}, t)}
+    = \frac{r_x \mathrm{cos}{\theta_x}}{\sqrt{r_x^2 + t \big(t + 2 r_x \mathrm{cos}{\theta_x} \big)}}.
+$$
+
+The value of the extinction-transmittance integral, or opacity, can then be expressed in a compact way:
+
+$$ \tag{58}
+\bm{I\_{uu}}(\bm{x}, \bm{v}, t)
+    = 1 - \mathrm{exp} \Big(-\bm{\tau\_{uu}} \big(n \mathcal{R}(\bm{x}, \bm{v}, 0), \mathcal{C}(\bm{x}, \bm{v}, 0)), n \mathcal{R}(\bm{x}, \bm{v}, t), \mathcal{C}(\bm{x}, \bm{v}, t) \big) \Big).
+$$
+
+Full substitution ...
+
+$$ \tag{54} \begin{aligned}
+\bm{\tau\_{ul}}(z_x, \mathrm{cos}{\theta_x}, z_y, \mathrm{cos}{\theta_y})
+    &= \bm{\mu_t} \frac{k}{n} \Bigg( e^{Z - z_x} C_l(z_x, \mathrm{cos}{\theta_x}) - e^{Z - z_y} C_u(z_y, \mathrm{cos}{\theta_y}) \Bigg) \cr
+    &= \bm{\mu_t} \frac{k}{n} \Bigg( 2 e^{Z - z_x \mathrm{sin}{\theta_x}} C_h(z_x \mathrm{sin}{\theta_x}) - e^{Z - z_x} C_u(z_x, \mathrm{cos}{\theta_x}) - e^{Z - z_y} C_u(z_y, \mathrm{cos}{\theta_y}) \Bigg).
+\end{aligned} $$
+
 ---
 
+# Handling Spectral Coefficient
+
+WIP
+
 Spectral coefficients... Hero wavelength? Average coefficient? Single sample MIS?
+
 Note that for RGB surface albedo, it's not just 3 spectral samples, but rather the response of the trichromatic visual system to a complicated spectral distribution.
