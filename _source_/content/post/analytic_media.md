@@ -562,7 +562,7 @@ You can find the plot of the extinction-transmittance integral below.
 
 To sample proportionally to opacity, we need to find a way to invert the CDF (Equation 13). The analysis presented in the previous section indicates that there are two cases we must consider: the ray either points into the same (upper) hemisphere at both endpoints (Equation 53), or into the opposite ones (Equation 54).
 
-First, let's establish some useful identities. Recalling the Equation 37,
+First, let's establish some useful identities. Recalling the Equation 37, we can compute the radial distance from the center \\(\bm{c}\\) to the point \\(\bm{x} + t \bm{v}\\) along the ray using the following formula:
 
 $$ \tag{56} \begin{aligned}
 \mathcal{R}(\bm{x}, \bm{v}, t)
@@ -571,33 +571,28 @@ $$ \tag{56} \begin{aligned}
     &= \sqrt{\Vert \bm{x}-\bm{c} \Vert^2 \big(1 - \mathrm{cos}(\bm{x}-\bm{c}, \bm{v}) \big)^2 + \big(\Vert \bm{x}-\bm{c} \Vert \mathrm{cos}(\bm{x}-\bm{c}, \bm{v}) + t \big)^2} \cr
     &= \sqrt{\langle \bm{x}-\bm{c}, \bm{x}-\bm{c} \rangle - \langle \bm{x}-\bm{c}, \bm{v} \rangle^2 + \big(\langle \bm{x}-\bm{c}, \bm{v} \rangle + t \big)^2} \cr
     &= \sqrt{\langle \bm{x}-\bm{c}, \bm{x}-\bm{c} \rangle + t \big(t + 2 \langle \bm{x}-\bm{c}, \bm{v} \rangle \big)} \cr
-    &= \sqrt{r_x^2 + t \big(t + 2 r_x \mathrm{cos}{\theta_x} \big)},
+    &= \sqrt{r_x^2 + t \big(t + 2 r_x \mathrm{cos}{\theta_x} \big)}.
 \end{aligned} $$
+
+The cosine of the ray direction with the normal at that point can be computed as follows:
 
 $$ \tag{57}
 \mathcal{C}(\bm{x}, \bm{v}, t)
+    = \frac{\mathrm{adjacent}}{\mathrm{hypotenuse}}
     = \frac{t_0 + t}{\mathcal{R}(\bm{x}, \bm{v}, t)}
-    = \frac{r_x \mathrm{cos}{\theta_x}}{\sqrt{r_x^2 + t \big(t + 2 r_x \mathrm{cos}{\theta_x} \big)}}.
+    = \frac{r_x \mathrm{cos}{\theta_x} + t}{\sqrt{r_x^2 + t \big(t + 2 r_x \mathrm{cos}{\theta_x} \big)}}.
 $$
 
-The value of the extinction-transmittance integral, or opacity, can then be expressed in a compact way:
+This allows us to express the value of the extinction-transmittance integral, or opacity, in a compact way:
 
 $$ \tag{58}
 \bm{I\_{uu}}(\bm{x}, \bm{v}, t)
-    = 1 - \mathrm{exp} \Big(-\bm{\tau\_{uu}} \big(n \mathcal{R}(\bm{x}, \bm{v}, 0), \mathcal{C}(\bm{x}, \bm{v}, 0)), n \mathcal{R}(\bm{x}, \bm{v}, t), \mathcal{C}(\bm{x}, \bm{v}, t) \big) \Big).
+    = 1 - \mathrm{exp}\Big(-\bm{\tau\_{uu}} \big(n r_x, \mathrm{cos}{\theta_x}, n \mathcal{R}(\bm{x}, \bm{v}, t), \mathcal{C}(\bm{x}, \bm{v}, t) \big) \Big).
 $$
 
-Full substitution ...
+WIP
 
-$$ \tag{54} \begin{aligned}
-\bm{\tau\_{ul}}(z_x, \mathrm{cos}{\theta_x}, z_y, \mathrm{cos}{\theta_y})
-    &= \bm{\mu_t} \frac{k}{n} \Bigg( e^{Z - z_x} C_l(z_x, \mathrm{cos}{\theta_x}) - e^{Z - z_y} C_u(z_y, \mathrm{cos}{\theta_y}) \Bigg) \cr
-    &= \bm{\mu_t} \frac{k}{n} \Bigg( 2 e^{Z - z_x \mathrm{sin}{\theta_x}} C_h(z_x \mathrm{sin}{\theta_x}) - e^{Z - z_x} C_u(z_x, \mathrm{cos}{\theta_x}) - e^{Z - z_y} C_u(z_y, \mathrm{cos}{\theta_y}) \Bigg).
-\end{aligned} $$
-
----
-
-# Handling Spectral Coefficient
+# Handling Spectral Coefficients
 
 WIP
 
