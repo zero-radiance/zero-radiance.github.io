@@ -1,7 +1,7 @@
 ---
 title: "Sampling Analytic Participating Media"
 date: 2019-06-23T17:53:34-07:00
-draft: true
+hidden: true
 categories: [ "Graphics", "Math" ]
 tags: [
     "Chapman Function",
