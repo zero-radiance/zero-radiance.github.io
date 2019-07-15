@@ -1,7 +1,7 @@
 ---
 title: "Sampling Analytic Participating Media"
 date: 2019-06-23T17:53:34-07:00
-draft: true
+hidden: true
 categories: [ "Graphics", "Math" ]
 tags: [
     "Chapman Function",
@@ -96,6 +96,8 @@ $$ \tag{14} \bm{\sigma_t} = \rho \bm{\mu_t}, $$
 where \\(\rho\\) is the [volumetric mass density](https://en.wikipedia.org/wiki/Mass_density) (measured in units of \\(kg/m^{3}\\)) and \\(\bm{\mu_t}\\) is the [mass attenuation coefficient](https://en.wikipedia.org/wiki/Mass_attenuation_coefficient) (in units of \\(m^{2}/kg\\)).
 
 If your background is in real-time rendering, you may have heard of [constant, linear and exponential fog](http://www.terathon.com/lengyel/Lengyel-UnifiedFog.pdf). These names refer to variation of density, typically with respect to height, and can be used to model height fog and atmospheric scattering.
+
+Note that continuous variation of density results in continuous [variation of the index of refraction](https://www.sciencedirect.com/science/article/pii/S0021850208001183), which means that [light no longer travels along straight lines](https://en.wikipedia.org/wiki/Atmospheric_refraction). We will ignore this for for simplicity.
 
 All of these types of participating media assume a constant albedo value, which leads to a simplified expression of the analytic integral:
 
