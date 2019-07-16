@@ -597,7 +597,3 @@ WIP
 # Handling Spectral Coefficients
 
 WIP
-
-Spectral coefficients... Hero wavelength? Average coefficient? Single sample MIS?
-
-Note that for RGB surface albedo, it's not just 3 spectral samples, but rather the response of the trichromatic visual system to a complicated spectral distribution.
