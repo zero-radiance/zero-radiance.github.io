@@ -19,5 +19,14 @@
       <description>&lt;p&gt;Rendering of participating media is an important aspect of every modern renderer. When I say participating media, it&#39;s not talking about just not fog, fire and smoke - &lt;em&gt;everything is volumetric&lt;/em&gt;. All matter is composed of &lt;a href=&#34;https://en.wikipedia.org/wiki/Atom&#34;&gt;atoms&lt;/a&gt;, which can be sparsely (e.g. in a gas) or densely (e.g. in a solid) packed in space. Whether you consider the particle or the wave nature of &lt;a href=&#34;https://en.wikipedia.org/wiki/Light&#34;&gt;light&lt;/a&gt;, it penetrates all matter (yes, even &lt;a href=&#34;http://webhome.phy.duke.edu/~qelectron/group/group_reading_Born_and_Wolf.pdf&#34;&gt;metals&lt;/a&gt;) to a certain degree, and interacts with its atoms along the way. The nature and the degree of &amp;quot;participation&amp;quot; depends on the material in question.&lt;/p&gt;</description>
     </item>
     
+    <item>
+      <title>Sampling Analytic Participating Media</title>
+      <link>https://zero-radiance.github.io/post/analytic_media/</link>
+      <pubDate>Sun, 23 Jun 2019 17:53:34 -0700</pubDate>
+      
+      <guid>https://zero-radiance.github.io/post/analytic_media/</guid>
+      <description>&lt;p&gt;Rendering of participating media is an important aspect of every modern renderer. When I say participating media, it&#39;s not talking about just not fog, fire and smoke - &lt;em&gt;everything is volumetric&lt;/em&gt;. All matter is composed of &lt;a href=&#34;https://en.wikipedia.org/wiki/Atom&#34;&gt;atoms&lt;/a&gt;, which can be sparsely (e.g. in a gas) or densely (e.g. in a solid) packed in space. Whether you consider the particle or the wave nature of &lt;a href=&#34;https://en.wikipedia.org/wiki/Light&#34;&gt;light&lt;/a&gt;, it penetrates all matter (yes, even &lt;a href=&#34;http://webhome.phy.duke.edu/~qelectron/group/group_reading_Born_and_Wolf.pdf&#34;&gt;metals&lt;/a&gt;) to a certain degree, and interacts with its atoms along the way. The nature and the degree of &amp;quot;participation&amp;quot; depends on the material in question.&lt;/p&gt;</description>
+    </item>
+    
   </channel>
 </rss>
