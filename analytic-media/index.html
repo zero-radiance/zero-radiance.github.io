@@ -13,7 +13,7 @@
     <meta property="og:description" content="" />
     <meta property="og:type" content="website" />
     <meta property="og:locale" content="en_US" />
-    <meta property="og:url" content="https://zero-radiance.github.io/post/analytic_media/" />
+    <meta property="og:url" content="https://zero-radiance.github.io/analytic-media/" />
     
 
     <link href="" rel="alternate" type="application/rss+xml" title="Zero Radiance" />
@@ -57,7 +57,7 @@
         </header>
         
         <div class="article-meta">
-            <a href="/post/analytic_media/" class="article-date">
+            <a href="/analytic-media/" class="article-date">
                 <time datetime='2019-06-23T17:53:34.000-07:00' itemprop="datePublished">2019-06-23</time>
             </a>
             
@@ -163,6 +163,8 @@ $$</p>
 <p>where \(\rho\) is the <a href="https://en.wikipedia.org/wiki/Mass_density">volumetric mass density</a> (measured in units of \(kg/m^{3}\)) and \(\bm{\mu_t}\) is the <a href="https://en.wikipedia.org/wiki/Mass_attenuation_coefficient">mass attenuation coefficient</a> (in units of \(m^{2}/kg\)).</p>
 
 <p>If your background is in real-time rendering, you may have heard of <a href="http://www.terathon.com/lengyel/Lengyel-UnifiedFog.pdf">constant, linear and exponential fog</a>. These names refer to variation of density, typically with respect to height, and can be used to model height fog and atmospheric scattering.</p>
+
+<p>Note that continuous variation of density results in continuous <a href="https://www.sciencedirect.com/science/article/pii/S0021850208001183">variation of the index of refraction</a>, which means that <a href="https://en.wikipedia.org/wiki/Atmospheric_refraction">light no longer travels along straight lines</a>. We will ignore this for for simplicity.</p>
 
 <p>All of these types of participating media assume a constant albedo value, which leads to a simplified expression of the analytic integral:</p>
 
@@ -795,12 +797,6 @@ $$</p>
         
     </div>
     <nav id="article-nav">
-    
-    <a href="/analytic_media/" id="article-nav-newer" class="article-nav-link-wrap">
-        <div class="article-nav-title"><span>&lt;</span>&nbsp;
-            Sampling Analytic Participating Media
-        </div>
-    </a>
     
     
     <a href="/post/surface-gradient/" id="article-nav-older" class="article-nav-link-wrap">
