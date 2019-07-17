@@ -180,10 +180,10 @@ The sampling "recipe" for distance \\(t\\) is given by the following formula:
 
 $$ \tag{25}
 	t = -\frac{k + m x_3}{m v_3}
-	+ \mathrm{sign}(v_3) \sqrt{\Bigg( \frac{k + m x_3}{m v_3} \Bigg)^2 - 2 \frac{\mathrm{log} \big(1 - \xi O(\bm{x}, \bm{x} + t\_{max} \bm{v}) \big)}{\mu_t m v_3}},
+	\pm \sqrt{\Bigg( \frac{k + m x_3}{m v_3} \Bigg)^2 - 2 \frac{\mathrm{log} \big(1 - \xi O(\bm{x}, \bm{x} + t\_{max} \bm{v}) \big)}{\mu_t m v_3}},
 $$
 
-where the \\(\mathrm{sign}\\) function returns \\(1\\) or \\(-1\\). Please note that this "recipe" is not well-defined for \\(m = 0\\).
+where the sign of the square root is the sign of \\(v_3\\). Please note that this "recipe" is not well-defined for \\(m = 0\\).
 
 ## Exponential Variation of Density with Altitude in Rectangular Coordinates
 
@@ -534,9 +534,7 @@ float3 EvaluateOpticalDepthAlongRaySegment(float3 X, float3 Y)
 
     // Potentially swap X and Y.
     // Convention: at the point Y, the ray points up.
-    // The sign (not signum!) function below is expected to NEVER return 0,
-    // otherwise we would 0 out the cosine instead of performing a sign flip.
-    cosThetaX *= sign(cosThetaY);
+    cosThetaX = (cosThetaY >= 0) ? cosThetaX : -cosThetaX;
 
     float chX = RescaledChapmanFunction(zX, Z, cosThetaX);
     float chY = ChapmanUpperApprox(zY, abs(cosThetaY)) * exp(Z - zY);
