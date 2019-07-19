@@ -546,6 +546,8 @@ float3 EvaluateOpticalDepthAlongRaySegment(float3 X, float3 Y)
 }
 ```
 
+The code above works for all finite inputs. An important special case is when the point \\(\bm{y}\\) is considered to be outside the atmosphere (if `exp(Z - zY) < EPS`, for instance). In that case, `chY = 0` is an adequate approximation.
+
 ### Sampling Exponential Media in Spherical Coordinates
 
 Around 10 pages before, we were quite interested in evaluating the extinction-transmittance integral (Equations 15, 19, 24, 32). What about our spherical exponential distributions? Is the value of the integral still identical to opacity?
