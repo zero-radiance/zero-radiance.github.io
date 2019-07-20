@@ -247,10 +247,10 @@ $$</p>
 
 <p>$$ \tag{25}
     t = -\frac{k + m x_3}{m v_3}
-    + \mathrm{sign}(v_3) \sqrt{\Bigg( \frac{k + m x_3}{m v_3} \Bigg)^2 - 2 \frac{\mathrm{log} \big(1 - \xi O(\bm{x}, \bm{x} + t_{max} \bm{v}) \big)}{\mu_t m v_3}},
+    \pm \sqrt{\Bigg( \frac{k + m x_3}{m v_3} \Bigg)^2 - 2 \frac{\mathrm{log} \big(1 - \xi O(\bm{x}, \bm{x} + t_{max} \bm{v}) \big)}{\mu_t m v_3}},
 $$</p>
 
-<p>where the \(\mathrm{sign}\) function returns \(1\) or \(-1\). Please note that this &quot;recipe&quot; is not well-defined for \(m = 0\).</p>
+<p>where the sign of the square root is the sign of \(v_3\). Please note that this &quot;recipe&quot; is not well-defined for \(m = 0\).</p>
 
 <h2 id="exponential-variation-of-density-with-altitude-in-rectangular-coordinates">Exponential Variation of Density with Altitude in Rectangular Coordinates</h2>
 
@@ -631,9 +631,7 @@ float3 EvaluateOpticalDepthAlongRaySegment(float3 X, float3 Y)
 
     // Potentially swap X and Y.
     // Convention: at the point Y, the ray points up.
-    // The sign (not signum!) function below is expected to NEVER return 0,
-    // otherwise we would 0 out the cosine instead of performing a sign flip.
-    cosThetaX *= sign(cosThetaY);
+    cosThetaX = (cosThetaY &gt;= 0) ? cosThetaX : -cosThetaX;
 
     float chX = RescaledChapmanFunction(zX, Z, cosThetaX);
     float chY = ChapmanUpperApprox(zY, abs(cosThetaY)) * exp(Z - zY);
@@ -644,6 +642,8 @@ float3 EvaluateOpticalDepthAlongRaySegment(float3 X, float3 Y)
     return ch * H * seaLevelAttenuationCoefficient;
 }
 </code></pre>
+
+<p>The code above works for all finite inputs. An important special case is when the point \(\bm{y}\) is considered to be outside the atmosphere (if <code>exp(Z - zY) &lt; EPS</code>, for instance). In that case, <code>chY = 0</code> is an adequate approximation.</p>
 
 <h3 id="sampling-exponential-media-in-spherical-coordinates">Sampling Exponential Media in Spherical Coordinates</h3>
 
