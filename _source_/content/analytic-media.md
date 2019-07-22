@@ -183,7 +183,7 @@ $$ \tag{25}
 	\pm \sqrt{\Bigg( \frac{k + m x_3}{m v_3} \Bigg)^2 - 2 \frac{\mathrm{log} \big(1 - \xi O(\bm{x}, \bm{x} + t\_{max} \bm{v}) \big)}{\mu_t m v_3}},
 $$
 
-where the sign of the square root is the sign of \\(v_3\\). Please note that this "recipe" is not well-defined for \\(m = 0\\).
+where the sign of the square root is the sign of \\(v_3\\). Please note that homogeneous participating media along the ray (\\(m v_3 = 0\\)) require special treatment.
 
 ## Exponential Variation of Density with Altitude in Rectangular Coordinates
 
@@ -239,9 +239,9 @@ $$ \tag{32} \bm{I\_{ep}}(\bm{x}, \bm{v}, t) = \bm{O}(\bm{x}, \bm{x} + t \bm{v}).
 
 Inversion of the CDF allows us to sample the distance \\(t\\):
 
-$$ \tag{33} t = \frac{1}{n v_3} \Bigg( \mathrm{log}(\mu_t k) - \mathrm{log} \Big( \mu_t k + n v_3 e^{n x_3} \mathrm{log} \big(1 - \xi O(\bm{x}, \bm{x} + t\_{max} \bm{v}) \big) \Big) \Bigg). $$
+$$ \tag{33} t = \frac{1}{n v_3} \mathrm{log} \Bigg( \frac{\mu_t k}{\mu_t k + e^{n x_3} n v_3 \mathrm{log} \big(1 - \xi O(\bm{x}, \bm{x} + t\_{max} \bm{v}) \big)} \Bigg). $$
 
-Please note that using the value \\(n = 0\\) requires special treatment.
+Please note that homogeneous participating media along the ray (\\(n v_3 = 0\\)) require special treatment.
 
 ## Exponential Variation of Density with Altitude in Spherical Coordinates
 
@@ -259,7 +259,7 @@ Our goal is to simplify the problem using its inherent spherical symmetry. Pleas
 
 {{< figure src="/img/spherical_param.png">}}
 
-We start by recognizing the fact that every ordered pair of position and direction \\(\lbrace \bm{x}, \bm{v} \rbrace\\) can be represented as a pair of radial distance and zenith angle \\(\lbrace r, \theta \rbrace\\).
+We start by recognizing the fact that every ordered pair of position and direction \\(\lbrace \bm{x}, \bm{v} \rbrace\\) can be reduced to a pair of radial distance and zenith angle \\(\lbrace r, \theta \rbrace\\).
 
 In order to find the parametric equation of altitude \\(h\\) along the ray, we can use a right triangle with legs \\(r_0\\) and \\(t_0\\) corresponding to the initial pair of position and direction \\(\lbrace r, \theta \rbrace\\):
 
@@ -362,7 +362,7 @@ Instead, we can take a different, simpler approach. Instead of approximating the
 
 $$ \tag{48} e^{x^2} \mathrm{erfc}(x) \approx \frac{2.911}{(2.911 - 1) \sqrt{\pi x^2} + \sqrt{\pi x^2 + 2.911^2}}. $$
 
-The resulting approximation of the Chapman function has up to 50 times lower relative error, and is acceptable for our use case.
+The resulting approximation of the Chapman function has up to 50 times lower relative error, and is acceptable for our use case (the full expression of transmittance features even lower numerical error).
 
 {{< figure src="/img/chapman_erfc_error.png" caption="*Relative error plot of the new approximation of the Chapman function for \\(r = 6600\\).*">}}
 
@@ -446,7 +446,7 @@ that determines the value of the Chapman function below horizon:
 
 $$ \tag{52} C_b(z, \mathrm{cos}{\theta}, Z, \mathrm{cos}{\gamma}) = C_u(Z, \mathrm{cos}{\gamma}) - C_u(z, \vert \mathrm{cos}{\theta} \vert). $$
 
-Sample code is listed below. While it's possible to use the `RescaledChapmanFunction`, this implementation is slightly more efficient.
+Sample code is listed below. While it's possible to use the `RescaledChapmanFunction` in this scenario, the following implementation is slightly more efficient.
 
 ```c++
 float R, rcpR, H, rcpH, Z;
@@ -497,7 +497,7 @@ If desired, it is possible to reduce divergence by utilizing `ChapmanUpperApprox
 
 Now, let's tackle the most general case of evaluating optical depth between two points \\(\bm{x}\\) and \\(\bm{y}\\). It may seem really complex at first, when, in fact, it's very similar to the problem we just solved. We have to consider three distinct possibilities:
 
-1\. \\(\mathrm{cos}(\bm{x} - \bm{c}, \bm{y} - \bm{x}) \geq 0 \\), which means that the ray points into the upper hemisphere with respect to the normal at the point \\(\bm{x}\\). This also means it points into the upper hemisphere at any point \\(\bm{y}\\) along the ray (I don't have a rigorous proof, but it's fairly obvious if you sketch it). We simply use the Equation 41, which we simplify by replacing \\(C\\) with \\(C_u\\) which is restricted to the upper hemisphere:
+1\. \\(\mathrm{cos}(\bm{x} - \bm{c}, \bm{y} - \bm{x}) \geq 0 \\), which means that the ray points into the upper hemisphere with respect to the normal at the point \\(\bm{x}\\). This also means it points into the upper hemisphere at any point \\(\bm{y}\\) along the ray (I don't have a rigorous proof, but it's fairly obvious if you sketch it). Optical depth is given by the Equation 41, which we specialize by replacing \\(C\\) with \\(C_u\\) which is restricted to the upper hemisphere:
 
 $$ \tag{53}
 \bm{\tau\_{uu}}(z_x, \mathrm{cos}{\theta_x}, z_y, \mathrm{cos}{\theta_y})
@@ -570,10 +570,7 @@ $$ \tag{56} \begin{aligned}
 \mathcal{R}(\bm{x}, \bm{v}, t)
     &= \sqrt{r_0^2 + (t_0 + t)^2} \cr
     &= \sqrt{\big( \Vert \bm{x}-\bm{c} \Vert \mathrm{sin}(\bm{x}-\bm{c}, \bm{v}) \big)^2 + \big(\Vert \bm{x}-\bm{c} \Vert \mathrm{cos}(\bm{x}-\bm{c}, \bm{v}) + t \big)^2} \cr
-    &= \sqrt{\Vert \bm{x}-\bm{c} \Vert^2 \big(1 - \mathrm{cos}(\bm{x}-\bm{c}, \bm{v}) \big)^2 + \big(\Vert \bm{x}-\bm{c} \Vert \mathrm{cos}(\bm{x}-\bm{c}, \bm{v}) + t \big)^2} \cr
-    &= \sqrt{\langle \bm{x}-\bm{c}, \bm{x}-\bm{c} \rangle - \langle \bm{x}-\bm{c}, \bm{v} \rangle^2 + \big(\langle \bm{x}-\bm{c}, \bm{v} \rangle + t \big)^2} \cr
-    &= \sqrt{\langle \bm{x}-\bm{c}, \bm{x}-\bm{c} \rangle + t \big(t + 2 \langle \bm{x}-\bm{c}, \bm{v} \rangle \big)} \cr
-    &= \sqrt{r_x^2 + t \big(t + 2 r_x \mathrm{cos}{\theta_x} \big)}.
+    &= \sqrt{(r \mathrm{sin}{\theta})^2 + (r \mathrm{cos}{\theta} + t)^2}
 \end{aligned} $$
 
 The cosine of the ray direction with the normal at that point can be computed as follows:
@@ -582,17 +579,52 @@ $$ \tag{57}
 \mathcal{C}(\bm{x}, \bm{v}, t)
     = \frac{\mathrm{adjacent}}{\mathrm{hypotenuse}}
     = \frac{t_0 + t}{\mathcal{R}(\bm{x}, \bm{v}, t)}
-    = \frac{r_x \mathrm{cos}{\theta_x} + t}{\sqrt{r_x^2 + t \big(t + 2 r_x \mathrm{cos}{\theta_x} \big)}}.
+    = \frac{r \mathrm{cos}{\theta} + t}{\sqrt{(r \mathrm{sin}{\theta})^2 + (r \mathrm{cos}{\theta} + t)^2}}.
 $$
 
 This allows us to express the value of the extinction-transmittance integral, or opacity, in a compact way:
 
 $$ \tag{58}
 \bm{I\_{uu}}(\bm{x}, \bm{v}, t)
-    = 1 - \mathrm{exp}\Big(-\bm{\tau\_{uu}} \big(n r_x, \mathrm{cos}{\theta_x}, n \mathcal{R}(\bm{x}, \bm{v}, t), \mathcal{C}(\bm{x}, \bm{v}, t) \big) \Big).
+    = 1 - \mathrm{exp}\Big(-\bm{\tau\_{uu}} \big(n \mathcal{R}(\bm{x}, \bm{v}, 0), \mathcal{C}(\bm{x}, \bm{v}, 0), n \mathcal{R}(\bm{x}, \bm{v}, t), \mathcal{C}(\bm{x}, \bm{v}, t) \big) \Big).
 $$
 
-WIP
+To importance sample, we must be able to solve the following equation for \\(t\\) given the value of the CDF \\(P\\):
+
+$$ \tag{59}
+P = \frac{
+    1 - \mathrm{exp}\Big(-\tau\_{uu} \big(n \mathcal{R}(\bm{x}, \bm{v}, 0), \mathcal{C}(\bm{x}, \bm{v}, 0), n \mathcal{R}(\bm{x}, \bm{v}, t), \mathcal{C}(\bm{x}, \bm{v}, t) \big) \Big)}
+    {1 - \mathrm{exp}\Big(-\tau\_{uu} \big(n \mathcal{R}(\bm{x}, \bm{v}, 0), \mathcal{C}(\bm{x}, \bm{v}, 0), n \mathcal{R}(\bm{x}, \bm{v}, t\_{max}), \mathcal{C}(\bm{x}, \bm{v}, t\_{max}) \big) \Big)}.
+$$
+
+The expression for the opposite hemisphere case is similar.
+
+After several somewhat tedious algebraic manipulations, the problem can be reduced to solving the following equation:
+
+$$ \tag{60}
+q = e^{Z - n \mathcal{R}(\bm{x}, \bm{v}, t) } C_u \Big( n \mathcal{R}(\bm{x}, \bm{v}, t), \mathcal{C}(\bm{x}, \bm{v}, t) \Big),
+$$
+
+which means that we need to find the distance \\(t\\) at which the value of the rescaled Chapman function is \\(q\\).
+
+The equation has too many parameters. We can reduce the dimensionality by solving for \\(t' = nt\\):
+
+$$ \tag{61}
+q = e^{Z - \sqrt{(z \mathrm{sin}{\theta})^2 + (z \mathrm{cos}{\theta} + t')^2} } C_u \Big( \sqrt{(z \mathrm{sin}{\theta})^2 + (z \mathrm{cos}{\theta} + t')^2}, \frac{z \mathrm{cos}{\theta} + t'}{\sqrt{(z \mathrm{sin}{\theta})^2 + (z \mathrm{cos}{\theta} + t')^2}} \Big).
+$$
+
+After getting rid of \\(n\\), the next step is to group common terms:
+
+$$ \tag{62} \phi = z \mathrm{sin}{\theta} \qquad \psi = z \mathrm{cos}{\theta} + t', $$
+
+$$ \tag{63}
+q = e^{Z - \sqrt{\phi^2+\psi^2} } C_u \Big( \sqrt{\phi^2+\psi^2}, \frac{\psi}{\sqrt{\phi^2+\psi^2}} \Big). $$
+
+Both \\(\phi\\) and \\(\psi\\) are known to be positive. We must solve for \\(\psi\\). \\(Z\\) could theoretically be removed, but it's here to keep the solution within a sane numerical range.
+
+Newton's... Smooth, has derivs, easy to make a good guess.
+
+Adaptive importance sampling... Discretize... Rect approx...
 
 # Handling Spectral Coefficients
 
