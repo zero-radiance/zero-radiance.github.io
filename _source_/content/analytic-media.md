@@ -50,7 +50,7 @@ $$
 
 where \\(\bm{L}\\) is the amount of radiance at a certain position \\(\bm{x}\\) in a certain direction \\(\bm{v}\\), and \\(f\\) denotes the [phase function](http://www.pbr-book.org/3ed-2018/Volume_Scattering/Phase_Functions.html). To simplify notation, the maximum distance \\(t\_{max}\\) along the ray (which could correspond to the distance to the closest surface) is kept implicit.
 
-We can evaluate this integral using one of the [Monte Carlo](http://www.pbr-book.org/3ed-2018/Monte_Carlo_Integration.html) methods. The first step is to split it into two parts: the part we can evaluate analyticly, and the part we can not precompute. We can group the product of transmittance and the scattering coefficient together, and leave the nested integral as the unknown term:
+We can evaluate this integral using one of the [Monte Carlo](http://www.pbr-book.org/3ed-2018/Monte_Carlo_Integration.html) methods. The first step is to split it into two parts: the part we can evaluate analytically, and the part we can not precompute. We can group the product of transmittance and the scattering coefficient together, and leave the nested integral as the unknown term:
 
 $$ \tag{8} \bm{L}(\bm{x}, \bm{v})
     = \int\_{0}^{t\_{max}} \bm{T}(\bm{x},\bm{x} + s \bm{v}) \bm{\sigma_s}(\bm{x} + s \bm{v}) \bm{L_s}(\bm{x} + s \bm{v}, \bm{v}) ds.
@@ -239,7 +239,7 @@ $$ \tag{32} \bm{I\_{ep}}(\bm{x}, \bm{v}, t) = \bm{O}(\bm{x}, \bm{x} + t \bm{v}).
 
 Inversion of the CDF allows us to sample the distance \\(t\\):
 
-$$ \tag{33} t = \frac{1}{n v_3} \mathrm{log} \Bigg( \frac{\mu_t k}{\mu_t k + e^{n x_3} n v_3 \mathrm{log} \big(1 - \xi O(\bm{x}, \bm{x} + t\_{max} \bm{v}) \big)} \Bigg). $$
+$$ \tag{33} t = -\frac{1}{n v_3} \log \left(1 + \frac{ n v_3 \log \big(1 - \xi O \left(\bm{x}, \bm{x} + t\_{max} \bm{v} \right) \big)}{\mu_t k e^{-n x_3}}\right). $$
 
 Please note that homogeneous participating media along the ray (\\(n v_3 = 0\\)) require special treatment.
 
@@ -459,7 +459,7 @@ float ComputeCosineOfHorizonAngle(float r)
 }
 
 // Ray equation: (X + t * V).
-float3 EvaluateOpticalDepthAlongRay(float3 X, float3 V)
+float3 ComputeOpticalDepthAlongRay(float3 X, float3 V)
 {
     float r = distance(X, C);
     float z = r * rcpH;
@@ -519,7 +519,7 @@ Sample code is listed below.
 float R, rcpR, H, rcpH, Z;
 float3 C, seaLevelAttenuationCoefficient;
 
-float3 EvaluateOpticalDepthAlongRaySegment(float3 X, float3 Y)
+float3 ComputeOpticalDepthAlongRaySegment(float3 X, float3 Y)
 {
     float3 V = normalize(Y - X);
 
@@ -622,10 +622,100 @@ q = e^{Z - \sqrt{\phi^2+\psi^2} } C_u \Big( \sqrt{\phi^2+\psi^2}, \frac{\psi}{\s
 
 Both \\(\phi\\) and \\(\psi\\) are known to be positive. We must solve for \\(\psi\\). \\(Z\\) could theoretically be removed, but it's here to keep the solution within a sane numerical range.
 
-Newton's... Smooth, has derivs, easy to make a good guess.
+To my knowledge, this is the simplest formulation of the problem, using the fewest number of parameters. And yet, I was unable to analytically solve this equation, and I tried both the closed and the approximate forms of the Chapman function. Perhaps you will have better luck?
 
-Adaptive importance sampling... Discretize... Rect approx...
+While that's an unfortunate development, it's a minor setback. If we can't solve the equation analytically, we can solve it numerically, using [Newton's method](https://en.wikipedia.org/wiki/Newton%27s_method), for instance. The derivative of the Chapman function exists, and is not too difficult to compute. The function is smooth, and the initial guess can be made using the approximation in the rectangular coordinates (Equation 33).
+
+In fact, curvature of the planet can be ignored for moderately large distances, making it a relatively efficient and accurate approximation. Can we exploit this idea for arbitrary distances? Let's take another look at the Equation 13. Assuming a constant albedo, the value of the CDF \\(P\\) along the ray segment of length \\(t\_{max}\\) is given as:
+
+$$ \tag{64} P(\bm{x}, \bm{v}, t)
+    = \frac{O(\bm{x} + t \bm{v})}{O(\bm{x} + t\_{max} \bm{v})}.
+$$
+
+Inverting it means to find the distance \\(t\\) along the ray at which fractional opacity is equal to \\(P\\). Total opacity along the ray can be efficiently computed using our analytic approximation. We can use it to obtain the scaled CDF.
+
+Let's say that we are not interested in brute-force path tracing (which would require numerical inversion). Instead, we are trying to compute in-scattered radiance along the ray using the Equation 8, where \\(\bm{L_s}\\) is known (which limits us to single and pre-computed multiple scattering). The algorithm below is a direct replacement for randomized ray marching, and shares the traits of being biased, but consistent. Unlike ray marching, the algorithm is intelligent, and adapts to properties of the participating medium. I will refer to it as *adaptive importance sampling*.
+
+Sample code is listed below.
+
+```c++
+float R, rcpR, H, rcpH, Z;
+float3 C, ssAlbedo;
+// Only monochromatic coefficients are supported by this code snippet.
+float seaLevelAttenuationCoefficient, rcpSeaLevelAttenuationCoefficient;
+
+float SampleRectExpMedium(float height, float cosTheta,
+                          float rcpSeaLevelAttenuationCoefficient, float rcpH,
+                          float cdf, float totalOpacity)
+{
+    float transm = 1 - cdf * totalOpacity;
+
+    // Equation 20.
+    float d = rcpSeaLevelAttenuationCoefficient * exp(height * rcpH);
+    float t = -log(transm) * d;
+
+    float p = cosTheta * rcpH;
+
+    if (abs(p) > FLT_EPS)
+    {
+        // Equation 33.
+        t = -log(1 - p * t) * rcp(p);
+    }
+
+    return t;
+}
+
+float3 IntegrateRadianceAlongRaySegment(float3 X, float3 Y, uint numSamples)
+{
+    float  tMax = distance(Y, X);
+    float3 V    = normalize(Y - X);
+
+    float totalOpticalDepth = ComputeOpticalDepthAlongRaySegment(X, Y);
+    float totalOpacity      = OpacityFromOpticalDepth(totalOpticalDepth);
+
+    float3 radiance = 0;
+
+    float t = 0; // Distance along the ray
+
+    for (uint i = 0; i < numSamples; i++)
+    {
+        float3 P        = X + t * V;
+        float  r        = distance(P, C);
+        float  cosTheta = dot(P - C, V) * rcp(r);
+
+        // Samples must be arranged in the ascending order, s.t.
+        // for any i, sample[i] < sample[i + 1].
+        float cdf = GetOrderedUnitIntervalRandomSample(i, numSamples);
+
+        // (1/seaLevelAttenuationCoefficient) for a single wavelength used for sampling.
+        float rcpA = rcpSeaLevelAttenuationCoefficient;
+
+        // Invert the Equation 13.
+        // Find the distance 't' along the ray s.t. Opacity(t) = CDF * TotalOpacity.
+        // Ignore curvature of the planet.
+        // The approximation is accurate assuming high sampling density.
+        float t = SampleRectExpMedium(r - R, cosTheta, rcpA, rcpH, cdf, totalOpacity);
+
+
+        // Equation 11. By Equation 15, albedo cancels out.
+        // The PDF value is also approximate.
+        float transm = 1 - cdf * totalOpacity;
+        float pdf    = seaLevelAttenuationCoefficient * transm * rcp(totalOpacity);
+
+        // Equation 12.
+        // For a single wavelength, and with high enough sampling density,
+        // weight = extinction * transmittance / pdf ≈ 1.
+        radiance += ComputeInScatteredRadiance(P, V);
+    }
+
+    // Equation 12 (normalization).
+    radiance *= ssAlbedo * totalOpacity * rcp(numSamples);
+}
+
+```
 
 # Handling Spectral Coefficients
 
 WIP
+
+Average coefficient across wave lengths, hero wavelength, single sample MIS...
