@@ -29,15 +29,6 @@
     </item>
     
     <item>
-      <title>Chapman Function</title>
-      <link>https://zero-radiance.github.io/tags/chapman-function/</link>
-      <pubDate>Sun, 23 Jun 2019 17:53:34 -0700</pubDate>
-      
-      <guid>https://zero-radiance.github.io/tags/chapman-function/</guid>
-      <description></description>
-    </item>
-    
-    <item>
       <title>Compositing</title>
       <link>https://zero-radiance.github.io/tags/compositing/</link>
       <pubDate>Thu, 11 Oct 2018 00:00:00 +0000</pubDate>
@@ -61,15 +52,6 @@
       <pubDate>Tue, 02 Apr 2019 00:00:00 +0000</pubDate>
       
       <guid>https://zero-radiance.github.io/tags/image-based-lighting/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Importance Sampling</title>
-      <link>https://zero-radiance.github.io/tags/importance-sampling/</link>
-      <pubDate>Sun, 23 Jun 2019 17:53:34 -0700</pubDate>
-      
-      <guid>https://zero-radiance.github.io/tags/importance-sampling/</guid>
       <description></description>
     </item>
     
@@ -112,7 +94,7 @@
     <item>
       <title>Volume Rendering</title>
       <link>https://zero-radiance.github.io/tags/volume-rendering/</link>
-      <pubDate>Sun, 23 Jun 2019 17:53:34 -0700</pubDate>
+      <pubDate>Thu, 11 Oct 2018 00:00:00 +0000</pubDate>
       
       <guid>https://zero-radiance.github.io/tags/volume-rendering/</guid>
       <description></description>
