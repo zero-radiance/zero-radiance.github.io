@@ -762,3 +762,4 @@ WIP
 Average coefficient across wave lengths, hero wavelength, single sample MIS...
 
 Several components (air, aerosols)?
+
