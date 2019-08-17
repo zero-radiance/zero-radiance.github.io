@@ -14,19 +14,29 @@ Rendering of participating media is an important aspect of every modern renderer
 
 <!--more-->
 
-Light-material interaction is usually quantified in terms of absorption (conversion of  electromagnetic energy of photons into kinetic energy of atoms, which manifests itself as the reduction of light intensity) and scattering (change of direction). Therefore, it is common to describe participating media using the *absorption coefficient* \\(\bm{\sigma_a}\\) and the *scattering coefficient* \\(\bm{\sigma_s}\\). These coefficients give the probability of the corresponding event (absorption and scattering, respectively) as the photon travels the distance of 1 meter through the medium, which implies the units of measurement are \\(m^{-1}\\).
+Light-material interaction is usually quantified in terms of absorption (conversion of electromagnetic energy of photons into kinetic energy of atoms, which manifests as a reduction of light intensity) and scattering (change of photon's flight direction). Therefore, it is common to describe participating media using the *absorption coefficient* \\(\bm{\sigma_a}\\) and the *scattering coefficient* \\(\bm{\sigma_s}\\). These coefficients give the probability (rate) of the corresponding event (absorption and scattering, respectively) per unit distance traveled, which implies the units of measurement are \\(m^{-1}\\).
+
+The [attenuation coefficient](https://en.wikipedia.org/wiki/Attenuation_coefficient)
 
 $$ \tag{1} \bm{\sigma_t} = \bm{\sigma_a} + \bm{\sigma_s} $$
 
-is the [attenuation](https://en.wikipedia.org/wiki/Attenuation_coefficient) (or extinction) coefficient, which gives the probability of absorption or out-scattering as light travels through the volume. All these coefficients are typically spectral (vary with wavelength), and can be represented as vectors (boldface notation).
+gives the interaction probability (of absorption or scattering) as a photon travels a unit distance through the volume. All these coefficients are typically spectral (vary with the wavelength \\(\lambda\\)), and can be represented as vectors (boldface notation). At this point in time, it is not entirely clear (at least to me) how to correctly perform volume rendering using tristimulus (RGB) values (which would require pre-integration using [color matching functions](https://en.wikipedia.org/wiki/CIE_1931_color_space#Color_matching_functions)), so I will focus on pure spectral rendering, which is well-defined.
 
-A more artist-friendly parametrization uses the [single-scattering (volume) albedo](https://en.wikipedia.org/wiki/Single-scattering_albedo) \\(\bm{\alpha}\\):
+A more artist-friendly parametrization uses the [single-scattering (volume) albedo](https://en.wikipedia.org/wiki/Single-scattering_albedo) \\(\bm{\alpha\_{ss}}\\)
 
-$$ \tag{2} \bm{\alpha} = \frac{\bm{\sigma_s}}{\bm{\sigma_t}} $$
+$$ \tag{2} \bm{\alpha\_{ss}} = \frac{\bm{\sigma_s}}{\bm{\sigma_t}}, $$
 
-and the (also spectral!) [mean free path](https://en.wikipedia.org/wiki/Mean_free_path) \\(\bm{d}\\)
+which gives the (relative) probability of scattering, and the (also spectral) [mean free path](https://en.wikipedia.org/wiki/Mean_free_path) \\(\bm{d}\\)
 
-$$ \tag{3} \bm{d} = \frac{1}{\bm{\sigma_t}}. $$
+$$ \tag{3} \bm{d} = \frac{1}{\bm{\sigma_t}}, $$
+
+which corresponds to the average interaction-free distance.
+
+Taking a small detour, for surfaces, the absorption coefficient is directly proportional to the [extinction coefficient](http://webhome.phy.duke.edu/~qelectron/group/group_reading_Born_and_Wolf.pdf) \\(\bm{\kappa}\\), which is the imaginary part of the [complex index of refraction](https://en.wikipedia.org/wiki/Refractive_index#Complex_refractive_index):
+
+$$ \tag{4} \bm{\kappa} = \frac{\bm{\lambda \sigma_a}}{4 \pi}. $$
+
+Therefore, the combination of the complex index of refraction \\(\bm{\eta} + i \bm{\kappa}\\) and the volume albedo \\(\bm{\alpha\_{ss}}\\) is sufficient to describe both the behavior at the boundary and the multiple-scattering process (known as [subsurface scattering](https://en.wikipedia.org/wiki/Subsurface_scattering)) inside the volume, that ultimately gives rise to what we perceive as the surface albedo \\(\bm{\alpha\_{ms}}\\).
 
 Integral of the attenuation coefficient along the ray segment from the point \\(\bm{x}\\) to the point \\(\bm{y}\\) corresponds to the [optical depth](https://en.wikipedia.org/wiki/Optical_depth) (or optical thickness):
 
@@ -104,9 +114,9 @@ All of these types of participating media assume a constant albedo value, which 
 $$ \tag{15} \begin{aligned}
 \bm{A}(\bm{x}, \bm{v}, t)
 	&= \int\_{0}^{t} \bm{\sigma_s}(\bm{x} + s \bm{v}) \bm{T}(\bm{x},\bm{x} + s \bm{v})  ds \cr
-	&= \int\_{0}^{t} \Big( \bm{\alpha}(\bm{x} + s \bm{v}) \bm{\sigma_t}(\bm{x} + s \bm{v}) \Big) \bm{T}(\bm{x},\bm{x} + s \bm{v})  ds \cr
-	&\approx \bm{\alpha} \int\_{0}^{t} \bm{\sigma_t}(\bm{x} + s \bm{v}) \bm{T}(\bm{x},\bm{x} + s \bm{v}) ds \cr
-	&= \bm{\alpha} \bm{I}(\bm{x}, \bm{v}, t).
+	&= \int\_{0}^{t} \Big( \bm{\alpha\_{ss}}(\bm{x} + s \bm{v}) \bm{\sigma_t}(\bm{x} + s \bm{v}) \Big) \bm{T}(\bm{x},\bm{x} + s \bm{v})  ds \cr
+	&\approx \bm{\alpha\_{ss}} \int\_{0}^{t} \bm{\sigma_t}(\bm{x} + s \bm{v}) \bm{T}(\bm{x},\bm{x} + s \bm{v}) ds \cr
+	&= \bm{\alpha\_{ss}} \bm{I}(\bm{x}, \bm{v}, t).
 \end{aligned} $$
 
 We will refer to \\(\bm{I}\\) as the *extinction-transmittance integral*.
