@@ -2,6 +2,7 @@
 title: "Sampling Analytic Participating Media"
 date: 2019-06-23T17:53:34-07:00
 hidden: true
+draft: true
 categories: [ "Graphics", "Math" ]
 tags: [
     "Chapman Function",
@@ -771,3 +772,4 @@ WIP
 Average coefficient across wave lengths, hero wavelength, single sample MIS...
 
 Several components (air, aerosols)?
+

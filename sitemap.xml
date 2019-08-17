@@ -3,11 +3,6 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
-    <loc>https://zero-radiance.github.io/analytic-media/</loc>
-    <lastmod>2019-06-23T17:53:34-07:00</lastmod>
-  </url>
-  
-  <url>
     <loc>https://zero-radiance.github.io/post/surface-gradient/</loc>
     <lastmod>2019-06-23T00:00:00+00:00</lastmod>
   </url>
@@ -45,12 +40,6 @@
   </url>
   
   <url>
-    <loc>https://zero-radiance.github.io/tags/chapman-function/</loc>
-    <lastmod>2019-06-23T17:53:34-07:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
     <loc>https://zero-radiance.github.io/tags/compositing/</loc>
     <lastmod>2018-10-11T00:00:00+00:00</lastmod>
     <priority>0</priority>
@@ -64,7 +53,7 @@
   
   <url>
     <loc>https://zero-radiance.github.io/categories/graphics/</loc>
-    <lastmod>2019-06-23T17:53:34-07:00</lastmod>
+    <lastmod>2019-06-23T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -75,14 +64,8 @@
   </url>
   
   <url>
-    <loc>https://zero-radiance.github.io/tags/importance-sampling/</loc>
-    <lastmod>2019-06-23T17:53:34-07:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
     <loc>https://zero-radiance.github.io/categories/math/</loc>
-    <lastmod>2019-06-23T17:53:34-07:00</lastmod>
+    <lastmod>2019-06-23T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -124,13 +107,13 @@
   
   <url>
     <loc>https://zero-radiance.github.io/tags/volume-rendering/</loc>
-    <lastmod>2019-06-23T17:53:34-07:00</lastmod>
+    <lastmod>2018-10-11T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>https://zero-radiance.github.io/</loc>
-    <lastmod>2019-06-23T17:53:34-07:00</lastmod>
+    <lastmod>2019-06-23T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
