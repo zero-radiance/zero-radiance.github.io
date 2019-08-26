@@ -15,7 +15,7 @@ Rendering of participating media is an important aspect of every modern renderer
 
 <!--more-->
 
-Light-material interaction is usually quantified in terms of absorption (conversion of electromagnetic energy of photons into kinetic energy of atoms, which manifests as a reduction of light intensity) and scattering (change of photon's flight direction). Therefore, it is common to describe participating media using the *absorption coefficient* \\(\bm{\sigma_a}\\) and the *scattering coefficient* \\(\bm{\sigma_s}\\). These coefficients give the probability (rate) of the corresponding event (absorption and scattering, respectively) per unit distance traveled, which implies the units of measurement are \\(m^{-1}\\).
+In the [radiative transfer](https://archive.org/details/RadiativeTransfer) literature, light-material interaction is usually quantified in terms of absorption (conversion of electromagnetic energy of photons into kinetic energy of atoms, which manifests as a reduction of light intensity) and scattering (change of photon's flight direction). Therefore, it is common to describe participating media using the *absorption coefficient* \\(\bm{\sigma_a}\\) and the *scattering coefficient* \\(\bm{\sigma_s}\\). These coefficients give the probability (rate) of the corresponding event (absorption and scattering, respectively) per unit distance traveled, which implies the units of measurement are \\(m^{-1}\\).
 
 The [attenuation coefficient](https://en.wikipedia.org/wiki/Attenuation_coefficient)
 
@@ -108,8 +108,6 @@ where \\(\rho\\) is the [volumetric mass density](https://en.wikipedia.org/wiki/
 
 If your background is in real-time rendering, you may have heard of [constant, linear and exponential fog](http://www.terathon.com/lengyel/Lengyel-UnifiedFog.pdf). These names refer to variation of density, typically with respect to height, and can be used to model height fog and atmospheric scattering.
 
-Note that continuous variation of density results in continuous [variation of the index of refraction](https://www.sciencedirect.com/science/article/pii/S0021850208001183), which means that [light no longer travels along straight lines](https://en.wikipedia.org/wiki/Atmospheric_refraction). We will ignore this for for simplicity.
-
 All of these types of participating media assume a constant albedo value, which leads to a simplified expression of the analytic integral:
 
 $$ \tag{15} \begin{aligned}
@@ -145,7 +143,7 @@ $$ \tag{19} \bm{I_c}(\bm{x}, \bm{v}, t) = \bm{O}(\bm{x}, \bm{x} + t \bm{v}), $$
 
 which is simply volume opacity (Equation 6).
 
-The sampling "recipe" for distance \\(t\\) can be found by [inverting](http://www.pbr-book.org/3ed-2018/Monte_Carlo_Integration/Sampling_Random_Variables.html#TheInversionMethod) the [CDF](https://en.wikipedia.org/wiki/Cumulative_distribution_function) the CDF \\(P^-1(u)\\) (Equation 13):
+The sampling "recipe" for distance \\(t\\) can be found by [inverting](http://www.pbr-book.org/3ed-2018/Monte_Carlo_Integration/Sampling_Random_Variables.html#TheInversionMethod) the [CDF](https://en.wikipedia.org/wiki/Cumulative_distribution_function) \\(P(u)\\) (Equation 13):
 
 $$ \tag{20} t = P^{-1}(\bm{x}, \bm{v}, \xi)
 	= -\frac{\mathrm{log}(1 - \xi O(\bm{x}, \bm{x} + t\_{max} \bm{v}))}{\mu_t k}
@@ -343,7 +341,7 @@ $$ \tag{44} C(z, \mathrm{cos}{\theta}) = \frac{1}{2} \mathrm{cos}{\theta} + \fra
 
 which, unfortunately, is not [closed-form](https://en.wikipedia.org/wiki/Closed-form_expression#Analytic_expression), since it contains the [complementary error function](http://mathworld.wolfram.com/Erfc.html) \\(\mathrm{erfc}\\).
 
-Unfortunately, even after expending a considerable amount of time and effort, I have been unable to re-derive this expression. I have a nagging suspicion that this is not a full analytic solution, but rather a truncated series expansion (similar to [this one](https://www.sciencedirect.com/science/article/pii/S0022407300001072)). Also, while the formula does work for angles beyond 90 degrees, it deviates from the numerically evaluated integral rather quickly.
+Unfortunately, even after expending a considerable amount of time and effort, I have been unable to re-derive this expression. I suspect that I am either missing something (accounting for continuous variation of the IOR, for instance), or perhaps this is not a full analytic solution, but rather a truncated series expansion (similar to [this one](https://www.sciencedirect.com/science/article/pii/S0022407300001072)). Also, while the formula does work for angles beyond 90 degrees, it deviates from the numerically evaluated integral rather quickly.
 
 For the zenith angle of 90 degrees, it reduces to
 
@@ -631,9 +629,9 @@ $$ \tag{62} \phi = z \mathrm{sin}{\theta} \qquad \psi = z \mathrm{cos}{\theta} +
 $$ \tag{63}
 q = e^{Z - \sqrt{\phi^2+\psi^2} } C_u \Big( \sqrt{\phi^2+\psi^2}, \frac{\psi}{\sqrt{\phi^2+\psi^2}} \Big). $$
 
-Both \\(\phi\\) and \\(\psi\\) are known to be positive. We must solve for \\(\psi\\). \\(Z\\) could theoretically be removed, but it's here to keep the solution within a sane numerical range.
+Both \\(\phi\\) and \\(\psi\\) are known to be positive. We must solve for \\(\psi\\). \\(Z\\) could theoretically be removed, but it's here to keep the solution within the sane numerical range.
 
-To my knowledge, this is the simplest formulation of the problem, using the fewest number of parameters. And yet, I was unable to analytically solve this equation, and I tried both the closed and the approximate forms of the Chapman function. Perhaps you will have better luck?
+To my knowledge, this is the simplest formulation of the problem, using the fewest number of parameters. And yet, I was unable to analytically solve this equation, and I tried both the closed and the approximate forms of the Chapman function. Perhaps **you** will have better luck?
 
 While that's an unfortunate development, it's a minor setback. If we can't solve the equation analytically, we can solve it numerically, using [Newton's method](https://en.wikipedia.org/wiki/Newton%27s_method), for instance. The derivative of the Chapman function exists, and is not too difficult to compute. The function is smooth, and the initial guess can be made using the approximation in the rectangular coordinates (Equation 33).
 
