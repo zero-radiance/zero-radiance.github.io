@@ -15,43 +15,65 @@ Rendering of participating media is an important aspect of every modern renderer
 
 <!--more-->
 
-In the [radiative transfer](https://archive.org/details/RadiativeTransfer) literature, light-material interaction is usually quantified in terms of absorption (conversion of electromagnetic energy of photons into kinetic energy of atoms, which manifests as a reduction of light intensity) and scattering (change of photon's flight direction). Therefore, it is common to describe participating media using the *absorption coefficient* \\(\bm{\sigma_a}\\) and the *scattering coefficient* \\(\bm{\sigma_s}\\). These coefficients give the probability (rate) of the corresponding event (absorption and scattering, respectively) per unit distance traveled, which implies the units of measurement are \\(m^{-1}\\).
+In the [radiative transfer](https://archive.org/details/RadiativeTransfer) literature, light-material interaction is usually quantified in terms of absorption (conversion of electromagnetic energy of photons into kinetic energy of atoms, which manifests as reduction of light intensity) and scattering (change of photon's flight direction). Therefore, it is common to describe participating media using the collision coefficients: the *absorption coefficient* \\(\bm{\sigma_a}\\) and the *scattering coefficient* \\(\bm{\sigma_s}\\). These coefficients give the probability of the corresponding event per unit distance traveled, which implies the [SI units](https://en.wikipedia.org/wiki/International_System_of_Units) of measurement are \\(m^{-1}\\).
 
 The [attenuation coefficient](https://en.wikipedia.org/wiki/Attenuation_coefficient)
 
 $$ \tag{1} \bm{\sigma_t} = \bm{\sigma_a} + \bm{\sigma_s} $$
 
-gives the interaction probability (of absorption or scattering) as a photon travels a unit distance through the volume. All these coefficients are typically spectral (vary with the wavelength \\(\lambda\\)), and can be represented as vectors (boldface notation). At this point in time, it is not entirely clear (at least to me) how to correctly perform volume rendering using tristimulus (RGB) values (which would require pre-integration using [color matching functions](https://en.wikipedia.org/wiki/CIE_1931_color_space#Color_matching_functions)), so I will focus on pure spectral rendering, which is well-defined.
+gives the probability of absorption or scattering (or collision rate) as a photon travels a unit distance through the volume. All these coefficients are typically spectral (vary with the wavelength \\(\lambda\\)), and can be represented as vectors (boldface notation). At this point in time, it is not entirely clear (at least to me) how to correctly perform volume rendering using tristimulus (RGB) values (which would require pre-integration using [color matching functions](https://en.wikipedia.org/wiki/CIE_1931_color_space#Color_matching_functions)), so I will focus on pure spectral rendering, which is well-defined.
 
 A more artist-friendly parametrization uses the [single-scattering (volume) albedo](https://en.wikipedia.org/wiki/Single-scattering_albedo) \\(\bm{\alpha\_{ss}}\\)
 
 $$ \tag{2} \bm{\alpha\_{ss}} = \frac{\bm{\sigma_s}}{\bm{\sigma_t}}, $$
 
-which gives the (relative) probability of scattering, and the (also spectral) [mean free path](https://en.wikipedia.org/wiki/Mean_free_path) \\(\bm{d}\\)
+which gives the probability of a photon "surviving" a collision event, and the (also spectral) [mean free path](https://en.wikipedia.org/wiki/Mean_free_path) \\(\bm{d}\\)
 
 $$ \tag{3} \bm{d} = \frac{1}{\bm{\sigma_t}}, $$
 
 which corresponds to the average interaction-free distance.
 
-Taking a small detour, for surfaces, the absorption coefficient is directly proportional to the [extinction coefficient](http://webhome.phy.duke.edu/~qelectron/group/group_reading_Born_and_Wolf.pdf) \\(\bm{\kappa}\\), which is the imaginary part of the [complex index of refraction](https://en.wikipedia.org/wiki/Refractive_index#Complex_refractive_index):
+Taking a small detour, for surfaces, the absorption coefficient is directly proportional to the [extinction coefficient](http://webhome.phy.duke.edu/~qelectron/group/group_reading_Born_and_Wolf.pdf) \\(\bm{\kappa}\\), which is the imaginary part of the [complex index of refraction](https://en.wikipedia.org/wiki/Refractive_index#Complex_refractive_index) \\(\bm{\eta} + i \bm{\kappa}\\):
 
 $$ \tag{4} \bm{\kappa} = \frac{\bm{\lambda \sigma_a}}{4 \pi}. $$
 
-Therefore, the combination of the complex index of refraction \\(\bm{\eta} + i \bm{\kappa}\\) and the volume albedo \\(\bm{\alpha\_{ss}}\\) is sufficient to describe both the behavior at the boundary and the multiple-scattering process (known as [subsurface scattering](https://en.wikipedia.org/wiki/Subsurface_scattering)) inside the volume, that ultimately gives rise to what we perceive as the surface albedo \\(\bm{\alpha\_{ms}}\\).
+Therefore, a triple \\(\lbrace \bm{\eta}, \bm{\kappa}, \bm{\sigma_t} \rbrace\\) \\(\big(\\)or, alternatively, \\(\lbrace \bm{\eta}, \bm{d}, \bm{\alpha\_{ss}} \rbrace  \big) \\) is sufficient to describe both the behavior at the boundary and the multiple-scattering process (known as [subsurface scattering](https://en.wikipedia.org/wiki/Subsurface_scattering)) inside the volume, that ultimately gives rise to what we perceive as the surface albedo \\(\bm{\alpha\_{ms}}\\).
 
-Integral of the attenuation coefficient along the ray segment from the point \\(\bm{x}\\) to the point \\(\bm{y}\\) corresponds to the [optical depth](https://en.wikipedia.org/wiki/Optical_depth) (or optical thickness):
+Integral of the attenuation coefficient along the span of ray segment of length \\(t\\) from the point \\(\bm{x}\\) in the direction \\(\bm{v}\\) corresponds to [optical depth](https://en.wikipedia.org/wiki/Optical_depth) (or optical thickness):
 
-$$ \tag{4} \bm{\tau}(\bm{x}, \bm{y}) = \int\_{0}^{\Vert \bm{y} - \bm{x} \Vert} \bm{\sigma_t} \Bigg(\bm{x} + s \frac{\bm{y} - \bm{x}}{\Vert \bm{y} - \bm{x} \Vert} \Bigg) ds, $$
+$$ \tag{5} \bm{\tau}(\bm{x}, \bm{v}, t) = \int\_{0}^{t} \bm{\sigma_t} (\bm{x} + s \bm{v}) ds, $$
 
 Given the value of optical depth, it's easy to compute transmittance using the [Beer–Lambert–Bouguer law](https://en.wikipedia.org/wiki/Beer%E2%80%93Lambert_law):
 
-$$ \tag{5} \bm{T}(\bm{x}, \bm{y}) = e^{-\bm{\tau}(\bm{x}, \bm{y})}, $$
+$$ \tag{6} \bm{T}(\bm{x}, \bm{v}, t) = e^{-\bm{\tau}(\bm{x}, \bm{v}, t)} $$
 
-While optical depth can take any non-negative value, transmittance is restricted to the unit interval \\([0, 1]\\). Volume opacity is, then,
+While optical depth can take on any non-negative value, transmittance is restricted to the unit interval \\([0, 1]\\). Volume opacity is, then,
 
-$$ \tag{6} \bm{O}(\bm{x}, \bm{y}) = 1 - \bm{T}(\bm{x}, \bm{y}). $$
+$$ \tag{7} \bm{O}(\bm{x}, \bm{v}, t) = 1 - \bm{T}(\bm{x}, \bm{v}, t). $$
 
-It's worth briefly mentioning how transmittance and optical depth are composited in presence of several overlapping participating media: optical depth is additive, while transmittance is multiplicative.
+It's worth briefly mentioning how transmittance and optical depth are composited in presence of several overlapping participating media: while optical depth is additive, transmittance is multiplicative.
+
+Slightly jumping ahead, let's define an attenuation-transmittance integral as
+
+$$ \tag{8}
+      \int\_{0}^{t} \bm{\sigma_t}(\bm{x} + s \bm{v}) \bm{T}(\bm{x},\bm{x} + s \bm{v}) ds
+    = \int\_{0}^{t} \bm{\sigma_t}(\bm{x} + s \bm{v}) e^{-\bm{\tau}(\bm{x}, \bm{v}, s)} ds.
+$$
+
+If we use the [fundamental theorem of calculus](https://en.wikipedia.org/wiki/Fundamental_theorem_of_calculus) to interpret the attenuation coefficient as a derivative
+
+$$ \tag{9} \bm{\sigma_t} (\bm{x} + t \bm{v}) = \frac{\partial \bm{\tau}}{\partial t}, $$
+
+we can use the one of the [identities](https://en.wikipedia.org/wiki/List_of_integrals_of_exponential_functions#Integrals_involving_only_exponential_functions) to simplify the integral:
+
+$$ \tag{10}
+      \int\_{0}^{t} \bm{\sigma_t}(\bm{x} + s \bm{v}) e^{-\bm{\tau}(\bm{x}, \bm{v}, s)}
+    = e^{-\bm{\tau}(\bm{x}, \bm{v}, 0)} - e^{-\bm{\tau}(\bm{x}, \bm{v}, t)}
+    = 1 - e^{-\bm{\tau}(\bm{x}, \bm{v}, t)}
+    = \bm{O}(\bm{x}, \bm{v}, t).
+$$
+
+We will use this fact in just a moment.
 
 To shade our (non-emissive) medium, we must evaluate the [recursive in-scattering integral](http://www.pbr-book.org/3ed-2018/Light_Transport_II_Volume_Rendering/The_Equation_of_Transfer.html) along the ray:
 
@@ -118,7 +140,7 @@ $$ \tag{15} \begin{aligned}
 	&= \bm{\alpha\_{ss}} \bm{I}(\bm{x}, \bm{v}, t).
 \end{aligned} $$
 
-We will refer to \\(\bm{I}\\) as the *extinction-transmittance integral*.
+We will refer to \\(\bm{I}\\) as the *attenuation-transmittance integral*.
 
 ## Constant Density
 
@@ -559,7 +581,7 @@ The code above works for all finite inputs. An important special case is when th
 
 ### Sampling Exponential Media in Spherical Coordinates
 
-Around 10 pages before, we were quite interested in evaluating the extinction-transmittance integral (Equations 15, 19, 24, 32). What about our spherical exponential distributions? Is the value of the integral still identical to opacity?
+Around 10 pages before, we were quite interested in evaluating the attenuation-transmittance integral (Equations 15, 19, 24, 32). What about our spherical exponential distributions? Is the value of the integral still identical to opacity?
 
 Unsurprisingly, trying to evaluate the integral analytically is an unsurmountable task. However, that shouldn't stop us from finding the answer. We can still evaluate the integral numerically, and since we know the likely outcome, we can simply plot and compare the two results.
 
@@ -567,9 +589,9 @@ Experimentally, it's possible to verify that, indeed, the rule holds true:
 
 $$ \tag{55} \bm{I\_{es}}(\bm{x}, \bm{v}, t) = \bm{O}(\bm{x}, \bm{x} + t \bm{v}). $$
 
-You can find the plot of the extinction-transmittance integral below.
+You can find the plot of the attenuation-transmittance integral below.
 
-{{< figure src="/img/ext_transm_int.png" caption="*Plot of the extinction-transmittance integral for \\(\mu_t k = 0.01, r = 6450, R = 6400,\\) and varying \\(H\\).*">}}
+{{< figure src="/img/ext_transm_int.png" caption="*Plot of the attenuation-transmittance integral for \\(\mu_t k = 0.01, r = 6450, R = 6400,\\) and varying \\(H\\).*">}}
 
 To sample proportionally to opacity, we need to find a way to invert the CDF (Equation 13). The analysis presented in the previous section indicates that there are two cases we must consider: the ray either points into the same (upper) hemisphere at both endpoints (Equation 53), or into the opposite ones (Equation 54).
 
@@ -591,7 +613,7 @@ $$ \tag{57}
     = \frac{r \mathrm{cos}{\theta} + t}{\sqrt{(r \mathrm{sin}{\theta})^2 + (r \mathrm{cos}{\theta} + t)^2}}.
 $$
 
-This allows us to express the value of the extinction-transmittance integral, or opacity, in a compact way:
+This allows us to express the value of the attenuation-transmittance integral, or opacity, in a compact way:
 
 $$ \tag{58}
 \bm{I\_{uu}}(\bm{x}, \bm{v}, t)
