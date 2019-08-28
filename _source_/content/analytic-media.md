@@ -41,7 +41,7 @@ Therefore, a triple \\(\lbrace \bm{\eta}, \bm{\kappa}, \bm{\sigma_t} \rbrace\\) 
 
 Integral of the attenuation coefficient along the span of ray segment of length \\(t\\) from the point \\(\bm{x}\\) in the direction \\(\bm{v}\\) corresponds to [optical depth](https://en.wikipedia.org/wiki/Optical_depth) (or optical thickness):
 
-$$ \tag{5} \bm{\tau}(\bm{x}, \bm{v}, t) = \int\_{0}^{t} \bm{\sigma_t} (\bm{x} + s \bm{v}) ds, $$
+$$ \tag{5} \bm{\tau}(\bm{x}, \bm{v}, t) = \int\_{0}^{t} \bm{\sigma_t} (\bm{x}, \bm{v}, s) ds, $$
 
 Given the value of optical depth, it's easy to compute transmittance using the [Beer–Lambert–Bouguer law](https://en.wikipedia.org/wiki/Beer%E2%80%93Lambert_law):
 
@@ -56,18 +56,18 @@ It's worth briefly mentioning how transmittance and optical depth are composited
 Slightly jumping ahead, let's define an attenuation-transmittance integral as
 
 $$ \tag{8}
-      \int\_{0}^{t} \bm{\sigma_t}(\bm{x} + s \bm{v}) \bm{T}(\bm{x},\bm{x} + s \bm{v}) ds
-    = \int\_{0}^{t} \bm{\sigma_t}(\bm{x} + s \bm{v}) e^{-\bm{\tau}(\bm{x}, \bm{v}, s)} ds.
+      \int\_{0}^{t} \bm{\sigma_t}(\bm{x}, \bm{v}, s) \bm{T}(\bm{x}, \bm{v}, s) ds
+    = \int\_{0}^{t} \bm{\sigma_t}(\bm{x}, \bm{v}, s) e^{-\bm{\tau}(\bm{x}, \bm{v}, s)} ds.
 $$
 
 If we use the [fundamental theorem of calculus](https://en.wikipedia.org/wiki/Fundamental_theorem_of_calculus) to interpret the attenuation coefficient as a derivative
 
-$$ \tag{9} \bm{\sigma_t} (\bm{x} + t \bm{v}) = \frac{\partial \bm{\tau}}{\partial t}, $$
+$$ \tag{9} \bm{\sigma_t} (\bm{x}, \bm{v}, t) = \frac{\partial \bm{\tau}}{\partial t}, $$
 
 we can use the one of the [identities](https://en.wikipedia.org/wiki/List_of_integrals_of_exponential_functions#Integrals_involving_only_exponential_functions) to simplify the integral:
 
 $$ \tag{10}
-      \int\_{0}^{t} \bm{\sigma_t}(\bm{x} + s \bm{v}) e^{-\bm{\tau}(\bm{x}, \bm{v}, s)}
+      \int\_{0}^{t} \bm{\sigma_t}(\bm{x}, \bm{v}, s) e^{-\bm{\tau}(\bm{x}, \bm{v}, s)} ds
     = e^{-\bm{\tau}(\bm{x}, \bm{v}, 0)} - e^{-\bm{\tau}(\bm{x}, \bm{v}, t)}
     = 1 - e^{-\bm{\tau}(\bm{x}, \bm{v}, t)}
     = \bm{O}(\bm{x}, \bm{v}, t).
@@ -77,34 +77,35 @@ We will use this fact in just a moment.
 
 To shade our (non-emissive) medium, we must evaluate the [recursive in-scattering integral](http://www.pbr-book.org/3ed-2018/Light_Transport_II_Volume_Rendering/The_Equation_of_Transfer.html) along the ray:
 
-$$ \tag{7} \bm{L}(\bm{x}, \bm{v})
-    = \int\_{0}^{t\_{max}} \bm{T}(\bm{x},\bm{x} + s \bm{v}) \bm{\sigma_s}(\bm{x} + s \bm{v}) \int\_{S^2} f(\bm{x} + s \bm{v}, \bm{v},\bm{l}) \bm{L}(\bm{x} + s \bm{v}, \bm{l}) \bm{dl} ds,
+$$ \tag{11} \bm{L}(\bm{x}, \bm{v})
+    = \int\_{0}^{t\_{max}} \bm{T}(\bm{x}, \bm{v}, s) \bm{\sigma_s}(\bm{x}, \bm{v}, s) \int\_{S^2} f(\bm{x} + s \bm{v}, \bm{v},\bm{l}) \bm{L}(\bm{x} + s \bm{v}, \bm{l}) \bm{dl} ds,
 $$
 
 where \\(\bm{L}\\) is the amount of radiance at a certain position \\(\bm{x}\\) in a certain direction \\(\bm{v}\\), and \\(f\\) denotes the [phase function](http://www.pbr-book.org/3ed-2018/Volume_Scattering/Phase_Functions.html). To simplify notation, the maximum distance \\(t\_{max}\\) along the ray (which could correspond to the distance to the closest surface) is kept implicit.
 
-We can evaluate this integral using one of the [Monte Carlo](http://www.pbr-book.org/3ed-2018/Monte_Carlo_Integration.html) methods. The first step is to split it into two parts: the part we can evaluate analytically, and the part we can not precompute. We can group the product of transmittance and the scattering coefficient together, and leave the nested integral as the unknown term:
+We can evaluate this integral using one of the [Monte Carlo](http://www.pbr-book.org/3ed-2018/Monte_Carlo_Integration.html) methods. The first step is to split it into two parts: the part we can evaluate analytically, and the part we that must be integrated numerically. We can group the product of transmittance and the scattering coefficient together, and leave the nested integral as the unknown term:
 
-$$ \tag{8} \bm{L}(\bm{x}, \bm{v})
-    = \int\_{0}^{t\_{max}} \bm{T}(\bm{x},\bm{x} + s \bm{v}) \bm{\sigma_s}(\bm{x} + s \bm{v}) \bm{L_s}(\bm{x} + s \bm{v}, \bm{v}) ds.
+$$ \tag{12} \bm{L}(\bm{x}, \bm{v})
+    = \int\_{0}^{t\_{max}} \bm{T}(\bm{x}, \bm{v}, s) \bm{\sigma_s}(\bm{x}, \bm{v}, s) \bm{L_s}(\bm{x} + s \bm{v}, \bm{v}) ds.
 $$
 
-The [Monte Carlo estimate](http://www.pbr-book.org/3ed-2018/Monte_Carlo_Integration/The_Monte_Carlo_Estimator.html) of the in-scattering integral (for a **single wavelength**) takes the following form:
+Next, let's split the scattering coefficient into attenuation and albedo:
 
-$$ \tag{9} L(\bm{x}, \bm{v})
-    \approx \frac{1}{N} \sum\_{i=1}^{N} \frac{T(\bm{x},\bm{y_i}) \sigma_s(\bm{y_i}) L_s(\bm{y_i}, \bm{v})}{p(\bm{x}, \bm{y_i})},
+$$ \tag{13} \bm{L}(\bm{x}, \bm{v})
+    = \int\_{0}^{t\_{max}} \bm{\sigma_t}(\bm{x}, \bm{v}, s) \bm{T}(\bm{x}, \bm{v}, s) \bm{\alpha\_{ss}}(\bm{x}, \bm{v}, s) \bm{L_s}(\bm{x} + s \bm{v}, \bm{v}) ds.
 $$
 
-where sample locations \\(\bm{y_i}\\) are distributed according to the [PDF](https://en.wikipedia.org/wiki/Probability_density_function) \\(p\\).
+The [Monte Carlo estimate](http://www.pbr-book.org/3ed-2018/Monte_Carlo_Integration/The_Monte_Carlo_Estimator.html) of the integral (for *a single wavelength*) takes the following form:
 
-We can [importance sample](http://www.pbr-book.org/3ed-2018/Monte_Carlo_Integration/Importance_Sampling.html) the integrand according to the analytic product (effectively, by assuming that the value of \\(\bm{L_s}\\) varies slowly). This means that we must choose the PDF that is proportional to the analytic product (since the PDF determines the sample distribution). A valid PDF integrates to 1 over its domain (which, in our case, spans the range from 0 to \\(t\_{max}\\)), so we must normalize the analytic product using the value of its integral:
-
-$$ \tag{10}
-\bm{A}(\bm{x}, \bm{v}, t)
-	= \int\_{0}^{t} \bm{T}(\bm{x},\bm{x} + s \bm{v}) \bm{\sigma_s}(\bm{x} + s \bm{v}) ds,
+$$ \tag{14} L(\bm{x}, \bm{v})
+    \approx \frac{1}{N} \sum\_{i=1}^{N} \frac{\sigma_t(\bm{x}, \bm{v}, s_i) T(\bm{x}, \bm{v}, s_i) \alpha\_{ss}(\bm{x}, \bm{v}, s_i) L_s(\bm{x} + s_i \bm{v}, \bm{v})}{p( s_i | \lbrace \bm{x}, \bm{v} \rbrace)},
 $$
 
-$$ \tag{11} p(\bm{x}, \bm{y}) = \frac{T(\bm{x},\bm{y}) \sigma_s(\bm{y})}{A(\bm{x}, \frac{\bm{y} - \bm{x}}{\Vert \bm{y} - \bm{x} \Vert}, t\_{max})}. $$
+where sample locations \\(s_i\\) are distributed according to the [PDF](https://en.wikipedia.org/wiki/Probability_density_function) \\(p\\).
+
+We can [importance sample](http://www.pbr-book.org/3ed-2018/Monte_Carlo_Integration/Importance_Sampling.html) the integrand according to the analytic product \\(\sigma_t T\\) (effectively, by assuming that the rest of the integrand varies slowly). This means that we must choose the PDF that is proportional to the analytic product (since the PDF determines the sample distribution). A valid PDF integrates to 1 over its domain (which, in our case, spans the range from 0 to \\(t\_{max}\\)), so we must normalize the analytic product using the value of its integral:
+
+$$ \tag{15} p(\bm{x}, \bm{y}) = \frac{T(\bm{x},\bm{y}) \sigma_s(\bm{y})}{A(\bm{x}, \frac{\bm{y} - \bm{x}}{\Vert \bm{y} - \bm{x} \Vert}, t\_{max})}. $$
 
 This radically simplifies evaluation of the estimate:
 
@@ -113,8 +114,8 @@ $$ \tag{12} L(\bm{x}, \bm{v}) \approx A(\bm{x}, \bm{v}, t\_{max}) \frac{1}{N} \s
 Additionally, in order to distribute the samples according to the PDF, we must be able to [invert](http://www.pbr-book.org/3ed-2018/Monte_Carlo_Integration/Sampling_Random_Variables.html#TheInversionMethod) the [CDF](https://en.wikipedia.org/wiki/Cumulative_distribution_function) \\(P\\), which, again, contains the integral \\(A\\):
 
 $$ \tag{13} P(\bm{x}, \bm{v}, t)
-    = \int\_{0}^{t} p(\bm{x}, \bm{x} + s \bm{v}) ds
-    = \int\_{0}^{t} \frac{T(\bm{x},\bm{x} + s \bm{v}) \sigma_s(\bm{x} + s \bm{v})}{A(\bm{x}, \bm{v}, t\_{max})} ds
+    = \int\_{0}^{t} p(\bm{x}, \bm{x}, \bm{v}, s) ds
+    = \int\_{0}^{t} \frac{T(\bm{x},\bm{x}, \bm{v}, s) \sigma_s(\bm{x}, \bm{v}, s)}{A(\bm{x}, \bm{v}, t\_{max})} ds
     = \frac{A(\bm{x}, \bm{v}, t)}{A(\bm{x}, \bm{v}, t\_{max})}.
 $$
 
@@ -134,9 +135,9 @@ All of these types of participating media assume a constant albedo value, which 
 
 $$ \tag{15} \begin{aligned}
 \bm{A}(\bm{x}, \bm{v}, t)
-	&= \int\_{0}^{t} \bm{\sigma_s}(\bm{x} + s \bm{v}) \bm{T}(\bm{x},\bm{x} + s \bm{v})  ds \cr
-	&= \int\_{0}^{t} \Big( \bm{\alpha\_{ss}}(\bm{x} + s \bm{v}) \bm{\sigma_t}(\bm{x} + s \bm{v}) \Big) \bm{T}(\bm{x},\bm{x} + s \bm{v})  ds \cr
-	&\approx \bm{\alpha\_{ss}} \int\_{0}^{t} \bm{\sigma_t}(\bm{x} + s \bm{v}) \bm{T}(\bm{x},\bm{x} + s \bm{v}) ds \cr
+	&= \int\_{0}^{t} \bm{\sigma_s}(\bm{x}, \bm{v}, s) \bm{T}(\bm{x},\bm{x}, \bm{v}, s)  ds \cr
+	&= \int\_{0}^{t} \Big( \bm{\alpha\_{ss}}(\bm{x}, \bm{v}, s) \bm{\sigma_t}(\bm{x}, \bm{v}, s) \Big) \bm{T}(\bm{x},\bm{x}, \bm{v}, s)  ds \cr
+	&\approx \bm{\alpha\_{ss}} \int\_{0}^{t} \bm{\sigma_t}(\bm{x}, \bm{v}, s) \bm{T}(\bm{x},\bm{x}, \bm{v}, s) ds \cr
 	&= \bm{\alpha\_{ss}} \bm{I}(\bm{x}, \bm{v}, t).
 \end{aligned} $$
 
