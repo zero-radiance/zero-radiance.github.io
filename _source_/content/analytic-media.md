@@ -95,7 +95,7 @@ $$ \tag{13} \bm{L}(\bm{x}, \bm{v})
     = \int\_{0}^{t\_{max}} \bm{\sigma_t}(\bm{x}, \bm{v}, s) \bm{T}(\bm{x}, \bm{v}, s) \bm{\alpha\_{ss}}(\bm{x}, \bm{v}, s) \bm{L_s}(\bm{x} + s \bm{v}, \bm{v}) ds.
 $$
 
-The [Monte Carlo estimate](http://www.pbr-book.org/3ed-2018/Monte_Carlo_Integration/The_Monte_Carlo_Estimator.html) of the integral (for *a single wavelength*) takes the following form:
+The [Monte Carlo estimate](http://www.pbr-book.org/3ed-2018/Monte_Carlo_Integration/The_Monte_Carlo_Estimator.html) of the integral (for a single wavelength) takes the following form:
 
 $$ \tag{14} L(\bm{x}, \bm{v})
     \approx \frac{1}{N} \sum\_{i=1}^{N} \frac{\sigma_t(\bm{x}, \bm{v}, s_i) T(\bm{x}, \bm{v}, s_i) \alpha\_{ss}(\bm{x}, \bm{v}, s_i) L_s(\bm{x} + s_i \bm{v}, \bm{v})}{p( s_i | \lbrace \bm{x}, \bm{v} \rbrace)},
@@ -106,10 +106,10 @@ where sample locations \\(s_i\\) are distributed according to the [PDF](https://
 We can [importance sample](http://www.pbr-book.org/3ed-2018/Monte_Carlo_Integration/Importance_Sampling.html) the integrand according to the analytic product \\(\sigma_t T\\) (effectively, by assuming that the rest of the integrand varies slowly). A valid PDF integrates to 1 over its domain (which, in our case, spans the range from 0 to \\(t\_{max}\\)), so we must normalize the analytic product using the value of its integral:
 
 $$ \tag{15} p(t | \lbrace \bm{x}, \bm{v} \rbrace)
-    = \frac{\sigma_t(\bm{x}, \bm{v}, t) T(\bm{x}, \bm{v}, t)}{\int\_{0}^{t\_{max}} \bm{\sigma_t}(\bm{x}, \bm{v}, s) \bm{T}(\bm{x}, \bm{v}, s) ds}
-    = \frac{\sigma_t(\bm{x}, \bm{v}, t) T(\bm{x}, \bm{v}, t)}{\bm{O}(\bm{x}, \bm{v}, t\_{max})}. $$
+    = \frac{\sigma_t(\bm{x}, \bm{v}, t) T(\bm{x}, \bm{v}, t)}{\int\_{0}^{t\_{max}} \sigma_t(\bm{x}, \bm{v}, s) T(\bm{x}, \bm{v}, s) ds}
+    = \frac{\sigma_t(\bm{x}, \bm{v}, t) T(\bm{x}, \bm{v}, t)}{O(\bm{x}, \bm{v}, t\_{max})}. $$
 
-This radically simplifies evaluation of the estimate:
+This radically simplifies evaluation of the estimate (again, for a single wavelength):
 
 $$ \tag{16} L(\bm{x}, \bm{v}) \approx O(\bm{x}, \bm{v}, t\_{max}) \frac{1}{N} \sum\_{i=1}^{N} \alpha\_{ss}(\bm{x}, \bm{v}, s_i) L_s(\bm{x} + s_i \bm{v}, \bm{v}). $$
 
@@ -123,7 +123,7 @@ $$ \tag{17} P(t | \lbrace \bm{x}, \bm{v} \rbrace)
     = \frac{O(\bm{x}, \bm{v}, t)}{O(\bm{x}, \bm{v}, t\_{max})}.
 $$
 
-This means that we need to determine the distance \\(t\\) at which the (fractional) opacity is equal to \\(P\\).
+This means that we need to determine the distance \\(t\\) at which (fractional) opacity is equal to \\(P\\).
 
 # Types of Analytic Participating Media
 
