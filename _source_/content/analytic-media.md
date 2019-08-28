@@ -81,7 +81,7 @@ $$ \tag{11} \bm{L}(\bm{x}, \bm{v})
     = \int\_{0}^{t\_{max}} \bm{T}(\bm{x}, \bm{v}, s) \bm{\sigma_s}(\bm{x}, \bm{v}, s) \int\_{S^2} f(\bm{x} + s \bm{v}, \bm{v},\bm{l}) \bm{L}(\bm{x} + s \bm{v}, \bm{l}) \bm{dl} ds,
 $$
 
-where \\(\bm{L}\\) is the amount of radiance at the position \\(\bm{x}\\) in the direction \\(\bm{v}\\), and \\(f\\) denotes the [phase function](http://www.pbr-book.org/3ed-2018/Volume_Scattering/Phase_Functions.html). To simplify notation, the maximum distance \\(t\_{max}\\) along the ray (which typically corresponds to the distance to the closest surface) is kept implicit.
+where \\(\bm{L}\\) is the amount of radiance at the position \\(\bm{x}\\) in the direction \\(\bm{v}\\), and \\(f\\) denotes the [phase function](http://www.pbr-book.org/3ed-2018/Volume_Scattering/Phase_Functions.html). To simplify notation, the maximum distance \\(t\_{max}\\) along the ray (which typically corresponds to the distance to the closest boundary) is kept implicit.
 
 We can evaluate this integral using one of the [Monte Carlo](http://www.pbr-book.org/3ed-2018/Monte_Carlo_Integration.html) methods. The first step is to split it in two parts: the part we can evaluate analytically, and the part that has to be integrated numerically. We can group the product of transmittance and the scattering coefficient together, and leave the nested integral as the "numerical" term:
 
@@ -123,13 +123,15 @@ $$ \tag{17} P(t | \lbrace \bm{x}, \bm{v} \rbrace)
     = \frac{O(\bm{x}, \bm{v}, t)}{O(\bm{x}, \bm{v}, t\_{max})}.
 $$
 
-This means that we need to determine the distance \\(t\\) at which (fractional) opacity is equal to \\(P\\).
+In practice, this means that we need to solve for distance \\(t\\) given the value of the optical depth \\(\tau\\):
+
+$$ \tag{18} \tau(\bm{x}, \bm{v}, t) = -\mathrm{log}(1 - P(t | \lbrace \bm{x}, \bm{v} \rbrace) O(\bm{x}, \bm{v}, t\_{max})). $$
 
 # Types of Analytic Participating Media
 
 Sometimes, it's convenient to specify the concentration (density) of the medium, and not just its effective optical properties. For example, the attenuation coefficient can be computed using the following formula:
 
-$$ \tag{18} \bm{\sigma_t} = \rho \bm{\mu_t}, $$
+$$ \tag{19} \bm{\sigma_t} = \rho \bm{\mu_t}, $$
 
 where \\(\rho\\) is the [volumetric mass density](https://en.wikipedia.org/wiki/Mass_density) (measured in units of \\(kg/m^{3}\\)) and \\(\bm{\mu_t}\\) is the [mass attenuation coefficient](https://en.wikipedia.org/wiki/Mass_attenuation_coefficient) (in units of \\(m^{2}/kg\\)).
 
