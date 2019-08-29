@@ -143,11 +143,11 @@ A constant (or homogeneous) medium has uniform density across the entire volume:
 
 $$ \tag{20} \rho_c = k. $$
 
-This formulation makes computing optical depth (Equation 5) easy:
+This formulation makes computing optical depth easy:
 
-$$ \tag{21} \bm{\tau_c}(\bm{x}, \bm{v}, t) = \bm{\mu_t} k t. $$
+$$ \tag{21} \bm{\tau_c}(\bm{x}, \bm{v}, t) = \bm{\mu_t} \int\_{0}^{t} k ds =  \bm{\mu_t} k t. $$
 
-The sampling "recipe" for distance \\(t\\) can be found by inverting the CDF (Equation 18):
+The sampling "recipe" for distance \\(t\\) can be found by inverting the CDF:
 
 $$ \tag{22} t = \frac{\tau_c}{\mu_t k}, $$
 
@@ -161,17 +161,17 @@ $$ \tag{23} \rho\_{lp}(\bm{x}) = m x_3 + k. $$
 
 This formulation can be reduced to homogeneous media by setting \\(m = 0\\).
 
-The expression of optical depth remains fairly simple:
+The expression of optical depth remains simple:
 
 $$ \tag{24}
 \bm{\tau\_{lp}}(\bm{x}, \bm{v}, t)
     = \bm{\mu_t} \int\_{0}^{t} \Big( m \big(x_3 + s v_3) + k \Big) ds
-    = \bm{\mu_t} t \Bigg(m \Big(x_3 + \frac{t v_3}{2}\Big) + k \Bigg),
+    = \bm{\mu_t} \Bigg(m \Big(x_3 + \frac{t}{2} v_3 \Big) + k \Bigg) t,
 $$
 
 which is the product of the average attenuation coefficient and the length of the interval, as expected.
 
-The sampling "recipe" for distance \\(t\\) is given by the following formula (Equation 18):
+The sampling "recipe" for distance \\(t\\) is given by the following formula:
 
 $$ \tag{25}
 	t = -\frac{k + m x_3}{m v_3}
@@ -192,16 +192,16 @@ $$ \tag{27} \rho\_{ep}(\bm{x}) = k e^{-n x_3}. $$
 
 Setting \\(n = 0\\) results in a homogeneous medium.
 
-Plugging this in into the equation of optical depth, we obtain the following expression:
+Plugging this in into the formula of optical depth, we obtain the following expression:
 
-$$ \tag{28} \begin{aligned}
+$$ \tag{28}
 \bm{\tau\_{ep}}(\bm{x}, \bm{v}, t)
-    &= \bm{\mu_t} \int\_{0}^{t} k e^{-n (x_3 + s v_3)} ds \cr
-    &= \bm{\mu_t} k e^{-n x_3} \int\_{0}^{t} e^{-s n v_3} ds \cr
-    &= \bm{\mu_t} k t e^{-n x_3} \frac{1 - e^{-t n v_3}}{n v_3}.
-\end{aligned} $$
+    = \bm{\mu_t} \int\_{0}^{t} k e^{-n (x_3 + s v_3)} ds
+    = \bm{\mu_t} k e^{-n x_3} \int\_{0}^{t} e^{-s n v_3} ds
+    = \bm{\mu_t} k t e^{-n x_3} \frac{1 - e^{-t n v_3}}{n v_3}.
+$$
 
-Solving for the distance \\(t\\) is easy (Equation 18):
+Solving for the distance \\(t\\) is straightforward:
 
 $$ \tag{29} t = -\frac{1}{n v_3} \log \left(1 - \frac{ n v_3 \tau\_{ep}}{\mu_t k e^{-n x_3}}\right). $$
 
@@ -211,73 +211,65 @@ Please note that homogeneous media \\( \big( n v_3 = 0 \big) \\) requires specia
 
 This is where things get interesting. We would like to model an exponential density distribution on a sphere:
 
-$$ \tag{34} \rho\_{es}(\bm{x}) = k e^{-h(\bm{x}) / H} = k e^{-(\Vert \bm{x} - \bm{c} \Vert - R) / H} = k e^{-n (\Vert \bm{x} - \bm{c} \Vert - R)}, $$
+$$ \tag{30} \rho\_{es}(\bm{x}) = k e^{-h(\bm{x}) / H} = k e^{-(\Vert \bm{x} - \bm{c} \Vert - R) / H} = k e^{-n (\Vert \bm{x} - \bm{c} \Vert - R)}, $$
 
 where \\(\bm{c}\\) is the center of the planet, \\(R\\) is its radius, \\(h\\) is the altitude, and \\(H\\) is the [scale height](https://en.wikipedia.org/wiki/Scale_height) as before. In this context, \\(k\\) and \\(\bm{\mu_t} k\\) represent the density and the value of the attenuation coefficient at the sea level, respectively.
 
-Before we proceed with the derivation, it's helpful to understand the geometric setting (after all, a picture is worth a thousand words). Personally, I found the article by Christian Schüler in [GPU Gems 3](http://www.gameenginegems.net/gemsdb/article.php?id=1133) to be a very helpful introduction to the relevant concepts, and I encourage you to check it out if you have questions after reading my explanation below.
+Before proceeding with the derivation, it's helpful to understand the geometric setting (after all, a picture is worth a thousand words). Personally, I found the article by Christian Schüler in [GPU Gems 3](http://www.gameenginegems.net/gemsdb/article.php?id=1133) to be a very helpful introduction to the relevant concepts, and I encourage you to check it out if you still have questions after reading my explanation below.
 
 ### Geometric Configuration of a Spherical Atmosphere
 
-Our goal is to simplify the problem using its inherent spherical symmetry. Please take a look at the diagram below:
+Our goal is to simplify the problem using its inherent spherical symmetry. Take a look at the diagram below:
 
 {{< figure src="/img/spherical_param.png">}}
 
 We start by recognizing the fact that every ordered pair of position and direction \\(\lbrace \bm{x}, \bm{v} \rbrace\\) can be reduced to a pair of radial distance and zenith angle \\(\lbrace r, \theta \rbrace\\).
 
-In order to find the parametric equation of altitude \\(h\\) along the ray, we can use a right triangle with legs \\(r_0\\) and \\(t_0\\) corresponding to the initial pair of position and direction \\(\lbrace r, \theta \rbrace\\):
+In order to find the parametric equation of altitude \\(h\\) along the ray, we can use a right triangle with legs \\(r_0\\) and \\(t_0\\) corresponding to the initial conditions:
 
-$$ \tag{35} r_0(r, \theta) = r \mathrm{sin}{\theta}, $$
-$$ \tag{36} t_0(r, \theta) = r \mathrm{cos}{\theta}. $$
+$$ \tag{31} r_0 = r \mathrm{sin}{\theta}, \qquad t_0 = r \mathrm{cos}{\theta}. $$
 
 If we ignore [atmospheric refraction](https://en.wikipedia.org/wiki/Atmospheric_refraction), we obtain the following expression of optical depth:
 
-$$ \tag{37} \begin{aligned}
-\bm{\tau\_{es}}(\bm{x}, \bm{y})
-    &= \bm{\mu_t} \int\_{0}^{t = \Vert \bm{y} - \bm{x} \Vert} k e^{-n h(s)} ds \cr
-    &= \bm{\mu_t} \int\_{0}^{t = \Vert \bm{y} - \bm{x} \Vert} k e^{-n (\sqrt{r_0^2 + (t_0 + s)^2} - R)} ds \cr
-    &= \bm{\mu_t} \int\_{0}^{t = \Vert \bm{y} - \bm{x} \Vert} k e^{-n (\sqrt{(r \mathrm{sin}{\theta})^2 + (r \mathrm{cos}{\theta} + s)^2} - R)} ds \cr
-    &= \bm{\mu_t} \int\_{0}^{t = \Vert \bm{y} - \bm{x} \Vert} k e^{-n (\sqrt{r^2 + 2 r s \mathrm{cos}{\theta} + s^2} - R)} ds \cr
+$$ \tag{32} \begin{aligned}
+\bm{\tau\_{es}}(r, \theta, t)
+    &= \bm{\mu_t} \int\_{0}^{t} k e^{-n h(s)} ds \cr
+    &= \bm{\mu_t} \int\_{0}^{t} k e^{-n (\sqrt{r_0^2 + (t_0 + s)^2} - R)} ds \cr
+    &= \bm{\mu_t} \int\_{0}^{t} k e^{-n (\sqrt{(r \mathrm{sin}{\theta})^2 + (r \mathrm{cos}{\theta} + s)^2} - R)} ds \cr
+    &= \bm{\mu_t} \int\_{0}^{t} k e^{-n (\sqrt{r^2 + 2 r s \mathrm{cos}{\theta} + s^2} - R)} ds \cr
     &= \bm{\mu_t} \frac{k}{n} e^{-n (r - R)} \int\_{0}^{t = \Vert \bm{y} - \bm{x} \Vert} e^{n (r - \sqrt{r^2 + 2 r s \mathrm{cos}{\theta} + s^2})} n ds.
 \end{aligned} $$
 
-The resulting integral is very complex. (Don't believe me? Try evaluating it analytically!). In order to make our life easier, we will factor out the nested integral, and extend the upper limit of integration to infinity. With the following change of variables:
+The resulting integral is very complex. In order to simplify it, we will factor out the nested integral, and extend the upper limit of integration to infinity. With the following change of variables:
 
-$$ \tag{38} u = n s \qquad z = n r \qquad Z = n R, $$
+$$ \tag{33} u = n s, \qquad z = n r, \qquad Z = n R, $$
 
 the nested integral becomes what is known in the physics community as the [Chapman function](https://en.wikipedia.org/wiki/Chapman_function) (or the obliquity function, or the relative optical air mass) \\(C\\):
 
-$$ \tag{39} C(z, \mathrm{cos}{\theta}) = \int\_{0}^{\infty} e^{z - \sqrt{z^2 + 2 z u \mathrm{cos}{\theta} + u^2}} du. $$
+$$ \tag{34} C(z, \mathrm{cos}{\theta}) = \int\_{0}^{\infty} e^{z - \sqrt{z^2 + 2 z u \mathrm{cos}{\theta} + u^2}} du. $$
 
 It's convenient to define the rescaled Chapman function \\(C_r\\):
 
-$$ \tag{40} C_r(z, Z, \mathrm{cos}{\theta}) = e^{Z - z} C(z, \mathrm{cos}{\theta}) = \int\_{0}^{\infty} e^{Z - \sqrt{z^2 + 2 z u \mathrm{cos}{\theta} + u^2}} du, $$
+$$ \tag{35} C_r(z, Z, \mathrm{cos}{\theta}) = e^{Z - z} C(z, \mathrm{cos}{\theta}) = \int\_{0}^{\infty} e^{Z - \sqrt{z^2 + 2 z u \mathrm{cos}{\theta} + u^2}} du, $$
 
-which has a better numerical behavior, and further simplifies the expression of optical depth:
+which has a better numerical behavior, and further simplifies the expression of optical depth between \\(\bm{x}\\) and \\(\bm{y}\\):
 
-$$ \tag{41} \begin{aligned}
-\bm{\tau\_{es}}(\bm{x}, \bm{y})
-    = \bm{\mu_t} \frac{k}{n} \Bigg( &C_r \Big(n \Vert \bm{x} - \bm{c} \Vert, n R, \mathrm{cos}{(\bm{x} - \bm{c}, \bm{y} - \bm{x})} \Big) - \cr
-    &C_r \Big(n \Vert \bm{y} - \bm{c} \Vert, n R, \mathrm{cos}{(\bm{y} - \bm{c}, \bm{y} - \bm{x})} \Big) \Bigg),
-\end{aligned} $$
+$$ \tag{36}
+\bm{\tau\_{es}}(z_x, \mathrm{cos}{\theta_x}, z_y, \mathrm{cos}{\theta_y})
+    = \bm{\mu_t} \frac{k}{n} \Bigg( C_r \Big(z_x, Z, \mathrm{cos}{\theta_x} \Big) - C_r \Big(z_y, Z, \mathrm{cos}{\theta_y} \Big) \Bigg).
+$$
 
-where
+What the Equation 36 tells us is that we should evaluate the optical depth integral twice (along the entire ray, from 0 to \\(\infty\\)), at the start and at the end of the interval, and subtract the results to "clip" the ray.
 
-$$ \tag{42}
-\mathrm{cos}{(\bm{n}, \bm{v})}
-	= \Big\langle \frac{\bm{n}}{\Vert \bm{n} \Vert}, \frac{\bm{v}}{\Vert \bm{v} \Vert} \Big\rangle $$
+From a practical standpoint, it's worth noting that, for short distances, this expression of optical depth can be well approximated by its "rectangular" version (which ignores curvature), potentially saving many clock cycles.
 
-is a shorthand for the cosine of the angle between the normal and the vector vector. What the Equation 41 says is that we should evaluate the optical depth integral (along the entire ray, from 0 to \\(\infty\\)) twice, at the start and at the end of the interval, and subtract the results.
+It's interesting to contemplate the physical meaning of the Chapman function. Generally speaking, the value of a line integral of density (such as given by \\(\bm{\tau} / \bm{\mu_t}\\)) corresponds to mass. Therefore, the integral
 
-From the practical standpoint, it's worth noting that, for short distances, this expression of optical depth can be well approximated by its "rectangular" version (which ignores the curvature), potentially saving many ALU instructions.
+$$ \tag{37} \int\_{h = (r - R)}^{\infty} k e^{-n s} ds = \frac{k}{n} e^{-n h} $$
 
-It's interesting to consider the physical meaning of the Chapman function. Generally speaking, the value of a line integral of density (such as given by \\(\bm{\tau} / \bm{\mu_t}\\)) corresponds to mass. Therefore, the integral
+specifies the mass of an infinitely tall vertical column with its lower end starting at height \\(h\\).
 
-$$ \tag{43} \int\_{h = (r - R)}^{\infty} k e^{-n s} ds = \frac{k}{n} e^{-n h} $$
-
-corresponds to mass of an infinitely tall vertical column with its lower end at height \\(h\\).
-
-Optical depth, then, is the *product* of the mass of the vertical column *and* the value of the obliquity function (which, intuitively, gives the absolute optical air mass along the ray) *times* the mass attenuation coefficient.
+Optical depth, then, is a *product* of the mass of the vertical column *and* the value of the obliquity function (which, intuitively, gives the absolute optical air mass along the ray) *times* the mass attenuation coefficient.
 
 ### Examining the Chapman Function
 
