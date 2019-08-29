@@ -240,7 +240,7 @@ $$ \tag{32} \begin{aligned}
     &= \bm{\mu_t} \frac{k}{n} e^{-n (r - R)} \int\_{0}^{t = \Vert \bm{y} - \bm{x} \Vert} e^{n (r - \sqrt{r^2 + 2 r s \mathrm{cos}{\theta} + s^2})} n ds.
 \end{aligned} $$
 
-The resulting integral is very complex. In order to simplify it, we will factor out the nested integral, and extend the upper limit of integration to infinity. With the following change of variables:
+The resulting integral is very complex. For now, let's take the nested integral, and extend the upper limit of integration to infinity. With the following change of variables:
 
 $$ \tag{33} u = n s, \qquad z = n r, \qquad Z = n R, $$
 
@@ -277,32 +277,32 @@ It's always a good idea to examine a function visually, as a graph. Let's do tha
 
 {{< figure src="/img/chapman_ref.png" caption="*Plot of the Chapman function for \\(r = 6600\\).*">}}
 
-Above, I plotted values of the Chapman function (vertical axis) varying with the angle \\(\theta\\) (horizontal axis, in degrees) for different values of the scale height \\(H\\): \\(1\\) (dark blue), \\(10\\) (orange), \\(20\\) (green), \\(40\\) (red), \\(60\\) (purple), \\(80\\) (brown), \\(100\\) (cyan).
-Arguably, the first two are the most important, since they roughly correspond to scale heights of aerosols and air of Earth's atmosphere. It's also nice to be able to support larger values to model atmospheres on [other planets](https://en.wikipedia.org/wiki/Scale_height#Planetary_examples).
+Above, I plotted values of the Chapman function (vertical axis) varying with the angle \\(\theta\\) (horizontal axis, in degrees) for different values of the scale height \\(H\\): \\(1\\) (blue), \\(10\\) (orange), \\(20\\) (green), \\(40\\) (red), \\(60\\) (purple), \\(80\\) (brown), \\(100\\) (cyan).
+Arguably, the first two are the most important, since they roughly correspond to scale heights of aerosols and air of Earth's atmosphere. However, it's also nice to be able to support larger values to model atmospheres of [other planets](https://en.wikipedia.org/wiki/Scale_height#Planetary_examples).
 
-Being an obliquity function, \\(C(z, 0) = 1\\). The function varies slowly, as long as the angle is far from the horizon (which suggests an opportunity for a [small angle approximation](https://en.wikipedia.org/wiki/Small-angle_approximation)).
+Being an obliquity function, \\(C(z, 0) = 1\\). The function varies slowly, as long as the angle is far from the horizon (which suggests an opportunity for a [small-angle approximation](https://en.wikipedia.org/wiki/Small-angle_approximation)).
 
 The Chapman function has an [analytic expression](https://en.wikipedia.org/wiki/Closed-form_expression#Analytic_expression) derived by [Miroslav Kocifaj](https://ui.adsabs.harvard.edu/abs/1996CoSka..26...23K/abstract):
 
-$$ \tag{44} C(z, \mathrm{cos}{\theta}) = \frac{1}{2} \mathrm{cos}{\theta} + \frac{1}{2} \Big(\frac{1}{\sqrt{z}} + 2 \sqrt{z} - \sqrt{z} (\mathrm{cos}{\theta})^2 \Big) \sqrt{\frac{\pi}{2}} \Big[ e^{\big( \frac{1}{\sqrt{2}} \sqrt{z} \mathrm{cos}{\theta} \big)^2} \mathrm{erfc}{\Big(\frac{1}{\sqrt{2}} \sqrt{z} \mathrm{cos}{\theta}\Big)} \Big], $$
+$$ \tag{38} C(z, \mathrm{cos}{\theta}) = \frac{1}{2} \mathrm{cos}{\theta} + \frac{1}{2} \Big(\frac{1}{\sqrt{z}} + 2 \sqrt{z} - \sqrt{z} (\mathrm{cos}{\theta})^2 \Big) \sqrt{\frac{\pi}{2}} \Big[ e^{\big( \frac{1}{\sqrt{2}} \sqrt{z} \mathrm{cos}{\theta} \big)^2} \mathrm{erfc}{\Big(\frac{1}{\sqrt{2}} \sqrt{z} \mathrm{cos}{\theta}\Big)} \Big], $$
 
 which, unfortunately, is not [closed-form](https://en.wikipedia.org/wiki/Closed-form_expression#Analytic_expression), since it contains the [complementary error function](http://mathworld.wolfram.com/Erfc.html) \\(\mathrm{erfc}\\).
 
-Unfortunately, even after expending a considerable amount of time and effort, I have been unable to re-derive this expression. I suspect that I am either missing something (accounting for continuous variation of the IOR, for instance), or perhaps this is not a full analytic solution, but rather a truncated series expansion (similar to [this one](https://www.sciencedirect.com/science/article/pii/S0022407300001072)). Also, while the formula does work for angles beyond 90 degrees, it deviates from the numerically evaluated integral rather quickly.
+Unfortunately, even after expending a considerable amount of time and effort, I have been unable to re-derive this expression. I suspect that I am either missing something (accounting for continuous variation of the IOR, for instance), or perhaps this is not a full analytic solution, but rather a truncated series expansion (similar to [this one](https://www.sciencedirect.com/science/article/pii/S0022407300001072)). Also, while the formula should work for angles beyond 90 degrees, it deviates from values of the numerically evaluated integral rather quickly.
 
 For the zenith angle of 90 degrees, it reduces to
 
-$$ \tag{45} C_h(z) = \frac{1}{2} \sqrt{\frac{\pi}{2}} (\frac{1}{\sqrt{z}} + 2 \sqrt{z}). $$
+$$ \tag{39} C_h(z) = \frac{1}{2} \sqrt{\frac{\pi}{2}} (\frac{1}{\sqrt{z}} + 2 \sqrt{z}). $$
 
 Beyond the 90 degree angle, the following identity can be used:
 
-$$ \tag{46} C_l(z, \mathrm{cos}{\theta}) = 2 e^{z - z \mathrm{sin}{\theta}} C_h(z \mathrm{sin}{\theta}) - C(z, -\mathrm{cos}{\theta}), $$
+$$ \tag{40} C_l(z, \mathrm{cos}{\theta}) = 2 e^{z - z \mathrm{sin}{\theta}} C_h(z \mathrm{sin}{\theta}) - C(z, -\mathrm{cos}{\theta}), $$
 
-which means that we must find a position \\(\bm{p}\\) (sometimes called the [periapsis](https://en.wikipedia.org/wiki/Apsis) point, see the diagram in the previous section) along the ray where the ray direction is orthogonal to the surface normal, evaluate the horizontal Chapman function there (integrate twice, forwards and backwards, e.i. along the entire line, from \\(-\infty\\) to \\(\infty\\)), and subtract the value of the Chapman function at the original position with the reversed direction (towards the atmospheric boundary), which isolates the integral to the desired ray segment.
+which means that we must find a position \\(\bm{p}\\) (sometimes called the [periapsis](https://en.wikipedia.org/wiki/Apsis) point, see the diagram in the previous section) along the ray where the ray direction is orthogonal to the surface normal, evaluate the horizontal Chapman function there (twice, forwards and backwards, to cover the entire real line), and subtract the value of the Chapman function at the original position with the reversed direction (towards the atmospheric boundary), which isolates the integral to the desired ray segment.
 
 Christian Schüler proposes an approximation of the Chapman function for the upper hemisphere in his [GPU Gems 3](http://www.gameenginegems.net/gemsdb/article.php?id=1133) article:
 
-$$ \tag{47} C_{u\\_cs}(z, \mathrm{cos}{\theta}) \approx \frac{C_h(z)}{(C_h(z) - 1) \mathrm{cos}{\theta} + 1}. $$
+$$ \tag{41} C_{u\\_cs}(z, \mathrm{cos}{\theta}) \approx \frac{C_h(z)}{(C_h(z) - 1) \mathrm{cos}{\theta} + 1}. $$
 
 It's a pretty good approximation, especially considering the cost.
 
@@ -314,17 +314,17 @@ However, if you care about accuracy, and plot the the relative error graph, it p
 
 The physics literature has [many approximations](https://agupubs.onlinelibrary.wiley.com/doi/pdf/10.1029/2011JD016706) of the Chapman function. Unfortunately, most of them are specific to Earth's atmosphere.
 
-Instead, we can take a different, simpler approach. Instead of approximating the entire function (for which we have an analytic expression), all we have to do is approximate \\(\mathrm{erfc}\\) (or, more specifically, the term of the Equation 44 inside the square brackets). Luckily, the physics literature already has an efficient [approximation](https://rmets.onlinelibrary.wiley.com/doi/full/10.1002/asl.154) (for positive values of \\(x\\)) that we can use:
+Instead, we can take a different, simpler approach. Instead of approximating the entire function (for which we have an analytic expression), all we have to do is approximate \\(\mathrm{erfc}\\) (or, more specifically, the term of the Equation 38 inside the square brackets). Luckily, the physics literature has an efficient [approximation](https://rmets.onlinelibrary.wiley.com/doi/full/10.1002/asl.154) (for positive values of \\(x\\)) readily available:
 
-$$ \tag{48} e^{x^2} \mathrm{erfc}(x) \approx \frac{2.911}{(2.911 - 1) \sqrt{\pi x^2} + \sqrt{\pi x^2 + 2.911^2}}. $$
+$$ \tag{42} e^{x^2} \mathrm{erfc}(x) \approx \frac{2.911}{(2.911 - 1) \sqrt{\pi x^2} + \sqrt{\pi x^2 + 2.911^2}}. $$
 
-The resulting approximation of the Chapman function has up to 50 times lower relative error, and is acceptable for our use case (the full expression of transmittance features even lower numerical error).
+The resulting approximation of the Chapman function has up to 50 times lower relative error, and is acceptable for our use case. The full expression of transmittance features even lower numerical error.
 
 {{< figure src="/img/chapman_erfc_error.png" caption="*Relative error plot of the new approximation of the Chapman function for \\(r = 6600\\).*">}}
 
 For reference, the full numerical approximation of the Chapman function for the upper hemisphere is:
 
-$$ \tag{49} C_{u\\_a}(z, \mathrm{cos}{\theta}) \approx \frac{\mathrm{cos}{\theta}}{2} + \frac{0.761643 (1 + z (2 - \mathrm{cos}^2{\theta}))}{z \mathrm{cos}{\theta} + \sqrt{z (1.47721 + 0.273828 z \mathrm{cos}^2{\theta})}}. $$
+$$ \tag{43} C_{u\\_a}(z, \mathrm{cos}{\theta}) \approx \frac{\mathrm{cos}{\theta}}{2} + \frac{0.761643 (1 + z (2 - \mathrm{cos}^2{\theta}))}{z \mathrm{cos}{\theta} + \sqrt{z (1.47721 + 0.273828 z \mathrm{cos}^2{\theta})}}. $$
 
 Sample code which implements the Equation 40 is listed below.
 
@@ -368,11 +368,11 @@ float RescaledChapmanFunction(float z, float Z, float cosTheta)
 }
 ```
 
-A small but important note is that we can always use \\( \vert \mathrm{cos}{\theta} \vert \\) to evaluate the upper part of the Chapman function since, even if the angle is greater than 90 degrees, the ray direction is reversed, and the cosine is negated.
+A small but important note is that we can always use \\( \vert \mathrm{cos}{\theta} \vert \\) to evaluate the upper part of the Chapman function since, if the angle is greater than 90 degrees, the ray direction is reversed, and the cosine is negated.
 
 ### Evaluating Optical Depth Using the Chapman Function
 
-A numerical approximation of the Chapman function, in conjunction with the Equation 41, allows us to evaluate optical depth along an arbitrary ray segment.
+A numerical approximation of the Chapman function, in conjunction with the Equation 36, allows us to evaluate optical depth along an arbitrary ray segment.
 
 However, since the approximation of the Chapman function contains a branch (upper/lower hemisphere), using the full formulation may be unnecessarily expensive for many use cases.
 
@@ -382,25 +382,25 @@ To start with, we may want to know whether the ray intersects the planet, or, in
 
 {{< figure src="/img/spherical_param_2.png">}}
 
-Since a "horizon" ray always intersects the planet at the 90 degree angle with respect to the normal at the intersection point, the (obtuse) horizon angle \\( \mathrm{cos}{\theta_h} \\) at the query point can be found using basic trigonometry:
+Since a "horizon" ray always intersects the planet at a 90 degree angle, the (obtuse) horizon angle \\( \mathrm{cos}{\theta_h} \\) at the query point can be found using basic trigonometry:
 
-$$ \tag{50} \mathrm{cos}{\theta_h} = -\frac{\mathrm{adjacent}}{\mathrm{hypotenuse}} = -\frac{\sqrt{r^2 - R^2}}{r} = -\sqrt{1 - (R/r)^2}. $$
+$$ \tag{44} \mathrm{cos}{\theta_h} = -\frac{\mathrm{adjacent}}{\mathrm{hypotenuse}} = -\frac{\sqrt{r^2 - R^2}}{r} = -\sqrt{1 - (R/r)^2}. $$
 
-If the ray points above the horizon, the regular Chapman function gets the job done. And if the ray points below the horizon, it may seem that we need to evaluate the full Chapman function twice (as per Equation 41), once at the starting point \\(\bm{x}\\), where the ray points into the lower hemisphere, and once at the intersection point \\(\bm{y}\\) (using the same ray direction).
-
-Please take a look at the updated diagram below:
-
-{{< figure src="/img/spherical_param_3.png">}}
+If the ray points above the horizon, the regular Chapman function gets the job done. And if the ray points below the horizon, it may seem that we need to evaluate the full Chapman function twice (as per Equation 36), once at the starting position \\(\bm{x}\\), where the ray points into the lower hemisphere, and once at the intersection point \\(\bm{y}\\) (using the same ray direction).
 
 However, we can utilize the fact that \\(\bm{\tau}(\bm{x}, \bm{y}) = \bm{\tau}(\bm{y}, \bm{x})\\), and instead consider the ray segment \\(\bm{yx}\\) which starts at the intersection point \\(\bm{y}\\) and has a reversed direction.
 
+Take a look at the updated diagram below:
+
+{{< figure src="/img/spherical_param_3.png">}}
+
 Using basic trigonometry, we can deduce the cosine of the angle at the intersection point
 
-$$ \tag{51} \mathrm{sin}{\gamma} = \frac{\mathrm{opposite}}{\mathrm{hypotenuse}} = \frac{r_0}{R} = \frac{r \mathrm{sin}{\theta}}{R} \qquad \mathrm{cos}{\gamma} = \sqrt{1 - \mathrm{sin}^2{\gamma}} $$
+$$ \tag{45} \mathrm{sin}{\gamma} = \frac{\mathrm{opposite}}{\mathrm{hypotenuse}} = \frac{r_0}{R} = \frac{r \mathrm{sin}{\theta}}{R} \qquad \mathrm{cos}{\gamma} = \sqrt{1 - \mathrm{sin}^2{\gamma}} $$
 
 that determines the value of the Chapman function below horizon:
 
-$$ \tag{52} C_b(z, \mathrm{cos}{\theta}, Z, \mathrm{cos}{\gamma}) = C_u(Z, \mathrm{cos}{\gamma}) - C_u(z, \vert \mathrm{cos}{\theta} \vert). $$
+$$ \tag{46} C_b(z, \mathrm{cos}{\theta}, Z, \mathrm{cos}{\gamma}) = C_u(Z, \mathrm{cos}{\gamma}) - C_u(z, \vert \mathrm{cos}{\theta} \vert). $$
 
 Sample code is listed below. While it's possible to use the `RescaledChapmanFunction` in this scenario, the following implementation is slightly more efficient.
 
@@ -449,22 +449,22 @@ float3 ComputeOpticalDepthAlongRay(float3 X, float3 V)
 }
 ```
 
-If desired, it is possible to reduce divergence by utilizing `ChapmanUpperApprox` (with the cosine value of 0) instead of `ChapmanHorizontal`, but I will retain this version for clarity of exposition.
+If desired, it is possible to reduce execution divergence by utilizing `ChapmanUpperApprox` (with the cosine value of 0) instead of `ChapmanHorizontal`, but I will retain this version for clarity of exposition.
 
 Now, let's tackle the most general case of evaluating optical depth between two points \\(\bm{x}\\) and \\(\bm{y}\\). It may seem really complex at first, when, in fact, it's very similar to the problem we just solved. We have to consider three distinct possibilities:
 
-1\. \\(\mathrm{cos}(\bm{x} - \bm{c}, \bm{y} - \bm{x}) \geq 0 \\), which means that the ray points into the upper hemisphere with respect to the normal at the point \\(\bm{x}\\). This also means it points into the upper hemisphere at any point \\(\bm{y}\\) along the ray (I don't have a rigorous proof, but it's fairly obvious if you sketch it). Optical depth is given by the Equation 41, which we specialize by replacing \\(C\\) with \\(C_u\\) which is restricted to the upper hemisphere:
+1\. \\(\mathrm{cos}{\theta_x} \geq 0 \\), which means that the ray points into the upper hemisphere with respect to the surface normal at the point \\(\bm{x}\\). This also means it points into the upper hemisphere at any point \\(\bm{y}\\) along the ray (it's fairly obvious if you sketch it). Optical depth is given by the Equation 36, which we specialize by replacing \\(C\\) with \\(C_u\\) which is restricted to the upper hemisphere:
 
-$$ \tag{53}
+$$ \tag{47}
 \bm{\tau\_{uu}}(z_x, \mathrm{cos}{\theta_x}, z_y, \mathrm{cos}{\theta_y})
-    = \bm{\mu_t} \frac{k}{n} \Bigg( e^{Z - z_x} C_u(z_x, \mathrm{cos}{\theta_x}) - e^{Z - z_y} C_u(z_y, \mathrm{cos}{\theta_y}) \Bigg),
+    = \bm{\mu_t} \frac{k}{n} \Bigg( e^{Z - z_x} C_u(z_x, \mathrm{cos}{\theta_x}) - e^{Z - z_y} C_u(z_y, \mathrm{cos}{\theta_y}) \Bigg).
 $$
 
-2\. \\(\mathrm{cos}(\bm{x} - \bm{c}, \bm{y} - \bm{x}) < 0 \\) and \\(\mathrm{cos}(\bm{y} - \bm{c}, \bm{y} - \bm{x}) \rangle < 0 \\) occurs e.g. when looking straight down. It's also easy to handle, we just flip the direction (by taking the absolute value of the cosine), replace the segment \\(\bm{xy}\\) with the segment \\(\bm{yx}\\) and fall back to the case 1.
+2\. \\(\mathrm{cos}{\theta_x} < 0 \\) and \\(\mathrm{cos}{\theta_y} < 0 \\) occurs e.g. when looking straight down. It's also easy to handle, we just flip the direction (by taking the absolute value of the cosine), replace the segment \\(\bm{xy}\\) with the segment \\(\bm{yx}\\) and fall back to case 1.
 
-3\. \\(\mathrm{cos}(\bm{x} - \bm{c}, \bm{y} - \bm{x}) \rangle < 0 \\) and \\(\mathrm{cos}(\bm{y} - \bm{c}, \bm{y} - \bm{x})  \rangle \geq 0 \\). This is the most complicated case, since we have to evaluate the Chapman function three times, twice using the position of \\(\bm{x}\\) with the direction pointing into the lower hemisphere, and once using the position of \\(\bm{y}\\) with the ray pointing in the upper hemisphere.
+3\. \\(\mathrm{cos}{\theta_x} < 0 \\) and \\(\mathrm{cos}{\theta_y} \geq 0 \\). This is the most complicated case, since we have to evaluate the Chapman function three times, twice at \\(\bm{x}\\) with the direction pointing into the lower hemisphere, and once at \\(\bm{y}\\) with the ray pointing in the upper hemisphere:
 
-$$ \tag{54} \begin{aligned}
+$$ \tag{48} \begin{aligned}
 \bm{\tau\_{ul}}(z_x, \mathrm{cos}{\theta_x}, z_y, \mathrm{cos}{\theta_y})
     &= \bm{\mu_t} \frac{k}{n} \Bigg( e^{Z - z_x} C_l(z_x, \mathrm{cos}{\theta_x}) - e^{Z - z_y} C_u(z_y, \mathrm{cos}{\theta_y}) \Bigg).
 \end{aligned} $$
@@ -491,9 +491,10 @@ float3 ComputeOpticalDepthAlongRaySegment(float3 X, float3 Y)
     // Potentially swap X and Y.
     // Convention: at the point Y, the ray points up.
     cosThetaX = (cosThetaY >= 0) ? cosThetaX : -cosThetaX;
+    cosThetaY = abs(cosThetaY);
 
     float chX = RescaledChapmanFunction(zX, Z, cosThetaX);
-    float chY = ChapmanUpperApprox(zY, abs(cosThetaY)) * exp(Z - zY);
+    float chY = ChapmanUpperApprox(zY, cosThetaY) * exp(Z - zY); // Rescaling adds 'exp'
 
     // We may have swapped X and Y.
     float ch = abs(chX - chY);
