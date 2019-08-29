@@ -147,7 +147,7 @@ This formulation makes computing optical depth (Equation 5) easy:
 
 $$ \tag{21} \bm{\tau_c}(\bm{x}, \bm{v}, t) = \bm{\mu_t} k t. $$
 
-The sampling "recipe" for distance \\(t\\) can be found by inverting the CDF:
+The sampling "recipe" for distance \\(t\\) can be found by inverting the CDF (Equation 18):
 
 $$ \tag{22} t = \frac{\tau_c}{\mu_t k}, $$
 
@@ -171,14 +171,14 @@ $$
 
 which is the product of the average attenuation coefficient and the length of the interval, as expected.
 
-The sampling "recipe" for distance \\(t\\) is given by the following formula:
+The sampling "recipe" for distance \\(t\\) is given by the following formula (Equation 18):
 
 $$ \tag{25}
 	t = -\frac{k + m x_3}{m v_3}
 	\pm \sqrt{\Bigg( \frac{k + m x_3}{m v_3} \Bigg)^2 + \frac{2 \tau\_{lp}}{\mu_t m v_3}},
 $$
 
-where the sign in front of the square root is the sign of \\(v_3\\). Please note that sampling homogeneous media \\( \big( m v_3 = 0 \big) \\) requires special care.
+where the sign in front of the square root is the sign of \\(v_3\\). Please note that homogeneous media \\( \big( m v_3 = 0 \big) \\) requires special care.
 
 ## Exponential Variation of Density with Altitude in Rectangular Coordinates
 
@@ -195,48 +195,17 @@ Setting \\(n = 0\\) results in a homogeneous medium.
 Plugging this in into the equation of optical depth, we obtain the following expression:
 
 $$ \tag{28} \begin{aligned}
-\bm{\tau\_{ep}}(\bm{x}, \bm{y})
-    &= \bm{\mu_t} \int\_{0}^{t = \Vert \bm{y} - \bm{x} \Vert} k e^{-n \big(x_3 + s (y_3 - x_3) / t \big)} ds \cr
-    &= \bm{\mu_t} k e^{-n x_3} \int\_{0}^{t = \Vert \bm{y} - \bm{x} \Vert} e^{-s n (y_3 - x_3) / t} ds \cr
-    &= \bm{\mu_t} k t e^{-n x_3} \frac{1 - e^{-n (y_3 - x_3)}}{n (y_3 - x_3)} \cr
-    &= \bm{\mu_t} k t \frac{e^{-n x_3} - e^{-n y_3}}{n (y_3 - x_3)}.
+\bm{\tau\_{ep}}(\bm{x}, \bm{v}, t)
+    &= \bm{\mu_t} \int\_{0}^{t} k e^{-n (x_3 + s v_3)} ds \cr
+    &= \bm{\mu_t} k e^{-n x_3} \int\_{0}^{t} e^{-s n v_3} ds \cr
+    &= \bm{\mu_t} k t e^{-n x_3} \frac{1 - e^{-t n v_3}}{n v_3}.
 \end{aligned} $$
 
-We can still integrate transmittance analytically (if you think that's complicated, wait until you see read the next section):
+Solving for the distance \\(t\\) is easy (Equation 18):
 
-$$ \tag{29} \begin{aligned}
-\bm{I\_{ep}}(\bm{x}, \bm{v}, t)
-    &= \bm{\mu_t} \int\_{0}^{t} k e^{-n (x_3 + s v_3)} \mathrm{exp} \Bigg( - \bm{\mu_t} k s e^{-n x_3} \frac{1 - e^{-n \big((x_3 + s v_3) - x_3 \big)}}{n \big((x_3 + s v_3) - x_3 \big)} \Bigg) ds \cr
-    &= \bm{\mu_t} k e^{-n x_3} \int\_{0}^{t} e^{-n s v_3} \mathrm{exp} \Bigg( - \bm{\mu_t} k s e^{-n x_3} \frac{1 - e^{-n s v_3}}{n s v_3} \Bigg) ds \cr
-    &= \bm{\mu_t} k e^{-n x_3} \int\_{0}^{t} e^{-n s v_3} \mathrm{exp} \Bigg( - \bm{\mu_t} k e^{-n x_3} \frac{1 - e^{-n s v_3}}{n v_3} \Bigg) ds \cr
-    &= \bm{\mu_t} k e^{-n x_3} \mathrm{exp} \Bigg( -\bm{\mu_t} \frac{k e^{-n x_3}}{n v_3} \Bigg) \int\_{0}^{t} e^{-n s v_3} \mathrm{exp} \Bigg( \bm{\mu_t} \frac{k e^{-n x_3}}{n v_3} e^{-n s v_3} \Bigg) ds.
-\end{aligned} $$
+$$ \tag{29} t = -\frac{1}{n v_3} \log \left(1 - \frac{ n v_3 \tau\_{ep}}{\mu_t k e^{-n x_3}}\right). $$
 
-Let's simplify the calculation via the following substitution:
-
-$$ \tag{30} \beta = \frac{k e^{-n x_3}}{n v_3}. $$
-
-The integral then becomes
-
-$$ \tag{31} \begin{aligned}
-\bm{I\_{ep}}(\bm{x}, \bm{v}, t)
-    &= \bm{\mu_t} k e^{-n x_3} e^{- \bm{\mu_t} \beta} \int\_{0}^{t} e^{\bm{\mu_t} \beta e^{-n s v_3}} e^{-n s v_3} ds \cr
-    &= \bm{\mu_t} k e^{-n x_3} e^{- \bm{\mu_t} \beta} \frac{e^{\bm{\mu_t} \beta} - e^{\bm{\mu_t} \beta e^{-n t v_3}}}{\bm{\mu_t} \beta n v_3} \cr
-    &= e^{- \bm{\mu_t} \beta} \Big( e^{\bm{\mu_t} \beta} - e^{\bm{\mu_t} \beta e^{-n t v_3}} \Big) \cr
-    &= 1 - e^{- \bm{\mu_t} \beta + \bm{\mu_t} \beta e^{-n t v_3}} \cr
-    &= 1 - e^{- \bm{\mu_t} \beta (1 - e^{-n t v_3} )} \cr
-    &= 1 - \mathrm{exp} \Bigg( - \bm{\mu_t} k t e^{-n x_3} \frac{1 - e^{-n t v_3}}{n t v_3} \Bigg).
-\end{aligned} $$
-
-Comparing the result to the Equation 28, we can observe that, [again](https://www.youtube.com/watch?v=MDpuTqBI0RM),
-
-$$ \tag{32} \bm{I\_{ep}}(\bm{x}, \bm{v}, t) = \bm{O}(\bm{x}, \bm{x} + t \bm{v}). $$
-
-Inversion of the CDF allows us to sample the distance \\(t\\):
-
-$$ \tag{33} t = -\frac{1}{n v_3} \log \left(1 + \frac{ n v_3 \log \big(1 - \xi O \left(\bm{x}, \bm{x} + t\_{max} \bm{v} \right) \big)}{\mu_t k e^{-n x_3}}\right). $$
-
-Please note that homogeneous participating media along the ray (\\(n v_3 = 0\\)) require special treatment.
+Please note that homogeneous media \\( \big( n v_3 = 0 \big) \\) requires special care.
 
 ## Exponential Variation of Density with Altitude in Spherical Coordinates
 
