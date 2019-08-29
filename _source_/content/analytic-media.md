@@ -73,7 +73,7 @@ $$ \tag{10}
     = \bm{O}(\bm{x}, \bm{v}, t).
 $$
 
-This is a very useful fact, and we we will use it in just a moment.
+This is a very useful fact, and we we will take advantage of it in just a moment.
 
 To shade our (non-emissive) medium, we must evaluate the [recursive in-scattering integral](http://www.pbr-book.org/3ed-2018/Light_Transport_II_Volume_Rendering/The_Equation_of_Transfer.html) along the ray:
 
@@ -209,7 +209,7 @@ Please note that homogeneous media \\( \big( n v_3 = 0 \big) \\) requires specia
 
 ## Exponential Variation of Density with Altitude in Spherical Coordinates
 
-This is where things get interesting. We would like to model an exponential density distribution on in spherical coordinates:
+This is where things get interesting. We would like to model an exponential density distribution on a sphere:
 
 $$ \tag{34} \rho\_{es}(\bm{x}) = k e^{-h(\bm{x}) / H} = k e^{-(\Vert \bm{x} - \bm{c} \Vert - R) / H} = k e^{-n (\Vert \bm{x} - \bm{c} \Vert - R)}, $$
 
