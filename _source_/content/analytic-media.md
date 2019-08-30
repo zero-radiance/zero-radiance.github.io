@@ -166,7 +166,7 @@ The expression of optical depth remains simple:
 $$ \tag{24}
 \bm{\tau\_{lp}}(\bm{x}, \bm{v}, t)
     = \bm{\mu_t} \int\_{0}^{t} \Big( m \big(x_3 + s v_3) + k \Big) ds
-    = \bm{\mu_t} \Bigg(m \Big(x_3 + \frac{t}{2} v_3 \Big) + k \Bigg) t,
+    = \bm{\mu_t} \Big(m \big(x_3 + \frac{t}{2} v_3 \big) + k \Big) t,
 $$
 
 which is the product of the average attenuation coefficient and the length of the interval, as expected.
@@ -201,11 +201,51 @@ $$ \tag{28}
     = \bm{\mu_t} k t e^{-n x_3} \frac{1 - e^{-t n v_3}}{n v_3}.
 $$
 
+In this context, \\(k\\) and \\(\bm{\mu_t} k\\) represent the density and the value of the attenuation coefficient at the sea level, respectively.
+
 Solving for the distance \\(t\\) is straightforward:
 
 $$ \tag{29} t = -\frac{1}{n v_3} \log \left(1 - \frac{ n v_3 \tau\_{ep}}{\mu_t k e^{-n x_3}}\right). $$
 
 Please note that homogeneous media \\( \big( n v_3 = 0 \big) \\) requires special care.
+
+Sample code is listed below.
+
+```c++
+float3 EvaluateOpticalDepthRectExpMedium(float height, float cosTheta, float t,
+                                         float3 seaLvlAtt, float rcpH)
+{
+    // Equation 21.
+    float3 d = seaLvlAtt * t;
+
+    float p = cosTheta * rcpH;
+
+    if (abs(p) > FLT_EPS)
+    {
+        // Equation 28.
+        d *= exp(-height * rcpH) * (1 - exp(-t * p)) * rcp(p);
+    }
+
+    return d;
+}
+
+float SampleRectExpMedium(float optDepth, float height, float cosTheta,
+                          float rcpSeaLvlAtt, float rcpH)
+{
+    // Equation 22.
+    float t = optDepth * rcpSeaLvlAtt;
+
+    float p = cosTheta * rcpH;
+
+    if (abs(p) > FLT_EPS)
+    {
+        // Equation 29.
+        t = -log(1 - p * t * exp(height * rcpH)) * rcp(p);
+    }
+
+    return t;
+}
+```
 
 ## Exponential Variation of Density with Altitude in Spherical Coordinates
 
@@ -288,7 +328,7 @@ $$ \tag{38} C(z, \mathrm{cos}{\theta}) = \frac{1}{2} \mathrm{cos}{\theta} + \fra
 
 which, unfortunately, is not [closed-form](https://en.wikipedia.org/wiki/Closed-form_expression#Analytic_expression), since it contains the [complementary error function](http://mathworld.wolfram.com/Erfc.html) \\(\mathrm{erfc}\\).
 
-Unfortunately, even after expending a considerable amount of time and effort, I have been unable to re-derive this expression. I suspect that I am either missing something (accounting for continuous variation of the IOR, for instance), or perhaps this is not a full analytic solution, but rather a truncated series expansion (similar to [this one](https://www.sciencedirect.com/science/article/pii/S0022407300001072)). Also, while the formula should work for angles beyond 90 degrees, it deviates from values of the numerically evaluated integral rather quickly.
+Unfortunately, I was unable to re-derive this expression. I suspect that I am either missing something (accounting for continuous variation of the IOR, for instance), or perhaps this is not a full analytic solution, but rather a truncated series expansion (similar to [this one](https://www.sciencedirect.com/science/article/pii/S0022407300001072)). Also, while the formula should work for angles beyond 90 degrees, it deviates from values of the numerically evaluated integral rather quickly.
 
 For the zenith angle of 90 degrees, it reduces to
 
@@ -472,26 +512,25 @@ $$ \tag{48} \begin{aligned}
 Sample code is listed below.
 
 ```c++
-float R, rcpR, H, rcpH, Z;
+float H, rcpH, Z;
 float3 C, seaLevelAttenuationCoefficient;
 
-float3 ComputeOpticalDepthAlongRaySegment(float3 X, float3 Y)
+// Ray equation: (X + t * V).
+float3 ComputeOpticalDepthAlongRaySegment(float3 X, float3 V, float t)
 {
-    float3 V = normalize(Y - X);
-
-    float rX = distance(X, C);
-    float rY = distance(Y, C);
-
-    float zX = rX * rcpH;
-    float zY = rY * rcpH;
-
+    float r2        = dot(X - C, X - C);
+    float rX        = sqrt(r2);
     float cosThetaX = dot(X - C, V) * rcp(rX);
-    float cosThetaY = dot(Y - C, V) * rcp(rY);
+    float rY        = sqrt(r2 + t * (t + 2 * rX * cosThetaX));
+    float cosThetaY = (t + rX * cosThetaX) * rcp(rY);
 
     // Potentially swap X and Y.
     // Convention: at the point Y, the ray points up.
     cosThetaX = (cosThetaY >= 0) ? cosThetaX : -cosThetaX;
     cosThetaY = abs(cosThetaY);
+
+    float zX  = rX * rcpH;
+    float zY  = rY * rcpH;
 
     float chX = RescaledChapmanFunction(zX, Z, cosThetaX);
     float chY = ChapmanUpperApprox(zY, cosThetaY) * exp(Z - zY); // Rescaling adds 'exp'
@@ -507,81 +546,135 @@ The code above works for all finite inputs. An important special case is when th
 
 ### Sampling Exponential Media in Spherical Coordinates
 
-Around 10 pages before, we were quite interested in evaluating the attenuation-transmittance integral (Equations 15, 19, 24, 32). What about our spherical exponential distributions? Is the value of the integral still identical to opacity?
+In order to be able to sample participating media, we must be able to solve the optical depth equation for distance (Equation 18). Analysis presented in the previous section indicates that there are two cases we must consider: the ray either points into the same hemisphere at both endpoints (Equation 47), or into the opposite ones (Equation 48).
 
-Unsurprisingly, trying to evaluate the integral analytically is an unsurmountable task. However, that shouldn't stop us from finding the answer. We can still evaluate the integral numerically, and since we know the likely outcome, we can simply plot and compare the two results.
+First, let's establish a couple of useful identities. Recalling the Equation 32, we can compute the radial distance from the center \\(\bm{c}\\) to the point \\(\bm{x} + t \bm{v}\\) along the ray using the Pythagorean theorem:
 
-Experimentally, it's possible to verify that, indeed, the rule holds true:
-
-$$ \tag{55} \bm{I\_{es}}(\bm{x}, \bm{v}, t) = \bm{O}(\bm{x}, \bm{x} + t \bm{v}). $$
-
-You can find the plot of the attenuation-transmittance integral below.
-
-{{< figure src="/img/ext_transm_int.png" caption="*Plot of the attenuation-transmittance integral for \\(\mu_t k = 0.01, r = 6450, R = 6400,\\) and varying \\(H\\).*">}}
-
-To sample proportionally to opacity, we need to find a way to invert the CDF (Equation 13). The analysis presented in the previous section indicates that there are two cases we must consider: the ray either points into the same (upper) hemisphere at both endpoints (Equation 53), or into the opposite ones (Equation 54).
-
-First, let's establish some useful identities. Recalling the Equation 37, we can compute the radial distance from the center \\(\bm{c}\\) to the point \\(\bm{x} + t \bm{v}\\) along the ray using the following formula:
-
-$$ \tag{56} \begin{aligned}
+$$ \tag{49} \begin{aligned}
 \mathcal{R}(\bm{x}, \bm{v}, t)
     &= \sqrt{r_0^2 + (t_0 + t)^2} \cr
     &= \sqrt{\big( \Vert \bm{x}-\bm{c} \Vert \mathrm{sin}(\bm{x}-\bm{c}, \bm{v}) \big)^2 + \big(\Vert \bm{x}-\bm{c} \Vert \mathrm{cos}(\bm{x}-\bm{c}, \bm{v}) + t \big)^2} \cr
     &= \sqrt{(r \mathrm{sin}{\theta})^2 + (r \mathrm{cos}{\theta} + t)^2}
+     = \sqrt{r^2 + t^2 + 2 t r \mathrm{cos}{\theta}}
 \end{aligned} $$
 
-The cosine of the ray direction with the normal at that point can be computed as follows:
+The cosine of the ray direction with respect to the surface normal at that point can be computed as follows:
 
-$$ \tag{57}
+$$ \tag{50}
 \mathcal{C}(\bm{x}, \bm{v}, t)
     = \frac{\mathrm{adjacent}}{\mathrm{hypotenuse}}
     = \frac{t_0 + t}{\mathcal{R}(\bm{x}, \bm{v}, t)}
     = \frac{r \mathrm{cos}{\theta} + t}{\sqrt{(r \mathrm{sin}{\theta})^2 + (r \mathrm{cos}{\theta} + t)^2}}.
 $$
 
-This allows us to express the value of the attenuation-transmittance integral, or opacity, in a compact way:
+Using the new, compact notation, and some algebraic manipulation, we can reduce the problem to solving the following equation:
 
-$$ \tag{58}
-\bm{I\_{uu}}(\bm{x}, \bm{v}, t)
-    = 1 - \mathrm{exp}\Big(-\bm{\tau\_{uu}} \big(n \mathcal{R}(\bm{x}, \bm{v}, 0), \mathcal{C}(\bm{x}, \bm{v}, 0), n \mathcal{R}(\bm{x}, \bm{v}, t), \mathcal{C}(\bm{x}, \bm{v}, t) \big) \Big).
-$$
-
-To importance sample, we must be able to solve the following equation for \\(t\\) given the value of the CDF \\(P\\):
-
-$$ \tag{59}
-P = \frac{
-    1 - \mathrm{exp}\Big(-\tau\_{uu} \big(n \mathcal{R}(\bm{x}, \bm{v}, 0), \mathcal{C}(\bm{x}, \bm{v}, 0), n \mathcal{R}(\bm{x}, \bm{v}, t), \mathcal{C}(\bm{x}, \bm{v}, t) \big) \Big)}
-    {1 - \mathrm{exp}\Big(-\tau\_{uu} \big(n \mathcal{R}(\bm{x}, \bm{v}, 0), \mathcal{C}(\bm{x}, \bm{v}, 0), n \mathcal{R}(\bm{x}, \bm{v}, t\_{max}), \mathcal{C}(\bm{x}, \bm{v}, t\_{max}) \big) \Big)}.
-$$
-
-The expression for the opposite hemisphere case is similar.
-
-After several somewhat tedious algebraic manipulations, the problem can be reduced to solving the following equation:
-
-$$ \tag{60}
+$$ \tag{51}
 q = e^{Z - n \mathcal{R}(\bm{x}, \bm{v}, t) } C_u \Big( n \mathcal{R}(\bm{x}, \bm{v}, t), \mathcal{C}(\bm{x}, \bm{v}, t) \Big),
 $$
 
 which means that we need to find the distance \\(t\\) at which the value of the rescaled Chapman function is \\(q\\).
 
-The equation has too many parameters. We can reduce the dimensionality by solving for \\(t' = nt\\):
+The equation has too many parameters. We can reduce dimensionality by solving for \\(t' = nt\\):
 
-$$ \tag{61}
+$$ \tag{52}
 q = e^{Z - \sqrt{(z \mathrm{sin}{\theta})^2 + (z \mathrm{cos}{\theta} + t')^2} } C_u \Big( \sqrt{(z \mathrm{sin}{\theta})^2 + (z \mathrm{cos}{\theta} + t')^2}, \frac{z \mathrm{cos}{\theta} + t'}{\sqrt{(z \mathrm{sin}{\theta})^2 + (z \mathrm{cos}{\theta} + t')^2}} \Big).
 $$
 
 After getting rid of \\(n\\), the next step is to group common terms:
 
-$$ \tag{62} \phi = z \mathrm{sin}{\theta} \qquad \psi = z \mathrm{cos}{\theta} + t', $$
+$$ \tag{53} \phi = z \mathrm{sin}{\theta} \qquad \psi = z \mathrm{cos}{\theta} + t', $$
 
-$$ \tag{63}
+$$ \tag{54}
 q = e^{Z - \sqrt{\phi^2+\psi^2} } C_u \Big( \sqrt{\phi^2+\psi^2}, \frac{\psi}{\sqrt{\phi^2+\psi^2}} \Big). $$
 
-Both \\(\phi\\) and \\(\psi\\) are known to be positive. We must solve for \\(\psi\\). \\(Z\\) could theoretically be removed, but it's here to keep the solution within the sane numerical range.
+Both \\(\phi\\) and \\(\psi\\) are known to be positive. We must solve for \\(\psi\\). \\(Z\\) could theoretically be removed, but it's here to keep the solution within a sane numerical range.
 
-To my knowledge, this is the simplest formulation of the problem, using the fewest number of parameters. And yet, I was unable to analytically solve this equation, and I tried both the closed and the approximate forms of the Chapman function. Perhaps **you** will have better luck?
+This appears to be the simplest formulation of the problem, using the fewest number of parameters. I gave it a shot, but, unfortunately, I was unable to analytically solve this equation, and I tried both the closed and the approximate forms of the Chapman function. Perhaps **you** will have better luck?
 
-While that's an unfortunate development, it's a minor setback. If we can't solve the equation analytically, we can solve it numerically, using [Newton's method](https://en.wikipedia.org/wiki/Newton%27s_method), for instance. The derivative of the Chapman function exists, and is not too difficult to compute. The function is smooth, and the initial guess can be made using the approximation in the rectangular coordinates (Equation 33).
+While that's an unfortunate development, it's a minor setback. If we can't solve the equation analytically, we can solve it numerically, using [Newton–Raphson method](https://en.wikipedia.org/wiki/Newton%27s_method), for instance. The derivative of the Chapman function exists, and is not too difficult to compute.
+
+In fact, there is a [better way](http://lib-www.lanl.gov/la-pubs/00367066.pdf), which is even simpler. Recall that Newton's method requires being able to make an initial guess, evaluate the function, and take its derivative. If we solve using the entire optical depth function \\(\tau\\) (Equation 18), we know that its derivative is just the extinction coefficient \\(\sigma_t\\) (Equation 9), and it's easy to make a good initial guess by ignoring curvature of the planet.
+
+This method is very general and works for completely arbitrary continuous density distributions (see the [paper](http://lib-www.lanl.gov/la-pubs/00367066.pdf)).
+
+Sample code is listed below.
+
+```c++
+// Only monochromatic coefficients are supported by this code snippet.
+float seaLevelAttenuationCoefficient, rcpSeaLevelAttenuationCoefficient;
+float R, rcpR, H, rcpH, Z;
+float3 C, ssAlbedo;
+
+float SampleSphericalExpMedium(float )
+
+float3 IntegrateRadianceAlongRaySegment(float3 X, float3 Y, uint numSamples)
+{
+    // (1/seaLevelAttenuationCoefficient) for a single wavelength used for sampling.
+    float  rcpA = rcpSeaLevelAttenuationCoefficient;
+
+    float  tMax = distance(Y, X);
+    float3 V    = normalize(Y - X);
+
+    float totalOpticalDepth = ComputeOpticalDepthAlongRaySegment(X, Y);
+    float totalOpacity      = OpacityFromOpticalDepth(totalOpticalDepth);
+
+    // Compute initial parameters.
+    float3 P        = X;
+    float  r        = distance(P, C);
+    float  cosTheta = dot(P - C, V) * rcp(r);
+
+    float  t             = 0;
+    float3 radiance      = 0;
+    float  transmittance = 1;
+
+    for (uint i = 0; i < numSamples; i++)
+    {
+
+        // Samples must be arranged in the ascending order, s.t.
+        // for any i, sample[i] < sample[i + 1].
+        float cdf = GetOrderedUnitIntervalRandomSample(i, numSamples);
+
+        // Total value of transmittance (Equation 66).
+        float totTransm = 1 - cdf * totalOpacity;
+
+        // Transmittance relative to the previous sample (Equation 68).
+        float relTransm = totTransm * rcp(transmittance);
+
+        // Update the value of transmittance up to the current sample.
+        transmittance = totTransm;
+
+        // Ignore curvature of the planet (polygonal planet approximation).
+        // The approximation is accurate assuming high sampling rate.
+        float dt = SampleRectExpMedium(relTransm, r - R, cosTheta, rcpA, rcpH);
+
+        // Since the distance is approximate, it's a good idea to clamp.
+        t        = min(t + dt, tMax);
+        P        = X + t * V;
+        r        = distance(P, C);
+        cosTheta = dot(P - C, V) * rcp(r);
+
+    #if 0
+        // Equation 34.
+        float extinction = seaLevelAttenuationCoefficient * exp((R - r) * rcpH);
+
+        // Equations 11. By the Equation 15, albedo cancels out.
+        // The PDF value is also approximate (since the the distance 't' is).
+        float pdf = extinction * transmittance / totalOpacity;
+    #endif
+
+        // Equation 12.
+        // For a single wavelength, and with high enough sampling density,
+        // weight = scattering * transmittance / pdf ≈ ssAlbedo * totalOpacity.
+        radiance += ComputeInScatteredRadiance(P, V);
+    }
+
+    // Equation 12 (normalization).
+    radiance *= ssAlbedo * totalOpacity * rcp(numSamples);
+
+    return radiance;
+}
+```
 
 In fact, curvature of the planet can be ignored for moderate distances, making it a relatively efficient and accurate approximation. Can we exploit this idea for arbitrary distances? Let's take another look at the Equation 13. Assuming a constant albedo, the value of the CDF \\(P\\) along the ray segment of length \\(t\_{max}\\) is given as:
 
