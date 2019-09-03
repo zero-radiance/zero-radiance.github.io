@@ -209,8 +209,9 @@ Please note that homogeneous media \\( \big( n v_3 = 0 \big) \\) require special
 Sample code is listed below.
 
 ```c++
-float3 EvaluateOpticalDepthRectExpMedium(float height, float cosTheta, float t,
-                                         float3 seaLvlAtt, float rcpH)
+// Spectral version.
+float3 EvalOptDepthRectExpMedium(float height, float cosTheta, float t,
+                                 float3 seaLvlAtt, float rcpH)
 {
     // Equation 21.
     float3 d = seaLvlAtt * t;
@@ -226,6 +227,7 @@ float3 EvaluateOpticalDepthRectExpMedium(float height, float cosTheta, float t,
     return d;
 }
 
+// Single wavelength version.
 float SampleRectExpMedium(float optDepth, float height, float cosTheta,
                           float rcpSeaLvlAtt, float rcpH)
 {
@@ -450,6 +452,7 @@ float ComputeCosineOfHorizonAngle(float r)
 }
 
 // Ray equation: (X + t * V).
+/* FIX ME */
 float3 ComputeOpticalDepthAlongRay(float3 X, float3 V)
 {
     float r = distance(X, C);
@@ -510,8 +513,8 @@ Sample code is listed below.
 float H, rcpH, Z;
 float3 C, seaLevelAttenuationCoefficient;
 
-// Ray equation: (X + t * V).
-float3 ComputeOpticalDepthAlongRaySegment(float3 X, float3 V, float t)
+/* FIX ME */
+float3 EvalOptDepthSphericalExpMedium(float r, float cosTheta, float t)
 {
     float r2        = dot(X - C, X - C);
     float rX        = sqrt(r2);
@@ -595,12 +598,35 @@ This method is very general and works for completely arbitrary continuous densit
 Sample code is listed below.
 
 ```c++
-// Only monochromatic coefficients are supported by this code snippet.
-float seaLevelAttenuationCoefficient, rcpSeaLevelAttenuationCoefficient;
-float R, rcpR, H, rcpH, Z;
-float3 C, ssAlbedo;
+float HeightAtDist(float h, float cosTheta, float t)
+{
+    float r = h + R;
+    return sqrt(r * r + t * (t + 2 * (r * cosTheta))) - R;
+}
 
-float SampleSphericalExpMedium(float )
+// Single wavelength version.
+float SampleSphericalExpMedium(float optDepth, float height, float cosTheta,
+                               float seaLvlAtt, float rcpSeaLvlAtt, float rcpH)
+{
+    float rcpOptDepth = rcp(optDepth); // Must not be 0
+
+    // Make an initial guess.
+    float t = SampleRectExpMedium(optDepth, height, cosTheta, rcpSeaLvlAtt, rcpH);
+
+    float relDiff;
+
+    do
+    {
+        float h = HeightAtDist(height, cosTheta, t);
+
+        // Evaluate the function and its derivative.
+        float optDepthAtDist = EvalOptDepthRectExpMedium(height, cosTheta, t, seaLvlAtt, rcpH);
+        float attCoeffAtDist = seaLvlAtt * exp(-h * rcpH);
+
+        // Refine the initial guess.
+        t =
+    } while
+}
 
 float3 IntegrateRadianceAlongRaySegment(float3 X, float3 Y, uint numSamples)
 {
