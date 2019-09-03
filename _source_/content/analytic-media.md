@@ -443,7 +443,7 @@ Sample code is listed below. While it's possible to use the `RescaledChapmanFunc
 
 ```c++
 float R, rcpR, H, rcpH, Z;
-float3 C, seaLevelAttenuationCoefficient;
+float3 seaLevelAttenuationCoefficient;
 
 float ComputeCosineOfHorizonAngle(float r)
 {
@@ -451,16 +451,13 @@ float ComputeCosineOfHorizonAngle(float r)
     return -sqrt(saturate(1 - sinHoriz * sinHoriz));
 }
 
-// Ray equation: (X + t * V).
-/* FIX ME */
-float3 ComputeOpticalDepthAlongRay(float3 X, float3 V)
+// Spectral version.
+float3 EvalOptDepthSpherExpMedium(float r, float cosTheta)
 {
-    float r = distance(X, C);
     float z = r * rcpH;
 
-    float cosHoriz = ComputeCosineOfHorizonAngle(r);
-    float cosTheta = dot(X - C, V) * rcp(r);
     float sinTheta = sqrt(saturate(1 - cosTheta * cosTheta));
+    float cosHoriz = ComputeCosineOfHorizonAngle(r);
 
 	// cos(Pi - theta) = -cos(theta).
     float ch = ChapmanUpperApprox(z, abs(cosTheta)) * exp(Z - z); // Rescaling adds 'exp'
@@ -511,16 +508,25 @@ Sample code is listed below.
 
 ```c++
 float H, rcpH, Z;
-float3 C, seaLevelAttenuationCoefficient;
+float3 seaLevelAttenuationCoefficient;
 
-/* FIX ME */
-float3 EvalOptDepthSphericalExpMedium(float r, float cosTheta, float t)
+float RadAtDist(float r, float cosTheta, float t)
 {
-    float r2        = dot(X - C, X - C);
-    float rX        = sqrt(r2);
-    float cosThetaX = dot(X - C, V) * rcp(rX);
-    float rY        = sqrt(r2 + t * (t + 2 * rX * cosThetaX));
-    float cosThetaY = (t + rX * cosThetaX) * rcp(rY);
+    return sqrt(r * r + t * (t + 2 * (r * cosTheta)));
+}
+
+float CosAtDist(float r, float cosTheta, float t, float radAtDist)
+{
+    return (t + r * cosTheta) * rcp(radAtDist);
+}
+
+// Spectral version.
+float3 EvalOptDepthSpherExpMedium(float r, float cosTheta, float t)
+{
+    float rX        = r;
+    float cosThetaX = cosTheta;
+    float rY        = RadAtDist(rX, cosThetaX, t);
+    float cosThetaY = CosAtDist(rX, cosThetaX, t, rY);
 
     // Potentially swap X and Y.
     // Convention: at the point Y, the ray points up.
@@ -598,34 +604,36 @@ This method is very general and works for completely arbitrary continuous densit
 Sample code is listed below.
 
 ```c++
-float HeightAtDist(float h, float cosTheta, float t)
-{
-    float r = h + R;
-    return sqrt(r * r + t * (t + 2 * (r * cosTheta))) - R;
-}
-
 // Single wavelength version.
-float SampleSphericalExpMedium(float optDepth, float height, float cosTheta,
-                               float seaLvlAtt, float rcpSeaLvlAtt, float rcpH)
+float SampleSpherExpMedium(float optDepth, float r, float cosTheta,
+                           float rcpSeaLvlAtt, float rcpH)
 {
     float rcpOptDepth = rcp(optDepth); // Must not be 0
+    float height      = r - R;
 
     // Make an initial guess.
     float t = SampleRectExpMedium(optDepth, height, cosTheta, rcpSeaLvlAtt, rcpH);
 
     float relDiff;
 
-    do
+    do // Perform an iteration of the Newton–Raphson method
     {
-        float h = HeightAtDist(height, cosTheta, t);
+        float radAtDist = RadAtDist(r, cosTheta, t);
 
-        // Evaluate the function and its derivative.
-        float optDepthAtDist = EvalOptDepthRectExpMedium(height, cosTheta, t, seaLvlAtt, rcpH);
-        float attCoeffAtDist = seaLvlAtt * exp(-h * rcpH);
+        // Evaluate the function and its (reciprocal) derivative.
+        // f(t) = OptDepthAtDist(t) - GivenOptDepth = 0.
+        float optDepthAtDist    = EvalOptDepthSpherExpMedium(r, cosTheta, t);
+        float rcpAttCoeffAtDist = rcpSeaLvlAtt * exp((radAtDist - R) * rcpH);
 
         // Refine the initial guess.
-        t =
-    } while
+        // t1 = t0 - f(t0) / f'(t0).
+        t = t - (optDepthAtDist - optDepth) * rcpAttCoeffAtDist;
+
+        relDiff = (optDepthAtDist - optDepth) * rcpOptDepth;
+
+    } while (relDiff > EPS); // Iterate until reaching the desired accuracy
+
+    return t;
 }
 
 float3 IntegrateRadianceAlongRaySegment(float3 X, float3 Y, uint numSamples)
