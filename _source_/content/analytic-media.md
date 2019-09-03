@@ -15,7 +15,7 @@ Rendering of participating media is an important aspect of every modern renderer
 
 <!--more-->
 
-In the [radiative transfer](https://archive.org/details/RadiativeTransfer) literature, light-material interaction is usually quantified in terms of absorption (conversion of electromagnetic energy of photons into kinetic energy of atoms, which manifests as reduction of light intensity) and scattering (change of photon's flight direction). Therefore, it is common to describe participating media using the collision coefficients: the *absorption coefficient* \\(\bm{\sigma_a}\\) and the *scattering coefficient* \\(\bm{\sigma_s}\\). These coefficients give the probability of the corresponding event per unit distance traveled, which implies the [SI units](https://en.wikipedia.org/wiki/International_System_of_Units) of measurement are \\(m^{-1}\\).
+In the [radiative transfer](https://archive.org/details/RadiativeTransfer) literature, light-material interaction is usually quantified in terms of absorption (conversion of electromagnetic energy of photons into kinetic energy of atoms, which manifests itself as reduction of light intensity) and scattering (change of photon's flight direction). Therefore, it is common to describe participating media using the collision coefficients: the *absorption coefficient* \\(\bm{\sigma_a}\\) and the *scattering coefficient* \\(\bm{\sigma_s}\\). These coefficients give the probability of the corresponding event per unit distance traveled, which implies the [SI units](https://en.wikipedia.org/wiki/International_System_of_Units) of measurement are \\(m^{-1}\\).
 
 The [attenuation coefficient](https://en.wikipedia.org/wiki/Attenuation_coefficient)
 
@@ -45,7 +45,7 @@ $$ \tag{5} \bm{\tau}(\bm{x}, \bm{v}, t) = \int\_{0}^{t} \bm{\sigma_t} (\bm{x}, \
 
 Given the value of optical depth, it's easy to compute [transmittance](https://en.wikipedia.org/wiki/Transmittance) using the [Beer–Lambert–Bouguer law](https://en.wikipedia.org/wiki/Beer%E2%80%93Lambert_law):
 
-$$ \tag{6} \bm{T}(\bm{x}, \bm{v}, t) = e^{-\bm{\tau}(\bm{x}, \bm{v}, t)} $$
+$$ \tag{6} \bm{T}(\bm{x}, \bm{v}, t) = e^{-\bm{\tau}(\bm{x}, \bm{v}, t)}. $$
 
 While optical depth can take on any non-negative value, transmittance is restricted to the unit interval. Volume opacity is, then,
 
@@ -64,7 +64,7 @@ If we use the [fundamental theorem of calculus](https://en.wikipedia.org/wiki/Fu
 
 $$ \tag{9} \bm{\sigma_t} (\bm{x}, \bm{v}, s) = \frac{\partial \bm{\tau}}{\partial s}, $$
 
-we can use the one of the [identities](https://en.wikipedia.org/wiki/List_of_integrals_of_exponential_functions#Integrals_involving_only_exponential_functions) to simplify the integral:
+we can use the one of the [exponential identities](https://en.wikipedia.org/wiki/List_of_integrals_of_exponential_functions#Integrals_involving_only_exponential_functions) to simplify the integral:
 
 $$ \tag{10}
       \int\_{0}^{t} \frac{\partial \bm{\tau}(\bm{x}, \bm{v}, s)}{\partial s} e^{-\bm{\tau}(\bm{x}, \bm{v}, s)} ds
@@ -73,7 +73,7 @@ $$ \tag{10}
     = \bm{O}(\bm{x}, \bm{v}, t).
 $$
 
-This is a very useful fact, and we we will take advantage of it in just a moment.
+We will use this fact in just a moment.
 
 To shade our (non-emissive) medium, we must evaluate the [recursive in-scattering integral](http://www.pbr-book.org/3ed-2018/Light_Transport_II_Volume_Rendering/The_Equation_of_Transfer.html) along the ray:
 
@@ -95,7 +95,7 @@ $$ \tag{13} \bm{L}(\bm{x}, \bm{v})
     = \int\_{0}^{t\_{max}} \bm{\sigma_t}(\bm{x}, \bm{v}, s) \bm{T}(\bm{x}, \bm{v}, s) \bm{\alpha\_{ss}}(\bm{x}, \bm{v}, s) \bm{L_s}(\bm{x} + s \bm{v}, \bm{v}) ds.
 $$
 
-The [Monte Carlo estimate](http://www.pbr-book.org/3ed-2018/Monte_Carlo_Integration/The_Monte_Carlo_Estimator.html) of the integral (for a single wavelength) takes the following form:
+The [Monte Carlo estimator](http://www.pbr-book.org/3ed-2018/Monte_Carlo_Integration/The_Monte_Carlo_Estimator.html) of the integral (for a single wavelength) takes the following form:
 
 $$ \tag{14} L(\bm{x}, \bm{v})
     \approx \frac{1}{N} \sum\_{i=1}^{N} \frac{\sigma_t(\bm{x}, \bm{v}, s_i) T(\bm{x}, \bm{v}, s_i) \alpha\_{ss}(\bm{x}, \bm{v}, s_i) L_s(\bm{x} + s_i \bm{v}, \bm{v})}{p( s_i | \lbrace \bm{x}, \bm{v} \rbrace)},
@@ -103,7 +103,7 @@ $$
 
 where sample locations \\(s_i\\) are distributed according to the [PDF](https://en.wikipedia.org/wiki/Probability_density_function) \\(p\\).
 
-We can [importance sample](http://www.pbr-book.org/3ed-2018/Monte_Carlo_Integration/Importance_Sampling.html) the integrand according to the analytic product \\(\sigma_t T\\) (effectively, by assuming that the rest of the integrand varies slowly). A valid PDF integrates to 1 over its domain (which, in our case, spans the range from 0 to \\(t\_{max}\\)), so we must normalize the analytic product using the value of its integral:
+We can [importance sample](http://www.pbr-book.org/3ed-2018/Monte_Carlo_Integration/Importance_Sampling.html) the integrand according to the analytic product \\(\sigma_t T\\) (effectively, by assuming that the rest of the integrand varies slowly). In order to turn it into a valid PDF, we must normalize this term over its domain (which, in our case, spans the range from 0 to \\(t\_{max}\\)):
 
 $$ \tag{15} p(t | \lbrace \bm{x}, \bm{v} \rbrace)
     = \frac{\sigma_t(\bm{x}, \bm{v}, t) T(\bm{x}, \bm{v}, t)}{\int\_{0}^{t\_{max}} \sigma_t(\bm{x}, \bm{v}, s) T(\bm{x}, \bm{v}, s) ds}
@@ -135,7 +135,7 @@ $$ \tag{19} \bm{\sigma_t} = \rho \bm{\mu_t}, $$
 
 where \\(\rho\\) is the [volumetric mass density](https://en.wikipedia.org/wiki/Mass_density) (measured in units of \\(kg/m^{3}\\)) and \\(\bm{\mu_t}\\) is the [mass attenuation coefficient](https://en.wikipedia.org/wiki/Mass_attenuation_coefficient) (in units of \\(m^{2}/kg\\)).
 
-If your background is in real-time rendering, you may have heard of [constant, linear and exponential fog](http://www.terathon.com/lengyel/Lengyel-UnifiedFog.pdf). These names refer to variation of density, typically with respect to height, and can be used to model height fog and atmospheric scattering. Typically, the albedo is assumed to be constant throughout the volume.
+If your background is in real-time rendering, you may have heard of [constant, linear and exponential fog](http://www.terathon.com/lengyel/Lengyel-UnifiedFog.pdf). These names refer to variation of density, typically with respect to height, and can be used to model height fog and atmospheric scattering. In most cases, the albedo is assumed to be constant.
 
 ## Constant Density
 
@@ -178,7 +178,7 @@ $$ \tag{25}
 	\pm \sqrt{\Bigg( \frac{k + m x_3}{m v_3} \Bigg)^2 + \frac{2 \tau\_{lp}}{\mu_t m v_3}},
 $$
 
-where the sign in front of the square root is the sign of \\(v_3\\). Please note that homogeneous media \\( \big( m v_3 = 0 \big) \\) requires special care.
+where the sign in front of the square root is the sign of \\(v_3\\). Please note that homogeneous media \\( \big( m v_3 = 0 \big) \\) require special care.
 
 ## Exponential Variation of Density with Altitude in Rectangular Coordinates
 
@@ -192,7 +192,7 @@ $$ \tag{27} \rho\_{ep}(\bm{x}) = k e^{-n x_3}. $$
 
 Setting \\(n = 0\\) results in a homogeneous medium.
 
-Plugging this in into the formula of optical depth, we obtain the following expression:
+After plugging it in into the formula of optical depth, we obtain the following expression:
 
 $$ \tag{28}
 \bm{\tau\_{ep}}(\bm{x}, \bm{v}, t)
@@ -200,14 +200,11 @@ $$ \tag{28}
     = \bm{\mu_t} k e^{-n x_3} \int\_{0}^{t} e^{-s n v_3} ds
     = \bm{\mu_t} k t e^{-n x_3} \frac{1 - e^{-t n v_3}}{n v_3}.
 $$
-
-In this context, \\(k\\) and \\(\bm{\mu_t} k\\) represent the density and the value of the attenuation coefficient at the sea level, respectively.
-
 Solving for the distance \\(t\\) is straightforward:
 
 $$ \tag{29} t = -\frac{1}{n v_3} \log \left(1 - \frac{ n v_3 \tau\_{ep}}{\mu_t k e^{-n x_3}}\right). $$
 
-Please note that homogeneous media \\( \big( n v_3 = 0 \big) \\) requires special care.
+Please note that homogeneous media \\( \big( n v_3 = 0 \big) \\) require special care.
 
 Sample code is listed below.
 
@@ -277,18 +274,18 @@ $$ \tag{32} \begin{aligned}
     &= \bm{\mu_t} \int\_{0}^{t} k e^{-n (\sqrt{r_0^2 + (t_0 + s)^2} - R)} ds \cr
     &= \bm{\mu_t} \int\_{0}^{t} k e^{-n (\sqrt{(r \mathrm{sin}{\theta})^2 + (r \mathrm{cos}{\theta} + s)^2} - R)} ds \cr
     &= \bm{\mu_t} \int\_{0}^{t} k e^{-n (\sqrt{r^2 + 2 r s \mathrm{cos}{\theta} + s^2} - R)} ds \cr
-    &= \bm{\mu_t} \frac{k}{n} e^{-n (r - R)} \int\_{0}^{t = \Vert \bm{y} - \bm{x} \Vert} e^{n (r - \sqrt{r^2 + 2 r s \mathrm{cos}{\theta} + s^2})} n ds.
+    &= \bm{\mu_t} \frac{k}{n} e^{-n (r - R)} \int\_{0}^{t} e^{n (r - \sqrt{r^2 + 2 r s \mathrm{cos}{\theta} + s^2})} n ds.
 \end{aligned} $$
 
-The resulting integral is very complex. For now, let's take the nested integral, and extend the upper limit of integration to infinity. With the following change of variables:
+The resulting integral is very complex. As a first step, let's take the nested integral, and extend the upper limit of integration to infinity. With the following change of variables:
 
 $$ \tag{33} u = n s, \qquad z = n r, \qquad Z = n R, $$
 
-the nested integral becomes what is known in the physics community as the [Chapman function](https://en.wikipedia.org/wiki/Chapman_function) (or the obliquity function, or the relative optical air mass) \\(C\\):
+we obtain what is known in the physics community as the [Chapman function](https://en.wikipedia.org/wiki/Chapman_function) (or the obliquity function, or the relative optical air mass) \\(C\\):
 
 $$ \tag{34} C(z, \mathrm{cos}{\theta}) = \int\_{0}^{\infty} e^{z - \sqrt{z^2 + 2 z u \mathrm{cos}{\theta} + u^2}} du. $$
 
-It's convenient to define the rescaled Chapman function \\(C_r\\):
+It's convenient to define the rescaled Chapman function \\(C_r\\)
 
 $$ \tag{35} C_r(z, Z, \mathrm{cos}{\theta}) = e^{Z - z} C(z, \mathrm{cos}{\theta}) = \int\_{0}^{\infty} e^{Z - \sqrt{z^2 + 2 z u \mathrm{cos}{\theta} + u^2}} du, $$
 
@@ -301,15 +298,13 @@ $$
 
 What the Equation 36 tells us is that we should evaluate the optical depth integral twice (along the entire ray, from 0 to \\(\infty\\)), at the start and at the end of the interval, and subtract the results to "clip" the ray.
 
-From a practical standpoint, it's worth noting that, for short distances, this expression of optical depth can be well approximated by its "rectangular" version (which ignores curvature), potentially saving many clock cycles.
-
 It's interesting to contemplate the physical meaning of the Chapman function. Generally speaking, the value of a line integral of density (such as given by \\(\bm{\tau} / \bm{\mu_t}\\)) corresponds to mass. Therefore, the integral
 
 $$ \tag{37} \int\_{h = (r - R)}^{\infty} k e^{-n s} ds = \frac{k}{n} e^{-n h} $$
 
 specifies the mass of an infinitely tall vertical column with its lower end starting at height \\(h\\).
 
-Optical depth, then, is a *product* of the mass of the vertical column *and* the value of the obliquity function (which, intuitively, gives the absolute optical air mass along the ray) *times* the mass attenuation coefficient.
+Optical depth, then, is a *product* of the mass of the vertical column *and* the value of the obliquity function (which, intuitively, gives the absolute optical air mass along the oblique ray) *times* the mass attenuation coefficient.
 
 ### Examining the Chapman Function
 
@@ -320,15 +315,15 @@ It's always a good idea to examine a function visually, as a graph. Let's do tha
 Above, I plotted values of the Chapman function (vertical axis) varying with the angle \\(\theta\\) (horizontal axis, in degrees) for different values of the scale height \\(H\\): \\(1\\) (blue), \\(10\\) (orange), \\(20\\) (green), \\(40\\) (red), \\(60\\) (purple), \\(80\\) (brown), \\(100\\) (cyan).
 Arguably, the first two are the most important, since they roughly correspond to scale heights of aerosols and air of Earth's atmosphere. However, it's also nice to be able to support larger values to model atmospheres of [other planets](https://en.wikipedia.org/wiki/Scale_height#Planetary_examples).
 
-Being an obliquity function, \\(C(z, 0) = 1\\). The function varies slowly, as long as the angle is far from the horizon (which suggests an opportunity for a [small-angle approximation](https://en.wikipedia.org/wiki/Small-angle_approximation)).
+Being an obliquity function, \\(C(z, 0) = 1\\). The function varies slowly, as long as the angle is far from horizontal (which suggests an opportunity for a [small-angle approximation](https://en.wikipedia.org/wiki/Small-angle_approximation)).
 
-The Chapman function has an [analytic expression](https://en.wikipedia.org/wiki/Closed-form_expression#Analytic_expression) derived by [Miroslav Kocifaj](https://ui.adsabs.harvard.edu/abs/1996CoSka..26...23K/abstract):
+The Chapman function has an [analytic expression](https://ui.adsabs.harvard.edu/abs/1996CoSka..26...23K/abstract):
 
-$$ \tag{38} C(z, \mathrm{cos}{\theta}) = \frac{1}{2} \mathrm{cos}{\theta} + \frac{1}{2} \Big(\frac{1}{\sqrt{z}} + 2 \sqrt{z} - \sqrt{z} (\mathrm{cos}{\theta})^2 \Big) \sqrt{\frac{\pi}{2}} \Big[ e^{\big( \frac{1}{\sqrt{2}} \sqrt{z} \mathrm{cos}{\theta} \big)^2} \mathrm{erfc}{\Big(\frac{1}{\sqrt{2}} \sqrt{z} \mathrm{cos}{\theta}\Big)} \Big], $$
+$$ \tag{38} C(z, \mathrm{cos}{\theta}) = \frac{1}{2} \mathrm{cos}{\theta} + \frac{1}{2} \Big(\frac{1}{\sqrt{z}} + 2 \sqrt{z} - \sqrt{z} (\mathrm{cos}{\theta})^2 \Big) \sqrt{\frac{\pi}{2}} \Bigg[ e^{\big( \frac{1}{\sqrt{2}} \sqrt{z} \mathrm{cos}{\theta} \big)^2} \mathrm{erfc}{\Big(\frac{1}{\sqrt{2}} \sqrt{z} \mathrm{cos}{\theta}\Big)} \Bigg], $$
 
 which, unfortunately, is not [closed-form](https://en.wikipedia.org/wiki/Closed-form_expression#Analytic_expression), since it contains the [complementary error function](http://mathworld.wolfram.com/Erfc.html) \\(\mathrm{erfc}\\).
 
-Unfortunately, I was unable to re-derive this expression. I suspect that I am either missing something (accounting for continuous variation of the IOR, for instance), or perhaps this is not a full analytic solution, but rather a truncated series expansion (similar to [this one](https://www.sciencedirect.com/science/article/pii/S0022407300001072)). Also, while the formula should work for angles beyond 90 degrees, it deviates from values of the numerically evaluated integral rather quickly.
+Unfortunately, I was unable to re-derive this expression. I suspect that I am either missing something (accounting for continuous variation of the IOR, for instance), or perhaps this is not a full analytic solution, but rather a truncated series expansion (similar to [this one](https://www.sciencedirect.com/science/article/pii/S0022407300001072)). Also, while the formula should in theory work for angles beyond 90 degrees, it deviates from values of the numerically evaluated integral rather quickly.
 
 For the zenith angle of 90 degrees, it reduces to
 
@@ -338,7 +333,7 @@ Beyond the 90 degree angle, the following identity can be used:
 
 $$ \tag{40} C_l(z, \mathrm{cos}{\theta}) = 2 e^{z - z \mathrm{sin}{\theta}} C_h(z \mathrm{sin}{\theta}) - C(z, -\mathrm{cos}{\theta}), $$
 
-which means that we must find a position \\(\bm{p}\\) (sometimes called the [periapsis](https://en.wikipedia.org/wiki/Apsis) point, see the diagram in the previous section) along the ray where the ray direction is orthogonal to the surface normal, evaluate the horizontal Chapman function there (twice, forwards and backwards, to cover the entire real line), and subtract the value of the Chapman function at the original position with the reversed direction (towards the atmospheric boundary), which isolates the integral to the desired ray segment.
+which means that we must find the position \\(\bm{p}\\) (sometimes called the [periapsis](https://en.wikipedia.org/wiki/Apsis) point, see the diagram in the previous section) along the ray where the ray direction is orthogonal to the surface normal, evaluate the horizontal Chapman function there (twice, forwards and backwards, to cover the entire real line), and subtract the value of the Chapman function at the original position with the reversed direction (towards the atmospheric boundary), which isolates the integral to the desired ray segment.
 
 Christian Schüler proposes an approximation of the Chapman function for the upper hemisphere in his [GPU Gems 3](http://www.gameenginegems.net/gemsdb/article.php?id=1133) article:
 
@@ -354,7 +349,7 @@ However, if you care about accuracy, and plot the the relative error graph, it p
 
 The physics literature has [many approximations](https://agupubs.onlinelibrary.wiley.com/doi/pdf/10.1029/2011JD016706) of the Chapman function. Unfortunately, most of them are specific to Earth's atmosphere.
 
-Instead, we can take a different, simpler approach. Instead of approximating the entire function (for which we have an analytic expression), all we have to do is approximate \\(\mathrm{erfc}\\) (or, more specifically, the term of the Equation 38 inside the square brackets). Luckily, the physics literature has an efficient [approximation](https://rmets.onlinelibrary.wiley.com/doi/full/10.1002/asl.154) (for positive values of \\(x\\)) readily available:
+Instead of approximating the entire function (for which we have an analytic expression), we can take a different, simpler approach. All we have to do is approximate \\(\mathrm{erfc}\\) (or, more specifically, the term of the Equation 38 inside the square brackets). Luckily, the physics literature has an efficient [approximation](https://rmets.onlinelibrary.wiley.com/doi/full/10.1002/asl.154) (for positive values of \\(x\\)) readily available:
 
 $$ \tag{42} e^{x^2} \mathrm{erfc}(x) \approx \frac{2.911}{(2.911 - 1) \sqrt{\pi x^2} + \sqrt{\pi x^2 + 2.911^2}}. $$
 
@@ -414,7 +409,7 @@ A small but important note is that we can always use \\( \vert \mathrm{cos}{\the
 
 A numerical approximation of the Chapman function, in conjunction with the Equation 36, allows us to evaluate optical depth along an arbitrary ray segment.
 
-However, since the approximation of the Chapman function contains a branch (upper/lower hemisphere), using the full formulation may be unnecessarily expensive for many use cases.
+However, the approximation of the Chapman function contains a branch (upper/lower hemisphere), and using the full formulation may be unnecessarily expensive for many use cases.
 
 For example, an implementation of the [Precomputed Atmospheric Scattering](https://dl.acm.org/citation.cfm?id=2383467) paper requires an ability to evaluate optical depth along the ray, where the ray may hit either the spherical planet, or nothing at all.
 
@@ -491,7 +486,7 @@ float3 ComputeOpticalDepthAlongRay(float3 X, float3 V)
 
 If desired, it is possible to reduce execution divergence by utilizing `ChapmanUpperApprox` (with the cosine value of 0) instead of `ChapmanHorizontal`, but I will retain this version for clarity of exposition.
 
-Now, let's tackle the most general case of evaluating optical depth between two points \\(\bm{x}\\) and \\(\bm{y}\\). It may seem really complex at first, when, in fact, it's very similar to the problem we just solved. We have to consider three distinct possibilities:
+Now we are ready to tackle the most general case of evaluating optical depth between two arbitrary points \\(\bm{x}\\) and \\(\bm{y}\\). It may seem really difficult at first when, in fact, it's very similar to the problem we just solved. We have to consider three distinct possibilities:
 
 1\. \\(\mathrm{cos}{\theta_x} \geq 0 \\), which means that the ray points into the upper hemisphere with respect to the surface normal at the point \\(\bm{x}\\). This also means it points into the upper hemisphere at any point \\(\bm{y}\\) along the ray (it's fairly obvious if you sketch it). Optical depth is given by the Equation 36, which we specialize by replacing \\(C\\) with \\(C_u\\) which is restricted to the upper hemisphere:
 
@@ -542,7 +537,7 @@ float3 ComputeOpticalDepthAlongRaySegment(float3 X, float3 V, float t)
 }
 ```
 
-The code above works for all finite inputs. An important special case is when the point \\(\bm{y}\\) is considered to be outside the atmosphere (if `exp(Z - zY) < EPS`, for instance). In that case, `chY = 0` is an adequate approximation.
+The code listed above works for all finite inputs. An important special case is when the point \\(\bm{y}\\) is considered to be outside the atmosphere (if `exp(Z - zY) < EPS`, for instance). In that case, `chY = 0` is an adequate approximation.
 
 ### Sampling Exponential Media in Spherical Coordinates
 
@@ -550,32 +545,31 @@ In order to be able to sample participating media, we must be able to solve the 
 
 First, let's establish a couple of useful identities. Recalling the Equation 32, we can compute the radial distance from the center \\(\bm{c}\\) to the point \\(\bm{x} + t \bm{v}\\) along the ray using the Pythagorean theorem:
 
-$$ \tag{49} \begin{aligned}
-\mathcal{R}(\bm{x}, \bm{v}, t)
-    &= \sqrt{r_0^2 + (t_0 + t)^2} \cr
-    &= \sqrt{\big( \Vert \bm{x}-\bm{c} \Vert \mathrm{sin}(\bm{x}-\bm{c}, \bm{v}) \big)^2 + \big(\Vert \bm{x}-\bm{c} \Vert \mathrm{cos}(\bm{x}-\bm{c}, \bm{v}) + t \big)^2} \cr
-    &= \sqrt{(r \mathrm{sin}{\theta})^2 + (r \mathrm{cos}{\theta} + t)^2}
-     = \sqrt{r^2 + t^2 + 2 t r \mathrm{cos}{\theta}}
-\end{aligned} $$
+$$ \tag{49}
+\mathcal{R}(r, \theta, t)
+    = \sqrt{r_0^2 + (t_0 + t)^2}
+    = \sqrt{(r \mathrm{sin}{\theta})^2 + (r \mathrm{cos}{\theta} + t)^2}
+    = \sqrt{r^2 + t^2 + 2 t r \mathrm{cos}{\theta}}.
+$$
 
 The cosine of the ray direction with respect to the surface normal at that point can be computed as follows:
 
 $$ \tag{50}
-\mathcal{C}(\bm{x}, \bm{v}, t)
+\mathcal{C}(r, \theta, t)
     = \frac{\mathrm{adjacent}}{\mathrm{hypotenuse}}
-    = \frac{t_0 + t}{\mathcal{R}(\bm{x}, \bm{v}, t)}
+    = \frac{t_0 + t}{\mathcal{R}(r, \theta, t)}
     = \frac{r \mathrm{cos}{\theta} + t}{\sqrt{(r \mathrm{sin}{\theta})^2 + (r \mathrm{cos}{\theta} + t)^2}}.
 $$
 
 Using the new, compact notation, and some algebraic manipulation, we can reduce the problem to solving the following equation:
 
 $$ \tag{51}
-q = e^{Z - n \mathcal{R}(\bm{x}, \bm{v}, t) } C_u \Big( n \mathcal{R}(\bm{x}, \bm{v}, t), \mathcal{C}(\bm{x}, \bm{v}, t) \Big),
+q = e^{Z - n \mathcal{R}(r, \theta, t) } C_u \Big( n \mathcal{R}(r, \theta, t), \mathcal{C}(r, \theta, t) \Big),
 $$
 
 which means that we need to find the distance \\(t\\) at which the value of the rescaled Chapman function is \\(q\\).
 
-The equation has too many parameters. We can reduce dimensionality by solving for \\(t' = nt\\):
+This equation has too many parameters. We can reduce dimensionality by solving for \\(t' = nt\\):
 
 $$ \tag{52}
 q = e^{Z - \sqrt{(z \mathrm{sin}{\theta})^2 + (z \mathrm{cos}{\theta} + t')^2} } C_u \Big( \sqrt{(z \mathrm{sin}{\theta})^2 + (z \mathrm{cos}{\theta} + t')^2}, \frac{z \mathrm{cos}{\theta} + t'}{\sqrt{(z \mathrm{sin}{\theta})^2 + (z \mathrm{cos}{\theta} + t')^2}} \Big).
@@ -588,13 +582,13 @@ $$ \tag{53} \phi = z \mathrm{sin}{\theta} \qquad \psi = z \mathrm{cos}{\theta} +
 $$ \tag{54}
 q = e^{Z - \sqrt{\phi^2+\psi^2} } C_u \Big( \sqrt{\phi^2+\psi^2}, \frac{\psi}{\sqrt{\phi^2+\psi^2}} \Big). $$
 
-Both \\(\phi\\) and \\(\psi\\) are known to be positive. We must solve for \\(\psi\\). \\(Z\\) could theoretically be removed, but it's here to keep the solution within a sane numerical range.
+Both \\(\phi\\) and \\(\psi\\) are known to be positive. We must solve for \\(\psi\\). \\(Z\\) could theoretically be removed, but it's here to keep the solution within the sane numerical range.
 
-This appears to be the simplest formulation of the problem, using the fewest number of parameters. I gave it a shot, but, unfortunately, I was unable to analytically solve this equation, and I tried both the closed and the approximate forms of the Chapman function. Perhaps **you** will have better luck?
+This appears to be the simplest formulation of the problem, using the fewest number of parameters. I gave it a shot, but, unfortunately, I was unable to analytically solve this equation, and I tried plugging in both the closed and the approximate forms of the Chapman function. Perhaps **you** will have better luck?
 
-While that's an unfortunate development, it's a minor setback. If we can't solve the equation analytically, we can solve it numerically, using [Newton–Raphson method](https://en.wikipedia.org/wiki/Newton%27s_method), for instance. The derivative of the Chapman function exists, and is not too difficult to compute.
+While that's an unfortunate development, it's a minor setback. If we can't solve the equation analytically, we can solve it numerically, using the [Newton–Raphson method](https://en.wikipedia.org/wiki/Newton%27s_method), for instance. The derivative of the Chapman function exists, and is not too difficult to compute.
 
-In fact, there is a [better way](http://lib-www.lanl.gov/la-pubs/00367066.pdf), which is even simpler. Recall that Newton's method requires being able to make an initial guess, evaluate the function, and take its derivative. If we solve using the entire optical depth function \\(\tau\\) (Equation 18), we know that its derivative is just the extinction coefficient \\(\sigma_t\\) (Equation 9), and it's easy to make a good initial guess by ignoring curvature of the planet.
+In fact, there is a [better way](http://lib-www.lanl.gov/la-pubs/00367066.pdf), which is even simpler. Recall that Newton's method requires being able to make an initial guess, evaluate the function, and take its derivative. If we solve using the entire optical depth function \\(\tau\\) (Equation 18), we know that its derivative is just the extinction coefficient \\(\sigma_t\\) (Equation 9), and making a good initial guess is easy by simply ignoring curvature of the planet.
 
 This method is very general and works for completely arbitrary continuous density distributions (see the [paper](http://lib-www.lanl.gov/la-pubs/00367066.pdf)).
 
