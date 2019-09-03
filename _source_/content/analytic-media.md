@@ -202,7 +202,7 @@ $$ \tag{28}
 $$
 Solving for the distance \\(t\\) is straightforward:
 
-$$ \tag{29} t = -\frac{1}{n v_3} \log \left(1 - \frac{ n v_3 \tau\_{ep}}{\mu_t k e^{-n x_3}}\right). $$
+$$ \tag{29} t = -\frac{1}{n v_3} \log \left(1 - \frac{\tau\_{ep} n v_3}{\mu_t k e^{-n x_3}}\right). $$
 
 Please note that homogeneous media \\( \big( n v_3 = 0 \big) \\) require special care.
 
@@ -569,10 +569,10 @@ $$ \tag{50}
     = \frac{r \mathrm{cos}{\theta} + t}{\sqrt{(r \mathrm{sin}{\theta})^2 + (r \mathrm{cos}{\theta} + t)^2}}.
 $$
 
-Using the new, compact notation, and some algebraic manipulation, we can reduce the problem to solving the following equation:
+Using the new, compact notation, and after performing some algebraic manipulation, we can reduce the problem to solving the following equation:
 
 $$ \tag{51}
-q = e^{Z - n \mathcal{R}(r, \theta, t) } C_u \Big( n \mathcal{R}(r, \theta, t), \mathcal{C}(r, \theta, t) \Big),
+q = C_r \Big( n \mathcal{R}(r, \theta, t), Z, \mathcal{C}(r, \theta, t) \Big),
 $$
 
 which means that we need to find the distance \\(t\\) at which the value of the rescaled Chapman function is \\(q\\).
@@ -580,7 +580,7 @@ which means that we need to find the distance \\(t\\) at which the value of the 
 This equation has too many parameters. We can reduce dimensionality by solving for \\(t' = nt\\):
 
 $$ \tag{52}
-q = e^{Z - \sqrt{(z \mathrm{sin}{\theta})^2 + (z \mathrm{cos}{\theta} + t')^2} } C_u \Big( \sqrt{(z \mathrm{sin}{\theta})^2 + (z \mathrm{cos}{\theta} + t')^2}, \frac{z \mathrm{cos}{\theta} + t'}{\sqrt{(z \mathrm{sin}{\theta})^2 + (z \mathrm{cos}{\theta} + t')^2}} \Big).
+q = C_r \Big( \sqrt{(z \mathrm{sin}{\theta})^2 + (z \mathrm{cos}{\theta} + t')^2}, Z, \frac{z \mathrm{cos}{\theta} + t'}{\sqrt{(z \mathrm{sin}{\theta})^2 + (z \mathrm{cos}{\theta} + t')^2}} \Big).
 $$
 
 After getting rid of \\(n\\), the next step is to group common terms:
@@ -588,7 +588,7 @@ After getting rid of \\(n\\), the next step is to group common terms:
 $$ \tag{53} \phi = z \mathrm{sin}{\theta} \qquad \psi = z \mathrm{cos}{\theta} + t', $$
 
 $$ \tag{54}
-q = e^{Z - \sqrt{\phi^2+\psi^2} } C_u \Big( \sqrt{\phi^2+\psi^2}, \frac{\psi}{\sqrt{\phi^2+\psi^2}} \Big). $$
+q = C_r \Big( \sqrt{\phi^2+\psi^2}, Z, \frac{\psi}{\sqrt{\phi^2+\psi^2}} \Big). $$
 
 Both \\(\phi\\) and \\(\psi\\) are known to be positive. We must solve for \\(\psi\\). \\(Z\\) could theoretically be removed, but it's here to keep the solution within the sane numerical range.
 
