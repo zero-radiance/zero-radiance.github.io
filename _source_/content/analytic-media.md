@@ -47,7 +47,7 @@ Given the value of optical depth, it's easy to compute [transmittance](https://e
 
 $$ \tag{6} \bm{T}(\bm{x}, \bm{v}, t) = e^{-\bm{\tau}(\bm{x}, \bm{v}, t)}. $$
 
-While optical depth can take on any non-negative value, transmittance is restricted to the unit interval. Volume opacity is, then,
+While optical depth can take on any non-negative value, transmittance is restricted to the unit interval, and can be interpreted as the probability of a collision-free flight. Its complement is volume opacity:
 
 $$ \tag{7} \bm{O}(\bm{x}, \bm{v}, t) = 1 - \bm{T}(\bm{x}, \bm{v}, t). $$
 
