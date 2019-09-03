@@ -442,22 +442,22 @@ $$ \tag{46} C_b(z, \mathrm{cos}{\theta}, Z, \mathrm{cos}{\gamma}) = C_u(Z, \math
 Sample code is listed below. While it's possible to use the `RescaledChapmanFunction` in this scenario, the following implementation is slightly more efficient.
 
 ```c++
-float R, rcpR, H, rcpH, Z;
-float3 seaLevelAttenuationCoefficient;
-
-float ComputeCosineOfHorizonAngle(float r)
+float ComputeCosineOfHorizonAngle(float r, float R)
 {
     float sinHoriz = R * rcp(r);
     return -sqrt(saturate(1 - sinHoriz * sinHoriz));
 }
 
 // Spectral version.
-float3 EvalOptDepthSpherExpMedium(float r, float cosTheta)
+float3 EvalOptDepthSpherExpMedium(float r, float cosTheta,
+                                  float3 seaLvlAtt, float Z,
+                                  float R, float rcpR,
+                                  float H, float rcpH)
 {
     float z = r * rcpH;
 
     float sinTheta = sqrt(saturate(1 - cosTheta * cosTheta));
-    float cosHoriz = ComputeCosineOfHorizonAngle(r);
+    float cosHoriz = ComputeCosineOfHorizonAngle(r, R);
 
 	// cos(Pi - theta) = -cos(theta).
     float ch = ChapmanUpperApprox(z, abs(cosTheta)) * exp(Z - z); // Rescaling adds 'exp'
@@ -480,7 +480,7 @@ float3 EvalOptDepthSpherExpMedium(float r, float cosTheta)
         ch = 2 * chP - ch;
     }
 
-    return ch * H * seaLevelAttenuationCoefficient;
+    return ch * H * seaLvlAtt;
 }
 ```
 
@@ -507,9 +507,6 @@ $$ \tag{48} \begin{aligned}
 Sample code is listed below.
 
 ```c++
-float H, rcpH, Z;
-float3 seaLevelAttenuationCoefficient;
-
 float RadAtDist(float r, float cosTheta, float t)
 {
     return sqrt(r * r + t * (t + 2 * (r * cosTheta)));
@@ -521,7 +518,9 @@ float CosAtDist(float r, float cosTheta, float t, float radAtDist)
 }
 
 // Spectral version.
-float3 EvalOptDepthSpherExpMedium(float r, float cosTheta, float t)
+float3 EvalOptDepthSpherExpMedium(float r, float cosTheta, float t,
+                                  float3 seaLvlAtt, float Z,
+                                  float H, float rcpH)
 {
     float rX        = r;
     float cosThetaX = cosTheta;
@@ -542,7 +541,7 @@ float3 EvalOptDepthSpherExpMedium(float r, float cosTheta, float t)
     // We may have swapped X and Y.
     float ch = abs(chX - chY);
 
-    return ch * H * seaLevelAttenuationCoefficient;
+    return ch * H * seaLvlAtt;
 }
 ```
 
@@ -606,103 +605,41 @@ Sample code is listed below.
 ```c++
 // Single wavelength version.
 float SampleSpherExpMedium(float optDepth, float r, float cosTheta,
-                           float rcpSeaLvlAtt, float rcpH)
+                           float rcpSeaLvlAtt, float Z, float R, float H, float rcpH)
 {
+    // This allows us to use (seaLvlAtt = rcpSeaLvlAtt = 1) below.
+    optDepth *= rcpSeaLvlAtt;
+
     float rcpOptDepth = rcp(optDepth); // Must not be 0
-    float height      = r - R;
 
     // Make an initial guess.
-    float t = SampleRectExpMedium(optDepth, height, cosTheta, rcpSeaLvlAtt, rcpH);
+    float t = SampleRectExpMedium(optDepth, r - R, cosTheta, 1, rcpH);
 
     float relDiff;
 
-    do // Perform an iteration of the Newton–Raphson method
+    do // Perform a Newton–Raphson iteration
     {
         float radAtDist = RadAtDist(r, cosTheta, t);
 
         // Evaluate the function and its (reciprocal) derivative.
         // f(t) = OptDepthAtDist(t) - GivenOptDepth = 0.
-        float optDepthAtDist    = EvalOptDepthSpherExpMedium(r, cosTheta, t);
-        float rcpAttCoeffAtDist = rcpSeaLvlAtt * exp((radAtDist - R) * rcpH);
+        // The sea level attenuation coefficient has been removed by the division.
+        float optDepthAtDist = EvalOptDepthSpherExpMedium(r, cosTheta, t, 1, Z, H, rcpH);
+        float rcpAttCoeffAtDist = 1 * exp((radAtDist - R) * rcpH);
 
         // Refine the initial guess.
         // t1 = t0 - f(t0) / f'(t0).
         t = t - (optDepthAtDist - optDepth) * rcpAttCoeffAtDist;
 
-        relDiff = (optDepthAtDist - optDepth) * rcpOptDepth;
+        relDiff = optDepthAtDist * rcpOptDepth - 1;
 
-    } while (relDiff > EPS); // Iterate until reaching the desired accuracy
+    } while (abs(relDiff) > EPS); // Until the accuracy goal has been reached
 
     return t;
 }
-
-float3 IntegrateRadianceAlongRaySegment(float3 X, float3 Y, uint numSamples)
-{
-    // (1/seaLevelAttenuationCoefficient) for a single wavelength used for sampling.
-    float  rcpA = rcpSeaLevelAttenuationCoefficient;
-
-    float  tMax = distance(Y, X);
-    float3 V    = normalize(Y - X);
-
-    float totalOpticalDepth = ComputeOpticalDepthAlongRaySegment(X, Y);
-    float totalOpacity      = OpacityFromOpticalDepth(totalOpticalDepth);
-
-    // Compute initial parameters.
-    float3 P        = X;
-    float  r        = distance(P, C);
-    float  cosTheta = dot(P - C, V) * rcp(r);
-
-    float  t             = 0;
-    float3 radiance      = 0;
-    float  transmittance = 1;
-
-    for (uint i = 0; i < numSamples; i++)
-    {
-
-        // Samples must be arranged in the ascending order, s.t.
-        // for any i, sample[i] < sample[i + 1].
-        float cdf = GetOrderedUnitIntervalRandomSample(i, numSamples);
-
-        // Total value of transmittance (Equation 66).
-        float totTransm = 1 - cdf * totalOpacity;
-
-        // Transmittance relative to the previous sample (Equation 68).
-        float relTransm = totTransm * rcp(transmittance);
-
-        // Update the value of transmittance up to the current sample.
-        transmittance = totTransm;
-
-        // Ignore curvature of the planet (polygonal planet approximation).
-        // The approximation is accurate assuming high sampling rate.
-        float dt = SampleRectExpMedium(relTransm, r - R, cosTheta, rcpA, rcpH);
-
-        // Since the distance is approximate, it's a good idea to clamp.
-        t        = min(t + dt, tMax);
-        P        = X + t * V;
-        r        = distance(P, C);
-        cosTheta = dot(P - C, V) * rcp(r);
-
-    #if 0
-        // Equation 34.
-        float extinction = seaLevelAttenuationCoefficient * exp((R - r) * rcpH);
-
-        // Equations 11. By the Equation 15, albedo cancels out.
-        // The PDF value is also approximate (since the the distance 't' is).
-        float pdf = extinction * transmittance / totalOpacity;
-    #endif
-
-        // Equation 12.
-        // For a single wavelength, and with high enough sampling density,
-        // weight = scattering * transmittance / pdf ≈ ssAlbedo * totalOpacity.
-        radiance += ComputeInScatteredRadiance(P, V);
-    }
-
-    // Equation 12 (normalization).
-    radiance *= ssAlbedo * totalOpacity * rcp(numSamples);
-
-    return radiance;
-}
 ```
+
+The spectral coefficient cancels out! Amazing!!
 
 In fact, curvature of the planet can be ignored for moderate distances, making it a relatively efficient and accurate approximation. Can we exploit this idea for arbitrary distances? Let's take another look at the Equation 13. Assuming a constant albedo, the value of the CDF \\(P\\) along the ray segment of length \\(t\_{max}\\) is given as:
 
@@ -741,29 +678,6 @@ Both Equations 66 and 68 can be solved using the Equation 33. Basically, we solv
 Code that implements incremental importance sampling can be found below.
 
 ```c++
-// Only monochromatic coefficients are supported by this code snippet.
-float seaLevelAttenuationCoefficient, rcpSeaLevelAttenuationCoefficient;
-float R, rcpR, H, rcpH, Z;
-float3 C, ssAlbedo;
-
-float SampleRectExpMedium(float transmittance, float height, float cosTheta,
-                          float rcpSeaLevelAttenuationCoefficient, float rcpH)
-{
-    // Equation 20.
-    float d = rcpSeaLevelAttenuationCoefficient * exp(height * rcpH);
-    float t = -log(transmittance) * d;
-
-    float p = cosTheta * rcpH;
-
-    if (abs(p) > FLT_EPS)
-    {
-        // Equation 33.
-        t = -log(1 - p * t) * rcp(p);
-    }
-
-    return t;
-}
-
 float3 IntegrateRadianceAlongRaySegment(float3 X, float3 Y, uint numSamples)
 {
     // (1/seaLevelAttenuationCoefficient) for a single wavelength used for sampling.
