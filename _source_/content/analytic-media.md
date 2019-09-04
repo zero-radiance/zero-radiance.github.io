@@ -610,20 +610,20 @@ float SampleSpherExpMedium(float optDepth, float r, float cosTheta,
     // This allows us to use (seaLvlAtt = rcpSeaLvlAtt = 1) below.
     optDepth *= rcpSeaLvlAtt;
 
-    float rcpOptDepth = rcp(optDepth); // Must not be 0
+    float rcpOptDepth = rcp(optDepth); // Must not be 0.
 
     // Make an initial guess.
     float t = SampleRectExpMedium(optDepth, r - R, cosTheta, 1, rcpH);
 
     float relDiff;
 
-    do // Perform a Newton–Raphson iteration
+    do // Perform a Newton–Raphson iteration.
     {
         float radAtDist = RadAtDist(r, cosTheta, t);
 
         // Evaluate the function and its (reciprocal) derivative.
         // f(t) = OptDepthAtDist(t) - GivenOptDepth = 0.
-        // The sea level attenuation coefficient has been removed by the division.
+        // The sea level attenuation coefficient cancels out during division.
         float optDepthAtDist = EvalOptDepthSpherExpMedium(r, cosTheta, t, 1, Z, H, rcpH);
         float rcpAttCoeffAtDist = 1 * exp((radAtDist - R) * rcpH);
 
@@ -633,47 +633,37 @@ float SampleSpherExpMedium(float optDepth, float r, float cosTheta,
 
         relDiff = optDepthAtDist * rcpOptDepth - 1;
 
-    } while (abs(relDiff) > EPS); // Until the accuracy goal has been reached
+    } while (abs(relDiff) > EPS); // Stop when the accuracy goal has been reached.
 
     return t;
 }
 ```
 
-The spectral coefficient cancels out! Amazing!!
+Since optical depth is a smooth monotone function of distance, this numerical procedure will converge very quickly, typically, after a couple of iterations. If desired, the cost can be fixed by using the iteration counter to terminate the loop, potentially trading accuracy for consistent performance. In many cases, just a single iteration will produce a very good result.
 
-In fact, curvature of the planet can be ignored for moderate distances, making it a relatively efficient and accurate approximation. Can we exploit this idea for arbitrary distances? Let's take another look at the Equation 13. Assuming a constant albedo, the value of the CDF \\(P\\) along the ray segment of length \\(t\_{max}\\) is given as:
+In fact, curvature of the planet can be ignored for moderate distances, making the rectangular version a relatively efficient and accurate approximation. Can we exploit this idea for arbitrary distances?
 
-$$ \tag{64} P(\bm{x}, \bm{v}, t)
-    = \frac{O(\bm{x} + t \bm{v})}{O(\bm{x} + t\_{max} \bm{v})}.
-$$
-
-To invert it means to find the distance \\(t\\) along the ray at which fractional opacity is equal to \\(P\\). In other words, we want to find the distance \\(t\\) along the ray at which opacity has the same value as the product of the CDF and opacity of the entire ray segment:
-
-$$ \tag{65} O(\bm{x} + t \bm{v}) = P(\bm{x}, \bm{v}, t) O(\bm{x} + t\_{max} \bm{v}). $$
-
-Total opacity of the ray can be efficiently computed using our analytic approximation. The only issue is solving for distance given opacity.
-
-Let's say that we are not interested in brute-force path tracing (which would require numerical inversion). Instead, we are trying to compute radiance along the ray using the Equation 8, where \\(\bm{L_s}\\) is known (which limits us to single and pre-computed multiple scattering).
+Let's say that we are not interested in brute-force path tracing (which would require numerical inversion). Instead, we are trying to compute in-radiance along the ray using the Equation 16, where \\(\bm{L_s}\\) is known (which limits us to single and pre-computed multiple scattering).
 
 If we make the assumption that our random CDF values are ordered in ascending order, and that the sampling rate is sufficiently high, we can build an incremental sampling algorithm which effectively models piecewise-flat (or polygonal) planet. We will refer to it as *incremental importance sampling*.
 
-It is a direct replacement for randomized ray marching, and shares the traits of being biased, but consistent. Unlike ray marching, the algorithm is intelligent, and adapts to properties of the participating medium, so it's much more efficient.
+It is a direct replacement for randomized ray marching, and shares the traits of being biased, but consistent. Unlike ray marching, the algorithm is intelligent, and adapts to the properties of the participating medium, which makes it more robust.
 
 Let's try to understand how it works in more detail.
 
-Instead of solving the Equation 65 using opacity, we could solve it using transmittance instead. Rearranging things a bit, the first iteration of the algorithm solves
+For the first sample along the ray, we must solve
 
-$$ \tag{66} T(\bm{x} + t_1 \bm{v}) = 1 - P(\bm{x}, \bm{v}, t_1) O(\bm{x} + t\_{max} \bm{v}) = T_1. $$
+$$ \tag{55} -\mathrm{log} \big( 1 - P(t_1 | \lbrace \bm{x}, \bm{v} \rbrace) O(\bm{x}, \bm{v}, t\_{max}) \big) = \tau(\bm{x}, \bm{v}, t_1) = \tau_1. $$
 
-It determines the (approximate) distance \\(t_1\\) to the first sample given the corresponding transmittance \\(T_1\\). The second sample starts the next edge of the polygon, so we would like to compute distance and transmittance relative to the previous sample:
+Basically, we must determine the (approximate) distance \\(t_1\\) to the first sample along the ray given the corresponding optical depth \\(\tau_1\\). The second sample forms the next edge of the polygon, and we would like to compute the distance and transmittance relative to the first sample (\\(\tau_2\\) is given):
 
-$$ \tag{67} T \big(\bm{x} + t_1 \bm{v} \big) T \big((\bm{x} + t_1 \bm{v}) + (t_2 - t_1) \bm{v} \big) = T_2. $$
+$$ \tag{56} \tau(\bm{x}, \bm{v}, t_1) + \tau(\bm{x} + t_1 \bm{v}, \bm{v}, t_2 - t_1) = \tau_2. $$
 
 Or, more simply put,
 
-$$ \tag{68} T \big((\bm{x} + t_1 \bm{v}) + \Delta t_2 \bm{v} \big) = T_2 / T_1. $$
+$$ \tag{57} \tau(\bm{x} + t_1 \bm{v}, \bm{v}, \Delta t_2) = \tau_2 - \tau_1. $$
 
-Both Equations 66 and 68 can be solved using the Equation 33. Basically, we solve for relative distance given relative transmittance w.r.t. the previous sample.
+We can solve these equations using the analytic rectangular approximation (Equation 29). Basically, we solve for the relative distance given optical depth relative to the previous sample. Total opacity in the Equation 55 can be computed accurately using our numerical approximation.
 
 Code that implements incremental importance sampling can be found below.
 
