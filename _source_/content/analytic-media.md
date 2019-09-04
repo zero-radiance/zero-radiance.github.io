@@ -209,11 +209,11 @@ Please note that homogeneous media \\( \big( n v_3 = 0 \big) \\) require special
 Sample code is listed below.
 
 ```c++
-Spectrum EvalOptDepthRectExpMedium(float height, float cosTheta, float t,
-                                   Spectrum seaLvlAtt, float rcpH)
+spectrum EvalOptDepthRectExpMedium(float height, float cosTheta, float t,
+                                   spectrum seaLvlAtt, float rcpH)
 {
     // Equation 21.
-    Spectrum d = seaLvlAtt * t;
+    spectrum d = seaLvlAtt * t;
 
     float p = cosTheta * rcpH;
 
@@ -446,8 +446,8 @@ float ComputeCosineOfHorizonAngle(float r, float R)
     return -sqrt(saturate(1 - sinHoriz * sinHoriz));
 }
 
-Spectrum EvalOptDepthSpherExpMedium(float r, float cosTheta,
-                                    Spectrum seaLvlAtt, float Z,
+spectrum EvalOptDepthSpherExpMedium(float r, float cosTheta,
+                                    spectrum seaLvlAtt, float Z,
                                     float R, float rcpR,
                                     float H, float rcpH)
 {
@@ -514,8 +514,8 @@ float CosAtDist(float r, float cosTheta, float t, float radAtDist)
     return (t + r * cosTheta) * rcp(radAtDist);
 }
 
-Spectrum EvalOptDepthSpherExpMedium(float r, float cosTheta, float t,
-                                    Spectrum seaLvlAtt, float Z,
+spectrum EvalOptDepthSpherExpMedium(float r, float cosTheta, float t,
+                                    spectrum seaLvlAtt, float Z,
                                     float H, float rcpH)
 {
     float rX        = r;
@@ -664,25 +664,25 @@ $$ \tag{57} \tau(\bm{x} + t_1 \bm{v}, \bm{v}, \Delta t_2) = \Delta \tau_2. $$
 Code that implements incremental importance sampling can be found below.
 
 ```c++
-Spectrum IntegrateRadianceAlongRaySegment(Spectrum X, Spectrum Y, uint numSamples)
+// Uniforms.
+float    R, Z, H, rcpH, seaLvlAtt, rcpSeaLvlAtt;
+float3   C;
+spectrum ssAlbedo;
+
+spectrum IntegrateRadianceAlongRaySegment(float3 X, float3 V, float t, uint numSamples)
 {
-    // (1/seaLevelAttenuationCoefficient) for a single wavelength used for sampling.
-    float  rcpA = rcpSeaLevelAttenuationCoefficient;
-
-    float  tMax = distance(Y, X);
-    Spectrum V    = normalize(Y - X);
-
-    float totalOpticalDepth = ComputeOpticalDepthAlongRaySegment(X, Y);
-    float totalOpacity      = OpacityFromOpticalDepth(totalOpticalDepth);
-
     // Compute initial parameters.
-    Spectrum P        = X;
+    float3 P        = X;
     float  r        = distance(P, C);
     float  cosTheta = dot(P - C, V) * rcp(r);
 
-    float  t             = 0;
-    Spectrum radiance      = 0;
-    float  transmittance = 1;
+    // This snippet only supports monochromatic attenuation coefficients.
+    float maxOptDepth = EvalOptDepthSpherExpMedium(r, cosTheta, t, seaLvlAtt, Z, H, rcpH);
+    float maxOpacity  = OpacityFromOpticalDepth(maxOptDepth);
+
+    spectrum radiance = 0;
+    float sumOptDepth = 0;
+    float sumDist     = 0;
 
     for (uint i = 0; i < numSamples; i++)
     {
@@ -690,42 +690,28 @@ Spectrum IntegrateRadianceAlongRaySegment(Spectrum X, Spectrum Y, uint numSample
         // for any i, sample[i] < sample[i + 1].
         float cdf = GetOrderedUnitIntervalRandomSample(i, numSamples);
 
-        // Total value of transmittance (Equation 66).
-        float totTransm = 1 - cdf * totalOpacity;
+        // Convert to absolute optical depth (Equation 18).
+        float absOptDepth = -log(1 - cdf * maxOpacity);
 
-        // Transmittance relative to the previous sample (Equation 68).
-        float relTransm = totTransm * rcp(transmittance);
+        // Convert to relative optical depth.
+        float relOptDepth = absOptDepth - sumOptDepth;
 
-        // Update the value of transmittance up to the current sample.
-        transmittance = totTransm;
+        // Solve for the relative distance (Equation 57).
+        float dt = SampleRectExpMedium(relOptDepth, r - R, cosTheta, rcpSeaLvlAtt, rcpH);
 
-        // Ignore curvature of the planet (polygonal planet approximation).
-        // The approximation is accurate assuming high sampling rate.
-        float dt = SampleRectExpMedium(relTransm, r - R, cosTheta, rcpA, rcpH);
+        // Update the state for the next iteration.
+        sumDist     = min(sumDist + dt, t);
+        sumOptDepth = absOptDepth;
+        P           = X + t * V;
+        r           = distance(P, C);
+        cosTheta    = dot(P - C, V) * rcp(r);
 
-        // Since the distance is approximate, it's a good idea to clamp.
-        t        = min(t + dt, tMax);
-        P        = X + t * V;
-        r        = distance(P, C);
-        cosTheta = dot(P - C, V) * rcp(r);
-
-    #if 0
-        // Equation 34.
-        float extinction = seaLevelAttenuationCoefficient * exp((R - r) * rcpH);
-
-        // Equations 11. By the Equation 15, albedo cancels out.
-        // The PDF value is also approximate (since the the distance 't' is).
-        float pdf = extinction * transmittance / totalOpacity;
-    #endif
-
-        // Equation 12.
-        // For a single wavelength, and with high enough sampling density,
-        // weight = scattering * transmittance / pdf ≈ ssAlbedo * totalOpacity.
+        // Equation 16 (without normalization).
         radiance += ComputeInScatteredRadiance(P, V);
     }
 
-    // Equation 12 (normalization).
-    radiance *= ssAlbedo * totalOpacity * rcp(numSamples);
+    // Equation 16 (normalization).
+    radiance *= ssAlbedo * maxOpacity * rcp(numSamples);
 
     return radiance;
 }
