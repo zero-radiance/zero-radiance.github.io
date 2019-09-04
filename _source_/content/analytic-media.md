@@ -174,8 +174,8 @@ which is the product of the average attenuation coefficient and the length of th
 The sampling "recipe" for distance \\(t\\) is given by the following formula:
 
 $$ \tag{25}
-	t = -\frac{k + m x_3}{m v_3}
-	\pm \sqrt{\Bigg( \frac{k + m x_3}{m v_3} \Bigg)^2 + \frac{2 \tau\_{lp}}{\mu_t m v_3}},
+    t = -\frac{k + m x_3}{m v_3}
+    \pm \sqrt{\Bigg( \frac{k + m x_3}{m v_3} \Bigg)^2 + \frac{2 \tau\_{lp}}{\mu_t m v_3}},
 $$
 
 where the sign in front of the square root is the sign of \\(v_3\\). Please note that homogeneous media \\( \big( m v_3 = 0 \big) \\) require special care.
@@ -209,12 +209,11 @@ Please note that homogeneous media \\( \big( n v_3 = 0 \big) \\) require special
 Sample code is listed below.
 
 ```c++
-// Spectral version.
-float3 EvalOptDepthRectExpMedium(float height, float cosTheta, float t,
-                                 float3 seaLvlAtt, float rcpH)
+Spectrum EvalOptDepthRectExpMedium(float height, float cosTheta, float t,
+                                   Spectrum seaLvlAtt, float rcpH)
 {
     // Equation 21.
-    float3 d = seaLvlAtt * t;
+    Spectrum d = seaLvlAtt * t;
 
     float p = cosTheta * rcpH;
 
@@ -227,7 +226,6 @@ float3 EvalOptDepthRectExpMedium(float height, float cosTheta, float t,
     return d;
 }
 
-// Single wavelength version.
 float SampleRectExpMedium(float optDepth, float height, float cosTheta,
                           float rcpSeaLvlAtt, float rcpH)
 {
@@ -448,18 +446,17 @@ float ComputeCosineOfHorizonAngle(float r, float R)
     return -sqrt(saturate(1 - sinHoriz * sinHoriz));
 }
 
-// Spectral version.
-float3 EvalOptDepthSpherExpMedium(float r, float cosTheta,
-                                  float3 seaLvlAtt, float Z,
-                                  float R, float rcpR,
-                                  float H, float rcpH)
+Spectrum EvalOptDepthSpherExpMedium(float r, float cosTheta,
+                                    Spectrum seaLvlAtt, float Z,
+                                    float R, float rcpR,
+                                    float H, float rcpH)
 {
     float z = r * rcpH;
 
     float sinTheta = sqrt(saturate(1 - cosTheta * cosTheta));
     float cosHoriz = ComputeCosineOfHorizonAngle(r, R);
 
-	// cos(Pi - theta) = -cos(theta).
+    // cos(Pi - theta) = -cos(theta).
     float ch = ChapmanUpperApprox(z, abs(cosTheta)) * exp(Z - z); // Rescaling adds 'exp'
 
     if (cosTheta < cosHoriz) // Below horizon, intersect sphere
@@ -517,10 +514,9 @@ float CosAtDist(float r, float cosTheta, float t, float radAtDist)
     return (t + r * cosTheta) * rcp(radAtDist);
 }
 
-// Spectral version.
-float3 EvalOptDepthSpherExpMedium(float r, float cosTheta, float t,
-                                  float3 seaLvlAtt, float Z,
-                                  float H, float rcpH)
+Spectrum EvalOptDepthSpherExpMedium(float r, float cosTheta, float t,
+                                    Spectrum seaLvlAtt, float Z,
+                                    float H, float rcpH)
 {
     float rX        = r;
     float cosThetaX = cosTheta;
@@ -596,14 +592,13 @@ This appears to be the simplest formulation of the problem, using the fewest num
 
 While that's an unfortunate development, it's a minor setback. If we can't solve the equation analytically, we can solve it numerically, using the [Newton–Raphson method](https://en.wikipedia.org/wiki/Newton%27s_method), for instance. The derivative of the Chapman function exists, and is not too difficult to compute.
 
-In fact, there is a [better way](http://lib-www.lanl.gov/la-pubs/00367066.pdf), which is even simpler. Recall that Newton's method requires being able to make an initial guess, evaluate the function, and take its derivative. If we solve using the entire optical depth function \\(\tau\\) (Equation 18), we know that its derivative is just the extinction coefficient \\(\sigma_t\\) (Equation 9), and making a good initial guess is easy by simply ignoring curvature of the planet.
+In fact, there is a [better way](http://lib-www.lanl.gov/la-pubs/00367066.pdf), which is even simpler. Recall that Newton's method requires being able to make an initial guess, evaluate the function, and take its derivative. If we solve using the entire optical depth formulation (Equation 18), we know that its derivative is just the extinction coefficient \\(\sigma_t\\) (Equation 9), and making a good initial guess is easy by simply ignoring curvature of the planet.
 
 This method is very general and works for completely arbitrary continuous density distributions (see the [paper](http://lib-www.lanl.gov/la-pubs/00367066.pdf)).
 
 Sample code is listed below.
 
 ```c++
-// Single wavelength version.
 float SampleSpherExpMedium(float optDepth, float r, float cosTheta,
                            float rcpSeaLvlAtt, float Z, float R, float H, float rcpH)
 {
@@ -621,15 +616,16 @@ float SampleSpherExpMedium(float optDepth, float r, float cosTheta,
     {
         float radAtDist = RadAtDist(r, cosTheta, t);
 
-        // Evaluate the function and its (reciprocal) derivative.
-        // f(t) = OptDepthAtDist(t) - GivenOptDepth = 0.
+        // Evaluate the function and its (reciprocal) derivative:
+        // f(t) = OptDepthAtDist(t) - GivenOptDepth = 0,
+        // f'(t) = AttCoefAtDist(t).
         // The sea level attenuation coefficient cancels out during division.
         float optDepthAtDist = EvalOptDepthSpherExpMedium(r, cosTheta, t, 1, Z, H, rcpH);
-        float rcpAttCoeffAtDist = 1 * exp((radAtDist - R) * rcpH);
+        float rcpAttCoefAtDist = 1 * exp((radAtDist - R) * rcpH);
 
         // Refine the initial guess.
         // t1 = t0 - f(t0) / f'(t0).
-        t = t - (optDepthAtDist - optDepth) * rcpAttCoeffAtDist;
+        t = t - (optDepthAtDist - optDepth) * rcpAttCoefAtDist;
 
         relDiff = optDepthAtDist * rcpOptDepth - 1;
 
@@ -639,15 +635,15 @@ float SampleSpherExpMedium(float optDepth, float r, float cosTheta,
 }
 ```
 
-Since optical depth is a smooth monotone function of distance, this numerical procedure will converge very quickly, typically, after a couple of iterations. If desired, the cost can be fixed by using the iteration counter to terminate the loop, potentially trading accuracy for consistent performance. In many cases, just a single iteration will produce a very good result.
+Since optical depth is a smooth monotonic function of distance, this numerical procedure will converge very quickly, typically, after a couple of iterations. If desired, the cost can be fixed by using an iteration counter to terminate the loop, potentially trading accuracy for consistent performance. In many cases, performing just a single iteration will produce good results.
 
 In fact, curvature of the planet can be ignored for moderate distances, making the rectangular version a relatively efficient and accurate approximation. Can we exploit this idea for arbitrary distances?
 
-Let's say that we are not interested in brute-force path tracing (which would require numerical inversion). Instead, we are trying to compute in-radiance along the ray using the Equation 16, where \\(\bm{L_s}\\) is known (which limits us to single and pre-computed multiple scattering).
+Let's say that we are not interested in brute-force path tracing (which would require accurate numerical inversion). Instead, we are trying to gather in-scattered radiance along the ray using the Equation 16, where \\(\bm{L_s}\\) is known (which limits us to single and pre-computed multiple scattering).
 
-If we make the assumption that our random CDF values are ordered in ascending order, and that the sampling rate is sufficiently high, we can build an incremental sampling algorithm which effectively models piecewise-flat (or polygonal) planet. We will refer to it as *incremental importance sampling*.
+If we make an assumption that our random CDF values are ordered in ascending order, and that the sampling rate is sufficiently high, we can build an incremental sampling algorithm which effectively models piecewise-flat (or polygonal) planet. We will refer to it as *incremental importance sampling*.
 
-It is a direct replacement for randomized ray marching, and shares the traits of being biased, but consistent. Unlike ray marching, the algorithm is intelligent, and adapts to the properties of the participating medium, which makes it more robust.
+It is a direct replacement for randomized ray marching, and shares the traits of being biased, but consistent. Unlike ray marching, the algorithm is intelligent, and adapts to properties of the participating medium, which makes it more robust.
 
 Let's try to understand how it works in more detail.
 
@@ -655,42 +651,41 @@ For the first sample along the ray, we must solve
 
 $$ \tag{55} -\mathrm{log} \big( 1 - P(t_1 | \lbrace \bm{x}, \bm{v} \rbrace) O(\bm{x}, \bm{v}, t\_{max}) \big) = \tau(\bm{x}, \bm{v}, t_1) = \tau_1. $$
 
-Basically, we must determine the (approximate) distance \\(t_1\\) to the first sample along the ray given the corresponding optical depth \\(\tau_1\\). The second sample forms the next edge of the polygon, and we would like to compute the distance and transmittance relative to the first sample (\\(\tau_2\\) is given):
+Basically, we must determine the (approximate) distance \\(t_1\\) to the first sample along the ray given the corresponding optical depth \\(\tau_1\\). To solve this equation, we substitute the analytic rectangular approximation of optical depth (Equation 29), which is valid for short distances. Total opacity along the entire ray can be computed accurately using our numerical approximation (Equation 43).
+
+The second sample forms the next edge of the polygon, and we would like to compute the distance and transmittance relative to the first sample (\\(\tau_2\\) is given):
 
 $$ \tag{56} \tau(\bm{x}, \bm{v}, t_1) + \tau(\bm{x} + t_1 \bm{v}, \bm{v}, t_2 - t_1) = \tau_2. $$
 
-Or, more simply put,
+Or, more simply put, we solve for the relative distance given relative optical depth (w.r.t. the previous sample):
 
-$$ \tag{57} \tau(\bm{x} + t_1 \bm{v}, \bm{v}, \Delta t_2) = \tau_2 - \tau_1. $$
-
-We can solve these equations using the analytic rectangular approximation (Equation 29). Basically, we solve for the relative distance given optical depth relative to the previous sample. Total opacity in the Equation 55 can be computed accurately using our numerical approximation.
+$$ \tag{57} \tau(\bm{x} + t_1 \bm{v}, \bm{v}, \Delta t_2) = \Delta \tau_2. $$
 
 Code that implements incremental importance sampling can be found below.
 
 ```c++
-float3 IntegrateRadianceAlongRaySegment(float3 X, float3 Y, uint numSamples)
+Spectrum IntegrateRadianceAlongRaySegment(Spectrum X, Spectrum Y, uint numSamples)
 {
     // (1/seaLevelAttenuationCoefficient) for a single wavelength used for sampling.
     float  rcpA = rcpSeaLevelAttenuationCoefficient;
 
     float  tMax = distance(Y, X);
-    float3 V    = normalize(Y - X);
+    Spectrum V    = normalize(Y - X);
 
     float totalOpticalDepth = ComputeOpticalDepthAlongRaySegment(X, Y);
     float totalOpacity      = OpacityFromOpticalDepth(totalOpticalDepth);
 
     // Compute initial parameters.
-    float3 P        = X;
+    Spectrum P        = X;
     float  r        = distance(P, C);
     float  cosTheta = dot(P - C, V) * rcp(r);
 
     float  t             = 0;
-    float3 radiance      = 0;
+    Spectrum radiance      = 0;
     float  transmittance = 1;
 
     for (uint i = 0; i < numSamples; i++)
     {
-
         // Samples must be arranged in the ascending order, s.t.
         // for any i, sample[i] < sample[i + 1].
         float cdf = GetOrderedUnitIntervalRandomSample(i, numSamples);
