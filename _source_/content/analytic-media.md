@@ -719,9 +719,15 @@ spectrum IntegrateRadianceAlongRaySegment(float3 X, float3 V, float t, uint numS
 
 # Handling Spectral Coefficients
 
-WIP
+While using monochromatic attenuation is acceptable for certain use cases (such as modeling aerosols and fog), generally speaking, we would like to support spectrally-varying coefficients. This means that given a fixed distance, light is going to be attenuated to a different degree depending on the wavelength. This poses a problem for importance sampling, which works by converting opacity (now a vector) to a distance (a scalar).
 
-Average coefficient across wave lengths, hero wavelength, single sample MIS...
+The simplest solution is to trace one path per wavelength. For instance, you could either densely sample the entire [visible spectrum](https://en.wikipedia.org/wiki/Visible_spectrum) (e.g. 380 to 740 nm with a 5 nm step size resulting in 72 paths), or pick several wavelengths stochastically (distributed either uniformly, or according to the [luminous efficiency function](https://en.wikipedia.org/wiki/Luminosity_function)). This brute force approach increases the rendering cost by a factor of \\(N\\), but it provides a good reference point for comparison.
+
+Another approach suggested during the [Production Volume Rendering](https://graphics.pixar.com/library/ProductionVolumeRendering/paper.pdf) course is to invert the average opacity value across the spectrum. This solution is rather attractive from the performance point of view, since you only end up tracing a single path. Unfortunately, it assumes that the average value is fairly representative. This may not be the case for subsurface scattering in skin, for instance, where red wavelengths scatter much farther, and using this technique may result in an excessive amount of noise. On another hand, if could use the maximum opacity value across the spectrum for skin, your atmospheric scattering may become undersampled.
+
+...
+
+Hero wavelength + spectral single sample MIS...
 
 Several components (air, aerosols)?
 
