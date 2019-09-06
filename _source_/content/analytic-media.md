@@ -113,7 +113,7 @@ This radically simplifies evaluation of the estimate (again, for a single wavele
 
 $$ \tag{16} L(\bm{x}, \bm{v}) \approx O(\bm{x}, \bm{v}, t\_{max}) \frac{1}{N} \sum\_{i=1}^{N} \alpha\_{ss}(\bm{x}, \bm{v}, s_i) L_s(\bm{x} + s_i \bm{v}, \bm{v}). $$
 
-It can be seen as a form of [premultiplied alpha blending](https://graphics.pixar.com/library/Compositing/), which explains why particle cards can be so convincing.
+It can be seen as a form of [premultiplied alpha blending](https://graphics.pixar.com/library/Compositing/) (where alpha is opacity), which explains why particle cards can be so convincing. Additionally, it offers yet another way to parametrize the attenuation coefficient - namely, by opacity at distance (which is similar to [transmittance at distance](https://blog.selfshadow.com/publications/s2015-shading-course/burley/s2015_pbs_disney_bsdf_notes.pdf) used by Disney).
 
 In order to distribute the samples according to the PDF, we must be able to [invert](http://www.pbr-book.org/3ed-2018/Monte_Carlo_Integration/Sampling_Random_Variables.html#TheInversionMethod) the [CDF](https://en.wikipedia.org/wiki/Cumulative_distribution_function) \\(P\\):
 
