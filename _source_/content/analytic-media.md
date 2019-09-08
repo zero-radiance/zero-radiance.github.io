@@ -37,7 +37,7 @@ Taking a small detour, for surfaces, the absorption coefficient is directly prop
 
 $$ \tag{4} \bm{\kappa} = \frac{\bm{\lambda \sigma_a}}{4 \pi}. $$
 
-Therefore, a triple \\(\lbrace \bm{\eta}, \bm{\kappa}, \bm{\sigma_s} \rbrace\\) \\(\big(\\)or, alternatively, \\(\lbrace \bm{\eta}, \bm{d}, \bm{\alpha\_{ss}} \rbrace  \big) \\) is sufficient to describe both the behavior at the boundary and the multiple-scattering process (known as [subsurface scattering](https://en.wikipedia.org/wiki/Subsurface_scattering)) inside the volume, that ultimately gives rise to what we perceive as the surface albedo \\(\bm{\alpha\_{ms}}\\). Please note that certain materials (metals, in particular) require modeling of interference to obtain expected reflectance values.
+Therefore, a triple \\(\lbrace \bm{\eta}, \bm{\kappa}, \bm{\sigma_s} \rbrace\\) \\(\big(\\)or, alternatively, \\(\lbrace \bm{\eta}, \bm{d}, \bm{\alpha\_{ss}} \rbrace  \big) \\) is sufficient to describe both the behavior at the boundary and the multiple-scattering process (known as [subsurface scattering](https://en.wikipedia.org/wiki/Subsurface_scattering)) inside the volume, that ultimately gives rise to what we perceive as the surface albedo \\(\bm{\alpha\_{ms}}\\). Please note that certain materials (metals, in particular) require modeling of [interference](https://en.wikipedia.org/wiki/Wave_interference) to obtain expected reflectance values.
 
 Integral of the attenuation coefficient along the span of ray segment of length \\(t\\) from the point \\(\bm{x}\\) in the direction \\(\bm{v}\\) corresponds to [optical depth](https://en.wikipedia.org/wiki/Optical_depth) (or optical thickness):
 
@@ -47,7 +47,7 @@ Given the value of optical depth, it's easy to compute [transmittance](https://e
 
 $$ \tag{6} \bm{T}(\bm{x}, \bm{v}, t) = e^{-\bm{\tau}(\bm{x}, \bm{v}, t)}. $$
 
-While optical depth can take on any non-negative value, transmittance is restricted to the unit interval. Volume opacity is, then,
+While optical depth can take on any non-negative value, transmittance is restricted to the unit interval, and can be interpreted as the probability of a collision-free flight. Its complement is volume opacity:
 
 $$ \tag{7} \bm{O}(\bm{x}, \bm{v}, t) = 1 - \bm{T}(\bm{x}, \bm{v}, t). $$
 
@@ -113,7 +113,7 @@ This radically simplifies evaluation of the estimate (again, for a single wavele
 
 $$ \tag{16} L(\bm{x}, \bm{v}) \approx O(\bm{x}, \bm{v}, t\_{max}) \frac{1}{N} \sum\_{i=1}^{N} \alpha\_{ss}(\bm{x}, \bm{v}, s_i) L_s(\bm{x} + s_i \bm{v}, \bm{v}). $$
 
-It can be seen as a form of [premultiplied alpha blending](https://graphics.pixar.com/library/Compositing/), which explains why particle cards can be so convincing.
+It can be seen as a form of [premultiplied alpha blending](https://graphics.pixar.com/library/Compositing/) (where alpha is opacity), which explains why particle cards can be so convincing. Additionally, it offers yet another way to parametrize the attenuation coefficient - namely, by opacity at distance (which is similar to [transmittance at distance](https://blog.selfshadow.com/publications/s2015-shading-course/burley/s2015_pbs_disney_bsdf_notes.pdf) used by Disney).
 
 In order to distribute the samples according to the PDF, we must be able to [invert](http://www.pbr-book.org/3ed-2018/Monte_Carlo_Integration/Sampling_Random_Variables.html#TheInversionMethod) the [CDF](https://en.wikipedia.org/wiki/Cumulative_distribution_function) \\(P\\):
 
@@ -174,8 +174,8 @@ which is the product of the average attenuation coefficient and the length of th
 The sampling "recipe" for distance \\(t\\) is given by the following formula:
 
 $$ \tag{25}
-	t = -\frac{k + m x_3}{m v_3}
-	\pm \sqrt{\Bigg( \frac{k + m x_3}{m v_3} \Bigg)^2 + \frac{2 \tau\_{lp}}{\mu_t m v_3}},
+    t = -\frac{k + m x_3}{m v_3}
+    \pm \sqrt{\Bigg( \frac{k + m x_3}{m v_3} \Bigg)^2 + \frac{2 \tau\_{lp}}{\mu_t m v_3}},
 $$
 
 where the sign in front of the square root is the sign of \\(v_3\\). Please note that homogeneous media \\( \big( m v_3 = 0 \big) \\) require special care.
@@ -202,19 +202,18 @@ $$ \tag{28}
 $$
 Solving for the distance \\(t\\) is straightforward:
 
-$$ \tag{29} t = -\frac{1}{n v_3} \log \left(1 - \frac{ n v_3 \tau\_{ep}}{\mu_t k e^{-n x_3}}\right). $$
+$$ \tag{29} t = -\frac{1}{n v_3} \log \left(1 - \frac{\tau\_{ep} n v_3}{\mu_t k e^{-n x_3}}\right). $$
 
 Please note that homogeneous media \\( \big( n v_3 = 0 \big) \\) require special care.
 
 Sample code is listed below.
 
 ```c++
-// Spectral version.
-float3 EvalOptDepthRectExpMedium(float height, float cosTheta, float t,
-                                 float3 seaLvlAtt, float rcpH)
+spectrum EvalOptDepthRectExpMedium(float height, float cosTheta, float t,
+                                   spectrum seaLvlAtt, float rcpH)
 {
     // Equation 21.
-    float3 d = seaLvlAtt * t;
+    spectrum d = seaLvlAtt * t;
 
     float p = cosTheta * rcpH;
 
@@ -227,7 +226,6 @@ float3 EvalOptDepthRectExpMedium(float height, float cosTheta, float t,
     return d;
 }
 
-// Single wavelength version.
 float SampleRectExpMedium(float optDepth, float height, float cosTheta,
                           float rcpSeaLvlAtt, float rcpH)
 {
@@ -442,27 +440,23 @@ $$ \tag{46} C_b(z, \mathrm{cos}{\theta}, Z, \mathrm{cos}{\gamma}) = C_u(Z, \math
 Sample code is listed below. While it's possible to use the `RescaledChapmanFunction` in this scenario, the following implementation is slightly more efficient.
 
 ```c++
-float R, rcpR, H, rcpH, Z;
-float3 C, seaLevelAttenuationCoefficient;
-
-float ComputeCosineOfHorizonAngle(float r)
+float ComputeCosineOfHorizonAngle(float r, float R)
 {
     float sinHoriz = R * rcp(r);
     return -sqrt(saturate(1 - sinHoriz * sinHoriz));
 }
 
-// Ray equation: (X + t * V).
-/* FIX ME */
-float3 ComputeOpticalDepthAlongRay(float3 X, float3 V)
+spectrum EvalOptDepthSpherExpMedium(float r, float cosTheta,
+                                    spectrum seaLvlAtt, float Z,
+                                    float R, float rcpR,
+                                    float H, float rcpH)
 {
-    float r = distance(X, C);
     float z = r * rcpH;
 
-    float cosHoriz = ComputeCosineOfHorizonAngle(r);
-    float cosTheta = dot(X - C, V) * rcp(r);
     float sinTheta = sqrt(saturate(1 - cosTheta * cosTheta));
+    float cosHoriz = ComputeCosineOfHorizonAngle(r, R);
 
-	// cos(Pi - theta) = -cos(theta).
+    // cos(Pi - theta) = -cos(theta).
     float ch = ChapmanUpperApprox(z, abs(cosTheta)) * exp(Z - z); // Rescaling adds 'exp'
 
     if (cosTheta < cosHoriz) // Below horizon, intersect sphere
@@ -483,7 +477,7 @@ float3 ComputeOpticalDepthAlongRay(float3 X, float3 V)
         ch = 2 * chP - ch;
     }
 
-    return ch * H * seaLevelAttenuationCoefficient;
+    return ch * H * seaLvlAtt;
 }
 ```
 
@@ -510,17 +504,24 @@ $$ \tag{48} \begin{aligned}
 Sample code is listed below.
 
 ```c++
-float H, rcpH, Z;
-float3 C, seaLevelAttenuationCoefficient;
-
-/* FIX ME */
-float3 EvalOptDepthSphericalExpMedium(float r, float cosTheta, float t)
+float RadAtDist(float r, float cosTheta, float t)
 {
-    float r2        = dot(X - C, X - C);
-    float rX        = sqrt(r2);
-    float cosThetaX = dot(X - C, V) * rcp(rX);
-    float rY        = sqrt(r2 + t * (t + 2 * rX * cosThetaX));
-    float cosThetaY = (t + rX * cosThetaX) * rcp(rY);
+    return sqrt(r * r + t * (t + 2 * (r * cosTheta)));
+}
+
+float CosAtDist(float r, float cosTheta, float t, float radAtDist)
+{
+    return (t + r * cosTheta) * rcp(radAtDist);
+}
+
+spectrum EvalOptDepthSpherExpMedium(float r, float cosTheta, float t,
+                                    spectrum seaLvlAtt, float Z,
+                                    float H, float rcpH)
+{
+    float rX        = r;
+    float cosThetaX = cosTheta;
+    float rY        = RadAtDist(rX, cosThetaX, t);
+    float cosThetaY = CosAtDist(rX, cosThetaX, t, rY);
 
     // Potentially swap X and Y.
     // Convention: at the point Y, the ray points up.
@@ -536,7 +537,7 @@ float3 EvalOptDepthSphericalExpMedium(float r, float cosTheta, float t)
     // We may have swapped X and Y.
     float ch = abs(chX - chY);
 
-    return ch * H * seaLevelAttenuationCoefficient;
+    return ch * H * seaLvlAtt;
 }
 ```
 
@@ -564,10 +565,10 @@ $$ \tag{50}
     = \frac{r \mathrm{cos}{\theta} + t}{\sqrt{(r \mathrm{sin}{\theta})^2 + (r \mathrm{cos}{\theta} + t)^2}}.
 $$
 
-Using the new, compact notation, and some algebraic manipulation, we can reduce the problem to solving the following equation:
+Using the new, compact notation, and after performing some algebraic manipulation, we can reduce the problem to solving the following equation:
 
 $$ \tag{51}
-q = e^{Z - n \mathcal{R}(r, \theta, t) } C_u \Big( n \mathcal{R}(r, \theta, t), \mathcal{C}(r, \theta, t) \Big),
+q = C_r \Big( n \mathcal{R}(r, \theta, t), Z, \mathcal{C}(r, \theta, t) \Big),
 $$
 
 which means that we need to find the distance \\(t\\) at which the value of the rescaled Chapman function is \\(q\\).
@@ -575,7 +576,7 @@ which means that we need to find the distance \\(t\\) at which the value of the 
 This equation has too many parameters. We can reduce dimensionality by solving for \\(t' = nt\\):
 
 $$ \tag{52}
-q = e^{Z - \sqrt{(z \mathrm{sin}{\theta})^2 + (z \mathrm{cos}{\theta} + t')^2} } C_u \Big( \sqrt{(z \mathrm{sin}{\theta})^2 + (z \mathrm{cos}{\theta} + t')^2}, \frac{z \mathrm{cos}{\theta} + t'}{\sqrt{(z \mathrm{sin}{\theta})^2 + (z \mathrm{cos}{\theta} + t')^2}} \Big).
+q = C_r \Big( \sqrt{(z \mathrm{sin}{\theta})^2 + (z \mathrm{cos}{\theta} + t')^2}, Z, \frac{z \mathrm{cos}{\theta} + t'}{\sqrt{(z \mathrm{sin}{\theta})^2 + (z \mathrm{cos}{\theta} + t')^2}} \Big).
 $$
 
 After getting rid of \\(n\\), the next step is to group common terms:
@@ -583,7 +584,7 @@ After getting rid of \\(n\\), the next step is to group common terms:
 $$ \tag{53} \phi = z \mathrm{sin}{\theta} \qquad \psi = z \mathrm{cos}{\theta} + t', $$
 
 $$ \tag{54}
-q = e^{Z - \sqrt{\phi^2+\psi^2} } C_u \Big( \sqrt{\phi^2+\psi^2}, \frac{\psi}{\sqrt{\phi^2+\psi^2}} \Big). $$
+q = C_r \Big( \sqrt{\phi^2+\psi^2}, Z, \frac{\psi}{\sqrt{\phi^2+\psi^2}} \Big). $$
 
 Both \\(\phi\\) and \\(\psi\\) are known to be positive. We must solve for \\(\psi\\). \\(Z\\) could theoretically be removed, but it's here to keep the solution within the sane numerical range.
 
@@ -591,234 +592,126 @@ This appears to be the simplest formulation of the problem, using the fewest num
 
 While that's an unfortunate development, it's a minor setback. If we can't solve the equation analytically, we can solve it numerically, using the [Newton–Raphson method](https://en.wikipedia.org/wiki/Newton%27s_method), for instance. The derivative of the Chapman function exists, and is not too difficult to compute.
 
-In fact, there is a [better way](http://lib-www.lanl.gov/la-pubs/00367066.pdf), which is even simpler. Recall that Newton's method requires being able to make an initial guess, evaluate the function, and take its derivative. If we solve using the entire optical depth function \\(\tau\\) (Equation 18), we know that its derivative is just the extinction coefficient \\(\sigma_t\\) (Equation 9), and making a good initial guess is easy by simply ignoring curvature of the planet.
+In fact, there is a [better way](http://lib-www.lanl.gov/la-pubs/00367066.pdf), which is even simpler. Recall that Newton's method requires being able to make an initial guess, evaluate the function, and take its derivative. If we solve using the entire optical depth formulation (Equation 18), we know that its derivative is just the extinction coefficient \\(\sigma_t\\) (Equation 9), and making a good initial guess is easy by simply ignoring curvature of the planet.
 
 This method is very general and works for completely arbitrary continuous density distributions (see the [paper](http://lib-www.lanl.gov/la-pubs/00367066.pdf)).
 
 Sample code is listed below.
 
 ```c++
-float HeightAtDist(float h, float cosTheta, float t)
+float SampleSpherExpMedium(float optDepth, float r, float cosTheta,
+                           float rcpSeaLvlAtt, float Z, float R, float H, float rcpH)
 {
-    float r = h + R;
-    return sqrt(r * r + t * (t + 2 * (r * cosTheta))) - R;
-}
+    // This allows us to use (seaLvlAtt = rcpSeaLvlAtt = 1) below.
+    optDepth *= rcpSeaLvlAtt;
 
-// Single wavelength version.
-float SampleSphericalExpMedium(float optDepth, float height, float cosTheta,
-                               float seaLvlAtt, float rcpSeaLvlAtt, float rcpH)
-{
-    float rcpOptDepth = rcp(optDepth); // Must not be 0
+    float rcpOptDepth = rcp(optDepth); // Must not be 0.
 
     // Make an initial guess.
-    float t = SampleRectExpMedium(optDepth, height, cosTheta, rcpSeaLvlAtt, rcpH);
+    float t = SampleRectExpMedium(optDepth, r - R, cosTheta, 1, rcpH);
 
     float relDiff;
 
-    do
+    do // Perform a Newton–Raphson iteration.
     {
-        float h = HeightAtDist(height, cosTheta, t);
+        float radAtDist = RadAtDist(r, cosTheta, t);
 
-        // Evaluate the function and its derivative.
-        float optDepthAtDist = EvalOptDepthRectExpMedium(height, cosTheta, t, seaLvlAtt, rcpH);
-        float attCoeffAtDist = seaLvlAtt * exp(-h * rcpH);
+        // Evaluate the function and its (reciprocal) derivative:
+        // f(t) = OptDepthAtDist(t) - GivenOptDepth = 0,
+        // f'(t) = AttCoefAtDist(t).
+        // The sea level attenuation coefficient cancels out during division.
+        float optDepthAtDist = EvalOptDepthSpherExpMedium(r, cosTheta, t, 1, Z, H, rcpH);
+        float rcpAttCoefAtDist = 1 * exp((radAtDist - R) * rcpH);
 
         // Refine the initial guess.
-        t =
-    } while
-}
+        // t1 = t0 - f(t0) / f'(t0).
+        t = t - (optDepthAtDist - optDepth) * rcpAttCoefAtDist;
 
-float3 IntegrateRadianceAlongRaySegment(float3 X, float3 Y, uint numSamples)
-{
-    // (1/seaLevelAttenuationCoefficient) for a single wavelength used for sampling.
-    float  rcpA = rcpSeaLevelAttenuationCoefficient;
+        relDiff = optDepthAtDist * rcpOptDepth - 1;
 
-    float  tMax = distance(Y, X);
-    float3 V    = normalize(Y - X);
+    } while (abs(relDiff) > EPS); // Stop when the accuracy goal has been reached.
 
-    float totalOpticalDepth = ComputeOpticalDepthAlongRaySegment(X, Y);
-    float totalOpacity      = OpacityFromOpticalDepth(totalOpticalDepth);
-
-    // Compute initial parameters.
-    float3 P        = X;
-    float  r        = distance(P, C);
-    float  cosTheta = dot(P - C, V) * rcp(r);
-
-    float  t             = 0;
-    float3 radiance      = 0;
-    float  transmittance = 1;
-
-    for (uint i = 0; i < numSamples; i++)
-    {
-
-        // Samples must be arranged in the ascending order, s.t.
-        // for any i, sample[i] < sample[i + 1].
-        float cdf = GetOrderedUnitIntervalRandomSample(i, numSamples);
-
-        // Total value of transmittance (Equation 66).
-        float totTransm = 1 - cdf * totalOpacity;
-
-        // Transmittance relative to the previous sample (Equation 68).
-        float relTransm = totTransm * rcp(transmittance);
-
-        // Update the value of transmittance up to the current sample.
-        transmittance = totTransm;
-
-        // Ignore curvature of the planet (polygonal planet approximation).
-        // The approximation is accurate assuming high sampling rate.
-        float dt = SampleRectExpMedium(relTransm, r - R, cosTheta, rcpA, rcpH);
-
-        // Since the distance is approximate, it's a good idea to clamp.
-        t        = min(t + dt, tMax);
-        P        = X + t * V;
-        r        = distance(P, C);
-        cosTheta = dot(P - C, V) * rcp(r);
-
-    #if 0
-        // Equation 34.
-        float extinction = seaLevelAttenuationCoefficient * exp((R - r) * rcpH);
-
-        // Equations 11. By the Equation 15, albedo cancels out.
-        // The PDF value is also approximate (since the the distance 't' is).
-        float pdf = extinction * transmittance / totalOpacity;
-    #endif
-
-        // Equation 12.
-        // For a single wavelength, and with high enough sampling density,
-        // weight = scattering * transmittance / pdf ≈ ssAlbedo * totalOpacity.
-        radiance += ComputeInScatteredRadiance(P, V);
-    }
-
-    // Equation 12 (normalization).
-    radiance *= ssAlbedo * totalOpacity * rcp(numSamples);
-
-    return radiance;
+    return t;
 }
 ```
 
-In fact, curvature of the planet can be ignored for moderate distances, making it a relatively efficient and accurate approximation. Can we exploit this idea for arbitrary distances? Let's take another look at the Equation 13. Assuming a constant albedo, the value of the CDF \\(P\\) along the ray segment of length \\(t\_{max}\\) is given as:
+Since optical depth is a smooth monotonic function of distance, this numerical procedure will converge very quickly, typically, after a couple of iterations. If desired, the cost can be fixed by using an iteration counter to terminate the loop, potentially trading accuracy for consistent performance. In many cases, performing just a single iteration will produce good results.
 
-$$ \tag{64} P(\bm{x}, \bm{v}, t)
-    = \frac{O(\bm{x} + t \bm{v})}{O(\bm{x} + t\_{max} \bm{v})}.
-$$
+In fact, curvature of the planet can be ignored for moderate distances, making the rectangular version a relatively efficient and accurate approximation. Can we exploit this idea for arbitrary distances?
 
-To invert it means to find the distance \\(t\\) along the ray at which fractional opacity is equal to \\(P\\). In other words, we want to find the distance \\(t\\) along the ray at which opacity has the same value as the product of the CDF and opacity of the entire ray segment:
+Let's say that we are not interested in brute-force path tracing (which would require accurate numerical inversion). Instead, we are trying to gather in-scattered radiance along the ray using the Equation 16, where \\(\bm{L_s}\\) is known (which limits us to single and pre-computed multiple scattering).
 
-$$ \tag{65} O(\bm{x} + t \bm{v}) = P(\bm{x}, \bm{v}, t) O(\bm{x} + t\_{max} \bm{v}). $$
+If we make an assumption that our random CDF values are ordered in ascending order, and that the sampling rate is sufficiently high, we can build an incremental sampling algorithm which effectively models piecewise-flat (or polygonal) planet. We will refer to it as *incremental importance sampling*.
 
-Total opacity of the ray can be efficiently computed using our analytic approximation. The only issue is solving for distance given opacity.
-
-Let's say that we are not interested in brute-force path tracing (which would require numerical inversion). Instead, we are trying to compute radiance along the ray using the Equation 8, where \\(\bm{L_s}\\) is known (which limits us to single and pre-computed multiple scattering).
-
-If we make the assumption that our random CDF values are ordered in ascending order, and that the sampling rate is sufficiently high, we can build an incremental sampling algorithm which effectively models piecewise-flat (or polygonal) planet. We will refer to it as *incremental importance sampling*.
-
-It is a direct replacement for randomized ray marching, and shares the traits of being biased, but consistent. Unlike ray marching, the algorithm is intelligent, and adapts to properties of the participating medium, so it's much more efficient.
+It is a direct replacement for randomized ray marching, and shares the traits of being biased, but consistent. Unlike ray marching, the algorithm is intelligent, and adapts to properties of the participating medium, which makes it more robust.
 
 Let's try to understand how it works in more detail.
 
-Instead of solving the Equation 65 using opacity, we could solve it using transmittance instead. Rearranging things a bit, the first iteration of the algorithm solves
+For the first sample along the ray, we must solve
 
-$$ \tag{66} T(\bm{x} + t_1 \bm{v}) = 1 - P(\bm{x}, \bm{v}, t_1) O(\bm{x} + t\_{max} \bm{v}) = T_1. $$
+$$ \tag{55} -\mathrm{log} \big( 1 - P(t_1 | \lbrace \bm{x}, \bm{v} \rbrace) O(\bm{x}, \bm{v}, t\_{max}) \big) = \tau(\bm{x}, \bm{v}, t_1) = \tau_1. $$
 
-It determines the (approximate) distance \\(t_1\\) to the first sample given the corresponding transmittance \\(T_1\\). The second sample starts the next edge of the polygon, so we would like to compute distance and transmittance relative to the previous sample:
+Basically, we must determine the (approximate) distance \\(t_1\\) to the first sample along the ray given the corresponding optical depth \\(\tau_1\\). To solve this equation, we substitute the analytic rectangular approximation of optical depth (Equation 29), which is valid for short distances. Total opacity along the entire ray can be computed accurately using our numerical approximation (Equation 43).
 
-$$ \tag{67} T \big(\bm{x} + t_1 \bm{v} \big) T \big((\bm{x} + t_1 \bm{v}) + (t_2 - t_1) \bm{v} \big) = T_2. $$
+The second sample forms the next edge of the polygon, and we would like to compute the distance and transmittance relative to the first sample (\\(\tau_2\\) is given):
 
-Or, more simply put,
+$$ \tag{56} \tau(\bm{x}, \bm{v}, t_1) + \tau(\bm{x} + t_1 \bm{v}, \bm{v}, t_2 - t_1) = \tau_2. $$
 
-$$ \tag{68} T \big((\bm{x} + t_1 \bm{v}) + \Delta t_2 \bm{v} \big) = T_2 / T_1. $$
+Or, more simply put, we solve for the relative distance given relative optical depth (w.r.t. the previous sample):
 
-Both Equations 66 and 68 can be solved using the Equation 33. Basically, we solve for relative distance given relative transmittance w.r.t. the previous sample.
+$$ \tag{57} \tau(\bm{x} + t_1 \bm{v}, \bm{v}, \Delta t_2) = \Delta \tau_2. $$
 
 Code that implements incremental importance sampling can be found below.
 
 ```c++
-// Only monochromatic coefficients are supported by this code snippet.
-float seaLevelAttenuationCoefficient, rcpSeaLevelAttenuationCoefficient;
-float R, rcpR, H, rcpH, Z;
-float3 C, ssAlbedo;
+// Uniforms.
+float    R, Z, H, rcpH, seaLvlAtt, rcpSeaLvlAtt;
+float3   C;
+spectrum ssAlbedo;
 
-float SampleRectExpMedium(float transmittance, float height, float cosTheta,
-                          float rcpSeaLevelAttenuationCoefficient, float rcpH)
+spectrum IntegrateRadianceAlongRaySegment(float3 X, float3 V, float t, uint numSamples)
 {
-    // Equation 20.
-    float d = rcpSeaLevelAttenuationCoefficient * exp(height * rcpH);
-    float t = -log(transmittance) * d;
-
-    float p = cosTheta * rcpH;
-
-    if (abs(p) > FLT_EPS)
-    {
-        // Equation 33.
-        t = -log(1 - p * t) * rcp(p);
-    }
-
-    return t;
-}
-
-float3 IntegrateRadianceAlongRaySegment(float3 X, float3 Y, uint numSamples)
-{
-    // (1/seaLevelAttenuationCoefficient) for a single wavelength used for sampling.
-    float  rcpA = rcpSeaLevelAttenuationCoefficient;
-
-    float  tMax = distance(Y, X);
-    float3 V    = normalize(Y - X);
-
-    float totalOpticalDepth = ComputeOpticalDepthAlongRaySegment(X, Y);
-    float totalOpacity      = OpacityFromOpticalDepth(totalOpticalDepth);
-
     // Compute initial parameters.
     float3 P        = X;
     float  r        = distance(P, C);
     float  cosTheta = dot(P - C, V) * rcp(r);
 
-    float  t             = 0;
-    float3 radiance      = 0;
-    float  transmittance = 1;
+    // This snippet only supports monochromatic attenuation coefficients.
+    float maxOptDepth = EvalOptDepthSpherExpMedium(r, cosTheta, t, seaLvlAtt, Z, H, rcpH);
+    float maxOpacity  = OpacityFromOpticalDepth(maxOptDepth);
+
+    spectrum radiance = 0;
+    float sumOptDepth = 0;
+    float sumDist     = 0;
 
     for (uint i = 0; i < numSamples; i++)
     {
-
         // Samples must be arranged in the ascending order, s.t.
         // for any i, sample[i] < sample[i + 1].
         float cdf = GetOrderedUnitIntervalRandomSample(i, numSamples);
 
-        // Total value of transmittance (Equation 66).
-        float totTransm = 1 - cdf * totalOpacity;
+        // Convert to absolute optical depth (Equation 18).
+        float absOptDepth = -log(1 - cdf * maxOpacity);
 
-        // Transmittance relative to the previous sample (Equation 68).
-        float relTransm = totTransm * rcp(transmittance);
+        // Convert to relative optical depth.
+        float relOptDepth = absOptDepth - sumOptDepth;
 
-        // Update the value of transmittance up to the current sample.
-        transmittance = totTransm;
+        // Solve for the relative distance (Equation 57).
+        float dt = SampleRectExpMedium(relOptDepth, r - R, cosTheta, rcpSeaLvlAtt, rcpH);
 
-        // Ignore curvature of the planet (polygonal planet approximation).
-        // The approximation is accurate assuming high sampling rate.
-        float dt = SampleRectExpMedium(relTransm, r - R, cosTheta, rcpA, rcpH);
+        // Update the state for the next iteration.
+        sumDist     = min(sumDist + dt, t);
+        sumOptDepth = absOptDepth;
+        P           = X + t * V;
+        r           = distance(P, C);
+        cosTheta    = dot(P - C, V) * rcp(r);
 
-        // Since the distance is approximate, it's a good idea to clamp.
-        t        = min(t + dt, tMax);
-        P        = X + t * V;
-        r        = distance(P, C);
-        cosTheta = dot(P - C, V) * rcp(r);
-
-    #if 0
-        // Equation 34.
-        float extinction = seaLevelAttenuationCoefficient * exp((R - r) * rcpH);
-
-        // Equations 11. By the Equation 15, albedo cancels out.
-        // The PDF value is also approximate (since the the distance 't' is).
-        float pdf = extinction * transmittance / totalOpacity;
-    #endif
-
-        // Equation 12.
-        // For a single wavelength, and with high enough sampling density,
-        // weight = scattering * transmittance / pdf ≈ ssAlbedo * totalOpacity.
+        // Equation 16 (without normalization).
         radiance += ComputeInScatteredRadiance(P, V);
     }
 
-    // Equation 12 (normalization).
-    radiance *= ssAlbedo * totalOpacity * rcp(numSamples);
+    // Equation 16 (normalization).
+    radiance *= ssAlbedo * maxOpacity * rcp(numSamples);
 
     return radiance;
 }
@@ -826,9 +719,15 @@ float3 IntegrateRadianceAlongRaySegment(float3 X, float3 Y, uint numSamples)
 
 # Handling Spectral Coefficients
 
-WIP
+While using monochromatic attenuation is acceptable for certain use cases (such as modeling aerosols and fog), generally speaking, we would like to support spectrally-varying coefficients. This means that given a fixed distance, light is going to be attenuated to a different degree depending on the wavelength. This poses a problem for importance sampling, which works by converting opacity (now a vector) to a distance (a scalar).
 
-Average coefficient across wave lengths, hero wavelength, single sample MIS...
+The simplest solution is to trace one path per wavelength. For instance, you could either densely sample the entire [visible spectrum](https://en.wikipedia.org/wiki/Visible_spectrum) (e.g. 380 to 740 nm with a 5 nm step size resulting in 72 paths), or pick several wavelengths stochastically (distributed either uniformly, or according to the [luminous efficiency function](https://en.wikipedia.org/wiki/Luminosity_function)). This brute force approach increases the rendering cost by a factor of \\(N\\), but it provides a good reference point for comparison.
+
+Another approach suggested during the [Production Volume Rendering](https://graphics.pixar.com/library/ProductionVolumeRendering/paper.pdf) course is to invert the average opacity value across the spectrum. This solution is rather attractive from the performance point of view, since you only end up tracing a single path. Unfortunately, it assumes that the average value is fairly representative. This may not be the case for subsurface scattering in skin, for instance, where red wavelengths scatter much farther, and using this technique may result in an excessive amount of noise. On another hand, if could use the maximum opacity value across the spectrum for skin, your atmospheric scattering may become undersampled.
+
+...
+
+Hero wavelength + spectral single sample MIS...
 
 Several components (air, aerosols)?
 
