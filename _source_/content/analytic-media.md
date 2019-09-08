@@ -17,13 +17,13 @@ Rendering of participating media is an important aspect of every modern renderer
 
 In the [radiative transfer](https://archive.org/details/RadiativeTransfer) literature, light-material interaction is usually quantified in terms of absorption (conversion of electromagnetic energy of photons into kinetic energy of atoms, which manifests itself as reduction of light intensity) and scattering (change of photon's flight direction). Therefore, it is common to describe participating media using the collision coefficients: the *absorption coefficient* \\(\bm{\sigma_a}\\) and the *scattering coefficient* \\(\bm{\sigma_s}\\). These coefficients give the probability of the corresponding event per unit distance traveled, which implies the [SI units](https://en.wikipedia.org/wiki/International_System_of_Units) of measurement are \\(m^{-1}\\).
 
-The [attenuation coefficient](https://en.wikipedia.org/wiki/Attenuation_coefficient)
+The [attenuation coefficient](https://en.wikipedia.org/wiki/Attenuation_coefficient) \\(\bm{\sigma_t}\\)
 
 $$ \tag{1} \bm{\sigma_t} = \bm{\sigma_a} + \bm{\sigma_s} $$
 
 gives the probability of absorption or scattering (or collision rate) as a photon travels a unit distance through the volume. All these coefficients are typically spectral (vary with the wavelength \\(\lambda\\)), and can be represented as vectors (boldface notation). At this point in time, it is not entirely clear (at least to me) how to correctly perform volume rendering using tristimulus (RGB) values (which would require pre-integration using [color matching functions](https://en.wikipedia.org/wiki/CIE_1931_color_space#Color_matching_functions)), so I will focus on pure spectral rendering, which is well-defined.
 
-A more artist-friendly parametrization uses the [single-scattering (volume) albedo](https://en.wikipedia.org/wiki/Single-scattering_albedo) \\(\bm{\alpha\_{ss}}\\)
+A more artist-friendly parametrization uses the [single-scattering albedo](https://en.wikipedia.org/wiki/Single-scattering_albedo) \\(\bm{\alpha\_{ss}}\\)
 
 $$ \tag{2} \bm{\alpha\_{ss}} = \frac{\bm{\sigma_s}}{\bm{\sigma_t}}, $$
 
@@ -39,15 +39,15 @@ $$ \tag{4} \bm{\kappa} = \frac{\bm{\lambda \sigma_a}}{4 \pi}. $$
 
 Therefore, a triple \\(\lbrace \bm{\eta}, \bm{\kappa}, \bm{\sigma_s} \rbrace\\) \\(\big(\\)or, alternatively, \\(\lbrace \bm{\eta}, \bm{d}, \bm{\alpha\_{ss}} \rbrace  \big) \\) is sufficient to describe both the behavior at the boundary and the multiple-scattering process (known as [subsurface scattering](https://en.wikipedia.org/wiki/Subsurface_scattering)) inside the volume, that ultimately gives rise to what we perceive as the surface albedo \\(\bm{\alpha\_{ms}}\\). Please note that certain materials (metals, in particular) require modeling of [interference](https://en.wikipedia.org/wiki/Wave_interference) to obtain expected reflectance values.
 
-Integral of the attenuation coefficient along the span of ray segment of length \\(t\\) from the point \\(\bm{x}\\) in the direction \\(\bm{v}\\) corresponds to [optical depth](https://en.wikipedia.org/wiki/Optical_depth) (or optical thickness):
+Integral of the attenuation coefficient along the span of ray segment of length \\(t\\) from the point \\(\bm{x}\\) in the direction \\(\bm{v}\\) corresponds to [optical depth](https://en.wikipedia.org/wiki/Optical_depth) (or optical thickness) \\(\bm{\tau}\\):
 
 $$ \tag{5} \bm{\tau}(\bm{x}, \bm{v}, t) = \int\_{0}^{t} \bm{\sigma_t} (\bm{x}, \bm{v}, s) ds, $$
 
-Given the value of optical depth, it's easy to compute [transmittance](https://en.wikipedia.org/wiki/Transmittance) using the [Beer–Lambert–Bouguer law](https://en.wikipedia.org/wiki/Beer%E2%80%93Lambert_law):
+Given the value of optical depth, it's easy to compute [transmittance](https://en.wikipedia.org/wiki/Transmittance) \\(\bm{T}\\) using the [Beer–Lambert–Bouguer law](https://en.wikipedia.org/wiki/Beer%E2%80%93Lambert_law):
 
 $$ \tag{6} \bm{T}(\bm{x}, \bm{v}, t) = e^{-\bm{\tau}(\bm{x}, \bm{v}, t)}. $$
 
-While optical depth can take on any non-negative value, transmittance is restricted to the unit interval, and can be interpreted as the probability of a collision-free flight. Its complement is volume opacity:
+While optical depth can take on any non-negative value, transmittance is restricted to the unit interval, and can thus be interpreted as a probability of a collision-free flight. Its complement is opacity \\(\bm{O}\\):
 
 $$ \tag{7} \bm{O}(\bm{x}, \bm{v}, t) = 1 - \bm{T}(\bm{x}, \bm{v}, t). $$
 
@@ -103,17 +103,17 @@ $$
 
 where sample locations \\(s_i\\) are distributed according to the [PDF](https://en.wikipedia.org/wiki/Probability_density_function) \\(p\\).
 
-We can [importance sample](http://www.pbr-book.org/3ed-2018/Monte_Carlo_Integration/Importance_Sampling.html) the integrand according to the analytic product \\(\sigma_t T\\) (effectively, by assuming that the rest of the integrand varies slowly). In order to turn it into a valid PDF, we must normalize this term over its domain (which, in our case, spans the range from 0 to \\(t\_{max}\\)):
+We can [importance sample](http://www.pbr-book.org/3ed-2018/Monte_Carlo_Integration/Importance_Sampling.html) the integrand according to the analytic product \\(\sigma_t T\\) (effectively, by assuming that the rest of the integrand varies slowly). In order to turn it into a valid PDF, we must normalize this term over the domain of integration (which, in our case, spans the range from 0 to \\(t\_{max}\\)):
 
 $$ \tag{15} p(t | \lbrace \bm{x}, \bm{v} \rbrace)
     = \frac{\sigma_t(\bm{x}, \bm{v}, t) T(\bm{x}, \bm{v}, t)}{\int\_{0}^{t\_{max}} \sigma_t(\bm{x}, \bm{v}, s) T(\bm{x}, \bm{v}, s) ds}
     = \frac{\sigma_t(\bm{x}, \bm{v}, t) T(\bm{x}, \bm{v}, t)}{O(\bm{x}, \bm{v}, t\_{max})}. $$
 
-This radically simplifies evaluation of the estimate (again, for a single wavelength):
+This radically simplifies evaluation of the estimator (again, for a single wavelength):
 
 $$ \tag{16} L(\bm{x}, \bm{v}) \approx O(\bm{x}, \bm{v}, t\_{max}) \frac{1}{N} \sum\_{i=1}^{N} \alpha\_{ss}(\bm{x}, \bm{v}, s_i) L_s(\bm{x} + s_i \bm{v}, \bm{v}). $$
 
-It can be seen as a form of [premultiplied alpha blending](https://graphics.pixar.com/library/Compositing/) (where alpha is opacity), which explains why particle cards can be so convincing. Additionally, it offers yet another way to parametrize the attenuation coefficient - namely, by opacity at distance (which is similar to [transmittance at distance](https://blog.selfshadow.com/publications/s2015-shading-course/burley/s2015_pbs_disney_bsdf_notes.pdf) used by Disney).
+This equation can be seen as a form of [premultiplied alpha blending](https://graphics.pixar.com/library/Compositing/) (where alpha is opacity), which explains why particle cards can be so convincing. Additionally, it offers yet another way to parametrize the attenuation coefficient - namely, by opacity at distance (which is similar to [transmittance at distance](https://blog.selfshadow.com/publications/s2015-shading-course/burley/s2015_pbs_disney_bsdf_notes.pdf) used by Disney). It appears to be the most RGB-rendering-friendly parametrization that I am aware of.
 
 In order to distribute the samples according to the PDF, we must be able to [invert](http://www.pbr-book.org/3ed-2018/Monte_Carlo_Integration/Sampling_Random_Variables.html#TheInversionMethod) the [CDF](https://en.wikipedia.org/wiki/Cumulative_distribution_function) \\(P\\):
 
