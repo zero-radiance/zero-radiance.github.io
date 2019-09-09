@@ -129,13 +129,13 @@ $$ \tag{18} \tau(\bm{x}, \bm{v}, t) = -\mathrm{log} \big( 1 - P(t | \lbrace \bm{
 
 # Types of Analytic Participating Media
 
-Sometimes, it's convenient to specify the concentration (density) of the medium, and not just its effective optical properties. For example, the attenuation coefficient can be computed using the following formula:
+Sometimes, it's convenient to specify the concentration (density) of the medium, and not its effective optical properties. For example, the attenuation coefficient can be computed using the following formula:
 
 $$ \tag{19} \bm{\sigma_t} = \rho \bm{\mu_t}, $$
 
 where \\(\rho\\) is the [volumetric mass density](https://en.wikipedia.org/wiki/Mass_density) (measured in units of \\(kg/m^{3}\\)) and \\(\bm{\mu_t}\\) is the [mass attenuation coefficient](https://en.wikipedia.org/wiki/Mass_attenuation_coefficient) (in units of \\(m^{2}/kg\\)).
 
-If your background is in real-time rendering, you may have heard of [constant, linear and exponential fog](http://www.terathon.com/lengyel/Lengyel-UnifiedFog.pdf). These names refer to variation of density, typically with respect to height, and can be used to model height fog and atmospheric scattering. In most cases, the albedo is assumed to be constant.
+If your background is in real-time rendering, you may have heard of [constant, linear and exponential fog](http://www.terathon.com/lengyel/Lengyel-UnifiedFog.pdf). These names refer to variation of density, typically with respect to height, and can be used to model height fog and atmospheric scattering. Usually, the albedo is assumed to be constant.
 
 ## Constant Density
 
@@ -250,9 +250,9 @@ This is where things get interesting. We would like to model an exponential dens
 
 $$ \tag{30} \rho\_{es}(\bm{x}) = k e^{-h(\bm{x}) / H} = k e^{-(\Vert \bm{x} - \bm{c} \Vert - R) / H} = k e^{-n (\Vert \bm{x} - \bm{c} \Vert - R)}, $$
 
-where \\(\bm{c}\\) is the center of the planet, \\(R\\) is its radius, \\(h\\) is the altitude, and \\(H\\) is the [scale height](https://en.wikipedia.org/wiki/Scale_height) as before. In this context, \\(k\\) and \\(\bm{\mu_t} k\\) represent the density and the value of the attenuation coefficient at the sea level, respectively.
+where \\(\bm{c}\\) is the center of the sphere, \\(R\\) is its radius, \\(h\\) is the altitude, and \\(H\\) is the [scale height](https://en.wikipedia.org/wiki/Scale_height) as before. In this context, \\(k\\) and \\(\bm{\mu_t} k\\) represent the density and the value of the attenuation coefficient at the sea level, respectively.
 
-Before proceeding with the derivation, it's helpful to understand the geometric setting (after all, a picture is worth a thousand words). Personally, I found the article by Christian Schüler in [GPU Gems 3](http://www.gameenginegems.net/gemsdb/article.php?id=1133) to be a very helpful introduction to the relevant concepts, and I encourage you to check it out if you still have questions after reading my explanation below.
+Before proceeding with the derivation, it's helpful to understand the geometric setting (after all, a picture is worth a thousand words). Personally, I found the article by Christian Schüler in [GPU Gems 3](http://www.gameenginegems.net/gemsdb/article.php?id=1133) to be immensely helpful, and I encourage you to check it out if you still have questions after reading my explanation below.
 
 ### Geometric Configuration of a Spherical Atmosphere
 
@@ -296,13 +296,13 @@ $$ \tag{36}
     = \bm{\mu_t} \frac{k}{n} \Bigg( C_r \Big(z_x, Z, \mathrm{cos}{\theta_x} \Big) - C_r \Big(z_y, Z, \mathrm{cos}{\theta_y} \Big) \Bigg).
 $$
 
-What the Equation 36 tells us is that we should evaluate the optical depth integral twice (along the entire ray, from 0 to \\(\infty\\)), at the start and at the end of the interval, and subtract the results to "clip" the ray.
+What the Equation 36 tells us is that we should evaluate the optical depth integral twice (in the same direction, along the entire ray, from 0 to \\(\infty\\)), at the start and at the end of the interval, and subtract the results to "clip" the ray.
 
 It's interesting to contemplate the physical meaning of the Chapman function. Generally speaking, the value of a line integral of density (such as given by \\(\bm{\tau} / \bm{\mu_t}\\)) corresponds to mass. Therefore, the integral
 
 $$ \tag{37} \int\_{h = (r - R)}^{\infty} k e^{-n s} ds = \frac{k}{n} e^{-n h} $$
 
-specifies the mass of an infinitely tall vertical column with its lower end starting at height \\(h\\).
+gives the mass of an infinitely tall vertical column with its lower end starting at height \\(h\\).
 
 Optical depth, then, is a *product* of the mass of the vertical column *and* the value of the obliquity function (which, intuitively, gives the absolute optical air mass along the oblique ray) *times* the mass attenuation coefficient.
 
@@ -317,7 +317,7 @@ Arguably, the first two are the most important, since they roughly correspond to
 
 Being an obliquity function, \\(C(z, 0) = 1\\). The function varies slowly, as long as the angle is far from horizontal (which suggests an opportunity for a [small-angle approximation](https://en.wikipedia.org/wiki/Small-angle_approximation)).
 
-The Chapman function has an [analytic expression](https://ui.adsabs.harvard.edu/abs/1996CoSka..26...23K/abstract):
+The Chapman function has an [analytic expression](https://ui.adsabs.harvard.edu/abs/1996CoSka..26...23K/abstract)
 
 $$ \tag{38} C(z, \mathrm{cos}{\theta}) = \frac{1}{2} \mathrm{cos}{\theta} + \frac{1}{2} \Big(\frac{1}{\sqrt{z}} + 2 \sqrt{z} - \sqrt{z} (\mathrm{cos}{\theta})^2 \Big) \sqrt{\frac{\pi}{2}} \Bigg[ e^{\big( \frac{1}{\sqrt{2}} \sqrt{z} \mathrm{cos}{\theta} \big)^2} \mathrm{erfc}{\Big(\frac{1}{\sqrt{2}} \sqrt{z} \mathrm{cos}{\theta}\Big)} \Bigg], $$
 
@@ -333,7 +333,7 @@ Beyond the 90 degree angle, the following identity can be used:
 
 $$ \tag{40} C_l(z, \mathrm{cos}{\theta}) = 2 e^{z - z \mathrm{sin}{\theta}} C_h(z \mathrm{sin}{\theta}) - C(z, -\mathrm{cos}{\theta}), $$
 
-which means that we must find the position \\(\bm{p}\\) (sometimes called the [periapsis](https://en.wikipedia.org/wiki/Apsis) point, see the diagram in the previous section) along the ray where the ray direction is orthogonal to the surface normal, evaluate the horizontal Chapman function there (twice, forwards and backwards, to cover the entire real line), and subtract the value of the Chapman function at the original position with the reversed direction (towards the atmospheric boundary), which isolates the integral to the desired ray segment.
+which means that we must find a position \\(\bm{p}\\) (sometimes called the [periapsis](https://en.wikipedia.org/wiki/Apsis) point, see the diagram in the previous section) along the ray where the ray direction is orthogonal to the surface normal, evaluate the horizontal Chapman function there (twice, forwards and backwards, to cover the entire real line), and subtract the value of the Chapman function at the original position with the reversed direction (towards the atmospheric boundary), which isolates the integral to the desired ray segment.
 
 Christian Schüler proposes an approximation of the Chapman function for the upper hemisphere in his [GPU Gems 3](http://www.gameenginegems.net/gemsdb/article.php?id=1133) article:
 
@@ -343,7 +343,7 @@ It's a pretty good approximation, especially considering the cost.
 
 {{< figure src="/img/chapman_chris.png" caption="*Plot of the approximation of the Chapman function by Christian Schüler for \\(r = 6600\\).*">}}
 
-However, if you care about accuracy, and plot the the relative error graph, it paints a slightly less attractive picture.
+However, if you care about accuracy, and plot the relative error graph, it paints a slightly less attractive picture.
 
 {{< figure src="/img/chapman_chris_error.png" caption="*Relative error plot of the approximation of the Chapman function by Christian Schüler for \\(r = 6600\\).*">}}
 
@@ -483,7 +483,7 @@ spectrum EvalOptDepthSpherExpMedium(float r, float cosTheta,
 
 If desired, it is possible to reduce execution divergence by utilizing `ChapmanUpperApprox` (with the cosine value of 0) instead of `ChapmanHorizontal`, but I will retain this version for clarity of exposition.
 
-Now we are ready to tackle the most general case of evaluating optical depth between two arbitrary points \\(\bm{x}\\) and \\(\bm{y}\\). It may seem really difficult at first when, in fact, it's very similar to the problem we just solved. We have to consider three distinct possibilities:
+Now we are ready to tackle the most general case of evaluating optical depth between two arbitrary points \\(\bm{x}\\) and \\(\bm{y}\\). It may seem really complicated at first when, in fact, it's very similar to the problem we just solved. We have to consider three distinct possibilities:
 
 1\. \\(\mathrm{cos}{\theta_x} \geq 0 \\), which means that the ray points into the upper hemisphere with respect to the surface normal at the point \\(\bm{x}\\). This also means it points into the upper hemisphere at any point \\(\bm{y}\\) along the ray (it's fairly obvious if you sketch it). Optical depth is given by the Equation 36, which we specialize by replacing \\(C\\) with \\(C_u\\) which is restricted to the upper hemisphere:
 
@@ -494,7 +494,7 @@ $$
 
 2\. \\(\mathrm{cos}{\theta_x} < 0 \\) and \\(\mathrm{cos}{\theta_y} < 0 \\) occurs e.g. when looking straight down. It's also easy to handle, we just flip the direction (by taking the absolute value of the cosine), replace the segment \\(\bm{xy}\\) with the segment \\(\bm{yx}\\) and fall back to case 1.
 
-3\. \\(\mathrm{cos}{\theta_x} < 0 \\) and \\(\mathrm{cos}{\theta_y} \geq 0 \\). This is the most complicated case, since we have to evaluate the Chapman function three times, twice at \\(\bm{x}\\) with the direction pointing into the lower hemisphere, and once at \\(\bm{y}\\) with the ray pointing in the upper hemisphere:
+3\. \\(\mathrm{cos}{\theta_x} < 0 \\) and \\(\mathrm{cos}{\theta_y} \geq 0 \\). This is the most complicated case, since we have to evaluate the Chapman function three times, twice at \\(\bm{x}\\) with the direction pointing into the lower hemisphere, and once at \\(\bm{y}\\) with the ray pointing into the upper hemisphere:
 
 $$ \tag{48} \begin{aligned}
 \bm{\tau\_{ul}}(z_x, \mathrm{cos}{\theta_x}, z_y, \mathrm{cos}{\theta_y})
@@ -545,7 +545,7 @@ The code listed above works for all finite inputs. An important special case is 
 
 ### Sampling Exponential Media in Spherical Coordinates
 
-In order to be able to sample participating media, we must be able to solve the optical depth equation for distance (Equation 18). Analysis presented in the previous section indicates that there are two cases we must consider: the ray either points into the same hemisphere at both endpoints (Equation 47), or into the opposite ones (Equation 48).
+In order to sample participating media, we must be able to solve the optical depth equation for distance (Equation 18). Analysis presented in the previous section indicates that we must consider two cases: the ray pointing into the same hemisphere at both endpoints (Equation 47), and into opposite ones (Equation 48).
 
 First, let's establish a couple of useful identities. Recalling the Equation 32, we can compute the radial distance from the center \\(\bm{c}\\) to the point \\(\bm{x} + t \bm{v}\\) along the ray using the Pythagorean theorem:
 
@@ -556,7 +556,7 @@ $$ \tag{49}
     = \sqrt{r^2 + t^2 + 2 t r \mathrm{cos}{\theta}}.
 $$
 
-The cosine of the ray direction with respect to the surface normal at that point can be computed as follows:
+The cosine of the ray direction with respect to the surface normal at that point can be computed similarly:
 
 $$ \tag{50}
 \mathcal{C}(r, \theta, t)
@@ -565,7 +565,7 @@ $$ \tag{50}
     = \frac{r \mathrm{cos}{\theta} + t}{\sqrt{(r \mathrm{sin}{\theta})^2 + (r \mathrm{cos}{\theta} + t)^2}}.
 $$
 
-Using the new, compact notation, and after performing some algebraic manipulation, we can reduce the problem to solving the following equation:
+Using the new, compact notation, and after performing some algebraic manipulation, we can reduce the CDF inversion problem to solving the following equation:
 
 $$ \tag{51}
 q = C_r \Big( n \mathcal{R}(r, \theta, t), Z, \mathcal{C}(r, \theta, t) \Big),
@@ -584,7 +584,7 @@ After getting rid of \\(n\\), the next step is to group common terms:
 $$ \tag{53} \phi = z \mathrm{sin}{\theta} \qquad \psi = z \mathrm{cos}{\theta} + t', $$
 
 $$ \tag{54}
-q = C_r \Big( \sqrt{\phi^2+\psi^2}, Z, \frac{\psi}{\sqrt{\phi^2+\psi^2}} \Big). $$
+q = C_r \Bigg( \sqrt{\phi^2+\psi^2}, Z, \frac{\psi}{\sqrt{\phi^2+\psi^2}} \Bigg). $$
 
 Both \\(\phi\\) and \\(\psi\\) are known to be positive. We must solve for \\(\psi\\). \\(Z\\) could theoretically be removed, but it's here to keep the solution within the sane numerical range.
 
@@ -594,7 +594,7 @@ While that's an unfortunate development, it's a minor setback. If we can't solve
 
 In fact, there is a [better way](http://lib-www.lanl.gov/la-pubs/00367066.pdf), which is even simpler. Recall that Newton's method requires being able to make an initial guess, evaluate the function, and take its derivative. If we solve using the entire optical depth formulation (Equation 18), we know that its derivative is just the extinction coefficient \\(\sigma_t\\) (Equation 9), and making a good initial guess is easy by simply ignoring curvature of the planet.
 
-This method is very general and works for completely arbitrary continuous density distributions (see the [paper](http://lib-www.lanl.gov/la-pubs/00367066.pdf)).
+This method is very general and works for arbitrary continuous density distributions (see the [paper](http://lib-www.lanl.gov/la-pubs/00367066.pdf) for details).
 
 Sample code is listed below.
 
@@ -617,7 +617,7 @@ float SampleSpherExpMedium(float optDepth, float r, float cosTheta,
         float radAtDist = RadAtDist(r, cosTheta, t);
 
         // Evaluate the function and its (reciprocal) derivative:
-        // f(t) = OptDepthAtDist(t) - GivenOptDepth = 0,
+        // f (t) = OptDepthAtDist(t) - GivenOptDepth = 0,
         // f'(t) = AttCoefAtDist(t).
         // The sea level attenuation coefficient cancels out during division.
         float optDepthAtDist = EvalOptDepthSpherExpMedium(r, cosTheta, t, 1, Z, H, rcpH);
@@ -635,11 +635,11 @@ float SampleSpherExpMedium(float optDepth, float r, float cosTheta,
 }
 ```
 
-Since optical depth is a smooth monotonic function of distance, this numerical procedure will converge very quickly, typically, after a couple of iterations. If desired, the cost can be fixed by using an iteration counter to terminate the loop, potentially trading accuracy for consistent performance. In many cases, performing just a single iteration will produce good results.
+Since optical depth is a smooth monotonic function of distance, this numerical procedure will converge very quickly, typically, after a couple of iterations (a [higher order method](https://en.wikipedia.org/wiki/Halley%27s_method) can be used for even faster convergence). If desired, the cost can be fixed by using an iteration counter to terminate the loop, potentially trading accuracy for consistent performance. In many cases, performing just a single iteration will produce good results.
 
-In fact, curvature of the planet can be ignored for moderate distances, making the rectangular version a relatively efficient and accurate approximation. Can we exploit this idea for arbitrary distances?
+In fact, curvature of the planet can be ignored for moderate distances, making the rectangular function a relatively efficient and accurate approximation. Can we exploit this idea for arbitrary distances?
 
-Let's say that we are not interested in brute-force path tracing (which would require accurate numerical inversion). Instead, we are trying to gather in-scattered radiance along the ray using the Equation 16, where \\(\bm{L_s}\\) is known (which limits us to single and pre-computed multiple scattering).
+Let's say that we are not interested in brute-force path tracing (which would require accurate numerical inversion as discussed above). Instead, we are trying to gather in-scattered radiance along the ray using the Equation 16, where \\(\bm{L_s}\\) is known (which limits us to single and pre-computed multiple scattering).
 
 If we make an assumption that our random CDF values are ordered in ascending order, and that the sampling rate is sufficiently high, we can build an incremental sampling algorithm which effectively models piecewise-flat (or polygonal) planet. We will refer to it as *incremental importance sampling*.
 
@@ -653,15 +653,15 @@ $$ \tag{55} -\mathrm{log} \big( 1 - P(t_1 | \lbrace \bm{x}, \bm{v} \rbrace) O(\b
 
 Basically, we must determine the (approximate) distance \\(t_1\\) to the first sample along the ray given the corresponding optical depth \\(\tau_1\\). To solve this equation, we substitute the analytic rectangular approximation of optical depth (Equation 29), which is valid for short distances. Total opacity along the entire ray can be computed accurately using our numerical approximation (Equation 43).
 
-The second sample forms the next edge of the polygon, and we would like to compute the distance and transmittance relative to the first sample (\\(\tau_2\\) is given):
+The second sample forms the next edge of the polygon (\\(\tau_2\\) is given):
 
 $$ \tag{56} \tau(\bm{x}, \bm{v}, t_1) + \tau(\bm{x} + t_1 \bm{v}, \bm{v}, t_2 - t_1) = \tau_2. $$
 
-Or, more simply put, we solve for the relative distance given relative optical depth (w.r.t. the previous sample):
+We solve for the relative distance given relative optical depth (w.r.t. the previous sample):
 
 $$ \tag{57} \tau(\bm{x} + t_1 \bm{v}, \bm{v}, \Delta t_2) = \Delta \tau_2. $$
 
-Code that implements incremental importance sampling can be found below.
+And so on. Code that implements incremental importance sampling can be found below.
 
 ```c++
 // Uniforms.
@@ -671,7 +671,7 @@ spectrum ssAlbedo;
 
 spectrum IntegrateRadianceAlongRaySegment(float3 X, float3 V, float t, uint numSamples)
 {
-    // Compute initial parameters.
+    // Compute the initial parameters.
     float3 P        = X;
     float  r        = distance(P, C);
     float  cosTheta = dot(P - C, V) * rcp(r);
@@ -686,8 +686,8 @@ spectrum IntegrateRadianceAlongRaySegment(float3 X, float3 V, float t, uint numS
 
     for (uint i = 0; i < numSamples; i++)
     {
-        // Samples must be arranged in the ascending order, s.t.
-        // for any i, sample[i] < sample[i + 1].
+        // Samples must be arranged in the ascending order,
+        // s.t. for any i, sample[i] < sample[i + 1].
         float cdf = GetOrderedUnitIntervalRandomSample(i, numSamples);
 
         // Convert to absolute optical depth (Equation 18).
