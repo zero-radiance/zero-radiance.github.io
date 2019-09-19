@@ -27,7 +27,7 @@ A more artist-friendly parametrization uses the [single-scattering albedo](https
 
 $$ \tag{2} \bm{\alpha\_{ss}} = \frac{\bm{\sigma_s}}{\bm{\sigma_t}}, $$
 
-which gives the probability of a photon "surviving" a collision event, and the (also spectral) [mean free path](https://en.wikipedia.org/wiki/Mean_free_path) \\(\bm{d}\\)
+which gives the probability of a photon "surviving" a collision event (or the scattering rate), and the (also spectral) [mean free path](https://en.wikipedia.org/wiki/Mean_free_path) \\(\bm{d}\\)
 
 $$ \tag{3} \bm{d} = \frac{1}{\bm{\sigma_t}}, $$
 
