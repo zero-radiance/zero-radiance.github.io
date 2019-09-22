@@ -11,7 +11,7 @@ tags: [
     ]
 ---
 
-Rendering of participating media is an important aspect of every modern renderer. When I say participating media, I am not just talking about fog, fire and smoke - *everything is volumetric*. All matter is composed of [atoms](https://en.wikipedia.org/wiki/Atom), which can be sparsely (e.g. in a gas) or densely (e.g. in a solid) packed in space. Whether you consider the particle or the wave nature of [light](https://en.wikipedia.org/wiki/Light), it penetrates all matter (yes, even [metals](http://webhome.phy.duke.edu/~qelectron/group/group_reading_Born_and_Wolf.pdf)) to a certain degree, and interacts with its atoms along the way. The nature and the degree of "participation" depends on the material in question.
+Rendering of participating media is an important aspect of every modern renderer. When I say participating media, I am not just talking about fog, fire and smoke - *everything is volumetric*. All matter is composed of [atoms](https://en.wikipedia.org/wiki/Atom) (containing electrons), which can be sparsely (e.g. in a gas) or densely (e.g. in a solid) packed in space. Whether you consider the particle or the wave nature of [light](https://en.wikipedia.org/wiki/Light), it penetrates all matter (yes, even [metals](http://webhome.phy.duke.edu/~qelectron/group/group_reading_Born_and_Wolf.pdf)) to a certain degree, and interacts with its atoms along the way. The nature and the degree of "participation" depends on the material in question.
 
 <!--more-->
 
@@ -21,7 +21,7 @@ The [attenuation coefficient](https://en.wikipedia.org/wiki/Attenuation_coeffici
 
 $$ \tag{1} \bm{\sigma_t} = \bm{\sigma_a} + \bm{\sigma_s} $$
 
-gives the probability of absorption or scattering (or collision rate) as a photon travels a unit distance through the volume. All these coefficients are typically spectral (vary with the wavelength \\(\lambda\\)), and can be represented as vectors (boldface notation). At this point in time, it is not entirely clear (at least to me) how to correctly perform volume rendering using tristimulus (RGB) values (which would require pre-integration using [color matching functions](https://en.wikipedia.org/wiki/CIE_1931_color_space#Color_matching_functions)), so I will focus on pure spectral rendering, which is well-defined.
+gives the probability of absorption or scattering (or collision rate) as a photon travels a unit distance through the volume. All these coefficients are typically spectral (vary with the wavelength \\(\lambda\\)), and can be represented as vectors (boldface notation). At this point in time, it is not entirely clear (at least to me) how to *correctly* perform volume rendering using tristimulus (RGB) values (which would require pre-integration using [color matching functions](https://en.wikipedia.org/wiki/CIE_1931_color_space#Color_matching_functions)), so I will focus on pure spectral rendering, which is well-defined.
 
 A more artist-friendly parametrization uses the [single-scattering albedo](https://en.wikipedia.org/wiki/Single-scattering_albedo) \\(\bm{\alpha\_{ss}}\\)
 
@@ -31,7 +31,7 @@ which gives the probability of a photon "surviving" a collision event (or the sc
 
 $$ \tag{3} \bm{d} = \frac{1}{\bm{\sigma_t}}, $$
 
-which corresponds to the average collision-free distance.
+which corresponds to the average collision-free (or free-flight) distance.
 
 Taking a small detour, for surfaces, the absorption coefficient is directly proportional to the [extinction coefficient](http://webhome.phy.duke.edu/~qelectron/group/group_reading_Born_and_Wolf.pdf) \\(\bm{\kappa}\\), which is the imaginary part of the [complex index of refraction](https://en.wikipedia.org/wiki/Refractive_index#Complex_refractive_index) \\(\bm{\eta} + i \bm{\kappa}\\):
 
@@ -72,8 +72,6 @@ $$ \tag{10}
     = 1 - \bm{T}(\bm{x}, \bm{v}, t)
     = \bm{O}(\bm{x}, \bm{v}, t).
 $$
-
-We will use this fact in just a moment.
 
 To shade our (non-emissive) medium, we must evaluate the [recursive in-scattering integral](http://www.pbr-book.org/3ed-2018/Light_Transport_II_Volume_Rendering/The_Equation_of_Transfer.html) along the ray:
 
