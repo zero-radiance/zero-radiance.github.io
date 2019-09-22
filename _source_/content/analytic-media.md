@@ -15,7 +15,7 @@ Rendering of participating media is an important aspect of every modern renderer
 
 <!--more-->
 
-In the [radiative transfer](https://archive.org/details/RadiativeTransfer) literature, light-material interaction is usually quantified in terms of absorption (conversion of electromagnetic energy of photons into kinetic energy of atoms, which manifests itself as reduction of light intensity) and scattering (absorption and re-emission of electromagnetic energy when photons collide with atoms, which can be seen as attenuation and diffusion of the light beam). Therefore, it is common to describe participating media using the collision coefficients: the *absorption coefficient* \\(\bm{\sigma_a}\\) and the *scattering coefficient* \\(\bm{\sigma_s}\\). These coefficients give the probability of the corresponding event per unit distance traveled, which implies the [SI units](https://en.wikipedia.org/wiki/International_System_of_Units) of measurement are \\(m^{-1}\\).
+In the [radiative transfer](https://archive.org/details/RadiativeTransfer) literature, light-material interaction is usually quantified in terms of absorption (conversion of electromagnetic energy of photons into kinetic energy of atoms, which manifests itself as reduction of light intensity) and scattering (emission of electromagnetic energy resulting from photons colliding with atoms). Therefore, it is common to describe participating media using the collision coefficients: the *absorption coefficient* \\(\bm{\sigma_a}\\) and the *scattering coefficient* \\(\bm{\sigma_s}\\). These coefficients give the probability of the corresponding event per unit distance traveled, which implies the [SI units](https://en.wikipedia.org/wiki/International_System_of_Units) of measurement are \\(m^{-1}\\).
 
 The [attenuation coefficient](https://en.wikipedia.org/wiki/Attenuation_coefficient) \\(\bm{\sigma_t}\\)
 
@@ -592,7 +592,7 @@ While that's an unfortunate development, it's a minor setback. If we can't solve
 
 In fact, there is a [better way](http://lib-www.lanl.gov/la-pubs/00367066.pdf), which is even simpler. Recall that Newton's method requires being able to make an initial guess, evaluate the function, and take its derivative. If we solve using the entire optical depth formulation (Equation 18), we know that its derivative is just the extinction coefficient \\(\sigma_t\\) (Equation 9), and making a good initial guess is easy by simply ignoring curvature of the planet.
 
-This method is very general and works for arbitrary continuous density distributions (see the [paper](http://lib-www.lanl.gov/la-pubs/00367066.pdf) for details).
+This method is very general and works for arbitrary continuous density distributions (please see the [paper](http://lib-www.lanl.gov/la-pubs/00367066.pdf) for details). It also works well for a combination of several overlapping exponential layers - you just need to modify the way the attenuation coefficient is computed.
 
 Sample code is listed below.
 
