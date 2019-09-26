@@ -717,11 +717,29 @@ spectrum IntegrateRadianceAlongRaySegment(float3 X, float3 V, float t, uint numS
 
 # Handling Spectral Coefficients
 
-While using monochromatic attenuation is acceptable for certain use cases (such as modeling aerosols and fog), generally speaking, we would like to support spectrally-varying coefficients. This means that given a fixed distance, light is going to be attenuated to a different degree depending on the wavelength. This poses a problem for importance sampling, which works by converting opacity (now a vector) to a distance (a scalar).
+While using monochromatic attenuation is acceptable for certain use cases (such as modeling aerosols and fog), generally speaking, we would like to support spectrally-varying coefficients. This means that given a fixed distance, light is going to be attenuated to a different degree depending on the wavelength. This poses a problem for importance sampling, which would have to convert opacity (now a vector) to a distance (a scalar).
 
-The simplest solution is to trace one path per wavelength. For instance, we could either densely sample the entire [visible spectrum](https://en.wikipedia.org/wiki/Visible_spectrum) (e.g. 380 to 780 nm with a 10 nm step size resulting in 40 paths), or pick several wavelengths stochastically (distributed either uniformly, or according to the [luminous efficiency function](https://en.wikipedia.org/wiki/Luminosity_function)). This brute force approach increases the rendering cost by a factor of \\(N\\), but it provides a good reference point for comparison.
+The simplest solution is to trace one path per wavelength. For instance, we could either densely sample the entire [visible spectrum](https://en.wikipedia.org/wiki/Visible_spectrum) (e.g. 380 to 780 nm with a 10 nm step size resulting in 40 paths), or pick several wavelengths stochastically (distributed either uniformly, or according to the [luminous efficiency function](https://en.wikipedia.org/wiki/Luminosity_function)). This brute force approach increases the rendering cost by a factor of \\(N\\) (where \\(N\\) denotes the number of wavelength samples), but it provides a good reference point for comparison.
 
-Another approach suggested during the [Production Volume Rendering](https://graphics.pixar.com/library/ProductionVolumeRendering/paper.pdf) course is to invert the average opacity value across the spectrum. This solution is rather attractive from the performance point of view, since you only end up tracing a single path. Unfortunately, it assumes that the resulting radiance distribution is close to monochromatic. This may not be the case for subsurface scattering in skin, for instance, where red wavelengths scatter much farther than the rest, and using this technique may result in an excessive amount of color noise. On the other hand, if we use the maximum opacity value across the spectrum (which works well for skin), renders of atmospheric effects may take a while to converge.
+Another approach suggested during the [Production Volume Rendering](https://graphics.pixar.com/library/ProductionVolumeRendering/paper.pdf) course is to invert the average opacity value (or, in other words, use the average attenuation coefficient) across the spectrum. This solution is rather attractive from the performance point of view, since you only end up tracing a single path. Unfortunately, it assumes that the resulting radiance distribution is close to monochromatic. This may not be the case for subsurface scattering in skin, for instance, where red wavelengths scatter much farther than the rest (and the spectral distribution is rather compact), and using this technique may result in an excessive amount of color noise. On the other hand, if we use the maximum opacity value across the spectrum (which works reasonably well for skin), renders of atmospheric effects (or anything with a wide and complicated spectral distribution) may take a while to converge.
+
+Let's try to understand the problem we are trying to solve.
+
+The \\(X\\), \\(Y\\) and \\(Z\\) tristimulus values for a pixel centered at the point \\(\bm{x}\\) on the camera sensor can be computed as an integral of incoming spectral radiance \\(L\_{\lambda}\\) over the pixel area \\(A\\), the hemisphere of directions \\(\Omega\\) and the visible spectrum \\(\Lambda\\) weighted by the sensor response ([pixel filter](https://ieeexplore.ieee.org/document/4061554/)) \\(W\\) and the corresponding [normalized color matching function](https://en.wikipedia.org/wiki/CIE_1931_color_space#Color_matching_functions) \\(\bar{c}\\) \\(\big( \bar{x}\\) for \\(X\\), \\(\bar{y}\\) for \\(Y\\), \\(\bar{z}\\) for \\(Z \big)\\):
+
+$$ \tag{58} C(\bm{x}) = \int\_{A} \int\_{\Omega} \Bigg[ \int\_{\Lambda} \bar{c}(\lambda) W(\bm{x} + \bm{y}, \bm{v}, \lambda) L\_{\lambda}(\bm{x} + \bm{y}, \bm{v}, \lambda) d\lambda \Bigg] d\bm{v} dA(\bm{y}). $$
+
+Let's focus on the part inside the square brackets. Recalling that \\(L\_{\lambda}\\) is a line integral (and subsequently expanding it), we can present our problem in simpler, more general form:
+
+$$ \tag{59} I = \int\_{\Lambda} \int\_{R} f(\bm{X}(t), \lambda) dt d\lambda, $$
+
+where \\(f\\) is the measurement contribution function.
+
+The Monte Carlo formulation of the brute-force single wavelength solution takes the following form:
+
+$$ \tag{60} I = \sum\_{i=1}^{N} \frac{f(\bm{X}\_i, \lambda\_i)}{p(\bm{X}\_i, \lambda\_i)}. $$
+
+While \\(\bar{p}(\lambda)\\) could be chosen proportional to \\(\bar{c}(\lambda)\\), it's better to use [luminous efficiency function](https://en.wikipedia.org/wiki/Luminosity_function) to share the radiance samples between all three color components.
 
 ...
 
