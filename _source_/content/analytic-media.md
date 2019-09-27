@@ -737,11 +737,17 @@ where \\(X\\) is a path, \\(\mu(X)\\) is its measure, and \\(f\\) is the measure
 
 The Monte Carlo formulation of the brute force single wavelength solution then takes the following form:
 
-$$ \tag{60} I = \sum\_{i=1}^{N} \frac{f(X_i, \lambda_i)}{p(X_i, \lambda_i)}, $$
+$$ \tag{60} I \approx \frac{1}{N} \sum\_{i=1}^{N} \frac{f(X_i, \lambda_i)}{p(X_i, \lambda_i)}, $$
 
-where each contribution is restricted to a single wavelength.
+where each contribution is restricted to a single wavelength. If the generated path is *independent* from the wavelength,
 
-While \\(\bar{p}(\lambda)\\) could be chosen proportional to \\(\bar{c}(\lambda)\\), it's better to use [luminous efficiency function](https://en.wikipedia.org/wiki/Luminosity_function) to share the radiance samples between all three color components.
+$$ \tag{61} p(X_i, \lambda_i) = p(X_i) p(\lambda_i). $$
+
+Unfortunately, if we want to support spectrally-varying attenuation, it is generally not the case. We will use the following, more general [relation](https://en.wikipedia.org/wiki/Conditional_probability_distribution#Conditional_continuous_distributions) of joint, conditional and marginal densities:
+
+$$ \tag{62} p(X_i, \lambda_i) = p(X_i | \lambda_i) p(\lambda_i). $$
+
+
 
 ...
 
