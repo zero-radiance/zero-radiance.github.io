@@ -725,19 +725,21 @@ Another approach suggested during the [Production Volume Rendering](https://grap
 
 Let's try to understand the problem we are trying to solve.
 
-The \\(X\\), \\(Y\\) and \\(Z\\) tristimulus values for a pixel centered at the point \\(\bm{x}\\) on the camera sensor can be computed as an integral of incoming spectral radiance \\(L\_{\lambda}\\) over the pixel area \\(A\\), the hemisphere of directions \\(\Omega\\) and the visible spectrum \\(\Lambda\\) weighted by the sensor response ([pixel filter](https://ieeexplore.ieee.org/document/4061554/)) \\(W\\) and the corresponding [normalized color matching function](https://en.wikipedia.org/wiki/CIE_1931_color_space#Color_matching_functions) \\(\bar{c}\\) \\(\big( \bar{x}\\) for \\(X\\), \\(\bar{y}\\) for \\(Y\\), \\(\bar{z}\\) for \\(Z \big)\\):
+The tristimulus values\\(X\\), \\(Y\\) and \\(Z\\) of a pixel centered at the point \\(\bm{x}\\) on the camera sensor can be computed as an integral of incoming spectral radiance \\(L\_{\lambda}\\) over the visible spectrum \\(\Lambda\\), the pixel area \\(A\\) and the hemisphere of directions \\(\Omega\\) weighted by the [normalized color matching function](https://en.wikipedia.org/wiki/CIE_1931_color_space#Color_matching_functions) \\(\bar{c}\\) \\(\big( \bar{x}\\) for \\(X\\), \\(\bar{y}\\) for \\(Y\\), \\(\bar{z}\\) for \\(Z \big)\\) and the sensor response ([pixel filter](https://ieeexplore.ieee.org/document/4061554/)) \\(W\\):
 
-$$ \tag{58} C(\bm{x}) = \int\_{A} \int\_{\Omega} \Bigg[ \int\_{\Lambda} \bar{c}(\lambda) W(\bm{x} + \bm{y}, \bm{v}, \lambda) L\_{\lambda}(\bm{x} + \bm{y}, \bm{v}, \lambda) d\lambda \Bigg] d\bm{v} dA(\bm{y}). $$
+$$ \tag{58} I = C(\bm{x}) = \int\_{\Lambda} \bar{c}(\lambda) \int\_{A} \int\_{\Omega} W(\bm{y}, \bm{v}, \lambda) L\_{\lambda}(\bm{x} + \bm{y}, \bm{v}, \lambda) d\bm{v} dA(\bm{y}) d\lambda. $$
 
-Let's focus on the part inside the square brackets. Recalling that \\(L\_{\lambda}\\) is a line integral (and subsequently expanding it), we can present our problem in simpler, more general form:
+Recalling that \\(L\_{\lambda}\\) is itself a nested integral, we can generalize our problem using the path-space integral formulation:
 
-$$ \tag{59} I = \int\_{\Lambda} \int\_{R} f(\bm{X}(t), \lambda) dt d\lambda, $$
+$$ \tag{59} I = \int\_{\Lambda} \int\_{P} f(X, \lambda) d\mu(X) d\lambda, $$
 
-where \\(f\\) is the measurement contribution function.
+where \\(X\\) is a path, \\(\mu(X)\\) is its measure, and \\(f\\) is the measurement contribution function.
 
-The Monte Carlo formulation of the brute-force single wavelength solution takes the following form:
+The Monte Carlo formulation of the brute force single wavelength solution then takes the following form:
 
-$$ \tag{60} I = \sum\_{i=1}^{N} \frac{f(\bm{X}\_i, \lambda\_i)}{p(\bm{X}\_i, \lambda\_i)}. $$
+$$ \tag{60} I = \sum\_{i=1}^{N} \frac{f(X_i, \lambda_i)}{p(X_i, \lambda_i)}, $$
+
+where each contribution is restricted to a single wavelength.
 
 While \\(\bar{p}(\lambda)\\) could be chosen proportional to \\(\bar{c}(\lambda)\\), it's better to use [luminous efficiency function](https://en.wikipedia.org/wiki/Luminosity_function) to share the radiance samples between all three color components.
 
