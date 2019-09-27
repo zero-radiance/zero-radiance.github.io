@@ -743,15 +743,15 @@ where each contribution is restricted to a single wavelength. If the generated p
 
 $$ \tag{61} p(X_i, \lambda_i) = p(X_i) p(\lambda_i). $$
 
-Unfortunately, if we want to support spectrally-varying attenuation, it is generally not the case. We will use the following, more general [relation](https://en.wikipedia.org/wiki/Conditional_probability_distribution#Conditional_continuous_distributions) of joint, conditional and marginal densities:
+Unfortunately, if we want to support spectrally-varying attenuation, it is generally not the case. We will use the following, more [general relation](https://en.wikipedia.org/wiki/Conditional_probability_distribution#Conditional_continuous_distributions) of joint, conditional and marginal densities:
 
 $$ \tag{62} p(X_i, \lambda_i) = p(X_i | \lambda_i) p(\lambda_i). $$
 
+Our goal is to generate paths in an intelligent wavelength-dependent, manner (using importance sampling) and subsequently share their weighted contributions for multiple wavelengths. One way to achieve this is to use [spectral multiple importance sampling (MIS)](https://jo.dreggn.org/home/2014_herowavelength.pdf).
+
+At its core, spectral MIS uses the [one-sample model](http://graphics.stanford.edu/papers/veach_thesis/) proposed by Eric Veach. Quoting Eric, "under this model, the integral is estimated by choosing one of the \\(n\\) sampling techniques at random, and then taking a single sample from it." The range of our integral corresponds to the visible spectrum \\(\Lambda\\), and the WHAT
 
 
-...
 
-Hero wavelength + spectral single sample MIS...
 
-Several components (air, aerosols)?
-
+$$ \tag{60} I \approx \frac{1}{N} \sum\_{i=1}^{N} \frac{f(X_i, \lambda_i)}{\sum\_{j=1}^{N} p(X_i | \lambda_j) p(\lambda_j)} , $$
