@@ -725,33 +725,52 @@ Another approach suggested during the [Production Volume Rendering](https://grap
 
 Let's try to understand the problem we are trying to solve.
 
-The tristimulus values\\(X\\), \\(Y\\) and \\(Z\\) of a pixel centered at the point \\(\bm{x}\\) on the camera sensor can be computed as an integral of incoming spectral radiance \\(L\_{\lambda}\\) over the visible spectrum \\(\Lambda\\), the pixel area \\(A\\) and the hemisphere of directions \\(\Omega\\) weighted by the [normalized color matching function](https://en.wikipedia.org/wiki/CIE_1931_color_space#Color_matching_functions) \\(\bar{c}\\) \\(\big( \bar{x}\\) for \\(X\\), \\(\bar{y}\\) for \\(Y\\), \\(\bar{z}\\) for \\(Z \big)\\) and the sensor response ([pixel filter](https://ieeexplore.ieee.org/document/4061554/)) \\(W\\):
+The tristimulus values \\(X\\), \\(Y\\) and \\(Z\\) of a pixel centered at the point \\(\bm{x}\\) on the camera sensor can be computed as an integral of incoming spectral radiance \\(L\_{\lambda}\\) over the visible spectrum \\(\Lambda\\), the pixel area \\(A\\) and the hemisphere of directions \\(\Omega\\) weighted by the [normalized color matching function](https://en.wikipedia.org/wiki/CIE_1931_color_space#Color_matching_functions) \\(\bar{c}\\) \\(\big( \bar{x}\\) for \\(X\\), \\(\bar{y}\\) for \\(Y\\), \\(\bar{z}\\) for \\(Z \big)\\) and the sensor response ([pixel filter](https://ieeexplore.ieee.org/document/4061554/)) \\(W\\):
 
 $$ \tag{58} I = C(\bm{x}) = \int\_{\Lambda} \bar{c}(\lambda) \int\_{A} \int\_{\Omega} W(\bm{y}, \bm{v}, \lambda) L\_{\lambda}(\bm{x} + \bm{y}, \bm{v}, \lambda) d\bm{v} dA(\bm{y}) d\lambda. $$
 
 Recalling that \\(L\_{\lambda}\\) is itself a nested integral, we can generalize our problem using the path-space integral formulation:
 
-$$ \tag{59} I = \int\_{\Lambda} \int\_{P} f(X, \lambda) d\mu(X) d\lambda, $$
+$$ \tag{59} I = \int\_{\Lambda} \int\_{\mathrm{P}} f(\rho, \lambda) d\mu(\rho) d\lambda, $$
 
-where \\(X\\) is a path, \\(\mu(X)\\) is its measure, and \\(f\\) is the measurement contribution function.
+where \\(\rho\\) is a path (an ordered set of vertices), \\(\mu(\rho)\\) is its measure, and \\(f\\) is the measurement contribution function.
 
 The Monte Carlo formulation of the brute force single wavelength solution then takes the following form:
 
-$$ \tag{60} I \approx \frac{1}{N} \sum\_{i=1}^{N} \frac{f(X_i, \lambda_i)}{p(X_i, \lambda_i)}, $$
+$$ \tag{60} I \approx
+    \frac{1}{N} \sum\_{i=1}^{N} \frac{f(\rho_i, \lambda_i)}{p(\rho_i, \lambda_i)} =
+    \frac{1}{N} \sum\_{i=1}^{N} \frac{f(\rho_i, \lambda_i)}{p(\rho_i | \lambda_i) p(\lambda_i)},
+$$
 
-where each contribution is restricted to a single wavelength. If the generated path is *independent* from the wavelength,
+where \\(\rho_i\\) is constructed using \\(\lambda_i\\), and its contribution \\(f\\) is evaluated using \\(\lambda_i\\).
 
-$$ \tag{61} p(X_i, \lambda_i) = p(X_i) p(\lambda_i). $$
+If the constructed path is *independent* from the wavelength,
 
-Unfortunately, if we want to support spectrally-varying attenuation, it is generally not the case. We will use the following, more [general relation](https://en.wikipedia.org/wiki/Conditional_probability_distribution#Conditional_continuous_distributions) of joint, conditional and marginal densities:
+$$ \tag{61} \tilde{p}(\rho_i, \lambda_i) = p(\rho_i) p(\lambda_i). $$
 
-$$ \tag{62} p(X_i, \lambda_i) = p(X_i | \lambda_i) p(\lambda_i). $$
+Unfortunately, if we want to support spectrally-varying absorption and scattering, it is generally not the case.
 
-Our goal is to generate paths in an intelligent wavelength-dependent, manner (using importance sampling) and subsequently share their weighted contributions for multiple wavelengths. One way to achieve this is to use [spectral multiple importance sampling (MIS)](https://jo.dreggn.org/home/2014_herowavelength.pdf).
+Our goal is to sample a path once for an entire a set of wavelengths, and subsequently evaluate the path's contribution for all the wavelengths belonging to this set. One way to achieve this goal is to use [spectral multiple importance sampling](https://jo.dreggn.org/home/2014_herowavelength.pdf).
 
-At its core, spectral MIS uses the [one-sample model](http://graphics.stanford.edu/papers/veach_thesis/) proposed by Eric Veach. Quoting Eric, "under this model, the integral is estimated by choosing one of the \\(n\\) sampling techniques at random, and then taking a single sample from it." The range of our integral corresponds to the visible spectrum \\(\Lambda\\), and the WHAT
+The idea is to interpret each set of wavelengths as a "technique", or sample (since one of them is used to sample the path), and all wavelengths of the set as variations, or subsamples of the technique that share the constructed path. Since any wavelength from the set is assumed to be equally likely to sample the path, the probability density of sampling the path \\(\rho_i\\) using the set \\(\Lambda_j\\) of size \\(n_j\\) is taken as the average across the entire set:
 
+$$ \tag{62} p(\rho_i, \Lambda_j) =
+    \frac{1}{n_j} \sum\_{k=1}^{n_j} p(\rho_i, \lambda_j^k) =
+    \frac{1}{n_j} \sum\_{k=1}^{n_j} p(\rho_i | \lambda_j^k) p(\lambda_j^k).
+$$
 
+For \\(n\\) techniques, we obtain the following estimator:
 
+$$ \tag{63} I \approx
+    \frac{1}{n} \sum\_{i=1}^{n} \frac{f(\rho\_{i}, \Lambda_i)}{p(\rho_i, \Lambda_i)} =
+    \frac{1}{n} \sum\_{i=1}^{n} \frac{1/n_i \sum\_{j=1}^{n_i} f(\rho_i, \lambda_i^j)}{p(\rho_i, \Lambda_i)},
+$$
 
-$$ \tag{60} I \approx \frac{1}{N} \sum\_{i=1}^{N} \frac{f(X_i, \lambda_i)}{\sum\_{j=1}^{N} p(X_i | \lambda_j) p(\lambda_j)} , $$
+where, again, we average the contributions over the set of wavelengths. If we substitute the Equation 62,
+
+$$ \tag{63} I \approx
+    \frac{1}{n} \sum\_{i=1}^{n} \frac{1/n_i \sum\_{j=1}^{n_i} f(\rho_i, \lambda_i^j)}{1/n_i \sum\_{k=1}^{n_i} p(\rho_i | \lambda_i^k) p(\lambda_i^k)} =
+    \frac{1}{n} \sum\_{i=1}^{n} \sum\_{j=1}^{n_i} \frac{f(\rho_i, \lambda_i^j)}{\sum\_{k=1}^{n_i} p(\rho_i | \lambda_i^k) p(\lambda_i^k)}
+$$
+
+In the context of the [balance heuristic](http://graphics.stanford.edu/papers/veach_thesis/) with \\(K\\) techniques, it gives the following multi-sample estimator:
