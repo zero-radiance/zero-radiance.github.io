@@ -717,11 +717,11 @@ spectrum IntegrateRadianceAlongRaySegment(float3 X, float3 V, float t, uint numS
 
 # Handling Spectral Coefficients
 
-While using monochromatic attenuation is acceptable for certain use cases (such as modeling aerosols and fog), generally speaking, we would like to support spectrally-varying coefficients. This means that given a fixed distance, light is going to be attenuated to a different degree depending on the wavelength. This poses a problem for importance sampling, which would have to convert opacity (now a vector) to a distance (a scalar).
+While using monochromatic attenuation is acceptable for certain use cases (such as modeling aerosols and fog), generally speaking, we would like to support spectrally-varying coefficients. This means that given a fixed distance, light is going to be attenuated to a different degree depending on the wavelength. This poses a problem for importance sampling, which would have to convert opacity (now a vector) into distance (a scalar).
 
-The simplest solution is to trace one path per wavelength. For instance, we could either densely sample the entire [visible spectrum](https://en.wikipedia.org/wiki/Visible_spectrum) (e.g. 380 to 780 nm with a 10 nm step size resulting in 40 paths), or pick several wavelengths stochastically (distributed either uniformly, or according to the [luminous efficiency function](https://en.wikipedia.org/wiki/Luminosity_function)). This brute force approach increases the rendering cost by a factor of \\(N\\) (where \\(N\\) denotes the number of wavelength samples), but it provides a good reference point for comparison.
+The simplest solution is to trace one path per wavelength. For instance, we could either densely sample the entire [visible spectrum](https://en.wikipedia.org/wiki/Visible_spectrum) (e.g. 380 to 780 nm with a 10 nm step size resulting in 40 paths), or pick several wavelengths stochastically (distributed either uniformly, or according to the [luminous efficiency function](https://en.wikipedia.org/wiki/Luminosity_function), or opacity spectrum, or the product of both). This brute force approach increases the rendering cost by a factor of \\(n\\) (where \\(n\\) denotes the number of wavelength samples), but it provides a good reference point for comparison.
 
-Another approach suggested during the [Production Volume Rendering](https://graphics.pixar.com/library/ProductionVolumeRendering/paper.pdf) course is to invert the average opacity value (or, in other words, use the average attenuation coefficient) across the spectrum. This solution is rather attractive from the performance point of view, since you only end up tracing a single path. Unfortunately, it assumes that the resulting radiance distribution is close to monochromatic. This may not be the case for subsurface scattering in skin, for instance, where red wavelengths scatter much farther than the rest (and the spectral distribution is rather compact), and using this technique may result in an excessive amount of color noise. On the other hand, if we use the maximum opacity value across the spectrum (which works reasonably well for skin), renders of atmospheric effects (or anything with a wide and complicated spectral distribution) may take a while to converge.
+Another approach suggested during the [Production Volume Rendering](https://graphics.pixar.com/library/ProductionVolumeRendering/paper.pdf) course is to always construct paths using the the average attenuation coefficient (or, more precisely, invert the average opacity value) across the visible spectrum. This solution is rather attractive from the performance point of view, since you only end up tracing a single path. Unfortunately, it assumes that the resulting radiance distribution is close to monochromatic. This may not be the case for subsurface scattering in skin, for instance, where red wavelengths scatter much farther than the rest (and the spectral distribution is rather compact), and using this technique may result in an excessive amount of color noise. On the other hand, if we use the maximum opacity value across the spectrum (which works reasonably well for skin), renders of atmospheric effects (or anything with a wide and complicated spectral distribution) may take a while to converge.
 
 Let's try to understand the problem we are trying to solve.
 
@@ -733,7 +733,7 @@ Recalling that \\(L\_{\lambda}\\) is itself a nested integral, we can generalize
 
 $$ \tag{59} I = \int\_{\Lambda} \int\_{\mathrm{P}} f(\rho, \lambda) d\mu(\rho) d\lambda, $$
 
-where \\(\mathrm{P}\\) is the path space (a set of paths), \\(\rho\\) is a path (an ordered set of vertices), \\(\mu(\rho)\\) is its [measure](https://en.wikipedia.org/wiki/Measure_\(mathematics\)), and \\(f\\) is the measurement contribution function. Clearly, this formulation has some redundancy - we define the domain of integration as a Cartesian product of all paths and all wavelengths when, in fact, certain paths are perfectly valid for many wavelengths. While their contribution is likely to be different, path geometry remains the same.
+where \\(\mathrm{P}\\) is the path space (a set of paths), \\(\rho\\) is a path (an ordered set of vertices), \\(\mu(\rho)\\) is its [measure](https://en.wikipedia.org/wiki/Measure_\(mathematics\)), and \\(f\\) is the measurement contribution function. Clearly, this formulation has some redundancy - we define the domain of integration as a [Cartesian product](https://en.wikipedia.org/wiki/Cartesian_product) of all paths and all wavelengths when, in fact, certain paths are perfectly valid for many wavelengths. While their contribution is likely to be different, path geometry remains the same.
 
 The Monte Carlo formulation of the brute force single wavelength solution then takes the following form:
 
@@ -752,7 +752,7 @@ Unfortunately, if we want to support spectrally-varying absorption and scatterin
 
 Our goal is to sample a path once, and use it to evaluate the contribution of an entire a set of wavelengths. One way to achieve this is to use [spectral multiple importance sampling](https://jo.dreggn.org/home/2014_herowavelength.pdf).
 
-We start by defining the set of wavelengths \\(\Lambda_i\\) of size \\(n_i\\). These wavelengths can be importance sampled (proportionally to the luminous efficiency function, for instance), or distributed in a stratified manner. Next, we pick one wavelength to guide our path sampling decisions - the authors refer to it as the *hero wavelength*. It appears that there is an implicit assumption that the wavelength is picked uniformly from the set. Therefore, the probability density of sampling the path \\(\rho_i\\) using the set \\(\Lambda_i\\) of size \\(n_i\\) is taken as the average across the entire set:
+We start by defining the set of wavelengths \\(\Lambda_i\\) of size \\(n_i\\) \\( (\forall k, \lambda_i^k \in \Lambda_i) \\). These wavelengths can all be importance sampled or, alternatively, all but the first one can be distributed in a stratified manner. Next, we pick one wavelength to guide our path sampling decisions - the authors refer to it as the *hero wavelength*. It appears that there is an implicit assumption that this wavelength is picked uniformly from the set. Therefore, the probability density of sampling the path \\(\rho_i\\) using the set \\(\Lambda_i\\) is taken as the average across the entire set:
 
 $$ \tag{62} p(\rho_i, \Lambda_i) =
     \frac{1}{n_i} \sum\_{k=1}^{n_i} p(\rho_i, \lambda_i^k) =
@@ -763,12 +763,12 @@ Similarly, the contribution of this path is also taken as the average:
 
 $$ \tag{63} f(\rho_i, \Lambda_i) = \frac{1}{n_i} \sum\_{j=1}^{n_i} f(\rho_i, \lambda_i^j). $$
 
-This makes me wonder whether there is a more clever way to weight the subsamples, but I don't have an answer for this question.
+This makes me wonder whether there is a more clever way to weight the individual subsamples, but I don't have an answer for this question.
 
 Finally, we evaluate the Monte Carlo estimator using estimates from \\(N\\) paths:
 
 $$ \tag{64} \begin{aligned}
-    I \approx \frac{1}{N} \sum\_{i=1}^{N} \frac{f(\rho\_{i}, \Lambda_i)}{p(\rho_i, \Lambda_i)}
+    I &\approx \frac{1}{N} \sum\_{i=1}^{N} \frac{f(\rho\_{i}, \Lambda_i)}{p(\rho_i, \Lambda_i)} \cr
     &= \frac{1}{N} \sum\_{i=1}^{N} \frac{\frac{1}{n_i} \sum\_{j=1}^{n_i} f(\rho_i, \lambda_i^j)}{\frac{1}{n_i} \sum\_{k=1}^{n_i} p(\rho_i | \lambda_i^k) p(\lambda_i^k)} \cr
     &= \frac{1}{N} \sum\_{i=1}^{N} \frac{\sum\_{j=1}^{n_i} f(\rho_i, \lambda_i^j)}{\sum\_{k=1}^{n_i} p(\rho_i | \lambda_i^k) p(\lambda_i^k)} \cr
     &= \frac{1}{N} \sum\_{i=1}^{N} \sum\_{j=1}^{n_i} \frac{f(\rho_i, \lambda_i^j)}{\sum\_{k=1}^{n_i} p(\rho_i | \lambda_i^k) p(\lambda_i^k)}.
@@ -776,11 +776,16 @@ $$ \tag{64} \begin{aligned}
 
 If we fix the set size \\( (\forall i, n_i = n) \\), we obtain a formulation which corresponds to the multi-sample estimator with \\(n\\) techniques (and \\(N\\) samples per technique) combined using the [balance heuristic](http://graphics.stanford.edu/papers/veach_thesis/):
 
-$$ \tag{65} I \approx
-    \frac{1}{N} \sum\_{i=1}^{N} \sum\_{j=1}^{n} \frac{f(\rho_i, \lambda_i^j)}{\sum\_{k=1}^{n} p(\rho_i | \lambda_i^k) p(\lambda_i^k)} =
-    \sum\_{j=1}^{n} \sum\_{i=1}^{N} \frac{f(\rho_i, \lambda_i^j)}{\sum\_{k=1}^{n} N p(\rho_i | \lambda_i^k) p(\lambda_i^k)}.
- $$
+$$ \tag{65} \begin{aligned}
+    I &\approx \frac{1}{N} \sum\_{i=1}^{N} \sum\_{j=1}^{n} \frac{f(\rho_i, \lambda_i^j)}{\sum\_{k=1}^{n} p(\rho_i | \lambda_i^k) p(\lambda_i^k)} \cr
+    &= \sum\_{j=1}^{n} \sum\_{i=1}^{N} \frac{f(\rho_i, \lambda_i^j)}{\sum\_{k=1}^{n}N p(\rho_i, \lambda_i^k)} \cr
+    &= \sum\_{j=1}^{n} \sum\_{i=1}^{N} w(\rho_i, \lambda_i^j) \frac{f(\rho_i, \lambda_i^j)}{N p(\rho_i, \lambda_i^j)},
+\end{aligned} $$
 
-The corresponding balance heuristic weight is then
+where the balance heuristic weight \\(w\\) is defined as
 
-$$ \tag{66} w = ... $$
+$$ \tag{66}
+    w(\rho_i, \lambda_i^j)
+    = \frac{N p(\rho_i, \lambda_i^j)}{\sum\_{k=1}^{n} N p(\rho_i, \lambda_i^k)}
+    = \frac{p(\rho_i, \lambda_i^j)}{\sum\_{k=1}^{n} p(\rho_i | \lambda_i^k) p(\lambda_i^k)}.
+$$
