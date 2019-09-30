@@ -738,54 +738,54 @@ where \\(\mathrm{P}\\) is the path space (a set of paths), \\(\rho\\) is a path 
 The Monte Carlo formulation of the brute force single wavelength solution then takes the following form:
 
 $$ \tag{60} I \approx
-    \frac{1}{N} \sum\_{i=1}^{N} \frac{f(\rho_i, \lambda_i)}{p(\rho_i, \lambda_i)} =
-    \frac{1}{N} \sum\_{i=1}^{N} \frac{f(\rho_i, \lambda_i)}{p(\rho_i | \lambda_i) p(\lambda_i)},
+    \frac{1}{m} \sum\_{j=1}^{m} \frac{f(\rho_j, \lambda_j)}{p(\rho_j, \lambda_j)} =
+    \frac{1}{m} \sum\_{j=1}^{m} \frac{f(\rho_j, \lambda_j)}{p(\rho_j | \lambda_j) p(\lambda_j)},
 $$
 
-where \\(\rho_i\\) is constructed using \\(\lambda_i\\), and its contribution \\(f\\) is evaluated using \\(\lambda_i\\).
+where \\(\rho_j\\) is constructed using \\(\lambda_j\\), and its contribution \\(f\\) is evaluated using \\(\lambda_j\\).
 
 If the constructed path is *independent* from the wavelength,
 
-$$ \tag{61} \tilde{p}(\rho_i, \lambda_i) = p(\rho_i) p(\lambda_i). $$
+$$ \tag{61} \tilde{p}(\rho_j, \lambda_j) = p(\rho_j) p(\lambda_j). $$
 
 Unfortunately, if we want to support spectrally-varying absorption and scattering, it is generally not the case.
 
 Our goal is to sample a path once, and use it to evaluate the contribution of an entire a set of wavelengths. One way to achieve this is to use [spectral multiple importance sampling](https://jo.dreggn.org/home/2014_herowavelength.pdf).
 
-We start by defining the set of wavelengths \\(\Lambda_i\\) of size \\(n_i\\) \\( (\forall k, \lambda_i^k \in \Lambda_i) \\). These wavelengths can all be importance sampled or, alternatively, all but the first one can be distributed in a stratified manner. Next, we pick one wavelength to guide our path sampling decisions - the authors refer to it as the *hero wavelength*. It appears that there is an implicit assumption that this wavelength is picked uniformly from the set. Therefore, the probability density of sampling the path \\(\rho_i\\) using the set \\(\Lambda_i\\) is taken as the average across the entire set:
+We start by defining the set of wavelengths \\(\Lambda_j\\) of size \\(n_j\\) \\( (\forall k, \lambda_j^k \in \Lambda_j) \\). These wavelengths can all be importance sampled or, alternatively, all but the first one can be distributed in a stratified manner. Next, we pick one wavelength to guide our path sampling decisions - the authors refer to it as the *hero wavelength*. It appears that there is an implicit assumption that this wavelength is picked uniformly from the set. Therefore, the probability density of sampling the path \\(\rho_j\\) using the set \\(\Lambda_j\\) is taken as the average across the entire set:
 
-$$ \tag{62} p(\rho_i, \Lambda_i) =
-    \frac{1}{n_i} \sum\_{k=1}^{n_i} p(\rho_i, \lambda_i^k) =
-    \frac{1}{n_i} \sum\_{k=1}^{n_i} p(\rho_i | \lambda_i^k) p(\lambda_i^k).
+$$ \tag{62} p(\rho_j, \Lambda_j) =
+    \frac{1}{n_j} \sum\_{k=1}^{n_j} p(\rho_j, \lambda_j^k) =
+    \frac{1}{n_j} \sum\_{k=1}^{n_j} p(\rho_j | \lambda_j^k) p(\lambda_j^k).
 $$
 
 Similarly, the contribution of this path is also taken as the average:
 
-$$ \tag{63} f(\rho_i, \Lambda_i) = \frac{1}{n_i} \sum\_{j=1}^{n_i} f(\rho_i, \lambda_i^j). $$
+$$ \tag{63} f(\rho_j, \Lambda_j) = \frac{1}{n_j} \sum\_{i=1}^{n_j} f(\rho_j, \lambda_j^i). $$
 
 This makes me wonder whether there is a more clever way to weight the individual subsamples, but I don't have an answer for this question.
 
-Finally, we evaluate the Monte Carlo estimator using estimates from \\(N\\) paths:
+Finally, we evaluate the Monte Carlo estimator using estimates from \\(m\\) paths:
 
 $$ \tag{64} \begin{aligned}
-    I &\approx \frac{1}{N} \sum\_{i=1}^{N} \frac{f(\rho\_{i}, \Lambda_i)}{p(\rho_i, \Lambda_i)} \cr
-    &= \frac{1}{N} \sum\_{i=1}^{N} \frac{\frac{1}{n_i} \sum\_{j=1}^{n_i} f(\rho_i, \lambda_i^j)}{\frac{1}{n_i} \sum\_{k=1}^{n_i} p(\rho_i | \lambda_i^k) p(\lambda_i^k)} \cr
-    &= \frac{1}{N} \sum\_{i=1}^{N} \frac{\sum\_{j=1}^{n_i} f(\rho_i, \lambda_i^j)}{\sum\_{k=1}^{n_i} p(\rho_i | \lambda_i^k) p(\lambda_i^k)} \cr
-    &= \frac{1}{N} \sum\_{i=1}^{N} \sum\_{j=1}^{n_i} \frac{f(\rho_i, \lambda_i^j)}{\sum\_{k=1}^{n_i} p(\rho_i | \lambda_i^k) p(\lambda_i^k)}.
+    I &\approx \frac{1}{m} \sum\_{j=1}^{m} \frac{f(\rho_j, \Lambda_j)}{p(\rho_j, \Lambda_j)} \cr
+    &= \frac{1}{m} \sum\_{j=1}^{m} \frac{\frac{1}{n_j} \sum\_{i=1}^{n_j} f(\rho_j, \lambda_j^i)}{\frac{1}{n_j} \sum\_{k=1}^{n_j} p(\rho_j | \lambda_j^k) p(\lambda_j^k)} \cr
+    &= \frac{1}{m} \sum\_{j=1}^{m} \frac{\sum\_{i=1}^{n_j} f(\rho_j, \lambda_j^i)}{\sum\_{k=1}^{n_j} p(\rho_j | \lambda_j^k) p(\lambda_j^k)} \cr
+    &= \frac{1}{m} \sum\_{j=1}^{m} \sum\_{i=1}^{n_j} \frac{f(\rho_j, \lambda_j^i)}{\sum\_{k=1}^{n_j} p(\rho_j | \lambda_j^k) p(\lambda_j^k)}.
  \end{aligned} $$
 
-If we fix the set size \\( (\forall i, n_i = n) \\), we obtain a formulation which corresponds to the multi-sample estimator with \\(n\\) techniques (and \\(N\\) samples per technique) combined using the [balance heuristic](http://graphics.stanford.edu/papers/veach_thesis/):
+If we fix the set size \\( (\forall j, n_j = n) \\), we obtain a formulation which corresponds to the multi-sample estimator with \\(n\\) techniques (and \\(m\\) samples per technique) combined using the [balance heuristic](http://graphics.stanford.edu/papers/veach_thesis/):
 
 $$ \tag{65} \begin{aligned}
-    I &\approx \frac{1}{N} \sum\_{i=1}^{N} \sum\_{j=1}^{n} \frac{f(\rho_i, \lambda_i^j)}{\sum\_{k=1}^{n} p(\rho_i | \lambda_i^k) p(\lambda_i^k)} \cr
-    &= \sum\_{j=1}^{n} \sum\_{i=1}^{N} \frac{f(\rho_i, \lambda_i^j)}{\sum\_{k=1}^{n}N p(\rho_i, \lambda_i^k)} \cr
-    &= \sum\_{j=1}^{n} \sum\_{i=1}^{N} w(\rho_i, \lambda_i^j) \frac{f(\rho_i, \lambda_i^j)}{N p(\rho_i, \lambda_i^j)},
+    I &\approx \frac{1}{m} \sum\_{j=1}^{m} \sum\_{i=1}^{n} \frac{f(\rho_j, \lambda_j^i)}{\sum\_{k=1}^{n} p(\rho_j | \lambda_j^k) p(\lambda_j^k)} \cr
+    &= \frac{1}{m} \sum\_{i=1}^{n} \sum\_{j=1}^{m} \frac{f(\rho_j, \lambda_j^i)}{\sum\_{k=1}^{n} p(\rho_j, \lambda_j^k)} \cr
+    &= \frac{1}{m} \sum\_{i=1}^{n} \sum\_{j=1}^{m} w(\rho_j, \lambda_j^i) \frac{f(\rho_j, \lambda_j^i)}{p(\rho_j, \lambda_j^i)},
 \end{aligned} $$
 
 where the balance heuristic weight \\(w\\) is defined as
 
 $$ \tag{66}
-    w(\rho_i, \lambda_i^j)
-    = \frac{N p(\rho_i, \lambda_i^j)}{\sum\_{k=1}^{n} N p(\rho_i, \lambda_i^k)}
-    = \frac{p(\rho_i, \lambda_i^j)}{\sum\_{k=1}^{n} p(\rho_i | \lambda_i^k) p(\lambda_i^k)}.
+    w(\rho_i, \lambda_j^i)
+    = \frac{m p(\rho_j, \lambda_j^i)}{\sum\_{k=1}^{n} m p(\rho_j, \lambda_j^k)}
+    = \frac{p(\rho_j, \lambda_j^i)}{\sum\_{k=1}^{n} p(\rho_j | \lambda_j^k) p(\lambda_j^k)}.
 $$
