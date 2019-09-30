@@ -789,3 +789,50 @@ $$ \tag{66}
     = \frac{m p(\rho_j, \lambda_j^i)}{\sum\_{k=1}^{n} m p(\rho_j, \lambda_j^k)}
     = \frac{p(\rho_j, \lambda_j^i)}{\sum\_{k=1}^{n} p(\rho_j | \lambda_j^k) p(\lambda_j^k)}.
 $$
+
+A high-level implementation of the algorithm is listed below.
+
+```c++
+float3 PathTraceWithSpectralMIS(float3 X, float3 V, uint numWavelengths, uint numPaths)
+{
+    float3 color = 0;
+
+    const uint n = numWavelengths;
+    const uint m = numPaths;
+
+    for (uint j = 0; j < m; j++)
+    {
+        float waves[n], wavePdfs[n];
+
+        for (uint i = 0; i < n; i++)
+        {
+            // Must take eye sensitivity and volume properties into account.
+            SampleWavelength(waves[i], wavePdfs[i]);
+        }
+
+        // Ray trace once, for a single wavelength.
+        float heroWave = UniformSelect(wavelengths, n);
+        path  heroPath = SamplePath(X, V, heroWave);
+
+        float3 meanPathMeasure = 0;
+        float  meanPathPdf     = 0;
+
+        for (uint i = 0; i < n; i++)
+        {
+            float pathMeasure, pathPdf;
+            EvaluatePath(heroPath, pathMeasure, pathPdf);
+
+            float3 normCMF = EvaluateNormalizedColorMatchingFunc(waves[i]);
+
+            meanPathMeasure += pathMeasure * normCMF;
+            meanPathPdf     += pathPdf * wavePdfs[i];
+        }
+
+        color += meanPathMeasure * rcp(meanPathPdf)
+    }
+
+    color *= rcp(m);
+
+    return color;
+}
+```
