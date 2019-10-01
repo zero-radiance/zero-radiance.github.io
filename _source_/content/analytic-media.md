@@ -845,5 +845,5 @@ This article has presented several methods for sampling the most common types of
 
 ## Acknowledgments
 
-I would like to thank Sébastien Hillaire for reviewing this blog post and offering thoughtful comments.
+I would like to thank Johannes Hannika, Julian Fong and Sébastien Hillaire for reviewing this blog post and offering thoughtful comments.
 
