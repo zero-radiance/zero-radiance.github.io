@@ -125,7 +125,7 @@ In practice, this means that we need to solve for distance \\(t\\) given the val
 
 $$ \tag{18} \tau(\bm{x}, \bm{v}, t) = -\mathrm{log} \big( 1 - P(t | \lbrace \bm{x}, \bm{v} \rbrace) O(\bm{x}, \bm{v}, t\_{max}) \big). $$
 
-# Types of Analytic Participating Media
+## Types of Analytic Participating Media
 
 Sometimes, it's convenient to specify the concentration (density) of the medium, and not its effective optical properties. For example, the attenuation coefficient can be computed using the following formula:
 
@@ -135,7 +135,7 @@ where \\(\rho\\) is the [volumetric mass density](https://en.wikipedia.org/wiki/
 
 If your background is in real-time rendering, you may have heard of [constant, linear and exponential fog](http://www.terathon.com/lengyel/Lengyel-UnifiedFog.pdf). These names refer to variation of density, typically with respect to height, and can be used to model height fog and atmospheric scattering. Usually, the albedo is assumed to be constant.
 
-## Constant Density
+### Constant Density
 
 A constant (or homogeneous) medium has uniform density across the entire volume:
 
@@ -151,7 +151,7 @@ $$ \tag{22} t = \frac{\tau_c}{\mu_t k}, $$
 
 which is consistent with [previous work](https://cs.dartmouth.edu/~wjarosz/publications/novak18monte.html).
 
-## Linear Variation of Density with Altitude in Rectangular Coordinates
+### Linear Variation of Density with Altitude in Rectangular Coordinates
 
 This is your typical "linear height fog on flat Earth" case. Density varies with the third (\\(z\\)) coordinate, which we interpret as the altitude:
 
@@ -178,7 +178,7 @@ $$
 
 where the sign in front of the square root is the sign of \\(v_3\\). Please note that homogeneous media \\( \big( m v_3 = 0 \big) \\) require special care.
 
-## Exponential Variation of Density with Altitude in Rectangular Coordinates
+### Exponential Variation of Density with Altitude in Rectangular Coordinates
 
 We can replace the linear density function with an exponential:
 
@@ -242,7 +242,7 @@ float SampleRectExpMedium(float optDepth, float height, float cosTheta,
 }
 ```
 
-## Exponential Variation of Density with Altitude in Spherical Coordinates
+### Exponential Variation of Density with Altitude in Spherical Coordinates
 
 This is where things get interesting. We would like to model an exponential density distribution on a sphere:
 
@@ -252,7 +252,7 @@ where \\(\bm{c}\\) is the center of the sphere, \\(R\\) is its radius, \\(h\\) i
 
 Before proceeding with the derivation, it's helpful to understand the geometric setting (after all, a picture is worth a thousand words). Personally, I found the article by Christian Schüler in [GPU Gems 3](http://www.gameenginegems.net/gemsdb/article.php?id=1133) to be immensely helpful, and I encourage you to check it out if you still have questions after reading my explanation below.
 
-### Geometric Configuration of a Spherical Atmosphere
+#### Geometric Configuration of a Spherical Atmosphere
 
 Our goal is to simplify the problem using its inherent spherical symmetry. Take a look at the diagram below:
 
@@ -304,7 +304,7 @@ gives the mass of an infinitely tall vertical column with its lower end starting
 
 Optical depth, then, is a *product* of the mass of the vertical column *and* the value of the obliquity function (which, intuitively, gives the absolute optical air mass along the oblique ray) *times* the mass attenuation coefficient.
 
-### Examining the Chapman Function
+#### Examining the Chapman Function
 
 It's always a good idea to examine a function visually, as a graph. Let's do that.
 
@@ -403,7 +403,7 @@ float RescaledChapmanFunction(float z, float Z, float cosTheta)
 
 A small but important note is that we can always use \\( \vert \mathrm{cos}{\theta} \vert \\) to evaluate the upper part of the Chapman function since, if the angle is greater than 90 degrees, the ray direction is reversed, and the cosine is negated.
 
-### Evaluating Optical Depth Using the Chapman Function
+#### Evaluating Optical Depth Using the Chapman Function
 
 A numerical approximation of the Chapman function, in conjunction with the Equation 36, allows us to evaluate optical depth along an arbitrary ray segment.
 
@@ -541,7 +541,7 @@ spectrum EvalOptDepthSpherExpMedium(float r, float cosTheta, float t,
 
 The code listed above works for all finite inputs. An important special case is when the point \\(\bm{y}\\) is considered to be outside the atmosphere (if `exp(Z - zY) < EPS`, for instance). In that case, `chY = 0` is an adequate approximation.
 
-### Sampling Exponential Media in Spherical Coordinates
+#### Sampling Exponential Media in Spherical Coordinates
 
 In order to sample participating media, we must be able to solve the optical depth equation for distance (Equation 18). Analysis presented in the previous section indicates that we must consider two cases: the ray pointing into the same hemisphere at both endpoints (Equation 47), and into opposite ones (Equation 48).
 
@@ -715,7 +715,7 @@ spectrum IntegrateRadianceAlongRaySegment(float3 X, float3 V, float t, uint numS
 }
 ```
 
-# Handling Spectral Coefficients
+## Handling Spectral Coefficients
 
 While using monochromatic attenuation is acceptable for certain use cases (such as modeling aerosols and fog), generally speaking, we would like to support spectrally-varying coefficients. This means that given a fixed distance, light is going to be attenuated to a different degree depending on the wavelength. This poses a problem for importance sampling, which would have to convert opacity (now a vector) into distance (a scalar).
 
@@ -790,6 +790,8 @@ $$ \tag{66}
     = \frac{p(\rho_j, \lambda_j^i)}{\sum\_{k=1}^{n} p(\rho_j | \lambda_j^k) p(\lambda_j^k)}.
 $$
 
+This formulation makes it easy to extend the method to support extra techniques for increased robustness.
+
 A high-level implementation of the algorithm is listed below.
 
 ```c++
@@ -836,3 +838,12 @@ float3 PathTraceWithSpectralMIS(float3 X, float3 V, uint numWavelengths, uint nu
     return color;
 }
 ```
+
+## Conclusion
+
+This article has presented several methods for sampling the most common types of analytic participating media. They are particularly useful for modeling low-frequency density variations. While planetary atmospheres cannot be sampled analytically, the proposed numerical approach works well in practice. I look forward to faster and simpler methods which will be undoubtedly discovered by the rendering community.
+
+## Acknowledgments
+
+I would like to thank Sébastien Hillaire for reviewing this blog post and offering thoughtful comments.
+
