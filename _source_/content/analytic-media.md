@@ -796,17 +796,17 @@ $$ \tag{67}
     = \frac{p(\rho_j | \lambda_j^i) p(\lambda_j^i)}{\sum\_{k=1}^{n} p(\rho_j | \lambda_j^k) p(\lambda_j^k)}.
 $$
 
-So, we divided some averages by some other averages. Do we get the correct result on average? Using the Equation 65,
+This formulation makes it easy to extend the method to support extra techniques for increased robustness.
+
+In the end, we divided some averages by some other averages. Do we get the correct result on average? Using the Equation 65,
 
 $$ \tag{68} \begin{aligned}
     E[F] &= \int_{X} F(x) p(x) d \mu(x) \cr
          &= \frac{1}{m} \sum\_{j=1}^{m} \sum\_{i=1}^{n_j} \int\_{X} \frac{f(x)}{\sum\_{k=1}^{n_j} p_k(x)} p_i(x) d \mu(x) \cr
-         &= \sum\_{i=1}^{n_j} \int\_{X} f(x) \frac{p_i(x)}{\sum\_{k=1}^{n_j} p_k(x)} d \mu(x) \cr
-         &= \sum\_{i=1}^{n_j} \int\_{X} f(x) w_i(x) d \mu(x) \cr
-         &= E[f] = I.
+         &= \frac{1}{m} \sum\_{j=1}^{m} \sum\_{i=1}^{n_j} \int\_{X} f(x) \frac{p_i(x)}{\sum\_{k=1}^{n_j} p_k(x)} d \mu(x) \cr
+         &= \frac{1}{m} \sum\_{j=1}^{m} \sum\_{i=1}^{n_j} \int\_{X} f(x) w_i(x) d \mu(x) \cr
+         &= \frac{1}{m} \sum\_{j=1}^{m} E[f] = I.
  \end{aligned} $$
-
-This formulation makes it easy to extend the method to support extra techniques for increased robustness.
 
 A high-level implementation of the algorithm is listed below.
 
