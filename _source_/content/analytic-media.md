@@ -735,9 +735,9 @@ $$ \tag{59} I = \int\_{\Lambda} \int\_{\mathrm{P}} f(\rho, \lambda) d\mu(\rho) d
 
 where \\(\mathrm{P}\\) is the path space (a set of paths), \\(\rho\\) is a path (an ordered set of vertices), \\(\mu(\rho)\\) is its [measure](https://en.wikipedia.org/wiki/Measure_\(mathematics\)), and \\(f\\) is the measurement contribution function. Clearly, this formulation has some redundancy - we define the domain of integration as a [Cartesian product](https://en.wikipedia.org/wiki/Cartesian_product) of all paths and all wavelengths when, in fact, certain paths are perfectly valid for many wavelengths. While their *contribution* is likely to be different, path *geometry* remains the same.
 
-The Monte Carlo formulation of the brute force single wavelength solution then takes the following form:
+The Monte Carlo formulation \\((I = E[F])\\) of the brute force single wavelength solution takes the following form:
 
-$$ \tag{60} I \approx
+$$ \tag{60} F =
     \frac{1}{m} \sum\_{j=1}^{m} \frac{f(\rho_j, \lambda_j)}{p(\rho_j, \lambda_j)} =
     \frac{1}{m} \sum\_{j=1}^{m} \frac{f(\rho_j, \lambda_j)}{p(\rho_j | \lambda_j) p(\lambda_j)},
 $$
@@ -768,27 +768,43 @@ This makes me wonder whether there is a more clever way to weight the individual
 Finally, we evaluate the Monte Carlo estimator using estimates from \\(m\\) paths:
 
 $$ \tag{64} \begin{aligned}
-    I &\approx \frac{1}{m} \sum\_{j=1}^{m} \frac{f(\rho_j, \Lambda_j)}{p(\rho_j, \Lambda_j)} \cr
-    &= \frac{1}{m} \sum\_{j=1}^{m} \frac{\frac{1}{n_j} \sum\_{i=1}^{n_j} f(\rho_j, \lambda_j^i)}{\frac{1}{n_j} \sum\_{k=1}^{n_j} p(\rho_j | \lambda_j^k) p(\lambda_j^k)} \cr
-    &= \frac{1}{m} \sum\_{j=1}^{m} \frac{\sum\_{i=1}^{n_j} f(\rho_j, \lambda_j^i)}{\sum\_{k=1}^{n_j} p(\rho_j | \lambda_j^k) p(\lambda_j^k)} \cr
-    &= \frac{1}{m} \sum\_{j=1}^{m} \sum\_{i=1}^{n_j} \frac{f(\rho_j, \lambda_j^i)}{\sum\_{k=1}^{n_j} p(\rho_j | \lambda_j^k) p(\lambda_j^k)}.
+    F &= \frac{1}{m} \sum\_{j=1}^{m} \frac{f(\rho_j, \Lambda_j)}{p(\rho_j, \Lambda_j)} \cr
+    &= \frac{1}{m} \sum\_{j=1}^{m} \frac{\frac{1}{n_j} \sum\_{i=1}^{n_j} f(\rho_j, \lambda_j^i)}{\frac{1}{n_j} \sum\_{k=1}^{n_j} p(\rho_j, \lambda_j^k)} \cr
+    &= \frac{1}{m} \sum\_{j=1}^{m} \frac{\sum\_{i=1}^{n_j} f(\rho_j, \lambda_j^i)}{\sum\_{k=1}^{n_j} p(\rho_j, \lambda_j^k)} \cr
+    &= \frac{1}{m} \sum\_{j=1}^{m} \sum\_{i=1}^{n_j} \frac{f(\rho_j, \lambda_j^i)}{\sum\_{k=1}^{n_j} p(\rho_j, \lambda_j^k)}.
+ \end{aligned} $$
+
+Or, to simplify the notation, for \\(x \in X\\),
+
+$$ \tag{65} \begin{aligned}
+    F = \frac{1}{m} \sum\_{j=1}^{m} \sum\_{i=1}^{n_j} \frac{f(x\_{ji})}{\sum\_{k=1}^{n_j} p_k(x\_{jk})}.
  \end{aligned} $$
 
 If we fix the set size \\( (\forall j, n_j = n) \\), we obtain a formulation which corresponds to the multi-sample estimator with \\(n\\) techniques (and \\(m\\) samples per technique) combined using the [balance heuristic](http://graphics.stanford.edu/papers/veach_thesis/):
 
-$$ \tag{65} \begin{aligned}
-    I &\approx \frac{1}{m} \sum\_{j=1}^{m} \sum\_{i=1}^{n} \frac{f(\rho_j, \lambda_j^i)}{\sum\_{k=1}^{n} p(\rho_j | \lambda_j^k) p(\lambda_j^k)} \cr
+$$ \tag{66} \begin{aligned}
+    F &= \frac{1}{m} \sum\_{j=1}^{m} \sum\_{i=1}^{n} \frac{f(\rho_j, \lambda_j^i)}{\sum\_{k=1}^{n} p(\rho_j | \lambda_j^k) p(\lambda_j^k)} \cr
     &= \frac{1}{m} \sum\_{i=1}^{n} \sum\_{j=1}^{m} \frac{f(\rho_j, \lambda_j^i)}{\sum\_{k=1}^{n} p(\rho_j, \lambda_j^k)} \cr
     &= \frac{1}{m} \sum\_{i=1}^{n} \sum\_{j=1}^{m} w(\rho_j, \lambda_j^i) \frac{f(\rho_j, \lambda_j^i)}{p(\rho_j, \lambda_j^i)},
 \end{aligned} $$
 
 where the balance heuristic weight \\(w\\) is defined as
 
-$$ \tag{66}
+$$ \tag{67}
     w(\rho_i, \lambda_j^i)
     = \frac{m p(\rho_j, \lambda_j^i)}{\sum\_{k=1}^{n} m p(\rho_j, \lambda_j^k)}
-    = \frac{p(\rho_j, \lambda_j^i)}{\sum\_{k=1}^{n} p(\rho_j | \lambda_j^k) p(\lambda_j^k)}.
+    = \frac{p(\rho_j | \lambda_j^i) p(\lambda_j^i)}{\sum\_{k=1}^{n} p(\rho_j | \lambda_j^k) p(\lambda_j^k)}.
 $$
+
+So, we divided some averages by some other averages. Do we get the correct result on average? Using the Equation 65,
+
+$$ \tag{68} \begin{aligned}
+    E[F] &= \int_{X} F(x) p(x) d \mu(x) \cr
+         &= \frac{1}{m} \sum\_{j=1}^{m} \sum\_{i=1}^{n_j} \int\_{X} \frac{f(x)}{\sum\_{k=1}^{n_j} p_k(x)} p_i(x) d \mu(x) \cr
+         &= \sum\_{i=1}^{n_j} \int\_{X} f(x) \frac{p_i(x)}{\sum\_{k=1}^{n_j} p_k(x)} d \mu(x) \cr
+         &= \sum\_{i=1}^{n_j} \int\_{X} f(x) w_i(x) d \mu(x) \cr
+         &= E[f] = I.
+ \end{aligned} $$
 
 This formulation makes it easy to extend the method to support extra techniques for increased robustness.
 
