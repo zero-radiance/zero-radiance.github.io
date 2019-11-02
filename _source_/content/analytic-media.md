@@ -825,28 +825,30 @@ float3 PathTraceWithSpectralMIS(float3 X, float3 V, uint numWavelengths, uint nu
         for (uint i = 0; i < n; i++)
         {
             // Must take eye sensitivity and volume properties into account.
-            SampleWavelength(waves[i], wavePdfs[i]);
+            SampleWavelength(waves[i], wavePdfs[i], j);
         }
 
+        float heroWave = SelectUniformly(wavelengths, n);
+
         // Ray trace once, for a single wavelength.
-        float heroWave = UniformSelect(wavelengths, n);
         path  heroPath = SamplePath(X, V, heroWave);
 
-        float3 meanPathMeasure = 0;
-        float  meanPathPdf     = 0;
+        float3 meanContribution = 0;
+        float  meanPdf          = 0;
 
         for (uint i = 0; i < n; i++)
         {
-            float pathMeasure, pathPdf;
-            EvaluatePath(heroPath, pathMeasure, pathPdf);
+            // Evaluate for a single wavelength.
+            float pathContribution, pathPdf;
+            EvaluatePath(heroPath, pathContribution, pathPdf);
 
             float3 normCMF = EvaluateNormalizedColorMatchingFunc(waves[i]);
 
-            meanPathMeasure += pathMeasure * normCMF;
-            meanPathPdf     += pathPdf * wavePdfs[i];
+            meanContribution += pathContribution * normCMF;
+            meanPdf          += pathPdf * wavePdfs[i];
         }
 
-        color += meanPathMeasure * rcp(meanPathPdf)
+        color += meanContribution * rcp(meanPdf)
     }
 
     color *= rcp(m);
