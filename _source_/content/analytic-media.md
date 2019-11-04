@@ -744,69 +744,68 @@ $$
 
 where \\(\rho_j\\) is constructed using \\(\lambda_j\\), and its contribution \\(f\\) is evaluated using \\(\lambda_j\\).
 
-If the constructed path is *independent* from the wavelength,
-
-$$ \tag{61} \tilde{p}(\rho_j, \lambda_j) = p(\rho_j) p(\lambda_j). $$
-
-Unfortunately, if we want to support spectrally-varying absorption and scattering, it is generally not the case.
-
 Our goal is to sample a path once, and use it to evaluate the contribution of an entire a set of wavelengths. The [Monte Carlo Methods for Physically Based Volume Rendering](https://cs.dartmouth.edu/~wjarosz/publications/novak18monte-sig.html) course offers several compelling solutions. One way to achieve this is to use [spectral multiple importance sampling](https://jo.dreggn.org/home/2014_herowavelength.pdf).
 
-We start by defining the set of wavelengths \\(\Lambda_j\\) of size \\(n_j\\) \\( (\forall k, \lambda_j^k \in \Lambda_j) \\). These wavelengths can all be importance sampled or, alternatively, all but the first one can be distributed in a stratified manner. Next, we pick one wavelength to guide our path sampling decisions - the authors refer to it as the *hero wavelength*. It appears that there is an implicit assumption that this wavelength is picked uniformly from the set. Therefore, the probability density of sampling the path \\(\rho_j\\) using the set \\(\Lambda_j\\) is taken as the average across the entire set:
+What you see below is my interpretation. I encourage the reader to compare it to the [original paper](https://jo.dreggn.org/home/2014_herowavelength.pdf).
 
-$$ \tag{62} p(\rho_j, \Lambda_j) =
+We start by defining the set of wavelengths \\(\Lambda_j\\) of size \\(n_j\\) \\( (\forall k, \lambda_j^k \in \Lambda_j) \\). These wavelengths can all be importance sampled or, alternatively, all but the first one can be distributed in a stratified manner (please note that the authors of the paper insist that, theoretically, they *must be QMC stratified* rather than randomly sampled).
+
+Next, we pick one wavelength to guide our path sampling decisions - the authors refer to it as the *hero wavelength*. This wavelength is picked uniformly from the set. Therefore, the probability density of sampling (on average) the path \\(\rho_j\\) using a randomly chosen \\(\lambda_j \in \Lambda_j\\) is taken as the average across the entire set (e.i. we [marginalize](https://en.wikipedia.org/wiki/Marginal_distribution#Marginal_probability) the PDF). In effect, we define another valid PDF that is not unlike Veach's *combined sample density*:
+
+$$ \tag{61} p(\rho_j, \lambda_j) =
+    \frac{1}{n_j} p(\rho_j) =
     \frac{1}{n_j} \sum\_{k=1}^{n_j} p(\rho_j, \lambda_j^k) =
     \frac{1}{n_j} \sum\_{k=1}^{n_j} p(\rho_j | \lambda_j^k) p(\lambda_j^k).
 $$
 
-Similarly, the contribution of this path is also taken as the average:
+Then, we simply evaluate the Monte Carlo estimator using \\(m\\) paths:
 
-$$ \tag{63} f(\rho_j, \Lambda_j) = \frac{1}{n_j} \sum\_{i=1}^{n_j} f(\rho_j, \lambda_j^i). $$
-
-This makes me wonder whether there is a more clever way to weight the individual subsamples, but I don't have an answer for this question.
-
-Finally, we evaluate the Monte Carlo estimator using estimates from \\(m\\) paths:
-
-$$ \tag{64} \begin{aligned}
-    F &= \frac{1}{m} \sum\_{j=1}^{m} \frac{f(\rho_j, \Lambda_j)}{p(\rho_j, \Lambda_j)} \cr
-    &= \frac{1}{m} \sum\_{j=1}^{m} \frac{\frac{1}{n_j} \sum\_{i=1}^{n_j} f(\rho_j, \lambda_j^i)}{\frac{1}{n_j} \sum\_{k=1}^{n_j} p(\rho_j, \lambda_j^k)} \cr
-    &= \frac{1}{m} \sum\_{j=1}^{m} \frac{\sum\_{i=1}^{n_j} f(\rho_j, \lambda_j^i)}{\sum\_{k=1}^{n_j} p(\rho_j, \lambda_j^k)} \cr
-    &= \frac{1}{m} \sum\_{j=1}^{m} \sum\_{i=1}^{n_j} \frac{f(\rho_j, \lambda_j^i)}{\sum\_{k=1}^{n_j} p(\rho_j, \lambda_j^k)}.
- \end{aligned} $$
+$$ \tag{62}
+    F = \frac{1}{m} \sum\_{j=1}^{m} \frac{1}{n_j} \sum\_{i=1}^{n_j} \frac{f(\rho_j, \lambda_j^i)}{p(\rho_j, \lambda_j)}
+      = \frac{1}{m} \sum\_{j=1}^{m} \sum\_{i=1}^{n_j} \frac{f(\rho_j, \lambda_j^i)}{\sum\_{k=1}^{n_j} p(\rho_j, \lambda_j^k)}.
+ $$
 
 Or, to simplify the notation, for \\(x \in X\\),
 
-$$ \tag{65} \begin{aligned}
-    F = \frac{1}{m} \sum\_{j=1}^{m} \sum\_{i=1}^{n_j} \frac{f(x\_{ji})}{\sum\_{k=1}^{n_j} p_k(x\_{jk})}.
+$$ \tag{63} \begin{aligned}
+    F = \frac{1}{m} \sum\_{j=1}^{m} \sum\_{i=1}^{n_j} \frac{f(x\_{ji})}{\sum\_{k=1}^{n_j} p(x\_{jk})}.
  \end{aligned} $$
 
-If we fix the set size \\( (\forall j, n_j = n) \\), we obtain a formulation which corresponds to the multi-sample estimator with \\(n\\) techniques (and \\(m\\) samples per technique) combined using the [balance heuristic](http://graphics.stanford.edu/papers/veach_thesis/):
+If we fix the set size \\( (\forall j, n_j = n) \\), we can change the order of summation, and obtain a formulation which corresponds to the multi-sample estimator with \\(n\\) techniques (and \\(m\\) samples per technique) combined using the [balance heuristic](http://graphics.stanford.edu/papers/veach_thesis/):
 
-$$ \tag{66} \begin{aligned}
-    F &= \frac{1}{m} \sum\_{j=1}^{m} \sum\_{i=1}^{n} \frac{f(\rho_j, \lambda_j^i)}{\sum\_{k=1}^{n} p(\rho_j | \lambda_j^k) p(\lambda_j^k)} \cr
+$$ \tag{64} \begin{aligned}
+    F &= \frac{1}{m} \sum\_{i=1}^{m} \sum\_{j=1}^{n} \frac{f(\rho_j, \lambda_j^i)}{\sum\_{k=1}^{n} p(\rho_j, \lambda_j^k)} \cr
     &= \frac{1}{m} \sum\_{i=1}^{n} \sum\_{j=1}^{m} \frac{f(\rho_j, \lambda_j^i)}{\sum\_{k=1}^{n} p(\rho_j, \lambda_j^k)} \cr
     &= \frac{1}{m} \sum\_{i=1}^{n} \sum\_{j=1}^{m} w(\rho_j, \lambda_j^i) \frac{f(\rho_j, \lambda_j^i)}{p(\rho_j, \lambda_j^i)},
 \end{aligned} $$
 
 where the balance heuristic weight \\(w\\) is defined as
 
-$$ \tag{67}
-    w(\rho_i, \lambda_j^i)
+$$ \tag{65}
+    w(\rho_j, \lambda_j^i)
     = \frac{m p(\rho_j, \lambda_j^i)}{\sum\_{k=1}^{n} m p(\rho_j, \lambda_j^k)}
-    = \frac{p(\rho_j | \lambda_j^i) p(\lambda_j^i)}{\sum\_{k=1}^{n} p(\rho_j | \lambda_j^k) p(\lambda_j^k)}.
+    = \frac{p(\rho_j | \lambda_j^i) p(\lambda_j^i)}{\sum\_{k=1}^{n} p(\rho_j | \lambda_j^k) p(\lambda_j^k)},
 $$
 
-This formulation makes it easy to extend the method to support extra techniques for increased robustness.
+from which is follows that
 
-In the end, we divided some averages by some other averages. Do we get the correct result on average? Using the Equation 65,
+$$ \tag{66}
+    \sum\_{i=1}^{n} w(\rho_i, \lambda_j^i) = 1.
+$$
 
-$$ \tag{68} \begin{aligned}
-    E[F] &= \int_{X} F(x) p(x) d \mu(x) \cr
-         &= \frac{1}{m} \sum\_{j=1}^{m} \sum\_{i=1}^{n_j} \int\_{X} \frac{f(x)}{\sum\_{k=1}^{n_j} p_k(x)} p_i(x) d \mu(x) \cr
-         &= \frac{1}{m} \sum\_{j=1}^{m} \sum\_{i=1}^{n_j} \int\_{X} f(x) \frac{p_i(x)}{\sum\_{k=1}^{n_j} p_k(x)} d \mu(x) \cr
-         &= \frac{1}{m} \sum\_{j=1}^{m} \sum\_{i=1}^{n_j} \int\_{X} f(x) w_i(x) d \mu(x) \cr
-         &= \frac{1}{m} \sum\_{j=1}^{m} E[f] = I.
+This formulation makes it easy to extend the method to support additional techniques for increased robustness.
+
+In the end, we divided some averages by some other averages. Do we get the correct result on average? Using the formalism introduced in the Equation 63,
+
+$$ \tag{67} \begin{aligned}
+    E[F] &= \int\_{X} F(x) p(x) d \mu(x) \cr
+         &= \frac{1}{m} \sum\_{j=1}^{m} \sum\_{i=1}^{n} \int\_{X} \frac{f(x)}{\sum\_{k=1}^{n} p(x)} p(x) d \mu(x) \cr
+         &= \frac{1}{m} \sum\_{j=1}^{m} \sum\_{i=1}^{n} \int\_{X} f(x) \frac{p(x)}{\sum\_{k=1}^{n} p(x)} d \mu(x) \cr
+         &= \frac{1}{m} \sum\_{j=1}^{m} \sum\_{i=1}^{n} \int\_{X} f(x) w(x) d \mu(x) \cr
+         &= \frac{1}{m} \sum\_{j=1}^{m} \int\_{X} f(x) d \mu(x) = I,
  \end{aligned} $$
+
+so it appears that everything works out nicely.
 
 A high-level implementation of the algorithm is listed below.
 
@@ -851,7 +850,7 @@ float3 PathTraceWithSpectralMIS(float3 X, float3 V, uint numWavelengths, uint nu
         color += meanContribution * rcp(meanPdf)
     }
 
-    color *= rcp(m);
+    color *= rcp(numPaths);
 
     return color;
 }
@@ -863,5 +862,5 @@ This article has presented several methods for sampling the most common types of
 
 ## Acknowledgments
 
-I would like to thank Johannes Hannika, Julian Fong and Sébastien Hillaire for reviewing this blog post and offering thoughtful comments.
+I would like to thank Julian Fong, Johannes Hannika and Sébastien Hillaire for discussion and offering thoughtful comments.
 
