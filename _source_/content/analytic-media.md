@@ -754,7 +754,7 @@ Next, we pick one wavelength to guide our path sampling decisions - the authors 
 
 $$ \tag{61} p(\rho_j, \lambda_j) =
     \frac{1}{n_j} p(\rho_j) =
-    \frac{1}{n_j} \sum\_{k=1}^{n_j} p(\rho_j, \lambda_j^k) =
+    \frac{1}{n_j} \sum\_{k=1}^{n_j} p_k(\rho_j, \lambda_j^k) =
     \frac{1}{n_j} \sum\_{k=1}^{n_j} p(\rho_j | \lambda_j^k) p(\lambda_j^k).
 $$
 
@@ -762,32 +762,31 @@ Then, we simply evaluate the Monte Carlo estimator using \\(m\\) paths:
 
 $$ \tag{62}
     F = \frac{1}{m} \sum\_{j=1}^{m} \frac{1}{n_j} \sum\_{i=1}^{n_j} \frac{f(\rho_j, \lambda_j^i)}{p(\rho_j, \lambda_j)}
-      = \frac{1}{m} \sum\_{j=1}^{m} \sum\_{i=1}^{n_j} \frac{f(\rho_j, \lambda_j^i)}{\sum\_{k=1}^{n_j} p(\rho_j, \lambda_j^k)}.
+      = \frac{1}{m} \sum\_{j=1}^{m} \sum\_{i=1}^{n_j} \frac{f(\rho_j, \lambda_j^i)}{\sum\_{k=1}^{n_j} p_k(\rho_j, \lambda_j^k)}.
  $$
 
 Or, to simplify the notation, for \\(x \in X\\),
 
 $$ \tag{63} \begin{aligned}
-    F = \frac{1}{m} \sum\_{j=1}^{m} \sum\_{i=1}^{n_j} \frac{f(x\_{ji})}{\sum\_{k=1}^{n_j} p(x\_{jk})}.
+    F = \frac{1}{m} \sum\_{j=1}^{m} \sum\_{i=1}^{n_j} \frac{f(x\_{ji})}{\sum\_{k=1}^{n_j} p_k(x\_{jk})}.
  \end{aligned} $$
 
-If we fix the set size \\( (\forall j, n_j = n) \\), we can change the order of summation, and obtain a formulation which corresponds to the multi-sample estimator with \\(n\\) techniques (and \\(m\\) samples per technique) combined using the [balance heuristic](http://graphics.stanford.edu/papers/veach_thesis/):
+If we fix the set size \\( (\forall j, n_j = n) \\), we can change the order of summation to obtain a formulation which corresponds to the multi-sample estimator with \\(n\\) techniques (and \\(m\\) samples per technique) combined using the [balance heuristic](http://graphics.stanford.edu/papers/veach_thesis/):
 
 $$ \tag{64} \begin{aligned}
-    F &= \frac{1}{m} \sum\_{i=1}^{m} \sum\_{j=1}^{n} \frac{f(\rho_j, \lambda_j^i)}{\sum\_{k=1}^{n} p(\rho_j, \lambda_j^k)} \cr
-    &= \frac{1}{m} \sum\_{i=1}^{n} \sum\_{j=1}^{m} \frac{f(\rho_j, \lambda_j^i)}{\sum\_{k=1}^{n} p(\rho_j, \lambda_j^k)} \cr
-    &= \frac{1}{m} \sum\_{i=1}^{n} \sum\_{j=1}^{m} w(\rho_j, \lambda_j^i) \frac{f(\rho_j, \lambda_j^i)}{p(\rho_j, \lambda_j^i)},
+    F &= \frac{1}{m} \sum\_{j=1}^{m} \sum\_{i=1}^{n} \frac{f(\rho_j, \lambda_j^i)}{\sum\_{k=1}^{n} p_k(\rho_j, \lambda_j^k)} \cr
+    &= \frac{1}{m} \sum\_{i=1}^{n} \sum\_{j=1}^{m} \frac{f(\rho_j, \lambda_j^i)}{\sum\_{k=1}^{n} p_k(\rho_j, \lambda_j^k)} \cr
+    &= \frac{1}{m} \sum\_{i=1}^{n} \sum\_{j=1}^{m} f(\rho_j, \lambda_j^i) \frac{w_i(\rho_j, \lambda_j^i)}{p_i(\rho_j, \lambda_j^i)},
 \end{aligned} $$
 
 where the balance heuristic weight \\(w\\) is defined as
 
 $$ \tag{65}
-    w(\rho_j, \lambda_j^i)
-    = \frac{m p(\rho_j, \lambda_j^i)}{\sum\_{k=1}^{n} m p(\rho_j, \lambda_j^k)}
-    = \frac{p(\rho_j | \lambda_j^i) p(\lambda_j^i)}{\sum\_{k=1}^{n} p(\rho_j | \lambda_j^k) p(\lambda_j^k)},
+    w_i(\rho_j, \lambda_j^i)
+    = \frac{p_i(\rho_j, \lambda_j^i)}{\sum\_{k=1}^{n} p_k(\rho_j, \lambda_j^k)},
 $$
 
-from which is follows that
+from which it follows that
 
 $$ \tag{66}
     \sum\_{i=1}^{n} w(\rho_i, \lambda_j^i) = 1.
@@ -799,9 +798,9 @@ In the end, we divided some averages by some other averages. Do we get the corre
 
 $$ \tag{67} \begin{aligned}
     E[F] &= \int\_{X} F(x) p(x) d \mu(x) \cr
-         &= \frac{1}{m} \sum\_{j=1}^{m} \sum\_{i=1}^{n} \int\_{X} \frac{f(x)}{\sum\_{k=1}^{n} p(x)} p(x) d \mu(x) \cr
-         &= \frac{1}{m} \sum\_{j=1}^{m} \sum\_{i=1}^{n} \int\_{X} f(x) \frac{p(x)}{\sum\_{k=1}^{n} p(x)} d \mu(x) \cr
-         &= \frac{1}{m} \sum\_{j=1}^{m} \sum\_{i=1}^{n} \int\_{X} f(x) w(x) d \mu(x) \cr
+         &= \frac{1}{m} \sum\_{j=1}^{m} \sum\_{i=1}^{n} \int\_{X} \frac{f(x)}{\sum\_{k=1}^{n} p_k(x)} p_i(x) d \mu(x) \cr
+         &= \frac{1}{m} \sum\_{j=1}^{m} \sum\_{i=1}^{n} \int\_{X} f(x) \frac{p_i(x)}{\sum\_{k=1}^{n} p_k(x)} d \mu(x) \cr
+         &= \frac{1}{m} \sum\_{j=1}^{m} \sum\_{i=1}^{n} \int\_{X} f(x) w_i(x) d \mu(x) \cr
          &= \frac{1}{m} \sum\_{j=1}^{m} \int\_{X} f(x) d \mu(x) = I,
  \end{aligned} $$
 
@@ -829,7 +828,7 @@ float3 PathTraceWithSpectralMIS(float3 X, float3 V, uint numWavelengths, uint nu
 
         float heroWave = SelectUniformly(wavelengths, n);
 
-        // Ray trace once, for a single wavelength.
+        // Trace a single path for a single wavelength, once.
         path  heroPath = SamplePath(X, V, heroWave);
 
         float3 meanContribution = 0;
@@ -839,7 +838,7 @@ float3 PathTraceWithSpectralMIS(float3 X, float3 V, uint numWavelengths, uint nu
         {
             // Evaluate for a single wavelength.
             float pathContribution, pathPdf;
-            EvaluatePath(heroPath, pathContribution, pathPdf);
+            EvaluatePath(heroPath, waves[i], pathContribution, pathPdf);
 
             float3 normCMF = EvaluateNormalizedColorMatchingFunc(waves[i]);
 
