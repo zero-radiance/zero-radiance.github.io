@@ -248,7 +248,7 @@ This is where things get interesting. We would like to model an exponential dens
 
 $$ \tag{30} \rho\_{es}(\bm{x}) = k e^{-h(\bm{x}) / H} = k e^{-(\Vert \bm{x} - \bm{c} \Vert - R) / H} = k e^{-n (\Vert \bm{x} - \bm{c} \Vert - R)}, $$
 
-where \\(\bm{c}\\) is the center of the sphere, \\(R\\) is its radius, \\(h\\) is the altitude, and \\(H\\) is the [scale height](https://en.wikipedia.org/wiki/Scale_height) as before. In this context, \\(k\\) and \\(\bm{\mu_t} k\\) represent the density and the value of the attenuation coefficient at the sea level, respectively.
+where \\(\bm{c}\\) is the center of the sphere, \\(R\\) is its radius, \\(h\\) is the altitude, and \\(H\\) is the [scale height](https://en.wikipedia.org/wiki/Scale_height) as before. In this context, \\(k\\) and \\(\bm{\mu_t} k\\) represent the density and the value of the attenuation coefficient at the sea level, respectively. This solution corresponds to the equation of density of an [isothermal atmosphere](http://www.feynmanlectures.caltech.edu/I_40.html) that does not exhibit [atmospheric refraction](https://en.wikipedia.org/wiki/Atmospheric_refraction).
 
 Before proceeding with the derivation, it's helpful to understand the geometric setting (after all, a picture is worth a thousand words). Personally, I found the article by Christian Schüler in [GPU Gems 3](http://www.gameenginegems.net/gemsdb/article.php?id=1133) to be immensely helpful, and I encourage you to check it out if you still have questions after reading my explanation below.
 
@@ -264,7 +264,7 @@ In order to find the parametric equation of altitude \\(h\\) along the ray, we c
 
 $$ \tag{31} r_0 = r \mathrm{sin}{\theta}, \qquad t_0 = r \mathrm{cos}{\theta}. $$
 
-If we ignore [atmospheric refraction](https://en.wikipedia.org/wiki/Atmospheric_refraction), we obtain the following expression of optical depth:
+This allows us to obtain the following expression of optical depth:
 
 $$ \tag{32} \begin{aligned}
 \bm{\tau\_{es}}(r, \theta, t)
@@ -857,7 +857,7 @@ float3 PathTraceWithSpectralMIS(float3 X, float3 V, uint numWavelengths, uint nu
 
 ## Conclusion
 
-This article has presented several methods for sampling the most common types of analytic participating media. They are particularly useful for modeling low-frequency density variations. While planetary atmospheres cannot be sampled analytically, the proposed numerical approach works well in practice. I look forward to faster and simpler methods which will be undoubtedly discovered by the rendering community.
+This article has presented several methods for sampling common types of analytic participating media. They are particularly useful for modeling low-frequency variations of density. While planetary atmospheres cannot be sampled analytically, the proposed numerical approach works well in practice. I look forward to faster and simpler methods which will be undoubtedly discovered by the rendering community.
 
 ## Acknowledgments
 
