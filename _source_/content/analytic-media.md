@@ -800,7 +800,7 @@ $$ \tag{67} \begin{aligned}
     E[F] &= \int\_{X} F(x) p(x) d \mu(x) \cr
          &= \frac{1}{m} \sum\_{j=1}^{m} \sum\_{i=1}^{n} \int\_{X} \frac{f(x)}{\sum\_{k=1}^{n} p_k(x)} p_i(x) d \mu(x) \cr
          &= \frac{1}{m} \sum\_{j=1}^{m} \sum\_{i=1}^{n} \int\_{X} f(x) \frac{p_i(x)}{\sum\_{k=1}^{n} p_k(x)} d \mu(x) \cr
-         &= \frac{1}{m} \sum\_{j=1}^{m} \sum\_{i=1}^{n} \int\_{X} f(x) w_i(x) d \mu(x) \cr
+         &= \frac{1}{m} \sum\_{j=1}^{m} \int\_{X} f(x) \sum\_{i=1}^{n} w_i(x) d \mu(x) \cr
          &= \frac{1}{m} \sum\_{j=1}^{m} \int\_{X} f(x) d \mu(x) = I,
  \end{aligned} $$
 
