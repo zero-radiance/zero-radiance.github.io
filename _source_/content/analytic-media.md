@@ -857,6 +857,44 @@ float3 PathTraceWithSpectralMIS(float3 X, float3 V, uint numWavelengths, uint nu
 }
 ```
 
+### Spectral Tracking
+
+[Spectral tracking](https://dl.acm.org/citation.cfm?id=3073665) presents an way to speed up spectral rendering. It uses a radically different approach by incorporating [null collisions](https://hal.archives-ouvertes.fr/hal-01688110/) into the radiative transport equation.
+
+The basic idea of the null-collision integral is add another type of collision event which has no effect on light transport. While it may seem pointless at first glance, it is a very useful mathematical trick that allows analytic sampling of heterogeneous media (by padding it with transparent forward-scattering particles) either in space or across the spectral domain (or both).
+
+We introduce two new types of collision coefficients: the null-collision coefficient \\(\bm{\mu_n}\\) and the majorant \\(\bm{\bar{\mu}}\\) s.t.
+
+$$ \tag{68} \bm{\mu_a} + \bm{\mu_s} + \bm{\mu_n} = \bm{\bar{\mu}}. $$
+
+Note that while \\(\bm{\mu_n}\\) does not have to be positive, it is usually a [good idea](https://hal.archives-ouvertes.fr/hal-01688110/) in order to keep variance low. For our use case, we define \\(\bar{\mu}\\) by taking the maximum value of the attenuation coefficient across the spectral domain:
+
+$$ \tag{69} \bar{\mu} = \underset{\lambda \in \Lambda}{\mathrm{max}} \big(\mu_t(\lambda) \big) $$
+
+Note that it has to be a scalar since it is used for importance sampling.
+
+Both the derivation and the proof of the null-scattering integral are long and complicated, so I will only present the [final result](https://dl.acm.org/citation.cfm?id=3073665), which is
+
+$$ \tag{70} \bm{L}(\bm{x}, \bm{v})
+    = \int\_{0}^{t\_{max}} \bar{\mu}(\bm{x}, \bm{v}, s) \bar{T}(\bm{x}, \bm{v}, s) \bm{L_i}(\bm{x} + s \bm{v}, \bm{v}) ds,
+$$
+
+where \\(\bar{T}\\) is transmittance evaluated using the majorant (rather than attenuation) coefficient and
+
+$$ \tag{71} \begin{aligned}
+	\bm{L_i}(\bm{x}, \bm{v})
+	&= P_a(\bm{x}, \bm{v}, s) \frac{\bm{\mu_a}(\bm{x}, \bm{v}, s)}{\bar{\mu}(\bm{x}, \bm{v}, s) P_a(\bm{x}, \bm{v}, s)} \bm{L_e}(\bm{x}, \bm{v}) \cr
+	&+ P_s(\bm{x}, \bm{v}, s) \frac{\bm{\mu_s}(\bm{x}, \bm{v}, s)}{\bar{\mu}(\bm{x}, \bm{v}, s) P_s(\bm{x}, \bm{v}, s)} \bm{L_s}(\bm{x}, \bm{v}) \cr
+	&+ P_n(\bm{x}, \bm{v}, s) \frac{\bm{\mu_n}(\bm{x}, \bm{v}, s)}{\bar{\mu}(\bm{x}, \bm{v}, s) P_n(\bm{x}, \bm{v}, s)} \bm{L}(\bm{x}, \bm{v})
+\end{aligned}
+$$
+
+where \\(\bm{L_s}\\) is defined in the same way as in the Equation 12.
+
+If the medium is known to not be emissive \\((\bm{L_e} = 0)\\), we can renormalize the probabilities
+
+c.f. eq. 13 but without emission.
+
 ## Conclusion
 
 This article has presented several methods for sampling common types of analytic participating media. They are particularly useful for modeling low-frequency variations of density. While planetary atmospheres cannot be sampled analytically, the proposed numerical approach works well in practice. I look forward to faster and simpler methods which will be undoubtedly discovered by the rendering community.
