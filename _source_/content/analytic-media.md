@@ -867,17 +867,17 @@ float3 SpectralMIS(float3 X, float3 V, uint numWavelengths, uint numPaths)
 
 ### Spectral Tracking
 
-[Spectral tracking](https://dl.acm.org/citation.cfm?id=3073665) presents an way to speed up spectral rendering. It uses a radically different approach by incorporating [null collisions](https://hal.archives-ouvertes.fr/hal-01688110/) into the radiative transport equation.
+[Spectral tracking](https://dl.acm.org/citation.cfm?id=3073665) presents an alternative way to speed up spectral rendering. It uses a radically different approach by incorporating [null collisions](https://hal.archives-ouvertes.fr/hal-01688110/) into the radiative transport equation.
 
 The basic idea of the null-collision integral is add another type of collision event which has no effect on light transport. While it may seem pointless at first glance, it is a very useful mathematical trick that allows analytic sampling of heterogeneous media (by padding it with transparent forward-scattering particles) either in space or across the spectral domain (or both).
 
-We introduce two new types of collision coefficients: the null-collision coefficient \\(\bm{\mu_n}\\) and the majorant \\(\bm{\bar{\mu}}\\) s.t.
+The framework introduces two new types of collision coefficients: the null-collision coefficient \\(\bm{\mu_n}\\) and the majorant \\(\bm{\bar{\mu}}\\) s.t.
 
 $$ \tag{68} \bm{\mu_a} + \bm{\mu_s} + \bm{\mu_n} = \bm{\bar{\mu}}. $$
 
-Note that while \\(\bm{\mu_n}\\) does not have to be positive, it is usually a [good idea](https://hal.archives-ouvertes.fr/hal-01688110/) in order to keep variance low. For our use case, we define \\(\bar{\mu}\\) by taking the maximum value of the attenuation coefficient across the spectral domain:
+Note that while \\(\bm{\mu_n}\\) does not have to be positive, it is usually a [good idea](https://hal.archives-ouvertes.fr/hal-01688110/) in order to keep variance low. For our use case, we compute \\(\bar{\mu}\\) by taking the [maximum of the absolute value](https://rorasa.wordpress.com/2012/05/13/l0-norm-l1-norm-l2-norm-l-infinity-norm/) of the attenuation coefficient across the spectral domain:
 
-$$ \tag{69} \bar{\mu} = \underset{\lambda \in \Lambda}{\mathrm{max}} \big(\mu_t(\lambda) \big) $$
+$$ \tag{69} \bar{\mu} = ||\mu_t(\lambda)||\_{\infty}. $$
 
 Note that it has to be a scalar since it is used for importance sampling.
 
@@ -887,21 +887,112 @@ $$ \tag{70} \bm{L}(\bm{x}, \bm{v})
     = \int\_{0}^{t\_{max}} \bar{\mu}(\bm{x}, \bm{v}, s) \bar{T}(\bm{x}, \bm{v}, s) \bm{L_i}(\bm{x} + s \bm{v}, \bm{v}) ds,
 $$
 
-where \\(\bar{T}\\) is transmittance evaluated using the majorant (rather than attenuation) coefficient and
+where \\(\bar{T}\\) is transmittance evaluated using the majorant (rather than attenuation) coefficient. Note that the majorant coefficient doesn't actually have to be a constant - it can be any analytic function (e.g. varying with height) serving as an upper bound for the attenuation coefficient.
+
+The incoming radiance term \\(\bm{L_i}\\) is defined as
 
 $$ \tag{71} \begin{aligned}
 	\bm{L_i}(\bm{x}, \bm{v})
-	&= P_a(\bm{x}, \bm{v}, s) \frac{\bm{\mu_a}(\bm{x}, \bm{v}, s)}{\bar{\mu}(\bm{x}, \bm{v}, s) P_a(\bm{x}, \bm{v}, s)} \bm{L_e}(\bm{x}, \bm{v}) \cr
-	&+ P_s(\bm{x}, \bm{v}, s) \frac{\bm{\mu_s}(\bm{x}, \bm{v}, s)}{\bar{\mu}(\bm{x}, \bm{v}, s) P_s(\bm{x}, \bm{v}, s)} \bm{L_s}(\bm{x}, \bm{v}) \cr
-	&+ P_n(\bm{x}, \bm{v}, s) \frac{\bm{\mu_n}(\bm{x}, \bm{v}, s)}{\bar{\mu}(\bm{x}, \bm{v}, s) P_n(\bm{x}, \bm{v}, s)} \bm{L}(\bm{x}, \bm{v})
+	&= P_a(\bm{x}, \bm{v}, s) \bm{w_a}(\bm{x}, \bm{v}, s) \bm{L_e}(\bm{x}, \bm{v}) \cr
+	&+ P_s(\bm{x}, \bm{v}, s) \bm{w_s}(\bm{x}, \bm{v}, s) \bm{L_s}(\bm{x}, \bm{v}) \cr
+	&+ P_n(\bm{x}, \bm{v}, s) \bm{w_n}(\bm{x}, \bm{v}, s) \bm{L}(\bm{x}, \bm{v})
 \end{aligned}
 $$
 
-where \\(\bm{L_s}\\) is defined in the same way as in the Equation 12.
+where \\(\bm{L_e}\\) is emission and \\(\bm{L_s}\\) is defined in the same way as in the Equation 13.
 
-If the medium is known to not be emissive \\((\bm{L_e} = 0)\\), we can renormalize the probabilities
+Each individual event has a corresponding weight:
 
-c.f. eq. 13 but without emission.
+$$ \tag{72}
+\begin{aligned}
+	\bm{w_a}(\bm{x}, \bm{v}, s) &= \frac{\bm{\mu_a}(\bm{x}, \bm{v}, s)}{\bar{\mu}(\bm{x}, \bm{v}, s) P_a(\bm{x}, \bm{v}, s)} \cr
+	\bm{w_s}(\bm{x}, \bm{v}, s) &= \frac{\bm{\mu_s}(\bm{x}, \bm{v}, s)}{\bar{\mu}(\bm{x}, \bm{v}, s) P_s(\bm{x}, \bm{v}, s)} \cr
+	\bm{w_n}(\bm{x}, \bm{v}, s) &= \frac{\bm{\mu_n}(\bm{x}, \bm{v}, s)}{\bar{\mu}(\bm{x}, \bm{v}, s) P_n(\bm{x}, \bm{v}, s)}
+\end{aligned}
+$$
+
+The simplest (but [not the only](https://dl.acm.org/citation.cfm?id=3073665)) way to define the collision probabilities is as follows:
+
+$$ \tag{73} \begin{aligned}
+	P_a(\bm{x}, \bm{v}, s) &= \frac{||\mu_a(\lambda)||\_{\infty}}{||\mu_a(\lambda)||\_{\infty} + ||\mu_s(\lambda)||\_{\infty} + ||\mu_n(\lambda)||\_{\infty}}, \cr
+	P_s(\bm{x}, \bm{v}, s) &= \frac{||\mu_s(\lambda)||\_{\infty}}{||\mu_a(\lambda)||\_{\infty} + ||\mu_s(\lambda)||\_{\infty} + ||\mu_n(\lambda)||\_{\infty}}, \cr
+	P_n(\bm{x}, \bm{v}, s) &= \frac{||\mu_n(\lambda)||\_{\infty}}{||\mu_a(\lambda)||\_{\infty} + ||\mu_s(\lambda)||\_{\infty} + ||\mu_n(\lambda)||\_{\infty}},
+\end{aligned}
+$$
+
+where we made the position and the direction on the right-hand side implicit for clarity.
+
+If the medium is known to not be emissive, we can redistribute the absorption probability between \\(P_s\\) and \\(P_n\\):
+
+$$ \tag{74} \begin{aligned}
+	P'\_a(\bm{x}, \bm{v}, s) &= 0, \cr
+	P'\_s(\bm{x}, \bm{v}, s) &= \frac{P_s}{P_s + P_n}, \cr
+	P'\_n(\bm{x}, \bm{v}, s) &= \frac{P_n}{P_s + P_n}.
+\end{aligned}
+$$
+
+Comparing the Equations 13 and 70, we can see that they are indeed very similar (and so is the estimator). As before, the leading term is canceled out after the division by the PDF, so the only difference is that we must handle several types of events once a collision actually occurs.
+
+A high-level implementation of the algorithm is listed below.
+
+```c++
+float3 SpectralTracking(float3 X, float3 V, uint numWavelengths, uint numPaths)
+{
+    float3 color = 0;
+
+    const uint n = numWavelengths;
+    const uint m = numPaths;
+
+    for (uint j = 0; j < m; j++)
+    {
+    	float maxOptDepth = EvalOptDepthUsingMajorant(X, V);
+    	float maxOpacity  = OpacityFromOpticalDepth(maxOptDepth);
+
+    	float opacity = Rnd(j);
+
+    	if (opacity < maxOpacity)
+    	{
+    		// Volume contribution. Cancels out the opacity term.
+        	// Convert to optical depth (Equation 18).
+        	float optDepth = -log(1 - opacity);
+        	// Perform distance sampling.
+        	float t = SampleVolumesUsingMajorant(optDepth, X, V);
+        	// Query the coefficients.
+			spectrum absK, scaK, nulK;
+        	LookUpVolumeCoefficients(X + t * V, V, absK, scaK, nulK);
+        	// Compute event probabilities.
+        	float absP, scaP, nulP;
+        	// Use the Equation 73, or one of those from the paper.
+        	ComputeVolumeEventProbabilities(absP, scaP, nulP);
+
+        	// How to sample spectra? Which wavelengths???
+
+	    	float u = Rnd(j);
+
+	    	// Select an event.
+	    	if (u1 < absP)
+	    	{
+	    		// Absorption & emission
+	    	}
+	    	else if (u1 < (absP + scaP))
+	    	{
+	    		// In-scattering.
+	    	}
+	    	else
+	    	{
+	    		// Null-scattering.
+	    	}
+    	}
+    	else
+    	{
+    		// Surface contribution. Cancels out the transmittance term.
+
+    	}
+
+
+    return color;
+}
+```
 
 ## Conclusion
 
