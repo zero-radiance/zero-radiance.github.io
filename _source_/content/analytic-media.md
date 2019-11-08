@@ -111,6 +111,14 @@ This radically simplifies evaluation of the estimator (again, for a single wavel
 
 $$ \tag{16} L(\bm{x}, \bm{v}) \approx O(\bm{x}, \bm{v}, t\_{max}) \frac{1}{N} \sum\_{i=1}^{N} \alpha\_{ss}(\bm{x}, \bm{v}, s_i) L_s(\bm{x} + s_i \bm{v}, \bm{v}). $$
 
+Extending it to handle the surface contribution is trivial:
+
+$$ \tag{16.5}
+	L(\bm{x}, \bm{v})
+	\approx O(\bm{x}, \bm{v}, t\_{max}) \frac{1}{N} \sum\_{i=1}^{N} L\_{vol}(\bm{x} + s_i \bm{v}, \bm{v})
+	+ T(\bm{x}, \bm{v}, t\_{max}) L\_{surf}(\bm{x} + t\_{max} \bm{v}, \bm{v}).
+$$
+
 This equation can be seen as a form of [premultiplied alpha blending](https://graphics.pixar.com/library/Compositing/) (where alpha is opacity), which explains why particle cards can be so convincing. Additionally, it offers yet another way to parametrize the attenuation coefficient - namely, by opacity at distance (which is similar to [transmittance at distance](https://blog.selfshadow.com/publications/s2015-shading-course/burley/s2015_pbs_disney_bsdf_notes.pdf) used by Disney). It appears to be the most RGB rendering friendly parametrization that I am aware of.
 
 In order to distribute the samples according to the PDF, we must be able to [invert](http://www.pbr-book.org/3ed-2018/Monte_Carlo_Integration/Sampling_Random_Variables.html#TheInversionMethod) the [CDF](https://en.wikipedia.org/wiki/Cumulative_distribution_function) \\(P\\):
@@ -811,7 +819,7 @@ so it appears that everything works out nicely.
 A high-level implementation of the algorithm is listed below.
 
 ```c++
-float3 PathTraceWithSpectralMIS(float3 X, float3 V, uint numWavelengths, uint numPaths)
+float3 SpectralMIS(float3 X, float3 V, uint numWavelengths, uint numPaths)
 {
     float3 color = 0;
 
@@ -828,7 +836,7 @@ float3 PathTraceWithSpectralMIS(float3 X, float3 V, uint numWavelengths, uint nu
             SampleWavelength(waves[i], wavePdfs[i], j);
         }
 
-        float heroWave = SelectUniformly(wavelengths, n);
+        float heroWave = SelectUniformly(waves, n);
 
         // Trace a single path for a single wavelength, once.
         path  heroPath = SamplePath(X, V, heroWave);
@@ -838,7 +846,7 @@ float3 PathTraceWithSpectralMIS(float3 X, float3 V, uint numWavelengths, uint nu
 
         for (uint i = 0; i < n; i++)
         {
-            // Evaluate for a single wavelength.
+            // Evaluate the path for a single wavelength.
             float pathContribution, pathPdf;
             EvaluatePath(heroPath, waves[i], pathContribution, pathPdf);
 
