@@ -729,7 +729,9 @@ While using monochromatic attenuation is acceptable for certain use cases (such 
 
 The simplest solution is to trace one path per wavelength. For instance, we could either densely sample the entire [visible spectrum](https://en.wikipedia.org/wiki/Visible_spectrum) (e.g. 380 to 780 nm with a 10 nm step size resulting in 40 paths), or pick several wavelengths stochastically (distributed either uniformly, or according to the [luminous efficiency function](https://en.wikipedia.org/wiki/Luminosity_function), or opacity spectrum, or the product of both). This brute force approach increases the rendering cost by a factor of \\(n\\) (where \\(n\\) denotes the number of wavelength samples), but it provides a good reference point for comparison.
 
-Another approach suggested during the [Production Volume Rendering](https://graphics.pixar.com/library/ProductionVolumeRendering/paper.pdf) course is to always construct paths using the the average attenuation coefficient across the visible spectrum. This solution is rather attractive from the performance point of view, since you only end up tracing a single path. The downside is that it assumes that the resulting radiance distribution is close to monochromatic. This may not be the case for subsurface scattering in skin, for instance, where red wavelengths scatter much farther than the rest (and the spectral distribution is rather compact), and using this technique may result in an excessive amount of color noise. On the other hand, if we use the maximum opacity value across the spectrum (which works reasonably well for skin), renders of atmospheric effects (or anything with a wide and complicated spectral distribution) may take a while to converge. Intuitively, using some kind of weighted average wavelength probably makes the most sense.
+Another approach suggested during the [Production Volume Rendering](https://graphics.pixar.com/library/ProductionVolumeRendering/paper.pdf) course is to always construct paths using the the average attenuation coefficient across the visible spectrum. This solution is rather attractive from the performance point of view, since you only end up tracing a single path. The downside is that it assumes that the resulting radiance distribution is close to monochromatic. This may not be the case for subsurface scattering in skin, for instance, in which case red wavelengths scatter much farther than the rest (and the spectral distribution is rather compact), and using this technique may result in an excessive amount of color noise. On the other hand, using the maximum value of the attenuation coefficient across the spectrum assumes that the distribution is symmetric around the peak, which may not be the case. Intuitively, using some kind of weighted average wavelength probably makes the most sense.
+
+{{< figure src="/img/skew.png">}}
 
 Let's start with understanding the problem we are trying to solve.
 
@@ -752,15 +754,17 @@ $$
 
 where \\(\rho_j\\) is constructed using \\(\lambda_j\\), and its contribution \\(f\\) is evaluated using \\(\lambda_j\\).
 
+Our goal is to sample a path once, and use it to evaluate the contribution of an entire set of wavelengths. The [Monte Carlo Methods for Physically Based Volume Rendering](https://cs.dartmouth.edu/~wjarosz/publications/novak18monte-sig.html) course offers several compelling solutions.
+
 ### Spectral Multiple Importance Sampling
 
-Our goal is to sample a path once, and use it to evaluate the contribution of an entire a set of wavelengths. The [Monte Carlo Methods for Physically Based Volume Rendering](https://cs.dartmouth.edu/~wjarosz/publications/novak18monte-sig.html) course offers several compelling solutions. One way to achieve this is to use [spectral multiple importance sampling](https://jo.dreggn.org/home/2014_herowavelength.pdf).
+One way to achieve this is to use [spectral multiple importance sampling](https://jo.dreggn.org/home/2014_herowavelength.pdf).
 
 What you see below is my interpretation. I encourage the reader to compare it to the [original paper](https://jo.dreggn.org/home/2014_herowavelength.pdf).
 
-We start by defining the set of wavelengths \\(\Lambda_j\\) of size \\(n_j\\) \\( (\forall k, \lambda_j^k \in \Lambda_j) \\). These wavelengths can all be importance sampled or, alternatively, all but the first one can be distributed in a stratified manner (please note that the authors of the paper insist that, theoretically, they *must be QMC stratified* rather than randomly sampled).
+We start by defining the set of wavelengths \\(\Lambda_j\\) of size \\(n_j\\) \\( (\forall k, \lambda_j^k \in \Lambda_j) \\). These wavelengths can all be importance sampled or, alternatively, all but the first one can be distributed in a stratified manner (please note that the authors of the paper insist that, theoretically, they *must be QMC stratified* rather than randomly sampled to form a discrete rather than a continuous distribution).
 
-Next, we pick one wavelength to guide our path sampling decisions - the authors refer to it as the *hero wavelength*. This wavelength is picked uniformly from the set. Therefore, the probability density of sampling (on average) the path \\(\rho_j\\) using a randomly chosen \\(\lambda_j \in \Lambda_j\\) is taken as the average across the entire set (e.i. we [marginalize](https://en.wikipedia.org/wiki/Marginal_distribution#Marginal_probability) the PDF). In effect, we define another valid PDF that is not unlike Veach's *combined sample density*:
+Next, we pick one wavelength to guide our path sampling decisions - the authors refer to it as the *hero wavelength*. This wavelength is picked uniformly from the set. Therefore, the probability density of sampling (on average) the path \\(\rho_j\\) using a randomly chosen \\(\lambda_j \in \Lambda_j\\) is taken as the average across the entire set (e.i. we [marginalize](https://en.wikipedia.org/wiki/Marginal_distribution#Marginal_probability_mass_and_density_functions) the discrete PDF). In effect, we define another valid PDF that is not unlike Veach's *combined sample density*:
 
 $$ \tag{61} p(\rho_j, \lambda_j) =
     \frac{1}{n_j} p(\rho_j) =
@@ -781,7 +785,7 @@ $$ \tag{63} \begin{aligned}
     F = \frac{1}{m} \sum\_{j=1}^{m} \sum\_{i=1}^{n_j} \frac{f(x\_{ji})}{\sum\_{k=1}^{n_j} p_k(x\_{jk})}.
  \end{aligned} $$
 
-If we fix the set size \\( (\forall j, n_j = n) \\), we can change the order of summation to obtain a formulation which corresponds to the multi-sample estimator with \\(n\\) techniques (and \\(m\\) samples per technique) combined using the [balance heuristic](http://graphics.stanford.edu/papers/veach_thesis/):
+If we fix the set size \\( (\forall j, n_j = n) \\), we can change the order of summation to obtain a formulation which corresponds to a multi-sample estimator with \\(n\\) techniques (and \\(m\\) samples per technique) combined using the [balance heuristic](http://graphics.stanford.edu/papers/veach_thesis/):
 
 $$ \tag{64} \begin{aligned}
     F &= \frac{1}{m} \sum\_{j=1}^{m} \sum\_{i=1}^{n} \frac{f(\rho_j, \lambda_j^i)}{\sum\_{k=1}^{n} p_k(\rho_j, \lambda_j^k)} \cr
@@ -832,13 +836,13 @@ float3 SpectralMIS(float3 X, float3 V, uint numWavelengths, uint numPaths)
 
         for (uint i = 0; i < n; i++)
         {
-            // Must take eye sensitivity and volume properties into account.
+            // Must take eye sensitivity and volume opacity into account.
             SampleWavelength(waves[i], wavePdfs[i], j);
         }
 
         float heroWave = SelectUniformly(waves, n);
 
-        // Trace a single path for a single wavelength, once.
+        // Trace a single path for the chosen wavelength.
         path  heroPath = SamplePath(X, V, heroWave);
 
         float3 meanContribution = 0;
@@ -867,7 +871,7 @@ float3 SpectralMIS(float3 X, float3 V, uint numWavelengths, uint numPaths)
 
 ### Spectral Tracking
 
-[Spectral tracking](https://dl.acm.org/citation.cfm?id=3073665) presents an alternative way to speed up spectral rendering. It uses a radically different approach by incorporating [null collisions](https://hal.archives-ouvertes.fr/hal-01688110/) into the radiative transport equation.
+[Spectral tracking](https://dl.acm.org/citation.cfm?id=3073665) presents an alternative way to accelerate spectral rendering. It uses a radically different approach by incorporating [null collisions](https://hal.archives-ouvertes.fr/hal-01688110/) into the radiative transport equation.
 
 The basic idea of the null-collision integral is add another type of collision event which has no effect on light transport. While it may seem pointless at first glance, it is a very useful mathematical trick that allows analytic sampling of heterogeneous media (by padding it with transparent forward-scattering particles) either in space or across the spectral domain (or both).
 
@@ -879,15 +883,15 @@ Note that while \\(\bm{\mu_n}\\) does not have to be positive, it is usually a [
 
 $$ \tag{69} \bar{\mu} = ||\mu_t(\lambda)||\_{\infty}. $$
 
-Note that it has to be a scalar since it is used for importance sampling.
+Note that it has to be a scalar since it will be used for importance sampling.
 
-Both the derivation and the proof of the null-scattering integral are long and complicated, so I will only present the [final result](https://dl.acm.org/citation.cfm?id=3073665), which is
+Both the derivation and the proof of correctness of the null-scattering integral are rather long and complicated, so I will only present the [final result](https://dl.acm.org/citation.cfm?id=3073665), which is
 
 $$ \tag{70} \bm{L}(\bm{x}, \bm{v})
     = \int\_{0}^{t\_{max}} \bar{\mu}(\bm{x}, \bm{v}, s) \bar{T}(\bm{x}, \bm{v}, s) \bm{L_i}(\bm{x} + s \bm{v}, \bm{v}) ds,
 $$
 
-where \\(\bar{T}\\) is transmittance evaluated using the majorant (rather than attenuation) coefficient. Note that the majorant coefficient doesn't actually have to be a constant - it can be any analytic function (e.g. varying with height) serving as an upper bound for the attenuation coefficient.
+where \\(\bar{T}\\) is transmittance evaluated using the majorant (rather than attenuation) coefficient. Note that the majorant coefficient doesn't actually have to be a constant - it can be any analytic function (e.g. varying with height) serving as the upper bound for the attenuation coefficient.
 
 The incoming radiance term \\(\bm{L_i}\\) is defined as
 
@@ -920,7 +924,7 @@ $$ \tag{73} \begin{aligned}
 \end{aligned}
 $$
 
-where we made the position and the direction on the right-hand side implicit for clarity.
+where the position and the direction on the right-hand side are implicit for clarity.
 
 If the medium is known to not be emissive, we can redistribute the absorption probability between \\(P_s\\) and \\(P_n\\):
 
@@ -931,7 +935,7 @@ $$ \tag{74} \begin{aligned}
 \end{aligned}
 $$
 
-Comparing the Equations 13 and 70, we can see that they are indeed very similar (and so is the estimator). As before, the leading term is canceled out after the division by the PDF, so the only difference is that we must handle several types of events once a collision actually occurs.
+Comparing the Equations 13 and 70, we can see that they are indeed very similar (and so is the estimator). As before, the leading term is canceled out after dividing by the PDF, so the only difference is that we must handle several types of events once a collision actually occurs.
 
 A high-level implementation of the algorithm is listed below.
 
@@ -962,7 +966,7 @@ float3 SpectralTracking(float3 X, float3 V, uint numWavelengths, uint numPaths)
         	LookUpVolumeCoefficients(X + t * V, V, absK, scaK, nulK);
         	// Compute event probabilities.
         	float absP, scaP, nulP;
-        	// Use the Equation 73, or one of those from the paper.
+        	// Use the Equation 73, or one of the alternatives from the paper.
         	ComputeVolumeEventProbabilities(absP, scaP, nulP);
 
         	// How to sample spectra? Which wavelengths???
