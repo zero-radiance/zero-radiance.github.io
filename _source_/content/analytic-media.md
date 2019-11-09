@@ -115,7 +115,7 @@ Extending it to handle the surface contribution is trivial:
 
 $$ \tag{16.5}
     L(\bm{x}, \bm{v})
-    \approx O(\bm{x}, \bm{v}, t\_{max}) \frac{1}{N} \sum\_{i=1}^{N} L\_{vol}(\bm{x} + s_i \bm{v}, \bm{v})
+    \approx O(\bm{x}, \bm{v}, t\_{max}) L\_{vol}(\bm{x}, \bm{v}, t\_{max})
     + T(\bm{x}, \bm{v}, t\_{max}) L\_{surf}(\bm{x} + t\_{max} \bm{v}, \bm{v}).
 $$
 
