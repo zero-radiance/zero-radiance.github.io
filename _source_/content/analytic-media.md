@@ -877,11 +877,11 @@ float3 SpectralMIS(float3 X, float3 V, uint numWavelengths, uint numPaths)
 
 The basic idea of the null-collision integral is add another type of collision event which has no effect on light transport. While it may seem pointless at first glance, it is a very useful mathematical trick that allows analytic sampling of heterogeneous media (by padding it with transparent forward-scattering particles) either in space or across the spectral domain (or both).
 
-The framework introduces two new types of collision coefficients: the null-collision coefficient \\(\bm{\mu_n}\\) and the majorant \\(\bm{\bar{\mu}}\\) s.t.
+The framework introduces two new types of collision coefficients: the null coefficient \\(\bm{\mu_n}\\) and the majorant \\(\bm{\bar{\mu}}\\) that satisfy
 
 $$ \tag{68} \bm{\mu_a} + \bm{\mu_s} + \bm{\mu_n} = \bm{\bar{\mu}}. $$
 
-Note that while \\(\bm{\mu_n}\\) does not have to be positive, it is usually a [good idea](https://hal.archives-ouvertes.fr/hal-01688110/) in order to keep variance low. For our use case, we compute \\(\bar{\mu}\\) by taking the [maximum of the absolute value](https://rorasa.wordpress.com/2012/05/13/l0-norm-l1-norm-l2-norm-l-infinity-norm/) of the attenuation coefficient across the spectral domain:
+Note that while \\(\bm{\mu_n}\\) does not have to be positive, it is usually a [good idea](https://hal.archives-ouvertes.fr/hal-01688110/) in order to keep variance low. For our use case, we compute \\(\bar{\mu}\\) by taking the [maximum of the absolute value](http://mathworld.wolfram.com/L-Infinity-Norm.html) of the attenuation coefficient across the spectral domain:
 
 $$ \tag{69} \bar{\mu} = ||\mu_t(\lambda)||\_{\infty}. $$
 
@@ -966,7 +966,7 @@ float3 SpectralTracking(float3 X, float3 V, uint numWavelengths, uint numPaths)
 
         float3 pos = X, dir = V;
 
-        while (true) // Multiple bounces
+        while (true) // Multiple bounces.
         {
             float tMax = RayTraceGeometry(pos, dir);
 
@@ -974,7 +974,7 @@ float3 SpectralTracking(float3 X, float3 V, uint numWavelengths, uint numPaths)
             float maxOptDepth = EvalOptDepth(pos, dir, waves[0], tMax);
             float maxOpacity  = OpacityFromOpticalDepth(maxOptDepth);
 
-            float opacity = Rnd();
+            float opacity = Rnd(); // Sample the CDF.
 
             if (opacity < maxOpacity) // Volume contribution cancels out the opacity term.
             {
@@ -993,8 +993,7 @@ float3 SpectralTracking(float3 X, float3 V, uint numWavelengths, uint numPaths)
                 float absP, scaP, nulP;
                 ComputeVolumeEventProbabilities(absP, scaP, nulP);
 
-                // Select an event.
-                float u = Rnd();
+                float u = Rnd(); // Select an event.
 
                 if (u < absP) // Absorption & emission.
                 {
