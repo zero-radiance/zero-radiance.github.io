@@ -114,9 +114,9 @@ $$ \tag{16} L(\bm{x}, \bm{v}) \approx O(\bm{x}, \bm{v}, t\_{max}) \frac{1}{N} \s
 Extending it to handle the surface contribution is trivial:
 
 $$ \tag{16.5}
-	L(\bm{x}, \bm{v})
-	\approx O(\bm{x}, \bm{v}, t\_{max}) \frac{1}{N} \sum\_{i=1}^{N} L\_{vol}(\bm{x} + s_i \bm{v}, \bm{v})
-	+ T(\bm{x}, \bm{v}, t\_{max}) L\_{surf}(\bm{x} + t\_{max} \bm{v}, \bm{v}).
+    L(\bm{x}, \bm{v})
+    \approx O(\bm{x}, \bm{v}, t\_{max}) \frac{1}{N} \sum\_{i=1}^{N} L\_{vol}(\bm{x} + s_i \bm{v}, \bm{v})
+    + T(\bm{x}, \bm{v}, t\_{max}) L\_{surf}(\bm{x} + t\_{max} \bm{v}, \bm{v}).
 $$
 
 This equation can be seen as a form of [premultiplied alpha blending](https://graphics.pixar.com/library/Compositing/) (where alpha is opacity), which explains why particle cards can be so convincing. Additionally, it offers yet another way to parametrize the attenuation coefficient - namely, by opacity at distance (which is similar to [transmittance at distance](https://blog.selfshadow.com/publications/s2015-shading-course/burley/s2015_pbs_disney_bsdf_notes.pdf) used by Disney). It appears to be the most RGB rendering friendly parametrization that I am aware of.
@@ -832,12 +832,14 @@ float3 SpectralMIS(float3 X, float3 V, uint numWavelengths, uint numPaths)
 
     for (uint j = 0; j < m; j++)
     {
-        float waves[n], wavePdfs[n];
+        // spectrum is a data structure with 'numWavelengths' items.
+        spectrum waves, wavePdfs;
 
         for (uint i = 0; i < n; i++)
         {
             // Must take eye sensitivity and volume opacity into account.
-            SampleWavelength(waves[i], wavePdfs[i], j);
+            // These details have been omitted for readability.
+            SampleWavelength(i, j, waves[i], wavePdfs[i]);
         }
 
         float heroWave = SelectUniformly(waves, n);
@@ -860,7 +862,7 @@ float3 SpectralMIS(float3 X, float3 V, uint numWavelengths, uint numPaths)
             meanPdf          += pathPdf * wavePdfs[i];
         }
 
-        color += meanContribution * rcp(meanPdf)
+        color += meanContribution * rcp(meanPdf);
     }
 
     color *= rcp(numPaths);
@@ -896,10 +898,10 @@ where \\(\bar{T}\\) is transmittance evaluated using the majorant (rather than a
 The incoming radiance term \\(\bm{L_i}\\) is defined as
 
 $$ \tag{71} \begin{aligned}
-	\bm{L_i}(\bm{x}, \bm{v})
-	&= P_a(\bm{x}, \bm{v}, s) \bm{w_a}(\bm{x}, \bm{v}, s) \bm{L_e}(\bm{x}, \bm{v}) \cr
-	&+ P_s(\bm{x}, \bm{v}, s) \bm{w_s}(\bm{x}, \bm{v}, s) \bm{L_s}(\bm{x}, \bm{v}) \cr
-	&+ P_n(\bm{x}, \bm{v}, s) \bm{w_n}(\bm{x}, \bm{v}, s) \bm{L}(\bm{x}, \bm{v})
+    \bm{L_i}(\bm{x}, \bm{v})
+    &= P_a(\bm{x}, \bm{v}, s) \bm{w_a}(\bm{x}, \bm{v}, s) \bm{L_e}(\bm{x}, \bm{v}) \cr
+    &+ P_s(\bm{x}, \bm{v}, s) \bm{w_s}(\bm{x}, \bm{v}, s) \bm{L_s}(\bm{x}, \bm{v}) \cr
+    &+ P_n(\bm{x}, \bm{v}, s) \bm{w_n}(\bm{x}, \bm{v}, s) \bm{L}(\bm{x}, \bm{v})
 \end{aligned}
 $$
 
@@ -909,18 +911,18 @@ Each individual event has a corresponding weight:
 
 $$ \tag{72}
 \begin{aligned}
-	\bm{w_a}(\bm{x}, \bm{v}, s) &= \frac{\bm{\mu_a}(\bm{x}, \bm{v}, s)}{\bar{\mu}(\bm{x}, \bm{v}, s) P_a(\bm{x}, \bm{v}, s)} \cr
-	\bm{w_s}(\bm{x}, \bm{v}, s) &= \frac{\bm{\mu_s}(\bm{x}, \bm{v}, s)}{\bar{\mu}(\bm{x}, \bm{v}, s) P_s(\bm{x}, \bm{v}, s)} \cr
-	\bm{w_n}(\bm{x}, \bm{v}, s) &= \frac{\bm{\mu_n}(\bm{x}, \bm{v}, s)}{\bar{\mu}(\bm{x}, \bm{v}, s) P_n(\bm{x}, \bm{v}, s)}
+    \bm{w_a}(\bm{x}, \bm{v}, s) &= \frac{\bm{\mu_a}(\bm{x}, \bm{v}, s)}{\bar{\mu}(\bm{x}, \bm{v}, s) P_a(\bm{x}, \bm{v}, s)} \cr
+    \bm{w_s}(\bm{x}, \bm{v}, s) &= \frac{\bm{\mu_s}(\bm{x}, \bm{v}, s)}{\bar{\mu}(\bm{x}, \bm{v}, s) P_s(\bm{x}, \bm{v}, s)} \cr
+    \bm{w_n}(\bm{x}, \bm{v}, s) &= \frac{\bm{\mu_n}(\bm{x}, \bm{v}, s)}{\bar{\mu}(\bm{x}, \bm{v}, s) P_n(\bm{x}, \bm{v}, s)}
 \end{aligned}
 $$
 
 The simplest (but [not the only](https://dl.acm.org/citation.cfm?id=3073665)) way to define the collision probabilities is as follows:
 
 $$ \tag{73} \begin{aligned}
-	P_a(\bm{x}, \bm{v}, s) &= \frac{||\mu_a(\lambda)||\_{\infty}}{||\mu_a(\lambda)||\_{\infty} + ||\mu_s(\lambda)||\_{\infty} + ||\mu_n(\lambda)||\_{\infty}}, \cr
-	P_s(\bm{x}, \bm{v}, s) &= \frac{||\mu_s(\lambda)||\_{\infty}}{||\mu_a(\lambda)||\_{\infty} + ||\mu_s(\lambda)||\_{\infty} + ||\mu_n(\lambda)||\_{\infty}}, \cr
-	P_n(\bm{x}, \bm{v}, s) &= \frac{||\mu_n(\lambda)||\_{\infty}}{||\mu_a(\lambda)||\_{\infty} + ||\mu_s(\lambda)||\_{\infty} + ||\mu_n(\lambda)||\_{\infty}},
+    P_a(\bm{x}, \bm{v}, s) &= \frac{||\mu_a(\lambda)||\_{\infty}}{||\mu_a(\lambda)||\_{\infty} + ||\mu_s(\lambda)||\_{\infty} + ||\mu_n(\lambda)||\_{\infty}}, \cr
+    P_s(\bm{x}, \bm{v}, s) &= \frac{||\mu_s(\lambda)||\_{\infty}}{||\mu_a(\lambda)||\_{\infty} + ||\mu_s(\lambda)||\_{\infty} + ||\mu_n(\lambda)||\_{\infty}}, \cr
+    P_n(\bm{x}, \bm{v}, s) &= \frac{||\mu_n(\lambda)||\_{\infty}}{||\mu_a(\lambda)||\_{\infty} + ||\mu_s(\lambda)||\_{\infty} + ||\mu_n(\lambda)||\_{\infty}},
 \end{aligned}
 $$
 
@@ -929,9 +931,9 @@ where the position and the direction on the right-hand side are implicit for cla
 If the medium is known to not be emissive, we can redistribute the absorption probability between \\(P_s\\) and \\(P_n\\):
 
 $$ \tag{74} \begin{aligned}
-	P'\_a(\bm{x}, \bm{v}, s) &= 0, \cr
-	P'\_s(\bm{x}, \bm{v}, s) &= \frac{P_s}{P_s + P_n}, \cr
-	P'\_n(\bm{x}, \bm{v}, s) &= \frac{P_n}{P_s + P_n}.
+    P'\_a(\bm{x}, \bm{v}, s) &= 0, \cr
+    P'\_s(\bm{x}, \bm{v}, s) &= \frac{P_s}{P_s + P_n}, \cr
+    P'\_n(\bm{x}, \bm{v}, s) &= \frac{P_n}{P_s + P_n}.
 \end{aligned}
 $$
 
@@ -949,50 +951,88 @@ float3 SpectralTracking(float3 X, float3 V, uint numWavelengths, uint numPaths)
 
     for (uint j = 0; j < m; j++)
     {
-    	float maxOptDepth = EvalOptDepthUsingMajorant(X, V);
-    	float maxOpacity  = OpacityFromOpticalDepth(maxOptDepth);
+        // spectrum is a data structure with 'numWavelengths' items.
+        spectrum waves, wavePdfs;
 
-    	float opacity = Rnd(j);
+        waves[0] = GetMajorantWavelength();
 
-    	if (opacity < maxOpacity)
-    	{
-    		// Volume contribution. Cancels out the opacity term.
-        	// Convert to optical depth (Equation 18).
-        	float optDepth = -log(1 - opacity);
-        	// Perform distance sampling.
-        	float t = SampleVolumesUsingMajorant(optDepth, X, V);
-        	// Query the coefficients.
-			spectrum absK, scaK, nulK;
-        	LookUpVolumeCoefficients(X + t * V, V, absK, scaK, nulK);
-        	// Compute event probabilities.
-        	float absP, scaP, nulP;
-        	// Use the Equation 73, or one of the alternatives from the paper.
-        	ComputeVolumeEventProbabilities(absP, scaP, nulP);
+        for (uint i = 1; i < n; i++)
+        {
+            // TODO: Do these have to be stratified? Can these be importance sampled?
+            SampleWavelength(i, j, waves[i], wavePdfs[i]);
+        }
 
-        	// How to sample spectra? Which wavelengths???
+        spectrum pathWeights = spectrum(1);
 
-	    	float u = Rnd(j);
+        float3 pos = X, dir = V;
 
-	    	// Select an event.
-	    	if (u1 < absP)
-	    	{
-	    		// Absorption & emission
-	    	}
-	    	else if (u1 < (absP + scaP))
-	    	{
-	    		// In-scattering.
-	    	}
-	    	else
-	    	{
-	    		// Null-scattering.
-	    	}
-    	}
-    	else
-    	{
-    		// Surface contribution. Cancels out the transmittance term.
+        while (true) // Multiple bounces
+        {
+            float tMax = RayTraceGeometry(pos, dir);
 
-    	}
+            // Compute opacity using the majorant.
+            float maxOptDepth = EvalOptDepth(pos, dir, waves[0], tMax);
+            float maxOpacity  = OpacityFromOpticalDepth(maxOptDepth);
 
+            float opacity = Rnd();
+
+            if (opacity < maxOpacity) // Volume contribution cancels out the opacity term.
+            {
+                // Convert to optical depth (Equation 18).
+                float optDepth = -log(1 - opacity);
+                // Perform distance sampling using the majorant.
+                float t = SampleVolumes(optDepth, pos, dir, waves[0]);
+                // Step along the ray.
+                pos += t * dir;
+                // Query the coefficients at the new location.
+                spectrum absK, scaK, nulK;
+                float    majK;
+                LookUpVolumeCoefficients(pos, dir, waves, absK, scaK, nulK, majK);
+                // Compute event probabilities.
+                // Use the Equation 73, or one of the alternatives from the paper.
+                float absP, scaP, nulP;
+                ComputeVolumeEventProbabilities(absP, scaP, nulP);
+
+                // Select an event.
+                float u = Rnd();
+
+                if (u < absP) // Absorption & emission.
+                {
+                    pathWeights *= absK / (absP * majK);
+
+                    spectrum emission = LookUpEmission(pos, dir, waves);
+
+                    for (uint i = 0; i < n; i++)
+                    {
+                        float3 normCMF = EvaluateNormalizedColorMatchingFunc(waves[i]);
+
+                        color += normCMF * pathWeights[i] * emission[i];
+                    }
+
+                    break; // Terminate the loop due to the absorption event.
+                }
+                else if (u < (absP + scaP)) // In-scattering.
+                {
+                    pathWeights *= scaK / (scaP * majK);
+
+                    // A phase function is a PDF, so it does not modify the weight.
+                    dir = SamplePhaseFunction(pos, dir);
+                    /* Next event estimation omitted for brevity. */
+                }
+                else // Null-scattering.
+                {
+                    pathWeights *= nulK / (nulP * majK);
+                }
+            }
+            else // Surface contribution cancels out the transmittance term.
+            {
+                pos += tMax * dir;
+                /* Omitted for brevity. */
+            }
+        }
+    }
+
+    color *= rcp(numPaths);
 
     return color;
 }
