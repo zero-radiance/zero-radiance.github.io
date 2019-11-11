@@ -871,6 +871,8 @@ float3 SpectralMIS(float3 X, float3 V, uint numWavelengths, uint numPaths)
 }
 ```
 
+One of the concerns with the implementation outlined above is the necessity to store the geometry of the entire path. A performance-oriented implementation of unidirectional path tracing can avoid storing the path by accumulating its contribution for several wavelengths during the path tracing step.
+
 ### Spectral Tracking
 
 [Spectral tracking](https://dl.acm.org/citation.cfm?id=3073665) presents an alternative way to accelerate spectral rendering. It uses a radically different approach by incorporating [null collisions](https://hal.archives-ouvertes.fr/hal-01688110/) into the radiative transport equation.
