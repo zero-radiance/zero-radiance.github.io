@@ -308,7 +308,7 @@ It's interesting to contemplate the physical meaning of the Chapman function. Ge
 
 $$ \tag{37} \int\_{h = (r - R)}^{\infty} k e^{-n s} ds = \frac{k}{n} e^{-n h} $$
 
-gives the mass of an infinitely tall vertical column with its lower end starting at height \\(h\\).
+gives the mass of an infinitely tall vertical column with its lower end starting at height \\(h\\). At the ground level, mass is \\(k/n = kH\\).
 
 Optical depth, then, is a *product* of the mass of the vertical column *and* the value of the obliquity function (which, intuitively, gives the absolute optical air mass along the oblique ray) *times* the mass attenuation coefficient.
 
