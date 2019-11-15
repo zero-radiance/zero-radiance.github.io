@@ -64,6 +64,8 @@ In the formula above, \\(\mathrm{det}(M)\\) is the [determinant](https://en.wiki
 
 It's important to note that, in practice, the surface parametrization used to derive the normal may be different from the texture coordinate parametrization. This means that it's possible to encounter a mesh with vertex normals \\(N\\) pointing in the direction opposite from \\((T \times B)\\). Of course, we always want to use the forward-facing normal \\(N\\). Luckily, the math is on our side, and using the full matrix inversion procedure as described above works in all cases. More details about surface re-parametrization can be found in Morten's [thesis](http://image.diku.dk/projects/media/morten.mikkelsen.08.pdf) (see Section 2.4).
 
+If strict compliance with the [Mikk-TSpace](http://mikktspace.com/) is desired (to exactly match the assumptions of the normal map baking tool, for instance), the inverse-transpose should be replaced with the (unmodified) interpolated \\([T | B | N]\\) matrix. See the [link](http://mikktspace.com/) for details.
+
 ## Preliminaries, Part 2: Height Maps and Volumes
 
 The simplest representation of a tangent-space normal (or bump) map is the height map \\(z = h(s,t)\\). A height map \\( h(s,t) \\) is a 2D subset (slice) of a 3D height volume \\( h(s,t,r) \\), where we use the \\( r \\) coordinate for the third dimension. Given a height volume, each location in space corresponds to a height (or scalar displacement) value. It's possible define a height volume using a [noise function](https://en.wikipedia.org/wiki/Perlin_noise), or by combining several height maps in a certain way (as we will see later).
