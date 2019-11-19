@@ -37,21 +37,23 @@ Taking a small detour, for surfaces, the absorption coefficient is directly prop
 
 $$ \tag{4} \bm{\kappa} = \frac{\bm{\lambda \mu_a}}{4 \pi}. $$
 
-Therefore, a triple \\(\lbrace \bm{\eta}, \bm{\kappa}, \bm{\mu_s} \rbrace\\) \\(\big(\\)or, alternatively, \\(\lbrace \bm{\eta}, \bm{d}, \bm{\alpha\_{ss}} \rbrace  \big) \\) is sufficient to describe both the behavior at the boundary and the (isotropic) multiple-scattering process (known as [subsurface scattering](https://en.wikipedia.org/wiki/Subsurface_scattering)) inside the volume, that ultimately gives rise to what we perceive as the surface albedo \\(\bm{\alpha\_{ms}}\\). Note that certain materials (metals, in particular) require modeling of [interference](https://en.wikipedia.org/wiki/Wave_interference) to obtain expected reflectance values.
+Therefore, a triple \\(\lbrace \bm{\eta}, \bm{\kappa}, \bm{\mu_s} \rbrace\\) \\(\big(\\)or, alternatively, \\(\lbrace \bm{\eta}, \bm{d}, \bm{\alpha\_{ss}} \rbrace  \big) \\) is sufficient to describe both the behavior at the boundary and the (isotropic) multiple-scattering process (known as [subsurface scattering](https://en.wikipedia.org/wiki/Subsurface_scattering)) inside the volume that ultimately gives rise to what we perceive as the surface albedo \\(\bm{\alpha\_{ms}}\\). Note that certain materials (metals, in particular) require modeling of [interference](https://en.wikipedia.org/wiki/Wave_interference) to obtain expected reflectance values.
 
-Integral of the attenuation coefficient along the span of ray segment of length \\(t\\) from the point \\(\bm{x}\\) in the direction \\(\bm{v}\\) corresponds to [optical depth](https://en.wikipedia.org/wiki/Optical_depth) (or optical thickness) \\(\bm{\tau}\\):
+Transmittance \\(\bm{T}\\) is defined as the fraction of incident radiance transmitted through the medium along a straight path of length \\(\bm{t}\\):
 
-$$ \tag{5} \bm{\tau}(\bm{x}, \bm{v}, t) = \int\_{0}^{t} \bm{\mu_t} (\bm{x}, \bm{v}, s) ds, $$
+$$ \tag{5} \bm{T}(\bm{x}, \bm{v}, t) = \frac{\bm{L_t}(\bm{x}, \bm{v})}{\bm{L_i}(\bm{x} + t \bm{v}, \bm{v})}. $$
 
-Given the value of optical depth, it's easy to compute [transmittance](https://en.wikipedia.org/wiki/Transmittance) \\(\bm{T}\\) using the [Beer–Lambert–Bouguer law](https://en.wikipedia.org/wiki/Beer%E2%80%93Lambert_law) for [uncorrelated media](https://cs.dartmouth.edu/~wjarosz/publications/bitterli18framework.html):
+For a single photon, it can be interpreted as the probability of a collision-free flight.
 
-$$ \tag{6} \bm{T}(\bm{x}, \bm{v}, t) = e^{-\bm{\tau}(\bm{x}, \bm{v}, t)}. $$
+Its complement is opacity \\(\bm{O}\\):
 
-While optical depth can take on any non-negative value, transmittance is restricted to the unit interval, and can thus be interpreted as a probability of a collision-free flight. Its complement is opacity \\(\bm{O}\\):
+$$ \tag{6} \bm{O}(\bm{x}, \bm{v}, t) = 1 - \bm{T}(\bm{x}, \bm{v}, t). $$
 
-$$ \tag{7} \bm{O}(\bm{x}, \bm{v}, t) = 1 - \bm{T}(\bm{x}, \bm{v}, t). $$
+Using the [Beer–Lambert–Bouguer law](https://en.wikipedia.org/wiki/Beer%E2%80%93Lambert_law) for [uncorrelated media](https://cs.dartmouth.edu/~wjarosz/publications/bitterli18framework.html), we can take the natural logarithm of transmittance to compute [optical depth](https://en.wikipedia.org/wiki/Optical_depth) (or optical thickness) \\(\bm{\tau}\\):
 
-It's worth briefly mentioning how transmittance and optical depth are composited in presence of several overlapping participating media: while optical depth is additive, transmittance is multiplicative.
+$$ \tag{7} \bm{\tau}(\bm{x}, \bm{v}, t) = \mathrm{log} \big( \bm{T}(\bm{x}, \bm{v}, t)) = \int\_{0}^{t} \bm{\mu_t} (\bm{x}, \bm{v}, s \big) ds. $$
+
+The definitions (hopefully) make it clear that while transmittance is multiplicative and is restricted to the unit interval, optical depth is additive and can take on any non-negative value.
 
 Slightly jumping ahead, let's define the attenuation-transmittance integral as
 
@@ -64,11 +66,11 @@ If we use the [fundamental theorem of calculus](https://en.wikipedia.org/wiki/Fu
 
 $$ \tag{9} \bm{\mu_t} (\bm{x}, \bm{v}, s) = \frac{\partial \bm{\tau}}{\partial s}, $$
 
-we can use the one of the [exponential identities](https://en.wikipedia.org/wiki/List_of_integrals_of_exponential_functions#Integrals_involving_only_exponential_functions) to simplify the integral:
+we can use the one of the [exponential identities](https://en.wikipedia.org/wiki/List_of_integrals_of_exponential_functions#Integrals_involving_only_exponential_functions) to simplify the attenuation-transmittance integral:
 
 $$ \tag{10}
       \int\_{0}^{t} \frac{\partial \bm{\tau}(\bm{x}, \bm{v}, s)}{\partial s} e^{-\bm{\tau}(\bm{x}, \bm{v}, s)} ds
-    = e^{-\bm{\tau}(\bm{x}, \bm{v}, 0)} - e^{-\bm{\tau}(\bm{x}, \bm{v}, t)}
+    = -e^{-\bm{\tau}(\bm{x}, \bm{v}, s)} \Big\vert_{0}^{t}
     = 1 - \bm{T}(\bm{x}, \bm{v}, t)
     = \bm{O}(\bm{x}, \bm{v}, t).
 $$
@@ -79,9 +81,9 @@ $$ \tag{11} \bm{L}(\bm{x}, \bm{v})
     = \int\_{0}^{t\_{max}} \bm{T}(\bm{x}, \bm{v}, s) \bm{\mu_s}(\bm{x}, \bm{v}, s) \int\_{S^2} f(\bm{x} + s \bm{v}, \bm{v},\bm{l}) \bm{L}(\bm{x} + s \bm{v}, \bm{l}) \bm{dl} ds,
 $$
 
-where \\(\bm{L}\\) is the amount of radiance at the position \\(\bm{x}\\) in the direction \\(\bm{v}\\), and \\(f\\) denotes the [phase function](http://www.pbr-book.org/3ed-2018/Volume_Scattering/Phase_Functions.html). To simplify notation, the maximum distance \\(t\_{max}\\) along the ray (which typically corresponds to the distance to the closest boundary) is kept implicit.
+where \\(\bm{L}\\) is the amount of radiance at the position \\(\bm{x}\\) in the direction \\(\bm{v}\\), and \\(f\\) denotes the [phase function](http://www.pbr-book.org/3ed-2018/Volume_Scattering/Phase_Functions.html) that also depends on the light direction from the unit sphere \\(\bm{l} \in S^2\\). To simplify notation, the maximum distance \\(t\_{max}\\) along the ray (which typically corresponds to the distance to the closest boundary) is kept implicit.
 
-We can evaluate this integral using one of the [Monte Carlo](http://www.pbr-book.org/3ed-2018/Monte_Carlo_Integration.html) methods. The first step is to split it in two parts: the part we can evaluate analytically, and the part that has to be integrated numerically. We can group the product of transmittance and the scattering coefficient together, and leave the nested integral as the "numerical" term:
+We can evaluate the outer integral using one of the [Monte Carlo](http://www.pbr-book.org/3ed-2018/Monte_Carlo_Integration.html) methods. The first step is to split it in two parts: the part we can evaluate analytically, and the part that has to be integrated numerically. We can group the product of transmittance and the scattering coefficient together, and leave the inner integral as the "numerical" term:
 
 $$ \tag{12} \bm{L}(\bm{x}, \bm{v})
     = \int\_{0}^{t\_{max}} \bm{T}(\bm{x}, \bm{v}, s) \bm{\mu_s}(\bm{x}, \bm{v}, s) \bm{L_s}(\bm{x} + s \bm{v}, \bm{v}) ds.
@@ -96,12 +98,12 @@ $$
 The [Monte Carlo estimator](http://www.pbr-book.org/3ed-2018/Monte_Carlo_Integration/The_Monte_Carlo_Estimator.html) of the integral (for a single wavelength) takes the following form:
 
 $$ \tag{14} L(\bm{x}, \bm{v})
-    \approx \frac{1}{N} \sum\_{i=1}^{N} \frac{\mu_t(\bm{x}, \bm{v}, s_i) T(\bm{x}, \bm{v}, s_i) \alpha\_{ss}(\bm{x}, \bm{v}, s_i) L_s(\bm{x} + s_i \bm{v}, \bm{v})}{p( s_i | \lbrace \bm{x}, \bm{v} \rbrace)},
+    \approx \frac{1}{N} \sum\_{i=1}^{N} \frac{\mu_t(\bm{x}, \bm{v}, t_i) T(\bm{x}, \bm{v}, t_i) \alpha\_{ss}(\bm{x}, \bm{v}, t_i) L_s(\bm{x} + t_i \bm{v}, \bm{v})}{p( t_i | \lbrace \bm{x}, \bm{v} \rbrace)},
 $$
 
-where sample locations \\(s_i\\) are distributed according to the [PDF](https://en.wikipedia.org/wiki/Probability_density_function) \\(p\\).
+where sample locations \\(t_i\\) are distributed according to the [PDF](https://en.wikipedia.org/wiki/Probability_density_function) \\(p\\).
 
-We can [importance sample](http://www.pbr-book.org/3ed-2018/Monte_Carlo_Integration/Importance_Sampling.html) the integrand according to the analytic product \\(\mu_t T\\) (effectively, by assuming that the rest of the integrand varies slowly). In order to turn it into a valid PDF, we must normalize this term over the domain of integration (which, in our case, spans the range from 0 to \\(t\_{max}\\)):
+We can [importance sample](http://www.pbr-book.org/3ed-2018/Monte_Carlo_Integration/Importance_Sampling.html) the integrand in different ways. Ideally, we would like to make the PDF proportional to the product of all terms of the integrand. However, unless you are using [path guiding](https://cgg.mff.cuni.cz/~jirka/path-guiding-in-production/2019/index.htm), that is typically not possible. We will focus on the technique called free-path sampling that makes the PDF proportional to the analytic product \\(\mu_t T\\) (effectively, by assuming that the rest of the integrand varies slowly; this may or may not be the case - for example, for regions near light sources, [equiangular sampling](http://library.imageworks.com/pdfs/imageworks-library-importance-sampling-of-area-lights-in-participating-media.pdf) can give vastly superior results). In order to turn it into a valid PDF, we must normalize this term over the domain of integration (which, in our case, spans the range from 0 to \\(t\_{max}\\)) using the Equation 10:
 
 $$ \tag{15} p(t | \lbrace \bm{x}, \bm{v} \rbrace)
     = \frac{\mu_t(\bm{x}, \bm{v}, t) T(\bm{x}, \bm{v}, t)}{\int\_{0}^{t\_{max}} \mu_t(\bm{x}, \bm{v}, s) T(\bm{x}, \bm{v}, s) ds}
@@ -109,9 +111,9 @@ $$ \tag{15} p(t | \lbrace \bm{x}, \bm{v} \rbrace)
 
 This radically simplifies evaluation of the estimator (again, for a single wavelength):
 
-$$ \tag{16} L(\bm{x}, \bm{v}) \approx O(\bm{x}, \bm{v}, t\_{max}) \frac{1}{N} \sum\_{i=1}^{N} \alpha\_{ss}(\bm{x}, \bm{v}, s_i) L_s(\bm{x} + s_i \bm{v}, \bm{v}). $$
+$$ \tag{16} L(\bm{x}, \bm{v}) \approx O(\bm{x}, \bm{v}, t\_{max}) \frac{1}{N} \sum\_{i=1}^{N} \alpha\_{ss}(\bm{x}, \bm{v}, t_i) L_s(\bm{x} + t_i \bm{v}, \bm{v}). $$
 
-Extending it to handle the surface contribution is trivial:
+Extending it to handle the surface contribution is trivial. If the closest surface along the ray is at the distance \\(t\_{max}\\), we evaluate the volume contribution using the Equation 16, and add the surface contribution (another integral) attenuated by transmittance:
 
 $$ \tag{16.5}
     L(\bm{x}, \bm{v})
@@ -158,6 +160,13 @@ The sampling "recipe" for distance \\(t\\) can be found by inverting the CDF:
 $$ \tag{22} t = \frac{\tau_c}{\sigma_t k}, $$
 
 which is consistent with [previous work](https://cs.dartmouth.edu/~wjarosz/publications/novak18monte.html).
+
+The resulting sampling algorithm is very simple:
+
+1. compute opacity along the ray;
+2. pick a CDF value;
+3. compute optical depth using the Equation 18;
+4. compute the distance using the Equation 22.
 
 ### Linear Variation of Density with Altitude in Rectangular Coordinates
 
