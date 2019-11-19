@@ -11,7 +11,7 @@ tags: [
     ]
 ---
 
-Rendering of participating media is an important aspect of every modern renderer. When I say participating media, I am not just talking about fog, fire and smoke - *everything is volumetric*. All matter is composed of [atoms](https://en.wikipedia.org/wiki/Atom) (containing electrons), which can be sparsely (e.g. in a gas) or densely (e.g. in a solid) distributed in space. Whether you consider the particle or the wave nature of [light](https://en.wikipedia.org/wiki/Light), it penetrates all matter (even [metals](http://webhome.phy.duke.edu/~qelectron/group/group_reading_Born_and_Wolf.pdf)) to a certain degree, and interacts with its atoms along the way. The nature and the degree of "participation" depends on the material in question.
+Rendering of participating media is an important aspect of every modern renderer. When I say participating media, I am not just talking about fog, fire and smoke - *everything is volumetric*. All matter is composed of [atoms](https://en.wikipedia.org/wiki/Atom) (containing electrons), which can be sparsely (e.g. in a gas) or densely (e.g. in a solid) distributed in space. Whether we consider the particle or the wave nature of [light](https://en.wikipedia.org/wiki/Light), it penetrates all matter (even [metals](http://webhome.phy.duke.edu/~qelectron/group/group_reading_Born_and_Wolf.pdf)) to a certain degree, and interacts with its atoms along the way. The nature and the degree of "participation" depends on the material in question.
 
 <!--more-->
 
@@ -43,7 +43,7 @@ Transmittance \\(\bm{T}\\) is defined as the fraction of incident radiance trans
 
 $$ \tag{5} \bm{T}(\bm{x}, \bm{v}, t) = \frac{\bm{L_t}(\bm{x}, \bm{v})}{\bm{L_i}(\bm{x} + t \bm{v}, \bm{v})}. $$
 
-For a single photon, it can be interpreted as the probability of a collision-free flight.
+For a single photon, it can be interpreted as the probability of a free flight.
 
 Its complement is opacity \\(\bm{O}\\):
 
@@ -81,7 +81,7 @@ $$ \tag{11} \bm{L}(\bm{x}, \bm{v})
     = \int\_{0}^{t\_{max}} \bm{T}(\bm{x}, \bm{v}, s) \bm{\mu_s}(\bm{x}, \bm{v}, s) \int\_{S^2} f(\bm{x} + s \bm{v}, \bm{v},\bm{l}) \bm{L}(\bm{x} + s \bm{v}, \bm{l}) \bm{dl} ds,
 $$
 
-where \\(\bm{L}\\) is the amount of radiance at the position \\(\bm{x}\\) in the direction \\(\bm{v}\\), and \\(f\\) denotes the [phase function](http://www.pbr-book.org/3ed-2018/Volume_Scattering/Phase_Functions.html) that also depends on the light direction from the unit sphere \\(\bm{l} \in S^2\\). To simplify notation, the maximum distance \\(t\_{max}\\) along the ray (which typically corresponds to the distance to the closest boundary) is kept implicit.
+where \\(\bm{L}\\) is the amount of radiance at the position \\(\bm{x}\\) in the direction \\(\bm{v}\\), and \\(f\\) denotes the [phase function](http://www.pbr-book.org/3ed-2018/Volume_Scattering/Phase_Functions.html) that also depends on the light direction on the unit sphere \\(\bm{l} \in S^2\\). To simplify notation, the maximum distance \\(t\_{max}\\) along the ray (which typically corresponds to the distance to the closest volume boundary or the closest surface) is kept implicit.
 
 We can evaluate the outer integral using one of the [Monte Carlo](http://www.pbr-book.org/3ed-2018/Monte_Carlo_Integration.html) methods. The first step is to split it in two parts: the part we can evaluate analytically, and the part that has to be integrated numerically. We can group the product of transmittance and the scattering coefficient together, and leave the inner integral as the "numerical" term:
 
@@ -103,29 +103,15 @@ $$
 
 where sample locations \\(t_i\\) are distributed according to the [PDF](https://en.wikipedia.org/wiki/Probability_density_function) \\(p\\).
 
-We can [importance sample](http://www.pbr-book.org/3ed-2018/Monte_Carlo_Integration/Importance_Sampling.html) the integrand in different ways. Ideally, we would like to make the PDF proportional to the product of all terms of the integrand. However, unless you are using [path guiding](https://cgg.mff.cuni.cz/~jirka/path-guiding-in-production/2019/index.htm), that is typically not possible. We will focus on the technique called free-path sampling that makes the PDF proportional to the analytic product \\(\mu_t T\\) (effectively, by assuming that the rest of the integrand varies slowly; this may or may not be the case - for example, for regions near light sources, [equiangular sampling](http://library.imageworks.com/pdfs/imageworks-library-importance-sampling-of-area-lights-in-participating-media.pdf) can give vastly superior results). In order to turn it into a valid PDF, we must normalize this term over the domain of integration (which, in our case, spans the range from 0 to \\(t\_{max}\\)) using the Equation 10:
+We can [importance sample](http://www.pbr-book.org/3ed-2018/Monte_Carlo_Integration/Importance_Sampling.html) the integrand in different ways. Ideally, we would like to make the PDF proportional to the product of all terms of the integrand. However, unless we use [path guiding](https://cgg.mff.cuni.cz/~jirka/path-guiding-in-production/2019/index.htm), that is typically not possible. We will focus on the technique called [free path sampling](https://cs.dartmouth.edu/~wjarosz/publications/novak18monte.html) that makes the PDF proportional to the analytic product \\(\mu_t T\\) (effectively, by assuming that the rest of the integrand varies slowly; this may or may not be the case - for example, for regions near light sources, [equiangular sampling](http://library.imageworks.com/pdfs/imageworks-library-importance-sampling-of-area-lights-in-participating-media.pdf) can give vastly superior results). In order to turn it into a valid PDF, we must normalize this term over the domain of integration (which, in our case, spans the range from 0 to \\(t\_{max}\\)) using the Equation 10:
 
 $$ \tag{15} p(t | \lbrace \bm{x}, \bm{v} \rbrace)
     = \frac{\mu_t(\bm{x}, \bm{v}, t) T(\bm{x}, \bm{v}, t)}{\int\_{0}^{t\_{max}} \mu_t(\bm{x}, \bm{v}, s) T(\bm{x}, \bm{v}, s) ds}
     = \frac{\mu_t(\bm{x}, \bm{v}, t) T(\bm{x}, \bm{v}, t)}{O(\bm{x}, \bm{v}, t\_{max})}. $$
 
-This radically simplifies evaluation of the estimator (again, for a single wavelength):
+In order to distribute the samples according to the PDF, we must be also able to [invert](http://www.pbr-book.org/3ed-2018/Monte_Carlo_Integration/Sampling_Random_Variables.html#TheInversionMethod) the [CDF](https://en.wikipedia.org/wiki/Cumulative_distribution_function) \\(P\\):
 
-$$ \tag{16} L(\bm{x}, \bm{v}) \approx O(\bm{x}, \bm{v}, t\_{max}) \frac{1}{N} \sum\_{i=1}^{N} \alpha\_{ss}(\bm{x}, \bm{v}, t_i) L_s(\bm{x} + t_i \bm{v}, \bm{v}). $$
-
-Extending it to handle the surface contribution is trivial. If the closest surface along the ray is at the distance \\(t\_{max}\\), we evaluate the volume contribution using the Equation 16, and add the surface contribution (another integral) attenuated by transmittance:
-
-$$ \tag{16.5}
-    L(\bm{x}, \bm{v})
-    \approx O(\bm{x}, \bm{v}, t\_{max}) L\_{vol}(\bm{x}, \bm{v}, t\_{max})
-    + T(\bm{x}, \bm{v}, t\_{max}) L\_{surf}(\bm{x} + t\_{max} \bm{v}, \bm{v}).
-$$
-
-This equation can be seen as a form of [premultiplied alpha blending](https://graphics.pixar.com/library/Compositing/) (where alpha is opacity), which explains why particle cards can be so convincing. Additionally, it offers yet another way to parametrize the attenuation coefficient - namely, by opacity at distance (which is similar to [transmittance at distance](https://blog.selfshadow.com/publications/s2015-shading-course/burley/s2015_pbs_disney_bsdf_notes.pdf) used by Disney). It appears to be the most RGB rendering friendly parametrization that I am aware of.
-
-In order to distribute the samples according to the PDF, we must be able to [invert](http://www.pbr-book.org/3ed-2018/Monte_Carlo_Integration/Sampling_Random_Variables.html#TheInversionMethod) the [CDF](https://en.wikipedia.org/wiki/Cumulative_distribution_function) \\(P\\):
-
-$$ \tag{17} P(t | \lbrace \bm{x}, \bm{v} \rbrace)
+$$ \tag{16} P(t | \lbrace \bm{x}, \bm{v} \rbrace)
     = \int\_{0}^{t} p(s | \lbrace \bm{x}, \bm{v} \rbrace) ds
     = \int\_{0}^{t} \frac{\mu_t(\bm{x}, \bm{v}, s) T(\bm{x}, \bm{v}, s) ds}{O(\bm{x}, \bm{v}, t\_{max})}
     = \frac{O(\bm{x}, \bm{v}, t)}{O(\bm{x}, \bm{v}, t\_{max})}.
@@ -133,7 +119,21 @@ $$
 
 In practice, this means that we need to solve for distance \\(t\\) given the value of optical depth \\(\tau\\):
 
-$$ \tag{18} \tau(\bm{x}, \bm{v}, t) = -\mathrm{log} \big( 1 - P(t | \lbrace \bm{x}, \bm{v} \rbrace) O(\bm{x}, \bm{v}, t\_{max}) \big). $$
+$$ \tag{17} \tau(\bm{x}, \bm{v}, t) = -\mathrm{log} \big( 1 - P(t | \lbrace \bm{x}, \bm{v} \rbrace) O(\bm{x}, \bm{v}, t\_{max}) \big). $$
+
+Substituting the Equation 15 radically simplifies evaluation of the estimator (again, for a single wavelength):
+
+$$ \tag{18} L(\bm{x}, \bm{v}) \approx O(\bm{x}, \bm{v}, t\_{max}) \frac{1}{N} \sum\_{i=1}^{N} \alpha\_{ss}(\bm{x}, \bm{v}, t_i) L_s(\bm{x} + t_i \bm{v}, \bm{v}). $$
+
+This equation can be seen as a form of [premultiplied alpha blending](https://graphics.pixar.com/library/Compositing/) (where alpha is opacity), which explains why particle cards can be so convincing. Additionally, it offers yet another way to parametrize the attenuation coefficient - namely, by opacity at distance (which is similar to [transmittance at distance](https://blog.selfshadow.com/publications/s2015-shading-course/burley/s2015_pbs_disney_bsdf_notes.pdf) used by Disney). It appears to be the most RGB rendering friendly parametrization that I am aware of.
+
+Extending the formulation to handle the surface contribution is trivial. If the closest surface along the ray is at the distance \\(t\_{max}\\), we evaluate the volume contribution using the Equation 18, and add the surface contribution (another integral) attenuated by transmittance:
+
+$$ \tag{18.5}
+    L(\bm{x}, \bm{v})
+    \approx O(\bm{x}, \bm{v}, t\_{max}) L\_{vol}(\bm{x}, \bm{v}, t\_{max})
+    + T(\bm{x}, \bm{v}, t\_{max}) L\_{surf}(\bm{x} + t\_{max} \bm{v}, \bm{v}).
+$$
 
 ## Types of Analytic Participating Media
 
@@ -165,7 +165,7 @@ The resulting sampling algorithm is very simple:
 
 1. compute opacity along the ray;
 2. pick a CDF value;
-3. compute optical depth using the Equation 18;
+3. convert to optical depth using the Equation 17;
 4. compute the distance using the Equation 22.
 
 ### Linear Variation of Density with Altitude in Rectangular Coordinates
@@ -560,7 +560,7 @@ Note that using this function (rather than calling `EvalOptDepthSpherExpMedium` 
 
 #### Sampling Exponential Media in Spherical Coordinates
 
-In order to sample participating media, we must be able to solve the optical depth equation for distance (Equation 18). Analysis presented in the previous section indicates that we must consider two cases: the ray pointing into the same hemisphere at both endpoints (Equation 47), and into opposite ones (Equation 48).
+In order to sample participating media, we must be able to solve the optical depth equation for distance. Analysis presented in the previous section indicates that we must consider two cases: the ray pointing into the same hemisphere at both endpoints (Equation 47), and into opposite ones (Equation 48).
 
 First, let's establish a couple of useful identities. Recalling the Equation 32, we can compute the radial distance from the center \\(\bm{c}\\) to the point \\(\bm{x} + t \bm{v}\\) along the ray using the Pythagorean theorem:
 
@@ -607,7 +607,7 @@ This appears to be the simplest formulation of the problem, using the fewest num
 
 While that's an unfortunate development, it's a minor setback. If we can't solve the equation analytically, we can solve it numerically, using the [Newton–Raphson method](https://en.wikipedia.org/wiki/Newton%27s_method), for instance. The derivative of the Chapman function exists, and is not too difficult to compute.
 
-In fact, there is a [better way](http://lib-www.lanl.gov/la-pubs/00367066.pdf), which is even simpler. Recall that Newton's method requires being able to make an initial guess, evaluate the function, and take its derivative. If we solve using the entire optical depth formulation (Equation 18), we know that its derivative is just the extinction coefficient \\(\mu_t\\) (Equation 9), and making a good initial guess is easy by simply ignoring curvature of the planet.
+In fact, there is a [better way](http://lib-www.lanl.gov/la-pubs/00367066.pdf), which is even simpler. Recall that Newton's method requires being able to make an initial guess, evaluate the function, and take its derivative. If we solve using the entire optical depth formulation (Equation 17), we know that its derivative is just the extinction coefficient \\(\mu_t\\) (Equation 9), and making a good initial guess is easy by simply ignoring curvature of the planet.
 
 This method is very general and works for arbitrary continuous density distributions (see the [paper](http://lib-www.lanl.gov/la-pubs/00367066.pdf) for details). It also works well for a combination of several overlapping exponential volumes - only the way the attenuation coefficient is computed needs to be modified.
 
@@ -654,7 +654,7 @@ Since optical depth is a smooth monotonic function of distance, this numerical p
 
 In fact, curvature of the planet can be ignored for moderate distances, making the rectangular function a relatively efficient and accurate approximation. Can we exploit this idea for arbitrary distances?
 
-Let's say that we are not interested in brute force path tracing (which would require accurate numerical inversion as discussed above). Instead, we are trying to gather in-scattered radiance along the ray using the Equation 16, where \\(\bm{L_s}\\) is known (which limits us to single and pre-computed multiple scattering).
+Let's say that we are not interested in brute force path tracing (which would require accurate numerical inversion as discussed above). Instead, we are trying to gather in-scattered radiance along the ray using the Equation 18, where \\(\bm{L_s}\\) is known (which limits us to single and pre-computed multiple scattering).
 
 If we make an assumption that our random CDF values are ordered in ascending order, and that the sampling rate is sufficiently high, we can build an incremental sampling algorithm which effectively models piecewise-flat (or polygonal) planet. We will refer to it as *incremental importance sampling*.
 
@@ -705,7 +705,7 @@ spectrum IntegrateRadianceAlongRaySegment(float3 X, float3 V, float t, uint numS
         // s.t. for any i, sample[i] < sample[i + 1].
         float cdf = GetOrderedUnitIntervalRandomSample(i, numSamples);
 
-        // Convert to absolute optical depth (Equation 18).
+        // Convert to absolute optical depth (Equation 17).
         float absOptDepth = -log(1 - cdf * maxOpacity);
 
         // Convert to relative optical depth.
@@ -721,11 +721,11 @@ spectrum IntegrateRadianceAlongRaySegment(float3 X, float3 V, float t, uint numS
         r           = distance(P, C);
         cosTheta    = dot(P - C, V) * rcp(r);
 
-        // Equation 16 (without normalization).
+        // Equation 18 (inner sum).
         radiance += ComputeInScatteredRadiance(P, V);
     }
 
-    // Equation 16 (normalization).
+    // Equation 18 (outer terms).
     radiance *= ssAlbedo * maxOpacity * rcp(numSamples);
 
     return radiance;
@@ -989,7 +989,7 @@ float3 SpectralTracking(float3 X, float3 V, uint numWavelengths, uint numPaths)
 
             if (opacity < maxOpacity) // Volume contribution cancels out the opacity term.
             {
-                // Convert to optical depth (Equation 18).
+                // Convert to optical depth.
                 float optDepth = -log(1 - opacity);
                 // Perform distance sampling using the majorant.
                 float t = SampleVolumes(optDepth, pos, dir, waves[0]);
