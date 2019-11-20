@@ -39,7 +39,7 @@ $$ \tag{4} \bm{\kappa} = \frac{\bm{\lambda \mu_a}}{4 \pi}. $$
 
 Therefore, a triple \\(\lbrace \bm{\eta}, \bm{\kappa}, \bm{\mu_s} \rbrace\\) \\(\big(\\)or, alternatively, \\(\lbrace \bm{\eta}, \bm{d}, \bm{\alpha\_{ss}} \rbrace  \big) \\) is sufficient to describe both the behavior at the boundary and the (isotropic) multiple-scattering process (known as [subsurface scattering](https://en.wikipedia.org/wiki/Subsurface_scattering)) inside the volume that ultimately gives rise to what we perceive as the surface albedo \\(\bm{\alpha\_{ms}}\\). Note that certain materials (metals, in particular) require modeling of [interference](https://en.wikipedia.org/wiki/Wave_interference) to obtain expected reflectance values.
 
-Transmittance \\(\bm{T}\\) is defined as the fraction of incident radiance transmitted through the medium along a straight path of length \\(\bm{t}\\):
+Transmittance \\(\bm{T}\\) is defined as the fraction of incident radiance transmitted through the medium along a straight path of length \\(t\\):
 
 $$ \tag{5} \bm{T}(\bm{x}, \bm{v}, t) = \frac{\bm{L_t}(\bm{x}, \bm{v})}{\bm{L_i}(\bm{x} + t \bm{v}, \bm{v})}. $$
 
