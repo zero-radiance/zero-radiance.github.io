@@ -51,7 +51,7 @@ $$ \tag{6} \bm{O}(\bm{x}, \bm{v}, t) = 1 - \bm{T}(\bm{x}, \bm{v}, t). $$
 
 Using the [Beer–Lambert–Bouguer law](https://en.wikipedia.org/wiki/Beer%E2%80%93Lambert_law) for [uncorrelated media](https://cs.dartmouth.edu/~wjarosz/publications/bitterli18framework.html), we can take the natural logarithm of transmittance to compute [optical depth](https://en.wikipedia.org/wiki/Optical_depth) (or optical thickness) \\(\bm{\tau}\\):
 
-$$ \tag{7} \bm{\tau}(\bm{x}, \bm{v}, t) = \mathrm{log} \big( \bm{T}(\bm{x}, \bm{v}, t)) = \int\_{0}^{t} \bm{\mu_t} (\bm{x}, \bm{v}, s \big) ds. $$
+$$ \tag{7} \bm{\tau}(\bm{x}, \bm{v}, t) = \mathrm{log} \big( \bm{T}(\bm{x}, \bm{v}, t)  \big) = \int\_{0}^{t} \bm{\mu_t} (\bm{x}, \bm{v}, s) ds. $$
 
 The definitions (hopefully) make it clear that while transmittance is multiplicative and is restricted to the unit interval, optical depth is additive and can take on any non-negative value.
 
@@ -62,7 +62,7 @@ $$ \tag{8}
     = \int\_{0}^{t} \bm{\mu_t}(\bm{x}, \bm{v}, s) e^{-\bm{\tau}(\bm{x}, \bm{v}, s)} ds.
 $$
 
-If we use the [fundamental theorem of calculus](https://en.wikipedia.org/wiki/Fundamental_theorem_of_calculus) to interpret the attenuation coefficient as a derivative
+If we use the [fundamental theorem of calculus](https://en.wikipedia.org/wiki/Fundamental_theorem_of_calculus#First_part) to interpret the attenuation coefficient as a derivative
 
 $$ \tag{9} \bm{\mu_t} (\bm{x}, \bm{v}, s) = \frac{\partial \bm{\tau}}{\partial s}, $$
 
@@ -74,6 +74,16 @@ $$ \tag{10}
     = 1 - \bm{T}(\bm{x}, \bm{v}, t)
     = \bm{O}(\bm{x}, \bm{v}, t).
 $$
+
+Most remarkably, optical depth can be evaluated in a forward or backward fashion, and the result is the same!
+
+$$ \tag{10.1}
+    \int\_{0}^{t} \bm{\mu_t}(\bm{x}, \bm{v}, s) e^{-\int\_{0}^{s} \bm{\mu_t} (\bm{x}, \bm{v}, u) du} ds =
+    \int\_{0}^{t} \bm{\mu_t}(\bm{x}, \bm{v}, s) e^{-\int\_{s}^{t} \bm{\mu_t} (\bm{x}, \bm{v}, u) du} ds =
+    \bm{O}(\bm{x}, \bm{v}, t).
+$$
+
+For an alternative derivation directly from the radiative transfer equation, please see this [paper](https://cs.dartmouth.edu/~wjarosz/publications/georgiev19integral.html).
 
 To shade our (non-emissive) medium, we must evaluate the [recursive in-scattering integral](http://www.pbr-book.org/3ed-2018/Light_Transport_II_Volume_Rendering/The_Equation_of_Transfer.html) along the ray:
 
@@ -129,7 +139,7 @@ This equation can be seen as a form of [premultiplied alpha blending](https://gr
 
 Extending the formulation to handle the surface contribution is trivial. If the closest surface along the ray is at the distance \\(t\_{max}\\), we evaluate the volume contribution using the Equation 18, and add the surface contribution (another integral) attenuated by transmittance:
 
-$$ \tag{18.5}
+$$ \tag{18.1}
     L(\bm{x}, \bm{v})
     \approx O(\bm{x}, \bm{v}, t\_{max}) L\_{vol}(\bm{x}, \bm{v}, t\_{max})
     + T(\bm{x}, \bm{v}, t\_{max}) L\_{surf}(\bm{x} + t\_{max} \bm{v}, \bm{v}).
@@ -884,7 +894,7 @@ One of the concerns with the implementation outlined above is the necessity to s
 
 ### Spectral Tracking
 
-[Spectral tracking](https://dl.acm.org/citation.cfm?id=3073665) presents an alternative way to accelerate spectral rendering. It uses a radically different approach by incorporating [null collisions](https://hal.archives-ouvertes.fr/hal-01688110/) into the radiative transport equation.
+[Spectral tracking](https://dl.acm.org/citation.cfm?id=3073665) presents an alternative way to accelerate spectral rendering. It uses a radically different approach by incorporating [null collisions](https://hal.archives-ouvertes.fr/hal-01688110/) into the radiative transfer equation.
 
 The basic idea of the null-collision integral is add another type of collision event which has no effect on light transport. While it may seem pointless at first glance, it is a very useful mathematical trick that allows analytic sampling of heterogeneous media (by padding it with transparent forward-scattering particles) either in space or across the spectral domain (or both).
 
