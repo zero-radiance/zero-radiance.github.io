@@ -51,7 +51,7 @@ $$ \tag{6} \bm{O}(\bm{x}, \bm{v}, t) = 1 - \bm{T}(\bm{x}, \bm{v}, t). $$
 
 Using the [Beer–Lambert–Bouguer law](https://en.wikipedia.org/wiki/Beer%E2%80%93Lambert_law) for [uncorrelated media](https://cs.dartmouth.edu/~wjarosz/publications/bitterli18framework.html), we can take the natural logarithm of transmittance to compute [optical depth](https://en.wikipedia.org/wiki/Optical_depth) (or optical thickness) \\(\bm{\tau}\\):
 
-$$ \tag{7} \bm{\tau}(\bm{x}, \bm{v}, t) = \mathrm{log} \big( \bm{T}(\bm{x}, \bm{v}, t)  \big) = \int\_{0}^{t} \bm{\mu_t} (\bm{x}, \bm{v}, s) ds. $$
+$$ \tag{7} \bm{\tau}(\bm{x}, \bm{v}, t) = -\mathrm{log} \big( \bm{T}(\bm{x}, \bm{v}, t)  \big) = \int\_{0}^{t} \bm{\mu_t} (\bm{x}, \bm{v}, s) ds. $$
 
 The definitions (hopefully) make it clear that while transmittance is multiplicative and is restricted to the unit interval, optical depth is additive and can take on any non-negative value.
 
