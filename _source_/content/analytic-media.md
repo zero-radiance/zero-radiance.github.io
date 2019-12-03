@@ -471,6 +471,7 @@ float ComputeCosineOfHorizonAngle(float r, float R)
     return -sqrt(saturate(1 - sinHoriz * sinHoriz));
 }
 
+// This variant of the function assumes that the ray goes to infinity.
 spectrum EvalOptDepthSpherExpMedium(float r, float cosTheta,
                                     spectrum seaLvlAtt, float Z,
                                     float R, float rcpR,
@@ -539,6 +540,7 @@ float CosAtDist(float r, float cosTheta, float t, float radAtDist)
     return (t + r * cosTheta) * rcp(radAtDist);
 }
 
+// This variant of the function takes the distance 't' along the ray into account.
 spectrum EvalOptDepthSpherExpMedium(float r, float cosTheta, float t,
                                     spectrum seaLvlAtt, float Z,
                                     float H, float rcpH)
@@ -659,6 +661,8 @@ float SampleSpherExpMedium(float optDepth, float r, float cosTheta,
     return t;
 }
 ```
+
+It's worth noting that since the code internally uses a numerical approximation of the function, it is not always possible to reach an arbitrary accuracy goal. Using `FLT_EPSILON` results in a high degree of accuracy at the cost of a large number of iterations (typically, 1-10), while 1-2 iterations are sufficient to stay below the relative error level of 0.001.
 
 Since optical depth is a smooth monotonic function of distance, this numerical procedure will converge very quickly, typically, after a couple of iterations (a [higher order method](https://en.wikipedia.org/wiki/Halley%27s_method) can be used for even faster convergence). If desired, the cost can be fixed by using an iteration counter to terminate the loop, potentially trading accuracy for consistent performance. In many cases, performing just a single iteration will produce good results.
 
