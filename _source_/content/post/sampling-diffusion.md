@@ -45,7 +45,7 @@ The trick is to solve for the complimentary CDF \\(u = 1 - y\\) instead:
 
 To get rid of the imaginary part, we can set the free constant \\(c_{1} = 0\\), which results in the following inverse:
 
-$$ \tag{5} r = 3 \log{\Bigg(\frac{1 + G(u)^{1/3} + G(u)^{-1/3}}{4 u} \Bigg)}, $$
+$$ \tag{5} x = s r = 3 \log{\Bigg(\frac{1 + G(u)^{1/3} + G(u)^{-1/3}}{4 u} \Bigg)}, $$
 
 where
 
