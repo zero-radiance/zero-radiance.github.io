@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Sampling Burley&#39;s Normalized Diffusion Profiles // Zero Radiance</title>
+
+        <meta charset="utf-8">
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+    <meta name="description" content="">
+    <meta name="keywords" content="">
+    <meta name="author" content="">
+        <meta property="og:title" content="Sampling Burley&#39;s Normalized Diffusion Profiles" />
+    <meta property="og:description" content="" />
+    <meta property="og:type" content="website" />
+    <meta property="og:locale" content="en_US" />
+    <meta property="og:url" content="https://zero-radiance.github.io/post/sampling-diffusion/" />
+    
+
+    <link href="" rel="alternate" type="application/rss+xml" title="Zero Radiance" />
+    <link rel="shortcut icon" href="/favicon.png">
+
+    <link href="https://zero-radiance.github.io/webfonts/ptserif/main.css" rel='stylesheet' type='text/css'>
+    <link href="https://zero-radiance.github.io/webfonts/source-code-pro/main.css" rel="stylesheet" type="text/css">
+
+    <link rel="stylesheet" href="https://zero-radiance.github.io/css/style.css">
+
+    <meta name="generator" content="Hugo 0.54.0" />
+</head>
+
+
+<body>
+<div id="container">
+    <header id="header">
+    <div id="header-outer" class="outer">
+        <div id="header-inner" class="inner">
+            <a id="main-nav-toggle" class="nav-icon" href="javascript:;"></a>
+            <a id="logo" class="logo-text" href="https://zero-radiance.github.io/">Zero Radiance</a>
+            <nav id="main-nav">
+                
+                <a class="main-nav-link" href="/about/">About</a>
+                
+            </nav>
+            <nav id="sub-nav">
+                <div id="search-form-wrap">
+                </div>
+            </nav>
+        </div>
+    </div>
+</header>
+
+    <section id="main" class="outer">
+        <article class="article article-type-post" itemscope itemprop="blogPost">
+    <div class="article-inner">
+        
+        <header class="article-header">
+            <h1 class="article-title" itemprop="name">Sampling Burley&#39;s Normalized Diffusion Profiles</h1>
+        </header>
+        
+        <div class="article-meta">
+            <a href="/post/sampling-diffusion/" class="article-date">
+                <time datetime='2019-12-16T00:00:00.000&#43;00:00' itemprop="datePublished">2019-12-16</time>
+            </a>
+            
+            
+            <div class="post-categories">
+                <div class="article-category">
+                    
+                    
+                    <a class="article-category-link" href="https://zero-radiance.github.io//categories/graphics">Graphics</a>
+                    
+                    
+                    <span>&gt;</span>
+                    
+                    <a class="article-category-link" href="https://zero-radiance.github.io//categories/math">Math</a>
+                    
+                </div>
+            </div>
+            
+            
+        </div>
+        <div class="article-entry" itemprop="articleBody">
+            <p>A couple of years ago, I worked on an <a href="http://advances.realtimerendering.com/s2018/Efficient%20screen%20space%20subsurface%20scattering%20Siggraph%202018.pdf">implementation</a> of Burley's Normalized Diffusion (a.k.a. Disney SSS). The original <a href="https://graphics.pixar.com/library/ApproxBSSRDF/paper.pdf">paper</a> claims that the CDF is not analytically invertible. I have great respect for both authors, Brent Burley and Per Christensen, so I haven't questioned their claim for a second. Turns out, &quot;<a href="https://www.psychologytoday.com/us/blog/connect-creativity/201311/question-everything-everywhere-forever">Question Everything</a>&quot; is probably a better mindset.</p>
+
+<p>I've been recently alerted by <a href="https://twitter.com/stirners_ghost">@stirners_ghost</a> on Twitter (thank you!) that the CDF is analytically invertible. In fact, the inversion process is almost trivial, as I will demonstrate below.</p>
+
+<p>The diffusion model is radially symmetric, and is defined as</p>
+
+<p>$$ \tag{1} R(r) = \frac{A s}{8 \pi r} \Big( e^{-s r} + e^{-s r / 3} \Big). $$</p>
+
+<p>The PDF must be normalized:</p>
+
+<p>$$ \tag{2}
+    \int_{-\infty}^{\infty} \int_{-\infty}^{\infty} \frac{R(\sqrt{x^2+y^2})}{A} dx dy =
+    \int_{0}^{2 \pi} \int_{0}^{\infty} \frac{R(r)}{A} r dr d\theta =
+    \int_{0}^{2 \pi} \int_{0}^{\infty} p_r(r, \theta) dr d\theta = 1.
+$$</p>
+
+<p>Therefore, in polar coordinates, the PDF is given as</p>
+
+<p>$$ \tag{3} p_r(r, \theta) = \frac{R(r)}{A} r = \frac{s}{8 \pi} \Big( e^{-s r} + e^{-s r / 3} \Big). $$</p>
+
+<p>The marginal CDF is then</p>
+
+<p>$$ \tag{4} P(r) = \int_{0}^{2 \pi} \int_{0}^{r} p_r(z, \theta) dz d\theta = 1 - \frac{1}{4} e^{-s r} - \frac{3}{4} e^{-s r / 3}. $$</p>
+
+<p>If we ask <a href="https://www.wolfram.com/mathematica/">Mathematica</a> to solve \(y = P(x)\) for \(x\) in order to obtain the inverse \(x = P^{-1}(y)\), we get a somewhat terrifying (but, of course, correct) output:</p>
+
+<figure>
+    <img src="/img/solve1.png"/> 
+</figure>
+
+
+<p>The trick is to solve for the complimentary CDF \(u = 1 - y\) instead:</p>
+
+<figure>
+    <img src="/img/solve2.png"/> 
+</figure>
+
+
+<p>To get rid of the imaginary part, we can set the free constant \(c_{1} = 0\), which results in the following inverse:</p>
+
+<p>$$ \tag{5} r = 3 \log{\Bigg(\frac{1 + G(u)^{1/3} + G(u)^{-1/3}}{4 u} \Bigg)}, $$</p>
+
+<p>where</p>
+
+<p>$$ \tag{6} G(u) = 1 - 8 u^2 + 4 \sqrt{u^2 (4 u^2 - 1)}. $$</p>
+
+<p>We can then uniformly sample either the complementary or the regular CDF - it makes no difference.</p>
+        </div>
+
+        
+        
+        
+
+        
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.slim.min.js" integrity="sha256-/SIrNqv8h6QGKDuNoLGA4iret+kyesCkHGzVUUV0shc=" crossorigin="anonymous"></script>
+        <script>
+            (function() {
+                var $toc = $('#TableOfContents');
+                if ($toc.length > 0) {
+                    var $window = $(window);
+
+                    function onScroll(){
+                        var currentScroll = $window.scrollTop();
+                        var h = $('.article-entry h1, .article-entry h2, .article-entry h3, .article-entry h4, .article-entry h5, .article-entry h6');
+                        var id = "";
+                        h.each(function (i, e) {
+                            e = $(e);
+                            if (e.offset().top - 10 <= currentScroll) {
+                                id = e.attr('id');
+                            }
+                        });
+                        var active = $toc.find('a.active');
+                        if (active.length == 1 && active.eq(0).attr('href') == '#' + id) return true;
+
+                        active.each(function (i, e) {
+                            $(e).removeClass('active').siblings('ul').hide();
+                        });
+                        $toc.find('a[href="#' + id + '"]').parentsUntil('#TableOfContents').each(function (i, e) {
+                            $(e).children('a').addClass('active').siblings('ul').show();
+                        });
+                    }
+
+                    $window.on('scroll', onScroll);
+                    $(document).ready(function() {
+                        $toc.find('a').parent('li').find('ul').hide();
+                        onScroll();
+                        document.getElementsByClassName('article-toc')[0].style.display = '';
+                    });
+                }
+            })();
+        </script>
+        
+
+
+        
+        <footer class="article-footer">
+            <ul class="article-tag-list">
+                
+                <li class="article-tag-list-item">
+                    <a class="article-tag-list-link" href="https://zero-radiance.github.io//tags/importance-sampling">Importance Sampling
+                    </a>
+                </li>
+                
+                <li class="article-tag-list-item">
+                    <a class="article-tag-list-link" href="https://zero-radiance.github.io//tags/subsurface-scattering">Subsurface Scattering
+                    </a>
+                </li>
+                
+                <li class="article-tag-list-item">
+                    <a class="article-tag-list-link" href="https://zero-radiance.github.io//tags/diffusion">Diffusion
+                    </a>
+                </li>
+                
+            </ul>
+        </footer>
+        
+    </div>
+    <nav id="article-nav">
+    
+    
+    <a href="/post/surface-gradient/" id="article-nav-older" class="article-nav-link-wrap">
+        <div class="article-nav-title">Normal Mapping Using the Surface Gradient&nbsp;<span>&gt;</span></div>
+    </a>
+    
+</nav>
+
+</article>
+
+        
+    </section>
+    <footer id="footer">
+    <div class="outer">
+        <div id="footer-info" class="inner">
+            &copy; 2019 Zero Radiance
+            <br />
+            Powered by <a href="https://gohugo.io" target="_blank">Hugo</a> with theme <a href="https://github.com/carsonip/hugo-theme-minos" target="_blank">Minos</a>
+        </div>
+    </div>
+    
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.9.0/styles/ir-black.min.css" integrity="sha384-MB5b01LGSe23q61l4c3S0rizcgipTwJg3lu7sim4umVyvL7FAQ42QaupvahTDYXU" crossorigin="anonymous">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.9.0/highlight.min.js" integrity="sha256-KbfTjB0WZ8vvXngdpJGY3Yp3xKk+tttbqClO11anCIU=" crossorigin="anonymous"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+
+    
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.10.1/dist/katex.min.css" integrity="sha384-dbVIfZGuN1Yq7/1Ocstc1lUEm+AT+/rCkibIcC/OmWo5f0EA48Vf8CytHzGrSwbQ" crossorigin="anonymous">
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.10.1/dist/katex.min.js" integrity="sha384-2BKqo+exmr9su6dir+qCw08N2ZKRucY4PrGQPPWU1A7FtlCGjmEGFqXCv5nyM5Ij" crossorigin="anonymous"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.10.1/dist/contrib/auto-render.min.js" integrity="sha384-kWPLUVMOks5AQFrykwIup5lo0m3iMkkHrD0uJ4H5cjeGihAutqP0yW0J6dpFiVkI" crossorigin="anonymous"
+    onload="renderMathInElement(document.body, {strict: false});"></script>
+    
+    <script>
+        document.getElementById('main-nav-toggle').addEventListener('click', function () {
+            var header = document.getElementById('header');
+            if (header.classList.contains('mobile-on')) {
+                header.classList.remove('mobile-on');
+            } else {
+                header.classList.add('mobile-on');
+            }
+        });
+    </script>
+</footer>
+
+</div>
+</body>
+</html>

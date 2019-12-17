@@ -1,8 +1,6 @@
 ---
-title: "Sampling Burley's Normalized Diffusion"
+title: "Sampling Burley's Normalized Diffusion Profiles"
 date: 2019-12-16
-hidden: true
-draft: true
 categories: [ "Graphics", "Math" ]
 tags: [
     "Importance Sampling",

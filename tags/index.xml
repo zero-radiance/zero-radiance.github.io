@@ -47,11 +47,29 @@
     </item>
     
     <item>
+      <title>Diffusion</title>
+      <link>https://zero-radiance.github.io/tags/diffusion/</link>
+      <pubDate>Mon, 16 Dec 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://zero-radiance.github.io/tags/diffusion/</guid>
+      <description></description>
+    </item>
+    
+    <item>
       <title>Image Based Lighting</title>
       <link>https://zero-radiance.github.io/tags/image-based-lighting/</link>
       <pubDate>Tue, 02 Apr 2019 00:00:00 +0000</pubDate>
       
       <guid>https://zero-radiance.github.io/tags/image-based-lighting/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Importance Sampling</title>
+      <link>https://zero-radiance.github.io/tags/importance-sampling/</link>
+      <pubDate>Mon, 16 Dec 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://zero-radiance.github.io/tags/importance-sampling/</guid>
       <description></description>
     </item>
     
@@ -79,6 +97,15 @@
       <pubDate>Tue, 02 Apr 2019 00:00:00 +0000</pubDate>
       
       <guid>https://zero-radiance.github.io/tags/split-sum-approximation/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Subsurface Scattering</title>
+      <link>https://zero-radiance.github.io/tags/subsurface-scattering/</link>
+      <pubDate>Mon, 16 Dec 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://zero-radiance.github.io/tags/subsurface-scattering/</guid>
       <description></description>
     </item>
     

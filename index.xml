@@ -5,10 +5,21 @@
     <link>https://zero-radiance.github.io/</link>
     <description>Recent content on Zero Radiance</description>
     <generator>Hugo -- gohugo.io</generator>
-    <lastBuildDate>Sun, 23 Jun 2019 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Mon, 16 Dec 2019 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="https://zero-radiance.github.io/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Sampling Burley&#39;s Normalized Diffusion Profiles</title>
+      <link>https://zero-radiance.github.io/post/sampling-diffusion/</link>
+      <pubDate>Mon, 16 Dec 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://zero-radiance.github.io/post/sampling-diffusion/</guid>
+      <description>&lt;p&gt;A couple of years ago, I worked on an &lt;a href=&#34;http://advances.realtimerendering.com/s2018/Efficient%20screen%20space%20subsurface%20scattering%20Siggraph%202018.pdf&#34;&gt;implementation&lt;/a&gt; of Burley&#39;s Normalized Diffusion (a.k.a. Disney SSS). The original &lt;a href=&#34;https://graphics.pixar.com/library/ApproxBSSRDF/paper.pdf&#34;&gt;paper&lt;/a&gt; claims that the CDF is not analytically invertible. I have great respect for both authors, Brent Burley and Per Christensen, so I haven&#39;t questioned their claim for a second. Turns out, &amp;quot;&lt;a href=&#34;https://www.psychologytoday.com/us/blog/connect-creativity/201311/question-everything-everywhere-forever&#34;&gt;Question Everything&lt;/a&gt;&amp;quot; is probably a better mindset.&lt;/p&gt;
+
+&lt;p&gt;I&#39;ve been recently alerted by &lt;a href=&#34;https://twitter.com/stirners_ghost&#34;&gt;@stirners_ghost&lt;/a&gt; on Twitter (thank you!) that the CDF is analytically invertible. In fact, the inversion process is almost trivial, as I will demonstrate below.&lt;/p&gt;</description>
+    </item>
     
     <item>
       <title>Normal Mapping Using the Surface Gradient</title>
