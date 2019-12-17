@@ -35,7 +35,7 @@ The marginal CDF is then
 
 $$ \tag{4} P(r) = \int\_{0}^{2 \pi} \int_{0}^{r} p_r(z, \theta) dz d\theta = 1 - \frac{1}{4} e^{-s r} - \frac{3}{4} e^{-s r / 3}. $$
 
-If we ask [Mathematica](https://www.wolfram.com/mathematica/) to solve \\(y = P(x)\\) for \\(x\\) in order to obtain the inverse \\(x = P^{-1}(y)\\), we get a somewhat terrifying (but, of course, correct) output:
+Let us define \\(x = s r\\). If we ask [Mathematica](https://www.wolfram.com/mathematica/) to solve \\(y = P(x)\\) for \\(x\\) in order to obtain the inverse \\(x = P^{-1}(y)\\), we get a somewhat terrifying (but, of course, correct) output:
 
 {{< figure src="/img/solve1.png">}}
 
