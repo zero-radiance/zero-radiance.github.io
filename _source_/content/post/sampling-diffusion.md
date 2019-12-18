@@ -49,9 +49,13 @@ $$ \tag{5} x = s r = 3 \log{\Bigg(\frac{1 + G(u)^{-1/3} + G(u)^{1/3}}{4 u} \Bigg
 
 where
 
-$$ \tag{6} G(u) = 1 + 4 u \Big( \sqrt{1 + 4 u^2} + 2 u \Big). $$
+$$ \tag{6} G(u) = 1 + 4 u \Big( 2 u + \sqrt{1 + 4 u^2} \Big). $$
 
-We can then uniformly sample either the complementary or the regular CDF - it makes no difference.
+We can verify that it works by feeding the CCDF with its inverse.
+
+{{< figure src="/img/solve3.png">}}
+
+We can uniformly sample either the complementary or the regular CDF - it makes no difference.
 
 ## Acknowledgments
 
