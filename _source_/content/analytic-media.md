@@ -306,7 +306,7 @@ The resulting integral is very complex. As a first step, let's take the nested i
 
 $$ \tag{33} u = n s, \qquad z = n r, \qquad Z = n R, $$
 
-we obtain what is known in the physics community as the [Chapman function](https://en.wikipedia.org/wiki/Chapman_function) (or the obliquity function, or the relative optical air mass) \\(C\\):
+we obtain what is known in the physics community as the [Chapman function](https://en.wikipedia.org/wiki/Chapman_function) << bad link! >> (or the obliquity function, or the relative optical air mass) \\(C\\):
 
 $$ \tag{34} C(z, \mathrm{cos}{\theta}) = \int\_{0}^{\infty} e^{z - \sqrt{z^2 + 2 z u \mathrm{cos}{\theta} + u^2}} du. $$
 
@@ -342,7 +342,7 @@ Arguably, the first two are the most important, since they roughly correspond to
 
 Being an obliquity function, \\(C(z, 0) = 1\\). The function varies slowly, as long as the angle is far from being horizontal (which suggests an opportunity for a [small-angle approximation](https://en.wikipedia.org/wiki/Small-angle_approximation)).
 
-The Chapman function has an [analytic expression](https://ui.adsabs.harvard.edu/abs/1996CoSka..26...23K/abstract)
+The Chapman function has an [analytic expression](https://ui.adsabs.harvard.edu/abs/1996CoSka..26...23K/abstract) << approximation! >>
 
 $$ \tag{38} C(z, \mathrm{cos}{\theta}) = \frac{1}{2} \mathrm{cos}{\theta} + \frac{1}{2} \Big(\frac{1}{\sqrt{z}} + 2 \sqrt{z} - \sqrt{z} (\mathrm{cos}{\theta})^2 \Big) \sqrt{\frac{\pi}{2}} \Bigg[ e^{\big( \frac{1}{\sqrt{2}} \sqrt{z} \mathrm{cos}{\theta} \big)^2} \mathrm{erfc}{\Big(\frac{1}{\sqrt{2}} \sqrt{z} \mathrm{cos}{\theta}\Big)} \Bigg], $$
 
@@ -350,7 +350,7 @@ which, unfortunately, is not [closed-form](https://en.wikipedia.org/wiki/Closed-
 
 Unfortunately, I was unable to re-derive this expression. I suspect that I am either missing something (accounting for continuous variation of the IOR, for instance), or perhaps this is not a full analytic solution, but rather a truncated series expansion (similar to [this one](https://www.sciencedirect.com/science/article/pii/S0022407300001072)). Also, while the formula should in theory work for angles beyond 90 degrees, it deviates from values of the numerically evaluated integral rather quickly.
 
-For the zenith angle of 90 degrees, the formula reduces to
+For the zenith angle of 90 degrees, the formula reduces to << not exact! >>
 
 $$ \tag{39} C_h(z) = \frac{1}{2} \sqrt{\frac{\pi}{2}} (\frac{1}{\sqrt{z}} + 2 \sqrt{z}). $$
 
