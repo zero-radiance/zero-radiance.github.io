@@ -45,10 +45,14 @@ The trick is to solve for the complimentary CDF \\(u = 1 - y\\) instead:
 
 To get rid of the imaginary part, we can set the free constant \\(c_{1} = 0\\), which results in the following inverse:
 
-$$ \tag{5} x = s r = 3 \log{\Bigg(\frac{1 + G(u)^{1/3} + G(u)^{-1/3}}{4 u} \Bigg)}, $$
+$$ \tag{5} x = s r = 3 \log{\Bigg(\frac{1 + G(u)^{-1/3} + G(u)^{1/3}}{4 u} \Bigg)}, $$
 
 where
 
-$$ \tag{6} G(u) = 1 - 8 u^2 + 4 \sqrt{u^2 (4 u^2 - 1)}. $$
+$$ \tag{6} G(u) = 1 + 4 u \Big( \sqrt{1 + 4 u^2} + 2 u \Big). $$
 
 We can then uniformly sample either the complementary or the regular CDF - it makes no difference.
+
+## Acknowledgments
+
+I would like to thank [@stirners_ghost](https://twitter.com/stirners_ghost) for informing me that the CDF is invertible, and Brent Burley for spotting a missing minus sign in the derivation.

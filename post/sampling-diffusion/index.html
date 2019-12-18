@@ -119,16 +119,32 @@ $$</p>
 
 <p>To get rid of the imaginary part, we can set the free constant \(c_{1} = 0\), which results in the following inverse:</p>
 
-<p>$$ \tag{5} x = s r = 3 \log{\Bigg(\frac{1 + G(u)^{1/3} + G(u)^{-1/3}}{4 u} \Bigg)}, $$</p>
+<p>$$ \tag{5} x = s r = 3 \log{\Bigg(\frac{1 + G(u)^{-1/3} + G(u)^{1/3}}{4 u} \Bigg)}, $$</p>
 
 <p>where</p>
 
-<p>$$ \tag{6} G(u) = 1 - 8 u^2 + 4 \sqrt{u^2 (4 u^2 - 1)}. $$</p>
+<p>$$ \tag{6} G(u) = 1 + 4 u \Big( \sqrt{1 + 4 u^2} + 2 u \Big). $$</p>
 
 <p>We can then uniformly sample either the complementary or the regular CDF - it makes no difference.</p>
+
+<h2 id="acknowledgments">Acknowledgments</h2>
+
+<p>I would like to thank <a href="https://twitter.com/stirners_ghost">@stirners_ghost</a> for informing me that the CDF is invertible, and Brent Burley for spotting a missing minus sign in the derivation.</p>
         </div>
 
         
+        
+        <div class="article-toc" style="display:none;">
+            <h3>Contents</h3>
+            <nav id="TableOfContents">
+<ul>
+<li>
+<ul>
+<li><a href="#acknowledgments">Acknowledgments</a></li>
+</ul></li>
+</ul>
+</nav>
+        </div>
         
         
 
