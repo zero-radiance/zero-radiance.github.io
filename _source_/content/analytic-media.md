@@ -1,6 +1,6 @@
 ---
 title: "Sampling Analytic Participating Media"
-date: 2019-06-23T17:53:34-07:00
+date: 2019-12-17
 hidden: true
 draft: true
 categories: [ "Graphics", "Math" ]
@@ -775,6 +775,20 @@ spectrum IncrementalImportanceSampling(float3 X, float3 V, float maxDist, uint n
 }
 ```
 
+## What's Next?
+
+The second part of the blog post (published separately) will discuss handling of spectrally varying participating media. It is an exciting (but challenging) topic, and I look forward to sharing my findings with you.
+
+## Conclusion
+
+This article has presented several methods for sampling common types of analytic participating media. They are particularly useful for modeling low-frequency variations of density. While planetary atmospheres cannot be sampled analytically, the proposed numerical approach works well in practice. I look forward to faster and simpler methods which will be undoubtedly discovered by the rendering community.
+
+## Acknowledgments
+
+I would like to thank Julian Fong and Sébastien Hillaire for discussion and offering thoughtful comments.
+
+<!---
+
 ## Handling Spectral Coefficients
 
 While using monochromatic attenuation is acceptable for certain use cases (such as modeling aerosols and fog), generally speaking, we would like to support spectrally-varying coefficients. This means that given a fixed distance, light is going to be attenuated to a different degree depending on the wavelength. This poses a problem for importance sampling, which would have to convert opacity (now a vector) into distance (a scalar).
@@ -1091,11 +1105,4 @@ float3 SpectralTracking(float3 X, float3 V, uint numWavelengths, uint numPaths)
 }
 ```
 
-## Conclusion
-
-This article has presented several methods for sampling common types of analytic participating media. They are particularly useful for modeling low-frequency variations of density. While planetary atmospheres cannot be sampled analytically, the proposed numerical approach works well in practice. I look forward to faster and simpler methods which will be undoubtedly discovered by the rendering community.
-
-## Acknowledgments
-
-I would like to thank Julian Fong, Johannes Hannika and Sébastien Hillaire for discussion and offering thoughtful comments.
-
+-->
