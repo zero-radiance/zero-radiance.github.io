@@ -15,13 +15,13 @@ Rendering of participating media is an important aspect of every modern renderer
 
 <!--more-->
 
-In the [radiative transfer](https://archive.org/details/RadiativeTransfer) literature, light-material interaction is usually quantified in terms of absorption (conversion of electromagnetic energy of photons into kinetic energy of atoms, which manifests itself as reduction of light intensity) and scattering (change of the magnitude and direction of electromagnetic energy on interaction). Therefore, it is common to describe participating media using the collision coefficients: the *absorption coefficient* \\(\bm{\mu_a}\\) and the *scattering coefficient* \\(\bm{\mu_s}\\). These coefficients give the probability density of the corresponding event per unit distance traveled, which implies the [SI units](https://en.wikipedia.org/wiki/International_System_of_Units) of measurement are \\(m^{-1}\\).
+In the [radiative transfer](https://archive.org/details/RadiativeTransfer) literature, light-material interaction is usually quantified in terms of absorption (conversion of electromagnetic energy of photons into kinetic energy of atoms, which manifests itself as reduction of light intensity) and scattering (absorption and subsequent re-radiation of electromagnetic energy on interaction). Therefore, it is common to describe participating media using the collision coefficients: the *absorption coefficient* \\(\bm{\mu_a}\\) and the *scattering coefficient* \\(\bm{\mu_s}\\). These coefficients give the probability density of the corresponding event per unit distance traveled by a photon, which implies the [SI units](https://en.wikipedia.org/wiki/International_System_of_Units) of measurement are \\(m^{-1}\\).
 
 The [attenuation coefficient](https://en.wikipedia.org/wiki/Attenuation_coefficient) \\(\bm{\mu_t}\\)
 
 $$ \tag{1} \bm{\mu_t} = \bm{\mu_a} + \bm{\mu_s} $$
 
-gives the probability density of absorption or scattering (or, in other words, the collision rate) as a photon travels a unit distance through the volume. All these coefficients are typically spectral (vary with the wavelength \\(\lambda\\)), and can be represented as vectors (boldface notation). At this point in time, it is not entirely clear (at least to me) how to *correctly* perform volume rendering using tristimulus (RGB) values (which would require pre-integration using [color matching functions](https://en.wikipedia.org/wiki/CIE_1931_color_space#Color_matching_functions)), so I will focus on pure spectral rendering, which is well-defined.
+gives the probability density of absorption or scattering (or, in other words, the collision rate) as a photon travels a unit distance through the volume. All these coefficients are typically spectral (vary with the wavelength \\(\lambda\\)), and can be represented as vectors (boldface notation). At this point in time, it is not entirely clear (at least to me) how to *correctly* perform volume rendering using tristimulus (RGB) values (which would require some kind of pre-integration using [color matching functions](https://en.wikipedia.org/wiki/CIE_1931_color_space#Color_matching_functions)), so I will focus on pure spectral rendering, which is well-defined.
 
 A more artist-friendly parametrization uses the [single-scattering albedo](https://en.wikipedia.org/wiki/Single-scattering_albedo) \\(\bm{\alpha\_{ss}}\\)
 
@@ -37,7 +37,7 @@ Taking a small detour, for surfaces, the absorption coefficient is directly prop
 
 $$ \tag{4} \bm{\kappa} = \frac{\bm{\lambda \mu_a}}{4 \pi}. $$
 
-Therefore, a triple \\(\lbrace \bm{\eta}, \bm{\kappa}, \bm{\mu_s} \rbrace\\) \\(\big(\\)or, alternatively, \\(\lbrace \bm{\eta}, \bm{d}, \bm{\alpha\_{ss}} \rbrace  \big) \\) contains sufficient information to describe both the behavior at the boundary and the (isotropic) multiple-scattering process (known as [subsurface scattering](https://en.wikipedia.org/wiki/Subsurface_scattering)) inside the volume that ultimately gives rise to what we perceive as the surface albedo \\(\bm{\alpha\_{ms}}\\). Note that certain materials (metals, in particular) require modeling of [interference](https://en.wikipedia.org/wiki/Wave_interference) to obtain expected reflectance values.
+Therefore, a triple \\(\lbrace \bm{\eta}, \bm{\kappa}, \bm{\mu_s} \rbrace\\) \\(\big(\\)or, alternatively, \\(\lbrace \bm{\eta}, \bm{d}, \bm{\alpha\_{ss}} \rbrace  \big) \\) contains sufficient information to describe both the behavior at the boundary and the (isotropic) multiple-scattering process (known as [subsurface scattering](https://en.wikipedia.org/wiki/Subsurface_scattering)) inside the volume that ultimately gives rise to what we perceive as the surface albedo \\(\bm{\alpha\_{ms}}\\). Note that certain materials (metals, in particular) require modeling of [wave interference](https://en.wikipedia.org/wiki/Wave_interference) to obtain expected reflectance values.
 
 Transmittance \\(\bm{T}\\) is defined as the fraction of incident radiance transmitted through the medium along a straight path of length \\(t\\):
 
@@ -53,7 +53,7 @@ Using the [Beer–Lambert–Bouguer law](https://en.wikipedia.org/wiki/Beer%E2%8
 
 $$ \tag{7} \bm{\tau}(\bm{x}, \bm{v}, t) = -\mathrm{log} \big( \bm{T}(\bm{x}, \bm{v}, t)  \big) = \int\_{0}^{t} \bm{\mu_t} (\bm{x}, \bm{v}, s) ds. $$
 
-The definitions (hopefully) make it clear that while transmittance is multiplicative and is restricted to the unit interval, optical depth is additive and can have any non-negative value.
+The definitions (hopefully) make it clear that while transmittance is multiplicative, with values restricted to the unit interval, optical depth is additive and can take on any non-negative value.
 
 Slightly jumping ahead, let's define the attenuation-transmittance integral as
 
@@ -75,34 +75,31 @@ $$ \tag{10}
     = \bm{O}(\bm{x}, \bm{v}, t).
 $$
 
-Most remarkably, optical depth can be evaluated in a forward or backward fashion, and the result is the same!
+Most remarkably, optical depth can be evaluated in a forward or backward fashion, and the [result is the same](https://cs.dartmouth.edu/~wjarosz/publications/georgiev19integral.html)!
 
 $$ \tag{10.1}
     \int\_{0}^{t} \bm{\mu_t}(\bm{x}, \bm{v}, s) e^{-\int\_{0}^{s} \bm{\mu_t} (\bm{x}, \bm{v}, u) du} ds =
-    \int\_{0}^{t} \bm{\mu_t}(\bm{x}, \bm{v}, s) e^{-\int\_{s}^{t} \bm{\mu_t} (\bm{x}, \bm{v}, u) du} ds =
-    \bm{O}(\bm{x}, \bm{v}, t).
+    \int\_{0}^{t} \bm{\mu_t}(\bm{x}, \bm{v}, s) e^{-\int\_{s}^{t} \bm{\mu_t} (\bm{x}, \bm{v}, u) du} ds.
 $$
-
-For an alternative derivation directly from the radiative transfer equation, please see this [paper](https://cs.dartmouth.edu/~wjarosz/publications/georgiev19integral.html).
 
 To shade our (non-emissive) medium, we must evaluate the [recursive in-scattering integral](http://www.pbr-book.org/3ed-2018/Light_Transport_II_Volume_Rendering/The_Equation_of_Transfer.html) along the ray:
 
 $$ \tag{11} \bm{L}(\bm{x}, \bm{v})
-    = \int\_{0}^{t\_{max}} \bm{T}(\bm{x}, \bm{v}, s) \bm{\mu_s}(\bm{x}, \bm{v}, s) \int\_{S^2} f(\bm{x} + s \bm{v}, \bm{v},\bm{l}) \bm{L}(\bm{x} + s \bm{v}, \bm{l}) \bm{dl} ds,
+    = \int\_{0}^{\infty} \bm{T}(\bm{x}, \bm{v}, s) \bm{\mu_s}(\bm{x}, \bm{v}, s) \int\_{\bm{S}^2} f(\bm{x} + s \bm{v}, \bm{v},\bm{l}) \bm{L}(\bm{x} + s \bm{v}, \bm{l}) \bm{dl} ds,
 $$
 
-where \\(\bm{L}\\) is the amount of radiance at the position \\(\bm{x}\\) in the direction \\(\bm{v}\\), and \\(f\\) denotes the [phase function](http://www.pbr-book.org/3ed-2018/Volume_Scattering/Phase_Functions.html) that additionally depends on the light direction on the unit sphere \\(\bm{l} \in S^2\\). To simplify notation, the maximum distance \\(t\_{max}\\) along the ray (which typically corresponds to the distance to the closest volume boundary or the closest surface) is kept implicit.
+where \\(\bm{L}\\) is the amount of radiance at the position \\(\bm{x}\\) in the direction \\(\bm{v}\\), and \\(f\\) denotes the [phase function](http://www.pbr-book.org/3ed-2018/Volume_Scattering/Phase_Functions.html) which additionally depends on the light direction \\(\bm{l} \in \bm{S}^2\\).
 
 We can evaluate the outer integral using one of the [Monte Carlo](http://www.pbr-book.org/3ed-2018/Monte_Carlo_Integration.html) methods. The first step is to split the integrand in two parts: the part we can evaluate analytically, and the part that has to be integrated numerically. We can group the product of transmittance and the scattering coefficient together, and leave the inner integral as the "numerical" term:
 
 $$ \tag{12} \bm{L}(\bm{x}, \bm{v})
-    = \int\_{0}^{t\_{max}} \bm{T}(\bm{x}, \bm{v}, s) \bm{\mu_s}(\bm{x}, \bm{v}, s) \bm{L_s}(\bm{x} + s \bm{v}, \bm{v}) ds.
+    = \int\_{0}^{\infty} \bm{T}(\bm{x}, \bm{v}, s) \bm{\mu_s}(\bm{x}, \bm{v}, s) \bm{L_s}(\bm{x} + s \bm{v}, \bm{v}) ds.
 $$
 
 Next, let's split the scattering coefficient into attenuation and albedo:
 
 $$ \tag{13} \bm{L}(\bm{x}, \bm{v})
-    = \int\_{0}^{t\_{max}} \bm{\mu_t}(\bm{x}, \bm{v}, s) \bm{T}(\bm{x}, \bm{v}, s) \bm{\alpha\_{ss}}(\bm{x}, \bm{v}, s) \bm{L_s}(\bm{x} + s \bm{v}, \bm{v}) ds.
+    = \int\_{0}^{\infty} \bm{\mu_t}(\bm{x}, \bm{v}, s) \bm{T}(\bm{x}, \bm{v}, s) \bm{\alpha\_{ss}}(\bm{x}, \bm{v}, s) \bm{L_s}(\bm{x} + s \bm{v}, \bm{v}) ds.
 $$
 
 The [Monte Carlo estimator](http://www.pbr-book.org/3ed-2018/Monte_Carlo_Integration/The_Monte_Carlo_Estimator.html) of the integral (for a single wavelength) takes the following form:
@@ -113,7 +110,7 @@ $$
 
 where sample locations \\(t_i\\) are distributed according to the [PDF](https://en.wikipedia.org/wiki/Probability_density_function) \\(p\\).
 
-We can [importance sample](http://www.pbr-book.org/3ed-2018/Monte_Carlo_Integration/Importance_Sampling.html) the integrand in different ways. Ideally, we would like to make the PDF proportional to the product of all terms of the integrand. However, unless we use [path guiding](https://cgg.mff.cuni.cz/~jirka/path-guiding-in-production/2019/index.htm), that is typically not possible. We will focus on the technique called [free path sampling](https://cs.dartmouth.edu/~wjarosz/publications/novak18monte.html) that makes the PDF proportional to the analytic product \\(\mu_t T\\) (effectively, by assuming that the rest of the integrand varies slowly; this may or may not be the case - for example, for regions near light sources, [equiangular sampling](http://library.imageworks.com/pdfs/imageworks-library-importance-sampling-of-area-lights-in-participating-media.pdf) can give vastly superior results). In order to turn it into a valid PDF, we must normalize this term over the domain of integration (which, in our case, spans the range from 0 to \\(t\_{max}\\)) using the Equation 10:
+We can [importance sample](http://www.pbr-book.org/3ed-2018/Monte_Carlo_Integration/Importance_Sampling.html) the integrand in different ways. Ideally, we would like to make the PDF proportional to the product of all terms of the integrand. However, unless we use [path guiding](https://cgg.mff.cuni.cz/~jirka/path-guiding-in-production/2019/index.htm), that is typically not possible. We will focus on the technique called [free path sampling](https://cs.dartmouth.edu/~wjarosz/publications/novak18monte.html) that makes the PDF proportional to the analytic product \\(\mu_t T\\) (effectively, by assuming that the rest of the integrand varies slowly; this may or may not be the case - for example, for regions near light sources, [equiangular sampling](http://library.imageworks.com/pdfs/imageworks-library-importance-sampling-of-area-lights-in-participating-media.pdf) can give vastly superior results). In order to turn it into a valid PDF, we must normalize this term over the domain of integration (which is typically finite, ending either at the closest surface, or at the point where we exit the volume; we will refer to it as \\(t\_{max}\\)) using the Equation 10:
 
 $$ \tag{15} p(t | \lbrace \bm{x}, \bm{v} \rbrace)
     = \frac{\mu_t(\bm{x}, \bm{v}, t) T(\bm{x}, \bm{v}, t)}{\int\_{0}^{t\_{max}} \mu_t(\bm{x}, \bm{v}, s) T(\bm{x}, \bm{v}, s) ds}
@@ -137,13 +134,15 @@ $$ \tag{18} L(\bm{x}, \bm{v}) \approx O(\bm{x}, \bm{v}, t\_{max}) \frac{1}{N} \s
 
 This equation can be seen as a form of [premultiplied alpha blending](https://graphics.pixar.com/library/Compositing/) (where alpha is opacity), which explains why particle cards can be so convincing. Additionally, it offers yet another way to parametrize the attenuation coefficient - namely, by opacity at distance (which is similar to [transmittance at distance](https://blog.selfshadow.com/publications/s2015-shading-course/burley/s2015_pbs_disney_bsdf_notes.pdf) used by Disney). It appears to be the most RGB rendering friendly parametrization that I am aware of.
 
-Extending the formulation to handle the surface contribution is trivial. If the closest surface along the ray is at the distance \\(t_{surf} \geq t\_{max}\\), we evaluate the volume contribution using the Equation 18, and add the surface contribution (another integral) attenuated by transmittance:
+Extending the the Equation 18 to handle the surface contribution is trivial. If the closest surface along the ray is at the distance \\(t_{surf} \geq t\_{max}\\), we simply add the surface contribution (another integral) attenuated by transmittance (which is one minus opacity):
 
 $$ \tag{18.1}
     L(\bm{x}, \bm{v})
     \approx O(\bm{x}, \bm{v}, t\_{max}) L\_{vol}(\bm{x}, \bm{v}, t\_{max})
-    + T(\bm{x}, \bm{v}, t\_{max}) L\_{surf}(\bm{x} + t\_{surf} \bm{v}, \bm{v}).
+    + \big( 1 - O(\bm{x}, \bm{v}, t\_{max}) \big) L\_{surf}(\bm{x} + t\_{surf} \bm{v}, \bm{v}).
 $$
+
+In this context, the total opacity along the ray serves as the probability of a volume collision event, can then be used to select between a surface and a volume sample.
 
 ## Types of Analytic Participating Media
 
@@ -298,8 +297,8 @@ $$ \tag{32} \begin{aligned}
     &= \bm{\sigma_t} \int\_{0}^{t} k e^{-n h(s)} ds \cr
     &= \bm{\sigma_t} \int\_{0}^{t} k e^{-n (\sqrt{r_0^2 + (t_0 + s)^2} - R)} ds \cr
     &= \bm{\sigma_t} \int\_{0}^{t} k e^{-n (\sqrt{(r \mathrm{sin}{\theta})^2 + (r \mathrm{cos}{\theta} + s)^2} - R)} ds \cr
-    &= \bm{\sigma_t} \int\_{0}^{t} k e^{-n (\sqrt{r^2 + 2 r s \mathrm{cos}{\theta} + s^2} - R)} ds \cr
-    &= \bm{\sigma_t} \frac{k}{n} e^{-n (r - R)} \int\_{0}^{t} e^{n (r - \sqrt{r^2 + 2 r s \mathrm{cos}{\theta} + s^2})} n ds.
+    &= \bm{\sigma_t} \int\_{0}^{t} k e^{-n (\sqrt{r^2 + 2 r s \mathrm{cos}{\theta} + \bm{S}^2} - R)} ds \cr
+    &= \bm{\sigma_t} \frac{k}{n} e^{-n (r - R)} \int\_{0}^{t} e^{n (r - \sqrt{r^2 + 2 r s \mathrm{cos}{\theta} + \bm{S}^2})} n ds.
 \end{aligned} $$
 
 The resulting integral is very complex. As a first step, let's take the nested integral, and extend the upper limit of integration to infinity. With the following change of variables:
