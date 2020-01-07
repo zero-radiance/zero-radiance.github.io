@@ -39,16 +39,24 @@ Let us define \\(x = s r\\). If we ask [Mathematica](https://www.wolfram.com/mat
 
 {{< figure src="/img/solve1.png">}}
 
-The trick is to solve for the complimentary CDF \\(u = 1 - y\\) instead:
+The trick is to solve \\(P(x) = 1 - u\\) instead (where \\(u = 1 - P(x)\\) is the [complementary CDF](https://en.wikipedia.org/wiki/Cumulative_distribution_function#Complementary_cumulative_distribution_function_(tail_distribution))):
 
 {{< figure src="/img/solve2.png">}}
 
 To get rid of the imaginary part, we can set the free constant \\(c_{1} = 0\\), which results in the following inverse:
 
-$$ \tag{5} x = s r = 3 \log{\Bigg(\frac{1 + G(u)^{1/3} + G(u)^{-1/3}}{4 u} \Bigg)}, $$
+$$ \tag{5} x = s r = 3 \log{\Bigg(\frac{1 + G(u)^{-1/3} + G(u)^{1/3}}{4 u} \Bigg)}, $$
 
 where
 
-$$ \tag{6} G(u) = 1 - 8 u^2 + 4 \sqrt{u^2 (4 u^2 - 1)}. $$
+$$ \tag{6} G(u) = 1 + 4 u \Big( 2 u + \sqrt{1 + 4 u^2} \Big). $$
 
-We can then uniformly sample either the complementary or the regular CDF - it makes no difference.
+We can verify that it works by feeding the complementary CDF with its inverse.
+
+{{< figure src="/img/solve3.png">}}
+
+For importance sampling, we can uniformly sample either the complementary or the regular CDF - it makes no difference.
+
+## Acknowledgments
+
+I would like to thank [@stirners_ghost](https://twitter.com/stirners_ghost) for informing me that the CDF is invertible, and Brent Burley for spotting a missing minus sign in the derivation.
