@@ -37,31 +37,33 @@ Taking a small detour, for metals, the absorption coefficient is directly relate
 
 $$ \tag{4} \bm{\kappa} = \frac{\bm{\lambda}}{4 \pi} \bm{\mu_a}. $$
 
-For this reason, \\(\bm{\eta}\\) is called the [refractive index](https://www.feynmanlectures.caltech.edu/I_31.html), and \\(\bm{\kappa}\\) is  sometimes referred to as the [absorption index](https://www.feynmanlectures.caltech.edu/I_31.html).
+For this reason, \\(\bm{\eta}\\) is called the [refractive index](https://www.feynmanlectures.caltech.edu/I_31.html) (or IOR), and \\(\bm{\kappa}\\) is  sometimes referred to as the [absorption index](https://www.feynmanlectures.caltech.edu/I_31.html).
 
 We can conclude that the tuple \\(\lbrace \bm{\eta}, \bm{\kappa}, \bm{\mu_s} \rbrace\\) \\(\big(\\)or, alternatively, \\(\lbrace \bm{\eta}, \bm{d}, \bm{\alpha\_{ss}} \rbrace  \big) \\) contains sufficient information to describe both the behavior at the surface (boundary) and the (isotropic) multiple-scattering process (known as [subsurface scattering](https://en.wikipedia.org/wiki/Subsurface_scattering)) inside the volume that ultimately gives rise to what we perceive as the surface albedo \\(\bm{\alpha\_{ms}}\\). Note that certain materials (metals, in particular) require modeling of [wave interference](https://en.wikipedia.org/wiki/Wave_interference) to obtain expected reflectance values.
 
-A surface, then, is just a boundary of a volume signified by a discontinuity of the refractive index (in reality, the [transition at the boundary is continuous](https://www.feynmanlectures.caltech.edu/II_33.html), with a thickness of several atomic layers, but we can ignore this fact at scales relevant to computer graphics). Inside volumes, the index is usually assumed to be constant.
+A surface, then, is just an optical interface signified by a discontinuity of the optical properties (in reality, the [transition at the boundary is continuous](https://www.feynmanlectures.caltech.edu/II_33.html), with a thickness of several atomic layers, but we can ignore this fact at scales relevant to computer graphics).
 
 Sometimes, it is convenient to specify the concentration (density) of the medium, and not its effective optical properties. For example, the attenuation coefficient can be computed using the following formula:
 
 $$ \tag{5} \bm{\mu_t} = \rho \bm{\sigma_t}, $$
 
-where \\(\rho\\) is the [volumetric mass density](https://en.wikipedia.org/wiki/Mass_density) (measured in units of \\(kg/m^{3}\\)) and \\(\bm{\sigma_t}\\) is the [mass attenuation coefficient](https://en.wikipedia.org/wiki/Mass_attenuation_coefficient) (in units of \\(m^{2}/kg\\)) - the cross section per unit mass. Other coefficients have the same linear relationship with density.
+where \\(\rho\\) is the [volumetric mass density](https://en.wikipedia.org/wiki/Mass_density) (measured in units of \\(kg/m^{3}\\)) and \\(\bm{\sigma_t}\\) is the [mass attenuation coefficient](https://en.wikipedia.org/wiki/Mass_attenuation_coefficient) (in units of \\(m^{2}/kg\\)) - the cross section per unit mass. Other coefficients have the same linear relation with density.
 
-But what about the index of refraction? Often, one assumes that it is independent of density. But if you consider, for example, water and steam (which is just a lower concentration of water molecules), our experience tells us that their refractive properties are obviously not the same.
+But what about the IOR? Often, one assumes that it is independent of density. But if you consider, for example, water and steam (which is just a lower concentration of water molecules), our experience tells us that their refractive properties are not the same.
 
-There are several approximate relations between density and the index of refraction. One of them is given by the [Lorentz–Lorenz equation](https://en.wikipedia.org/wiki/Clausius%E2%80%93Mossotti_relation):
+There are several approximate relations between density and the IOR. One of them is given by the [Lorentz–Lorenz equation](https://en.wikipedia.org/wiki/Clausius%E2%80%93Mossotti_relation):
 
 $$ \tag{6} \frac{\bm{n}^2 - 1}{\bm{n}^2 + 2} = \frac{4}{3} \pi \bm{\alpha_m} \rho, $$
 
-where \\(\bm{\alpha_m}\\) is the [mean atomic polarizability](https://www.feynmanlectures.caltech.edu/II_32.html). Incidentally, since polarizability is a property of matter, this equation represents a way to compute the index of a mixture of several substances.
+where \\(\bm{\alpha_m}\\) is the [mean atomic polarizability](https://www.feynmanlectures.caltech.edu/II_32.html). Incidentally, since polarizability is a property of matter, this equation represents a way to compute the IOR of a mixture of several substances.
 
 For small densities and \\(\bm{n}^2 \approx 1\\) (in a gas, for instance), the following approximation can be made:
 
 $$ \tag{6} \bm{n} \approx \sqrt{1 + 4 \pi \bm{\alpha_m} \rho} \approx 1 + 2 \pi \bm{\alpha_m} \rho, $$
 
-which implies that the \\((\bm{n} - 1)\\) has an approximately linear relationship with density.
+which implies that the distance from the vacuum \\((\bm{n} - 1)\\) has an approximately linear relation with density. Similar [relations](https://en.wikipedia.org/wiki/Molar_refractivity) can be found for temperature, humidity and pressure.
+
+Continuous variations of the IOR pose an issue for path tracing. Typically, paths are composed of straight segments joined at scattering locations. Unfortunately, due to the [principle of least time](https://en.wikipedia.org/wiki/Fermat%27s_principle), continuously varying IOR forces photons to travel along [curved paths](http://www.waves.utoronto.ca/prof/svhum/ece422/notes/20a-atmospheric-refr.pdf) that obey [Snell's law](https://en.wikipedia.org/wiki/Snell%27s_law). And since the IOR can have a spectral dependency, it can cause [dispersion](https://en.wikipedia.org/wiki/Dispersion_(optics)) not only at the interfaces, but also along the entire path. So, it's not too surprising that that most renderers ignore this behavior. For small density gradients and small distances, it's usually a valid approximation. On the other hand, for certain atmospheric effects, [atmospheric refraction](https://en.wikipedia.org/wiki/Atmospheric_refraction) can make a non-negligible contribution.
 
 Transmittance \\(\bm{T}\\) is defined as the fraction of incident radiance transmitted along the shortest path between two points:
 
