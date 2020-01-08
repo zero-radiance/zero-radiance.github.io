@@ -21,27 +21,51 @@ The [attenuation coefficient](https://en.wikipedia.org/wiki/Attenuation_coeffici
 
 $$ \tag{1} \bm{\mu_t} = \bm{\mu_a} + \bm{\mu_s} $$
 
-gives the probability density of absorption or scattering (or, in other words, the collision rate) as a photon travels a unit distance through the volume. All these coefficients are typically spectral (vary with the wavelength \\(\lambda\\)), and can be represented as vectors (boldface notation). At this point in time, it is not entirely clear (at least to me) how to *correctly* perform volume rendering using tristimulus (RGB) values (which would require some kind of pre-integration using [color matching functions](https://en.wikipedia.org/wiki/CIE_1931_color_space#Color_matching_functions)), so I will focus on pure spectral rendering, which is well-defined.
+gives the probability density of absorption or scattering (or, in other words, the collision rate) as a photon travels a unit distance through the participating medium. All these coefficients are typically spectral (vary with the wavelength \\(\lambda\\)), and can be represented as vectors (boldface notation). At this point in time, it is not entirely clear (at least to me) how to *correctly* perform volume rendering using tristimulus (RGB) values (which would require some kind of pre-integration using [color matching functions](https://en.wikipedia.org/wiki/CIE_1931_color_space#Color_matching_functions)), so I will focus on pure spectral rendering, which is well-defined.
 
 A more artist-friendly parametrization uses the [single-scattering albedo](https://en.wikipedia.org/wiki/Single-scattering_albedo) \\(\bm{\alpha\_{ss}}\\)
 
 $$ \tag{2} \bm{\alpha\_{ss}} = \frac{\bm{\mu_s}}{\bm{\mu_t}}, $$
 
-which gives the probability of a photon "surviving" a collision event (or, in other words, the scattering rate), and the (also spectral) [mean free path](https://en.wikipedia.org/wiki/Mean_free_path) \\(\bm{d}\\)
+which gives the deflection probability (or, in other words, the scattering rate), and the (also spectral) [mean free path](https://en.wikipedia.org/wiki/Mean_free_path) \\(\bm{d}\\)
 
 $$ \tag{3} \bm{d} = \frac{1}{\bm{\mu_t}}, $$
 
 which corresponds to the average collision-free (or free-flight) distance.
 
-Taking a small detour, for surfaces, the absorption coefficient is directly proportional to the [extinction coefficient](http://webhome.phy.duke.edu/~qelectron/group/group_reading_Born_and_Wolf.pdf) \\(\bm{\kappa}\\), which is the imaginary part of the [complex index of refraction](https://en.wikipedia.org/wiki/Refractive_index#Complex_refractive_index) \\(\bm{\eta} + i \bm{\kappa}\\):
+Taking a small detour, for metals, the absorption coefficient is directly related to the [extinction coefficient](http://webhome.phy.duke.edu/~qelectron/group/group_reading_Born_and_Wolf.pdf) \\(\bm{\kappa}\\), which is the imaginary part of the [complex index of refraction](https://en.wikipedia.org/wiki/Refractive_index#Complex_refractive_index) \\(\bm{\eta} + i \bm{\kappa}\\):
 
-$$ \tag{4} \bm{\kappa} = \frac{\bm{\lambda \mu_a}}{4 \pi}. $$
+$$ \tag{4} \bm{\kappa} = \frac{\bm{\lambda}}{4 \pi} \bm{\mu_a}. $$
 
-Therefore, a triple \\(\lbrace \bm{\eta}, \bm{\kappa}, \bm{\mu_s} \rbrace\\) \\(\big(\\)or, alternatively, \\(\lbrace \bm{\eta}, \bm{d}, \bm{\alpha\_{ss}} \rbrace  \big) \\) contains sufficient information to describe both the behavior at the boundary and the (isotropic) multiple-scattering process (known as [subsurface scattering](https://en.wikipedia.org/wiki/Subsurface_scattering)) inside the volume that ultimately gives rise to what we perceive as the surface albedo \\(\bm{\alpha\_{ms}}\\). Note that certain materials (metals, in particular) require modeling of [wave interference](https://en.wikipedia.org/wiki/Wave_interference) to obtain expected reflectance values.
+For this reason, \\(\bm{\eta}\\) is called the [refractive index](https://www.feynmanlectures.caltech.edu/I_31.html), and \\(\bm{\kappa}\\) is  sometimes referred to as the [absorption index](https://www.feynmanlectures.caltech.edu/I_31.html).
 
-Transmittance \\(\bm{T}\\) is defined as the fraction of incident radiance transmitted through the medium along a straight path of length \\(t\\):
+We can conclude that the tuple \\(\lbrace \bm{\eta}, \bm{\kappa}, \bm{\mu_s} \rbrace\\) \\(\big(\\)or, alternatively, \\(\lbrace \bm{\eta}, \bm{d}, \bm{\alpha\_{ss}} \rbrace  \big) \\) contains sufficient information to describe both the behavior at the surface (boundary) and the (isotropic) multiple-scattering process (known as [subsurface scattering](https://en.wikipedia.org/wiki/Subsurface_scattering)) inside the volume that ultimately gives rise to what we perceive as the surface albedo \\(\bm{\alpha\_{ms}}\\). Note that certain materials (metals, in particular) require modeling of [wave interference](https://en.wikipedia.org/wiki/Wave_interference) to obtain expected reflectance values.
 
-$$ \tag{5} \bm{T}(\bm{x}, \bm{v}, t) = \frac{\bm{L_t}(\bm{x}, \bm{v})}{\bm{L_i}(\bm{x} + t \bm{v}, \bm{v})}. $$
+A surface, then, is just a boundary of a volume signified by a discontinuity of the refractive index (in reality, the [transition at the boundary is continuous](https://www.feynmanlectures.caltech.edu/II_33.html), with a thickness of several atomic layers, but we can ignore this fact at scales relevant to computer graphics). Inside volumes, the index is usually assumed to be constant.
+
+Sometimes, it is convenient to specify the concentration (density) of the medium, and not its effective optical properties. For example, the attenuation coefficient can be computed using the following formula:
+
+$$ \tag{5} \bm{\mu_t} = \rho \bm{\sigma_t}, $$
+
+where \\(\rho\\) is the [volumetric mass density](https://en.wikipedia.org/wiki/Mass_density) (measured in units of \\(kg/m^{3}\\)) and \\(\bm{\sigma_t}\\) is the [mass attenuation coefficient](https://en.wikipedia.org/wiki/Mass_attenuation_coefficient) (in units of \\(m^{2}/kg\\)) - the cross section per unit mass. Other coefficients have the same linear relationship with density.
+
+But what about the index of refraction? Often, one assumes that it is independent of density. But if you consider, for example, water and steam (which is just a lower concentration of water molecules), our experience tells us that their refractive properties are obviously not the same.
+
+There are several approximate relations between density and the index of refraction. One of them is given by the [Lorentz–Lorenz equation](https://en.wikipedia.org/wiki/Clausius%E2%80%93Mossotti_relation):
+
+$$ \tag{6} \frac{\bm{n}^2 - 1}{\bm{n}^2 + 2} = \frac{4}{3} \pi \bm{\alpha_m} \rho, $$
+
+where \\(\bm{\alpha_m}\\) is the [mean atomic polarizability](https://www.feynmanlectures.caltech.edu/II_32.html). Incidentally, since polarizability is a property of matter, this equation represents a way to compute the index of a mixture of several substances.
+
+For small densities and \\(\bm{n}^2 \approx 1\\) (in a gas, for instance), the following approximation can be made:
+
+$$ \tag{6} \bm{n} \approx \sqrt{1 + 4 \pi \bm{\alpha_m} \rho} \approx 1 + 2 \pi \bm{\alpha_m} \rho, $$
+
+which implies that the \\((\bm{n} - 1)\\) has an approximately linear relationship with density.
+
+Transmittance \\(\bm{T}\\) is defined as the fraction of incident radiance transmitted along the shortest path between two points:
+
+$$ \tag{5} \bm{T}(\bm{x}, \bm{y}, \bm{v}) = \frac{\bm{L}(\bm{x}, \bm{v})}{\bm{L}(\bm{y}, \bm{v})}. $$
 
 For a single photon, it can be interpreted as the probability of a free flight.
 
@@ -82,7 +106,7 @@ $$ \tag{10.1}
     \int\_{0}^{t} \bm{\mu_t}(\bm{x}, \bm{v}, s) e^{-\int\_{s}^{t} \bm{\mu_t} (\bm{x}, \bm{v}, u) du} ds.
 $$
 
-To shade our (non-emissive) medium, we must evaluate the [recursive in-scattering integral](http://www.pbr-book.org/3ed-2018/Light_Transport_II_Volume_Rendering/The_Equation_of_Transfer.html) along the ray:
+Computer graphics applications are primarily concerned with light transport. If we limit ourselves to geometric optics, shading our (non-emissive) medium is reduced to evaluation of the [recursive in-scattering integral](http://www.pbr-book.org/3ed-2018/Light_Transport_II_Volume_Rendering/The_Equation_of_Transfer.html) along the ray:
 
 $$ \tag{11} \bm{L}(\bm{x}, \bm{v})
     = \int\_{0}^{\infty} \bm{T}(\bm{x}, \bm{v}, s) \bm{\mu_s}(\bm{x}, \bm{v}, s) \int\_{\bm{S}^2} f(\bm{x} + s \bm{v}, \bm{v},\bm{l}) \bm{L}(\bm{x} + s \bm{v}, \bm{l}) \bm{dl} ds,
@@ -146,11 +170,7 @@ In this context, the total opacity along the ray serves as the probability of a 
 
 ## Types of Analytic Participating Media
 
-Sometimes, it's convenient to specify the concentration (density) of the medium, and not its effective optical properties. For example, the attenuation coefficient can be computed using the following formula:
 
-$$ \tag{19} \bm{\mu_t} = \rho \bm{\sigma_t}, $$
-
-where \\(\rho\\) is the [volumetric mass density](https://en.wikipedia.org/wiki/Mass_density) (measured in units of \\(kg/m^{3}\\)) and \\(\bm{\sigma_t}\\) is the [mass attenuation coefficient](https://en.wikipedia.org/wiki/Mass_attenuation_coefficient) (in units of \\(m^{2}/kg\\)) - the cross section per unit mass.
 
 If your background is in real-time rendering, you may have heard of [constant, linear and exponential fog](http://www.terathon.com/lengyel/Lengyel-UnifiedFog.pdf). These names refer to variation of density, typically with respect to height, and can be used to model height fog and atmospheric scattering. In these scenarios, the albedo is usually assumed to be constant.
 
