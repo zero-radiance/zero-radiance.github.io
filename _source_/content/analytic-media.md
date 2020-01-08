@@ -63,7 +63,7 @@ $$ \tag{6} \bm{n} \approx \sqrt{1 + 4 \pi \bm{\alpha_m} \rho} \approx 1 + 2 \pi 
 
 which implies that the distance from the vacuum \\((\bm{n} - 1)\\) has an approximately linear relation with density. Similar [relations](https://en.wikipedia.org/wiki/Molar_refractivity) can be found for temperature, humidity and pressure.
 
-Continuous variations of the IOR pose an issue for path tracing. Typically, paths are composed of straight segments joined at scattering locations. Unfortunately, due to the [principle of least time](https://en.wikipedia.org/wiki/Fermat%27s_principle), continuously varying IOR forces photons to travel along [curved paths](http://www.waves.utoronto.ca/prof/svhum/ece422/notes/20a-atmospheric-refr.pdf) that obey [Snell's law](https://en.wikipedia.org/wiki/Snell%27s_law). And since the IOR can have a spectral dependency, it can cause [dispersion](https://en.wikipedia.org/wiki/Dispersion_(optics)) not only at the interfaces, but also along the entire path. So, it's not too surprising that that most renderers ignore this behavior. For small density gradients and small distances, it's usually a valid approximation. On the other hand, for certain atmospheric effects, [atmospheric refraction](https://en.wikipedia.org/wiki/Atmospheric_refraction) can make a non-negligible contribution.
+Continuous variations of the IOR pose an issue for path tracing. Typically, paths are composed of straight segments joined at scattering locations. Unfortunately, due to the [principle of least time](https://en.wikipedia.org/wiki/Fermat%27s_principle), continuously varying IOR forces photons to travel along [curved paths](http://www.waves.utoronto.ca/prof/svhum/ece422/notes/20a-atmospheric-refr.pdf) that obey [Snell's law](https://en.wikipedia.org/wiki/Snell%27s_law). And since the IOR can have a spectral dependency, it can cause [dispersion](https://en.wikipedia.org/wiki/Dispersion_(optics)) not only at the interfaces, but also along the entire path. So it is not too surprising that that most renderers ignore this behavior. For small density gradients and small distances, it is usually a valid approximation. On the other hand, for certain atmospheric effects, [atmospheric refraction](https://en.wikipedia.org/wiki/Atmospheric_refraction) can make a non-negligible contribution.
 
 Transmittance \\(\bm{T}\\) is defined as the fraction of incident radiance transmitted along the shortest path between two points:
 
@@ -298,7 +298,7 @@ $$ \tag{30} \rho\_{es}(\bm{x}) = k e^{-h(\bm{x}) / H} = k e^{-(\Vert \bm{x} - \b
 
 where \\(\bm{c}\\) is the center of the sphere, \\(R\\) is its radius, \\(h\\) is the altitude, and \\(H\\) is the [scale height](https://en.wikipedia.org/wiki/Scale_height) as before. In this context, \\(k\\) and \\(\bm{\sigma_t} k\\) represent the density and the value of the attenuation coefficient at the sea level, respectively. This formula gives the density of an [isothermal atmosphere](http://www.feynmanlectures.caltech.edu/I_40.html) that does not exhibit [atmospheric refraction](https://en.wikipedia.org/wiki/Atmospheric_refraction), which is not physically plausible.
 
-Before proceeding with the derivation, it's helpful to understand the geometric setting (after all, a picture is worth a thousand words). Personally, I found the article by [Christian Schüler](https://twitter.com/aries_code) in [GPU Gems 3](http://www.gameenginegems.net/gemsdb/article.php?id=1133) to be immensely helpful, and I encourage you to check it out if you still have questions after reading my explanation below.
+Before proceeding with the derivation, it is helpful to understand the geometric setting (after all, a picture is worth a thousand words). Personally, I found the article by [Christian Schüler](https://twitter.com/aries_code) in [GPU Gems 3](http://www.gameenginegems.net/gemsdb/article.php?id=1133) to be immensely helpful, and I encourage you to check it out if you still have questions after reading my explanation below.
 
 #### Geometric Configuration of a Spherical Atmosphere
 
@@ -331,7 +331,7 @@ we obtain what is known in the physics community as the [Chapman function](https
 
 $$ \tag{34} C(z, \mathrm{cos}{\theta}) = \int\_{0}^{\infty} e^{z - \sqrt{z^2 + 2 z u \mathrm{cos}{\theta} + u^2}} du. $$
 
-It's convenient to define the rescaled Chapman function \\(C_r\\)
+It is convenient to define the rescaled Chapman function \\(C_r\\)
 
 $$ \tag{35} C_r(z, Z, \mathrm{cos}{\theta}) = e^{Z - z} C(z, \mathrm{cos}{\theta}) = \int\_{0}^{\infty} e^{Z - \sqrt{z^2 + 2 z u \mathrm{cos}{\theta} + u^2}} du, $$
 
@@ -344,7 +344,7 @@ $$
 
 What the Equation 36 tells us is that we should evaluate the optical depth integral twice (in the same direction, along the entire ray, from 0 to \\(\infty\\)), at the start and at the end of the interval, and subtract the results to "clip" the ray.
 
-It's interesting to contemplate the physical meaning of optical depth and the Chapman function. Generally speaking, the value of a line integral of density (such as given by \\(\bm{\tau} / \bm{\sigma_t}\\)) corresponds to mass. Therefore, the integral
+It is interesting to contemplate the physical meaning of optical depth and the Chapman function. Generally speaking, the value of a line integral of density (such as given by \\(\bm{\tau} / \bm{\sigma_t}\\)) corresponds to mass. Therefore, the integral
 
 $$ \tag{37} \int\_{h = (r - R)}^{\infty} k e^{-n s} ds = \frac{k}{n} e^{-n h} $$
 
@@ -354,12 +354,12 @@ Optical depth, then, is a *product* of the mass of the vertical column *and* the
 
 #### Examining the Chapman Function
 
-It's always a good idea to examine a function visually, as a graph. Let's do that.
+It is always a good idea to examine a function visually, as a graph. Let's do that.
 
 {{< figure src="/img/chapman_ref.png" caption="*Plot of the Chapman function for \\(r = 6600\\).*">}}
 
 Above, I plotted values of the Chapman function (vertical axis) varying with the angle \\(\theta\\) (horizontal axis, in degrees) for different values of the scale height \\(H\\): \\(1\\) (blue), \\(10\\) (orange), \\(20\\) (green), \\(40\\) (red), \\(60\\) (purple), \\(80\\) (brown), \\(100\\) (cyan).
-Arguably, the first two are the most important, since they roughly correspond to scale heights of aerosols and air of Earth's atmosphere. However, it's also nice to be able to support larger values to model atmospheres of [other planets](https://en.wikipedia.org/wiki/Scale_height#Planetary_examples).
+Arguably, the first two are the most important, since they roughly correspond to scale heights of aerosols and air of Earth's atmosphere. However, it is also nice to be able to support larger values to model atmospheres of [other planets](https://en.wikipedia.org/wiki/Scale_height#Planetary_examples).
 
 Being an obliquity function, \\(C(z, 0) = 1\\). The function varies slowly, as long as the angle is far from being horizontal (which suggests an opportunity for a [small-angle approximation](https://en.wikipedia.org/wiki/Small-angle_approximation)).
 
@@ -385,7 +385,7 @@ Christian Schüler proposes an approximation of the Chapman function for the upp
 
 $$ \tag{41} C_{u\\_cs}(z, \mathrm{cos}{\theta}) \approx \frac{C_h(z)}{(C_h(z) - 1) \mathrm{cos}{\theta} + 1}. $$
 
-It's a pretty good approximation, especially considering the cost.
+It is a pretty good approximation, especially considering the cost.
 
 {{< figure src="/img/chapman_chris.png" caption="*Plot of the approximation of the Chapman function by Christian Schüler for \\(r = 6600\\).*">}}
 
@@ -483,7 +483,7 @@ that determines the value of the Chapman function below horizon:
 
 $$ \tag{46} C_b(z, \mathrm{cos}{\theta}, Z, \mathrm{cos}{\gamma}) = C_u(Z, \mathrm{cos}{\gamma}) - C_u(z, \vert \mathrm{cos}{\theta} \vert). $$
 
-Sample code is listed below. While it's possible to use the `RescaledChapmanFunction` in this scenario, the following implementation is slightly more efficient.
+Sample code is listed below. While it is possible to use the `RescaledChapmanFunction` in this scenario, the following implementation is slightly more efficient.
 
 ```c++
 float ComputeCosineOfHorizonAngle(float r, float R)
@@ -530,16 +530,16 @@ spectrum EvalOptDepthSpherExpMedium(float r, float cosTheta,
 
 If desired, it is possible to reduce execution divergence by utilizing `ChapmanUpperApprox` (with the cosine value of 0) instead of `ChapmanHorizontal`, but I will retain this version for clarity.
 
-Now we are ready to tackle the most general case of evaluating optical depth between two arbitrary points \\(\bm{x}\\) and \\(\bm{y}\\). It may seem really complicated at first when, in fact, it's very similar to the problem we just solved. We have to consider three distinct possibilities:
+Now we are ready to tackle the most general case of evaluating optical depth between two arbitrary points \\(\bm{x}\\) and \\(\bm{y}\\). It may seem really complicated at first when, in fact, it is very similar to the problem we just solved. We have to consider three distinct possibilities:
 
-1\. \\(\mathrm{cos}{\theta_x} \geq 0 \\), which means that the ray points into the upper hemisphere with respect to the surface normal at the point \\(\bm{x}\\). This also means it points into the upper hemisphere at any point \\(\bm{y}\\) along the ray (it's fairly obvious if you sketch it). Optical depth is given by the Equation 36, which we specialize by replacing \\(C\\) with \\(C_u\\) which is restricted to the upper hemisphere:
+1\. \\(\mathrm{cos}{\theta_x} \geq 0 \\), which means that the ray points into the upper hemisphere with respect to the surface normal at the point \\(\bm{x}\\). This also means it points into the upper hemisphere at any point \\(\bm{y}\\) along the ray (it is fairly obvious if you sketch it). Optical depth is given by the Equation 36, which we specialize by replacing \\(C\\) with \\(C_u\\) which is restricted to the upper hemisphere:
 
 $$ \tag{47}
 \bm{\tau\_{uu}}(z_x, \mathrm{cos}{\theta_x}, z_y, \mathrm{cos}{\theta_y})
     = \bm{\sigma_t} \frac{k}{n} \Bigg( e^{Z - z_x} C_u(z_x, \mathrm{cos}{\theta_x}) - e^{Z - z_y} C_u(z_y, \mathrm{cos}{\theta_y}) \Bigg).
 $$
 
-2\. \\(\mathrm{cos}{\theta_x} < 0 \\) and \\(\mathrm{cos}{\theta_y} < 0 \\) occurs e.g. when looking straight down. It's also easy to handle, we just flip the direction of the ray (by taking the absolute value of the cosine), replace the segment \\(\bm{xy}\\) with the segment \\(\bm{yx}\\) and fall back to case 1.
+2\. \\(\mathrm{cos}{\theta_x} < 0 \\) and \\(\mathrm{cos}{\theta_y} < 0 \\) occurs e.g. when looking straight down. It is also easy to handle, we just flip the direction of the ray (by taking the absolute value of the cosine), replace the segment \\(\bm{xy}\\) with the segment \\(\bm{yx}\\) and fall back to case 1.
 
 3\. \\(\mathrm{cos}{\theta_x} < 0 \\) and \\(\mathrm{cos}{\theta_y} \geq 0 \\). This is the most complicated case, since we have to evaluate the Chapman function three times, twice at \\(\bm{x}\\) and once at \\(\bm{y}\\):
 
@@ -634,11 +634,11 @@ $$ \tag{53} \phi = z \mathrm{sin}{\theta} \qquad \psi = z \mathrm{cos}{\theta} +
 $$ \tag{54}
 q = C_r \Bigg( \sqrt{\phi^2+\psi^2}, Z, \frac{\psi}{\sqrt{\phi^2+\psi^2}} \Bigg). $$
 
-Both \\(\phi\\) and \\(\psi\\) are known to be positive. We must solve for \\(\psi\\). \\(Z\\) could theoretically be removed, but it's here to keep the solution within the sane numerical range.
+Both \\(\phi\\) and \\(\psi\\) are known to be positive. We must solve for \\(\psi\\). \\(Z\\) could theoretically be removed, but it is here to keep the solution within the sane numerical range.
 
 This appears to be the simplest formulation of the problem, using the fewest number of parameters. I gave it a shot but, unfortunately, I was unable to analytically solve this equation, and I tried plugging in both the closed and the approximate forms of the Chapman function. Perhaps **you** will have better luck?
 
-While that's an unfortunate development, it's a minor setback. If we can't solve the equation analytically, we can solve it numerically, using the [Newton–Raphson method](https://en.wikipedia.org/wiki/Newton%27s_method), for instance. The derivative of the Chapman function exists, and is not too difficult to compute.
+While that's an unfortunate development, it is a minor setback. If we can't solve the equation analytically, we can solve it numerically, using the [Newton–Raphson method](https://en.wikipedia.org/wiki/Newton%27s_method), for instance. The derivative of the Chapman function exists, and is not too difficult to compute.
 
 In fact, there is a [better way](http://lib-www.lanl.gov/la-pubs/00367066.pdf), which is even simpler. Recall that Newton's method requires being able to make an initial guess, evaluate the function, and take its derivative. If we solve for the entire optical depth formulation (Equation 17), we know that its derivative is just the attenuation coefficient \\(\mu_t\\) (Equation 9), and making a good initial guess is easy by simply ignoring curvature of the planet.
 
@@ -710,11 +710,11 @@ float SampleSpherExpMedium(float optDepth, float r, float cosTheta,
 
 The function given above is somewhat simplified. You must make sure to not divide by 0, that the attenuation coefficient at the sampled location is not a denormalized floating point number (that may be flushed to 0), you must also be able to handle overshoot, and so on.
 
-The extension for multiple overlapping volumes (with arbitrary distributions) is straightforward. Since it's not generally possible to represent a combination of several volumes by a single exponential volume, we can make an initial guess by assuming that the combined volume is homogeneous along the ray. The rest of the algorithm remains virtually unchanged.
+The extension for multiple overlapping volumes (with arbitrary distributions) is straightforward. Since it is not generally possible to represent a combination of several volumes by a single exponential volume, we can make an initial guess by assuming that the combined volume is homogeneous along the ray. The rest of the algorithm remains virtually unchanged.
 
 Since optical depth is a smooth monotonically increasing function of distance, this numerical procedure will converge very quickly (typically, after a couple of iterations). If desired, the cost can be fixed by using an iteration counter to terminate the loop, potentially trading accuracy for consistent performance.
 
-It's worth noting that since the code internally uses a numerical approximation of the function, it is not always possible to reach an arbitrary accuracy goal. Using `FLT_EPSILON` results in a high degree of accuracy at the cost of a large number of iterations (typically, 1-10), while 1-2 iterations are sufficient to stay below the relative error level of 0.001.
+It is worth noting that since the code internally uses a numerical approximation of the function, it is not always possible to reach an arbitrary accuracy goal. Using `FLT_EPSILON` results in a high degree of accuracy at the cost of a large number of iterations (typically, 1-10), while 1-2 iterations are sufficient to stay below the relative error level of 0.001.
 
 In fact, curvature of the planet can be ignored for moderate distances, making the rectangular function a relatively efficient and accurate approximation. Can we exploit this idea for arbitrary distances?
 
