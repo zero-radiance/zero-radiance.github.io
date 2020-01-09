@@ -27,7 +27,7 @@ A more artist-friendly parametrization uses the [single-scattering albedo](https
 
 $$ \tag{2} \bm{\alpha\_{ss}} = \frac{\bm{\mu_s}}{\bm{\mu_t}}, $$
 
-which gives the deflection probability (or, in other words, the scattering rate), and the (also spectral) [mean free path](https://en.wikipedia.org/wiki/Mean_free_path) \\(\bm{d}\\)
+which gives the deflection probability (or, in other words, the scattering rate), and the [mean free path](https://en.wikipedia.org/wiki/Mean_free_path) \\(\bm{d}\\)
 
 $$ \tag{3} \bm{d} = \frac{1}{\bm{\mu_t}}, $$
 
@@ -53,13 +53,13 @@ But what about the IOR? Often, one assumes that it is independent of density. Bu
 
 There are several approximate relations between density and the IOR. One of them is given by the [Lorentz–Lorenz equation](https://en.wikipedia.org/wiki/Clausius%E2%80%93Mossotti_relation):
 
-$$ \tag{6} \frac{\bm{n}^2 - 1}{\bm{n}^2 + 2} = \frac{4}{3} \pi \bm{\alpha_m} \rho, $$
+$$ \tag{6} \frac{\bm{n}^2 - 1}{\bm{n}^2 + 2} = \frac{4}{3} \pi \rho m_a \bm{\alpha_m}, $$
 
-where \\(\bm{\alpha_m}\\) is the [mean atomic polarizability](https://www.feynmanlectures.caltech.edu/II_32.html). Incidentally, since polarizability is a property of matter, this equation represents a way to compute the IOR of a mixture of several substances.
+where \\(m_a\\) is the mass of a single atom (in kg) and \\(\bm{\alpha_m}\\) is the [mean atomic polarizability](https://www.feynmanlectures.caltech.edu/II_32.html). Incidentally, since polarizability is a property of matter, this equation represents a way to compute the IOR of a mixture of several substances.
 
 For small densities and \\(\bm{n}^2 \approx 1\\) (in a gas, for instance), the following approximation can be made:
 
-$$ \tag{6} \bm{n} \approx \sqrt{1 + 4 \pi \bm{\alpha_m} \rho} \approx 1 + 2 \pi \bm{\alpha_m} \rho, $$
+$$ \tag{6} \bm{n} \approx \sqrt{1 + 4 \pi \rho m_a \bm{\alpha_m}} \approx 1 + 2 \pi \rho m_a \bm{\alpha_m}, $$
 
 which implies that the distance from the vacuum \\((\bm{n} - 1)\\) has an approximately linear relation with density. Similar [relations](https://en.wikipedia.org/wiki/Molar_refractivity) can be found for temperature, humidity and pressure.
 
