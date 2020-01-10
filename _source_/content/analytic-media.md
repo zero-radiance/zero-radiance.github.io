@@ -21,7 +21,7 @@ The [attenuation coefficient](https://en.wikipedia.org/wiki/Attenuation_coeffici
 
 $$ \tag{1} \bm{\mu_t} = \bm{\mu_a} + \bm{\mu_s} $$
 
-gives the probability density of absorption or scattering (or, in other words, the collision rate) as a photon travels a unit distance medium. All these coefficients are typically spectral (vary with the wavelength \\(\lambda\\)), and can be represented as vectors (boldface notation). At this point in time, it is not entirely clear (at least to me) how to *correctly* perform volume rendering using tristimulus (RGB) values (which would require some kind of pre-integration using [color matching functions](https://en.wikipedia.org/wiki/CIE_1931_color_space#Color_matching_functions)), so I will focus on pure spectral rendering, which is well-defined.
+gives the probability density of absorption or scattering (or, in other words, the collision rate) as a photon travels a unit distance though the medium. All these coefficients are spectral (may vary with the wavelength \\(\lambda\\)), and can be represented as vectors (boldface notation). At this point in time, it is not entirely clear (at least to me) how to *correctly* perform volume rendering using tristimulus (RGB) values (which would require some kind of pre-integration using [color matching functions](https://en.wikipedia.org/wiki/CIE_1931_color_space#Color_matching_functions)), so I will focus on pure spectral rendering, which is well-defined.
 
 A more artist-friendly parametrization uses the [single-scattering albedo](https://en.wikipedia.org/wiki/Single-scattering_albedo) \\(\bm{\alpha\_{ss}}\\)
 
@@ -47,7 +47,7 @@ Sometimes, it is convenient to specify the concentration (density) of the medium
 
 $$ \tag{5} \bm{\mu_t} = \rho \bm{\sigma_t}, $$
 
-where \\(\rho\\) is the [volumetric mass density](https://en.wikipedia.org/wiki/Mass_density) (measured in units of \\(kg/m^{3}\\)) and \\(\bm{\sigma_t}\\) is the [mass attenuation coefficient](https://en.wikipedia.org/wiki/Mass_attenuation_coefficient) (in units of \\(m^{2}/kg\\)) - the cross section per unit mass. Other coefficients have the same linear relation with density.
+where \\(\rho\\) is the [volumetric mass density](https://en.wikipedia.org/wiki/Mass_density) (measured in units of \\(kg/m^{3}\\)) and \\(\bm{\sigma_t}\\) is the [mass attenuation coefficient](https://en.wikipedia.org/wiki/Mass_attenuation_coefficient) (in units of \\(m^{2}/kg\\)) - the cross section area per unit mass. Other coefficients have the same linear relation with density.
 
 But what about the IOR? Often, one assumes that it is independent of density. But if you consider, for example, water and steam (which is just a lower concentration of water molecules), our experience tells us that their refractive properties are not the same.
 
@@ -61,7 +61,7 @@ For small densities and \\(\bm{n}^2 \approx 1\\) (in a gas, for instance), the f
 
 $$ \tag{7} \bm{n} \approx \sqrt{1 + 4 \pi \rho m_a \bm{\alpha_m}} \approx 1 + 2 \pi \rho m_a \bm{\alpha_m}, $$
 
-which implies that the difference from vacuum \\((\bm{n} - 1)\\) has an approximately linear relation with density. Similar [relations](http://www.waves.utoronto.ca/prof/svhum/ece422/notes/20a-atmospheric-refr.pdf) can be found for temperature, humidity and pressure.
+which implies that the difference from vacuum \\((\bm{n} - 1)\\) has an approximately linear relation with density. Similar [relations](http://www.waves.utoronto.ca/prof/svhum/ece422/notes/20a-atmospheric-refr.pdf) can be found for the temperature, humidity and pressure.
 
 Continuous variations of the IOR pose an issue for path tracing. Typically, paths are composed of straight segments joined at scattering locations. Unfortunately, due to the [principle of least time](https://en.wikipedia.org/wiki/Fermat%27s_principle), continuously varying IOR forces photons to travel along [curved paths](http://www.waves.utoronto.ca/prof/svhum/ece422/notes/20a-atmospheric-refr.pdf) that obey [Snell's law](https://en.wikipedia.org/wiki/Snell%27s_law). And since the IOR can depend on the wavelength, it can cause [dispersion](https://en.wikipedia.org/wiki/Dispersion_(optics)) not only at the interfaces, but also continuously, along the entire path. So it is not too surprising that that most renderers ignore this behavior. For small density gradients and small distances, it is a valid approximation. On the other hand, for certain atmospheric effects, [atmospheric refraction](https://en.wikipedia.org/wiki/Atmospheric_refraction) can make a non-negligible contribution.
 
@@ -136,9 +136,9 @@ $$
 
 where sample locations \\(\bm{y_i}\\) are distributed according to the [PDF](https://en.wikipedia.org/wiki/Probability_density_function) \\(p\\). We slightly abuse the notation by defining the corresponding distance along the ray using non-bold \\(y_i\\).
 
-We can [importance sample](http://www.pbr-book.org/3ed-2018/Monte_Carlo_Integration/Importance_Sampling.html) (distribute the samples according to the PDF) the integrand in several ways. Ideally, we would like to make the PDF proportional to the product of all terms of the integrand. However, unless we use [path guiding](https://cgg.mff.cuni.cz/~jirka/path-guiding-in-production/2019/index.htm), that is typically not possible. We will focus on the technique called [free path sampling](https://cs.dartmouth.edu/~wjarosz/publications/novak18monte.html) that makes the PDF proportional to the analytic product \\(\mu_t T\\) (effectively, by assuming that the rest of the integrand varies slowly; in practice, this may or may not be the case - for example, for regions near light sources, [equiangular sampling](http://library.imageworks.com/pdfs/imageworks-library-importance-sampling-of-area-lights-in-participating-media.pdf) can give vastly superior results).
+We can [importance sample](http://www.pbr-book.org/3ed-2018/Monte_Carlo_Integration/Importance_Sampling.html) the integrand (distribute  samples according to the PDF) in several ways. Ideally, we would like to make the PDF proportional to the product of all terms of the integrand. However, unless we use [path guiding](https://cgg.mff.cuni.cz/~jirka/path-guiding-in-production/2019/index.htm), that is typically not possible. We will focus on the technique called [free path sampling](https://cs.dartmouth.edu/~wjarosz/publications/novak18monte.html) that makes the PDF proportional to the analytic product \\(\mu_t T\\) (effectively, by assuming that the rest of the integrand varies slowly; in practice, this may or may not be the case - for example, for regions near light sources, [equiangular sampling](http://library.imageworks.com/pdfs/imageworks-library-importance-sampling-of-area-lights-in-participating-media.pdf) can give vastly superior results).
 
-In order to turn it into a valid PDF, it must normalized using the Equation 13:
+In order to turn it into a valid PDF, the product must be normalized using the Equation 13:
 
 $$ \tag{19} p(y | \lbrace \bm{x}, \bm{v} \rbrace)
     = \frac{\mu_t(\bm{y}) T(\bm{x}, \bm{y})}{\int\_{\bm{x}}^{\bm{y\_{vol}}} \mu_t(\bm{u}) T(\bm{x}, \bm{u}) du}
@@ -148,16 +148,16 @@ Substitution of the Equation 19 radically simplifies the form of the estimator (
 
 $$ \tag{20} L(\bm{x}, \bm{v}) \approx O(\bm{x}, \bm{\bm{y\_{vol}}}) \frac{1}{N} \sum\_{i=1}^{N} \alpha\_{ss}(\bm{y_i}) L_s(\bm{y_i}, \bm{v}). $$
 
-This equation can be seen as a form of [premultiplied alpha blending](https://graphics.pixar.com/library/Compositing/) (where alpha is opacity), which explains why particle cards can be so convincing. Additionally, it offers yet another way to parametrize the attenuation coefficient - namely, by opacity at distance (which is similar to [transmittance at distance](https://blog.selfshadow.com/publications/s2015-shading-course/burley/s2015_pbs_disney_bsdf_notes.pdf) used by Disney). It appears to be the most RGB rendering friendly parametrization that I am aware of.
+This equation can be seen as a form of [premultiplied alpha blending](https://graphics.pixar.com/library/Compositing/) (where alpha is opacity), which explains why particle cards can be so convincing. Additionally, it offers yet another way to parametrize the attenuation coefficient - namely, by opacity at distance (which is similar to [transmittance at distance](https://blog.selfshadow.com/publications/s2015-shading-course/burley/s2015_pbs_disney_bsdf_notes.pdf) used by Disney). It is the most RGB rendering friendly parametrization that I am aware of.
 
-Extending the the Equation 20 to handle the surface contribution is trivial. If the closest surface along the ray is at the distance \\(y\_{surf} \geq y\_{vol}\\), we simply add the surface contribution (another integral) attenuated by transmittance (which is one minus opacity):
+Extending the the Equation 20 to handle the surface contribution is trivial. If the closest surface along the ray is at the distance \\(y\_{surf} \geq y\_{vol}\\), we simply need to add the surface contribution (another integral) attenuated by transmittance (which is one minus opacity):
 
 $$ \tag{21}
     L(\bm{x}, \bm{v}) \approx O(\bm{x}, \bm{\bm{y\_{vol}}}) \frac{1}{N} \sum\_{i=1}^{N} \alpha\_{ss}(\bm{y_i}) L_s(\bm{y_i}, \bm{v}) +
     \big( 1 - O(\bm{x}, \bm{\bm{y\_{vol}}}) \big) L\_{surf}(\bm{y\_{surf}}, \bm{v}).
 $$
 
-In this context, the total opacity along the ray serves as the probability of a collision event in the volume, and can be used to randomly select between a surface and a volume sample.
+In this context, total opacity along the ray serves as the probability of a collision event in the volume, and can be used to randomly select between a surface and a volume sample.
 
 In order to sample the integrand, we must be also able to [invert](http://www.pbr-book.org/3ed-2018/Monte_Carlo_Integration/Sampling_Random_Variables.html#TheInversionMethod) the [CDF](https://en.wikipedia.org/wiki/Cumulative_distribution_function) \\(P\\):
 
@@ -167,7 +167,7 @@ $$ \tag{22} P(y | \lbrace \bm{x}, \bm{v} \rbrace)
     = \frac{O(\bm{x}, \bm{\bm{y}})}{O(\bm{x}, \bm{\bm{y\_{vol}}})},
 $$
 
-which is just a fractional opacity.
+which is just fractional opacity.
 
 In practice, this means that we need to solve for the distance \\(y\\) given the value of optical depth \\(\tau\\):
 
