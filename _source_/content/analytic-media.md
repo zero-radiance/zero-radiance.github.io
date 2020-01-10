@@ -21,7 +21,7 @@ The [attenuation coefficient](https://en.wikipedia.org/wiki/Attenuation_coeffici
 
 $$ \tag{1} \bm{\mu_t} = \bm{\mu_a} + \bm{\mu_s} $$
 
-gives the probability density of absorption or scattering (or, in other words, the collision rate) as a photon travels a unit distance through the participating medium. All these coefficients are typically spectral (vary with the wavelength \\(\lambda\\)), and can be represented as vectors (boldface notation). At this point in time, it is not entirely clear (at least to me) how to *correctly* perform volume rendering using tristimulus (RGB) values (which would require some kind of pre-integration using [color matching functions](https://en.wikipedia.org/wiki/CIE_1931_color_space#Color_matching_functions)), so I will focus on pure spectral rendering, which is well-defined.
+gives the probability density of absorption or scattering (or, in other words, the collision rate) as a photon travels a unit distance medium. All these coefficients are typically spectral (vary with the wavelength \\(\lambda\\)), and can be represented as vectors (boldface notation). At this point in time, it is not entirely clear (at least to me) how to *correctly* perform volume rendering using tristimulus (RGB) values (which would require some kind of pre-integration using [color matching functions](https://en.wikipedia.org/wiki/CIE_1931_color_space#Color_matching_functions)), so I will focus on pure spectral rendering, which is well-defined.
 
 A more artist-friendly parametrization uses the [single-scattering albedo](https://en.wikipedia.org/wiki/Single-scattering_albedo) \\(\bm{\alpha\_{ss}}\\)
 
@@ -55,120 +55,125 @@ There are several approximate relations between density and the IOR. One of them
 
 $$ \tag{6} \frac{\bm{n}^2 - 1}{\bm{n}^2 + 2} = \frac{4}{3} \pi \rho m_a \bm{\alpha_m}, $$
 
-where \\(m_a\\) is the mass of a single atom (in kg) and \\(\bm{\alpha_m}\\) is the [mean atomic polarizability](https://www.feynmanlectures.caltech.edu/II_32.html). Incidentally, since polarizability is a property of matter, this equation represents a way to compute the IOR of a mixture of several substances.
+where \\(m_a\\) is the mass of a single atom (in \\(kg\\)) and \\(\bm{\alpha_m}\\) is the [mean atomic polarizability](https://www.feynmanlectures.caltech.edu/II_32.html). Incidentally, since polarizability is a property of matter, this equation represents a way to compute the IOR of a mixture of several substances.
 
 For small densities and \\(\bm{n}^2 \approx 1\\) (in a gas, for instance), the following approximation can be made:
 
-$$ \tag{6} \bm{n} \approx \sqrt{1 + 4 \pi \rho m_a \bm{\alpha_m}} \approx 1 + 2 \pi \rho m_a \bm{\alpha_m}, $$
+$$ \tag{7} \bm{n} \approx \sqrt{1 + 4 \pi \rho m_a \bm{\alpha_m}} \approx 1 + 2 \pi \rho m_a \bm{\alpha_m}, $$
 
-which implies that the distance from the vacuum \\((\bm{n} - 1)\\) has an approximately linear relation with density. Similar [relations](https://en.wikipedia.org/wiki/Molar_refractivity) can be found for temperature, humidity and pressure.
+which implies that the difference from vacuum \\((\bm{n} - 1)\\) has an approximately linear relation with density. Similar [relations](http://www.waves.utoronto.ca/prof/svhum/ece422/notes/20a-atmospheric-refr.pdf) can be found for temperature, humidity and pressure.
 
-Continuous variations of the IOR pose an issue for path tracing. Typically, paths are composed of straight segments joined at scattering locations. Unfortunately, due to the [principle of least time](https://en.wikipedia.org/wiki/Fermat%27s_principle), continuously varying IOR forces photons to travel along [curved paths](http://www.waves.utoronto.ca/prof/svhum/ece422/notes/20a-atmospheric-refr.pdf) that obey [Snell's law](https://en.wikipedia.org/wiki/Snell%27s_law). And since the IOR can have a spectral dependency, it can cause [dispersion](https://en.wikipedia.org/wiki/Dispersion_(optics)) not only at the interfaces, but also along the entire path. So it is not too surprising that that most renderers ignore this behavior. For small density gradients and small distances, it is usually a valid approximation. On the other hand, for certain atmospheric effects, [atmospheric refraction](https://en.wikipedia.org/wiki/Atmospheric_refraction) can make a non-negligible contribution.
+Continuous variations of the IOR pose an issue for path tracing. Typically, paths are composed of straight segments joined at scattering locations. Unfortunately, due to the [principle of least time](https://en.wikipedia.org/wiki/Fermat%27s_principle), continuously varying IOR forces photons to travel along [curved paths](http://www.waves.utoronto.ca/prof/svhum/ece422/notes/20a-atmospheric-refr.pdf) that obey [Snell's law](https://en.wikipedia.org/wiki/Snell%27s_law). And since the IOR can depend on the wavelength, it can cause [dispersion](https://en.wikipedia.org/wiki/Dispersion_(optics)) not only at the interfaces, but also continuously, along the entire path. So it is not too surprising that that most renderers ignore this behavior. For small density gradients and small distances, it is a valid approximation. On the other hand, for certain atmospheric effects, [atmospheric refraction](https://en.wikipedia.org/wiki/Atmospheric_refraction) can make a non-negligible contribution.
 
-Transmittance \\(\bm{T}\\) is defined as the fraction of incident radiance transmitted along the shortest path between two points:
+Luckily, most of the math related to light transport can be defined in a way that is independent from the geometry of the path. For instance, transmittance \\(\bm{T}\\) can be defined as the fraction of incident radiance transmitted along the shortest path between two points \\(\bm{x}\\) and \\(\bm{y}\\):
 
-$$ \tag{5} \bm{T}(\bm{x}, \bm{y}, \bm{v}) = \frac{\bm{L}(\bm{x}, \bm{v})}{\bm{L}(\bm{y}, \bm{v})}. $$
+$$ \tag{8} \bm{T}(\bm{x}, \bm{y}) = \frac{\bm{L}(\bm{x}, \bm{v_x})}{\bm{L}(\bm{y}, \bm{v_y})}, $$
 
-For a single photon, it can be interpreted as the probability of a free flight.
+where \\(\bm{v}\\) is the direction tangential to the path at the corresponding endpoint. For a single photon, transmittance can be interpreted as the probability of a free flight.
 
 Its complement is opacity \\(\bm{O}\\):
 
-$$ \tag{6} \bm{O}(\bm{x}, \bm{v}, t) = 1 - \bm{T}(\bm{x}, \bm{v}, t). $$
+$$ \tag{9} \bm{O}(\bm{x}, \bm{y}) = 1 - \bm{T}(\bm{x}, \bm{y}). $$
 
 Using the [Beer–Lambert–Bouguer law](https://en.wikipedia.org/wiki/Beer%E2%80%93Lambert_law) for [uncorrelated media](https://cs.dartmouth.edu/~wjarosz/publications/bitterli18framework.html), we can take the natural logarithm of transmittance to compute [optical depth](https://en.wikipedia.org/wiki/Optical_depth) (or optical thickness) \\(\bm{\tau}\\):
 
-$$ \tag{7} \bm{\tau}(\bm{x}, \bm{v}, t) = -\mathrm{log} \big( \bm{T}(\bm{x}, \bm{v}, t)  \big) = \int\_{0}^{t} \bm{\mu_t} (\bm{x}, \bm{v}, s) ds. $$
+$$ \tag{10} \bm{\tau}(\bm{x}, \bm{y}) = -\mathrm{log} \big( \bm{T}(\bm{x}, \bm{y})  \big) = \int\_{\bm{x}}^{\bm{y}} \bm{\mu_t}(\bm{u}) du, $$
 
-The definitions (hopefully) make it clear that while transmittance is multiplicative, with values restricted to the unit interval, optical depth is additive and can take on any non-negative value.
+where \\(\bm{u}\\) is the point at the distance \\(u\\) along the path. These definitions (hopefully) make it clear that while transmittance is multiplicative, with values restricted to the unit interval, optical depth is additive and can take on any non-negative value.
 
 Slightly jumping ahead, let's define the attenuation-transmittance integral as
 
-$$ \tag{8}
-      \int\_{0}^{t} \bm{\mu_t}(\bm{x}, \bm{v}, s) \bm{T}(\bm{x}, \bm{v}, s) ds
-    = \int\_{0}^{t} \bm{\mu_t}(\bm{x}, \bm{v}, s) e^{-\bm{\tau}(\bm{x}, \bm{v}, s)} ds.
+$$ \tag{11}
+      \int\_{\bm{x}}^{\bm{y}} \bm{\mu_t}(\bm{u}) \bm{T}(\bm{x}, \bm{u}) du
+    = \int\_{\bm{x}}^{\bm{y}} \bm{\mu_t}(\bm{u}) e^{-\bm{\tau}(\bm{x}, \bm{u})} du.
 $$
 
 If we use the [fundamental theorem of calculus](https://en.wikipedia.org/wiki/Fundamental_theorem_of_calculus#First_part) to interpret the attenuation coefficient as a derivative
 
-$$ \tag{9} \bm{\mu_t} (\bm{x}, \bm{v}, s) = \frac{\partial \bm{\tau}}{\partial s}, $$
+$$ \tag{12} \bm{\mu_t}(\bm{u}) = \frac{\partial \bm{\tau}}{\partial u}, $$
 
 we can use the one of the [exponential identities](https://en.wikipedia.org/wiki/List_of_integrals_of_exponential_functions#Integrals_involving_only_exponential_functions) to simplify the attenuation-transmittance integral:
 
-$$ \tag{10}
-      \int\_{0}^{t} \frac{\partial \bm{\tau}(\bm{x}, \bm{v}, s)}{\partial s} e^{-\bm{\tau}(\bm{x}, \bm{v}, s)} ds
-    = -e^{-\bm{\tau}(\bm{x}, \bm{v}, s)} \Big\vert_{0}^{t}
-    = 1 - \bm{T}(\bm{x}, \bm{v}, t)
-    = \bm{O}(\bm{x}, \bm{v}, t).
+$$ \tag{13}
+    \int\_{\bm{x}}^{\bm{y}} \frac{\partial \bm{\tau}(\bm{x}, \bm{u})}{\partial u} e^{-\bm{\tau}(\bm{x}, \bm{u})} du
+    = -e^{-\bm{\tau}(\bm{x}, \bm{u})} \Big\vert\_{\bm{x}}^{\bm{y}}
+    = 1 - \bm{T}(\bm{x}, \bm{y})
+    = \bm{O}(\bm{x}, \bm{y}).
 $$
 
 Most remarkably, optical depth can be evaluated in a forward or backward fashion, and the [result is the same](https://cs.dartmouth.edu/~wjarosz/publications/georgiev19integral.html)!
 
-$$ \tag{10.1}
-    \int\_{0}^{t} \bm{\mu_t}(\bm{x}, \bm{v}, s) e^{-\int\_{0}^{s} \bm{\mu_t} (\bm{x}, \bm{v}, u) du} ds =
-    \int\_{0}^{t} \bm{\mu_t}(\bm{x}, \bm{v}, s) e^{-\int\_{s}^{t} \bm{\mu_t} (\bm{x}, \bm{v}, u) du} ds.
+$$ \tag{14}
+    \int\_{\bm{x}}^{\bm{y}} \bm{\mu_t}(\bm{u}) e^{-\bm{\tau}(\bm{x}, \bm{u})} du =
+    \int\_{\bm{x}}^{\bm{y}} \bm{\mu_t}(\bm{u}) e^{-\bm{\tau}(\bm{u}, \bm{y})} du.
 $$
 
-Computer graphics applications are primarily concerned with light transport. If we limit ourselves to geometric optics, shading our (non-emissive) medium is reduced to evaluation of the [recursive in-scattering integral](http://www.pbr-book.org/3ed-2018/Light_Transport_II_Volume_Rendering/The_Equation_of_Transfer.html) along the ray:
+Computer graphics applications are primarily concerned with light transport. If we restrict ourselves to geometric optics, shading our (non-emissive) medium is reduced to evaluation of the [recursive in-scattering integral](http://www.pbr-book.org/3ed-2018/Light_Transport_II_Volume_Rendering/The_Equation_of_Transfer.html) along the ray:
 
-$$ \tag{11} \bm{L}(\bm{x}, \bm{v})
-    = \int\_{0}^{\infty} \bm{T}(\bm{x}, \bm{v}, s) \bm{\mu_s}(\bm{x}, \bm{v}, s) \int\_{\bm{S}^2} f(\bm{x} + s \bm{v}, \bm{v},\bm{l}) \bm{L}(\bm{x} + s \bm{v}, \bm{l}) \bm{dl} ds,
+$$ \tag{15} \bm{L}(\bm{x}, \bm{v})
+    = \int\_{\bm{x}}^{\bm{y\_{vol}}} \bm{T}(\bm{x}, \bm{u}) \bm{\mu_s}(\bm{u}) \int\_{\bm{S}^2} f(\bm{u}, \bm{v}, \bm{l}) \bm{L}(\bm{u}, \bm{l}) \bm{dl} du,
 $$
 
-where \\(\bm{L}\\) is the amount of radiance at the position \\(\bm{x}\\) in the direction \\(\bm{v}\\), and \\(f\\) denotes the [phase function](http://www.pbr-book.org/3ed-2018/Volume_Scattering/Phase_Functions.html) which additionally depends on the light direction \\(\bm{l} \in \bm{S}^2\\).
+where \\(\bm{L}(\bm{x}, \bm{v})\\) is the amount of radiance at the position \\(\bm{x}\\) in the direction \\(\bm{v}\\), and \\(f\\) denotes the [phase function](http://www.pbr-book.org/3ed-2018/Volume_Scattering/Phase_Functions.html) which additionally depends on the light direction \\(\bm{l} \in \bm{S}^2\\). In the case of asymmetric scattering, collision coefficients (cross sections) may be direction-dependent as well. The domain of integration is typically finite, ending either at the closest surface, or at the point where the ray exits the volume; we will refer to it as \\(\bm{y\_{vol}}\\).
 
 We can evaluate the outer integral using one of the [Monte Carlo](http://www.pbr-book.org/3ed-2018/Monte_Carlo_Integration.html) methods. The first step is to split the integrand in two parts: the part we can evaluate analytically, and the part that has to be integrated numerically. We can group the product of transmittance and the scattering coefficient together, and leave the inner integral as the "numerical" term:
 
-$$ \tag{12} \bm{L}(\bm{x}, \bm{v})
-    = \int\_{0}^{\infty} \bm{T}(\bm{x}, \bm{v}, s) \bm{\mu_s}(\bm{x}, \bm{v}, s) \bm{L_s}(\bm{x} + s \bm{v}, \bm{v}) ds.
+$$ \tag{16} \bm{L}(\bm{x}, \bm{v})
+    = \int\_{\bm{x}}^{\bm{y\_{vol}}} \bm{T}(\bm{x}, \bm{u}) \bm{\mu_s}(\bm{u}) \bm{L_s}(\bm{u}, \bm{v}) du.
 $$
 
 Next, let's split the scattering coefficient into attenuation and albedo:
 
-$$ \tag{13} \bm{L}(\bm{x}, \bm{v})
-    = \int\_{0}^{\infty} \bm{\mu_t}(\bm{x}, \bm{v}, s) \bm{T}(\bm{x}, \bm{v}, s) \bm{\alpha\_{ss}}(\bm{x}, \bm{v}, s) \bm{L_s}(\bm{x} + s \bm{v}, \bm{v}) ds.
+$$ \tag{17} \bm{L}(\bm{x}, \bm{v})
+    = \int\_{\bm{x}}^{\bm{y\_{vol}}} \bm{T}(\bm{x}, \bm{u}) \bm{\mu_t}(\bm{u}) \bm{\alpha\_{ss}}(\bm{u}) \bm{L_s}(\bm{u}, \bm{v}) du.
 $$
 
 The [Monte Carlo estimator](http://www.pbr-book.org/3ed-2018/Monte_Carlo_Integration/The_Monte_Carlo_Estimator.html) of the integral (for a single wavelength) takes the following form:
 
-$$ \tag{14} L(\bm{x}, \bm{v})
-    \approx \frac{1}{N} \sum\_{i=1}^{N} \frac{\mu_t(\bm{x}, \bm{v}, t_i) T(\bm{x}, \bm{v}, t_i) \alpha\_{ss}(\bm{x}, \bm{v}, t_i) L_s(\bm{x} + t_i \bm{v}, \bm{v})}{p( t_i | \lbrace \bm{x}, \bm{v} \rbrace)},
+$$ \tag{18} L(\bm{x}, \bm{v})
+    \approx \frac{1}{N} \sum\_{i=1}^{N} \frac{\mu_t(\bm{y_i}) T(\bm{x}, \bm{y_i}) \alpha\_{ss}(\bm{y_i}) L_s(\bm{y_i}, \bm{v})}{p( y_i | \lbrace \bm{x}, \bm{v} \rbrace)},
 $$
 
-where sample locations \\(t_i\\) are distributed according to the [PDF](https://en.wikipedia.org/wiki/Probability_density_function) \\(p\\).
+where sample locations \\(\bm{y_i}\\) are distributed according to the [PDF](https://en.wikipedia.org/wiki/Probability_density_function) \\(p\\). We slightly abuse the notation by defining the corresponding distance along the ray using non-bold \\(y_i\\).
 
-We can [importance sample](http://www.pbr-book.org/3ed-2018/Monte_Carlo_Integration/Importance_Sampling.html) the integrand in different ways. Ideally, we would like to make the PDF proportional to the product of all terms of the integrand. However, unless we use [path guiding](https://cgg.mff.cuni.cz/~jirka/path-guiding-in-production/2019/index.htm), that is typically not possible. We will focus on the technique called [free path sampling](https://cs.dartmouth.edu/~wjarosz/publications/novak18monte.html) that makes the PDF proportional to the analytic product \\(\mu_t T\\) (effectively, by assuming that the rest of the integrand varies slowly; this may or may not be the case - for example, for regions near light sources, [equiangular sampling](http://library.imageworks.com/pdfs/imageworks-library-importance-sampling-of-area-lights-in-participating-media.pdf) can give vastly superior results). In order to turn it into a valid PDF, we must normalize this term over the domain of integration (which is typically finite, ending either at the closest surface, or at the point where we exit the volume; we will refer to it as \\(t\_{max}\\)) using the Equation 10:
+We can [importance sample](http://www.pbr-book.org/3ed-2018/Monte_Carlo_Integration/Importance_Sampling.html) (distribute the samples according to the PDF) the integrand in several ways. Ideally, we would like to make the PDF proportional to the product of all terms of the integrand. However, unless we use [path guiding](https://cgg.mff.cuni.cz/~jirka/path-guiding-in-production/2019/index.htm), that is typically not possible. We will focus on the technique called [free path sampling](https://cs.dartmouth.edu/~wjarosz/publications/novak18monte.html) that makes the PDF proportional to the analytic product \\(\mu_t T\\) (effectively, by assuming that the rest of the integrand varies slowly; in practice, this may or may not be the case - for example, for regions near light sources, [equiangular sampling](http://library.imageworks.com/pdfs/imageworks-library-importance-sampling-of-area-lights-in-participating-media.pdf) can give vastly superior results).
 
-$$ \tag{15} p(t | \lbrace \bm{x}, \bm{v} \rbrace)
-    = \frac{\mu_t(\bm{x}, \bm{v}, t) T(\bm{x}, \bm{v}, t)}{\int\_{0}^{t\_{max}} \mu_t(\bm{x}, \bm{v}, s) T(\bm{x}, \bm{v}, s) ds}
-    = \frac{\mu_t(\bm{x}, \bm{v}, t) T(\bm{x}, \bm{v}, t)}{O(\bm{x}, \bm{v}, t\_{max})}. $$
+In order to turn it into a valid PDF, it must normalized using the Equation 13:
 
-In order to distribute the samples according to the PDF, we must be also able to [invert](http://www.pbr-book.org/3ed-2018/Monte_Carlo_Integration/Sampling_Random_Variables.html#TheInversionMethod) the [CDF](https://en.wikipedia.org/wiki/Cumulative_distribution_function) \\(P\\):
+$$ \tag{19} p(y | \lbrace \bm{x}, \bm{v} \rbrace)
+    = \frac{\mu_t(\bm{y}) T(\bm{x}, \bm{y})}{\int\_{\bm{x}}^{\bm{y\_{vol}}} \mu_t(\bm{u}) T(\bm{x}, \bm{u}) du}
+    = \frac{\mu_t(\bm{y}) T(\bm{x}, \bm{y})}{O(\bm{x}, \bm{\bm{y\_{vol}}})}. $$
 
-$$ \tag{16} P(t | \lbrace \bm{x}, \bm{v} \rbrace)
-    = \int\_{0}^{t} p(s | \lbrace \bm{x}, \bm{v} \rbrace) ds
-    = \int\_{0}^{t} \frac{\mu_t(\bm{x}, \bm{v}, s) T(\bm{x}, \bm{v}, s) ds}{O(\bm{x}, \bm{v}, t\_{max})}
-    = \frac{O(\bm{x}, \bm{v}, t)}{O(\bm{x}, \bm{v}, t\_{max})}.
-$$
+Substitution of the Equation 19 radically simplifies the form of the estimator (again, for a single wavelength):
 
-In practice, this means that we need to solve for the distance \\(t\\) given the value of optical depth \\(\tau\\):
-
-$$ \tag{17} \tau(\bm{x}, \bm{v}, t) = -\mathrm{log} \big( 1 - P(t | \lbrace \bm{x}, \bm{v} \rbrace) O(\bm{x}, \bm{v}, t\_{max}) \big). $$
-
-Substitution of the Equation 15 radically simplifies evaluation of the estimator (again, for a single wavelength):
-
-$$ \tag{18} L(\bm{x}, \bm{v}) \approx O(\bm{x}, \bm{v}, t\_{max}) \frac{1}{N} \sum\_{i=1}^{N} \alpha\_{ss}(\bm{x}, \bm{v}, t_i) L_s(\bm{x} + t_i \bm{v}, \bm{v}). $$
+$$ \tag{20} L(\bm{x}, \bm{v}) \approx O(\bm{x}, \bm{\bm{y\_{vol}}}) \frac{1}{N} \sum\_{i=1}^{N} \alpha\_{ss}(\bm{y_i}) L_s(\bm{y_i}, \bm{v}). $$
 
 This equation can be seen as a form of [premultiplied alpha blending](https://graphics.pixar.com/library/Compositing/) (where alpha is opacity), which explains why particle cards can be so convincing. Additionally, it offers yet another way to parametrize the attenuation coefficient - namely, by opacity at distance (which is similar to [transmittance at distance](https://blog.selfshadow.com/publications/s2015-shading-course/burley/s2015_pbs_disney_bsdf_notes.pdf) used by Disney). It appears to be the most RGB rendering friendly parametrization that I am aware of.
 
-Extending the the Equation 18 to handle the surface contribution is trivial. If the closest surface along the ray is at the distance \\(t_{surf} \geq t\_{max}\\), we simply add the surface contribution (another integral) attenuated by transmittance (which is one minus opacity):
+Extending the the Equation 20 to handle the surface contribution is trivial. If the closest surface along the ray is at the distance \\(y\_{surf} \geq y\_{vol}\\), we simply add the surface contribution (another integral) attenuated by transmittance (which is one minus opacity):
 
-$$ \tag{18.1}
-    L(\bm{x}, \bm{v})
-    \approx O(\bm{x}, \bm{v}, t\_{max}) L\_{vol}(\bm{x}, \bm{v}, t\_{max})
-    + \big( 1 - O(\bm{x}, \bm{v}, t\_{max}) \big) L\_{surf}(\bm{x} + t\_{surf} \bm{v}, \bm{v}).
+$$ \tag{21}
+    L(\bm{x}, \bm{v}) \approx O(\bm{x}, \bm{\bm{y\_{vol}}}) \frac{1}{N} \sum\_{i=1}^{N} \alpha\_{ss}(\bm{y_i}) L_s(\bm{y_i}, \bm{v}) +
+    \big( 1 - O(\bm{x}, \bm{\bm{y\_{vol}}}) \big) L\_{surf}(\bm{y\_{surf}}, \bm{v}).
 $$
 
-In this context, the total opacity along the ray serves as the probability of a volume collision event, can then be used to select between a surface and a volume sample.
+In this context, the total opacity along the ray serves as the probability of a collision event in the volume, and can be used to randomly select between a surface and a volume sample.
+
+In order to sample the integrand, we must be also able to [invert](http://www.pbr-book.org/3ed-2018/Monte_Carlo_Integration/Sampling_Random_Variables.html#TheInversionMethod) the [CDF](https://en.wikipedia.org/wiki/Cumulative_distribution_function) \\(P\\):
+
+$$ \tag{22} P(y | \lbrace \bm{x}, \bm{v} \rbrace)
+    = \int\_{0}^{y} p(u | \lbrace \bm{x}, \bm{v} \rbrace) du
+    = \int\_{\bm{x}}^{\bm{y}} \frac{\mu_t(\bm{u}) T(\bm{x}, \bm{u}) du}{O(\bm{x}, \bm{\bm{y\_{vol}}})}
+    = \frac{O(\bm{x}, \bm{\bm{y}})}{O(\bm{x}, \bm{\bm{y\_{vol}}})},
+$$
+
+which is just a fractional opacity.
+
+In practice, this means that we need to solve for the distance \\(y\\) given the value of optical depth \\(\tau\\):
+
+$$ \tag{23} \tau(\bm{x}, \bm{y}) = -\mathrm{log} \big( 1 - P(y | \lbrace \bm{x}, \bm{v} \rbrace) O(\bm{x}, \bm{\bm{y\_{vol}}}) \big). $$
+
+
 
 ## Types of Analytic Participating Media
 
