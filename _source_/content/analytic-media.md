@@ -47,21 +47,21 @@ Sometimes, it is convenient to specify the concentration (density) of the medium
 
 $$ \tag{5} \bm{\mu_t} = \rho \bm{\sigma_t}, $$
 
-where \\(\rho\\) is the [volumetric mass density](https://en.wikipedia.org/wiki/Mass_density) (measured in units of \\(kg/m^{3}\\)) and \\(\bm{\sigma_t}\\) is the [mass attenuation coefficient](https://en.wikipedia.org/wiki/Mass_attenuation_coefficient) (in units of \\(m^{2}/kg\\)) - the cross section area per unit mass. Other coefficients have the same linear relation with density.
+where \\(\rho\\) is the [mass density](https://en.wikipedia.org/wiki/Mass_density) (measured in units of \\(kg/m^{3}\\)) and \\(\bm{\sigma_t}\\) is the [mass attenuation coefficient](https://en.wikipedia.org/wiki/Mass_attenuation_coefficient) (in units of \\(m^{2}/kg\\)) - the cross section area per unit mass. Other coefficients have the same linear relation with density.
 
 But what about the IOR? Often, one assumes that it is independent of density. But if you consider, for example, water and steam (which is just a lower concentration of water molecules), our experience tells us that their refractive properties are not the same.
 
-There are several approximate relations between density and the IOR. One of them is given by the [Lorentz–Lorenz equation](https://en.wikipedia.org/wiki/Clausius%E2%80%93Mossotti_relation):
+There are several known relations between density and the IOR. One of them is given by the [Lorentz–Lorenz equation](https://en.wikipedia.org/wiki/Clausius%E2%80%93Mossotti_relation):
 
-$$ \tag{6} \frac{\bm{n}^2 - 1}{\bm{n}^2 + 2} = \frac{4}{3} \pi \rho m_a \bm{\alpha_m}, $$
+$$ \tag{6} \frac{\bm{n}^2 - 1}{\bm{n}^2 + 2} = \frac{4}{3} \pi \frac{N_a}{m} \rho \bm{\alpha_m}, $$
 
-where \\(m_a\\) is the mass of a single atom (in \\(kg\\)) and \\(\bm{\alpha_m}\\) is the [mean atomic polarizability](https://www.feynmanlectures.caltech.edu/II_32.html). Incidentally, this equation represents a way to compute the IOR of a mixture of several substances.
+where \\(m\\) is the [molecular mass](https://en.wikipedia.org/wiki/Molecular_mass) (in \\(kg\\)), \\(N_a\\) is the [Avogadro number](https://en.wikipedia.org/wiki/Avogadro_constant), and \\(\bm{\alpha_m}\\) is the [molecular polarizability](https://en.wikipedia.org/wiki/Electric_susceptibility#Molecular_polarizability) (in \\(m^3\\), watch out for [different conventions](https://en.wikipedia.org/wiki/Electric_susceptibility#Ambiguity_in_the_definition)), which can itself depend on temperature and pressure. Incidentally, this relation represents a way to compute the IOR of a [mixture of several substances](https://www.sciencedirect.com/science/article/pii/S0021850208001183). It's interesting to note that the [Lorentz–Lorenz mixture rule](https://www.sciencedirect.com/science/article/pii/S0021850208001183) is based on four principles of additivities of mole, mass, volume, and molecular polarizability, with the last two assumption being rather context-dependent.
 
-For small densities and \\(\bm{n}^2 \approx 1\\) (valid for a gas, for instance), the following approximation can be made:
+For materials with small mass densities, the molecules are far apart from one another, the molecular interactions are weak, and the refractive index is close to 1. Therefore, for matter in a gas state, the following approximation can be made:
 
 $$ \tag{7} \bm{n} \approx \sqrt{1 + 4 \pi \rho m_a \bm{\alpha_m}} \approx 1 + 2 \pi \rho m_a \bm{\alpha_m}, $$
 
-which implies that the difference from vacuum \\((\bm{n} - 1)\\) has an approximately linear relation with density. Similar [relations](http://www.waves.utoronto.ca/prof/svhum/ece422/notes/20a-atmospheric-refr.pdf) can be found for temperature, humidity and pressure.
+which implies that the [relative brake power](https://www.sciencedirect.com/topics/chemistry/optical-refraction) \\((\bm{n} - 1)\\) has an approximately linear relation with density. Similar [relations](http://www.waves.utoronto.ca/prof/svhum/ece422/notes/20a-atmospheric-refr.pdf) can be found for temperature, humidity and pressure.
 
 Continuous variations of the IOR pose an issue for path tracing. Typically, paths are composed of straight segments joined at scattering locations. Unfortunately, due to the [principle of least time](https://en.wikipedia.org/wiki/Fermat%27s_principle), continuously varying IOR forces photons to travel along [curved paths](http://www.waves.utoronto.ca/prof/svhum/ece422/notes/20a-atmospheric-refr.pdf) that obey [Snell's law](https://en.wikipedia.org/wiki/Snell%27s_law). And since the IOR can depend on the wavelength, it can cause [dispersion](https://en.wikipedia.org/wiki/Dispersion_(optics)) not only at the interfaces, but also continuously, along the entire path. So it is not too surprising that that most renderers ignore this behavior (effectively turning participating media into "dense vacuum" which, physically, doesn't make any sense). For small density gradients and small distances, it is a valid approximation that gives approximately correct results on average. On the other hand, for certain atmospheric effects, [atmospheric refraction](https://en.wikipedia.org/wiki/Atmospheric_refraction) can make a non-negligible contribution.
 
