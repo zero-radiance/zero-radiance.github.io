@@ -41,7 +41,7 @@ For this reason, \\(\bm{\eta}\\) is called the [refractive index](https://www.fe
 
 The tuple \\(\lbrace \bm{\eta}, \bm{\kappa}, \bm{\mu_s} \rbrace\\) \\(\big(\\)or, alternatively, \\(\lbrace \bm{\eta}, \bm{d}, \bm{\alpha\_{ss}} \rbrace  \big) \\) contains sufficient information to describe both the behavior at the surface (boundary) and the (isotropic) multiple-scattering process (known as [subsurface scattering](https://en.wikipedia.org/wiki/Subsurface_scattering)) inside the volume that ultimately gives rise to what we perceive as the surface albedo \\(\bm{\alpha\_{ms}}\\). Note that certain materials (metals, in particular) require modeling of [wave interference](https://en.wikipedia.org/wiki/Wave_interference) to obtain expected reflectance values.
 
-A surface, then, is just an optical interface signified by a discontinuity of the optical properties (in reality, the [transition at the boundary is continuous](https://www.feynmanlectures.caltech.edu/II_33.html), with a thickness of several atomic layers, but we can ignore this fact at scales relevant to computer graphics).
+A surface, then, is just an optical interface signified by a discontinuity of optical properties (in reality, the [transition at the boundary is continuous](https://www.feynmanlectures.caltech.edu/II_33.html), with a thickness of several atomic layers, but we can ignore this fact at scales relevant to computer graphics).
 
 Sometimes, it is convenient to specify the concentration (density) of the medium, and not its effective optical properties. For example, the attenuation coefficient can be computed using the following formula:
 
@@ -49,7 +49,7 @@ $$ \tag{5} \bm{\mu_t} = \rho \bm{\sigma_t}, $$
 
 where \\(\rho\\) is the [mass density](https://en.wikipedia.org/wiki/Mass_density) (measured in units of \\(kg/m^{3}\\)) and \\(\bm{\sigma_t}\\) is the [mass attenuation coefficient](https://en.wikipedia.org/wiki/Mass_attenuation_coefficient) (in units of \\(m^{2}/kg\\)) - the cross section area per unit mass. Other coefficients have the same linear relation with density.
 
-But what about the IOR? Often, one assumes that it is independent of density. But if you consider, for example, water and steam (which is just a lower concentration of water molecules), our experience tells us that their refractive properties are not the same.
+But what about the IOR? Often, one assumes that it is independent of density. But, if you consider, for example, water and steam (which has a lower concentration of water molecules), our experience tells us that their refractive properties are not the same.
 
 There are several known relations between density and the IOR. One of them is given by the [Lorentz–Lorenz equation](https://en.wikipedia.org/wiki/Clausius%E2%80%93Mossotti_relation):
 
@@ -59,13 +59,13 @@ where \\(m\\) is the [molecular mass](https://en.wikipedia.org/wiki/Molecular_ma
 
 For materials with small mass densities, the molecules are far apart from one another, the molecular interactions are weak, and the refractive index is close to 1. Therefore, for matter in a gas state, the following approximation can be made:
 
-$$ \tag{7} \bm{n} \approx \sqrt{1 + 4 \pi \rho m_a \bm{\alpha_m}} \approx 1 + 2 \pi \rho m_a \bm{\alpha_m}, $$
+$$ \tag{7} \bm{n} \approx \sqrt{1 + 4 \pi \frac{N_a}{m} \rho \bm{\alpha_m}} \approx 1 + 2 \pi \frac{N_a}{m} \rho \bm{\alpha_m}, $$
 
 which implies that the [relative brake power](https://www.sciencedirect.com/topics/chemistry/optical-refraction) \\((\bm{n} - 1)\\) has an approximately linear relation with density. Similar [relations](http://www.waves.utoronto.ca/prof/svhum/ece422/notes/20a-atmospheric-refr.pdf) can be found for temperature, humidity and pressure.
 
-Continuous variations of the IOR pose an issue for path tracing. Typically, paths are composed of straight segments joined at scattering locations. Unfortunately, due to the [principle of least time](https://en.wikipedia.org/wiki/Fermat%27s_principle), continuously varying IOR forces photons to travel along [curved paths](http://www.waves.utoronto.ca/prof/svhum/ece422/notes/20a-atmospheric-refr.pdf) that obey [Snell's law](https://en.wikipedia.org/wiki/Snell%27s_law). And since the IOR can depend on the wavelength, it can cause [dispersion](https://en.wikipedia.org/wiki/Dispersion_(optics)) not only at the interfaces, but also continuously, along the entire path. So it is not too surprising that that most renderers ignore this behavior (effectively turning participating media into "dense vacuum" which, physically, doesn't make any sense). For small density gradients and small distances, it is a valid approximation that gives approximately correct results on average. On the other hand, for certain atmospheric effects, [atmospheric refraction](https://en.wikipedia.org/wiki/Atmospheric_refraction) can make a non-negligible contribution.
+Continuous variations of the IOR pose an issue for path tracing. Typically, paths are composed of straight segments joined at scattering locations. Unfortunately, due to the [principle of least time](https://en.wikipedia.org/wiki/Fermat%27s_principle), continuously varying IOR forces photons to travel along [curved paths](http://www.waves.utoronto.ca/prof/svhum/ece422/notes/20a-atmospheric-refr.pdf) that obey [Snell's law](https://en.wikipedia.org/wiki/Snell%27s_law). And since the IOR can depend on the wavelength, it can cause [dispersion](https://en.wikipedia.org/wiki/Dispersion_(optics)) not only at the interfaces, but also continuously, along the entire path. So it is not too surprising that that most renderers ignore this behavior (effectively turning participating media into "dense vacuum" which, physically, doesn't make any sense). For small density gradients and small distances, it is a valid approximation that, on average, gives approximately correct results. On the other hand, for certain atmospheric effects, [atmospheric refraction](https://en.wikipedia.org/wiki/Atmospheric_refraction) can make a non-negligible contribution.
 
-Luckily, most of the math related to light transport can be defined in a way that is independent from the geometry of the path. For instance, transmittance \\(\bm{T}\\) can be defined as the fraction of incident radiance transmitted along the shortest path between two points \\(\bm{x}\\) and \\(\bm{y}\\):
+Luckily, most of the math related to light transport can be defined in a way that is independent from the geometry of the path. For instance, transmittance \\(\bm{T}\\) can be defined as the fraction of incident radiance transmitted along the shortest path between points \\(\bm{x}\\) and \\(\bm{y}\\):
 
 $$ \tag{8} \bm{T}(\bm{x}, \bm{y}) = \frac{\bm{L}(\bm{x}, \bm{v_x})}{\bm{L}(\bm{y}, \bm{v_y})}, $$
 
@@ -116,7 +116,7 @@ $$
 
 where \\(\bm{L}(\bm{x}, \bm{v})\\) is the amount of radiance at the position \\(\bm{x}\\) in the direction \\(\bm{v}\\), and \\(f\\) denotes the [phase function](http://www.pbr-book.org/3ed-2018/Volume_Scattering/Phase_Functions.html) which additionally depends on the light direction \\(\bm{l} \in \bm{S}^2\\). In the case of asymmetric scattering, the collision coefficients (cross sections) may be direction-dependent as well. The domain of integration is typically finite, ending either at the closest surface, or at the point where the ray exits the volume; we will refer to it as \\(\bm{y\_{vol}}\\).
 
-We can evaluate the outer integral using one of the [Monte Carlo](http://www.pbr-book.org/3ed-2018/Monte_Carlo_Integration.html) methods. The first step is to split the integrand in two parts: the part we can evaluate analytically, and the part that has to be integrated numerically. We can group the product of transmittance and the scattering coefficient together, and leave the inner integral as the "numerical" term:
+We can evaluate the outer integral using one of the [Monte Carlo](http://www.pbr-book.org/3ed-2018/Monte_Carlo_Integration.html) methods. The first step is to split the integrand in two parts: the part we can evaluate analytically, and the part that has to be integrated numerically. We can group the product of transmittance and the scattering coefficient together, and leave the inner integral as the "numerical" term \\(\bm{L_s}\\):
 
 $$ \tag{16} \bm{L}(\bm{x}, \bm{v})
     = \int\_{\bm{x}}^{\bm{y\_{vol}}} \bm{T}(\bm{x}, \bm{u}) \bm{\mu_s}(\bm{u}) \bm{L_s}(\bm{u}, \bm{v}) du.
@@ -136,7 +136,7 @@ $$
 
 where sample locations \\(\bm{y_i}\\) are distributed according to the [PDF](https://en.wikipedia.org/wiki/Probability_density_function) \\(p\\). We slightly abuse the notation by defining the corresponding distance along the ray using non-bold \\(y_i\\).
 
-We can [importance sample](http://www.pbr-book.org/3ed-2018/Monte_Carlo_Integration/Importance_Sampling.html) the integrand (distribute  samples according to the PDF) in several ways. Ideally, we would like to make the PDF proportional to the product of all terms of the integrand. However, unless we use [path guiding](https://cgg.mff.cuni.cz/~jirka/path-guiding-in-production/2019/index.htm), that is typically not possible. We will focus on the technique called [free path sampling](https://cs.dartmouth.edu/~wjarosz/publications/novak18monte.html) that makes the PDF proportional to the analytic product \\(\mu_t T\\) (effectively, by assuming that the rest of the integrand varies slowly; in practice, this may or may not be the case - for example, for regions near light sources, [equiangular sampling](http://library.imageworks.com/pdfs/imageworks-library-importance-sampling-of-area-lights-in-participating-media.pdf) can give vastly superior results).
+We can [importance sample](http://www.pbr-book.org/3ed-2018/Monte_Carlo_Integration/Importance_Sampling.html) the integrand (distribute  samples according to the PDF) in several ways. Ideally, we would like to make the PDF proportional to the [product of all terms](https://cgg.mff.cuni.cz/~jaroslav/papers/2014-zerovar/) of the integrand. However, unless we use [path guiding](https://cgg.mff.cuni.cz/~jirka/path-guiding-in-production/2019/index.htm), that is typically not possible. We will focus on the technique called [free path sampling](https://cs.dartmouth.edu/~wjarosz/publications/novak18monte.html) that makes the PDF proportional to the analytic product \\(\mu_t T\\) (effectively, by assuming that the rest of the integrand varies slowly; in practice, this may or may not be the case - for example, for regions near light sources, [equiangular sampling](http://library.imageworks.com/pdfs/imageworks-library-importance-sampling-of-area-lights-in-participating-media.pdf) can give vastly superior results).
 
 In order to turn it into a valid PDF, the product must be normalized using the Equation 13:
 
@@ -157,7 +157,7 @@ $$ \tag{21}
     \big( 1 - O(\bm{x}, \bm{\bm{y\_{vol}}}) \big) L\_{surf}(\bm{y\_{surf}}, \bm{v}).
 $$
 
-In this context, total opacity along the ray serves as the probability of a collision event in the volume, and can be used to randomly select between a surface and a volume sample.
+In this context, total opacity along the ray serves as the probability of a collision event in the volume, and can be used to randomly pick the type of the sample (surface or volume).
 
 In order to sample the integrand, we must be also able to [invert](http://www.pbr-book.org/3ed-2018/Monte_Carlo_Integration/Sampling_Random_Variables.html#TheInversionMethod) the [CDF](https://en.wikipedia.org/wiki/Cumulative_distribution_function) \\(P\\):
 
