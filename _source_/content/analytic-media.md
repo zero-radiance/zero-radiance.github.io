@@ -61,7 +61,7 @@ For materials with small mass densities, the molecules are far apart from one an
 
 $$ \tag{7} \bm{n} \approx \sqrt{1 + 4 \pi \frac{N_a}{m} \rho \bm{\alpha_m}} \approx 1 + 2 \pi \frac{N_a}{m} \rho \bm{\alpha_m}, $$
 
-which implies that the [relative brake power](https://www.sciencedirect.com/topics/chemistry/optical-refraction) \\((\bm{n} - 1)\\) has an approximately linear relation with density. Similar [relations](http://www.waves.utoronto.ca/prof/svhum/ece422/notes/20a-atmospheric-refr.pdf) can be found for temperature, humidity and pressure.
+which implies that the [relative brake power](https://www.sciencedirect.com/topics/chemistry/optical-refraction) \\((\bm{n} - 1)\\) has an approximately linear relation with density. Similar [relations] continuously can be found for temperature, humidity and pressure.
 
 Continuous variations of the IOR pose an issue for path tracing. Typically, paths are composed of straight segments joined at scattering locations. Unfortunately, due to the [principle of least time](https://en.wikipedia.org/wiki/Fermat%27s_principle), continuously varying IOR forces photons to travel along [curved paths](http://www.waves.utoronto.ca/prof/svhum/ece422/notes/20a-atmospheric-refr.pdf) that obey [Snell's law](https://en.wikipedia.org/wiki/Snell%27s_law). And since the IOR can depend on the wavelength, it can cause [dispersion](https://en.wikipedia.org/wiki/Dispersion_(optics)) not only at the interfaces, but also continuously, along the entire path. So it is not too surprising that that most renderers ignore this behavior (effectively turning participating media into "dense vacuum" which, physically, doesn't make any sense). For small density gradients and small distances, it is a valid approximation that, on average, gives approximately correct results. On the other hand, for certain atmospheric effects, [atmospheric refraction](https://en.wikipedia.org/wiki/Atmospheric_refraction) can make a non-negligible contribution.
 
@@ -173,44 +173,81 @@ In practice, this means that we need to solve for the distance \\(y\\) given the
 
 $$ \tag{23} \tau(\bm{x}, \bm{y}) = -\mathrm{log} \big( 1 - P(y | \lbrace \bm{x}, \bm{v} \rbrace) O(\bm{x}, \bm{\bm{y\_{vol}}}) \big). $$
 
-
-
 ## Types of Analytic Participating Media
 
-
-
-If your background is in real-time rendering, you may have heard of [constant, linear and exponential fog](http://www.terathon.com/lengyel/Lengyel-UnifiedFog.pdf). These names refer to variation of density, typically with respect to height, and can be used to model height fog and atmospheric scattering. In these scenarios, the albedo is usually assumed to be constant.
+If your background is in real-time rendering, you may have heard of [constant, linear and exponential fog](http://www.terathon.com/lengyel/Lengyel-UnifiedFog.pdf). These names refer to the way density varies in space (typically, with respect to height), and can be used to model effects like height fog and atmospheric scattering. In these scenarios, albedo is usually assumed to be constant.
 
 ### Constant Density
 
-A constant (or homogeneous) medium has uniform density across the entire volume:
+A constant (or homogeneous) medium has uniform density across the entire volume (recall the Equation 5):
 
-$$ \tag{20} \rho_c = k. $$
+$$ \tag{24} \rho_c = k. $$
 
 This formulation makes computing optical depth easy:
 
-$$ \tag{21} \bm{\tau_c}(\bm{x}, \bm{v}, t) = \bm{\sigma_t} \int\_{0}^{t} k ds =  \bm{\sigma_t} k t. $$
+$$ \tag{25} \bm{\tau_c}(\bm{x}, \bm{y}) = \bm{\sigma_t} \int\_{\bm{x}}^{\bm{y}} k du = \bm{\sigma_t} k \Vert \bm{y} - \bm{x} \Vert = \bm{\sigma_t} k t. $$
 
 The sampling "recipe" for distance \\(t\\) can be found by inverting the CDF:
 
-$$ \tag{22} t = \frac{\tau_c}{\sigma_t k}, $$
+$$ \tag{26} t = \frac{\tau_c}{\sigma_t k}, $$
 
 which is consistent with [previous work](https://cs.dartmouth.edu/~wjarosz/publications/novak18monte.html).
 
 The resulting sampling algorithm is very simple:
 
 1. compute total opacity along the ray;
-2. pick a CDF value;
-3. convert it to optical depth using the Equation 17;
-4. compute the distance using the Equation 22.
+2. generate a random CDF value;
+3. compute optical depth using the Equation 23;
+4. compute the distance using the Equation 26.
 
 ### Linear Variation of Density with Altitude in Rectangular Coordinates
 
-This is your typical "linear height fog on flat Earth" case. Density varies with the third (\\(z\\)) coordinate, which we interpret as the altitude:
+Without loss of generality, let's assume that density varies with the third coordinate of the position \\(\bm{x}\\), which we interpret as the altitude. This is your typical "linear height fog on flat Earth" case:
 
-$$ \tag{23} \rho\_{lp}(\bm{x}) = m x_3 + k. $$
+$$ \tag{27} \rho\_{l}(\bm{x}) = m h(\bm{x}) + k = m x_3 + k. $$
 
 This formulation can be reduced to homogeneous media by setting \\(m = 0\\).
+
+What we would like to evaluate the following integral:
+
+$$ \tag{28} \bm{\tau\_{l}}(\bm{x}, \bm{y}) = \bm{\sigma_t} \int\_{\bm{x}}^{\bm{y}} (m h(\bm{u}) + k) du. $$
+
+It is convenient to make a change of variables and integrate with respect to the altitude \\(h\\) rather than the parametric distance \\(u\\) along the path. Let's start with the simplest case of a straight path, by assuming the IOR value of 1. Graphically, we want to compute the ratio of infinitesimal lengths \\(ds\\) and \\(dh\\) which is, of course, just the secant of the zenith angle.
+
+{{< figure src="/img/dh_ds.png">}}
+
+Mathematically, the change of variables can be expressed using the [Jacobian](https://en.wikipedia.org/wiki/Jacobian_matrix_and_determinant):
+
+$$ \tag{29}
+	\int\_{\bm{x}}^{\bm{y}} f \big(h(\bm{s}) \big) ds =
+	\int\_{h\_{x}}^{h\_{y}} f(h) \Big\vert \frac{ds}{dh} \Big\vert dh =
+	\int\_{h\_{x}}^{h\_{y}} f(h) \vert \mathrm{sec}{\theta} \vert dh =
+	\int\_{h\_{x}}^{h\_{y}} f(h) \frac{\Vert \bm{y} - \bm{x} \Vert}{\vert h_y - h_x \vert} dh. $$
+
+For curved trajectories, we can apply [Snell's law](https://en.wikipedia.org/wiki/Snell%27s_law):
+
+$$ \tag{30}
+	n(h_0) sin{\theta\_0} = n(h_1) sin{\theta\_1}. $$
+
+Its consequence is that paths bend continuously as the altitude changes. We can approach this problem by representing the atmosphere with an infinite number of [homogeneous layers of infinitesimal thickness](http://www.waves.utoronto.ca/prof/svhum/ece422/notes/20a-atmospheric-refr.pdf).
+
+{{< figure src="/img/dh_du.png">}}
+
+This means that we need to compute another Jacobian, this time relating \\(du\\) and \\(dh\\).
+
+$$ \tag{31}
+	\int\_{\bm{x}}^{\bm{y}} f \big(h(\bm{u}) \big) du =
+	\int\_{h\_{x}}^{h\_{y}} f(h) \Big\vert \frac{du}{dh} \Big\vert dh =
+	\int\_{h\_{x}}^{h\_{y}} f(h) \vert \mathrm{sec}{\theta_h} \vert dh. $$
+
+We can compute the angle using Snell's law:
+
+$$ \tag{32}
+	\int\_{h\_{x}}^{h\_{y}} f(h) \vert \mathrm{sec}{\theta_h} \vert dh =
+	\int\_{h\_{x}}^{h\_{y}} \frac{f(h)}{\sqrt{1 - \mathrm{sin}^2{\theta_h}}} dh =
+	\int\_{h\_{x}}^{h\_{y}} \frac{f(h) n(h)}{\sqrt{n^2(h) - n^2(h_x) \mathrm{sin}^2{\theta_x}}} dh. $$
+
+Note that while this expression imposes no restrictions on how the IOR is defined, it is only valid in rectangular coordinates.
 
 The expression of optical depth remains simple:
 
