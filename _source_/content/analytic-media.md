@@ -59,9 +59,12 @@ where \\(m\\) is the [molecular mass](https://en.wikipedia.org/wiki/Molecular_ma
 
 For materials with small mass densities, the molecules are far apart from one another, the molecular interactions are weak, and the refractive index is close to 1. Therefore, for matter in a gas state, the following approximation can be made:
 
-$$ \tag{7} \bm{n} \approx \sqrt{1 + 4 \pi \frac{N_a}{m} \rho \bm{\alpha_m}} \approx 1 + 2 \pi \frac{N_a}{m} \rho \bm{\alpha_m}, $$
+$$ \begin{aligned} \tag{7}
+    & \bm{n}^2 \approx 1 + 4 \pi \frac{N_a}{m} \rho \bm{\alpha_m} = 1 + 2 \bm{c} \rho, \cr
+    & \bm{n} \approx \sqrt{1 + 4 \pi \frac{N_a}{m} \rho \bm{\alpha_m}} \approx 1 + 2 \pi \frac{N_a}{m} \rho \bm{\alpha_m} = 1 + \bm{c} \rho,
+\end{aligned} $$
 
-which implies that the [relative brake power](https://www.sciencedirect.com/topics/chemistry/optical-refraction) \\((\bm{n} - 1)\\) has an approximately linear relation with density. Similar [relations] continuously can be found for temperature, humidity and pressure.
+where \\(\bm{c}\\) is the [light dispersion coefficient](https://ui.adsabs.harvard.edu/abs/1956mond.book.....L/abstract). The Equation 8 implies that the [relative brake power](https://www.sciencedirect.com/topics/chemistry/optical-refraction) \\((\bm{n} - 1)\\) has an approximately linear relation with density. Similar [relations](http://www.waves.utoronto.ca/prof/svhum/ece422/notes/20a-atmospheric-refr.pdf) can be found for temperature, humidity and pressure.
 
 Continuous variations of the IOR pose an issue for path tracing. Typically, paths are composed of straight segments joined at scattering locations. Unfortunately, due to the [principle of least time](https://en.wikipedia.org/wiki/Fermat%27s_principle), continuously varying IOR forces photons to travel along [curved paths](http://www.waves.utoronto.ca/prof/svhum/ece422/notes/20a-atmospheric-refr.pdf) that obey [Snell's law](https://en.wikipedia.org/wiki/Snell%27s_law). And since the IOR can depend on the wavelength, it can cause [dispersion](https://en.wikipedia.org/wiki/Dispersion_(optics)) not only at the interfaces, but also continuously, along the entire path. So it is not too surprising that that most renderers ignore this behavior (effectively turning participating media into "dense vacuum" which, physically, doesn't make any sense). For small density gradients and small distances, it is a valid approximation that, on average, gives approximately correct results. On the other hand, for certain atmospheric effects, [atmospheric refraction](https://en.wikipedia.org/wiki/Atmospheric_refraction) can make a non-negligible contribution.
 
@@ -209,13 +212,13 @@ The resulting sampling algorithm is very simple:
 
 Without loss of generality, let's assume that density varies with the third coordinate of the position \\(\bm{x}\\), which we interpret as the altitude. This is your typical "linear height fog on flat Earth" case:
 
-$$ \tag{27} \rho\_{l}(\bm{x}) = k h(\bm{x}) + b = k x_3 + b. $$
+$$ \tag{27} \rho\_{lr}(\bm{x}) = k h(\bm{x}) + b = k x_3 + b. $$
 
 This formulation can be reduced to homogeneous media by setting \\(k = 0\\).
 
 What we would like to evaluate the following integral:
 
-$$ \tag{28} \bm{\tau\_{l}}(\bm{x}, \bm{y})
+$$ \tag{28} \bm{\tau\_{lr}}(\bm{x}, \bm{y})
     = \bm{\sigma_t} \int\_{\bm{x}}^{\bm{y}} \rho{\big(h(\bm{u}) \big)} du
     = \bm{\sigma_t} \int\_{\bm{x}}^{\bm{y}} (k h(\bm{u}) + b) du.
 $$
@@ -260,7 +263,7 @@ where \\(\theta_x\\) is the zenith angle at the start of the path.
 Combining Equations 28 and 32 gives us the following expression of optical depth:
 
 $$ \tag{33}
-    \bm{\tau\_{l}}(\bm{x}, \bm{y})
+    \bm{\tau}(\bm{x}, \bm{y})
     = \bm{\sigma_t} \int\_{h\_{x}}^{h\_{y}} \rho(h) \sec{\theta_h} dh
     = \bm{\sigma_t} \int\_{h\_{x}}^{h\_{y}} \frac{\rho(h) n(h)}{\sqrt{n^2(h) - n^2(h_x) \sin^2{\theta_x}}} dh.
 $$
@@ -269,26 +272,20 @@ Note that while this expression is quite general and imposes no restrictions on 
 
 For our application, we shall use the low density approximation (Equation 7):
 
-$$ \tag{34} \bm{n}(h) \approx 1 + 2 \pi \frac{N_a}{m} \bm{\alpha_m} \rho(h) = 1 + \bm{c} \rho(h), $$
-
-$$ \tag{35} \bm{n}^2(h) \approx 1 + 2 \bm{c} \rho(h). $$
-
-where \\(\bm{c}\\) is the [light dispersion coefficient](https://ui.adsabs.harvard.edu/abs/1956mond.book.....L/abstract). Plugging it into the Equation 33 yields
-
-$$ \tag{36}
-    \bm{\tau\_{l}}(\bm{x}, \bm{y})
+$$ \tag{34}
+    \bm{\tau}(\bm{x}, \bm{y})
     \approx \bm{\sigma_t} \int\_{h\_{x}}^{h\_{y}} \frac{\rho(h) \big( 1 + c \rho(h) \big)}{\sqrt{\big( 1 + 2 c \rho(h) \big) - \big( 1 + c \rho(h_x) \big)^2 \sin^2{\theta_x}}} dh.
 $$
 
-We can further simplify this expression by integrating in terms of density:
+We can further simplify this expression by integrating in terms of linear density (given by the Equation 27):
 
-$$ \tag{37} \begin{aligned}
-    \bm{\tau\_{l}}(\bm{x}, \bm{y})
+$$ \tag{35} \begin{aligned}
+    \bm{\tau\_{lr}}(\bm{x}, \bm{y})
     &\approx \bm{\sigma_t} \int\_{h\_{x}}^{h\_{y}} \frac{\rho (1 + c \rho)}{\sqrt{(1 + 2 c \rho) - (1 + c \rho_x)^2 \sin^2{\theta_x}}} \frac{dh}{d\rho} d\rho \cr
     &= \frac{\bm{\sigma_t}}{k} \int\_{\rho\_{x}}^{\rho\_{y}} \frac{\rho (1 + c \rho)}{\sqrt{(1 + 2 c \rho) - (1 + c \rho_x)^2 \sin^2{\theta_x}}} d\rho \cr
 \end{aligned} $$
 
-
+---
 
 The expression of optical depth remains simple:
 
