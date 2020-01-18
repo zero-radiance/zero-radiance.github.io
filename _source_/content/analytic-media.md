@@ -179,17 +179,22 @@ If your background is in real-time rendering, you may have heard of [constant, l
 
 ### Constant Density
 
-A constant (or homogeneous) medium has uniform density across the entire volume (recall the Equation 5):
+A homogeneous medium has uniform density across the entire volume (recall the Equation 5):
 
-$$ \tag{24} \rho_c = k. $$
+$$ \tag{24} \rho_c = b. $$
 
 This formulation makes computing optical depth easy:
 
-$$ \tag{25} \bm{\tau_c}(\bm{x}, \bm{y}) = \bm{\sigma_t} \int\_{\bm{x}}^{\bm{y}} k du = \bm{\sigma_t} k \Vert \bm{y} - \bm{x} \Vert = \bm{\sigma_t} k t. $$
+$$ \tag{25} \bm{\tau_c}(\bm{x}, \bm{y})
+    = \bm{\sigma_t} \int\_{\bm{x}}^{\bm{y}} \rho du
+    = \bm{\sigma_t} \int\_{\bm{x}}^{\bm{y}} b du
+    = \bm{\sigma_t} b \Vert \bm{y} - \bm{x} \Vert
+    = \bm{\sigma_t} b t.
+$$
 
 The sampling "recipe" for distance \\(t\\) can be found by inverting the CDF:
 
-$$ \tag{26} t = \frac{\tau_c}{\sigma_t k}, $$
+$$ \tag{26} t = \frac{\tau_c}{\sigma_t b}, $$
 
 which is consistent with [previous work](https://cs.dartmouth.edu/~wjarosz/publications/novak18monte.html).
 
@@ -204,50 +209,86 @@ The resulting sampling algorithm is very simple:
 
 Without loss of generality, let's assume that density varies with the third coordinate of the position \\(\bm{x}\\), which we interpret as the altitude. This is your typical "linear height fog on flat Earth" case:
 
-$$ \tag{27} \rho\_{l}(\bm{x}) = m h(\bm{x}) + k = m x_3 + k. $$
+$$ \tag{27} \rho\_{l}(\bm{x}) = k h(\bm{x}) + b = k x_3 + b. $$
 
-This formulation can be reduced to homogeneous media by setting \\(m = 0\\).
+This formulation can be reduced to homogeneous media by setting \\(k = 0\\).
 
 What we would like to evaluate the following integral:
 
-$$ \tag{28} \bm{\tau\_{l}}(\bm{x}, \bm{y}) = \bm{\sigma_t} \int\_{\bm{x}}^{\bm{y}} (m h(\bm{u}) + k) du. $$
+$$ \tag{28} \bm{\tau\_{l}}(\bm{x}, \bm{y})
+    = \bm{\sigma_t} \int\_{\bm{x}}^{\bm{y}} \rho{\big(h(\bm{u}) \big)} du
+    = \bm{\sigma_t} \int\_{\bm{x}}^{\bm{y}} (k h(\bm{u}) + b) du.
+$$
 
-It is convenient to make a change of variables and integrate with respect to the altitude \\(h\\) rather than the parametric distance \\(u\\) along the path. Let's start with the simplest case of a straight path, by assuming the IOR value of 1. Graphically, we want to compute the ratio of infinitesimal lengths \\(ds\\) and \\(dh\\) which is, of course, just the secant of the zenith angle.
+Evaluation can be simplified by making a change of variables and integrating with respect to the altitude \\(h\\) rather than the parametric distance \\(u\\) along the path. Let's start with the simplest case of a straight path, by assuming the IOR value of 1. Graphically, we want to compute the ratio of infinitesimal lengths \\(ds\\) and \\(dh\\) which is, of course, just the secant of the zenith angle.
 
 {{< figure src="/img/dh_ds.png">}}
 
-Mathematically, the change of variables can be expressed using the [Jacobian](https://en.wikipedia.org/wiki/Jacobian_matrix_and_determinant):
+Mathematically, for an arbitrary function \\(f(h)\\), the change of variables can be expressed using the [chain rule](https://en.wikipedia.org/wiki/Chain_rule):
 
 $$ \tag{29}
 	\int\_{\bm{x}}^{\bm{y}} f \big(h(\bm{s}) \big) ds =
-	\int\_{h\_{x}}^{h\_{y}} f(h) \Big\vert \frac{ds}{dh} \Big\vert dh =
-	\int\_{h\_{x}}^{h\_{y}} f(h) \vert \mathrm{sec}{\theta} \vert dh =
-	\int\_{h\_{x}}^{h\_{y}} f(h) \frac{\Vert \bm{y} - \bm{x} \Vert}{\vert h_y - h_x \vert} dh. $$
+	\int\_{h\_{x}}^{h\_{y}} f(h) \frac{ds}{dh} dh =
+	\int\_{h\_{x}}^{h\_{y}} f(h) \sec{\theta} dh =
+	\int\_{h\_{x}}^{h\_{y}} f(h) \frac{\Vert \bm{y} - \bm{x} \Vert}{h_y - h_x} dh. $$
 
-For curved trajectories, we can apply [Snell's law](https://en.wikipedia.org/wiki/Snell%27s_law):
+The general case with curved trajectories requires application of [Snell's law](https://en.wikipedia.org/wiki/Snell%27s_law):
 
 $$ \tag{30}
-	n(h_0) sin{\theta\_0} = n(h_1) sin{\theta\_1}. $$
+	n(h_0) \sin{\theta\_0} = n(h_1) \sin{\theta\_1}. $$
 
-Its consequence is that paths bend continuously as the altitude changes. We can approach this problem by representing the atmosphere with an infinite number of [homogeneous layers of infinitesimal thickness](http://www.waves.utoronto.ca/prof/svhum/ece422/notes/20a-atmospheric-refr.pdf).
+We can approach this problem by representing the atmosphere with an infinite number of homogeneous layers of infinitesimal thickness. For each layer, the product of the IOR and the sine is [invariant](http://www.waves.utoronto.ca/prof/svhum/ece422/notes/20a-atmospheric-refr.pdf) along the path, making a curve composed of an infinite number of tiny straight segments.
 
 {{< figure src="/img/dh_du.png">}}
 
-This means that we need to compute another Jacobian, this time relating \\(du\\) and \\(dh\\).
+Again, we use the chain rule, this time relating the distance along the curved path \\(du\\) to the height \\(dh\\).
 
 $$ \tag{31}
 	\int\_{\bm{x}}^{\bm{y}} f \big(h(\bm{u}) \big) du =
-	\int\_{h\_{x}}^{h\_{y}} f(h) \Big\vert \frac{du}{dh} \Big\vert dh =
-	\int\_{h\_{x}}^{h\_{y}} f(h) \vert \mathrm{sec}{\theta_h} \vert dh. $$
+	\int\_{\bm{x}}^{\bm{y}} f(h) \frac{du}{dh} dh =
+	\int\_{h\_{x}}^{h\_{y}} f(h) \sec{\theta(h)} dh. $$
 
-We can compute the angle using Snell's law:
+The value of the secant can be computed using Snell's law:
 
 $$ \tag{32}
-	\int\_{h\_{x}}^{h\_{y}} f(h) \vert \mathrm{sec}{\theta_h} \vert dh =
-	\int\_{h\_{x}}^{h\_{y}} \frac{f(h)}{\sqrt{1 - \mathrm{sin}^2{\theta_h}}} dh =
-	\int\_{h\_{x}}^{h\_{y}} \frac{f(h) n(h)}{\sqrt{n^2(h) - n^2(h_x) \mathrm{sin}^2{\theta_x}}} dh. $$
+	\int\_{h\_{x}}^{h\_{y}} f(h) \sec{\theta(h)} dh =
+	\int\_{h\_{x}}^{h\_{y}} \frac{f(h)}{\sqrt{1 - \sin^2{\theta(h)}}} dh =
+	\int\_{h\_{x}}^{h\_{y}} \frac{f(h) n(h)}{\sqrt{n^2(h) - n^2(h_x) \sin^2{\theta_x}}} dh, $$
 
-Note that while this expression imposes no restrictions on how the IOR is defined, it is only valid in rectangular coordinates.
+where \\(\theta_x\\) is the zenith angle at the start of the path.
+
+Combining Equations 28 and 32 gives us the following expression of optical depth:
+
+$$ \tag{33}
+    \bm{\tau\_{l}}(\bm{x}, \bm{y})
+    = \bm{\sigma_t} \int\_{h\_{x}}^{h\_{y}} \rho(h) \sec{\theta_h} dh
+    = \bm{\sigma_t} \int\_{h\_{x}}^{h\_{y}} \frac{\rho(h) n(h)}{\sqrt{n^2(h) - n^2(h_x) \sin^2{\theta_x}}} dh.
+$$
+
+Note that while this expression is quite general and imposes no restrictions on how the density varies, it is only valid in rectangular coordinates.
+
+For our application, we shall use the low density approximation (Equation 7):
+
+$$ \tag{34} \bm{n}(h) \approx 1 + 2 \pi \frac{N_a}{m} \bm{\alpha_m} \rho(h) = 1 + \bm{c} \rho(h), $$
+
+$$ \tag{35} \bm{n}^2(h) \approx 1 + 2 \bm{c} \rho(h). $$
+
+where \\(\bm{c}\\) is the [light dispersion coefficient](https://ui.adsabs.harvard.edu/abs/1956mond.book.....L/abstract). Plugging it into the Equation 33 yields
+
+$$ \tag{36}
+    \bm{\tau\_{l}}(\bm{x}, \bm{y})
+    \approx \bm{\sigma_t} \int\_{h\_{x}}^{h\_{y}} \frac{\rho(h) \big( 1 + c \rho(h) \big)}{\sqrt{\big( 1 + 2 c \rho(h) \big) - \big( 1 + c \rho(h_x) \big)^2 \sin^2{\theta_x}}} dh.
+$$
+
+We can further simplify this expression by integrating in terms of density:
+
+$$ \tag{37} \begin{aligned}
+    \bm{\tau\_{l}}(\bm{x}, \bm{y})
+    &\approx \bm{\sigma_t} \int\_{h\_{x}}^{h\_{y}} \frac{\rho (1 + c \rho)}{\sqrt{(1 + 2 c \rho) - (1 + c \rho_x)^2 \sin^2{\theta_x}}} \frac{dh}{d\rho} d\rho \cr
+    &= \frac{\bm{\sigma_t}}{k} \int\_{\rho\_{x}}^{\rho\_{y}} \frac{\rho (1 + c \rho)}{\sqrt{(1 + 2 c \rho) - (1 + c \rho_x)^2 \sin^2{\theta_x}}} d\rho \cr
+\end{aligned} $$
+
+
 
 The expression of optical depth remains simple:
 
@@ -352,7 +393,7 @@ We start by recognizing the fact that every ordered pair of position and directi
 
 In order to find the parametric equation of altitude \\(h\\) along the ray, we can use a right triangle with legs \\(r_0\\) and \\(t_0\\) corresponding to the initial conditions:
 
-$$ \tag{31} r_0 = r \mathrm{sin}{\theta}, \qquad t_0 = r \mathrm{cos}{\theta}. $$
+$$ \tag{31} r_0 = r \sin{\theta}, \qquad t_0 = r \cos{\theta}. $$
 
 This allows us to obtain the following expression of optical depth:
 
@@ -360,9 +401,9 @@ $$ \tag{32} \begin{aligned}
 \bm{\tau\_{es}}(r, \theta, t)
     &= \bm{\sigma_t} \int\_{0}^{t} k e^{-n h(s)} ds \cr
     &= \bm{\sigma_t} \int\_{0}^{t} k e^{-n (\sqrt{r_0^2 + (t_0 + s)^2} - R)} ds \cr
-    &= \bm{\sigma_t} \int\_{0}^{t} k e^{-n (\sqrt{(r \mathrm{sin}{\theta})^2 + (r \mathrm{cos}{\theta} + s)^2} - R)} ds \cr
-    &= \bm{\sigma_t} \int\_{0}^{t} k e^{-n (\sqrt{r^2 + 2 r s \mathrm{cos}{\theta} + \bm{S}^2} - R)} ds \cr
-    &= \bm{\sigma_t} \frac{k}{n} e^{-n (r - R)} \int\_{0}^{t} e^{n (r - \sqrt{r^2 + 2 r s \mathrm{cos}{\theta} + \bm{S}^2})} n ds.
+    &= \bm{\sigma_t} \int\_{0}^{t} k e^{-n (\sqrt{(r \sin{\theta})^2 + (r \cos{\theta} + s)^2} - R)} ds \cr
+    &= \bm{\sigma_t} \int\_{0}^{t} k e^{-n (\sqrt{r^2 + 2 r s \cos{\theta} + \bm{S}^2} - R)} ds \cr
+    &= \bm{\sigma_t} \frac{k}{n} e^{-n (r - R)} \int\_{0}^{t} e^{n (r - \sqrt{r^2 + 2 r s \cos{\theta} + \bm{S}^2})} n ds.
 \end{aligned} $$
 
 The resulting integral is very complex. As a first step, let's take the nested integral, and extend the upper limit of integration to infinity. With the following change of variables:
@@ -371,17 +412,17 @@ $$ \tag{33} u = n s, \qquad z = n r, \qquad Z = n R, $$
 
 we obtain what is known in the physics community as the [Chapman function](https://en.wikipedia.org/wiki/Chapman_function) << bad link! >> (or the obliquity function, or the relative optical air mass) \\(C\\):
 
-$$ \tag{34} C(z, \mathrm{cos}{\theta}) = \int\_{0}^{\infty} e^{z - \sqrt{z^2 + 2 z u \mathrm{cos}{\theta} + u^2}} du. $$
+$$ \tag{34} C(z, \cos{\theta}) = \int\_{0}^{\infty} e^{z - \sqrt{z^2 + 2 z u \cos{\theta} + u^2}} du. $$
 
 It is convenient to define the rescaled Chapman function \\(C_r\\)
 
-$$ \tag{35} C_r(z, Z, \mathrm{cos}{\theta}) = e^{Z - z} C(z, \mathrm{cos}{\theta}) = \int\_{0}^{\infty} e^{Z - \sqrt{z^2 + 2 z u \mathrm{cos}{\theta} + u^2}} du, $$
+$$ \tag{35} C_r(z, Z, \cos{\theta}) = e^{Z - z} C(z, \cos{\theta}) = \int\_{0}^{\infty} e^{Z - \sqrt{z^2 + 2 z u \cos{\theta} + u^2}} du, $$
 
 which has a better numerical behavior, and further simplifies the expression of optical depth between \\(\bm{x}\\) and \\(\bm{y}\\):
 
 $$ \tag{36}
-\bm{\tau\_{es}}(z_x, \mathrm{cos}{\theta_x}, z_y, \mathrm{cos}{\theta_y})
-    = \bm{\sigma_t} \frac{k}{n} \Bigg( C_r \Big(z_x, Z, \mathrm{cos}{\theta_x} \Big) - C_r \Big(z_y, Z, \mathrm{cos}{\theta_y} \Big) \Bigg).
+\bm{\tau\_{es}}(z_x, \cos{\theta_x}, z_y, \cos{\theta_y})
+    = \bm{\sigma_t} \frac{k}{n} \Bigg( C_r \Big(z_x, Z, \cos{\theta_x} \Big) - C_r \Big(z_y, Z, \cos{\theta_y} \Big) \Bigg).
 $$
 
 What the Equation 36 tells us is that we should evaluate the optical depth integral twice (in the same direction, along the entire ray, from 0 to \\(\infty\\)), at the start and at the end of the interval, and subtract the results to "clip" the ray.
@@ -407,7 +448,7 @@ Being an obliquity function, \\(C(z, 0) = 1\\). The function varies slowly, as l
 
 The Chapman function has an [analytic expression](https://ui.adsabs.harvard.edu/abs/1996CoSka..26...23K/abstract) << approximation! >>
 
-$$ \tag{38} C(z, \mathrm{cos}{\theta}) = \frac{1}{2} \mathrm{cos}{\theta} + \frac{1}{2} \Big(\frac{1}{\sqrt{z}} + 2 \sqrt{z} - \sqrt{z} (\mathrm{cos}{\theta})^2 \Big) \sqrt{\frac{\pi}{2}} \Bigg[ e^{\big( \frac{1}{\sqrt{2}} \sqrt{z} \mathrm{cos}{\theta} \big)^2} \mathrm{erfc}{\Big(\frac{1}{\sqrt{2}} \sqrt{z} \mathrm{cos}{\theta}\Big)} \Bigg], $$
+$$ \tag{38} C(z, \cos{\theta}) = \frac{1}{2} \cos{\theta} + \frac{1}{2} \Big(\frac{1}{\sqrt{z}} + 2 \sqrt{z} - \sqrt{z} (\cos{\theta})^2 \Big) \sqrt{\frac{\pi}{2}} \Bigg[ e^{\big( \frac{1}{\sqrt{2}} \sqrt{z} \cos{\theta} \big)^2} \mathrm{erfc}{\Big(\frac{1}{\sqrt{2}} \sqrt{z} \cos{\theta}\Big)} \Bigg], $$
 
 which, unfortunately, is not [closed-form](https://en.wikipedia.org/wiki/Closed-form_expression#Analytic_expression), since it contains the [complementary error function](http://mathworld.wolfram.com/Erfc.html) \\(\mathrm{erfc}\\).
 
@@ -419,13 +460,13 @@ $$ \tag{39} C_h(z) = \frac{1}{2} \sqrt{\frac{\pi}{2}} (\frac{1}{\sqrt{z}} + 2 \s
 
 Beyond the 90 degree angle, the following identity can be used:
 
-$$ \tag{40} C_l(z, \mathrm{cos}{\theta}) = 2 e^{z - z \mathrm{sin}{\theta}} C_h(z \mathrm{sin}{\theta}) - C(z, -\mathrm{cos}{\theta}), $$
+$$ \tag{40} C_l(z, \cos{\theta}) = 2 e^{z - z \sin{\theta}} C_h(z \sin{\theta}) - C(z, -\cos{\theta}), $$
 
 which means that we must find a position \\(\bm{p}\\) (sometimes called the [periapsis](https://en.wikipedia.org/wiki/Apsis) point, see the diagram in the previous section) along the ray where it is orthogonal to the surface normal, evaluate the horizontal Chapman function there (twice, forwards and backwards, to cover the entire real line), and subtract the value of the Chapman function at the original position with the reversed direction (towards the atmospheric boundary), which isolates the integral to the desired ray segment.
 
 Christian Schüler proposes an approximation of the Chapman function for the upper hemisphere in his [GPU Gems 3](http://www.gameenginegems.net/gemsdb/article.php?id=1133) article:
 
-$$ \tag{41} C_{u\\_cs}(z, \mathrm{cos}{\theta}) \approx \frac{C_h(z)}{(C_h(z) - 1) \mathrm{cos}{\theta} + 1}. $$
+$$ \tag{41} C_{u\\_cs}(z, \cos{\theta}) \approx \frac{C_h(z)}{(C_h(z) - 1) \cos{\theta} + 1}. $$
 
 It is a pretty good approximation, especially considering the cost.
 
@@ -447,7 +488,7 @@ The resulting approximation of the Chapman function has up to 50 times lower rel
 
 For reference, the full numerical approximation of the Chapman function for the upper hemisphere is:
 
-$$ \tag{43} C_{u\\_a}(z, \mathrm{cos}{\theta}) \approx \frac{\mathrm{cos}{\theta}}{2} + \frac{0.761643 (1 + z (2 - \mathrm{cos}^2{\theta}))}{z \mathrm{cos}{\theta} + \sqrt{z (1.47721 + 0.273828 z \mathrm{cos}^2{\theta})}}. $$
+$$ \tag{43} C_{u\\_a}(z, \cos{\theta}) \approx \frac{\cos{\theta}}{2} + \frac{0.761643 (1 + z (2 - \cos^2{\theta}))}{z \cos{\theta} + \sqrt{z (1.47721 + 0.273828 z \cos^2{\theta})}}. $$
 
 Sample code which implements the Equation 40 is listed below.
 
@@ -491,7 +532,7 @@ float RescaledChapmanFunction(float z, float Z, float cosTheta)
 }
 ```
 
-A small but important note is that we can always use \\( \vert \mathrm{cos}{\theta} \vert \\) to evaluate the upper part of the Chapman function since, if the angle is greater than 90 degrees, the direction of the ray can be reversed, and the cosine negated.
+A small but important note is that we can always use \\( \vert \cos{\theta} \vert \\) to evaluate the upper part of the Chapman function since, if the angle is greater than 90 degrees, the direction of the ray can be reversed, and the cosine negated.
 
 #### Evaluating Optical Depth Using the Chapman Function
 
@@ -505,9 +546,9 @@ To start with, we may want to know whether the ray intersects the planet, or, in
 
 {{< figure src="/img/spherical_param_2.png">}}
 
-Since a "horizon" ray always intersects the planet at a 90 degree angle, the (obtuse) horizon angle \\( \mathrm{cos}{\theta_h} \\) at the query point can be found using basic trigonometry:
+Since a "horizon" ray always intersects the planet at a 90 degree angle, the (obtuse) horizon angle \\( \cos{\theta_h} \\) at the query point can be found using basic trigonometry:
 
-$$ \tag{44} \mathrm{cos}{\theta_h} = -\frac{\mathrm{adjacent}}{\mathrm{hypotenuse}} = -\frac{\sqrt{r^2 - R^2}}{r} = -\sqrt{1 - (R/r)^2}. $$
+$$ \tag{44} \cos{\theta_h} = -\frac{\mathrm{adjacent}}{\mathrm{hypotenuse}} = -\frac{\sqrt{r^2 - R^2}}{r} = -\sqrt{1 - (R/r)^2}. $$
 
 If the ray points above the horizon, the regular Chapman function gets the job done. And if the ray points below the horizon, it may seem that we need to evaluate the full Chapman function twice (as per Equation 36), once at the starting position \\(\bm{x}\\), where the ray points into the lower hemisphere, and once at the intersection point \\(\bm{y}\\) (using the same ray direction).
 
@@ -519,11 +560,11 @@ Take a look at the updated diagram below:
 
 Using basic trigonometry, we can deduce the cosine of the angle at the intersection point
 
-$$ \tag{45} \mathrm{sin}{\gamma} = \frac{\mathrm{opposite}}{\mathrm{hypotenuse}} = \frac{r_0}{R} = \frac{r \mathrm{sin}{\theta}}{R} \qquad \mathrm{cos}{\gamma} = \sqrt{1 - \mathrm{sin}^2{\gamma}} $$
+$$ \tag{45} \sin{\gamma} = \frac{\mathrm{opposite}}{\mathrm{hypotenuse}} = \frac{r_0}{R} = \frac{r \sin{\theta}}{R} \qquad \cos{\gamma} = \sqrt{1 - \sin^2{\gamma}} $$
 
 that determines the value of the Chapman function below horizon:
 
-$$ \tag{46} C_b(z, \mathrm{cos}{\theta}, Z, \mathrm{cos}{\gamma}) = C_u(Z, \mathrm{cos}{\gamma}) - C_u(z, \vert \mathrm{cos}{\theta} \vert). $$
+$$ \tag{46} C_b(z, \cos{\theta}, Z, \cos{\gamma}) = C_u(Z, \cos{\gamma}) - C_u(z, \vert \cos{\theta} \vert). $$
 
 Sample code is listed below. While it is possible to use the `RescaledChapmanFunction` in this scenario, the following implementation is slightly more efficient.
 
@@ -574,20 +615,20 @@ If desired, it is possible to reduce execution divergence by utilizing `ChapmanU
 
 Now we are ready to tackle the most general case of evaluating optical depth between two arbitrary points \\(\bm{x}\\) and \\(\bm{y}\\). It may seem really complicated at first when, in fact, it is very similar to the problem we just solved. We have to consider three distinct possibilities:
 
-1\. \\(\mathrm{cos}{\theta_x} \geq 0 \\), which means that the ray points into the upper hemisphere with respect to the surface normal at the point \\(\bm{x}\\). This also means it points into the upper hemisphere at any point \\(\bm{y}\\) along the ray (it is fairly obvious if you sketch it). Optical depth is given by the Equation 36, which we specialize by replacing \\(C\\) with \\(C_u\\) which is restricted to the upper hemisphere:
+1\. \\(\cos{\theta_x} \geq 0 \\), which means that the ray points into the upper hemisphere with respect to the surface normal at the point \\(\bm{x}\\). This also means it points into the upper hemisphere at any point \\(\bm{y}\\) along the ray (it is fairly obvious if you sketch it). Optical depth is given by the Equation 36, which we specialize by replacing \\(C\\) with \\(C_u\\) which is restricted to the upper hemisphere:
 
 $$ \tag{47}
-\bm{\tau\_{uu}}(z_x, \mathrm{cos}{\theta_x}, z_y, \mathrm{cos}{\theta_y})
-    = \bm{\sigma_t} \frac{k}{n} \Bigg( e^{Z - z_x} C_u(z_x, \mathrm{cos}{\theta_x}) - e^{Z - z_y} C_u(z_y, \mathrm{cos}{\theta_y}) \Bigg).
+\bm{\tau\_{uu}}(z_x, \cos{\theta_x}, z_y, \cos{\theta_y})
+    = \bm{\sigma_t} \frac{k}{n} \Bigg( e^{Z - z_x} C_u(z_x, \cos{\theta_x}) - e^{Z - z_y} C_u(z_y, \cos{\theta_y}) \Bigg).
 $$
 
-2\. \\(\mathrm{cos}{\theta_x} < 0 \\) and \\(\mathrm{cos}{\theta_y} < 0 \\) occurs e.g. when looking straight down. It is also easy to handle, we just flip the direction of the ray (by taking the absolute value of the cosine), replace the segment \\(\bm{xy}\\) with the segment \\(\bm{yx}\\) and fall back to case 1.
+2\. \\(\cos{\theta_x} < 0 \\) and \\(\cos{\theta_y} < 0 \\) occurs e.g. when looking straight down. It is also easy to handle, we just flip the direction of the ray (by taking the absolute value of the cosine), replace the segment \\(\bm{xy}\\) with the segment \\(\bm{yx}\\) and fall back to case 1.
 
-3\. \\(\mathrm{cos}{\theta_x} < 0 \\) and \\(\mathrm{cos}{\theta_y} \geq 0 \\). This is the most complicated case, since we have to evaluate the Chapman function three times, twice at \\(\bm{x}\\) and once at \\(\bm{y}\\):
+3\. \\(\cos{\theta_x} < 0 \\) and \\(\cos{\theta_y} \geq 0 \\). This is the most complicated case, since we have to evaluate the Chapman function three times, twice at \\(\bm{x}\\) and once at \\(\bm{y}\\):
 
 $$ \tag{48} \begin{aligned}
-\bm{\tau\_{ul}}(z_x, \mathrm{cos}{\theta_x}, z_y, \mathrm{cos}{\theta_y})
-    &= \bm{\sigma_t} \frac{k}{n} \Bigg( e^{Z - z_x} C_l(z_x, \mathrm{cos}{\theta_x}) - e^{Z - z_y} C_u(z_y, \mathrm{cos}{\theta_y}) \Bigg).
+\bm{\tau\_{ul}}(z_x, \cos{\theta_x}, z_y, \cos{\theta_y})
+    &= \bm{\sigma_t} \frac{k}{n} \Bigg( e^{Z - z_x} C_l(z_x, \cos{\theta_x}) - e^{Z - z_y} C_u(z_y, \cos{\theta_y}) \Bigg).
 \end{aligned} $$
 
 Sample code is listed below.
@@ -642,8 +683,8 @@ First, let's establish a couple of useful identities. Recalling the Equation 32,
 $$ \tag{49}
 \mathcal{R}(r, \theta, t)
     = \sqrt{r_0^2 + (t_0 + t)^2}
-    = \sqrt{(r \mathrm{sin}{\theta})^2 + (r \mathrm{cos}{\theta} + t)^2}
-    = \sqrt{r^2 + t^2 + 2 t r \mathrm{cos}{\theta}}.
+    = \sqrt{(r \sin{\theta})^2 + (r \cos{\theta} + t)^2}
+    = \sqrt{r^2 + t^2 + 2 t r \cos{\theta}}.
 $$
 
 The cosine of the ray direction with respect to the surface normal at that point can be computed similarly:
@@ -652,7 +693,7 @@ $$ \tag{50}
 \mathcal{C}(r, \theta, t)
     = \frac{\mathrm{adjacent}}{\mathrm{hypotenuse}}
     = \frac{t_0 + t}{\mathcal{R}(r, \theta, t)}
-    = \frac{r \mathrm{cos}{\theta} + t}{\sqrt{(r \mathrm{sin}{\theta})^2 + (r \mathrm{cos}{\theta} + t)^2}}.
+    = \frac{r \cos{\theta} + t}{\sqrt{(r \sin{\theta})^2 + (r \cos{\theta} + t)^2}}.
 $$
 
 Using the new, compact notation, and after performing a few algebraic manipulations, we can reduce the CDF inversion problem to solving the following equation:
@@ -666,12 +707,12 @@ which means that we need to find the distance \\(t\\) at which the value of the 
 This equation has too many parameters. We can reduce dimensionality by solving for \\(t' = nt\\):
 
 $$ \tag{52}
-q = C_r \Big( \sqrt{(z \mathrm{sin}{\theta})^2 + (z \mathrm{cos}{\theta} + t')^2}, Z, \frac{z \mathrm{cos}{\theta} + t'}{\sqrt{(z \mathrm{sin}{\theta})^2 + (z \mathrm{cos}{\theta} + t')^2}} \Big).
+q = C_r \Big( \sqrt{(z \sin{\theta})^2 + (z \cos{\theta} + t')^2}, Z, \frac{z \cos{\theta} + t'}{\sqrt{(z \sin{\theta})^2 + (z \cos{\theta} + t')^2}} \Big).
 $$
 
 After getting rid of \\(n\\), the next step is to group common terms:
 
-$$ \tag{53} \phi = z \mathrm{sin}{\theta} \qquad \psi = z \mathrm{cos}{\theta} + t', $$
+$$ \tag{53} \phi = z \sin{\theta} \qquad \psi = z \cos{\theta} + t', $$
 
 $$ \tag{54}
 q = C_r \Bigg( \sqrt{\phi^2+\psi^2}, Z, \frac{\psi}{\sqrt{\phi^2+\psi^2}} \Bigg). $$
