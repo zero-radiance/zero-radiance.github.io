@@ -15,13 +15,13 @@ Rendering of participating media is an important aspect of every modern renderer
 
 <!--more-->
 
-In the [radiative transfer](https://archive.org/details/RadiativeTransfer) literature, light-material interaction is usually quantified in terms of absorption (conversion of electromagnetic energy of photons into kinetic energy of atoms, which manifests itself as reduction of light intensity) and scattering (absorption and subsequent re-radiation of electromagnetic energy on interaction). Therefore, it is common to describe participating media using the collision coefficients: the *absorption coefficient* \\(\bm{\mu_a}\\) and the *scattering coefficient* \\(\bm{\mu_s}\\). These coefficients give the probability density of the corresponding event per unit distance traveled by a photon, which implies the [SI units](https://en.wikipedia.org/wiki/International_System_of_Units) of measurement are \\(m^{-1}\\).
+In the [radiative transfer](https://archive.org/details/RadiativeTransfer) literature, light-material interaction is usually quantified in terms of absorption (conversion of electromagnetic energy of photons into kinetic energy of atoms, which manifests itself as reduction of light intensity) and scattering (absorption and subsequent re-radiation of electromagnetic energy on interaction). Therefore, it is common to describe participating media using the collision coefficients of its particles: the *absorption coefficient* \\(\bm{\mu_a}\\) and the *scattering coefficient* \\(\bm{\mu_s}\\). These coefficients give the probability density of the corresponding event per unit distance traveled by a photon, which implies the [SI units](https://en.wikipedia.org/wiki/International_System_of_Units) of measurement are \\(m^{-1}\\).
 
 The [attenuation coefficient](https://en.wikipedia.org/wiki/Attenuation_coefficient) \\(\bm{\mu_t}\\)
 
 $$ \tag{1} \bm{\mu_t} = \bm{\mu_a} + \bm{\mu_s} $$
 
-gives the probability density of absorption or scattering (or, in other words, the collision rate) as a photon travels a unit distance though the medium. All these coefficients are spectral (may vary with the wavelength \\(\lambda\\)), and can be represented as vectors (boldface notation). At this point in time, it is not entirely clear (at least to me) how to *correctly* perform volume rendering using tristimulus (RGB) values (which would require some kind of pre-integration using [color matching functions](https://en.wikipedia.org/wiki/CIE_1931_color_space#Color_matching_functions)), so I will focus on pure spectral rendering, which is well-defined.
+gives the probability density of absorption or scattering (or, in other words, the collision rate) as a photon travels a unit distance though the medium. All these coefficients are spectral (may vary with the wavelength \\(\lambda\\)), and can be represented as vectors (boldface notation). At this point in time, it is not entirely clear (at least to me) how to *correctly* perform volume rendering using tristimulus (RGB) values (which would require some sort of pre-integration using [color matching functions](https://en.wikipedia.org/wiki/CIE_1931_color_space#Color_matching_functions)), so I will focus on pure spectral rendering, which is well-defined.
 
 A more artist-friendly parametrization uses the [single-scattering albedo](https://en.wikipedia.org/wiki/Single-scattering_albedo) \\(\bm{\alpha\_{ss}}\\)
 
@@ -37,7 +37,7 @@ Taking a small detour, for metals, the absorption coefficient is directly relate
 
 $$ \tag{4} \bm{\kappa} = \frac{\bm{\lambda}}{4 \pi} \bm{\mu_a}. $$
 
-For this reason, \\(\bm{\eta}\\) is called the [refractive index](https://www.feynmanlectures.caltech.edu/I_31.html) (or IOR), and \\(\bm{\kappa}\\) is  sometimes referred to as the [absorption index](https://www.feynmanlectures.caltech.edu/I_31.html).
+For this reason, \\(\bm{\eta}\\) is called the [refractive index](https://www.feynmanlectures.caltech.edu/I_31.html) (or IOR), and \\(\bm{\kappa}\\) is  sometimes referred to as the [absorption index](http://www.sfu.ca/~gchapman/e376/e376l7.pdf). Note that I am not talking about the IOR of an individual particle (which influences the microscopic scattering process), but rather about the macroscropic properties of the medium itself.
 
 The tuple \\(\lbrace \bm{\eta}, \bm{\kappa}, \bm{\mu_s} \rbrace\\) \\(\big(\\)or, alternatively, \\(\lbrace \bm{\eta}, \bm{d}, \bm{\alpha\_{ss}} \rbrace  \big) \\) contains sufficient information to describe both the behavior at the surface (boundary) and the (isotropic) multiple-scattering process (known as [subsurface scattering](https://en.wikipedia.org/wiki/Subsurface_scattering)) inside the volume that ultimately gives rise to what we perceive as the surface albedo \\(\bm{\alpha\_{ms}}\\). Note that certain materials (metals, in particular) require modeling of [wave interference](https://en.wikipedia.org/wiki/Wave_interference) to obtain expected reflectance values.
 
@@ -53,22 +53,22 @@ But what about the IOR? Often, one assumes that it is independent of density. Bu
 
 There are several known relations between density and the IOR. One of them is given by the [Lorentz–Lorenz equation](https://en.wikipedia.org/wiki/Clausius%E2%80%93Mossotti_relation):
 
-$$ \tag{6} \frac{\bm{n}^2 - 1}{\bm{n}^2 + 2} = \frac{4}{3} \pi \frac{N_a}{m} \rho \bm{\alpha_m}, $$
+$$ \tag{6} \frac{\bm{n}^2 - 1}{\bm{n}^2 + 2} = \frac{4}{3} \pi \frac{\rho}{m} \bm{\alpha_m}, $$
 
-where \\(m\\) is the [molecular mass](https://en.wikipedia.org/wiki/Molecular_mass) (in \\(kg\\)), \\(N_a\\) is the [Avogadro number](https://en.wikipedia.org/wiki/Avogadro_constant), and \\(\bm{\alpha_m}\\) is the [molecular polarizability](https://en.wikipedia.org/wiki/Electric_susceptibility#Molecular_polarizability) (in \\(m^3\\), watch out for [different conventions](https://en.wikipedia.org/wiki/Electric_susceptibility#Ambiguity_in_the_definition)), which can itself depend on temperature and pressure. Incidentally, this relation represents a way to compute the IOR of a [mixture of several substances](https://www.sciencedirect.com/science/article/pii/S0021850208001183). It's interesting to note that the [Lorentz–Lorenz mixture rule](https://www.sciencedirect.com/science/article/pii/S0021850208001183) is based on four principles of additivities of mole, mass, volume, and molecular polarizability, with the last two assumption being rather context-dependent.
+where \\(m\\) is the [molecular mass](https://en.wikipedia.org/wiki/Molecular_mass) (in \\(kg\\)) and \\(\bm{\alpha_m}\\) is the [molecular polarizability](https://en.wikipedia.org/wiki/Electric_susceptibility#Molecular_polarizability) (in \\(m^3\\), watch out for different [conventions](https://en.wikipedia.org/wiki/Electric_susceptibility#Ambiguity_in_the_definition)). Incidentally, this relation represents a way to compute the IOR of a [mixture](https://www.sciencedirect.com/science/article/pii/S0021850208001183) of several substances. It's interesting to note that the [Lorentz–Lorenz mixture rule](https://www.sciencedirect.com/science/article/pii/S0021850208001183) is based on four principles of additivities of mole, mass, volume, and molecular polarizability, with the last two assumption being rather context-dependent.
 
 For materials with small mass densities, the molecules are far apart from one another, the molecular interactions are weak, and the refractive index is close to 1. Therefore, for matter in a gas state, the following approximation can be made:
 
 $$ \begin{aligned} \tag{7}
-    & \bm{n}^2 \approx 1 + 4 \pi \frac{N_a}{m} \rho \bm{\alpha_m} = 1 + 2 \bm{c} \rho, \cr
-    & \bm{n} \approx \sqrt{1 + 4 \pi \frac{N_a}{m} \rho \bm{\alpha_m}} \approx 1 + 2 \pi \frac{N_a}{m} \rho \bm{\alpha_m} = 1 + \bm{c} \rho,
+    \bm{n}^2 & \approx 1 + 4 \pi \frac{\rho}{m} \bm{\alpha_m} = 1 + 2 \bm{c} \rho, \cr
+    \bm{n}   & \approx 1 + 2 \pi \frac{\rho}{m} \bm{\alpha_m} = 1 + \bm{c} \rho,
 \end{aligned} $$
 
-where \\(\bm{c}\\) is the [light dispersion coefficient](https://ui.adsabs.harvard.edu/abs/1956mond.book.....L/abstract). This equation implies that the [relative brake power](https://www.sciencedirect.com/topics/chemistry/optical-refraction) \\((\bm{n} - 1)\\) has an approximately linear relation with density. Similar [relations](http://www.waves.utoronto.ca/prof/svhum/ece422/notes/20a-atmospheric-refr.pdf) can be found for temperature, humidity and pressure. Also, while the discussion above mostly concerns dielectrics, the formula for metals is [very similar](https://www.feynmanlectures.caltech.edu/II_32.html#mjx-eqn-EqII3238).
+where \\(\bm{c}\\) is the [light dispersion coefficient](https://ui.adsabs.harvard.edu/abs/1996CoSka..26...23K/abstract). This equation implies that the [relative brake power](https://www.sciencedirect.com/topics/chemistry/optical-refraction) \\((\bm{n} - 1)\\) has an approximately linear relation with density. Similar [relations](http://www.waves.utoronto.ca/prof/svhum/ece422/notes/20a-atmospheric-refr.pdf) can be found for temperature, humidity and pressure (in fact, all coefficients are highly [temperature-dependent](http://www.sfu.ca/~gchapman/e376/e376l7.pdf)). Also, while the discussion above mostly concerns dielectrics, the formula for metals is [very similar](https://www.feynmanlectures.caltech.edu/II_32.html#mjx-eqn-EqII3238).
 
-Continuous variations of the IOR pose an issue for path tracing. Typically, paths are composed of straight segments joined at scattering locations. Unfortunately, due to the [principle of least time](https://en.wikipedia.org/wiki/Fermat%27s_principle), continuously varying IOR forces photons to travel along [curved paths](http://www.waves.utoronto.ca/prof/svhum/ece422/notes/20a-atmospheric-refr.pdf) that obey [Snell's law](https://en.wikipedia.org/wiki/Snell%27s_law). And since the IOR can depend on the wavelength, it can cause [dispersion](https://en.wikipedia.org/wiki/Dispersion_(optics)) not only at the interfaces, but also continuously, along the entire path. So it is not too surprising that that most renderers ignore this behavior (effectively turning participating media into "dense vacuum" which, physically, doesn't make any sense). For small density gradients and small distances, it is a valid approximation that, on average, gives approximately correct results. On the other hand, for certain atmospheric effects, [atmospheric refraction](https://en.wikipedia.org/wiki/Atmospheric_refraction) can make a non-negligible contribution.
+Continuous variation of the IOR poses a challenge for path tracing. Typically, paths are composed of straight segments joined at scattering locations. Unfortunately, due to the [principle of least time](https://en.wikipedia.org/wiki/Fermat%27s_principle), continuously varying IOR forces photons to travel along [curved paths](https://www.rfcafe.com/references/electrical/atm-refraction.htm) that obey [Snell's law](https://en.wikipedia.org/wiki/Snell%27s_law). And since the IOR can depend on the wavelength, it can cause [dispersion](https://en.wikipedia.org/wiki/Dispersion_(optics)) not only at the interfaces, but also continuously, along the entire path. So it is not too surprising that that most renderers ignore this behavior (effectively turning participating media into "dense vacuum" which, physically, doesn't make much sense). For small density gradients and small distances, it is a valid approximation that, on average, gives roughly correct results. On the other hand, for certain atmospheric effects, [atmospheric refraction](https://en.wikipedia.org/wiki/Atmospheric_refraction) can make a non-negligible contribution.
 
-Luckily, most of the math related to light transport can be defined in a way that is independent from the geometry of the path. For instance, transmittance \\(\bm{T}\\) can be defined as the fraction of incident radiance transmitted along the shortest path between points \\(\bm{x}\\) and \\(\bm{y}\\):
+Luckily, most of the math related to light transport can be expressed in a way that is independent from the geometry of the path. For instance, transmittance \\(\bm{T}\\) can be defined as the fraction of incident radiance transmitted along the shortest path between points \\(\bm{x}\\) and \\(\bm{y}\\):
 
 $$ \tag{8} \bm{T}(\bm{x}, \bm{y}) = \frac{\bm{L}(\bm{x}, \bm{v_x})}{\bm{L}(\bm{y}, \bm{v_y})}, $$
 
@@ -182,11 +182,11 @@ If your background is in real-time rendering, you may have heard of [constant, l
 
 ### Constant Density
 
-A homogeneous medium has uniform density across the entire volume (recall the Equation 5):
+A homogeneous medium has uniform density across the entire volume:
 
 $$ \tag{24} \rho_c = b. $$
 
-This formulation makes computing optical depth easy:
+This formulation makes computing optical depth easy (recall the Equations 5 and 10):
 
 $$ \tag{25} \bm{\tau_c}(\bm{x}, \bm{y})
     = \bm{\sigma_t} \int\_{\bm{x}}^{\bm{y}} \rho du
@@ -220,10 +220,10 @@ What we would like to evaluate the following integral:
 
 $$ \tag{28} \bm{\tau\_{lr}}(\bm{x}, \bm{y})
     = \bm{\sigma_t} \int\_{\bm{x}}^{\bm{y}} \rho{\big(h(\bm{u}) \big)} du
-    = \bm{\sigma_t} \int\_{\bm{x}}^{\bm{y}} (k h(\bm{u}) + b) du.
+    = \bm{\sigma_t} \int\_{\bm{x}}^{\bm{y}} \big(k h(\bm{u}) + b \big) du.
 $$
 
-Evaluation can be simplified by making a change of variables and integrating with respect to the altitude \\(h\\) rather than the parametric distance \\(u\\) along the path. Let's start with the simplest case of a straight path, by assuming the IOR value of 1. Graphically, we want to compute the ratio of infinitesimal lengths \\(ds\\) and \\(dh\\) which is, of course, just the secant of the zenith angle.
+The task can be simplified by making a change of variables and integrating with respect to the altitude \\(h\\) rather than the parametric distance \\(u\\) along the path. Let's start with the simplest case of a straight path, by assuming the IOR value of 1. Graphically, we want to compute the ratio of infinitesimal lengths \\(ds\\) and \\(dh\\) which is, of course, just the secant of the zenith angle.
 
 {{< figure src="/img/dh_ds.png">}}
 
@@ -235,7 +235,7 @@ $$ \tag{29}
 	\int\_{h\_{x}}^{h\_{y}} f(h) \sec{\theta} dh =
 	\int\_{h\_{x}}^{h\_{y}} f(h) \frac{\Vert \bm{y} - \bm{x} \Vert}{h_y - h_x} dh. $$
 
-The general case with curved trajectories requires application of [Snell's law](https://en.wikipedia.org/wiki/Snell%27s_law):
+The general case of curved trajectories requires application of [Snell's law](https://en.wikipedia.org/wiki/Snell%27s_law):
 
 $$ \tag{30}
 	n(h_0) \sin{\theta\_0} = n(h_1) \sin{\theta\_1}. $$
