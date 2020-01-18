@@ -113,11 +113,19 @@ $$
 
 Computer graphics applications are primarily concerned with light transport. If we restrict ourselves to geometric optics, shading our (non-emissive) medium is reduced to evaluation of the [recursive in-scattering integral](http://www.pbr-book.org/3ed-2018/Light_Transport_II_Volume_Rendering/The_Equation_of_Transfer.html) along the ray:
 
-$$ \tag{15} \bm{L}(\bm{x}, \bm{v})
-    = \int\_{\bm{x}}^{\bm{y\_{vol}}} \bm{T}(\bm{x}, \bm{u}) \bm{\mu_s}(\bm{u}) \int\_{\bm{S}^2} f(\bm{u}, \bm{v}, \bm{l}) \bm{L}(\bm{u}, \bm{l}) \bm{dl} du,
-$$
+$$ \begin{aligned} \tag{15}
+    \bm{L}(\bm{x}, \bm{v})
+    = \int\_{\bm{x}}^{\bm{y\_{vol}}} \bm{T}(\bm{x}, \bm{u}) \Big(
+        & \bm{F}(\bm{u}, \bm{r_u}) \bm{L}(\bm{u}, \bm{r_u}) + \cr
+        & \big( 1 - \bm{F}(\bm{u}, \bm{r_u}) \big) \int\_{\bm{S}^2} \bm{\mu_s}(\bm{u}, \bm{v_u}, \bm{l}) f(\bm{u}, \bm{v_u}, \bm{l}) \bm{L}(\bm{u}, \bm{l}) \bm{dl}
+    \Big) du.
+\end{aligned} $$
+
+
 
 where \\(\bm{L}(\bm{x}, \bm{v})\\) is the amount of radiance at the position \\(\bm{x}\\) in the direction \\(\bm{v}\\), and \\(f\\) denotes the [phase function](http://www.pbr-book.org/3ed-2018/Volume_Scattering/Phase_Functions.html) which additionally depends on the light direction \\(\bm{l} \in \bm{S}^2\\). In the case of asymmetric scattering, the collision coefficients (cross sections) may be direction-dependent as well. The domain of integration is typically finite, ending either at the closest surface, or at the point where the ray exits the volume; we will refer to it as \\(\bm{y\_{vol}}\\).
+
+For continuously varying IOR, refraction along the path may force it to become curved, but the equation remains valid. There is another, more subtle part missing - along with refraction, we should model reflection as well. This integral does not model any form of reflection except for the [total internal reflection](https://en.wikipedia.org/wiki/Total_internal_reflection).
 
 We can evaluate the outer integral using one of the [Monte Carlo](http://www.pbr-book.org/3ed-2018/Monte_Carlo_Integration.html) methods. The first step is to split the integrand in two parts: the part we can evaluate analytically, and the part that has to be integrated numerically. We can group the product of transmittance and the scattering coefficient together, and leave the inner integral as the "numerical" term \\(\bm{L_s}\\):
 
