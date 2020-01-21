@@ -68,7 +68,7 @@ where \\(\bm{c}\\) is the [light dispersion coefficient](https://ui.adsabs.harva
 
 Continuous variation of the IOR poses a challenge for path tracing. Typically, paths are composed of straight segments joined at scattering locations. Unfortunately, due to the [principle of least time](https://en.wikipedia.org/wiki/Fermat%27s_principle), continuously varying IOR forces photons to travel along [curved paths](https://www.rfcafe.com/references/electrical/atm-refraction.htm) that obey [Snell's law](https://en.wikipedia.org/wiki/Snell%27s_law). And since the IOR can depend on the wavelength, it can cause [dispersion](https://en.wikipedia.org/wiki/Dispersion_(optics)) not only at the interfaces, but also continuously, along the entire path. So it is not too surprising that that most renderers ignore this behavior (effectively turning participating media into "dense vacuum" which, physically, doesn't make much sense). For small density gradients and small distances, it is a valid approximation that, on average, gives roughly correct results. On the other hand, for certain atmospheric effects, [atmospheric refraction](https://en.wikipedia.org/wiki/Atmospheric_refraction) can make a non-negligible contribution.
 
-Luckily, most of the math related to light transport can be expressed in a way that is independent from the geometry of the path. For instance, transmittance \\(\bm{T}\\) can be defined as the fraction of incident radiance transmitted along the shortest path between points \\(\bm{x}\\) and \\(\bm{y}\\):
+Luckily, most of the math related to light transport can be expressed in a way that is independent from the geometry of the path. For instance, transmittance \\(\bm{T}\\) can be defined as the fraction of incident radiance transmitted along the shortest path between points \\(\bm{x}\\) and \\(\bm{y}\\) (but does not account for the Fresnel effect?? See below):
 
 $$ \tag{8} \bm{T}(\bm{x}, \bm{y}) = \frac{\bm{L}(\bm{x}, \bm{v_x})}{\bm{L}(\bm{y}, \bm{v_y})}, $$
 
@@ -111,32 +111,59 @@ $$ \tag{14}
     \int\_{\bm{x}}^{\bm{y}} \bm{\mu_t}(\bm{u}) e^{-\bm{\tau}(\bm{u}, \bm{y})} du.
 $$
 
-Computer graphics applications are primarily concerned with light transport. If we restrict ourselves to geometric optics, shading our (non-emissive) medium is reduced to evaluation of the [recursive in-scattering integral](http://www.pbr-book.org/3ed-2018/Light_Transport_II_Volume_Rendering/The_Equation_of_Transfer.html) along the ray:
+Computer graphics applications are primarily concerned with light transport. The geometric optical model is given by the [integral equation of transfer](http://www.pbr-book.org/3ed-2018/Light_Transport_II_Volume_Rendering/The_Equation_of_Transfer.html) along the path from \\(\bm{x}\\) to \\(\bm{y}\\):
 
 $$ \begin{aligned} \tag{15}
-    \bm{L}(\bm{x}, \bm{v})
-    = \int\_{\bm{x}}^{\bm{y\_{vol}}} \bm{T}(\bm{x}, \bm{u}) \Big(
-        & \bm{F}(\bm{u}, \bm{r_u}) \bm{L}(\bm{u}, \bm{r_u}) + \cr
-        & \big( 1 - \bm{F}(\bm{u}, \bm{r_u}) \big) \int\_{\bm{S}^2} \bm{\mu_s}(\bm{u}, \bm{v_u}, \bm{l}) f(\bm{u}, \bm{v_u}, \bm{l}) \bm{L}(\bm{u}, \bm{l}) \bm{dl}
-    \Big) du.
+    \bm{L}(\bm{x}, \bm{v}) =
+    \int\_{\bm{x}}^{\bm{y}} \bm{T}(\bm{x}, \bm{u}) \Big[
+        & \bm{F}(\bm{u}, \bm{r_u}) \bm{L}(\bm{u}, \bm{r_u}) \; + \cr
+        & \big( 1 - \bm{F}(\bm{u}, \bm{r_u}) \big)
+            \big( \bm{\mu_a}(\bm{u}) \bm{L_e}(\bm{u}, \bm{v_u}) + \bm{\mu_s}(\bm{u}) \bm{L_s}(\bm{u}, \bm{t_u}) \big)
+    \Big] du,
+\end{aligned} $$
+
+where the in-scattering radiance term \\(\bm{L_s}\\) is given as
+
+$$ \tag{16} \bm{L_s}(\bm{x}, \bm{v}) = \int\_{\bm{S}^2} f(\bm{u}, \bm{v}, \bm{l}) \bm{L}(\bm{u}, \bm{l}) \bm{dl}. $$
+
+Let's examine the Equation 15 in more detail. One way to get a better understanding of how it works is to consider a few special cases.
+
+For the first one, imagine a thin spherical glass shell in vacuum at the distance \\(y\\). Since the shell is very thin, we may consider that the density is 0 everywhere, except near the shell, where the density gradient is very large. Therefore, all collision coefficients may be set to 0 (except near the shell, which we model with \\(\bm{\mu_s}=1\\) and a [Kronecker delta](https://en.wikipedia.org/wiki/Kronecker_delta) phase function \\(f(\bm{u}, \bm{v}, \bm{l}) = \delta\_{\bm{uv}}\\)), and the volume contribution is also 0. The integral can be then simplified to
+
+$$ \tag{17}
+    \bm{L_1}(\bm{x}, \bm{v}) =
+        \bm{F}(\bm{y}, \bm{r_y}) \bm{L_1}(\bm{y}, \bm{r_y}) +
+        \big( 1 - \bm{F}(\bm{y}, \bm{r_y}) \big) \bm{L_1}(\bm{y}, \bm{t_y}),
+$$
+
+where \\(\bm{r_y}\\) is the reflected direction (w.r.t. the viewing direction \\(\bm{v}\\)) at the surface of the glass ball, \\(\bm{t_y}\\) is the corresponding refracted direction, and \\(\bm{F}\\) is the [Fresnel equation](https://en.wikipedia.org/wiki/Fresnel_equations), which is 0 everywhere where the density gradient is 0. The Equation 17 corresponds to the surface rendering equation in vacuum.
+
+If we replace the thin shell with a ball, and perhaps surround it by homogeneous fog, we will get some in-scattering contribution, while the density gradient is still 0 everywhere except near the surface of the ball:
+
+$$ \begin{aligned} \tag{18}
+    \bm{L_2}(\bm{x}, \bm{v}) =
+    \int\_{\bm{x}}^{\bm{y}}
+        & \bm{T}(\bm{x}, \bm{u}) \bm{\mu_s}(\bm{u}) \bm{L_s}(\bm{u}, \bm{t_u}) du \; + \cr
+        & \bm{T}(\bm{x}, \bm{y}) \Big[ \bm{F}(\bm{y}, \bm{r_y}) \bm{L_2}(\bm{y}, \bm{r_y}) +
+        \big( 1 - \bm{F}(\bm{y}, \bm{r_y}) \big) \bm{L_2}(\bm{y}, \bm{t_y}) \Big].
 \end{aligned} $$
 
 
 
-where \\(\bm{L}(\bm{x}, \bm{v})\\) is the amount of radiance at the position \\(\bm{x}\\) in the direction \\(\bm{v}\\), and \\(f\\) denotes the [phase function](http://www.pbr-book.org/3ed-2018/Volume_Scattering/Phase_Functions.html) which additionally depends on the light direction \\(\bm{l} \in \bm{S}^2\\). In the case of asymmetric scattering, the collision coefficients (cross sections) may be direction-dependent as well. The domain of integration is typically finite, ending either at the closest surface, or at the point where the ray exits the volume; we will refer to it as \\(\bm{y\_{vol}}\\).
+where \\(\bm{L}(\bm{x}, \bm{v})\\) is the amount of radiance at the position \\(\bm{x}\\) in the direction \\(\bm{v}\\), and \\(f\\) denotes the [phase function](http://www.pbr-book.org/3ed-2018/Volume_Scattering/Phase_Functions.html) which additionally depends on the light direction \\(\bm{l} \in \bm{S}^2\\). In the case of asymmetric scattering, the collision coefficients (cross sections) may be direction-dependent as well. The domain of integration is typically finite, ending either at the closest surface, or at the point where the ray exits the volume; we will refer to it as \\(\bm{y\_{max}}\\).
 
 For continuously varying IOR, refraction along the path may force it to become curved, but the equation remains valid. There is another, more subtle part missing - along with refraction, we should model reflection as well. This integral does not model any form of reflection except for the [total internal reflection](https://en.wikipedia.org/wiki/Total_internal_reflection).
 
 We can evaluate the outer integral using one of the [Monte Carlo](http://www.pbr-book.org/3ed-2018/Monte_Carlo_Integration.html) methods. The first step is to split the integrand in two parts: the part we can evaluate analytically, and the part that has to be integrated numerically. We can group the product of transmittance and the scattering coefficient together, and leave the inner integral as the "numerical" term \\(\bm{L_s}\\):
 
 $$ \tag{16} \bm{L}(\bm{x}, \bm{v})
-    = \int\_{\bm{x}}^{\bm{y\_{vol}}} \bm{T}(\bm{x}, \bm{u}) \bm{\mu_s}(\bm{u}) \bm{L_s}(\bm{u}, \bm{v}) du.
+    = \int\_{\bm{x}}^{\bm{y\_{max}}} \bm{T}(\bm{x}, \bm{u}) \bm{\mu_s}(\bm{u}) \bm{L_s}(\bm{u}, \bm{v}) du.
 $$
 
 Next, let's split the scattering coefficient into attenuation and albedo:
 
 $$ \tag{17} \bm{L}(\bm{x}, \bm{v})
-    = \int\_{\bm{x}}^{\bm{y\_{vol}}} \bm{T}(\bm{x}, \bm{u}) \bm{\mu_t}(\bm{u}) \bm{\alpha\_{ss}}(\bm{u}) \bm{L_s}(\bm{u}, \bm{v}) du.
+    = \int\_{\bm{x}}^{\bm{y\_{max}}} \bm{T}(\bm{x}, \bm{u}) \bm{\mu_t}(\bm{u}) \bm{\alpha\_{ss}}(\bm{u}) \bm{L_s}(\bm{u}, \bm{v}) du.
 $$
 
 The [Monte Carlo estimator](http://www.pbr-book.org/3ed-2018/Monte_Carlo_Integration/The_Monte_Carlo_Estimator.html) of the integral (for a single wavelength) takes the following form:
@@ -152,20 +179,20 @@ We can [importance sample](http://www.pbr-book.org/3ed-2018/Monte_Carlo_Integrat
 In order to turn it into a valid PDF, the product must be normalized using the Equation 13:
 
 $$ \tag{19} p(y | \lbrace \bm{x}, \bm{v} \rbrace)
-    = \frac{\mu_t(\bm{y}) T(\bm{x}, \bm{y})}{\int\_{\bm{x}}^{\bm{y\_{vol}}} \mu_t(\bm{u}) T(\bm{x}, \bm{u}) du}
-    = \frac{\mu_t(\bm{y}) T(\bm{x}, \bm{y})}{O(\bm{x}, \bm{\bm{y\_{vol}}})}. $$
+    = \frac{\mu_t(\bm{y}) T(\bm{x}, \bm{y})}{\int\_{\bm{x}}^{\bm{y\_{max}}} \mu_t(\bm{u}) T(\bm{x}, \bm{u}) du}
+    = \frac{\mu_t(\bm{y}) T(\bm{x}, \bm{y})}{O(\bm{x}, \bm{\bm{y\_{max}}})}. $$
 
 Substitution of the Equation 19 radically simplifies the form of the estimator (again, for a single wavelength):
 
-$$ \tag{20} L(\bm{x}, \bm{v}) \approx O(\bm{x}, \bm{\bm{y\_{vol}}}) \frac{1}{N} \sum\_{i=1}^{N} \alpha\_{ss}(\bm{y_i}) L_s(\bm{y_i}, \bm{v}). $$
+$$ \tag{20} L(\bm{x}, \bm{v}) \approx O(\bm{x}, \bm{\bm{y\_{max}}}) \frac{1}{N} \sum\_{i=1}^{N} \alpha\_{ss}(\bm{y_i}) L_s(\bm{y_i}, \bm{v}). $$
 
 This equation can be seen as a form of [premultiplied alpha blending](https://graphics.pixar.com/library/Compositing/) (where alpha is opacity), which explains why particle cards can be so convincing. Additionally, it offers yet another way to parametrize the attenuation coefficient - namely, by opacity at distance (which is similar to [transmittance at distance](https://blog.selfshadow.com/publications/s2015-shading-course/burley/s2015_pbs_disney_bsdf_notes.pdf) used by Disney). It is the most RGB rendering friendly parametrization that I am aware of.
 
-Extending the Equation 20 to handle the surface contribution is trivial. If the closest surface along the ray is at the distance \\(y\_{surf} \geq y\_{vol}\\), we simply need to add the surface contribution (another integral) attenuated by transmittance (which is one minus opacity):
+Extending the Equation 20 to handle the surface contribution is trivial. If the closest surface along the ray is at the distance \\(y\_{surf} \geq y\_{max}\\), we simply need to add the surface contribution (another integral) attenuated by transmittance (which is one minus opacity):
 
 $$ \tag{21}
-    L(\bm{x}, \bm{v}) \approx O(\bm{x}, \bm{\bm{y\_{vol}}}) \frac{1}{N} \sum\_{i=1}^{N} \alpha\_{ss}(\bm{y_i}) L_s(\bm{y_i}, \bm{v}) +
-    \big( 1 - O(\bm{x}, \bm{\bm{y\_{vol}}}) \big) L\_{surf}(\bm{y\_{surf}}, \bm{v}).
+    L(\bm{x}, \bm{v}) \approx O(\bm{x}, \bm{\bm{y\_{max}}}) \frac{1}{N} \sum\_{i=1}^{N} \alpha\_{ss}(\bm{y_i}) L_s(\bm{y_i}, \bm{v}) +
+    \big( 1 - O(\bm{x}, \bm{\bm{y\_{max}}}) \big) L\_{surf}(\bm{y\_{surf}}, \bm{v}).
 $$
 
 In this context, total opacity along the ray serves as the probability of a collision event in the volume, and can be used to randomly pick the type of the sample (surface or volume).
@@ -174,15 +201,15 @@ In order to sample the integrand, we must be also able to [invert](http://www.pb
 
 $$ \tag{22} P(y | \lbrace \bm{x}, \bm{v} \rbrace)
     = \int\_{0}^{y} p(u | \lbrace \bm{x}, \bm{v} \rbrace) du
-    = \int\_{\bm{x}}^{\bm{y}} \frac{\mu_t(\bm{u}) T(\bm{x}, \bm{u}) du}{O(\bm{x}, \bm{\bm{y\_{vol}}})}
-    = \frac{O(\bm{x}, \bm{\bm{y}})}{O(\bm{x}, \bm{\bm{y\_{vol}}})},
+    = \int\_{\bm{x}}^{\bm{y}} \frac{\mu_t(\bm{u}) T(\bm{x}, \bm{u}) du}{O(\bm{x}, \bm{\bm{y\_{max}}})}
+    = \frac{O(\bm{x}, \bm{\bm{y}})}{O(\bm{x}, \bm{\bm{y\_{max}}})},
 $$
 
 which is just fractional opacity.
 
 In practice, this means that we need to solve for the distance \\(y\\) given the value of optical depth \\(\tau\\):
 
-$$ \tag{23} \tau(\bm{x}, \bm{y}) = -\mathrm{log} \big( 1 - P(y | \lbrace \bm{x}, \bm{v} \rbrace) O(\bm{x}, \bm{\bm{y\_{vol}}}) \big). $$
+$$ \tag{23} \tau(\bm{x}, \bm{y}) = -\mathrm{log} \big( 1 - P(y | \lbrace \bm{x}, \bm{v} \rbrace) O(\bm{x}, \bm{\bm{y\_{max}}}) \big). $$
 
 ## Types of Analytic Participating Media
 
