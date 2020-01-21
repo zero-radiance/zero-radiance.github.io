@@ -55,9 +55,9 @@ There are several known relations between density and the IOR. One of them is gi
 
 $$ \tag{6} \frac{\bm{n}^2 - 1}{\bm{n}^2 + 2} = \frac{4}{3} \pi \frac{\rho}{m} \bm{\alpha_m}, $$
 
-where \\(m\\) is the [molecular mass](https://en.wikipedia.org/wiki/Molecular_mass) (in \\(kg\\)) and \\(\bm{\alpha_m}\\) is the [molecular polarizability](https://en.wikipedia.org/wiki/Electric_susceptibility#Molecular_polarizability) (in \\(m^3\\), watch out for different [conventions](https://en.wikipedia.org/wiki/Electric_susceptibility#Ambiguity_in_the_definition)). Incidentally, this relation represents a way to compute the IOR of a mixture of several substances. The corresponding [Lorentz–Lorenz mixture rule](https://www.sciencedirect.com/science/article/pii/S0021850208001183) is based on four principles of additivities of mole, mass, volume, and molecular polarizability, with the last two assumption being rather context-dependent.
+where \\(m\\) is the [molecular mass](https://en.wikipedia.org/wiki/Molecular_mass) (in \\(kg\\)) and \\(\bm{\alpha_m}\\) is the [molecular polarizability](https://en.wikipedia.org/wiki/Electric_susceptibility#Molecular_polarizability) (in \\(m^3\\), watch out for different [conventions](https://en.wikipedia.org/wiki/Electric_susceptibility#Ambiguity_in_the_definition)). Incidentally, this relation represents a way to compute the IOR of a mixture of several substances. The corresponding [Lorentz–Lorenz mixture rule](https://www.sciencedirect.com/science/article/pii/S0021850208001183) is based on four principles of additiveness of mole, mass, volume, and molecular polarizability, with the last two assumption being rather context-dependent.
 
-For materials with small mass densities, the molecules are far apart from one another, the molecular interactions are weak, and the refractive index is close to 1. Therefore, for matter in a gas state, the following approximation can be made:
+For materials with small mass densities, the molecules are far apart from one another, the molecular interactions are weak, and the IOR is close to 1. Therefore, for matter in a gas state, the following approximation can be made:
 
 $$ \begin{aligned} \tag{7}
     \bm{n}^2 & \approx 1 + 4 \pi \frac{\rho}{m} \bm{\alpha_m} = 1 + 2 \bm{c} \rho, \cr
@@ -68,7 +68,7 @@ where \\(\bm{c}\\) is the [light dispersion coefficient](https://ui.adsabs.harva
 
 Continuous variation of the IOR poses a challenge for path tracing. Typically, paths are composed of straight segments joined at scattering locations. Unfortunately, due to the [principle of least time](https://en.wikipedia.org/wiki/Fermat%27s_principle), continuously varying IOR forces photons to travel along [curved paths](https://www.rfcafe.com/references/electrical/atm-refraction.htm) that obey [Snell's law](https://en.wikipedia.org/wiki/Snell%27s_law). And since the IOR can depend on the wavelength, it can cause [dispersion](https://en.wikipedia.org/wiki/Dispersion_(optics)) not only at the interfaces, but also continuously, along the entire path. So it is not too surprising that that most renderers ignore this behavior (even though, physically, it doesn't make much sense). For small density gradients and small distances, it is a valid approximation that, on average, gives roughly correct results. On the other hand, for certain atmospheric effects, [atmospheric refraction](https://en.wikipedia.org/wiki/Atmospheric_refraction) can make a non-negligible contribution.
 
-Luckily, most of the math related to light transport can be expressed in a way that is independent from the geometry of the path. For instance, transmittance \\(\bm{T}\\) can be defined as the fraction of incident radiance transmitted along the shortest path between points \\(\bm{x}\\) and \\(\bm{y}\\) (but does not account for the Fresnel effect?? See below):
+Luckily, most of the math related to light transport can be expressed in a way that is independent from the geometry of the path. For instance, transmittance \\(\bm{T}\\) can be defined as the fraction of incident radiance transmitted along the shortest path between \\(\bm{x}\\) and \\(\bm{y}\\):
 
 $$ \tag{8} \bm{T}(\bm{x}, \bm{y}) = \frac{\bm{L}(\bm{x}, \bm{v_x})}{\bm{L}(\bm{y}, \bm{v_y})}, $$
 
@@ -78,11 +78,17 @@ Its complement is opacity \\(\bm{O}\\):
 
 $$ \tag{9} \bm{O}(\bm{x}, \bm{y}) = 1 - \bm{T}(\bm{x}, \bm{y}). $$
 
-Using the [Beer–Lambert–Bouguer law](https://en.wikipedia.org/wiki/Beer%E2%80%93Lambert_law) for [uncorrelated media](https://cs.dartmouth.edu/~wjarosz/publications/bitterli18framework.html), we can take the natural logarithm of transmittance to compute [optical depth](https://en.wikipedia.org/wiki/Optical_depth) (or optical thickness) \\(\bm{\tau}\\):
+Now, this path may contain refraction events (due to continuously varying index of refraction, for instance). Therefore, transmittance has two components: a volumetric component \\(\bm{T_v}\\) (given by the [Beer–Lambert–Bouguer law](https://en.wikipedia.org/wiki/Beer%E2%80%93Lambert_law) for [uncorrelated media](https://cs.dartmouth.edu/~wjarosz/publications/bitterli18framework.html)), and a geometric component (given by the [Fresnel equations](https://en.wikipedia.org/wiki/Fresnel_equations)):
 
-$$ \tag{10} \bm{\tau}(\bm{x}, \bm{y}) = -\mathrm{log} \big( \bm{T}(\bm{x}, \bm{y})  \big) = \int\_{\bm{x}}^{\bm{y}} \bm{\mu_t}(\bm{u}) du, $$
+$$ \tag{10} \bm{T}(\bm{x}, \bm{y}) = \bm{T_v}(\bm{x}, \bm{y}) \bm{T_g}(\bm{x}, \bm{y}). $$
 
-where \\(\bm{u}\\) is the point at the distance \\(u\\) along the path. These definitions (hopefully) make it clear that while transmittance is multiplicative, with values restricted to the unit interval, optical depth is additive and can take on any non-negative value.
+The volumetric component of transmittance is given in terms of [optical depth](https://en.wikipedia.org/wiki/Optical_depth) (or optical thickness) \\(\bm{\tau}\\):
+
+$$ \tag{11} \bm{\tau}(\bm{x}, \bm{y}) = -\mathrm{log} \big( \bm{T}(\bm{x}, \bm{y})  \big) = \int\_{\bm{x}}^{\bm{y}} \bm{\mu_t}(\bm{u}) du, $$
+
+where \\(\bm{u}\\) is the point at the distance \\(u\\) along the path.
+
+These definitions (hopefully) make it clear that while transmittance is multiplicative, with values restricted to the unit interval, optical depth is additive and can take on any non-negative value.
 
 Slightly jumping ahead, let's define the attenuation-transmittance integral as
 
@@ -111,24 +117,26 @@ $$ \tag{14}
     \int\_{\bm{x}}^{\bm{y}} \bm{\mu_t}(\bm{u}) e^{-\bm{\tau}(\bm{u}, \bm{y})} du.
 $$
 
-Computer graphics applications are primarily concerned with light transport. The geometric optical model is given by the [integral equation of transfer](http://www.pbr-book.org/3ed-2018/Light_Transport_II_Volume_Rendering/The_Equation_of_Transfer.html) along the path from \\(\bm{x}\\) to \\(\bm{y}\\):
+Computer graphics applications are primarily concerned with light transport. The geometric optical model is given by the [integral equation of transfer](http://www.pbr-book.org/3ed-2018/Light_Transport_II_Volume_Rendering/The_Equation_of_Transfer.html) along the curve from \\(\bm{x}\\) to \\(\bm{y}\\):
 
 $$ \begin{aligned} \tag{15}
     \bm{L}(\bm{x}, \bm{v}) =
     \int\_{\bm{x}}^{\bm{y}} \bm{T}(\bm{x}, \bm{u}) \Big[
         & \bm{F}(\bm{u}, \bm{r_u}) \bm{L}(\bm{u}, \bm{r_u}) \; + \cr
         & \big( 1 - \bm{F}(\bm{u}, \bm{r_u}) \big)
-            \big( \bm{\mu_a}(\bm{u}) \bm{L_e}(\bm{u}, \bm{v_u}) + \bm{\mu_s}(\bm{u}) \bm{L_s}(\bm{u}, \bm{t_u}) \big)
+            \big( \bm{\mu_a}(\bm{u}) \bm{L_e}(\bm{u}, \bm{t_u}) + \bm{\mu_s}(\bm{u}) \bm{L_s}(\bm{u}, \bm{t_u}) \big)
     \Big] du,
 \end{aligned} $$
 
-where the in-scattering radiance term \\(\bm{L_s}\\) is given as
+where the in-scattering radiance integral \\(\bm{L_s}\\) over all light directions \\(\bm{l}\\) is given as
 
-$$ \tag{16} \bm{L_s}(\bm{x}, \bm{v}) = \int\_{\bm{S}^2} f(\bm{u}, \bm{v}, \bm{l}) \bm{L}(\bm{u}, \bm{l}) \bm{dl}. $$
+$$ \tag{16} \bm{L_s}(\bm{x}, \bm{v}) = \int\_{\bm{S}^2} f(\bm{x}, \bm{v}, \bm{l}) \bm{L}(\bm{x}, \bm{l}) \bm{dl}. $$
 
 Let's examine the Equation 15 in more detail. One way to get a better understanding of how it works is to consider a few special cases.
 
-For the first one, imagine a thin spherical glass shell in vacuum at the distance \\(y\\). Since the shell is very thin, we may consider that the density is 0 everywhere, except near the shell, where the density gradient is very large. Therefore, all collision coefficients may be set to 0 (except near the shell, which we model with \\(\bm{\mu_s}=1\\) and a [Kronecker delta](https://en.wikipedia.org/wiki/Kronecker_delta) phase function \\(f(\bm{u}, \bm{v}, \bm{l}) = \delta\_{\bm{uv}}\\)), and the volume contribution is also 0. The integral can be then simplified to
+For the first one, imagine a thin spherical glass shell in vacuum at the distance \\(y\\). Since the shell is very thin, we may consider the density to be 0 everywhere, except near the shell, where the density gradient is very large. Therefore, all collision coefficients may be set to 0, and the volume contribution is also 0 (except near the shell, which we model with \\(\bm{\mu_a}=1\\), \\(\bm{\mu_s}=1\\), and the [Kronecker delta](https://en.wikipedia.org/wiki/Kronecker_delta) function \\(f(\bm{u}, \bm{v}, \bm{l}) = \delta\_{\bm{vl}}\\)).
+
+The integral can then be simplified to
 
 $$ \tag{17}
     \bm{L_1}(\bm{x}, \bm{v}) =
@@ -136,19 +144,31 @@ $$ \tag{17}
         \big( 1 - \bm{F}(\bm{y}, \bm{r_y}) \big) \bm{L_1}(\bm{y}, \bm{t_y}),
 $$
 
-where \\(\bm{r_y}\\) is the reflected direction (w.r.t. the viewing direction \\(\bm{v}\\)) at the surface of the glass ball, \\(\bm{t_y}\\) is the corresponding refracted direction, and \\(\bm{F}\\) is the [Fresnel equation](https://en.wikipedia.org/wiki/Fresnel_equations), which is 0 everywhere where the density gradient is 0. The Equation 17 corresponds to the surface rendering equation in vacuum.
+where \\(\bm{r_y}\\) is the reflected direction (w.r.t. the viewing direction \\(\bm{v}\\)) at the surface of the shell, \\(\bm{t_y}\\) is the corresponding refracted direction, and \\(\bm{F}\\) is the [Fresnel factor](https://en.wikipedia.org/wiki/Fresnel_equations), which is 0 if the density gradient is 0. The Equation 17 corresponds to the surface rendering equation in vacuum.
 
 If we replace the thin shell with a ball, and perhaps surround it by homogeneous fog, we will get some in-scattering contribution, while the density gradient is still 0 everywhere except near the surface of the ball:
 
 $$ \begin{aligned} \tag{18}
     \bm{L_2}(\bm{x}, \bm{v}) =
     \int\_{\bm{x}}^{\bm{y}}
-        & \bm{T}(\bm{x}, \bm{u}) \bm{\mu_s}(\bm{u}) \bm{L_s}(\bm{u}, \bm{t_u}) du \; + \cr
+        & \bm{T}(\bm{x}, \bm{u}) \bm{\mu_s}(\bm{u}) \bm{L_s}(\bm{u}, \bm{v_u}) du \; + \cr
         & \bm{T}(\bm{x}, \bm{y}) \Big[ \bm{F}(\bm{y}, \bm{r_y}) \bm{L_2}(\bm{y}, \bm{r_y}) +
         \big( 1 - \bm{F}(\bm{y}, \bm{r_y}) \big) \bm{L_2}(\bm{y}, \bm{t_y}) \Big].
 \end{aligned} $$
 
+Supporting spontaneous emission \\(\bm{L_e}\\) adds another term:
 
+$$ \begin{aligned} \tag{19}
+    \bm{L_3}(\bm{x}, \bm{v}) =
+    \int\_{\bm{x}}^{\bm{y}}
+        & \bm{T}(\bm{x}, \bm{u}) \Big[
+            \bm{\mu_a}(\bm{u}) \bm{L_e}(\bm{u}, \bm{v_u}) + \bm{\mu_s}(\bm{u}) \bm{L_s}(\bm{u}, \bm{v_u})
+        \Big] du \; + \cr
+        & \bm{T}(\bm{x}, \bm{y}) \Big[ \bm{F}(\bm{y}, \bm{r_y}) \bm{L_3}(\bm{y}, \bm{r_y}) +
+        \big( 1 - \bm{F}(\bm{y}, \bm{r_y}) \big) \bm{L_3}(\bm{y}, \bm{t_y}) \Big].
+\end{aligned} $$
+
+Finally, for varying density, reflection and refraction can happen everywhere along the (curved) path, so they must be put inside the integral, which brings us back to the Equation 15.
 
 where \\(\bm{L}(\bm{x}, \bm{v})\\) is the amount of radiance at the position \\(\bm{x}\\) in the direction \\(\bm{v}\\), and \\(f\\) denotes the [phase function](http://www.pbr-book.org/3ed-2018/Volume_Scattering/Phase_Functions.html) which additionally depends on the light direction \\(\bm{l} \in \bm{S}^2\\). In the case of asymmetric scattering, the collision coefficients (cross sections) may be direction-dependent as well. The domain of integration is typically finite, ending either at the closest surface, or at the point where the ray exits the volume; we will refer to it as \\(\bm{y\_{max}}\\).
 
