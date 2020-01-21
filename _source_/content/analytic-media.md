@@ -68,6 +68,8 @@ where \\(\bm{c}\\) is the [light dispersion coefficient](https://ui.adsabs.harva
 
 Continuous variation of the IOR poses a challenge for path tracing. Typically, paths are composed of straight segments joined at scattering locations. Unfortunately, due to the [principle of least time](https://en.wikipedia.org/wiki/Fermat%27s_principle), continuously varying IOR forces photons to travel along [curved paths](https://earth.esa.int/dragon/D2_L2_Carli.pdf) that bend towards regions of higher density according to [Snell's law](https://en.wikipedia.org/wiki/Snell%27s_law). And since the IOR can depend on the wavelength, it can cause [dispersion](https://en.wikipedia.org/wiki/Dispersion_(optics)) not only at the interfaces, but also continuously, along the entire path. So it is not too surprising that that most renderers ignore this behavior (even though, physically, doing that doesn't make much sense). For small density gradients and small distances, it is a valid approximation that, on average, gives reasonably accurate results. On the other hand, for certain [atmospheric effects](https://earth.esa.int/dragon/D2_L2_Carli.pdf), [atmospheric refraction](https://en.wikipedia.org/wiki/Atmospheric_refraction) can make a non-negligible contribution.
 
+## Radiative Transfer Integral
+
 Luckily, most of the math related to light transport can be expressed in a way that is independent from the geometry of the path. For instance, transmittance \\(\bm{T}\\) can be defined as the fraction of incident radiance transmitted along the shortest path between \\(\bm{x}\\) and \\(\bm{y}\\):
 
 $$ \tag{8} \bm{T}(\bm{x}, \bm{y}) = \frac{\bm{L}(\bm{x}, \bm{v_x})}{\bm{L}(\bm{y}, \bm{v_y})}, $$
@@ -78,59 +80,38 @@ Its complement is opacity \\(\bm{O}\\):
 
 $$ \tag{9} \bm{O}(\bm{x}, \bm{y}) = 1 - \bm{T}(\bm{x}, \bm{y}). $$
 
-Now, this path may contain refraction events (due to continuously varying index of refraction, for instance). Therefore, transmittance has two components: a volumetric component \\(\bm{T_v}\\) (given by the [Beer–Lambert–Bouguer law](https://en.wikipedia.org/wiki/Beer%E2%80%93Lambert_law) for [uncorrelated media](https://cs.dartmouth.edu/~wjarosz/publications/bitterli18framework.html)), and a geometric component (given by the [Fresnel equations](https://en.wikipedia.org/wiki/Fresnel_equations)):
+The transmittance term has two components: a volumetric component \\(\bm{T_b}\\) (given by the [Beer–Lambert–Bouguer law](https://en.wikipedia.org/wiki/Beer%E2%80%93Lambert_law) for [uncorrelated media](https://cs.dartmouth.edu/~wjarosz/publications/bitterli18framework.html)), and a geometric component \\(\bm{T_f}\\) (given by the [Fresnel equations](https://en.wikipedia.org/wiki/Fresnel_equations)):
 
-$$ \tag{10} \bm{T}(\bm{x}, \bm{y}) = \bm{T_v}(\bm{x}, \bm{y}) \bm{T_g}(\bm{x}, \bm{y}). $$
+$$ \tag{10} \bm{T}(\bm{x}, \bm{y}) = \bm{T_b}(\bm{x}, \bm{y}) \bm{T_f}(\bm{x}, \bm{y}). $$
 
 The volumetric component of transmittance is given in terms of [optical depth](https://en.wikipedia.org/wiki/Optical_depth) (or optical thickness) \\(\bm{\tau}\\):
 
-$$ \tag{11} \bm{\tau}(\bm{x}, \bm{y}) = -\mathrm{log} \big( \bm{T}(\bm{x}, \bm{y})  \big) = \int\_{\bm{x}}^{\bm{y}} \bm{\mu_t}(\bm{u}) du, $$
+$$ \tag{11} \bm{\tau}(\bm{x}, \bm{y}) = -\log{\bm{T_b}(\bm{x}, \bm{y})} = \int\_{\bm{x}}^{\bm{y}} \bm{\mu_t}(\bm{u}) du, $$
 
-where \\(\bm{u}\\) is the point at the distance \\(u\\) along the path.
+where \\(\bm{u}\\) is the point at the distance \\(u\\) along the path. It implies that while volumetric transmittance is multiplicative, with values restricted to the unit interval, optical depth is additive and can take on any non-negative value. Other [integral formulations](https://cs.dartmouth.edu/~wjarosz/publications/georgiev19integral.html) of volumetric transmittance exist.
 
-These definitions (hopefully) make it clear that while transmittance is multiplicative, with values restricted to the unit interval, optical depth is additive and can take on any non-negative value.
+Geometric transmittance is a little more challenging to define since, in the general case, it may contain reflection and refraction events in an arbitrary order. For instance, an electromagnetic wave traveling in the atmosphere may experience continuous refraction until it reaches the ionosphere, where it is [totally-internally reflected](https://en.wikipedia.org/wiki/Total_internal_reflection) back towards Earth, which allows the wave to [travel beyond the horizon](https://en.wikipedia.org/wiki/Line-of-sight_propagation).
 
-Slightly jumping ahead, let's define the attenuation-transmittance integral as
+If we impose a limitation on the path that it should be formed exclusively by refraction events, the geometric component of transmittance along such a path can be expressed as a line integral
 
-$$ \tag{11}
-      \int\_{\bm{x}}^{\bm{y}} \bm{\mu_t}(\bm{u}) \bm{T}(\bm{x}, \bm{u}) du
-    = \int\_{\bm{x}}^{\bm{y}} \bm{\mu_t}(\bm{u}) e^{-\bm{\tau}(\bm{x}, \bm{u})} du.
-$$
+$$ \tag{16} \bm{T_f}(\bm{x}, \bm{y}) = \int\_{\bm{x}}^{\bm{y}} \big( 1 - \bm{F}(\bm{u}, \bm{r_u}) \big) \frac{\bm{n}^2(\bm{u} + \bm{du})}{\bm{n}^2(\bm{u})} du, $$
 
-If we use the [fundamental theorem of calculus](https://en.wikipedia.org/wiki/Fundamental_theorem_of_calculus#First_part) to interpret the attenuation coefficient as a derivative
+where \\(\big( 1 - \bm{F}(\bm{u}, \bm{r_u}) \big)\\) is the fraction of transmitted energy given by the [Fresnel equations](https://en.wikipedia.org/wiki/Fresnel_equations) (with \\(\bm{r_u}\\) being the reflected direction w.r.t. the viewing direction \\(\bm{v_u}\\) at the position \\(\bm{u}\\)), and \\( n_t^2 / n_i^2\\) is the term that [compresses the solid angle](http://graphics.stanford.edu/papers/veach_thesis/) (recall that [radiance](https://en.wikipedia.org/wiki/Radiance) is inversely proportional to the solid angle).
 
-$$ \tag{12} \bm{\mu_t}(\bm{u}) = \frac{\partial \bm{\tau}}{\partial u}, $$
+Now, we are ready to define the radiative transfer integral. If we form a path from \\(\bm{x}\\) to \\(\bm{y}\\) composed *only* of refraction events, the [integral equation of transfer](http://www.pbr-book.org/3ed-2018/Light_Transport_II_Volume_Rendering/The_Equation_of_Transfer.html) takes the following form:
 
-we can use the one of the [exponential identities](https://en.wikipedia.org/wiki/List_of_integrals_of_exponential_functions#Integrals_involving_only_exponential_functions) to simplify the attenuation-transmittance integral:
-
-$$ \tag{13}
-    \int\_{\bm{x}}^{\bm{y}} \frac{\partial \bm{\tau}(\bm{x}, \bm{u})}{\partial u} e^{-\bm{\tau}(\bm{x}, \bm{u})} du
-    = -e^{-\bm{\tau}(\bm{x}, \bm{u})} \Big\vert\_{\bm{x}}^{\bm{y}}
-    = 1 - \bm{T}(\bm{x}, \bm{y})
-    = \bm{O}(\bm{x}, \bm{y}).
-$$
-
-Most remarkably, optical depth can be evaluated in a forward or backward fashion, and the [result is the same](https://cs.dartmouth.edu/~wjarosz/publications/georgiev19integral.html)!
-
-$$ \tag{14}
-    \int\_{\bm{x}}^{\bm{y}} \bm{\mu_t}(\bm{u}) e^{-\bm{\tau}(\bm{x}, \bm{u})} du =
-    \int\_{\bm{x}}^{\bm{y}} \bm{\mu_t}(\bm{u}) e^{-\bm{\tau}(\bm{u}, \bm{y})} du.
-$$
-
-Computer graphics applications are primarily concerned with light transport. The geometric optical model is given by the [integral equation of transfer](http://www.pbr-book.org/3ed-2018/Light_Transport_II_Volume_Rendering/The_Equation_of_Transfer.html) along the curve from \\(\bm{x}\\) to \\(\bm{y}\\):
-
-$$ \begin{aligned} \tag{15}
+$$ \begin{aligned} \tag{17}
     \bm{L}(\bm{x}, \bm{v}) =
     \int\_{\bm{x}}^{\bm{y}} \bm{T}(\bm{x}, \bm{u}) \Big[
-        & \bm{F}(\bm{u}, \bm{r_u}) \bm{L}(\bm{u}, \bm{r_u}) \; + \cr
-        & \big( 1 - \bm{F}(\bm{u}, \bm{r_u}) \big)
-            \big( \bm{\mu_a}(\bm{u}) \bm{L_e}(\bm{u}, \bm{t_u}) + \bm{\mu_s}(\bm{u}) \bm{L_s}(\bm{u}, \bm{t_u}) \big)
+        & \bm{\mu_a}(\bm{u}) \bm{L_e}(\bm{u}, \bm{t_u}) \; + \cr
+        & \bm{\mu_s}(\bm{u}) \bm{L_s}(\bm{u}, \bm{t_u}) \; + \cr
+        & \frac{\bm{F}(\bm{u}, \bm{r_u})}{\big( 1 - \bm{F}(\bm{u}, \bm{r_u}) \big)} \frac{\bm{n}^2(\bm{u})}{\bm{n}^2(\bm{u} + \bm{du})} \bm{L}(\bm{u}, \bm{r_u})
     \Big] du,
 \end{aligned} $$
 
-where the in-scattering radiance integral \\(\bm{L_s}\\) over all light directions \\(\bm{l}\\) is given as
+where \\(\bm{L_e}\\) is the spontaneous emission term, and the in-scattering integral \\(\bm{L_s}\\) over all directions \\(\bm{l}\\) is given as
 
-$$ \tag{16} \bm{L_s}(\bm{x}, \bm{v}) = \int\_{\bm{S}^2} f(\bm{x}, \bm{v}, \bm{l}) \bm{L}(\bm{x}, \bm{l}) \bm{dl}. $$
+$$ \tag{18} \bm{L_s}(\bm{x}, \bm{v}) = \int\_{\bm{S}^2} f(\bm{x}, \bm{v}, \bm{l}) \bm{L}(\bm{x}, \bm{l}) \bm{dl}. $$
 
 Let's examine the Equation 15 in more detail. One way to get a better understanding of how it works is to consider a few special cases.
 
@@ -144,7 +125,7 @@ $$ \tag{17}
         \big( 1 - \bm{F}(\bm{y}, \bm{r_y}) \big) \bm{L_1}(\bm{y}, \bm{t_y}),
 $$
 
-where \\(\bm{r_y}\\) is the reflected direction (w.r.t. the viewing direction \\(\bm{v}\\)) at the surface of the shell, \\(\bm{t_y}\\) is the corresponding refracted direction, and \\(\bm{F}\\) is the [Fresnel factor](https://en.wikipedia.org/wiki/Fresnel_equations), which is 0 if the density gradient is 0. The Equation 17 corresponds to the surface rendering equation in vacuum.
+where \\(\bm{r_y}\\) is the reflected direction (w.r.t. the viewing direction \\(\bm{v_u}\\)) at the surface of the shell, \\(\bm{t_y}\\) is the corresponding refracted direction, and \\(\bm{F}\\) is the [Fresnel factor](https://en.wikipedia.org/wiki/Fresnel_equations), which is 0 if the density gradient is 0. The Equation 17 corresponds to the surface rendering equation in vacuum.
 
 If we replace the thin shell with a ball, and perhaps surround it by homogeneous fog, we will get some in-scattering contribution, while the density gradient is still 0 everywhere except near the surface of the ball:
 
@@ -156,7 +137,7 @@ $$ \begin{aligned} \tag{18}
         \big( 1 - \bm{F}(\bm{y}, \bm{r_y}) \big) \bm{L_2}(\bm{y}, \bm{t_y}) \Big].
 \end{aligned} $$
 
-Supporting spontaneous emission \\(\bm{L_e}\\) adds another term:
+Supporting  adds another term:
 
 $$ \begin{aligned} \tag{19}
     \bm{L_3}(\bm{x}, \bm{v}) =
@@ -195,6 +176,32 @@ $$
 where sample locations \\(\bm{y_i}\\) are distributed according to the [PDF](https://en.wikipedia.org/wiki/Probability_density_function) \\(p\\). We slightly abuse the notation by defining the corresponding distance along the ray using non-bold \\(y_i\\).
 
 We can [importance sample](http://www.pbr-book.org/3ed-2018/Monte_Carlo_Integration/Importance_Sampling.html) the integrand (distribute  samples according to the PDF) in several ways. Ideally, we would like to make the PDF proportional to the [product of all terms](https://cgg.mff.cuni.cz/~jaroslav/papers/2014-zerovar/) of the integrand. However, unless we use [path guiding](https://cgg.mff.cuni.cz/~jirka/path-guiding-in-production/2019/index.htm), that is typically not possible. We will focus on the technique called [free path sampling](https://cs.dartmouth.edu/~wjarosz/publications/novak18monte.html) that makes the PDF proportional to the analytic product \\(\mu_t T\\) (effectively, by assuming that the rest of the integrand varies slowly; in practice, this may or may not be the case - for example, for regions near light sources, [equiangular sampling](http://library.imageworks.com/pdfs/imageworks-library-importance-sampling-of-area-lights-in-participating-media.pdf) can give vastly superior results).
+
+Slightly jumping ahead, let's define the attenuation-transmittance integral as
+
+$$ \tag{12}
+      \int\_{\bm{x}}^{\bm{y}} \bm{\mu_t}(\bm{u}) \bm{T_v}(\bm{x}, \bm{u}) du
+    = \int\_{\bm{x}}^{\bm{y}} \bm{\mu_t}(\bm{u}) e^{-\bm{\tau}(\bm{x}, \bm{u})} du.
+$$
+
+If we use the [fundamental theorem of calculus](https://en.wikipedia.org/wiki/Fundamental_theorem_of_calculus#First_part) to interpret the attenuation coefficient as a derivative
+
+$$ \tag{13} \bm{\mu_t}(\bm{u}) = \frac{\partial \bm{\tau}}{\partial u}, $$
+
+we can use the one of the [exponential identities](https://en.wikipedia.org/wiki/List_of_integrals_of_exponential_functions#Integrals_involving_only_exponential_functions) to simplify the attenuation-transmittance integral:
+
+$$ \tag{14}
+    \int\_{\bm{x}}^{\bm{y}} \frac{\partial \bm{\tau}(\bm{x}, \bm{u})}{\partial u} e^{-\bm{\tau}(\bm{x}, \bm{u})} du
+    = -e^{-\bm{\tau}(\bm{x}, \bm{u})} \Big\vert\_{\bm{x}}^{\bm{y}}
+    = 1 - \bm{T_v}(\bm{x}, \bm{y}).
+$$
+
+Most remarkably, optical depth can be evaluated in a forward or backward fashion, and the [result is the same](https://cs.dartmouth.edu/~wjarosz/publications/georgiev19integral.html)!
+
+$$ \tag{15}
+    \int\_{\bm{x}}^{\bm{y}} \bm{\mu_t}(\bm{u}) e^{-\bm{\tau}(\bm{x}, \bm{u})} du =
+    \int\_{\bm{x}}^{\bm{y}} \bm{\mu_t}(\bm{u}) e^{-\bm{\tau}(\bm{u}, \bm{y})} du.
+$$
 
 In order to turn it into a valid PDF, the product must be normalized using the Equation 13:
 
