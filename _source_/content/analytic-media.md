@@ -21,7 +21,7 @@ The [attenuation coefficient](https://en.wikipedia.org/wiki/Attenuation_coeffici
 
 $$ \tag{1} \bm{\mu_t} = \bm{\mu_a} + \bm{\mu_s} $$
 
-gives the probability density of absorption or scattering (or, in other words, the collision rate) as a photon travels a unit distance though the medium. All these coefficients are spectral (they depend on the wavelength \\(\lambda\\)), and can be represented as vectors (boldface notation). At this point in time, it is not entirely clear (at least to me) how to *correctly* perform volume rendering using tristimulus (RGB) values (which would require some sort of pre-integration using [color matching functions](https://en.wikipedia.org/wiki/CIE_1931_color_space#Color_matching_functions)), so I will focus on pure spectral rendering, which is well-defined.
+gives the probability density of absorption or scattering (or, in other words, the collision rate) as a photon travels a unit distance though the medium. All these coefficients are spectral (they depend on the frequency \\(\nu\\), which is simpler to handle than the the wavelength \\(\lambda\\) since the latter is [modified at the interface](http://graphics.stanford.edu/papers/veach_thesis/)), and can be represented as vectors (boldface notation). At this point in time, it is not entirely clear (at least to me) how to *correctly* perform volume rendering using tristimulus (RGB) values (which would require some sort of pre-integration using [color matching functions](https://en.wikipedia.org/wiki/CIE_1931_color_space#Color_matching_functions)), so I will focus on pure spectral rendering, which is well-defined.
 
 A more artist-friendly parametrization uses the [single-scattering albedo](https://en.wikipedia.org/wiki/Single-scattering_albedo) \\(\bm{\alpha\_{ss}}\\)
 
@@ -66,13 +66,13 @@ $$ \begin{aligned} \tag{7}
 
 where \\(\bm{c}\\) is the [light dispersion coefficient](https://ui.adsabs.harvard.edu/abs/1996CoSka..26...23K/abstract). This equation implies that the [relative brake power](https://www.sciencedirect.com/topics/chemistry/optical-refraction) \\((\bm{n} - 1)\\) has an approximately linear relation with density. Similar [relations](http://www.waves.utoronto.ca/prof/svhum/ece422/notes/20a-atmospheric-refr.pdf) can be found for temperature, humidity and pressure (in fact, all coefficients are highly [temperature-dependent](http://www.sfu.ca/~gchapman/e376/e376l7.pdf)). Also, while the discussion above mostly concerns dielectrics, the formula for metals is [very similar](https://www.feynmanlectures.caltech.edu/II_32.html#mjx-eqn-EqII3238).
 
-Continuous variation of the IOR poses a challenge for path tracing. Typically, paths are composed of straight segments joined at scattering locations. Unfortunately, due to the [principle of least time](https://en.wikipedia.org/wiki/Fermat%27s_principle), continuously varying IOR forces photons to travel along curved paths that bend towards regions of higher density according to [Snell's law](https://en.wikipedia.org/wiki/Snell%27s_law). And since the IOR can depend on the wavelength, it can cause [dispersion](https://en.wikipedia.org/wiki/Dispersion_(optics)) not only at the interfaces, but also continuously, along the entire path. So it is not too surprising that that most renderers ignore this behavior (even though, physically, doing that doesn't make much sense). For small density gradients and small distances, it is a valid approximation that, on average, gives reasonably accurate results. On the other hand, for certain atmospheric effects, [atmospheric refraction](https://en.wikipedia.org/wiki/Atmospheric_refraction) can make a non-negligible contribution.
+Continuous variation of the IOR poses a challenge for path tracing. Typically, paths are composed of straight segments joined at scattering locations. Unfortunately, due to the [principle of least time](https://en.wikipedia.org/wiki/Fermat%27s_principle), continuously varying IOR forces photons to travel along curved paths that bend towards regions of higher density according to [Snell's law](https://en.wikipedia.org/wiki/Snell%27s_law). And since the IOR can depend on the frequency, it can cause [dispersion](https://en.wikipedia.org/wiki/Dispersion_(optics)) not only at the interfaces, but also continuously, along the entire path. So it is not too surprising that that most renderers ignore this behavior (even though, physically, doing that doesn't make much sense). For small density gradients and small distances, it is a valid approximation that, on average, gives reasonably accurate results. On the other hand, for certain atmospheric effects, [atmospheric refraction](https://en.wikipedia.org/wiki/Atmospheric_refraction) can make a non-negligible contribution.
 
 ## Refractive Radiative Transfer Equation
 
 Luckily, most of the math related to light transport can be expressed in a way that is independent from the geometry of the path. For instance, transmittance \\(\bm{T}\\) can be defined as the fraction of incident radiance transmitted along the path of least time between \\(\bm{x}\\) and \\(\bm{y}\\):
 
-$$ \tag{8} \bm{T}(\bm{x}, \bm{y}) = \frac{\bm{L}(\bm{x}, \bm{v_x})}{\bm{L}(\bm{y}, \bm{v_y})}, $$
+$$ \tag{8} \bm{T}(\bm{x}, \bm{y}) = \frac{\bm{L}(\bm{x}, \bm{v_x})}{\bm{L}(\bm{y}, \bm{t_y})}, $$
 
 where \\(\bm{v}\\) is the direction tangential to the path at the corresponding endpoint. For a single photon, transmittance can be interpreted as the probability of a free flight.
 
@@ -88,30 +88,68 @@ The volumetric component of transmittance is given in terms of [optical depth](h
 
 $$ \tag{11} \bm{\tau}(\bm{x}, \bm{y}) = -\log{\bm{T_b}(\bm{x}, \bm{y})} = \int\_{\bm{x}}^{\bm{y}} \bm{\mu_t}(\bm{u}) du, $$
 
-where \\(\bm{u}\\) is the point at the distance \\(u\\) along the path. It implies that while volumetric transmittance is multiplicative, with values restricted to the unit interval, optical depth is additive and can take on any non-negative value. Other [integral formulations](https://cs.dartmouth.edu/~wjarosz/publications/georgiev19integral.html) of volumetric transmittance exist.
+where \\(\bm{u}\\) is the point at the distance \\(u\\) along the path. It implies that while volumetric transmittance is multiplicative, with values restricted to the unit interval, optical depth is additive and can take on any non-negative value. The [product integral](https://www.wikiwand.com/en/Product_integral) rule gives us
+
+$$ \tag{12} \bm{T_b}(\bm{x}, \bm{y}) = e^{\int\_{\bm{x}}^{\bm{y}} -\bm{\mu_t}(\bm{u}) du} = \prod\_{\bm{x}}^{\bm{y}} \Big( 1 - \bm{\mu_t}(\bm{u}) du \Big). $$
+
+Other [integral formulations](https://cs.dartmouth.edu/~wjarosz/publications/georgiev19integral.html) of volumetric transmittance exist.
 
 Geometric transmittance is a little more challenging to define since, in the general case, it may contain reflection and refraction events in an arbitrary order. For instance, an electromagnetic wave traveling in the atmosphere may experience continuous refraction until it reaches the ionosphere, where it is [totally-internally reflected](https://en.wikipedia.org/wiki/Total_internal_reflection) back towards Earth, which allows the wave to [travel beyond the horizon](https://en.wikipedia.org/wiki/Line-of-sight_propagation).
 
-If we impose a limitation on the path that it should be formed exclusively by continuous refraction, the geometric component of transmittance along such a path can be expressed as a line integral
+If we impose a restriction on the path that it should be formed *exclusively* by continuous refraction (which is convenient from the practical standpoint, and still supports all optical effects), the geometric component of transmittance along such a path can be expressed as a [product integral](https://www.wikiwand.com/en/Product_integral)
 
-$$ \tag{16} \bm{T_f}(\bm{x}, \bm{y}) = \int\_{\bm{x}}^{\bm{y}} \big( 1 - \bm{F}(\bm{u}, \bm{r_u}) \big) \frac{\bm{n}^2(\bm{u} + \bm{du})}{\bm{n}^2(\bm{u})} du, $$
-
-where \\(\big( 1 - \bm{F}(\bm{u}, \bm{r_u}) \big)\\) is the fraction of transmitted power given by the [Fresnel equations](https://en.wikipedia.org/wiki/Fresnel_equations) (with \\(\bm{r_u}\\) being the viewing direction \\(\bm{v_u}\\) reflected around the gradient of the IOR \\(\nabla{\bm{n_u}}\\) at the position \\(\bm{u}\\)), and \\(\big( \bm{n_t}^2 / \bm{n_i}^2 \big)\\) is the term that accounts for the [change of the solid angle](http://graphics.stanford.edu/papers/veach_thesis/) (which is necessary since we work with radiance rather than power).
-
-Now, we are ready to define the radiative transfer integral. If we form a path from \\(\bm{x}\\) to \\(\bm{y}\\) composed *only* of refraction events, the [integral equation of transfer](http://www.pbr-book.org/3ed-2018/Light_Transport_II_Volume_Rendering/The_Equation_of_Transfer.html) takes the following form:
-
-$$ \begin{aligned} \tag{17}
-    \bm{L}(\bm{x}, \bm{v}) =
-    \int\_{\bm{x}}^{\bm{y}} \bm{T}(\bm{x}, \bm{u}) \Big[
-        & \bm{\mu_a}(\bm{u}) \bm{L_e}(\bm{u}, \bm{t_u}) \; + \cr
-        & \bm{\mu_s}(\bm{u}) \bm{L_s}(\bm{u}, \bm{t_u}) \; + \cr
-        & \frac{\bm{F}(\bm{u}, \bm{r_u})}{\big( 1 - \bm{F}(\bm{u}, \bm{r_u}) \big)} \frac{\bm{n}^2(\bm{u})}{\bm{n}^2(\bm{u} + \bm{du})} \bm{L}(\bm{u}, \bm{r_u})
-    \Big] du,
+$$ \tag{13} \begin{aligned}
+    \bm{T_f}(\bm{x}, \bm{y}) =
+        \prod\_{\bm{x}}^{\bm{y}} \frac{\bm{n}^2(\bm{u}, \bm{t_u})}{\bm{n}^2(\bm{u}, \bm{v_u})}
+        \prod\_{\bm{x}}^{\bm{y}} \Big( 1 - \bm{F}(\bm{u}, \bm{r_u}) du \Big) =
+        \frac{\bm{n}^2(\bm{y}, \bm{t_u})}{\bm{n}^2(\bm{x}, \bm{v_u})}
+        e^{\int\_{\bm{x}}^{\bm{y}} -\bm{F}(\bm{u}, \bm{r_u}) du },
 \end{aligned} $$
 
-where \\(\bm{L_e}\\) is the spontaneous emission term, and the in-scattering integral \\(\bm{L_s}\\) over all directions \\(\bm{l}\\) is given as
+where \\(\bm{v_u}\\) is the view direction at the position \\(\bm{u}\\), \\(\bm{r_u}\\) is the reflected direction, \\(\bm{t_u}\\) is the refracted direction, \\(\big( 1 - \bm{F}(\bm{u}, \bm{r_u}) \big)\\) is the fraction of transmitted irradiance given by the [Fresnel equations](https://en.wikipedia.org/wiki/Fresnel_equations), and \\(\big( \bm{n_t}^2 / \bm{n_v}^2 \big)\\) is the term that accounts for the [change of the solid angle](http://graphics.stanford.edu/papers/veach_thesis/) (which is necessary since we work with radiance rather than irradiance).
 
-$$ \tag{18} \bm{L_s}(\bm{x}, \bm{v}) = \int\_{\bm{S}^2} f(\bm{x}, \bm{v}, \bm{l}) \bm{L}(\bm{x}, \bm{l}) \bm{dl}. $$
+The solid angle term can be challenging to deal with since it makes light transport [non-self-adjoint](http://graphics.stanford.edu/papers/veach_thesis/) (there's no solid angle scaling for importance or light particles). A nice solution to this problem is to use *basic* quantities such as *basic radiance*, which is [conserved](http://graphics.stanford.edu/papers/veach_thesis/) during refraction:
+
+$$ \tag{13} \bm{\tilde{L}}(\bm{x}, \bm{v}) = \frac{\bm{L}(\bm{x}, \bm{v})}{\bm{n}^2(\bm{x}, \bm{v})}. $$
+
+We can define *basic transmittance* as
+
+$$ \tag{14} \bm{\tilde{T}}(\bm{x}, \bm{y}) =
+    \frac{\bm{\tilde{L}}(\bm{x}, \bm{v_x})}{\bm{\tilde{L}}(\bm{y}, \bm{v_y})} =
+    \bm{T_b}(\bm{x}, \bm{y}) \bm{\tilde{T}_f}(\bm{x}, \bm{y}), $$
+
+with its geometric component given by the equation
+
+$$ \tag{15} \bm{\tilde{T}_f}(\bm{x}, \bm{y}) = \int\_{\bm{x}}^{\bm{y}} \big( 1 - \bm{F}(\bm{u}, \bm{r_u}) \big) du. $$
+
+
+Now, we are ready to define the refractive radiative transfer integral. If we form a path from \\(\bm{x}\\) to \\(\bm{y}\\) *exclusively* by continuous refraction, the [integral equation of transfer](https://dl.acm.org/doi/abs/10.1145/2557605) takes the following form:
+
+$$ \begin{aligned} \tag{16}
+    \bm{\tilde{L}}(\bm{x}, \bm{v}) =
+    \int\_{\bm{x}}^{\bm{y}} \bm{\tilde{T}}(\bm{x}, \bm{u}) \Big[
+        & \bm{\mu_a}(\bm{u}) \bm{\tilde{L}_e}(\bm{u}, \bm{t_u}) \; + \cr
+        & \bm{\mu_s}(\bm{u}) \bm{\tilde{L}_s}(\bm{u}, \bm{t_u}) \; + \cr
+        & \bm{F}(\bm{u}, \bm{r_u}) \bm{\tilde{L}}(\bm{u}, \bm{r_u})
+    \Big] du +
+    \bm{\tilde{T}}(\bm{x}, \bm{y}) \bm{\tilde{L}_g}(\bm{y}, \bm{v_u}),
+\end{aligned} $$
+
+where \\(\bm{\tilde{L}_e}\\) is the spontaneous emission term, and the in-scattering integral \\(\bm{\tilde{L}_s}\\) over the hemisphere is given as
+
+$$ \tag{17} \bm{\tilde{L}_s}(\bm{x}, \bm{v}) = \int\_{\bm{S}^2} \tilde{f}(\bm{x}, \bm{v}, \bm{l}) \bm{\tilde{L}}(\bm{x}, \bm{l}) d\tilde{\sigma}\_{\bm{x}}(\bm{l}), $$
+
+where
+
+$$ \tag{18} \tilde{f}(\bm{x}, \bm{v}, \bm{l}) = \frac{f(\bm{x}, \bm{v}, \bm{l})}{\bm{n}^2(\bm{x}, \bm{v})} $$
+
+is the *basic phase function* and
+
+$$ \tag{19} \tilde{\sigma}\_{\bm{x}}(\bm{l}) = \bm{n}^2(\bm{x}, \bm{l}) \sigma(\bm{l}) $$
+
+is the *basic solid angle measure*. \\(\bm{\tilde{L}_g}\\) is the standard geometry (optical interface) term.
+
+Note that the [original publication](https://dl.acm.org/doi/abs/10.1145/2557605) is missing the Fresnel terms, and its definition of the in-scattering integral has inconsistent IOR handling. Regardless, I highly recommend checking out their work for the derivation.
 
 Let's examine the Equation 15 in more detail. One way to get a better understanding of how it works is to consider a few special cases.
 
@@ -167,7 +205,7 @@ $$ \tag{17} \bm{L}(\bm{x}, \bm{v})
     = \int\_{\bm{x}}^{\bm{y\_{max}}} \bm{T}(\bm{x}, \bm{u}) \bm{\mu_t}(\bm{u}) \bm{\alpha\_{ss}}(\bm{u}) \bm{L_s}(\bm{u}, \bm{v}) du.
 $$
 
-The [Monte Carlo estimator](http://www.pbr-book.org/3ed-2018/Monte_Carlo_Integration/The_Monte_Carlo_Estimator.html) of the integral (for a single wavelength) takes the following form:
+The [Monte Carlo estimator](http://www.pbr-book.org/3ed-2018/Monte_Carlo_Integration/The_Monte_Carlo_Estimator.html) of the integral (for a single frequency) takes the following form:
 
 $$ \tag{18} L(\bm{x}, \bm{v})
     \approx \frac{1}{N} \sum\_{i=1}^{N} \frac{\mu_t(\bm{y_i}) T(\bm{x}, \bm{y_i}) \alpha\_{ss}(\bm{y_i}) L_s(\bm{y_i}, \bm{v})}{p( y_i | \lbrace \bm{x}, \bm{v} \rbrace)},
@@ -209,7 +247,7 @@ $$ \tag{19} p(y | \lbrace \bm{x}, \bm{v} \rbrace)
     = \frac{\mu_t(\bm{y}) T(\bm{x}, \bm{y})}{\int\_{\bm{x}}^{\bm{y\_{max}}} \mu_t(\bm{u}) T(\bm{x}, \bm{u}) du}
     = \frac{\mu_t(\bm{y}) T(\bm{x}, \bm{y})}{O(\bm{x}, \bm{\bm{y\_{max}}})}. $$
 
-Substitution of the Equation 19 radically simplifies the form of the estimator (again, for a single wavelength):
+Substitution of the Equation 19 radically simplifies the form of the estimator (again, for a single frequency):
 
 $$ \tag{20} L(\bm{x}, \bm{v}) \approx O(\bm{x}, \bm{\bm{y\_{max}}}) \frac{1}{N} \sum\_{i=1}^{N} \alpha\_{ss}(\bm{y_i}) L_s(\bm{y_i}, \bm{v}). $$
 
