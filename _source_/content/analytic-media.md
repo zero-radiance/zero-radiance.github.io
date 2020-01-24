@@ -98,6 +98,8 @@ Other [integral formulations](https://cs.dartmouth.edu/~wjarosz/publications/geo
 
 Geometric transmittance is a little more challenging to define since, in the general case, the path of least time may contain both reflection and refraction events in an arbitrary order. For instance, a photon traveling in the atmosphere may experience continuous refraction until it reaches the ionosphere, where it is [totally-internally reflected](https://en.wikipedia.org/wiki/Total_internal_reflection) back towards Earth, which allows the photon to [travel beyond the horizon](https://en.wikipedia.org/wiki/Line-of-sight_propagation).
 
+A practical way to model the geometric term is by discretizing the participating medium along the ray into an infinite number of infinitesimal homogeneous slices (which results in an infinite number of IOR discontinuities).
+
 If we impose a restriction on the path that it should be formed *exclusively* by refraction (which is convenient from the practical standpoint, and results in no loss of generality), the geometric component of transmittance along such a path can be expressed as a product of two factors:
 
 $$ \tag{13} \bm{T_g}(\bm{x}, \bm{y}) = \bm{T_f}(\bm{x}, \bm{y}) \bm{T\_{\omega}}(\bm{x}, \bm{y}), $$
@@ -114,13 +116,11 @@ $$ \tag{15} \bm{T\_{\omega}}(\bm{x}, \bm{y}) =
     \lim_{k \to \infty} \prod\_{i=0}^{k} \frac{\bm{n}^2(\bm{u_i}, \bm{t_i})}{\bm{n}^2(\bm{u_i}, \bm{v_i})} =
     \frac{\bm{n}^2(\bm{y}, \bm{v_y})}{\bm{n}^2(\bm{x}, \bm{v_x})}
 $$
-accounts for the [change of the solid angle](http://graphics.stanford.edu/papers/veach_thesis/) (which is necessary since we work with radiance rather than irradiance).
-
-We model the geometric term by discretizing the participating medium along the ray into an infinite number of infinitesimal homogeneous slices (which results in an infinite number of IOR discontinuities).
+accounts for the [change of the solid angle](http://graphics.stanford.edu/papers/veach_thesis/) (which is necessary to work with radiance rather than irradiance).
 
 The Fresnel factor is very complicated. First, we should note that it's an approximation, since both media at the interface (which is not even necessarily planar in our case) are assumed to be [homogeneous and isotropic](https://en.wikipedia.org/wiki/Fresnel_equations). Secondly, unlike the attenuation coefficient, the Fresnel term \\(\bm{F}\\) doesn't model probability density with respect to distance, which complicates an integral formulation.
 
-The solid angle factor, on the other hand, is easy to handle since, except for the endpoints, each IOR value appears in the formula twice, first in the numerator of the term \\(i\\) and then in the denominator of the term \\(i+1\\), and is therefore canceled out. Unfortunately, the resulting IOR coefficients make light transport [non-self-adjoint](http://graphics.stanford.edu/papers/veach_thesis/) (there's no solid angle scaling for importance or light particles). A nice solution to this problem is to use *basic* quantities such as *basic radiance*, which is [conserved](http://graphics.stanford.edu/papers/veach_thesis/) during refraction:
+The solid angle factor, on the other hand, is easy to handle since, except for the endpoints, each IOR value appears in the formula twice, first in the numerator of the term \\(i\\) and then in the denominator of the term \\(i+1\\), and is therefore canceled out. Unfortunately, the resulting IOR factor make light transport [non-self-adjoint](http://graphics.stanford.edu/papers/veach_thesis/) (there's no solid angle scaling for importance or light particles). A nice solution to this problem is to use *basic* quantities such as *basic radiance*, which is [conserved](http://graphics.stanford.edu/papers/veach_thesis/) during refraction:
 
 $$ \tag{16} \bm{\tilde{L}}(\bm{x}, \bm{v}) = \frac{\bm{L}(\bm{x}, \bm{v})}{\bm{n}^2(\bm{x}, \bm{v})}. $$
 
@@ -130,7 +130,7 @@ $$ \tag{17} \bm{\tilde{T}}(\bm{x}, \bm{y}) =
     \frac{\bm{\tilde{L}}(\bm{x}, \bm{v_x})}{\bm{\tilde{L}}(\bm{y}, \bm{v_y})} =
     \bm{T_v}(\bm{x}, \bm{y}) \bm{\tilde{T}_g}(\bm{x}, \bm{y}), $$
 
-with its geometric component given by the equation
+with its geometric component simplified to
 
 $$ \tag{18} \bm{\tilde{T}_g}(\bm{x}, \bm{y}) = \bm{T_f}(\bm{x}, \bm{y}). $$
 
@@ -146,7 +146,7 @@ $$ \begin{aligned} \tag{16}
     \bm{\tilde{T}}(\bm{x}, \bm{y}) \bm{\tilde{L}_g}(\bm{y}, \bm{v_u}),
 \end{aligned} $$
 
-where \\(\bm{\tilde{L}_e}\\) is the spontaneous emission term and \\(\bm{\tilde{L}_s}\\) is the in-scattering integral over the hemisphere
+where \\(\bm{\tilde{L}_e}\\) is the spontaneous emission term and \\(\bm{\tilde{L}_s}\\) is the in-scattering integral over the sphere \\(S^2\\)
 
 $$ \tag{17} \bm{\tilde{L}_s}(\bm{x}, \bm{v}) = \int\_{\bm{S}^2} \tilde{f}_p(\bm{x}, \bm{v}, \bm{l}) \bm{\tilde{L}}(\bm{x}, \bm{l}) d\tilde{\sigma}\_{\bm{x}}(\bm{l}), $$
 
@@ -158,11 +158,11 @@ is the *basic phase function* and
 
 $$ \tag{19} \tilde{\sigma}\_{\bm{x}}(\bm{l}) = \bm{n}^2(\bm{x}, \bm{l}) \sigma(\bm{l}) $$
 
-is the *basic solid angle measure*. \\(\bm{\tilde{L}_g}\\) is the standard geometry term (that contains a BSDF). In principle, it could be removed if we generalize the Fresnel term \\(\bm{F}\\) in Equations 14 and 16 as BSDF, but it doesn't appear to be worth the effort.
+is the *basic solid angle measure*. \\(\bm{\tilde{L}_g}\\) is the standard geometry term (that contains a BSDF). In principle, it could be removed if we replace the Fresnel term \\(\bm{F}\\) in Equations 14 and 16 with a BSDF, but it doesn't appear to be worth the effort.
 
-Note that the [original publication](https://dl.acm.org/doi/abs/10.1145/2557605) is missing the Fresnel terms (which may have [non-negligible contribution](https://www.scirp.org/pdf/opj_2013112009301643.pdf)), and its definition of the in-scattering term has inconsistent IOR handling (which, to be fair, is only important if you also consider discontinuous IOR). Regardless, I highly recommend checking out their work for the alternative derivation.
+I highly recommend checking out the [original publication](https://dl.acm.org/doi/abs/10.1145/2557605) for the alternative derivation. Just keep in mind that it is missing the Fresnel terms (which may have [non-negligible contribution](https://www.scirp.org/pdf/opj_2013112009301643.pdf)), and its definition of the in-scattering term has inconsistent IOR handling (which, to be fair, is only important if you consider discontinuous IOR).
 
-
+Since we have not found an integral formulation of the Fresnel factor \\(\bm{T_f}\\), and for efficiency reasons, we will make an approximation by assuming that \\(\bm{F} = 1\\).
 
 We can evaluate the outer integral using one of the [Monte Carlo](http://www.pbr-book.org/3ed-2018/Monte_Carlo_Integration.html) methods. The first step is to split the integrand in two parts: the part we can evaluate analytically, and the part that has to be integrated numerically. We can group the product of transmittance and the scattering coefficient together, and leave the inner integral as the "numerical" term \\(\bm{L_s}\\):
 
