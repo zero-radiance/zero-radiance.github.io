@@ -149,11 +149,11 @@ $$ \begin{aligned} \tag{16}
 
 where \\(\bm{\tilde{L}_e}\\) is the spontaneous emission term, and the in-scattering integral \\(\bm{\tilde{L}_s}\\) over the hemisphere is given as
 
-$$ \tag{17} \bm{\tilde{L}_s}(\bm{x}, \bm{v}) = \int\_{\bm{S}^2} \tilde{f}(\bm{x}, \bm{v}, \bm{l}) \bm{\tilde{L}}(\bm{x}, \bm{l}) d\tilde{\sigma}\_{\bm{x}}(\bm{l}), $$
+$$ \tag{17} \bm{\tilde{L}_s}(\bm{x}, \bm{v}) = \int\_{\bm{S}^2} \tilde{f}_p(\bm{x}, \bm{v}, \bm{l}) \bm{\tilde{L}}(\bm{x}, \bm{l}) d\tilde{\sigma}\_{\bm{x}}(\bm{l}), $$
 
 where
 
-$$ \tag{18} \tilde{f}(\bm{x}, \bm{v}, \bm{l}) = \frac{f_p(\bm{x}, \bm{v}, \bm{l})}{\bm{n}^2(\bm{x}, \bm{v})} $$
+$$ \tag{18} \tilde{f}_p(\bm{x}, \bm{v}, \bm{l}) = \frac{f_p(\bm{x}, \bm{v}, \bm{l})}{\bm{n}^2(\bm{x}, \bm{v})} $$
 
 is the *basic phase function* and
 
@@ -166,7 +166,7 @@ Let's examine the Equation 15 in more detail. ...
 Note that the [original publication](https://dl.acm.org/doi/abs/10.1145/2557605) is missing the Fresnel terms, and its definition of the in-scattering integral has inconsistent IOR handling. Regardless, I highly recommend checking out their work for the alternative derivation.
 
 
-For the first one, imagine a thin spherical glass shell in vacuum at the distance \\(y\\). Since the shell is very thin, we may consider the density to be 0 everywhere, except near the shell, where the density gradient is very large. Therefore, all collision coefficients may be set to 0, and the volume contribution is also 0 (except near the shell, which we model with \\(\bm{\mu_a}=1\\), \\(\bm{\mu_s}=1\\), and the [Kronecker delta](https://en.wikipedia.org/wiki/Kronecker_delta) function \\(f(\bm{u}, \bm{v}, \bm{l}) = \delta\_{\bm{vl}}\\)).
+For the first one, imagine a thin spherical glass shell in vacuum at the distance \\(y\\). Since the shell is very thin, we may consider the density to be 0 everywhere, except near the shell, where the density gradient is very large. Therefore, all collision coefficients may be set to 0, and the volume contribution is also 0 (except near the shell, which we model with \\(\bm{\mu_a}=1\\), \\(\bm{\mu_s}=1\\), and the [Kronecker delta](https://en.wikipedia.org/wiki/Kronecker_delta) function \\(f_p(\bm{u}, \bm{v}, \bm{l}) = \delta\_{\bm{vl}}\\)).
 
 The integral can then be simplified to
 
@@ -202,7 +202,7 @@ $$ \begin{aligned} \tag{19}
 
 Finally, for varying density, reflection and refraction can happen everywhere along the (curved) path, so they must be put inside the integral, which brings us back to the Equation 15.
 
-where \\(\bm{L}(\bm{x}, \bm{v})\\) is the amount of radiance at the position \\(\bm{x}\\) in the direction \\(\bm{v}\\), and \\(f\\) denotes the [phase function](http://www.pbr-book.org/3ed-2018/Volume_Scattering/Phase_Functions.html) which additionally depends on the light direction \\(\bm{l} \in \bm{S}^2\\). In the case of asymmetric scattering, the collision coefficients (cross sections) may be direction-dependent as well. The domain of integration is typically finite, ending either at the closest surface, or at the point where the ray exits the volume; we will refer to it as \\(\bm{y\_{max}}\\).
+where \\(\bm{L}(\bm{x}, \bm{v})\\) is the amount of radiance at the position \\(\bm{x}\\) in the direction \\(\bm{v}\\), and \\(f_p\\) denotes the [phase function](http://www.pbr-book.org/3ed-2018/Volume_Scattering/Phase_Functions.html) which additionally depends on the light direction \\(\bm{l} \in \bm{S}^2\\). In the case of asymmetric scattering, the collision coefficients (cross sections) may be direction-dependent as well. The domain of integration is typically finite, ending either at the closest surface, or at the point where the ray exits the volume; we will refer to it as \\(\bm{y\_{max}}\\).
 
 For continuously varying IOR, refraction along the path may force it to become curved, but the equation remains valid. There is another, more subtle part missing - along with refraction, we should model reflection as well. This integral does not model any form of reflection except for the [total internal reflection](https://en.wikipedia.org/wiki/Total_internal_reflection).
 
