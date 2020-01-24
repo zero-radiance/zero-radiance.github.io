@@ -72,55 +72,67 @@ Continuous variation of the IOR poses a challenge for path tracing. Typically, p
 
 Luckily, most of the math related to light transport can be expressed in a way that is independent from the geometry of the path. For instance, transmittance \\(\bm{T}\\) can be defined as the fraction of incident radiance transmitted along the path of least time between \\(\bm{x}\\) and \\(\bm{y}\\):
 
-$$ \tag{8} \bm{T}(\bm{x}, \bm{y}) = \frac{\bm{L}(\bm{x}, \bm{v_x})}{\bm{L}(\bm{y}, \bm{t_y})}, $$
+$$ \tag{8} \bm{T}(\bm{x}, \bm{y}) = \frac{\bm{L}(\bm{x}, \bm{v_x})}{\bm{L}(\bm{y}, \bm{v_y})}, $$
 
-where \\(\bm{v}\\) is the direction tangential to the path at the corresponding endpoint. For a single photon, transmittance can be interpreted as the probability of a free flight.
+where \\(\bm{v_x}\\) is the view direction and \\(\bm{t_y}\\) is the refracted (or reflected) direction at the corresponding endpoint. Both are tangential to the path, and, for a continuous IOR, \\(\bm{v_i} = -\bm{t_i}\\). The reason we use two different directions here is to indicate a side in the case of an IOR discontinuity. For consistency, we allow refraction (or reflection) at \\(\bm{x}\\) but not at \\(\bm{y}\\), e.i. our domain is a [half-closed interval](http://mathworld.wolfram.com/Half-ClosedInterval.html) \\(\lbrack x, y \rparen\\).
 
-Its complement is opacity \\(\bm{O}\\):
+{{< figure src="/img/curved_path.png">}}
+
+For a single photon, transmittance gives the probability of a free flight. Its complement is opacity \\(\bm{O}\\):
 
 $$ \tag{9} \bm{O}(\bm{x}, \bm{y}) = 1 - \bm{T}(\bm{x}, \bm{y}). $$
 
-The transmittance term has two components: a volumetric component \\(\bm{T_b}\\) (given by the [Beer–Lambert–Bouguer law](https://en.wikipedia.org/wiki/Beer%E2%80%93Lambert_law) for [uncorrelated media](https://cs.dartmouth.edu/~wjarosz/publications/bitterli18framework.html)), and a geometric component \\(\bm{T_f}\\) (given by the [Fresnel equations](https://en.wikipedia.org/wiki/Fresnel_equations)):
+The transmittance term has two components: a volumetric component \\(\bm{T_v}\\) (given by the [Beer–Lambert–Bouguer law](https://en.wikipedia.org/wiki/Beer%E2%80%93Lambert_law) for [uncorrelated media](https://cs.dartmouth.edu/~wjarosz/publications/bitterli18framework.html)), and a geometric component \\(\bm{T_g}\\) (given by the [Snell-Descartes law](https://en.wikipedia.org/wiki/Snell%27s_law)):
 
-$$ \tag{10} \bm{T}(\bm{x}, \bm{y}) = \bm{T_b}(\bm{x}, \bm{y}) \bm{T_f}(\bm{x}, \bm{y}). $$
+$$ \tag{10} \bm{T}(\bm{x}, \bm{y}) = \bm{T_v}(\bm{x}, \bm{y}) \bm{T_g}(\bm{x}, \bm{y}). $$
 
 The volumetric component of transmittance is given in terms of [optical depth](https://en.wikipedia.org/wiki/Optical_depth) (or optical thickness) \\(\bm{\tau}\\):
 
-$$ \tag{11} \bm{\tau}(\bm{x}, \bm{y}) = -\log{\bm{T_b}(\bm{x}, \bm{y})} = \int\_{\bm{x}}^{\bm{y}} \bm{\mu_t}(\bm{u}) du, $$
+$$ \tag{11} \bm{\tau}(\bm{x}, \bm{y}) = -\log{\bm{T_v}(\bm{x}, \bm{y})} = \int\_{\bm{x}}^{\bm{y}} \bm{\mu_t}(\bm{u}) du, $$
 
-where \\(\bm{u}\\) is the point at the distance \\(u\\) along the path. It implies that while volumetric transmittance is multiplicative, with values restricted to the unit interval, optical depth is additive and can take on any non-negative value. The [product integral](https://www.wikiwand.com/en/Product_integral) rule gives us
+where \\(\bm{u}\\) is the point at the distance \\(u\\) along the path. It implies that while volumetric transmittance is multiplicative, with values restricted to the unit interval, optical depth is additive and can take on any non-negative value. In other words, volumetric transmittance is a [product integral](https://www.wikiwand.com/en/Product_integral):
 
-$$ \tag{12} \bm{T_b}(\bm{x}, \bm{y}) = e^{\int\_{\bm{x}}^{\bm{y}} -\bm{\mu_t}(\bm{u}) du} = \prod\_{\bm{x}}^{\bm{y}} \Big( 1 - \bm{\mu_t}(\bm{u}) du \Big). $$
+$$ \tag{12} \bm{T_v}(\bm{x}, \bm{y}) = e^{\int\_{\bm{x}}^{\bm{y}} -\bm{\mu_t}(\bm{u}) du} = \prod\_{\bm{x}}^{\bm{y}} \Big( 1 - \bm{\mu_t}(\bm{u}) du \Big). $$
 
 Other [integral formulations](https://cs.dartmouth.edu/~wjarosz/publications/georgiev19integral.html) of volumetric transmittance exist.
 
-Geometric transmittance is a little more challenging to define since, in the general case, it may contain reflection and refraction events in an arbitrary order. For instance, an electromagnetic wave traveling in the atmosphere may experience continuous refraction until it reaches the ionosphere, where it is [totally-internally reflected](https://en.wikipedia.org/wiki/Total_internal_reflection) back towards Earth, which allows the wave to [travel beyond the horizon](https://en.wikipedia.org/wiki/Line-of-sight_propagation).
+Geometric transmittance is a little more challenging to define since, in the general case, the path may contain both reflection and refraction events in an arbitrary order. For instance, a photon traveling in the atmosphere may experience continuous refraction until it reaches the ionosphere, where it is [totally-internally reflected](https://en.wikipedia.org/wiki/Total_internal_reflection) back towards Earth, which allows the photon to [travel beyond the horizon](https://en.wikipedia.org/wiki/Line-of-sight_propagation).
 
-If we impose a restriction on the path that it should be formed *exclusively* by continuous refraction (which is convenient from the practical standpoint, and still supports all optical effects), the geometric component of transmittance along such a path can be expressed as a [product integral](https://www.wikiwand.com/en/Product_integral)
+If we impose a restriction on the path that it should be formed *exclusively* by continuous refraction (which is convenient from the practical standpoint, and results in no loss of generality), the geometric component of transmittance along such a path can be expressed as a product of two terms:
 
-$$ \tag{13} \begin{aligned}
-    \bm{T_f}(\bm{x}, \bm{y}) =
-        \prod\_{\bm{x}}^{\bm{y}} \frac{\bm{n}^2(\bm{u}, \bm{t_u})}{\bm{n}^2(\bm{u}, \bm{v_u})}
-        \prod\_{\bm{x}}^{\bm{y}} \Big( 1 - \bm{F}(\bm{u}, \bm{r_u}) du \Big) =
-        \frac{\bm{n}^2(\bm{y}, \bm{t_u})}{\bm{n}^2(\bm{x}, \bm{v_u})}
-        e^{\int\_{\bm{x}}^{\bm{y}} -\bm{F}(\bm{u}, \bm{r_u}) du },
-\end{aligned} $$
+$$ \tag{13} \bm{T_g}(\bm{x}, \bm{y}) = \bm{T_f}(\bm{x}, \bm{y}) \bm{T\_{\omega}}(\bm{x}, \bm{y}), $$
 
-where \\(\bm{v_u}\\) is the view direction at the position \\(\bm{u}\\), \\(\bm{r_u}\\) is the reflected direction, \\(\bm{t_u}\\) is the refracted direction, \\(\big( 1 - \bm{F}(\bm{u}, \bm{r_u}) \big)\\) is the fraction of transmitted irradiance given by the [Fresnel equations](https://en.wikipedia.org/wiki/Fresnel_equations), and \\(\big( \bm{n_t}^2 / \bm{n_v}^2 \big)\\) is the term that accounts for the [change of the solid angle](http://graphics.stanford.edu/papers/veach_thesis/) (which is necessary since we work with radiance rather than irradiance).
+where
+
+$$ \tag{14} \bm{T\_f}(\bm{x}, \bm{y}) =
+    \lim\_{k \to \infty} \prod\_{i=0}^{k} \Big( 1 - \bm{F}(\bm{u_i}, \bm{r_i}) \Big)
+$$
+
+models irradiance losses due to reflection given by the [Fresnel equations](https://en.wikipedia.org/wiki/Fresnel_equations), and
+
+$$ \tag{15} \bm{T\_{\omega}}(\bm{x}, \bm{y}) =
+    \lim_{k \to \infty} \prod\_{i=0}^{k-1} \frac{\bm{n}^2(\bm{u_i}, \bm{t_i})}{\bm{n}^2(\bm{u_i}, \bm{v_i})} =
+    \frac{\bm{n}^2(\bm{y}, \bm{v_y})}{\bm{n}^2(\bm{x}, \bm{v_x})}
+$$
+accounts for the [change of the solid angle](http://graphics.stanford.edu/papers/veach_thesis/) (which is necessary since we work with radiance rather than irradiance).
+
+We model the geometric term by discretizing the participating medium along the ray into an infinite number of infinitesimal homogeneous slices (which results in an infinite number of IOR discontinuities). The solid angle term is easy to handle since, except for the endpoints, each IOR value appears in the formula twice, first in the numerator of the term \\(i\\) and then in the denominator of the term \\(i+1\\), and is therefore canceled out.
+
+The Fresnel term is more complicated. First, we should note that it's an approximation, since both media at the interface (which is not even necessarily planar in our case) are assumed to be [homogeneous and isotropic](https://en.wikipedia.org/wiki/Fresnel_equations). Secondly, no cancellation occurs, and, unlike the attenuation coefficient, the Fresnel equation doesn't model probability density with respect to distance, which complicates an integral formulation.
 
 The solid angle term can be challenging to deal with since it makes light transport [non-self-adjoint](http://graphics.stanford.edu/papers/veach_thesis/) (there's no solid angle scaling for importance or light particles). A nice solution to this problem is to use *basic* quantities such as *basic radiance*, which is [conserved](http://graphics.stanford.edu/papers/veach_thesis/) during refraction:
 
-$$ \tag{13} \bm{\tilde{L}}(\bm{x}, \bm{v}) = \frac{\bm{L}(\bm{x}, \bm{v})}{\bm{n}^2(\bm{x}, \bm{v})}. $$
+$$ \tag{16} \bm{\tilde{L}}(\bm{x}, \bm{v}) = \frac{\bm{L}(\bm{x}, \bm{v})}{\bm{n}^2(\bm{x}, \bm{v})}. $$
 
 We can define *basic transmittance* as
 
-$$ \tag{14} \bm{\tilde{T}}(\bm{x}, \bm{y}) =
+$$ \tag{17} \bm{\tilde{T}}(\bm{x}, \bm{y}) =
     \frac{\bm{\tilde{L}}(\bm{x}, \bm{v_x})}{\bm{\tilde{L}}(\bm{y}, \bm{v_y})} =
-    \bm{T_b}(\bm{x}, \bm{y}) \bm{\tilde{T}_f}(\bm{x}, \bm{y}), $$
+    \bm{T_v}(\bm{x}, \bm{y}) \bm{\tilde{T}_g}(\bm{x}, \bm{y}), $$
 
 with its geometric component given by the equation
 
-$$ \tag{15} \bm{\tilde{T}_f}(\bm{x}, \bm{y}) = \int\_{\bm{x}}^{\bm{y}} \big( 1 - \bm{F}(\bm{u}, \bm{r_u}) \big) du. $$
+$$ \tag{18} \bm{\tilde{T}_g}(\bm{x}, \bm{y}) = ??? $$
 
 
 Now, we are ready to define the refractive radiative transfer integral. If we form a path from \\(\bm{x}\\) to \\(\bm{y}\\) *exclusively* by continuous refraction, the [integral equation of transfer](https://dl.acm.org/doi/abs/10.1145/2557605) takes the following form:
@@ -128,8 +140,8 @@ Now, we are ready to define the refractive radiative transfer integral. If we fo
 $$ \begin{aligned} \tag{16}
     \bm{\tilde{L}}(\bm{x}, \bm{v}) =
     \int\_{\bm{x}}^{\bm{y}} \bm{\tilde{T}}(\bm{x}, \bm{u}) \Big[
-        & \bm{\mu_a}(\bm{u}) \bm{\tilde{L}_e}(\bm{u}, \bm{t_u}) \; + \cr
-        & \bm{\mu_s}(\bm{u}) \bm{\tilde{L}_s}(\bm{u}, \bm{t_u}) \; + \cr
+        & \bm{\mu_a}(\bm{u}) \bm{\tilde{L}_e}(\bm{u}, \bm{v_u}) \; + \cr
+        & \bm{\mu_s}(\bm{u}) \bm{\tilde{L}_s}(\bm{u}, \bm{v_u}) \; + \cr
         & \bm{F}(\bm{u}, \bm{r_u}) \bm{\tilde{L}}(\bm{u}, \bm{r_u})
     \Big] du +
     \bm{\tilde{T}}(\bm{x}, \bm{y}) \bm{\tilde{L}_g}(\bm{y}, \bm{v_u}),
@@ -141,7 +153,7 @@ $$ \tag{17} \bm{\tilde{L}_s}(\bm{x}, \bm{v}) = \int\_{\bm{S}^2} \tilde{f}(\bm{x}
 
 where
 
-$$ \tag{18} \tilde{f}(\bm{x}, \bm{v}, \bm{l}) = \frac{f(\bm{x}, \bm{v}, \bm{l})}{\bm{n}^2(\bm{x}, \bm{v})} $$
+$$ \tag{18} \tilde{f}(\bm{x}, \bm{v}, \bm{l}) = \frac{f_p(\bm{x}, \bm{v}, \bm{l})}{\bm{n}^2(\bm{x}, \bm{v})} $$
 
 is the *basic phase function* and
 
@@ -149,9 +161,10 @@ $$ \tag{19} \tilde{\sigma}\_{\bm{x}}(\bm{l}) = \bm{n}^2(\bm{x}, \bm{l}) \sigma(\
 
 is the *basic solid angle measure*. \\(\bm{\tilde{L}_g}\\) is the standard geometry (optical interface) term.
 
-Note that the [original publication](https://dl.acm.org/doi/abs/10.1145/2557605) is missing the Fresnel terms, and its definition of the in-scattering integral has inconsistent IOR handling. Regardless, I highly recommend checking out their work for the derivation.
+Let's examine the Equation 15 in more detail. ...
 
-Let's examine the Equation 15 in more detail. One way to get a better understanding of how it works is to consider a few special cases.
+Note that the [original publication](https://dl.acm.org/doi/abs/10.1145/2557605) is missing the Fresnel terms, and its definition of the in-scattering integral has inconsistent IOR handling. Regardless, I highly recommend checking out their work for the alternative derivation.
+
 
 For the first one, imagine a thin spherical glass shell in vacuum at the distance \\(y\\). Since the shell is very thin, we may consider the density to be 0 everywhere, except near the shell, where the density gradient is very large. Therefore, all collision coefficients may be set to 0, and the volume contribution is also 0 (except near the shell, which we model with \\(\bm{\mu_a}=1\\), \\(\bm{\mu_s}=1\\), and the [Kronecker delta](https://en.wikipedia.org/wiki/Kronecker_delta) function \\(f(\bm{u}, \bm{v}, \bm{l}) = \delta\_{\bm{vl}}\\)).
 
