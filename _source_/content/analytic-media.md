@@ -100,7 +100,7 @@ Geometric transmittance is a little more challenging to define since, in the gen
 
 A practical way to model the geometric term is by discretizing the participating medium along the ray into an infinite number of infinitesimal homogeneous slices (which results in an infinite number of IOR discontinuities).
 
-If we impose a restriction on the path that it should be formed *exclusively* by refraction (which is convenient from the practical standpoint, and results in no loss of generality), the geometric component of transmittance along such a path can be expressed as a product of two factors:
+If we only consider paths of least time formed *exclusively* by refraction (which is convenient from the practical standpoint, and results in no loss of generality), the geometric component of transmittance along such a path can be expressed as a product of two factors:
 
 $$ \tag{13} \bm{T_g}(\bm{x}, \bm{y}) = \bm{T_f}(\bm{x}, \bm{y}) \bm{T\_{\omega}}(\bm{x}, \bm{y}), $$
 
@@ -134,7 +134,7 @@ with its geometric component simplified to
 
 $$ \tag{18} \bm{\tilde{T}_g}(\bm{x}, \bm{y}) = \bm{T_f}(\bm{x}, \bm{y}). $$
 
-Now, we are ready to define the refractive radiative transfer equation. We form a path from \\(\bm{x}\\) to \\(\bm{y}\\) *exclusively* by refraction, with three distinct sources (emission, in-scattering and reflection) attenuated by transmittance. The resulting [integral equation of transfer](https://dl.acm.org/doi/abs/10.1145/2557605) takes the following form:
+Now, we are ready to define the refractive radiative transfer equation. If we consider a path of least time from \\(\bm{x}\\) to \\(\bm{y}\\) formed *exclusively* by refraction, with three distinct sources (emission, in-scattering and reflection) attenuated by transmittance. The resulting [integral equation of transfer](https://dl.acm.org/doi/abs/10.1145/2557605) takes the following form:
 
 $$ \begin{aligned} \tag{16}
     \bm{\tilde{L}}(\bm{x}, \bm{v}) =
