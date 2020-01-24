@@ -162,7 +162,7 @@ is the *basic solid angle measure*. \\(\bm{\tilde{L}_g}\\) is the standard geome
 
 I highly recommend checking out the [original publication](https://dl.acm.org/doi/abs/10.1145/2557605) for the alternative derivation. Just keep in mind that it is missing the Fresnel terms (which may have [non-negligible contribution](https://www.scirp.org/pdf/opj_2013112009301643.pdf)), and its definition of the in-scattering term has inconsistent IOR handling (which, to be fair, is only important if you consider discontinuous IOR).
 
-Since we have not found an integral formulation of the Fresnel factor \\(\bm{T_f}\\), and for efficiency reasons, we will make an approximation by assuming that \\(\bm{F} = 1\\).
+Since we have not found an integral formulation of the Fresnel factor \\(\bm{T_f}\\), for efficiency reasons, we will make an approximation by assuming that \\(\bm{F} = 0\\).
 
 We can evaluate the outer integral using one of the [Monte Carlo](http://www.pbr-book.org/3ed-2018/Monte_Carlo_Integration.html) methods. The first step is to split the integrand in two parts: the part we can evaluate analytically, and the part that has to be integrated numerically. We can group the product of transmittance and the scattering coefficient together, and leave the inner integral as the "numerical" term \\(\bm{L_s}\\):
 
