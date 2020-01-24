@@ -74,7 +74,7 @@ Luckily, most of the math related to light transport can be expressed in a way t
 
 $$ \tag{8} \bm{T}(\bm{x}, \bm{y}) = \frac{\bm{L}(\bm{x}, \bm{v_x})}{\bm{L}(\bm{y}, \bm{v_y})}, $$
 
-where \\(\bm{v_x}\\) is the view direction and \\(\bm{t_y}\\) is the refracted (or reflected) direction at the corresponding endpoint. Both are tangential to the path, and, for a continuous IOR, \\(\bm{v_i} = -\bm{t_i}\\). The reason we use two different directions here is to indicate a side in the case of an IOR discontinuity. For consistency, we allow refraction (or reflection) at \\(\bm{x}\\) but not at \\(\bm{y}\\), e.i. our domain is a [half-closed interval](http://mathworld.wolfram.com/Half-ClosedInterval.html) \\(\lbrack x, y \rparen\\).
+where \\(\bm{v_x}\\) is the view direction and \\(\bm{t_y}\\) is the refracted (or reflected) direction at the corresponding endpoint. Both are tangent to the path, and, for a continuous IOR, \\(\bm{v_i} = -\bm{t_i}\\). The reason we use two different directions here is to indicate a side in the case of an IOR discontinuity. For consistency, we allow refraction (or reflection) at \\(\bm{x}\\) but not at \\(\bm{y}\\), e.i. our domain is a [half-closed interval](http://mathworld.wolfram.com/Half-ClosedInterval.html) \\(\lbrack x, y \rparen\\).
 
 {{< figure src="/img/curved_path.png">}}
 
@@ -96,9 +96,9 @@ $$ \tag{12} \bm{T_v}(\bm{x}, \bm{y}) = e^{\int\_{\bm{x}}^{\bm{y}} -\bm{\mu_t}(\b
 
 Other [integral formulations](https://cs.dartmouth.edu/~wjarosz/publications/georgiev19integral.html) of volumetric transmittance exist.
 
-Geometric transmittance is a little more challenging to define since, in the general case, the path may contain both reflection and refraction events in an arbitrary order. For instance, a photon traveling in the atmosphere may experience continuous refraction until it reaches the ionosphere, where it is [totally-internally reflected](https://en.wikipedia.org/wiki/Total_internal_reflection) back towards Earth, which allows the photon to [travel beyond the horizon](https://en.wikipedia.org/wiki/Line-of-sight_propagation).
+Geometric transmittance is a little more challenging to define since, in the general case, the path of least time may contain both reflection and refraction events in an arbitrary order. For instance, a photon traveling in the atmosphere may experience continuous refraction until it reaches the ionosphere, where it is [totally-internally reflected](https://en.wikipedia.org/wiki/Total_internal_reflection) back towards Earth, which allows the photon to [travel beyond the horizon](https://en.wikipedia.org/wiki/Line-of-sight_propagation).
 
-If we impose a restriction on the path that it should be formed *exclusively* by continuous refraction (which is convenient from the practical standpoint, and results in no loss of generality), the geometric component of transmittance along such a path can be expressed as a product of two terms:
+If we impose a restriction on the path that it should be formed *exclusively* by refraction (which is convenient from the practical standpoint, and results in no loss of generality), the geometric component of transmittance along such a path can be expressed as a product of two factors:
 
 $$ \tag{13} \bm{T_g}(\bm{x}, \bm{y}) = \bm{T_f}(\bm{x}, \bm{y}) \bm{T\_{\omega}}(\bm{x}, \bm{y}), $$
 
@@ -111,16 +111,16 @@ $$
 models irradiance losses due to reflection given by the [Fresnel equations](https://en.wikipedia.org/wiki/Fresnel_equations), and
 
 $$ \tag{15} \bm{T\_{\omega}}(\bm{x}, \bm{y}) =
-    \lim_{k \to \infty} \prod\_{i=0}^{k-1} \frac{\bm{n}^2(\bm{u_i}, \bm{t_i})}{\bm{n}^2(\bm{u_i}, \bm{v_i})} =
+    \lim_{k \to \infty} \prod\_{i=0}^{k} \frac{\bm{n}^2(\bm{u_i}, \bm{t_i})}{\bm{n}^2(\bm{u_i}, \bm{v_i})} =
     \frac{\bm{n}^2(\bm{y}, \bm{v_y})}{\bm{n}^2(\bm{x}, \bm{v_x})}
 $$
 accounts for the [change of the solid angle](http://graphics.stanford.edu/papers/veach_thesis/) (which is necessary since we work with radiance rather than irradiance).
 
-We model the geometric term by discretizing the participating medium along the ray into an infinite number of infinitesimal homogeneous slices (which results in an infinite number of IOR discontinuities). The solid angle term is easy to handle since, except for the endpoints, each IOR value appears in the formula twice, first in the numerator of the term \\(i\\) and then in the denominator of the term \\(i+1\\), and is therefore canceled out.
+We model the geometric term by discretizing the participating medium along the ray into an infinite number of infinitesimal homogeneous slices (which results in an infinite number of IOR discontinuities).
 
-The Fresnel term is more complicated. First, we should note that it's an approximation, since both media at the interface (which is not even necessarily planar in our case) are assumed to be [homogeneous and isotropic](https://en.wikipedia.org/wiki/Fresnel_equations). Secondly, no cancellation occurs, and, unlike the attenuation coefficient, the Fresnel equation doesn't model probability density with respect to distance, which complicates an integral formulation.
+The Fresnel factor is very complicated. First, we should note that it's an approximation, since both media at the interface (which is not even necessarily planar in our case) are assumed to be [homogeneous and isotropic](https://en.wikipedia.org/wiki/Fresnel_equations). Secondly, unlike the attenuation coefficient, the Fresnel term \\(\bm{F}\\) doesn't model probability density with respect to distance, which complicates an integral formulation.
 
-The solid angle term can be challenging to deal with since it makes light transport [non-self-adjoint](http://graphics.stanford.edu/papers/veach_thesis/) (there's no solid angle scaling for importance or light particles). A nice solution to this problem is to use *basic* quantities such as *basic radiance*, which is [conserved](http://graphics.stanford.edu/papers/veach_thesis/) during refraction:
+The solid angle factor, on the other hand, is easy to handle since, except for the endpoints, each IOR value appears in the formula twice, first in the numerator of the term \\(i\\) and then in the denominator of the term \\(i+1\\), and is therefore canceled out. Unfortunately, the resulting IOR coefficients make light transport [non-self-adjoint](http://graphics.stanford.edu/papers/veach_thesis/) (there's no solid angle scaling for importance or light particles). A nice solution to this problem is to use *basic* quantities such as *basic radiance*, which is [conserved](http://graphics.stanford.edu/papers/veach_thesis/) during refraction:
 
 $$ \tag{16} \bm{\tilde{L}}(\bm{x}, \bm{v}) = \frac{\bm{L}(\bm{x}, \bm{v})}{\bm{n}^2(\bm{x}, \bm{v})}. $$
 
@@ -132,10 +132,9 @@ $$ \tag{17} \bm{\tilde{T}}(\bm{x}, \bm{y}) =
 
 with its geometric component given by the equation
 
-$$ \tag{18} \bm{\tilde{T}_g}(\bm{x}, \bm{y}) = ??? $$
+$$ \tag{18} \bm{\tilde{T}_g}(\bm{x}, \bm{y}) = \bm{T_f}(\bm{x}, \bm{y}). $$
 
-
-Now, we are ready to define the refractive radiative transfer integral. If we form a path from \\(\bm{x}\\) to \\(\bm{y}\\) *exclusively* by continuous refraction, the [integral equation of transfer](https://dl.acm.org/doi/abs/10.1145/2557605) takes the following form:
+Now, we are ready to define the refractive radiative transfer equation. We form a path from \\(\bm{x}\\) to \\(\bm{y}\\) *exclusively* by refraction, with three distinct sources (emission, in-scattering and reflection) attenuated by transmittance. The resulting [integral equation of transfer](https://dl.acm.org/doi/abs/10.1145/2557605) takes the following form:
 
 $$ \begin{aligned} \tag{16}
     \bm{\tilde{L}}(\bm{x}, \bm{v}) =
@@ -147,7 +146,7 @@ $$ \begin{aligned} \tag{16}
     \bm{\tilde{T}}(\bm{x}, \bm{y}) \bm{\tilde{L}_g}(\bm{y}, \bm{v_u}),
 \end{aligned} $$
 
-where \\(\bm{\tilde{L}_e}\\) is the spontaneous emission term, and the in-scattering integral \\(\bm{\tilde{L}_s}\\) over the hemisphere is given as
+where \\(\bm{\tilde{L}_e}\\) is the spontaneous emission term and \\(\bm{\tilde{L}_s}\\) is the in-scattering integral over the hemisphere
 
 $$ \tag{17} \bm{\tilde{L}_s}(\bm{x}, \bm{v}) = \int\_{\bm{S}^2} \tilde{f}_p(\bm{x}, \bm{v}, \bm{l}) \bm{\tilde{L}}(\bm{x}, \bm{l}) d\tilde{\sigma}\_{\bm{x}}(\bm{l}), $$
 
@@ -159,52 +158,11 @@ is the *basic phase function* and
 
 $$ \tag{19} \tilde{\sigma}\_{\bm{x}}(\bm{l}) = \bm{n}^2(\bm{x}, \bm{l}) \sigma(\bm{l}) $$
 
-is the *basic solid angle measure*. \\(\bm{\tilde{L}_g}\\) is the standard geometry (optical interface) term.
+is the *basic solid angle measure*. \\(\bm{\tilde{L}_g}\\) is the standard geometry term (that contains a BSDF). In principle, it could be removed if we generalize the Fresnel term \\(\bm{F}\\) in Equations 14 and 16 as BSDF, but it doesn't appear to be worth the effort.
 
-Let's examine the Equation 15 in more detail. ...
-
-Note that the [original publication](https://dl.acm.org/doi/abs/10.1145/2557605) is missing the Fresnel terms, and its definition of the in-scattering integral has inconsistent IOR handling. Regardless, I highly recommend checking out their work for the alternative derivation.
+Note that the [original publication](https://dl.acm.org/doi/abs/10.1145/2557605) is missing the Fresnel terms (which may have [non-negligible contribution](https://www.scirp.org/pdf/opj_2013112009301643.pdf)), and its definition of the in-scattering term has inconsistent IOR handling (which, to be fair, is only important if you also consider discontinuous IOR). Regardless, I highly recommend checking out their work for the alternative derivation.
 
 
-For the first one, imagine a thin spherical glass shell in vacuum at the distance \\(y\\). Since the shell is very thin, we may consider the density to be 0 everywhere, except near the shell, where the density gradient is very large. Therefore, all collision coefficients may be set to 0, and the volume contribution is also 0 (except near the shell, which we model with \\(\bm{\mu_a}=1\\), \\(\bm{\mu_s}=1\\), and the [Kronecker delta](https://en.wikipedia.org/wiki/Kronecker_delta) function \\(f_p(\bm{u}, \bm{v}, \bm{l}) = \delta\_{\bm{vl}}\\)).
-
-The integral can then be simplified to
-
-$$ \tag{17}
-    \bm{L_1}(\bm{x}, \bm{v}) =
-        \bm{F}(\bm{y}, \bm{r_y}) \bm{L_1}(\bm{y}, \bm{r_y}) +
-        \big( 1 - \bm{F}(\bm{y}, \bm{r_y}) \big) \bm{L_1}(\bm{y}, \bm{t_y}),
-$$
-
-where \\(\bm{r_y}\\) is the reflected direction (w.r.t. the viewing direction \\(\bm{v_u}\\)) at the surface of the shell, \\(\bm{t_y}\\) is the corresponding refracted direction, and \\(\bm{F}\\) is the [Fresnel factor](https://en.wikipedia.org/wiki/Fresnel_equations), which is 0 if the density gradient is 0. The Equation 17 corresponds to the surface rendering equation in vacuum.
-
-If we replace the thin shell with a ball, and perhaps surround it by homogeneous fog, we will get some in-scattering contribution, while the density gradient is still 0 everywhere except near the surface of the ball:
-
-$$ \begin{aligned} \tag{18}
-    \bm{L_2}(\bm{x}, \bm{v}) =
-    \int\_{\bm{x}}^{\bm{y}}
-        & \bm{T}(\bm{x}, \bm{u}) \bm{\mu_s}(\bm{u}) \bm{L_s}(\bm{u}, \bm{v_u}) du \; + \cr
-        & \bm{T}(\bm{x}, \bm{y}) \Big[ \bm{F}(\bm{y}, \bm{r_y}) \bm{L_2}(\bm{y}, \bm{r_y}) +
-        \big( 1 - \bm{F}(\bm{y}, \bm{r_y}) \big) \bm{L_2}(\bm{y}, \bm{t_y}) \Big].
-\end{aligned} $$
-
-Supporting  adds another term:
-
-$$ \begin{aligned} \tag{19}
-    \bm{L_3}(\bm{x}, \bm{v}) =
-    \int\_{\bm{x}}^{\bm{y}}
-        & \bm{T}(\bm{x}, \bm{u}) \Big[
-            \bm{\mu_a}(\bm{u}) \bm{L_e}(\bm{u}, \bm{v_u}) + \bm{\mu_s}(\bm{u}) \bm{L_s}(\bm{u}, \bm{v_u})
-        \Big] du \; + \cr
-        & \bm{T}(\bm{x}, \bm{y}) \Big[ \bm{F}(\bm{y}, \bm{r_y}) \bm{L_3}(\bm{y}, \bm{r_y}) +
-        \big( 1 - \bm{F}(\bm{y}, \bm{r_y}) \big) \bm{L_3}(\bm{y}, \bm{t_y}) \Big].
-\end{aligned} $$
-
-Finally, for varying density, reflection and refraction can happen everywhere along the (curved) path, so they must be put inside the integral, which brings us back to the Equation 15.
-
-where \\(\bm{L}(\bm{x}, \bm{v})\\) is the amount of radiance at the position \\(\bm{x}\\) in the direction \\(\bm{v}\\), and \\(f_p\\) denotes the [phase function](http://www.pbr-book.org/3ed-2018/Volume_Scattering/Phase_Functions.html) which additionally depends on the light direction \\(\bm{l} \in \bm{S}^2\\). In the case of asymmetric scattering, the collision coefficients (cross sections) may be direction-dependent as well. The domain of integration is typically finite, ending either at the closest surface, or at the point where the ray exits the volume; we will refer to it as \\(\bm{y\_{max}}\\).
-
-For continuously varying IOR, refraction along the path may force it to become curved, but the equation remains valid. There is another, more subtle part missing - along with refraction, we should model reflection as well. This integral does not model any form of reflection except for the [total internal reflection](https://en.wikipedia.org/wiki/Total_internal_reflection).
 
 We can evaluate the outer integral using one of the [Monte Carlo](http://www.pbr-book.org/3ed-2018/Monte_Carlo_Integration.html) methods. The first step is to split the integrand in two parts: the part we can evaluate analytically, and the part that has to be integrated numerically. We can group the product of transmittance and the scattering coefficient together, and leave the inner integral as the "numerical" term \\(\bm{L_s}\\):
 
