@@ -5,13 +5,13 @@ hidden: true
 draft: true
 categories: [ "Graphics", "Math" ]
 tags: [
-    "Chapman Function",
-    "Importance Sampling",
-    "Volume Rendering",
-    ]
+    "Chapman Function",
+    "Importance Sampling",
+    "Volume Rendering",
+    ]
 ---
 
-Participating media rendering is an important aspect of every modern renderer. When I say participating media, I am not just talking about fog, fire and smoke - *everything is volumetric*. All matter is composed of [atoms](https://en.wikipedia.org/wiki/Atom) (containing electrons), which can be sparsely (e.g. in a gas) or densely (e.g. in a solid) distributed in space. Whether we consider the particle or the wave nature of [light](https://en.wikipedia.org/wiki/Light), it penetrates all matter (even [metals](http://webhome.phy.duke.edu/~qelectron/group/group_reading_Born_and_Wolf.pdf)) to a certain degree, and interacts with its atoms along the way. The nature and the degree of "participation" depends on the material in question.
+Participating media rendering is an important aspect of every modern renderer. When I say participating media, I am not just talking about fog, fire, and smoke - *everything is volumetric*. All matter is composed of [atoms](https://en.wikipedia.org/wiki/Atom) (containing electrons), which can be sparsely (e.g. in a gas) or densely (e.g. in a solid) distributed in space. Whether we consider the particle or the wave nature of [light](https://en.wikipedia.org/wiki/Light), it penetrates all matter (even [metals](http://webhome.phy.duke.edu/~qelectron/group/group_reading_Born_and_Wolf.pdf)) to a certain degree and interacts with its atoms along the way. The nature and the degree of "participation" depend on the material in question.
 
 <!--more-->
 
@@ -21,7 +21,7 @@ The [attenuation coefficient](https://en.wikipedia.org/wiki/Attenuation_coeffici
 
 $$ \tag{1} \bm{\mu_t} = \bm{\mu_a} + \bm{\mu_s} $$
 
-gives the probability density of absorption or scattering (or, in other words, the collision rate) as a photon travels a unit distance though the medium. All these coefficients are spectral (they depend on the frequency \\(\nu\\), which is simpler to handle than the the wavelength \\(\lambda\\) since the latter is [modified at the interface](http://graphics.stanford.edu/papers/veach_thesis/)), and can be represented as vectors (boldface notation). At this point in time, it is not entirely clear (at least to me) how to *correctly* perform volume rendering using tristimulus (RGB) values (which would require some sort of pre-integration using [color matching functions](https://en.wikipedia.org/wiki/CIE_1931_color_space#Color_matching_functions)), so I will focus on pure spectral rendering, which is well-defined.
+gives the probability density of absorption or scattering (or, in other words, the collision rate) as a photon travels a unit distance through the medium. All these coefficients are spectral (they depend on the frequency \\(\nu\\), which is simpler to handle than the wavelength \\(\lambda\\) since the latter is [modified at the interface](http://graphics.stanford.edu/papers/veach_thesis/)), and can be represented as vectors (boldface notation). At this point in time, it is not entirely clear (at least to me) how to *correctly* perform volume rendering using tristimulus (RGB) values (which would require some sort of pre-integration using [color matching functions](https://en.wikipedia.org/wiki/CIE_1931_color_space#Color_matching_functions)), so I will focus on pure spectral rendering, which is well-defined.
 
 A more artist-friendly parametrization uses the [single-scattering albedo](https://en.wikipedia.org/wiki/Single-scattering_albedo) \\(\bm{\alpha\_{ss}}\\)
 
@@ -37,9 +37,9 @@ Taking a small detour, for metals, the absorption coefficient is directly relate
 
 $$ \tag{4} \bm{\kappa} = \frac{\bm{\lambda}}{4 \pi} \bm{\mu_a}. $$
 
-For this reason, \\(\bm{\eta}\\) is called the [refractive index](https://www.feynmanlectures.caltech.edu/I_31.html) (or IOR), and \\(\bm{\kappa}\\) is  sometimes referred to as the [absorption index](http://www.sfu.ca/~gchapman/e376/e376l7.pdf). Note that I am not talking about the IOR of an individual particle (which influences the [microscopic scattering](https://en.wikipedia.org/wiki/Mie_scattering) process), but rather about the macroscropic properties of the medium itself.
+For this reason, \\(\bm{\eta}\\) is called the [refractive index](https://www.feynmanlectures.caltech.edu/I_31.html) (or IOR), and \\(\bm{\kappa}\\) is sometimes referred to as the [absorption index](http://www.sfu.ca/~gchapman/e376/e376l7.pdf). Note that I am not talking about the IOR of an individual particle (which influences the [microscopic scattering](https://en.wikipedia.org/wiki/Mie_scattering) process), but rather about the macroscopic properties of the medium itself.
 
-The tuple \\(\lbrace \bm{\eta}, \bm{\kappa}, \bm{\mu_s} \rbrace\\) \\(\big(\\)or, alternatively, \\(\lbrace \bm{\eta}, \bm{d}, \bm{\alpha\_{ss}} \rbrace  \big) \\) contains sufficient information to describe both the behavior at the surface (boundary) and the (isotropic) multiple-scattering process (known as [subsurface scattering](https://en.wikipedia.org/wiki/Subsurface_scattering)) inside the volume that ultimately gives rise to what we perceive as the surface albedo \\(\bm{\alpha\_{ms}}\\). Note that certain materials (metals, in particular) require modeling of [wave interference](https://en.wikipedia.org/wiki/Wave_interference) to obtain expected reflectance values (so a solution based on geometric optics would yield wrong results).
+The tuple \\(\lbrace \bm{\eta}, \bm{\kappa}, \bm{\mu_s} \rbrace\\) \\(\big(\\)or, alternatively, \\(\lbrace \bm{\eta}, \bm{d}, \bm{\alpha\_{ss}} \rbrace \big) \\) contains sufficient information to describe both the behavior at the surface (boundary) and the (isotropic) multiple-scattering process (known as [subsurface scattering](https://en.wikipedia.org/wiki/Subsurface_scattering)) inside the volume that ultimately gives rise to what we perceive as the surface albedo \\(\bm{\alpha\_{ms}}\\). Note that certain materials (metals, in particular) require modeling of [wave interference](https://en.wikipedia.org/wiki/Wave_interference) to obtain expected reflectance values (so a solution based on geometric optics would yield wrong results).
 
 A surface, then, is just an optical interface signified by a discontinuity of optical properties of the medium (in reality, the [transition at the boundary is continuous](https://www.feynmanlectures.caltech.edu/II_33.html), with a thickness of several atomic layers, but we can ignore this fact at scales relevant to computer graphics).
 
@@ -60,105 +60,74 @@ where \\(m\\) is the [molecular mass](https://en.wikipedia.org/wiki/Molecular_ma
 For materials with small mass densities, the molecules are far apart from one another, the molecular interactions are weak, and the IOR is close to 1. Therefore, for matter in a gas state, the following approximation can be made:
 
 $$ \begin{aligned} \tag{7}
-    \bm{n}^2 & \approx 1 + 4 \pi \frac{\rho}{m} \bm{\alpha_m} = 1 + 2 \bm{c} \rho, \cr
-    \bm{n}   & \approx 1 + 2 \pi \frac{\rho}{m} \bm{\alpha_m} = 1 + \bm{c} \rho,
+    \bm{n}^2 & \approx 1 + 4 \pi \frac{\rho}{m} \bm{\alpha_m} = 1 + 2 \bm{c} \rho, \cr
+    \bm{n}   & \approx 1 + 2 \pi \frac{\rho}{m} \bm{\alpha_m} = 1 + \bm{c} \rho,
 \end{aligned} $$
 
-where \\(\bm{c}\\) is the [light dispersion coefficient](https://ui.adsabs.harvard.edu/abs/1996CoSka..26...23K/abstract). This equation implies that the [relative brake power](https://www.sciencedirect.com/topics/chemistry/optical-refraction) \\((\bm{n} - 1)\\) has an approximately linear relation with density. Similar [relations](http://www.waves.utoronto.ca/prof/svhum/ece422/notes/20a-atmospheric-refr.pdf) can be found for temperature, humidity and pressure (in fact, all coefficients are highly [temperature-dependent](http://www.sfu.ca/~gchapman/e376/e376l7.pdf)). Also, while the discussion above mostly concerns dielectrics, the formula for metals is [very similar](https://www.feynmanlectures.caltech.edu/II_32.html#mjx-eqn-EqII3238).
+where \\(\bm{c}\\) is the [light dispersion coefficient](https://ui.adsabs.harvard.edu/abs/1996CoSka..26...23K/abstract). This equation implies that the [relative brake power](https://www.sciencedirect.com/topics/chemistry/optical-refraction) \\((\bm{n} - 1)\\) has an approximately linear relation with density. Similar relations can be found for [temperature and and pressure](https://en.wikipedia.org/wiki/Clausius%E2%80%93Mossotti_relation) (in fact, all coefficients are highly [temperature-dependent](http://www.sfu.ca/~gchapman/e376/e376l7.pdf)). Also, while the discussion above mostly concerns dielectrics, the formula for metals is [very similar](https://www.feynmanlectures.caltech.edu/II_32.html#mjx-eqn-EqII3238).
 
-Continuous variation of the IOR poses a challenge for path tracing. Typically, paths are composed of straight segments joined at scattering locations. Unfortunately, due to the [principle of least time](https://en.wikipedia.org/wiki/Fermat%27s_principle), continuously varying IOR forces photons to travel along curved paths that bend towards regions of higher density according to [Snell's law](https://en.wikipedia.org/wiki/Snell%27s_law). And since the IOR can depend on the frequency, it can cause [dispersion](https://en.wikipedia.org/wiki/Dispersion_(optics)) not only at the interfaces, but also continuously, along the entire path. So it is not too surprising that that most renderers ignore this behavior (even though, physically, doing that doesn't make much sense). For small density gradients and small distances, it is a valid approximation that, on average, gives reasonably accurate results. On the other hand, for certain atmospheric effects, [atmospheric refraction](https://en.wikipedia.org/wiki/Atmospheric_refraction) can make a non-negligible contribution.
+Continuous variation of the IOR poses many challenges for path tracing. In piecewise-homogeneous media, paths are composed of straight segments joined at scattering locations. Unfortunately, due to [Fermat's principle](https://en.wikipedia.org/wiki/Fermat%27s_principle), continuously varying IOR forces photons to travel along paths of least time that [continuously refract](http://www.waves.utoronto.ca/prof/svhum/ece422/notes/20a-atmospheric-refr.pdf) towards regions of higher density according to [Snell's law](https://en.wikipedia.org/wiki/Snell%27s_law). This fact alone makes basic actions like visibility testing very complicated. And since the IOR can depend on the frequency, it may cause [dispersion](https://en.wikipedia.org/wiki/Dispersion_(optics)) not only at the interfaces, but also continuously, along the entire path. Finally, one must model losses and gains due to [continuous reflection](https://www.scirp.org/pdf/opj_2013112009301643.pdf), which is mathematically challenging. So it is not too surprising that most renderers ignore this behavior (even though, physically, that doesn't make much sense). For small density gradients and small distances, it is a valid approximation that, on average, gives reasonably accurate results. On the other hand, for certain atmospheric effects, [atmospheric refraction](https://en.wikipedia.org/wiki/Atmospheric_refraction) and reflection make a non-negligible contribution.
 
-## Refractive Radiative Transfer Equation
+For practical reasons, all further discussion assumes that, within volume boundaries, the IOR is invariant with respect to position. If you are interested in continuous refraction, check out the [Refractive Radiative Transfer Equation](https://dl.acm.org/doi/abs/10.1145/2557605) paper.
 
-Luckily, most of the math related to light transport can be expressed in a way that is independent from the geometry of the path. For instance, transmittance \\(\bm{T}\\) can be defined as the fraction of incident radiance transmitted along the path of least time between \\(\bm{x}\\) and \\(\bm{y}\\):
+## Radiative Transfer Equation
 
-$$ \tag{8} \bm{T}(\bm{x}, \bm{y}) = \frac{\bm{L}(\bm{x}, \bm{v_x})}{\bm{L}(\bm{y}, \bm{v_y})}, $$
+Intelligent sampling requires understanding which parts make a large contribution. Therefore, we must briefly discuss the radiative transfer equation (or RTE) used to render scenes with participating media. While the full [derivation](https://archive.org/details/RadiativeTransfer) is outside the scope, we will try to touch the important aspects.
 
-where \\(\bm{v_x}\\) is the view direction and \\(\bm{t_y}\\) is the refracted (or reflected) direction at the corresponding endpoint. Both are tangent to the path, and, for a continuous IOR, \\(\bm{v_i} = -\bm{t_i}\\). The reason we use two different directions here is to indicate a side in the case of an IOR discontinuity. For consistency, we allow refraction (or reflection) at \\(\bm{x}\\) but not at \\(\bm{y}\\), e.i. our domain is a [half-closed interval](http://mathworld.wolfram.com/Half-ClosedInterval.html) \\(\lbrack x, y \rparen\\).
+The integral form of the RTE is a recursive line integral. It works by collecting photons along the path, while at the same time modeling energy losses as photons travel from the sources towards the sensor.
 
-{{< figure src="/img/curved_path.png">}}
+One of the primary loss factors is opacity \\(\bm{O}\\), which can be defined as the fraction of photons lost along the path from \\(\bm{y}\\) to \\(\bm{x}\\):
 
-For a single photon, transmittance gives the probability of a free flight. Its complement is opacity \\(\bm{O}\\):
+$$ \tag{8} \bm{O}(\bm{x}, \bm{y}) = \frac{\bm{L}(\bm{y}, \bm{\hat{v}\_{xy}}) - \bm{L}(\bm{x}, \bm{\hat{v}\_{xy}})}{\bm{L}(\bm{y}, \bm{\hat{v}\_{xy}})} = 1 - \frac{\bm{L}(\bm{x}, \bm{\hat{v}\_{xy}})}{\bm{L}(\bm{y}, \bm{\hat{v}\_{xy}})}, $$
 
-$$ \tag{9} \bm{O}(\bm{x}, \bm{y}) = 1 - \bm{T}(\bm{x}, \bm{y}). $$
+where \\(\bm{\hat{v}\_{xy}} = (\bm{x} - \bm{y})/ \Vert \bm{x} - \bm{y} \Vert \\) is the normalized view direction. Intuitively, \\(\bm{O}(\bm{x}, \bm{y}) = \bm{O}(\bm{y}, \bm{x})\\).
 
-The transmittance term has two components: a volumetric component \\(\bm{T_v}\\) (given by the [Beer–Lambert–Bouguer law](https://en.wikipedia.org/wiki/Beer%E2%80%93Lambert_law) for [uncorrelated media](https://cs.dartmouth.edu/~wjarosz/publications/bitterli18framework.html)), and a geometric component \\(\bm{T_g}\\) (given by the [Snell-Descartes law](https://en.wikipedia.org/wiki/Snell%27s_law)):
+Its complement is transmittance \\(\bm{T}\\):
 
-$$ \tag{10} \bm{T}(\bm{x}, \bm{y}) = \bm{T_v}(\bm{x}, \bm{y}) \bm{T_g}(\bm{x}, \bm{y}). $$
+$$ \tag{9} \bm{T}(\bm{x}, \bm{y}) = 1 - \bm{O}(\bm{x}, \bm{y}). $$
 
-The volumetric component of transmittance is given in terms of [optical depth](https://en.wikipedia.org/wiki/Optical_depth) (or optical thickness) \\(\bm{\tau}\\):
+For a single photon, transmittance gives the probability of a free flight.
 
-$$ \tag{11} \bm{\tau}(\bm{x}, \bm{y}) = -\log{\bm{T_v}(\bm{x}, \bm{y})} = \int\_{\bm{x}}^{\bm{y}} \bm{\mu_t}(\bm{u}) du, $$
+Volumetric transmittance is given by the [Beer–Lambert–Bouguer law](https://en.wikipedia.org/wiki/Beer%E2%80%93Lambert_law) for [isotropic](http://www.eugenedeon.com/hitchhikers) [uncorrelated](https://cs.dartmouth.edu/~wjarosz/publications/bitterli18framework.html) media in terms of [optical depth](https://en.wikipedia.org/wiki/Optical_depth) (or optical thickness) \\(\bm{\tau}\\):
 
-where \\(\bm{u}\\) is the point at the distance \\(u\\) along the path. It implies that while volumetric transmittance is multiplicative, with values restricted to the unit interval, optical depth is additive and can take on any non-negative value. In other words, volumetric transmittance is a [product integral](https://www.wikiwand.com/en/Product_integral):
+$$ \tag{10} \bm{\tau}(\bm{x}, \bm{y}) = -\log{\bm{T}(\bm{x}, \bm{y})} = \int\_{\bm{x}}^{\bm{y}} \bm{\mu_t}(\bm{u}) du, $$
 
-$$ \tag{12} \bm{T_v}(\bm{x}, \bm{y}) = e^{\int\_{\bm{x}}^{\bm{y}} -\bm{\mu_t}(\bm{u}) du} = \prod\_{\bm{x}}^{\bm{y}} \Big( 1 - \bm{\mu_t}(\bm{u}) du \Big). $$
+where \\(\bm{u}\\) is the point at the distance \\(u\\) along the path. It implies that while transmittance is multiplicative, with values restricted to the unit interval, optical depth is additive and can take on any non-negative value. In other words, transmittance is a [product integral](https://www.wikiwand.com/en/Product_integral):
+
+$$ \tag{11} \bm{T}(\bm{x}, \bm{y}) = e^{- \int\_{\bm{x}}^{\bm{y}} \bm{\mu_t}(\bm{u}) du} = \prod\_{\bm{x}}^{\bm{y}} \Big( 1 - \bm{\mu_t}(\bm{u}) du \Big). $$
 
 Other [integral formulations](https://cs.dartmouth.edu/~wjarosz/publications/georgiev19integral.html) of volumetric transmittance exist.
 
-Geometric transmittance is a little more challenging to define since, in the general case, the path of least time may contain both reflection and refraction events in an arbitrary order. For instance, a photon traveling in the atmosphere may experience continuous refraction until it reaches the ionosphere, where it is [totally-internally reflected](https://en.wikipedia.org/wiki/Total_internal_reflection) back towards Earth, which allows the photon to [travel beyond the horizon](https://en.wikipedia.org/wiki/Line-of-sight_propagation).
+We model 3 energy sources: volumetric emission \\(\bm{L_e}\\), volumetric in-scattering \\(\bm{L_s}\\), and surface in-scattering \\(\bm{L_g}\\) (which is the standard surface geometry term with a BSDF). The in-scattering term \\(\bm{L_s}\\) is an integral over all directions on the sphere \\(S^2\\):
 
-A practical way to model the geometric term is by discretizing the participating medium along the ray into an infinite number of infinitesimal homogeneous slices (which results in an infinite number of IOR discontinuities).
+$$ \tag{12} \bm{L_s}(\bm{x}, \bm{v}) = \int\_{\bm{S}^2} f_p(\bm{x}, \bm{v}, \bm{l}) \bm{L}(\bm{x}, \bm{l}) d\sigma(\bm{l}), $$
 
-If we only consider paths of least time formed *exclusively* by refraction (which is convenient from the practical standpoint, and results in no loss of generality), the geometric component of transmittance along such a path can be expressed as a product of two factors:
+where \\(f_p\\) denotes the [phase function](http://www.pbr-book.org/3ed-2018/Volume_Scattering/Phase_Functions.html).
 
-$$ \tag{13} \bm{T_g}(\bm{x}, \bm{y}) = \bm{T_f}(\bm{x}, \bm{y}) \bm{T\_{\omega}}(\bm{x}, \bm{y}), $$
+Carefully putting it all together yields the [volume rendering equation](https://cs.dartmouth.edu/~wjarosz/publications/novak18monte.html):
 
-where
-
-$$ \tag{14} \bm{T\_f}(\bm{x}, \bm{y}) =
-    \lim\_{k \to \infty} \prod\_{i=0}^{k} \Big( 1 - \bm{F}(\bm{u_i}, \bm{r_i}) \Big)
-$$
-
-models irradiance losses due to reflection given by the [Fresnel equations](https://en.wikipedia.org/wiki/Fresnel_equations), and
-
-$$ \tag{15} \bm{T\_{\omega}}(\bm{x}, \bm{y}) =
-    \lim_{k \to \infty} \prod\_{i=0}^{k} \frac{\bm{n}^2(\bm{u_i}, \bm{t_i})}{\bm{n}^2(\bm{u_i}, \bm{v_i})} =
-    \frac{\bm{n}^2(\bm{y}, \bm{v_y})}{\bm{n}^2(\bm{x}, \bm{v_x})}
-$$
-accounts for the [change of the solid angle](http://graphics.stanford.edu/papers/veach_thesis/) (which is necessary to work with radiance rather than irradiance).
-
-The Fresnel factor is very complicated. First, we should note that it's an approximation, since both media at the interface (which is not even necessarily planar in our case) are assumed to be [homogeneous and isotropic](https://en.wikipedia.org/wiki/Fresnel_equations). Secondly, unlike the attenuation coefficient, the Fresnel term \\(\bm{F}\\) doesn't model probability density with respect to distance, which complicates an integral formulation.
-
-The solid angle factor, on the other hand, is easy to handle since, except for the endpoints, each IOR value appears in the formula twice, first in the numerator of the term \\(i\\) and then in the denominator of the term \\(i+1\\), and is therefore canceled out. Unfortunately, the resulting IOR factor make light transport [non-self-adjoint](http://graphics.stanford.edu/papers/veach_thesis/) (there's no solid angle scaling for importance or light particles). A nice solution to this problem is to use *basic* quantities such as *basic radiance*, which is [conserved](http://graphics.stanford.edu/papers/veach_thesis/) during refraction:
-
-$$ \tag{16} \bm{\tilde{L}}(\bm{x}, \bm{v}) = \frac{\bm{L}(\bm{x}, \bm{v})}{\bm{n}^2(\bm{x}, \bm{v})}. $$
-
-We can define *basic transmittance* as
-
-$$ \tag{17} \bm{\tilde{T}}(\bm{x}, \bm{y}) =
-    \frac{\bm{\tilde{L}}(\bm{x}, \bm{v_x})}{\bm{\tilde{L}}(\bm{y}, \bm{v_y})} =
-    \bm{T_v}(\bm{x}, \bm{y}) \bm{\tilde{T}_g}(\bm{x}, \bm{y}), $$
-
-with its geometric component simplified to
-
-$$ \tag{18} \bm{\tilde{T}_g}(\bm{x}, \bm{y}) = \bm{T_f}(\bm{x}, \bm{y}). $$
-
-Now, we are ready to define the refractive radiative transfer equation. If we consider a path of least time from \\(\bm{x}\\) to \\(\bm{y}\\) formed *exclusively* by refraction, with three distinct sources (emission, in-scattering and reflection) attenuated by transmittance. The resulting [integral equation of transfer](https://dl.acm.org/doi/abs/10.1145/2557605) takes the following form:
-
-$$ \begin{aligned} \tag{16}
-    \bm{\tilde{L}}(\bm{x}, \bm{v}) =
-    \int\_{\bm{x}}^{\bm{y}} \bm{\tilde{T}}(\bm{x}, \bm{u}) \Big[
-        & \bm{\mu_a}(\bm{u}) \bm{\tilde{L}_e}(\bm{u}, \bm{v_u}) \; + \cr
-        & \bm{\mu_s}(\bm{u}) \bm{\tilde{L}_s}(\bm{u}, \bm{v_u}) \; + \cr
-        & \bm{F}(\bm{u}, \bm{r_u}) \bm{\tilde{L}}(\bm{u}, \bm{r_u})
+$$ \begin{aligned} \tag{13}
+    \bm{L}(\bm{x}, \bm{v}) =
+    \int\_{\bm{x}}^{\bm{y}} \bm{T}(\bm{x}, \bm{u}) \Big[
+        & \bm{\mu_a}(\bm{u}) \bm{L_e}(\bm{u}, \bm{v}) \; + \cr
+        & \bm{\mu_s}(\bm{u}) \bm{L_s}(\bm{u}, \bm{v})
     \Big] du +
-    \bm{\tilde{T}}(\bm{x}, \bm{y}) \bm{\tilde{L}_g}(\bm{y}, \bm{v_u}),
+    \bm{T}(\bm{x}, \bm{y}) \bm{L_g}(\bm{y}, \bm{v}),
 \end{aligned} $$
 
-where \\(\bm{\tilde{L}_e}\\) is the spontaneous emission term and \\(\bm{\tilde{L}_s}\\) is the in-scattering integral over the sphere \\(S^2\\)
+where the closest surface along the ray is located at the point \\(\bm{y}\\).
 
-$$ \tag{17} \bm{\tilde{L}_s}(\bm{x}, \bm{v}) = \int\_{\bm{S}^2} \tilde{f}_p(\bm{x}, \bm{v}, \bm{l}) \bm{\tilde{L}}(\bm{x}, \bm{l}) d\tilde{\sigma}\_{\bm{x}}(\bm{l}), $$
+We leave [volumetric emission](https://dl.acm.org/doi/10.1111/cgf.13228) out by setting \\(\bm{L_e} = 0\\):
 
-where
+$$ \begin{aligned} \tag{14}
+    \bm{L}(\bm{x}, \bm{v}) =
+    \int\_{\bm{x}}^{\bm{y}} \bm{T}(\bm{x}, \bm{u}) \bm{\mu_s}(\bm{u}) \bm{L_s}(\bm{u}, \bm{v}) du +
+    \bm{T}(\bm{x}, \bm{y}) \bm{L_g}(\bm{y}, \bm{v}).
+\end{aligned} $$
 
-$$ \tag{18} \tilde{f}_p(\bm{x}, \bm{v}, \bm{l}) = \frac{f_p(\bm{x}, \bm{v}, \bm{l})}{\bm{n}^2(\bm{x}, \bm{v})} $$
 
-is the *basic phase function* and
 
-$$ \tag{19} \tilde{\sigma}\_{\bm{x}}(\bm{l}) = \bm{n}^2(\bm{x}, \bm{l}) \sigma(\bm{l}) $$
 
-is the *basic solid angle measure*. \\(\bm{\tilde{L}_g}\\) is the standard geometry term (that contains a BSDF). In principle, it could be removed if we replace the Fresnel term \\(\bm{F}\\) in Equations 14 and 16 with a BSDF, but it doesn't appear to be worth the effort.
 
 I highly recommend checking out the [original publication](https://dl.acm.org/doi/abs/10.1145/2557605) for the alternative derivation. Just keep in mind that it is missing the Fresnel terms (which may have [non-negligible contribution](https://www.scirp.org/pdf/opj_2013112009301643.pdf)), and its definition of the in-scattering term has inconsistent IOR handling (which, to be fair, is only important if you consider discontinuous IOR).
 
@@ -301,15 +270,15 @@ The task can be simplified by making a change of variables and integrating with 
 Mathematically, for an arbitrary function \\(f(h)\\), the change of variables can be expressed using the [chain rule](https://en.wikipedia.org/wiki/Chain_rule):
 
 $$ \tag{29}
-	\int\_{\bm{x}}^{\bm{y}} f \big(h(\bm{s}) \big) ds =
-	\int\_{h\_{x}}^{h\_{y}} f(h) \frac{ds}{dh} dh =
-	\int\_{h\_{x}}^{h\_{y}} f(h) \sec{\theta} dh =
-	\int\_{h\_{x}}^{h\_{y}} f(h) \frac{\Vert \bm{y} - \bm{x} \Vert}{h_y - h_x} dh. $$
+    \int\_{\bm{x}}^{\bm{y}} f \big(h(\bm{s}) \big) ds =
+    \int\_{h\_{x}}^{h\_{y}} f(h) \frac{ds}{dh} dh =
+    \int\_{h\_{x}}^{h\_{y}} f(h) \sec{\theta} dh =
+    \int\_{h\_{x}}^{h\_{y}} f(h) \frac{\Vert \bm{y} - \bm{x} \Vert}{h_y - h_x} dh. $$
 
 The general case of curved trajectories requires application of [Snell's law](https://en.wikipedia.org/wiki/Snell%27s_law):
 
 $$ \tag{30}
-	n(h_0) \sin{\theta\_0} = n(h_1) \sin{\theta\_1}. $$
+    n(h_0) \sin{\theta\_0} = n(h_1) \sin{\theta\_1}. $$
 
 We can approach this problem by representing the atmosphere with an infinite number of homogeneous layers of infinitesimal thickness. For each layer, the product of the IOR and the sine is [invariant](http://www.waves.utoronto.ca/prof/svhum/ece422/notes/20a-atmospheric-refr.pdf) along the path, making a curve composed of an infinite number of tiny straight segments.
 
@@ -318,16 +287,16 @@ We can approach this problem by representing the atmosphere with an infinite num
 Again, we use the chain rule, this time relating the distance along the curved path \\(du\\) to the height \\(dh\\).
 
 $$ \tag{31}
-	\int\_{\bm{x}}^{\bm{y}} f \big(h(\bm{u}) \big) du =
-	\int\_{\bm{x}}^{\bm{y}} f(h) \frac{du}{dh} dh =
-	\int\_{h\_{x}}^{h\_{y}} f(h) \sec{\theta(h)} dh. $$
+    \int\_{\bm{x}}^{\bm{y}} f \big(h(\bm{u}) \big) du =
+    \int\_{\bm{x}}^{\bm{y}} f(h) \frac{du}{dh} dh =
+    \int\_{h\_{x}}^{h\_{y}} f(h) \sec{\theta(h)} dh. $$
 
 The value of the secant can be computed using Snell's law:
 
 $$ \tag{32}
-	\int\_{h\_{x}}^{h\_{y}} f(h) \sec{\theta(h)} dh =
-	\int\_{h\_{x}}^{h\_{y}} \frac{f(h)}{\sqrt{1 - \sin^2{\theta(h)}}} dh =
-	\int\_{h\_{x}}^{h\_{y}} \frac{f(h) n(h)}{\sqrt{n^2(h) - n^2(h_x) \sin^2{\theta_x}}} dh, $$
+    \int\_{h\_{x}}^{h\_{y}} f(h) \sec{\theta(h)} dh =
+    \int\_{h\_{x}}^{h\_{y}} \frac{f(h)}{\sqrt{1 - \sin^2{\theta(h)}}} dh =
+    \int\_{h\_{x}}^{h\_{y}} \frac{f(h) n(h)}{\sqrt{n^2(h) - n^2(h_x) \sin^2{\theta_x}}} dh, $$
 
 where \\(\theta_x\\) is the zenith angle at the start of the path.
 
