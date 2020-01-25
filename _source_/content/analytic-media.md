@@ -115,45 +115,35 @@ $$ \begin{aligned} \tag{13}
     \bm{T}(\bm{x}, \bm{y}) \bm{L_g}(\bm{y}, \bm{v}),
 \end{aligned} $$
 
-where the closest surface along the ray is located at the point \\(\bm{y}\\).
+where \\(\bm{y}\\) denotes the position of the closest surface along the ray.
 
-We leave [volumetric emission](https://dl.acm.org/doi/10.1111/cgf.13228) out by setting \\(\bm{L_e} = 0\\):
+We can leave [volumetric emission](https://dl.acm.org/doi/10.1111/cgf.13228) out by setting \\(\bm{L_e} = 0\\):
 
-$$ \begin{aligned} \tag{14}
+$$ \tag{14}
     \bm{L}(\bm{x}, \bm{v}) =
     \int\_{\bm{x}}^{\bm{y}} \bm{T}(\bm{x}, \bm{u}) \bm{\mu_s}(\bm{u}) \bm{L_s}(\bm{u}, \bm{v}) du +
     \bm{T}(\bm{x}, \bm{y}) \bm{L_g}(\bm{y}, \bm{v}).
-\end{aligned} $$
-
-
-
-
-
-I highly recommend checking out the [original publication](https://dl.acm.org/doi/abs/10.1145/2557605) for the alternative derivation. Just keep in mind that it is missing the Fresnel terms (which may have [non-negligible contribution](https://www.scirp.org/pdf/opj_2013112009301643.pdf)), and its definition of the in-scattering term has inconsistent IOR handling (which, to be fair, is only important if you consider discontinuous IOR).
-
-Since we have not found an integral formulation of the Fresnel factor \\(\bm{T_f}\\), for efficiency reasons, we will make an approximation by assuming that \\(\bm{F} = 0\\).
-
-We can evaluate the outer integral using one of the [Monte Carlo](http://www.pbr-book.org/3ed-2018/Monte_Carlo_Integration.html) methods. The first step is to split the integrand in two parts: the part we can evaluate analytically, and the part that has to be integrated numerically. We can group the product of transmittance and the scattering coefficient together, and leave the inner integral as the "numerical" term \\(\bm{L_s}\\):
-
-$$ \tag{16} \bm{L}(\bm{x}, \bm{v})
-    = \int\_{\bm{x}}^{\bm{y\_{max}}} \bm{T}(\bm{x}, \bm{u}) \bm{\mu_s}(\bm{u}) \bm{L_s}(\bm{u}, \bm{v}) du.
 $$
 
 Next, let's split the scattering coefficient into attenuation and albedo:
 
-$$ \tag{17} \bm{L}(\bm{x}, \bm{v})
-    = \int\_{\bm{x}}^{\bm{y\_{max}}} \bm{T}(\bm{x}, \bm{u}) \bm{\mu_t}(\bm{u}) \bm{\alpha\_{ss}}(\bm{u}) \bm{L_s}(\bm{u}, \bm{v}) du.
+$$ \tag{15}
+    \bm{L}(\bm{x}, \bm{v}) =
+    \int\_{\bm{x}}^{\bm{y}} \bm{T}(\bm{x}, \bm{u}) \bm{\mu_t}(\bm{u}) \bm{\alpha\_{ss}}(\bm{u}) \bm{L_s}(\bm{u}, \bm{v}) du +
+    \bm{T}(\bm{x}, \bm{y}) \bm{L_g}(\bm{y}, \bm{v}).
 $$
 
-The [Monte Carlo estimator](http://www.pbr-book.org/3ed-2018/Monte_Carlo_Integration/The_Monte_Carlo_Estimator.html) of the integral (for a single frequency) takes the following form:
+We can evaluate this integral using one of the [Monte Carlo](http://www.pbr-book.org/3ed-2018/Monte_Carlo_Integration.html) methods. The [Monte Carlo estimator](http://www.pbr-book.org/3ed-2018/Monte_Carlo_Integration/The_Monte_Carlo_Estimator.html) of the integral (for a single frequency) takes the following form:
 
-$$ \tag{18} L(\bm{x}, \bm{v})
-    \approx \frac{1}{N} \sum\_{i=1}^{N} \frac{\mu_t(\bm{y_i}) T(\bm{x}, \bm{y_i}) \alpha\_{ss}(\bm{y_i}) L_s(\bm{y_i}, \bm{v})}{p( y_i | \lbrace \bm{x}, \bm{v} \rbrace)},
+$$ \tag{16} L(\bm{x}, \bm{v})
+    \approx \frac{1}{N} \sum\_{i=1}^{N} \frac{\mu_t(\bm{u_i}) T(\bm{x}, \bm{u_i}) \alpha\_{ss}(\bm{u_i}) L_s(\bm{u_i}, \bm{v})}{p( u_i | \lbrace \bm{x}, \bm{v} \rbrace)} + T(\bm{x}, \bm{y}) L_g(\bm{y}, \bm{v}),
 $$
 
-where sample locations \\(\bm{y_i}\\) are distributed according to the [PDF](https://en.wikipedia.org/wiki/Probability_density_function) \\(p\\). We slightly abuse the notation by defining the corresponding distance along the ray using non-bold \\(y_i\\).
+where sample locations \\(\bm{u_i}\\) at the distance \\(u_i\\) along the path are distributed according to the [PDF](https://en.wikipedia.org/wiki/Probability_density_function) \\(p\\).
 
 We can [importance sample](http://www.pbr-book.org/3ed-2018/Monte_Carlo_Integration/Importance_Sampling.html) the integrand (distribute  samples according to the PDF) in several ways. Ideally, we would like to make the PDF proportional to the [product of all terms](https://cgg.mff.cuni.cz/~jaroslav/papers/2014-zerovar/) of the integrand. However, unless we use [path guiding](https://cgg.mff.cuni.cz/~jirka/path-guiding-in-production/2019/index.htm), that is typically not possible. We will focus on the technique called [free path sampling](https://cs.dartmouth.edu/~wjarosz/publications/novak18monte.html) that makes the PDF proportional to the analytic product \\(\mu_t T\\) (effectively, by assuming that the rest of the integrand varies slowly; in practice, this may or may not be the case - for example, for regions near light sources, [equiangular sampling](http://library.imageworks.com/pdfs/imageworks-library-importance-sampling-of-area-lights-in-participating-media.pdf) can give vastly superior results).
+
+---
 
 Slightly jumping ahead, let's define the attenuation-transmittance integral as
 
