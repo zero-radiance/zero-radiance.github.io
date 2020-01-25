@@ -133,7 +133,7 @@ $$ \tag{15}
     \bm{T}(\bm{x}, \bm{y}) \bm{L_g}(\bm{y}, \bm{v}).
 $$
 
-We can evaluate this integral using one of the [Monte Carlo](http://www.pbr-book.org/3ed-2018/Monte_Carlo_Integration.html) methods. The [Monte Carlo estimator](http://www.pbr-book.org/3ed-2018/Monte_Carlo_Integration/The_Monte_Carlo_Estimator.html) of the integral (for a single frequency) takes the following form:
+We can evaluate this integral using one of the [Monte Carlo](http://www.pbr-book.org/3ed-2018/Monte_Carlo_Integration.html) methods. The [Monte Carlo estimator](http://www.pbr-book.org/3ed-2018/Monte_Carlo_Integration/The_Monte_Carlo_Estimator.html) of the integral (for a particular frequency) takes the following form:
 
 $$ \tag{16} L(\bm{x}, \bm{v})
     \approx \frac{1}{N} \sum\_{i=1}^{N} \frac{\mu_t(\bm{u_i}) T(\bm{x}, \bm{u_i}) \alpha\_{ss}(\bm{u_i}) L_s(\bm{u_i}, \bm{v})}{p( u_i | \lbrace \bm{x}, \bm{v} \rbrace)} + T(\bm{x}, \bm{y}) L_g(\bm{y}, \bm{v}),
@@ -177,7 +177,7 @@ $$ \tag{19} p(y | \lbrace \bm{x}, \bm{v} \rbrace)
     = \frac{\mu_t(\bm{y}) T(\bm{x}, \bm{y})}{\int\_{\bm{x}}^{\bm{y\_{max}}} \mu_t(\bm{u}) T(\bm{x}, \bm{u}) du}
     = \frac{\mu_t(\bm{y}) T(\bm{x}, \bm{y})}{O(\bm{x}, \bm{\bm{y\_{max}}})}. $$
 
-Substitution of the Equation 19 radically simplifies the form of the estimator (again, for a single frequency):
+Substitution of the Equation 19 radically simplifies the form of the estimator (again, for a particular frequency):
 
 $$ \tag{20} L(\bm{x}, \bm{v}) \approx O(\bm{x}, \bm{\bm{y\_{max}}}) \frac{1}{N} \sum\_{i=1}^{N} \alpha\_{ss}(\bm{y_i}) L_s(\bm{y_i}, \bm{v}). $$
 
