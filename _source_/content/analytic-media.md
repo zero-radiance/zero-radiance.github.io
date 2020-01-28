@@ -66,17 +66,17 @@ $$ \begin{aligned} \tag{7}
 
 where \\(\bm{c}\\) is the [light dispersion coefficient](https://ui.adsabs.harvard.edu/abs/1996CoSka..26...23K/abstract). This equation implies that the [relative brake power](https://www.sciencedirect.com/topics/chemistry/optical-refraction) \\((\bm{n} - 1)\\) has an approximately linear relation with density. Similar relations can be found for [temperature and and pressure](https://en.wikipedia.org/wiki/Clausius%E2%80%93Mossotti_relation) (in fact, all coefficients are highly [temperature-dependent](http://www.sfu.ca/~gchapman/e376/e376l7.pdf)). Also, while the discussion above mostly concerns dielectrics, the formula for metals is [very similar](https://www.feynmanlectures.caltech.edu/II_32.html#mjx-eqn-EqII3238).
 
-Continuous variation of the IOR poses many challenges for path tracing. In piecewise-homogeneous media, paths are composed of straight segments joined at scattering locations. Unfortunately, due to [Fermat's principle](https://en.wikipedia.org/wiki/Fermat%27s_principle), continuously varying IOR forces photons to travel along paths of least time that [continuously refract](http://www.waves.utoronto.ca/prof/svhum/ece422/notes/20a-atmospheric-refr.pdf) towards regions of higher density according to [Snell's law](https://en.wikipedia.org/wiki/Snell%27s_law). This fact alone makes basic actions like visibility testing very complicated. And since the IOR can depend on the frequency, it may cause [dispersion](https://en.wikipedia.org/wiki/Dispersion_(optics)) not only at the interfaces, but also continuously, along the entire path. Finally, one must model losses and gains due to [continuous reflection](https://www.scirp.org/pdf/opj_2013112009301643.pdf), which is mathematically challenging. So it is not too surprising that most renderers ignore this behavior (even though, physically, that doesn't make much sense). For small density gradients and small distances, it is a valid approximation that, on average, gives reasonably accurate results. On the other hand, for certain atmospheric effects, [atmospheric refraction](https://en.wikipedia.org/wiki/Atmospheric_refraction) and reflection make a non-negligible contribution.
+Continuous variation of the IOR poses many challenges for path tracing. In piecewise-homogeneous media, paths are composed of straight segments joined at scattering locations. Unfortunately, due to [Fermat's principle](https://en.wikipedia.org/wiki/Fermat%27s_principle), continuously varying IOR forces photons to travel along paths of least time that [continuously refract](http://www.waves.utoronto.ca/prof/svhum/ece422/notes/20a-atmospheric-refr.pdf) towards regions of higher density according to [Snell's law](https://en.wikipedia.org/wiki/Snell%27s_law). This fact alone makes basic actions like visibility testing relatively complicated. And since the IOR can depend on the frequency, it may cause [dispersion](https://en.wikipedia.org/wiki/Dispersion_(optics)) not only at the interfaces, but also continuously, along the entire path. Finally, one must model losses and gains due to [continuous reflection](https://www.scirp.org/pdf/opj_2013112009301643.pdf), which is mathematically challenging. So it is not too surprising that most renderers ignore this behavior (even though, physically, that doesn't make much sense). For small density gradients and small distances, it is a valid approximation that, on average, gives reasonably accurate results. On the other hand, for certain atmospheric effects, [atmospheric refraction](https://en.wikipedia.org/wiki/Atmospheric_refraction) and reflection make a non-negligible contribution.
 
 For practical reasons, all further discussion assumes that, within volume boundaries, the IOR is invariant with respect to position. If you are interested in continuous refraction, check out the [Refractive Radiative Transfer Equation](https://dl.acm.org/doi/abs/10.1145/2557605) paper.
 
 ## Radiative Transfer Equation
 
-Intelligent sampling requires understanding which parts make a large contribution. Therefore, we must briefly discuss the radiative transfer equation (or RTE) used to render scenes with participating media. While the full [derivation](https://archive.org/details/RadiativeTransfer) is outside the scope, we will try to touch the important aspects.
+Intelligent sampling requires understanding which parts make a large contribution. Therefore, we must briefly discuss the radiative transfer equation (or RTE) used to render scenes with participating media. While the full [derivation](https://archive.org/details/RadiativeTransfer) is outside the scope of this blog post, we will try to touch the important aspects.
 
-The integral form of the RTE is a recursive line integral. It works by collecting photons along the path, while at the same time modeling energy losses as photons travel from the sources towards the sensor.
+The integral form of the RTE is a recursive line integral. It works by collecting photons along the path, while at the same time modeling energy losses (due to absorption and out-scattering) as photons travel from the sources towards the sensor.
 
-One of the primary loss factors is opacity \\(\bm{O}\\), which can be defined as the fraction of photons lost along the path from \\(\bm{y}\\) to \\(\bm{x}\\):
+Losses are primarily modeled using opacity \\(\bm{O}\\), which can be defined as the fraction of photons lost along the path from \\(\bm{x}\\) to \\(\bm{y}\\):
 
 $$ \tag{8} \bm{O}(\bm{x}, \bm{y}) = \frac{\bm{L}(\bm{y}, \bm{\hat{v}\_{xy}}) - \bm{L}(\bm{x}, \bm{\hat{v}\_{xy}})}{\bm{L}(\bm{y}, \bm{\hat{v}\_{xy}})} = 1 - \frac{\bm{L}(\bm{x}, \bm{\hat{v}\_{xy}})}{\bm{L}(\bm{y}, \bm{\hat{v}\_{xy}})}, $$
 
@@ -98,11 +98,11 @@ $$ \tag{11} \bm{T}(\bm{x}, \bm{y}) = e^{- \int\_{\bm{x}}^{\bm{y}} \bm{\mu_t}(\bm
 
 Other [integral formulations](https://cs.dartmouth.edu/~wjarosz/publications/georgiev19integral.html) of volumetric transmittance exist.
 
-We model 3 energy sources: volumetric emission \\(\bm{L_e}\\), volumetric in-scattering \\(\bm{L_s}\\), and surface in-scattering \\(\bm{L_g}\\) (which is the standard surface geometry term with a BSDF). The in-scattering term \\(\bm{L_s}\\) is an integral over all directions on the sphere \\(S^2\\):
+We model 3 energy sources: volumetric emission \\(\bm{L_e}\\), volumetric in-scattering \\(\bm{L_s}\\), and surface in-scattering \\(\bm{L_g}\\) (which is the standard surface geometry term with a BSDF). The in-scattering term \\(\bm{L_s}\\) is an integral over a sphere of directions \\(S^2\\):
 
 $$ \tag{12} \bm{L_s}(\bm{x}, \bm{v}) = \int\_{\bm{S}^2} f_p(\bm{x}, \bm{v}, \bm{l}) \bm{L}(\bm{x}, \bm{l}) d\sigma(\bm{l}), $$
 
-where \\(f_p\\) denotes the [phase function](http://www.pbr-book.org/3ed-2018/Volume_Scattering/Phase_Functions.html).
+where \\(f_p\\) denotes the [phase function](http://www.pbr-book.org/3ed-2018/Volume_Scattering/Phase_Functions.html). It is typically modulated by the single-scattering albedo \\(\bm{\alpha\_{ss}}\\), as we shall see in a moment.
 
 Carefully putting it all together yields the [volume rendering equation](https://cs.dartmouth.edu/~wjarosz/publications/novak18monte.html):
 
@@ -141,70 +141,62 @@ $$
 
 where sample locations \\(\bm{u_i}\\) at the distance \\(u_i\\) along the path are distributed according to the [PDF](https://en.wikipedia.org/wiki/Probability_density_function) \\(p\\).
 
-We can [importance sample](http://www.pbr-book.org/3ed-2018/Monte_Carlo_Integration/Importance_Sampling.html) the integrand (distribute  samples according to the PDF) in several ways. Ideally, we would like to make the PDF proportional to the [product of all terms](https://cgg.mff.cuni.cz/~jaroslav/papers/2014-zerovar/) of the integrand. However, unless we use [path guiding](https://cgg.mff.cuni.cz/~jirka/path-guiding-in-production/2019/index.htm), that is typically not possible. We will focus on the technique called [free path sampling](https://cs.dartmouth.edu/~wjarosz/publications/novak18monte.html) that makes the PDF proportional to the analytic product \\(\mu_t T\\) (effectively, by assuming that the rest of the integrand varies slowly; in practice, this may or may not be the case - for example, for regions near light sources, [equiangular sampling](http://library.imageworks.com/pdfs/imageworks-library-importance-sampling-of-area-lights-in-participating-media.pdf) can give vastly superior results).
+We can [importance sample](http://www.pbr-book.org/3ed-2018/Monte_Carlo_Integration/Importance_Sampling.html) the integrand (distribute  samples according to the PDF) in several ways. Ideally, we would like to make the PDF proportional to the [product](https://cgg.mff.cuni.cz/~jaroslav/papers/2014-zerovar/) of all terms of the integrand. However, unless we use [path guiding](https://cgg.mff.cuni.cz/~jirka/path-guiding-in-production/2019/index.htm), that is typically not possible. We will focus on the technique called [free path sampling](https://cs.dartmouth.edu/~wjarosz/publications/novak18monte.html) that makes the PDF proportional to the attenuation-transmittance product \\(\mu_t T\\) (effectively, by assuming that the rest of the integrand varies slowly; in practice, this may or may not be the case - for example, for regions near light sources, [equiangular sampling](http://library.imageworks.com/pdfs/imageworks-library-importance-sampling-of-area-lights-in-participating-media.pdf) can give vastly superior results).
 
----
+In order to turn the attenuation-transmittance product \\(\mu_t T\\) into a PDF, it must be normalized over the domain of integration, \\(\bm{x}\\) to \\(\bm{y}\\). We must compute the normalization factor
 
-Slightly jumping ahead, let's define the attenuation-transmittance integral as
-
-$$ \tag{12}
-      \int\_{\bm{x}}^{\bm{y}} \bm{\mu_t}(\bm{u}) \bm{T_v}(\bm{x}, \bm{u}) du
+$$ \tag{17}
+      \int\_{\bm{x}}^{\bm{y}} \bm{\mu_t}(\bm{u}) \bm{T}(\bm{x}, \bm{u}) du
     = \int\_{\bm{x}}^{\bm{y}} \bm{\mu_t}(\bm{u}) e^{-\bm{\tau}(\bm{x}, \bm{u})} du.
 $$
 
 If we use the [fundamental theorem of calculus](https://en.wikipedia.org/wiki/Fundamental_theorem_of_calculus#First_part) to interpret the attenuation coefficient as a derivative
 
-$$ \tag{13} \bm{\mu_t}(\bm{u}) = \frac{\partial \bm{\tau}}{\partial u}, $$
+$$ \tag{18} \bm{\mu_t}(\bm{u}) = \frac{\partial \bm{\tau}}{\partial u}, $$
 
 we can use the one of the [exponential identities](https://en.wikipedia.org/wiki/List_of_integrals_of_exponential_functions#Integrals_involving_only_exponential_functions) to simplify the attenuation-transmittance integral:
 
-$$ \tag{14}
+$$ \tag{19}
     \int\_{\bm{x}}^{\bm{y}} \frac{\partial \bm{\tau}(\bm{x}, \bm{u})}{\partial u} e^{-\bm{\tau}(\bm{x}, \bm{u})} du
     = -e^{-\bm{\tau}(\bm{x}, \bm{u})} \Big\vert\_{\bm{x}}^{\bm{y}}
-    = 1 - \bm{T_v}(\bm{x}, \bm{y}).
+    = 1 - \bm{T}(\bm{x}, \bm{y}) = \bm{O}(\bm{x}, \bm{y}).
 $$
 
 Most remarkably, optical depth can be evaluated in a forward or backward fashion, and the [result is the same](https://cs.dartmouth.edu/~wjarosz/publications/georgiev19integral.html)!
 
-$$ \tag{15}
+$$ \tag{20}
     \int\_{\bm{x}}^{\bm{y}} \bm{\mu_t}(\bm{u}) e^{-\bm{\tau}(\bm{x}, \bm{u})} du =
     \int\_{\bm{x}}^{\bm{y}} \bm{\mu_t}(\bm{u}) e^{-\bm{\tau}(\bm{u}, \bm{y})} du.
 $$
 
-In order to turn it into a valid PDF, the product must be normalized using the Equation 13:
+We can now define the sampling PDF:
 
-$$ \tag{19} p(y | \lbrace \bm{x}, \bm{v} \rbrace)
-    = \frac{\mu_t(\bm{y}) T(\bm{x}, \bm{y})}{\int\_{\bm{x}}^{\bm{y\_{max}}} \mu_t(\bm{u}) T(\bm{x}, \bm{u}) du}
-    = \frac{\mu_t(\bm{y}) T(\bm{x}, \bm{y})}{O(\bm{x}, \bm{\bm{y\_{max}}})}. $$
+$$ \tag{21} p(u | \lbrace \bm{x}, \bm{v} \rbrace)
+    = \frac{\mu_t(\bm{u}) T(\bm{x}, \bm{u})}{O(\bm{x}, \bm{\bm{y}})}. $$
 
-Substitution of the Equation 19 radically simplifies the form of the estimator (again, for a particular frequency):
+Substitution into the Equation 16 radically simplifies the estimator (again, for a particular frequency):
 
-$$ \tag{20} L(\bm{x}, \bm{v}) \approx O(\bm{x}, \bm{\bm{y\_{max}}}) \frac{1}{N} \sum\_{i=1}^{N} \alpha\_{ss}(\bm{y_i}) L_s(\bm{y_i}, \bm{v}). $$
+$$ \tag{22} L(\bm{x}, \bm{v}) \approx O(\bm{x}, \bm{\bm{y}}) \frac{1}{N} \sum\_{i=1}^{N} \alpha\_{ss}(\bm{u_i}) L_s(\bm{u_i}, \bm{v}) + T(\bm{x}, \bm{y}) L_g(\bm{y}, \bm{v}). $$
 
 This equation can be seen as a form of [premultiplied alpha blending](https://graphics.pixar.com/library/Compositing/) (where alpha is opacity), which explains why particle cards can be so convincing. Additionally, it offers yet another way to parametrize the attenuation coefficient - namely, by opacity at distance (which is similar to [transmittance at distance](https://blog.selfshadow.com/publications/s2015-shading-course/burley/s2015_pbs_disney_bsdf_notes.pdf) used by Disney). It is the most RGB rendering friendly parametrization that I am aware of.
 
-Extending the Equation 20 to handle the surface contribution is trivial. If the closest surface along the ray is at the distance \\(y\_{surf} \geq y\_{max}\\), we simply need to add the surface contribution (another integral) attenuated by transmittance (which is one minus opacity):
+In this context, total opacity along the ray serves as the probability of a collision event within the medium, and can be used to randomly pick the type of the sample (surface or volume):
 
-$$ \tag{21}
-    L(\bm{x}, \bm{v}) \approx O(\bm{x}, \bm{\bm{y\_{max}}}) \frac{1}{N} \sum\_{i=1}^{N} \alpha\_{ss}(\bm{y_i}) L_s(\bm{y_i}, \bm{v}) +
-    \big( 1 - O(\bm{x}, \bm{\bm{y\_{max}}}) \big) L\_{surf}(\bm{y\_{surf}}, \bm{v}).
+$$ \tag{23} L(\bm{x}, \bm{v}) \approx O(\bm{x}, \bm{\bm{y}}) \frac{1}{N} \sum\_{i=1}^{N} \alpha\_{ss}(\bm{u_i}) L_s(\bm{u_i}, \bm{v}) + \big(1 - O(\bm{x}, \bm{\bm{y}}) \big) L_g(\bm{y}, \bm{v}).
 $$
 
-In this context, total opacity along the ray serves as the probability of a collision event in the volume, and can be used to randomly pick the type of the sample (surface or volume).
+In order to sample the integrand in the Equation 15, we must be also able to [invert](http://www.pbr-book.org/3ed-2018/Monte_Carlo_Integration/Sampling_Random_Variables.html#TheInversionMethod) the [CDF](https://en.wikipedia.org/wiki/Cumulative_distribution_function) \\(P\\):
 
-In order to sample the integrand, we must be also able to [invert](http://www.pbr-book.org/3ed-2018/Monte_Carlo_Integration/Sampling_Random_Variables.html#TheInversionMethod) the [CDF](https://en.wikipedia.org/wiki/Cumulative_distribution_function) \\(P\\):
-
-$$ \tag{22} P(y | \lbrace \bm{x}, \bm{v} \rbrace)
-    = \int\_{0}^{y} p(u | \lbrace \bm{x}, \bm{v} \rbrace) du
-    = \int\_{\bm{x}}^{\bm{y}} \frac{\mu_t(\bm{u}) T(\bm{x}, \bm{u}) du}{O(\bm{x}, \bm{\bm{y\_{max}}})}
-    = \frac{O(\bm{x}, \bm{\bm{y}})}{O(\bm{x}, \bm{\bm{y\_{max}}})},
+$$ \tag{24} P(u | \lbrace \bm{x}, \bm{v} \rbrace)
+    = \int\_{0}^{u} p(u | \lbrace \bm{x}, \bm{v} \rbrace) du
+    = \frac{O(\bm{x}, \bm{\bm{u}})}{O(\bm{x}, \bm{\bm{y}})},
 $$
 
-which is just fractional opacity.
+which is just fractional opacity. So, all of our sampling decisions are based on opacity.
 
 In practice, this means that we need to solve for the distance \\(y\\) given the value of optical depth \\(\tau\\):
 
-$$ \tag{23} \tau(\bm{x}, \bm{y}) = -\mathrm{log} \big( 1 - P(y | \lbrace \bm{x}, \bm{v} \rbrace) O(\bm{x}, \bm{\bm{y\_{max}}}) \big). $$
+$$ \tag{25} \tau(\bm{x}, \bm{u}) = -\mathrm{log} \Big( 1 - P \big(u | \lbrace \bm{x}, \bm{v} \rbrace \big) O \big( \bm{x}, \bm{\bm{y}} \big) \Big). $$
 
 ## Types of Analytic Participating Media
 
@@ -214,20 +206,20 @@ If your background is in real-time rendering, you may have heard of [constant, l
 
 A homogeneous medium has uniform density across the entire volume:
 
-$$ \tag{24} \rho_c = b. $$
+$$ \tag{26} \rho_c = b. $$
 
 This formulation makes computing optical depth easy (recall the Equations 5 and 10):
 
-$$ \tag{25} \bm{\tau_c}(\bm{x}, \bm{y})
+$$ \tag{27} \bm{\tau_c}(\bm{x}, \bm{y})
     = \bm{\sigma_t} \int\_{\bm{x}}^{\bm{y}} \rho du
     = \bm{\sigma_t} \int\_{\bm{x}}^{\bm{y}} b du
     = \bm{\sigma_t} b \Vert \bm{y} - \bm{x} \Vert
     = \bm{\sigma_t} b t.
 $$
 
-The sampling "recipe" for distance \\(t\\) can be found by inverting the CDF:
+The sampling "recipe" for distance \\(t\\) (and for a particular frequency) can be found by inverting the CDF:
 
-$$ \tag{26} t = \frac{\tau_c}{\sigma_t b}, $$
+$$ \tag{28} t = \frac{\tau_c}{\sigma_t b}, $$
 
 which is consistent with [previous work](https://cs.dartmouth.edu/~wjarosz/publications/novak18monte.html).
 
@@ -235,8 +227,8 @@ The resulting sampling algorithm is very simple:
 
 1. compute total opacity along the ray;
 2. generate a random CDF value;
-3. compute optical depth using the Equation 23;
-4. compute the distance using the Equation 26.
+3. compute optical depth using the Equation 25;
+4. compute the distance using the Equation 28.
 
 ### Linear Variation of Density with Altitude in Rectangular Coordinates
 
