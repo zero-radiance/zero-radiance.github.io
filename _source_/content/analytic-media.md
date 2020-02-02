@@ -15,7 +15,7 @@ Participating media rendering is an important aspect of every modern renderer. W
 
 <!--more-->
 
-In the [radiative transfer](https://archive.org/details/RadiativeTransfer) literature, light-material interaction is usually quantified in terms of absorption (conversion of electromagnetic energy of photons into kinetic energy of atoms, which manifests itself as reduction of light intensity) and scattering (absorption and induced emission of electromagnetic energy on interaction). Therefore, it is common to describe participating media using the collision coefficients of its particles: the *absorption coefficient* \\(\bm{\mu_a}\\) and the *scattering coefficient* \\(\bm{\mu_s}\\). These coefficients give the probability density of the corresponding event per unit distance traveled by a photon, which implies the [SI units](https://en.wikipedia.org/wiki/International_System_of_Units) of measurement are \\(m^{-1}\\).
+In the [radiative transfer](https://archive.org/details/RadiativeTransfer) literature, light-material interaction is usually quantified in terms of absorption (conversion of electromagnetic energy of photons into kinetic energy of atoms, which manifests itself as reduction of light intensity) and scattering (absorption and subsequent re-emission of electromagnetic energy on interaction; assuming [elastic scattering](https://en.wikipedia.org/wiki/Elastic_scattering), the state of atoms remains unchanged). Therefore, it is common to describe participating media using the collision coefficients of its particles: the *absorption coefficient* \\(\bm{\mu_a}\\) and the *scattering coefficient* \\(\bm{\mu_s}\\). These coefficients give the probability density of the corresponding event per unit distance traveled by a photon, which implies the [SI units](https://en.wikipedia.org/wiki/International_System_of_Units) of measurement are \\(m^{-1}\\).
 
 The [attenuation coefficient](https://en.wikipedia.org/wiki/Attenuation_coefficient) \\(\bm{\mu_t}\\)
 
@@ -47,7 +47,7 @@ Sometimes, it is convenient to specify the concentration (density) of the medium
 
 $$ \tag{5} \bm{\mu_t} = \rho \bm{\sigma_t}, $$
 
-where \\(\rho\\) is the [mass density](https://en.wikipedia.org/wiki/Mass_density) (measured in units of \\(kg/m^{3}\\)) and \\(\bm{\sigma_t}\\) is the [mass attenuation coefficient](https://en.wikipedia.org/wiki/Mass_attenuation_coefficient) (in units of \\(m^{2}/kg\\)) - [effective cross section](http://www.sfu.ca/~gchapman/e376/e376l7.pdf) per unit mass. Other coefficients have the same linear relation with density.
+where \\(\rho\\) is the [mass density](https://en.wikipedia.org/wiki/Mass_density) (measured in units of \\(kg/m^{3}\\)) and \\(\bm{\sigma_t}\\) is the [mass attenuation coefficient](https://en.wikipedia.org/wiki/Mass_attenuation_coefficient) (in units of \\(m^{2}/kg\\)) - [effective cross section](http://www.sfu.ca/~gchapman/e376/e376l7.pdf) per unit mass (note that the cross sections may in general depend on the orientation). Other coefficients have the same linear relation with density.
 
 But what about the IOR? Often, one assumes that it is independent of density. But, if you consider, for example, water and steam (which has a lower concentration of water molecules), our experience tells us that their refractive properties are not the same.
 
@@ -98,7 +98,7 @@ $$ \tag{11} \bm{T}(\bm{x}, \bm{y}) = e^{- \int\_{\bm{x}}^{\bm{y}} \bm{\mu_t}(\bm
 
 Other [integral formulations](https://cs.dartmouth.edu/~wjarosz/publications/georgiev19integral.html) of volumetric transmittance exist.
 
-We model 3 energy sources: volumetric emission \\(\bm{L_e}\\), volumetric in-scattering \\(\bm{L_s}\\), and surface in-scattering \\(\bm{L_g}\\) (which is the standard surface geometry term with a BSDF). The in-scattering term \\(\bm{L_s}\\) is an integral over a sphere of directions \\(S^2\\):
+We model 3 energy sources: [spontaneous emission](https://en.wikipedia.org/wiki/Spontaneous_emission) \\(\bm{L_e}\\), volumetric in-scattering \\(\bm{L_s}\\), and surface in-scattering \\(\bm{L_g}\\) (which is the standard surface geometry term with a BSDF). The in-scattering term \\(\bm{L_s}\\) is an integral over a sphere of directions \\(S^2\\):
 
 $$ \tag{12} \bm{L_s}(\bm{x}, \bm{v}) = \int\_{\bm{S}^2} f_p(\bm{x}, \bm{v}, \bm{l}) \bm{L}(\bm{x}, \bm{l}) d\sigma(\bm{l}), $$
 
