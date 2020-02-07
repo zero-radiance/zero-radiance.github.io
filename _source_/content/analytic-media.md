@@ -11,17 +11,17 @@ tags: [
     ]
 ---
 
-Participating media rendering is an important aspect of every modern renderer. When I say participating media, I am not just talking about fog, fire, and smoke - everything can be modeled with particles (theoretically, at least). All matter is composed of [atoms](https://en.wikipedia.org/wiki/Atom) (containing electrons), which can be sparsely (e.g. in a gas) or densely (e.g. in a solid) distributed in space. Whether we consider the particle or the wave nature of [light](https://en.wikipedia.org/wiki/Light), it penetrates all matter (even [metals](http://webhome.phy.duke.edu/~qelectron/group/group_reading_Born_and_Wolf.pdf)) to a certain degree and interacts with its atoms along the way. The nature and the degree of "participation" depend on the material in question.
+Participating media rendering is an important aspect of every modern renderer. When I say participating media, I am not just talking about fog, fire, and smoke - all matter is composed of [atoms](https://en.wikipedia.org/wiki/Atom) (containing electrons), which can be sparsely (e.g. in a gas) or densely (e.g. in a solid) distributed in space. Whether we consider the particle or the wave nature of [light](https://en.wikipedia.org/wiki/Light), it penetrates all matter (even [metals](http://webhome.phy.duke.edu/~qelectron/group/group_reading_Born_and_Wolf.pdf)) to a certain degree and interacts with its atoms along the way. The nature and the degree of "participation" depend on the material in question.
 
 <!--more-->
 
-In the [radiative transfer](https://archive.org/details/RadiativeTransfer) literature, light-material interaction is usually quantified in terms of absorption (conversion of electromagnetic energy of photons into kinetic energy of atoms, which manifests itself as reduction of light intensity) and scattering (absorption followed by [stimulated emission](https://en.wikipedia.org/wiki/Stimulated_emission) of electromagnetic energy on interaction; assuming [elastic scattering](https://en.wikipedia.org/wiki/Elastic_scattering), the state of the matter remains unchanged). Therefore, it is common to describe participating media using the collision coefficients: the *absorption coefficient* \\(\bm{\mu_a}\\) and the *scattering coefficient* \\(\bm{\mu_s}\\). These coefficients give the probability density of the corresponding event per unit distance traveled by a photon, which implies the [SI units](https://en.wikipedia.org/wiki/International_System_of_Units) of measurement are \\(m^{-1}\\). They vary spatially, and may in general depend on the orientation, unless the particle distribution is [isotropic](http://www.eugenedeon.com/hitchhikers).
+In the [radiative transfer](https://archive.org/details/RadiativeTransfer) literature, light-material interaction is usually quantified in terms of absorption (conversion of electromagnetic energy of photons into kinetic energy of atoms, which manifests itself as reduction of light intensity) and scattering (absorption followed by [stimulated emission](https://en.wikipedia.org/wiki/Stimulated_emission) of electromagnetic energy on interaction). Therefore, it is common to describe participating media using the collision coefficients: the *absorption coefficient* \\(\bm{\mu_a}\\) and the *scattering coefficient* \\(\bm{\mu_s}\\). These coefficients give the probability density of the corresponding event per unit distance traveled by a photon, which implies the [SI units](https://en.wikipedia.org/wiki/International_System_of_Units) of measurement are \\(m^{-1}\\). They vary spatially, and may, in general, depend on the orientation unless the particle distribution is [isotropic](http://www.eugenedeon.com/hitchhikers).
 
 The [attenuation coefficient](https://en.wikipedia.org/wiki/Attenuation_coefficient) \\(\bm{\mu_t}\\)
 
 $$ \tag{1} \bm{\mu_t} = \bm{\mu_a} + \bm{\mu_s} $$
 
-gives the probability density of absorption or scattering (or, in other words, the collision rate) as a photon travels a unit distance through the medium. All these coefficients are spectral (they depend on the frequency \\(\nu\\), which is simpler to handle than the wavelength \\(\lambda\\) since the latter is [modified at the interface](http://graphics.stanford.edu/papers/veach_thesis/)), and can be represented as vectors (boldface notation). At this point in time, it is not entirely clear (at least to me) how to *correctly* perform volume rendering using tristimulus (RGB) values (which would require some sort of pre-integration using [color matching functions](https://en.wikipedia.org/wiki/CIE_1931_color_space#Color_matching_functions)), so I will focus on pure spectral rendering, which is well-defined.
+gives the probability density of absorption or scattering (or, in other words, the collision rate) as a photon travels a unit distance through the medium. All these coefficients are spectral (they depend on the frequency \\(\nu\\), which is simpler to handle than the wavelength \\(\lambda\\) since the latter is [affected by refraction](http://graphics.stanford.edu/papers/veach_thesis/)), and can be represented as vectors (boldface notation). At this point in time, it is not entirely clear (at least to me) how to *correctly* perform volume rendering using tristimulus (RGB) values (which would require some sort of pre-integration using [color matching functions](https://en.wikipedia.org/wiki/CIE_1931_color_space#Color_matching_functions)), so I will focus on pure spectral rendering, which is well-defined.
 
 A more artist-friendly parametrization uses the [single-scattering albedo](https://en.wikipedia.org/wiki/Single-scattering_albedo) \\(\bm{\alpha\_{ss}}\\)
 
@@ -39,7 +39,7 @@ $$ \tag{4} \bm{\kappa} = \frac{\bm{\lambda}}{4 \pi} \bm{\mu_a}. $$
 
 For this reason, \\(\bm{\eta}\\) is called the [refractive index](https://www.feynmanlectures.caltech.edu/I_31.html) (or IOR), and \\(\bm{\kappa}\\) is sometimes referred to as the [absorption index](http://www.sfu.ca/~gchapman/e376/e376l7.pdf). Note that I am not talking about the IOR of an individual particle (which influences the [microscopic scattering](https://en.wikipedia.org/wiki/Mie_scattering) process), but rather about the macroscopic properties of the medium itself.
 
-The tuple \\(\lbrace \bm{\eta}, \bm{\kappa}, \bm{\mu_s} \rbrace\\) \\(\big(\\)or, alternatively, \\(\lbrace \bm{\eta}, \bm{d}, \bm{\alpha\_{ss}} \rbrace \big) \\) contains sufficient information to describe both the behavior at the surface (boundary) and the (isotropic) multiple-scattering process (known as [subsurface scattering](https://en.wikipedia.org/wiki/Subsurface_scattering)) inside the volume that ultimately gives rise to what we perceive as the surface albedo \\(\bm{\alpha\_{ms}}\\). Note that certain materials (metals, in particular) require modeling of [wave interference](https://en.wikipedia.org/wiki/Wave_interference) to obtain expected reflectance values (so a solution based on geometric optics would yield wrong results).
+The tuple \\(\lbrace \bm{\eta}, \bm{\kappa}, \bm{\mu_s} \rbrace\\) \\(\big(\\)or, alternatively, \\(\lbrace \bm{\eta}, \bm{d}, \bm{\alpha\_{ss}} \rbrace \big) \\) contains sufficient information to describe both the behavior at the surface (boundary) and the (isotropic) multiple-scattering process (known as [subsurface scattering](https://en.wikipedia.org/wiki/Subsurface_scattering)) inside the volume that ultimately gives rise to what we perceive as the surface albedo \\(\bm{\alpha\_{ms}}\\). Note that certain materials (metals, in particular) require modeling of [wave interference](https://en.wikipedia.org/wiki/Wave_interference) to obtain expected reflectance values (so a solution based on geometric optics would yield inaccurate results).
 
 A surface, then, is just an optical interface signified by a discontinuity of optical properties of the medium (in reality, the [transition at the boundary is continuous](https://www.feynmanlectures.caltech.edu/II_33.html), with a thickness of several atomic layers, but we can ignore this fact at scales relevant to computer graphics).
 
@@ -55,9 +55,9 @@ There are several known relations between density and the IOR. One of them is gi
 
 $$ \tag{6} \frac{\bm{n}^2 - 1}{\bm{n}^2 + 2} = \frac{4}{3} \pi \frac{\rho}{m} \bm{\alpha_m}, $$
 
-where \\(m\\) is the [molecular mass](https://en.wikipedia.org/wiki/Molecular_mass) (in \\(kg\\)) and \\(\bm{\alpha_m}\\) is the [molecular polarizability](https://en.wikipedia.org/wiki/Electric_susceptibility#Molecular_polarizability) (in \\(m^3\\), watch out for different [conventions](https://en.wikipedia.org/wiki/Electric_susceptibility#Ambiguity_in_the_definition)). Incidentally, this equation presents a way to compute the IOR of a mixture of several substances. The corresponding [Lorentz–Lorenz mixture rule](https://www.sciencedirect.com/science/article/pii/S0021850208001183) is based on four principles of additivity of mole, mass, volume, and molecular polarizability, with the last two assumption being rather context-dependent.
+where \\(m\\) is the [molecular mass](https://en.wikipedia.org/wiki/Molecular_mass) (in \\(kg\\)) and \\(\bm{\alpha_m}\\) is the [molecular polarizability](https://en.wikipedia.org/wiki/Electric_susceptibility#Molecular_polarizability) (in \\(m^3\\), watch out for different [conventions](https://en.wikipedia.org/wiki/Electric_susceptibility#Ambiguity_in_the_definition)). Incidentally, this equation presents a way to compute the IOR of a mixture of several substances. The corresponding [Lorentz–Lorenz mixture rule](https://www.sciencedirect.com/science/article/pii/S0021850208001183) is based on four principles of additivity (namely, of mole, mass, volume, and molecular polarizability, with the last two assumption being rather context-dependent).
 
-For materials with small mass densities, the molecules are far apart from one another, the molecular interactions are weak, and the IOR is close to 1. Therefore, for matter in a gas state, the following approximation can be made:
+For materials with small mass densities, the molecules are far apart, the molecular interactions are weak, and the IOR is close to 1. Therefore, for matter in a gas state, the following approximation can be made:
 
 $$ \begin{aligned} \tag{7}
     \bm{n}^2 & \approx 1 + 4 \pi \frac{\rho}{m} \bm{\alpha_m} = 1 + 2 \bm{c} \rho, \cr
@@ -66,17 +66,17 @@ $$ \begin{aligned} \tag{7}
 
 where \\(\bm{c}\\) is the [light dispersion coefficient](https://ui.adsabs.harvard.edu/abs/1996CoSka..26...23K/abstract). This equation implies that the [relative brake power](https://www.sciencedirect.com/topics/chemistry/optical-refraction) \\((\bm{n} - 1)\\) has an approximately linear relation with density. Similar relations can be found for [temperature and and pressure](https://en.wikipedia.org/wiki/Clausius%E2%80%93Mossotti_relation) (in fact, all coefficients are highly [temperature-dependent](http://www.sfu.ca/~gchapman/e376/e376l7.pdf)). Also, while the discussion above mostly concerns dielectrics, the formula for metals is [very similar](https://www.feynmanlectures.caltech.edu/II_32.html#mjx-eqn-EqII3238).
 
-Continuous variation of the IOR poses many challenges for path tracing. In piecewise-homogeneous media, paths are composed of straight segments joined at scattering locations. Unfortunately, due to [Fermat's principle](https://en.wikipedia.org/wiki/Fermat%27s_principle), continuously varying IOR forces photons to travel along paths of least time that [continuously refract](http://www.waves.utoronto.ca/prof/svhum/ece422/notes/20a-atmospheric-refr.pdf) towards regions of higher density according to [Snell's law](https://en.wikipedia.org/wiki/Snell%27s_law). This fact alone makes basic actions like visibility testing relatively complicated. And since the IOR can depend on the frequency, it may cause [dispersion](https://en.wikipedia.org/wiki/Dispersion_(optics)) not only at the interfaces, but also continuously, along the entire path. Finally, one must model losses and gains due to [continuous reflection](https://www.scirp.org/pdf/opj_2013112009301643.pdf), which is mathematically challenging. So it is not too surprising that most renderers ignore this behavior (even though, physically, that doesn't make much sense). For small density gradients and small distances, it is a valid approximation that, on average, gives reasonably accurate results. On the other hand, for certain atmospheric effects, [atmospheric refraction](https://en.wikipedia.org/wiki/Atmospheric_refraction) and reflection make a non-negligible contribution.
+Continuous variation of the IOR poses many challenges for path tracing. In piecewise-homogeneous media, paths are composed of straight segments joined at scattering locations. Unfortunately, due to [Fermat's principle](https://en.wikipedia.org/wiki/Fermat%27s_principle), continuously varying IOR forces photons to travel along paths of least time that [bend](http://www.waves.utoronto.ca/prof/svhum/ece422/notes/20a-atmospheric-refr.pdf) towards regions of higher density according to [Snell's law](https://en.wikipedia.org/wiki/Snell%27s_law). This fact alone makes basic actions like visibility testing relatively complicated. And since the IOR may depend on the frequency, it can cause [dispersion](https://en.wikipedia.org/wiki/Dispersion_(optics)) not only at the interfaces, but also continuously, along the entire path. Finally, one must model losses and gains due to [continuous reflection](https://www.scirp.org/pdf/opj_2013112009301643.pdf), which is mathematically challenging. So it is not too surprising that most renderers ignore this behavior (even though, physically, that doesn't make much sense). For small density gradients and small distances, it is a valid approximation that, on average, gives reasonably accurate results. On the other hand, for certain atmospheric effects, [atmospheric refraction](https://en.wikipedia.org/wiki/Atmospheric_refraction) and reflection make a non-negligible contribution.
 
-For practical reasons, all further discussion assumes that, within volume boundaries, the IOR is invariant with respect to position. If you are interested in continuous refraction, check out the [Refractive Radiative Transfer Equation](https://dl.acm.org/doi/abs/10.1145/2557605) paper.
+For practical reasons, the further discussion will use a (typical) assumption that, within volume boundaries, the IOR is invariant with respect to position. If you are interested in continuous refraction, check out the [Refractive Radiative Transfer Equation](https://dl.acm.org/doi/abs/10.1145/2557605) paper.
 
 ## Radiative Transfer Equation
 
-Intelligent sampling requires understanding which parts make a large contribution. Therefore, we must briefly discuss the radiative transfer equation (or RTE) used to render scenes with participating media. While the full [derivation](https://archive.org/details/RadiativeTransfer) is outside the scope of this blog post, we will try to touch the important aspects.
+Intelligent sampling of a function requires understanding which parts make a large contribution. Therefore, we must briefly discuss the [radiative transfer equation](https://en.wikipedia.org/wiki/Radiative_transfer#The_equation_of_radiative_transfer) (or RTE) used to render scenes with participating media. While the full [derivation](https://archive.org/details/RadiativeTransfer) is outside the scope of this blog post, we will try to touch the important aspects.
 
-The integral form of the RTE is a recursive line integral. It works by collecting photons along the path, while at the same time modeling energy losses (due to absorption and out-scattering) as photons travel from the sources towards the sensor.
+The integral form of the RTE is a recursive line integral. Intuitively, it collects photons along the path, while at the same time modeling energy losses (due to absorption and out-scattering) as photons travel from the sources towards the sensor.
 
-Losses are primarily modeled using opacity \\(\bm{O}\\), which can be defined as the fraction of photons lost along the path from \\(\bm{x}\\) to \\(\bm{y}\\):
+Primarily, it is achieved by introducing opacity \\(\bm{O}\\), which can be defined as the fraction of photons (which can be quantified with  radiance \\(\bm{L}\\)) lost along the path from \\(\bm{x}\\) to \\(\bm{y}\\):
 
 $$ \tag{8} \bm{O}(\bm{x}, \bm{y}) = \frac{\bm{L}(\bm{y}, \bm{\hat{v}\_{xy}}) - \bm{L}(\bm{x}, \bm{\hat{v}\_{xy}})}{\bm{L}(\bm{y}, \bm{\hat{v}\_{xy}})} = 1 - \frac{\bm{L}(\bm{x}, \bm{\hat{v}\_{xy}})}{\bm{L}(\bm{y}, \bm{\hat{v}\_{xy}})}, $$
 
@@ -88,7 +88,7 @@ $$ \tag{9} \bm{T}(\bm{x}, \bm{y}) = 1 - \bm{O}(\bm{x}, \bm{y}). $$
 
 For a single photon, transmittance gives the probability of a free flight.
 
-Volumetric transmittance is given by the [Beer–Lambert–Bouguer law](https://en.wikipedia.org/wiki/Beer%E2%80%93Lambert_law) for  [uncorrelated](https://cs.dartmouth.edu/~wjarosz/publications/bitterli18framework.html) media in terms of [optical depth](https://en.wikipedia.org/wiki/Optical_depth) (or optical thickness) \\(\bm{\tau}\\):
+Volumetric transmittance is given by the [Beer–Lambert–Bouguer law](https://en.wikipedia.org/wiki/Beer%E2%80%93Lambert_law) for [uncorrelated](https://cs.dartmouth.edu/~wjarosz/publications/bitterli18framework.html) media in terms of [optical depth](https://en.wikipedia.org/wiki/Optical_depth) (or optical thickness) \\(\bm{\tau}\\):
 
 $$ \tag{10} \bm{\tau}(\bm{x}, \bm{y}) = -\log{\bm{T}(\bm{x}, \bm{y})} = \int\_{\bm{x}}^{\bm{y}} \bm{\mu_t}(\bm{u}) du, $$
 
@@ -98,9 +98,9 @@ $$ \tag{11} \bm{T}(\bm{x}, \bm{y}) = e^{- \int\_{\bm{x}}^{\bm{y}} \bm{\mu_t}(\bm
 
 Other [integral formulations](https://cs.dartmouth.edu/~wjarosz/publications/georgiev19integral.html) of volumetric transmittance exist.
 
-We model 3 energy sources: [spontaneous emission](https://en.wikipedia.org/wiki/Spontaneous_emission) \\(\bm{L_e}\\), volumetric in-scattering \\(\bm{L_s}\\), and surface scattering \\(\bm{L_g}\\) (which is the standard surface geometry term with a BSDF). The in-scattering term \\(\bm{L_s}\\) is an integral over a sphere of directions \\(S^2\\):
+The RTE models 3 energy sources: [spontaneous emission](https://en.wikipedia.org/wiki/Spontaneous_emission) \\(\bm{L_e}\\), volumetric in-scattering \\(\bm{L_s}\\), and surface in-scattering \\(\bm{L_g}\\) (which is the standard surface geometry term with a BSDF). The volumetric in-scattering term \\(\bm{L_s}\\) is an integral over a sphere of directions \\(S^2\\):
 
-$$ \tag{12} \bm{L_s}(\bm{x}, \bm{v}) = \int\_{\bm{S}^2} f_p(\bm{x}, \bm{v}, \bm{l}) \bm{L}(\bm{x}, \bm{l}) d\sigma(\bm{l}), $$
+$$ \tag{12} \bm{L_s}(\bm{x}, \bm{v}) = \int\_{S^2} f_p(\bm{x}, \bm{v}, \bm{l}) \bm{L}(\bm{x}, \bm{l}) d\sigma(\bm{l}), $$
 
 where \\(f_p\\) denotes the [phase function](http://www.pbr-book.org/3ed-2018/Volume_Scattering/Phase_Functions.html) which models the scattering distribution of an individual particle (as opposed to collision coefficients which describe the properties of particle distributions). It is typically modulated by the single-scattering albedo \\(\bm{\alpha\_{ss}}\\), as we shall see in a moment.
 
@@ -169,7 +169,7 @@ $$ \tag{20}
     \int\_{\bm{x}}^{\bm{y}} \bm{\mu_t}(\bm{u}) e^{-\bm{\tau}(\bm{u}, \bm{y})} du.
 $$
 
-We can now define the sampling PDF:
+We can now define the normalized sampling PDF:
 
 $$ \tag{21} p(u | \lbrace \bm{x}, \bm{v} \rbrace)
     = \frac{\mu_t(\bm{u}) T(\bm{x}, \bm{u})}{O(\bm{x}, \bm{\bm{y}})}. $$
@@ -180,7 +180,7 @@ $$ \tag{22} L(\bm{x}, \bm{v}) \approx O(\bm{x}, \bm{\bm{y}}) \frac{1}{N} \sum\_{
 
 This equation can be seen as a form of [premultiplied alpha blending](https://graphics.pixar.com/library/Compositing/) (where alpha is opacity), which explains why particle cards can be so convincing. Additionally, it offers yet another way to parametrize the attenuation coefficient - namely, by opacity at distance (which is similar to [transmittance at distance](https://blog.selfshadow.com/publications/s2015-shading-course/burley/s2015_pbs_disney_bsdf_notes.pdf) used by Disney). It is the most RGB rendering friendly parametrization that I am aware of.
 
-In this context, total opacity along the ray serves as the probability of a collision event within the medium, and can be used to randomly pick the type of the sample (surface or volume):
+In this context, total opacity along the ray serves as the probability of a collision event within the medium, and can be used to make a random choice of the type of the sample (surface or volume):
 
 $$ \tag{23} L(\bm{x}, \bm{v}) \approx O(\bm{x}, \bm{\bm{y}}) \frac{1}{N} \sum\_{i=1}^{N} \alpha\_{ss}(\bm{u_i}) L_s(\bm{u_i}, \bm{v}) + \big(1 - O(\bm{x}, \bm{\bm{y}}) \big) L_g(\bm{y}, \bm{v}).
 $$
@@ -192,11 +192,15 @@ $$ \tag{24} P(u | \lbrace \bm{x}, \bm{v} \rbrace)
     = \frac{O(\bm{x}, \bm{\bm{u}})}{O(\bm{x}, \bm{\bm{y}})},
 $$
 
-which is just fractional opacity. So, all of our sampling decisions are based on opacity.
+which is just fractional opacity.
 
 In practice, this means that we need to solve for the distance \\(y\\) given the value of optical depth \\(\tau\\):
 
-$$ \tag{25} \tau(\bm{x}, \bm{u}) = -\mathrm{log} \Big( 1 - P \big(u | \lbrace \bm{x}, \bm{v} \rbrace \big) O \big( \bm{x}, \bm{\bm{y}} \big) \Big). $$
+$$
+\tag{25} \tau(\bm{x}, \bm{u}) =
+    -\mathrm{log} \big( O(\bm{x}, \bm{u}) \big) =
+    -\mathrm{log} \Big( 1 - P \big(u | \lbrace \bm{x}, \bm{v} \rbrace \big) O \big( \bm{x}, \bm{\bm{y}} \big) \Big).
+$$
 
 ## Types of Analytic Participating Media
 
@@ -421,8 +425,8 @@ $$ \tag{32} \begin{aligned}
     &= \bm{\sigma_t} \int\_{0}^{t} k e^{-n h(s)} ds \cr
     &= \bm{\sigma_t} \int\_{0}^{t} k e^{-n (\sqrt{r_0^2 + (t_0 + s)^2} - R)} ds \cr
     &= \bm{\sigma_t} \int\_{0}^{t} k e^{-n (\sqrt{(r \sin{\theta})^2 + (r \cos{\theta} + s)^2} - R)} ds \cr
-    &= \bm{\sigma_t} \int\_{0}^{t} k e^{-n (\sqrt{r^2 + 2 r s \cos{\theta} + \bm{S}^2} - R)} ds \cr
-    &= \bm{\sigma_t} \frac{k}{n} e^{-n (r - R)} \int\_{0}^{t} e^{n (r - \sqrt{r^2 + 2 r s \cos{\theta} + \bm{S}^2})} n ds.
+    &= \bm{\sigma_t} \int\_{0}^{t} k e^{-n (\sqrt{r^2 + 2 r s \cos{\theta} + S^2} - R)} ds \cr
+    &= \bm{\sigma_t} \frac{k}{n} e^{-n (r - R)} \int\_{0}^{t} e^{n (r - \sqrt{r^2 + 2 r s \cos{\theta} + S^2})} n ds.
 \end{aligned} $$
 
 The resulting integral is very complex. As a first step, let's take the nested integral, and extend the upper limit of integration to infinity. With the following change of variables:
