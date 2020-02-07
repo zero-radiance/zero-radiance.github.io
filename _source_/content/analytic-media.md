@@ -68,7 +68,7 @@ where \\(\bm{c}\\) is the [light dispersion coefficient](https://ui.adsabs.harva
 
 Continuous variation of the IOR poses many challenges for path tracing. In piecewise-homogeneous media, paths are composed of straight segments joined at scattering locations. Unfortunately, due to [Fermat's principle](https://en.wikipedia.org/wiki/Fermat%27s_principle), continuously varying IOR forces photons to travel along paths of least time that [bend](http://www.waves.utoronto.ca/prof/svhum/ece422/notes/20a-atmospheric-refr.pdf) towards regions of higher density according to [Snell's law](https://en.wikipedia.org/wiki/Snell%27s_law). This fact alone makes basic actions like visibility testing relatively complicated. And since the IOR may depend on the frequency, it can cause [dispersion](https://en.wikipedia.org/wiki/Dispersion_(optics)) not only at the interfaces, but also continuously, along the entire path. Finally, one must model losses and gains due to [continuous reflection](https://www.scirp.org/pdf/opj_2013112009301643.pdf), which is mathematically challenging. So it is not too surprising that most renderers ignore this behavior (even though, physically, that doesn't make much sense). For small density gradients and small distances, it is a valid approximation that, on average, gives reasonably accurate results. On the other hand, for certain atmospheric effects, [atmospheric refraction](https://en.wikipedia.org/wiki/Atmospheric_refraction) and reflection make a non-negligible contribution.
 
-For practical reasons, the further discussion will use a (typical) assumption that, within volume boundaries, the IOR is invariant with respect to position. If you are interested in continuous refraction, check out the [Refractive Radiative Transfer Equation](https://dl.acm.org/doi/abs/10.1145/2557605) paper.
+For practical reasons, further discussion will use a (typical) assumption that, within volume boundaries, the IOR is invariant with respect to position. If you are interested in continuous refraction, check out the [Refractive Radiative Transfer Equation](https://dl.acm.org/doi/abs/10.1145/2557605) paper.
 
 ## Radiative Transfer Equation
 
@@ -104,7 +104,7 @@ $$ \tag{12} \bm{L_s}(\bm{x}, \bm{v}) = \int\_{S^2} f_p(\bm{x}, \bm{v}, \bm{l}) \
 
 where \\(f_p\\) denotes the [phase function](http://www.pbr-book.org/3ed-2018/Volume_Scattering/Phase_Functions.html) which models the scattering distribution of an individual particle (as opposed to collision coefficients which describe the properties of particle distributions). It is typically modulated by the single-scattering albedo \\(\bm{\alpha\_{ss}}\\), as we shall see in a moment.
 
-Carefully putting it all together yields the [volume rendering equation](https://cs.dartmouth.edu/~wjarosz/publications/novak18monte.html):
+Carefully putting it all together yields the [volume rendering equation](https://cs.dartmouth.edu/~wjarosz/publications/novak18monte.html) along the ray \\(\bm{u} = \bm{x} - u \bm{v}\\):
 
 $$ \begin{aligned} \tag{13}
     \bm{L}(\bm{x}, \bm{v}) =
@@ -141,7 +141,7 @@ $$
 
 where sample locations \\(\bm{u_i}\\) at the distance \\(u_i\\) along the path are distributed according to the [PDF](https://en.wikipedia.org/wiki/Probability_density_function) \\(p\\).
 
-We can [importance sample](http://www.pbr-book.org/3ed-2018/Monte_Carlo_Integration/Importance_Sampling.html) the integrand (distribute  samples according to the PDF) in several ways. Ideally, we would like to make the PDF proportional to the [product](https://cgg.mff.cuni.cz/~jaroslav/papers/2014-zerovar/) of all terms of the integrand. However, unless we use [path guiding](https://cgg.mff.cuni.cz/~jirka/path-guiding-in-production/2019/index.htm), that is typically not possible. We will focus on the technique called [free path sampling](https://cs.dartmouth.edu/~wjarosz/publications/novak18monte.html) that makes the PDF proportional to the attenuation-transmittance product \\(\mu_t T\\) (effectively, by assuming that the rest of the integrand varies slowly; in practice, this may or may not be the case - for example, for regions near light sources, [equiangular sampling](http://library.imageworks.com/pdfs/imageworks-library-importance-sampling-of-area-lights-in-participating-media.pdf) can give vastly superior results).
+We can [importance sample](http://www.pbr-book.org/3ed-2018/Monte_Carlo_Integration/Importance_Sampling.html) the integrand (distribute samples according to the PDF) in several ways. Ideally, we would like to make the PDF proportional to the [product](https://cgg.mff.cuni.cz/~jaroslav/papers/2014-zerovar/) of all terms of the integrand. However, unless we use [path guiding](https://cgg.mff.cuni.cz/~jirka/path-guiding-in-production/2019/index.htm), that is typically not possible. We will focus on the technique called [free path sampling](https://cs.dartmouth.edu/~wjarosz/publications/novak18monte.html) that makes the PDF proportional to the attenuation-transmittance product \\(\mu_t T\\) (effectively, by assuming that the rest of the integrand varies slowly; in practice, this may or may not be the case - for example, for regions near light sources, [equiangular sampling](http://library.imageworks.com/pdfs/imageworks-library-importance-sampling-of-area-lights-in-participating-media.pdf) can give vastly superior results).
 
 In order to turn the attenuation-transmittance product \\(\mu_t T\\) into a PDF, it must be normalized over the domain of integration, \\(\bm{x}\\) to \\(\bm{y}\\). We must compute the normalization factor
 
@@ -174,7 +174,7 @@ We can now define the normalized sampling PDF:
 $$ \tag{21} p(u | \lbrace \bm{x}, \bm{v} \rbrace)
     = \frac{\mu_t(\bm{u}) T(\bm{x}, \bm{u})}{O(\bm{x}, \bm{\bm{y}})}. $$
 
-Substitution into the Equation 16 radically simplifies the estimator (again, for a particular frequency):
+Substitution into Equation 16 radically simplifies the estimator (again, for a particular frequency):
 
 $$ \tag{22} L(\bm{x}, \bm{v}) \approx O(\bm{x}, \bm{\bm{y}}) \frac{1}{N} \sum\_{i=1}^{N} \alpha\_{ss}(\bm{u_i}) L_s(\bm{u_i}, \bm{v}) + T(\bm{x}, \bm{y}) L_g(\bm{y}, \bm{v}). $$
 
@@ -185,7 +185,7 @@ In this context, total opacity along the ray serves as the probability of a coll
 $$ \tag{23} L(\bm{x}, \bm{v}) \approx O(\bm{x}, \bm{\bm{y}}) \frac{1}{N} \sum\_{i=1}^{N} \alpha\_{ss}(\bm{u_i}) L_s(\bm{u_i}, \bm{v}) + \big(1 - O(\bm{x}, \bm{\bm{y}}) \big) L_g(\bm{y}, \bm{v}).
 $$
 
-In order to sample the integrand in the Equation 15, we must be also able to [invert](http://www.pbr-book.org/3ed-2018/Monte_Carlo_Integration/Sampling_Random_Variables.html#TheInversionMethod) the [CDF](https://en.wikipedia.org/wiki/Cumulative_distribution_function) \\(P\\):
+In order to sample the integrand in Equation 15, we must be also able to [invert](http://www.pbr-book.org/3ed-2018/Monte_Carlo_Integration/Sampling_Random_Variables.html#TheInversionMethod) the [CDF](https://en.wikipedia.org/wiki/Cumulative_distribution_function) \\(P\\):
 
 $$ \tag{24} P(u | \lbrace \bm{x}, \bm{v} \rbrace)
     = \int\_{0}^{u} p(u | \lbrace \bm{x}, \bm{v} \rbrace) du
@@ -212,7 +212,7 @@ A homogeneous medium has uniform density across the entire volume:
 
 $$ \tag{26} \rho_c = b. $$
 
-This formulation makes computing optical depth easy (recall the Equations 5 and 10):
+This formulation makes computing optical depth easy (recall Equations 5 and 10):
 
 $$ \tag{27} \bm{\tau_c}(\bm{x}, \bm{y})
     = \bm{\sigma_t} \int\_{\bm{x}}^{\bm{y}} \rho du
@@ -221,7 +221,7 @@ $$ \tag{27} \bm{\tau_c}(\bm{x}, \bm{y})
     = \bm{\sigma_t} b t.
 $$
 
-The sampling "recipe" for distance \\(t\\) (and for a particular frequency) can be found by inverting the CDF:
+The sampling "recipe" for the distance \\(t\\) (and for a particular frequency \\(\nu\\)) can be found by inverting the CDF:
 
 $$ \tag{28} t = \frac{\tau_c}{\sigma_t b}, $$
 
@@ -231,106 +231,55 @@ The resulting sampling algorithm is very simple:
 
 1. compute total opacity along the ray;
 2. generate a random CDF value;
-3. compute optical depth using the Equation 25;
-4. compute the distance using the Equation 28.
+3. compute optical depth using Equation 25;
+4. compute the distance using Equation 28.
 
 ### Linear Variation of Density with Altitude in Rectangular Coordinates
 
 Without loss of generality, let's assume that density varies with the third coordinate of the position \\(\bm{x}\\), which we interpret as the altitude. This is your typical "linear height fog on flat Earth" case:
 
-$$ \tag{27} \rho\_{lr}(\bm{x}) = k h(\bm{x}) + b = k x_3 + b. $$
+$$ \tag{29} \rho\_{lr}(\bm{x}) = k h(\bm{x}) + b = k x_3 + b. $$
 
 This formulation can be reduced to homogeneous media by setting \\(k = 0\\).
 
-What we would like to evaluate the following integral:
+We would like to evaluate the following integral:
 
-$$ \tag{28} \bm{\tau\_{lr}}(\bm{x}, \bm{y})
-    = \bm{\sigma_t} \int\_{\bm{x}}^{\bm{y}} \rho{\big(h(\bm{u}) \big)} du
-    = \bm{\sigma_t} \int\_{\bm{x}}^{\bm{y}} \big(k h(\bm{u}) + b \big) du.
+$$ \tag{30} \bm{\tau\_{lr}}(\bm{x}, \bm{y})
+    = \bm{\sigma_t} \int\_{\bm{x}}^{\bm{y}} \rho{(\bm{u})} du
+    = \bm{\sigma_t} \int\_{\bm{x}}^{\bm{y}} k h(\bm{u}) du + \bm{\sigma_t} \int\_{\bm{x}}^{\bm{y}} b du.
 $$
 
-The task can be simplified by making a change of variables and integrating with respect to the altitude \\(h\\) rather than the parametric distance \\(u\\) along the path. Let's start with the simplest case of a straight path, by assuming the IOR value of 1. Graphically, we want to compute the ratio of infinitesimal lengths \\(ds\\) and \\(dh\\) which is, of course, just the secant of the zenith angle.
+The task can be simplified by making a change of variables and integrating with respect to the altitude \\(h\\) rather than the parametric distance \\(u\\) along the path. It is particularly simple for a straight path, by assuming a constant value of the IOR. Graphically, we want to compute the ratio of infinitesimal lengths \\(ds\\) and \\(dh\\) which is, of course, just the secant of the zenith angle.
 
 {{< figure src="/img/dh_ds.png">}}
 
 Mathematically, for an arbitrary function \\(f(h)\\), the change of variables can be expressed using the [chain rule](https://en.wikipedia.org/wiki/Chain_rule):
 
-$$ \tag{29}
-    \int\_{\bm{x}}^{\bm{y}} f \big(h(\bm{s}) \big) ds =
-    \int\_{h\_{x}}^{h\_{y}} f(h) \frac{ds}{dh} dh =
-    \int\_{h\_{x}}^{h\_{y}} f(h) \sec{\theta} dh =
-    \int\_{h\_{x}}^{h\_{y}} f(h) \frac{\Vert \bm{y} - \bm{x} \Vert}{h_y - h_x} dh. $$
-
-The general case of curved trajectories requires application of [Snell's law](https://en.wikipedia.org/wiki/Snell%27s_law):
-
-$$ \tag{30}
-    n(h_0) \sin{\theta\_0} = n(h_1) \sin{\theta\_1}. $$
-
-We can approach this problem by representing the atmosphere with an infinite number of homogeneous layers of infinitesimal thickness. For each layer, the product of the IOR and the sine is [invariant](http://www.waves.utoronto.ca/prof/svhum/ece422/notes/20a-atmospheric-refr.pdf) along the path, making a curve composed of an infinite number of tiny straight segments.
-
-{{< figure src="/img/dh_du.png">}}
-
-Again, we use the chain rule, this time relating the distance along the curved path \\(du\\) to the height \\(dh\\).
-
 $$ \tag{31}
     \int\_{\bm{x}}^{\bm{y}} f \big(h(\bm{u}) \big) du =
     \int\_{\bm{x}}^{\bm{y}} f(h) \frac{du}{dh} dh =
-    \int\_{h\_{x}}^{h\_{y}} f(h) \sec{\theta(h)} dh. $$
+    \int\_{h(\bm{x})}^{h(\bm{y})} f(h) \sec{\theta(h)} dh. $$
 
-The value of the secant can be computed using Snell's law:
+We can substitute \\(f(h) = k h\\) from Equation 30 into Equation 31:
 
-$$ \tag{32}
-    \int\_{h\_{x}}^{h\_{y}} f(h) \sec{\theta(h)} dh =
-    \int\_{h\_{x}}^{h\_{y}} \frac{f(h)}{\sqrt{1 - \sin^2{\theta(h)}}} dh =
-    \int\_{h\_{x}}^{h\_{y}} \frac{f(h) n(h)}{\sqrt{n^2(h) - n^2(h_x) \sin^2{\theta_x}}} dh, $$
-
-where \\(\theta_x\\) is the zenith angle at the start of the path.
-
-Combining Equations 28 and 32 gives us the following expression of optical depth:
-
-$$ \tag{33}
-    \bm{\tau}(\bm{x}, \bm{y})
-    = \bm{\sigma_t} \int\_{h\_{x}}^{h\_{y}} \rho(h) \sec{\theta_h} dh
-    = \bm{\sigma_t} \int\_{h\_{x}}^{h\_{y}} \frac{\rho(h) n(h)}{\sqrt{n^2(h) - n^2(h_x) \sin^2{\theta_x}}} dh.
-$$
-
-Note that while this expression is quite general and imposes no restrictions on how the density varies, it is only valid in rectangular coordinates.
-
-For our application, we shall use the low density approximation (Equation 7):
-
-$$ \tag{34}
-    \bm{\tau}(\bm{x}, \bm{y})
-    \approx \bm{\sigma_t} \int\_{h\_{x}}^{h\_{y}} \frac{\rho(h) \big( 1 + c \rho(h) \big)}{\sqrt{\big( 1 + 2 c \rho(h) \big) - \big( 1 + c \rho(h_x) \big)^2 \sin^2{\theta_x}}} dh.
-$$
-
-We can further simplify this expression by integrating in terms of linear density (given by the Equation 27):
-
-$$ \tag{35} \begin{aligned}
-    \bm{\tau\_{lr}}(\bm{x}, \bm{y})
-    &\approx \bm{\sigma_t} \int\_{h\_{x}}^{h\_{y}} \frac{\rho (1 + c \rho)}{\sqrt{(1 + 2 c \rho) - (1 + c \rho_x)^2 \sin^2{\theta_x}}} \frac{dh}{d\rho} d\rho \cr
-    &= \frac{\bm{\sigma_t}}{k} \int\_{\rho\_{x}}^{\rho\_{y}} \frac{\rho (1 + c \rho)}{\sqrt{(1 + 2 c \rho) - (1 + c \rho_x)^2 \sin^2{\theta_x}}} d\rho \cr
+$$ \tag{32} \begin{aligned}
+\bm{\tau\_{lr}}(\bm{x}, \bm{y})
+    &= \bm{\sigma_t} \int\_{x_3}^{y_3} k h \frac{\Vert \bm{y} - \bm{x} \Vert}{y_3 - x_3} dh + \bm{\sigma_t} \int\_{\bm{x}}^{\bm{y}} b du \cr
+    &= \bm{\sigma_t} \Big( \frac{k}{y_3 - x_3} \int\_{x_3}^{y_3} h dh + b \Big) \Vert \bm{y} - \bm{x} \Vert \cr
+    &= \bm{\sigma_t} \Big( \frac{k}{y_3 - x_3}\frac{y_3^2 - x_3^2}{2} + b \Big) \Vert \bm{y} - \bm{x} \Vert \cr
+    &= \bm{\sigma_t} \Big( k \frac{x_3 + y_3}{2} + b \Big) \Vert \bm{y} - \bm{x} \Vert
+     = \bm{\sigma_t} \Big( (k x_3 + b) - \frac{k v_3}{2} t \Big) t,
 \end{aligned} $$
-
----
-
-The expression of optical depth remains simple:
-
-$$ \tag{24}
-\bm{\tau\_{lp}}(\bm{x}, \bm{v}, t)
-    = \bm{\sigma_t} \int\_{0}^{t} \Big( m \big(x_3 + s v_3) + k \Big) ds
-    = \bm{\sigma_t} \Big(m \big(x_3 + \frac{t}{2} v_3 \big) + k \Big) t,
-$$
 
 which is the product of the average attenuation coefficient and the length of the interval, as expected.
 
-The sampling "recipe" for distance \\(t\\) is given by the following formula:
+The inversion process involves solving the quadratic equation for the distance \\(t\\):
 
-$$ \tag{25}
-    t = -\frac{k + m x_3}{m v_3}
-    \pm \sqrt{\Bigg( \frac{k + m x_3}{m v_3} \Bigg)^2 + \frac{2 \tau\_{lp}}{\sigma_t m v_3}},
+$$ \tag{33}
+    t = \frac{(k x_3 + b) \pm \sqrt{ (k x_3 + b)^2 - 2 k v_3 (\tau\_{lr} / \sigma_t)}}{k v_3}.
 $$
 
-where the sign in front of the square root is the sign of \\(v_3\\). Note that homogeneous media \\( \big( m v_3 = 0 \big) \\) require special care.
+Physically, we are only interested in the smaller root (with the negative sign), as it is the solution for positive densities. Note that homogeneous media \\( \big( m v_3 = 0 \big) \\) require special care.
 
 ### Exponential Variation of Density with Altitude in Rectangular Coordinates
 
@@ -448,7 +397,7 @@ $$ \tag{36}
     = \bm{\sigma_t} \frac{k}{n} \Bigg( C_r \Big(z_x, Z, \cos{\theta_x} \Big) - C_r \Big(z_y, Z, \cos{\theta_y} \Big) \Bigg).
 $$
 
-What the Equation 36 tells us is that we should evaluate the optical depth integral twice (in the same direction, along the entire ray, from 0 to \\(\infty\\)), at the start and at the end of the interval, and subtract the results to "clip" the ray.
+What Equation 36 tells us is that we should evaluate the optical depth integral twice (in the same direction, along the entire ray, from 0 to \\(\infty\\)), at the start and at the end of the interval, and subtract the results to "clip" the ray.
 
 It is interesting to contemplate the physical meaning of optical depth and the Chapman function. Generally speaking, the value of a line integral of density (such as given by \\(\bm{\tau} / \bm{\sigma_t}\\)) corresponds to mass. Therefore, the integral
 
@@ -501,7 +450,7 @@ However, if you care about accuracy, and plot the relative error graph, it paint
 
 The physics literature has [many approximations](https://agupubs.onlinelibrary.wiley.com/doi/pdf/10.1029/2011JD016706) of the Chapman function. Unfortunately, most of them are specific to Earth's atmosphere.
 
-Instead of approximating the entire function (for which we have an analytic expression), we can take a different, simpler approach. All we have to do is approximate \\(\mathrm{erfc}\\) (or, more specifically, the term of the Equation 38 inside the square brackets). Luckily, the physics literature has an efficient [approximation](https://rmets.onlinelibrary.wiley.com/doi/full/10.1002/asl.154) (for positive values of \\(x\\)) readily available:
+Instead of approximating the entire function (for which we have an analytic expression), we can take a different, simpler approach. All we have to do is approximate \\(\mathrm{erfc}\\) (or, more specifically, the term of Equation 38 inside the square brackets). Luckily, the physics literature has an efficient [approximation](https://rmets.onlinelibrary.wiley.com/doi/full/10.1002/asl.154) (for positive values of \\(x\\)) readily available:
 
 $$ \tag{42} e^{x^2} \mathrm{erfc}(x) \approx \frac{2.911}{(2.911 - 1) \sqrt{\pi x^2} + \sqrt{\pi x^2 + 2.911^2}}. $$
 
@@ -513,7 +462,7 @@ For reference, the full numerical approximation of the Chapman function for the 
 
 $$ \tag{43} C_{u\\_a}(z, \cos{\theta}) \approx \frac{\cos{\theta}}{2} + \frac{0.761643 (1 + z (2 - \cos^2{\theta}))}{z \cos{\theta} + \sqrt{z (1.47721 + 0.273828 z \cos^2{\theta})}}. $$
 
-Sample code which implements the Equation 40 is listed below.
+Sample code which implements Equation 40 is listed below.
 
 ```c++
 float ChapmanUpperApprox(float z, float cosTheta)
@@ -559,7 +508,7 @@ A small but important note is that we can always use \\( \vert \cos{\theta} \ver
 
 #### Evaluating Optical Depth Using the Chapman Function
 
-A numerical approximation of the Chapman function, in conjunction with the Equation 36, allows us to evaluate optical depth along an arbitrary ray segment.
+A numerical approximation of the Chapman function, in conjunction with Equation 36, allows us to evaluate optical depth along an arbitrary ray segment.
 
 However, the approximation of the Chapman function contains a branch (upper/lower hemisphere), and using the full formulation twice may be unnecessarily expensive for many use cases.
 
@@ -638,7 +587,7 @@ If desired, it is possible to reduce execution divergence by utilizing `ChapmanU
 
 Now we are ready to tackle the most general case of evaluating optical depth between two arbitrary points \\(\bm{x}\\) and \\(\bm{y}\\). It may seem really complicated at first when, in fact, it is very similar to the problem we just solved. We have to consider three distinct possibilities:
 
-1\. \\(\cos{\theta_x} \geq 0 \\), which means that the ray points into the upper hemisphere with respect to the surface normal at the point \\(\bm{x}\\). This also means it points into the upper hemisphere at any point \\(\bm{y}\\) along the ray (it is fairly obvious if you sketch it). Optical depth is given by the Equation 36, which we specialize by replacing \\(C\\) with \\(C_u\\) which is restricted to the upper hemisphere:
+1\. \\(\cos{\theta_x} \geq 0 \\), which means that the ray points into the upper hemisphere with respect to the surface normal at the point \\(\bm{x}\\). This also means it points into the upper hemisphere at any point \\(\bm{y}\\) along the ray (it is fairly obvious if you sketch it). Optical depth is given by Equation 36, which we specialize by replacing \\(C\\) with \\(C_u\\) which is restricted to the upper hemisphere:
 
 $$ \tag{47}
 \bm{\tau\_{uu}}(z_x, \cos{\theta_x}, z_y, \cos{\theta_y})
@@ -701,7 +650,7 @@ Note that using this function (rather than calling `EvalOptDepthSpherExpMedium` 
 
 In order to sample participating media, we must be able to solve the optical depth equation for distance. Analysis presented in the previous section indicates that we must consider two cases: the ray pointing into the same hemisphere at both endpoints (Equation 47), and into opposite ones (Equation 48).
 
-First, let's establish a couple of useful identities. Recalling the Equation 32, we can compute the radial distance from the center \\(\bm{c}\\) to the point \\(\bm{x} + t \bm{v}\\) along the ray using the Pythagorean theorem:
+First, let's establish a couple of useful identities. Recalling Equation 32, we can compute the radial distance from the center \\(\bm{c}\\) to the point \\(\bm{x} + t \bm{v}\\) along the ray using the Pythagorean theorem:
 
 $$ \tag{49}
 \mathcal{R}(r, \theta, t)
@@ -744,7 +693,7 @@ Both \\(\phi\\) and \\(\psi\\) are known to be positive. We must solve for \\(\p
 
 This appears to be the simplest formulation of the problem, using the fewest number of parameters. I gave it a shot but, unfortunately, I was unable to analytically solve this equation, and I tried plugging in both the closed and the approximate forms of the Chapman function. Perhaps **you** will have better luck?
 
-While that's an unfortunate development, it is a minor setback. If we can't solve the equation analytically, we can solve it numerically, using the [Newton–Raphson method](https://en.wikipedia.org/wiki/Newton%27s_method), for instance. The derivative of the Chapman function exists, and is not too difficult to compute.
+While that's an unfortunate development, it is a minor setback. If we can't solve Equation analytically, we can solve it numerically, using the [Newton–Raphson method](https://en.wikipedia.org/wiki/Newton%27s_method), for instance. The derivative of the Chapman function exists, and is not too difficult to compute.
 
 In fact, there is a [better way](http://lib-www.lanl.gov/la-pubs/00367066.pdf), which is even simpler. Recall that Newton's method requires being able to make an initial guess, evaluate the function, and take its derivative. If we solve for the entire optical depth formulation (Equation 17), we know that its derivative is just the attenuation coefficient \\(\mu_t\\) (Equation 9), and making a good initial guess is easy by simply ignoring curvature of the planet.
 
@@ -824,7 +773,7 @@ It is worth noting that since the code internally uses a numerical approximation
 
 In fact, curvature of the planet can be ignored for moderate distances, making the rectangular function a relatively efficient and accurate approximation. Can we exploit this idea for arbitrary distances?
 
-Let's say that we are not interested in brute force path tracing (which would require accurate numerical inversion as discussed above). Instead, we are trying to gather in-scattered radiance along the ray using the Equation 18, where \\(\bm{L_s}\\) is known (which limits us to single and precomputed multiple scattering).
+Let's say that we are not interested in brute force path tracing (which would require accurate numerical inversion as discussed above). Instead, we are trying to gather in-scattered radiance along the ray using Equation 18, where \\(\bm{L_s}\\) is known (which limits us to single and precomputed multiple scattering).
 
 If we sort our random CDF values in ascending order, and make sure that the sampling rate is sufficiently high, we can build an incremental sampling algorithm which effectively models piecewise-flat (or polygonal) planet. We will refer to it as *incremental importance sampling*.
 
@@ -1001,7 +950,7 @@ $$
 
 This formulation makes it easy to extend the method to support additional techniques for increased robustness.
 
-In the end, we divided some averages by some other averages. Do we get the correct result on average? Using the formalism introduced in the Equation 63,
+In the end, we divided some averages by some other averages. Do we get the correct result on average? Using the formalism introduced in Equation 63,
 
 $$ \tag{67} \begin{aligned}
     E[F] &= \int\_{X} F(x) p(x) d \sigma(x) \cr
@@ -1100,7 +1049,7 @@ $$ \tag{71} \begin{aligned}
 \end{aligned}
 $$
 
-where \\(\bm{L_e}\\) is emission and \\(\bm{L_s}\\) is defined in the same way as in the Equation 13.
+where \\(\bm{L_e}\\) is emission and \\(\bm{L_s}\\) is defined in the same way as in Equation 13.
 
 Each individual event has a corresponding weight:
 
@@ -1132,7 +1081,7 @@ $$ \tag{74} \begin{aligned}
 \end{aligned}
 $$
 
-Comparing the Equations 13 and 70, we can see that they are indeed very similar (and so is the estimator). As before, the leading term is canceled out after dividing by the PDF, so the only difference is that we must handle several types of events once a collision actually occurs.
+Comparing Equations 13 and 70, we can see that they are indeed very similar (and so is the estimator). As before, the leading term is canceled out after dividing by the PDF, so the only difference is that we must handle several types of events once a collision actually occurs.
 
 A high-level implementation of the algorithm is listed below.
 
@@ -1184,7 +1133,7 @@ float3 SpectralTracking(float3 X, float3 V, uint numWavelengths, uint numPaths)
                 float    majK;
                 LookUpVolumeCoefficients(pos, dir, waves, absK, scaK, nulK, majK);
                 // Compute event probabilities.
-                // Use the Equation 73, or one of the alternatives from the paper.
+                // Use Equation 73, or one of the alternatives from the paper.
                 float absP, scaP, nulP;
                 ComputeVolumeEventProbabilities(absP, scaP, nulP);
 
