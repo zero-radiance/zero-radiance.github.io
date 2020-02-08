@@ -210,11 +210,11 @@ If your background is in real-time rendering, you may have heard of [constant, l
 
 A homogeneous medium has uniform density across the entire volume:
 
-$$ \tag{26} \rho_c = b. $$
+$$ \tag{26} \rho = b. $$
 
 This formulation makes computing optical depth easy (recall Equations 5 and 10):
 
-$$ \tag{27} \bm{\tau_c}(\bm{x}, \bm{y})
+$$ \tag{27} \bm{\tau}(\bm{x}, \bm{y})
     = \bm{\sigma_t} \int\_{\bm{x}}^{\bm{y}} \rho du
     = \bm{\sigma_t} \int\_{\bm{x}}^{\bm{y}} b du
     = \bm{\sigma_t} b \Vert \bm{y} - \bm{x} \Vert
@@ -223,7 +223,7 @@ $$
 
 The sampling "recipe" for the distance \\(t\\) (and for a particular frequency \\(\nu\\)) can be found by inverting the CDF:
 
-$$ \tag{28} t = \frac{\tau_c}{\sigma_t b}, $$
+$$ \tag{28} t = \frac{\tau}{\sigma_t b}, $$
 
 which is consistent with [previous work](https://cs.dartmouth.edu/~wjarosz/publications/novak18monte.html).
 
@@ -238,20 +238,20 @@ The resulting sampling algorithm is very simple:
 
 Without loss of generality, let's assume that density varies with the third coordinate of the position \\(\bm{x}\\), which we interpret as the altitude. This is your typical "linear height fog on flat Earth" case:
 
-$$ \tag{29} \rho\_{lr}(\bm{x}) = k h(\bm{x}) + b = k x_3 + b. $$
+$$ \tag{29} \rho(\bm{x}) = k h(\bm{x}) + b = k x_3 + b. $$
 
 This formulation can be reduced to homogeneous media by setting \\(k = 0\\).
 
 We would like to evaluate the following integral:
 
-$$ \tag{30} \bm{\tau\_{lr}}(\bm{x}, \bm{y})
+$$ \tag{30} \bm{\tau}(\bm{x}, \bm{y})
     = \bm{\sigma_t} \int\_{\bm{x}}^{\bm{y}} \rho{(\bm{u})} du
     = \bm{\sigma_t} \int\_{\bm{x}}^{\bm{y}} k h(\bm{u}) du + \bm{\sigma_t} \int\_{\bm{x}}^{\bm{y}} b du.
 $$
 
 The task can be simplified by making a change of variables and integrating with respect to the altitude \\(h\\) rather than the parametric distance \\(u\\) along the path. It is particularly simple for a straight path, by assuming a constant value of the IOR. Graphically, we want to compute the ratio of infinitesimal lengths \\(ds\\) and \\(dh\\) which is, of course, just the secant of the zenith angle.
 
-{{< figure src="/img/dh_ds.png">}}
+{{< figure src="/img/du_dh.png">}}
 
 Mathematically, for an arbitrary function \\(f(h)\\), the change of variables can be expressed using the [chain rule](https://en.wikipedia.org/wiki/Chain_rule):
 
@@ -263,12 +263,12 @@ $$ \tag{31}
 We can substitute \\(f(h) = k h\\) from Equation 30 into Equation 31:
 
 $$ \tag{32} \begin{aligned}
-\bm{\tau\_{lr}}(\bm{x}, \bm{y})
+\bm{\tau}(\bm{x}, \bm{y})
     &= \bm{\sigma_t} \int\_{x_3}^{y_3} k h \frac{\Vert \bm{y} - \bm{x} \Vert}{y_3 - x_3} dh + \bm{\sigma_t} \int\_{\bm{x}}^{\bm{y}} b du \cr
     &= \bm{\sigma_t} \Big( \frac{k}{y_3 - x_3} \int\_{x_3}^{y_3} h dh + b \Big) \Vert \bm{y} - \bm{x} \Vert \cr
     &= \bm{\sigma_t} \Big( \frac{k}{y_3 - x_3}\frac{y_3^2 - x_3^2}{2} + b \Big) \Vert \bm{y} - \bm{x} \Vert \cr
-    &= \bm{\sigma_t} \Big( k \frac{x_3 + y_3}{2} + b \Big) \Vert \bm{y} - \bm{x} \Vert
-     = \bm{\sigma_t} \Big( (k x_3 + b) - \frac{k v_3}{2} t \Big) t,
+    &= \bm{\sigma_t} \Big( k \frac{x_3 + y_3}{2} + b \Big) \Vert \bm{y} - \bm{x} \Vert \cr
+    &= \bm{\sigma_t} \Big( (k x_3 + b) - \frac{k v_3}{2} t \Big) t,
 \end{aligned} $$
 
 which is the product of the average attenuation coefficient and the length of the interval, as expected.
@@ -276,7 +276,7 @@ which is the product of the average attenuation coefficient and the length of th
 The inversion process involves solving the quadratic equation for the distance \\(t\\):
 
 $$ \tag{33}
-    t = \frac{(k x_3 + b) \pm \sqrt{ (k x_3 + b)^2 - 2 k v_3 (\tau\_{lr} / \sigma_t)}}{k v_3}.
+    t = \frac{(k x_3 + b) \pm \sqrt{ (k x_3 + b)^2 - 2 k v_3 (\tau / \sigma_t)}}{k v_3}.
 $$
 
 Physically, we are only interested in the smaller root (with the negative sign), as it is the solution for positive densities. Note that homogeneous media \\( \big( m v_3 = 0 \big) \\) require special care.
@@ -285,60 +285,76 @@ Physically, we are only interested in the smaller root (with the negative sign),
 
 We can replace the linear density function with an exponential:
 
-$$ \tag{26} \rho\_{ep}(\bm{x}) = k e^{-x_3 / H}, $$
+$$ \tag{34} \rho(\bm{x}) = k e^{-h(\bm{x}) / H} = k e^{-x_3 / H}, $$
 
 where \\(H\\) is the [scale height](https://en.wikipedia.org/wiki/Scale_height), measured in meters. Another way to think about it is as of the reciprocal of the falloff exponent \\(n\\):
 
-$$ \tag{27} \rho\_{ep}(\bm{x}) = k e^{-n x_3}. $$
+$$ \tag{35} \rho(\bm{x}) = k e^{-n x_3}. $$
 
 Setting \\(n = 0\\) results in a homogeneous medium.
 
 After plugging it in into the formula of optical depth, we obtain the following expression:
 
-$$ \tag{28}
-\bm{\tau\_{ep}}(\bm{x}, \bm{v}, t)
-    = \bm{\sigma_t} \int\_{0}^{t} k e^{-n (x_3 + s v_3)} ds
-    = \bm{\sigma_t} k e^{-n x_3} \int\_{0}^{t} e^{-s n v_3} ds
-    = \bm{\sigma_t} k t e^{-n x_3} \frac{1 - e^{-t n v_3}}{n v_3}.
+$$ \tag{36}
+\bm{\tau}(\bm{x}, \bm{y})
+    = \bm{\sigma_t} \int\_{\bm{x}}^{\bm{y}} \rho{(\bm{u})} du
+    = \bm{\sigma_t} \int\_{\bm{x}}^{\bm{y}} k e^{-n h(\bm{u})} du.
 $$
+
+Again, we can perform a change of variables according to Equation 31:
+
+$$ \tag{37} \begin{aligned}
+\bm{\tau}(\bm{x}, \bm{y})
+    &= \bm{\sigma_t} \frac{\Vert \bm{y} - \bm{x} \Vert}{y_3 - x_3} \int\_{x_3}^{y_3} k e^{-n h} dh \cr
+    &= \bm{\sigma_t} \frac{\Vert \bm{y} - \bm{x} \Vert}{x_3 - y_3} \frac{k}{n} \Big( e^{-n y_3} - e^{-n x_3} \Big) \cr
+    &= \frac{\bm{\sigma_t} k}{n v_3} e^{-n x_3} \Big( e^{n v_3 t} - 1 \Big).
+\end{aligned} $$
+
 Solving for the distance \\(t\\) is straightforward:
 
-$$ \tag{29} t = -\frac{1}{n v_3} \log \left(1 - \frac{\tau\_{ep} n v_3}{\sigma_t k e^{-n x_3}}\right). $$
+$$ \tag{38} t = \frac{1}{n v_3} \log \left(1 + \frac{\tau n v_3}{\sigma_t k e^{-n x_3}}\right). $$
 
 Note that homogeneous media \\( \big( n v_3 = 0 \big) \\) require special care.
 
 Sample code is listed below.
 
 ```c++
-spectrum EvalOptDepthRectExpMedium(float height, float cosTheta, float t,
+// 'height' is the altitude.
+// 'viewZ' is the Z coordinate of the view direction.
+// 't' is the distance.
+// seaLvlAtt = (sigma_t * k) is the sea-level (height = 0) attenuation coefficient.
+// rcpH = rcp(H) is the falloff exponent.
+spectrum EvalOptDepthRectExpMedium(float height, float viewZ, float t,
                                    spectrum seaLvlAtt, float rcpH)
 {
-    // Equation 21.
+    // Equation 27.
     spectrum d = seaLvlAtt * t;
 
-    float p = cosTheta * rcpH;
+    float p = viewZ * rcpH;
 
-    if (abs(p) > FLT_EPS)
+    if (abs(p) > FLT_EPS) // Homogeneity check
     {
-        // Equation 28.
-        d *= exp(-height * rcpH) * (1 - exp(-t * p)) * rcp(p);
+        // Equation 37.
+        d *= rcp(p) * exp(-height * rcpH) * (exp(p * t) - 1);
     }
 
     return d;
 }
 
-float SampleRectExpMedium(float optDepth, float height, float cosTheta,
+// 'optDepth' is the value of optical depth.
+// rcpSeaLvlAtt = rcp(seaLvlAtt).
+float SampleRectExpMedium(float optDepth, float height, float viewZ,
                           float rcpSeaLvlAtt, float rcpH)
 {
-    // Equation 22.
+    // Equation 28.
     float t = optDepth * rcpSeaLvlAtt;
 
-    float p = cosTheta * rcpH;
+    float p = viewZ * rcpH;
 
-    if (abs(p) > FLT_EPS)
+    if (abs(p) > FLT_EPS) // Homogeneity check
     {
-        // Equation 29.
-        t = -log(1 - p * t * exp(height * rcpH)) * rcp(p);
+        // Equation 38.
+        t = rcp(p) * log(1 + t * p * exp(height * rcpH));
     }
 
     return t;
