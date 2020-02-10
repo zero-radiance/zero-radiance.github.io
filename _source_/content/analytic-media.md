@@ -206,7 +206,7 @@ This formulation makes computing optical depth easy (recall Equations 5 and 10):
 
 $$ \tag{26} \bm{\tau}(\bm{x}, \bm{y})
     = \int\_{\bm{x}}^{\bm{y}} \bm{\mu_t}(\bm{u}) du
-    = \int\_{\bm{x}}^{\bm{y}} \bm{\sigma_t} b du
+    = \bm{\sigma_t} \int\_{\bm{x}}^{\bm{y}} b du
     = \bm{\sigma_t} b \Vert \bm{y} - \bm{x} \Vert
     = \bm{\sigma_t} b t.
 $$
@@ -239,16 +239,16 @@ $$ \tag{29} \bm{\tau}(\bm{x}, \bm{y})
     = \bm{\sigma_t} \int\_{\bm{x}}^{\bm{y}} k h(\bm{u}) du + \bm{\sigma_t} \int\_{\bm{x}}^{\bm{y}} b du.
 $$
 
-The task can be simplified by making a change of variables and integrating with respect to the altitude \\(h\\) rather than the parametric distance \\(u\\) along the path. It is particularly simple for a straight path, by assuming a constant value of the IOR. Graphically, we want to compute the ratio of infinitesimal lengths \\(ds\\) and \\(dh\\) which is, of course, just the secant of the zenith angle.
-
-{{< figure src="/img/du_dh.png">}}
-
-Mathematically, for an arbitrary function \\(f(h)\\), the change of variables can be expressed using the [chain rule](https://en.wikipedia.org/wiki/Chain_rule):
+The task can be simplified by making a change of variables and integrating with respect to the altitude \\(h\\) rather than the parametric distance \\(u\\) along the path. Mathematically, for an arbitrary function \\(f(h)\\), the change of variables can be expressed using the [chain rule](https://en.wikipedia.org/wiki/Chain_rule):
 
 $$ \tag{30}
     \int\_{\bm{x}}^{\bm{y}} f \big(h(\bm{u}) \big) du =
     \int\_{\bm{x}}^{\bm{y}} f \big(h(\bm{u}) \big) \frac{du}{dh} dh =
     \int\_{h(\bm{x})}^{h(\bm{y})} f(h) \sec{\theta(h)} dh. $$
+
+Graphically, we want to compute the ratio of infinitesimal lengths \\(du\\) and \\(dh\\) which is, of course, just the secant of the zenith angle. The problem is particularly simple for a straight path (assuming a constant value of the IOR) in rectangular coordinates, since the value of the secant does not vary along the path.
+
+{{< figure src="/img/du_dh.png">}}
 
 We can substitute \\(f(h) = k h\\) from Equation 29 into Equation 30:
 
@@ -371,9 +371,22 @@ We start by recognizing the fact that every ordered pair of position and directi
 
 In order to find the parametric equation of altitude \\(h\\) along the ray, we can use a right triangle with sides of length \\(r_0\\) and \\(t_0\\):
 
-$$ \tag{40} r_0 = r \sin{\theta}, \qquad t_0 = r \cos{\theta}. $$
+$$ \tag{39} r_0 = r \sin{\theta}, \qquad t_0 = r \cos{\theta}, $$
+
+$$ \tag{40} h(u) = \sqrt{r_0^2 + (t_0 + u)^2} - R, \qquad u(h) = \sqrt{(h + R)^2 - r_0^2} - t_0. $$
+
+To perform a change of variables using Equation 30, we must compute the value of the secant:
+
+$$ \tag{41} \sec{\theta(h)} = \frac{du}{dh} = \frac{h + R}{\sqrt{(h + R)^2 - r_0^2}}. $$
 
 This allows us to obtain the following expression of optical depth:
+
+$$ \tag{42} \begin{aligned}
+\bm{\tau}(\bm{x}, \bm{y})
+    &= \bm{\sigma_t} \int\_{\bm{x}}^{\bm{y}} \rho{(\bm{u})} \frac{du}{dh} dh
+     = \bm{\sigma_t} \int\_{\bm{h\_x}}^{h\_y} k e^{-n h} \frac{h + R}{\sqrt{(h + R)^2 - r_0^2}} dh \cr
+\end{aligned} $$
+
 
 $$ \tag{32} \begin{aligned}
 \bm{\tau}(r, \theta, t)
