@@ -314,8 +314,8 @@ Sample code is listed below.
 // 't' is the distance.
 // seaLvlAtt = (sigma_t * k) is the sea-level (height = 0) attenuation coefficient.
 // rcpH = rcp(H) is the falloff exponent.
-spectrum EvalOptDepthRectExpMedium(float height, float viewZ, float t,
-                                   spectrum seaLvlAtt, float rcpH)
+spectrum OptDepthRectExpMedium(float height, float viewZ, float t,
+                               spectrum seaLvlAtt, float rcpH)
 {
     // Equation 26.
     spectrum d = seaLvlAtt * t;
