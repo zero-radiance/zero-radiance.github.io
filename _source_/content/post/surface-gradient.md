@@ -64,7 +64,7 @@ In the formula above, \\(\mathrm{det}(M)\\) is the [determinant](https://en.wiki
 
 It's important to note that, in practice, the surface parametrization used to derive the normal may be different from the texture coordinate parametrization. This means that it's possible to encounter a mesh with vertex normals \\(N\\) pointing in the direction opposite from \\((T \times B)\\). Of course, we always want to use the forward-facing normal \\(N\\). Luckily, the math is on our side, and using the full matrix inversion procedure as described above works in all cases. More details about surface re-parametrization can be found in Morten's [thesis](http://image.diku.dk/projects/media/morten.mikkelsen.08.pdf) (see Section 2.4).
 
-If strict compliance with the [Mikk-TSpace](http://mikktspace.com/) is desired (to exactly match the assumptions of the normal map baking tool, for instance), the inverse-transpose should be replaced with the (unmodified) interpolated \\([T | B | N]\\) matrix. See the [link](http://mikktspace.com/) for details.
+If strict compliance with the [Mikk-TSpace](http://mikktspace.com/) is desired (to exactly match the assumptions of the normal map baking tool, for instance), the inverse-transpose should be replaced with the (unmodified) interpolated \\([T | B | N]\\) matrix, where \\(B = N \times T\\). See the [link](http://mikktspace.com/) for details.
 
 ## Preliminaries, Part 2: Height Maps and Volumes
 
