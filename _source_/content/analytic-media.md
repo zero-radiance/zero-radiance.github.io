@@ -78,9 +78,9 @@ The integral form of the RTE is a recursive line integral. Intuitively, it model
 
 Primarily, it is achieved by introducing the opacity term \\(\bm{O}\\), which can be defined as the fraction of photons (quantified as radiance \\(\bm{L}\\)) lost along the path from \\(\bm{x}\\) to \\(\bm{y}\\) due to absorption and out-scattering:
 
-$$ \tag{8} \bm{O}(\bm{x}, \bm{y}) = \frac{\bm{L}(\bm{y}, \bm{\hat{v}\_{xy}}) - \bm{L}(\bm{x}, \bm{\hat{v}\_{xy}})}{\bm{L}(\bm{y}, \bm{\hat{v}\_{xy}})} = 1 - \frac{\bm{L}(\bm{x}, \bm{\hat{v}\_{xy}})}{\bm{L}(\bm{y}, \bm{\hat{v}\_{xy}})}, $$
+$$ \tag{8} \bm{O}(\bm{x}, \bm{y}) = \frac{\bm{L}(\bm{y}, \bm{\hat{v}}) - \bm{L}(\bm{x}, \bm{\hat{v}})}{\bm{L}(\bm{y}, \bm{\hat{v}})} = 1 - \frac{\bm{L}(\bm{x}, \bm{\hat{v}})}{\bm{L}(\bm{y}, \bm{\hat{v}})}, $$
 
-where \\(\bm{\hat{v}\_{xy}} = (\bm{x} - \bm{y})/ \Vert \bm{x} - \bm{y} \Vert \\) is the normalized view direction. Intuitively, \\(\bm{O}(\bm{x}, \bm{y}) = \bm{O}(\bm{y}, \bm{x})\\).
+where \\(\bm{\hat{v}} = (\bm{x} - \bm{y})/ \Vert \bm{x} - \bm{y} \Vert \\) is the normalized view direction. Intuitively, \\(\bm{O}(\bm{x}, \bm{y}) = \bm{O}(\bm{y}, \bm{x})\\).
 
 Its complement is transmittance \\(\bm{T}\\):
 
@@ -90,9 +90,12 @@ For a single photon, transmittance gives the probability of a free flight.
 
 Volumetric transmittance is given by the [Beer–Lambert–Bouguer law](https://en.wikipedia.org/wiki/Beer%E2%80%93Lambert_law) for [uncorrelated](https://cs.dartmouth.edu/~wjarosz/publications/bitterli18framework.html) media in terms of [optical depth](https://en.wikipedia.org/wiki/Optical_depth) (or optical thickness) \\(\bm{\tau}\\):
 
-$$ \tag{10} \bm{\tau}(\bm{x}, \bm{y}) = -\log{\bm{T}(\bm{x}, \bm{y})} = \int\_{\bm{x}}^{\bm{y}} \bm{\mu_t}(\bm{u}) du, $$
+$$ \tag{10} \bm{\tau}(\bm{x}, \bm{y})
+    = -\log{\bm{T}(\bm{x}, \bm{y})}
+    = \int\_{\bm{x}}^{\bm{y}} \bm{\mu_t}(\bm{u}) d\mu(\bm{u})
+    = \int\_{\bm{x}}^{\bm{y}} \bm{\mu_t}(\bm{u}) du, $$
 
-where \\(\bm{u}\\) is the point at the distance \\(u\\) along the path. It implies that while transmittance is multiplicative, with values restricted to the unit interval, optical depth is additive and can take on any non-negative value. In other words, transmittance is a [product integral](https://www.wikiwand.com/en/Product_integral):
+where \\(\bm{u}\\) is the point at the distance \\(u\\) along the path, and \\(d\mu(\bm{u})\\) is the [measure](https://en.wikipedia.org/wiki/Lebesgue_integration#Measure_theory) of \\(\bm{u}\\) abbreviated as \\(du\\). This formula implies that while transmittance is multiplicative, with values restricted to the unit interval, optical depth is additive and can take on any non-negative value. In other words, transmittance is a [product integral](https://www.wikiwand.com/en/Product_integral):
 
 $$ \tag{11} \bm{T}(\bm{x}, \bm{y}) = e^{- \int\_{\bm{x}}^{\bm{y}} \bm{\mu_t}(\bm{u}) du} = \prod\_{\bm{x}}^{\bm{y}} \Big( 1 - \bm{\mu_t}(\bm{u}) du \Big). $$
 
@@ -100,19 +103,19 @@ Other [integral formulations](https://cs.dartmouth.edu/~wjarosz/publications/geo
 
 The RTE models 3 types of energy sources: [spontaneous emission](https://en.wikipedia.org/wiki/Spontaneous_emission) \\(\bm{L_e}\\), volumetric in-scattering \\(\bm{L_s}\\), and surface in-scattering \\(\bm{L_g}\\) (which is the standard surface geometry term with a BSDF). The volumetric in-scattering term \\(\bm{L_s}\\) is an integral over a sphere of directions \\(S^2\\):
 
-$$ \tag{12} \bm{L_s}(\bm{x}, \bm{v}) = \int\_{S^2} \bm{\alpha\_{ss}}(\bm{x}) f_p(\bm{x}, \bm{v}, \bm{l}) \bm{L}(\bm{x}, \bm{l}) d\sigma(\bm{l}), $$
+$$ \tag{12} \bm{L_s}(\bm{x}, \bm{\hat{v}}) = \int\_{S^2} \bm{\alpha\_{ss}}(\bm{x}) f_p(\bm{x}, \bm{\hat{v}}, \bm{\hat{l}}) \bm{L}(\bm{x}, \bm{\hat{l}}) d\hat{l}, $$
 
 where \\(f_p\\) denotes the [phase function](http://www.pbr-book.org/3ed-2018/Volume_Scattering/Phase_Functions.html) which models the scattering distribution of an individual particle (as opposed to collision coefficients which describe the properties of bulk matter).
 
-Carefully putting it all together yields the [volume rendering equation](https://cs.dartmouth.edu/~wjarosz/publications/novak18monte.html) along the ray \\(\bm{u} = \bm{x} - u \bm{v}\\):
+Carefully putting it all together yields the [volume rendering equation](https://cs.dartmouth.edu/~wjarosz/publications/novak18monte.html) along the ray \\(\bm{u} = \bm{x} - u \bm{\hat{v}}\\):
 
 $$ \tag{13}
-    \bm{L}(\bm{x}, \bm{v}) =
+    \bm{L}(\bm{x}, \bm{\hat{v}}) =
     \int\_{\bm{x}}^{\bm{y}} \bm{T}(\bm{x}, \bm{u}) \Big(
-        \bm{\mu_a}(\bm{u}) \bm{L_e}(\bm{u}, \bm{v}) +
-        \bm{\mu_t}(\bm{u}) \bm{L_s}(\bm{u}, \bm{v})
+        \bm{\mu_a}(\bm{u}) \bm{L_e}(\bm{u}, \bm{\hat{v}}) +
+        \bm{\mu_t}(\bm{u}) \bm{L_s}(\bm{u}, \bm{\hat{v}})
     \Big) du +
-    \bm{T}(\bm{x}, \bm{y}) \bm{L_g}(\bm{y}, \bm{v}),
+    \bm{T}(\bm{x}, \bm{y}) \bm{L_g}(\bm{y}, \bm{\hat{v}}),
 $$
 
 where \\(\bm{y}\\) denotes the position of the closest surface along the ray.
@@ -120,15 +123,15 @@ where \\(\bm{y}\\) denotes the position of the closest surface along the ray.
 We can leave [volumetric emission](https://dl.acm.org/doi/10.1111/cgf.13228) out by setting \\(\bm{L_e} = 0\\):
 
 $$ \tag{14}
-    \bm{L}(\bm{x}, \bm{v}) =
-    \int\_{\bm{x}}^{\bm{y}} \bm{\mu_t}(\bm{u}) \bm{T}(\bm{x}, \bm{u}) \bm{L_s}(\bm{u}, \bm{v}) du +
-    \bm{T}(\bm{x}, \bm{y}) \bm{L_g}(\bm{y}, \bm{v}).
+    \bm{L}(\bm{x}, \bm{\hat{v}}) =
+    \int\_{\bm{x}}^{\bm{y}} \bm{\mu_t}(\bm{u}) \bm{T}(\bm{x}, \bm{u}) \bm{L_s}(\bm{u}, \bm{\hat{v}}) du +
+    \bm{T}(\bm{x}, \bm{y}) \bm{L_g}(\bm{y}, \bm{\hat{v}}).
 $$
 
 We can evaluate this integral using one of the [Monte Carlo](http://www.pbr-book.org/3ed-2018/Monte_Carlo_Integration.html) methods. The [Monte Carlo estimator](http://www.pbr-book.org/3ed-2018/Monte_Carlo_Integration/The_Monte_Carlo_Estimator.html) of the integral (for a particular frequency) takes the following form:
 
-$$ \tag{15} L(\bm{x}, \bm{v})
-    \approx \frac{1}{N} \sum\_{i=1}^{N} \frac{\mu_t(\bm{u_i}) T(\bm{x}, \bm{u_i}) L_s(\bm{u_i}, \bm{v})}{p( u_i | \lbrace \bm{x}, \bm{v} \rbrace)} + T(\bm{x}, \bm{y}) L_g(\bm{y}, \bm{v}),
+$$ \tag{15} L(\bm{x}, \bm{\hat{v}})
+    \approx \frac{1}{N} \sum\_{i=1}^{N} \frac{\mu_t(\bm{u_i}) T(\bm{x}, \bm{u_i}) L_s(\bm{u_i}, \bm{\hat{v}})}{p( u_i | \lbrace \bm{x}, \bm{\hat{v}} \rbrace)} + T(\bm{x}, \bm{y}) L_g(\bm{y}, \bm{\hat{v}}),
 $$
 
 where sample locations \\(\bm{u_i}\\) at the distance \\(u_i\\) along the path are distributed according to the [PDF](https://en.wikipedia.org/wiki/Probability_density_function) \\(p\\).
@@ -163,24 +166,24 @@ $$
 
 We can now define the normalized sampling PDF:
 
-$$ \tag{20} p(u | \lbrace \bm{x}, \bm{v} \rbrace)
+$$ \tag{20} p(u | \lbrace \bm{x}, \bm{\hat{v}} \rbrace)
     = \frac{\mu_t(\bm{u}) T(\bm{x}, \bm{u})}{O(\bm{x}, \bm{\bm{y}})}. $$
 
 Substitution of the PDF into Equation 15 radically simplifies the estimator (again, for a particular frequency):
 
-$$ \tag{21} L(\bm{x}, \bm{v}) \approx O(\bm{x}, \bm{\bm{y}}) \frac{1}{N} \sum\_{i=1}^{N} L_s(\bm{u_i}, \bm{v}) + T(\bm{x}, \bm{y}) L_g(\bm{y}, \bm{v}). $$
+$$ \tag{21} L(\bm{x}, \bm{\hat{v}}) \approx O(\bm{x}, \bm{\bm{y}}) \frac{1}{N} \sum\_{i=1}^{N} L_s(\bm{u_i}, \bm{\hat{v}}) + T(\bm{x}, \bm{y}) L_g(\bm{y}, \bm{\hat{v}}). $$
 
 This equation can be seen as a form of [premultiplied alpha blending](https://graphics.pixar.com/library/Compositing/) (where alpha is opacity), which explains why particle cards can be so convincing. Additionally, it offers yet another way to parametrize the attenuation coefficient - namely, by opacity at distance (which is similar to [transmittance at distance](https://blog.selfshadow.com/publications/s2015-shading-course/burley/s2015_pbs_disney_bsdf_notes.pdf) used by Disney). It is the most RGB rendering friendly parametrization that I am aware of.
 
 In this context, total opacity along the ray serves as the probability of a collision event within the medium, and can be used to make a random choice of the type of the sample (surface or volume):
 
-$$ \tag{22} L(\bm{x}, \bm{v}) \approx O(\bm{x}, \bm{\bm{y}}) \frac{1}{N} \sum\_{i=1}^{N} L_s(\bm{u_i}, \bm{v}) + \big(1 - O(\bm{x}, \bm{\bm{y}}) \big) L_g(\bm{y}, \bm{v}).
+$$ \tag{22} L(\bm{x}, \bm{\hat{v}}) \approx O(\bm{x}, \bm{\bm{y}}) \frac{1}{N} \sum\_{i=1}^{N} L_s(\bm{u_i}, \bm{\hat{v}}) + \big(1 - O(\bm{x}, \bm{\bm{y}}) \big) L_g(\bm{y}, \bm{\hat{v}}).
 $$
 
 In order to sample the integrand in Equation 14, we must be also able to [invert](http://www.pbr-book.org/3ed-2018/Monte_Carlo_Integration/Sampling_Random_Variables.html#TheInversionMethod) the [CDF](https://en.wikipedia.org/wiki/Cumulative_distribution_function) \\(P\\):
 
-$$ \tag{23} P(u | \lbrace \bm{x}, \bm{v} \rbrace)
-    = \int\_{0}^{u} p(u | \lbrace \bm{x}, \bm{v} \rbrace) du
+$$ \tag{23} P(u | \lbrace \bm{x}, \bm{\hat{v}} \rbrace)
+    = \int\_{0}^{u} p(u | \lbrace \bm{x}, \bm{\hat{v}} \rbrace) du
     = \frac{O(\bm{x}, \bm{\bm{u}})}{O(\bm{x}, \bm{\bm{y}})}.
 $$
 
@@ -189,7 +192,7 @@ In practice, this means that we need to solve for the distance \\(y\\) given the
 $$
 \tag{24} \tau(\bm{x}, \bm{u}) =
     -\mathrm{log} \big( O(\bm{x}, \bm{u}) \big) =
-    -\mathrm{log} \Big( 1 - P \big(u | \lbrace \bm{x}, \bm{v} \rbrace \big) O \big( \bm{x}, \bm{\bm{y}} \big) \Big).
+    -\mathrm{log} \Big( 1 - P \big(u | \lbrace \bm{x}, \bm{\hat{v}} \rbrace \big) O \big( \bm{x}, \bm{\bm{y}} \big) \Big).
 $$
 
 ## Types of Analytic Participating Media
@@ -236,7 +239,7 @@ We would like to evaluate the optical depth integral:
 
 $$ \tag{29} \bm{\tau}(\bm{x}, \bm{y})
     = \bm{\sigma_t} \int\_{\bm{x}}^{\bm{y}} \rho{(\bm{u})} du
-    = \bm{\sigma_t} \int\_{\bm{x}}^{\bm{y}} k h(\bm{u}) du + \bm{\sigma_t} \int\_{\bm{x}}^{\bm{y}} b du.
+    = \bm{\sigma_t} \int\_{\bm{x}}^{\bm{y}} \Big( k h(\bm{u}) + b \Big) du.
 $$
 
 The task can be simplified by making a change of variables and integrating with respect to the altitude \\(h\\) rather than the parametric distance \\(u\\) along the path. Mathematically, for an arbitrary function \\(f(h)\\), the change of variables can be expressed using the [chain rule](https://en.wikipedia.org/wiki/Chain_rule):
@@ -258,7 +261,7 @@ $$ \tag{31} \begin{aligned}
     &= \bm{\sigma_t} \Big( \frac{k}{y_3 - x_3} \int\_{x_3}^{y_3} h dh + b \Big) \Vert \bm{y} - \bm{x} \Vert \cr
     &= \bm{\sigma_t} \Big( \frac{k}{y_3 - x_3}\frac{y_3^2 - x_3^2}{2} + b \Big) \Vert \bm{y} - \bm{x} \Vert \cr
     &= \bm{\sigma_t} \Big( k \frac{x_3 + y_3}{2} + b \Big) \Vert \bm{y} - \bm{x} \Vert \cr
-    &= \bm{\sigma_t} \Big( (k x_3 + b) - \frac{k v_3}{2} t \Big) t,
+    &= \bm{\sigma_t} \Big( (k x_3 + b) - \frac{k \hat{v}\_3}{2} t \Big) t,
 \end{aligned} $$
 
 which is the product of the average attenuation coefficient and the length of the interval, as expected.
@@ -266,10 +269,10 @@ which is the product of the average attenuation coefficient and the length of th
 The inversion process involves solving the quadratic equation for the distance \\(t\\):
 
 $$ \tag{32}
-    t = \frac{(k x_3 + b) \pm \sqrt{ (k x_3 + b)^2 - 2 k v_3 (\tau / \sigma_t)}}{k v_3}.
+    t = \frac{(k x_3 + b) \pm \sqrt{ (k x_3 + b)^2 - 2 k \hat{v}\_3 (\tau / \sigma_t)}}{k \hat{v}\_3}.
 $$
 
-Physically, we are only interested in the smaller root (with the negative sign), since it gives the solution for positive density values. Note that homogeneous media \\( \big( m v_3 = 0 \big) \\) require special care.
+Physically, we are only interested in the smaller root (with the negative sign), since it gives the solution for positive density values. Note that homogeneous media \\( \big( m \hat{v}\_3 = 0 \big) \\) require special care.
 
 ### Exponential Variation of Density with Altitude in Rectangular Coordinates
 
@@ -297,14 +300,14 @@ $$ \tag{36} \begin{aligned}
 \bm{\tau}(\bm{x}, \bm{y})
     &= \bm{\sigma_t} \frac{\Vert \bm{y} - \bm{x} \Vert}{y_3 - x_3} \int\_{x_3}^{y_3} k e^{-n h} dh \cr
     &= \bm{\sigma_t} \frac{\Vert \bm{y} - \bm{x} \Vert}{x_3 - y_3} \frac{k}{n} \Big( e^{-n y_3} - e^{-n x_3} \Big) \cr
-    &= \frac{\bm{\sigma_t} k}{n v_3} e^{-n x_3} \Big( e^{n v_3 t} - 1 \Big).
+    &= \frac{\bm{\sigma_t} k}{n \hat{v}\_3} e^{-n x_3} \Big( e^{n \hat{v}\_3 t} - 1 \Big).
 \end{aligned} $$
 
 Solving for the distance \\(t\\) is straightforward:
 
-$$ \tag{37} t = \frac{1}{n v_3} \log \left(1 + \frac{\tau n v_3}{\sigma_t k e^{-n x_3}}\right). $$
+$$ \tag{37} t = \frac{1}{n \hat{v}\_3} \log \left(1 + \frac{\tau n \hat{v}\_3}{\sigma_t k e^{-n x_3}}\right). $$
 
-Note that homogeneous media \\( \big( n v_3 = 0 \big) \\) require special care.
+Note that homogeneous media \\( \big( n \hat{v}\_3 = 0 \big) \\) require special care.
 
 Sample code is listed below.
 
@@ -367,24 +370,24 @@ Our goal is to simplify the problem using its inherent spherical symmetry. Take 
 
 {{< figure src="/img/spherical_param.png">}}
 
-We start by recognizing the fact that every ordered pair of position and direction \\(\lbrace \bm{x}, \bm{v} \rbrace\\) can be reduced to a pair of radial distance and zenith angle \\(\lbrace r, \theta \rbrace\\), which means that our phase space is 2-dimensional.
+We start by recognizing the fact that every ordered pair of position and direction \\(\lbrace \bm{x}, \bm{\hat{v}} \rbrace\\) can be reduced to a pair of radial distance and zenith angle \\(\lbrace r, \theta \rbrace\\), which means that our phase space is 2-dimensional.
 
 In order to find the parametric equation of altitude \\(h\\) along the ray, we can use a right triangle with sides of length \\(r_0\\) and \\(t_0\\):
 
 $$ \tag{39} r_0 = r \sin{\theta}, \qquad t_0 = r \cos{\theta}, $$
 
-$$ \tag{40} h(u) = \sqrt{r_0^2 + (t_0 + u)^2} - R, \qquad u(h) = \sqrt{(h + R)^2 - r_0^2} - t_0. $$
+$$ \tag{40} h(u) = \sqrt{r_0^2 + (t_0 + u)^2} - R, \qquad u(h) = \sqrt{(R + h)^2 - r_0^2} - t_0. $$
 
 To perform a change of variables using Equation 30, we must compute the value of the secant:
 
-$$ \tag{41} \sec{\theta(h)} = \frac{du}{dh} = \frac{h + R}{\sqrt{(h + R)^2 - r_0^2}}. $$
+$$ \tag{41} \sec{\theta(h)} = \frac{du}{dh} = \frac{R + h}{\sqrt{(R + h)^2 - r_0^2}}. $$
 
 This allows us to obtain the following expression of optical depth:
 
 $$ \tag{42} \begin{aligned}
 \bm{\tau}(\bm{x}, \bm{y})
     &= \bm{\sigma_t} \int\_{\bm{x}}^{\bm{y}} \rho{(\bm{u})} \frac{du}{dh} dh
-     = \bm{\sigma_t} \int\_{\bm{h\_x}}^{h\_y} k e^{-n h} \frac{h + R}{\sqrt{(h + R)^2 - r_0^2}} dh \cr
+     = \bm{\sigma_t} \int\_{h(\bm{x})}^{h(\bm{y})} k e^{-n h} \frac{R + h}{\sqrt{(R + h)^2 - r_0^2}} dh \cr
 \end{aligned} $$
 
 
@@ -669,7 +672,7 @@ Note that using this function (rather than calling `EvalOptDepthSpherExpMedium` 
 
 In order to sample participating media, we must be able to solve the optical depth equation for distance. Analysis presented in the previous section indicates that we must consider two cases: the ray pointing into the same hemisphere at both endpoints (Equation 47), and into opposite ones (Equation 48).
 
-First, let's establish a couple of useful identities. Recalling Equation 32, we can compute the radial distance from the center \\(\bm{c}\\) to the point \\(\bm{x} + t \bm{v}\\) along the ray using the Pythagorean theorem:
+First, let's establish a couple of useful identities. Recalling Equation 32, we can compute the radial distance from the center \\(\bm{c}\\) to the point \\(\bm{x} + t \bm{\hat{v}}\\) along the ray using the Pythagorean theorem:
 
 $$ \tag{49}
 \mathcal{R}(r, \theta, t)
@@ -802,17 +805,17 @@ Let's try to understand how it works in more detail.
 
 For the first sample along the ray, we must solve
 
-$$ \tag{55} -\mathrm{log} \big( 1 - P(t_1 | \lbrace \bm{x}, \bm{v} \rbrace) O(\bm{x}, \bm{v}, t\_{max}) \big) = \tau(\bm{x}, \bm{v}, t_1) = \tau_1. $$
+$$ \tag{55} -\mathrm{log} \big( 1 - P(t_1 | \lbrace \bm{x}, \bm{\hat{v}} \rbrace) O(\bm{x}, \bm{\hat{v}}, t\_{max}) \big) = \tau(\bm{x}, \bm{\hat{v}}, t_1) = \tau_1. $$
 
 Basically, we must determine the (approximate) distance \\(t_1\\) to the first sample along the ray given the corresponding optical depth \\(\tau_1\\). To solve this equation, we substitute the analytic rectangular function of optical depth (Equation 29), which is a valid approximation for short distances. Total opacity along the entire ray can be computed accurately using our numerical approximation (Equation 43).
 
 The second sample forms the next edge of the polygon (\\(\tau_2\\) is given):
 
-$$ \tag{56} \tau(\bm{x}, \bm{v}, t_1) + \tau(\bm{x} + t_1 \bm{v}, \bm{v}, t_2 - t_1) = \tau_2. $$
+$$ \tag{56} \tau(\bm{x}, \bm{\hat{v}}, t_1) + \tau(\bm{x} + t_1 \bm{\hat{v}}, \bm{\hat{v}}, t_2 - t_1) = \tau_2. $$
 
 We solve for the relative distance given relative optical depth (w.r.t. the previous sample):
 
-$$ \tag{57} \tau(\bm{x} + t_1 \bm{v}, \bm{v}, \Delta t_2) = \Delta \tau_2. $$
+$$ \tag{57} \tau(\bm{x} + t_1 \bm{\hat{v}}, \bm{\hat{v}}, \Delta t_2) = \Delta \tau_2. $$
 
 And so on. Code that implements incremental importance sampling can be found below.
 
@@ -898,7 +901,7 @@ Let's start with understanding the problem we are trying to solve.
 
 The tristimulus values \\(X\\), \\(Y\\) and \\(Z\\) of a pixel centered at the point \\(\bm{x}\\) on the camera sensor can be computed as an integral of incoming spectral radiance \\(L\_{\lambda}\\) over the visible spectrum \\(\Lambda\\), the pixel area \\(A\\) and the hemisphere of directions \\(\Omega\\) weighted by the [normalized color matching function](https://en.wikipedia.org/wiki/CIE_1931_color_space#Color_matching_functions) \\(\bar{c}\\) \\(\big( \bar{x}\\) for \\(X\\), \\(\bar{y}\\) for \\(Y\\), \\(\bar{z}\\) for \\(Z \big)\\) and the sensor response ([pixel filter](https://ieeexplore.ieee.org/document/4061554/)) \\(W\\):
 
-$$ \tag{58} I = C(\bm{x}) = \int\_{\Lambda} \bar{c}(\lambda) \int\_{A} \int\_{\Omega} W(\bm{r}, \bm{v}, \lambda) L\_{\lambda}(\bm{x} + \bm{r}, \bm{v}, \lambda) d\bm{v} dA(\bm{r}) d\lambda. $$
+$$ \tag{58} I = C(\bm{x}) = \int\_{\Lambda} \bar{c}(\lambda) \int\_{A} \int\_{\Omega} W(\bm{r}, \bm{\hat{v}}, \lambda) L\_{\lambda}(\bm{x} + \bm{r}, \bm{\hat{v}}, \lambda) d\bm{\hat{v}} dA(\bm{r}) d\lambda. $$
 
 Recalling that \\(L\_{\lambda}\\) is itself a nested integral, we can generalize our problem using the [path integral formulation](http://graphics.stanford.edu/papers/veach_thesis/):
 
@@ -1052,8 +1055,8 @@ Note that it has to be a scalar since it will be used for importance sampling.
 
 Both the derivation and the proof of correctness of the null-scattering integral are rather long and complicated, so I will only present the [final result](https://dl.acm.org/citation.cfm?id=3073665), which is
 
-$$ \tag{70} \bm{L}(\bm{x}, \bm{v})
-    = \int\_{0}^{t\_{max}} \bar{\mu}(\bm{x}, \bm{v}, s) \bar{T}(\bm{x}, \bm{v}, s) \bm{L_i}(\bm{x} + s \bm{v}, \bm{v}) ds,
+$$ \tag{70} \bm{L}(\bm{x}, \bm{\hat{v}})
+    = \int\_{0}^{t\_{max}} \bar{\mu}(\bm{x}, \bm{\hat{v}}, s) \bar{T}(\bm{x}, \bm{\hat{v}}, s) \bm{L_i}(\bm{x} + s \bm{\hat{v}}, \bm{\hat{v}}) ds,
 $$
 
 where \\(\bar{T}\\) is transmittance evaluated using the majorant (rather than attenuation) coefficient. Note that the majorant coefficient doesn't actually have to be a constant - it can be any analytic function (e.g. varying with height) serving as the upper bound for the attenuation coefficient.
@@ -1061,10 +1064,10 @@ where \\(\bar{T}\\) is transmittance evaluated using the majorant (rather than a
 The incoming radiance term \\(\bm{L_i}\\) is defined as
 
 $$ \tag{71} \begin{aligned}
-    \bm{L_i}(\bm{x}, \bm{v})
-    &= P_a(\bm{x}, \bm{v}, s) \bm{w_a}(\bm{x}, \bm{v}, s) \bm{L_e}(\bm{x}, \bm{v}) \cr
-    &+ P_s(\bm{x}, \bm{v}, s) \bm{w_s}(\bm{x}, \bm{v}, s) \bm{L_s}(\bm{x}, \bm{v}) \cr
-    &+ P_n(\bm{x}, \bm{v}, s) \bm{w_n}(\bm{x}, \bm{v}, s) \bm{L}(\bm{x}, \bm{v})
+    \bm{L_i}(\bm{x}, \bm{\hat{v}})
+    &= P_a(\bm{x}, \bm{\hat{v}}, s) \bm{w_a}(\bm{x}, \bm{\hat{v}}, s) \bm{L_e}(\bm{x}, \bm{\hat{v}}) \cr
+    &+ P_s(\bm{x}, \bm{\hat{v}}, s) \bm{w_s}(\bm{x}, \bm{\hat{v}}, s) \bm{L_s}(\bm{x}, \bm{\hat{v}}) \cr
+    &+ P_n(\bm{x}, \bm{\hat{v}}, s) \bm{w_n}(\bm{x}, \bm{\hat{v}}, s) \bm{L}(\bm{x}, \bm{\hat{v}})
 \end{aligned}
 $$
 
@@ -1074,18 +1077,18 @@ Each individual event has a corresponding weight:
 
 $$ \tag{72}
 \begin{aligned}
-    \bm{w_a}(\bm{x}, \bm{v}, s) &= \frac{\bm{\mu_a}(\bm{x}, \bm{v}, s)}{\bar{\mu}(\bm{x}, \bm{v}, s) P_a(\bm{x}, \bm{v}, s)} \cr
-    \bm{w_s}(\bm{x}, \bm{v}, s) &= \frac{\bm{\mu_s}(\bm{x}, \bm{v}, s)}{\bar{\mu}(\bm{x}, \bm{v}, s) P_s(\bm{x}, \bm{v}, s)} \cr
-    \bm{w_n}(\bm{x}, \bm{v}, s) &= \frac{\bm{\mu_n}(\bm{x}, \bm{v}, s)}{\bar{\mu}(\bm{x}, \bm{v}, s) P_n(\bm{x}, \bm{v}, s)}
+    \bm{w_a}(\bm{x}, \bm{\hat{v}}, s) &= \frac{\bm{\mu_a}(\bm{x}, \bm{\hat{v}}, s)}{\bar{\mu}(\bm{x}, \bm{\hat{v}}, s) P_a(\bm{x}, \bm{\hat{v}}, s)} \cr
+    \bm{w_s}(\bm{x}, \bm{\hat{v}}, s) &= \frac{\bm{\mu_s}(\bm{x}, \bm{\hat{v}}, s)}{\bar{\mu}(\bm{x}, \bm{\hat{v}}, s) P_s(\bm{x}, \bm{\hat{v}}, s)} \cr
+    \bm{w_n}(\bm{x}, \bm{\hat{v}}, s) &= \frac{\bm{\mu_n}(\bm{x}, \bm{\hat{v}}, s)}{\bar{\mu}(\bm{x}, \bm{\hat{v}}, s) P_n(\bm{x}, \bm{\hat{v}}, s)}
 \end{aligned}
 $$
 
 The simplest (but [not the only](https://dl.acm.org/citation.cfm?id=3073665)) way to define the collision probabilities is as follows:
 
 $$ \tag{73} \begin{aligned}
-    P_a(\bm{x}, \bm{v}, s) &= \frac{||\mu_a(\lambda)||\_{\infty}}{||\mu_a(\lambda)||\_{\infty} + ||\mu_s(\lambda)||\_{\infty} + ||\mu_n(\lambda)||\_{\infty}}, \cr
-    P_s(\bm{x}, \bm{v}, s) &= \frac{||\mu_s(\lambda)||\_{\infty}}{||\mu_a(\lambda)||\_{\infty} + ||\mu_s(\lambda)||\_{\infty} + ||\mu_n(\lambda)||\_{\infty}}, \cr
-    P_n(\bm{x}, \bm{v}, s) &= \frac{||\mu_n(\lambda)||\_{\infty}}{||\mu_a(\lambda)||\_{\infty} + ||\mu_s(\lambda)||\_{\infty} + ||\mu_n(\lambda)||\_{\infty}},
+    P_a(\bm{x}, \bm{\hat{v}}, s) &= \frac{||\mu_a(\lambda)||\_{\infty}}{||\mu_a(\lambda)||\_{\infty} + ||\mu_s(\lambda)||\_{\infty} + ||\mu_n(\lambda)||\_{\infty}}, \cr
+    P_s(\bm{x}, \bm{\hat{v}}, s) &= \frac{||\mu_s(\lambda)||\_{\infty}}{||\mu_a(\lambda)||\_{\infty} + ||\mu_s(\lambda)||\_{\infty} + ||\mu_n(\lambda)||\_{\infty}}, \cr
+    P_n(\bm{x}, \bm{\hat{v}}, s) &= \frac{||\mu_n(\lambda)||\_{\infty}}{||\mu_a(\lambda)||\_{\infty} + ||\mu_s(\lambda)||\_{\infty} + ||\mu_n(\lambda)||\_{\infty}},
 \end{aligned}
 $$
 
@@ -1094,9 +1097,9 @@ where the position and the direction on the right-hand side are implicit for cla
 If the medium is known to not be emissive, we can redistribute the absorption probability between \\(P_s\\) and \\(P_n\\):
 
 $$ \tag{74} \begin{aligned}
-    P'\_a(\bm{x}, \bm{v}, s) &= 0, \cr
-    P'\_s(\bm{x}, \bm{v}, s) &= \frac{P_s}{P_s + P_n}, \cr
-    P'\_n(\bm{x}, \bm{v}, s) &= \frac{P_n}{P_s + P_n}.
+    P'\_a(\bm{x}, \bm{\hat{v}}, s) &= 0, \cr
+    P'\_s(\bm{x}, \bm{\hat{v}}, s) &= \frac{P_s}{P_s + P_n}, \cr
+    P'\_n(\bm{x}, \bm{\hat{v}}, s) &= \frac{P_n}{P_s + P_n}.
 \end{aligned}
 $$
 
