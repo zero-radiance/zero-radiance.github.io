@@ -64,7 +64,7 @@ In the formula above, \\(\mathrm{det}(M)\\) is the [determinant](https://en.wiki
 
 It's important to note that, in practice, the surface parametrization used to derive the normal may be different from the texture coordinate parametrization. This means that it's possible to encounter a mesh with vertex normals \\(N\\) pointing in the direction opposite from \\((T \times B)\\). Of course, we always want to use the forward-facing normal \\(N\\). Luckily, the math is on our side, and using the full matrix inversion procedure as described above works in all cases. More details about surface re-parametrization can be found in Morten's [thesis](http://image.diku.dk/projects/media/morten.mikkelsen.08.pdf) (see Section 2.4).
 
-If strict compliance with [Mikk-TSpace](http://mikktspace.com/) (to exactly match the assumptions of the normal map baking tool, for instance) is desired, the inverse-transpose should be replaced with the unmodified \\([T | B | N]\\) matrix, where \\(B = N \times T\\) is computed either in [the vertex or the pixel shader](https://medium.com/@bgolus/generating-perfect-normal-maps-for-unity-f929e673fc57#c473).
+If strict compliance with [Mikk-TSpace](http://mikktspace.com/) is desired (to exactly match the assumptions of the normal map baking tool, for instance), the inverse-transpose should be replaced with the unmodified \\([T | B | N]\\) matrix, where \\(B = N \times T\\) is computed either in [the vertex or the pixel shader](https://medium.com/@bgolus/generating-perfect-normal-maps-for-unity-f929e673fc57#c473).
 
 ## Preliminaries, Part 2: Height Maps and Volumes
 
@@ -210,7 +210,7 @@ If no further modifications of the normal are desired, the matrices can be combi
 
 $$ \tag{29} N_w(u,v) \approx \frac{M\_{ntw} M\_{tile} N\_{t}}{\Vert M\_{ntw} M\_{tile} N\_{t} \Vert}. $$
 
-Care must be taken when combining and interpolating these matrices, as your baking tool may assume that the inverse-transpose of the tangent matrix has [certain properties](http://mikktspace.com/).
+Care must be taken when combining and interpolating these matrices, as your normal map baking tool may assume that the inverse-transpose of the tangent matrix has [certain properties](http://mikktspace.com/).
 
 ## Surface Gradient Framework
 

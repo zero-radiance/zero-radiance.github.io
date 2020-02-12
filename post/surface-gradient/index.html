@@ -138,7 +138,7 @@
 
 <p>It's important to note that, in practice, the surface parametrization used to derive the normal may be different from the texture coordinate parametrization. This means that it's possible to encounter a mesh with vertex normals \(N\) pointing in the direction opposite from \((T \times B)\). Of course, we always want to use the forward-facing normal \(N\). Luckily, the math is on our side, and using the full matrix inversion procedure as described above works in all cases. More details about surface re-parametrization can be found in Morten's <a href="http://image.diku.dk/projects/media/morten.mikkelsen.08.pdf">thesis</a> (see Section 2.4).</p>
 
-<p>If strict compliance with <a href="http://mikktspace.com/">Mikk-TSpace</a> (to exactly match the assumptions of the normal map baking tool, for instance) is desired, the inverse-transpose should be replaced with the unmodified \([T | B | N]\) matrix, where \(B = N \times T\) is computed either in <a href="https://medium.com/@bgolus/generating-perfect-normal-maps-for-unity-f929e673fc57#c473">the vertex or the pixel shader</a>.</p>
+<p>If strict compliance with <a href="http://mikktspace.com/">Mikk-TSpace</a> is desired (to exactly match the assumptions of the normal map baking tool, for instance), the inverse-transpose should be replaced with the unmodified \([T | B | N]\) matrix, where \(B = N \times T\) is computed either in <a href="https://medium.com/@bgolus/generating-perfect-normal-maps-for-unity-f929e673fc57#c473">the vertex or the pixel shader</a>.</p>
 
 <h2 id="preliminaries-part-2-height-maps-and-volumes">Preliminaries, Part 2: Height Maps and Volumes</h2>
 
@@ -294,7 +294,7 @@ $$ \tag{18} B_p(u,v) = \frac{\partial P}{\partial v}
 
 <p>$$ \tag{29} N_w(u,v) \approx \frac{M_{ntw} M_{tile} N_{t}}{\Vert M_{ntw} M_{tile} N_{t} \Vert}. $$</p>
 
-<p>Care must be taken when combining and interpolating these matrices, as your baking tool may assume that the inverse-transpose of the tangent matrix has <a href="http://mikktspace.com/">certain properties</a>.</p>
+<p>Care must be taken when combining and interpolating these matrices, as your normal map baking tool may assume that the inverse-transpose of the tangent matrix has <a href="http://mikktspace.com/">certain properties</a>.</p>
 
 <h2 id="surface-gradient-framework">Surface Gradient Framework</h2>
 
