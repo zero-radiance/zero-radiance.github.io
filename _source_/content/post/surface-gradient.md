@@ -64,7 +64,7 @@ In the formula above, \\(\mathrm{det}(M)\\) is the [determinant](https://en.wiki
 
 It's important to note that, in practice, the surface parametrization used to derive the normal may be different from the texture coordinate parametrization. This means that it's possible to encounter a mesh with vertex normals \\(N\\) pointing in the direction opposite from \\((T \times B)\\). Of course, we always want to use the forward-facing normal \\(N\\). Luckily, the math is on our side, and using the full matrix inversion procedure as described above works in all cases. More details about surface re-parametrization can be found in Morten's [thesis](http://image.diku.dk/projects/media/morten.mikkelsen.08.pdf) (see Section 2.4).
 
-If strict compliance with the [Mikk-TSpace](http://mikktspace.com/) is desired (to exactly match the assumptions of the normal map baking tool, for instance), the inverse-transpose should be replaced with the (unmodified) interpolated \\([T | B | N]\\) matrix, where \\(B = N \times T\\). See the [link](http://mikktspace.com/) for details.
+If strict compliance with [Mikk-TSpace](http://mikktspace.com/) (to exactly match the assumptions of the normal map baking tool, for instance) is desired, the inverse-transpose should be replaced with the unmodified \\([T | B | N]\\) matrix, where \\(B = N \times T\\) is computed either in [the vertex or the pixel shader](https://medium.com/@bgolus/generating-perfect-normal-maps-for-unity-f929e673fc57#c473).
 
 ## Preliminaries, Part 2: Height Maps and Volumes
 
@@ -202,15 +202,15 @@ $$ \tag{26} N_o(u,v) = \frac{(M\_{tangent}^{-1})^{\mathrm{T}} G}{\Vert (M\_{tang
 
 $$ \tag{27} (M\_{tangent})^{\mathrm{T}} N_o = \frac{(M\_{tangent})^{\mathrm{T}}(M\_{tangent}^{-1})^{\mathrm{T}} G}{\Vert (M\_{tangent}^{-1})^{\mathrm{T}} G \Vert} = \frac{(M\_{tangent}^{-1} M\_{tangent})^{\mathrm{T}} G}{\Vert (M\_{tangent}^{-1})^{\mathrm{T}} G \Vert} = \frac{G}{\Vert (M\_{tangent}^{-1})^{\mathrm{T}} G \Vert}. $$
 
-"This seems quite expensive", you may say. Does correctness come at a high cost? Not really.
+To transform the perturbed normal into the world space, all we have to do is rotate it. Rotation can be performed inside or outside the cofactor computation. We perform it inside for consistency.
 
-Let's say we just have a tangent-space normal map, which we would like to tile and perhaps scale, and that's it. To compute the perturbed normal in the world space, all we have to do is the following:
+$$ \tag{28} N_w(u,v) \approx \frac{\big( \mathrm{cof}(M\_{rot} M\_{scale}) (M\_{tangent}^{-1})^{\mathrm{T}} \big) M\_{tile} N\_{t} / n\_{t,3}}{\Vert \big( \mathrm{cof}(M\_{rot} M\_{scale}) (M\_{tangent}^{-1})^{\mathrm{T}} \big) M\_{tile} N\_{t} / n\_{t,3} \Vert}. $$
 
-$$ \tag{28} N_w(u,v) \approx \frac{\big( M\_{rot} (\mathrm{cof}(M\_{scale})) (M\_{tangent}^{-1})^{\mathrm{T}} \big) M\_{tile} N\_{t} / n\_{t,3}}{\Vert \big( M\_{rot} (\mathrm{cof}(M\_{scale})) (M\_{tangent}^{-1})^{\mathrm{T}} \big) M\_{tile} N\_{t} / n\_{t,3} \Vert}, $$
+If no further modifications of the normal are desired, the matrices can be combined into a normal-tangent-to-world matrix \\(M\_{ntw}\\), and the division can be dropped due to subsequent normalization. The run-time cost is thus identical to that of the "regular" normal mapping.
 
-$$ \tag{29} N_w(u,v) \approx \frac{M\_{world} M\_{tile} N\_{t}}{\Vert M\_{world} M\_{tile} N\_{t} \Vert}. $$
+$$ \tag{29} N_w(u,v) \approx \frac{M\_{ntw} M\_{tile} N\_{t}}{\Vert M\_{ntw} M\_{tile} N\_{t} \Vert}. $$
 
-The tangent-normal-to-world matrix \\(M\_{world}\\) can be precomputed (with the object's rotation matrix \\(M\_{rot}\\) folded in), and all that's left to do at runtime is a few multiplications and one normalization.
+Care must be taken when combining and interpolating these matrices, as your baking tool may assume that the inverse-transpose of the tangent matrix has [certain properties](http://mikktspace.com/).
 
 ## Surface Gradient Framework
 
