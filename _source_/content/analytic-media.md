@@ -360,8 +360,8 @@ We can now compose the optical depth integral:
 
 $$ \tag{38} \begin{aligned}
 \bm{\tau}(r, \theta, u)
-    &= \bm{\sigma_t} \int\_{0}^{u} k e^{-n h(s)} ds \cr
-    &= \bm{\sigma_t} \int\_{0}^{u} k e^{-n \big( \sqrt{r_0^2 + (s_0 + s)^2} - R \big)} ds \cr
+    &= \bm{\sigma_t} k \int\_{0}^{u} e^{-n h(s)} ds \cr
+    &= \bm{\sigma_t} k \int\_{0}^{u} e^{-n \big( \sqrt{r_0^2 + (s_0 + s)^2} - R \big)} ds \cr
     &= \bm{\sigma_t} k \int\_{0}^{u} e^{n \big( R - \sqrt{r_0^2 + (s_0 + s)^2} \big)} ds \cr
     &= \bm{\sigma_t} \frac{k}{n} e^{n (R - r)} \int\_{0}^{u} e^{n \big( r - \sqrt{r_0^2 + (s_0 + s)^2} \big)} n ds.
 \end{aligned} $$
@@ -406,11 +406,15 @@ Arguably, the first two are the most important, since they roughly correspond to
 
 Being an obliquity function, \\(C(z, 0) = 1\\). The function varies slowly, as long as the angle is far from being horizontal (which suggests an opportunity for a [small-angle approximation](https://en.wikipedia.org/wiki/Small-angle_approximation)).
 
-The Chapman function has an [analytic expression](https://ui.adsabs.harvard.edu/abs/1996CoSka..26...23K/abstract) << approximation! >>
+To my knowledge, the Chapman function does not have a [closed-form](https://en.wikipedia.org/wiki/Closed-form_expression#Analytic_expression) expression. Many [approximations](https://agupubs.onlinelibrary.wiley.com/doi/pdf/10.1029/2011JD016706) exist. Unfortunately, most of them are specific to Earth's atmosphere. We will focus on a particular approximation developed by Miroslav Kocifaj (c.f. [Equation 11a](https://ui.adsabs.harvard.edu/abs/1996CoSka..26...23K/abstract)):
 
 $$ \tag{38} C(z, \cos{\theta}) = \frac{1}{2} \cos{\theta} + \frac{1}{2} \Big(\frac{1}{\sqrt{z}} + 2 \sqrt{z} - \sqrt{z} (\cos{\theta})^2 \Big) \sqrt{\frac{\pi}{2}} \Bigg[ e^{\big( \frac{1}{\sqrt{2}} \sqrt{z} \cos{\theta} \big)^2} \mathrm{erfc}{\Big(\frac{1}{\sqrt{2}} \sqrt{z} \cos{\theta}\Big)} \Bigg], $$
 
-which, unfortunately, is not [closed-form](https://en.wikipedia.org/wiki/Closed-form_expression#Analytic_expression), since it contains the [complementary error function](http://mathworld.wolfram.com/Erfc.html) \\(\mathrm{erfc}\\).
+
+
+which, unfortunately, is also not [closed-form](https://en.wikipedia.org/wiki/Closed-form_expression#Analytic_expression), since it contains the [complementary error function](http://mathworld.wolfram.com/Erfc.html) \\(\mathrm{erfc}\\). Remarkably, he gives an approximate solution for an atmosphere with a properly varying IOR, which is something we neglected so far.
+
+The fact that it is an approximation can be verified by comparing the values of the function to the values of the numerically evaluated integral using Mathematica:
 
 Unfortunately, I was unable to re-derive this expression. I suspect that I am either missing something (accounting for continuous variation of the IOR, for instance), or perhaps this is not a full analytic solution, but rather a truncated series expansion (similar to [this one](https://www.sciencedirect.com/science/article/pii/S0022407300001072)). Also, while the formula should in theory work for angles beyond 90 degrees, it deviates from values of the numerically evaluated integral rather quickly.
 
@@ -436,7 +440,7 @@ However, if you care about accuracy, and plot the relative error graph, it paint
 
 {{< figure src="/img/chapman_chris_error.png" caption="*Relative error plot of the approximation of the Chapman function by Christian Schüler for \\(r = 6600\\).*">}}
 
-The physics literature has [many approximations](https://agupubs.onlinelibrary.wiley.com/doi/pdf/10.1029/2011JD016706) of the Chapman function. Unfortunately, most of them are specific to Earth's atmosphere.
+
 
 Instead of approximating the entire function (for which we have an analytic expression), we can take a different, simpler approach. All we have to do is approximate \\(\mathrm{erfc}\\) (or, more specifically, the term of Equation 38 inside the square brackets). Luckily, the physics literature has an efficient [approximation](https://rmets.onlinelibrary.wiley.com/doi/full/10.1002/asl.154) (for positive values of \\(x\\)) readily available:
 
