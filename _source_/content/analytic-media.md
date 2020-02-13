@@ -212,7 +212,7 @@ $$ \tag{25} \rho = k. $$
 This formulation makes computing optical depth easy (recall Equations 5 and 10):
 
 $$ \tag{26} \bm{\tau}(\bm{x}, \bm{u})
-    = \int\_{\bm{x}}^{\bm{u}} \bm{\mu_t}(\bm{s}) ds
+    = \bm{\sigma_t} \int\_{\bm{x}}^{\bm{u}} \rho{(\bm{s})} ds
     = \bm{\sigma_t} \int\_{\bm{x}}^{\bm{u}} k ds
     = \bm{\sigma_t} k \Vert \bm{u} - \bm{x} \Vert
     = \bm{\sigma_t} k u.
@@ -246,33 +246,19 @@ $$ \tag{29} \bm{\tau}(\bm{x}, \bm{u})
     = \bm{\sigma_t} \int\_{\bm{x}}^{\bm{u}} \Big( a h(\bm{s}) + k \Big) ds.
 $$
 
-This can be done in several ways. One of the most general solutions involves performing a change of variables and integrating with respect to the altitude \\(h\\) rather than the parametric distance \\(s\\) along the ray. Mathematically, a change of variables can be expressed using the [chain rule](https://en.wikipedia.org/wiki/Chain_rule):
+In practice, it's actually simpler to integrate with respect to the parametric coordinates of the ray:
 
 $$ \tag{30}
-    \int\_{\bm{x}}^{\bm{y}} f \big(h(\bm{s}) \big) ds =
-    \int\_{\bm{x}}^{\bm{y}} f \big(h(\bm{s}) \big) \frac{ds}{dh} dh =
-    \int\_{h(\bm{x})}^{h(\bm{y})} f(h) \sec{\theta(h)} dh. $$
-
-Graphically, we want to compute the ratio of infinitesimal lengths \\(ds\\) and \\(dh\\) which is, of course, just the secant of the zenith angle. The problem is particularly simple for a straight ray (assuming a constant value of the IOR) in rectangular coordinates, since the value of the secant is the same along the entire ray.
-
-{{< figure src="/img/ds_dh.png">}}
-
-We can substitute \\(f(h) = a h\\) from Equation 29 into Equation 30:
-
-$$ \tag{31} \begin{aligned}
-\bm{\tau}(\bm{x}, \bm{u})
-    &= \bm{\sigma_t} \int\_{x_3}^{u_3} a h \frac{\Vert \bm{u} - \bm{x} \Vert}{u_3 - x_3} dh + \bm{\sigma_t} \int\_{\bm{x}}^{\bm{u}} k ds \cr
-    &= \bm{\sigma_t} \Big( \frac{a}{u_3 - x_3} \int\_{x_3}^{u_3} h dh + k \Big) \Vert \bm{u} - \bm{x} \Vert \cr
-    &= \bm{\sigma_t} \Big( \frac{a}{u_3 - x_3}\frac{u_3^2 - x_3^2}{2} + k \Big) \Vert \bm{u} - \bm{x} \Vert \cr
-    &= \bm{\sigma_t} \Big( a \frac{x_3 + u_3}{2} + k \Big) \Vert \bm{u} - \bm{x} \Vert \cr
-    &= \bm{\sigma_t} \Big( (a x_3 + k) - \frac{a \hat{v}\_3}{2} u \Big) u,
-\end{aligned} $$
+\bm{\tau}(\bm{x}, \bm{\hat{v}}, u)
+    = \bm{\sigma_t} \int\_{0}^{u} \Big( a \big(x_3 - s \hat{v}_3) + k \Big) ds
+    = \bm{\sigma_t} \Big( (a x_3 + k) - \frac{a \hat{v}_3}{2} u \Big) u,
+$$
 
 which is the product of the average attenuation coefficient and the length of the interval, as expected.
 
 The inversion process involves solving the quadratic equation for the distance \\(u\\):
 
-$$ \tag{32}
+$$ \tag{31}
     u = \frac{(a x_3 + k) \pm \sqrt{ (a x_3 + k)^2 - 2 a \hat{v}\_3 (\tau / \sigma_t)}}{a \hat{v}\_3}.
 $$
 
@@ -282,34 +268,26 @@ Phusically, we are only interested in the smaller root (with the negative sign),
 
 We can replace the linear density function with an exponential:
 
-$$ \tag{33} \rho(\bm{x}) = k e^{-h(\bm{x}) / H} = k e^{-x_3 / H}, $$
+$$ \tag{32} \rho(\bm{x}) = k e^{-h(\bm{x}) / H} = k e^{-x_3 / H}, $$
 
 where \\(H\\) is the [scale height](https://en.wikipedia.org/wiki/Scale_height), measured in meters. Another way to think about it is as of the reciprocal of the falloff exponent \\(n\\):
 
-$$ \tag{34} \rho(\bm{x}) = k e^{-n x_3}. $$
+$$ \tag{33} \rho(\bm{x}) = k e^{-n x_3}. $$
 
 Setting \\(n = 0\\) results in a homogeneous medium.
 
-After plugging it in into the formula of optical depth, we obtain the following expression:
+The expression of optical depth remains simple:
 
-$$ \tag{35}
-\bm{\tau}(\bm{x}, \bm{u})
-    = \bm{\sigma_t} \int\_{\bm{x}}^{\bm{s}} \rho{(\bm{s})} ds
-    = \bm{\sigma_t} \int\_{\bm{x}}^{\bm{s}} k e^{-n h(\bm{s})} ds.
+$$ \tag{34}
+\bm{\tau}(\bm{x}, \bm{\hat{v}}, u)
+    = \bm{\sigma_t} \int\_{0}^{u} k e^{-n (x_3 - s \hat{v}_3)} ds
+    = \bm{\sigma_t} k e^{-n x_3} \int\_{0}^{u} e^{s n \hat{v}_3} ds
+    = \frac{\bm{\sigma_t} k}{n \hat{v}\_3} e^{-n x_3} \Big( e^{n \hat{v}\_3 u} - 1 \Big).
 $$
-
-Again, we can perform a change of variables according to Equation 30:
-
-$$ \tag{36} \begin{aligned}
-\bm{\tau}(\bm{x}, \bm{u})
-    &= \bm{\sigma_t} \frac{\Vert \bm{u} - \bm{x} \Vert}{u_3 - x_3} \int\_{x_3}^{u_3} k e^{-n h} dh \cr
-    &= \bm{\sigma_t} \frac{\Vert \bm{u} - \bm{x} \Vert}{u_3 - x_3} \frac{k}{n} \Big( e^{-n x_3} - e^{-n u_3} \Big) \cr
-    &= \frac{\bm{\sigma_t} k}{n \hat{v}\_3} e^{-n x_3} \Big( e^{n \hat{v}\_3 u} - 1 \Big).
-\end{aligned} $$
 
 Solving for the distance \\(u\\) is straightforward:
 
-$$ \tag{37} u = \frac{1}{n \hat{v}\_3} \log \left(1 + \frac{\tau n \hat{v}\_3}{\sigma_t k e^{-n x_3}}\right). $$
+$$ \tag{35} u = \frac{1}{n \hat{v}\_3} \log \left(1 + \frac{\tau}{\sigma_t k} n \hat{v}\_3 e^{n x_3} \right). $$
 
 Note that homogeneous media \\( \big( n \hat{v}\_3 = 0 \big) \\) require special care.
 
@@ -331,7 +309,7 @@ spectrum OptDepthRectExpMedium(float height, float viewZ, float dist,
 
     if (abs(p) > FLT_EPS) // Homogeneity check
     {
-        // Equation 36.
+        // Equation 34.
         optDepth = seaLvlAtt * rcp(p) * exp(-height * rcpH) * (exp(p * dist) - 1);
     }
 
@@ -350,7 +328,7 @@ float SampleRectExpMedium(float optDepth, float height, float viewZ,
 
     if (abs(p) > FLT_EPS) // Homogeneity check
     {
-        // Equation 37.
+        // Equation 35.
         dist = rcp(p) * log(1 + dist * p * exp(height * rcpH));
     }
 
@@ -362,74 +340,58 @@ float SampleRectExpMedium(float optDepth, float height, float viewZ,
 
 This is where things get interesting. We would like to model an exponential density distribution on a sphere:
 
-$$ \tag{38} \rho(\bm{x}) = k e^{-h(\bm{x}) / H} = k e^{-(\Vert \bm{x} - \bm{c} \Vert - R) / H} = k e^{-n (\Vert \bm{x} - \bm{c} \Vert - R)}, $$
+$$ \tag{36} \rho(\bm{x}) = k e^{-h(\bm{x}) / H} = k e^{-(\Vert \bm{x} - \bm{c} \Vert - R) / H} = k e^{-n (\Vert \bm{x} - \bm{c} \Vert - R)}, $$
 
 where \\(\bm{c}\\) is the center of the sphere, \\(R\\) is its radius, \\(h\\) is the altitude, and \\(H\\) is the [scale height](https://en.wikipedia.org/wiki/Scale_height) as before. In this context, \\(k\\) and \\(\bm{\sigma_t} k\\) represent the density and the value of the attenuation coefficient at the sea level, respectively. This formula gives the density of an [isothermal atmosphere](http://www.feynmanlectures.caltech.edu/I_40.html), which is not physically plausible.
 
-Before proceeding with the derivation, it is helpful to understand the geometric setting (after all, a picture is worth a thousand words). Personally, I found the article by [Christian Schüler](https://twitter.com/aries_code) in [GPU Gems 3](http://www.gameenginegems.net/gemsdb/article.php?id=1133) to be immensely helpful, and I encourage you to check it out if you still have questions after reading my explanation below.
-
 #### Geometric Configuration of a Spherical Atmosphere
 
-Our goal is to simplify the problem using its inherent spherical symmetry. Take a look at the diagram below:
+We can simplify the problem using its inherent spherical symmetry. Take a look at the diagram below.
 
 {{< figure src="/img/spherical_param.png">}}
 
 We start by recognizing the fact that every ordered pair of position and direction \\(\lbrace \bm{x}, \bm{\hat{v}} \rbrace\\) can be reduced to a pair of radial distance and zenith angle \\(\lbrace r, \theta \rbrace\\), which means that our phase space is 2-dimensional.
 
-In order to find the parametric equation of altitude \\(h\\) along the ray, we can use a right triangle with sides of length \\(r_0\\) and \\(t_0\\):
+In order to find the parametric equation of altitude \\(h\\) along the ray, we can use a right triangle with sides of length \\(r_0\\) and \\(s_0\\) corresponding to the initial position \\(\bm{x}\\):
 
-$$ \tag{39} r_0 = r \sin{\theta}, \qquad t_0 = r \cos{\theta}, $$
+$$ \tag{37} r_0 = r \sin{\theta}, \qquad s_0 = r \cos{\theta}. $$
 
-$$ \tag{40} h(u) = \sqrt{r_0^2 + (t_0 + u)^2} - R, \qquad u(h) = \sqrt{(R + h)^2 - r_0^2} - t_0. $$
+We can now compose the optical depth integral:
 
-To perform a change of variables using Equation 30, we must compute the value of the secant:
-
-$$ \tag{41} \sec{\theta(h)} = \frac{du}{dh} = \frac{R + h}{\sqrt{(R + h)^2 - r_0^2}}. $$
-
-This allows us to obtain the following expression of optical depth:
-
-$$ \tag{42} \begin{aligned}
-\bm{\tau}(\bm{x}, \bm{y})
-    &= \bm{\sigma_t} \int\_{\bm{x}}^{\bm{y}} \rho{(\bm{u})} \frac{du}{dh} dh
-     = \bm{\sigma_t} \int\_{h(\bm{x})}^{h(\bm{y})} k e^{-n h} \frac{R + h}{\sqrt{(R + h)^2 - r_0^2}} dh \cr
+$$ \tag{38} \begin{aligned}
+\bm{\tau}(r, \theta, u)
+    &= \bm{\sigma_t} \int\_{0}^{u} k e^{-n h(s)} ds \cr
+    &= \bm{\sigma_t} \int\_{0}^{u} k e^{-n \big( \sqrt{r_0^2 + (s_0 + s)^2} - R \big)} ds \cr
+    &= \bm{\sigma_t} k \int\_{0}^{u} e^{n \big( R - \sqrt{r_0^2 + (s_0 + s)^2} \big)} ds \cr
+    &= \bm{\sigma_t} \frac{k}{n} e^{n (R - r)} \int\_{0}^{u} e^{n \big( r - \sqrt{r_0^2 + (s_0 + s)^2} \big)} n ds.
 \end{aligned} $$
 
+The resulting integral is very complex. If we simplify using the following change of variables
 
-$$ \tag{32} \begin{aligned}
-\bm{\tau}(r, \theta, t)
-    &= \bm{\sigma_t} \int\_{0}^{t} k e^{-n h(s)} ds \cr
-    &= \bm{\sigma_t} \int\_{0}^{t} k e^{-n (\sqrt{r_0^2 + (t_0 + s)^2} - R)} ds \cr
-    &= \bm{\sigma_t} \int\_{0}^{t} k e^{-n (\sqrt{(r \sin{\theta})^2 + (r \cos{\theta} + s)^2} - R)} ds \cr
-    &= \bm{\sigma_t} \int\_{0}^{t} k e^{-n (\sqrt{r^2 + 2 r s \cos{\theta} + S^2} - R)} ds \cr
-    &= \bm{\sigma_t} \frac{k}{n} e^{-n (r - R)} \int\_{0}^{t} e^{n (r - \sqrt{r^2 + 2 r s \cos{\theta} + S^2})} n ds.
-\end{aligned} $$
+$$ \tag{39} t = n s, \qquad z = n r, \qquad Z = n R $$
 
-The resulting integral is very complex. As a first step, let's take the nested integral, and extend the upper limit of integration to infinity. With the following change of variables:
+and change the upper limit of integration to infinity, we obtain what is known in the physics community as the [Chapman's grazing incidence integral](https://ui.adsabs.harvard.edu/abs/1931PPS....43...26C/abstract) (or the obliquity function, or the relative optical air mass) \\(C\\):
 
-$$ \tag{33} u = n s, \qquad z = n r, \qquad Z = n R, $$
-
-we obtain what is known in the physics community as the [Chapman function](https://en.wikipedia.org/wiki/Chapman_function) << bad link! >> (or the obliquity function, or the relative optical air mass) \\(C\\):
-
-$$ \tag{34} C(z, \cos{\theta}) = \int\_{0}^{\infty} e^{z - \sqrt{z^2 + 2 z u \cos{\theta} + u^2}} du. $$
+$$ \tag{40} C(z, \cos{\theta}) = \int\_{0}^{\infty} e^{z - \sqrt{z^2 + 2 z t \cos{\theta} + t^2}} dt. $$
 
 It is convenient to define the rescaled Chapman function \\(C_r\\)
 
-$$ \tag{35} C_r(z, Z, \cos{\theta}) = e^{Z - z} C(z, \cos{\theta}) = \int\_{0}^{\infty} e^{Z - \sqrt{z^2 + 2 z u \cos{\theta} + u^2}} du, $$
+$$ \tag{41} C_r(z, \cos{\theta}) = e^{Z - z} C(z, \cos{\theta}) = \int\_{0}^{\infty} e^{Z - \sqrt{z^2 + 2 z t \cos{\theta} + t^2}} dt, $$
 
 which has a better numerical behavior, and further simplifies the expression of optical depth between \\(\bm{x}\\) and \\(\bm{y}\\):
 
-$$ \tag{36}
-\bm{\tau}(z_x, \cos{\theta_x}, z_y, \cos{\theta_y})
-    = \bm{\sigma_t} \frac{k}{n} \Bigg( C_r \Big(z_x, Z, \cos{\theta_x} \Big) - C_r \Big(z_y, Z, \cos{\theta_y} \Big) \Bigg).
+$$ \tag{42}
+\bm{\tau}(\bm{x}, \bm{y})
+    = \bm{\sigma_t} \frac{k}{n} \Bigg( C_r \Big(z(\bm{x}), \cos{\theta(\bm{x})} \Big) - C_r \Big(z(\bm{y}), \cos{\theta(\bm{y})} \Big) \Bigg).
 $$
 
-What Equation 36 tells us is that we should evaluate the optical depth integral twice (in the same direction, along the entire ray, from 0 to \\(\infty\\)), at the start and at the end of the interval, and subtract the results to "clip" the ray.
+What Equation 42 tells us is that we should evaluate the optical depth integral twice (in the same direction, along the entire ray, from 0 to \\(\infty\\)), at the start and at the end of the interval, and subtract the results to "clip" the ray.
 
 It is interesting to contemplate the physical meaning of optical depth and the Chapman function. Generally speaking, the value of a line integral of density (such as given by \\(\bm{\tau} / \bm{\sigma_t}\\)) corresponds to mass. Therefore, the integral
 
-$$ \tag{37} \int\_{h = (r - R)}^{\infty} k e^{-n s} ds = \frac{k}{n} e^{-n h} $$
+$$ \tag{43} \int\_{h = (r - R)}^{\infty} k e^{-n s} ds = \frac{k}{n} e^{-n h} $$
 
-gives the mass of an infinitely tall vertical column starting at height \\(h\\). At the ground level, its mass is \\(k/n = kH\\).
+gives the mass of an infinitely tall vertical column starting at the altitude \\(h\\). At the ground level, its mass is \\(k/n = kH\\).
 
 Optical depth, then, is a *product* of the mass of the vertical column *and* the value of the obliquity function (which, intuitively, gives the absolute optical air mass along the oblique ray) *times* the mass attenuation coefficient.
 
