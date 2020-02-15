@@ -410,7 +410,7 @@ To my knowledge, the Chapman function does not have a [closed-form](https://en.w
 
 $$ \begin{aligned} \tag{44} C(z, \theta) \approx
     &\sqrt{\frac{1 - \sin{\theta}}{1 + \sin{\theta}}} \Bigg(1 - \frac{1}{2 (1 + \sin{\theta})} \Bigg) + \cr
-    &\frac{\sqrt{\pi z}}{\sqrt{1 + \sin{\theta}}} \Big[ e^{z - z \sin{\theta}} \text{erfc}\left(\sqrt{z - z \sin{\theta}}\right) \Big] \Bigg( \frac{1}{2} + \sin{\theta} + \frac{1 + 2 (1 - 2 z) \sin{\theta}}{4 z (1 + \sin{\theta})}   \Bigg).
+    &\frac{\sqrt{\pi z}}{\sqrt{1 + \sin{\theta}}} \Bigg[ e^{z - z \sin{\theta}} \text{erfc}\left(\sqrt{z - z \sin{\theta}}\right) \Bigg] \Bigg( \frac{1}{2} + \sin{\theta} + \frac{1 + 2 (1 - 2 z) \sin{\theta}}{4 z (1 + \sin{\theta})}   \Bigg).
 \end{aligned}$$
 
 The approximation itself is also not closed-form, since it contains the [complementary error function](http://mathworld.wolfram.com/Erfc.html) \\(\mathrm{erfc}\\). It's also somewhat annoying that the result is given in terms of \\(\sin{\theta}\\) rather than \\(\cos{\theta}\\), but this reparametrization is actually necessarily to expand the function in the power series.
@@ -424,6 +424,14 @@ We can quantify the quality of the approximation by computing the error with res
 We can also represent the relative error as precision by plotting the number of digits after the decimal point. Since decimal precision of 32-bit floating numbers is between [6-8 digits](https://www.exploringbinary.com/decimal-precision-of-binary-floating-point-numbers/), the approximation can be considered relatively accurate (particularly so for the range of typical values).
 
 {{< figure src="/img/chapman_approx_dig.png" caption="*Plot of precision of the approximation of the Chapman function for r = 6600.*">}}
+
+Of course, we must address the elephant in the room, \\(\mathrm{erfc}\\). Since it is [related](https://www.johndcook.com/erf_and_normal_cdf.pdf) to the [normal distribution](https://en.wikipedia.org/wiki/Normal_distribution), it has numerous applications, and, as a result, dozens of approximations. Unfortunately, most of them are not particularly accurate, especially across a huge range of values \\([0, \sqrt{R})\\) as in our case, and accuracy of \\(\mathrm{erfc}\\) greatly affects the quality of the full approximation.
+
+It took me a while to find the approximation developed by [Takuya Ooura](http://www.kurims.kyoto-u.ac.jp/~ooura/gamerf.html). He provides an impressive implementation (written C) accurate to 16 decimal digits. That's actually too accurate (and too expensive) for our needs, but it's relatively easy to remove a few terms in order to obtain a single precision version. A great thing about his approximation is that it includes the \\(e^{-x^2}\\) factor, which means we can approximate the entire term of Equation 44 inside the square brackets.
+
+
+---
+
 
 The fact that it is an approximation can be verified by comparing the values of the function to the values of the numerically evaluated integral using Mathematica:
 
