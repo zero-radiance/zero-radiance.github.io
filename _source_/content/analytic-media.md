@@ -419,7 +419,7 @@ which, unfortunately, is also not [closed-form](https://en.wikipedia.org/wiki/Cl
 
 {{< figure src="/img/chapman_approx_rel.png" caption="*Plot of the relative error of the approximation of the Chapman function for r = 6600.*">}}
 
-We can also represent the relative error as [accuracy](https://reference.wolfram.com/language/ref/Accuracy.html), by plotting the number of digits after the decimal point. Since decimal precision of 32-bit floating numbers is [6-8 digits](https://www.exploringbinary.com/decimal-precision-of-binary-floating-point-numbers/), the approximation can be considered relatively accurate (particularly so for the range of typical values).
+We can also represent the relative error as [accuracy](https://reference.wolfram.com/language/ref/Accuracy.html) by plotting the number of digits after the decimal point. Since decimal precision of 32-bit floating numbers is [6-8 digits](https://www.exploringbinary.com/decimal-precision-of-binary-floating-point-numbers/), the approximation can be considered relatively accurate (particularly so for the range of typical values).
 
 {{< figure src="/img/chapman_approx_dig.png" caption="*Plot of accuracy of the approximation of the Chapman function for r = 6600.*">}}
 
