@@ -372,11 +372,11 @@ $$ \tag{39} t = n s, \qquad z = n r, \qquad Z = n R $$
 
 and change the upper limit of integration to infinity, we obtain what is known in the physics community as the [Chapman's grazing incidence integral](https://ui.adsabs.harvard.edu/abs/1931PPS....43...26C/abstract) (or the obliquity function, or the relative optical air mass) \\(C\\):
 
-$$ \tag{40} C(z, \theta) = \int\_{0}^{\infty} e^{z - \sqrt{z^2 + 2 z t \cos{\theta} + t^2}} dt. $$
+$$ \tag{40} C(z, \theta) = \int\_{0}^{\infty} e^{z - \sqrt{z^2 + 2 t (z \cos{\theta}) + t^2}} dt. $$
 
 It is convenient to define the rescaled Chapman function \\(C_r\\)
 
-$$ \tag{41} C_r(z, \theta) = e^{Z - z} C(z, \theta) = \int\_{0}^{\infty} e^{Z - \sqrt{z^2 + 2 z t \cos{\theta} + t^2}} dt, $$
+$$ \tag{41} C_r(z, \theta) = e^{Z - z} C(z, \theta) = \int\_{0}^{\infty} e^{Z - \sqrt{z^2 + 2 t (z \cos{\theta}) + t^2}} dt, $$
 
 which has a better numerical behavior, and further simplifies the expression of optical depth between \\(\bm{x}\\) and \\(\bm{y}\\):
 
@@ -406,14 +406,14 @@ Arguably, the first two are the most important, since they roughly correspond to
 
 Being an obliquity function, \\(C(z, 0) = 1\\). The function varies slowly, as long as the angle is far from being horizontal (which suggests an opportunity for a [small-angle approximation](https://en.wikipedia.org/wiki/Small-angle_approximation)).
 
-To my knowledge, the Chapman function does not have a [closed-form](https://en.wikipedia.org/wiki/Closed-form_expression#Analytic_expression) expression. Many [approximations](https://agupubs.onlinelibrary.wiley.com/doi/pdf/10.1029/2011JD016706) exist. Unfortunately, most of them are specific to Earth's atmosphere, while we are interested in a general solution. The most accurate approximation I have found was developed by [David Huestis](https://ui.adsabs.harvard.edu/abs/2001JQSRT..69..709H/abstract). It is based on a power series expansion. Using the first two terms results in the following formula (for \\(\theta <= \pi/2\\) ):
+To my knowledge, the Chapman function does not have a [closed-form](https://en.wikipedia.org/wiki/Closed-form_expression#Analytic_expression) expression. Many [approximations](https://agupubs.onlinelibrary.wiley.com/doi/pdf/10.1029/2011JD016706) exist. Unfortunately, most of them are specific to Earth's atmosphere, while we are interested in a general solution. The most accurate approximation I have found was developed by [David Huestis](https://ui.adsabs.harvard.edu/abs/2001JQSRT..69..709H/abstract). It is based on a power series expansion. Using the first two terms of the series results in the following formula for \\(\theta \leq \pi/2\\):
 
 $$ \begin{aligned} \tag{44} C(z, \theta) \approx
     &\frac{\cos{\theta}}{1 + \sin{\theta}} \Bigg(1 - \frac{1}{2 (1 + \sin{\theta})} \Bigg) + \cr
     &\frac{\sqrt{z - z \sin{\theta}}}{\cos{\theta}} \Big[ e^{z - z \sin{\theta}} \text{erfc}\left(\sqrt{z - z \sin{\theta}}\right) \Big] \frac{\sqrt{\pi}}{2} \Bigg( 1 + 2 \sin{\theta} + \frac{1 + 2 \sin{\theta} (1 - 2 z)}{2 z (1 + \sin{\theta})}   \Bigg),
 \end{aligned}$$
 
-which, unfortunately, is also not [closed-form](https://en.wikipedia.org/wiki/Closed-form_expression#Analytic_expression), since it contains the [complementary error function](http://mathworld.wolfram.com/Erfc.html) \\(\mathrm{erfc}\\). Remarkably, he gives an approximate solution for an atmosphere with a properly varying IOR, which is something we neglected so far.
+which, unfortunately, is also not [closed-form](https://en.wikipedia.org/wiki/Closed-form_expression#Analytic_expression), since it contains the [complementary error function](http://mathworld.wolfram.com/Erfc.html) \\(\mathrm{erfc}\\). It's also somewhat annoying that the result is given in terms of \\(\sin{\theta}\\) rather than \\(\cos{\theta}\\), but this reparametrization is actually necessarily to expand the function in the power series.
 
 The fact that it is an approximation can be verified by comparing the values of the function to the values of the numerically evaluated integral using Mathematica:
 
