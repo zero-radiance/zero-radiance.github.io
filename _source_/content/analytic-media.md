@@ -406,11 +406,11 @@ Arguably, the first two are the most important, since they roughly correspond to
 
 Being an obliquity function, \\(C(z, 0) = 1\\). The function varies slowly, as long as the angle is far from being horizontal (which suggests an opportunity for a [small angle approximation](https://en.wikipedia.org/wiki/Small-angle_approximation)).
 
-To my knowledge, the Chapman function does not have a [closed-form](https://en.wikipedia.org/wiki/Closed-form_expression#Analytic_expression) expression. Many [approximations](https://agupubs.onlinelibrary.wiley.com/doi/pdf/10.1029/2011JD016706) exist. Unfortunately, most of them are specific to Earth's atmosphere, while we are interested in a general solution. The most accurate approximation I have found was developed by [David Huestis](https://ui.adsabs.harvard.edu/abs/2001JQSRT..69..709H/abstract). It is based on a power series expansion. Using the first two terms results in the following formula for \\(\theta \leq \pi/2\\):
+To my knowledge, the Chapman function does not have a [closed-form](https://en.wikipedia.org/wiki/Closed-form_expression#Analytic_expression) expression. Many [approximations](https://agupubs.onlinelibrary.wiley.com/doi/pdf/10.1029/2011JD016706) exist. Unfortunately, most of them are specific to Earth's atmosphere, and we are interested in a general solution. The most accurate approximation I have found was developed by [David Huestis](https://ui.adsabs.harvard.edu/abs/2001JQSRT..69..709H/abstract). It is based on a power series expansion of the integrand. Using the first two terms results in the following formula for \\(\theta \leq \pi/2\\):
 
 $$ \begin{aligned} \tag{44} C_u(z, \theta) \approx
-    &\sqrt{\frac{1 - \sin{\theta}}{1 + \sin{\theta}}} \Bigg(1 - \frac{1}{2 (1 + \sin{\theta})} \Bigg) + \cr
-    &\frac{\sqrt{\pi z}}{\sqrt{1 + \sin{\theta}}} \Bigg[ e^{z - z \sin{\theta}} \text{erfc}\left(\sqrt{z - z \sin{\theta}}\right) \Bigg] \Bigg( \frac{1}{2} + \sin{\theta} + \frac{1 + 2 (1 - 2 z) \sin{\theta}}{4 z (1 + \sin{\theta})}   \Bigg).
+    & \sqrt{\frac{1 - \sin{\theta}}{1 + \sin{\theta}}} \Bigg(1 - \frac{1}{2 (1 + \sin{\theta})} \Bigg) + \frac{\sqrt{\pi z}}{\sqrt{1 + \sin{\theta}}} \times \cr
+    & \Bigg[ e^{z - z \sin{\theta}} \text{erfc}\left(\sqrt{z - z \sin{\theta}}\right) \Bigg] \Bigg( -\frac{1}{2} + \sin{\theta} + \frac{1}{1 + \sin{\theta}} + \frac{1 + 2 \sin{\theta}}{4 z (1 + \sin{\theta})} \Bigg).
 \end{aligned}$$
 
 The approximation itself is also not closed-form, since it contains the [complementary error function](http://mathworld.wolfram.com/Erfc.html) \\(\mathrm{erfc}\\). It's also somewhat annoying that the result is given in terms of \\(\sin{\theta}\\) rather than \\(\cos{\theta}\\), but this reparametrization is actually necessarily to expand the function in the power series.
