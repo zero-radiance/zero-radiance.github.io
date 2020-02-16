@@ -404,24 +404,34 @@ It is always a good idea to examine a function visually, as a graph. Let's do th
 Above, I plotted values of the Chapman function (vertical axis) varying with the angle \\(\theta\\) (horizontal axis, in degrees) for different values of the scale height \\(H\\): \\(1\\) (blue), \\(10\\) (orange), \\(20\\) (green), \\(40\\) (red), \\(60\\) (purple), \\(80\\) (brown), \\(100\\) (light blue).
 Arguably, the first two are the most important, since they roughly correspond to scale heights of aerosols and air of Earth's atmosphere. However, it is also nice to be able to support larger values to model atmospheres of [other planets](https://en.wikipedia.org/wiki/Scale_height#Planetary_examples).
 
-Being an obliquity function, \\(C(z, 0) = 1\\). The function varies slowly, as long as the angle is far from being horizontal (which suggests an opportunity for a [small-angle approximation](https://en.wikipedia.org/wiki/Small-angle_approximation)).
+Being an obliquity function, \\(C(z, 0) = 1\\). The function varies slowly, as long as the angle is far from being horizontal (which suggests an opportunity for a [small angle approximation](https://en.wikipedia.org/wiki/Small-angle_approximation)).
 
 To my knowledge, the Chapman function does not have a [closed-form](https://en.wikipedia.org/wiki/Closed-form_expression#Analytic_expression) expression. Many [approximations](https://agupubs.onlinelibrary.wiley.com/doi/pdf/10.1029/2011JD016706) exist. Unfortunately, most of them are specific to Earth's atmosphere, while we are interested in a general solution. The most accurate approximation I have found was developed by [David Huestis](https://ui.adsabs.harvard.edu/abs/2001JQSRT..69..709H/abstract). It is based on a power series expansion. Using the first two terms results in the following formula for \\(\theta \leq \pi/2\\):
 
-$$ \begin{aligned} \tag{44} C(z, \theta) \approx
+$$ \begin{aligned} \tag{44} C_u(z, \theta) \approx
     &\sqrt{\frac{1 - \sin{\theta}}{1 + \sin{\theta}}} \Bigg(1 - \frac{1}{2 (1 + \sin{\theta})} \Bigg) + \cr
     &\frac{\sqrt{\pi z}}{\sqrt{1 + \sin{\theta}}} \Bigg[ e^{z - z \sin{\theta}} \text{erfc}\left(\sqrt{z - z \sin{\theta}}\right) \Bigg] \Bigg( \frac{1}{2} + \sin{\theta} + \frac{1 + 2 (1 - 2 z) \sin{\theta}}{4 z (1 + \sin{\theta})}   \Bigg).
 \end{aligned}$$
 
 The approximation itself is also not closed-form, since it contains the [complementary error function](http://mathworld.wolfram.com/Erfc.html) \\(\mathrm{erfc}\\). It's also somewhat annoying that the result is given in terms of \\(\sin{\theta}\\) rather than \\(\cos{\theta}\\), but this reparametrization is actually necessarily to expand the function in the power series.
 
-We can quantify the quality of the approximation by computing the error with respect to the integral numerically evaluated in Mathematica.
+For the angle of 90 degrees, the integral is given using the [modified Bessel function of the second kind](http://mathworld.wolfram.com/ModifiedBesselFunctionoftheSecondKind.html) \\(K_1\\):
+
+$$ \tag{45} C_h(z) = C(z,\frac{\pi}{2}) = z e^z K_1(z) \approx \sqrt{\pi z} \left(\frac{1}{2} + \frac{3}{16 z} -\frac{15}{256 z^2}\right). $$
+
+Beyond the 90 degree angle, the following identity can be used:
+
+$$ \tag{46} C_l(z, \theta) = 2 C_h(z \sin{\theta}) e^{z - z \sin{\theta}} - C_u(z, \pi - \theta), $$
+
+which means that we must find a position \\(\bm{p}\\) (sometimes called the [periapsis](https://en.wikipedia.org/wiki/Apsis) point, see the diagram in the previous section) along the ray where it is orthogonal to the surface normal, evaluate the horizontal Chapman function there (twice, forwards and backwards, to cover the entire real line), and subtract the value of the Chapman function at the original position with the reversed direction (towards the atmospheric boundary), which isolates the integral to the desired ray segment.
+
+We can evaluate the quality of the approximation by computing the error with respect to the integral numerically evaluated in Mathematica.
 
 {{< figure src="/img/chapman_approx_abs.png" caption="*Plot of the absolute error of the approximation of the Chapman function for r = 6600.*">}}
 
 {{< figure src="/img/chapman_approx_rel.png" caption="*Plot of the relative error of the approximation of the Chapman function for r = 6600.*">}}
 
-We can also represent the relative error as precision by plotting the number of digits after the decimal point. Since decimal precision of 32-bit floating numbers is between [6-8 digits](https://www.exploringbinary.com/decimal-precision-of-binary-floating-point-numbers/), the approximation can be considered relatively accurate (particularly so for the range of typical values).
+We can also represent the relative error as *precision* by plotting the number of digits after the decimal point. Since decimal precision of 32-bit floating numbers is between [6-8 digits](https://www.exploringbinary.com/decimal-precision-of-binary-floating-point-numbers/), the approximation can be considered relatively accurate (particularly so for the range of typical values).
 
 {{< figure src="/img/chapman_approx_dig.png" caption="*Plot of precision of the approximation of the Chapman function for r = 6600.*">}}
 
@@ -435,6 +445,41 @@ It took me a while to find the approximation developed by [Takuya Ooura](http://
 
 I do not include the plot of the relative error of \\(\exp(x^2) \mathrm{erfc}(x)\\) since it looks very similar to its absolute error plot. And since the error of this term is lower than the error of the approximation of the Chapman function, substituting the former does not visibly affect the error of the latter.
 
+```c++
+// Computes exp(x^2) * erfc(x) for (x >= 0).
+// Range of inputs:  [0, Inf].
+// Range of outputs: [0, 1].
+float exp2erfc(float x)
+{
+    float t, u, y, z;
+
+    t = 3.97886080735226 / (x + 3.97886080735226);
+    u = t - 0.5;
+#ifdef DOUBLE_PRECISION
+    // Original implementation kindly provided by Takuya Ooura.
+    // http://www.kurims.kyoto-u.ac.jp/~ooura/gamerf.html
+    y = (((((((((0.00127109764952614092 * u + 1.19314022838340944e-4) * u -
+        0.003963850973605135) * u - 8.70779635317295828e-4) * u +
+        0.00773672528313526668) * u + 0.00383335126264887303) * u -
+        0.0127223813782122755) * u - 0.0133823644533460069) * u +
+        0.0161315329733252248) * u + 0.0390976845588484035) * u +
+        0.00249367200053503304;
+#else
+    y = (0.0019898212777384947 * u + 0.039833135938877856) * u +
+        0.0034132959838498976;
+#endif
+    z = ((((((((((((y * u - 0.0838864557023001992) * u -
+        0.119463959964325415) * u + 0.0166207924969367356) * u +
+        0.357524274449531043) * u + 0.805276408752910567) * u +
+        1.18902982909273333) * u + 1.37040217682338167) * u +
+        1.31314653831023098) * u + 1.07925515155856677) * u +
+        0.774368199119538609) * u + 0.490165080585318424) * u +
+        0.275374741597376782) * t;
+
+    return z;
+}
+```
+
 ---
 
 
@@ -442,15 +487,7 @@ The fact that it is an approximation can be verified by comparing the values of 
 
 Unfortunately, I was unable to re-derive this expression. I suspect that I am either missing something (accounting for continuous variation of the IOR, for instance), or perhaps this is not a full analytic solution, but rather a truncated series expansion (similar to [this one](https://www.sciencedirect.com/science/article/pii/S0022407300001072)). Also, while the formula should in theory work for angles beyond 90 degrees, it deviates from values of the numerically evaluated integral rather quickly.
 
-For the zenith angle of 90 degrees, the formula reduces to << not exact! >>
 
-$$ \tag{39} C_h(z) = \frac{1}{2} \sqrt{\frac{\pi}{2}} (\frac{1}{\sqrt{z}} + 2 \sqrt{z}). $$
-
-Beyond the 90 degree angle, the following identity can be used:
-
-$$ \tag{40} C_l(z, \cos{\theta}) = 2 e^{z - z \sin{\theta}} C_h(z \sin{\theta}) - C(z, -\cos{\theta}), $$
-
-which means that we must find a position \\(\bm{p}\\) (sometimes called the [periapsis](https://en.wikipedia.org/wiki/Apsis) point, see the diagram in the previous section) along the ray where it is orthogonal to the surface normal, evaluate the horizontal Chapman function there (twice, forwards and backwards, to cover the entire real line), and subtract the value of the Chapman function at the original position with the reversed direction (towards the atmospheric boundary), which isolates the integral to the desired ray segment.
 
 Christian Schüler proposes an approximation of the Chapman function for the upper hemisphere in his [GPU Gems 3](http://www.gameenginegems.net/gemsdb/article.php?id=1133) article:
 
