@@ -425,10 +425,15 @@ We can also represent the relative error as precision by plotting the number of 
 
 {{< figure src="/img/chapman_approx_dig.png" caption="*Plot of precision of the approximation of the Chapman function for r = 6600.*">}}
 
-Of course, we must address the elephant in the room, \\(\mathrm{erfc}\\). Since it is [related](https://www.johndcook.com/erf_and_normal_cdf.pdf) to the [normal distribution](https://en.wikipedia.org/wiki/Normal_distribution), it has numerous applications, and, as a result, dozens of approximations. Unfortunately, most of them are not particularly accurate, especially across a huge range of values \\([0, \sqrt{R})\\) as in our case, and accuracy of \\(\mathrm{erfc}\\) greatly affects the quality of the full approximation.
+Of course, we must address the elephant in the room, \\(\mathrm{erfc}\\). Since it is [related](https://www.johndcook.com/erf_and_normal_cdf.pdf) to the [normal distribution](https://en.wikipedia.org/wiki/Normal_distribution), it has numerous applications, and, as a result, dozens of existing approximations. Unfortunately, most of them are not particularly accurate, especially across a huge range of values (as in our case), and accuracy of \\(\mathrm{erfc}\\) greatly affects the quality of the full approximation.
 
-It took me a while to find the approximation developed by [Takuya Ooura](http://www.kurims.kyoto-u.ac.jp/~ooura/gamerf.html). He provides an impressive implementation (written C) accurate to 16 decimal digits. That's actually too accurate (and too expensive) for our needs, but it's relatively easy to remove a few terms in order to obtain a single precision version. A great thing about his approximation is that it includes the \\(e^{-x^2}\\) factor, which means we can approximate the entire term of Equation 44 inside the square brackets.
+It took me a while to find the approximation developed by [Takuya Ooura](http://www.kurims.kyoto-u.ac.jp/~ooura/gamerf.html). He provides an impressive implementation (written C) accurate to 16 decimal digits. That's actually too accurate (and too expensive) for our needs, but it's relatively easy to reduce the degree of the polynomial in order to obtain a single precision version. A great thing about his approximation is that it includes the \\(\exp(x^2)\\) factor, which means we can approximate the entire term of Equation 44 inside the square brackets.
 
+{{< figure src="/img/exp2erfc.png" caption="*Plot of \\(\exp(x^2) \mathrm{erfc}(x)\\). The function approaches 0 as the value of the argument increases.*">}}
+
+{{< figure src="/img/exp2erfc_error.png" caption="*Plot of the relative error of the approximation of \\(\exp(x^2) \mathrm{erfc}(x)\\).*">}}
+
+I do not include the plot of the relative error of \\(\exp(x^2) \mathrm{erfc}(x)\\) since it looks very similar to its absolute error plot. And since the error of this term is lower than the error of the approximation of the Chapman function, substituting the former does not visibly affect the error of the latter.
 
 ---
 
