@@ -406,7 +406,7 @@ Arguably, the first two are the most important, since they roughly correspond to
 
 Being an obliquity function, \\(C(z, 0) = 1\\). The function varies slowly, as long as the angle is far from being horizontal (which suggests an opportunity for a [small angle approximation](https://en.wikipedia.org/wiki/Small-angle_approximation)).
 
-To my knowledge, the Chapman function does not have a [closed-form](https://en.wikipedia.org/wiki/Closed-form_expression#Analytic_expression) expression. Many [approximations](https://agupubs.onlinelibrary.wiley.com/doi/pdf/10.1029/2011JD016706) exist. Unfortunately, most of them are specific to Earth's atmosphere, and we are interested in a general solution. The most accurate approximation I have found was developed by [David Huestis](https://ui.adsabs.harvard.edu/abs/2001JQSRT..69..709H/abstract). It is based on a power series expansion of the integrand. Using the first two terms results in the following formula for \\(\theta \leq \pi/2\\):
+To my knowledge, the Chapman function does not have a [closed-form](https://en.wikipedia.org/wiki/Closed-form_expression#Analytic_expression) expression. Many [approximations](https://agupubs.onlinelibrary.wiley.com/doi/pdf/10.1029/2011JD016706) exist. Unfortunately, most of them are specific to Earth's atmosphere, and we are interested in a general solution. The most accurate approximation I have found was developed by [David Huestis](https://ui.adsabs.harvard.edu/abs/2001JQSRT..69..709H/abstract). It is based on a power series expansion of the integrand. Using the first two terms results in the following formula for \\(\theta < \pi/2\\):
 
 $$ \begin{aligned} \tag{44} C_u(z, \theta) \approx
     & \sqrt{\frac{1 - \sin{\theta}}{1 + \sin{\theta}}} \Bigg(1 - \frac{1}{2 (1 + \sin{\theta})} \Bigg) + \frac{\sqrt{\pi z}}{\sqrt{1 + \sin{\theta}}} \times \cr
@@ -417,13 +417,79 @@ The approximation itself is also not closed-form, since it contains the [complem
 
 For the angle of 90 degrees, the integral is given using the [modified Bessel function of the second kind](http://mathworld.wolfram.com/ModifiedBesselFunctionoftheSecondKind.html) \\(K_1\\):
 
-$$ \tag{45} C_h(z) = C(z,\frac{\pi}{2}) = z e^z K_1(z) \approx \sqrt{\pi z} \left(\frac{1}{2} + \frac{3}{16 z} -\frac{15}{256 z^2}\right). $$
+$$ \tag{45} C_h(z) = C(z,\frac{\pi}{2}) = z e^z K_1(z) \approx \sqrt{\frac{\pi z}{2}} \left(1 + \frac{3}{8 z} -\frac{15}{128 z^2}\right). $$
 
-Beyond the 90 degree angle, the following identity can be used:
+We use a slightly more [accurate approximation](https://ui.adsabs.harvard.edu/abs/2001JQSRT..69..709H/abstract) than \\(C_u(z, \pi/2)\\) (we add the quadratic term) to obtain some extra precision near 0.
+
+Beyond the 90 degree angle, the following [identity](https://ui.adsabs.harvard.edu/abs/2001JQSRT..69..709H/abstract) can be used:
 
 $$ \tag{46} C_l(z, \theta) = 2 C_h(z \sin{\theta}) e^{z - z \sin{\theta}} - C_u(z, \pi - \theta), $$
 
 which means that we must find a position \\(\bm{p}\\) (sometimes called the [periapsis](https://en.wikipedia.org/wiki/Apsis) point, see the diagram in the previous section) along the ray where it is orthogonal to the surface normal, evaluate the horizontal Chapman function there (twice, forwards and backwards, to cover the entire real line), and subtract the value of the Chapman function at the original position with the reversed direction (towards the atmospheric boundary), which isolates the integral to the desired ray segment.
+
+A sample implementation is listed below.
+
+```c++
+float ChapmanUpper(float z, float cosTheta)
+{
+    float sinTheta = sqrt(saturate(1 - cosTheta * cosTheta));
+
+    float zm12 = rsqrt(z);        // z^(-1/2)
+    float zp12 = z * zm12;        // z^(+1/2)
+
+    float tp   = 1 + sinTheta;    // 1 + Sin
+    float rstp = rsqrt(tp);       // 1 / Sqrt[1 + Sin]
+    float rtp  = rstp * rstp;     // 1 / (1 + Sin)
+    float stm  = cosTheta * rstp; // Sqrt[1 - Sin] = Cos / Sqrt[1 + Sin]
+    float arg  = zp12 * stm;      // Sqrt[z - z * Sin], argument of Erfc
+    float e2ec = Exp2Erfc(arg);   // Exp[x^2] * Erfc[x]
+
+    // Term 1 of Equation 44.
+    float mul1 = cosTheta * rtp; // Sqrt[(1 - Sin) / (1 + Sin)] = Cos / (1 + Sin)
+    float trm1 = mul1 * (1 - 0.5 * rtp);
+
+    // Term 2 of Equation 44.
+    float mul2 = SQRT_PI * rstp * e2ec; // Sqrt[Pi / (1 + Sin)] * Exp[x^2] * Erfc[x]
+    float trm2 = mul2 * (zp12 * (-1.5 + tp + rtp) +
+                         zm12 * 0.25 * (2 * tp - 1) * rtp);
+    return trm1 + trm2;
+}
+
+float ChapmanHorizontal(float z)
+{
+    float zm12 = rsqrt(z);           // z^(-1/2)
+    float zm32 = zm12 * zm12 * zm12; // z^(-3/2)
+
+    // Equation 45.
+    float ch = -0.14687275046666018 + z * (0.4699928014933126 + z * 1.2533141373155001);
+
+    return ch * zm32;
+}
+
+// z = (r / H), Z = (R / H).
+float RescaledChapman(float z, float Z, float cosTheta)
+{
+    float sinTheta = sqrt(saturate(1 - cosTheta * cosTheta));
+
+    // Cos[Pi - theta] = -Cos[theta],
+    // Sin[Pi - theta] =  Sin[theta],
+    // so we can just use Abs[Cos[theta]].
+    float ch = ChapmanUpperApprox(z, abs(cosTheta)) * exp(Z - z); // Rescaling adds 'exp'
+
+    if (cosTheta <= 0)
+    {
+        // Ch[z, theta] = 2 * Exp[z - z_0] * Ch[z_0, Pi/2] - Ch[z, Pi - theta].
+        // z_0 = r_0 / H = (r / H) * Sin[theta] = z * Sin[theta].
+        float z_0 = z * sinTheta;
+        float chP = ChapmanHorizontal(z_0) * exp(Z - z_0); // Rescaling adds 'exp'
+
+        // Equation 46.
+        ch = 2 * chP - ch;
+    }
+
+    return ch;
+}
+```
 
 We can evaluate the quality of the approximation by computing the error with respect to the integral numerically evaluated in Mathematica.
 
@@ -449,7 +515,7 @@ I do not include the plot of the relative error of \\(\exp(x^2) \mathrm{erfc}(x)
 // Computes (exp(x^2) * erfc(x)) for (x >= 0).
 // Range of inputs:  [0, Inf].
 // Range of outputs: [0, 1].
-float exp2erfc(float x)
+float Exp2Erfc(float x)
 {
     float t, u, y, z;
 
