@@ -298,7 +298,7 @@ Sample code is listed below.
 // 'viewZ' is the Z coordinate of the view direction.
 // 'dist' is the distance.
 // seaLvlAtt = (sigma_t * k) is the sea-level (height = 0) attenuation coefficient.
-// rcpH = rcp(H) is the falloff exponent.
+// rcpH = rcp(H) is the falloff exponent, where 'H' is the scale height.
 spectrum OptDepthRectExpMedium(float height, float viewZ, float dist,
                                spectrum seaLvlAtt, float rcpH)
 {
@@ -363,7 +363,8 @@ $$ \tag{38} \begin{aligned}
     &= \bm{\sigma_t} k \int\_{0}^{u} e^{-n h(s)} ds \cr
     &= \bm{\sigma_t} k \int\_{0}^{u} e^{-n \big( \sqrt{r_0^2 + (s_0 + s)^2} - R \big)} ds \cr
     &= \bm{\sigma_t} k \int\_{0}^{u} e^{n \big( R - \sqrt{r_0^2 + (s_0 + s)^2} \big)} ds \cr
-    &= \bm{\sigma_t} \frac{k}{n} e^{n (R - r)} \int\_{0}^{u} e^{n \big( r - \sqrt{r_0^2 + (s_0 + s)^2} \big)} n ds.
+    &= \bm{\sigma_t} \frac{k}{n} e^{n (R - r)} \int\_{0}^{u} e^{n \big( r - \sqrt{r_0^2 + (s_0 + s)^2} \big)} n ds \cr
+    &= \bm{\sigma_t} \frac{k}{n} e^{n (R - r)} \int\_{0}^{u} e^{n \big( r - \sqrt{r^2 + 2 s (r \cos{\theta}) + s^2} \big)} n ds.
 \end{aligned} $$
 
 The resulting integral is very complex. If we simplify using the following change of variables
@@ -427,7 +428,7 @@ $$ \tag{46} C_l(z, \theta) = 2 C_h(z \sin{\theta}) e^{z - z \sin{\theta}} - C_u(
 
 which means that we must find a position \\(\bm{p}\\) (sometimes called the [periapsis](https://en.wikipedia.org/wiki/Apsis) point, see the diagram in the previous section) along the ray where it is orthogonal to the surface normal, evaluate the horizontal Chapman function there (twice, forwards and backwards, to cover the entire real line), and subtract the value of the Chapman function at the original position with the reversed direction (towards the atmospheric boundary), which isolates the integral to the desired ray segment.
 
-A sample implementation is listed below.
+Sample implementation is listed below.
 
 ```c++
 float ChapmanUpper(float z, float cosTheta)
@@ -474,7 +475,7 @@ float RescaledChapman(float z, float Z, float cosTheta)
     // Cos[Pi - theta] = -Cos[theta],
     // Sin[Pi - theta] =  Sin[theta],
     // so we can just use Abs[Cos[theta]].
-    float ch = ChapmanUpperApprox(z, abs(cosTheta)) * exp(Z - z); // Rescaling adds 'exp'
+    float ch = ChapmanUpper(z, abs(cosTheta)) * exp(Z - z); // Rescaling adds 'exp'
 
     if (cosTheta < 0)
     {
@@ -574,7 +575,7 @@ In order to evaluate optical depth between two arbitrary points \\(\bm{x}\\) and
 
 1\. \\(\cos{\theta_x} \geq 0 \\), which means that the ray points into the upper hemisphere with respect to the surface normal at the point \\(\bm{x}\\). This also means it points into the upper hemisphere at any point \\(\bm{y}\\) along the ray (it is fairly obvious if you sketch it). Optical depth is given by Equation 42, which we specialize by replacing \\(C\\) with \\(C_u\\) which is restricted to the upper hemisphere:
 
-$$ \tag{47}
+$$ \tag{48}
 \bm{\tau\_{uu}}(z_x, \theta_x, z_y, \theta_y)
     = \bm{\sigma_t} \frac{k}{n} \Bigg( e^{Z - z_x} C_u(z_x, \theta_x) - e^{Z - z_y} C_u(z_y, \theta_y) \Bigg).
 $$
@@ -583,7 +584,7 @@ $$
 
 3\. \\(\cos{\theta_x} < 0 \\) and \\(\cos{\theta_y} \geq 0 \\). This is the most complicated case, since we have to evaluate the Chapman function three times, twice at \\(\bm{x}\\) and once at \\(\bm{y}\\):
 
-$$ \tag{48} \begin{aligned}
+$$ \tag{49} \begin{aligned}
 \bm{\tau\_{lu}}(z_x, \theta_x, z_y, \theta_y)
     &= \bm{\sigma_t} \frac{k}{n} \Bigg( e^{Z - z_x} C_l(z_x, \theta_x) - e^{Z - z_y} C_u(z_y, \theta_y) \Bigg).
 \end{aligned} $$
@@ -593,34 +594,45 @@ Sample code is listed below.
 ```c++
 float RadAtDist(float r, float cosTheta, float t)
 {
-    return sqrt(r * r + t * (t + 2 * (r * cosTheta)));
+    float r2 = r * r + t * (t + 2 * (r * cosTheta));
+
+    return sqrt(x2);
 }
 
-float CosAtDist(float r, float cosTheta, float t, float radAtDist)
+float CosAtDist(float r, float cosTheta, float t)
 {
-    return (t + r * cosTheta) * rcp(radAtDist);
+    float r2 = r * r + t * (t + 2 * (r * cosTheta));
+
+    return (t + r * cosTheta) * rsqrt(r2);
 }
 
-// This variant of the function takes the distance 't' along the ray into account.
-spectrum EvalOptDepthSpherExpMedium(float r, float cosTheta, float t,
-                                    spectrum seaLvlAtt, float Z,
-                                    float H, float rcpH)
+// 'r' is the radial distance from the center of the planet.
+// 'viewZ' is the Z coordinate of the view direction.
+// 'dist' is the distance.
+// seaLvlAtt = (sigma_t * k) is the sea-level (height = 0) attenuation coefficient.
+// 'R' is the radius of the planet.
+// 'H' is the scale height.
+// rcpH = rcp(H) is the falloff exponent.
+spectrum OptDepthSpherExpMedium(float r, float viewZ, float dist,
+                                spectrum seaLvlAtt, float R,
+                                float H, float rcpH)
 {
     float rX        = r;
-    float cosThetaX = cosTheta;
-    float rY        = RadAtDist(rX, cosThetaX, t);
-    float cosThetaY = CosAtDist(rX, cosThetaX, t, rY);
+    float cosThetaX = -viewZ;
+    float rY        = RadAtDist(rX, cosThetaX, dist);
+    float cosThetaY = CosAtDist(rX, cosThetaX, dist);
 
     // Potentially swap X and Y.
     // Convention: at the point Y, the ray points up.
     cosThetaX = (cosThetaY >= 0) ? cosThetaX : -cosThetaX;
     cosThetaY = abs(cosThetaY);
 
+    float Z   = R  * rcpH;
     float zX  = rX * rcpH;
     float zY  = rY * rcpH;
 
-    float chX = RescaledChapmanFunction(zX, Z, cosThetaX);
-    float chY = ChapmanUpperApprox(zY, cosThetaY) * exp(Z - zY); // Rescaling adds 'exp'
+    float chX = RescaledChapman(zX, Z, cosThetaX);
+    float chY = ChapmanUpper(zY, cosThetaY) * exp(Z - zY); // Rescaling adds 'exp'
 
     // We may have swapped X and Y.
     float ch = abs(chX - chY);
@@ -629,7 +641,7 @@ spectrum EvalOptDepthSpherExpMedium(float r, float cosTheta, float t,
 }
 ```
 
-Note that using this function (rather than calling `EvalOptDepthSpherExpMedium` twice and subtracting the results) is beneficial not only for performance, but also for correctness: it avoids numerical instability near the horizon where rays are prone to alternate between the above/below states, which could cause subtraction to result in negative optical depth values. For performance, it may be also worth considering a special case is when the point \\(\bm{y}\\) is considered to be outside the atmosphere (if `exp(Z - zY) < EPS`, for instance). In that case, `chY = 0` is an adequate approximation.
+Note that using this function (rather than calling `OptDepthSpherExpMedium` twice and subtracting the results) is beneficial not only for performance, but also for correctness: it avoids numerical instability near the horizon where rays directions are prone to alternating between the two hemispheres, which could cause subtraction to result in negative optical depth values. For performance, it may be also worth considering a special case is when the point \\(\bm{y}\\) is considered to be outside the atmosphere (if `exp(Z - zY) < EPS`, for instance). In that case, `chY = 0` is an adequate approximation.
 
 #### Sampling Exponential Media in Spherical Coordinates
 
