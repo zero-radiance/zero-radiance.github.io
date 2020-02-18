@@ -580,6 +580,8 @@ However, if you care about accuracy, and plot the relative error graph, it paint
 
 As always, there is a compromise. If you need accuracy (for a certain algorithm or technique), you must use a more accurate implementation. If every last cycle matters, it's perfectly fine to "cheat" as long as the error is not very apparent.
 
+I should also mention that Christian references another analytic expression of the Chapman function originally proposed by [Miroslav Kocifaj](https://ui.adsabs.harvard.edu/abs/1996CoSka..26...23K/abstract). Miroslav's paper has two equations of interest: one for arbitrary altitudes (11a), and one for small altitudes (11b), with the latter referenced in the GPU Pro article. Both look very similar to the power series expansion we are using, while at the same time featuring several orders of magnitude higher error (so both are clearly *approximations*, *not exact* solutions). Additionally, his formula for arbitrary altitudes depends on the planetary radius term (that can not be removed via simplification) which is not present in the integral formulation (Equation 42), which leads me to believe that the paper contains an error.
+
 #### Evaluating Optical Depth Using the Chapman Function
 
 A numerical approximation of the Chapman function, in conjunction with Equation 44, allows us to evaluate optical depth along an arbitrary ray segment.
