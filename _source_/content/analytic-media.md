@@ -72,7 +72,7 @@ For practical reasons, further discussion will use a (typical) assumption that, 
 
 ## Radiative Transfer Equation
 
-Intelligent sampling of a function requires understanding which parts make a large contribution. Therefore, we must briefly discuss the [radiative transfer equation](https://en.wikipedia.org/wiki/Radiative_transfer#The_equation_of_radiative_transfer) (or RTE) used to render scenes with participating media. While the full [derivation](https://archive.org/details/RadiativeTransfer) is outside the scope of this blog post, we will try to touch the important aspects.
+Intelligent sampling of a function requires understanding which parts make a large contribution. Therefore, we must briefly discuss the [radiative transfer equation](https://en.wikipedia.org/wiki/Radiative_transfer#The_equation_of_radiative_transfer) (or RTE) used to render scenes with participating media. While the full [derivation](https://archive.org/details/RadiativeTransfer) is outside the scope of this article, we will try to touch the important aspects.
 
 The integral form of the RTE is that of a recursive line integral. Intuitively, it models the process of photons traveling along the ray from sources towards the sensor, while at the same time accounting for energy losses.
 
@@ -362,14 +362,14 @@ $$ \tag{38}
 \mathcal{R}(r, \theta, s)
     = \sqrt{r_0^2 + (s_0 + s)^2}
     = \sqrt{(r \sin{\theta})^2 + (r \cos{\theta} + s)^2}
-    = \sqrt{r^2 + 2 s (r \cos{\theta}) + s^2}.
+    = \sqrt{r^2 + s (2 r \cos{\theta} + s)}.
 $$
 
 $$ \tag{39}
 \mathcal{C}(r, \theta, s)
     = \frac{\mathrm{adjacent}}{\mathrm{hypotenuse}}
     = \frac{s_0 + s}{\mathcal{R}(r, \theta, s)}
-    = \frac{r \cos{\theta} + s}{\sqrt{(r \sin{\theta})^2 + (r \cos{\theta} + s)^2}}.
+    = \frac{r \cos{\theta} + s}{\sqrt{r^2 + s (2 r \cos{\theta} + s)}}.
 $$
 
 We can now compose the optical depth integral:
@@ -379,7 +379,7 @@ $$ \tag{40} \begin{aligned}
     &= \bm{\sigma_t} k \int\_{0}^{u} e^{-n h(s)} ds \cr
     &= \bm{\sigma_t} k \int\_{0}^{u} e^{-n \big( \mathcal{R}(r, \theta, s) - R \big)} ds \cr
     &= \bm{\sigma_t} \frac{k}{n} e^{n (R - r)} \int\_{0}^{u} e^{n \big( r - \mathcal{R}(r, \theta, s) \big)} n ds \cr
-    &= \bm{\sigma_t} \frac{k}{n} e^{n (R - r)} \int\_{0}^{u} e^{n \big( r - \sqrt{r^2 + 2 s (r \cos{\theta}) + s^2} \big)} n ds.
+    &= \bm{\sigma_t} \frac{k}{n} e^{n (R - r)} \int\_{0}^{u} e^{n \big( r - \sqrt{r^2 + s (2 r \cos{\theta} + s)} \big)} n ds.
 \end{aligned} $$
 
 The resulting integral is very complex. If we simplify using the following change of variables
@@ -388,11 +388,11 @@ $$ \tag{41} t = n s, \qquad z = n r, \qquad Z = n R $$
 
 and change the upper limit of integration to infinity, we obtain what is known in the physics community as the [Chapman's grazing incidence integral](https://ui.adsabs.harvard.edu/abs/1931PPS....43...26C/abstract) (or the obliquity function, or the relative optical air mass) \\(C\\):
 
-$$ \tag{42} C(z, \theta) = \int\_{0}^{\infty} e^{z - \sqrt{z^2 + 2 t (z \cos{\theta}) + t^2}} dt. $$
+$$ \tag{42} C(z, \theta) = \int\_{0}^{\infty} e^{z - \sqrt{z^2 + t (2 z \cos{\theta} + t)}} dt. $$
 
 It is convenient to define the rescaled Chapman function \\(C_r\\)
 
-$$ \tag{43} C_r(z, \theta) = e^{Z - z} C(z, \theta) = \int\_{0}^{\infty} e^{Z - \sqrt{z^2 + 2 t (z \cos{\theta}) + t^2}} dt, $$
+$$ \tag{43} C_r(z, \theta) = e^{Z - z} C(z, \theta) = \int\_{0}^{\infty} e^{Z - \sqrt{z^2 + t (2 z \cos{\theta} + t)}} dt, $$
 
 which has a better numerical behavior, and further simplifies the expression of optical depth between \\(\bm{x}\\) and \\(\bm{y}\\):
 
@@ -662,74 +662,35 @@ Note that using this function (rather than calling `OptDepthSpherExpMedium` twic
 
 #### Sampling Exponential Media in Spherical Coordinates
 
-In order to sample participating media, we must be able to solve the optical depth equation for distance. Analysis presented in the previous section indicates that we must consider two cases: the ray pointing into the same hemisphere at both endpoints (Equation 47), and into opposite ones (Equation 48).
+One does not simply sample the Chapman function. There doesn't appear to be a way to invert the integral formulation (Equation 40), and attempts at solving numerical approximations for distance seem futile. Of course, we still have the option of looking for a numerical fit for the tabulated inverse... But we are not going to do that. And here's why.
 
-First, let's establish a couple of useful identities. Recalling Equation 32, we can compute the radial distance from the center \\(\bm{c}\\) to the point \\(\bm{x} + t \bm{\hat{v}}\\) along the ray using the Pythagorean theorem:
+In order to sample participating media, we must be able to solve the optical depth equation for distance. If you only have a single analytically-defined volume, sampling it is (usually) trivial. However, once you have several heterogeneous overlapping volumes, you start running into issues. While optical depth is additive, the sampled distance is not. So, what do we do?
 
-$$ \tag{49}
-\mathcal{R}(r, \theta, t)
-    = \sqrt{r_0^2 + (t_0 + t)^2}
-    = \sqrt{(r \sin{\theta})^2 + (r \cos{\theta} + t)^2}
-    = \sqrt{r^2 + t^2 + 2 t r \cos{\theta}}.
-$$
+ If we can't solve the equation analytically, we can solve it numerically, using the [Newton–Raphson method](https://en.wikipedia.org/wiki/Newton%27s_method). Recall that it requires being able to make an initial guess, evaluate the function, and take its derivative. Our function is the total optical depth. We can make an initial guess by assuming that the combined medium is homogeneous (or, under certain assumptions, rect-exponential). And since we know that the derivative of optical depth is just the attenuation coefficient \\(\mu_t\\) (Equation 17), so we have all the pieces we need.
 
-The cosine of the ray direction with respect to the surface normal at that point can be computed similarly:
+This method is very general and works for arbitrary [continuous density distributions](http://lib-www.lanl.gov/la-pubs/00367066.pdf).
 
-$$ \tag{50}
-\mathcal{C}(r, \theta, t)
-    = \frac{\mathrm{adjacent}}{\mathrm{hypotenuse}}
-    = \frac{t_0 + t}{\mathcal{R}(r, \theta, t)}
-    = \frac{r \cos{\theta} + t}{\sqrt{(r \sin{\theta})^2 + (r \cos{\theta} + t)^2}}.
-$$
-
-Using the new, compact notation, and after performing a few algebraic manipulations, we can reduce the CDF inversion problem to solving the following equation:
-
-$$ \tag{51}
-q = C_r \Big( n \mathcal{R}(r, \theta, t), Z, \mathcal{C}(r, \theta, t) \Big),
-$$
-
-which means that we need to find the distance \\(t\\) at which the value of the rescaled Chapman function is \\(q\\).
-
-This equation has too many parameters. We can reduce dimensionality by solving for \\(t' = nt\\):
-
-$$ \tag{52}
-q = C_r \Big( \sqrt{(z \sin{\theta})^2 + (z \cos{\theta} + t')^2}, Z, \frac{z \cos{\theta} + t'}{\sqrt{(z \sin{\theta})^2 + (z \cos{\theta} + t')^2}} \Big).
-$$
-
-After getting rid of \\(n\\), the next step is to group common terms:
-
-$$ \tag{53} \phi = z \sin{\theta} \qquad \psi = z \cos{\theta} + t', $$
-
-$$ \tag{54}
-q = C_r \Bigg( \sqrt{\phi^2+\psi^2}, Z, \frac{\psi}{\sqrt{\phi^2+\psi^2}} \Bigg). $$
-
-Both \\(\phi\\) and \\(\psi\\) are known to be positive. We must solve for \\(\psi\\). \\(Z\\) could theoretically be removed, but it is here to keep the solution within the sane numerical range.
-
-This appears to be the simplest formulation of the problem, using the fewest number of parameters. I gave it a shot but, unfortunately, I was unable to analytically solve this equation, and I tried plugging in both the closed and the approximate forms of the Chapman function. Perhaps **you** will have better luck?
-
-While that's an unfortunate development, it is a minor setback. If we can't solve Equation analytically, we can solve it numerically, using the [Newton–Raphson method](https://en.wikipedia.org/wiki/Newton%27s_method), for instance. The derivative of the Chapman function exists, and is not too difficult to compute.
-
-In fact, there is a [better way](http://lib-www.lanl.gov/la-pubs/00367066.pdf), which is even simpler. Recall that Newton's method requires being able to make an initial guess, evaluate the function, and take its derivative. If we solve for the entire optical depth formulation (Equation 17), we know that its derivative is just the attenuation coefficient \\(\mu_t\\) (Equation 9), and making a good initial guess is easy by simply ignoring curvature of the planet.
-
-This method is very general and works for arbitrary continuous density distributions (see the [paper](http://lib-www.lanl.gov/la-pubs/00367066.pdf) for details).
-
-Sample code is listed below.
+Sample code for spherical atmospheres is listed below.
 
 ```c++
-float SampleSpherExpMedium(float optDepth, float r, float cosTheta,
+// 'optDepth' is the value to solve for.
+// 'maxOptDepth' is the maximum value along the ray, s.t. (maxOptDepth >= optDepth).
+// 'maxDist' is the maximum distance along the ray.
+float SampleSpherExpMedium(float optDepth, float r, float viewZ,
                            float R, float H, float rcpH,
                            float seaLvlAtt, float rcpSeaLvlAtt,
                            float maxOptDepth, float maxDist)
     {
         const float rcpOptDepth = rcp(optDepth);
+        const float Z           = R * rcpH;
 
         // Make an initial guess.
-    #if 0
+    #if 1
         // Homogeneous assumption.
         float t = optDepth * rcp(maxOptDepth);
     #else
         // Exponential assumption.
-        float t = SampleRectExpMedium(optDepth, r - R, cosTheta, rcpSeaLvlAtt, rcpH);
+        float t = SampleRectExpMedium(optDepth, r - R, viewZ, rcpSeaLvlAtt, rcpH);
     #endif
 
         uint  numIter = 0;
@@ -737,31 +698,33 @@ float SampleSpherExpMedium(float optDepth, float r, float cosTheta,
         do // Perform a Newton–Raphson iteration.
         {
             float radAtDist = RadAtDist(r, cosTheta, t);
-            float cosAtDist = CosAtDist(r, cosTheta, t, radAtDist);
+            float cosAtDist = CosAtDist(r, cosTheta, t);
             // Evaluate the function and its derivatives:
-            // f  (t) = OptDepthAtDist(t) - GivenOptDepth = 0,
-            // f' (t) = AttCoefAtDist(t),
-            // f''(t) = AttCoefAtDist'(t) = -AttCoefAtDist(t) * CosAtDist(t) / H.
-            float optDepthAtDist = EvalOptDepthSpherExpMedium(r, cosTheta, t, seaLvlAtt,
-                                                              R * rcpH, H, rcpH);
-            float attAtDist      = seaLvlAtt * exp((R - radAtDist) * rcpH);
+            // f  [t] = OptDepthAtDist[t] - GivenOptDepth = 0,
+            // f' [t] = AttCoefAtDist[t],
+            // f''[t] = AttCoefAtDist'[t] = -AttCoefAtDist[t] * CosAtDist[t] / H.
+            float optDepthAtDist = OptDepthSpherExpMedium(r, viewZ, t, seaLvlAtt,
+                                                          R, H, rcpH);
+            float attAtDist      = seaLvlAtt * exp(Z - radAtDist * rcpH);
             float attAtDistDeriv = -attAtDist * cosAtDist * rcpH;
 
             float   f = optDepthAtDist - optDepth;
             float  df = attAtDist;
             float ddf = attAtDistDeriv;
 
-            // Be careful not to divide by 0 below.
-        #if 0
+            // May happen due to the limited precision of floating-point arithmetic.
+            if (df == 0) return t;
+
+        #if 1
             // https://en.wikipedia.org/wiki/Newton%27s_method
-            float dt = f * rcp(df);
+            float dt = -f * rcp(df);
         #else
             // https://en.wikipedia.org/wiki/Halley%27s_method
-            float dt = (f * df) * rcp(df * df - 0.5 * f * ddf);
+            float dt = -(f * df) * rcp(df * df - 0.5 * f * ddf);
         #endif
 
             // Refine the initial guess.
-            t = clamp(t - dt, 0, maxDist); // Basic overshoot handling
+            t = clamp(t + dt, 0, maxDist); // Basic overshoot handling
 
             absDiff = abs(optDepthAtDist - optDepth);
             relDiff = abs(optDepthAtDist * rcpOptDepth - 1);
@@ -770,112 +733,30 @@ float SampleSpherExpMedium(float optDepth, float r, float cosTheta,
 
             // Stop when the accuracy goal has been reached.
             // Note that this uses the accuracy of the old value of 't'.
-            // The new value of 't' we just computed is even more accurate.
+            // The new value of 't' we just computed should be even more accurate.
         } while ((absDiff > EPS_ABS) && (relDiff > EPS_REL) && (numIter < NUM_ITER));
 
         return t;
     }
 ```
 
-The function given above is somewhat simplified. You must make sure to not divide by 0, that the attenuation coefficient at the sampled location is not a denormalized floating point number (that may be flushed to 0), you must also be able to handle overshoot, and so on.
-
-The extension for multiple overlapping volumes (with arbitrary distributions) is straightforward. Since it is not generally possible to represent a combination of several volumes by a single exponential volume, we can make an initial guess by assuming that the combined volume is homogeneous along the ray. The rest of the algorithm remains virtually unchanged.
-
 Since optical depth is a smooth monotonically increasing function of distance, this numerical procedure will converge very quickly (typically, after a couple of iterations). If desired, the cost can be fixed by using an iteration counter to terminate the loop, potentially trading accuracy for consistent performance.
 
-It is worth noting that since the code internally uses a numerical approximation of the function, it is not always possible to reach an arbitrary accuracy goal. Using `FLT_EPSILON` results in a high degree of accuracy at the cost of a large number of iterations (typically, 1-10), while 1-2 iterations are sufficient to stay below the relative error level of 0.001.
+It is worth noting that since the code internally uses a numerical approximation of the Chapman function, it may not always be possible to reach an arbitrary accuracy goal. Using `FLT_EPSILON` results in a high degree of accuracy at the cost of a large number of iterations (typically, 1-10), while 1-2 iterations are sufficient to stay below the relative error level of 0.001.
 
-In fact, curvature of the planet can be ignored for moderate distances, making the rectangular function a relatively efficient and accurate approximation. Can we exploit this idea for arbitrary distances?
-
-Let's say that we are not interested in brute force path tracing (which would require accurate numerical inversion as discussed above). Instead, we are trying to gather in-scattered radiance along the ray using Equation 18, where \\(\bm{L_s}\\) is known (which limits us to single and precomputed multiple scattering).
-
-If we sort our random CDF values in ascending order, and make sure that the sampling rate is sufficiently high, we can build an incremental sampling algorithm which effectively models piecewise-flat (or polygonal) planet. We will refer to it as *incremental importance sampling*.
-
-It is a direct replacement for randomized ray marching, and shares the traits of being biased, but consistent. Unlike ray marching, the algorithm is intelligent, and adapts to the properties of the participating medium, which makes it more robust.
-
-Let's try to understand how it works in more detail.
-
-For the first sample along the ray, we must solve
-
-$$ \tag{55} -\mathrm{log} \big( 1 - P(t_1 | \lbrace \bm{x}, \bm{\hat{v}} \rbrace) O(\bm{x}, \bm{\hat{v}}, t\_{max}) \big) = \tau(\bm{x}, \bm{\hat{v}}, t_1) = \tau_1. $$
-
-Basically, we must determine the (approximate) distance \\(t_1\\) to the first sample along the ray given the corresponding optical depth \\(\tau_1\\). To solve this equation, we substitute the analytic rectangular function of optical depth (Equation 29), which is a valid approximation for short distances. Total opacity along the entire ray can be computed accurately using our numerical approximation (Equation 43).
-
-The second sample forms the next edge of the polygon (\\(\tau_2\\) is given):
-
-$$ \tag{56} \tau(\bm{x}, \bm{\hat{v}}, t_1) + \tau(\bm{x} + t_1 \bm{\hat{v}}, \bm{\hat{v}}, t_2 - t_1) = \tau_2. $$
-
-We solve for the relative distance given relative optical depth (w.r.t. the previous sample):
-
-$$ \tag{57} \tau(\bm{x} + t_1 \bm{\hat{v}}, \bm{\hat{v}}, \Delta t_2) = \Delta \tau_2. $$
-
-And so on. Code that implements incremental importance sampling can be found below.
-
-```c++
-// Uniforms.
-float    R, Z, H, rcpH, seaLvlAtt, rcpSeaLvlAtt;
-float3   C;
-spectrum ssAlbedo;
-
-spectrum IncrementalImportanceSampling(float3 X, float3 V, float maxDist, uint numSamples)
-{
-    // Compute the initial parameters.
-    float3 P        = X;
-    float  r        = distance(P, C);
-    float  cosTheta = dot(P - C, V) * rcp(r);
-
-    // This snippet only supports monochromatic attenuation coefficients.
-    float maxOptDepth = EvalOptDepthSpherExpMedium(r, cosTheta, t, seaLvlAtt, Z, H, rcpH);
-    float maxOpacity  = OpacityFromOpticalDepth(maxOptDepth);
-
-    spectrum radiance = 0;
-    float    optDepth = 0;
-    float    t        = 0;
-
-    for (uint i = 0; i < numSamples; i++)
-    {
-        // Samples must be arranged in the ascending order,
-        // s.t. for any i, sample[i] < sample[i + 1].
-        float cdf = GetOrderedUnitIntervalRandomSample(i, numSamples);
-
-        // Convert to absolute optical depth (Equation 17).
-        float absOptDepth = -log(1 - cdf * maxOpacity);
-
-        // Convert to relative optical depth.
-        float relOptDepth = absOptDepth - optDepth;
-
-        // Solve for the relative distance (Equation 57).
-        float dt = SampleRectExpMedium(relOptDepth, r - R, cosTheta, rcpSeaLvlAtt, rcpH);
-
-        // Update the state for the next iteration.
-        t        = min(t + dt, maxDist);
-        optDepth = absOptDepth; // += relOptDepth
-        P        = X + t * V;
-        r        = RadAtDist(X, V, t);
-        cosTheta = CosAtDist(X, V, t, r)
-
-        // Equation 18 (inner sum).
-        radiance += ComputeInScatteredRadiance(P, V);
-    }
-
-    // Equation 18 (outer terms).
-    radiance *= ssAlbedo * maxOpacity * rcp(numSamples);
-
-    return radiance;
-}
-```
+In fact, curvature of the planet can be ignored for moderate distances, making the rectangular inverse a relatively efficient and accurate approximation.
 
 ## Conclusion
 
-This article has presented several methods for sampling common types of analytic participating media. They are particularly useful for modeling low-frequency variations of density. While planetary atmospheres cannot be sampled analytically, the proposed numerical approach works well in practice. I look forward to faster and simpler methods which will be undoubtedly discovered by the rendering community.
+This article has presented several methods for sampling common types of analytic participating media. They are particularly useful for modeling low-frequency variations of density. While planetary atmospheres cannot be sampled analytically, the proposed numerical approach works well in practice. None of these techniques do not require voxelization, which allow simulation of various volumetric effects at real-time frame rates.
 
 ## What's Next?
 
-The second part of the blog post (published separately) will discuss handling of spectrally varying participating media. It is an exciting (but challenging) topic, and I look forward to sharing my findings with you.
+The second part of the blog post (published separately) will discuss rendering of spectrally-varying participating media. It is an exciting (but challenging) topic, and I look forward to sharing my findings.
 
 ## Acknowledgments
 
-I would like to thank Julian Fong and Sébastien Hillaire for discussion and offering thoughtful comments.
+I would like to thank Julian Fong and Sébastien Hillaire for feedback and offering thoughtful comments.
 
 <!---
 
