@@ -11,11 +11,11 @@ tags: [
     ]
 ---
 
-Participating media rendering is an important aspect of every modern renderer. When I say participating media, I am not just talking about fog, fire, and smoke. All matter is composed of [atoms](https://courses.lumenlearning.com/boundless-chemistry/chapter/the-structure-of-the-atom/), which can be sparsely (e.g. in a gas) or densely (e.g. in a solid) distributed in space. Whether we consider the particle or the wave nature of [light](https://en.wikipedia.org/wiki/Light), it penetrates all matter (even [metals](http://webhome.phy.duke.edu/~qelectron/group/group_reading_Born_and_Wolf.pdf)) to a certain degree and interacts with its atoms along the way. The nature and the degree of "participation" depend on the material in question.
+Rendering of participating media is an important aspect of every modern renderer. When I say participating media, I am not just talking about fog, fire, and smoke. All matter is composed of [atoms](https://courses.lumenlearning.com/boundless-chemistry/chapter/the-structure-of-the-atom/), which can be sparsely (e.g. in a gas) or densely (e.g. in a solid) distributed in space. Whether we consider the particle or the wave nature of [light](https://en.wikipedia.org/wiki/Light), it penetrates all matter (even [metals](http://webhome.phy.duke.edu/~qelectron/group/group_reading_Born_and_Wolf.pdf)) to a certain degree and interacts with its atoms along the way. The nature and the degree of "participation" depend on the material in question.
 
 <!--more-->
 
-In the [radiative transfer](https://archive.org/details/RadiativeTransfer) literature, light-material interaction is usually quantified in terms of absorption (conversion of electromagnetic energy of photons into kinetic energy of atoms, which manifests itself as reduction of light intensity) and scattering (absorption followed by [stimulated emission](https://en.wikipedia.org/wiki/Stimulated_emission) of electromagnetic energy on interaction). Therefore, it is common to describe participating media using the collision coefficients: the *absorption coefficient* \\(\bm{\mu_a}\\) and the *scattering coefficient* \\(\bm{\mu_s}\\). These coefficients give the probability density of the corresponding event per unit distance traveled by a photon, which implies the [SI units](https://en.wikipedia.org/wiki/International_System_of_Units) of measurement are \\(m^{-1}\\). They vary spatially, and may, in general, depend on the orientation unless the particle distribution is [isotropic](http://www.eugenedeon.com/hitchhikers).
+In the [radiative transfer](https://archive.org/details/RadiativeTransfer) literature, light-material interaction is usually quantified in terms of absorption (conversion of electromagnetic energy of photons into kinetic energy of atoms, which manifests itself as reduction of light intensity) and scattering (absorption followed by [stimulated emission](https://en.wikipedia.org/wiki/Stimulated_emission) of electromagnetic energy on collision). Therefore, it is common to describe participating media using the collision coefficients: the *absorption coefficient* \\(\bm{\mu_a}\\) and the *scattering coefficient* \\(\bm{\mu_s}\\). These coefficients give the probability density of the corresponding event per unit distance traveled by a photon, which implies the [SI units](https://en.wikipedia.org/wiki/International_System_of_Units) of measurement are \\(m^{-1}\\). They vary spatially, and may, in general, depend on the orientation unless the particle distribution is [isotropic](http://www.eugenedeon.com/hitchhikers).
 
 The [attenuation coefficient](https://en.wikipedia.org/wiki/Attenuation_coefficient) \\(\bm{\mu_t}\\)
 
@@ -39,7 +39,7 @@ $$ \tag{4} \bm{\kappa} = \frac{\bm{\lambda}}{4 \pi} \bm{\mu_a}. $$
 
 For this reason, \\(\bm{\eta}\\) is called the [refractive index](https://www.feynmanlectures.caltech.edu/I_31.html) (or IOR), and \\(\bm{\kappa}\\) is sometimes referred to as the [absorption index](http://www.sfu.ca/~gchapman/e376/e376l7.pdf). Note that I am not talking about the IOR of an individual particle (which influences the [microscopic scattering](https://en.wikipedia.org/wiki/Mie_scattering) process), but rather about the macroscopic properties of the medium itself.
 
-The tuple \\(\lbrace \bm{\eta}, \bm{\kappa}, \bm{\mu_s} \rbrace\\) \\(\big(\\)or, alternatively, \\(\lbrace \bm{\eta}, \bm{d}, \bm{\alpha\_{ss}} \rbrace \big) \\) contains sufficient information to describe both the behavior at the surface (boundary) and the (isotropic) multiple-scattering process (known as [subsurface scattering](https://en.wikipedia.org/wiki/Subsurface_scattering)) inside the volume that ultimately gives rise to what we perceive as the surface albedo \\(\bm{\alpha\_{ms}}\\). Note that certain materials (metals, in particular) require modeling of [wave interference](https://en.wikipedia.org/wiki/Wave_interference) to obtain expected reflectance values (so a solution based on geometric optics would yield inaccurate results).
+The tuple \\(\lbrace \bm{\eta}, \bm{\kappa}, \bm{\mu_s} \rbrace\\) \\(\big(\\)or, alternatively, \\(\lbrace \bm{\eta}, \bm{d}, \bm{\alpha\_{ss}} \rbrace \big) \\) contains sufficient information to describe both the behavior at the surface (boundary) and the (isotropic) multiple-scattering process (known as [subsurface scattering](https://en.wikipedia.org/wiki/Subsurface_scattering)) inside the volume that ultimately gives rise to what we perceive as the surface albedo \\(\bm{\alpha\_{ms}}\\). Note that certain materials (metals, in particular) require modeling of [wave interference](https://en.wikipedia.org/wiki/Wave_interference) to obtain expected reflectance values (so a solution purely based on geometric optics would yield inaccurate results).
 
 A surface, then, is just an optical interface signified by a discontinuity of optical properties of the medium (in reality, the [transition at the boundary is continuous](https://www.feynmanlectures.caltech.edu/II_33.html), with a thickness of several atomic layers, but we can ignore this fact at scales relevant to computer graphics).
 
@@ -124,7 +124,7 @@ $$
 
 where \\(\bm{y}\\) denotes the position of the closest surface along the ray.
 
-We can leave [volumetric emission](https://dl.acm.org/doi/10.1111/cgf.13228) out by setting \\(\bm{L_e} = 0\\):
+We will leave [volumetric emission](https://dl.acm.org/doi/10.1111/cgf.13228) out by setting \\(\bm{L_e} = 0\\):
 
 $$ \tag{14}
     \bm{L}(\bm{x}, \bm{\hat{v}}) =
@@ -132,7 +132,7 @@ $$ \tag{14}
     \bm{T}(\bm{x}, \bm{y}) \bm{L_g}(\bm{y}, \bm{\hat{v}}).
 $$
 
-We can evaluate this integral using one of the [Monte Carlo](http://www.pbr-book.org/3ed-2018/Monte_Carlo_Integration.html) methods. The [Monte Carlo estimator](http://www.pbr-book.org/3ed-2018/Monte_Carlo_Integration/The_Monte_Carlo_Estimator.html) of the integral (for a particular frequency) takes the following form:
+This integral can be evaluated using one of the [Monte Carlo](http://www.pbr-book.org/3ed-2018/Monte_Carlo_Integration.html) methods. The [Monte Carlo estimator](http://www.pbr-book.org/3ed-2018/Monte_Carlo_Integration/The_Monte_Carlo_Estimator.html) (for a particular frequency) has the following form:
 
 $$ \tag{15} L(\bm{x}, \bm{\hat{v}})
     \approx \frac{1}{N} \sum\_{i=1}^{N} \frac{T(\bm{x}, \bm{u_i}) \mu_t(\bm{u_i}) L_s(\bm{u_i}, \bm{\hat{v}})}{p( u_i | \lbrace \bm{x}, \bm{\hat{v}} \rbrace)} + T(\bm{x}, \bm{y}) L_g(\bm{y}, \bm{\hat{v}}),
@@ -184,7 +184,7 @@ In this context, total opacity along the ray serves as the probability of a coll
 $$ \tag{22} L(\bm{x}, \bm{\hat{v}}) \approx O(\bm{x}, \bm{\bm{y}}) \frac{1}{N} \sum\_{i=1}^{N} L_s(\bm{u_i}, \bm{\hat{v}}) + \big(1 - O(\bm{x}, \bm{\bm{y}}) \big) L_g(\bm{y}, \bm{\hat{v}}).
 $$
 
-In order to sample the integrand in Equation 14, we must be also able to [invert](http://www.pbr-book.org/3ed-2018/Monte_Carlo_Integration/Sampling_Random_Variables.html#TheInversionMethod) the [CDF](https://en.wikipedia.org/wiki/Cumulative_distribution_function) \\(P\\):
+In order to sample the integrand of Equation 14, we must be also able to [invert](http://www.pbr-book.org/3ed-2018/Monte_Carlo_Integration/Sampling_Random_Variables.html#TheInversionMethod) the [CDF](https://en.wikipedia.org/wiki/Cumulative_distribution_function) \\(P\\):
 
 $$ \tag{23} P(u | \lbrace \bm{x}, \bm{\hat{v}} \rbrace)
     = \int\_{0}^{u} p(s | \lbrace \bm{x}, \bm{\hat{v}} \rbrace) ds
@@ -201,7 +201,7 @@ $$
 
 ## Types of Analytic Participating Media
 
-If your background is in real-time rendering, you may have heard of [constant, linear and exponential fog](http://www.terathon.com/lengyel/Lengyel-UnifiedFog.pdf). These names refer to the way density varies in space (typically, with respect to height), and can be used to model effects like height fog and atmospheric scattering. In these scenarios, the albedo is usually assumed to be constant.
+If your background is in real-time rendering, you may have heard of [constant, linear and exponential fog](http://www.terathon.com/lengyel/Lengyel-UnifiedFog.pdf). These names refer to the way density varies in space (typically, with respect to the altitude), and can be used to model effects like height fog and atmospheric scattering.
 
 ### Constant Density
 
@@ -237,7 +237,7 @@ Without loss of generality, let's assume that density varies with the third coor
 
 $$ \tag{28} \rho(\bm{x}) = a h(\bm{x}) + k = a x_3 + k. $$
 
-This formulation can be reduced to homogeneous media by setting \\(a = 0\\).
+One can obtain homogeneous media by setting \\(a = 0\\).
 
 We would like to evaluate the optical depth integral:
 
@@ -262,7 +262,7 @@ $$ \tag{31}
     u = \frac{(a x_3 + k) \pm \sqrt{ (a x_3 + k)^2 - 2 a \hat{v}\_3 (\tau / \sigma_t)}}{a \hat{v}\_3}.
 $$
 
-Phusically, we are only interested in the smaller root (with the negative sign), since it gives the solution for positive density values. Note that homogeneous media \\( \big( m \hat{v}\_3 = 0 \big) \\) require special care.
+Physically, we are only interested in the smaller root (with the negative sign), since it gives the solution for positive density values. Note that homogeneous media \\( \big( a \hat{v}\_3 = 0 \big) \\) require special care.
 
 ### Exponential Variation of Density with Altitude in Rectangular Coordinates
 
@@ -407,7 +407,7 @@ It is interesting to contemplate the physical meaning of optical depth and the C
 
 $$ \tag{45} \int\_{h = (r - R)}^{\infty} k e^{-n s} ds = \frac{k}{n} e^{-n h} $$
 
-gives the mass of an infinitely tall vertical column starting at the altitude \\(h\\). At the ground level, its mass is \\(k/n = kH\\).
+gives the mass of an infinitely tall vertical column starting at the altitude \\(h\\). At the sea level, its mass is \\(\frac{k}{n} = kH\\).
 
 Optical depth, then, is a *product* of the mass of the vertical column *and* the value of the obliquity function (which, intuitively, gives the absolute optical air mass along the oblique ray) *times* the mass attenuation coefficient.
 
@@ -418,24 +418,24 @@ It is always a good idea to examine a function visually, as a graph. Let's do th
 {{< figure src="/img/chapman_ref.png" caption="*Plot of the Chapman function for r = 6600.*">}}
 
 Above, I plotted values of the Chapman function (vertical axis) varying with the angle \\(\theta\\) (horizontal axis, in degrees) for different values of the scale height \\(H\\): \\(1\\) (blue), \\(10\\) (orange), \\(20\\) (green), \\(40\\) (red), \\(60\\) (purple), \\(80\\) (brown), \\(100\\) (light blue).
-Arguably, the first two are the most important, since they roughly correspond to scale heights of aerosols and air of Earth's atmosphere. However, it is also nice to be able to support larger values to model atmospheres of [other planets](https://en.wikipedia.org/wiki/Scale_height#Planetary_examples).
+Arguably, the first two are the most important, since they roughly correspond to scale heights of [aerosols and air](https://hal.inria.fr/inria-00288758/en) of Earth's atmosphere. However, it is nice to be able to support larger values to model atmospheres of [other planets](https://en.wikipedia.org/wiki/Scale_height#Planetary_examples).
 
 Being an obliquity function, \\(C(z, 0) = 1\\). The function varies slowly, as long as the angle is far from being horizontal (which suggests an opportunity for a [small angle approximation](https://en.wikipedia.org/wiki/Small-angle_approximation)).
 
-To my knowledge, the Chapman function does not have a [closed-form](https://en.wikipedia.org/wiki/Closed-form_expression#Analytic_expression) expression. Many [approximations](https://agupubs.onlinelibrary.wiley.com/doi/pdf/10.1029/2011JD016706) exist. Unfortunately, most of them are specific to Earth's atmosphere, and we are interested in a general solution. The most accurate approximation I have found was developed by [David Huestis](https://ui.adsabs.harvard.edu/abs/2001JQSRT..69..709H/abstract). It is based on a power series expansion of the integrand. Using the first two terms results in the following formula for \\(\theta \leq \pi/2\\):
+To my knowledge, the Chapman function does not have a [closed-form](https://en.wikipedia.org/wiki/Closed-form_expression#Analytic_expression) expression. Many [approximations](https://agupubs.onlinelibrary.wiley.com/doi/pdf/10.1029/2011JD016706) exist. Unfortunately, most of them are specific to Earth's atmosphere, and we are interested in a general solution. The most accurate approximation I have found was developed by [David Huestis](https://ui.adsabs.harvard.edu/abs/2001JQSRT..69..709H/abstract). It is based on a power series expansion. Using the first two terms results in the following formula for \\(\theta \leq \pi/2\\):
 
 $$ \begin{aligned} \tag{46} C_u(z, \theta) \approx
     & \sqrt{\frac{1 - \sin{\theta}}{1 + \sin{\theta}}} \Bigg(1 - \frac{1}{2 (1 + \sin{\theta})} \Bigg) + \frac{\sqrt{\pi z}}{\sqrt{1 + \sin{\theta}}} \times \cr
     & \Bigg[ e^{z - z \sin{\theta}} \text{erfc}\left(\sqrt{z - z \sin{\theta}}\right) \Bigg] \Bigg( -\frac{1}{2} + \sin{\theta} + \frac{1}{1 + \sin{\theta}} + \frac{2 (1 + \sin{\theta}) - 1}{4 z (1 + \sin{\theta})} \Bigg).
 \end{aligned}$$
 
-The approximation itself is also not closed-form, since it contains the [complementary error function](http://mathworld.wolfram.com/Erfc.html) \\(\mathrm{erfc}\\). It's also somewhat annoying that the result is given in terms of \\(\sin{\theta}\\) rather than \\(\cos{\theta}\\), but this reparametrization is actually necessarily to expand the function in the power series.
+The approximation itself is also not closed-form, since it contains the [complementary error function](http://mathworld.wolfram.com/Erfc.html) \\(\mathrm{erfc}\\). It's also somewhat annoying that the result is given in terms of \\(\sin{\theta}\\) rather than \\(\cos{\theta}\\), but this reparametrization is actually necessarily to make the series converge quickly.
 
 For the angle of 90 degrees, the integral is given using the [modified Bessel function of the second kind](http://mathworld.wolfram.com/ModifiedBesselFunctionoftheSecondKind.html) \\(K_1\\):
 
 $$ \tag{47} C_h(z) = C(z,\frac{\pi}{2}) = z e^z K_1(z) \approx \sqrt{\frac{\pi z}{2}} \left(1 + \frac{3}{8 z} -\frac{15}{128 z^2}\right). $$
 
-We use a slightly more [accurate approximation](https://ui.adsabs.harvard.edu/abs/2001JQSRT..69..709H/abstract) than \\(C_u(z, \pi/2)\\) (we add the quadratic term) to obtain some extra precision near 0.
+We use a slightly more [accurate approximation](https://ui.adsabs.harvard.edu/abs/2001JQSRT..69..709H/abstract) than \\(C_u(z, \pi/2)\\) to obtain some extra precision near 0 (we add the quadratic term).
 
 Beyond the 90 degree angle, the following [identity](https://ui.adsabs.harvard.edu/abs/2001JQSRT..69..709H/abstract) can be used:
 
@@ -517,11 +517,11 @@ We can also represent the relative error as *precision* by plotting the number o
 
 {{< figure src="/img/chapman_approx_dig.png" caption="*Precision plot of the approximation of the Chapman function for r = 6600.*">}}
 
-Of course, we must address the elephant in the room, \\(\mathrm{erfc}\\). Since it is [related](https://www.johndcook.com/erf_and_normal_cdf.pdf) to the [normal distribution](https://en.wikipedia.org/wiki/Normal_distribution), it has numerous applications, and, as a result, dozens of existing approximations. Unfortunately, most of them are not particularly accurate, especially across a huge range of values (as in our case), and accuracy of \\(\mathrm{erfc}\\) greatly affects the quality of the full approximation.
+Of course, we must address the elephant in the room, \\(\mathrm{erfc}\\). Since it is [related](https://www.johndcook.com/erf_and_normal_cdf.pdf) to the [normal distribution](https://en.wikipedia.org/wiki/Normal_distribution), it has numerous applications, and, as a result, dozens of existing approximations. Unfortunately, most of them are not particularly accurate, especially across a huge range of values (as in our case), and accuracy of \\(\mathrm{erfc}\\) greatly affects the quality of our approximation.
 
-It took me a while to find the approximation developed by [Takuya Ooura](http://www.kurims.kyoto-u.ac.jp/~ooura/gamerf.html). He provides an impressive implementation (written C) accurate to 16 decimal digits. That's actually too accurate (and too expensive) for our needs, but it's relatively easy to reduce the degree of the polynomial in order to obtain a single-precision version. A great thing about his approximation is that it includes the \\(\exp(x^2)\\) factor, which means we can approximate the entire term of Equation 46 inside the square brackets.
+It took me a while to find the approximation developed by [Takuya Ooura](http://www.kurims.kyoto-u.ac.jp/~ooura/gamerf.html). He provides an impressive implementation (written C) accurate to 16 decimal digits. That's actually too accurate (and too expensive) for our needs, but it's relatively easy to reduce the degree of the polynomial in order to obtain a single-precision version. A great thing about his approximation is that it includes the \\(\exp(x^2)\\) factor, which means we can replace the entire term of Equation 46 inside the square brackets.
 
-The implementation of Takuya Ooura is reproduced below (with minor changes).
+The implementation of Takuya Ooura is reproduced below (with minor modifications).
 
 ```c++
 // Computes (Exp[x^2] * Erfc[x]) for (x >= 0).
@@ -558,13 +558,13 @@ float Exp2Erfc(float x)
 }
 ```
 
-The approximation looks and performs well (in both single and double precision), as you can see from the graphs of the single-precision version.
+The approximation performs well, as you can see from the plot of the single-precision version shown below.
 
 {{< figure src="/img/exp2erfc.png" caption="*Plot of \\(exp(x^2) erfc(x)\\). The function approaches 0 as the value of the argument increases.*">}}
 
 {{< figure src="/img/exp2erfc_error.png" caption="*Relative error plot of the approximation of \\(exp(x^2) erfc(x)\\).*">}}
 
-I do not include the Relative error plot of \\(\exp(x^2) \mathrm{erfc}(x)\\) since it looks very similar to its absolute error plot. And since the error of this term is lower than the error of the approximation of the Chapman function, substituting the former does not visibly affect the error of the latter.
+I do not show the absolute error plot of \\(\exp(x^2) \mathrm{erfc}(x)\\) since it looks very similar to the relative error plot. And since the error of this term is lower than the error of the approximation of the Chapman function, substituting the former does not visibly affect the error of the latter (and the error plots remain unchanged).
 
 The proposed approximation is relatively expensive. It is particularly useful for path tracing, since the inversion process (described later) requires a certain degree of accuracy. If high accuracy is not required, you can (and probably should) use the approximation proposed by [Christian Schüler](http://www.gameenginegems.net/gemsdb/article.php?id=1133) in his GPU Gems 3 article:
 
@@ -574,13 +574,13 @@ It models the shape of the function pretty well, especially considering the cost
 
 {{< figure src="/img/chapman_chris.png" caption="*Plot of the approximation of the Chapman function by Christian Schüler for r = 6600.*">}}
 
-However, if you care about accuracy, and plot the relative error graph, it paints a slightly less attractive picture.
+However, if you care about accuracy, and plot the relative error plot, it paints a slightly less attractive picture.
 
 {{< figure src="/img/chapman_chris_error.png" caption="*Relative error plot of the approximation of the Chapman function by Christian Schüler for \\(r = 6600\\).*">}}
 
 As always, there is a compromise. If you need accuracy (for a certain algorithm or technique), you must use a more accurate implementation. If every last cycle matters, it's perfectly fine to "cheat" as long as the error is not very apparent.
 
-I should also mention that Christian references another analytic expression of the Chapman function originally proposed by [Miroslav Kocifaj](https://ui.adsabs.harvard.edu/abs/1996CoSka..26...23K/abstract). Miroslav's paper has two equations of interest: one for arbitrary altitudes (11a), and one for small altitudes (11b), with the latter referenced in the GPU Pro article. Both look very similar to the power series expansion we are using, while at the same time featuring several orders of magnitude higher error (so both are clearly *approximations*, *not exact* solutions). Additionally, his formula for arbitrary altitudes depends on the planetary radius term (which can not be removed via simplification) which is not present in the integral formulation (Equation 42), which leads me to believe that the paper contains an error.
+I should also mention that Christian references another analytic expression of the Chapman function proposed by [Miroslav Kocifaj](https://ui.adsabs.harvard.edu/abs/1996CoSka..26...23K/abstract). Miroslav's paper has two equations of interest: one for arbitrary altitudes (11a), and one for small altitudes (11b), with the latter referenced in the GPU Pro article. Both look very similar to the power series expansion we are using, while at the same time featuring several orders of magnitude higher error (so both are clearly *approximations*, *not exact* solutions). Additionally, his formula for arbitrary altitudes depends on the planetary radius term (which can not be removed via simplification) which is not present in the integral formulation (Equation 42), which leads me to believe that the paper contains an error.
 
 #### Evaluating Optical Depth Using the Chapman Function
 
@@ -590,7 +590,7 @@ However, the approximation of the Chapman function contains a branch (upper/lowe
 
 In order to evaluate optical depth between two arbitrary points \\(\bm{x}\\) and \\(\bm{y}\\), we have to consider three distinct possibilities:
 
-1\. \\(\cos{\theta_x} \geq 0 \\), which means that the ray points into the upper hemisphere with respect to the surface normal at the point \\(\bm{x}\\). This also means it points into the upper hemisphere at any point \\(\bm{y}\\) along the ray (it is fairly obvious if you sketch it). Optical depth is given by Equation 44, which we specialize by replacing \\(C\\) with \\(C_u\\) which is restricted to the upper hemisphere:
+1\. \\(\cos{\theta_x} \geq 0 \\), which means that the ray points into the upper hemisphere with respect to the surface normal at the point \\(\bm{x}\\). This also means it points into the upper hemisphere at any point \\(\bm{y}\\) along the ray (that is fairly obvious if you sketch it). Optical depth is given by Equation 44, which we specialize by replacing \\(C\\) with \\(C_u\\), which is restricted to the upper hemisphere:
 
 $$ \tag{50}
 \bm{\tau\_{uu}}(z_x, \theta_x, z_y, \theta_y)
@@ -660,15 +660,15 @@ spectrum OptDepthSpherExpMedium(float r, float viewZ, float dist,
 }
 ```
 
-Note that using this function (rather than calling `OptDepthSpherExpMedium` twice and subtracting the results) is beneficial not only for performance but also for correctness: it avoids numerical instability near the horizon where rays directions are prone to alternating between the two hemispheres, which could cause subtraction to result in negative optical depth values. For performance, it may be also worth considering a special case is when the point \\(\bm{y}\\) is considered to be outside the atmosphere (if `exp(Z - zY) < EPS`, for instance). In that case, `chY = 0` is an adequate approximation.
+Note that using this function (rather than calling `OptDepthSpherExpMedium` twice and subtracting the results) is beneficial not only for performance but also for correctness: it avoids numerical instability near the horizon where ray directions are prone to alternate between the two hemispheres, which could cause subtraction to result in negative optical depth values. For performance (and numerical stability) reasons, it may be also worth making a special case for when the point \\(\bm{y}\\) is far enough to be considered outside the atmosphere (if `exp(Z - zY) < EPS`, for instance). In that case, `chY = 0` is an adequate approximation.
 
 #### Sampling Exponential Media in Spherical Coordinates
 
-One does not simply sample the Chapman function. There doesn't appear to be a way to invert the integral formulation (Equation 40), and attempts at solving numerical approximations for distance seem futile. Of course, we still have the option of looking for a numerical fit for the tabulated inverse... But we are not going to do that. And here's why.
+One does not simply sample the Chapman function. There doesn't appear to be a way to invert the integral formulation (Equation 40), and attempts at solving numerical approximations for distance seem futile. Of course, we still have the option of looking for a numerical fit for the tabulated inverse, or using a look-up table directly... But we are not going to do that. And here's why.
 
 In order to sample participating media, we must be able to solve the optical depth equation for distance. If you only have a single analytically-defined volume, sampling it is (usually) trivial. However, once you have several heterogeneous overlapping volumes, you start running into issues. While optical depth is additive, the sampled distance is not. So, what do we do?
 
- If we can't solve the equation analytically, we can solve it numerically, using the [Newton–Raphson method](https://en.wikipedia.org/wiki/Newton%27s_method). Recall that it requires being able to make an initial guess, evaluate the function, and take its derivative. Our function is the total optical depth. We can make an initial guess by assuming that the combined medium is homogeneous (or, under certain assumptions, rect-exponential). And since we know that the derivative of optical depth is just the attenuation coefficient \\(\mu_t\\) (Equation 17), so we have all the pieces we need.
+ If we can't solve the equation analytically, we can solve it numerically, using the [Newton–Raphson method](https://en.wikipedia.org/wiki/Newton%27s_method). Recall that this method requires being able to make an initial guess, evaluate the function, and take its derivative. Our function is the total optical depth. We can make an initial guess by assuming that the combined medium is homogeneous (or, under certain assumptions, rect-exponential). And since we know that the derivative of optical depth is just the attenuation coefficient \\(\mu_t\\) (see Equation 17), so we have all the pieces we need.
 
 This method is very general and works for arbitrary [continuous density distributions](http://lib-www.lanl.gov/la-pubs/00367066.pdf).
 
@@ -715,8 +715,8 @@ float SampleSpherExpMedium(float optDepth, float r, float viewZ,
             float ddf = attAtDistDeriv;
 
             // May happen due to the limited precision of floating-point arithmetic.
-            // This should not happen (e.g. 'maxDist' and 'maxOptDepth' should be
-            // reduced to prevent this from happening). Ideally, we should write
+            // This should not be allowed (e.g. 'maxDist' and 'maxOptDepth' should
+            // be reduced to prevent this from happening). Ideally, we should write
             // assert(df != 0);
             if (df == 0) return t;
 
@@ -754,10 +754,6 @@ In fact, the curvature of the planet can be ignored for moderate distances, maki
 ## Conclusion
 
 This article has presented several methods for sampling common types of analytic participating media. They are particularly useful for modeling low-frequency variations of density. While planetary atmospheres cannot be sampled analytically, the proposed numerical approach works well in practice. None of these techniques require voxelization, which allows simulation of various volumetric effects at real-time frame rates.
-
-## What's Next?
-
-The second part of the article (published separately) will discuss rendering of spectrally-varying participating media. It is an exciting (but challenging) topic, and I look forward to sharing my findings.
 
 ## Acknowledgments
 
