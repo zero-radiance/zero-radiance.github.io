@@ -19,7 +19,7 @@ The diffusion model is radially symmetric, and is defined as
 
 $$ \tag{1} R(r) = \frac{A s}{8 \pi r} \Big( e^{-s r} + e^{-s r / 3} \Big). $$
 
-The PDF must be normalized:
+To find the corresponding PDF, it must be normalized:
 
 $$ \tag{2}
     \int\_{-\infty}^{\infty} \int\_{-\infty}^{\infty} \frac{R(\sqrt{x^2+y^2})}{A} dx dy =
