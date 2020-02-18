@@ -752,7 +752,7 @@ This article has presented several methods for sampling common types of analytic
 
 ## What's Next?
 
-The second part of the blog post (published separately) will discuss rendering of spectrally-varying participating media. It is an exciting (but challenging) topic, and I look forward to sharing my findings.
+The second part of the article (published separately) will discuss rendering of spectrally-varying participating media. It is an exciting (but challenging) topic, and I look forward to sharing my findings.
 
 ## Acknowledgments
 
