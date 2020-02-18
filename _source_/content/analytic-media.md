@@ -1,6 +1,6 @@
 ---
 title: "Sampling Analytic Participating Media"
-date: 2019-12-17
+date: 2020-02-17
 hidden: true
 draft: true
 categories: [ "Graphics", "Math" ]
