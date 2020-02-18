@@ -406,7 +406,7 @@ Arguably, the first two are the most important, since they roughly correspond to
 
 Being an obliquity function, \\(C(z, 0) = 1\\). The function varies slowly, as long as the angle is far from being horizontal (which suggests an opportunity for a [small angle approximation](https://en.wikipedia.org/wiki/Small-angle_approximation)).
 
-To my knowledge, the Chapman function does not have a [closed-form](https://en.wikipedia.org/wiki/Closed-form_expression#Analytic_expression) expression. Many [approximations](https://agupubs.onlinelibrary.wiley.com/doi/pdf/10.1029/2011JD016706) exist. Unfortunately, most of them are specific to Earth's atmosphere, and we are interested in a general solution. The most accurate approximation I have found was developed by [David Huestis](https://ui.adsabs.harvard.edu/abs/2001JQSRT..69..709H/abstract). It is based on a power series expansion of the integrand. Using the first two terms results in the following formula for \\(\theta < \pi/2\\):
+To my knowledge, the Chapman function does not have a [closed-form](https://en.wikipedia.org/wiki/Closed-form_expression#Analytic_expression) expression. Many [approximations](https://agupubs.onlinelibrary.wiley.com/doi/pdf/10.1029/2011JD016706) exist. Unfortunately, most of them are specific to Earth's atmosphere, and we are interested in a general solution. The most accurate approximation I have found was developed by [David Huestis](https://ui.adsabs.harvard.edu/abs/2001JQSRT..69..709H/abstract). It is based on a power series expansion of the integrand. Using the first two terms results in the following formula for \\(\theta \leq \pi/2\\):
 
 $$ \begin{aligned} \tag{44} C_u(z, \theta) \approx
     & \sqrt{\frac{1 - \sin{\theta}}{1 + \sin{\theta}}} \Bigg(1 - \frac{1}{2 (1 + \sin{\theta})} \Bigg) + \frac{\sqrt{\pi z}}{\sqrt{1 + \sin{\theta}}} \times \cr
@@ -476,7 +476,7 @@ float RescaledChapman(float z, float Z, float cosTheta)
     // so we can just use Abs[Cos[theta]].
     float ch = ChapmanUpperApprox(z, abs(cosTheta)) * exp(Z - z); // Rescaling adds 'exp'
 
-    if (cosTheta <= 0)
+    if (cosTheta < 0)
     {
         // Ch[z, theta] = 2 * Exp[z - z_0] * Ch[z_0, Pi/2] - Ch[z, Pi - theta].
         // z_0 = r_0 / H = (r / H) * Sin[theta] = z * Sin[theta].
@@ -493,26 +493,22 @@ float RescaledChapman(float z, float Z, float cosTheta)
 
 We can evaluate the quality of the approximation by computing the error with respect to the integral numerically evaluated in Mathematica.
 
-{{< figure src="/img/chapman_approx_abs.png" caption="*Plot of the absolute error of the approximation of the Chapman function for r = 6600.*">}}
+{{< figure src="/img/chapman_approx_abs.png" caption="*Absolute error plot of the approximation of the Chapman function for r = 6600.*">}}
 
-{{< figure src="/img/chapman_approx_rel.png" caption="*Plot of the relative error of the approximation of the Chapman function for r = 6600.*">}}
+{{< figure src="/img/chapman_approx_rel.png" caption="*Relative error plot of the approximation of the Chapman function for r = 6600.*">}}
 
 We can also represent the relative error as *precision* by plotting the number of digits after the decimal point. Since decimal precision of 32-bit floating numbers is between [6-8 digits](https://www.exploringbinary.com/decimal-precision-of-binary-floating-point-numbers/), the approximation can be considered relatively accurate (particularly so for the range of typical values).
 
-{{< figure src="/img/chapman_approx_dig.png" caption="*Plot of precision of the approximation of the Chapman function for r = 6600.*">}}
+{{< figure src="/img/chapman_approx_dig.png" caption="*Precision plot of the approximation of the Chapman function for r = 6600.*">}}
 
 Of course, we must address the elephant in the room, \\(\mathrm{erfc}\\). Since it is [related](https://www.johndcook.com/erf_and_normal_cdf.pdf) to the [normal distribution](https://en.wikipedia.org/wiki/Normal_distribution), it has numerous applications, and, as a result, dozens of existing approximations. Unfortunately, most of them are not particularly accurate, especially across a huge range of values (as in our case), and accuracy of \\(\mathrm{erfc}\\) greatly affects the quality of the full approximation.
 
-It took me a while to find the approximation developed by [Takuya Ooura](http://www.kurims.kyoto-u.ac.jp/~ooura/gamerf.html). He provides an impressive implementation (written C) accurate to 16 decimal digits. That's actually too accurate (and too expensive) for our needs, but it's relatively easy to reduce the degree of the polynomial in order to obtain a single precision version. A great thing about his approximation is that it includes the \\(e^{-x^2}\\) factor, which means we can approximate the entire term of Equation 44 inside the square brackets.
+It took me a while to find the approximation developed by [Takuya Ooura](http://www.kurims.kyoto-u.ac.jp/~ooura/gamerf.html). He provides an impressive implementation (written C) accurate to 16 decimal digits. That's actually too accurate (and too expensive) for our needs, but it's relatively easy to reduce the degree of the polynomial in order to obtain a single precision version. A great thing about his approximation is that it includes the \\(\exp(x^2)\\) factor, which means we can approximate the entire term of Equation 44 inside the square brackets.
 
-{{< figure src="/img/exp2erfc.png" caption="*Plot of \\(\exp(x^2) \mathrm{erfc}(x)\\). The function approaches 0 as the value of the argument increases.*">}}
-
-{{< figure src="/img/exp2erfc_error.png" caption="*Plot of the relative error of the approximation of \\(\exp(x^2) \mathrm{erfc}(x)\\).*">}}
-
-I do not include the plot of the relative error of \\(\exp(x^2) \mathrm{erfc}(x)\\) since it looks very similar to its absolute error plot. And since the error of this term is lower than the error of the approximation of the Chapman function, substituting the former does not visibly affect the error of the latter.
+The implementation of Takuya Ooura is reproduced below (with minor changes).
 
 ```c++
-// Computes (exp(x^2) * erfc(x)) for (x >= 0).
+// Computes (Exp[x^2] * Erfc[x]) for (x >= 0).
 // Range of inputs:  [0, Inf].
 // Range of outputs: [0, 1].
 float Exp2Erfc(float x)
@@ -546,171 +542,41 @@ float Exp2Erfc(float x)
 }
 ```
 
----
+The approximation looks and performs well (in both single and double precision), as you can see from the graphs of the single precision version.
 
+{{< figure src="/img/exp2erfc.png" caption="*Plot of \\(exp(x^2) erfc(x)\\). The function approaches 0 as the value of the argument increases.*">}}
 
-The fact that it is an approximation can be verified by comparing the values of the function to the values of the numerically evaluated integral using Mathematica:
+{{< figure src="/img/exp2erfc_error.png" caption="*Relative error plot of the approximation of \\(exp(x^2) erfc(x)\\).*">}}
 
-Unfortunately, I was unable to re-derive this expression. I suspect that I am either missing something (accounting for continuous variation of the IOR, for instance), or perhaps this is not a full analytic solution, but rather a truncated series expansion (similar to [this one](https://www.sciencedirect.com/science/article/pii/S0022407300001072)). Also, while the formula should in theory work for angles beyond 90 degrees, it deviates from values of the numerically evaluated integral rather quickly.
+I do not include the Relative error plot of \\(\exp(x^2) \mathrm{erfc}(x)\\) since it looks very similar to its absolute error plot. And since the error of this term is lower than the error of the approximation of the Chapman function, substituting the former does not visibly affect the error of the latter.
 
+The proposed approximation is relatively expensive. It is particularly useful for path tracing, since the inversion process (described later) requires a certain degree of accuracy. If high accuracy is not required, you can (and probably should) use the approximation proposed by [Christian Schüler](http://www.gameenginegems.net/gemsdb/article.php?id=1133) in his GPU Gems 3 article:
 
+$$ \tag{47} C_{cs}(z, \theta) \approx \frac{C_h(z)}{(C_h(z) - 1) \cos{\theta} + 1}. $$
 
-Christian Schüler proposes an approximation of the Chapman function for the upper hemisphere in his [GPU Gems 3](http://www.gameenginegems.net/gemsdb/article.php?id=1133) article:
+It models the shape of the function pretty well, especially considering the cost.
 
-$$ \tag{41} C_{u\\_cs}(z, \cos{\theta}) \approx \frac{C_h(z)}{(C_h(z) - 1) \cos{\theta} + 1}. $$
-
-It is a pretty good approximation, especially considering the cost.
-
-{{< figure src="/img/chapman_chris.png" caption="*Plot of the approximation of the Chapman function by Christian Schüler for \\(r = 6600\\).*">}}
+{{< figure src="/img/chapman_chris.png" caption="*Plot of the approximation of the Chapman function by Christian Schüler for r = 6600.*">}}
 
 However, if you care about accuracy, and plot the relative error graph, it paints a slightly less attractive picture.
 
 {{< figure src="/img/chapman_chris_error.png" caption="*Relative error plot of the approximation of the Chapman function by Christian Schüler for \\(r = 6600\\).*">}}
 
-
-
-Instead of approximating the entire function (for which we have an analytic expression), we can take a different, simpler approach. All we have to do is approximate \\(\mathrm{erfc}\\) (or, more specifically, the term of Equation 38 inside the square brackets). Luckily, the physics literature has an efficient [approximation](https://rmets.onlinelibrary.wiley.com/doi/full/10.1002/asl.154) (for positive values of \\(x\\)) readily available:
-
-$$ \tag{42} e^{x^2} \mathrm{erfc}(x) \approx \frac{2.911}{(2.911 - 1) \sqrt{\pi x^2} + \sqrt{\pi x^2 + 2.911^2}}. $$
-
-The resulting approximation of the Chapman function has up to 50 times lower relative error, and is acceptable for our use case. The full expression of transmittance features even lower numerical error.
-
-{{< figure src="/img/chapman_erfc_error.png" caption="*Relative error plot of the new approximation of the Chapman function for \\(r = 6600\\).*">}}
-
-For reference, the full numerical approximation of the Chapman function for the upper hemisphere is:
-
-$$ \tag{43} C_{u\\_a}(z, \cos{\theta}) \approx \frac{\cos{\theta}}{2} + \frac{0.761643 (1 + z (2 - \cos^2{\theta}))}{z \cos{\theta} + \sqrt{z (1.47721 + 0.273828 z \cos^2{\theta})}}. $$
-
-Sample code which implements Equation 40 is listed below.
-
-```c++
-float ChapmanUpperApprox(float z, float cosTheta)
-{
-    float c = cosTheta;
-    float n = 0.761643 * ((1 + 2 * z) - (z * c * c));
-    float d = z * c + sqrt(z * (1.47721 + 0.273828 * (z * c * c)));
-
-    return 0.5 * c + (n * rcp(d));
-}
-
-float ChapmanHorizontal(float z)
-{
-    float r = rsqrt(z);
-    float s = z * r; // sqrt(z)
-
-    return 0.626657 * (r + 2 * s);
-}
-
-// z = (r / H), Z = (R / H).
-float RescaledChapmanFunction(float z, float Z, float cosTheta)
-{
-    float sinTheta = sqrt(saturate(1 - cosTheta * cosTheta));
-
-    // cos(Pi - theta) = -cos(theta).
-    float ch = ChapmanUpperApprox(z, abs(cosTheta)) * exp(Z - z); // Rescaling adds 'exp'
-
-    if (cosTheta < 0)
-    {
-        // Ch(z, theta) = 2 * exp(z - z_0) * Ch(z_0, Pi/2) - Ch(z, Pi - theta).
-        // z_0 = r_0 / H = (r / H) * sin(theta) = z * sin(theta).
-        float z_0 = z * sinTheta;
-        float chP = ChapmanHorizontal(z_0) * exp(Z - z_0); // Rescaling adds 'exp'
-
-        ch = 2 * chP - ch;
-    }
-
-    return ch;
-}
-```
-
-A small but important note is that we can always use \\( \vert \cos{\theta} \vert \\) to evaluate the upper part of the Chapman function since, if the angle is greater than 90 degrees, the direction of the ray can be reversed, and the cosine negated.
+As always, there is a compromise. If you need accuracy (for a certain algorithm or technique), you must use a more accurate implementation. If every last cycle matters, it's perfectly fine to "cheat" as long as the error is not very apparent.
 
 #### Evaluating Optical Depth Using the Chapman Function
 
-A numerical approximation of the Chapman function, in conjunction with Equation 36, allows us to evaluate optical depth along an arbitrary ray segment.
+A numerical approximation of the Chapman function, in conjunction with Equation 42, allows us to evaluate optical depth along an arbitrary ray segment.
 
 However, the approximation of the Chapman function contains a branch (upper/lower hemisphere), and using the full formulation twice may be unnecessarily expensive for many use cases.
 
-For example, an implementation of the [Precomputed Atmospheric Scattering](https://dl.acm.org/citation.cfm?id=2383467) paper requires an ability to evaluate optical depth along the ray, where the ray may hit either the spherical planet, or nothing at all.
+In order to evaluate optical depth between two arbitrary points \\(\bm{x}\\) and \\(\bm{y}\\), we have to consider three distinct possibilities:
 
-To start with, we may want to know whether the ray intersects the planet, or, in other words, whether it points above the horizon.
-
-{{< figure src="/img/spherical_param_2.png">}}
-
-Since a "horizon" ray always intersects the planet at a 90 degree angle, the (obtuse) horizon angle \\( \cos{\theta_h} \\) at the query point can be found using basic trigonometry:
-
-$$ \tag{44} \cos{\theta_h} = -\frac{\mathrm{adjacent}}{\mathrm{hypotenuse}} = -\frac{\sqrt{r^2 - R^2}}{r} = -\sqrt{1 - (R/r)^2}. $$
-
-If the ray points above the horizon, the regular Chapman function gets the job done. And if the ray points below the horizon, it may seem that we need to evaluate the full Chapman function twice (as per Equation 36), once at the starting position \\(\bm{x}\\), where the ray points into the lower hemisphere, and once at the intersection point \\(\bm{y}\\) (using the same ray direction).
-
-However, we can utilize the fact that \\(\bm{\tau}(\bm{x}, \bm{y}) = \bm{\tau}(\bm{y}, \bm{x})\\), and instead consider the ray segment \\(\bm{yx}\\) which starts at the intersection point \\(\bm{y}\\) and has a reversed direction.
-
-Take a look at the updated diagram below:
-
-{{< figure src="/img/spherical_param_3.png">}}
-
-Using basic trigonometry, we can deduce the cosine of the angle at the intersection point
-
-$$ \tag{45} \sin{\gamma} = \frac{\mathrm{opposite}}{\mathrm{hypotenuse}} = \frac{r_0}{R} = \frac{r \sin{\theta}}{R} \qquad \cos{\gamma} = \sqrt{1 - \sin^2{\gamma}} $$
-
-that determines the value of the Chapman function below horizon:
-
-$$ \tag{46} C_b(z, \cos{\theta}, Z, \cos{\gamma}) = C_u(Z, \cos{\gamma}) - C_u(z, \vert \cos{\theta} \vert). $$
-
-Sample code is listed below. While it is possible to use the `RescaledChapmanFunction` in this scenario, the following implementation is slightly more efficient.
-
-```c++
-float ComputeCosineOfHorizonAngle(float r, float R)
-{
-    float sinHoriz = R * rcp(r);
-    return -sqrt(saturate(1 - sinHoriz * sinHoriz));
-}
-
-// This variant of the function assumes that the ray goes to infinity.
-spectrum EvalOptDepthSpherExpMedium(float r, float cosTheta,
-                                    spectrum seaLvlAtt, float Z,
-                                    float R, float rcpR,
-                                    float H, float rcpH)
-{
-    float z = r * rcpH;
-
-    float sinTheta = sqrt(saturate(1 - cosTheta * cosTheta));
-    float cosHoriz = ComputeCosineOfHorizonAngle(r, R);
-
-    // cos(Pi - theta) = -cos(theta).
-    float ch = ChapmanUpperApprox(z, abs(cosTheta)) * exp(Z - z); // Rescaling adds 'exp'
-
-    if (cosTheta < cosHoriz) // Below horizon, intersect sphere
-    {
-        float sinGamma = (r * sinTheta) * rcpR;
-        float cosGamma = sqrt(saturate(1 - sinGamma * sinGamma));
-        float chY      = ChapmanUpperApprox(Z, cosGamma);
-
-        ch = chY - ch;
-    }
-    else if (cosTheta < 0) // Above horizon, lower hemisphere
-    {
-        // Ch(z, theta) = 2 * exp(z - z_0) * Ch(z_0, Pi/2) - Ch(z, Pi - theta).
-        // z_0 = r_0 / H = (r / H) * sin(theta) = z * sin(theta).
-        float z_0 = z * sinTheta;
-        float chP = ChapmanHorizontal(z_0) * exp(Z - z_0); // Rescaling adds 'exp'
-
-        ch = 2 * chP - ch;
-    }
-
-    return ch * H * seaLvlAtt;
-}
-```
-
-If desired, it is possible to reduce execution divergence by utilizing `ChapmanUpperApprox` (with the cosine value of 0) instead of `ChapmanHorizontal`, but I will retain this version for clarity.
-
-Now we are ready to tackle the most general case of evaluating optical depth between two arbitrary points \\(\bm{x}\\) and \\(\bm{y}\\). It may seem really complicated at first when, in fact, it is very similar to the problem we just solved. We have to consider three distinct possibilities:
-
-1\. \\(\cos{\theta_x} \geq 0 \\), which means that the ray points into the upper hemisphere with respect to the surface normal at the point \\(\bm{x}\\). This also means it points into the upper hemisphere at any point \\(\bm{y}\\) along the ray (it is fairly obvious if you sketch it). Optical depth is given by Equation 36, which we specialize by replacing \\(C\\) with \\(C_u\\) which is restricted to the upper hemisphere:
+1\. \\(\cos{\theta_x} \geq 0 \\), which means that the ray points into the upper hemisphere with respect to the surface normal at the point \\(\bm{x}\\). This also means it points into the upper hemisphere at any point \\(\bm{y}\\) along the ray (it is fairly obvious if you sketch it). Optical depth is given by Equation 42, which we specialize by replacing \\(C\\) with \\(C_u\\) which is restricted to the upper hemisphere:
 
 $$ \tag{47}
-\bm{\tau\_{uu}}(z_x, \cos{\theta_x}, z_y, \cos{\theta_y})
-    = \bm{\sigma_t} \frac{k}{n} \Bigg( e^{Z - z_x} C_u(z_x, \cos{\theta_x}) - e^{Z - z_y} C_u(z_y, \cos{\theta_y}) \Bigg).
+\bm{\tau\_{uu}}(z_x, \theta_x, z_y, \theta_y)
+    = \bm{\sigma_t} \frac{k}{n} \Bigg( e^{Z - z_x} C_u(z_x, \theta_x) - e^{Z - z_y} C_u(z_y, \theta_y) \Bigg).
 $$
 
 2\. \\(\cos{\theta_x} < 0 \\) and \\(\cos{\theta_y} < 0 \\) occurs e.g. when looking straight down. It is also easy to handle, we just flip the direction of the ray (by taking the absolute value of the cosine), replace the segment \\(\bm{xy}\\) with the segment \\(\bm{yx}\\) and fall back to case 1.
@@ -718,8 +584,8 @@ $$
 3\. \\(\cos{\theta_x} < 0 \\) and \\(\cos{\theta_y} \geq 0 \\). This is the most complicated case, since we have to evaluate the Chapman function three times, twice at \\(\bm{x}\\) and once at \\(\bm{y}\\):
 
 $$ \tag{48} \begin{aligned}
-\bm{\tau\_{ul}}(z_x, \cos{\theta_x}, z_y, \cos{\theta_y})
-    &= \bm{\sigma_t} \frac{k}{n} \Bigg( e^{Z - z_x} C_l(z_x, \cos{\theta_x}) - e^{Z - z_y} C_u(z_y, \cos{\theta_y}) \Bigg).
+\bm{\tau\_{lu}}(z_x, \theta_x, z_y, \theta_y)
+    &= \bm{\sigma_t} \frac{k}{n} \Bigg( e^{Z - z_x} C_l(z_x, \theta_x) - e^{Z - z_y} C_u(z_y, \theta_y) \Bigg).
 \end{aligned} $$
 
 Sample code is listed below.
