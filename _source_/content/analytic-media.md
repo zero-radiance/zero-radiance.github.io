@@ -717,7 +717,7 @@ float SampleSpherExpMedium(float optDepth, float r, float viewZ,
             // May happen due to the limited precision of floating-point arithmetic.
             // This should not happen (e.g. 'maxDist' and 'maxOptDepth' should be
             // reduced to prevent this from happening). Ideally, we should write
-            // assert(df != 0).
+            // assert(df != 0);
             if (df == 0) return t;
 
         #if 1
