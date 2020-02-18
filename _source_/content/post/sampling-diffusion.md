@@ -55,7 +55,7 @@ We can verify that it works by feeding the complementary CDF with its inverse.
 
 {{< figure src="/img/solve3.png">}}
 
-For importance sampling, we can uniformly sample either the complementary or the regular CDF - it makes no difference.
+For importance sampling, we can uniformly sample either the complementary or the regular CDF - it makes no difference \\((\\)except for reversing the sample order, s.t. \\(x(0) = \infty\\) and \\(x(1) = 0 )\\).
 
 ## Acknowledgments
 
