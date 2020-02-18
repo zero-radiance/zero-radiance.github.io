@@ -756,7 +756,7 @@ The second part of the blog post (published separately) will discuss rendering o
 
 ## Acknowledgments
 
-I would like to thank Julian Fong and Sébastien Hillaire for feedback and offering thoughtful comments.
+I would like to thank Julian Fong and Sébastien Hillaire for their thoughtful comments and feedback.
 
 <!---
 
