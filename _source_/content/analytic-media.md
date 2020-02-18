@@ -441,7 +441,7 @@ Beyond the 90 degree angle, the following [identity](https://ui.adsabs.harvard.e
 
 $$ \tag{48} C_l(z, \theta) = 2 C_h(z \sin{\theta}) e^{z - z \sin{\theta}} - C_u(z, \pi - \theta), $$
 
-which means that we must find a position \\(\bm{p}\\) (sometimes called the [periapsis](https://en.wikipedia.org/wiki/Apsis) point, see the diagram in the previous section) along the ray where it is orthogonal to the surface normal, evaluate the horizontal Chapman function there (twice, forwards and backwards, to cover the entire real line), and subtract the value of the Chapman function at the original position with the reversed direction (towards the atmospheric boundary), which isolates the integral to the desired ray segment.
+which means that we must find a position \\(\bm{p}\\) (sometimes called the [periapsis](https://en.wikipedia.org/wiki/Apsis) point, see the diagram in the previous section) along the ray where it is orthogonal to the surface normal, evaluate the horizontal Chapman function there (twice, forward and backward, to cover the entire real line), and subtract the value of the Chapman function at the original position with the reversed direction (towards the atmospheric boundary), which isolates the integral to the desired ray segment.
 
 Sample implementation is listed below.
 
@@ -519,7 +519,7 @@ We can also represent the relative error as *precision* by plotting the number o
 
 Of course, we must address the elephant in the room, \\(\mathrm{erfc}\\). Since it is [related](https://www.johndcook.com/erf_and_normal_cdf.pdf) to the [normal distribution](https://en.wikipedia.org/wiki/Normal_distribution), it has numerous applications, and, as a result, dozens of existing approximations. Unfortunately, most of them are not particularly accurate, especially across a huge range of values (as in our case), and accuracy of \\(\mathrm{erfc}\\) greatly affects the quality of the full approximation.
 
-It took me a while to find the approximation developed by [Takuya Ooura](http://www.kurims.kyoto-u.ac.jp/~ooura/gamerf.html). He provides an impressive implementation (written C) accurate to 16 decimal digits. That's actually too accurate (and too expensive) for our needs, but it's relatively easy to reduce the degree of the polynomial in order to obtain a single precision version. A great thing about his approximation is that it includes the \\(\exp(x^2)\\) factor, which means we can approximate the entire term of Equation 46 inside the square brackets.
+It took me a while to find the approximation developed by [Takuya Ooura](http://www.kurims.kyoto-u.ac.jp/~ooura/gamerf.html). He provides an impressive implementation (written C) accurate to 16 decimal digits. That's actually too accurate (and too expensive) for our needs, but it's relatively easy to reduce the degree of the polynomial in order to obtain a single-precision version. A great thing about his approximation is that it includes the \\(\exp(x^2)\\) factor, which means we can approximate the entire term of Equation 46 inside the square brackets.
 
 The implementation of Takuya Ooura is reproduced below (with minor changes).
 
@@ -558,7 +558,7 @@ float Exp2Erfc(float x)
 }
 ```
 
-The approximation looks and performs well (in both single and double precision), as you can see from the graphs of the single precision version.
+The approximation looks and performs well (in both single and double precision), as you can see from the graphs of the single-precision version.
 
 {{< figure src="/img/exp2erfc.png" caption="*Plot of \\(exp(x^2) erfc(x)\\). The function approaches 0 as the value of the argument increases.*">}}
 
@@ -658,7 +658,7 @@ spectrum OptDepthSpherExpMedium(float r, float viewZ, float dist,
 }
 ```
 
-Note that using this function (rather than calling `OptDepthSpherExpMedium` twice and subtracting the results) is beneficial not only for performance, but also for correctness: it avoids numerical instability near the horizon where rays directions are prone to alternating between the two hemispheres, which could cause subtraction to result in negative optical depth values. For performance, it may be also worth considering a special case is when the point \\(\bm{y}\\) is considered to be outside the atmosphere (if `exp(Z - zY) < EPS`, for instance). In that case, `chY = 0` is an adequate approximation.
+Note that using this function (rather than calling `OptDepthSpherExpMedium` twice and subtracting the results) is beneficial not only for performance but also for correctness: it avoids numerical instability near the horizon where rays directions are prone to alternating between the two hemispheres, which could cause subtraction to result in negative optical depth values. For performance, it may be also worth considering a special case is when the point \\(\bm{y}\\) is considered to be outside the atmosphere (if `exp(Z - zY) < EPS`, for instance). In that case, `chY = 0` is an adequate approximation.
 
 #### Sampling Exponential Media in Spherical Coordinates
 
@@ -744,11 +744,11 @@ Since optical depth is a smooth monotonically increasing function of distance, t
 
 It is worth noting that since the code internally uses a numerical approximation of the Chapman function, it may not always be possible to reach an arbitrary accuracy goal. Using `FLT_EPSILON` results in a high degree of accuracy at the cost of a large number of iterations (typically, 1-10), while 1-2 iterations are sufficient to stay below the relative error level of 0.001.
 
-In fact, curvature of the planet can be ignored for moderate distances, making the rectangular inverse a relatively efficient and accurate approximation.
+In fact, the curvature of the planet can be ignored for moderate distances, making the rectangular inverse a relatively efficient and accurate approximation.
 
 ## Conclusion
 
-This article has presented several methods for sampling common types of analytic participating media. They are particularly useful for modeling low-frequency variations of density. While planetary atmospheres cannot be sampled analytically, the proposed numerical approach works well in practice. None of these techniques do not require voxelization, which allow simulation of various volumetric effects at real-time frame rates.
+This article has presented several methods for sampling common types of analytic participating media. They are particularly useful for modeling low-frequency variations of density. While planetary atmospheres cannot be sampled analytically, the proposed numerical approach works well in practice. None of these techniques require voxelization, which allows simulation of various volumetric effects at real-time frame rates.
 
 ## What's Next?
 
