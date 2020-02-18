@@ -356,41 +356,56 @@ In order to find the parametric equation of altitude \\(h\\) along the ray, we c
 
 $$ \tag{37} r_0 = r \sin{\theta}, \qquad s_0 = r \cos{\theta}. $$
 
+This allows us to easily determine the radial distance and the zenith angle at any point along the ray.
+
+$$ \tag{38}
+\mathcal{R}(r, \theta, s)
+    = \sqrt{r_0^2 + (s_0 + s)^2}
+    = \sqrt{(r \sin{\theta})^2 + (r \cos{\theta} + s)^2}
+    = \sqrt{r^2 + 2 s (r \cos{\theta}) + s^2}.
+$$
+
+$$ \tag{39}
+\mathcal{C}(r, \theta, s)
+    = \frac{\mathrm{adjacent}}{\mathrm{hypotenuse}}
+    = \frac{s_0 + s}{\mathcal{R}(r, \theta, s)}
+    = \frac{r \cos{\theta} + s}{\sqrt{(r \sin{\theta})^2 + (r \cos{\theta} + s)^2}}.
+$$
+
 We can now compose the optical depth integral:
 
-$$ \tag{38} \begin{aligned}
+$$ \tag{40} \begin{aligned}
 \bm{\tau}(r, \theta, u)
     &= \bm{\sigma_t} k \int\_{0}^{u} e^{-n h(s)} ds \cr
-    &= \bm{\sigma_t} k \int\_{0}^{u} e^{-n \big( \sqrt{r_0^2 + (s_0 + s)^2} - R \big)} ds \cr
-    &= \bm{\sigma_t} k \int\_{0}^{u} e^{n \big( R - \sqrt{r_0^2 + (s_0 + s)^2} \big)} ds \cr
-    &= \bm{\sigma_t} \frac{k}{n} e^{n (R - r)} \int\_{0}^{u} e^{n \big( r - \sqrt{r_0^2 + (s_0 + s)^2} \big)} n ds \cr
+    &= \bm{\sigma_t} k \int\_{0}^{u} e^{-n \big( \mathcal{R}(r, \theta, s) - R \big)} ds \cr
+    &= \bm{\sigma_t} \frac{k}{n} e^{n (R - r)} \int\_{0}^{u} e^{n \big( r - \mathcal{R}(r, \theta, s) \big)} n ds \cr
     &= \bm{\sigma_t} \frac{k}{n} e^{n (R - r)} \int\_{0}^{u} e^{n \big( r - \sqrt{r^2 + 2 s (r \cos{\theta}) + s^2} \big)} n ds.
 \end{aligned} $$
 
 The resulting integral is very complex. If we simplify using the following change of variables
 
-$$ \tag{39} t = n s, \qquad z = n r, \qquad Z = n R $$
+$$ \tag{41} t = n s, \qquad z = n r, \qquad Z = n R $$
 
 and change the upper limit of integration to infinity, we obtain what is known in the physics community as the [Chapman's grazing incidence integral](https://ui.adsabs.harvard.edu/abs/1931PPS....43...26C/abstract) (or the obliquity function, or the relative optical air mass) \\(C\\):
 
-$$ \tag{40} C(z, \theta) = \int\_{0}^{\infty} e^{z - \sqrt{z^2 + 2 t (z \cos{\theta}) + t^2}} dt. $$
+$$ \tag{42} C(z, \theta) = \int\_{0}^{\infty} e^{z - \sqrt{z^2 + 2 t (z \cos{\theta}) + t^2}} dt. $$
 
 It is convenient to define the rescaled Chapman function \\(C_r\\)
 
-$$ \tag{41} C_r(z, \theta) = e^{Z - z} C(z, \theta) = \int\_{0}^{\infty} e^{Z - \sqrt{z^2 + 2 t (z \cos{\theta}) + t^2}} dt, $$
+$$ \tag{43} C_r(z, \theta) = e^{Z - z} C(z, \theta) = \int\_{0}^{\infty} e^{Z - \sqrt{z^2 + 2 t (z \cos{\theta}) + t^2}} dt, $$
 
 which has a better numerical behavior, and further simplifies the expression of optical depth between \\(\bm{x}\\) and \\(\bm{y}\\):
 
-$$ \tag{42}
+$$ \tag{44}
 \bm{\tau}(\bm{x}, \bm{y})
     = \bm{\sigma_t} \frac{k}{n} \Bigg( C_r \Big(z(\bm{x}), \cos{\theta(\bm{x})} \Big) - C_r \Big(z(\bm{y}), \cos{\theta(\bm{y})} \Big) \Bigg).
 $$
 
-What Equation 42 tells us is that we should evaluate the optical depth integral twice (in the same direction, along the entire ray, from 0 to \\(\infty\\)), at the start and at the end of the interval, and subtract the results to "clip" the ray.
+What Equation 44 tells us is that we should evaluate the optical depth integral twice (in the same direction, along the entire ray, from 0 to \\(\infty\\)), at the start and at the end of the interval, and subtract the results to "clip" the ray.
 
 It is interesting to contemplate the physical meaning of optical depth and the Chapman function. Generally speaking, the value of a line integral of density (such as given by \\(\bm{\tau} / \bm{\sigma_t}\\)) corresponds to mass. Therefore, the integral
 
-$$ \tag{43} \int\_{h = (r - R)}^{\infty} k e^{-n s} ds = \frac{k}{n} e^{-n h} $$
+$$ \tag{45} \int\_{h = (r - R)}^{\infty} k e^{-n s} ds = \frac{k}{n} e^{-n h} $$
 
 gives the mass of an infinitely tall vertical column starting at the altitude \\(h\\). At the ground level, its mass is \\(k/n = kH\\).
 
@@ -409,7 +424,7 @@ Being an obliquity function, \\(C(z, 0) = 1\\). The function varies slowly, as l
 
 To my knowledge, the Chapman function does not have a [closed-form](https://en.wikipedia.org/wiki/Closed-form_expression#Analytic_expression) expression. Many [approximations](https://agupubs.onlinelibrary.wiley.com/doi/pdf/10.1029/2011JD016706) exist. Unfortunately, most of them are specific to Earth's atmosphere, and we are interested in a general solution. The most accurate approximation I have found was developed by [David Huestis](https://ui.adsabs.harvard.edu/abs/2001JQSRT..69..709H/abstract). It is based on a power series expansion of the integrand. Using the first two terms results in the following formula for \\(\theta \leq \pi/2\\):
 
-$$ \begin{aligned} \tag{44} C_u(z, \theta) \approx
+$$ \begin{aligned} \tag{46} C_u(z, \theta) \approx
     & \sqrt{\frac{1 - \sin{\theta}}{1 + \sin{\theta}}} \Bigg(1 - \frac{1}{2 (1 + \sin{\theta})} \Bigg) + \frac{\sqrt{\pi z}}{\sqrt{1 + \sin{\theta}}} \times \cr
     & \Bigg[ e^{z - z \sin{\theta}} \text{erfc}\left(\sqrt{z - z \sin{\theta}}\right) \Bigg] \Bigg( -\frac{1}{2} + \sin{\theta} + \frac{1}{1 + \sin{\theta}} + \frac{2 (1 + \sin{\theta}) - 1}{4 z (1 + \sin{\theta})} \Bigg).
 \end{aligned}$$
@@ -418,13 +433,13 @@ The approximation itself is also not closed-form, since it contains the [complem
 
 For the angle of 90 degrees, the integral is given using the [modified Bessel function of the second kind](http://mathworld.wolfram.com/ModifiedBesselFunctionoftheSecondKind.html) \\(K_1\\):
 
-$$ \tag{45} C_h(z) = C(z,\frac{\pi}{2}) = z e^z K_1(z) \approx \sqrt{\frac{\pi z}{2}} \left(1 + \frac{3}{8 z} -\frac{15}{128 z^2}\right). $$
+$$ \tag{47} C_h(z) = C(z,\frac{\pi}{2}) = z e^z K_1(z) \approx \sqrt{\frac{\pi z}{2}} \left(1 + \frac{3}{8 z} -\frac{15}{128 z^2}\right). $$
 
 We use a slightly more [accurate approximation](https://ui.adsabs.harvard.edu/abs/2001JQSRT..69..709H/abstract) than \\(C_u(z, \pi/2)\\) (we add the quadratic term) to obtain some extra precision near 0.
 
 Beyond the 90 degree angle, the following [identity](https://ui.adsabs.harvard.edu/abs/2001JQSRT..69..709H/abstract) can be used:
 
-$$ \tag{46} C_l(z, \theta) = 2 C_h(z \sin{\theta}) e^{z - z \sin{\theta}} - C_u(z, \pi - \theta), $$
+$$ \tag{48} C_l(z, \theta) = 2 C_h(z \sin{\theta}) e^{z - z \sin{\theta}} - C_u(z, \pi - \theta), $$
 
 which means that we must find a position \\(\bm{p}\\) (sometimes called the [periapsis](https://en.wikipedia.org/wiki/Apsis) point, see the diagram in the previous section) along the ray where it is orthogonal to the surface normal, evaluate the horizontal Chapman function there (twice, forwards and backwards, to cover the entire real line), and subtract the value of the Chapman function at the original position with the reversed direction (towards the atmospheric boundary), which isolates the integral to the desired ray segment.
 
@@ -445,11 +460,11 @@ float ChapmanUpper(float z, float cosTheta)
     float arg  = zp12 * stm;      // Sqrt[z - z * Sin], argument of Erfc
     float e2ec = Exp2Erfc(arg);   // Exp[x^2] * Erfc[x]
 
-    // Term 1 of Equation 44.
+    // Term 1 of Equation 46.
     float mul1 = cosTheta * rtp; // Sqrt[(1 - Sin) / (1 + Sin)] = Cos / (1 + Sin)
     float trm1 = mul1 * (1 - 0.5 * rtp);
 
-    // Term 2 of Equation 44.
+    // Term 2 of Equation 46.
     float mul2 = SQRT_PI * rstp * e2ec; // Sqrt[Pi / (1 + Sin)] * Exp[x^2] * Erfc[x]
     float trm2 = mul2 * (zp12 * (-1.5 + tp + rtp) +
                          zm12 * 0.25 * (2 * tp - 1) * rtp);
@@ -461,10 +476,10 @@ float ChapmanHorizontal(float z)
     float zm12 = rsqrt(z);           // z^(-1/2)
     float zm32 = zm12 * zm12 * zm12; // z^(-3/2)
 
-    // Equation 45.
-    float ch = -0.14687275046666018 + z * (0.4699928014933126 + z * 1.2533141373155001);
+    float p = -0.14687275046666018 + z * (0.4699928014933126 + z * 1.2533141373155001);
 
-    return ch * zm32;
+    // Equation 47.
+    return p * zm32;
 }
 
 // z = (r / H), Z = (R / H).
@@ -484,7 +499,7 @@ float RescaledChapman(float z, float Z, float cosTheta)
         float z_0 = z * sinTheta;
         float chP = ChapmanHorizontal(z_0) * exp(Z - z_0); // Rescaling adds 'exp'
 
-        // Equation 46.
+        // Equation 48.
         ch = 2 * chP - ch;
     }
 
@@ -504,7 +519,7 @@ We can also represent the relative error as *precision* by plotting the number o
 
 Of course, we must address the elephant in the room, \\(\mathrm{erfc}\\). Since it is [related](https://www.johndcook.com/erf_and_normal_cdf.pdf) to the [normal distribution](https://en.wikipedia.org/wiki/Normal_distribution), it has numerous applications, and, as a result, dozens of existing approximations. Unfortunately, most of them are not particularly accurate, especially across a huge range of values (as in our case), and accuracy of \\(\mathrm{erfc}\\) greatly affects the quality of the full approximation.
 
-It took me a while to find the approximation developed by [Takuya Ooura](http://www.kurims.kyoto-u.ac.jp/~ooura/gamerf.html). He provides an impressive implementation (written C) accurate to 16 decimal digits. That's actually too accurate (and too expensive) for our needs, but it's relatively easy to reduce the degree of the polynomial in order to obtain a single precision version. A great thing about his approximation is that it includes the \\(\exp(x^2)\\) factor, which means we can approximate the entire term of Equation 44 inside the square brackets.
+It took me a while to find the approximation developed by [Takuya Ooura](http://www.kurims.kyoto-u.ac.jp/~ooura/gamerf.html). He provides an impressive implementation (written C) accurate to 16 decimal digits. That's actually too accurate (and too expensive) for our needs, but it's relatively easy to reduce the degree of the polynomial in order to obtain a single precision version. A great thing about his approximation is that it includes the \\(\exp(x^2)\\) factor, which means we can approximate the entire term of Equation 46 inside the square brackets.
 
 The implementation of Takuya Ooura is reproduced below (with minor changes).
 
@@ -553,7 +568,7 @@ I do not include the Relative error plot of \\(\exp(x^2) \mathrm{erfc}(x)\\) sin
 
 The proposed approximation is relatively expensive. It is particularly useful for path tracing, since the inversion process (described later) requires a certain degree of accuracy. If high accuracy is not required, you can (and probably should) use the approximation proposed by [Christian Schüler](http://www.gameenginegems.net/gemsdb/article.php?id=1133) in his GPU Gems 3 article:
 
-$$ \tag{47} C_{cs}(z, \theta) \approx \frac{C_h(z)}{(C_h(z) - 1) \cos{\theta} + 1}. $$
+$$ \tag{49} C_{cs}(z, \theta) \approx \frac{C_h(z)}{(C_h(z) - 1) \cos{\theta} + 1}. $$
 
 It models the shape of the function pretty well, especially considering the cost.
 
@@ -567,15 +582,15 @@ As always, there is a compromise. If you need accuracy (for a certain algorithm 
 
 #### Evaluating Optical Depth Using the Chapman Function
 
-A numerical approximation of the Chapman function, in conjunction with Equation 42, allows us to evaluate optical depth along an arbitrary ray segment.
+A numerical approximation of the Chapman function, in conjunction with Equation 44, allows us to evaluate optical depth along an arbitrary ray segment.
 
 However, the approximation of the Chapman function contains a branch (upper/lower hemisphere), and using the full formulation twice may be unnecessarily expensive for many use cases.
 
 In order to evaluate optical depth between two arbitrary points \\(\bm{x}\\) and \\(\bm{y}\\), we have to consider three distinct possibilities:
 
-1\. \\(\cos{\theta_x} \geq 0 \\), which means that the ray points into the upper hemisphere with respect to the surface normal at the point \\(\bm{x}\\). This also means it points into the upper hemisphere at any point \\(\bm{y}\\) along the ray (it is fairly obvious if you sketch it). Optical depth is given by Equation 42, which we specialize by replacing \\(C\\) with \\(C_u\\) which is restricted to the upper hemisphere:
+1\. \\(\cos{\theta_x} \geq 0 \\), which means that the ray points into the upper hemisphere with respect to the surface normal at the point \\(\bm{x}\\). This also means it points into the upper hemisphere at any point \\(\bm{y}\\) along the ray (it is fairly obvious if you sketch it). Optical depth is given by Equation 44, which we specialize by replacing \\(C\\) with \\(C_u\\) which is restricted to the upper hemisphere:
 
-$$ \tag{48}
+$$ \tag{50}
 \bm{\tau\_{uu}}(z_x, \theta_x, z_y, \theta_y)
     = \bm{\sigma_t} \frac{k}{n} \Bigg( e^{Z - z_x} C_u(z_x, \theta_x) - e^{Z - z_y} C_u(z_y, \theta_y) \Bigg).
 $$
@@ -584,7 +599,7 @@ $$
 
 3\. \\(\cos{\theta_x} < 0 \\) and \\(\cos{\theta_y} \geq 0 \\). This is the most complicated case, since we have to evaluate the Chapman function three times, twice at \\(\bm{x}\\) and once at \\(\bm{y}\\):
 
-$$ \tag{49} \begin{aligned}
+$$ \tag{51} \begin{aligned}
 \bm{\tau\_{lu}}(z_x, \theta_x, z_y, \theta_y)
     &= \bm{\sigma_t} \frac{k}{n} \Bigg( e^{Z - z_x} C_l(z_x, \theta_x) - e^{Z - z_y} C_u(z_y, \theta_y) \Bigg).
 \end{aligned} $$
@@ -596,13 +611,15 @@ float RadAtDist(float r, float cosTheta, float t)
 {
     float r2 = r * r + t * (t + 2 * (r * cosTheta));
 
-    return sqrt(x2);
+    // Equation 38.
+    return sqrt(r2);
 }
 
 float CosAtDist(float r, float cosTheta, float t)
 {
     float r2 = r * r + t * (t + 2 * (r * cosTheta));
 
+    // Equation 39.
     return (t + r * cosTheta) * rsqrt(r2);
 }
 
@@ -618,7 +635,7 @@ spectrum OptDepthSpherExpMedium(float r, float viewZ, float dist,
                                 float H, float rcpH)
 {
     float rX        = r;
-    float cosThetaX = -viewZ;
+    float cosThetaX = -viewZ; // p = x - s * v
     float rY        = RadAtDist(rX, cosThetaX, dist);
     float cosThetaY = CosAtDist(rX, cosThetaX, dist);
 
