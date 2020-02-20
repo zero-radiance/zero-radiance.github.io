@@ -62,14 +62,12 @@ Optimized implementation is listed below.
 ```c++
 // Performs sampling of a Normalized Burley diffusion profile in polar coordinates.
 // 'u' is the random number: [0, 1).
-// rcp(S) = 1 / ShapeParam = ScatteringDistance.
-// 'r' is the sampled radial distance.
+// rcp(s) = 1 / ShapeParam = ScatteringDistance.
+// 'r' is the sampled radial distance, s.t. (u = 0 -> r = 0) and (u = 1 -> r = Inf).
 // rcp(Pdf) is the reciprocal of the corresponding PDF value.
 void SampleBurleyDiffusionProfile(float u, float rcpS, out float r, out float rcpPdf)
 {
-    u = 1 - u; // Convert cCDF to CDF s.t. (r(0) = 0) and (r(1) = Inf)
-
-    // assert(0 <= u && u < 1);
+    u = 1 - u; // Convert CDF to cCDF
 
     float g = 1 + (4 * u) * (2 * u + sqrt(1 + (4 * u) * u));
     float n = exp2(log2(g) * (-1.0/3.0));                    // g^(-1/3)
@@ -78,7 +76,7 @@ void SampleBurleyDiffusionProfile(float u, float rcpS, out float r, out float rc
     float d = (3 / LOG2_E * 2) + (3 / LOG2_E) * log2(u);     // 3 * Log[4 * u]
     float x = (3 / LOG2_E) * log2(c) - d;                    // 3 * Log[c / (4 * u)]
 
-    // x      = S * r
+    // x      = s * r
     // exp_13 = Exp[-x/3] = Exp[-1/3 * 3 * Log[c / (4 * u)]]
     // exp_13 = Exp[-Log[c / (4 * u)]] = (4 * u) / c
     // exp_1  = Exp[-x] = exp_13 * exp_13 * exp_13
@@ -87,7 +85,7 @@ void SampleBurleyDiffusionProfile(float u, float rcpS, out float r, out float rc
     float rcpExp = ((c * c) * c) * rcp((4 * u) * ((c * c) + (4 * u) * (4 * u)));
 
     r      = x * rcpS;
-    rcpPdf = (8 * PI * rcpS) * rcpExp; // (8 * Pi) / S / (Exp[-S * r / 3] + Exp[-S * r])
+    rcpPdf = (8 * PI * rcpS) * rcpExp; // (8 * Pi) / s / (Exp[-s * r / 3] + Exp[-s * r])
 }
 ```
 
