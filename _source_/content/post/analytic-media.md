@@ -84,7 +84,7 @@ Its complement is transmittance \\(\bm{T}\\):
 
 $$ \tag{9} \bm{T}(\bm{x}, \bm{y}) = 1 - \bm{O}(\bm{x}, \bm{y}). $$
 
-For a single photon, transmittance gives the probability of a free flight.
+For a single photon, transmittance gives the [probability of a free flight](https://www.feynmanlectures.caltech.edu/I_43.html#mjx-eqn-EqI438).
 
 Volumetric transmittance is given by the [Beer–Lambert–Bouguer law](https://en.wikipedia.org/wiki/Beer%E2%80%93Lambert_law) for [uncorrelated](https://cs.dartmouth.edu/~wjarosz/publications/bitterli18framework.html) media in terms of [optical depth](https://en.wikipedia.org/wiki/Optical_depth) (or optical thickness) \\(\bm{\tau}\\), which is a line integral from \\(\bm{x}\\) to \\(\bm{y}\\):
 
