@@ -61,7 +61,7 @@ Optimized implementation is listed below.
 
 ```c++
 // Performs sampling of a Normalized Burley diffusion profile in polar coordinates.
-// 'u' is the random number: [0, 1).
+// 'u' is the random number (the value of the CDF): [0, 1).
 // rcp(S) = 1 / ShapeParam = ScatteringDistance.
 // 'r' is the sampled radial distance.
 // rcp(Pdf) is the reciprocal of the corresponding PDF value.
