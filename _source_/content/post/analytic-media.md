@@ -3,10 +3,10 @@ title: "Sampling Analytic Participating Media"
 date: 2020-02-17
 categories: [ "Graphics", "Math" ]
 tags: [
-    "Chapman Function",
-    "Importance Sampling",
-    "Volume Rendering",
-    ]
+    "Importance Sampling",
+    "Volume Rendering",
+    "Chapman Function",
+    ]
 ---
 
 Rendering of participating media is an important aspect of every modern renderer. When I say participating media, I am not just talking about fog, fire, and smoke. All matter is composed of [atoms](https://courses.lumenlearning.com/boundless-chemistry/chapter/the-structure-of-the-atom/), which can be sparsely (e.g. in a gas) or densely (e.g. in a solid) distributed in space. Whether we consider the particle or the wave nature of [light](https://en.wikipedia.org/wiki/Light), it penetrates all matter (even [metals](http://webhome.phy.duke.edu/~qelectron/group/group_reading_Born_and_Wolf.pdf)) to a certain degree and interacts with its atoms along the way. The nature and the degree of "participation" depend on the material in question.
