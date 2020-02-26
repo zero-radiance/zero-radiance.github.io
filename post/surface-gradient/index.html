@@ -280,7 +280,7 @@ $$ \tag{18} B_p(u,v) = \frac{\partial P}{\partial v}
 
 <p>The first term of the equation (25) can be a bit surprising. Intuitively, it accounts for the change of volume from the old to the new coordinate frame. Since it's a non-negative scalar (negative signs of dot products, if present, cancel out), it does not modify the direction of the normal, and we can take care of it by normalizing the resulting vector.</p>
 
-<p>The important part is, since normals (and gradients) are <a href="https://en.wikipedia.org/wiki/Pseudovector">pseudovectors</a> (also known as <a href="https://en.wikipedia.org/wiki/Antivector">antivectors</a>), they are transformed by the inverse-transpose of the matrix. Conversely, projection of an (unscaled) object-space normal into the tangent space is performed using the transpose:</p>
+<p>The important part is, since normals are <a href="https://en.wikipedia.org/wiki/Pseudovector">axial vectors</a> (also known as <a href="https://en.wikipedia.org/wiki/Antivector">antivectors</a>), they are transformed by the inverse-transpose of the matrix. Conversely, projection of an (unscaled) object-space normal into the tangent space is performed using the transpose:</p>
 
 <p>$$ \tag{26} N_o(u,v) = \frac{(M_{tangent}^{-1})^{\mathrm{T}} G}{\Vert (M_{tangent}^{-1})^{\mathrm{T}} G \Vert}, $$</p>
 
