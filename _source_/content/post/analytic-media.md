@@ -574,7 +574,7 @@ It models the shape of the function pretty well, especially considering the cost
 
 However, if you care about accuracy, and plot the relative error plot, it paints a slightly less attractive picture.
 
-{{< figure src="/img/chapman_chris_error.png" caption="*Relative error plot of the approximation of the Chapman function by Christian Schüler for \\(r = 6600\\).*">}}
+{{< figure src="/img/chapman_chris_error.png" caption="*Relative error plot of the approximation of the Chapman function by Christian Schüler for r = 6600.*">}}
 
 As always, there is a compromise. If you need accuracy (for a certain algorithm or technique), you must use a more accurate implementation. If every last cycle matters, it's perfectly fine to "cheat" as long as the error is not very apparent.
 
