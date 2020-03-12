@@ -695,6 +695,7 @@ float SampleSpherExpMedium(float optDepth, float r, float viewZ, float R,
         float absDiff = optDepth, relDiff = 1;
         do // Perform a Newton–Raphson iteration.
         {
+            float cosTheta  = -viewZ; // p = x - s * v
             float radAtDist = RadAtDist(r, cosTheta, t);
             float cosAtDist = CosAtDist(r, cosTheta, t);
             // Evaluate the function and its derivatives:
