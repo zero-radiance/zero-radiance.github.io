@@ -736,7 +736,7 @@ float SampleSpherExpMedium(float optDepth, float r, float viewZ, float R,
             // Stop when the accuracy goal has been reached.
             // Note that this uses the accuracy of the old value of 't'.
             // The new value of 't' we just computed should be even more accurate.
-        } while ((absDiff > EPS_ABS) && (relDiff > EPS_REL) && (numIter < NUM_ITER));
+        } while ((absDiff > EPS_ABS) && (relDiff > EPS_REL) && (numIter < MAX_ITER));
 
         return t;
     }
