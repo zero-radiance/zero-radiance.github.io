@@ -675,9 +675,8 @@ Sample code for spherical atmospheres is listed below.
 // 'optDepth' is the value to solve for.
 // 'maxOptDepth' is the maximum value along the ray, s.t. (maxOptDepth >= optDepth).
 // 'maxDist' is the maximum distance along the ray.
-float SampleSpherExpMedium(float optDepth, float r, float viewZ,
-                           float R, float H, float rcpH,
-                           float seaLvlAtt, float rcpSeaLvlAtt,
+float SampleSpherExpMedium(float optDepth, float r, float viewZ, float R,
+                           float seaLvlAtt, float rcpSeaLvlAtt, float H, float rcpH,
                            float maxOptDepth, float maxDist)
     {
         const float rcpOptDepth = rcp(optDepth);
