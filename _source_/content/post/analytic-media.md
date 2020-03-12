@@ -630,9 +630,8 @@ float CosAtDist(float r, float cosTheta, float t)
 // 'R' is the radius of the planet.
 // 'H' is the scale height.
 // rcpH = rcp(H) is the falloff exponent.
-spectrum OptDepthSpherExpMedium(float r, float viewZ, float dist,
-                                spectrum seaLvlAtt, float R,
-                                float H, float rcpH)
+spectrum OptDepthSpherExpMedium(float r, float viewZ, float dist, float R,
+                                spectrum seaLvlAtt, float H, float rcpH)
 {
     float rX        = r;
     float cosThetaX = -viewZ; // p = x - s * v
@@ -703,8 +702,8 @@ float SampleSpherExpMedium(float optDepth, float r, float viewZ,
             // f  [t] = OptDepthAtDist[t] - GivenOptDepth = 0,
             // f' [t] = AttCoefAtDist[t],
             // f''[t] = AttCoefAtDist'[t] = -AttCoefAtDist[t] * CosAtDist[t] / H.
-            float optDepthAtDist = OptDepthSpherExpMedium(r, viewZ, t, seaLvlAtt,
-                                                          R, H, rcpH);
+            float optDepthAtDist = OptDepthSpherExpMedium(r, viewZ, t, R,
+                                                          seaLvlAtt, H, rcpH);
             float attAtDist      = seaLvlAtt * exp(Z - radAtDist * rcpH);
             float attAtDistDeriv = -attAtDist * cosAtDist * rcpH;
 
