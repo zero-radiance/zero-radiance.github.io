@@ -175,6 +175,8 @@ where \\(\mathrm{cof}(M)\\) is the [cofactor matrix](https://en.wikipedia.org/wi
 
 $$ \tag{21} N_p(u,v) \approx \frac{\mathrm{cof}(M\_{scale})}{\langle T_p \times B_p, N \rangle} \Big((T + \frac{\partial h}{\partial u} N) \times (B + \frac{\partial h}{\partial v} N)\Big). $$
 
+Alternatively, the object scale can be incorporated directly into the \\([T | B | N]\\) matrix (by rescaling all three basis vectors in Equations 17 and 18).
+
 It's instructive to expand the cross product:
 
 $$ \tag{22} N_p(u,v) \approx \frac{\mathrm{cof}(M\_{scale})}{\langle T_p \times B_p, N \rangle} \Big((T \times B) + \frac{\partial h}{\partial u} (N \times B) + \frac{\partial h}{\partial v} (T \times N) + \frac{\partial h}{\partial u} \frac{\partial h}{\partial v} (N \times N)\Big). $$
