@@ -685,7 +685,7 @@ float SampleSpherExpMedium(float optDepth, float r, float viewZ, float R,
         // Make an initial guess.
     #if 1
         // Homogeneous assumption.
-        float t = optDepth * rcp(maxOptDepth);
+        float t = maxDist * (optDepth * rcp(maxOptDepth));
     #else
         // Exponential assumption.
         float t = SampleRectExpMedium(optDepth, r - R, viewZ, rcpSeaLvlAtt, rcpH);
