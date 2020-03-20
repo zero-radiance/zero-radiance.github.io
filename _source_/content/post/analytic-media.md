@@ -296,11 +296,11 @@ Sample code is listed below.
 // 'viewZ' is the Z coordinate of the view direction.
 // 'dist' is the distance.
 // seaLvlAtt = (sigma_t * k) is the sea-level (height = 0) attenuation coefficient.
-// rcpH = rcp(H) is the falloff exponent, where 'H' is the scale height.
+// hRcp = (1 / H) is the falloff exponent, where 'H' is the scale height.
 spectrum OptDepthRectExpMedium(float height, float viewZ, float dist,
-                               spectrum seaLvlAtt, float rcpH)
+                               spectrum seaLvlAtt, float hRcp)
 {
-    float p = viewZ * rcpH;
+    float p = viewZ * hRcp;
 
     // Equation 26.
     spectrum optDepth = seaLvlAtt * dist;
@@ -308,26 +308,26 @@ spectrum OptDepthRectExpMedium(float height, float viewZ, float dist,
     if (abs(p) > FLT_EPS) // Homogeneity check
     {
         // Equation 34.
-        optDepth = seaLvlAtt * rcp(p) * exp(-height * rcpH) * (exp(p * dist) - 1);
+        optDepth = seaLvlAtt * rcp(p) * exp(-height * hRcp) * (exp(p * dist) - 1);
     }
 
     return optDepth;
 }
 
 // 'optDepth' is the value of optical depth.
-// rcpSeaLvlAtt = rcp(seaLvlAtt).
+// seaLvlAttRcp = (1 / seaLvlAtt).
 float SampleRectExpMedium(float optDepth, float height, float viewZ,
-                          float rcpSeaLvlAtt, float rcpH)
+                          float seaLvlAttRcp, float hRcp)
 {
-    float p = viewZ * rcpH;
+    float p = viewZ * hRcp;
 
     // Equation 27.
-    float dist = optDepth * rcpSeaLvlAtt;
+    float dist = optDepth * seaLvlAttRcp;
 
     if (abs(p) > FLT_EPS) // Homogeneity check
     {
         // Equation 35.
-        dist = rcp(p) * log(1 + dist * p * exp(height * rcpH));
+        dist = rcp(p) * log(1 + dist * p * exp(height * hRcp));
     }
 
     return dist;
@@ -360,14 +360,14 @@ $$ \tag{38}
 \mathcal{R}(r, \theta, s)
     = \sqrt{r_0^2 + (s_0 + s)^2}
     = \sqrt{(r \sin{\theta})^2 + (r \cos{\theta} + s)^2}
-    = \sqrt{r^2 + s (2 r \cos{\theta} + s)}.
+    = r \sqrt{1 + \frac{s}{r} \Big( 2 \cos{\theta + \frac{s}{r}} \Big)}.
 $$
 
 $$ \tag{39}
 \mathcal{C}(r, \theta, s)
     = \frac{\mathrm{adjacent}}{\mathrm{hypotenuse}}
     = \frac{s_0 + s}{\mathcal{R}(r, \theta, s)}
-    = \frac{r \cos{\theta} + s}{\sqrt{r^2 + s (2 r \cos{\theta} + s)}}.
+    = \frac{\cos{\theta} + \frac{s}{r}}{\sqrt{1 + \frac{s}{r} \Big( 2 \cos{\theta + \frac{s}{r}} \Big)}}.
 $$
 
 We can now compose the optical depth integral:
@@ -444,22 +444,22 @@ which means that we must find a position \\(\bm{p}\\) (sometimes called the [per
 Sample implementation is listed below.
 
 ```c++
-float ChapmanUpper(float z, float cosTheta)
+float ChapmanUpper(float z, float absCosTheta)
 {
-    float sinTheta = sqrt(saturate(1 - cosTheta * cosTheta));
+    float sinTheta = sqrt(saturate(1 - absCosTheta * absCosTheta));
 
-    float zm12 = rsqrt(z);        // z^(-1/2)
-    float zp12 = z * zm12;        // z^(+1/2)
+    float zm12 = rsqrt(z);           // z^(-1/2)
+    float zp12 = z * zm12;           // z^(+1/2)
 
-    float tp   = 1 + sinTheta;    // 1 + Sin
-    float rstp = rsqrt(tp);       // 1 / Sqrt[1 + Sin]
-    float rtp  = rstp * rstp;     // 1 / (1 + Sin)
-    float stm  = cosTheta * rstp; // Sqrt[1 - Sin] = Cos / Sqrt[1 + Sin]
-    float arg  = zp12 * stm;      // Sqrt[z - z * Sin], argument of Erfc
-    float e2ec = Exp2Erfc(arg);   // Exp[x^2] * Erfc[x]
+    float tp   = 1 + sinTheta;       // 1 + Sin
+    float rstp = rsqrt(tp);          // 1 / Sqrt[1 + Sin]
+    float rtp  = rstp * rstp;        // 1 / (1 + Sin)
+    float stm  = absCosTheta * rstp; // Sqrt[1 - Sin] = Abs[Cos] / Sqrt[1 + Sin]
+    float arg  = zp12 * stm;         // Sqrt[z - z * Sin], argument of Erfc
+    float e2ec = Exp2Erfc(arg);      // Exp[x^2] * Erfc[x]
 
     // Term 1 of Equation 46.
-    float mul1 = cosTheta * rtp; // Sqrt[(1 - Sin) / (1 + Sin)] = Cos / (1 + Sin)
+    float mul1 = absCosTheta * rtp;  // Sqrt[(1 - Sin) / (1 + Sin)] = Abs[Cos] / (1 + Sin)
     float trm1 = mul1 * (1 - 0.5 * rtp);
 
     // Term 2 of Equation 46.
@@ -602,48 +602,47 @@ $$ \tag{51} \begin{aligned}
 Sample code is listed below.
 
 ```c++
-float RadAtDist(float r, float cosTheta, float t)
+float RadAtDist(float r, float rRcp, float cosTheta, float s)
 {
-    float r2 = r * r + t * (t + 2 * (r * cosTheta));
+    float x2 = 1 + (s * rRcp) * ((s * rRcp) + 2 * cosTheta);
 
     // Equation 38.
-    return sqrt(r2);
+    return r * sqrt(x2);
 }
 
-float CosAtDist(float r, float cosTheta, float t)
+float CosAtDist(float r, float rRcp, float cosTheta, float s)
 {
-    float r2 = r * r + t * (t + 2 * (r * cosTheta));
+    float x2 = 1 + (s * rRcp) * ((s * rRcp) + 2 * cosTheta);
 
     // Equation 39.
-    return (t + r * cosTheta) * rsqrt(r2);
+    return ((s * rRcp) + cosTheta) * rsqrt(x2);
 }
 
-// 'r' is the radial distance from the center of the planet.
+// rRcp = (1 / r), where 'r' is the radial distance from the center of the planet.
 // 'viewZ' is the Z coordinate of the view direction.
 // 'dist' is the distance.
 // seaLvlAtt = (sigma_t * k) is the sea-level (height = 0) attenuation coefficient.
 // 'R' is the radius of the planet.
-// 'H' is the scale height.
-// rcpH = rcp(H) is the falloff exponent.
-spectrum OptDepthSpherExpMedium(float r, float viewZ, float dist, float R,
-                                spectrum seaLvlAtt, float H, float rcpH)
+// hRcp = (1 / H) is the falloff exponent, where 'H' is the scale height.
+spectrum OptDepthSpherExpMedium(float r, float rRcp, float viewZ, float dist, float R,
+                                spectrum seaLvlAtt, float H, float hRcp)
 {
     float rX        = r;
+    float rRcpX     = rRcp;
     float cosThetaX = -viewZ; // p = x - s * v
-    float rY        = RadAtDist(rX, cosThetaX, dist);
-    float cosThetaY = CosAtDist(rX, cosThetaX, dist);
+    float rY        = RadAtDist(rX, rRcpX, cosThetaX, dist);
+    float cosThetaY = CosAtDist(rX, rRcpX, cosThetaX, dist);
 
     // Potentially swap X and Y.
     // Convention: at the point Y, the ray points up.
     cosThetaX = (cosThetaY >= 0) ? cosThetaX : -cosThetaX;
-    cosThetaY = abs(cosThetaY);
 
-    float Z   = R  * rcpH;
-    float zX  = rX * rcpH;
-    float zY  = rY * rcpH;
+    float Z   = R  * hRcp;
+    float zX  = rX * hRcp;
+    float zY  = rY * hRcp;
 
     float chX = RescaledChapman(zX, Z, cosThetaX);
-    float chY = ChapmanUpper(zY, cosThetaY) * exp(Z - zY); // Rescaling adds 'exp'
+    float chY = ChapmanUpper(zY, abs(cosThetaY)) * exp(Z - zY); // Rescaling adds 'exp'
 
     // We may have swapped X and Y.
     float ch = abs(chX - chY);
@@ -664,82 +663,114 @@ In order to sample participating media, we must be able to solve the optical dep
 
 This method is very general and works for arbitrary [continuous density distributions](http://lib-www.lanl.gov/la-pubs/00367066.pdf).
 
-Sample code for spherical atmospheres is listed below.
+Sample code for a dual-component spherical atmosphere is listed below.
 
 ```c++
+#define EPS_ABS  0.0001
+#define EPS_REL  0.0001
+#define MAX_ITER 4
+
 // 'optDepth' is the value to solve for.
 // 'maxOptDepth' is the maximum value along the ray, s.t. (maxOptDepth >= optDepth).
 // 'maxDist' is the maximum distance along the ray.
-float SampleSpherExpMedium(float optDepth, float r, float viewZ, float R,
-                           float seaLvlAtt, float rcpSeaLvlAtt, float H, float rcpH,
+float SampleSpherExpMedium(float optDepth, float r, float rRcp, float viewZ, float R,
+                           float2 seaLvlAtt, float2 H, float2 hRcp, // Air & aerosols
                            float maxOptDepth, float maxDist)
-    {
-        const float rcpOptDepth = rcp(optDepth);
-        const float Z           = R * rcpH;
+{
+    const float  optDepthRcp = rcp(optDepth);
+    const float2 Z           = R * hRcp;
 
-        // Make an initial guess.
-    #if 1
-        // Homogeneous assumption.
-        float t = maxDist * (optDepth * rcp(maxOptDepth));
+    // Make an initial guess (homogeneous assumption).
+    float t = maxDist * (optDepth * rcp(maxOptDepth));
+
+    // Establish the ranges of valid distances ('tRange') and function values ('fRange').
+    float tRange[2], fRange[2];
+    tRange[0] = 0;        /* -> */  fRange[0] = 0           - optDepth;
+    tRange[1] = maxDist;  /* -> */  fRange[1] = maxOptDepth - optDepth;
+
+    uint  iter = 0;
+    float absDiff = optDepth, relDiff = 1;
+
+    do // Perform a Newton–Raphson iteration.
+    {
+        float cosTheta  = -viewZ; // p = x - s * v
+        float radAtDist = RadAtDist(r, rRcp, cosTheta, t);
+        float cosAtDist = CosAtDist(r, rRcp, cosTheta, t);
+        // Evaluate the function and its derivatives:
+        // f  [t] = OptDepthAtDist[t] - GivenOptDepth = 0,
+        // f' [t] = AttCoefAtDist[t],
+        // f''[t] = AttCoefAtDist'[t] = -AttCoefAtDist[t] * CosAtDist[t] / H.
+        float optDepthAtDist = 0, attAtDist = 0, attAtDistDeriv = 0;
+        optDepthAtDist += OptDepthSpherExpMedium(r, rRcp, viewZ, t, R,
+                                                 seaLvlAtt.x, H.x, hRcp.x);
+        optDepthAtDist += OptDepthSpherExpMedium(r, rRcp, viewZ, t, R,
+                                                 seaLvlAtt.y, H.y, hRcp.y);
+        attAtDist      += seaLvlAtt.x * exp(Z.x - radAtDist * hRcp.x);
+        attAtDist      += seaLvlAtt.y * exp(Z.y - radAtDist * hRcp.y);
+        attAtDistDeriv -= seaLvlAtt.x * exp(Z.x - radAtDist * hRcp.x) * hRcp.x;
+        attAtDistDeriv -= seaLvlAtt.y * exp(Z.y - radAtDist * hRcp.y) * hRcp.y;
+        attAtDistDeriv *= cosAtDist;
+
+        float   f = optDepthAtDist - optDepth;
+        float  df = attAtDist;
+        float ddf = attAtDistDeriv;
+        float  dg = df - 0.5 * f * (ddf * rcp(df));
+
+        assert(df > 0 && dg > 0);
+
+    #if 0
+        // https://en.wikipedia.org/wiki/Newton%27s_method
+        float slope = rcp(df);
     #else
-        // Exponential assumption.
-        float t = SampleRectExpMedium(optDepth, r - R, viewZ, rcpSeaLvlAtt, rcpH);
+        // https://en.wikipedia.org/wiki/Halley%27s_method
+        float slope = rcp(dg);
     #endif
 
-        uint  numIter = 0;
-        float absDiff = optDepth, relDiff = 1;
-        do // Perform a Newton–Raphson iteration.
+        float dt = -f * slope;
+
+        // Find the boundary value we are stepping towards:
+        // supremum for (f < 0) and infimum for (f > 0).
+        uint  sgn     = asuint(f) >> 31;
+        float tBound  = tRange[sgn];
+        float fBound  = fRange[sgn];
+        float tNewton = t + dt;
+
+        bool isInRange = tRange[0] < tNewton && tNewton < tRange[1];
+
+        if (!isInRange)
         {
-            float cosTheta  = -viewZ; // p = x - s * v
-            float radAtDist = RadAtDist(r, cosTheta, t);
-            float cosAtDist = CosAtDist(r, cosTheta, t);
-            // Evaluate the function and its derivatives:
-            // f  [t] = OptDepthAtDist[t] - GivenOptDepth = 0,
-            // f' [t] = AttCoefAtDist[t],
-            // f''[t] = AttCoefAtDist'[t] = -AttCoefAtDist[t] * CosAtDist[t] / H.
-            float optDepthAtDist = OptDepthSpherExpMedium(r, viewZ, t, R,
-                                                          seaLvlAtt, H, rcpH);
-            float attAtDist      = seaLvlAtt * exp(Z - radAtDist * rcpH);
-            float attAtDistDeriv = -attAtDist * cosAtDist * rcpH;
+            // The Newton's algorithm has effectively run out of digits of precision.
+            // While it's possible to continue improving precision (to a certain degree)
+            // via bisection, it is costly, and the convergence rate is low.
+            // It's better to recall that, for short distances, optical depth is a
+            // linear function of distance to an excellent degree of approximation.
+            slope = (tBound - t) * rcp(fBound - f);
+            dt    = -f * slope;
+            iter  = MAX_ITER;
+        }
 
-            float   f = optDepthAtDist - optDepth;
-            float  df = attAtDist;
-            float ddf = attAtDistDeriv;
+        tRange[1 - sgn] = t; // Adjust the range using the
+        fRange[1 - sgn] = f; // previous values of 't' and 'f'
 
-            // May happen due to the limited precision of floating-point arithmetic.
-            // This should not be allowed (e.g. 'maxDist' and 'maxOptDepth' should
-            // be reduced to prevent this from happening). Ideally, we should write
-            // assert(df != 0);
-            if (df == 0) return t;
+        t = t + dt;
 
-        #if 1
-            // https://en.wikipedia.org/wiki/Newton%27s_method
-            float dt = -f * rcp(df);
-        #else
-            // https://en.wikipedia.org/wiki/Halley%27s_method
-            float dt = -(f * df) * rcp(df * df - 0.5 * f * ddf);
-        #endif
+        absDiff = abs(optDepthAtDist - optDepth);
+        relDiff = abs(optDepthAtDist * optDepthRcp - 1);
 
-            // Refine the initial guess.
-            t = clamp(t + dt, 0, maxDist); // Basic overshoot handling
+        iter++;
 
-            absDiff = abs(optDepthAtDist - optDepth);
-            relDiff = abs(optDepthAtDist * rcpOptDepth - 1);
+        // Stop when the accuracy goal has been reached.
+        // Note that this uses the accuracy corresponding to the old value of 't'.
+        // The new value of 't' we just computed should result in higher accuracy.
+    } while ((absDiff > EPS_ABS) && (relDiff > EPS_REL) && (iter < MAX_ITER));
 
-            numIter++;
-
-            // Stop when the accuracy goal has been reached.
-            // Note that this uses the accuracy of the old value of 't'.
-            // The new value of 't' we just computed should be even more accurate.
-        } while ((absDiff > EPS_ABS) && (relDiff > EPS_REL) && (numIter < MAX_ITER));
-
-        return t;
-    }
+    return t;
+}
 ```
 
 Since optical depth is a smooth monotonically increasing function of distance, this numerical procedure will converge very quickly (typically, after a couple of iterations). If desired, the cost can be fixed by using an iteration counter to terminate the loop, potentially trading accuracy for consistent performance.
 
-It is worth noting that since the code internally uses a numerical approximation of the Chapman function, it may not always be possible to reach an arbitrary accuracy goal. Using `FLT_EPSILON` results in a high degree of accuracy at the cost of a large number of iterations (typically, 1-10), while 1-2 iterations are sufficient to stay below the relative error level of 0.001.
+It is worth noting that since the code internally uses a numerical approximation of the Chapman function, it may not always be possible to reach an arbitrary accuracy goal. Once the algorithm becomes numerically unstable, we refine the result by assuming that the medium is approximately homogeneous along short intervals.
 
 In fact, the curvature of the planet can be ignored for moderate distances, making the rectangular inverse a relatively efficient and accurate approximation.
 
