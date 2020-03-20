@@ -517,52 +517,47 @@ We can also represent the relative error as *precision* by plotting the number o
 
 Of course, we must address the elephant in the room, \\(\mathrm{erfc}\\). Since it is [related](https://www.johndcook.com/erf_and_normal_cdf.pdf) to the [normal distribution](https://en.wikipedia.org/wiki/Normal_distribution), it has numerous applications, and, as a result, dozens of existing approximations. Unfortunately, most of them are not particularly accurate, especially across a huge range of values (as in our case), and accuracy of \\(\mathrm{erfc}\\) greatly affects the quality of our approximation.
 
-It took me a while to find the approximation developed by [Takuya Ooura](http://www.kurims.kyoto-u.ac.jp/~ooura/gamerf.html). He provides an impressive implementation (written C) accurate to 16 decimal digits. That's actually too accurate (and too expensive) for our needs, but it's relatively easy to reduce the degree of the polynomial in order to obtain a single-precision version. A great thing about his approximation is that it includes the \\(\exp(x^2)\\) factor, which means we can replace the entire term of Equation 46 inside the square brackets.
+After performing an extensive search, I stumbled upon the approximation developed by [Takuya Ooura](http://www.kurims.kyoto-u.ac.jp/~ooura/gamerf.html). He provides an impressive double-precision implementation accurate to 16 decimal digits. A great thing about his approximation is that it includes the \\(\exp(x^2)\\) factor, which means we can replace the entire term of Equation 46 inside the square brackets. In order to obtain a single-precision version of his approximation, I retain his range reduction technique, and reduce the degree of the polynomial (which I fit using [Sollya](http://sollya.gforge.inria.fr/)). In order to account for fused multiply-adds, rounding, and other quirks of single-precision floating-point hardware, I perform a [greedy search](https://stackoverflow.com/questions/26692859/best-machine-optimized-polynomial-minimax-approximation-to-arctangent-on-1-1) for better coefficients (starting with rounded high-precision coefficients found by Sollya) on the target hardware.
 
-The implementation of Takuya Ooura is reproduced below (with minor modifications).
+The implementation of Takuya Ooura (with my modifications) is reproduced below.
 
 ```c++
 // Computes (Exp[x^2] * Erfc[x]) for (x >= 0).
 // Range of inputs:  [0, Inf].
 // Range of outputs: [0, 1].
+// Max Abs Error: 0.000000969658452.
+// Max Rel Error: 0.000001091639525.
 float Exp2Erfc(float x)
 {
-    float t, u, y, z;
+    float t, u, y;
 
-    t = 3.97886080735226 / (x + 3.97886080735226);
-    u = t - 0.5;
-#ifdef DOUBLE_PRECISION
-    // Original implementation kindly provided by Takuya Ooura.
-    // http://www.kurims.kyoto-u.ac.jp/~ooura/gamerf.html
-    y = (((((((((0.00127109764952614092 * u + 1.19314022838340944e-4) * u -
-        0.003963850973605135) * u - 8.70779635317295828e-4) * u +
-        0.00773672528313526668) * u + 0.00383335126264887303) * u -
-        0.0127223813782122755) * u - 0.0133823644533460069) * u +
-        0.0161315329733252248) * u + 0.0390976845588484035) * u +
-        0.00249367200053503304;
-#else
-    y = (0.0019898212777384947 * u + 0.039833135938877856) * u +
-        0.0034132959838498976;
-#endif
-    z = ((((((((((((y * u - 0.0838864557023001992) * u -
-        0.119463959964325415) * u + 0.0166207924969367356) * u +
-        0.357524274449531043) * u + 0.805276408752910567) * u +
-        1.18902982909273333) * u + 1.37040217682338167) * u +
-        1.31314653831023098) * u + 1.07925515155856677) * u +
-        0.774368199119538609) * u + 0.490165080585318424) * u +
-        0.275374741597376782) * t;
+    t = 3.9788608f * rcp(x + 3.9788608f); // Reduce the range
+    u = t - 0.5f;                         // Center around 0
 
-    return z;
+    y =           -0.010297533124685f;
+    y = fmaf(y, u, 0.288184314966202f);
+    y = fmaf(y, u, 0.805188119411469f);
+    y = fmaf(y, u, 1.203098773956299f);
+    y = fmaf(y, u, 1.371236562728882f);
+    y = fmaf(y, u, 1.312000870704651f);
+    y = fmaf(y, u, 1.079175233840942f);
+    y = fmaf(y, u, 0.774399876594543f);
+    y = fmaf(y, u, 0.490166693925858f);
+    y = fmaf(y, u, 0.275374621152878f);
+
+    return y * t; // Expand the range
 }
 ```
 
-The approximation performs well, as you can see from the plot of the single-precision version shown below.
+The approximation performs well, as you can see from the plots of the single-precision version shown below.
 
 {{< figure src="/img/exp2erfc.png" caption="*Plot of \\(exp(x^2) erfc(x)\\). The function approaches 0 as the value of the argument increases.*">}}
 
-{{< figure src="/img/exp2erfc_error.png" caption="*Relative error plot of the approximation of \\(exp(x^2) erfc(x)\\).*">}}
+{{< figure src="/img/exp2erfc_abs_error.png" caption="*Absolute error plot of the approximation of \\(exp(x^2) erfc(x)\\).*">}}
 
-I do not show the absolute error plot of \\(\exp(x^2) \mathrm{erfc}(x)\\) since it looks very similar to the relative error plot. And since the error of this term is lower than the error of the approximation of the Chapman function, substituting the former does not visibly affect the error of the latter (and the error plots remain unchanged).
+{{< figure src="/img/exp2erfc_rel_error.png" caption="*Relative error plot of the approximation of \\(exp(x^2) erfc(x)\\).*">}}
+
+Since the error of this term is lower than the error of the approximation of the Chapman function, substituting the former does not visibly affect the error of the latter (and the error plots remain unchanged).
 
 The proposed approximation is relatively expensive. It is particularly useful for path tracing, since the inversion process (described later) requires a certain degree of accuracy. If high accuracy is not required, you can (and probably should) use the approximation proposed by [Christian Schüler](http://www.gameenginegems.net/gemsdb/article.php?id=1133) in his GPU Gems 3 article:
 
