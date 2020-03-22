@@ -702,13 +702,13 @@ float SampleSpherExpMedium(float optDepth, float r, float rRcp, float viewZ, flo
         // f''[t] = AttCoefAtDist'[t] = -AttCoefAtDist[t] * CosAtDist[t] / H.
         float optDepthAtDist = 0, attAtDist = 0, attAtDistDeriv = 0;
         optDepthAtDist += OptDepthSpherExpMedium(r, rRcp, viewZ, t, R,
-                                                 seaLvlAtt.x, H.x, hRcp.x);     // Air
+                                                 seaLvlAtt.x, H.x, hRcp.x);
         optDepthAtDist += OptDepthSpherExpMedium(r, rRcp, viewZ, t, R,
-                                                 seaLvlAtt.y, H.y, hRcp.y);     // Aerosol
-        attAtDist      += seaLvlAtt.x * exp(Z.x - radAtDist * hRcp.x);          // Air
-        attAtDist      += seaLvlAtt.y * exp(Z.y - radAtDist * hRcp.y);          // Aerosol
-        attAtDistDeriv -= seaLvlAtt.x * exp(Z.x - radAtDist * hRcp.x) * hRcp.x; // Air
-        attAtDistDeriv -= seaLvlAtt.y * exp(Z.y - radAtDist * hRcp.y) * hRcp.y; // Aerosol
+                                                 seaLvlAtt.y, H.y, hRcp.y);
+        attAtDist      += seaLvlAtt.x * exp(Z.x - radAtDist * hRcp.x);
+        attAtDist      += seaLvlAtt.y * exp(Z.y - radAtDist * hRcp.y);
+        attAtDistDeriv -= seaLvlAtt.x * exp(Z.x - radAtDist * hRcp.x) * hRcp.x;
+        attAtDistDeriv -= seaLvlAtt.y * exp(Z.y - radAtDist * hRcp.y) * hRcp.y;
         attAtDistDeriv *= cosAtDist;
 
         float   f = optDepthAtDist - optDepth;
