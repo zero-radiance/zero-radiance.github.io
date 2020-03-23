@@ -208,9 +208,11 @@ To transform the perturbed normal into the world space, all we have to do is rot
 
 $$ \tag{28} N_w(u,v) \approx \frac{\big( \mathrm{cof}(M\_{rot} M\_{scale}) (M\_{tangent}^{-1})^{\mathrm{T}} \big) M\_{tile} N\_{t} / n\_{t,3}}{\Vert \big( \mathrm{cof}(M\_{rot} M\_{scale}) (M\_{tangent}^{-1})^{\mathrm{T}} \big) M\_{tile} N\_{t} / n\_{t,3} \Vert}. $$
 
-If no further modifications of the normal are desired, the matrices can be combined into a normal-tangent-to-world matrix \\(M\_{ntw} = ((M\_{rot} M\_{scale} M\_{tangent})^{-1})^{\mathrm{T}}\\), and the division can be dropped due to subsequent normalization. So if your \\(M\_{tangent}\\) transforms directly into the world space, no cofactor matrices are needed at this step. The run-time cost is thus identical to that of the traditional normal mapping.
+If no further modifications of the normal are desired, the matrices can be combined into a normal-tangent-to-world matrix \\(M\_{ntw} = ((M\_{rot} M\_{scale} M\_{tangent})^{-1})^{\mathrm{T}}\\), and the division can be dropped due to subsequent normalization.
 
 $$ \tag{29} N_w(u,v) \approx \frac{M\_{ntw} M\_{tile} N\_{t}}{\Vert M\_{ntw} M\_{tile} N\_{t} \Vert}. $$
+
+If your \\(M\_{tangent}\\) transforms directly into the world space, no cofactor matrices are needed at this step. The run-time cost is thus identical to that of the traditional normal mapping.
 
 Care must be taken when combining and interpolating these matrices, as your normal map baking tool may assume that the inverse-transpose of the tangent matrix has [certain properties](http://mikktspace.com/).
 

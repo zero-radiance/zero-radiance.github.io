@@ -292,9 +292,11 @@ $$ \tag{18} B_p(u,v) = \frac{\partial P}{\partial v}
 
 <p>$$ \tag{28} N_w(u,v) \approx \frac{\big( \mathrm{cof}(M_{rot} M_{scale}) (M_{tangent}^{-1})^{\mathrm{T}} \big) M_{tile} N_{t} / n_{t,3}}{\Vert \big( \mathrm{cof}(M_{rot} M_{scale}) (M_{tangent}^{-1})^{\mathrm{T}} \big) M_{tile} N_{t} / n_{t,3} \Vert}. $$</p>
 
-<p>If no further modifications of the normal are desired, the matrices can be combined into a normal-tangent-to-world matrix \(M_{ntw} = ((M_{rot} M_{scale} M_{tangent})^{-1})^{\mathrm{T}}\), and the division can be dropped due to subsequent normalization. So if your \(M_{tangent}\) transforms directly into the world space, no cofactor matrices are needed at this step. The run-time cost is thus identical to that of the traditional normal mapping.</p>
+<p>If no further modifications of the normal are desired, the matrices can be combined into a normal-tangent-to-world matrix \(M_{ntw} = ((M_{rot} M_{scale} M_{tangent})^{-1})^{\mathrm{T}}\), and the division can be dropped due to subsequent normalization.</p>
 
 <p>$$ \tag{29} N_w(u,v) \approx \frac{M_{ntw} M_{tile} N_{t}}{\Vert M_{ntw} M_{tile} N_{t} \Vert}. $$</p>
+
+<p>If your \(M_{tangent}\) transforms directly into the world space, no cofactor matrices are needed at this step. The run-time cost is thus identical to that of the traditional normal mapping.</p>
 
 <p>Care must be taken when combining and interpolating these matrices, as your normal map baking tool may assume that the inverse-transpose of the tangent matrix has <a href="http://mikktspace.com/">certain properties</a>.</p>
 
