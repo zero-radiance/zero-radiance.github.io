@@ -208,7 +208,7 @@ To transform the perturbed normal into the world space, all we have to do is rot
 
 $$ \tag{28} N_w(u,v) \approx \frac{\big( \mathrm{cof}(M\_{rot} M\_{scale}) (M\_{tangent}^{-1})^{\mathrm{T}} \big) M\_{tile} N\_{t} / n\_{t,3}}{\Vert \big( \mathrm{cof}(M\_{rot} M\_{scale}) (M\_{tangent}^{-1})^{\mathrm{T}} \big) M\_{tile} N\_{t} / n\_{t,3} \Vert}. $$
 
-If no further modifications of the normal are desired, the matrices can be combined into a normal-tangent-to-world matrix \\(M\_{ntw}\\), and the division can be dropped due to subsequent normalization. The run-time cost is thus identical to that of the "regular" normal mapping.
+If no further modifications of the normal are desired, the matrices can be combined into a normal-tangent-to-world matrix \\(M\_{ntw} = ((M\_{rot} M\_{scale} M\_{tangent})^{-1})^{\mathrm{T}}\\), and the division can be dropped due to subsequent normalization. So if your \\(M\_{tangent}\\) transforms directly into the world space, no cofactor matrices are needed at this step. The run-time cost is thus identical to that of the traditional normal mapping.
 
 $$ \tag{29} N_w(u,v) \approx \frac{M\_{ntw} M\_{tile} N\_{t}}{\Vert M\_{ntw} M\_{tile} N\_{t} \Vert}. $$
 
@@ -251,6 +251,8 @@ By definition, the surface gradient is a vector in the tangent plane with the di
 Given the surface gradient, it's easy to obtain ("resolve") the perturbed normal:
 
 $$ \tag{33} N_p(u,v) = \frac{(\mathrm{cof}(M\_{scale}))(N - \Gamma)}{\Vert (\mathrm{cof}(M\_{scale}))(N - \Gamma) \Vert}. $$
+
+(If both the normal and the surface gradient are in the world space, the cofactor has already been applied.)
 
 Why is it useful? Since it's just a matrix transformation, the surface gradient is a linear operator, which, combined with the fact that the derivative is a linear operator as well, makes many common operations straightforward. Additionally, the surface gradient, like the surface normal, is independent from the surface parametrization. And finally, the surface gradient is compact, since we do not need to retain the entire tangent frame.
 
