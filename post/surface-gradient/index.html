@@ -138,7 +138,7 @@
 
 <p>It's important to note that, in practice, the surface parametrization used to derive the normal may be different from the texture coordinate parametrization. This means that it's possible to encounter a mesh with vertex normals \(N\) pointing in the direction opposite from \((T \times B)\). Of course, we always want to use the forward-facing normal \(N\). Luckily, the math is on our side, and using the full matrix inversion procedure as described above works in all cases. More details about surface re-parametrization can be found in Morten's <a href="http://image.diku.dk/projects/media/morten.mikkelsen.08.pdf">thesis</a> (see Section 2.4).</p>
 
-<p>If strict compliance with <a href="http://mikktspace.com/">Mikk-TSpace</a> is desired (to exactly match the assumptions of the normal map baking tool, for instance), the inverse-transpose should be replaced with the unmodified \([T | B | N]\) matrix, where \(B = N \times T\) is computed either in <a href="https://medium.com/@bgolus/generating-perfect-normal-maps-for-unity-f929e673fc57#c473">the vertex or the pixel shader</a>.</p>
+<p>If strict compliance with the <a href="http://mikktspace.com/">MikkT space</a> is desired (to exactly match the assumptions of the normal map baking tool, for instance), the inverse-transpose should be replaced with the unmodified \([T | B | N]\) matrix, where \(B = N \times T\) is computed either in <a href="https://medium.com/@bgolus/generating-perfect-normal-maps-for-unity-f929e673fc57#c473">the vertex or the pixel shader</a>.</p>
 
 <h2 id="preliminaries-part-2-height-maps-and-volumes">Preliminaries, Part 2: Height Maps and Volumes</h2>
 
