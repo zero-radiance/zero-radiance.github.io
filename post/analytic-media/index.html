@@ -741,12 +741,35 @@ float CosAtDist(float r, float rRcp, float cosTheta, float s)
     return ((s * rRcp) + cosTheta) * rsqrt(x2);
 }
 
-// rRcp = (1 / r), where 'r' is the radial distance from the center of the planet.
+// This variant of the function evaluates optical depth along an infinite path.
+// 'r' is the radial distance from the center of the planet.
+// 'viewZ' is the Z coordinate of the view direction.
+// seaLvlAtt = (sigma_t * k) is the sea-level (height = 0) attenuation coefficient.
+// 'R' is the radius of the planet.
+// 'H' is the scale height.
+// hRcp = rcp(H) is the falloff exponent.
+spectrum OptDepthSpherExpMedium(float r, float viewZ, float R,
+                                spectrum seaLvlAtt, float H, float hRcp)
+{
+    float cosTheta = -viewZ; // p = x - s * v
+
+    float z = r * hRcp;
+    float Z = R * hRcp;
+
+    float ch = RescaledChapman(z, Z, cosTheta);
+
+    return ch * H * seaLvlAtt;
+}
+
+// This variant of the function evaluates optical depth along a bounded path.
+// 'r' is the radial distance from the center of the planet.
+// rRcp = 1 / r.
 // 'viewZ' is the Z coordinate of the view direction.
 // 'dist' is the distance.
 // seaLvlAtt = (sigma_t * k) is the sea-level (height = 0) attenuation coefficient.
 // 'R' is the radius of the planet.
-// hRcp = (1 / H) is the falloff exponent, where 'H' is the scale height.
+// 'H' is the scale height.
+// hRcp = rcp(H) is the falloff exponent.
 spectrum OptDepthSpherExpMedium(float r, float rRcp, float viewZ, float dist, float R,
                                 spectrum seaLvlAtt, float H, float hRcp)
 {
@@ -760,9 +783,9 @@ spectrum OptDepthSpherExpMedium(float r, float rRcp, float viewZ, float dist, fl
     // Convention: at the point Y, the ray points up.
     cosThetaX = (cosThetaY &gt;= 0) ? cosThetaX : -cosThetaX;
 
-    float Z   = R  * hRcp;
     float zX  = rX * hRcp;
     float zY  = rY * hRcp;
+    float Z   = R  * hRcp;
 
     float chX = RescaledChapman(zX, Z, cosThetaX);
     float chY = ChapmanUpper(zY, abs(cosThetaY)) * exp(Z - zY); // Rescaling adds 'exp'
