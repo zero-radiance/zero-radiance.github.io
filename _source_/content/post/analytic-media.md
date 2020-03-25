@@ -293,14 +293,14 @@ Sample code is listed below.
 
 ```c++
 // 'height' is the altitude.
-// 'viewZ' is the Z coordinate of the view direction.
+// 'cosTheta' is the Z component of the ray direction.
 // 'dist' is the distance.
 // seaLvlAtt = (sigma_t * k) is the sea-level (height = 0) attenuation coefficient.
-// hRcp = (1 / H) is the falloff exponent, where 'H' is the scale height.
-spectrum OptDepthRectExpMedium(float height, float viewZ, float dist,
-                               spectrum seaLvlAtt, float hRcp)
+// n = (1 / H) is the falloff exponent, where 'H' is the scale height.
+spectrum OptDepthRectExpMedium(float height, float cosTheta, float dist,
+                               spectrum seaLvlAtt, float n)
 {
-    float p = viewZ * hRcp;
+    float p = -cosTheta * n;
 
     // Equation 26.
     spectrum optDepth = seaLvlAtt * dist;
@@ -308,18 +308,21 @@ spectrum OptDepthRectExpMedium(float height, float viewZ, float dist,
     if (abs(p) > FLT_EPS) // Homogeneity check
     {
         // Equation 34.
-        optDepth = seaLvlAtt * rcp(p) * exp(-height * hRcp) * (exp(p * dist) - 1);
+        optDepth = seaLvlAtt * rcp(p) * exp(height * n) * (exp(p * dist) - 1);
     }
 
     return optDepth;
 }
 
 // 'optDepth' is the value of optical depth.
+// 'height' is the altitude.
+// 'cosTheta' is the Z component of the ray direction.
 // seaLvlAttRcp = (1 / seaLvlAtt).
-float SampleRectExpMedium(float optDepth, float height, float viewZ,
-                          float seaLvlAttRcp, float hRcp)
+// n = (1 / H) is the falloff exponent, where 'H' is the scale height.
+float SampleRectExpMedium(float optDepth, float height, float cosTheta,
+                          float seaLvlAttRcp, float n)
 {
-    float p = viewZ * hRcp;
+    float p = -cosTheta * n;
 
     // Equation 27.
     float dist = optDepth * seaLvlAttRcp;
@@ -327,7 +330,7 @@ float SampleRectExpMedium(float optDepth, float height, float viewZ,
     if (abs(p) > FLT_EPS) // Homogeneity check
     {
         // Equation 35.
-        dist = rcp(p) * log(1 + dist * p * exp(height * hRcp));
+        dist = rcp(p) * log(1 + dist * p * exp(height * n));
     }
 
     return dist;
@@ -620,18 +623,15 @@ float CosAtDist(float r, float rRcp, float cosTheta, float s)
 
 // This variant of the function evaluates optical depth along an infinite path.
 // 'r' is the radial distance from the center of the planet.
-// 'viewZ' is the Z coordinate of the view direction.
+// 'cosTheta' is the value of the dot product of the ray direction and the surface normal.
 // seaLvlAtt = (sigma_t * k) is the sea-level (height = 0) attenuation coefficient.
 // 'R' is the radius of the planet.
-// 'H' is the scale height.
-// hRcp = rcp(H) is the falloff exponent.
-spectrum OptDepthSpherExpMedium(float r, float viewZ, float R,
-                                spectrum seaLvlAtt, float H, float hRcp)
+// n = (1 / H) is the falloff exponent, where 'H' is the scale height.
+spectrum OptDepthSpherExpMedium(float r, float cosTheta, float R,
+                                spectrum seaLvlAtt, float H, float n)
 {
-    float cosTheta = -viewZ; // p = x - s * v
-
-    float z = r * hRcp;
-    float Z = R * hRcp;
+    float z = r * n;
+    float Z = R * n;
 
     float ch = RescaledChapman(z, Z, cosTheta);
 
@@ -640,19 +640,18 @@ spectrum OptDepthSpherExpMedium(float r, float viewZ, float R,
 
 // This variant of the function evaluates optical depth along a bounded path.
 // 'r' is the radial distance from the center of the planet.
-// rRcp = 1 / r.
-// 'viewZ' is the Z coordinate of the view direction.
+// rRcp = (1 / r).
+// 'cosTheta' is the value of the dot product of the ray direction and the surface normal.
 // 'dist' is the distance.
 // seaLvlAtt = (sigma_t * k) is the sea-level (height = 0) attenuation coefficient.
 // 'R' is the radius of the planet.
-// 'H' is the scale height.
-// hRcp = rcp(H) is the falloff exponent.
-spectrum OptDepthSpherExpMedium(float r, float rRcp, float viewZ, float dist, float R,
-                                spectrum seaLvlAtt, float H, float hRcp)
+// n = (1 / H) is the falloff exponent, where 'H' is the scale height.
+spectrum OptDepthSpherExpMedium(float r, float rRcp, float cosTheta, float dist, float R,
+                                spectrum seaLvlAtt, float H, float n)
 {
     float rX        = r;
     float rRcpX     = rRcp;
-    float cosThetaX = -viewZ; // p = x - s * v
+    float cosThetaX = cosTheta;
     float rY        = RadAtDist(rX, rRcpX, cosThetaX, dist);
     float cosThetaY = CosAtDist(rX, rRcpX, cosThetaX, dist);
 
@@ -660,9 +659,9 @@ spectrum OptDepthSpherExpMedium(float r, float rRcp, float viewZ, float dist, fl
     // Convention: at the point Y, the ray points up.
     cosThetaX = (cosThetaY >= 0) ? cosThetaX : -cosThetaX;
 
-    float zX  = rX * hRcp;
-    float zY  = rY * hRcp;
-    float Z   = R  * hRcp;
+    float zX  = rX * n;
+    float zY  = rY * n;
+    float Z   = R  * n;
 
     float chX = RescaledChapman(zX, Z, cosThetaX);
     float chY = ChapmanUpper(zY, abs(cosThetaY)) * exp(Z - zY); // Rescaling adds 'exp'
@@ -696,12 +695,12 @@ Sample code for a dual-component spherical atmosphere is listed below.
 // 'optDepth' is the value to solve for.
 // 'maxOptDepth' is the maximum value along the ray, s.t. (maxOptDepth >= optDepth).
 // 'maxDist' is the maximum distance along the ray.
-float SampleSpherExpMedium(float optDepth, float r, float rRcp, float viewZ, float R,
-                           float2 seaLvlAtt, float2 H, float2 hRcp, // Air & aerosols
+float SampleSpherExpMedium(float optDepth, float r, float rRcp, float cosTheta, float R,
+                           float2 seaLvlAtt, float2 H, float2 n, // Air & aerosols
                            float maxOptDepth, float maxDist)
 {
     const float  optDepthRcp = rcp(optDepth);
-    const float2 Z           = R * hRcp;
+    const float2 Z           = R * n;
 
     // Make an initial guess (homogeneous assumption).
     float t = maxDist * (optDepth * rcp(maxOptDepth));
@@ -716,7 +715,6 @@ float SampleSpherExpMedium(float optDepth, float r, float rRcp, float viewZ, flo
 
     do // Perform a Newton–Raphson iteration.
     {
-        float cosTheta  = -viewZ; // p = x - s * v
         float radAtDist = RadAtDist(r, rRcp, cosTheta, t);
         float cosAtDist = CosAtDist(r, rRcp, cosTheta, t);
         // Evaluate the function and its derivatives:
@@ -724,14 +722,14 @@ float SampleSpherExpMedium(float optDepth, float r, float rRcp, float viewZ, flo
         // f' [t] = AttCoefAtDist[t],
         // f''[t] = AttCoefAtDist'[t] = -AttCoefAtDist[t] * CosAtDist[t] / H.
         float optDepthAtDist = 0, attAtDist = 0, attAtDistDeriv = 0;
-        optDepthAtDist += OptDepthSpherExpMedium(r, rRcp, viewZ, t, R,
-                                                 seaLvlAtt.x, H.x, hRcp.x);
-        optDepthAtDist += OptDepthSpherExpMedium(r, rRcp, viewZ, t, R,
-                                                 seaLvlAtt.y, H.y, hRcp.y);
-        attAtDist      += seaLvlAtt.x * exp(Z.x - radAtDist * hRcp.x);
-        attAtDist      += seaLvlAtt.y * exp(Z.y - radAtDist * hRcp.y);
-        attAtDistDeriv -= seaLvlAtt.x * exp(Z.x - radAtDist * hRcp.x) * hRcp.x;
-        attAtDistDeriv -= seaLvlAtt.y * exp(Z.y - radAtDist * hRcp.y) * hRcp.y;
+        optDepthAtDist += OptDepthSpherExpMedium(r, rRcp, cosTheta, t, R,
+                                                 seaLvlAtt.x, H.x, n.x);
+        optDepthAtDist += OptDepthSpherExpMedium(r, rRcp, cosTheta, t, R,
+                                                 seaLvlAtt.y, H.y, n.y);
+        attAtDist      += seaLvlAtt.x * exp(Z.x - radAtDist * n.x);
+        attAtDist      += seaLvlAtt.y * exp(Z.y - radAtDist * n.y);
+        attAtDistDeriv -= seaLvlAtt.x * exp(Z.x - radAtDist * n.x) * n.x;
+        attAtDistDeriv -= seaLvlAtt.y * exp(Z.y - radAtDist * n.y) * n.y;
         attAtDistDeriv *= cosAtDist;
 
         float   f = optDepthAtDist - optDepth;
