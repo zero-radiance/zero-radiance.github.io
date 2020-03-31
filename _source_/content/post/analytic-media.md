@@ -554,7 +554,7 @@ float Exp2Erfc(float x)
 
 The approximation performs well, as you can see from the plots of the single-precision version shown below.
 
-{{< figure src="/img/exp2erfc.png" caption="*Plot of \\(exp(x^2) erfc(x)\\). The function approaches 0 as the value of the argument increases.*">}}
+{{< figure src="/img/exp2erfc.png" caption="*Plot of \\(exp(x^2) erfc(x)\\).*">}}
 
 {{< figure src="/img/exp2erfc_abs_error.png" caption="*Absolute error plot of the approximation of \\(exp(x^2) erfc(x)\\).*">}}
 
