@@ -119,15 +119,15 @@
 
 <p>There are several known relations between density and the IOR. One of them is given by the <a href="https://en.wikipedia.org/wiki/Clausius%E2%80%93Mossotti_relation">Lorentz–Lorenz equation</a>:</p>
 
-<p>$$ \tag{6} \frac{\bm{\eta}^2 - 1}{\bm{\eta}^2 + 2} = \frac{4}{3} \pi \frac{\rho}{m} \bm{\alpha_m}, $$</p>
+<p>$$ \tag{6} \frac{\bm{\eta}^2 - 1}{\bm{\eta}^2 + 2} = \frac{1}{3} \frac{\rho}{m} \frac{\bm{\alpha_m}}{\epsilon_0}, $$</p>
 
-<p>where \(m\) is the <a href="https://en.wikipedia.org/wiki/Molecular_mass">molecular mass</a> (in \(kg\)) and \(\bm{\alpha_m}\) is the <a href="https://en.wikipedia.org/wiki/Electric_susceptibility#Molecular_polarizability">mean molecular polarizability</a> (in \(m^3\), watch out for different <a href="https://en.wikipedia.org/wiki/Electric_susceptibility#Ambiguity_in_the_definition">conventions</a>). Incidentally, this equation presents a way to compute the IOR of a mixture of several substances. The corresponding <a href="https://www.sciencedirect.com/science/article/pii/S0021850208001183">Lorentz–Lorenz mixture rule</a> is based on four principles of additivity (namely, of mole, mass, volume, and molecular polarizability, with the last two assumption being rather context-dependent).</p>
+<p>where \(m\) is the <a href="https://en.wikipedia.org/wiki/Molecular_mass">molecular mass</a> (in \(kg\)), \(\epsilon_0\) is the <a href="https://en.wikipedia.org/wiki/Permittivity#Vacuum_permittivity">vacuum permittivity</a>, and \(\bm{\alpha_m}\) is the <a href="https://en.wikipedia.org/wiki/Electric_susceptibility#Molecular_polarizability">mean molecular polarizability</a> (SI units of \(C m^{2}/V\), watch out for different <a href="https://en.wikipedia.org/wiki/Electric_susceptibility#Ambiguity_in_the_definition">conventions</a>). Incidentally, this equation presents a way to compute the IOR of a mixture of several substances. The corresponding <a href="https://www.sciencedirect.com/science/article/pii/S0021850208001183">Lorentz–Lorenz mixture rule</a> is based on four principles of additivity (namely, of mole, mass, volume, and molecular polarizability, with the last two assumption being rather context-dependent).</p>
 
 <p>For materials with small mass densities, the molecules are far apart, the molecular interactions are weak, and the IOR is close to 1. Therefore, for matter in the gas state, the following approximation can be made:</p>
 
 <p>$$ \begin{aligned} \tag{7}
-    \bm{\eta}^2 &amp; \approx 1 + 4 \pi \frac{\rho}{m} \bm{\alpha_m} = 1 + 2 \bm{c} \rho, \cr
-    \bm{\eta}   &amp; \approx 1 + 2 \pi \frac{\rho}{m} \bm{\alpha_m} = 1 + \bm{c} \rho,
+    \bm{\eta}^2 &amp; \approx 1 + \frac{\rho}{m} \frac{\bm{\alpha_m}}{\epsilon_0} = 1 + 2 \bm{c} \rho, \cr
+    \bm{\eta}   &amp; \approx 1 + \frac{\rho}{2 m} \frac{\bm{\alpha_m}}{\epsilon_0} = 1 + \bm{c} \rho,
 \end{aligned} $$</p>
 
 <p>where \(\bm{c}\) is the <a href="https://ui.adsabs.harvard.edu/abs/1996CoSka..26...23K/abstract">light dispersion coefficient</a>. This equation implies that the <a href="https://www.sciencedirect.com/topics/chemistry/optical-refraction">relative brake power</a> \((\bm{n} - 1)\) has an approximately linear relation with density. Similar relations can be found for <a href="https://en.wikipedia.org/wiki/Clausius%E2%80%93Mossotti_relation">temperature and and pressure</a> (in fact, all coefficients are highly <a href="http://www.sfu.ca/~gchapman/e376/e376l7.pdf">temperature-dependent</a>). Also, while the discussion above mostly concerns dielectrics, the formula for metals is <a href="https://www.feynmanlectures.caltech.edu/II_32.html#mjx-eqn-EqII3238">very similar</a>.</p>
