@@ -12,17 +12,24 @@ I have [previously](https://zero-radiance.github.io/post/analytic-media/) covere
 
 <!--more-->
 
-Consider an incident electromagnetic wave represented by the electric field \\(\bm{E_i}\\) and the magnetic field \\(\bm{B_i}\\).
-The amount of power carried by the wave per unit area at the time \\(t\\) is given by the magnitude of the [instanteneous Poynting vector](https://en.wikipedia.org/wiki/Poynting_vector#Formulation_in_terms_of_microscopic_fields) \\(\bm{S}\\)
+Consider an incident electromagnetic wave represented by the electric field \\(\bm{E_i}\\) and the magnetic field \\(\bm{B_i}\\) propagating in [free space](https://en.wikipedia.org/wiki/Vacuum#Electromagnetism).
+The direction of propagation and the amount of power per unit area carried by the wave at the time \\(t\\) is given by the [instanteneous Poynting vector](https://en.wikipedia.org/wiki/Poynting_vector#Formulation_in_terms_of_microscopic_fields) \\(\bm{S}\\)
 
-$$ \tag{1} \bm{S}(\lambda, t) = \varepsilon c^2 \Big( \bm{E}(\lambda, t) \times \bm{B}(\lambda, t) \Big), $$
+$$ \tag{1} \bm{S}\_{\lambda}(t) = \varepsilon_0 c^2 \Big( \bm{E}\_{\lambda}(t) \times \bm{B}\_{\lambda}(t) \Big), $$
 
-where \\(\varepsilon\\) is the [absolute permittivity](https://en.wikipedia.org/wiki/Permittivity) of the medium and \\(c\\) is the speed of light.
+where \\(\varepsilon_0\\) is the [vacuum permittivity](https://en.wikipedia.org/wiki/Permittivity) of the medium and \\(c\\) is the speed of light.
 
 Since electromagnetic waves oscillate very rapidly, we are interested in the [time-averaged Poynting vector](https://en.wikipedia.org/wiki/Poynting_vector#Time-averaged_Poynting_vector) \\(\langle \bm{S} \rangle\\)
 
-$$ \tag{2} \langle \bm{S}(\lambda) \rangle = \frac{1}{T} \int_{0}^{T} \bm{S}(\lambda, t) dt, $$
+$$ \tag{2} \langle \bm{S}\_{\lambda} \rangle = \frac{1}{T} \int_{0}^{T} \bm{S}\_{\lambda}(t) dt, $$
 
-which is used to define the [spectral irradiance](https://en.wikipedia.org/wiki/Irradiance#Spectral_irradiance) \\(E(\lambda)\\)
+which can be used to define the [spectral irradiance](https://en.wikipedia.org/wiki/Irradiance#Spectral_irradiance) \\(E\_{\lambda}\\)
 
-$$ \tag{3} E(\lambda) = \Vert \langle \bm{S}(\lambda) \rangle \Vert. $$
+$$ \tag{3} E\_{\lambda} = \Vert \langle \bm{S}\_{\lambda} \rangle \Vert. $$
+
+For a [linearly-polarized](https://en.wikipedia.org/wiki/Linear_polarization) [plane wave](https://en.wikipedia.org/wiki/Plane_wave), the expression is particularly [simple](https://en.wikipedia.org/wiki/Irradiance#Property):
+
+$$ \tag{4} E\_{\lambda} = \frac{1}{2} \varepsilon_0 c E_0^2. $$
+
+
+
