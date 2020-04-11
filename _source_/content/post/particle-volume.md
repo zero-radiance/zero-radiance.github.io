@@ -12,7 +12,7 @@ I have [previously](https://zero-radiance.github.io/post/analytic-media/) covere
 
 <!--more-->
 
-Consider an incident electromagnetic wave represented by the electric field \\(\bm{E_i}\\) and the magnetic field \\(\bm{B_i}\\) propagating in [free space](https://en.wikipedia.org/wiki/Vacuum#Electromagnetism).
+Consider an incident electromagnetic wave represented by the electric field \\(\bm{E_i}\\) and the magnetic field \\(\bm{B_i}\\).
 The direction of propagation and the amount of power per unit area carried by the wave at the time \\(t\\) is given by the [instanteneous Poynting vector](https://en.wikipedia.org/wiki/Poynting_vector#Formulation_in_terms_of_microscopic_fields) \\(\bm{S}\\)
 
 $$ \tag{1} \bm{S}\_{\lambda}(t) = \varepsilon_0 c^2 \Big( \bm{E}\_{\lambda}(t) \times \bm{B}\_{\lambda}(t) \Big), $$
@@ -29,7 +29,9 @@ $$ \tag{3} E\_{\lambda} = \Vert \langle \bm{S}\_{\lambda} \rangle \Vert. $$
 
 For a [linearly-polarized](https://en.wikipedia.org/wiki/Linear_polarization) [plane wave](https://en.wikipedia.org/wiki/Plane_wave), the expression is particularly [simple](https://en.wikipedia.org/wiki/Irradiance#Property):
 
-$$ \tag{4} E\_{\lambda} = \frac{1}{2} \varepsilon_0 c E_0^2. $$
+$$ \tag{4} E\_{\lambda} = \frac{1}{2} \varepsilon_0 \eta c E_0^2, $$
+
+where \\(\eta\\) is the [index of refraction](https://en.wikipedia.org/wiki/Refractive_index).
 
 
 
