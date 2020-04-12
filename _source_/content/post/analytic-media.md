@@ -105,7 +105,7 @@ Other [integral formulations](https://cs.dartmouth.edu/~wjarosz/publications/geo
 
 The RTE models three types of energy sources: [volumetric emission](https://en.wikipedia.org/wiki/Spontaneous_emission) \\(\bm{L_e}\\), volumetric in-scattering \\(\bm{L_s}\\), and surface in-scattering \\(\bm{L_g}\\) (which is the standard surface geometry term with a BSDF). The volumetric in-scattering term \\(\bm{L_s}\\) is an integral over a sphere of directions \\(S^2\\):
 
-$$ \tag{12} \bm{L_s}(\bm{x}, \bm{\hat{v}}) = \int\_{S^2} \bm{\alpha\_{ss}}(\bm{x}) f_p(\bm{x}, \bm{\hat{v}}, \bm{\hat{l}}) \bm{L}(\bm{x}, \bm{\hat{l}}) d\hat{l}, $$
+$$ \tag{12} \bm{L_s}(\bm{x}, \bm{\hat{v}}) = \int\_{S^2} \bm{\alpha\_{ss}}(\bm{x}) \frac{f_p(\bm{x}, \bm{\hat{v}}, \bm{\hat{l}})}{4 \pi} \bm{L}(\bm{x}, \bm{\hat{l}}) d\hat{l}, $$
 
 where \\(f_p\\) denotes the [phase function](http://www.pbr-book.org/3ed-2018/Volume_Scattering/Phase_Functions.html) which models the scattering distribution of an [individual particle](https://en.wikipedia.org/wiki/Mie_scattering) (as opposed to collision coefficients which describe the properties of bulk matter).
 
