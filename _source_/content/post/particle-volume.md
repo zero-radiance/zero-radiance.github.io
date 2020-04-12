@@ -8,7 +8,7 @@ tags: [
     ]
 ---
 
-I have [previously](https://zero-radiance.github.io/post/analytic-media/) covered the basics of the volume scattering process. It describes the macroscopic interaction of light and bulk matter, with the latter represented as a distribution of particles. Fundamentally, the volume scattering process arises from the microscopic interaction of light with individual molecules, typically described using [Maxwell's electromagnetic theory](https://www.osapublishing.org/josaa/abstract.cfm?URI=josaa-35-1-163). It is the domain of optics, and, in my experience, the connection with the [radiative transfer equation](https://en.wikipedia.org/wiki/Radiative_transfer#The_equation_of_radiative_transfer) is not apparent (and is somewhat difficult to discover). The purpose of this blog post is to familiarize the reader with domain-specific terms and ease the adoption of formulas found in the optics literature.
+I have [previously](https://zero-radiance.github.io/post/analytic-media/) covered the basics of the volume scattering process. It describes the macroscopic interaction of light and matter, with the latter represented as a distribution of particles. Fundamentally, the volume scattering process arises from the microscopic interaction of light with individual atoms, typically described using [Maxwell's electromagnetic theory](https://www.osapublishing.org/josaa/abstract.cfm?URI=josaa-35-1-163). It is the domain of optics, and, in my experience, the connection with the [radiative transfer equation](https://en.wikipedia.org/wiki/Radiative_transfer#The_equation_of_radiative_transfer) is neither apparent nor easy to discover. The purpose of this blog post is to familiarize the reader with domain-specific terms and ease the adoption of formulas found in the optics literature.
 
 <!--more-->
 
@@ -19,7 +19,7 @@ $$ \tag{1} \bm{S}(t) = \varepsilon_0 c^2 \Big( \bm{E}(t) \times \bm{B}(t) \Big),
 
 where \\(\varepsilon_0\\) is the [vacuum permittivity](https://en.wikipedia.org/wiki/Permittivity) of the medium and \\(c\\) is the speed of light.
 
-Since electromagnetic waves oscillate very rapidly, we are interested in the [time-averaged Poynting vector](https://en.wikipedia.org/wiki/Poynting_vector#Time-averaged_Poynting_vector) \\(\langle \bm{S} \rangle\\)
+Since light photon waves oscillate very rapidly, we are interested in the [time-averaged Poynting vector](https://en.wikipedia.org/wiki/Poynting_vector#Time-averaged_Poynting_vector) \\(\langle \bm{S} \rangle\\)
 
 $$ \tag{2} \langle \bm{S} \rangle = \frac{1}{T} \int\_{0}^{T} \bm{S}(t) dt, $$
 
@@ -35,30 +35,40 @@ where \\(\eta\\) is the [index of refraction](https://en.wikipedia.org/wiki/Refr
 
 The interaction of light with an individual particle is described in terms of the [differential scattering cross section](http://glossary.ametsoc.org/wiki/Differential_(scattering)_cross_section) \\(\sigma_s'\\). It is defined as the ratio of the [spectral intensity](https://en.wikipedia.org/wiki/Radiant_intensity#Spectral_intensity) \\(I_s\\) scattered in a given direction \\(\omega_s\\) to the incident spectral irradiance \\(E_i\\):
 
-$$ \tag{5} \sigma_s'(\omega_s, \omega_i) = \frac{d \sigma_s}{d \omega_s} = \frac{I_s}{E_i}. $$
+$$ \tag{5} \sigma_s'(\omega_i, \omega_s) = \frac{d \sigma_s}{d \omega_s} = \frac{I_s}{E_i}. $$
 
-Note the implicit dependence on the orientation of the particle with respect to the incident wave - it comes into play for scattering from anisotropic particles.
+Note the implicit dependence on the orientation of the particle with respect to the incident wave - it comes into play if the particle is anisotropic.
 
-We can obtain the scattering cross section by integration over 4π steradians:
+We can obtain the scattering cross section \\(\sigma_s\\) by integration over 4π steradians:
 
-$$ \tag{6} \sigma_s(\omega_i) = \frac{\int\_{4 \pi} I_s d \omega_s}{E_i} = \frac{\Phi_s}{E_i}, $$
+$$ \tag{6} \sigma_s(\omega_i) = \int\_{4 \pi} \sigma_s' d \omega_s = \frac{\int\_{4 \pi} I_s d \omega_s}{E_i} = \frac{\Phi_s}{E_i}, $$
 
 which is just the ratio of the scattered [spectral flux](https://en.wikipedia.org/wiki/Radiant_flux#Spectral_flux) \\(\Phi_s\\) to the incident spectral irradiance \\(E\\).
 
+The [attenuation (or extinction) cross section](http://glossary.ametsoc.org/wiki/Extinction_cross_section) \\(\sigma_t\\) relates the total spectral flux scattered and absorbed by the particle to the incident spectral irradiance:
+
+$$ \tag{7} \sigma_t(\omega_i) = \sigma_s + \sigma_a = \frac{\Phi_s}{E_i} + \frac{\Phi_a}{E_i}. $$
+
+The optical cross sections \\(\sigma_x\\) are related to the geometric cross section \\(\sigma_g\\) by the [efficiencies](https://www.osapublishing.org/josaa/abstract.cfm?URI=josaa-35-1-163) \\(Q_x\\):
+
+$$ \tag{8} \sigma_a = Q_a \sigma_g, \qquad \sigma_s = Q_s \sigma_g, \qquad \sigma_t = Q_t \sigma_g. $$
+
+Note that the value of extinction efficiency can exceed 1. This phenomenon is called the [extinction paradox](https://digitalcommons.unl.edu/cgi/viewcontent.cgi?article=1109&context=usarmyresearch).
+
 The angular distribution of scattered light is described by the [phase function](http://glossary.ametsoc.org/wiki/Phase_function) \\(f_p\\):
 
-$$ \tag{7} f_p(\omega_s, \omega_i) = \frac{I_s}{\frac{1}{4 \pi} \int\_{4 \pi} I_s d \omega_s}
+$$ \tag{9} f_p(\omega_i, \omega_s) = \frac{I_s}{\frac{1}{4 \pi} \int\_{4 \pi} I_s d \omega_s}
                                    = \frac{I_s}{\frac{1}{4 \pi} \Phi_s}. $$
 
-It is the ratio of the ratio of the energy scattered per unit solid angle in a given direction to the average energy scattered per unit solid angle in all directions. Again, there is an implicit dependence on the orientation of the particle with respect to the incident wave. Note that  the integral of the phase function over 4π steradians equals 4π, which appears to be a common [convention](http://glossary.ametsoc.org/wiki/Phase_function) in optics.
+It is the ratio of the energy per unit solid angle scattered in a given direction to the average energy per unit solid angle scattered in all directions. Again, there is an implicit dependence on the orientation of the particle with respect to the incident wave. Note that  the integral of the phase function over 4π steradians equals 4π, which appears to be a common [convention](http://glossary.ametsoc.org/wiki/Phase_function) in optics.
 
-It's instructive to find the product of the scattering cross section and the phase function:
+Let's compute the product of the scattering cross section and the phase function:
 
-$$ \tag{8} \sigma_s(\omega_i) f_p(\omega_s, \omega_i) = \frac{\Phi_s}{E_i} \frac{I_s}{\frac{1}{4 \pi} \Phi_s} = \frac{I_s}{\frac{1}{4 \pi} E_i}. $$
+$$ \tag{10} \sigma_s(\omega_i) f_p(\omega_i, \omega_s) = \frac{\Phi_s}{E_i} \frac{I_s}{\frac{1}{4 \pi} \Phi_s} = \frac{I_s}{\frac{1}{4 \pi} E_i}. $$
 
 The spectral flux cancels out, and we find the relation with the differential scattering cross section:
 
-$$ \tag{9} \sigma_s'(\omega_s, \omega_i) = \sigma_s \frac{f_p}{4 \pi}. $$
+$$ \tag{11} \sigma_s'(\omega_i, \omega_s) = \sigma_s \frac{f_p}{4 \pi}. $$
 
 
 
