@@ -31,7 +31,7 @@ For a [linearly-polarized](https://en.wikipedia.org/wiki/Linear_polarization) [p
 
 $$ \tag{4} E = \frac{1}{2} \varepsilon_0 \eta c E_0^2, $$
 
-where \\(\eta\\) is the [index of refraction](https://en.wikipedia.org/wiki/Refractive_index) of the surrounding medium.
+where \\(\eta\\) is the [index of refraction](https://en.wikipedia.org/wiki/Refractive_index) of the surrounding medium. The same equation holds for [unpolarized light](https://en.wikipedia.org/wiki/Polarization_(waves)#Unpolarized_and_partially_polarized_light) where the energy is distributed equally between the perpendicular and the parallel components.
 
 The interaction of light with an individual particle is described in terms of the [differential scattering cross section](http://glossary.ametsoc.org/wiki/Differential_(scattering)_cross_section) \\(\sigma_s'\\). It is defined as the ratio of the [spectral intensity](https://en.wikipedia.org/wiki/Radiant_intensity#Spectral_intensity) \\(I_s\\) scattered in a given direction \\(\omega_s\\) to the incident spectral irradiance \\(E_i\\):
 
@@ -39,7 +39,7 @@ $$ \tag{5} \sigma_s'(\omega_i, \omega_s) = \frac{d \sigma_s}{d \omega_s} = \frac
 
 Note the implicit dependence on the orientation of the particle with respect to the incident wave - it comes into play if the particle is anisotropic.
 
-We can obtain the scattering cross section \\(\sigma_s\\) by integration over 4π steradians:
+We can obtain the scattering cross section \\(\sigma_s\\) by integration over \\(4 \pi\\) steradians:
 
 $$ \tag{6} \sigma_s(\omega_i) = \int\_{4 \pi} \sigma_s' d \omega_s = \frac{\int\_{4 \pi} I_s d \omega_s}{E_i} = \frac{\Phi_s}{E_i}, $$
 
@@ -47,11 +47,14 @@ which is just the ratio of the scattered [spectral flux](https://en.wikipedia.or
 
 The [attenuation (or extinction) cross section](http://glossary.ametsoc.org/wiki/Extinction_cross_section) \\(\sigma_t\\) relates the total spectral flux scattered and absorbed by the particle to the incident spectral irradiance:
 
-$$ \tag{7} \sigma_t(\omega_i) = \sigma_s + \sigma_a = \frac{\Phi_s}{E_i} + \frac{\Phi_a}{E_i}. $$
+$$ \tag{7} \sigma_t(\omega_i) = \sigma_s + \sigma_a = \frac{\Phi_s}{E_i} + \frac{\Phi_a}{E_i} = \frac{\Phi_t}{E_i}. $$
 
 The optical cross sections \\(\sigma_x\\) are related to the geometric cross section \\(\sigma_g\\) by the [efficiencies](https://www.osapublishing.org/josaa/abstract.cfm?URI=josaa-35-1-163) \\(Q_x\\):
 
-$$ \tag{8} \sigma_a = Q_a \sigma_g, \qquad \sigma_s = Q_s \sigma_g, \qquad \sigma_t = Q_t \sigma_g. $$
+$$ \tag{8}
+    Q_a = \frac{\sigma_a}{\sigma_g} = \frac{\Phi_a}{\Phi_i}, \qquad
+    Q_s = \frac{\sigma_s}{\sigma_g} = \frac{\Phi_s}{\Phi_i}, \qquad
+    Q_t = \frac{\sigma_t}{\sigma_g} = \frac{\Phi_t}{\Phi_i}. $$
 
 Note that the value of extinction efficiency can exceed 1. This phenomenon is called the [extinction paradox](https://digitalcommons.unl.edu/cgi/viewcontent.cgi?article=1109&context=usarmyresearch).
 
@@ -60,7 +63,7 @@ The angular distribution of scattered light is described by the [phase function]
 $$ \tag{9} f_p(\omega_i, \omega_s) = \frac{I_s}{\frac{1}{4 \pi} \int\_{4 \pi} I_s d \omega_s}
                                    = \frac{I_s}{\frac{1}{4 \pi} \Phi_s}. $$
 
-It is the ratio of the energy per unit solid angle scattered in a given direction to the average energy per unit solid angle scattered in all directions. Again, there is an implicit dependence on the orientation of the particle with respect to the incident wave. Note that  the integral of the phase function over 4π steradians equals 4π, which appears to be a common [convention](http://glossary.ametsoc.org/wiki/Phase_function) in optics.
+It is the ratio of the energy per unit solid angle scattered in a given direction to the average energy per unit solid angle scattered in all directions. Again, there is an implicit dependence on the orientation of the particle with respect to the incident wave. Note that  the integral of the phase function over \\(4 \pi\\) steradians equals \\(4 \pi\\), which appears to be a common [convention](http://glossary.ametsoc.org/wiki/Phase_function) in optics.
 
 Let's compute the product of the scattering cross section and the phase function:
 
@@ -70,5 +73,5 @@ The spectral flux cancels out, and we find the relation with the differential sc
 
 $$ \tag{11} \sigma_s'(\omega_i, \omega_s) = \sigma_s \frac{f_p}{4 \pi}. $$
 
-
+Now, let's see how we can extend the theory to scattering from multiple particles. When a particle interacts with light, it experiences a [periodic perturbation of the electron cloud](http://plaza.ufl.edu/dwhahn/Rayleigh%20and%20Mie%20Light%20Scattering.pdf), which turns it into a source of radiation. Assuming [elastic scattering](https://en.wikipedia.org/wiki/Elastic_scattering), the frequency of the radiation source will match the frequency of the scattered light.  With mul To start with, we assume that all \\(N\\) particles are identical (including their orientation).
 
