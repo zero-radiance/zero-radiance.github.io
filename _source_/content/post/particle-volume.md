@@ -33,21 +33,21 @@ $$ \tag{4} E = \frac{1}{2} \varepsilon_0 \eta c E_0^2, $$
 
 where \\(\eta\\) is the [index of refraction](https://en.wikipedia.org/wiki/Refractive_index) of the surrounding medium. The same equation holds for [unpolarized light](https://en.wikipedia.org/wiki/Polarization_(waves)#Unpolarized_and_partially_polarized_light) where the energy is distributed equally between the perpendicular and the parallel components.
 
-The interaction of light with an individual particle is described in terms of the [differential scattering cross section](http://glossary.ametsoc.org/wiki/Differential_(scattering)_cross_section) \\(\sigma_s'\\). It is defined as the ratio of the (far-field) scattered [spectral intensity](https://en.wikipedia.org/wiki/Radiant_intensity#Spectral_intensity) \\(I_s\\) for a given direction \\(\omega_s\\) to the incident spectral irradiance \\(E_i\\):
+The interaction of light with an individual particle is described in terms of the [differential scattering cross section](http://glossary.ametsoc.org/wiki/Differential_(scattering)_cross_section) \\(\sigma_s'\\). It is defined as the ratio of the (far-field) scattered [spectral intensity](https://en.wikipedia.org/wiki/Radiant_intensity#Spectral_intensity) \\(I_s\\) for a given direction \\(\bm{\hat{\omega}_s}\\) to the incident spectral irradiance \\(E_i\\):
 
-$$ \tag{5} \sigma_s'(\omega_i, \omega_s) = \frac{d \sigma_s}{d \omega_s} = \frac{I_s}{E_i}. $$
+$$ \tag{5} \sigma_s'(\bm{\hat{\omega}_i}, \bm{\hat{\omega}_s}) = \frac{d \sigma_s}{d \hat{\omega}_s} = \frac{I_s}{E_i}. $$
 
 Note the implicit dependence on the orientation of the particle with respect to the incident wave - it comes into play if the particle is anisotropic.
 
 We can obtain the scattering cross section \\(\sigma_s\\) by integrating over \\(4 \pi\\) steradians:
 
-$$ \tag{6} \sigma_s(\omega_i) = \int\_{4 \pi} \sigma_s' d \omega_s = \frac{\int\_{4 \pi} I_s d \omega_s}{E_i} = \frac{\Phi_s}{E_i}, $$
+$$ \tag{6} \sigma_s(\bm{\hat{\omega}_i}) = \int\_{4 \pi} \sigma_s' d \hat{\omega}_s = \frac{\int\_{4 \pi} I_s d \hat{\omega}_s}{E_i} = \frac{\Phi_s}{E_i}, $$
 
 which is just the ratio of the scattered [spectral flux](https://en.wikipedia.org/wiki/Radiant_flux#Spectral_flux) \\(\Phi_s\\) to the incident spectral irradiance \\(E_i\\).
 
 The [attenuation (or extinction) cross section](http://glossary.ametsoc.org/wiki/Extinction_cross_section) \\(\sigma_t\\) relates the total spectral flux \\(\Phi_t\\) scattered and absorbed by the particle to the incident spectral irradiance \\(E_i\\):
 
-$$ \tag{7} \sigma_t(\omega_i) = \sigma_s + \sigma_a = \frac{\Phi_s}{E_i} + \frac{\Phi_a}{E_i} = \frac{\Phi_t}{E_i}. $$
+$$ \tag{7} \sigma_t(\bm{\hat{\omega}_i}) = \sigma_s + \sigma_a = \frac{\Phi_s}{E_i} + \frac{\Phi_a}{E_i} = \frac{\Phi_t}{E_i}. $$
 
 The optical cross sections \\(\sigma_x\\) are related to the geometric cross section \\(\sigma_g\\) by the [efficiencies](https://www.osapublishing.org/josaa/abstract.cfm?URI=josaa-35-1-163) \\(Q_x\\):
 
@@ -60,18 +60,18 @@ Note that the value of extinction efficiency can exceed 1. This phenomenon is ca
 
 The angular distribution of scattered light is described by the [phase function](http://glossary.ametsoc.org/wiki/Phase_function) \\(f_p\\):
 
-$$ \tag{9} f_p(\omega_i, \omega_s) = \frac{I_s}{\frac{1}{4 \pi} \int\_{4 \pi} I_s d \omega_s}
+$$ \tag{9} f_p(\bm{\hat{\omega}_i}, \bm{\hat{\omega}_s}) = \frac{I_s}{\frac{1}{4 \pi} \int\_{4 \pi} I_s d \hat{\omega}_s}
                                    = \frac{I_s}{\frac{1}{4 \pi} \Phi_s}. $$
 
-It is the ratio of the energy per unit solid angle scattered in a given direction \\(\omega_s\\) to the average energy per unit solid angle scattered in all directions. Again, there is an implicit dependence on the orientation of the particle with respect to the incident wave. Note that  the integral of the phase function over \\(4 \pi\\) steradians equals \\(4 \pi\\), which appears to be a common [convention](http://glossary.ametsoc.org/wiki/Phase_function) in optics.
+It is the ratio of the energy per unit solid angle scattered in a given direction \\(\bm{\hat{\omega}_s}\\) to the average energy per unit solid angle scattered in all directions. Again, there is an implicit dependence on the orientation of the particle with respect to the incident wave. Note that  the integral of the phase function over \\(4 \pi\\) steradians equals \\(4 \pi\\), which appears to be a common [convention](http://glossary.ametsoc.org/wiki/Phase_function) in optics.
 
 Let's compute the product of the scattering cross section and the phase function:
 
-$$ \tag{10} \sigma_s(\omega_i) f_p(\omega_i, \omega_s) = \frac{\Phi_s}{E_i} \frac{I_s}{\frac{1}{4 \pi} \Phi_s} = \frac{I_s}{\frac{1}{4 \pi} E_i}. $$
+$$ \tag{10} \sigma_s(\bm{\hat{\omega}_i}) f_p(\bm{\hat{\omega}_i}, \bm{\hat{\omega}_s}) = \frac{\Phi_s}{E_i} \frac{I_s}{\frac{1}{4 \pi} \Phi_s} = \frac{I_s}{\frac{1}{4 \pi} E_i}. $$
 
 The spectral flux cancels out, and we find the relation with the differential scattering cross section:
 
-$$ \tag{11} \sigma_s'(\omega_i, \omega_s) = \sigma_s \frac{f_p}{4 \pi}. $$
+$$ \tag{11} \sigma_s'(\bm{\hat{\omega}_i}, \bm{\hat{\omega}_s}) = \sigma_s \frac{f_p}{4 \pi}. $$
 
 Now, let's see how we can extend the theory to scattering from \\(N\\) particles. When a particle interacts with light, it experiences a [periodic perturbation of the electron cloud](http://plaza.ufl.edu/dwhahn/Rayleigh%20and%20Mie%20Light%20Scattering.pdf) which turns it into a source of radiation. Assuming [elastic scattering](https://en.wikipedia.org/wiki/Elastic_scattering), this radiation will have the same frequency as the incident light. Assuming  that all the particles are identical (including their orientation), they will radiate energy in exactly the same way.
 
