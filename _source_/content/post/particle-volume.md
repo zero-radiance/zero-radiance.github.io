@@ -12,7 +12,9 @@ I have [previously](https://zero-radiance.github.io/post/analytic-media/) covere
 
 <!--more-->
 
-Consider an incident electromagnetic wave represented by the electric field \\(\bm{E}\\) and the magnetic field \\(\bm{B}\\).
+{{< figure src="/img/linear_plane_wave.png" caption="*Linearly-Polarized Plane Wave. [Image source](https://openstax.org/books/university-physics-volume-2/pages/16-4-momentum-and-radiation-pressure).*">}}
+
+Consider an incident [electromagnetic wave](https://en.wikipedia.org/wiki/Electromagnetic_radiation#Wave_model) represented by the electric field \\(\bm{E}\\) and the magnetic field \\(\bm{B}\\).
 The direction of propagation and the amount of power per unit area carried by the wave at the time \\(t\\) is given by the [instanteneous Poynting vector](https://en.wikipedia.org/wiki/Poynting_vector#Formulation_in_terms_of_microscopic_fields) \\(\bm{S}\\)
 
 $$ \tag{1} \bm{S}(t) = \varepsilon_0 c^2 \Big( \bm{E}(t) \times \bm{B}(t) \Big), $$
@@ -31,11 +33,16 @@ For a [linearly-polarized](https://en.wikipedia.org/wiki/Linear_polarization) [p
 
 $$ \tag{4} E = \frac{1}{2} \varepsilon_0 \eta c E_0^2, $$
 
-where \\(\eta\\) is the [index of refraction](https://en.wikipedia.org/wiki/Refractive_index) of the surrounding medium. The same equation holds for [unpolarized light](https://en.wikipedia.org/wiki/Polarization_(waves)#Unpolarized_and_partially_polarized_light) where the energy is distributed equally between the perpendicular and the parallel components.
+where \\(\eta\\) is the [index of refraction](https://en.wikipedia.org/wiki/Refractive_index) of the surrounding medium, and \\(E_0\\) is the (complex) amplitude of the electric field. The same equation holds for [unpolarized light](https://en.wikipedia.org/wiki/Polarization_(waves)#Unpolarized_and_partially_polarized_light) where the energy is distributed equally between the perpendicular and the parallel components.
 
 The interaction of light with an individual particle is described in terms of the [differential scattering cross section](http://glossary.ametsoc.org/wiki/Differential_(scattering)_cross_section) \\(\sigma_s'\\). It is defined as the ratio of the (far-field) scattered [spectral intensity](https://en.wikipedia.org/wiki/Radiant_intensity#Spectral_intensity) \\(I_s\\) for a given direction \\(\bm{\hat{\omega}_s}\\) to the incident spectral irradiance \\(E_i\\):
 
-$$ \tag{5} \sigma_s'(\bm{\hat{\omega}_i}, \bm{\hat{\omega}_s}) = \frac{d \sigma_s}{d \hat{\omega}_s} = \frac{I_s}{E_i}. $$
+$$ \tag{5}
+    \sigma_s'(\bm{\hat{\omega}_i}, \bm{\hat{\omega}_s}) =
+    \frac{d \sigma_s}{d \hat{\omega}_s} =
+    \frac{I_s}{E_i} =
+    \frac{1}{r^2} \frac{E_s}{E_i}.
+$$
 
 Note the implicit dependence on the orientation of the particle with respect to the incident wave - it comes into play if the particle is anisotropic.
 
@@ -60,8 +67,11 @@ Note that the value of extinction efficiency can exceed 1. This phenomenon is ca
 
 The angular distribution of scattered light is described by the [phase function](http://glossary.ametsoc.org/wiki/Phase_function) \\(f_p\\):
 
-$$ \tag{9} f_p(\bm{\hat{\omega}_i}, \bm{\hat{\omega}_s}) = \frac{I_s}{\frac{1}{4 \pi} \int\_{4 \pi} I_s d \hat{\omega}_s}
-                                   = \frac{I_s}{\frac{1}{4 \pi} \Phi_s}. $$
+$$ \tag{9}
+    f_p(\bm{\hat{\omega}_i}, \bm{\hat{\omega}_s}) =
+    \frac{I_s}{\frac{1}{4 \pi} \int\_{4 \pi} I_s d \hat{\omega}_s} =
+    \frac{I_s}{\frac{1}{4 \pi} \Phi_s}.
+$$
 
 It is the ratio of the energy per unit solid angle scattered in a given direction \\(\bm{\hat{\omega}_s}\\) to the average energy per unit solid angle scattered in all directions. Again, there is an implicit dependence on the orientation of the particle with respect to the incident wave. Note that  the integral of the phase function over \\(4 \pi\\) steradians equals \\(4 \pi\\), which appears to be a common [convention](http://glossary.ametsoc.org/wiki/Phase_function) in optics.
 
@@ -87,15 +97,13 @@ Finally, we can extend the Equation 12 to take the volume \\(dV\\) occupied by p
 
 $$ \tag{13} \frac{d}{dV} I_s = \frac{d}{dV} N \sigma_s \frac{f_p}{4 \pi} E_i. $$
 
-Assuming that all the particles are identical (including their orientation), the phase function and the scattering cross section can be taken outside the derivative:
+And, for a small volume \\(dV\\), the incident spectral irradiance \\(E_i\\) is approximately constant:
 
-$$ \tag{14} \frac{d}{dV} I_s = \frac{f_p}{4 \pi} \sigma_s \frac{d}{dV} N E_i. $$
+$$ \tag{14} \frac{d}{dV} I_s = E_i \frac{d}{dV} N \sigma_s \frac{f_p}{4 \pi}. $$
 
-If a distribution of (non-identical) particles is given, we can use its [density-weighted average](http://eodg.atm.ox.ac.uk/user/grainger/research/book/protected/Chapter5.pdf) properties instead.
+Assuming that all the particles are identical (including their orientation), the phase function and the scattering cross section can be taken outside the derivative as well:
 
-And, for a small volume \\(dV\\), the incident spectral irradiance \\(E_i\\) can be approximated as constant:
-
-$$ \tag{15} \frac{d}{dV} I_s = \frac{f_p}{4 \pi} \sigma_s \frac{dN}{dV} E_i. $$
+$$ \tag{15} \frac{d}{dV} I_s = E_i \frac{f_p}{4 \pi} \sigma_s \frac{dN}{dV}. $$
 
 \\(dN/dV\\) is the definition of the [number density](https://en.wikipedia.org/wiki/Number_density) \\(n\\),
 and can be used to define the [scattering coefficient](https://zero-radiance.github.io/post/analytic-media/) \\(\mu_s\\):
@@ -106,17 +114,23 @@ Equation 15 then becomes
 
 $$ \tag{17} \frac{d}{dV} I_s = \mu_s \frac{f_p}{4 \pi} E_i. $$
 
+If a distribution of (non-identical) particles is given, we can use its [weighted average](http://eodg.atm.ox.ac.uk/user/grainger/research/book/protected/Chapter5.pdf) properties instead:
+
+$$ \tag{18} \langle \mu_x \rangle = \int n(r) \sigma_x(r) dr, $$
+
+$$ \tag{19} \langle f_p \rangle = \frac{\int n(r) \sigma_s(r) f_p(r) dr}{\int n(r) \sigma_s(r) dr}. $$
+
 If we orient the direction of propagation of incident light along the \\(z\\) axis, we can write
 
-$$ \tag{18} \frac{d^2 I_s}{dA dz} = \mu_s \frac{f_p}{4 \pi} E_i. $$
+$$ \tag{20} \frac{d^2 I_s}{dA dz} = \mu_s \frac{f_p}{4 \pi} E_i. $$
 
 This allows us to find the amount of scattered [spectral radiance](https://en.wikipedia.org/wiki/Radiance#Spectral_radiance) \\(L_s\\)
 
-$$ \tag{19} d L_s = \mu_s \frac{f_p}{4 \pi} E_i dz. $$
+$$ \tag{21} d L_s = \mu_s \frac{f_p}{4 \pi} E_i dz. $$
 
-Finally, we can express the incident spectral irradiance \\(E_i\\) in terms of spectral radiance:
+Finally, we can express the incident spectral irradiance \\(E_i\\) in terms of the incident spectral radiance \\(L_i\\):
 
-$$ \tag{20} L_s = \int\_{4 \pi} \mu_s \frac{f_p}{4 \pi} L_i d \omega_i dz, $$
+$$ \tag{22} L_s = \int\_{4 \pi} \mu_s \frac{f_p}{4 \pi} L_i d \omega_i dz, $$
 
 where \\(dz\\) reminds us that this is a part of a [line integral](https://zero-radiance.github.io/post/analytic-media/).
 
