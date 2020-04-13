@@ -14,7 +14,7 @@ I have [previously](https://zero-radiance.github.io/post/analytic-media/) covere
 
 {{< figure src="/img/linear_plane_wave.png" caption="*Linearly-Polarized Plane Wave. [Image source](https://openstax.org/books/university-physics-volume-2/pages/16-4-momentum-and-radiation-pressure).*">}}
 
-Consider an incident [electromagnetic wave](https://en.wikipedia.org/wiki/Electromagnetic_radiation#Wave_model) represented by the electric field \\(\bm{E}\\) and the magnetic field \\(\bm{B}\\).
+Consider an incident [electromagnetic wave](https://www.cpp.edu/~alrudolph/classes/phy234/Reading/Summary%20of%20Waves.pdf) represented by the electric field \\(\bm{E}\\) and the magnetic field \\(\bm{B}\\).
 The direction of propagation and the amount of power per unit area carried by the wave at the time \\(t\\) is given by the [instanteneous Poynting vector](https://en.wikipedia.org/wiki/Poynting_vector#Formulation_in_terms_of_microscopic_fields) \\(\bm{S}\\)
 
 $$ \tag{1} \bm{S}(t) = \varepsilon_0 c^2 \Big( \bm{E}(t) \times \bm{B}(t) \Big), $$
