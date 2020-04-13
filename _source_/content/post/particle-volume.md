@@ -12,14 +12,14 @@ I have [previously](https://zero-radiance.github.io/post/analytic-media/) covere
 
 <!--more-->
 
-{{< figure src="/img/linear_plane_wave.png" caption="*Linearly-Polarized Plane Wave. [Image source](https://openstax.org/books/university-physics-volume-2/pages/16-4-momentum-and-radiation-pressure).*">}}
+{{< figure src="/img/linear_plane_wave.png" caption="*Linearly-polarized plane electromagnetic wave. [Image source](https://openstax.org/books/university-physics-volume-2/pages/16-4-momentum-and-radiation-pressure).*">}}
 
 Consider an incident [electromagnetic wave](https://www.cpp.edu/~alrudolph/classes/phy234/Reading/Summary%20of%20Waves.pdf) represented by the electric field \\(\bm{E}\\) and the magnetic field \\(\bm{B}\\).
 The direction of propagation and the amount of power per unit area carried by the wave at the time \\(t\\) is given by the [instanteneous Poynting vector](https://en.wikipedia.org/wiki/Poynting_vector#Formulation_in_terms_of_microscopic_fields) \\(\bm{S}\\)
 
 $$ \tag{1} \bm{S}(t) = \varepsilon_0 c^2 \Big( \bm{E}(t) \times \bm{B}(t) \Big), $$
 
-where \\(\varepsilon_0\\) is the [vacuum permittivity](https://en.wikipedia.org/wiki/Permittivity) of the medium and \\(c\\) is the speed of light.
+where \\(\varepsilon_0\\) is the [vacuum permittivity](https://en.wikipedia.org/wiki/Permittivity) and \\(c\\) is the speed of light.
 
 Since light photon waves oscillate very rapidly, we are interested in the [time-averaged Poynting vector](https://en.wikipedia.org/wiki/Poynting_vector#Time-averaged_Poynting_vector) \\(\langle \bm{S} \rangle\\)
 
@@ -33,15 +33,14 @@ For a [linearly-polarized](https://en.wikipedia.org/wiki/Linear_polarization) [p
 
 $$ \tag{4} E = \frac{1}{2} \varepsilon_0 \eta c E_0^2, $$
 
-where \\(\eta\\) is the [index of refraction](https://en.wikipedia.org/wiki/Refractive_index) of the surrounding medium, and \\(E_0\\) is the (complex) amplitude of the electric field. The same equation holds for [unpolarized light](https://en.wikipedia.org/wiki/Polarization__(waves)#Unpolarized_and_partially_polarized_light) where the energy is distributed equally between the perpendicular and the parallel components.
+where \\(\eta\\) is the [index of refraction](https://en.wikipedia.org/wiki/Refractive_index) of the surrounding medium and \\(E_0\\) is the (complex) amplitude of the electric field. The same equation holds for [unpolarized light](https://en.wikipedia.org/wiki/Polarization__(waves)#Unpolarized_and_partially_polarized_light) where the energy is distributed equally between the perpendicular and the parallel components.
 
-The interaction of light with an individual particle is described in terms of the [differential scattering cross section](http://glossary.ametsoc.org/wiki/Differential_(scattering)_cross_section) \\(\sigma_s'\\). It is defined as the ratio of the (far-field) scattered [spectral intensity](https://en.wikipedia.org/wiki/Radiant_intensity#Spectral_intensity) \\(I_s\\) for a given direction \\(\bm{\hat{\omega}_s}\\) to the incident spectral irradiance \\(E_i\\):
+The interaction of light with an individual particle is described in terms of the [differential scattering cross section](http://glossary.ametsoc.org/wiki/Differential_(scattering)_cross_section) \\(\sigma_s'\\). It is defined as the ratio of the scattered [spectral intensity](https://en.wikipedia.org/wiki/Radiant_intensity#Spectral_intensity) \\(I_s\\) for a given direction \\(\bm{\hat{\omega}_s}\\) to the incident spectral irradiance \\(E_i\\):
 
 $$ \tag{5}
     \sigma_s'(\bm{\hat{\omega}_i}, \bm{\hat{\omega}_s}) =
     \frac{d \sigma_s}{d \hat{\omega}_s} =
-    \frac{I_s}{E_i} =
-    \frac{1}{r^2} \frac{E_s}{E_i}.
+    \frac{I_s}{E_i}.
 $$
 
 Note the implicit dependence on the orientation of the particle with respect to the incident wave - it comes into play if the particle is anisotropic.
