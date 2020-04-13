@@ -116,4 +116,6 @@ $$ \tag{19} d L_s = \mu_s \frac{f_p}{4 \pi} E_i dz. $$
 
 Finally, we can express the incident spectral irradiance \\(E_i\\) in terms of spectral radiance:
 
-$$ \tag{19} L_s = \int\_{4 \pi} \mu_s \frac{f_p}{4 \pi} L_i d \omega_i dz. $$
+$$ \tag{20} L_s = \int\_{4 \pi} \mu_s \frac{f_p}{4 \pi} L_i d \omega_i dz, $$
+
+where \\(dz\\) reminds us that this is a part of a [line integral](https://zero-radiance.github.io/post/analytic-media/).
