@@ -91,6 +91,8 @@ Assuming that all the particles are identical (including their orientation), the
 
 $$ \tag{14} \frac{d}{dV} I_s = \frac{f_p}{4 \pi} \sigma_s \frac{d}{dV} N E_i. $$
 
+If a distribution of (non-identical) particles is given, we can use its [density-weighted average](http://eodg.atm.ox.ac.uk/user/grainger/research/book/protected/Chapter5.pdf) properties instead.
+
 And, for a small volume \\(dV\\), the incident spectral irradiance \\(E_i\\) can be approximated as constant:
 
 $$ \tag{15} \frac{d}{dV} I_s = \frac{f_p}{4 \pi} \sigma_s \frac{dN}{dV} E_i. $$
