@@ -75,24 +75,45 @@ $$ \tag{11} \sigma_s'(\omega_i, \omega_s) = \sigma_s \frac{f_p}{4 \pi}. $$
 
 Now, let's see how we can extend the theory to scattering from \\(N\\) particles. When a particle interacts with light, it experiences a [periodic perturbation of the electron cloud](http://plaza.ufl.edu/dwhahn/Rayleigh%20and%20Mie%20Light%20Scattering.pdf) which turns it into a source of radiation. Assuming [elastic scattering](https://en.wikipedia.org/wiki/Elastic_scattering), this radiation will have the same frequency as the incident light. Assuming  that all the particles are identical (including their orientation), they will radiate energy in exactly the same way.
 
-The resulting electromagnetic waves will [combine](https://en.wikipedia.org/wiki/Superposition_principle#Wave_superposition) at the detector, experiencing both constructive and destructive [interference](https://en.wikipedia.org/wiki/Superposition_principle#Wave_interference). Since the particles are identical, the only differentiating factor is their position, which means that the scattered waves will have different [phase](https://en.wikipedia.org/wiki/Phase_(waves)) \\(\phi\\). If these particles are randomly distributed in a small region of space, so are their phases, and the mean phase difference is 0, resulting in a combined wave with the amplitude \\(N E_0\\) and the phase \\(\langle \phi \rangle\\).
+The resulting electromagnetic waves will [combine](https://en.wikipedia.org/wiki/Superposition_principle#Wave_superposition) at the detector, experiencing both constructive and destructive [interference](https://en.wikipedia.org/wiki/Superposition_principle#Wave_interference). Since the particles are identical, the only differentiating factor is their position, which means that the scattered waves will have different [phases](https://en.wikipedia.org/wiki/Phase_(waves)). If these particles are randomly distributed in a small region of space, so are their phases, and [it can be shown](https://www.nbi.dk/~ogendal/personal/lho/lightscattering_theory_and_practice.pdf) that the *mean* energy carried by the combined wave increases by a factor of \\(N\\).
 
-Since the spectral irradiance is proportional to the square of the amplitude of the electric field, we can rewrite the Equation 5 for \\(N\\) particles as
+Therefore, we can rewrite the Equation 5 for \\(N\\) particles as
 
-$$ \tag{12} I_s = N^2 \sigma_s \frac{f_p}{4 \pi} E_i. $$
+$$ \tag{12} I_s = N \sigma_s \frac{f_p}{4 \pi} E_i. $$
 
 It is worth noting that since the size of the geometric cross-section \\(\sigma_g\\) increases by a factor of \\(N\\), so does the incident spectral flux \\(\Phi_i\\).
 
-"Wait a minute", you may object. "Shouldn't we also consider the effect of scattered waves on the particles themselves?" And, in general, indeed, we should. This is a [many-body problem](https://en.wikipedia.org/wiki/Many-body_problem), and it is extremely challenging to solve exactly. Typically, for a low-density dielectric (a gas), the interaction between the particles can be neglected. For dense dielectrics, one way of tackling the problem is to introduce the [electronic polarization vector](https://www.feynmanlectures.caltech.edu/II_11.html) - [electric dipole moment](https://en.wikipedia.org/wiki/Electric_dipole_moment) per unit volume - which can be used to define the [local electric field](https://www.feynmanlectures.caltech.edu/II_32.html).
+"Wait a minute", you may object. "Shouldn't we also consider the effect of scattered waves on the particles themselves?" And, in general, indeed, we should. This is a [many-body problem](https://en.wikipedia.org/wiki/Many-body_problem), and it is extremely challenging to solve exactly. In a low-density dielectric (a gas), the interaction between the particles is typically neglected. For dense dielectrics, one way of tackling the problem is to introduce the [electronic polarization vector](https://www.feynmanlectures.caltech.edu/II_11.html) - [electric dipole moment](https://en.wikipedia.org/wiki/Electric_dipole_moment) per unit volume - which can be used to define the [local electric field](https://www.feynmanlectures.caltech.edu/II_32.html).
 
 Finally, we can extend the Equation 12 to take the volume \\(dV\\) occupied by particles into account:
 
-$$ \tag{13} \frac{d}{dV} I_s = \frac{d}{dV} N^2 \sigma_s \frac{f_p}{4 \pi} E_i. $$
+$$ \tag{13} \frac{d}{dV} I_s = \frac{d}{dV} N \sigma_s \frac{f_p}{4 \pi} E_i. $$
 
 Assuming that all the particles are identical (including their orientation), the phase function and the scattering cross section can be taken outside the derivative:
 
-$$ \tag{14} \frac{d}{dV} I_s = \frac{f_p}{4 \pi} \sigma_s \frac{d}{dV} N^2 E_i. $$
+$$ \tag{14} \frac{d}{dV} I_s = \frac{f_p}{4 \pi} \sigma_s \frac{d}{dV} N E_i. $$
 
-For a small volume \\(dV\\), the incident spectral irradiance \\(E_i\\) can be approximated as constant:
+And, for a small volume \\(dV\\), the incident spectral irradiance \\(E_i\\) can be approximated as constant:
 
-$$ \tag{14} \frac{d}{dV} I_s = \frac{f_p}{4 \pi} \sigma_s \frac{d N^2}{dV} E_i. $$
+$$ \tag{15} \frac{d}{dV} I_s = \frac{f_p}{4 \pi} \sigma_s \frac{dN}{dV} E_i. $$
+
+\\(dN/dV\\) is the definition of the [number density](https://en.wikipedia.org/wiki/Number_density) \\(n\\),
+and can be used to define the [scattering coefficient](https://zero-radiance.github.io/post/analytic-media/) \\(\mu_s\\):
+
+$$ \tag{16} \mu_s = n \sigma_s. $$
+
+Equation 15 then becomes
+
+$$ \tag{17} \frac{d}{dV} I_s = \mu_s \frac{f_p}{4 \pi} E_i. $$
+
+If we orient the direction of propagation of incident light along the \\(z\\) axis, we can write
+
+$$ \tag{18} \frac{d^2 I_s}{dA dz} = \mu_s \frac{f_p}{4 \pi} E_i. $$
+
+This allows us to find the amount of scattered [spectral radiance](https://en.wikipedia.org/wiki/Radiance#Spectral_radiance) \\(L_s\\)
+
+$$ \tag{19} d L_s = \mu_s \frac{f_p}{4 \pi} E_i dz. $$
+
+Finally, we can express the incident spectral irradiance \\(E_i\\) in terms of spectral radiance:
+
+$$ \tag{19} L_s = \int\_{4 \pi} \mu_s \frac{f_p}{4 \pi} L_i d \omega_i dz. $$
