@@ -31,7 +31,7 @@ $$ \tag{3} E = \Vert \langle \bm{S} \rangle \Vert. $$
 
 For a [plane wave](https://en.wikipedia.org/wiki/Plane_wave), the expression is particularly [simple](https://en.wikipedia.org/wiki/Irradiance#Property):
 
-$$ \tag{4} E = \frac{1}{2} \varepsilon_0 \eta c E_0^2, $$
+$$ \tag{4} E = \frac{1}{2} \varepsilon_0 \eta c |E_0|^2, $$
 
 where \\(\eta\\) is the [index of refraction](https://en.wikipedia.org/wiki/Refractive_index) of the surrounding medium and \\(E_0\\) is the ([complex](https://en.wikipedia.org/wiki/Phasor)) amplitude of the electric field.
 
