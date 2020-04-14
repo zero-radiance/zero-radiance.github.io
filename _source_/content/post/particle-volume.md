@@ -33,7 +33,7 @@ For a [plane wave](https://en.wikipedia.org/wiki/Plane_wave), the expression is 
 
 $$ \tag{4} E = \frac{1}{2} \varepsilon_0 \eta c E_0^2, $$
 
-where \\(\eta\\) is the [index of refraction](https://en.wikipedia.org/wiki/Refractive_index) of the surrounding medium and \\(E_0\\) is the (complex) amplitude of the electric field. The same equation holds for [unpolarized light](https://en.wikipedia.org/wiki/Polarization__(waves)#Unpolarized_and_partially_polarized_light) where the energy is distributed equally between the perpendicular and the parallel components.
+where \\(\eta\\) is the [index of refraction](https://en.wikipedia.org/wiki/Refractive_index) of the surrounding medium and \\(E_0\\) is the ([complex](https://en.wikipedia.org/wiki/Phasor)) amplitude of the electric field. The same equation holds for [unpolarized light](https://en.wikipedia.org/wiki/Polarization__(waves)#Unpolarized_and_partially_polarized_light) where the energy is distributed equally between the perpendicular and the parallel components.
 
 The interaction of light with an individual particle is described in terms of the [differential scattering cross section](http://glossary.ametsoc.org/wiki/Differential_(scattering)_cross_section) \\(\sigma_s'\\). It is defined as the ratio of the scattered [spectral intensity](https://en.wikipedia.org/wiki/Radiant_intensity#Spectral_intensity) \\(I_s\\) for a given direction \\(\bm{\hat{\omega}_s}\\) to the incident spectral irradiance \\(E_i\\):
 
