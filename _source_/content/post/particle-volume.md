@@ -29,7 +29,7 @@ which can be used to define the [spectral irradiance](https://en.wikipedia.org/w
 
 $$ \tag{3} E = \Vert \langle \bm{S} \rangle \Vert. $$
 
-For a [linearly-polarized](https://en.wikipedia.org/wiki/Linear_polarization) [plane wave](https://en.wikipedia.org/wiki/Plane_wave), the expression is particularly [simple](https://en.wikipedia.org/wiki/Irradiance#Property):
+For a [plane wave](https://en.wikipedia.org/wiki/Plane_wave), the expression is particularly [simple](https://en.wikipedia.org/wiki/Irradiance#Property):
 
 $$ \tag{4} E = \frac{1}{2} \varepsilon_0 \eta c E_0^2, $$
 
@@ -135,4 +135,4 @@ where \\(dz\\) reminds us that this is a part of a [line integral](https://zero-
 
 ## Acknowledgments
 
-I would like to thank Eugene d'Eon for his thoughtful comments and feedback.
+I would like to thank Eugene d'Eon for his thoughtful comments and feedback, and Don Grainger for his book and for answering my questions.
