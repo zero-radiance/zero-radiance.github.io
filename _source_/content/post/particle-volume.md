@@ -25,7 +25,7 @@ Since light photon waves oscillate very rapidly, we are interested in the [time-
 
 $$ \tag{2} \langle \bm{S} \rangle = \frac{1}{T} \int\_{0}^{T} \bm{S}(t) dt, $$
 
-which can be used to define the [spectral irradiance](https://en.wikipedia.org/wiki/Irradiance#Spectral_irradiance) \\(E\\)
+which can be used to define the [spectral irradiance](https://en.wikipedia.org/wiki/Irradiance#Spectral_irradiance) \\(E\\) (don't confuse it with the electric field vector  \\(\bm{E}\\))
 
 $$ \tag{3} E = \Vert \langle \bm{S} \rangle \Vert. $$
 
@@ -35,7 +35,7 @@ $$ \tag{4} E = \frac{1}{2} \varepsilon_0 \eta c |E_0|^2, $$
 
 where \\(\eta\\) is the [index of refraction](https://en.wikipedia.org/wiki/Refractive_index) of the surrounding medium and \\(E_0\\) is the ([complex](https://en.wikipedia.org/wiki/Phasor)) amplitude of the electric field.
 
-The interaction of light with an individual particle is described in terms of the [differential scattering cross section](http://glossary.ametsoc.org/wiki/Differential_(scattering)_cross_section) \\(\sigma_s'\\). It is defined as the ratio of the scattered [spectral intensity](https://en.wikipedia.org/wiki/Radiant_intensity#Spectral_intensity) \\(I_s\\) for a given direction \\(\bm{\hat{\omega}_s}\\) to the incident spectral irradiance \\(E_i\\):
+The interaction of light with an individual particle is described in terms of the [differential scattering cross section](http://glossary.ametsoc.org/wiki/Differential_(scattering)_cross_section) \\(\sigma_s'\\). It is defined as the ratio of the scattered [spectral intensity](https://en.wikipedia.org/wiki/Radiant_intensity#Spectral_intensity) \\(I_s\\) for a given direction \\(\bm{\hat{\omega}_s}\\) to the incident spectral irradiance \\(E_i\\) normal with respect to \\(\bm{\hat{\omega}_i}\\):
 
 $$ \tag{5}
     \sigma_s'(\bm{\hat{\omega}_i}, \bm{\hat{\omega}_s}) =
