@@ -64,9 +64,9 @@ $$ \begin{aligned} \tag{7}
 
 where \\(\bm{c}\\) is the [light dispersion coefficient](https://ui.adsabs.harvard.edu/abs/1996CoSka..26...23K/abstract). This equation implies that the [relative brake power](https://www.sciencedirect.com/topics/chemistry/optical-refraction) \\((\bm{n} - 1)\\) has an approximately linear relation with density. Similar relations can be found for [temperature and and pressure](https://en.wikipedia.org/wiki/Clausius%E2%80%93Mossotti_relation) (in fact, all coefficients are highly [temperature-dependent](http://www.sfu.ca/~gchapman/e376/e376l7.pdf)). Also, while the discussion above mostly concerns dielectrics, the formula for metals is [very similar](https://www.feynmanlectures.caltech.edu/II_32.html#mjx-eqn-EqII3238).
 
-Continuous variation of the IOR poses many challenges for path tracing. In piecewise-homogeneous media, paths are composed of straight segments joined at scattering locations. Unfortunately, due to [Fermat's principle](https://en.wikipedia.org/wiki/Fermat%27s_principle), continuously varying IOR forces photons to travel along paths of least time that [bend](http://www.waves.utoronto.ca/prof/svhum/ece422/notes/20a-atmospheric-refr.pdf) towards regions of higher density according to [Snell's law](https://en.wikipedia.org/wiki/Snell%27s_law). This fact alone makes basic actions like visibility testing quite complicated. And since the IOR may depend on the frequency, it can cause [dispersion](https://en.wikipedia.org/wiki/Dispersion_(optics)) not only at the interfaces, but also continuously, along the entire path. Finally, one must model losses and gains due to [continuous reflection](https://www.scirp.org/pdf/opj_2013112009301643.pdf), which is mathematically challenging. So it is not too surprising that most renderers ignore this behavior (even though, physically, that doesn't make much sense). For small density gradients and small distances, it is a valid approximation that, on average, gives reasonably accurate results. On the other hand, for certain atmospheric effects, [atmospheric refraction](https://en.wikipedia.org/wiki/Atmospheric_refraction) and reflection make a non-negligible contribution.
+Continuous variation of the IOR poses many challenges for path tracing. In piecewise-homogeneous media, paths are composed of straight segments joined at scattering locations. Unfortunately, due to [Fermat's principle](https://en.wikipedia.org/wiki/Fermat%27s_principle), continuously varying IOR forces photons to travel along paths of least time that [bend](http://www.waves.utoronto.ca/prof/svhum/ece422/notes/20a-atmospheric-refr.pdf) towards regions of higher density according to [Snell's law](https://en.wikipedia.org/wiki/Snell%27s_law). This fact alone makes basic actions like visibility testing quite complicated. And since the IOR may depend on the frequency, it can cause [dispersion](https://en.wikipedia.org/wiki/Dispersion_(optics)) not only at the interfaces, but also continuously, along the entire path. Finally, one must model losses and gains due to [continuous reflection](http://doi.org/10.4236/opj.2013.37054), which is mathematically challenging. So it is not too surprising that most renderers ignore this behavior (even though, physically, that doesn't make much sense). For small density gradients and small distances, it is a valid approximation that, on average, gives reasonably accurate results. On the other hand, for certain atmospheric effects, [atmospheric refraction](https://en.wikipedia.org/wiki/Atmospheric_refraction) and reflection make a non-negligible contribution.
 
-For practical reasons, further discussion will use a (typical) assumption that, within volume boundaries, the IOR is invariant with respect to position. If you are interested in continuous refraction, I encourage you to check out the [Refractive Radiative Transfer Equation](https://dl.acm.org/doi/abs/10.1145/2557605) paper.
+For practical reasons, further discussion will use a (typical) assumption that, within volume boundaries, the IOR is invariant with respect to position. If you are interested in continuous refraction, I encourage you to check out the [Refractive Radiative Transfer Equation](https://doi.org/10.1145/2557605) paper.
 
 ## Radiative Transfer Equation
 
@@ -122,7 +122,7 @@ $$
 
 where \\(\bm{y}\\) denotes the position of the closest surface along the ray. If you're wondering why there's an absorption coefficient in front of the emission term, it's there due to the [Kirchhoff's law](https://en.wikipedia.org/wiki/Kirchhoff%27s_law_of_thermal_radiation) which states that, for an arbitrary body emitting and absorbing thermal radiation in thermodynamic equilibrium, the emissivity is equal to the absorptivity.
 
-We will leave [volumetric emission](https://dl.acm.org/doi/10.1111/cgf.13228) out by setting \\(\bm{L_e} = 0\\):
+We will leave [volumetric emission](https://doi.org/10.1111/cgf.13228) out by setting \\(\bm{L_e} = 0\\):
 
 $$ \tag{14}
     \bm{L}(\bm{x}, \bm{\hat{v}}) =
@@ -419,11 +419,11 @@ It is always a good idea to examine a function visually, as a graph. Let's do th
 {{< figure src="/img/chapman_ref.png" caption="*Plot of the Chapman function for r = 6600.*">}}
 
 Above, I plotted values of the Chapman function (vertical axis) varying with the angle \\(\theta\\) (horizontal axis, in degrees) for different values of the scale height \\(H\\): \\(1\\) (blue), \\(10\\) (orange), \\(20\\) (green), \\(40\\) (red), \\(60\\) (purple), \\(80\\) (brown), \\(100\\) (light blue).
-Arguably, the first two are the most important, since they roughly correspond to scale heights of [aerosols and air](https://hal.inria.fr/inria-00288758/en) of Earth's atmosphere. However, it is nice to be able to support larger values to model atmospheres of [other planets](https://en.wikipedia.org/wiki/Scale_height#Planetary_examples).
+Arguably, the first two are the most important, since they roughly correspond to scale heights of [aerosols and air](https://doi.org/10.1111/j.1467-8659.2008.01245.x) of Earth's atmosphere. However, it is nice to be able to support larger values to model atmospheres of [other planets](https://en.wikipedia.org/wiki/Scale_height#Planetary_examples).
 
 Being an obliquity function, \\(C(z, 0) = 1\\). The function varies slowly, as long as the angle is far from being horizontal (which suggests an opportunity for a [small angle approximation](https://en.wikipedia.org/wiki/Small-angle_approximation)).
 
-To my knowledge, the Chapman function does not have a [closed-form](https://en.wikipedia.org/wiki/Closed-form_expression#Analytic_expression) expression. Many [approximations](https://agupubs.onlinelibrary.wiley.com/doi/pdf/10.1029/2011JD016706) exist. Unfortunately, most of them are specific to Earth's atmosphere, and we are interested in a general solution. The most accurate approximation I have found was developed by [David Huestis](https://ui.adsabs.harvard.edu/abs/2001JQSRT..69..709H/abstract). It is based on a power series expansion. Using the first two terms results in the following formula for \\(\theta \leq \pi/2\\):
+To my knowledge, the Chapman function does not have a [closed-form](https://en.wikipedia.org/wiki/Closed-form_expression#Analytic_expression) expression. Many [approximations](https://doi.org/10.1029/2011JD016706) exist. Unfortunately, most of them are specific to Earth's atmosphere, and we are interested in a general solution. The most accurate approximation I have found was developed by [David Huestis](https://doi.org/10.1016/S0022-4073(00)00107-2). It is based on a power series expansion. Using the first two terms results in the following formula for \\(\theta \leq \pi/2\\):
 
 $$ \begin{aligned} \tag{46} C_u(z, \theta) \approx
     & \sqrt{\frac{1 - \sin{\theta}}{1 + \sin{\theta}}} \Bigg(1 - \frac{1}{2 (1 + \sin{\theta})} \Bigg) + \frac{\sqrt{\pi z}}{\sqrt{1 + \sin{\theta}}} \times \cr
@@ -436,9 +436,9 @@ For the angle of 90 degrees, the integral is given using the [modified Bessel fu
 
 $$ \tag{47} C_h(z) = C(z,\frac{\pi}{2}) = z e^z K_1(z) \approx \sqrt{\frac{\pi z}{2}} \left(1 + \frac{3}{8 z} -\frac{15}{128 z^2}\right). $$
 
-We use a slightly more [accurate approximation](https://ui.adsabs.harvard.edu/abs/2001JQSRT..69..709H/abstract) than \\(C_u(z, \pi/2)\\) to obtain some extra precision near 0 (we add the quadratic term).
+We use a slightly more [accurate approximation](https://doi.org/10.1016/S0022-4073(00)00107-2) than \\(C_u(z, \pi/2)\\) to obtain some extra precision near 0 (we add the quadratic term).
 
-Beyond the 90 degree angle, the following [identity](https://ui.adsabs.harvard.edu/abs/2001JQSRT..69..709H/abstract) can be used:
+Beyond the 90 degree angle, the following [identity](https://doi.org/10.1016/S0022-4073(00)00107-2) can be used:
 
 $$ \tag{48} C_l(z, \theta) = 2 C_h(z \sin{\theta}) e^{z - z \sin{\theta}} - C_u(z, \pi - \theta), $$
 
@@ -683,7 +683,7 @@ In order to sample participating media, we must be able to solve the optical dep
 
  If we can't solve the equation analytically, we can solve it numerically, using the [Newton–Raphson method](https://en.wikipedia.org/wiki/Newton%27s_method). Recall that this method requires being able to make an initial guess, evaluate the function, and take its derivative. Our function is the total optical depth. We can make an initial guess by assuming that the combined medium is homogeneous (or, under certain assumptions, rect-exponential). And since we know that the derivative of optical depth is just the attenuation coefficient \\(\mu_t\\) (see Equation 17), so we have all the pieces we need.
 
-This method is very general and works for arbitrary [continuous density distributions](http://lib-www.lanl.gov/la-pubs/00367066.pdf).
+This method is very general and works for arbitrary [continuous density distributions](https://mcnp.lanl.gov/pdf_files/la-ur-02-6530.pdf).
 
 Sample code for a dual-component spherical atmosphere is listed below.
 
