@@ -11,7 +11,7 @@ tags: [
 
 A couple of years ago, I worked on an [implementation](http://advances.realtimerendering.com/s2018/Efficient%20screen%20space%20subsurface%20scattering%20Siggraph%202018.pdf) of Burley's Normalized Diffusion (a.k.a. Disney SSS). The original [paper](https://graphics.pixar.com/library/ApproxBSSRDF/paper.pdf) claims that the CDF is not analytically invertible. I have great respect for both authors, Brent Burley and Per Christensen, so I haven't questioned their claim for a second. Turns out, "[Question Everything](https://www.psychologytoday.com/us/blog/connect-creativity/201311/question-everything-everywhere-forever)" is probably a better mindset.
 
-I've been recently alerted by [@stirners_ghost](https://twitter.com/stirners_ghost) on Twitter (thank you!) that the CDF is analytically invertible. In fact, the inversion process is almost trivial, as I will demonstrate below.
+I've been recently alerted by [@stirners_ghost](https://twitter.com/stirners_ghost) on Twitter (thank you!) that the CDF is, in fact, analytically invertible. Moreover, the inversion process is almost trivial, as I will demonstrate below.
 
 <!--more-->
 
