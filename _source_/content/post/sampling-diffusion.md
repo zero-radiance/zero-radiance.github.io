@@ -57,7 +57,7 @@ We can verify that it works by feeding the complementary CDF with its inverse.
 
 For importance sampling, we can uniformly sample either the complementary or the regular CDF - it makes no difference \\((\\)except for reversing the order of samples, s.t. \\(x(0) = \infty\\) and \\(x(1) = 0 )\\).
 
-Optimized implementation is listed below.
+An optimized implementation is listed below.
 
 ```c++
 // Performs sampling of a Normalized Burley diffusion profile in polar coordinates.
