@@ -67,14 +67,13 @@ An optimized implementation is listed below.
 // rcp(Pdf) is the reciprocal of the corresponding PDF value.
 void SampleBurleyDiffusionProfile(float u, float rcpS, out float r, out float rcpPdf)
 {
-    u = 1 - u; // Convert CDF to CCDF
+    u = 1 - u; // Convert CDF to CCDF; the resulting value of (u != 0)
 
     float g = 1 + (4 * u) * (2 * u + sqrt(1 + (4 * u) * u));
     float n = exp2(log2(g) * (-1.0/3.0));                    // g^(-1/3)
     float p = (g * n) * n;                                   // g^(+1/3)
     float c = 1 + p + n;                                     // 1 + g^(+1/3) + g^(-1/3)
-    float d = (3 / LOG2_E * 2) + (3 / LOG2_E) * log2(u);     // 3 * Log[4 * u]
-    float x = (3 / LOG2_E) * log2(c) - d;                    // 3 * Log[c / (4 * u)]
+    float x = (3 / LOG2_E) * log2(c * rcp(4 * u));           // 3 * Log[c / (4 * u)]
 
     // x      = s * r
     // exp_13 = Exp[-x/3] = Exp[-1/3 * 3 * Log[c / (4 * u)]]
