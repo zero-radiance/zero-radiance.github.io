@@ -84,7 +84,7 @@ $$ \tag{11} \sigma_s'(\bm{\hat{\omega}_i}, \bm{\hat{\omega}_s}) = \sigma_s \frac
 
 Now, let's see how we can extend the theory to scattering from \\(N\\) particles. When a particle interacts with light, it experiences a [periodic perturbation of the electron cloud](http://plaza.ufl.edu/dwhahn/Rayleigh%20and%20Mie%20Light%20Scattering.pdf) which turns it into a source of radiation. Assuming [elastic scattering](https://en.wikipedia.org/wiki/Elastic_scattering), this radiation will have the same frequency as the incident light. Assuming  that all the particles are identical (including their orientation), they will radiate energy in exactly the same way.
 
-The resulting electromagnetic waves will [combine](https://en.wikipedia.org/wiki/Superposition_principle#Wave_superposition) at the detector, experiencing both constructive and destructive [interference](https://en.wikipedia.org/wiki/Superposition_principle#Wave_interference). Since the particles are identical, the only differentiating factor is their position, which means that the scattered waves will have different [phases](https://en.wikipedia.org/wiki/Phase_(waves)). If these particles are randomly distributed in a small region of space, then so are their phases. This results in [incoherent scattering](http://glossary.ametsoc.org/wiki/Incoherent_scattering), and [it can be shown](https://www.nbi.dk/~ogendal/personal/lho/lightscattering_theory_and_practice.pdf) that the *mean* energy carried by the combined wave increases by a factor of \\(N\\).
+The resulting electromagnetic waves will [combine](https://en.wikipedia.org/wiki/Superposition_principle#Wave_superposition) at the detector, experiencing both constructive and destructive [interference](https://en.wikipedia.org/wiki/Superposition_principle#Wave_interference). Since the particles are identical, the only differentiating factor is their position, which means that the scattered waves will have different [phases](https://en.wikipedia.org/wiki/Phase_(waves)). If these particles are randomly distributed in a small region of space, then so are their phases. This results in [incoherent scattering](http://glossary.ametsoc.org/wiki/Incoherent_scattering), with constructive and destructive interference canceling each other out, and [it can be shown](https://www.nbi.dk/~ogendal/personal/lho/lightscattering_theory_and_practice.pdf) that the *mean* energy carried by the combined wave increases by a factor of \\(N\\).
 
 Therefore, we can rewrite the Equation 5 for \\(N\\) particles as
 
@@ -122,7 +122,7 @@ $$ \tag{19} \langle f_p \rangle = \frac{\int n(r) \sigma_s(r) f_p(r) dr}{\int n(
 If we orient the direction of propagation of incident light along the \\(z\\) axis, we can write
 
 $$ \tag{20} \frac{d^2 I_s}{dA dz} = \mu_s \frac{f_p}{4 \pi} E_i. $$
-
+c
 This allows us to find the amount of scattered [spectral radiance](https://en.wikipedia.org/wiki/Radiance#Spectral_radiance) \\(L_s\\)
 
 $$ \tag{21} d L_s = \mu_s \frac{f_p}{4 \pi} E_i dz. $$
