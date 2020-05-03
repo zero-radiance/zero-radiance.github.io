@@ -96,7 +96,7 @@ Finally, we can extend the Equation 12 to take the volume \\(dV\\) occupied by p
 
 $$ \tag{13} \frac{d}{dV} I_s = \frac{d}{dV} N \sigma_s \frac{f_p}{4 \pi} E_i. $$
 
-And, for a small volume \\(dV\\), the incident spectral irradiance \\(E_i\\) is approximately constant:
+For a small volume \\(dV\\), the incident spectral irradiance \\(E_i\\) is approximately constant:
 
 $$ \tag{14} \frac{d}{dV} I_s = E_i \frac{d}{dV} N \sigma_s \frac{f_p}{4 \pi}. $$
 
@@ -122,7 +122,7 @@ $$ \tag{19} \langle f_p \rangle = \frac{\int n(r) \sigma_s(r) f_p(r) dr}{\int n(
 If we orient the direction of propagation of incident light along the \\(z\\) axis, we can write
 
 $$ \tag{20} \frac{d^2 I_s}{dA dz} = \mu_s \frac{f_p}{4 \pi} E_i. $$
-c
+
 This allows us to find the amount of scattered [spectral radiance](https://en.wikipedia.org/wiki/Radiance#Spectral_radiance) \\(L_s\\)
 
 $$ \tag{21} d L_s = \mu_s \frac{f_p}{4 \pi} E_i dz. $$
