@@ -81,7 +81,7 @@
         <div class="article-entry" itemprop="articleBody">
             <p>Rendering of participating media is an important aspect of every modern renderer. When I say participating media, I am not just talking about fog, fire, and smoke. All matter is composed of <a href="https://courses.lumenlearning.com/boundless-chemistry/chapter/the-structure-of-the-atom/">atoms</a>, which can be sparsely (e.g. in a gas) or densely (e.g. in a solid) distributed in space. Whether we consider the particle or the wave nature of <a href="https://en.wikipedia.org/wiki/Light">light</a>, it penetrates all matter (even <a href="http://webhome.phy.duke.edu/~qelectron/group/group_reading_Born_and_Wolf.pdf">metals</a>) to a certain degree and interacts with its atoms along the way. The nature and the degree of &quot;participation&quot; depend on the material in question.</p>
 
-<p>In the <a href="https://archive.org/details/RadiativeTransfer">radiative transfer</a> literature, light-material interaction is usually quantified in terms of absorption (conversion of electromagnetic energy of photons into kinetic energy of atoms, which manifests itself as reduction of light intensity) and <a href="http://plaza.ufl.edu/dwhahn/Rayleigh%20and%20Mie%20Light%20Scattering.pdf">scattering</a> (absorption followed by <a href="https://en.wikipedia.org/wiki/Stimulated_emission">emission</a> of electromagnetic energy on collision). Therefore, it is common to describe participating media using the collision coefficients: the <em>absorption coefficient</em> \(\bm{\mu_a}\) and the <em>scattering coefficient</em> \(\bm{\mu_s}\). These coefficients give the probability density of the corresponding event per unit distance traveled by a photon, which implies the <a href="https://en.wikipedia.org/wiki/International_System_of_Units">SI units</a> of measurement are \(m^{-1}\). They vary spatially, and may, in general, depend on the orientation unless the particle distribution is <a href="http://www.eugenedeon.com/hitchhikers">isotropic</a>.</p>
+<p>In the <a href="https://archive.org/details/RadiativeTransfer">radiative transfer</a> literature, light-material interaction is usually quantified in terms of absorption (conversion of electromagnetic energy of photons into kinetic energy of atoms, which manifests itself as reduction of light intensity) and <a href="http://plaza.ufl.edu/dwhahn/Rayleigh%20and%20Mie%20Light%20Scattering.pdf">scattering</a> (absorption followed by <a href="https://en.wikipedia.org/wiki/Stimulated_emission">emission</a> of electromagnetic energy on collision). We ignore changes in <a href="https://en.wikipedia.org/wiki/Elastic_scattering#Optical_elastic_scattering">frequency</a> or the <a href="http://hyperphysics.phy-astr.gsu.edu/hbase/phyopt/polar.html">state of polarization</a> resulting from scattering. Therefore, it is common to describe participating media using the collision coefficients: the <em>absorption coefficient</em> \(\bm{\mu_a}\) and the <em>scattering coefficient</em> \(\bm{\mu_s}\). These coefficients give the probability density of the corresponding event per unit distance traveled by a photon, which implies the <a href="https://en.wikipedia.org/wiki/International_System_of_Units">SI units</a> of measurement are \(m^{-1}\). They vary spatially, and may, in general, depend on the orientation unless the particle distribution is <a href="http://www.eugenedeon.com/hitchhikers">isotropic</a>.</p>
 
 <p>The <a href="https://en.wikipedia.org/wiki/Attenuation_coefficient">attenuation coefficient</a> \(\bm{\mu_t}\)</p>
 
@@ -99,7 +99,7 @@
 
 <p>which corresponds to the average collision-free (or free-flight) distance.</p>
 
-<p>Taking a small detour, for metals, the absorption coefficient is directly related to the <a href="http://www.sfu.ca/~gchapman/e376/e376l7.pdf">extinction coefficient</a> \(\bm{\kappa}\), which is the imaginary part of the <a href="https://en.wikipedia.org/wiki/Refractive_index#Complex_refractive_index">complex index of refraction</a> \(\bm{\eta} + i \bm{\kappa}\):</p>
+<p>It's worth noting that the absorption coefficient is directly related to the <a href="http://www.sfu.ca/~gchapman/e376/e376l7.pdf">extinction coefficient</a> \(\bm{\kappa}\), which is the imaginary part of the <a href="https://en.wikipedia.org/wiki/Refractive_index#Complex_refractive_index">complex index of refraction</a> \(\bm{\eta} + i \bm{\kappa}\):</p>
 
 <p>$$ \tag{4} \bm{\kappa} = \frac{\bm{\lambda}}{4 \pi} \bm{\mu_a}. $$</p>
 
@@ -119,22 +119,22 @@
 
 <p>There are several known relations between density and the IOR. One of them is given by the <a href="https://en.wikipedia.org/wiki/Clausius%E2%80%93Mossotti_relation">Lorentz–Lorenz equation</a>:</p>
 
-<p>$$ \tag{6} \frac{\bm{\eta}^2 - 1}{\bm{\eta}^2 + 2} = \frac{1}{3} \frac{\rho}{m} \frac{\bm{\alpha_m}}{\epsilon_0}, $$</p>
+<p>$$ \tag{6} \frac{\bm{\eta}^2 - 1}{\bm{\eta}^2 + 2} = \frac{1}{3} \frac{\rho}{m} \frac{\bm{\alpha_m}}{\varepsilon_0}, $$</p>
 
-<p>where \(m\) is the <a href="https://en.wikipedia.org/wiki/Molecular_mass">molecular mass</a> (in \(kg\)), \(\epsilon_0\) is the <a href="https://en.wikipedia.org/wiki/Permittivity#Vacuum_permittivity">vacuum permittivity</a>, and \(\bm{\alpha_m}\) is the <a href="https://en.wikipedia.org/wiki/Electric_susceptibility#Molecular_polarizability">mean molecular polarizability</a> (SI units of \(C m^{2}/V\), watch out for different <a href="https://en.wikipedia.org/wiki/Electric_susceptibility#Ambiguity_in_the_definition">conventions</a>). Incidentally, this equation presents a way to compute the IOR of a mixture of several substances. The corresponding <a href="https://www.sciencedirect.com/science/article/pii/S0021850208001183">Lorentz–Lorenz mixture rule</a> is based on four principles of additivity (namely, of mole, mass, volume, and molecular polarizability, with the last two assumption being rather context-dependent).</p>
+<p>where \(m\) is the <a href="https://en.wikipedia.org/wiki/Molecular_mass">molecular mass</a> (in \(kg\)), \(\varepsilon_0\) is the <a href="https://en.wikipedia.org/wiki/Permittivity#Vacuum_permittivity">vacuum permittivity</a>, and \(\bm{\alpha_m}\) is the <a href="https://en.wikipedia.org/wiki/Electric_susceptibility#Molecular_polarizability">mean molecular polarizability</a> (SI units of \(C m^{2}/V\), watch out for different <a href="https://en.wikipedia.org/wiki/Electric_susceptibility#Ambiguity_in_the_definition">conventions</a>). Note that, in general, polarizability is a <a href="https://doi.org/10.1002/qj.49708436025">complex-valued second-rank tensor</a> that depends on the frequency of the incident radiation. Incidentally, this equation presents a way to compute the IOR of a mixture of several substances. The corresponding <a href="https://www.sciencedirect.com/science/article/pii/S0021850208001183">Lorentz–Lorenz mixture rule</a> is based on four principles of additivity (namely, of mole, mass, volume, and molecular polarizability, with the last two assumption being rather context-dependent).</p>
 
 <p>For materials with small mass densities, the molecules are far apart, the molecular interactions are weak, and the IOR is close to 1. Therefore, for matter in the gas state, the following approximation can be made:</p>
 
 <p>$$ \begin{aligned} \tag{7}
-    \bm{\eta}^2 &amp; \approx 1 + \frac{\rho}{m} \frac{\bm{\alpha_m}}{\epsilon_0} = 1 + 2 \bm{c} \rho, \cr
-    \bm{\eta}   &amp; \approx 1 + \frac{\rho}{2 m} \frac{\bm{\alpha_m}}{\epsilon_0} = 1 + \bm{c} \rho,
+    \bm{\eta}^2 &amp; \approx 1 + \frac{\rho}{m} \frac{\bm{\alpha_m}}{\varepsilon_0} = 1 + 2 \bm{c} \rho, \cr
+    \bm{\eta}   &amp; \approx 1 + \frac{\rho}{2 m} \frac{\bm{\alpha_m}}{\varepsilon_0} = 1 + \bm{c} \rho,
 \end{aligned} $$</p>
 
 <p>where \(\bm{c}\) is the <a href="https://ui.adsabs.harvard.edu/abs/1996CoSka..26...23K/abstract">light dispersion coefficient</a>. This equation implies that the <a href="https://www.sciencedirect.com/topics/chemistry/optical-refraction">relative brake power</a> \((\bm{n} - 1)\) has an approximately linear relation with density. Similar relations can be found for <a href="https://en.wikipedia.org/wiki/Clausius%E2%80%93Mossotti_relation">temperature and and pressure</a> (in fact, all coefficients are highly <a href="http://www.sfu.ca/~gchapman/e376/e376l7.pdf">temperature-dependent</a>). Also, while the discussion above mostly concerns dielectrics, the formula for metals is <a href="https://www.feynmanlectures.caltech.edu/II_32.html#mjx-eqn-EqII3238">very similar</a>.</p>
 
-<p>Continuous variation of the IOR poses many challenges for path tracing. In piecewise-homogeneous media, paths are composed of straight segments joined at scattering locations. Unfortunately, due to <a href="https://en.wikipedia.org/wiki/Fermat%27s_principle">Fermat's principle</a>, continuously varying IOR forces photons to travel along paths of least time that <a href="http://www.waves.utoronto.ca/prof/svhum/ece422/notes/20a-atmospheric-refr.pdf">bend</a> towards regions of higher density according to <a href="https://en.wikipedia.org/wiki/Snell%27s_law">Snell's law</a>. This fact alone makes basic actions like visibility testing quite complicated. And since the IOR may depend on the frequency, it can cause <a href="https://en.wikipedia.org/wiki/Dispersion_(optics)">dispersion</a> not only at the interfaces, but also continuously, along the entire path. Finally, one must model losses and gains due to <a href="https://www.scirp.org/pdf/opj_2013112009301643.pdf">continuous reflection</a>, which is mathematically challenging. So it is not too surprising that most renderers ignore this behavior (even though, physically, that doesn't make much sense). For small density gradients and small distances, it is a valid approximation that, on average, gives reasonably accurate results. On the other hand, for certain atmospheric effects, <a href="https://en.wikipedia.org/wiki/Atmospheric_refraction">atmospheric refraction</a> and reflection make a non-negligible contribution.</p>
+<p>Continuous variation of the IOR poses many challenges for path tracing. In piecewise-homogeneous media, paths are composed of straight segments joined at scattering locations. Unfortunately, due to <a href="https://en.wikipedia.org/wiki/Fermat%27s_principle">Fermat's principle</a>, continuously varying IOR forces photons to travel along paths of least time that <a href="http://www.waves.utoronto.ca/prof/svhum/ece422/notes/20a-atmospheric-refr.pdf">bend</a> towards regions of higher density according to <a href="https://en.wikipedia.org/wiki/Snell%27s_law">Snell's law</a>. This fact alone makes basic actions like visibility testing quite complicated. And since the IOR may depend on the frequency, it can cause <a href="https://en.wikipedia.org/wiki/Dispersion_(optics)">dispersion</a> not only at the interfaces, but also continuously, along the entire path. Finally, one must model losses and gains due to <a href="http://doi.org/10.4236/opj.2013.37054">continuous reflection</a>, which is mathematically challenging. So it is not too surprising that most renderers ignore this behavior (even though, physically, that doesn't make much sense). For small density gradients and small distances, it is a valid approximation that, on average, gives reasonably accurate results. On the other hand, for certain atmospheric effects, <a href="https://en.wikipedia.org/wiki/Atmospheric_refraction">atmospheric refraction</a> and reflection make a non-negligible contribution.</p>
 
-<p>For practical reasons, further discussion will use a (typical) assumption that, within volume boundaries, the IOR is invariant with respect to position. If you are interested in continuous refraction, I encourage you to check out the <a href="https://dl.acm.org/doi/abs/10.1145/2557605">Refractive Radiative Transfer Equation</a> paper.</p>
+<p>For practical reasons, further discussion will use a (typical) assumption that, within volume boundaries, the IOR is invariant with respect to position. If you are interested in continuous refraction, I encourage you to check out the <a href="https://doi.org/10.1145/2557605">Refractive Radiative Transfer Equation</a> paper.</p>
 
 <h2 id="radiative-transfer-equation">Radiative Transfer Equation</h2>
 
@@ -173,7 +173,7 @@ $$</p>
 
 <p>The RTE models three types of energy sources: <a href="https://en.wikipedia.org/wiki/Spontaneous_emission">volumetric emission</a> \(\bm{L_e}\), volumetric in-scattering \(\bm{L_s}\), and surface in-scattering \(\bm{L_g}\) (which is the standard surface geometry term with a BSDF). The volumetric in-scattering term \(\bm{L_s}\) is an integral over a sphere of directions \(S^2\):</p>
 
-<p>$$ \tag{12} \bm{L_s}(\bm{x}, \bm{\hat{v}}) = \int_{S^2} \bm{\alpha_{ss}}(\bm{x}) f_p(\bm{x}, \bm{\hat{v}}, \bm{\hat{l}}) \bm{L}(\bm{x}, \bm{\hat{l}}) d\hat{l}, $$</p>
+<p>$$ \tag{12} \bm{L_s}(\bm{x}, \bm{\hat{v}}) = \int_{S^2} \bm{\alpha_{ss}}(\bm{x}) \frac{f_p(\bm{x}, \bm{\hat{v}}, \bm{\hat{l}})}{4 \pi} \bm{L}(\bm{x}, \bm{\hat{l}}) d\hat{l}, $$</p>
 
 <p>where \(f_p\) denotes the <a href="http://www.pbr-book.org/3ed-2018/Volume_Scattering/Phase_Functions.html">phase function</a> which models the scattering distribution of an <a href="https://en.wikipedia.org/wiki/Mie_scattering">individual particle</a> (as opposed to collision coefficients which describe the properties of bulk matter).</p>
 
@@ -190,7 +190,7 @@ $$</p>
 
 <p>where \(\bm{y}\) denotes the position of the closest surface along the ray. If you're wondering why there's an absorption coefficient in front of the emission term, it's there due to the <a href="https://en.wikipedia.org/wiki/Kirchhoff%27s_law_of_thermal_radiation">Kirchhoff's law</a> which states that, for an arbitrary body emitting and absorbing thermal radiation in thermodynamic equilibrium, the emissivity is equal to the absorptivity.</p>
 
-<p>We will leave <a href="https://dl.acm.org/doi/10.1111/cgf.13228">volumetric emission</a> out by setting \(\bm{L_e} = 0\):</p>
+<p>We will leave <a href="https://doi.org/10.1111/cgf.13228">volumetric emission</a> out by setting \(\bm{L_e} = 0\):</p>
 
 <p>$$ \tag{14}
     \bm{L}(\bm{x}, \bm{\hat{v}}) =
@@ -497,11 +497,11 @@ $$</p>
 
 
 <p>Above, I plotted values of the Chapman function (vertical axis) varying with the angle \(\theta\) (horizontal axis, in degrees) for different values of the scale height \(H\): \(1\) (blue), \(10\) (orange), \(20\) (green), \(40\) (red), \(60\) (purple), \(80\) (brown), \(100\) (light blue).
-Arguably, the first two are the most important, since they roughly correspond to scale heights of <a href="https://hal.inria.fr/inria-00288758/en">aerosols and air</a> of Earth's atmosphere. However, it is nice to be able to support larger values to model atmospheres of <a href="https://en.wikipedia.org/wiki/Scale_height#Planetary_examples">other planets</a>.</p>
+Arguably, the first two are the most important, since they roughly correspond to scale heights of <a href="https://doi.org/10.1111/j.1467-8659.2008.01245.x">aerosols and air</a> of Earth's atmosphere. However, it is nice to be able to support larger values to model atmospheres of <a href="https://en.wikipedia.org/wiki/Scale_height#Planetary_examples">other planets</a>.</p>
 
 <p>Being an obliquity function, \(C(z, 0) = 1\). The function varies slowly, as long as the angle is far from being horizontal (which suggests an opportunity for a <a href="https://en.wikipedia.org/wiki/Small-angle_approximation">small angle approximation</a>).</p>
 
-<p>To my knowledge, the Chapman function does not have a <a href="https://en.wikipedia.org/wiki/Closed-form_expression#Analytic_expression">closed-form</a> expression. Many <a href="https://agupubs.onlinelibrary.wiley.com/doi/pdf/10.1029/2011JD016706">approximations</a> exist. Unfortunately, most of them are specific to Earth's atmosphere, and we are interested in a general solution. The most accurate approximation I have found was developed by <a href="https://ui.adsabs.harvard.edu/abs/2001JQSRT..69..709H/abstract">David Huestis</a>. It is based on a power series expansion. Using the first two terms results in the following formula for \(\theta \leq \pi/2\):</p>
+<p>To my knowledge, the Chapman function does not have a <a href="https://en.wikipedia.org/wiki/Closed-form_expression#Analytic_expression">closed-form</a> expression. Many <a href="https://doi.org/10.1029/2011JD016706">approximations</a> exist. Unfortunately, most of them are specific to Earth's atmosphere, and we are interested in a general solution. The most accurate approximation I have found was developed by <a href="https://doi.org/10.1016/S0022-4073(00)00107-2">David Huestis</a>. It is based on a power series expansion. Using the first two terms results in the following formula for \(\theta \leq \pi/2\):</p>
 
 <p>$$ \begin{aligned} \tag{46} C_u(z, \theta) \approx
     &amp; \sqrt{\frac{1 - \sin{\theta}}{1 + \sin{\theta}}} \Bigg(1 - \frac{1}{2 (1 + \sin{\theta})} \Bigg) + \frac{\sqrt{\pi z}}{\sqrt{1 + \sin{\theta}}} \times \cr
@@ -514,9 +514,9 @@ Arguably, the first two are the most important, since they roughly correspond to
 
 <p>$$ \tag{47} C_h(z) = C(z,\frac{\pi}{2}) = z e^z K_1(z) \approx \sqrt{\frac{\pi z}{2}} \left(1 + \frac{3}{8 z} -\frac{15}{128 z^2}\right). $$</p>
 
-<p>We use a slightly more <a href="https://ui.adsabs.harvard.edu/abs/2001JQSRT..69..709H/abstract">accurate approximation</a> than \(C_u(z, \pi/2)\) to obtain some extra precision near 0 (we add the quadratic term).</p>
+<p>We use a slightly more <a href="https://doi.org/10.1016/S0022-4073(00)00107-2">accurate approximation</a> than \(C_u(z, \pi/2)\) to obtain some extra precision near 0 (we add the quadratic term).</p>
 
-<p>Beyond the 90 degree angle, the following <a href="https://ui.adsabs.harvard.edu/abs/2001JQSRT..69..709H/abstract">identity</a> can be used:</p>
+<p>Beyond the 90 degree angle, the following <a href="https://doi.org/10.1016/S0022-4073(00)00107-2">identity</a> can be used:</p>
 
 <p>$$ \tag{48} C_l(z, \theta) = 2 C_h(z \sin{\theta}) e^{z - z \sin{\theta}} - C_u(z, \pi - \theta), $$</p>
 
@@ -806,7 +806,7 @@ spectrum OptDepthSpherExpMedium(float r, float rRcp, float cosTheta, float dist,
 
 <p>If we can't solve the equation analytically, we can solve it numerically, using the <a href="https://en.wikipedia.org/wiki/Newton%27s_method">Newton–Raphson method</a>. Recall that this method requires being able to make an initial guess, evaluate the function, and take its derivative. Our function is the total optical depth. We can make an initial guess by assuming that the combined medium is homogeneous (or, under certain assumptions, rect-exponential). And since we know that the derivative of optical depth is just the attenuation coefficient \(\mu_t\) (see Equation 17), so we have all the pieces we need.</p>
 
-<p>This method is very general and works for arbitrary <a href="http://lib-www.lanl.gov/la-pubs/00367066.pdf">continuous density distributions</a>.</p>
+<p>This method is very general and works for arbitrary <a href="https://mcnp.lanl.gov/pdf_files/la-ur-02-6530.pdf">continuous density distributions</a>.</p>
 
 <p>Sample code for a dual-component spherical atmosphere is listed below.</p>
 
@@ -1345,6 +1345,12 @@ float3 SpectralTracking(float3 X, float3 V, uint numWavelengths, uint numPaths)
         
     </div>
     <nav id="article-nav">
+    
+    <a href="/post/particle-volume/" id="article-nav-newer" class="article-nav-link-wrap">
+        <div class="article-nav-title"><span>&lt;</span>&nbsp;
+            From Particle to Volume Scattering
+        </div>
+    </a>
     
     
     <a href="/post/sampling-diffusion/" id="article-nav-older" class="article-nav-link-wrap">
