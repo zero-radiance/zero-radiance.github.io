@@ -218,7 +218,7 @@ Care must be taken when combining and interpolating these matrices, as your norm
 
 ## Surface Gradient Framework
 
-The [surface gradient](https://en.wikipedia.org/wiki/Surface_gradient) is defined as the orthographic projection of the volume gradient onto the tangent plane (compare to the equation (8)):
+The [surface gradient](https://en.wikipedia.org/wiki/Surface_gradient) is defined as the orthogonal projection of the volume gradient onto the tangent plane (compare to the equation (8)):
 
 $$ \tag{30} \Gamma(u,v) = \nabla h - \langle \nabla h, N \rangle N. $$
 
