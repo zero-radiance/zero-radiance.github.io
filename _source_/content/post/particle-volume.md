@@ -6,6 +6,7 @@ tags: [
     "Volume Rendering",
     "Radiometry"
     ]
+draft: true
 ---
 
 I have [previously](https://zero-radiance.github.io/post/analytic-media/) covered the basics of the volume scattering process. It describes the macroscopic interaction of light and matter, with the latter represented as a distribution of particles. Fundamentally, the volume scattering process arises from the microscopic interaction of light with individual atoms, typically described using [Maxwell's electromagnetic theory](https://doi.org/10.1364/JOSAA.35.000163). It is the domain of optics, and, in my experience, the connection with the [radiative transfer equation](https://en.wikipedia.org/wiki/Radiative_transfer#The_equation_of_radiative_transfer) is neither apparent nor easy to discover. The purpose of this blog post is to familiarize the reader with domain-specific terms and ease the adoption of formulas found in the optics literature.
