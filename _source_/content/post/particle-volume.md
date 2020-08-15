@@ -12,6 +12,10 @@ I have [previously](https://zero-radiance.github.io/post/analytic-media/) covere
 
 <!--more-->
 
+## Particle Scattering Basics
+
+Imagine a small particle of an arbitrary shape embedded in a host medium with the complex refractive index \\(\eta_1 + i \kappa_1\\) (index 0 is usually reserved for the vacuum).
+
 {{< figure src="/img/linear_plane_wave.png" caption="*Linearly-polarized plane electromagnetic wave. [Image source](https://openstax.org/books/university-physics-volume-2/pages/16-4-momentum-and-radiation-pressure).*">}}
 
 Consider an incident [electromagnetic wave](https://www.cpp.edu/~alrudolph/classes/phy234/Reading/Summary%20of%20Waves.pdf) represented by the electric field \\(\bm{E}\\) and the magnetic field \\(\bm{B}\\).
