@@ -10,7 +10,7 @@ tags: [
 draft: true
 ---
 
-High Z-buffer precision is something that we take for granted these days. Since the introduction of [reverse Z-buffering](https://doi.org/10.1145/311534.311579) (and, assuming you use the standard tricks like [camera-relative transforms](https://pharr.org/matt/blog/2018/03/02/rendering-in-camera-space.html)), most depth precision issues are a thing of the past. You ask the the rasterizer to throw triangles at the screen and, almost magically, and they appear at the right place and in the right order.
+High Z-buffer precision is something that we take for granted these days. Since the introduction of [reversed floating-point depth buffering](https://doi.org/10.1145/311534.311579) (and, assuming you use the standard tricks like [camera-relative transforms](https://pharr.org/matt/blog/2018/03/02/rendering-in-camera-space.html)), most depth precision issues are a thing of the past. You ask the the rasterizer to throw triangles at the screen and, almost magically, and they appear at the right place and in the right order.
 
 There are many existing articles concerning Z-buffer precision ([1](https://doi.org/10.1145/311534.311579), [2](https://mynameismjp.wordpress.com/2010/03/22/attack-of-the-depth-buffer/), [3](http://www.geometry.caltech.edu/pubs/UD12.pdf), [4](http://www.humus.name/Articles/Persson_CreatingVastGameWorlds.pdf), [5](https://outerra.blogspot.com/2012/11/maximizing-depth-buffer-range-and.html), [6](http://dev.theomader.com/depth-precision/), [7](https://developer.nvidia.com/content/depth-precision-visualized)), as well as sections in the [Real-Time Rendering](http://www.realtimerendering.com/book.html) and the [Foundations of Game Engine Development](https://foundationsofgameenginedev.com/#fged2) books. So, why write another one? While there is nothing wrong with the intuition and the results presented there, I find the numerical analysis part (specifically, its presentation) a bit lacking, so that, even after reading all these articles, I still do not feel that I have achieved what Jim Blinn would call the [ultimate understanding](https://doi.org/10.1109/38.210494) of the concept and the way it actually works in practice.
 
@@ -136,7 +136,7 @@ With so much precision available for the region near the far plane, it is natura
 
 {{< figure src="/img/floating_point_8.png" >}}
 
-Turns out is that, up to around 2000 meters, precision is barely affected. As we get farther away from the camera, precision no longer remains constant, and starts to drop.
+Turns out is that, up to around 1000-2000 meters, precision is barely affected. As we get farther away from the camera, precision no longer remains constant, and starts to drop.
 
 {{< figure src="/img/floating_point_9.png" >}}
 
@@ -144,3 +144,6 @@ Considering the expanded viewing range, that is a perfectly reasonable trade-off
 
 ## Conclusion
 
+For a reasonable viewing range, a reversed floating-point depth buffer will offer sufficient precision (sub-millimeter throughout the entire range) for most applications. Objects close to the camera will enjoy up to two orders-of-magnitude higher depth resolution. Using an infinite far plane maintains precision up to a considerable distance from the camera (around 1000-2000 meters from my testing), after which point the depth resolution degrades. Assuming an LOD system is in place, and certain care is exercised when building the scene, this should not pose a problem.
+
+A big caveat is that this article *only* considers depth buffer resolution. All the math has been done using infinite-precision arithmetic. There is no transformation pipeline, no rounding error, and no interpolation. These are the things that will likely cause more issues in practice.
