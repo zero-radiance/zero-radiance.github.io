@@ -14,6 +14,10 @@ High Z-buffer precision is something that we take for granted these days. Since 
 
 There are many existing articles concerning Z-buffer precision ([1](https://doi.org/10.1145/311534.311579), [2](https://mynameismjp.wordpress.com/2010/03/22/attack-of-the-depth-buffer/), [3](http://www.geometry.caltech.edu/pubs/UD12.pdf), [4](http://www.humus.name/Articles/Persson_CreatingVastGameWorlds.pdf), [5](https://outerra.blogspot.com/2012/11/maximizing-depth-buffer-range-and.html), [6](http://dev.theomader.com/depth-precision/), [7](https://developer.nvidia.com/content/depth-precision-visualized)), as well as sections in the [Real-Time Rendering](http://www.realtimerendering.com/book.html) and the [Foundations of Game Engine Development](https://foundationsofgameenginedev.com/#fged2) books. So, why write another one? While there is nothing wrong with the intuition and the results presented there, I find the numerical analysis part (specifically, its presentation) a bit lacking, so that, even after reading all these articles, I still do not feel that I have achieved what Jim Blinn would call the [ultimate understanding](https://doi.org/10.1109/38.210494) of the concept and the way it actually works in practice.
 
+
+... Relative precision ... LogLinearPlot ...
+http://tulrich.com/geekstuff/log_depth_buffer.txt
+
 <!--more-->
 
 With that in mind, the goals of this article are:
