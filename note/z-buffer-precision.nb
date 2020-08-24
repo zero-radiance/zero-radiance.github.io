@@ -1,0 +1,1227 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 12.1' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       158,          7]
+NotebookDataLength[     44047,       1219]
+NotebookOptionsPosition[     39608,       1161]
+NotebookOutlinePosition[     40028,       1178]
+CellTagsIndexPosition[     39985,       1175]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+Cell[BoxData[
+ RowBox[{"Clear", "[", "\"\<Global`*\>\"", "]"}]], "Input",
+ CellLabel->"In[42]:=",ExpressionUUID->"5fb972bc-3160-4ec0-824e-5c0e1d6b5bf7"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"(*", " ", 
+   RowBox[{"Reverse", "-", 
+    RowBox[{"Z", " ", "projection"}]}], " ", "*)"}], "\[IndentingNewLine]", 
+  RowBox[{
+   RowBox[{
+    RowBox[{"rp", "=", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"{", 
+        RowBox[{
+         RowBox[{"p", "/", "a"}], ",", "0", ",", "0", ",", "0"}], "}"}], ",", 
+       RowBox[{"{", 
+        RowBox[{"0", ",", "p", ",", "0", ",", "0"}], "}"}], ",", 
+       RowBox[{"{", 
+        RowBox[{"0", ",", "0", ",", 
+         RowBox[{"n", "/", 
+          RowBox[{"(", 
+           RowBox[{"n", "-", "f"}], ")"}]}], ",", 
+         RowBox[{
+          RowBox[{"-", "n"}], "*", 
+          RowBox[{"f", "/", 
+           RowBox[{"(", 
+            RowBox[{"n", "-", "f"}], ")"}]}]}]}], "}"}], ",", 
+       RowBox[{"{", 
+        RowBox[{"0", ",", "0", ",", "1", ",", "0"}], "}"}]}], "}"}]}], ";"}], 
+   "\[IndentingNewLine]", 
+   RowBox[{"rp", "//", "MatrixForm"}]}]}]], "Input",
+ CellLabel->"In[43]:=",ExpressionUUID->"0368535a-37f0-4458-9db4-ec495d4c6c6e"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"(*", " ", 
+   RowBox[{"Inverse", " ", "projection"}], " ", "*)"}], "\[IndentingNewLine]", 
+  RowBox[{
+   RowBox[{
+    RowBox[{"ip", "=", 
+     RowBox[{"Inverse", "[", "rp", "]"}]}], ";"}], "\[IndentingNewLine]", 
+   RowBox[{"ip", "//", " ", "MatrixForm"}]}]}]], "Input",
+ CellLabel->"In[45]:=",ExpressionUUID->"8b5062d1-6269-4ae9-a230-10af41cd4ef3"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"(*", " ", 
+   RowBox[{"Inverse", " ", 
+    RowBox[{"projection", " ", "[", 
+     RowBox[{"infinite", " ", "far", " ", "plane"}], "]"}]}], " ", "*)"}], 
+  "\[IndentingNewLine]", 
+  RowBox[{
+   RowBox[{
+    RowBox[{"iip", "=", 
+     RowBox[{"Limit", "[", 
+      RowBox[{"ip", ",", 
+       RowBox[{"f", "\[Rule]", "Infinity"}]}], "]"}]}], ";"}], 
+   "\[IndentingNewLine]", 
+   RowBox[{"iip", "//", " ", "MatrixForm"}]}]}]], "Input",
+ CellLabel->"In[47]:=",ExpressionUUID->"2186810d-927f-4a15-931e-b080ec45ed98"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"(*", " ", 
+   RowBox[{"Z", " ", "from", " ", "W"}], " ", "*)"}], "\[IndentingNewLine]", 
+  RowBox[{
+   RowBox[{"zw", "[", "w_", "]"}], "=", 
+   RowBox[{
+    RowBox[{"(", 
+     RowBox[{
+      RowBox[{"w", "*", 
+       RowBox[{"n", "/", 
+        RowBox[{"(", 
+         RowBox[{"n", "-", "f"}], ")"}]}]}], "-", 
+      RowBox[{"n", "*", 
+       RowBox[{"f", "/", 
+        RowBox[{"(", 
+         RowBox[{"n", "-", "f"}], ")"}]}]}]}], ")"}], "/", "w"}]}]}]], "Input",
+ CellLabel->"In[49]:=",ExpressionUUID->"cb03a0a6-063f-4079-8461-ffc7f2e2f907"],
+
+Cell[BoxData[
+ RowBox[{"Solve", "[", 
+  RowBox[{
+   RowBox[{"z", "==", 
+    FractionBox[
+     RowBox[{
+      RowBox[{"-", 
+       FractionBox[
+        RowBox[{"f", " ", "n"}], 
+        RowBox[{
+         RowBox[{"-", "f"}], "+", "n"}]]}], "+", 
+      FractionBox[
+       RowBox[{"n", " ", "w"}], 
+       RowBox[{
+        RowBox[{"-", "f"}], "+", "n"}]]}], "w"]}], ",", "w"}], "]"}]], "Input",
+ CellLabel->"In[50]:=",ExpressionUUID->"374c0606-9afd-4e56-bad0-66e63f18a7f0"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"(*", " ", 
+   RowBox[{"W", " ", "from", " ", "Z"}], " ", "*)"}], "\[IndentingNewLine]", 
+  RowBox[{
+   RowBox[{"wz", "[", "z_", "]"}], "=", 
+   RowBox[{"1", "/", 
+    RowBox[{"(", 
+     RowBox[{
+      RowBox[{"z", "*", 
+       RowBox[{
+        RowBox[{"(", 
+         RowBox[{"f", "-", "n"}], ")"}], "/", 
+        RowBox[{"(", 
+         RowBox[{"f", "*", "n"}], ")"}]}]}], "+", 
+      RowBox[{"(", 
+       RowBox[{"1", "/", "f"}], ")"}]}], ")"}]}]}]}]], "Input",
+ CellLabel->"In[51]:=",ExpressionUUID->"98dae945-94b2-48e5-a15f-5b118c977447"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"(*", " ", 
+   RowBox[{"W", " ", "from", " ", 
+    RowBox[{"Z", " ", "[", 
+     RowBox[{"infinite", " ", "far", " ", "plane"}], "]"}]}], " ", "*)"}], 
+  "\[IndentingNewLine]", 
+  RowBox[{
+   RowBox[{"wiz", "[", "z_", "]"}], "=", 
+   RowBox[{"Limit", "[", 
+    RowBox[{
+     RowBox[{"wz", "[", "z", "]"}], ",", 
+     RowBox[{"f", "\[Rule]", "Infinity"}]}], "]"}]}]}]], "Input",
+ CellLabel->"In[52]:=",ExpressionUUID->"840e1f4c-63bf-4681-b91f-56c62ca76c25"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"zw", "[", "n", "]"}], "//", "FullSimplify"}]], "Input",
+ CellLabel->"In[53]:=",ExpressionUUID->"7d0bf7b3-1426-4a9e-840c-43efd42f916d"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"wz", "[", "1", "]"}], "//", "FullSimplify"}]], "Input",
+ CellLabel->"In[54]:=",ExpressionUUID->"bc9dd3d6-25b9-459c-8b98-e5acff85c016"],
+
+Cell[BoxData[
+ RowBox[{"zw", "[", "f", "]"}]], "Input",
+ CellLabel->"In[55]:=",ExpressionUUID->"24938eb7-1330-4fea-bf83-bdd61ceaf36d"],
+
+Cell[BoxData[
+ RowBox[{"wz", "[", "0", "]"}]], "Input",
+ CellLabel->"In[56]:=",ExpressionUUID->"94230852-012a-471c-b5c3-bfed9b256f4c"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"(*", " ", 
+   RowBox[{"Depth", " ", "encoding", " ", "parameters"}], " ", "*)"}], 
+  "\[IndentingNewLine]", 
+  RowBox[{
+   RowBox[{
+    RowBox[{"n", "=", 
+     RowBox[{"1", "/", "10"}]}], ";"}], "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"f", "=", "10000"}], ";"}]}]}]], "Input",
+ CellLabel->
+  "In[255]:=",ExpressionUUID->"fdcbd4cd-3777-431f-a6f3-a79276fdb292"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"(*", " ", 
+   RowBox[{
+    RowBox[{"W", " ", "[", "meters", "]"}], " ", "as", " ", "a", " ", 
+    "function", " ", "of", " ", "Z"}], " ", "*)"}], "\[IndentingNewLine]", 
+  RowBox[{
+   RowBox[{"Plot", "[", 
+    RowBox[{
+     RowBox[{"wz", "[", "z", "]"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"z", ",", "0", ",", "1"}], "}"}], ",", 
+     RowBox[{"PlotRange", "\[Rule]", "Full"}], ",", 
+     RowBox[{"AxesLabel", "\[Rule]", 
+      RowBox[{"{", 
+       RowBox[{"z", ",", "w"}], "}"}]}]}], "]"}], "\[IndentingNewLine]", 
+   RowBox[{"LogPlot", "[", 
+    RowBox[{
+     RowBox[{"wz", "[", "z", "]"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"z", ",", "0", ",", "1"}], "}"}], ",", 
+     RowBox[{"PlotRange", "\[Rule]", "Full"}], ",", 
+     RowBox[{"AxesLabel", "\[Rule]", 
+      RowBox[{"{", 
+       RowBox[{"z", ",", "w"}], "}"}]}]}], "]"}]}]}]], "Input",
+ CellLabel->"In[78]:=",ExpressionUUID->"c3c374a1-47f5-4898-9045-70ff521fbedf"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"(*", " ", 
+   RowBox[{"Fixed", "-", 
+    RowBox[{"point", " ", "number", " ", "encoding", " ", "parameters"}]}], 
+   " ", "*)"}], "\[IndentingNewLine]", 
+  RowBox[{
+   RowBox[{"k", "=", "24"}], ";"}]}]], "Input",
+ CellLabel->"In[80]:=",ExpressionUUID->"9aa39fab-ee44-4c40-8013-ac015ae1a636"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"(*", " ", 
+   RowBox[{"Unsigned", " ", "normalized", " ", 
+    RowBox[{"(", 
+     RowBox[{"fixed", "-", "point"}], ")"}], " ", "number", " ", "from", " ", 
+    "the", " ", "decimal", " ", "interpretation", " ", "of", " ", "its", " ", 
+    "binary", " ", "representation"}], " ", "*)"}], "\[IndentingNewLine]", 
+  RowBox[{
+   RowBox[{"ud", "[", "d_", "]"}], ":=", 
+   RowBox[{"d", "/", 
+    RowBox[{"(", 
+     RowBox[{
+      RowBox[{"2", "^", "k"}], "-", "1"}], ")"}]}]}]}]], "Input",
+ CellLabel->"In[81]:=",ExpressionUUID->"e5f88166-13ac-44d2-9c90-f80a7193cb50"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"(*", " ", 
+   RowBox[{
+    RowBox[{
+     RowBox[{"W", " ", "[", "meters", "]"}], " ", "as", " ", "a", " ", 
+     "function", " ", "of", " ", "the", " ", "decimal", " ", "interpretation",
+      " ", "of", " ", "the", " ", "binary", " ", "representation", " ", "of", 
+     " ", "a", " ", "fixed"}], "-", 
+    RowBox[{"point", " ", "value", " ", "of", " ", "Z"}]}], " ", "*)"}], 
+  "\[IndentingNewLine]", 
+  RowBox[{"LogPlot", "[", 
+   RowBox[{
+    RowBox[{"wz", "[", 
+     RowBox[{"ud", "[", "d", "]"}], "]"}], ",", 
+    RowBox[{"{", 
+     RowBox[{"d", ",", "0", ",", 
+      RowBox[{
+       RowBox[{"2", "^", "k"}], "-", "1"}]}], "}"}], ",", 
+    RowBox[{"PlotRange", "\[Rule]", "Full"}], ",", 
+    RowBox[{"AxesLabel", "\[Rule]", 
+     RowBox[{"{", 
+      RowBox[{"d", ",", "w"}], "}"}]}]}], "]"}]}]], "Input",
+ CellLabel->"In[82]:=",ExpressionUUID->"34980870-8ce1-45cb-a4be-7ed49d0740ca"],
+
+Cell[BoxData[
+ RowBox[{"Solve", "[", 
+  RowBox[{
+   RowBox[{
+    RowBox[{"wz", "[", 
+     RowBox[{"ud", "[", "d", "]"}], "]"}], "\[Equal]", "1"}], ",", "d"}], 
+  "]"}]], "Input",
+ CellLabel->"In[83]:=",ExpressionUUID->"1acf8ab8-c475-45a2-85fc-6c8a0304260c"],
+
+Cell[BoxData[
+ RowBox[{"N", "[", 
+  RowBox[{
+   FractionBox["18639485865", "11111"], "/", 
+   RowBox[{"(", 
+    RowBox[{
+     RowBox[{"2", "^", "k"}], "-", "1"}], ")"}]}], "]"}]], "Input",
+ CellLabel->"In[85]:=",ExpressionUUID->"a20d878d-fb3f-4030-9cb1-9bdca45f6ede"],
+
+Cell[BoxData[
+ RowBox[{"N", "[", 
+  RowBox[{
+   RowBox[{"Abs", "[", 
+    RowBox[{"D", "[", 
+     RowBox[{
+      RowBox[{"wz", "[", 
+       RowBox[{"ud", "[", "x", "]"}], "]"}], ",", "x"}], "]"}], "]"}], "/.", 
+   RowBox[{"x", "\[Rule]", "d"}]}], "]"}]], "Input",
+ CellLabel->"In[95]:=",ExpressionUUID->"d1e3717d-d923-41a4-a4d9-a1722cf25037"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"(*", " ", 
+   RowBox[{
+    RowBox[{"Resolution", " ", "of", " ", 
+     RowBox[{"W", " ", "[", 
+      RowBox[{"meters", "/", "decimal"}], "]"}], " ", "as", " ", "a", " ", 
+     "function", " ", "of", " ", "the", " ", "decimal", " ", "interpretation",
+      " ", "of", " ", "the", " ", "binary", " ", "representation", " ", "of", 
+     " ", "a", " ", "fixed"}], "-", 
+    RowBox[{"point", " ", "value", " ", "of", " ", "Z"}]}], " ", "*)"}], 
+  "\[IndentingNewLine]", 
+  RowBox[{"LogPlot", "[", 
+   RowBox[{
+    RowBox[{"Evaluate", "[", 
+     RowBox[{
+      RowBox[{"Abs", "[", 
+       RowBox[{"D", "[", 
+        RowBox[{
+         RowBox[{"wz", "[", 
+          RowBox[{"ud", "[", "x", "]"}], "]"}], ",", "x"}], "]"}], "]"}], "/.", 
+      RowBox[{"x", "\[Rule]", "d"}]}], "]"}], ",", 
+    RowBox[{"{", 
+     RowBox[{"d", ",", "0", ",", 
+      RowBox[{
+       RowBox[{"2", "^", "k"}], "-", "1"}]}], "}"}], ",", 
+    RowBox[{"PlotRange", "\[Rule]", "Full"}], ",", 
+    RowBox[{"AxesLabel", "\[Rule]", 
+     RowBox[{"{", 
+      RowBox[{"d", ",", "\[CapitalDelta]w"}], "}"}]}]}], "]"}]}]], "Input",
+ CellLabel->"In[88]:=",ExpressionUUID->"55fe80ad-169f-4586-a164-1a75ad424a71"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"(*", " ", 
+   RowBox[{"Resolution", " ", "of", " ", 
+    RowBox[{"W", " ", "[", 
+     RowBox[{"meters", "/", "decimal"}], "]"}], " ", "as", " ", "a", " ", 
+    "function", " ", "of", " ", "W", " ", 
+    RowBox[{"(", 
+     RowBox[{
+      RowBox[{"still", " ", "using", " ", "fixed"}], "-", "point"}], ")"}]}], 
+   " ", "*)"}], "\[IndentingNewLine]", 
+  RowBox[{"ListLogPlot", "[", 
+   RowBox[{
+    RowBox[{"ParallelTable", "[", 
+     RowBox[{
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{"wz", "[", 
+         RowBox[{"ud", "[", "d", "]"}], "]"}], ",", 
+        RowBox[{"Evaluate", "[", 
+         RowBox[{
+          RowBox[{"Abs", "[", 
+           RowBox[{"D", "[", 
+            RowBox[{
+             RowBox[{"wz", "[", 
+              RowBox[{"ud", "[", "x", "]"}], "]"}], ",", "x"}], "]"}], "]"}], 
+          "/.", 
+          RowBox[{"x", "\[Rule]", "d"}]}], "]"}]}], "}"}], ",", 
+      RowBox[{"{", 
+       RowBox[{"d", ",", "0", ",", 
+        RowBox[{
+         RowBox[{"2", "^", "k"}], "-", "1"}], ",", "1"}], "}"}]}], "]"}], ",", 
+    RowBox[{"PlotRange", "\[Rule]", "Full"}], ",", 
+    RowBox[{"PlotStyle", "\[Rule]", "Thick"}], ",", 
+    RowBox[{"AxesLabel", "\[Rule]", 
+     RowBox[{"{", 
+      RowBox[{"w", ",", "\[CapitalDelta]w"}], "}"}]}]}], "]"}]}]], "Input",
+ CellLabel->"In[91]:=",ExpressionUUID->"41f09e41-a6b2-4752-b129-c1755e69334e"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"(*", " ", 
+   RowBox[{"Floating", "-", 
+    RowBox[{"point", " ", "number", " ", "encoding", " ", "parameters"}]}], 
+   " ", "*)"}], "\[IndentingNewLine]", 
+  RowBox[{
+   RowBox[{
+    RowBox[{"k", "=", "32"}], ";"}], 
+   RowBox[{"(*", " ", 
+    RowBox[{"1", "+", "w", "+", "t"}], " ", "*)"}], "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"t", "=", "23"}], ";"}], "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"b", "=", "127"}], ";"}], "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"dfone", "=", "1065353216"}], ";"}], "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"dfmin", "=", "8388608"}], ";"}], "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"dfmax", "=", "2139095039"}], ";"}]}]}]], "Input",
+ CellLabel->
+  "In[239]:=",ExpressionUUID->"e98cc271-a81f-4b25-be45-d9e7b1a8e590"],
+
+Cell[BoxData[
+ RowBox[{"N", "[", 
+  RowBox[{
+   RowBox[{"(", 
+    RowBox[{"dfone", "-", "dfmin", "+", "1"}], ")"}], "/", 
+   RowBox[{"2", "^", "32"}]}], "]"}]], "Input",
+ CellLabel->
+  "In[245]:=",ExpressionUUID->"40082934-34ee-47ac-b7c9-e27f27db40b0"],
+
+Cell[BoxData[
+ RowBox[{"N", "[", 
+  RowBox[{
+   RowBox[{"(", 
+    RowBox[{"dfone", "-", "dfmin", "+", "1"}], ")"}], "/", 
+   RowBox[{"2", "^", "24"}]}], "]"}]], "Input",
+ CellLabel->
+  "In[246]:=",ExpressionUUID->"6317621e-397c-4b32-a29a-4033c2374178"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"(*", " ", 
+   RowBox[{
+    RowBox[{"Sign", " ", 
+     RowBox[{"(", 
+      RowBox[{"\[PlusMinus]", "1"}], ")"}], " ", "from", " ", "the", " ", 
+     "decimal", " ", "interpretation", " ", "of", " ", "the", " ", "binary", 
+     " ", "representation", " ", "of", " ", "a", " ", "normalized", " ", 
+     "floating"}], "-", 
+    RowBox[{"point", " ", "number"}]}], " ", "*)"}], "\[IndentingNewLine]", 
+  RowBox[{
+   RowBox[{"sd", "[", "d_", "]"}], ":=", 
+   RowBox[{"1", "-", 
+    RowBox[{"2", "*", 
+     RowBox[{"Floor", "[", 
+      RowBox[{"d", "*", 
+       RowBox[{"(", 
+        RowBox[{"2", "^", 
+         RowBox[{"(", 
+          RowBox[{"1", "-", "k"}], ")"}]}], ")"}]}], "]"}]}]}]}]}]], "Input",
+ CellLabel->
+  "In[247]:=",ExpressionUUID->"a087e2f7-0bf8-4204-8a94-48195e2f4db0"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"(*", " ", 
+   RowBox[{
+    RowBox[{
+    "Biased", " ", "exponent", " ", "from", " ", "the", " ", "decimal", " ", 
+     "interpretation", " ", "of", " ", "the", " ", "binary", " ", 
+     "representation", " ", "of", " ", "a", " ", "normalized", " ", 
+     "floating"}], "-", 
+    RowBox[{"point", " ", "number"}]}], " ", "*)"}], "\[IndentingNewLine]", 
+  RowBox[{
+   RowBox[{"ed", "[", "d_", "]"}], ":=", 
+   RowBox[{
+    RowBox[{"Floor", "[", 
+     RowBox[{"d", "*", 
+      RowBox[{"(", 
+       RowBox[{"2", "^", 
+        RowBox[{"(", 
+         RowBox[{"-", "t"}], ")"}]}], ")"}]}], "]"}], "-", 
+    RowBox[{
+     RowBox[{"(", 
+      RowBox[{"2", "^", 
+       RowBox[{"(", 
+        RowBox[{"k", "-", "t", "-", "1"}], ")"}]}], ")"}], "*", 
+     RowBox[{"Floor", "[", 
+      RowBox[{"d", "*", 
+       RowBox[{"(", 
+        RowBox[{"2", "^", 
+         RowBox[{"(", 
+          RowBox[{"1", "-", "k"}], ")"}]}], ")"}]}], "]"}]}]}]}]}]], "Input",
+ CellLabel->
+  "In[248]:=",ExpressionUUID->"a3504474-53eb-466f-981c-bf6630200191"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"(*", " ", 
+   RowBox[{
+    RowBox[{
+    "Trailing", " ", "significand", " ", "from", " ", "the", " ", "decimal", 
+     " ", "interpretation", " ", "of", " ", "the", " ", "binary", " ", 
+     "representation", " ", "of", " ", "a", " ", "normalized", " ", 
+     "floating"}], "-", 
+    RowBox[{"point", " ", "number"}]}], " ", "*)"}], "\[IndentingNewLine]", 
+  RowBox[{
+   RowBox[{"td", "[", "d_", "]"}], ":=", 
+   RowBox[{"Sum", "[", 
+    RowBox[{
+     RowBox[{
+      RowBox[{"(", 
+       RowBox[{
+        RowBox[{"Floor", "[", 
+         RowBox[{"d", "*", 
+          RowBox[{"(", 
+           RowBox[{"2", "^", 
+            RowBox[{"(", 
+             RowBox[{"-", "i"}], ")"}]}], ")"}]}], "]"}], "-", 
+        RowBox[{"2", "*", 
+         RowBox[{"Floor", "[", 
+          RowBox[{"d", "*", 
+           RowBox[{"(", 
+            RowBox[{"2", "^", 
+             RowBox[{"(", 
+              RowBox[{
+               RowBox[{"-", "i"}], "-", "1"}], ")"}]}], ")"}]}], "]"}]}]}], 
+       ")"}], "*", 
+      RowBox[{"2", "^", 
+       RowBox[{"(", 
+        RowBox[{"i", "-", "t"}], ")"}]}]}], ",", 
+     RowBox[{"{", 
+      RowBox[{"i", ",", "0", ",", 
+       RowBox[{"t", "-", "1"}]}], "}"}]}], "]"}]}]}]], "Input",
+ CellLabel->
+  "In[249]:=",ExpressionUUID->"e8b71809-16f3-4028-be93-bc521583a2a1"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"(*", " ", 
+   RowBox[{
+    RowBox[{"Normalized", " ", "floating"}], "-", 
+    RowBox[{
+    "point", " ", "number", " ", "from", " ", "the", " ", "decimal", " ", 
+     "interpretation", " ", "of", " ", "its", " ", "binary", " ", 
+     "representation"}]}], " ", "*)"}], "\[IndentingNewLine]", 
+  RowBox[{
+   RowBox[{"fd", "[", "d_", "]"}], ":=", 
+   RowBox[{
+    RowBox[{"sd", "[", "d", "]"}], "*", 
+    RowBox[{"(", 
+     RowBox[{"1", "+", 
+      RowBox[{"td", "[", "d", "]"}]}], ")"}], "*", 
+    RowBox[{"2", "^", 
+     RowBox[{"(", 
+      RowBox[{
+       RowBox[{"ed", "[", "d", "]"}], "-", "b"}], ")"}]}]}]}]}]], "Input",
+ CellLabel->
+  "In[250]:=",ExpressionUUID->"cd0eb409-cd3d-4eb7-be99-1341d47ad550"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"fd", "[", "dfone", "]"}], 
+  RowBox[{"(*", " ", 
+   RowBox[{"1.0", "f"}], " ", "*)"}]}]], "Input",
+ CellLabel->
+  "In[251]:=",ExpressionUUID->"afef8247-186f-4f06-9fda-6aa7e51bf637"],
+
+Cell[BoxData[
+ RowBox[{"fmin", "=", 
+  RowBox[{"N", "[", 
+   RowBox[{"fd", "[", "dfmin", "]"}], "]"}], 
+  RowBox[{"(*", " ", "FLT_MIN", " ", "*)"}]}]], "Input",
+ CellLabel->
+  "In[253]:=",ExpressionUUID->"bad0d4ea-bbb8-4fc7-a4fe-0e8bf41f9f88"],
+
+Cell[BoxData[
+ RowBox[{"fmax", "=", 
+  RowBox[{"N", "[", 
+   RowBox[{"fd", "[", "dfmax", "]"}], "]"}], 
+  RowBox[{"(*", " ", "FLT_MAX", " ", "*)"}]}]], "Input",
+ CellLabel->
+  "In[254]:=",ExpressionUUID->"6e5eda1f-d809-41d7-9afa-5871ae487ae3"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"(*", " ", 
+   RowBox[{
+   "Plot", " ", "the", " ", "floats", " ", "on", " ", "a", " ", "linear", " ",
+     "scale", " ", "as", " ", "a", " ", "function", " ", "of", " ", "the", 
+    " ", "decimal", " ", "interpretation", " ", "of", " ", "the", " ", 
+    "binary", " ", "representation"}], " ", "*)"}], "\[IndentingNewLine]", 
+  RowBox[{
+   RowBox[{"ListPlot", "[", 
+    RowBox[{
+     RowBox[{"ParallelTable", "[", 
+      RowBox[{
+       RowBox[{"{", 
+        RowBox[{"d", ",", 
+         RowBox[{"fd", "[", "d", "]"}]}], "}"}], ",", 
+       RowBox[{"{", 
+        RowBox[{"d", ",", "dfmin", ",", "dfone", ",", 
+         RowBox[{"2", "^", "14"}]}], "}"}]}], "]"}], ",", 
+     RowBox[{"PlotRange", "\[Rule]", "Full"}], ",", 
+     RowBox[{"PlotStyle", "\[Rule]", "Thick"}], ",", 
+     RowBox[{"AxesLabel", "\[Rule]", 
+      RowBox[{"{", 
+       RowBox[{"d", ",", "\"\<f\>\""}], "}"}]}]}], "]"}], 
+   "\[IndentingNewLine]", 
+   RowBox[{"ListPlot", "[", 
+    RowBox[{
+     RowBox[{"ParallelTable", "[", 
+      RowBox[{
+       RowBox[{"{", 
+        RowBox[{"d", ",", 
+         RowBox[{"fd", "[", "d", "]"}]}], "}"}], ",", 
+       RowBox[{"{", 
+        RowBox[{"d", ",", 
+         RowBox[{"dfone", "-", 
+          RowBox[{"3", "*", 
+           RowBox[{"2", "^", "23"}]}]}], ",", "dfone", ",", 
+         RowBox[{"2", "^", "8"}]}], "}"}]}], "]"}], ",", 
+     RowBox[{"PlotRange", "\[Rule]", "Full"}], ",", 
+     RowBox[{"PlotStyle", "\[Rule]", "Thick"}], ",", 
+     RowBox[{"AxesLabel", "\[Rule]", 
+      RowBox[{"{", 
+       RowBox[{"d", ",", "\"\<f\>\""}], "}"}]}]}], "]"}], 
+   "\[IndentingNewLine]", 
+   RowBox[{"Plot", "[", 
+    RowBox[{
+     RowBox[{"fd", "[", "d", "]"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"d", ",", 
+       RowBox[{"dfone", "-", "16"}], ",", "dfone"}], "}"}], ",", 
+     RowBox[{"PlotRange", "\[Rule]", "Full"}], ",", 
+     RowBox[{"PlotStyle", "\[Rule]", "Thick"}], ",", 
+     RowBox[{"AxesLabel", "\[Rule]", 
+      RowBox[{"{", 
+       RowBox[{"d", ",", "\"\<f\>\""}], "}"}]}]}], "]"}]}]}]], "Input",
+ CellLabel->
+  "In[140]:=",ExpressionUUID->"40a5dd61-fe1d-4680-ae29-28bb8a672c49"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"(*", " ", 
+   RowBox[{
+    RowBox[{
+     RowBox[{"W", " ", "[", "meters", "]"}], " ", "as", " ", "a", " ", 
+     "function", " ", "of", " ", "the", " ", "decimal", " ", "interpretation",
+      " ", "of", " ", "the", " ", "binary", " ", "representation", " ", "of", 
+     " ", "a", " ", "normalized", " ", "floating"}], "-", 
+    RowBox[{"point", " ", "value", " ", "of", " ", "Z"}]}], " ", "*)"}], 
+  "\[IndentingNewLine]", 
+  RowBox[{
+   RowBox[{"ListPlot", "[", 
+    RowBox[{
+     RowBox[{"ParallelTable", "[", 
+      RowBox[{
+       RowBox[{"{", 
+        RowBox[{"d", ",", 
+         RowBox[{"wz", "[", 
+          RowBox[{"fd", "[", "d", "]"}], "]"}]}], "}"}], ",", 
+       RowBox[{"{", 
+        RowBox[{"d", ",", "dfmin", ",", "dfone", ",", 
+         RowBox[{"2", "^", "14"}]}], "}"}]}], "]"}], ",", 
+     RowBox[{"PlotRange", "\[Rule]", "Full"}], ",", 
+     RowBox[{"PlotStyle", "\[Rule]", "Thick"}], ",", 
+     RowBox[{"AxesLabel", "\[Rule]", 
+      RowBox[{"{", 
+       RowBox[{"d", ",", "w"}], "}"}]}]}], "]"}], "\[IndentingNewLine]", 
+   RowBox[{"ListLogPlot", "[", 
+    RowBox[{
+     RowBox[{"ParallelTable", "[", 
+      RowBox[{
+       RowBox[{"{", 
+        RowBox[{"d", ",", 
+         RowBox[{"wz", "[", 
+          RowBox[{"fd", "[", "d", "]"}], "]"}]}], "}"}], ",", 
+       RowBox[{"{", 
+        RowBox[{"d", ",", "dfmin", ",", "dfone", ",", 
+         RowBox[{"2", "^", "14"}]}], "}"}]}], "]"}], ",", 
+     RowBox[{"PlotRange", "\[Rule]", "Full"}], ",", 
+     RowBox[{"PlotStyle", "\[Rule]", "Thick"}], ",", 
+     RowBox[{"AxesLabel", "\[Rule]", 
+      RowBox[{"{", 
+       RowBox[{"d", ",", "w"}], "}"}]}]}], "]"}]}]}]], "Input",
+ CellLabel->
+  "In[146]:=",ExpressionUUID->"b97e5427-f84b-48fd-ab3a-d69f4d2c8392"],
+
+Cell[BoxData[
+ RowBox[{"N", "[", 
+  RowBox[{"fd", "[", 
+   RowBox[{"7", "*", 
+    RowBox[{"10", "^", "8"}]}], "]"}], "]"}]], "Input",
+ CellLabel->
+  "In[309]:=",ExpressionUUID->"d92bd0cd-1008-4379-987a-53bf10fd6d3d"],
+
+Cell[BoxData[
+ RowBox[{"N", "[", 
+  RowBox[{
+   RowBox[{"wz", "[", 
+    RowBox[{"fd", "[", 
+     RowBox[{"7", "*", 
+      RowBox[{"10", "^", "8"}]}], "]"}], "]"}], ",", "8"}], "]"}]], "Input",
+ CellLabel->
+  "In[149]:=",ExpressionUUID->"e67e179b-c734-44b2-b8e0-3543171c43f8"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"(*", " ", 
+   RowBox[{
+    RowBox[{"Resolution", " ", "of", " ", 
+     RowBox[{"W", " ", "[", 
+      RowBox[{"meters", "/", "decimal"}], "]"}], " ", "as", " ", "a", " ", 
+     "function", " ", "of", " ", "the", " ", "decimal", " ", "view", " ", 
+     "of", " ", "the", " ", "binary", " ", "representation", " ", "of", " ", 
+     "a", " ", "normalized", " ", "floating"}], "-", 
+    RowBox[{"point", " ", "value", " ", "of", " ", "Z"}]}], " ", "*)"}], 
+  "\[IndentingNewLine]", 
+  RowBox[{
+   RowBox[{"ListLogPlot", "[", 
+    RowBox[{
+     RowBox[{"ParallelTable", "[", 
+      RowBox[{
+       RowBox[{"{", 
+        RowBox[{"d", ",", 
+         RowBox[{
+          RowBox[{"Abs", "[", 
+           RowBox[{
+            RowBox[{"wz", "[", 
+             RowBox[{"fd", "[", 
+              RowBox[{"d", "+", "1"}], "]"}], "]"}], "-", 
+            RowBox[{"wz", "[", 
+             RowBox[{"fd", "[", 
+              RowBox[{"d", "-", "1"}], "]"}], "]"}]}], "]"}], "/", "2"}]}], 
+        "}"}], ",", 
+       RowBox[{"{", 
+        RowBox[{"d", ",", 
+         RowBox[{"dfmin", "+", "1"}], ",", 
+         RowBox[{"dfone", "-", "1"}], ",", 
+         RowBox[{"2", "^", "14"}]}], "}"}]}], "]"}], ",", 
+     RowBox[{"PlotRange", "\[Rule]", "Full"}], ",", 
+     RowBox[{"PlotStyle", "\[Rule]", "Thick"}], ",", 
+     RowBox[{"AxesLabel", "\[Rule]", 
+      RowBox[{"{", 
+       RowBox[{"d", ",", "\[CapitalDelta]w"}], "}"}]}]}], "]"}], 
+   "\[IndentingNewLine]", 
+   RowBox[{"ListPlot", "[", 
+    RowBox[{
+     RowBox[{"ParallelTable", "[", 
+      RowBox[{
+       RowBox[{"{", 
+        RowBox[{"d", ",", 
+         RowBox[{
+          RowBox[{"Abs", "[", 
+           RowBox[{
+            RowBox[{"wz", "[", 
+             RowBox[{"fd", "[", 
+              RowBox[{"d", "+", "1"}], "]"}], "]"}], "-", 
+            RowBox[{"wz", "[", 
+             RowBox[{"fd", "[", 
+              RowBox[{"d", "-", "1"}], "]"}], "]"}]}], "]"}], "/", "2"}]}], 
+        "}"}], ",", 
+       RowBox[{"{", 
+        RowBox[{"d", ",", 
+         RowBox[{"dfone", "-", 
+          RowBox[{"3", "*", 
+           RowBox[{"2", "^", "23"}]}], "+", "1"}], ",", 
+         RowBox[{"dfone", "-", "1"}], ",", 
+         RowBox[{"2", "^", "8"}]}], "}"}]}], "]"}], ",", 
+     RowBox[{"PlotRange", "\[Rule]", "Full"}], ",", 
+     RowBox[{"PlotStyle", "\[Rule]", "Thick"}], ",", 
+     RowBox[{"AxesLabel", "\[Rule]", 
+      RowBox[{"{", 
+       RowBox[{"d", ",", "\[CapitalDelta]w"}], "}"}]}]}], "]"}]}]}]], "Input",
+ CellLabel->
+  "In[157]:=",ExpressionUUID->"6c6d4409-f70e-4d10-8003-2fd15116b329"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"(*", " ", 
+   RowBox[{"Resolution", " ", "of", " ", 
+    RowBox[{"W", " ", "[", 
+     RowBox[{"meters", "/", "decimal"}], "]"}], " ", "as", " ", "a", " ", 
+    "function", " ", "of", " ", "W", " ", 
+    RowBox[{"(", 
+     RowBox[{
+      RowBox[{"still", " ", "using", " ", "floating"}], "-", "point"}], 
+     ")"}]}], " ", "*)"}], "\[IndentingNewLine]", 
+  RowBox[{"ListLogPlot", "[", 
+   RowBox[{
+    RowBox[{"ParallelTable", "[", 
+     RowBox[{
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{"wz", "[", 
+         RowBox[{"fd", "[", "d", "]"}], "]"}], ",", 
+        RowBox[{
+         RowBox[{"Abs", "[", 
+          RowBox[{
+           RowBox[{"wz", "[", 
+            RowBox[{"fd", "[", 
+             RowBox[{"d", "+", "1"}], "]"}], "]"}], "-", 
+           RowBox[{"wz", "[", 
+            RowBox[{"fd", "[", 
+             RowBox[{"d", "-", "1"}], "]"}], "]"}]}], "]"}], "/", "2"}]}], 
+       "}"}], ",", 
+      RowBox[{"{", 
+       RowBox[{"d", ",", 
+        RowBox[{"dfmin", "+", "1"}], ",", 
+        RowBox[{"dfone", "-", "1"}], ",", 
+        RowBox[{"2", "^", "10"}]}], "}"}]}], "]"}], ",", 
+    RowBox[{"PlotRange", "\[Rule]", "Full"}], ",", 
+    RowBox[{"PlotStyle", "\[Rule]", "Thick"}], ",", 
+    RowBox[{"AxesLabel", "\[Rule]", 
+     RowBox[{"{", 
+      RowBox[{"w", ",", "\[CapitalDelta]w"}], "}"}]}]}], "]"}]}]], "Input",
+ CellLabel->
+  "In[159]:=",ExpressionUUID->"958569d6-5931-4eb9-b3f6-0121d1e8e15d"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"(*", " ", 
+   RowBox[{"Resolution", " ", "of", " ", 
+    RowBox[{"W", " ", "[", 
+     RowBox[{"meters", "/", "decimal"}], "]"}], " ", "as", " ", "a", " ", 
+    "function", " ", "of", " ", "W", " ", 
+    RowBox[{
+     RowBox[{"(", 
+      RowBox[{
+       RowBox[{"still", " ", "using", " ", "floating"}], "-", "point"}], 
+      ")"}], " ", "[", 
+     RowBox[{"reduced", " ", "range", " ", 
+      RowBox[{"of", " ", "'"}], 
+      RowBox[{"d", "'"}]}], "]"}]}], " ", "*)"}], "\[IndentingNewLine]", 
+  RowBox[{"ListLogPlot", "[", 
+   RowBox[{
+    RowBox[{"ParallelTable", "[", 
+     RowBox[{
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{"wz", "[", 
+         RowBox[{"fd", "[", "d", "]"}], "]"}], ",", 
+        RowBox[{
+         RowBox[{"Abs", "[", 
+          RowBox[{
+           RowBox[{"wz", "[", 
+            RowBox[{"fd", "[", 
+             RowBox[{"d", "+", "1"}], "]"}], "]"}], "-", 
+           RowBox[{"wz", "[", 
+            RowBox[{"fd", "[", 
+             RowBox[{"d", "-", "1"}], "]"}], "]"}]}], "]"}], "/", "2"}]}], 
+       "}"}], ",", 
+      RowBox[{"{", 
+       RowBox[{"d", ",", 
+        RowBox[{"9", "*", 
+         RowBox[{"10", "^", "8"}]}], ",", 
+        RowBox[{"dfone", "-", "1"}], ",", 
+        RowBox[{"2", "^", "10"}]}], "}"}]}], "]"}], ",", 
+    RowBox[{"PlotRange", "\[Rule]", "Full"}], ",", 
+    RowBox[{"PlotStyle", "\[Rule]", "Thick"}], ",", 
+    RowBox[{"AxesLabel", "\[Rule]", 
+     RowBox[{"{", 
+      RowBox[{"w", ",", "\[CapitalDelta]w"}], "}"}]}]}], "]"}]}]], "Input",
+ CellLabel->
+  "In[160]:=",ExpressionUUID->"ac172d5c-9ae7-453f-a77c-17fb6aa3aa5f"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"(*", " ", 
+   RowBox[{"Resolution", " ", "of", " ", 
+    RowBox[{"W", " ", "[", 
+     RowBox[{"meters", "/", "decimal"}], "]"}], " ", "as", " ", "a", " ", 
+    "function", " ", "of", " ", "W", " ", 
+    RowBox[{
+     RowBox[{"(", 
+      RowBox[{
+       RowBox[{"still", " ", "using", " ", "floating"}], "-", "point"}], 
+      ")"}], " ", "[", 
+     RowBox[{
+      RowBox[{"reduced", " ", "range", " ", 
+       RowBox[{"of", " ", "'"}], 
+       RowBox[{"d", "'"}]}], ",", " ", 
+      RowBox[{"infinite", " ", "far", " ", "plane"}]}], "]"}]}], " ", "*)"}], 
+  "\[IndentingNewLine]", 
+  RowBox[{
+   RowBox[{"ListLogPlot", "[", 
+    RowBox[{
+     RowBox[{"ParallelTable", "[", 
+      RowBox[{
+       RowBox[{"{", 
+        RowBox[{
+         RowBox[{"wiz", "[", 
+          RowBox[{"fd", "[", "d", "]"}], "]"}], ",", 
+         RowBox[{
+          RowBox[{"Abs", "[", 
+           RowBox[{
+            RowBox[{"wiz", "[", 
+             RowBox[{"fd", "[", 
+              RowBox[{"d", "+", "1"}], "]"}], "]"}], "-", 
+            RowBox[{"wiz", "[", 
+             RowBox[{"fd", "[", 
+              RowBox[{"d", "-", "1"}], "]"}], "]"}]}], "]"}], "/", "2"}]}], 
+        "}"}], ",", 
+       RowBox[{"{", 
+        RowBox[{"d", ",", 
+         RowBox[{
+          RowBox[{"9267", "/", "1000"}], "*", 
+          RowBox[{"10", "^", "8"}]}], ",", 
+         RowBox[{"dfone", "-", "1"}], ",", 
+         RowBox[{"2", "^", "10"}]}], "}"}]}], "]"}], ",", 
+     RowBox[{"PlotRange", "\[Rule]", "Full"}], ",", 
+     RowBox[{"PlotStyle", "\[Rule]", "Thick"}], ",", 
+     RowBox[{"AxesLabel", "\[Rule]", 
+      RowBox[{"{", 
+       RowBox[{"w", ",", "\[CapitalDelta]w"}], "}"}]}]}], "]"}], 
+   "\[IndentingNewLine]", 
+   RowBox[{"Show", "[", 
+    RowBox[{
+     RowBox[{"ListLogPlot", "[", 
+      RowBox[{
+       RowBox[{"ParallelTable", "[", 
+        RowBox[{
+         RowBox[{"{", 
+          RowBox[{
+           RowBox[{"wiz", "[", 
+            RowBox[{"fd", "[", "d", "]"}], "]"}], ",", 
+           RowBox[{
+            RowBox[{"Abs", "[", 
+             RowBox[{
+              RowBox[{"wiz", "[", 
+               RowBox[{"fd", "[", 
+                RowBox[{"d", "+", "1"}], "]"}], "]"}], "-", 
+              RowBox[{"wiz", "[", 
+               RowBox[{"fd", "[", 
+                RowBox[{"d", "-", "1"}], "]"}], "]"}]}], "]"}], "/", "2"}]}], 
+          "}"}], ",", 
+         RowBox[{"{", 
+          RowBox[{"d", ",", 
+           RowBox[{
+            RowBox[{"9267", "/", "1000"}], "*", 
+            RowBox[{"10", "^", "8"}]}], ",", 
+           RowBox[{"dfone", "-", "1"}], ",", 
+           RowBox[{"2", "^", "10"}]}], "}"}]}], "]"}], ",", 
+       RowBox[{"PlotRange", "\[Rule]", "Full"}], ",", 
+       RowBox[{"PlotStyle", "\[Rule]", "Thick"}], ",", 
+       RowBox[{"AxesLabel", "\[Rule]", 
+        RowBox[{"{", 
+         RowBox[{"w", ",", "\[CapitalDelta]w"}], "}"}]}]}], "]"}], ",", 
+     RowBox[{"ListLogPlot", "[", 
+      RowBox[{
+       RowBox[{"ParallelTable", "[", 
+        RowBox[{
+         RowBox[{"{", 
+          RowBox[{
+           RowBox[{"wz", "[", 
+            RowBox[{"fd", "[", "d", "]"}], "]"}], ",", 
+           RowBox[{
+            RowBox[{"Abs", "[", 
+             RowBox[{
+              RowBox[{"wz", "[", 
+               RowBox[{"fd", "[", 
+                RowBox[{"d", "+", "1"}], "]"}], "]"}], "-", 
+              RowBox[{"wz", "[", 
+               RowBox[{"fd", "[", 
+                RowBox[{"d", "-", "1"}], "]"}], "]"}]}], "]"}], "/", "2"}]}], 
+          "}"}], ",", 
+         RowBox[{"{", 
+          RowBox[{"d", ",", 
+           RowBox[{"9", "*", 
+            RowBox[{"10", "^", "8"}]}], ",", 
+           RowBox[{"dfone", "-", "1"}], ",", 
+           RowBox[{"2", "^", "10"}]}], "}"}]}], "]"}], ",", 
+       RowBox[{"PlotRange", "\[Rule]", "Full"}], ",", 
+       RowBox[{"PlotStyle", "\[Rule]", "Green"}], ",", 
+       RowBox[{"AxesLabel", "\[Rule]", 
+        RowBox[{"{", 
+         RowBox[{"w", ",", "\[CapitalDelta]w"}], "}"}]}]}], "]"}]}], 
+    "]"}]}]}]], "Input",ExpressionUUID->"26729478-aa9f-440f-8505-\
+ebd00693d127"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"(*", " ", 
+   RowBox[{"Resolution", " ", "of", " ", 
+    RowBox[{"W", " ", "[", 
+     RowBox[{"meters", "/", "decimal"}], "]"}], " ", "as", " ", "a", " ", 
+    "function", " ", "of", " ", "W", " ", 
+    RowBox[{
+     RowBox[{"(", 
+      RowBox[{
+       RowBox[{"still", " ", "using", " ", "floating"}], "-", "point"}], 
+      ")"}], " ", "[", 
+     RowBox[{"infinite", " ", "far", " ", "plane"}], "]"}]}], " ", "*)"}], 
+  "\[IndentingNewLine]", 
+  RowBox[{"ListLogLogPlot", "[", 
+   RowBox[{
+    RowBox[{"ParallelTable", "[", 
+     RowBox[{
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{"wiz", "[", 
+         RowBox[{"fd", "[", "d", "]"}], "]"}], ",", 
+        RowBox[{
+         RowBox[{"Abs", "[", 
+          RowBox[{
+           RowBox[{"wiz", "[", 
+            RowBox[{"fd", "[", 
+             RowBox[{"d", "+", "1"}], "]"}], "]"}], "-", 
+           RowBox[{"wiz", "[", 
+            RowBox[{"fd", "[", 
+             RowBox[{"d", "-", "1"}], "]"}], "]"}]}], "]"}], "/", "2"}]}], 
+       "}"}], ",", 
+      RowBox[{"{", 
+       RowBox[{"d", ",", 
+        RowBox[{"dfmin", "+", "1"}], ",", 
+        RowBox[{"dfone", "-", "1"}], ",", 
+        RowBox[{"2", "^", "14"}]}], "}"}]}], "]"}], ",", 
+    RowBox[{"PlotRange", "\[Rule]", "Full"}], ",", 
+    RowBox[{"PlotStyle", "\[Rule]", "Thick"}], ",", 
+    RowBox[{"AxesLabel", "\[Rule]", 
+     RowBox[{"{", 
+      RowBox[{"w", ",", "\[CapitalDelta]w"}], "}"}]}]}], "]"}]}]], "Input",
+ CellLabel->
+  "In[257]:=",ExpressionUUID->"9aa32691-8aa7-46ea-8227-6df88b9326e4"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"(*", " ", 
+   RowBox[{"Fixed", "-", 
+    RowBox[{"point", " ", "logarithmic", " ", "depth", " ", "buffer"}]}], " ",
+    "*)"}], "\[IndentingNewLine]", 
+  RowBox[{
+   RowBox[{
+    RowBox[{"m", "=", "32"}], ";"}], "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"wld", "[", "d_", "]"}], "=", 
+    RowBox[{"n", "*", 
+     RowBox[{"Exp", "[", 
+      RowBox[{
+       RowBox[{"(", 
+        RowBox[{"d", "/", 
+         RowBox[{"(", 
+          RowBox[{
+           RowBox[{"2", "^", "m"}], "-", "1"}], ")"}]}], ")"}], "*", 
+       RowBox[{"Log", "[", 
+        RowBox[{"f", "/", "n"}], "]"}]}], "]"}]}]}], "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"f", "=", 
+     RowBox[{"10", "^", "37"}]}], ";"}]}]}]], "Input",ExpressionUUID->\
+"72e5372a-8a26-4e0d-999e-834fb51e041d"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"(*", " ", 
+   RowBox[{"Resolution", " ", "of", " ", 
+    RowBox[{
+     RowBox[{"W", " ", "[", 
+      RowBox[{"meters", "/", "decimal"}], "]"}], " ", "[", 
+     RowBox[{
+     "infinite", " ", "far", " ", "plane", " ", "vs", " ", "logarithmic", " ",
+       "depth"}], "]"}]}], " ", "*)"}], 
+  RowBox[{"Show", "[", 
+   RowBox[{
+    RowBox[{"ListLogLogPlot", "[", 
+     RowBox[{
+      RowBox[{"ParallelTable", "[", 
+       RowBox[{
+        RowBox[{"{", 
+         RowBox[{
+          RowBox[{"wiz", "[", 
+           RowBox[{"fd", "[", "d", "]"}], "]"}], ",", 
+          RowBox[{
+           RowBox[{"Abs", "[", 
+            RowBox[{
+             RowBox[{"wiz", "[", 
+              RowBox[{"fd", "[", 
+               RowBox[{"d", "+", "1"}], "]"}], "]"}], "-", 
+             RowBox[{"wiz", "[", 
+              RowBox[{"fd", "[", 
+               RowBox[{"d", "-", "1"}], "]"}], "]"}]}], "]"}], "/", "2"}]}], 
+         "}"}], ",", 
+        RowBox[{"{", 
+         RowBox[{"d", ",", 
+          RowBox[{"dfmin", "+", "1"}], ",", 
+          RowBox[{"dfone", "-", "1"}], ",", 
+          RowBox[{"2", "^", "14"}]}], "}"}]}], "]"}], ",", 
+      RowBox[{"PlotRange", "\[Rule]", "Full"}], ",", 
+      RowBox[{"PlotStyle", "\[Rule]", "Blue"}], ",", 
+      RowBox[{"AxesLabel", "\[Rule]", 
+       RowBox[{"{", 
+        RowBox[{"w", ",", "\[CapitalDelta]w"}], "}"}]}]}], "]"}], ",", 
+    RowBox[{"ListLogLogPlot", "[", 
+     RowBox[{
+      RowBox[{"ParallelTable", "[", 
+       RowBox[{
+        RowBox[{"{", 
+         RowBox[{
+          RowBox[{"wld", "[", "d", "]"}], ",", 
+          RowBox[{
+           RowBox[{"Abs", "[", 
+            RowBox[{
+             RowBox[{"wld", "[", 
+              RowBox[{"d", "+", "1"}], "]"}], "-", 
+             RowBox[{"wld", "[", 
+              RowBox[{"d", "-", "1"}], "]"}]}], "]"}], "/", "2"}]}], "}"}], 
+        ",", 
+        RowBox[{"{", 
+         RowBox[{"d", ",", "0", ",", 
+          RowBox[{
+           RowBox[{"2", "^", "k"}], "-", "1"}], ",", 
+          RowBox[{"2", "^", "16"}]}], "}"}]}], "]"}], ",", 
+      RowBox[{"PlotRange", "\[Rule]", "Full"}], ",", 
+      RowBox[{"PlotStyle", "\[Rule]", "Red"}], ",", 
+      RowBox[{"AxesLabel", "\[Rule]", 
+       RowBox[{"{", 
+        RowBox[{"w", ",", "\[CapitalDelta]w"}], "}"}]}]}], "]"}]}], 
+   "]"}]}]], "Input",
+ CellLabel->
+  "In[268]:=",ExpressionUUID->"0c698aff-444c-429b-801b-20053fb76fe8"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"(*", " ", 
+   RowBox[{"Resolution", " ", "of", " ", 
+    RowBox[{
+     RowBox[{"W", " ", "[", 
+      RowBox[{"meters", "/", "decimal"}], "]"}], " ", "[", 
+     RowBox[{
+      RowBox[{"reduced", " ", "range", " ", 
+       RowBox[{"of", " ", "'"}], 
+       RowBox[{"d", "'"}]}], ",", " ", 
+      RowBox[{
+      "infinite", " ", "far", " ", "plane", " ", "vs", " ", "logarithmic", 
+       " ", "depth"}]}], "]"}]}], " ", "*)"}], 
+  RowBox[{"Show", "[", 
+   RowBox[{
+    RowBox[{"ListLogPlot", "[", 
+     RowBox[{
+      RowBox[{"ParallelTable", "[", 
+       RowBox[{
+        RowBox[{"{", 
+         RowBox[{
+          RowBox[{"wiz", "[", 
+           RowBox[{"fd", "[", "d", "]"}], "]"}], ",", 
+          RowBox[{
+           RowBox[{"Abs", "[", 
+            RowBox[{
+             RowBox[{"wiz", "[", 
+              RowBox[{"fd", "[", 
+               RowBox[{"d", "+", "1"}], "]"}], "]"}], "-", 
+             RowBox[{"wiz", "[", 
+              RowBox[{"fd", "[", 
+               RowBox[{"d", "-", "1"}], "]"}], "]"}]}], "]"}], "/", "2"}]}], 
+         "}"}], ",", 
+        RowBox[{"{", 
+         RowBox[{"d", ",", 
+          RowBox[{
+           RowBox[{"9267", "/", "1000"}], "*", 
+           RowBox[{"10", "^", "8"}]}], ",", 
+          RowBox[{"dfone", "-", "1"}], ",", 
+          RowBox[{"2", "^", "14"}]}], "}"}]}], "]"}], ",", 
+      RowBox[{"PlotRange", "\[Rule]", "Full"}], ",", 
+      RowBox[{"PlotStyle", "\[Rule]", "Blue"}], ",", 
+      RowBox[{"AxesLabel", "\[Rule]", 
+       RowBox[{"{", 
+        RowBox[{"w", ",", "\[CapitalDelta]w"}], "}"}]}]}], "]"}], ",", 
+    RowBox[{"ListLogPlot", "[", 
+     RowBox[{
+      RowBox[{"ParallelTable", "[", 
+       RowBox[{
+        RowBox[{"{", 
+         RowBox[{
+          RowBox[{"wld", "[", "d", "]"}], ",", 
+          RowBox[{
+           RowBox[{"Abs", "[", 
+            RowBox[{
+             RowBox[{"wld", "[", 
+              RowBox[{"d", "+", "1"}], "]"}], "-", 
+             RowBox[{"wld", "[", 
+              RowBox[{"d", "-", "1"}], "]"}]}], "]"}], "/", "2"}]}], "}"}], 
+        ",", 
+        RowBox[{"{", 
+         RowBox[{"d", ",", "0", ",", 
+          RowBox[{
+           RowBox[{"9267", "/", "1000"}], "*", 
+           RowBox[{"10", "^", "8"}]}], ",", 
+          RowBox[{"2", "^", "14"}]}], "}"}]}], "]"}], ",", 
+      RowBox[{"PlotRange", "\[Rule]", "Full"}], ",", 
+      RowBox[{"PlotStyle", "\[Rule]", "Red"}], ",", 
+      RowBox[{"AxesLabel", "\[Rule]", 
+       RowBox[{"{", 
+        RowBox[{"w", ",", "\[CapitalDelta]w"}], "}"}]}]}], "]"}]}], 
+   "]"}]}]], "Input",ExpressionUUID->"e44a5a4d-d954-4892-9964-d74955b98ad8"]
+},
+WindowSize->{1276, 2061},
+WindowMargins->{{Automatic, 0}, {Automatic, 0}},
+Magnification->1.25,
+FrontEndVersion->"12.1 for Microsoft Windows (64-bit) (March 14, 2020)",
+StyleDefinitions->"Default.nb",
+ExpressionUUID->"7c79c55c-c661-4ca0-9ace-ebfff1aaa1db"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[558, 20, 152, 2, 35, "Input",ExpressionUUID->"5fb972bc-3160-4ec0-824e-5c0e1d6b5bf7"],
+Cell[713, 24, 1026, 29, 84, "Input",ExpressionUUID->"0368535a-37f0-4458-9db4-ec495d4c6c6e"],
+Cell[1742, 55, 384, 9, 84, "Input",ExpressionUUID->"8b5062d1-6269-4ae9-a230-10af41cd4ef3"],
+Cell[2129, 66, 543, 15, 84, "Input",ExpressionUUID->"2186810d-927f-4a15-931e-b080ec45ed98"],
+Cell[2675, 83, 575, 17, 60, "Input",ExpressionUUID->"cb03a0a6-063f-4079-8461-ffc7f2e2f907"],
+Cell[3253, 102, 470, 15, 62, "Input",ExpressionUUID->"374c0606-9afd-4e56-bad0-66e63f18a7f0"],
+Cell[3726, 119, 575, 17, 60, "Input",ExpressionUUID->"98dae945-94b2-48e5-a15f-5b118c977447"],
+Cell[4304, 138, 489, 13, 60, "Input",ExpressionUUID->"840e1f4c-63bf-4681-b91f-56c62ca76c25"],
+Cell[4796, 153, 169, 3, 35, "Input",ExpressionUUID->"7d0bf7b3-1426-4a9e-840c-43efd42f916d"],
+Cell[4968, 158, 169, 3, 35, "Input",ExpressionUUID->"bc9dd3d6-25b9-459c-8b98-e5acff85c016"],
+Cell[5140, 163, 134, 2, 35, "Input",ExpressionUUID->"24938eb7-1330-4fea-bf83-bdd61ceaf36d"],
+Cell[5277, 167, 134, 2, 35, "Input",ExpressionUUID->"94230852-012a-471c-b5c3-bfed9b256f4c"],
+Cell[5414, 171, 402, 12, 84, "Input",ExpressionUUID->"fdcbd4cd-3777-431f-a6f3-a79276fdb292"],
+Cell[5819, 185, 963, 25, 84, "Input",ExpressionUUID->"c3c374a1-47f5-4898-9045-70ff521fbedf"],
+Cell[6785, 212, 326, 8, 60, "Input",ExpressionUUID->"9aa39fab-ee44-4c40-8013-ac015ae1a636"],
+Cell[7114, 222, 597, 14, 60, "Input",ExpressionUUID->"e5f88166-13ac-44d2-9c90-f80a7193cb50"],
+Cell[7714, 238, 923, 23, 60, "Input",ExpressionUUID->"34980870-8ce1-45cb-a4be-7ed49d0740ca"],
+Cell[8640, 263, 257, 7, 35, "Input",ExpressionUUID->"1acf8ab8-c475-45a2-85fc-6c8a0304260c"],
+Cell[8900, 272, 267, 7, 53, "Input",ExpressionUUID->"a20d878d-fb3f-4030-9cb1-9bdca45f6ede"],
+Cell[9170, 281, 341, 9, 35, "Input",ExpressionUUID->"d1e3717d-d923-41a4-a4d9-a1722cf25037"],
+Cell[9514, 292, 1204, 30, 84, "Input",ExpressionUUID->"55fe80ad-169f-4586-a164-1a75ad424a71"],
+Cell[10721, 324, 1390, 37, 84, "Input",ExpressionUUID->"41f09e41-a6b2-4752-b129-c1755e69334e"],
+Cell[12114, 363, 823, 22, 180, "Input",ExpressionUUID->"e98cc271-a81f-4b25-be45-d9e7b1a8e590"],
+Cell[12940, 387, 252, 7, 35, "Input",ExpressionUUID->"40082934-34ee-47ac-b7c9-e27f27db40b0"],
+Cell[13195, 396, 252, 7, 35, "Input",ExpressionUUID->"6317621e-397c-4b32-a29a-4033c2374178"],
+Cell[13450, 405, 814, 22, 60, "Input",ExpressionUUID->"a087e2f7-0bf8-4204-8a94-48195e2f4db0"],
+Cell[14267, 429, 1058, 31, 60, "Input",ExpressionUUID->"a3504474-53eb-466f-981c-bf6630200191"],
+Cell[15328, 462, 1322, 39, 60, "Input",ExpressionUUID->"e8b71809-16f3-4028-be93-bc521583a2a1"],
+Cell[16653, 503, 742, 21, 60, "Input",ExpressionUUID->"cd0eb409-cd3d-4eb7-be99-1341d47ad550"],
+Cell[17398, 526, 216, 6, 35, "Input",ExpressionUUID->"afef8247-186f-4f06-9fda-6aa7e51bf637"],
+Cell[17617, 534, 243, 6, 35, "Input",ExpressionUUID->"bad0d4ea-bbb8-4fc7-a4fe-0e8bf41f9f88"],
+Cell[17863, 542, 243, 6, 35, "Input",ExpressionUUID->"6e5eda1f-d809-41d7-9afa-5871ae487ae3"],
+Cell[18109, 550, 2138, 56, 108, "Input",ExpressionUUID->"40a5dd61-fe1d-4680-ae29-28bb8a672c49"],
+Cell[20250, 608, 1760, 45, 132, "Input",ExpressionUUID->"b97e5427-f84b-48fd-ab3a-d69f4d2c8392"],
+Cell[22013, 655, 216, 6, 35, "Input",ExpressionUUID->"d92bd0cd-1008-4379-987a-53bf10fd6d3d"],
+Cell[22232, 663, 275, 8, 35, "Input",ExpressionUUID->"e67e179b-c734-44b2-b8e0-3543171c43f8"],
+Cell[22510, 673, 2568, 69, 156, "Input",ExpressionUUID->"6c6d4409-f70e-4d10-8003-2fd15116b329"],
+Cell[25081, 744, 1454, 40, 84, "Input",ExpressionUUID->"958569d6-5931-4eb9-b3f6-0121d1e8e15d"],
+Cell[26538, 786, 1621, 45, 84, "Input",ExpressionUUID->"ac172d5c-9ae7-453f-a77c-17fb6aa3aa5f"],
+Cell[28162, 833, 4060, 112, 204, "Input",ExpressionUUID->"26729478-aa9f-440f-8505-ebd00693d127"],
+Cell[32225, 947, 1551, 43, 84, "Input",ExpressionUUID->"9aa32691-8aa7-46ea-8227-6df88b9326e4"],
+Cell[33779, 992, 801, 24, 108, "Input",ExpressionUUID->"72e5372a-8a26-4e0d-999e-834fb51e041d"],
+Cell[34583, 1018, 2404, 67, 132, "Input",ExpressionUUID->"0c698aff-444c-429b-801b-20053fb76fe8"],
+Cell[36990, 1087, 2614, 72, 132, "Input",ExpressionUUID->"e44a5a4d-d954-4892-9964-d74955b98ad8"]
+}
+]
+*)
+
