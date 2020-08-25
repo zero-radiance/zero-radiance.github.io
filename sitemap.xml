@@ -3,6 +3,11 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
+    <loc>https://zero-radiance.github.io/post/z-buffer/</loc>
+    <lastmod>2020-08-24T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
     <loc>https://zero-radiance.github.io/post/analytic-media/</loc>
     <lastmod>2020-02-17T00:00:00+00:00</lastmod>
   </url>
@@ -35,6 +40,12 @@
   <url>
     <loc>https://zero-radiance.github.io/tags/alpha-blending/</loc>
     <lastmod>2018-10-11T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://zero-radiance.github.io/tags/analysis/</loc>
+    <lastmod>2020-08-24T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -75,7 +86,7 @@
   
   <url>
     <loc>https://zero-radiance.github.io/categories/graphics/</loc>
-    <lastmod>2020-02-17T00:00:00+00:00</lastmod>
+    <lastmod>2020-08-24T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -93,7 +104,7 @@
   
   <url>
     <loc>https://zero-radiance.github.io/categories/math/</loc>
-    <lastmod>2020-02-17T00:00:00+00:00</lastmod>
+    <lastmod>2020-08-24T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -105,7 +116,13 @@
   
   <url>
     <loc>https://zero-radiance.github.io/post/</loc>
-    <lastmod>2020-02-17T00:00:00+00:00</lastmod>
+    <lastmod>2020-08-24T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://zero-radiance.github.io/tags/precision/</loc>
+    <lastmod>2020-08-24T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -146,8 +163,14 @@
   </url>
   
   <url>
+    <loc>https://zero-radiance.github.io/tags/z-buffer/</loc>
+    <lastmod>2020-08-24T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
     <loc>https://zero-radiance.github.io/</loc>
-    <lastmod>2020-02-17T00:00:00+00:00</lastmod>
+    <lastmod>2020-08-24T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   

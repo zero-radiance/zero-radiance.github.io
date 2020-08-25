@@ -5,10 +5,23 @@
     <link>https://zero-radiance.github.io/post/</link>
     <description>Recent content in Posts on Zero Radiance</description>
     <generator>Hugo -- gohugo.io</generator>
-    <lastBuildDate>Mon, 17 Feb 2020 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Mon, 24 Aug 2020 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="https://zero-radiance.github.io/post/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Quantitative Analysis of Z-buffer Precision</title>
+      <link>https://zero-radiance.github.io/post/z-buffer/</link>
+      <pubDate>Mon, 24 Aug 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://zero-radiance.github.io/post/z-buffer/</guid>
+      <description>&lt;p&gt;High Z-buffer precision is something that we take for granted these days. Since the introduction of &lt;a href=&#34;https://doi.org/10.1145/311534.311579&#34;&gt;reversed floating-point Z-buffering&lt;/a&gt; (and, assuming you use the standard tricks like &lt;a href=&#34;https://pharr.org/matt/blog/2018/03/02/rendering-in-camera-space.html&#34;&gt;camera-relative transforms&lt;/a&gt;), most depth precision issues are a thing of the past. You ask the rasterizer to throw triangles at the screen and, almost magically, and they appear at the right place and in the right order.&lt;/p&gt;
+
+&lt;p&gt;There are many existing articles concerning Z-buffer precision (&lt;a href=&#34;https://doi.org/10.1145/311534.311579&#34;&gt;1&lt;/a&gt;, &lt;a href=&#34;https://mynameismjp.wordpress.com/2010/03/22/attack-of-the-depth-buffer/&#34;&gt;2&lt;/a&gt;, &lt;a href=&#34;http://www.geometry.caltech.edu/pubs/UD12.pdf&#34;&gt;3&lt;/a&gt;, &lt;a href=&#34;http://www.humus.name/Articles/Persson_CreatingVastGameWorlds.pdf&#34;&gt;4&lt;/a&gt;, &lt;a href=&#34;https://outerra.blogspot.com/2012/11/maximizing-depth-buffer-range-and.html&#34;&gt;5&lt;/a&gt;, &lt;a href=&#34;http://dev.theomader.com/depth-precision/&#34;&gt;6&lt;/a&gt;, &lt;a href=&#34;http://www.reedbeta.com/blog/depth-precision-visualized/&#34;&gt;7&lt;/a&gt;, the last one being my favorite), as well as sections in the &lt;a href=&#34;http://www.realtimerendering.com/book.html&#34;&gt;Real-Time Rendering&lt;/a&gt; and the &lt;a href=&#34;https://foundationsofgameenginedev.com/#fged2&#34;&gt;Foundations of Game Engine Development&lt;/a&gt; books. So, why bother writing another one? While there is nothing wrong with the intuition and the results presented there, I find the numerical analysis part (specifically, its presentation) somewhat lacking. It is clear that &amp;quot;the quasi-logarithmic distribution of floating-point somewhat cancels the \(1/z\) nonlinearity&amp;quot;, but what does that mean &lt;em&gt;exactly&lt;/em&gt;? What is happening at the binary level? Is the resulting distribution of depth values linear? Logarithmic? Or is it something else entirely? Even after reading all these articles, I still had these nagging questions that made me feel that I had failed to achieve what Jim Blinn would call the &lt;a href=&#34;https://doi.org/10.1109/38.210494&#34;&gt;ultimate understanding&lt;/a&gt; of the concept.&lt;/p&gt;
+
+&lt;p&gt;In short, we know that reversed Z-buffering &lt;em&gt;is&lt;/em&gt; good, and we know &lt;em&gt;why&lt;/em&gt; it is good; what we would like to know is &lt;em&gt;what good really means&lt;/em&gt;. This blog post is not meant to replace the existing articles but, rather, to complement them.&lt;/p&gt;</description>
+    </item>
     
     <item>
       <title>Sampling Analytic Participating Media</title>

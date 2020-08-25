@@ -55,6 +55,75 @@
                 
                 
                 <header class="article-header">
+                    <h1 itemprop="name"><a class="article-title" href="/post/z-buffer/">Quantitative Analysis of Z-buffer Precision</a></h1>
+                </header>
+                
+                <div class="article-meta">
+                    <a href="/post/z-buffer/" class="article-date">
+                        <time datetime='2020-08-24T00:00:00.000&#43;00:00' itemprop="datePublished">2020-08-24</time>
+                    </a>
+                    
+                    
+                    <div class="post-categories">
+                        <div class="article-category">
+                            
+                            
+                            <a class="article-category-link" href="https://zero-radiance.github.io//categories/graphics">Graphics</a>
+                            
+                            
+                            <span>&gt;</span>
+                            
+                            <a class="article-category-link" href="https://zero-radiance.github.io//categories/math">Math</a>
+                            
+                        </div>
+                    </div>
+                    
+                    
+                </div>
+                <div class="article-entry" itemprop="articleBody">
+                    <p>
+                        
+                    <p>High Z-buffer precision is something that we take for granted these days. Since the introduction of <a href="https://doi.org/10.1145/311534.311579">reversed floating-point Z-buffering</a> (and, assuming you use the standard tricks like <a href="https://pharr.org/matt/blog/2018/03/02/rendering-in-camera-space.html">camera-relative transforms</a>), most depth precision issues are a thing of the past. You ask the rasterizer to throw triangles at the screen and, almost magically, and they appear at the right place and in the right order.</p>
+
+<p>There are many existing articles concerning Z-buffer precision (<a href="https://doi.org/10.1145/311534.311579">1</a>, <a href="https://mynameismjp.wordpress.com/2010/03/22/attack-of-the-depth-buffer/">2</a>, <a href="http://www.geometry.caltech.edu/pubs/UD12.pdf">3</a>, <a href="http://www.humus.name/Articles/Persson_CreatingVastGameWorlds.pdf">4</a>, <a href="https://outerra.blogspot.com/2012/11/maximizing-depth-buffer-range-and.html">5</a>, <a href="http://dev.theomader.com/depth-precision/">6</a>, <a href="http://www.reedbeta.com/blog/depth-precision-visualized/">7</a>, the last one being my favorite), as well as sections in the <a href="http://www.realtimerendering.com/book.html">Real-Time Rendering</a> and the <a href="https://foundationsofgameenginedev.com/#fged2">Foundations of Game Engine Development</a> books. So, why bother writing another one? While there is nothing wrong with the intuition and the results presented there, I find the numerical analysis part (specifically, its presentation) somewhat lacking. It is clear that &quot;the quasi-logarithmic distribution of floating-point somewhat cancels the \(1/z\) nonlinearity&quot;, but what does that mean <em>exactly</em>? What is happening at the binary level? Is the resulting distribution of depth values linear? Logarithmic? Or is it something else entirely? Even after reading all these articles, I still had these nagging questions that made me feel that I had failed to achieve what Jim Blinn would call the <a href="https://doi.org/10.1109/38.210494">ultimate understanding</a> of the concept.</p>
+
+<p>In short, we know that reversed Z-buffering <em>is</em> good, and we know <em>why</em> it is good; what we would like to know is <em>what good really means</em>. This blog post is not meant to replace the existing articles but, rather, to complement them.</p>
+                    </p>
+                    <p class="article-more-link">
+                        <a href="/post/z-buffer/">Read More</a>
+                    </p>
+                </div>
+
+                
+                <footer class="article-footer">
+                    <ul class="article-tag-list">
+                        
+                        <li class="article-tag-list-item">
+                            <a class="article-tag-list-link" href="https://zero-radiance.github.io//tags/analysis">Analysis
+                            </a>
+                        </li>
+                        
+                        <li class="article-tag-list-item">
+                            <a class="article-tag-list-link" href="https://zero-radiance.github.io//tags/z-buffer">Z-buffer
+                            </a>
+                        </li>
+                        
+                        <li class="article-tag-list-item">
+                            <a class="article-tag-list-link" href="https://zero-radiance.github.io//tags/precision">Precision
+                            </a>
+                        </li>
+                        
+                    </ul>
+                </footer>
+                
+            </div>
+        </article>
+        
+        <article class="article article-type-post" itemscope itemprop="blogPost">
+            <div class="article-inner">
+                
+                
+                <header class="article-header">
                     <h1 itemprop="name"><a class="article-title" href="/post/analytic-media/">Sampling Analytic Participating Media</a></h1>
                 </header>
                 
