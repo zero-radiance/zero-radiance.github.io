@@ -1,5 +1,5 @@
 ---
-title: "Quantitative Analysis of Z-buffer Precision"
+title: "Quantitative Analysis of Z-Buffer Precision"
 date: 2020-08-24
 categories: [ "Graphics", "Math" ]
 tags: [
@@ -62,7 +62,7 @@ Plotting the same graph on a logarithmic scale (compare the vertical axes) allow
 
 {{< figure src="/img/z-buffer_basics_2.png" >}}
 
-## Fixed-Point Z-buffer
+## Fixed-Point Z-Buffer
 
 In order to become more familiar with the process of analysis, and to obtain a comparison point, let us consider a simple case of an unsigned, normalized, fixed-point Z-buffer. Assuming 24-bit binary storage \\((k=24)\\) that we interpret as a decimal number \\(d\\), we can compute the depth value it represents as follows:
 
@@ -90,7 +90,7 @@ We can make the resulting graph easier to read by converting the \\(d\\)-axis to
 
 Because of the Z-reversal, the new graph appears transposed. But now it is more clear that, for instance, the depth resolution falls below 1 meter at distances exceeding 1000 meters.
 
-## Floating-Point Z-buffer
+## Floating-Point Z-Buffer
 
 We proceed in a similar fashion by defining a function that interprets a decimal number as a binary representation of a floating-point number. In lieu of *reinterpret_cast*, this function can be defined as
 

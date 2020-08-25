@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Quantitative Analysis of Z-buffer Precision // Zero Radiance</title>
+    <title>Quantitative Analysis of Z-Buffer Precision // Zero Radiance</title>
 
         <meta charset="utf-8">
     <meta http-equiv="content-type" content="text/html; charset=utf-8">
@@ -9,7 +9,7 @@
     <meta name="description" content="">
     <meta name="keywords" content="">
     <meta name="author" content="">
-        <meta property="og:title" content="Quantitative Analysis of Z-buffer Precision" />
+        <meta property="og:title" content="Quantitative Analysis of Z-Buffer Precision" />
     <meta property="og:description" content="" />
     <meta property="og:type" content="website" />
     <meta property="og:locale" content="en_US" />
@@ -53,7 +53,7 @@
     <div class="article-inner">
         
         <header class="article-header">
-            <h1 class="article-title" itemprop="name">Quantitative Analysis of Z-buffer Precision</h1>
+            <h1 class="article-title" itemprop="name">Quantitative Analysis of Z-Buffer Precision</h1>
         </header>
         
         <div class="article-meta">
@@ -138,7 +138,7 @@ $$</p>
 </figure>
 
 
-<h2 id="fixed-point-z-buffer">Fixed-Point Z-buffer</h2>
+<h2 id="fixed-point-z-buffer">Fixed-Point Z-Buffer</h2>
 
 <p>In order to become more familiar with the process of analysis, and to obtain a comparison point, let us consider a simple case of an unsigned, normalized, fixed-point Z-buffer. Assuming 24-bit binary storage \((k=24)\) that we interpret as a decimal number \(d\), we can compute the depth value it represents as follows:</p>
 
@@ -175,7 +175,7 @@ $$</p>
 
 <p>Because of the Z-reversal, the new graph appears transposed. But now it is more clear that, for instance, the depth resolution falls below 1 meter at distances exceeding 1000 meters.</p>
 
-<h2 id="floating-point-z-buffer">Floating-Point Z-buffer</h2>
+<h2 id="floating-point-z-buffer">Floating-Point Z-Buffer</h2>
 
 <p>We proceed in a similar fashion by defining a function that interprets a decimal number as a binary representation of a floating-point number. In lieu of <em>reinterpret_cast</em>, this function can be defined as</p>
 
@@ -319,8 +319,8 @@ $$</p>
 <li>
 <ul>
 <li><a href="#reversed-z-buffering-basics">Reversed Z-Buffering Basics</a></li>
-<li><a href="#fixed-point-z-buffer">Fixed-Point Z-buffer</a></li>
-<li><a href="#floating-point-z-buffer">Floating-Point Z-buffer</a></li>
+<li><a href="#fixed-point-z-buffer">Fixed-Point Z-Buffer</a></li>
+<li><a href="#floating-point-z-buffer">Floating-Point Z-Buffer</a></li>
 <li><a href="#conclusion">Conclusion</a></li>
 <li><a href="#acknowledgments">Acknowledgments</a></li>
 </ul></li>
