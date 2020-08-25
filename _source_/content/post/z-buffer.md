@@ -139,7 +139,7 @@ For completeness, we can zoom in near \\({\phi} = 1\\) again (on a linear scale 
 
 {{< figure src="/img/depth_floating_6.png" >}}
 
-At this point \\(w\\) is exponentially decreasing, so the interaction between \\(1/z\\) and the quasi-exponential floating-point behavior is more complex. The gaps correspond to the endpoints of subsequent quasi-linear segments of \\({\phi}.\\) Admittedly, they are larger than I anticipated. If you have a theory, please feel free to share it with the rest of the community on Twitter.
+At this point \\(w\\) is exponentially decreasing, so the interaction between \\(1/z\\) and the quasi-exponential floating-point behavior is more complex. The gaps correspond to the endpoints of subsequent quasi-linear segments of \\({\phi}.\\) Admittedly, they are larger than I anticipated. If you have a theory why that is the case, please feel free to share it with the rest of the community on Twitter.
 
 As before, we can swap the \\(d\\)-axis for the \\(w\\)-axis.
 
@@ -155,7 +155,7 @@ With so much precision allocated for the region near the far plane, it is natura
 
 {{< figure src="/img/depth_floating_9.5.png" >}}
 
-Turns out, if we do that, precision is barely affected for distances up to around 1000 meters. As we get farther away from the camera, precision no longer remains constant, and starts to drop in a linear fashion (to be more specific: precision decreases approximately linearly up to the distance of 1000 meters for both \\(f=10000\\) and \\(f \to \infty\\); behavior varies past that point). We can see that if we create a plot with both axes using a logarithmic scale.
+Turns out, if we do that, precision is barely affected for distances up to around 1000 meters. As we get farther away from the camera, precision no longer remains constant, and starts to drop in a linear fashion (to be more specific: precision decreases approximately linearly up to the distance of 1000 meters for both \\(f=10000\\) and \\(f \to \infty\\); the behavior varies past that point). We can see that if we create a plot with both axes using a logarithmic scale.
 
 {{< figure src="/img/depth_floating_10.png" >}}
 
