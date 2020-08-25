@@ -105,7 +105,7 @@ $$ \tag{7} \begin{aligned}
 \end{aligned}
 $$
 
-are the sign, the biased exponent, and the trailing significand, respectively. The [IEEE standard](https://ieeexplore.ieee.org/document/8766229) defines \\(k=32,t=23,b=127\\) as encoding parameters for 32-bit floating-point numbers. Additionally, we should keep in mind that the values of \\(z\\) are restricted to the unit interval, so, assuming denormal numbers are flushed to zero, \\(d\\) can either be zero or take on values in the range \\([1 \times 2^{23}, 127 \times 2^{23}] = [8388608, 1065353216]\\). That is less than a quarter of all 32-bit decimal numbers (however, it is 63 times more when compared to a 24-bit Z-buffer). Additionally, this puts a well-defined upper bound on potential precision improvements that could result from expanding the range of values of \\(z\\).
+are the sign, the biased exponent, and the trailing significand, respectively. The [IEEE standard](https://ieeexplore.ieee.org/document/8766229) defines \\(k=32,t=23,b=127\\) as encoding parameters for 32-bit floating-point numbers. Additionally, we should keep in mind that the values of \\(z\\) are restricted to the unit interval, so, assuming denormal numbers are flushed to zero, \\(d\\) can either be zero or take on values in the range \\([1 \times 2^{23}, 127 \times 2^{23}] = [8388608, 1065353216]\\). That is less than a quarter of all 32-bit decimal numbers (however, it is also 63 times more values than can be stored in a 24-bit buffer). Additionally, this puts a well-defined upper bound on potential precision improvements that could result from expanding the range of values of \\(z\\).
 
 Plotting Equation 6 as a function of \\(d\\) reveals that the first billion values of \\(\phi\\) are very small.
 
