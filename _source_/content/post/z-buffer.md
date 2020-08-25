@@ -66,19 +66,19 @@ Plotting the same graph on a logarithmic scale (compare the vertical axes) allow
 
 In order to become more familiar with the process of analysis, and to obtain a comparison point, let us consider a simple case of an unsigned, normalized, fixed-point Z-buffer. Assuming 24-bit binary storage \\((k=24)\\) that we interpret as a decimal number \\(d\\), we can compute the depth value it represents as follows:
 
-$$ \tag{4} u(d) = \frac{d}{2^k-1} = \frac{d}{16777215}. $$
+$$ \tag{4} \upsilon(d) = \frac{d}{2^k-1} = \frac{d}{16777215}. $$
 
-Plugging \\(u\\) instead of \\(z\\) into Equation (3) allows us to map the values stored within the Z-buffer to the original linear depth values they represent.
+Plugging \\(\upsilon\\) instead of \\(z\\) into Equation (3) allows us to map the values stored within the Z-buffer to the original linear depth values they represent.
 
 {{< figure src="/img/depth_fixed_1.png" >}}
 
-Since we obtain \\(u\\) by linearly transforming (scaling) \\(d\\), the graph looks identical to the one from the previous section. Unfortunately, it means that over 90% of the values of \\(d\\) are used for objects less than 1 meter away from the viewer.
+Since we obtain \\(\upsilon\\) by linearly transforming (scaling) \\(d\\), the graph looks identical to the one from the previous section. Unfortunately, it means that over 90% of the values of \\(d\\) are used for objects less than 1 meter away from the viewer.
 
 Since we are interested in *precision* of the Z-buffer, we should find a way to plot its *resolution*. By resolution, we mean the smallest positive linear depth difference (smaller is better) that results in a different binary value of \\(z\\) (some may consider this number a "reciprocal of resolution"; the definition and the naming are both deliberate to simplify discussion and plotting). In other words, for a certain decimal number \\(d\\), it is the absolute difference \\(\Delta w\\) between the linear depth value \\(d\\) corresponds to and the linear depth value of its immediate neighbor.
 
 Mathematically, for a continuous function, we can obtain the desired graph by plotting the absolute value of the derivative
 
-$$ \tag{5} \Delta w \approx \Bigg\lvert \frac{\partial w \big( u(d) \big)}{\partial d} \Bigg\rvert. $$
+$$ \tag{5} \Delta w \approx \Bigg\lvert \frac{\partial w \big( \upsilon(d) \big)}{\partial d} \Bigg\rvert. $$
 
 {{< figure src="/img/depth_fixed_2.png" >}}
 
@@ -94,24 +94,24 @@ Because of the Z-reversal, the new graph appears transposed. But now it is more 
 
 We proceed in a similar fashion by defining a function that interprets a decimal number as a binary representation of a floating-point number. In lieu of *reinterpret_cast*, this function can be defined as
 
-$$ \tag{6} f(d) = s_f (1 + t_f) 2^{e_f-b}, $$
+$$ \tag{6} \phi(d) = s\_{\phi} (1 + t\_{\phi}) 2^{e\_{\phi}-b}, $$
 
 where
 
 $$ \tag{7} \begin{aligned}
-	s\_f(d) &= 1 - 2 \left\lfloor 2^{1-k} d \right\rfloor, \cr
-	e\_f(d) &= \left\lfloor 2^{-t} d \right\rfloor - 2^{k-t-1} \left\lfloor 2^{1-k} d \right\rfloor, \cr
-	t\_f(d) &= \sum_{i=0}^{t-1} 2^{i-t} \left(\left\lfloor 2^{-i} d \right\rfloor -2 \left\lfloor 2^{-i-1} d \right\rfloor \right),
+	s\_{\phi}(d) &= 1 - 2 \left\lfloor 2^{1-k} d \right\rfloor, \cr
+	e\_{\phi}(d) &= \left\lfloor 2^{-t} d \right\rfloor - 2^{k-t-1} \left\lfloor 2^{1-k} d \right\rfloor, \cr
+	t\_{\phi}(d) &= \sum_{i=0}^{t-1} 2^{i-t} \left(\left\lfloor 2^{-i} d \right\rfloor -2 \left\lfloor 2^{-i-1} d \right\rfloor \right),
 \end{aligned}
 $$
 
 are the sign, the biased exponent, and the trailing significand, respectively. The [IEEE standard](https://ieeexplore.ieee.org/document/8766229) defines \\(k=32,t=23,b=127\\) as encoding parameters for 32-bit floating-point numbers. Additionally, we should keep in mind that the values of \\(z\\) are restricted to the unit interval, so, assuming denormal numbers are flushed to zero, \\(d\\) can either be zero or take on values in the range \\([1 \times 2^{23}, 127 \times 2^{23}] = [8388608, 1065353216]\\). That is less than a quarter of all 32-bit decimal numbers (however, it is 63 times more when compared to a 24-bit Z-buffer). Additionally, this puts a well-defined upper bound on potential precision improvements that could result from expanding the range of values of \\(z\\).
 
-Plotting Equation 6 as a function of \\(d\\) reveals that the first billion values of \\(f\\) are very small.
+Plotting Equation 6 as a function of \\(d\\) reveals that the first billion values of \\(\phi\\) are very small.
 
 {{< figure src="/img/depth_floating_1.png" >}}
 
-The quasi-exponential nature of the function can be clearly observed if we zoom in near \\(f = 1\\).
+The quasi-exponential nature of the function can be clearly observed if we zoom in near \\(\phi = 1\\).
 
 {{< figure src="/img/depth_floating_2.png" >}}
 
@@ -121,25 +121,25 @@ Zooming in some more, we can see that the function we defined is, in fact, const
 
 This is the limit of floating-point precision. All values that fall in-between must be rounded to machine-representable ones.
 
-Substitution of \\(f\\) for \\(z\\) in Equation (3) allows us to plot linear depth against \\(d\\).
+Substitution of \\(\phi\\) for \\(z\\) in Equation (3) allows us to plot linear depth against \\(d\\).
 
 {{< figure src="/img/depth_floating_4.png" >}}
 
-You may find the graph surprising ([I certainly did](https://twitter.com/zalbard/status/1179532228885237760)). We only see an exponential distribution of \\(w\\) appear after around 900 million values. To give you some idea of the numbers on the horizontal line, \\(f(7 \times 10^8) \approx 8.22242 \times 10^{-14}\\) and \\(w \big(f(7 \times 10^8)\big) \approx 9999.9999\\). If we consider only the last 10% of the values of \\(d\\), they cover 90% of the viewing range. So, in fact, the *actual* useful range of decimal values is even smaller than originally anticipated. (*"It may be worth pointing out that the long horizontal segment on this graph corresponds to the "long tail" of exceedingly small floating-point values (e.g. 2⁻²⁰ down to 2⁻¹²⁷). Consulting Equation (3), we can see that when we have a finite far plane, then whenever z ≪ n/f in magnitude, we will have w ≈ f. Here, n/f = 10⁻⁵ so any z values from 10⁻⁶ or so on down will be crushed against the far plane and basically useless. Setting an infinite far plane alleviates this problem." - Nathan Reed*)
+You may find the graph surprising ([I certainly did](https://twitter.com/zalbard/status/1179532228885237760)). We only see an exponential distribution of \\(w\\) appear after around 900 million values. To give you some idea of the numbers on the horizontal line, \\(\phi(7 \times 10^8) \approx 8.22242 \times 10^{-14}\\) and \\(w \big(\phi(7 \times 10^8)\big) \approx 9999.9999\\). If we consider only the last 10% of the values of \\(d\\), they cover 90% of the viewing range. So, in fact, the *actual* useful range of decimal values is even smaller than originally anticipated. (*"It may be worth pointing out that the long horizontal segment on this graph corresponds to the "long tail" of exceedingly small floating-point values (e.g. 2⁻²⁰ down to 2⁻¹²⁷). Consulting Equation (3), we can see that when we have a finite far plane, then whenever z ≪ n/f in magnitude, we will have w ≈ f. Here, n/f = 10⁻⁵ so any z values from 10⁻⁶ or so on down will be crushed against the far plane and basically useless. Setting an infinite far plane alleviates this problem." - Nathan Reed*)
 
-What about precision, then? Since \\(f\\) is constant between (and discontinuous at) subsequent decimal values, we cannot really use standard methods of real analysis such as taking the derivative. But, since we are just interested in the difference between linear depth values for successive decimal numbers, we can approximate \\(\partial w / \partial d\\) using [finite differences](https://en.wikipedia.org/wiki/Finite_difference) which operate exactly that way:
+What about precision, then? Since \\({\phi}\\) is constant between (and discontinuous at) subsequent decimal values, we cannot really use standard methods of real analysis such as taking the derivative. But, since we are just interested in the difference between linear depth values for successive decimal numbers, we can approximate \\(\partial w / \partial d\\) using [finite differences](https://en.wikipedia.org/wiki/Finite_difference) which operate exactly that way:
 
-$$ \tag{8} \Delta w \approx \Bigg\lvert \frac{w \big( f(d+1) \big) - w \big( f(d-1) \big)}{2} \Bigg\rvert. $$
+$$ \tag{8} \Delta w \approx \Bigg\lvert \frac{w \big( {\phi}(d+1) \big) - w \big( {\phi}(d-1) \big)}{2} \Bigg\rvert. $$
 
 {{< figure src="/img/depth_floating_5.png" >}}
 
-Do you recall the quasi-linear segments of \\(f\\) we saw earlier? The derivative of a linear function is a constant, so, if you zoom in a little bit, that is exactly what you see on the left side of the graph (where \\(w\\) is practically constant). We have an absurdly high level of precision at the far plane \\((d \to 0)\\), but, most importantly, the depth resolution stays fairly high throughout the whole range.
+Do you recall the quasi-linear segments of \\({\phi}\\) we saw earlier? The derivative of a linear function is a constant, so, if you zoom in a little bit, that is exactly what you see on the left side of the graph (where \\(w\\) is practically constant). We have an absurdly high level of precision at the far plane \\((d \to 0)\\), but, most importantly, the depth resolution stays fairly high throughout the whole range.
 
-For completeness, we can zoom in near \\(f = 1\\) again (on a linear scale to facilitate comparison).
+For completeness, we can zoom in near \\({\phi} = 1\\) again (on a linear scale to facilitate comparison).
 
 {{< figure src="/img/depth_floating_6.png" >}}
 
-At this point \\(w\\) is exponentially decreasing, so the interaction between \\(1/z\\) and the quasi-exponential floating-point behavior is more complex. The gaps correspond to the endpoints of subsequent quasi-linear segments of \\(f.\\) Admittedly, they are larger than I anticipated. If you have a theory, please feel free to share it with the rest of the community on Twitter.
+At this point \\(w\\) is exponentially decreasing, so the interaction between \\(1/z\\) and the quasi-exponential floating-point behavior is more complex. The gaps correspond to the endpoints of subsequent quasi-linear segments of \\({\phi}.\\) Admittedly, they are larger than I anticipated. If you have a theory, please feel free to share it with the rest of the community on Twitter.
 
 As before, we can swap the \\(d\\)-axis for the \\(w\\)-axis.
 
