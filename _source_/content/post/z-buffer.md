@@ -161,7 +161,7 @@ Turns out, if we do that, precision is barely affected for distances up to aroun
 
 Considering the expanded viewing range, that is a perfectly reasonable trade-off.
 
-You may wonder how it compares to a 32-bit fixed-point [logarithmic depth](http://tulrich.com/geekstuff/log_depth_buffer.txt) buffer. By definition, it has constant *relative* precision, such that \\((\Delta w)/w \in \mathrm{O}(1)\\). More intuitively, \\(\Delta w \in \mathrm{O}(w)\\), which implies that the depth resolution scales linearly with distance.
+You may wonder how it compares to a 32-bit fixed-point [logarithmic depth](http://tulrich.com/geekstuff/log_depth_buffer.txt) buffer. By [definition](https://en.m.wikipedia.org/wiki/Logarithmic_derivative), it has constant *relative* precision, such that \\((\Delta w)/w \in \mathrm{O}(1)\\). More intuitively, \\(\Delta w \in \mathrm{O}(w)\\), which implies that the depth resolution scales linearly with distance.
 
 Turns out, if we plot both (using \\(f = 10^{37}\\) to maintain the scale of the graph), they are surprisingly close.
 

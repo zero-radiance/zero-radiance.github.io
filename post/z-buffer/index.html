@@ -270,7 +270,7 @@ $$</p>
 </figure>
 
 
-<p>Turns out, if we do that, precision is barely affected for distances up to around 1000 meters. As we get farther away from the camera, precision no longer remains constant, and starts to drop in a linear fashion (to be more specific: precision decreases approximately linearly up to the distance of 1000 meters for both \(f=10000\) and \(f \to \infty\); behavior varies past that point). We can see that if we create a plot with both axes using a logarithmic scale.</p>
+<p>Turns out, if we do that, precision is barely affected for distances up to around 1000 meters. As we get farther away from the camera, precision no longer remains constant, and starts to drop in a linear fashion (to be more specific: precision decreases approximately linearly up to the distance of 1000 meters for both \(f=10000\) and \(f \to \infty\); the behavior varies past that point). We can see that if we create a plot with both axes using a logarithmic scale.</p>
 
 <figure>
     <img src="/img/depth_floating_10.png"/> 
@@ -279,7 +279,7 @@ $$</p>
 
 <p>Considering the expanded viewing range, that is a perfectly reasonable trade-off.</p>
 
-<p>You may wonder how it compares to a 32-bit fixed-point <a href="http://tulrich.com/geekstuff/log_depth_buffer.txt">logarithmic depth</a> buffer. By definition, it has constant <em>relative</em> precision, such that \((\Delta w)/w \in \mathrm{O}(1)\). More intuitively, \(\Delta w \in \mathrm{O}(w)\), which implies that the depth resolution scales linearly with distance.</p>
+<p>You may wonder how it compares to a 32-bit fixed-point <a href="http://tulrich.com/geekstuff/log_depth_buffer.txt">logarithmic depth</a> buffer. By <a href="https://en.m.wikipedia.org/wiki/Logarithmic_derivative">definition</a>, it has constant <em>relative</em> precision, such that \((\Delta w)/w \in \mathrm{O}(1)\). More intuitively, \(\Delta w \in \mathrm{O}(w)\), which implies that the depth resolution scales linearly with distance.</p>
 
 <p>Turns out, if we plot both (using \(f = 10^{37}\) to maintain the scale of the graph), they are surprisingly close.</p>
 
