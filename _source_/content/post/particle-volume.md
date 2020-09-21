@@ -103,7 +103,7 @@ $$ \tag{12} \tilde{I}\_s = N \tilde{\sigma}\_s \frac{\tilde{f}\_p}{4 \pi} \tilde
 
 "Wait a minute", you may object. "Shouldn't we also consider the effect of scattered waves on the particles themselves?" And, in general, indeed, we should. This is a [many-body problem](https://en.wikipedia.org/wiki/Many-body_problem), and it is extremely challenging to solve exactly. In a low-density dielectric (a gas), electromagnetic interaction between the particles is typically neglected - this is sometimes referred to as the [independent scattering approximation](https://doi.org/10.1002/qj.49708436025). For dense dielectrics, one way of tackling the problem is to introduce the [electric polarization](https://en.wikipedia.org/wiki/Polarization_density) - induced [electric dipole moment](https://en.wikipedia.org/wiki/Electric_dipole_moment) per unit volume - which can be used to approximate the [local electric field](https://www.feynmanlectures.caltech.edu/II_32.html).
 
-We can extend Equation 12 to take the volume occupied by particles into account. Given an infinitesimal number of particles \\(\Delta N\\) contained within a infinitesimal volume \\(\Delta V\\),
+We can extend Equation 12 to take the volume occupied by particles into account. Given a small number of particles \\(\Delta N\\) contained within a small volume \\(\Delta V\\),
 
 $$ \tag{13} \frac{\tilde{I}\_s}{\Delta V}  = \frac{\Delta N}{\Delta V} \tilde{\sigma}\_s \frac{\tilde{f}\_p}{4 \pi} \tilde{E}\_i. $$
 
@@ -141,7 +141,7 @@ where the scattering coefficient and the phase function determine the magnitude 
 Finally, if any part of the integrand varies along \\(z\\), we must replace \\(\Delta z\\) by a differential \\(dz\\) and add an outer line integral
 
 $$ \tag{21} \tilde{L}\_s = \int\_{\bm{x}}^{\bm{y}} \tilde{T}(\bm{x}, \bm{z}) \Bigg( \int\_{4 \pi} \tilde{\mu}\_s \frac{\tilde{f}\_p}{4 \pi} L_i d \omega_i \Bigg) dz, $$
-with the transmittance term \\(\tilde{T}\\), which becomes significant since the extent of the volume along the \\(\bm{z}\\)-axis is no longer infinitesimal.
+with the transmittance term \\(\tilde{T}\\), which becomes significant since the extent of the volume along the \\(\bm{z}\\)-axis is no longer negligible.
 
 Recursively defining \\(\tilde{L} = \tilde{L}\_i = \tilde{L}\_s\\), we finally obtain the [radiative transfer equation](https://zero-radiance.github.io/post/analytic-media/#radiative-transfer-equation) we are all familiar with.
 

@@ -173,7 +173,7 @@ $$</p>
 
 <p>&quot;Wait a minute&quot;, you may object. &quot;Shouldn't we also consider the effect of scattered waves on the particles themselves?&quot; And, in general, indeed, we should. This is a <a href="https://en.wikipedia.org/wiki/Many-body_problem">many-body problem</a>, and it is extremely challenging to solve exactly. In a low-density dielectric (a gas), electromagnetic interaction between the particles is typically neglected - this is sometimes referred to as the <a href="https://doi.org/10.1002/qj.49708436025">independent scattering approximation</a>. For dense dielectrics, one way of tackling the problem is to introduce the <a href="https://en.wikipedia.org/wiki/Polarization_density">electric polarization</a> - induced <a href="https://en.wikipedia.org/wiki/Electric_dipole_moment">electric dipole moment</a> per unit volume - which can be used to approximate the <a href="https://www.feynmanlectures.caltech.edu/II_32.html">local electric field</a>.</p>
 
-<p>We can extend Equation 12 to take the volume occupied by particles into account. Given an infinitesimal number of particles \(\Delta N\) contained within a infinitesimal volume \(\Delta V\),</p>
+<p>We can extend Equation 12 to take the volume occupied by particles into account. Given a small number of particles \(\Delta N\) contained within a small volume \(\Delta V\),</p>
 
 <p>$$ \tag{13} \frac{\tilde{I}_s}{\Delta V}  = \frac{\Delta N}{\Delta V} \tilde{\sigma}_s \frac{\tilde{f}_p}{4 \pi} \tilde{E}_i. $$</p>
 
@@ -211,7 +211,7 @@ and can be used to define the <a href="https://zero-radiance.github.io/post/anal
 <p>Finally, if any part of the integrand varies along \(z\), we must replace \(\Delta z\) by a differential \(dz\) and add an outer line integral</p>
 
 <p>$$ \tag{21} \tilde{L}_s = \int_{\bm{x}}^{\bm{y}} \tilde{T}(\bm{x}, \bm{z}) \Bigg( \int_{4 \pi} \tilde{\mu}_s \frac{\tilde{f}_p}{4 \pi} L_i d \omega_i \Bigg) dz, $$
-with the transmittance term \(\tilde{T}\), which becomes significant since the extent of the volume along the \(\bm{z}\)-axis is no longer infinitesimal.</p>
+with the transmittance term \(\tilde{T}\), which becomes significant since the extent of the volume along the \(\bm{z}\)-axis is no longer negligible.</p>
 
 <p>Recursively defining \(\tilde{L} = \tilde{L}_i = \tilde{L}_s\), we finally obtain the <a href="https://zero-radiance.github.io/post/analytic-media/#radiative-transfer-equation">radiative transfer equation</a> we are all familiar with.</p>
 
