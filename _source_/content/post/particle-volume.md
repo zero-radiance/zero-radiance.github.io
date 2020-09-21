@@ -147,4 +147,5 @@ Recursively defining \\(\tilde{L} = \tilde{L}\_i = \tilde{L}\_s\\), we finally o
 
 ## Acknowledgments
 
-I would like to thank Don Grainger for his book and for answering my questions.
+I would like to thank Eugene d'Eon for his thoughtful comments and feedback, and Don Grainger for his book and for answering my questions.
+
