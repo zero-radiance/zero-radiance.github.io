@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Optics on Zero Radiance</title>
+    <link>https://zero-radiance.github.io/categories/optics/</link>
+    <description>Recent content in Optics on Zero Radiance</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <lastBuildDate>Sun, 20 Sep 2020 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="https://zero-radiance.github.io/categories/optics/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>From Particle to Volume Scattering</title>
+      <link>https://zero-radiance.github.io/post/particle-volume/</link>
+      <pubDate>Sun, 20 Sep 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://zero-radiance.github.io/post/particle-volume/</guid>
+      <description>&lt;p&gt;I have &lt;a href=&#34;https://zero-radiance.github.io/post/analytic-media/&#34;&gt;previously&lt;/a&gt; covered the basics of the volume scattering process. It models the macroscopic interaction of light and matter, with the latter represented as a distribution of &lt;a href=&#34;https://doi.org/10.1002/qj.49708436025&#34;&gt;small particles&lt;/a&gt;. Fundamentally, the volume scattering process arises from the microscopic interaction of light with individual atoms, and is typically described using &lt;a href=&#34;https://doi.org/10.1364/JOSAA.35.000163&#34;&gt;Maxwell&#39;s electromagnetic theory&lt;/a&gt;. It is the domain of optics, and, in my experience, the connection with the &lt;a href=&#34;https://en.wikipedia.org/wiki/Radiative_transfer#The_equation_of_radiative_transfer&#34;&gt;radiative transfer equation&lt;/a&gt; is neither apparent nor easy to find. The purpose of this blog post is to familiarize the reader with domain-specific terms and ease the adoption of formulas found in the optics literature.&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

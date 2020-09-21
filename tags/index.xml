@@ -110,6 +110,15 @@
     </item>
     
     <item>
+      <title>Radiometry</title>
+      <link>https://zero-radiance.github.io/tags/radiometry/</link>
+      <pubDate>Sun, 20 Sep 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://zero-radiance.github.io/tags/radiometry/</guid>
+      <description></description>
+    </item>
+    
+    <item>
       <title>Reprojection</title>
       <link>https://zero-radiance.github.io/tags/reprojection/</link>
       <pubDate>Thu, 11 Oct 2018 00:00:00 +0000</pubDate>
@@ -148,7 +157,7 @@
     <item>
       <title>Volume Rendering</title>
       <link>https://zero-radiance.github.io/tags/volume-rendering/</link>
-      <pubDate>Mon, 17 Feb 2020 00:00:00 +0000</pubDate>
+      <pubDate>Sun, 20 Sep 2020 00:00:00 +0000</pubDate>
       
       <guid>https://zero-radiance.github.io/tags/volume-rendering/</guid>
       <description></description>
