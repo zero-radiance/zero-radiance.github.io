@@ -103,9 +103,9 @@ $$
 
 Other [integral formulations](https://cs.dartmouth.edu/~wjarosz/publications/georgiev19integral.html) of volumetric transmittance exist.
 
-The RTE models three types of energy sources: [volumetric emission](https://en.wikipedia.org/wiki/Spontaneous_emission) \\(\tilde{L}\_e\\), volumetric in-scattering \\(\tilde{L}\_s\\), and surface in-scattering \\(\tilde{L}\_g\\) (which is the standard surface geometry term with a BSDF). The volumetric in-scattering term \\(\tilde{L}\_s\\) is an integral over a sphere of directions \\(S\\):
+The RTE models three types of energy sources: [volumetric emission](https://en.wikipedia.org/wiki/Spontaneous_emission) \\(\tilde{L}\_e\\), volumetric in-scattering \\(\tilde{L}\_s\\), and surface in-scattering \\(\tilde{L}\_g\\) (which is the standard surface geometry term with a BSDF). The volumetric in-scattering term \\(\tilde{L}\_s\\) is an integral over \\(4 \pi\\) steradians:
 
-$$ \tag{12} \tilde{L}\_s(\bm{x}, \bm{\hat{v}}) = \int\_{S} \tilde{\alpha}\_{ss}(\bm{x}) \frac{\tilde{f}\_p(\bm{x}, \bm{\hat{v}}, \bm{\hat{l}})}{4 \pi} \tilde{L}(\bm{x}, \bm{\hat{l}}) d\hat{l}, $$
+$$ \tag{12} \tilde{L}\_s(\bm{x}, \bm{\hat{v}}) = \int\_{4 \pi} \tilde{\alpha}\_{ss}(\bm{x}) \frac{\tilde{f}\_p(\bm{x}, \bm{\hat{v}}, \bm{\hat{l}})}{4 \pi} \tilde{L}(\bm{x}, \bm{\hat{l}}) d\hat{l}, $$
 
 where \\(\tilde{f}\_p\\) denotes the [phase function](http://www.pbr-book.org/3ed-2018/Volume_Scattering/Phase_Functions.html) which models the distribution of scattered light.
 

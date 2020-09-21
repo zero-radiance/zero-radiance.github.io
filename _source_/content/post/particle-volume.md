@@ -6,10 +6,9 @@ tags: [
     "Volume Rendering",
     "Radiometry"
     ]
-draft: true
 ---
 
-I have [previously](https://zero-radiance.github.io/post/analytic-media/) covered the basics of the volume scattering process. It models the macroscopic interaction of light and matter, with the latter represented by a distribution of [small particles](https://doi.org/10.1002/qj.49708436025). Fundamentally, the volume scattering process arises from the microscopic interaction of light with individual atoms, and is typically described using [Maxwell's electromagnetic theory](https://doi.org/10.1364/JOSAA.35.000163). It is the domain of optics, and, in my experience, the connection with the [radiative transfer equation](https://en.wikipedia.org/wiki/Radiative_transfer#The_equation_of_radiative_transfer) is neither apparent nor easy to find in the literature. The purpose of this blog post is to familiarize the reader with domain-specific terms and ease the adoption of formulas found in the optics literature.
+I have [previously](https://zero-radiance.github.io/post/analytic-media/) covered the basics of the volume scattering process. It models the macroscopic interaction of light and matter, with the latter represented as a distribution of [small particles](https://doi.org/10.1002/qj.49708436025). Fundamentally, the volume scattering process arises from the microscopic interaction of light with individual atoms, and is typically described using [Maxwell's electromagnetic theory](https://doi.org/10.1364/JOSAA.35.000163). It is the domain of optics, and, in my experience, the connection with the [radiative transfer equation](https://en.wikipedia.org/wiki/Radiative_transfer#The_equation_of_radiative_transfer) is neither apparent nor easy to find. The purpose of this blog post is to familiarize the reader with domain-specific terms and ease the adoption of formulas found in the optics literature.
 
 <!--more-->
 
@@ -39,7 +38,7 @@ $$ \tag{4} \tilde{E} = \frac{1}{2} \varepsilon_0 c \tilde{\eta}\_1 \vert \mathca
 
 where \\(\mathcal{\tilde{E}}\\) is the [complex amplitude](https://en.wikipedia.org/wiki/Phasor) of the electric field vector (which encodes both the magnitude and the [phase](https://en.wikipedia.org/wiki/Phase_(waves))).
 
-The interaction of light with an individual particle is described in terms of the [differential scattering cross section](http://glossary.ametsoc.org/wiki/Differential_(scattering)_cross_section) \\(\tilde{\sigma}\_s'\\). It is defined as the ratio of the scattered [spectral intensity](https://en.wikipedia.org/wiki/Radiant_intensity#Spectral_intensity) \\(\tilde{I}\_s\\) for a given direction \\(\bm{\hat{\omega}\_s}\\) to the incident spectral irradiance \\(\tilde{E}\_i\\) normal with respect to \\(\bm{\hat{\omega}\_i}\\):
+The interaction of light with an individual particle is quantified by the [differential scattering cross section](http://glossary.ametsoc.org/wiki/Differential_(scattering)_cross_section) \\(\tilde{\sigma}\_s'\\). It is defined as the ratio of the scattered [spectral intensity](https://en.wikipedia.org/wiki/Radiant_intensity#Spectral_intensity) \\(\tilde{I}\_s\\) for the given direction \\(\bm{\hat{\omega}\_s}\\) to the incident spectral irradiance \\(\tilde{E}\_i\\) normal with respect to \\(\bm{\hat{\omega}\_i}\\):
 
 $$ \tag{5}
     \tilde{\sigma}\_s'(\bm{\hat{\omega}\_i}, \bm{\hat{\omega}\_s}) =
@@ -63,12 +62,12 @@ The [attenuation (or extinction) cross section](http://glossary.ametsoc.org/wiki
 
 $$ \tag{7} \tilde{\sigma}\_t(\bm{\hat{\omega}\_i}) = \tilde{\sigma}\_s + \tilde{\sigma}\_a = \frac{\tilde{\Phi}\_s}{\tilde{E}\_i} + \frac{\tilde{\Phi}\_a}{\tilde{E}\_i} = \frac{\tilde{\Phi}\_t}{\tilde{E}\_i}. $$
 
-The optical cross sections \\(\tilde{\sigma}\_x\\) are related to the geometric cross section \\(\tilde{\sigma}\_g\\) by the [efficiencies](https://doi.org/10.1364/JOSAA.35.000163) \\(\tilde{Q}\_x\\):
+The optical cross sections \\(\tilde{\sigma}\_x\\) are related to the geometric cross section \\(\sigma_g\\) by the [efficiencies](https://doi.org/10.1364/JOSAA.35.000163) \\(\tilde{Q}\_x\\):
 
 $$ \tag{8}
-    \tilde{Q}\_a = \frac{\tilde{\sigma}\_a}{\tilde{\sigma}\_g} = \frac{\tilde{\Phi}\_a}{\tilde{\Phi}\_i}, \qquad
-    \tilde{Q}\_s = \frac{\tilde{\sigma}\_s}{\tilde{\sigma}\_g} = \frac{\tilde{\Phi}\_s}{\tilde{\Phi}\_i}, \qquad
-    \tilde{Q}\_t = \frac{\tilde{\sigma}\_t}{\tilde{\sigma}\_g} = \frac{\tilde{\Phi}\_t}{\tilde{\Phi}\_i}. $$
+    \tilde{Q}\_a = \frac{\tilde{\sigma}\_a}{\sigma_g} = \frac{\tilde{\Phi}\_a}{\tilde{\Phi}\_i}, \qquad
+    \tilde{Q}\_s = \frac{\tilde{\sigma}\_s}{\sigma_g} = \frac{\tilde{\Phi}\_s}{\tilde{\Phi}\_i}, \qquad
+    \tilde{Q}\_t = \frac{\tilde{\sigma}\_t}{\sigma_g} = \frac{\tilde{\Phi}\_t}{\tilde{\Phi}\_i}. $$
 
 Note that the value of extinction efficiency can exceed 1. This phenomenon is called the [extinction paradox](https://doi.org/10.1016/j.jqsrt.2010.08.024).
 
@@ -82,7 +81,7 @@ $$
 
 It is the ratio of the energy per unit solid angle scattered in a given direction \\(\bm{\hat{\omega}\_s}\\) to the average energy per unit solid angle scattered in all directions. Again, there is an implicit dependence on the orientation of the particle with respect to the incident wave. Note that  the integral of the phase function over \\(4 \pi\\) steradians equals \\(4 \pi\\), which appears to be a common [convention](http://glossary.ametsoc.org/wiki/Phase_function) in optics.
 
-Let's compute the product of the scattering cross section and the phase function:
+Let us compute the product of the scattering cross section and the phase function:
 
 $$ \tag{10}
     \tilde{\sigma}\_s(\bm{\hat{\omega}\_i}) \tilde{f}\_p(\bm{\hat{\omega}\_i}, \bm{\hat{\omega}\_s}) =
@@ -94,57 +93,58 @@ $$ \tag{11} \tilde{\sigma}\_s'(\bm{\hat{\omega}\_i}, \bm{\hat{\omega}\_s}) = \ti
 
 ## Scattering by a Group of Particles
 
-Let us see how we can extend the theory to scattering from \\(N\\) particles. When an atom interacts with light, it experiences a [periodic perturbation of its electron cloud](http://plaza.ufl.edu/dwhahn/Rayleigh%20and%20Mie%20Light%20Scattering.pdf), which turns it into a source of radiation. Assuming [elastic scattering](https://en.wikipedia.org/wiki/Elastic_scattering) (ignoring the [Raman effect](https://en.wikipedia.org/wiki/Raman_scattering)), this radiation will have the same frequency as the incident light. Additionally, assuming that all the particles are identical (including their orientation), they will all radiate energy in exactly the same way.
+Let us see how we can extend this theory to scattering from \\(N\\) particles. When an atom interacts with light, it experiences a [periodic perturbation of its electron cloud](http://plaza.ufl.edu/dwhahn/Rayleigh%20and%20Mie%20Light%20Scattering.pdf), which turns it into a source of radiation. Assuming [elastic scattering](https://en.wikipedia.org/wiki/Elastic_scattering) (ignoring the [Raman effect](https://en.wikipedia.org/wiki/Raman_scattering)), this radiation will have the same frequency as the incident light. Additionally, assuming that all the particles are identical (including their orientation), they will all radiate energy in exactly the same way.
 
-The resulting electromagnetic waves will [combine](https://en.wikipedia.org/wiki/Superposition_principle#Wave_superposition) at the detector, potentially experiencing both constructive and destructive [interference](https://en.wikipedia.org/wiki/Superposition_principle#Wave_interference). Since all the particles are identical, the only differentiating factor is their position, which means that the scattered waves will have different phases (due to variation of distances from the particles to the detector). Making the final assumption that these particles are randomly distributed in a small region of space, we [decorrelate](https://en.wikipedia.org/wiki/Correlation_and_dependence) their phases. This results in [incoherent scattering](http://glossary.ametsoc.org/wiki/Incoherent_scattering), with constructive and destructive interference canceling each other out, and [it can be shown](https://www.nbi.dk/~ogendal/personal/lho/lightscattering_theory_and_practice.pdf) that the *mean* energy carried by the combined wave simply increases by a factor of \\(N\\).
+The resulting electromagnetic waves will [combine](https://en.wikipedia.org/wiki/Superposition_principle#Wave_superposition) at the detector, potentially experiencing both constructive and destructive [interference](https://en.wikipedia.org/wiki/Superposition_principle#Wave_interference). Since all the particles are identical, the only differentiating factor is their position, which means that the scattered waves will have different phases (due to variation of distances from the particles to the detector). Making the final assumption that these particles are randomly distributed in a small region of space, we can [decorrelate](https://en.wikipedia.org/wiki/Correlation_and_dependence) their phases. This results in [incoherent scattering](http://glossary.ametsoc.org/wiki/Incoherent_scattering), with constructive and destructive interference canceling each other out, and [it can be shown](https://www.nbi.dk/~ogendal/personal/lho/lightscattering_theory_and_practice.pdf) that the *mean* energy carried by the combined wave simply increases by a factor of \\(N\\).
 
-Therefore, we can rewrite the Equation 5 for \\(N\\) particles as
+Therefore, we can rewrite  Equation 5 for \\(N\\) particles as
 
 $$ \tag{12} \tilde{I}\_s = N \tilde{\sigma}\_s \frac{\tilde{f}\_p}{4 \pi} \tilde{E}\_i. $$
 
 "Wait a minute", you may object. "Shouldn't we also consider the effect of scattered waves on the particles themselves?" And, in general, indeed, we should. This is a [many-body problem](https://en.wikipedia.org/wiki/Many-body_problem), and it is extremely challenging to solve exactly. In a low-density dielectric (a gas), electromagnetic interaction between the particles is typically neglected - this is sometimes referred to as the [independent scattering approximation](https://doi.org/10.1002/qj.49708436025). For dense dielectrics, one way of tackling the problem is to introduce the [electric polarization](https://en.wikipedia.org/wiki/Polarization_density) - induced [electric dipole moment](https://en.wikipedia.org/wiki/Electric_dipole_moment) per unit volume - which can be used to approximate the [local electric field](https://www.feynmanlectures.caltech.edu/II_32.html).
 
-Finally, we can extend the Equation 12 to take the volume \\(dV\\) occupied by particles into account:
+We can extend Equation 12 to take the volume occupied by particles into account. Given an infinitesimal number of particles \\(\Delta N\\) contained within a infinitesimal volume \\(\Delta V\\),
 
-$$ \tag{13} \frac{d}{dV} \tilde{I}\_s = \frac{d}{dV} N \tilde{\sigma}\_s \frac{\tilde{f}\_p}{4 \pi} \tilde{E}\_i. $$
+$$ \tag{13} \frac{\tilde{I}\_s}{\Delta V}  = \frac{\Delta N}{\Delta V} \tilde{\sigma}\_s \frac{\tilde{f}\_p}{4 \pi} \tilde{E}\_i. $$
 
-For a small volume \\(dV\\), the incident spectral irradiance \\(\tilde{E}\_i\\) is approximately constant:
+\\(\Delta N / \Delta V\\) is the definition of the [number density](https://en.wikipedia.org/wiki/Number_density) \\(n\\),
+and can be used to define the [scattering coefficient](https://zero-radiance.github.io/post/analytic-media/) \\(\tilde{\mu}\_s\\)
 
-$$ \tag{14} \frac{d}{dV} \tilde{I}\_s = \tilde{E}\_i \frac{d}{dV} N \tilde{\sigma}\_s \frac{\tilde{f}\_p}{4 \pi}. $$
-
-Assuming that all the particles are identical (including their orientation), the phase function and the scattering cross section can be taken outside the derivative as well:
-
-$$ \tag{15} \frac{d}{dV} \tilde{I}\_s = \tilde{E}\_i \frac{\tilde{f}\_p}{4 \pi} \tilde{\sigma}\_s \frac{dN}{dV}. $$
-
-\\(dN/dV\\) is the definition of the [number density](https://en.wikipedia.org/wiki/Number_density) \\(n\\),
-and can be used to define the [scattering coefficient](https://zero-radiance.github.io/post/analytic-media/) \\(\mu_s\\):
-
-$$ \tag{16} \mu_s = n \tilde{\sigma}\_s. $$
-
-Equation 15 then becomes
-
-$$ \tag{17} \frac{d}{dV} \tilde{I}\_s = \mu_s \frac{\tilde{f}\_p}{4 \pi} \tilde{E}\_i. $$
+$$ \tag{14} \tilde{\mu}\_s = n \tilde{\sigma}\_s. $$
 
 If a distribution of (non-identical) particles is given, we can use its [weighted average](http://eodg.atm.ox.ac.uk/user/grainger/research/book/protected/Chapter5.pdf) properties instead:
 
-$$ \tag{18} \langle \mu_x \rangle = \int n(r) \sigma_x(r) dr, $$
+$$ \tag{15} \langle \mu_x \rangle = \int n(r) \sigma_x(r) dr, $$
 
-$$ \tag{19} \langle \tilde{f}\_p \rangle = \frac{\int n(r) \tilde{\sigma}\_s(r) \tilde{f}\_p(r) dr}{\int n(r) \tilde{\sigma}\_s(r) dr}. $$
+$$ \tag{16} \langle \tilde{f}\_p \rangle = \frac{\int n(r) \tilde{\sigma}\_s(r) \tilde{f}\_p(r) dr}{\int n(r) \tilde{\sigma}\_s(r) dr}. $$
 
-If we orient the direction of propagation of incident light along the \\(z\\) axis, we can write
+We can reformulate Equation 13 using the definition of the scattering coefficient:
 
-$$ \tag{20} \frac{d^2 \tilde{I}\_s}{dA dz} = \mu_s \frac{\tilde{f}\_p}{4 \pi} \tilde{E}\_i. $$
+$$ \tag{17} \frac{\tilde{I}\_s}{\Delta V}  = \tilde{\mu}\_s \frac{\tilde{f}\_p}{4 \pi} \tilde{E}\_i. $$
 
-This allows us to find the amount of scattered [spectral radiance](https://en.wikipedia.org/wiki/Radiance#Spectral_radiance) \\(L_s\\)
+If we orient the direction of scattering along the \\(\bm{z}\\)-axis, we may write
 
-$$ \tag{21} d L_s = \mu_s \frac{\tilde{f}\_p}{4 \pi} \tilde{E}\_i dz. $$
+$$ \tag{18} \frac{\tilde{I}\_s}{\Delta A \Delta z} = \tilde{\mu}\_s \frac{\tilde{f}\_p}{4 \pi} \tilde{E}\_i. $$
 
-Finally, we can express the incident spectral irradiance \\(\tilde{E}\_i\\) in terms of the incident spectral radiance \\(L_i\\):
+The ratio of spectral intensity to the area is the definition of scattered [spectral radiance](https://en.wikipedia.org/wiki/Radiance#Spectral_radiance) \\(\tilde{L}\_s\\):
 
-$$ \tag{22} L_s = \int\_{4 \pi} \mu_s \frac{\tilde{f}\_p}{4 \pi} L_i d \omega_i dz, $$
+$$ \tag{19} \tilde{L}\_s = \tilde{\mu}\_s \frac{\tilde{f}\_p}{4 \pi} \tilde{E}\_i \Delta z. $$
 
-where \\(dz\\) reminds us that this is a part of a [line integral](https://zero-radiance.github.io/post/analytic-media/).
+Intuitively, the "left-over" \\(\Delta z\\) makes sense. If we increase \\(\Delta z\\), the total volume increases, the density correspondingly decreases, and, since the number of particles is constant, the amount of spectral radiance does not change.
+
+In light transport applications, we typically deal with radiance rather than irradiance. This can be achieved by introducing an integral over \\(4 \pi\\) steradians
+
+$$ \tag{20} \tilde{L}\_s = \int\_{4 \pi} \tilde{\mu}\_s \frac{\tilde{f}\_p}{4 \pi} L_i d \omega_i \Delta z, $$
+
+where the scattering coefficient and the phase function determine the magnitude of the contribution of each incident direction.
+
+Finally, if any part of the integrand varies along \\(z\\), we must replace \\(\Delta z\\) by a differential \\(dz\\) and add an outer line integral
+
+$$ \tag{21} \tilde{L}\_s = \int\_{\bm{x}}^{\bm{y}} \tilde{T}(\bm{x}, \bm{z}) \Bigg( \int\_{4 \pi} \tilde{\mu}\_s \frac{\tilde{f}\_p}{4 \pi} L_i d \omega_i \Bigg) dz, $$
+with the transmittance term \\(\tilde{T}\\), which becomes significant since the extent of the volume along the \\(\bm{z}\\)-axis is no longer infinitesimal.
+
+Recursively defining \\(\tilde{L} = \tilde{L}\_i = \tilde{L}\_s\\), we finally obtain the [radiative transfer equation](https://zero-radiance.github.io/post/analytic-media/#radiative-transfer-equation) we are all familiar with.
 
 ## Acknowledgments
 
-I would like to thank Eugene d'Eon for his thoughtful comments and feedback, and Don Grainger for his book and for answering my questions.
+I would like to thank Don Grainger for his book and for answering my questions.
