@@ -46,7 +46,7 @@ $$ \tag{5}
     \frac{\tilde{I}\_s}{\tilde{E}\_i}.
 $$
 
-These two directions are typically specified in a local coordinate system of the particle. There is an implicit dependence on the orientation of the particle with respect to the incident wave - it comes into play if the particle is anisotropic.
+These two directions are typically specified in the reference frame of the particle. There is an implicit dependence on the orientation of the particle with respect to the incident wave - it comes into play if the particle is anisotropic.
 
 We can obtain the scattering cross section \\(\tilde{\sigma}\_s\\) by integrating over \\(4 \pi\\) steradians:
 
