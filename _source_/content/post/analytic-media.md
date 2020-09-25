@@ -13,56 +13,56 @@ Rendering of participating media is an important aspect of every modern renderer
 
 <!--more-->
 
-In the [radiative transfer](https://archive.org/details/RadiativeTransfer) literature, light-material interaction is usually quantified in terms of absorption (conversion of electromagnetic energy of photons into kinetic energy of atoms, which manifests itself as reduction of light intensity) and [scattering](http://plaza.ufl.edu/dwhahn/Rayleigh%20and%20Mie%20Light%20Scattering.pdf) (absorption followed by [emission](https://en.wikipedia.org/wiki/Stimulated_emission) of electromagnetic energy on collision). Therefore, it is common to describe participating media using the *volume collision coefficients*: the *absorption coefficient* \\(\tilde{\mu}\_a\\) and the *scattering coefficient* \\(\tilde{\mu}\_s\\). These coefficients give the probability density of the corresponding event per unit distance traveled by a photon, which implies the [SI unit](https://en.wikipedia.org/wiki/International_System_of_Units) of measurement is \\(m^{-1}\\).
+In the [radiative transfer](https://archive.org/details/RadiativeTransfer) literature, light-material interaction is usually quantified in terms of absorption (conversion of electromagnetic energy of photons into kinetic energy of atoms, which manifests itself as reduction of light intensity) and [scattering](http://plaza.ufl.edu/dwhahn/Rayleigh%20and%20Mie%20Light%20Scattering.pdf) (absorption followed by [emission](https://en.wikipedia.org/wiki/Stimulated_emission) of electromagnetic energy on collision). Therefore, it is common to describe participating media using the *volume collision coefficients*: the *absorption coefficient* \\(\mu\_a\\) and the *scattering coefficient* \\(\mu\_s\\). These coefficients give the probability density of the corresponding event per unit distance traveled by a photon, which implies the [SI unit](https://en.wikipedia.org/wiki/International_System_of_Units) of measurement is \\(m^{-1}\\).
 
-The [attenuation coefficient](https://en.wikipedia.org/wiki/Attenuation_coefficient) \\(\tilde{\mu}\_t\\)
+The [attenuation coefficient](https://en.wikipedia.org/wiki/Attenuation_coefficient) \\(\mu\_t\\)
 
-$$ \tag{1} \tilde{\mu}\_t = \tilde{\mu}\_a + \tilde{\mu}\_s $$
+$$ \tag{1} \mu\_t = \mu\_a + \mu\_s $$
 
-gives the probability density of absorption or scattering (or, in other words, the collision rate) as a photon travels a unit distance through the medium. A note on *notation*: since certain properties depend on the state of the incoming wave, such as its [frequency](https://en.wikipedia.org/wiki/Elastic_scattering#Optical_elastic_scattering) and the [state of polarization](http://hyperphysics.phy-astr.gsu.edu/hbase/phyopt/polar.html), we mark them with a little wave symbol.
+gives the probability density of absorption or scattering (or, in other words, the collision rate) as a photon travels a unit distance through the medium.
 
-A more artist-friendly parametrization uses the [single-scattering albedo](https://en.wikipedia.org/wiki/Single-scattering_albedo) \\(\tilde{\alpha}\_{ss}\\)
+A more artist-friendly parametrization uses the [single-scattering albedo](https://en.wikipedia.org/wiki/Single-scattering_albedo) \\(\alpha\_{ss}\\)
 
-$$ \tag{2} \tilde{\alpha}\_{ss} = \frac{\tilde{\mu}\_s}{\tilde{\mu}\_t}, $$
+$$ \tag{2} \alpha\_{ss} = \frac{\mu\_s}{\mu\_t}, $$
 
-which gives the deflection probability (or, in other words, the scattering rate), and the [mean free path](https://en.wikipedia.org/wiki/Mean_free_path) \\(\tilde{d}\\)
+which gives the deflection probability (or, in other words, the scattering rate), and the [mean free path](https://en.wikipedia.org/wiki/Mean_free_path) \\(d\\)
 
-$$ \tag{3} \tilde{d} = \frac{1}{\tilde{\mu}\_t}, $$
+$$ \tag{3} d = \frac{1}{\mu\_t}, $$
 
 which corresponds to the average collision-free (or free-flight) distance.
 
-It's worth noting that the absorption coefficient is directly related to the [extinction coefficient](http://www.sfu.ca/~gchapman/e376/e376l7.pdf) \\(\tilde{\kappa}\\), which is the imaginary part of the [complex index of refraction](https://en.wikipedia.org/wiki/Refractive_index#Complex_refractive_index) \\(\tilde{\eta} - i \tilde{\kappa}\\):
+It's worth noting that the absorption coefficient is directly related to the [extinction coefficient](http://www.sfu.ca/~gchapman/e376/e376l7.pdf) \\(\kappa\\), which is the imaginary part of the [complex index of refraction](https://en.wikipedia.org/wiki/Refractive_index#Complex_refractive_index) \\(\eta - i \kappa\\):
 
-$$ \tag{4} \tilde{\kappa} = \frac{\lambda}{4 \pi} \tilde{\mu}\_a. $$
+$$ \tag{4} \kappa = \frac{\lambda}{4 \pi} \mu\_a. $$
 
-For this reason, \\(\tilde{\eta}\\) is called the [refractive index](https://www.feynmanlectures.caltech.edu/I_31.html) (or IOR), and \\(\tilde{\kappa}\\) is sometimes referred to as the [absorption index](http://www.sfu.ca/~gchapman/e376/e376l7.pdf). Note that, in this context, I am not talking about the IOR of an individual microscopic particle (which influences the [microscopic scattering](https://en.wikipedia.org/wiki/Mie_scattering) process), but rather about the properties of the macroscopic medium (composed of many microscopic particles).
+For this reason, \\(\eta\\) is called the [refractive index](https://www.feynmanlectures.caltech.edu/I_31.html) (or IOR), and \\(\kappa\\) is sometimes referred to as the [absorption index](http://www.sfu.ca/~gchapman/e376/e376l7.pdf). Note that, in this context, I am not talking about the IOR of an individual microscopic particle (which influences the [microscopic scattering](https://en.wikipedia.org/wiki/Mie_scattering) process), but rather about the properties of the macroscopic medium (composed of many microscopic particles).
 
-The tuple \\(\lbrace \tilde{\eta}, \tilde{\kappa}, \tilde{\mu}\_s \rbrace\\) \\(\big(\\)or, alternatively, \\(\lbrace \tilde{\eta}, \tilde{d}, \tilde{\alpha}\_{ss} \rbrace \big) \\) contains sufficient information to describe both the behavior at the surface (boundary) and the (isotropic) multiple-scattering process (known as [subsurface scattering](https://en.wikipedia.org/wiki/Subsurface_scattering)) inside the volume that ultimately gives rise to what we perceive as the surface albedo \\(\tilde{\alpha}\_{ms}\\). Note that certain materials (metals, in particular) require modeling of [wave interference](https://en.wikipedia.org/wiki/Wave_interference) to obtain expected reflectance values.
+The tuple \\(\lbrace \eta, \kappa, \mu\_s \rbrace\\) \\(\big(\\)or, alternatively, \\(\lbrace \eta, d, \alpha\_{ss} \rbrace \big) \\) contains sufficient information to describe both the behavior at the surface (boundary) and the (isotropic) multiple-scattering process (known as [subsurface scattering](https://en.wikipedia.org/wiki/Subsurface_scattering)) inside the volume that ultimately gives rise to what we perceive as the surface albedo \\(\alpha\_{ms}\\). Note that certain materials (metals, in particular) require modeling of [wave interference](https://en.wikipedia.org/wiki/Wave_interference) to obtain expected reflectance values.
 
 A surface, then, is just an optical interface signified by a discontinuity of optical properties of the medium (in reality, the [transition at the boundary is continuous](https://www.feynmanlectures.caltech.edu/II_33.html), with a thickness of several atomic layers, but we can ignore this fact at scales relevant to computer graphics).
 
 Sometimes, it is convenient to specify the concentration (density) of the medium, and not its effective optical properties. For example, the attenuation coefficient can be computed using the following formula:
 
-$$ \tag{5} \tilde{\mu}\_t = \rho \tilde{\sigma}\_t, $$
+$$ \tag{5} \mu\_t = \rho \sigma\_t, $$
 
-where \\(\rho\\) is the [mass density](https://en.wikipedia.org/wiki/Mass_density) (measured in units of \\(kg/m^{3}\\)) and \\(\tilde{\sigma}\_t\\) is the [mass attenuation coefficient](https://en.wikipedia.org/wiki/Mass_attenuation_coefficient) (in units of \\(m^{2}/kg\\)) - [effective cross section](http://www.sfu.ca/~gchapman/e376/e376l7.pdf) per unit mass. Other coefficients have the same linear relation with density. Alternatively, one can also a use [number density](https://en.wikipedia.org/wiki/Number_density) instead of mass density.
+where \\(\rho\\) is the [mass density](https://en.wikipedia.org/wiki/Mass_density) (measured in units of \\(kg/m^{3}\\)) and \\(\sigma\_t\\) is the [mass attenuation coefficient](https://en.wikipedia.org/wiki/Mass_attenuation_coefficient) (in units of \\(m^{2}/kg\\)) - [effective cross section](http://www.sfu.ca/~gchapman/e376/e376l7.pdf) per unit mass. Other coefficients have the same linear relation with density. Alternatively, one can also a use [number density](https://en.wikipedia.org/wiki/Number_density) instead of mass density.
 
 But what about the IOR? Often, we assume that it is independent of density. But, if you consider water and steam (which has a lower concentration of water molecules), our experience tells us that their refractive properties are not the same.
 
 There are several known relations between density and the IOR. One of them is given by the [Lorentz–Lorenz equation](https://en.wikipedia.org/wiki/Clausius%E2%80%93Mossotti_relation):
 
-$$ \tag{6} \frac{\tilde{\eta}^2 - 1}{\tilde{\eta}^2 + 2} = \frac{1}{3} \frac{\rho}{m} \frac{\tilde{\alpha}\_m}{\varepsilon_0}, $$
+$$ \tag{6} \frac{\eta^2 - 1}{\eta^2 + 2} = \frac{1}{3} \frac{\rho}{m} \frac{\alpha\_m}{\varepsilon_0}, $$
 
-where \\(m\\) is the [molecular mass](https://en.wikipedia.org/wiki/Molecular_mass) (in \\(kg\\)), \\(\varepsilon_0\\) is the [vacuum permittivity](https://en.wikipedia.org/wiki/Permittivity#Vacuum_permittivity), and \\(\tilde{\alpha}\_m\\) is the [mean molecular polarizability](https://en.wikipedia.org/wiki/Electric_susceptibility#Molecular_polarizability) (SI units of \\(C m^{2}/V\\), watch out for different [conventions](https://en.wikipedia.org/wiki/Electric_susceptibility#Ambiguity_in_the_definition)). Since it is related to the complex IOR, polarizability is also complex. Incidentally, this equation presents a way to compute the IOR of a mixture of several substances. The corresponding [Lorentz–Lorenz mixture rule](https://www.sciencedirect.com/science/article/pii/S0021850208001183) is based on four principles of additivity (namely, of mole, mass, volume, and molecular polarizability, with the last two assumption being rather context-dependent).
+where \\(m\\) is the [molecular mass](https://en.wikipedia.org/wiki/Molecular_mass) (in \\(kg\\)), \\(\varepsilon_0\\) is the [vacuum permittivity](https://en.wikipedia.org/wiki/Permittivity#Vacuum_permittivity), and \\(\alpha\_m\\) is the [mean molecular polarizability](https://en.wikipedia.org/wiki/Electric_susceptibility#Molecular_polarizability) (SI units of \\(C m^{2}/V\\), watch out for different [conventions](https://en.wikipedia.org/wiki/Electric_susceptibility#Ambiguity_in_the_definition)). Since it is related to the complex IOR, polarizability is also complex. Incidentally, this equation presents a way to compute the IOR of a mixture of several substances. The corresponding [Lorentz–Lorenz mixture rule](https://www.sciencedirect.com/science/article/pii/S0021850208001183) is based on four principles of additivity (namely, of mole, mass, volume, and molecular polarizability, with the last two assumption being rather context-dependent).
 
 For materials with small mass densities, the molecules are far apart, the molecular interactions are weak, and the IOR is close to 1. Therefore, for matter in the gas state, the following approximation can be made:
 
 $$ \begin{aligned} \tag{7}
-    \tilde{\eta}^2 & \approx 1 + \frac{\rho}{m} \frac{\tilde{\alpha}\_m}{\varepsilon_0} = 1 + 2 \rho \tilde{\delta}\_c, \cr
-    \tilde{\eta}   & \approx 1 + \frac{\rho}{2 m} \frac{\tilde{\alpha}\_m}{\varepsilon_0} = 1 + \rho \tilde{\delta}\_c,
+    \eta^2 & \approx 1 + \frac{\rho}{m} \frac{\alpha\_m}{\varepsilon_0} = 1 + 2 \rho \delta\_c, \cr
+    \eta   & \approx 1 + \frac{\rho}{2 m} \frac{\alpha\_m}{\varepsilon_0} = 1 + \rho \delta\_c,
 \end{aligned} $$
 
-where \\(\tilde{\delta}\_c\\) is the [light dispersion coefficient](https://ui.adsabs.harvard.edu/abs/1996CoSka..26...23K/abstract). This equation implies that the [relative brake power](https://www.sciencedirect.com/topics/chemistry/optical-refraction) \\((\tilde{\eta} - 1)\\) has an approximately linear relation with density. Similar relations can be found for [temperature and and pressure](https://en.wikipedia.org/wiki/Clausius%E2%80%93Mossotti_relation) (in fact, all coefficients are highly [temperature-dependent](http://www.sfu.ca/~gchapman/e376/e376l7.pdf)). Also, while the discussion above mostly concerns dielectrics, the formula for metals is [very similar](https://www.feynmanlectures.caltech.edu/II_32.html#mjx-eqn-EqII3238).
+where \\(\delta\_c\\) is the [light dispersion coefficient](https://ui.adsabs.harvard.edu/abs/1996CoSka..26...23K/abstract). This equation implies that the [relative brake power](https://www.sciencedirect.com/topics/chemistry/optical-refraction) \\((\eta - 1)\\) has an approximately linear relation with density. Similar relations can be found for [temperature and and pressure](https://en.wikipedia.org/wiki/Clausius%E2%80%93Mossotti_relation) (in fact, all coefficients are highly [temperature-dependent](http://www.sfu.ca/~gchapman/e376/e376l7.pdf)). Also, while the discussion above mostly concerns dielectrics, the formula for metals is [very similar](https://www.feynmanlectures.caltech.edu/II_32.html#mjx-eqn-EqII3238).
 
 Continuous variation of the IOR poses many challenges for path tracing. In piecewise-uniform media, paths are composed of straight segments joined at scattering locations. Unfortunately, due to [Fermat's principle](https://en.wikipedia.org/wiki/Fermat%27s_principle), continuously varying IOR forces photons to travel along paths of least time that [bend](http://www.waves.utoronto.ca/prof/svhum/ece422/notes/20a-atmospheric-refr.pdf) towards regions of higher density according to [Snell's law](https://en.wikipedia.org/wiki/Snell%27s_law). This fact alone makes basic actions like visibility testing quite complicated. And since the IOR may depend on the frequency, it can cause [dispersion](https://en.wikipedia.org/wiki/Dispersion_(optics)) not only at the interfaces, but also continuously, along the entire path. Finally, one must model losses and gains due to [continuous reflection](http://doi.org/10.4236/opj.2013.37054), which is mathematically challenging. So it is not too surprising that most renderers ignore this behavior (even though, physically, that doesn't make much sense). For small density gradients and small distances, it is a valid approximation that, on average, gives reasonably accurate results. On the other hand, for certain atmospheric effects, [atmospheric refraction](https://en.wikipedia.org/wiki/Atmospheric_refraction) and reflection make a non-negligible contribution.
 
@@ -74,127 +74,127 @@ Intelligent sampling of a function requires understanding which parts make a lar
 
 The integral form of the RTE is that of a recursive line integral. Intuitively, it models the process of photons traveling along the ray from sources towards the sensor, while at the same time accounting for energy losses.
 
-These losses are primarily expressed by the opacity term \\(\tilde{O}\\), which is defined as the fraction of photons (quantified as radiance \\(\tilde{L}\\)) lost along the ray from \\(\bm{x}\\) to \\(\bm{y}\\) due to absorption and out-scattering:
+These losses are primarily expressed by the opacity term \\(O\\), which is defined as the fraction of photons (quantified as radiance \\(L\\)) lost along the ray from \\(\bm{x}\\) to \\(\bm{y}\\) due to absorption and out-scattering:
 
-$$ \tag{8} \tilde{O}(\bm{x}, \bm{y}) = \frac{\tilde{L}(\bm{y}, \bm{\hat{v}}) - \tilde{L}(\bm{x}, \bm{\hat{v}})}{\tilde{L}(\bm{y}, \bm{\hat{v}})} = 1 - \frac{\tilde{L}(\bm{x}, \bm{\hat{v}})}{\tilde{L}(\bm{y}, \bm{\hat{v}})}, $$
+$$ \tag{8} O(\bm{x}, \bm{y}) = \frac{L(\bm{y}, \bm{v}) - L(\bm{x}, \bm{v})}{L(\bm{y}, \bm{v})} = 1 - \frac{L(\bm{x}, \bm{v})}{L(\bm{y}, \bm{v})}, $$
 
-where \\(\bm{\hat{v}} = (\bm{x} - \bm{y})/ \vert \bm{x} - \bm{y} \vert \\) is the normalized view direction. Intuitively, \\(\tilde{O}(\bm{x}, \bm{y}) = \tilde{O}(\bm{y}, \bm{x})\\).
+where \\(\bm{v} = (\bm{x} - \bm{y})/ \vert \bm{x} - \bm{y} \vert \\) is the normalized view direction. Intuitively, \\(O(\bm{x}, \bm{y}) = O(\bm{y}, \bm{x})\\).
 
-Its complement is transmittance \\(\tilde{T}\\):
+Its complement is transmittance \\(T\\):
 
-$$ \tag{9} \tilde{T}(\bm{x}, \bm{y}) = 1 - \tilde{O}(\bm{x}, \bm{y}). $$
+$$ \tag{9} T(\bm{x}, \bm{y}) = 1 - O(\bm{x}, \bm{y}). $$
 
 For a single photon, transmittance gives the [probability of a free flight](https://www.feynmanlectures.caltech.edu/I_43.html#mjx-eqn-EqI438).
 
-Volumetric transmittance is given by the [Beer–Lambert–Bouguer law](https://en.wikipedia.org/wiki/Beer%E2%80%93Lambert_law) for [uncorrelated](https://cs.dartmouth.edu/~wjarosz/publications/bitterli18framework.html) media in terms of [optical depth](https://en.wikipedia.org/wiki/Optical_depth) (or optical thickness) \\(\tilde{\tau}\\), which is a line integral from \\(\bm{x}\\) to \\(\bm{y}\\):
+Volumetric transmittance is given by the [Beer–Lambert–Bouguer law](https://en.wikipedia.org/wiki/Beer%E2%80%93Lambert_law) for [uncorrelated](https://cs.dartmouth.edu/~wjarosz/publications/bitterli18framework.html) media in terms of [optical depth](https://en.wikipedia.org/wiki/Optical_depth) (or optical thickness) \\(\tau\\), which is a line integral from \\(\bm{x}\\) to \\(\bm{y}\\):
 
-$$ \tag{10} \tilde{\tau}(\bm{x}, \bm{y})
-    = -\log{\tilde{T}(\bm{x}, \bm{y})}
-    = \int\_{\bm{x}}^{\bm{y}} \tilde{\mu}\_t(\bm{u}) d\mu(\bm{u})
-    = \int\_{\bm{x}}^{\bm{y}} \tilde{\mu}\_t(\bm{u}) du,
+$$ \tag{10} \tau(\bm{x}, \bm{y})
+    = -\log{T(\bm{x}, \bm{y})}
+    = \int\_{\bm{x}}^{\bm{y}} \mu\_t(\bm{u}) d\mu(\bm{u})
+    = \int\_{\bm{x}}^{\bm{y}} \mu\_t(\bm{u}) du,
 $$
 
-where \\(\bm{u} = \bm{x} - u \bm{\hat{v}}\\) is the point at the distance \\(u\\) along the ray, and \\(d\mu(\bm{u})\\) is the [measure](https://en.wikipedia.org/wiki/Lebesgue_integration#Measure_theory) of \\(\bm{u}\\) abbreviated as \\(du\\). This formula implies that while transmittance is multiplicative, with values restricted to the unit interval, optical depth is additive and can take on any non-negative value. In other words, transmittance is a [product integral](https://www.wikiwand.com/en/Product_integral):
+where \\(\bm{u} = \bm{x} - u \bm{v}\\) is the point at the distance \\(u\\) along the ray, and \\(d\mu(\bm{u})\\) is the [measure](https://en.wikipedia.org/wiki/Lebesgue_integration#Measure_theory) of \\(\bm{u}\\) abbreviated as \\(du\\). This formula implies that while transmittance is multiplicative, with values restricted to the unit interval, optical depth is additive and can take on any non-negative value. In other words, transmittance is a [product integral](https://www.wikiwand.com/en/Product_integral):
 
-$$ \tag{11} \tilde{T}(\bm{x}, \bm{y})
-    = e^{- \int\_{\bm{x}}^{\bm{y}} \tilde{\mu}\_t(\bm{u}) du}
-    = \prod\_{\bm{x}}^{\bm{y}} \Big( 1 - \tilde{\mu}\_t(\bm{u}) du \Big).
+$$ \tag{11} T(\bm{x}, \bm{y})
+    = e^{- \int\_{\bm{x}}^{\bm{y}} \mu\_t(\bm{u}) du}
+    = \prod\_{\bm{x}}^{\bm{y}} \Big( 1 - \mu\_t(\bm{u}) du \Big).
 $$
 
 Other [integral formulations](https://cs.dartmouth.edu/~wjarosz/publications/georgiev19integral.html) of volumetric transmittance exist.
 
-The RTE models three types of energy sources: [volumetric emission](https://en.wikipedia.org/wiki/Spontaneous_emission) \\(\tilde{L}\_e\\), volumetric in-scattering \\(\tilde{L}\_s\\), and surface in-scattering \\(\tilde{L}\_g\\) (which is the standard surface geometry term with a BSDF). The volumetric in-scattering term \\(\tilde{L}\_s\\) is an integral over \\(4 \pi\\) steradians:
+The RTE models three types of energy sources: [volumetric emission](https://en.wikipedia.org/wiki/Spontaneous_emission) \\(L\_e\\), volumetric in-scattering \\(L\_s\\), and surface in-scattering \\(L\_g\\) (which is the standard surface geometry term with a BSDF). The volumetric in-scattering term \\(L\_s\\) is an integral over \\(4 \pi\\) steradians:
 
-$$ \tag{12} \tilde{L}\_s(\bm{x}, \bm{\hat{v}}) = \int\_{4 \pi} \tilde{\alpha}\_{ss}(\bm{x}) \frac{\tilde{f}\_p(\bm{x}, \bm{\hat{v}}, \bm{\hat{l}})}{4 \pi} \tilde{L}(\bm{x}, \bm{\hat{l}}) d\hat{l}, $$
+$$ \tag{12} L\_s(\bm{x}, \bm{v}) = \int\_{4 \pi} \alpha\_{ss}(\bm{x}) \frac{f\_p(\bm{x}, \bm{v}, \bm{l})}{4 \pi} L(\bm{x}, \bm{l}) dl, $$
 
-where \\(\tilde{f}\_p\\) denotes the [phase function](http://www.pbr-book.org/3ed-2018/Volume_Scattering/Phase_Functions.html) which models the distribution of scattered light.
+where \\(f\_p\\) denotes the [phase function](http://www.pbr-book.org/3ed-2018/Volume_Scattering/Phase_Functions.html) which models the distribution of scattered light.
 
-Carefully putting it all together yields the [volume rendering equation](https://cs.dartmouth.edu/~wjarosz/publications/novak18monte.html) along the ray \\(\bm{u} = \bm{x} - u \bm{\hat{v}}\\):
+Carefully putting it all together yields the [volume rendering equation](https://cs.dartmouth.edu/~wjarosz/publications/novak18monte.html) along the ray \\(\bm{u} = \bm{x} - u \bm{v}\\):
 
 $$ \tag{13}
-    \tilde{L}(\bm{x}, \bm{\hat{v}}) =
-    \int\_{\bm{x}}^{\bm{y}} \tilde{T}(\bm{x}, \bm{u}) \Big(
-        \tilde{\mu}\_a(\bm{u}) \tilde{L}\_e(\bm{u}, \bm{\hat{v}}) +
-        \tilde{\mu}\_t(\bm{u}) \tilde{L}\_s(\bm{u}, \bm{\hat{v}})
+    L(\bm{x}, \bm{v}) =
+    \int\_{\bm{x}}^{\bm{y}} T(\bm{x}, \bm{u}) \Big(
+        \mu\_a(\bm{u}) L\_e(\bm{u}, \bm{v}) +
+        \mu\_t(\bm{u}) L\_s(\bm{u}, \bm{v})
     \Big) du +
-    \tilde{T}(\bm{x}, \bm{y}) \tilde{L}\_g(\bm{y}, \bm{\hat{v}}),
+    T(\bm{x}, \bm{y}) L\_g(\bm{y}, \bm{v}),
 $$
 
 where \\(\bm{y}\\) denotes the position of the closest surface along the ray. If you're wondering why there's an absorption coefficient in front of the emission term, it's there due to the [Kirchhoff's law](https://en.wikipedia.org/wiki/Kirchhoff%27s_law_of_thermal_radiation) which states that, for an arbitrary body emitting and absorbing thermal radiation in thermodynamic equilibrium, the emissivity is equal to the absorptivity.
 
-We will leave [volumetric emission](https://doi.org/10.1111/cgf.13228) out by setting \\(\tilde{L}\_e = 0\\):
+We will leave [volumetric emission](https://doi.org/10.1111/cgf.13228) out by setting \\(L\_e = 0\\):
 
 $$ \tag{14}
-    \tilde{L}(\bm{x}, \bm{\hat{v}}) =
-    \int\_{\bm{x}}^{\bm{y}} \tilde{T}(\bm{x}, \bm{u}) \tilde{\mu}\_t(\bm{u}) \tilde{L}\_s(\bm{u}, \bm{\hat{v}}) du +
-    \tilde{T}(\bm{x}, \bm{y}) \tilde{L}\_g(\bm{y}, \bm{\hat{v}}).
+    L(\bm{x}, \bm{v}) =
+    \int\_{\bm{x}}^{\bm{y}} T(\bm{x}, \bm{u}) \mu\_t(\bm{u}) L\_s(\bm{u}, \bm{v}) du +
+    T(\bm{x}, \bm{y}) L\_g(\bm{y}, \bm{v}).
 $$
 
 This integral can be evaluated using one of the [Monte Carlo](http://www.pbr-book.org/3ed-2018/Monte_Carlo_Integration.html) methods. The [Monte Carlo estimator](http://www.pbr-book.org/3ed-2018/Monte_Carlo_Integration/The_Monte_Carlo_Estimator.html) has the following form:
 
-$$ \tag{15} \tilde{L}(\bm{x}, \bm{\hat{v}})
-    \approx \frac{1}{N} \sum\_{i=1}^{N} \frac{\tilde{T}(\bm{x}, \bm{u}\_i) \tilde{\mu}\_t(\bm{u}\_i) \tilde{L}\_s(\bm{u}\_i, \bm{\hat{v}})}{\tilde{p}( u_i | \lbrace \bm{x}, \bm{\hat{v}} \rbrace)} + \tilde{T}(\bm{x}, \bm{y}) \tilde{L}\_g(\bm{y}, \bm{\hat{v}}),
+$$ \tag{15} L(\bm{x}, \bm{v})
+    \approx \frac{1}{N} \sum\_{i=1}^{N} \frac{T(\bm{x}, \bm{u}\_i) \mu\_t(\bm{u}\_i) L\_s(\bm{u}\_i, \bm{v})}{p( u_i | \lbrace \bm{x}, \bm{v} \rbrace)} + T(\bm{x}, \bm{y}) L\_g(\bm{y}, \bm{v}),
 $$
 
-where sample locations \\(\bm{u}\_i\\) at the distance \\(u_i\\) along the ray are distributed according to the [PDF](https://en.wikipedia.org/wiki/Probability_density_function) \\(\tilde{p}\\).
+where sample locations \\(\bm{u}\_i\\) at the distance \\(u_i\\) along the ray are distributed according to the [PDF](https://en.wikipedia.org/wiki/Probability_density_function) \\(p\\).
 
-We can [importance sample](http://www.pbr-book.org/3ed-2018/Monte_Carlo_Integration/Importance_Sampling.html) the integrand (distribute samples according to the PDF) in several ways. Ideally, we would like to make the PDF proportional to the [product](https://cgg.mff.cuni.cz/~jaroslav/papers/2014-zerovar/) of all terms of the integrand. However, unless we use [path guiding](https://cgg.mff.cuni.cz/~jirka/path-guiding-in-production/2019/index.htm), that is typically not possible. We will focus on the technique called [free path sampling](https://cs.dartmouth.edu/~wjarosz/publications/novak18monte.html) that makes the PDF proportional to the transmittance-attenuation product \\(\tilde{T} \tilde{\mu}\_t\\) (effectively, by assuming that the rest of the integrand varies slowly; in practice, this may or may not be the case - for example, for regions near light sources, [equiangular sampling](http://library.imageworks.com/pdfs/imageworks-library-importance-sampling-of-area-lights-in-participating-media.pdf) can give vastly superior results).
+We can [importance sample](http://www.pbr-book.org/3ed-2018/Monte_Carlo_Integration/Importance_Sampling.html) the integrand (distribute samples according to the PDF) in several ways. Ideally, we would like to make the PDF proportional to the [product](https://cgg.mff.cuni.cz/~jaroslav/papers/2014-zerovar/) of all terms of the integrand. However, unless we use [path guiding](https://cgg.mff.cuni.cz/~jirka/path-guiding-in-production/2019/index.htm), that is typically not possible. We will focus on the technique called [free path sampling](https://cs.dartmouth.edu/~wjarosz/publications/novak18monte.html) that makes the PDF proportional to the transmittance-attenuation product \\(T \mu\_t\\) (effectively, by assuming that the rest of the integrand varies slowly; in practice, this may or may not be the case - for example, for regions near light sources, [equiangular sampling](http://library.imageworks.com/pdfs/imageworks-library-importance-sampling-of-area-lights-in-participating-media.pdf) can give vastly superior results).
 
 In order to turn the attenuation-transmittance product into a PDF, it must be normalized over the domain of integration, \\(\bm{x}\\) to \\(\bm{y}\\). We must compute the normalization factor
 
 $$ \tag{16}
-      \int\_{\bm{x}}^{\bm{y}} \tilde{T}(\bm{x}, \bm{u}) \tilde{\mu}\_t(\bm{u}) du
-    = \int\_{\bm{x}}^{\bm{y}} e^{-\tilde{\tau}(\bm{x}, \bm{u})} \tilde{\mu}\_t(\bm{u}) du.
+      \int\_{\bm{x}}^{\bm{y}} T(\bm{x}, \bm{u}) \mu\_t(\bm{u}) du
+    = \int\_{\bm{x}}^{\bm{y}} e^{-\tau(\bm{x}, \bm{u})} \mu\_t(\bm{u}) du.
 $$
 
 If we use the [fundamental theorem of calculus](https://en.wikipedia.org/wiki/Fundamental_theorem_of_calculus#First_part) to interpret the attenuation coefficient as a derivative
 
-$$ \tag{17} \tilde{\mu}\_t(\bm{u}) = \frac{\partial \tilde{\tau}}{\partial u}, $$
+$$ \tag{17} \mu\_t(\bm{u}) = \frac{\partial \tau}{\partial u}, $$
 
 we can use the one of the [exponential identities](https://en.wikipedia.org/wiki/List_of_integrals_of_exponential_functions#Integrals_involving_only_exponential_functions) to simplify the attenuation-transmittance integral:
 
 $$ \tag{18}
-    \int\_{\bm{x}}^{\bm{y}} e^{-\tilde{\tau}(\bm{x}, \bm{u})} \frac{\partial \tilde{\tau}(\bm{x}, \bm{u})}{\partial u} du
-    = -e^{-\tilde{\tau}(\bm{x}, \bm{u})} \Big\vert\_{\bm{x}}^{\bm{y}}
-    = 1 - \tilde{T}(\bm{x}, \bm{y}) = \tilde{O}(\bm{x}, \bm{y}).
+    \int\_{\bm{x}}^{\bm{y}} e^{-\tau(\bm{x}, \bm{u})} \frac{\partial \tau(\bm{x}, \bm{u})}{\partial u} du
+    = -e^{-\tau(\bm{x}, \bm{u})} \Big\vert\_{\bm{x}}^{\bm{y}}
+    = 1 - T(\bm{x}, \bm{y}) = O(\bm{x}, \bm{y}).
 $$
 
 Since it's equal to opacity, the integral can be evaluated in a [forward or backward fashion](https://cs.dartmouth.edu/~wjarosz/publications/georgiev19integral.html).
 
 $$ \tag{19}
-    \int\_{\bm{x}}^{\bm{y}} e^{-\tilde{\tau}(\bm{x}, \bm{u})} \tilde{\mu}\_t(\bm{u}) du =
-    \int\_{\bm{x}}^{\bm{y}} e^{-\tilde{\tau}(\bm{u}, \bm{y})} \tilde{\mu}\_t(\bm{u}) du.
+    \int\_{\bm{x}}^{\bm{y}} e^{-\tau(\bm{x}, \bm{u})} \mu\_t(\bm{u}) du =
+    \int\_{\bm{x}}^{\bm{y}} e^{-\tau(\bm{u}, \bm{y})} \mu\_t(\bm{u}) du.
 $$
 
 We can now define the normalized sampling PDF:
 
-$$ \tag{20} \tilde{p}(u | \lbrace \bm{x}, \bm{\hat{v}} \rbrace)
-    = \frac{\tilde{T}(\bm{x}, \bm{u}) \tilde{\mu}\_t(\bm{u})}{\tilde{O}(\bm{x}, \bm{y})}. $$
+$$ \tag{20} p(u | \lbrace \bm{x}, \bm{v} \rbrace)
+    = \frac{T(\bm{x}, \bm{u}) \mu\_t(\bm{u})}{O(\bm{x}, \bm{y})}. $$
 
 Substitution of the PDF into Equation 15 radically simplifies the estimator:
 
-$$ \tag{21} \tilde{L}(\bm{x}, \bm{\hat{v}}) \approx \tilde{O}(\bm{x}, \bm{y}) \frac{1}{N} \sum\_{i=1}^{N} \tilde{L}\_s(\bm{u}\_i, \bm{\hat{v}}) + \tilde{T}(\bm{x}, \bm{y}) \tilde{L}\_g(\bm{y}, \bm{\hat{v}}). $$
+$$ \tag{21} L(\bm{x}, \bm{v}) \approx O(\bm{x}, \bm{y}) \frac{1}{N} \sum\_{i=1}^{N} L\_s(\bm{u}\_i, \bm{v}) + T(\bm{x}, \bm{y}) L\_g(\bm{y}, \bm{v}). $$
 
 This equation can be seen as a form of [premultiplied alpha blending](https://graphics.pixar.com/library/Compositing/) (where alpha is opacity), which explains why particle cards can be so convincing. Additionally, it offers yet another way to parametrize the attenuation coefficient - namely, by opacity at distance (which is similar to [transmittance at distance](https://blog.selfshadow.com/publications/s2015-shading-course/burley/s2015_pbs_disney_bsdf_notes.pdf) used by Disney). It is the most RGB rendering friendly parametrization that I am aware of.
 
 In this context, total opacity along the ray serves as the probability of a collision event within the medium, and can be used to make a random choice of the type of the sample (surface or volume):
 
-$$ \tag{22} \tilde{L}(\bm{x}, \bm{\hat{v}}) \approx \tilde{O}(\bm{x}, \bm{y}) \frac{1}{N} \sum\_{i=1}^{N} \tilde{L}\_s(\bm{u}\_i, \bm{\hat{v}}) + \big(1 - \tilde{O}(\bm{x}, \bm{y}) \big) \tilde{L}\_g(\bm{y}, \bm{\hat{v}}).
+$$ \tag{22} L(\bm{x}, \bm{v}) \approx O(\bm{x}, \bm{y}) \frac{1}{N} \sum\_{i=1}^{N} L\_s(\bm{u}\_i, \bm{v}) + \big(1 - O(\bm{x}, \bm{y}) \big) L\_g(\bm{y}, \bm{v}).
 $$
 
-In order to sample the integrand of Equation 14, we must be also able to [invert](http://www.pbr-book.org/3ed-2018/Monte_Carlo_Integration/Sampling_Random_Variables.html#TheInversionMethod) the [CDF](https://en.wikipedia.org/wiki/Cumulative_distribution_function) \\(\tilde{P}\\):
+In order to sample the integrand of Equation 14, we must be also able to [invert](http://www.pbr-book.org/3ed-2018/Monte_Carlo_Integration/Sampling_Random_Variables.html#TheInversionMethod) the [CDF](https://en.wikipedia.org/wiki/Cumulative_distribution_function) \\(P\\):
 
-$$ \tag{23} \tilde{P}(u | \lbrace \bm{x}, \bm{\hat{v}} \rbrace)
-    = \int\_{0}^{u} \tilde{p}(s | \lbrace \bm{x}, \bm{\hat{v}} \rbrace) ds
-    = \frac{\tilde{O}(\bm{x}, \bm{u})}{\tilde{O}(\bm{x}, \bm{y})}.
+$$ \tag{23} P(u | \lbrace \bm{x}, \bm{v} \rbrace)
+    = \int\_{0}^{u} p(s | \lbrace \bm{x}, \bm{v} \rbrace) ds
+    = \frac{O(\bm{x}, \bm{u})}{O(\bm{x}, \bm{y})}.
 $$
 
-In practice, this means that we need to solve for the distance \\(u\\) given the value of optical depth \\(\tilde{\tau}\\):
+In practice, this means that we need to solve for the distance \\(u\\) given the value of optical depth \\(\tau\\):
 
 $$
-\tag{24} \tilde{\tau}(\bm{x}, \bm{u}) =
-    -\mathrm{log} \big( \tilde{O}(\bm{x}, \bm{u}) \big) =
-    -\mathrm{log} \Big( 1 - \tilde{P}\big(u | \lbrace \bm{x}, \bm{\hat{v}} \rbrace \big) \tilde{O} \big( \bm{x}, \bm{y} \big) \Big).
+\tag{24} \tau(\bm{x}, \bm{u}) =
+    -\mathrm{log} \big( O(\bm{x}, \bm{u}) \big) =
+    -\mathrm{log} \Big( 1 - P\big(u | \lbrace \bm{x}, \bm{v} \rbrace \big) O \big( \bm{x}, \bm{y} \big) \Big).
 $$
 
 ## Types of Analytic Participating Media
@@ -211,24 +211,24 @@ A note on *terminology*: a *homogeneous* medium is not the same as a *uniform* o
 
 This formulation makes computing optical depth easy (recall Equations 5 and 10):
 
-$$ \tag{26} \tilde{\tau}(\bm{x}, \bm{u})
-    = \tilde{\sigma}\_t \int\_{\bm{x}}^{\bm{u}} \rho{(\bm{s})} ds
-    = \tilde{\sigma}\_t \int\_{\bm{x}}^{\bm{u}} k ds
-    = \tilde{\sigma}\_t k \vert \bm{u} - \bm{x} \vert
-    = \tilde{\sigma}\_t k u.
+$$ \tag{26} \tau(\bm{x}, \bm{u})
+    = \sigma\_t \int\_{\bm{x}}^{\bm{u}} \rho{(\bm{s})} ds
+    = \sigma\_t \int\_{\bm{x}}^{\bm{u}} k ds
+    = \sigma\_t k \vert \bm{u} - \bm{x} \vert
+    = \sigma\_t k u.
 $$
 
 The sampling "recipe" for the distance \\(u\\) (and for a particular frequency \\(\nu\\)) is thus simply
 
-$$ \tag{27} u = \frac{\tilde{\tau}}{\tilde{\sigma}\_t k}, $$
+$$ \tag{27} u = \frac{\tau}{\sigma\_t k}, $$
 
 which is consistent with [previous work](https://cs.dartmouth.edu/~wjarosz/publications/novak18monte.html).
 
 The resulting sampling algorithm is very simple:
 
-1. compute total opacity \\(\tilde{O} \big( \bm{x}, \bm{y} \big)\\) along the ray;
-2. generate a random CDF value \\(\tilde{P} \big(u | \lbrace \bm{x}, \bm{\hat{v}} \rbrace \big)\\);
-3. compute optical depth \\(\tilde{\tau}(\bm{x}, \bm{u})\\) using Equation 24;
+1. compute total opacity \\(O \big( \bm{x}, \bm{y} \big)\\) along the ray;
+2. generate a random CDF value \\(P \big(u | \lbrace \bm{x}, \bm{v} \rbrace \big)\\);
+3. compute optical depth \\(\tau(\bm{x}, \bm{u})\\) using Equation 24;
 4. compute the distance \\(u\\) using Equation 27.
 
 ### Linear Variation of Density with Altitude in Rectangular Coordinates
@@ -241,17 +241,17 @@ One can obtain homogeneous media by setting \\(a = 0\\).
 
 We would like to evaluate the optical depth integral:
 
-$$ \tag{29} \tilde{\tau}(\bm{x}, \bm{u})
-    = \tilde{\sigma}\_t \int\_{\bm{x}}^{\bm{u}} \rho{(\bm{s})} ds
-    = \tilde{\sigma}\_t \int\_{\bm{x}}^{\bm{u}} \Big( a h(\bm{s}) + k \Big) ds.
+$$ \tag{29} \tau(\bm{x}, \bm{u})
+    = \sigma\_t \int\_{\bm{x}}^{\bm{u}} \rho{(\bm{s})} ds
+    = \sigma\_t \int\_{\bm{x}}^{\bm{u}} \Big( a h(\bm{s}) + k \Big) ds.
 $$
 
 In practice, it's actually simpler to integrate with respect to the parametric coordinates of the ray:
 
 $$ \tag{30}
-\tilde{\tau}(\bm{x}, \bm{\hat{v}}, u)
-    = \tilde{\sigma}\_t \int\_{0}^{u} \Big( a \big(x_3 - s \hat{v}\_3) + k \Big) ds
-    = \tilde{\sigma}\_t \Big( (a x_3 + k) - \frac{a \hat{v}\_3}{2} u \Big) u,
+\tau(\bm{x}, \bm{v}, u)
+    = \sigma\_t \int\_{0}^{u} \Big( a \big(x_3 - s v\_3) + k \Big) ds
+    = \sigma\_t \Big( (a x_3 + k) - \frac{a v\_3}{2} u \Big) u,
 $$
 
 which is the product of the average attenuation coefficient and the length of the interval, as expected.
@@ -259,10 +259,10 @@ which is the product of the average attenuation coefficient and the length of th
 The inversion process involves solving the quadratic equation for the distance \\(u\\):
 
 $$ \tag{31}
-    u = \frac{(a x_3 + k) \pm \sqrt{ (a x_3 + k)^2 - 2 a \hat{v}\_3 (\tilde{\tau} / \tilde{\sigma}\_t)}}{a \hat{v}\_3}.
+    u = \frac{(a x_3 + k) \pm \sqrt{ (a x_3 + k)^2 - 2 a v\_3 (\tau / \sigma\_t)}}{a v\_3}.
 $$
 
-Physically, we are only interested in the smaller root (with the negative sign), since it gives the solution for positive density values. Note that uniform media \\( \big( a \hat{v}\_3 = 0 \big) \\) require special care.
+Physically, we are only interested in the smaller root (with the negative sign), since it gives the solution for positive density values. Note that uniform media \\( \big( a v\_3 = 0 \big) \\) require special care.
 
 ### Exponential Variation of Density with Altitude in Rectangular Coordinates
 
@@ -279,17 +279,17 @@ Setting \\(n = 0\\) results in a uniform medium.
 The expression of optical depth remains simple:
 
 $$ \tag{34}
-\tilde{\tau}(\bm{x}, \bm{\hat{v}}, u)
-    = \tilde{\sigma}\_t \int\_{0}^{u} k e^{-n (x_3 - s \hat{v}\_3)} ds
-    = \tilde{\sigma}\_t k e^{-n x_3} \int\_{0}^{u} e^{s n \hat{v}\_3} ds
-    = \frac{\tilde{\sigma}\_t k}{n \hat{v}\_3} e^{-n x_3} \Big( e^{n \hat{v}\_3 u} - 1 \Big).
+\tau(\bm{x}, \bm{v}, u)
+    = \sigma\_t \int\_{0}^{u} k e^{-n (x_3 - s v\_3)} ds
+    = \sigma\_t k e^{-n x_3} \int\_{0}^{u} e^{s n v\_3} ds
+    = \frac{\sigma\_t k}{n v\_3} e^{-n x_3} \Big( e^{n v\_3 u} - 1 \Big).
 $$
 
 Solving for the distance \\(u\\) is straightforward:
 
-$$ \tag{35} u = \frac{1}{n \hat{v}\_3} \log \left(1 + \frac{\tilde{\tau}}{\tilde{\sigma}\_t k} n \hat{v}\_3 e^{n x_3} \right). $$
+$$ \tag{35} u = \frac{1}{n v\_3} \log \left(1 + \frac{\tau}{\sigma\_t k} n v\_3 e^{n x_3} \right). $$
 
-Note that uniform media \\( \big( n \hat{v}\_3 = 0 \big) \\) require special care.
+Note that uniform media \\( \big( n v\_3 = 0 \big) \\) require special care.
 
 Sample code is listed below.
 
@@ -345,7 +345,7 @@ This is where things get interesting. We would like to model an exponential dens
 
 $$ \tag{36} \rho(\bm{x}) = k e^{-h(\bm{x}) / H} = k e^{-(\vert \bm{x} - \bm{c} \vert - R) / H} = k e^{-n (\vert \bm{x} - \bm{c} \vert - R)}, $$
 
-where \\(\bm{c}\\) is the center of the sphere, \\(R\\) is its radius, \\(h\\) is the altitude, and \\(H\\) is the [scale height](https://en.wikipedia.org/wiki/Scale_height) as before. In this context, \\(k\\) and \\(\tilde{\sigma}\_t k\\) represent the density and the value of the attenuation coefficient at the sea level, respectively. This formula gives the density of an [isothermal atmosphere](http://www.feynmanlectures.caltech.edu/I_40.html), which is not physically plausible.
+where \\(\bm{c}\\) is the center of the sphere, \\(R\\) is its radius, \\(h\\) is the altitude, and \\(H\\) is the [scale height](https://en.wikipedia.org/wiki/Scale_height) as before. In this context, \\(k\\) and \\(\sigma\_t k\\) represent the density and the value of the attenuation coefficient at the sea level, respectively. This formula gives the density of an [isothermal atmosphere](http://www.feynmanlectures.caltech.edu/I_40.html), which is not physically plausible.
 
 #### Geometric Configuration of a Spherical Atmosphere
 
@@ -353,7 +353,7 @@ We can simplify the problem using its inherent spherical symmetry. Take a look a
 
 {{< figure src="/img/spherical_param.png">}}
 
-We start by recognizing the fact that every ordered pair of position and direction \\(\lbrace \bm{x}, \bm{\hat{v}} \rbrace\\) can be reduced to a pair of radial distance and zenith angle \\(\lbrace r, \theta \rbrace\\), which means that our phase space is 2-dimensional.
+We start by recognizing the fact that every ordered pair of position and direction \\(\lbrace \bm{x}, \bm{v} \rbrace\\) can be reduced to a pair of radial distance and zenith angle \\(\lbrace r, \theta \rbrace\\), which means that our phase space is 2-dimensional.
 
 In order to find the parametric equation of altitude \\(h\\) along the ray, we can use a right triangle with sides of length \\(r_0\\) and \\(s_0\\) corresponding to the initial position \\(\bm{x}\\):
 
@@ -378,11 +378,11 @@ $$
 We can now compose the optical depth integral:
 
 $$ \tag{40} \begin{aligned}
-\tilde{\tau}(r, \theta, u)
-    &= \tilde{\sigma}\_t k \int\_{0}^{u} e^{-n h(s)} ds \cr
-    &= \tilde{\sigma}\_t k \int\_{0}^{u} e^{-n \big( \mathcal{R}(r, \theta, s) - R \big)} ds \cr
-    &= \tilde{\sigma}\_t \frac{k}{n} e^{n (R - r)} \int\_{0}^{u} e^{n \big( r - \mathcal{R}(r, \theta, s) \big)} n ds \cr
-    &= \tilde{\sigma}\_t \frac{k}{n} e^{n (R - r)} \int\_{0}^{u} e^{n \big( r - \sqrt{r^2 + s (2 r \cos{\theta} + s)} \big)} n ds.
+\tau(r, \theta, u)
+    &= \sigma\_t k \int\_{0}^{u} e^{-n h(s)} ds \cr
+    &= \sigma\_t k \int\_{0}^{u} e^{-n \big( \mathcal{R}(r, \theta, s) - R \big)} ds \cr
+    &= \sigma\_t \frac{k}{n} e^{n (R - r)} \int\_{0}^{u} e^{n \big( r - \mathcal{R}(r, \theta, s) \big)} n ds \cr
+    &= \sigma\_t \frac{k}{n} e^{n (R - r)} \int\_{0}^{u} e^{n \big( r - \sqrt{r^2 + s (2 r \cos{\theta} + s)} \big)} n ds.
 \end{aligned} $$
 
 The resulting integral is very complex. If we simplify using the following change of variables
@@ -400,13 +400,13 @@ $$ \tag{43} C_r(z, \theta) = e^{Z - z} C(z, \theta) = \int\_{0}^{\infty} e^{Z - 
 which has a better numerical behavior, and further simplifies the expression of optical depth between \\(\bm{x}\\) and \\(\bm{y}\\):
 
 $$ \tag{44}
-\tilde{\tau}(\bm{x}, \bm{y})
-    = \tilde{\sigma}\_t \frac{k}{n} \Bigg( C_r \Big(z(\bm{x}), \cos{\theta(\bm{x})} \Big) - C_r \Big(z(\bm{y}), \cos{\theta(\bm{y})} \Big) \Bigg).
+\tau(\bm{x}, \bm{y})
+    = \sigma\_t \frac{k}{n} \Bigg( C_r \Big(z(\bm{x}), \cos{\theta(\bm{x})} \Big) - C_r \Big(z(\bm{y}), \cos{\theta(\bm{y})} \Big) \Bigg).
 $$
 
 What Equation 44 tells us is that we should evaluate the optical depth integral twice (in the same direction, along the entire ray, from 0 to \\(\infty\\)), at the start and at the end of the interval, and subtract the results to "clip" the ray.
 
-It is interesting to contemplate the physical meaning of optical depth and the Chapman function. Generally speaking, the value of a line integral of density (such as given by \\(\tilde{\tau} / \tilde{\sigma}\_t\\)) corresponds to mass. Therefore, the integral
+It is interesting to contemplate the physical meaning of optical depth and the Chapman function. Generally speaking, the value of a line integral of density (such as given by \\(\tau / \sigma\_t\\)) corresponds to mass. Therefore, the integral
 
 $$ \tag{45} \int\_{h = (r - R)}^{\infty} k e^{-n s} ds = \frac{k}{n} e^{-n h} $$
 
@@ -591,8 +591,8 @@ In order to evaluate optical depth between two arbitrary points \\(\bm{x}\\) and
 1\. \\(\cos{\theta_x} \geq 0 \\), which means that the ray points into the upper hemisphere with respect to the surface normal at the point \\(\bm{x}\\). This also means it points into the upper hemisphere at any point \\(\bm{y}\\) along the ray (that is fairly obvious if you sketch it). Optical depth is given by Equation 44, which we specialize by replacing \\(C\\) with \\(C_u\\), which is restricted to the upper hemisphere:
 
 $$ \tag{50}
-\tilde{\tau}\_{uu}(z_x, \theta_x, z_y, \theta_y)
-    = \tilde{\sigma}\_t \frac{k}{n} \Bigg( e^{Z - z_x} C_u(z_x, \theta_x) - e^{Z - z_y} C_u(z_y, \theta_y) \Bigg).
+\tau\_{uu}(z_x, \theta_x, z_y, \theta_y)
+    = \sigma\_t \frac{k}{n} \Bigg( e^{Z - z_x} C_u(z_x, \theta_x) - e^{Z - z_y} C_u(z_y, \theta_y) \Bigg).
 $$
 
 2\. \\(\cos{\theta_x} < 0 \\) and \\(\cos{\theta_y} < 0 \\) occurs e.g. when looking straight down. It is also easy to handle, we just flip the direction of the ray (by taking the absolute value of the cosine), replace the segment \\(\bm{xy}\\) with the segment \\(\bm{yx}\\) and fall back to case 1.
@@ -600,8 +600,8 @@ $$
 3\. \\(\cos{\theta_x} < 0 \\) and \\(\cos{\theta_y} \geq 0 \\). This is the most complicated case, since we have to evaluate the Chapman function three times, twice at \\(\bm{x}\\) and once at \\(\bm{y}\\):
 
 $$ \tag{51} \begin{aligned}
-\tilde{\tau}\_{lu}(z_x, \theta_x, z_y, \theta_y)
-    &= \tilde{\sigma}\_t \frac{k}{n} \Bigg( e^{Z - z_x} C_l(z_x, \theta_x) - e^{Z - z_y} C_u(z_y, \theta_y) \Bigg).
+\tau\_{lu}(z_x, \theta_x, z_y, \theta_y)
+    &= \sigma\_t \frac{k}{n} \Bigg( e^{Z - z_x} C_l(z_x, \theta_x) - e^{Z - z_y} C_u(z_y, \theta_y) \Bigg).
 \end{aligned} $$
 
 Sample code is listed below.
@@ -683,7 +683,7 @@ One does not simply sample the Chapman function. There doesn't appear to be a wa
 
 In order to sample participating media, we must be able to solve the optical depth equation for distance. If you only have a single analytically-defined volume, sampling it is (usually) trivial. However, once you have several heterogeneous overlapping volumes, you start running into issues. While optical depth is additive, the sampled distance is not. So, what do we do?
 
- If we can't solve the equation analytically, we can solve it numerically, using the [Newton–Raphson method](https://en.wikipedia.org/wiki/Newton%27s_method). Recall that this method requires being able to make an initial guess, evaluate the function, and take its derivative. Our function is the total optical depth. We can make an initial guess by assuming that the combined medium is uniform (or, under certain assumptions, rect-exponential). And since we know that the derivative of optical depth is just the attenuation coefficient \\(\tilde{\mu}_t\\) (see Equation 17), so we have all the pieces we need.
+ If we can't solve the equation analytically, we can solve it numerically, using the [Newton–Raphson method](https://en.wikipedia.org/wiki/Newton%27s_method). Recall that this method requires being able to make an initial guess, evaluate the function, and take its derivative. Our function is the total optical depth. We can make an initial guess by assuming that the combined medium is uniform (or, under certain assumptions, rect-exponential). And since we know that the derivative of optical depth is just the attenuation coefficient \\(\mu_t\\) (see Equation 17), so we have all the pieces we need.
 
 This method is very general and works for arbitrary [continuous density distributions](https://mcnp.lanl.gov/pdf_files/la-ur-02-6530.pdf).
 
@@ -821,7 +821,7 @@ Let's start with understanding the problem we are trying to solve.
 
 The tristimulus values \\(X\\), \\(Y\\) and \\(Z\\) of a pixel centered at the point \\(\bm{x}\\) on the camera sensor can be computed as an integral of incoming spectral radiance \\(L\_{\lambda}\\) over the visible spectrum \\(\Lambda\\), the pixel area \\(A\\) and the hemisphere of directions \\(\Omega\\) weighted by the [normalized color matching function](https://en.wikipedia.org/wiki/CIE_1931_color_space#Color_matching_functions) \\(\bar{c}\\) \\(\big( \bar{x}\\) for \\(X\\), \\(\bar{y}\\) for \\(Y\\), \\(\bar{z}\\) for \\(Z \big)\\) and the sensor response ([pixel filter](https://ieeexplore.ieee.org/document/4061554/)) \\(W\\):
 
-$$ \tag{58} I = C(\bm{x}) = \int\_{\Lambda} \bar{c}(\lambda) \int\_{A} \int\_{\Omega} W(\bm{r}, \bm{\hat{v}}, \lambda) L\_{\lambda}(\bm{x} + \bm{r}, \bm{\hat{v}}, \lambda) d\bm{\hat{v}} dA(\bm{r}) d\lambda. $$
+$$ \tag{58} I = C(\bm{x}) = \int\_{\Lambda} \bar{c}(\lambda) \int\_{A} \int\_{\Omega} W(\bm{r}, \bm{v}, \lambda) L\_{\lambda}(\bm{x} + \bm{r}, \bm{v}, \lambda) d\bm{v} dA(\bm{r}) d\lambda. $$
 
 Recalling that \\(L\_{\lambda}\\) is itself a nested integral, we can generalize our problem using the [path integral formulation](http://graphics.stanford.edu/papers/veach_thesis/):
 
@@ -975,8 +975,8 @@ Note that it has to be a scalar since it will be used for importance sampling.
 
 Both the derivation and the proof of correctness of the null-scattering integral are rather long and complicated, so I will only present the [final result](https://dl.acm.org/citation.cfm?id=3073665), which is
 
-$$ \tag{70} \bm{L}(\bm{x}, \bm{\hat{v}})
-    = \int\_{0}^{t\_{max}} \bar{\mu}(\bm{x}, \bm{\hat{v}}, s) \bar{T}(\bm{x}, \bm{\hat{v}}, s) \bm{L_i}(\bm{x} + s \bm{\hat{v}}, \bm{\hat{v}}) ds,
+$$ \tag{70} \bm{L}(\bm{x}, \bm{v})
+    = \int\_{0}^{t\_{max}} \bar{\mu}(\bm{x}, \bm{v}, s) \bar{T}(\bm{x}, \bm{v}, s) \bm{L_i}(\bm{x} + s \bm{v}, \bm{v}) ds,
 $$
 
 where \\(\bar{T}\\) is transmittance evaluated using the majorant (rather than attenuation) coefficient. Note that the majorant coefficient doesn't actually have to be a constant - it can be any analytic function (e.g. varying with height) serving as the upper bound for the attenuation coefficient.
@@ -984,10 +984,10 @@ where \\(\bar{T}\\) is transmittance evaluated using the majorant (rather than a
 The incoming radiance term \\(\bm{L_i}\\) is defined as
 
 $$ \tag{71} \begin{aligned}
-    \bm{L_i}(\bm{x}, \bm{\hat{v}})
-    &= P_a(\bm{x}, \bm{\hat{v}}, s) \bm{w_a}(\bm{x}, \bm{\hat{v}}, s) \bm{L_e}(\bm{x}, \bm{\hat{v}}) \cr
-    &+ P_s(\bm{x}, \bm{\hat{v}}, s) \bm{w_s}(\bm{x}, \bm{\hat{v}}, s) \bm{L_s}(\bm{x}, \bm{\hat{v}}) \cr
-    &+ P_n(\bm{x}, \bm{\hat{v}}, s) \bm{w_n}(\bm{x}, \bm{\hat{v}}, s) \bm{L}(\bm{x}, \bm{\hat{v}})
+    \bm{L_i}(\bm{x}, \bm{v})
+    &= P_a(\bm{x}, \bm{v}, s) \bm{w_a}(\bm{x}, \bm{v}, s) \bm{L_e}(\bm{x}, \bm{v}) \cr
+    &+ P_s(\bm{x}, \bm{v}, s) \bm{w_s}(\bm{x}, \bm{v}, s) \bm{L_s}(\bm{x}, \bm{v}) \cr
+    &+ P_n(\bm{x}, \bm{v}, s) \bm{w_n}(\bm{x}, \bm{v}, s) \bm{L}(\bm{x}, \bm{v})
 \end{aligned}
 $$
 
@@ -997,18 +997,18 @@ Each individual event has a corresponding weight:
 
 $$ \tag{72}
 \begin{aligned}
-    \bm{w_a}(\bm{x}, \bm{\hat{v}}, s) &= \frac{\bm{\mu_a}(\bm{x}, \bm{\hat{v}}, s)}{\bar{\mu}(\bm{x}, \bm{\hat{v}}, s) P_a(\bm{x}, \bm{\hat{v}}, s)} \cr
-    \bm{w_s}(\bm{x}, \bm{\hat{v}}, s) &= \frac{\bm{\mu_s}(\bm{x}, \bm{\hat{v}}, s)}{\bar{\mu}(\bm{x}, \bm{\hat{v}}, s) P_s(\bm{x}, \bm{\hat{v}}, s)} \cr
-    \bm{w_n}(\bm{x}, \bm{\hat{v}}, s) &= \frac{\bm{\mu_n}(\bm{x}, \bm{\hat{v}}, s)}{\bar{\mu}(\bm{x}, \bm{\hat{v}}, s) P_n(\bm{x}, \bm{\hat{v}}, s)}
+    \bm{w_a}(\bm{x}, \bm{v}, s) &= \frac{\bm{\mu_a}(\bm{x}, \bm{v}, s)}{\bar{\mu}(\bm{x}, \bm{v}, s) P_a(\bm{x}, \bm{v}, s)} \cr
+    \bm{w_s}(\bm{x}, \bm{v}, s) &= \frac{\bm{\mu_s}(\bm{x}, \bm{v}, s)}{\bar{\mu}(\bm{x}, \bm{v}, s) P_s(\bm{x}, \bm{v}, s)} \cr
+    \bm{w_n}(\bm{x}, \bm{v}, s) &= \frac{\bm{\mu_n}(\bm{x}, \bm{v}, s)}{\bar{\mu}(\bm{x}, \bm{v}, s) P_n(\bm{x}, \bm{v}, s)}
 \end{aligned}
 $$
 
 The simplest (but [not the only](https://dl.acm.org/citation.cfm?id=3073665)) way to define the collision probabilities is as follows:
 
 $$ \tag{73} \begin{aligned}
-    P_a(\bm{x}, \bm{\hat{v}}, s) &= \frac{||\mu_a(\lambda)||\_{\infty}}{||\mu_a(\lambda)||\_{\infty} + ||\mu_s(\lambda)||\_{\infty} + ||\mu_n(\lambda)||\_{\infty}}, \cr
-    P_s(\bm{x}, \bm{\hat{v}}, s) &= \frac{||\mu_s(\lambda)||\_{\infty}}{||\mu_a(\lambda)||\_{\infty} + ||\mu_s(\lambda)||\_{\infty} + ||\mu_n(\lambda)||\_{\infty}}, \cr
-    P_n(\bm{x}, \bm{\hat{v}}, s) &= \frac{||\mu_n(\lambda)||\_{\infty}}{||\mu_a(\lambda)||\_{\infty} + ||\mu_s(\lambda)||\_{\infty} + ||\mu_n(\lambda)||\_{\infty}},
+    P_a(\bm{x}, \bm{v}, s) &= \frac{||\mu_a(\lambda)||\_{\infty}}{||\mu_a(\lambda)||\_{\infty} + ||\mu_s(\lambda)||\_{\infty} + ||\mu_n(\lambda)||\_{\infty}}, \cr
+    P_s(\bm{x}, \bm{v}, s) &= \frac{||\mu_s(\lambda)||\_{\infty}}{||\mu_a(\lambda)||\_{\infty} + ||\mu_s(\lambda)||\_{\infty} + ||\mu_n(\lambda)||\_{\infty}}, \cr
+    P_n(\bm{x}, \bm{v}, s) &= \frac{||\mu_n(\lambda)||\_{\infty}}{||\mu_a(\lambda)||\_{\infty} + ||\mu_s(\lambda)||\_{\infty} + ||\mu_n(\lambda)||\_{\infty}},
 \end{aligned}
 $$
 
@@ -1017,9 +1017,9 @@ where the position and the direction on the right-hand side are implicit for cla
 If the medium is known to not be emissive, we can redistribute the absorption probability between \\(P_s\\) and \\(P_n\\):
 
 $$ \tag{74} \begin{aligned}
-    P'\_a(\bm{x}, \bm{\hat{v}}, s) &= 0, \cr
-    P'\_s(\bm{x}, \bm{\hat{v}}, s) &= \frac{P_s}{P_s + P_n}, \cr
-    P'\_n(\bm{x}, \bm{\hat{v}}, s) &= \frac{P_n}{P_s + P_n}.
+    P'\_a(\bm{x}, \bm{v}, s) &= 0, \cr
+    P'\_s(\bm{x}, \bm{v}, s) &= \frac{P_s}{P_s + P_n}, \cr
+    P'\_n(\bm{x}, \bm{v}, s) &= \frac{P_n}{P_s + P_n}.
 \end{aligned}
 $$
 

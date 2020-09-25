@@ -29,7 +29,7 @@ If that is something that interests you, please read on.
 
 We can perform a perspective transformation of a column vector representing a view-space point using the matrix
 
-$$ \tag{1} P_r =
+$$ \tag{1} \bm{P\_r} =
 \begin{bmatrix}
     p/a & 0 & 0        & 0 \cr
     0   & p & 0        & 0 \cr
