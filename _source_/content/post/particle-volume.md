@@ -8,7 +8,7 @@ tags: [
     ]
 ---
 
-I have [previously](https://zero-radiance.github.io/post/analytic-media/) covered the basics of the volume scattering process. It models the macroscopic interaction of light and matter, with the latter represented as a distribution of [small particles](https://doi.org/10.1002/qj.49708436025). Fundamentally, the volume scattering process arises from the microscopic interaction of light with individual atoms, and is typically described using [Maxwell's electromagnetic theory](https://doi.org/10.1364/JOSAA.35.000163). It is the domain of optics, and, in my experience, the connection with the [radiative transfer equation](https://en.wikipedia.org/wiki/Radiative_transfer#The_equation_of_radiative_transfer) is neither apparent nor easy to find. The purpose of this blog post is to familiarize the reader with domain-specific terms and ease the adoption of formulas found in the optics literature.
+I have [previously](/post/analytic-media/) covered the basics of the volume scattering process. It models the macroscopic interaction of light and matter, with the latter represented as a distribution of [small particles](https://doi.org/10.1002/qj.49708436025). Fundamentally, the volume scattering process arises from the microscopic interaction of light with individual atoms, and is typically described using [Maxwell's electromagnetic theory](https://doi.org/10.1364/JOSAA.35.000163). It is the domain of optics, and, in my experience, the connection with the [radiative transfer equation](https://en.wikipedia.org/wiki/Radiative_transfer#The_equation_of_radiative_transfer) is neither apparent nor easy to find. The purpose of this blog post is to familiarize the reader with domain-specific terms and ease the adoption of formulas found in the optics literature.
 
 <!--more-->
 
@@ -108,7 +108,7 @@ We can extend Equation 12 to take the volume occupied by particles into account.
 $$ \tag{13} \frac{I\_s}{\Delta V}  = \frac{\Delta N}{\Delta V} \sigma\_s \frac{f\_p}{4 \pi} E\_i. $$
 
 \\(\Delta N / \Delta V\\) is the definition of the [number density](https://en.wikipedia.org/wiki/Number_density) \\(n\\),
-and can be used to define the [scattering coefficient](https://zero-radiance.github.io/post/analytic-media/) \\(\mu\_s\\)
+and can be used to define the [scattering coefficient](/post/analytic-media/) \\(\mu\_s\\)
 
 $$ \tag{14} \mu\_s = n \sigma\_s. $$
 
@@ -143,7 +143,7 @@ Finally, if any part of the integrand varies along \\(z\\), we must replace \\(\
 $$ \tag{21} L\_s = \int\_{\bm{x}}^{\bm{y}} T(\bm{x}, \bm{z}) \Bigg( \int\_{4 \pi} \mu\_s \frac{f\_p}{4 \pi} L_i d \omega_i \Bigg) dz, $$
 with the transmittance term \\(T\\), which becomes significant since the extent of the volume along the \\(\bm{z}\\)-axis is no longer negligible.
 
-Recursively defining \\(L = L\_i = L\_s\\), we finally obtain the [radiative transfer equation](https://zero-radiance.github.io/post/analytic-media/#radiative-transfer-equation) we are all familiar with.
+Recursively defining \\(L = L\_i = L\_s\\), we finally obtain the [radiative transfer equation](/post/analytic-media/#radiative-transfer-equation) we are all familiar with.
 
 If we wish to model the [Refractive Radiative Transfer Equation](https://doi.org/10.1145/2557605) instead, we must remember to also account for continuous reflection/transmission as well as the associated change in the solid angle.
 
