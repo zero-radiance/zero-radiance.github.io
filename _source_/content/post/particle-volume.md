@@ -145,7 +145,7 @@ with the transmittance term \\(T\\), which becomes significant since the extent 
 
 Recursively defining \\(L = L\_i = L\_s\\), we finally obtain the [radiative transfer equation](/post/analytic-media/#radiative-transfer-equation) we are all familiar with.
 
-If we wish to model the [Refractive Radiative Transfer Equation](https://doi.org/10.1145/2557605) instead, we must remember to also account for continuous reflection/transmission as well as the associated change in the solid angle.
+If we wish to model the [refractive radiative transfer equation](https://doi.org/10.1145/2557605) instead, we must remember to also account for continuous reflection/transmission as well as the associated change in the solid angle.
 
 ## Acknowledgments
 
