@@ -1,11 +1,10 @@
 ---
 title: "Sampling Burley's Normalized Diffusion Profiles"
 date: 2019-12-16
-categories: [ "Graphics", "Math" ]
 tags: [
+    "Diffusion Profile",
     "Importance Sampling",
     "Subsurface Scattering",
-    "Diffusion",
     ]
 ---
 

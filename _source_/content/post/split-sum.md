@@ -1,9 +1,7 @@
 ---
 title: "Alternative Take on the Split Sum Approximation for Cubemap Pre-filtering"
 date: 2019-04-02
-categories: [ "Graphics", "Math" ]
 tags: [
-	"Cubemap Pre-filtering",
 	"Image-Based Lighting",
 	"Split Sum Approximation",
 	]

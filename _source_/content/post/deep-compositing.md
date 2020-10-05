@@ -1,12 +1,10 @@
 ---
 title: "Deep Compositing and Reprojection"
 date: 2018-10-11
-categories: [ "Graphics", "Math" ]
 tags: [
 	"Alpha Blending",
-	"Compositing",
+	"Deep Compositing",
 	"Reprojection",
-	"Volume Rendering",
 	]
 ---
 

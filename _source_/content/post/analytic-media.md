@@ -1,11 +1,10 @@
 ---
 title: "Sampling Analytic Participating Media"
 date: 2020-02-17
-categories: [ "Graphics", "Math" ]
 tags: [
-    "Importance Sampling",
-    "Volume Rendering",
     "Chapman Function",
+    "Importance Sampling",
+    "Radiative Transfer",
     ]
 ---
 

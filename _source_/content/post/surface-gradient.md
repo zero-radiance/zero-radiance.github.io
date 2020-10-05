@@ -1,7 +1,6 @@
 ---
 title: "Normal Mapping Using the Surface Gradient"
 date: 2019-06-23
-categories: [ "Graphics", "Math" ]
 tags: [
     "Bump Mapping",
     "Normal Mapping",

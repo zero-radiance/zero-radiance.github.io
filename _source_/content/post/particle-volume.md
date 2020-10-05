@@ -1,10 +1,11 @@
 ---
 title: "From Particle to Volume Scattering"
 date: 2020-09-20
-categories: [ "Optics" ]
 tags: [
-    "Volume Rendering",
-    "Radiometry"
+    "Light Scattering",
+    "Optics",
+    "Radiative Transfer",
+    "Radiometry",
     ]
 ---
 
