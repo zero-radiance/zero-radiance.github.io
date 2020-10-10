@@ -102,46 +102,46 @@ Therefore, we can rewrite  Equation 5 for \\(N\\) particles as
 
 $$ \tag{12} I\_s = N \sigma\_s \frac{f\_p}{4 \pi} E\_i. $$
 
-"Wait a minute", you may object. "Shouldn't we also consider the effect of scattered waves on the particles themselves?" And, in general, indeed, we should. This is a [many-body problem](https://en.wikipedia.org/wiki/Many-body_pro`blem), and it is extremely challenging to solve exactly. In a low-density dielectric (a gas), electromagnetic interaction between the particles is typically neglected - this is sometimes referred to as the [independent scattering approximation](https://doi.org/10.1002/qj.49708436025). For dense dielectrics, one way of tackling the problem is to introduce the [electric polarization](https://en.wikipedia.org/wiki/Polarization_density) - induced [electric dipole moment](https://en.wikipedia.org/wiki/Electric_dipole_moment) per unit volume - which can be used to approximate the [local electric field](https://www.feynmanlectures.caltech.edu/II_32.html).
+"Wait a minute", you may object. "Shouldn't we also consider the effect of scattered waves on the particles themselves?" And, in general, indeed, we should. This is a [many-body problem](https://en.wikipedia.org/wiki/Many-body_problem), and it is extremely challenging to solve exactly. In a low-density dielectric (a gas), electromagnetic interaction between the particles is typically neglected - this is sometimes referred to as the [independent scattering approximation](https://doi.org/10.1002/qj.49708436025). For dense dielectrics, one way of tackling the problem is to introduce the [electric polarization](https://en.wikipedia.org/wiki/Polarization_density) - induced [electric dipole moment](https://en.wikipedia.org/wiki/Electric_dipole_moment) per unit volume - which can be used to approximate the [local electric field](https://www.feynmanlectures.caltech.edu/II_32.html).
 
 We can extend Equation 12 to take the volume occupied by particles into account. Given a small number of particles \\(\Delta N\\) contained within a small volume \\(\Delta V\\),
 
 $$ \tag{13} \frac{I\_s}{\Delta V}  = \frac{\Delta N}{\Delta V} \sigma\_s \frac{f\_p}{4 \pi} E\_i. $$
 
 \\(\Delta N / \Delta V\\) is the definition of the [number density](https://en.wikipedia.org/wiki/Number_density) \\(n\\),
-and can be used to define the [scattering coefficient](/post/analytic-media/) \\(k\_s\\)
+and can be used to define the [scattering coefficient](/post/analytic-media/) \\(\mu\_s\\)
 
-$$ \tag{14} k\_s = n \sigma\_s. $$
+$$ \tag{14} \mu\_s = n \sigma\_s. $$
 
 If a distribution of (non-identical) particles is given, we can use its [weighted average](http://eodg.atm.ox.ac.uk/user/grainger/research/book/protected/Chapter5.pdf) properties instead:
 
-$$ \tag{15} \langle k_x \rangle = \int n(r) \sigma_x(r) dr, $$
+$$ \tag{15} \langle \mu_x \rangle = \int n(r) \sigma_x(r) dr, $$
 
 $$ \tag{16} \langle f\_p \rangle = \frac{\int n(r) \sigma\_s(r) f\_p(r) dr}{\int n(r) \sigma\_s(r) dr}. $$
 
 We can reformulate Equation 13 using the definition of the scattering coefficient:
 
-$$ \tag{17} \frac{I\_s}{\Delta V}  = k\_s \frac{f\_p}{4 \pi} E\_i. $$
+$$ \tag{17} \frac{I\_s}{\Delta V}  = \mu\_s \frac{f\_p}{4 \pi} E\_i. $$
 
 If we orient the direction of scattering along the \\(z\\)-axis, we may write
 
-$$ \tag{18} \frac{I\_s}{\Delta A \Delta z} = k\_s \frac{f\_p}{4 \pi} E\_i. $$
+$$ \tag{18} \frac{I\_s}{\Delta A \Delta z} = \mu\_s \frac{f\_p}{4 \pi} E\_i. $$
 
 The ratio of spectral intensity to the area is the definition of scattered [spectral radiance](https://en.wikipedia.org/wiki/Radiance#Spectral_radiance) \\(L\_s\\):
 
-$$ \tag{19} L\_s = k\_s \frac{f\_p}{4 \pi} E\_i \Delta z. $$
+$$ \tag{19} L\_s = \mu\_s \frac{f\_p}{4 \pi} E\_i \Delta z. $$
 
 Intuitively, the "left-over" \\(\Delta z\\) makes sense. If we increase \\(\Delta z\\), the total volume increases, the density correspondingly decreases, and, since the number of particles is constant, the amount of spectral radiance does not change.
 
 In light transport applications, we typically deal with radiance rather than irradiance. This can be achieved by introducing an integral over \\(4 \pi\\) steradians
 
-$$ \tag{20} L\_s = \int\_{4 \pi} k\_s \frac{f\_p}{4 \pi} L_i d \omega_i \Delta z, $$
+$$ \tag{20} L\_s = \int\_{4 \pi} \mu\_s \frac{f\_p}{4 \pi} L_i d \omega_i \Delta z, $$
 
 where the scattering coefficient and the phase function determine the magnitude of the contribution of each incident direction.
 
 Finally, if any part of the integrand varies along \\(z\\), we must replace \\(\Delta z\\) by a differential \\(dz\\) and add an outer line integral
 
-$$ \tag{21} L\_s = \int\_{\bm{x}}^{\bm{y}} T(\bm{x}, \bm{z}) \Bigg( \int\_{4 \pi} k\_s \frac{f\_p}{4 \pi} L_i d \omega_i \Bigg) dz, $$
+$$ \tag{21} L\_s = \int\_{\bm{x}}^{\bm{y}} T(\bm{x}, \bm{z}) \Bigg( \int\_{4 \pi} \mu\_s \frac{f\_p}{4 \pi} L_i d \omega_i \Bigg) dz, $$
 with the transmittance term \\(T\\), which becomes significant since the extent of the volume along the \\(\bm{z}\\)-axis is no longer negligible.
 
 Recursively defining \\(L = L\_i = L\_s\\), we finally obtain the [radiative transfer equation](/post/analytic-media/#radiative-transfer-equation) we are all familiar with.
