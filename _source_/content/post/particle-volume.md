@@ -15,15 +15,15 @@ I have [previously](/post/analytic-media/) covered the basics of the volume scat
 
 ## Particle Scattering Basics
 
-Imagine a small particle of an arbitrary shape embedded in the host medium with the complex refractive index \\(\eta\_1 - i \kappa\_1\\) (by convention, \\(\eta_0 = 1\\) is reserved for the [vacuum](https://en.wikipedia.org/wiki/Vacuum)).
+Imagine a small particle of an arbitrary shape embedded in the host medium with the complex refractive index \\(\eta - i \kappa\\) (by convention, \\(\eta\_0 = 1, \kappa\_0 = 0\\) is reserved for the [vacuum](https://en.wikipedia.org/wiki/Vacuum)).
 
 {{< figure src="/img/linear_plane_wave.png" caption="*Linearly-polarized plane electromagnetic wave. [Image source](https://openstax.org/books/university-physics-volume-2/pages/16-4-momentum-and-radiation-pressure).*">}}
 
 Consider an [electromagnetic wave](https://www.cpp.edu/~alrudolph/classes/phy234/Reading/Summary%20of%20Waves.pdf) represented by the electric field \\(\bm{E}\\) and the magnetic field \\(\bm{B}\\) of a certain frequency and in a certain state of polarization. The direction of propagation and the amount of power per unit area carried by the wave at the time \\(t\\) is given by the [instanteneous Poynting vector](https://en.wikipedia.org/wiki/Poynting_vector#Formulation_in_terms_of_microscopic_fields) \\(\bm{S}\\)
 
-$$ \tag{1} \bm{S}(t) = \varepsilon_0 c^2 \Big( \bm{E}(t) \times \bm{B}(t) \Big), $$
+$$ \tag{1} \bm{S}(t) = \varepsilon\_0 c^2 \Big( \bm{E}(t) \times \bm{B}(t) \Big), $$
 
-where \\(\varepsilon_0\\) is the [vacuum permittivity](https://en.wikipedia.org/wiki/Permittivity) and \\(c\\) is the speed of light.
+where \\(\varepsilon\_0\\) is the [vacuum permittivity](https://en.wikipedia.org/wiki/Permittivity) and \\(c\\) is the speed of light.
 
 Since light waves oscillate very rapidly, we are typically interested in the [time-averaged Poynting vector](https://en.wikipedia.org/wiki/Poynting_vector#Time-averaged_Poynting_vector) \\(\langle \bm{S} \rangle\\)
 
@@ -35,7 +35,7 @@ $$ \tag{3} E = \vert \langle \bm{S} \rangle \vert. $$
 
 For a [plane wave](https://en.wikipedia.org/wiki/Plane_wave), the expression is particularly [simple](https://en.wikipedia.org/wiki/Irradiance#Property):
 
-$$ \tag{4} E = \frac{1}{2} \varepsilon_0 c \eta\_1 \vert \mathcal{E} \vert^2, $$
+$$ \tag{4} E = \frac{1}{2} \varepsilon\_0 c \eta \vert \mathcal{E} \vert^2, $$
 
 where \\(\mathcal{E}\\) is the [complex amplitude](https://en.wikipedia.org/wiki/Phasor) of the electric field vector (which encodes both the magnitude and the [phase](https://en.wikipedia.org/wiki/Phase_(waves))).
 
@@ -102,7 +102,7 @@ Therefore, we can rewrite  Equation 5 for \\(N\\) particles as
 
 $$ \tag{12} I\_s = N \sigma\_s \frac{f\_p}{4 \pi} E\_i. $$
 
-"Wait a minute", you may object. "Shouldn't we also consider the effect of scattered waves on the particles themselves?" And, in general, indeed, we should. This is a [many-body problem](https://en.wikipedia.org/wiki/Many-body_problem), and it is extremely challenging to solve exactly. In a low-density dielectric (a gas), electromagnetic interaction between the particles is typically neglected - this is sometimes referred to as the [independent scattering approximation](https://doi.org/10.1002/qj.49708436025). For dense dielectrics, one way of tackling the problem is to introduce the [electric polarization](https://en.wikipedia.org/wiki/Polarization_density) - induced [electric dipole moment](https://en.wikipedia.org/wiki/Electric_dipole_moment) per unit volume - which can be used to approximate the [local electric field](https://www.feynmanlectures.caltech.edu/II_32.html).
+"Wait a minute", you may object. "Shouldn't we also consider the effect of scattered waves on the particles themselves?" And, in general, indeed, we should. This is a [many-body problem](https://en.wikipedia.org/wiki/Many-body_pro`blem), and it is extremely challenging to solve exactly. In a low-density dielectric (a gas), electromagnetic interaction between the particles is typically neglected - this is sometimes referred to as the [independent scattering approximation](https://doi.org/10.1002/qj.49708436025). For dense dielectrics, one way of tackling the problem is to introduce the [electric polarization](https://en.wikipedia.org/wiki/Polarization_density) - induced [electric dipole moment](https://en.wikipedia.org/wiki/Electric_dipole_moment) per unit volume - which can be used to approximate the [local electric field](https://www.feynmanlectures.caltech.edu/II_32.html).
 
 We can extend Equation 12 to take the volume occupied by particles into account. Given a small number of particles \\(\Delta N\\) contained within a small volume \\(\Delta V\\),
 
@@ -123,7 +123,7 @@ We can reformulate Equation 13 using the definition of the scattering coefficien
 
 $$ \tag{17} \frac{I\_s}{\Delta V}  = k\_s \frac{f\_p}{4 \pi} E\_i. $$
 
-If we orient the direction of scattering along the \\(\bm{z}\\)-axis, we may write
+If we orient the direction of scattering along the \\(z\\)-axis, we may write
 
 $$ \tag{18} \frac{I\_s}{\Delta A \Delta z} = k\_s \frac{f\_p}{4 \pi} E\_i. $$
 
