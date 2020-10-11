@@ -40,19 +40,19 @@ Consider an infinitesimal (punctual) isotropic source of "disturbance". It gener
 
 In the case of plane waves, surfaces of constant phase are planes rather than spheres. While there are multiple ways to generate plane waves, one mathematical trick is to imagine an infinitesimal isotropic source at infinity. Then the curvature of the spherical wave approaches 0, and, locally, we may consider a small section of the spherical wave front to be planar.
 
-By *harmonic*, we mean that the amplitude of the wave is a [harmonic function](https://en.wikipedia.org/wiki/Harmonic_function) of space and time. For a plane scalar wave traveling along the \\(z\\)-axis, the *amplitude* of the "disturbance" at the time \\(t\\) can be mathematically described [^1] as
+By *harmonic*, we mean that the amplitude of the wave is a [harmonic function](https://en.wikipedia.org/wiki/Harmonic_function) of space and time. For a plane scalar wave traveling along the \\(z\\)-axis, the *real amplitude* of the "disturbance" at the time \\(t\\) can be mathematically described [^1] as
 
 [^1]: We use the "classic" sign convention of the authors cited.
 
-$$ \tag{1} u(z,t) = u\_0 \cos(\omega t - k z + \delta), $$
+$$ \tag{1} a(z,t) = a\_0 \cos(\delta - k z + \omega t), $$
 
-where \\(u\_0\\) is the real maximum amplitude, \\(\omega = 2 \pi \nu\\) is the angular frequency, \\(k\\) is the [complex wavenumber](https://en.wikipedia.org/wiki/Wavenumber#Complex), and \\(\delta\\) is the phase offset.
+where \\(a\_0\\) is the maximum amplitude, \\(\delta\\) is the phase offset, \\(k\\) is the [complex wavenumber](https://en.wikipedia.org/wiki/Wavenumber#Complex), and \\(\omega\\) is the angular frequency.
 
-If we define the complex maximum amplitude \\(u\_\delta = u\_0 e^{i \delta}\\), it leads to the complex notation \[[7](#references) (p. 13)\]
+Mathematically, it is convenient to describe a wave using the [complex amplitude](https://www.feynmanlectures.caltech.edu/I_29.html) \[[5](#references) (vol. I, ch. 29)\]
 
-$$ \tag{2} u(z,t) = \mathrm{Re} \Big\lbrace u\_\delta e^{i (\omega t - k z)} \Big\rbrace. $$
+$$ \tag{2} u(z,t) = a e^{i \theta} = a\_0 e^{i (\delta - k z + \omega t)} = a e^{i \phi} e^{i \omega t}. $$
 
-If the ambient medium has a [complex index of refraction](https://en.wikipedia.org/wiki/Refractive_index#Complex_refractive_index) (IOR) \\(\eta - i \kappa\\), the complex wavenumber is given as
+If the ambient medium has a [complex index of refraction](https://en.wikipedia.org/wiki/Refractive_index#Complex_refractive_index) \\(\eta - i \kappa\\), the [complex wavenumber](https://en.wikipedia.org/wiki/Wavenumber#Complex) is given as
 
 $$ \tag{3} k = k\_0 (\eta - i \kappa)
 			 = \frac{2 \pi}{\lambda\_0} (\eta - i \kappa)
@@ -62,12 +62,19 @@ where \\(k\_0\\) and \\(\lambda\_0\\) are the real wavenumber and wavelength in 
 
 Substitution gives Equation 2 a more explicit form:
 
-$$ \tag{5} u(z,t) = \mathrm{Re} \Big\lbrace u\_\delta e^{i (\omega t - (\omega / c) (\eta - i \kappa) z)} \Big\rbrace
-			      = e^{-\kappa (\omega z / c) } \mathrm{Re} \Big\lbrace u\_\delta e^{i \omega t - i \eta (\omega z / c)} \Big\rbrace. $$
+$$ \tag{4} u(z,t) = a\_0 e^{i (\delta - (\omega / c) (\eta - i \kappa) z + \omega t)}
+			      = a\_0 e^{-\kappa (\omega z / c)} e^{i (\delta - \eta (\omega z / c) + \omega t)}. $$
 
-The first thing to notice is that \\(\omega t\\) and \\(\omega z / c\\) are both measured in radians. Secondly, we have two components - a real component followed by a real part of a complex component. Looking closely, the role of the complex IOR becomes more apparent. The real part of the IOR, \\(\eta\\), reduces velocity of the wave by scaling[^2] \\(\omega z / c\\). The imaginary part of the IOR - the *absorption index* \\(\kappa\\) - corresponds to [attenuation with distance](https://www.feynmanlectures.caltech.edu/I_31.html) \[[5](#references) (vol. I, ch. 31)\].
+We can take its argument to extract the *phase angle*
 
-[^2]: Note that the \\(\omega t\\) factor is unaffected.
+$$ \tag{5} \theta(z,t) = \mathrm{Arg} \big\lbrace u(z,t) \big\rbrace = \delta - \eta (\omega z / c) + \omega t = \phi + \omega t, $$
+
+and taking the real part allows us to recover the real amplitude
+
+$$ \tag{6} a(z,t) = \mathrm{Re} \big\lbrace u(z,t) \big\rbrace
+			      = a\_0 e^{-\kappa (\omega z / c)} \cos \big\lbrace \theta(z,t) \big\rbrace. $$
+
+When examining Equations 5 and 6, the first thing to notice is that \\(\omega z / c\\) and \\(\omega t\\) are both measured in radians. Looking closely, the role of the complex index of refraction (IOR) becomes apparent. The real part of the IOR, \\(\eta\\), reduces velocity of the wave from \\(c\\) to \\(c / \eta\\). The imaginary part of the IOR, \\(\kappa\\), corresponds to exponential [attenuation with distance](https://www.feynmanlectures.caltech.edu/I_31.html) \[[5](#references) (vol. I, ch. 31)\].
 
 ## Acknowledgments
 
