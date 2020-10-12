@@ -76,7 +76,7 @@ $$ \tag{5} \theta(z,t) = \mathrm{Arg} \big\lbrace u(z,t) \big\rbrace = \delta - 
 and taking the real part allows us to recover the real amplitude
 
 $$ \tag{6} a(z,t) = \mathrm{Re} \big\lbrace u(z,t) \big\rbrace
-			      = a\_0 e^{-\kappa (\omega z / c)} \cos \big\lbrace \theta(z,t) \big\rbrace. $$
+			      = a\_0 e^{-\kappa (\omega z / c)} \cos{\theta(z,t)} . $$
 
 When examining Equations 5 and 6, the first thing to notice is that \\(\omega z / c\\) and \\(\omega t\\) are both measured in radians. Looking closely, the role of the complex index of refraction (IOR) becomes apparent. The real part of the IOR, \\(\eta\\), reduces velocity of the wave from \\(c\\) to \\(c / \eta\\). The imaginary part of the IOR, \\(\kappa\\), corresponds to exponential [attenuation with distance](https://www.feynmanlectures.caltech.edu/I_31.html) \[[5](#references) (vol. I, ch. 31)\].
 
@@ -85,6 +85,24 @@ When examining Equations 5 and 6, the first thing to notice is that \\(\omega z 
 While scalar waves are characterized by the amplitude and the direction of propagation (in space and time), [transverse](http://hyperphysics.phy-astr.gsu.edu/hbase/Sound/tralon.html) waves have an orientation[^2] as well \[[9](#references)\].
 
 [^2]: The "disturbance" is vector tangent to the surface of constant phase.
+
+In the case of the electric field vector, it just means it has two scalar wave components rather than one:
+
+$$ \tag{7} \bm{E}(z,t) =
+	\begin{bmatrix}
+    	E\_x(z,t) \cr
+    	E\_y(z,t)
+	\end{bmatrix} = A\_0
+	\begin{bmatrix}
+    	e^{-\kappa\_x (\omega z / c)} \cos(i (\delta\_x - \eta\_x (\omega z / c) + \omega t)) \cr
+    	e^{-\kappa\_y (\omega z / c)} \cos(i (\delta\_y - \eta\_y (\omega z / c) + \omega t))
+	\end{bmatrix}. $$
+
+{{< figure src="/img/electric_field.png" caption="*Electric field vector \[[7](#references) (p. 6)\].*">}}
+
+The frequency and the maximum amplitude are the same for both components, but this is where similarities end. Certain materials (with a [crystal lattice](https://www.feynmanlectures.caltech.edu/II_30.html) \[[5](#references) (vol. II, ch. 30)\]) have a complex IOR that depends on the orientation of the crystal with respect to the incident light. Additionally, the vector components may oscillate out of phase, which is mathematically modeled by independent phase shifts.
+
+The vector nature of light waves (in mathematics) is referred to as the polarization of light (in physics).
 
 ## Polarization of Light
 
