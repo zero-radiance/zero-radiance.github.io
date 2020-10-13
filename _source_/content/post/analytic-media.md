@@ -14,7 +14,9 @@ Rendering of participating media is an important aspect of every modern renderer
 
 In the [radiative transfer](https://doi.org/10.1002/qj.49707633016) literature, light-material interaction is usually quantified in terms of absorption (conversion of electromagnetic energy of photons into kinetic energy of atoms, which manifests itself as reduction of light intensity) and [scattering](http://plaza.ufl.edu/dwhahn/Rayleigh%20and%20Mie%20Light%20Scattering.pdf) (absorption followed by [emission](https://en.wikipedia.org/wiki/Stimulated_emission) of electromagnetic energy on collision). Therefore, it is common to describe participating media using the *volume collision coefficients*: the *absorption coefficient* \\(\mu\_a\\) and the *scattering coefficient* \\(\mu\_s\\). These coefficients give the probability density of the corresponding event per unit distance traveled by a photon, which implies the [SI unit](https://en.wikipedia.org/wiki/International_System_of_Units) of measurement is \\(m^{-1}\\).
 
-The [attenuation coefficient](https://en.wikipedia.org/wiki/Attenuation_coefficient) \\(\mu\_t\\)
+The [extinction coefficient](https://en.wikipedia.org/wiki/Attenuation_coefficient)[^1] \\(\mu\_t\\)
+
+[^1]: According to [Wikipedia](https://en.wikipedia.org/wiki/Attenuation_coefficient), this is an old term, and we should refer to it as *attenuation coefficient* instead. While it's certainly a better name, in practice, all classical publications call it extinction. We use the classical naming convention to avoid confusion.
 
 $$ \tag{1} \mu\_t = \mu\_a + \mu\_s $$
 
@@ -30,21 +32,21 @@ $$ \tag{3} d = \frac{1}{\mu\_t}, $$
 
 which corresponds to the average collision-free (or free-flight) distance.
 
-It's worth noting that the absorption coefficient is directly related to the [extinction coefficient](http://www.sfu.ca/~gchapman/e376/e376l7.pdf) \\(\kappa\\), which is the imaginary part of the [complex index of refraction](https://en.wikipedia.org/wiki/Refractive_index#Complex_refractive_index) \\(\eta - i \kappa\\):
+It's worth noting that the absorption coefficient is directly related to the [absorption index](http://www.sfu.ca/~gchapman/e376/e376l7.pdf) \\(\kappa\\), which is the imaginary part of the [complex index of refraction](https://en.wikipedia.org/wiki/Refractive_index#Complex_refractive_index) \\(\eta - i \kappa\\):
 
 $$ \tag{4} \kappa = \frac{\lambda}{4 \pi} \mu\_a. $$
 
-For this reason, \\(\eta\\) is called the [refractive index](https://www.feynmanlectures.caltech.edu/I_31.html) (or IOR), and \\(\kappa\\) is sometimes referred to as the [absorption index](http://www.sfu.ca/~gchapman/e376/e376l7.pdf). Note that, in this context, I am not talking about the IOR of an individual microscopic particle (which influences the [microscopic scattering](https://en.wikipedia.org/wiki/Mie_scattering) process), but rather about the properties of the macroscopic medium (composed of many microscopic particles).
+Note that, in this context, I am not talking about the IOR of an individual microscopic particle (which influences the [microscopic scattering](https://en.wikipedia.org/wiki/Mie_scattering) process), but rather about the properties of the macroscopic medium (composed of many microscopic particles).
 
 The tuple \\(\lbrace \eta, \kappa, \mu\_s \rbrace\\) \\(\big(\\)or, alternatively, \\(\lbrace \eta, d, \alpha\_{ss} \rbrace \big) \\) contains sufficient information to describe both the behavior at the surface (boundary) and the (isotropic) multiple-scattering process (known as [subsurface scattering](https://en.wikipedia.org/wiki/Subsurface_scattering)) inside the volume that ultimately gives rise to what we perceive as the surface albedo \\(\alpha\_{ms}\\). Note that certain materials (metals, in particular) require modeling of [wave interference](https://en.wikipedia.org/wiki/Wave_interference) to obtain expected reflectance values.
 
 A surface, then, is just an optical interface signified by a discontinuity of optical properties of the medium (in reality, the [transition at the boundary is continuous](https://www.feynmanlectures.caltech.edu/II_33.html), with a thickness of several atomic layers, but we can ignore this fact at scales relevant to computer graphics).
 
-Sometimes, it is convenient to specify the concentration (density) of the medium, and not its effective optical properties. For example, the attenuation coefficient can be computed using the following formula:
+Sometimes, it is convenient to specify the concentration (density) of the medium, and not its effective optical properties. For example, the extinction coefficient can be computed using the following formula:
 
 $$ \tag{5} \mu\_t = \rho \sigma\_t, $$
 
-where \\(\rho\\) is the [mass density](https://en.wikipedia.org/wiki/Mass_density) (measured in units of \\(kg/m^{3}\\)) and \\(\sigma\_t\\) is the [mass attenuation coefficient](https://en.wikipedia.org/wiki/Mass_attenuation_coefficient) (in units of \\(m^{2}/kg\\)) - [effective cross section](http://www.sfu.ca/~gchapman/e376/e376l7.pdf) per unit mass. Other coefficients have the same linear relation with density. Alternatively, one can also a use [number density](https://en.wikipedia.org/wiki/Number_density) instead of mass density.
+where \\(\rho\\) is the [mass density](https://en.wikipedia.org/wiki/Mass_density) (measured in units of \\(kg/m^{3}\\)) and \\(\sigma\_t\\) is the [mass extinction coefficient](https://en.wikipedia.org/wiki/Mass_attenuation_coefficient) (in units of \\(m^{2}/kg\\)) - [effective cross section](http://www.sfu.ca/~gchapman/e376/e376l7.pdf) per unit mass. Other coefficients have the same linear relation with density. Alternatively, one can also a use [number density](https://en.wikipedia.org/wiki/Number_density) instead of mass density.
 
 But what about the IOR? Often, we assume that it is independent of density. But, if you consider water and steam (which has a lower concentration of water molecules), our experience tells us that their refractive properties are not the same.
 
@@ -137,20 +139,20 @@ $$
 
 where sample locations \\(\bm{u}\_i\\) at the distance \\(u_i\\) along the ray are distributed according to the [PDF](https://en.wikipedia.org/wiki/Probability_density_function) \\(p\\).
 
-We can [importance sample](http://www.pbr-book.org/3ed-2018/Monte_Carlo_Integration/Importance_Sampling.html) the integrand (distribute samples according to the PDF) in several ways. Ideally, we would like to make the PDF proportional to the [product](https://cgg.mff.cuni.cz/~jaroslav/papers/2014-zerovar/) of all terms of the integrand. However, unless we use [path guiding](https://cgg.mff.cuni.cz/~jirka/path-guiding-in-production/2019/index.htm), that is typically not possible. We will focus on the technique called [free path sampling](https://cs.dartmouth.edu/~wjarosz/publications/novak18monte.html) that makes the PDF proportional to the transmittance-attenuation product \\(T \mu\_t\\) (effectively, by assuming that the rest of the integrand varies slowly; in practice, this may or may not be the case - for example, for regions near light sources, [equiangular sampling](http://library.imageworks.com/pdfs/imageworks-library-importance-sampling-of-area-lights-in-participating-media.pdf) can give vastly superior results).
+We can [importance sample](http://www.pbr-book.org/3ed-2018/Monte_Carlo_Integration/Importance_Sampling.html) the integrand (distribute samples according to the PDF) in several ways. Ideally, we would like to make the PDF proportional to the [product](https://cgg.mff.cuni.cz/~jaroslav/papers/2014-zerovar/) of all terms of the integrand. However, unless we use [path guiding](https://cgg.mff.cuni.cz/~jirka/path-guiding-in-production/2019/index.htm), that is typically not possible. We will focus on the technique called [free path sampling](https://cs.dartmouth.edu/~wjarosz/publications/novak18monte.html) that makes the PDF proportional to the extinction-transmittance product \\(T \mu\_t\\) (effectively, by assuming that the rest of the integrand varies slowly; in practice, this may or may not be the case - for example, for regions near light sources, [equiangular sampling](http://library.imageworks.com/pdfs/imageworks-library-importance-sampling-of-area-lights-in-participating-media.pdf) can give vastly superior results).
 
-In order to turn the attenuation-transmittance product into a PDF, it must be normalized over the domain of integration, \\(\bm{x}\\) to \\(\bm{y}\\). We must compute the normalization factor
+In order to turn the extinction-transmittance product into a PDF, it must be normalized over the domain of integration, \\(\bm{x}\\) to \\(\bm{y}\\). We must compute the normalization factor
 
 $$ \tag{16}
       \int\_{\bm{x}}^{\bm{y}} T(\bm{x}, \bm{u}) \mu\_t(\bm{u}) du
     = \int\_{\bm{x}}^{\bm{y}} e^{-\tau(\bm{x}, \bm{u})} \mu\_t(\bm{u}) du.
 $$
 
-If we use the [fundamental theorem of calculus](https://en.wikipedia.org/wiki/Fundamental_theorem_of_calculus#First_part) to interpret the attenuation coefficient as a derivative
+If we use the [fundamental theorem of calculus](https://en.wikipedia.org/wiki/Fundamental_theorem_of_calculus#First_part) to interpret the extinction coefficient as a derivative
 
 $$ \tag{17} \mu\_t(\bm{u}) = \frac{\partial \tau}{\partial u}, $$
 
-we can use the one of the [exponential identities](https://en.wikipedia.org/wiki/List_of_integrals_of_exponential_functions#Integrals_involving_only_exponential_functions) to simplify the attenuation-transmittance integral:
+we can use the one of the [exponential identities](https://en.wikipedia.org/wiki/List_of_integrals_of_exponential_functions#Integrals_involving_only_exponential_functions) to simplify the extinction-transmittance integral:
 
 $$ \tag{18}
     \int\_{\bm{x}}^{\bm{y}} e^{-\tau(\bm{x}, \bm{u})} \frac{\partial \tau(\bm{x}, \bm{u})}{\partial u} du
@@ -174,7 +176,7 @@ Substitution of the PDF into Equation 15 radically simplifies the estimator:
 
 $$ \tag{21} L(\bm{x}, \bm{v}) \approx O(\bm{x}, \bm{y}) \frac{1}{N} \sum\_{i=1}^{N} L\_s(\bm{u}\_i, \bm{v}) + T(\bm{x}, \bm{y}) L\_g(\bm{y}, \bm{v}). $$
 
-This equation can be seen as a form of [premultiplied alpha blending](https://graphics.pixar.com/library/Compositing/) (where alpha is opacity), which explains why particle cards can be so convincing. Additionally, it offers yet another way to parametrize the attenuation coefficient - namely, by opacity at distance (which is similar to [transmittance at distance](https://blog.selfshadow.com/publications/s2015-shading-course/burley/s2015_pbs_disney_bsdf_notes.pdf) used by Disney). It is the most RGB rendering friendly parametrization that I am aware of.
+This equation can be seen as a form of [premultiplied alpha blending](https://graphics.pixar.com/library/Compositing/) (where alpha is opacity), which explains why particle cards can be so convincing. Additionally, it offers yet another way to parametrize the extinction coefficient - namely, by opacity at distance (which is similar to [transmittance at distance](https://blog.selfshadow.com/publications/s2015-shading-course/burley/s2015_pbs_disney_bsdf_notes.pdf) used by Disney). It is the most RGB rendering friendly parametrization that I am aware of.
 
 In this context, total opacity along the ray serves as the probability of a collision event within the medium, and can be used to make a random choice of the type of the sample (surface or volume):
 
@@ -198,7 +200,7 @@ $$
 
 ## Types of Analytic Participating Media
 
-If your background is in real-time rendering, you may have heard of [constant, linear and exponential fog](http://www.terathon.com/lengyel/Lengyel-UnifiedFog.pdf). These names refer to the way density varies in space (typically, with respect to the altitude), and can be used to model effects like height fog and atmospheric scattering.
+If your background is in real-time rendering, you may have heard of [constant, linear, and exponential fog](http://www.terathon.com/lengyel/Lengyel-UnifiedFog.pdf). These names refer to the way density varies in space (typically, with respect to the altitude), and can be used to model effects like height fog and atmospheric scattering.
 
 ### Constant Density
 
@@ -230,7 +232,7 @@ The resulting sampling algorithm is very simple:
 3. compute optical depth \\(\tau(\bm{x}, \bm{u})\\) using Equation 24;
 4. compute the distance \\(u\\) using Equation 27.
 
-### Linear Variation of Density with Altitude in Rectangular Coordinates
+### Linear Variation of Density with Altitude (Plane-Parallel Atmosphere)
 
 Without loss of generality, let's assume that density varies with the third coordinate of the position \\(\bm{x}\\), which we interpret as the altitude. This is your typical "linear height fog on flat Earth" case:
 
@@ -253,7 +255,7 @@ $$ \tag{30}
     = \sigma\_t \Big( (a x_3 + b) - \frac{a v\_3}{2} u \Big) u,
 $$
 
-which is the product of the average attenuation coefficient and the length of the interval, as expected.
+which is the product of the average extinction coefficient and the length of the interval, as expected.
 
 The inversion process involves solving the quadratic equation for the distance \\(u\\):
 
@@ -263,7 +265,7 @@ $$
 
 Physically, we are only interested in the smaller root (with the negative sign), since it gives the solution for positive density values. Note that uniform media \\( \big( a v\_3 = 0 \big) \\) require special care.
 
-### Exponential Variation of Density with Altitude in Rectangular Coordinates
+### Exponential Variation of Density with Altitude (Plane-Parallel Atmosphere)
 
 We can replace the linear density function with an exponential:
 
@@ -296,20 +298,20 @@ Sample code is listed below.
 // 'height' is the altitude.
 // 'cosTheta' is the Z component of the ray direction.
 // 'dist' is the distance.
-// seaLvlAtt = (sigma_t * b) is the sea-level (height = 0) attenuation coefficient.
+// seaLvlExt = (sigma_t * b) is the sea-level (height = 0) extinction coefficient.
 // n = (1 / H) is the falloff exponent, where 'H' is the scale height.
 spectrum OptDepthRectExpMedium(float height, float cosTheta, float dist,
-                               spectrum seaLvlAtt, float n)
+                               spectrum seaLvlExt, float n)
 {
     float p = -cosTheta * n;
 
     // Equation 26.
-    spectrum optDepth = seaLvlAtt * dist;
+    spectrum optDepth = seaLvlExt * dist;
 
     if (abs(p) > FLT_EPS) // Uniformity check
     {
         // Equation 34.
-        optDepth = seaLvlAtt * rcp(p) * exp(height * n) * (exp(p * dist) - 1);
+        optDepth = seaLvlExt * rcp(p) * exp(height * n) * (exp(p * dist) - 1);
     }
 
     return optDepth;
@@ -318,15 +320,15 @@ spectrum OptDepthRectExpMedium(float height, float cosTheta, float dist,
 // 'optDepth' is the value of optical depth.
 // 'height' is the altitude.
 // 'cosTheta' is the Z component of the ray direction.
-// seaLvlAttRcp = (1 / seaLvlAtt).
+// seaLvlExtRcp = (1 / seaLvlExt).
 // n = (1 / H) is the falloff exponent, where 'H' is the scale height.
 float SampleRectExpMedium(float optDepth, float height, float cosTheta,
-                          float seaLvlAttRcp, float n)
+                          float seaLvlExtRcp, float n)
 {
     float p = -cosTheta * n;
 
     // Equation 27.
-    float dist = optDepth * seaLvlAttRcp;
+    float dist = optDepth * seaLvlExtRcp;
 
     if (abs(p) > FLT_EPS) // Uniformity check
     {
@@ -338,13 +340,13 @@ float SampleRectExpMedium(float optDepth, float height, float cosTheta,
 }
 ```
 
-### Exponential Variation of Density with Altitude in Spherical Coordinates
+### Exponential Variation of Density with Altitude (Spherical Atmosphere)
 
 This is where things get interesting. We would like to model an exponential density distribution on a sphere:
 
 $$ \tag{36} \rho(\bm{x}) = b e^{-h(\bm{x}) / H} = b e^{-(\vert \bm{x} - \bm{c} \vert - R) / H} = b e^{-n (\vert \bm{x} - \bm{c} \vert - R)}, $$
 
-where \\(\bm{c}\\) is the center of the sphere, \\(R\\) is its radius, \\(h\\) is the altitude, and \\(H\\) is the [scale height](https://en.wikipedia.org/wiki/Scale_height) as before. In this context, \\(b\\) and \\(\sigma\_t b\\) represent the density and the value of the attenuation coefficient at the sea level, respectively. This formula gives the density of an [isothermal atmosphere](http://www.feynmanlectures.caltech.edu/I_40.html), which is not physically plausible.
+where \\(\bm{c}\\) is the center of the sphere, \\(R\\) is its radius, \\(h\\) is the altitude, and \\(H\\) is the [scale height](https://en.wikipedia.org/wiki/Scale_height) as before. In this context, \\(b\\) and \\(\sigma\_t b\\) represent the density and the value of the extinction coefficient at the sea level, respectively. This formula gives the density of an [isothermal atmosphere](http://www.feynmanlectures.caltech.edu/I_40.html), which is not physically plausible.
 
 #### Geometric Configuration of a Spherical Atmosphere
 
@@ -411,7 +413,7 @@ $$ \tag{45} \int\_{h = (r - R)}^{\infty} b e^{-n s} ds = \frac{b}{n} e^{-n h} $$
 
 gives the mass of an infinitely tall vertical column starting at the altitude \\(h\\). At the sea level, its mass is \\(\frac{b}{n} = kH\\).
 
-Optical depth, then, is a *product* of the mass of the vertical column *and* the value of the obliquity function (which, intuitively, gives the absolute optical air mass along the oblique ray) *times* the mass attenuation coefficient.
+Optical depth, then, is a *product* of the mass of the vertical column *and* the value of the obliquity function (which, intuitively, gives the absolute optical air mass along the oblique ray) *times* the mass extinction coefficient.
 
 #### Examining the Chapman Function
 
@@ -519,9 +521,9 @@ We can also represent the relative error as *precision* by plotting the number o
 
 {{< figure src="/img/chapman_approx_dig.png" caption="*Precision plot of the approximation of the Chapman function for r = 6600.*">}}
 
-Of course, we must address the elephant in the room, \\(\mathrm{erfc}\\). Since it is [related](https://www.johndcook.com/erf_and_normal_cdf.pdf) to the [normal distribution](https://en.wikipedia.org/wiki/Normal_distribution), it has numerous applications, and, as a result, dozens of existing approximations. Unfortunately, most of them are not particularly accurate, especially across a huge range of values (as in our case), and accuracy of \\(\mathrm{erfc}\\) greatly affects the quality of our approximation.
+Of course, we must address the elephant in the room, \\(\mathrm{erfc}\\). Since it is [related](https://www.johndcook.com/erf_and_normal_cdf.pdf) to the [normal distribution](https://en.wikipedia.org/wiki/Normal_distribution), it has numerous applications, and, as a result, dozens of existing approximations. Unfortunately, most of them are not particularly accurate, especially across a huge range of values (as in our case), and the accuracy of \\(\mathrm{erfc}\\) greatly affects the quality of our approximation.
 
-After performing an extensive search, I stumbled upon the approximation developed by [Takuya Ooura](http://www.kurims.kyoto-u.ac.jp/~ooura/gamerf.html). He provides an impressive double-precision implementation accurate to 16 decimal digits. A great thing about his approximation is that it includes the \\(\exp(x^2)\\) factor, which means we can replace the entire term of Equation 46 inside the square brackets. In order to obtain a single-precision version of his approximation, I retain his range reduction technique, and reduce the degree of the polynomial (which I fit using [Sollya](http://sollya.gforge.inria.fr/sollya-7.0/help.php?name=fpminimax)). In order to account for fused multiply-adds, I perform a [greedy search](https://stackoverflow.com/questions/26692859/best-machine-optimized-polynomial-minimax-approximation-to-arctangent-on-1-1) for better coefficients (starting with single-precision coefficients found by Sollya) on the target hardware.
+After performing an extensive search, I stumbled upon the approximation developed by [Takuya Ooura](http://www.kurims.kyoto-u.ac.jp/~ooura/gamerf.html). He provides an impressive double-precision implementation accurate to 16 decimal digits. A great thing about his approximation is that it includes the \\(\exp(x^2)\\) factor, which means we can replace the entire term of Equation 46 inside the square brackets. In order to obtain a single-precision version of his approximation, I retain his range reduction technique and reduce the degree of the polynomial (which I fit using [Sollya](http://sollya.gforge.inria.fr/sollya-7.0/help.php?name=fpminimax)). In order to account for fused multiply-adds, I perform a [greedy search](https://stackoverflow.com/questions/26692859/best-machine-optimized-polynomial-minimax-approximation-to-arctangent-on-1-1) for better coefficients (starting with single-precision coefficients found by Sollya) on the target hardware.
 
 The implementation of Takuya Ooura (with my modifications) is reproduced below.
 
@@ -625,18 +627,18 @@ float CosAtDist(float r, float rRcp, float cosTheta, float s)
 // This variant of the function evaluates optical depth along an infinite path.
 // 'r' is the radial distance from the center of the planet.
 // 'cosTheta' is the value of the dot product of the ray direction and the surface normal.
-// seaLvlAtt = (sigma_t * b) is the sea-level (height = 0) attenuation coefficient.
+// seaLvlExt = (sigma_t * b) is the sea-level (height = 0) extinction coefficient.
 // 'R' is the radius of the planet.
 // n = (1 / H) is the falloff exponent, where 'H' is the scale height.
 spectrum OptDepthSpherExpMedium(float r, float cosTheta, float R,
-                                spectrum seaLvlAtt, float H, float n)
+                                spectrum seaLvlExt, float H, float n)
 {
     float z = r * n;
     float Z = R * n;
 
     float ch = RescaledChapman(z, Z, cosTheta);
 
-    return ch * H * seaLvlAtt;
+    return ch * H * seaLvlExt;
 }
 
 // This variant of the function evaluates optical depth along a bounded path.
@@ -644,11 +646,11 @@ spectrum OptDepthSpherExpMedium(float r, float cosTheta, float R,
 // rRcp = (1 / r).
 // 'cosTheta' is the value of the dot product of the ray direction and the surface normal.
 // 'dist' is the distance.
-// seaLvlAtt = (sigma_t * b) is the sea-level (height = 0) attenuation coefficient.
+// seaLvlExt = (sigma_t * b) is the sea-level (height = 0) extinction coefficient.
 // 'R' is the radius of the planet.
 // n = (1 / H) is the falloff exponent, where 'H' is the scale height.
 spectrum OptDepthSpherExpMedium(float r, float rRcp, float cosTheta, float dist, float R,
-                                spectrum seaLvlAtt, float H, float n)
+                                spectrum seaLvlExt, float H, float n)
 {
     float rX        = r;
     float rRcpX     = rRcp;
@@ -657,7 +659,7 @@ spectrum OptDepthSpherExpMedium(float r, float rRcp, float cosTheta, float dist,
     float cosThetaY = CosAtDist(rX, rRcpX, cosThetaX, dist);
 
     // Potentially swap X and Y.
-    // Convention: at the point Y, the ray points up.
+    // Convention: at point Y, the ray points up.
     cosThetaX = (cosThetaY >= 0) ? cosThetaX : -cosThetaX;
 
     float zX  = rX * n;
@@ -670,19 +672,19 @@ spectrum OptDepthSpherExpMedium(float r, float rRcp, float cosTheta, float dist,
     // We may have swapped X and Y.
     float ch = abs(chX - chY);
 
-    return ch * H * seaLvlAtt;
+    return ch * H * seaLvlExt;
 }
 ```
 
 Note that using this function (rather than calling `OptDepthSpherExpMedium` twice and subtracting the results) is beneficial not only for performance but also for correctness: it avoids numerical instability near the horizon where ray directions are prone to alternate between the two hemispheres, which could cause subtraction to result in negative optical depth values. For performance (and numerical stability) reasons, it may be also worth making a special case for when the point \\(\bm{y}\\) is far enough to be considered outside the atmosphere (if `exp(Z - zY) < EPS`, for instance). In that case, `chY = 0` is an adequate approximation.
 
-#### Sampling Exponential Media in Spherical Coordinates
+#### Sampling Exponential Media of a Spherical Atmosphere
 
-One does not simply sample the Chapman function. There doesn't appear to be a way to invert the integral formulation (Equation 40), and attempts at solving numerical approximations for distance seem futile. Of course, we still have the option of looking for a numerical fit for the tabulated inverse, or using a look-up table directly... But we are not going to do that. And here's why.
+One does not simply sample the Chapman function. There doesn't appear to be a way to invert the integral formulation (Equation 40), and attempts at solving numerical approximations for distance seem futile. Of course, we still have the option to look for a numerical fit for the tabulated inverse, or to use a look-up table directly... But we are not going to do that. And here's why.
 
 In order to sample participating media, we must be able to solve the optical depth equation for distance. If you only have a single analytically-defined volume, sampling it is (usually) trivial. However, once you have several heterogeneous overlapping volumes, you start running into issues. While optical depth is additive, the sampled distance is not. So, what do we do?
 
- If we can't solve the equation analytically, we can solve it numerically, using the [Newton–Raphson method](https://en.wikipedia.org/wiki/Newton%27s_method). Recall that this method requires being able to make an initial guess, evaluate the function, and take its derivative. Our function is the total optical depth. We can make an initial guess by assuming that the combined medium is uniform (or, under certain assumptions, rect-exponential). And since we know that the derivative of optical depth is just the attenuation coefficient \\(\mu_t\\) (see Equation 17), so we have all the pieces we need.
+ If we can't solve the equation analytically, we can solve it numerically, using the [Newton–Raphson method](https://en.wikipedia.org/wiki/Newton%27s_method). Recall that this method requires being able to make an initial guess, evaluate the function, and take its derivative. Our function is the total optical depth. We can make an initial guess by assuming that the combined medium is uniform (or, under certain assumptions, plane-parallel-exponential). And since we know that the derivative of optical depth is just the extinction coefficient \\(\mu_t\\) (see Equation 17), so we have all the pieces we need.
 
 This method is very general and works for arbitrary [continuous density distributions](https://mcnp.lanl.gov/pdf_files/la-ur-02-6530.pdf).
 
@@ -697,7 +699,7 @@ Sample code for a dual-component spherical atmosphere is listed below.
 // 'maxOptDepth' is the maximum value along the ray, s.t. (maxOptDepth >= optDepth).
 // 'maxDist' is the maximum distance along the ray.
 float SampleSpherExpMedium(float optDepth, float r, float rRcp, float cosTheta, float R,
-                           float2 seaLvlAtt, float2 H, float2 n, // Air & aerosols
+                           float2 seaLvlExt, float2 H, float2 n, // Air & aerosols
                            float maxOptDepth, float maxDist)
 {
     const float  optDepthRcp = rcp(optDepth);
@@ -720,22 +722,22 @@ float SampleSpherExpMedium(float optDepth, float r, float rRcp, float cosTheta, 
         float cosAtDist = CosAtDist(r, rRcp, cosTheta, t);
         // Evaluate the function and its derivatives:
         // f  [t] = OptDepthAtDist[t] - GivenOptDepth = 0,
-        // f' [t] = AttCoefAtDist[t],
-        // f''[t] = AttCoefAtDist'[t] = -AttCoefAtDist[t] * CosAtDist[t] / H.
-        float optDepthAtDist = 0, attAtDist = 0, attAtDistDeriv = 0;
+        // f' [t] = ExtCoefAtDist[t],
+        // f''[t] = ExtCoefAtDist'[t] = -ExtCoefAtDist[t] * CosAtDist[t] / H.
+        float optDepthAtDist = 0, extAtDist = 0, extAtDistDeriv = 0;
         optDepthAtDist += OptDepthSpherExpMedium(r, rRcp, cosTheta, t, R,
-                                                 seaLvlAtt.x, H.x, n.x);
+                                                 seaLvlExt.x, H.x, n.x);
         optDepthAtDist += OptDepthSpherExpMedium(r, rRcp, cosTheta, t, R,
-                                                 seaLvlAtt.y, H.y, n.y);
-        attAtDist      += seaLvlAtt.x * exp(Z.x - radAtDist * n.x);
-        attAtDist      += seaLvlAtt.y * exp(Z.y - radAtDist * n.y);
-        attAtDistDeriv -= seaLvlAtt.x * exp(Z.x - radAtDist * n.x) * n.x;
-        attAtDistDeriv -= seaLvlAtt.y * exp(Z.y - radAtDist * n.y) * n.y;
-        attAtDistDeriv *= cosAtDist;
+                                                 seaLvlExt.y, H.y, n.y);
+        extAtDist      += seaLvlExt.x * exp(Z.x - radAtDist * n.x);
+        extAtDist      += seaLvlExt.y * exp(Z.y - radAtDist * n.y);
+        extAtDistDeriv -= seaLvlExt.x * exp(Z.x - radAtDist * n.x) * n.x;
+        extAtDistDeriv -= seaLvlExt.y * exp(Z.y - radAtDist * n.y) * n.y;
+        extAtDistDeriv *= cosAtDist;
 
         float   f = optDepthAtDist - optDepth;
-        float  df = attAtDist;
-        float ddf = attAtDistDeriv;
+        float  df = extAtDist;
+        float ddf = extAtDistDeriv;
         float  dg = df - 0.5 * f * (ddf * rcp(df));
 
         assert(df > 0 && dg > 0);
@@ -761,7 +763,7 @@ float SampleSpherExpMedium(float optDepth, float r, float rRcp, float cosTheta, 
 
         if (!isInRange)
         {
-            // The Newton's algorithm has effectively run out of digits of precision.
+            // Newton's algorithm has effectively run out of digits of precision.
             // While it's possible to continue improving precision (to a certain degree)
             // via bisection, it is costly, and the convergence rate is low.
             // It's better to recall that, for short distances, optical depth is a
@@ -808,11 +810,11 @@ I would like to thank Julian Fong and Sébastien Hillaire for their thoughtful c
 
 ## Handling Spectral Coefficients
 
-While using monochromatic attenuation is acceptable for certain use cases (such as modeling aerosols and fog), generally speaking, we would like to support spectrally-varying coefficients. This means that given a fixed distance, light is going to be attenuated to a different degree depending on the wavelength. This poses a problem for importance sampling, which would have to convert opacity (now a vector) into distance (a scalar).
+While using monochromatic extinction is acceptable for certain use cases (such as modeling aerosols and fog), generally speaking, we would like to support spectrally-varying coefficients. This means that given a fixed distance, light is going to be attenuated to a different degree depending on the wavelength. This poses a problem for importance sampling, which would have to convert opacity (now a vector) into distance (a scalar).
 
 The simplest solution is to trace one path per wavelength. For instance, we could either densely sample the entire [visible spectrum](https://en.wikipedia.org/wiki/Visible_spectrum) (e.g. 380 to 780 nm with a 10 nm step size resulting in 40 paths), or pick several wavelengths stochastically (distributed either uniformly, or according to the [luminous efficiency function](https://en.wikipedia.org/wiki/Luminosity_function), or opacity spectrum, or the product of both). This brute force approach increases the rendering cost by a factor of \\(n\\) (where \\(n\\) denotes the number of wavelength samples), but it provides a good reference point for comparison.
 
-Another approach suggested during the [Production Volume Rendering](https://graphics.pixar.com/library/ProductionVolumeRendering/paper.pdf) course is to always construct paths using the average attenuation coefficient across the visible spectrum. This solution is rather attractive from the performance point of view, since you only end up tracing a single path. The downside is that it assumes that the resulting radiance distribution is close to monochromatic. This may not be the case for subsurface scattering in skin, for instance, in which case red wavelengths scatter much farther than the rest (and the spectral distribution is rather compact), and using this technique may result in an excessive amount of color noise. On the other hand, using the maximum value of the attenuation coefficient across the spectrum assumes that the distribution is symmetric around the peak, which may not be the case. Intuitively, using some kind of weighted average wavelength probably makes the most sense.
+Another approach suggested during the [Production Volume Rendering](https://graphics.pixar.com/library/ProductionVolumeRendering/paper.pdf) course is to always construct paths using the average extinction coefficient across the visible spectrum. This solution is rather attractive from the performance point of view, since you only end up tracing a single path. The downside is that it assumes that the resulting radiance distribution is close to monochromatic. This may not be the case for subsurface scattering in skin, for instance, in which case red wavelengths scatter much farther than the rest (and the spectral distribution is rather compact), and using this technique may result in an excessive amount of color noise. On the other hand, using the maximum value of the extinction coefficient across the spectrum assumes that the distribution is symmetric around the peak, which may not be the case. Intuitively, using some kind of weighted average wavelength probably makes the most sense.
 
 {{< figure src="/img/skew.png">}}
 
@@ -966,7 +968,7 @@ The framework introduces two new types of collision coefficients: the null coeff
 
 $$ \tag{68} \bm{\mu_a} + \bm{\mu_s} + \bm{\mu_n} = \bm{\bar{\mu}}. $$
 
-Note that while \\(\bm{\mu_n}\\) does not have to be positive, it is usually a [good idea](https://hal.archives-ouvertes.fr/hal-01688110/) in order to keep variance low. For our use case, we compute \\(\bar{\mu}\\) by taking the [maximum of the absolute value](http://mathworld.wolfram.com/L-Infinity-Norm.html) of the attenuation coefficient across the spectral domain:
+Note that while \\(\bm{\mu_n}\\) does not have to be positive, it is usually a [good idea](https://hal.archives-ouvertes.fr/hal-01688110/) in order to keep variance low. For our use case, we compute \\(\bar{\mu}\\) by taking the [maximum of the absolute value](http://mathworld.wolfram.com/L-Infinity-Norm.html) of the extinction coefficient across the spectral domain:
 
 $$ \tag{69} \bar{\mu} = ||\mu_t(\lambda)||\_{\infty}. $$
 
@@ -978,7 +980,7 @@ $$ \tag{70} \bm{L}(\bm{x}, \bm{v})
     = \int\_{0}^{t\_{max}} \bar{\mu}(\bm{x}, \bm{v}, s) \bar{T}(\bm{x}, \bm{v}, s) \bm{L_i}(\bm{x} + s \bm{v}, \bm{v}) ds,
 $$
 
-where \\(\bar{T}\\) is transmittance evaluated using the majorant (rather than attenuation) coefficient. Note that the majorant coefficient doesn't actually have to be a constant - it can be any analytic function (e.g. varying with height) serving as the upper bound for the attenuation coefficient.
+where \\(\bar{T}\\) is transmittance evaluated using the majorant (rather than extinction) coefficient. Note that the majorant coefficient doesn't actually have to be a constant - it can be any analytic function (e.g. varying with height) serving as the upper bound for the extinction coefficient.
 
 The incoming radiance term \\(\bm{L_i}\\) is defined as
 

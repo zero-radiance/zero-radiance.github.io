@@ -13,7 +13,7 @@ We have previously discussed the [radiative transfer equation](/post/analytic-me
 
 To give an example, consider the following problem of atmospheric radiative transfer. We wish to simulate a clear blue sky created by Earth's atmosphere. What should our coefficients be set to?
 
-"The sky is blue, so the RGB color coefficient must be blue as well", you may say. While the answer is not completely wrong, unfortunately, it leaves the problem underspecified. For one, we have not one, but several collision coefficients - absorption, scattering and attenuation (or extinction). Secondly, we can represent them (as a set) in several different ways. We may decide to use an "artist-friendly" parametrization, such as the combination of the single-scattering albedo and the mean free path. Unfortunately, using a blue albedo and an (arbitrarily) large mean free path will not produce the expected result, particularly at sunset.
+"The sky is blue, so the RGB color coefficient must be blue as well", you may say. While the answer is not completely wrong, unfortunately, it leaves the problem underspecified. For one, we have not one, but several collision coefficients - absorption, scattering and extinction. Secondly, we can represent them (as a set) in several different ways. We may decide to use an "artist-friendly" parametrization, such as the combination of the single-scattering albedo and the mean free path. Unfortunately, using a blue albedo and an (arbitrarily) large mean free path will not produce the expected result, particularly at sunset.
 
 While we may spend more time and energy trying various different combinations of parameters to determine what works and what doesn't, there is another way. A more fun way. The scientific way.
 
@@ -82,7 +82,7 @@ When examining Equations 5 and 6, the first thing to notice is that \\(\omega z 
 
 ## Transverse Waves
 
-While scalar waves are characterized by the amplitude and the direction of propagation (in space and time), [transverse](http://hyperphysics.phy-astr.gsu.edu/hbase/Sound/tralon.html) waves have an orientation[^2] as well \[[9](#references)\].
+While scalar waves are characterized by the amplitude and the direction of propagation, [transverse](http://hyperphysics.phy-astr.gsu.edu/hbase/Sound/tralon.html) waves have an orientation[^2] as well \[[9](#references)\].
 
 [^2]: The "disturbance" is vector tangent to the surface of constant phase.
 
@@ -112,7 +112,7 @@ The idea behind [polarization of light](http://hyperphysics.phy-astr.gsu.edu/hba
 
 ## Acknowledgments
 
-Wenzel Jakob
+Pharr, Jakob
 
 ## References
 
