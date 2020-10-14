@@ -19,7 +19,11 @@ Imagine a small particle of an arbitrary shape embedded in the host medium with 
 
 {{< figure src="/img/linear_plane_wave.png" caption="*Linearly-polarized plane electromagnetic wave. [Image source](https://openstax.org/books/university-physics-volume-2/pages/16-4-momentum-and-radiation-pressure).*">}}
 
-Consider an [electromagnetic wave](https://www.cpp.edu/~alrudolph/classes/phy234/Reading/Summary%20of%20Waves.pdf) represented by the electric field \\(\bm{E}\\) and the magnetic field \\(\bm{B}\\) of a certain frequency and in a certain state of polarization. The direction of propagation and the amount of power per unit area carried by the wave at the time \\(t\\) is given by the [instanteneous Poynting vector](https://en.wikipedia.org/wiki/Poynting_vector#Formulation_in_terms_of_microscopic_fields) \\(\bm{S}\\)
+Consider an [electromagnetic wave](https://www.cpp.edu/~alrudolph/classes/phy234/Reading/Summary%20of%20Waves.pdf) represented[^1] by the electric vector \\(\bm{E}\\) and the magnetic flux density \\(\bm{B}\\) of a certain frequency and in a certain state of polarization[^2]. The direction of propagation and the amount of power per unit area carried by the wave at the time \\(t\\) is given by the [instanteneous Poynting vector](https://en.wikipedia.org/wiki/Poynting_vector#Formulation_in_terms_of_microscopic_fields) \\(\bm{S}\\)
+
+[^1]: [Maxwell's equations](http://www.maxwells-equations.com/) are defined using 5 [vector fields](https://en.wikipedia.org/wiki/Vector_field): \\(\bm{E}\\) is the *electric vector*, \\(\bm{H}\\) is the *magnetic vector*, \\(\bm{j}\\) is the *electric current density*, \\(\bm{D}\\) is the *electric flux density* (a.k.a. the *electric displacement*), and \\(\bm{B}\\) is the *magnetic flux density* (a.k.a. the *magnetic induction*). \\(\bm{E}\\) and \\(\bm{B}\\) are considered the fundamental fields, and \\(\bm{j}, \bm{D}, \bm{H}\\) arise due to the influence of matter. For more details, see: 1) ch. 1.1. of Born, M., & Wolf, E. [Principles of optics](https://doi.org/10.1017/CBO9781139644181), 7th edition (1999); 2) vol. II, ch 32.2 of Feynman, R. P., Leighton, R. B., & Sands, M. [The Feynman lectures on physics](https://www.feynmanlectures.caltech.edu/) (1963); 3) Hill, W. T. [E, D, B & H: What do they all mean?](http://www.physics.umd.edu/courses/Phys263/wth/fall04/downloads/EDBH/edbh.pdf) (2004).
+
+[^2]: \\(\bm{E}\\) and \\(\bm{B}\\) are mutually orthogonal.
 
 $$ \tag{1} \bm{S}(t) = \varepsilon\_0 c^2 \Big( \bm{E}(t) \times \bm{B}(t) \Big), $$
 
@@ -29,7 +33,7 @@ Since light waves oscillate very rapidly, we are typically interested in the [ti
 
 $$ \tag{2} \langle \bm{S} \rangle = \frac{1}{T} \int\_{0}^{T} \bm{S}(t) dt, $$
 
-which can be used to define the [spectral irradiance](https://en.wikipedia.org/wiki/Irradiance#Spectral_irradiance) \\(E\\) (do not confuse it with the electric field vector \\(\bm{E}\\))
+which can be used to define the [spectral irradiance](https://en.wikipedia.org/wiki/Irradiance#Spectral_irradiance) \\(E\\) (do not confuse it with the electric vector \\(\bm{E}\\))
 
 $$ \tag{3} E = \vert \langle \bm{S} \rangle \vert. $$
 
@@ -37,7 +41,7 @@ For a [plane wave](https://en.wikipedia.org/wiki/Plane_wave), the expression is 
 
 $$ \tag{4} E = \frac{1}{2} \varepsilon\_0 c \eta \vert \mathcal{E} \vert^2, $$
 
-where \\(\mathcal{E}\\) is the [complex amplitude](https://en.wikipedia.org/wiki/Phasor) of the electric field vector (which encodes both the magnitude and the [phase](https://en.wikipedia.org/wiki/Phase_(waves))).
+where \\(\mathcal{E}\\) is the [complex amplitude](https://en.wikipedia.org/wiki/Phasor) of the electric vector (which encodes both the magnitude and the [phase](https://en.wikipedia.org/wiki/Phase_(waves))).
 
 The interaction of light with an individual particle is quantified by the [differential scattering cross section](http://glossary.ametsoc.org/wiki/Differential_(scattering)_cross_section) \\(\sigma\_s'\\). It is defined as the ratio of the scattered [spectral intensity](https://en.wikipedia.org/wiki/Radiant_intensity#Spectral_intensity) \\(I\_s\\) for the given direction \\(\bm{\omega\_s}\\) to the incident spectral irradiance \\(E\_i\\) normal with respect to \\(\bm{\omega\_i}\\):
 

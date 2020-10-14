@@ -16,7 +16,7 @@ In the [radiative transfer](https://doi.org/10.1002/qj.49707633016) literature, 
 
 The [extinction coefficient](https://en.wikipedia.org/wiki/Attenuation_coefficient)[^1] \\(\mu\_t\\)
 
-[^1]: According to [Wikipedia](https://en.wikipedia.org/wiki/Attenuation_coefficient), this is an old term, and we should refer to it as *attenuation coefficient* instead. While it's certainly a better name, in practice, all classical publications call it extinction. We use the classical naming convention to avoid confusion.
+[^1]: According to [Wikipedia](https://en.wikipedia.org/wiki/Attenuation_coefficient), this is an old term, and we should refer to it as the *attenuation coefficient* instead. While it's certainly a better name, in practice, all classical publications call it extinction. We use the classical naming convention to avoid confusion.
 
 $$ \tag{1} \mu\_t = \mu\_a + \mu\_s $$
 
