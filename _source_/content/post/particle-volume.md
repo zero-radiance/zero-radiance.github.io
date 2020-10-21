@@ -27,9 +27,9 @@ Consider an [electromagnetic wave](https://www.cpp.edu/~alrudolph/classes/phy234
 
 [^3]: While confirmed experimentally, this definition is, mathematically, somewhat arbitrary. For a discussion and further references, refer to p. 10 of Born, M., & Wolf, E. [Principles of optics](https://doi.org/10.1017/CBO9781139644181), 7th edition (1999).
 
-$$ \tag{1} \bm{S}(t) = \varepsilon\_0 c^2 \Big( \bm{E}(t) \times \bm{B}(t) \Big), $$
+$$ \tag{1} \bm{S}(t) = \frac{1}{\mathrm{Re} \lbrace \mu \rbrace} \Big( \bm{E}(t) \times \bm{B}(t) \Big), $$
 
-where \\(\varepsilon\_0\\) is the [vacuum permittivity](https://en.wikipedia.org/wiki/Permittivity) and \\(c\\) is the speed of light.
+where \\(\mu\\) is the complex [magnetic permeability](https://en.wikipedia.org/wiki/Permeability_(electromagnetism)) of the medium.
 
 Since light waves oscillate very rapidly, we are typically interested in the [time-averaged Poynting vector](https://en.wikipedia.org/wiki/Poynting_vector#Time-averaged_Poynting_vector) \\(\langle \bm{S} \rangle\\)
 
@@ -39,11 +39,11 @@ which can be used to define the [spectral irradiance](https://en.wikipedia.org/w
 
 $$ \tag{3} E = \vert \langle \bm{S} \rangle \vert. $$
 
-For a [plane wave](https://en.wikipedia.org/wiki/Plane_wave), the expression is particularly [simple](https://en.wikipedia.org/wiki/Irradiance#Property):
+For a [plane wave](https://en.wikipedia.org/wiki/Plane_wave) in a non-absorbing medium, the expression is particularly [simple](https://en.wikipedia.org/wiki/Irradiance#Property):
 
-$$ \tag{4} E = \frac{1}{2} \varepsilon\_0 c \eta \vert \mathcal{E} \vert^2, $$
+$$ \tag{4} E = \frac{1}{2 \mu} \frac{\eta}{c} E\_m^2, $$
 
-where \\(\mathcal{E}\\) is the [complex amplitude](https://en.wikipedia.org/wiki/Phasor) of the electric vector (which encodes both the magnitude and the [phase](https://en.wikipedia.org/wiki/Phase_(waves))).
+where \\(E\_m\\) is the maximum amplitude of the electric vector.
 
 The interaction of light with an individual particle is quantified by the [differential scattering cross section](http://glossary.ametsoc.org/wiki/Differential_(scattering)_cross_section) \\(\sigma\_s'\\). It is defined as the ratio of the scattered [spectral intensity](https://en.wikipedia.org/wiki/Radiant_intensity#Spectral_intensity) \\(I\_s\\) for the given direction \\(\bm{\omega\_s}\\) to the incident spectral irradiance \\(E\_i\\) normal with respect to \\(\bm{\omega\_i}\\):
 

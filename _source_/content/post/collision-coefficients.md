@@ -42,25 +42,24 @@ Consider an infinitesimal (punctual) isotropic source of "disturbance". It gener
 
 In the case of *plane waves*, surfaces of constant phase are planes rather than spheres. Plane waves can be generated in a multitude of ways; one mathematical trick is to imagine a source at a large distance. Then the curvature of the wavefront approaches 0, and, for a small solid angle, we may consider a section of the wavefront to be planar.
 
-By *harmonic*, we mean that the amplitude of the wave is a [harmonic function](https://en.wikipedia.org/wiki/Harmonic_function) of time. For a scalar wave traveling along the \\(z\\)-axis, the *real amplitude* of the "disturbance" at the time \\(t\\) can be mathematically described [^1] as
+By *time-harmonic*, we mean that the amplitude of the wave is a [harmonic function](https://en.wikipedia.org/wiki/Harmonic_function) of time. For a scalar wave traveling along the \\(z\\)-axis, the *real amplitude* of the "disturbance" at the time \\(t\\) can be mathematically described [^1] as
 
 [^1]: We use the "classic" sign convention of the authors cited.
 
-$$ \tag{1} a(z,t) = a\_0 \cos(\delta - k z + \omega t), $$
+$$ \tag{1} a(z,t) = a\_m \cos(\delta - k z + \omega t), $$
+where \\(a\_m\\) is the *maximum amplitude*[^4], \\(\delta\\) is the *phase shift*, \\(k\\) is the *complex wavenumber*, and \\(\omega\\) is the *angular frequency*.
 
-where \\(a\_0\\) is the *maximum amplitude*[^4], \\(\delta\\) is the *phase shift*, \\(k\\) is the *complex wavenumber*, and \\(\omega\\) is the *angular frequency*.
-
-[^4]: For a plane wave, \\(a\_0 = \mathrm{const}\\); for a spherical wave, replace \\(z\\) with \\(r\\), so that \\(a\_0(r) = \mathrm{const}/r\\).
+[^4]: For a plane wave, \\(a\_m = \mathrm{const}\\); for a spherical wave, replace \\(z\\) with \\(r\\), so that \\(a\_m(r) = \mathrm{const}/r\\).
 
 {{< figure src="/img/wave_diagram.png" caption="*Wave diagram. [Image source](https://tsunamiphysics.webnode.com/waves-review/).*">}}
 
 Mathematically, it is convenient to describe a wave using the *complex amplitude*
 
-$$ \tag{2} u(z,t) = a\_0 e^{i \theta} = a\_0 e^{i (\delta - k z + \omega t)} = a\_0 e^{i \phi} e^{i \omega t}. $$
+$$ \tag{2} u(z,t) = a\_m e^{i \theta} = a\_m e^{i (\delta - k z + \omega t)} = a\_m e^{i \phi} e^{i \omega t}. $$
 
 Surfaces of \\(\phi = \mathrm{const}\\) are called *cophasal*, or *wavefronts*.
 
-If the ambient medium has a [complex index of refraction](https://en.wikipedia.org/wiki/Refractive_index#Complex_refractive_index) \\(\eta - i \kappa\\), the [complex wavenumber](https://en.wikipedia.org/wiki/Wavenumber#Complex) is[^2]
+If the ambient medium has a [complex index of refraction (IOR)](https://en.wikipedia.org/wiki/Refractive_index#Complex_refractive_index) \\(\eta - i \kappa\\), the [complex wavenumber](https://en.wikipedia.org/wiki/Wavenumber#Complex) is[^2]
 
 [^2]: The IOR (and, therefore, the complex wavenumber) is a function of position, time and frequency. Variation with frequency causes *dispersion*.
 
@@ -70,21 +69,25 @@ $$ \tag{3} k = k\_0 (\eta - i \kappa)
 
 where \\(k\_0\\) and \\(\lambda\_0\\) are the real *wavenumber and wavelength in vacuum*, respectively, and \\(c\\) is the *speed of light*.
 
+The complex IOR itself can be expressed in terms of the complex [dielectric constant](https://en.wikipedia.org/wiki/Relative_permittivity) (a.k.a. the *relative permittivity*) \\(\epsilon\\) and the complex [magnetic permeability](https://en.wikipedia.org/wiki/Permeability_(electromagnetism)) \\(\mu\\) of the medium:
+
+$$ \tag{4} \eta - i \kappa = \sqrt{\epsilon \mu}. $$
+
 Substitution transforms Equation 2 into a more explicit form
 
-$$ \tag{4} u(z,t) = a\_0 e^{i (\delta - (\omega / c) (\eta - i \kappa) z + \omega t)}
-			      = a\_0 e^{-\kappa (\omega z / c)} e^{i (\delta - \eta (\omega z / c) + \omega t)}. $$
+$$ \tag{5} u(z,t) = a\_m e^{i (\delta - (\omega / c) (\eta - i \kappa) z + \omega t)}
+			      = a\_m e^{-\kappa (\omega z / c)} e^{i (\delta - \eta (\omega z / c) + \omega t)}. $$
 
 We can take the argument to extract the *phase angle*
 
-$$ \tag{5} \theta(z,t) = \mathrm{Arg} \big\lbrace u(z,t) \big\rbrace = \delta - \eta (\omega z / c) + \omega t = \phi + \omega t, $$
+$$ \tag{6} \theta(z,t) = \mathrm{Arg} \big\lbrace u(z,t) \big\rbrace = \delta - \eta (\omega z / c) + \omega t = \phi + \omega t, $$
 
 and taking the real part allows us to recover the real amplitude
 
-$$ \tag{6} a(z,t) = \mathrm{Re} \big\lbrace u(z,t) \big\rbrace
-			      = a\_0 e^{-\kappa (\omega z / c)} \cos{\theta(z,t)} . $$
+$$ \tag{7} a(z,t) = \mathrm{Re} \big\lbrace u(z,t) \big\rbrace
+			      = a\_m e^{-\kappa (\omega z / c)} \cos{\theta(z,t)} . $$
 
-When examining Equations 5 and 6, the first thing to notice is that \\(\omega z / c\\) and \\(\omega t\\) are both measured in radians. With that in mind, the role of the complex index of refraction (IOR) becomes apparent. The real part of the IOR, \\(\eta\\), reduces the [phase velocity](https://www.feynmanlectures.caltech.edu/I_48.html) of the wave from \\(c\\) to \\(c / \eta\\) \[[5](#references) (vol. I, ch. 48), [6](#references) (ch. 1.3.3)\]. The imaginary part of the IOR, \\(\kappa\\), causes [exponential attenuation](https://www.feynmanlectures.caltech.edu/I_31.html) with distance \[[5](#references) (vol. I, ch. 31), [6](#references) (???)\].
+When examining Equations 5 and 6, the first thing to notice is that \\(\omega z / c\\) and \\(\omega t\\) are both measured in radians. With that in mind, the role of the complex IOR becomes apparent. The real part of the IOR, \\(\eta\\), reduces the [phase velocity](https://www.feynmanlectures.caltech.edu/I_48.html) of the wave from \\(c\\) to \\(c / \eta\\) \[[5](#references) (vol. I, ch. 48), [6](#references) (ch. 1.3.3)\]. The imaginary part of the IOR, \\(\kappa\\), causes [exponential absorption](https://www.feynmanlectures.caltech.edu/I_31.html) with distance \[[5](#references) (vol. I, ch. 31), [6](#references) (???)\].
 
 ## Transverse Waves
 
@@ -96,19 +99,41 @@ In the case of the electric vector[^5] \\(\bm{E}\\), it just means the harmonic 
 
 [^5]: The magnetic flux density \\(\bm{B}\\) is orthogonal to \\(\bm{E}\\) and the direction of propagation of the wave. Typically, we can find the amplitude of \\(\bm{B}\\) from the amplitude of \\(\bm{E}\\), which means we only need to concern ourselves with propagation of \\(\bm{E}\\).
 
-$$ \tag{7} \bm{E}(z,t) =
+$$ \tag{8} \bm{E}(z,t) =
 	\begin{bmatrix}
     	E\_x(z,t) \cr
     	E\_y(z,t)
-	\end{bmatrix} = E\_0
+	\end{bmatrix} =
 	\begin{bmatrix}
-    	e^{-\kappa\_x (\omega z / c)} \cos(i (\delta\_x - \eta\_x (\omega z / c) + \omega t)) \cr
-    	e^{-\kappa\_y (\omega z / c)} \cos(i (\delta\_y - \eta\_y (\omega z / c) + \omega t))
+    	E\_{m,x} e^{-\kappa\_x (\omega z / c)} \cos(\delta\_x - \eta\_x (\omega z / c) + \omega t) \cr
+    	E\_{m,y} e^{-\kappa\_y (\omega z / c)} \cos(\delta\_y - \eta\_y (\omega z / c) + \omega t)
 	\end{bmatrix}. $$
 
 {{< figure src="/img/electric_vector.png" caption="*Electric vector \[[7](#references) (p. 6)\].*">}}
 
-The frequency and the maximum amplitude are the same for both components, but this is where similarities end. Certain materials (with a [crystal lattice](https://www.feynmanlectures.caltech.edu/II_30.html) \[[5](#references) (vol. II, ch. 30)\]) have a complex IOR that depends on the orientation of the crystal with respect to the incident light. Additionally, the vector components may oscillate out of phase, which is mathematically modeled by independent phase shifts.
+The frequency is the same for both components, but this is where similarities end. Certain materials (with a [crystal lattice](https://www.feynmanlectures.caltech.edu/II_30.html) \[[5](#references) (vol. II, ch. 30)\]) are *anisotropic* and have a complex IOR that depends on the orientation of the crystal with respect to the incident light. Additionally, the vector components may oscillate out of phase, which is mathematically modeled by independent phase shifts.
+
+What about the magnetic vector? From Maxwell's equations, we know that the magnetic flux density \\(\bm{B}\\) is orthogonal to both \\(\bm{E}\\) and the direction of propagation of the wave. This can be accomplished by rotating (adding a -90 degree phase shift to) both components of the wave. In other words,
+
+$$ \tag{9} \bm{B}(z,t) =
+	\begin{bmatrix}
+    	B\_x(z,t) \cr
+    	B\_y(z,t)
+	\end{bmatrix} =
+	\begin{bmatrix}
+    	B\_{m,x} e^{-\kappa\_x (\omega z / c)} \sin(\delta\_x - \eta\_x (\omega z / c) + \omega t) \cr
+    	B\_{m,y} e^{-\kappa\_y (\omega z / c)} \sin(\delta\_y - \eta\_y (\omega z / c) + \omega t)
+	\end{bmatrix}. $$
+
+The only new quantity introduced by Equation 9 is the maximum magnitude of \\(\bm{B}\\). Turns out, for time-harmonic plane waves propagating in a linear medium (without currents), the following [relation](https://www.cpp.edu/~alrudolph/classes/phy234/Reading/Summary%20of%20Waves.pdf) holds:
+
+$$ \tag{10}
+	B\_m = \mathrm{Re} \lbrace \mu \rbrace H_m
+		 = \frac{\mathrm{Re} \lbrace \sqrt{ \epsilon \mu } \rbrace }{c} E_m
+		 = \frac{\eta}{c} E\_m.
+$$
+
+... equation of an ellipse ...
 
 The vector nature of light waves (in mathematics) is referred to as the polarization of light (in physics).
 
