@@ -32,7 +32,7 @@ $$ \tag{3} d = \frac{1}{\mu\_t}, $$
 
 which corresponds to the average collision-free (or free-flight) distance.
 
-It's worth noting that the absorption coefficient is directly related to the [absorption index](http://www.sfu.ca/~gchapman/e376/e376l7.pdf) \\(\kappa\\), which is the imaginary part of the [complex index of refraction](https://en.wikipedia.org/wiki/Refractive_index#Complex_refractive_index) \\(\eta - i \kappa\\):
+It's worth noting that the absorption coefficient is directly related to the [absorption index](http://www.sfu.ca/~gchapman/e376/e376l7.pdf) \\(\kappa\\), which is the imaginary part of the [complex refractive index](https://en.wikipedia.org/wiki/Refractive_index#Complex_refractive_index) (IOR) \\(\eta - i \kappa\\):
 
 $$ \tag{4} \kappa = \frac{\lambda}{4 \pi} \mu\_a. $$
 
@@ -52,15 +52,15 @@ But what about the IOR? Often, we assume that it is independent of density. But,
 
 There are several known relations between density and the IOR. One of them is given by the [Lorentz–Lorenz equation](https://en.wikipedia.org/wiki/Clausius%E2%80%93Mossotti_relation):
 
-$$ \tag{6} \frac{\eta^2 - 1}{\eta^2 + 2} = \frac{1}{3} \frac{\rho}{m} \frac{\alpha\_m}{\varepsilon_0}, $$
+$$ \tag{6} \frac{\eta^2 - 1}{\eta^2 + 2} = \frac{1}{3} \frac{\rho}{m} \frac{\alpha\_m}{\varepsilon\_0}, $$
 
-where \\(m\\) is the [molecular mass](https://en.wikipedia.org/wiki/Molecular_mass) (in \\(kg\\)), \\(\varepsilon_0\\) is the [vacuum permittivity](https://en.wikipedia.org/wiki/Permittivity#Vacuum_permittivity), and \\(\alpha\_m\\) is the [mean molecular polarizability](https://en.wikipedia.org/wiki/Electric_susceptibility#Molecular_polarizability) (SI units of \\(C m^{2}/V\\), watch out for different [conventions](https://en.wikipedia.org/wiki/Electric_susceptibility#Ambiguity_in_the_definition)). Since it is related to the complex IOR, polarizability is also complex. Incidentally, this equation presents a way to compute the IOR of a mixture of several substances. The corresponding [Lorentz–Lorenz mixture rule](https://www.sciencedirect.com/science/article/pii/S0021850208001183) is based on four principles of additivity (namely, of mole, mass, volume, and molecular polarizability, with the last two assumption being rather context-dependent).
+where \\(m\\) is the [molecular mass](https://en.wikipedia.org/wiki/Molecular_mass) (in \\(kg\\)), \\(\varepsilon\_0\\) is the [vacuum permittivity](https://en.wikipedia.org/wiki/Vacuum_permittivity), and \\(\alpha\_m\\) is the [mean molecular polarizability](https://en.wikipedia.org/wiki/Electric_susceptibility#Molecular_polarizability) (SI units of \\(C m^{2}/V\\), watch out for different [conventions](https://en.wikipedia.org/wiki/Electric_susceptibility#Ambiguity_in_the_definition)). Since it is related to the complex IOR, polarizability is also complex. Incidentally, this equation presents a way to compute the IOR of a mixture of several substances. The corresponding [Lorentz–Lorenz mixture rule](https://www.sciencedirect.com/science/article/pii/S0021850208001183) is based on four principles of additivity (namely, of mole, mass, volume, and molecular polarizability, with the last two assumption being rather context-dependent).
 
 For materials with small mass densities, the molecules are far apart, the molecular interactions are weak, and the IOR is close to 1. Therefore, for matter in the gas state, the following approximation can be made:
 
 $$ \begin{aligned} \tag{7}
-    \eta^2 & \approx 1 + \frac{\rho}{m} \frac{\alpha\_m}{\varepsilon_0} = 1 + 2 \rho \delta\_c, \cr
-    \eta   & \approx 1 + \frac{\rho}{2 m} \frac{\alpha\_m}{\varepsilon_0} = 1 + \rho \delta\_c,
+    \eta^2 & \approx 1 + \frac{\rho}{m} \frac{\alpha\_m}{\varepsilon\_0} = 1 + 2 \rho \delta\_c, \cr
+    \eta   & \approx 1 + \frac{\rho}{2 m} \frac{\alpha\_m}{\varepsilon\_0} = 1 + \rho \delta\_c,
 \end{aligned} $$
 
 where \\(\delta\_c\\) is the [light dispersion coefficient](https://ui.adsabs.harvard.edu/abs/1996CoSka..26...23K/abstract). This equation implies that the [relative brake power](https://www.sciencedirect.com/topics/chemistry/optical-refraction) \\((\eta - 1)\\) has an approximately linear relation with density. Similar relations can be found for [temperature and and pressure](https://en.wikipedia.org/wiki/Clausius%E2%80%93Mossotti_relation) (in fact, all coefficients are highly [temperature-dependent](http://www.sfu.ca/~gchapman/e376/e376l7.pdf)). Also, while the discussion above mostly concerns dielectrics, the formula for metals is [very similar](https://www.feynmanlectures.caltech.edu/II_32.html#mjx-eqn-EqII3238).

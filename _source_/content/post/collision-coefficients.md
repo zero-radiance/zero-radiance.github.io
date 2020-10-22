@@ -59,7 +59,7 @@ $$ \tag{2} u(z,t) = a\_m e^{i \theta} = a\_m e^{i (\delta - k z + \omega t)} = a
 
 Surfaces of \\(\phi = \mathrm{const}\\) are called *cophasal*, or *wavefronts*.
 
-If the ambient medium has a [complex index of refraction (IOR)](https://en.wikipedia.org/wiki/Refractive_index#Complex_refractive_index) \\(\eta - i \kappa\\), the [complex wavenumber](https://en.wikipedia.org/wiki/Wavenumber#Complex) is[^2]
+If the ambient medium has a [complex refractive index](https://en.wikipedia.org/wiki/Refractive_index#Complex_refractive_index) (IOR) \\(\eta - i \kappa\\), the [complex wavenumber](https://en.wikipedia.org/wiki/Wavenumber#Complex) is[^2]
 
 [^2]: The IOR (and, therefore, the complex wavenumber) is a function of position, time and frequency. Variation with frequency causes *dispersion*.
 
@@ -69,9 +69,9 @@ $$ \tag{3} k = k\_0 (\eta - i \kappa)
 
 where \\(k\_0\\) and \\(\lambda\_0\\) are the real *wavenumber and wavelength in vacuum*, respectively, and \\(c\\) is the *speed of light*.
 
-The complex IOR itself can be expressed in terms of the complex [dielectric constant](https://en.wikipedia.org/wiki/Relative_permittivity) (a.k.a. the *relative permittivity*) \\(\epsilon\\) and the complex [magnetic permeability](https://en.wikipedia.org/wiki/Permeability_(electromagnetism)) \\(\mu\\) of the medium:
+The complex IOR itself can be expressed in terms of the complex [relative permittivity](https://en.wikipedia.org/wiki/Relative_permittivity) (a.k.a. the *dielectric constant*) \\(\varepsilon\_r\\) and the real [relative permeability](https://en.wikipedia.org/wiki/Permeability_(electromagnetism)) \\(\mu\_r\\) of the medium:
 
-$$ \tag{4} \eta - i \kappa = \sqrt{\epsilon \mu}. $$
+$$ \tag{4} \eta - i \kappa = \sqrt{\varepsilon\_r \mu\_r}. $$
 
 Substitution transforms Equation 2 into a more explicit form
 
@@ -127,11 +127,15 @@ $$ \tag{9} \bm{B}(z,t) =
 
 The only new quantity introduced by Equation 9 is the maximum magnitude of \\(\bm{B}\\). Turns out, for time-harmonic plane waves propagating in a linear medium (without currents), the following [relation](https://www.cpp.edu/~alrudolph/classes/phy234/Reading/Summary%20of%20Waves.pdf) holds:
 
-$$ \tag{10}
-	B\_m = \mathrm{Re} \lbrace \mu \rbrace H_m
-		 = \frac{\mathrm{Re} \lbrace \sqrt{ \epsilon \mu } \rbrace }{c} E_m
-		 = \frac{\eta}{c} E\_m.
-$$
+$$ \begin{aligned} \tag{10}
+	B\_m &= \mu H_m \cr
+	\mathrm{Re} \lbrace \sqrt{\varepsilon} \rbrace E\_m &= \sqrt{\mu} H_m \cr
+	B\_m = \mathrm{Re} \lbrace \sqrt{ \varepsilon \mu } \rbrace E_m
+		 &= \mathrm{Re} \Bigg\lbrace \sqrt{ \frac{\varepsilon\_r \mu\_r}{\varepsilon\_0 \mu\_0} } \Bigg\rbrace E_m
+		 = \frac{\eta}{c} E\_m,
+\end{aligned} $$
+
+where \\(\varepsilon\_0\\) is the [vacuum permittivity](https://en.wikipedia.org/wiki/Vacuum_permittivity) and \\(\mu\_0\\) is the [vacuum permeability](https://en.wikipedia.org/wiki/Vacuum_permeability).
 
 ... equation of an ellipse ...
 
