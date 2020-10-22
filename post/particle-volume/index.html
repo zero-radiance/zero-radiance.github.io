@@ -62,23 +62,14 @@
             </a>
             
             
-            <div class="post-categories">
-                <div class="article-category">
-                    
-                    
-                    <a class="article-category-link" href="https://zero-radiance.github.io//categories/optics">Optics</a>
-                    
-                </div>
-            </div>
-            
             
         </div>
         <div class="article-entry" itemprop="articleBody">
-            <p>I have <a href="https://zero-radiance.github.io/post/analytic-media/">previously</a> covered the basics of the volume scattering process. It models the macroscopic interaction of light and matter, with the latter represented as a distribution of <a href="https://doi.org/10.1002/qj.49708436025">small particles</a>. Fundamentally, the volume scattering process arises from the microscopic interaction of light with individual atoms, and is typically described using <a href="https://doi.org/10.1364/JOSAA.35.000163">Maxwell's electromagnetic theory</a>. It is the domain of optics, and, in my experience, the connection with the <a href="https://en.wikipedia.org/wiki/Radiative_transfer#The_equation_of_radiative_transfer">radiative transfer equation</a> is neither apparent nor easy to find. The purpose of this blog post is to familiarize the reader with domain-specific terms and ease the adoption of formulas found in the optics literature.</p>
+            <p>I have <a href="/post/analytic-media/">previously</a> covered the basics of the volume scattering process. It models the macroscopic interaction of light and matter, with the latter represented as a distribution of <a href="https://doi.org/10.1002/qj.49708436025">small particles</a>. Fundamentally, the volume scattering process arises from the microscopic interaction of light with individual atoms, and is typically described using <a href="https://doi.org/10.1364/JOSAA.35.000163">Maxwell's electromagnetic theory</a>. It is the domain of optics, and, in my experience, the connection with the <a href="https://en.wikipedia.org/wiki/Radiative_transfer#The_equation_of_radiative_transfer">radiative transfer equation</a> is neither apparent nor easy to find. The purpose of this blog post is to familiarize the reader with domain-specific terms and ease the adoption of formulas found in the optics literature.</p>
 
 <h2 id="particle-scattering-basics">Particle Scattering Basics</h2>
 
-<p>Imagine a small particle of an arbitrary shape embedded in the host medium with the complex refractive index \(\eta_1 - i \kappa_1\) (by convention, \(\eta_0 = 1\) is reserved for the <a href="https://en.wikipedia.org/wiki/Vacuum">vacuum</a>).</p>
+<p>Imagine a small particle of an arbitrary shape embedded in the host medium with the <a href="https://en.wikipedia.org/wiki/Refractive_index#Complex_refractive_index">complex refractive index</a> (IOR)<sup class="footnote-ref" id="fnref:1"><a href="#fn:1">1</a></sup> \(\eta - i \kappa\).</p>
 
 <figure>
     <img src="/img/linear_plane_wave.png"
@@ -88,25 +79,25 @@
 </figure>
 
 
-<p>Consider an <a href="https://www.cpp.edu/~alrudolph/classes/phy234/Reading/Summary%20of%20Waves.pdf">electromagnetic wave</a> represented by the electric field \(\bm{E}\) and the magnetic field \(\bm{B}\) of a certain frequency and in a certain state of polarization. The direction of propagation and the amount of power per unit area carried by the wave at the time \(t\) is given by the <a href="https://en.wikipedia.org/wiki/Poynting_vector#Formulation_in_terms_of_microscopic_fields">instanteneous Poynting vector</a> \(\bm{S}\)</p>
+<p>Consider an <a href="https://www.cpp.edu/~alrudolph/classes/phy234/Reading/Summary%20of%20Waves.pdf">electromagnetic wave</a> represented<sup class="footnote-ref" id="fnref:2"><a href="#fn:2">2</a></sup> by the electric vector \(\bm{E}\) and the magnetic flux density \(\bm{B}\) of a certain frequency and in a certain state of polarization<sup class="footnote-ref" id="fnref:2"><a href="#fn:2">2</a></sup>. The direction of propagation and the amount of power<sup class="footnote-ref" id="fnref:3"><a href="#fn:3">3</a></sup> per unit area carried by the wave at the time \(t\) is given by the <a href="https://en.wikipedia.org/wiki/Poynting_vector#Formulation_in_terms_of_microscopic_fields">instanteneous Poynting vector</a> \(\bm{S}\)</p>
 
-<p>$$ \tag{1} \bm{S}(t) = \varepsilon_0 c^2 \Big( \bm{E}(t) \times \bm{B}(t) \Big), $$</p>
+<p>$$ \tag{1} \bm{S}(t) = \frac{1}{\mu_0} \Big( \bm{E}(t) \times \bm{B}(t) \Big), $$</p>
 
-<p>where \(\varepsilon_0\) is the <a href="https://en.wikipedia.org/wiki/Permittivity">vacuum permittivity</a> and \(c\) is the speed of light.</p>
+<p>where \(\mu_0\) is the <a href="https://en.wikipedia.org/wiki/Vacuum_permeability">vacuum permeability</a> of the medium.</p>
 
 <p>Since light waves oscillate very rapidly, we are typically interested in the <a href="https://en.wikipedia.org/wiki/Poynting_vector#Time-averaged_Poynting_vector">time-averaged Poynting vector</a> \(\langle \bm{S} \rangle\)</p>
 
 <p>$$ \tag{2} \langle \bm{S} \rangle = \frac{1}{T} \int_{0}^{T} \bm{S}(t) dt, $$</p>
 
-<p>which can be used to define the <a href="https://en.wikipedia.org/wiki/Irradiance#Spectral_irradiance">spectral irradiance</a> \(E\) (do not confuse it with the electric field vector \(\bm{E}\))</p>
+<p>which can be used to define the <a href="https://en.wikipedia.org/wiki/Irradiance#Spectral_irradiance">spectral irradiance</a> \(E\) (do not confuse it with the electric vector \(\bm{E}\))</p>
 
 <p>$$ \tag{3} E = \vert \langle \bm{S} \rangle \vert. $$</p>
 
-<p>For a <a href="https://en.wikipedia.org/wiki/Plane_wave">plane wave</a>, the expression is particularly <a href="https://en.wikipedia.org/wiki/Irradiance#Property">simple</a>:</p>
+<p>For a <a href="https://en.wikipedia.org/wiki/Plane_wave">plane wave</a> in a non-absorbing medium, the expression is particularly <a href="https://en.wikipedia.org/wiki/Irradiance#Property">simple</a>:</p>
 
-<p>$$ \tag{4} E = \frac{1}{2} \varepsilon_0 c \eta_1 \vert \mathcal{E} \vert^2, $$</p>
+<p>$$ \tag{4} E = \frac{1}{2} \frac{\eta}{\mu_0 c} E_m^2 = \frac{1}{2} \varepsilon_0 \eta c E_m^2, $$</p>
 
-<p>where \(\mathcal{E}\) is the <a href="https://en.wikipedia.org/wiki/Phasor">complex amplitude</a> of the electric field vector (which encodes both the magnitude and the <a href="https://en.wikipedia.org/wiki/Phase_(waves)">phase</a>).</p>
+<p>where \(\varepsilon_0\) is the <a href="https://en.wikipedia.org/wiki/Vacuum_permittivity">vacuum permittivity</a> and \(E_m\) is the maximum amplitude of the electric vector.</p>
 
 <p>The interaction of light with an individual particle is quantified by the <a href="http://glossary.ametsoc.org/wiki/Differential_(scattering)_cross_section">differential scattering cross section</a> \(\sigma_s'\). It is defined as the ratio of the scattered <a href="https://en.wikipedia.org/wiki/Radiant_intensity#Spectral_intensity">spectral intensity</a> \(I_s\) for the given direction \(\bm{\omega_s}\) to the incident spectral irradiance \(E_i\) normal with respect to \(\bm{\omega_i}\):</p>
 
@@ -128,7 +119,7 @@ $$</p>
 
 <p>In other words, it is just the ratio of the scattered <a href="https://en.wikipedia.org/wiki/Radiant_flux#Spectral_flux">spectral flux</a> \(\Phi_s\) to the incident spectral irradiance \(E_i\).</p>
 
-<p>The <a href="http://glossary.ametsoc.org/wiki/Extinction_cross_section">attenuation (or extinction) cross section</a> \(\sigma_t\) relates the total spectral flux \(\Phi_t\) scattered or absorbed by the particle (e.i. removed from the incident wave) to the incident spectral irradiance \(E_i\):</p>
+<p>The <a href="http://glossary.ametsoc.org/wiki/Extinction_cross_section">extinction cross section</a> \(\sigma_t\) relates the total spectral flux \(\Phi_t\) scattered or absorbed by the particle (e.i. removed from the incident wave) to the incident spectral irradiance \(E_i\):</p>
 
 <p>$$ \tag{7} \sigma_t(\bm{\omega_i}) = \sigma_s + \sigma_a = \frac{\Phi_s}{E_i} + \frac{\Phi_a}{E_i} = \frac{\Phi_t}{E_i}. $$</p>
 
@@ -178,7 +169,7 @@ $$</p>
 <p>$$ \tag{13} \frac{I_s}{\Delta V}  = \frac{\Delta N}{\Delta V} \sigma_s \frac{f_p}{4 \pi} E_i. $$</p>
 
 <p>\(\Delta N / \Delta V\) is the definition of the <a href="https://en.wikipedia.org/wiki/Number_density">number density</a> \(n\),
-and can be used to define the <a href="https://zero-radiance.github.io/post/analytic-media/">scattering coefficient</a> \(\mu_s\)</p>
+and can be used to define the <a href="/post/analytic-media/">scattering coefficient</a> \(\mu_s\)</p>
 
 <p>$$ \tag{14} \mu_s = n \sigma_s. $$</p>
 
@@ -192,7 +183,7 @@ and can be used to define the <a href="https://zero-radiance.github.io/post/anal
 
 <p>$$ \tag{17} \frac{I_s}{\Delta V}  = \mu_s \frac{f_p}{4 \pi} E_i. $$</p>
 
-<p>If we orient the direction of scattering along the \(\bm{z}\)-axis, we may write</p>
+<p>If we orient the direction of scattering along the \(z\)-axis, we may write</p>
 
 <p>$$ \tag{18} \frac{I_s}{\Delta A \Delta z} = \mu_s \frac{f_p}{4 \pi} E_i. $$</p>
 
@@ -213,13 +204,26 @@ and can be used to define the <a href="https://zero-radiance.github.io/post/anal
 <p>$$ \tag{21} L_s = \int_{\bm{x}}^{\bm{y}} T(\bm{x}, \bm{z}) \Bigg( \int_{4 \pi} \mu_s \frac{f_p}{4 \pi} L_i d \omega_i \Bigg) dz, $$
 with the transmittance term \(T\), which becomes significant since the extent of the volume along the \(\bm{z}\)-axis is no longer negligible.</p>
 
-<p>Recursively defining \(L = L_i = L_s\), we finally obtain the <a href="https://zero-radiance.github.io/post/analytic-media/#radiative-transfer-equation">radiative transfer equation</a> we are all familiar with.</p>
+<p>Recursively defining \(L = L_i = L_s\), we finally obtain the <a href="/post/analytic-media/#radiative-transfer-equation">radiative transfer equation</a> we are all familiar with.</p>
 
-<p>If we wish to model the <a href="https://doi.org/10.1145/2557605">Refractive Radiative Transfer Equation</a> instead, we must remember to also account for continuous reflection/transmission as well as the associated change in the solid angle.</p>
+<p>If we wish to model the <a href="https://doi.org/10.1145/2557605">refractive radiative transfer equation</a> instead, we must remember to also account for continuous reflection/transmission as well as the associated change in the solid angle.</p>
 
 <h2 id="acknowledgments">Acknowledgments</h2>
 
 <p>I would like to thank Eugene d'Eon for his thoughtful comments and feedback, and Don Grainger for his <a href="http://eodg.atm.ox.ac.uk/user/grainger/research/book/">book</a> and for reviewing this article.</p>
+<div class="footnotes">
+
+<hr />
+
+<ol>
+<li id="fn:1">By convention, \(\eta_0 = 1, \kappa_0 = 0\) is reserved for the <a href="https://en.wikipedia.org/wiki/Vacuum">vacuum</a>.
+ <a class="footnote-return" href="#fnref:1"><sup>[return]</sup></a></li>
+<li id="fn:2">\(\bm{E}\) and \(\bm{B}\) are mutually orthogonal.
+ <a class="footnote-return" href="#fnref:2"><sup>[return]</sup></a></li>
+<li id="fn:3">While confirmed experimentally, this definition is, mathematically, somewhat arbitrary. For a discussion and further references, refer to p. 10 of Born, M., &amp; Wolf, E. <a href="https://doi.org/10.1017/CBO9781139644181">Principles of optics</a>, 7th edition (1999).
+ <a class="footnote-return" href="#fnref:3"><sup>[return]</sup></a></li>
+</ol>
+</div>
         </div>
 
         
@@ -286,7 +290,17 @@ with the transmittance term \(T\), which becomes significant since the extent of
             <ul class="article-tag-list">
                 
                 <li class="article-tag-list-item">
-                    <a class="article-tag-list-link" href="https://zero-radiance.github.io//tags/volume-rendering">Volume Rendering
+                    <a class="article-tag-list-link" href="https://zero-radiance.github.io//tags/light-scattering">Light Scattering
+                    </a>
+                </li>
+                
+                <li class="article-tag-list-item">
+                    <a class="article-tag-list-link" href="https://zero-radiance.github.io//tags/optics">Optics
+                    </a>
+                </li>
+                
+                <li class="article-tag-list-item">
+                    <a class="article-tag-list-link" href="https://zero-radiance.github.io//tags/radiative-transfer">Radiative Transfer
                     </a>
                 </li>
                 

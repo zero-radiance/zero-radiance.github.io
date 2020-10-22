@@ -47,29 +47,20 @@
     </item>
     
     <item>
-      <title>Compositing</title>
-      <link>https://zero-radiance.github.io/tags/compositing/</link>
+      <title>Deep Compositing</title>
+      <link>https://zero-radiance.github.io/tags/deep-compositing/</link>
       <pubDate>Thu, 11 Oct 2018 00:00:00 +0000</pubDate>
       
-      <guid>https://zero-radiance.github.io/tags/compositing/</guid>
+      <guid>https://zero-radiance.github.io/tags/deep-compositing/</guid>
       <description></description>
     </item>
     
     <item>
-      <title>Cubemap Pre Filtering</title>
-      <link>https://zero-radiance.github.io/tags/cubemap-pre-filtering/</link>
-      <pubDate>Tue, 02 Apr 2019 00:00:00 +0000</pubDate>
-      
-      <guid>https://zero-radiance.github.io/tags/cubemap-pre-filtering/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Diffusion</title>
-      <link>https://zero-radiance.github.io/tags/diffusion/</link>
+      <title>Diffusion Profile</title>
+      <link>https://zero-radiance.github.io/tags/diffusion-profile/</link>
       <pubDate>Mon, 16 Dec 2019 00:00:00 +0000</pubDate>
       
-      <guid>https://zero-radiance.github.io/tags/diffusion/</guid>
+      <guid>https://zero-radiance.github.io/tags/diffusion-profile/</guid>
       <description></description>
     </item>
     
@@ -92,6 +83,15 @@
     </item>
     
     <item>
+      <title>Light Scattering</title>
+      <link>https://zero-radiance.github.io/tags/light-scattering/</link>
+      <pubDate>Sun, 20 Sep 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://zero-radiance.github.io/tags/light-scattering/</guid>
+      <description></description>
+    </item>
+    
+    <item>
       <title>Normal Mapping</title>
       <link>https://zero-radiance.github.io/tags/normal-mapping/</link>
       <pubDate>Sun, 23 Jun 2019 00:00:00 +0000</pubDate>
@@ -101,11 +101,29 @@
     </item>
     
     <item>
+      <title>Optics</title>
+      <link>https://zero-radiance.github.io/tags/optics/</link>
+      <pubDate>Sun, 20 Sep 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://zero-radiance.github.io/tags/optics/</guid>
+      <description></description>
+    </item>
+    
+    <item>
       <title>Precision</title>
       <link>https://zero-radiance.github.io/tags/precision/</link>
       <pubDate>Mon, 24 Aug 2020 00:00:00 +0000</pubDate>
       
       <guid>https://zero-radiance.github.io/tags/precision/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Radiative Transfer</title>
+      <link>https://zero-radiance.github.io/tags/radiative-transfer/</link>
+      <pubDate>Sun, 20 Sep 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://zero-radiance.github.io/tags/radiative-transfer/</guid>
       <description></description>
     </item>
     
@@ -151,15 +169,6 @@
       <pubDate>Sun, 23 Jun 2019 00:00:00 +0000</pubDate>
       
       <guid>https://zero-radiance.github.io/tags/surface-gradient/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Volume Rendering</title>
-      <link>https://zero-radiance.github.io/tags/volume-rendering/</link>
-      <pubDate>Sun, 20 Sep 2020 00:00:00 +0000</pubDate>
-      
-      <guid>https://zero-radiance.github.io/tags/volume-rendering/</guid>
       <description></description>
     </item>
     
