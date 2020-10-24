@@ -135,7 +135,9 @@ If we orient the direction of scattering along the \\(z\\)-axis, we may write
 
 $$ \tag{18} \frac{I\_s}{\Delta A \Delta z} = \mu\_s \frac{f\_p}{4 \pi} E\_i. $$
 
-The ratio of spectral intensity to the area is the definition of scattered [spectral radiance](https://en.wikipedia.org/wiki/Radiance#Spectral_radiance) \\(L\_s\\):
+The ratio of spectral intensity to the area is the definition of scattered [spectral radiance](https://en.wikipedia.org/wiki/Radiance#Spectral_radiance)[^4] \\(L\_s\\):
+
+[^4]: Historically, radiance is called *intensity* and spectral radiance is called *specific intensity*. Personally, I don't find the term to be specific enough.
 
 $$ \tag{19} L\_s = \mu\_s \frac{f\_p}{4 \pi} E\_i \Delta z. $$
 
