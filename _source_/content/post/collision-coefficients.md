@@ -120,7 +120,7 @@ $$ \tag{11} \bm{E}(z,t) =
 
 {{< figure src="/img/electric_vector.png" caption="*Electric vector \[[7](#references) (p. 6)\].*">}}
 
-The frequency is the same for both components, but this is where similarities end. Certain materials (with a [crystal lattice](https://www.feynmanlectures.caltech.edu/II_30.html) \[[5](#references) (vol. II, ch. 30)\]) are *anisotropic* and have a complex IOR that depends on the orientation of the crystal with respect to the incident light. Additionally, the vector components may oscillate out of phase, which is mathematically modeled by independent phase shifts.
+The frequency is the same for both components, but this is where similarities end. The vector components may oscillate out of phase, which is mathematically modeled by independent phase shifts. Additionally, certain materials (with a [crystal lattice](https://www.feynmanlectures.caltech.edu/II_30.html) \[[5](#references) (vol. II, ch. 30)\]) are *anisotropic* and have a complex IOR that depends on the orientation of the crystal with respect to the incident light. If the refractive index \\(\eta\\) of the material has axial dependence, the crystal is said to be doubly refractive or [birefringent](https://en.wikipedia.org/wiki/Birefringence). If the absorption index \\(\kappa\\) differs instead, the crystal is called [dichroic](https://en.wikipedia.org/wiki/Dichroism) (from the Greek *dikhroos*, two-colored).
 
 What about the magnetic vector? From Maxwell's equations, we know that the magnetic flux density \\(\bm{B}\\) is [orthogonal](/post/particle-volume/) to both \\(\bm{E}\\) and the direction of propagation of the wave. This can be accomplished by rotating (adding a -90 degree phase shift to) both components of the wave. In other words,
 
@@ -134,7 +134,7 @@ $$ \tag{12} \bm{B}(z,t) =
     	B\_{m,y} e^{-\kappa\_y (\omega z / c)} \sin(\delta\_y - \eta\_y (\omega z / c) + \omega t)
 	\end{bmatrix}. $$
 
-The only new quantity introduced by Equation 12 is the maximum magnitude of \\(\bm{B}\\). Turns out, for time-harmonic plane waves propagating in a linear medium (without currents), the following [relation](https://www.cpp.edu/~alrudolph/classes/phy234/Reading/Summary%20of%20Waves.pdf) holds:
+The only new quantity introduced by Equation 12 is the maximum magnitude of \\(\bm{B}\\). Turns out, for time-harmonic plane waves propagating in a linear medium (without currents), the following relation holds:
 
 $$ \begin{aligned} \tag{13}
 	B\_m &= \mu H_m \cr
@@ -150,9 +150,14 @@ Therefore, for simple time-harmonic waves, the amplitudes of the electric and th
 
 The vector nature of light waves (in mathematics) is referred to as the polarization of light (in physics).
 
+<!--
 ## Polarization of Light
 
-The idea behind [polarization of light](http://hyperphysics.phy-astr.gsu.edu/hbase/phyopt/polarcon.html#c1) \[Chandra?, [4](#references) (ch. 5), [5](#references) (vol. I, ch. 33), [6](#references) (ch. 1.4), [7](#references), [8](#references) (p. 527-533), [9](#references)\] (not to be confused with [polarization of matter](http://hyperphysics.phy-astr.gsu.edu/hbase/electric/dielec.html#c1) \[[4](#references) (ch. 4.5), [5](#references) (vol. II, ch. 32), [6](#references) (ch. 2.3), [9](#references)\]) is simple. Consider a fixed point[^4] in space; at that point, imagine the plane[^5] containing the electric and the magnetic vectors. As time goes on, the tip of the electric (and the magnetic) vector traces a closed[^6] curve. That shape of that curve is called polarization.
+We have just seen that transverse waves are composed of two independent scalar components. Can we separate them? The answer is yes.
+
+In the framework of geometric optics, light is represented by oriented ray. When this ray encounters a birefringent crystal (such as calcite), double refraction occurs, and the original light ray splits into the *ordinary* and *extraordinary* rays.
+
+The idea behind [polarization of light](http://hyperphysics.phy-astr.gsu.edu/hbase/phyopt/polarcon.html#c1) \[Chandra?, [4](#references) (ch. 5), [5](#references) (vol. I, ch. 33), [6](#references) (ch. 1.4), [7](#references), [8](#references) (p. 527-533), [9](#references)\] (not to be confused with [polarization of matter](http://hyperphysics.phy-astr.gsu.edu/hbase/electric/dielec.html#c1) \[[4](#references) (ch. 4.5), [5](#references) (vol. II, ch. 32), [6](#references) (ch. 2.3), [9](#references)\]) is simple. Consider a fixed point[^4] in space; at that point, imagine the plane[^5] containing the electric and the magnetic vectors. Over time, the tip of the electric (and the magnetic) vector traces a closed[^6] curve. That shape of that curve is called polarization.
 
 To determine this shape, consider a plane wave, this time formulated in a slightly different way:
 
@@ -169,6 +174,13 @@ $$
 
 where \\(\Delta\phi\_{yx} = \phi\_{y} - \phi\_{x}\\).
 
+$$ \tag{15} \bm{E}(z,t) =
+	\begin{bmatrix}
+    	E\_{m,x} \cos\theta\_x \phantom{-------------.} \cr
+    	E\_{m,y} \cos\theta\_x \cos\Delta\phi\_{yx} - E\_{m,y} \sin\theta\_x \sin\Delta\phi\_{yx}
+	\end{bmatrix},
+$$
+
 [^4]: In general, polarization depends on position \[[6](#references) (p. 38)\].
 
 [^5]: It would be natural to call it the *plane of polarization*. However, the term has been used (and misused) in so many different contexts during the course of development of the field of optics that the only way to avoid ambiguity is to not use the term at all \[[6](#references) (p. 29)\].
@@ -177,15 +189,15 @@ where \\(\Delta\phi\_{yx} = \phi\_{y} - \phi\_{x}\\).
 
 ... equation of an ellipse ...
 
-
+-->
 
 ## Acknowledgments
 
-Pharr, Jakob
+Pharr, Jakob, NASA people
 
 ## References
 
-<!--- APA style, with the edition and the (original publication) date at the end -->
+<!-- Modified APA style -->
 
 1. Golubev, E. [Sampling analytic participating media](/post/analytic-media/) (2020).
 2. Chandrasekhar, S. [Radiative transfer](https://doi.org/10.1002/qj.49707633016). (1950).
