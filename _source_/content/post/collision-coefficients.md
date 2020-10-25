@@ -38,9 +38,9 @@ The simplest type of wave is a [harmonic plane wave](https://www.feynmanlectures
 
 So, what is a plane wave, exactly? While plane waves are often introduced using [Fresnel's formulation of Huygen's principle](https://en.wikipedia.org/wiki/Huygens%E2%80%93Fresnel_principle) \[[4](#references) (ch. 3.1)\], I will attempt to give another, (hopefully) simpler explanation.
 
-Consider an infinitesimal (punctual) isotropic source of "disturbance". It generates *spherical waves* that can be imagined as spheres expanding at constant velocity. We can decompose these spheres into sets of individual points. At any given point in time, all such points are at the same distance from the source. And if we fix a certain distance from the source, all points at this distance have been generated at the same point in time. Loci of such points are said to form surfaces of constant *phase*, and these surfaces are called "wavefronts".
+Consider an infinitesimal (punctual) isotropic source of "disturbance". It generates *spherical waves* that can be imagined as spheres expanding at constant velocity. We can decompose these spheres into sets of individual points. At any given point in time, all these points are at the same distance from the source. And if we fix a certain distance from the source, all points at this distance have been generated at the same point in time. Loci of such points are said to form surfaces of constant *phase*, and these surfaces are called *wavefronts*.
 
-In the case of *plane waves*, surfaces of constant phase are planes rather than spheres. Plane waves can be generated in a multitude of ways; one mathematical trick is to imagine a source at a large distance. Then the curvature of the wavefront approaches 0, and, for a small solid angle, we may consider a section of the wavefront to be planar.
+In the case of *plane waves*, surfaces of constant phase are planes rather than spheres. Plane waves can be generated in a multitude of ways; one mathematical trick is to imagine a source at a large distance. Then, as the distance tends infinity, the curvature of the wavefront approaches zero, and, for a small solid angle, we may approximate a section of the wavefront as planar.
 
 By *time-harmonic*, we mean that the amplitude of the wave is a [harmonic function](https://en.wikipedia.org/wiki/Harmonic_function) of time. The *real amplitude* of the "disturbance" caused by the scalar wave at the point \\(\bm{r}\\) and the time \\(t\\) can be mathematically described [^1] as
 
@@ -54,19 +54,19 @@ where \\(a\_m\\) is the *maximum amplitude* and \\(\omega\\) is the *angular fre
 
 Some simple examples of Equation 1 include spherical waves
 
-$$ \tag{2} a(r,t) = \frac{1}{r} a\_m \cos(\phi(r) + \omega t), $$
+$$ \tag{2} a(r,t) = \frac{a\_m}{r} \cos(\phi(r) + \omega t), $$
 
 and plane waves traveling along the the \\(z\\)-axis
 
 $$ \tag{3} a(z,t) = a\_m \cos(\phi(z) + \omega t). $$
 
-Typically, the real amplitude of plane waves is described as
+Typically, the real amplitude of a plane wave in a medium is described as
 
 $$ \tag{4} a(z,t) = a\_m \cos(\delta - k z + \omega t), $$
 
 where \\(\delta\\) is the *phase shift* and \\(k\\) is the *complex wavenumber*.
 
-If the ambient medium has a [complex refractive index](https://en.wikipedia.org/wiki/Refractive_index#Complex_refractive_index) (IOR) \\(\eta - i \kappa\\), the [complex wavenumber](https://en.wikipedia.org/wiki/Wavenumber#Complex) is[^2]
+If the medium has the [complex refractive index](https://en.wikipedia.org/wiki/Refractive_index#Complex_refractive_index) (IOR) \\(\eta - i \kappa\\), the [complex wavenumber](https://en.wikipedia.org/wiki/Wavenumber#Complex) is[^2]
 
 [^2]: The IOR (and, therefore, the complex wavenumber) is a function of position, time and frequency. Variation with frequency causes *dispersion*.
 
@@ -84,7 +84,7 @@ Mathematically, it is convenient to describe a wave using the *complex amplitude
 
 $$ \tag{7} u(\bm{r}, t) = a\_m(\bm{r}) e^{i \theta(\bm{r}, t)} = a\_m(\bm{r}) e^{i\phi(\bm{r})} e^{i \omega t}. $$
 
-Combining Equations 4, 5, and 7, we arrive at a more explicit description of a plane wave
+Combining Equations 4, 5, and 7, we arrive at the explicit description of a plane wave
 
 $$ \tag{8} u(z,t) = a\_m e^{i (\delta - (\omega / c) (\eta - i \kappa) z + \omega t)}
 			      = a\_m e^{-\kappa (\omega z / c)} e^{i (\delta - \eta (\omega z / c) + \omega t)}. $$
@@ -96,9 +96,9 @@ $$ \tag{9} \theta(z,t) = \mathrm{Arg} \big\lbrace u(z,t) \big\rbrace = \delta - 
 and taking the real part allows us to recover the real amplitude
 
 $$ \tag{10} a(z,t) = \mathrm{Re} \big\lbrace u(z,t) \big\rbrace
-			      = a\_m e^{-\kappa (\omega z / c)} \cos{\theta} . $$
+			      = a\_m e^{-\kappa (\omega z / c)} \cos{\theta(z,t)} . $$
 
-When examining Equations 8-10, the first thing to notice is that \\(\omega z / c\\) and \\(\omega t\\) are both measured in radians. With that in mind, the role of the complex IOR becomes apparent. The real part of the IOR, \\(\eta\\), reduces the [phase velocity](https://www.feynmanlectures.caltech.edu/I_48.html) of the wave from \\(c\\) to \\(c / \eta\\) \[[5](#references) (vol. I, ch. 48), [6](#references) (ch. 1.3.3)\]. The imaginary part of the IOR, \\(\kappa\\), causes [exponential absorption](https://www.feynmanlectures.caltech.edu/I_31.html) with distance \[[5](#references) (vol. I, ch. 31), [6](#references) (???)\].
+When examining Equations 8-10, the first thing to notice is that \\(\omega z / c\\) and \\(\omega t\\) are both measured in radians. With that in mind, the role of the complex IOR becomes apparent. The real part of the IOR, \\(\eta\\), reduces the [phase velocity](https://www.feynmanlectures.caltech.edu/I_48.html) \\(v\_p\\) of the wave from \\(c\\) to \\(c / \eta\\) \[[5](#references) (vol. I, ch. 48), [6](#references) (ch. 1.3.3)\]. The imaginary part of the IOR, \\(\kappa\\), causes [exponential absorption](https://www.feynmanlectures.caltech.edu/I_31.html) with distance \[[5](#references) (vol. I, ch. 31), [6](#references) (???)\].
 
 ## Transverse Waves
 
@@ -106,9 +106,7 @@ While scalar waves are characterized only by the amplitude and the direction of 
 
 [^3]: The "disturbance" is a vector tangent to the surface of constant phase.
 
-In the case of the electric vector[^5] \\(\bm{E}\\), it just means the plane harmonic wave has two scalar wave components rather than one:
-
-[^5]: The magnetic flux density \\(\bm{B}\\) is orthogonal to \\(\bm{E}\\) and the direction of propagation of the wave. Typically, we can find the amplitude of \\(\bm{B}\\) from the amplitude of \\(\bm{E}\\), which means we only need to concern ourselves with propagation of \\(\bm{E}\\).
+In the case of the electric vector \\(\bm{E}\\), it just means the plane harmonic wave has two scalar components:
 
 $$ \tag{11} \bm{E}(z,t) =
 	\begin{bmatrix}
@@ -124,7 +122,7 @@ $$ \tag{11} \bm{E}(z,t) =
 
 The frequency is the same for both components, but this is where similarities end. Certain materials (with a [crystal lattice](https://www.feynmanlectures.caltech.edu/II_30.html) \[[5](#references) (vol. II, ch. 30)\]) are *anisotropic* and have a complex IOR that depends on the orientation of the crystal with respect to the incident light. Additionally, the vector components may oscillate out of phase, which is mathematically modeled by independent phase shifts.
 
-What about the magnetic vector? From Maxwell's equations, we know that the magnetic flux density \\(\bm{B}\\) is orthogonal to both \\(\bm{E}\\) and the direction of propagation of the wave. This can be accomplished by rotating (adding a -90 degree phase shift to) both components of the wave. In other words,
+What about the magnetic vector? From Maxwell's equations, we know that the magnetic flux density \\(\bm{B}\\) is [orthogonal](/post/particle-volume/) to both \\(\bm{E}\\) and the direction of propagation of the wave. This can be accomplished by rotating (adding a -90 degree phase shift to) both components of the wave. In other words,
 
 $$ \tag{12} \bm{B}(z,t) =
 	\begin{bmatrix}
@@ -142,21 +140,43 @@ $$ \begin{aligned} \tag{13}
 	B\_m &= \mu H_m \cr
 	\mathrm{Re} \lbrace \sqrt{\varepsilon} \rbrace E\_m &= \sqrt{\mu} H_m \cr
 	B\_m = \mathrm{Re} \lbrace \sqrt{ \varepsilon \mu } \rbrace E_m
-		 &= \mathrm{Re} \Bigg\lbrace \sqrt{ \frac{\varepsilon\_r \mu\_r}{\varepsilon\_0 \mu\_0} } \Bigg\rbrace E_m
-		 = \frac{\eta}{c} E\_m,
+		 &= \mathrm{Re} \lbrace \sqrt{ (\varepsilon\_r \varepsilon\_0) (\mu\_r \mu\_0) } \rbrace E_m
+		 = \frac{\eta}{c} E\_m = \frac{E\_m}{v\_p},
 \end{aligned} $$
 
 where \\(\varepsilon\_0\\) is the [vacuum permittivity](https://en.wikipedia.org/wiki/Vacuum_permittivity) and \\(\mu\_0\\) is the [vacuum permeability](https://en.wikipedia.org/wiki/Vacuum_permeability).
 
-... equation of an ellipse ...
+Therefore, for simple time-harmonic waves, the amplitudes of the electric and the magnetic field vectors are connected by the phase velocity, and it is typically sufficient to just consider the electric field.
 
 The vector nature of light waves (in mathematics) is referred to as the polarization of light (in physics).
 
 ## Polarization of Light
 
-The idea behind [polarization of light](http://hyperphysics.phy-astr.gsu.edu/hbase/phyopt/polarcon.html#c1) \[Chandra?, [4](#references) (ch. 5), [5](#references) (vol. I, ch. 33), [6](#references) (ch. 1.4), [7](#references), [8](#references) (p. 527-533), [9](#references)\] (not to be confused with [polarization of matter](http://hyperphysics.phy-astr.gsu.edu/hbase/electric/dielec.html#c1) \[[4](#references) (ch. 4.5), [5](#references) (vol. II, ch. 32), [6](#references) (ch. 2.3), [9](#references)\]) is simple.
+The idea behind [polarization of light](http://hyperphysics.phy-astr.gsu.edu/hbase/phyopt/polarcon.html#c1) \[Chandra?, [4](#references) (ch. 5), [5](#references) (vol. I, ch. 33), [6](#references) (ch. 1.4), [7](#references), [8](#references) (p. 527-533), [9](#references)\] (not to be confused with [polarization of matter](http://hyperphysics.phy-astr.gsu.edu/hbase/electric/dielec.html#c1) \[[4](#references) (ch. 4.5), [5](#references) (vol. II, ch. 32), [6](#references) (ch. 2.3), [9](#references)\]) is simple. Consider a fixed point[^4] in space; at that point, imagine the plane[^5] containing the electric and the magnetic vectors. As time goes on, the tip of the electric (and the magnetic) vector traces a closed[^6] curve. That shape of that curve is called polarization.
 
-Polarization in general depends on position (B&W, p.38).
+To determine this shape, consider a plane wave, this time formulated in a slightly different way:
+
+$$ \tag{14} \bm{E}(z,t) =
+	\begin{bmatrix}
+    	E\_{m,x} \cos(\omega t + \phi\_x(z)) \cr
+    	E\_{m,y} \cos(\omega t + \phi\_y(z))
+	\end{bmatrix} =
+	\begin{bmatrix}
+    	E\_{m,x} \cos(\omega t + \phi\_x(z)) \phantom{-----} \cr
+    	E\_{m,y} \cos(\omega t + \phi\_x(z) + \Delta\phi\_{yx}(z))
+	\end{bmatrix},
+$$
+
+where \\(\Delta\phi\_{yx} = \phi\_{y} - \phi\_{x}\\).
+
+[^4]: In general, polarization depends on position \[[6](#references) (p. 38)\].
+
+[^5]: It would be natural to call it the *plane of polarization*. However, the term has been used (and misused) in so many different contexts during the course of development of the field of optics that the only way to avoid ambiguity is to not use the term at all \[[6](#references) (p. 29)\].
+
+[^6]: Since the wave is time-harmonic, the wave function is periodic.
+
+... equation of an ellipse ...
+
 
 
 ## Acknowledgments

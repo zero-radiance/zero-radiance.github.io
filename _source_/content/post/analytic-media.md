@@ -46,7 +46,9 @@ Sometimes, it is convenient to specify the concentration (density) of the medium
 
 $$ \tag{5} \mu\_t = \rho \sigma\_t, $$
 
-where \\(\rho\\) is the [mass density](https://en.wikipedia.org/wiki/Mass_density) (measured in units of \\(kg/m^{3}\\)) and \\(\sigma\_t\\) is the [mass extinction coefficient](https://en.wikipedia.org/wiki/Mass_attenuation_coefficient) (in units of \\(m^{2}/kg\\)) - [effective cross section](http://www.sfu.ca/~gchapman/e376/e376l7.pdf) per unit mass. Other coefficients have the same linear relation with density. Alternatively, one can also a use [number density](https://en.wikipedia.org/wiki/Number_density) instead of mass density.
+where \\(\rho\\) is the [mass density](https://en.wikipedia.org/wiki/Mass_density) (measured in units of \\(kg/m^{3}\\)) and \\(\sigma\_t\\) is the [mass extinction coefficient](https://en.wikipedia.org/wiki/Mass_attenuation_coefficient) (in units of \\(m^{2}/kg\\)) - [effective cross section](http://www.sfu.ca/~gchapman/e376/e376l7.pdf) per unit mass[^2]. Other coefficients have the same linear relation with density.
+
+[^2]: Alternatively, one can also a use [number density](https://en.wikipedia.org/wiki/Number_density) instead of mass density.
 
 But what about the IOR? Often, we assume that it is independent of density. But, if you consider water and steam (which has a lower concentration of water molecules), our experience tells us that their refractive properties are not the same.
 
@@ -121,7 +123,9 @@ $$ \tag{13}
     T(\bm{x}, \bm{y}) L\_g(\bm{y}, \bm{v}),
 $$
 
-where \\(\bm{y}\\) denotes the position of the closest surface along the ray. If you're wondering why there's an absorption coefficient in front of the emission term, it's there due to the [Kirchhoff's law](https://en.wikipedia.org/wiki/Kirchhoff%27s_law_of_thermal_radiation) which states that, for an arbitrary body emitting and absorbing thermal radiation in thermodynamic equilibrium, the emissivity is equal to the absorptivity.
+where \\(\bm{y}\\) denotes the position of the closest surface along the ray[^3].
+
+[^3]: The absorption coefficient in front of the emission term is due to the [Kirchhoff's law](https://en.wikipedia.org/wiki/Kirchhoff%27s_law_of_thermal_radiation) which states that, for an arbitrary body emitting and absorbing thermal radiation in thermodynamic equilibrium, the emissivity is equal to the absorptivity.
 
 We will leave [volumetric emission](https://doi.org/10.1111/cgf.13228) out by setting \\(L\_e = 0\\):
 
@@ -202,13 +206,13 @@ $$
 
 If your background is in real-time rendering, you may have heard of [constant, linear, and exponential fog](http://www.terathon.com/lengyel/Lengyel-UnifiedFog.pdf). These names refer to the way density varies in space (typically, with respect to the altitude), and can be used to model effects like height fog and atmospheric scattering.
 
-### Constant Density
+### Uniform Density
 
-This type of medium has uniform density across the entire volume:
+This type of medium has uniform[^4] density across the entire volume:
 
 $$ \tag{25} \rho = b. $$
 
-A note on *terminology*: a *homogeneous* medium is not the same as a *uniform* one. Scattering is caused by inhomogeneities which do not exist in a homogeneous medium.
+[^4]: A *homogeneous* medium, by definition, contains no inhomogeneities (which cause scattering), while a medium with a *uniform density* is composed of individual particles.
 
 This formulation makes computing optical depth easy (recall Equations 5 and 10):
 
