@@ -150,6 +150,7 @@ Therefore, for time-harmonic waves, the amplitudes of the electric and the magne
 
 The vector nature of light waves (in mathematics) is referred to as the polarization of light (in physics).
 
+<!--
 ## Polarization of Light
 
 We have just seen that transverse waves are composed of two independent scalar components. Can we separate them? The answer is yes.
@@ -158,36 +159,128 @@ In the framework of geometric optics, light is represented by oriented ray. When
 
 The idea behind [polarization of light](http://hyperphysics.phy-astr.gsu.edu/hbase/phyopt/polarcon.html#c1) \[Chandra?, [4](#references) (ch. 5), [5](#references) (vol. I, ch. 33), [6](#references) (ch. 1.4), [7](#references), [8](#references) (p. 527-533), [9](#references)\] (not to be confused with [polarization of matter](http://hyperphysics.phy-astr.gsu.edu/hbase/electric/dielec.html#c1) \[[4](#references) (ch. 4.5), [5](#references) (vol. II, ch. 32), [6](#references) (ch. 2.3), [9](#references)\]) is simple. Consider a fixed point[^4] in space; at that point, imagine the plane[^5] containing the electric and the magnetic vectors. Over time, the tip of the electric (and the magnetic) vector traces a closed[^6] curve. That shape of that curve is called polarization.
 
-To determine this shape, consider a plane wave, this time formulated in a slightly different way:
-
-$$ \tag{14} \bm{E}(z,t) =
-	\begin{bmatrix}
-    	\bar{E}\_x \cos(\omega t + \phi\_x(z)) \cr
-    	\bar{E}\_y \cos(\omega t + \phi\_y(z))
-	\end{bmatrix} =
-	\begin{bmatrix}
-    	\bar{E}\_x \cos(\omega t + \phi\_x(z)) \phantom{-----} \cr
-    	\bar{E}\_y \cos(\omega t + \phi\_x(z) + \Delta\phi\_{yx}(z))
-	\end{bmatrix},
-$$
-
-where \\(\Delta\phi\_{yx} = \phi\_{y} - \phi\_{x}\\).
-
-$$ \tag{15} \bm{E}(z,t) =
-	\begin{bmatrix}
-    	\bar{E}\_x \cos\theta\_x \phantom{-------------.} \cr
-    	\bar{E}\_y \cos\theta\_x \cos\Delta\phi\_{yx} - \bar{E}\_y \sin\theta\_x \sin\Delta\phi\_{yx}
-	\end{bmatrix},
-$$
-
 [^4]: In general, polarization depends on position \[[6](#references) (p. 38)\].
 
 [^5]: It would be natural to call it the *plane of polarization*. However, the term has been used (and misused) in so many different contexts during the course of development of the field of optics that the only way to avoid ambiguity is to not use the term at all \[[6](#references) (p. 29)\].
 
 [^6]: Since the wave is time-harmonic, the wave function is periodic.
 
-... equation of an ellipse ...
+To determine this shape, consider a time-harmonic wave at a fixed position \\(\bm{r}\\)
 
+$$ \tag{14} \bm{E}(\bm{r},t) =
+	\begin{bmatrix}
+    	\bar{E}\_x(\bm{r}) \cos(\phi\_x(\bm{r}) + \omega t) \cr
+    	\bar{E}\_y(\bm{r}) \cos(\phi\_y(\bm{r}) + \omega t)
+	\end{bmatrix},
+$$
+
+where \\(\bar{E}\_x(\bm{r})\\) and \\(\bar{E}\_y(\bm{r})\\) include the absorption effects. Expanding the cosine of the sum of angles,
+
+$$ \tag{15}
+\begin{cases}
+   E\_x / \bar{E}\_x = \cos{\phi\_x} \cos{\omega t} - \sin{\phi\_x} \sin{\omega t} \cr
+   E\_y / \bar{E}\_y = \cos{\phi\_y} \cos{\omega t} - \sin{\phi\_y} \sin{\omega t}
+\end{cases}
+$$
+
+Multiply Equation 15a by \\(\sin{\phi\_y}\\) and subtract Equation 15b multiplied by \\(\sin{\phi\_x}\\). Similarly, multiply Equation 15a by \\(\cos{\phi\_y}\\) and subtract Equation 15b multiplied by \\(\cos{\phi\_x}\\). The result is
+
+$$ \tag{16}
+\begin{cases}
+   (E\_x / \bar{E}\_x) \sin{\phi\_y} - (E\_y / \bar{E}\_y) \sin{\phi\_x} = \sin(\phi\_y - \phi\_x) \cos{\omega t} \cr
+   (E\_x / \bar{E}\_x) \cos{\phi\_y} - (E\_y / \bar{E}\_y) \cos{\phi\_x} = \sin(\phi\_y - \phi\_x) \sin{\omega t}
+\end{cases}
+$$
+
+Squaring and adding the equations results in an equation of a [conic section](https://brilliant.org/wiki/conics-discriminant/):
+
+$$ \tag{17}
+   (E\_x / \bar{E}\_x)^2 - 2 (E\_x / \bar{E}\_x) (E\_y / \bar{E}\_y) \cos(\phi\_y - \phi\_x) + (E\_y / \bar{E}\_y)^2 = \sin^2(\phi\_y - \phi\_x).
+$$
+
+Computing the discriminant
+
+$$ \tag{18}
+   d = 4 (E\_x / \bar{E}\_x)^2 (E\_y / \bar{E}\_y)^2 \cos^2(\phi\_y - \phi\_x) - 4 (E\_x / \bar{E}\_x)^2 (E\_y / \bar{E}\_y)^2 \leq 0
+$$
+
+reveals that it is the equation of an ellipse. This means that we can find a set of rotated coordinate axes such that
+
+$$ \tag{19}
+	\bm{E}(\bm{r},t) =
+	\begin{bmatrix}
+    	E\_a(\bm{r},t) \cr
+    	E\_b(\bm{r},t)
+	\end{bmatrix} =
+	\begin{bmatrix}
+    	\phantom{\pm} \bar{E}\_a(\bm{r}) \cos(\phi(\bm{r}) + \omega t) \cr
+    	\pm   	      \bar{E}\_b(\bm{r}) \sin(\phi(\bm{r}) + \omega t)
+	\end{bmatrix},
+$$
+
+where \\(\phi(\bm{r})\\) is isotropic, and the phase difference between the two axes is \\(\pi/2\\). The sign in front of the \\(\bar{E}\_b\\) is used to distinguish the orientation of the ellipse (clockwise vs counterclockwise).
+
+If the angle between the \\(x\\)-axis and the \\(a\\)-axis is \\(\psi\\),
+
+$$ \tag{20}
+\begin{cases}
+   E\_a = E\_x \cos{\psi} + E\_y \sin{\psi} \cr
+   E\_b = E\_y \cos{\psi} - E\_x \sin{\psi}
+\end{cases}
+$$
+
+Combining Equations 19 and 20, we obtain
+
+$$ \tag{21}
+\begin{cases}
+   \phantom{\pm} \bar{E}\_a \cos(\phi + \omega t) = E\_x \cos{\psi} + E\_y \sin{\psi} \cr
+   \pm           \bar{E}\_b \sin(\phi + \omega t) = E\_y \cos{\psi} - E\_x \sin{\psi}
+\end{cases}
+$$
+
+Substitution of Equations 15a and 15b and expansion of sines and cosines of sums yields
+
+$$ \begin{aligned} \tag{22a}
+   \bar{E}\_a (\cos{\phi} \cos{\omega t} - \sin{\phi} \sin{\omega t})
+   &= \bar{E}\_x (\cos{\phi\_x} \cos{\omega t} - \sin{\phi\_x} \sin{\omega t}) \cos{\psi} \cr
+   &+ \bar{E}\_y (\cos{\phi\_y} \cos{\omega t} - \sin{\phi\_y} \sin{\omega t}) \sin{\psi}
+\end{aligned} $$
+
+$$ \begin{aligned} \tag{22b}
+   \pm \bar{E}\_b (\sin{\phi} \cos{\omega t} + \cos{\phi} \sin{\omega t})
+   &= \bar{E}\_y (\cos{\phi\_y} \cos{\omega t} - \sin{\phi\_y} \sin{\omega t}) \cos{\psi} \cr
+   &- \bar{E}\_x (\cos{\phi\_x} \cos{\omega t} - \sin{\phi\_x} \sin{\omega t}) \sin{\psi}
+\end{aligned} $$
+
+Decomposition into groups of coefficients of \\(\cos{\omega t}\\) and \\(\sin{\omega t}\\) results in
+
+$$ \tag{23}
+\begin{cases}
+   \phantom{\pm} \bar{E}\_a \cos{\phi} = \phantom{-} \bar{E}\_x \cos{\phi\_x} \cos{\psi} + \bar{E}\_y \cos{\phi\_y} \sin{\psi} \cr
+            \pm  \bar{E}\_b \sin{\phi} = \phantom{-} \bar{E}\_y \cos{\phi\_y} \cos{\psi} - \bar{E}\_x \cos{\phi\_x} \sin{\psi} \cr
+   \phantom{\pm} \bar{E}\_a \sin{\phi} = \phantom{-} \bar{E}\_x \sin{\phi\_x} \cos{\psi} + \bar{E}\_y \sin{\phi\_y} \sin{\psi} \cr
+            \pm  \bar{E}\_b \cos{\phi} =          -  \bar{E}\_y \sin{\phi\_y} \cos{\psi} + \bar{E}\_x \sin{\phi\_x} \sin{\psi}
+\end{cases}
+$$
+
+Squaring Equations 23a-23d and adding them allows us to obtain the identity
+
+$$ \tag{24} \bar{E}\_a^2 + \bar{E}\_b^2 = \bar{E}\_x^2 + \bar{E}\_y^2. $$
+
+Similarly, multiplying Equations 23a by 23d and 23b by 23c and computing their sum, we get
+
+$$ \tag{25} \pm \bar{E}\_a \bar{E}\_b = \bar{E}\_x \bar{E}\_y \sin(\phi\_x - \phi\_y). $$
+
+The combination of Equations 24 and 25 can be used to compute the width and the height of the ellipse.
+
+To compute the rotation angle \\(\psi\\), multiply Equation 23a by 23b and Equation 23c by 24d, and simplify the resulting identity:
+
+$$ \tag{26} \Big( \bar{E}\_x^2 - \bar{E}\_y^2 \Big) \sin{2 \psi} = 2 \bar{E}\_x \bar{E}\_y \cos{2 \psi} \cos(\phi\_x - \phi\_y), $$
+
+$$ \tag{27} \tan{2 \psi} = \frac{2 \bar{E}\_x \bar{E}\_y \cos(\phi\_x - \phi\_y)}{\bar{E}\_x^2 - \bar{E}\_y^2}. $$
+
+Auxiliary angle ...
+-->
 
 ## Acknowledgments
 
