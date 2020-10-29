@@ -43,9 +43,10 @@ $$ \tag{3} E = \vert \langle \bm{S} \rangle \vert. $$
 
 For a [plane wave](https://en.wikipedia.org/wiki/Plane_wave) in a non-absorbing medium, the expression is particularly [simple](https://en.wikipedia.org/wiki/Irradiance#Property):
 
-$$ \tag{4} E = \frac{1}{2} \frac{\eta}{\mu\_0 c} E\_m^2 = \frac{1}{2} \varepsilon\_0 \eta c E\_m^2, $$
+$$ \tag{4} E = \frac{1}{2} \frac{\eta}{\mu\_0 c} \bar{E}^2 = \frac{1}{2} \varepsilon\_0 \eta c \bar{E}^2, $$
+$$ \tag{4} E = \frac{1}{2} \frac{\eta}{\mu\_0 c} \bar{E}^2 = \frac{1}{2} \varepsilon\_0 \eta c \bar{E}^2, $$
 
-where \\(\varepsilon\_0\\) is the [vacuum permittivity](https://en.wikipedia.org/wiki/Vacuum_permittivity) and \\(E\_m\\) is the maximum amplitude of the electric vector.
+where \\(\varepsilon\_0\\) is the [vacuum permittivity](https://en.wikipedia.org/wiki/Vacuum_permittivity) and \\(\bar{E}\\) is the maximum amplitude of the electric vector.
 
 The interaction of light with an individual particle is quantified by the [differential scattering cross section](http://glossary.ametsoc.org/wiki/Differential_(scattering)_cross_section) \\(\sigma\_s'\\). It is defined as the ratio of the scattered [spectral intensity](https://en.wikipedia.org/wiki/Radiant_intensity#Spectral_intensity) \\(I\_s\\) for the given direction \\(\bm{\omega\_s}\\) to the incident spectral irradiance \\(E\_i\\) normal with respect to \\(\bm{\omega\_i}\\):
 

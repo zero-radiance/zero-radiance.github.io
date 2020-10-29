@@ -46,23 +46,23 @@ By *time-harmonic*, we mean that the amplitude of the wave is a [harmonic functi
 
 [^1]: We use the "classic" sign convention of the authors cited.
 
-$$ \tag{1} a(\bm{r}, t) = a\_m(\bm{r}) \cos(\phi(\bm{r}) + \omega t), $$
+$$ \tag{1} a(\bm{r}, t) = \bar{a}(\bm{r}) \cos(\phi(\bm{r}) + \omega t), $$
 
-where \\(a\_m\\) is the *maximum amplitude* and \\(\omega\\) is the *angular frequency*. Surfaces of \\(\phi = \mathrm{const}\\) are called *cophasal*, or *wavefronts*. Note that, in general, surfaces of constant amplitude do not coincide with surfaces of constant phase [[6](#references) (p. 18)\].
+where \\(\bar{a}\\) is the *maximum amplitude* and \\(\omega\\) is the *angular frequency*. Surfaces of \\(\phi = \mathrm{const}\\) are called *cophasal*, or *wavefronts*. Note that, in general, surfaces of constant amplitude do not coincide with surfaces of constant phase [[6](#references) (p. 18)\].
 
 {{< figure src="/img/wave_diagram.png" caption="*Wave diagram. [Image source](https://tsunamiphysics.webnode.com/waves-review/).*">}}
 
 Some simple examples of Equation 1 include spherical waves
 
-$$ \tag{2} a(r,t) = \frac{a\_m}{r} \cos(\phi(r) + \omega t), $$
+$$ \tag{2} a(r,t) = \frac{\bar{a}}{r} \cos(\phi(r) + \omega t), $$
 
 and plane waves traveling along the the \\(z\\)-axis
 
-$$ \tag{3} a(z,t) = a\_m \cos(\phi(z) + \omega t). $$
+$$ \tag{3} a(z,t) = \bar{a} \cos(\phi(z) + \omega t). $$
 
 Typically, the real amplitude of a plane wave in a medium is described as
 
-$$ \tag{4} a(z,t) = a\_m \cos(\delta - k z + \omega t), $$
+$$ \tag{4} a(z,t) = \bar{a} \cos(\delta - k z + \omega t), $$
 
 where \\(\delta\\) is the *phase shift* and \\(k\\) is the *complex wavenumber*.
 
@@ -82,12 +82,12 @@ $$ \tag{6} \eta - i \kappa = \sqrt{\varepsilon\_r \mu\_r}. $$
 
 Mathematically, it is convenient to describe a wave using the *complex amplitude*
 
-$$ \tag{7} u(\bm{r}, t) = a\_m(\bm{r}) e^{i \theta(\bm{r}, t)} = a\_m(\bm{r}) e^{i\phi(\bm{r})} e^{i \omega t}. $$
+$$ \tag{7} u(\bm{r}, t) = \bar{a}(\bm{r}) e^{i \theta(\bm{r}, t)} = \bar{a}(\bm{r}) e^{i\phi(\bm{r})} e^{i \omega t}. $$
 
 Combining Equations 4, 5, and 7, we arrive at the explicit description of a plane wave
 
-$$ \tag{8} u(z,t) = a\_m e^{i (\delta - (\omega / c) (\eta - i \kappa) z + \omega t)}
-			      = a\_m e^{-\kappa (\omega z / c)} e^{i (\delta - \eta (\omega z / c) + \omega t)}. $$
+$$ \tag{8} u(z,t) = \bar{a} e^{i (\delta - (\omega / c) (\eta - i \kappa) z + \omega t)}
+			      = \bar{a} e^{-\kappa (\omega z / c)} e^{i (\delta - \eta (\omega z / c) + \omega t)}. $$
 
 We can take the argument to extract the *phase angle*
 
@@ -96,7 +96,7 @@ $$ \tag{9} \theta(z,t) = \mathrm{Arg} \big\lbrace u(z,t) \big\rbrace = \delta - 
 and taking the real part allows us to recover the real amplitude
 
 $$ \tag{10} a(z,t) = \mathrm{Re} \big\lbrace u(z,t) \big\rbrace
-			      = a\_m e^{-\kappa (\omega z / c)} \cos{\theta(z,t)} . $$
+			      = \bar{a} e^{-\kappa (\omega z / c)} \cos{\theta(z,t)} . $$
 
 When examining Equations 8-10, the first thing to notice is that \\(\omega z / c\\) and \\(\omega t\\) are both measured in radians. With that in mind, the role of the complex IOR becomes apparent. The real part of the IOR, \\(\eta\\), reduces the [phase velocity](https://www.feynmanlectures.caltech.edu/I_48.html) \\(v\_p\\) of the wave from \\(c\\) to \\(c / \eta\\) \[[5](#references) (vol. I, ch. 48), [6](#references) (ch. 1.3.3)\]. The imaginary part of the IOR, \\(\kappa\\), causes [exponential absorption](https://www.feynmanlectures.caltech.edu/I_31.html) with distance \[[5](#references) (vol. I, ch. 31), [6](#references) (???)\].
 
@@ -114,8 +114,8 @@ $$ \tag{11} \bm{E}(z,t) =
     	E\_y(z,t)
 	\end{bmatrix} =
 	\begin{bmatrix}
-    	E\_{m,x} e^{-\kappa\_x (\omega z / c)} \cos(\delta\_x - \eta\_x (\omega z / c) + \omega t) \cr
-    	E\_{m,y} e^{-\kappa\_y (\omega z / c)} \cos(\delta\_y - \eta\_y (\omega z / c) + \omega t)
+    	\bar{E}\_x e^{-\kappa\_x (\omega z / c)} \cos(\delta\_x - \eta\_x (\omega z / c) + \omega t) \cr
+    	\bar{E}\_y e^{-\kappa\_y (\omega z / c)} \cos(\delta\_y - \eta\_y (\omega z / c) + \omega t)
 	\end{bmatrix}. $$
 
 {{< figure src="/img/electric_vector.png" caption="*Electric vector \[[7](#references) (p. 6)\].*">}}
@@ -130,27 +130,26 @@ $$ \tag{12} \bm{B}(z,t) =
     	B\_y(z,t)
 	\end{bmatrix} =
 	\begin{bmatrix}
-    	B\_{m,x} e^{-\kappa\_x (\omega z / c)} \sin(\delta\_x - \eta\_x (\omega z / c) + \omega t) \cr
-    	B\_{m,y} e^{-\kappa\_y (\omega z / c)} \sin(\delta\_y - \eta\_y (\omega z / c) + \omega t)
+    	\bar{B}\_x e^{-\kappa\_x (\omega z / c)} \sin(\delta\_x - \eta\_x (\omega z / c) + \omega t) \cr
+    	\bar{B}\_y e^{-\kappa\_y (\omega z / c)} \sin(\delta\_y - \eta\_y (\omega z / c) + \omega t)
 	\end{bmatrix}. $$
 
 The only new quantity introduced by Equation 12 is the maximum magnitude of \\(\bm{B}\\). Turns out, for time-harmonic plane waves propagating in a linear medium (without currents), the following relation holds:
 
 $$ \begin{aligned} \tag{13}
-	B\_m &= \mu H_m \cr
-	\mathrm{Re} \lbrace \sqrt{\varepsilon} \rbrace E\_m &= \sqrt{\mu} H_m \cr
-	B\_m = \mathrm{Re} \lbrace \sqrt{ \varepsilon \mu } \rbrace E_m
-		 &= \mathrm{Re} \lbrace \sqrt{ (\varepsilon\_r \varepsilon\_0) (\mu\_r \mu\_0) } \rbrace E_m
-		 = \frac{\eta}{c} E\_m = \frac{E\_m}{v\_p},
+	\bar{B} &= \mu \bar{H} \cr
+	\mathrm{Re} \lbrace \sqrt{\varepsilon} \rbrace \bar{E} &= \sqrt{\mu} \bar{H} \cr
+	\bar{B} = \mathrm{Re} \lbrace \sqrt{ \varepsilon \mu } \rbrace \bar{E}
+		 &= \mathrm{Re} \lbrace \sqrt{ (\varepsilon\_r \varepsilon\_0) (\mu\_r \mu\_0) } \rbrace \bar{E}
+		 = \frac{\eta}{c} \bar{E} = \frac{\bar{E}}{v\_p},
 \end{aligned} $$
 
 where \\(\varepsilon\_0\\) is the [vacuum permittivity](https://en.wikipedia.org/wiki/Vacuum_permittivity) and \\(\mu\_0\\) is the [vacuum permeability](https://en.wikipedia.org/wiki/Vacuum_permeability).
 
-Therefore, for simple time-harmonic waves, the amplitudes of the electric and the magnetic field vectors are connected by the phase velocity, and it is typically sufficient to just consider the electric field.
+Therefore, for time-harmonic waves, the amplitudes of the electric and the magnetic vectors are connected by the phase velocity, and propagation of the magnetic vector is often handled implicitly.
 
 The vector nature of light waves (in mathematics) is referred to as the polarization of light (in physics).
 
-<!--
 ## Polarization of Light
 
 We have just seen that transverse waves are composed of two independent scalar components. Can we separate them? The answer is yes.
@@ -163,12 +162,12 @@ To determine this shape, consider a plane wave, this time formulated in a slight
 
 $$ \tag{14} \bm{E}(z,t) =
 	\begin{bmatrix}
-    	E\_{m,x} \cos(\omega t + \phi\_x(z)) \cr
-    	E\_{m,y} \cos(\omega t + \phi\_y(z))
+    	\bar{E}\_x \cos(\omega t + \phi\_x(z)) \cr
+    	\bar{E}\_y \cos(\omega t + \phi\_y(z))
 	\end{bmatrix} =
 	\begin{bmatrix}
-    	E\_{m,x} \cos(\omega t + \phi\_x(z)) \phantom{-----} \cr
-    	E\_{m,y} \cos(\omega t + \phi\_x(z) + \Delta\phi\_{yx}(z))
+    	\bar{E}\_x \cos(\omega t + \phi\_x(z)) \phantom{-----} \cr
+    	\bar{E}\_y \cos(\omega t + \phi\_x(z) + \Delta\phi\_{yx}(z))
 	\end{bmatrix},
 $$
 
@@ -176,8 +175,8 @@ where \\(\Delta\phi\_{yx} = \phi\_{y} - \phi\_{x}\\).
 
 $$ \tag{15} \bm{E}(z,t) =
 	\begin{bmatrix}
-    	E\_{m,x} \cos\theta\_x \phantom{-------------.} \cr
-    	E\_{m,y} \cos\theta\_x \cos\Delta\phi\_{yx} - E\_{m,y} \sin\theta\_x \sin\Delta\phi\_{yx}
+    	\bar{E}\_x \cos\theta\_x \phantom{-------------.} \cr
+    	\bar{E}\_y \cos\theta\_x \cos\Delta\phi\_{yx} - \bar{E}\_y \sin\theta\_x \sin\Delta\phi\_{yx}
 	\end{bmatrix},
 $$
 
@@ -189,7 +188,6 @@ $$
 
 ... equation of an ellipse ...
 
--->
 
 ## Acknowledgments
 
