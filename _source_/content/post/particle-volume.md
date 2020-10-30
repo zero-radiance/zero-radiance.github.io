@@ -39,7 +39,9 @@ $$ \tag{2} \langle \bm{S} \rangle = \frac{1}{T} \int\_{0}^{T} \bm{S}(t) dt, $$
 
 which can be used to define the [spectral irradiance](https://en.wikipedia.org/wiki/Irradiance#Spectral_irradiance) \\(E\\) (do not confuse it with the electric vector \\(\bm{E}\\))
 
-$$ \tag{3} E = \vert \langle \bm{S} \rangle \vert. $$
+$$ \tag{3} E = \vert \langle \bm{S} \rangle \vert \cos{\theta} = \langle \bm{S} \rangle \cdot \bm{v}, $$
+
+where \\(\theta\\) is the angle between \\(\bm{S}\\) and the viewing direction \\(\bm{v}\\).
 
 For a [plane wave](https://en.wikipedia.org/wiki/Plane_wave) in a non-absorbing medium, the expression is particularly [simple](https://en.wikipedia.org/wiki/Irradiance#Property):
 
