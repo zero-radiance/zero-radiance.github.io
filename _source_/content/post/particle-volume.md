@@ -43,7 +43,7 @@ $$ \tag{3} E = \vert \langle \bm{S} \rangle \vert \cos{\theta} = \langle \bm{S} 
 
 where \\(\theta\\) is the angle between \\(\bm{S}\\) and the viewing direction \\(\bm{v}\\).
 
-For a [plane wave](https://en.wikipedia.org/wiki/Plane_wave) in a non-absorbing medium, the expression is particularly [simple](https://en.wikipedia.org/wiki/Irradiance#Property):
+For a [plane wave](https://en.wikipedia.org/wiki/Plane_wave), the expression is particularly [simple](https://en.wikipedia.org/wiki/Irradiance#Property):
 
 $$ \tag{4} E = \frac{1}{2} \frac{\eta}{\mu\_0 c} \bar{E}^2 = \frac{1}{2} \varepsilon\_0 \eta c \bar{E}^2, $$
 $$ \tag{4} E = \frac{1}{2} \frac{\eta}{\mu\_0 c} \bar{E}^2 = \frac{1}{2} \varepsilon\_0 \eta c \bar{E}^2, $$
