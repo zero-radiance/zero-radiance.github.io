@@ -115,12 +115,11 @@ where \\(f\_p\\) denotes the [phase function](http://www.pbr-book.org/3ed-2018/V
 Carefully putting it all together yields the [volume rendering equation](https://cs.dartmouth.edu/~wjarosz/publications/novak18monte.html) along the ray \\(\bm{u} = \bm{x} - u \bm{v}\\):
 
 $$ \tag{13}
-    L(\bm{x}, \bm{v}) =
+    L(\bm{x}, \bm{v}) = T(\bm{x}, \bm{y}) L\_g(\bm{y}, \bm{v}) +
     \int\_{\bm{x}}^{\bm{y}} T(\bm{x}, \bm{u}) \Big(
         \mu\_a(\bm{u}) L\_e(\bm{u}, \bm{v}) +
         \mu\_t(\bm{u}) L\_s(\bm{u}, \bm{v})
-    \Big) du +
-    T(\bm{x}, \bm{y}) L\_g(\bm{y}, \bm{v}),
+    \Big) du
 $$
 
 where \\(\bm{y}\\) denotes the position of the closest surface along the ray[^3].
@@ -130,9 +129,8 @@ where \\(\bm{y}\\) denotes the position of the closest surface along the ray[^3]
 We will leave [volumetric emission](https://doi.org/10.1111/cgf.13228) out by setting \\(L\_e = 0\\):
 
 $$ \tag{14}
-    L(\bm{x}, \bm{v}) =
-    \int\_{\bm{x}}^{\bm{y}} T(\bm{x}, \bm{u}) \mu\_t(\bm{u}) L\_s(\bm{u}, \bm{v}) du +
-    T(\bm{x}, \bm{y}) L\_g(\bm{y}, \bm{v}).
+    L(\bm{x}, \bm{v}) = T(\bm{x}, \bm{y}) L\_g(\bm{y}, \bm{v}) +
+    \int\_{\bm{x}}^{\bm{y}} T(\bm{x}, \bm{u}) \mu\_t(\bm{u}) L\_s(\bm{u}, \bm{v}) du.
 $$
 
 This integral can be evaluated using one of the [Monte Carlo](http://www.pbr-book.org/3ed-2018/Monte_Carlo_Integration.html) methods. The [Monte Carlo estimator](http://www.pbr-book.org/3ed-2018/Monte_Carlo_Integration/The_Monte_Carlo_Estimator.html) has the following form:
