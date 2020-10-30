@@ -12,43 +12,43 @@ Rendering of participating media is an important aspect of every modern renderer
 
 <!--more-->
 
-In the [radiative transfer](https://doi.org/10.1002/qj.49707633016) literature, light-material interaction is usually quantified in terms of absorption (conversion of electromagnetic energy of photons into kinetic energy of atoms, which manifests itself as reduction of light intensity) and [scattering](http://plaza.ufl.edu/dwhahn/Rayleigh%20and%20Mie%20Light%20Scattering.pdf) (absorption followed by [emission](https://en.wikipedia.org/wiki/Stimulated_emission) of electromagnetic energy on collision). Therefore, it is common to describe participating media using the *volume collision coefficients*: the *absorption coefficient* \\(\mu\_a\\) and the *scattering coefficient* \\(\mu\_s\\). These coefficients give the probability density of the corresponding event per unit distance traveled by a photon, which implies the [SI unit](https://en.wikipedia.org/wiki/International_System_of_Units) of measurement is \\(m^{-1}\\).
+In the [radiative transfer](https://doi.org/10.1002/qj.49707633016) literature, light-material interaction is usually quantified in terms of absorption (conversion of electromagnetic energy of photons into kinetic energy of atoms, which manifests itself as reduction of light intensity) and [scattering](http://plaza.ufl.edu/dwhahn/Rayleigh%20and%20Mie%20Light%20Scattering.pdf) (absorption followed by [emission](https://en.wikipedia.org/wiki/Stimulated_emission) of electromagnetic energy on collision). Therefore, it is common to describe participating media using the *volume collision coefficients*: the *absorption coefficient* \\(\beta\_a\\) and the *scattering coefficient* \\(\beta\_s\\). These coefficients give the probability density of the corresponding event per unit distance traveled by a photon, which implies the [SI unit](https://en.wikipedia.org/wiki/International_System_of_Units) of measurement is \\(m^{-1}\\).
 
-The [extinction coefficient](https://en.wikipedia.org/wiki/Attenuation_coefficient)[^1] \\(\mu\_t\\)
+The [extinction coefficient](https://en.wikipedia.org/wiki/Attenuation_coefficient)[^1] \\(\beta\_t\\)
 
 [^1]: According to [Wikipedia](https://en.wikipedia.org/wiki/Attenuation_coefficient), this is an old term, and we should refer to it as the *attenuation coefficient* instead. While it's certainly a better name, in practice, all classical publications call it extinction. We use the classical naming convention to avoid confusion.
 
-$$ \tag{1} \mu\_t = \mu\_a + \mu\_s $$
+$$ \tag{1} \beta\_t = \beta\_a + \beta\_s $$
 
 gives the probability density of absorption or scattering (or, in other words, the collision rate) as a photon travels a unit distance through the medium.
 
 A more artist-friendly parametrization uses the [single-scattering albedo](https://en.wikipedia.org/wiki/Single-scattering_albedo) \\(\alpha\_{ss}\\)
 
-$$ \tag{2} \alpha\_{ss} = \frac{\mu\_s}{\mu\_t}, $$
+$$ \tag{2} \alpha\_{ss} = \frac{\beta\_s}{\beta\_t}, $$
 
 which gives the deflection probability (or, in other words, the scattering rate), and the [mean free path](https://en.wikipedia.org/wiki/Mean_free_path) \\(d\\)
 
-$$ \tag{3} d = \frac{1}{\mu\_t}, $$
+$$ \tag{3} d = \frac{1}{\beta\_t}, $$
 
 which corresponds to the average collision-free (or free-flight) distance.
 
 It's worth noting that the absorption coefficient is directly related to the [absorption index](http://www.sfu.ca/~gchapman/e376/e376l7.pdf) \\(\kappa\\), which is the imaginary part of the [complex refractive index](https://en.wikipedia.org/wiki/Refractive_index#Complex_refractive_index) (IOR) \\(\eta - i \kappa\\):
 
-$$ \tag{4} \kappa = \frac{\lambda}{4 \pi} \mu\_a. $$
+$$ \tag{4} \kappa = \frac{\lambda}{4 \pi} \beta\_a. $$
 
 Note that, in this context, I am not talking about the IOR of an individual microscopic particle (which influences the [microscopic scattering](https://en.wikipedia.org/wiki/Mie_scattering) process), but rather about the properties of the macroscopic medium (composed of many microscopic particles).
 
-The tuple \\(\lbrace \eta, \kappa, \mu\_s \rbrace\\) \\(\big(\\)or, alternatively, \\(\lbrace \eta, d, \alpha\_{ss} \rbrace \big) \\) contains sufficient information to describe both the behavior at the surface (boundary) and the (isotropic) multiple-scattering process (known as [subsurface scattering](https://en.wikipedia.org/wiki/Subsurface_scattering)) inside the volume that ultimately gives rise to what we perceive as the surface albedo \\(\alpha\_{ms}\\). Note that certain materials (metals, in particular) require modeling of [wave interference](https://en.wikipedia.org/wiki/Wave_interference) to obtain expected reflectance values.
+The tuple \\(\lbrace \eta, \kappa, \beta\_s \rbrace\\) \\(\big(\\)or, alternatively, \\(\lbrace \eta, d, \alpha\_{ss} \rbrace \big) \\) contains sufficient information to describe both the behavior at the surface (boundary) and the (isotropic) multiple-scattering process (known as [subsurface scattering](https://en.wikipedia.org/wiki/Subsurface_scattering)) inside the volume that ultimately gives rise to what we perceive as the surface albedo \\(\alpha\_{ms}\\). Note that certain materials (metals, in particular) require modeling of [wave interference](https://en.wikipedia.org/wiki/Wave_interference) to obtain expected reflectance values.
 
 A surface, then, is just an optical interface signified by a discontinuity of optical properties of the medium (in reality, the [transition at the boundary is continuous](https://www.feynmanlectures.caltech.edu/II_33.html), with a thickness of several atomic layers, but we can ignore this fact at scales relevant to computer graphics).
 
 Sometimes, it is convenient to specify the concentration (density) of the medium, and not its effective optical properties. For example, the extinction coefficient can be computed using the following formula:
 
-$$ \tag{5} \mu\_t = \rho \sigma\_t, $$
+$$ \tag{5} \beta\_t = \rho \sigma\_t, $$
 
 where \\(\rho\\) is the [mass density](https://en.wikipedia.org/wiki/Mass_density) (measured in units of \\(kg/m^{3}\\)) and \\(\sigma\_t\\) is the [mass extinction coefficient](https://en.wikipedia.org/wiki/Mass_attenuation_coefficient) (in units of \\(m^{2}/kg\\)) - [effective cross section](http://www.sfu.ca/~gchapman/e376/e376l7.pdf) per unit mass[^2]. Other coefficients have the same linear relation with density.
 
-[^2]: Alternatively, one can also a use [number density](https://en.wikipedia.org/wiki/Number_density) instead of mass density.
+[^2]: Alternatively, one can use [number density](https://en.wikipedia.org/wiki/Number_density) instead of mass density.
 
 But what about the IOR? Often, we assume that it is independent of density. But, if you consider water and steam (which has a lower concentration of water molecules), our experience tells us that their refractive properties are not the same.
 
@@ -93,36 +93,36 @@ Volumetric transmittance is given by the [Beer–Lambert–Bouguer law](https://
 
 $$ \tag{10} \tau(\bm{x}, \bm{y})
     = -\log{T(\bm{x}, \bm{y})}
-    = \int\_{\bm{x}}^{\bm{y}} \mu\_t(\bm{u}) d\mu(\bm{u})
-    = \int\_{\bm{x}}^{\bm{y}} \mu\_t(\bm{u}) du,
+    = \int\_{\bm{x}}^{\bm{y}} \beta\_t(\bm{u}) d\beta(\bm{u})
+    = \int\_{\bm{x}}^{\bm{y}} \beta\_t(\bm{u}) du,
 $$
 
-where \\(\bm{u} = \bm{x} - u \bm{v}\\) is the point at the distance \\(u\\) along the ray, and \\(d\mu(\bm{u})\\) is the [measure](https://en.wikipedia.org/wiki/Lebesgue_integration#Measure_theory) of \\(\bm{u}\\) abbreviated as \\(du\\). This formula implies that while transmittance is multiplicative, with values restricted to the unit interval, optical depth is additive and can take on any non-negative value. In other words, transmittance is a [product integral](https://www.wikiwand.com/en/Product_integral):
+where \\(\bm{u} = \bm{x} - u \bm{v}\\) is the point at the distance \\(u\\) along the ray, and \\(du\\) is the (length) [measure](https://en.wikipedia.org/wiki/Lebesgue_integration#Measure_theory) of \\(\bm{u}\\). This formula implies that while transmittance is multiplicative, with values restricted to the unit interval, optical depth is additive and can take on any non-negative value. In other words, transmittance is a [product integral](https://www.wikiwand.com/en/Product_integral):
 
 $$ \tag{11} T(\bm{x}, \bm{y})
-    = e^{- \int\_{\bm{x}}^{\bm{y}} \mu\_t(\bm{u}) du}
-    = \prod\_{\bm{x}}^{\bm{y}} \Big( 1 - \mu\_t(\bm{u}) du \Big).
+    = e^{- \int\_{\bm{x}}^{\bm{y}} \beta\_t(\bm{u}) du}
+    = \prod\_{\bm{x}}^{\bm{y}} \Big( 1 - \beta\_t(\bm{u}) du \Big).
 $$
 
 Other [integral formulations](https://cs.dartmouth.edu/~wjarosz/publications/georgiev19integral.html) of volumetric transmittance exist.
 
-The RTE models three types of energy sources: [volumetric emission](https://en.wikipedia.org/wiki/Spontaneous_emission) \\(L\_e\\), volumetric in-scattering \\(L\_s\\), and surface in-scattering \\(L\_g\\) (which is the standard surface geometry term with a BSDF). The volumetric in-scattering term \\(L\_s\\) is an integral over \\(4 \pi\\) steradians:
+The RTE models three types of energy sources: [volumetric emission](https://en.wikipedia.org/wiki/Spontaneous_emission) \\(L\_e\\), volumetric in-scattering \\(L\_s\\), and surface in-scattering \\(L\_g\\) (which is itself an integral that features a surface geometry term with a BSDF). The volumetric in-scattering term \\(L\_s\\) is an integral over \\(4 \pi\\) steradians:
 
 $$ \tag{12} L\_s(\bm{x}, \bm{v}) = \int\_{4 \pi} \alpha\_{ss}(\bm{x}) \frac{f\_p(\bm{x}, \bm{v}, \bm{l})}{4 \pi} L(\bm{x}, \bm{l}) dl, $$
 
-where \\(f\_p\\) denotes the [phase function](http://www.pbr-book.org/3ed-2018/Volume_Scattering/Phase_Functions.html) which models the distribution of scattered light.
+where \\(f\_p\\) denotes the [phase function](http://www.pbr-book.org/3ed-2018/Volume_Scattering/Phase_Functions.html) which models the distribution of scattered light, and \\(dl\\) is the (solid angle) [measure](https://en.wikipedia.org/wiki/Lebesgue_integration#Measure_theory) of \\(\bm{l}\\).
 
-Carefully putting it all together yields the [volume rendering equation](https://cs.dartmouth.edu/~wjarosz/publications/novak18monte.html) along the ray \\(\bm{u} = \bm{x} - u \bm{v}\\):
+Carefully putting it all together[^3] yields the [volume rendering equation](https://cs.dartmouth.edu/~wjarosz/publications/novak18monte.html) along the ray \\(\bm{u} = \bm{x} - u \bm{v}\\):
 
 $$ \tag{13}
     L(\bm{x}, \bm{v}) = T(\bm{x}, \bm{y}) L\_g(\bm{y}, \bm{v}) +
     \int\_{\bm{x}}^{\bm{y}} T(\bm{x}, \bm{u}) \Big(
-        \mu\_a(\bm{u}) L\_e(\bm{u}, \bm{v}) +
-        \mu\_t(\bm{u}) L\_s(\bm{u}, \bm{v})
+        \beta\_a(\bm{u}) L\_e(\bm{u}, \bm{v}) +
+        \beta\_t(\bm{u}) L\_s(\bm{u}, \bm{v})
     \Big) du
 $$
 
-where \\(\bm{y}\\) denotes the position of the closest surface along the ray[^3].
+where \\(\bm{y}\\) denotes the position of the closest surface along the ray.
 
 [^3]: The absorption coefficient in front of the emission term is due to the [Kirchhoff's law](https://en.wikipedia.org/wiki/Kirchhoff%27s_law_of_thermal_radiation) which states that, for an arbitrary body emitting and absorbing thermal radiation in thermodynamic equilibrium, the emissivity is equal to the absorptivity.
 
@@ -130,29 +130,29 @@ We will leave [volumetric emission](https://doi.org/10.1111/cgf.13228) out by se
 
 $$ \tag{14}
     L(\bm{x}, \bm{v}) = T(\bm{x}, \bm{y}) L\_g(\bm{y}, \bm{v}) +
-    \int\_{\bm{x}}^{\bm{y}} T(\bm{x}, \bm{u}) \mu\_t(\bm{u}) L\_s(\bm{u}, \bm{v}) du.
+    \int\_{\bm{x}}^{\bm{y}} T(\bm{x}, \bm{u}) \beta\_t(\bm{u}) L\_s(\bm{u}, \bm{v}) du.
 $$
 
 This integral can be evaluated using one of the [Monte Carlo](http://www.pbr-book.org/3ed-2018/Monte_Carlo_Integration.html) methods. The [Monte Carlo estimator](http://www.pbr-book.org/3ed-2018/Monte_Carlo_Integration/The_Monte_Carlo_Estimator.html) has the following form:
 
 $$ \tag{15} L(\bm{x}, \bm{v})
-    \approx \frac{1}{N} \sum\_{i=1}^{N} \frac{T(\bm{x}, \bm{u}\_i) \mu\_t(\bm{u}\_i) L\_s(\bm{u}\_i, \bm{v})}{p( u_i | \lbrace \bm{x}, \bm{v} \rbrace)} + T(\bm{x}, \bm{y}) L\_g(\bm{y}, \bm{v}),
+    \approx T(\bm{x}, \bm{y}) L\_g(\bm{y}, \bm{v}) + \frac{1}{N} \sum\_{i=1}^{N} \frac{T(\bm{x}, \bm{u}\_i) \beta\_t(\bm{u}\_i) L\_s(\bm{u}\_i, \bm{v})}{p( u_i | \lbrace \bm{x}, \bm{v} \rbrace)},
 $$
 
 where sample locations \\(\bm{u}\_i\\) at the distance \\(u_i\\) along the ray are distributed according to the [PDF](https://en.wikipedia.org/wiki/Probability_density_function) \\(p\\).
 
-We can [importance sample](http://www.pbr-book.org/3ed-2018/Monte_Carlo_Integration/Importance_Sampling.html) the integrand (distribute samples according to the PDF) in several ways. Ideally, we would like to make the PDF proportional to the [product](https://cgg.mff.cuni.cz/~jaroslav/papers/2014-zerovar/) of all terms of the integrand. However, unless we use [path guiding](https://cgg.mff.cuni.cz/~jirka/path-guiding-in-production/2019/index.htm), that is typically not possible. We will focus on the technique called [free path sampling](https://cs.dartmouth.edu/~wjarosz/publications/novak18monte.html) that makes the PDF proportional to the extinction-transmittance product \\(T \mu\_t\\) (effectively, by assuming that the rest of the integrand varies slowly; in practice, this may or may not be the case - for example, for regions near light sources, [equiangular sampling](http://library.imageworks.com/pdfs/imageworks-library-importance-sampling-of-area-lights-in-participating-media.pdf) can give vastly superior results).
+We can [importance sample](http://www.pbr-book.org/3ed-2018/Monte_Carlo_Integration/Importance_Sampling.html) the integrand (distribute samples according to the PDF) in several ways. Ideally, we would like to make the PDF proportional to the [product](https://cgg.mff.cuni.cz/~jaroslav/papers/2014-zerovar/) of all terms of the integrand. However, unless we use [path guiding](https://cgg.mff.cuni.cz/~jirka/path-guiding-in-production/2019/index.htm), that is typically not possible. We will focus on the technique called [free path sampling](https://cs.dartmouth.edu/~wjarosz/publications/novak18monte.html) that makes the PDF proportional to the extinction-transmittance product \\(T \beta\_t\\) (effectively, by assuming that the rest of the integrand varies slowly; in practice, this may or may not be the case - for example, for regions near light sources, [equiangular sampling](http://library.imageworks.com/pdfs/imageworks-library-importance-sampling-of-area-lights-in-participating-media.pdf) can give vastly superior results).
 
 In order to turn the extinction-transmittance product into a PDF, it must be normalized over the domain of integration, \\(\bm{x}\\) to \\(\bm{y}\\). We must compute the normalization factor
 
 $$ \tag{16}
-      \int\_{\bm{x}}^{\bm{y}} T(\bm{x}, \bm{u}) \mu\_t(\bm{u}) du
-    = \int\_{\bm{x}}^{\bm{y}} e^{-\tau(\bm{x}, \bm{u})} \mu\_t(\bm{u}) du.
+      \int\_{\bm{x}}^{\bm{y}} T(\bm{x}, \bm{u}) \beta\_t(\bm{u}) du
+    = \int\_{\bm{x}}^{\bm{y}} e^{-\tau(\bm{x}, \bm{u})} \beta\_t(\bm{u}) du.
 $$
 
 If we use the [fundamental theorem of calculus](https://en.wikipedia.org/wiki/Fundamental_theorem_of_calculus#First_part) to interpret the extinction coefficient as a derivative
 
-$$ \tag{17} \mu\_t(\bm{u}) = \frac{\partial \tau}{\partial u}, $$
+$$ \tag{17} \beta\_t(\bm{u}) = \frac{\partial \tau}{\partial u}, $$
 
 we can use the one of the [exponential identities](https://en.wikipedia.org/wiki/List_of_integrals_of_exponential_functions#Integrals_involving_only_exponential_functions) to simplify the extinction-transmittance integral:
 
@@ -165,24 +165,24 @@ $$
 Since it's equal to opacity, the integral can be evaluated in a [forward or backward fashion](https://cs.dartmouth.edu/~wjarosz/publications/georgiev19integral.html).
 
 $$ \tag{19}
-    \int\_{\bm{x}}^{\bm{y}} e^{-\tau(\bm{x}, \bm{u})} \mu\_t(\bm{u}) du =
-    \int\_{\bm{x}}^{\bm{y}} e^{-\tau(\bm{u}, \bm{y})} \mu\_t(\bm{u}) du.
+    \int\_{\bm{x}}^{\bm{y}} e^{-\tau(\bm{x}, \bm{u})} \beta\_t(\bm{u}) du =
+    \int\_{\bm{x}}^{\bm{y}} e^{-\tau(\bm{u}, \bm{y})} \beta\_t(\bm{u}) du.
 $$
 
 We can now define the normalized sampling PDF:
 
 $$ \tag{20} p(u | \lbrace \bm{x}, \bm{v} \rbrace)
-    = \frac{T(\bm{x}, \bm{u}) \mu\_t(\bm{u})}{O(\bm{x}, \bm{y})}. $$
+    = \frac{T(\bm{x}, \bm{u}) \beta\_t(\bm{u})}{O(\bm{x}, \bm{y})}. $$
 
 Substitution of the PDF into Equation 15 radically simplifies the estimator:
 
-$$ \tag{21} L(\bm{x}, \bm{v}) \approx O(\bm{x}, \bm{y}) \frac{1}{N} \sum\_{i=1}^{N} L\_s(\bm{u}\_i, \bm{v}) + T(\bm{x}, \bm{y}) L\_g(\bm{y}, \bm{v}). $$
+$$ \tag{21} L(\bm{x}, \bm{v}) \approx T(\bm{x}, \bm{y}) L\_g(\bm{y}, \bm{v}) + O(\bm{x}, \bm{y}) \frac{1}{N} \sum\_{i=1}^{N} L\_s(\bm{u}\_i, \bm{v}). $$
 
 This equation can be seen as a form of [premultiplied alpha blending](https://graphics.pixar.com/library/Compositing/) (where alpha is opacity), which explains why particle cards can be so convincing. Additionally, it offers yet another way to parametrize the extinction coefficient - namely, by opacity at distance (which is similar to [transmittance at distance](https://blog.selfshadow.com/publications/s2015-shading-course/burley/s2015_pbs_disney_bsdf_notes.pdf) used by Disney). It is the most RGB rendering friendly parametrization that I am aware of.
 
 In this context, total opacity along the ray serves as the probability of a collision event within the medium, and can be used to make a random choice of the type of the sample (surface or volume):
 
-$$ \tag{22} L(\bm{x}, \bm{v}) \approx O(\bm{x}, \bm{y}) \frac{1}{N} \sum\_{i=1}^{N} L\_s(\bm{u}\_i, \bm{v}) + \big(1 - O(\bm{x}, \bm{y}) \big) L\_g(\bm{y}, \bm{v}).
+$$ \tag{22} L(\bm{x}, \bm{v}) \approx \big(1 - O(\bm{x}, \bm{y}) \big) L\_g(\bm{y}, \bm{v}) + O(\bm{x}, \bm{y}) \frac{1}{N} \sum\_{i=1}^{N} L\_s(\bm{u}\_i, \bm{v}).
 $$
 
 In order to sample the integrand of Equation 14, we must be also able to [invert](http://www.pbr-book.org/3ed-2018/Monte_Carlo_Integration/Sampling_Random_Variables.html#TheInversionMethod) the [CDF](https://en.wikipedia.org/wiki/Cumulative_distribution_function) \\(P\\):
@@ -686,7 +686,7 @@ One does not simply sample the Chapman function. There doesn't appear to be a wa
 
 In order to sample participating media, we must be able to solve the optical depth equation for distance. If you only have a single analytically-defined volume, sampling it is (usually) trivial. However, once you have several heterogeneous overlapping volumes, you start running into issues. While optical depth is additive, the sampled distance is not. So, what do we do?
 
- If we can't solve the equation analytically, we can solve it numerically, using the [Newton–Raphson method](https://en.wikipedia.org/wiki/Newton%27s_method). Recall that this method requires being able to make an initial guess, evaluate the function, and take its derivative. Our function is the total optical depth. We can make an initial guess by assuming that the combined medium is uniform (or, under certain assumptions, plane-parallel-exponential). And since we know that the derivative of optical depth is just the extinction coefficient \\(\mu_t\\) (see Equation 17), so we have all the pieces we need.
+ If we can't solve the equation analytically, we can solve it numerically, using the [Newton–Raphson method](https://en.wikipedia.org/wiki/Newton%27s_method). Recall that this method requires being able to make an initial guess, evaluate the function, and take its derivative. Our function is the total optical depth. We can make an initial guess by assuming that the combined medium is uniform (or, under certain assumptions, plane-parallel-exponential). And since we know that the derivative of optical depth is just the extinction coefficient \\(\beta_t\\) (see Equation 17), so we have all the pieces we need.
 
 This method is very general and works for arbitrary [continuous density distributions](https://mcnp.lanl.gov/pdf_files/la-ur-02-6530.pdf).
 
@@ -966,20 +966,20 @@ One of the concerns with the implementation outlined above is the necessity to s
 
 The basic idea of the null-collision integral is add another type of collision event which has no effect on light transport. While it may seem pointless at first glance, it is a very useful mathematical trick that allows analytic sampling of heterogeneous media (by padding it with transparent forward-scattering particles) either in space or across the spectral domain (or both).
 
-The framework introduces two new types of collision coefficients: the null coefficient \\(\bm{\mu_n}\\) and the majorant \\(\bm{\bar{\mu}}\\) that satisfy
+The framework introduces two new types of collision coefficients: the null coefficient \\(\bm{\beta_n}\\) and the majorant \\(\bm{\bar{\beta}}\\) that satisfy
 
-$$ \tag{68} \bm{\mu_a} + \bm{\mu_s} + \bm{\mu_n} = \bm{\bar{\mu}}. $$
+$$ \tag{68} \bm{\beta_a} + \bm{\beta_s} + \bm{\beta_n} = \bm{\bar{\beta}}. $$
 
-Note that while \\(\bm{\mu_n}\\) does not have to be positive, it is usually a [good idea](https://hal.archives-ouvertes.fr/hal-01688110/) in order to keep variance low. For our use case, we compute \\(\bar{\mu}\\) by taking the [maximum of the absolute value](http://mathworld.wolfram.com/L-Infinity-Norm.html) of the extinction coefficient across the spectral domain:
+Note that while \\(\bm{\beta_n}\\) does not have to be positive, it is usually a [good idea](https://hal.archives-ouvertes.fr/hal-01688110/) in order to keep variance low. For our use case, we compute \\(\bar{\beta}\\) by taking the [maximum of the absolute value](http://mathworld.wolfram.com/L-Infinity-Norm.html) of the extinction coefficient across the spectral domain:
 
-$$ \tag{69} \bar{\mu} = ||\mu_t(\lambda)||\_{\infty}. $$
+$$ \tag{69} \bar{\beta} = ||\beta_t(\lambda)||\_{\infty}. $$
 
 Note that it has to be a scalar since it will be used for importance sampling.
 
 Both the derivation and the proof of correctness of the null-scattering integral are rather long and complicated, so I will only present the [final result](https://dl.acm.org/citation.cfm?id=3073665), which is
 
 $$ \tag{70} \bm{L}(\bm{x}, \bm{v})
-    = \int\_{0}^{t\_{max}} \bar{\mu}(\bm{x}, \bm{v}, s) \bar{T}(\bm{x}, \bm{v}, s) \bm{L_i}(\bm{x} + s \bm{v}, \bm{v}) ds,
+    = \int\_{0}^{t\_{max}} \bar{\beta}(\bm{x}, \bm{v}, s) \bar{T}(\bm{x}, \bm{v}, s) \bm{L_i}(\bm{x} + s \bm{v}, \bm{v}) ds,
 $$
 
 where \\(\bar{T}\\) is transmittance evaluated using the majorant (rather than extinction) coefficient. Note that the majorant coefficient doesn't actually have to be a constant - it can be any analytic function (e.g. varying with height) serving as the upper bound for the extinction coefficient.
@@ -1000,18 +1000,18 @@ Each individual event has a corresponding weight:
 
 $$ \tag{72}
 \begin{aligned}
-    \bm{w_a}(\bm{x}, \bm{v}, s) &= \frac{\bm{\mu_a}(\bm{x}, \bm{v}, s)}{\bar{\mu}(\bm{x}, \bm{v}, s) P_a(\bm{x}, \bm{v}, s)} \cr
-    \bm{w_s}(\bm{x}, \bm{v}, s) &= \frac{\bm{\mu_s}(\bm{x}, \bm{v}, s)}{\bar{\mu}(\bm{x}, \bm{v}, s) P_s(\bm{x}, \bm{v}, s)} \cr
-    \bm{w_n}(\bm{x}, \bm{v}, s) &= \frac{\bm{\mu_n}(\bm{x}, \bm{v}, s)}{\bar{\mu}(\bm{x}, \bm{v}, s) P_n(\bm{x}, \bm{v}, s)}
+    \bm{w_a}(\bm{x}, \bm{v}, s) &= \frac{\bm{\beta_a}(\bm{x}, \bm{v}, s)}{\bar{\beta}(\bm{x}, \bm{v}, s) P_a(\bm{x}, \bm{v}, s)} \cr
+    \bm{w_s}(\bm{x}, \bm{v}, s) &= \frac{\bm{\beta_s}(\bm{x}, \bm{v}, s)}{\bar{\beta}(\bm{x}, \bm{v}, s) P_s(\bm{x}, \bm{v}, s)} \cr
+    \bm{w_n}(\bm{x}, \bm{v}, s) &= \frac{\bm{\beta_n}(\bm{x}, \bm{v}, s)}{\bar{\beta}(\bm{x}, \bm{v}, s) P_n(\bm{x}, \bm{v}, s)}
 \end{aligned}
 $$
 
 The simplest (but [not the only](https://dl.acm.org/citation.cfm?id=3073665)) way to define the collision probabilities is as follows:
 
 $$ \tag{73} \begin{aligned}
-    P_a(\bm{x}, \bm{v}, s) &= \frac{||\mu_a(\lambda)||\_{\infty}}{||\mu_a(\lambda)||\_{\infty} + ||\mu_s(\lambda)||\_{\infty} + ||\mu_n(\lambda)||\_{\infty}}, \cr
-    P_s(\bm{x}, \bm{v}, s) &= \frac{||\mu_s(\lambda)||\_{\infty}}{||\mu_a(\lambda)||\_{\infty} + ||\mu_s(\lambda)||\_{\infty} + ||\mu_n(\lambda)||\_{\infty}}, \cr
-    P_n(\bm{x}, \bm{v}, s) &= \frac{||\mu_n(\lambda)||\_{\infty}}{||\mu_a(\lambda)||\_{\infty} + ||\mu_s(\lambda)||\_{\infty} + ||\mu_n(\lambda)||\_{\infty}},
+    P_a(\bm{x}, \bm{v}, s) &= \frac{||\beta_a(\lambda)||\_{\infty}}{||\beta_a(\lambda)||\_{\infty} + ||\beta_s(\lambda)||\_{\infty} + ||\beta_n(\lambda)||\_{\infty}}, \cr
+    P_s(\bm{x}, \bm{v}, s) &= \frac{||\beta_s(\lambda)||\_{\infty}}{||\beta_a(\lambda)||\_{\infty} + ||\beta_s(\lambda)||\_{\infty} + ||\beta_n(\lambda)||\_{\infty}}, \cr
+    P_n(\bm{x}, \bm{v}, s) &= \frac{||\beta_n(\lambda)||\_{\infty}}{||\beta_a(\lambda)||\_{\infty} + ||\beta_s(\lambda)||\_{\infty} + ||\beta_n(\lambda)||\_{\infty}},
 \end{aligned}
 $$
 
