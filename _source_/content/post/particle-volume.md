@@ -13,37 +13,44 @@ I have [previously](/post/analytic-media/) covered the basics of the volume scat
 
 <!--more-->
 
-## Introduction to Radiometry
+## Radiometry Refresher
 
-Consider a collimated beam of light (a parallel stream of photons) arriving from the source located somewhere along the unit direction \\(\bm{i}\\). Imagine that there is a detector with its surface normal aligned with the unit vector \\(\bm{o}\\). Let us define \\(\cos{\theta} = \bm{i} \cdot \bm{o}\\).
+Imagine a light sensor (or a [photon](https://en.wikipedia.org/wiki/Photon) counter, with each photon carrying \\(h \nu\\) joules of [energy](https://en.wikipedia.org/wiki/Photon_energy)) with the *surface area* \\(\sigma\\) and the *surface normal* \\(\bm{n}\\). We would like to measure the amount of [radiant energy](https://en.wikipedia.org/wiki/Radiant_energy) \\(Q\_n\\) that *enters* the sensor over the period of *time* \\(t\\). This can be done in several different ways, depending on the parametrization of the incident radiation.
 
-PICTURE
+If the [spectral flux](https://en.wikipedia.org/wiki/Radiant_flux#Spectral_flux) \\(\Phi\_n\\) of the *frequency* \\(\nu\\) that enters the detector is known,
 
-The [spectral irradiance](https://en.wikipedia.org/wiki/Irradiance#Spectral_irradiance) (flux density) of the source \\(E\_i\\) is related to \\(E\_o\\) at the detector by
+$$ \tag{i} d^2Q\_n = \Phi\_n d\nu dt. $$
 
-$$ \tag{i} E\_o = E\_i \cos{\theta}. $$
+The flux is very coarse quantity in the sense that it does not tell us where the radiation is coming from and to what degree the different parts of the sensor are affected.
 
-If we assign the detector a finite area \\(\sigma\_o\\), we can compute the [spectral flux](https://en.wikipedia.org/wiki/Radiant_flux#Spectral_flux) \\(\Phi\_o\\):
+In case the flux density on the sensor is known, it is given by the [spectral irradiance](https://en.wikipedia.org/wiki/Irradiance#Spectral_irradiance) \\(E\_n\\):
 
-$$ \tag{ii} d\Phi\_o = E\_o d\sigma\_o = E\_i \cos{\theta} d\sigma\_o. $$
+$$ \tag{ii} d^3Q\_n = E\_n d\sigma d\nu dt. $$
 
-If the strength of the source is specified[^1] by the [spectral radiance](https://en.wikipedia.org/wiki/Radiance#Spectral_radiance) \\(L\_i\\) rather than the irradiance \\(E\_i\\),
+If we can only determine the directional characteristics of the flux, we can represent it using the [spectral intensity](https://en.wikipedia.org/wiki/Radiant_intensity#Spectral_intensity) \\(I\_n\\):
+
+$$ \tag{iii} d^3Q\_n = I\_n d\Omega d\nu dt, $$
+
+where \\(d\Omega\\) is the *solid angle* [measure](https://en.wikipedia.org/wiki/Lebesgue_integration#Measure_theory) associated with the direction of the intensity.
+
+The [spectral radiance](https://en.wikipedia.org/wiki/Radiance#Spectral_radiance) \\(L\_i\\) specifies[^1] both the spatial and the directional characteristics of the flux:
+
+$$ \tag{iv} d^4Q\_n = L\_i \cos{\theta} d\Omega d\sigma d\nu dt, $$
+
+where \\(\cos{\theta} = \bm{i} \cdot \bm{n}\\) is the cosine of the angle between the *incident direction* \\(\bm{i}\\) and the surface normal.
 
 [^1]: Historically, radiance is called *intensity* and spectral radiance is called *specific intensity*. Personally, I don't find this name to be specific enough.
 
-$$ \tag{iii} d\Phi\_o = L\_i d\Omega\_i \cos{\theta} d\sigma\_o, $$
+It is important to understand that both \\(E\_n\\) and \\(I\_n\\) are measured with respect to the surface normal of the detector, while \\(L\_i\\) is defined orthogonally to the direction of the incident radiation. Comparing Equations ii-iv, it is clear that[^2]
 
-where \\(d\Omega\_i\\) is the solid angle [measure](https://en.wikipedia.org/wiki/Lebesgue_integration#Measure_theory) associated with \\(\bm{i}\\). Certain expressions can be simplified by utilizing the [projected solid angle](http://graphics.stanford.edu/papers/veach_thesis/) measure \\(d\Omega\_i^{\perp} = d\Omega\_i \cos{\theta}\\).
+[^2]: Certain expressions can be simplified by using the *projected area* measure \\(d\sigma\_i = d\sigma \cos{\theta}\\)  or the *projected solid angle* measure \\(d\Omega\_i = d\Omega \cos{\theta}\\).
 
-If we integrate over the projected area \\(\sigma\_o \cos{\theta}\\), we can relate the outgoing spectral flux \\(\Phi\_o\\) to the incident [spectral intensity](https://en.wikipedia.org/wiki/Radiant_intensity#Spectral_intensity) \\(I\_i\\):
+$$ \tag{v}  dE\_n = dE\_i \cos{\theta} = L\_i d\Omega \cos{\theta}, $$
+$$ \tag{vi} dI\_n = dI\_i \cos{\theta} = L\_i d\sigma \cos{\theta}. $$
 
-$$ \tag{iv} d\Phi\_o = I\_i d\Omega\_i. $$
+By [reciprocity](https://en.wikipedia.org/wiki/Helmholtz_reciprocity), if we turn the detector into an emitter and replace \\(\bm{i}\\) with \\(\bm{o}\\), the resulting equations remain valid.
 
-Accounting for the frequency \\(\nu\\) and the time \\(t\\), we arrive at the expression of the amount of [radiant energy](https://en.wikipedia.org/wiki/Radiant_energy) \\(Q\_o\\):
-
-$$ \tag{v} dQ\_o = L\_i d\Omega\_i \cos{\theta} d\sigma\_o d\nu dt. $$
-
-By [reciprocity](https://en.wikipedia.org/wiki/Helmholtz_reciprocity), if we turn the detector into an emitter and swap \\(\bm{i}\\) and \\(\bm{o}\\), the resulting equations remain valid.
+For additional details, see Chapter 3 of [Veach's PhD thesis](http://graphics.stanford.edu/papers/veach_thesis/) and the references listed therein.
 
 ## Light Scattering by a Single Particle
 
@@ -54,11 +61,11 @@ Imagine a small particle of an arbitrary shape embedded in the host medium with 
 
 {{< figure src="/img/linear_plane_wave.png" caption="*Linearly-polarized plane electromagnetic wave. [Image source](https://openstax.org/books/university-physics-volume-2/pages/16-4-momentum-and-radiation-pressure).*">}}
 
-Consider an [electromagnetic wave](https://www.cpp.edu/~alrudolph/classes/phy234/Reading/Summary%20of%20Waves.pdf) represented[^2] by the electric vector \\(\bm{E}\\) and the magnetic flux density \\(\bm{B}\\) of a certain frequency and in a certain state of polarization[^2]. The direction of propagation and the amount of power[^3] per unit area carried by the wave at the time \\(t\\) is given by the [instanteneous Poynting vector](https://en.wikipedia.org/wiki/Poynting_vector#Formulation_in_terms_of_microscopic_fields) \\(\bm{S}\\)
+Consider an [electromagnetic wave](https://www.cpp.edu/~alrudolph/classes/phy234/Reading/Summary%20of%20Waves.pdf) represented[^6] by the electric vector \\(\bm{E}\\) and the magnetic flux density \\(\bm{B}\\) of a certain frequency and in a certain state of polarization[^7]. The direction of propagation and the amount of power[^3] per unit area carried by the wave at the time \\(t\\) is given by the [instanteneous Poynting vector](https://en.wikipedia.org/wiki/Poynting_vector#Formulation_in_terms_of_microscopic_fields) \\(\bm{S}\\)
 
-[^2]: [Maxwell's equations](http://www.maxwells-equations.com/) are defined using 5 [vector fields](https://en.wikipedia.org/wiki/Vector_field): \\(\bm{E}\\) is the *electric vector*, \\(\bm{H}\\) is the *magnetic vector*, \\(\bm{j}\\) is the *electric current density*, \\(\bm{D}\\) is the *electric flux density* (a.k.a. the *electric displacement*), and \\(\bm{B}\\) is the *magnetic flux density* (a.k.a. the *magnetic induction*). \\(\bm{E}\\) and \\(\bm{B}\\) are considered the fundamental fields, and \\(\bm{j}, \bm{D}, \bm{H}\\) arise due to the influence of matter. For more details, refer to 1) ch. 1.1. of Born, M., & Wolf, E. [Principles of optics](https://doi.org/10.1017/CBO9781139644181), 7th edition (1999); 2) vol. II, ch 32.2 of Feynman, R. P., Leighton, R. B., & Sands, M. [The Feynman lectures on physics](https://www.feynmanlectures.caltech.edu/II_32.html) (1963); 3) Hill, W. T. [E, D, B & H: What do they all mean?](http://www.physics.umd.edu/courses/Phys263/wth/fall04/downloads/EDBH/edbh.pdf) (2004).
+[^6]: [Maxwell's equations](http://www.maxwells-equations.com/) are defined using 5 [vector fields](https://en.wikipedia.org/wiki/Vector_field): \\(\bm{E}\\) is the *electric vector*, \\(\bm{H}\\) is the *magnetic vector*, \\(\bm{j}\\) is the *electric current density*, \\(\bm{D}\\) is the *electric flux density* (a.k.a. the *electric displacement*), and \\(\bm{B}\\) is the *magnetic flux density* (a.k.a. the *magnetic induction*). \\(\bm{E}\\) and \\(\bm{B}\\) are considered the fundamental fields, and \\(\bm{j}, \bm{D}, \bm{H}\\) arise due to the influence of matter. For more details, refer to 1) ch. 1.1. of Born, M., & Wolf, E. [Principles of optics](https://doi.org/10.1017/CBO9781139644181), 7th edition (1999); 2) vol. II, ch 32.2 of Feynman, R. P., Leighton, R. B., & Sands, M. [The Feynman lectures on physics](https://www.feynmanlectures.caltech.edu/II_32.html) (1963); 3) Hill, W. T. [E, D, B & H: What do they all mean?](http://www.physics.umd.edu/courses/Phys263/wth/fall04/downloads/EDBH/edbh.pdf) (2004).
 
-[^2]: \\(\bm{E}\\) and \\(\bm{B}\\) are mutually orthogonal.
+[^7]: \\(\bm{E}\\) and \\(\bm{B}\\) are mutually orthogonal.
 
 [^3]: While confirmed experimentally, this definition is, mathematically, somewhat arbitrary. For a discussion and further references, refer to p. 10 of Born, M., & Wolf, E. [Principles of optics](https://doi.org/10.1017/CBO9781139644181), 7th edition (1999).
 
@@ -95,7 +102,7 @@ $$
 
 These two directions are typically specified in the reference frame of the particle. There is an implicit dependence on the orientation of the particle with respect to the incident wave - it comes into play if the particle is anisotropic.
 
-We can obtain the scattering cross section \\(\sigma\_s\\) by integrating over \\(4 \pi\\) steradians:
+We can obtain the [scattering cross section](https://www.feynmanlectures.caltech.edu/I_32.html) \\(\sigma\_s\\) by integrating over \\(4 \pi\\) steradians:
 
 $$ \tag{6}
     \sigma\_s(\bm{i}) =
