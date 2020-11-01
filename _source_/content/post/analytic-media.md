@@ -14,13 +14,13 @@ Rendering of participating media is an important aspect of every modern renderer
 
 In the [radiative transfer](https://doi.org/10.1002/qj.49707633016) literature, light-material interaction is usually quantified in terms of absorption (conversion of electromagnetic energy of photons into kinetic energy of atoms, which manifests itself as reduction of light intensity) and [scattering](http://plaza.ufl.edu/dwhahn/Rayleigh%20and%20Mie%20Light%20Scattering.pdf) (absorption followed by [emission](https://en.wikipedia.org/wiki/Stimulated_emission) of electromagnetic energy on collision). Therefore, it is common to describe participating media using the *collision coefficients*: the *absorption coefficient* \\(\beta\_a\\) and the *scattering coefficient* \\(\beta\_s\\). These coefficients give the probability density of the corresponding event per unit distance traveled by a photon, which implies the [SI unit](https://en.wikipedia.org/wiki/International_System_of_Units) of measurement is \\(m^{-1}\\).
 
-The [extinction coefficient](https://en.wikipedia.org/wiki/Attenuation_coefficient)[^1] \\(\beta\_t\\)
-
-[^1]: According to [Wikipedia](https://en.wikipedia.org/wiki/Attenuation_coefficient), this is an old term, and we should refer to it as the *attenuation coefficient* instead. While it's certainly a better name, in practice, all classical publications call it extinction. We use the classical naming convention to avoid confusion.
+The [extinction coefficient](https://en.wikipedia.org/wiki/Attenuation_coefficient) \\(\beta\_t\\)
 
 $$ \tag{1} \beta\_t = \beta\_a + \beta\_s $$
 
-gives the probability density of absorption or scattering (or, in other words, the collision rate) as a photon travels a unit distance through the medium.
+gives the probability density of absorption or scattering (or, in other words, the collision rate) as a photon travels a unit distance through the medium[^1].
+
+[^1]: According to [Wikipedia](https://en.wikipedia.org/wiki/Attenuation_coefficient), this is an old term, and we should refer to it as the *attenuation coefficient* instead. While it's certainly a better name, in practice, all classical publications call it extinction (this also includes related terms). We use the classical naming convention to avoid confusion.
 
 A more artist-friendly parametrization uses the [single-scattering albedo](https://en.wikipedia.org/wiki/Single-scattering_albedo) \\(\alpha\_{ss}\\)
 
@@ -97,7 +97,7 @@ $$ \tag{10} \tau(\bm{x}, \bm{y})
     = \int\_{\bm{x}}^{\bm{y}} \beta\_t(\bm{u}) du,
 $$
 
-where \\(\bm{u} = \bm{x} - u \bm{v}\\) is the point at the distance \\(u\\) along the ray, and \\(du\\) is the (length) [measure](https://en.wikipedia.org/wiki/Lebesgue_integration#Measure_theory) of \\(\bm{u}\\). This formula implies that while transmittance is multiplicative, with values restricted to the unit interval, optical depth is additive and can take on any non-negative value. In other words, transmittance is a [product integral](https://www.wikiwand.com/en/Product_integral):
+where \\(\bm{u} = \bm{x} - u \bm{v}\\) is the point at the distance \\(u\\) along the ray, and \\(du\\) is the length [measure](https://en.wikipedia.org/wiki/Lebesgue_integration#Measure_theory) associated with \\(\bm{u}\\). This formula implies that while transmittance is multiplicative, with values restricted to the unit interval, optical depth is additive and can take on any non-negative value. In other words, transmittance is a [product integral](https://www.wikiwand.com/en/Product_integral):
 
 $$ \tag{11} T(\bm{x}, \bm{y})
     = e^{- \int\_{\bm{x}}^{\bm{y}} \beta\_t(\bm{u}) du}
@@ -108,11 +108,11 @@ Other [integral formulations](https://cs.dartmouth.edu/~wjarosz/publications/geo
 
 The RTE models three types of energy sources: [volumetric emission](https://en.wikipedia.org/wiki/Spontaneous_emission) \\(L\_e\\), volumetric in-scattering \\(L\_s\\), and surface in-scattering \\(L\_g\\) (which is itself an integral that features a surface geometry term with a BSDF). The volumetric in-scattering term \\(L\_s\\) is an integral over \\(4 \pi\\) steradians:
 
-$$ \tag{12} L\_s(\bm{x}, \bm{v}) = \int\_{4 \pi} \alpha\_{ss}(\bm{x}) \frac{f\_p(\bm{x}, \bm{v}, \bm{l})}{4 \pi} L(\bm{x}, \bm{l}) dl, $$
+$$ \tag{12} L\_s(\bm{x}, \bm{v}) = \int\_{4 \pi} \alpha\_{ss}(\bm{x}) \frac{f\_p(\bm{x}, \bm{v}, \bm{l})}{4 \pi} L(\bm{x}, \bm{l}) d\Omega\_l, $$
 
-where \\(f\_p\\) denotes the [phase function](http://www.pbr-book.org/3ed-2018/Volume_Scattering/Phase_Functions.html) which models the distribution of scattered light, and \\(dl\\) is the (solid angle) [measure](https://en.wikipedia.org/wiki/Lebesgue_integration#Measure_theory) of \\(\bm{l}\\).
+where \\(f\_p\\) denotes the [phase function](http://www.pbr-book.org/3ed-2018/Volume_Scattering/Phase_Functions.html) which models the distribution of scattered light, and \\(d\Omega\_l\\) is the solid angle [measure](https://en.wikipedia.org/wiki/Lebesgue_integration#Measure_theory) associated with \\(\bm{l}\\).
 
-Carefully putting it all together[^3] yields the [volume rendering equation](https://cs.dartmouth.edu/~wjarosz/publications/novak18monte.html) along the ray \\(\bm{u} = \bm{x} - u \bm{v}\\):
+Carefully putting it all together yields the [volume rendering equation](https://cs.dartmouth.edu/~wjarosz/publications/novak18monte.html) along the ray \\(\bm{u} = \bm{x} - u \bm{v}\\):
 
 $$ \tag{13}
     L(\bm{x}, \bm{v}) = T(\bm{x}, \bm{y}) L\_g(\bm{y}, \bm{v}) +
@@ -122,7 +122,7 @@ $$ \tag{13}
     \Big) du
 $$
 
-where \\(\bm{y}\\) denotes the position of the closest surface along the ray.
+where \\(\bm{y}\\) denotes the position of the closest surface along the ray[^3].
 
 [^3]: The absorption coefficient in front of the emission term is due to the [Kirchhoff's law](https://en.wikipedia.org/wiki/Kirchhoff%27s_law_of_thermal_radiation) which states that, for an arbitrary body emitting and absorbing thermal radiation in thermodynamic equilibrium, the emissivity is equal to the absorptivity.
 
