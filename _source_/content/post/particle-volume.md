@@ -13,11 +13,44 @@ I have [previously](/post/analytic-media/) covered the basics of the volume scat
 
 <!--more-->
 
-## Particle Scattering Basics
+## Introduction to Radiometry
 
-Imagine a small particle of an arbitrary shape embedded in the host medium with the [complex refractive index](https://en.wikipedia.org/wiki/Refractive_index#Complex_refractive_index) (IOR)[^1] \\(\eta - i \kappa\\).
+Consider a collimated beam of light (a parallel stream of photons) arriving from the source located somewhere along the unit direction \\(\bm{i}\\). Imagine that there is a detector with its surface normal aligned with the unit vector \\(\bm{o}\\). Let us define \\(\cos{\theta} = \bm{i} \cdot \bm{o}\\).
 
-[^1]: By convention, \\(\eta\_0 = 1, \kappa\_0 = 0\\) is reserved for the [vacuum](https://en.wikipedia.org/wiki/Vacuum).
+PICTURE
+
+The [spectral irradiance](https://en.wikipedia.org/wiki/Irradiance#Spectral_irradiance) (flux density) of the source \\(E\_i\\) is related to \\(E\_o\\) at the detector by
+
+$$ \tag{i} E\_o = E\_i \cos{\theta}. $$
+
+If we assign the detector a finite area \\(\sigma\_o\\), we can compute the [spectral flux](https://en.wikipedia.org/wiki/Radiant_flux#Spectral_flux) \\(\Phi\_o\\):
+
+$$ \tag{ii} d\Phi\_o = E\_o d\sigma\_o = E\_i \cos{\theta} d\sigma\_o. $$
+
+If the strength of the source is specified[^1] by the [spectral radiance](https://en.wikipedia.org/wiki/Radiance#Spectral_radiance) \\(L\_i\\) rather than the irradiance \\(E\_i\\),
+
+[^1]: Historically, radiance is called *intensity* and spectral radiance is called *specific intensity*. Personally, I don't find this name to be specific enough.
+
+$$ \tag{iii} d\Phi\_o = L\_i d\Omega\_i \cos{\theta} d\sigma\_o, $$
+
+where \\(d\Omega\_i\\) is the solid angle [measure](https://en.wikipedia.org/wiki/Lebesgue_integration#Measure_theory) associated with \\(\bm{i}\\). Certain expressions can be simplified by utilizing the [projected solid angle](http://graphics.stanford.edu/papers/veach_thesis/) measure \\(d\Omega\_i^{\perp} = d\Omega\_i \cos{\theta}\\).
+
+If we integrate over the projected area \\(\sigma\_o \cos{\theta}\\), we can relate the outgoing spectral flux \\(\Phi\_o\\) to the incident [spectral intensity](https://en.wikipedia.org/wiki/Radiant_intensity#Spectral_intensity) \\(I\_i\\):
+
+$$ \tag{iv} d\Phi\_o = I\_i d\Omega\_i. $$
+
+Accounting for the frequency \\(\nu\\) and the time \\(t\\), we arrive at the expression of the amount of [radiant energy](https://en.wikipedia.org/wiki/Radiant_energy) \\(Q\_o\\):
+
+$$ \tag{v} dQ\_o = L\_i d\Omega\_i \cos{\theta} d\sigma\_o d\nu dt. $$
+
+By [reciprocity](https://en.wikipedia.org/wiki/Helmholtz_reciprocity), if we turn the detector into an emitter and swap \\(\bm{i}\\) and \\(\bm{o}\\), the resulting equations remain valid.
+
+## Light Scattering by a Single Particle
+
+<!--
+Imagine a small particle of an arbitrary shape embedded in the host medium with the [complex refractive index](https://en.wikipedia.org/wiki/Refractive_index#Complex_refractive_index) (IOR)[^5] \\(\eta - i \kappa\\).
+
+[^5]: By convention, \\(\eta\_0 = 1, \kappa\_0 = 0\\) is reserved for the [vacuum](https://en.wikipedia.org/wiki/Vacuum).
 
 {{< figure src="/img/linear_plane_wave.png" caption="*Linearly-polarized plane electromagnetic wave. [Image source](https://openstax.org/books/university-physics-volume-2/pages/16-4-momentum-and-radiation-pressure).*">}}
 
@@ -49,6 +82,8 @@ $$ \tag{4} E = \frac{1}{2} \frac{\eta}{\mu\_0 c} \bar{E}^2 = \frac{1}{2} \vareps
 $$ \tag{4} E = \frac{1}{2} \frac{\eta}{\mu\_0 c} \bar{E}^2 = \frac{1}{2} \varepsilon\_0 \eta c \bar{E}^2, $$
 
 where \\(\varepsilon\_0\\) is the [vacuum permittivity](https://en.wikipedia.org/wiki/Vacuum_permittivity) and \\(\bar{E}\\) is the maximum amplitude of the electric vector.
+
+-->
 
 The interaction of light with an individual particle is quantified by the [differential scattering cross section](http://glossary.ametsoc.org/wiki/Differential_(scattering)_cross_section) \\(\sigma\_s'\\). It is defined as the ratio of the [spectral intensity](https://en.wikipedia.org/wiki/Radiant_intensity#Spectral_intensity) \\(I\_s\\) scattered in the given direction \\(\bm{s}\\) to the incident spectral irradiance \\(E\_i\\) normal with respect to \\(\bm{i}\\):
 
@@ -138,9 +173,7 @@ If we orient the direction of scattering along the \\(z\\)-axis, we may write
 
 $$ \tag{18} \frac{I\_s}{\Delta A \Delta z} = \beta\_s \frac{f\_p}{4 \pi} E\_i. $$
 
-The ratio of spectral intensity to the area is the definition[^5] of scattered [spectral radiance](https://en.wikipedia.org/wiki/Radiance#Spectral_radiance) \\(L\_s\\):
-
-[^5]: Historically, radiance is called *intensity* and spectral radiance is called *specific intensity*. Personally, I don't find the term to be specific enough.
+The ratio of spectral intensity to the area is the definition of scattered [spectral radiance](https://en.wikipedia.org/wiki/Radiance#Spectral_radiance) \\(L\_s\\):
 
 $$ \tag{19} L\_s = \beta\_s \frac{f\_p}{4 \pi} E\_i \Delta z. $$
 
