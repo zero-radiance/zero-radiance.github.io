@@ -221,7 +221,7 @@ $$ \tag{26} \tau(\bm{x}, \bm{u})
     = \sigma\_t b u.
 $$
 
-The sampling "recipe" for the distance \\(u\\) (and for a particular frequency \\(\nu\\)) is thus simply
+The sampling "recipe" for the distance \\(u\\) is thus simply
 
 $$ \tag{27} u = \frac{\tau}{\sigma\_t b}, $$
 
