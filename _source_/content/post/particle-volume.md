@@ -13,42 +13,52 @@ I have [previously](/post/analytic-media/) covered the basics of the volume scat
 
 <!--more-->
 
-## Radiometry Refresher
+## Radiometry Crash Course
 
-Imagine a light sensor (or a [photon](https://en.wikipedia.org/wiki/Photon) counter, with each photon carrying \\(h \nu\\) joules of [energy](https://en.wikipedia.org/wiki/Photon_energy)) with the *surface area* \\(\sigma\\) and the *surface normal* \\(\bm{n}\\). We would like to measure the amount of [radiant energy](https://en.wikipedia.org/wiki/Radiant_energy) \\(Q\_n\\) that *enters* the sensor over the period of *time* \\(t\\). This can be done in several different ways, depending on the parametrization of the incident radiation.
+Imagine a light sensor (or a [photon](https://en.wikipedia.org/wiki/Photon) counter, with each photon carrying \\(h \nu\\) joules of [energy](https://en.wikipedia.org/wiki/Photon_energy)) with the *surface area* \\(\sigma\_n\\). We would like to measure the amount of [radiant energy](https://en.wikipedia.org/wiki/Radiant_energy) \\(Q\_n\\) absorbed by the sensor over the period of *time* \\(t\\). This can be done in several different ways, depending on the parametrization of the incident radiation.
 
-If the [spectral flux](https://en.wikipedia.org/wiki/Radiant_flux#Spectral_flux) \\(\Phi\_n\\) of the *frequency* \\(\nu\\) that enters the detector is known,
+If the [spectral flux](https://en.wikipedia.org/wiki/Radiant_flux#Spectral_flux) \\(\Phi\_n\\) in the *frequency range* \\(d\nu\\) reaches the sensor,
 
 $$ \tag{i} d^2Q\_n = \Phi\_n d\nu dt. $$
 
 The flux is very coarse quantity in the sense that it does not tell us where the radiation is coming from and to what degree the different parts of the sensor are affected.
 
-In case the flux density on the sensor is known, it is given by the [spectral irradiance](https://en.wikipedia.org/wiki/Irradiance#Spectral_irradiance) \\(E\_n\\):
+In case the flux density on the surface of the sensor is known, it is given by the [spectral irradiance](https://en.wikipedia.org/wiki/Irradiance#Spectral_irradiance) \\(E\_n\\):
 
-$$ \tag{ii} d^3Q\_n = E\_n d\sigma d\nu dt. $$
+$$ \tag{ii} d^3Q\_n = E\_n d\sigma\_n d\nu dt. $$
 
-If we can only determine the directional characteristics of the flux, we can represent it using the [spectral intensity](https://en.wikipedia.org/wiki/Radiant_intensity#Spectral_intensity) \\(I\_n\\):
+If we can only determine the directional characteristics of the flux, it can be represented using the [spectral intensity](https://en.wikipedia.org/wiki/Radiant_intensity#Spectral_intensity) \\(I\_n\\):
 
-$$ \tag{iii} d^3Q\_n = I\_n d\Omega d\nu dt, $$
+$$ \tag{iii} d^3Q\_n = I\_n d\Omega\_n d\nu dt, $$
 
-where \\(d\Omega\\) is the *solid angle* [measure](https://en.wikipedia.org/wiki/Lebesgue_integration#Measure_theory) associated with the direction of the intensity.
+where \\(d\Omega\_n\\) is the *solid angle* [measure](https://en.wikipedia.org/wiki/Lebesgue_integration#Measure_theory) associated with the direction of the intensity.
 
 The [spectral radiance](https://en.wikipedia.org/wiki/Radiance#Spectral_radiance) \\(L\_i\\) specifies[^1] both the spatial and the directional characteristics of the flux:
 
-$$ \tag{iv} d^4Q\_n = L\_i \cos{\theta} d\Omega d\sigma d\nu dt, $$
-
-where \\(\cos{\theta} = \bm{i} \cdot \bm{n}\\) is the cosine of the angle between the *incident direction* \\(\bm{i}\\) and the surface normal.
-
 [^1]: Historically, radiance is called *intensity* and spectral radiance is called *specific intensity*. Personally, I don't find this name to be specific enough.
 
-It is important to understand that both \\(E\_n\\) and \\(I\_n\\) are measured with respect to the surface normal of the detector, while \\(L\_i\\) is defined orthogonally to the direction of the incident radiation. Comparing Equations ii-iv, it is clear that[^2]
+$$ \tag{iv} d^4Q\_n = L\_i \cos{\theta} d\Omega\_n d\sigma\_n d\nu dt, $$
 
-[^2]: Certain expressions can be simplified by using the *projected area* measure \\(d\sigma\_i = d\sigma \cos{\theta}\\)  or the *projected solid angle* measure \\(d\Omega\_i = d\Omega \cos{\theta}\\).
+where \\(\cos{\theta} = \bm{i} \cdot \bm{n}\\) is the cosine[^2] of the angle between the *incident direction* \\(\bm{i}\\) and the *surface normal* [^3] \\(\bm{n}\\).
 
-$$ \tag{v}  dE\_n = dE\_i \cos{\theta} = L\_i d\Omega \cos{\theta}, $$
-$$ \tag{vi} dI\_n = dI\_i \cos{\theta} = L\_i d\sigma \cos{\theta}. $$
+[^2]: Certain expressions can be simplified by using the *projected area* measure \\(d\sigma\_i = d\sigma\_n \cos{\theta}\\)  or the *projected solid angle* measure \\(d\Omega\_i = d\Omega\_n \cos{\theta}\\).
 
-By [reciprocity](https://en.wikipedia.org/wiki/Helmholtz_reciprocity), if we turn the detector into an emitter and replace \\(\bm{i}\\) with \\(\bm{o}\\), the resulting equations remain valid.
+[^3]: If the sensor is not planar, the normal \\(\bm{n}\\) is a function of position \\(\bm{x}\\). However, it is simpler to think of the sensor as a [manifold](https://mathworld.wolfram.com/Manifold.html) composed of infinitesimal rectangles.
+
+It is important to understand that while both \\(E\_n\\) and \\(I\_n\\) are defined with respect to the surface normal \\(\bm{n}\\), \\(L\_i\\) is measured across the direction \\(\bm{i}\\) of the incident radiation. Comparing Equations ii-iv, it is clear that
+
+$$ \tag{v}  dE\_n = dE\_i \cos{\theta} = L\_i \cos{\theta} d\Omega\_n, $$
+$$ \tag{vi} dI\_n = dI\_i \cos{\theta} = L\_i \cos{\theta} d\sigma\_n. $$
+
+Independence from the surface parametrization coupled with invariance along the ray makes radiance a very useful quantity for light transport applications.
+
+In practice, most authors write Equation iv this way:
+
+$$ \tag{vii} d^4Q\_i = L\_i \cos{\theta} d\Omega\_i d\sigma\_i d\nu dt, $$
+
+with all the \\(X\_n\\) quantities considered *incident* and thus written as \\(X\_i\\).
+
+By [reciprocity](https://en.wikipedia.org/wiki/Helmholtz_reciprocity), if we turn the sensor into an emitter and replace \\(\bm{i}\\) with \\(\bm{o}\\), the resulting equations remain valid.
 
 For additional details, see Chapter 3 of [Veach's PhD thesis](http://graphics.stanford.edu/papers/veach_thesis/) and the references listed therein.
 
@@ -61,13 +71,13 @@ Imagine a small particle of an arbitrary shape embedded in the host medium with 
 
 {{< figure src="/img/linear_plane_wave.png" caption="*Linearly-polarized plane electromagnetic wave. [Image source](https://openstax.org/books/university-physics-volume-2/pages/16-4-momentum-and-radiation-pressure).*">}}
 
-Consider an [electromagnetic wave](https://www.cpp.edu/~alrudolph/classes/phy234/Reading/Summary%20of%20Waves.pdf) represented[^6] by the electric vector \\(\bm{E}\\) and the magnetic flux density \\(\bm{B}\\) of a certain frequency and in a certain state of polarization[^7]. The direction of propagation and the amount of power[^3] per unit area carried by the wave at the time \\(t\\) is given by the [instanteneous Poynting vector](https://en.wikipedia.org/wiki/Poynting_vector#Formulation_in_terms_of_microscopic_fields) \\(\bm{S}\\)
+Consider an [electromagnetic wave](https://www.cpp.edu/~alrudolph/classes/phy234/Reading/Summary%20of%20Waves.pdf) represented[^6] by the electric vector \\(\bm{E}\\) and the magnetic flux density \\(\bm{B}\\) of a certain frequency and in a certain state of polarization[^7]. The direction of propagation and the amount of power[^8] per unit area carried by the wave at the time \\(t\\) is given by the [instanteneous Poynting vector](https://en.wikipedia.org/wiki/Poynting_vector#Formulation_in_terms_of_microscopic_fields) \\(\bm{S}\\)
 
 [^6]: [Maxwell's equations](http://www.maxwells-equations.com/) are defined using 5 [vector fields](https://en.wikipedia.org/wiki/Vector_field): \\(\bm{E}\\) is the *electric vector*, \\(\bm{H}\\) is the *magnetic vector*, \\(\bm{j}\\) is the *electric current density*, \\(\bm{D}\\) is the *electric flux density* (a.k.a. the *electric displacement*), and \\(\bm{B}\\) is the *magnetic flux density* (a.k.a. the *magnetic induction*). \\(\bm{E}\\) and \\(\bm{B}\\) are considered the fundamental fields, and \\(\bm{j}, \bm{D}, \bm{H}\\) arise due to the influence of matter. For more details, refer to 1) ch. 1.1. of Born, M., & Wolf, E. [Principles of optics](https://doi.org/10.1017/CBO9781139644181), 7th edition (1999); 2) vol. II, ch 32.2 of Feynman, R. P., Leighton, R. B., & Sands, M. [The Feynman lectures on physics](https://www.feynmanlectures.caltech.edu/II_32.html) (1963); 3) Hill, W. T. [E, D, B & H: What do they all mean?](http://www.physics.umd.edu/courses/Phys263/wth/fall04/downloads/EDBH/edbh.pdf) (2004).
 
 [^7]: \\(\bm{E}\\) and \\(\bm{B}\\) are mutually orthogonal.
 
-[^3]: While confirmed experimentally, this definition is, mathematically, somewhat arbitrary. For a discussion and further references, refer to p. 10 of Born, M., & Wolf, E. [Principles of optics](https://doi.org/10.1017/CBO9781139644181), 7th edition (1999).
+[^8]: While confirmed experimentally, this definition is, mathematically, somewhat arbitrary. For a discussion and further references, refer to p. 10 of Born, M., & Wolf, E. [Principles of optics](https://doi.org/10.1017/CBO9781139644181), 7th edition (1999).
 
 $$ \tag{1} \bm{S}(t) = \frac{1}{\mu\_0} \Big( \bm{E}(t) \times \bm{B}(t) \Big), $$
 
