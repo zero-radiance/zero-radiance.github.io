@@ -262,6 +262,19 @@ $$
 
 where \\(\phi(\bm{r})\\) is isotropic, and the phase difference between the two axes is \\(\pi/2\\). The sign in front of the \\(\bar{E}\_b\\) is used to distinguish the orientation of the ellipse (clockwise vs counterclockwise).
 
+The significance of Equation 19 can be better seen if we express it using complex numbers
+
+$$ \tag{??}
+	\bm{E}(\bm{r},t) = \mathrm{Re}
+	\begin{Bmatrix}
+    	\phantom{\pm} \bar{E}\_a(\bm{r}) \phantom{e^{-i \pi/2}} e^{i(\phi(\bm{r}) + \omega t)} \cr
+    			 \pm  \bar{E}\_b(\bm{r}) 		  e^{-i \pi/2}  e^{i(\phi(\bm{r}) + \omega t)}
+	\end{Bmatrix} =
+	\mathrm{Re} \big\lbrace \bm{\bar{E}}(\bm{r}) e^{i \phi(\bm{r})} e^{i \omega t} \big\rbrace,
+$$
+
+which makes it the vector analog of the complex amplitude of a scalar time-harmonic wave.
+
 If the angle between the \\(x\\)-axis and the \\(a\\)-axis is \\(\psi\\),
 
 $$ \tag{20}
