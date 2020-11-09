@@ -34,7 +34,7 @@ It is not expected that you understand the prior statement fully before reading 
 
 ## Scalar Waves
 
-The simplest type of wave is a [harmonic plane wave](https://www.feynmanlectures.caltech.edu/II_20.html) \[Chandra?, [4](#references) (ch. 4), [5](#references) (vol. II, ch. 20), [6](#references) (ch. 1.3), [7](#references) (pp. 5-7)\]. Mathematically, the reason to consider harmonic plane waves is that they form the simplest set of solutions of the wave equation \[[6](#references) (ch. 1.2), others?\].
+The simplest type of wave is a [plane wave](https://www.feynmanlectures.caltech.edu/II_20.html) \[Chandra?, [4](#references) (ch. 4), [5](#references) (vol. II, ch. 20), [6](#references) (ch. 1.3), [7](#references) (pp. 5-7)\]. Mathematically, the reason to consider plane waves is that they form the simplest set of solutions of the wave equation \[[6](#references) (ch. 1.2), others?\].
 
 So, what is a plane wave, exactly? While plane waves are often introduced using [Fresnel's formulation of Huygen's principle](https://en.wikipedia.org/wiki/Huygens%E2%80%93Fresnel_principle) \[[4](#references) (ch. 3.1)\], I will attempt to give another, (hopefully) simpler explanation.
 
@@ -42,13 +42,15 @@ Consider an infinitesimal (punctual) isotropic source of "disturbance". It gener
 
 In the case of *plane waves*, surfaces of constant phase are planes rather than spheres. Plane waves can be generated in a multitude of ways; one mathematical trick is to imagine a source at a large distance. Then, as the distance tends infinity, the curvature of the wavefront approaches zero, and, for a small solid angle, we may approximate a section of the wavefront as planar.
 
-By *time-harmonic*, we mean that the amplitude of the wave is a [harmonic function](https://en.wikipedia.org/wiki/Harmonic_function) of time. The *real amplitude* of the "disturbance" caused by the scalar wave at the point \\(\bm{r}\\) and the time \\(t\\) can be mathematically described [^1] as
+We are particularly interested in waves that are *time-harmonic*. This property implies that the amplitude of the wave is a [harmonic function](https://en.wikipedia.org/wiki/Harmonic_function) of time. The *real amplitude* of the "disturbance" caused by the scalar wave at the point \\(\bm{r}\\) and the time \\(t\\) can be mathematically described [^1] as
 
 [^1]: We use the "classic" sign convention of the authors cited.
 
 $$ \tag{1} a(\bm{r}, t) = \bar{a}(\bm{r}) \cos(\phi(\bm{r}) + \omega t), $$
 
 where \\(\bar{a}\\) is the *maximum amplitude* and \\(\omega\\) is the *angular frequency*. Surfaces of \\(\phi = \mathrm{const}\\) are called *cophasal*, or *wavefronts*. Note that, in general, surfaces of constant amplitude do not coincide with surfaces of constant phase [[6](#references) (p. 18)\].
+
+Time-harmonic waves are the foundation of the Fourier optics, which handles arbitrarily-complex waves by decomposing them into their Fourier series.
 
 {{< figure src="/img/wave_diagram.png" caption="*Wave diagram. [Image source](https://tsunamiphysics.webnode.com/waves-review/).*">}}
 
@@ -190,7 +192,7 @@ where \\(\varepsilon\_0\\) is the [vacuum permittivity](https://en.wikipedia.org
 
 -->
 
-<!--
+
 ## Polarization of Light
 
 
@@ -335,7 +337,7 @@ $$ \tag{26} \Big( \bar{E}\_x^2 - \bar{E}\_y^2 \Big) \sin{2 \psi} = 2 \bar{E}\_x 
 $$ \tag{27} \tan{2 \psi} = \frac{2 \bar{E}\_x \bar{E}\_y \cos(\phi\_x - \phi\_y)}{\bar{E}\_x^2 - \bar{E}\_y^2}. $$
 
 Auxiliary angle ...
--->
+
 
 ## Acknowledgments
 

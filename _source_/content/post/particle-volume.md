@@ -74,7 +74,7 @@ $$ \tag{5}
     \frac{I\_o}{E\_i}.
 $$
 
-[^4]: It is not measured on the surface of the particle, so there are no cosine factors.
+[^4]: It is not measured with respect to the surface of the particle, so there are no cosine factors.
 
 These two directions are typically specified in the reference frame of the particle. There is an implicit dependence on the orientation of the particle with respect to the incident wave - it comes into play if the particle is anisotropic.
 
@@ -122,6 +122,8 @@ $$ \tag{10}
 The spectral flux cancels out, and we find the connection with the differential scattering cross section:
 
 $$ \tag{11} \sigma\_s'(\bm{i}, \bm{o}) = \sigma\_s \frac{f\_p}{4 \pi}. $$
+
+For a more elaborate derivation, see Born and Wolf ...
 
 ## Scattering by a Group of Particles
 
@@ -178,6 +180,8 @@ with the transmittance term \\(T\\), which becomes significant since the extent 
 Recursively defining \\(L = L\_i = L\_o\\), we finally obtain the [radiative transfer equation](/post/analytic-media/#radiative-transfer-equation) we are all familiar with.
 
 If we wish to model the [refractive radiative transfer equation](https://doi.org/10.1145/2557605) instead, we must remember to also account for continuous reflection/transmission as well as the associated change in the solid angle.
+
+For an alternative derivation, see Chandrasekhar ...
 
 ## Acknowledgments
 
