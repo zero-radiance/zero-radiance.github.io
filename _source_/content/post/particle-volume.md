@@ -58,7 +58,7 @@ In practice, most authors write Equation iv this way:
 
 $$ \tag{vii} d^4Q\_i = L\_i \cos{\theta} d\Omega\_i d\sigma\_i d\nu dt, $$
 
-with all the \\(X\_n\\) quantities considered *incident* and thus written as \\(X\_i\\).
+with all the \\(X\_n\\) quantities considered *incident* and thus written as \\(X\_i\\). We shall adopt this convention as well.
 
 By [reciprocity](https://en.wikipedia.org/wiki/Helmholtz_reciprocity), if we turn the sensor into an emitter and replace \\(\bm{i}\\) with \\(\bm{o}\\), the resulting equations remain valid.
 
@@ -66,15 +66,13 @@ For additional details, see Chapter 3 of [Veach's PhD thesis](http://graphics.st
 
 ## Light Scattering by a Single Particle
 
-The interaction of light with an individual particle is quantified by the [differential scattering cross section](http://glossary.ametsoc.org/wiki/Differential_(scattering)_cross_section) \\(\sigma\_s'\\). It is defined as the ratio of the [spectral intensity](https://en.wikipedia.org/wiki/Radiant_intensity#Spectral_intensity) \\(I\_o\\) scattered in the given direction \\(\bm{o}\\) to the incident spectral irradiance \\(E\_i\\) normal[^4] with respect to \\(\bm{i}\\):
+The interaction of light with an individual particle is quantified by the [differential scattering cross section](http://glossary.ametsoc.org/wiki/Differential_(scattering)_cross_section) \\(\sigma\_s'\\). It is defined as the ratio of the spectral intensity \\(I\_o\\) scattered in the given direction \\(\bm{o}\\) to the  spectral irradiance \\(E\_i\\) incident from the direction \\(\bm{i}\\):
 
 $$ \tag{5}
     \sigma\_s'(\bm{i}, \bm{o}) =
     \frac{d \sigma\_s}{d \Omega\_o} =
     \frac{I\_o}{E\_i}.
 $$
-
-[^4]: It is not measured with respect to the surface of the particle, so there are no cosine factors.
 
 These two directions are typically specified in the reference frame of the particle. There is an implicit dependence on the orientation of the particle with respect to the incident wave - it comes into play if the particle is anisotropic.
 
@@ -86,11 +84,11 @@ $$ \tag{6}
     \frac{\int\_{4 \pi} I\_o d \Omega\_o}{E\_i} =
     \frac{\Phi\_o}{E\_i}. $$
 
-In other words, it is just the ratio of the scattered [spectral flux](https://en.wikipedia.org/wiki/Radiant_flux#Spectral_flux) \\(\Phi\_o\\) to the incident spectral irradiance \\(E\_i\\). It has the dimensions of an area; however, since it's not a geometric area, it can be imagined as a small disk[^5] normal with respect to the incident beam \\(\bm{i}\\).
+In other words, it is just the ratio of the scattered spectral flux \\(\Phi\_o\\) to the incident spectral irradiance \\(E\_i\\). It has the dimensions of an area; however, since it's not a geometric area, it can be imagined as a small disk[^4] normal with respect to the incident beam \\(\bm{i}\\).
 
-[^5]: The "small disk" model is convenient in problems of light scattering by spherical particles, since their geometric cross section is also a disk. In the volume scattering case, the geometric volume element is typically a cube, so the "little square" model is more appropriate for describing the (scattering) cross section. Additionally, the volume element is often oriented with respect to the direction of scattering, which introduces a cosine factor between the normal of the light-facing face of the cube and the light direction.
+[^4]: The "small disk" model is convenient in problems of light scattering by spherical particles, since their geometric cross section is also a disk. In the volume scattering case, the volume element is typically considered to be a rectangular cuboid, so the "little square" model is more appropriate for describing the (scattering) cross section. Additionally, the volume element is often oriented with respect to the direction of scattering, which may introduce a cosine factor between the normal of the light-facing face of the cube and the light direction. This section does not deal with radiance, so the cosine factor does not appear in the calculations.
 
-PICTURE
+PICTURE (particle and volume element viewpoints)
 
 The [extinction cross section](http://glossary.ametsoc.org/wiki/Extinction_cross_section) \\(\sigma\_t\\) relates the total spectral flux \\(\Phi\_t\\) scattered or absorbed by the particle (e.i. removed from the incident wave) to the incident spectral irradiance \\(E\_i\\):
 

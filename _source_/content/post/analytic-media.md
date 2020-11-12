@@ -110,7 +110,9 @@ The RTE models three types of energy sources: [volumetric emission](https://en.w
 
 $$ \tag{12} L\_s(\bm{x}, \bm{v}) = \int\_{4 \pi} \alpha\_{ss}(\bm{x}) \frac{f\_p(\bm{x}, \bm{v}, \bm{l})}{4 \pi} L(\bm{x}, \bm{l}) d\Omega\_l, $$
 
-where \\(f\_p\\) denotes the [phase function](http://www.pbr-book.org/3ed-2018/Volume_Scattering/Phase_Functions.html) which models the distribution of scattered light, and \\(d\Omega\_l\\) is the solid angle measure associated with \\(\bm{l}\\).
+where \\(f\_p\\) denotes the [phase function](http://www.pbr-book.org/3ed-2018/Volume_Scattering/Phase_Functions.html) which models the angular distribution of scattered light[^5], and \\(d\Omega\_l\\) is the solid angle measure associated with \\(\bm{l}\\).
+
+[^5]: Certain [authors](https://doi.org/10.1002/qj.49707633016) use the definition of the phase function that includes the albedo.
 
 Carefully putting it all together yields the [volume rendering equation](https://cs.dartmouth.edu/~wjarosz/publications/novak18monte.html) along the ray \\(\bm{u} = \bm{x} - u \bm{v}\\):
 
