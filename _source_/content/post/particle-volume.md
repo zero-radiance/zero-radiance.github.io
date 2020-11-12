@@ -86,7 +86,9 @@ $$ \tag{6}
     \frac{\int\_{4 \pi} I\_o d \Omega\_o}{E\_i} =
     \frac{\Phi\_o}{E\_i}. $$
 
-In other words, it is just the ratio of the scattered [spectral flux](https://en.wikipedia.org/wiki/Radiant_flux#Spectral_flux) \\(\Phi\_o\\) to the incident spectral irradiance \\(E\_i\\). It has the dimensions of an area; however, since it's not a geometric area, it can be imagined as a little disk normal with respect to the incident beam \\(\bm{i}\\).
+In other words, it is just the ratio of the scattered [spectral flux](https://en.wikipedia.org/wiki/Radiant_flux#Spectral_flux) \\(\Phi\_o\\) to the incident spectral irradiance \\(E\_i\\). It has the dimensions of an area; however, since it's not a geometric area, it can be imagined as a small disk[^5] normal with respect to the incident beam \\(\bm{i}\\).
+
+[^5]: The "small disk" model is convenient in problems of light scattering by spherical particles, since their geometric cross section is also a disk. In the volume scattering case, the geometric volume element is typically a cube, so the "little square" model is more appropriate for describing the (scattering) cross section. Additionally, the volume element is often oriented with respect to the direction of scattering, which introduces a cosine factor between the normal of the light-facing face of the cube and the light direction.
 
 PICTURE
 
