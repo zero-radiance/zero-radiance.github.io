@@ -17,8 +17,6 @@ I have [previously](/post/analytic-media/) covered the basics of the volume scat
 
 Imagine a light sensor (or a [photon](https://en.wikipedia.org/wiki/Photon) counter, with each photon carrying \\(h \nu\\) joules of [energy](https://en.wikipedia.org/wiki/Photon_energy)) with the *surface area* \\(\sigma\_n\\). We would like to measure the amount of [radiant energy](https://en.wikipedia.org/wiki/Radiant_energy) \\(Q\_n\\) absorbed by the sensor over the period of *time* \\(t\\). This can be done in several different ways, depending on the parametrization of the incident radiation.
 
-PICTURE
-
 If the [spectral flux](https://en.wikipedia.org/wiki/Radiant_flux#Spectral_flux) \\(\Phi\_n\\) in the *frequency range* \\(d\nu\\) reaches the sensor,
 
 $$ \tag{i} d^2Q\_n = \Phi\_n d\nu dt. $$
@@ -51,6 +49,8 @@ It is important to understand that while both \\(E\_n\\) and \\(I\_n\\) are defi
 
 $$ \tag{v}  dE\_n = dE\_i \cos{\theta} = L\_i \cos{\theta} d\Omega\_n, $$
 $$ \tag{vi} dI\_n = dI\_i \cos{\theta} = L\_i \cos{\theta} d\sigma\_n. $$
+
+{{< figure src="/img/radiometry.png" >}}
 
 Independence from the surface parametrization coupled with invariance along the ray makes radiance a very useful quantity for light transport applications.
 
