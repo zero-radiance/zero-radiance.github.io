@@ -88,8 +88,6 @@ In other words, it is just the ratio of the scattered spectral flux \\(\Phi\_o\\
 
 [^4]: The "small disk" model is convenient in problems of light scattering by spherical particles, since their geometric cross section is also a disk. In the volume scattering case, the volume element is typically considered to be a rectangular cuboid, so the "little square" model is more appropriate for describing the (scattering) cross section. Additionally, the volume element is often oriented with respect to the direction of scattering, which may introduce a cosine factor between the normal of the light-facing face of the cube and the light direction. This section does not deal with radiance, so the cosine factor does not appear in the calculations.
 
-PICTURE (particle and volume element viewpoints)
-
 The [extinction cross section](http://glossary.ametsoc.org/wiki/Extinction_cross_section) \\(\sigma\_t\\) relates the total spectral flux \\(\Phi\_t\\) scattered or absorbed by the particle (e.i. removed from the incident wave) to the incident spectral irradiance \\(E\_i\\):
 
 $$ \tag{7} \sigma\_t(\bm{i}) = \sigma\_s + \sigma\_a = \frac{\Phi\_o}{E\_i} + \frac{\Phi\_a}{E\_i} = \frac{\Phi\_t}{E\_i}. $$
@@ -100,6 +98,10 @@ $$ \tag{8}
     Q\_a = \frac{\sigma\_a}{\sigma_g} = \frac{\Phi\_a}{\Phi\_i}, \qquad
     Q\_s = \frac{\sigma\_s}{\sigma_g} = \frac{\Phi\_o}{\Phi\_i}, \qquad
     Q\_t = \frac{\sigma\_t}{\sigma_g} = \frac{\Phi\_t}{\Phi\_i}. $$
+
+{{< figure src="/img/particle_cross_section.png" caption="*Geometric cross section of a particle.*" >}}
+
+PICTURE (particle and volume element viewpoints)
 
 Note that the value of extinction efficiency can exceed 1. This phenomenon is called the [extinction paradox](https://doi.org/10.1016/j.jqsrt.2010.08.024).
 
