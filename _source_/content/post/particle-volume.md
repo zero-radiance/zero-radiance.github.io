@@ -101,8 +101,6 @@ $$ \tag{8}
 
 {{< figure src="/img/particle_cross_section.png" caption="*Geometric cross section of a particle.*" >}}
 
-PICTURE (particle and volume element viewpoints)
-
 Note that the value of extinction efficiency can exceed 1. This phenomenon is called the [extinction paradox](https://doi.org/10.1016/j.jqsrt.2010.08.024).
 
 The angular distribution of scattered light is described by the [phase function](http://glossary.ametsoc.org/wiki/Phase_function) \\(f\_p\\):
@@ -178,6 +176,8 @@ Finally, if any part of the integrand varies along \\(z\\), we must replace \\(\
 
 $$ \tag{21} L\_o = \int\_{\bm{x}}^{\bm{y}} T(\bm{x}, \bm{z}) \Bigg( \int\_{4 \pi} \beta\_s \frac{f\_p}{4 \pi} L_i d \Omega_i \Bigg) dz, $$
 with the transmittance term \\(T\\), which becomes significant since the extent of the volume along the \\(\bm{z}\\)-axis is no longer negligible.
+
+{{< figure src="/img/volume_cross_section.png" caption="*Scattering by a volume element.*" >}}
 
 Recursively defining \\(L = L\_i = L\_o\\), we finally obtain the [radiative transfer equation](/post/analytic-media/#radiative-transfer-equation) we are all familiar with.
 
