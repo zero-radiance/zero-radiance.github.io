@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>From Particle to Volume Scattering // Zero Radiance</title>
+    <title>From Particle to Volume Scattering of Light // Zero Radiance</title>
 
         <meta charset="utf-8">
     <meta http-equiv="content-type" content="text/html; charset=utf-8">
@@ -9,7 +9,7 @@
     <meta name="description" content="">
     <meta name="keywords" content="">
     <meta name="author" content="">
-        <meta property="og:title" content="From Particle to Volume Scattering" />
+        <meta property="og:title" content="From Particle to Volume Scattering of Light" />
     <meta property="og:description" content="" />
     <meta property="og:type" content="website" />
     <meta property="og:locale" content="en_US" />
@@ -53,7 +53,7 @@
     <div class="article-inner">
         
         <header class="article-header">
-            <h1 class="article-title" itemprop="name">From Particle to Volume Scattering</h1>
+            <h1 class="article-title" itemprop="name">From Particle to Volume Scattering of Light</h1>
         </header>
         
         <div class="article-meta">
@@ -67,149 +67,186 @@
         <div class="article-entry" itemprop="articleBody">
             <p>I have <a href="/post/analytic-media/">previously</a> covered the basics of the volume scattering process. It models the macroscopic interaction of light and matter, with the latter represented as a distribution of <a href="https://doi.org/10.1002/qj.49708436025">small particles</a>. Fundamentally, the volume scattering process arises from the microscopic interaction of light with individual atoms, and is typically described using <a href="https://doi.org/10.1364/JOSAA.35.000163">Maxwell's electromagnetic theory</a>. It is the domain of optics, and, in my experience, the connection with the <a href="https://en.wikipedia.org/wiki/Radiative_transfer#The_equation_of_radiative_transfer">radiative transfer equation</a> is neither apparent nor easy to find. The purpose of this blog post is to familiarize the reader with domain-specific terms and ease the adoption of formulas found in the optics literature.</p>
 
-<h2 id="particle-scattering-basics">Particle Scattering Basics</h2>
+<h2 id="radiometry-crash-course">Radiometry Crash Course</h2>
 
-<p>Imagine a small particle of an arbitrary shape embedded in the host medium with the <a href="https://en.wikipedia.org/wiki/Refractive_index#Complex_refractive_index">complex refractive index</a> (IOR)<sup class="footnote-ref" id="fnref:1"><a href="#fn:1">1</a></sup> \(\eta - i \kappa\).</p>
+<p>Imagine a light sensor (or a <a href="https://en.wikipedia.org/wiki/Photon">photon</a> detector, with each photon carrying \(h \nu\) joules of <a href="https://en.wikipedia.org/wiki/Photon_energy">energy</a>) with the <em>surface area</em> \(\sigma_n\). We would like to measure the amount of <a href="https://en.wikipedia.org/wiki/Radiant_energy">radiant energy</a> \(Q_n\) absorbed by the sensor over the period of <em>time</em> \(t\). This can be done in several different ways, depending on the parametrization of the incident radiation.</p>
+
+<p>If the <a href="https://en.wikipedia.org/wiki/Radiant_flux#Spectral_flux">spectral flux</a> \(\Phi_n\) in the <em>frequency interval</em> \(d\nu\) reaches the sensor,</p>
+
+<p>$$ \tag{1} dQ_n = \Phi_n d\nu dt. $$</p>
+
+<p>The flux is a very coarse quantity in the sense that it does not tell us where the radiation is coming from and to what degree the different parts of the sensor are affected.</p>
+
+<p>In case the flux density on the surface of the sensor is known, it is given by the <a href="https://en.wikipedia.org/wiki/Irradiance#Spectral_irradiance">spectral irradiance</a> \(E_n\):</p>
+
+<p>$$ \tag{2} dQ_n = E_n d\sigma_n d\nu dt. $$</p>
+
+<p>If we can only determine the directional characteristics of the flux, it can be represented using the <a href="https://en.wikipedia.org/wiki/Radiant_intensity#Spectral_intensity">spectral intensity</a> \(I_n\):</p>
+
+<p>$$ \tag{3} dQ_n = I_n d\Omega_n d\nu dt, $$</p>
+
+<p>where \(d\Omega_n\) is the <em>solid angle</em> <a href="https://en.wikipedia.org/wiki/Lebesgue_integration#Measure_theory">measure</a> associated with the direction of the intensity.</p>
+
+<p>The <a href="https://en.wikipedia.org/wiki/Radiance#Spectral_radiance">spectral radiance</a> \(L_i\) specifies<sup class="footnote-ref" id="fnref:1"><a href="#fn:1">1</a></sup> both the spatial and the directional characteristics of the flux:</p>
+
+<p>$$ \tag{4} dQ_n = L_i \cos{\theta} d\Omega_n d\sigma_n d\nu dt, $$</p>
+
+<p>where \(\cos{\theta} = \bm{i} \cdot \bm{n}\) is the cosine<sup class="footnote-ref" id="fnref:2"><a href="#fn:2">2</a></sup> of the angle between the <em>incident direction</em> \(\bm{i}\) and the <em>surface normal</em> <sup class="footnote-ref" id="fnref:3"><a href="#fn:3">3</a></sup> \(\bm{n}\).</p>
+
+<p>It is important to understand that while both \(E_n\) and \(I_n\) are defined with respect to the surface normal \(\bm{n}\), \(L_i\) is measured across the direction \(\bm{i}\) of the incident radiation. Comparing Equations 2-4, it is clear that</p>
+
+<p>$$ \tag{5} dE_n = dE_i \cos{\theta} = L_i \cos{\theta} d\Omega_n. $$
+$$ \tag{6} dI_n = dI_i \cos{\theta} = L_i \cos{\theta} d\sigma_n, $$</p>
 
 <figure>
-    <img src="/img/linear_plane_wave.png"
-         alt="Linearly-polarized plane electromagnetic wave. Image source."/> <figcaption>
-            <p><em>Linearly-polarized plane electromagnetic wave. <a href="https://openstax.org/books/university-physics-volume-2/pages/16-4-momentum-and-radiation-pressure">Image source</a>.</em></p>
+    <img src="/img/radiometry.png"
+         alt="Radiance vs irradiance."/> <figcaption>
+            <p><em>Radiance vs irradiance.</em></p>
         </figcaption>
 </figure>
 
 
-<p>Consider an <a href="https://www.cpp.edu/~alrudolph/classes/phy234/Reading/Summary%20of%20Waves.pdf">electromagnetic wave</a> represented<sup class="footnote-ref" id="fnref:2"><a href="#fn:2">2</a></sup> by the electric vector \(\bm{E}\) and the magnetic flux density \(\bm{B}\) of a certain frequency and in a certain state of polarization<sup class="footnote-ref" id="fnref:2"><a href="#fn:2">2</a></sup>. The direction of propagation and the amount of power<sup class="footnote-ref" id="fnref:3"><a href="#fn:3">3</a></sup> per unit area carried by the wave at the time \(t\) is given by the <a href="https://en.wikipedia.org/wiki/Poynting_vector#Formulation_in_terms_of_microscopic_fields">instanteneous Poynting vector</a> \(\bm{S}\)</p>
+<p>Independence from the surface parametrization coupled with invariance along the ray makes radiance a very useful quantity for light transport applications.</p>
 
-<p>$$ \tag{1} \bm{S}(t) = \frac{1}{\mu_0} \Big( \bm{E}(t) \times \bm{B}(t) \Big), $$</p>
+<p>In practice, most authors write Equation 4 this way:</p>
 
-<p>where \(\mu_0\) is the <a href="https://en.wikipedia.org/wiki/Vacuum_permeability">vacuum permeability</a> of the medium.</p>
+<p>$$ \tag{7} dQ_i = L_i \cos{\theta} d\Omega_i d\sigma_i d\nu dt, $$</p>
 
-<p>Since light waves oscillate very rapidly, we are typically interested in the <a href="https://en.wikipedia.org/wiki/Poynting_vector#Time-averaged_Poynting_vector">time-averaged Poynting vector</a> \(\langle \bm{S} \rangle\)</p>
+<p>with all the \(X_n\) quantities considered <em>incident</em> and thus written as \(X_i\). We shall adopt this convention as well.</p>
 
-<p>$$ \tag{2} \langle \bm{S} \rangle = \frac{1}{T} \int_{0}^{T} \bm{S}(t) dt, $$</p>
+<p>By <a href="https://en.wikipedia.org/wiki/Helmholtz_reciprocity">reciprocity</a>, if we turn the sensor into an emitter and replace \(\bm{i}\) with \(\bm{o}\), the resulting equations remain valid.</p>
 
-<p>which can be used to define the <a href="https://en.wikipedia.org/wiki/Irradiance#Spectral_irradiance">spectral irradiance</a> \(E\) (do not confuse it with the electric vector \(\bm{E}\))</p>
+<p>For additional details, see Chapter 3 of Veach's <a href="http://graphics.stanford.edu/papers/veach_thesis/">Ph.D. thesis</a> and the references listed therein.</p>
 
-<p>$$ \tag{3} E = \vert \langle \bm{S} \rangle \vert \cos{\theta} = \langle \bm{S} \rangle \cdot \bm{v}, $$</p>
+<h2 id="light-scattering-by-a-single-particle">Light Scattering by a Single Particle</h2>
 
-<p>where \(\theta\) is the angle between \(\bm{S}\) and the viewing direction \(\bm{v}\).</p>
+<p>The interaction of light with an individual particle is quantified by the <a href="http://glossary.ametsoc.org/wiki/Differential_(scattering)_cross_section">differential scattering cross section</a> \(\sigma_s'\). It is defined as the ratio of the spectral intensity<sup class="footnote-ref" id="fnref:4"><a href="#fn:4">4</a></sup> \(I_o\) scattered in the given direction \(\bm{o}\) to the  spectral irradiance \(E_i\) incident from the direction \(\bm{i}\):</p>
 
-<p>For a <a href="https://en.wikipedia.org/wiki/Plane_wave">plane wave</a>, the expression is particularly <a href="https://en.wikipedia.org/wiki/Irradiance#Property">simple</a>:</p>
-
-<p>$$ \tag{4} E = \frac{1}{2} \frac{\eta}{\mu_0 c} \bar{E}^2 = \frac{1}{2} \varepsilon_0 \eta c \bar{E}^2, $$
-$$ \tag{4} E = \frac{1}{2} \frac{\eta}{\mu_0 c} \bar{E}^2 = \frac{1}{2} \varepsilon_0 \eta c \bar{E}^2, $$</p>
-
-<p>where \(\varepsilon_0\) is the <a href="https://en.wikipedia.org/wiki/Vacuum_permittivity">vacuum permittivity</a> and \(\bar{E}\) is the maximum amplitude of the electric vector.</p>
-
-<p>The interaction of light with an individual particle is quantified by the <a href="http://glossary.ametsoc.org/wiki/Differential_(scattering)_cross_section">differential scattering cross section</a> \(\sigma_s'\). It is defined as the ratio of the <a href="https://en.wikipedia.org/wiki/Radiant_intensity#Spectral_intensity">spectral intensity</a> \(I_s\) scattered in the given direction \(\bm{s}\) to the incident spectral irradiance \(E_i\) normal with respect to \(\bm{i}\):</p>
-
-<p>$$ \tag{5}
-    \sigma_s'(\bm{i}, \bm{s}) =
-    \frac{d \sigma_s}{d \Omega_s} =
-    \frac{I_s}{E_i}.
+<p>$$ \tag{8}
+    \sigma_s'(\bm{i}, \bm{o}) =
+    \frac{d \sigma_s}{d \Omega_o} =
+    \frac{I_o}{E_i}.
 $$</p>
 
-<p>These two directions are typically specified in the reference frame of the particle. There is an implicit dependence on the orientation of the particle with respect to the incident wave - it comes into play if the particle is anisotropic.</p>
+<p>There is an implicit dependence on the orientation of the particle with respect to the incident wave - it comes into play if the particle is anisotropic.</p>
 
-<p>We can obtain the scattering cross section \(\sigma_s\) by integrating over \(4 \pi\) steradians:</p>
+<p>We can obtain the <a href="https://www.feynmanlectures.caltech.edu/I_32.html">scattering cross section</a> \(\sigma_s\) by integrating over \(4 \pi\) steradians:</p>
 
-<p>$$ \tag{6}
+<p>$$ \tag{9}
     \sigma_s(\bm{i}) =
-    \int_{4 \pi} \sigma_s' d \Omega_s =
-    \frac{\int_{4 \pi} I_s d \Omega_s}{E_i} =
-    \frac{\Phi_s}{E_i}. $$</p>
+    \int_{4 \pi} \sigma_s' d \Omega_o =
+    \frac{\int_{4 \pi} I_o d \Omega_o}{E_i} =
+    \frac{\Phi_o}{E_i}. $$</p>
 
-<p>In other words, it is just the ratio of the scattered <a href="https://en.wikipedia.org/wiki/Radiant_flux#Spectral_flux">spectral flux</a> \(\Phi_s\) to the incident spectral irradiance \(E_i\). It is an area as seen from the direction of incident light.</p>
+<p>In other words, it is just the ratio of the scattered spectral flux \(\Phi_o\) to the incident spectral irradiance \(E_i\). It has the dimensions of an area; however, it is not a geometrical area. It can be imagined as a small disk<sup class="footnote-ref" id="fnref:5"><a href="#fn:5">5</a></sup> normal with respect to the incident beam \(\bm{i}\) (don't be confused by the subscript \(s\)).</p>
 
 <p>The <a href="http://glossary.ametsoc.org/wiki/Extinction_cross_section">extinction cross section</a> \(\sigma_t\) relates the total spectral flux \(\Phi_t\) scattered or absorbed by the particle (e.i. removed from the incident wave) to the incident spectral irradiance \(E_i\):</p>
 
-<p>$$ \tag{7} \sigma_t(\bm{i}) = \sigma_s + \sigma_a = \frac{\Phi_s}{E_i} + \frac{\Phi_a}{E_i} = \frac{\Phi_t}{E_i}. $$</p>
+<p>$$ \tag{10} \sigma_t(\bm{i}) = \sigma_s + \sigma_a = \frac{\Phi_o}{E_i} + \frac{\Phi_a}{E_i} = \frac{\Phi_t}{E_i}. $$</p>
 
-<p>The optical cross sections \(\sigma_x\) are related to the geometric cross section \(\sigma_g\) by the <a href="https://doi.org/10.1364/JOSAA.35.000163">efficiencies</a> \(Q_x\):</p>
+<p>The optical cross sections \(\sigma_x\) are related to the geometrical cross section \(\sigma_g\) by the <a href="https://doi.org/10.1364/JOSAA.35.000163">efficiencies</a> \(Q_x\):</p>
 
-<p>$$ \tag{8}
+<p>$$ \tag{11}
     Q_a = \frac{\sigma_a}{\sigma_g} = \frac{\Phi_a}{\Phi_i}, \qquad
-    Q_s = \frac{\sigma_s}{\sigma_g} = \frac{\Phi_s}{\Phi_i}, \qquad
+    Q_s = \frac{\sigma_s}{\sigma_g} = \frac{\Phi_o}{\Phi_i}, \qquad
     Q_t = \frac{\sigma_t}{\sigma_g} = \frac{\Phi_t}{\Phi_i}. $$</p>
+
+<figure>
+    <img src="/img/particle_cross_section.png"
+         alt="Geometrical cross section of a particle."/> <figcaption>
+            <p><em>Geometrical cross section of a particle.</em></p>
+        </figcaption>
+</figure>
+
 
 <p>Note that the value of extinction efficiency can exceed 1. This phenomenon is called the <a href="https://doi.org/10.1016/j.jqsrt.2010.08.024">extinction paradox</a>.</p>
 
 <p>The angular distribution of scattered light is described by the <a href="http://glossary.ametsoc.org/wiki/Phase_function">phase function</a> \(f_p\):</p>
 
-<p>$$ \tag{9}
-    f_p(\bm{i}, \bm{s}) =
-    \frac{I_s}{\frac{1}{4 \pi} \int_{4 \pi} I_s d \Omega_s} =
-    \frac{I_s}{\frac{1}{4 \pi} \Phi_s}.
+<p>$$ \tag{12}
+    f_p(\bm{i}, \bm{o}) =
+    \frac{I_o}{\frac{1}{4 \pi} \int_{4 \pi} I_o d \Omega_o} =
+    \frac{I_o}{\frac{1}{4 \pi} \Phi_o}.
 $$</p>
 
-<p>It is the ratio of the energy per unit solid angle scattered in a given direction \(\bm{s}\) to the average energy per unit solid angle scattered in all directions. Again, there is an implicit dependence on the orientation of the particle with respect to the incident wave. Note that  the integral of the phase function over \(4 \pi\) steradians equals \(4 \pi\), which appears to be a common <a href="http://glossary.ametsoc.org/wiki/Phase_function">convention</a> in optics.</p>
+<p>It is the ratio of the energy per unit solid angle scattered in a given direction \(\bm{o}\) to the average energy per unit solid angle scattered in all directions. Again, there is an implicit dependence on the orientation of the particle with respect to the incident wave. Note that  the integral of the phase function over \(4 \pi\) steradians equals \(4 \pi\), which appears to be a common <a href="http://glossary.ametsoc.org/wiki/Phase_function">convention</a> in optics.</p>
 
 <p>Let us compute the product of the scattering cross section and the phase function:</p>
 
-<p>$$ \tag{10}
-    \sigma_s(\bm{i}) f_p(\bm{i}, \bm{s}) =
-    \frac{\Phi_s}{E_i} \frac{I_s}{\frac{1}{4 \pi} \Phi_s}. $$</p>
+<p>$$ \tag{13}
+    \sigma_s(\bm{i}) f_p(\bm{i}, \bm{o}) =
+    \frac{\Phi_o}{E_i} \frac{I_o}{\frac{1}{4 \pi} \Phi_o}. $$</p>
 
 <p>The spectral flux cancels out, and we find the connection with the differential scattering cross section:</p>
 
-<p>$$ \tag{11} \sigma_s'(\bm{i}, \bm{s}) = \sigma_s \frac{f_p}{4 \pi}. $$</p>
+<p>$$ \tag{14} \sigma_s'(\bm{i}, \bm{o}) = \sigma_s \frac{f_p}{4 \pi}. $$</p>
+
+<p>For a more elaborate derivation based on wave optics, see Chapter 13 of Born &amp; Wolf, <a href="https://doi.org/10.1017/CBO9781139644181">Principles of optics</a>, or Chapter 2 of Mishchenko, Travis &amp; Lacis, <a href="https://www.cambridge.org/9780521782524">Scattering, Absorption, and Emission of Light by Small Particles</a>.</p>
 
 <h2 id="scattering-by-a-group-of-particles">Scattering by a Group of Particles</h2>
 
-<p>Let us see how we can extend this theory to scattering from \(N\) particles. When an atom interacts with light, it experiences a <a href="http://plaza.ufl.edu/dwhahn/Rayleigh%20and%20Mie%20Light%20Scattering.pdf">periodic perturbation of its electron cloud</a>, which turns it into a source of radiation. Assuming <a href="https://en.wikipedia.org/wiki/Elastic_scattering">elastic scattering</a> (ignoring the <a href="https://en.wikipedia.org/wiki/Raman_scattering">Raman effect</a>), this radiation will have the same frequency as the incident light. Additionally, assuming that all the particles are identical (including their orientation), they will all radiate energy in exactly the same way.</p>
+<p>Let us see how we can extend this theory to scattering by \(N\) particles. When an atom interacts with light, it experiences a <a href="http://plaza.ufl.edu/dwhahn/Rayleigh%20and%20Mie%20Light%20Scattering.pdf">periodic perturbation of its electron cloud</a>, which turns it into a source of radiation. Assuming <a href="https://en.wikipedia.org/wiki/Elastic_scattering">elastic scattering</a> (ignoring the <a href="https://en.wikipedia.org/wiki/Raman_scattering">Raman effect</a>), this radiation will have the same frequency as the incident light. Additionally, assuming that all the particles are identical (including their orientation), they will all radiate energy in exactly the same way.</p>
 
-<p>The resulting electromagnetic waves will <a href="https://en.wikipedia.org/wiki/Superposition_principle#Wave_superposition">combine</a> at the detector, potentially experiencing both constructive and destructive <a href="https://en.wikipedia.org/wiki/Superposition_principle#Wave_interference">interference</a>. Since all the particles are identical, the only differentiating factor is their position, which means that the scattered waves will have different phases (due to variation of distances from the particles to the detector). Making the final assumption that these particles are randomly distributed in a small region of space, we can <a href="https://en.wikipedia.org/wiki/Correlation_and_dependence">decorrelate</a> their phases. This results in <a href="http://glossary.ametsoc.org/wiki/Incoherent_scattering">incoherent scattering</a>, with constructive and destructive interference <a href="https://www.feynmanlectures.caltech.edu/I_32.html">canceling each other out</a> (as we average over space and time), and <a href="https://www.nbi.dk/~ogendal/personal/lho/lightscattering_theory_and_practice.pdf">it can be shown</a> that the <em>mean</em> energy carried by the combined wave simply increases by a factor of \(N\).</p>
+<p>The resulting electromagnetic waves will <a href="https://en.wikipedia.org/wiki/Superposition_principle#Wave_superposition">combine</a> at the detector, potentially experiencing both constructive and destructive <a href="https://en.wikipedia.org/wiki/Superposition_principle#Wave_interference">interference</a>. Since all the particles are identical, the only differentiating factor is their position, which means that the scattered waves will have different phases (due to variation of distances from the particles to the detector). Making the final assumption that these particles are randomly distributed in a small region of space, we can <a href="https://en.wikipedia.org/wiki/Correlation_and_dependence">decorrelate</a> their phases. This results in <a href="http://glossary.ametsoc.org/wiki/Incoherent_scattering">incoherent scattering</a>, with constructive and destructive interference <a href="https://www.feynmanlectures.caltech.edu/I_32.html">canceling each other out</a> (as we average over space and time), and <a href="https://www.nbi.dk/~ogendal/personal/lho/lightscattering_theory_and_practice.pdf">it can be shown</a> that the <em>mean energy</em> carried by the combined wave simply increases by a factor of \(N\).</p>
 
-<p>Therefore, we can rewrite  Equation 5 for \(N\) particles as</p>
+<p>Therefore, we can rewrite Equations 8 and 14 for \(N\) particles as</p>
 
-<p>$$ \tag{12} I_s = N \sigma_s \frac{f_p}{4 \pi} E_i. $$</p>
+<p>$$ \tag{15} I_o = N \sigma_s \frac{f_p}{4 \pi} E_i. $$</p>
+
+<p>One way to see it is as if the scattering cross section increases by a factor of \(N\).</p>
 
 <p>&quot;Wait a minute&quot;, you may object. &quot;Shouldn't we also consider the effect of scattered waves on the particles themselves?&quot; And, in general, indeed, we should. This is a <a href="https://en.wikipedia.org/wiki/Many-body_problem">many-body problem</a>, and it is extremely challenging to solve exactly. In a low-density dielectric (a gas), electromagnetic interaction between the particles is typically neglected - this is sometimes referred to as the <a href="https://doi.org/10.1002/qj.49708436025">independent scattering approximation</a>. For dense dielectrics, one way of tackling the problem is to introduce the <a href="https://en.wikipedia.org/wiki/Polarization_density">electric polarization</a> - induced <a href="https://en.wikipedia.org/wiki/Electric_dipole_moment">electric dipole moment</a> per unit volume - which can be used to approximate the <a href="https://www.feynmanlectures.caltech.edu/II_32.html">local electric field</a>.</p>
 
-<p>We can extend Equation 12 to take the volume occupied by particles into account. Given a number of particles \(\Delta N\) contained within a small volume \(\Delta V\),</p>
+<p>We can extend Equation 15 to take the volume occupied by particles into account. Given a number of particles \(dN\) contained within a small volume \(dV\),</p>
 
-<p>$$ \tag{13} \frac{I_s}{\Delta V}  = \frac{\Delta N}{\Delta V} \sigma_s \frac{f_p}{4 \pi} E_i. $$</p>
+<p>$$ \tag{16} \frac{dI_o}{dV}  = \frac{dN}{dV} \sigma_s \frac{f_p}{4 \pi} E_i. $$</p>
 
-<p>\(\Delta N / \Delta V\) is the definition of the <a href="https://en.wikipedia.org/wiki/Number_density">number density</a> \(n\),
+<p>\(dN / dV\) is the definition of the <a href="https://en.wikipedia.org/wiki/Number_density">number density</a> \(n\),
 and can be used to define the <a href="/post/analytic-media/">scattering coefficient</a> \(\beta_s\)</p>
 
-<p>$$ \tag{14} \beta_s = n \sigma_s. $$</p>
+<p>$$ \tag{17} \beta_s = n \sigma_s. $$</p>
 
-<p>If a distribution of (non-identical) particles is given, we can use its <a href="http://eodg.atm.ox.ac.uk/user/grainger/research/book/protected/Chapter5.pdf">weighted average</a> properties instead:</p>
+<p>Substitution yields</p>
 
-<p>$$ \tag{15} \langle \beta_x \rangle = \int n(r) \sigma_x(r) dr, $$</p>
+<p>$$ \tag{18} \frac{dI_o}{dV}  = \beta_s \frac{f_p}{4 \pi} E_i. $$</p>
 
-<p>$$ \tag{16} \langle f_p \rangle = \frac{\int n(r) \sigma_s(r) f_p(r) dr}{\int n(r) \sigma_s(r) dr}. $$</p>
+<p>If a distribution of (non-identical) particles is given, under the same assumptions as above, we can use its <a href="http://eodg.atm.ox.ac.uk/user/grainger/research/book/protected/Chapter5.pdf">weighted average</a> properties instead:</p>
 
-<p>We can reformulate Equation 13 using the definition of the scattering coefficient:</p>
+<p>$$ \tag{19} \langle \beta_x \rangle = \int n(r) \sigma_x(r) dr, $$</p>
 
-<p>$$ \tag{17} \frac{I_s}{\Delta V}  = \beta_s \frac{f_p}{4 \pi} E_i. $$</p>
+<p>$$ \tag{20} \langle f_p \rangle = \frac{\int n(r) \sigma_s(r) f_p(r) dr}{\int n(r) \sigma_s(r) dr}. $$</p>
 
 <p>If we orient the direction of scattering along the \(z\)-axis, we may write</p>
 
-<p>$$ \tag{18} \frac{I_s}{\Delta A \Delta z} = \beta_s \frac{f_p}{4 \pi} E_i. $$</p>
+<p>$$ \tag{21} \frac{dI_o}{d\sigma dz} = \beta_s \frac{f_p}{4 \pi} E_i. $$</p>
 
-<p>The ratio of spectral intensity to the area is the definition<sup class="footnote-ref" id="fnref:5"><a href="#fn:5">4</a></sup> of scattered <a href="https://en.wikipedia.org/wiki/Radiance#Spectral_radiance">spectral radiance</a> \(L_s\):</p>
+<p>The ratio of spectral intensity (normal) to the area is the definition of scattered spectral radiance \(L_o\):</p>
 
-<p>$$ \tag{19} L_s = \beta_s \frac{f_p}{4 \pi} E_i \Delta z. $$</p>
+<p>$$ \tag{22} \frac{dL_o}{dz} = \beta_s \frac{f_p}{4 \pi} E_i. $$</p>
 
-<p>Intuitively, the &quot;left-over&quot; \(\Delta z\) makes sense. If we increase \(\Delta z\), the total volume increases, the density correspondingly decreases, and, since the number of particles is constant, the amount of spectral radiance does not change.</p>
+<p>Intuitively, the &quot;left-over&quot; \(dz\) makes sense. If we increase \(dz\), the total volume increases, the density correspondingly decreases, and, since the number of particles remains constant, the amount of spectral radiance does not change.</p>
 
-<p>In light transport applications, we typically deal with radiance rather than irradiance. This can be achieved by introducing an integral over \(4 \pi\) steradians</p>
+<p>In light transport applications, we typically deal with radiance rather than irradiance. This can be achieved by substituting<sup class="footnote-ref" id="fnref:6"><a href="#fn:6">6</a></sup> Equation 5 and introducing an integral over \(4 \pi\) steradians:</p>
 
-<p>$$ \tag{20} L_s = \int_{4 \pi} \beta_s \frac{f_p}{4 \pi} L_i d \Omega_i \Delta z, $$</p>
+<p>$$ \tag{23} dL_o = \int_{4 \pi} \beta_s \frac{f_p}{4 \pi} L_i d \Omega_i dz. $$</p>
 
-<p>where the scattering coefficient and the phase function determine the magnitude of the contribution of each incident direction.</p>
+<figure>
+    <img src="/img/volume_cross_section.png"
+         alt="Scattering by a volume element."/> <figcaption>
+            <p><em>Scattering by a volume element.</em></p>
+        </figcaption>
+</figure>
 
-<p>Finally, if any part of the integrand varies along \(z\), we must replace \(\Delta z\) by a differential \(dz\) and add an outer line integral</p>
 
-<p>$$ \tag{21} L_s = \int_{\bm{x}}^{\bm{y}} T(\bm{x}, \bm{z}) \Bigg( \int_{4 \pi} \beta_s \frac{f_p}{4 \pi} L_i d \Omega_i \Bigg) dz, $$
-with the transmittance term \(T\), which becomes significant since the extent of the volume along the \(\bm{z}\)-axis is no longer negligible.</p>
+<p>Finally, we must perform line integration along the \(z\)-axis</p>
 
-<p>Recursively defining \(L = L_i = L_s\), we finally obtain the <a href="/post/analytic-media/#radiative-transfer-equation">radiative transfer equation</a> we are all familiar with.</p>
+<p>$$ \tag{24} L_o = \int_{\bm{x}}^{\bm{y}} T(\bm{x}, \bm{z}) \int_{4 \pi} \beta_s \frac{f_p}{4 \pi} L_i d \Omega_i dz, $$</p>
 
-<p>If we wish to model the <a href="https://doi.org/10.1145/2557605">refractive radiative transfer equation</a> instead, we must remember to also account for continuous reflection/transmission as well as the associated change in the solid angle.</p>
+<p>and add the transmittance term \(T\) to account for absorption and scattering over the (non-infinitesimal) distance from the scatterer to the sensor.</p>
+
+<p>By recursively defining \(L = L_i = L_o\), we obtain<sup class="footnote-ref" id="fnref:7"><a href="#fn:7">7</a></sup> the familiar <a href="https://en.wikipedia.org/wiki/Radiative_transfer#The_equation_of_radiative_transfer">radiative transfer equation</a>.</p>
+
+<p>For a derivation from the volume scattering viewpoint, see Chapter 1 of Chandrasekhar, <a href="https://doi.org/10.1002/qj.49707633016">Radiative transfer</a>.</p>
 
 <h2 id="acknowledgments">Acknowledgments</h2>
 
@@ -219,14 +256,20 @@ with the transmittance term \(T\), which becomes significant since the extent of
 <hr />
 
 <ol>
-<li id="fn:1">By convention, \(\eta_0 = 1, \kappa_0 = 0\) is reserved for the <a href="https://en.wikipedia.org/wiki/Vacuum">vacuum</a>.
+<li id="fn:1">Historically, radiance is called <em>intensity</em> and spectral radiance is called <em>specific intensity</em>. Personally, I don't find this name to be specific enough.
  <a class="footnote-return" href="#fnref:1"><sup>[return]</sup></a></li>
-<li id="fn:2">\(\bm{E}\) and \(\bm{B}\) are mutually orthogonal.
+<li id="fn:2">Certain expressions can be simplified by using the <em>projected area</em> measure \(d\sigma_i = d\sigma_n \cos{\theta}\)  or the <em>projected solid angle</em> measure \(d\Omega_i = d\Omega_n \cos{\theta}\).
  <a class="footnote-return" href="#fnref:2"><sup>[return]</sup></a></li>
-<li id="fn:3">While confirmed experimentally, this definition is, mathematically, somewhat arbitrary. For a discussion and further references, refer to p. 10 of Born, M., &amp; Wolf, E. <a href="https://doi.org/10.1017/CBO9781139644181">Principles of optics</a>, 7th edition (1999).
+<li id="fn:3">If the sensor is not planar, the normal \(\bm{n}\) is a function of position \(\bm{x}\). However, it is simpler to think of the sensor as a <a href="https://mathworld.wolfram.com/Manifold.html">manifold</a> composed of infinitesimal rectangles.
  <a class="footnote-return" href="#fnref:3"><sup>[return]</sup></a></li>
-<li id="fn:5">Historically, radiance is called <em>intensity</em> and spectral radiance is called <em>specific intensity</em>. Personally, I don't find the term to be specific enough.
+<li id="fn:4">The reason we use intensity rather than radiance is that the scatterer acts as a point charge (or a point source, if you will). While the particle does have an area, its entire volume scatters light, which means that a volume (rather than an area) energy density measure would be more appropriate.
+ <a class="footnote-return" href="#fnref:4"><sup>[return]</sup></a></li>
+<li id="fn:5">The &quot;small disk&quot; model is convenient in problems of light scattering by spherical particles since their geometrical cross section is also a disk. In the volume scattering case, the volume element is typically a rectangular cuboid, which makes the &quot;little square&quot; model more appropriate for describing the cross sections.
  <a class="footnote-return" href="#fnref:5"><sup>[return]</sup></a></li>
+<li id="fn:6">The cosine factor does not appear in the calculation because the scattering cross section is, by definition, normal to the direction of incidence.
+ <a class="footnote-return" href="#fnref:6"><sup>[return]</sup></a></li>
+<li id="fn:7">If we wish to model the <a href="https://doi.org/10.1145/2557605">refractive radiative transfer equation</a> instead, we must remember to also account for continuous reflection/transmission as well as the associated change in the solid angle.
+ <a class="footnote-return" href="#fnref:7"><sup>[return]</sup></a></li>
 </ol>
 </div>
         </div>
@@ -239,7 +282,8 @@ with the transmittance term \(T\), which becomes significant since the extent of
 <ul>
 <li>
 <ul>
-<li><a href="#particle-scattering-basics">Particle Scattering Basics</a></li>
+<li><a href="#radiometry-crash-course">Radiometry Crash Course</a></li>
+<li><a href="#light-scattering-by-a-single-particle">Light Scattering by a Single Particle</a></li>
 <li><a href="#scattering-by-a-group-of-particles">Scattering by a Group of Particles</a></li>
 <li><a href="#acknowledgments">Acknowledgments</a></li>
 </ul></li>

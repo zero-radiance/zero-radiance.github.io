@@ -69,11 +69,11 @@
 
 <p>In the <a href="https://doi.org/10.1002/qj.49707633016">radiative transfer</a> literature, light-material interaction is usually quantified in terms of absorption (conversion of electromagnetic energy of photons into kinetic energy of atoms, which manifests itself as reduction of light intensity) and <a href="http://plaza.ufl.edu/dwhahn/Rayleigh%20and%20Mie%20Light%20Scattering.pdf">scattering</a> (absorption followed by <a href="https://en.wikipedia.org/wiki/Stimulated_emission">emission</a> of electromagnetic energy on collision). Therefore, it is common to describe participating media using the <em>collision coefficients</em>: the <em>absorption coefficient</em> \(\beta_a\) and the <em>scattering coefficient</em> \(\beta_s\). These coefficients give the probability density of the corresponding event per unit distance traveled by a photon, which implies the <a href="https://en.wikipedia.org/wiki/International_System_of_Units">SI unit</a> of measurement is \(m^{-1}\).</p>
 
-<p>The <a href="https://en.wikipedia.org/wiki/Attenuation_coefficient">extinction coefficient</a><sup class="footnote-ref" id="fnref:1"><a href="#fn:1">1</a></sup> \(\beta_t\)</p>
+<p>The <a href="https://en.wikipedia.org/wiki/Attenuation_coefficient">extinction coefficient</a> \(\beta_t\)</p>
 
 <p>$$ \tag{1} \beta_t = \beta_a + \beta_s $$</p>
 
-<p>gives the probability density of absorption or scattering (or, in other words, the collision rate) as a photon travels a unit distance through the medium.</p>
+<p>gives the probability density of absorption or scattering (or, in other words, the collision rate) as a photon travels a unit distance through the medium<sup class="footnote-ref" id="fnref:1"><a href="#fn:1">1</a></sup>.</p>
 
 <p>A more artist-friendly parametrization uses the <a href="https://en.wikipedia.org/wiki/Single-scattering_albedo">single-scattering albedo</a> \(\alpha_{ss}\)</p>
 
@@ -148,7 +148,7 @@
     = \int_{\bm{x}}^{\bm{y}} \beta_t(\bm{u}) du,
 $$</p>
 
-<p>where \(\bm{u} = \bm{x} - u \bm{v}\) is the point at the distance \(u\) along the ray, and \(du\) is the (length) <a href="https://en.wikipedia.org/wiki/Lebesgue_integration#Measure_theory">measure</a> of \(\bm{u}\). This formula implies that while transmittance is multiplicative, with values restricted to the unit interval, optical depth is additive and can take on any non-negative value. In other words, transmittance is a <a href="https://www.wikiwand.com/en/Product_integral">product integral</a>:</p>
+<p>where \(\bm{u} = \bm{x} - u \bm{v}\) is the point at the distance \(u\) along the ray, and \(du\) is the length <a href="https://en.wikipedia.org/wiki/Lebesgue_integration#Measure_theory">measure</a> associated with \(\bm{u}\). This formula implies that while transmittance is multiplicative, with values restricted to the unit interval, optical depth is additive and can take on any non-negative value. In other words, transmittance is a <a href="https://www.wikiwand.com/en/Product_integral">product integral</a>:</p>
 
 <p>$$ \tag{11} T(\bm{x}, \bm{y})
     = e^{- \int_{\bm{x}}^{\bm{y}} \beta_t(\bm{u}) du}
@@ -159,11 +159,11 @@ $$</p>
 
 <p>The RTE models three types of energy sources: <a href="https://en.wikipedia.org/wiki/Spontaneous_emission">volumetric emission</a> \(L_e\), volumetric in-scattering \(L_s\), and surface in-scattering \(L_g\) (which is itself an integral that features a surface geometry term with a BSDF). The volumetric in-scattering term \(L_s\) is an integral over \(4 \pi\) steradians:</p>
 
-<p>$$ \tag{12} L_s(\bm{x}, \bm{v}) = \int_{4 \pi} \alpha_{ss}(\bm{x}) \frac{f_p(\bm{x}, \bm{v}, \bm{l})}{4 \pi} L(\bm{x}, \bm{l}) dl, $$</p>
+<p>$$ \tag{12} L_s(\bm{x}, \bm{v}) = \int_{4 \pi} \alpha_{ss}(\bm{x}) \frac{f_p(\bm{x}, \bm{v}, \bm{l})}{4 \pi} L(\bm{x}, \bm{l}) d\Omega_l, $$</p>
 
-<p>where \(f_p\) denotes the <a href="http://www.pbr-book.org/3ed-2018/Volume_Scattering/Phase_Functions.html">phase function</a> which models the distribution of scattered light, and \(dl\) is the (solid angle) <a href="https://en.wikipedia.org/wiki/Lebesgue_integration#Measure_theory">measure</a> of \(\bm{l}\).</p>
+<p>where \(f_p\) denotes the <a href="http://www.pbr-book.org/3ed-2018/Volume_Scattering/Phase_Functions.html">phase function</a> which models the angular distribution of scattered light<sup class="footnote-ref" id="fnref:5"><a href="#fn:5">3</a></sup>, and \(d\Omega_l\) is the solid angle measure associated with \(\bm{l}\).</p>
 
-<p>Carefully putting it all together<sup class="footnote-ref" id="fnref:3"><a href="#fn:3">3</a></sup> yields the <a href="https://cs.dartmouth.edu/~wjarosz/publications/novak18monte.html">volume rendering equation</a> along the ray \(\bm{u} = \bm{x} - u \bm{v}\):</p>
+<p>Carefully putting it all together yields the <a href="https://cs.dartmouth.edu/~wjarosz/publications/novak18monte.html">volume rendering equation</a> along the ray \(\bm{u} = \bm{x} - u \bm{v}\):</p>
 
 <p>$$ \tag{13}
     L(\bm{x}, \bm{v}) = T(\bm{x}, \bm{y}) L_g(\bm{y}, \bm{v}) +
@@ -173,7 +173,7 @@ $$</p>
     \Big) du
 $$</p>
 
-<p>where \(\bm{y}\) denotes the position of the closest surface along the ray.</p>
+<p>where \(\bm{y}\) denotes the position of the closest surface along the ray<sup class="footnote-ref" id="fnref:3"><a href="#fn:3">4</a></sup>.</p>
 
 <p>We will leave <a href="https://doi.org/10.1111/cgf.13228">volumetric emission</a> out by setting \(L_e = 0\):</p>
 
@@ -255,7 +255,7 @@ $$</p>
 
 <h3 id="uniform-density">Uniform Density</h3>
 
-<p>This type of medium has uniform<sup class="footnote-ref" id="fnref:4"><a href="#fn:4">4</a></sup> density across the entire volume:</p>
+<p>This type of medium has uniform<sup class="footnote-ref" id="fnref:4"><a href="#fn:4">5</a></sup> density across the entire volume:</p>
 
 <p>$$ \tag{25} \rho = b. $$</p>
 
@@ -268,7 +268,7 @@ $$</p>
     = \sigma_t b u.
 $$</p>
 
-<p>The sampling &quot;recipe&quot; for the distance \(u\) (and for a particular frequency \(\nu\)) is thus simply</p>
+<p>The sampling &quot;recipe&quot; for the distance \(u\) is thus simply</p>
 
 <p>$$ \tag{27} u = \frac{\tau}{\sigma_t b}, $$</p>
 
@@ -1236,10 +1236,12 @@ float3 SpectralTracking(float3 X, float3 V, uint numWavelengths, uint numPaths)
 <hr />
 
 <ol>
-<li id="fn:1">According to <a href="https://en.wikipedia.org/wiki/Attenuation_coefficient">Wikipedia</a>, this is an old term, and we should refer to it as the <em>attenuation coefficient</em> instead. While it's certainly a better name, in practice, all classical publications call it extinction. We use the classical naming convention to avoid confusion.
+<li id="fn:1">According to <a href="https://en.wikipedia.org/wiki/Attenuation_coefficient">Wikipedia</a>, this is an old term, and we should refer to it as the <em>attenuation coefficient</em> instead. While it's certainly a better name, in practice, all classical publications call it extinction (this also includes related terms). We use the classical naming convention to avoid confusion.
  <a class="footnote-return" href="#fnref:1"><sup>[return]</sup></a></li>
 <li id="fn:2">Alternatively, one can use <a href="https://en.wikipedia.org/wiki/Number_density">number density</a> instead of mass density.
  <a class="footnote-return" href="#fnref:2"><sup>[return]</sup></a></li>
+<li id="fn:5">Certain <a href="https://doi.org/10.1002/qj.49707633016">authors</a> use the definition of the phase function that includes the albedo.
+ <a class="footnote-return" href="#fnref:5"><sup>[return]</sup></a></li>
 <li id="fn:3">The absorption coefficient in front of the emission term is due to the <a href="https://en.wikipedia.org/wiki/Kirchhoff%27s_law_of_thermal_radiation">Kirchhoff's law</a> which states that, for an arbitrary body emitting and absorbing thermal radiation in thermodynamic equilibrium, the emissivity is equal to the absorptivity.
  <a class="footnote-return" href="#fnref:3"><sup>[return]</sup></a></li>
 <li id="fn:4">A <em>homogeneous</em> medium, by definition, contains no inhomogeneities (which cause scattering), while a medium with a <em>uniform density</em> is composed of individual particles.
