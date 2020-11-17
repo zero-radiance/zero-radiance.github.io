@@ -47,8 +47,8 @@ where \\(\cos{\theta} = \bm{i} \cdot \bm{n}\\) is the cosine[^2] of the angle be
 
 It is important to understand that while both \\(E\_n\\) and \\(I\_n\\) are defined with respect to the surface normal \\(\bm{n}\\), \\(L\_i\\) is measured across the direction \\(\bm{i}\\) of the incident radiation. Comparing Equations ii-iv, it is clear that
 
-$$ \tag{v}  dE\_n = dE\_i \cos{\theta} = L\_i \cos{\theta} d\Omega\_n, $$
-$$ \tag{vi} dI\_n = dI\_i \cos{\theta} = L\_i \cos{\theta} d\sigma\_n. $$
+$$ \tag{v}  dI\_n = dI\_i \cos{\theta} = L\_i \cos{\theta} d\sigma\_n, $$
+$$ \tag{vi} dE\_n = dE\_i \cos{\theta} = L\_i \cos{\theta} d\Omega\_n. $$
 
 {{< figure src="/img/radiometry.png" >}}
 
@@ -84,9 +84,9 @@ $$ \tag{6}
     \frac{\int\_{4 \pi} I\_o d \Omega\_o}{E\_i} =
     \frac{\Phi\_o}{E\_i}. $$
 
-In other words, it is just the ratio of the scattered spectral flux \\(\Phi\_o\\) to the incident spectral irradiance \\(E\_i\\). It has the dimensions of an area; however, since it's not a geometric area, it can be imagined as a small disk[^4] normal with respect to the incident beam \\(\bm{i}\\).
+In other words, it is just the ratio of the scattered spectral flux \\(\Phi\_o\\) to the incident spectral irradiance \\(E\_i\\). It has the dimensions of an area; however, since it is not a geometric area, it can be imagined as a small disk[^4] normal with respect to the incident beam \\(\bm{i}\\) (don't be confused by the subscript \\(s\\)).
 
-[^4]: The "small disk" model is convenient in problems of light scattering by spherical particles, since their geometric cross section is also a disk. In the volume scattering case, the volume element is typically considered to be a rectangular cuboid, so the "little square" model is more appropriate for describing the (scattering) cross section. Additionally, the volume element is often oriented with respect to the direction of scattering, which may introduce a cosine factor between the normal of the light-facing face of the cube and the light direction. This section does not deal with radiance, so the cosine factor does not appear in the calculations.
+[^4]: The "small disk" model is convenient in problems of light scattering by spherical particles, since their geometric cross section is also a disk. In the volume scattering case, the volume element is typically a rectangular cuboid, so the "little square" model is more appropriate for describing the (scattering) cross section. Additionally, the volume element is often oriented with respect to the direction of scattering, which may introduce a cosine factor due to the angle between the normal of the cross section of the cube and the light direction. If we do not deal with radiance, the cosine factor does not appear in the calculations.
 
 The [extinction cross section](http://glossary.ametsoc.org/wiki/Extinction_cross_section) \\(\sigma\_t\\) relates the total spectral flux \\(\Phi\_t\\) scattered or absorbed by the particle (e.i. removed from the incident wave) to the incident spectral irradiance \\(E\_i\\):
 
@@ -131,17 +131,17 @@ Let us see how we can extend this theory to scattering from \\(N\\) particles. W
 
 The resulting electromagnetic waves will [combine](https://en.wikipedia.org/wiki/Superposition_principle#Wave_superposition) at the detector, potentially experiencing both constructive and destructive [interference](https://en.wikipedia.org/wiki/Superposition_principle#Wave_interference). Since all the particles are identical, the only differentiating factor is their position, which means that the scattered waves will have different phases (due to variation of distances from the particles to the detector). Making the final assumption that these particles are randomly distributed in a small region of space, we can [decorrelate](https://en.wikipedia.org/wiki/Correlation_and_dependence) their phases. This results in [incoherent scattering](http://glossary.ametsoc.org/wiki/Incoherent_scattering), with constructive and destructive interference [canceling each other out](https://www.feynmanlectures.caltech.edu/I_32.html) (as we average over space and time), and [it can be shown](https://www.nbi.dk/~ogendal/personal/lho/lightscattering_theory_and_practice.pdf) that the *mean* energy carried by the combined wave simply increases by a factor of \\(N\\).
 
-Therefore, we can rewrite  Equation 5 for \\(N\\) particles as
+Therefore, we can rewrite Equations 5 and 11 for \\(N\\) particles as
 
 $$ \tag{12} I\_o = N \sigma\_s \frac{f\_p}{4 \pi} E\_i. $$
 
 "Wait a minute", you may object. "Shouldn't we also consider the effect of scattered waves on the particles themselves?" And, in general, indeed, we should. This is a [many-body problem](https://en.wikipedia.org/wiki/Many-body_problem), and it is extremely challenging to solve exactly. In a low-density dielectric (a gas), electromagnetic interaction between the particles is typically neglected - this is sometimes referred to as the [independent scattering approximation](https://doi.org/10.1002/qj.49708436025). For dense dielectrics, one way of tackling the problem is to introduce the [electric polarization](https://en.wikipedia.org/wiki/Polarization_density) - induced [electric dipole moment](https://en.wikipedia.org/wiki/Electric_dipole_moment) per unit volume - which can be used to approximate the [local electric field](https://www.feynmanlectures.caltech.edu/II_32.html).
 
-We can extend Equation 12 to take the volume occupied by particles into account. Given a number of particles \\(\Delta N\\) contained within a small volume \\(\Delta V\\),
+We can extend Equation 12 to take the volume occupied by particles into account. Given a number of particles \\(dN\\) contained within a small volume \\(dV\\),
 
-$$ \tag{13} \frac{I\_o}{\Delta V}  = \frac{\Delta N}{\Delta V} \sigma\_s \frac{f\_p}{4 \pi} E\_i. $$
+$$ \tag{13} \frac{I\_o}{dV}  = \frac{dN}{dV} \sigma\_s \frac{f\_p}{4 \pi} E\_i. $$
 
-\\(\Delta N / \Delta V\\) is the definition of the [number density](https://en.wikipedia.org/wiki/Number_density) \\(n\\),
+\\(dN / dV\\) is the definition of the [number density](https://en.wikipedia.org/wiki/Number_density) \\(n\\),
 and can be used to define the [scattering coefficient](/post/analytic-media/) \\(\beta\_s\\)
 
 $$ \tag{14} \beta\_s = n \sigma\_s. $$
@@ -154,32 +154,35 @@ $$ \tag{16} \langle f\_p \rangle = \frac{\int n(r) \sigma\_s(r) f\_p(r) dr}{\int
 
 We can reformulate Equation 13 using the definition of the scattering coefficient:
 
-$$ \tag{17} \frac{I\_o}{\Delta V}  = \beta\_s \frac{f\_p}{4 \pi} E\_i. $$
+$$ \tag{17} \frac{I\_o}{dV}  = \beta\_s \frac{f\_p}{4 \pi} E\_i. $$
 
 If we orient the direction of scattering along the \\(z\\)-axis, we may write
 
-$$ \tag{18} \frac{I\_o}{\Delta A \Delta z} = \beta\_s \frac{f\_p}{4 \pi} E\_i. $$
+$$ \tag{18} \frac{I\_o}{d\sigma dz} = \beta\_s \frac{f\_p}{4 \pi} E\_i. $$
 
-The ratio of spectral intensity to the area is the definition of scattered [spectral radiance](https://en.wikipedia.org/wiki/Radiance#Spectral_radiance) \\(L\_o\\):
+We can compute the amount of scattered spectral radiance \\(L\_o\\) using Equation v:
 
-$$ \tag{19} L\_o = \beta\_s \frac{f\_p}{4 \pi} E\_i \Delta z. $$
+$$ \tag{19} \frac{L\_o \cos{\theta}}{dz} = \beta\_s \frac{f\_p}{4 \pi} E\_i. $$
 
-Intuitively, the "left-over" \\(\Delta z\\) makes sense. If we increase \\(\Delta z\\), the total volume increases, the density correspondingly decreases, and, since the number of particles is constant, the amount of spectral radiance does not change.
+Intuitively, the "left-over" \\(dz\\) makes sense. If we increase \\(dz\\), the total volume increases, the density correspondingly decreases, and, since the number of particles is constant, the amount of spectral radiance does not change.
 
-In light transport applications, we typically deal with radiance rather than irradiance. This can be achieved by introducing an integral over \\(4 \pi\\) steradians
+In light transport applications, we typically deal with radiance rather than irradiance. This can be achieved by substituting Equation vi and introducing an integral over \\(4 \pi\\) steradians:
 
-$$ \tag{20} L\_o = \int\_{4 \pi} \beta\_s \frac{f\_p}{4 \pi} L_i d \Omega_i \Delta z, $$
+$$ \tag{20} L\_o
+    = \int\_{4 \pi} \beta\_s \frac{f\_p}{4 \pi} \Big( L_i \cos{\theta} d \Omega_i \Big) \frac{dz}{\cos{\theta}}
+    = \int\_{4 \pi} \beta\_s \frac{f\_p}{4 \pi} L_i d \Omega_i dz, $$
 
 where the scattering coefficient and the phase function determine the magnitude of the contribution of each incident direction.
 
-Finally, if any part of the integrand varies along \\(z\\), we must replace \\(\Delta z\\) by a differential \\(dz\\) and add an outer line integral
-
-$$ \tag{21} L\_o = \int\_{\bm{x}}^{\bm{y}} T(\bm{x}, \bm{z}) \Bigg( \int\_{4 \pi} \beta\_s \frac{f\_p}{4 \pi} L_i d \Omega_i \Bigg) dz, $$
-with the transmittance term \\(T\\), which becomes significant since the extent of the volume along the \\(\bm{z}\\)-axis is no longer negligible.
-
 {{< figure src="/img/volume_cross_section.png" caption="*Scattering by a volume element.*" >}}
 
-Recursively defining \\(L = L\_i = L\_o\\), we finally obtain the [radiative transfer equation](/post/analytic-media/#radiative-transfer-equation) we are all familiar with.
+Finally, we must perform line integration along the \\(z\\)-axis
+
+$$ \tag{21} L\_o = \int\_{\bm{x}}^{\bm{y}} T(\bm{x}, \bm{z}) \int\_{4 \pi} \beta\_s \frac{f\_p}{4 \pi} L_i d \Omega_i dz, $$
+
+and add the transmittance term \\(T\\) to account for the attenuation over the (non-infinitesimal) distance from the scatterer to the sensor.
+
+By recursively defining \\(L = L\_i = L\_o\\), we    obtain the [radiative transfer equation](/post/analytic-media/#radiative-transfer-equation) we are all familiar with.
 
 If we wish to model the [refractive radiative transfer equation](https://doi.org/10.1145/2557605) instead, we must remember to also account for continuous reflection/transmission as well as the associated change in the solid angle.
 
@@ -188,4 +191,3 @@ For an alternative derivation, see Chandrasekhar ...
 ## Acknowledgments
 
 I would like to thank Eugene d'Eon for his thoughtful comments and feedback, and Don Grainger for his [book](http://eodg.atm.ox.ac.uk/user/grainger/research/book/) and for reviewing this article.
-
