@@ -31,7 +31,7 @@ If we can only determine the directional characteristics of the flux, it can be 
 
 $$ \tag{3} dQ\_n = I\_n d\Omega\_n d\nu dt, $$
 
-where \\(d\Omega\_n\\) is the *solid angle* [measure](https://en.wikipedia.org/wiki/Lebesgue_integration#Measure_theory) associated with the direction of the intensity.
+where \\(d\Omega\_n\\) is the *solid angle* [measure](https://en.wikipedia.org/wiki/Lebesgue_integration#Measure_theory) associated with the direction of the intensity. More commonly, this equation is used to describe emission (or scattering) by point sources (or scatters) which have no associated surface normal or area.
 
 The [spectral radiance](https://en.wikipedia.org/wiki/Radiance#Spectral_radiance) \\(L\_i\\) specifies[^1] both the spatial and the directional characteristics of the flux:
 
