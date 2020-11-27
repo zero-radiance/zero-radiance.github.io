@@ -188,7 +188,7 @@ By recursively defining \\(L = L\_i = L\_o\\), we obtain[^7] the familiar [radia
 
 [^7]: If we wish to model the [refractive radiative transfer equation](https://doi.org/10.1145/2557605) instead, we must remember to also account for continuous reflection/transmission as well as the associated change in the solid angle.
 
-For a derivation from the volume scattering viewpoint, see Chapter 1 of Chandrasekhar, [Radiative transfer](https://doi.org/10.1002/qj.49707633016).
+For a derivation from the volume scattering viewpoint, see Chapters 1 and 17 of Chandrasekhar, [Radiative transfer](https://doi.org/10.1002/qj.49707633016).
 
 ## Acknowledgments
 
