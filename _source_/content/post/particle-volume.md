@@ -125,7 +125,7 @@ The spectral flux cancels out, and we find the connection with the differential 
 
 $$ \tag{14} \sigma\_s'(\bm{i}, \bm{o}) = \sigma\_s \frac{f\_p}{4 \pi}. $$
 
-For a more elaborate derivation based on wave optics, see Chapter 13 of Born & Wolf, [Principles of optics](https://doi.org/10.1017/CBO9781139644181), or Chapter 2 of Mishchenko, Travis & Lacis, [Scattering, Absorption, and Emission of Light by Small Particles](https://www.cambridge.org/9780521782524).
+For a more elaborate derivation based on wave optics, see Chapter XIII of Born & Wolf, [Principles of optics](https://doi.org/10.1017/CBO9781139644181), or Chapter 2 of Mishchenko, Travis & Lacis, [Scattering, Absorption, and Emission of Light by Small Particles](https://www.cambridge.org/9780521782524).
 
 ## Scattering by a Group of Particles
 
@@ -188,7 +188,7 @@ By recursively defining \\(L = L\_i = L\_o\\), we obtain[^7] the familiar [radia
 
 [^7]: If we wish to model the [refractive radiative transfer equation](https://doi.org/10.1145/2557605) instead, we must remember to also account for continuous reflection/transmission as well as the associated change in the solid angle.
 
-For a derivation from the volume scattering viewpoint, see Chapters 1 and 17 of Chandrasekhar, [Radiative transfer](https://doi.org/10.1002/qj.49707633016).
+For a derivation from the volume scattering viewpoint, see Chapter I of Chandrasekhar, [Radiative transfer](https://doi.org/10.1002/qj.49707633016).
 
 ## Acknowledgments
 
