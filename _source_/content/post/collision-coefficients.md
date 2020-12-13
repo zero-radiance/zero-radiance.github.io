@@ -9,7 +9,7 @@ tags: [
 draft: true
 ---
 
-We have previously discussed the [radiative transfer equation](/post/analytic-media/) \[[1](#references), [2](#references)\] and its connection to [light scattered by small particles](/post/particle-volume/) \[[3](#references), [4](#references)\] in some detail. If the distribution of particles is known, once we obtain the efficiencies (and the phase function) of the individual particles, we can readily compute the collision coefficients (and the aggregate phase function) that determine the outcome of the radiative transfer process. However, so far, little has been said about the nature and the origin of these coefficients.
+We have previously discussed the [radiative transfer equation](/post/analytic-media/) \[[1](#references), [2](#references)\] and its connection to [light scattered by small particles](/post/particle-volume/) \[[3](#references), [4](#references)\] in some detail. If the distribution of particles is known, once we obtain the cross sections (and the phase function) of the individual particles, we can readily compute the volume collision coefficients (and the aggregate phase function) that determine the outcome of the radiative transfer process. However, so far, little has been said about the nature and the origin of these coefficients.
 
 To give an example, consider the following problem of atmospheric radiative transfer. We wish to simulate a clear blue sky created by Earth's atmosphere. What should our coefficients be set to?
 
@@ -30,7 +30,9 @@ You may wonder why we have to use *wave optics*. One of the reasons is that *geo
 
 {{< figure src="/img/geom_vs_wave.png">}}
 
-It is not expected that you understand the prior statement fully before reading the rest of the article. However, it should (hopefully) encourage you to learn a little bit about wave optics. A modest introduction is given below.
+It is not expected that you understand the prior statement fully before reading the rest of the article. However, it should (hopefully) encourage you to learn a little bit about wave optics. A modest introduction is given below[^7].
+
+[^7]: Unfortunately, there is neither time nor space to discuss the very important topic of Maxwell's equations (or the wave equation). There are whole books dedicated to this subject. Hopefully, this omission does not make the following material too confusing. An accessible introduction is given in \[[5](#references), [10](#references)\].
 
 ## Scalar Waves
 
@@ -155,19 +157,19 @@ The vector nature of light waves (in mathematics) is referred to as the polariza
 Non-paraxial polarization ???
 
 <!--
-Imagine a small particle of an arbitrary shape embedded in the host medium with the [complex refractive index](https://en.wikipedia.org/wiki/Refractive_index#Complex_refractive_index) (IOR)[^5] \\(\eta - i \kappa\\).
+Imagine a small particle of an arbitrary shape embedded in the host medium with the [complex refractive index](https://en.wikipedia.org/wiki/Refractive_index#Complex_refractive_index) (IOR)[^50] \\(\eta - i \kappa\\).
 
-[^5]: By convention, \\(\eta\_0 = 1, \kappa\_0 = 0\\) is reserved for the [vacuum](https://en.wikipedia.org/wiki/Vacuum).
+[^50]: By convention, \\(\eta\_0 = 1, \kappa\_0 = 0\\) is reserved for the [vacuum](https://en.wikipedia.org/wiki/Vacuum).
 
 {{< figure src="/img/linear_plane_wave.png" caption="*Linearly-polarized plane electromagnetic wave. [Image source](https://openstax.org/books/university-physics-volume-2/pages/16-4-momentum-and-radiation-pressure).*">}}
 
-Consider an [electromagnetic wave](https://www.cpp.edu/~alrudolph/classes/phy234/Reading/Summary%20of%20Waves.pdf) represented[^6] by the electric vector \\(\bm{E}\\) and the magnetic flux density \\(\bm{B}\\) of a certain frequency and in a certain state of polarization[^7]. The direction of propagation and the amount of power[^8] per unit area carried by the wave at the time \\(t\\) is given by the [instanteneous Poynting vector](https://en.wikipedia.org/wiki/Poynting_vector#Formulation_in_terms_of_microscopic_fields) \\(\bm{S}\\)
+Consider an [electromagnetic wave](https://www.cpp.edu/~alrudolph/classes/phy234/Reading/Summary%20of%20Waves.pdf) represented[^60] by the electric vector \\(\bm{E}\\) and the magnetic flux density \\(\bm{B}\\) of a certain frequency and in a certain state of polarization[^70]. The direction of propagation and the amount of power[^80] per unit area carried by the wave at the time \\(t\\) is given by the [instanteneous Poynting vector](https://en.wikipedia.org/wiki/Poynting_vector#Formulation_in_terms_of_microscopic_fields) \\(\bm{S}\\)
 
-[^6]: [Maxwell's equations](http://www.maxwells-equations.com/) are defined using 5 [vector fields](https://en.wikipedia.org/wiki/Vector_field): \\(\bm{E}\\) is the *electric vector*, \\(\bm{H}\\) is the *magnetic vector*, \\(\bm{j}\\) is the *electric current density*, \\(\bm{D}\\) is the *electric flux density* (a.k.a. the *electric displacement*), and \\(\bm{B}\\) is the *magnetic flux density* (a.k.a. the *magnetic induction*). \\(\bm{E}\\) and \\(\bm{B}\\) are considered the fundamental fields, and \\(\bm{j}, \bm{D}, \bm{H}\\) arise due to the influence of matter. For more details, refer to 1) ch. 1.1. of Born, M., & Wolf, E. [Principles of optics](https://doi.org/10.1017/CBO9781139644181), 7th edition (1999); 2) vol. II, ch 32.2 of Feynman, R. P., Leighton, R. B., & Sands, M. [The Feynman lectures on physics](https://www.feynmanlectures.caltech.edu/II_32.html) (1963); 3) Hill, W. T. [E, D, B & H: What do they all mean?](http://www.physics.umd.edu/courses/Phys263/wth/fall04/downloads/EDBH/edbh.pdf) (2004).
+[^60]: [Maxwell's equations](http://www.maxwells-equations.com/) are defined using 5 [vector fields](https://en.wikipedia.org/wiki/Vector_field): \\(\bm{E}\\) is the *electric vector*, \\(\bm{H}\\) is the *magnetic vector*, \\(\bm{j}\\) is the *electric current density*, \\(\bm{D}\\) is the *electric flux density* (a.k.a. the *electric displacement*), and \\(\bm{B}\\) is the *magnetic flux density* (a.k.a. the *magnetic induction*). \\(\bm{E}\\) and \\(\bm{B}\\) are considered the fundamental fields, and \\(\bm{j}, \bm{D}, \bm{H}\\) arise due to the influence of matter. For more details, refer to 1) ch. 1.1. of Born, M., & Wolf, E. [Principles of optics](https://doi.org/10.1017/CBO9781139644181), 7th edition (1999); 2) vol. II, ch 32.2 of Feynman, R. P., Leighton, R. B., & Sands, M. [The Feynman lectures on physics](https://www.feynmanlectures.caltech.edu/II_32.html) (1963); 3) Hill, W. T. [E, D, B & H: What do they all mean?](http://www.physics.umd.edu/courses/Phys263/wth/fall04/downloads/EDBH/edbh.pdf) (2004).
 
-[^7]: \\(\bm{E}\\) and \\(\bm{B}\\) are mutually orthogonal.
+[^70]: \\(\bm{E}\\) and \\(\bm{B}\\) are mutually orthogonal.
 
-[^8]: While confirmed experimentally, this definition is, mathematically, somewhat arbitrary. For a discussion and further references, refer to p. 10 of Born, M., & Wolf, E. [Principles of optics](https://doi.org/10.1017/CBO9781139644181), 7th edition (1999).
+[^80]: While confirmed experimentally, this definition is, mathematically, somewhat arbitrary. For a discussion and further references, refer to p. 10 of Born, M., & Wolf, E. [Principles of optics](https://doi.org/10.1017/CBO9781139644181), 7th edition (1999).
 
 $$ \tag{1} \bm{S}(t) = \frac{1}{\mu\_0} \Big( \bm{E}(t) \times \bm{B}(t) \Big), $$
 
@@ -356,3 +358,4 @@ Pharr, Jakob, NASA people
 7. Collett, E. [Field Guide to Polarization](https://doi.org/10.1117/3.626141) (2005).
 8. Hansen, J. E., & Travis, L. D. [Light scattering in planetary atmospheres](https://doi.org/10.1007/BF00168069) (1974).
 9. Nave, C. R. [HyperPhysics](http://hyperphysics.phy-astr.gsu.edu/hbase/index.html) (2017).
+10. Fleisch, D. [A Student's Guide to Maxwell's Equations](https://doi.org/10.1017/CBO9780511984624) (2008).
