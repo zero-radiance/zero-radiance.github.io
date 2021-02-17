@@ -127,7 +127,7 @@ $$ \tag{14} \sigma\_s'(\bm{i}, \bm{o}) = \sigma\_s \frac{f\_p}{4 \pi}. $$
 
 For a more elaborate derivation based on wave optics, see Chapter XIII of Born & Wolf, [Principles of optics](https://doi.org/10.1017/CBO9781139644181), or Chapter 2 of Mishchenko, Travis & Lacis, [Scattering, Absorption, and Emission of Light by Small Particles](https://www.cambridge.org/9780521782524).
 
-## Scattering by a Group of Particles
+## Light Scattering by a Group of Particles
 
 Let us see how we can extend this theory to scattering by \\(N\\) particles. When an atom interacts with light, it experiences a [periodic perturbation of its electron cloud](http://plaza.ufl.edu/dwhahn/Rayleigh%20and%20Mie%20Light%20Scattering.pdf), which turns it into a source of radiation. Assuming [elastic scattering](https://en.wikipedia.org/wiki/Elastic_scattering) (ignoring the [Raman effect](https://en.wikipedia.org/wiki/Raman_scattering)), this radiation will have the same frequency as the incident light. Additionally, assuming that all the particles are identical (including their orientation), they will all radiate energy in exactly the same way.
 
