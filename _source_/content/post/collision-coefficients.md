@@ -35,6 +35,48 @@ It is not expected that you understand the prior statement fully before reading 
 
 [^7]: Unfortunately, there is neither time nor space to discuss the very important topic of Maxwell's equations (or the wave equation). There are whole books dedicated to this subject. Hopefully, this omission does not make the following material too confusing. An accessible introduction is given in \[[5](#references), [10](#references)\].
 
+## Wave Equation
+
+Waves are ubiquitous in nature. Some notable examples include water waves, sound waves, light waves, and gravitational waves. Regardless of the type of the wave, all of them arise from the [wave equation](https://www.feynmanlectures.caltech.edu/I_47.html) \[Feynman, B&W\] of the form
+
+$$ \tag{1} \frac{1}{c^2} \frac{\partial^2 v}{\partial t^2} = \nabla^2 v, $$
+
+where \\(c\\) is a constant and \\(\nabla^2\\) is the [Laplacian](https://en.wikipedia.org/wiki/Laplace_operator) (given below in Cartesian coordinates of a 3-dimensional space):
+
+$$ \tag{2} \nabla^2 v = \frac{\partial^2 v}{\partial x^2} + \frac{\partial^2 v}{\partial y^2} + \frac{\partial^2 v}{\partial z^2}. $$
+
+It is a homogeneous linear differential equation, which means that a linear combination of several solutions is also a valid solution.
+
+The general solution[^99] of the wave equation \[W&W\] is a combination of complex exponentials on a unit sphere
+
+$$ \tag{3} v = \int\_{-\pi}^{\pi} \int\_{0}^{\pi} f(k, \theta, \phi) e^{i k (-x \sin \theta \cos \phi - y \sin \theta \sin \phi - z \cos \theta + c t)} d\theta d\phi. $$
+
+[^99]: All the signs may be reversed. \\(k\\) may be real or complex.
+
+If we define
+
+$$ \tag{4} \bm{r} =
+\begin{bmatrix}
+    x \cr
+    y \cr
+    z
+\end{bmatrix} $$
+
+and
+
+$$ \tag{5} \bm{k}(\theta, \phi) =
+k \begin{bmatrix}
+    \sin \theta \cos \phi \cr
+    \sin \theta \sin \phi \cr
+    \cos \theta
+\end{bmatrix}, $$
+
+we can represent the general solution in a vector form:
+
+$$ \tag{6} v(\bm{r}, t) = \int\_{-\pi}^{\pi} \int\_{0}^{\pi} f(k, \theta, \phi) e^{i \big( -\bm{k}(\theta, \phi) \cdot \bm{r} + (c/k) t \big)} d\theta d\phi. $$
+
+To find a special solution for a particular problem, one must define a region where the equation holds and [boundary conditions](https://en.wikipedia.org/wiki/Boundary_value_problem) at the borders.
+
 ## Scalar Waves
 
 The simplest type of wave is a [plane wave](https://www.feynmanlectures.caltech.edu/II_20.html) \[Chandra?, [4](#references) (ch. 4), [5](#references) (vol. II, ch. 20), [6](#references) (ch. 1.3), [7](#references) (pp. 5-7)\]. Mathematically, the reason to consider plane waves is that they form the simplest set of solutions of the wave equation \[[6](#references) (ch. 1.2), others?\].
@@ -279,6 +321,8 @@ $$ \tag{??}
 $$
 
 which makes it the vector analog of the complex amplitude of a scalar time-harmonic wave.
+
+But can it be characterized by a single amplitude and orientation? Intensity? Discuss...
 
 If the angle between the \\(x\\)-axis and the \\(a\\)-axis is \\(\psi\\),
 
