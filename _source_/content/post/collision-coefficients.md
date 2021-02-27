@@ -9,7 +9,7 @@ tags: [
 draft: true
 ---
 
-We have previously discussed the [radiative transfer equation](/post/analytic-media/) \[[1](#references), [2](#references)\] and its connection to [scattering by small particles](/post/particle-volume/) \[[3](#references), [4](#references)\] in some detail. The short version is that the radiative transfer equation is formulated using the scattering and absorption characteristics of a volume element; and while these characteristics may be rather complex, they can be understood in a more simple way by considering the corpuscular nature of matter. If the distribution of particles contained within the volume element is known, we can compute the volume collision coefficients and the aggregate phase function that determine the outcome of the radiative transfer process. However, so far, little has been said about the nature and the origin of these coefficients.
+We have previously discussed the [radiative transfer equation](/post/analytic-media/) \[[1](#references), [2](#references)\] and its connection to [scattering by small particles](/post/particle-volume/) \[[3](#references), [4](#references)\] in some detail. The short version is that the radiative transfer equation is formulated using the scattering and absorption characteristics of a volume element (on a large scale); and while these characteristics may be rather complex, they can be understood in a more simple way by considering the corpuscular nature of matter (on a small scale). If the distribution of particles contained within the volume element is known, we can compute the volume collision coefficients and the aggregate phase function that determine the outcome of the radiative transfer process. However, so far, little has been said about the nature and the origin of these coefficients.
 
 To give an example, consider the following problem of atmospheric radiative transfer: we wish to simulate a clear blue sky created by Earth's atmosphere. What should our coefficients be set to?
 
@@ -27,13 +27,104 @@ The method can be briefly outlined as follows:
 4. Given the description of the incident and the scattered waves, we find the scattering and extinction efficiencies of the particle.
 5. Using the distribution of particles within the volume element, we compute the volume collision coefficients.
 
-You may wonder why we have to use *wave optics*. One of the reasons is that *geometrical optics* fail to model light transport when the size of the geometric features is on the order of the wavelength of light. However, to obtain the correct solution, we must employ wave optics even when dealing with large particles. Below, I have reproduced the statement of Hendrik van de Hulst on the matter \[[4](#references) (ch. 12.1)\].
+You may wonder why we have to use *wave optics*. One of the reasons is that *geometrical optics* fails to model light transport when the size of the geometric features is on the order of the wavelength of light. However, to obtain the correct solution, we must employ wave optics even when dealing with large particles. Below, I have reproduced the statement of Hendrik van de Hulst on the matter \[[4](#references) (ch. 12.1)\].
 
 {{< figure src="/img/geom_vs_wave.png">}}
 
-It is not expected that you understand the prior statement fully before reading the rest of the article. However, it should (hopefully) encourage you to learn a little bit about wave optics. A modest introduction is given below[^7].
+It is not expected that you understand the prior statement fully before reading the rest of the article. However, it should (hopefully) encourage you to learn a little bit about wave optics. A modest introduction is given below.
 
-[^7]: Unfortunately, there is neither time nor space to discuss the very important topic of Maxwell's equations (or the wave equation). There are whole books dedicated to this subject. Hopefully, this omission does not make the following material too confusing. An accessible introduction is given in \[[5](#references), [10](#references)\].
+## Maxwell's Equations
+
+At the fundamental level, optics is built on the theory of fields. What is a field? A *field* is a [mathematical](https://en.wikipedia.org/wiki/Field_(mathematics)) construct; it is a function defined for all points in space (and time). In [physics](https://en.wikipedia.org/wiki/Field_(physics)), a field typically has a source, contains energy, and exerts a force.
+
+Since we are primarily concerned with electromagnetic radiation, we shall focus our attention on the the [electric field](https://en.wikipedia.org/wiki/Electric_field) \\(\bm{E}\\) and the [magnetic induction](https://en.wikipedia.org/wiki/Magnetic_field#The_B-field) \\(\bm{B}\\).
+
+They satisfy [Maxwell's equations in matter](https://en.wikipedia.org/wiki/Maxwell%27s_equations#Macroscopic_formulation):
+
+$$ \tag{1}
+	\nabla \times \bm{E} + \frac{\partial \bm{B}}{\partial t} = 0, \quad
+	\nabla \cdot  \bm{B} = 0, \quad
+	\nabla \times \bm{H} - \frac{\partial \bm{D}}{\partial t} = \bm{J\_f}, \quad
+	\nabla \cdot  \bm{D} = \rho\_f,
+$$
+
+where
+
+$$ \tag{2}
+	\mathrm{curl}(\bm{V}) =
+	\nabla \times \bm{V} =
+	\begin{bmatrix}
+		\partial / \partial x \cr
+		\partial / \partial y \cr
+		\partial / \partial z
+	\end{bmatrix} \times \bm{V} =
+	\begin{bmatrix}
+		\partial V\_z / \partial y - \partial V\_y / \partial z \cr
+		\partial V\_x / \partial z - \partial V\_z / \partial x \cr
+		\partial V\_y / \partial x - \partial V\_x / \partial y
+	\end{bmatrix}
+$$
+
+is the [curl](https://en.wikipedia.org/wiki/Curl_(mathematics)) operator and
+
+$$ \tag{3}
+	\mathrm{div}(\bm{V}) =
+	\nabla \cdot \bm{V} =
+	\begin{bmatrix}
+		\partial / \partial x \cr
+		\partial / \partial y \cr
+		\partial / \partial z
+	\end{bmatrix} \cdot \bm{V} =
+	\frac{\partial V\_x}{\partial x} + \frac{\partial V\_y}{\partial y} + \frac{\partial V\_z}{\partial z}
+$$
+
+is the [divergence](https://en.wikipedia.org/wiki/Divergence) operator, both given in Cartesian coordinates.
+
+As discussed in [B&W, Feynman], \\(\bm{E}\\) and \\(\bm{B}\\) are considered fundamental fields, and the [electric displacement](https://en.wikipedia.org/wiki/Electric_displacement_field) \\(\bm{D}\\) and the [magnetic field](https://en.wikipedia.org/wiki/Magnetic_field#The_H-field) \\(\bm{H}\\) are auxiliary fields that arise due to the influence of matter. \\(\bm{J\_f}\\) and \\(\rho\_f\\) are the *free* [current](https://en.wikipedia.org/wiki/Current_density#Free_currents) and [charge](https://en.wikipedia.org/wiki/Charge_density#Free_charge_density) densities. They are defined using the [material equations](https://en.wikipedia.org/wiki/Constitutive_equation#Electromagnetism):
+
+$$ \tag{4}
+	\bm{J\_f} = \hat{\sigma} \bm{E} + \mathellipsis, \quad
+	\bm{D} = \varepsilon\_0 \bm{E} + \bm{P} = \hat{\varepsilon}\bm{E} + \mathellipsis, \quad
+	\bm{H} = \frac{1}{\mu\_0} \bm{B} + \bm{M} = \frac{1}{\hat{\mu}} \bm{B} + \mathellipsis.
+$$
+
+In the first approximation, for a *linear* material, they are directly related to the electric and magnetic field intensities by the [specific conductivity](https://en.wikipedia.org/wiki/Electrical_resistivity_and_conductivity) \\(\hat{\sigma}\\), the [relative permittivity](https://en.wikipedia.org/wiki/Relative_permittivity) \\(\hat{\varepsilon}\\), and the [magnetic permeability](https://en.wikipedia.org/wiki/Permeability_(electromagnetism)) \\(\hat{\mu}\\). These are properties of the medium, and they are expected to be continuous in the region of space for Maxwell's equations to be valid.
+
+Materials may be *dispersive*, *absorptive*, and *anisotropic*. Generally, this means that the conductivity, the permittivity, and the permeability are frequency-dependent complex-valued [tensor fields](https://en.wikipedia.org/wiki/Tensor#Tensor_fields). For instance,
+
+$$ \tag{5}
+	\bm{D}(\bm{r}, t) \approx \hat{\varepsilon}(\bm{r}, t) \bm{E}(\bm{r}, t) =
+	\begin{bmatrix}
+		\varepsilon\_{r11} - i \varepsilon\_{i11} & \varepsilon\_{r12} - i \varepsilon\_{i12} & \varepsilon\_{r13} - i \varepsilon\_{i13} \cr
+		\varepsilon\_{r21} - i \varepsilon\_{i21} & \varepsilon\_{r22} - i \varepsilon\_{i22} & \varepsilon\_{r23} - i \varepsilon\_{i23} \cr
+		\varepsilon\_{r31} - i \varepsilon\_{i31} & \varepsilon\_{r32} - i \varepsilon\_{i32} & \varepsilon\_{r33} - i \varepsilon\_{i33}
+	\end{bmatrix}
+	\begin{bmatrix}
+		E\_x \cr
+		E\_y \cr
+		E\_z
+	\end{bmatrix}.
+$$
+
+Often, it is convenient to introduce an optical discontinuity to the medium. At the *optical interface*, the fields must satisfy the [boundary conditions](https://en.wikipedia.org/wiki/Interface_conditions_for_electromagnetic_fields). If \\(\bm{n\_{12}}\\) is a unit normal vector pointing from region 1 to region 2, the normal components of the fields must satisfy
+
+$$ \tag{6}
+	\bm{n\_{12}} \cdot  (\bm{B\_2} - \bm{B\_1}) = 0, \quad
+	\bm{n\_{12}} \cdot  (\bm{D\_2} - \bm{D\_1}) = \rho\_s,
+$$
+
+where \\(\rho\_s\\) is the *surface* [charge density](https://en.wikipedia.org/wiki/Charge_density). For the tangential components, it can be shown that
+
+$$ \tag{7}
+	\bm{n\_{12}} \times (\bm{E\_2} - \bm{E\_1}) = 0, \quad
+	\bm{n\_{12}} \times (\bm{H\_2} - \bm{H\_1}) = \bm{J\_s},
+$$
+
+where \\(\bm{J\_s}\\) is the *surface* [current density](https://en.wikipedia.org/wiki/Current_density).
+
+We will not use the equations in their most general form; however, it is much easier to simplify the theory by introducing additional assumptions than to do it the other way around.
+
+[^60]: [Maxwell's equations](http://www.maxwells-equations.com/) are defined using 5 [vector fields](https://en.wikipedia.org/wiki/Vector_field): \\(\bm{E}\\) is the *electric vector*, \\(\bm{H}\\) is the *magnetic vector*, \\(\bm{j}\\) is the *electric current density*, \\(\bm{D}\\) is the *electric flux density* (a.k.a. the *electric displacement*), and \\(\bm{B}\\) is the *magnetic flux density* (a.k.a. the *magnetic induction*). \\(\bm{E}\\) and \\(\bm{B}\\) are considered the fundamental fields, and \\(\bm{j}, \bm{D}, \bm{H}\\) arise due to the influence of matter. For more details, refer to 1) ch. 1.1. of Born, M., & Wolf, E. [Principles of optics](https://doi.org/10.1017/CBO9781139644181), 7th edition (1999); 2) vol. II, ch 32.2 of Feynman, R. P., Leighton, R. B., & Sands, M. [The Feynman lectures on physics](https://www.feynmanlectures.caltech.edu/II_32.html) (1963); 3) Hill, W. T. [E, D, B & H: What do they all mean?](http://www.physics.umd.edu/courses/Phys263/wth/fall04/downloads/EDBH/edbh.pdf) (2004).
 
 ## Wave Equation
 
