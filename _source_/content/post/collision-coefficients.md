@@ -80,20 +80,22 @@ $$
 
 is the [divergence](https://en.wikipedia.org/wiki/Divergence) operator, both given in Cartesian coordinates.
 
-As discussed in [B&W, Feynman], \\(\bm{E}\\) and \\(\bm{B}\\) are considered fundamental fields, and the [electric displacement](https://en.wikipedia.org/wiki/Electric_displacement_field) \\(\bm{D}\\) and the [magnetic field](https://en.wikipedia.org/wiki/Magnetic_field#The_H-field) \\(\bm{H}\\) are auxiliary fields that arise due to the influence of matter. \\(\bm{J\_f}\\) and \\(\rho\_f\\) are the *free* [current](https://en.wikipedia.org/wiki/Current_density#Free_currents) and [charge](https://en.wikipedia.org/wiki/Charge_density#Free_charge_density) densities. They are defined using the [material equations](https://en.wikipedia.org/wiki/Constitutive_equation#Electromagnetism):
+As discussed in [B&W, Feynman], \\(\bm{E}\\) and \\(\bm{B}\\) are considered fundamental fields, and the [electric displacement](https://en.wikipedia.org/wiki/Electric_displacement_field) \\(\bm{D}\\) and the [magnetic field](https://en.wikipedia.org/wiki/Magnetic_field#The_H-field) \\(\bm{H}\\) are [auxiliary fields](https://en.wikipedia.org/wiki/Maxwell%27s_equations#Auxiliary_fields,_polarization_and_magnetization) that arise due to the influence of matter[^101]. \\(\bm{J\_f}\\) and \\(\rho\_f\\) are the *free* [current](https://en.wikipedia.org/wiki/Current_density#Free_currents) and [charge densities](https://en.wikipedia.org/wiki/Charge_density#Free_charge_density). They are defined using the [material equations](https://en.wikipedia.org/wiki/Constitutive_equation#Electromagnetism):
+
+[^101]: We can obtain the [microscopic formulation](https://en.wikipedia.org/wiki/Maxwell%27s_equations#Formulation_in_SI_units_convention) (without auxiliary fields) by [substitution](https://en.wikipedia.org/wiki/Maxwell%27s_equations#Auxiliary_fields,_polarization_and_magnetization) of the material equations. For our application, the [macroscopic formulation](https://en.wikipedia.org/wiki/Maxwell%27s_equations#Macroscopic_formulation) is more useful.
 
 $$ \tag{4}
 	\bm{J\_f} = \hat{\sigma} \bm{E} + \mathellipsis, \quad
-	\bm{D} = \varepsilon\_0 \bm{E} + \bm{P} = \hat{\varepsilon}\bm{E} + \mathellipsis, \quad
-	\bm{H} = \frac{1}{\mu\_0} \bm{B} + \bm{M} = \frac{1}{\hat{\mu}} \bm{B} + \mathellipsis.
+	\bm{D} = \varepsilon\_0 \bm{E} + \bm{P} = \hat{\varepsilon} \bm{E} + \mathellipsis, \quad
+	\bm{H} = \frac{1}{\mu\_0} \bm{B} - \bm{M} = \frac{1}{\hat{\mu}} \bm{B} - \mathellipsis.
 $$
 
 In the first approximation, for a *linear* material, they are directly related to the electric and magnetic field intensities by the [specific conductivity](https://en.wikipedia.org/wiki/Electrical_resistivity_and_conductivity) \\(\hat{\sigma}\\), the [relative permittivity](https://en.wikipedia.org/wiki/Relative_permittivity) \\(\hat{\varepsilon}\\), and the [magnetic permeability](https://en.wikipedia.org/wiki/Permeability_(electromagnetism)) \\(\hat{\mu}\\). These are properties of the medium, and they are expected to be continuous in the region of space for Maxwell's equations to be valid.
 
-Materials may be *dispersive*, *absorptive*, and *anisotropic*. Generally, this means that the conductivity, the permittivity, and the permeability are frequency-dependent complex-valued [tensor fields](https://en.wikipedia.org/wiki/Tensor#Tensor_fields). For instance,
+Materials may be *dispersive* (dependent on the frequency), *absorptive* (cause energy loss), and *anisotropic* (dependent on the orientation). Generally, this means that the conductivity, the permittivity, and the permeability are frequency-dependent complex-valued [tensor fields](https://en.wikipedia.org/wiki/Tensor#Tensor_fields). For instance,
 
 $$ \tag{5}
-	\bm{D}(\bm{r}, t) \approx \hat{\varepsilon}(\bm{r}, t) \bm{E}(\bm{r}, t) =
+	\bm{D}(\bm{r}, t, \omega) \approx \hat{\varepsilon}(\bm{r}, t, \omega) \bm{E}(\bm{r}, t, \omega) =
 	\begin{bmatrix}
 		\varepsilon\_{r11} - i \varepsilon\_{i11} & \varepsilon\_{r12} - i \varepsilon\_{i12} & \varepsilon\_{r13} - i \varepsilon\_{i13} \cr
 		\varepsilon\_{r21} - i \varepsilon\_{i21} & \varepsilon\_{r22} - i \varepsilon\_{i22} & \varepsilon\_{r23} - i \varepsilon\_{i23} \cr
@@ -106,7 +108,9 @@ $$ \tag{5}
 	\end{bmatrix}.
 $$
 
-Often, it is convenient to introduce an optical discontinuity to the medium. At the *optical interface*, the fields must satisfy the [boundary conditions](https://en.wikipedia.org/wiki/Interface_conditions_for_electromagnetic_fields). If \\(\bm{n\_{12}}\\) is a unit normal vector pointing from region 1 to region 2, the normal components of the fields must satisfy
+Often, it is convenient to introduce an optical discontinuity[^102] to the medium. At the *optical interface*, the fields (on both sides) must satisfy [boundary conditions](https://en.wikipedia.org/wiki/Interface_conditions_for_electromagnetic_fields). If \\(\bm{n\_{12}}\\) is a unit normal vector pointing from region 1 to region 2, the normal components of the fields must be such that
+
+[^102]: It is a convenient way to represent a very rapid continuous variations of optical properties.
 
 $$ \tag{6}
 	\bm{n\_{12}} \cdot  (\bm{B\_2} - \bm{B\_1}) = 0, \quad
@@ -124,9 +128,123 @@ where \\(\bm{J\_s}\\) is the *surface* [current density](https://en.wikipedia.or
 
 We will not use the equations in their most general form; however, it is much easier to simplify the theory by introducing additional assumptions than to do it the other way around.
 
+<!---
 [^60]: [Maxwell's equations](http://www.maxwells-equations.com/) are defined using 5 [vector fields](https://en.wikipedia.org/wiki/Vector_field): \\(\bm{E}\\) is the *electric vector*, \\(\bm{H}\\) is the *magnetic vector*, \\(\bm{j}\\) is the *electric current density*, \\(\bm{D}\\) is the *electric flux density* (a.k.a. the *electric displacement*), and \\(\bm{B}\\) is the *magnetic flux density* (a.k.a. the *magnetic induction*). \\(\bm{E}\\) and \\(\bm{B}\\) are considered the fundamental fields, and \\(\bm{j}, \bm{D}, \bm{H}\\) arise due to the influence of matter. For more details, refer to 1) ch. 1.1. of Born, M., & Wolf, E. [Principles of optics](https://doi.org/10.1017/CBO9781139644181), 7th edition (1999); 2) vol. II, ch 32.2 of Feynman, R. P., Leighton, R. B., & Sands, M. [The Feynman lectures on physics](https://www.feynmanlectures.caltech.edu/II_32.html) (1963); 3) Hill, W. T. [E, D, B & H: What do they all mean?](http://www.physics.umd.edu/courses/Phys263/wth/fall04/downloads/EDBH/edbh.pdf) (2004).
+--->
 
 ## Wave Equation
+
+Consider a region of space without any free currents or charges. Physically, this means that there are no sources of fields. This may seem strange at first; the idea is to see what kind of fields could *exist* (if we add them to the system) and how they would *evolve* over time.
+
+Setting \\(\bm{J\_f} = \rho\_f = 0\\) in Equation 1, we obtain a coupled system of homogeneous linear differential equations:
+
+$$ \tag{8}
+	\nabla \times \bm{E} + \frac{\partial \bm{B}}{\partial t} = 0, \quad
+	\nabla \cdot  \bm{B} = 0, \quad
+	\nabla \times \bm{H} - \frac{\partial \bm{D}}{\partial t} = 0, \quad
+	\nabla \cdot  \bm{D} = 0.
+$$
+
+Mathematically, the consequence is that a linear combination of several solutions is also a valid solution.
+
+Next, we assume that the medium is linear[^103]. Substitution of Equation 4 into Equation 8 yields
+
+[^103]: Lectures on nonlinear optics here: https://kth.diva-portal.org/smash/record.jsf?pid=diva2%3A25333&dswid=-8275
+
+$$ \tag{9}
+	\nabla \times \bm{E} + \frac{\partial ({\hat{\mu}} \bm{H})}{\partial t} = 0, \quad
+	\nabla \cdot  ({\hat{\mu}} \bm{H}) = 0, \quad
+	\nabla \times \bm{H} - \frac{\partial (\hat{\varepsilon} \bm{E})}{\partial t} = 0, \quad
+	\nabla \cdot  (\hat{\varepsilon} \bm{E}) = 0.
+$$
+
+Further, we assume that the medium is *homogeneous* and *static* (constant in space and time)[^104]:
+
+[^104]: See born and wolf p 11 for a more complex case 
+
+$$ \tag{10}
+	\nabla \times \bm{E} + {\hat{\mu}} \frac{\partial \bm{H}}{\partial t} = 0, \quad
+	\nabla \cdot  \bm{H} = 0, \quad
+	\nabla \times \bm{H} - \hat{\varepsilon} \frac{\partial \bm{E}}{\partial t} = 0, \quad
+	\nabla \cdot  \bm{E} = 0.
+$$
+
+Now we can easily find a solution for the electric field \\(\bm{E}\\). Take curl of Equation 10.1 and time derivative of Equation 10.3 (assume that we can interchange the order of differentiation with respect to space and time):
+
+$$ \tag{11}
+	\nabla \times \nabla \times \bm{E} + {\hat{\mu}} \Big( \nabla \times \frac{\partial \bm{H}}{\partial t} \Big) = 0, \quad
+	\nabla \times \frac{\partial \bm{H}}{\partial t} = \hat{\varepsilon} \frac{\partial^2 \bm{E}}{\partial t^2}, \quad
+	\nabla \cdot  \bm{E} = 0.
+$$
+
+Introduce the [curl-of-curl](https://en.wikipedia.org/wiki/Vector_calculus_identities#Curl_of_curl) identity
+
+$$ \tag{12}
+	\nabla \times (\nabla \times \bm{V}) = \nabla (\nabla \cdot \bm{V}) - \nabla^2 \bm{V},
+$$
+
+where 
+
+$$ \tag{13}
+	\mathrm{grad}(s) =
+	\nabla s =
+	\begin{bmatrix}
+		\partial / \partial x \cr
+		\partial / \partial y \cr
+		\partial / \partial z
+	\end{bmatrix} s =
+	\begin{bmatrix}
+		\partial s / \partial x \cr
+		\partial s / \partial y \cr
+		\partial s / \partial z
+	\end{bmatrix}
+$$
+
+is the [gradient](https://en.wikipedia.org/wiki/Gradient) operator and
+
+$$ \tag{14}
+	\nabla^2 \bm{V} =
+	\mathrm{div}(\mathrm{grad}(\bm{V})) =
+	(\nabla \cdot \nabla) \bm{V} =
+	\Bigg[\frac{\partial}{\partial x}, \frac{\partial}{\partial y}, \frac{\partial}{\partial z}\Bigg]^{\mathrm{T}}
+	\begin{bmatrix}
+		\partial / \partial x \cr
+		\partial / \partial y \cr
+		\partial / \partial z
+	\end{bmatrix} \bm{V} =
+	\frac{\partial^2 \bm{V}}{\partial x^2} + \frac{\partial^2 \bm{V}}{\partial y^2} + \frac{\partial^2 \bm{V}}{\partial z^2}
+$$
+
+is the [vector Laplace](https://en.wikipedia.org/wiki/Laplace_operator#Vector_Laplacian) operator (scalar Laplace operator applied to each vector component).
+
+Use it to expand Equation 11.1:
+
+$$ \tag{15}
+	\nabla (\nabla \cdot \bm{E}) - \nabla^2 \bm{E} + {\hat{\mu}} \Big( \nabla \times \frac{\partial \bm{H}}{\partial t} \Big) = 0, \quad
+	\nabla \times \frac{\partial \bm{H}}{\partial t} = \hat{\varepsilon} \frac{\partial^2 \bm{E}}{\partial t^2}, \quad
+	\nabla \cdot  \bm{E} = 0.
+$$
+
+Substitution of Equations 15.2 and 15.3 into 15.1 yields the *vector* [wave equation](https://en.wikipedia.org/wiki/Wave_equation) of the electric field \\(\bm{E}\\):
+
+$$ \tag{16}
+	\nabla^2 \bm{E} - \hat{\varepsilon} {\hat{\mu}} \frac{\partial^2 \bm{E}}{\partial t^2} = 0.
+$$
+
+Performing the same steps allows us to obtain the wave equation of the magnetic field \\(\bm{H}\\):
+
+$$ \tag{17}
+	\nabla^2 \bm{H} - \hat{\varepsilon} {\hat{\mu}} \frac{\partial^2 \bm{H}}{\partial t^2} = 0.
+$$
+
+Both Equation 16 and Equation 17 form a coupled system of scalar wave equations (one per vector component).
+
+## Solution of the Scalar Wave Equation. Scalar Waves
+
+
+Applying the curl-of-curl operator to \\(\bm{E}\\) in Equation 9 yields
+
+???
 
 Waves are ubiquitous in nature. Some notable examples include water waves, sound waves, light waves, and gravitational waves. Regardless of the type of the wave, all of them arise from the [wave equation](https://www.feynmanlectures.caltech.edu/I_47.html) \[Feynman, B&W\] of the form
 
