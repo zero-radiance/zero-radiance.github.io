@@ -158,7 +158,7 @@ $$ \tag{9}
 	\nabla \cdot  (\hat{\varepsilon} \bm{E}) = 0.
 $$
 
-Further, we assume that the medium is *homogeneous* and *static* (constant in space and time)[^104]:
+Further, we assume that the medium is *homogeneous* and *stationary* (constant in space and time)[^104]:
 
 [^104]: See born and wolf p 11 for a more complex case 
 
@@ -237,7 +237,7 @@ $$ \tag{17}
 	\nabla^2 \bm{H} - \hat{\varepsilon} {\hat{\mu}} \frac{\partial^2 \bm{H}}{\partial t^2} = 0.
 $$
 
-Both Equation 16 and Equation 17 form a coupled system of scalar wave equations (one per vector component).
+Both Equation 16 and Equation 17 form a system of scalar wave equations (one per vector component).
 
 ## Solution of the Scalar Wave Equation. Scalar Waves
 
