@@ -134,7 +134,7 @@ We will not use the equations in their most general form; however, it is much ea
 
 ## Wave Equations
 
-Consider a region of space without any free currents or charges. Physically, this means that there are no sources of fields. This may seem strange at first; the idea is to see what kind of fields could *exist* (if we add them to the system) and how they would *evolve* over time.
+Consider a region of space without any free currents or charges. Physically, this means that there are no sources of fields. This may seem strange at first; the idea is explore all solutions (we will pick a specific solution once we add a source) and determine how they evolve over time.
 
 Setting \\(\bm{J\_f} = \rho\_f = 0\\) in Equation 1, we obtain a coupled system of homogeneous linear differential equations:
 
