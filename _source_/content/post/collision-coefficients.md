@@ -92,7 +92,7 @@ $$
 
 In the first approximation, for a *linear* material, they are directly related to the electric and magnetic field intensities by the [specific conductivity](https://en.wikipedia.org/wiki/Electrical_resistivity_and_conductivity) \\(\hat{\sigma}\\), the [relative permittivity](https://en.wikipedia.org/wiki/Relative_permittivity) \\(\hat{\varepsilon}\\), and the [magnetic permeability](https://en.wikipedia.org/wiki/Permeability_(electromagnetism)) \\(\hat{\mu}\\). These are properties of the medium, and they are expected to be continuous in the region of space for Maxwell's equations to be valid.
 
-Materials may be *dispersive* (dependent on the frequency), *absorptive* (cause energy loss), and *anisotropic* (dependent on the orientation). Generally, this means that the conductivity, the permittivity, and the permeability are frequency-dependent complex-valued [tensor fields](https://en.wikipedia.org/wiki/Tensor#Tensor_fields). For instance,
+Materials may be *dispersive* (dependent on the frequency), *absorptive* (cause energy loss), and *anisotropic* (dependent on the orientation). Generally, this means that the conductivity, the permittivity, and the permeability are frequency-dependent complex [tensor fields](https://en.wikipedia.org/wiki/Tensor#Tensor_fields). For instance,
 
 $$ \tag{5}
 	\bm{D}(\bm{r}, t, \omega) \approx \hat{\varepsilon}(\bm{r}, t, \omega) \bm{E}(\bm{r}, t, \omega) =
@@ -132,7 +132,7 @@ We will not use the equations in their most general form; however, it is much ea
 [^60]: [Maxwell's equations](http://www.maxwells-equations.com/) are defined using 5 [vector fields](https://en.wikipedia.org/wiki/Vector_field): \\(\bm{E}\\) is the *electric vector*, \\(\bm{H}\\) is the *magnetic vector*, \\(\bm{j}\\) is the *electric current density*, \\(\bm{D}\\) is the *electric flux density* (a.k.a. the *electric displacement*), and \\(\bm{B}\\) is the *magnetic flux density* (a.k.a. the *magnetic induction*). \\(\bm{E}\\) and \\(\bm{B}\\) are considered the fundamental fields, and \\(\bm{j}, \bm{D}, \bm{H}\\) arise due to the influence of matter. For more details, refer to 1) ch. 1.1. of Born, M., & Wolf, E. [Principles of optics](https://doi.org/10.1017/CBO9781139644181), 7th edition (1999); 2) vol. II, ch 32.2 of Feynman, R. P., Leighton, R. B., & Sands, M. [The Feynman lectures on physics](https://www.feynmanlectures.caltech.edu/II_32.html) (1963); 3) Hill, W. T. [E, D, B & H: What do they all mean?](http://www.physics.umd.edu/courses/Phys263/wth/fall04/downloads/EDBH/edbh.pdf) (2004).
 --->
 
-## Wave Equation
+## Wave Equations
 
 Consider a region of space without any free currents or charges. Physically, this means that there are no sources of fields. This may seem strange at first; the idea is to see what kind of fields could *exist* (if we add them to the system) and how they would *evolve* over time.
 
@@ -215,7 +215,7 @@ $$ \tag{14}
 	\frac{\partial^2 \bm{V}}{\partial x^2} + \frac{\partial^2 \bm{V}}{\partial y^2} + \frac{\partial^2 \bm{V}}{\partial z^2}
 $$
 
-is the [vector Laplace](https://en.wikipedia.org/wiki/Laplace_operator#Vector_Laplacian) operator (scalar Laplace operator applied to each vector component).
+is the *vector* [Laplace](https://en.wikipedia.org/wiki/Laplace_operator#Vector_Laplacian) operator (*scalar* Laplace operator applied to each vector component).
 
 Use it to expand Equation 11.1:
 
@@ -237,7 +237,25 @@ $$ \tag{17}
 	\nabla^2 \bm{H} - \hat{\varepsilon} {\hat{\mu}} \frac{\partial^2 \bm{H}}{\partial t^2} = 0.
 $$
 
-Both Equation 16 and Equation 17 form a system of scalar wave equations (one per vector component).
+Define the tensor product \\(\hat{v}\\)
+
+$$ \tag{18}
+	\hat{v} = [\bm{v\_1} | \bm{v\_2} | \bm{v\_3} ] = \hat{\varepsilon} {\hat{\mu}}
+$$
+
+composed of three complex column vectors \\(\bm{v\_1}\\), \\(\bm{v\_2}\\), \\(\bm{v\_3}\\). Equation 16 can then be written as
+
+$$ \tag{19}
+	\nabla^2 \bm{E} = \bm{v\_1} \frac{\partial^2 E\_x}{\partial t^2} + \bm{v\_2} \frac{\partial^2 E\_y}{\partial t^2} + \bm{v\_3} \frac{\partial^2 E\_z}{\partial t^2}.
+$$
+
+Often, it is possible to perform a coordinate transformation after which \\(\hat{v}\\) becomes [diagonal](https://en.wikipedia.org/wiki/Diagonal_matrix). This allows us to separate the variables into three *scalar* wave equations:
+
+$$ \tag{20}
+	\nabla^2 E\_x = v\_x \frac{\partial^2 E\_x}{\partial t^2}, \quad
+	\nabla^2 E\_y = v\_y \frac{\partial^2 E\_y}{\partial t^2}, \quad
+	\nabla^2 E\_z = v\_z \frac{\partial^2 E\_z}{\partial t^2}.
+$$
 
 ## Solution of the Scalar Wave Equation. Scalar Waves
 
