@@ -124,7 +124,7 @@
 
 <h2 id="radiative-transfer-equation">Radiative Transfer Equation</h2>
 
-<p>Intelligent sampling of a function requires understanding which parts make a large contribution. Therefore, we must briefly discuss the <a href="https://en.wikipedia.org/wiki/Radiative_transfer#The_equation_of_radiative_transfer">radiative transfer equation</a> (or RTE) used to render scenes with participating media. While the full <a href="https://doi.org/10.1002/qj.49707633016">derivation</a> is outside the scope of this article, we will try to touch the important aspects.</p>
+<p>Intelligent sampling of a function requires understanding which parts make a large contribution. Therefore, we must briefly discuss the <a href="https://en.wikipedia.org/wiki/Radiative_transfer#The_equation_of_radiative_transfer">radiative transfer equation</a> (or RTE) used to render scenes with participating media. While the full <a href="https://jo.dreggn.org/path-tracing-in-production/2019/ptp-part1.pdf">derivation</a> is outside the scope of this article, we will try to touch the important aspects.</p>
 
 <p>The integral form of the RTE is that of a recursive line integral. Intuitively, it models the process of photons traveling along the ray from sources towards the sensor, while at the same time accounting for energy losses.</p>
 
@@ -1244,7 +1244,7 @@ float3 SpectralTracking(float3 X, float3 V, uint numWavelengths, uint numPaths)
  <a class="footnote-return" href="#fnref:5"><sup>[return]</sup></a></li>
 <li id="fn:3">The absorption coefficient in front of the emission term is due to the <a href="https://en.wikipedia.org/wiki/Kirchhoff%27s_law_of_thermal_radiation">Kirchhoff's law</a> which states that, for an arbitrary body emitting and absorbing thermal radiation in thermodynamic equilibrium, the emissivity is equal to the absorptivity.
  <a class="footnote-return" href="#fnref:3"><sup>[return]</sup></a></li>
-<li id="fn:4">A <em>homogeneous</em> medium, by definition, contains no inhomogeneities (which cause scattering), while a medium with a <em>uniform density</em> is composed of individual particles.
+<li id="fn:4">A <em>homogeneous</em> medium, by definition, contains no inhomogeneities (which cause scattering), while a medium with a <em>uniform density</em> is composed of scattering particles.
  <a class="footnote-return" href="#fnref:4"><sup>[return]</sup></a></li>
 </ol>
 </div>
@@ -1367,7 +1367,7 @@ float3 SpectralTracking(float3 X, float3 V, uint numWavelengths, uint numPaths)
     <footer id="footer">
     <div class="outer">
         <div id="footer-info" class="inner">
-            &copy; 2020 Zero Radiance
+            &copy; 2021 Zero Radiance
             <br />
             Powered by <a href="https://gohugo.io" target="_blank">Hugo</a> with theme <a href="https://github.com/carsonip/hugo-theme-minos" target="_blank">Minos</a>
         </div>

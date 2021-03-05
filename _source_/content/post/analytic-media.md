@@ -212,7 +212,7 @@ This type of medium has uniform[^4] density across the entire volume:
 
 $$ \tag{25} \rho = b. $$
 
-[^4]: A *homogeneous* medium, by definition, contains no inhomogeneities (which cause scattering), while a medium with a *uniform density* is composed of individual particles.
+[^4]: A *homogeneous* medium, by definition, contains no inhomogeneities (which cause scattering), while a medium with a *uniform density* is composed of scattering particles.
 
 This formulation makes computing optical depth easy (recall Equations 5 and 10):
 
