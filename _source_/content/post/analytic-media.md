@@ -73,7 +73,7 @@ For practical reasons, further discussion will use a (typical) assumption that, 
 
 ## Radiative Transfer Equation
 
-Intelligent sampling of a function requires understanding which parts make a large contribution. Therefore, we must briefly discuss the [radiative transfer equation](https://en.wikipedia.org/wiki/Radiative_transfer#The_equation_of_radiative_transfer) (or RTE) used to render scenes with participating media. While the full [derivation](https://doi.org/10.1002/qj.49707633016) is outside the scope of this article, we will try to touch the important aspects.
+Intelligent sampling of a function requires understanding which parts make a large contribution. Therefore, we must briefly discuss the [radiative transfer equation](https://en.wikipedia.org/wiki/Radiative_transfer#The_equation_of_radiative_transfer) (or RTE) used to render scenes with participating media. While the full [derivation](https://jo.dreggn.org/path-tracing-in-production/2019/ptp-part1.pdf) is outside the scope of this article, we will try to touch the important aspects.
 
 The integral form of the RTE is that of a recursive line integral. Intuitively, it models the process of photons traveling along the ray from sources towards the sensor, while at the same time accounting for energy losses.
 
