@@ -39,7 +39,7 @@ At the fundamental level, optics is built on the theory of fields. What is a fie
 
 Since we are primarily concerned with electromagnetic radiation, we shall focus our attention on the the [electric field](https://en.wikipedia.org/wiki/Electric_field) \\(\bm{E}\\) and the [magnetic induction](https://en.wikipedia.org/wiki/Magnetic_field#The_B-field) \\(\bm{B}\\).
 
-They satisfy [Maxwell's equations in matter](https://en.wikipedia.org/wiki/Maxwell%27s_equations#Macroscopic_formulation):
+They satisfy [Maxwell's equations in matter](https://en.wikipedia.org/wiki/Maxwell%27s_equations#Macroscopic_formulation) \[[6](#references) (ch. 1.1.1)\]:
 
 $$ \tag{1}
 	\nabla \times \bm{E} + \frac{\partial \bm{B}}{\partial t} = 0, \quad
@@ -80,7 +80,7 @@ $$
 
 is the [divergence](https://en.wikipedia.org/wiki/Divergence) operator, both given in Cartesian coordinates.
 
-As discussed in [B&W, Feynman], \\(\bm{E}\\) and \\(\bm{B}\\) are considered fundamental fields, and the [electric displacement](https://en.wikipedia.org/wiki/Electric_displacement_field) \\(\bm{D}\\) and the [magnetic field](https://en.wikipedia.org/wiki/Magnetic_field#The_H-field) \\(\bm{H}\\) are [auxiliary fields](https://en.wikipedia.org/wiki/Maxwell%27s_equations#Auxiliary_fields,_polarization_and_magnetization) that arise due to the influence of matter[^101]. \\(\bm{J\_f}\\) and \\(\rho\_f\\) are the *free* [current](https://en.wikipedia.org/wiki/Current_density#Free_currents) and [charge densities](https://en.wikipedia.org/wiki/Charge_density#Free_charge_density). They are defined using the [material equations](https://en.wikipedia.org/wiki/Constitutive_equation#Electromagnetism):
+As discussed in \[[5](#references) (vol. II, ch 32.2), [6](#references) (ch. 1.1.1)\]], \\(\bm{E}\\) and \\(\bm{B}\\) are considered fundamental fields, and the [electric displacement](https://en.wikipedia.org/wiki/Electric_displacement_field) \\(\bm{D}\\) and the [magnetic field](https://en.wikipedia.org/wiki/Magnetic_field#The_H-field) \\(\bm{H}\\) are [auxiliary fields](https://en.wikipedia.org/wiki/Maxwell%27s_equations#Auxiliary_fields,_polarization_and_magnetization) that arise due to the influence of matter[^101]. \\(\bm{J\_f}\\) and \\(\rho\_f\\) are *free* [current](https://en.wikipedia.org/wiki/Current_density#Free_currents) and [charge densities](https://en.wikipedia.org/wiki/Charge_density#Free_charge_density). They are defined using the [material equations](https://en.wikipedia.org/wiki/Constitutive_equation#Electromagnetism):
 
 [^101]: We can obtain the [microscopic formulation](https://en.wikipedia.org/wiki/Maxwell%27s_equations#Formulation_in_SI_units_convention) (without auxiliary fields) by [substitution](https://en.wikipedia.org/wiki/Maxwell%27s_equations#Auxiliary_fields,_polarization_and_magnetization) of the material equations. For our application, the [macroscopic formulation](https://en.wikipedia.org/wiki/Maxwell%27s_equations#Macroscopic_formulation) is more useful.
 
@@ -90,12 +90,12 @@ $$ \tag{4}
 	\bm{H} = \frac{1}{\mu\_0} \bm{B} - \bm{M} = \frac{1}{\hat{\mu}} \bm{B} - \mathellipsis.
 $$
 
-In the first approximation, for a *linear* material, they are directly related to the electric and magnetic field intensities by the [specific conductivity](https://en.wikipedia.org/wiki/Electrical_resistivity_and_conductivity) \\(\hat{\sigma}\\), the [relative permittivity](https://en.wikipedia.org/wiki/Relative_permittivity) \\(\hat{\varepsilon}\\), and the [magnetic permeability](https://en.wikipedia.org/wiki/Permeability_(electromagnetism)) \\(\hat{\mu}\\). These are properties of the medium, and they are expected to be continuous in the region of space for Maxwell's equations to be valid.
+In the first approximation, for a *linear* material, they are directly related to the electric and magnetic field intensities by the [specific conductivity](https://en.wikipedia.org/wiki/Electrical_resistivity_and_conductivity) \\(\hat{\sigma}\\), the [electric permittivity](https://en.wikipedia.org/wiki/Permittivity) \\(\hat{\varepsilon}\\), and the [magnetic permeability](https://en.wikipedia.org/wiki/Permeability_(electromagnetism)) \\(\hat{\mu}\\). These are properties of the medium, and they are expected to be continuous in the region of space for Maxwell's equations to be valid.
 
-Materials may be *dispersive* (dependent on the frequency), *absorptive* (cause energy loss), and *anisotropic* (dependent on the orientation). Generally, this means that the conductivity, the permittivity, and the permeability are frequency-dependent complex [tensor fields](https://en.wikipedia.org/wiki/Tensor#Tensor_fields). For instance,
+Media may be *dispersive* (dependent on the frequency), *absorptive* (cause energy loss), and *anisotropic* (dependent on the orientation). Generally, this means that the conductivity, the permittivity, and the permeability are frequency-dependent complex [tensor fields](https://en.wikipedia.org/wiki/Tensor#Tensor_fields). For instance,
 
 $$ \tag{5}
-	\bm{D}(\bm{r}, t, \omega) \approx \hat{\varepsilon}(\bm{r}, t, \omega) \bm{E}(\bm{r}, t, \omega) =
+	\bm{D}(\bm{r}, t) \approx \hat{\varepsilon}(\bm{r}, t) \bm{E}(\bm{r}, t) =
 	\begin{bmatrix}
 		\varepsilon\_{r11} - i \varepsilon\_{i11} & \varepsilon\_{r12} - i \varepsilon\_{i12} & \varepsilon\_{r13} - i \varepsilon\_{i13} \cr
 		\varepsilon\_{r21} - i \varepsilon\_{i21} & \varepsilon\_{r22} - i \varepsilon\_{i22} & \varepsilon\_{r23} - i \varepsilon\_{i23} \cr
@@ -110,14 +110,14 @@ $$
 
 Often, it is convenient to introduce an optical discontinuity[^102] to the medium. At the *optical interface*, the fields (on both sides) must satisfy [boundary conditions](https://en.wikipedia.org/wiki/Interface_conditions_for_electromagnetic_fields). If \\(\bm{n\_{12}}\\) is a unit normal vector pointing from region 1 to region 2, the normal components of the fields must be such that
 
-[^102]: It is a convenient way to represent a very rapid continuous variations of optical properties.
+[^102]: It is a convenient way to represent very rapid continuous variations of optical properties.
 
 $$ \tag{6}
 	\bm{n\_{12}} \cdot  (\bm{B\_2} - \bm{B\_1}) = 0, \quad
 	\bm{n\_{12}} \cdot  (\bm{D\_2} - \bm{D\_1}) = \rho\_s,
 $$
 
-where \\(\rho\_s\\) is the *surface* [charge density](https://en.wikipedia.org/wiki/Charge_density). For the tangential components, it can be shown that
+where \\(\rho\_s\\) is the *surface* [charge density](https://en.wikipedia.org/wiki/Charge_density). For the tangential components, it can be shown \[[6](#references) (ch. 1.1.3)\]] that
 
 $$ \tag{7}
 	\bm{n\_{12}} \times (\bm{E\_2} - \bm{E\_1}) = 0, \quad
@@ -126,7 +126,7 @@ $$
 
 where \\(\bm{J\_s}\\) is the *surface* [current density](https://en.wikipedia.org/wiki/Current_density).
 
-We will not use the equations in their most general form; however, it is much easier to simplify the theory by introducing additional assumptions than to do it the other way around.
+We will not use the equations in their most general form; however, it is typically easier to simplify the theory by introducing additional assumptions than to do it the other way around.
 
 <!---
 [^60]: [Maxwell's equations](http://www.maxwells-equations.com/) are defined using 5 [vector fields](https://en.wikipedia.org/wiki/Vector_field): \\(\bm{E}\\) is the *electric vector*, \\(\bm{H}\\) is the *magnetic vector*, \\(\bm{j}\\) is the *electric current density*, \\(\bm{D}\\) is the *electric flux density* (a.k.a. the *electric displacement*), and \\(\bm{B}\\) is the *magnetic flux density* (a.k.a. the *magnetic induction*). \\(\bm{E}\\) and \\(\bm{B}\\) are considered the fundamental fields, and \\(\bm{j}, \bm{D}, \bm{H}\\) arise due to the influence of matter. For more details, refer to 1) ch. 1.1. of Born, M., & Wolf, E. [Principles of optics](https://doi.org/10.1017/CBO9781139644181), 7th edition (1999); 2) vol. II, ch 32.2 of Feynman, R. P., Leighton, R. B., & Sands, M. [The Feynman lectures on physics](https://www.feynmanlectures.caltech.edu/II_32.html) (1963); 3) Hill, W. T. [E, D, B & H: What do they all mean?](http://www.physics.umd.edu/courses/Phys263/wth/fall04/downloads/EDBH/edbh.pdf) (2004).
@@ -134,7 +134,7 @@ We will not use the equations in their most general form; however, it is much ea
 
 ## Wave Equations
 
-Consider a region of space without any free currents or charges. Physically, this means that there are no sources of fields. This may seem strange at first; the idea is explore all solutions (we will pick a specific solution once we add a source) and determine how they evolve over time.
+Consider a region of space without any free currents or charges. Physically, this means that there are no sources of fields. This may seem strange at first; the idea is explore all solutions (we can pick a particular solution once we add a source) and determine how they evolve over time.
 
 Setting \\(\bm{J\_f} = \rho\_f = 0\\) in Equation 1, we obtain a coupled system of homogeneous linear differential equations:
 
@@ -149,7 +149,7 @@ Mathematically, the consequence is that a linear combination of several solution
 
 Next, we assume that the medium is linear[^103]. Substitution of Equation 4 into Equation 8 yields
 
-[^103]: Lectures on nonlinear optics here: https://kth.diva-portal.org/smash/record.jsf?pid=diva2%3A25333&dswid=-8275
+[^103]: See \[[10](#references)\] for a nonlinear solution.
 
 $$ \tag{9}
 	\nabla \times \bm{E} + \frac{\partial ({\hat{\mu}} \bm{H})}{\partial t} = 0, \quad
@@ -160,7 +160,7 @@ $$
 
 Further, we assume that the medium is *homogeneous* and *stationary* (constant in space and time)[^104]:
 
-[^104]: See born and wolf p 11 for a more complex case 
+[^104]: See \[[6](#references) (ch. 1.2)\] for an inhomogeneous solution.
 
 $$ \tag{10}
 	\nabla \times \bm{E} + {\hat{\mu}} \frac{\partial \bm{H}}{\partial t} = 0, \quad
@@ -215,7 +215,7 @@ $$ \tag{14}
 	\frac{\partial^2 \bm{V}}{\partial x^2} + \frac{\partial^2 \bm{V}}{\partial y^2} + \frac{\partial^2 \bm{V}}{\partial z^2}
 $$
 
-is the *vector* [Laplace](https://en.wikipedia.org/wiki/Laplace_operator#Vector_Laplacian) operator (*scalar* Laplace operator applied to each vector component).
+is the *vector* [Laplace](https://en.wikipedia.org/wiki/Laplace_operator) operator (*scalar* Laplace operator applied to each vector component).
 
 Use it to expand Equation 11.1:
 
@@ -237,24 +237,18 @@ $$ \tag{17}
 	\nabla^2 \bm{H} - \hat{\varepsilon} {\hat{\mu}} \frac{\partial^2 \bm{H}}{\partial t^2} = 0.
 $$
 
-Define the tensor product \\(\hat{v}\\)
+Define the tensor \\(\hat{v}\\) composed of three complex column vectors \\(\bm{v\_1}\\), \\(\bm{v\_2}\\), \\(\bm{v\_3}\\) such that
 
 $$ \tag{18}
-	\hat{v} = [\bm{v\_1} | \bm{v\_2} | \bm{v\_3} ] = \hat{\varepsilon} {\hat{\mu}}
+	\hat{v}^2 = \hat{\varepsilon} {\hat{\mu}}.
 $$
 
-composed of three complex column vectors \\(\bm{v\_1}\\), \\(\bm{v\_2}\\), \\(\bm{v\_3}\\). Equation 16 can then be written as
+It can be shown \[[6](#references) (ch. 15.1)\] that the \\(\hat{v}^2\\) tensor is symmetric, so it can be diagonalized. Thus, performing an appropriate coordinate transformation allows us to separate the variables into three *scalar* wave equations:
 
 $$ \tag{19}
-	\nabla^2 \bm{E} = \bm{v\_1} \frac{\partial^2 E\_x}{\partial t^2} + \bm{v\_2} \frac{\partial^2 E\_y}{\partial t^2} + \bm{v\_3} \frac{\partial^2 E\_z}{\partial t^2}.
-$$
-
-Often, it is possible to perform a coordinate transformation after which \\(\hat{v}\\) becomes [diagonal](https://en.wikipedia.org/wiki/Diagonal_matrix). This allows us to separate the variables into three *scalar* wave equations:
-
-$$ \tag{20}
-	\nabla^2 E\_x = v\_x \frac{\partial^2 E\_x}{\partial t^2}, \quad
-	\nabla^2 E\_y = v\_y \frac{\partial^2 E\_y}{\partial t^2}, \quad
-	\nabla^2 E\_z = v\_z \frac{\partial^2 E\_z}{\partial t^2}.
+	\nabla^2 E\_x = v\_x^2 \frac{\partial^2 E\_x}{\partial t^2}, \quad
+	\nabla^2 E\_y = v\_y^2 \frac{\partial^2 E\_y}{\partial t^2}, \quad
+	\nabla^2 E\_z = v\_z^2 \frac{\partial^2 E\_z}{\partial t^2}.
 $$
 
 ## Solution of the Scalar Wave Equation. Scalar Waves
@@ -630,4 +624,4 @@ Pharr, Jakob, NASA people
 7. Collett, E. [Field Guide to Polarization](https://doi.org/10.1117/3.626141) (2005).
 8. Hansen, J. E., & Travis, L. D. [Light scattering in planetary atmospheres](https://doi.org/10.1007/BF00168069) (1974).
 9. Nave, C. R. [HyperPhysics](http://hyperphysics.phy-astr.gsu.edu/hbase/index.html) (2017).
-10. Fleisch, D. [A Student's Guide to Maxwell's Equations](https://doi.org/10.1017/CBO9780511984624) (2008).
+10. Jonsson, F. (2003). [Lecture notes on nonlinear optics](http://urn.kb.se/resolve?urn=urn:nbn:se:kth:diva-9154) (2003).
