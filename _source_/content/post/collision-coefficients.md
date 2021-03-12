@@ -35,20 +35,22 @@ It is not expected that you understand the prior statement fully before reading 
 
 ## Maxwell's Equations
 
-At the fundamental level, optics is built on the theory of fields. What is a field? A *field* is a [mathematical](https://en.wikipedia.org/wiki/Field_(mathematics)) construct; it is a function defined for all points in space (and time). In [physics](https://en.wikipedia.org/wiki/Field_(physics)), a field typically has a source, contains energy, and exerts a force.
+At the fundamental level, optics is built on the theory of fields. What is a field? A *field* is a [mathematical](https://en.wikipedia.org/wiki/Field_(mathematics)) construct; it is a function defined for all points in space and time. In [physics](https://en.wikipedia.org/wiki/Field_(physics)), a field typically has a source, contains energy, and exerts a force.
 
 Since we are primarily concerned with electromagnetic radiation, we shall focus our attention on the the [electric field](https://en.wikipedia.org/wiki/Electric_field) \\(\bm{E}\\) and the [magnetic induction](https://en.wikipedia.org/wiki/Magnetic_field#The_B-field) \\(\bm{B}\\). They are real vectors defined at every point in space \\(\bm{r}\\) and time \\(t\\).
 
 They satisfy the differential form of [Maxwell's equations](https://en.wikipedia.org/wiki/Maxwell%27s_equation) \[[6](#references) (ch. 1.1)\]:
 
 $$ \tag{1}
-	\nabla \times \bm{E} + \frac{\partial \bm{B}}{\partial t} = 0, \quad
-	\nabla \cdot  \bm{B} = 0, \quad
-	\nabla \times \bm{H} - \frac{\partial \bm{D}}{\partial t} = \bm{J\_f}, \quad
-	\nabla \cdot  \bm{D} = \rho\_f,
+\begin{aligned}
+	&\nabla \times \bm{E}(\bm{r}, t) + \frac{\partial \bm{B}(\bm{r}, t)}{\partial t} = 0, \quad &
+	&\nabla \cdot  \bm{B}(\bm{r}, t) = 0, \cr
+	&\nabla \times \bm{H}(\bm{r}, t) - \frac{\partial \bm{D}(\bm{r}, t)}{\partial t} = \bm{J\_f}(\bm{r}, t), \quad &
+	&\nabla \cdot  \bm{D}(\bm{r}, t) = \rho\_f(\bm{r}, t),
+\end{aligned}
 $$
 
-where
+where \\(\bm{J\_f}\\) and \\(\rho\_f\\) are the *free* [current](https://en.wikipedia.org/wiki/Current_density#Free_currents) and [charge densities](https://en.wikipedia.org/wiki/Charge_density#Free_charge_density), respectively,
 
 $$ \tag{2}
 	\mathrm{curl}(\bm{V}) =
@@ -80,9 +82,49 @@ $$
 
 is the [divergence](https://en.wikipedia.org/wiki/Divergence) operator, both given in Cartesian coordinates.
 
-As discussed in \[[5](#references) (vol. II, ch 32.2), [6](#references) (ch. 1.1)\], \\(\bm{E}\\) and \\(\bm{B}\\) are considered fundamental fields, and the [electric displacement](https://en.wikipedia.org/wiki/Electric_displacement_field) \\(\bm{D}\\) and the [magnetic field](https://en.wikipedia.org/wiki/Magnetic_field#The_H-field) \\(\bm{H}\\) are [auxiliary fields](https://en.wikipedia.org/wiki/Maxwell%27s_equations#Auxiliary_fields,_polarization_and_magnetization) that arise due to the influence of matter[^101]. \\(\bm{J\_f}\\) and \\(\rho\_f\\) are *free* [current](https://en.wikipedia.org/wiki/Current_density#Free_currents) and [charge densities](https://en.wikipedia.org/wiki/Charge_density#Free_charge_density). They are defined using the [constitutive relations](https://en.wikipedia.org/wiki/Constitutive_equation#Electromagnetism):
+As discussed in \[[5](#references) (vol. II, ch 32.2), [6](#references) (ch. 1.1)\], \\(\bm{E}\\) and \\(\bm{B}\\) are considered fundamental fields, and the [electric displacement](https://en.wikipedia.org/wiki/Electric_displacement_field) \\(\bm{D}\\) and the [magnetic field](https://en.wikipedia.org/wiki/Magnetic_field#The_H-field) \\(\bm{H}\\) are [auxiliary fields](https://en.wikipedia.org/wiki/Maxwell%27s_equations#Auxiliary_fields,_polarization_and_magnetization) that arise due to the influence of matter[^101]. They are related to the fundamental fields by
 
-[^101]: We can obtain the [microscopic formulation](https://en.wikipedia.org/wiki/Maxwell%27s_equations#Formulation_in_SI_units_convention) (without auxiliary fields) by [substitution](https://en.wikipedia.org/wiki/Maxwell%27s_equations#Auxiliary_fields,_polarization_and_magnetization) of the [constitutive relations](https://en.wikipedia.org/wiki/Constitutive_equation#Electromagnetism). For our application, the [macroscopic formulation](https://en.wikipedia.org/wiki/Maxwell%27s_equations#Macroscopic_formulation) is more useful.
+$$ \tag{4}
+	\bm{D}(\bm{r}, t) = \varepsilon\_0   \bm{E}(\bm{r}, t) + \bm{P}(\bm{r}, t), \quad 
+	\bm{H}(\bm{r}, t) = \frac{1}{\mu\_0} \bm{B}(\bm{r}, t) - \bm{M}(\bm{r}, t),
+$$
+
+where \\(\bm{P}\\) is the [electric polarization](https://en.wikipedia.org/wiki/Polarization_density) (electric dipole moment per unit volume), \\(\bm{M}\\) is the [magnetic polarization](https://en.wikipedia.org/wiki/Magnetization) (magnetic dipole moment per unit volume), and \\(\varepsilon\_0\\) and \\(\mu\_0\\) are the [electric permittivity](https://en.wikipedia.org/wiki/Permittivity) and the [magnetic permeability](https://en.wikipedia.org/wiki/Permeability_(electromagnetism)) of vacuum, respectively.
+
+Polarization of matter is produced by the *bound* [current](https://en.wikipedia.org/wiki/Current_density#Polarization_and_magnetization_currents) and [charge densities](https://en.wikipedia.org/wiki/Charge_density#Bound_charge), \\(\bm{J\_b}\\) and \\(\rho\_b\\):
+
+$$ \tag{5}
+	\bm{J\_b}(\bm{r}, t) = \nabla \times \bm{M}(\bm{r}, t) + \frac{\partial \bm{P}(\bm{r}, t)}{\partial t}, \quad 
+	\rho\_b(\bm{r}, t) = -\nabla \cdot \bm{P}(\bm{r}, t),
+$$
+
+with the *total* current and charge composed of the *free* and the *bound* parts.
+
+On the conceptual level, we would like the properties of matter to be continuous everywhere, which leads to continuous electromagnetic fields. But, sometimes, it is convenient to introduce a discontinuity to approximate very rapid (yet continuous) variation of optical properties. At the *optical interface*, the fields (on both sides) must satisfy the [boundary conditions](https://en.wikipedia.org/wiki/Interface_conditions_for_electromagnetic_fields) \[[6](#references) (ch. 1.1)\]. If \\(\bm{n\_{12}}\\) is a unit normal vector pointing from region 1 to region 2, the normal components of the fields must be such that
+
+$$ \tag{5}
+	\bm{n\_{12}} \cdot  (\bm{B\_2} - \bm{B\_1}) = 0, \quad
+	\bm{n\_{12}} \cdot  (\bm{D\_2} - \bm{D\_1}) = \rho\_s,
+$$
+
+where \\(\rho\_s\\) is the *surface* [charge density](https://en.wikipedia.org/wiki/Charge_density). For the tangential components, it can be shown that
+
+$$ \tag{6}
+	\bm{n\_{12}} \times (\bm{E\_2} - \bm{E\_1}) = 0, \quad
+	\bm{n\_{12}} \times (\bm{H\_2} - \bm{H\_1}) = \bm{J\_s},
+$$
+
+where \\(\bm{J\_s}\\) is the *surface* [current density](https://en.wikipedia.org/wiki/Current_density).
+
+## Time-Harmonic Fields
+
+Go!
+
+---
+
+They are defined using the [constitutive relations](https://en.wikipedia.org/wiki/Constitutive_equation#Electromagnetism):
+
+[^101]: We can obtain the [microscopic formulation](https://en.wikipedia.org/wiki/Maxwell%27s_equations#Formulation_in_SI_units_convention) (without auxiliary fields) by [substitution](https://en.wikipedia.org/wiki/Maxwell%27s_equations#Auxiliary_fields,_polarization_and_magnetization) of the definitions of the auxiliary fields into Maxwell's equations. For optical applications, the [macroscopic formulation](https://en.wikipedia.org/wiki/Maxwell%27s_equations#Macroscopic_formulation) is more useful.
 
 $$ \tag{4}
 	\bm{J\_f} = \hat{\sigma} \bm{E} + \mathellipsis, \quad
@@ -125,6 +167,10 @@ $$ \tag{7}
 $$
 
 We will not use the equations in their most general form; however, it is typically easier to simplify the theory by introducing additional assumptions than to do it the other way around.
+
+## Spectral Domain and Harmonic Fields
+
+Ishimaru 2.2.
 
 ## Wave Equation
 
