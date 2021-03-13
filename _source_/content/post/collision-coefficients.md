@@ -43,9 +43,9 @@ They satisfy the differential form of [Maxwell's equations](https://en.wikipedia
 
 $$ \tag{1}
 \begin{aligned}
-	&\nabla \times \bm{E}(\bm{r}, t) + \frac{\partial \bm{B}(\bm{r}, t)}{\partial t} = 0, \quad &
+	&\nabla \times \bm{E}(\bm{r}, t) + \frac{\partial \bm{B}(\bm{r}, t)}{\partial t} = 0, &
 	&\nabla \cdot  \bm{B}(\bm{r}, t) = 0, \cr
-	&\nabla \times \bm{H}(\bm{r}, t) - \frac{\partial \bm{D}(\bm{r}, t)}{\partial t} = \bm{J\_f}(\bm{r}, t), \quad &
+	&\nabla \times \bm{H}(\bm{r}, t) - \frac{\partial \bm{D}(\bm{r}, t)}{\partial t} = \bm{J\_f}(\bm{r}, t), &
 	&\nabla \cdot  \bm{D}(\bm{r}, t) = \rho\_f(\bm{r}, t),
 \end{aligned}
 $$
@@ -102,25 +102,65 @@ with the *total* current and charge composed of the *free* and the *bound* parts
 
 On the conceptual level, we would like the properties of matter to be continuous everywhere, which leads to continuous electromagnetic fields. But, sometimes, it is convenient to introduce a discontinuity to approximate very rapid (yet continuous) variation of optical properties. At the *optical interface*, the fields (on both sides) must satisfy the [boundary conditions](https://en.wikipedia.org/wiki/Interface_conditions_for_electromagnetic_fields) \[[6](#references) (ch. 1.1)\]. If \\(\bm{n\_{12}}\\) is a unit normal vector pointing from region 1 to region 2, the normal components of the fields must be such that
 
-$$ \tag{5}
+$$ \tag{6}
 	\bm{n\_{12}} \cdot  (\bm{B\_2} - \bm{B\_1}) = 0, \quad
 	\bm{n\_{12}} \cdot  (\bm{D\_2} - \bm{D\_1}) = \rho\_s,
 $$
 
 where \\(\rho\_s\\) is the *surface* [charge density](https://en.wikipedia.org/wiki/Charge_density). For the tangential components, it can be shown that
 
-$$ \tag{6}
+$$ \tag{7}
 	\bm{n\_{12}} \times (\bm{E\_2} - \bm{E\_1}) = 0, \quad
 	\bm{n\_{12}} \times (\bm{H\_2} - \bm{H\_1}) = \bm{J\_s},
 $$
 
 where \\(\bm{J\_s}\\) is the *surface* [current density](https://en.wikipedia.org/wiki/Current_density).
 
+We take Maxwell's equations as axioms, and use them as a foundation from which we derive the theory presented in the following sections.
+
 ## Time-Harmonic Fields
 
-Go!
+Maxwell's equations can be simplified by transforming the fields from the time to the frequency domain.
 
----
+Define the [Fourier transform](https://en.wikipedia.org/wiki/Fourier_transform) of the electric field \\(\bm{E}(\bm{r}, t)\\) as
+
+$$ \tag{8}
+	\bm{E}(\bm{r}, \omega) = \frac{1}{\sqrt{2 \pi}} \int\_{-\infin}^{\infin} \bm{E}(\bm{r}, t) e^{i \omega t} dt.
+$$
+
+\\(\bm{E}(\bm{r}, \omega)\\) is called a phase vector, or a [phasor](https://en.wikipedia.org/wiki/Phasor), and is, in general, complex. \\(\bm{E}(\bm{r}, t)\\), on another hand, is real:
+
+$$ \tag{9}
+	\bm{E}(\bm{r}, t) =
+	\mathrm{Re} \Bigg\lbrace \frac{1}{\sqrt{2 \pi}} \int\_{-\infin}^{\infin} \bm{E}(\bm{r}, \omega) e^{-i \omega t} d\omega \Bigg\rbrace =
+	\frac{1}{\sqrt{2 \pi}} \int\_{-\infin}^{\infin} \mathrm{Re} \big\lbrace \bm{E}(\bm{r}, \omega) e^{-i \omega t} \big\rbrace d\omega.
+$$
+
+We can define integral forms of the fields by replacing \\(\bm{E}\\) by \\(\bm{B}\\), \\(\bm{D}\\), \\(\bm{H}\\), \\(\bm{J\_f}\\) or \\(\rho\_f\\) in Equation 9. If we substitute these integrals into Equation 1, and if we assume that we can perform [differentiation under the integral sign](https://en.wikipedia.org/wiki/Leibniz_integral_rule), the integrands can be expressed as
+
+$$ \tag{10}
+\begin{aligned}
+	&\nabla \times \big( \bm{E}(\bm{r}, \omega) e^{-i \omega t} \big) + \frac{\partial \big( \bm{B}(\bm{r}, \omega) e^{-i \omega t} \big)}{\partial t} = 0, &
+	&\nabla \cdot  \big( \bm{B}(\bm{r}, \omega) e^{-i \omega t} \big) = 0, \cr
+	&\nabla \times \big( \bm{H}(\bm{r}, \omega) e^{-i \omega t} \big) - \frac{\partial \big( \bm{D}(\bm{r}, \omega) e^{-i \omega t} \big)}{\partial t} = \bm{J\_f}(\bm{r}, \omega) e^{-i \omega t}, &
+	&\nabla \cdot  \big( \bm{D}(\bm{r}, \omega) e^{-i \omega t} \big) = \rho\_f(\bm{r}, \omega) e^{-i \omega t}.
+\end{aligned}
+$$
+
+Taking a time derivative and division by the pervasive \\(e^{-i \omega t}\\) factor yields 
+
+$$ \tag{11}
+\begin{aligned}
+	&\nabla \times \bm{E}(\bm{r}, \omega) - i \omega \bm{B}(\bm{r}, \omega) = 0, &
+	&\nabla \cdot  \bm{B}(\bm{r}, \omega) = 0, \cr
+	&\nabla \times \bm{H}(\bm{r}, \omega) + i \omega \bm{D}(\bm{r}, \omega) = \bm{J\_f}(\bm{r}, \omega), &
+	&\nabla \cdot  \bm{D}(\bm{r}, \omega) = \rho\_f(\bm{r}, \omega).
+\end{aligned}
+$$
+
+The dependence on time is completely gone, which is advantageous since we are interested in the steady state of the field over a time interval that is large in comparison to the period of an oscillation of the field.
+
+## Constitutive Relations
 
 They are defined using the [constitutive relations](https://en.wikipedia.org/wiki/Constitutive_equation#Electromagnetism):
 
