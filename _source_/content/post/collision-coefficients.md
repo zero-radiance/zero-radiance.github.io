@@ -33,11 +33,11 @@ You may wonder why we have to use *wave optics*. One of the reasons is that *geo
 
 It is not expected that you understand the prior statement fully before reading the rest of the article. However, it should (hopefully) encourage you to learn a little bit about wave optics. A modest introduction is given below.
 
-## Maxwell's Equations
+## Maxwell's Equations in the Time Domain
 
 At the fundamental level, optics is built on the theory of fields. What is a field? A *field* is a [mathematical](https://en.wikipedia.org/wiki/Field_(mathematics)) construct; it is a function defined for all points in space and time. In [physics](https://en.wikipedia.org/wiki/Field_(physics)), a field typically has a source, contains energy, and exerts a force.
 
-Since we are primarily concerned with electromagnetic radiation, we shall focus our attention on the the [electric field](https://en.wikipedia.org/wiki/Electric_field) \\(\bm{E}\\) and the [magnetic induction](https://en.wikipedia.org/wiki/Magnetic_field#The_B-field) \\(\bm{B}\\). They are real vectors defined at every point in space \\(\bm{r}\\) and time \\(t\\).
+Since we are primarily concerned with electromagnetic radiation, we shall focus our attention on the the [electric field](https://en.wikipedia.org/wiki/Electric_field) \\(\bm{E}\\) and the [magnetic induction](https://en.wikipedia.org/wiki/Magnetic_field#The_B-field) \\(\bm{B}\\). These are real vectors defined at every point in space \\(\bm{r}\\) and time \\(t\\).
 
 They satisfy the differential form of [Maxwell's equations](https://en.wikipedia.org/wiki/Maxwell%27s_equation) \[[6](#references) (ch. 1.1)\]:
 
@@ -84,120 +84,134 @@ is the [divergence](https://en.wikipedia.org/wiki/Divergence) operator, both giv
 
 As discussed in \[[5](#references) (vol. II, ch 32.2), [6](#references) (ch. 1.1)\], \\(\bm{E}\\) and \\(\bm{B}\\) are considered fundamental fields, and the [electric displacement](https://en.wikipedia.org/wiki/Electric_displacement_field) \\(\bm{D}\\) and the [magnetic field](https://en.wikipedia.org/wiki/Magnetic_field#The_H-field) \\(\bm{H}\\) are [auxiliary fields](https://en.wikipedia.org/wiki/Maxwell%27s_equations#Auxiliary_fields,_polarization_and_magnetization) that arise due to the influence of matter[^101]. They are related to the fundamental fields by
 
+[^101]: We can obtain the [microscopic formulation](https://en.wikipedia.org/wiki/Maxwell%27s_equations#Formulation_in_SI_units_convention) (without auxiliary fields) by [substitution](https://en.wikipedia.org/wiki/Maxwell%27s_equations#Auxiliary_fields,_polarization_and_magnetization) of the definitions of the auxiliary fields into Maxwell's equations. For optical applications, the [macroscopic formulation](https://en.wikipedia.org/wiki/Maxwell%27s_equations#Macroscopic_formulation) is more useful.
+
 $$ \tag{4}
-	\bm{D}(\bm{r}, t) = \varepsilon\_0   \bm{E}(\bm{r}, t) + \bm{P}(\bm{r}, t), \quad 
+	\bm{D}(\bm{r}, t) = \epsilon\_0   \bm{E}(\bm{r}, t) + \bm{P}(\bm{r}, t), \quad 
 	\bm{H}(\bm{r}, t) = \frac{1}{\mu\_0} \bm{B}(\bm{r}, t) - \bm{M}(\bm{r}, t),
 $$
 
-where \\(\bm{P}\\) is the [electric polarization](https://en.wikipedia.org/wiki/Polarization_density) (electric dipole moment per unit volume), \\(\bm{M}\\) is the [magnetic polarization](https://en.wikipedia.org/wiki/Magnetization) (magnetic dipole moment per unit volume), and \\(\varepsilon\_0\\) and \\(\mu\_0\\) are the [electric permittivity](https://en.wikipedia.org/wiki/Permittivity) and the [magnetic permeability](https://en.wikipedia.org/wiki/Permeability_(electromagnetism)) of vacuum, respectively.
+where \\(\bm{P}\\) is the [electric polarization](https://en.wikipedia.org/wiki/Polarization_density) (electric dipole moment per unit volume), \\(\bm{M}\\) is the [magnetic polarization](https://en.wikipedia.org/wiki/Magnetization) (magnetic dipole moment per unit volume), and \\(\epsilon\_0\\) and \\(\mu\_0\\) are the [electric permittivity](https://en.wikipedia.org/wiki/Permittivity) and the [magnetic permeability](https://en.wikipedia.org/wiki/Permeability_(electromagnetism)) of vacuum, respectively.
 
-Polarization of matter is produced by the *bound* [current](https://en.wikipedia.org/wiki/Current_density#Polarization_and_magnetization_currents) and [charge densities](https://en.wikipedia.org/wiki/Charge_density#Bound_charge), \\(\bm{J\_b}\\) and \\(\rho\_b\\):
+Polarization of matter is related to the *bound* [current](https://en.wikipedia.org/wiki/Current_density#Polarization_and_magnetization_currents) and [charge densities](https://en.wikipedia.org/wiki/Charge_density#Bound_charge), \\(\bm{J\_b}\\) and \\(\rho\_b\\):
 
 $$ \tag{5}
 	\bm{J\_b}(\bm{r}, t) = \nabla \times \bm{M}(\bm{r}, t) + \frac{\partial \bm{P}(\bm{r}, t)}{\partial t}, \quad 
 	\rho\_b(\bm{r}, t) = -\nabla \cdot \bm{P}(\bm{r}, t),
 $$
 
-with the *total* current and charge composed of the *free* and the *bound* parts.
+with the *total* current and charge densities composed of the *free* and the *bound* parts.
 
-On the conceptual level, we would like the properties of matter to be continuous everywhere, which leads to continuous electromagnetic fields. But, sometimes, it is convenient to introduce a discontinuity to approximate very rapid (yet continuous) variation of optical properties. At the *optical interface*, the fields (on both sides) must satisfy the [boundary conditions](https://en.wikipedia.org/wiki/Interface_conditions_for_electromagnetic_fields) \[[6](#references) (ch. 1.1)\]. If \\(\bm{n\_{12}}\\) is a unit normal vector pointing from region 1 to region 2, the normal components of the fields must be such that
+On the conceptual level, we would like the properties of matter to be continuous everywhere, which leads to continuous electromagnetic fields. But, sometimes, it is convenient to introduce a discontinuity to approximate very rapid (yet continuous) variation of optical properties. At the *optical interface*, the fields must satisfy the [boundary conditions](https://en.wikipedia.org/wiki/Interface_conditions_for_electromagnetic_fields) \[[6](#references) (ch. 1.1)\]. If \\(\bm{n\_{12}}\\) is a unit normal vector pointing from region 1 to region 2, the normal components of the fields must be such that
 
 $$ \tag{6}
 	\bm{n\_{12}} \cdot  (\bm{B\_2} - \bm{B\_1}) = 0, \quad
-	\bm{n\_{12}} \cdot  (\bm{D\_2} - \bm{D\_1}) = \rho\_s,
+	\bm{n\_{12}} \cdot  (\bm{D\_2} - \bm{D\_1}) = \rho\_n,
 $$
 
-where \\(\rho\_s\\) is the *surface* [charge density](https://en.wikipedia.org/wiki/Charge_density). For the tangential components, it can be shown that
+where \\(\rho\_n\\) is the *surface* [charge density](https://en.wikipedia.org/wiki/Charge_density). For the tangential components, it can be shown that
 
 $$ \tag{7}
 	\bm{n\_{12}} \times (\bm{E\_2} - \bm{E\_1}) = 0, \quad
-	\bm{n\_{12}} \times (\bm{H\_2} - \bm{H\_1}) = \bm{J\_s},
+	\bm{n\_{12}} \times (\bm{H\_2} - \bm{H\_1}) = \bm{J\_n},
 $$
 
-where \\(\bm{J\_s}\\) is the *surface* [current density](https://en.wikipedia.org/wiki/Current_density).
+where \\(\bm{J\_n}\\) is the *surface* [current density](https://en.wikipedia.org/wiki/Current_density).
 
 We take Maxwell's equations as axioms, and use them as a foundation from which we derive the theory presented in the following sections.
 
-## Time-Harmonic Fields
+## Maxwell's Equations in the Frequency Domain
 
 Maxwell's equations can be simplified by transforming the fields from the time to the frequency domain.
 
 Define the [Fourier transform](https://en.wikipedia.org/wiki/Fourier_transform) of the electric field \\(\bm{E}(\bm{r}, t)\\) as
 
 $$ \tag{8}
-	\bm{E}(\bm{r}, \omega) = \frac{1}{\sqrt{2 \pi}} \int\_{-\infin}^{\infin} \bm{E}(\bm{r}, t) e^{i \omega t} dt.
+	\bm{E}(\bm{r}, \omega) = \frac{1}{\sqrt{2 \pi}} \int\_{-\infin}^{\infin} \bm{E}(\bm{r}, t) e^{-i \omega t} dt.
 $$
 
-\\(\bm{E}(\bm{r}, \omega)\\) is called a phase vector, or a [phasor](https://en.wikipedia.org/wiki/Phasor), and is, in general, complex. \\(\bm{E}(\bm{r}, t)\\), on another hand, is real:
+\\(\bm{E}(\bm{r}, \omega)\\) is called a phase vector, or a [phasor](https://en.wikipedia.org/wiki/Phasor), and is, in general, complex[^102]. \\(\bm{E}(\bm{r}, t)\\), on another hand, is real:
+
+[^102]: This implies that all factors comprising the expression of the complex field are also complex.
 
 $$ \tag{9}
 	\bm{E}(\bm{r}, t) =
-	\mathrm{Re} \Bigg\lbrace \frac{1}{\sqrt{2 \pi}} \int\_{-\infin}^{\infin} \bm{E}(\bm{r}, \omega) e^{-i \omega t} d\omega \Bigg\rbrace =
-	\frac{1}{\sqrt{2 \pi}} \int\_{-\infin}^{\infin} \mathrm{Re} \big\lbrace \bm{E}(\bm{r}, \omega) e^{-i \omega t} \big\rbrace d\omega.
+	\mathrm{Re} \Bigg\lbrace \frac{1}{\sqrt{2 \pi}} \int\_{-\infin}^{\infin} \bm{E}(\bm{r}, \omega) e^{i \omega t} d\omega \Bigg\rbrace =
+	\frac{1}{\sqrt{2 \pi}} \int\_{-\infin}^{\infin} \mathrm{Re} \big\lbrace \bm{E}(\bm{r}, \omega) e^{i \omega t} \big\rbrace d\omega.
 $$
 
 We can define integral forms of the fields by replacing \\(\bm{E}\\) by \\(\bm{B}\\), \\(\bm{D}\\), \\(\bm{H}\\), \\(\bm{J\_f}\\) or \\(\rho\_f\\) in Equation 9. If we substitute these integrals into Equation 1, and if we assume that we can perform [differentiation under the integral sign](https://en.wikipedia.org/wiki/Leibniz_integral_rule), the integrands can be expressed as
 
 $$ \tag{10}
 \begin{aligned}
-	&\nabla \times \big( \bm{E}(\bm{r}, \omega) e^{-i \omega t} \big) + \frac{\partial \big( \bm{B}(\bm{r}, \omega) e^{-i \omega t} \big)}{\partial t} = 0, &
-	&\nabla \cdot  \big( \bm{B}(\bm{r}, \omega) e^{-i \omega t} \big) = 0, \cr
-	&\nabla \times \big( \bm{H}(\bm{r}, \omega) e^{-i \omega t} \big) - \frac{\partial \big( \bm{D}(\bm{r}, \omega) e^{-i \omega t} \big)}{\partial t} = \bm{J\_f}(\bm{r}, \omega) e^{-i \omega t}, &
-	&\nabla \cdot  \big( \bm{D}(\bm{r}, \omega) e^{-i \omega t} \big) = \rho\_f(\bm{r}, \omega) e^{-i \omega t}.
+	&\nabla \times \big( \bm{E}(\bm{r}, \omega) e^{i \omega t} \big) + \frac{\partial \big( \bm{B}(\bm{r}, \omega) e^{i \omega t} \big)}{\partial t} = 0, &
+	&\nabla \cdot  \big( \bm{B}(\bm{r}, \omega) e^{i \omega t} \big) = 0, \cr
+	&\nabla \times \big( \bm{H}(\bm{r}, \omega) e^{i \omega t} \big) - \frac{\partial \big( \bm{D}(\bm{r}, \omega) e^{i \omega t} \big)}{\partial t} = \bm{J\_f}(\bm{r}, \omega) e^{i \omega t}, &
+	&\nabla \cdot  \big( \bm{D}(\bm{r}, \omega) e^{i \omega t} \big) = \rho\_f(\bm{r}, \omega) e^{i \omega t}.
 \end{aligned}
 $$
 
-Taking a time derivative and division by the pervasive \\(e^{-i \omega t}\\) factor yields 
+Performing differentiation with respect to time and division by the pervasive \\(e^{i \omega t}\\) factor yields 
 
 $$ \tag{11}
 \begin{aligned}
-	&\nabla \times \bm{E}(\bm{r}, \omega) - i \omega \bm{B}(\bm{r}, \omega) = 0, &
+	&\nabla \times \bm{E}(\bm{r}, \omega) + i \omega \bm{B}(\bm{r}, \omega) = 0, &
 	&\nabla \cdot  \bm{B}(\bm{r}, \omega) = 0, \cr
-	&\nabla \times \bm{H}(\bm{r}, \omega) + i \omega \bm{D}(\bm{r}, \omega) = \bm{J\_f}(\bm{r}, \omega), &
+	&\nabla \times \bm{H}(\bm{r}, \omega) - i \omega \bm{D}(\bm{r}, \omega) = \bm{J\_f}(\bm{r}, \omega), &
 	&\nabla \cdot  \bm{D}(\bm{r}, \omega) = \rho\_f(\bm{r}, \omega).
 \end{aligned}
 $$
 
-The dependence on time is completely gone, which is advantageous since we are interested in the steady state of the field over a time interval that is large in comparison to the period of an oscillation of the field.
+Dependence on time is completely gone, which is advantageous since we are interested in the steady state of the field measured over the time interval that is large in comparison to the period of an oscillation of the field.
+
+If we take divergence of Equation 11.3, combine it with equation 11.4, and use the fact that [divergence of curl is zero](https://en.wikipedia.org/wiki/Vector_calculus_identities#Divergence_of_curl_is_zero), we obtain the [continuity equation](https://en.wikipedia.org/wiki/Continuity_equation) of charge:
+
+$$ \tag{12}
+	\nabla \cdot \bm{J\_f}(\bm{r}, \omega) = - i \omega \rho\_f(\bm{r}, \omega).
+$$
+
+For future convenience, we shall define the decomposition of the *free* charges and currents into the *source* and the *induced* parts:
+
+$$ \tag{13}
+	\rho\_f = \rho\_s + \rho\_i, \quad
+	\bm{J\_f} = \bm{J\_s} + \bm{J\_i}.
+$$
+
+Continuity of charge implies
+
+$$ \tag{14}
+	\rho\_s(\bm{r}, \omega) = \frac{i}{\omega} \nabla \cdot \bm{J\_s}(\bm{r}, \omega), \quad
+	\rho\_i(\bm{r}, \omega) = \frac{i}{\omega} \nabla \cdot \bm{J\_i}(\bm{r}, \omega).
+$$
 
 ## Constitutive Relations
 
-They are defined using the [constitutive relations](https://en.wikipedia.org/wiki/Constitutive_equation#Electromagnetism):
+Considered in isolation, Maxwell's system has fewer equations than unknowns. This forces us to specify the way the material responds to the electromagnetic field. One way to do this is to define the auxiliary fields in terms of polarization of matter (as shown in Equations 4 and 5). Turns out, this leads to a non-linear solution \[[10](#references)\] that is relatively difficult to manipulate.
 
-[^101]: We can obtain the [microscopic formulation](https://en.wikipedia.org/wiki/Maxwell%27s_equations#Formulation_in_SI_units_convention) (without auxiliary fields) by [substitution](https://en.wikipedia.org/wiki/Maxwell%27s_equations#Auxiliary_fields,_polarization_and_magnetization) of the definitions of the auxiliary fields into Maxwell's equations. For optical applications, the [macroscopic formulation](https://en.wikipedia.org/wiki/Maxwell%27s_equations#Macroscopic_formulation) is more useful.
+Fortunately, many materials respond to weak electromagnetic fields in optical frequencies in an approximately linear way. This behavior is captured by the [constitutive relations](https://en.wikipedia.org/wiki/Constitutive_equation#Electromagnetism):
 
-$$ \tag{4}
-	\bm{J\_f} = \hat{\sigma} \bm{E} + \mathellipsis, \quad
-	\bm{D} = \varepsilon\_0 \bm{E} + \bm{P} = \hat{\varepsilon} \bm{E} + \mathellipsis, \quad
-	\bm{H} = \frac{1}{\mu\_0} \bm{B} - \bm{M} = \frac{1}{\hat{\mu}} \bm{B} - \mathellipsis.
+$$ \tag{15}
+\begin{aligned}
+	&\bm{J\_i}(\bm{r}, \omega) \approx \hat{\sigma}(\bm{r}, \omega) \bm{E}(\bm{r}, \omega), \cr
+	&\bm{D}   (\bm{r}, \omega) \approx \hat{\epsilon}(\bm{r}, \omega) \bm{E}(\bm{r}, \omega), \cr
+	&\bm{H}   (\bm{r}, \omega) \approx \frac{1}{\hat{\mu}(\bm{r}, \omega)} \bm{B}(\bm{r}, \omega).
+\end{aligned}
 $$
 
-In the first-order approximation, for a *linear* medium, they are directly related to the electric and magnetic field intensities by the [specific conductivity](https://en.wikipedia.org/wiki/Electrical_resistivity_and_conductivity) \\(\hat{\sigma}\\), the [electric permittivity](https://en.wikipedia.org/wiki/Permittivity) \\(\hat{\varepsilon}\\), and the [magnetic permeability](https://en.wikipedia.org/wiki/Permeability_(electromagnetism)) \\(\hat{\mu}\\). These are properties of the medium, and they are expected to be continuous in the region of space for Maxwell's equations to be valid.
+We can also combine Equations 14.2 and 15.1 to define the relation of the indiced charge density:
 
-Sometimes, it is convenient to introduce a discontinuity to approximate very rapid (yet continuous) variation of optical properties. At the *optical interface*, the fields (on both sides) must satisfy [boundary conditions](https://en.wikipedia.org/wiki/Interface_conditions_for_electromagnetic_fields) \[[6](#references) (ch. 1.1)\]]. If \\(\bm{n\_{12}}\\) is a unit normal vector pointing from region 1 to region 2, the normal components of the fields must be such that
-
-$$ \tag{5}
-	\bm{n\_{12}} \cdot  (\bm{B\_2} - \bm{B\_1}) = 0, \quad
-	\bm{n\_{12}} \cdot  (\bm{D\_2} - \bm{D\_1}) = \rho\_s,
+$$ \tag{16}
+	\rho\_i(\bm{r}, \omega) \approx \frac{i}{\omega} \nabla \cdot \big( \hat{\sigma}(\bm{r}, \omega) \bm{E}(\bm{r}, \omega) \big).
 $$
 
-where \\(\rho\_s\\) is the *surface* [charge density](https://en.wikipedia.org/wiki/Charge_density). For the tangential components, it can be shown that
+In general, media may be *dispersive* (dependent on the frequency), *lossy* (absorptive), and *anisotropic* (dependent on the orientation). This means that the [specific conductivity](https://en.wikipedia.org/wiki/Electrical_resistivity_and_conductivity) \\(\hat{\sigma}\\), the [electric permittivity](https://en.wikipedia.org/wiki/Permittivity) \\(\hat{\epsilon}\\), and the [magnetic permeability](https://en.wikipedia.org/wiki/Permeability_(electromagnetism)) \\(\hat{\mu}\\) are frequency-dependent complex [tensor fields](https://en.wikipedia.org/wiki/Tensor#Tensor_fields). For instance,
 
-$$ \tag{6}
-	\bm{n\_{12}} \times (\bm{E\_2} - \bm{E\_1}) = 0, \quad
-	\bm{n\_{12}} \times (\bm{H\_2} - \bm{H\_1}) = \bm{J\_s},
-$$
-
-where \\(\bm{J\_s}\\) is the *surface* [current density](https://en.wikipedia.org/wiki/Current_density).
-
-In general, media may be *dispersive* (dependent on the frequency), *absorptive* (cause energy loss), and *anisotropic* (dependent on the orientation). This means that the conductivity, the permittivity, and the permeability are frequency-dependent complex [tensor fields](https://en.wikipedia.org/wiki/Tensor#Tensor_fields). For instance,
-
-$$ \tag{7}
-	\bm{D}(\bm{r}, t) \approx \hat{\varepsilon}(\bm{r}, t) \bm{E}(\bm{r}, t) =
+$$ \tag{17}
+	\bm{D}(\bm{r}, \omega) \approx \hat{\epsilon}(\bm{r}, \omega) \bm{E}(\bm{r}, \omega) =
 	\begin{bmatrix}
-		\varepsilon\_{r11} - i \varepsilon\_{i11} & \varepsilon\_{r12} - i \varepsilon\_{i12} & \varepsilon\_{r13} - i \varepsilon\_{i13} \cr
-		\varepsilon\_{r21} - i \varepsilon\_{i21} & \varepsilon\_{r22} - i \varepsilon\_{i22} & \varepsilon\_{r23} - i \varepsilon\_{i23} \cr
-		\varepsilon\_{r31} - i \varepsilon\_{i31} & \varepsilon\_{r32} - i \varepsilon\_{i32} & \varepsilon\_{r33} - i \varepsilon\_{i33}
+		\epsilon\_{11} & \epsilon\_{12} & \epsilon\_{13} \cr
+		\epsilon\_{21} & \epsilon\_{22} & \epsilon\_{23} \cr
+		\epsilon\_{31} & \epsilon\_{32} & \epsilon\_{33}
 	\end{bmatrix}
 	\begin{bmatrix}
 		E\_x \cr
@@ -206,11 +220,33 @@ $$ \tag{7}
 	\end{bmatrix}.
 $$
 
-We will not use the equations in their most general form; however, it is typically easier to simplify the theory by introducing additional assumptions than to do it the other way around.
+For *linear* media (after substitution of the constitutive relations), Maxwell's equations take the following form:
 
-## Spectral Domain and Harmonic Fields
+$$ \tag{18}
+\begin{aligned}
+	&\nabla \times \bm{E}(\bm{r}, \omega) + i \omega \hat{\mu}(\bm{r}, \omega) \bm{H}(\bm{r}, \omega) = 0, \cr
+	&\nabla \cdot  \big( \hat{\mu}(\bm{r}, \omega) \bm{H}(\bm{r}, \omega) \big) = 0, \cr
+	&\nabla \times \bm{H}(\bm{r}, \omega) - i \omega \hat{\epsilon}(\bm{r}, \omega) \bm{E}(\bm{r}, \omega) = \bm{J\_s}(\bm{r}, \omega) + \hat{\sigma}(\bm{r}, \omega) \bm{E}(\bm{r}, \omega), \cr
+	&\nabla \cdot  \big( \hat{\epsilon}(\bm{r}, \omega) \bm{E}(\bm{r}, \omega) \big) = \rho\_s(\bm{r}, \omega) + \frac{i}{\omega} \nabla \cdot \big( \hat{\sigma}(\bm{r}, \omega) \bm{E}(\bm{r}, \omega) \big).
+\end{aligned}
+$$
 
-Ishimaru 2.2.
+If we define the [complex permittivity](https://en.wikipedia.org/wiki/Permittivity#Complex_permittivity) \\(\hat{\varepsilon}\\) as
+
+$$ \tag{19}
+	\hat{\varepsilon}(\bm{r}, \omega) = \hat{\epsilon}(\bm{r}, \omega) - \frac{i}{\omega} \hat{\sigma}(\bm{r}, \omega),
+$$
+
+then Equation 18 can be shortened to
+
+$$ \tag{20}
+\begin{aligned}
+	&\nabla \times \bm{E}(\bm{r}, \omega) + i \omega \hat{\mu}(\bm{r}, \omega) \bm{H}(\bm{r}, \omega) = 0, &
+	&\nabla \cdot  \big( \hat{\mu}(\bm{r}, \omega) \bm{H}(\bm{r}, \omega) \big) = 0, \cr
+	&\nabla \times \bm{H}(\bm{r}, \omega) - i \omega \hat{\varepsilon} \bm{E}(\bm{r}, \omega) = \bm{J\_s}(\bm{r}, \omega), &
+	&\nabla \cdot  \big( \hat{\varepsilon}(\bm{r}, \omega) \bm{E}(\bm{r}, \omega) \big) = \rho\_s(\bm{r}, \omega).
+\end{aligned}
+$$
 
 ## Wave Equation
 
@@ -227,9 +263,9 @@ $$
 
 Mathematically, the consequence is that a linear combination of several solutions is also a valid solution.
 
-Next, we assume that the medium is linear[^102]. Substitution of Equation 4 into Equation 8 yields
+Next, we assume that the medium is linear[^202]. Substitution of Equation 4 into Equation 8 yields
 
-[^102]: See \[[10](#references)\] for a nonlinear solution.
+[^202]: See \[[10](#references)\] for a nonlinear solution.
 
 $$ \tag{9}
 	\nabla \times \bm{E} + \frac{\partial ({\hat{\mu}} \bm{H})}{\partial t} = 0, \quad
@@ -238,9 +274,9 @@ $$ \tag{9}
 	\nabla \cdot  (\hat{\varepsilon} \bm{E}) = 0.
 $$
 
-Further, we assume that the medium is *homogeneous* and *stationary* (constant in space and time)[^103]:
+Further, we assume that the medium is *homogeneous* and *stationary* (constant in space and time)[^203]:
 
-[^103]: See \[[6](#references) (ch. 1.2)\] for an inhomogeneous solution.
+[^203]: See \[[6](#references) (ch. 1.2)\] for an inhomogeneous solution.
 
 $$ \tag{10}
 	\nabla \times \bm{E} + {\hat{\mu}} \frac{\partial \bm{H}}{\partial t} = 0, \quad
@@ -714,4 +750,4 @@ Pharr, Jakob, NASA people
 7. Collett, E. [Field Guide to Polarization](https://doi.org/10.1117/3.626141) (2005).
 8. Hansen, J. E., & Travis, L. D. [Light scattering in planetary atmospheres](https://doi.org/10.1007/BF00168069) (1974).
 9. Nave, C. R. [HyperPhysics](http://hyperphysics.phy-astr.gsu.edu/hbase/index.html) (2017).
-10. Jonsson, F. (2003). [Lecture notes on nonlinear optics](http://urn.kb.se/resolve?urn=urn:nbn:se:kth:diva-9154) (2003).
+10. Boyd, R. W. [Nonlinear optics](https://www.elsevier.com/books/nonlinear-optics/boyd/978-0-12-811002-7) (2020).
