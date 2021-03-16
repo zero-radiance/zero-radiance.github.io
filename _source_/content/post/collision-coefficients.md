@@ -243,65 +243,61 @@ $$ \tag{20}
 \begin{aligned}
 	&\nabla \times \bm{E}(\bm{r}, \omega) + i \omega \hat{\mu}(\bm{r}, \omega) \bm{H}(\bm{r}, \omega) = 0, &
 	&\nabla \cdot  \big( \hat{\mu}(\bm{r}, \omega) \bm{H}(\bm{r}, \omega) \big) = 0, \cr
-	&\nabla \times \bm{H}(\bm{r}, \omega) - i \omega \hat{\varepsilon} \bm{E}(\bm{r}, \omega) = \bm{J\_s}(\bm{r}, \omega), &
+	&\nabla \times \bm{H}(\bm{r}, \omega) - i \omega \hat{\varepsilon}(\bm{r}, \omega) \bm{E}(\bm{r}, \omega) = \bm{J\_s}(\bm{r}, \omega), &
 	&\nabla \cdot  \big( \hat{\varepsilon}(\bm{r}, \omega) \bm{E}(\bm{r}, \omega) \big) = \rho\_s(\bm{r}, \omega).
 \end{aligned}
 $$
 
-## Wave Equation
+## Helmholtz Equation
 
-Consider a region of space without any free currents or charges. Physically, this means that there are no sources of fields. This may seem strange at first; the idea is explore all solutions (we can pick a particular solution once we add a source) and determine how they evolve over time.
+Consider a region of space without any source currents or charges. Physically, this means that there are no sources of fields. This may seem strange at first; the idea is explore all solutions (we can pick a particular one once we add a source) and determine how they evolve over time.
 
-Setting \\(\bm{J\_f} = \rho\_f = 0\\) in Equation 1, we obtain a coupled system of homogeneous linear differential equations:
+Setting \\(\bm{J\_f} = \rho\_f = 20\\) in Equation 20, we obtain a coupled system of homogeneous linear differential equations:
 
-$$ \tag{8}
-	\nabla \times \bm{E} + \frac{\partial \bm{B}}{\partial t} = 0, \quad
-	\nabla \cdot  \bm{B} = 0, \quad
-	\nabla \times \bm{H} - \frac{\partial \bm{D}}{\partial t} = 0, \quad
-	\nabla \cdot  \bm{D} = 0.
+$$ \tag{21}
+\begin{aligned}
+	&\nabla \times \bm{E}(\bm{r}, \omega) + i \omega \hat{\mu}(\bm{r}, \omega) \bm{H}(\bm{r}, \omega) = 0, &
+	&\nabla \cdot  \big( \hat{\mu}(\bm{r}, \omega) \bm{H}(\bm{r}, \omega) \big) = 0, \cr
+	&\nabla \times \bm{H}(\bm{r}, \omega) - i \omega \hat{\varepsilon}(\bm{r}, \omega) \bm{E}(\bm{r}, \omega) = 0, &
+	&\nabla \cdot  \big( \hat{\varepsilon}(\bm{r}, \omega) \bm{E}(\bm{r}, \omega) \big) = 0.
+\end{aligned}
 $$
 
 Mathematically, the consequence is that a linear combination of several solutions is also a valid solution.
 
-Next, we assume that the medium is linear[^202]. Substitution of Equation 4 into Equation 8 yields
+Assume that the medium is *homogeneous* and *stationary* (constant in space and time)[^103]:
 
-[^202]: See \[[10](#references)\] for a nonlinear solution.
+[^103]: See \[[6](#references) (ch. 1.2)\] for an inhomogeneous solution.
 
-$$ \tag{9}
-	\nabla \times \bm{E} + \frac{\partial ({\hat{\mu}} \bm{H})}{\partial t} = 0, \quad
-	\nabla \cdot  ({\hat{\mu}} \bm{H}) = 0, \quad
-	\nabla \times \bm{H} - \frac{\partial (\hat{\varepsilon} \bm{E})}{\partial t} = 0, \quad
-	\nabla \cdot  (\hat{\varepsilon} \bm{E}) = 0.
+$$ \tag{22}
+\begin{aligned}
+	&\nabla \times \bm{E}(\bm{r}, \omega) + i \omega \hat{\mu}(\omega) \bm{H}(\bm{r}, \omega) = 0, &
+	&\nabla \cdot  \bm{H}(\bm{r}, \omega) = 0, \cr
+	&\nabla \times \bm{H}(\bm{r}, \omega) - i \omega \hat{\varepsilon}(\omega) \bm{E}(\bm{r}, \omega) = 0, &
+	&\nabla \cdot  \bm{E}(\bm{r}, \omega) = 0.
+\end{aligned}
 $$
 
-Further, we assume that the medium is *homogeneous* and *stationary* (constant in space and time)[^203]:
+Take curl of Equation 22.1 and substitute Equation 22.2:
 
-[^203]: See \[[6](#references) (ch. 1.2)\] for an inhomogeneous solution.
-
-$$ \tag{10}
-	\nabla \times \bm{E} + {\hat{\mu}} \frac{\partial \bm{H}}{\partial t} = 0, \quad
-	\nabla \cdot  \bm{H} = 0, \quad
-	\nabla \times \bm{H} - \hat{\varepsilon} \frac{\partial \bm{E}}{\partial t} = 0, \quad
-	\nabla \cdot  \bm{E} = 0.
-$$
-
-Now we can easily find a solution for the electric field \\(\bm{E}\\). Take curl of Equation 10.1 and time derivative of Equation 10.3 (assume that we can interchange the order of differentiation with respect to space and time):
-
-$$ \tag{11}
-	\nabla \times \nabla \times \bm{E} + {\hat{\mu}} \Big( \nabla \times \frac{\partial \bm{H}}{\partial t} \Big) = 0, \quad
-	\nabla \times \frac{\partial \bm{H}}{\partial t} = \hat{\varepsilon} \frac{\partial^2 \bm{E}}{\partial t^2}, \quad
-	\nabla \cdot  \bm{E} = 0.
+$$ \tag{23}
+\begin{aligned}
+	&\nabla \times \nabla \times \bm{E}(\bm{r}, \omega) + i \omega \hat{\mu}(\omega) \big( i \omega \hat{\varepsilon}(\omega) \bm{E}(\bm{r}, \omega) \big) = 0, &
+	&\nabla \cdot  \bm{H}(\bm{r}, \omega) = 0, \cr
+	&\nabla \times \bm{H}(\bm{r}, \omega) - i \omega \hat{\varepsilon}(\omega) \bm{E}(\bm{r}, \omega) = 0, &
+	&\nabla \cdot  \bm{E}(\bm{r}, \omega) = 0.
+\end{aligned}
 $$
 
 Introduce the [curl-of-curl](https://en.wikipedia.org/wiki/Vector_calculus_identities#Curl_of_curl) identity
 
-$$ \tag{12}
+$$ \tag{24}
 	\nabla \times (\nabla \times \bm{V}) = \nabla (\nabla \cdot \bm{V}) - \nabla^2 \bm{V},
 $$
 
 where 
 
-$$ \tag{13}
+$$ \tag{25}
 	\mathrm{grad}(s) =
 	\nabla s =
 	\begin{bmatrix}
@@ -318,7 +314,7 @@ $$
 
 is the [gradient](https://en.wikipedia.org/wiki/Gradient) operator and
 
-$$ \tag{14}
+$$ \tag{26}
 	\nabla^2 \bm{V} =
 	\mathrm{div}(\mathrm{grad}(\bm{V})) =
 	(\nabla \cdot \nabla) \bm{V} =
@@ -333,39 +329,60 @@ $$
 
 is the *vector* [Laplace](https://en.wikipedia.org/wiki/Laplace_operator) operator (*scalar* Laplace operator applied to each vector component).
 
-Use it to expand Equation 11.1:
+Use it to expand Equation 23.1:
 
-$$ \tag{15}
-	\nabla (\nabla \cdot \bm{E}) - \nabla^2 \bm{E} + {\hat{\mu}} \Big( \nabla \times \frac{\partial \bm{H}}{\partial t} \Big) = 0, \quad
-	\nabla \times \frac{\partial \bm{H}}{\partial t} = \hat{\varepsilon} \frac{\partial^2 \bm{E}}{\partial t^2}, \quad
-	\nabla \cdot  \bm{E} = 0.
+$$ \tag{27}
+\begin{aligned}
+	&\nabla (\nabla \cdot \bm{E}(\bm{r}, \omega)) - \nabla^2 \bm{E}(\bm{r}, \omega) - \omega^2 \hat{\varepsilon}(\omega) \hat{\mu}(\omega) \bm{E}(\bm{r}, \omega) = 0, &
+	&\nabla \cdot  \bm{H}(\bm{r}, \omega) = 0, \cr
+	&\nabla \times \bm{H}(\bm{r}, \omega) - i \omega \hat{\varepsilon}(\omega) \bm{E}(\bm{r}, \omega) = 0, &
+	&\nabla \cdot  \bm{E}(\bm{r}, \omega) = 0.
+\end{aligned}
 $$
 
-Substitution of Equations 15.2 and 15.3 into 15.1 yields the *vector* [wave equation](https://en.wikipedia.org/wiki/Wave_equation) of the electric field \\(\bm{E}\\):
+Substitution of Equation 27.4 into 27.1 yields the equation of the electric field \\(\bm{E}\\):
 
-$$ \tag{16}
-	\nabla^2 \bm{E} - \hat{\varepsilon} {\hat{\mu}} \frac{\partial^2 \bm{E}}{\partial t^2} = 0.
-$$
-
-Performing the same steps allows us to obtain the wave equation of the magnetic field \\(\bm{H}\\):
-
-$$ \tag{17}
-	\nabla^2 \bm{H} - \hat{\varepsilon} {\hat{\mu}} \frac{\partial^2 \bm{H}}{\partial t^2} = 0.
+$$ \tag{28}
+	\nabla^2 \bm{E}(\bm{r}, \omega) + \omega^2 \hat{\varepsilon}(\omega) \hat{\mu}(\omega) \bm{E}(\bm{r}, \omega) = 0.
 $$
 
 We can define a tensor \\(\hat{v}\\) composed of three complex column vectors \\(\bm{v\_1}\\), \\(\bm{v\_2}\\), \\(\bm{v\_3}\\) such that
 
-$$ \tag{18}
-	\hat{v}^2 = \hat{\varepsilon} {\hat{\mu}}.
+$$ \tag{29}
+	\hat{v}^2(\omega) = \hat{\varepsilon}(\omega) \hat{\mu}(\omega).
 $$
 
-Since the \\(\hat{v}^2\\) tensor is [symmetric](https://en.wikipedia.org/wiki/Symmetric_matrix) \[[6](#references) (ch. 15.1)\], it can be [diagonalized](https://en.wikipedia.org/wiki/Diagonalizable_matrix). Thus, performing an appropriate coordinate transformation allows us to separate the variables into three *scalar* wave equations:
+Since this tensor is [symmetric](https://en.wikipedia.org/wiki/Symmetric_matrix) \[[6](#references) (ch. 15.1)\], we can perform a coordinate transformation to [diagonalize](https://en.wikipedia.org/wiki/Diagonalizable_matrix) it:
 
-$$ \tag{19}
-	\nabla^2 E\_x = v\_x^2 \frac{\partial^2 E\_x}{\partial t^2}, \quad
-	\nabla^2 E\_y = v\_y^2 \frac{\partial^2 E\_y}{\partial t^2}, \quad
-	\nabla^2 E\_z = v\_z^2 \frac{\partial^2 E\_z}{\partial t^2}.
+$$ \tag{30}
+	\nabla^2 \bm{E}(\bm{r}, \omega) + \omega^2
+		\begin{bmatrix}
+			v\_x^2 & 0 & 0 \cr
+			0 & v\_y^2 & 0 \cr
+			0 & 0 & v\_z^2
+		\end{bmatrix} \bm{E}(\bm{r}, \omega) = 0,
 $$
+
+which allows us separate the variables into three *scalar* [Helmholtz equations](https://en.wikipedia.org/wiki/Helmholtz_equation):
+
+$$ \tag{31}
+\begin{aligned}
+	\big( \nabla^2 + k\_x^2(\omega) \big) E\_x(\bm{r}, \omega) = 0, \cr
+	\big( \nabla^2 + k\_y^2(\omega) \big) E\_y(\bm{r}, \omega) = 0, \cr
+	\big( \nabla^2 + k\_z^2(\omega) \big) E\_z(\bm{r}, \omega) = 0,
+\end{aligned}
+$$
+
+where
+
+$$ \tag{32}
+	\bm{k}(\omega) =
+	\omega \bm{v}(\omega) =
+	\omega \begin{bmatrix} v\_x \cr v\_y \cr v\_z \end{bmatrix} = 
+	\omega \begin{bmatrix} \varepsilon\_x \mu\_x \cr \varepsilon\_y \mu\_y \cr \varepsilon\_z \mu\_z \end{bmatrix}
+$$
+
+is called the [wave vector](https://en.wikipedia.org/wiki/Wave_vector).
 
 ## Solution of the Wave Equation. Scalar Waves
 
