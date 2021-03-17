@@ -186,9 +186,9 @@ $$
 
 ## Constitutive Relations
 
-Considered in isolation, Maxwell's system has fewer equations than unknowns. This forces us to specify the way the material responds to the electromagnetic field. One way to do this is to define the auxiliary fields in terms of polarization of matter (as shown in Equations 4 and 5). Turns out, this leads to a non-linear solution \[[10](#references)\] that is relatively difficult to manipulate.
+Considered in isolation, Maxwell's system has fewer equations than unknowns. This forces us to specify the way the material responds to the electromagnetic field. One way to do this is to express the auxiliary fields in terms of polarization of matter (as per Equations 4 and 5). Turns out, this leads to a non-linear solution \[[10](#references)\] that is relatively difficult to manipulate.
 
-Fortunately, many materials respond to weak electromagnetic fields in optical frequencies in an approximately linear way. This behavior is captured by the [constitutive relations](https://en.wikipedia.org/wiki/Constitutive_equation#Electromagnetism):
+Fortunately, many materials respond to weak electromagnetic fields in optical frequencies in an approximately linear manner. This behavior is captured by the [constitutive relations](https://en.wikipedia.org/wiki/Constitutive_equation#Electromagnetism):
 
 $$ \tag{15}
 \begin{aligned}
@@ -198,7 +198,7 @@ $$ \tag{15}
 \end{aligned}
 $$
 
-We can also combine Equations 14.2 and 15.1 to define the relation of the indiced charge density:
+We can also combine Equations 14.2 and 15.1 to define the relation for the indiced charge density:
 
 $$ \tag{16}
 	\rho\_i(\bm{r}, \omega) \approx \frac{i}{\omega} \nabla \cdot \big( \hat{\sigma}(\bm{r}, \omega) \bm{E}(\bm{r}, \omega) \big).
@@ -220,7 +220,7 @@ $$ \tag{17}
 	\end{bmatrix}.
 $$
 
-For *linear* media (after substitution of the constitutive relations), Maxwell's equations take the following form:
+After substitution of the constitutive relations, Maxwell's equations take the following form:
 
 $$ \tag{18}
 \begin{aligned}
@@ -237,7 +237,7 @@ $$ \tag{19}
 	\hat{\varepsilon}(\bm{r}, \omega) = \hat{\epsilon}(\bm{r}, \omega) - \frac{i}{\omega} \hat{\sigma}(\bm{r}, \omega),
 $$
 
-then Equation 18 can be shortened to
+we obtain Maxwell's equations for *linear* media:
 
 $$ \tag{20}
 \begin{aligned}
@@ -250,9 +250,9 @@ $$
 
 ## Helmholtz's Equation
 
-Consider a region of space without any source currents or charges. Physically, this means that there are no sources of fields. This may seem strange at first; the idea is explore all solutions (we can pick a particular one once we add a source) and determine how they evolve over time.
+Consider a region of space without any source currents or charges. Physically, this means that there are no sources of fields. This may seem strange at first; the idea is explore all solutions (we can pick a particular one once we specify the source) and determine how they evolve over time.
 
-Setting \\(\bm{J\_f} = \rho\_f = 20\\) in Equation 20, we obtain a coupled system of homogeneous linear differential equations:
+Setting \\(\bm{J\_f} = \rho\_f = 0\\) in Equation 20, we obtain a coupled system of homogeneous linear differential equations:
 
 $$ \tag{21}
 \begin{aligned}
@@ -267,7 +267,7 @@ Mathematically, the consequence is that a linear combination of several solution
 
 Assume that the medium is *homogeneous* and *stationary* (constant in space and time)[^103]:
 
-[^103]: See \[[6](#references) (ch. 1.2)\] for an inhomogeneous solution.
+[^103]: See \[[6](#references) (ch. 1.2)\] for an inhomogeneous solution. The stationary approximation is valid for optical frequences because the time period of an oscillation is very short. 
 
 $$ \tag{22}
 \begin{aligned}
@@ -278,15 +278,11 @@ $$ \tag{22}
 \end{aligned}
 $$
 
-Take curl of Equation 22.1 and substitute Equation 22.2:
+Let us now focus on the electric vector \\(\bm{E}\\). Take curl of Equation 22.1 and substitute Equation 22.3:
 
 $$ \tag{23}
-\begin{aligned}
-	&\nabla \times \nabla \times \bm{E}(\bm{r}, \omega) + i \omega \hat{\mu}(\omega) \big( i \omega \hat{\varepsilon}(\omega) \bm{E}(\bm{r}, \omega) \big) = 0, &
-	&\nabla \cdot  \bm{H}(\bm{r}, \omega) = 0, \cr
-	&\nabla \times \bm{H}(\bm{r}, \omega) - i \omega \hat{\varepsilon}(\omega) \bm{E}(\bm{r}, \omega) = 0, &
-	&\nabla \cdot  \bm{E}(\bm{r}, \omega) = 0.
-\end{aligned}
+	\nabla \times \nabla \times \bm{E}(\bm{r}, \omega) + i \omega \hat{\mu}(\omega) \big( i \omega \hat{\varepsilon}(\omega) \bm{E}(\bm{r}, \omega) \big) = 0, \quad
+	\nabla \cdot \bm{E}(\bm{r}, \omega) = 0.
 $$
 
 Introduce the [curl-of-curl](https://en.wikipedia.org/wiki/Vector_calculus_identities#Curl_of_curl) identity
@@ -332,29 +328,31 @@ is the *vector* [Laplace](https://en.wikipedia.org/wiki/Laplace_operator) operat
 Use it to expand Equation 23.1:
 
 $$ \tag{27}
-\begin{aligned}
-	&\nabla (\nabla \cdot \bm{E}(\bm{r}, \omega)) - \nabla^2 \bm{E}(\bm{r}, \omega) - \omega^2 \hat{\varepsilon}(\omega) \hat{\mu}(\omega) \bm{E}(\bm{r}, \omega) = 0, &
-	&\nabla \cdot  \bm{H}(\bm{r}, \omega) = 0, \cr
-	&\nabla \times \bm{H}(\bm{r}, \omega) - i \omega \hat{\varepsilon}(\omega) \bm{E}(\bm{r}, \omega) = 0, &
-	&\nabla \cdot  \bm{E}(\bm{r}, \omega) = 0.
-\end{aligned}
+	\nabla (\nabla \cdot \bm{E}(\bm{r}, \omega)) - \nabla^2 \bm{E}(\bm{r}, \omega) - \omega^2 \hat{\varepsilon}(\omega) \hat{\mu}(\omega) \bm{E}(\bm{r}, \omega) = 0, \quad
+	\nabla \cdot  \bm{E}(\bm{r}, \omega) = 0.
 $$
 
-Substitution of Equation 27.4 into 27.1 yields the equation of the electric field \\(\bm{E}\\):
+Substitution of Equation 27.2 into 27.1 yields the equation of the electric field \\(\bm{E}\\):
 
 $$ \tag{28}
 	\nabla^2 \bm{E}(\bm{r}, \omega) + \omega^2 \hat{\varepsilon}(\omega) \hat{\mu}(\omega) \bm{E}(\bm{r}, \omega) = 0.
 $$
 
-We can define a tensor \\(\hat{v}\\) composed of three complex column vectors \\(\bm{v\_1}\\), \\(\bm{v\_2}\\), \\(\bm{v\_3}\\) such that
+Similarly, we can obtain the expression of the magnetic field \\(\bm{H}\\):
 
 $$ \tag{29}
+	\nabla^2 \bm{H}(\bm{r}, \omega) + \omega^2 \hat{\varepsilon}(\omega) \hat{\mu}(\omega) \bm{H}(\bm{r}, \omega) = 0.
+$$
+
+We can define a tensor \\(\hat{v}\\) composed of three complex column vectors \\(\bm{v\_1}\\), \\(\bm{v\_2}\\), \\(\bm{v\_3}\\) such that
+
+$$ \tag{30}
 	\hat{v}^2(\omega) = \hat{\varepsilon}(\omega) \hat{\mu}(\omega).
 $$
 
 Since this tensor is [symmetric](https://en.wikipedia.org/wiki/Symmetric_matrix) \[[6](#references) (ch. 15.1)\], we can perform a coordinate transformation to [diagonalize](https://en.wikipedia.org/wiki/Diagonalizable_matrix) it:
 
-$$ \tag{30}
+$$ \tag{31}
 	\nabla^2 \bm{E}(\bm{r}, \omega) + \omega^2
 		\begin{bmatrix}
 			v\_x^2 & 0 & 0 \cr
@@ -363,9 +361,9 @@ $$ \tag{30}
 		\end{bmatrix} \bm{E}(\bm{r}, \omega) = 0,
 $$
 
-which allows us separate the variables into three *scalar* [Helmholtz's equations](https://en.wikipedia.org/wiki/Helmholtz_equation):
+which allows us separate the variables into three [Helmholtz's equations](https://en.wikipedia.org/wiki/Helmholtz_equation):
 
-$$ \tag{31}
+$$ \tag{32}
 \begin{aligned}
 	\big( \nabla^2 + k\_x^2(\omega) \big) E\_x(\bm{r}, \omega) = 0, \cr
 	\big( \nabla^2 + k\_y^2(\omega) \big) E\_y(\bm{r}, \omega) = 0, \cr
@@ -375,56 +373,69 @@ $$
 
 where
 
-$$ \tag{32}
-	k(\omega) = \omega v(\omega) = \omega \varepsilon(\omega) \mu(\omega)
+$$ \tag{33}
+	k(\omega) = \omega v(\omega) = \omega \sqrt{\varepsilon(\omega) \mu(\omega)}.
 $$
 
-is called the [wave number](https://en.wikipedia.org/wiki/Wavenumber). The reason behind this name will become apparent shortly.
+To find a solution, let us first consider a simpler one-dimensional Helmholtz's equation
 
-## Wave Equation
-
-For simplicity, consider a one-dimensional Helmholtz's equation (with no dependence on \\(y\\) or \\(z\\))
-
-$$ \tag{33}
+$$ \tag{34}
 	\frac{\partial^2 s(x)}{\partial x^2} = -k^2 s(x).
 $$
 
 If the derivative of a function is the function itself (times a constant), the function is clearly an exponential:
 
-$$ \tag{34}
-	s(x) = \bar{a} e^{\pm i k x}.
+$$ \tag{35}
+	s(x) = \bar{s} e^{\pm i k x}.
 $$
+
+To avoid clutter, we shall adhere to a common convention with the negative sign. The second solution can be obtained by reversing the sign of \\(k\\) or the direction of the \\(x\\)-axis.
 
 Extension to three dimensions is straightforward. If we rotate the coordinate frame so that the \\(x\\)-axis points along the unit vector \\(\bm{n}\\),
 
-$$ \tag{35}
-	s(\bm{r}) = \bar{a} e^{\pm i k (\bm{n} \cdot \bm{r})} = \bar{a} e^{\pm i \bm{k} \cdot \bm{r}}.
-$$
-
-where \\(\bm{k}\\) is called the [wave vector](https://en.wikipedia.org/wiki/Wave_vector). This formula can be used to solve Equations 31.1-31.3:
-
 $$ \tag{36}
-	\bm{E}(\bm{r}, \omega) = \bm{\bar{E}}(\omega)
-	\begin{bmatrix}
-		\exp(\pm i \bm{k\_x}(\omega) \cdot \bm{r}) \cr
-		\exp(\pm i \bm{k\_y}(\omega) \cdot \bm{r}) \cr
-		\exp(\pm i \bm{k\_z}(\omega) \cdot \bm{r})
-	\end{bmatrix}.
+	s(\bm{r}) = \bar{s} e^{-i k (\bm{n} \cdot \bm{r})} = \bar{s} e^{-i \bm{k} \cdot \bm{r}}.
 $$
 
-After solving Maxwell's equations in the frequency domain, we can find the solution in the time domain by substitution into Equation 9:
+## Wave Equation
+
+Equation 36 can be used to solve Equations 32.1-32.3:
 
 $$ \tag{37}
-	\bm{E}(\bm{r}, t) =
-	\frac{1}{\sqrt{2 \pi}} \int\_{-\infin}^{\infin} \mathrm{Re} \big\lbrace \bm{E}(\bm{r}, \omega) e^{i \omega t} \big\rbrace d\omega = 
-	\frac{1}{\sqrt{2 \pi}} \int\_{-\infin}^{\infin} \bm{\bar{E}}(\omega)
-		\begin{bmatrix}
-			\cos(\pm i \bm{k\_x}(\omega) \cdot \bm{r} + i \omega t) \cr
-			\cos(\pm i \bm{k\_y}(\omega) \cdot \bm{r} + i \omega t) \cr
-			\cos(\pm i \bm{k\_z}(\omega) \cdot \bm{r} + i \omega t)
-		\end{bmatrix} d\omega.
+	\bm{E}(\bm{r}, \omega) = \bar{\bm{E\_c}}(\omega)
+	\begin{bmatrix}
+		\exp(-i \bm{k\_x}(\omega) \cdot \bm{r}) \cr
+		\exp(-i \bm{k\_y}(\omega) \cdot \bm{r}) \cr
+		\exp(-i \bm{k\_z}(\omega) \cdot \bm{r})
+	\end{bmatrix},
 $$
 
+where \\(\bar{\bm{E\_c}}\\) is a complex vector.
+
+After solving Maxwell's equations in the frequency domain, we can find a solution in the time domain by substitution into Equation 9:
+
+$$ \tag{38}
+\begin{aligned}
+	\bm{E}(\bm{r}, t)
+	&= \frac{1}{\sqrt{2 \pi}} \int\_{-\infin}^{\infin} \mathrm{Re} \big\lbrace \bm{E}(\bm{r}, \omega) e^{i \omega t} \big\rbrace d\omega \cr
+	&= \frac{1}{\sqrt{2 \pi}} \int\_{-\infin}^{\infin} \mathrm{Re} \Bigg\lbrace \bar{\bm{E\_c}}(\omega)
+		\begin{bmatrix}
+			\exp(-i \bm{k\_x}(\omega) \cdot \bm{r} + i \omega t) \cr
+			\exp(-i \bm{k\_y}(\omega) \cdot \bm{r} + i \omega t) \cr
+			\exp(-i \bm{k\_z}(\omega) \cdot \bm{r} + i \omega t)
+		\end{bmatrix} \Bigg\rbrace d\omega \cr
+	&= \frac{1}{\sqrt{2 \pi}} \int\_{-\infin}^{\infin} \bar{\bm{E\_r}}(\omega)
+		\begin{bmatrix}
+			\cos(\phi\_x(\omega) - i \bm{k\_x}(\omega) \cdot \bm{r} + i \omega t) \cr
+			\cos(\phi\_y(\omega) - i \bm{k\_y}(\omega) \cdot \bm{r} + i \omega t) \cr
+			\cos(\phi\_z(\omega) - i \bm{k\_z}(\omega) \cdot \bm{r} + i \omega t)
+		\end{bmatrix} d\omega,
+\end{aligned}
+$$
+
+where \\(\bar{\bm{E\_r}}\\) is a real vector. 
+
+---
 
  How can we solve it? Unfortunately, the only way is to guess the answer \[[5](#references) (vol. II, ch. 20), [6](#references) (ch. 1.3)\]. We use [d'Alembert's formula](https://en.wikipedia.org/wiki/D%27Alembert%27s_formula) and assume that the solution takes the form
 
