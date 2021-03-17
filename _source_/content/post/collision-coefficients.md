@@ -2,10 +2,10 @@
 title: "Origin of the Collision Coefficients"
 date: 2020-10-04
 tags: [
-    "Collision Coefficients",
-    "Light Scattering",
-    "Optics",
-    ]
+	"Collision Coefficients",
+	"Light Scattering",
+	"Optics",
+	]
 draft: true
 ---
 
@@ -248,7 +248,7 @@ $$ \tag{20}
 \end{aligned}
 $$
 
-## Helmholtz Equation
+## Helmholtz's Equation
 
 Consider a region of space without any source currents or charges. Physically, this means that there are no sources of fields. This may seem strange at first; the idea is explore all solutions (we can pick a particular one once we add a source) and determine how they evolve over time.
 
@@ -363,7 +363,7 @@ $$ \tag{30}
 		\end{bmatrix} \bm{E}(\bm{r}, \omega) = 0,
 $$
 
-which allows us separate the variables into three *scalar* [Helmholtz equations](https://en.wikipedia.org/wiki/Helmholtz_equation):
+which allows us separate the variables into three *scalar* [Helmholtz's equations](https://en.wikipedia.org/wiki/Helmholtz_equation):
 
 $$ \tag{31}
 \begin{aligned}
@@ -376,23 +376,57 @@ $$
 where
 
 $$ \tag{32}
-	\bm{k}(\omega) =
-	\omega \bm{v}(\omega) =
-	\omega \begin{bmatrix} v\_x \cr v\_y \cr v\_z \end{bmatrix} = 
-	\omega \begin{bmatrix} \varepsilon\_x \mu\_x \cr \varepsilon\_y \mu\_y \cr \varepsilon\_z \mu\_z \end{bmatrix}
+	k(\omega) = \omega v(\omega) = \omega \varepsilon(\omega) \mu(\omega)
 $$
 
-is called the [wave vector](https://en.wikipedia.org/wiki/Wave_vector).
+is called the [wave number](https://en.wikipedia.org/wiki/Wavenumber). The reason behind this name will become apparent shortly.
 
-## Solution of the Wave Equation. Scalar Waves
+## Wave Equation
 
-For simplicity, consider a one-dimensional wave equation (with no dependence on \\(y\\) or \\(z\\))
+For simplicity, consider a one-dimensional Helmholtz's equation (with no dependence on \\(y\\) or \\(z\\))
 
-$$ \tag{20}
-	\frac{\partial^2 s}{\partial x^2} = v^2 \frac{\partial^2 s}{\partial t^2}.
+$$ \tag{33}
+	\frac{\partial^2 s(x)}{\partial x^2} = -k^2 s(x).
 $$
 
-How can we solve it? Unfortunately, the only way is to guess the answer \[[5](#references) (vol. II, ch. 20), [6](#references) (ch. 1.3)\]. We use [d'Alembert's formula](https://en.wikipedia.org/wiki/D%27Alembert%27s_formula) and assume that the solution takes the form
+If the derivative of a function is the function itself (times a constant), the function is clearly an exponential:
+
+$$ \tag{34}
+	s(x) = \bar{a} e^{\pm i k x}.
+$$
+
+Extension to three dimensions is straightforward. If we rotate the coordinate frame so that the \\(x\\)-axis points along the unit vector \\(\bm{n}\\),
+
+$$ \tag{35}
+	s(\bm{r}) = \bar{a} e^{\pm i k (\bm{n} \cdot \bm{r})} = \bar{a} e^{\pm i \bm{k} \cdot \bm{r}}.
+$$
+
+where \\(\bm{k}\\) is called the [wave vector](https://en.wikipedia.org/wiki/Wave_vector). This formula can be used to solve Equations 31.1-31.3:
+
+$$ \tag{36}
+	\bm{E}(\bm{r}, \omega) = \bm{\bar{E}}(\omega)
+	\begin{bmatrix}
+		\exp(\pm i \bm{k\_x}(\omega) \cdot \bm{r}) \cr
+		\exp(\pm i \bm{k\_y}(\omega) \cdot \bm{r}) \cr
+		\exp(\pm i \bm{k\_z}(\omega) \cdot \bm{r})
+	\end{bmatrix}.
+$$
+
+After solving Maxwell's equations in the frequency domain, we can find the solution in the time domain by substitution into Equation 9:
+
+$$ \tag{37}
+	\bm{E}(\bm{r}, t) =
+	\frac{1}{\sqrt{2 \pi}} \int\_{-\infin}^{\infin} \mathrm{Re} \big\lbrace \bm{E}(\bm{r}, \omega) e^{i \omega t} \big\rbrace d\omega = 
+	\frac{1}{\sqrt{2 \pi}} \int\_{-\infin}^{\infin} \bm{\bar{E}}(\omega)
+		\begin{bmatrix}
+			\cos(\pm i \bm{k\_x}(\omega) \cdot \bm{r} + i \omega t) \cr
+			\cos(\pm i \bm{k\_y}(\omega) \cdot \bm{r} + i \omega t) \cr
+			\cos(\pm i \bm{k\_z}(\omega) \cdot \bm{r} + i \omega t)
+		\end{bmatrix} d\omega.
+$$
+
+
+ How can we solve it? Unfortunately, the only way is to guess the answer \[[5](#references) (vol. II, ch. 20), [6](#references) (ch. 1.3)\]. We use [d'Alembert's formula](https://en.wikipedia.org/wiki/D%27Alembert%27s_formula) and assume that the solution takes the form
 
 $$ \tag{21}
 	s(x, t) = f(x \pm v t),
@@ -498,7 +532,7 @@ $$ \tag{7} u(\bm{r}, t) = \bar{a}(\bm{r}) e^{i \theta(\bm{r}, t)} = \bar{a}(\bm{
 Combining Equations 4, 5, and 7, we arrive at the explicit description of a plane wave
 
 $$ \tag{8} u(z,t) = \bar{a} e^{i (\delta - (\omega / c) (\eta - i \kappa) z + \omega t)}
-			      = \bar{a} e^{-\kappa (\omega z / c)} e^{i (\delta - \eta (\omega z / c) + \omega t)}. $$
+				  = \bar{a} e^{-\kappa (\omega z / c)} e^{i (\delta - \eta (\omega z / c) + \omega t)}. $$
 
 We can take the argument to extract the *phase angle*
 
@@ -507,7 +541,7 @@ $$ \tag{9} \theta(z,t) = \mathrm{Arg} \big\lbrace u(z,t) \big\rbrace = \delta - 
 and taking the real part allows us to recover the real amplitude
 
 $$ \tag{10} a(z,t) = \mathrm{Re} \big\lbrace u(z,t) \big\rbrace
-			      = \bar{a} e^{-\kappa (\omega z / c)} \cos{\theta(z,t)} . $$
+				  = \bar{a} e^{-\kappa (\omega z / c)} \cos{\theta(z,t)} . $$
 
 When examining Equations 8-10, the first thing to notice is that \\(\omega z / c\\) and \\(\omega t\\) are both measured in radians. With that in mind, the role of the complex IOR becomes apparent. The real part of the IOR, \\(\eta\\), reduces the [phase velocity](https://www.feynmanlectures.caltech.edu/I_48.html) \\(v\_p\\) of the wave from \\(c\\) to \\(c / \eta\\) \[[5](#references) (vol. I, ch. 48), [6](#references) (ch. 1.3.3)\]. The imaginary part of the IOR, \\(\kappa\\), causes [exponential absorption](https://www.feynmanlectures.caltech.edu/I_31.html) with distance \[[5](#references) (vol. I, ch. 31), [6](#references) (???)\].
 
@@ -521,12 +555,12 @@ In the case of the electric vector \\(\bm{E}\\), it just means the plane harmoni
 
 $$ \tag{11} \bm{E}(z,t) =
 	\begin{bmatrix}
-    	E\_x(z,t) \cr
-    	E\_y(z,t)
+		E\_x(z,t) \cr
+		E\_y(z,t)
 	\end{bmatrix} =
 	\begin{bmatrix}
-    	\bar{E}\_x e^{-\kappa\_x (\omega z / c)} \cos(\delta\_x - \eta\_x (\omega z / c) + \omega t) \cr
-    	\bar{E}\_y e^{-\kappa\_y (\omega z / c)} \cos(\delta\_y - \eta\_y (\omega z / c) + \omega t)
+		\bar{E}\_x e^{-\kappa\_x (\omega z / c)} \cos(\delta\_x - \eta\_x (\omega z / c) + \omega t) \cr
+		\bar{E}\_y e^{-\kappa\_y (\omega z / c)} \cos(\delta\_y - \eta\_y (\omega z / c) + \omega t)
 	\end{bmatrix}. $$
 
 {{< figure src="/img/electric_vector.png" caption="*Electric vector \[[7](#references) (p. 6)\].*">}}
@@ -537,12 +571,12 @@ What about the magnetic vector? From Maxwell's equations, we know that the magne
 
 $$ \tag{12} \bm{B}(z,t) =
 	\begin{bmatrix}
-    	B\_x(z,t) \cr
-    	B\_y(z,t)
+		B\_x(z,t) \cr
+		B\_y(z,t)
 	\end{bmatrix} =
 	\begin{bmatrix}
-    	\bar{B}\_x e^{-\kappa\_x (\omega z / c)} \sin(\delta\_x - \eta\_x (\omega z / c) + \omega t) \cr
-    	\bar{B}\_y e^{-\kappa\_y (\omega z / c)} \sin(\delta\_y - \eta\_y (\omega z / c) + \omega t)
+		\bar{B}\_x e^{-\kappa\_x (\omega z / c)} \sin(\delta\_x - \eta\_x (\omega z / c) + \omega t) \cr
+		\bar{B}\_y e^{-\kappa\_y (\omega z / c)} \sin(\delta\_y - \eta\_y (\omega z / c) + \omega t)
 	\end{bmatrix}. $$
 
 The only new quantity introduced by Equation 12 is the maximum magnitude of \\(\bm{B}\\). Turns out, for time-harmonic plane waves propagating in a linear medium (without currents), the following relation holds:
@@ -622,8 +656,8 @@ To determine this shape, consider a time-harmonic wave at a fixed position \\(\b
 
 $$ \tag{14} \bm{E}(\bm{r},t) =
 	\begin{bmatrix}
-    	\bar{E}\_x(\bm{r}) \cos(\phi\_x(\bm{r}) + \omega t) \cr
-    	\bar{E}\_y(\bm{r}) \cos(\phi\_y(\bm{r}) + \omega t)
+		\bar{E}\_x(\bm{r}) \cos(\phi\_x(\bm{r}) + \omega t) \cr
+		\bar{E}\_y(\bm{r}) \cos(\phi\_y(\bm{r}) + \omega t)
 	\end{bmatrix},
 $$
 
@@ -662,12 +696,12 @@ reveals that it is the equation of an ellipse. This means that we can find a set
 $$ \tag{19}
 	\bm{E}(\bm{r},t) =
 	\begin{bmatrix}
-    	E\_a(\bm{r},t) \cr
-    	E\_b(\bm{r},t)
+		E\_a(\bm{r},t) \cr
+		E\_b(\bm{r},t)
 	\end{bmatrix} =
 	\begin{bmatrix}
-    	\phantom{\pm} \bar{E}\_a(\bm{r}) \cos(\phi(\bm{r}) + \omega t) \cr
-    	\pm   	      \bar{E}\_b(\bm{r}) \sin(\phi(\bm{r}) + \omega t)
+		\phantom{\pm} \bar{E}\_a(\bm{r}) \cos(\phi(\bm{r}) + \omega t) \cr
+		\pm   	      \bar{E}\_b(\bm{r}) \sin(\phi(\bm{r}) + \omega t)
 	\end{bmatrix},
 $$
 
@@ -678,8 +712,8 @@ The significance of Equation 19 can be better seen if we express it using comple
 $$ \tag{??}
 	\bm{E}(\bm{r},t) = \mathrm{Re}
 	\begin{Bmatrix}
-    	\phantom{\pm} \bar{E}\_a(\bm{r}) \phantom{e^{-i \pi/2}} e^{i(\phi(\bm{r}) + \omega t)} \cr
-    			 \pm  \bar{E}\_b(\bm{r}) 		  e^{-i \pi/2}  e^{i(\phi(\bm{r}) + \omega t)}
+		\phantom{\pm} \bar{E}\_a(\bm{r}) \phantom{e^{-i \pi/2}} e^{i(\phi(\bm{r}) + \omega t)} \cr
+				 \pm  \bar{E}\_b(\bm{r}) 		  e^{-i \pi/2}  e^{i(\phi(\bm{r}) + \omega t)}
 	\end{Bmatrix} =
 	\mathrm{Re} \big\lbrace \bm{\bar{E}}(\bm{r}) e^{i \phi(\bm{r})} e^{i \omega t} \big\rbrace,
 $$
@@ -725,9 +759,9 @@ Decomposition into groups of coefficients of \\(\cos{\omega t}\\) and \\(\sin{\o
 $$ \tag{23}
 \begin{cases}
    \phantom{\pm} \bar{E}\_a \cos{\phi} = \phantom{-} \bar{E}\_x \cos{\phi\_x} \cos{\psi} + \bar{E}\_y \cos{\phi\_y} \sin{\psi} \cr
-            \pm  \bar{E}\_b \sin{\phi} = \phantom{-} \bar{E}\_y \cos{\phi\_y} \cos{\psi} - \bar{E}\_x \cos{\phi\_x} \sin{\psi} \cr
+			\pm  \bar{E}\_b \sin{\phi} = \phantom{-} \bar{E}\_y \cos{\phi\_y} \cos{\psi} - \bar{E}\_x \cos{\phi\_x} \sin{\psi} \cr
    \phantom{\pm} \bar{E}\_a \sin{\phi} = \phantom{-} \bar{E}\_x \sin{\phi\_x} \cos{\psi} + \bar{E}\_y \sin{\phi\_y} \sin{\psi} \cr
-            \pm  \bar{E}\_b \cos{\phi} =          -  \bar{E}\_y \sin{\phi\_y} \cos{\psi} + \bar{E}\_x \sin{\phi\_x} \sin{\psi}
+			\pm  \bar{E}\_b \cos{\phi} =          -  \bar{E}\_y \sin{\phi\_y} \cos{\psi} + \bar{E}\_x \sin{\phi\_x} \sin{\psi}
 \end{cases}
 $$
 
