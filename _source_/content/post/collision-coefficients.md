@@ -91,7 +91,7 @@ $$ \tag{4}
 	\bm{H}(\bm{r}, t) = \frac{1}{\mu\_0} \bm{B}(\bm{r}, t) - \bm{M}(\bm{r}, t),
 $$
 
-where \\(\bm{P}\\) is the [electric polarization](https://en.wikipedia.org/wiki/Polarization_density) (electric dipole moment per unit volume), \\(\bm{M}\\) is the [magnetic polarization](https://en.wikipedia.org/wiki/Magnetization) (magnetic dipole moment per unit volume), and \\(\epsilon\_0\\) and \\(\mu\_0\\) are the [electric permittivity](https://en.wikipedia.org/wiki/Permittivity) and the [magnetic permeability](https://en.wikipedia.org/wiki/Permeability_(electromagnetism)) of vacuum, respectively.
+where \\(\bm{P}\\) is the [electric polarization](https://en.wikipedia.org/wiki/Polarization_density) (electric dipole moment per unit volume), \\(\bm{M}\\) is the [magnetic polarization](https://en.wikipedia.org/wiki/Magnetization) (magnetic dipole moment per unit volume), and \\(\epsilon\_0\\) and \\(\mu\_0\\) are the [electric permittivity](https://en.wikipedia.org/wiki/Permittivity) and the [magnetic permeability](https://en.wikipedia.org/wiki/Permeability_(electromagnetism)) of the free space (vacuum), respectively.
 
 Polarization of matter is related to the *bound* [current](https://en.wikipedia.org/wiki/Current_density#Polarization_and_magnetization_currents) and [charge densities](https://en.wikipedia.org/wiki/Charge_density#Bound_charge), \\(\bm{J\_b}\\) and \\(\rho\_b\\):
 
@@ -446,21 +446,38 @@ $$
 
 where \\(\bar{E}\\) is the real *maximum amplitude* and \\(\omega\\) is the *angular frequency*. The phase angle \\(\phi\\) of the phase vector \\(\bm{E}(\bm{r}, \omega)\\) is typically referred to as the *phase*. Surfaces of constant phase are called *cophasal*, or *wavefronts*.
 
- As we expand the expression of the phase, we discover the *phase shift* \\(\delta\\) and the complex [wave vector](https://en.wikipedia.org/wiki/Wave_vector) \\(\bm{k}\\) that points along the plane normal \\(\bm{n}\\):
+ As we expand the expression of the phase 
 
 $$ \tag{40}
 	\phi(\bm{r}, \omega) =
 	\delta(\omega) - \bm{k}(\omega) \cdot \bm{r} =
-	\delta(\omega) - {k}(\omega) (\bm{n} \cdot \bm{r}).
+	\delta(\omega) - {k}(\omega) (\bm{n} \cdot \bm{r}),
 $$
 
-???
+we discover the *phase shift* \\(\delta\\) and the complex [wave vector](https://en.wikipedia.org/wiki/Wave_vector) \\(\bm{k}\\) that points along the plane normal \\(\bm{n}\\) that has been scaled using the complex [wave number](https://en.wikipedia.org/wiki/Wavenumber) \\(k\\):
 
 $$ \tag{41}
 	k(\omega) =
-	\omega \sqrt{\varepsilon(\omega) \mu(\omega)} =
-	\omega \sqrt{\big( \hat{\epsilon}(\bm{r}, \omega) - \frac{i}{\omega} \hat{\sigma}(\bm{r}, \omega) \big) \mu(\omega)}.
+	\omega \sqrt{\varepsilon(\omega) \mu(\omega)}.
 $$
+
+It is convenient to use a parametrization that does not involve taking a square root. If we define the *relative* permittivity and permeability with respect to the values of the free space (vacuum)
+
+$$ \tag{42}
+	\varepsilon\_r(\omega) = \frac{\varepsilon(\omega)}{\varepsilon\_0}, \quad
+	\mu\_r(\omega) = \frac{\mu(\omega)}{\mu\_0}
+$$
+
+the square root of Equation 41 can be expressed as
+
+$$ \tag{43}
+	\sqrt{\varepsilon(\omega) \mu(\omega)} =
+	\sqrt{\varepsilon\_0 \mu\_0}\sqrt{\varepsilon\_r(\omega) \mu\_r(\omega)} =
+	\frac{1}{c\_0}\sqrt{\big( \epsilon\_r(\omega) - \frac{i}{\omega} \sigma\_r(\omega) \big) \mu\_r(\omega)} = 
+	\frac{\eta(\omega) - i \kappa(\omega)}{c\_0},
+$$
+
+where \\(\eta - i \kappa\\) is the [complex refractive index](https://en.wikipedia.org/wiki/Refractive_index#Complex_refractive_index) (\\(\eta\\) and \\(\kappa\\) are real numbers) and \\(c\_0\\) is the [speed of light](https://en.wikipedia.org/wiki/Speed_of_light) in vacuum.
 
 where \\(\bar{a}\\) is the *maximum amplitude* and \\(\omega\\) is the *angular frequency*.  Note that, in general, surfaces of constant amplitude do not coincide with surfaces of constant phase [[6](#references) (p. 18)\].
 
