@@ -477,7 +477,9 @@ $$ \tag{43}
 	\frac{\eta(\omega) - i \kappa(\omega)}{c\_0},
 $$
 
-where \\(\eta - i \kappa\\) is the [complex refractive index](https://en.wikipedia.org/wiki/Refractive_index#Complex_refractive_index) (\\(\eta\\) and \\(\kappa\\) are real numbers) and \\(c\_0\\) is the [speed of light](https://en.wikipedia.org/wiki/Speed_of_light) in vacuum.
+where \\(\eta\\) is the real [refractive index](https://en.wikipedia.org/wiki/Refractive_index), \\(\kappa\\) is the real [attenuation index](https://en.wikipedia.org/wiki/Refractive_index#Complex_refractive_index), and \\(c\_0\\) is the [speed of light](https://en.wikipedia.org/wiki/Speed_of_light) in vacuum.
+
+---
 
 where \\(\bar{a}\\) is the *maximum amplitude* and \\(\omega\\) is the *angular frequency*.  Note that, in general, surfaces of constant amplitude do not coincide with surfaces of constant phase [[6](#references) (p. 18)\].
 

@@ -32,7 +32,7 @@ $$ \tag{3} d = \frac{1}{\beta\_t}, $$
 
 which corresponds to the average collision-free (or free-flight) distance.
 
-It's worth noting that the absorption coefficient is directly related to the [absorption index](http://www.sfu.ca/~gchapman/e376/e376l7.pdf) \\(\kappa\\), which is the imaginary part of the [complex refractive index](https://en.wikipedia.org/wiki/Refractive_index#Complex_refractive_index) (IOR) \\(\eta - i \kappa\\):
+It's worth noting that the absorption coefficient is directly related to the [attenuation index](http://www.sfu.ca/~gchapman/e376/e376l7.pdf) \\(\kappa\\), which is the imaginary part of the [complex refractive index](https://en.wikipedia.org/wiki/Refractive_index#Complex_refractive_index) (IOR) \\(\eta - i \kappa\\):
 
 $$ \tag{4} \kappa = \frac{\lambda}{4 \pi} \beta\_a. $$
 
