@@ -314,12 +314,6 @@ $$ \tag{26}
 	\nabla^2 \bm{V} =
 	\mathrm{div}(\mathrm{grad}(\bm{V})) =
 	(\nabla \cdot \nabla) \bm{V} =
-	\Bigg[\frac{\partial}{\partial x}, \frac{\partial}{\partial y}, \frac{\partial}{\partial z}\Bigg]^{\mathrm{T}}
-	\begin{bmatrix}
-		\partial / \partial x \cr
-		\partial / \partial y \cr
-		\partial / \partial z
-	\end{bmatrix} \bm{V} =
 	\frac{\partial^2 \bm{V}}{\partial x^2} + \frac{\partial^2 \bm{V}}{\partial y^2} + \frac{\partial^2 \bm{V}}{\partial z^2}
 $$
 
@@ -344,26 +338,20 @@ $$ \tag{29}
 	\nabla^2 \bm{H}(\bm{r}, \omega) + \omega^2 \hat{\varepsilon}(\omega) \hat{\mu}(\omega) \bm{H}(\bm{r}, \omega) = 0.
 $$
 
-We can define a tensor \\(\hat{v}\\) composed of three complex column vectors \\(\bm{v\_1}\\), \\(\bm{v\_2}\\), \\(\bm{v\_3}\\) such that
-
-$$ \tag{30}
-	\hat{v}^2(\omega) = \hat{\varepsilon}(\omega) \hat{\mu}(\omega).
-$$
-
 Since this tensor is [symmetric](https://en.wikipedia.org/wiki/Symmetric_matrix) \[[6](#references) (ch. 15.1)\], we can perform a coordinate transformation to [diagonalize](https://en.wikipedia.org/wiki/Diagonalizable_matrix) it:
 
-$$ \tag{31}
+$$ \tag{30}
 	\nabla^2 \bm{E}(\bm{r}, \omega) + \omega^2
 		\begin{bmatrix}
-			v\_x^2 & 0 & 0 \cr
-			0 & v\_y^2 & 0 \cr
-			0 & 0 & v\_z^2
+			\varepsilon\_x \mu\_x & 0 & 0 \cr
+			0 & \varepsilon\_y \mu\_y & 0 \cr
+			0 & 0 & \varepsilon\_z \mu\_z
 		\end{bmatrix} \bm{E}(\bm{r}, \omega) = 0,
 $$
 
 which allows us separate the variables into three [Helmholtz's equations](https://en.wikipedia.org/wiki/Helmholtz_equation):
 
-$$ \tag{32}
+$$ \tag{31}
 \begin{aligned}
 	\big( \nabla^2 + k\_x^2(\omega) \big) E\_x(\bm{r}, \omega) = 0, \cr
 	\big( \nabla^2 + k\_y^2(\omega) \big) E\_y(\bm{r}, \omega) = 0, \cr
@@ -373,136 +361,106 @@ $$
 
 where
 
-$$ \tag{33}
-	k(\omega) = \omega v(\omega) = \omega \sqrt{\varepsilon(\omega) \mu(\omega)}.
+$$ \tag{32}
+	k(\omega) = \omega \sqrt{\varepsilon(\omega) \mu(\omega)}.
 $$
 
 To find a solution, let us first consider a simpler one-dimensional Helmholtz's equation
 
-$$ \tag{34}
-	\frac{\partial^2 s(x)}{\partial x^2} = -k^2 s(x).
+$$ \tag{33}
+	\frac{d^2 s(x)}{d x^2} = -k^2 s(x).
 $$
 
 If the derivative of a function is the function itself (times a constant), the function is clearly an exponential:
 
-$$ \tag{35}
-	s(x) = \bar{s} e^{\pm i k x}.
+$$ \tag{34}
+	s(x) =
+	s(0) e^{\pm i k x} = 
+	\bar{s} e^{i (\delta \pm k x)},
 $$
 
-To avoid clutter, we shall adhere to a common convention with the negative sign. The second solution can be obtained by reversing the sign of \\(k\\) or the direction of the \\(x\\)-axis.
+where \\(\bar{s}\\) represents a real number. To avoid clutter, we shall adhere to a common convention with the negative sign. The second solution can be obtained by reversing either the sign of \\(k\\) or the direction of the \\(x\\)-axis.
 
 Extension to three dimensions is straightforward. If we rotate the coordinate frame so that the \\(x\\)-axis points along the unit vector \\(\bm{n}\\),
 
-$$ \tag{36}
-	s(\bm{r}) = \bar{s} e^{-i k (\bm{n} \cdot \bm{r})} = \bar{s} e^{-i \bm{k} \cdot \bm{r}}.
+$$ \tag{35}
+	s(\bm{r}) =
+	\bar{s} e^{i (\delta - k (\bm{n} \cdot \bm{r}))} =
+	\bar{s} e^{i (\delta - \bm{k} \cdot \bm{r})}.
 $$
 
-## Wave Equation
+Equation 35 can be used to solve Equations 31.1-31.3:
 
-Equation 36 can be used to solve Equations 32.1-32.3:
+$$ \tag{36}
+	\bm{E}(\bm{r}, \omega) = \bar{\bm{E}}(\omega)
+	\begin{bmatrix}
+		\mathrm{exp}\big( i (\delta\_x(\omega) - \bm{k\_x}(\omega) \cdot \bm{r}) \big) \cr
+		\mathrm{exp}\big( i (\delta\_y(\omega) - \bm{k\_y}(\omega) \cdot \bm{r}) \big) \cr
+		\mathrm{exp}\big( i (\delta\_z(\omega) - \bm{k\_z}(\omega) \cdot \bm{r}) \big)
+	\end{bmatrix}.
+$$
+
+That is a solution of Maxwell's equations in the frequency domain.
+
+## Time-Harmonic Waves
+
+We can find a solution in the time domain by substitution into Equation 9:
 
 $$ \tag{37}
-	\bm{E}(\bm{r}, \omega) = \bar{\bm{E\_c}}(\omega)
-	\begin{bmatrix}
-		\exp(-i \bm{k\_x}(\omega) \cdot \bm{r}) \cr
-		\exp(-i \bm{k\_y}(\omega) \cdot \bm{r}) \cr
-		\exp(-i \bm{k\_z}(\omega) \cdot \bm{r})
-	\end{bmatrix},
-$$
-
-where \\(\bar{\bm{E\_c}}\\) is a complex vector.
-
-After solving Maxwell's equations in the frequency domain, we can find a solution in the time domain by substitution into Equation 9:
-
-$$ \tag{38}
 \begin{aligned}
 	\bm{E}(\bm{r}, t)
 	&= \frac{1}{\sqrt{2 \pi}} \int\_{-\infin}^{\infin} \mathrm{Re} \big\lbrace \bm{E}(\bm{r}, \omega) e^{i \omega t} \big\rbrace d\omega \cr
-	&= \frac{1}{\sqrt{2 \pi}} \int\_{-\infin}^{\infin} \mathrm{Re} \Bigg\lbrace \bar{\bm{E\_c}}(\omega)
+	&= \frac{1}{\sqrt{2 \pi}} \int\_{-\infin}^{\infin} \mathrm{Re} \Bigg\lbrace \bar{\bm{E}}(\omega)
 		\begin{bmatrix}
-			\exp(-i \bm{k\_x}(\omega) \cdot \bm{r} + i \omega t) \cr
-			\exp(-i \bm{k\_y}(\omega) \cdot \bm{r} + i \omega t) \cr
-			\exp(-i \bm{k\_z}(\omega) \cdot \bm{r} + i \omega t)
+			\mathrm{exp}\big( i (\delta\_x(\omega) - \bm{k\_x}(\omega) \cdot \bm{r} + \omega t) \big) \cr
+			\mathrm{exp}\big( i (\delta\_y(\omega) - \bm{k\_y}(\omega) \cdot \bm{r} + \omega t) \big) \cr
+			\mathrm{exp}\big( i (\delta\_z(\omega) - \bm{k\_z}(\omega) \cdot \bm{r} + \omega t) \big)
 		\end{bmatrix} \Bigg\rbrace d\omega \cr
-	&= \frac{1}{\sqrt{2 \pi}} \int\_{-\infin}^{\infin} \bar{\bm{E\_r}}(\omega)
+	&= \frac{1}{\sqrt{2 \pi}} \int\_{-\infin}^{\infin} \bar{\bm{E}}(\omega)
 		\begin{bmatrix}
-			\cos(\phi\_x(\omega) - i \bm{k\_x}(\omega) \cdot \bm{r} + i \omega t) \cr
-			\cos(\phi\_y(\omega) - i \bm{k\_y}(\omega) \cdot \bm{r} + i \omega t) \cr
-			\cos(\phi\_z(\omega) - i \bm{k\_z}(\omega) \cdot \bm{r} + i \omega t)
-		\end{bmatrix} d\omega,
+			\cos(\delta\_x(\omega) - \bm{k\_x}(\omega) \cdot \bm{r} + \omega t) \cr
+			\cos(\delta\_y(\omega) - \bm{k\_y}(\omega) \cdot \bm{r} + \omega t) \cr
+			\cos(\delta\_z(\omega) - \bm{k\_z}(\omega) \cdot \bm{r} + \omega t)
+		\end{bmatrix} d\omega.
 \end{aligned}
 $$
 
-where \\(\bar{\bm{E\_r}}\\) is a real vector. 
+The integral of Equation 37 represents a [wave packet](https://en.wikipedia.org/wiki/Wave_packet). It is a collection of time-harmonic *vector* [plane waves](https://en.wikipedia.org/wiki/Plane_wave) of the form
 
----
-
- How can we solve it? Unfortunately, the only way is to guess the answer \[[5](#references) (vol. II, ch. 20), [6](#references) (ch. 1.3)\]. We use [d'Alembert's formula](https://en.wikipedia.org/wiki/D%27Alembert%27s_formula) and assume that the solution takes the form
-
-$$ \tag{21}
-	s(x, t) = f(x \pm v t),
+$$ \tag{38}
+\bar{\bm{E}}(\omega)
+	\begin{bmatrix}
+		\cos(\delta\_x(\omega) - \bm{k\_x}(\omega) \cdot \bm{r} + \omega t) \cr
+		\cos(\delta\_y(\omega) - \bm{k\_y}(\omega) \cdot \bm{r} + \omega t) \cr
+		\cos(\delta\_z(\omega) - \bm{k\_z}(\omega) \cdot \bm{r} + \omega t)
+	\end{bmatrix},
 $$
 
-which can be readily verified by applying the [chain rule](https://en.wikipedia.org/wiki/Chain_rule). This is the equation of a *plane wave*, which can be seen as a plane propagating along the direction of its normal (the \\(x\\)-axis) at the velocity \\(v\\).
+each composed of three *scalar* plane waves such as
 
-Extension to three dimensions is straightforward. If we rotate the plane normal \\(\bm{n}\\) away from the \\(x\\)-axis,
-
-$$ \tag{22}
-	s(\bm{r}, t) = f(\bm{r} \cdot \bm{n} \pm v t).
+$$ \tag{39}
+	\bar{E}(\omega) \cos(\phi(\bm{r}, \omega) + \omega t),
 $$
 
-This formula can be used to solve Equations 19.1-19.3.
+where \\(\bar{E}\\) is the real *maximum amplitude* and \\(\omega\\) is the *angular frequency*. The phase angle \\(\phi\\) of the phase vector \\(\bm{E}(\bm{r}, \omega)\\) is typically referred to as the *phase*. Surfaces of constant phase are called *cophasal*, or *wavefronts*.
 
-Notice that we deliberately do not impose any restrictions on \\(f\\) or \\(\bm{n}\\). Any linear combination of plane waves such as this one
+ As we expand the expression of the phase, we discover the *phase shift* \\(\delta\\) and the complex [wave vector](https://en.wikipedia.org/wiki/Wave_vector) \\(\bm{k}\\) that points along the plane normal \\(\bm{n}\\):
 
-$$ \tag{23}
-	s(\bm{r}, t) = w\_1 f\_1(\bm{r} \cdot \bm{n\_1} + v t) + w\_2 f\_2(\bm{r} \cdot \bm{n\_2} - v t)
+$$ \tag{40}
+	\phi(\bm{r}, \omega) =
+	\delta(\omega) - \bm{k}(\omega) \cdot \bm{r} =
+	\delta(\omega) - {k}(\omega) (\bm{n} \cdot \bm{r}).
 $$
 
-is a perfectly valid solution of the scalar wave equation. This fact is referred to as the [superposition principle](https://www.feynmanlectures.caltech.edu/I_48.html).
+???
 
----
-
-It is convenient to rescale the parameter by a constant \\(k = \omega / v \\) so that
-
-$$ \tag{22}
-	s(x, t) = f(k x \pm k v t) = f(k x \pm \omega t).
+$$ \tag{41}
+	k(\omega) =
+	\omega \sqrt{\varepsilon(\omega) \mu(\omega)} =
+	\omega \sqrt{\big( \hat{\epsilon}(\bm{r}, \omega) - \frac{i}{\omega} \hat{\sigma}(\bm{r}, \omega) \big) \mu(\omega)}.
 $$
 
-This allows us to extend our solution to three dimensions
-
-$$ \tag{23}
-	s(\bm{r}, t) = f(\bm{k} \cdot \bm{r} \pm \omega t),
-$$
-
-which is simply Equation 22 with the \\(x\\)-axis rotated to the \\(k\\)-axis.
-
-
-We can 
-
-Since the wave equation is homogeneous, a *superposition* of two waves is also a valid solution:
-
-$$ \tag{22}
-	s(x, t) = a\_1 f(x - v t) + a\_2 g(x + v t),
-$$
-
-
-
-The simplest type of wave is a [plane wave](https://www.feynmanlectures.caltech.edu/II_20.html) \[Chandra?, [4](#references) (ch. 4), [5](#references) (vol. II, ch. 20), [6](#references) (ch. 1.3), [7](#references) (pp. 5-7)\]. Mathematically, the reason to consider plane waves is that they form the simplest set of solutions of the wave equation \[[6](#references) (ch. 1.2), others?\].
-
-So, what is a plane wave, exactly? While plane waves are often introduced using [Fresnel's formulation of Huygen's principle](https://en.wikipedia.org/wiki/Huygens%E2%80%93Fresnel_principle) \[[4](#references) (ch. 3.1)\], I will attempt to give another, (hopefully) simpler explanation.
-
-Consider an infinitesimal (punctual) isotropic source of "disturbance". It generates *spherical waves* that can be imagined as spheres expanding at constant velocity. We can decompose these spheres into sets of individual points. At any given point in time, all these points are at the same distance from the source. And if we fix a certain distance from the source, all points at this distance have been generated at the same point in time. Loci of such points are said to form surfaces of constant *phase*, and these surfaces are called *wavefronts*.
-
-In the case of *plane waves*, surfaces of constant phase are planes rather than spheres. Plane waves can be generated in a multitude of ways; one mathematical trick is to imagine a source at a large distance. Then, as the distance tends infinity, the curvature of the wavefront approaches zero, and, for a small solid angle, we may approximate a section of the wavefront as planar.
-
-We are particularly interested in waves that are *time-harmonic*. This property implies that the amplitude of the wave is a [harmonic function](https://en.wikipedia.org/wiki/Harmonic_function) of time. The *real amplitude* of the "disturbance" caused by the scalar wave at the point \\(\bm{r}\\) and the time \\(t\\) can be mathematically described [^1] as
-
-[^1]: We use the "classic" sign convention of the authors cited.
-
-$$ \tag{1} a(\bm{r}, t) = \bar{a}(\bm{r}) \cos(\phi(\bm{r}) + \omega t), $$
-
-where \\(\bar{a}\\) is the *maximum amplitude* and \\(\omega\\) is the *angular frequency*. Surfaces of \\(\phi = \mathrm{const}\\) are called *cophasal*, or *wavefronts*. Note that, in general, surfaces of constant amplitude do not coincide with surfaces of constant phase [[6](#references) (p. 18)\].
+where \\(\bar{a}\\) is the *maximum amplitude* and \\(\omega\\) is the *angular frequency*.  Note that, in general, surfaces of constant amplitude do not coincide with surfaces of constant phase [[6](#references) (p. 18)\].
 
 Time-harmonic waves are the foundation of the Fourier optics, which handles arbitrarily-complex waves by decomposing them into their Fourier series.
 
