@@ -124,15 +124,17 @@ We take Maxwell's equations as axioms, and use them as a foundation from which w
 
 Maxwell's equations can be simplified by transforming the fields from the time to the frequency domain.
 
-Define the [Fourier transform](https://en.wikipedia.org/wiki/Fourier_transform) of the electric field \\(\bm{E}(\bm{r}, t)\\) as
+Define[^102] the [Fourier transform](https://en.wikipedia.org/wiki/Fourier_transform) of the electric field \\(\bm{E}(\bm{r}, t)\\) as
+
+[^102]: The choice of sign of the complex exponential here is arbitrary, the important consequence of which is the sign of the imaginary component of the complex permittivity and the complex refractive index.
 
 $$ \tag{8}
 	\bm{E}(\bm{r}, \omega) = \frac{1}{\sqrt{2 \pi}} \int\_{-\infin}^{\infin} \bm{E}(\bm{r}, t) e^{-i \omega t} dt.
 $$
 
-\\(\bm{E}(\bm{r}, \omega)\\) is called a phase vector, or a [phasor](https://en.wikipedia.org/wiki/Phasor), and is, in general, complex[^102]. \\(\bm{E}(\bm{r}, t)\\), on another hand, is real:
+\\(\bm{E}(\bm{r}, \omega)\\) is called a phase vector, or a [phasor](https://en.wikipedia.org/wiki/Phasor), and is, in general, complex[^103]. \\(\bm{E}(\bm{r}, t)\\), on another hand, is real:
 
-[^102]: This implies that all factors comprising the expression of the complex field are also complex.
+[^103]: This implies that all factors comprising the expression of the complex field are also complex.
 
 $$ \tag{9}
 	\bm{E}(\bm{r}, t) =
@@ -265,9 +267,9 @@ $$
 
 Mathematically, the consequence is that a linear combination of several solutions is also a valid solution.
 
-Assume that the medium is *homogeneous* and *stationary* (constant in space and time)[^103]:
+Assume that the medium is *homogeneous* and *stationary* (constant in space and time)[^104]:
 
-[^103]: See \[[6](#references) (ch. 1.2)\] for an inhomogeneous solution. The stationary approximation is valid for optical frequences because the time period of an oscillation is very short. 
+[^104]: See \[[6](#references) (ch. 1.2)\] for an inhomogeneous solution. The stationary approximation is valid for optical frequences because the time period of an oscillation is very short. 
 
 $$ \tag{22}
 \begin{aligned}
