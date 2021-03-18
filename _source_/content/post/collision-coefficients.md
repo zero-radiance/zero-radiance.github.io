@@ -91,7 +91,7 @@ $$ \tag{4}
 	\bm{H}(\bm{r}, t) = \frac{1}{\mu\_0} \bm{B}(\bm{r}, t) - \bm{M}(\bm{r}, t),
 $$
 
-where \\(\bm{P}\\) is the [electric polarization](https://en.wikipedia.org/wiki/Polarization_density) (electric dipole moment per unit volume), \\(\bm{M}\\) is the [magnetic polarization](https://en.wikipedia.org/wiki/Magnetization) (magnetic dipole moment per unit volume), and \\(\epsilon\_0\\) and \\(\mu\_0\\) are the [electric permittivity](https://en.wikipedia.org/wiki/Permittivity) and the [magnetic permeability](https://en.wikipedia.org/wiki/Permeability_(electromagnetism)) of the free space (vacuum), respectively.
+where \\(\bm{P}\\) is the [electric polarization](https://en.wikipedia.org/wiki/Polarization_density) (electric dipole moment per unit volume), \\(\bm{M}\\) is the [magnetic polarization](https://en.wikipedia.org/wiki/Magnetization) (magnetic dipole moment per unit volume), and \\(\epsilon\_0\\) and \\(\mu\_0\\) are the [vacuum permittivity](https://en.wikipedia.org/wiki/Permittivity#Vacuum_permittivity) and the [vacuum permeability](https://en.wikipedia.org/wiki/Vacuum_permeability), respectively.
 
 Polarization of matter is related to the *bound* [current](https://en.wikipedia.org/wiki/Current_density#Polarization_and_magnetization_currents) and [charge densities](https://en.wikipedia.org/wiki/Charge_density#Bound_charge), \\(\bm{J\_b}\\) and \\(\rho\_b\\):
 
@@ -200,7 +200,7 @@ $$ \tag{15}
 \end{aligned}
 $$
 
-We can also combine Equations 14.2 and 15.1 to define the relation for the indiced charge density:
+We can also combine Equations 14.2 and 15.1 to derive the relation of the induced charge density:
 
 $$ \tag{16}
 	\rho\_i(\bm{r}, \omega) \approx \frac{i}{\omega} \nabla \cdot \big( \hat{\sigma}(\bm{r}, \omega) \bm{E}(\bm{r}, \omega) \big).
@@ -313,8 +313,8 @@ $$
 is the [gradient](https://en.wikipedia.org/wiki/Gradient) operator and
 
 $$ \tag{26}
-	\nabla^2 \bm{V} =
 	\mathrm{div}(\mathrm{grad}(\bm{V})) =
+	\nabla^2 \bm{V} =
 	(\nabla \cdot \nabla) \bm{V} =
 	\frac{\partial^2 \bm{V}}{\partial x^2} + \frac{\partial^2 \bm{V}}{\partial y^2} + \frac{\partial^2 \bm{V}}{\partial z^2}
 $$
@@ -406,7 +406,7 @@ That is a solution of Maxwell's equations in the frequency domain.
 
 ## Time-Harmonic Waves
 
-We can find a solution in the time domain by substitution into Equation 9:
+We can find a solution in the time domain by substituting Equation 36 into Equation 9:
 
 $$ \tag{37}
 \begin{aligned}
@@ -461,28 +461,40 @@ $$ \tag{41}
 	\omega \sqrt{\varepsilon(\omega) \mu(\omega)}.
 $$
 
-It is convenient to use a parametrization that does not involve taking a square root. If we define the *relative permittivity* \\(\varepsilon\_r\\) and the *relative permeability* \\(\mu\_r\\) with respect to the values of the free space (vacuum)
+If we define the [relative permittivity](https://en.wikipedia.org/wiki/Relative_permittivity)[^105] \\(\varepsilon\_r\\) and the [relative permeability](https://en.wikipedia.org/wiki/Permeability_(electromagnetism)#Relative_permeability_and_magnetic_susceptibility) \\(\mu\_r\\) using vacuum as a reference,
+
+[^105]: Historically called the [relative complex dielectric constant](https://en.wikipedia.org/wiki/Relative_permittivity#Lossy_medium).
 
 $$ \tag{42}
-	\varepsilon\_r(\omega) = \frac{\varepsilon(\omega)}{\varepsilon\_0}, \quad
-	\mu\_r(\omega) = \frac{\mu(\omega)}{\mu\_0}
+	\varepsilon\_r(\omega) =
+	\frac{\varepsilon(\omega)}{\epsilon\_0} = 
+	\frac{\epsilon(\omega)}{\epsilon\_0} - \frac{i}{\omega} \frac{\sigma(\omega)}{\epsilon\_0} =
+	\epsilon\_r(\omega) - \frac{i}{\omega} \sigma\_r(\omega), \quad
+	\mu\_r(\omega) = \frac{\mu(\omega)}{\mu\_0},
 $$
 
 the square root of Equation 41 can be expressed as
 
 $$ \tag{43}
 	\sqrt{\varepsilon(\omega) \mu(\omega)} =
-	\sqrt{\varepsilon\_0 \mu\_0}\sqrt{\varepsilon\_r(\omega) \mu\_r(\omega)} =
-	\frac{1}{c} \sqrt{\big( \epsilon\_r(\omega) - \frac{i}{\omega} \sigma\_r(\omega) \big) \mu\_r(\omega)} = 
-	\frac{\eta(\omega) - i \kappa(\omega)}{c},
+	\sqrt{\epsilon\_0 \mu\_0} \sqrt{\varepsilon\_r(\omega) \mu\_r(\omega)} =
+	\frac{1}{c} \sqrt{\varepsilon\_r(\omega) \mu\_r(\omega)},
 $$
 
-where \\(\eta\\) is the [refractive index](https://en.wikipedia.org/wiki/Refractive_index), \\(\kappa\\) is the [attenuation index](https://en.wikipedia.org/wiki/Refractive_index#Complex_refractive_index), and \\(c\\) is the [speed of light](https://en.wikipedia.org/wiki/Speed_of_light) in vacuum.
+where \\(c\\) is the [speed of light](https://en.wikipedia.org/wiki/Speed_of_light) in vacuum.
+
+It is convenient to use a parametrization that does not involve taking a square root. Thus, we define the [refractive index](https://en.wikipedia.org/wiki/Refractive_index) \\(\eta\\) and the [attenuation index](https://en.wikipedia.org/wiki/Refractive_index#Complex_refractive_index) \\(\kappa\\) by
+
+$$ \tag{44}
+	\eta(\omega) - i \kappa(\omega) =
+	\sqrt{\varepsilon\_r(\omega) \mu\_r(\omega)} =
+	\sqrt{\epsilon\_r(\omega) \mu\_r(\omega) - \frac{i}{\omega} \sigma\_r(\omega) \mu\_r(\omega)}.
+$$
 
 For high frequencies such as those encountered in optics, we may perform a [Laurent series](https://en.wikipedia.org/wiki/Laurent_series) [expansion](https://www.wolframalpha.com/input/?i=series+sqrt%28a-I%2Fw*b%29) at infinity:
 
-$$ \tag{44}
-	\eta - i \kappa =
+$$ \tag{45}
+	\eta - i \kappa = 
 	\sqrt{\epsilon\_r \mu\_r - \frac{i}{\omega} \sigma\_r \mu\_r} \approx
 	\sqrt{\epsilon\_r \mu\_r} - i \frac{\sigma\_r \mu\_r}{2 \omega \sqrt{\epsilon\_r \mu\_r}},
 $$
@@ -585,11 +597,11 @@ $$ \begin{aligned} \tag{13}
 	\bar{B} &= \mu \bar{H} \cr
 	\mathrm{Re} \lbrace \sqrt{\varepsilon} \rbrace \bar{E} &= \sqrt{\mu} \bar{H} \cr
 	\bar{B} = \mathrm{Re} \lbrace \sqrt{ \varepsilon \mu } \rbrace \bar{E}
-		 &= \mathrm{Re} \lbrace \sqrt{ (\varepsilon\_r \varepsilon\_0) (\mu\_r \mu\_0) } \rbrace \bar{E}
+		 &= \mathrm{Re} \lbrace \sqrt{ (\varepsilon\_r \epsilon\_0) (\mu\_r \mu\_0) } \rbrace \bar{E}
 		 = \frac{\eta}{c} \bar{E} = \frac{\bar{E}}{v\_p},
 \end{aligned} $$
 
-where \\(\varepsilon\_0\\) is the [vacuum permittivity](https://en.wikipedia.org/wiki/Vacuum_permittivity) and \\(\mu\_0\\) is the [vacuum permeability](https://en.wikipedia.org/wiki/Vacuum_permeability).
+where \\(\epsilon\_0\\) is the [vacuum permittivity](https://en.wikipedia.org/wiki/Vacuum_permittivity) and \\(\mu\_0\\) is the [vacuum permeability](https://en.wikipedia.org/wiki/Vacuum_permeability).
 
 Therefore, for time-harmonic waves, the amplitudes of the electric and the magnetic vectors are connected by the phase velocity, and propagation of the magnetic vector is often handled implicitly.
 
@@ -628,10 +640,10 @@ where \\(\theta\\) is the angle between \\(\bm{S}\\) and the viewing direction \
 
 For a [plane wave](https://en.wikipedia.org/wiki/Plane_wave), the expression is particularly [simple](https://en.wikipedia.org/wiki/Irradiance#Property):
 
-$$ \tag{4} E = \frac{1}{2} \frac{\eta}{\mu\_0 c} \bar{E}^2 = \frac{1}{2} \varepsilon\_0 \eta c \bar{E}^2, $$
-$$ \tag{4} E = \frac{1}{2} \frac{\eta}{\mu\_0 c} \bar{E}^2 = \frac{1}{2} \varepsilon\_0 \eta c \bar{E}^2, $$
+$$ \tag{4} E = \frac{1}{2} \frac{\eta}{\mu\_0 c} \bar{E}^2 = \frac{1}{2} \epsilon\_0 \eta c \bar{E}^2, $$
+$$ \tag{4} E = \frac{1}{2} \frac{\eta}{\mu\_0 c} \bar{E}^2 = \frac{1}{2} \epsilon\_0 \eta c \bar{E}^2, $$
 
-where \\(\varepsilon\_0\\) is the [vacuum permittivity](https://en.wikipedia.org/wiki/Vacuum_permittivity) and \\(\bar{E}\\) is the maximum amplitude of the electric vector.
+where \\(\epsilon\_0\\) is the [vacuum permittivity](https://en.wikipedia.org/wiki/Vacuum_permittivity) and \\(\bar{E}\\) is the maximum amplitude of the electric vector.
 
 -->
 
