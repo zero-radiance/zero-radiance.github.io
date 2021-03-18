@@ -126,7 +126,7 @@ Maxwell's equations can be simplified by transforming the fields from the time t
 
 Define[^102] the [Fourier transform](https://en.wikipedia.org/wiki/Fourier_transform) of the electric field \\(\bm{E}(\bm{r}, t)\\) as
 
-[^102]: The choice of sign of the complex exponential here is arbitrary, the important consequence of which is the sign of the imaginary component of the complex permittivity and the complex refractive index.
+[^102]: The choice of the sign of the complex exponential is arbitrary, and determines the sign of the imaginary components of both the complex permittivity and the complex refractive index.
 
 $$ \tag{8}
 	\bm{E}(\bm{r}, \omega) = \frac{1}{\sqrt{2 \pi}} \int\_{-\infin}^{\infin} \bm{E}(\bm{r}, t) e^{-i \omega t} dt.
@@ -444,7 +444,7 @@ $$ \tag{39}
 	\bar{E}(\omega) \cos(\phi(\bm{r}, \omega) + \omega t),
 $$
 
-where \\(\bar{E}\\) is the real *maximum amplitude* and \\(\omega\\) is the *angular frequency*. The phase angle \\(\phi\\) of the phase vector \\(\bm{E}(\bm{r}, \omega)\\) is typically referred to as the *phase*. Surfaces of constant phase are called *cophasal*, or *wavefronts*.
+where \\(\bar{E}\\) is the *maximum amplitude* and \\(\omega\\) is the *angular frequency*. The phase angle \\(\phi\\) of the phase vector \\(\bm{E}(\bm{r}, \omega)\\) is typically referred to as the *phase*. Surfaces of constant phase are called *cophasal*, or *wavefronts*.
 
  As we expand the expression of the phase 
 
@@ -461,7 +461,7 @@ $$ \tag{41}
 	\omega \sqrt{\varepsilon(\omega) \mu(\omega)}.
 $$
 
-It is convenient to use a parametrization that does not involve taking a square root. If we define the *relative* permittivity and permeability with respect to the values of the free space (vacuum)
+It is convenient to use a parametrization that does not involve taking a square root. If we define the *relative permittivity* \\(\varepsilon\_r\\) and the *relative permeability* \\(\mu\_r\\) with respect to the values of the free space (vacuum)
 
 $$ \tag{42}
 	\varepsilon\_r(\omega) = \frac{\varepsilon(\omega)}{\varepsilon\_0}, \quad
@@ -473,15 +473,25 @@ the square root of Equation 41 can be expressed as
 $$ \tag{43}
 	\sqrt{\varepsilon(\omega) \mu(\omega)} =
 	\sqrt{\varepsilon\_0 \mu\_0}\sqrt{\varepsilon\_r(\omega) \mu\_r(\omega)} =
-	\frac{1}{c\_0}\sqrt{\big( \epsilon\_r(\omega) - \frac{i}{\omega} \sigma\_r(\omega) \big) \mu\_r(\omega)} = 
-	\frac{\eta(\omega) - i \kappa(\omega)}{c\_0},
+	\frac{1}{c} \sqrt{\big( \epsilon\_r(\omega) - \frac{i}{\omega} \sigma\_r(\omega) \big) \mu\_r(\omega)} = 
+	\frac{\eta(\omega) - i \kappa(\omega)}{c},
 $$
 
-where \\(\eta\\) is the real [refractive index](https://en.wikipedia.org/wiki/Refractive_index), \\(\kappa\\) is the real [attenuation index](https://en.wikipedia.org/wiki/Refractive_index#Complex_refractive_index), and \\(c\_0\\) is the [speed of light](https://en.wikipedia.org/wiki/Speed_of_light) in vacuum.
+where \\(\eta\\) is the [refractive index](https://en.wikipedia.org/wiki/Refractive_index), \\(\kappa\\) is the [attenuation index](https://en.wikipedia.org/wiki/Refractive_index#Complex_refractive_index), and \\(c\\) is the [speed of light](https://en.wikipedia.org/wiki/Speed_of_light) in vacuum.
+
+For high frequencies such as those encountered in optics, we may perform a [Laurent series](https://en.wikipedia.org/wiki/Laurent_series) [expansion](https://www.wolframalpha.com/input/?i=series+sqrt%28a-I%2Fw*b%29) at infinity:
+
+$$ \tag{44}
+	\eta - i \kappa =
+	\sqrt{\epsilon\_r \mu\_r - \frac{i}{\omega} \sigma\_r \mu\_r} \approx
+	\sqrt{\epsilon\_r \mu\_r} - i \frac{\sigma\_r \mu\_r}{2 \omega \sqrt{\epsilon\_r \mu\_r}},
+$$
+
+which gives an approximate mapping between the optical and the physical parameters.
 
 ---
 
-where \\(\bar{a}\\) is the *maximum amplitude* and \\(\omega\\) is the *angular frequency*.  Note that, in general, surfaces of constant amplitude do not coincide with surfaces of constant phase [[6](#references) (p. 18)\].
+where \\(\bar{a}\\) is *maximum amplitude* and \\(\omega\\) is the *angular frequency*.  Note that, in general, surfaces of constant amplitude do not coincide with surfaces of constant phase [[6](#references) (p. 18)\].
 
 Time-harmonic waves are the foundation of the Fourier optics, which handles arbitrarily-complex waves by decomposing them into their Fourier series.
 
