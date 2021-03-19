@@ -91,7 +91,7 @@ $$ \tag{4}
 	\bm{H}(\bm{r}, t) = \frac{1}{\mu\_0} \bm{B}(\bm{r}, t) - \bm{M}(\bm{r}, t),
 $$
 
-where \\(\bm{P}\\) is the [electric polarization](https://en.wikipedia.org/wiki/Polarization_density) (electric dipole moment per unit volume), \\(\bm{M}\\) is the [magnetic polarization](https://en.wikipedia.org/wiki/Magnetization) (magnetic dipole moment per unit volume), and \\(\epsilon\_0\\) and \\(\mu\_0\\) are the [vacuum permittivity](https://en.wikipedia.org/wiki/Permittivity#Vacuum_permittivity) and the [vacuum permeability](https://en.wikipedia.org/wiki/Vacuum_permeability), respectively.
+where \\(\bm{P}\\) is the [electric polarization](https://en.wikipedia.org/wiki/Polarization_density) (electric dipole moment per unit volume), \\(\bm{M}\\) is the [magnetic polarization](https://en.wikipedia.org/wiki/Magnetization) (magnetic dipole moment per unit volume), and \\(\epsilon\_0\\) and \\(\mu\_0\\) are the [vacuum permittivity](https://en.wikipedia.org/wiki/Vacuum_permittivity) and the [vacuum permeability](https://en.wikipedia.org/wiki/Vacuum_permeability), respectively.
 
 Polarization of matter is related to the *bound* [current](https://en.wikipedia.org/wiki/Current_density#Polarization_and_magnetization_currents) and [charge densities](https://en.wikipedia.org/wiki/Charge_density#Bound_charge), \\(\bm{J\_b}\\) and \\(\rho\_b\\):
 
@@ -109,14 +109,14 @@ $$ \tag{6}
 	\bm{n\_{12}} \cdot  (\bm{D\_2} - \bm{D\_1}) = \rho\_n,
 $$
 
-where \\(\rho\_n\\) is the *surface* [charge density](https://en.wikipedia.org/wiki/Charge_density). For the tangential components, it can be shown that
+where \\(\rho\_n\\) is the *surface* charge density. For the tangential components, it can be shown that
 
 $$ \tag{7}
 	\bm{n\_{12}} \times (\bm{E\_2} - \bm{E\_1}) = 0, \quad
 	\bm{n\_{12}} \times (\bm{H\_2} - \bm{H\_1}) = \bm{J\_n},
 $$
 
-where \\(\bm{J\_n}\\) is the *surface* [current density](https://en.wikipedia.org/wiki/Current_density).
+where \\(\bm{J\_n}\\) is the *surface* current density.
 
 We take Maxwell's equations as axioms, and use them as a foundation from which we derive the theory presented in the following sections.
 
@@ -340,7 +340,7 @@ $$ \tag{29}
 	\nabla^2 \bm{H}(\bm{r}, \omega) + \omega^2 \hat{\varepsilon}(\omega) \hat{\mu}(\omega) \bm{H}(\bm{r}, \omega) = 0.
 $$
 
-Since this tensor is [symmetric](https://en.wikipedia.org/wiki/Symmetric_matrix) \[[6](#references) (ch. 15.1)\], we can perform a coordinate transformation to [diagonalize](https://en.wikipedia.org/wiki/Diagonalizable_matrix) it:
+Since this tensor is [symmetric](https://en.wikipedia.org/wiki/Symmetric_matrix) \[[6](#references) (ch. 15.1)\], we can perform a coordinate transformation to [diagonalize](https://en.wikipedia.org/wiki/Diagonalizable_matrix#How_to_diagonalize_a_matrix) it:
 
 $$ \tag{30}
 	\nabla^2 \bm{E}(\bm{r}, \omega) + \omega^2
