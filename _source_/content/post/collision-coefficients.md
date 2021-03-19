@@ -525,18 +525,18 @@ If the absorption index \\(\kappa = 0\\), Equation 49 represents a regular sinus
 
 [Insert Picture Here]
 
-It's worth pointing out that Equation 46 shows how to decompose a complex phase vector of a simple plane wave into the *amplitude* \\(\bm{\bar{E}}(\bm{r}, \omega)\\) and the *phase* \\(\phi(\bm{r}, \omega)\\):
+It's worth pointing out that Equation 46 shows how to decompose a complex phase vector of a simple plane wave into the *amplitude* \\(\bm{\bar{E}}\\) and the *phase* \\(\phi\\) (both of which are [real-valued functions](https://en.wikipedia.org/wiki/Real-valued_function)):
 
 $$ \tag{50}
 	\bm{E}(\bm{r}, \omega) = 
 	\bm{\bar{E}}(\bm{r}, \omega) e^{i \phi(\bm{r}, \omega)}.
 $$
 
-By introducing the *phase tensor* \\(\hat{\phi}\\) that takes anisotropy and the axial phase shift of Equation 38 into account, we can extend Equation 50 to obtain the general form of a time-harmonic vector plane wave:
+By introducing the *phase tensor* \\(\hat{\phi}\\) that takes anisotropy and the axial phase shift of Equation 38 into account, we can extend Equation 50 to obtain the general form of a time-harmonic vector wave:
 
 $$ \tag{51}
 	\bm{E}(\bm{r}, \omega) e^{i \omega t} =
-	\bm{\bar{E}}(\bm{r}, \omega) e^{i \hat{\phi}(\bm{r}, \omega)} e^{i \omega t}.
+	e^{i \hat{\phi}(\bm{r}, \omega)} \bm{\bar{E}}(\bm{r}, \omega) e^{i \omega t}.
 $$
 
 ## Transverse Waves
@@ -788,7 +788,7 @@ Pharr, Jakob, NASA people
 
 1. Golubev, E. [Sampling analytic participating media](/post/analytic-media/) (2020).
 2. Chandrasekhar, S. [Radiative transfer](https://doi.org/10.1002/qj.49707633016). (1950).
-3. Golubev, E. [From particle to volume scattering](/post/particle-volume/) (2020).
+3. Golubev, E. [From particle to volume scattering of light](/post/particle-volume/) (2020).
 4. van de Hulst, H. C. [Light scattering by small particles](https://doi.org/10.1002/qj.49708436025) (1957).
 5. Feynman, R. P., Leighton, R. B., & Sands, M. [The Feynman lectures on physics](https://www.feynmanlectures.caltech.edu/) (1963).
 6. Born, M., & Wolf, E. [Principles of optics](https://doi.org/10.1017/CBO9781139644181), 7th edition (1999).
