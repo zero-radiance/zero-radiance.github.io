@@ -129,10 +129,12 @@ Define[^102] the [Fourier transform](https://en.wikipedia.org/wiki/Fourier_trans
 [^102]: The choice of the sign of the complex exponential is arbitrary, and determines the sign of the imaginary components of both the complex permittivity and the complex refractive index.
 
 $$ \tag{8}
-	\bm{E}(\bm{r}, \omega) = \frac{1}{\sqrt{2 \pi}} \int\_{-\infin}^{\infin} \bm{E}(\bm{r}, t) e^{-i \omega t} dt.
+	\bm{E}(\bm{r}, \omega) = \frac{1}{\sqrt{2 \pi}} \int\_{-\infin}^{\infin} \bm{E}(\bm{r}, t) e^{-i \omega t} dt,
 $$
 
-\\(\bm{E}(\bm{r}, \omega)\\) is called a phase vector, or a [phasor](https://en.wikipedia.org/wiki/Phasor), and is, in general, complex[^103]. \\(\bm{E}(\bm{r}, t)\\), on another hand, is real:
+where \\(\omega\\) is the *angular frequency*. \\(\bm{E}(\bm{r}, \omega)\\) is called a phase vector, or a [phasor](https://en.wikipedia.org/wiki/Phasor), and is, in general, complex[^103].
+
+\\(\bm{E}(\bm{r}, t)\\), on another hand, is real:
 
 [^103]: This implies that all factors comprising the expression of the complex field are also complex.
 
@@ -345,19 +347,19 @@ Since this tensor is [symmetric](https://en.wikipedia.org/wiki/Symmetric_matrix)
 $$ \tag{30}
 	\nabla^2 \bm{E}(\bm{r}, \omega) + \omega^2
 		\begin{bmatrix}
-			\varepsilon\_x \mu\_x & 0 & 0 \cr
-			0 & \varepsilon\_y \mu\_y & 0 \cr
-			0 & 0 & \varepsilon\_z \mu\_z
+			\varepsilon\_{1} \mu\_{1} & 0 & 0 \cr
+			0 & \varepsilon\_{2} \mu\_{2} & 0 \cr
+			0 & 0 & \varepsilon\_{3} \mu\_{3}
 		\end{bmatrix} \bm{E}(\bm{r}, \omega) = 0,
 $$
 
-which allows us separate the variables into three [Helmholtz's equations](https://en.wikipedia.org/wiki/Helmholtz_equation):
+which allows us separate the variables into three *scalar* [Helmholtz's equations](https://en.wikipedia.org/wiki/Helmholtz_equation):
 
 $$ \tag{31}
 \begin{aligned}
-	\big( \nabla^2 + k\_x^2(\omega) \big) E\_x(\bm{r}, \omega) = 0, \cr
-	\big( \nabla^2 + k\_y^2(\omega) \big) E\_y(\bm{r}, \omega) = 0, \cr
-	\big( \nabla^2 + k\_z^2(\omega) \big) E\_z(\bm{r}, \omega) = 0,
+	\big( \nabla^2 + k\_{1}^2(\omega) \big) E\_x(\bm{r}, \omega) = 0, \cr
+	\big( \nabla^2 + k\_{2}^2(\omega) \big) E\_y(\bm{r}, \omega) = 0, \cr
+	\big( \nabla^2 + k\_{3}^2(\omega) \big) E\_z(\bm{r}, \omega) = 0,
 \end{aligned}
 $$
 
@@ -378,7 +380,7 @@ If the derivative of a function is the function itself (times a constant), the f
 $$ \tag{34}
 	s(x) =
 	s(0) e^{\pm i k x} = 
-	\bar{s} e^{i (\delta \pm k x)},
+	\bar{s} e^{i \delta} e^{\pm i k x},
 $$
 
 where \\(\bar{s}\\) represents a real number. To avoid clutter, we shall adhere to a common convention with the negative sign. The second solution can be obtained by reversing either the sign of \\(k\\) or the direction of the \\(x\\)-axis.
@@ -387,18 +389,18 @@ Extension to three dimensions is straightforward. If we rotate the coordinate fr
 
 $$ \tag{35}
 	s(\bm{r}) =
-	\bar{s} e^{i (\delta - k (\bm{n} \cdot \bm{r}))} =
-	\bar{s} e^{i (\delta - \bm{k} \cdot \bm{r})}.
+	\bar{s} e^{i \delta} e^{ -i k (\bm{n} \cdot \bm{r})} =
+	\bar{s} e^{i \delta} e^{ -i \bm{k} \cdot \bm{r}}.
 $$
 
 Equation 35 can be used to solve Equations 31.1-31.3:
 
 $$ \tag{36}
-	\bm{E}(\bm{r}, \omega) = \bar{\bm{E}}(\omega)
+	\bm{E}(\bm{r}, \omega) =
 	\begin{bmatrix}
-		\mathrm{exp}\big( i (\delta\_x(\omega) - \bm{k\_x}(\omega) \cdot \bm{r}) \big) \cr
-		\mathrm{exp}\big( i (\delta\_y(\omega) - \bm{k\_y}(\omega) \cdot \bm{r}) \big) \cr
-		\mathrm{exp}\big( i (\delta\_z(\omega) - \bm{k\_z}(\omega) \cdot \bm{r}) \big)
+		\bar{E}\_x(\omega) \exp(i \delta\_x(\omega) - i \bm{k\_x}(\omega) \cdot \bm{r}) \cr
+		\bar{E}\_y(\omega) \exp(i \delta\_y(\omega) - i \bm{k\_y}(\omega) \cdot \bm{r}) \cr
+		\bar{E}\_z(\omega) \exp(i \delta\_z(\omega) - i \bm{k\_z}(\omega) \cdot \bm{r})
 	\end{bmatrix}.
 $$
 
@@ -412,49 +414,32 @@ $$ \tag{37}
 \begin{aligned}
 	\bm{E}(\bm{r}, t)
 	&= \frac{1}{\sqrt{2 \pi}} \int\_{-\infin}^{\infin} \mathrm{Re} \big\lbrace \bm{E}(\bm{r}, \omega) e^{i \omega t} \big\rbrace d\omega \cr
-	&= \frac{1}{\sqrt{2 \pi}} \int\_{-\infin}^{\infin} \mathrm{Re} \Bigg\lbrace \bar{\bm{E}}(\omega)
-		\begin{bmatrix}
-			\mathrm{exp}\big( i (\delta\_x(\omega) - \bm{k\_x}(\omega) \cdot \bm{r} + \omega t) \big) \cr
-			\mathrm{exp}\big( i (\delta\_y(\omega) - \bm{k\_y}(\omega) \cdot \bm{r} + \omega t) \big) \cr
-			\mathrm{exp}\big( i (\delta\_z(\omega) - \bm{k\_z}(\omega) \cdot \bm{r} + \omega t) \big)
-		\end{bmatrix} \Bigg\rbrace d\omega \cr
-	&= \frac{1}{\sqrt{2 \pi}} \int\_{-\infin}^{\infin} \bar{\bm{E}}(\omega)
-		\begin{bmatrix}
-			\cos(\delta\_x(\omega) - \bm{k\_x}(\omega) \cdot \bm{r} + \omega t) \cr
-			\cos(\delta\_y(\omega) - \bm{k\_y}(\omega) \cdot \bm{r} + \omega t) \cr
-			\cos(\delta\_z(\omega) - \bm{k\_z}(\omega) \cdot \bm{r} + \omega t)
-		\end{bmatrix} d\omega.
+	&= \frac{1}{\sqrt{2 \pi}} \int\_{-\infin}^{\infin} \mathrm{Re} \Bigg\lbrace
+	\begin{bmatrix}
+		\bar{E}\_x(\omega) \exp(i \delta\_x(\omega) - i \bm{k\_x}(\omega) \cdot \bm{r} + i \omega t) \cr
+		\bar{E}\_y(\omega) \exp(i \delta\_y(\omega) - i \bm{k\_y}(\omega) \cdot \bm{r} + i \omega t) \cr
+		\bar{E}\_z(\omega) \exp(i \delta\_z(\omega) - i \bm{k\_z}(\omega) \cdot \bm{r} + i \omega t)
+	\end{bmatrix} \Bigg\rbrace d\omega.
 \end{aligned}
 $$
 
 The integral of Equation 37 represents a [wave packet](https://en.wikipedia.org/wiki/Wave_packet). It is a collection of time-harmonic *vector* [plane waves](https://en.wikipedia.org/wiki/Plane_wave) of the form
 
 $$ \tag{38}
-\bar{\bm{E}}(\omega)
-	\begin{bmatrix}
-		\cos(\delta\_x(\omega) - \bm{k\_x}(\omega) \cdot \bm{r} + \omega t) \cr
-		\cos(\delta\_y(\omega) - \bm{k\_y}(\omega) \cdot \bm{r} + \omega t) \cr
-		\cos(\delta\_z(\omega) - \bm{k\_z}(\omega) \cdot \bm{r} + \omega t)
-	\end{bmatrix},
+\begin{bmatrix}
+	\bar{E}\_x(\omega) \exp(i \delta\_x(\omega) -i \bm{k\_x}(\omega) \cdot \bm{r} + i \omega t) \cr
+	\bar{E}\_y(\omega) \exp(i \delta\_y(\omega) -i \bm{k\_y}(\omega) \cdot \bm{r} + i \omega t) \cr
+	\bar{E}\_z(\omega) \exp(i \delta\_z(\omega) -i \bm{k\_z}(\omega) \cdot \bm{r} + i \omega t)
+\end{bmatrix}
 $$
 
 each composed of three *scalar* plane waves such as
 
 $$ \tag{39}
-	\bar{E}(\omega) \cos(\phi(\bm{r}, \omega) + \omega t),
+	\bar{E}(\omega) e^{i \delta(\omega)} e^{-i \bm{k}(\omega) \cdot \bm{r}} e^{i \omega t},
 $$
 
-where \\(\bar{E}\\) is the *maximum amplitude* and \\(\omega\\) is the *angular frequency*. The phase angle \\(\phi\\) of the phase vector \\(\bm{E}(\bm{r}, \omega)\\) is typically referred to as the *phase*. Surfaces of constant phase are called *cophasal*, or *wavefronts*.
-
- As we expand the expression of the phase 
-
-$$ \tag{40}
-	\phi(\bm{r}, \omega) =
-	\delta(\omega) - \bm{k}(\omega) \cdot \bm{r} =
-	\delta(\omega) - {k}(\omega) (\bm{n} \cdot \bm{r}),
-$$
-
-we discover the *phase shift* \\(\delta\\) and the complex [wave vector](https://en.wikipedia.org/wiki/Wave_vector) \\(\bm{k}\\) that points along the plane normal \\(\bm{n}\\) that has been scaled using the complex [wave number](https://en.wikipedia.org/wiki/Wavenumber) \\(k\\):
+expressed in terms of the *phase shift* \\(\delta\\) and the complex [wave vector](https://en.wikipedia.org/wiki/Wave_vector) \\(\bm{k}\\) that points along the plane normal \\(\bm{n}\\) that has been scaled using the complex [wave number](https://en.wikipedia.org/wiki/Wavenumber) \\(k\\):
 
 $$ \tag{41}
 	k(\omega) =
@@ -483,7 +468,7 @@ $$
 
 where \\(c\\) is the [speed of light](https://en.wikipedia.org/wiki/Speed_of_light) in vacuum.
 
-It is convenient to use a parametrization that does not involve taking a square root. Thus, we define the [refractive index](https://en.wikipedia.org/wiki/Refractive_index) \\(\eta\\) and the [attenuation index](https://en.wikipedia.org/wiki/Refractive_index#Complex_refractive_index) \\(\kappa\\) by
+It is convenient to use a parametrization that does not involve taking a square root. Thus, we define two positive real numbers, the [refractive index](https://en.wikipedia.org/wiki/Refractive_index) \\(\eta\\) and the [attenuation index](https://en.wikipedia.org/wiki/Refractive_index#Complex_refractive_index) \\(\kappa\\), by
 
 $$ \tag{44}
 	\eta(\omega) - i \kappa(\omega) =
@@ -501,61 +486,58 @@ $$
 
 which gives an approximate mapping between the optical and the physical parameters.
 
----
+In order to develop some intuition about the role of the refractive index, let us consider a simple plane wave without a phase shift in a linear isotropic medium:
 
-where \\(\bar{a}\\) is *maximum amplitude* and \\(\omega\\) is the *angular frequency*.  Note that, in general, surfaces of constant amplitude do not coincide with surfaces of constant phase [[6](#references) (p. 18)\].
+$$ \tag{46}
+\begin{aligned}
+	&\bm{E}(\bm{r}, \omega) e^{i \omega t} = \cr
+	&\bm{\bar{E}}(\omega) e^{-i \bm{k} \cdot \bm{r}} e^{i \omega t} = \cr
+	&\bm{\bar{E}}(\omega) e^{-i (\omega / c) (\eta - i \kappa) (\bm{n} \cdot \bm{r})} e^{i \omega t} = \cr
+	&\bm{\bar{E}}(\omega) e^{-\omega (\kappa / c) (\bm{n} \cdot \bm{r})} e^{-i \omega (\eta / c) (\bm{n} \cdot \bm{r})} e^{i \omega t} = \cr
+	&\bm{\bar{E}}(\omega) e^{-\omega (\kappa / c) (\bm{n} \cdot \bm{r})} e^{i \omega (\eta / c) ((c / \eta) t - \bm{n} \cdot \bm{r})}
+\end{aligned}
+$$
 
-Time-harmonic waves are the foundation of the Fourier optics, which handles arbitrarily-complex waves by decomposing them into their Fourier series.
+We shall perform [dimensional analysis](https://en.wikipedia.org/wiki/Dimensional_analysis) of Equation 46. We begin by taking the argument of the expression
 
-{{< figure src="/img/wave_diagram.png" caption="*Wave diagram. [Image source](https://tsunamiphysics.webnode.com/waves-review/).*">}}
+$$ \tag{47}
+	\theta\_{\omega}(\bm{r}, t) =
+	\mathrm{Arg} \big\lbrace \bm{E}(\bm{r}, \omega) e^{i \omega t} \big\rbrace =
+	\omega \big( \eta / c \big) \big( (c / \eta) t - \bm{n} \cdot \bm{r} \big).
+$$
 
-Some simple examples of Equation 1 include spherical waves
+Notice that, for any \\(\Delta t\\),
 
-$$ \tag{2} a(r,t) = \frac{\bar{a}}{r} \cos(\phi(r) + \omega t), $$
+$$ \tag{48}
+	\theta\_{\omega}(\bm{r}, t) = \theta\_{\omega}(\bm{r} + \bm{n} (c / \eta) \Delta t, \space t + \Delta t).
+$$
 
-and plane waves traveling along the the \\(z\\)-axis
+This implies that \\(\theta\_{\omega}\\) represents a plane propagating along its normal \\(\bm{n}\\) at the [phase velocity](https://en.wikipedia.org/wiki/Phase_velocity) \\(c / \eta\\).
 
-$$ \tag{3} a(z,t) = \bar{a} \cos(\phi(z) + \omega t). $$
+Taking the real part of Equation 46 allows us to recover the *real amplitude*
 
-Typically, the real amplitude of a plane wave in a medium is described as
+$$ \tag{49}
+ 	\mathrm{Re} \big\lbrace \bm{E}(\bm{r}, \omega) e^{i \omega t} \big\rbrace = 
+ 	\bm{\bar{E}}(\omega) e^{-\omega (\kappa / c) (\bm{n} \cdot \bm{r})} \cos{\theta\_{\omega}(\bm{r}, t)}.
+ $$
 
-$$ \tag{4} a(z,t) = \bar{a} \cos(\delta - k z + \omega t), $$
+If the absorption index \\(\kappa = 0\\), Equation 49 represents a regular sinusoidal wave. On the other hand, positive values of \\(\kappa\\) produce an exponential decay characteristic of an [evanescent wave](https://en.wikipedia.org/wiki/Evanescent_field).
 
-where \\(\delta\\) is the *phase shift* and \\(k\\) is the *complex wavenumber*.
+[Insert Picture Here]
 
-If the medium has the [complex refractive index](https://en.wikipedia.org/wiki/Refractive_index#Complex_refractive_index) (IOR) \\(\eta - i \kappa\\), the [complex wavenumber](https://en.wikipedia.org/wiki/Wavenumber#Complex) is[^2]
+It's worth pointing out that Equation 46 shows how to decompose a complex phase vector of a simple plane wave into the *amplitude* \\(\bm{\bar{E}}(\bm{r}, \omega)\\) and the *phase* \\(\phi(\bm{r}, \omega)\\):
 
-[^2]: The IOR (and, therefore, the complex wavenumber) is a function of position, time and frequency. Variation with frequency causes *dispersion*.
+$$ \tag{50}
+	\bm{E}(\bm{r}, \omega) = 
+	\bm{\bar{E}}(\bm{r}, \omega) e^{i \phi(\bm{r}, \omega)}.
+$$
 
-$$ \tag{5} k = k\_0 (\eta - i \kappa)
-			 = \frac{2 \pi}{\lambda\_0} (\eta - i \kappa)
-			 = \frac{\omega}{c} (\eta - i \kappa), $$
+By introducing the *phase tensor* \\(\hat{\phi}\\) that takes anisotropy and the axial phase shift of Equation 38 into account, we can extend Equation 50 to obtain the general form of a time-harmonic vector plane wave:
 
-where \\(k\_0\\) and \\(\lambda\_0\\) are the real *wavenumber and wavelength in vacuum*, respectively, and \\(c\\) is the *speed of light*.
-
-The complex IOR itself can be expressed in terms of the complex [relative permittivity](https://en.wikipedia.org/wiki/Relative_permittivity) (a.k.a. the *dielectric constant*) \\(\varepsilon\_r\\) and the real [relative permeability](https://en.wikipedia.org/wiki/Permeability_(electromagnetism)) \\(\mu\_r\\) of the medium:
-
-$$ \tag{6} \eta - i \kappa = \sqrt{\varepsilon\_r \mu\_r}. $$
-
-Mathematically, it is convenient to describe a wave using the *complex amplitude*
-
-$$ \tag{7} u(\bm{r}, t) = \bar{a}(\bm{r}) e^{i \theta(\bm{r}, t)} = \bar{a}(\bm{r}) e^{i\phi(\bm{r})} e^{i \omega t}. $$
-
-Combining Equations 4, 5, and 7, we arrive at the explicit description of a plane wave
-
-$$ \tag{8} u(z,t) = \bar{a} e^{i (\delta - (\omega / c) (\eta - i \kappa) z + \omega t)}
-				  = \bar{a} e^{-\kappa (\omega z / c)} e^{i (\delta - \eta (\omega z / c) + \omega t)}. $$
-
-We can take the argument to extract the *phase angle*
-
-$$ \tag{9} \theta(z,t) = \mathrm{Arg} \big\lbrace u(z,t) \big\rbrace = \delta - \eta (\omega z / c) + \omega t, $$
-
-and taking the real part allows us to recover the real amplitude
-
-$$ \tag{10} a(z,t) = \mathrm{Re} \big\lbrace u(z,t) \big\rbrace
-				  = \bar{a} e^{-\kappa (\omega z / c)} \cos{\theta(z,t)} . $$
-
-When examining Equations 8-10, the first thing to notice is that \\(\omega z / c\\) and \\(\omega t\\) are both measured in radians. With that in mind, the role of the complex IOR becomes apparent. The real part of the IOR, \\(\eta\\), reduces the [phase velocity](https://www.feynmanlectures.caltech.edu/I_48.html) \\(v\_p\\) of the wave from \\(c\\) to \\(c / \eta\\) \[[5](#references) (vol. I, ch. 48), [6](#references) (ch. 1.3.3)\]. The imaginary part of the IOR, \\(\kappa\\), causes [exponential absorption](https://www.feynmanlectures.caltech.edu/I_31.html) with distance \[[5](#references) (vol. I, ch. 31), [6](#references) (???)\].
+$$ \tag{51}
+	\bm{E}(\bm{r}, \omega) e^{i \omega t} =
+	\bm{\bar{E}}(\bm{r}, \omega) e^{i \hat{\phi}(\bm{r}, \omega)} e^{i \omega t}.
+$$
 
 ## Transverse Waves
 
