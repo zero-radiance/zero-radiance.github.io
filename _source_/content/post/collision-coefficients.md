@@ -39,7 +39,7 @@ At the fundamental level, optics is built on the theory of fields. What is a fie
 
 Since we are primarily concerned with electromagnetic radiation, we shall focus our attention on the the [electric field](https://en.wikipedia.org/wiki/Electric_field) \\(\bm{E}\\) and the [magnetic induction](https://en.wikipedia.org/wiki/Magnetic_field#The_B-field) \\(\bm{B}\\). These are real vectors defined at every point in space \\(\bm{r}\\) and time \\(t\\).
 
-They satisfy the differential form of [Maxwell's equations](https://en.wikipedia.org/wiki/Maxwell%27s_equation) \[[6](#references) (ch. 1.1)\]:
+They satisfy the differential form of [Maxwell's equations](https://en.wikipedia.org/wiki/Maxwell%27s_equation) \[[6](#references) (ch. 1.1.1), [7](#references) (ch. 2.1), [8](#references) (ch. 2.1)\]:
 
 $$ \tag{1}
 \begin{aligned}
@@ -82,7 +82,7 @@ $$
 
 is the [divergence](https://en.wikipedia.org/wiki/Divergence) operator, both given in Cartesian coordinates.
 
-As discussed in \[[5](#references) (vol. II, ch 32.2), [6](#references) (ch. 1.1)\], \\(\bm{E}\\) and \\(\bm{B}\\) are considered fundamental fields, and the [electric displacement](https://en.wikipedia.org/wiki/Electric_displacement_field) \\(\bm{D}\\) and the [magnetic field](https://en.wikipedia.org/wiki/Magnetic_field#The_H-field) \\(\bm{H}\\) are [auxiliary fields](https://en.wikipedia.org/wiki/Maxwell%27s_equations#Auxiliary_fields,_polarization_and_magnetization) that arise due to the influence of matter[^101]. They are related to the fundamental fields by
+As discussed in \[[5](#references) (vol. II, ch 32.2), [6](#references) (ch. 1.1.1)\], \\(\bm{E}\\) and \\(\bm{B}\\) are considered fundamental fields, and the [electric displacement](https://en.wikipedia.org/wiki/Electric_displacement_field) \\(\bm{D}\\) and the [magnetic field](https://en.wikipedia.org/wiki/Magnetic_field#The_H-field) \\(\bm{H}\\) are [auxiliary fields](https://en.wikipedia.org/wiki/Maxwell%27s_equations#Auxiliary_fields,_polarization_and_magnetization) that arise due to the influence of matter[^101]. They are related to the fundamental fields by
 
 [^101]: We can obtain the [microscopic formulation](https://en.wikipedia.org/wiki/Maxwell%27s_equations#Formulation_in_SI_units_convention) (without auxiliary fields) by [substitution](https://en.wikipedia.org/wiki/Maxwell%27s_equations#Auxiliary_fields,_polarization_and_magnetization) of the definitions of the auxiliary fields into Maxwell's equations. For optical applications, the [macroscopic formulation](https://en.wikipedia.org/wiki/Maxwell%27s_equations#Macroscopic_formulation) is more useful.
 
@@ -102,7 +102,7 @@ $$
 
 with the *total* current and charge densities composed of the *free* and the *bound* parts.
 
-On the conceptual level, we would like the properties of matter to be continuous everywhere, which leads to continuous electromagnetic fields. But, sometimes, it is convenient to introduce a discontinuity to approximate very rapid (yet continuous) variation of optical properties. At the *optical interface*, the fields must satisfy the [boundary conditions](https://en.wikipedia.org/wiki/Interface_conditions_for_electromagnetic_fields) \[[6](#references) (ch. 1.1)\]. If \\(\bm{n\_{12}}\\) is a unit normal vector pointing from region 1 to region 2, the normal components of the fields must be such that
+On the conceptual level, we would like the properties of matter to be continuous everywhere, which leads to continuous electromagnetic fields. But, sometimes, it is convenient to introduce a discontinuity to approximate very rapid (yet continuous) variation of optical properties. At the *optical interface*, the fields must satisfy the [boundary conditions](https://en.wikipedia.org/wiki/Interface_conditions_for_electromagnetic_fields) \[[6](#references) (ch. 1.1.3), [7](#references) (ch. 2.2), [8](#references) (ch. 2.4)\]. If \\(\bm{n\_{12}}\\) is a unit normal vector pointing from region 1 to region 2, the normal components of the fields must be such that
 
 $$ \tag{6}
 	\bm{n\_{12}} \cdot  (\bm{B\_2} - \bm{B\_1}) = 0, \quad
@@ -155,7 +155,7 @@ $$ \tag{10}
 \end{aligned}
 $$
 
-Performing differentiation with respect to time and division by the pervasive \\(e^{i \omega t}\\) factor yields 
+Performing differentiation with respect to time and division by the pervasive \\(e^{i \omega t}\\) factor yields Maxwell's equations for monochromatic fields \[[7](#references) (ch. 2.3), [8](#references) (ch. 2.2)\]:
 
 $$ \tag{11}
 \begin{aligned}
@@ -168,13 +168,13 @@ $$
 
 Dependence on time is completely gone, which is advantageous since we are interested in the steady state of the field measured over the time interval that is large in comparison to the period of an oscillation of the field.
 
-If we take divergence of Equation 11.3, combine it with equation 11.4, and use the fact that [divergence of curl is zero](https://en.wikipedia.org/wiki/Vector_calculus_identities#Divergence_of_curl_is_zero), we obtain the [continuity equation](https://en.wikipedia.org/wiki/Continuity_equation) of charge:
+If we take divergence of Equation 11.3, combine it with equation 11.4, and use the fact that [divergence of curl](https://en.wikipedia.org/wiki/Vector_calculus_identities#Divergence_of_curl_is_zero) is zero, we obtain the [continuity equation](https://en.wikipedia.org/wiki/Continuity_equation) of charge:
 
 $$ \tag{12}
 	\nabla \cdot \bm{J\_f}(\bm{r}, \omega) = - i \omega \rho\_f(\bm{r}, \omega).
 $$
 
-For future convenience, we shall define the decomposition of the *free* charges and currents into the *source* and the *induced* parts:
+For future convenience, we shall define the decomposition of the *free* charges and currents into the *source* and the *induced* parts \[[8](#references) (ch. 2.2)\]:
 
 $$ \tag{13}
 	\rho\_f = \rho\_s + \rho\_i, \quad
@@ -190,9 +190,9 @@ $$
 
 ## Constitutive Relations
 
-Considered in isolation, Maxwell's system has fewer equations than unknowns. This forces us to specify the way the material responds to the electromagnetic field. One way to do this is to express the auxiliary fields in terms of polarization of matter (as per Equations 4 and 5). Turns out, this leads to a non-linear solution \[[10](#references)\] that is relatively difficult to manipulate.
+Considered in isolation, Maxwell's system has fewer equations than unknowns. This forces us to specify the way the material responds to the electromagnetic field. One way to do this is to express the auxiliary fields in terms of polarization of matter (as per Equations 4 and 5). Turns out, this leads to a non-linear solution \[[9](#references)\] that is relatively difficult to manipulate.
 
-Fortunately, many materials respond to weak electromagnetic fields in optical frequencies in an approximately linear manner. This behavior is captured by the [constitutive relations](https://en.wikipedia.org/wiki/Constitutive_equation#Electromagnetism):
+Fortunately, many materials respond to weak electromagnetic fields in optical frequencies in an approximately linear manner. This behavior is captured by the [constitutive relations](https://en.wikipedia.org/wiki/Constitutive_equation#Electromagnetism) \[[6](#references) (ch. 1.1.2), [7](#references) (ch. 2.1), [8](#references) (ch. 2.3)\]:
 
 $$ \tag{15}
 \begin{aligned}
@@ -423,7 +423,7 @@ $$ \tag{37}
 \end{aligned}
 $$
 
-The integral of Equation 37 represents a [wave packet](https://en.wikipedia.org/wiki/Wave_packet). It is a collection of time-harmonic *vector* [plane waves](https://en.wikipedia.org/wiki/Plane_wave) of the form
+The integral of Equation 37 represents a [wave packet](https://en.wikipedia.org/wiki/Wave_packet). It is a collection of time-harmonic *vector* [plane waves](https://en.wikipedia.org/wiki/Plane_wave) \[[6](#references) (ch. 1.4.2), [7](#references) (ch. 3.1), [8](#references) (ch. 3.2)\] of the form
 
 $$ \tag{38}
 \begin{bmatrix}
@@ -468,7 +468,7 @@ $$
 
 where \\(c\\) is the [speed of light](https://en.wikipedia.org/wiki/Speed_of_light) in vacuum.
 
-It is convenient to use a parametrization that does not involve taking a square root. Thus, we define two positive real numbers, the [refractive index](https://en.wikipedia.org/wiki/Refractive_index) \\(\eta\\) and the [attenuation index](https://en.wikipedia.org/wiki/Refractive_index#Complex_refractive_index) \\(\kappa\\), by
+It is convenient to use a parametrization that does not involve taking a square root. Thus, we define two positive real numbers, the [refractive index](https://en.wikipedia.org/wiki/Refractive_index) \\(\eta\\) and the [attenuation index](https://en.wikipedia.org/wiki/Refractive_index#Complex_refractive_index) \\(\kappa\\) \[[7](#references) (ch. 3.1), [8](#references) (ch. 2.3)\], by
 
 $$ \tag{44}
 	\eta(\omega) - i \kappa(\omega) =
@@ -486,7 +486,7 @@ $$
 
 which gives an approximate mapping between the optical and the physical parameters (but keep in mind that the permittivity, the permeability and the conductivity are, in general, complex).
 
-In order to develop some intuition about the role of the refractive index, let us consider a simple plane wave without a phase shift in a linear isotropic medium:
+In order to develop some intuition about the role of the refractive index, let us consider a simple plane wave without a phase shift in a linear isotropic medium \[[5](#references) (vol. II, ch. 32)\]:
 
 $$ \tag{46}
 \begin{aligned}
@@ -514,7 +514,9 @@ $$
 
 This implies that \\(\theta\_{\omega}\\) represents a plane propagating along its normal \\(\bm{n}\\) at the [phase velocity](https://en.wikipedia.org/wiki/Phase_velocity) \\(c / \eta\\).
 
-Taking the real part of Equation 46 allows us to recover the *real amplitude*
+[Insert Picture Here]
+
+Taking the real part of Equation 46 allows us to recover the real *amplitude* of the plane wave
 
 $$ \tag{49}
  	\mathrm{Re} \big\lbrace \bm{E}(\bm{r}, \omega) e^{i \omega t} \big\rbrace = 
@@ -532,12 +534,16 @@ $$ \tag{50}
 	\bm{\bar{E}}(\bm{r}, \omega) e^{i \phi(\bm{r}, \omega)}.
 $$
 
-By introducing the *phase tensor* \\(\hat{\phi}\\) that takes anisotropy and the axial phase shift of Equation 38 into account, we can extend Equation 50 to obtain the general form of a time-harmonic vector wave:
+By introducing the *phase tensor* \\(\hat{\phi}\\) to take anisotropy and the axial phase shift of Equation 38 into account, we can extend Equation 50 to obtain the general form of a time-harmonic vector wave \[[6](#references) (ch. 1.4.3)\]:
 
 $$ \tag{51}
 	\bm{E}(\bm{r}, \omega) e^{i \omega t} =
 	e^{i \hat{\phi}(\bm{r}, \omega)} \bm{\bar{E}}(\bm{r}, \omega) e^{i \omega t}.
 $$
+
+## Force, Energy, and Radiometry
+
+Cite \[[5](#references) (vol. II, ch. 27), [6](#references) (ch. 1.1.4, 1.4.3, 4.8.1), [7](#references) (ch. 2.4), [8](#references) (ch. 2.5)\]
 
 ## Transverse Waves
 
@@ -792,7 +798,7 @@ Pharr, Jakob, NASA people
 4. van de Hulst, H. C. [Light scattering by small particles](https://doi.org/10.1002/qj.49708436025) (1957).
 5. Feynman, R. P., Leighton, R. B., & Sands, M. [The Feynman lectures on physics](https://www.feynmanlectures.caltech.edu/) (1963).
 6. Born, M., & Wolf, E. [Principles of optics](https://doi.org/10.1017/CBO9781139644181), 7th edition (1999).
-7. Collett, E. [Field Guide to Polarization](https://doi.org/10.1117/3.626141) (2005).
-8. Hansen, J. E., & Travis, L. D. [Light scattering in planetary atmospheres](https://doi.org/10.1007/BF00168069) (1974).
-9. Nave, C. R. [HyperPhysics](http://hyperphysics.phy-astr.gsu.edu/hbase/index.html) (2017).
-10. Boyd, R. W. [Nonlinear optics](https://www.elsevier.com/books/nonlinear-optics/boyd/978-0-12-811002-7) (2020).
+7. Mishchenko M. I. [Electromagnetic Scattering by Particles and Particle Groups](https://www.cambridge.org/us/academic/subjects/earth-and-environmental-science/atmospheric-science-and-meteorology/electromagnetic-scattering-particles-and-particle-groups-introduction) (2014).
+8. Ishimaru A. [Electromagnetic Wave Propagation, Radiation, and Scattering](https://doi.org/10.1002/9781119079699), 2nd Edition (2017).
+9. Boyd, R. W. [Nonlinear optics](https://www.elsevier.com/books/nonlinear-optics/boyd/978-0-12-811002-7), 4th Edition (2020).
+10. Hansen, J. E., & Travis, L. D. [Light scattering in planetary atmospheres](https://doi.org/10.1007/BF00168069) (1974).
