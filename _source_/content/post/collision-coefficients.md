@@ -484,7 +484,7 @@ $$ \tag{45}
 	\sqrt{\epsilon\_r \mu\_r} - i \frac{\sigma\_r \mu\_r}{2 \omega \sqrt{\epsilon\_r \mu\_r}},
 $$
 
-which gives an approximate mapping between the optical and the physical parameters.
+which gives an approximate mapping between the optical and the physical parameters (but keep in mind that the permittivity, the permeability and the conductivity are, in general, complex).
 
 In order to develop some intuition about the role of the refractive index, let us consider a simple plane wave without a phase shift in a linear isotropic medium:
 
