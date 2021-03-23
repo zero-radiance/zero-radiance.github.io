@@ -35,9 +35,9 @@ It is not expected that you understand the prior statement fully before reading 
 
 ## Maxwell's Equations in the Time Domain
 
-At the fundamental level, optics is built on the theory of fields. What is a field? A *field* is a [mathematical](https://en.wikipedia.org/wiki/Field_(mathematics)) construct; it is a function defined for all points in space and time. In [physics](https://en.wikipedia.org/wiki/Field_(physics)), a field typically has a source, contains energy, and exerts a force.
+At the fundamental level, optics is built on the theory of fields. What is a field? A *field* is a [mathematical](https://en.wikipedia.org/wiki/Field_(mathematics)) construct; it is a function defined for all points in in space \\(\bm{r}\\) and time \\(t\\). In [physics](https://en.wikipedia.org/wiki/Field_(physics)), a field typically has a source, contains energy, and exerts a force.
 
-Since we are primarily concerned with electromagnetic radiation, we shall focus our attention on the the [electric field](https://en.wikipedia.org/wiki/Electric_field) \\(\bm{E}\\) and the [magnetic induction](https://en.wikipedia.org/wiki/Magnetic_field#The_B-field) \\(\bm{B}\\). These are real vectors defined at every point in space \\(\bm{r}\\) and time \\(t\\).
+Since we are primarily concerned with electromagnetic radiation, we shall focus our attention on two real vector fields: the [electric field](https://en.wikipedia.org/wiki/Electric_field) \\(\bm{E}\\) and the [magnetic induction](https://en.wikipedia.org/wiki/Magnetic_field#The_B-field) \\(\bm{B}\\).
 
 They satisfy the differential form of [Maxwell's equations](https://en.wikipedia.org/wiki/Maxwell%27s_equation) \[[6](#references) (ch. 1.1.1), [7](#references) (ch. 2.1), [8](#references) (ch. 2.1)\]:
 
@@ -124,7 +124,7 @@ We take Maxwell's equations as axioms, and use them as a foundation from which w
 
 Maxwell's equations can be simplified by transforming the fields from the time to the frequency domain.
 
-Define[^102] the [Fourier transform](https://en.wikipedia.org/wiki/Fourier_transform) of the electric field \\(\bm{E}(\bm{r}, t)\\) as
+Define[^102] the [Fourier transform](https://en.wikipedia.org/wiki/Fourier_transform) of the electric vector field \\(\bm{E}(\bm{r}, t)\\) as
 
 [^102]: The choice of the sign of the complex exponential is arbitrary, and determines the sign of the imaginary components of both the complex permittivity and the complex refractive index.
 
@@ -132,7 +132,7 @@ $$ \tag{8}
 	\bm{E}(\bm{r}, \omega) = \frac{1}{\sqrt{2 \pi}} \int\_{-\infin}^{\infin} \bm{E}(\bm{r}, t) e^{-i \omega t} dt,
 $$
 
-where \\(\omega\\) is the *angular frequency*. \\(\bm{E}(\bm{r}, \omega)\\) is called a phase vector, or a [phasor](https://en.wikipedia.org/wiki/Phasor), and is, in general, complex[^103].
+where \\(\omega\\) is the *angular frequency*. \\(\bm{E}(\bm{r}, \omega)\\) is the electric [phasor](https://en.wikipedia.org/wiki/Phasor) field - a field of complex (phase) vectors[^103].
 
 \\(\bm{E}(\bm{r}, t)\\), on another hand, is real:
 
@@ -282,7 +282,7 @@ $$ \tag{22}
 \end{aligned}
 $$
 
-Let us now focus on the electric vector \\(\bm{E}\\). Take curl of Equation 22.1 and substitute Equation 22.3:
+Let us now focus on the electric phasor \\(\bm{E}\\). Take curl of Equation 22.1 and substitute Equation 22.3:
 
 $$ \tag{23}
 	\nabla \times \nabla \times \bm{E}(\bm{r}, \omega) + i \omega \hat{\mu}(\omega) \big( i \omega \hat{\varepsilon}(\omega) \bm{E}(\bm{r}, \omega) \big) = 0, \quad
@@ -330,13 +330,13 @@ $$ \tag{27}
 	\nabla \cdot  \bm{E}(\bm{r}, \omega) = 0.
 $$
 
-Substitution of Equation 27.2 into 27.1 yields the equation of the electric field \\(\bm{E}\\):
+Substitution of Equation 27.2 into 27.1 yields the equation of the electric phasor \\(\bm{E}\\):
 
 $$ \tag{28}
 	\nabla^2 \bm{E}(\bm{r}, \omega) + \omega^2 \hat{\varepsilon}(\omega) \hat{\mu}(\omega) \bm{E}(\bm{r}, \omega) = 0.
 $$
 
-Similarly, we can obtain the expression of the magnetic field \\(\bm{H}\\):
+Similarly, we can obtain the expression of the magnetic phasor \\(\bm{H}\\):
 
 $$ \tag{29}
 	\nabla^2 \bm{H}(\bm{r}, \omega) + \omega^2 \hat{\varepsilon}(\omega) \hat{\mu}(\omega) \bm{H}(\bm{r}, \omega) = 0.
@@ -527,7 +527,7 @@ If the absorption index \\(\kappa = 0\\), Equation 49 represents a regular sinus
 
 [Insert Picture Here]
 
-It's worth pointing out that Equation 46 shows how to decompose a complex phase vector of a simple plane wave into the *amplitude* \\(\bm{\bar{E}}\\) and the *phase* \\(\phi\\) (both of which are [real-valued functions](https://en.wikipedia.org/wiki/Real-valued_function)):
+It's worth pointing out that Equation 46 shows how to decompose the phasor of a simple plane wave into the *amplitude* \\(\bm{\bar{E}}\\) and the *phase* \\(\phi\\) (both of which are [real-valued functions](https://en.wikipedia.org/wiki/Real-valued_function)):
 
 $$ \tag{50}
 	\bm{E}(\bm{r}, \omega) = 
