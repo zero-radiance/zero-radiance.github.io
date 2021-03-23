@@ -37,7 +37,7 @@ It is not expected that you understand the prior statement fully before reading 
 
 At the fundamental level, optics is built on the theory of fields. What is a field? A *field* is a [mathematical](https://en.wikipedia.org/wiki/Field_(mathematics)) construct; it is a function defined for all points in in space \\(\bm{r}\\) and time \\(t\\). In [physics](https://en.wikipedia.org/wiki/Field_(physics)), a field typically has a source, contains energy, and exerts a force.
 
-Since we are primarily concerned with electromagnetic radiation, we shall focus our attention on two real vector fields: the [electric field](https://en.wikipedia.org/wiki/Electric_field) \\(\bm{E}\\) and the [magnetic induction](https://en.wikipedia.org/wiki/Magnetic_field#The_B-field) \\(\bm{B}\\).
+Since we are primarily concerned with electromagnetic radiation, we shall focus our attention on two real vector fields: the [electric field](https://en.wikipedia.org/wiki/Electric_field) \\(\bm{E}\\) and the [magnetic field](https://en.wikipedia.org/wiki/Magnetic_field#The_B-field) \\(\bm{B}\\).
 
 They satisfy the differential form of [Maxwell's equations](https://en.wikipedia.org/wiki/Maxwell%27s_equation) \[[6](#references) (ch. 1.1.1), [7](#references) (ch. 2.1), [8](#references) (ch. 2.1)\]:
 
@@ -82,7 +82,7 @@ $$
 
 is the [divergence](https://en.wikipedia.org/wiki/Divergence) operator, both given in Cartesian coordinates.
 
-As discussed in \[[5](#references) (vol. II, ch 32.2), [6](#references) (ch. 1.1.1)\], \\(\bm{E}\\) and \\(\bm{B}\\) are considered fundamental fields, and the [electric displacement](https://en.wikipedia.org/wiki/Electric_displacement_field) \\(\bm{D}\\) and the [magnetic field](https://en.wikipedia.org/wiki/Magnetic_field#The_H-field) \\(\bm{H}\\) are [auxiliary fields](https://en.wikipedia.org/wiki/Maxwell%27s_equations#Auxiliary_fields,_polarization_and_magnetization) that arise due to the influence of matter[^101]. They are related to the fundamental fields by
+As discussed in \[[5](#references) (vol. II, ch 32.2), [6](#references) (ch. 1.1.1)\], \\(\bm{E}\\) and \\(\bm{B}\\) are considered fundamental fields, and the [electric displacement](https://en.wikipedia.org/wiki/Electric_displacement_field) \\(\bm{D}\\) and the [magnetic intensity](https://en.wikipedia.org/wiki/Magnetic_field#The_H-field) \\(\bm{H}\\) are [auxiliary fields](https://en.wikipedia.org/wiki/Maxwell%27s_equations#Auxiliary_fields,_polarization_and_magnetization) that arise due to the influence of matter[^101]. They are related to the fundamental fields by
 
 [^101]: We can obtain the [microscopic formulation](https://en.wikipedia.org/wiki/Maxwell%27s_equations#Formulation_in_SI_units_convention) (without auxiliary fields) by [substitution](https://en.wikipedia.org/wiki/Maxwell%27s_equations#Auxiliary_fields,_polarization_and_magnetization) of the definitions of the auxiliary fields into Maxwell's equations. For optical applications, the [macroscopic formulation](https://en.wikipedia.org/wiki/Maxwell%27s_equations#Macroscopic_formulation) is more useful.
 
@@ -543,7 +543,59 @@ $$
 
 ## Force, Energy, and Radiometry
 
-Cite \[[5](#references) (vol. II, ch. 27), [6](#references) (ch. 1.1.4, 1.4.3, 4.8.1), [7](#references) (ch. 2.4), [8](#references) (ch. 2.5)\]
+
+
+Given a mathematical description of electromagnetic waves in terms of the frequency and the amplitude, we would like to physically characterize electromagnetic radiation as an energy transfer process. In order to do that, we have to determine how much energy there is in a given volume element of space, and also the rate of energy flow \[[5](#references) (vol. II, ch. 27), [6](#references) (ch. 1.1.4), [7](#references) (ch. 2.4), [8](#references) (ch. 2.5)\].
+
+Consider Maxwell's equations again. Take a dot product of \\(\bm{H}\\) and Equation 1.1, and another dot product of \\(\bm{E}\\) and Equation 1.3:
+
+$$ \tag{52}
+\begin{aligned}
+	&\bm{H}(\bm{r}, t) \cdot \big( \nabla \times \bm{E}(\bm{r}, t) \big) + \bm{H}(\bm{r}, t) \cdot \frac{\partial \bm{B}(\bm{r}, t)}{\partial t} = 0, \cr
+	&\bm{E}(\bm{r}, t) \cdot \big( \nabla \times \bm{H}(\bm{r}, t) \big) - \bm{E}(\bm{r}, t) \cdot \frac{\partial \bm{D}(\bm{r}, t)}{\partial t} = \bm{E}(\bm{r}, t) \cdot \bm{J\_f}(\bm{r}, t).
+\end{aligned}
+$$
+
+Now, [divergence of cross product](https://en.wikipedia.org/wiki/Vector_calculus_identities#Cross_product_rule) is
+
+$$ \tag{53}
+	\nabla \cdot (\bm{E} \times \bm{H}) = (\nabla \times \bm{E}) \cdot \bm{H} - \bm{E} \cdot (\nabla \times \bm{H}).
+$$
+
+Subtraction of Equation 52.2 from 52.1 yields
+
+$$ \tag{54}
+	\nabla \cdot (\bm{E} \times \bm{H}) +
+	\bm{H} \cdot \frac{\partial \bm{B}}{\partial t} +
+	\bm{E} \cdot \frac{\partial \bm{D}}{\partial t} + 
+	\bm{E} \cdot \bm{J\_f} = 0.
+$$
+
+Next, we assume that the medium is linear:
+
+$$ \tag{55}
+	\nabla \cdot (\bm{E} \times \bm{H}) +
+	\bm{H} \cdot \frac{\partial (\hat{\mu} \bm{H})}{\partial t} +
+	\bm{E} \cdot \frac{\partial (\hat{\epsilon} \bm{E})}{\partial t} + 
+	\bm{E} \cdot \bm{J\_f} = 0.
+$$
+
+If the medium is static, the expression can be simplified:
+
+$$ \tag{56}
+	\nabla \cdot (\bm{E} \times \bm{H}) +
+	\frac{\hat{\mu}}{2} \frac{\partial (\bm{H} \cdot \bm{H})}{\partial t} +
+	\frac{\hat{\epsilon}}{2} \frac{\partial (\bm{E} \cdot \bm{E})}{\partial t} + 
+	\bm{E} \cdot \bm{J\_f} = 0.
+$$
+
+
+
+---
+
+https://en.wikipedia.org/wiki/Radiometry
+
+Cite \[[6](#references) (ch. 1.4.3, 4.8.1)\]
 
 ## Transverse Waves
 
