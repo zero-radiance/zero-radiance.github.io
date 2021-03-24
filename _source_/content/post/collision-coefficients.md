@@ -342,7 +342,7 @@ $$ \tag{29}
 	\nabla^2 \bm{B}(\bm{r}, \omega) + \omega^2 \hat{\mu}(\omega) \hat{\varepsilon}(\omega) \bm{B}(\bm{r}, \omega) = 0.
 $$
 
-Since this tensor is [symmetric](https://en.wikipedia.org/wiki/Symmetric_matrix) \[[6](#references) (ch. 15.1)\], we can perform a coordinate transformation to [diagonalize](https://en.wikipedia.org/wiki/Diagonalizable_matrix#How_to_diagonalize_a_matrix) it:
+Since anisotropy arises due to the [crystal structure](https://en.wikipedia.org/wiki/Crystal_structure) of the material, its tensor is [normal](https://en.wikipedia.org/wiki/Normal_matrix), and we can perform a coordinate transformation to [diagonalize](https://en.wikipedia.org/wiki/Diagonalizable_matrix#How_to_diagonalize_a_matrix) it:
 
 $$ \tag{30}
 	\nabla^2 \bm{E}(\bm{r}, \omega) + \omega^2
