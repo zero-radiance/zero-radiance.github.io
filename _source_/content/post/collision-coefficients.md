@@ -198,7 +198,7 @@ $$ \tag{15}
 \begin{aligned}
 	&\bm{J\_i}(\bm{r}, \omega) \approx \hat{\sigma}(\bm{r}, \omega) \bm{E}(\bm{r}, \omega), \cr
 	&\bm{D}   (\bm{r}, \omega) \approx \hat{\epsilon}(\bm{r}, \omega) \bm{E}(\bm{r}, \omega), \cr
-	&\bm{H}   (\bm{r}, \omega) \approx \frac{1}{\hat{\mu}(\bm{r}, \omega)} \bm{B}(\bm{r}, \omega).
+	&\bm{H}   (\bm{r}, \omega) \approx \hat{\mu}^{-1}(\bm{r}, \omega) \bm{B}(\bm{r}, \omega).
 \end{aligned}
 $$
 
@@ -326,20 +326,20 @@ is the *vector* [Laplace](https://en.wikipedia.org/wiki/Laplace_operator) operat
 Use it to expand Equation 23.1:
 
 $$ \tag{27}
-	\nabla (\nabla \cdot \bm{E}(\bm{r}, \omega)) - \nabla^2 \bm{E}(\bm{r}, \omega) - \omega^2 \hat{\varepsilon}(\omega) \hat{\mu}(\omega) \bm{E}(\bm{r}, \omega) = 0, \quad
+	\nabla (\nabla \cdot \bm{E}(\bm{r}, \omega)) - \nabla^2 \bm{E}(\bm{r}, \omega) - \omega^2 \hat{\mu}(\omega) \hat{\varepsilon}(\omega) \bm{E}(\bm{r}, \omega) = 0, \quad
 	\nabla \cdot  \bm{E}(\bm{r}, \omega) = 0.
 $$
 
 Substitution of Equation 27.2 into 27.1 yields the equation of the electric phasor \\(\bm{E}\\):
 
 $$ \tag{28}
-	\nabla^2 \bm{E}(\bm{r}, \omega) + \omega^2 \hat{\varepsilon}(\omega) \hat{\mu}(\omega) \bm{E}(\bm{r}, \omega) = 0.
+	\nabla^2 \bm{E}(\bm{r}, \omega) + \omega^2 \hat{\mu}(\omega) \hat{\varepsilon}(\omega) \bm{E}(\bm{r}, \omega) = 0.
 $$
 
-Similarly, we can obtain the expression of the magnetic phasor \\(\bm{H}\\):
+Similarly, we can obtain the expression of the magnetic phasor \\(\bm{B}\\):
 
 $$ \tag{29}
-	\nabla^2 \bm{H}(\bm{r}, \omega) + \omega^2 \hat{\varepsilon}(\omega) \hat{\mu}(\omega) \bm{H}(\bm{r}, \omega) = 0.
+	\nabla^2 \bm{B}(\bm{r}, \omega) + \omega^2 \hat{\mu}(\omega) \hat{\varepsilon}(\omega) \bm{B}(\bm{r}, \omega) = 0.
 $$
 
 Since this tensor is [symmetric](https://en.wikipedia.org/wiki/Symmetric_matrix) \[[6](#references) (ch. 15.1)\], we can perform a coordinate transformation to [diagonalize](https://en.wikipedia.org/wiki/Diagonalizable_matrix#How_to_diagonalize_a_matrix) it:
@@ -347,9 +347,9 @@ Since this tensor is [symmetric](https://en.wikipedia.org/wiki/Symmetric_matrix)
 $$ \tag{30}
 	\nabla^2 \bm{E}(\bm{r}, \omega) + \omega^2
 		\begin{bmatrix}
-			\varepsilon\_{1} \mu\_{1} & 0 & 0 \cr
-			0 & \varepsilon\_{2} \mu\_{2} & 0 \cr
-			0 & 0 & \varepsilon\_{3} \mu\_{3}
+			\mu\_{1} \varepsilon\_{1} & 0 & 0 \cr
+			0 & \mu\_{2} \varepsilon\_{2} & 0 \cr
+			0 & 0 & \mu\_{3} \varepsilon\_{3}
 		\end{bmatrix} \bm{E}(\bm{r}, \omega) = 0,
 $$
 
