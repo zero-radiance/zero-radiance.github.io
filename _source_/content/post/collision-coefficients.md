@@ -87,7 +87,7 @@ As discussed in \[[5](#references) (vol. II, ch 32.2), [6](#references) (ch. 1.1
 [^101]: We can obtain the [microscopic formulation](https://en.wikipedia.org/wiki/Maxwell%27s_equations#Formulation_in_SI_units_convention) (without auxiliary fields) by [substitution](https://en.wikipedia.org/wiki/Maxwell%27s_equations#Auxiliary_fields,_polarization_and_magnetization) of the definitions of the auxiliary fields into Maxwell's equations. For optical applications, the [macroscopic formulation](https://en.wikipedia.org/wiki/Maxwell%27s_equations#Macroscopic_formulation) is more useful.
 
 $$ \tag{4}
-	\bm{D}(\bm{r}, t) = \epsilon\_0   \bm{E}(\bm{r}, t) + \bm{P}(\bm{r}, t), \quad 
+	\bm{D}(\bm{r}, t) = \epsilon\_0 \bm{E}(\bm{r}, t) + \bm{P}(\bm{r}, t), \quad 
 	\bm{H}(\bm{r}, t) = \frac{1}{\mu\_0} \bm{B}(\bm{r}, t) - \bm{M}(\bm{r}, t),
 $$
 
@@ -509,7 +509,7 @@ $$
 Notice that, for any \\(\Delta t\\),
 
 $$ \tag{48}
-	\theta\_{\omega}(\bm{r}, t) = \theta\_{\omega}(\bm{r} + \bm{n} (c / \eta) \Delta t, \space t + \Delta t).
+	\theta\_{\omega}(\bm{r}, t) = \theta\_{\omega}(\bm{r} + \bm{n} (c / \eta) \Delta t, \thinspace t + \Delta t).
 $$
 
 This implies that \\(\theta\_{\omega}\\) represents a plane propagating along its normal \\(\bm{n}\\) at the [phase velocity](https://en.wikipedia.org/wiki/Phase_velocity) \\(c / \eta\\).
@@ -547,51 +547,92 @@ $$
 
 Given a mathematical description of electromagnetic waves in terms of the frequency and the amplitude, we would like to physically characterize electromagnetic radiation as an energy transfer process. In order to do that, we have to determine how much energy there is in a given volume element of space, and also the rate of energy flow \[[5](#references) (vol. II, ch. 27), [6](#references) (ch. 1.1.4), [7](#references) (ch. 2.4), [8](#references) (ch. 2.5)\].
 
-Consider Maxwell's equations again. Take a dot product of \\(\bm{H}\\) and Equation 1.1, and another dot product of \\(\bm{E}\\) and Equation 1.3:
+If a particle with the electric charge \\(q\\) moving at the velocity \\(\bm{v}\\) is placed in an electromagnetic field, it experiences the [Lorentz force](https://en.wikipedia.org/wiki/Lorentz_force)
 
 $$ \tag{52}
+	\bm{F}(\bm{r}, t) = q(\bm{r}, t) \big( \bm{E}(\bm{r}, t) + \bm{v}(\bm{r}, t) \times \bm{B}(\bm{r}, t) \big).
+$$
+
+For charge density \\(\rho\\) and volume element \\(dV\\), the corresponding equation is
+
+$$ \tag{53}
+	d\bm{F}(\bm{r}, t) = \rho(\bm{r}, t) \big( \bm{E}(\bm{r}, t) + \bm{v}(\bm{r}, t) \times \bm{B}(\bm{r}, t) \big) dV.
+$$
+
+Since current (density) is just a collection of moving charges (per unit volume),
+
+$$ \tag{54}
+	\bm{J}(\bm{r}, t) = \rho(\bm{r}, t) \bm{v}(\bm{r}, t),
+$$ 
+
+and [work](https://en.wikipedia.org/wiki/Work_(physics)) done ([energy](https://en.wikipedia.org/wiki/Energy) transferred) is force times distance,
+
+$$ \tag{55}
+	\frac{\partial A(\bm{r}, t)}{\partial t} = \frac{d\bm{F}(\bm{r}, t) \cdot \bm{v}(\bm{r}, t)}{dV}  \thinspace = \bm{E}(\bm{r}, t) \cdot \bm{J}(\bm{r}, t)
+$$
+
+is the rate of work done by the electromagnetic field on matter per unit volume.
+
+Now, consider Maxwell's equations again. Take a dot product of \\(\bm{H}\\) and Equation 1.1, and another dot product of \\(\bm{E}\\) and Equation 1.3:
+
+$$ \tag{56}
 \begin{aligned}
 	&\bm{H}(\bm{r}, t) \cdot \big( \nabla \times \bm{E}(\bm{r}, t) \big) + \bm{H}(\bm{r}, t) \cdot \frac{\partial \bm{B}(\bm{r}, t)}{\partial t} = 0, \cr
 	&\bm{E}(\bm{r}, t) \cdot \big( \nabla \times \bm{H}(\bm{r}, t) \big) - \bm{E}(\bm{r}, t) \cdot \frac{\partial \bm{D}(\bm{r}, t)}{\partial t} = \bm{E}(\bm{r}, t) \cdot \bm{J\_f}(\bm{r}, t).
 \end{aligned}
 $$
 
-Now, [divergence of cross product](https://en.wikipedia.org/wiki/Vector_calculus_identities#Cross_product_rule) is
+Since [divergence of cross product](https://en.wikipedia.org/wiki/Vector_calculus_identities#Cross_product_rule) is
 
-$$ \tag{53}
-	\nabla \cdot (\bm{E} \times \bm{H}) = (\nabla \times \bm{E}) \cdot \bm{H} - \bm{E} \cdot (\nabla \times \bm{H}).
+$$ \tag{57}
+	\nabla \cdot (\bm{E} \times \bm{H}) = (\nabla \times \bm{E}) \cdot \bm{H} - \bm{E} \cdot (\nabla \times \bm{H}),
 $$
 
-Subtraction of Equation 52.2 from 52.1 yields
+subtraction of Equation 56.2 from 56.1 yields
 
-$$ \tag{54}
+$$ \tag{58}
 	\nabla \cdot (\bm{E} \times \bm{H}) +
 	\bm{H} \cdot \frac{\partial \bm{B}}{\partial t} +
 	\bm{E} \cdot \frac{\partial \bm{D}}{\partial t} + 
 	\bm{E} \cdot \bm{J\_f} = 0.
 $$
 
-Next, we assume that the medium is linear:
 
 $$ \tag{55}
 	\nabla \cdot (\bm{E} \times \bm{H}) +
-	\bm{H} \cdot \frac{\partial (\hat{\mu} \bm{H})}{\partial t} +
-	\bm{E} \cdot \frac{\partial (\hat{\epsilon} \bm{E})}{\partial t} + 
+	\bm{H} \cdot \frac{\partial (\mu\_0 \bm{H} + \bm{M})}{\partial t} +
+	\bm{E} \cdot \frac{\partial (\epsilon\_0 \bm{E} + \bm{P})}{\partial t} + 
 	\bm{E} \cdot \bm{J\_f} = 0.
 $$
-
-If the medium is static, the expression can be simplified:
 
 $$ \tag{56}
 	\nabla \cdot (\bm{E} \times \bm{H}) +
-	\frac{\hat{\mu}}{2} \frac{\partial (\bm{H} \cdot \bm{H})}{\partial t} +
-	\frac{\hat{\epsilon}}{2} \frac{\partial (\bm{E} \cdot \bm{E})}{\partial t} + 
+	\frac{\mu\_0}{2} \frac{\partial (\bm{H} \cdot \bm{H})}{\partial t} +
+	\bm{H} \cdot \frac{\partial\bm{M}}{\partial t} +
+	\frac{\epsilon\_0}{2} \frac{\partial (\bm{E} \cdot \bm{E})}{\partial t} + 
+	\bm{E} \cdot \frac{\partial \bm{P}}{\partial t} + 
 	\bm{E} \cdot \bm{J\_f} = 0.
 $$
 
+$$ \tag{57}
+	\nabla \cdot (\bm{E} \times \bm{H}) +
+	\frac{\mu\_0}{2} \frac{\partial H^2}{\partial t} +
+	\bm{H} \cdot \frac{\partial\bm{M}}{\partial t} +
+	\frac{\epsilon\_0}{2} \frac{\partial E^2}{\partial t} + 
+	\bm{E} \cdot (\bm{J\_b} - \nabla \times \bm{M}) + 
+	\bm{E} \cdot \bm{J\_f} = 0.
+$$
+
+$$ \tag{58}
+	\nabla \cdot (\bm{E} \times \bm{H}) +
+	\frac{\mu\_0}{2} \frac{\partial H^2}{\partial t} +
+	\bm{H} \cdot \frac{\partial\bm{M}}{\partial t} +
+	\frac{\epsilon\_0}{2} \frac{\partial E^2}{\partial t} - 
+	\bm{E} \cdot (\nabla \times \bm{M}) + 
+	\bm{E} \cdot \bm{J\_t} = 0.
+$$
 
 
----
 
 https://en.wikipedia.org/wiki/Radiometry
 
