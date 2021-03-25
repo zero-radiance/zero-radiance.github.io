@@ -732,9 +732,8 @@ Therefore, for time-harmonic waves, the amplitudes of the electric and the magne
 
 The vector nature of light waves (in mathematics) is referred to as the polarization of light (in physics).
 
-Non-paraxial polarization ???
+---
 
-<!--
 Imagine a small particle of an arbitrary shape embedded in the host medium with the [complex refractive index](https://en.wikipedia.org/wiki/Refractive_index#Complex_refractive_index) (IOR)[^50] \\(\eta - i \kappa\\).
 
 [^50]: By convention, \\(\eta\_0 = 1, \kappa\_0 = 0\\) is reserved for the [vacuum](https://en.wikipedia.org/wiki/Vacuum).
@@ -770,12 +769,8 @@ $$ \tag{4} E = \frac{1}{2} \frac{\eta}{\mu\_0 c} \bar{E}^2 = \frac{1}{2} \epsilo
 
 where \\(\epsilon\_0\\) is the [vacuum permittivity](https://en.wikipedia.org/wiki/Vacuum_permittivity) and \\(\bar{E}\\) is the maximum amplitude of the electric vector.
 
--->
-
-
+<!--
 ## Polarization of Light
-
-
 
 We have just seen that transverse waves are composed of two independent scalar components. Can we separate them? The answer is yes.
 
@@ -920,6 +915,9 @@ $$ \tag{27} \tan{2 \psi} = \frac{2 \bar{E}\_x \bar{E}\_y \cos(\phi\_x - \phi\_y)
 
 Auxiliary angle ...
 
+Non-paraxial polarization ???
+
+-->
 
 ## Acknowledgments
 
