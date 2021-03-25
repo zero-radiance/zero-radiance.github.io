@@ -35,7 +35,7 @@ It is not expected that you understand the prior statement fully before reading 
 
 ## Maxwell's Equations in the Time Domain
 
-At the fundamental level, optics is built on the theory of fields. What is a field? A *field* is a [mathematical](https://en.wikipedia.org/wiki/Field_(mathematics)) construct; it is a function defined for all points in space \\(\bm{r}\\) and time \\(t\\). In [physics](https://en.wikipedia.org/wiki/Field_(physics)), a field typically has a source, contains energy, and exerts a force.
+At the fundamental level, optics is built on the theory of fields. What is a field? A *field* is a [mathematical](https://en.wikipedia.org/wiki/Field_(mathematics)) construct; it is a function defined for all points in space \\(\bm{r}\\) and time \\(t\\). In [physics](https://en.wikipedia.org/wiki/Field_(physics)), a typical field has a source, contains energy, and exerts a force.
 
 Since we are primarily concerned with electromagnetic radiation, we shall focus our attention on two real vector fields: the [electric field](https://en.wikipedia.org/wiki/Electric_field) \\(\bm{E}\\) and the [magnetic field](https://en.wikipedia.org/wiki/Magnetic_field#The_B-field) \\(\bm{B}\\).
 
@@ -86,13 +86,13 @@ $$ \tag{1.4}
 	c = (\epsilon\_0 \mu\_0)^{-1/2}.
 $$
 
-Sometimes, Equations 1.1.1-1.1.4 are referred to as the "vacuum version" of Maxwell's equations. That name can be a little misleading; in fact, the matter is right there - it is just represented as a distribution of charged [elementary particles](https://en.wikipedia.org/wiki/Elementary_particle) by the *volume* [charge density](https://en.wikipedia.org/wiki/Charge_density) \\(\rho\\), such that the total charge \\(Q\\) inside the volume \\(V\\) is given by
+Sometimes, Equations 1.1 are referred to as the "vacuum version" of Maxwell's equations. That name can be a little misleading; in fact, the matter is right there - it is just represented as a distribution of charged [elementary particles](https://en.wikipedia.org/wiki/Elementary_particle) by the *volume* [charge density](https://en.wikipedia.org/wiki/Charge_density) \\(\rho\\), such that the total charge \\(Q\\) inside the volume \\(V\\) is
 
 $$ \tag{1.5}
 	Q(t) = \int\_{V} \rho(\bm{r}, t) \thinspace dV.
 $$
 
-A current is just a collection of moving charges. If their velocity is \\(\bm{v}\\), the *volume* [current density](https://en.wikipedia.org/wiki/Current_density) \\(\bm{J}\\) is simply
+Moving charges form a current. If their velocity is \\(\bm{v}\\), the *volume* [current density](https://en.wikipedia.org/wiki/Current_density) \\(\bm{J}\\) is simply
 
 $$ \tag{1.6}
 	\bm{J}(\bm{r}, t) = \rho(\bm{r}, t) \bm{v}(\bm{r}, t).
@@ -102,7 +102,7 @@ Of course, the individual electric charges may be located at different points, h
 
 While this kind of parametrization is simple and useful, due to the sheer number of charges in bulk matter, you can't see the forest for the trees. Therefore, applied physics often uses a different representation of matter, which we shall now discuss.
 
-First, we identify two types of charges - bound and free. As the name implies, *free* charges are able to move around the material, or even outside it, the typical example being the conduction current in a copper wire. The *bound* [current](https://en.wikipedia.org/wiki/Current_density#Polarization_and_magnetization_currents) and [charge densities](https://en.wikipedia.org/wiki/Charge_density#Bound_charge), \\(\bm{J\_b}\\) and \\(\rho\_b\\), are more difficult to reason about. They can be characterized in terms of [polarization of matter](https://en.wikipedia.org/wiki/Maxwell%27s_equations#Auxiliary_fields,_polarization_and_magnetization):
+First, we identify two types of charges - bound and free. As the name implies, *free* charges are able to effortlessly move around the material, or even outside it, the typical example being the conduction current in a copper wire. The *bound* [current](https://en.wikipedia.org/wiki/Current_density#Polarization_and_magnetization_currents) and [charge densities](https://en.wikipedia.org/wiki/Charge_density#Bound_charge), \\(\bm{J\_b}\\) and \\(\rho\_b\\), are more difficult to reason about. They can be characterized in terms of [polarization of matter](https://en.wikipedia.org/wiki/Maxwell%27s_equations#Auxiliary_fields,_polarization_and_magnetization):
 
 $$ \tag{1.7}
 	\bm{J\_b}(\bm{r}, t) = \nabla \times \bm{M}(\bm{r}, t) + \frac{\partial \bm{P}(\bm{r}, t)}{\partial t}, \quad
@@ -136,7 +136,7 @@ $$ \tag{1.10}
 	\bm{H}(\bm{r}, t) = \frac{1}{\mu\_0} \bm{B}(\bm{r}, t) - \bm{M}(\bm{r}, t),
 $$
 
-substitute them into Equations 1.9.1 and 1.9.2, and combine the resulting expressions with Equations 1.1.1 and 1.1.2, we obtain the [macroscopic formulation](https://en.wikipedia.org/wiki/Maxwell%27s_equations#Macroscopic_formulation) of Maxwell's equations \[[6](#references) (ch. 1.1.1), [7](#references) (ch. 2.1), [8](#references) (ch. 2.1)\]:
+substitute them into Equations 1.9.1 and 1.9.2, and group the resulting expressions with Equations 1.1.1 and 1.1.2, we obtain the [macroscopic formulation](https://en.wikipedia.org/wiki/Maxwell%27s_equations#Macroscopic_formulation) of Maxwell's equations \[[6](#references) (ch. 1.1.1), [7](#references) (ch. 2.1), [8](#references) (ch. 2.1)\]:
 
 $$ \tag{1.11}
 \begin{aligned}
@@ -171,29 +171,29 @@ We take Maxwell's equations as axioms, and use them as a foundation from which w
 
 Maxwell's equations can be simplified by transforming the fields from the time to the frequency domain.
 
-Define[^102] the [Fourier transform](https://en.wikipedia.org/wiki/Fourier_transform) of the electric vector field \\(\bm{E}(\bm{r}, t)\\) as
+Define[^1] the [Fourier transform](https://en.wikipedia.org/wiki/Fourier_transform) of the electric vector field \\(\bm{E}(\bm{r}, t)\\) as
 
-[^102]: The choice of the sign of the complex exponential is arbitrary, and determines the sign of the imaginary components of both the complex permittivity and the complex refractive index.
+[^1]: The choice of the sign of the complex exponential is arbitrary, and determines the sign of the imaginary components of both the complex permittivity and the complex refractive index.
 
-$$ \tag{8}
+$$ \tag{2.1}
 	\bm{E}(\bm{r}, \omega) = \frac{1}{\sqrt{2 \pi}} \int\_{-\infin}^{\infin} \bm{E}(\bm{r}, t) e^{-i \omega t} dt,
 $$
 
-where \\(\omega\\) is the *angular frequency*. \\(\bm{E}(\bm{r}, \omega)\\) is the electric [phasor](https://en.wikipedia.org/wiki/Phasor) field - a field of complex (phase) vectors[^103].
+where \\(\omega\\) is the *angular frequency*. \\(\bm{E}(\bm{r}, \omega)\\) is the electric [phasor](https://en.wikipedia.org/wiki/Phasor) field - a field of complex (phase) vectors[^2].
 
 \\(\bm{E}(\bm{r}, t)\\), on another hand, is real:
 
-[^103]: This implies that all factors comprising the expression of the complex field are also complex.
+[^2]: This implies that all factors comprising the expression of the complex field are also complex.
 
-$$ \tag{9}
+$$ \tag{2.2}
 	\bm{E}(\bm{r}, t) =
 	\mathrm{Re} \Bigg\lbrace \frac{1}{\sqrt{2 \pi}} \int\_{-\infin}^{\infin} \bm{E}(\bm{r}, \omega) e^{i \omega t} d\omega \Bigg\rbrace =
 	\frac{1}{\sqrt{2 \pi}} \int\_{-\infin}^{\infin} \mathrm{Re} \big\lbrace \bm{E}(\bm{r}, \omega) e^{i \omega t} \big\rbrace d\omega.
 $$
 
-We can define integral forms of the fields by replacing \\(\bm{E}\\) by \\(\bm{B}\\), \\(\bm{D}\\), \\(\bm{H}\\), \\(\bm{J\_f}\\) or \\(\rho\_f\\) in Equation 9. If we substitute these integrals into Equation 1, and if we assume that we can perform [differentiation under the integral sign](https://en.wikipedia.org/wiki/Leibniz_integral_rule), the integrands can be expressed as
+We can define integral forms of the fields by replacing \\(\bm{E}\\) by \\(\bm{B}\\), \\(\bm{D}\\), \\(\bm{H}\\), \\(\bm{J\_f}\\) or \\(\rho\_f\\) in Equation 2.2. If we substitute these integrals into Equations 1.11, and if we assume that we can perform [differentiation under the integral sign](https://en.wikipedia.org/wiki/Leibniz_integral_rule), the integrands can be expressed as
 
-$$ \tag{10}
+$$ \tag{2.3}
 \begin{aligned}
 	&\nabla \times \big( \bm{E}(\bm{r}, \omega) e^{i \omega t} \big) + \frac{\partial \big( \bm{B}(\bm{r}, \omega) e^{i \omega t} \big)}{\partial t} = 0, &
 	&\nabla \cdot  \big( \bm{B}(\bm{r}, \omega) e^{i \omega t} \big) = 0, \cr
@@ -204,7 +204,7 @@ $$
 
 Performing differentiation with respect to time and division by the pervasive \\(e^{i \omega t}\\) factor yields Maxwell's equations for monochromatic fields \[[7](#references) (ch. 2.3), [8](#references) (ch. 2.2)\]:
 
-$$ \tag{11}
+$$ \tag{2.4}
 \begin{aligned}
 	&\nabla \times \bm{E}(\bm{r}, \omega) + i \omega \bm{B}(\bm{r}, \omega) = 0, &
 	&\nabla \cdot  \bm{B}(\bm{r}, \omega) = 0, \cr
@@ -213,51 +213,51 @@ $$ \tag{11}
 \end{aligned}
 $$
 
-Dependence on time is completely gone, which is advantageous since we are interested in the steady state of the field measured over the time interval that is large in comparison to the period of an oscillation of the field.
+Dependence on time is completely gone, which is advantageous since we are interested in the steady state of the field measured over the time interval that is large in comparison to the period of an oscillation.
 
-If we take divergence of Equation 11.3, combine it with equation 11.4, and use the fact that [divergence of curl](https://en.wikipedia.org/wiki/Vector_calculus_identities#Divergence_of_curl_is_zero) is zero, we obtain the [continuity equation](https://en.wikipedia.org/wiki/Continuity_equation) of charge:
+If we take divergence of Equation 2.4.3, combine the result with Equation 2.4.4, and use the fact that [divergence of curl](https://en.wikipedia.org/wiki/Vector_calculus_identities#Divergence_of_curl_is_zero) is zero, we obtain the [continuity equation](https://en.wikipedia.org/wiki/Continuity_equation) that expresses the [conservation of charge](https://en.wikipedia.org/wiki/Charge_conservation):
 
-$$ \tag{12}
+$$ \tag{2.5}
 	\nabla \cdot \bm{J\_f}(\bm{r}, \omega) = - i \omega \rho\_f(\bm{r}, \omega).
 $$
 
 For future convenience, we shall define the decomposition of the *free* charges and currents into the *source* and the *induced* parts \[[8](#references) (ch. 2.2)\]:
 
-$$ \tag{13}
+$$ \tag{2.6}
 	\rho\_f = \rho\_s + \rho\_i, \quad
 	\bm{J\_f} = \bm{J\_s} + \bm{J\_i}.
 $$
 
-Continuity of charge implies
+Continuity of charge implies that
 
-$$ \tag{14}
+$$ \tag{2.7}
 	\rho\_s(\bm{r}, \omega) = \frac{i}{\omega} \nabla \cdot \bm{J\_s}(\bm{r}, \omega), \quad
 	\rho\_i(\bm{r}, \omega) = \frac{i}{\omega} \nabla \cdot \bm{J\_i}(\bm{r}, \omega).
 $$
 
 ## Constitutive Relations
 
-Considered in isolation, Maxwell's system has fewer equations than unknowns. This forces us to specify the way the material responds to the electromagnetic field. One way to do this is to express the auxiliary fields in terms of polarization of matter (as per Equations 4 and 5). Turns out, this leads to a non-linear solution \[[9](#references)\] that is relatively difficult to manipulate.
+Considered in isolation, Maxwell's system has fewer equations than unknowns. This makes it necessary to specify the way the material responds to the electromagnetic field. One way to do this is to express the auxiliary fields in terms of polarization of matter (as per Equations 1.7 and 1.10). Turns out, this leads to a non-linear solution \[[9](#references)\] that is relatively difficult to manipulate.
 
 Fortunately, many materials respond to weak electromagnetic fields in optical frequencies in an approximately linear manner. This behavior is captured by the [constitutive relations](https://en.wikipedia.org/wiki/Constitutive_equation#Electromagnetism) \[[6](#references) (ch. 1.1.2), [7](#references) (ch. 2.1), [8](#references) (ch. 2.3)\]:
 
-$$ \tag{15}
+$$ \tag{3.1}
 \begin{aligned}
 	&\bm{J\_i}(\bm{r}, \omega) \approx \hat{\sigma}(\bm{r}, \omega) \bm{E}(\bm{r}, \omega), \cr
 	&\bm{D}   (\bm{r}, \omega) \approx \hat{\epsilon}(\bm{r}, \omega) \bm{E}(\bm{r}, \omega), \cr
-	&\bm{H}   (\bm{r}, \omega) \approx \hat{\mu}^{-1}(\bm{r}, \omega) \bm{B}(\bm{r}, \omega).
+	&\bm{B}   (\bm{r}, \omega) \approx \hat{\mu}(\bm{r}, \omega) \bm{H}(\bm{r}, \omega).
 \end{aligned}
 $$
 
-We can also combine Equations 14.2 and 15.1 to derive the relation of the induced charge density:
+We can also combine Equations 2.7.2 and 3.1.1 to derive the relation of the induced charge density:
 
-$$ \tag{16}
+$$ \tag{3.2}
 	\rho\_i(\bm{r}, \omega) \approx \frac{i}{\omega} \nabla \cdot \big( \hat{\sigma}(\bm{r}, \omega) \bm{E}(\bm{r}, \omega) \big).
 $$
 
 In general, media may be *dispersive* (dependent on the frequency), *lossy* (absorptive), and *anisotropic* (dependent on the orientation). This means that the [specific conductivity](https://en.wikipedia.org/wiki/Electrical_resistivity_and_conductivity) \\(\hat{\sigma}\\), the [electric permittivity](https://en.wikipedia.org/wiki/Permittivity) \\(\hat{\epsilon}\\), and the [magnetic permeability](https://en.wikipedia.org/wiki/Permeability_(electromagnetism)) \\(\hat{\mu}\\) are frequency-dependent complex [tensor fields](https://en.wikipedia.org/wiki/Tensor#Tensor_fields). For instance,
 
-$$ \tag{17}
+$$ \tag{3.3}
 	\bm{D}(\bm{r}, \omega) \approx \hat{\epsilon}(\bm{r}, \omega) \bm{E}(\bm{r}, \omega) =
 	\begin{bmatrix}
 		\epsilon\_{11} & \epsilon\_{12} & \epsilon\_{13} \cr
@@ -273,7 +273,7 @@ $$
 
 After substitution of the constitutive relations, Maxwell's equations take the following form:
 
-$$ \tag{18}
+$$ \tag{3.4}
 \begin{aligned}
 	&\nabla \times \bm{E}(\bm{r}, \omega) + i \omega \hat{\mu}(\bm{r}, \omega) \bm{H}(\bm{r}, \omega) = 0, \cr
 	&\nabla \cdot  \big( \hat{\mu}(\bm{r}, \omega) \bm{H}(\bm{r}, \omega) \big) = 0, \cr
@@ -282,15 +282,15 @@ $$ \tag{18}
 \end{aligned}
 $$
 
-If we define the [complex permittivity](https://en.wikipedia.org/wiki/Permittivity#Complex_permittivity) \\(\hat{\varepsilon}\\) as
+Using the definition of the [complex permittivity](https://en.wikipedia.org/wiki/Permittivity#Complex_permittivity)
 
-$$ \tag{19}
+$$ \tag{3.5}
 	\hat{\varepsilon}(\bm{r}, \omega) = \hat{\epsilon}(\bm{r}, \omega) - \frac{i}{\omega} \hat{\sigma}(\bm{r}, \omega),
 $$
 
 we obtain Maxwell's equations for *linear* media:
 
-$$ \tag{20}
+$$ \tag{3.6}
 \begin{aligned}
 	&\nabla \times \bm{E}(\bm{r}, \omega) + i \omega \hat{\mu}(\bm{r}, \omega) \bm{H}(\bm{r}, \omega) = 0, &
 	&\nabla \cdot  \big( \hat{\mu}(\bm{r}, \omega) \bm{H}(\bm{r}, \omega) \big) = 0, \cr
@@ -301,11 +301,11 @@ $$
 
 ## Helmholtz's Equation
 
-Consider a region of space without any source currents or charges. Physically, this means that there are no sources of fields. This may seem strange at first; the idea is explore all solutions (we can pick a particular one once we specify the source) and determine how they evolve over time.
+Consider a region of space without any source currents or charges. Physically, this means that there are no sources of fields; but it doesn't mean the field contains no energy. The idea is explore all solutions of Maxwell's equations (we can pick a particular solution once we specify the source), and determine how these solutions evolve over time.
 
-Setting \\(\bm{J\_f} = \rho\_f = 0\\) in Equation 20, we obtain a coupled system of homogeneous linear differential equations:
+Setting \\(\bm{J\_f} = \rho\_f = 0\\) in Equations 3.6, we obtain a coupled system of homogeneous linear differential equations:
 
-$$ \tag{21}
+$$ \tag{4.1}
 \begin{aligned}
 	&\nabla \times \bm{E}(\bm{r}, \omega) + i \omega \hat{\mu}(\bm{r}, \omega) \bm{H}(\bm{r}, \omega) = 0, &
 	&\nabla \cdot  \big( \hat{\mu}(\bm{r}, \omega) \bm{H}(\bm{r}, \omega) \big) = 0, \cr
@@ -316,11 +316,11 @@ $$
 
 Mathematically, the consequence is that a linear combination of several solutions is also a valid solution.
 
-Assume that the medium is *homogeneous* and *stationary* (constant in space and time)[^104]:
+Assume that the medium is *homogeneous* and *stationary* (constant in space and time)[^3]:
 
-[^104]: See \[[6](#references) (ch. 1.2)\] for an inhomogeneous solution. The stationary approximation is valid for optical frequences because the time period of an oscillation is very short. 
+[^3]: See \[[6](#references) (ch. 1.2)\] for an inhomogeneous solution. The stationary approximation is valid for optical frequences because the time period of an oscillation is very short. 
 
-$$ \tag{22}
+$$ \tag{4.2}
 \begin{aligned}
 	&\nabla \times \bm{E}(\bm{r}, \omega) + i \omega \hat{\mu}(\omega) \bm{H}(\bm{r}, \omega) = 0, &
 	&\nabla \cdot  \bm{H}(\bm{r}, \omega) = 0, \cr
@@ -329,22 +329,21 @@ $$ \tag{22}
 \end{aligned}
 $$
 
-Let us now focus on the electric phasor \\(\bm{E}\\). Take curl of Equation 22.1 and substitute Equation 22.3:
+Let us focus on the electric phasor \\(\bm{E}\\). Take curl of Equation 4.2.1 and substitute Equation 4.2.3:
 
-$$ \tag{23}
-	\nabla \times \nabla \times \bm{E}(\bm{r}, \omega) + i \omega \hat{\mu}(\omega) \big( i \omega \hat{\varepsilon}(\omega) \bm{E}(\bm{r}, \omega) \big) = 0, \quad
-	\nabla \cdot \bm{E}(\bm{r}, \omega) = 0.
+$$ \tag{4.3}
+	\nabla \times \nabla \times \bm{E}(\bm{r}, \omega) + i \omega \hat{\mu}(\omega) \big( i \omega \hat{\varepsilon}(\omega) \bm{E}(\bm{r}, \omega) \big) = 0.
 $$
 
 Introduce the [curl-of-curl](https://en.wikipedia.org/wiki/Vector_calculus_identities#Curl_of_curl) identity
 
-$$ \tag{24}
+$$ \tag{4.4}
 	\nabla \times (\nabla \times \bm{V}) = \nabla (\nabla \cdot \bm{V}) - \nabla^2 \bm{V},
 $$
 
 where 
 
-$$ \tag{25}
+$$ \tag{4.5}
 	\mathrm{grad}(s) =
 	\nabla s =
 	\begin{bmatrix}
@@ -361,7 +360,7 @@ $$
 
 is the [gradient](https://en.wikipedia.org/wiki/Gradient) operator and
 
-$$ \tag{26}
+$$ \tag{4.6}
 	\mathrm{div}(\mathrm{grad}(\bm{V})) =
 	\nabla^2 \bm{V} =
 	(\nabla \cdot \nabla) \bm{V} =
@@ -370,28 +369,29 @@ $$
 
 is the *vector* [Laplace](https://en.wikipedia.org/wiki/Laplace_operator) operator (*scalar* Laplace operator applied to each vector component).
 
-Use it to expand Equation 23.1:
+Use it to expand Equation 4.3:
 
-$$ \tag{27}
-	\nabla (\nabla \cdot \bm{E}(\bm{r}, \omega)) - \nabla^2 \bm{E}(\bm{r}, \omega) - \omega^2 \hat{\mu}(\omega) \hat{\varepsilon}(\omega) \bm{E}(\bm{r}, \omega) = 0, \quad
-	\nabla \cdot  \bm{E}(\bm{r}, \omega) = 0.
+$$ \tag{4.7}
+	\nabla (\nabla \cdot \bm{E}(\bm{r}, \omega)) - \nabla^2 \bm{E}(\bm{r}, \omega) - \omega^2 \hat{\mu}(\omega) \hat{\varepsilon}(\omega) \bm{E}(\bm{r}, \omega) = 0.
 $$
 
-Substitution of Equation 27.2 into 27.1 yields the equation of the electric phasor \\(\bm{E}\\):
+Substitution of Equation 4.2.4 into 4.7 yields the equation of the electric phasor \\(\bm{E}\\):
 
-$$ \tag{28}
+$$ \tag{4.8}
 	\nabla^2 \bm{E}(\bm{r}, \omega) + \omega^2 \hat{\mu}(\omega) \hat{\varepsilon}(\omega) \bm{E}(\bm{r}, \omega) = 0.
 $$
 
-Similarly, we can obtain the expression of the magnetic phasor \\(\bm{B}\\):
+Similarly, we can obtain an expression[^4] of the magnetic phasor \\(\bm{B}\\):
 
-$$ \tag{29}
+[^4]: If you solve for \\(\bm{H}\\) rather than \\(\bm{B}\\), you will obtain an equation with the \\(\hat{\varepsilon} \hat{\mu}\\) term instead of \\(\hat{\mu} \hat{\varepsilon}\\) found in the equation of \\(\bm{E}\\). Since, in general, tensor products do not commute, this means that the \\(\bm{H}\\) field propagates differently from the \\(\bm{E}\\) field, and solving for the \\(\bm{H}\\) field is a mistake.
+
+$$ \tag{4.9}
 	\nabla^2 \bm{B}(\bm{r}, \omega) + \omega^2 \hat{\mu}(\omega) \hat{\varepsilon}(\omega) \bm{B}(\bm{r}, \omega) = 0.
 $$
 
 Since anisotropy arises due to the [crystal structure](https://en.wikipedia.org/wiki/Crystal_structure) of the material, its tensor is [normal](https://en.wikipedia.org/wiki/Normal_matrix), and we can perform a coordinate transformation to [diagonalize](https://en.wikipedia.org/wiki/Diagonalizable_matrix#How_to_diagonalize_a_matrix) it:
 
-$$ \tag{30}
+$$ \tag{4.10}
 	\nabla^2 \bm{E}(\bm{r}, \omega) + \omega^2
 		\begin{bmatrix}
 			\mu\_{1} \varepsilon\_{1} & 0 & 0 \cr
@@ -402,7 +402,7 @@ $$
 
 which allows us separate the variables into three *scalar* [Helmholtz's equations](https://en.wikipedia.org/wiki/Helmholtz_equation):
 
-$$ \tag{31}
+$$ \tag{4.11}
 \begin{aligned}
 	\big( \nabla^2 + k\_{1}^2(\omega) \big) E\_x(\bm{r}, \omega) = 0, \cr
 	\big( \nabla^2 + k\_{2}^2(\omega) \big) E\_y(\bm{r}, \omega) = 0, \cr
@@ -412,19 +412,19 @@ $$
 
 where
 
-$$ \tag{32}
+$$ \tag{4.12}
 	k(\omega) = \omega \sqrt{\varepsilon(\omega) \mu(\omega)}.
 $$
 
 To find a solution, let us first consider a simpler one-dimensional Helmholtz's equation
 
-$$ \tag{33}
+$$ \tag{4.13}
 	\frac{d^2 s(x)}{d x^2} = -k^2 s(x).
 $$
 
 If the derivative of a function is the function itself (times a constant), the function is clearly an exponential:
 
-$$ \tag{34}
+$$ \tag{4.14}
 	s(x) =
 	s(0) e^{\pm i k x} = 
 	\bar{s} e^{i \delta} e^{\pm i k x},
@@ -434,15 +434,15 @@ where \\(\bar{s}\\) represents a real number. To avoid clutter, we shall adhere 
 
 Extension to three dimensions is straightforward. If we rotate the coordinate frame so that the \\(x\\)-axis points along the unit vector \\(\bm{n}\\),
 
-$$ \tag{35}
+$$ \tag{4.15}
 	s(\bm{r}) =
 	\bar{s} e^{i \delta} e^{ -i k (\bm{n} \cdot \bm{r})} =
 	\bar{s} e^{i \delta} e^{ -i \bm{k} \cdot \bm{r}}.
 $$
 
-Equation 35 can be used to solve Equations 31.1-31.3:
+Equation 4.15 can be used to solve Equations 4.11:
 
-$$ \tag{36}
+$$ \tag{4.16}
 	\bm{E}(\bm{r}, \omega) =
 	\begin{bmatrix}
 		\bar{E}\_x(\omega) \exp(i \delta\_x(\omega) - i \bm{k\_x}(\omega) \cdot \bm{r}) \cr
@@ -455,9 +455,9 @@ That is a solution of Maxwell's equations in the frequency domain.
 
 ## Time-Harmonic Waves
 
-We can find a solution in the time domain by substituting Equation 36 into Equation 9:
+We can find a solution in the time domain by substituting Equation 4.16 into 2.2:
 
-$$ \tag{37}
+$$ \tag{5.1}
 \begin{aligned}
 	\bm{E}(\bm{r}, t)
 	&= \frac{1}{\sqrt{2 \pi}} \int\_{-\infin}^{\infin} \mathrm{Re} \big\lbrace \bm{E}(\bm{r}, \omega) e^{i \omega t} \big\rbrace d\omega \cr
@@ -470,9 +470,9 @@ $$ \tag{37}
 \end{aligned}
 $$
 
-The integral of Equation 37 represents a [wave packet](https://en.wikipedia.org/wiki/Wave_packet). It is a collection of time-harmonic *vector* [plane waves](https://en.wikipedia.org/wiki/Plane_wave) \[[6](#references) (ch. 1.4.2), [7](#references) (ch. 3.1), [8](#references) (ch. 3.2)\] of the form
+This integral represents a [wave packet](https://en.wikipedia.org/wiki/Wave_packet). It is a collection of time-harmonic *vector* [plane waves](https://en.wikipedia.org/wiki/Plane_wave) \[[6](#references) (ch. 1.4.2), [7](#references) (ch. 3.1), [8](#references) (ch. 3.2)\] of the form
 
-$$ \tag{38}
+$$ \tag{5.2}
 \begin{bmatrix}
 	\bar{E}\_x(\omega) \exp(i \delta\_x(\omega) -i \bm{k\_x}(\omega) \cdot \bm{r} + i \omega t) \cr
 	\bar{E}\_y(\omega) \exp(i \delta\_y(\omega) -i \bm{k\_y}(\omega) \cdot \bm{r} + i \omega t) \cr
@@ -482,80 +482,77 @@ $$
 
 each composed of three *scalar* plane waves such as
 
-$$ \tag{39}
+$$ \tag{5.3}
 	\bar{E}(\omega) e^{i \delta(\omega)} e^{-i \bm{k}(\omega) \cdot \bm{r}} e^{i \omega t},
 $$
 
-expressed in terms of the *phase shift* \\(\delta\\) and the complex [wave vector](https://en.wikipedia.org/wiki/Wave_vector) \\(\bm{k}\\) that points along the plane normal \\(\bm{n}\\) that has been scaled using the complex [wave number](https://en.wikipedia.org/wiki/Wavenumber) \\(k\\):
+expressed in terms of the *phase shift* \\(\delta\\) and the complex [wave vector](https://en.wikipedia.org/wiki/Wave_vector) \\(\bm{k}\\) that points along the plane normal \\(\bm{n}\\) multiplied by the complex [wave number](https://en.wikipedia.org/wiki/Wavenumber) \\(k\\):
 
-$$ \tag{41}
-	k(\omega) =
-	\omega \sqrt{\varepsilon(\omega) \mu(\omega)}.
+$$ \tag{5.4}
+	\bm{k}(\omega) = k(\omega) \bm{n} =
+	\omega \sqrt{\varepsilon(\omega) \mu(\omega)} \bm{n}.
 $$
 
-If we define the [relative permittivity](https://en.wikipedia.org/wiki/Relative_permittivity)[^105] \\(\varepsilon\_r\\) and the [relative permeability](https://en.wikipedia.org/wiki/Permeability_(electromagnetism)#Relative_permeability_and_magnetic_susceptibility) \\(\mu\_r\\) using vacuum as a reference,
+If we define the [relative permittivity](https://en.wikipedia.org/wiki/Relative_permittivity)[^5] \\(\varepsilon\_r\\) and the [relative permeability](https://en.wikipedia.org/wiki/Permeability_(electromagnetism)#Relative_permeability_and_magnetic_susceptibility) \\(\mu\_r\\) using vacuum as reference,
 
-[^105]: Historically called the [relative complex dielectric constant](https://en.wikipedia.org/wiki/Relative_permittivity#Lossy_medium).
+[^5]: Historically called the [relative complex dielectric constant](https://en.wikipedia.org/wiki/Relative_permittivity#Lossy_medium).
 
-$$ \tag{42}
-	\varepsilon\_r(\omega) =
-	\frac{\varepsilon(\omega)}{\epsilon\_0} = 
-	\frac{\epsilon(\omega)}{\epsilon\_0} - \frac{i}{\omega} \frac{\sigma(\omega)}{\epsilon\_0} =
-	\epsilon\_r(\omega) - \frac{i}{\omega} \sigma\_r(\omega), \quad
+$$ \tag{5.5}
+	\varepsilon\_r(\omega) = \frac{\varepsilon(\omega)}{\epsilon\_0}, \quad
 	\mu\_r(\omega) = \frac{\mu(\omega)}{\mu\_0},
 $$
 
-the square root of Equation 41 can be expressed as
+the square root of Equation 5.4 can be expressed as
 
-$$ \tag{43}
+$$ \tag{5.6}
 	\sqrt{\varepsilon(\omega) \mu(\omega)} =
 	\sqrt{\epsilon\_0 \mu\_0} \sqrt{\varepsilon\_r(\omega) \mu\_r(\omega)} =
-	\frac{1}{c} \sqrt{\varepsilon\_r(\omega) \mu\_r(\omega)},
+	\frac{1}{c} \sqrt{\varepsilon\_r(\omega) \mu\_r(\omega)}.
 $$
-
-where \\(c\\) is the [speed of light](https://en.wikipedia.org/wiki/Speed_of_light) in vacuum.
 
 It is convenient to use a parametrization that does not involve taking a square root. Thus, we define two positive real numbers, the [refractive index](https://en.wikipedia.org/wiki/Refractive_index) \\(\eta\\) and the [attenuation index](https://en.wikipedia.org/wiki/Refractive_index#Complex_refractive_index) \\(\kappa\\) \[[7](#references) (ch. 3.1), [8](#references) (ch. 2.3)\], by
 
-$$ \tag{44}
+$$ \tag{5.7}
 	\eta(\omega) - i \kappa(\omega) =
 	\sqrt{\varepsilon\_r(\omega) \mu\_r(\omega)} =
-	\sqrt{\epsilon\_r(\omega) \mu\_r(\omega) - \frac{i}{\omega} \sigma\_r(\omega) \mu\_r(\omega)}.
+	c \sqrt{\epsilon(\omega) \mu(\omega) - \frac{i}{\omega} \sigma(\omega) \mu(\omega)}.
 $$
 
 For high frequencies such as those encountered in optics, we may perform a [Laurent series](https://en.wikipedia.org/wiki/Laurent_series) [expansion](https://www.wolframalpha.com/input/?i=series+sqrt%28a-I%2Fw*b%29) at infinity:
 
-$$ \tag{45}
+$$ \tag{5.8}
 	\eta - i \kappa = 
-	\sqrt{\epsilon\_r \mu\_r - \frac{i}{\omega} \sigma\_r \mu\_r} \approx
-	\sqrt{\epsilon\_r \mu\_r} - i \frac{\sigma\_r \mu\_r}{2 \omega \sqrt{\epsilon\_r \mu\_r}},
+	c \sqrt{\epsilon \mu - \frac{i}{\omega} \sigma \mu} \approx
+	c \Big( \sqrt{\epsilon \mu} - i \frac{\sigma \mu}{2 \omega \sqrt{\epsilon \mu}} \Big),
 $$
 
-which gives an approximate mapping between the optical and the physical parameters (but keep in mind that the permittivity, the permeability and the conductivity are, in general, complex).
+which gives an approximate mapping between the optical and the physical parameters[^6].
+
+[^6]: Keep in mind that, in general, the permittivity, the permeability and the conductivity are complex.
 
 In order to develop some intuition about the role of the refractive index, let us consider a simple plane wave without a phase shift in a linear isotropic medium \[[5](#references) (vol. II, ch. 32)\]:
 
-$$ \tag{46}
+$$ \tag{5.9}
 \begin{aligned}
 	&\bm{E}(\bm{r}, \omega) e^{i \omega t} = \cr
 	&\bm{\bar{E}}(\omega) e^{-i \bm{k} \cdot \bm{r}} e^{i \omega t} = \cr
 	&\bm{\bar{E}}(\omega) e^{-i (\omega / c) (\eta - i \kappa) (\bm{n} \cdot \bm{r})} e^{i \omega t} = \cr
 	&\bm{\bar{E}}(\omega) e^{-\omega (\kappa / c) (\bm{n} \cdot \bm{r})} e^{-i \omega (\eta / c) (\bm{n} \cdot \bm{r})} e^{i \omega t} = \cr
-	&\bm{\bar{E}}(\omega) e^{-\omega (\kappa / c) (\bm{n} \cdot \bm{r})} e^{i \omega (\eta / c) ((c / \eta) t - \bm{n} \cdot \bm{r})}
+	&\bm{\bar{E}}(\omega) e^{-\omega (\kappa / c) (\bm{n} \cdot \bm{r})} e^{i \omega (\eta / c) ((c / \eta) t - \bm{n} \cdot \bm{r})}.
 \end{aligned}
 $$
 
-We shall perform [dimensional analysis](https://en.wikipedia.org/wiki/Dimensional_analysis) of Equation 46. We begin by taking the argument of the expression
+We shall perform [dimensional analysis](https://en.wikipedia.org/wiki/Dimensional_analysis) of Equation 5.9. Begin by taking the argument of the expression
 
-$$ \tag{47}
+$$ \tag{5.10}
 	\theta\_{\omega}(\bm{r}, t) =
-	\mathrm{Arg} \big\lbrace \bm{E}(\bm{r}, \omega) e^{i \omega t} \big\rbrace =
+	\mathrm{Arg} \big\lbrace \bm{\bar{E}}(\omega) e^{-\omega (\kappa / c) (\bm{n} \cdot \bm{r})} e^{i \omega (\eta / c) ((c / \eta) t - \bm{n} \cdot \bm{r})} \big\rbrace =
 	\omega \big( \eta / c \big) \big( (c / \eta) t - \bm{n} \cdot \bm{r} \big).
 $$
 
 Notice that, for any \\(\Delta t\\),
 
-$$ \tag{48}
+$$ \tag{5.11}
 	\theta\_{\omega}(\bm{r}, t) = \theta\_{\omega}(\bm{r} + \bm{n} (c / \eta) \Delta t, \thinspace t + \Delta t).
 $$
 
@@ -563,27 +560,27 @@ This implies that \\(\theta\_{\omega}\\) represents a plane propagating along it
 
 [Insert Picture Here]
 
-Taking the real part of Equation 46 allows us to recover the real *amplitude* of the plane wave
+Taking the real part of Equation 5.9 allows us to uncover the real *amplitude* of the plane wave
 
-$$ \tag{49}
- 	\mathrm{Re} \big\lbrace \bm{E}(\bm{r}, \omega) e^{i \omega t} \big\rbrace = 
+$$ \tag{5.12}
+ 	\mathrm{Re} \big\lbrace \bm{\bar{E}}(\omega) e^{-\omega (\kappa / c) (\bm{n} \cdot \bm{r})} e^{i \omega (\eta / c) ((c / \eta) t - \bm{n} \cdot \bm{r})} \big\rbrace = 
  	\bm{\bar{E}}(\omega) e^{-\omega (\kappa / c) (\bm{n} \cdot \bm{r})} \cos{\theta\_{\omega}(\bm{r}, t)}.
  $$
 
-If the absorption index \\(\kappa = 0\\), Equation 49 represents a regular sinusoidal wave. On the other hand, positive values of \\(\kappa\\) produce an exponential decay characteristic of an [evanescent wave](https://en.wikipedia.org/wiki/Evanescent_field).
+If the absorption index \\(\kappa = 0\\), Equation 5.12 represents a regular sinusoidal wave. On the other hand, \\(\kappa > 0\\) produces an exponential decay characteristic of an [evanescent wave](https://en.wikipedia.org/wiki/Evanescent_field).
 
 [Insert Picture Here]
 
-It's worth pointing out that Equation 46 shows how to decompose the phasor of a simple plane wave into the *amplitude* \\(\bm{\bar{E}}\\) and the *phase* \\(\phi\\) (both of which are [real-valued functions](https://en.wikipedia.org/wiki/Real-valued_function)):
+It's worth pointing out that Equation 5.9 shows how to decompose the phasor of a simple plane wave into the *amplitude* \\(\bm{\bar{E}}\\) and the *phase* \\(\phi\\) (both of which are [real-valued functions](https://en.wikipedia.org/wiki/Real-valued_function)):
 
-$$ \tag{50}
+$$ \tag{5.13}
 	\bm{E}(\bm{r}, \omega) = 
 	\bm{\bar{E}}(\bm{r}, \omega) e^{i \phi(\bm{r}, \omega)}.
 $$
 
-By introducing the *phase tensor* \\(\hat{\phi}\\) to take anisotropy and the axial phase shift of Equation 38 into account, we can extend Equation 50 to obtain the general form of a time-harmonic vector wave \[[6](#references) (ch. 1.4.3)\]:
+By introducing the *phase tensor* \\(\hat{\phi}\\) to take anisotropy and the axial phase shift of Equation 4.16 into account, we can extend Equation 5.13 to obtain the general form of a time-harmonic vector wave \[[6](#references) (ch. 1.4.3)\]:
 
-$$ \tag{51}
+$$ \tag{5.14}
 	\bm{E}(\bm{r}, \omega) e^{i \omega t} =
 	e^{i \hat{\phi}(\bm{r}, \omega)} \bm{\bar{E}}(\bm{r}, \omega) e^{i \omega t}.
 $$
