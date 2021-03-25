@@ -35,83 +35,130 @@ It is not expected that you understand the prior statement fully before reading 
 
 ## Maxwell's Equations in the Time Domain
 
-At the fundamental level, optics is built on the theory of fields. What is a field? A *field* is a [mathematical](https://en.wikipedia.org/wiki/Field_(mathematics)) construct; it is a function defined for all points in in space \\(\bm{r}\\) and time \\(t\\). In [physics](https://en.wikipedia.org/wiki/Field_(physics)), a field typically has a source, contains energy, and exerts a force.
+At the fundamental level, optics is built on the theory of fields. What is a field? A *field* is a [mathematical](https://en.wikipedia.org/wiki/Field_(mathematics)) construct; it is a function defined for all points in space \\(\bm{r}\\) and time \\(t\\). In [physics](https://en.wikipedia.org/wiki/Field_(physics)), a field typically has a source, contains energy, and exerts a force.
 
 Since we are primarily concerned with electromagnetic radiation, we shall focus our attention on two real vector fields: the [electric field](https://en.wikipedia.org/wiki/Electric_field) \\(\bm{E}\\) and the [magnetic field](https://en.wikipedia.org/wiki/Magnetic_field#The_B-field) \\(\bm{B}\\).
 
-They satisfy the differential form of [Maxwell's equations](https://en.wikipedia.org/wiki/Maxwell%27s_equation) \[[6](#references) (ch. 1.1.1), [7](#references) (ch. 2.1), [8](#references) (ch. 2.1)\]:
+They satisfy the differential form of [Maxwell's equations](https://en.wikipedia.org/wiki/Maxwell%27s_equations#Formulation_in_SI_units_convention) \[[5](#references) (vol. II, ch. 18)\]:
 
-$$ \tag{1}
+$$ \tag{1.1}
 \begin{aligned}
 	&\nabla \times \bm{E}(\bm{r}, t) + \frac{\partial \bm{B}(\bm{r}, t)}{\partial t} = 0, &
 	&\nabla \cdot  \bm{B}(\bm{r}, t) = 0, \cr
-	&\nabla \times \bm{H}(\bm{r}, t) - \frac{\partial \bm{D}(\bm{r}, t)}{\partial t} = \bm{J\_f}(\bm{r}, t), &
-	&\nabla \cdot  \bm{D}(\bm{r}, t) = \rho\_f(\bm{r}, t),
+	&\nabla \times \frac{\bm{B}(\bm{r}, t)}{\mu\_0} - \frac{\partial \big( \epsilon\_0 \bm{E}(\bm{r}, t) \big)}{\partial t} = \bm{J}(\bm{r}, t), &
+	&\nabla \cdot \big( \epsilon\_0 \bm{E}(\bm{r}, t) \big) = \rho(\bm{r}, t),
 \end{aligned}
 $$
 
-where \\(\bm{J\_f}\\) and \\(\rho\_f\\) are the *free* [current](https://en.wikipedia.org/wiki/Current_density#Free_currents) and [charge densities](https://en.wikipedia.org/wiki/Charge_density#Free_charge_density), respectively,
+where
 
-$$ \tag{2}
-	\mathrm{curl}(\bm{V}) =
-	\nabla \times \bm{V} =
+$$ \tag{1.2}
+	\mathrm{curl}(\bm{E}) =
+	\nabla \times \bm{E} =
 	\begin{bmatrix}
 		\partial / \partial x \cr
 		\partial / \partial y \cr
 		\partial / \partial z
-	\end{bmatrix} \times \bm{V} =
+	\end{bmatrix} \times \bm{E} =
 	\begin{bmatrix}
-		\partial V\_z / \partial y - \partial V\_y / \partial z \cr
-		\partial V\_x / \partial z - \partial V\_z / \partial x \cr
-		\partial V\_y / \partial x - \partial V\_x / \partial y
+		\partial E\_z / \partial y - \partial E\_y / \partial z \cr
+		\partial E\_x / \partial z - \partial E\_z / \partial x \cr
+		\partial E\_y / \partial x - \partial E\_x / \partial y
 	\end{bmatrix}
 $$
 
 is the [curl](https://en.wikipedia.org/wiki/Curl_(mathematics)) operator and
 
-$$ \tag{3}
-	\mathrm{div}(\bm{V}) =
-	\nabla \cdot \bm{V} =
+$$ \tag{1.3}
+	\mathrm{div}(\bm{E}) =
+	\nabla \cdot \bm{E} =
 	\begin{bmatrix}
 		\partial / \partial x \cr
 		\partial / \partial y \cr
 		\partial / \partial z
-	\end{bmatrix} \cdot \bm{V} =
-	\frac{\partial V\_x}{\partial x} + \frac{\partial V\_y}{\partial y} + \frac{\partial V\_z}{\partial z}
+	\end{bmatrix} \cdot \bm{E} =
+	\frac{\partial E\_x}{\partial x} + \frac{\partial E\_y}{\partial y} + \frac{\partial E\_z}{\partial z}
 $$
 
-is the [divergence](https://en.wikipedia.org/wiki/Divergence) operator, both given in Cartesian coordinates.
+is the [divergence](https://en.wikipedia.org/wiki/Divergence) operator, both given in Cartesian coordinates. \\(\epsilon\_0\\) and \\(\mu\_0\\) are the [vacuum permittivity](https://en.wikipedia.org/wiki/Vacuum_permittivity) and the [vacuum permeability](https://en.wikipedia.org/wiki/Vacuum_permeability), respectively, and are connected by the [speed of light](https://en.wikipedia.org/wiki/Speed_of_light)
 
-As discussed in \[[5](#references) (vol. II, ch 32.2), [6](#references) (ch. 1.1.1)\], \\(\bm{E}\\) and \\(\bm{B}\\) are considered fundamental fields, and the [electric displacement](https://en.wikipedia.org/wiki/Electric_displacement_field) \\(\bm{D}\\) and the [magnetic intensity](https://en.wikipedia.org/wiki/Magnetic_field#The_H-field) \\(\bm{H}\\) are [auxiliary fields](https://en.wikipedia.org/wiki/Maxwell%27s_equations#Auxiliary_fields,_polarization_and_magnetization) that arise due to the influence of matter[^101]. They are related to the fundamental fields by
+$$ \tag{1.4}
+	c = (\epsilon\_0 \mu\_0)^{-1/2}.
+$$
 
-[^101]: We can obtain the [microscopic formulation](https://en.wikipedia.org/wiki/Maxwell%27s_equations#Formulation_in_SI_units_convention) (without auxiliary fields) by [substitution](https://en.wikipedia.org/wiki/Maxwell%27s_equations#Auxiliary_fields,_polarization_and_magnetization) of the definitions of the auxiliary fields into Maxwell's equations. For optical applications, the [macroscopic formulation](https://en.wikipedia.org/wiki/Maxwell%27s_equations#Macroscopic_formulation) is more useful.
+Sometimes, Equations 1.1.1-1.1.4 are referred to as the "vacuum version" of Maxwell's equations. That name can be a little misleading; in fact, the matter is right there - it is just represented as a distribution of charged [elementary particles](https://en.wikipedia.org/wiki/Elementary_particle) by the *volume* [charge density](https://en.wikipedia.org/wiki/Charge_density) \\(\rho\\), such that the total charge \\(Q\\) inside the volume \\(V\\) is given by
 
-$$ \tag{4}
+$$ \tag{1.5}
+	Q(t) = \int\_{V} \rho(\bm{r}, t) \thinspace dV.
+$$
+
+A current is just a collection of moving charges. If their velocity is \\(\bm{v}\\), the *volume* [current density](https://en.wikipedia.org/wiki/Current_density) \\(\bm{J}\\) is simply
+
+$$ \tag{1.6}
+	\bm{J}(\bm{r}, t) = \rho(\bm{r}, t) \bm{v}(\bm{r}, t).
+$$
+
+Of course, the individual electric charges may be located at different points, have different charges and velocities - the density is just a convenient mathematical abstraction.
+
+While this kind of parametrization is simple and useful, due to the sheer number of charges in bulk matter, you can't see the forest for the trees. Therefore, applied physics often uses a different representation of matter, which we shall now discuss.
+
+First, we identify two types of charges - bound and free. As the name implies, *free* charges are able to move around the material, or even outside it, the typical example being the conduction current in a copper wire. The *bound* [current](https://en.wikipedia.org/wiki/Current_density#Polarization_and_magnetization_currents) and [charge densities](https://en.wikipedia.org/wiki/Charge_density#Bound_charge), \\(\bm{J\_b}\\) and \\(\rho\_b\\), are more difficult to reason about. They can be characterized in terms of [polarization of matter](https://en.wikipedia.org/wiki/Maxwell%27s_equations#Auxiliary_fields,_polarization_and_magnetization):
+
+$$ \tag{1.7}
+	\bm{J\_b}(\bm{r}, t) = \nabla \times \bm{M}(\bm{r}, t) + \frac{\partial \bm{P}(\bm{r}, t)}{\partial t}, \quad
+	\rho\_b(\bm{r}, t) = -\nabla \cdot \bm{P}(\bm{r}, t),
+$$
+
+where \\(\bm{P}\\) is the [electric polarization](https://en.wikipedia.org/wiki/Polarization_density) (electric dipole moment per unit volume), \\(\bm{M}\\) is the [magnetic polarization](https://en.wikipedia.org/wiki/Magnetization) (magnetic dipole moment per unit volume).
+
+Substitution of Equation 1.7.1 into 1.1.3 and 1.7.2 into 1.1.4 yields
+
+$$ \tag{1.8}
+\begin{aligned}
+	&\nabla \times \frac{\bm{B}(\bm{r}, t)}{\mu\_0} - \frac{\partial \big( \epsilon\_0 \bm{E}(\bm{r}, t) \big)}{\partial t} = \bm{J\_f}(\bm{r}, t) + \nabla \times \bm{M}(\bm{r}, t) + \frac{\partial \bm{P}(\bm{r}, t)}{\partial t}, \cr
+	&\nabla \cdot \big( \epsilon\_0 \bm{E}(\bm{r}, t) \big) = \rho\_f(\bm{r}, t) - \nabla \cdot \bm{P}(\bm{r}, t).
+\end{aligned}
+$$
+
+We can group the terms to simplify the expressions:
+
+$$ \tag{1.9}
+\begin{aligned}
+	&\nabla \times \Big( \frac{1}{\mu\_0} \bm{B}(\bm{r}, t) - \bm{M}(\bm{r}, t) \Big) - \frac{\partial \big( \epsilon\_0 \bm{E}(\bm{r}, t) + \bm{P}(\bm{r}, t) \big)}{\partial t} = \bm{J\_f}(\bm{r}, t), \cr
+	&\nabla \cdot \big( \epsilon\_0 \bm{E}(\bm{r}, t) + \bm{P}(\bm{r}, t) \big) = \rho\_f(\bm{r}, t).
+\end{aligned}
+$$
+
+A pattern begins to emerge. If we define the [electric displacement](https://en.wikipedia.org/wiki/Electric_displacement_field) \\(\bm{D}\\) and the [magnetic intensity](https://en.wikipedia.org/wiki/Magnetic_field#The_H-field) \\(\bm{H}\\) as
+
+$$ \tag{1.10}
 	\bm{D}(\bm{r}, t) = \epsilon\_0 \bm{E}(\bm{r}, t) + \bm{P}(\bm{r}, t), \quad 
 	\bm{H}(\bm{r}, t) = \frac{1}{\mu\_0} \bm{B}(\bm{r}, t) - \bm{M}(\bm{r}, t),
 $$
 
-where \\(\bm{P}\\) is the [electric polarization](https://en.wikipedia.org/wiki/Polarization_density) (electric dipole moment per unit volume), \\(\bm{M}\\) is the [magnetic polarization](https://en.wikipedia.org/wiki/Magnetization) (magnetic dipole moment per unit volume), and \\(\epsilon\_0\\) and \\(\mu\_0\\) are the [vacuum permittivity](https://en.wikipedia.org/wiki/Vacuum_permittivity) and the [vacuum permeability](https://en.wikipedia.org/wiki/Vacuum_permeability), respectively.
+substitute them into Equations 1.9.1 and 1.9.2, and combine the resulting expressions with Equations 1.1.1 and 1.1.2, we obtain the [macroscopic formulation](https://en.wikipedia.org/wiki/Maxwell%27s_equations#Macroscopic_formulation) of Maxwell's equations \[[6](#references) (ch. 1.1.1), [7](#references) (ch. 2.1), [8](#references) (ch. 2.1)\]:
 
-Polarization of matter is related to the *bound* [current](https://en.wikipedia.org/wiki/Current_density#Polarization_and_magnetization_currents) and [charge densities](https://en.wikipedia.org/wiki/Charge_density#Bound_charge), \\(\bm{J\_b}\\) and \\(\rho\_b\\):
-
-$$ \tag{5}
-	\bm{J\_b}(\bm{r}, t) = \nabla \times \bm{M}(\bm{r}, t) + \frac{\partial \bm{P}(\bm{r}, t)}{\partial t}, \quad 
-	\rho\_b(\bm{r}, t) = -\nabla \cdot \bm{P}(\bm{r}, t),
+$$ \tag{1.11}
+\begin{aligned}
+	&\nabla \times \bm{E}(\bm{r}, t) + \frac{\partial \bm{B}(\bm{r}, t)}{\partial t} = 0, &
+	&\nabla \cdot  \bm{B}(\bm{r}, t) = 0, \cr
+	&\nabla \times \bm{H}(\bm{r}, t) - \frac{\partial \bm{D}(\bm{r}, t)}{\partial t} = \bm{J\_f}(\bm{r}, t), &
+	&\nabla \cdot  \bm{D}(\bm{r}, t) = \rho\_f(\bm{r}, t).
+\end{aligned}
 $$
 
-with the *total* current and charge densities composed of the *free* and the *bound* parts.
+As discussed in \[[5](#references) (vol. II, ch 32.2), [6](#references) (ch. 1.1.1)\], \\(\bm{E}\\) and \\(\bm{B}\\) are considered fundamental fields, and \\(\bm{D}\\) and \\(\bm{H}\\) are [auxiliary fields](https://en.wikipedia.org/wiki/Maxwell%27s_equations#Auxiliary_fields,_polarization_and_magnetization) that arise due to the influence of matter. We shall soon see that, in many cases, they are related in a simple way.
 
 On the conceptual level, we would like the properties of matter to be continuous everywhere, which leads to continuous electromagnetic fields. But, sometimes, it is convenient to introduce a discontinuity to approximate very rapid (yet continuous) variation of optical properties. At the *optical interface*, the fields must satisfy the [boundary conditions](https://en.wikipedia.org/wiki/Interface_conditions_for_electromagnetic_fields) \[[6](#references) (ch. 1.1.3), [7](#references) (ch. 2.2), [8](#references) (ch. 2.4)\]. If \\(\bm{n\_{12}}\\) is a unit normal vector pointing from region 1 to region 2, the normal components of the fields must be such that
 
-$$ \tag{6}
+$$ \tag{1.12}
 	\bm{n\_{12}} \cdot  (\bm{B\_2} - \bm{B\_1}) = 0, \quad
 	\bm{n\_{12}} \cdot  (\bm{D\_2} - \bm{D\_1}) = \rho\_n,
 $$
 
 where \\(\rho\_n\\) is the *surface* charge density. For the tangential components, it can be shown that
 
-$$ \tag{7}
+$$ \tag{1.13}
 	\bm{n\_{12}} \times (\bm{E\_2} - \bm{E\_1}) = 0, \quad
 	\bm{n\_{12}} \times (\bm{H\_2} - \bm{H\_1}) = \bm{J\_n},
 $$
