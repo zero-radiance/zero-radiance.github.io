@@ -426,39 +426,38 @@ If the derivative of a function is the function itself (times a constant), the f
 
 $$ \tag{4.14}
 	s(x) =
-	s(0) e^{\pm i k x} = 
-	\bar{s} e^{i \delta} e^{\pm i k x},
+	s(0) e^{\pm i k x},
 $$
 
-where \\(s(0)\\) is a constant, and \\(\bar{s}\\) and \\(\delta\\) are real numbers. To avoid clutter, we shall adhere to a common convention with the negative sign. The second solution can be obtained by reversing either the sign of \\(k\\) or the direction of the \\(x\\)-axis.
+where \\(s(0)\\) is a complex constant.
 
 Extension to three dimensions is straightforward. If we rotate the coordinate frame so that the \\(x\\)-axis points along the unit vector \\(\bm{n}\\),
 
 $$ \tag{4.15}
-	s\_n(\bm{r}) =
-	\bar{s} e^{i \delta} e^{ -i k (\bm{r} \cdot \bm{n})},
+	s(\bm{r}, \bm{n}) =
+	s(0, \bm{n}) e^{ \pm i k (\bm{r} \cdot \bm{n})}.
 $$
 
-is a valid solution of Equations 4.11.1-4.11.3.
+is a valid solution for a certain \\(\bm{n}\\). To avoid clutter, we shall adhere to a common convention with the negative sign. The positive solution can be obtained by reversing the direction of \\(\bm{n}\\).
 
-What value of \\(\bm{n}\\) should we use? That depends on the locations of sources and optical interfaces. In general, we can use *any* value of \\(\bm{n}\\). And, since the Helmholtz equation is both linear and homogeneous, we can actually use *every* value of \\(\bm{n}\\) by invoking the [superposition principle](https://en.wikipedia.org/wiki/Superposition_principle). In our particular case, we can write the general solution as an integral taken over the surface of the unit sphere \\(S^2\\) [measured](https://en.wikipedia.org/wiki/Lebesgue_integration#Construction) using the [solid angle](https://en.wikipedia.org/wiki/Solid_angle) \\(d\Omega\_n\\):
+How should we choose the direction of \\(\bm{n}\\)? It depends on the location of sources and optical interfaces. In general, we can use *any* \\(\bm{n}\\). And, since the Helmholtz equation is both linear and homogeneous, we can actually use *every* \\(\bm{n}\\) by invoking the [superposition principle](https://en.wikipedia.org/wiki/Superposition_principle). In our particular case, we can write the general solution as an integral taken over the surface of the unit sphere \\(S^2\\) [measured](https://en.wikipedia.org/wiki/Lebesgue_integration#Construction) by the [solid angle](https://en.wikipedia.org/wiki/Solid_angle) \\(d\Omega\_n\\):
 
 $$ \tag{4.16}
 	s(\bm{r}) =
-	\int\_{S^2} \bar{s}(\bm{n}) e^{i \delta(\bm{n})} e^{-i k (\bm{r} \cdot \bm{n})} d\Omega\_n,
+	\int\_{S^2} s(\bm{r}, \bm{n}) d\Omega\_n =
+	\int\_{S^2} s(0, \bm{n}) e^{-i k (\bm{r} \cdot \bm{n})} d\Omega\_n.
 $$
 
-where we added a faux dependence of \\(\bar{s}\\) and \\(\delta\\) on \\(\bm{n}\\) in order to be able to distinguish between the individual solutions (since they don't have to use the same constants).
-
-Equation 4.16 can be used to solve Equations 4.11:
+Equation 4.16 can be used to solve Equation 4.11:
 
 $$ \tag{4.17}
 	\bm{E}(\bm{r}, \omega) = \int\_{S^2}
 	\begin{bmatrix}
-		\bar{E}\_x(\bm{n}, \omega) \thinspace \mathrm{exp}\big( i \delta\_x(\bm{n}, \omega) - i k\_1(\omega) (\bm{r} \cdot \bm{n}) \big) \cr
-		\bar{E}\_y(\bm{n}, \omega) \thinspace \mathrm{exp}\big( i \delta\_y(\bm{n}, \omega) - i k\_2(\omega) (\bm{r} \cdot \bm{n}) \big) \cr
-		\bar{E}\_z(\bm{n}, \omega) \thinspace \mathrm{exp}\big( i \delta\_z(\bm{n}, \omega) - i k\_3(\omega) (\bm{r} \cdot \bm{n}) \big)
-	\end{bmatrix} d\Omega\_n.
+		E\_x(0, \bm{n}, \omega) \exp(-i k\_1(\omega) (\bm{r} \cdot \bm{n})) \cr
+		E\_y(0, \bm{n}, \omega) \exp(-i k\_2(\omega) (\bm{r} \cdot \bm{n})) \cr
+		E\_z(0, \bm{n}, \omega) \exp(-i k\_3(\omega) (\bm{r} \cdot \bm{n}))
+	\end{bmatrix}
+	d\Omega\_n.
 $$
 
 That is a solution of Maxwell's equations in the frequency domain.
@@ -473,10 +472,11 @@ $$ \tag{5.1}
 	&= \frac{1}{\sqrt{2 \pi}} \int\_{-\infin}^{\infin} \mathrm{Re} \big\lbrace \bm{E}(\bm{r}, \omega) e^{i \omega t} \big\rbrace d\omega \cr
 	&= \frac{1}{\sqrt{2 \pi}} \int\_{-\infin}^{\infin} \int\_{S^2} \mathrm{Re} \Bigg\lbrace
 	\begin{bmatrix}
-		\bar{E}\_x(\bm{n}, \omega) \exp(i \delta\_x(\bm{n}, \omega) - i k\_1(\omega) (\bm{r} \cdot \bm{n}) + i \omega t) \cr
-		\bar{E}\_y(\bm{n}, \omega) \exp(i \delta\_y(\bm{n}, \omega) - i k\_2(\omega) (\bm{r} \cdot \bm{n}) + i \omega t) \cr
-		\bar{E}\_z(\bm{n}, \omega) \exp(i \delta\_z(\bm{n}, \omega) - i k\_3(\omega) (\bm{r} \cdot \bm{n}) + i \omega t)
-	\end{bmatrix} \Bigg\rbrace d\Omega\_n \thinspace d\omega.
+		E\_x(0, \bm{n}, \omega) \exp(-i k\_1(\omega) (\bm{r} \cdot \bm{n}) + i \omega t) \cr
+		E\_y(0, \bm{n}, \omega) \exp(-i k\_2(\omega) (\bm{r} \cdot \bm{n}) + i \omega t) \cr
+		E\_z(0, \bm{n}, \omega) \exp(-i k\_3(\omega) (\bm{r} \cdot \bm{n}) + i \omega t)
+	\end{bmatrix}
+	\Bigg\rbrace d\Omega\_n \thinspace d\omega.
 \end{aligned}
 $$
 
@@ -484,19 +484,19 @@ This double integral represents a [wave packet](https://en.wikipedia.org/wiki/Wa
 
 $$ \tag{5.2}
 \begin{bmatrix}
-	\bar{E}\_x(\bm{n}, \omega) \exp(i \delta\_x(\bm{n}, \omega) - i k\_1(\omega) (\bm{r} \cdot \bm{n}) + i \omega t) \cr
-	\bar{E}\_y(\bm{n}, \omega) \exp(i \delta\_y(\bm{n}, \omega) - i k\_2(\omega) (\bm{r} \cdot \bm{n}) + i \omega t) \cr
-	\bar{E}\_z(\bm{n}, \omega) \exp(i \delta\_z(\bm{n}, \omega) - i k\_3(\omega) (\bm{r} \cdot \bm{n}) + i \omega t)
+	E\_x(0, \bm{n}, \omega) \exp(-i k\_1(\omega) (\bm{r} \cdot \bm{n}) + i \omega t) \cr
+	E\_y(0, \bm{n}, \omega) \exp(-i k\_2(\omega) (\bm{r} \cdot \bm{n}) + i \omega t) \cr
+	E\_z(0, \bm{n}, \omega) \exp(-i k\_3(\omega) (\bm{r} \cdot \bm{n}) + i \omega t)
 \end{bmatrix}
 $$
 
 each composed of three *scalar* plane waves such as
 
 $$ \tag{5.3}
-	\bar{E}(\bm{n}, \omega) e^{i \delta(\bm{n}, \omega)} e^{-i k(\omega) (\bm{r} \cdot \bm{n})} e^{i \omega t},
+	E(0, \bm{n}, \omega) e^{-i k(\omega) (\bm{r} \cdot \bm{n})} e^{i \omega t}
 $$
 
-expressed in terms of the *phase shift* \\(\delta\\) and the complex [wave number](https://en.wikipedia.org/wiki/Wavenumber) \\(k\\) (see Equation 4.12):
+expressed in terms the complex [wave number](https://en.wikipedia.org/wiki/Wavenumber) \\(k\\) (see Equation 4.12):
 
 $$ \tag{5.4}
 	k(\omega) = \omega \sqrt{\varepsilon(\omega) \mu(\omega)}.
@@ -539,24 +539,26 @@ which gives an approximate mapping between the optical and the physical paramete
 
 [^6]: Keep in mind that, in general, the permittivity, the permeability and the conductivity are complex.
 
-In order to develop some intuition about the role of the refractive index, let us consider a scalar plane wave without a phase shift \[[5](#references) (vol. II, ch. 32)\]:
+In order to develop some intuition about the role of the refractive index \[[5](#references) (vol. II, ch. 32)\], consider a scalar plane wave
 
 $$ \tag{5.9}
 \begin{aligned}
-	&E\_s(\bm{r}, \bm{n}, \omega) e^{i \omega t} = \cr
-	&\bar{E} e^{-i k (\bm{r} \cdot \bm{n})} e^{i \omega t} = \cr
-	&\bar{E} e^{-i (\omega / c) (\eta - i \kappa) (\bm{r} \cdot \bm{n})} e^{i \omega t} = \cr
-	&\bar{E} e^{-\omega (\kappa / c) (\bm{r} \cdot \bm{n})} e^{-i \omega (\eta / c) (\bm{r} \cdot \bm{n})} e^{i \omega t} = \cr
-	&\bar{E} e^{-\omega (\kappa / c) (\bm{r} \cdot \bm{n})} e^{i \omega (\eta / c) ((c / \eta) t - \bm{r} \cdot \bm{n})}.
+	&E(\bm{r}, \bm{n}, \omega) e^{i \omega t} = \cr
+	&\bar{E} e^{i \delta} e^{-i k (\bm{r} \cdot \bm{n})} e^{i \omega t} = \cr
+	&\bar{E} e^{i \delta} e^{-i (\omega / c) (\eta - i \kappa) (\bm{r} \cdot \bm{n})} e^{i \omega t} = \cr
+	&\bar{E} e^{i \delta} e^{-\omega (\kappa / c) (\bm{r} \cdot \bm{n})} e^{-i \omega (\eta / c) (\bm{r} \cdot \bm{n})} e^{i \omega t} = \cr
+	&\bar{E} e^{-\omega (\kappa / c) (\bm{r} \cdot \bm{n})} e^{i \delta + i \omega (\eta / c) ((c / \eta) t - \bm{r} \cdot \bm{n})},
 \end{aligned}
 $$
+
+where \\(\bar{E}\\) and \\(\delta\\) are real numbers.
 
 We shall perform [dimensional analysis](https://en.wikipedia.org/wiki/Dimensional_analysis) of Equation 5.9. Begin by taking the argument of the expression
 
 $$ \tag{5.10}
 	\theta(\bm{r}, t) =
-	\mathrm{Arg} \big\lbrace E\_s(\bm{r}, \bm{n}, \omega) e^{i \omega t} \big\rbrace =
-	\omega \big( \eta / c \big) \big( (c / \eta) t - \bm{r} \cdot \bm{n} \big).
+	\mathrm{Arg} \big\lbrace E(\bm{r}, \bm{n}, \omega) e^{i \omega t} \big\rbrace =
+	\delta + \omega \big( \eta / c \big) \big( (c / \eta) t - \bm{r} \cdot \bm{n} \big).
 $$
 
 Notice that, for any \\(\Delta t\\),
@@ -572,7 +574,7 @@ This implies that \\(\theta\\) represents a plane propagating along its normal \
 Taking the real part of Equation 5.9 allows us to uncover the real *amplitude* of the plane wave
 
 $$ \tag{5.12}
- 	\mathrm{Re} \big\lbrace E\_s(\bm{r}, \bm{n}, \omega) e^{i \omega t} \big\rbrace = 
+ 	\mathrm{Re} \big\lbrace E(\bm{r}, \bm{n}, \omega) e^{i \omega t} \big\rbrace = 
  	\bar{E} e^{-\omega (\kappa / c) (\bm{r} \cdot \bm{n})} \cos{\theta}.
  $$
 
@@ -583,7 +585,7 @@ If the absorption index \\(\kappa = 0\\), Equation 5.12 represents a regular sin
 It's worth pointing out that Equation 5.9 shows how to decompose a scalar plane wave into the *amplitude* \\(\bm{\bar{E}}\\) and the *phase* \\(\phi\\) (both of which are [real-valued functions](https://en.wikipedia.org/wiki/Real-valued_function)):
 
 $$ \tag{5.13}
-	E\_s(\bm{r}, \bm{n}, \omega) e^{i \omega t} = 
+	E(\bm{r}, \bm{n}, \omega) e^{i \omega t} = 
 	e^{i \phi(\bm{r}, \bm{n}, \omega)} \bar{E}(\bm{r}, \bm{n}, \omega) e^{i \omega t}.
 $$
 
