@@ -410,7 +410,7 @@ $$ \tag{4.11}
 \end{aligned}
 $$
 
-where
+where we defined
 
 $$ \tag{4.12}
 	k(\omega) = \omega \sqrt{\varepsilon(\omega) \mu(\omega)}.
@@ -430,25 +430,35 @@ $$ \tag{4.14}
 	\bar{s} e^{i \delta} e^{\pm i k x},
 $$
 
-where \\(\bar{s}\\) represents a real number. To avoid clutter, we shall adhere to a common convention with the negative sign. The second solution can be obtained by reversing either the sign of \\(k\\) or the direction of the \\(x\\)-axis.
+where \\(s(0)\\) is a constant, and \\(\bar{s}\\) and \\(\delta\\) are real numbers. To avoid clutter, we shall adhere to a common convention with the negative sign. The second solution can be obtained by reversing either the sign of \\(k\\) or the direction of the \\(x\\)-axis.
 
 Extension to three dimensions is straightforward. If we rotate the coordinate frame so that the \\(x\\)-axis points along the unit vector \\(\bm{n}\\),
 
 $$ \tag{4.15}
-	s(\bm{r}) =
-	\bar{s} e^{i \delta} e^{ -i k (\bm{n} \cdot \bm{r})} =
-	\bar{s} e^{i \delta} e^{ -i \bm{k} \cdot \bm{r}}.
+	s\_n(\bm{r}) =
+	\bar{s} e^{i \delta} e^{ -i k (\bm{r} \cdot \bm{n})},
 $$
 
-Equation 4.15 can be used to solve Equations 4.11:
+is a valid solution of Equations 4.11.1-4.11.3.
+
+What value of \\(\bm{n}\\) should we use? That depends on the locations of sources and optical interfaces. In general, we can use *any* value of \\(\bm{n}\\). And, since the Helmholtz equation is both linear and homogeneous, we can actually use *every* value of \\(\bm{n}\\) by invoking the [superposition principle](https://en.wikipedia.org/wiki/Superposition_principle). In our particular case, we can write the general solution as an integral taken over the surface of the unit sphere \\(S^2\\) [measured](https://en.wikipedia.org/wiki/Lebesgue_integration#Construction) using the [solid angle](https://en.wikipedia.org/wiki/Solid_angle) \\(d\Omega\_n\\):
 
 $$ \tag{4.16}
-	\bm{E}(\bm{r}, \omega) =
+	s(\bm{r}) =
+	\int\_{S^2} \bar{s}(\bm{n}) e^{i \delta(\bm{n})} e^{-i k (\bm{r} \cdot \bm{n})} d\Omega\_n,
+$$
+
+where we added a faux dependence of \\(\bar{s}\\) and \\(\delta\\) on \\(\bm{n}\\) in order to be able to distinguish between the individual solutions (since they don't have to use the same constants).
+
+Equation 4.16 can be used to solve Equations 4.11:
+
+$$ \tag{4.17}
+	\bm{E}(\bm{r}, \omega) = \int\_{S^2}
 	\begin{bmatrix}
-		\bar{E}\_x(\omega) \exp(i \delta\_x(\omega) - i \bm{k\_x}(\omega) \cdot \bm{r}) \cr
-		\bar{E}\_y(\omega) \exp(i \delta\_y(\omega) - i \bm{k\_y}(\omega) \cdot \bm{r}) \cr
-		\bar{E}\_z(\omega) \exp(i \delta\_z(\omega) - i \bm{k\_z}(\omega) \cdot \bm{r})
-	\end{bmatrix}.
+		\bar{E}\_x(\bm{n}, \omega) \thinspace \mathrm{exp}\big( i \delta\_x(\bm{n}, \omega) - i k\_1(\omega) (\bm{r} \cdot \bm{n}) \big) \cr
+		\bar{E}\_y(\bm{n}, \omega) \thinspace \mathrm{exp}\big( i \delta\_y(\bm{n}, \omega) - i k\_2(\omega) (\bm{r} \cdot \bm{n}) \big) \cr
+		\bar{E}\_z(\bm{n}, \omega) \thinspace \mathrm{exp}\big( i \delta\_z(\bm{n}, \omega) - i k\_3(\omega) (\bm{r} \cdot \bm{n}) \big)
+	\end{bmatrix} d\Omega\_n.
 $$
 
 That is a solution of Maxwell's equations in the frequency domain.
@@ -461,36 +471,35 @@ $$ \tag{5.1}
 \begin{aligned}
 	\bm{E}(\bm{r}, t)
 	&= \frac{1}{\sqrt{2 \pi}} \int\_{-\infin}^{\infin} \mathrm{Re} \big\lbrace \bm{E}(\bm{r}, \omega) e^{i \omega t} \big\rbrace d\omega \cr
-	&= \frac{1}{\sqrt{2 \pi}} \int\_{-\infin}^{\infin} \mathrm{Re} \Bigg\lbrace
+	&= \frac{1}{\sqrt{2 \pi}} \int\_{-\infin}^{\infin} \int\_{S^2} \mathrm{Re} \Bigg\lbrace
 	\begin{bmatrix}
-		\bar{E}\_x(\omega) \exp(i \delta\_x(\omega) - i \bm{k\_x}(\omega) \cdot \bm{r} + i \omega t) \cr
-		\bar{E}\_y(\omega) \exp(i \delta\_y(\omega) - i \bm{k\_y}(\omega) \cdot \bm{r} + i \omega t) \cr
-		\bar{E}\_z(\omega) \exp(i \delta\_z(\omega) - i \bm{k\_z}(\omega) \cdot \bm{r} + i \omega t)
-	\end{bmatrix} \Bigg\rbrace d\omega.
+		\bar{E}\_x(\bm{n}, \omega) \exp(i \delta\_x(\bm{n}, \omega) - i k\_1(\omega) (\bm{r} \cdot \bm{n}) + i \omega t) \cr
+		\bar{E}\_y(\bm{n}, \omega) \exp(i \delta\_y(\bm{n}, \omega) - i k\_2(\omega) (\bm{r} \cdot \bm{n}) + i \omega t) \cr
+		\bar{E}\_z(\bm{n}, \omega) \exp(i \delta\_z(\bm{n}, \omega) - i k\_3(\omega) (\bm{r} \cdot \bm{n}) + i \omega t)
+	\end{bmatrix} \Bigg\rbrace d\Omega\_n \thinspace d\omega.
 \end{aligned}
 $$
 
-This integral represents a [wave packet](https://en.wikipedia.org/wiki/Wave_packet). It is a collection of time-harmonic *vector* [plane waves](https://en.wikipedia.org/wiki/Plane_wave) \[[6](#references) (ch. 1.4.2), [7](#references) (ch. 3.1), [8](#references) (ch. 3.2)\] of the form
+This double integral represents a [wave packet](https://en.wikipedia.org/wiki/Wave_packet). It is a collection of time-harmonic *vector* [plane waves](https://en.wikipedia.org/wiki/Plane_wave) \[[6](#references) (ch. 1.4.2), [7](#references) (ch. 3.1), [8](#references) (ch. 3.2)\] of the form
 
 $$ \tag{5.2}
 \begin{bmatrix}
-	\bar{E}\_x(\omega) \exp(i \delta\_x(\omega) -i \bm{k\_x}(\omega) \cdot \bm{r} + i \omega t) \cr
-	\bar{E}\_y(\omega) \exp(i \delta\_y(\omega) -i \bm{k\_y}(\omega) \cdot \bm{r} + i \omega t) \cr
-	\bar{E}\_z(\omega) \exp(i \delta\_z(\omega) -i \bm{k\_z}(\omega) \cdot \bm{r} + i \omega t)
+	\bar{E}\_x(\bm{n}, \omega) \exp(i \delta\_x(\bm{n}, \omega) - i k\_1(\omega) (\bm{r} \cdot \bm{n}) + i \omega t) \cr
+	\bar{E}\_y(\bm{n}, \omega) \exp(i \delta\_y(\bm{n}, \omega) - i k\_2(\omega) (\bm{r} \cdot \bm{n}) + i \omega t) \cr
+	\bar{E}\_z(\bm{n}, \omega) \exp(i \delta\_z(\bm{n}, \omega) - i k\_3(\omega) (\bm{r} \cdot \bm{n}) + i \omega t)
 \end{bmatrix}
 $$
 
 each composed of three *scalar* plane waves such as
 
 $$ \tag{5.3}
-	\bar{E}(\omega) e^{i \delta(\omega)} e^{-i \bm{k}(\omega) \cdot \bm{r}} e^{i \omega t},
+	\bar{E}(\bm{n}, \omega) e^{i \delta(\bm{n}, \omega)} e^{-i k(\omega) (\bm{r} \cdot \bm{n})} e^{i \omega t},
 $$
 
-expressed in terms of the *phase shift* \\(\delta\\) and the complex [wave vector](https://en.wikipedia.org/wiki/Wave_vector) \\(\bm{k}\\) that points along the plane normal \\(\bm{n}\\) multiplied by the complex [wave number](https://en.wikipedia.org/wiki/Wavenumber) \\(k\\):
+expressed in terms of the *phase shift* \\(\delta\\) and the complex [wave number](https://en.wikipedia.org/wiki/Wavenumber) \\(k\\) (see Equation 4.12):
 
 $$ \tag{5.4}
-	\bm{k}(\omega) = k(\omega) \bm{n} =
-	\omega \sqrt{\varepsilon(\omega) \mu(\omega)} \bm{n}.
+	k(\omega) = \omega \sqrt{\varepsilon(\omega) \mu(\omega)}.
 $$
 
 If we define the [relative permittivity](https://en.wikipedia.org/wiki/Relative_permittivity)[^5] \\(\varepsilon\_r\\) and the [relative permeability](https://en.wikipedia.org/wiki/Permeability_(electromagnetism)#Relative_permeability_and_magnetic_susceptibility) \\(\mu\_r\\) using vacuum as reference,
@@ -530,59 +539,59 @@ which gives an approximate mapping between the optical and the physical paramete
 
 [^6]: Keep in mind that, in general, the permittivity, the permeability and the conductivity are complex.
 
-In order to develop some intuition about the role of the refractive index, let us consider a simple plane wave without a phase shift in a linear isotropic medium \[[5](#references) (vol. II, ch. 32)\]:
+In order to develop some intuition about the role of the refractive index, let us consider a scalar plane wave without a phase shift \[[5](#references) (vol. II, ch. 32)\]:
 
 $$ \tag{5.9}
 \begin{aligned}
-	&\bm{E}(\bm{r}, \omega) e^{i \omega t} = \cr
-	&\bm{\bar{E}}(\omega) e^{-i \bm{k} \cdot \bm{r}} e^{i \omega t} = \cr
-	&\bm{\bar{E}}(\omega) e^{-i (\omega / c) (\eta - i \kappa) (\bm{n} \cdot \bm{r})} e^{i \omega t} = \cr
-	&\bm{\bar{E}}(\omega) e^{-\omega (\kappa / c) (\bm{n} \cdot \bm{r})} e^{-i \omega (\eta / c) (\bm{n} \cdot \bm{r})} e^{i \omega t} = \cr
-	&\bm{\bar{E}}(\omega) e^{-\omega (\kappa / c) (\bm{n} \cdot \bm{r})} e^{i \omega (\eta / c) ((c / \eta) t - \bm{n} \cdot \bm{r})}.
+	&E\_s(\bm{r}, \bm{n}, \omega) e^{i \omega t} = \cr
+	&\bar{E} e^{-i k (\bm{r} \cdot \bm{n})} e^{i \omega t} = \cr
+	&\bar{E} e^{-i (\omega / c) (\eta - i \kappa) (\bm{r} \cdot \bm{n})} e^{i \omega t} = \cr
+	&\bar{E} e^{-\omega (\kappa / c) (\bm{r} \cdot \bm{n})} e^{-i \omega (\eta / c) (\bm{r} \cdot \bm{n})} e^{i \omega t} = \cr
+	&\bar{E} e^{-\omega (\kappa / c) (\bm{r} \cdot \bm{n})} e^{i \omega (\eta / c) ((c / \eta) t - \bm{r} \cdot \bm{n})}.
 \end{aligned}
 $$
 
 We shall perform [dimensional analysis](https://en.wikipedia.org/wiki/Dimensional_analysis) of Equation 5.9. Begin by taking the argument of the expression
 
 $$ \tag{5.10}
-	\theta\_{\omega}(\bm{r}, t) =
-	\mathrm{Arg} \big\lbrace \bm{\bar{E}}(\omega) e^{-\omega (\kappa / c) (\bm{n} \cdot \bm{r})} e^{i \omega (\eta / c) ((c / \eta) t - \bm{n} \cdot \bm{r})} \big\rbrace =
-	\omega \big( \eta / c \big) \big( (c / \eta) t - \bm{n} \cdot \bm{r} \big).
+	\theta(\bm{r}, t) =
+	\mathrm{Arg} \big\lbrace E\_s(\bm{r}, \bm{n}, \omega) e^{i \omega t} \big\rbrace =
+	\omega \big( \eta / c \big) \big( (c / \eta) t - \bm{r} \cdot \bm{n} \big).
 $$
 
 Notice that, for any \\(\Delta t\\),
 
 $$ \tag{5.11}
-	\theta\_{\omega}(\bm{r}, t) = \theta\_{\omega}(\bm{r} + \bm{n} (c / \eta) \Delta t, \thinspace t + \Delta t).
+	\theta(\bm{r}, t) = \theta(\bm{r} + \bm{n} (c / \eta) \Delta t, \thinspace t + \Delta t).
 $$
 
-This implies that \\(\theta\_{\omega}\\) represents a plane propagating along its normal \\(\bm{n}\\) at the [phase velocity](https://en.wikipedia.org/wiki/Phase_velocity) \\(c / \eta\\).
+This implies that \\(\theta\\) represents a plane propagating along its normal \\(\bm{n}\\) at the [phase velocity](https://en.wikipedia.org/wiki/Phase_velocity) \\(c / \eta\\).
 
 [Insert Picture Here]
 
 Taking the real part of Equation 5.9 allows us to uncover the real *amplitude* of the plane wave
 
 $$ \tag{5.12}
- 	\mathrm{Re} \big\lbrace \bm{\bar{E}}(\omega) e^{-\omega (\kappa / c) (\bm{n} \cdot \bm{r})} e^{i \omega (\eta / c) ((c / \eta) t - \bm{n} \cdot \bm{r})} \big\rbrace = 
- 	\bm{\bar{E}}(\omega) e^{-\omega (\kappa / c) (\bm{n} \cdot \bm{r})} \cos{\theta\_{\omega}(\bm{r}, t)}.
+ 	\mathrm{Re} \big\lbrace E\_s(\bm{r}, \bm{n}, \omega) e^{i \omega t} \big\rbrace = 
+ 	\bar{E} e^{-\omega (\kappa / c) (\bm{r} \cdot \bm{n})} \cos{\theta}.
  $$
 
-If the absorption index \\(\kappa = 0\\), Equation 5.12 represents a regular sinusoidal wave. On the other hand, \\(\kappa > 0\\) produces an exponential decay characteristic of an [evanescent wave](https://en.wikipedia.org/wiki/Evanescent_field).
+If the absorption index \\(\kappa = 0\\), Equation 5.12 represents a regular sine wave. On the other hand, \\(\kappa > 0\\) produces an exponential decay characteristic of an [evanescent wave](https://en.wikipedia.org/wiki/Evanescent_field).
 
 [Insert Picture Here]
 
-It's worth pointing out that Equation 5.9 shows how to decompose the phasor of a simple plane wave into the *amplitude* \\(\bm{\bar{E}}\\) and the *phase* \\(\phi\\) (both of which are [real-valued functions](https://en.wikipedia.org/wiki/Real-valued_function)):
+It's worth pointing out that Equation 5.9 shows how to decompose a scalar plane wave into the *amplitude* \\(\bm{\bar{E}}\\) and the *phase* \\(\phi\\) (both of which are [real-valued functions](https://en.wikipedia.org/wiki/Real-valued_function)):
 
 $$ \tag{5.13}
-	\bm{E}(\bm{r}, \omega) = 
-	\bm{\bar{E}}(\bm{r}, \omega) e^{i \phi(\bm{r}, \omega)}.
+	E\_s(\bm{r}, \bm{n}, \omega) e^{i \omega t} = 
+	e^{i \phi(\bm{r}, \bm{n}, \omega)} \bar{E}(\bm{r}, \bm{n}, \omega) e^{i \omega t}.
 $$
 
-By introducing the *phase tensor* \\(\hat{\phi}\\) to take anisotropy and the axial phase shift of Equation 4.16 into account, we can extend Equation 5.13 to obtain the general form of a time-harmonic vector wave \[[6](#references) (ch. 1.4.3)\]:
+By introducing the *phase tensor* \\(\hat{\phi}\\) to take anisotropy of Equation 5.2 into account, we can extend Equation 5.13 to obtain the general form of a time-harmonic vector plane wave \[[6](#references) (ch. 1.4.2)\]:
 
 $$ \tag{5.14}
-	\bm{E}(\bm{r}, \omega) e^{i \omega t} =
-	e^{i \hat{\phi}(\bm{r}, \omega)} \bm{\bar{E}}(\bm{r}, \omega) e^{i \omega t}.
+	\bm{E}(\bm{r}, \bm{n}, \omega) e^{i \omega t} =
+	e^{i \hat{\phi}(\bm{r}, \bm{n}, \omega)} \bm{\bar{E}}(\bm{r}, \bm{n}, \omega) e^{i \omega t}.
 $$
 
 ## Force, Energy, and Radiometry
