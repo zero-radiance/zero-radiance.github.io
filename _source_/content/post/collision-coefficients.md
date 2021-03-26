@@ -944,7 +944,7 @@ Pharr, Jakob, NASA people
 4. van de Hulst, H. C. [Light scattering by small particles](https://doi.org/10.1002/qj.49708436025) (1957).
 5. Feynman, R. P., Leighton, R. B., & Sands, M. [The Feynman lectures on physics](https://www.feynmanlectures.caltech.edu/) (1963).
 6. Born, M., & Wolf, E. [Principles of optics](https://doi.org/10.1017/CBO9781139644181), 7th edition (1999).
-7. Mishchenko M. I. [Electromagnetic Scattering by Particles and Particle Groups](https://www.cambridge.org/us/academic/subjects/earth-and-environmental-science/atmospheric-science-and-meteorology/electromagnetic-scattering-particles-and-particle-groups-introduction) (2014).
-8. Ishimaru A. [Electromagnetic Wave Propagation, Radiation, and Scattering](https://doi.org/10.1002/9781119079699), 2nd Edition (2017).
+7. Mishchenko, M. I. [Electromagnetic Scattering by Particles and Particle Groups](https://www.cambridge.org/us/academic/subjects/earth-and-environmental-science/atmospheric-science-and-meteorology/electromagnetic-scattering-particles-and-particle-groups-introduction) (2014).
+8. Ishimaru, A. [Electromagnetic Wave Propagation, Radiation, and Scattering](https://doi.org/10.1002/9781119079699), 2nd Edition (2017).
 9. Boyd, R. W. [Nonlinear optics](https://www.elsevier.com/books/nonlinear-optics/boyd/978-0-12-811002-7), 4th Edition (2020).
 10. Hansen, J. E., & Travis, L. D. [Light scattering in planetary atmospheres](https://doi.org/10.1007/BF00168069) (1974).
