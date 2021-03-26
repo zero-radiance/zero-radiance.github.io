@@ -389,7 +389,7 @@ $$ \tag{4.9}
 	\nabla^2 \bm{B}(\bm{r}, \omega) + \omega^2 \hat{\mu}(\omega) \hat{\varepsilon}(\omega) \bm{B}(\bm{r}, \omega) = 0.
 $$
 
-Since anisotropy arises due to the [crystal structure](https://en.wikipedia.org/wiki/Crystal_structure) of the material, its tensor is [normal](https://en.wikipedia.org/wiki/Normal_matrix), and we can perform a coordinate transformation to [diagonalize](https://en.wikipedia.org/wiki/Diagonalizable_matrix#How_to_diagonalize_a_matrix) it:
+Since anisotropy arises due to the [crystal structure](https://en.wikipedia.org/wiki/Crystal_structure) of the material, this tensor product is [normal](https://en.wikipedia.org/wiki/Normal_matrix), and we can perform a [change of basis](https://en.wikipedia.org/wiki/Change_of_basis)  to [diagonalize](https://en.wikipedia.org/wiki/Diagonalizable_matrix#How_to_diagonalize_a_matrix) it:
 
 $$ \tag{4.10}
 	\nabla^2 \bm{E}(\bm{r}, \omega) + \omega^2
@@ -400,7 +400,7 @@ $$ \tag{4.10}
 		\end{bmatrix} \bm{E}(\bm{r}, \omega) = 0,
 $$
 
-which allows us separate the variables into three *scalar* [Helmholtz's equations](https://en.wikipedia.org/wiki/Helmholtz_equation):
+which allows us to separate the variables into three *scalar* [Helmholtz's equations](https://en.wikipedia.org/wiki/Helmholtz_equation):
 
 $$ \tag{4.11}
 \begin{aligned}
@@ -438,9 +438,9 @@ $$ \tag{4.15}
 	s(0, \bm{n}) e^{ \pm i k (\bm{r} \cdot \bm{n})}.
 $$
 
-is a valid solution for a certain \\(\bm{n}\\). To avoid clutter, we shall adhere to a common convention with the negative sign. The positive solution can be obtained by reversing the direction of \\(\bm{n}\\).
+is a valid solution for a certain value of \\(\bm{n}\\). To avoid clutter, we shall adhere to a common convention with the negative sign; the positive solution can be obtained by reversing the direction of \\(\bm{n}\\).
 
-How should we choose the direction of \\(\bm{n}\\)? It depends on the location of sources and optical interfaces. In general, we can use *any* \\(\bm{n}\\). And, since the Helmholtz equation is both linear and homogeneous, we can actually use *every* \\(\bm{n}\\) by invoking the [superposition principle](https://en.wikipedia.org/wiki/Superposition_principle). In our particular case, we can write the general solution as an integral taken over the surface of the unit sphere \\(S^2\\) [measured](https://en.wikipedia.org/wiki/Lebesgue_integration#Construction) by the [solid angle](https://en.wikipedia.org/wiki/Solid_angle) \\(d\Omega\_n\\):
+How should we choose the direction of \\(\bm{n}\\)? It depends on the location of sources and optical interfaces. In general, we can use *any* value of \\(\bm{n}\\). And, since the Helmholtz equation is both linear and homogeneous, we can actually use *every* value of \\(\bm{n}\\) by invoking the [superposition principle](https://en.wikipedia.org/wiki/Superposition_principle). In our particular case, we can write the general solution as an integral taken over the surface of the unit sphere \\(S^2\\) [measured](https://en.wikipedia.org/wiki/Lebesgue_integration#Construction) by the [solid angle](https://en.wikipedia.org/wiki/Solid_angle) \\(d\Omega\_n\\):
 
 $$ \tag{4.16}
 	s(\bm{r}) =
@@ -464,7 +464,7 @@ That is a solution of Maxwell's equations in the frequency domain.
 
 ## Time-Harmonic Waves
 
-We can find a solution in the time domain by substituting Equation 4.16 into 2.2:
+We can find a solution of Maxwell's equations in the time domain by substituting Equation 4.17 into 2.2:
 
 $$ \tag{5.1}
 \begin{aligned}
@@ -539,31 +539,41 @@ which gives an approximate mapping between the optical and the physical paramete
 
 [^6]: Keep in mind that, in general, the permittivity, the permeability and the conductivity are complex.
 
-In order to develop some intuition about the role of the refractive index \[[5](#references) (vol. II, ch. 32)\], consider a scalar plane wave
+In order to develop some intuition about the role of the refractive index \[[5](#references) (vol. II, ch. 32)\], consider the phasor component of a scalar plane wave
 
 $$ \tag{5.9}
 \begin{aligned}
-	&E(\bm{r}, \bm{n}, \omega) e^{i \omega t} = \cr
-	&\bar{E} e^{i \delta} e^{-i k (\bm{r} \cdot \bm{n})} e^{i \omega t} = \cr
-	&\bar{E} e^{i \delta} e^{-i (\omega / c) (\eta - i \kappa) (\bm{r} \cdot \bm{n})} e^{i \omega t} = \cr
-	&\bar{E} e^{i \delta} e^{-\omega (\kappa / c) (\bm{r} \cdot \bm{n})} e^{-i \omega (\eta / c) (\bm{r} \cdot \bm{n})} e^{i \omega t} = \cr
-	&\bar{E} e^{-\omega (\kappa / c) (\bm{r} \cdot \bm{n})} e^{i \delta + i \omega (\eta / c) ((c / \eta) t - \bm{r} \cdot \bm{n})},
+	&E(\bm{r}, \bm{n}, \omega) = \cr
+	&E\_0 e^{-i k (\bm{r} \cdot \bm{n})} = \cr
+	&\bar{E}\_0 e^{i \delta} e^{-i (\omega / c) (\eta - i \kappa) (\bm{r} \cdot \bm{n})} = \cr
+	&\bar{E}\_0 e^{-\omega (\kappa / c) (\bm{r} \cdot \bm{n})} e^{i \delta - i \omega (\eta / c) (\bm{r} \cdot \bm{n})} = \cr
+	&\bar{E}(\bm{r}, \bm{n}, \omega) e^{i \phi(\bm{r}, \bm{n}, \omega)}.
 \end{aligned}
 $$
 
-where \\(\bar{E}\\) and \\(\delta\\) are real numbers.
+It can be expressed in terms of the the *amplitude* \\(\bar{E}\\) and the *phase* \\(\phi\\), both of which are [real-valued functions](https://en.wikipedia.org/wiki/Real-valued_function).
 
-We shall perform [dimensional analysis](https://en.wikipedia.org/wiki/Dimensional_analysis) of Equation 5.9. Begin by taking the argument of the expression
+Multiplication by \\(e^{i \omega t}\\) by yields the full expression of a scalar plane wave:
 
 $$ \tag{5.10}
+\begin{aligned}
+	&E(\bm{r}, \bm{n}, \omega) e^{i \omega t} = \cr
+	&\bar{E}\_0 e^{-\omega (\kappa / c) (\bm{r} \cdot \bm{n})} e^{i \delta - i \omega (\eta / c) (\bm{r} \cdot \bm{n})} e^{i \omega t} = \cr
+	&\bar{E}\_0 e^{-\omega (\kappa / c) (\bm{r} \cdot \bm{n})} e^{i \delta + i \omega (t - (\eta / c) (\bm{r} \cdot \bm{n}))}.
+\end{aligned}
+$$
+
+Let's perform [dimensional analysis](https://en.wikipedia.org/wiki/Dimensional_analysis) of Equation 5.10. Begin by taking the [argument](https://en.wikipedia.org/wiki/Argument_(complex_analysis)) of the expression
+
+$$ \tag{5.11}
 	\theta(\bm{r}, t) =
 	\mathrm{Arg} \big\lbrace E(\bm{r}, \bm{n}, \omega) e^{i \omega t} \big\rbrace =
-	\delta + \omega \big( \eta / c \big) \big( (c / \eta) t - \bm{r} \cdot \bm{n} \big).
+	\delta + \omega \big( t - (\eta / c) (\bm{r} \cdot \bm{n}) \big).
 $$
 
 Notice that, for any \\(\Delta t\\),
 
-$$ \tag{5.11}
+$$ \tag{5.12}
 	\theta(\bm{r}, t) = \theta(\bm{r} + \bm{n} (c / \eta) \Delta t, \thinspace t + \Delta t).
 $$
 
@@ -571,30 +581,16 @@ This implies that \\(\theta\\) represents a plane propagating along its normal \
 
 [Insert Picture Here]
 
-Taking the real part of Equation 5.9 allows us to uncover the real *amplitude* of the plane wave
-
-$$ \tag{5.12}
- 	\mathrm{Re} \big\lbrace E(\bm{r}, \bm{n}, \omega) e^{i \omega t} \big\rbrace = 
- 	\bar{E} e^{-\omega (\kappa / c) (\bm{r} \cdot \bm{n})} \cos{\theta}.
- $$
-
-If the absorption index \\(\kappa = 0\\), Equation 5.12 represents a regular sine wave. On the other hand, \\(\kappa > 0\\) produces an exponential decay characteristic of an [evanescent wave](https://en.wikipedia.org/wiki/Evanescent_field).
-
-[Insert Picture Here]
-
-It's worth pointing out that Equation 5.9 shows how to decompose a scalar plane wave into the *amplitude* \\(\bm{\bar{E}}\\) and the *phase* \\(\phi\\) (both of which are [real-valued functions](https://en.wikipedia.org/wiki/Real-valued_function)):
+Taking the real part of Equation 5.10 allows us to uncover the real *amplitude* of the plane wave
 
 $$ \tag{5.13}
-	E(\bm{r}, \bm{n}, \omega) e^{i \omega t} = 
-	e^{i \phi(\bm{r}, \bm{n}, \omega)} \bar{E}(\bm{r}, \bm{n}, \omega) e^{i \omega t}.
-$$
+ 	\mathrm{Re} \big\lbrace E(\bm{r}, \bm{n}, \omega) e^{i \omega t} \big\rbrace = 
+ 	\bar{E}\_0 e^{-\omega (\kappa / c) (\bm{r} \cdot \bm{n})} \cos{\theta}.
+ $$
 
-By introducing the *phase tensor* \\(\hat{\phi}\\) to take anisotropy of Equation 5.2 into account, we can extend Equation 5.13 to obtain the general form of a time-harmonic vector plane wave \[[6](#references) (ch. 1.4.2)\]:
+If the absorption index \\(\kappa = 0\\), Equation 5.13 represents a regular sine wave. On the other hand, \\(\kappa > 0\\) produces an exponential decay characteristic of an [evanescent wave](https://en.wikipedia.org/wiki/Evanescent_field).
 
-$$ \tag{5.14}
-	\bm{E}(\bm{r}, \bm{n}, \omega) e^{i \omega t} =
-	e^{i \hat{\phi}(\bm{r}, \bm{n}, \omega)} \bm{\bar{E}}(\bm{r}, \bm{n}, \omega) e^{i \omega t}.
-$$
+[Insert Picture Here]
 
 ## Force, Energy, and Radiometry
 
