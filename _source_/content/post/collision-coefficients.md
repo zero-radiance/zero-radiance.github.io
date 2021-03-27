@@ -586,7 +586,7 @@ Taking the real part of Equation 5.10 allows us to uncover the real *amplitude* 
 $$ \tag{5.13}
  	\mathrm{Re} \big\lbrace E(\bm{r}, \bm{n}, \omega) e^{i \omega t} \big\rbrace = 
  	\bar{E}\_0 e^{-\omega (\kappa / c) (\bm{r} \cdot \bm{n})} \cos{\theta}.
- $$
+$$
 
 If the absorption index \\(\kappa = 0\\), Equation 5.13 represents a regular sine wave. On the other hand, \\(\kappa > 0\\) produces an exponential decay characteristic of an [evanescent wave](https://en.wikipedia.org/wiki/Evanescent_field).
 
@@ -594,29 +594,41 @@ If the absorption index \\(\kappa = 0\\), Equation 5.13 represents a regular sin
 
 ## Force, Energy, and Radiometry
 
+Given a mathematical description of electromagnetic radiation in terms of vector waves, we would like to physically characterize it as an energy transfer process. In order to do that, we have to determine how much energy there is in a given volume element of space, and also the rate of energy flow \[[5](#references) (vol. II, ch. 27), [6](#references) (ch. 1.1.4), [7](#references) (ch. 2.4), [8](#references) (ch. 2.5)\].
 
+[Conservation of energy](https://en.wikipedia.org/wiki/Conservation_of_energy) is one of the most important laws of physics. This is one way to state it: the amount of energy \\(\mathcal{E\_{in}}\\) flowing into the volume element \\(V\\) equals the amount of outflowing energy \\(\mathcal{E\_{out}}\\) plus the work \\(\mathcal{W}\\) done inside.
 
-Given a mathematical description of electromagnetic waves in terms of the frequency and the amplitude, we would like to physically characterize electromagnetic radiation as an energy transfer process. In order to do that, we have to determine how much energy there is in a given volume element of space, and also the rate of energy flow \[[5](#references) (vol. II, ch. 27), [6](#references) (ch. 1.1.4), [7](#references) (ch. 2.4), [8](#references) (ch. 2.5)\].
+$$ \tag{6.1}
+ 	\frac{\partial}{\partial t} \mathcal{E\_{in}}(V, t) =
+ 	\frac{\partial}{\partial t} \mathcal{E\_{out}}(V, t) +
+ 	\frac{\partial}{\partial t} \mathcal{W}(V, t).
+$$
+
+In Equation 6.1, \\(\mathcal{E}\\) refers to a single type of energy: kinetic, electromagnetic, etc. [Work](https://en.wikipedia.org/wiki/Work_(physics)) transforms a portion of \\(\mathcal{E}\\) into a different type of energy: kinetic into potential, electromagnetic into thermal, and so on. If we account for all types of energy, the total amount of energy is conserved.
+
+Given our focus on electromagnetic energy, we can partition the total amount of energy into the *field energy* and the *matter energy*. In this context, work done by the field on the matter refers to *absorption*. Similarly, *emission* is the work work done by the matter on the field.
+
+Since work is the energy transferred by the application of force along a displacement, we will need the definition of the electromagnetic force.
 
 If a particle with the electric charge \\(q\\) moving at the velocity \\(\bm{v}\\) is placed in an electromagnetic field, it experiences the [Lorentz force](https://en.wikipedia.org/wiki/Lorentz_force)
 
-$$ \tag{52}
+$$ \tag{6.2}
 	\bm{F}(\bm{r}, t) = q(\bm{r}, t) \big( \bm{E}(\bm{r}, t) + \bm{v}(\bm{r}, t) \times \bm{B}(\bm{r}, t) \big).
 $$
 
-For charge density \\(\rho\\) and volume element \\(dV\\), the corresponding equation is
+For the charge density \\(\rho\\) and the volume element \\(dV\\), the corresponding equation is
 
-$$ \tag{53}
+$$ \tag{6.3}
 	d\bm{F}(\bm{r}, t) = \rho(\bm{r}, t) \big( \bm{E}(\bm{r}, t) + \bm{v}(\bm{r}, t) \times \bm{B}(\bm{r}, t) \big) dV.
 $$
 
-Since current (density) is just a collection of moving charges (per unit volume),
+Since current density is just a collection of moving charges per unit volume (see Equation 1.6),
 
-$$ \tag{54}
+$$ \tag{6.4}
 	\bm{J}(\bm{r}, t) = \rho(\bm{r}, t) \bm{v}(\bm{r}, t),
 $$ 
 
-and [work](https://en.wikipedia.org/wiki/Work_(physics)) done ([energy](https://en.wikipedia.org/wiki/Energy) transferred) is force times distance,
+the amount of work done on the volume \\(dV\\) per second is
 
 $$ \tag{55}
 	\frac{\partial A(\bm{r}, t)}{\partial t} = \frac{d\bm{F}(\bm{r}, t) \cdot \bm{v}(\bm{r}, t)}{dV}  \thinspace = \bm{E}(\bm{r}, t) \cdot \bm{J}(\bm{r}, t)
