@@ -89,7 +89,7 @@ $$
 Sometimes, Equations 1.1 are referred to as the "vacuum version" of Maxwell's equations. That name can be a little misleading; in fact, the matter is right there - it is just represented as a distribution of charged [elementary particles](https://en.wikipedia.org/wiki/Elementary_particle) by the *volume* [charge density](https://en.wikipedia.org/wiki/Charge_density) \\(\rho\\), such that the total charge \\(Q\\) inside the volume \\(V\\) is
 
 $$ \tag{1.5}
-	Q(t) = \int\_{V} \rho(\bm{r}, t) \thinspace dV.
+	Q(t) = \iiint\_{V} \rho(\bm{r}, t) \thinspace dV.
 $$
 
 Moving charges form a current. If their velocity is \\(\bm{v}\\), the *volume* [current density](https://en.wikipedia.org/wiki/Current_density) \\(\bm{J}\\) is simply
@@ -442,18 +442,18 @@ $$
 
 is a valid solution for a certain value of \\(\bm{n}\\). To avoid clutter, we shall adhere to a common convention with the negative sign; the positive solution can be obtained by reversing the direction of \\(\bm{n}\\).
 
-How should we choose the direction of \\(\bm{n}\\)? It depends on the location of sources and optical interfaces. In general, we can use *any* value of \\(\bm{n}\\). And, since the Helmholtz equation is both linear and homogeneous, we can actually use *every* value of \\(\bm{n}\\) by invoking the [superposition principle](https://en.wikipedia.org/wiki/Superposition_principle). In our particular case, we can write the general solution as an integral taken over the surface of the unit sphere \\(S^2\\) [measured](https://en.wikipedia.org/wiki/Lebesgue_integration#Construction) by the [solid angle](https://en.wikipedia.org/wiki/Solid_angle) \\(d\Omega\_n\\):
+How should we choose the direction of \\(\bm{n}\\)? It depends on the location of sources and optical interfaces. In general, we can use *any* value of \\(\bm{n}\\). And, since the Helmholtz equation is both linear and homogeneous, we can actually use *every* value of \\(\bm{n}\\) by invoking the [superposition principle](https://en.wikipedia.org/wiki/Superposition_principle). In our particular case, we can write the general solution as an integral taken over the surface of the unit sphere \\(\mathbb{S}^2\\) [measured](https://en.wikipedia.org/wiki/Lebesgue_integration#Construction) by the [solid angle](https://en.wikipedia.org/wiki/Solid_angle) \\(d\Omega\_n\\):
 
 $$ \tag{4.16}
 	s(\bm{r}) =
-	\int\_{S^2} s(\bm{r}, \bm{n}) d\Omega\_n =
-	\int\_{S^2} s(0, \bm{n}) e^{-i k (\bm{r} \cdot \bm{n})} d\Omega\_n.
+	\oiint\_{\mathbb{S}^2} s(\bm{r}, \bm{n}) \thinspace d\Omega\_n =
+	\oiint\_{\mathbb{S}^2} s(0, \bm{n}) e^{-i k (\bm{r} \cdot \bm{n})} d\Omega\_n.
 $$
 
 Equation 4.16 can be used to solve Equation 4.11:
 
 $$ \tag{4.17}
-	\bm{E}(\bm{r}, \omega) = \int\_{S^2}
+	\bm{E}(\bm{r}, \omega) = \oiint\_{\mathbb{S}^2}
 	\begin{bmatrix}
 		E\_x(0, \bm{n}, \omega) \exp(-i k\_1(\omega) (\bm{r} \cdot \bm{n})) \cr
 		E\_y(0, \bm{n}, \omega) \exp(-i k\_2(\omega) (\bm{r} \cdot \bm{n})) \cr
@@ -472,7 +472,7 @@ $$ \tag{5.1}
 \begin{aligned}
 	\bm{E}(\bm{r}, t)
 	&= \frac{1}{\sqrt{2 \pi}} \int\_{-\infin}^{\infin} \mathrm{Re} \big\lbrace \bm{E}(\bm{r}, \omega) e^{i \omega t} \big\rbrace d\omega \cr
-	&= \frac{1}{\sqrt{2 \pi}} \int\_{-\infin}^{\infin} \int\_{S^2} \mathrm{Re} \Bigg\lbrace
+	&= \frac{1}{\sqrt{2 \pi}} \int\_{-\infin}^{\infin} \oiint\_{\mathbb{S}^2} \mathrm{Re} \Bigg\lbrace
 	\begin{bmatrix}
 		E\_x(0, \bm{n}, \omega) \exp(-i k\_1(\omega) (\bm{r} \cdot \bm{n}) + i \omega t) \cr
 		E\_y(0, \bm{n}, \omega) \exp(-i k\_2(\omega) (\bm{r} \cdot \bm{n}) + i \omega t) \cr
@@ -598,106 +598,156 @@ If the absorption index \\(\kappa = 0\\), Equation 5.13 represents a regular sin
 
 Given a mathematical description of electromagnetic radiation in terms of vector waves, we would like to physically characterize it as an energy transfer process. In order to do that, we have to determine how much energy there is in a given volume element of space, and also the rate of energy flow \[[5](#references) (vol. II, ch. 27), [6](#references) (ch. 1.1.4), [7](#references) (ch. 2.4), [8](#references) (ch. 2.5)\].
 
-[Conservation of energy](https://en.wikipedia.org/wiki/Conservation_of_energy) is one of the most important laws of physics. This is one way to state it: the amount of energy \\(\mathcal{E\_{in}}\\) flowing into the volume element \\(V\\) equals the amount of outflowing energy \\(\mathcal{E\_{out}}\\) plus the work \\(\mathcal{W}\\) done inside.
+[Conservation of energy](https://en.wikipedia.org/wiki/Conservation_of_energy) is one of the most important principles of physics. Here is one way to state it: the difference between the amount of energy \\(\mathcal{E\_{in}}\\) flowing into the volume \\(V\\) and the amount of outflowing energy \\(\mathcal{E\_{out}}\\) equals the amount of work \\(\mathcal{W}\\) done inside.
 
 $$ \tag{6.1}
- 	\frac{\partial}{\partial t} \mathcal{E\_{in}}(V, t) =
- 	\frac{\partial}{\partial t} \mathcal{E\_{out}}(V, t) +
+ 	\frac{\partial}{\partial t} \mathcal{E\_{in}}(V, t) -
+ 	\frac{\partial}{\partial t} \mathcal{E\_{out}}(V, t) =
  	\frac{\partial}{\partial t} \mathcal{W}(V, t).
 $$
 
-In Equation 6.1, \\(\mathcal{E}\\) refers to a single type of energy: kinetic, electromagnetic, etc. [Work](https://en.wikipedia.org/wiki/Work_(physics)) transforms a portion of \\(\mathcal{E}\\) into a different type of energy: kinetic into potential, electromagnetic into thermal, and so on. If we account for all types of energy, the total amount of energy is conserved.
+In Equation 6.1, \\(\mathcal{E}\\) refers to a single type of energy: kinetic, electromagnetic, etc. Work transforms a portion of \\(\mathcal{E}\\) into a different type of energy: kinetic into potential, electromagnetic into thermal, and so on. If we account for all types of energy, the total amount of energy is conserved.
 
-Given our focus on electromagnetic energy, we can partition the total amount of energy into the *field energy* and the *matter energy*. In this context, work done by the field on the matter refers to *absorption*. Similarly, *emission* is the work work done by the matter on the field.
+Given our focus on electromagnetic energy, we can partition the total amount of energy into the *field energy* and the *matter energy*. In this context, work done by the field on the matter refers to *absorption*, and has a positive sign. Similarly, *emission* is the work done by the matter on the field, and has a negative sign. We shall not consider emissive in the analysis presented below.
 
-Since work is the energy transferred by the application of force along a displacement, we will need the definition of the electromagnetic force.
+If we determine the total amount of work done, we can additionally classify materials into *active* \\((\mathcal{W} < 0)\\) and *passive* \\((\mathcal{W} \geq 0)\\) \[[7](#references) (ch. 2.5)\]. 
+
+Mathematically, the [rate of doing work](https://en.wikipedia.org/wiki/Work_(physics)#Mathematical_calculation) is the product of force and velocity:
+
+$$ \tag{6.2}
+	\frac{\partial \mathcal{W}}{\partial t} = \bm{F} \cdot \bm{v}.
+$$ 
+
+Thus, to compute it, we must recall the definition of the electromagnetic force.
 
 If a particle with the electric charge \\(q\\) moving at the velocity \\(\bm{v}\\) is placed in an electromagnetic field, it experiences the [Lorentz force](https://en.wikipedia.org/wiki/Lorentz_force)
 
-$$ \tag{6.2}
+$$ \tag{6.3}
 	\bm{F}(\bm{r}, t) = q(\bm{r}, t) \big( \bm{E}(\bm{r}, t) + \bm{v}(\bm{r}, t) \times \bm{B}(\bm{r}, t) \big).
 $$
 
 For the charge density \\(\rho\\) and the volume element \\(dV\\), the corresponding equation is
 
-$$ \tag{6.3}
-	d\bm{F}(\bm{r}, t) = \rho(\bm{r}, t) \big( \bm{E}(\bm{r}, t) + \bm{v}(\bm{r}, t) \times \bm{B}(\bm{r}, t) \big) dV.
+$$ \tag{6.4}
+	d\bm{F}(\bm{r}, t) = \rho(\bm{r}, t) \big( \bm{E}(\bm{r}, t) + \bm{v}(\bm{r}, t) \times \bm{B}(\bm{r}, t) \big) \thinspace dV.
+$$
+
+Therefore, the amount of work done per unit time by the field on the matter is
+
+$$ \tag{6.6}
+	\frac{\partial}{\partial t} \mathcal{W}(V, t) =
+	\iiint\_{V} \bm{v}(\bm{r}, t) \cdot d\bm{F}(\bm{r}, t) =
+    \iiint\_{V} \bm{E}(\bm{r}, t) \cdot \rho(\bm{r}, t) \bm{v}(\bm{r}, t) \thinspace dV.
 $$
 
 Since current density is just a collection of moving charges per unit volume (see Equation 1.6),
 
-$$ \tag{6.4}
+$$ \tag{6.7}
 	\bm{J}(\bm{r}, t) = \rho(\bm{r}, t) \bm{v}(\bm{r}, t),
-$$ 
-
-the amount of work done on the volume \\(dV\\) per second is
-
-$$ \tag{55}
-	\frac{\partial A(\bm{r}, t)}{\partial t} = \frac{d\bm{F}(\bm{r}, t) \cdot \bm{v}(\bm{r}, t)}{dV}  \thinspace = \bm{E}(\bm{r}, t) \cdot \bm{J}(\bm{r}, t)
 $$
 
-is the rate of work done by the electromagnetic field on matter per unit volume.
+Equation 6.6 simply says that
 
-Now, consider Maxwell's equations again. Take a dot product of \\(\bm{H}\\) and Equation 1.1, and another dot product of \\(\bm{E}\\) and Equation 1.3:
+$$ \tag{6.8}
+	\frac{\partial}{\partial t} \mathcal{W}(V, t) =
+    \iiint\_{V} \bm{E}(\bm{r}, t) \cdot \bm{J}(\bm{r}, t) \thinspace dV.
+$$
 
-$$ \tag{56}
-\begin{aligned}
-	&\bm{H}(\bm{r}, t) \cdot \big( \nabla \times \bm{E}(\bm{r}, t) \big) + \bm{H}(\bm{r}, t) \cdot \frac{\partial \bm{B}(\bm{r}, t)}{\partial t} = 0, \cr
-	&\bm{E}(\bm{r}, t) \cdot \big( \nabla \times \bm{H}(\bm{r}, t) \big) - \bm{E}(\bm{r}, t) \cdot \frac{\partial \bm{D}(\bm{r}, t)}{\partial t} = \bm{E}(\bm{r}, t) \cdot \bm{J\_f}(\bm{r}, t).
-\end{aligned}
+Maxwell's equations allow us to express a current in terms of fields. Substitution of Equation 1.1.3 yields
+
+$$ \tag{6.9}
+	\iiint\_{V} \bm{E}(\bm{r}, t) \cdot \bm{J}(\bm{r}, t) \thinspace dV = 
+    \iiint\_{V} \bm{E}(\bm{r}, t) \cdot \Bigg( \nabla \times \frac{\bm{B}(\bm{r}, t)}{\mu\_0} -
+    \frac{\partial \big( \epsilon\_0 \bm{E}(\bm{r}, t) \big)}{\partial t} \Bigg) dV.
 $$
 
 Since [divergence of cross product](https://en.wikipedia.org/wiki/Vector_calculus_identities#Cross_product_rule) is
 
-$$ \tag{57}
-	\nabla \cdot (\bm{E} \times \bm{H}) = (\nabla \times \bm{E}) \cdot \bm{H} - \bm{E} \cdot (\nabla \times \bm{H}),
+$$ \tag{6.10}
+	\nabla \cdot (\bm{E} \times \bm{B}) = (\nabla \times \bm{E}) \cdot \bm{B} - \bm{E} \cdot (\nabla \times \bm{B}),
 $$
 
-subtraction of Equation 56.2 from 56.1 yields
+we can reformulate the integrand of Equation 6.9 as
 
-$$ \tag{58}
-	\nabla \cdot (\bm{E} \times \bm{H}) +
-	\bm{H} \cdot \frac{\partial \bm{B}}{\partial t} +
-	\bm{E} \cdot \frac{\partial \bm{D}}{\partial t} + 
-	\bm{E} \cdot \bm{J\_f} = 0.
+$$ \tag{6.11}
+	\bm{E} \cdot \bm{J} = 
+    \frac{1}{\mu\_0} \big( (\nabla \times \bm{E}) \cdot \bm{B} - \nabla \cdot (\bm{E} \times \bm{B}) \big) -
+    \epsilon\_0 \bm{E} \cdot \frac{\partial \bm{E}}{\partial t}.
 $$
 
+The curl of \\(\bm{E}\\) is also given by Maxwell's equations. It can be replaced according to Equation 1.1.1:
 
-$$ \tag{55}
-	\nabla \cdot (\bm{E} \times \bm{H}) +
-	\bm{H} \cdot \frac{\partial (\mu\_0 \bm{H} + \bm{M})}{\partial t} +
-	\bm{E} \cdot \frac{\partial (\epsilon\_0 \bm{E} + \bm{P})}{\partial t} + 
-	\bm{E} \cdot \bm{J\_f} = 0.
+$$ \tag{6.12}
+	\bm{E} \cdot \bm{J} = 
+    - \frac{1}{\mu\_0} \big( \bm{B} \cdot \frac{\partial \bm{B}}{\partial t} + \nabla \cdot (\bm{E} \times \bm{B}) \big) -
+    \epsilon\_0 \bm{E} \cdot \frac{\partial \bm{E}}{\partial t}.
 $$
 
-$$ \tag{56}
-	\nabla \cdot (\bm{E} \times \bm{H}) +
-	\frac{\mu\_0}{2} \frac{\partial (\bm{H} \cdot \bm{H})}{\partial t} +
-	\bm{H} \cdot \frac{\partial\bm{M}}{\partial t} +
-	\frac{\epsilon\_0}{2} \frac{\partial (\bm{E} \cdot \bm{E})}{\partial t} + 
-	\bm{E} \cdot \frac{\partial \bm{P}}{\partial t} + 
-	\bm{E} \cdot \bm{J\_f} = 0.
+Moving the dot products under the derivative sign and grouping the derivatives produces a simpler expression
+
+$$ \tag{6.13}
+	\bm{E} \cdot \bm{J} = -
+	\frac{1}{\mu\_0} \nabla \cdot (\bm{E} \times \bm{B}) -
+	\frac{\partial}{\partial t} \Bigg( \frac{\epsilon\_0}{2} (\bm{E} \cdot \bm{E}) +
+	\frac{1}{2 \mu\_0} (\bm{B} \cdot \bm{B}) \Bigg).
 $$
 
-$$ \tag{57}
-	\nabla \cdot (\bm{E} \times \bm{H}) +
-	\frac{\mu\_0}{2} \frac{\partial H^2}{\partial t} +
-	\bm{H} \cdot \frac{\partial\bm{M}}{\partial t} +
-	\frac{\epsilon\_0}{2} \frac{\partial E^2}{\partial t} + 
-	\bm{E} \cdot (\bm{J\_b} - \nabla \times \bm{M}) + 
-	\bm{E} \cdot \bm{J\_f} = 0.
+We can observe that the rate of doing work is a balance of inflow of \\((\bm{E} \times \bm{B})\\) and the rate of change of squared amplitudes of the fields. The physical significance of this expression becomes more apparent if we reinstate the volume integral
+
+$$ \tag{6.14}
+	\frac{\partial}{\partial t} \mathcal{W}(V, t) = -
+    \iiint\_{V} \frac{1}{\mu\_0} \nabla \cdot (\bm{E} \times \bm{B}) \thinspace dV -
+    \frac{\partial}{\partial t} \Bigg( \iiint\_{V} \frac{\epsilon\_0}{2} E^2 dV +
+	\iiint\_{V} \frac{1}{2 \mu\_0} B^2 dV \Bigg)
 $$
 
-$$ \tag{58}
-	\nabla \cdot (\bm{E} \times \bm{H}) +
-	\frac{\mu\_0}{2} \frac{\partial H^2}{\partial t} +
-	\bm{H} \cdot \frac{\partial\bm{M}}{\partial t} +
-	\frac{\epsilon\_0}{2} \frac{\partial E^2}{\partial t} - 
-	\bm{E} \cdot (\nabla \times \bm{M}) + 
-	\bm{E} \cdot \bm{J\_t} = 0.
+and use the [divergence theorem](https://en.wikipedia.org/wiki/Divergence_theorem) to replace the leftmost integral with an integral taken over the bounding surface \\(\delta V\\) of the volume \\(V\\):
+
+$$ \tag{6.15}
+	\frac{\partial}{\partial t} \mathcal{W}(V, t) = 
+    \oiint\_{\delta V} \frac{1}{\mu\_0} (\bm{E} \times \bm{B}) \cdot (-\bm{n}) \thinspace dA -
+    \frac{\partial}{\partial t} \Bigg( \iiint\_{V} \frac{\epsilon\_0}{2} E^2 dV +
+	\iiint\_{V} \frac{1}{2 \mu\_0} B^2 dV \Bigg),
 $$
 
+where \\(\bm{n}\\) is the outward-facing surface normal.
 
+According to Equation 6.1, the right-hand side of Equation 6.15 represents the difference between the rates of inflow and outflow of energy. Thus, the first term on the right gives the amount of energy flowing into the volume through its bounding surface per unit time
+
+$$ \tag{6.16}
+ 	\frac{\partial}{\partial t} \mathcal{E\_{in}}(V, t) = 
+ 	\oiint\_{\delta V} \frac{1}{\mu\_0} (\bm{E} \times \bm{B}) \cdot (-\bm{n}) \thinspace dA,
+$$
+
+and the second term corresponds to the rate at which the amount of energy within the volume decreases:
+
+$$ \tag{6.17}
+ 	-\frac{\partial}{\partial t} \mathcal{E\_{out}}(V, t) =
+ 	-\frac{\partial}{\partial t}
+ 	\Bigg(
+ 		\iiint\_{V} \frac{\epsilon\_0}{2} E^2 dV +
+		\iiint\_{V} \frac{1}{2 \mu\_0} B^2 dV
+	\Bigg).
+$$
+
+In this interpretation[^8],
+
+[^8]: Ambiguous...
+
+$$ \tag{6.18}
+	\frac{\partial}{\partial V} \mathcal{E\_e} (\bm{r}, t) = \frac{\epsilon\_0}{2} E^2(\bm{r}, t), \quad
+ 	\frac{\partial}{\partial V} \mathcal{E\_m} (\bm{r}, t) = \frac{1}{2 \mu\_0} B^2(\bm{r}, t), \quad
+$$
+
+are the electric and the magnetic energy densities, and
+
+$$ \tag{6.19}
+	S(\bm{r}, t) = \frac{1}{\mu\_0} \big( \bm{E}(\bm{r}, t) \times \bm{B}(\bm{r}, t) \big)
+$$
+
+is the [Poynting vector](https://en.wikipedia.org/wiki/Poynting_vector) that represents the direction of energy flow.
+
+So what is E x B ???
 
 https://en.wikipedia.org/wiki/Radiometry
 
