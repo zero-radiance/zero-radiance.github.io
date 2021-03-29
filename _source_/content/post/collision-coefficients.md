@@ -389,7 +389,9 @@ $$ \tag{4.9}
 	\nabla^2 \bm{B}(\bm{r}, \omega) + \omega^2 \hat{\mu}(\omega) \hat{\varepsilon}(\omega) \bm{B}(\bm{r}, \omega) = 0.
 $$
 
-Since anisotropy arises due to the [crystal structure](https://en.wikipedia.org/wiki/Crystal_structure) of the material, this tensor product is [normal](https://en.wikipedia.org/wiki/Normal_matrix), and we can perform a [change of basis](https://en.wikipedia.org/wiki/Change_of_basis)  to [diagonalize](https://en.wikipedia.org/wiki/Diagonalizable_matrix#How_to_diagonalize_a_matrix) it:
+Since anisotropy arises due to the [crystal structure](https://en.wikipedia.org/wiki/Crystal_structure) of the material[^5], this tensor product is [normal](https://en.wikipedia.org/wiki/Normal_matrix), and we can perform a [change of basis](https://en.wikipedia.org/wiki/Change_of_basis)  to [diagonalize](https://en.wikipedia.org/wiki/Diagonalizable_matrix#How_to_diagonalize_a_matrix) it:
+
+[^5]: A more elaborate argument is presented in \[[6](#references) (ch. 15.1)\].
 
 $$ \tag{4.10}
 	\nabla^2 \bm{E}(\bm{r}, \omega) + \omega^2
@@ -502,9 +504,9 @@ $$ \tag{5.4}
 	k(\omega) = \omega \sqrt{\varepsilon(\omega) \mu(\omega)}.
 $$
 
-If we define the [relative permittivity](https://en.wikipedia.org/wiki/Relative_permittivity)[^5] \\(\varepsilon\_r\\) and the [relative permeability](https://en.wikipedia.org/wiki/Permeability_(electromagnetism)#Relative_permeability_and_magnetic_susceptibility) \\(\mu\_r\\) using vacuum as reference,
+If we define the [relative permittivity](https://en.wikipedia.org/wiki/Relative_permittivity)[^6] \\(\varepsilon\_r\\) and the [relative permeability](https://en.wikipedia.org/wiki/Permeability_(electromagnetism)#Relative_permeability_and_magnetic_susceptibility) \\(\mu\_r\\) using vacuum as reference,
 
-[^5]: Historically called the [relative complex dielectric constant](https://en.wikipedia.org/wiki/Relative_permittivity#Lossy_medium).
+[^6]: Historically called the [relative complex dielectric constant](https://en.wikipedia.org/wiki/Relative_permittivity#Lossy_medium).
 
 $$ \tag{5.5}
 	\varepsilon\_r(\omega) = \frac{\varepsilon(\omega)}{\epsilon\_0}, \quad
@@ -535,9 +537,9 @@ $$ \tag{5.8}
 	c \Big( \sqrt{\epsilon \mu} - i \frac{\sigma \mu}{2 \omega \sqrt{\epsilon \mu}} \Big),
 $$
 
-which gives an approximate mapping between the optical and the physical parameters[^6].
+which gives an approximate mapping between the optical and the physical parameters[^7].
 
-[^6]: Keep in mind that, in general, the permittivity, the permeability and the conductivity are complex.
+[^7]: Keep in mind that, in general, the permittivity, the permeability and the conductivity are complex.
 
 In order to develop some intuition about the role of the refractive index \[[5](#references) (vol. II, ch. 32)\], consider the phasor component of a scalar plane wave
 
