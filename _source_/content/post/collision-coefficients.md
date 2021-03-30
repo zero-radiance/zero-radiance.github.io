@@ -541,7 +541,7 @@ which gives an approximate mapping between the optical and the physical paramete
 
 [^7]: Keep in mind that, in general, the permittivity, the permeability and the conductivity are complex.
 
-In order to develop some intuition about the role of the refractive index \[[5](#references) (vol. II, ch. 32)\], consider the phasor component of a scalar plane wave
+In order to develop some intuition about the role of the refractive index \[[5](#references) (vol. II, ch. 32.4)\], consider the phasor component of a scalar plane wave
 
 $$ \tag{5.9}
 \begin{aligned}
@@ -598,19 +598,17 @@ If the absorption index \\(\kappa = 0\\), Equation 5.13 represents a regular sin
 
 Given a mathematical description of electromagnetic radiation in terms of vector waves, we would like to physically characterize it as an energy transfer process. In order to do that, we have to determine how much energy there is in a given volume element of space, and also the rate of energy flow \[[5](#references) (vol. II, ch. 27), [6](#references) (ch. 1.1.4), [7](#references) (ch. 2.4), [8](#references) (ch. 2.5)\].
 
-[Conservation of energy](https://en.wikipedia.org/wiki/Conservation_of_energy) is one of the most important principles of physics. Here is one way to state it: the difference between the amount of energy \\(\mathcal{E\_{in}}\\) flowing into the volume \\(V\\) and the amount of outflowing energy \\(\mathcal{E\_{out}}\\) equals the amount of work \\(\mathcal{W}\\) done inside.
+[Conservation of energy](https://en.wikipedia.org/wiki/Conservation_of_energy) is one of the most important principles of physics. Here is one way to state it: the difference between the amount of external energy \\(\mathcal{E\_{ext}}\\) flowing into the volume \\(V\\) and the amount of internal energy \\(\mathcal{E\_{int}}\\) flowing outside \\(V\\) equals the amount of work \\(\mathcal{W}\\) done inside.
 
 $$ \tag{6.1}
- 	\frac{\partial}{\partial t} \mathcal{E\_{in}}(V, t) -
- 	\frac{\partial}{\partial t} \mathcal{E\_{out}}(V, t) =
+ 	\frac{\partial}{\partial t} \mathcal{E\_{ext}}(V, t) -
+ 	\frac{\partial}{\partial t} \mathcal{E\_{int}}(V, t) =
  	\frac{\partial}{\partial t} \mathcal{W}(V, t).
 $$
 
 In Equation 6.1, \\(\mathcal{E}\\) refers to a single type of energy: kinetic, electromagnetic, etc. Work transforms a portion of \\(\mathcal{E}\\) into a different type of energy: kinetic into potential, electromagnetic into thermal, and so on. If we account for all types of energy, the total amount of energy is conserved.
 
-Given our focus on electromagnetic energy, we can partition the total amount of energy into the *field energy* and the *matter energy*. In this context, work done by the field on the matter refers to *absorption*, and has a positive sign. Similarly, *emission* is the work done by the matter on the field, and has a negative sign. We shall not consider emissive in the analysis presented below.
-
-If we determine the total amount of work done, we can additionally classify materials into *active* \\((\mathcal{W} < 0)\\) and *passive* \\((\mathcal{W} \geq 0)\\) \[[7](#references) (ch. 2.5)\]. 
+Given our focus on electromagnetic energy, we can partition the total amount of energy into the *field energy* and the *matter energy*. In this context, work done by the field on the matter refers to *absorption*, and has a positive sign. Similarly, *emission* is the work done by the matter on the field, and has a negative sign. We shall not consider emissive materials in the analysis presented below.
 
 Mathematically, the [rate of doing work](https://en.wikipedia.org/wiki/Work_(physics)#Mathematical_calculation) is the product of force and velocity:
 
@@ -634,28 +632,22 @@ $$
 
 Therefore, the amount of work done per unit time by the field on the matter is
 
-$$ \tag{6.6}
+$$ \tag{6.5}
 	\frac{\partial}{\partial t} \mathcal{W}(V, t) =
 	\iiint\_{V} \bm{v}(\bm{r}, t) \cdot d\bm{F}(\bm{r}, t) =
     \iiint\_{V} \bm{E}(\bm{r}, t) \cdot \rho(\bm{r}, t) \bm{v}(\bm{r}, t) \thinspace dV.
 $$
 
-Since current density is just a collection of moving charges per unit volume (see Equation 1.6),
+Since the current density is just a collection of moving charges per unit volume (see Equation 1.6),
 
-$$ \tag{6.7}
-	\bm{J}(\bm{r}, t) = \rho(\bm{r}, t) \bm{v}(\bm{r}, t),
-$$
-
-Equation 6.6 simply says that
-
-$$ \tag{6.8}
+$$ \tag{6.6}
 	\frac{\partial}{\partial t} \mathcal{W}(V, t) =
     \iiint\_{V} \bm{E}(\bm{r}, t) \cdot \bm{J}(\bm{r}, t) \thinspace dV.
 $$
 
 Maxwell's equations allow us to express a current in terms of fields. Substitution of Equation 1.1.3 yields
 
-$$ \tag{6.9}
+$$ \tag{6.7}
 	\iiint\_{V} \bm{E}(\bm{r}, t) \cdot \bm{J}(\bm{r}, t) \thinspace dV = 
     \iiint\_{V} \bm{E}(\bm{r}, t) \cdot \Bigg( \nabla \times \frac{\bm{B}(\bm{r}, t)}{\mu\_0} -
     \frac{\partial \big( \epsilon\_0 \bm{E}(\bm{r}, t) \big)}{\partial t} \Bigg) dV.
@@ -663,21 +655,21 @@ $$
 
 Since [divergence of cross product](https://en.wikipedia.org/wiki/Vector_calculus_identities#Cross_product_rule) is
 
-$$ \tag{6.10}
+$$ \tag{6.8}
 	\nabla \cdot (\bm{E} \times \bm{B}) = (\nabla \times \bm{E}) \cdot \bm{B} - \bm{E} \cdot (\nabla \times \bm{B}),
 $$
 
-we can reformulate the integrand of Equation 6.9 as
+we can reformulate the integrand of Equation 6.7 as
 
-$$ \tag{6.11}
+$$ \tag{6.9}
 	\bm{E} \cdot \bm{J} = 
     \frac{1}{\mu\_0} \big( (\nabla \times \bm{E}) \cdot \bm{B} - \nabla \cdot (\bm{E} \times \bm{B}) \big) -
     \epsilon\_0 \bm{E} \cdot \frac{\partial \bm{E}}{\partial t}.
 $$
 
-The curl of \\(\bm{E}\\) is also given by Maxwell's equations. It can be replaced according to Equation 1.1.1:
+The curl of \\(\bm{E}\\) is also given by Maxwell's equations (see Equation 1.1.1). Thus we can write
 
-$$ \tag{6.12}
+$$ \tag{6.10}
 	\bm{E} \cdot \bm{J} = 
     - \frac{1}{\mu\_0} \big( \bm{B} \cdot \frac{\partial \bm{B}}{\partial t} + \nabla \cdot (\bm{E} \times \bm{B}) \big) -
     \epsilon\_0 \bm{E} \cdot \frac{\partial \bm{E}}{\partial t}.
@@ -685,7 +677,7 @@ $$
 
 Moving the dot products under the derivative sign and grouping the derivatives produces a simpler expression
 
-$$ \tag{6.13}
+$$ \tag{6.11}
 	\bm{E} \cdot \bm{J} = -
 	\frac{1}{\mu\_0} \nabla \cdot (\bm{E} \times \bm{B}) -
 	\frac{\partial}{\partial t} \Bigg( \frac{\epsilon\_0}{2} (\bm{E} \cdot \bm{E}) +
@@ -694,16 +686,16 @@ $$
 
 We can observe that the rate of doing work is a balance of inflow of \\((\bm{E} \times \bm{B})\\) and the rate of change of squared amplitudes of the fields. The physical significance of this expression becomes more apparent if we reinstate the volume integral
 
-$$ \tag{6.14}
+$$ \tag{6.12}
 	\frac{\partial}{\partial t} \mathcal{W}(V, t) = -
     \iiint\_{V} \frac{1}{\mu\_0} \nabla \cdot (\bm{E} \times \bm{B}) \thinspace dV -
     \frac{\partial}{\partial t} \Bigg( \iiint\_{V} \frac{\epsilon\_0}{2} E^2 dV +
 	\iiint\_{V} \frac{1}{2 \mu\_0} B^2 dV \Bigg)
 $$
 
-and use the [divergence theorem](https://en.wikipedia.org/wiki/Divergence_theorem) to replace the leftmost integral with an integral taken over the bounding surface \\(\delta V\\) of the volume \\(V\\):
+and use the [divergence theorem](https://en.wikipedia.org/wiki/Divergence_theorem) to replace the leftmost volume integral with an integral taken over the bounding surface \\(\delta V\\) of the volume \\(V\\):
 
-$$ \tag{6.15}
+$$ \tag{6.13}
 	\frac{\partial}{\partial t} \mathcal{W}(V, t) = 
     \oiint\_{\delta V} \frac{1}{\mu\_0} (\bm{E} \times \bm{B}) \cdot (-\bm{n}) \thinspace dA -
     \frac{\partial}{\partial t} \Bigg( \iiint\_{V} \frac{\epsilon\_0}{2} E^2 dV +
@@ -712,17 +704,17 @@ $$
 
 where \\(\bm{n}\\) is the outward-facing surface normal.
 
-According to Equation 6.1, the right-hand side of Equation 6.15 represents the difference between the rates of inflow and outflow of energy. Thus, the first term on the right gives the amount of energy flowing into the volume through its bounding surface per unit time
+According to Equation 6.1, the right-hand side of Equation 6.14 represents the difference between the rates of inflow and outflow of energy. Thus, the first term on the right gives the amount of external energy flowing (per unit time) through the bounding surface into the volume,
 
-$$ \tag{6.16}
- 	\frac{\partial}{\partial t} \mathcal{E\_{in}}(V, t) = 
+$$ \tag{6.14}
+ 	\frac{\partial}{\partial t} \mathcal{E\_{ext}}(V, t) = 
  	\oiint\_{\delta V} \frac{1}{\mu\_0} (\bm{E} \times \bm{B}) \cdot (-\bm{n}) \thinspace dA,
 $$
 
 and the second term corresponds to the rate at which the amount of energy within the volume decreases:
 
-$$ \tag{6.17}
- 	-\frac{\partial}{\partial t} \mathcal{E\_{out}}(V, t) =
+$$ \tag{6.15}
+ 	-\frac{\partial}{\partial t} \mathcal{E\_{int}}(V, t) =
  	-\frac{\partial}{\partial t}
  	\Bigg(
  		\iiint\_{V} \frac{\epsilon\_0}{2} E^2 dV +
@@ -730,24 +722,24 @@ $$ \tag{6.17}
 	\Bigg).
 $$
 
-In this interpretation[^8],
+In this interpretation,
 
-[^8]: Ambiguous...
-
-$$ \tag{6.18}
+$$ \tag{6.16}
 	\frac{\partial}{\partial V} \mathcal{E\_e} (\bm{r}, t) = \frac{\epsilon\_0}{2} E^2(\bm{r}, t), \quad
  	\frac{\partial}{\partial V} \mathcal{E\_m} (\bm{r}, t) = \frac{1}{2 \mu\_0} B^2(\bm{r}, t), \quad
 $$
 
 are the electric and the magnetic energy densities, and
 
-$$ \tag{6.19}
-	S(\bm{r}, t) = \frac{1}{\mu\_0} \big( \bm{E}(\bm{r}, t) \times \bm{B}(\bm{r}, t) \big)
+$$ \tag{6.17}
+	\bm{S}(\bm{r}, t) = \frac{1}{\mu\_0} \big( \bm{E}(\bm{r}, t) \times \bm{B}(\bm{r}, t) \big)
 $$
 
-is the [Poynting vector](https://en.wikipedia.org/wiki/Poynting_vector) that represents the direction of energy flow.
+is the [Poynting vector](https://en.wikipedia.org/wiki/Poynting_vector) that represents the direction and the rate of energy flow[^8].
 
-So what is E x B ???
+[^8]: This definition of field energy, while widely accepted, is somewhat ambiguous \[[5](#references) (vol. II, ch. 27.4)\]. We should also note that there is yet another popular definition in terms of the auxiliary fields \[[6](#references) (ch. 1.1.4)\]. There are several problems with the latter definition. First, both the Maxwell's equations and the Lorentz force are given in terms of the fundamental fields, \\(\bm{E}\\) and \\(\bm{B}\\). Secondly, these are also the fields that should be used to define a plane wave, as we have noted previously. And finally, most derivations that start from the macroscopic Maxwell's equations make a mistake of omitting the bound current from the definition of work; taking the bound current into account produces precisely the results at we have have arrived above.
+
+So what is E x B ??? Plane wave... Frequency domain... Time averaged??
 
 https://en.wikipedia.org/wiki/Radiometry
 
