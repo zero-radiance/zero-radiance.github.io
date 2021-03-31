@@ -86,7 +86,7 @@ $$ \tag{1.4}
 	c = (\epsilon\_0 \mu\_0)^{-1/2}.
 $$
 
-Sometimes, Equations 1.1 are referred to as the "vacuum version" of Maxwell's equations. That name can be a little misleading; in fact, the matter is right there - it is just represented as a distribution of charged [elementary particles](https://en.wikipedia.org/wiki/Elementary_particle) by the *volume* [charge density](https://en.wikipedia.org/wiki/Charge_density) \\(\rho\\), such that the total charge \\(Q\\) inside the volume \\(V\\) is
+Sometimes, Equations 1.1 are referred to as the "vacuum version" of Maxwell's equations. This name can be a little misleading; in fact, the matter is right there - it is just represented as a distribution of charged [elementary particles](https://en.wikipedia.org/wiki/Elementary_particle) by the *volume* [charge density](https://en.wikipedia.org/wiki/Charge_density) \\(\rho\\), such that the total charge \\(Q\\) inside the volume \\(V\\) is
 
 $$ \tag{1.5}
 	Q(t) = \iiint\_{V} \rho(\bm{r}, t) \thinspace dV.
@@ -237,7 +237,7 @@ $$
 
 ## Constitutive Relations
 
-Considered in isolation, Maxwell's system has fewer equations than unknowns. This makes it necessary to specify the way the material responds to the electromagnetic field. One way to do this is to express the auxiliary fields in terms of polarization of matter (as per Equations 1.7 and 1.10). Turns out, this leads to a non-linear solution \[[9](#references)\] that is relatively difficult to manipulate.
+Considered in isolation, Maxwell's system has fewer equations than unknowns. This makes it necessary to specify the way the material responds to the electromagnetic field. One way to do that is to express the auxiliary fields in terms of polarization of matter (as per Equations 1.7 and 1.10). Turns out, this leads to a non-linear solution \[[9](#references)\] that is relatively difficult to manipulate.
 
 Fortunately, many materials respond to weak electromagnetic fields in optical frequencies in an approximately linear manner. This behavior is captured by the [constitutive relations](https://en.wikipedia.org/wiki/Constitutive_equation#Electromagnetism) \[[6](#references) (ch. 1.1.2), [7](#references) (ch. 2.1), [8](#references) (ch. 2.3)\]:
 
@@ -389,7 +389,7 @@ $$ \tag{4.9}
 	\nabla^2 \bm{B}(\bm{r}, \omega) + \omega^2 \hat{\mu}(\omega) \hat{\varepsilon}(\omega) \bm{B}(\bm{r}, \omega) = 0.
 $$
 
-Since anisotropy arises due to the [crystal structure](https://en.wikipedia.org/wiki/Crystal_structure) of the material[^5], this tensor product is [normal](https://en.wikipedia.org/wiki/Normal_matrix), and we can perform a [change of basis](https://en.wikipedia.org/wiki/Change_of_basis)  to [diagonalize](https://en.wikipedia.org/wiki/Diagonalizable_matrix#How_to_diagonalize_a_matrix) it:
+Since anisotropy arises due to the [crystal structure](https://en.wikipedia.org/wiki/Crystal_structure) of the material[^5], this tensor product is [normal](https://en.wikipedia.org/wiki/Normal_matrix), and we can perform a [change of basis](https://en.wikipedia.org/wiki/Change_of_basis) to [diagonalize](https://en.wikipedia.org/wiki/Diagonalizable_matrix#How_to_diagonalize_a_matrix) it:
 
 [^5]: A more elaborate argument is presented in \[[6](#references) (ch. 15.1)\].
 
@@ -462,7 +462,7 @@ $$ \tag{4.17}
 	d\Omega\_n.
 $$
 
-That is a solution of Maxwell's equations in the frequency domain.
+This is a solution of Maxwell's equations in the frequency domain.
 
 ## Time-Harmonic Waves
 
@@ -722,7 +722,7 @@ $$ \tag{6.15}
 	\Bigg).
 $$
 
-In this interpretation,
+According to this interpretation,
 
 $$ \tag{6.16}
 	\frac{\partial}{\partial V} \mathcal{E\_e} (\bm{r}, t) = \frac{\epsilon\_0}{2} E^2(\bm{r}, t), \quad
@@ -739,7 +739,21 @@ is the [Poynting vector](https://en.wikipedia.org/wiki/Poynting_vector) that rep
 
 [^8]: This definition of field energy, while widely accepted, is somewhat ambiguous \[[5](#references) (vol. II, ch. 27.4)\]. We should also note that there is yet another popular definition in terms of the auxiliary fields \[[6](#references) (ch. 1.1.4)\]. There are several problems with the latter definition. First, both the Maxwell's equations and the Lorentz force are given in terms of the fundamental fields, \\(\bm{E}\\) and \\(\bm{B}\\). Secondly, these are also the fields that should be used to define a plane wave, as we have noted previously. And finally, most derivations that start from the macroscopic Maxwell's equations make a mistake of omitting the bound current from the definition of work; taking the bound current into account produces precisely the results at we have have arrived above.
 
-So what is E x B ??? Plane wave... Frequency domain... Time averaged??
+We are particularly interested in a steady-state solution of Maxwell's equations. Specifically, rather than consider the *instantaneous* Poynting vector \\(\bm{S}\\) (which may change trillions of times per second), we focus on the *time-averaged* Poynting vector instead:
+
+$$ \tag{6.18} \langle \bm{S} \rangle = \frac{1}{T} \int\_{-T/2}^{\thinspace T/2} \bm{S}(\bm{r}, t + t') \thinspace dt'. $$
+
+It becomes especially useful once you consider a fixed direction \\(\bm{n}\\). Then, according to Equation 6.14,
+
+$$ \tag{6.19}
+	\mathtt{E\_e}(\bm{r}, \bm{n}, t) =
+	\vert \langle \bm{S} \rangle \cdot \bm{n} \vert =
+	 \vert \langle \bm{S} \rangle \cos{\theta} \vert $$
+
+is the time-averaged amount of energy per second per unit area that flows through a surface with the normal \\(\bm{n}\\). This is the definition of [irradiance](https://en.wikipedia.org/wiki/Irradiance) \\(\mathtt{E\_e}\\).
+
+
+So what is E x B ??? Frequency domain... Plane wave...
 
 https://en.wikipedia.org/wiki/Radiometry
 
