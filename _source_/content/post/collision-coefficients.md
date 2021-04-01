@@ -43,9 +43,9 @@ They satisfy the differential form of [Maxwell's equations](https://en.wikipedia
 
 $$ \tag{1.1}
 \begin{aligned}
-	&\nabla \times \bm{E}(\bm{r}, t) + \frac{\partial \bm{B}(\bm{r}, t)}{\partial t} = 0, &
+	&\nabla \times \bm{E}(\bm{r}, t) + \frac{\partial}{\partial t} \bm{B}(\bm{r}, t) = 0, &
 	&\nabla \cdot  \bm{B}(\bm{r}, t) = 0, \cr
-	&\nabla \times \frac{\bm{B}(\bm{r}, t)}{\mu\_0} - \frac{\partial \big( \epsilon\_0 \bm{E}(\bm{r}, t) \big)}{\partial t} = \bm{J}(\bm{r}, t), &
+	&\nabla \times \big( \mu\_0^{-1} \bm{B}(\bm{r}, t) \big) - \frac{\partial}{\partial t} \big( \epsilon\_0 \bm{E}(\bm{r}, t) \big) = \bm{J}(\bm{r}, t), &
 	&\nabla \cdot \big( \epsilon\_0 \bm{E}(\bm{r}, t) \big) = \rho(\bm{r}, t),
 \end{aligned}
 $$
@@ -105,7 +105,7 @@ While this kind of parametrization is simple and useful, due to the sheer number
 First, we identify two types of charges - bound and free. As the name implies, *free* charges are able to effortlessly move around the material, or even outside it, the typical example being the conduction current in a copper wire. The *bound* [current](https://en.wikipedia.org/wiki/Current_density#Polarization_and_magnetization_currents) and [charge densities](https://en.wikipedia.org/wiki/Charge_density#Bound_charge), \\(\bm{J\_b}\\) and \\(\rho\_b\\), are more difficult to reason about. They can be characterized in terms of [polarization of matter](https://en.wikipedia.org/wiki/Maxwell%27s_equations#Auxiliary_fields,_polarization_and_magnetization):
 
 $$ \tag{1.7}
-	\bm{J\_b}(\bm{r}, t) = \nabla \times \bm{M}(\bm{r}, t) + \frac{\partial \bm{P}(\bm{r}, t)}{\partial t}, \quad
+	\bm{J\_b}(\bm{r}, t) = \nabla \times \bm{M}(\bm{r}, t) + \frac{\partial}{\partial t} \bm{P}(\bm{r}, t), \quad
 	\rho\_b(\bm{r}, t) = -\nabla \cdot \bm{P}(\bm{r}, t),
 $$
 
@@ -115,7 +115,7 @@ Substitution of Equation 1.7.1 into 1.1.3 and 1.7.2 into 1.1.4 yields
 
 $$ \tag{1.8}
 \begin{aligned}
-	&\nabla \times \frac{\bm{B}(\bm{r}, t)}{\mu\_0} - \frac{\partial \big( \epsilon\_0 \bm{E}(\bm{r}, t) \big)}{\partial t} = \bm{J\_f}(\bm{r}, t) + \nabla \times \bm{M}(\bm{r}, t) + \frac{\partial \bm{P}(\bm{r}, t)}{\partial t}, \cr
+	&\nabla \times \big( \mu\_0^{-1} \bm{B}(\bm{r}, t) \big) - \frac{\partial}{\partial t} \big( \epsilon\_0 \bm{E}(\bm{r}, t) \big) = \bm{J\_f}(\bm{r}, t) + \nabla \times \bm{M}(\bm{r}, t) + \frac{\partial}{\partial t} \bm{P}(\bm{r}, t), \cr
 	&\nabla \cdot \big( \epsilon\_0 \bm{E}(\bm{r}, t) \big) = \rho\_f(\bm{r}, t) - \nabla \cdot \bm{P}(\bm{r}, t).
 \end{aligned}
 $$
@@ -124,7 +124,7 @@ We can group the terms to simplify the expressions:
 
 $$ \tag{1.9}
 \begin{aligned}
-	&\nabla \times \Big( \frac{1}{\mu\_0} \bm{B}(\bm{r}, t) - \bm{M}(\bm{r}, t) \Big) - \frac{\partial \big( \epsilon\_0 \bm{E}(\bm{r}, t) + \bm{P}(\bm{r}, t) \big)}{\partial t} = \bm{J\_f}(\bm{r}, t), \cr
+	&\nabla \times \big( \mu\_0^{-1} \bm{B}(\bm{r}, t) - \bm{M}(\bm{r}, t) \big) - \frac{\partial}{\partial t} \big( \epsilon\_0 \bm{E}(\bm{r}, t) + \bm{P}(\bm{r}, t) \big) = \bm{J\_f}(\bm{r}, t), \cr
 	&\nabla \cdot \big( \epsilon\_0 \bm{E}(\bm{r}, t) + \bm{P}(\bm{r}, t) \big) = \rho\_f(\bm{r}, t).
 \end{aligned}
 $$
@@ -133,16 +133,16 @@ A pattern begins to emerge. If we define the [electric displacement](https://en.
 
 $$ \tag{1.10}
 	\bm{D}(\bm{r}, t) = \epsilon\_0 \bm{E}(\bm{r}, t) + \bm{P}(\bm{r}, t), \quad 
-	\bm{H}(\bm{r}, t) = \frac{1}{\mu\_0} \bm{B}(\bm{r}, t) - \bm{M}(\bm{r}, t),
+	\bm{H}(\bm{r}, t) = \mu\_0^{-1} \bm{B}(\bm{r}, t) - \bm{M}(\bm{r}, t),
 $$
 
 substitute them into Equations 1.9.1 and 1.9.2, and group the resulting expressions with Equations 1.1.1 and 1.1.2, we obtain the [macroscopic formulation](https://en.wikipedia.org/wiki/Maxwell%27s_equations#Macroscopic_formulation) of Maxwell's equations \[[6](#references) (ch. 1.1.1), [7](#references) (ch. 2.1), [8](#references) (ch. 2.1)\]:
 
 $$ \tag{1.11}
 \begin{aligned}
-	&\nabla \times \bm{E}(\bm{r}, t) + \frac{\partial \bm{B}(\bm{r}, t)}{\partial t} = 0, &
+	&\nabla \times \bm{E}(\bm{r}, t) + \frac{\partial}{\partial t} \bm{B}(\bm{r}, t) = 0, &
 	&\nabla \cdot  \bm{B}(\bm{r}, t) = 0, \cr
-	&\nabla \times \bm{H}(\bm{r}, t) - \frac{\partial \bm{D}(\bm{r}, t)}{\partial t} = \bm{J\_f}(\bm{r}, t), &
+	&\nabla \times \bm{H}(\bm{r}, t) - \frac{\partial}{\partial t} \bm{D}(\bm{r}, t) = \bm{J\_f}(\bm{r}, t), &
 	&\nabla \cdot  \bm{D}(\bm{r}, t) = \rho\_f(\bm{r}, t).
 \end{aligned}
 $$
@@ -195,9 +195,9 @@ We can define integral forms of the fields by replacing \\(\bm{E}\\) by \\(\bm{B
 
 $$ \tag{2.3}
 \begin{aligned}
-	&\nabla \times \big( \bm{E}(\bm{r}, \omega) e^{i \omega t} \big) + \frac{\partial \big( \bm{B}(\bm{r}, \omega) e^{i \omega t} \big)}{\partial t} = 0, &
+	&\nabla \times \big( \bm{E}(\bm{r}, \omega) e^{i \omega t} \big) + \frac{\partial}{\partial t} \big( \bm{B}(\bm{r}, \omega) e^{i \omega t} \big) = 0, &
 	&\nabla \cdot  \big( \bm{B}(\bm{r}, \omega) e^{i \omega t} \big) = 0, \cr
-	&\nabla \times \big( \bm{H}(\bm{r}, \omega) e^{i \omega t} \big) - \frac{\partial \big( \bm{D}(\bm{r}, \omega) e^{i \omega t} \big)}{\partial t} = \bm{J\_f}(\bm{r}, \omega) e^{i \omega t}, &
+	&\nabla \times \big( \bm{H}(\bm{r}, \omega) e^{i \omega t} \big) - \frac{\partial}{\partial t} \big( \bm{D}(\bm{r}, \omega) e^{i \omega t} \big) = \bm{J\_f}(\bm{r}, \omega) e^{i \omega t}, &
 	&\nabla \cdot  \big( \bm{D}(\bm{r}, \omega) e^{i \omega t} \big) = \rho\_f(\bm{r}, \omega) e^{i \omega t}.
 \end{aligned}
 $$
@@ -245,7 +245,7 @@ $$ \tag{3.1}
 \begin{aligned}
 	&\bm{J\_i}(\bm{r}, \omega) \approx \hat{\sigma}(\bm{r}, \omega) \bm{E}(\bm{r}, \omega), \cr
 	&\bm{D}   (\bm{r}, \omega) \approx \hat{\epsilon}(\bm{r}, \omega) \bm{E}(\bm{r}, \omega), \cr
-	&\bm{B}   (\bm{r}, \omega) \approx \hat{\mu}(\bm{r}, \omega) \bm{H}(\bm{r}, \omega).
+	&\bm{H}   (\bm{r}, \omega) \approx \hat{\mu}^{-1}(\bm{r}, \omega) \bm{B}(\bm{r}, \omega).
 \end{aligned}
 $$
 
@@ -338,7 +338,7 @@ $$
 Introduce the [curl-of-curl](https://en.wikipedia.org/wiki/Vector_calculus_identities#Curl_of_curl) identity
 
 $$ \tag{4.4}
-	\nabla \times (\nabla \times \bm{V}) = \nabla (\nabla \cdot \bm{V}) - \nabla^2 \bm{V},
+	\nabla \times (\nabla \times \bm{E}) = \nabla (\nabla \cdot \bm{E}) - \nabla^2 \bm{E},
 $$
 
 where 
@@ -361,10 +361,10 @@ $$
 is the [gradient](https://en.wikipedia.org/wiki/Gradient) operator and
 
 $$ \tag{4.6}
-	\mathrm{div}(\mathrm{grad}(\bm{V})) =
-	\nabla^2 \bm{V} =
-	(\nabla \cdot \nabla) \bm{V} =
-	\frac{\partial^2 \bm{V}}{\partial x^2} + \frac{\partial^2 \bm{V}}{\partial y^2} + \frac{\partial^2 \bm{V}}{\partial z^2}
+	\mathrm{div} \big( \mathrm{grad}(\bm{E}) \big) =
+	\nabla^2 \bm{E} =
+	(\nabla \cdot \nabla) \bm{E} =
+	\frac{\partial^2 \bm{E}}{\partial x^2} + \frac{\partial^2 \bm{E}}{\partial y^2} + \frac{\partial^2 \bm{E}}{\partial z^2}
 $$
 
 is the *vector* [Laplace](https://en.wikipedia.org/wiki/Laplace_operator) operator (*scalar* Laplace operator applied to each vector component).
@@ -372,7 +372,7 @@ is the *vector* [Laplace](https://en.wikipedia.org/wiki/Laplace_operator) operat
 Use it to expand Equation 4.3:
 
 $$ \tag{4.7}
-	\nabla (\nabla \cdot \bm{E}(\bm{r}, \omega)) - \nabla^2 \bm{E}(\bm{r}, \omega) - \omega^2 \hat{\mu}(\omega) \hat{\varepsilon}(\omega) \bm{E}(\bm{r}, \omega) = 0.
+	\nabla \big( \nabla \cdot \bm{E}(\bm{r}, \omega) \big) - \nabla^2 \bm{E}(\bm{r}, \omega) - \omega^2 \hat{\mu}(\omega) \hat{\varepsilon}(\omega) \bm{E}(\bm{r}, \omega) = 0.
 $$
 
 Substitution of Equation 4.2.4 into 4.7 yields the equation of the electric phasor \\(\bm{E}\\):
@@ -649,8 +649,8 @@ Maxwell's equations allow us to express a current in terms of fields. Substituti
 
 $$ \tag{6.7}
 	\iiint\_{V} \bm{E}(\bm{r}, t) \cdot \bm{J}(\bm{r}, t) \thinspace dV = 
-    \iiint\_{V} \bm{E}(\bm{r}, t) \cdot \Bigg( \nabla \times \frac{\bm{B}(\bm{r}, t)}{\mu\_0} -
-    \frac{\partial \big( \epsilon\_0 \bm{E}(\bm{r}, t) \big)}{\partial t} \Bigg) dV.
+    \iiint\_{V} \bm{E}(\bm{r}, t) \cdot \Big( \nabla \times \big( \mu\_0^{-1} \bm{B}(\bm{r}, t) \big) -
+    \frac{\partial}{\partial t} \big( \epsilon\_0 \bm{E}(\bm{r}, t) \big) \Big) dV.
 $$
 
 Since [divergence of cross product](https://en.wikipedia.org/wiki/Vector_calculus_identities#Cross_product_rule) is
@@ -663,7 +663,7 @@ we can reformulate the integrand of Equation 6.7 as
 
 $$ \tag{6.9}
 	\bm{E} \cdot \bm{J} = 
-    \frac{1}{\mu\_0} \big( (\nabla \times \bm{E}) \cdot \bm{B} - \nabla \cdot (\bm{E} \times \bm{B}) \big) -
+    \mu\_0^{-1} \big( (\nabla \times \bm{E}) \cdot \bm{B} - \nabla \cdot (\bm{E} \times \bm{B}) \big) -
     \epsilon\_0 \bm{E} \cdot \frac{\partial \bm{E}}{\partial t}.
 $$
 
@@ -671,7 +671,7 @@ The curl of \\(\bm{E}\\) is also given by Maxwell's equations (see Equation 1.1.
 
 $$ \tag{6.10}
 	\bm{E} \cdot \bm{J} = 
-    - \frac{1}{\mu\_0} \big( \bm{B} \cdot \frac{\partial \bm{B}}{\partial t} + \nabla \cdot (\bm{E} \times \bm{B}) \big) -
+    - \mu\_0^{-1} \big( \bm{B} \cdot \frac{\partial \bm{B}}{\partial t} + \nabla \cdot (\bm{E} \times \bm{B}) \big) -
     \epsilon\_0 \bm{E} \cdot \frac{\partial \bm{E}}{\partial t}.
 $$
 
@@ -679,27 +679,27 @@ Moving the dot products under the derivative sign and grouping the derivatives p
 
 $$ \tag{6.11}
 	\bm{E} \cdot \bm{J} = -
-	\frac{1}{\mu\_0} \nabla \cdot (\bm{E} \times \bm{B}) -
+	\mu\_0^{-1} \nabla \cdot (\bm{E} \times \bm{B}) -
 	\frac{\partial}{\partial t} \Bigg( \frac{\epsilon\_0}{2} (\bm{E} \cdot \bm{E}) +
-	\frac{1}{2 \mu\_0} (\bm{B} \cdot \bm{B}) \Bigg).
+	\frac{\mu\_0^{-1}}{2} (\bm{B} \cdot \bm{B}) \Bigg).
 $$
 
 We can observe that the rate of doing work is a balance of inflow of \\((\bm{E} \times \bm{B})\\) and the rate of change of squared amplitudes of the fields. The physical significance of this expression becomes more apparent if we reinstate the volume integral
 
 $$ \tag{6.12}
 	\frac{\partial}{\partial t} \mathcal{W}(V, t) = -
-    \iiint\_{V} \frac{1}{\mu\_0} \nabla \cdot (\bm{E} \times \bm{B}) \thinspace dV -
+    \iiint\_{V} \mu\_0^{-1} \nabla \cdot (\bm{E} \times \bm{B}) \thinspace dV -
     \frac{\partial}{\partial t} \Bigg( \iiint\_{V} \frac{\epsilon\_0}{2} E^2 dV +
-	\iiint\_{V} \frac{1}{2 \mu\_0} B^2 dV \Bigg)
+	\iiint\_{V} \frac{\mu\_0^{-1}}{2} B^2 dV \Bigg)
 $$
 
 and use the [divergence theorem](https://en.wikipedia.org/wiki/Divergence_theorem) to replace the leftmost volume integral with an integral taken over the bounding surface \\(\delta V\\) of the volume \\(V\\):
 
 $$ \tag{6.13}
 	\frac{\partial}{\partial t} \mathcal{W}(V, t) = 
-    \oiint\_{\delta V} \frac{1}{\mu\_0} (\bm{E} \times \bm{B}) \cdot (-\bm{n}) \thinspace dA -
+    \oiint\_{\delta V} \mu\_0^{-1} (\bm{E} \times \bm{B}) \cdot (-\bm{n}) \thinspace dA -
     \frac{\partial}{\partial t} \Bigg( \iiint\_{V} \frac{\epsilon\_0}{2} E^2 dV +
-	\iiint\_{V} \frac{1}{2 \mu\_0} B^2 dV \Bigg),
+	\iiint\_{V} \frac{\mu\_0^{-1}}{2} B^2 dV \Bigg),
 $$
 
 where \\(\bm{n}\\) is the outward-facing surface normal.
@@ -708,7 +708,7 @@ According to Equation 6.1, the right-hand side of Equation 6.14 represents the d
 
 $$ \tag{6.14}
  	\frac{\partial}{\partial t} \mathcal{E\_{ext}}(V, t) = 
- 	\oiint\_{\delta V} \frac{1}{\mu\_0} (\bm{E} \times \bm{B}) \cdot (-\bm{n}) \thinspace dA,
+ 	\oiint\_{\delta V} \mu\_0^{-1} (\bm{E} \times \bm{B}) \cdot (-\bm{n}) \thinspace dA,
 $$
 
 and the second term corresponds to the rate at which the amount of energy within the volume decreases:
@@ -718,7 +718,7 @@ $$ \tag{6.15}
  	-\frac{\partial}{\partial t}
  	\Bigg(
  		\iiint\_{V} \frac{\epsilon\_0}{2} E^2 dV +
-		\iiint\_{V} \frac{1}{2 \mu\_0} B^2 dV
+		\iiint\_{V} \frac{\mu\_0^{-1}}{2} B^2 dV
 	\Bigg).
 $$
 
@@ -726,13 +726,13 @@ According to this interpretation,
 
 $$ \tag{6.16}
 	\frac{\partial}{\partial V} \mathcal{E\_e} (\bm{r}, t) = \frac{\epsilon\_0}{2} E^2(\bm{r}, t), \quad
- 	\frac{\partial}{\partial V} \mathcal{E\_m} (\bm{r}, t) = \frac{1}{2 \mu\_0} B^2(\bm{r}, t), \quad
+ 	\frac{\partial}{\partial V} \mathcal{E\_m} (\bm{r}, t) = \frac{\mu\_0^{-1}}{2} B^2(\bm{r}, t), \quad
 $$
 
 are the electric and the magnetic energy densities, and
 
 $$ \tag{6.17}
-	\bm{S}(\bm{r}, t) = \frac{1}{\mu\_0} \big( \bm{E}(\bm{r}, t) \times \bm{B}(\bm{r}, t) \big)
+	\bm{S}(\bm{r}, t) = \mu\_0^{-1} \big( \bm{E}(\bm{r}, t) \times \bm{B}(\bm{r}, t) \big)
 $$
 
 is the [Poynting vector](https://en.wikipedia.org/wiki/Poynting_vector) that represents the direction and the rate of energy flow[^8].
@@ -825,7 +825,7 @@ Consider an [electromagnetic wave](https://www.cpp.edu/~alrudolph/classes/phy234
 
 [^80]: While confirmed experimentally, this definition is, mathematically, somewhat arbitrary. For a discussion and further references, refer to p. 10 of Born, M., & Wolf, E. [Principles of optics](https://doi.org/10.1017/CBO9781139644181), 7th edition (1999).
 
-$$ \tag{1} \bm{S}(t) = \frac{1}{\mu\_0} \Big( \bm{E}(t) \times \bm{B}(t) \Big), $$
+$$ \tag{1} \bm{S}(t) = \mu\_0^{-1} \Big( \bm{E}(t) \times \bm{B}(t) \Big), $$
 
 where \\(\mu\_0\\) is the [vacuum permeability](https://en.wikipedia.org/wiki/Vacuum_permeability) of the medium.
 
