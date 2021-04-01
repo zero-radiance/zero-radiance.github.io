@@ -545,23 +545,23 @@ In order to develop some intuition about the role of the refractive index \[[5](
 
 $$ \tag{5.9}
 \begin{aligned}
-	&E(\bm{r}, \bm{n}, \omega) = \cr
-	&E\_0 e^{-i k (\bm{r} \cdot \bm{n})} = \cr
-	&\bar{E}\_0 e^{i \delta} e^{-i (\omega / c) (\eta - i \kappa) (\bm{r} \cdot \bm{n})} = \cr
-	&\bar{E}\_0 e^{-\omega (\kappa / c) (\bm{r} \cdot \bm{n})} e^{i \delta - i \omega (\eta / c) (\bm{r} \cdot \bm{n})} = \cr
-	&\bar{E}(\bm{r}, \bm{n}, \omega) e^{i \phi(\bm{r}, \bm{n}, \omega)}.
+	E(\bm{r}, \bm{n}, \omega)
+	&= E\_0 e^{-i k (\bm{r} \cdot \bm{n})} \cr
+	&= |E\_0| e^{i \delta} e^{-i (\omega / c) (\eta - i \kappa) (\bm{r} \cdot \bm{n})} \cr
+	&= |E\_0| e^{-\omega (\kappa / c) (\bm{r} \cdot \bm{n})} e^{i \delta - i \omega (\eta / c) (\bm{r} \cdot \bm{n})} \cr
+	&= |E(\bm{r}, \bm{n}, \omega)| e^{i \phi(\bm{r}, \bm{n}, \omega)}.
 \end{aligned}
 $$
 
-It can be expressed in terms of the the *amplitude* \\(\bar{E}\\) and the *phase* \\(\phi\\), both of which are [real-valued functions](https://en.wikipedia.org/wiki/Real-valued_function).
+As any complex number, it can be expressed in terms of the *magnitude* \\(|E|\\)  and the *phase* \\(\phi\\), both of which are [real-valued functions](https://en.wikipedia.org/wiki/Real-valued_function).
 
 Multiplication by \\(e^{i \omega t}\\) by yields the full expression of a scalar plane wave:
 
 $$ \tag{5.10}
 \begin{aligned}
-	&E(\bm{r}, \bm{n}, \omega) e^{i \omega t} = \cr
-	&\bar{E}\_0 e^{-\omega (\kappa / c) (\bm{r} \cdot \bm{n})} e^{i \delta - i \omega (\eta / c) (\bm{r} \cdot \bm{n})} e^{i \omega t} = \cr
-	&\bar{E}\_0 e^{-\omega (\kappa / c) (\bm{r} \cdot \bm{n})} e^{i \delta + i \omega (t - (\eta / c) (\bm{r} \cdot \bm{n}))}.
+	E(\bm{r}, \bm{n}, \omega) e^{i \omega t}
+	&= |E\_0| e^{-\omega (\kappa / c) (\bm{r} \cdot \bm{n})} e^{i \delta - i \omega (\eta / c) (\bm{r} \cdot \bm{n})} e^{i \omega t} \cr
+	&= |E\_0| e^{-\omega (\kappa / c) (\bm{r} \cdot \bm{n})} e^{i \delta + i \omega (t - (\eta / c) (\bm{r} \cdot \bm{n}))}.
 \end{aligned}
 $$
 
@@ -570,7 +570,7 @@ Let's perform [dimensional analysis](https://en.wikipedia.org/wiki/Dimensional_a
 $$ \tag{5.11}
 	\theta(\bm{r}, t) =
 	\mathrm{Arg} \big\lbrace E(\bm{r}, \bm{n}, \omega) e^{i \omega t} \big\rbrace =
-	\delta + \omega \big( t - (\eta / c) (\bm{r} \cdot \bm{n}) \big).
+	\delta(\bm{n}, \omega) + \omega \big( t - (\eta(\omega) / c) (\bm{r} \cdot \bm{n}) \big).
 $$
 
 Notice that, for any \\(\Delta t\\),
@@ -581,16 +581,18 @@ $$
 
 This implies that \\(\theta\\) represents a plane propagating along its normal \\(\bm{n}\\) at the [phase velocity](https://en.wikipedia.org/wiki/Phase_velocity) \\(c / \eta\\).
 
-[Insert Picture Here]
-
-Taking the real part of Equation 5.10 allows us to uncover the real *amplitude* of the plane wave
+Taking the real part of Equation 5.10 allows us to uncover the *wave amplitude*
 
 $$ \tag{5.13}
  	\mathrm{Re} \big\lbrace E(\bm{r}, \bm{n}, \omega) e^{i \omega t} \big\rbrace = 
- 	\bar{E}\_0 e^{-\omega (\kappa / c) (\bm{r} \cdot \bm{n})} \cos{\theta}.
+ 	|E(0, \bm{n}, \omega)| e^{-\omega (\kappa(\omega) / c) (\bm{r} \cdot \bm{n})} \cos{\theta}.
 $$
 
-If the absorption index \\(\kappa = 0\\), Equation 5.13 represents a regular sine wave. On the other hand, \\(\kappa > 0\\) produces an exponential decay characteristic of an [evanescent wave](https://en.wikipedia.org/wiki/Evanescent_field).
+If the absorption index \\(\kappa = 0\\), Equation 5.13 represents a regular sine wave.
+
+[Insert Picture Here]
+
+On the other hand, \\(\kappa > 0\\) produces an exponential decay characteristic of an [evanescent wave](https://en.wikipedia.org/wiki/Evanescent_field).
 
 [Insert Picture Here]
 
@@ -684,11 +686,11 @@ $$ \tag{6.11}
 	\frac{\mu\_0^{-1}}{2} (\bm{B} \cdot \bm{B}) \Bigg).
 $$
 
-We can observe that the rate of doing work is a balance of inflow of \\((\bm{E} \times \bm{B})\\) and the rate of change of squared amplitudes of the fields. The physical significance of this expression becomes more apparent if we reinstate the volume integral
+We can observe that the rate of doing work is a balance of inflow of \\((\bm{E} \times \bm{B})\\) and the rate of change of squared magnitudes of the fields. The physical significance of this expression becomes more apparent if we reinstate the volume integral
 
 $$ \tag{6.12}
-	\frac{\partial}{\partial t} \mathcal{W}(V, t) = -
-    \iiint\_{V} \mu\_0^{-1} \nabla \cdot (\bm{E} \times \bm{B}) \thinspace dV -
+	\frac{\partial}{\partial t} \mathcal{W}(V, t) = 
+    \iiint\_{V} -\mu\_0^{-1} \nabla \cdot (\bm{E} \times \bm{B}) \thinspace dV -
     \frac{\partial}{\partial t} \Bigg( \iiint\_{V} \frac{\epsilon\_0}{2} E^2 dV +
 	\iiint\_{V} \frac{\mu\_0^{-1}}{2} B^2 dV \Bigg)
 $$
@@ -722,7 +724,7 @@ $$ \tag{6.15}
 	\Bigg).
 $$
 
-According to this interpretation,
+According to this interpretation, the *squared* magnitudes of the fields
 
 $$ \tag{6.16}
 	\frac{\partial}{\partial V} \mathcal{E\_e} (\bm{r}, t) = \frac{\epsilon\_0}{2} E^2(\bm{r}, t), \quad
