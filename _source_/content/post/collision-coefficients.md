@@ -100,7 +100,7 @@ $$
 
 Of course, the individual electric charges may be located at different points, have different charges and velocities - the density is just a convenient mathematical abstraction.
 
-While this kind of parametrization is simple and useful, due to the sheer number of charges in bulk matter, you can't see the forest for the trees. Therefore, applied physics often uses a different representation of matter, which we shall now discuss.
+While this kind of parametrization is simple and useful, due to the sheer number of charges in the bulk matter, you can't see the forest for the trees. Therefore, applied physics often uses a different representation of matter, which we shall now discuss.
 
 First, we identify two types of charges - bound and free. As the name implies, *free* charges are able to effortlessly move around the material, or even outside it, the typical example being the conduction current in a copper wire. The *bound* [current](https://en.wikipedia.org/wiki/Current_density#Polarization_and_magnetization_currents) and [charge densities](https://en.wikipedia.org/wiki/Charge_density#Bound_charge), \\(\bm{J\_b}\\) and \\(\rho\_b\\), are more difficult to reason about. They can be characterized in terms of [polarization of matter](https://en.wikipedia.org/wiki/Maxwell%27s_equations#Auxiliary_fields,_polarization_and_magnetization):
 
@@ -149,7 +149,7 @@ $$
 
 As discussed in \[[5](#references) (vol. II, ch 32.2), [6](#references) (ch. 1.1.1)\], \\(\bm{E}\\) and \\(\bm{B}\\) are considered fundamental fields, and \\(\bm{D}\\) and \\(\bm{H}\\) are [auxiliary fields](https://en.wikipedia.org/wiki/Maxwell%27s_equations#Auxiliary_fields,_polarization_and_magnetization) that arise due to the influence of matter. We shall soon see that, in many cases, they are related in a simple way.
 
-On the conceptual level, we would like the properties of matter to be continuous everywhere, which leads to continuous electromagnetic fields. But, sometimes, it is convenient to introduce a discontinuity to approximate very rapid (yet continuous) variation of optical properties. At the *optical interface*, the fields must satisfy the [boundary conditions](https://en.wikipedia.org/wiki/Interface_conditions_for_electromagnetic_fields) \[[6](#references) (ch. 1.1.3), [7](#references) (ch. 2.2), [8](#references) (ch. 2.4)\]. If \\(\bm{n\_{12}}\\) is a unit normal vector pointing from region 1 to region 2, the normal components of the fields must be such that
+On the conceptual level, we would like the properties of matter to be continuous everywhere, which leads to continuous electromagnetic fields. But, sometimes, it is convenient to introduce a discontinuity to approximate a very rapid (yet continuous) variation of optical properties. At the *optical interface*, the fields must satisfy the [boundary conditions](https://en.wikipedia.org/wiki/Interface_conditions_for_electromagnetic_fields) \[[6](#references) (ch. 1.1.3), [7](#references) (ch. 2.2), [8](#references) (ch. 2.4)\]. If \\(\bm{n\_{12}}\\) is a unit normal vector pointing from region 1 to region 2, the normal components of the fields must be such that
 
 $$ \tag{1.12}
 	\bm{n\_{12}} \cdot  (\bm{B\_2} - \bm{B\_1}) = 0, \quad
@@ -165,7 +165,7 @@ $$
 
 where \\(\bm{J\_n}\\) is the *surface* current density.
 
-We take Maxwell's equations as axioms, and use them as a foundation from which we derive the theory presented in the following sections.
+We take Maxwell's equations as axioms and use them as a foundation on which we base the theory presented in the following sections.
 
 ## Maxwell's Equations in the Frequency Domain
 
@@ -301,7 +301,7 @@ $$
 
 ## Helmholtz's Equation
 
-Consider a region of space without any source currents or charges. Physically, this means that there are no sources of fields; but it doesn't mean the field contains no energy. The idea is explore all solutions of Maxwell's equations (we can pick a particular solution once we specify the source), and determine how these solutions evolve over time.
+Consider a region of space without any source currents or charges. Physically, this means that there are no sources of fields; but it doesn't mean the field contains no energy. The idea is to explore all solutions of Maxwell's equations (we can pick a particular solution once we specify the source), and determine how these solutions evolve over time.
 
 Setting \\(\bm{J\_f} = \rho\_f = 0\\) in Equations 3.6, we obtain a coupled system of homogeneous linear differential equations:
 
@@ -318,7 +318,7 @@ Mathematically, the consequence is that a linear combination of several solution
 
 Assume that the medium is *homogeneous* and *stationary* (constant in space and time)[^3]:
 
-[^3]: See \[[6](#references) (ch. 1.2)\] for an inhomogeneous solution. The stationary approximation is valid for optical frequences because the time period of an oscillation is very short. 
+[^3]: See \[[6](#references) (ch. 1.2)\] for an inhomogeneous solution. The stationary approximation is valid for optical frequencies because the time period of an oscillation is very short. 
 
 $$ \tag{4.2}
 \begin{aligned}
@@ -539,7 +539,7 @@ $$
 
 which gives an approximate mapping between the optical and the physical parameters[^7].
 
-[^7]: Keep in mind that, in general, the permittivity, the permeability and the conductivity are complex.
+[^7]: Keep in mind that, in general, the permittivity, the permeability, and the conductivity are complex.
 
 In order to develop some intuition about the role of the refractive index \[[5](#references) (vol. II, ch. 32.4)\], consider the phasor component of a scalar plane wave
 
@@ -600,7 +600,7 @@ On the other hand, \\(\kappa > 0\\) produces an exponential decay characteristic
 
 Given a mathematical description of electromagnetic radiation in terms of vector waves, we would like to physically characterize it as an energy transfer process. In order to do that, we have to determine how much energy there is in a given volume element of space, and also the rate of energy flow \[[5](#references) (vol. II, ch. 27), [6](#references) (ch. 1.1.4), [7](#references) (ch. 2.4), [8](#references) (ch. 2.5)\].
 
-[Conservation of energy](https://en.wikipedia.org/wiki/Conservation_of_energy) is one of the most important principles of physics. Here is one way to state it: the difference between the amount of external energy \\(\mathcal{E\_{ext}}\\) flowing into the volume \\(V\\) and the amount of internal energy \\(\mathcal{E\_{int}}\\) flowing outside \\(V\\) equals the amount of work \\(\mathcal{W}\\) done inside.
+[Conservation of energy](https://en.wikipedia.org/wiki/Conservation_of_energy) is one of the most important principles of physics. Here is one way to state it: the difference between the amount of external energy \\(\mathcal{E\_{ext}}\\) flowing into the volume \\(V\\) and the amount of internal energy \\(\mathcal{E\_{int}}\\) flowing out equals the amount of work \\(\mathcal{W}\\) done inside.
 
 $$ \tag{6.1}
  	\frac{\partial}{\partial t} \mathcal{E\_{ext}}(V, t) -
@@ -673,7 +673,7 @@ The curl of \\(\bm{E}\\) is also given by Maxwell's equations (see Equation 1.1.
 
 $$ \tag{6.10}
 	\bm{E} \cdot \bm{J} = 
-    - \mu\_0^{-1} \big( \bm{B} \cdot \frac{\partial \bm{B}}{\partial t} + \nabla \cdot (\bm{E} \times \bm{B}) \big) -
+    \mu\_0^{-1} \big( -\bm{B} \cdot \frac{\partial \bm{B}}{\partial t} - \nabla \cdot (\bm{E} \times \bm{B}) \big) -
     \epsilon\_0 \bm{E} \cdot \frac{\partial \bm{E}}{\partial t}.
 $$
 
@@ -686,7 +686,7 @@ $$ \tag{6.11}
 	\frac{\mu\_0^{-1}}{2} (\bm{B} \cdot \bm{B}) \Bigg).
 $$
 
-We can observe that the rate of doing work is a balance of inflow of \\((\bm{E} \times \bm{B})\\) and the rate of change of squared magnitudes of the fields. The physical significance of this expression becomes more apparent if we reinstate the volume integral
+We can observe that the rate of doing work is a balance of inflow of \\((\bm{E} \times \bm{B})\\) and the rate of change of the squared magnitudes of the fields. The physical significance of this expression becomes more apparent if we return to the integral form
 
 $$ \tag{6.12}
 	\frac{\partial}{\partial t} \mathcal{W}(V, t) = 
@@ -706,7 +706,7 @@ $$
 
 where \\(\bm{n}\\) is the outward-facing surface normal.
 
-According to Equation 6.1, the right-hand side of Equation 6.14 represents the difference between the rates of inflow and outflow of energy. Thus, the first term on the right gives the amount of external energy flowing (per unit time) through the bounding surface into the volume,
+According to Equation 6.1, the right-hand side of Equation 6.14 represents the difference between the rates of inflow and outflow of energy. Thus, the first term on the right gives the amount of external energy (per unit time) flowing through the bounding surface into the volume,
 
 $$ \tag{6.14}
  	\frac{\partial}{\partial t} \mathcal{E\_{ext}}(V, t) = 
@@ -739,18 +739,18 @@ $$
 
 is the [Poynting vector](https://en.wikipedia.org/wiki/Poynting_vector) that represents the direction and the rate of energy flow[^8].
 
-[^8]: This definition of field energy, while widely accepted, is somewhat ambiguous \[[5](#references) (vol. II, ch. 27.4)\]. We should also note that there is yet another popular definition in terms of the auxiliary fields \[[6](#references) (ch. 1.1.4)\]. There are several problems with the latter definition. First, both the Maxwell's equations and the Lorentz force are given in terms of the fundamental fields, \\(\bm{E}\\) and \\(\bm{B}\\). Secondly, these are also the fields that should be used to define a plane wave, as we have noted previously. And finally, most derivations that start from the macroscopic Maxwell's equations make a mistake of omitting the bound current from the definition of work; taking the bound current into account produces precisely the results at we have have arrived above.
+[^8]: This definition of field energy, while widely accepted, is somewhat ambiguous \[[5](#references) (vol. II, ch. 27.4)\]. We should also note that there is yet another popular definition in terms of the auxiliary fields \[[6](#references) (ch. 1.1.4)\]. There are several problems with the latter definition. First, both the Maxwell's equations and the Lorentz force are given in terms of the fundamental fields, \\(\bm{E}\\) and \\(\bm{B}\\). Secondly, these are also the fields that should be used to define a plane wave, as we have noted previously. And finally, most derivations that start from the macroscopic Maxwell's equations make a mistake of omitting the bound current from the definition of work; taking the bound current into account produces precisely the results at we have arrived above.
 
 We are particularly interested in a steady-state solution of Maxwell's equations. Specifically, rather than consider the *instantaneous* Poynting vector \\(\bm{S}\\) (which may change trillions of times per second), we focus on the *time-averaged* Poynting vector instead:
 
-$$ \tag{6.18} \langle \bm{S} \rangle = \frac{1}{T} \int\_{-T/2}^{\thinspace T/2} \bm{S}(\bm{r}, t + t') \thinspace dt'. $$
+$$ \tag{6.18} \langle \bm{S\_t} \rangle = \frac{1}{T} \int\_{-T/2}^{\thinspace T/2} \bm{S}(\bm{r}, t + t') \thinspace dt'. $$
 
 It becomes especially useful once you consider a fixed direction \\(\bm{n}\\). Then, according to Equation 6.14,
 
 $$ \tag{6.19}
-	\mathtt{E\_e}(\bm{r}, \bm{n}, t) =
-	\vert \langle \bm{S} \rangle \cdot \bm{n} \vert =
-	 \vert \langle \bm{S} \rangle \cos{\theta} \vert $$
+	\mathtt{E\_e}(\bm{r}, \bm{n}, t)
+	= \vert \langle \bm{S\_t} \rangle \cdot \bm{n} \vert
+	= \vert \langle \bm{S\_t} \rangle \cos{\theta} \vert $$
 
 is the time-averaged amount of energy per second per unit area that flows through a surface with the normal \\(\bm{n}\\). That is the definition of [irradiance](https://en.wikipedia.org/wiki/Irradiance) \\(\mathtt{E\_e}\\).
 
