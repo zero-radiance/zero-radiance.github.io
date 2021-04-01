@@ -462,7 +462,7 @@ $$ \tag{4.17}
 	d\Omega\_n.
 $$
 
-This is a solution of Maxwell's equations in the frequency domain.
+That is a solution of Maxwell's equations in the frequency domain.
 
 ## Time-Harmonic Waves
 
@@ -752,7 +752,7 @@ $$ \tag{6.19}
 	\vert \langle \bm{S} \rangle \cdot \bm{n} \vert =
 	 \vert \langle \bm{S} \rangle \cos{\theta} \vert $$
 
-is the time-averaged amount of energy per second per unit area that flows through a surface with the normal \\(\bm{n}\\). This is the definition of [irradiance](https://en.wikipedia.org/wiki/Irradiance) \\(\mathtt{E\_e}\\).
+is the time-averaged amount of energy per second per unit area that flows through a surface with the normal \\(\bm{n}\\). That is the definition of [irradiance](https://en.wikipedia.org/wiki/Irradiance) \\(\mathtt{E\_e}\\).
 
 
 So what is E x B ??? Frequency domain... Plane wave...
