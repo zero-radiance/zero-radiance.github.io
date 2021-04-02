@@ -754,6 +754,68 @@ $$ \tag{6.19}
 
 is the time-averaged amount of energy per second per unit area that flows through a surface with the normal \\(\bm{n}\\). That is the definition of [irradiance](https://en.wikipedia.org/wiki/Irradiance) \\(\mathtt{E\_e}\\).
 
+To determine the spectral composition of irradiance, we must consider the solution of Maxwell's equation in the frequency domain. If we perform a Fourier transform of the fields, Equation 6.17 reads
+
+$$ \tag{6.20}
+	\bm{S}(\bm{r}, t)
+	= \mu\_0^{-1} \Bigg( \frac{1}{\sqrt{2 \pi}} \int\_{-\infin}^{\infin} \mathrm{Re} \big\lbrace \bm{E}(\bm{r}, \omega) e^{i \omega t} \big\rbrace d\omega \Bigg) \times \Bigg( \frac{1}{\sqrt{2 \pi}} \int\_{-\infin}^{\infin} \mathrm{Re} \big\lbrace \bm{B}(\bm{r}, \omega) e^{i \omega t} \big\rbrace d\omega \Bigg).
+$$
+
+To simplify this expression, it is necessary to bring both fields under the same integral sign:
+
+$$ \tag{6.21}
+	\bm{S}(\bm{r}, t)
+	= \frac{\mu\_0^{-1}}{2 \pi} \int\_{-\infin}^{\infin} \int\_{-\infin}^{\infin}
+		\mathrm{Re} \big\lbrace \bm{E}(\bm{r}, \omega) e^{i \omega t} \big\rbrace \times
+		\mathrm{Re} \big\lbrace \bm{B}(\bm{r}, \omega') e^{i \omega' t} \big\rbrace
+	d\omega d\omega'.
+$$
+
+In order to obtain a real part of a complex number \\(z\\), one can use the [complex conjugate](https://en.wikipedia.org/wiki/Complex_conjugate) \\(z^{\*}\\):
+
+$$ \tag{6.22}
+	\mathrm{Re} \lbrace z \rbrace = \frac{1}{2}(z + z^{\*}) = \frac{1}{2} \big(r e^{i \theta} + r e^{-i \theta} \big).
+$$
+
+This formula extends to vectors in a natural way:
+
+$$ \tag{6.23}
+\begin{aligned}
+	\bm{S}(\bm{r}, t)
+	= \frac{\mu\_0^{-1}}{8 \pi} \int\_{-\infin}^{\infin} \int\_{-\infin}^{\infin}
+		&\big( \bm{E}(\bm{r}, \omega) e^{i \omega t} + \bm{E}^{\*}(\bm{r}, \omega) e^{-i \omega t} \big) \cr \times
+		&\big( \bm{B}(\bm{r}, \omega') e^{i \omega' t} + \bm{B}^{\*}(\bm{r}, \omega') e^{-i \omega' t} \big)
+	d\omega d\omega'.
+\end{aligned}
+$$
+
+Now we can see it as a Fourier transform of the phasor \\(\bm{S}(\bm{r}, \omega)\\):
+
+$$ \tag{6.23}
+\begin{aligned}
+	\bm{S}(\bm{r}, t) = \frac{1}{\sqrt{2 pi}}
+	= \frac{\mu\_0^{-1}}{8 \pi} \int\_{-\infin}^{\infin} \int\_{-\infin}^{\infin}
+		&\big( \bm{E}(\bm{r}, \omega) e^{i \omega t} + \bm{E}^{\*}(\bm{r}, \omega) e^{-i \omega t} \big) \cr \times
+		&\big( \bm{B}(\bm{r}, \omega') e^{i \omega' t} + \bm{B}^{\*}(\bm{r}, \omega') e^{-i \omega' t} \big)
+	d\omega d\omega'.
+\end{aligned}
+$$
+
+Next, expand the cross product
+
+$$ \tag{6.24}
+\begin{aligned}
+	\bm{S}(\bm{r}, t)
+	= \frac{\mu\_0^{-1}}{8 \pi} \int\_{-\infin}^{\infin} \int\_{-\infin}^{\infin} \Big(
+		&\big( \bm{E}(\bm{r}, \omega) \times \bm{B}(\bm{r}, \omega') \big) e^{i (\omega + \omega') t} \cr +
+		&\big( \bm{E}(\bm{r}, \omega) \times \bm{B}^{\*}(\bm{r}, \omega') \big) e^{i (\omega - \omega') t} \cr +
+		&\big( \bm{E}^{\*}(\bm{r}, \omega) \times \bm{B}(\bm{r}, \omega') \big) e^{-i (\omega - \omega') t} \cr +
+		&\big( \bm{E}^{\*}(\bm{r}, \omega) \times \bm{B}^{\*}(\bm{r}, \omega') \big) e^{-i (\omega + \omega') t} 
+	\Big) d\omega d\omega'.
+\end{aligned}
+$$
+
+
 
 So what is E x B ??? Frequency domain... Plane wave...
 
@@ -831,13 +893,13 @@ $$ \tag{1} \bm{S}(t) = \mu\_0^{-1} \Big( \bm{E}(t) \times \bm{B}(t) \Big), $$
 
 where \\(\mu\_0\\) is the [vacuum permeability](https://en.wikipedia.org/wiki/Vacuum_permeability) of the medium.
 
-Since light waves oscillate very rapidly, we are typically interested in the [time-averaged Poynting vector](https://en.wikipedia.org/wiki/Poynting_vector#Time-averaged_Poynting_vector) \\(\langle \bm{S} \rangle\\)
+Since light waves oscillate very rapidly, we are typically interested in the [time-averaged Poynting vector](https://en.wikipedia.org/wiki/Poynting_vector#Time-averaged_Poynting_vector) \\(\langle \bm{S\_t} \rangle\\)
 
-$$ \tag{2} \langle \bm{S} \rangle = \frac{1}{T} \int\_{0}^{T} \bm{S}(t) dt, $$
+$$ \tag{2} \langle \bm{S\_t} \rangle = \frac{1}{T} \int\_{0}^{T} \bm{S}(t) dt, $$
 
 which can be used to define the [spectral irradiance](https://en.wikipedia.org/wiki/Irradiance#Spectral_irradiance) \\(E\\) (do not confuse it with the electric vector \\(\bm{E}\\))
 
-$$ \tag{3} E = \vert \langle \bm{S} \rangle \vert \cos{\theta} = \langle \bm{S} \rangle \cdot \bm{v}, $$
+$$ \tag{3} E = \vert \langle \bm{S\_t} \rangle \vert \cos{\theta} = \langle \bm{S\_t} \rangle \cdot \bm{v}, $$
 
 where \\(\theta\\) is the angle between \\(\bm{S}\\) and the viewing direction \\(\bm{v}\\).
 
