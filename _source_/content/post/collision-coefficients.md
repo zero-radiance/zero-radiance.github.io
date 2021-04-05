@@ -83,7 +83,7 @@ $$
 is the [divergence](https://en.wikipedia.org/wiki/Divergence) operator, both given in Cartesian coordinates. \\(\epsilon\_0\\) and \\(\mu\_0\\) are the [vacuum permittivity](https://en.wikipedia.org/wiki/Vacuum_permittivity) and the [vacuum permeability](https://en.wikipedia.org/wiki/Vacuum_permeability), respectively, and are connected by the [speed of light](https://en.wikipedia.org/wiki/Speed_of_light)
 
 $$ \tag{1.4}
-	c = (\epsilon\_0 \mu\_0)^{-1/2}.
+	c = (\epsilon\_0 \mu\_0)^{-\frac{1}{2}}.
 $$
 
 Sometimes, Equations 1.1 are referred to as the "vacuum version" of Maxwell's equations. This name can be a little misleading; in fact, the matter is right there - it is just represented as a distribution of charged [elementary particles](https://en.wikipedia.org/wiki/Elementary_particle) by the *volume* [charge density](https://en.wikipedia.org/wiki/Charge_density) \\(\rho\\), such that the total charge \\(Q\\) inside the volume \\(V\\) is
@@ -415,7 +415,7 @@ $$
 where we defined
 
 $$ \tag{4.12}
-	k(\omega) = \omega \sqrt{\varepsilon(\omega) \mu(\omega)}.
+	k(\omega) = \omega \sqrt{\mu(\omega) \varepsilon(\omega)}.
 $$
 
 To find a solution, let us first consider a simpler one-dimensional Helmholtz's equation
@@ -501,7 +501,7 @@ $$
 expressed in terms the complex [wave number](https://en.wikipedia.org/wiki/Wavenumber) \\(k\\) (see Equation 4.12):
 
 $$ \tag{5.4}
-	k(\omega) = \omega \sqrt{\varepsilon(\omega) \mu(\omega)}.
+	k(\omega) = \omega \sqrt{\mu(\omega) \varepsilon(\omega)}.
 $$
 
 If we define the [relative permittivity](https://en.wikipedia.org/wiki/Relative_permittivity)[^6] \\(\varepsilon\_r\\) and the [relative permeability](https://en.wikipedia.org/wiki/Permeability_(electromagnetism)#Relative_permeability_and_magnetic_susceptibility) \\(\mu\_r\\) using vacuum as reference,
@@ -570,7 +570,7 @@ Let's perform [dimensional analysis](https://en.wikipedia.org/wiki/Dimensional_a
 $$ \tag{5.11}
 	\theta(\bm{r}, t) =
 	\mathrm{Arg} \big\lbrace E(\bm{r}, \bm{n}, \omega) e^{i \omega t} \big\rbrace =
-	\delta(\bm{n}, \omega) + \omega \big( t - (\eta(\omega) / c) (\bm{r} \cdot \bm{n}) \big).
+	\delta - \omega (\eta / c) \big(\bm{r} \cdot \bm{n} - (c / \eta) t \big).
 $$
 
 Notice that, for any \\(\Delta t\\),
@@ -585,7 +585,7 @@ Taking the real part of Equation 5.10 allows us to uncover the *wave amplitude*
 
 $$ \tag{5.13}
  	\mathrm{Re} \big\lbrace E(\bm{r}, \bm{n}, \omega) e^{i \omega t} \big\rbrace = 
- 	|E(0, \bm{n}, \omega)| e^{-\omega (\kappa(\omega) / c) (\bm{r} \cdot \bm{n})} \cos{\theta}.
+ 	|E(0, \bm{n}, \omega)| e^{-\omega (\kappa / c) (\bm{r} \cdot \bm{n})} \cos{\theta}.
 $$
 
 If the absorption index \\(\kappa = 0\\), Equation 5.13 represents a regular sine wave.
@@ -593,6 +593,54 @@ If the absorption index \\(\kappa = 0\\), Equation 5.13 represents a regular sin
 [Insert Picture Here]
 
 On the other hand, \\(\kappa > 0\\) produces an exponential decay characteristic of an [evanescent wave](https://en.wikipedia.org/wiki/Evanescent_field).
+
+[Insert Picture Here]
+
+To determine how the electric and the magnetic fields of a monochromatic plane wave are related, consider a single directional component of the electric phasor \\(\bm{E}\\). Take curl of the integrand of Equation 4.17
+
+$$ \tag{5.14}
+\begin{aligned}
+	\nabla \times \bm{E}(\bm{r}, \bm{n}, \omega)
+	&= \begin{bmatrix}
+			-i n\_y k\_3(\omega) E\_z(\bm{r}, \bm{n}, \omega) + i n\_z k\_2(\omega) E\_y(\bm{r}, \bm{n}, \omega) \cr
+			-i n\_z k\_1(\omega) E\_x(\bm{r}, \bm{n}, \omega) + i n\_x k\_3(\omega) E\_z(\bm{r}, \bm{n}, \omega) \cr
+			-i n\_x k\_2(\omega) E\_y(\bm{r}, \bm{n}, \omega) + i n\_y k\_1(\omega) E\_x(\bm{r}, \bm{n}, \omega)
+		\end{bmatrix} \cr
+	&= -\bm{n} \times
+		\begin{bmatrix}
+			i k\_{1}(\omega) & 0 & 0 \cr
+			0 & i k\_{2}(\omega) & 0 \cr
+			0 & 0 & i k\_{3}(\omega)
+		\end{bmatrix} \bm{E}(\bm{r}, \bm{n}, \omega)
+\end{aligned}
+$$
+
+and substitute it into Equation 2.4.1:
+
+$$ \tag{5.15}
+	\bm{n} \times
+	\begin{bmatrix}
+		i k\_{1}(\omega) & 0 & 0 \cr
+		0 & i k\_{2}(\omega) & 0 \cr
+		0 & 0 & i k\_{3}(\omega)
+	\end{bmatrix} \bm{E}(\bm{r}, \bm{n}, \omega)
+	= i \omega \bm{B}(\bm{r}, \bm{n}, \omega).
+$$
+
+If we recall the definition of \\(k\\) (see Equation 4.12), even without diagonalization, it is apparent that
+
+$$ \tag{5.16}
+	\bm{n} \times \big( \hat{\varepsilon}^{\frac{1}{2}}(\omega) \bm{E}(\bm{r}, \bm{n}, \omega) \big) = \hat{\mu}^{-\frac{1}{2}}(\omega) \bm{B}(\bm{r}, \bm{n}, \omega).
+$$
+
+\\(\bm{n}\\) is a real vector, while the phasors \\(\bm{E}\\) and \\(\bm{B}\\) are complex. Using the distributive property of the cross product,
+
+$$ \tag{5.17}
+	\bm{n} \times \mathrm{Re} \big\lbrace \hat{\varepsilon}^{\frac{1}{2}}(\omega) \bm{E}(\bm{r}, \bm{n}, \omega) e^{i \omega t} \big\rbrace
+	= \mathrm{Re} \big\lbrace \hat{\mu}^{-\frac{1}{2}}(\omega) \bm{B}(\bm{r}, \bm{n}, \omega) e^{i \omega t} \big\rbrace.
+$$
+
+This equations shows that the geometry of a plane wave is defined by three mutually orthogonal real vectors.
 
 [Insert Picture Here]
 
@@ -754,6 +802,18 @@ $$ \tag{6.19}
 
 is the time-averaged amount of energy per second per unit area that flows through a surface with the normal \\(\bm{n}\\). That is the definition of [irradiance](https://en.wikipedia.org/wiki/Irradiance) \\(\mathtt{E\_e}\\).
 
+---
+
+$$
+	\bm{S}(\bm{r}, \omega) = \frac{1}{\sqrt{2 \pi}} \int\_{-\infin}^{\infin} \bm{S}(\bm{r}, t) e^{-i \omega t} dt,
+$$
+
+$$
+	\bm{S}(\bm{r}, \omega) = \frac{1}{\sqrt{2 \pi}} \int\_{-\infin}^{\infin} \mu\_0^{-1} \big( \bm{E}(\bm{r}, t) \times \bm{B}(\bm{r}, t) \big) e^{-i \omega t} dt,
+$$
+
+---
+
 To determine the spectral composition of irradiance, we must consider the solution of Maxwell's equation in the frequency domain. If we perform a Fourier transform of the fields, Equation 6.17 reads
 
 $$ \tag{6.20}
@@ -770,6 +830,34 @@ $$ \tag{6.21}
 		\mathrm{Re} \big\lbrace \bm{B}(\bm{r}, \omega') e^{i \omega' t} \big\rbrace
 	d\omega d\omega'.
 $$
+
+Time-averaged...
+
+$$ \tag{6.22}
+	\langle \bm{S\_t} \rangle
+	= \frac{\mu\_0^{-1}}{2 \pi} \int\_{-\infin}^{\infin} \int\_{-\infin}^{\infin} \frac{1}{T} \int\_{-T/2}^{\thinspace T/2}
+		\mathrm{Re} \big\lbrace \bm{E}(\bm{r}, \omega) e^{i \omega (t + t')} \big\rbrace \times
+		\mathrm{Re} \big\lbrace \bm{B}(\bm{r}, \omega') e^{i \omega' (t + t')} \big\rbrace
+	dt' \thinspace d\omega \thinspace d\omega'.
+$$
+
+Consider a single component...
+
+Integral of product of cosines... Dirac delta: https://web.physics.ucsb.edu/~fratus/phys103/Disc/disc_notes2_pdf.pdf
+
+Superposition principle, plane wave decomposition (delta function w'):
+
+$$
+\begin{aligned}
+	\bm{S}(\bm{r}, t)
+	&= \frac{\mu\_0^{-1}}{2 \pi} \int\_{-\infin}^{\infin} \oiint\_{\mathbb{S}^2}
+		\mathrm{Re} \big\lbrace \bm{E}(\bm{r}, \bm{n}, \omega) e^{i \omega t} \big\rbrace \times
+		\mathrm{Re} \big\lbrace \bm{B}(\bm{r}, \bm{n}, \omega) e^{i \omega t} \big\rbrace
+	d\Omega\_n \thinspace d\omega.
+\end{aligned}
+$$
+
+Note that this gives a S as an integral over the spectrum
 
 In order to obtain a real part of a complex number \\(z\\), one can use the [complex conjugate](https://en.wikipedia.org/wiki/Complex_conjugate) \\(z^{\*}\\):
 
@@ -789,33 +877,37 @@ $$ \tag{6.23}
 \end{aligned}
 $$
 
-Now we can see it as a Fourier transform of the phasor \\(\bm{S}(\bm{r}, \omega)\\):
-
-$$ \tag{6.23}
-\begin{aligned}
-	\bm{S}(\bm{r}, t) = \frac{1}{\sqrt{2 pi}}
-	= \frac{\mu\_0^{-1}}{8 \pi} \int\_{-\infin}^{\infin} \int\_{-\infin}^{\infin}
-		&\big( \bm{E}(\bm{r}, \omega) e^{i \omega t} + \bm{E}^{\*}(\bm{r}, \omega) e^{-i \omega t} \big) \cr \times
-		&\big( \bm{B}(\bm{r}, \omega') e^{i \omega' t} + \bm{B}^{\*}(\bm{r}, \omega') e^{-i \omega' t} \big)
-	d\omega d\omega'.
-\end{aligned}
-$$
-
 Next, expand the cross product
 
 $$ \tag{6.24}
 \begin{aligned}
 	\bm{S}(\bm{r}, t)
-	= \frac{\mu\_0^{-1}}{8 \pi} \int\_{-\infin}^{\infin} \int\_{-\infin}^{\infin} \Big(
-		&\big( \bm{E}(\bm{r}, \omega) \times \bm{B}(\bm{r}, \omega') \big) e^{i (\omega + \omega') t} \cr +
-		&\big( \bm{E}(\bm{r}, \omega) \times \bm{B}^{\*}(\bm{r}, \omega') \big) e^{i (\omega - \omega') t} \cr +
-		&\big( \bm{E}^{\*}(\bm{r}, \omega) \times \bm{B}(\bm{r}, \omega') \big) e^{-i (\omega - \omega') t} \cr +
-		&\big( \bm{E}^{\*}(\bm{r}, \omega) \times \bm{B}^{\*}(\bm{r}, \omega') \big) e^{-i (\omega + \omega') t} 
-	\Big) d\omega d\omega'.
+	&= \frac{\mu\_0^{-1}}{8 \pi} \int\_{-\infin}^{\infin} \int\_{-\infin}^{\infin}
+		\big( \bm{E}(\bm{r}, \omega) \times \bm{B}(\bm{r}, \omega') \big) e^{i (\omega + \omega') t} d\omega d\omega' \cr
+	&+ \frac{\mu\_0^{-1}}{8 \pi} \int\_{-\infin}^{\infin} \int\_{-\infin}^{\infin}
+		\big( \bm{E}(\bm{r}, \omega) \times \bm{B}^{\*}(\bm{r}, \omega') \big) e^{i (\omega - \omega') t} d\omega d\omega' \cr
+	&+ \frac{\mu\_0^{-1}}{8 \pi} \int\_{-\infin}^{\infin} \int\_{-\infin}^{\infin}
+		\big( \bm{E}^{\*}(\bm{r}, -\omega) \times \bm{B}(\bm{r}, \omega') \big) e^{-i (\omega - \omega') t} d\omega d\omega' \cr
+	&+ \frac{\mu\_0^{-1}}{8 \pi} \int\_{-\infin}^{\infin} \int\_{-\infin}^{\infin}
+		\big( \bm{E}^{\*}(\bm{r}, \omega) \times \bm{B}^{\*}(\bm{r}, \omega') \big) e^{-i (\omega + \omega') t} d\omega d\omega'.
 \end{aligned}
 $$
 
+Now get rid of minus
 
+$$ \tag{6.24}
+\begin{aligned}
+	\bm{S}(\bm{r}, t)
+	&= \frac{\mu\_0^{-1}}{8 \pi} \int\_{-\infin}^{\infin} \int\_{-\infin}^{\infin}
+		\big( \bm{E}(\bm{r}, \omega) \times \bm{B}(\bm{r}, \omega') \big) e^{i (\omega + \omega') t} d\omega d\omega' \cr
+	&+ \frac{\mu\_0^{-1}}{8 \pi} \int\_{-\infin}^{\infin} \int\_{-\infin}^{\infin}
+		\big( \bm{E}(\bm{r}, \omega) \times \bm{B}^{\*}(\bm{r}, -\omega') \big) e^{i (\omega + \omega') t} d\omega d\omega' \cr
+	&+ \frac{\mu\_0^{-1}}{8 \pi} \int\_{-\infin}^{\infin} \int\_{-\infin}^{\infin}
+		\big( \bm{E}^{\*}(\bm{r}, -\omega) \times \bm{B}(\bm{r}, \omega') \big) e^{i (\omega + \omega') t} d\omega d\omega' \cr
+	&+ \frac{\mu\_0^{-1}}{8 \pi} \int\_{-\infin}^{\infin} \int\_{-\infin}^{\infin}
+		\big( \bm{E}^{\*}(\bm{r}, -\omega) \times \bm{B}^{\*}(\bm{r}, -\omega') \big) e^{i (\omega + \omega') t} d\omega d\omega'.
+\end{aligned}
+$$
 
 So what is E x B ??? Frequency domain... Plane wave...
 
