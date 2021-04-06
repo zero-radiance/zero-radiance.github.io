@@ -700,9 +700,9 @@ $$
 Maxwell's equations allow us to express a current in terms of fields. Substitution of Equation 1.1.3 yields
 
 $$ \tag{6.7}
-	\iiint\_{V} \bm{E}(\bm{r}, t) \cdot \bm{J}(\bm{r}, t) \thinspace dV = 
-    \iiint\_{V} \bm{E}(\bm{r}, t) \cdot \Big( \nabla \times \big( \mu\_0^{-1} \bm{B}(\bm{r}, t) \big) -
-    \frac{\partial}{\partial t} \big( \epsilon\_0 \bm{E}(\bm{r}, t) \big) \Big) dV.
+	\iiint\_{V} \bm{E} \cdot \bm{J} \thinspace dV = 
+    \iiint\_{V} \bm{E} \cdot \Big( \nabla \times \big( \mu\_0^{-1} \bm{B} \big) -
+    \frac{\partial}{\partial t} \big( \epsilon\_0 \bm{E} \big) \Big) dV.
 $$
 
 Since [divergence of cross product](https://en.wikipedia.org/wiki/Vector_calculus_identities#Cross_product_rule) is
@@ -723,35 +723,33 @@ The curl of \\(\bm{E}\\) is also given by Maxwell's equations (see Equation 1.1.
 
 $$ \tag{6.10}
 	\bm{E} \cdot \bm{J} = 
-    \mu\_0^{-1} \big( -\bm{B} \cdot \frac{\partial \bm{B}}{\partial t} - \nabla \cdot (\bm{E} \times \bm{B}) \big) -
+    \mu\_0^{-1} \big( {-\bm{B}} \cdot \frac{\partial \bm{B}}{\partial t} - \nabla \cdot (\bm{E} \times \bm{B}) \big) -
     \epsilon\_0 \bm{E} \cdot \frac{\partial \bm{E}}{\partial t}.
 $$
 
 Moving the dot products under the derivative sign and grouping the derivatives produces a simpler expression
 
 $$ \tag{6.11}
-	\bm{E} \cdot \bm{J} = -
-	\mu\_0^{-1} \nabla \cdot (\bm{E} \times \bm{B}) -
-	\frac{\partial}{\partial t} \Bigg( \frac{\epsilon\_0}{2} (\bm{E} \cdot \bm{E}) +
-	\frac{\mu\_0^{-1}}{2} (\bm{B} \cdot \bm{B}) \Bigg).
+	\bm{E} \cdot \bm{J} =
+	-\mu\_0^{-1} \nabla \cdot (\bm{E} \times \bm{B}) -
+	\frac{\partial}{\partial t} \Big( \frac{\epsilon\_0}{2} (\bm{E} \cdot \bm{E}) +
+	\frac{\mu\_0^{-1}}{2} (\bm{B} \cdot \bm{B}) \Big).
 $$
 
 We can observe that the rate of doing work is a balance of inflow of \\((\bm{E} \times \bm{B})\\) and the rate of change of the squared magnitudes of the fields. The physical significance of this expression becomes more apparent if we return to the integral form
 
 $$ \tag{6.12}
-	\frac{\partial}{\partial t} \mathcal{W}(V, t) = 
+	\frac{\partial \mathcal{W}}{\partial t} = 
     \iiint\_{V} -\mu\_0^{-1} \nabla \cdot (\bm{E} \times \bm{B}) \thinspace dV -
-    \frac{\partial}{\partial t} \Bigg( \iiint\_{V} \frac{\epsilon\_0}{2} E^2 dV +
-	\iiint\_{V} \frac{\mu\_0^{-1}}{2} B^2 dV \Bigg)
+    \frac{\partial}{\partial t} \iiint\_{V} \Big( \frac{\epsilon\_0}{2} E^2 + \frac{\mu\_0^{-1}}{2} B^2 \Big) dV 
 $$
 
 and use the [divergence theorem](https://en.wikipedia.org/wiki/Divergence_theorem) to replace the leftmost volume integral with an integral taken over the bounding surface \\(\delta V\\) of the volume \\(V\\):
 
 $$ \tag{6.13}
-	\frac{\partial}{\partial t} \mathcal{W}(V, t) = 
+	\frac{\partial \mathcal{W}}{\partial t} = 
     \oiint\_{\delta V} \mu\_0^{-1} (\bm{E} \times \bm{B}) \cdot (-\bm{n}) \thinspace dA -
-    \frac{\partial}{\partial t} \Bigg( \iiint\_{V} \frac{\epsilon\_0}{2} E^2 dV +
-	\iiint\_{V} \frac{\mu\_0^{-1}}{2} B^2 dV \Bigg),
+    \frac{\partial}{\partial t} \iiint\_{V} \Big( \frac{\epsilon\_0}{2} E^2 + \frac{\mu\_0^{-1}}{2} B^2 \Big) dV,
 $$
 
 where \\(\bm{n}\\) is the outward-facing surface normal.
@@ -760,25 +758,21 @@ According to Equation 6.1, the right-hand side of Equation 6.14 represents the d
 
 $$ \tag{6.14}
  	\frac{\partial}{\partial t} \mathcal{E\_{ext}}(V, t) = 
- 	\oiint\_{\delta V} \mu\_0^{-1} (\bm{E} \times \bm{B}) \cdot (-\bm{n}) \thinspace dA,
+ 	\oiint\_{\delta V} \mu\_0^{-1} \big( \bm{E}(\bm{r}, t) \times \bm{B}(\bm{r}, t) \big) \cdot (-\bm{n}) \thinspace dA,
 $$
 
 and the second term corresponds to the rate at which the amount of energy within the volume decreases:
 
 $$ \tag{6.15}
  	-\frac{\partial}{\partial t} \mathcal{E\_{int}}(V, t) =
- 	-\frac{\partial}{\partial t}
- 	\Bigg(
- 		\iiint\_{V} \frac{\epsilon\_0}{2} E^2 dV +
-		\iiint\_{V} \frac{\mu\_0^{-1}}{2} B^2 dV
-	\Bigg).
+ 	-\frac{\partial}{\partial t} \iiint\_{V} \Big( \frac{\epsilon\_0}{2} E^2(\bm{r}, t) + \frac{\mu\_0^{-1}}{2} B^2(\bm{r}, t) \Big) dV.
 $$
 
 According to this interpretation, the *squared* magnitudes of the fields
 
 $$ \tag{6.16}
-	\frac{\partial}{\partial V} \mathcal{E\_e} (\bm{r}, t) = \frac{\epsilon\_0}{2} E^2(\bm{r}, t), \quad
- 	\frac{\partial}{\partial V} \mathcal{E\_m} (\bm{r}, t) = \frac{\mu\_0^{-1}}{2} B^2(\bm{r}, t), \quad
+	\frac{\partial}{\partial V} \mathcal{E\_e}(\bm{r}, t) = \frac{\epsilon\_0}{2} E^2(\bm{r}, t), \quad
+ 	\frac{\partial}{\partial V} \mathcal{E\_m}(\bm{r}, t) = \frac{\mu\_0^{-1}}{2} B^2(\bm{r}, t), \quad
 $$
 
 are the electric and the magnetic energy densities, and
