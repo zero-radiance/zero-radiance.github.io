@@ -844,6 +844,8 @@ $$
 	\times \mathrm{Re} \big\lbrace \bm{B}(\bm{r}, \omega'') e^{i \omega'' t} \big\rbrace e^{-i \omega t} dt \thinspace d\omega' d\omega''
 $$
 
+!!! EXPAND USING COMPLEX CONJUGATE !!!
+
 $$
 \begin{aligned}
 	S\_x(\bm{r}, \omega)
