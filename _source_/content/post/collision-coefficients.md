@@ -181,14 +181,40 @@ $$
 
 where \\(\omega\\) is the *angular frequency*. \\(\bm{E}(\bm{r}, \omega)\\) is the electric [phasor](https://en.wikipedia.org/wiki/Phasor) field - a field of complex (phase) vectors[^2].
 
-\\(\bm{E}(\bm{r}, t)\\), on another hand, is real:
-
 [^2]: This implies that all factors comprising the expression of the complex field are also complex.
 
+\\(\bm{E}(\bm{r}, t)\\), on the other hand, is real, which means its Fourier transform is [Hermitian](https://en.wikipedia.org/wiki/Hermitian_function):
+
 $$ \tag{2.2}
-	\bm{E}(\bm{r}, t) =
-	\mathrm{Re} \Bigg\lbrace \frac{1}{\sqrt{2 \pi}} \int\_{-\infin}^{\infin} \bm{E}(\bm{r}, \omega) e^{i \omega t} d\omega \Bigg\rbrace =
-	\frac{1}{\sqrt{2 \pi}} \int\_{-\infin}^{\infin} \mathrm{Re} \big\lbrace \bm{E}(\bm{r}, \omega) e^{i \omega t} \big\rbrace d\omega.
+	\bm{E}(\bm{r}, \omega) = [\bm{E}(\bm{r}, -\omega)]^{\*},
+$$
+
+where the star denotes the [complex conjugate](https://en.wikipedia.org/wiki/Complex_conjugate)
+
+$$ \tag{2.3}
+	z^{\*} = \big[ r e^{i \theta} \big]^{\*} = r e^{-i \theta}.
+$$
+
+[Insert picture of a FT of a real function here]
+
+The inverse Fourier transform is given
+
+$$ \tag{2.2}
+\begin{aligned}
+	\bm{E}(\bm{r}, t)
+	&= \frac{1}{\sqrt{2 \pi}} \int\_{-\infin}^{\infin} \bm{E}(\bm{r}, \omega) e^{i \omega t} d\omega \cr
+	&= \frac{1}{\sqrt{2 \pi}} \int\_{0}^{\infin} \bm{E}(\bm{r}, \omega) e^{i \omega t} d\omega
+	+ \frac{1}{\sqrt{2 \pi}} \int\_{-\infin}^{0} [\bm{E}(\bm{r}, -\omega)]^{\*} e^{i \omega t} d\omega \cr
+	&= \frac{1}{\sqrt{2 \pi}} \int\_{0}^{\infin} \big( \bm{E}(\bm{r}, \omega) e^{i \omega t} + [\bm{E}(\bm{r}, \omega)]^{\*} e^{-i \omega t} \big) d\omega \cr
+	&= \frac{1}{\sqrt{2 \pi}} \int\_{0}^{\infin} \big( \bm{E}(\bm{r}, \omega) e^{i \omega t} + \big[ \bm{E}(\bm{r}, \omega) e^{i \omega t} \big]^{\*} \big) d\omega \cr
+	&= \sqrt{\frac{2}{\pi}} \int\_{0}^{\infin} \mathrm{Re} \big\lbrace \bm{E}(\bm{r}, \omega) e^{i \omega t} \big\rbrace d\omega
+\end{aligned}
+$$
+
+which comes from the definition of the real part of a complex number:
+
+$$ \tag{2.3}
+	\mathrm{Re} \lbrace z \rbrace = \frac{1}{2}(z + z^{\*}) = \frac{1}{2} \big(r e^{i \theta} + r e^{-i \theta} \big).
 $$
 
 We can define integral forms of the fields by replacing \\(\bm{E}\\) by \\(\bm{B}\\), \\(\bm{D}\\), \\(\bm{H}\\), \\(\bm{J\_f}\\) or \\(\rho\_f\\) in Equation 2.2. If we substitute these integrals into Equations 1.11, and if we assume that we can perform [differentiation under the integral sign](https://en.wikipedia.org/wiki/Leibniz_integral_rule), the integrands can be expressed as
