@@ -801,12 +801,134 @@ is the time-averaged amount of energy per second per unit area that flows throug
 ---
 
 $$
-	\bm{S}(\bm{r}, \omega) = \frac{1}{\sqrt{2 \pi}} \int\_{-\infin}^{\infin} \bm{S}(\bm{r}, t) e^{-i \omega t} dt,
+	\bm{S}(\bm{r}, \omega)
+	= \frac{1}{\sqrt{2 \pi}} \int\_{-\infin}^{\infin} \bm{S}(\bm{r}, t) e^{-i \omega t} dt,
 $$
 
 $$
-	\bm{S}(\bm{r}, \omega) = \frac{1}{\sqrt{2 \pi}} \int\_{-\infin}^{\infin} \mu\_0^{-1} \big( \bm{E}(\bm{r}, t) \times \bm{B}(\bm{r}, t) \big) e^{-i \omega t} dt,
+	\bm{S}(\bm{r}, \omega)
+	= \frac{\mu\_0^{-1}}{(2 \pi)^{\frac{3}{2}}} \int\_{-\infin}^{\infin}  \Bigg( \int\_{-\infin}^{\infin} \mathrm{Re} \big\lbrace \bm{E}(\bm{r}, \omega) e^{i \omega t} \big\rbrace d\omega \Bigg)
+	\times \Bigg( \int\_{-\infin}^{\infin} \mathrm{Re} \big\lbrace \bm{B}(\bm{r}, \omega) e^{i \omega t} \big\rbrace d\omega \Bigg) e^{-i \omega t} dt
 $$
+
+$$
+	\bm{S}(\bm{r}, \omega)
+	= \frac{\mu\_0^{-1}}{(2 \pi)^{\frac{3}{2}}} \iiint\_{-\infin}^{\infin}
+		\mathrm{Re} \big\lbrace \bm{E}(\bm{r}, \omega') e^{i \omega' t} \big\rbrace
+	\times \mathrm{Re} \big\lbrace \bm{B}(\bm{r}, \omega'') e^{i \omega'' t} \big\rbrace e^{-i \omega t} dt \thinspace d\omega' d\omega''
+$$
+
+$$
+\begin{aligned}
+	S\_x(\bm{r}, \omega)
+	= \frac{\mu\_0^{-1}}{(2 \pi)^{\frac{3}{2}}} \iiint\_{-\infin}^{\infin} \big(
+		|E\_y(\bm{r}, \omega')| \cos(\phi'\_y(\bm{r}, \omega') + \omega' t)
+		|B\_z(\bm{r}, \omega'')| \cos(\phi''\_z(\bm{r}, \omega'') + \omega'' t) \cr
+		- |E\_z(\bm{r}, \omega')| \cos(\phi'\_z(\bm{r}, \omega') + \omega' t)
+		|B\_y(\bm{r}, \omega'')| \cos(\phi''\_y(\bm{r}, \omega'') + \omega'' t)
+	\big) e^{-i \omega t} dt \thinspace d\omega' \thinspace d\omega''
+\end{aligned}
+$$
+
+Now, consider the inner integral over t and move all time-invariant constants outside
+
+$$
+	\int\_{-\infin}^{\infin} \cos(\phi'\_y(\bm{r}, \omega') + \omega' t)
+		\cos(\phi''\_z(\bm{r}, \omega'') + \omega'' t) e^{-i \omega t} dt 
+$$
+
+Since
+
+$$
+	\cos(\alpha) \cos(\beta) = \frac{1}{2} \big( \cos(\alpha + \beta) + \cos(\alpha - \beta) \big)
+$$
+
+consider
+
+$$
+	\int\_{-\infin}^{\infin} \cos(\phi'\_y(\bm{r}, \omega') + \phi''\_z(\bm{r}, \omega'') + (\omega' + \omega'') t) e^{-i \omega t} dt
+	= \int\_{-\infin}^{\infin} \cos(a + \omega\_0 t) e^{-i \omega t} dt
+$$
+
+$$
+	\int\_{-\infin}^{\infin} \cos(\phi'\_y(\bm{r}, \omega') - \phi''\_z(\bm{r}, \omega'') + (\omega' - \omega'') t) e^{-i \omega t} dt
+	= \int\_{-\infin}^{\infin} \cos(b + \omega\_1 t) e^{-i \omega t} dt
+$$
+
+Now https://en.wikipedia.org/wiki/Fourier_transform#Functional_relationships,_one-dimensional
+
+
+$$
+	\frac{1}{\sqrt{2 \pi}} \int\_{-\infin}^{\infin} \cos(\omega\_0 t) e^{-i \omega t} dt
+	= \frac{1}{2} \big( \delta(\omega + \omega\_0) + \delta(\omega - \omega\_0) \big)
+$$
+
+$$
+	\frac{1}{\sqrt{2 \pi}} \int\_{-\infin}^{\infin} \sin(\omega\_0 t) e^{-i \omega t} dt
+	= \frac{i}{2} \big(\delta(\omega + \omega\_0) - \delta(\omega - \omega\_0) \big)
+$$
+
+so
+
+$$
+\begin{aligned}
+	\frac{1}{\sqrt{2 \pi}} \int\_{-\infin}^{\infin} \cos(a + \omega\_0 t) e^{-i \omega t} dt
+	&= \frac{1}{2} \cos(a) \big( \delta(\omega + \omega\_0) + \delta(\omega - \omega\_0) \big) \cr
+	&- \frac{i}{2} \sin(a) \big( \delta(\omega + \omega\_0) - \delta(\omega - \omega\_0) \big)
+\end{aligned}
+$$
+
+and 
+
+$$
+\begin{aligned}
+	\frac{1}{\sqrt{2 \pi}} \int\_{-\infin}^{\infin} \big( \cos(a + \omega\_0 t) + \cos(b + \omega\_1 t) \big) e^{-i \omega t} dt
+	&= \frac{1}{2} \cos(a) \big( \delta(\omega + \omega\_0) + \delta(\omega - \omega\_0) \big) \cr
+	&+ \frac{1}{2} \cos(b) \big( \delta(\omega + \omega\_1) + \delta(\omega - \omega\_1) \big) \cr
+	&- \frac{i}{2} \sin(a) \big( \delta(\omega + \omega\_0) - \delta(\omega - \omega\_0) \big) \cr
+	&- \frac{i}{2} \sin(b) \big( \delta(\omega + \omega\_1) - \delta(\omega - \omega\_1) \big)
+\end{aligned}
+$$
+
+Applying this to the actual problem,
+
+$$
+\begin{aligned}
+	\frac{1}{\sqrt{2 \pi}} &\int\_{-\infin}^{\infin} \cos(\phi'\_y(\bm{r}, \omega') + \omega' t) \cos(\phi''\_z(\bm{r}, \omega'') + \omega'' t) e^{-i \omega t} dt \cr
+	&= \frac{1}{4} \cos(\phi'\_y(\bm{r}, \omega') + \phi''\_z(\bm{r}, \omega'')) \big( \delta(\omega + (\omega' + \omega'')) + \delta(\omega - (\omega' + \omega'')) \big) \cr
+	&+ \frac{1}{4} \cos(\phi'\_y(\bm{r}, \omega') - \phi''\_z(\bm{r}, \omega'')) \big( \delta(\omega + (\omega' - \omega'')) + \delta(\omega - (\omega' - \omega'')) \big) \cr
+	&- \frac{i}{4} \sin(\phi'\_y(\bm{r}, \omega') + \phi''\_z(\bm{r}, \omega'')) \big( \delta(\omega + (\omega' + \omega'')) - \delta(\omega - (\omega' + \omega'')) \big) \cr
+	&- \frac{i}{4} \sin(\phi'\_y(\bm{r}, \omega') - \phi''\_z(\bm{r}, \omega'')) \big( \delta(\omega + (\omega' - \omega'')) - \delta(\omega - (\omega' - \omega'')) \big)
+\end{aligned}
+$$
+
+and with more integrals
+
+$$
+\begin{aligned}
+	\frac{1}{\sqrt{2 \pi}} &\iiint\_{-\infin}^{\infin} \cos(\phi'\_y(\bm{r}, \omega') + \omega' t) \cos(\phi''\_z(\bm{r}, \omega'') + \omega'' t) e^{-i \omega t} dt \thinspace d\omega' d\omega'' \cr
+	&= \int\_{-\infin}^{\infin} \frac{1}{4} \Big( \cos(\phi'\_y(\bm{r}, -\omega - \omega'') + \phi''\_z(\bm{r}, \omega'')) + \cos(\phi'\_y(\bm{r}, \omega - \omega'') + \phi''\_z(\bm{r}, \omega'')) \Big) d\omega'' \cr
+	&+ ...
+\end{aligned}
+$$
+
+$$
+\begin{aligned}
+	\int\_{-\infin}^{\infin} \cos(\phi'\_y(\bm{r}, -\omega - \omega'') + \phi''\_z(\bm{r}, \omega'')) \thinspace d\omega''
+	&= \int\_{-\infin}^{\infin} \cos(\phi'\_y(\bm{r}, -\omega - \omega'')) \cos(\phi''\_z(\bm{r}, \omega'')) \thinspace d\omega'' \cr
+	&- \int\_{-\infin}^{\infin} \sin(\phi'\_y(\bm{r}, -\omega - \omega'')) \sin(\phi''\_z(\bm{r}, \omega'')) \thinspace d\omega''
+\end{aligned}
+$$
+
+https://en.wikipedia.org/wiki/Convolution
+
+$$
+\begin{aligned}
+	\int\_{-\infin}^{\infin} \cos(\phi'\_y(\bm{r}, -\omega - \omega'')) \cos(\phi''\_z(\bm{r}, \omega'')) \thinspace d\omega''
+	= \int\_{-\infin}^{\infin} f(-\omega - \omega'') g(\omega'') \thinspace d\omega''
+\end{aligned}
+$$
+
 
 ---
 
