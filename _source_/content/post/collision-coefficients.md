@@ -197,9 +197,9 @@ $$
 
 [Insert picture of a FT of a real function here]
 
-The inverse Fourier transform is given
+We can go back to the time domain by using the inverse Fourier transform:
 
-$$ \tag{2.2}
+$$ \tag{2.4}
 \begin{aligned}
 	\bm{E}(\bm{r}, t)
 	&= \frac{1}{\sqrt{2 \pi}} \int\_{-\infin}^{\infin} \bm{E}(\bm{r}, \omega) e^{i \omega t} d\omega \cr
@@ -213,13 +213,13 @@ $$
 
 which comes from the definition of the real part of a complex number:
 
-$$ \tag{2.3}
-	\mathrm{Re} \lbrace z \rbrace = \frac{1}{2}(z + z^{\*}) = \frac{1}{2} \big(r e^{i \theta} + r e^{-i \theta} \big).
+$$ \tag{2.5}
+	\mathrm{Re} \lbrace z \rbrace = \frac{1}{2} \big( z + z^{\*} \big) = \frac{1}{2} \big(r e^{i \theta} + r e^{-i \theta} \big).
 $$
 
-We can define integral forms of the fields by replacing \\(\bm{E}\\) by \\(\bm{B}\\), \\(\bm{D}\\), \\(\bm{H}\\), \\(\bm{J\_f}\\) or \\(\rho\_f\\) in Equation 2.2. If we substitute these integrals into Equations 1.11, and if we assume that we can perform [differentiation under the integral sign](https://en.wikipedia.org/wiki/Leibniz_integral_rule), the integrands can be expressed as
+We can define integral forms of the fields by replacing \\(\bm{E}\\) by \\(\bm{B}\\), \\(\bm{D}\\), \\(\bm{H}\\), \\(\bm{J\_f}\\) or \\(\rho\_f\\) in Equation 2.4. If we substitute these integrals into Equations 1.11, and if we assume that we can perform [differentiation under the integral sign](https://en.wikipedia.org/wiki/Leibniz_integral_rule), the integrands can be expressed as
 
-$$ \tag{2.3}
+$$ \tag{2.6}
 \begin{aligned}
 	&\nabla \times \big( \bm{E}(\bm{r}, \omega) e^{i \omega t} \big) + \frac{\partial}{\partial t} \big( \bm{B}(\bm{r}, \omega) e^{i \omega t} \big) = 0, &
 	&\nabla \cdot  \big( \bm{B}(\bm{r}, \omega) e^{i \omega t} \big) = 0, \cr
@@ -230,7 +230,7 @@ $$
 
 Performing differentiation with respect to time and division by the pervasive \\(e^{i \omega t}\\) factor yields Maxwell's equations for monochromatic fields \[[7](#references) (ch. 2.3), [8](#references) (ch. 2.2)\]:
 
-$$ \tag{2.4}
+$$ \tag{2.7}
 \begin{aligned}
 	&\nabla \times \bm{E}(\bm{r}, \omega) + i \omega \bm{B}(\bm{r}, \omega) = 0, &
 	&\nabla \cdot  \bm{B}(\bm{r}, \omega) = 0, \cr
@@ -241,22 +241,22 @@ $$
 
 Dependence on time is completely gone, which is advantageous since we are interested in the steady state of the field measured over the time interval that is large in comparison to the period of an oscillation.
 
-If we take divergence of Equation 2.4.3, combine the result with Equation 2.4.4, and use the fact that [divergence of curl](https://en.wikipedia.org/wiki/Vector_calculus_identities#Divergence_of_curl_is_zero) is zero, we obtain the [continuity equation](https://en.wikipedia.org/wiki/Continuity_equation) that expresses the [conservation of charge](https://en.wikipedia.org/wiki/Charge_conservation):
+If we take divergence of Equation 2.7.3, combine the result with Equation 2.7.4, and use the fact that [divergence of curl](https://en.wikipedia.org/wiki/Vector_calculus_identities#Divergence_of_curl_is_zero) is zero, we obtain the [continuity equation](https://en.wikipedia.org/wiki/Continuity_equation) that expresses the [conservation of charge](https://en.wikipedia.org/wiki/Charge_conservation):
 
-$$ \tag{2.5}
+$$ \tag{2.8}
 	\nabla \cdot \bm{J\_f}(\bm{r}, \omega) = - i \omega \rho\_f(\bm{r}, \omega).
 $$
 
 For future convenience, we shall define the decomposition of the *free* charges and currents into the *source* and the *induced* parts \[[8](#references) (ch. 2.2)\]:
 
-$$ \tag{2.6}
+$$ \tag{2.9}
 	\rho\_f = \rho\_s + \rho\_i, \quad
 	\bm{J\_f} = \bm{J\_s} + \bm{J\_i}.
 $$
 
 Continuity of charge implies that
 
-$$ \tag{2.7}
+$$ \tag{2.10}
 	\rho\_s(\bm{r}, \omega) = \frac{i}{\omega} \nabla \cdot \bm{J\_s}(\bm{r}, \omega), \quad
 	\rho\_i(\bm{r}, \omega) = \frac{i}{\omega} \nabla \cdot \bm{J\_i}(\bm{r}, \omega).
 $$
@@ -271,11 +271,11 @@ $$ \tag{3.1}
 \begin{aligned}
 	&\bm{J\_i}(\bm{r}, \omega) \approx \hat{\sigma}(\bm{r}, \omega) \bm{E}(\bm{r}, \omega), \cr
 	&\bm{D}   (\bm{r}, \omega) \approx \hat{\epsilon}(\bm{r}, \omega) \bm{E}(\bm{r}, \omega), \cr
-	&\bm{H}   (\bm{r}, \omega) \approx \hat{\mu}^{-1}(\bm{r}, \omega) \bm{B}(\bm{r}, \omega).
+	&\bm{B}   (\bm{r}, \omega) \approx \hat{\mu}(\bm{r}, \omega) \bm{H}(\bm{r}, \omega).
 \end{aligned}
 $$
 
-We can also combine Equations 2.7.2 and 3.1.1 to derive the relation of the induced charge density:
+We can also combine Equations 2.10.2 and 3.1.1 to derive the relation of the induced charge density:
 
 $$ \tag{3.2}
 	\rho\_i(\bm{r}, \omega) \approx \frac{i}{\omega} \nabla \cdot \big( \hat{\sigma}(\bm{r}, \omega) \bm{E}(\bm{r}, \omega) \big).
@@ -342,7 +342,7 @@ $$
 
 Mathematically, the consequence is that a linear combination of several solutions is also a valid solution.
 
-Assume that the medium is *homogeneous* and *stationary* (constant in space and time)[^3]:
+Assume that the medium is *homogeneous* (constant in space)[^3]:
 
 [^3]: See \[[6](#references) (ch. 1.2)\] for an inhomogeneous solution. The stationary approximation is valid for optical frequencies because the time period of an oscillation is very short. 
 
@@ -356,6 +356,16 @@ $$ \tag{4.2}
 $$
 
 Let us focus on the electric phasor \\(\bm{E}\\). Take curl of Equation 4.2.1 and substitute Equation 4.2.3:
+
+$$ 
+	\nabla \times \nabla \times \bm{E}(\bm{r}, \omega) + i \omega \nabla \times \big( \hat{\mu}(\omega) \bm{H}(\bm{r}, \omega) \big) = 0
+$$
+
+$$ 
+	\nabla \times \nabla \times \bm{E}(\bm{r}, \omega) + i \omega \nabla \times \bm{B}(\bm{r}, \omega) = 0
+$$
+
+Now what? Fix me!!! Check Ishimaru?
 
 $$ \tag{4.3}
 	\nabla \times \nabla \times \bm{E}(\bm{r}, \omega) + i \omega \hat{\mu}(\omega) \big( i \omega \hat{\varepsilon}(\omega) \bm{E}(\bm{r}, \omega) \big) = 0.
@@ -492,13 +502,13 @@ That is a solution of Maxwell's equations in the frequency domain.
 
 ## Time-Harmonic Waves
 
-We can find a solution of Maxwell's equations in the time domain by substituting Equation 4.17 into 2.2:
+We can find a solution of Maxwell's equations in the time domain by substituting Equation 4.17 into 2.4:
 
 $$ \tag{5.1}
 \begin{aligned}
 	\bm{E}(\bm{r}, t)
-	&= \frac{1}{\sqrt{2 \pi}} \int\_{-\infin}^{\infin} \mathrm{Re} \big\lbrace \bm{E}(\bm{r}, \omega) e^{i \omega t} \big\rbrace d\omega \cr
-	&= \frac{1}{\sqrt{2 \pi}} \int\_{-\infin}^{\infin} \oiint\_{\mathbb{S}^2} \mathrm{Re} \Bigg\lbrace
+	&= \sqrt{\frac{2}{\pi}} \int\_{0}^{\infin} \mathrm{Re} \big\lbrace \bm{E}(\bm{r}, \omega) e^{i \omega t} \big\rbrace d\omega \cr
+	&= \sqrt{\frac{2}{\pi}} \int\_{0}^{\infin} \oiint\_{\mathbb{S}^2} \mathrm{Re} \Bigg\lbrace
 	\begin{bmatrix}
 		E\_x(0, \bm{n}, \omega) \exp(-i k\_1(\omega) (\bm{r} \cdot \bm{n}) + i \omega t) \cr
 		E\_y(0, \bm{n}, \omega) \exp(-i k\_2(\omega) (\bm{r} \cdot \bm{n}) + i \omega t) \cr
@@ -643,7 +653,7 @@ $$ \tag{5.14}
 \end{aligned}
 $$
 
-and substitute it into Equation 2.4.1:
+and substitute it into Equation 2.7.1:
 
 $$ \tag{5.15}
 	\bm{n} \times
@@ -655,20 +665,33 @@ $$ \tag{5.15}
 	= i \omega \bm{B}(\bm{r}, \bm{n}, \omega).
 $$
 
-If we recall the definition of \\(k\\) (see Equation 4.12), even without diagonalization, it is apparent that
+If we recall the definition of \\(k\\) given by Equation 4.12, it is apparent that
 
 $$ \tag{5.16}
-	\bm{n} \times \big( \hat{\varepsilon}^{\frac{1}{2}}(\omega) \bm{E}(\bm{r}, \bm{n}, \omega) \big) = \hat{\mu}^{-\frac{1}{2}}(\omega) \bm{B}(\bm{r}, \bm{n}, \omega).
+	\bm{n} \times \Big( \big( \hat{\mu}(\omega) \hat{\varepsilon}(\omega) \big)^{\frac{1}{2}} \bm{E}(\bm{r}, \bm{n}, \omega) \Big) = \bm{B}(\bm{r}, \bm{n}, \omega),
+$$
+
+or, alternatively,
+
+$$ \tag{5.16}
+	\bm{n} \times \Big( \big( \hat{\mu}(\omega) \hat{\varepsilon}(\omega) \big)^{\frac{1}{2}} \bm{E}(\bm{r}, \bm{n}, \omega) \Big) = \bm{B}(\bm{r}, \bm{n}, \omega),
 $$
 
 \\(\bm{n}\\) is a real vector, while the phasors \\(\bm{E}\\) and \\(\bm{B}\\) are complex. Using the distributive property of the cross product,
 
 $$ \tag{5.17}
-	\bm{n} \times \mathrm{Re} \big\lbrace \hat{\varepsilon}^{\frac{1}{2}}(\omega) \bm{E}(\bm{r}, \bm{n}, \omega) e^{i \omega t} \big\rbrace
-	= \mathrm{Re} \big\lbrace \hat{\mu}^{-\frac{1}{2}}(\omega) \bm{B}(\bm{r}, \bm{n}, \omega) e^{i \omega t} \big\rbrace.
+	\bm{n} \times \mathrm{Re} \big\lbrace \big( \hat{\mu}(\omega) \hat{\varepsilon}(\omega) \big)^{\frac{1}{2}} \bm{E}(\bm{r}, \bm{n}, \omega) e^{i \omega t} \big\rbrace
+	= \mathrm{Re} \big\lbrace \bm{B}(\bm{r}, \bm{n}, \omega) e^{i \omega t} \big\rbrace.
 $$
 
-This equations shows that the geometry of a plane wave is defined by three mutually orthogonal real vectors.
+A similar derivation for \\(\bm{B}\\) using Equations 3.1.3 and 4.2.3 leads to
+
+$$ \tag{5.18}
+	\bm{n} \times \mathrm{Re} \big\lbrace \bm{B}(\bm{r}, \bm{n}, \omega) e^{i \omega t} \big\rbrace
+	=  -\mathrm{Re} \big\lbrace \big( \hat{\mu}(\omega) \hat{\varepsilon}(\omega) \big)^{\frac{1}{2}} \bm{E}(\bm{r}, \bm{n}, \omega) e^{i \omega t} \big\rbrace.
+$$
+
+Both Equations 5.17 and 5.18 are simultaneously true only if these three vectors are mutually orthogonal. Thus, they define the geometric configuration of a plane wave.
 
 [Insert Picture Here]
 
