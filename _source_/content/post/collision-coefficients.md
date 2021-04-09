@@ -176,7 +176,9 @@ Define[^1] the [Fourier transform](https://en.wikipedia.org/wiki/Fourier_transfo
 [^1]: The choice of the sign of the complex exponential is arbitrary, and determines the sign of the imaginary components of both the complex permittivity and the complex refractive index.
 
 $$ \tag{2.1}
-	\bm{E}(\bm{r}, \omega) = \frac{1}{\sqrt{2 \pi}} \int\_{-\infin}^{\infin} \bm{E}(\bm{r}, t) e^{-i \omega t} dt,
+	\bm{E}(\bm{r}, \omega)
+    = \mathcal{F} \big\lbrace \bm{E}(\bm{r}, t) \big\rbrace 
+	= \frac{1}{\sqrt{2 \pi}} \int\_{-\infin}^{\infin} \bm{E}(\bm{r}, t) e^{-i \omega t} dt,
 $$
 
 where \\(\omega\\) is the *angular frequency*. \\(\bm{E}(\bm{r}, \omega)\\) is the electric [phasor](https://en.wikipedia.org/wiki/Phasor) field - a field of complex (phase) vectors[^2].
@@ -202,12 +204,13 @@ We can go back to the time domain by using the inverse Fourier transform:
 $$ \tag{2.4}
 \begin{aligned}
 	\bm{E}(\bm{r}, t)
+	&= \mathcal{F^{-1}} \big\lbrace \bm{E}(\bm{r}, \omega) \big\rbrace \cr
 	&= \frac{1}{\sqrt{2 \pi}} \int\_{-\infin}^{\infin} \bm{E}(\bm{r}, \omega) e^{i \omega t} d\omega \cr
 	&= \frac{1}{\sqrt{2 \pi}} \int\_{0}^{\infin} \bm{E}(\bm{r}, \omega) e^{i \omega t} d\omega
-	+ \frac{1}{\sqrt{2 \pi}} \int\_{-\infin}^{0} [\bm{E}(\bm{r}, -\omega)]^{\*} e^{i \omega t} d\omega \cr
+	 + \frac{1}{\sqrt{2 \pi}} \int\_{-\infin}^{0} [\bm{E}(\bm{r}, -\omega)]^{\*} e^{i \omega t} d\omega \cr
 	&= \frac{1}{\sqrt{2 \pi}} \int\_{0}^{\infin} \big( \bm{E}(\bm{r}, \omega) e^{i \omega t} + [\bm{E}(\bm{r}, \omega)]^{\*} e^{-i \omega t} \big) d\omega \cr
 	&= \frac{1}{\sqrt{2 \pi}} \int\_{0}^{\infin} \big( \bm{E}(\bm{r}, \omega) e^{i \omega t} + \big[ \bm{E}(\bm{r}, \omega) e^{i \omega t} \big]^{\*} \big) d\omega \cr
-	&= \sqrt{\frac{2}{\pi}} \int\_{0}^{\infin} \mathcal{Re} \big\lbrace \bm{E}(\bm{r}, \omega) e^{i \omega t} \big\rbrace d\omega
+	&= \frac{1}{\sqrt{2 \pi}} \int\_{0}^{\infin} 2 \thinspace \mathcal{Re} \big\lbrace \bm{E}(\bm{r}, \omega) e^{i \omega t} \big\rbrace d\omega
 \end{aligned}
 $$
 
@@ -217,9 +220,86 @@ $$ \tag{2.5}
 	\mathcal{Re} \lbrace z \rbrace = \frac{1}{2} \big( z + z^{\*} \big) = \frac{1}{2} \big(r e^{i \theta} + r e^{-i \theta} \big).
 $$
 
-We must interpret Equation 2.4 carefully. It says that the complex part of the *integral* vanishes, but that does not imply that the *integrand* is real.
+We can define integral forms of the fields by replacing \\(\bm{E}\\) by \\(\bm{B}\\), \\(\bm{D}\\), \\(\bm{H}\\), \\(\bm{J\_f}\\) or \\(\rho\_f\\) in Equation 2.4. If we substitute these integrals into Equations 1.11, and if we assume that we can perform [differentiation under the integral sign](https://en.wikipedia.org/wiki/Leibniz_integral_rule), we obtain
 
-We can define integral forms of the fields by replacing \\(\bm{E}\\) by \\(\bm{B}\\), \\(\bm{D}\\), \\(\bm{H}\\), \\(\bm{J\_f}\\) or \\(\rho\_f\\) in Equation 2.4. If we substitute these integrals into Equations 1.11, and if we assume that we can perform [differentiation under the integral sign](https://en.wikipedia.org/wiki/Leibniz_integral_rule), the integrands can be expressed as
+$$ \tag{2.6}
+\begin{aligned}
+	&\int\_{-\infin}^{\infin} \Big( \nabla \times \big( \bm{E}(\bm{r}, \omega) e^{i \omega t} \big) + \frac{\partial}{\partial t} \big( \bm{B}(\bm{r}, \omega) e^{i \omega t} \big) \Big) d\omega = 0, \cr
+	&\int\_{-\infin}^{\infin} \Big( \nabla \cdot  \big( \bm{B}(\bm{r}, \omega) e^{i \omega t} \big) \Big) d\omega = 0, \cr
+	&\int\_{-\infin}^{\infin} \Big( \nabla \times \big( \bm{H}(\bm{r}, \omega) e^{i \omega t} \big) - \frac{\partial}{\partial t} \big( \bm{D}(\bm{r}, \omega) e^{i \omega t} \big) \Big) d\omega
+	= \int\_{-\infin}^{\infin} \Big( \bm{J\_f}(\bm{r}, \omega) e^{i \omega t} \Big) d\omega, \cr
+	&\int\_{-\infin}^{\infin} \Big( \nabla \cdot \big( \bm{D}(\bm{r}, \omega) e^{i \omega t} \big) \Big) d\omega
+	= \int\_{-\infin}^{\infin} \Big( \rho\_f(\bm{r}, \omega) e^{i \omega t} \Big) d\omega.
+\end{aligned}
+$$
+
+Generally speaking, equality of integrands does not follow from equality of integrals (but the opposite is true). To simplify Equations 2.6 further, we must make an assumption that the fields are periodic functions \[[5](#references) (vol. I, ch. 50) [6](#references) (ch. 1.3.3, 1.4.3)\]. This restriction is not as severe as it may seem, for we may choose the period to be as large as necessary, ensuring both the adequate coverage of the spectrum and the sufficient resolution in the frequency domain. The benefits are great, as it allows us to represent the fields using the [Fourier series](https://en.wikipedia.org/wiki/Fourier_series#Complex-valued_functions)
+
+$$ \tag{2.7}
+	\bm{E}(\bm{r}, t)
+	= \sum\_{n = -\infin}^{\infin} \bm{E}\_n(\bm{r}, n \omega\_0) e^{i n \omega\_0 t}
+	= \sum\_{n = -\infin}^{\infin} \bm{E}\_n(\bm{r}, \omega\_n) e^{i \omega\_n t},
+$$
+
+with the coefficients \\(\bm{E}\_n\\) given by the integral over the *fundamental period* \\(T\_0 = 2 \pi / \omega\_0\\):
+
+$$ \tag{2.8}
+	\bm{E}\_n(\bm{r}, \omega\_n)
+	= \frac{1}{T\_0} \int\_{0}^{T\_0} \bm{E}(\bm{r}, t) e^{-i \omega\_n t} dt
+	= \big\langle \bm{E}(\bm{r}, t), \thinspace e^{i \omega\_n t} \big\rangle.
+$$
+
+Equation 2.8 can be interpreted as the projection of the field onto the [Fourier basis functions](https://en.wikipedia.org/wiki/Fourier_series#Hilbert_space_interpretation), with Equation 2.7 showing the reconstruction. The beautiful thing about the Fourier basis is that it is orthogonal, which means that the individual components of Equation 2.7 are completely independent of each other.
+
+Similarly to Equation 2.2, if the time-domain field is real,
+
+$$ \tag{2.9}
+	\bm{E}\_n(\bm{r}, \omega\_n) = [\bm{E}\_{-n}(\bm{r}, -\omega\_n)]^{\*},
+$$
+
+which permits us to simplify Equation 2.7:
+
+$$ \tag{2.10}
+\begin{aligned}
+	\bm{E}(\bm{r}, t)
+	&= \bm{E}\_0(\bm{r}, \omega\_0) + \sum\_{n = 1}^{\infin} \Big( \bm{E}\_n(\bm{r}, \omega\_n) e^{i \omega\_n t} + \bm{E}\_{-n}(\bm{r}, -\omega\_n) e^{-i \omega\_n t} \Big) \cr
+	&= \bm{E}\_0(\bm{r}, \omega\_0) + \sum\_{n = 1}^{\infin} \Big( \bm{E}\_n(\bm{r}, \omega\_n) e^{i \omega\_n t} + \big[ \bm{E}\_n(\bm{r}, \omega\_n) e^{i \omega\_n t} \big]^{\*} \Big) \cr
+	&= \bm{E}\_0(\bm{r}, \omega\_0) + \sum\_{n = 1}^{\infin} 2 \thinspace \mathcal{Re} \big\lbrace \bm{E}\_n(\bm{r}, \omega\_n) e^{i \omega\_n t} \big\rbrace.
+\end{aligned}
+$$
+
+What happens when we Fourier transform a periodic function? Combining Equations 2.1 and 2.10,
+
+$$ \tag{2.11}
+\begin{aligned}
+	\bm{E}(\bm{r}, \omega)
+	&= \frac{1}{\sqrt{2 \pi}} \int\_{-\infin}^{\infin} \bm{E}(\bm{r}, t) e^{-i \omega t} dt \cr
+	&= \frac{1}{\sqrt{2 \pi}} \sum\_{n = -\infin}^{\infin} \bm{E}\_n(\bm{r}, \omega\_n) \int\_{-\infin}^{\infin} e^{i (\omega\_n - \omega) t} dt \cr
+	&= \frac{1}{\sqrt{2 \pi}} \sum\_{n = -\infin}^{\infin} \bm{E}\_n(\bm{r}, \omega\_n) \big( 2 \pi \delta(\omega\_n - \omega) \big),
+\end{aligned}
+$$
+
+where we used the exponential definition of the [Dirac delta function](https://en.wikipedia.org/wiki/Dirac_delta_function) \\(\delta(x)\\).
+
+Equation 2.10 permits us to study the *time-harmonic* field (or, more precisely, it's \\(n\\)-th harmonic component)
+
+$$ \tag{2.12}
+	\bm{E}(\bm{r}, t)
+	= \mathcal{Re} \big\lbrace \bm{E}\_n(\bm{r}, \omega\_n) e^{i \omega\_n t} \big\rbrace
+	= \mathcal{Re} \big\lbrace \bm{E}(\bm{r}) e^{i \omega\_n t} \big\rbrace
+$$
+
+in isolation, and Equation 2.11 - its corresponding phasor
+
+$$ \tag{2.13}
+	\bm{E}(\bm{r}, \omega)
+	= \sqrt{2 \pi} \bm{E}\_n(\bm{r}, \omega\_n) \delta(\omega\_n - \omega)
+	= \sqrt{2 \pi} \bm{E}(\bm{r}) \delta(\omega\_n - \omega).
+$$
+
+The simplified notation shown above has been chosen for compatibility with existing literature, and to avoid the temptation to integrate over \\(\omega\_n\\).
+
+---
 
 $$ \tag{2.6}
 \begin{aligned}
