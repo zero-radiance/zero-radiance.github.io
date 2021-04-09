@@ -207,15 +207,17 @@ $$ \tag{2.4}
 	+ \frac{1}{\sqrt{2 \pi}} \int\_{-\infin}^{0} [\bm{E}(\bm{r}, -\omega)]^{\*} e^{i \omega t} d\omega \cr
 	&= \frac{1}{\sqrt{2 \pi}} \int\_{0}^{\infin} \big( \bm{E}(\bm{r}, \omega) e^{i \omega t} + [\bm{E}(\bm{r}, \omega)]^{\*} e^{-i \omega t} \big) d\omega \cr
 	&= \frac{1}{\sqrt{2 \pi}} \int\_{0}^{\infin} \big( \bm{E}(\bm{r}, \omega) e^{i \omega t} + \big[ \bm{E}(\bm{r}, \omega) e^{i \omega t} \big]^{\*} \big) d\omega \cr
-	&= \sqrt{\frac{2}{\pi}} \int\_{0}^{\infin} \mathrm{Re} \big\lbrace \bm{E}(\bm{r}, \omega) e^{i \omega t} \big\rbrace d\omega
+	&= \sqrt{\frac{2}{\pi}} \int\_{0}^{\infin} \mathcal{Re} \big\lbrace \bm{E}(\bm{r}, \omega) e^{i \omega t} \big\rbrace d\omega
 \end{aligned}
 $$
 
 which comes from the definition of the real part of a complex number:
 
 $$ \tag{2.5}
-	\mathrm{Re} \lbrace z \rbrace = \frac{1}{2} \big( z + z^{\*} \big) = \frac{1}{2} \big(r e^{i \theta} + r e^{-i \theta} \big).
+	\mathcal{Re} \lbrace z \rbrace = \frac{1}{2} \big( z + z^{\*} \big) = \frac{1}{2} \big(r e^{i \theta} + r e^{-i \theta} \big).
 $$
+
+We must interpret Equation 2.4 carefully. It says that the complex part of the *integral* vanishes, but that does not imply that the *integrand* is real.
 
 We can define integral forms of the fields by replacing \\(\bm{E}\\) by \\(\bm{B}\\), \\(\bm{D}\\), \\(\bm{H}\\), \\(\bm{J\_f}\\) or \\(\rho\_f\\) in Equation 2.4. If we substitute these integrals into Equations 1.11, and if we assume that we can perform [differentiation under the integral sign](https://en.wikipedia.org/wiki/Leibniz_integral_rule), the integrands can be expressed as
 
@@ -402,7 +404,10 @@ is the [Poynting vector](https://en.wikipedia.org/wiki/Poynting_vector) that rep
 
 We are particularly interested in a steady-state solution of Maxwell's equations. Specifically, rather than consider the *instantaneous* Poynting vector \\(\bm{S}\\) (which may change trillions of times per second), we focus on the *time-averaged* Poynting vector instead:
 
-$$ \tag{6.18} \langle \bm{S\_t} \rangle = \frac{1}{T} \int\_{-T/2}^{\thinspace T/2} \bm{S}(\bm{r}, t + t') \thinspace dt'. $$
+$$ \tag{6.18}
+	\langle \bm{S\_t} \rangle
+	= \frac{1}{T} \int\_{-T/2}^{\thinspace T/2} \bm{S}(\bm{r}, t - t') \thinspace dt'.
+$$
 
 It becomes especially useful once you consider a fixed direction \\(\bm{n}\\). Then, according to Equation 6.14,
 
@@ -412,8 +417,6 @@ $$ \tag{6.19}
 	= \vert \langle \bm{S\_t} \rangle \cos{\theta} \vert $$
 
 is the time-averaged amount of energy per second per unit area that flows through a surface with the normal \\(\bm{n}\\). That is the definition of [irradiance](https://en.wikipedia.org/wiki/Irradiance) \\(\mathtt{E\_e}\\).
-
----
 
 $$
 	\bm{S}(\bm{r}, \omega)
@@ -426,6 +429,8 @@ https://en.wikipedia.org/wiki/Convolution_theorem
 $$
 \begin{aligned}
 	\bm{S}(\bm{r}, \omega)
+	&= \mu\_0^{-1} \mathcal{F} \big\lbrace \mathcal{F^{-1}} \big\lbrace \bm{E}(\bm{r}, \omega) \big\rbrace 
+	\times \mathcal{F^{-1}} \big\lbrace \bm{B}(\bm{r}, \omega) \big\rbrace \big\rbrace \cr
 	&= \frac{\mu\_0^{-1}}{(2 \pi)^{3/2}} \int\_{-\infin}^{\infin}
 		\bm{E}(\bm{r}, \omega') \times \bm{B}(\bm{r}, \omega - \omega') 
 	\thinspace d\omega'
@@ -443,11 +448,103 @@ $$
 \end{aligned}
 $$
 
+It appears to be difficult to show a more elementary expression without making further assumptions about the fields. We can, however, obtain a more useful statement about the time-averaged Poynting vector
+
+$$
+\begin{aligned}
+	\langle \bm{S\_t} \rangle
+	&=  \frac{1}{T} \int\_{-T/2}^{\thinspace T/2}
+			\bm{S}(\bm{r}, t - t')
+		\thinspace dt' \cr
+	&=  \frac{1}{T} \int\_{-T/2}^{\thinspace T/2}
+			\sqrt{\frac{2}{\pi}} \int\_{0}^{\infin}
+				\mathcal{Re} \big\lbrace \bm{S}(\bm{r}, \omega) e^{i \omega (t - t')} \big\rbrace
+			\thinspace d\omega
+		\thinspace dt' \cr
+	&=  \frac{1}{T} \int\_{-T/2}^{\thinspace T/2}
+			\sqrt{\frac{2}{\pi}} \int\_{0}^{\infin}
+				\mathcal{Re} \Bigg\lbrace \frac{\mu\_0^{-1}}{(2 \pi)^{3/2}} \int\_{-\infin}^{\infin}
+					\big( \bm{E}(\bm{r}, \omega') \times \bm{B}(\bm{r}, \omega - \omega') \big) e^{i \omega (t - t')}
+				\thinspace d\omega' \Bigg\rbrace
+			\thinspace d\omega
+		\thinspace dt'
+\end{aligned}
+$$
+
+Interest in real part only
+
+$$
+\begin{aligned}
+	\langle \bm{S\_t} \rangle
+	&=  \frac{\mu\_0^{-1}}{2 \pi^2} \int\_{0}^{\infin} \int\_{-\infin}^{\infin}
+			\frac{1}{T} \int\_{-T/2}^{\thinspace T/2} 
+				\mathcal{Re} \Big\lbrace 
+					\big( \bm{E}(\bm{r}, \omega') \times \bm{B}(\bm{r}, \omega - \omega') \big) e^{i \omega (t - t')}
+				\Big\rbrace
+			\thinspace dt'
+		\thinspace d\omega' \thinspace d\omega
+\end{aligned}
+$$
+
+Multiply and divide E and B fields by \\(e^{i \omega' t'}\\), respectively:
+
+$$
+\begin{aligned}
+	\langle \bm{S\_t} \rangle
+	&=  \frac{\mu\_0^{-1}}{2 \pi^2} \int\_{0}^{\infin} \int\_{-\infin}^{\infin}
+			\frac{1}{T} \int\_{-T/2}^{\thinspace T/2} 
+				\mathcal{Re} \Big\lbrace 
+					\big( \bm{E}(\bm{r}, \omega') \times \bm{B}(\bm{r}, \omega - \omega') e^{-2 i \omega' t'} \big) e^{i \omega t}
+				\Big\rbrace
+			\thinspace dt'
+		\thinspace d\omega' \thinspace d\omega
+\end{aligned}
+$$
+
+---
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\\(\bm{E}(\bm{r}, \omega') e^{i \omega' t}\\) is a real vector. Distributivity
+
+$$
+\begin{aligned}
+	\bm{S}(\bm{r}, \omega)
+	&= \frac{\mu\_0^{-1}}{(2 \pi)^{3/2}} \int\_{-\infin}^{\infin}
+		\big( \bm{E}(\bm{r}, \omega') e^{i \omega' t} \big) \times \mathcal{Re} \Big\lbrace \big[ \bm{B}(\bm{r}, \omega' - \omega) e^{i \omega' t} \big]^{\*} \Big\rbrace
+	d\omega' \cr
+	&+ i \frac{\mu\_0^{-1}}{(2 \pi)^{3/2}} \int\_{-\infin}^{\infin}
+		\big( \bm{E}(\bm{r}, \omega') e^{i \omega' t} \big) \times \mathcal{Im} \Big\lbrace \big[ \bm{B}(\bm{r}, \omega' - \omega) e^{i \omega' t} \big]^{\*} \Big\rbrace
+	d\omega'
+\end{aligned}
+$$
+
+|A| |B| Sin(d)
+
 Now what? Time average?
 
 https://en.wikipedia.org/wiki/Poynting_vector#Time-averaged_Poynting_vector
-
----
 
 $$
 	\bm{S}(\bm{r}, \omega)
@@ -666,7 +763,7 @@ To determine the spectral composition of irradiance, we must consider the soluti
 
 $$ \tag{6.20}
 	\bm{S}(\bm{r}, t)
-	= \mu\_0^{-1} \Bigg( \frac{1}{\sqrt{2 \pi}} \int\_{-\infin}^{\infin} \mathrm{Re} \big\lbrace \bm{E}(\bm{r}, \omega) e^{i \omega t} \big\rbrace d\omega \Bigg) \times \Bigg( \frac{1}{\sqrt{2 \pi}} \int\_{-\infin}^{\infin} \mathrm{Re} \big\lbrace \bm{B}(\bm{r}, \omega) e^{i \omega t} \big\rbrace d\omega \Bigg).
+	= \mu\_0^{-1} \Bigg( \frac{1}{\sqrt{2 \pi}} \int\_{-\infin}^{\infin} \mathcal{Re} \big\lbrace \bm{E}(\bm{r}, \omega) e^{i \omega t} \big\rbrace d\omega \Bigg) \times \Bigg( \frac{1}{\sqrt{2 \pi}} \int\_{-\infin}^{\infin} \mathcal{Re} \big\lbrace \bm{B}(\bm{r}, \omega) e^{i \omega t} \big\rbrace d\omega \Bigg).
 $$
 
 To simplify this expression, it is necessary to bring both fields under the same integral sign:
@@ -674,8 +771,8 @@ To simplify this expression, it is necessary to bring both fields under the same
 $$ \tag{6.21}
 	\bm{S}(\bm{r}, t)
 	= \frac{\mu\_0^{-1}}{2 \pi} \int\_{-\infin}^{\infin} \int\_{-\infin}^{\infin}
-		\mathrm{Re} \big\lbrace \bm{E}(\bm{r}, \omega) e^{i \omega t} \big\rbrace \times
-		\mathrm{Re} \big\lbrace \bm{B}(\bm{r}, \omega') e^{i \omega' t} \big\rbrace
+		\mathcal{Re} \big\lbrace \bm{E}(\bm{r}, \omega) e^{i \omega t} \big\rbrace \times
+		\mathcal{Re} \big\lbrace \bm{B}(\bm{r}, \omega') e^{i \omega' t} \big\rbrace
 	d\omega d\omega'.
 $$
 
@@ -684,8 +781,8 @@ Time-averaged...
 $$ \tag{6.22}
 	\langle \bm{S\_t} \rangle
 	= \frac{\mu\_0^{-1}}{2 \pi} \int\_{-\infin}^{\infin} \int\_{-\infin}^{\infin} \frac{1}{T} \int\_{-T/2}^{\thinspace T/2}
-		\mathrm{Re} \big\lbrace \bm{E}(\bm{r}, \omega) e^{i \omega (t + t')} \big\rbrace \times
-		\mathrm{Re} \big\lbrace \bm{B}(\bm{r}, \omega') e^{i \omega' (t + t')} \big\rbrace
+		\mathcal{Re} \big\lbrace \bm{E}(\bm{r}, \omega) e^{i \omega (t + t')} \big\rbrace \times
+		\mathcal{Re} \big\lbrace \bm{B}(\bm{r}, \omega') e^{i \omega' (t + t')} \big\rbrace
 	dt' \thinspace d\omega \thinspace d\omega'.
 $$
 
@@ -699,8 +796,8 @@ $$
 \begin{aligned}
 	\bm{S}(\bm{r}, t)
 	&= \frac{\mu\_0^{-1}}{2 \pi} \int\_{-\infin}^{\infin} \oiint\_{\mathbb{S}^2}
-		\mathrm{Re} \big\lbrace \bm{E}(\bm{r}, \bm{n}, \omega) e^{i \omega t} \big\rbrace \times
-		\mathrm{Re} \big\lbrace \bm{B}(\bm{r}, \bm{n}, \omega) e^{i \omega t} \big\rbrace
+		\mathcal{Re} \big\lbrace \bm{E}(\bm{r}, \bm{n}, \omega) e^{i \omega t} \big\rbrace \times
+		\mathcal{Re} \big\lbrace \bm{B}(\bm{r}, \bm{n}, \omega) e^{i \omega t} \big\rbrace
 	d\Omega\_n \thinspace d\omega.
 \end{aligned}
 $$
@@ -710,7 +807,7 @@ Note that this gives a S as an integral over the spectrum
 In order to obtain a real part of a complex number \\(z\\), one can use the [complex conjugate](https://en.wikipedia.org/wiki/Complex_conjugate) \\(z^{\*}\\):
 
 $$ \tag{6.22}
-	\mathrm{Re} \lbrace z \rbrace = \frac{1}{2}(z + z^{\*}) = \frac{1}{2} \big(r e^{i \theta} + r e^{-i \theta} \big).
+	\mathcal{Re} \lbrace z \rbrace = \frac{1}{2}(z + z^{\*}) = \frac{1}{2} \big(r e^{i \theta} + r e^{-i \theta} \big).
 $$
 
 This formula extends to vectors in a natural way:
@@ -1007,8 +1104,8 @@ We can find a solution of Maxwell's equations in the time domain by substituting
 $$ \tag{5.1}
 \begin{aligned}
 	\bm{E}(\bm{r}, t)
-	&= \sqrt{\frac{2}{\pi}} \int\_{0}^{\infin} \mathrm{Re} \big\lbrace \bm{E}(\bm{r}, \omega) e^{i \omega t} \big\rbrace d\omega \cr
-	&= \sqrt{\frac{2}{\pi}} \int\_{0}^{\infin} \oiint\_{\mathbb{S}^2} \mathrm{Re} \Bigg\lbrace
+	&= \sqrt{\frac{2}{\pi}} \int\_{0}^{\infin} \mathcal{Re} \big\lbrace \bm{E}(\bm{r}, \omega) e^{i \omega t} \big\rbrace d\omega \cr
+	&= \sqrt{\frac{2}{\pi}} \int\_{0}^{\infin} \oiint\_{\mathbb{S}^2} \mathcal{Re} \Bigg\lbrace
 	\begin{bmatrix}
 		E\_x(0, \bm{n}, \omega) \exp(-i k\_1(\omega) (\bm{r} \cdot \bm{n}) + i \omega t) \cr
 		E\_y(0, \bm{n}, \omega) \exp(-i k\_2(\omega) (\bm{r} \cdot \bm{n}) + i \omega t) \cr
@@ -1122,7 +1219,7 @@ This implies that \\(\theta\\) represents a plane propagating along its normal \
 Taking the real part of Equation 5.10 allows us to uncover the *wave amplitude*
 
 $$ \tag{5.13}
- 	\mathrm{Re} \big\lbrace E(\bm{r}, \bm{n}, \omega) e^{i \omega t} \big\rbrace = 
+ 	\mathcal{Re} \big\lbrace E(\bm{r}, \bm{n}, \omega) e^{i \omega t} \big\rbrace = 
  	|E(0, \bm{n}, \omega)| e^{-\omega (\kappa / c) (\bm{r} \cdot \bm{n})} \cos{\theta}.
 $$
 
@@ -1180,15 +1277,15 @@ $$
 \\(\bm{n}\\) is a real vector, while the phasors \\(\bm{E}\\) and \\(\bm{B}\\) are complex. Using the distributive property of the cross product,
 
 $$ \tag{5.17}
-	\bm{n} \times \mathrm{Re} \big\lbrace \big( \hat{\mu}(\omega) \hat{\varepsilon}(\omega) \big)^{\frac{1}{2}} \bm{E}(\bm{r}, \bm{n}, \omega) e^{i \omega t} \big\rbrace
-	= \mathrm{Re} \big\lbrace \bm{B}(\bm{r}, \bm{n}, \omega) e^{i \omega t} \big\rbrace.
+	\bm{n} \times \mathcal{Re} \big\lbrace \big( \hat{\mu}(\omega) \hat{\varepsilon}(\omega) \big)^{\frac{1}{2}} \bm{E}(\bm{r}, \bm{n}, \omega) e^{i \omega t} \big\rbrace
+	= \mathcal{Re} \big\lbrace \bm{B}(\bm{r}, \bm{n}, \omega) e^{i \omega t} \big\rbrace.
 $$
 
 A similar derivation for \\(\bm{B}\\) using Equations 3.1.3 and 4.2.3 leads to
 
 $$ \tag{5.18}
-	\bm{n} \times \mathrm{Re} \big\lbrace \bm{B}(\bm{r}, \bm{n}, \omega) e^{i \omega t} \big\rbrace
-	=  -\mathrm{Re} \big\lbrace \big( \hat{\mu}(\omega) \hat{\varepsilon}(\omega) \big)^{\frac{1}{2}} \bm{E}(\bm{r}, \bm{n}, \omega) e^{i \omega t} \big\rbrace.
+	\bm{n} \times \mathcal{Re} \big\lbrace \bm{B}(\bm{r}, \bm{n}, \omega) e^{i \omega t} \big\rbrace
+	=  -\mathcal{Re} \big\lbrace \big( \hat{\mu}(\omega) \hat{\varepsilon}(\omega) \big)^{\frac{1}{2}} \bm{E}(\bm{r}, \bm{n}, \omega) e^{i \omega t} \big\rbrace.
 $$
 
 Both Equations 5.17 and 5.18 are simultaneously true only if these three vectors are mutually orthogonal. Thus, they define the geometric configuration of a plane wave.
@@ -1270,12 +1367,12 @@ where \\(\phi(\bm{r})\\) is isotropic, and the phase difference between the two 
 The significance of Equation 19 can be better seen if we express it using complex numbers
 
 $$ \tag{??}
-	\bm{E}(\bm{r},t) = \mathrm{Re}
+	\bm{E}(\bm{r},t) = \mathcal{Re}
 	\begin{Bmatrix}
 		\phantom{\pm} \bar{E}\_a(\bm{r}) \phantom{e^{-i \pi/2}} e^{i(\phi(\bm{r}) + \omega t)} \cr
 				 \pm  \bar{E}\_b(\bm{r}) 		  e^{-i \pi/2}  e^{i(\phi(\bm{r}) + \omega t)}
 	\end{Bmatrix} =
-	\mathrm{Re} \big\lbrace \bm{\bar{E}}(\bm{r}) e^{i \phi(\bm{r})} e^{i \omega t} \big\rbrace,
+	\mathcal{Re} \big\lbrace \bm{\bar{E}}(\bm{r}) e^{i \phi(\bm{r})} e^{i \omega t} \big\rbrace,
 $$
 
 which makes it the vector analog of the complex amplitude of a scalar time-harmonic wave.
