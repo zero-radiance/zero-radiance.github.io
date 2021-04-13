@@ -248,20 +248,28 @@ where we defined \\(\omega\_n = n \omega\_1\\), with the coefficients \\(\bm{E}\
 $$ \tag{2.8}
 	\bm{E}\_n(\bm{r}, \omega\_n)
 	= \frac{1}{T_1} \int\_{-T_1/2}^{\thinspace T_1/2} \bm{E}(\bm{r}, t) e^{-i \omega\_n t} dt
-	= \braket{\bm{E} \vert e_n}.
+	= \braket{e_n \vert \bm{E}}.
 $$
 
-Equation 2.8 can be interpreted as the [projection](https://en.wikipedia.org/wiki/Hilbert_space#Fourier_analysis) of the field onto the [Fourier basis functions](https://en.wikipedia.org/wiki/Fourier_series#Hilbert_space_interpretation), with Equation 2.7 showing the reconstruction. The beautiful thing about the Fourier basis is that it is orthogonal, which means that the individual elements of Equation 2.7 (called *harmonics*) are completely independent of each other.
+Equation 2.8 can be interpreted as the [projection](https://en.wikipedia.org/wiki/Hilbert_space#Fourier_analysis) of the field onto the [Fourier basis functions](https://en.wikipedia.org/wiki/Fourier_series#Hilbert_space_interpretation), with Equation 2.7 showing the reconstruction. The beautiful thing about the Fourier basis is that it is orthogonal, which means that the individual elements of Equation 2.7 (called *harmonics*) are completely independent of each other:
+
+$$ \tag{2.9}
+	\braket{e_n \vert e_m}
+	= \frac{1}{T_1} \int\_{-T_1/2}^{\thinspace T_1/2} e^{i (\omega\_m - \omega\_n) t} dt
+	= \delta_{m,n}
+$$
+
+where \\(\delta_{m,n}\\) is the [Kronecker delta](https://en.wikipedia.org/wiki/Kronecker_delta#Integral_representations) function.
 
 Similarly to Equation 2.2, if the time-domain field is real,
 
-$$ \tag{2.9}
+$$ \tag{2.10}
 	\bm{E}\_n(\bm{r}, \omega\_n) = [\bm{E}\_{-n}(\bm{r}, -\omega\_n)]^{\*},
 $$
 
 which permits us to simplify Equation 2.7:
 
-$$ \tag{2.10}
+$$ \tag{2.11}
 \begin{aligned}
 	\bm{E}(\bm{r}, t)
 	&= \bm{E}\_0(\bm{r}, 0) + \sum\_{n = 1}^{\infin} \Big( \bm{E}\_n(\bm{r}, \omega\_n) e^{i \omega\_n t} + \bm{E}\_{-n}(\bm{r}, -\omega\_n) e^{-i \omega\_n t} \Big) \cr
@@ -272,7 +280,7 @@ $$
 
 What happens when we Fourier transform a periodic function? Combining Equations 2.1 and 2.7,
 
-$$ \tag{2.11}
+$$ \tag{2.12}
 \begin{aligned}
 	\bm{E}(\bm{r}, \omega)
 	&= \frac{1}{\sqrt{2 \pi}} \int\_{-\infin}^{\infin} \bm{E}(\bm{r}, t) e^{-i \omega t} dt \cr
@@ -281,19 +289,19 @@ $$ \tag{2.11}
 \end{aligned}
 $$
 
-where we used the exponential definition of the [Dirac delta function](https://en.wikipedia.org/wiki/Dirac_delta_function) \\(\delta(x)\\).
+where we used the exponential definition of the [Dirac delta](https://en.wikipedia.org/wiki/Dirac_delta_function) function \\(\delta(x)\\).
 
-Equation 2.10 permits us to study the *time-harmonic* field (or, more precisely, the \\(n\\)-th harmonic)
+Equation 2.11 permits us to study the *time-harmonic* field (or, more precisely, the \\(n\\)-th harmonic)
 
-$$ \tag{2.12}
+$$ \tag{2.13}
 	\bm{E}(\bm{r}, t)
 	= \mathcal{Re} \big\lbrace \bm{E}\_n(\bm{r}, \omega\_n) e^{i \omega\_n t} \big\rbrace
 	= \mathcal{Re} \big\lbrace \bm{E}(\bm{r}) e^{i \omega\_n t} \big\rbrace
 $$
 
-in isolation, and Equation 2.11 - its corresponding phasor
+in isolation, and Equation 2.12 - its corresponding phasor
 
-$$ \tag{2.13}
+$$ \tag{2.14}
 	\bm{E}(\bm{r}, \omega)
 	= \sqrt{2 \pi} \bm{E}\_n(\bm{r}, \omega\_n) \delta(\omega\_n - \omega)
 	= \sqrt{2 \pi} \bm{E}(\bm{r}) \delta(\omega\_n - \omega).
@@ -301,9 +309,9 @@ $$
 
 The simplified notation \\(\bm{E}(\bm{r}) = \bm{E}\_n(\bm{r}, \omega\_n)\\) has been chosen for compatibility with existing literature, and to avoid the temptation to integrate or differentiate with respect to \\(\omega\_n\\).
 
-Substitution of Equation 2.13 (where we can replace \\(\bm{E}\\) by \\(\bm{B}\\), \\(\bm{D}\\), \\(\bm{H}\\), \\(\bm{J\_f}\\) or \\(\rho\_f\\)) into Equations 2.6 yields
+Substitution of Equation 2.14 (where we can replace \\(\bm{E}\\) by \\(\bm{B}\\), \\(\bm{D}\\), \\(\bm{H}\\), \\(\bm{J\_f}\\) or \\(\rho\_f\\)) into Equations 2.6 yields
 
-$$ \tag{2.14}
+$$ \tag{2.15}
 \begin{aligned}
 	&\nabla \times \big( \bm{E}(\bm{r}) e^{i \omega_n t} \big)
 	+ \frac{\partial}{\partial t} \big( \bm{B}(\bm{r}) e^{i \omega_n t} \big) = 0, &
@@ -318,7 +326,7 @@ $$
 
 Performing differentiation with respect to time and division by the pervasive \\(e^{i \omega_n t}\\) factor yields Maxwell's equations for monochromatic fields \[[7](#references) (ch. 2.3), [8](#references) (ch. 2.2)\]:
 
-$$ \tag{2.15}
+$$ \tag{2.16}
 \begin{aligned}
 	&\nabla \times \bm{E}(\bm{r}) + i \omega_n \bm{B}(\bm{r}) = 0, &
 	&\nabla \cdot  \bm{B}(\bm{r}) = 0, \cr
@@ -327,22 +335,22 @@ $$ \tag{2.15}
 \end{aligned}
 $$
 
-If we take divergence of Equation 2.15.3, combine the result with Equation 2.15.4, and use the fact that [divergence of curl](https://en.wikipedia.org/wiki/Vector_calculus_identities#Divergence_of_curl_is_zero) is zero, we obtain the [continuity equation](https://en.wikipedia.org/wiki/Continuity_equation) that expresses the [conservation of charge](https://en.wikipedia.org/wiki/Charge_conservation):
+If we take divergence of Equation 2.16.3, combine the result with Equation 2.16.4, and use the fact that [divergence of curl](https://en.wikipedia.org/wiki/Vector_calculus_identities#Divergence_of_curl_is_zero) is zero, we obtain the [continuity equation](https://en.wikipedia.org/wiki/Continuity_equation) that expresses the [conservation of charge](https://en.wikipedia.org/wiki/Charge_conservation):
 
-$$ \tag{2.16}
+$$ \tag{2.17}
 	\nabla \cdot \bm{J\_f}(\bm{r}) = - i \omega_n \rho\_f(\bm{r}).
 $$
 
 For future convenience, we shall define the decomposition of the *free* charges and currents into the *source* and the *induced* parts \[[8](#references) (ch. 2.2)\]:
 
-$$ \tag{2.17}
+$$ \tag{2.18}
 	\rho\_f = \rho\_s + \rho\_i, \quad
 	\bm{J\_f} = \bm{J\_s} + \bm{J\_i}.
 $$
 
 Continuity of charge implies that
 
-$$ \tag{2.18}
+$$ \tag{2.19}
 	\rho\_s(\bm{r}) = \frac{i}{\omega_n} \nabla \cdot \bm{J\_s}(\bm{r}), \quad
 	\rho\_i(\bm{r}) = \frac{i}{\omega_n} \nabla \cdot \bm{J\_i}(\bm{r}).
 $$
