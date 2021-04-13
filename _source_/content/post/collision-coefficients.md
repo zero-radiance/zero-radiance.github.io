@@ -247,8 +247,8 @@ where we defined \\(\omega\_n = n \omega\_1\\), with the coefficients \\(\bm{E}\
 
 $$ \tag{2.8}
 	\bm{E}\_n(\bm{r}, \omega\_n)
-	= \frac{1}{T\_1} \int\_{0}^{T\_1} \bm{E}(\bm{r}, t) e^{-i \omega\_n t} dt
-	= \braket{\bm{E}(\bm{r}, t) \vert\ e^{i \omega\_n t}}.
+	= \frac{1}{T_1} \int\_{-T_1/2}^{\thinspace T_1/2} \bm{E}(\bm{r}, t) e^{-i \omega\_n t} dt
+	= \braket{\bm{E}(\bm{r}, t) \vert e^{i \omega\_n t}}.
 $$
 
 Equation 2.8 can be interpreted as the projection of the field onto the [Fourier basis functions](https://en.wikipedia.org/wiki/Fourier_series#Hilbert_space_interpretation), with Equation 2.7 showing the reconstruction. The beautiful thing about the Fourier basis is that it is orthogonal, which means that the individual elements of Equation 2.7 (called *harmonics*) are completely independent of each other.
@@ -490,7 +490,7 @@ We are particularly interested in a steady-state solution of Maxwell's equations
 
 $$ \tag{6.18}
 	\langle \bm{S\_t} \rangle
-	= \frac{1}{T} \int\_{-T/2}^{\thinspace T/2} \bm{S}(\bm{r}, t - t') \thinspace dt'.
+	= \frac{1}{T} \int\_{-T/2}^{\thinspace T/2} \bm{S}(\bm{r}, t + t') \thinspace dt'.
 $$
 
 It becomes especially useful once you consider a fixed direction \\(\bm{n}\\). Then, according to Equation 6.14,
