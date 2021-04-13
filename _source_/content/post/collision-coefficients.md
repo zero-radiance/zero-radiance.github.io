@@ -80,7 +80,7 @@ $$ \tag{1.3}
 	\frac{\partial E\_x}{\partial x} + \frac{\partial E\_y}{\partial y} + \frac{\partial E\_z}{\partial z}
 $$
 
-is the [divergence](https://en.wikipedia.org/wiki/Divergence) operator, both given in Cartesian coordinates. \\(\epsilon\_0\\) and \\(\mu\_0\\) are the [vacuum permittivity](https://en.wikipedia.org/wiki/Vacuum_permittivity) and the [vacuum permeability](https://en.wikipedia.org/wiki/Vacuum_permeability), respectively, and are connected by the [speed of light](https://en.wikipedia.org/wiki/Speed_of_light)
+is the [divergence](https://en.wikipedia.org/wiki/Divergence) operator, both given in Cartesian coordinates. \\(\epsilon\_0\\) and \\(\mu\_0\\) are the [vacuum permittivity](https://en.wikipedia.org/wiki/Vacuum_permittivity) and the [vacuum permeability](https://en.wikipedia.org/wiki/Vacuum_permeability), respectively, which are connected by the [speed of light](https://en.wikipedia.org/wiki/Speed_of_light)
 
 $$ \tag{1.4}
 	c = (\epsilon\_0 \mu\_0)^{-1/2}.
@@ -92,17 +92,17 @@ $$ \tag{1.5}
 	Q(t) = \iiint\_{V} \rho(\bm{r}, t) \thinspace dV.
 $$
 
-Moving charges form a current. If their velocity is \\(\bm{v}\\), the *volume* [current density](https://en.wikipedia.org/wiki/Current_density) \\(\bm{J}\\) is simply
+Moving charged particles form a current. If their velocity is \\(\bm{v}\\), the *volume* [current density](https://en.wikipedia.org/wiki/Current_density) \\(\bm{J}\\) is simply
 
 $$ \tag{1.6}
 	\bm{J}(\bm{r}, t) = \rho(\bm{r}, t) \bm{v}(\bm{r}, t).
 $$
 
-Of course, the individual electric charges may be located at different points, have different charges and velocities - the density is just a convenient mathematical abstraction.
+Of course, individual particles may be located at different points, and have different electric charges and velocities - the density is just a convenient mathematical abstraction.
 
-While this kind of parametrization is simple and useful, due to the sheer number of charges in the bulk matter, you can't see the forest for the trees. Therefore, applied physics often uses a different representation of matter, which we shall now discuss.
+While this kind of parametrization is simple and useful, due to the sheer number of charged particles in bulk matter, you can't see the forest for the trees. Therefore, applied physics often uses a different representation of matter, which we shall now discuss.
 
-First, we identify two types of charges - bound and free. As the name implies, *free* charges are able to effortlessly move around the material, or even outside it, the typical example being the conduction current in a copper wire. The *bound* [current](https://en.wikipedia.org/wiki/Current_density#Polarization_and_magnetization_currents) and [charge densities](https://en.wikipedia.org/wiki/Charge_density#Bound_charge), \\(\bm{J\_b}\\) and \\(\rho\_b\\), are more difficult to reason about. They can be characterized in terms of [polarization of matter](https://en.wikipedia.org/wiki/Maxwell%27s_equations#Auxiliary_fields,_polarization_and_magnetization):
+First, we identify two types of charges - bound and free. As the name implies, *free* charges are able to effortlessly move around the material, the typical example being the conduction current in a copper wire. The *bound* [current](https://en.wikipedia.org/wiki/Current_density#Polarization_and_magnetization_currents) and [charge densities](https://en.wikipedia.org/wiki/Charge_density#Bound_charge), \\(\bm{J\_b}\\) and \\(\rho\_b\\), are more difficult to reason about. They can be characterized in terms of [polarization of matter](https://en.wikipedia.org/wiki/Maxwell%27s_equations#Auxiliary_fields,_polarization_and_magnetization):
 
 $$ \tag{1.7}
 	\bm{J\_b}(\bm{r}, t) = \nabla \times \bm{M}(\bm{r}, t) + \frac{\partial}{\partial t} \bm{P}(\bm{r}, t), \quad
@@ -111,7 +111,7 @@ $$
 
 where \\(\bm{P}\\) is the [electric polarization](https://en.wikipedia.org/wiki/Polarization_density) (electric dipole moment per unit volume), \\(\bm{M}\\) is the [magnetic polarization](https://en.wikipedia.org/wiki/Magnetization) (magnetic dipole moment per unit volume).
 
-Substitution of Equation 1.7.1 into 1.1.3 and 1.7.2 into 1.1.4 yields
+Substitution of Equation 1.7.1 into 1.1.3 and Equation 1.7.2 into 1.1.4 yields
 
 $$ \tag{1.8}
 \begin{aligned}
@@ -147,7 +147,7 @@ $$ \tag{1.11}
 \end{aligned}
 $$
 
-As discussed in \[[5](#references) (vol. II, ch 32.2), [6](#references) (ch. 1.1.1)\], \\(\bm{E}\\) and \\(\bm{B}\\) are considered fundamental fields, and \\(\bm{D}\\) and \\(\bm{H}\\) are [auxiliary fields](https://en.wikipedia.org/wiki/Maxwell%27s_equations#Auxiliary_fields,_polarization_and_magnetization) that arise due to the influence of matter. We shall soon see that, in many cases, they are related in a simple way.
+As discussed in \[[5](#references) (vol. II, ch 32.2), [6](#references) (ch. 1.1.1)\], \\(\bm{E}\\) and \\(\bm{B}\\) are considered the fundamental fields, and \\(\bm{D}\\) and \\(\bm{H}\\) are the [auxiliary fields](https://en.wikipedia.org/wiki/Maxwell%27s_equations#Auxiliary_fields,_polarization_and_magnetization) that arise due to the influence of matter. We shall soon see that, in many cases, these two groups are related in a simple way.
 
 On the conceptual level, we would like the properties of matter to be continuous everywhere, which leads to continuous electromagnetic fields. But, sometimes, it is convenient to introduce a discontinuity to approximate a very rapid (yet continuous) variation of optical properties. At the *optical interface*, the fields must satisfy the [boundary conditions](https://en.wikipedia.org/wiki/Interface_conditions_for_electromagnetic_fields) \[[6](#references) (ch. 1.1.3), [7](#references) (ch. 2.2), [8](#references) (ch. 2.4)\]. If \\(\bm{n\_{12}}\\) is a unit normal vector pointing from region 1 to region 2, the normal components of the fields must be such that
 
@@ -165,7 +165,7 @@ $$
 
 where \\(\bm{J\_n}\\) is the *surface* current density.
 
-We take Maxwell's equations as axioms and use them as a foundation on which we base the theory presented in the following sections.
+We take Maxwell's equations as axioms, and use them as a foundation on which we base the theory presented in the following sections.
 
 ## Maxwell's Equations in the Frequency Domain
 
@@ -173,7 +173,7 @@ Maxwell's equations can be simplified by transforming the fields from the time t
 
 Define[^1] the [Fourier transform](https://en.wikipedia.org/wiki/Fourier_transform) of the electric vector field \\(\bm{E}(\bm{r}, t)\\) as
 
-[^1]: The choice of the sign of the complex exponential is arbitrary, and determines the sign of the imaginary components of both the complex permittivity and the complex refractive index.
+[^1]: The choice of the sign of the complex exponential is arbitrary; it determines the sign of the imaginary components of both the complex permittivity and the complex refractive index.
 
 $$ \tag{2.1}
 	\bm{E}(\bm{r}, \omega)
@@ -210,14 +210,16 @@ $$ \tag{2.4}
 	 + \frac{1}{\sqrt{2 \pi}} \int\_{-\infin}^{0} [\bm{E}(\bm{r}, -\omega)]^{\*} e^{i \omega t} d\omega \cr
 	&= \frac{1}{\sqrt{2 \pi}} \int\_{0}^{\infin} \big( \bm{E}(\bm{r}, \omega) e^{i \omega t} + [\bm{E}(\bm{r}, \omega)]^{\*} e^{-i \omega t} \big) d\omega \cr
 	&= \frac{1}{\sqrt{2 \pi}} \int\_{0}^{\infin} \big( \bm{E}(\bm{r}, \omega) e^{i \omega t} + \big[ \bm{E}(\bm{r}, \omega) e^{i \omega t} \big]^{\*} \big) d\omega \cr
-	&= \frac{1}{\sqrt{2 \pi}} \int\_{0}^{\infin} 2 \thinspace \mathcal{Re} \big\lbrace \bm{E}(\bm{r}, \omega) e^{i \omega t} \big\rbrace d\omega
+	&= \frac{1}{\sqrt{2 \pi}} \int\_{0}^{\infin} 2 \thinspace \mathcal{Re} \big\lbrace \bm{E}(\bm{r}, \omega) e^{i \omega t} \big\rbrace d\omega,
 \end{aligned}
 $$
 
-which comes from the definition of the real part of a complex number:
+which follows from the definition of the real part of a complex number:
 
 $$ \tag{2.5}
-	\mathcal{Re} \lbrace z \rbrace = \frac{1}{2} \big( z + z^{\*} \big) = \frac{1}{2} \big(r e^{i \theta} + r e^{-i \theta} \big).
+	\mathcal{Re} \lbrace z \rbrace
+	= \frac{1}{2} \big( z + z^{\*} \big)
+	= \frac{1}{2} \big(r e^{i \theta} + r e^{-i \theta} \big).
 $$
 
 We can define integral forms of the fields by replacing \\(\bm{E}\\) by \\(\bm{B}\\), \\(\bm{D}\\), \\(\bm{H}\\), \\(\bm{J\_f}\\) or \\(\rho\_f\\) in Equation 2.4. If we substitute these integrals into Equations 1.11, and if we assume that we can perform [differentiation under the integral sign](https://en.wikipedia.org/wiki/Leibniz_integral_rule), we obtain
@@ -233,23 +235,23 @@ $$ \tag{2.6}
 \end{aligned}
 $$
 
-Generally speaking, equality of integrands does not follow from equality of integrals (but the opposite is true). To simplify Equations 2.6 further, we must make an assumption that the fields are periodic functions \[[5](#references) (vol. I, ch. 50) [6](#references) (ch. 1.3.3, 1.4.3)\]. This restriction is not as severe as it may seem, for we may choose the period to be as large as necessary, ensuring both the adequate coverage of the spectrum and the sufficient resolution in the frequency domain. The benefits are great, as it allows us to represent the fields using the [Fourier series](https://en.wikipedia.org/wiki/Fourier_series#Complex-valued_functions)
+Generally speaking, equality of integrands does not follow from equality of integrals (but the opposite is true). In order to be able to simplify Equations 2.6 further, we must make an assumption that the electric and the magnetic fields are periodic functions, and that their *fundamental period* \\(T\_1 = 2 \pi / \omega\_1\\) is the same \[[5](#references) (vol. I, ch. 50) [6](#references) (ch. 1.3.3, 1.4.3)\]. This restriction is not as severe as it may seem, for we may choose the period to be as large as necessary. And the benefits are great, for it allows us to represent the fields using the [Fourier series](https://en.wikipedia.org/wiki/Fourier_series#Complex-valued_functions)
 
 $$ \tag{2.7}
 	\bm{E}(\bm{r}, t)
-	= \sum\_{n = -\infin}^{\infin} \bm{E}\_n(\bm{r}, n \omega\_0) e^{i n \omega\_0 t}
+	= \sum\_{n = -\infin}^{\infin} \bm{E}\_n(\bm{r}, n \omega\_1) e^{i n \omega\_1 t}
 	= \sum\_{n = -\infin}^{\infin} \bm{E}\_n(\bm{r}, \omega\_n) e^{i \omega\_n t},
 $$
 
-with the coefficients \\(\bm{E}\_n\\) given by the integral over the *fundamental period* \\(T\_0 = 2 \pi / \omega\_0\\):
+where we defined \\(\omega\_n = n \omega\_1\\), with the coefficients \\(\bm{E}\_n\\) given by the integral
 
 $$ \tag{2.8}
 	\bm{E}\_n(\bm{r}, \omega\_n)
-	= \frac{1}{T\_0} \int\_{0}^{T\_0} \bm{E}(\bm{r}, t) e^{-i \omega\_n t} dt
-	= \big\langle \bm{E}(\bm{r}, t), \thinspace e^{i \omega\_n t} \big\rangle.
+	= \frac{1}{T\_1} \int\_{0}^{T\_1} \bm{E}(\bm{r}, t) e^{-i \omega\_n t} dt
+	= \braket{\bm{E}(\bm{r}, t) \vert\ e^{i \omega\_n t}}.
 $$
 
-Equation 2.8 can be interpreted as the projection of the field onto the [Fourier basis functions](https://en.wikipedia.org/wiki/Fourier_series#Hilbert_space_interpretation), with Equation 2.7 showing the reconstruction. The beautiful thing about the Fourier basis is that it is orthogonal, which means that the individual components of Equation 2.7 are completely independent of each other.
+Equation 2.8 can be interpreted as the projection of the field onto the [Fourier basis functions](https://en.wikipedia.org/wiki/Fourier_series#Hilbert_space_interpretation), with Equation 2.7 showing the reconstruction. The beautiful thing about the Fourier basis is that it is orthogonal, which means that the individual elements of Equation 2.7 (called *harmonics*) are completely independent of each other.
 
 Similarly to Equation 2.2, if the time-domain field is real,
 
@@ -262,13 +264,13 @@ which permits us to simplify Equation 2.7:
 $$ \tag{2.10}
 \begin{aligned}
 	\bm{E}(\bm{r}, t)
-	&= \bm{E}\_0(\bm{r}, \omega\_0) + \sum\_{n = 1}^{\infin} \Big( \bm{E}\_n(\bm{r}, \omega\_n) e^{i \omega\_n t} + \bm{E}\_{-n}(\bm{r}, -\omega\_n) e^{-i \omega\_n t} \Big) \cr
-	&= \bm{E}\_0(\bm{r}, \omega\_0) + \sum\_{n = 1}^{\infin} \Big( \bm{E}\_n(\bm{r}, \omega\_n) e^{i \omega\_n t} + \big[ \bm{E}\_n(\bm{r}, \omega\_n) e^{i \omega\_n t} \big]^{\*} \Big) \cr
-	&= \bm{E}\_0(\bm{r}, \omega\_0) + \sum\_{n = 1}^{\infin} 2 \thinspace \mathcal{Re} \big\lbrace \bm{E}\_n(\bm{r}, \omega\_n) e^{i \omega\_n t} \big\rbrace.
+	&= \bm{E}\_0(\bm{r}, 0) + \sum\_{n = 1}^{\infin} \Big( \bm{E}\_n(\bm{r}, \omega\_n) e^{i \omega\_n t} + \bm{E}\_{-n}(\bm{r}, -\omega\_n) e^{-i \omega\_n t} \Big) \cr
+	&= \bm{E}\_0(\bm{r}, 0) + \sum\_{n = 1}^{\infin} \Big( \bm{E}\_n(\bm{r}, \omega\_n) e^{i \omega\_n t} + \big[ \bm{E}\_n(\bm{r}, \omega\_n) e^{i \omega\_n t} \big]^{\*} \Big) \cr
+	&= \bm{E}\_0(\bm{r}, 0) + \sum\_{n = 1}^{\infin} 2 \thinspace \mathcal{Re} \big\lbrace \bm{E}\_n(\bm{r}, \omega\_n) e^{i \omega\_n t} \big\rbrace.
 \end{aligned}
 $$
 
-What happens when we Fourier transform a periodic function? Combining Equations 2.1 and 2.10,
+What happens when we Fourier transform a periodic function? Combining Equations 2.1 and 2.7,
 
 $$ \tag{2.11}
 \begin{aligned}
@@ -281,7 +283,7 @@ $$
 
 where we used the exponential definition of the [Dirac delta function](https://en.wikipedia.org/wiki/Dirac_delta_function) \\(\delta(x)\\).
 
-Equation 2.10 permits us to study the *time-harmonic* field (or, more precisely, it's \\(n\\)-th harmonic component)
+Equation 2.10 permits us to study the *time-harmonic* field (or, more precisely, the \\(n\\)-th harmonic)
 
 $$ \tag{2.12}
 	\bm{E}(\bm{r}, t)
@@ -297,50 +299,52 @@ $$ \tag{2.13}
 	= \sqrt{2 \pi} \bm{E}(\bm{r}) \delta(\omega\_n - \omega).
 $$
 
-The simplified notation shown above has been chosen for compatibility with existing literature, and to avoid the temptation to integrate over \\(\omega\_n\\).
+The simplified notation \\(\bm{E}(\bm{r}) = \bm{E}\_n(\bm{r}, \omega\_n)\\) has been chosen for compatibility with existing literature, and to avoid the temptation to integrate or differentiate with respect to \\(\omega\_n\\).
 
----
+Substitution of Equation 2.13 (where we can replace \\(\bm{E}\\) by \\(\bm{B}\\), \\(\bm{D}\\), \\(\bm{H}\\), \\(\bm{J\_f}\\) or \\(\rho\_f\\)) into Equations 2.6 yields
 
-$$ \tag{2.6}
+$$ \tag{2.14}
 \begin{aligned}
-	&\nabla \times \big( \bm{E}(\bm{r}, \omega) e^{i \omega t} \big) + \frac{\partial}{\partial t} \big( \bm{B}(\bm{r}, \omega) e^{i \omega t} \big) = 0, &
-	&\nabla \cdot  \big( \bm{B}(\bm{r}, \omega) e^{i \omega t} \big) = 0, \cr
-	&\nabla \times \big( \bm{H}(\bm{r}, \omega) e^{i \omega t} \big) - \frac{\partial}{\partial t} \big( \bm{D}(\bm{r}, \omega) e^{i \omega t} \big) = \bm{J\_f}(\bm{r}, \omega) e^{i \omega t}, &
-	&\nabla \cdot  \big( \bm{D}(\bm{r}, \omega) e^{i \omega t} \big) = \rho\_f(\bm{r}, \omega) e^{i \omega t}.
+	&\nabla \times \big( \bm{E}(\bm{r}) e^{i \omega_n t} \big)
+	+ \frac{\partial}{\partial t} \big( \bm{B}(\bm{r}) e^{i \omega_n t} \big) = 0, &
+	&\nabla \cdot  \big( \bm{B}(\bm{r}) e^{i \omega_n t} \big) = 0, \cr
+	&\nabla \times \big( \bm{H}(\bm{r}) e^{i \omega_n t} \big)
+	- \frac{\partial}{\partial t} \big( \bm{D}(\bm{r}) e^{i \omega_n t} \big)
+	= \bm{J\_f}(\bm{r}) e^{i \omega_n t}, &
+	&\nabla \cdot  \big( \bm{D}(\bm{r}) e^{i \omega_n t} \big)
+	= \rho\_f(\bm{r}) e^{i \omega_n t}.
 \end{aligned}
 $$
 
-Performing differentiation with respect to time and division by the pervasive \\(e^{i \omega t}\\) factor yields Maxwell's equations for monochromatic fields \[[7](#references) (ch. 2.3), [8](#references) (ch. 2.2)\]:
+Performing differentiation with respect to time and division by the pervasive \\(e^{i \omega_n t}\\) factor yields Maxwell's equations for monochromatic fields \[[7](#references) (ch. 2.3), [8](#references) (ch. 2.2)\]:
 
-$$ \tag{2.7}
+$$ \tag{2.15}
 \begin{aligned}
-	&\nabla \times \bm{E}(\bm{r}, \omega) + i \omega \bm{B}(\bm{r}, \omega) = 0, &
-	&\nabla \cdot  \bm{B}(\bm{r}, \omega) = 0, \cr
-	&\nabla \times \bm{H}(\bm{r}, \omega) - i \omega \bm{D}(\bm{r}, \omega) = \bm{J\_f}(\bm{r}, \omega), &
-	&\nabla \cdot  \bm{D}(\bm{r}, \omega) = \rho\_f(\bm{r}, \omega).
+	&\nabla \times \bm{E}(\bm{r}) + i \omega_n \bm{B}(\bm{r}) = 0, &
+	&\nabla \cdot  \bm{B}(\bm{r}) = 0, \cr
+	&\nabla \times \bm{H}(\bm{r}) - i \omega_n \bm{D}(\bm{r}) = \bm{J\_f}(\bm{r}), &
+	&\nabla \cdot  \bm{D}(\bm{r}) = \rho\_f(\bm{r}).
 \end{aligned}
 $$
 
-Dependence on time is completely gone, which is advantageous since we are interested in the steady state of the field measured over the time interval that is large in comparison to the period of an oscillation.
+If we take divergence of Equation 2.15.3, combine the result with Equation 2.15.4, and use the fact that [divergence of curl](https://en.wikipedia.org/wiki/Vector_calculus_identities#Divergence_of_curl_is_zero) is zero, we obtain the [continuity equation](https://en.wikipedia.org/wiki/Continuity_equation) that expresses the [conservation of charge](https://en.wikipedia.org/wiki/Charge_conservation):
 
-If we take divergence of Equation 2.7.3, combine the result with Equation 2.7.4, and use the fact that [divergence of curl](https://en.wikipedia.org/wiki/Vector_calculus_identities#Divergence_of_curl_is_zero) is zero, we obtain the [continuity equation](https://en.wikipedia.org/wiki/Continuity_equation) that expresses the [conservation of charge](https://en.wikipedia.org/wiki/Charge_conservation):
-
-$$ \tag{2.8}
-	\nabla \cdot \bm{J\_f}(\bm{r}, \omega) = - i \omega \rho\_f(\bm{r}, \omega).
+$$ \tag{2.16}
+	\nabla \cdot \bm{J\_f}(\bm{r}) = - i \omega_n \rho\_f(\bm{r}).
 $$
 
 For future convenience, we shall define the decomposition of the *free* charges and currents into the *source* and the *induced* parts \[[8](#references) (ch. 2.2)\]:
 
-$$ \tag{2.9}
+$$ \tag{2.17}
 	\rho\_f = \rho\_s + \rho\_i, \quad
 	\bm{J\_f} = \bm{J\_s} + \bm{J\_i}.
 $$
 
 Continuity of charge implies that
 
-$$ \tag{2.10}
-	\rho\_s(\bm{r}, \omega) = \frac{i}{\omega} \nabla \cdot \bm{J\_s}(\bm{r}, \omega), \quad
-	\rho\_i(\bm{r}, \omega) = \frac{i}{\omega} \nabla \cdot \bm{J\_i}(\bm{r}, \omega).
+$$ \tag{2.18}
+	\rho\_s(\bm{r}) = \frac{i}{\omega_n} \nabla \cdot \bm{J\_s}(\bm{r}), \quad
+	\rho\_i(\bm{r}) = \frac{i}{\omega_n} \nabla \cdot \bm{J\_i}(\bm{r}).
 $$
 
 ## Force, Energy, and Radiometry
