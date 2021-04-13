@@ -207,9 +207,8 @@ $$ \tag{2.4}
 	&= \mathcal{F^{-1}} \big\lbrace \bm{E}(\bm{r}, \omega) \big\rbrace \cr
 	&= \frac{1}{\sqrt{2 \pi}} \int\_{-\infin}^{\infin} \bm{E}(\bm{r}, \omega) e^{i \omega t} d\omega \cr
 	&= \frac{1}{\sqrt{2 \pi}} \int\_{0}^{\infin} \bm{E}(\bm{r}, \omega) e^{i \omega t} d\omega
-	 + \frac{1}{\sqrt{2 \pi}} \int\_{-\infin}^{0} [\bm{E}(\bm{r}, -\omega)]^{\*} e^{i \omega t} d\omega \cr
-	&= \frac{1}{\sqrt{2 \pi}} \int\_{0}^{\infin} \big( \bm{E}(\bm{r}, \omega) e^{i \omega t} + [\bm{E}(\bm{r}, \omega)]^{\*} e^{-i \omega t} \big) d\omega \cr
-	&= \frac{1}{\sqrt{2 \pi}} \int\_{0}^{\infin} \big( \bm{E}(\bm{r}, \omega) e^{i \omega t} + \big[ \bm{E}(\bm{r}, \omega) e^{i \omega t} \big]^{\*} \big) d\omega \cr
+	 + \frac{1}{\sqrt{2 \pi}} \int\_{-\infin}^{0} \bm{E}(\bm{r}, \omega) e^{i \omega t} d\omega \cr
+	&= \frac{1}{\sqrt{2 \pi}} \int\_{0}^{\infin} \Big( \bm{E}(\bm{r}, \omega) e^{i \omega t} + \big[ \bm{E}(\bm{r}, \omega) e^{i \omega t} \big]^{\*} \Big) d\omega \cr
 	&= \frac{1}{\sqrt{2 \pi}} \int\_{0}^{\infin} 2 \thinspace \mathcal{Re} \big\lbrace \bm{E}(\bm{r}, \omega) e^{i \omega t} \big\rbrace d\omega,
 \end{aligned}
 $$
@@ -235,19 +234,19 @@ $$ \tag{2.6}
 \end{aligned}
 $$
 
-Generally speaking, equality of integrands does not follow from equality of integrals (but the opposite is true). In order to be able to simplify Equations 2.6 further, we must make an assumption that the electric and the magnetic fields are periodic functions, and that their *fundamental period* \\(T\_1 = 2 \pi / \omega\_1\\) is the same \[[5](#references) (vol. I, ch. 50) [6](#references) (ch. 1.3.3, 1.4.3)\]. This restriction is not as severe as it may seem, for we may choose the period to be as large as necessary. And the benefits are great, for it allows us to represent the fields using the [Fourier series](https://en.wikipedia.org/wiki/Fourier_series#Complex-valued_functions)
+Generally speaking, equality of integrands does not follow from equality of integrals (but the opposite is true). In order to be able to simplify Equations 2.6 further, we must make an assumption that the electromagnetic field is a periodic function, such that the *fundamental period* \\(T\_1 = 2 \pi / \omega_1\\) of the electric and the magnetic fields is the same \[[5](#references) (vol. I, ch. 50) [6](#references) (ch. 1.3.3, 1.4.3)\]. This restriction is not as severe as it may seem, for we may choose the period to be as large as necessary. And the benefits are great, for it allows us to represent the fields using the [Fourier series](https://en.wikipedia.org/wiki/Fourier_series#Complex-valued_functions)
 
 $$ \tag{2.7}
 	\bm{E}(\bm{r}, t)
-	= \sum\_{n = -\infin}^{\infin} \bm{E}\_n(\bm{r}, n \omega\_1) e^{i n \omega\_1 t}
-	= \sum\_{n = -\infin}^{\infin} \bm{E}\_n(\bm{r}, \omega\_n) e^{i \omega\_n t},
+	= \sum\_{n = -\infin}^{\infin} \bm{E}\_n(\bm{r}, n \omega_1) e^{i n \omega_1 t}
+	= \sum\_{n = -\infin}^{\infin} \bm{E}\_n(\bm{r}, \omega_n) e^{i \omega_n t},
 $$
 
-where we defined \\(\omega\_n = n \omega\_1\\), with the coefficients \\(\bm{E}\_n\\) given by the integral
+where we defined \\(\omega_n = n \omega_1\\), with the coefficients \\(\bm{E}\_n\\) given by the integral
 
 $$ \tag{2.8}
-	\bm{E}\_n(\bm{r}, \omega\_n)
-	= \frac{1}{T_1} \int\_{-T_1/2}^{\thinspace T_1/2} \bm{E}(\bm{r}, t) e^{-i \omega\_n t} dt
+	\bm{E}\_n(\bm{r}, \omega_n)
+	= \frac{1}{T_1} \int\_{-T_1/2}^{\thinspace T_1/2} \bm{E}(\bm{r}, t) e^{-i \omega_n t} dt
 	= \braket{e_n \vert \bm{E}}.
 $$
 
@@ -255,7 +254,7 @@ Equation 2.8 can be interpreted as the [projection](https://en.wikipedia.org/wik
 
 $$ \tag{2.9}
 	\braket{e_n \vert e_m}
-	= \frac{1}{T_1} \int\_{-T_1/2}^{\thinspace T_1/2} e^{i (\omega\_m - \omega\_n) t} dt
+	= \frac{1}{T_1} \int\_{-T_1/2}^{\thinspace T_1/2} e^{i (\omega_m - \omega_n) t} dt
 	= \delta_{m,n}
 $$
 
@@ -264,7 +263,7 @@ where \\(\delta_{m,n}\\) is the [Kronecker delta](https://en.wikipedia.org/wiki/
 Similarly to Equation 2.2, if the time-domain field is real,
 
 $$ \tag{2.10}
-	\bm{E}\_n(\bm{r}, \omega\_n) = [\bm{E}\_{-n}(\bm{r}, -\omega\_n)]^{\*},
+	\bm{E}\_n(\bm{r}, \omega_n) = [\bm{E}\_{-n}(\bm{r}, -\omega_n)]^{\*},
 $$
 
 which permits us to simplify Equation 2.7:
@@ -272,9 +271,11 @@ which permits us to simplify Equation 2.7:
 $$ \tag{2.11}
 \begin{aligned}
 	\bm{E}(\bm{r}, t)
-	&= \bm{E}\_0(\bm{r}, 0) + \sum\_{n = 1}^{\infin} \Big( \bm{E}\_n(\bm{r}, \omega\_n) e^{i \omega\_n t} + \bm{E}\_{-n}(\bm{r}, -\omega\_n) e^{-i \omega\_n t} \Big) \cr
-	&= \bm{E}\_0(\bm{r}, 0) + \sum\_{n = 1}^{\infin} \Big( \bm{E}\_n(\bm{r}, \omega\_n) e^{i \omega\_n t} + \big[ \bm{E}\_n(\bm{r}, \omega\_n) e^{i \omega\_n t} \big]^{\*} \Big) \cr
-	&= \bm{E}\_0(\bm{r}, 0) + \sum\_{n = 1}^{\infin} 2 \thinspace \mathcal{Re} \big\lbrace \bm{E}\_n(\bm{r}, \omega\_n) e^{i \omega\_n t} \big\rbrace.
+	&= \bm{E}\_0(\bm{r}, 0)
+	 + \sum\_{n = 1}^{\infin} \bm{E}\_n(\bm{r}, \omega_n) e^{i \omega_n t}
+	 + \sum\_{n = -\infin}^{-1} \bm{E}\_n(\bm{r}, \omega_n) e^{i \omega_n t} \cr
+	&= \bm{E}\_0(\bm{r}, 0) + \sum\_{n = 1}^{\infin} \Big( \bm{E}\_n(\bm{r}, \omega_n) e^{i \omega_n t} + \big[ \bm{E}\_n(\bm{r}, \omega_n) e^{i \omega_n t} \big]^{\*} \Big) \cr
+	&= \bm{E}\_0(\bm{r}, 0) + \sum\_{n = 1}^{\infin} 2 \thinspace \mathcal{Re} \big\lbrace \bm{E}\_n(\bm{r}, \omega_n) e^{i \omega_n t} \big\rbrace.
 \end{aligned}
 $$
 
@@ -284,8 +285,8 @@ $$ \tag{2.12}
 \begin{aligned}
 	\bm{E}(\bm{r}, \omega)
 	&= \frac{1}{\sqrt{2 \pi}} \int\_{-\infin}^{\infin} \bm{E}(\bm{r}, t) e^{-i \omega t} dt \cr
-	&= \frac{1}{\sqrt{2 \pi}} \sum\_{n = -\infin}^{\infin} \bm{E}\_n(\bm{r}, \omega\_n) \int\_{-\infin}^{\infin} e^{i (\omega\_n - \omega) t} dt \cr
-	&= \frac{1}{\sqrt{2 \pi}} \sum\_{n = -\infin}^{\infin} \bm{E}\_n(\bm{r}, \omega\_n) \big( 2 \pi \delta(\omega\_n - \omega) \big),
+	&= \frac{1}{\sqrt{2 \pi}} \sum\_{n = -\infin}^{\infin} \bm{E}\_n(\bm{r}, \omega_n) \int\_{-\infin}^{\infin} e^{i (\omega_n - \omega) t} dt \cr
+	&= \frac{1}{\sqrt{2 \pi}} \sum\_{n = -\infin}^{\infin} \bm{E}\_n(\bm{r}, \omega_n) \big( 2 \pi \delta(\omega_n - \omega) \big),
 \end{aligned}
 $$
 
@@ -295,19 +296,19 @@ Equation 2.11 permits us to study the *time-harmonic* field (or, more precisely,
 
 $$ \tag{2.13}
 	\bm{E}(\bm{r}, t)
-	= \mathcal{Re} \big\lbrace \bm{E}\_n(\bm{r}, \omega\_n) e^{i \omega\_n t} \big\rbrace
-	= \mathcal{Re} \big\lbrace \bm{E}(\bm{r}) e^{i \omega\_n t} \big\rbrace
+	= \mathcal{Re} \big\lbrace \bm{E}\_n(\bm{r}, \omega_n) e^{i \omega_n t} \big\rbrace
+	= \mathcal{Re} \big\lbrace \bm{E}(\bm{r}) e^{i \omega_n t} \big\rbrace
 $$
 
 in isolation, and Equation 2.12 - its corresponding phasor
 
 $$ \tag{2.14}
 	\bm{E}(\bm{r}, \omega)
-	= \sqrt{2 \pi} \bm{E}\_n(\bm{r}, \omega\_n) \delta(\omega\_n - \omega)
-	= \sqrt{2 \pi} \bm{E}(\bm{r}) \delta(\omega\_n - \omega).
+	= \sqrt{2 \pi} \bm{E}\_n(\bm{r}, \omega_n) \delta(\omega_n - \omega)
+	= \sqrt{2 \pi} \bm{E}(\bm{r}) \delta(\omega_n - \omega).
 $$
 
-The simplified notation \\(\bm{E}(\bm{r}) = \bm{E}\_n(\bm{r}, \omega\_n)\\) has been chosen for compatibility with existing literature, and to avoid the temptation to integrate or differentiate with respect to \\(\omega\_n\\).
+The simplified notation \\(\bm{E}(\bm{r}) = \bm{E}\_n(\bm{r}, \omega_n)\\) has been chosen for compatibility with existing literature, and to avoid the temptation to integrate or differentiate with respect to \\(\omega_n\\).
 
 Substitution of Equation 2.14 (where we can replace \\(\bm{E}\\) by \\(\bm{B}\\), \\(\bm{D}\\), \\(\bm{H}\\), \\(\bm{J\_f}\\) or \\(\rho\_f\\)) into Equations 2.6 yields
 
@@ -361,19 +362,19 @@ Given a mathematical description of electromagnetic radiation in terms of vector
 
 [Conservation of energy](https://en.wikipedia.org/wiki/Conservation_of_energy) is one of the most important principles of physics. Here is one way to state it: the difference between the amount of external energy \\(\mathcal{E\_{ext}}\\) flowing into the volume \\(V\\) and the amount of internal energy \\(\mathcal{E\_{int}}\\) flowing out equals the amount of work \\(\mathcal{W}\\) done inside.
 
-$$ \tag{6.1}
+$$ \tag{3.1}
  	\frac{\partial}{\partial t} \mathcal{E\_{ext}}(V, t) -
  	\frac{\partial}{\partial t} \mathcal{E\_{int}}(V, t) =
  	\frac{\partial}{\partial t} \mathcal{W}(V, t).
 $$
 
-In Equation 6.1, \\(\mathcal{E}\\) refers to a single type of energy: kinetic, electromagnetic, etc. Work transforms a portion of \\(\mathcal{E}\\) into a different type of energy: kinetic into potential, electromagnetic into thermal, and so on. If we account for all types of energy, the total amount of energy is conserved.
+In Equation 3.1, \\(\mathcal{E}\\) refers to a single type of energy: kinetic, electromagnetic, etc. Work transforms a portion of \\(\mathcal{E}\\) into a different type of energy: kinetic into potential, electromagnetic into thermal, and so on. If we account for all types of energy, the total amount of energy is conserved.
 
 Given our focus on electromagnetic energy, we can partition the total amount of energy into the *field energy* and the *matter energy*. In this context, work done by the field on the matter refers to *absorption*, and has a positive sign. Similarly, *emission* is the work done by the matter on the field, and has a negative sign. We shall not consider emissive materials in the analysis presented below.
 
 Mathematically, the [rate of doing work](https://en.wikipedia.org/wiki/Work_(physics)#Mathematical_calculation) is the product of force and velocity:
 
-$$ \tag{6.2}
+$$ \tag{3.2}
 	\frac{\partial \mathcal{W}}{\partial t} = \bm{F} \cdot \bm{v}.
 $$ 
 
@@ -381,19 +382,19 @@ Thus, to compute it, we must recall the definition of the electromagnetic force.
 
 If a particle with the electric charge \\(q\\) moving at the velocity \\(\bm{v}\\) is placed in an electromagnetic field, it experiences the [Lorentz force](https://en.wikipedia.org/wiki/Lorentz_force)
 
-$$ \tag{6.3}
+$$ \tag{3.3}
 	\bm{F}(\bm{r}, t) = q(\bm{r}, t) \big( \bm{E}(\bm{r}, t) + \bm{v}(\bm{r}, t) \times \bm{B}(\bm{r}, t) \big).
 $$
 
 For the charge density \\(\rho\\) and the volume element \\(dV\\), the corresponding equation is
 
-$$ \tag{6.4}
+$$ \tag{3.4}
 	d\bm{F}(\bm{r}, t) = \rho(\bm{r}, t) \big( \bm{E}(\bm{r}, t) + \bm{v}(\bm{r}, t) \times \bm{B}(\bm{r}, t) \big) \thinspace dV.
 $$
 
 Therefore, the amount of work done per unit time by the field on the matter is
 
-$$ \tag{6.5}
+$$ \tag{3.5}
 	\frac{\partial}{\partial t} \mathcal{W}(V, t) =
 	\iiint\_{V} \bm{v}(\bm{r}, t) \cdot d\bm{F}(\bm{r}, t) =
     \iiint\_{V} \bm{E}(\bm{r}, t) \cdot \rho(\bm{r}, t) \bm{v}(\bm{r}, t) \thinspace dV.
@@ -401,14 +402,14 @@ $$
 
 Since the current density is just a collection of moving charges per unit volume (see Equation 1.6),
 
-$$ \tag{6.6}
+$$ \tag{3.6}
 	\frac{\partial}{\partial t} \mathcal{W}(V, t) =
     \iiint\_{V} \bm{E}(\bm{r}, t) \cdot \bm{J}(\bm{r}, t) \thinspace dV.
 $$
 
 Maxwell's equations allow us to express a current in terms of fields. Substitution of Equation 1.1.3 yields
 
-$$ \tag{6.7}
+$$ \tag{3.7}
 	\iiint\_{V} \bm{E} \cdot \bm{J} \thinspace dV = 
     \iiint\_{V} \bm{E} \cdot \Big( \nabla \times \big( \mu\_0^{-1} \bm{B} \big) -
     \frac{\partial}{\partial t} \big( \epsilon\_0 \bm{E} \big) \Big) dV.
@@ -416,13 +417,13 @@ $$
 
 Since [divergence of cross product](https://en.wikipedia.org/wiki/Vector_calculus_identities#Cross_product_rule) is
 
-$$ \tag{6.8}
+$$ \tag{3.8}
 	\nabla \cdot (\bm{E} \times \bm{B}) = (\nabla \times \bm{E}) \cdot \bm{B} - \bm{E} \cdot (\nabla \times \bm{B}),
 $$
 
-we can reformulate the integrand of Equation 6.7 as
+we can reformulate the integrand of Equation 3.7 as
 
-$$ \tag{6.9}
+$$ \tag{3.9}
 	\bm{E} \cdot \bm{J} = 
     \mu\_0^{-1} \big( (\nabla \times \bm{E}) \cdot \bm{B} - \nabla \cdot (\bm{E} \times \bm{B}) \big) -
     \epsilon\_0 \bm{E} \cdot \frac{\partial \bm{E}}{\partial t}.
@@ -430,7 +431,7 @@ $$
 
 The curl of \\(\bm{E}\\) is also given by Maxwell's equations (see Equation 1.1.1). Thus we can write
 
-$$ \tag{6.10}
+$$ \tag{3.10}
 	\bm{E} \cdot \bm{J} = 
     \mu\_0^{-1} \big( {-\bm{B}} \cdot \frac{\partial \bm{B}}{\partial t} - \nabla \cdot (\bm{E} \times \bm{B}) \big) -
     \epsilon\_0 \bm{E} \cdot \frac{\partial \bm{E}}{\partial t}.
@@ -438,7 +439,7 @@ $$
 
 Moving the dot products under the derivative sign and grouping the derivatives produces a simpler expression
 
-$$ \tag{6.11}
+$$ \tag{3.11}
 	\bm{E} \cdot \bm{J} =
 	-\mu\_0^{-1} \nabla \cdot (\bm{E} \times \bm{B}) -
 	\frac{\partial}{\partial t} \Big( \frac{\epsilon\_0}{2} (\bm{E} \cdot \bm{E}) +
@@ -447,7 +448,7 @@ $$
 
 We can observe that the rate of doing work is a balance of inflow of \\((\bm{E} \times \bm{B})\\) and the rate of change of the squared magnitudes of the fields. The physical significance of this expression becomes more apparent if we return to the integral form
 
-$$ \tag{6.12}
+$$ \tag{3.12}
 	\frac{\partial \mathcal{W}}{\partial t} = 
     \iiint\_{V} -\mu\_0^{-1} \nabla \cdot (\bm{E} \times \bm{B}) \thinspace dV -
     \frac{\partial}{\partial t} \iiint\_{V} \Big( \frac{\epsilon\_0}{2} E^2 + \frac{\mu\_0^{-1}}{2} B^2 \Big) dV 
@@ -455,7 +456,7 @@ $$
 
 and use the [divergence theorem](https://en.wikipedia.org/wiki/Divergence_theorem) to replace the leftmost volume integral with an integral taken over the bounding surface \\(\delta V\\) of the volume \\(V\\):
 
-$$ \tag{6.13}
+$$ \tag{3.13}
 	\frac{\partial \mathcal{W}}{\partial t} = 
     \oiint\_{\delta V} \mu\_0^{-1} (\bm{E} \times \bm{B}) \cdot (-\bm{n}) \thinspace dA -
     \frac{\partial}{\partial t} \iiint\_{V} \Big( \frac{\epsilon\_0}{2} E^2 + \frac{\mu\_0^{-1}}{2} B^2 \Big) dV,
@@ -463,30 +464,30 @@ $$
 
 where \\(\bm{n}\\) is the outward-facing surface normal.
 
-According to Equation 6.1, the right-hand side of Equation 6.14 represents the difference between the rates of inflow and outflow of energy. Thus, the first term on the right gives the amount of external energy (per unit time) flowing through the bounding surface into the volume,
+According to Equation 3.1, the right-hand side of Equation 3.14 represents the difference between the rates of inflow and outflow of energy. Thus, the first term on the right gives the amount of external energy (per unit time) flowing through the bounding surface into the volume,
 
-$$ \tag{6.14}
+$$ \tag{3.14}
  	\frac{\partial}{\partial t} \mathcal{E\_{ext}}(V, t) = 
  	\oiint\_{\delta V} \mu\_0^{-1} \big( \bm{E}(\bm{r}, t) \times \bm{B}(\bm{r}, t) \big) \cdot (-\bm{n}) \thinspace dA,
 $$
 
 and the second term corresponds to the rate at which the amount of energy within the volume decreases:
 
-$$ \tag{6.15}
+$$ \tag{3.15}
  	-\frac{\partial}{\partial t} \mathcal{E\_{int}}(V, t) =
  	-\frac{\partial}{\partial t} \iiint\_{V} \Big( \frac{\epsilon\_0}{2} E^2(\bm{r}, t) + \frac{\mu\_0^{-1}}{2} B^2(\bm{r}, t) \Big) dV.
 $$
 
 According to this interpretation, the *squared* magnitudes of the fields
 
-$$ \tag{6.16}
+$$ \tag{3.16}
 	\frac{\partial}{\partial V} \mathcal{E\_e}(\bm{r}, t) = \frac{\epsilon\_0}{2} E^2(\bm{r}, t), \quad
  	\frac{\partial}{\partial V} \mathcal{E\_m}(\bm{r}, t) = \frac{\mu\_0^{-1}}{2} B^2(\bm{r}, t), \quad
 $$
 
 are the electric and the magnetic energy densities, and
 
-$$ \tag{6.17}
+$$ \tag{3.17}
 	\bm{S}(\bm{r}, t) = \mu\_0^{-1} \big( \bm{E}(\bm{r}, t) \times \bm{B}(\bm{r}, t) \big)
 $$
 
@@ -496,19 +497,207 @@ is the [Poynting vector](https://en.wikipedia.org/wiki/Poynting_vector) that rep
 
 We are particularly interested in a steady-state solution of Maxwell's equations. Specifically, rather than consider the *instantaneous* Poynting vector \\(\bm{S}\\) (which may change trillions of times per second), we focus on the *time-averaged* Poynting vector instead:
 
-$$ \tag{6.18}
-	\langle \bm{S\_t} \rangle
+$$ \tag{3.18}
+	\braket{\bm{S}}
 	= \frac{1}{T} \int\_{-T/2}^{\thinspace T/2} \bm{S}(\bm{r}, t + t') \thinspace dt'.
 $$
 
-It becomes especially useful once you consider a fixed direction \\(\bm{n}\\). Then, according to Equation 6.14,
+It becomes especially useful once you consider a fixed direction \\(\bm{n}\\). Then, according to Equation 3.14,
 
-$$ \tag{6.19}
-	\mathtt{E\_e}(\bm{r}, \bm{n}, t)
-	= \vert \langle \bm{S\_t} \rangle \cdot \bm{n} \vert
-	= \vert \langle \bm{S\_t} \rangle \cos{\theta} \vert $$
+$$ \tag{3.19}
+	\mathtt{E}(\bm{r}, \bm{n}, t)
+	= \braket{\bm{S}} \cdot \bm{n}
+	= \braket{\bm{S}} \cos{\theta}
+$$
 
-is the time-averaged amount of energy per second per unit area that flows through a surface with the normal \\(\bm{n}\\). That is the definition of [irradiance](https://en.wikipedia.org/wiki/Irradiance) \\(\mathtt{E\_e}\\).
+is the time-averaged amount of energy per second per unit area that flows through a surface with the normal \\(\bm{n}\\). That is the definition of [irradiance](https://en.wikipedia.org/wiki/Irradiance) \\(\mathtt{E}\\).
+
+If we solve Maxwell's equations in the frequency domain, we may be interested in the spectral composition of the Poynting vector. Assuming that the electromagnetic field is time-harmonic, Equation 3.17 can be written as
+
+$$ \tag{3.20}
+\begin{aligned}
+	\bm{S}(\bm{r}, t)
+	&=  \mu\_0^{-1}
+		\Bigg( \sum\_{n = -\infin}^{\infin} \bm{E_n}(\bm{r}, \omega_n) e^{i \omega_n t} \Bigg) \times
+		\Bigg( \sum\_{m = -\infin}^{\infin} \bm{B_m}(\bm{r}, \omega_m) e^{i \omega_m t} \Bigg) \cr
+	&=  \mu\_0^{-1} \sum\_{n = -\infin}^{\infin} \sum\_{m = -\infin}^{\infin}
+		\big( \bm{E_n}(\bm{r}, \omega_n) e^{i \omega_n t} \big) \times
+		\big( \bm{B_m}(\bm{r}, \omega_m) e^{i \omega_m t} \big) \cr
+	&=  \mu\_0^{-1} \sum\_{n = -\infin}^{\infin} \sum\_{m = -\infin}^{\infin}
+		\big( \bm{E_n}(\bm{r}, \omega_n) e^{i \omega_n t} \big) \times
+		\big[ \bm{B_m}(\bm{r}, \omega_m) e^{i \omega_m t} \big]^{\*}.
+\end{aligned}
+$$
+Now, consider Equation 3.18 of the time-averaged Poynting vector
+
+$$ \tag{3.21}
+\begin{aligned}
+	\braket{\bm{S}}
+	= \mu\_0^{-1} \sum\_{n = -\infin}^{\infin} \sum\_{m = -\infin}^{\infin}
+	\big( \bm{E_n} e^{i \omega_n t} \big) \times
+	\big[ \bm{B_m} e^{i \omega_m t} \big]^{\*}
+	\Bigg(
+		\frac{1}{T} \int\_{-T/2}^{\thinspace T/2} e^{i (\omega_n - \omega_m) t'} dt'
+	\Bigg).
+\end{aligned}
+$$
+
+First, consider the case of \\(T = T_1\\). Then, according to Equation 2.9 that expresses orthogonality,
+
+$$ \tag{3.22}
+\begin{aligned}
+	\braket{\bm{S}}
+	&=  \mu\_0^{-1} \sum\_{n = -\infin}^{\infin} \sum\_{m = -\infin}^{\infin}
+		\big( \bm{E_n} e^{i \omega_n t} \big) \times
+		\big[ \bm{B_m} e^{i \omega_m t} \big]^{\*}
+		\delta_{m,n} \cr
+	&=  \mu\_0^{-1} \sum\_{n = -\infin}^{\infin}
+		\bm{E_n} \times [\bm{B_n}]^{\*} \cr
+	&=  \mu\_0^{-1} (\bm{E_0} \times \bm{B_0})
+	  + \mu\_0^{-1} \sum\_{n = 1}^{\infin} \bm{E_n} \times [\bm{B_n}]^{\*}
+	  + \mu\_0^{-1} \sum\_{n = -\infin}^{-1} \bm{E_n} \times [\bm{B_n}]^{\*} \cr
+	&=  \mu\_0^{-1} (\bm{E_0} \times \bm{B_0})
+	  + \mu\_0^{-1} \sum\_{n = 1}^{\infin}
+		\Big( 
+			\big( \bm{E_n} \times [\bm{B_n}]^{\*} \big)
+	  	  + \big[ \bm{E_n} \times [\bm{B_n}]^{\*} \big]^{\*}
+	  	\Big) \cr
+	&=  \mu\_0^{-1} (\bm{E_0} \times \bm{B_0})
+	  + \mu\_0^{-1} \sum\_{n = 1}^{\infin}
+	  	2 \thinspace \mathcal{Re} \big\lbrace \bm{E_n} \times [\bm{B_n}]^{\*} \big\rbrace
+\end{aligned}
+$$
+
+is a real vector, as expected.
+
+In the case where \\(T > T_1\\), the total value is a sum of the contribution from a number of whole periods (which is given by Equation 3.22) plus the contribution from a fraction of a period. If \\(T \gg T_1\\), due to time-averaging (the \\(1/T\\) factor), the *relative* contribution from a fraction of a period will be much smaller than the *relative* contribution from a large number of whole periods, so the formula of Equation 3.22 should serve as a good approximation.
+
+Equation 3.22 allows us to define the *time-averaged* Poyting phasor
+
+$$ \tag{3.23}
+	\braket{\bm{S_n}} = \mu\_0^{-1} \big( \bm{E_n}(\bm{r}, \omega_n) \times [\bm{B_n}(\bm{r}, \omega_n)]^{\*} \big)
+$$
+
+such that (cf. Equation 2.11)
+
+$$ \tag{3.24}
+	\braket{\bm{S}}
+	= \braket{\bm{S_0}}
+	+ \sum\_{n = 1}^{\infin} 2 \thinspace \mathcal{Re} \big\lbrace \negthinspace \braket{\bm{S_n}} \negthinspace \big\rbrace.
+$$
+
+It gives us another expression of irradiance \\(\mathtt{E}\\)
+
+$$ \tag{3.25}
+	\mathtt{E}(\bm{r}, \bm{n}, t)
+	= \braket{\bm{S}} \cdot \bm{n}
+	= \braket{\bm{S_0}} \cdot \bm{n}
+	+ \sum\_{n = 1}^{\infin} 2 \thinspace \mathcal{Re} \big\lbrace
+		\negthinspace \braket{\bm{S_n}} \negthinspace
+	  \big\rbrace \cdot \bm{n}
+$$
+
+in terms of [spectral irradiance](https://en.wikipedia.org/wiki/Irradiance#Spectral_irradiance) \\(\mathtt{E\_n}\\)
+
+$$ \tag{3.26}
+	\mathtt{E\_n}(\bm{r}, \bm{n}, t, \omega_n)
+	= \mathcal{Re} \big\lbrace
+		\negthinspace \braket{\bm{S_n}} \negthinspace
+	  \big\rbrace \cdot \bm{n}
+	= \mathcal{Re} \big\lbrace
+		\negthinspace \braket{\bm{S_n}} \negthinspace
+	  \big\rbrace \cos{\theta}.
+$$
+
+---
+
+Is it Re E x Re B ???
+
+Derive for a single harmonic?
+
+Mischenko (2.41) ?
+
+---
+
+$$ \tag{3.22}
+\begin{aligned}
+	\braket{\bm{S}}
+	&= \mu\_0^{-1} \sum\_{n = -\infin}^{\infin}
+		      \bm{E_n}(\bm{r}, \omega_n) 			\times
+		\big[ \bm{B_n}(\bm{r}, \omega_n) \big]^{\*} \cr
+	&= \mu\_0^{-1} \sum\_{n = -\infin}^{\infin}
+		\big[ \bm{E_n}(\bm{r}, \omega_n) \big]^{\*} \times
+		      \bm{B_n}(\bm{r}, \omega_n) 			\cr
+	&= \mu\_0^{-1} \sum\_{n = -\infin}^{\infin}
+		\Big[ \bm{E_n}(\bm{r}, \omega_n) 			\times
+		\big[ \bm{B_n}(\bm{r}, \omega_n) \big]^{\*} \Big]^{\*} \cr
+		 \cr
+	&= \mu\_0^{-1} \big(\bm{E}\_0(\bm{r}, 0) \times \bm{B}\_0(\bm{r}, 0) \big) \cr
+	&+  \mu\_0^{-1} \sum\_{n = 1}^{\infin} \Big(
+			\big( \bm{E}(\bm{r}) e^{i \omega_n t} \big) \times
+			\big[ \bm{B}(\bm{r}) e^{i \omega_n t} \big]^{\*}
+	  	  +	\big[ \bm{E}(\bm{r}) e^{i \omega_n t} \big]^{\*} \times
+			\big( \bm{B}(\bm{r}) e^{i \omega_n t} \big)
+		\Big)
+\end{aligned}
+$$
+
+is real ..? 
+
+---
+
+$$ \tag{3.20}
+	\bm{S}(\bm{r}, t)
+	= \mu\_0^{-1} \big(
+		\mathcal{F^{-1}} \big\lbrace \bm{E}(\bm{r}, \omega) \big\rbrace \times
+		\mathcal{F^{-1}} \big\lbrace \bm{B}(\bm{r}, \omega) \big\rbrace
+	\big).
+$$
+
+The [convolution theorem](https://en.wikipedia.org/wiki/Convolution_theorem) then immediately yields
+
+$$
+\tag{3.21}
+\begin{aligned}
+	\bm{S}(\bm{r}, \omega)
+	&=  \mu\_0^{-1} \mathcal{F} \big\lbrace
+		\mathcal{F^{-1}} \big\lbrace \bm{E}(\bm{r}, \omega) \big\rbrace \times
+		\mathcal{F^{-1}} \big\lbrace \bm{B}(\bm{r}, \omega) \big\rbrace
+	\big\rbrace \cr
+	&=  \frac{\mu\_0^{-1}}{(2 \pi)^{3/2}} \int\_{-\infin}^{\infin}
+		\bm{E}(\bm{r}, \omega') \times \bm{B}(\bm{r}, \omega - \omega') 
+	\thinspace d\omega'
+\end{aligned}
+$$
+
+Initially, the expression may seem wrong, since there is some kind of interaction between electric and magnetic fields of different frequencies. However, if the electromagnetic field is time-harmonic, we can use Equation 2.12 to eliminate the integral sign
+
+$$
+\tag{3.21}
+\begin{aligned}
+	\bm{S}(\bm{r}, \omega)
+	&=  \frac{\mu\_0^{-1}}{\sqrt{2 \pi}} \int\_{-\infin}^{\infin}
+		\Bigg( \sum\_{m = -\infin}^{\infin} \bm{E}(\bm{r}) \delta(\omega_m - \omega') \Bigg) \times
+		\Bigg( \sum\_{n = -\infin}^{\infin} \bm{B}(\bm{r}) \delta(\omega_n - \omega + \omega') \Bigg)
+	d\omega' \cr
+	&=  \frac{\mu\_0^{-1}}{\sqrt{2 \pi}} \sum\_{m = -\infin}^{\infin} \sum\_{n = -\infin}^{\infin}
+		\big( \bm{E}(\bm{r}) \times \bm{B}(\bm{r}) \big)
+		\int\_{-\infin}^{\infin} \delta(\omega_m - \omega') \delta(\omega_n - \omega + \omega')
+	\thinspace d\omega' \cr
+	&=  \frac{\mu\_0^{-1}}{\sqrt{2 \pi}} \sum\_{m = -\infin}^{\infin} \sum\_{n = -\infin}^{\infin}
+		\bm{E}(\bm{r}) \times \bm{B}(\bm{r}) \delta(\omega_n - \omega_m - \omega)
+\end{aligned}
+$$
+
+$$ \tag{2.12}
+\begin{aligned}
+	\bm{E}(\bm{r}, \omega)
+	&= \frac{1}{\sqrt{2 \pi}} \int\_{-\infin}^{\infin} \bm{E}(\bm{r}, t) e^{-i \omega t} dt \cr
+	&= \frac{1}{\sqrt{2 \pi}} \sum\_{n = -\infin}^{\infin} \bm{E}\_n(\bm{r}, \omega_n) \int\_{-\infin}^{\infin} e^{i (\omega_n - \omega) t} dt \cr
+	&= \frac{1}{\sqrt{2 \pi}} \sum\_{n = -\infin}^{\infin} \bm{E}\_n(\bm{r}, \omega_n) \big( 2 \pi \delta(\omega_n - \omega) \big) \cr
+	&= \sqrt{2 \pi} \sum\_{n = -\infin}^{\infin} \bm{E}\_n(\bm{r}, \omega_n) \delta(\omega_n - \omega)
+\end{aligned}
+$$
 
 $$
 	\bm{S}(\bm{r}, \omega)
@@ -544,7 +733,7 @@ It appears to be difficult to show a more elementary expression without making f
 
 $$
 \begin{aligned}
-	\langle \bm{S\_t} \rangle
+	\braket{\bm{S}}
 	&=  \frac{1}{T} \int\_{-T/2}^{\thinspace T/2}
 			\bm{S}(\bm{r}, t - t')
 		\thinspace dt' \cr
@@ -567,7 +756,7 @@ Interest in real part only
 
 $$
 \begin{aligned}
-	\langle \bm{S\_t} \rangle
+	\braket{\bm{S}}
 	&=  \frac{\mu\_0^{-1}}{2 \pi^2} \int\_{0}^{\infin} \int\_{-\infin}^{\infin}
 			\frac{1}{T} \int\_{-T/2}^{\thinspace T/2} 
 				\mathcal{Re} \Big\lbrace 
@@ -582,7 +771,7 @@ Multiply and divide E and B fields by \\(e^{i \omega' t'}\\), respectively:
 
 $$
 \begin{aligned}
-	\langle \bm{S\_t} \rangle
+	\braket{\bm{S}}
 	&=  \frac{\mu\_0^{-1}}{2 \pi^2} \int\_{0}^{\infin} \int\_{-\infin}^{\infin}
 			\frac{1}{T} \int\_{-T/2}^{\thinspace T/2} 
 				\mathcal{Re} \Big\lbrace 
@@ -779,35 +968,35 @@ consider
 
 $$
 	\int\_{-\infin}^{\infin} \cos(\phi'\_y(\bm{r}, \omega') + \phi''\_z(\bm{r}, \omega'') + (\omega' + \omega'') t) e^{-i \omega t} dt
-	= \int\_{-\infin}^{\infin} \cos(\phi\_0 + \omega\_0 t) e^{-i \omega t} dt
+	= \int\_{-\infin}^{\infin} \cos(\phi\_0 + \omega_0 t) e^{-i \omega t} dt
 $$
 
 $$
 	\int\_{-\infin}^{\infin} \cos(\phi'\_y(\bm{r}, \omega') - \phi''\_z(\bm{r}, \omega'') + (\omega' - \omega'') t) e^{-i \omega t} dt
-	= \int\_{-\infin}^{\infin} \cos(\phi\_1 + \omega\_1 t) e^{-i \omega t} dt
+	= \int\_{-\infin}^{\infin} \cos(\phi\_1 + \omega_1 t) e^{-i \omega t} dt
 $$
 
 Now https://en.wikipedia.org/wiki/Fourier_transform#Functional_relationships,_one-dimensional
 
 
 $$
-	\frac{1}{\sqrt{2 \pi}} \int\_{-\infin}^{\infin} \cos(\omega\_0 t) e^{-i \omega t} dt
-	= \frac{1}{2} \big( \delta(\omega + \omega\_0) + \delta(\omega - \omega\_0) \big)
+	\frac{1}{\sqrt{2 \pi}} \int\_{-\infin}^{\infin} \cos(\omega_0 t) e^{-i \omega t} dt
+	= \frac{1}{2} \big( \delta(\omega + \omega_0) + \delta(\omega - \omega_0) \big)
 $$
 
 $$
-	\frac{1}{\sqrt{2 \pi}} \int\_{-\infin}^{\infin} \sin(\omega\_0 t) e^{-i \omega t} dt
-	= \frac{i}{2} \big(\delta(\omega + \omega\_0) - \delta(\omega - \omega\_0) \big)
+	\frac{1}{\sqrt{2 \pi}} \int\_{-\infin}^{\infin} \sin(\omega_0 t) e^{-i \omega t} dt
+	= \frac{i}{2} \big(\delta(\omega + \omega_0) - \delta(\omega - \omega_0) \big)
 $$
 
 so
 
 $$
 \begin{aligned}
-	\frac{1}{\sqrt{2 \pi}} \int\_{-\infin}^{\infin} \cos(\phi\_0 + \omega\_0 t) e^{-i \omega t} dt
-	&= \frac{1}{2} \cos(\phi\_0) \big( \delta(\omega + \omega\_0) + \delta(\omega - \omega\_0) \big) \cr
-	&- \frac{i}{2} \sin(\phi\_0) \big( \delta(\omega + \omega\_0) - \delta(\omega - \omega\_0) \big) \cr
-	&= \frac{1}{2} \big( \delta(\omega + \omega\_0) - \delta(\omega - \omega\_0) \big) e^{-i \phi\_0}
+	\frac{1}{\sqrt{2 \pi}} \int\_{-\infin}^{\infin} \cos(\phi\_0 + \omega_0 t) e^{-i \omega t} dt
+	&= \frac{1}{2} \cos(\phi\_0) \big( \delta(\omega + \omega_0) + \delta(\omega - \omega_0) \big) \cr
+	&- \frac{i}{2} \sin(\phi\_0) \big( \delta(\omega + \omega_0) - \delta(\omega - \omega_0) \big) \cr
+	&= \frac{1}{2} \big( \delta(\omega + \omega_0) - \delta(\omega - \omega_0) \big) e^{-i \phi\_0}
 \end{aligned}
 $$
 
@@ -851,9 +1040,9 @@ $$
 
 ---
 
-To determine the spectral composition of irradiance, we must consider the solution of Maxwell's equation in the frequency domain. If we perform a Fourier transform of the fields, Equation 6.17 reads
+To determine the spectral composition of irradiance, we must consider the solution of Maxwell's equation in the frequency domain. If we perform a Fourier transform of the fields, Equation 3.17 reads
 
-$$ \tag{6.20}
+$$ \tag{3.20}
 	\bm{S}(\bm{r}, t)
 	= \mu\_0^{-1} \Bigg( \frac{1}{\sqrt{2 \pi}} \int\_{-\infin}^{\infin} \mathcal{Re} \big\lbrace \bm{E}(\bm{r}, \omega) e^{i \omega t} \big\rbrace d\omega \Bigg) \times \Bigg( \frac{1}{\sqrt{2 \pi}} \int\_{-\infin}^{\infin} \mathcal{Re} \big\lbrace \bm{B}(\bm{r}, \omega) e^{i \omega t} \big\rbrace d\omega \Bigg).
 $$
@@ -871,7 +1060,7 @@ $$
 Time-averaged...
 
 $$ \tag{6.22}
-	\langle \bm{S\_t} \rangle
+	\braket{\bm{S}}
 	= \frac{\mu\_0^{-1}}{2 \pi} \int\_{-\infin}^{\infin} \int\_{-\infin}^{\infin} \frac{1}{T} \int\_{-T/2}^{\thinspace T/2}
 		\mathcal{Re} \big\lbrace \bm{E}(\bm{r}, \omega) e^{i \omega (t + t')} \big\rbrace \times
 		\mathcal{Re} \big\lbrace \bm{B}(\bm{r}, \omega') e^{i \omega' (t + t')} \big\rbrace
