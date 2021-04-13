@@ -248,10 +248,10 @@ where we defined \\(\omega\_n = n \omega\_1\\), with the coefficients \\(\bm{E}\
 $$ \tag{2.8}
 	\bm{E}\_n(\bm{r}, \omega\_n)
 	= \frac{1}{T_1} \int\_{-T_1/2}^{\thinspace T_1/2} \bm{E}(\bm{r}, t) e^{-i \omega\_n t} dt
-	= \braket{\bm{E}(\bm{r}, t) \vert e^{i \omega\_n t}}.
+	= \braket{\bm{E} \vert e_n}.
 $$
 
-Equation 2.8 can be interpreted as the projection of the field onto the [Fourier basis functions](https://en.wikipedia.org/wiki/Fourier_series#Hilbert_space_interpretation), with Equation 2.7 showing the reconstruction. The beautiful thing about the Fourier basis is that it is orthogonal, which means that the individual elements of Equation 2.7 (called *harmonics*) are completely independent of each other.
+Equation 2.8 can be interpreted as the [projection](https://en.wikipedia.org/wiki/Hilbert_space#Fourier_analysis) of the field onto the [Fourier basis functions](https://en.wikipedia.org/wiki/Fourier_series#Hilbert_space_interpretation), with Equation 2.7 showing the reconstruction. The beautiful thing about the Fourier basis is that it is orthogonal, which means that the individual elements of Equation 2.7 (called *harmonics*) are completely independent of each other.
 
 Similarly to Equation 2.2, if the time-domain field is real,
 
