@@ -160,10 +160,10 @@ where \\(\rho\_n\\) is the *surface* charge density. For the tangential componen
 
 $$ \tag{1.13}
 	\bm{n\_{12}} \times (\bm{E\_2} - \bm{E\_1}) = 0, \quad
-	\bm{n\_{12}} \times (\bm{H\_2} - \bm{H\_1}) = \bm{J\_n},
+	\bm{n\_{12}} \times (\bm{H\_2} - \bm{H\_1}) = \bm{J_n},
 $$
 
-where \\(\bm{J\_n}\\) is the *surface* current density.
+where \\(\bm{J_n}\\) is the *surface* current density.
 
 We take Maxwell's equations as axioms, and use them as a foundation on which we base the theory presented in the following sections.
 
@@ -216,9 +216,9 @@ $$
 which follows from the definition of the real part of a complex number:
 
 $$ \tag{2.5}
-	\mathcal{Re} \lbrace z \rbrace
-	= \frac{1}{2} \big( z + z^{\*} \big)
-	= \frac{1}{2} \big(r e^{i \theta} + r e^{-i \theta} \big).
+	2 \thinspace \mathcal{Re} \lbrace z \rbrace
+	= z + z^{\*}
+	= r e^{i \theta} + r e^{-i \theta}.
 $$
 
 We can define integral forms of the fields by replacing \\(\bm{E}\\) by \\(\bm{B}\\), \\(\bm{D}\\), \\(\bm{H}\\), \\(\bm{J\_f}\\) or \\(\rho\_f\\) in Equation 2.4. If we substitute these integrals into Equations 1.11, and if we assume that we can perform [differentiation under the integral sign](https://en.wikipedia.org/wiki/Leibniz_integral_rule), we obtain
@@ -238,14 +238,14 @@ Generally speaking, equality of integrands does not follow from equality of inte
 
 $$ \tag{2.7}
 	\bm{E}(\bm{r}, t)
-	= \sum\_{n = -\infin}^{\infin} \bm{E}\_n(\bm{r}, n \omega_1) e^{i n \omega_1 t}
-	= \sum\_{n = -\infin}^{\infin} \bm{E}\_n(\bm{r}, \omega_n) e^{i \omega_n t},
+	= \sum\_{n = -\infin}^{\infin} \bm{E_n}(\bm{r}, n \omega_1) e^{i n \omega_1 t}
+	= \sum\_{n = -\infin}^{\infin} \bm{E_n}(\bm{r}, \omega_n) e^{i \omega_n t},
 $$
 
-where we defined \\(\omega_n = n \omega_1\\), with the coefficients \\(\bm{E}\_n\\) given by the integral
+where we defined \\(\omega_n = n \omega_1\\), with the coefficients \\(\bm{E_n}\\) given by the integral
 
 $$ \tag{2.8}
-	\bm{E}\_n(\bm{r}, \omega_n)
+	\bm{E_n}(\bm{r}, \omega_n)
 	= \frac{1}{T_1} \int\_{-T_1/2}^{\thinspace T_1/2} \bm{E}(\bm{r}, t) e^{-i \omega_n t} dt
 	= \braket{e_n \vert \bm{E}}.
 $$
@@ -263,7 +263,7 @@ where \\(\delta_{n,m}\\) is the [Kronecker delta](https://en.wikipedia.org/wiki/
 Similarly to Equation 2.2, if the time-domain field is real,
 
 $$ \tag{2.10}
-	\bm{E}\_n(\bm{r}, \omega_n) = [\bm{E}\_{-n}(\bm{r}, -\omega_n)]^{\*},
+	\bm{E_n}(\bm{r}, \omega_n) = [\bm{E_{-n}}(\bm{r}, -\omega_n)]^{\*},
 $$
 
 which permits us to simplify Equation 2.7:
@@ -271,11 +271,11 @@ which permits us to simplify Equation 2.7:
 $$ \tag{2.11}
 \begin{aligned}
 	\bm{E}(\bm{r}, t)
-	&= \bm{E}\_0(\bm{r}, 0)
-	 + \sum\_{n = 1}^{\infin} \bm{E}\_n(\bm{r}, \omega_n) e^{i \omega_n t}
-	 + \sum\_{n = -\infin}^{-1} \bm{E}\_n(\bm{r}, \omega_n) e^{i \omega_n t} \cr
-	&= \bm{E}\_0(\bm{r}, 0) + \sum\_{n = 1}^{\infin} \Big( \bm{E}\_n(\bm{r}, \omega_n) e^{i \omega_n t} + \big[ \bm{E}\_n(\bm{r}, \omega_n) e^{i \omega_n t} \big]^{\*} \Big) \cr
-	&= \bm{E}\_0(\bm{r}, 0) + \sum\_{n = 1}^{\infin} 2 \thinspace \mathcal{Re} \big\lbrace \bm{E}\_n(\bm{r}, \omega_n) e^{i \omega_n t} \big\rbrace.
+	&= \bm{E_0}(\bm{r}, 0)
+	 + \sum\_{n = 1}^{\infin} \bm{E_n}(\bm{r}, \omega_n) e^{i \omega_n t}
+	 + \sum\_{n = -\infin}^{-1} \bm{E_n}(\bm{r}, \omega_n) e^{i \omega_n t} \cr
+	&= \bm{E_0}(\bm{r}, 0) + \sum\_{n = 1}^{\infin} \Big( \bm{E_n}(\bm{r}, \omega_n) e^{i \omega_n t} + \big[ \bm{E_n}(\bm{r}, \omega_n) e^{i \omega_n t} \big]^{\*} \Big) \cr
+	&= \bm{E_0}(\bm{r}, 0) + \sum\_{n = 1}^{\infin} 2 \thinspace \mathcal{Re} \big\lbrace \bm{E_n}(\bm{r}, \omega_n) e^{i \omega_n t} \big\rbrace.
 \end{aligned}
 $$
 
@@ -285,8 +285,8 @@ $$ \tag{2.12}
 \begin{aligned}
 	\bm{E}(\bm{r}, \omega)
 	&= \frac{1}{\sqrt{2 \pi}} \int\_{-\infin}^{\infin} \bm{E}(\bm{r}, t) e^{-i \omega t} dt \cr
-	&= \frac{1}{\sqrt{2 \pi}} \sum\_{n = -\infin}^{\infin} \bm{E}\_n(\bm{r}, \omega_n) \int\_{-\infin}^{\infin} e^{i (\omega_n - \omega) t} dt \cr
-	&= \frac{1}{\sqrt{2 \pi}} \sum\_{n = -\infin}^{\infin} \bm{E}\_n(\bm{r}, \omega_n) \big( 2 \pi \delta(\omega_n - \omega) \big),
+	&= \frac{1}{\sqrt{2 \pi}} \sum\_{n = -\infin}^{\infin} \bm{E_n}(\bm{r}, \omega_n) \int\_{-\infin}^{\infin} e^{i (\omega_n - \omega) t} dt \cr
+	&= \frac{1}{\sqrt{2 \pi}} \sum\_{n = -\infin}^{\infin} \bm{E_n}(\bm{r}, \omega_n) \big( 2 \pi \delta(\omega_n - \omega) \big),
 \end{aligned}
 $$
 
@@ -296,7 +296,7 @@ Equation 2.11 permits us to study the *time-harmonic* field (or, more precisely,
 
 $$ \tag{2.13}
 	\bm{E}(\bm{r}, t)
-	= \mathcal{Re} \big\lbrace \bm{E}\_n(\bm{r}, \omega_n) e^{i \omega_n t} \big\rbrace
+	= \mathcal{Re} \big\lbrace \bm{E_n}(\bm{r}, \omega_n) e^{i \omega_n t} \big\rbrace
 	= \mathcal{Re} \big\lbrace \bm{E}(\bm{r}) e^{i \omega_n t} \big\rbrace
 $$
 
@@ -304,11 +304,11 @@ in isolation, and Equation 2.12 - its corresponding phasor
 
 $$ \tag{2.14}
 	\bm{E}(\bm{r}, \omega)
-	= \sqrt{2 \pi} \bm{E}\_n(\bm{r}, \omega_n) \delta(\omega_n - \omega)
+	= \sqrt{2 \pi} \bm{E_n}(\bm{r}, \omega_n) \delta(\omega_n - \omega)
 	= \sqrt{2 \pi} \bm{E}(\bm{r}) \delta(\omega_n - \omega).
 $$
 
-The simplified notation \\(\bm{E}(\bm{r}) = \bm{E}\_n(\bm{r}, \omega_n)\\) has been chosen for compatibility with existing literature, and to avoid the temptation to integrate or differentiate with respect to \\(\omega_n\\).
+The simplified notation \\(\bm{E}(\bm{r}) = \bm{E_n}(\bm{r}, \omega_n)\\) has been chosen for compatibility with existing literature, and to avoid the temptation to integrate or differentiate with respect to \\(\omega_n\\).
 
 Substitution of Equation 2.14 (where we can replace \\(\bm{E}\\) by \\(\bm{B}\\), \\(\bm{D}\\), \\(\bm{H}\\), \\(\bm{J\_f}\\) or \\(\rho\_f\\)) into Equations 2.6 yields
 
@@ -572,7 +572,7 @@ is a real vector, as expected.
 
 In the case where \\(T > T_1\\), the total value is a sum of the contribution from a number of whole periods (which is given by Equation 3.22) plus the contribution from a fraction of a period. If \\(T \gg T_1\\), due to time-averaging (the \\(1/T\\) factor), the *relative* contribution from a fraction of a period will be much smaller than the *relative* contribution from a large number of whole periods, so the formula of Equation 3.22 should serve as a good approximation.
 
-Equation 3.22 allows us to define the *time-averaged* Poyting phasor
+Equation 3.22 allows us to define the *time-averaged* Poynting phasor
 
 $$ \tag{3.23}
 	\braket{\bm{S_n}} = \mu\_0^{-1} \big( \bm{E_n}(\bm{r}, \omega_n) \times [\bm{B_n}(\bm{r}, \omega_n)]^{\*} \big)
@@ -597,10 +597,10 @@ $$ \tag{3.25}
 	  \big\rbrace \cdot \bm{n}
 $$
 
-in terms of [spectral irradiance](https://en.wikipedia.org/wiki/Irradiance#Spectral_irradiance) \\(\mathtt{E\_n}\\)
+in terms of [spectral irradiance](https://en.wikipedia.org/wiki/Irradiance#Spectral_irradiance) \\(\mathtt{E_n}\\)
 
 $$ \tag{3.26}
-	\mathtt{E\_n}(\bm{r}, \bm{n}, t, \omega_n)
+	\mathtt{E_n}(\bm{r}, \bm{n}, t, \omega_n)
 	= \mathcal{Re} \big\lbrace
 		\negthinspace \braket{\bm{S_n}} \negthinspace
 	  \big\rbrace \cdot \bm{n}
