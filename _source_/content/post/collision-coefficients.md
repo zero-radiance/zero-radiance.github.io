@@ -255,10 +255,10 @@ Equation 2.8 can be interpreted as the [projection](https://en.wikipedia.org/wik
 $$ \tag{2.9}
 	\braket{e_n \vert e_m}
 	= \frac{1}{T_1} \int\_{-T_1/2}^{\thinspace T_1/2} e^{i (\omega_m - \omega_n) t} dt
-	= \delta_{m,n}
+	= \delta_{n,m}
 $$
 
-where \\(\delta_{m,n}\\) is the [Kronecker delta](https://en.wikipedia.org/wiki/Kronecker_delta#Integral_representations) function.
+where \\(\delta_{n,m}\\) is the [Kronecker delta](https://en.wikipedia.org/wiki/Kronecker_delta#Integral_representations) function.
 
 Similarly to Equation 2.2, if the time-domain field is real,
 
