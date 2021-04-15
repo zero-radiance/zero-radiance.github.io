@@ -136,7 +136,7 @@ $$ \tag{1.10}
 	\bm{H}(\bm{r}, t) = \mu\_0^{-1} \bm{B}(\bm{r}, t) - \bm{M}(\bm{r}, t),
 $$
 
-substitute them into Equations 1.9.1 and 1.9.2, and group the resulting expressions with Equations 1.1.1 and 1.1.2, we obtain the [macroscopic formulation](https://en.wikipedia.org/wiki/Maxwell%27s_equations#Macroscopic_formulation) of Maxwell's equations \[[6](#references) (ch. 1.1.1), [7](#references) (ch. 2.1), [8](#references) (ch. 2.1)\]:
+substitute them into Equations 1.9.1-1.9.2, and group the resulting expressions with Equations 1.1.1-1.1.2, we obtain the [macroscopic formulation](https://en.wikipedia.org/wiki/Maxwell%27s_equations#Macroscopic_formulation) of Maxwell's equations \[[6](#references) (ch. 1.1.1), [7](#references) (ch. 2.1), [8](#references) (ch. 2.1)\]:
 
 $$ \tag{1.11}
 \begin{aligned}
@@ -278,6 +278,8 @@ $$ \tag{2.11}
 	&= \bm{E_0}(\bm{r}, 0) + \sum\_{n = 1}^{\infin} 2 \thinspace \mathcal{Re} \big\lbrace \bm{E_n}(\bm{r}, \omega_n) e^{i \omega_n t} \big\rbrace.
 \end{aligned}
 $$
+
+Intuitively, the sinusoids produce an equivalent amount of vibration regardless of the sign of their frequency.
 
 What happens when we Fourier transform a periodic function? Combining Equations 2.1 and 2.7,
 
@@ -613,11 +615,11 @@ Having defined both irradiance and spectral irradiance, we can compute other [ra
 
 ## Constitutive Relations
 
-Considered in isolation, Maxwell's system has fewer equations than unknowns. This makes it necessary to specify the way the material responds to the electromagnetic field. One way to do that is to express the auxiliary fields in terms of polarization of matter (as per Equations 1.7 and 1.10). Turns out, this leads to a non-linear solution \[[9](#references)\] that is relatively difficult to manipulate.
+Considered in isolation, Maxwell's system in the frequency domain has fewer equations than unknowns. This makes it necessary to specify the way the material responds to the electromagnetic field. One way to do that is to express the auxiliary fields in terms of polarization of matter (as per Equations 1.7 and 1.10). Turns out, this leads to a non-linear solution \[[9](#references)\] that is relatively difficult to manipulate.
 
 Fortunately, many materials respond to weak electromagnetic fields in optical frequencies in an approximately linear manner. This behavior is captured by the [constitutive relations](https://en.wikipedia.org/wiki/Constitutive_equation#Electromagnetism) \[[6](#references) (ch. 1.1.2), [7](#references) (ch. 2.1), [8](#references) (ch. 2.3)\]:
 
-$$ \tag{3.1}
+$$ \tag{4.1}
 \begin{aligned}
 	&\bm{J\_i}(\bm{r}, \omega) \approx \hat{\sigma}(\bm{r}, \omega) \bm{E}(\bm{r}, \omega), \cr
 	&\bm{D}   (\bm{r}, \omega) \approx \hat{\epsilon}(\bm{r}, \omega) \bm{E}(\bm{r}, \omega), \cr
@@ -625,15 +627,15 @@ $$ \tag{3.1}
 \end{aligned}
 $$
 
-We can also combine Equations 2.10.2 and 3.1.1 to derive the relation of the induced charge density:
+We can also combine Equations 2.19.2 and 4.1.1 to derive the relation of the induced charge density:
 
-$$ \tag{3.2}
+$$ \tag{4.2}
 	\rho\_i(\bm{r}, \omega) \approx \frac{i}{\omega} \nabla \cdot \big( \hat{\sigma}(\bm{r}, \omega) \bm{E}(\bm{r}, \omega) \big).
 $$
 
 In general, media may be *dispersive* (dependent on the frequency), *lossy* (absorptive), and *anisotropic* (dependent on the orientation). This means that the [specific conductivity](https://en.wikipedia.org/wiki/Electrical_resistivity_and_conductivity) \\(\hat{\sigma}\\), the [electric permittivity](https://en.wikipedia.org/wiki/Permittivity) \\(\hat{\epsilon}\\), and the [magnetic permeability](https://en.wikipedia.org/wiki/Permeability_(electromagnetism)) \\(\hat{\mu}\\) are frequency-dependent complex [tensor fields](https://en.wikipedia.org/wiki/Tensor#Tensor_fields). For instance,
 
-$$ \tag{3.3}
+$$ \tag{4.3}
 	\bm{D}(\bm{r}, \omega) \approx \hat{\epsilon}(\bm{r}, \omega) \bm{E}(\bm{r}, \omega) =
 	\begin{bmatrix}
 		\epsilon\_{11} & \epsilon\_{12} & \epsilon\_{13} \cr
@@ -647,31 +649,34 @@ $$ \tag{3.3}
 	\end{bmatrix}.
 $$
 
-After substitution of the constitutive relations, Maxwell's equations take the following form:
+Assuming the constitutive relations hold, Maxwell's equations for the \\(n\\)-th harmonic take the following form:
 
-$$ \tag{3.4}
+$$ \tag{4.4}
 \begin{aligned}
-	&\nabla \times \bm{E}(\bm{r}, \omega) + i \omega \hat{\mu}(\bm{r}, \omega) \bm{H}(\bm{r}, \omega) = 0, \cr
-	&\nabla \cdot  \big( \hat{\mu}(\bm{r}, \omega) \bm{H}(\bm{r}, \omega) \big) = 0, \cr
-	&\nabla \times \bm{H}(\bm{r}, \omega) - i \omega \hat{\epsilon}(\bm{r}, \omega) \bm{E}(\bm{r}, \omega) = \bm{J\_s}(\bm{r}, \omega) + \hat{\sigma}(\bm{r}, \omega) \bm{E}(\bm{r}, \omega), \cr
-	&\nabla \cdot  \big( \hat{\epsilon}(\bm{r}, \omega) \bm{E}(\bm{r}, \omega) \big) = \rho\_s(\bm{r}, \omega) + \frac{i}{\omega} \nabla \cdot \big( \hat{\sigma}(\bm{r}, \omega) \bm{E}(\bm{r}, \omega) \big).
+	&\nabla \times \bm{E}(\bm{r}) + i \omega_n \hat{\mu}(\bm{r}) \bm{H}(\bm{r}) = 0, \cr
+	&\nabla \cdot  \big( \hat{\mu}(\bm{r}) \bm{H}(\bm{r}) \big) = 0, \cr
+	&\nabla \times \bm{H}(\bm{r}) - i \omega_n \hat{\epsilon}(\bm{r}) \bm{E}(\bm{r})
+	= \bm{J\_s}(\bm{r}) + \hat{\sigma}(\bm{r}) \bm{E}(\bm{r}), \cr
+	&\nabla \cdot  \big( \hat{\epsilon}(\bm{r}) \bm{E}(\bm{r}) \big) = \rho\_s(\bm{r}) + \frac{i}{\omega_n} \nabla \cdot \big( \hat{\sigma}(\bm{r}) \bm{E}(\bm{r}) \big),
 \end{aligned}
 $$
 
+with the frequency dependence being implicit according to the convention established by Equations 2.13-2.14.
+
 Using the definition of the [complex permittivity](https://en.wikipedia.org/wiki/Permittivity#Complex_permittivity)
 
-$$ \tag{3.5}
+$$ \tag{4.5}
 	\hat{\varepsilon}(\bm{r}, \omega) = \hat{\epsilon}(\bm{r}, \omega) - \frac{i}{\omega} \hat{\sigma}(\bm{r}, \omega),
 $$
 
 we obtain Maxwell's equations for *linear* media:
 
-$$ \tag{3.6}
+$$ \tag{4.6}
 \begin{aligned}
-	&\nabla \times \bm{E}(\bm{r}, \omega) + i \omega \hat{\mu}(\bm{r}, \omega) \bm{H}(\bm{r}, \omega) = 0, &
-	&\nabla \cdot  \big( \hat{\mu}(\bm{r}, \omega) \bm{H}(\bm{r}, \omega) \big) = 0, \cr
-	&\nabla \times \bm{H}(\bm{r}, \omega) - i \omega \hat{\varepsilon}(\bm{r}, \omega) \bm{E}(\bm{r}, \omega) = \bm{J\_s}(\bm{r}, \omega), &
-	&\nabla \cdot  \big( \hat{\varepsilon}(\bm{r}, \omega) \bm{E}(\bm{r}, \omega) \big) = \rho\_s(\bm{r}, \omega).
+	&\nabla \times \bm{E}(\bm{r}) + i \omega_n \hat{\mu}(\bm{r}) \bm{H}(\bm{r}) = 0, &
+	&\nabla \cdot  \big( \hat{\mu}(\bm{r}) \bm{H}(\bm{r}) \big) = 0, \cr
+	&\nabla \times \bm{H}(\bm{r}) - i \omega_n \hat{\varepsilon}(\bm{r}) \bm{E}(\bm{r}) = \bm{J\_s}(\bm{r}), &
+	&\nabla \cdot  \big( \hat{\varepsilon}(\bm{r}) \bm{E}(\bm{r}) \big) = \rho\_s(\bm{r}).
 \end{aligned}
 $$
 
