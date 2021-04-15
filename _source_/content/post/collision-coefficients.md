@@ -407,7 +407,7 @@ $$ \tag{3.6}
     \iiint\_{V} \bm{E}(\bm{r}, t) \cdot \bm{J}(\bm{r}, t) \thinspace dV.
 $$
 
-Maxwell's equations allow us to express a current in terms of fields. Substitution of Equation 1.1.3 yields
+Maxwell's equations allow us to relate a current to the generated fields. Substitution of Equation 1.1.3 yields
 
 $$ \tag{3.7}
 	\iiint\_{V} \bm{E} \cdot \bm{J} \thinspace dV = 
@@ -441,7 +441,7 @@ Moving the dot products under the derivative sign and grouping the derivatives p
 
 $$ \tag{3.11}
 	\bm{E} \cdot \bm{J} =
-	-\mu\_0^{-1} \nabla \cdot (\bm{E} \times \bm{B}) -
+	{-\mu\_0^{-1}} \nabla \cdot (\bm{E} \times \bm{B}) -
 	\frac{\partial}{\partial t} \Big( \frac{\epsilon\_0}{2} (\bm{E} \cdot \bm{E}) +
 	\frac{\mu\_0^{-1}}{2} (\bm{B} \cdot \bm{B}) \Big).
 $$
@@ -449,16 +449,16 @@ $$
 We can observe that the rate of doing work is a balance of inflow of \\((\bm{E} \times \bm{B})\\) and the rate of change of the squared magnitudes of the fields. The physical significance of this expression becomes more apparent if we return to the integral form
 
 $$ \tag{3.12}
-	\frac{\partial \mathcal{W}}{\partial t} = 
-    \iiint\_{V} -\mu\_0^{-1} \nabla \cdot (\bm{E} \times \bm{B}) \thinspace dV -
+	\frac{\partial \mathcal{W}}{\partial t}
+	= \iiint\_{V} \Big( {-\mu\_0^{-1}} \nabla \cdot (\bm{E} \times \bm{B}) \Big) dV -
     \frac{\partial}{\partial t} \iiint\_{V} \Big( \frac{\epsilon\_0}{2} E^2 + \frac{\mu\_0^{-1}}{2} B^2 \Big) dV 
 $$
 
 and use the [divergence theorem](https://en.wikipedia.org/wiki/Divergence_theorem) to replace the leftmost volume integral with an integral taken over the bounding surface \\(\delta V\\) of the volume \\(V\\):
 
 $$ \tag{3.13}
-	\frac{\partial \mathcal{W}}{\partial t} = 
-    \oiint\_{\delta V} \mu\_0^{-1} (\bm{E} \times \bm{B}) \cdot (-\bm{n}) \thinspace dA -
+	\frac{\partial \mathcal{W}}{\partial t}
+	= \oiint\_{\delta V} \Big( \mu\_0^{-1} (\bm{E} \times \bm{B}) \cdot (-\bm{n}) \Big) dA -
     \frac{\partial}{\partial t} \iiint\_{V} \Big( \frac{\epsilon\_0}{2} E^2 + \frac{\mu\_0^{-1}}{2} B^2 \Big) dV,
 $$
 
@@ -528,7 +528,7 @@ $$ \tag{3.20}
 		\big[ \bm{B_m}(\bm{r}, \omega_m) e^{i \omega_m t} \big]^{\*}.
 \end{aligned}
 $$
-Now, consider Equation 3.18 of the time-averaged Poynting vector
+We now turn our attention to Equation 3.18 of the time-averaged Poynting vector
 
 $$ \tag{3.21}
 \begin{aligned}
@@ -542,7 +542,7 @@ $$ \tag{3.21}
 \end{aligned}
 $$
 
-First, consider the case of \\(T = T_1\\). Then, according to Equation 2.9 that expresses orthogonality,
+First, consider the case when \\(T = T_1\\). Then, according to Equation 2.9 that expresses orthogonality,
 
 $$ \tag{3.22}
 \begin{aligned}
@@ -570,7 +570,7 @@ $$
 
 is a real vector, as expected.
 
-In the case where \\(T > T_1\\), the total value is a sum of the contribution from a number of whole periods (which is given by Equation 3.22) plus the contribution from a fraction of a period. If \\(T \gg T_1\\), due to time-averaging (the \\(1/T\\) factor), the *relative* contribution from a fraction of a period will be much smaller than the *relative* contribution from a large number of whole periods, so the formula of Equation 3.22 should serve as a good approximation.
+In the case where \\(T > T_1\\), the total value of \\(\braket{\bm{S}}\\) is a sum of the contribution from a number of whole periods (which is given by Equation 3.22) plus the contribution from a fraction of a period. If the period used for time-averaging is very large \\((T \gg T_1)\\), the *relative* contribution (according to the \\(1/T\\) factor) from a fraction of a period will be much smaller than the *relative* contribution from a large number of whole periods, so the formula of Equation 3.22 should serve as a good approximation.
 
 Equation 3.22 allows us to define the *time-averaged* Poynting phasor
 
@@ -586,7 +586,7 @@ $$ \tag{3.24}
 	+ \sum\_{n = 1}^{\infin} 2 \thinspace \mathcal{Re} \big\lbrace \negthinspace \braket{\bm{S_n}} \negthinspace \big\rbrace.
 $$
 
-It gives us another expression of irradiance \\(\mathtt{E}\\)
+It produces a more compact expression of irradiance \\(\mathtt{E}\\)
 
 $$ \tag{3.25}
 	\mathtt{E}(\bm{r}, \bm{n}, t)
@@ -609,9 +609,7 @@ $$ \tag{3.26}
 	  \big\rbrace \cos{\theta}.
 $$
 
-https://en.wikipedia.org/wiki/Radiometry
-
-Cite \[[6](#references) (ch. 1.4.3, 4.8.1)\]
+Having defined both irradiance and spectral irradiance, we can compute other [radiometric quantities](https://en.wikipedia.org/wiki/Radiometry) using integration and differentiation techniques as discussed in the previous article \[[3](#references)\].
 
 ## Constitutive Relations
 
