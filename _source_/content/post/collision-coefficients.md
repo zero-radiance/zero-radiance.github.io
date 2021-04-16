@@ -240,6 +240,7 @@ $$ \tag{2.7}
 	\bm{E}(\bm{r}, t)
 	= \sum\_{n = -\infin}^{\infin} \bm{E_n}(\bm{r}, n \omega_1) e^{i n \omega_1 t}
 	= \sum\_{n = -\infin}^{\infin} \bm{E_n}(\bm{r}, \omega_n) e^{i \omega_n t},
+	= \sum\_{n = -\infin}^{\infin} \ket{u_n} \braket{u_n \vert \bm{E}}.
 $$
 
 where we defined \\(\omega_n = n \omega_1\\), with the coefficients \\(\bm{E_n}\\) given by the integral
@@ -247,15 +248,15 @@ where we defined \\(\omega_n = n \omega_1\\), with the coefficients \\(\bm{E_n}\
 $$ \tag{2.8}
 	\bm{E_n}(\bm{r}, \omega_n)
 	= \frac{1}{T_1} \int\_{-T_1/2}^{\thinspace T_1/2} \bm{E}(\bm{r}, t) e^{-i \omega_n t} dt
-	= \braket{e_n \vert \bm{E}}.
+	= \braket{u_n \vert \bm{E}}.
 $$
 
-Equation 2.8 can be interpreted as the [projection](https://en.wikipedia.org/wiki/Hilbert_space#Fourier_analysis) of the field onto the [Fourier basis functions](https://en.wikipedia.org/wiki/Fourier_series#Hilbert_space_interpretation), with Equation 2.7 showing the reconstruction. The beautiful thing about the Fourier basis is that it is orthogonal, which means that the individual elements of Equation 2.7 (called *harmonics*) are completely independent of each other:
+Equation 2.8 can be interpreted as the [projection](https://en.wikipedia.org/wiki/Hilbert_space#Fourier_analysis) of the field onto the [discrete Fourier basis](https://en.wikipedia.org/wiki/Fourier_series#Hilbert_space_interpretation), with Equation 2.7 showing the reconstruction. The beautiful thing about the discrete Fourier basis is that it is orthonormal, which means that the individual elements of Equation 2.7 (called *harmonics*) are completely independent of each other:
 
 $$ \tag{2.9}
-	\braket{e_n \vert e_m}
+	\braket{u_n \vert u_m}
 	= \frac{1}{T_1} \int\_{-T_1/2}^{\thinspace T_1/2} e^{i (\omega_m - \omega_n) t} dt
-	= \delta_{n,m}
+	= \delta_{n,m},
 $$
 
 where \\(\delta_{n,m}\\) is the [Kronecker delta](https://en.wikipedia.org/wiki/Kronecker_delta#Integral_representations) function.
@@ -617,7 +618,7 @@ Having defined both irradiance and spectral irradiance, we can compute other [ra
 
 Considered in isolation, Maxwell's equations in the frequency domain is an [undetermined system](https://en.wikipedia.org/wiki/Underdetermined_system) - it has fewer equations than unknowns. This makes it necessary to specify the way the material responds to the electromagnetic field. One way to do that is to express the auxiliary fields in terms of polarization of matter (see Equation 1.10). Turns out, this leads to a *nonlinear* solution \[[9](#references)\] that is relatively difficult to manipulate.
 
-Fortunately, many materials respond to weak electromagnetic fields in optical frequencies in an approximately linear manner (that means the omission of higher-order terms results in a negligible error). Under this assumption, we may write \\(\bm{D}\\) and \\(\bm{H}\\) as a *bilinear* combination of \\(\bm{E}\\) and \\(\bm{B}\\) \[[8](#references) (ch. 8.22)\]:
+Fortunately, many materials respond to weak electromagnetic fields in optical frequencies in an approximately linear manner (this means the omission of higher-order terms results in a negligible error). Under this assumption, we may write \\(\bm{D}\\) and \\(\bm{H}\\) as a *bilinear* combination of \\(\bm{E}\\) and \\(\bm{B}\\) \[[8](#references) (ch. 8.22)\]:
 
 $$ \tag{4.1}
 	\begin{bmatrix}
@@ -684,10 +685,6 @@ $$ \tag{4.6}
 	&\nabla \cdot  \big( \bm{\varepsilon}(\bm{r}) \bm{E}(\bm{r}) \big) = \rho\_s(\bm{r}).
 \end{aligned}
 $$
-
----
-
-Now expand the divergences ???
 
 ## Helmholtz's Equation
 
