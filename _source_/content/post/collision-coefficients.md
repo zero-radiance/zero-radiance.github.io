@@ -618,7 +618,7 @@ Having defined both irradiance and spectral irradiance, we can compute other [ra
 
 Considered in isolation, Maxwell's equations in the frequency domain is an [undetermined system](https://en.wikipedia.org/wiki/Underdetermined_system) - it has fewer equations than unknowns. This makes it necessary to specify the way the material responds to the electromagnetic field. One way to do that is to express the auxiliary fields in terms of polarization of matter (see Equation 1.10). Turns out, this leads to a *nonlinear* solution \[[9](#references)\] that is relatively difficult to manipulate.
 
-Fortunately, many materials respond to weak electromagnetic fields in optical frequencies in an approximately linear manner (this means the omission of higher-order terms results in a negligible error). Under this assumption, we may write \\(\bm{D}\\) and \\(\bm{H}\\) as a *bilinear* combination of \\(\bm{E}\\) and \\(\bm{B}\\) \[[8](#references) (ch. 8.22)\]:
+Fortunately, many materials respond to weak electromagnetic fields in optical frequencies in an approximately linear manner (this means the omission of higher-order terms results in a negligible error). Under this assumption, we may express \\(\bm{D}\\) and \\(\bm{H}\\) as [bilinear](https://en.wikipedia.org/wiki/Bilinear_map) functions of \\(\bm{E}\\) and \\(\bm{B}\\) \[[8](#references) (ch. 8.22)\]:
 
 $$ \tag{4.1}
 	\begin{bmatrix}
@@ -635,7 +635,7 @@ $$ \tag{4.1}
 	\end{bmatrix}.
 $$
 
-In general, media may be *dispersive* (dependent on the frequency), *lossy* (absorptive), and *anisotropic* (dependent on the orientation). This means that each matrix entry \\(\bm{a_{ij}}\\) is a complex [tensor field](https://en.wikipedia.org/wiki/Tensor#Tensor_fields). 
+In general, media may be *dispersive* (dependent on the frequency), *lossy* (absorptive), and *anisotropic* (dependent on the orientation). This implies that each matrix entry \\(\bm{a_{ij}}\\) is a complex [tensor field](https://en.wikipedia.org/wiki/Tensor#Tensor_fields). 
 
 Equation 4.1 can be simplified further by assuming that the off-diagonal entries \\(\bm{a_{12}} = \bm{a_{21}} = 0\\). This behavior is captured by the [constitutive relations](https://en.wikipedia.org/wiki/Constitutive_equation#Electromagnetism) \[[6](#references) (ch. 1.1.2), [7](#references) (ch. 2.1), [8](#references) (ch. 2.3)\]:
 
