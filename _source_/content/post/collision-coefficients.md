@@ -295,7 +295,7 @@ $$
 
 where we used the exponential definition of the [Dirac delta](https://en.wikipedia.org/wiki/Dirac_delta_function) function \\(\delta(x)\\).
 
-Equation 2.11 permits us to study the *time-harmonic* field (or, more precisely, the \\(n\\)-th harmonic)
+Equation 2.11 permits us to study the *monochromatic* field (or, stated more precisely, the \\(n\\)-th harmonic)
 
 $$ \tag{2.13}
 	\bm{E}(\bm{r}, t)
@@ -328,7 +328,7 @@ $$ \tag{2.15}
 \end{aligned}
 $$
 
-Performing differentiation with respect to time and division by the pervasive \\(e^{i \omega_n t}\\) factor yields Maxwell's equations for monochromatic fields \[[7](#references) (ch. 2.3), [8](#references) (ch. 2.2)\]:
+Performing differentiation with respect to time and division by the pervasive \\(e^{i \omega_n t}\\) factor yields Maxwell's equations for *time-harmonic* fields \[[7](#references) (ch. 2.3), [8](#references) (ch. 2.2)\]:
 
 $$ \tag{2.16}
 \begin{aligned}
@@ -508,7 +508,7 @@ $$
 It becomes especially useful once you consider a fixed direction \\(\bm{n}\\). Then, according to Equation 3.14,
 
 $$ \tag{3.19}
-	\mathtt{E}(\bm{r}, \bm{n}, t)
+	\mathtt{E}(\bm{r}, \bm{n})
 	= \braket{\bm{S}} \cdot \bm{n}
 	= \braket{\bm{S}} \cos{\theta}
 $$
@@ -592,7 +592,7 @@ $$
 It produces a more compact expression of irradiance \\(\mathtt{E}\\)
 
 $$ \tag{3.25}
-	\mathtt{E}(\bm{r}, \bm{n}, t)
+	\mathtt{E}(\bm{r}, \bm{n})
 	= \braket{\bm{S}} \cdot \bm{n}
 	= \braket{\bm{S_0}} \cdot \bm{n}
 	+ \sum\_{n = 1}^{\infin} 2 \thinspace \mathcal{Re} \big\lbrace
@@ -603,7 +603,7 @@ $$
 in terms of [spectral irradiance](https://en.wikipedia.org/wiki/Irradiance#Spectral_irradiance) \\(\mathtt{E_n}\\)
 
 $$ \tag{3.26}
-	\mathtt{E_n}(\bm{r}, \bm{n}, t, \omega_n)
+	\mathtt{E_n}(\bm{r}, \bm{n}, \omega_n)
 	= \mathcal{Re} \big\lbrace
 		\negthinspace \braket{\bm{S_n}} \negthinspace
 	  \big\rbrace \cdot \bm{n}
@@ -649,13 +649,15 @@ $$
 
 where \\(\bm{\sigma}\\) is the [specific conductivity](https://en.wikipedia.org/wiki/Electrical_resistivity_and_conductivity), \\(\bm{\epsilon}\\) is the [electric permittivity](https://en.wikipedia.org/wiki/Permittivity), and \\(\bm{\mu}\\) is the [magnetic permeability](https://en.wikipedia.org/wiki/Permeability_(electromagnetism)).
 
-We can also combine Equations 2.19.2 and 4.1.1 to derive the relation of the induced charge density:
+We can also combine Equations 2.19.2 and 4.2.1 to derive the relation of the induced charge density:
 
 $$ \tag{4.3}
-	\rho\_i(\bm{r}, \omega) \approx \frac{i}{\omega} \nabla \cdot \big( \bm{\sigma}(\bm{r}, \omega) \bm{E}(\bm{r}, \omega) \big).
+	\rho\_i(\bm{r}) \approx \frac{i}{\omega_n} \nabla \cdot \big( \bm{\sigma}(\bm{r}) \bm{E}(\bm{r}) \big),
 $$
 
-If the constitutive relations hold, Maxwell's equations for the \\(n\\)-th harmonic take the following form:
+with the frequency dependence being implicit according to the convention established by Equations 2.13-2.14.
+
+If the constitutive relations hold, Maxwell's equations for time-harmonic fields take the following form:
 
 $$ \tag{4.4}
 \begin{aligned}
@@ -663,16 +665,14 @@ $$ \tag{4.4}
 	&\nabla \cdot  \big( \bm{\mu}(\bm{r}) \bm{H}(\bm{r}) \big) = 0, \cr
 	&\nabla \times \bm{H}(\bm{r}) - i \omega_n \bm{\epsilon}(\bm{r}) \bm{E}(\bm{r})
 	= \bm{J\_s}(\bm{r}) + \bm{\sigma}(\bm{r}) \bm{E}(\bm{r}), \cr
-	&\nabla \cdot  \big( \bm{\epsilon}(\bm{r}) \bm{E}(\bm{r}) \big) = \rho\_s(\bm{r}) + \frac{i}{\omega_n} \nabla \cdot \big( \bm{\sigma}(\bm{r}) \bm{E}(\bm{r}) \big),
+	&\nabla \cdot  \big( \bm{\epsilon}(\bm{r}) \bm{E}(\bm{r}) \big) = \rho\_s(\bm{r}) + \frac{i}{\omega_n} \nabla \cdot \big( \bm{\sigma}(\bm{r}) \bm{E}(\bm{r}) \big).
 \end{aligned}
 $$
-
-with the frequency dependence being implicit according to the convention established by Equations 2.13-2.14.
 
 Using the definition of the [complex permittivity](https://en.wikipedia.org/wiki/Permittivity#Complex_permittivity)
 
 $$ \tag{4.5}
-	\bm{\varepsilon}(\bm{r}, \omega) = \bm{\epsilon}(\bm{r}, \omega) - \frac{i}{\omega} \bm{\sigma}(\bm{r}, \omega),
+	\bm{\varepsilon}(\bm{r}) = \bm{\epsilon}(\bm{r}) - \frac{i}{\omega_n} \bm{\sigma}(\bm{r}),
 $$
 
 we obtain Maxwell's equations for *linear* media:
