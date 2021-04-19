@@ -510,7 +510,7 @@ $$
 It becomes especially useful once you consider a fixed direction \\(\bm{n}\\). Then, according to Equation 3.14,
 
 $$ \tag{3.19}
-	\mathtt{E}(\bm{r}, \bm{n})
+	\mathtt{E}
 	= \braket{\bm{S}} \cdot \bm{n}
 	= \braket{\bm{S}} \cos{\theta}
 $$
@@ -575,7 +575,7 @@ $$
 
 is a real vector, as expected.
 
-In the case where \\(T > T_1\\), the total value of \\(\braket{\bm{S}}\\) is a sum of the contribution from a number of whole periods (which is given by Equation 3.22) plus the contribution from a fraction of a period. If the period used for time-averaging is very large \\((T \gg T_1)\\), the *relative* contribution (according to the \\(1/T\\) factor) from a fraction of a period will be much smaller than the *relative* contribution from a large number of whole periods, so the formula of Equation 3.22 should serve as a good approximation.
+In the case where \\(T > T_1\\), the total value of \\(\braket{\bm{S}}\\) is a sum of the contribution from a number of whole periods (which is given by Equation 3.22) plus the contribution from a fraction of a period. If the period used for time-averaging is very large \\((T \gg T_1)\\), the *relative* contribution (with respect to the \\(1/T\\) factor) from a fraction of a period will be much smaller than the *relative* contribution from a large number of whole periods, so the formula of Equation 3.22 should serve as a good approximation.
 
 Equation 3.22 allows us to define the *time-averaged* Poynting phasor
 
@@ -594,7 +594,7 @@ $$
 It produces a more compact expression of irradiance \\(\mathtt{E}\\)
 
 $$ \tag{3.25}
-	\mathtt{E}(\bm{r}, \bm{n})
+	\mathtt{E}
 	= \braket{\bm{S}} \cdot \bm{n}
 	= \braket{\bm{S_0}} \cdot \bm{n}
 	+ \sum\_{n = 1}^{\infin} 2 \thinspace \mathcal{Re} \big\lbrace
@@ -605,7 +605,7 @@ $$
 in terms of [spectral irradiance](https://en.wikipedia.org/wiki/Irradiance#Spectral_irradiance) \\(\mathtt{E_n}\\)
 
 $$ \tag{3.26}
-	\mathtt{E_n}(\bm{r}, \bm{n}, \omega_n)
+	\mathtt{E_n}
 	= \mathcal{Re} \big\lbrace
 		\negthinspace \braket{\bm{S_n}} \negthinspace
 	  \big\rbrace \cdot \bm{n}
@@ -614,13 +614,15 @@ $$ \tag{3.26}
 	  \big\rbrace \cos{\theta}.
 $$
 
-Having defined both irradiance and spectral irradiance, we can compute other [radiometric quantities](https://en.wikipedia.org/wiki/Radiometry) using integration and differentiation techniques as discussed in the previous article \[[3](#references)\].
+Having defined both irradiance and spectral irradiance, we can compute all other [radiometric quantities](https://en.wikipedia.org/wiki/Radiometry) using integration and differentiation techniques as discussed in the previous article \[[3](#references)\].
 
 ## Constitutive Relations
 
 Considered in isolation, Maxwell's equations in the frequency domain is an [undetermined system](https://en.wikipedia.org/wiki/Underdetermined_system) - it has fewer equations than unknowns. This makes it necessary to specify the way the material responds to the electromagnetic field. One way to do that is to express the auxiliary fields in terms of polarization of matter (see Equation 1.10). Turns out, this leads to a *nonlinear* solution \[[9](#references)\] that is relatively difficult to manipulate.
 
-Fortunately, many materials respond to weak electromagnetic fields in optical frequencies in an approximately linear manner (this means the omission of higher-order terms results in a negligible error). Under this assumption, we may express \\(\bm{D}\\) and \\(\bm{H}\\) as [bilinear](https://en.wikipedia.org/wiki/Bilinear_map) functions of \\(\bm{E}\\) and \\(\bm{B}\\) \[[8](#references) (ch. 8.22)\]:
+Fortunately, many materials respond to weak electromagnetic fields in optical frequencies in an approximately linear manner[^5]. Under this assumption, we may express \\(\bm{D}\\) and \\(\bm{H}\\) as [bilinear](https://en.wikipedia.org/wiki/Bilinear_map) functions of \\(\bm{E}\\) and \\(\bm{B}\\) \[[8](#references) (ch. 8.22)\]:
+
+[^5]: This means that omitting higher-order terms in the series expansions of the fields results in a negligible error.
 
 $$ \tag{4.1}
 	\begin{bmatrix}
@@ -657,7 +659,7 @@ $$ \tag{4.3}
 	\rho\_i(\bm{r}) \approx \frac{i}{\omega_n} \nabla \cdot \big( \bm{\sigma}(\bm{r}) \bm{E}(\bm{r}) \big),
 $$
 
-with the frequency dependence being implicit according to the convention established by Equations 2.13-2.14.
+where the frequency dependence is implicit according to the convention established by Equations 2.13-2.14.
 
 If the constitutive relations hold, Maxwell's equations for time-harmonic fields take the following form:
 
@@ -690,7 +692,7 @@ $$
 
 ## Helmholtz's Equation
 
-Consider a region of space without any source currents or charges. Physically, this means that there are no sources of fields; but it doesn't mean the field contains no energy. The idea is to explore all solutions of Maxwell's equations (we can pick a particular solution once we specify the source), and determine how these solutions evolve over time.
+Consider a region of space without any source currents or charges. Physically, this means that there are no sources of fields in this region; but it doesn't mean the field contains no energy. The idea is to explore all solutions of Maxwell's equations (we can pick a particular solution once we specify the source or the field at the boundary), and determine how these solutions evolve over time.
 
 Setting \\(\bm{J\_f} = \rho\_f = 0\\) in Equations 3.6, we obtain a coupled system of homogeneous linear differential equations:
 
@@ -705,9 +707,9 @@ $$
 
 Mathematically, the consequence is that a linear combination of several solutions is also a valid solution.
 
-Assume that the medium is *homogeneous* (constant in space)[^5]:
+Assume that the medium is *homogeneous* (constant in space)[^6]:
 
-[^5]: See \[[6](#references) (ch. 1.2)\] for an inhomogeneous solution. The stationary approximation is valid for optical frequencies because the time period of an oscillation is very short. 
+[^6]: See \[[6](#references) (ch. 1.2)\] for an inhomogeneous solution. The stationary approximation is valid for optical frequencies because the time period of an oscillation is very short. 
 
 $$ \tag{4.2}
 \begin{aligned}
@@ -780,17 +782,17 @@ $$ \tag{4.8}
 	\nabla^2 \bm{E}(\bm{r}, \omega) + \omega^2 \bm{\mu}(\omega) \bm{\varepsilon}(\omega) \bm{E}(\bm{r}, \omega) = 0.
 $$
 
-Similarly, we can obtain an expression[^6] of the magnetic phasor \\(\bm{B}\\):
+Similarly, we can obtain an expression[^7] of the magnetic phasor \\(\bm{B}\\):
 
-[^6]: If you solve for \\(\bm{H}\\) rather than \\(\bm{B}\\), you will obtain an equation with the \\(\bm{\varepsilon} \bm{\mu}\\) term instead of \\(\bm{\mu} \bm{\varepsilon}\\) found in the equation of \\(\bm{E}\\). Since, in general, tensor products do not commute, this means that the \\(\bm{H}\\) field propagates differently from the \\(\bm{E}\\) field, and solving for the \\(\bm{H}\\) field is a mistake.
+[^7]: If you solve for \\(\bm{H}\\) rather than \\(\bm{B}\\), you will obtain an equation with the \\(\bm{\varepsilon} \bm{\mu}\\) term instead of \\(\bm{\mu} \bm{\varepsilon}\\) found in the equation of \\(\bm{E}\\). Since, in general, tensor products do not commute, this means that the \\(\bm{H}\\) field propagates differently from the \\(\bm{E}\\) field, and solving for the \\(\bm{H}\\) field is a mistake.
 
 $$ \tag{4.9}
 	\nabla^2 \bm{B}(\bm{r}, \omega) + \omega^2 \bm{\mu}(\omega) \bm{\varepsilon}(\omega) \bm{B}(\bm{r}, \omega) = 0.
 $$
 
-Since anisotropy arises due to the [crystal structure](https://en.wikipedia.org/wiki/Crystal_structure) of the material[^7], this tensor product is [normal](https://en.wikipedia.org/wiki/Normal_matrix), and we can perform a [change of basis](https://en.wikipedia.org/wiki/Change_of_basis) to [diagonalize](https://en.wikipedia.org/wiki/Diagonalizable_matrix#How_to_diagonalize_a_matrix) it:
+Since anisotropy arises due to the [crystal structure](https://en.wikipedia.org/wiki/Crystal_structure) of the material[^8], this tensor product is [normal](https://en.wikipedia.org/wiki/Normal_matrix), and we can perform a [change of basis](https://en.wikipedia.org/wiki/Change_of_basis) to [diagonalize](https://en.wikipedia.org/wiki/Diagonalizable_matrix#How_to_diagonalize_a_matrix) it:
 
-[^7]: A more elaborate argument is presented in \[[6](#references) (ch. 15.1)\].
+[^8]: A more elaborate argument is presented in \[[6](#references) (ch. 15.1)\].
 
 $$ \tag{4.10}
 	\nabla^2 \bm{E}(\bm{r}, \omega) + \omega^2
@@ -903,9 +905,9 @@ $$ \tag{5.4}
 	k(\omega) = \omega \sqrt{\mu(\omega) \varepsilon(\omega)}.
 $$
 
-If we define the [relative permittivity](https://en.wikipedia.org/wiki/Relative_permittivity)[^8] \\(\varepsilon\_r\\) and the [relative permeability](https://en.wikipedia.org/wiki/Permeability_(electromagnetism)#Relative_permeability_and_magnetic_susceptibility) \\(\mu\_r\\) using vacuum as reference,
+If we define the [relative permittivity](https://en.wikipedia.org/wiki/Relative_permittivity)[^9] \\(\varepsilon\_r\\) and the [relative permeability](https://en.wikipedia.org/wiki/Permeability_(electromagnetism)#Relative_permeability_and_magnetic_susceptibility) \\(\mu\_r\\) using vacuum as reference,
 
-[^8]: Historically called the [relative complex dielectric constant](https://en.wikipedia.org/wiki/Relative_permittivity#Lossy_medium).
+[^9]: Historically called the [relative complex dielectric constant](https://en.wikipedia.org/wiki/Relative_permittivity#Lossy_medium).
 
 $$ \tag{5.5}
 	\varepsilon\_r(\omega) = \frac{\varepsilon(\omega)}{\epsilon\_0}, \quad
@@ -936,11 +938,11 @@ $$ \tag{5.8}
 	c \Big( \sqrt{\epsilon \mu} - i \frac{\sigma \mu}{2 \omega \sqrt{\epsilon \mu}} \Big),
 $$
 
-which gives an approximate mapping between the optical and the physical parameters[^9].
+which gives an approximate mapping between the optical and the physical parameters[^10].
 
 If the refractive index \\(\eta\\) of the material has axial dependence, the crystal is said to be doubly refractive or [birefringent](https://en.wikipedia.org/wiki/Birefringence). If the attenuation index \\(\kappa\\) varies instead, the crystal is called [dichroic](https://en.wikipedia.org/wiki/Dichroism) (from the Greek *dikhroos*, two-colored).
 
-[^9]: Keep in mind that, in general, the permittivity, the permeability, and the conductivity are complex.
+[^10]: Keep in mind that, in general, the permittivity, the permeability, and the conductivity are complex.
 
 In order to develop some intuition about the role of the refractive index \[[5](#references) (vol. II, ch. 32.4)\], consider the phasor component of a scalar plane wave
 
