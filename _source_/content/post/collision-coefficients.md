@@ -234,7 +234,9 @@ $$ \tag{2.6}
 \end{aligned}
 $$
 
-Generally speaking, equality of integrands does not follow from equality of integrals (but the opposite is true). In order to be able to simplify Equations 2.6 further, we must make an assumption that the electromagnetic field is a periodic function, such that the *fundamental period* \\(T\_1 = 2 \pi / \omega_1\\) of the electric and the magnetic fields is the same \[[5](#references) (vol. I, ch. 50) [6](#references) (ch. 1.3.3, 1.4.3)\]. This restriction is not as severe as it may seem, for we may choose the period to be as large as necessary. And the benefits are great, for it allows us to represent the fields using the [Fourier series](https://en.wikipedia.org/wiki/Fourier_series#Complex-valued_functions)
+Generally speaking, equality of integrands does not follow from equality of integrals (but the opposite is true). In order to be able to simplify Equations 2.6 further, we must make an assumption that the electromagnetic field is a periodic function, such that the *fundamental period* \\(\thinspace T\_1 = 2 \pi / \omega_1\\) of both the electric and the magnetic fields is the same \[[5](#references) (vol. I, ch. 50) [6](#references) (ch. 1.3.3, 1.4.3)\]. This restriction is not as severe as it may seem, for we may choose the period to be as large as necessary. And the benefits are great, for it allows us to represent[^3] the fields using the [Fourier series](https://en.wikipedia.org/wiki/Fourier_series#Complex-valued_functions)
+
+[^3]: This discrete representation only allows frequencies that belong to a certain [countable set](https://en.wikipedia.org/wiki/Countable_set). This is noteworthy because it suggests that fields are, in some sense, quantized, even though we are not using the [quantum theory of fields](https://en.wikipedia.org/wiki/Quantum_field_theory).
 
 $$ \tag{2.7}
 	\bm{E}(\bm{r}, t)
@@ -494,9 +496,9 @@ $$ \tag{3.17}
 	\bm{S}(\bm{r}, t) = \mu\_0^{-1} \big( \bm{E}(\bm{r}, t) \times \bm{B}(\bm{r}, t) \big)
 $$
 
-is the [Poynting vector](https://en.wikipedia.org/wiki/Poynting_vector) that represents the direction and the rate of energy flow[^8].
+is the [Poynting vector](https://en.wikipedia.org/wiki/Poynting_vector) that represents the direction and the rate of energy flow[^4].
 
-[^8]: This definition of field energy, while widely accepted, is somewhat ambiguous \[[5](#references) (vol. II, ch. 27.4)\]. We should also note that there is yet another popular definition in terms of the auxiliary fields \[[6](#references) (ch. 1.1.4)\]. There are several problems with the latter definition. First, both the Maxwell's equations and the Lorentz force are given in terms of the fundamental fields, \\(\bm{E}\\) and \\(\bm{B}\\). Secondly, these are also the fields that should be used to define a plane wave, as we have noted previously. And finally, most derivations that start from the macroscopic Maxwell's equations make a mistake of omitting the bound current from the definition of work; taking the bound current into account produces precisely the results at we have arrived above.
+[^4]: This definition of field energy, while widely accepted, is somewhat ambiguous \[[5](#references) (vol. II, ch. 27.4)\]. We should also note that there is yet another popular definition in terms of the auxiliary fields \[[6](#references) (ch. 1.1.4)\]. There are several problems with the latter definition. First, both the Maxwell's equations and the Lorentz force are given in terms of the fundamental fields, \\(\bm{E}\\) and \\(\bm{B}\\). Secondly, these are also the fields that should be used to define a plane wave, as we have noted previously. And finally, most derivations that start from the macroscopic Maxwell's equations make a mistake of omitting the bound current from the definition of work; taking the bound current into account produces precisely the results at we have arrived above.
 
 We are particularly interested in a steady-state solution of Maxwell's equations. Specifically, rather than consider the *instantaneous* Poynting vector \\(\bm{S}\\) (which may change trillions of times per second), we focus on the *time-averaged* Poynting vector instead:
 
@@ -703,9 +705,9 @@ $$
 
 Mathematically, the consequence is that a linear combination of several solutions is also a valid solution.
 
-Assume that the medium is *homogeneous* (constant in space)[^3]:
+Assume that the medium is *homogeneous* (constant in space)[^5]:
 
-[^3]: See \[[6](#references) (ch. 1.2)\] for an inhomogeneous solution. The stationary approximation is valid for optical frequencies because the time period of an oscillation is very short. 
+[^5]: See \[[6](#references) (ch. 1.2)\] for an inhomogeneous solution. The stationary approximation is valid for optical frequencies because the time period of an oscillation is very short. 
 
 $$ \tag{4.2}
 \begin{aligned}
@@ -778,17 +780,17 @@ $$ \tag{4.8}
 	\nabla^2 \bm{E}(\bm{r}, \omega) + \omega^2 \bm{\mu}(\omega) \bm{\varepsilon}(\omega) \bm{E}(\bm{r}, \omega) = 0.
 $$
 
-Similarly, we can obtain an expression[^4] of the magnetic phasor \\(\bm{B}\\):
+Similarly, we can obtain an expression[^6] of the magnetic phasor \\(\bm{B}\\):
 
-[^4]: If you solve for \\(\bm{H}\\) rather than \\(\bm{B}\\), you will obtain an equation with the \\(\bm{\varepsilon} \bm{\mu}\\) term instead of \\(\bm{\mu} \bm{\varepsilon}\\) found in the equation of \\(\bm{E}\\). Since, in general, tensor products do not commute, this means that the \\(\bm{H}\\) field propagates differently from the \\(\bm{E}\\) field, and solving for the \\(\bm{H}\\) field is a mistake.
+[^6]: If you solve for \\(\bm{H}\\) rather than \\(\bm{B}\\), you will obtain an equation with the \\(\bm{\varepsilon} \bm{\mu}\\) term instead of \\(\bm{\mu} \bm{\varepsilon}\\) found in the equation of \\(\bm{E}\\). Since, in general, tensor products do not commute, this means that the \\(\bm{H}\\) field propagates differently from the \\(\bm{E}\\) field, and solving for the \\(\bm{H}\\) field is a mistake.
 
 $$ \tag{4.9}
 	\nabla^2 \bm{B}(\bm{r}, \omega) + \omega^2 \bm{\mu}(\omega) \bm{\varepsilon}(\omega) \bm{B}(\bm{r}, \omega) = 0.
 $$
 
-Since anisotropy arises due to the [crystal structure](https://en.wikipedia.org/wiki/Crystal_structure) of the material[^5], this tensor product is [normal](https://en.wikipedia.org/wiki/Normal_matrix), and we can perform a [change of basis](https://en.wikipedia.org/wiki/Change_of_basis) to [diagonalize](https://en.wikipedia.org/wiki/Diagonalizable_matrix#How_to_diagonalize_a_matrix) it:
+Since anisotropy arises due to the [crystal structure](https://en.wikipedia.org/wiki/Crystal_structure) of the material[^7], this tensor product is [normal](https://en.wikipedia.org/wiki/Normal_matrix), and we can perform a [change of basis](https://en.wikipedia.org/wiki/Change_of_basis) to [diagonalize](https://en.wikipedia.org/wiki/Diagonalizable_matrix#How_to_diagonalize_a_matrix) it:
 
-[^5]: A more elaborate argument is presented in \[[6](#references) (ch. 15.1)\].
+[^7]: A more elaborate argument is presented in \[[6](#references) (ch. 15.1)\].
 
 $$ \tag{4.10}
 	\nabla^2 \bm{E}(\bm{r}, \omega) + \omega^2
@@ -901,9 +903,9 @@ $$ \tag{5.4}
 	k(\omega) = \omega \sqrt{\mu(\omega) \varepsilon(\omega)}.
 $$
 
-If we define the [relative permittivity](https://en.wikipedia.org/wiki/Relative_permittivity)[^6] \\(\varepsilon\_r\\) and the [relative permeability](https://en.wikipedia.org/wiki/Permeability_(electromagnetism)#Relative_permeability_and_magnetic_susceptibility) \\(\mu\_r\\) using vacuum as reference,
+If we define the [relative permittivity](https://en.wikipedia.org/wiki/Relative_permittivity)[^8] \\(\varepsilon\_r\\) and the [relative permeability](https://en.wikipedia.org/wiki/Permeability_(electromagnetism)#Relative_permeability_and_magnetic_susceptibility) \\(\mu\_r\\) using vacuum as reference,
 
-[^6]: Historically called the [relative complex dielectric constant](https://en.wikipedia.org/wiki/Relative_permittivity#Lossy_medium).
+[^8]: Historically called the [relative complex dielectric constant](https://en.wikipedia.org/wiki/Relative_permittivity#Lossy_medium).
 
 $$ \tag{5.5}
 	\varepsilon\_r(\omega) = \frac{\varepsilon(\omega)}{\epsilon\_0}, \quad
@@ -934,11 +936,11 @@ $$ \tag{5.8}
 	c \Big( \sqrt{\epsilon \mu} - i \frac{\sigma \mu}{2 \omega \sqrt{\epsilon \mu}} \Big),
 $$
 
-which gives an approximate mapping between the optical and the physical parameters[^7].
+which gives an approximate mapping between the optical and the physical parameters[^9].
 
 If the refractive index \\(\eta\\) of the material has axial dependence, the crystal is said to be doubly refractive or [birefringent](https://en.wikipedia.org/wiki/Birefringence). If the attenuation index \\(\kappa\\) varies instead, the crystal is called [dichroic](https://en.wikipedia.org/wiki/Dichroism) (from the Greek *dikhroos*, two-colored).
 
-[^7]: Keep in mind that, in general, the permittivity, the permeability, and the conductivity are complex.
+[^9]: Keep in mind that, in general, the permittivity, the permeability, and the conductivity are complex.
 
 In order to develop some intuition about the role of the refractive index \[[5](#references) (vol. II, ch. 32.4)\], consider the phasor component of a scalar plane wave
 
