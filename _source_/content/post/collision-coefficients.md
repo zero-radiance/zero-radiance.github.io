@@ -619,11 +619,13 @@ Having defined both irradiance and spectral irradiance, we can compute all other
 
 ## Constitutive Relations
 
-Considered in isolation, Maxwell's equations in the frequency domain is an [undetermined system](https://en.wikipedia.org/wiki/Underdetermined_system) - it has fewer equations than unknowns. This makes it necessary to specify the way the material responds to the electromagnetic field. One way to do that is to express the auxiliary fields in terms of polarization of matter (see Equation 1.10). Turns out, this leads to a *nonlinear* solution \[[9](#references)\] that is relatively difficult to manipulate.
+Considered in isolation, Maxwell's equations in the frequency domain is an [undetermined system](https://en.wikipedia.org/wiki/Underdetermined_system) - it has fewer equations than unknowns. This makes it necessary to specify the way the material responds to the applied electromagnetic field. Such assumptions about the material are called the *material equations*, or the [constitutive relations](https://en.wikipedia.org/wiki/Constitutive_equation#Electromagnetism).
 
-Fortunately, many materials respond to weak electromagnetic fields in optical frequencies in an approximately linear manner[^5]. Under this assumption, we may express \\(\bm{D}\\) and \\(\bm{H}\\) as [bilinear](https://en.wikipedia.org/wiki/Bilinear_map) functions of \\(\bm{E}\\) and \\(\bm{B}\\) \[[8](#references) (ch. 8.22)\]:
+Perhaps the most obvious way to introduce these assumptions is to express the auxiliary fields in terms of polarization of matter (see Equation 1.10) which, in turn, must be expanded in terms of the electric and the magnetic fields. As it turns out, this leads to a *nonlinear* solution \[[9](#references)\] that is relatively difficult to manipulate.
 
-[^5]: This means that omitting higher-order terms in the series expansions of the fields results in a negligible error.
+Fortunately, many materials respond to weak electromagnetic fields in an approximately linear manner[^5]. Under this assumption, we may express \\(\bm{D}\\) and \\(\bm{H}\\) as [bilinear](https://en.wikipedia.org/wiki/Bilinear_map) functions of \\(\bm{E}\\) and \\(\bm{B}\\) \[[8](#references) (ch. 8.22), [10](#references)\]:
+
+[^5]: This means that omitting higher-order terms in the series expansion results in a negligible error.
 
 $$ \tag{4.1}
 	\begin{bmatrix}
@@ -631,8 +633,8 @@ $$ \tag{4.1}
 		\bm{H} \cr
 	\end{bmatrix} =
 	\begin{bmatrix}
-		\bm{a_{11}} & \bm{a_{12}} \cr
-		\bm{a_{21}} & \bm{a_{22}} \cr
+		\bm{c_{11}} & \bm{c_{12}} \cr
+		\bm{c_{21}} & \bm{c_{22}} \cr
 	\end{bmatrix}
 	\begin{bmatrix}
 		\bm{E} \cr
@@ -640,24 +642,26 @@ $$ \tag{4.1}
 	\end{bmatrix}.
 $$
 
-In general, media may be *dispersive* (dependent on the frequency), *lossy* (absorptive), and *anisotropic* (dependent on the orientation). This implies that each matrix entry \\(\bm{a_{ij}}\\) is a complex [tensor field](https://en.wikipedia.org/wiki/Tensor#Tensor_fields). 
+In general, media may be *dispersive* (dependent on the frequency), *lossy* (absorptive), and *anisotropic* (dependent on the orientation). This implies that each matrix entry \\(\bm{c_{ij}}\\) is a complex [tensor field](https://en.wikipedia.org/wiki/Tensor#Tensor_fields) that can be represented as a 3x3 matrix.
 
-Equation 4.1 can be simplified further by assuming that the off-diagonal entries \\(\bm{a_{12}} = \bm{a_{21}} = 0\\). This behavior is captured by the [constitutive relations](https://en.wikipedia.org/wiki/Constitutive_equation#Electromagnetism) \[[6](#references) (ch. 1.1.2), [7](#references) (ch. 2.1), [8](#references) (ch. 2.3)\]:
+A radical simplification[^6] of Maxwell's equations can be achieved by assuming that the material is both *linear* and *isotropic* \[[6](#references) (ch. 1.1.2), [7](#references) (ch. 2.1), [8](#references) (ch. 2.3)\]:
+
+[^6]: We would like to stress that Equations 4.2-4.3 make a big assumption that is not appropriate for certain types of real materials. For instance, [crystals](https://en.wikipedia.org/wiki/Crystal) have a well-defined [internal structure](https://en.wikipedia.org/wiki/Crystal_structure) which makes them inherently anisotropic \[[5](#references) (vol. II, ch. 30)\]. Since our application is primarily concerned with simple fluids, the assumption of a linear isotropic material is valid, and offers significant theoretical advantages (such as simplicity). However, it may not be suitable for a more general application.
 
 $$ \tag{4.2}
 \begin{aligned}
-	&\bm{J\_i}(\bm{r}, \omega) \approx \bm{\sigma}(\bm{r}, \omega) \bm{E}(\bm{r}, \omega), \cr
-	&\bm{D}   (\bm{r}, \omega) \approx \bm{\epsilon}(\bm{r}, \omega) \bm{E}(\bm{r}, \omega), \cr
-	&\bm{B}   (\bm{r}, \omega) \approx \bm{\mu}(\bm{r}, \omega) \bm{H}(\bm{r}, \omega),
+	&\bm{J\_i}(\bm{r}, \omega) \approx \sigma(\bm{r}, \omega) \bm{E}(\bm{r}, \omega), \cr
+	&\bm{D}   (\bm{r}, \omega) \approx \epsilon(\bm{r}, \omega) \bm{E}(\bm{r}, \omega), \cr
+	&\bm{B}   (\bm{r}, \omega) \approx \mu(\bm{r}, \omega) \bm{H}(\bm{r}, \omega),
 \end{aligned}
 $$
 
-where \\(\bm{\sigma}\\) is the [specific conductivity](https://en.wikipedia.org/wiki/Electrical_resistivity_and_conductivity), \\(\bm{\epsilon}\\) is the [electric permittivity](https://en.wikipedia.org/wiki/Permittivity), and \\(\bm{\mu}\\) is the [magnetic permeability](https://en.wikipedia.org/wiki/Permeability_(electromagnetism)).
+where \\(\sigma\\) is the [specific conductivity](https://en.wikipedia.org/wiki/Electrical_resistivity_and_conductivity), \\(\epsilon\\) is the [electric permittivity](https://en.wikipedia.org/wiki/Permittivity), and \\(\mu\\) is the [magnetic permeability](https://en.wikipedia.org/wiki/Permeability_(electromagnetism)).
 
 We can also combine Equations 2.19.2 and 4.2.1 to derive the relation of the induced charge density:
 
 $$ \tag{4.3}
-	\rho\_i(\bm{r}) \approx \frac{i}{\omega_n} \nabla \cdot \big( \bm{\sigma}(\bm{r}) \bm{E}(\bm{r}) \big),
+	\rho\_i(\bm{r}) \approx \frac{i}{\omega_n} \nabla \cdot \big( \sigma(\bm{r}) \bm{E}(\bm{r}) \big),
 $$
 
 where the frequency dependence is implicit according to the convention established by Equations 2.13-2.14.
@@ -666,28 +670,28 @@ If the constitutive relations hold, Maxwell's equations for time-harmonic fields
 
 $$ \tag{4.4}
 \begin{aligned}
-	&\nabla \times \bm{E}(\bm{r}) + i \omega_n \bm{\mu}(\bm{r}) \bm{H}(\bm{r}) = 0, \cr
-	&\nabla \cdot  \big( \bm{\mu}(\bm{r}) \bm{H}(\bm{r}) \big) = 0, \cr
-	&\nabla \times \bm{H}(\bm{r}) - i \omega_n \bm{\epsilon}(\bm{r}) \bm{E}(\bm{r})
-	= \bm{J\_s}(\bm{r}) + \bm{\sigma}(\bm{r}) \bm{E}(\bm{r}), \cr
-	&\nabla \cdot  \big( \bm{\epsilon}(\bm{r}) \bm{E}(\bm{r}) \big) = \rho\_s(\bm{r}) + \frac{i}{\omega_n} \nabla \cdot \big( \bm{\sigma}(\bm{r}) \bm{E}(\bm{r}) \big).
+	&\nabla \times \bm{E}(\bm{r}) + i \omega_n \mu(\bm{r}) \bm{H}(\bm{r}) = 0, \cr
+	&\nabla \cdot  \big( \mu(\bm{r}) \bm{H}(\bm{r}) \big) = 0, \cr
+	&\nabla \times \bm{H}(\bm{r}) - i \omega_n \epsilon(\bm{r}) \bm{E}(\bm{r})
+	= \bm{J\_s}(\bm{r}) + \sigma(\bm{r}) \bm{E}(\bm{r}), \cr
+	&\nabla \cdot  \big( \epsilon(\bm{r}) \bm{E}(\bm{r}) \big) = \rho\_s(\bm{r}) + \frac{i}{\omega_n} \nabla \cdot \big( \sigma(\bm{r}) \bm{E}(\bm{r}) \big).
 \end{aligned}
 $$
 
 Using the definition of the [complex permittivity](https://en.wikipedia.org/wiki/Permittivity#Complex_permittivity)
 
 $$ \tag{4.5}
-	\bm{\varepsilon}(\bm{r}) = \bm{\epsilon}(\bm{r}) - \frac{i}{\omega_n} \bm{\sigma}(\bm{r}),
+	\varepsilon(\bm{r}) = \epsilon(\bm{r}) - \frac{i}{\omega_n} \sigma(\bm{r}),
 $$
 
-we obtain Maxwell's equations for *linear* media:
+we obtain Maxwell's equations for *linear, isotropic* media:
 
 $$ \tag{4.6}
 \begin{aligned}
-	&\nabla \times \bm{E}(\bm{r}) + i \omega_n \bm{\mu}(\bm{r}) \bm{H}(\bm{r}) = 0, &
-	&\nabla \cdot  \big( \bm{\mu}(\bm{r}) \bm{H}(\bm{r}) \big) = 0, \cr
-	&\nabla \times \bm{H}(\bm{r}) - i \omega_n \bm{\varepsilon}(\bm{r}) \bm{E}(\bm{r}) = \bm{J\_s}(\bm{r}), &
-	&\nabla \cdot  \big( \bm{\varepsilon}(\bm{r}) \bm{E}(\bm{r}) \big) = \rho\_s(\bm{r}).
+	&\nabla \times \bm{E}(\bm{r}) + i \omega_n \mu(\bm{r}) \bm{H}(\bm{r}) = 0, &
+	&\nabla \cdot  \big( \mu(\bm{r}) \bm{H}(\bm{r}) \big) = 0, \cr
+	&\nabla \times \bm{H}(\bm{r}) - i \omega_n \varepsilon(\bm{r}) \bm{E}(\bm{r}) = \bm{J\_s}(\bm{r}), &
+	&\nabla \cdot  \big( \varepsilon(\bm{r}) \bm{E}(\bm{r}) \big) = \rho\_s(\bm{r}).
 \end{aligned}
 $$
 
@@ -699,10 +703,10 @@ Setting \\(\bm{J\_f} = \rho\_f = 0\\) in Equations 3.6, we obtain a coupled syst
 
 $$ \tag{4.1}
 \begin{aligned}
-	&\nabla \times \bm{E}(\bm{r}, \omega) + i \omega \bm{\mu}(\bm{r}, \omega) \bm{H}(\bm{r}, \omega) = 0, &
-	&\nabla \cdot  \big( \bm{\mu}(\bm{r}, \omega) \bm{H}(\bm{r}, \omega) \big) = 0, \cr
-	&\nabla \times \bm{H}(\bm{r}, \omega) - i \omega \bm{\varepsilon}(\bm{r}, \omega) \bm{E}(\bm{r}, \omega) = 0, &
-	&\nabla \cdot  \big( \bm{\varepsilon}(\bm{r}, \omega) \bm{E}(\bm{r}, \omega) \big) = 0.
+	&\nabla \times \bm{E}(\bm{r}, \omega) + i \omega \mu(\bm{r}, \omega) \bm{H}(\bm{r}, \omega) = 0, &
+	&\nabla \cdot  \big( \mu(\bm{r}, \omega) \bm{H}(\bm{r}, \omega) \big) = 0, \cr
+	&\nabla \times \bm{H}(\bm{r}, \omega) - i \omega \varepsilon(\bm{r}, \omega) \bm{E}(\bm{r}, \omega) = 0, &
+	&\nabla \cdot  \big( \varepsilon(\bm{r}, \omega) \bm{E}(\bm{r}, \omega) \big) = 0.
 \end{aligned}
 $$
 
@@ -714,9 +718,9 @@ Assume that the medium is *homogeneous* (constant in space)[^6]:
 
 $$ \tag{4.2}
 \begin{aligned}
-	&\nabla \times \bm{E}(\bm{r}, \omega) + i \omega \bm{\mu}(\omega) \bm{H}(\bm{r}, \omega) = 0, &
+	&\nabla \times \bm{E}(\bm{r}, \omega) + i \omega \mu(\omega) \bm{H}(\bm{r}, \omega) = 0, &
 	&\nabla \cdot  \bm{H}(\bm{r}, \omega) = 0, \cr
-	&\nabla \times \bm{H}(\bm{r}, \omega) - i \omega \bm{\varepsilon}(\omega) \bm{E}(\bm{r}, \omega) = 0, &
+	&\nabla \times \bm{H}(\bm{r}, \omega) - i \omega \varepsilon(\omega) \bm{E}(\bm{r}, \omega) = 0, &
 	&\nabla \cdot  \bm{E}(\bm{r}, \omega) = 0.
 \end{aligned}
 $$
@@ -724,7 +728,7 @@ $$
 Let us focus on the electric phasor \\(\bm{E}\\). Take curl of Equation 4.2.1 and substitute Equation 4.2.3:
 
 $$ 
-	\nabla \times \nabla \times \bm{E}(\bm{r}, \omega) + i \omega \nabla \times \big( \bm{\mu}(\omega) \bm{H}(\bm{r}, \omega) \big) = 0
+	\nabla \times \nabla \times \bm{E}(\bm{r}, \omega) + i \omega \nabla \times \big( \mu(\omega) \bm{H}(\bm{r}, \omega) \big) = 0
 $$
 
 $$ 
@@ -734,7 +738,7 @@ $$
 Now what? Fix me!!! Check Ishimaru?
 
 $$ \tag{4.3}
-	\nabla \times \nabla \times \bm{E}(\bm{r}, \omega) + i \omega \bm{\mu}(\omega) \big( i \omega \bm{\varepsilon}(\omega) \bm{E}(\bm{r}, \omega) \big) = 0.
+	\nabla \times \nabla \times \bm{E}(\bm{r}, \omega) + i \omega \mu(\omega) \big( i \omega \varepsilon(\omega) \bm{E}(\bm{r}, \omega) \big) = 0.
 $$
 
 Introduce the [curl-of-curl](https://en.wikipedia.org/wiki/Vector_calculus_identities#Curl_of_curl) identity
@@ -774,21 +778,21 @@ is the *vector* [Laplace](https://en.wikipedia.org/wiki/Laplace_operator) operat
 Use it to expand Equation 4.3:
 
 $$ \tag{4.7}
-	\nabla \big( \nabla \cdot \bm{E}(\bm{r}, \omega) \big) - \nabla^2 \bm{E}(\bm{r}, \omega) - \omega^2 \bm{\mu}(\omega) \bm{\varepsilon}(\omega) \bm{E}(\bm{r}, \omega) = 0.
+	\nabla \big( \nabla \cdot \bm{E}(\bm{r}, \omega) \big) - \nabla^2 \bm{E}(\bm{r}, \omega) - \omega^2 \mu(\omega) \varepsilon(\omega) \bm{E}(\bm{r}, \omega) = 0.
 $$
 
 Substitution of Equation 4.2.4 into 4.7 yields the equation of the electric phasor \\(\bm{E}\\):
 
 $$ \tag{4.8}
-	\nabla^2 \bm{E}(\bm{r}, \omega) + \omega^2 \bm{\mu}(\omega) \bm{\varepsilon}(\omega) \bm{E}(\bm{r}, \omega) = 0.
+	\nabla^2 \bm{E}(\bm{r}, \omega) + \omega^2 \mu(\omega) \varepsilon(\omega) \bm{E}(\bm{r}, \omega) = 0.
 $$
 
 Similarly, we can obtain an expression[^7] of the magnetic phasor \\(\bm{B}\\):
 
-[^7]: If you solve for \\(\bm{H}\\) rather than \\(\bm{B}\\), you will obtain an equation with the \\(\bm{\varepsilon} \bm{\mu}\\) term instead of \\(\bm{\mu} \bm{\varepsilon}\\) found in the equation of \\(\bm{E}\\). Since, in general, tensor products do not commute, this means that the \\(\bm{H}\\) field propagates differently from the \\(\bm{E}\\) field, and solving for the \\(\bm{H}\\) field is a mistake.
+[^7]: If you solve for \\(\bm{H}\\) rather than \\(\bm{B}\\), you will obtain an equation with the \\(\varepsilon \mu\\) term instead of \\(\mu \varepsilon\\) found in the equation of \\(\bm{E}\\). Since, in general, tensor products do not commute, this means that the \\(\bm{H}\\) field propagates differently from the \\(\bm{E}\\) field, and solving for the \\(\bm{H}\\) field is a mistake.
 
 $$ \tag{4.9}
-	\nabla^2 \bm{B}(\bm{r}, \omega) + \omega^2 \bm{\mu}(\omega) \bm{\varepsilon}(\omega) \bm{B}(\bm{r}, \omega) = 0.
+	\nabla^2 \bm{B}(\bm{r}, \omega) + \omega^2 \mu(\omega) \varepsilon(\omega) \bm{B}(\bm{r}, \omega) = 0.
 $$
 
 Since anisotropy arises due to the [crystal structure](https://en.wikipedia.org/wiki/Crystal_structure) of the material[^8], this tensor product is [normal](https://en.wikipedia.org/wiki/Normal_matrix), and we can perform a [change of basis](https://en.wikipedia.org/wiki/Change_of_basis) to [diagonalize](https://en.wikipedia.org/wiki/Diagonalizable_matrix#How_to_diagonalize_a_matrix) it:
@@ -1034,19 +1038,19 @@ $$
 If we recall the definition of \\(k\\) given by Equation 4.12, it is apparent that
 
 $$ \tag{5.16}
-	\bm{n} \times \Big( \big( \bm{\mu}(\omega) \bm{\varepsilon}(\omega) \big)^{\frac{1}{2}} \bm{E}(\bm{r}, \bm{n}, \omega) \Big) = \bm{B}(\bm{r}, \bm{n}, \omega),
+	\bm{n} \times \Big( \big( \mu(\omega) \varepsilon(\omega) \big)^{\frac{1}{2}} \bm{E}(\bm{r}, \bm{n}, \omega) \Big) = \bm{B}(\bm{r}, \bm{n}, \omega),
 $$
 
 or, alternatively,
 
 $$ \tag{5.16}
-	\bm{n} \times \Big( \big( \bm{\mu}(\omega) \bm{\varepsilon}(\omega) \big)^{\frac{1}{2}} \bm{E}(\bm{r}, \bm{n}, \omega) \Big) = \bm{B}(\bm{r}, \bm{n}, \omega),
+	\bm{n} \times \Big( \big( \mu(\omega) \varepsilon(\omega) \big)^{\frac{1}{2}} \bm{E}(\bm{r}, \bm{n}, \omega) \Big) = \bm{B}(\bm{r}, \bm{n}, \omega),
 $$
 
 \\(\bm{n}\\) is a real vector, while the phasors \\(\bm{E}\\) and \\(\bm{B}\\) are complex. Using the distributive property of the cross product,
 
 $$ \tag{5.17}
-	\bm{n} \times \mathcal{Re} \big\lbrace \big( \bm{\mu}(\omega) \bm{\varepsilon}(\omega) \big)^{\frac{1}{2}} \bm{E}(\bm{r}, \bm{n}, \omega) e^{i \omega t} \big\rbrace
+	\bm{n} \times \mathcal{Re} \big\lbrace \big( \mu(\omega) \varepsilon(\omega) \big)^{\frac{1}{2}} \bm{E}(\bm{r}, \bm{n}, \omega) e^{i \omega t} \big\rbrace
 	= \mathcal{Re} \big\lbrace \bm{B}(\bm{r}, \bm{n}, \omega) e^{i \omega t} \big\rbrace.
 $$
 
@@ -1054,7 +1058,7 @@ A similar derivation for \\(\bm{B}\\) using Equations 3.1.3 and 4.2.3 leads to
 
 $$ \tag{5.18}
 	\bm{n} \times \mathcal{Re} \big\lbrace \bm{B}(\bm{r}, \bm{n}, \omega) e^{i \omega t} \big\rbrace
-	=  -\mathcal{Re} \big\lbrace \big( \bm{\mu}(\omega) \bm{\varepsilon}(\omega) \big)^{\frac{1}{2}} \bm{E}(\bm{r}, \bm{n}, \omega) e^{i \omega t} \big\rbrace.
+	=  -\mathcal{Re} \big\lbrace \big( \mu(\omega) \varepsilon(\omega) \big)^{\frac{1}{2}} \bm{E}(\bm{r}, \bm{n}, \omega) e^{i \omega t} \big\rbrace.
 $$
 
 Both Equations 5.17 and 5.18 are simultaneously true only if these three vectors are mutually orthogonal. Thus, they define the geometric configuration of a plane wave.
@@ -1230,4 +1234,5 @@ Pharr, Jakob, NASA people
 7. Mishchenko, M. I. [Electromagnetic Scattering by Particles and Particle Groups](https://www.cambridge.org/us/academic/subjects/earth-and-environmental-science/atmospheric-science-and-meteorology/electromagnetic-scattering-particles-and-particle-groups-introduction) (2014).
 8. Ishimaru, A. [Electromagnetic Wave Propagation, Radiation, and Scattering](https://doi.org/10.1002/9781119079699), 2nd Edition (2017).
 9. Boyd, R. W. [Nonlinear optics](https://www.elsevier.com/books/nonlinear-optics/boyd/978-0-12-811002-7), 4th Edition (2020).
-10. Hansen, J. E., & Travis, L. D. [Light scattering in planetary atmospheres](https://doi.org/10.1007/BF00168069) (1974).
+10. Keller, S. M., & Carman, G. P. [Electromagnetic wave propagation in (bianisotropic) magnetoelectric materials](https://doi.org/10.1177/1045389X12467518) (2013). 
+11. Hansen, J. E., & Travis, L. D. [Light scattering in planetary atmospheres](https://doi.org/10.1007/BF00168069) (1974).
