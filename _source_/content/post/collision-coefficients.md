@@ -80,13 +80,13 @@ $$ \tag{1.3}
 	\frac{\partial E\_x}{\partial x} + \frac{\partial E\_y}{\partial y} + \frac{\partial E\_z}{\partial z}
 $$
 
-is the [divergence](https://en.wikipedia.org/wiki/Divergence) operator, both given in Cartesian coordinates. \\(\epsilon\_0\\) and \\(\mu\_0\\) are the [vacuum permittivity](https://en.wikipedia.org/wiki/Vacuum_permittivity) and the [vacuum permeability](https://en.wikipedia.org/wiki/Vacuum_permeability), respectively, which are connected by the [speed of light](https://en.wikipedia.org/wiki/Speed_of_light)
+is the [divergence](https://en.wikipedia.org/wiki/Divergence) operator, both given in Cartesian coordinates. \\(\epsilon\_0\\) and \\(\mu\_0\\) are the [vacuum permittivity](https://en.wikipedia.org/wiki/Vacuum_permittivity) and the [vacuum permeability](https://en.wikipedia.org/wiki/Vacuum_permeability), respectively, which are related by the [speed of light](https://en.wikipedia.org/wiki/Speed_of_light)
 
 $$ \tag{1.4}
 	c = (\epsilon\_0 \mu\_0)^{-1/2}.
 $$
 
-Sometimes, Equations 1.1 are referred to as the "vacuum version" of Maxwell's equations. This name can be a little misleading; in fact, the matter is right there - it is just represented as a distribution of charged [elementary particles](https://en.wikipedia.org/wiki/Elementary_particle) by the *volume* [charge density](https://en.wikipedia.org/wiki/Charge_density) \\(\rho\\), such that the total charge \\(Q\\) inside the volume \\(V\\) is
+Sometimes, Equations 1.1 are referred to as the "vacuum version" of Maxwell's equations. This name can be a little misleading; in fact, the matter is right there - it is just represented as a distribution of charged [elementary particles](https://en.wikipedia.org/wiki/Elementary_particle) by the *volume* [charge density](https://en.wikipedia.org/wiki/Charge_density) \\(\rho\\), such that the total amount of charge \\(Q\\) inside the volume \\(V\\) is
 
 $$ \tag{1.5}
 	Q(t) = \iiint\_{V} \rho(\bm{r}, t) \thinspace dV.
@@ -98,9 +98,9 @@ $$ \tag{1.6}
 	\bm{J}(\bm{r}, t) = \rho(\bm{r}, t) \bm{v}(\bm{r}, t).
 $$
 
-Of course, individual particles may be located at different points, and have different electric charges and velocities - the density is just a convenient mathematical abstraction.
+Of course, individual particles may be located at different points, and have different charges and velocities - the density is just a convenient mathematical abstraction.
 
-While this kind of parametrization is simple and useful, due to the sheer number of charged particles in bulk matter, you can't see the forest for the trees. Therefore, applied physics often uses a different representation of matter, which we shall now discuss.
+While this kind of parametrization is simple and useful, due to the sheer number of charged particles in bulk matter, you can't see the forest for the trees. Therefore, applied physics often uses a different representation of matter which we shall now discuss.
 
 First, we identify two types of charges - bound and free. As the name implies, *free* charges are able to effortlessly move around the material, the typical example being the conduction current in a copper wire. The *bound* [current](https://en.wikipedia.org/wiki/Current_density#Polarization_and_magnetization_currents) and [charge densities](https://en.wikipedia.org/wiki/Charge_density#Bound_charge), \\(\bm{J\_b}\\) and \\(\rho\_b\\), are more difficult to reason about. They can be characterized in terms of [polarization of matter](https://en.wikipedia.org/wiki/Maxwell%27s_equations#Auxiliary_fields,_polarization_and_magnetization):
 
@@ -109,7 +109,7 @@ $$ \tag{1.7}
 	\rho\_b(\bm{r}, t) = -\nabla \cdot \bm{P}(\bm{r}, t),
 $$
 
-where \\(\bm{P}\\) is the [electric polarization](https://en.wikipedia.org/wiki/Polarization_density) (electric dipole moment per unit volume), \\(\bm{M}\\) is the [magnetic polarization](https://en.wikipedia.org/wiki/Magnetization) (magnetic dipole moment per unit volume).
+where \\(\bm{P}\\) is the [electric polarization](https://en.wikipedia.org/wiki/Polarization_density) (electric dipole moment per unit volume) and \\(\bm{M}\\) is the [magnetic polarization](https://en.wikipedia.org/wiki/Magnetization) (magnetic dipole moment per unit volume).
 
 Substitution of Equation 1.7.1 into 1.1.3 and Equation 1.7.2 into 1.1.4 yields
 
@@ -147,9 +147,9 @@ $$ \tag{1.11}
 \end{aligned}
 $$
 
-As discussed in \[[5](#references) (vol. II, ch 32.2), [6](#references) (ch. 1.1.1)\], \\(\bm{E}\\) and \\(\bm{B}\\) are considered the fundamental fields, and \\(\bm{D}\\) and \\(\bm{H}\\) are the [auxiliary fields](https://en.wikipedia.org/wiki/Maxwell%27s_equations#Auxiliary_fields,_polarization_and_magnetization) that arise due to the influence of matter. We shall soon see that, in many cases, these two groups are related in a simple way.
+As discussed in \[[5](#references) (vol. II, ch 32.2), [6](#references) (ch. 1.1.1)\], \\(\bm{E}\\) and \\(\bm{B}\\) are the *fundamental fields*, and \\(\bm{D}\\) and \\(\bm{H}\\) are the [auxiliary fields](https://en.wikipedia.org/wiki/Maxwell%27s_equations#Auxiliary_fields,_polarization_and_magnetization) that arise due to the influence of matter. We shall soon see that, in many cases, these two groups are related in a simple way.
 
-On the conceptual level, we would like the properties of matter to be continuous everywhere, which leads to continuous electromagnetic fields. But, sometimes, it is convenient to introduce a discontinuity to approximate a very rapid (yet continuous) variation of optical properties. At the *optical interface*, the fields must satisfy the [boundary conditions](https://en.wikipedia.org/wiki/Interface_conditions_for_electromagnetic_fields) \[[6](#references) (ch. 1.1.3), [7](#references) (ch. 2.2), [8](#references) (ch. 2.4)\]. If \\(\bm{n\_{12}}\\) is a unit normal vector pointing from region 1 to region 2, the normal components of the fields must be such that
+On the conceptual level, we would like the properties of matter to be continuous everywhere, which leads to continuous fields. But, sometimes, it is convenient to introduce a discontinuity to approximate a very rapid (yet continuous) variation of material properties. At the *optical interface*, the fields must satisfy the [boundary conditions](https://en.wikipedia.org/wiki/Interface_conditions_for_electromagnetic_fields) \[[6](#references) (ch. 1.1.3), [7](#references) (ch. 2.2), [8](#references) (ch. 2.4)\]. If \\(\bm{n\_{12}}\\) is a unit normal vector pointing from region 1 to region 2, the normal components of the fields must be such that
 
 $$ \tag{1.12}
 	\bm{n\_{12}} \cdot  (\bm{B\_2} - \bm{B\_1}) = 0, \quad
@@ -173,7 +173,7 @@ Maxwell's equations can be simplified by transforming the fields from the time t
 
 Define[^1] the [Fourier transform](https://en.wikipedia.org/wiki/Fourier_transform) of the electric vector field \\(\bm{E}(\bm{r}, t)\\) as
 
-[^1]: The choice of the sign of the complex exponential is arbitrary; it determines the sign of the imaginary components of both the complex permittivity and the complex refractive index.
+[^1]: The choice of the sign of the complex exponential is arbitrary; as we shall see, it determines the sign of the imaginary components of both the complex permittivity and the complex refractive index.
 
 $$ \tag{2.1}
 	\bm{E}(\bm{r}, \omega)
@@ -218,10 +218,10 @@ which follows from the definition of the real part of a complex number:
 $$ \tag{2.5}
 	2 \thinspace \mathcal{Re} \lbrace z \rbrace
 	= z + z^{\*}
-	= r e^{i \theta} + r e^{-i \theta}.
+	= 2 r \cos{ \theta}.
 $$
 
-We can define integral forms of the fields by replacing \\(\bm{E}\\) by \\(\bm{B}\\), \\(\bm{D}\\), \\(\bm{H}\\), \\(\bm{J\_f}\\) or \\(\rho\_f\\) in Equation 2.4. If we substitute these integrals into Equations 1.11, and if we assume that we can perform [differentiation under the integral sign](https://en.wikipedia.org/wiki/Leibniz_integral_rule), we obtain
+We can define the integral forms of the fields by replacing \\(\bm{E}\\) by \\(\bm{B}\\), \\(\bm{D}\\), \\(\bm{H}\\), \\(\bm{J\_f}\\) or \\(\rho\_f\\) in Equation 2.4. If we substitute these integrals into Equations 1.11, and if we assume that we can perform [differentiation under the integral sign](https://en.wikipedia.org/wiki/Leibniz_integral_rule), the result is the system of integral equations
 
 $$ \tag{2.6}
 \begin{aligned}
@@ -234,7 +234,7 @@ $$ \tag{2.6}
 \end{aligned}
 $$
 
-Generally speaking, equality of integrands does not follow from equality of integrals (but the opposite is true). In order to be able to simplify Equations 2.6 further, we must make an assumption that the electromagnetic field is a periodic function, such that the *fundamental period* \\(\thinspace T\_1 = 2 \pi / \omega_1\\) of both the electric and the magnetic fields is the same \[[5](#references) (vol. I, ch. 50) [6](#references) (ch. 1.3.3, 1.4.3)\]. This restriction is not as severe as it may seem, for we may choose the period to be as large as necessary. And the benefits are great, for it allows us to represent[^3] the fields using the [Fourier series](https://en.wikipedia.org/wiki/Fourier_series#Complex-valued_functions)
+Generally speaking, equality of integrands does not follow from equality of integrals (but the opposite is true). In order to simplify Equations 2.6 further, we must make an assumption that the electromagnetic field is a [periodic function](https://en.wikipedia.org/wiki/Periodic_function) of time, such that the *fundamental period* \\(\thinspace T\_1 = 2 \pi / \omega_1\\) of both the electric and the magnetic fields is the same \[[5](#references) (vol. I, ch. 50) [6](#references) (ch. 1.3.3, 1.4.3)\]. This restriction is not as severe as it may seem, for we may choose the period to be as large as necessary. And the benefits are great, since it allows us to represent[^3] the fields using the [Fourier series](https://en.wikipedia.org/wiki/Fourier_series#Complex-valued_functions)
 
 [^3]: This discrete representation only allows frequencies that belong to a certain [countable set](https://en.wikipedia.org/wiki/Countable_set). This is noteworthy because it suggests that fields are, in some sense, quantized, even though we are not using the [quantum theory of fields](https://en.wikipedia.org/wiki/Quantum_field_theory).
 
@@ -297,7 +297,7 @@ $$
 
 where we used the exponential definition of the [Dirac delta](https://en.wikipedia.org/wiki/Dirac_delta_function) function \\(\delta(x)\\).
 
-Equation 2.11 permits us to study the *monochromatic* field (or, stated more precisely, the \\(n\\)-th harmonic)
+Equation 2.11 permits us to study the *monochromatic* vector field (or, stated more precisely, the \\(n\\)-th harmonic)
 
 $$ \tag{2.13}
 	\bm{E}(\bm{r}, t)
@@ -373,7 +373,7 @@ $$ \tag{3.1}
  	\frac{\partial}{\partial t} \mathcal{W}(V, t).
 $$
 
-In Equation 3.1, \\(\mathcal{E}\\) refers to a single type of energy: kinetic, electromagnetic, etc. Work transforms a portion of \\(\mathcal{E}\\) into a different type of energy: kinetic into potential, electromagnetic into thermal, and so on. If we account for all types of energy, the total amount of energy is conserved.
+In Equation 3.1, \\(\mathcal{E}\\) refers to a single type of energy: kinetic, electromagnetic, etc. Work transforms a portion of \\(\mathcal{E\_{ext}}\\) into a different type of energy: kinetic into potential, electromagnetic into thermal, and so on. If we account for all types of energy, the total amount of energy is conserved.
 
 Given our focus on electromagnetic energy, we can partition the total amount of energy into the *field energy* and the *matter energy*. In this context, work done by the field on the matter refers to *absorption*, and has a positive sign. Similarly, *emission* is the work done by the matter on the field, and has a negative sign. We shall not consider emissive materials in the analysis presented below.
 
@@ -385,7 +385,7 @@ $$
 
 Thus, to compute it, we must recall the definition of the electromagnetic force.
 
-If a particle with the electric charge \\(q\\) moving at the velocity \\(\bm{v}\\) is placed in an electromagnetic field, it experiences the [Lorentz force](https://en.wikipedia.org/wiki/Lorentz_force)
+If a particle with the charge \\(q\\) moving at the velocity \\(\bm{v}\\) is placed in an electromagnetic field, it experiences the [Lorentz force](https://en.wikipedia.org/wiki/Lorentz_force)
 
 $$ \tag{3.3}
 	\bm{F}(\bm{r}, t) = q(\bm{r}, t) \big( \bm{E}(\bm{r}, t) + \bm{v}(\bm{r}, t) \times \bm{B}(\bm{r}, t) \big).
@@ -397,7 +397,7 @@ $$ \tag{3.4}
 	d\bm{F}(\bm{r}, t) = \rho(\bm{r}, t) \big( \bm{E}(\bm{r}, t) + \bm{v}(\bm{r}, t) \times \bm{B}(\bm{r}, t) \big) \thinspace dV.
 $$
 
-Therefore, the amount of work done per unit time by the field on the matter is
+Therefore, the amount of work done per unit time by the field on the matter inside the volume \\(V\\) is
 
 $$ \tag{3.5}
 	\frac{\partial}{\partial t} \mathcal{W}(V, t) =
@@ -405,7 +405,7 @@ $$ \tag{3.5}
     \iiint\_{V} \bm{E}(\bm{r}, t) \cdot \rho(\bm{r}, t) \bm{v}(\bm{r}, t) \thinspace dV.
 $$
 
-Since the current density is just a collection of moving charges per unit volume (see Equation 1.6),
+Since the current density is just the number of moving charges per unit volume (see Equation 1.6),
 
 $$ \tag{3.6}
 	\frac{\partial}{\partial t} \mathcal{W}(V, t) =
@@ -420,7 +420,7 @@ $$ \tag{3.7}
     \frac{\partial}{\partial t} \big( \epsilon\_0 \bm{E} \big) \Big) dV.
 $$
 
-Since [divergence of cross product](https://en.wikipedia.org/wiki/Vector_calculus_identities#Cross_product_rule) is
+Since [the divergence of the cross product](https://en.wikipedia.org/wiki/Vector_calculus_identities#Cross_product_rule) is
 
 $$ \tag{3.8}
 	\nabla \cdot (\bm{E} \times \bm{B}) = (\nabla \times \bm{E}) \cdot \bm{B} - \bm{E} \cdot (\nabla \times \bm{B}),
@@ -434,7 +434,7 @@ $$ \tag{3.9}
     \epsilon\_0 \bm{E} \cdot \frac{\partial \bm{E}}{\partial t}.
 $$
 
-The curl of \\(\bm{E}\\) is also given by Maxwell's equations (see Equation 1.1.1). Thus we can write
+The curl of \\(\bm{E}\\) is also given by Maxwell's equations (see Equation 1.1.1). Then it follows that
 
 $$ \tag{3.10}
 	\bm{E} \cdot \bm{J} = 
@@ -469,11 +469,11 @@ $$
 
 where \\(\bm{n}\\) is the outward-facing surface normal.
 
-According to Equation 3.1, the right-hand side of Equation 3.14 represents the difference between the rates of inflow and outflow of energy. Thus, the first term on the right gives the amount of external energy (per unit time) flowing through the bounding surface into the volume,
+According to Equation 3.1, the right-hand side of Equation 3.13 represents the difference between the rates of inflow and outflow of energy. Thus, the first term gives the amount of external energy (per unit time) flowing through the bounding surface into the volume,
 
 $$ \tag{3.14}
  	\frac{\partial}{\partial t} \mathcal{E\_{ext}}(V, t) = 
- 	\oiint\_{\delta V} \mu\_0^{-1} \big( \bm{E}(\bm{r}, t) \times \bm{B}(\bm{r}, t) \big) \cdot (-\bm{n}) \thinspace dA,
+ 	\oiint\_{\delta V} \Big( \mu\_0^{-1} \big( \bm{E}(\bm{r}, t) \times \bm{B}(\bm{r}, t) \big) \cdot (-\bm{n}) \Big) dA,
 $$
 
 and the second term corresponds to the rate at which the amount of energy within the volume decreases:
@@ -498,16 +498,16 @@ $$
 
 is the [Poynting vector](https://en.wikipedia.org/wiki/Poynting_vector) that represents the direction and the rate of energy flow[^4].
 
-[^4]: This definition of field energy, while widely accepted, is somewhat ambiguous \[[5](#references) (vol. II, ch. 27.4)\]. We should also note that there is yet another popular definition in terms of the auxiliary fields \[[6](#references) (ch. 1.1.4)\]. There are several problems with the latter definition. First, both the Maxwell's equations and the Lorentz force are given in terms of the fundamental fields, \\(\bm{E}\\) and \\(\bm{B}\\). Secondly, these are also the fields that should be used to define a plane wave, as we have noted previously. And finally, most derivations that start from the macroscopic Maxwell's equations make a mistake of omitting the bound current from the definition of work; taking the bound current into account produces precisely the results at we have arrived above.
+[^4]: This definition of field energy, while widely accepted, is somewhat ambiguous \[[5](#references) (vol. II, ch. 27.4)\]. We would also like to note that there is yet another popular definition in terms of the auxiliary fields \[[6](#references) (ch. 1.1.4)\]. We prefer our derivation because it doesn't involve any assumptions, and also because it correctly accounts for bound currents.
 
-We are particularly interested in a steady-state solution of Maxwell's equations. Specifically, rather than consider the *instantaneous* Poynting vector \\(\bm{S}\\) (which may change trillions of times per second), we focus on the *time-averaged* Poynting vector instead:
+Since the electromagnetic fields oscillate so rapidly, rather than consider the *instantaneous* Poynting vector \\(\bm{S}\\), we focus on the *time-averaged* Poynting vector instead:
 
 $$ \tag{3.18}
 	\braket{\bm{S}}
 	= \frac{1}{T} \int\_{-T/2}^{\thinspace T/2} \bm{S}(\bm{r}, t + t') \thinspace dt'.
 $$
 
-It becomes especially useful once you consider a fixed direction \\(\bm{n}\\). Then, according to Equation 3.14,
+It becomes particularly useful once you consider a fixed direction \\(\bm{n}\\). Then, according to Equation 3.14,
 
 $$ \tag{3.19}
 	\mathtt{E}
@@ -533,7 +533,8 @@ $$ \tag{3.20}
 		\big[ \bm{B_m}(\bm{r}, \omega_m) e^{i \omega_m t} \big]^{\*}.
 \end{aligned}
 $$
-We now turn our attention to Equation 3.18 of the time-averaged Poynting vector
+
+Next, we turn our attention to Equation 3.18 of the time-averaged Poynting vector
 
 $$ \tag{3.21}
 \begin{aligned}
@@ -547,7 +548,7 @@ $$ \tag{3.21}
 \end{aligned}
 $$
 
-First, consider the case when \\(T = T_1\\). Then, according to Equation 2.9 that expresses orthogonality,
+First, consider the case when \\(T = T_1\\). Then, according to Equation 2.9,
 
 $$ \tag{3.22}
 \begin{aligned}
@@ -575,7 +576,7 @@ $$
 
 is a real vector, as expected.
 
-In the case where \\(T > T_1\\), the total value of \\(\braket{\bm{S}}\\) is a sum of the contribution from a number of whole periods (which is given by Equation 3.22) plus the contribution from a fraction of a period. If the period used for time-averaging is very large \\((T \gg T_1)\\), the *relative* contribution (with respect to the \\(1/T\\) factor) from a fraction of a period will be much smaller than the *relative* contribution from a large number of whole periods, so the formula of Equation 3.22 should serve as a good approximation.
+In the case where \\(T > T_1\\), the total value of \\(\braket{\bm{S}}\\) is a sum of the contribution from a number of whole periods (which is given by Equation 3.22) plus the contribution from a fraction of a period. If the period used for time-averaging is very large \\((T \gg T_1)\\), the *relative* contribution from a fraction of a period will be much smaller than the *relative* contribution from a large number of whole periods, so the formula of Equation 3.22 should serve as a good approximation.
 
 Equation 3.22 allows us to define the *time-averaged* Poynting phasor
 
@@ -602,7 +603,7 @@ $$ \tag{3.25}
 	  \big\rbrace \cdot \bm{n}
 $$
 
-in terms of [spectral irradiance](https://en.wikipedia.org/wiki/Irradiance#Spectral_irradiance) \\(\mathtt{E_n}\\)
+that can be written in terms of [spectral irradiance](https://en.wikipedia.org/wiki/Irradiance#Spectral_irradiance) \\(\mathtt{E_n}\\)
 
 $$ \tag{3.26}
 	\mathtt{E_n}
