@@ -498,7 +498,7 @@ $$
 
 is the [Poynting vector](https://en.wikipedia.org/wiki/Poynting_vector) that represents the direction and the rate of energy flow[^4].
 
-[^4]: This definition of field energy, while widely accepted, is somewhat ambiguous \[[5](#references) (vol. II, ch. 27.4)\]. We would also like to note that there is yet another popular definition in terms of the auxiliary fields \[[6](#references) (ch. 1.1.4)\]. We prefer our derivation because it doesn't involve any assumptions, and also because it correctly accounts for bound currents.
+[^4]: This definition of field energy, while widely accepted, is somewhat ambiguous \[[5](#references) (vol. II, ch. 27.4)\]. We would also like to note that there is yet another popular definition in terms of the auxiliary fields \[[6](#references) (ch. 1.1.4)\]. We prefer our derivation because it accounts for bound currents.
 
 Since the electromagnetic fields oscillate so rapidly, rather than consider the *instantaneous* Poynting vector \\(\bm{S}\\), we focus on the *time-averaged* Poynting vector instead:
 
@@ -642,7 +642,7 @@ $$ \tag{4.1}
 	\end{bmatrix}.
 $$
 
-In general, media may be *dispersive* (dependent on the frequency), *lossy* (absorptive), and *anisotropic* (dependent on the orientation). This implies that each matrix entry \\(\bm{c_{ij}}\\) is a complex [tensor field](https://en.wikipedia.org/wiki/Tensor#Tensor_fields) that can be represented as a 3x3 matrix.
+In general, media may be *dispersive* (dependent on the frequency), *lossy* (absorptive), and *anisotropic* (dependent on the orientation). This implies that each matrix entry \\(\bm{c_{ij}}\\) is a complex [tensor field](https://en.wikipedia.org/wiki/Tensor#Tensor_fields) that can be represented by a 3x3 matrix.
 
 A radical simplification[^6] of Maxwell's equations can be achieved by assuming that the material is both *linear* and *isotropic* \[[6](#references) (ch. 1.1.2), [7](#references) (ch. 2.1), [8](#references) (ch. 2.3)\]:
 
@@ -664,7 +664,7 @@ $$ \tag{4.3}
 	\rho\_i(\bm{r}) \approx \frac{i}{\omega_n} \nabla \cdot \big( \sigma(\bm{r}) \bm{E}(\bm{r}) \big),
 $$
 
-where the frequency dependence is implicit according to the convention established by Equations 2.13-2.14.
+with the implicit dependence of \\(\rho\_i, \sigma, \bm{E}\\) on \\(\omega_n\\) according to the convention established by Equations 2.13-2.14.
 
 If the constitutive relations hold, Maxwell's equations for time-harmonic fields take the following form:
 
@@ -699,57 +699,47 @@ $$
 
 Consider a region of space without any source currents or charges. Physically, this means that there are no sources of fields in this region; but it doesn't mean the field contains no energy. The idea is to explore all solutions of Maxwell's equations (we can pick a particular solution once we specify the source or the field at the boundary), and determine how these solutions evolve over time.
 
-Setting \\(\bm{J\_f} = \rho\_f = 0\\) in Equations 3.6, we obtain a coupled system of homogeneous linear differential equations:
+Setting \\(\bm{J\_f} = \rho\_f = 0\\) in Equations 4.6, we obtain a coupled system of homogeneous linear differential equations:
 
-$$ \tag{4.1}
+$$ \tag{5.1}
 \begin{aligned}
-	&\nabla \times \bm{E}(\bm{r}, \omega) + i \omega \mu(\bm{r}, \omega) \bm{H}(\bm{r}, \omega) = 0, &
-	&\nabla \cdot  \big( \mu(\bm{r}, \omega) \bm{H}(\bm{r}, \omega) \big) = 0, \cr
-	&\nabla \times \bm{H}(\bm{r}, \omega) - i \omega \varepsilon(\bm{r}, \omega) \bm{E}(\bm{r}, \omega) = 0, &
-	&\nabla \cdot  \big( \varepsilon(\bm{r}, \omega) \bm{E}(\bm{r}, \omega) \big) = 0.
+	&\nabla \times \bm{E}(\bm{r}) + i \omega \mu(\bm{r}) \bm{H}(\bm{r}) = 0, &
+	&\nabla \cdot  \big( \mu(\bm{r}) \bm{H}(\bm{r}) \big) = 0, \cr
+	&\nabla \times \bm{H}(\bm{r}) - i \omega \varepsilon(\bm{r}) \bm{E}(\bm{r}) = 0, &
+	&\nabla \cdot  \big( \varepsilon(\bm{r}) \bm{E}(\bm{r}) \big) = 0.
 \end{aligned}
 $$
 
 Mathematically, the consequence is that a linear combination of several solutions is also a valid solution.
 
-Assume that the medium is *homogeneous* (constant in space)[^6]:
+Assume that the medium is *homogeneous*[^7] (constant in space):
 
-[^6]: See \[[6](#references) (ch. 1.2)\] for an inhomogeneous solution. The stationary approximation is valid for optical frequencies because the time period of an oscillation is very short. 
+[^7]: See \[[6](#references) (ch. 1.2)\] for an inhomogeneous solution.
 
-$$ \tag{4.2}
+$$ \tag{5.2}
 \begin{aligned}
-	&\nabla \times \bm{E}(\bm{r}, \omega) + i \omega \mu(\omega) \bm{H}(\bm{r}, \omega) = 0, &
-	&\nabla \cdot  \bm{H}(\bm{r}, \omega) = 0, \cr
-	&\nabla \times \bm{H}(\bm{r}, \omega) - i \omega \varepsilon(\omega) \bm{E}(\bm{r}, \omega) = 0, &
-	&\nabla \cdot  \bm{E}(\bm{r}, \omega) = 0.
+	&\nabla \times \bm{E}(\bm{r}) + i \omega \mu \bm{H}(\bm{r}) = 0, &
+	&\nabla \cdot  \bm{H}(\bm{r}) = 0, \cr
+	&\nabla \times \bm{H}(\bm{r}) - i \omega \varepsilon \bm{E}(\bm{r}) = 0, &
+	&\nabla \cdot  \bm{E}(\bm{r}) = 0.
 \end{aligned}
 $$
 
-Let us focus on the electric phasor \\(\bm{E}\\). Take curl of Equation 4.2.1 and substitute Equation 4.2.3:
+Let us focus on the electric phasor \\(\bm{E}\\). Take curl of Equation 5.2.1 and substitute Equation 5.2.3:
 
-$$ 
-	\nabla \times \nabla \times \bm{E}(\bm{r}, \omega) + i \omega \nabla \times \big( \mu(\omega) \bm{H}(\bm{r}, \omega) \big) = 0
-$$
-
-$$ 
-	\nabla \times \nabla \times \bm{E}(\bm{r}, \omega) + i \omega \nabla \times \bm{B}(\bm{r}, \omega) = 0
-$$
-
-Now what? Fix me!!! Check Ishimaru?
-
-$$ \tag{4.3}
-	\nabla \times \nabla \times \bm{E}(\bm{r}, \omega) + i \omega \mu(\omega) \big( i \omega \varepsilon(\omega) \bm{E}(\bm{r}, \omega) \big) = 0.
+$$ \tag{5.3}
+	\nabla \times \nabla \times \bm{E}(\bm{r}) + i \omega \mu \big( i \omega \varepsilon \bm{E}(\bm{r}) \big) = 0.
 $$
 
 Introduce the [curl-of-curl](https://en.wikipedia.org/wiki/Vector_calculus_identities#Curl_of_curl) identity
 
-$$ \tag{4.4}
+$$ \tag{5.4}
 	\nabla \times (\nabla \times \bm{E}) = \nabla (\nabla \cdot \bm{E}) - \nabla^2 \bm{E},
 $$
 
 where 
 
-$$ \tag{4.5}
+$$ \tag{5.5}
 	\mathrm{grad}(s) =
 	\nabla s =
 	\begin{bmatrix}
@@ -766,7 +756,7 @@ $$
 
 is the [gradient](https://en.wikipedia.org/wiki/Gradient) operator and
 
-$$ \tag{4.6}
+$$ \tag{5.6}
 	\mathrm{div} \big( \mathrm{grad}(\bm{E}) \big) =
 	\nabla^2 \bm{E} =
 	(\nabla \cdot \nabla) \bm{E} =
@@ -775,64 +765,49 @@ $$
 
 is the *vector* [Laplace](https://en.wikipedia.org/wiki/Laplace_operator) operator (*scalar* Laplace operator applied to each vector component).
 
-Use it to expand Equation 4.3:
+Use Equation 5.4 to expand Equation 5.3:
 
-$$ \tag{4.7}
-	\nabla \big( \nabla \cdot \bm{E}(\bm{r}, \omega) \big) - \nabla^2 \bm{E}(\bm{r}, \omega) - \omega^2 \mu(\omega) \varepsilon(\omega) \bm{E}(\bm{r}, \omega) = 0.
+$$ \tag{5.7}
+	\nabla \big( \nabla \cdot \bm{E}(\bm{r}) \big) - \nabla^2 \bm{E}(\bm{r}) - \omega^2 \mu \varepsilon \bm{E}(\bm{r}) = 0.
 $$
 
-Substitution of Equation 4.2.4 into 4.7 yields the equation of the electric phasor \\(\bm{E}\\):
+Substitution of Equation 5.2.4 into 5.7 yields the equation of the electric phasor \\(\bm{E}\\):
 
-$$ \tag{4.8}
-	\nabla^2 \bm{E}(\bm{r}, \omega) + \omega^2 \mu(\omega) \varepsilon(\omega) \bm{E}(\bm{r}, \omega) = 0.
+$$ \tag{5.8}
+	\nabla^2 \bm{E}(\bm{r}) + \omega^2 \mu \varepsilon \bm{E}(\bm{r}) = 0.
 $$
 
-Similarly, we can obtain an expression[^7] of the magnetic phasor \\(\bm{B}\\):
+Similarly, we can obtain an expression of the magnetic phasor \\(\bm{B}\\):
 
-[^7]: If you solve for \\(\bm{H}\\) rather than \\(\bm{B}\\), you will obtain an equation with the \\(\varepsilon \mu\\) term instead of \\(\mu \varepsilon\\) found in the equation of \\(\bm{E}\\). Since, in general, tensor products do not commute, this means that the \\(\bm{H}\\) field propagates differently from the \\(\bm{E}\\) field, and solving for the \\(\bm{H}\\) field is a mistake.
-
-$$ \tag{4.9}
-	\nabla^2 \bm{B}(\bm{r}, \omega) + \omega^2 \mu(\omega) \varepsilon(\omega) \bm{B}(\bm{r}, \omega) = 0.
+$$ \tag{5.9}
+	\nabla^2 \bm{B}(\bm{r}) + \omega^2 \mu \varepsilon \bm{B}(\bm{r}) = 0.
 $$
 
-Since anisotropy arises due to the [crystal structure](https://en.wikipedia.org/wiki/Crystal_structure) of the material[^8], this tensor product is [normal](https://en.wikipedia.org/wiki/Normal_matrix), and we can perform a [change of basis](https://en.wikipedia.org/wiki/Change_of_basis) to [diagonalize](https://en.wikipedia.org/wiki/Diagonalizable_matrix#How_to_diagonalize_a_matrix) it:
+If we define
 
-[^8]: A more elaborate argument is presented in \[[6](#references) (ch. 15.1)\].
-
-$$ \tag{4.10}
-	\nabla^2 \bm{E}(\bm{r}, \omega) + \omega^2
-		\begin{bmatrix}
-			\mu\_{1} \varepsilon\_{1} & 0 & 0 \cr
-			0 & \mu\_{2} \varepsilon\_{2} & 0 \cr
-			0 & 0 & \mu\_{3} \varepsilon\_{3}
-		\end{bmatrix} \bm{E}(\bm{r}, \omega) = 0,
+$$ \tag{5.10}
+	k = \omega \sqrt{\mu \varepsilon},
 $$
 
-which allows us to separate the variables into three *scalar* [Helmholtz's equations](https://en.wikipedia.org/wiki/Helmholtz_equation):
+we can separate the *vector* Equation 5.8 into three *scalar* [Helmholtz's equations](https://en.wikipedia.org/wiki/Helmholtz_equation):
 
-$$ \tag{4.11}
+$$ \tag{5.11}
 \begin{aligned}
-	\big( \nabla^2 + k\_{1}^2(\omega) \big) E\_x(\bm{r}, \omega) = 0, \cr
-	\big( \nabla^2 + k\_{2}^2(\omega) \big) E\_y(\bm{r}, \omega) = 0, \cr
-	\big( \nabla^2 + k\_{3}^2(\omega) \big) E\_z(\bm{r}, \omega) = 0,
+	\big( \nabla^2 + k^2 \big) E\_x(\bm{r}) = 0, \cr
+	\big( \nabla^2 + k^2 \big) E\_y(\bm{r}) = 0, \cr
+	\big( \nabla^2 + k^2 \big) E\_z(\bm{r}) = 0. \cr
 \end{aligned}
-$$
-
-where we defined
-
-$$ \tag{4.12}
-	k(\omega) = \omega \sqrt{\mu(\omega) \varepsilon(\omega)}.
 $$
 
 To find a solution, let us first consider a simpler one-dimensional Helmholtz's equation
 
-$$ \tag{4.13}
+$$ \tag{5.12}
 	\frac{d^2 s(x)}{d x^2} = -k^2 s(x).
 $$
 
 If the derivative of a function is the function itself (times a constant), the function is clearly an exponential:
 
-$$ \tag{4.14}
+$$ \tag{5.13}
 	s(x) =
 	s(0) e^{\pm i k x},
 $$
@@ -841,36 +816,36 @@ where \\(s(0)\\) is a complex constant.
 
 Extension to three dimensions is straightforward. If we rotate the coordinate frame so that the \\(x\\)-axis points along the unit vector \\(\bm{n}\\),
 
-$$ \tag{4.15}
+$$ \tag{5.14}
 	s(\bm{r}, \bm{n}) =
-	s(0, \bm{n}) e^{ \pm i k (\bm{r} \cdot \bm{n})}.
+	s(0, \bm{n}) e^{ \pm i k (\bm{n} \cdot \bm{r})}
 $$
 
 is a valid solution for a certain value of \\(\bm{n}\\). To avoid clutter, we shall adhere to a common convention with the negative sign; the positive solution can be obtained by reversing the direction of \\(\bm{n}\\).
 
-How should we choose the direction of \\(\bm{n}\\)? It depends on the location of sources and optical interfaces. In general, we can use *any* value of \\(\bm{n}\\). And, since the Helmholtz equation is both linear and homogeneous, we can actually use *every* value of \\(\bm{n}\\) by invoking the [superposition principle](https://en.wikipedia.org/wiki/Superposition_principle). In our particular case, we can write the general solution as an integral taken over the surface of the unit sphere \\(\mathbb{S}^2\\) [measured](https://en.wikipedia.org/wiki/Lebesgue_integration#Construction) by the [solid angle](https://en.wikipedia.org/wiki/Solid_angle) \\(d\Omega\_n\\):
+How should we choose the direction of \\(\bm{n}\\)? It depends on the location of sources and optical interfaces. In general, we can use *any* value of \\(\bm{n}\\). And, since the Helmholtz equation is both linear and homogeneous, we can actually use *every* value of \\(\bm{n}\\) by invoking the [superposition principle](https://en.wikipedia.org/wiki/Superposition_principle). Thus the general solution is an integral taken over the surface of the unit sphere \\(\mathbb{S}^2\\) [measured](https://en.wikipedia.org/wiki/Lebesgue_integration#Construction) by the [solid angle](https://en.wikipedia.org/wiki/Solid_angle) \\(d\Omega\_n\\):
 
-$$ \tag{4.16}
+$$ \tag{5.15}
 	s(\bm{r}) =
 	\oiint\_{\mathbb{S}^2} s(\bm{r}, \bm{n}) \thinspace d\Omega\_n =
-	\oiint\_{\mathbb{S}^2} s(0, \bm{n}) e^{-i k (\bm{r} \cdot \bm{n})} d\Omega\_n.
+	\oiint\_{\mathbb{S}^2} s(0, \bm{n}) e^{-i k (\bm{n} \cdot \bm{r})} d\Omega\_n.
 $$
 
-Equation 4.16 can be used to solve Equation 4.11:
+Equation 5.15 can be used to solve Equations 5.11 and 5.8:
 
-$$ \tag{4.17}
-	\bm{E}(\bm{r}, \omega) = \oiint\_{\mathbb{S}^2}
+$$ \tag{5.16}
+	\bm{E}(\bm{r}) = \oiint\_{\mathbb{S}^2}
 	\begin{bmatrix}
-		E\_x(0, \bm{n}, \omega) \exp(-i k\_1(\omega) (\bm{r} \cdot \bm{n})) \cr
-		E\_y(0, \bm{n}, \omega) \exp(-i k\_2(\omega) (\bm{r} \cdot \bm{n})) \cr
-		E\_z(0, \bm{n}, \omega) \exp(-i k\_3(\omega) (\bm{r} \cdot \bm{n}))
+		E\_x(0, \bm{n}) \exp(-i k (\bm{n} \cdot \bm{r})) \cr
+		E\_y(0, \bm{n}) \exp(-i k (\bm{n} \cdot \bm{r})) \cr
+		E\_z(0, \bm{n}) \exp(-i k (\bm{n} \cdot \bm{r})) \cr
 	\end{bmatrix}
 	d\Omega\_n.
 $$
 
 That is a solution of Maxwell's equations in the frequency domain.
 
-## Time-Harmonic Waves
+## Plane Waves
 
 We can find a solution of Maxwell's equations in the time domain by substituting Equation 4.17 into 2.4:
 
@@ -880,9 +855,9 @@ $$ \tag{5.1}
 	&= \sqrt{\frac{2}{\pi}} \int\_{0}^{\infin} \mathcal{Re} \big\lbrace \bm{E}(\bm{r}, \omega) e^{i \omega t} \big\rbrace d\omega \cr
 	&= \sqrt{\frac{2}{\pi}} \int\_{0}^{\infin} \oiint\_{\mathbb{S}^2} \mathcal{Re} \Bigg\lbrace
 	\begin{bmatrix}
-		E\_x(0, \bm{n}, \omega) \exp(-i k\_1(\omega) (\bm{r} \cdot \bm{n}) + i \omega t) \cr
-		E\_y(0, \bm{n}, \omega) \exp(-i k\_2(\omega) (\bm{r} \cdot \bm{n}) + i \omega t) \cr
-		E\_z(0, \bm{n}, \omega) \exp(-i k\_3(\omega) (\bm{r} \cdot \bm{n}) + i \omega t)
+		E\_x(0, \bm{n}) \exp(-i k\_1(\omega) (\bm{n} \cdot \bm{r}) + i \omega t) \cr
+		E\_y(0, \bm{n}) \exp(-i k\_2(\omega) (\bm{n} \cdot \bm{r}) + i \omega t) \cr
+		E\_z(0, \bm{n}) \exp(-i k\_3(\omega) (\bm{n} \cdot \bm{r}) + i \omega t)
 	\end{bmatrix}
 	\Bigg\rbrace d\Omega\_n \thinspace d\omega.
 \end{aligned}
@@ -892,16 +867,16 @@ This double integral represents a [wave packet](https://en.wikipedia.org/wiki/Wa
 
 $$ \tag{5.2}
 \begin{bmatrix}
-	E\_x(0, \bm{n}, \omega) \exp(-i k\_1(\omega) (\bm{r} \cdot \bm{n}) + i \omega t) \cr
-	E\_y(0, \bm{n}, \omega) \exp(-i k\_2(\omega) (\bm{r} \cdot \bm{n}) + i \omega t) \cr
-	E\_z(0, \bm{n}, \omega) \exp(-i k\_3(\omega) (\bm{r} \cdot \bm{n}) + i \omega t)
+	E\_x(0, \bm{n}) \exp(-i k\_1(\omega) (\bm{n} \cdot \bm{r}) + i \omega t) \cr
+	E\_y(0, \bm{n}) \exp(-i k\_2(\omega) (\bm{n} \cdot \bm{r}) + i \omega t) \cr
+	E\_z(0, \bm{n}) \exp(-i k\_3(\omega) (\bm{n} \cdot \bm{r}) + i \omega t)
 \end{bmatrix}
 $$
 
 each composed of three *scalar* plane waves such as
 
 $$ \tag{5.3}
-	E(0, \bm{n}, \omega) e^{-i k(\omega) (\bm{r} \cdot \bm{n})} e^{i \omega t}
+	E(0, \bm{n}) e^{-i k(\omega) (\bm{n} \cdot \bm{r})} e^{i \omega t}
 $$
 
 expressed in terms the complex [wave number](https://en.wikipedia.org/wiki/Wavenumber) \\(k\\) (see Equation 4.12):
@@ -954,9 +929,9 @@ In order to develop some intuition about the role of the refractive index \[[5](
 $$ \tag{5.9}
 \begin{aligned}
 	E(\bm{r}, \bm{n}, \omega)
-	&= E\_0 e^{-i k (\bm{r} \cdot \bm{n})} \cr
-	&= |E\_0| e^{i \delta} e^{-i (\omega / c) (\eta - i \kappa) (\bm{r} \cdot \bm{n})} \cr
-	&= |E\_0| e^{-\omega (\kappa / c) (\bm{r} \cdot \bm{n})} e^{i \delta - i \omega (\eta / c) (\bm{r} \cdot \bm{n})} \cr
+	&= E\_0 e^{-i k (\bm{n} \cdot \bm{r})} \cr
+	&= |E\_0| e^{i \delta} e^{-i (\omega / c) (\eta - i \kappa) (\bm{n} \cdot \bm{r})} \cr
+	&= |E\_0| e^{-\omega (\kappa / c) (\bm{n} \cdot \bm{r})} e^{i \delta - i \omega (\eta / c) (\bm{n} \cdot \bm{r})} \cr
 	&= |E(\bm{r}, \bm{n}, \omega)| e^{i \phi(\bm{r}, \bm{n}, \omega)}.
 \end{aligned}
 $$
@@ -968,8 +943,8 @@ Multiplication by \\(e^{i \omega t}\\) by yields the full expression of a scalar
 $$ \tag{5.10}
 \begin{aligned}
 	E(\bm{r}, \bm{n}, \omega) e^{i \omega t}
-	&= |E\_0| e^{-\omega (\kappa / c) (\bm{r} \cdot \bm{n})} e^{i \delta - i \omega (\eta / c) (\bm{r} \cdot \bm{n})} e^{i \omega t} \cr
-	&= |E\_0| e^{-\omega (\kappa / c) (\bm{r} \cdot \bm{n})} e^{i \delta + i \omega (t - (\eta / c) (\bm{r} \cdot \bm{n}))}.
+	&= |E\_0| e^{-\omega (\kappa / c) (\bm{n} \cdot \bm{r})} e^{i \delta - i \omega (\eta / c) (\bm{n} \cdot \bm{r})} e^{i \omega t} \cr
+	&= |E\_0| e^{-\omega (\kappa / c) (\bm{n} \cdot \bm{r})} e^{i \delta + i \omega (t - (\eta / c) (\bm{n} \cdot \bm{r}))}.
 \end{aligned}
 $$
 
@@ -978,7 +953,7 @@ Let's perform [dimensional analysis](https://en.wikipedia.org/wiki/Dimensional_a
 $$ \tag{5.11}
 	\theta(\bm{r}, t) =
 	\mathrm{Arg} \big\lbrace E(\bm{r}, \bm{n}, \omega) e^{i \omega t} \big\rbrace =
-	\delta - \omega (\eta / c) \big(\bm{r} \cdot \bm{n} - (c / \eta) t \big).
+	\delta - \omega (\eta / c) \big(\bm{n} \cdot \bm{r} - (c / \eta) t \big).
 $$
 
 Notice that, for any \\(\Delta t\\),
@@ -993,7 +968,7 @@ Taking the real part of Equation 5.10 allows us to uncover the *wave amplitude*
 
 $$ \tag{5.13}
  	\mathcal{Re} \big\lbrace E(\bm{r}, \bm{n}, \omega) e^{i \omega t} \big\rbrace = 
- 	|E(0, \bm{n}, \omega)| e^{-\omega (\kappa / c) (\bm{r} \cdot \bm{n})} \cos{\theta}.
+ 	|E(0, \bm{n})| e^{-\omega (\kappa / c) (\bm{n} \cdot \bm{r})} \cos{\theta}.
 $$
 
 If the absorption index \\(\kappa = 0\\), Equation 5.13 represents a regular sine wave.
