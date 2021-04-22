@@ -664,7 +664,7 @@ $$ \tag{4.3}
 	\rho\_i(\bm{r}) \approx \frac{i}{\omega_n} \nabla \cdot \big( \sigma(\bm{r}) \bm{E}(\bm{r}) \big),
 $$
 
-with the implicit dependence of \\(\rho\_i, \sigma, \bm{E}\\) on \\(\omega_n\\) according to the convention established by Equations 2.13-2.14.
+where \\(\rho\_i, \sigma, \bm{E}\\) implicit depend on \\(\omega_n\\) according to the convention established by Equations 2.13-2.14.
 
 If the constitutive relations hold, Maxwell's equations for time-harmonic fields take the following form:
 
@@ -712,7 +712,7 @@ $$
 
 Mathematically, the consequence is that a linear combination of several solutions is also a valid solution.
 
-Assume that the medium is *homogeneous*[^7] (constant in space):
+Next, assume that the medium is *homogeneous*[^7] (constant in space):
 
 [^7]: See \[[6](#references) (ch. 1.2)\] for an inhomogeneous solution.
 
@@ -834,13 +834,7 @@ $$
 Equation 5.15 can be used to solve Equations 5.11 and 5.8:
 
 $$ \tag{5.16}
-	\bm{E}(\bm{r}) = \oiint\_{\mathbb{S}^2}
-	\begin{bmatrix}
-		E\_x(0, \bm{n}) \exp(-i k (\bm{n} \cdot \bm{r})) \cr
-		E\_y(0, \bm{n}) \exp(-i k (\bm{n} \cdot \bm{r})) \cr
-		E\_z(0, \bm{n}) \exp(-i k (\bm{n} \cdot \bm{r})) \cr
-	\end{bmatrix}
-	d\Omega\_n.
+	\bm{E}(\bm{r}) = \oiint\_{\mathbb{S}^2} \bm{E}(0, \bm{n}) e^{-i k (\bm{n} \cdot \bm{r})} d\Omega\_n.
 $$
 
 That is a solution of Maxwell's equations in the frequency domain.
