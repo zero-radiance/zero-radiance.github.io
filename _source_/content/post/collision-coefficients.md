@@ -304,7 +304,7 @@ $$ \tag{2.13}
 	= \mathcal{Re} \big\lbrace \bm{E_p}(\bm{r}) e^{i \omega_p t} \big\rbrace,
 $$
 
-in isolation, and their corresponding phasors
+in isolation, and the corresponding phasor fields
 
 $$ \tag{2.14}
 	\bm{E}(\bm{r}, \omega)
@@ -968,12 +968,31 @@ On the other hand, \\(\kappa > 0\\) produces an exponential decay characteristic
 
 [Insert Picture Here]
 
-To determine how the electric and the magnetic fields of a plane wave are related, consider a *unidirectional, monochromatic* vector field
+To learn more about the geometry of plane waves, consider ... ???
 
-$$ \tag{6.14}
-	\bm{E}(\bm{r}, t)
-	= \mathcal{Re} \big\lbrace \bm{E_p}(\bm{r}, \bm{n}) e^{i \omega_p t} \big\rbrace
-	= \mathcal{Re} \big\lbrace \bm{E_p}(0, \bm{n}) e^{-i k(\omega_p) (\bm{r} \cdot \bm{n})} e^{i \omega_p t} \big\rbrace
+Maxwell's equations for time-harmonic fields (c.f. Equation 5.1) tell us that, in the absence of sources,
+
+$$ \tag{6.15}
+	\nabla \cdot \bm{B}(\bm{r}) = 0, \quad
+	\nabla \cdot \bm{D}(\bm{r}) = 0.
+$$
+
+More specifically, for linear, isotropic media (c.f. Equation 5.2),
+
+$$ \tag{6.16}
+	\nabla \cdot \bm{H}(\bm{r}) = 0, \quad
+	\nabla \cdot \bm{E}(\bm{r}) = 0.
+$$
+
+Taking \\(\bm{E}\\) as an example,
+
+---
+
+$$ \tag{6.17}
+\begin{aligned}
+	\nabla \cdot \bm{E}(\bm{r})
+	&= ???
+\end{aligned}
 $$
 
 and its corresponding phasor
