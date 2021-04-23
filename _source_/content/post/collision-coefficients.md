@@ -240,20 +240,20 @@ Generally speaking, equality of integrands does not follow from equality of inte
 
 $$ \tag{2.7}
 	\bm{E}(\bm{r}, t)
-	= \sum\_{p = -\infin}^{\infin} \bm{E_p}(\bm{r}, p \thinspace \omega_1) e^{i p \omega_1 t}
-	= \sum\_{p = -\infin}^{\infin} \bm{E_p}(\bm{r}, \omega_p) e^{i \omega_p t},
+	= \sum\_{p = -\infin}^{\infin} \bm{E_p}(\bm{r}) e^{i p \omega_1 t}
+	= \sum\_{p = -\infin}^{\infin} \bm{E_p}(\bm{r}) e^{i \omega_p t},
 	= \sum\_{p = -\infin}^{\infin} \ket{u_p} \braket{u_p \vert \bm{E}}.
 $$
 
 where we defined \\(\omega_p = p \thinspace \omega_1\\), with the coefficients \\(\bm{E_p}\\) given by the integral
 
 $$ \tag{2.8}
-	\bm{E_p}(\bm{r}, \omega_p)
+	\bm{E_p}(\bm{r})
 	= \frac{1}{T_1} \int\_{-T_1/2}^{\thinspace T_1/2} \bm{E}(\bm{r}, t) e^{-i \omega_p t} dt
 	= \braket{u_p \vert \bm{E}}.
 $$
 
-Equation 2.8 can be interpreted as the [projection](https://en.wikipedia.org/wiki/Hilbert_space#Fourier_analysis) of the field onto the [discrete Fourier basis](https://en.wikipedia.org/wiki/Fourier_series#Hilbert_space_interpretation), with Equation 2.7 showing the reconstruction. The beautiful thing about the discrete Fourier basis is that it is orthonormal, which means that the individual elements of Equation 2.7 (called *harmonics*) are completely independent of each other:
+Equation 2.8 can be interpreted as the [projection](https://en.wikipedia.org/wiki/Hilbert_space#Fourier_analysis) onto the [discrete Fourier basis](https://en.wikipedia.org/wiki/Fourier_series#Hilbert_space_interpretation), with Equation 2.7 showing the reconstruction. The beautiful thing about the discrete Fourier basis is that it is orthonormal, which means that the individual elements of Equation 2.7 (called *harmonics*) are completely independent of each other:
 
 $$ \tag{2.9}
 	\braket{u_p \vert u_q}
@@ -266,7 +266,7 @@ where \\(\delta_{p,q}\\) is the [Kronecker delta](https://en.wikipedia.org/wiki/
 Similarly to Equation 2.2, if the time-domain field is real,
 
 $$ \tag{2.10}
-	\bm{E_p}(\bm{r}, \omega_p) = [\bm{E_{-p}}(\bm{r}, -\omega_p)]^{\*},
+	\bm{E_p}(\bm{r}) = [\bm{E_{-p}}(\bm{r})]^{\*},
 $$
 
 which permits us to simplify Equation 2.7:
@@ -274,11 +274,11 @@ which permits us to simplify Equation 2.7:
 $$ \tag{2.11}
 \begin{aligned}
 	\bm{E}(\bm{r}, t)
-	&= \bm{E_0}(\bm{r}, 0)
-	 + \sum\_{p = 1}^{\infin} \bm{E_p}(\bm{r}, \omega_p) e^{i \omega_p t}
-	 + \sum\_{p = -\infin}^{-1} \bm{E_p}(\bm{r}, \omega_p) e^{i \omega_p t} \cr
-	&= \bm{E_0}(\bm{r}, 0) + \sum\_{p = 1}^{\infin} \Big( \bm{E_p}(\bm{r}, \omega_p) e^{i \omega_p t} + \big[ \bm{E_p}(\bm{r}, \omega_p) e^{i \omega_p t} \big]^{\*} \Big) \cr
-	&= \bm{E_0}(\bm{r}, 0) + \sum\_{p = 1}^{\infin} 2 \thinspace \mathcal{Re} \big\lbrace \bm{E_p}(\bm{r}, \omega_p) e^{i \omega_p t} \big\rbrace.
+	&= \bm{E_0}(\bm{r})
+	 + \sum\_{p = 1}^{\infin} \bm{E_p}(\bm{r}) e^{i \omega_p t}
+	 + \sum\_{p = -\infin}^{-1} \bm{E_p}(\bm{r}) e^{i \omega_p t} \cr
+	&= \bm{E_0}(\bm{r}) + \sum\_{p = 1}^{\infin} \Big( \bm{E_p}(\bm{r}) e^{i \omega_p t} + \big[ \bm{E_p}(\bm{r}) e^{i \omega_p t} \big]^{\*} \Big) \cr
+	&= \bm{E_0}(\bm{r}) + \sum\_{p = 1}^{\infin} 2 \thinspace \mathcal{Re} \big\lbrace \bm{E_p}(\bm{r}) e^{i \omega_p t} \big\rbrace.
 \end{aligned}
 $$
 
@@ -290,8 +290,8 @@ $$ \tag{2.12}
 \begin{aligned}
 	\bm{E}(\bm{r}, \omega)
 	&= \frac{1}{\sqrt{2 \pi}} \int\_{-\infin}^{\infin} \bm{E}(\bm{r}, t) e^{-i \omega t} dt \cr
-	&= \frac{1}{\sqrt{2 \pi}} \sum\_{p = -\infin}^{\infin} \bm{E_p}(\bm{r}, \omega_p) \int\_{-\infin}^{\infin} e^{i (\omega_p - \omega) t} dt \cr
-	&= \frac{1}{\sqrt{2 \pi}} \sum\_{p = -\infin}^{\infin} \bm{E_p}(\bm{r}, \omega_p) \big( 2 \pi \delta(\omega_p - \omega) \big),
+	&= \frac{1}{\sqrt{2 \pi}} \sum\_{p = -\infin}^{\infin} \bm{E_p}(\bm{r}) \int\_{-\infin}^{\infin} e^{i (\omega_p - \omega) t} dt \cr
+	&= \frac{1}{\sqrt{2 \pi}} \sum\_{p = -\infin}^{\infin} \bm{E_p}(\bm{r}) \big( 2 \pi \delta(\omega_p - \omega) \big),
 \end{aligned}
 $$
 
@@ -301,32 +301,28 @@ Equation 2.11 permits us to study the *monochromatic* vector field (or, stated m
 
 $$ \tag{2.13}
 	\bm{E}(\bm{r}, t)
-	= \mathcal{Re} \big\lbrace \bm{E_p}(\bm{r}, \omega_p) e^{i \omega_p t} \big\rbrace
-	= \mathcal{Re} \big\lbrace \bm{E}(\bm{r}) e^{i \omega_p t} \big\rbrace
+	= \mathcal{Re} \big\lbrace \bm{E_p}(\bm{r}) e^{i \omega_p t} \big\rbrace
 $$
 
 in isolation, and Equation 2.12 - its corresponding phasor
 
 $$ \tag{2.14}
 	\bm{E}(\bm{r}, \omega)
-	= \sqrt{2 \pi} \bm{E_p}(\bm{r}, \omega_p) \delta(\omega_p - \omega)
-	= \sqrt{2 \pi} \bm{E}(\bm{r}) \delta(\omega_p - \omega).
+	= \sqrt{2 \pi} \bm{E_p}(\bm{r}) \delta(\omega_p - \omega).
 $$
-
-The simplified notation \\(\bm{E}(\bm{r}) = \bm{E_p}(\bm{r}, \omega_p)\\) has been chosen for compatibility with existing literature, and to avoid the temptation to integrate or differentiate with respect to \\(\omega_p\\).
 
 Substitution of Equation 2.14 (where we can replace \\(\bm{E}\\) by \\(\bm{B}\\), \\(\bm{D}\\), \\(\bm{H}\\), \\(\bm{J\_f}\\) or \\(\rho\_f\\)) into Equations 2.6 yields
 
 $$ \tag{2.15}
 \begin{aligned}
-	&\nabla \times \big( \bm{E}(\bm{r}) e^{i \omega_p t} \big)
-	+ \frac{\partial}{\partial t} \big( \bm{B}(\bm{r}) e^{i \omega_p t} \big) = 0, &
-	&\nabla \cdot  \big( \bm{B}(\bm{r}) e^{i \omega_p t} \big) = 0, \cr
-	&\nabla \times \big( \bm{H}(\bm{r}) e^{i \omega_p t} \big)
-	- \frac{\partial}{\partial t} \big( \bm{D}(\bm{r}) e^{i \omega_p t} \big)
-	= \bm{J\_f}(\bm{r}) e^{i \omega_p t}, &
-	&\nabla \cdot  \big( \bm{D}(\bm{r}) e^{i \omega_p t} \big)
-	= \rho\_f(\bm{r}) e^{i \omega_p t}.
+	&\nabla \times \big( \bm{E_p}(\bm{r}) e^{i \omega_p t} \big)
+	+ \frac{\partial}{\partial t} \big( \bm{B_p}(\bm{r}) e^{i \omega_p t} \big) = 0, &
+	&\nabla \cdot  \big( \bm{B_p}(\bm{r}) e^{i \omega_p t} \big) = 0, \cr
+	&\nabla \times \big( \bm{H_p}(\bm{r}) e^{i \omega_p t} \big)
+	- \frac{\partial}{\partial t} \big( \bm{D_p}(\bm{r}) e^{i \omega_p t} \big)
+	= \bm{J\_{f, \thinspace p}}(\bm{r}) e^{i \omega_p t}, &
+	&\nabla \cdot  \big( \bm{D_p}(\bm{r}) e^{i \omega_p t} \big)
+	= \rho\_{f, \thinspace p}(\bm{r}) e^{i \omega_p t}.
 \end{aligned}
 $$
 
@@ -334,31 +330,42 @@ Performing differentiation with respect to time and division by the pervasive \\
 
 $$ \tag{2.16}
 \begin{aligned}
-	&\nabla \times \bm{E}(\bm{r}) + i \omega_p \bm{B}(\bm{r}) = 0, &
+	&\nabla \times \bm{E_p}(\bm{r}) + i \omega_p \bm{B_p}(\bm{r}) = 0, &
+	&\nabla \cdot  \bm{B_p}(\bm{r}) = 0, \cr
+	&\nabla \times \bm{H_p}(\bm{r}) - i \omega_p \bm{D_p}(\bm{r}) = \bm{J\_{f, \thinspace p}}(\bm{r}), &
+	&\nabla \cdot  \bm{D_p}(\bm{r}) = \rho\_{f, \thinspace p}(\bm{r}).
+\end{aligned}
+$$
+
+If the field is monochromatic, we can remove redundant indexing to simplify the notation:
+
+$$ \tag{2.17}
+\begin{aligned}
+	&\nabla \times \bm{E}(\bm{r}) + i \omega \bm{B}(\bm{r}) = 0, &
 	&\nabla \cdot  \bm{B}(\bm{r}) = 0, \cr
-	&\nabla \times \bm{H}(\bm{r}) - i \omega_p \bm{D}(\bm{r}) = \bm{J\_f}(\bm{r}), &
+	&\nabla \times \bm{H}(\bm{r}) - i \omega \bm{D}(\bm{r}) = \bm{J\_f}(\bm{r}), &
 	&\nabla \cdot  \bm{D}(\bm{r}) = \rho\_f(\bm{r}).
 \end{aligned}
 $$
 
-If we take divergence of Equation 2.16.3, combine the result with Equation 2.16.4, and use the fact that [divergence of curl](https://en.wikipedia.org/wiki/Vector_calculus_identities#Divergence_of_curl_is_zero) is zero, we obtain the [continuity equation](https://en.wikipedia.org/wiki/Continuity_equation) that expresses the [conservation of charge](https://en.wikipedia.org/wiki/Charge_conservation):
+If we take divergence of Equation 2.17.3, combine the result with Equation 2.17.4, and use the fact that [divergence of curl](https://en.wikipedia.org/wiki/Vector_calculus_identities#Divergence_of_curl_is_zero) is zero, we obtain the [continuity equation](https://en.wikipedia.org/wiki/Continuity_equation) that expresses the [conservation of charge](https://en.wikipedia.org/wiki/Charge_conservation):
 
-$$ \tag{2.17}
-	\nabla \cdot \bm{J\_f}(\bm{r}) = - i \omega_p \rho\_f(\bm{r}).
+$$ \tag{2.18}
+	\nabla \cdot \bm{J\_f}(\bm{r}) = - i \omega \rho\_f(\bm{r}).
 $$
 
 For future convenience, we shall define the decomposition of the *free* charges and currents into the *source* and the *induced* parts \[[8](#references) (ch. 2.2)\]:
 
-$$ \tag{2.18}
+$$ \tag{2.19}
 	\rho\_f = \rho\_s + \rho\_i, \quad
 	\bm{J\_f} = \bm{J\_s} + \bm{J\_i}.
 $$
 
 Continuity of charge implies that
 
-$$ \tag{2.19}
-	\rho\_s(\bm{r}) = \frac{i}{\omega_p} \nabla \cdot \bm{J\_s}(\bm{r}), \quad
-	\rho\_i(\bm{r}) = \frac{i}{\omega_p} \nabla \cdot \bm{J\_i}(\bm{r}).
+$$ \tag{2.20}
+	\rho\_s(\bm{r}) = \frac{i}{\omega} \nabla \cdot \bm{J\_s}(\bm{r}), \quad
+	\rho\_i(\bm{r}) = \frac{i}{\omega} \nabla \cdot \bm{J\_i}(\bm{r}).
 $$
 
 ## Force, Energy, and Radiometry
@@ -523,14 +530,14 @@ $$ \tag{3.20}
 \begin{aligned}
 	\bm{S}(\bm{r}, t)
 	&=  \mu\_0^{-1}
-		\Bigg( \sum\_{p = -\infin}^{\infin} \bm{E_p}(\bm{r}, \omega_p) e^{i \omega_p t} \Bigg) \times
-		\Bigg( \sum\_{q = -\infin}^{\infin} \bm{B_q}(\bm{r}, \omega_q) e^{i \omega_q t} \Bigg) \cr
+		\Bigg( \sum\_{p = -\infin}^{\infin} \bm{E_p}(\bm{r}) e^{i \omega_p t} \Bigg) \times
+		\Bigg( \sum\_{q = -\infin}^{\infin} \bm{B_q}(\bm{r}) e^{i \omega_q t} \Bigg) \cr
 	&=  \mu\_0^{-1} \sum\_{p = -\infin}^{\infin} \sum\_{q = -\infin}^{\infin}
-		\big( \bm{E_p}(\bm{r}, \omega_p) e^{i \omega_p t} \big) \times
-		\big( \bm{B_q}(\bm{r}, \omega_q) e^{i \omega_q t} \big) \cr
+		\big( \bm{E_p}(\bm{r}) e^{i \omega_p t} \big) \times
+		\big( \bm{B_q}(\bm{r}) e^{i \omega_q t} \big) \cr
 	&=  \mu\_0^{-1} \sum\_{p = -\infin}^{\infin} \sum\_{q = -\infin}^{\infin}
-		\big( \bm{E_p}(\bm{r}, \omega_p) e^{i \omega_p t} \big) \times
-		\big[ \bm{B_q}(\bm{r}, \omega_q) e^{i \omega_q t} \big]^{\*}.
+		\big( \bm{E_p}(\bm{r}) e^{i \omega_p t} \big) \times
+		\big[ \bm{B_q}(\bm{r}) e^{i \omega_q t} \big]^{\*}.
 \end{aligned}
 $$
 
@@ -581,7 +588,7 @@ In the case where \\(T > T_1\\), the total value of \\(\braket{\bm{S}}\\) is a s
 Equation 3.22 allows us to define the *time-averaged* Poynting phasor
 
 $$ \tag{3.23}
-	\braket{\bm{S_p}} = \mu\_0^{-1} \big( \bm{E_p}(\bm{r}, \omega_p) \times [\bm{B_p}(\bm{r}, \omega_p)]^{\*} \big)
+	\braket{\bm{S_p}} = \mu\_0^{-1} \big( \bm{E_p}(\bm{r}) \times [\bm{B_p}(\bm{r}, \omega_p)]^{\*} \big)
 $$
 
 such that (cf. Equation 2.11)
@@ -646,7 +653,7 @@ In general, media may be *dispersive* (dependent on the frequency), *lossy* (abs
 
 A radical simplification[^6] of Maxwell's equations can be achieved by assuming that the material is both *linear* and *isotropic* \[[6](#references) (ch. 1.1.2), [7](#references) (ch. 2.1), [8](#references) (ch. 2.3)\]:
 
-[^6]: We would like to stress that Equations 4.2-4.3 make a big assumption that is not appropriate for certain types of real materials. For instance, [crystals](https://en.wikipedia.org/wiki/Crystal) have a well-defined [internal structure](https://en.wikipedia.org/wiki/Crystal_structure) which makes them inherently anisotropic \[[5](#references) (vol. II, ch. 30)\]. Since our application is primarily concerned with simple fluids, the assumption of a linear isotropic material is valid, and offers significant theoretical advantages (such as simplicity). However, it may not be suitable for a more general application.
+[^6]: We would like to stress that Equations 4.2-4.3 make a big assumption that is not appropriate for certain types of real materials. For instance, [crystals](https://en.wikipedia.org/wiki/Crystal) have a well-defined [internal structure](https://en.wikipedia.org/wiki/Crystal_structure) which makes them inherently anisotropic \[[5](#references) (vol. II, ch. 30)\]. Since our application is primarily concerned with simple fluids, the assumption of a linear isotropic material is valid, and offers significant theoretical advantages (such as simplicity). However, this assumption may be not suitable for a more general application.
 
 $$ \tag{4.2}
 \begin{aligned}
@@ -658,40 +665,38 @@ $$
 
 where \\(\sigma\\) is the [specific conductivity](https://en.wikipedia.org/wiki/Electrical_resistivity_and_conductivity), \\(\epsilon\\) is the [electric permittivity](https://en.wikipedia.org/wiki/Permittivity), and \\(\mu\\) is the [magnetic permeability](https://en.wikipedia.org/wiki/Permeability_(electromagnetism)).
 
-We can also combine Equations 2.19.2 and 4.2.1 to derive the relation of the induced charge density:
+We can also combine Equations 2.20.2 and 4.2.1 to derive the relation of the induced charge density:
 
 $$ \tag{4.3}
-	\rho\_i(\bm{r}) \approx \frac{i}{\omega_p} \nabla \cdot \big( \sigma(\bm{r}) \bm{E}(\bm{r}) \big),
+	\rho\_i(\bm{r}) \approx \frac{i}{\omega} \nabla \cdot \big( \sigma(\bm{r}, \omega) \bm{E}(\bm{r}) \big).
 $$
-
-where \\(\rho\_i, \sigma, \bm{E}\\) implicit depend on \\(\omega_p\\) according to the convention established by Equations 2.13-2.14.
 
 If the constitutive relations hold, Maxwell's equations for time-harmonic fields take the following form:
 
 $$ \tag{4.4}
 \begin{aligned}
-	&\nabla \times \bm{E}(\bm{r}) + i \omega_p \mu(\bm{r}) \bm{H}(\bm{r}) = 0, \cr
-	&\nabla \cdot  \big( \mu(\bm{r}) \bm{H}(\bm{r}) \big) = 0, \cr
-	&\nabla \times \bm{H}(\bm{r}) - i \omega_p \epsilon(\bm{r}) \bm{E}(\bm{r})
-	= \bm{J\_s}(\bm{r}) + \sigma(\bm{r}) \bm{E}(\bm{r}), \cr
-	&\nabla \cdot  \big( \epsilon(\bm{r}) \bm{E}(\bm{r}) \big) = \rho\_s(\bm{r}) + \frac{i}{\omega_p} \nabla \cdot \big( \sigma(\bm{r}) \bm{E}(\bm{r}) \big).
+	&\nabla \times \bm{E}(\bm{r}) + i \omega \mu(\bm{r}, \omega) \bm{H}(\bm{r}) = 0, \cr
+	&\nabla \cdot  \big( \mu(\bm{r}, \omega) \bm{H}(\bm{r}) \big) = 0, \cr
+	&\nabla \times \bm{H}(\bm{r}) - i \omega \epsilon(\bm{r}, \omega) \bm{E}(\bm{r})
+	= \bm{J\_s}(\bm{r}) + \sigma(\bm{r}, \omega) \bm{E}(\bm{r}), \cr
+	&\nabla \cdot  \big( \epsilon(\bm{r}, \omega) \bm{E}(\bm{r}) \big) = \rho\_s(\bm{r}) + \frac{i}{\omega} \nabla \cdot \big( \sigma(\bm{r}, \omega) \bm{E}(\bm{r}) \big).
 \end{aligned}
 $$
 
 Using the definition of the [complex permittivity](https://en.wikipedia.org/wiki/Permittivity#Complex_permittivity)
 
 $$ \tag{4.5}
-	\varepsilon(\bm{r}) = \epsilon(\bm{r}) - \frac{i}{\omega_p} \sigma(\bm{r}),
+	\varepsilon(\bm{r}, \omega) = \epsilon(\bm{r}, \omega) - \frac{i}{\omega} \sigma(\bm{r}, \omega),
 $$
 
 we obtain Maxwell's equations for *linear, isotropic* media:
 
 $$ \tag{4.6}
 \begin{aligned}
-	&\nabla \times \bm{E}(\bm{r}) + i \omega_p \mu(\bm{r}) \bm{H}(\bm{r}) = 0, &
-	&\nabla \cdot  \big( \mu(\bm{r}) \bm{H}(\bm{r}) \big) = 0, \cr
-	&\nabla \times \bm{H}(\bm{r}) - i \omega_p \varepsilon(\bm{r}) \bm{E}(\bm{r}) = \bm{J\_s}(\bm{r}), &
-	&\nabla \cdot  \big( \varepsilon(\bm{r}) \bm{E}(\bm{r}) \big) = \rho\_s(\bm{r}).
+	&\nabla \times \bm{E}(\bm{r}) + i \omega \mu(\bm{r}, \omega) \bm{H}(\bm{r}) = 0, &
+	&\nabla \cdot  \big( \mu(\bm{r}, \omega) \bm{H}(\bm{r}) \big) = 0, \cr
+	&\nabla \times \bm{H}(\bm{r}) - i \omega \varepsilon(\bm{r}, \omega) \bm{E}(\bm{r}) = \bm{J\_s}(\bm{r}), &
+	&\nabla \cdot  \big( \varepsilon(\bm{r}, \omega) \bm{E}(\bm{r}) \big) = \rho\_s(\bm{r}).
 \end{aligned}
 $$
 
@@ -703,10 +708,10 @@ Setting \\(\bm{J\_f} = \rho\_f = 0\\) in Equations 4.6, we obtain a coupled syst
 
 $$ \tag{5.1}
 \begin{aligned}
-	&\nabla \times \bm{E}(\bm{r}) + i \omega_p \mu(\bm{r}) \bm{H}(\bm{r}) = 0, &
-	&\nabla \cdot  \big( \mu(\bm{r}) \bm{H}(\bm{r}) \big) = 0, \cr
-	&\nabla \times \bm{H}(\bm{r}) - i \omega_p \varepsilon(\bm{r}) \bm{E}(\bm{r}) = 0, &
-	&\nabla \cdot  \big( \varepsilon(\bm{r}) \bm{E}(\bm{r}) \big) = 0.
+	&\nabla \times \bm{E}(\bm{r}) + i \omega \mu(\bm{r}, \omega) \bm{H}(\bm{r}) = 0, &
+	&\nabla \cdot  \big( \mu(\bm{r}, \omega) \bm{H}(\bm{r}) \big) = 0, \cr
+	&\nabla \times \bm{H}(\bm{r}) - i \omega \varepsilon(\bm{r}, \omega) \bm{E}(\bm{r}) = 0, &
+	&\nabla \cdot  \big( \varepsilon(\bm{r}, \omega) \bm{E}(\bm{r}) \big) = 0.
 \end{aligned}
 $$
 
@@ -718,9 +723,9 @@ Next, assume that the medium is *homogeneous*[^7] (constant in space):
 
 $$ \tag{5.2}
 \begin{aligned}
-	&\nabla \times \bm{E}(\bm{r}) + i \omega_p \mu \bm{H}(\bm{r}) = 0, &
+	&\nabla \times \bm{E}(\bm{r}) + i \omega \mu(\omega) \bm{H}(\bm{r}) = 0, &
 	&\nabla \cdot  \bm{H}(\bm{r}) = 0, \cr
-	&\nabla \times \bm{H}(\bm{r}) - i \omega_p \varepsilon \bm{E}(\bm{r}) = 0, &
+	&\nabla \times \bm{H}(\bm{r}) - i \omega \varepsilon(\omega) \bm{E}(\bm{r}) = 0, &
 	&\nabla \cdot  \bm{E}(\bm{r}) = 0.
 \end{aligned}
 $$
@@ -728,7 +733,7 @@ $$
 Let us focus on the electric phasor \\(\bm{E}\\). Take curl of Equation 5.2.1 and substitute Equation 5.2.3:
 
 $$ \tag{5.3}
-	\nabla \times \nabla \times \bm{E}(\bm{r}) + i \omega_p \mu \big( i \omega_p \varepsilon \bm{E}(\bm{r}) \big) = 0.
+	\nabla \times \nabla \times \bm{E}(\bm{r}) + i \omega \mu(\omega) \big( i \omega \varepsilon(\omega) \bm{E}(\bm{r}) \big) = 0.
 $$
 
 Introduce the [curl-of-curl](https://en.wikipedia.org/wiki/Vector_calculus_identities#Curl_of_curl) identity
@@ -768,34 +773,34 @@ is the *vector* [Laplace](https://en.wikipedia.org/wiki/Laplace_operator) operat
 Use Equation 5.4 to expand Equation 5.3:
 
 $$ \tag{5.7}
-	\nabla \big( \nabla \cdot \bm{E}(\bm{r}) \big) - \nabla^2 \bm{E}(\bm{r}) - \omega_p^2 \mu \varepsilon \bm{E}(\bm{r}) = 0.
+	\nabla \big( \nabla \cdot \bm{E}(\bm{r}) \big) - \nabla^2 \bm{E}(\bm{r}) - \omega^2 \mu(\omega) \varepsilon(\omega) \bm{E}(\bm{r}) = 0.
 $$
 
 Substitution of Equation 5.2.4 into 5.7 yields the equation of the electric phasor \\(\bm{E}\\):
 
 $$ \tag{5.8}
-	\nabla^2 \bm{E}(\bm{r}) + \omega_p^2 \mu \varepsilon \bm{E}(\bm{r}) = 0.
+	\nabla^2 \bm{E}(\bm{r}) + \omega^2 \mu(\omega) \varepsilon(\omega) \bm{E}(\bm{r}) = 0.
 $$
 
 Similarly, we can obtain an expression of the magnetic phasor \\(\bm{B}\\):
 
 $$ \tag{5.9}
-	\nabla^2 \bm{B}(\bm{r}) + \omega_p^2 \mu \varepsilon \bm{B}(\bm{r}) = 0.
+	\nabla^2 \bm{B}(\bm{r}) + \omega^2 \mu(\omega) \varepsilon(\omega) \bm{B}(\bm{r}) = 0.
 $$
 
 If we define
 
 $$ \tag{5.10}
-	k_p = \omega_p \sqrt{\mu \varepsilon},
+	k(\omega) = \omega \sqrt{\mu(\omega) \varepsilon(\omega)},
 $$
 
 we can separate the *vector* Equation 5.8 into three *scalar* [Helmholtz's equations](https://en.wikipedia.org/wiki/Helmholtz_equation):
 
 $$ \tag{5.11}
 \begin{aligned}
-	\big( \nabla^2 + k_p^2 \big) E\_x(\bm{r}) = 0, \cr
-	\big( \nabla^2 + k_p^2 \big) E\_y(\bm{r}) = 0, \cr
-	\big( \nabla^2 + k_p^2 \big) E\_z(\bm{r}) = 0. \cr
+	\big( \nabla^2 + k^2(\omega) \big) E\_x(\bm{r}) = 0, \cr
+	\big( \nabla^2 + k^2(\omega) \big) E\_y(\bm{r}) = 0, \cr
+	\big( \nabla^2 + k^2(\omega) \big) E\_z(\bm{r}) = 0. \cr
 \end{aligned}
 $$
 
@@ -818,7 +823,7 @@ Extension to three dimensions is straightforward. If we rotate the coordinate fr
 
 $$ \tag{5.14}
 	s(\bm{r}, \bm{n}) =
-	s(0, \bm{n}) e^{ \pm i k (\bm{n} \cdot \bm{r})}
+	s(0, \bm{n}) e^{ \pm i k (\bm{r} \cdot \bm{n})}
 $$
 
 is a valid solution for a certain value of \\(\bm{n}\\). To avoid clutter, we shall adhere to a common convention with the negative sign; the positive solution can be obtained by reversing the direction of \\(\bm{n}\\).
@@ -828,13 +833,13 @@ How should we choose the direction of \\(\bm{n}\\)? It depends on the location o
 $$ \tag{5.15}
 	s(\bm{r}) =
 	\oiint\_{\mathbb{S}^2} s(\bm{r}, \bm{n}) \thinspace d\Omega\_n =
-	\oiint\_{\mathbb{S}^2} s(0, \bm{n}) e^{-i k (\bm{n} \cdot \bm{r})} d\Omega\_n.
+	\oiint\_{\mathbb{S}^2} s(0, \bm{n}) e^{-i k (\bm{r} \cdot \bm{n})} d\Omega\_n.
 $$
 
 Equation 5.15 can be used to solve Equations 5.11 and 5.8:
 
 $$ \tag{5.16}
-	\bm{E}(\bm{r}) = \oiint\_{\mathbb{S}^2} \bm{E_p}(0, \bm{n}) e^{-i k_p (\bm{n} \cdot \bm{r})} d\Omega\_n.
+	\bm{E}(\bm{r}) = \oiint\_{\mathbb{S}^2} \bm{E}(0, \bm{n}) e^{-i k(\omega) (\bm{r} \cdot \bm{n})} d\Omega\_n.
 $$
 
 That is a solution of Maxwell's equations in the frequency domain.
@@ -846,28 +851,30 @@ We can find a solution of Maxwell's equations in the time domain by substituting
 $$ \tag{6.1}
 \begin{aligned}
 	\bm{E}(\bm{r}, t)
-	&= \bm{E_0}(\bm{r}, 0) + \sum\_{n = 1}^{\infin} 2 \thinspace \mathcal{Re} \big\lbrace \bm{E_p}(\bm{r}, \omega_p) e^{i \omega_p t} \big\rbrace \cr
+	&= \bm{E_0}(\bm{r}) + \sum\_{n = 1}^{\infin} 2 \thinspace \mathcal{Re} \big\lbrace \bm{E_p}(\bm{r}) e^{i \omega_p t} \big\rbrace \cr
 	&= \oiint\_{\mathbb{S}^2} \bm{E_0}(0, \bm{n}) d\Omega\_n
-	 + \sum\_{p = 1}^{\infin} \oiint\_{\mathbb{S}^2} 2 \thinspace \mathcal{Re} \big\lbrace \bm{E_p}(0, \bm{n}) e^{-i k_p (\bm{n} \cdot \bm{r}) + i \omega_p t} \big\rbrace d\Omega\_n.
+	 + \sum\_{p = 1}^{\infin} \oiint\_{\mathbb{S}^2} 2 \thinspace \mathcal{Re} \big\lbrace \bm{E_p}(0, \bm{n}) e^{-i k(\omega_p) (\bm{r} \cdot \bm{n})} e^{i \omega_p t} \big\rbrace d\Omega\_n.
 \end{aligned}
 $$
 
-This sum of integral represents a [wave packet](https://en.wikipedia.org/wiki/Wave_packet). It is a collection of monochromatic *vector* [plane waves](https://en.wikipedia.org/wiki/Plane_wave) \[[6](#references) (ch. 1.4.2), [7](#references) (ch. 3.1), [8](#references) (ch. 3.2)\] of the form
+This sum of integrals represents a [wave packet](https://en.wikipedia.org/wiki/Wave_packet). It is a collection of monochromatic *vector* [plane waves](https://en.wikipedia.org/wiki/Plane_wave) \[[6](#references) (ch. 1.4.2), [7](#references) (ch. 3.1), [8](#references) (ch. 3.2)\] of the form
 
 $$ \tag{6.2}
-	\bm{E_p}(0, \bm{n}) e^{-i k_p (\bm{n} \cdot \bm{r}) + i \omega_p t}
+	\bm{E}(\bm{r}, \bm{n}) e^{i \omega t}
+	= \bm{E}(0, \bm{n}) e^{-i k(\omega) (\bm{r} \cdot \bm{n})} e^{i \omega t}
 $$
 
 each composed of three *scalar* plane waves such as
 
 $$ \tag{6.3}
-	E_p(0, \bm{n}) e^{-i k_p (\bm{n} \cdot \bm{r}) + i \omega_p t}
+	E(\bm{r}, \bm{n}) e^{i \omega t}
+	= E(0, \bm{n}) e^{-i k(\omega) (\bm{r} \cdot \bm{n})} e^{i \omega t}
 $$
 
 expressed in terms the complex [wave number](https://en.wikipedia.org/wiki/Wavenumber)
 
 $$ \tag{6.4}
-	k_p = \omega_p \sqrt{\varepsilon \mu}.
+	k(\omega) = \omega \sqrt{\varepsilon(\omega) \mu(\omega)},
 $$
 
 If we define the [relative permittivity](https://en.wikipedia.org/wiki/Relative_permittivity)[^8] \\(\varepsilon\_r\\) and the [relative permeability](https://en.wikipedia.org/wiki/Permeability_(electromagnetism)#Relative_permeability_and_magnetic_susceptibility) \\(\mu\_r\\) using vacuum as reference,
@@ -875,30 +882,30 @@ If we define the [relative permittivity](https://en.wikipedia.org/wiki/Relative_
 [^8]: Historically called the [relative complex dielectric constant](https://en.wikipedia.org/wiki/Relative_permittivity#Lossy_medium).
 
 $$ \tag{6.5}
-	\varepsilon\_r = \frac{\varepsilon}{\epsilon\_0}, \quad
-	\mu\_r = \frac{\mu}{\mu\_0},
+	\varepsilon\_r(\omega) = \frac{\varepsilon(\omega)}{\epsilon\_0}, \quad
+	\mu\_r(\omega) = \frac{\mu(\omega)}{\mu\_0},
 $$
 
-the square root of Equation 5.4 can be expressed as
+the square root of Equation 6.4 can be expressed as
 
 $$ \tag{6.6}
-	\sqrt{\varepsilon \mu} =
-	\sqrt{\epsilon\_0 \mu\_0} \sqrt{\varepsilon\_r \mu\_r} =
-	\frac{1}{c} \sqrt{\varepsilon\_r \mu\_r}.
+	\sqrt{\varepsilon(\omega) \mu(\omega)} =
+	\sqrt{\epsilon\_0 \mu\_0} \sqrt{\varepsilon\_r(\omega) \mu\_r(\omega)} =
+	\frac{1}{c} \sqrt{\varepsilon\_r(\omega) \mu\_r(\omega)}.
 $$
 
 It is convenient to use a parametrization that does not involve taking a square root. Thus, we define two positive real numbers, the [refractive index](https://en.wikipedia.org/wiki/Refractive_index) \\(\eta\\) and the [attenuation index](https://en.wikipedia.org/wiki/Refractive_index#Complex_refractive_index) \\(\kappa\\) \[[7](#references) (ch. 3.1), [8](#references) (ch. 2.3)\], by
 
 $$ \tag{6.7}
-	\eta - i \kappa =
-	\sqrt{\varepsilon\_r \mu\_r} =
-	c \sqrt{\epsilon \mu - \frac{i}{\omega_p} \sigma \mu}.
+	\eta(\omega) - i \kappa(\omega) =
+	\sqrt{\varepsilon\_r(\omega) \mu\_r(\omega)} =
+	c \sqrt{\Big( \epsilon(\omega) - \frac{i}{\omega} \sigma(\omega) \Big) \mu(\omega)}.
 $$
 
 For high frequencies such as those encountered in optics, we may perform a [Laurent series](https://en.wikipedia.org/wiki/Laurent_series) [expansion](https://www.wolframalpha.com/input/?i=series+sqrt%28a-I%2Fw*b%29) at infinity:
 
 $$ \tag{6.8}
-	\eta - i \kappa \approx
+	\eta(\omega) - i \kappa(\omega) \approx
 	c \Big( \sqrt{\epsilon \mu} - i \frac{\sigma \mu}{2 \omega \sqrt{\epsilon \mu}} \Big),
 $$
 
@@ -908,15 +915,13 @@ which gives an approximate mapping between the optical and the physical paramete
 
 In order to develop some intuition about the role of the refractive index \[[5](#references) (vol. II, ch. 32.4)\], consider the phasor component of a scalar plane wave
 
--> Continue here... Improve notation...
-
 $$ \tag{6.9}
 \begin{aligned}
-	E(\bm{r}, \bm{n}, \omega)
-	&= E\_0 e^{-i k (\bm{n} \cdot \bm{r})} \cr
-	&= |E\_0| e^{i \delta} e^{-i (\omega / c) (\eta - i \kappa) (\bm{n} \cdot \bm{r})} \cr
-	&= |E\_0| e^{-\omega (\kappa / c) (\bm{n} \cdot \bm{r})} e^{i \delta - i \omega (\eta / c) (\bm{n} \cdot \bm{r})} \cr
-	&= |E(\bm{r}, \bm{n}, \omega)| e^{i \phi(\bm{r}, \bm{n}, \omega)}.
+	E(\bm{r}, \bm{n})
+	&= E\_0 e^{-i k (\bm{r} \cdot \bm{n})} \cr
+	&= |E\_0| e^{i \delta} e^{-i (\omega / c) (\eta - i \kappa) (\bm{r} \cdot \bm{n})} \cr
+	&= |E\_0| e^{-\omega (\kappa / c) (\bm{r} \cdot \bm{n})} e^{i \delta - i \omega (\eta / c) (\bm{r} \cdot \bm{n})} \cr
+	&= |E(\bm{r}, \bm{n})| e^{i \phi(\bm{r}, \bm{n})}.
 \end{aligned}
 $$
 
@@ -926,18 +931,18 @@ Multiplication by \\(e^{i \omega t}\\) by yields the full expression of a scalar
 
 $$ \tag{6.10}
 \begin{aligned}
-	E(\bm{r}, \bm{n}, \omega) e^{i \omega t}
-	&= |E\_0| e^{-\omega (\kappa / c) (\bm{n} \cdot \bm{r})} e^{i \delta - i \omega (\eta / c) (\bm{n} \cdot \bm{r})} e^{i \omega t} \cr
-	&= |E\_0| e^{-\omega (\kappa / c) (\bm{n} \cdot \bm{r})} e^{i \delta + i \omega (t - (\eta / c) (\bm{n} \cdot \bm{r}))}.
+	E(\bm{r}, \bm{n}) e^{i \omega t}
+	&= |E\_0| e^{-\omega (\kappa / c) (\bm{r} \cdot \bm{n})} e^{i \delta - i \omega (\eta / c) (\bm{r} \cdot \bm{n})} e^{i \omega t} \cr
+	&= |E\_0| e^{-\omega (\kappa / c) (\bm{r} \cdot \bm{n})} e^{i \delta + i \omega (t - (\eta / c) (\bm{r} \cdot \bm{n}))}.
 \end{aligned}
 $$
 
-Let's perform [dimensional analysis](https://en.wikipedia.org/wiki/Dimensional_analysis) of Equation 5.10. Begin by taking the [argument](https://en.wikipedia.org/wiki/Argument_(complex_analysis)) of the expression
+Let's perform [dimensional analysis](https://en.wikipedia.org/wiki/Dimensional_analysis) of Equation 6.10. Begin by taking the [argument](https://en.wikipedia.org/wiki/Argument_(complex_analysis)) of the expression
 
 $$ \tag{6.11}
 	\theta(\bm{r}, t) =
-	\mathrm{Arg} \big\lbrace E(\bm{r}, \bm{n}, \omega) e^{i \omega t} \big\rbrace =
-	\delta - \omega (\eta / c) \big(\bm{n} \cdot \bm{r} - (c / \eta) t \big).
+	\mathrm{Arg} \big\lbrace E(\bm{r}, \bm{n}) e^{i \omega t} \big\rbrace =
+	\delta - \omega (\eta / c) \big(\bm{r} \cdot \bm{n} - (c / \eta) t \big).
 $$
 
 Notice that, for any \\(\Delta t\\),
@@ -948,14 +953,14 @@ $$
 
 This implies that \\(\theta\\) represents a plane propagating along its normal \\(\bm{n}\\) at the [phase velocity](https://en.wikipedia.org/wiki/Phase_velocity) \\(c / \eta\\).
 
-Taking the real part of Equation 5.10 allows us to uncover the *wave amplitude*
+Taking the real part of Equation 6.10 allows us to uncover the *wave amplitude*
 
 $$ \tag{6.13}
- 	\mathcal{Re} \big\lbrace E(\bm{r}, \bm{n}, \omega) e^{i \omega t} \big\rbrace = 
- 	|E(0, \bm{n})| e^{-\omega (\kappa / c) (\bm{n} \cdot \bm{r})} \cos{\theta}.
+ 	\mathcal{Re} \big\lbrace E(\bm{r}, \bm{n}) e^{i \omega t} \big\rbrace = 
+ 	|E(0, \bm{n})| e^{-\omega (\kappa / c) (\bm{r} \cdot \bm{n})} \cos{\theta}.
 $$
 
-If the absorption index \\(\kappa = 0\\), Equation 5.13 represents a regular sine wave.
+If the absorption index \\(\kappa = 0\\), Equation 6.13 represents a regular sine wave.
 
 [Insert Picture Here]
 
