@@ -297,14 +297,14 @@ $$
 
 where we used the exponential definition of the [Dirac delta](https://en.wikipedia.org/wiki/Dirac_delta_function) function \\(\delta(x)\\).
 
-Equation 2.11 permits us to study the *monochromatic* vector field (or, stated more precisely, the \\(n\\)-th harmonic)
+Since the individual harmonics are orthogonal (and thus independent), analysis of a *time-harmonic* field with \\(N\\) components can be simplified by considering \\(N\\) *single-frequency* vector fields, such as
 
 $$ \tag{2.13}
 	\bm{E}(\bm{r}, t)
-	= \mathcal{Re} \big\lbrace \bm{E_p}(\bm{r}) e^{i \omega_p t} \big\rbrace
+	= \mathcal{Re} \big\lbrace \bm{E_p}(\bm{r}) e^{i \omega_p t} \big\rbrace,
 $$
 
-in isolation, and Equation 2.12 - its corresponding phasor
+in isolation, and their corresponding phasors
 
 $$ \tag{2.14}
 	\bm{E}(\bm{r}, \omega)
@@ -326,7 +326,7 @@ $$ \tag{2.15}
 \end{aligned}
 $$
 
-Performing differentiation with respect to time and division by the pervasive \\(e^{i \omega_p t}\\) factor yields Maxwell's equations for *time-harmonic* fields \[[7](#references) (ch. 2.3), [8](#references) (ch. 2.2)\]:
+Performing differentiation with respect to time and division by the pervasive \\(e^{i \omega_p t}\\) factor yields Maxwell's equations for time-harmonic fields \[[7](#references) (ch. 2.3), [8](#references) (ch. 2.2)\]:
 
 $$ \tag{2.16}
 \begin{aligned}
@@ -337,7 +337,7 @@ $$ \tag{2.16}
 \end{aligned}
 $$
 
-If the field is monochromatic, we can remove redundant indexing to simplify the notation:
+For single-frequency fields, we can remove redundant indexing to simplify the notation:
 
 $$ \tag{2.17}
 \begin{aligned}
