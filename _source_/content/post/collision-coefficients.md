@@ -1036,15 +1036,33 @@ $$
 If we take the real part of this expression, the result
 
 $$ \tag{6.22}
-	c \eta \big( \bm{n} \times \bm{E}(\bm{r}, t) \big)
+	(c \eta \bm{n}) \times \bm{E}(\bm{r}, t)
     = \bm{B}(\bm{r}, t)
 $$
 
 shows us that the electric and the magnetic vectors are orthogonal. Thus, \\(\lbrace \bm{E}, \bm{B}, \bm{n} \rbrace\\) is an orthogonal triad of vectors that defines the geometric configuration of a plane wave in a linear, isotropic medium.
 
+<-- show that n is orthogonal to E -->
+
 [Insert Picture Here]
 
-We should point out that we have seen the \\(\bm{E} \times \bm{B}\\) expression before (c.f. Equation 3.17).
+---
+
+We should point out that we have seen the \\(\bm{E} \times \bm{B}\\) expression before (c.f. Equation 3.17). Thus,
+
+$$ \tag{3.17}
+	\bm{S}(\bm{r}, t)
+	= \mu\_0^{-1} \big( \bm{E}(\bm{r}, t) \times \bm{B}(\bm{r}, t) \big)
+	= c \eta \mu\_0^{-1} \bm{n}
+$$
+
+is the expression of the Poynting vector of the plane wave, and the corresponding irradiance value (c.f. Equation 3.19) is
+
+$$ \tag{3.19}
+	\mathtt{E}
+	= \braket{\bm{S}} \cdot \bm{n}
+	= \braket{\bm{S}} \cos{\theta}
+$$
 
 ...
 
