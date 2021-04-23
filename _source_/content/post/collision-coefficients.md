@@ -968,68 +968,85 @@ On the other hand, \\(\kappa > 0\\) produces an exponential decay characteristic
 
 [Insert Picture Here]
 
-To determine how the electric and the magnetic fields of a monochromatic plane wave are related, consider a single directional component of the electric phasor \\(\bm{E}\\). Take curl of the integrand of Equation 4.17
+To determine how the electric and the magnetic fields of a plane wave are related, consider a *unidirectional, monochromatic* vector field
 
 $$ \tag{6.14}
+	\bm{E}(\bm{r}, t)
+	= \mathcal{Re} \big\lbrace \bm{E_p}(\bm{r}, \bm{n}) e^{i \omega_p t} \big\rbrace
+	= \mathcal{Re} \big\lbrace \bm{E_p}(0, \bm{n}) e^{-i k(\omega_p) (\bm{r} \cdot \bm{n})} e^{i \omega_p t} \big\rbrace
+$$
+
+and its corresponding phasor
+
+$$ \tag{6.15}
+	\bm{E}(\bm{r}, \omega)
+	= \sqrt{2 \pi} \bm{E_p}(\bm{r}, \bm{n}) \delta(\omega_p - \omega)
+	= \sqrt{2 \pi} \bm{E_p}(0, \bm{n}) e^{-i k(\omega_p) (\bm{r} \cdot \bm{n})} \delta(\omega_p - \omega).
+$$
+
+Substitute Equation 6.15 into Equation 2.6.1:
+
+$$ \tag{6.16}
 \begin{aligned}
-	\nabla \times \bm{E}(\bm{r}, \bm{n}, \omega)
-	&= \begin{bmatrix}
-			-i n\_y k\_3(\omega) E\_z(\bm{r}, \bm{n}, \omega) + i n\_z k\_2(\omega) E\_y(\bm{r}, \bm{n}, \omega) \cr
-			-i n\_z k\_1(\omega) E\_x(\bm{r}, \bm{n}, \omega) + i n\_x k\_3(\omega) E\_z(\bm{r}, \bm{n}, \omega) \cr
-			-i n\_x k\_2(\omega) E\_y(\bm{r}, \bm{n}, \omega) + i n\_y k\_1(\omega) E\_x(\bm{r}, \bm{n}, \omega)
-		\end{bmatrix} \cr
-	&= -\bm{n} \times
-		\begin{bmatrix}
-			i k\_{1}(\omega) & 0 & 0 \cr
-			0 & i k\_{2}(\omega) & 0 \cr
-			0 & 0 & i k\_{3}(\omega)
-		\end{bmatrix} \bm{E}(\bm{r}, \bm{n}, \omega)
+	\nabla \times \Big( \bm{E_p}(\bm{r}, \bm{n}) e^{i \omega_p t} \Big)
+    = -\frac{\partial}{\partial t} \Big( \bm{B_p}(\bm{r}, \bm{n}) e^{i \omega_p t} \Big).
 \end{aligned}
 $$
 
-and substitute it into Equation 2.7.1:
-
-$$ \tag{6.15}
-	\bm{n} \times
-	\begin{bmatrix}
-		i k\_{1}(\omega) & 0 & 0 \cr
-		0 & i k\_{2}(\omega) & 0 \cr
-		0 & 0 & i k\_{3}(\omega)
-	\end{bmatrix} \bm{E}(\bm{r}, \bm{n}, \omega)
-	= i \omega \bm{B}(\bm{r}, \bm{n}, \omega).
-$$
-
-If we recall the definition of \\(k\\) given by Equation 4.12, it is apparent that
-
-$$ \tag{6.16}
-	\bm{n} \times \Big( \big( \mu(\omega) \varepsilon(\omega) \big)^{\frac{1}{2}} \bm{E}(\bm{r}, \bm{n}, \omega) \Big) = \bm{B}(\bm{r}, \bm{n}, \omega),
-$$
-
-or, alternatively,
-
-$$ \tag{6.16}
-	\bm{n} \times \Big( \big( \mu(\omega) \varepsilon(\omega) \big)^{\frac{1}{2}} \bm{E}(\bm{r}, \bm{n}, \omega) \Big) = \bm{B}(\bm{r}, \bm{n}, \omega),
-$$
-
-\\(\bm{n}\\) is a real vector, while the phasors \\(\bm{E}\\) and \\(\bm{B}\\) are complex. Using the distributive property of the cross product,
+Take the time derivative
 
 $$ \tag{6.17}
-	\bm{n} \times \mathcal{Re} \big\lbrace \big( \mu(\omega) \varepsilon(\omega) \big)^{\frac{1}{2}} \bm{E}(\bm{r}, \bm{n}, \omega) e^{i \omega t} \big\rbrace
-	= \mathcal{Re} \big\lbrace \bm{B}(\bm{r}, \bm{n}, \omega) e^{i \omega t} \big\rbrace.
+	\nabla \times \bm{E_p}(\bm{r}, \bm{n}) e^{i \omega_p t}
+    = -i \omega_p \bm{B_p}(\bm{r}, \bm{n}) e^{i \omega_p t}.
 $$
 
-A similar derivation for \\(\bm{B}\\) using Equations 3.1.3 and 4.2.3 leads to
+Now, evaluate the curl
 
 $$ \tag{6.18}
-	\bm{n} \times \mathcal{Re} \big\lbrace \bm{B}(\bm{r}, \bm{n}, \omega) e^{i \omega t} \big\rbrace
-	=  -\mathcal{Re} \big\lbrace \big( \mu(\omega) \varepsilon(\omega) \big)^{\frac{1}{2}} \bm{E}(\bm{r}, \bm{n}, \omega) e^{i \omega t} \big\rbrace.
+	\nabla \times \bm{E}(\bm{r}, \bm{n})
+	= \begin{bmatrix}
+		-i k(\omega) n\_y E\_z(\bm{r}, \bm{n}) + i k(\omega) n\_z E\_y(\bm{r}, \bm{n}) \cr
+		-i k(\omega) n\_z E\_x(\bm{r}, \bm{n}) + i k(\omega) n\_x E\_z(\bm{r}, \bm{n}) \cr
+		-i k(\omega) n\_x E\_y(\bm{r}, \bm{n}) + i k(\omega) n\_y E\_x(\bm{r}, \bm{n})
+	  \end{bmatrix}
+	= -i k(\omega) \bm{n} \times \bm{E}(\bm{r}, \bm{n}).
 $$
 
-Both Equations 5.17 and 5.18 are simultaneously true only if these three vectors are mutually orthogonal. Thus, they define the geometric configuration of a plane wave.
+Substitute the result into Equation 6.17
+
+$$ \tag{6.19}
+	\bm{n} \times \Big( k(\omega_p) \bm{E_p}(\bm{r}, \bm{n}) e^{i \omega_p t} \Big)
+    = \omega_p \bm{B_p}(\bm{r}, \bm{n}) e^{i \omega_p t}
+$$
+
+and recall the definition of the wave number given by Equation 6.4:
+
+$$ \tag{6.20}
+	\bm{n} \times \Big( \sqrt{\varepsilon(\omega_p) \mu(\omega_p)} \bm{E_p}(\bm{r}, \bm{n}) e^{i \omega_p t} \Big)
+    = \bm{B_p}(\bm{r}, \bm{n}) e^{i \omega_p t},
+$$
+
+and how the refractive index is defined by Equations 6.6-6.7:
+
+$$ \tag{6.21}
+	\bm{n} \times \Big( c \big(\eta(\omega_p) - i \kappa(\omega_p) \big) \bm{E_p}(\bm{r}, \bm{n}) e^{i \omega_p t} \Big)
+    = \bm{B_p}(\bm{r}, \bm{n}) e^{i \omega_p t},
+$$
+
+If we take the real part of this expression, the result
+
+$$ \tag{6.22}
+	c \eta \big( \bm{n} \times \bm{E}(\bm{r}, t) \big)
+    = \bm{B}(\bm{r}, t)
+$$
+
+shows us that the electric and the magnetic vectors are orthogonal. Thus, \\(\lbrace \bm{E}, \bm{B}, \bm{n} \rbrace\\) is an orthogonal triad of vectors that defines the geometric configuration of a plane wave in a linear, isotropic medium.
 
 [Insert Picture Here]
 
+We should point out that we have seen the \\(\bm{E} \times \bm{B}\\) expression before (c.f. Equation 3.17).
 
+...
 
 <!--
 ## Polarization of Light
@@ -1183,7 +1200,7 @@ Non-paraxial polarization ???
 
 ## Acknowledgments
 
-Pharr, Jakob, NASA people
+Pharr, Jakob, NASA
 
 ## References
 
