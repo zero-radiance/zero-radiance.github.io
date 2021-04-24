@@ -958,7 +958,7 @@ Taking the real part of Equation 6.10 allows us to uncover the *wave amplitude*
 
 $$ \tag{6.13}
  	\mathcal{Re} \big\lbrace E(\bm{r}, \bm{n}) e^{i \omega t} \big\rbrace = 
- 	|E(0, \bm{n})| e^{-\omega (\kappa / c) (\bm{r} \cdot \bm{n})} \cos{\theta}.
+ 	|E\_0| e^{-\omega (\kappa / c) (\bm{r} \cdot \bm{n})} \cos{\theta}.
 $$
 
 If the absorption index \\(\kappa = 0\\), Equation 6.13 represents a regular sine wave.
@@ -1038,40 +1038,58 @@ $$
 and how the refractive index is defined by Equations 6.6-6.7:
 
 $$ \tag{6.24}
-	\bm{n} \times \Big( c \big(\eta(\omega) - i \kappa(\omega) \big) \bm{E}(\bm{r}, \bm{n}) e^{i \omega t} \Big)
+	\bm{n} \times \Big( \frac{1}{c} \big(\eta(\omega) - i \kappa(\omega) \big) \bm{E}(\bm{r}, \bm{n}) e^{i \omega t} \Big)
     = \bm{B}(\bm{r}, \bm{n}) e^{i \omega t},
 $$
 
 If we take the real part of this expression, the result
 
 $$ \tag{6.25}
-	(c \eta \bm{n}) \times \mathcal{Re} \big\lbrace \bm{E}(\bm{r}, \bm{n}) e^{i \omega t} \big\rbrace
+	\frac{\eta}{c} \bm{n} \times \mathcal{Re} \big\lbrace \bm{E}(\bm{r}, \bm{n}) e^{i \omega t} \big\rbrace
     = \mathcal{Re} \big\lbrace \bm{B}(\bm{r}, \bm{n}) e^{i \omega t} \big\rbrace
 $$
 
-shows us that the electric and the magnetic field vectors are orthogonal. Thus, \\(\lbrace \bm{E}, \bm{B}, \bm{n} \rbrace\\) is an orthogonal triad of vectors that defines the geometric configuration of a plane wave in a linear, isotropic medium.
+shows us that the electric and the magnetic field vectors are orthogonal. Thus, \\(\lbrace \bm{E}, \bm{B}, \bm{n} \rbrace\\) is an orthogonal triad of vectors that defines the geometric configuration of a plane wave in a linear, isotropic medium:
+
+$$ \tag{6.26}
+	\bm{n} \times \frac{\bm{E}(\bm{r}, t)}{|\bm{E}(\bm{r}, t)|} = \frac{\bm{B}(\bm{r}, t)}{|\bm{B}(\bm{r}, t)|}.
+$$
 
 [Insert Picture Here]
 
----
+We have seen the \\(\bm{E} \times \bm{B}\\) expression before (c.f. Equation 3.17). Thus, 
 
-We should point out that we have seen the \\(\bm{E} \times \bm{B}\\) expression before (c.f. Equation 3.17). Thus,
-
-$$ \tag{3.17}
+$$ \tag{6.27}
 	\bm{S}(\bm{r}, t)
 	= \mu\_0^{-1} \big( \bm{E}(\bm{r}, t) \times \bm{B}(\bm{r}, t) \big)
-	= c \eta \mu\_0^{-1} \bm{n}
+	= \mu\_0^{-1} |\bm{E}(\bm{r}, t)| |\bm{B}(\bm{r}, t)| \bm{n}
 $$
 
-is the expression of the Poynting vector of the plane wave, and the corresponding irradiance value (c.f. Equation 3.19) is
+is the expression of the Poynting vector of the plane wave.
 
-$$ \tag{3.19}
+Since the vectors are orthogonal, Equations 6.25-6.26 define the ratio of wave amplitudes:
+
+$$ \tag{6.28}
+	\frac{\eta}{c} |\bm{E}(\bm{r}, t)| = |\bm{B}(\bm{r}, t)|.
+$$
+
+This means we can compute the Poynting vector using the electric field alone:
+
+$$ \tag{6.29}
+	\bm{S}(\bm{r}, t)
+	= \mu\_0^{-1} \frac{\eta}{c} |\bm{E}(\bm{r}, t)|^2 \bm{n}
+	= \Big(\epsilon\_0 \eta c |E\_0|^2 e^{-2 \omega (\kappa / c) (\bm{r} \cdot \bm{n})} \cos^2{\theta(\bm{r}, t)} \Big) \bm{n},
+$$
+
+where we expanded the squared amplitude as per Equation 6.13.
+
+The average of the squared cosine is 1/2, so the corresponding irradiance value (c.f. Equation 3.19) is
+
+$$ \tag{6.30}
 	\mathtt{E}
 	= \braket{\bm{S}} \cdot \bm{n}
-	= \braket{\bm{S}} \cos{\theta}
+	= \frac{1}{2} \epsilon\_0 \eta c |E\_0|^2 e^{-2 \omega (\kappa / c) (\bm{r} \cdot \bm{n})}.
 $$
-
-...
 
 <!--
 ## Polarization of Light
