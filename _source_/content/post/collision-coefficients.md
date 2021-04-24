@@ -653,7 +653,7 @@ In general, media may be *dispersive* (dependent on the frequency), *lossy* (abs
 
 A radical simplification[^6] of Maxwell's equations can be achieved by assuming that the material is both *linear* and *isotropic* \[[6](#references) (ch. 1.1.2), [7](#references) (ch. 2.1), [8](#references) (ch. 2.3)\]:
 
-[^6]: We would like to stress that Equations 4.2-4.3 make a big assumption that is not appropriate for certain types of real materials. For instance, [crystals](https://en.wikipedia.org/wiki/Crystal) have a well-defined [internal structure](https://en.wikipedia.org/wiki/Crystal_structure) which makes them inherently anisotropic \[[5](#references) (vol. II, ch. 30)\]. Since our application is primarily concerned with simple fluids, the assumption of a linear isotropic material is valid, and offers significant theoretical advantages (such as simplicity). However, this assumption may be not suitable for a more general application.
+[^6]: We would like to stress that Equations 4.2-4.3 make a big assumption that is not appropriate for certain types of real materials. For instance, [crystals](https://en.wikipedia.org/wiki/Crystal) have a well-defined [internal structure](https://en.wikipedia.org/wiki/Crystal_structure) which makes them inherently anisotropic \[[5](#references) (vol. II, ch. 30)\]. Since our application is primarily concerned with simple fluids, the assumption of a linear, isotropic material is valid, and offers significant theoretical advantages (such as simplicity). However, this assumption may be not suitable for a more general application.
 
 $$ \tag{4.2}
 \begin{aligned}
@@ -913,7 +913,7 @@ which gives an approximate mapping between the optical and the physical paramete
 
 [^9]: Keep in mind that, in general, the permittivity, the permeability, and the conductivity are complex.
 
-In order to develop some intuition about the role of the refractive index \[[5](#references) (vol. II, ch. 32.4)\], consider the phasor component of a scalar plane wave
+In order to develop some intuition about the role of the refractive index \[[5](#references) (vol. II, ch. 32.4)\], consider the spatial component of a scalar plane wave
 
 $$ \tag{6.9}
 \begin{aligned}
@@ -940,9 +940,10 @@ $$
 Let's perform [dimensional analysis](https://en.wikipedia.org/wiki/Dimensional_analysis) of Equation 6.10. Begin by taking the [argument](https://en.wikipedia.org/wiki/Argument_(complex_analysis)) of the expression
 
 $$ \tag{6.11}
-	\theta(\bm{r}, t) =
-	\mathrm{Arg} \big\lbrace E(\bm{r}, \bm{n}) e^{i \omega t} \big\rbrace =
-	\delta - \omega (\eta / c) \big(\bm{r} \cdot \bm{n} - (c / \eta) t \big).
+	\theta(\bm{r}, t)
+	= \mathcal{Arg} \big\lbrace E(\bm{r}, \bm{n}) e^{i \omega t} \big\rbrace
+	= \phi + \omega t
+	= \delta - \omega (\eta / c) \big(\bm{r} \cdot \bm{n} - (c / \eta) t \big).
 $$
 
 Notice that, for any \\(\Delta t\\),
@@ -951,7 +952,7 @@ $$ \tag{6.12}
 	\theta(\bm{r}, t) = \theta(\bm{r} + \bm{n} (c / \eta) \Delta t, \thinspace t + \Delta t).
 $$
 
-This implies that \\(\theta\\) represents a plane propagating along its normal \\(\bm{n}\\) at the [phase velocity](https://en.wikipedia.org/wiki/Phase_velocity) \\(c / \eta\\).
+This implies that \\(\theta\\) represents a plane propagating along its normal \\(\bm{n}\\) at the [phase velocity](https://en.wikipedia.org/wiki/Phase_velocity) \\(c / \eta\\). In general, surfaces of constant phase are called *cophasal*, or *wavefronts*.
 
 Taking the real part of Equation 6.10 allows us to uncover the *wave amplitude*
 
@@ -968,9 +969,7 @@ On the other hand, \\(\kappa > 0\\) produces an exponential decay characteristic
 
 [Insert Picture Here]
 
-To learn more about the geometry of plane waves, consider ... ???
-
-Maxwell's equations for time-harmonic fields (c.f. Equation 5.1) tell us that, in the absence of sources,
+It's easy to show that, for linear, isotropic media, the field vectors oscillate in the plane of the wave. Maxwell's equations (c.f. Equation 5.1) tell us that, in the absence of sources,
 
 $$ \tag{6.15}
 	\nabla \cdot \bm{B}(\bm{r}) = 0, \quad
@@ -984,84 +983,73 @@ $$ \tag{6.16}
 	\nabla \cdot \bm{E}(\bm{r}) = 0.
 $$
 
-Taking \\(\bm{E}\\) as an example,
-
----
+Taking \\(\bm{E}\\) as an example, substitution of the integrand of Equation 5.16 
 
 $$ \tag{6.17}
-\begin{aligned}
-	\nabla \cdot \bm{E}(\bm{r})
-	&= ???
-\end{aligned}
+	\bm{E}(\bm{r}, \bm{n}) = \bm{E}(0, \bm{n}) e^{-i k(\omega) (\bm{r} \cdot \bm{n})}
 $$
 
-and its corresponding phasor
-
-$$ \tag{6.15}
-	\bm{E}(\bm{r}, \omega)
-	= \sqrt{2 \pi} \bm{E_p}(\bm{r}, \bm{n}) \delta(\omega_p - \omega)
-	= \sqrt{2 \pi} \bm{E_p}(0, \bm{n}) e^{-i k(\omega_p) (\bm{r} \cdot \bm{n})} \delta(\omega_p - \omega).
-$$
-
-Substitute Equation 6.15 into Equation 2.6.1:
-
-$$ \tag{6.16}
-\begin{aligned}
-	\nabla \times \Big( \bm{E_p}(\bm{r}, \bm{n}) e^{i \omega_p t} \Big)
-    = -\frac{\partial}{\partial t} \Big( \bm{B_p}(\bm{r}, \bm{n}) e^{i \omega_p t} \Big).
-\end{aligned}
-$$
-
-Take the time derivative
-
-$$ \tag{6.17}
-	\nabla \times \bm{E_p}(\bm{r}, \bm{n}) e^{i \omega_p t}
-    = -i \omega_p \bm{B_p}(\bm{r}, \bm{n}) e^{i \omega_p t}.
-$$
-
-Now, evaluate the curl
+into Equation 6.16.2 yields
 
 $$ \tag{6.18}
+	\nabla \cdot \bm{E}(\bm{r}, \bm{n})
+	= -i k(\omega) \bm{n} \cdot \bm{E}(\bm{r}, \bm{n})
+	= 0.
+$$
+
+After division by the constant and multiplication by \\(e^{i \omega t}\\), it follows that the field vector is orthogonal to the plane normal:
+
+$$ \tag{6.19}
+	\bm{n} \cdot \mathcal{Re} \big\lbrace \bm{E}(\bm{r}, \bm{n}) e^{i \omega t} \big\rbrace
+	= 0.
+$$
+
+Similarly, we can relate the electric and the magnetic field vectors. According to Equation 5.1.1,
+
+$$ \tag{6.20}
+	\nabla \times \bm{E}(\bm{r}) = - i \omega \bm{B}(\bm{r}).
+$$
+
+Expand the expression of the curl
+
+$$ \tag{6.21}
 	\nabla \times \bm{E}(\bm{r}, \bm{n})
 	= \begin{bmatrix}
 		-i k(\omega) n\_y E\_z(\bm{r}, \bm{n}) + i k(\omega) n\_z E\_y(\bm{r}, \bm{n}) \cr
 		-i k(\omega) n\_z E\_x(\bm{r}, \bm{n}) + i k(\omega) n\_x E\_z(\bm{r}, \bm{n}) \cr
 		-i k(\omega) n\_x E\_y(\bm{r}, \bm{n}) + i k(\omega) n\_y E\_x(\bm{r}, \bm{n})
 	  \end{bmatrix}
-	= -i k(\omega) \bm{n} \times \bm{E}(\bm{r}, \bm{n}).
+	= -i k(\omega) \bm{n} \times \bm{E}(\bm{r}, \bm{n})
 $$
 
-Substitute the result into Equation 6.17
+and substitute it into Equation 6.20:
 
-$$ \tag{6.19}
-	\bm{n} \times \Big( k(\omega_p) \bm{E_p}(\bm{r}, \bm{n}) e^{i \omega_p t} \Big)
-    = \omega_p \bm{B_p}(\bm{r}, \bm{n}) e^{i \omega_p t}
+$$ \tag{6.22}
+	-i k(\omega) \bm{n} \times \bm{E}(\bm{r}, \bm{n}) = - i \omega \bm{B}(\bm{r}, \bm{n}).
 $$
 
-and recall the definition of the wave number given by Equation 6.4:
+Recall the definition of the wave number given by Equation 6.4:
 
-$$ \tag{6.20}
-	\bm{n} \times \Big( \sqrt{\varepsilon(\omega_p) \mu(\omega_p)} \bm{E_p}(\bm{r}, \bm{n}) e^{i \omega_p t} \Big)
-    = \bm{B_p}(\bm{r}, \bm{n}) e^{i \omega_p t},
+$$ \tag{6.23}
+	\bm{n} \times \Big( \sqrt{\varepsilon(\omega) \mu(\omega)} \bm{E}(\bm{r}, \bm{n}) e^{i \omega t} \Big)
+    = \bm{B}(\bm{r}, \bm{n}) e^{i \omega t},
 $$
 
 and how the refractive index is defined by Equations 6.6-6.7:
 
-$$ \tag{6.21}
-	\bm{n} \times \Big( c \big(\eta(\omega_p) - i \kappa(\omega_p) \big) \bm{E_p}(\bm{r}, \bm{n}) e^{i \omega_p t} \Big)
-    = \bm{B_p}(\bm{r}, \bm{n}) e^{i \omega_p t},
+$$ \tag{6.24}
+	\bm{n} \times \Big( c \big(\eta(\omega) - i \kappa(\omega) \big) \bm{E}(\bm{r}, \bm{n}) e^{i \omega t} \Big)
+    = \bm{B}(\bm{r}, \bm{n}) e^{i \omega t},
 $$
 
 If we take the real part of this expression, the result
 
-$$ \tag{6.22}
-	(c \eta \bm{n}) \times \bm{E}(\bm{r}, t)
-    = \bm{B}(\bm{r}, t)
+$$ \tag{6.25}
+	(c \eta \bm{n}) \times \mathcal{Re} \big\lbrace \bm{E}(\bm{r}, \bm{n}) e^{i \omega t} \big\rbrace
+    = \mathcal{Re} \big\lbrace \bm{B}(\bm{r}, \bm{n}) e^{i \omega t} \big\rbrace
 $$
 
-shows us that the electric and the magnetic vectors are orthogonal. Thus, \\(\lbrace \bm{E}, \bm{B}, \bm{n} \rbrace\\) is an orthogonal triad of vectors that defines the geometric configuration of a plane wave in a linear, isotropic medium.
-
-<-- show that n is orthogonal to E -->
+shows us that the electric and the magnetic field vectors are orthogonal. Thus, \\(\lbrace \bm{E}, \bm{B}, \bm{n} \rbrace\\) is an orthogonal triad of vectors that defines the geometric configuration of a plane wave in a linear, isotropic medium.
 
 [Insert Picture Here]
 
