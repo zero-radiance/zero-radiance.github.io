@@ -213,7 +213,7 @@ $$ \tag{2.4}
 \end{aligned}
 $$
 
-which follows from the definition of the real part of a complex number:
+where the last equality follows from the definition of the real part of a complex number:
 
 $$ \tag{2.5}
 	2 \thinspace \mathcal{Re} \lbrace z \rbrace
@@ -234,9 +234,11 @@ $$ \tag{2.6}
 \end{aligned}
 $$
 
-Generally speaking, equality of integrands does not follow from equality of integrals (but the opposite is true). In order to simplify Equations 2.6 further, we must make an assumption that the electromagnetic field is a [periodic function](https://en.wikipedia.org/wiki/Periodic_function) of time, such that the *fundamental period* \\(\thinspace T\_1 = 2 \pi / \omega_1\\) of both the electric and the magnetic fields is the same \[[5](#references) (vol. I, ch. 50) [6](#references) (ch. 1.3.3, 1.4.3)\]. This restriction is not as severe as it may seem, for we may choose the period to be as large as necessary. And the benefits are great, since it allows us to represent[^3] the fields using the [Fourier series](https://en.wikipedia.org/wiki/Fourier_series#Complex-valued_functions)
+Generally speaking, equality of integrands does not follow from equality of integrals (but the opposite is true). In order to simplify Equations 2.6 further, we must make an assumption that the electromagnetic field[^3] is a [periodic function](https://en.wikipedia.org/wiki/Periodic_function) of time, such that the *fundamental period* \\(\thinspace T\_1 = 2 \pi / \omega_1\\) of both the electric and the magnetic fields is the same \[[5](#references) (vol. I, ch. 50) [6](#references) (ch. 1.3.3, 1.4.3)\]. This restriction is not as severe as it may seem, for we may choose the period to be as large as necessary. And the benefits are great, since it allows us to represent[^4] the fields using the [Fourier series](https://en.wikipedia.org/wiki/Fourier_series#Complex-valued_functions)
 
-[^3]: This discrete representation only allows frequencies that belong to a certain [countable set](https://en.wikipedia.org/wiki/Countable_set). This is noteworthy because it suggests that fields are, in some sense, quantized, even though we are not using the [quantum theory of fields](https://en.wikipedia.org/wiki/Quantum_field_theory).
+[^3]: The fact that the electric and the magnetic fields cannot exist independently can be shown by a simple relativistic argument \[[12](#references) (ch 6.2)\]. Moreover, the electromagnetic field can be written as a single 4-vector called the [electromagnetic four-potential](https://en.wikipedia.org/wiki/Electromagnetic_four-potential) \[[5](#references) (vol. II, ch. 25)\] .
+
+[^4]: This discrete representation only allows frequencies that belong to a certain [countable set](https://en.wikipedia.org/wiki/Countable_set). This is noteworthy because it suggests that fields are, in some sense, quantized, even though we are not using the [quantum theory of fields](https://en.wikipedia.org/wiki/Quantum_field_theory).
 
 $$ \tag{2.7}
 	\bm{E}(\bm{r}, t)
@@ -282,7 +284,7 @@ $$ \tag{2.11}
 \end{aligned}
 $$
 
-Intuitively, the sinusoids produce an equivalent amount of vibration regardless of the sign of their frequency.
+Intuitively, the harmonics produce an equivalent amount of vibration regardless of the sign of their frequency.
 
 What happens when we Fourier transform a periodic function? Combining Equations 2.1 and 2.7,
 
@@ -503,9 +505,9 @@ $$ \tag{3.17}
 	\bm{S}(\bm{r}, t) = \mu\_0^{-1} \big( \bm{E}(\bm{r}, t) \times \bm{B}(\bm{r}, t) \big)
 $$
 
-is the [Poynting vector](https://en.wikipedia.org/wiki/Poynting_vector) that represents the direction and the rate of energy flow[^4].
+is the [Poynting vector](https://en.wikipedia.org/wiki/Poynting_vector) that represents the direction and the rate of energy flow[^5].
 
-[^4]: This definition of field energy, while widely accepted, is somewhat ambiguous \[[5](#references) (vol. II, ch. 27.4)\]. We would also like to note that there is yet another popular definition in terms of the auxiliary fields \[[6](#references) (ch. 1.1.4)\]. We prefer our derivation because it accounts for bound currents.
+[^5]: This definition of field energy, while widely accepted, is somewhat ambiguous \[[5](#references) (vol. II, ch. 27.4)\]. We would also like to note that there is yet another popular definition in terms of the auxiliary fields \[[6](#references) (ch. 1.1.4)\]. We prefer our derivation because it accounts for bound currents.
 
 Since the electromagnetic fields oscillate so rapidly, rather than consider the *instantaneous* Poynting vector \\(\bm{S}\\), we focus on the *time-averaged* Poynting vector instead:
 
@@ -630,9 +632,9 @@ Considered in isolation, Maxwell's equations in the frequency domain is an [unde
 
 Perhaps the most obvious way to introduce these assumptions is to express the auxiliary fields in terms of polarization of matter (see Equation 1.10) which, in turn, must be expanded in terms of the electric and the magnetic fields. As it turns out, this leads to a *nonlinear* solution \[[9](#references)\] that is relatively difficult to manipulate.
 
-Fortunately, many materials respond to weak electromagnetic fields in an approximately linear manner[^5]. Under this assumption, we may express \\(\bm{D}\\) and \\(\bm{H}\\) as [bilinear](https://en.wikipedia.org/wiki/Bilinear_map) functions of \\(\bm{E}\\) and \\(\bm{B}\\) \[[8](#references) (ch. 8.22), [10](#references)\]:
+Fortunately, many materials respond to weak electromagnetic fields in an approximately linear manner[^6]. Under this assumption, we may express \\(\bm{D}\\) and \\(\bm{H}\\) as [bilinear](https://en.wikipedia.org/wiki/Bilinear_map) functions of \\(\bm{E}\\) and \\(\bm{B}\\) \[[8](#references) (ch. 8.22), [10](#references)\]:
 
-[^5]: This means that omitting higher-order terms in the series expansion results in a negligible error.
+[^6]: This means that omitting higher-order terms in the series expansion results in a negligible error.
 
 $$ \tag{4.1}
 	\begin{bmatrix}
@@ -651,9 +653,9 @@ $$
 
 In general, media may be *dispersive* (dependent on the frequency), *lossy* (absorptive), and *anisotropic* (dependent on the orientation). This implies that each matrix entry \\(\bm{c_{ij}}\\) is a complex [tensor field](https://en.wikipedia.org/wiki/Tensor#Tensor_fields) that can be represented by a 3x3 matrix.
 
-A radical simplification[^6] of Maxwell's equations can be achieved by assuming that the material is both *linear* and *isotropic* \[[6](#references) (ch. 1.1.2), [7](#references) (ch. 2.1), [8](#references) (ch. 2.3)\]:
+A radical simplification[^7] of Maxwell's equations can be achieved by assuming that the material is both *linear* and *isotropic* \[[6](#references) (ch. 1.1.2), [7](#references) (ch. 2.1), [8](#references) (ch. 2.3)\]:
 
-[^6]: We would like to stress that Equations 4.2-4.3 make a big assumption that is not appropriate for certain types of real materials. For instance, [crystals](https://en.wikipedia.org/wiki/Crystal) have a well-defined [internal structure](https://en.wikipedia.org/wiki/Crystal_structure) which makes them inherently anisotropic \[[5](#references) (vol. II, ch. 30)\]. Since our application is primarily concerned with simple fluids, the assumption of a linear, isotropic material is valid, and offers significant theoretical advantages (such as simplicity). However, this assumption may be not suitable for a more general application.
+[^7]: We would like to stress that Equations 4.2-4.3 make a big assumption that is not appropriate for certain types of real materials. For instance, [crystals](https://en.wikipedia.org/wiki/Crystal) have a well-defined [internal structure](https://en.wikipedia.org/wiki/Crystal_structure) which makes them inherently anisotropic \[[5](#references) (vol. II, ch. 30)\]. Since our application is primarily concerned with simple fluids, the assumption of a linear, isotropic material is valid, and offers significant theoretical advantages (such as simplicity). However, this assumption may be not suitable for a more general application.
 
 $$ \tag{4.2}
 \begin{aligned}
@@ -704,7 +706,7 @@ $$
 
 Consider a region of space without any source currents or charges. Physically, this means that there are no sources of fields in this region; but it doesn't mean the field contains no energy. The idea is to explore all solutions of Maxwell's equations (we can pick a particular solution once we specify the source or the field at the boundary), and determine how these solutions evolve over time.
 
-Setting \\(\bm{J\_f} = \rho\_f = 0\\) in Equations 4.6, we obtain a coupled system of homogeneous linear differential equations:
+Setting \\(\bm{J\_f} = \rho\_f = 0\\) in Equations 4.6, we obtain a coupled system of second-order linear homogeneous [partial differential equations](https://en.wikipedia.org/wiki/Partial_differential_equation):
 
 $$ \tag{5.1}
 \begin{aligned}
@@ -717,9 +719,9 @@ $$
 
 Mathematically, the consequence is that a linear combination of several solutions is also a valid solution.
 
-Next, assume that the medium is *homogeneous*[^7] (constant in space):
+Next, assume that the medium is *homogeneous*[^8] (constant in space):
 
-[^7]: See \[[6](#references) (ch. 1.2)\] for an inhomogeneous solution.
+[^8]: See \[[6](#references) (ch. 1.2)\] for an inhomogeneous solution.
 
 $$ \tag{5.2}
 \begin{aligned}
@@ -877,9 +879,9 @@ $$ \tag{6.4}
 	k(\omega) = \omega \sqrt{\varepsilon(\omega) \mu(\omega)},
 $$
 
-If we define the [relative permittivity](https://en.wikipedia.org/wiki/Relative_permittivity)[^8] \\(\varepsilon\_r\\) and the [relative permeability](https://en.wikipedia.org/wiki/Permeability_(electromagnetism)#Relative_permeability_and_magnetic_susceptibility) \\(\mu\_r\\) using vacuum as reference,
+If we define the [relative permittivity](https://en.wikipedia.org/wiki/Relative_permittivity)[^9] \\(\varepsilon\_r\\) and the [relative permeability](https://en.wikipedia.org/wiki/Permeability_(electromagnetism)#Relative_permeability_and_magnetic_susceptibility) \\(\mu\_r\\) using vacuum as reference,
 
-[^8]: Historically called the [relative complex dielectric constant](https://en.wikipedia.org/wiki/Relative_permittivity#Lossy_medium).
+[^9]: Historically called the [relative complex dielectric constant](https://en.wikipedia.org/wiki/Relative_permittivity#Lossy_medium).
 
 $$ \tag{6.5}
 	\varepsilon\_r(\omega) = \frac{\varepsilon(\omega)}{\epsilon\_0}, \quad
@@ -909,9 +911,9 @@ $$ \tag{6.8}
 	c \Big( \sqrt{\epsilon \mu} - i \frac{\sigma \mu}{2 \omega \sqrt{\epsilon \mu}} \Big),
 $$
 
-which gives an approximate mapping between the optical and the physical parameters[^9].
+which gives an approximate mapping between the optical and the physical parameters[^10].
 
-[^9]: Keep in mind that, in general, the permittivity, the permeability, and the conductivity are complex.
+[^10]: Keep in mind that, in general, the permittivity, the permeability, and the conductivity are complex.
 
 In order to develop some intuition about the role of the refractive index \[[5](#references) (vol. II, ch. 32.4)\], consider the spatial component of a scalar plane wave
 
@@ -1098,13 +1100,13 @@ We have just seen that transverse waves are composed of two independent scalar c
 
 In the framework of geometric optics, light is represented by oriented ray. When this ray encounters a birefringent crystal (such as calcite), double refraction occurs, and the original light ray splits into the *ordinary* and *extraordinary* rays.
 
-The idea behind [polarization of light](http://hyperphysics.phy-astr.gsu.edu/hbase/phyopt/polarcon.html#c1) \[Chandra?, [4](#references) (ch. 5), [5](#references) (vol. I, ch. 33), [6](#references) (ch. 1.4), [7](#references), [8](#references) (p. 527-533), [9](#references)\] (not to be confused with [polarization of matter](http://hyperphysics.phy-astr.gsu.edu/hbase/electric/dielec.html#c1) \[[4](#references) (ch. 4.5), [5](#references) (vol. II, ch. 32), [6](#references) (ch. 2.3), [9](#references)\]) is simple. Consider a fixed point[^4] in space; at that point, imagine the plane[^5] containing the electric and the magnetic vectors. Over time, the tip of the electric (and the magnetic) vector traces a closed[^6] curve. That shape of that curve is called polarization.
+The idea behind [polarization of light](http://hyperphysics.phy-astr.gsu.edu/hbase/phyopt/polarcon.html#c1) \[Chandra?, [4](#references) (ch. 5), [5](#references) (vol. I, ch. 33), [6](#references) (ch. 1.4), [7](#references), [8](#references) (p. 527-533), [9](#references)\] (not to be confused with [polarization of matter](http://hyperphysics.phy-astr.gsu.edu/hbase/electric/dielec.html#c1) \[[4](#references) (ch. 4.5), [5](#references) (vol. II, ch. 32), [6](#references) (ch. 2.3), [9](#references)\]) is simple. Consider a fixed point[^5] in space; at that point, imagine the plane[^6] containing the electric and the magnetic vectors. Over time, the tip of the electric (and the magnetic) vector traces a closed[^7] curve. That shape of that curve is called polarization.
 
-[^4]: In general, polarization depends on position \[[6](#references) (p. 38)\].
+[^5]: In general, polarization depends on position \[[6](#references) (p. 38)\].
 
-[^5]: It would be natural to call it the *plane of polarization*. However, the term has been used (and misused) in so many different contexts during the course of development of the field of optics that the only way to avoid ambiguity is to not use the term at all \[[6](#references) (p. 29)\].
+[^6]: It would be natural to call it the *plane of polarization*. However, the term has been used (and misused) in so many different contexts during the course of development of the field of optics that the only way to avoid ambiguity is to not use the term at all \[[6](#references) (p. 29)\].
 
-[^6]: Since the wave is time-harmonic, the wave function is periodic.
+[^7]: Since the wave is time-harmonic, the wave function is periodic.
 
 To determine this shape, consider a time-harmonic wave at a fixed position \\(\bm{r}\\)
 
@@ -1260,3 +1262,4 @@ Pharr, Jakob, NASA
 9. Boyd, R. W. [Nonlinear optics](https://www.elsevier.com/books/nonlinear-optics/boyd/978-0-12-811002-7), 4th Edition (2020).
 10. Keller, S. M., & Carman, G. P. [Electromagnetic wave propagation in (bianisotropic) magnetoelectric materials](https://doi.org/10.1177/1045389X12467518) (2013). 
 11. Hansen, J. E., & Travis, L. D. [Light scattering in planetary atmospheres](https://doi.org/10.1007/BF00168069) (1974).
+12. Fleisch, D. A. [A Student's Guide to Vectors and Tensors](https://www.cambridge.org/us/academic/subjects/physics/mathematical-methods/students-guide-vectors-and-tensors) (2011).
