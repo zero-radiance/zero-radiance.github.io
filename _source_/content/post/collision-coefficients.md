@@ -499,17 +499,17 @@ $$ \tag{3.16}
  	\frac{\partial}{\partial V} \mathcal{E\_m}(\bm{r}, t) = \frac{\mu\_0^{-1}}{2} B^2(\bm{r}, t), \quad
 $$
 
-are the electric and the magnetic energy densities, and
+are the electric and the magnetic energy volume densities, and
 
 $$ \tag{3.17}
 	\bm{S}(\bm{r}, t) = \mu\_0^{-1} \big( \bm{E}(\bm{r}, t) \times \bm{B}(\bm{r}, t) \big)
 $$
 
-is the [Poynting vector](https://en.wikipedia.org/wiki/Poynting_vector) that represents the direction and the rate of energy flow[^5].
+is the *instantaneous* [Poynting vector](https://en.wikipedia.org/wiki/Poynting_vector) that represents the direction and the rate of energy flow[^5].
 
-[^5]: This definition of field energy, while widely accepted, is somewhat ambiguous \[[5](#references) (vol. II, ch. 27.4)\]. We would also like to note that there is yet another popular definition in terms of the auxiliary fields \[[6](#references) (ch. 1.1.4)\]. We prefer our derivation because it accounts for bound currents.
+[^5]: This definition of field energy, while widely accepted, is somewhat ambiguous \[[5](#references) (vol. II, ch. 27.4)\]. It may be worth pointing out that there is an alternative definition in terms of the auxiliary fields \[[6](#references) (ch. 1.1.4)\]. We prefer our version because it accounts for bound currents.
 
-Since the electromagnetic fields oscillate so rapidly, rather than consider the *instantaneous* Poynting vector \\(\bm{S}\\), we focus on the *time-averaged* Poynting vector instead:
+Since the electromagnetic fields oscillate so rapidly, the *time-averaged* Poynting vector is often used instead:
 
 $$ \tag{3.18}
 	\braket{\bm{S}}
@@ -524,7 +524,7 @@ $$ \tag{3.19}
 	= \braket{\bm{S}} \cos{\theta}
 $$
 
-is the time-averaged amount of energy per second per unit area that flows through a surface with the normal \\(\bm{n}\\). That is the definition of [irradiance](https://en.wikipedia.org/wiki/Irradiance) \\(\mathtt{E}\\).
+is the amount of energy per second per unit area that flows through a surface with the normal \\(\bm{n}\\). That is the definition of [irradiance](https://en.wikipedia.org/wiki/Irradiance) \\(\mathtt{E}\\).
 
 If we solve Maxwell's equations in the frequency domain, we may be interested in the spectral composition of the Poynting vector. Assuming that the electromagnetic field is time-harmonic, Equation 3.17 can be written as
 
@@ -543,7 +543,7 @@ $$ \tag{3.20}
 \end{aligned}
 $$
 
-Next, we turn our attention to Equation 3.18 of the time-averaged Poynting vector
+The corresponding equation of the time-averaged Poynting vector is
 
 $$ \tag{3.21}
 \begin{aligned}
@@ -704,9 +704,9 @@ $$
 
 ## Helmholtz's Equation
 
-Consider a region of space without any source currents or charges. Physically, this means that there are no sources of fields in this region; but it doesn't mean the field contains no energy. The idea is to explore all solutions of Maxwell's equations (we can pick a particular solution once we specify the source or the field at the boundary), and determine how these solutions evolve over time.
+Consider a region of space without any source currents or charges. Physically, this means that there are no sources of fields in this region; but it doesn't mean the field contains no energy. The idea is to explore all solutions of Maxwell's equations (we can pick a particular solution once we specify the source or the boundary conditions), and determine how these solutions evolve over time.
 
-Setting \\(\bm{J\_f} = \rho\_f = 0\\) in Equations 4.6, we obtain a coupled system of second-order linear homogeneous [partial differential equations](https://en.wikipedia.org/wiki/Partial_differential_equation):
+Setting \\(\bm{J\_s} = \rho\_s = 0\\) in Equations 4.6, we obtain a coupled system of second-order linear homogeneous [partial differential equations](https://en.wikipedia.org/wiki/Partial_differential_equation):
 
 $$ \tag{5.1}
 \begin{aligned}
