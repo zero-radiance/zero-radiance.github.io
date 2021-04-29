@@ -706,7 +706,7 @@ $$
 
 Consider a region of space without any source currents or charges. Physically, this means that there are no sources of fields in this region; but it doesn't mean the field contains no energy. The idea is to explore all solutions of Maxwell's equations (we can pick a particular solution once we specify the source or the boundary conditions), and determine how these solutions evolve over time.
 
-Setting \\(\bm{J\_s} = \rho\_s = 0\\) in Equations 4.6, we obtain a coupled system of second-order linear homogeneous [partial differential equations](https://en.wikipedia.org/wiki/Partial_differential_equation):
+Setting \\(\bm{J\_s} = \rho\_s = 0\\) in Equations 4.6, we obtain a coupled system of first-order linear homogeneous [partial differential equations](https://en.wikipedia.org/wiki/Partial_differential_equation):
 
 $$ \tag{5.1}
 \begin{aligned}
@@ -875,7 +875,7 @@ $$ \tag{6.3}
 	= E(0, \bm{n}) e^{-i k(\omega) (\bm{r} \cdot \bm{n})} e^{i \omega t}
 $$
 
-expressed in terms the *complex* [wave number](https://en.wikipedia.org/wiki/Wavenumber)
+expressed in terms the complex [wave number](https://en.wikipedia.org/wiki/Wavenumber)
 
 $$ \tag{6.4}
 	k(\omega) = \omega \sqrt{\varepsilon(\omega) \mu(\omega)}.
@@ -925,7 +925,7 @@ $$ \tag{6.9}
 	= \omega \Bigg( \frac{1}{v_p(\omega)} - \frac{i}{v_a(\omega)} \Bigg),
 $$
 
-where \\(v_p = c/\eta\\) is the [phase velocity](https://en.wikipedia.org/wiki/Phase_velocity) and \\(v_a=c/\kappa\\) is the *attenuation rate*. It shows that waves of different frequencies propagate (and are attenuated) at different rates.
+where \\(v_p = c/\eta\\) is the [phase velocity](https://en.wikipedia.org/wiki/Phase_velocity) and \\(v_a=c/\kappa\\) is the *attenuation rate*. It shows that, in a dispersive medium, waves of different frequencies propagate (and are attenuated) at different rates.
 
 In order to develop some intuition about the role of the refractive index \[[5](#references) (vol. II, ch. 32.4)\], consider the spatial component of a scalar plane wave
 
