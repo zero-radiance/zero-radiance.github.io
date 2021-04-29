@@ -1092,13 +1092,15 @@ $$
 
 where we expanded the squared amplitude as per Equation 6.13.
 
-The average value of a squared cosine is 1/2, so the corresponding irradiance value (c.f. Equation 3.19) is
+The average value of a squared cosine is 1/2, so the corresponding irradiance[^11] value (c.f. Equation 3.19) is
 
 $$ \tag{6.29}
 	\mathtt{E}
 	= \braket{\bm{S}} \cdot \bm{n}
 	= \frac{1}{2} \epsilon\_0 \eta c |E\_0|^2 e^{-2 \omega (\bm{r} \cdot \bm{n}) (\kappa / c)}.
 $$
+
+[^11]: Since \\(\bm{E}(\bm{r})\\) is a single-frequency field, the expressions of irradiance and spectral irradiance are the same.
 
 <!--
 ## Polarization of Light
