@@ -946,8 +946,7 @@ Multiplication by \\(e^{i \omega t}\\) by yields the full expression of a scalar
 $$ \tag{6.11}
 \begin{aligned}
 	E(\bm{r}, \bm{n}) e^{i \omega t}
-	&= |E\_0| e^{-\omega (\bm{r} \cdot \bm{n}) / v_a} e^{i \delta - i \omega (\bm{r} \cdot \bm{n}) / v_p} e^{i \omega t} \cr
-	&= |E\_0| e^{-\omega (\bm{r} \cdot \bm{n}) / v_a} e^{i \delta + i \omega (t - (\bm{r} \cdot \bm{n}) / v_p)}.
+	&= |E\_0| e^{-\omega (\bm{r} \cdot \bm{n}) / v_a} e^{i \delta - i \omega (\bm{r} \cdot \bm{n}) / v_p} e^{i \omega t}.
 \end{aligned}
 $$
 
@@ -959,7 +958,7 @@ $$ \tag{6.12}
 	\theta(\bm{r}, t)
 	= \mathcal{Arg} \big\lbrace E(\bm{r}, \bm{n}) e^{i \omega t} \big\rbrace
 	= \phi + \omega t
-	= \delta - \omega / v_p \big(\bm{r} \cdot \bm{n} - v_p t \big).
+	= \delta - \omega \big(\bm{r} \cdot \bm{n} - v_p t \big) / v_p.
 $$
 
 Notice that, for any \\(\Delta t\\),
@@ -974,7 +973,7 @@ Taking the real part of Equation 6.11 allows us to uncover the *wave amplitude*
 
 $$ \tag{6.14}
  	\mathcal{Re} \big\lbrace E(\bm{r}, \bm{n}) e^{i \omega t} \big\rbrace = 
- 	|E\_0| e^{-\omega (\bm{r} \cdot \bm{n}) / v_a} \cos{\theta}.
+ 	|E\_0| e^{-\omega (\bm{r} \cdot \bm{n}) / v_a} \cos{\theta(\bm{r}, t)}.
 $$
 
 If the attenuation index \\(\kappa = 0\\), the attenuation rate \\(v_a = \infty\\), and Equation 6.14 represents a regular sine wave.
