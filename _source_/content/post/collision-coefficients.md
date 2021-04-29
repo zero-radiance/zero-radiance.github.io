@@ -1046,11 +1046,11 @@ $$
 Recall the definition of the wave number given by Equation 6.9
 
 $$ \tag{6.23}
-	\bm{n} \times \Bigg( \frac{1}{c} \big(\eta(\omega) - i \kappa(\omega) \big) \bm{E}(\bm{r}, \bm{n}) e^{i \omega t} \Bigg)
-    = \bm{B}(\bm{r}, \bm{n}) e^{i \omega t},
+	\bm{n} \times \Bigg( \frac{1}{c} \big(\eta(\omega) - i \kappa(\omega) \big) \bm{E}(\bm{r}, \bm{n}) \Bigg)
+    = \bm{B}(\bm{r}, \bm{n}),
 $$
 
-If we take the real part of this expression, the result
+If we take the real part of this expression multiplied by \\(e^{i \omega t}\\), the result
 
 $$ \tag{6.24}
 	\frac{\eta(\omega)}{c} \bm{n} \times \mathcal{Re} \big\lbrace \bm{E}(\bm{r}, \bm{n}) e^{i \omega t} \big\rbrace
@@ -1108,10 +1108,17 @@ The average value of a squared cosine is 1/2, so the corresponding irradiance[^1
 $$ \tag{6.30}
 	\mathtt{E}
 	= \braket{\bm{S}} \cdot \bm{n}
-	= \frac{1}{2} \epsilon\_0 \eta c |E\_0|^2 e^{-2 \omega (\bm{r} \cdot \bm{n}) (\kappa / c)}.
+	= \frac{1}{2} \epsilon\_0 \eta c |E\_0|^2 e^{-2 \omega (\bm{r} \cdot \bm{n}) (\kappa / c)}
+	= \frac{1}{2} \epsilon\_0 \eta c |E\_0|^2 e^{-\beta_a (\bm{r} \cdot \bm{n})},
 $$
 
 [^11]: Since \\(\bm{E}(\bm{r})\\) is a single-frequency field, the expressions of irradiance and spectral irradiance are the same.
+
+where we combined several constants into the [absorption coefficient](https://en.wikipedia.org/wiki/Attenuation_coefficient#Absorption_and_scattering_coefficients)
+
+$$ \tag{6.31}
+	\beta_a(\omega) = 2 \omega \frac{\kappa(\omega)}{c}.
+$$
 
 <!--
 ## Polarization of Light
