@@ -392,7 +392,7 @@ $$ \tag{3.2}
 	\frac{\partial \mathcal{W}}{\partial t} = \bm{F} \cdot \bm{v}.
 $$ 
 
-Thus, to compute it, we must recall the definition of the electromagnetic force.
+Thus, to compute it, we must recall the definition of electromagnetic force.
 
 If a particle with the charge \\(q\\) moving at the velocity \\(\bm{v}\\) is placed in an electromagnetic field, it experiences the [Lorentz force](https://en.wikipedia.org/wiki/Lorentz_force)
 
@@ -655,7 +655,7 @@ In general, media may be *dispersive* (dependent on the frequency), *lossy* (abs
 
 A radical simplification[^7] of Maxwell's equations can be achieved by assuming that the material is both *linear* and *isotropic* \[[6](#references) (ch. 1.1.2), [7](#references) (ch. 2.1), [8](#references) (ch. 2.3)\]:
 
-[^7]: We would like to stress that Equations 4.2-4.3 make a big assumption that is not appropriate for certain types of real materials. For instance, [crystals](https://en.wikipedia.org/wiki/Crystal) have a well-defined [internal structure](https://en.wikipedia.org/wiki/Crystal_structure) which makes them inherently anisotropic \[[5](#references) (vol. II, ch. 30)\]. Since our application is primarily concerned with simple fluids, the assumption of a linear, isotropic material is valid, and offers significant theoretical advantages (such as simplicity). However, this assumption may be not suitable for a more general application.
+[^7]: We would like to stress that Equations 4.2-4.3 make a big assumption that is not appropriate for certain types of real materials. For instance, [crystals](https://en.wikipedia.org/wiki/Crystal) have a well-defined [internal structure](https://en.wikipedia.org/wiki/Crystal_structure) which makes them inherently anisotropic \[[5](#references) (vol. II, ch. 30)\]. Since our application is primarily concerned with simple fluids, the assumption of a linear, isotropic material is valid, and offers significant theoretical advantages (such as simplicity). However, this assumption is potentially not suitable for a more general application.
 
 $$ \tag{4.2}
 \begin{aligned}
@@ -915,7 +915,7 @@ $$
 
 which gives an approximate mapping between the optical and the physical parameters[^10].
 
-[^10]: Keep in mind that, in general, the permittivity, the permeability, and the conductivity are complex.
+[^10]: Keep in mind that, in general, the permittivity, permeability, and conductivity are complex.
 
 A combination of Equations 6.4-6.7 produces the [dispersion relation](https://en.wikipedia.org/wiki/Dispersion_relation)
 
@@ -1266,7 +1266,7 @@ Non-paraxial polarization ???
 
 ## Acknowledgments
 
-Pharr, Jakob, NASA
+Pharr, Jakob, Humphreys, NASA
 
 ## References
 
