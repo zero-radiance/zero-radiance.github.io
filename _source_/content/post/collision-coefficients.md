@@ -841,7 +841,9 @@ $$
 Equation 5.15 can be used to solve Equations 5.11 and 5.8:
 
 $$ \tag{5.16}
-	\bm{E}(\bm{r}) = \oiint\_{\mathbb{S}^2} \bm{E}(0, \bm{n}) e^{-i k(\omega) (\bm{r} \cdot \bm{n})} d\Omega\_n.
+	\bm{E}(\bm{r}) =
+	\oiint\_{\mathbb{S}^2} \bm{E}(\bm{r}, \bm{n}) \thinspace d\Omega\_n =
+	\oiint\_{\mathbb{S}^2} \bm{E}(0, \bm{n}) e^{-i k(\omega) (\bm{r} \cdot \bm{n})} d\Omega\_n.
 $$
 
 That is a solution of Maxwell's equations in the frequency domain.
@@ -873,10 +875,10 @@ $$ \tag{6.3}
 	= E(0, \bm{n}) e^{-i k(\omega) (\bm{r} \cdot \bm{n})} e^{i \omega t}
 $$
 
-expressed in terms the complex [wave number](https://en.wikipedia.org/wiki/Wavenumber)
+expressed in terms the *complex* [wave number](https://en.wikipedia.org/wiki/Wavenumber)
 
 $$ \tag{6.4}
-	k(\omega) = \omega \sqrt{\varepsilon(\omega) \mu(\omega)},
+	k(\omega) = \omega \sqrt{\varepsilon(\omega) \mu(\omega)}.
 $$
 
 If we define the [relative permittivity](https://en.wikipedia.org/wiki/Relative_permittivity)[^9] \\(\varepsilon\_r\\) and the [relative permeability](https://en.wikipedia.org/wiki/Permeability_(electromagnetism)#Relative_permeability_and_magnetic_susceptibility) \\(\mu\_r\\) using vacuum as reference,
@@ -915,14 +917,24 @@ which gives an approximate mapping between the optical and the physical paramete
 
 [^10]: Keep in mind that, in general, the permittivity, the permeability, and the conductivity are complex.
 
-In order to develop some intuition about the role of the refractive index \[[5](#references) (vol. II, ch. 32.4)\], consider the spatial component of a scalar plane wave
+A combination of Equations 6.4-6.7 produces the [dispersion relation](https://en.wikipedia.org/wiki/Dispersion_relation)
 
 $$ \tag{6.9}
+	k(\omega)
+	= \omega \Bigg( \frac{\eta(\omega)}{c} - i \frac{\kappa(\omega)}{c} \Bigg)
+	= \omega \Bigg( \frac{1}{v_p(\omega)} - \frac{i}{v_a(\omega)} \Bigg),
+$$
+
+where \\(v_p = c/\eta\\) is the [phase velocity](https://en.wikipedia.org/wiki/Phase_velocity) and \\(v_a=c/\kappa\\) is the *attenuation rate*. It shows that waves of different frequencies propagate (and are attenuated) at different rates.
+
+In order to develop some intuition about the role of the refractive index \[[5](#references) (vol. II, ch. 32.4)\], consider the spatial component of a scalar plane wave
+
+$$ \tag{6.10}
 \begin{aligned}
 	E(\bm{r}, \bm{n})
 	&= E\_0 e^{-i k (\bm{r} \cdot \bm{n})} \cr
-	&= |E\_0| e^{i \delta} e^{-i (\omega / c) (\eta - i \kappa) (\bm{r} \cdot \bm{n})} \cr
-	&= |E\_0| e^{-\omega (\kappa / c) (\bm{r} \cdot \bm{n})} e^{i \delta - i \omega (\eta / c) (\bm{r} \cdot \bm{n})} \cr
+	&= |E\_0| e^{i \delta} e^{-i \omega (1/v_p - i/v_a) (\bm{r} \cdot \bm{n})} \cr
+	&= |E\_0| e^{-\omega (\bm{r} \cdot \bm{n}) / v_a} e^{i \delta - i \omega (\bm{r} \cdot \bm{n}) / v_p} \cr
 	&= |E(\bm{r}, \bm{n})| e^{i \phi(\bm{r}, \bm{n})}.
 \end{aligned}
 $$
@@ -931,39 +943,41 @@ As any complex number, it can be expressed in terms of the *magnitude* \\(|E|\\)
 
 Multiplication by \\(e^{i \omega t}\\) by yields the full expression of a scalar plane wave:
 
-$$ \tag{6.10}
+$$ \tag{6.11}
 \begin{aligned}
 	E(\bm{r}, \bm{n}) e^{i \omega t}
-	&= |E\_0| e^{-\omega (\kappa / c) (\bm{r} \cdot \bm{n})} e^{i \delta - i \omega (\eta / c) (\bm{r} \cdot \bm{n})} e^{i \omega t} \cr
-	&= |E\_0| e^{-\omega (\kappa / c) (\bm{r} \cdot \bm{n})} e^{i \delta + i \omega (t - (\eta / c) (\bm{r} \cdot \bm{n}))}.
+	&= |E\_0| e^{-\omega (\bm{r} \cdot \bm{n}) / v_a} e^{i \delta - i \omega (\bm{r} \cdot \bm{n}) / v_p} e^{i \omega t} \cr
+	&= |E\_0| e^{-\omega (\bm{r} \cdot \bm{n}) / v_a} e^{i \delta + i \omega (t - (\bm{r} \cdot \bm{n}) / v_p)}.
 \end{aligned}
 $$
 
-Let's perform [dimensional analysis](https://en.wikipedia.org/wiki/Dimensional_analysis) of Equation 6.10. Begin by taking the [argument](https://en.wikipedia.org/wiki/Argument_(complex_analysis)) of the expression
+Let's perform [dimensional analysis](https://en.wikipedia.org/wiki/Dimensional_analysis) of Equation 6.11.
 
-$$ \tag{6.11}
+First, notice that \\((\bm{r} \cdot \bm{n}) / v\\) has units of time. Then, take the [argument](https://en.wikipedia.org/wiki/Argument_(complex_analysis)) of the expression
+
+$$ \tag{6.12}
 	\theta(\bm{r}, t)
 	= \mathcal{Arg} \big\lbrace E(\bm{r}, \bm{n}) e^{i \omega t} \big\rbrace
 	= \phi + \omega t
-	= \delta - \omega (\eta / c) \big(\bm{r} \cdot \bm{n} - (c / \eta) t \big).
+	= \delta - \omega / v_p \big(\bm{r} \cdot \bm{n} - v_p t \big).
 $$
 
 Notice that, for any \\(\Delta t\\),
 
-$$ \tag{6.12}
-	\theta(\bm{r}, t) = \theta(\bm{r} + \bm{n} (c / \eta) \Delta t, \thinspace t + \Delta t).
-$$
-
-This implies that \\(\theta\\) represents a plane propagating along its normal \\(\bm{n}\\) at the [phase velocity](https://en.wikipedia.org/wiki/Phase_velocity) \\(c / \eta\\). In general, surfaces of constant phase are called *cophasal*, or *wavefronts*.
-
-Taking the real part of Equation 6.10 allows us to uncover the *wave amplitude*
-
 $$ \tag{6.13}
- 	\mathcal{Re} \big\lbrace E(\bm{r}, \bm{n}) e^{i \omega t} \big\rbrace = 
- 	|E\_0| e^{-\omega (\kappa / c) (\bm{r} \cdot \bm{n})} \cos{\theta}.
+	\theta(\bm{r}, t) = \theta(\bm{r} + (v_p \Delta t) \bm{n}, \thinspace t + \Delta t).
 $$
 
-If the absorption index \\(\kappa = 0\\), Equation 6.13 represents a regular sine wave.
+This implies that \\(\theta\\) represents a plane propagating along its normal \\(\bm{n}\\) at the phase velocity \\(c/\eta\\). In general, surfaces of constant phase are called *cophasal*, or *wavefronts*.
+
+Taking the real part of Equation 6.11 allows us to uncover the *wave amplitude*
+
+$$ \tag{6.14}
+ 	\mathcal{Re} \big\lbrace E(\bm{r}, \bm{n}) e^{i \omega t} \big\rbrace = 
+ 	|E\_0| e^{-\omega (\bm{r} \cdot \bm{n}) / v_a} \cos{\theta}.
+$$
+
+If the attenuation index \\(\kappa = 0\\), the attenuation rate \\(v_a = \infty\\), and Equation 6.14 represents a regular sine wave.
 
 [Insert Picture Here]
 
@@ -1030,30 +1044,23 @@ $$ \tag{6.22}
 	-i k(\omega) \bm{n} \times \bm{E}(\bm{r}, \bm{n}) = - i \omega \bm{B}(\bm{r}, \bm{n}).
 $$
 
-Recall the definition of the wave number given by Equation 6.4:
+Recall the definition of the wave number given by Equation 6.9
 
 $$ \tag{6.23}
-	\bm{n} \times \Big( \sqrt{\varepsilon(\omega) \mu(\omega)} \bm{E}(\bm{r}, \bm{n}) e^{i \omega t} \Big)
-    = \bm{B}(\bm{r}, \bm{n}) e^{i \omega t},
-$$
-
-and how the refractive index is defined by Equations 6.6-6.7:
-
-$$ \tag{6.24}
-	\bm{n} \times \Big( \frac{1}{c} \big(\eta(\omega) - i \kappa(\omega) \big) \bm{E}(\bm{r}, \bm{n}) e^{i \omega t} \Big)
+	\bm{n} \times \Bigg( \frac{1}{c} \big(\eta(\omega) - i \kappa(\omega) \big) \bm{E}(\bm{r}, \bm{n}) e^{i \omega t} \Bigg)
     = \bm{B}(\bm{r}, \bm{n}) e^{i \omega t},
 $$
 
 If we take the real part of this expression, the result
 
-$$ \tag{6.25}
+$$ \tag{6.24}
 	\frac{\eta}{c} \bm{n} \times \mathcal{Re} \big\lbrace \bm{E}(\bm{r}, \bm{n}) e^{i \omega t} \big\rbrace
     = \mathcal{Re} \big\lbrace \bm{B}(\bm{r}, \bm{n}) e^{i \omega t} \big\rbrace
 $$
 
 shows us that the electric and the magnetic field vectors are orthogonal. Thus, \\(\lbrace \bm{E}, \bm{B}, \bm{n} \rbrace\\) is an orthogonal triad of vectors that defines the geometric configuration of a plane wave in a linear, isotropic medium:
 
-$$ \tag{6.26}
+$$ \tag{6.25}
 	\bm{n} \times \frac{\bm{E}(\bm{r}, t)}{|\bm{E}(\bm{r}, t)|} = \frac{\bm{B}(\bm{r}, t)}{|\bm{B}(\bm{r}, t)|}.
 $$
 
@@ -1061,7 +1068,7 @@ $$
 
 We have seen the \\(\bm{E} \times \bm{B}\\) expression before (c.f. Equation 3.17). Thus, 
 
-$$ \tag{6.27}
+$$ \tag{6.26}
 	\bm{S}(\bm{r}, t)
 	= \mu\_0^{-1} \big( \bm{E}(\bm{r}, t) \times \bm{B}(\bm{r}, t) \big)
 	= \mu\_0^{-1} |\bm{E}(\bm{r}, t)| |\bm{B}(\bm{r}, t)| \bm{n}
@@ -1069,28 +1076,28 @@ $$
 
 is the expression of the Poynting vector of the plane wave.
 
-Since the vectors are orthogonal, Equations 6.25-6.26 define the ratio of wave amplitudes:
+Since the vectors are orthogonal, Equations 6.24-6.25 define the ratio of wave amplitudes:
 
-$$ \tag{6.28}
+$$ \tag{6.27}
 	\frac{\eta}{c} |\bm{E}(\bm{r}, t)| = |\bm{B}(\bm{r}, t)|.
 $$
 
-This means we can compute the Poynting vector using the electric field alone:
+This means we can compute the Poynting vector without explicitly tracking the strength of the magnetic field:
 
-$$ \tag{6.29}
+$$ \tag{6.28}
 	\bm{S}(\bm{r}, t)
 	= \mu\_0^{-1} \frac{\eta}{c} |\bm{E}(\bm{r}, t)|^2 \bm{n}
-	= \Big(\epsilon\_0 \eta c |E\_0|^2 e^{-2 \omega (\kappa / c) (\bm{r} \cdot \bm{n})} \cos^2{\theta(\bm{r}, t)} \Big) \bm{n},
+	= \Big(\epsilon\_0 \eta c |E\_0|^2 e^{-2 \omega (\bm{r} \cdot \bm{n}) (\kappa / c)} \cos^2{\theta(\bm{r}, t)} \Big) \bm{n},
 $$
 
 where we expanded the squared amplitude as per Equation 6.13.
 
-The average of the squared cosine is 1/2, so the corresponding irradiance value (c.f. Equation 3.19) is
+The average value of a squared cosine is 1/2, so the corresponding irradiance value (c.f. Equation 3.19) is
 
-$$ \tag{6.30}
+$$ \tag{6.29}
 	\mathtt{E}
 	= \braket{\bm{S}} \cdot \bm{n}
-	= \frac{1}{2} \epsilon\_0 \eta c |E\_0|^2 e^{-2 \omega (\kappa / c) (\bm{r} \cdot \bm{n})}.
+	= \frac{1}{2} \epsilon\_0 \eta c |E\_0|^2 e^{-2 \omega (\bm{r} \cdot \bm{n}) (\kappa / c)}.
 $$
 
 <!--
