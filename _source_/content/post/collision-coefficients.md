@@ -1013,7 +1013,7 @@ $$ \tag{6.18}
 	= 0.
 $$
 
-After division by the constant and multiplication by \\(e^{i \omega t}\\), it follows that the field vector is orthogonal to the plane normal:
+After division by the constant \\(i k\\) and multiplication by \\(e^{i \omega t}\\), it is clear that the field vector is orthogonal to the plane normal:
 
 $$ \tag{6.19}
 	\bm{n} \cdot \mathcal{Re} \big\lbrace \bm{E}(\bm{r}, \bm{n}) e^{i \omega t} \big\rbrace
@@ -1054,7 +1054,7 @@ $$
 If we take the real part of this expression, the result
 
 $$ \tag{6.24}
-	\frac{\eta}{c} \bm{n} \times \mathcal{Re} \big\lbrace \bm{E}(\bm{r}, \bm{n}) e^{i \omega t} \big\rbrace
+	\frac{\eta(\omega)}{c} \bm{n} \times \mathcal{Re} \big\lbrace \bm{E}(\bm{r}, \bm{n}) e^{i \omega t} \big\rbrace
     = \mathcal{Re} \big\lbrace \bm{B}(\bm{r}, \bm{n}) e^{i \omega t} \big\rbrace
 $$
 
@@ -1079,14 +1079,26 @@ is the expression of the Poynting vector of the plane wave.
 Since the vectors are orthogonal, Equations 6.24-6.25 define the ratio of wave amplitudes:
 
 $$ \tag{6.27}
-	\frac{\eta}{c} |\bm{E}(\bm{r}, t)| = |\bm{B}(\bm{r}, t)|.
+	\frac{\eta(\omega)}{c} |\bm{E}(\bm{r}, t)| = |\bm{B}(\bm{r}, t)|.
 $$
 
-This means we can compute the Poynting vector without explicitly tracking the strength of the magnetic field:
+This equality has two consequences. First, it says that the electric and the magnetic vectors of a plane wave oscillate *in phase*, with the magnitude of both vectors rising and falling at the same point in space and time, so the locations of peaks and troughs match.
+
+[Insert Picture Here]
+
+Stated more precisely, if we align the triad \\(\lbrace \bm{E}, \bm{B}, \bm{n} \rbrace\\) with the \\(\lbrace x,y,z \rbrace\\) axes of a Cartesian coordinate system, then
 
 $$ \tag{6.28}
+	\mathcal{Arg} \big\lbrace E_x(0, \bm{n}) \big\rbrace =
+	\mathcal{Arg} \big\lbrace B_y(0, \bm{n}) \big\rbrace =
+	\delta.
+$$
+
+Secondly, it means we can compute the Poynting vector without explicit consideration of the magnetic field:
+
+$$ \tag{6.29}
 	\bm{S}(\bm{r}, t)
-	= \mu\_0^{-1} \frac{\eta}{c} |\bm{E}(\bm{r}, t)|^2 \bm{n}
+	= \mu\_0^{-1} \frac{\eta(\omega)}{c} |\bm{E}(\bm{r}, t)|^2 \bm{n}
 	= \Big(\epsilon\_0 \eta c |E\_0|^2 e^{-2 \omega (\bm{r} \cdot \bm{n}) (\kappa / c)} \cos^2{\theta(\bm{r}, t)} \Big) \bm{n},
 $$
 
@@ -1094,7 +1106,7 @@ where we expanded the squared amplitude as per Equation 6.13.
 
 The average value of a squared cosine is 1/2, so the corresponding irradiance[^11] value (c.f. Equation 3.19) is
 
-$$ \tag{6.29}
+$$ \tag{6.30}
 	\mathtt{E}
 	= \braket{\bm{S}} \cdot \bm{n}
 	= \frac{1}{2} \epsilon\_0 \eta c |E\_0|^2 e^{-2 \omega (\bm{r} \cdot \bm{n}) (\kappa / c)}.
