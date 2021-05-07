@@ -590,7 +590,7 @@ In the case where \\(T > T_1\\), the total value of \\(\braket{\bm{S}}\\) is a s
 Equation 3.22 allows us to define the *time-averaged* Poynting phasor
 
 $$ \tag{3.23}
-	\braket{\bm{S_p}} = \mu\_0^{-1} \big( \bm{E_p}(\bm{r}) \times [\bm{B_p}(\bm{r}, \omega_p)]^{\*} \big)
+	\braket{\bm{S_p}} = \mu\_0^{-1} \big( \bm{E_p}(\bm{r}) \times [\bm{B_p}(\bm{r})]^{\*} \big)
 $$
 
 such that (cf. Equation 2.11)
