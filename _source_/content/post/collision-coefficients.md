@@ -175,9 +175,9 @@ where \\(\bm{J_n}\\) is the *surface* current density.
 
 In addition to the boundary conditions, the law of [conservation of energy](https://en.wikipedia.org/wiki/Conservation_of_energy) imposes two more restrictions on valid electromagnetic fields:
 
-- the *edge condition* says that the amount of electromagnetic energy stored near the edge must be finite even if the magnitude of the field at the edge becomes infinite;
+- the *edge condition* says that the amount of electromagnetic energy stored near an edge must be finite even if the magnitude of the field at the edge becomes infinite;
 
-- the [Sommerfeld radiation condition](https://en.wikipedia.org/wiki/Sommerfeld_radiation_condition) prohibits the existence of sinks collecting an infinite amount of energy coming from infinity - these sinks must be sources instead.
+- the [Sommerfeld radiation condition](https://en.wikipedia.org/wiki/Sommerfeld_radiation_condition) prohibits the existence of sinks collecting an infinite amount of energy arriving from infinity - these sinks must be sources instead.
 
 We take Maxwell's equations as axioms, and use them as a foundation on which we base the theory presented in the following sections.
 
@@ -939,7 +939,7 @@ $$ \tag{6.9}
 	= \omega \Bigg( \frac{1}{v_p(\omega)} - \frac{i}{v_a(\omega)} \Bigg),
 $$
 
-where \\(v_p = c/\eta\\) is the [phase velocity](https://en.wikipedia.org/wiki/Phase_velocity) and \\(v_a=c/\kappa\\) is the *attenuation rate*. It shows that, in a dispersive medium, waves of different frequencies propagate (and are attenuated) at different rates.
+where \\(v_p = c/\eta\\) is the [phase velocity](https://en.wikipedia.org/wiki/Phase_velocity) and \\(v_a=c/\kappa\\) is the *amplitude velocity*. It shows that, in a dispersive medium, waves of different frequencies propagate at different rates.
 
 In order to develop some intuition about the role of the refractive index \[[5](#references) (vol. II, ch. 32.4)\], consider the spatial component of a scalar plane wave
 
@@ -981,7 +981,7 @@ $$ \tag{6.13}
 	\theta(\bm{r}, t) = \theta(\bm{r} + (v_p \Delta t) \bm{n}, \thinspace t + \Delta t).
 $$
 
-This implies that \\(\theta\\) represents a plane propagating along its normal \\(\bm{n}\\) at the phase velocity \\(c/\eta\\). In general, surfaces of constant phase are called *cophasal*, or *wavefronts*.
+This implies that \\(\theta\\) represents a plane propagating along its normal \\(\bm{n}\\) at the phase velocity \\(v_p\\). In general, surfaces of constant phase are called *cophasal*, or *wavefronts*.
 
 Taking the real part of Equation 6.11 allows us to uncover the *wave amplitude*
 
@@ -990,7 +990,7 @@ $$ \tag{6.14}
  	|E\_0| e^{-\omega (\bm{r} \cdot \bm{n}) / v_a} \cos{\theta(\bm{r}, t)}.
 $$
 
-If the attenuation index \\(\kappa = 0\\), the attenuation rate \\(v_a = \infty\\), and Equation 6.14 represents a regular sine wave.
+If the attenuation index \\(\kappa = 0\\), the amplitude velocity \\(v_a = \infty\\), and Equation 6.14 represents a regular sine wave.
 
 [Insert Picture Here]
 
