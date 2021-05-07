@@ -86,15 +86,23 @@ $$ \tag{1.4}
 	c = (\epsilon\_0 \mu\_0)^{-1/2}.
 $$
 
-Sometimes, Equations 1.1 are referred to as the "vacuum version" of Maxwell's equations. This name can be a little misleading; in fact, the matter is right there - it is just represented as a distribution of charged [elementary particles](https://en.wikipedia.org/wiki/Elementary_particle) by the *volume* [charge density](https://en.wikipedia.org/wiki/Charge_density) \\(\rho\\), such that the total amount of charge \\(Q\\) inside the volume \\(V\\) is
+Since the [divergence of curl](https://en.wikipedia.org/wiki/Vector_calculus_identities#Divergence_of_curl_is_zero) is zero, the difference of the divergence of Equation 1.1.3 and the time derivative of Equation 1.1.4 expresses [conservation of charge](https://en.wikipedia.org/wiki/Charge_conservation)
 
 $$ \tag{1.5}
+	\nabla \cdot \bm{J}(\bm{r}, t) = - \frac{\partial}{\partial t} \rho(\bm{r}, t).
+$$
+
+The equation simply shows that a reduction of charge can be observed if charges are carried away by a current.
+
+Sometimes, Equations 1.1 are referred to as the "vacuum version" of Maxwell's equations. This name can be a little misleading; in fact, the matter is right there - it is just represented as a distribution of charged [elementary particles](https://en.wikipedia.org/wiki/Elementary_particle) by the *volume* [charge density](https://en.wikipedia.org/wiki/Charge_density) \\(\rho\\), such that the total amount of charge \\(Q\\) inside the volume \\(V\\) is
+
+$$ \tag{1.6}
 	Q(t) = \iiint\_{V} \rho(\bm{r}, t) \thinspace dV.
 $$
 
 Moving charged particles form a current. If their velocity is \\(\bm{v}\\), the *volume* [current density](https://en.wikipedia.org/wiki/Current_density) \\(\bm{J}\\) is simply
 
-$$ \tag{1.6}
+$$ \tag{1.7}
 	\bm{J}(\bm{r}, t) = \rho(\bm{r}, t) \bm{v}(\bm{r}, t).
 $$
 
@@ -104,16 +112,16 @@ While this kind of parametrization is simple and useful, due to the sheer number
 
 First, we identify two types of charges - bound and free. As the name implies, *free* charges are able to effortlessly move around the material, the typical example being the conduction current in a copper wire. The *bound* [current](https://en.wikipedia.org/wiki/Current_density#Polarization_and_magnetization_currents) and [charge densities](https://en.wikipedia.org/wiki/Charge_density#Bound_charge), \\(\bm{J\_b}\\) and \\(\rho\_b\\), are more difficult to reason about. They can be characterized in terms of [polarization of matter](https://en.wikipedia.org/wiki/Maxwell%27s_equations#Auxiliary_fields,_polarization_and_magnetization):
 
-$$ \tag{1.7}
+$$ \tag{1.8}
 	\bm{J\_b}(\bm{r}, t) = \nabla \times \bm{M}(\bm{r}, t) + \frac{\partial}{\partial t} \bm{P}(\bm{r}, t), \quad
 	\rho\_b(\bm{r}, t) = -\nabla \cdot \bm{P}(\bm{r}, t),
 $$
 
 where \\(\bm{P}\\) is the [electric polarization](https://en.wikipedia.org/wiki/Polarization_density) (electric dipole moment per unit volume) and \\(\bm{M}\\) is the [magnetic polarization](https://en.wikipedia.org/wiki/Magnetization) (magnetic dipole moment per unit volume).
 
-Substitution of Equation 1.7.1 into 1.1.3 and Equation 1.7.2 into 1.1.4 yields
+Substitution of Equation 1.8.1 into 1.1.3 and Equation 1.8.2 into 1.1.4 yields
 
-$$ \tag{1.8}
+$$ \tag{1.9}
 \begin{aligned}
 	&\nabla \times \big( \mu\_0^{-1} \bm{B}(\bm{r}, t) \big) - \frac{\partial}{\partial t} \big( \epsilon\_0 \bm{E}(\bm{r}, t) \big) = \bm{J\_f}(\bm{r}, t) + \nabla \times \bm{M}(\bm{r}, t) + \frac{\partial}{\partial t} \bm{P}(\bm{r}, t), \cr
 	&\nabla \cdot \big( \epsilon\_0 \bm{E}(\bm{r}, t) \big) = \rho\_f(\bm{r}, t) - \nabla \cdot \bm{P}(\bm{r}, t).
@@ -122,7 +130,7 @@ $$
 
 We can group the terms to simplify the expressions:
 
-$$ \tag{1.9}
+$$ \tag{1.10}
 \begin{aligned}
 	&\nabla \times \big( \mu\_0^{-1} \bm{B}(\bm{r}, t) - \bm{M}(\bm{r}, t) \big) - \frac{\partial}{\partial t} \big( \epsilon\_0 \bm{E}(\bm{r}, t) + \bm{P}(\bm{r}, t) \big) = \bm{J\_f}(\bm{r}, t), \cr
 	&\nabla \cdot \big( \epsilon\_0 \bm{E}(\bm{r}, t) + \bm{P}(\bm{r}, t) \big) = \rho\_f(\bm{r}, t).
@@ -131,14 +139,14 @@ $$
 
 A pattern begins to emerge. If we define the [electric displacement](https://en.wikipedia.org/wiki/Electric_displacement_field) \\(\bm{D}\\) and the [magnetic intensity](https://en.wikipedia.org/wiki/Magnetic_field#The_H-field) \\(\bm{H}\\) as
 
-$$ \tag{1.10}
+$$ \tag{1.11}
 	\bm{D}(\bm{r}, t) = \epsilon\_0 \bm{E}(\bm{r}, t) + \bm{P}(\bm{r}, t), \quad 
 	\bm{H}(\bm{r}, t) = \mu\_0^{-1} \bm{B}(\bm{r}, t) - \bm{M}(\bm{r}, t),
 $$
 
-substitute them into Equations 1.9.1-1.9.2, and group the resulting expressions with Equations 1.1.1-1.1.2, we obtain the [macroscopic formulation](https://en.wikipedia.org/wiki/Maxwell%27s_equations#Macroscopic_formulation) of Maxwell's equations \[[6](#references) (ch. 1.1.1), [7](#references) (ch. 2.1), [8](#references) (ch. 2.1)\]:
+substitute them into Equations 1.10.1-1.10.2, and group the resulting expressions with Equations 1.1.1-1.1.2, we obtain the [macroscopic formulation](https://en.wikipedia.org/wiki/Maxwell%27s_equations#Macroscopic_formulation) of Maxwell's equations \[[6](#references) (ch. 1.1.1), [7](#references) (ch. 2.1), [8](#references) (ch. 2.1)\]:
 
-$$ \tag{1.11}
+$$ \tag{1.12}
 \begin{aligned}
 	&\nabla \times \bm{E}(\bm{r}, t) + \frac{\partial}{\partial t} \bm{B}(\bm{r}, t) = 0, &
 	&\nabla \cdot  \bm{B}(\bm{r}, t) = 0, \cr
@@ -147,23 +155,29 @@ $$ \tag{1.11}
 \end{aligned}
 $$
 
-As discussed in \[[5](#references) (vol. II, ch 32.2), [6](#references) (ch. 1.1.1)\], \\(\bm{E}\\) and \\(\bm{B}\\) are the *fundamental fields*, and \\(\bm{D}\\) and \\(\bm{H}\\) are the [auxiliary fields](https://en.wikipedia.org/wiki/Maxwell%27s_equations#Auxiliary_fields,_polarization_and_magnetization) that arise due to the influence of matter. We shall soon see that, in many cases, these two groups are related in a simple way.
+As discussed in \[[5](#references) (vol. II, ch 32.2), [6](#references) (ch. 1.1.1)\], \\(\bm{E}\\) and \\(\bm{B}\\) are the *fundamental fields*, and \\(\bm{D}\\) and \\(\bm{H}\\) are the [auxiliary fields](https://en.wikipedia.org/wiki/Maxwell%27s_equations#Auxiliary_fields,_polarization_and_magnetization) that arise due to the influence of matter. We shall soon see that, in certain cases, these two groups are related in a simple way.
 
 On the conceptual level, we would like the properties of matter to be continuous everywhere, which leads to continuous fields. But, sometimes, it is convenient to introduce a discontinuity to approximate a very rapid (yet continuous) variation of material properties. At the *optical interface*, the fields must satisfy the [boundary conditions](https://en.wikipedia.org/wiki/Interface_conditions_for_electromagnetic_fields) \[[6](#references) (ch. 1.1.3), [7](#references) (ch. 2.2), [8](#references) (ch. 2.4)\]. If \\(\bm{n\_{12}}\\) is a unit normal vector pointing from region 1 to region 2, the normal components of the fields must be such that
 
-$$ \tag{1.12}
+$$ \tag{1.13}
 	\bm{n\_{12}} \cdot  (\bm{B\_2} - \bm{B\_1}) = 0, \quad
 	\bm{n\_{12}} \cdot  (\bm{D\_2} - \bm{D\_1}) = \rho\_n,
 $$
 
 where \\(\rho\_n\\) is the *surface* charge density. For the tangential components, it can be shown that
 
-$$ \tag{1.13}
+$$ \tag{1.14}
 	\bm{n\_{12}} \times (\bm{E\_2} - \bm{E\_1}) = 0, \quad
 	\bm{n\_{12}} \times (\bm{H\_2} - \bm{H\_1}) = \bm{J_n},
 $$
 
 where \\(\bm{J_n}\\) is the *surface* current density.
+
+In addition to the boundary conditions, the law of [conservation of energy](https://en.wikipedia.org/wiki/Conservation_of_energy) imposes two more restrictions on valid electromagnetic fields:
+
+- the *edge condition* says that the amount of electromagnetic energy stored near the edge must be finite even if the magnitude of the field at the edge becomes infinite;
+
+- the [Sommerfeld radiation condition](https://en.wikipedia.org/wiki/Sommerfeld_radiation_condition) prohibits the existence of sinks collecting an infinite amount of energy coming from infinity - these sinks must be sources instead.
 
 We take Maxwell's equations as axioms, and use them as a foundation on which we base the theory presented in the following sections.
 
@@ -173,7 +187,7 @@ Maxwell's equations can be simplified by transforming the fields from the time t
 
 Define[^1] the [Fourier transform](https://en.wikipedia.org/wiki/Fourier_transform) of the electric vector field \\(\bm{E}(\bm{r}, t)\\) as
 
-[^1]: The choice of the sign of the complex exponential is arbitrary; as we shall see, it determines the sign of the imaginary components of both the complex permittivity and the complex refractive index.
+[^1]: The choice of the sign of the complex exponential is arbitrary; it determines the sign of the imaginary components of both the complex permittivity and the complex refractive index.
 
 $$ \tag{2.1}
 	\bm{E}(\bm{r}, \omega)
@@ -221,7 +235,7 @@ $$ \tag{2.5}
 	= 2 r \cos{ \theta}.
 $$
 
-We can define the integral forms of the fields by replacing \\(\bm{E}\\) by \\(\bm{B}\\), \\(\bm{D}\\), \\(\bm{H}\\), \\(\bm{J\_f}\\) or \\(\rho\_f\\) in Equation 2.4. If we substitute these integrals into Equations 1.11, and if we assume that we can perform [differentiation under the integral sign](https://en.wikipedia.org/wiki/Leibniz_integral_rule), the result is the system of integral equations
+We can define the integral forms of the fields by replacing \\(\bm{E}\\) by \\(\bm{B}\\), \\(\bm{D}\\), \\(\bm{H}\\), \\(\bm{J\_f}\\) or \\(\rho\_f\\) in Equation 2.4. If we substitute these integrals into Equations 1.12, and if we assume that we can perform [differentiation under the integral sign](https://en.wikipedia.org/wiki/Leibniz_integral_rule), the result is the system of integral equations
 
 $$ \tag{2.6}
 \begin{aligned}
@@ -414,7 +428,7 @@ $$ \tag{3.5}
     \iiint\_{V} \bm{E}(\bm{r}, t) \cdot \rho(\bm{r}, t) \bm{v}(\bm{r}, t) \thinspace dV.
 $$
 
-Since the current density is just the number of moving charges per unit volume (see Equation 1.6),
+Since the current density is just the number of moving charges per unit volume (see Equation 1.7),
 
 $$ \tag{3.6}
 	\frac{\partial}{\partial t} \mathcal{W}(V, t) =
@@ -630,7 +644,7 @@ Having defined both irradiance and spectral irradiance, we can compute all other
 
 Considered in isolation, Maxwell's equations in the frequency domain is an [undetermined system](https://en.wikipedia.org/wiki/Underdetermined_system) - it has fewer equations than unknowns. This makes it necessary to specify the way the material responds to the applied electromagnetic field. Such assumptions about the material are called the *material equations*, or the [constitutive relations](https://en.wikipedia.org/wiki/Constitutive_equation#Electromagnetism).
 
-Perhaps the most obvious way to introduce these assumptions is to express the auxiliary fields in terms of polarization of matter (see Equation 1.10) which, in turn, must be expanded in terms of the electric and the magnetic fields. As it turns out, this leads to a *nonlinear* solution \[[9](#references)\] that is relatively difficult to manipulate.
+Perhaps the most obvious way to introduce these assumptions is to express the auxiliary fields in terms of polarization of matter (see Equation 1.11) which, in turn, must be expanded in terms of the electric and the magnetic fields. As it turns out, this leads to a *nonlinear* solution \[[9](#references)\] that is relatively difficult to manipulate.
 
 Fortunately, many materials respond to weak electromagnetic fields in an approximately linear manner[^6]. Under this assumption, we may express \\(\bm{D}\\) and \\(\bm{H}\\) as [bilinear](https://en.wikipedia.org/wiki/Bilinear_map) functions of \\(\bm{E}\\) and \\(\bm{B}\\) \[[8](#references) (ch. 8.22), [10](#references)\]:
 
