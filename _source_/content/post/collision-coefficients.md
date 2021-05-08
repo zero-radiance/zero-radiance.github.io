@@ -733,9 +733,7 @@ $$
 
 Mathematically, the consequence is that a linear combination of several solutions is also a valid solution.
 
-Next, assume that the medium is *homogeneous*[^8] (constant in space):
-
-[^8]: See \[[6](#references) (ch. 1.2)\] for an inhomogeneous solution.
+Next, assume that the medium is *homogeneous* (constant in space):
 
 $$ \tag{5.2}
 \begin{aligned}
