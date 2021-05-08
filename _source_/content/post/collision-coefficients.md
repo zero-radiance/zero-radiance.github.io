@@ -144,7 +144,7 @@ $$ \tag{1.11}
 	\bm{H}(\bm{r}, t) = \mu\_0^{-1} \bm{B}(\bm{r}, t) - \bm{M}(\bm{r}, t),
 $$
 
-substitute them into Equations 1.10.1-1.10.2, and group the resulting expressions with Equations 1.1.1-1.1.2, we obtain the [macroscopic formulation](https://en.wikipedia.org/wiki/Maxwell%27s_equations#Macroscopic_formulation) of Maxwell's equations \[[6](#references) (ch. 1.1.1), [7](#references) (ch. 2.1), [8](#references) (ch. 2.1)\]:
+substitute them into Equations 1.10.1-1.10.2, and group the resulting expressions with Equations 1.1.1-1.1.2, we obtain the [macroscopic formulation](https://en.wikipedia.org/wiki/Maxwell%27s_equations#Macroscopic_formulation) of Maxwell's equations \[[6](#references) (ch. 1.1.1), [7](#references) (ch. 2.1), [8](#references) (ch. 2.1), [9](#references) (ch. 2.1)\]:
 
 $$ \tag{1.12}
 \begin{aligned}
@@ -157,7 +157,7 @@ $$
 
 As discussed in \[[5](#references) (vol. II, ch 32.2), [6](#references) (ch. 1.1.1)\], \\(\bm{E}\\) and \\(\bm{B}\\) are the *fundamental fields*, and \\(\bm{D}\\) and \\(\bm{H}\\) are the [auxiliary fields](https://en.wikipedia.org/wiki/Maxwell%27s_equations#Auxiliary_fields,_polarization_and_magnetization) that arise due to the influence of matter. We shall soon see that, in certain cases, these two groups are related in a simple way.
 
-On the conceptual level, we would like the properties of matter to be continuous everywhere, which leads to continuous fields. But, sometimes, it is convenient to introduce a discontinuity to approximate a very rapid (yet continuous) variation of material properties. At the *optical interface*, the fields must satisfy the [boundary conditions](https://en.wikipedia.org/wiki/Interface_conditions_for_electromagnetic_fields) \[[6](#references) (ch. 1.1.3), [7](#references) (ch. 2.2), [8](#references) (ch. 2.4)\]. If \\(\bm{n\_{12}}\\) is a unit normal vector pointing from region 1 to region 2, the normal components of the fields must be such that
+On the conceptual level, we would like the properties of matter to be continuous everywhere, which leads to continuous fields. But, sometimes, it is convenient to introduce a discontinuity to approximate a very rapid (yet continuous) variation of material properties. At the *optical interface*, the fields must satisfy the [boundary conditions](https://en.wikipedia.org/wiki/Interface_conditions_for_electromagnetic_fields) \[[6](#references) (ch. 1.1.3), [7](#references) (ch. 2.10), [8](#references) (ch. 2.4), [9](#references) (ch. 2.2)\]. If \\(\bm{n\_{12}}\\) is a unit normal vector pointing from region 1 to region 2, the normal components of the fields must be such that
 
 $$ \tag{1.13}
 	\bm{n\_{12}} \cdot  (\bm{B\_2} - \bm{B\_1}) = 0, \quad
@@ -342,7 +342,7 @@ $$ \tag{2.15}
 \end{aligned}
 $$
 
-Performing differentiation with respect to time and division by the pervasive \\(e^{i \omega_p t}\\) factor yields Maxwell's equations for time-harmonic fields \[[7](#references) (ch. 2.3), [8](#references) (ch. 2.2)\]:
+Performing differentiation with respect to time and division by the pervasive \\(e^{i \omega_p t}\\) factor yields Maxwell's equations for time-harmonic fields \[[7](#references) (ch. 2.4), [8](#references) (ch. 2.2), [9](#references) (ch. 2.3)\]:
 
 $$ \tag{2.16}
 \begin{aligned}
@@ -372,7 +372,7 @@ $$ \tag{2.18}
 	\nabla \cdot \bm{J\_f}(\bm{r}) = - i \omega \rho\_f(\bm{r}).
 $$
 
-For future convenience, we shall define the decomposition of the *free* charges and currents into the *source* and the *induced* parts \[[8](#references) (ch. 2.2)\]:
+For future convenience, we shall define the decomposition of the *free* charges and currents into the *source* and the *induced* parts:
 
 $$ \tag{2.19}
 	\rho\_f = \rho\_s + \rho\_i, \quad
@@ -388,7 +388,7 @@ $$
 
 ## Force, Energy, and Radiometry
 
-Given a mathematical description of electromagnetic radiation in terms of vector fields, we would like to physically characterize it as an energy transfer process. In order to do that, we have to determine how much energy there is in a given volume element of space, and also the rate of energy flow \[[5](#references) (vol. II, ch. 27), [6](#references) (ch. 1.1.4), [7](#references) (ch. 2.4), [8](#references) (ch. 2.5)\].
+Given a mathematical description of electromagnetic radiation in terms of vector fields, we would like to physically characterize it as an energy transfer process. In order to do that, we have to determine how much energy there is in a given volume element of space, and also the rate of energy flow \[[5](#references) (vol. II, ch. 27), [6](#references) (ch. 1.1.4), [7](#references) (ch. 2.11), [8](#references) (ch. 2.5), [9](#references) (ch. 2.4)\].
 
 [Conservation of energy](https://en.wikipedia.org/wiki/Conservation_of_energy) is one of the most important principles of physics. Here is one way to state it: the difference between the amount of external energy \\(\mathcal{E\_{ext}}\\) flowing into the volume \\(V\\) and the amount of internal energy \\(\mathcal{E\_{int}}\\) flowing out equals the amount of work \\(\mathcal{W}\\) done inside.
 
@@ -523,7 +523,7 @@ $$
 
 is the *instantaneous* [Poynting vector](https://en.wikipedia.org/wiki/Poynting_vector) that represents the direction and the rate of energy flow[^5].
 
-[^5]: This definition of field energy, while widely accepted, is somewhat ambiguous \[[5](#references) (vol. II, ch. 27.4)\]. It may be worth pointing out that there is an alternative definition in terms of the auxiliary fields \[[6](#references) (ch. 1.1.4)\]. We prefer our version because it accounts for bound currents.
+[^5]: This definition of field energy, while widely accepted, is somewhat ambiguous \[[5](#references) (vol. II, ch. 27.4)\]. It may be worth pointing out that there is an alternative definition in terms of the auxiliary fields \[[6](#references) (ch. 1.1.4), [7](#references) (ch. 2.11), [8](#references) (ch. 2.5), [9](#references) (ch. 2.4)\]. We prefer our version because it accounts for bound currents.
 
 Since the electromagnetic fields oscillate so rapidly, the *time-averaged* Poynting vector is often used instead:
 
@@ -646,9 +646,7 @@ Having defined both irradiance and spectral irradiance, we can compute all other
 
 Considered in isolation, Maxwell's equations in the frequency domain is an [undetermined system](https://en.wikipedia.org/wiki/Underdetermined_system) - it has fewer equations than unknowns. This makes it necessary to specify the way the material responds to the applied electromagnetic field. Such assumptions about the material are called the *material equations*, or the [constitutive relations](https://en.wikipedia.org/wiki/Constitutive_equation#Electromagnetism).
 
-Perhaps the most obvious way to introduce these assumptions is to express the auxiliary fields in terms of polarization of matter (see Equation 1.11) which, in turn, must be expanded in terms of the electric and the magnetic fields. As it turns out, this leads to a *nonlinear* solution \[[9](#references)\] that is relatively difficult to manipulate.
-
-Fortunately, many materials respond to weak electromagnetic fields in an approximately linear manner[^6]. Under this assumption, we may express \\(\bm{D}\\) and \\(\bm{H}\\) as [bilinear](https://en.wikipedia.org/wiki/Bilinear_map) functions of \\(\bm{E}\\) and \\(\bm{B}\\) \[[8](#references) (ch. 8.22), [10](#references)\]:
+The simplest way is to assume that the material responds to weak electromagnetic fields in an approximately linear manner[^6]. Under this assumption, we may express \\(\bm{D}\\) and \\(\bm{H}\\) as [bilinear](https://en.wikipedia.org/wiki/Bilinear_map) functions of \\(\bm{E}\\) and \\(\bm{B}\\) \[[8](#references) (ch. 8.22), [10](#references)\]:
 
 [^6]: This means that omitting higher-order terms in the series expansion results in a negligible error.
 
@@ -669,7 +667,7 @@ $$
 
 In general, media may be *dispersive* (dependent on the frequency), *lossy* (absorptive), and *anisotropic* (dependent on the orientation). This implies that each matrix entry \\(\bm{c_{ij}}\\) is a complex [tensor field](https://en.wikipedia.org/wiki/Tensor#Tensor_fields) that can be represented by a 3x3 matrix.
 
-A radical simplification[^7] of Maxwell's equations can be achieved by assuming that the material is both *linear* and *isotropic* \[[6](#references) (ch. 1.1.2), [7](#references) (ch. 2.1), [8](#references) (ch. 2.3)\]:
+A radical simplification[^7] of Maxwell's equations can be achieved by assuming that the material is both *linear* and *isotropic* \[[6](#references) (ch. 1.1.2), [7](#references) (ch. 2.3), [8](#references) (ch. 2.3), [9](#references) (ch. 2.1)\]:
 
 [^7]: We would like to stress that Equations 4.2-4.3 make a big assumption that is not appropriate for certain types of real materials. For instance, [crystals](https://en.wikipedia.org/wiki/Crystal) have a well-defined [internal structure](https://en.wikipedia.org/wiki/Crystal_structure) which makes them inherently anisotropic \[[5](#references) (vol. II, ch. 30)\]. Since our application is primarily concerned with simple fluids, the assumption of a linear, isotropic material is valid, and offers significant theoretical advantages (such as simplicity). However, this assumption is potentially not suitable for a more general application.
 
@@ -701,7 +699,7 @@ $$ \tag{4.4}
 \end{aligned}
 $$
 
-Using the definition of the [complex permittivity](https://en.wikipedia.org/wiki/Permittivity#Complex_permittivity)
+Using the definition of the [complex permittivity](https://en.wikipedia.org/wiki/Permittivity#Complex_permittivity) \[[7](#references) (ch. 2.8), [8](#references) (ch. 2.3), [9](#references) (ch. 2.3)\]
 
 $$ \tag{4.5}
 	\varepsilon(\bm{r}, \omega) = \epsilon(\bm{r}, \omega) - \frac{i}{\omega} \sigma(\bm{r}, \omega),
@@ -877,7 +875,7 @@ $$ \tag{6.1}
 \end{aligned}
 $$
 
-This sum of integrals represents a [wave packet](https://en.wikipedia.org/wiki/Wave_packet). It is a collection of monochromatic *vector* [plane waves](https://en.wikipedia.org/wiki/Plane_wave) \[[6](#references) (ch. 1.4.2), [7](#references) (ch. 3.1), [8](#references) (ch. 3.2)\] of the form
+This sum of integrals represents a [wave packet](https://en.wikipedia.org/wiki/Wave_packet). It is a collection of monochromatic *vector* [plane waves](https://en.wikipedia.org/wiki/Plane_wave) \[[6](#references) (ch. 1.4.2), [8](#references) (ch. 3.2), [9](#references) (ch. 3.1)\] of the form
 
 $$ \tag{6.2}
 	\bm{E}(\bm{r}, \bm{n}) e^{i \omega t}
@@ -914,7 +912,7 @@ $$ \tag{6.6}
 	\frac{1}{c} \sqrt{\varepsilon\_r(\omega) \mu\_r(\omega)}.
 $$
 
-It is convenient to use a parametrization that does not involve taking a square root. Thus, we define two positive real numbers, the [refractive index](https://en.wikipedia.org/wiki/Refractive_index) \\(\eta\\) and the [attenuation index](https://en.wikipedia.org/wiki/Refractive_index#Complex_refractive_index) \\(\kappa\\) \[[7](#references) (ch. 3.1), [8](#references) (ch. 2.3)\], by
+It is convenient to use a parametrization that does not involve taking a square root. Thus, we define two positive real numbers, the [refractive index](https://en.wikipedia.org/wiki/Refractive_index) \\(\eta\\) and the [attenuation index](https://en.wikipedia.org/wiki/Refractive_index#Complex_refractive_index) \\(\kappa\\) \[[6](#references) (ch. 14.1), [8](#references) (ch. 2.3), [9](#references) (ch. 3.1)\], by
 
 $$ \tag{6.7}
 	\eta(\omega) - i \kappa(\omega) =
@@ -1299,14 +1297,14 @@ Pharr, Jakob, Humphreys, NASA
 <!-- Modified APA style -->
 
 1. Golubev, E. [Sampling analytic participating media](/post/analytic-media/) (2020).
-2. Chandrasekhar, S. [Radiative transfer](https://doi.org/10.1002/qj.49707633016). (1950).
+2. Chandrasekhar, S. [Radiative transfer](https://doi.org/10.1002/qj.49707633016) (1950).
 3. Golubev, E. [From particle to volume scattering of light](/post/particle-volume/) (2020).
 4. van de Hulst, H. C. [Light scattering by small particles](https://doi.org/10.1002/qj.49708436025) (1957).
-5. Feynman, R. P., Leighton, R. B., & Sands, M. [The Feynman lectures on physics](https://www.feynmanlectures.caltech.edu/) (1963).
-6. Born, M., & Wolf, E. [Principles of optics](https://doi.org/10.1017/CBO9781139644181), 7th edition (1999).
-7. Mishchenko, M. I. [Electromagnetic Scattering by Particles and Particle Groups](https://www.cambridge.org/us/academic/subjects/earth-and-environmental-science/atmospheric-science-and-meteorology/electromagnetic-scattering-particles-and-particle-groups-introduction) (2014).
-8. Ishimaru, A. [Electromagnetic Wave Propagation, Radiation, and Scattering](https://doi.org/10.1002/9781119079699), 2nd Edition (2017).
-9. Boyd, R. W. [Nonlinear optics](https://www.elsevier.com/books/nonlinear-optics/boyd/978-0-12-811002-7), 4th Edition (2020).
+5. Feynman, R. P., Leighton, R. B., & Sands, M. [The Feynman lectures on physics](https://www.feynmanlectures.caltech.edu/) (1965).
+6. Born, M., & Wolf, E. [Principles of Optics](https://doi.org/10.1017/CBO9781139644181) (7th ed., 1999).
+7. Novotny, L., & Hecht, B. [Principles of Nano-Optics](https://doi.org/10.1017/CBO9780511794193) (2nd ed., 2012).
+8. Ishimaru, A. [Electromagnetic Wave Propagation, Radiation, and Scattering](https://doi.org/10.1002/9781119079699) (2nd ed., 2017).
+9. Mishchenko, M. [Electromagnetic Scattering by Particles and Particle Groups](https://doi.org/10.1017/CBO9781139019064) (2014).
 10. Keller, S. M., & Carman, G. P. [Electromagnetic wave propagation in (bianisotropic) magnetoelectric materials](https://doi.org/10.1177/1045389X12467518) (2013). 
 11. Hansen, J. E., & Travis, L. D. [Light scattering in planetary atmospheres](https://doi.org/10.1007/BF00168069) (1974).
-12. Fleisch, D. A. [A Student's Guide to Vectors and Tensors](https://www.cambridge.org/us/academic/subjects/physics/mathematical-methods/students-guide-vectors-and-tensors) (2011).
+12. Fleisch, D. [A Student's Guide to Vectors and Tensors](https://doi.org/doi:10.1017/CBO9781139031035) (2011).
