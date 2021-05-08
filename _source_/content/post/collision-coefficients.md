@@ -1136,6 +1136,10 @@ $$ \tag{6.31}
 	\beta_a(\omega) = 2 \omega \frac{\kappa(\omega)}{c}.
 $$
 
+## Electromagnetic Potentials
+
+The solutions of Maxwell's equations we have found so far have a limited range of validity. The medium must be isotropic and homogeneous (or divided into several bounded homogeneous regions), and the material's response to the incident electromagnetic field may only be purely linear. Moreover, while the method of solving a system of differential equations augmented with boundary conditions (the so-called [boundary value problem](https://en.wikipedia.org/wiki/Boundary_value_problem)) is appropriate for many simple cases (such as reflection and transmission of a plane wave at a planar interface, which leads to [Fresnel equations](https://en.wikipedia.org/wiki/Fresnel_equations)), it quickly becomes unwieldy for more complex problems. Another approach tends to become more viable, where one reformulates the fields in terms of the [electromagnetic potentials](https://en.wikipedia.org/wiki/Electromagnetic_four-potential), which leads to an integral (rather than a differential) solution of Maxwell's equations.
+
 <!--
 ## Polarization of Light
 
