@@ -92,7 +92,7 @@ $$ \tag{1.5}
 	\nabla \cdot \bm{J}(\bm{r}, t) = - \frac{\partial}{\partial t} \rho(\bm{r}, t).
 $$
 
-The equation simply shows that a reduction of charge can be observed if charges are carried away by a current.
+This [continuity equation](https://en.wikipedia.org/wiki/Continuity_equation) shows that a reduction of the charge density can be observed if the charges are carried away by a current.
 
 Sometimes, Equations 1.1 are referred to as the "vacuum version" of Maxwell's equations. This name can be a little misleading; in fact, the matter is right there - it is just represented as a distribution of charged [elementary particles](https://en.wikipedia.org/wiki/Elementary_particle) by the *volume* [charge density](https://en.wikipedia.org/wiki/Charge_density) \\(\rho\\), such that the total amount of charge \\(Q\\) inside the volume \\(V\\) is
 
@@ -364,7 +364,9 @@ $$ \tag{2.17}
 \end{aligned}
 $$
 
-If we take divergence of Equation 2.17.3, combine the result with Equation 2.17.4, and use the fact that [divergence of curl](https://en.wikipedia.org/wiki/Vector_calculus_identities#Divergence_of_curl_is_zero) is zero, we obtain the [continuity equation](https://en.wikipedia.org/wiki/Continuity_equation) that expresses the [conservation of charge](https://en.wikipedia.org/wiki/Charge_conservation):
+An interesting consequence of the time-harmonic assumption is the reduction in the number of independent Maxwell's equations from 4 to 2. Since the [divergence of curl](https://en.wikipedia.org/wiki/Vector_calculus_identities#Divergence_of_curl_is_zero) is zero, the divergence of Equations 2.17.1 and 2.17.3 (on the left) is mathematically identical to Equations 2.17.2 and 2.17.4 (on the right), respectively.
+
+Using this method, we can also obtain the expression of [conservation of charge](https://en.wikipedia.org/wiki/Charge_conservation):
 
 $$ \tag{2.18}
 	\nabla \cdot \bm{J\_f}(\bm{r}) = - i \omega \rho\_f(\bm{r}).
@@ -377,7 +379,7 @@ $$ \tag{2.19}
 	\bm{J\_f} = \bm{J\_s} + \bm{J\_i}.
 $$
 
-Continuity of charge implies that
+Conservation of charge implies that
 
 $$ \tag{2.20}
 	\rho\_s(\bm{r}) = \frac{i}{\omega} \nabla \cdot \bm{J\_s}(\bm{r}), \quad
