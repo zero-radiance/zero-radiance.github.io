@@ -1124,7 +1124,7 @@ $$ \tag{6.30}
 	= \frac{1}{2} \epsilon\_0 \eta c |E\_0|^2 e^{-\beta_a (\bm{r} \cdot \bm{n})},
 $$
 
-[^11]: Since \\(\bm{E}(\bm{r})\\) is a single-frequency field, the expressions of irradiance and spectral irradiance are the same.
+[^11]: Since \\(\bm{E}(\bm{r})\\) is a single-frequency field, the expressions of irradiance and spectral irradiance are identical.
 
 where we combined several constants into the [absorption coefficient](https://en.wikipedia.org/wiki/Attenuation_coefficient#Absorption_and_scattering_coefficients)
 
@@ -1135,6 +1135,37 @@ $$
 ## Electromagnetic Potentials
 
 The solutions of Maxwell's equations we have found so far have a limited range of validity. The medium must be both isotropic and homogeneous (or divided into several bounded homogeneous regions), and the material's response to the incident electromagnetic field may only be purely linear. Moreover, while the method of solving a system of differential equations augmented with boundary conditions (the so-called [boundary value problem](https://en.wikipedia.org/wiki/Boundary_value_problem)) is appropriate for many simple cases (such as reflection and transmission of a plane wave at a planar interface, which leads to [Fresnel equations](https://en.wikipedia.org/wiki/Fresnel_equations)), it quickly becomes unwieldy for more complex problems. Another approach tends to become more viable, where one reformulates the field in terms of the [electromagnetic potential](https://en.wikipedia.org/wiki/Electromagnetic_four-potential), which leads to an integral (rather than a differential) solution of Maxwell's equations.
+
+Take another look at Maxwell's equations; specifically, consider Equation 1.1.2. Since the [divergence of curl](https://en.wikipedia.org/wiki/Vector_calculus_identities#Divergence_of_curl_is_zero) is zero, it can be written as
+
+$$ \tag{7.1}
+	\nabla \cdot \bm{B}(\bm{r}, t) = \nabla \cdot \big( \nabla \times \bm{A}(\bm{r}, t) \big) = 0,
+$$
+
+where \\(\bm{A}\\) is called a *vector potential* \[[5](#references) (vol. II, ch. 14), [6](#references) (ch. 2.1), [8](#references) (ch. 2.6)\].
+
+Next, transform Equation 1.1.1 to obtain
+
+$$ \tag{7.2}
+	\nabla \times \bm{E}(\bm{r}, t) + \frac{\partial}{\partial t} \big( \nabla \times \bm{A}(\bm{r}, t) \big) = 0.
+$$
+
+As the [curl of gradient](https://en.wikipedia.org/wiki/Vector_calculus_identities#Curl_of_gradient_is_zero) is zero, Equation 7.2 can be used to define the *scalar potential* \\(\phi\\):
+
+$$ \tag{7.3}
+	\bm{E}(\bm{r}, t) + \frac{\partial}{\partial t} \bm{A}(\bm{r}, t) = \nabla \phi(\bm{r}, t).
+$$
+
+Thus both the electric and the magnetic fields are uniquely defined by the vector and the scalar potentials:
+
+$$ \tag{7.4}
+\begin{aligned}
+	&\bm{E}(\bm{r}, t) = -\frac{\partial}{\partial t} \bm{A}(\bm{r}, t) - \nabla \phi(\bm{r}, t), &
+	&\bm{B}(\bm{r}, t) = \nabla \times \bm{A}(\bm{r}, t).
+\end{aligned}
+$$
+
+The converse is not true. Gauge transformation...
 
 <!--
 ## Polarization of Light
