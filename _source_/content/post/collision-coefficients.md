@@ -947,11 +947,11 @@ $$ \tag{6.10}
 	&= E\_0 e^{-i k (\bm{r} \cdot \bm{n})} \cr
 	&= |E\_0| e^{i \delta} e^{-i \omega (1/v_p - i/v_a) (\bm{r} \cdot \bm{n})} \cr
 	&= |E\_0| e^{-\omega (\bm{r} \cdot \bm{n}) / v_a} e^{i \delta - i \omega (\bm{r} \cdot \bm{n}) / v_p} \cr
-	&= |E(\bm{r}, \bm{n})| e^{i \phi(\bm{r}, \bm{n})}.
+	&= |E(\bm{r}, \bm{n})| e^{i \theta(\bm{r}, \bm{n})}.
 \end{aligned}
 $$
 
-As any complex number, it can be expressed in terms of the *magnitude* \\(|E|\\)  and the *phase* \\(\phi\\), both of which are [real-valued functions](https://en.wikipedia.org/wiki/Real-valued_function).
+As any complex number, it can be expressed in terms of the *magnitude* \\(|E|\\) and the *phase* \\(\theta\\), both of which are [real-valued functions](https://en.wikipedia.org/wiki/Real-valued_function).
 
 Multiplication by \\(e^{i \omega t}\\) by yields the full expression of a scalar plane wave:
 
@@ -969,7 +969,7 @@ First, notice that \\((\bm{r} \cdot \bm{n}) / v\\) has units of time. Then, take
 $$ \tag{6.12}
 	\theta(\bm{r}, t)
 	= \mathcal{Arg} \big\lbrace E(\bm{r}, \bm{n}) e^{i \omega t} \big\rbrace
-	= \phi + \omega t
+	= \theta(\bm{r}, \bm{n}) + \omega t
 	= \delta - \omega \big(\bm{r} \cdot \bm{n} - v_p t \big) / v_p.
 $$
 
