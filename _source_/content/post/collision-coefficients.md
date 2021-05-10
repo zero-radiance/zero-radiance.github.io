@@ -1142,18 +1142,18 @@ $$ \tag{7.1}
 	\nabla \cdot \bm{B}(\bm{r}, t) = \nabla \cdot \big( \nabla \times \bm{A}(\bm{r}, t) \big) = 0,
 $$
 
-where \\(\bm{A}\\) is called a *vector potential* \[[5](#references) (vol. II, ch. 14), [6](#references) (ch. 2.1), [8](#references) (ch. 2.6)\].
+where \\(\bm{A}\\) is called a *vector potential* \[[5](#references) (vol. II, ch. 18), [6](#references) (ch. 2.1), [8](#references) (ch. 2.6)\].
 
-Next, substitute into Equation 1.1.1 to obtain
+Next, substitute the definition of \\(\bm{A}\\) into Equation 1.1.1 to obtain
 
 $$ \tag{7.2}
-	\nabla \times \bm{E}(\bm{r}, t) + \frac{\partial}{\partial t} \big( \nabla \times \bm{A}(\bm{r}, t) \big) = 0.
+	\nabla \times \Big( \bm{E}(\bm{r}, t) + \frac{\partial}{\partial t} \bm{A}(\bm{r}, t) \Big) = 0.
 $$
 
 As the [curl of gradient](https://en.wikipedia.org/wiki/Vector_calculus_identities#Curl_of_gradient_is_zero) is zero, Equation 7.2 can be used to define the *scalar potential* \\(\phi\\):
 
 $$ \tag{7.3}
-	\bm{E}(\bm{r}, t) + \frac{\partial}{\partial t} \bm{A}(\bm{r}, t) = \nabla \phi(\bm{r}, t).
+	\bm{E}(\bm{r}, t) + \frac{\partial}{\partial t} \bm{A}(\bm{r}, t) = -\nabla \phi(\bm{r}, t).
 $$
 
 Thus both the electric and the magnetic fields are uniquely defined by the vector and the scalar potentials:
@@ -1165,39 +1165,25 @@ $$ \tag{7.4}
 \end{aligned}
 $$
 
-The converse is not true. For instance,
+The converse is not true. Since the [curl of gradient](https://en.wikipedia.org/wiki/Vector_calculus_identities#Curl_of_gradient_is_zero) is zero, the vector potential
 
 $$ \tag{7.5}
-	\phi'(\bm{r}, t) = \phi(\bm{r}, t) + C
+	\bm{A'}(\bm{r}, t) = \bm{A}(\bm{r}, t) + \nabla \chi(\bm{r}, t)
 $$
 
-also represents a scalar potential that satisfies Maxwell's equations.
-
-Furthermore, it is possible to find another expression \\(\bm{A'}\\) of a vector potential, such that
+corresponds to an identical magnetic field
 
 $$ \tag{7.6}
-	\bm{B}(\bm{r}, t) = \nabla \times \bm{A'}(\bm{r}, t).
+	\bm{B}(\bm{r}, t) = \nabla \times \bm{A'}(\bm{r}, t) = \nabla \times \bm{A}(\bm{r}, t).
 $$
 
-Subtraction of Equation 7.4.2 yields
+If we substitute Equation 7.5 into 7.3 and group the terms under the gradient sign, we obtain another expression of the scalar potential:
 
 $$ \tag{7.7}
-	\nabla \times \big( \bm{A'}(\bm{r}, t) - \bm{A}(\bm{r}, t) \big) = 0,
-$$
-
-which, due to the fact that the [curl of gradient](https://en.wikipedia.org/wiki/Vector_calculus_identities#Curl_of_gradient_is_zero) is zero, means that
-
-$$ \tag{7.8}
-	\bm{A'}(\bm{r}, t) = \bm{A}(\bm{r}, t) + \nabla \chi(\bm{r}, t).
-$$
-
-After substituting Equation 7.8 into 7.3 and grouping the non-primed terms, we obtain another expression of the scalar potential:
-
-$$ \tag{7.9}
 	\phi'(\bm{r}, t) = \phi(\bm{r}, t) - \frac{\partial}{\partial t} \chi(\bm{r}, t).
 $$
 
-Equations 7.8-7.9 represent a [gauge transformation](https://en.wikipedia.org/wiki/Gauge_theory#Classical_electromagnetism). The fact that the electric and the magnetic field are independent of a particular choice of \\(\chi\\) is referred to as *gauge invariance*.
+Since the electric and the magnetic field are independent of a particular choice of \\(\chi\\), they are said to be *invariant* under a [gauge transformation](https://en.wikipedia.org/wiki/Gauge_theory#Classical_electromagnetism) given by Equations 7.5 and 7.7.
 
 <!--
 ## Polarization of Light
