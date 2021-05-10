@@ -1136,7 +1136,7 @@ $$
 
 The solutions of Maxwell's equations we have found so far have a limited range of validity. The medium must be both isotropic and homogeneous (or divided into several bounded homogeneous regions), and the material's response to the incident electromagnetic field may only be purely linear. Moreover, while the method of solving a system of differential equations augmented with boundary conditions (the so-called [boundary value problem](https://en.wikipedia.org/wiki/Boundary_value_problem)) is appropriate for many simple cases (such as reflection and transmission of a plane wave at a planar interface, which leads to [Fresnel equations](https://en.wikipedia.org/wiki/Fresnel_equations)), it quickly becomes unwieldy for more complex problems. Another approach tends to become more viable, where one reformulates the field in terms of the [electromagnetic potential](https://en.wikipedia.org/wiki/Electromagnetic_four-potential), which leads to an integral (rather than a differential) solution of Maxwell's equations.
 
-Take another look at Maxwell's equations; specifically, consider Equation 1.1.2. Since the [divergence of curl](https://en.wikipedia.org/wiki/Vector_calculus_identities#Divergence_of_curl_is_zero) is zero, it can be written as
+Take another look at Maxwell's equations. Since the [divergence of curl](https://en.wikipedia.org/wiki/Vector_calculus_identities#Divergence_of_curl_is_zero) is zero, Equation 1.1.2 can be written as
 
 $$ \tag{7.1}
 	\nabla \cdot \bm{B}(\bm{r}, t) = \nabla \cdot \big( \nabla \times \bm{A}(\bm{r}, t) \big) = 0,
@@ -1144,7 +1144,7 @@ $$
 
 where \\(\bm{A}\\) is called a *vector potential* \[[5](#references) (vol. II, ch. 14), [6](#references) (ch. 2.1), [8](#references) (ch. 2.6)\].
 
-Next, transform Equation 1.1.1 to obtain
+Next, substitute into Equation 1.1.1 to obtain
 
 $$ \tag{7.2}
 	\nabla \times \bm{E}(\bm{r}, t) + \frac{\partial}{\partial t} \big( \nabla \times \bm{A}(\bm{r}, t) \big) = 0.
@@ -1165,7 +1165,39 @@ $$ \tag{7.4}
 \end{aligned}
 $$
 
-The converse is not true. Gauge transformation...
+The converse is not true. For instance,
+
+$$ \tag{7.5}
+	\phi'(\bm{r}, t) = \phi(\bm{r}, t) + C
+$$
+
+also represents a scalar potential that satisfies Maxwell's equations.
+
+Furthermore, it is possible to find another expression \\(\bm{A'}\\) of a vector potential, such that
+
+$$ \tag{7.6}
+	\bm{B}(\bm{r}, t) = \nabla \times \bm{A'}(\bm{r}, t).
+$$
+
+Subtraction of Equation 7.4.2 yields
+
+$$ \tag{7.7}
+	\nabla \times \big( \bm{A'}(\bm{r}, t) - \bm{A}(\bm{r}, t) \big) = 0,
+$$
+
+which, due to the fact that the [curl of gradient](https://en.wikipedia.org/wiki/Vector_calculus_identities#Curl_of_gradient_is_zero) is zero, means that
+
+$$ \tag{7.8}
+	\bm{A'}(\bm{r}, t) = \bm{A}(\bm{r}, t) + \nabla \chi(\bm{r}, t).
+$$
+
+After substituting Equation 7.8 into 7.3 and grouping the non-primed terms, we obtain another expression of the scalar potential:
+
+$$ \tag{7.9}
+	\phi'(\bm{r}, t) = \phi(\bm{r}, t) - \frac{\partial}{\partial t} \chi(\bm{r}, t).
+$$
+
+Equations 7.8-7.9 represent a [gauge transformation](https://en.wikipedia.org/wiki/Gauge_theory#Classical_electromagnetism). The fact that the electric and the magnetic field are independent of a particular choice of \\(\chi\\) is referred to as *gauge invariance*.
 
 <!--
 ## Polarization of Light
