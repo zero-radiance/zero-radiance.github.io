@@ -191,7 +191,7 @@ Define[^1] the [Fourier transform](https://en.wikipedia.org/wiki/Fourier_transfo
 
 $$ \tag{2.1}
 	\bm{E}(\bm{r}, \omega)
-    = \mathcal{F} \big\lbrace \bm{E}(\bm{r}, t) \big\rbrace 
+	= \mathcal{F} \big\lbrace \bm{E}(\bm{r}, t) \big\rbrace 
 	= \frac{1}{\sqrt{2 \pi}} \int\_{-\infin}^{\infin} \bm{E}(\bm{r}, t) e^{-i \omega t} dt,
 $$
 
@@ -393,9 +393,9 @@ Given a mathematical description of electromagnetic radiation in terms of vector
 [Conservation of energy](https://en.wikipedia.org/wiki/Conservation_of_energy) is one of the most important principles of physics. Here is one way to state it: the difference between the amount of external energy \\(\mathcal{E\_{ext}}\\) flowing into the volume \\(V\\) and the amount of internal energy \\(\mathcal{E\_{int}}\\) flowing out equals the amount of work \\(\mathcal{W}\\) done inside.
 
 $$ \tag{3.1}
- 	\frac{\partial}{\partial t} \mathcal{E\_{ext}}(V, t) -
- 	\frac{\partial}{\partial t} \mathcal{E\_{int}}(V, t) =
- 	\frac{\partial}{\partial t} \mathcal{W}(V, t).
+	\frac{\partial}{\partial t} \mathcal{E\_{ext}}(V, t) -
+	\frac{\partial}{\partial t} \mathcal{E\_{int}}(V, t) =
+	\frac{\partial}{\partial t} \mathcal{W}(V, t).
 $$
 
 In Equation 3.1, \\(\mathcal{E}\\) refers to a single type of energy: kinetic, electromagnetic, etc. Work transforms a portion of \\(\mathcal{E\_{ext}}\\) into a different type of energy: kinetic into potential, electromagnetic into thermal, and so on. If we account for all types of energy, the total amount of energy is conserved.
@@ -427,22 +427,22 @@ Therefore, the amount of work done per unit time by the field on the matter insi
 $$ \tag{3.5}
 	\frac{\partial}{\partial t} \mathcal{W}(V, t) =
 	\iiint\_{V} \bm{v}(\bm{r}, t) \cdot d\bm{F}(\bm{r}, t) =
-    \iiint\_{V} \bm{E}(\bm{r}, t) \cdot \rho(\bm{r}, t) \bm{v}(\bm{r}, t) \thinspace dV.
+	\iiint\_{V} \bm{E}(\bm{r}, t) \cdot \rho(\bm{r}, t) \bm{v}(\bm{r}, t) \thinspace dV.
 $$
 
 Since the current density is just the number of moving charges per unit volume (see Equation 1.7),
 
 $$ \tag{3.6}
 	\frac{\partial}{\partial t} \mathcal{W}(V, t) =
-    \iiint\_{V} \bm{E}(\bm{r}, t) \cdot \bm{J}(\bm{r}, t) \thinspace dV.
+	\iiint\_{V} \bm{E}(\bm{r}, t) \cdot \bm{J}(\bm{r}, t) \thinspace dV.
 $$
 
 Maxwell's equations allow us to relate a current to the generated fields. Substitution of Equation 1.1.3 yields
 
 $$ \tag{3.7}
 	\iiint\_{V} \bm{E} \cdot \bm{J} \thinspace dV = 
-    \iiint\_{V} \bm{E} \cdot \Big( \nabla \times \big( \mu\_0^{-1} \bm{B} \big) -
-    \frac{\partial}{\partial t} \big( \epsilon\_0 \bm{E} \big) \Big) dV.
+	\iiint\_{V} \bm{E} \cdot \Big( \nabla \times \big( \mu\_0^{-1} \bm{B} \big) -
+	\frac{\partial}{\partial t} \big( \epsilon\_0 \bm{E} \big) \Big) dV.
 $$
 
 Since [the divergence of the cross product](https://en.wikipedia.org/wiki/Vector_calculus_identities#Cross_product_rule) is
@@ -455,16 +455,16 @@ we can reformulate the integrand of Equation 3.7 as
 
 $$ \tag{3.9}
 	\bm{E} \cdot \bm{J} = 
-    \mu\_0^{-1} \big( (\nabla \times \bm{E}) \cdot \bm{B} - \nabla \cdot (\bm{E} \times \bm{B}) \big) -
-    \epsilon\_0 \bm{E} \cdot \frac{\partial \bm{E}}{\partial t}.
+	\mu\_0^{-1} \big( (\nabla \times \bm{E}) \cdot \bm{B} - \nabla \cdot (\bm{E} \times \bm{B}) \big) -
+	\epsilon\_0 \bm{E} \cdot \frac{\partial \bm{E}}{\partial t}.
 $$
 
 The curl of \\(\bm{E}\\) is also given by Maxwell's equations (see Equation 1.1.1). Then it follows that
 
 $$ \tag{3.10}
 	\bm{E} \cdot \bm{J} = 
-    \mu\_0^{-1} \big( {-\bm{B}} \cdot \frac{\partial \bm{B}}{\partial t} - \nabla \cdot (\bm{E} \times \bm{B}) \big) -
-    \epsilon\_0 \bm{E} \cdot \frac{\partial \bm{E}}{\partial t}.
+	\mu\_0^{-1} \big( {-\bm{B}} \cdot \frac{\partial \bm{B}}{\partial t} - \nabla \cdot (\bm{E} \times \bm{B}) \big) -
+	\epsilon\_0 \bm{E} \cdot \frac{\partial \bm{E}}{\partial t}.
 $$
 
 Moving the dot products under the derivative sign and grouping the derivatives produces a simpler expression
@@ -481,7 +481,7 @@ We can observe that the rate of doing work is a balance of inflow of \\((\bm{E} 
 $$ \tag{3.12}
 	\frac{\partial \mathcal{W}}{\partial t}
 	= \iiint\_{V} \Big( {-\mu\_0^{-1}} \nabla \cdot (\bm{E} \times \bm{B}) \Big) dV -
-    \frac{\partial}{\partial t} \iiint\_{V} \Big( \frac{\epsilon\_0}{2} E^2 + \frac{\mu\_0^{-1}}{2} B^2 \Big) dV 
+	\frac{\partial}{\partial t} \iiint\_{V} \Big( \frac{\epsilon\_0}{2} E^2 + \frac{\mu\_0^{-1}}{2} B^2 \Big) dV 
 $$
 
 and use the [divergence theorem](https://en.wikipedia.org/wiki/Divergence_theorem) to replace the leftmost volume integral with an integral taken over the bounding surface \\(\delta V\\) of the volume \\(V\\):
@@ -489,7 +489,7 @@ and use the [divergence theorem](https://en.wikipedia.org/wiki/Divergence_theore
 $$ \tag{3.13}
 	\frac{\partial \mathcal{W}}{\partial t}
 	= \oiint\_{\delta V} \Big( \mu\_0^{-1} (\bm{E} \times \bm{B}) \cdot (-\bm{n}) \Big) dA -
-    \frac{\partial}{\partial t} \iiint\_{V} \Big( \frac{\epsilon\_0}{2} E^2 + \frac{\mu\_0^{-1}}{2} B^2 \Big) dV,
+	\frac{\partial}{\partial t} \iiint\_{V} \Big( \frac{\epsilon\_0}{2} E^2 + \frac{\mu\_0^{-1}}{2} B^2 \Big) dV,
 $$
 
 where \\(\bm{n}\\) is the outward-facing surface normal.
@@ -497,22 +497,22 @@ where \\(\bm{n}\\) is the outward-facing surface normal.
 According to Equation 3.1, the right-hand side of Equation 3.13 represents the difference between the rates of inflow and outflow of energy. Thus, the first term gives the amount of external energy (per unit time) flowing through the bounding surface into the volume,
 
 $$ \tag{3.14}
- 	\frac{\partial}{\partial t} \mathcal{E\_{ext}}(V, t) = 
- 	\oiint\_{\delta V} \Big( \mu\_0^{-1} \big( \bm{E}(\bm{r}, t) \times \bm{B}(\bm{r}, t) \big) \cdot (-\bm{n}) \Big) dA,
+	\frac{\partial}{\partial t} \mathcal{E\_{ext}}(V, t) = 
+	\oiint\_{\delta V} \Big( \mu\_0^{-1} \big( \bm{E}(\bm{r}, t) \times \bm{B}(\bm{r}, t) \big) \cdot (-\bm{n}) \Big) dA,
 $$
 
 and the second term corresponds to the rate at which the amount of energy within the volume decreases:
 
 $$ \tag{3.15}
- 	-\frac{\partial}{\partial t} \mathcal{E\_{int}}(V, t) =
- 	-\frac{\partial}{\partial t} \iiint\_{V} \Big( \frac{\epsilon\_0}{2} E^2(\bm{r}, t) + \frac{\mu\_0^{-1}}{2} B^2(\bm{r}, t) \Big) dV.
+	-\frac{\partial}{\partial t} \mathcal{E\_{int}}(V, t) =
+	-\frac{\partial}{\partial t} \iiint\_{V} \Big( \frac{\epsilon\_0}{2} E^2(\bm{r}, t) + \frac{\mu\_0^{-1}}{2} B^2(\bm{r}, t) \Big) dV.
 $$
 
 According to this interpretation, the *squared* magnitudes of the fields
 
 $$ \tag{3.16}
 	\frac{\partial}{\partial V} \mathcal{E\_e}(\bm{r}, t) = \frac{\epsilon\_0}{2} E^2(\bm{r}, t), \quad
- 	\frac{\partial}{\partial V} \mathcal{E\_m}(\bm{r}, t) = \frac{\mu\_0^{-1}}{2} B^2(\bm{r}, t), \quad
+	\frac{\partial}{\partial V} \mathcal{E\_m}(\bm{r}, t) = \frac{\mu\_0^{-1}}{2} B^2(\bm{r}, t), \quad
 $$
 
 are the electric and the magnetic energy volume densities, and
@@ -591,11 +591,11 @@ $$ \tag{3.22}
 	  + \mu\_0^{-1} \sum\_{p = 1}^{\infin}
 		\Big( 
 			\big( \bm{E_p} \times [\bm{B_p}]^{\*} \big)
-	  	  + \big[ \bm{E_p} \times [\bm{B_p}]^{\*} \big]^{\*}
-	  	\Big) \cr
+		  + \big[ \bm{E_p} \times [\bm{B_p}]^{\*} \big]^{\*}
+		\Big) \cr
 	&=  \mu\_0^{-1} (\bm{E_0} \times \bm{B_0})
 	  + \mu\_0^{-1} \sum\_{p = 1}^{\infin}
-	  	2 \thinspace \mathcal{Re} \big\lbrace \bm{E_p} \times [\bm{B_p}]^{\*} \big\rbrace
+		2 \thinspace \mathcal{Re} \big\lbrace \bm{E_p} \times [\bm{B_p}]^{\*} \big\rbrace
 \end{aligned}
 $$
 
@@ -984,8 +984,8 @@ This implies that \\(\theta\\) represents a plane propagating along its normal \
 Taking the real part of Equation 6.11 allows us to uncover the *wave amplitude*
 
 $$ \tag{6.14}
- 	\mathcal{Re} \big\lbrace E(\bm{r}, \bm{n}) e^{i \omega t} \big\rbrace = 
- 	|E\_0| e^{-\omega (\bm{r} \cdot \bm{n}) / v_a} \cos{\theta(\bm{r}, t)}.
+	\mathcal{Re} \big\lbrace E(\bm{r}, \bm{n}) e^{i \omega t} \big\rbrace = 
+	|E\_0| e^{-\omega (\bm{r} \cdot \bm{n}) / v_a} \cos{\theta(\bm{r}, t)}.
 $$
 
 If the attenuation index \\(\kappa = 0\\), the amplitude velocity \\(v_a = \infty\\), and Equation 6.14 represents a regular sine wave.
@@ -1059,14 +1059,14 @@ Recall the definition of the wave number given by Equation 6.9
 
 $$ \tag{6.23}
 	\bm{n} \times \Bigg( \frac{1}{c} \big(\eta(\omega) - i \kappa(\omega) \big) \bm{E}(\bm{r}, \bm{n}) \Bigg)
-    = \bm{B}(\bm{r}, \bm{n}),
+	= \bm{B}(\bm{r}, \bm{n}),
 $$
 
 If we take the real part of this expression multiplied by \\(e^{i \omega t}\\), the result
 
 $$ \tag{6.24}
 	\frac{\eta(\omega)}{c} \bm{n} \times \mathcal{Re} \big\lbrace \bm{E}(\bm{r}, \bm{n}) e^{i \omega t} \big\rbrace
-    = \mathcal{Re} \big\lbrace \bm{B}(\bm{r}, \bm{n}) e^{i \omega t} \big\rbrace
+	= \mathcal{Re} \big\lbrace \bm{B}(\bm{r}, \bm{n}) e^{i \omega t} \big\rbrace
 $$
 
 shows us that the electric and the magnetic field vectors are orthogonal. Thus, \\(\lbrace \bm{E}, \bm{B}, \bm{n} \rbrace\\) is an orthogonal triad of vectors that defines the geometric configuration of a plane wave in a linear, isotropic medium:
@@ -1171,19 +1171,54 @@ $$ \tag{7.5}
 	\bm{A'}(\bm{r}, t) = \bm{A}(\bm{r}, t) + \nabla \chi(\bm{r}, t)
 $$
 
-corresponds to an identical magnetic field
+corresponds to the same magnetic field
 
 $$ \tag{7.6}
 	\bm{B}(\bm{r}, t) = \nabla \times \bm{A'}(\bm{r}, t) = \nabla \times \bm{A}(\bm{r}, t).
 $$
 
-If we substitute Equation 7.5 into 7.3 and group the terms under the gradient sign, we obtain another expression of the scalar potential:
+If we substitute Equation 7.5 into 7.3 and group the terms under the gradient sign, we obtain the expression of the transformed scalar potential:
 
 $$ \tag{7.7}
 	\phi'(\bm{r}, t) = \phi(\bm{r}, t) - \frac{\partial}{\partial t} \chi(\bm{r}, t).
 $$
 
 Since the electric and the magnetic field are independent of a particular choice of \\(\chi\\), they are said to be *invariant* under a [gauge transformation](https://en.wikipedia.org/wiki/Gauge_theory#Classical_electromagnetism) given by Equations 7.5 and 7.7.
+
+What is a good choice of \\(\chi\\)? That depends on the mathematical formulation of a particular problem. Usually, we want \\(\bm{A}\\) to have a certain desirable property that simplifies some equation. In general, any vector field \\(\bm{A}\\) can be represented as a sum of a divergence-free component \\(\bm{A'}\\) and a curl-free component \\(\bm{A''}\\):
+
+$$ \tag{7.8}
+\begin{aligned}
+	&\bm{A}(\bm{r}, t) = \bm{A'}(\bm{r}, t) + \bm{A''}(\bm{r}, t), &
+	&\nabla \cdot  \bm{A' }(\bm{r}, t) = 0, &
+	&\nabla \times \bm{A''}(\bm{r}, t) = 0. &
+\end{aligned}
+$$
+
+This implies that (c.f. Equations 7.5-7.6)
+
+$$ \tag{7.9}
+\begin{aligned}
+	& \nabla \times \bm{A}(\bm{r}, t) = \nabla \times \bm{A'}(\bm{r}, t) = \bm{B}(\bm{r}, t), \cr
+	& \nabla \cdot \bm{A}(\bm{r}, t) = \nabla \cdot \bm{A''}(\bm{r}, t) = -\nabla^2 \chi(\bm{r}, t),
+\end{aligned}
+$$
+
+which gives us a way to manipulate the divergence of \\(\bm{A}\\) without affecting its curl.
+
+We shall relate \\(\chi\\) to \\(\phi\\) in a rather non-obvious (but, as we shall soon see, convenient) manner:
+
+$$ \tag{7.10}
+	\nabla^2 \chi(\bm{r}, t) = \frac{1}{c^2} \frac{\partial}{\partial t} \phi(\bm{r}, t).
+$$
+
+The combination of Equations 7.9.2 and 7.10 yields the [Lorenz condition](https://en.wikipedia.org/wiki/Lorenz_gauge_condition)
+
+$$ \tag{7.11}
+\begin{aligned}
+	\nabla \cdot \bm{A}(\bm{r}, t) = -\frac{1}{c^2} \frac{\partial}{\partial t} \phi(\bm{r}, t).
+\end{aligned}
+$$
 
 <!--
 ## Polarization of Light
