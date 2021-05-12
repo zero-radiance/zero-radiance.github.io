@@ -110,7 +110,7 @@ Of course, individual particles may be located at different points, and have dif
 
 While this kind of parametrization is simple and useful, due to the sheer number of charged particles in bulk matter, you can't see the forest for the trees. Therefore, applied physics often uses a different representation of matter which we shall now discuss.
 
-First, we identify two types of charges - bound and free. As the name implies, *free* charges are able to effortlessly move around the material, the typical example being the conduction current in a copper wire. The *bound* [current](https://en.wikipedia.org/wiki/Current_density#Polarization_and_magnetization_currents) and [charge densities](https://en.wikipedia.org/wiki/Charge_density#Bound_charge), \\(\bm{J\_b}\\) and \\(\rho\_b\\), are more difficult to reason about. They can be characterized in terms of [polarization of matter](https://en.wikipedia.org/wiki/Maxwell%27s_equations#Auxiliary_fields,_polarization_and_magnetization):
+First, we identify two types of charges - bound and free. As the name implies, *free* charges are able to effortlessly move around the material, the classic example being the conduction current in a copper wire. The *bound* [current](https://en.wikipedia.org/wiki/Current_density#Polarization_and_magnetization_currents) and [charge densities](https://en.wikipedia.org/wiki/Charge_density#Bound_charge), \\(\bm{J\_b}\\) and \\(\rho\_b\\), are more difficult to reason about. They can be characterized in terms of [polarization of matter](https://en.wikipedia.org/wiki/Maxwell%27s_equations#Auxiliary_fields,_polarization_and_magnetization):
 
 $$ \tag{1.8}
 	\bm{J\_b}(\bm{r}, t) = \nabla \times \bm{M}(\bm{r}, t) + \frac{\partial}{\partial t} \bm{P}(\bm{r}, t), \quad
@@ -750,7 +750,7 @@ $$ \tag{5.3}
 	\nabla \times \nabla \times \bm{E}(\bm{r}) + i \omega \mu(\omega) \big( i \omega \varepsilon(\omega) \bm{E}(\bm{r}) \big) = 0.
 $$
 
-Introduce the [curl-of-curl](https://en.wikipedia.org/wiki/Vector_calculus_identities#Curl_of_curl) identity
+Introduce the [curl of curl](https://en.wikipedia.org/wiki/Vector_calculus_identities#Curl_of_curl) identity
 
 $$ \tag{5.4}
 	\nabla \times (\nabla \times \bm{E}) = \nabla (\nabla \cdot \bm{E}) - \nabla^2 \bm{E},
@@ -1132,7 +1132,7 @@ $$ \tag{6.31}
 	\beta_a(\omega) = 2 \omega \frac{\kappa(\omega)}{c}.
 $$
 
-## Electromagnetic Potentials
+## Electromagnetic Potential
 
 The solutions of Maxwell's equations we have found so far have a limited range of validity. The medium must be both isotropic and homogeneous (or divided into several bounded homogeneous regions), and the material's response to the incident electromagnetic field may only be purely linear. Moreover, while the method of solving a system of differential equations augmented with boundary conditions (the so-called [boundary value problem](https://en.wikipedia.org/wiki/Boundary_value_problem)) is appropriate for many simple cases (such as reflection and transmission of a plane wave at a planar interface, which leads to [Fresnel equations](https://en.wikipedia.org/wiki/Fresnel_equations)), it quickly becomes unwieldy for more complex problems. Another approach tends to become more viable, where one reformulates the field in terms of the [electromagnetic potential](https://en.wikipedia.org/wiki/Electromagnetic_four-potential), which leads to an integral (rather than a differential) solution of Maxwell's equations.
 
@@ -1217,6 +1217,53 @@ The combination of Equations 7.9.2 and 7.10 yields the [Lorenz condition](https:
 $$ \tag{7.11}
 \begin{aligned}
 	\nabla \cdot \bm{A}(\bm{r}, t) = -\frac{1}{c^2} \frac{\partial}{\partial t} \phi(\bm{r}, t).
+\end{aligned}
+$$
+
+Let us justify our choice of the gauge transformation by expressing Maxwell's equations in terms of the electromagnetic potential. Begin by substituting Equations 7.4 into 1.1.3-1.1.4:
+
+$$ \tag{7.12}
+\begin{aligned}
+	&\nabla \times \nabla \times \bm{A}(\bm{r}, t) + \frac{1}{c^2} \frac{\partial^2}{\partial t^2} \bm{A}(\bm{r}, t)
+	+ \nabla \frac{1}{c^2} \frac{\partial}{\partial t} \phi(\bm{r}, t)
+	= \frac{\bm{J}(\bm{r}, t)}{\epsilon\_0 c^2}, \cr
+	&-\frac{\partial}{\partial t} \nabla \cdot \bm{A}(\bm{r}, t) - \nabla^2 \phi(\bm{r}, t)
+	= \frac{\rho(\bm{r}, t)}{\epsilon\_0}.
+\end{aligned}
+$$
+
+We can immediately use the Lorenz condition to eliminate \\(\bm{A}\\) from Equation 7.12.2. The result is an inhomogeneous scalar *wave equation*
+
+$$ \tag{7.13}
+	\nabla^2 \phi(\bm{r}, t) - \frac{1}{c^2} \frac{\partial^2}{\partial t^2} \phi(\bm{r}, t)
+	= -\frac{\rho(\bm{r}, t)}{\epsilon\_0}.
+$$
+
+Equation 7.12.1 can be expanded using the [curl of curl](https://en.wikipedia.org/wiki/Vector_calculus_identities#Curl_of_curl) identity:
+
+$$ \tag{7.14}
+	\nabla \big( \nabla \cdot \bm{A}(\bm{r}, t) \big) - \nabla^2 \bm{A}(\bm{r}, t) + \frac{1}{c^2} \frac{\partial^2}{\partial t^2} \bm{A}(\bm{r}, t)
+	+ \nabla \frac{1}{c^2} \frac{\partial}{\partial t} \phi(\bm{r}, t)
+	= \frac{\bm{J}(\bm{r}, t)}{\epsilon\_0 c^2}.
+$$
+
+Once again, we use the Lorenz condition, but this time, we do it in order to eliminate \\(\phi\\). We obtain an inhomogeneous vector *wave equation*
+
+$$ \tag{7.15}
+	\nabla^2 \bm{A}(\bm{r}, t) - \frac{1}{c^2} \frac{\partial^2}{\partial t^2} \bm{A}(\bm{r}, t)
+	= -\frac{\bm{J}(\bm{r}, t)}{\epsilon\_0 c^2}.
+$$
+
+Putting it all together, the formulation of Maxwell's equations in terms of the electromagnetic potential results in an decoupled system of partial differential equations:
+
+$$ \tag{7.16}
+\begin{aligned}
+	&\nabla^2 \bm{A}(\bm{r}, t) - \frac{1}{c^2} \frac{\partial^2}{\partial t^2} \bm{A}(\bm{r}, t)
+	= -\frac{\bm{J}(\bm{r}, t)}{\epsilon\_0 c^2}, &
+	&\bm{B}(\bm{r}, t) = \nabla \times \bm{A}(\bm{r}, t), \cr
+	&\nabla^2 \phi(\bm{r}, t) - \frac{1}{c^2} \frac{\partial^2}{\partial t^2} \phi(\bm{r}, t)
+	= -\frac{\rho(\bm{r}, t)}{\epsilon\_0} &
+	&\bm{E}(\bm{r}, t) = -\frac{\partial}{\partial t} \bm{A}(\bm{r}, t) - \nabla \phi(\bm{r}, t).
 \end{aligned}
 $$
 
