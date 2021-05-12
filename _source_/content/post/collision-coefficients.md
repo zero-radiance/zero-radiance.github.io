@@ -250,7 +250,7 @@ $$
 
 Generally speaking, equality of integrands does not follow from equality of integrals (but the opposite is true). In order to simplify Equations 2.6 further, we must make an assumption that the electromagnetic field[^3] is a [periodic function](https://en.wikipedia.org/wiki/Periodic_function) of time, such that the *fundamental period* \\(\thinspace T\_1 = 2 \pi / \omega_1\\) of both the electric and the magnetic fields is the same \[[5](#references) (vol. I, ch. 50) [6](#references) (ch. 1.3.3, 1.4.3)\]. This restriction is not as severe as it may seem, for we may choose the period to be as large as necessary. And the benefits are great, since it allows us to represent[^4] the fields using the [Fourier series](https://en.wikipedia.org/wiki/Fourier_series#Complex-valued_functions)
 
-[^3]: The fact that the electric and the magnetic fields cannot exist independently can be shown by a simple relativistic argument \[[12](#references) (ch 6.2)\]. Moreover, the electromagnetic field can be written as a single 4-vector called the [electromagnetic four-potential](https://en.wikipedia.org/wiki/Electromagnetic_four-potential) \[[5](#references) (vol. II, ch. 25)\] .
+[^3]: The fact that the electric and the magnetic fields cannot exist independently can be shown by a simple relativistic argument \[[12](#references) (ch 6.2)\].
 
 [^4]: This discrete representation only allows frequencies that belong to a certain [countable set](https://en.wikipedia.org/wiki/Countable_set). This is noteworthy because it suggests that fields are, in some sense, quantized, even though we are not using the [quantum theory of fields](https://en.wikipedia.org/wiki/Quantum_field_theory).
 
@@ -523,7 +523,7 @@ $$
 
 is the *instantaneous* [Poynting vector](https://en.wikipedia.org/wiki/Poynting_vector) that represents the direction and the rate of energy flow[^5].
 
-[^5]: This definition of field energy, while widely accepted, is somewhat ambiguous \[[5](#references) (vol. II, ch. 27.4)\]. It may be worth pointing out that there is an alternative definition in terms of the auxiliary fields \[[6](#references) (ch. 1.1.4), [7](#references) (ch. 2.11), [8](#references) (ch. 2.5), [9](#references) (ch. 2.4)\]. We prefer our version because it accounts for bound currents.
+[^5]: This definition of field energy, while widely accepted, is somewhat ambiguous \[[5](#references) (vol. II, ch. 27.4)\]. It may be worth pointing out that there is an alternative definition in terms of the auxiliary fields \[[6](#references) (ch. 1.1.4), [7](#references) (ch. 2.11), [8](#references) (ch. 2.5), [9](#references) (ch. 2.4)\]. We prefer our version because it accounts for bound currents. The two definitions coincide for non-magnetic materials with \\(\mu = \mu_0\\).
 
 Since the electromagnetic fields oscillate so rapidly, the *time-averaged* Poynting vector is often used instead:
 
@@ -669,7 +669,7 @@ In general, media may be *dispersive* (dependent on the frequency), *lossy* (abs
 
 A radical simplification[^7] of Maxwell's equations can be achieved by assuming that the material is both *linear* and *isotropic* \[[6](#references) (ch. 1.1.2), [7](#references) (ch. 2.3), [8](#references) (ch. 2.3), [9](#references) (ch. 2.1)\]:
 
-[^7]: We would like to stress that Equations 4.2-4.3 make a big assumption that is not appropriate for certain types of real materials. For instance, [crystals](https://en.wikipedia.org/wiki/Crystal) have a well-defined [internal structure](https://en.wikipedia.org/wiki/Crystal_structure) which makes them inherently anisotropic \[[5](#references) (vol. II, ch. 30)\]. Since our application is primarily concerned with simple fluids, the assumption of a linear, isotropic material is valid, and offers significant theoretical advantages (such as simplicity). However, this assumption is potentially not suitable for a more general application.
+[^7]: Equations 4.2-4.3 make a big assumption that is not appropriate for certain types of real materials. For instance, [crystals](https://en.wikipedia.org/wiki/Crystal) have a well-defined [internal structure](https://en.wikipedia.org/wiki/Crystal_structure) which makes them inherently anisotropic \[[5](#references) (vol. II, ch. 30)\]. Since our application is primarily concerned with simple fluids, a linear, isotropic material is reasonable assumption that offers significant theoretical advantages (such as simplicity). However, this assumption is potentially not suitable for a more general application  \[[6](#references) (ch. 2)\].
 
 $$ \tag{4.2}
 \begin{aligned}
