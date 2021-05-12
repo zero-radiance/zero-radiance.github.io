@@ -33,13 +33,13 @@ You may wonder why we have to use *wave optics*. One of the reasons is that *geo
 
 It is not expected that you understand the prior statement fully before reading the rest of the article. However, it should (hopefully) encourage you to learn a little bit about wave optics. A modest introduction is given below.
 
-## Maxwell's Equations in the Time Domain
+## Maxwell Equations in the Time Domain
 
 At the fundamental level, optics is built on the theory of fields. What is a field? A *field* is a [mathematical](https://en.wikipedia.org/wiki/Field_(mathematics)) construct; it is a function defined for all points in space \\(\bm{r}\\) and time \\(t\\). In [physics](https://en.wikipedia.org/wiki/Field_(physics)), a typical field has a source, contains energy, and exerts a force.
 
 Since we are primarily concerned with electromagnetic radiation, we shall focus our attention on two real vector fields: the [electric field](https://en.wikipedia.org/wiki/Electric_field) \\(\bm{E}\\) and the [magnetic field](https://en.wikipedia.org/wiki/Magnetic_field#The_B-field) \\(\bm{B}\\).
 
-They satisfy the differential form of [Maxwell's equations](https://en.wikipedia.org/wiki/Maxwell%27s_equations#Formulation_in_SI_units_convention) \[[5](#references) (vol. II, ch. 18), [6](#references) (ch. 2.1)\]:
+They satisfy the differential form of [Maxwell equations](https://en.wikipedia.org/wiki/Maxwell%27s_equations#Formulation_in_SI_units_convention) \[[5](#references) (vol. II, ch. 18), [6](#references) (ch. 2.1)\]:
 
 $$ \tag{1.1}
 \begin{aligned}
@@ -94,7 +94,7 @@ $$
 
 This [continuity equation](https://en.wikipedia.org/wiki/Continuity_equation) shows that a reduction of the charge density can be observed if the charges are carried away by a current.
 
-Sometimes, Equations 1.1 are referred to as the "vacuum version" of Maxwell's equations. This name can be a little misleading; in fact, the matter is right there - it is just represented as a distribution of charged [elementary particles](https://en.wikipedia.org/wiki/Elementary_particle) by the *volume* [charge density](https://en.wikipedia.org/wiki/Charge_density) \\(\rho\\), such that the total amount of charge \\(Q\\) inside the volume \\(V\\) is
+Sometimes, Equations 1.1 are referred to as the "vacuum version" of Maxwell equations. This name can be a little misleading; in fact, the matter is right there - it is just represented as a distribution of charged [elementary particles](https://en.wikipedia.org/wiki/Elementary_particle) by the *volume* [charge density](https://en.wikipedia.org/wiki/Charge_density) \\(\rho\\), such that the total amount of charge \\(Q\\) inside the volume \\(V\\) is
 
 $$ \tag{1.6}
 	Q(t) = \iiint\_{V} \rho(\bm{r}, t) \thinspace dV.
@@ -144,7 +144,7 @@ $$ \tag{1.11}
 	\bm{H}(\bm{r}, t) = \mu\_0^{-1} \bm{B}(\bm{r}, t) - \bm{M}(\bm{r}, t),
 $$
 
-substitute them into Equations 1.10.1-1.10.2, and group the resulting expressions with Equations 1.1.1-1.1.2, we obtain the [macroscopic formulation](https://en.wikipedia.org/wiki/Maxwell%27s_equations#Macroscopic_formulation) of Maxwell's equations \[[6](#references) (ch. 1.1.1), [7](#references) (ch. 2.1), [8](#references) (ch. 2.1), [9](#references) (ch. 2.1)\]:
+substitute them into Equations 1.10.1-1.10.2, and group the resulting expressions with Equations 1.1.1-1.1.2, we obtain the [macroscopic formulation](https://en.wikipedia.org/wiki/Maxwell%27s_equations#Macroscopic_formulation) of Maxwell equations \[[6](#references) (ch. 1.1.1), [7](#references) (ch. 2.1), [8](#references) (ch. 2.1), [9](#references) (ch. 2.1)\]:
 
 $$ \tag{1.12}
 \begin{aligned}
@@ -179,11 +179,11 @@ In addition to the boundary conditions, the law of [conservation of energy](http
 
 - the [Sommerfeld radiation condition](https://en.wikipedia.org/wiki/Sommerfeld_radiation_condition) prohibits the existence of sinks collecting an infinite amount of energy arriving from infinity - these sinks must be sources instead.
 
-We take Maxwell's equations as axioms, and use them as a foundation on which we base the theory presented in the following sections.
+We take Maxwell equations as axioms, and use them as a foundation on which we base the theory presented in the following sections.
 
-## Maxwell's Equations in the Frequency Domain
+## Maxwell Equations in the Frequency Domain
 
-Maxwell's equations can be simplified by transforming the fields from the time to the frequency domain.
+Maxwell equations can be simplified by transforming the fields from the time to the frequency domain.
 
 Define[^1] the [Fourier transform](https://en.wikipedia.org/wiki/Fourier_transform) of the electric vector field \\(\bm{E}(\bm{r}, t)\\) as
 
@@ -235,7 +235,7 @@ $$ \tag{2.5}
 	= 2 r \cos{ \theta}.
 $$
 
-We can define the integral forms of the fields by replacing \\(\bm{E}\\) by \\(\bm{B}\\), \\(\bm{D}\\), \\(\bm{H}\\), \\(\bm{J\_f}\\) or \\(\rho\_f\\) in Equation 2.4. If we substitute these integrals into Equations 1.12, and if we assume that we can perform [differentiation under the integral sign](https://en.wikipedia.org/wiki/Leibniz_integral_rule), the result is the system of integral equations
+We can define the integral forms of the fields by replacing \\(\bm{E}\\) by \\(\bm{B}\\), \\(\bm{D}\\), \\(\bm{H}\\), \\(\bm{J\_f}\\) or \\(\rho\_f\\) in Equation 2.4. If we substitute these integrals into Equations 1.12 and apply the [Leibniz rule](https://en.wikipedia.org/wiki/Leibniz_integral_rule), the result is the system of integral equations
 
 $$ \tag{2.6}
 \begin{aligned}
@@ -342,7 +342,7 @@ $$ \tag{2.15}
 \end{aligned}
 $$
 
-Performing differentiation with respect to time and division by the pervasive \\(e^{i \omega_p t}\\) factor yields Maxwell's equations for time-harmonic fields \[[7](#references) (ch. 2.4), [8](#references) (ch. 2.2), [9](#references) (ch. 2.3)\]:
+Performing differentiation with respect to time and division by the pervasive \\(e^{i \omega_p t}\\) factor yields Maxwell equations for time-harmonic fields \[[7](#references) (ch. 2.4), [8](#references) (ch. 2.2), [9](#references) (ch. 2.3)\]:
 
 $$ \tag{2.16}
 \begin{aligned}
@@ -364,7 +364,7 @@ $$ \tag{2.17}
 \end{aligned}
 $$
 
-An interesting consequence of the time-harmonic assumption is the reduction in the number of independent Maxwell's equations from 4 to 2. Since the [divergence of curl](https://en.wikipedia.org/wiki/Vector_calculus_identities#Divergence_of_curl_is_zero) is zero, the divergence of Equations 2.17.1 and 2.17.3 (on the left) is mathematically identical to Equations 2.17.2 and 2.17.4 (on the right), respectively.
+An interesting consequence of the time-harmonic assumption is the reduction in the number of independent Maxwell equations from 4 to 2. Since the [divergence of curl](https://en.wikipedia.org/wiki/Vector_calculus_identities#Divergence_of_curl_is_zero) is zero, the divergence of Equations 2.17.1 and 2.17.3 (on the left) is mathematically identical to Equations 2.17.2 and 2.17.4 (on the right), respectively.
 
 Using this method, we can also obtain the expression of [conservation of charge](https://en.wikipedia.org/wiki/Charge_conservation):
 
@@ -437,7 +437,7 @@ $$ \tag{3.6}
 	\iiint\_{V} \bm{E}(\bm{r}, t) \cdot \bm{J}(\bm{r}, t) \thinspace dV.
 $$
 
-Maxwell's equations allow us to relate a current to the generated fields. Substitution of Equation 1.1.3 yields
+Maxwell equations allow us to relate a current to the generated fields. Substitution of Equation 1.1.3 yields
 
 $$ \tag{3.7}
 	\iiint\_{V} \bm{E} \cdot \bm{J} \thinspace dV = 
@@ -459,7 +459,7 @@ $$ \tag{3.9}
 	\epsilon\_0 \bm{E} \cdot \frac{\partial \bm{E}}{\partial t}.
 $$
 
-The curl of \\(\bm{E}\\) is also given by Maxwell's equations (see Equation 1.1.1). Then it follows that
+The curl of \\(\bm{E}\\) is also given by Maxwell equations (see Equation 1.1.1). Then it follows that
 
 $$ \tag{3.10}
 	\bm{E} \cdot \bm{J} = 
@@ -542,7 +542,7 @@ $$
 
 is the amount of energy per second per unit area that flows through a surface with the normal \\(\bm{n}\\). That is the definition of [irradiance](https://en.wikipedia.org/wiki/Irradiance) \\(\mathtt{E}\\).
 
-If we solve Maxwell's equations in the frequency domain, we may be interested in the spectral composition of the Poynting vector. Assuming that the electromagnetic field is time-harmonic, Equation 3.17 can be written as
+If we solve Maxwell equations in the frequency domain, we may be interested in the spectral composition of the Poynting vector. Assuming that the electromagnetic field is time-harmonic, Equation 3.17 can be written as
 
 $$ \tag{3.20}
 \begin{aligned}
@@ -644,7 +644,7 @@ Having defined both irradiance and spectral irradiance, we can compute all other
 
 ## Constitutive Relations
 
-Considered in isolation, Maxwell's equations in the frequency domain is an [undetermined system](https://en.wikipedia.org/wiki/Underdetermined_system) - it has fewer equations than unknowns. This makes it necessary to specify the way the material responds to the applied electromagnetic field. Such assumptions about the material are called the *material equations*, or the [constitutive relations](https://en.wikipedia.org/wiki/Constitutive_equation#Electromagnetism).
+Considered in isolation, Maxwell equations in the frequency domain is an [undetermined system](https://en.wikipedia.org/wiki/Underdetermined_system) - it has fewer equations than unknowns. This makes it necessary to specify the way the material responds to the applied electromagnetic field. Such assumptions about the material are called the *material equations*, or the [constitutive relations](https://en.wikipedia.org/wiki/Constitutive_equation#Electromagnetism).
 
 The simplest way is to assume that the material responds to weak electromagnetic fields in an approximately linear manner[^6]. Under this assumption, we may express \\(\bm{D}\\) and \\(\bm{H}\\) as [bilinear](https://en.wikipedia.org/wiki/Bilinear_map) functions of \\(\bm{E}\\) and \\(\bm{B}\\) \[[8](#references) (ch. 8.22), [10](#references)\]:
 
@@ -667,7 +667,7 @@ $$
 
 In general, media may be *dispersive* (dependent on the frequency), *lossy* (absorptive), and *anisotropic* (dependent on the orientation). This implies that each matrix entry \\(\bm{c_{ij}}\\) is a complex [tensor field](https://en.wikipedia.org/wiki/Tensor#Tensor_fields) that can be represented by a 3x3 matrix.
 
-A radical simplification[^7] of Maxwell's equations can be achieved by assuming that the material is both *linear* and *isotropic* \[[6](#references) (ch. 1.1.2), [7](#references) (ch. 2.3), [8](#references) (ch. 2.3), [9](#references) (ch. 2.1)\]:
+A radical simplification[^7] of Maxwell equations can be achieved by assuming that the material is both *linear* and *isotropic* \[[6](#references) (ch. 1.1.2), [7](#references) (ch. 2.3), [8](#references) (ch. 2.3), [9](#references) (ch. 2.1)\]:
 
 [^7]: Equations 4.2-4.3 make a big assumption that is not appropriate for certain types of real materials. For instance, [crystals](https://en.wikipedia.org/wiki/Crystal) have a well-defined [internal structure](https://en.wikipedia.org/wiki/Crystal_structure) which makes them inherently anisotropic \[[5](#references) (vol. II, ch. 30)\]. Since our application is primarily concerned with simple fluids, a linear, isotropic material is reasonable assumption that offers significant theoretical advantages (such as simplicity). However, this assumption is potentially not suitable for a more general application  \[[6](#references) (ch. 2)\].
 
@@ -687,7 +687,7 @@ $$ \tag{4.3}
 	\rho\_i(\bm{r}) \approx \frac{i}{\omega} \nabla \cdot \big( \sigma(\bm{r}, \omega) \bm{E}(\bm{r}) \big).
 $$
 
-If the constitutive relations hold, Maxwell's equations for time-harmonic fields take the following form:
+If the constitutive relations hold, Maxwell equations for time-harmonic fields take the following form:
 
 $$ \tag{4.4}
 \begin{aligned}
@@ -705,7 +705,7 @@ $$ \tag{4.5}
 	\varepsilon(\bm{r}, \omega) = \epsilon(\bm{r}, \omega) - \frac{i}{\omega} \sigma(\bm{r}, \omega),
 $$
 
-we obtain Maxwell's equations for *linear, isotropic* media:
+we obtain Maxwell equations for *linear, isotropic* media:
 
 $$ \tag{4.6}
 \begin{aligned}
@@ -716,9 +716,9 @@ $$ \tag{4.6}
 \end{aligned}
 $$
 
-## Helmholtz's Equation
+## Helmholtz Equation
 
-Consider a region of space without any source currents or charges. Physically, this means that there are no sources of fields in this region; but it doesn't mean the field contains no energy. The idea is to explore all solutions of Maxwell's equations (we can pick a particular solution once we specify the source or the boundary conditions), and determine how these solutions evolve over time.
+Consider a region of space without any source currents or charges. Physically, this means that there are no sources of fields in this region; but it doesn't mean the field contains no energy. The idea is to explore all solutions of Maxwell equations (we can pick a particular solution once we specify the source or the boundary conditions), and determine how these solutions evolve over time.
 
 Setting \\(\bm{J\_s} = \rho\_s = 0\\) in Equations 4.6, we obtain a coupled system of first-order linear homogeneous [partial differential equations](https://en.wikipedia.org/wiki/Partial_differential_equation):
 
@@ -808,7 +808,7 @@ $$ \tag{5.10}
 	k(\omega) = \omega \sqrt{\mu(\omega) \varepsilon(\omega)},
 $$
 
-we can separate the *vector* Equation 5.8 into three *scalar* [Helmholtz's equations](https://en.wikipedia.org/wiki/Helmholtz_equation):
+we can separate the *vector* Equation 5.8 into three *homogeneous* [Helmholtz equations](https://en.wikipedia.org/wiki/Helmholtz_equation):
 
 $$ \tag{5.11}
 \begin{aligned}
@@ -818,7 +818,7 @@ $$ \tag{5.11}
 \end{aligned}
 $$
 
-To find a solution, let us first consider a simpler one-dimensional Helmholtz's equation
+To find a solution, let us first consider a simpler one-dimensional Helmholtz equation
 
 $$ \tag{5.12}
 	\frac{d^2 s(x)}{d x^2} = -k^2 s(x).
@@ -842,7 +842,7 @@ $$
 
 is a valid solution for a certain value of \\(\bm{n}\\). To avoid clutter, we shall adhere to a common convention with the negative sign; the positive solution can be obtained by reversing the direction of \\(\bm{n}\\).
 
-How should we choose the direction of \\(\bm{n}\\)? It depends on the location of sources and optical interfaces. In general, we can use *any* value of \\(\bm{n}\\). And, since the Helmholtz equation is both linear and homogeneous, we can actually use *every* value of \\(\bm{n}\\) by invoking the [superposition principle](https://en.wikipedia.org/wiki/Superposition_principle). Thus the general solution is an integral taken over the surface of the unit sphere \\(\mathbb{S}^2\\) [measured](https://en.wikipedia.org/wiki/Lebesgue_integration#Construction) by the [solid angle](https://en.wikipedia.org/wiki/Solid_angle) \\(d\Omega\_n\\):
+How should we choose the direction of \\(\bm{n}\\)? It depends on the location of sources and optical interfaces. In general, we can use *any* value of \\(\bm{n}\\). And, since the Helmholtz equation is both linear and homogeneous, we can actually use *every* value of \\(\bm{n}\\) by invoking the [superposition principle](https://en.wikipedia.org/wiki/Superposition_principle). Thus the general solution is an integral taken over the surface of the unit sphere \\(\mathbb{S^2}\\) [measured](https://en.wikipedia.org/wiki/Lebesgue_integration#Construction) by the [solid angle](https://en.wikipedia.org/wiki/Solid_angle) \\(d\Omega\_n\\):
 
 $$ \tag{5.15}
 	s(\bm{r}) =
@@ -858,11 +858,11 @@ $$ \tag{5.16}
 	\oiint\_{\mathbb{S}^2} \bm{E}(0, \bm{n}) e^{-i k(\omega) (\bm{r} \cdot \bm{n})} d\Omega\_n.
 $$
 
-That is a solution of Maxwell's equations in the frequency domain.
+That is a solution of Maxwell equations in the frequency domain.
 
 ## Plane Waves
 
-We can find a solution of Maxwell's equations in the time domain by substituting Equation 5.16 into 2.11:
+We can find a solution of Maxwell equations in the time domain by substituting Equation 5.16 into 2.11:
 
 $$ \tag{6.1}
 \begin{aligned}
@@ -996,7 +996,7 @@ On the other hand, \\(\kappa > 0\\) produces an exponential decay characteristic
 
 [Insert Picture Here]
 
-It's easy to show that, for linear, isotropic media, the field vectors oscillate in the plane of the wave. Maxwell's equations (c.f. Equation 5.1) tell us that, in the absence of sources,
+It's easy to show that, for linear, isotropic media, the field vectors oscillate in the plane of the wave. Maxwell equations (c.f. Equation 5.1) tell us that, in the absence of sources,
 
 $$ \tag{6.15}
 	\nabla \cdot \bm{B}(\bm{r}) = 0, \quad
@@ -1134,9 +1134,9 @@ $$
 
 ## Electromagnetic Potential
 
-The solutions of Maxwell's equations we have found so far have a limited range of validity. The medium must be both isotropic and homogeneous (or divided into several bounded homogeneous regions), and the material's response to the incident electromagnetic field may only be purely linear. Moreover, while the method of solving a system of differential equations augmented with boundary conditions (the so-called [boundary value problem](https://en.wikipedia.org/wiki/Boundary_value_problem)) is appropriate for many simple cases (such as reflection and transmission of a plane wave at a planar interface, which leads to [Fresnel equations](https://en.wikipedia.org/wiki/Fresnel_equations)), it quickly becomes unwieldy for more complex problems. Another approach tends to become more viable, where one reformulates the field in terms of the [electromagnetic potential](https://en.wikipedia.org/wiki/Electromagnetic_four-potential), which leads to an integral (rather than a differential) solution of Maxwell's equations.
+The solutions of Maxwell equations we have found so far have a limited range of validity. The medium must be both isotropic and homogeneous (or divided into several bounded homogeneous regions), and the material's response to the incident electromagnetic field may only be purely linear. Moreover, while the method of solving a system of differential equations augmented with boundary conditions (the so-called [boundary value problem](https://en.wikipedia.org/wiki/Boundary_value_problem)) is appropriate for many simple cases (such as reflection and transmission of a plane wave at a planar interface, which leads to [Fresnel equations](https://en.wikipedia.org/wiki/Fresnel_equations)), it quickly becomes unwieldy for more complex problems. Another approach tends to become more viable, where one reformulates the field in terms of the [electromagnetic potential](https://en.wikipedia.org/wiki/Electromagnetic_four-potential), which leads to an integral (rather than a differential) solution of Maxwell equations.
 
-Take another look at Maxwell's equations. Since the [divergence of curl](https://en.wikipedia.org/wiki/Vector_calculus_identities#Divergence_of_curl_is_zero) is zero, Equation 1.1.2 can be written as
+Take another look at Maxwell equations. Since the [divergence of curl](https://en.wikipedia.org/wiki/Vector_calculus_identities#Divergence_of_curl_is_zero) is zero, Equation 1.1.2 can be written as
 
 $$ \tag{7.1}
 	\nabla \cdot \bm{B}(\bm{r}, t) = \nabla \cdot \big( \nabla \times \bm{A}(\bm{r}, t) \big) = 0,
@@ -1220,7 +1220,7 @@ $$ \tag{7.11}
 \end{aligned}
 $$
 
-Let us justify our choice of the gauge transformation by expressing Maxwell's equations in terms of the electromagnetic potential. Begin by substituting Equations 7.4 into 1.1.3-1.1.4:
+Let us justify our choice of the gauge transformation by expressing Maxwell equations in terms of the electromagnetic potential. Begin by substituting Equations 7.4 into 1.1.3-1.1.4:
 
 $$ \tag{7.12}
 \begin{aligned}
@@ -1254,7 +1254,7 @@ $$ \tag{7.15}
 	= -\frac{\bm{J}(\bm{r}, t)}{\epsilon\_0 c^2}.
 $$
 
-Putting it all together, the formulation of Maxwell's equations in terms of the electromagnetic potential results in an decoupled system of partial differential equations:
+Putting it all together, the formulation of Maxwell equations in terms of the electromagnetic potential results in an decoupled system of partial differential equations:
 
 $$ \tag{7.16}
 \begin{aligned}
