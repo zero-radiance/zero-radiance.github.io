@@ -887,7 +887,7 @@ $$ \tag{6.3}
 	= E(0, \bm{n}) e^{-i k(\omega) (\bm{r} \cdot \bm{n})} e^{i \omega t}
 $$
 
-expressed in terms the complex [wave number](https://en.wikipedia.org/wiki/Wavenumber)
+expressed in terms the *complex* [wave number](https://en.wikipedia.org/wiki/Wavenumber#Complex)
 
 $$ \tag{6.4}
 	k(\omega) = \omega \sqrt{\varepsilon(\omega) \mu(\omega)}.
@@ -902,12 +902,13 @@ $$ \tag{6.5}
 	\mu\_r(\omega) = \frac{\mu(\omega)}{\mu\_0},
 $$
 
-the square root of Equation 6.4 can be expressed as
+the complex wave number can be expressed as
 
 $$ \tag{6.6}
-	\sqrt{\varepsilon(\omega) \mu(\omega)} =
-	\sqrt{\epsilon\_0 \mu\_0} \sqrt{\varepsilon\_r(\omega) \mu\_r(\omega)} =
-	\frac{1}{c} \sqrt{\varepsilon\_r(\omega) \mu\_r(\omega)}.
+	k(\omega) =
+	\omega \sqrt{\varepsilon(\omega) \mu(\omega)} =
+	\omega \sqrt{\epsilon\_0 \mu\_0} \sqrt{\varepsilon\_r(\omega) \mu\_r(\omega)} =
+	\frac{\omega}{c} \sqrt{\varepsilon\_r(\omega) \mu\_r(\omega)}.
 $$
 
 It is convenient to use a parametrization that does not involve taking a square root. Thus, we define two positive real numbers, the [refractive index](https://en.wikipedia.org/wiki/Refractive_index) \\(\eta\\) and the [attenuation index](https://en.wikipedia.org/wiki/Refractive_index#Complex_refractive_index) \\(\kappa\\) \[[6](#references) (ch. 14.1), [8](#references) (ch. 2.3), [9](#references) (ch. 3.1)\], by
@@ -929,7 +930,7 @@ which gives an approximate mapping between the optical and the physical paramete
 
 [^10]: Keep in mind that, in general, the permittivity, permeability, and conductivity are complex.
 
-A combination of Equations 6.4-6.7 produces the [dispersion relation](https://en.wikipedia.org/wiki/Dispersion_relation)
+A combination of Equations 6.6-6.7 produces the [dispersion relation](https://en.wikipedia.org/wiki/Dispersion_relation)
 
 $$ \tag{6.9}
 	k(\omega)
@@ -1278,7 +1279,7 @@ $$
 
 In this context, \\(\xi\\) is a *source function*, \\(\psi\\) is a *wave function*, and \\(c\\) is the *velocity* of the waves.
 
-Just as before, the problem is simpler in the frequency domain:
+Just as before, the problem becomes simpler in the frequency domain:
 
 $$ \tag{8.2}
 	\int\_{-\infin}^{\infin} \nabla^2 \psi(\bm{r}, \omega) e^{i \omega t} d\omega
@@ -1289,10 +1290,12 @@ $$
 After invoking the time-harmonic assumption, the integral sign vanishes, and we are left with
 
 $$ \tag{8.3}
-	\Bigg( \nabla^2 + \frac{\omega^2}{c^2} \Bigg) \psi(\bm{r}) = -\xi(\bm{r}),
+	\big( \nabla^2 + k_0^2 \big) \psi(\bm{r}) = -\xi(\bm{r}),
 $$
 
-which is an *inhomogeneous* [Helmholtz equation](https://en.wikipedia.org/wiki/Helmholtz_equation#Inhomogeneous_Helmholtz_equation). Unfortunately, unlike its homogeneous counterpart (Equation 5.11), this one does not have a [closed-form](https://en.wikipedia.org/wiki/Closed-form_expression) solution. Yet, we can still solve it analytically using a neat mathematical trick.
+which is an *inhomogeneous* [Helmholtz equation](https://en.wikipedia.org/wiki/Helmholtz_equation#Inhomogeneous_Helmholtz_equation), where \\(k_0 = \omega / c\\) is the *free-space* [wave number](https://en.wikipedia.org/wiki/Wavenumber).
+
+Unfortunately, unlike its homogeneous counterpart (Equation 5.11), Equation 8.3 does not have a [closed-form](https://en.wikipedia.org/wiki/Closed-form_expression) solution. Yet, we can still solve it analytically using a neat mathematical trick.
 
 Use the [sifting property](https://en.wikipedia.org/wiki/Dirac_delta_function#Translation) of the Dirac delta function to express the source function
 
@@ -1305,28 +1308,34 @@ as a volume integral taken over the whole real space.
 While the resulting Helmholtz equation
 
 $$ \tag{8.5}
-	\Bigg( \nabla^2 + \frac{\omega^2}{c^2} \Bigg) \psi(\bm{r}) = -\iiint\_{\mathbb{R^3}} \xi(\bm{r'}) \delta(\bm{r} - \bm{r'}) dV',
+	\big( \nabla^2 + k_0^2 \big) \psi(\bm{r}) = -\iiint\_{\mathbb{R^3}} \xi(\bm{r'}) \delta(\bm{r} - \bm{r'}) dV',
 $$
 
 does not appear to be simpler, it turns out that we can easily solve the Helmholtz equation for a point source
 
 $$ \tag{8.6}
-	\Bigg( \nabla^2 + \frac{\omega^2}{c^2} \Bigg) g(\bm{r}, \bm{r'}) = -\delta(\bm{r} - \bm{r'}).
+	\big( \nabla^2 + k^2 \big) g(\bm{r}, \bm{r'}) = -\delta(\bm{r} - \bm{r'}).
 $$
 
-Its solution is the *scalar* [Green function](https://en.wikipedia.org/wiki/Green%27s_function) \\(g\\).
+Its solution is the *scalar* [Green function](https://en.wikipedia.org/wiki/Green%27s_function) \\(g\\). In general, the expression of the Green function depends on the definition of the Dirac delta function, which includes the domain and the boundary conditions. Since our domain is the whole real space, and the only relevant restriction is the Sommerfeld radiation condition, the *free-space* scalar Green function \\(g_0\\) takes the form of an expanding *spherical wave*:
+
+$$ \tag{8.7}
+	g_0(\bm{r}, \bm{r'}) = \frac{e^{i k_0 |\bm{r} - \bm{r'}|}}{4 \pi |\bm{r} - \bm{r'}|}.
+$$
 
 Note that the Laplacian operates on \\(\bm{r}\\) rather than \\(\bm{r'}\\). Keeping that in mind, take the volume integral
 
-$$ \tag{8.7}
-	\Bigg( \nabla^2 + \frac{\omega^2}{c^2} \Bigg) \iiint\_{\mathbb{R^3}} \xi(\bm{r'}) g(\bm{r}, \bm{r'}) dV'
+$$ \tag{8.8}
+	\big( \nabla^2 + k_0^2 \big) \iiint\_{\mathbb{R^3}} \xi(\bm{r'}) g_0(\bm{r}, \bm{r'}) dV'
 	= -\xi(\bm{r}),
 $$
 
 and compare the result to Equation 8.3. We see that we have found our solution:
 
-$$ \tag{8.8}
-	\psi(\bm{r}) = \iiint\_{\mathbb{R^3}} \xi(\bm{r'}) g(\bm{r}, \bm{r'}) dV'.
+$$ \tag{8.9}
+	\psi(\bm{r}) =
+	\iiint\_{\mathbb{R^3}} \xi(\bm{r'}) g_0(\bm{r}, \bm{r'}) dV' =
+	\iiint\_{\mathbb{R^3}} \frac{\xi(\bm{r'}) e^{i k_0 |\bm{r} - \bm{r'}|}}{4 \pi |\bm{r} - \bm{r'}|} dV'.
 $$
 
 
