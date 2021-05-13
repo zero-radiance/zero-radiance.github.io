@@ -1267,6 +1267,69 @@ $$ \tag{7.16}
 \end{aligned}
 $$
 
+## Green Functions
+
+Compare Equation 7.16.3 to a single component of Equation 7.16.1 in a Cartesian coordinate system. Both have the same form
+
+$$ \tag{8.1}
+	\nabla^2 \psi(\bm{r}, t) - \frac{1}{c^2} \frac{\partial^2}{\partial t^2} \psi(\bm{r}, t)
+	= -\xi(\bm{r}, t).
+$$
+
+In this context, \\(\xi\\) is a *source function*, \\(\psi\\) is a *wave function*, and \\(c\\) is the *velocity* of the waves.
+
+Just as before, the problem is simpler in the frequency domain:
+
+$$ \tag{8.2}
+	\int\_{-\infin}^{\infin} \nabla^2 \psi(\bm{r}, \omega) e^{i \omega t} d\omega
+	- \frac{1}{c^2} \int\_{-\infin}^{\infin} \frac{\partial^2}{\partial t^2} \big( \psi(\bm{r}, \omega) e^{i \omega t} \big) d\omega
+	= -\int\_{-\infin}^{\infin} \xi(\bm{r}, \omega) e^{i \omega t} d\omega.
+$$
+
+After invoking the time-harmonic assumption, the integral sign vanishes, and we are left with
+
+$$ \tag{8.3}
+	\Bigg( \nabla^2 + \frac{\omega^2}{c^2} \Bigg) \psi(\bm{r}) = -\xi(\bm{r}),
+$$
+
+which is an *inhomogeneous* [Helmholtz equation](https://en.wikipedia.org/wiki/Helmholtz_equation#Inhomogeneous_Helmholtz_equation). Unfortunately, unlike its homogeneous counterpart (Equation 5.11), this one does not have a [closed-form](https://en.wikipedia.org/wiki/Closed-form_expression) solution. Yet, we can still solve it analytically using a neat mathematical trick.
+
+Use the [sifting property](https://en.wikipedia.org/wiki/Dirac_delta_function#Translation) of the Dirac delta function to express the source function
+
+$$ \tag{8.4}
+	\xi(\bm{r}) = \iiint\_{\mathbb{R^3}} \xi(\bm{r'}) \delta(\bm{r} - \bm{r'}) dV'
+$$
+
+as a volume integral taken over the whole real space.
+
+While the resulting Helmholtz equation
+
+$$ \tag{8.5}
+	\Bigg( \nabla^2 + \frac{\omega^2}{c^2} \Bigg) \psi(\bm{r}) = -\iiint\_{\mathbb{R^3}} \xi(\bm{r'}) \delta(\bm{r} - \bm{r'}) dV',
+$$
+
+does not appear to be simpler, it turns out that we can easily solve the Helmholtz equation for a point source
+
+$$ \tag{8.6}
+	\Bigg( \nabla^2 + \frac{\omega^2}{c^2} \Bigg) g(\bm{r}, \bm{r'}) = -\delta(\bm{r} - \bm{r'}).
+$$
+
+Its solution is the *scalar* [Green function](https://en.wikipedia.org/wiki/Green%27s_function) \\(g\\).
+
+Note that the Laplacian operates on \\(\bm{r}\\) rather than \\(\bm{r'}\\). Keeping that in mind, take the volume integral
+
+$$ \tag{8.7}
+	\Bigg( \nabla^2 + \frac{\omega^2}{c^2} \Bigg) \iiint\_{\mathbb{R^3}} \xi(\bm{r'}) g(\bm{r}, \bm{r'}) dV'
+	= -\xi(\bm{r}),
+$$
+
+and compare the result to Equation 8.3. We see that we have found our solution:
+
+$$ \tag{8.8}
+	\psi(\bm{r}) = \iiint\_{\mathbb{R^3}} \xi(\bm{r'}) g(\bm{r}, \bm{r'}) dV'.
+$$
+
+
 <!--
 ## Polarization of Light
 
