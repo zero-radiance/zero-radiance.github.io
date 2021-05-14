@@ -821,23 +821,23 @@ $$
 To find a solution, let us first consider a simpler 1-dimensional Helmholtz equation
 
 $$ \tag{5.12}
-	\frac{d^2 s(x)}{d x^2} = -k^2 s(x).
+	\frac{d^2 \psi(x)}{d x^2} = -k^2 \psi(x).
 $$
 
 If the derivative of a function is the function itself (times a constant), the function is clearly an exponential:
 
 $$ \tag{5.13}
-	s(x) =
-	s(0) e^{\pm i k x},
+	\psi(x) =
+	\psi(0) e^{\pm i k x},
 $$
 
-where \\(s(0)\\) is a complex constant.
+where \\(\psi(0)\\) is a complex constant.
 
 Extension to 3 dimensions is straightforward. If we rotate the coordinate frame so that the \\(x\\)-axis points along the unit vector \\(\bm{n}\\),
 
 $$ \tag{5.14}
-	s(\bm{r}, \bm{n}) =
-	s(0, \bm{n}) e^{ \pm i k (\bm{r} \cdot \bm{n})}
+	\psi(\bm{r}, \bm{n}) =
+	\psi(0, \bm{n}) e^{ \pm i k (\bm{r} \cdot \bm{n})}
 $$
 
 is a valid solution for a certain value of \\(\bm{n}\\). To avoid clutter, we shall adhere to a common convention with the negative sign; the positive solution can be obtained by reversing the direction of \\(\bm{n}\\).
@@ -845,9 +845,9 @@ is a valid solution for a certain value of \\(\bm{n}\\). To avoid clutter, we sh
 How should we choose the direction of \\(\bm{n}\\)? It depends on the location of sources and optical interfaces. In general, we can use *any* value of \\(\bm{n}\\). And, since the Helmholtz equation is both linear and homogeneous, we can actually use *every* value of \\(\bm{n}\\) by invoking the [superposition principle](https://en.wikipedia.org/wiki/Superposition_principle). Thus the general solution is an integral taken over the surface of the unit sphere \\(\mathbb{S^2}\\) [measured](https://en.wikipedia.org/wiki/Lebesgue_integration#Construction) by the [solid angle](https://en.wikipedia.org/wiki/Solid_angle) \\(d\Omega\_n\\):
 
 $$ \tag{5.15}
-	s(\bm{r}) =
-	\oiint\_{\mathbb{S}^2} s(\bm{r}, \bm{n}) \thinspace d\Omega\_n =
-	\oiint\_{\mathbb{S}^2} s(0, \bm{n}) e^{-i k (\bm{r} \cdot \bm{n})} d\Omega\_n.
+	\psi(\bm{r}) =
+	\oiint\_{\mathbb{S}^2} \psi(\bm{r}, \bm{n}) \thinspace d\Omega\_n =
+	\oiint\_{\mathbb{S}^2} \psi(0, \bm{n}) e^{-i k (\bm{r} \cdot \bm{n})} d\Omega\_n.
 $$
 
 Equation 5.15 can be used to solve Equations 5.11 and 5.8:
@@ -1290,12 +1290,12 @@ $$
 After invoking the time-harmonic assumption, the integral sign vanishes, and we are left with
 
 $$ \tag{8.3}
-	\big( \nabla^2 + k_0^2 \big) \psi(\bm{r}) = \xi(\bm{r}),
+	\big( \nabla^2 + k_0^2(\omega) \big) \psi(\bm{r}) = \xi(\bm{r}),
 $$
 
 which is an *inhomogeneous* [Helmholtz equation](https://en.wikipedia.org/wiki/Helmholtz_equation#Inhomogeneous_Helmholtz_equation), where \\(k_0 = \omega / c\\) is the *free-space* [wave number](https://en.wikipedia.org/wiki/Wavenumber).
 
-\\(\big( \nabla^2 + k_0^2 \big)\\) is called a Helmholtz operator, and it is a linear operator in 3 dimensions. Therefore, Equation 8.3 represents a linear transformation
+\\(\big( \nabla^2 + k_0^2(\omega) \big)\\) is called a Helmholtz operator, and it is a linear operator in 3 dimensions. Therefore, Equation 8.3 represents a linear transformation
 
 $$ \tag{8.4}
 	\mathcal{L} \big\lbrace \psi(\bm{r}) \big\rbrace = \xi(\bm{r}).
@@ -1314,7 +1314,7 @@ as a volume integral (a 3-dimensional [convolution](https://en.wikipedia.org/wik
 While the resulting Helmholtz equation
 
 $$ \tag{8.6}
-	\big( \nabla^2 + k_0^2 \big) \psi(\bm{r}) = \iiint\_{\mathbb{R^3}} \xi(\bm{r'}) \delta(\bm{r} - \bm{r'}) dV',
+	\big( \nabla^2 + k_0^2(\omega) \big) \psi(\bm{r}) = \iiint\_{\mathbb{R^3}} \xi(\bm{r'}) \delta(\bm{r} - \bm{r'}) dV',
 $$
 
 does not appear to be simpler, as it turns out, we can easily solve the Helmholtz equation for a point source
@@ -1349,16 +1349,26 @@ $$ \tag{8.11}
 	\psi(\bm{r}) = \iiint\_{\mathbb{R^3}} \xi(\bm{r'}) g_0(\bm{r} - \bm{r'}) dV'.
 $$
 
-Equation 8.11 allows us to find the expressions of both the scalar and the vector potentials in the frequency domain by substituting the charge and the the current densities in place of the source function:
+Equation 8.11 represents a *special* solution of the *inhomogeneous* Helmholtz equation. Since a solution of a *homogeneous* equation doesn't change its right-hand side, due to linearity, we can obtain the *general* solution of Equation 8.3 by adding Equations 5.15 and 8.11:
 
 $$ \tag{8.12}
+	\psi(\bm{r}) 
+	= \oiint\_{\mathbb{S}^2} \psi(0, \bm{n}) e^{-i \omega (\bm{r} \cdot \bm{n}) / c} d\Omega\_n
+	+ \iiint\_{\mathbb{R^3}} -\xi(\bm{r'}) \frac{e^{-i \omega |\bm{r} - \bm{r'}| / c}}{4 \pi |\bm{r} - \bm{r'}|} dV'.
+$$
+
+This equation has a simple optical interpretation: the first integral on the right-hand side can be seen as an *incident* (or externally-generated) wave, and the second term corresponds to a *scattered* (or internally-generated) wave. Both waves propagate at the speed of light.
+
+We can immediately use Equation 8.12 to find the expressions of both the scalar and the vector potentials in the frequency domain by substituting the charge and the the current densities in place of the source function:
+
+$$ \tag{8.13}
 \begin{aligned}
-	&\bm{A}(\bm{r}) =
-	\iiint\_{\mathbb{R^3}} -\frac{\bm{J}(\bm{r'})}{\epsilon\_0 c^2} g_0(\bm{r} - \bm{r'}) dV' =
-	\iiint\_{\mathbb{R^3}} \frac{\bm{J}(\bm{r'})}{\epsilon\_0 c^2} \frac{e^{-i k_0 |\bm{r} - \bm{r'}|}}{4 \pi |\bm{r} - \bm{r'}|} dV', \cr
-	&\phi(\bm{r}) =
-	\iiint\_{\mathbb{R^3}} -\frac{\rho(\bm{r'})}{\epsilon\_0} g_0(\bm{r} - \bm{r'}) dV' =
-	\iiint\_{\mathbb{R^3}} \frac{\rho(\bm{r'})}{\epsilon\_0} \frac{e^{-i k_0 |\bm{r} - \bm{r'}|}}{4 \pi |\bm{r} - \bm{r'}|} dV'.
+	&\bm{A}(\bm{r})
+	= \oiint\_{\mathbb{S}^2} \psi(0, \bm{n}) e^{-i \omega (\bm{r} \cdot \bm{n}) / c} d\Omega\_n
+	+ \iiint\_{\mathbb{R^3}} \frac{\bm{J}(\bm{r'})}{\epsilon\_0 c^2} \frac{e^{-i \omega |\bm{r} - \bm{r'}| / c}}{4 \pi |\bm{r} - \bm{r'}|} dV', \cr
+	&\phi(\bm{r})
+	= \oiint\_{\mathbb{S}^2} \psi(0, \bm{n}) e^{-i \omega (\bm{r} \cdot \bm{n}) / c} d\Omega\_n
+	+ \iiint\_{\mathbb{R^3}} \frac{\rho(\bm{r'})}{\epsilon\_0} \frac{e^{-i \omega |\bm{r} - \bm{r'}| / c}}{4 \pi |\bm{r} - \bm{r'}|} dV'.
 \end{aligned}
 $$
 
