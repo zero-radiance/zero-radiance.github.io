@@ -177,7 +177,7 @@ In addition to the boundary conditions, the law of [conservation of energy](http
 
 - the *edge condition* says that the amount of electromagnetic energy stored near an edge must be finite even if the magnitude of the field at the edge becomes infinite;
 
-- the [Sommerfeld radiation condition](https://en.wikipedia.org/wiki/Sommerfeld_radiation_condition) prohibits the existence of sinks collecting an infinite amount of energy arriving from infinity - these sinks must be sources instead.
+- the [Sommerfeld radiation condition](https://en.wikipedia.org/wiki/Sommerfeld_radiation_condition) prohibits the existence of sinks collecting an infinite amount of energy arriving from infinity - these "infinite" sinks must be "finite" sources instead.
 
 We take the Maxwell equations as axioms, and use them as a foundation on which we base the theory presented in the following sections.
 
@@ -818,7 +818,7 @@ $$ \tag{5.11}
 \end{aligned}
 $$
 
-To find a solution, let us first consider a simpler one-dimensional Helmholtz equation
+To find a solution, let us first consider a simpler 1-dimensional Helmholtz equation
 
 $$ \tag{5.12}
 	\frac{d^2 s(x)}{d x^2} = -k^2 s(x).
@@ -833,7 +833,7 @@ $$
 
 where \\(s(0)\\) is a complex constant.
 
-Extension to three dimensions is straightforward. If we rotate the coordinate frame so that the \\(x\\)-axis points along the unit vector \\(\bm{n}\\),
+Extension to 3 dimensions is straightforward. If we rotate the coordinate frame so that the \\(x\\)-axis points along the unit vector \\(\bm{n}\\),
 
 $$ \tag{5.14}
 	s(\bm{r}, \bm{n}) =
@@ -1274,7 +1274,7 @@ Compare Equation 7.16.3 to a single component of Equation 7.16.1 in a Cartesian 
 
 $$ \tag{8.1}
 	\nabla^2 \psi(\bm{r}, t) - \frac{1}{c^2} \frac{\partial^2}{\partial t^2} \psi(\bm{r}, t)
-	= -\xi(\bm{r}, t).
+	= \xi(\bm{r}, t).
 $$
 
 In this context, \\(\xi\\) is a *source function*, \\(\psi\\) is a *wave function*, and \\(c\\) is the *velocity* of the waves.
@@ -1284,69 +1284,81 @@ Just as before, the problem becomes simpler in the frequency domain:
 $$ \tag{8.2}
 	\int\_{-\infin}^{\infin} \nabla^2 \psi(\bm{r}, \omega) e^{i \omega t} d\omega
 	- \frac{1}{c^2} \int\_{-\infin}^{\infin} \frac{\partial^2}{\partial t^2} \big( \psi(\bm{r}, \omega) e^{i \omega t} \big) d\omega
-	= -\int\_{-\infin}^{\infin} \xi(\bm{r}, \omega) e^{i \omega t} d\omega.
+	= \int\_{-\infin}^{\infin} \xi(\bm{r}, \omega) e^{i \omega t} d\omega.
 $$
 
 After invoking the time-harmonic assumption, the integral sign vanishes, and we are left with
 
 $$ \tag{8.3}
-	\big( \nabla^2 + k_0^2 \big) \psi(\bm{r}) = -\xi(\bm{r}),
+	\big( \nabla^2 + k_0^2 \big) \psi(\bm{r}) = \xi(\bm{r}),
 $$
 
 which is an *inhomogeneous* [Helmholtz equation](https://en.wikipedia.org/wiki/Helmholtz_equation#Inhomogeneous_Helmholtz_equation), where \\(k_0 = \omega / c\\) is the *free-space* [wave number](https://en.wikipedia.org/wiki/Wavenumber).
+
+\\(\big( \nabla^2 + k_0^2 \big)\\) is called a Helmholtz operator, and it is a linear operator in 3 dimensions. Therefore, Equation 8.3 represents a linear transformation
+
+$$ \tag{8.4}
+	\mathcal{L} \big\lbrace \psi(\bm{r}) \big\rbrace = \xi(\bm{r}).
+$$
 
 Unfortunately, unlike its homogeneous counterpart (Equation 5.11), Equation 8.3 does not have a [closed-form](https://en.wikipedia.org/wiki/Closed-form_expression) solution. Yet, we can still solve it analytically using a neat mathematical trick.
 
 Use the [sifting property](https://en.wikipedia.org/wiki/Dirac_delta_function#Translation) of the Dirac delta function to express the source function
 
-$$ \tag{8.4}
+$$ \tag{8.5}
 	\xi(\bm{r}) = \iiint\_{\mathbb{R^3}} \xi(\bm{r'}) \delta(\bm{r} - \bm{r'}) dV'
 $$
 
-as a volume integral (3-dimensional [convolution](https://en.wikipedia.org/wiki/Convolution)) taken over the whole real space.
+as a volume integral (a 3-dimensional [convolution](https://en.wikipedia.org/wiki/Convolution)) taken over the whole real space.
 
 While the resulting Helmholtz equation
 
-$$ \tag{8.5}
-	\big( \nabla^2 + k_0^2 \big) \psi(\bm{r}) = -\iiint\_{\mathbb{R^3}} \xi(\bm{r'}) \delta(\bm{r} - \bm{r'}) dV',
+$$ \tag{8.6}
+	\big( \nabla^2 + k_0^2 \big) \psi(\bm{r}) = \iiint\_{\mathbb{R^3}} \xi(\bm{r'}) \delta(\bm{r} - \bm{r'}) dV',
 $$
 
 does not appear to be simpler, as it turns out, we can easily solve the Helmholtz equation for a point source
 
-$$ \tag{8.6}
-	\big( \nabla^2 + k^2 \big) g(\bm{r} - \bm{r'}) = -\delta(\bm{r} - \bm{r'}).
-$$
-
-Its solution is the *scalar* [Green function](https://en.wikipedia.org/wiki/Green%27s_function) \\(g\\). In general, the expression of the Green function depends on the definition of the Dirac delta function, which includes the domain and the boundary conditions. Since our domain is the whole real space, the only relevant restriction is the Sommerfeld radiation condition, and the *free-space* scalar Green function \\(g_0\\) takes the form of an outgoing *spherical wave* \[[12](#references)\]:
-
 $$ \tag{8.7}
-	g_0(\bm{r} - \bm{r'}) = \frac{e^{i k_0 |\bm{r} - \bm{r'}|}}{4 \pi |\bm{r} - \bm{r'}|}.
+	\mathcal{L} \big\lbrace g(\bm{r}) \big\rbrace = \big( \nabla^2 + k_0^2 \big) g_0(\bm{r}) = \delta(\bm{r}).
 $$
 
-Note that the Laplacian operates on \\(\bm{r}\\) rather than \\(\bm{r'}\\). Keeping that in mind, take the volume integral
+Its solution is the *scalar* [Green function](https://en.wikipedia.org/wiki/Green%27s_function) \\(g\\). It represents an [impulse response](https://en.wikipedia.org/wiki/Impulse_response) of the linear operator \\(\mathcal{L}\\).
+
+Equation 8.7 is an inhomogeneous linear differential equation. Consequently, its solution depends on the linear operator in question, its domain of validity, as well as the initial or boundary conditions. According to Equation 8.5, our domain is the whole real space, and the only (physical) restriction is the Sommerfeld radiation condition. Thus, it can be shown that the *free-space* scalar Green function \\(g_0\\) takes the form of an outgoing scalar *sphere wave* \[[12](#references)\]:
 
 $$ \tag{8.8}
-	\big( \nabla^2 + k_0^2 \big) \iiint\_{\mathbb{R^3}} \xi(\bm{r'}) g_0(\bm{r} - \bm{r'}) dV'
-	= -\xi(\bm{r}),
+	g_0(\bm{r}) = -\frac{e^{-i k_0 |\bm{r}|}}{4 \pi |\bm{r}|}.
+$$
+
+In order to reconcile Equations 8.6 and 8.7, replace \\(\bm{r}\\) with \\(\bm{r} - \bm{r'}\\) and multiply both sides by \\(\xi(\bm{r'})\\):
+
+$$ \tag{8.9}
+	\big( \nabla^2 + k_0^2 \big) \xi(\bm{r'}) g_0(\bm{r} - \bm{r'}) = \xi(\bm{r'}) \delta(\bm{r} - \bm{r'}).
+$$
+
+Note that the Laplacian depends on \\(\bm{r}\\) rather than \\(\bm{r'}\\). Keeping this in mind, take the volume integral
+
+$$ \tag{8.10}
+	\big( \nabla^2 + k_0^2 \big) \iiint\_{\mathbb{R^3}} \xi(\bm{r'}) g_0(\bm{r} - \bm{r'}) dV' = \xi(\bm{r}),
 $$
 
 and compare the result to Equation 8.3. We can see that we have found our solution:
 
-$$ \tag{8.9}
-	\psi(\bm{r}) =
-	\iiint\_{\mathbb{R^3}} \xi(\bm{r'}) g_0(\bm{r} - \bm{r'}) dV'.
+$$ \tag{8.11}
+	\psi(\bm{r}) = \iiint\_{\mathbb{R^3}} \xi(\bm{r'}) g_0(\bm{r} - \bm{r'}) dV'.
 $$
 
-Thus, we can find the expressions of both the scalar and the vector potentials in the frequency domain by substituting the charge and the the current densities in place of the source function in Equation 8.9:
+Equation 8.11 allows us to find the expressions of both the scalar and the vector potentials in the frequency domain by substituting the charge and the the current densities in place of the source function:
 
-$$ \tag{8.10}
+$$ \tag{8.12}
 \begin{aligned}
 	&\bm{A}(\bm{r}) =
-	\iiint\_{\mathbb{R^3}} \frac{\bm{J}(\bm{r'})}{\epsilon\_0 c^2} g_0(\bm{r} - \bm{r'}) dV' =
-	\iiint\_{\mathbb{R^3}} \frac{\bm{J}(\bm{r'})}{\epsilon\_0 c^2} \frac{e^{i k_0 |\bm{r} - \bm{r'}|}}{4 \pi |\bm{r} - \bm{r'}|} dV', \cr
+	\iiint\_{\mathbb{R^3}} -\frac{\bm{J}(\bm{r'})}{\epsilon\_0 c^2} g_0(\bm{r} - \bm{r'}) dV' =
+	\iiint\_{\mathbb{R^3}} \frac{\bm{J}(\bm{r'})}{\epsilon\_0 c^2} \frac{e^{-i k_0 |\bm{r} - \bm{r'}|}}{4 \pi |\bm{r} - \bm{r'}|} dV', \cr
 	&\phi(\bm{r}) =
-	\iiint\_{\mathbb{R^3}} \frac{\rho(\bm{r'})}{\epsilon\_0} g_0(\bm{r} - \bm{r'}) dV' =
-	\iiint\_{\mathbb{R^3}} \frac{\rho(\bm{r'})}{\epsilon\_0} \frac{e^{i k_0 |\bm{r} - \bm{r'}|}}{4 \pi |\bm{r} - \bm{r'}|} dV'.
+	\iiint\_{\mathbb{R^3}} -\frac{\rho(\bm{r'})}{\epsilon\_0} g_0(\bm{r} - \bm{r'}) dV' =
+	\iiint\_{\mathbb{R^3}} \frac{\rho(\bm{r'})}{\epsilon\_0} \frac{e^{-i k_0 |\bm{r} - \bm{r'}|}}{4 \pi |\bm{r} - \bm{r'}|} dV'.
 \end{aligned}
 $$
 
