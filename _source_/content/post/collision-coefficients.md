@@ -1263,7 +1263,7 @@ $$ \tag{7.16}
 	= -\frac{\bm{J}(\bm{r}, t)}{\epsilon\_0 c^2}, &
 	&\bm{B}(\bm{r}, t) = \nabla \times \bm{A}(\bm{r}, t), \cr
 	&\nabla^2 \phi(\bm{r}, t) - \frac{1}{c^2} \frac{\partial^2}{\partial t^2} \phi(\bm{r}, t)
-	= -\frac{\rho(\bm{r}, t)}{\epsilon\_0} &
+	= -\frac{\rho(\bm{r}, t)}{\epsilon\_0}, &
 	&\bm{E}(\bm{r}, t) = -\frac{\partial}{\partial t} \bm{A}(\bm{r}, t) - \nabla \phi(\bm{r}, t).
 \end{aligned}
 $$
@@ -1334,10 +1334,25 @@ and compare the result to Equation 8.3. We can see that we have found our soluti
 
 $$ \tag{8.9}
 	\psi(\bm{r}) =
-	\iiint\_{\mathbb{R^3}} \xi(\bm{r'}) g_0(\bm{r} - \bm{r'}) dV' =
-	\iiint\_{\mathbb{R^3}} \frac{\xi(\bm{r'}) e^{i k_0 |\bm{r} - \bm{r'}|}}{4 \pi |\bm{r} - \bm{r'}|} dV'.
+	\iiint\_{\mathbb{R^3}} \xi(\bm{r'}) g_0(\bm{r} - \bm{r'}) dV'.
 $$
 
+Thus, we can find the expressions of both the scalar and the vector potentials in the frequency domain by substituting the charge and the the current densities in place of the source function in Equation 8.9:
+
+$$ \tag{8.10}
+\begin{aligned}
+	&\bm{A}(\bm{r}) =
+	\iiint\_{\mathbb{R^3}} \frac{\bm{J}(\bm{r'})}{\epsilon\_0 c^2} g_0(\bm{r} - \bm{r'}) dV' =
+	\iiint\_{\mathbb{R^3}} \frac{\bm{J}(\bm{r'})}{\epsilon\_0 c^2} \frac{e^{i k_0 |\bm{r} - \bm{r'}|}}{4 \pi |\bm{r} - \bm{r'}|} dV', \cr
+	&\phi(\bm{r}) =
+	\iiint\_{\mathbb{R^3}} \frac{\rho(\bm{r'})}{\epsilon\_0} g_0(\bm{r} - \bm{r'}) dV' =
+	\iiint\_{\mathbb{R^3}} \frac{\rho(\bm{r'})}{\epsilon\_0} \frac{e^{i k_0 |\bm{r} - \bm{r'}|}}{4 \pi |\bm{r} - \bm{r'}|} dV'.
+\end{aligned}
+$$
+
+The corresponding expressions in the time domain ...
+
+Physical interpretation ...
 
 <!--
 ## Polarization of Light
