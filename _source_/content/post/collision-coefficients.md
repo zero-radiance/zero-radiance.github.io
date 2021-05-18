@@ -577,8 +577,7 @@ $$ \tag{3.21}
 \begin{aligned}
 	\braket{\bm{S}}
 	= \mu\_0^{-1} \sum\_{p = -\infin}^{\infin} \sum\_{q = -\infin}^{\infin}
-	\big( \bm{E_p} e^{i \omega_p t} \big) \times
-	\big[ \bm{B_q} e^{i \omega_q t} \big]^{\*}
+	\bm{E_p} \times \big[ \bm{B_q} \big]^{\*}
 	\Bigg(
 		\frac{1}{T} \int\_{-T/2}^{\thinspace T/2} e^{i (\omega_p - \omega_q) t'} dt'
 	\Bigg).
@@ -591,9 +590,7 @@ $$ \tag{3.22}
 \begin{aligned}
 	\braket{\bm{S}}
 	&=  \mu\_0^{-1} \sum\_{p = -\infin}^{\infin} \sum\_{q = -\infin}^{\infin}
-		\big( \bm{E_p} e^{i \omega_p t} \big) \times
-		\big[ \bm{B_q} e^{i \omega_q t} \big]^{\*}
-		\delta_{m,n} \cr
+		\bm{E_p} \times \big[ \bm{B_q} \big]^{\*} \delta_{m,n} \cr
 	&=  \mu\_0^{-1} \sum\_{p = -\infin}^{\infin}
 		\bm{E_p} \times [\bm{B_p}]^{\*} \cr
 	&=  \mu\_0^{-1} (\bm{E_0} \times \bm{B_0})
@@ -613,7 +610,7 @@ $$
 
 is a real vector, as expected.
 
-In the case where \\(T > T_1\\), the total value of \\(\braket{\bm{S}}\\) is a sum of the contribution from a number of whole periods (which is given by Equation 3.22) plus the contribution from a fraction of a period. If the period used for time-averaging is very large \\((T \gg T_1)\\), the *relative* contribution from a fraction of a period will be much smaller than the *relative* contribution from a large number of whole periods, so the formula of Equation 3.22 should serve as a good approximation.
+In the case when \\(T > T_1\\), the total value of \\(\braket{\bm{S}}\\) is a sum of the contribution from a number of whole periods (which is given by Equation 3.22) plus the contribution from a fraction of a period. If the period used for time-averaging is very large \\((T \gg T_1)\\), the *relative* contribution from a fraction of a period will be much smaller than the *relative* contribution from a large number of whole periods, so the formula of Equation 3.22 should serve as a good approximation.
 
 Equation 3.22 allows us to define the *time-averaged* Poynting phasor
 
