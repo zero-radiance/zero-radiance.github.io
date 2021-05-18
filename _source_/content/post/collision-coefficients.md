@@ -260,7 +260,7 @@ $$ \tag{2.6}
 \end{aligned}
 $$
 
-Generally speaking, equality of integrands does not follow from equality of integrals (but the opposite is true). In order to simplify Equations 2.6 further, we must make an assumption that the electromagnetic field[^3] is a [periodic function](https://en.wikipedia.org/wiki/Periodic_function) of time, such that the *fundamental period* \\(\thinspace T\_1 = 2 \pi / \omega_1\\) of both the electric and the magnetic fields is the same \[[5](#references) (vol. I, ch. 50) [6](#references) (ch. 1.3.3, 1.4.3)\]. This restriction is not as severe as it may seem, for we may choose the period to be as large as necessary. And the benefits are great, since it allows us to represent[^4] the fields using the [Fourier series](https://en.wikipedia.org/wiki/Fourier_series#Complex-valued_functions)
+Generally speaking, equality of integrands does not follow from equality of integrals (but the opposite is true). In order to simplify Equations 2.6 further, we must make an assumption that the electromagnetic field[^3] is *time-harmonic*. This implies that it is a [periodic function](https://en.wikipedia.org/wiki/Periodic_function) of time, such that the *fundamental period* \\(\thinspace T\_1 = 2 \pi / \omega_1\\) of both the electric and the magnetic fields is the same \[[5](#references) (vol. I, ch. 50) [6](#references) (ch. 1.3.3, 1.4.3)\]. This restriction is not as severe as it may seem, for we may choose the period to be as large as necessary. Handling non-periodic signals is also straightforward, since we can virtually repeat them outside the time interval of interest. And the benefits are great, since it allows us to represent[^4] the fields using the [Fourier series](https://en.wikipedia.org/wiki/Fourier_series#Complex-valued_functions)
 
 [^3]: The fact that the electric and the magnetic fields cannot exist independently can be shown by a simple relativistic argument \[[11](#references) (ch 6.2)\].
 
@@ -325,7 +325,7 @@ $$
 
 where we used the exponential definition of the [Dirac delta](https://en.wikipedia.org/wiki/Dirac_delta_function) function \\(\delta(x)\\).
 
-Since the individual harmonics are orthogonal (and thus independent), analysis of a *time-harmonic* field with \\(N\\) components can be simplified by considering \\(N\\) *single-frequency* vector fields, such as
+Since the individual harmonics are orthogonal (and, as a result, independent), analysis of a time-harmonic field with \\(N\\) components can be simplified by considering \\(N\\) *monochromatic* vector fields, such as
 
 $$ \tag{2.13}
 	\bm{E}(\bm{r}, t)
@@ -365,7 +365,7 @@ $$ \tag{2.16}
 \end{aligned}
 $$
 
-For single-frequency fields, we can remove redundant indexing to simplify the notation:
+For monochromatic fields, we can remove redundant indexing to simplify the notation:
 
 $$ \tag{2.17}
 \begin{aligned}
@@ -378,7 +378,7 @@ $$
 
 An interesting consequence of the time-harmonic assumption is the reduction in the number of independent the Maxwell equations from 4 to 2. Since the [divergence of curl](https://en.wikipedia.org/wiki/Vector_calculus_identities#Divergence_of_curl_is_zero) is zero, the divergence of Equations 2.17.1 and 2.17.3 (on the left) is mathematically identical to Equations 2.17.2 and 2.17.4 (on the right), respectively.
 
-Using this method, we can also obtain the expression of [conservation of charge](https://en.wikipedia.org/wiki/Charge_conservation):
+Using this method, we can also obtain the expression of [conservation of charge](https://en.wikipedia.org/wiki/Charge_conservation) in the frequency domain:
 
 $$ \tag{2.18}
 	\nabla \cdot \bm{J\_f}(\bm{r}) = - i \omega \rho\_f(\bm{r}).
@@ -1137,7 +1137,7 @@ $$ \tag{6.30}
 	= \frac{1}{2} \epsilon\_0 \eta c |E\_0|^2 e^{-\beta_a (\bm{r} \cdot \bm{n})},
 $$
 
-[^11]: Since \\(\bm{E}(\bm{r})\\) is a single-frequency field, the expressions of irradiance and spectral irradiance are identical.
+[^11]: Since \\(\bm{E}(\bm{r})\\) is monochromatic, the expressions of irradiance and spectral irradiance are identical.
 
 where we combined several constants into the [absorption coefficient](https://en.wikipedia.org/wiki/Attenuation_coefficient#Absorption_and_scattering_coefficients)
 
