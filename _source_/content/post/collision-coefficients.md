@@ -83,16 +83,16 @@ $$
 is the [divergence](https://en.wikipedia.org/wiki/Divergence) operator, both given in Cartesian coordinates. \\(\epsilon\_0\\) and \\(\mu\_0\\) are the [vacuum permittivity](https://en.wikipedia.org/wiki/Vacuum_permittivity) and the [vacuum permeability](https://en.wikipedia.org/wiki/Vacuum_permeability), respectively, which are related by the [speed of light](https://en.wikipedia.org/wiki/Speed_of_light)
 
 $$ \tag{1.4}
-	c = (\epsilon\_0 \mu\_0)^{-1/2}.
+	c = \frac{1}{\sqrt{\epsilon\_0 \mu\_0}}.
 $$
 
-Since the [divergence of curl](https://en.wikipedia.org/wiki/Vector_calculus_identities#Divergence_of_curl_is_zero) is zero, the difference of the divergence of Equation 1.1.3 and the time derivative of Equation 1.1.4 expresses [conservation of charge](https://en.wikipedia.org/wiki/Charge_conservation)
+Since the [divergence of curl](https://en.wikipedia.org/wiki/Vector_calculus_identities#Divergence_of_curl_is_zero) is zero, the difference of the divergence of Equation 1.1.3 and the time derivative of Equation 1.1.4 expresses [conservation of charge](https://en.wikipedia.org/wiki/Charge_conservation):
 
 $$ \tag{1.5}
 	\nabla \cdot \bm{J}(\bm{r}, t) = - \frac{\partial}{\partial t} \rho(\bm{r}, t).
 $$
 
-This [continuity equation](https://en.wikipedia.org/wiki/Continuity_equation) shows that a reduction of the charge density can be observed if the charges are carried away by a current.
+Equation 1.5 is a [continuity equation](https://en.wikipedia.org/wiki/Continuity_equation) that tells us that a reduction of the charge density can be observed if the charges are carried away by a current.
 
 Sometimes, Equations 1.1 are referred to as the "vacuum version" of the Maxwell equations. This name can be a little misleading; in fact, the matter is right there - it is just represented as a distribution of charged [elementary particles](https://en.wikipedia.org/wiki/Elementary_particle) by the *volume* [charge density](https://en.wikipedia.org/wiki/Charge_density) \\(\rho\\), such that the total amount of charge \\(Q\\) inside the volume \\(V\\) is
 
@@ -100,7 +100,7 @@ $$ \tag{1.6}
 	Q(t) = \iiint\_{V} \rho(\bm{r}, t) \thinspace dV.
 $$
 
-Moving charged particles form a current. If their velocity is \\(\bm{v}\\), the *volume* [current density](https://en.wikipedia.org/wiki/Current_density) \\(\bm{J}\\) is simply
+Moving charged particles constitute a current. If their velocity is \\(\bm{v}\\), the *volume* [current density](https://en.wikipedia.org/wiki/Current_density) \\(\bm{J}\\) is simply
 
 $$ \tag{1.7}
 	\bm{J}(\bm{r}, t) = \rho(\bm{r}, t) \bm{v}(\bm{r}, t).
@@ -110,27 +110,39 @@ Of course, individual particles may be located at different points, and have dif
 
 While this kind of parametrization is simple and useful, due to the sheer number of charged particles in bulk matter, you can't see the forest for the trees. Therefore, applied physics often uses a different representation of matter which we shall now discuss.
 
-First, we identify two types of charges - bound and free. As the name implies, *free* charges are able to effortlessly move around the material, the classic example being the conduction current in a copper wire. The *bound* [current](https://en.wikipedia.org/wiki/Current_density#Polarization_and_magnetization_currents) and [charge densities](https://en.wikipedia.org/wiki/Charge_density#Bound_charge), \\(\bm{J\_b}\\) and \\(\rho\_b\\), are more difficult to reason about. They can be characterized in terms of [polarization of matter](https://en.wikipedia.org/wiki/Maxwell%27s_equations#Auxiliary_fields,_polarization_and_magnetization):
+First, we identify two types of charges - bound and free. As the name implies, *free* charges are able to effortlessly move around the material, the classic example being the conduction current in a copper wire.
 
 $$ \tag{1.8}
-	\bm{J\_b}(\bm{r}, t) = \nabla \times \bm{M}(\bm{r}, t) + \frac{\partial}{\partial t} \bm{P}(\bm{r}, t), \quad
-	\rho\_b(\bm{r}, t) = -\nabla \cdot \bm{P}(\bm{r}, t),
+	\bm{J}(\bm{r}, t) = \bm{J\_f}(\bm{r}, t) + \bm{J\_b}(\bm{r}, t), \quad
+	\rho(\bm{r}, t) = \rho\_f(\bm{r}, t) + \rho\_b(\bm{r}, t).
+$$
+
+ The *bound* [current](https://en.wikipedia.org/wiki/Current_density#Polarization_and_magnetization_currents) and [charge densities](https://en.wikipedia.org/wiki/Charge_density#Bound_charge), \\(\bm{J\_b}\\) and \\(\rho\_b\\), are more difficult to reason about. Oscillating bound charges constitute (electric) *polarization* currents \\(\bm{J\_p}\\), and circulating bound charges are attributed to *magnetization* currents \\(\bm{J\_m}\\). They can be characterized in terms of [polarization of matter](https://en.wikipedia.org/wiki/Maxwell%27s_equations#Auxiliary_fields,_polarization_and_magnetization):
+
+$$ \tag{1.9}
+\begin{aligned}
+	&\bm{J\_b}(\bm{r}, t) = \bm{J\_p}(\bm{r}, t) + \bm{J\_m}(\bm{r}, t) =
+	\frac{\partial}{\partial t} \bm{P}(\bm{r}, t) + \nabla \times \bm{M}(\bm{r}, t), \cr
+	&\rho\_b(\bm{r}, t) = -\nabla \cdot \bm{P}(\bm{r}, t),
+\end{aligned}
 $$
 
 where \\(\bm{P}\\) is the [electric polarization](https://en.wikipedia.org/wiki/Polarization_density) (electric dipole moment per unit volume) and \\(\bm{M}\\) is the [magnetic polarization](https://en.wikipedia.org/wiki/Magnetization) (magnetic dipole moment per unit volume).
 
-Substitution of Equation 1.8.1 into 1.1.3 and Equation 1.8.2 into 1.1.4 yields
 
-$$ \tag{1.9}
+
+Substitution of Equations 1.8.1, 1.9.1 into 1.1.3 and Equations 1.8.2, 1.9.2 into 1.1.4 yields
+
+$$ \tag{1.10}
 \begin{aligned}
-	&\nabla \times \big( \mu\_0^{-1} \bm{B}(\bm{r}, t) \big) - \frac{\partial}{\partial t} \big( \epsilon\_0 \bm{E}(\bm{r}, t) \big) = \bm{J\_f}(\bm{r}, t) + \nabla \times \bm{M}(\bm{r}, t) + \frac{\partial}{\partial t} \bm{P}(\bm{r}, t), \cr
+	&\nabla \times \big( \mu\_0^{-1} \bm{B}(\bm{r}, t) \big) - \frac{\partial}{\partial t} \big( \epsilon\_0 \bm{E}(\bm{r}, t) \big) = \bm{J\_f}(\bm{r}, t) + \frac{\partial}{\partial t} \bm{P}(\bm{r}, t) + \nabla \times \bm{M}(\bm{r}, t), \cr
 	&\nabla \cdot \big( \epsilon\_0 \bm{E}(\bm{r}, t) \big) = \rho\_f(\bm{r}, t) - \nabla \cdot \bm{P}(\bm{r}, t).
 \end{aligned}
 $$
 
 We can group the terms to simplify the expressions:
 
-$$ \tag{1.10}
+$$ \tag{1.11}
 \begin{aligned}
 	&\nabla \times \big( \mu\_0^{-1} \bm{B}(\bm{r}, t) - \bm{M}(\bm{r}, t) \big) - \frac{\partial}{\partial t} \big( \epsilon\_0 \bm{E}(\bm{r}, t) + \bm{P}(\bm{r}, t) \big) = \bm{J\_f}(\bm{r}, t), \cr
 	&\nabla \cdot \big( \epsilon\_0 \bm{E}(\bm{r}, t) + \bm{P}(\bm{r}, t) \big) = \rho\_f(\bm{r}, t).
@@ -139,14 +151,14 @@ $$
 
 A pattern begins to emerge. If we define the [electric displacement](https://en.wikipedia.org/wiki/Electric_displacement_field) \\(\bm{D}\\) and the [magnetic intensity](https://en.wikipedia.org/wiki/Magnetic_field#The_H-field) \\(\bm{H}\\) as
 
-$$ \tag{1.11}
+$$ \tag{1.12}
 	\bm{D}(\bm{r}, t) = \epsilon\_0 \bm{E}(\bm{r}, t) + \bm{P}(\bm{r}, t), \quad 
 	\bm{H}(\bm{r}, t) = \mu\_0^{-1} \bm{B}(\bm{r}, t) - \bm{M}(\bm{r}, t),
 $$
 
-substitute them into Equations 1.10.1-1.10.2, and group the resulting expressions with Equations 1.1.1-1.1.2, we obtain the [macroscopic formulation](https://en.wikipedia.org/wiki/Maxwell%27s_equations#Macroscopic_formulation) of the Maxwell equations \[[6](#references) (ch. 1.1.1), [7](#references) (ch. 2.1), [8](#references) (ch. 2.1), [9](#references) (ch. 2.1)\]:
+substitute them into Equations 1.11.1-1.11.2, and group the resulting expressions with Equations 1.1.1-1.1.2, we obtain the [macroscopic formulation](https://en.wikipedia.org/wiki/Maxwell%27s_equations#Macroscopic_formulation) of the Maxwell equations \[[6](#references) (ch. 1.1.1), [7](#references) (ch. 2.1), [8](#references) (ch. 2.1), [9](#references) (ch. 2.1)\]:
 
-$$ \tag{1.12}
+$$ \tag{1.13}
 \begin{aligned}
 	&\nabla \times \bm{E}(\bm{r}, t) + \frac{\partial}{\partial t} \bm{B}(\bm{r}, t) = 0, &
 	&\nabla \cdot  \bm{B}(\bm{r}, t) = 0, \cr
@@ -159,14 +171,14 @@ As discussed in \[[5](#references) (vol. II, ch 32.2), [6](#references) (ch. 1.1
 
 On the conceptual level, we would like the properties of matter to be continuous everywhere, which leads to continuous fields. But, sometimes, it is convenient to introduce a discontinuity to approximate a very rapid (yet continuous) variation of material properties. At the *optical interface*, the fields must satisfy the [boundary conditions](https://en.wikipedia.org/wiki/Interface_conditions_for_electromagnetic_fields) \[[6](#references) (ch. 1.1.3), [7](#references) (ch. 2.10), [8](#references) (ch. 2.4), [9](#references) (ch. 2.2)\]. If \\(\bm{n\_{12}}\\) is a unit normal vector pointing from region 1 to region 2, the normal components of the fields must be such that
 
-$$ \tag{1.13}
+$$ \tag{1.14}
 	\bm{n\_{12}} \cdot  (\bm{B\_2} - \bm{B\_1}) = 0, \quad
 	\bm{n\_{12}} \cdot  (\bm{D\_2} - \bm{D\_1}) = \rho\_n,
 $$
 
 where \\(\rho\_n\\) is the *surface* charge density. For the tangential components, it can be shown that
 
-$$ \tag{1.14}
+$$ \tag{1.15}
 	\bm{n\_{12}} \times (\bm{E\_2} - \bm{E\_1}) = 0, \quad
 	\bm{n\_{12}} \times (\bm{H\_2} - \bm{H\_1}) = \bm{J_n},
 $$
@@ -235,7 +247,7 @@ $$ \tag{2.5}
 	= 2 r \cos{ \theta}.
 $$
 
-We can define the integral forms of the fields by replacing \\(\bm{E}\\) by \\(\bm{B}\\), \\(\bm{D}\\), \\(\bm{H}\\), \\(\bm{J\_f}\\) or \\(\rho\_f\\) in Equation 2.4. If we substitute these integrals into Equations 1.12 and apply the [Leibniz rule](https://en.wikipedia.org/wiki/Leibniz_integral_rule), the result is the system of integral equations
+We can define the integral forms of the fields by replacing \\(\bm{E}\\) by \\(\bm{B}\\), \\(\bm{D}\\), \\(\bm{H}\\), \\(\bm{J\_f}\\) or \\(\rho\_f\\) in Equation 2.4. If we substitute these integrals into Equations 1.13 and apply the [Leibniz rule](https://en.wikipedia.org/wiki/Leibniz_integral_rule), the result is the system of integral equations
 
 $$ \tag{2.6}
 \begin{aligned}
