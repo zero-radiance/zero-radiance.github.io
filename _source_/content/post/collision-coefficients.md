@@ -1197,7 +1197,7 @@ Since the electric and the magnetic field are independent of a particular choice
 
 What is a good choice of \\(\chi\\)? That depends on the mathematical formulation of a particular problem. Usually, we want \\(\bm{A}\\) to have a certain desirable property that simplifies some equation.
 
-In general, a vector field \\(\bm{A}\\) can be represented as a sum of a divergence-free component \\(\bm{A'}\\) and a curl-free component \\(\bm{A''}\\):
+In general, a vector field \\(\bm{A}\\) can be represented as a sum of a divergence-free (*transverse*) component \\(\bm{A'}\\) and a curl-free (*longitudinal*) component \\(\bm{A''}\\):
 
 $$ \tag{7.8}
 \begin{aligned}
