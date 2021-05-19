@@ -45,8 +45,8 @@ $$ \tag{1.1}
 \begin{aligned}
 	&\nabla \times \bm{E}(\bm{r}, t) + \frac{\partial}{\partial t} \bm{B}(\bm{r}, t) = 0, &
 	&\nabla \cdot  \bm{B}(\bm{r}, t) = 0, \cr
-	&\nabla \times \big( \mu\_0^{-1} \bm{B}(\bm{r}, t) \big) - \frac{\partial}{\partial t} \big( \epsilon\_0 \bm{E}(\bm{r}, t) \big) = \bm{J}(\bm{r}, t), &
-	&\nabla \cdot \big( \epsilon\_0 \bm{E}(\bm{r}, t) \big) = \rho(\bm{r}, t),
+	&\nabla \times \big( \mu\_0^{-1} \bm{B}(\bm{r}, t) \big) - \frac{\partial}{\partial t} \big( \epsilon_0 \bm{E}(\bm{r}, t) \big) = \bm{J}(\bm{r}, t), &
+	&\nabla \cdot \big( \epsilon_0 \bm{E}(\bm{r}, t) \big) = \rho(\bm{r}, t),
 \end{aligned}
 $$
 
@@ -80,10 +80,10 @@ $$ \tag{1.3}
 	\frac{\partial E\_x}{\partial x} + \frac{\partial E\_y}{\partial y} + \frac{\partial E\_z}{\partial z}
 $$
 
-is the [divergence](https://en.wikipedia.org/wiki/Divergence) operator, both given in Cartesian coordinates. \\(\epsilon\_0\\) and \\(\mu\_0\\) are the [vacuum permittivity](https://en.wikipedia.org/wiki/Vacuum_permittivity) and the [vacuum permeability](https://en.wikipedia.org/wiki/Vacuum_permeability), respectively, which are related by the [speed of light](https://en.wikipedia.org/wiki/Speed_of_light)
+is the [divergence](https://en.wikipedia.org/wiki/Divergence) operator, both given in Cartesian coordinates. \\(\epsilon_0\\) and \\(\mu\_0\\) are the [vacuum permittivity](https://en.wikipedia.org/wiki/Vacuum_permittivity) and the [vacuum permeability](https://en.wikipedia.org/wiki/Vacuum_permeability), respectively, which are related by the [speed of light](https://en.wikipedia.org/wiki/Speed_of_light)
 
 $$ \tag{1.4}
-	c = \frac{1}{\sqrt{\epsilon\_0 \mu\_0}}.
+	c = \frac{1}{\sqrt{\epsilon_0 \mu\_0}}.
 $$
 
 Since the [divergence of curl](https://en.wikipedia.org/wiki/Vector_calculus_identities#Divergence_of_curl_is_zero) is zero, the difference of the divergence of Equation 1.1.3 and the time derivative of Equation 1.1.4 expresses [conservation of charge](https://en.wikipedia.org/wiki/Charge_conservation):
@@ -135,8 +135,8 @@ Substitution of Equations 1.8.1, 1.9.1 into 1.1.3 and Equations 1.8.2, 1.9.2 int
 
 $$ \tag{1.10}
 \begin{aligned}
-	&\nabla \times \big( \mu\_0^{-1} \bm{B}(\bm{r}, t) \big) - \frac{\partial}{\partial t} \big( \epsilon\_0 \bm{E}(\bm{r}, t) \big) = \bm{J\_f}(\bm{r}, t) + \frac{\partial}{\partial t} \bm{P}(\bm{r}, t) + \nabla \times \bm{M}(\bm{r}, t), \cr
-	&\nabla \cdot \big( \epsilon\_0 \bm{E}(\bm{r}, t) \big) = \rho\_f(\bm{r}, t) - \nabla \cdot \bm{P}(\bm{r}, t).
+	&\nabla \times \big( \mu\_0^{-1} \bm{B}(\bm{r}, t) \big) - \frac{\partial}{\partial t} \big( \epsilon_0 \bm{E}(\bm{r}, t) \big) = \bm{J\_f}(\bm{r}, t) + \frac{\partial}{\partial t} \bm{P}(\bm{r}, t) + \nabla \times \bm{M}(\bm{r}, t), \cr
+	&\nabla \cdot \big( \epsilon_0 \bm{E}(\bm{r}, t) \big) = \rho\_f(\bm{r}, t) - \nabla \cdot \bm{P}(\bm{r}, t).
 \end{aligned}
 $$
 
@@ -144,15 +144,15 @@ We can group the terms to simplify the expressions:
 
 $$ \tag{1.11}
 \begin{aligned}
-	&\nabla \times \big( \mu\_0^{-1} \bm{B}(\bm{r}, t) - \bm{M}(\bm{r}, t) \big) - \frac{\partial}{\partial t} \big( \epsilon\_0 \bm{E}(\bm{r}, t) + \bm{P}(\bm{r}, t) \big) = \bm{J\_f}(\bm{r}, t), \cr
-	&\nabla \cdot \big( \epsilon\_0 \bm{E}(\bm{r}, t) + \bm{P}(\bm{r}, t) \big) = \rho\_f(\bm{r}, t).
+	&\nabla \times \big( \mu\_0^{-1} \bm{B}(\bm{r}, t) - \bm{M}(\bm{r}, t) \big) - \frac{\partial}{\partial t} \big( \epsilon_0 \bm{E}(\bm{r}, t) + \bm{P}(\bm{r}, t) \big) = \bm{J\_f}(\bm{r}, t), \cr
+	&\nabla \cdot \big( \epsilon_0 \bm{E}(\bm{r}, t) + \bm{P}(\bm{r}, t) \big) = \rho\_f(\bm{r}, t).
 \end{aligned}
 $$
 
 A pattern begins to emerge. If we define the [electric displacement](https://en.wikipedia.org/wiki/Electric_displacement_field) \\(\bm{D}\\) and the [magnetic intensity](https://en.wikipedia.org/wiki/Magnetic_field#The_H-field) \\(\bm{H}\\) as
 
 $$ \tag{1.12}
-	\bm{D}(\bm{r}, t) = \epsilon\_0 \bm{E}(\bm{r}, t) + \bm{P}(\bm{r}, t), \quad 
+	\bm{D}(\bm{r}, t) = \epsilon_0 \bm{E}(\bm{r}, t) + \bm{P}(\bm{r}, t), \quad 
 	\bm{H}(\bm{r}, t) = \mu\_0^{-1} \bm{B}(\bm{r}, t) - \bm{M}(\bm{r}, t),
 $$
 
@@ -454,7 +454,7 @@ The Maxwell equations allow us to relate a current to the generated fields. Subs
 $$ \tag{3.7}
 	\iiint\_{V} \bm{E} \cdot \bm{J} \thinspace dV = 
 	\iiint\_{V} \bm{E} \cdot \Big( \nabla \times \big( \mu\_0^{-1} \bm{B} \big) -
-	\frac{\partial}{\partial t} \big( \epsilon\_0 \bm{E} \big) \Big) dV.
+	\frac{\partial}{\partial t} \big( \epsilon_0 \bm{E} \big) \Big) dV.
 $$
 
 Since [the divergence of the cross product](https://en.wikipedia.org/wiki/Vector_calculus_identities#Cross_product_rule) is
@@ -468,7 +468,7 @@ we can reformulate the integrand of Equation 3.7 as
 $$ \tag{3.9}
 	\bm{E} \cdot \bm{J} = 
 	\mu\_0^{-1} \big( (\nabla \times \bm{E}) \cdot \bm{B} - \nabla \cdot (\bm{E} \times \bm{B}) \big) -
-	\epsilon\_0 \bm{E} \cdot \frac{\partial \bm{E}}{\partial t}.
+	\epsilon_0 \bm{E} \cdot \frac{\partial \bm{E}}{\partial t}.
 $$
 
 The curl of \\(\bm{E}\\) is also given by the Maxwell equations (see Equation 1.1.1). Then it follows that
@@ -476,7 +476,7 @@ The curl of \\(\bm{E}\\) is also given by the Maxwell equations (see Equation 1.
 $$ \tag{3.10}
 	\bm{E} \cdot \bm{J} = 
 	\mu\_0^{-1} \big( {-\bm{B}} \cdot \frac{\partial \bm{B}}{\partial t} - \nabla \cdot (\bm{E} \times \bm{B}) \big) -
-	\epsilon\_0 \bm{E} \cdot \frac{\partial \bm{E}}{\partial t}.
+	\epsilon_0 \bm{E} \cdot \frac{\partial \bm{E}}{\partial t}.
 $$
 
 Moving the dot products under the derivative sign and grouping the derivatives produces a simpler expression
@@ -484,7 +484,7 @@ Moving the dot products under the derivative sign and grouping the derivatives p
 $$ \tag{3.11}
 	\bm{E} \cdot \bm{J} =
 	{-\mu\_0^{-1}} \nabla \cdot (\bm{E} \times \bm{B}) -
-	\frac{\partial}{\partial t} \Big( \frac{\epsilon\_0}{2} (\bm{E} \cdot \bm{E}) +
+	\frac{\partial}{\partial t} \Big( \frac{\epsilon_0}{2} (\bm{E} \cdot \bm{E}) +
 	\frac{\mu\_0^{-1}}{2} (\bm{B} \cdot \bm{B}) \Big).
 $$
 
@@ -493,7 +493,7 @@ We can observe that the rate of doing work is a balance of inflow of \\((\bm{E} 
 $$ \tag{3.12}
 	\frac{\partial \mathcal{W}}{\partial t}
 	= \iiint\_{V} \Big( {-\mu\_0^{-1}} \nabla \cdot (\bm{E} \times \bm{B}) \Big) dV -
-	\frac{\partial}{\partial t} \iiint\_{V} \Big( \frac{\epsilon\_0}{2} E^2 + \frac{\mu\_0^{-1}}{2} B^2 \Big) dV 
+	\frac{\partial}{\partial t} \iiint\_{V} \Big( \frac{\epsilon_0}{2} E^2 + \frac{\mu\_0^{-1}}{2} B^2 \Big) dV 
 $$
 
 and use the [divergence theorem](https://en.wikipedia.org/wiki/Divergence_theorem) to replace the leftmost volume integral with an integral taken over the bounding surface \\(\delta V\\) of the volume \\(V\\):
@@ -501,7 +501,7 @@ and use the [divergence theorem](https://en.wikipedia.org/wiki/Divergence_theore
 $$ \tag{3.13}
 	\frac{\partial \mathcal{W}}{\partial t}
 	= \oiint\_{\delta V} \Big( \mu\_0^{-1} (\bm{E} \times \bm{B}) \cdot (-\bm{n}) \Big) dA -
-	\frac{\partial}{\partial t} \iiint\_{V} \Big( \frac{\epsilon\_0}{2} E^2 + \frac{\mu\_0^{-1}}{2} B^2 \Big) dV,
+	\frac{\partial}{\partial t} \iiint\_{V} \Big( \frac{\epsilon_0}{2} E^2 + \frac{\mu\_0^{-1}}{2} B^2 \Big) dV,
 $$
 
 where \\(\bm{n}\\) is the outward-facing surface normal.
@@ -517,13 +517,13 @@ and the second term corresponds to the rate at which the amount of energy within
 
 $$ \tag{3.15}
 	-\frac{\partial}{\partial t} \mathcal{E\_{int}}(V, t) =
-	-\frac{\partial}{\partial t} \iiint\_{V} \Big( \frac{\epsilon\_0}{2} E^2(\bm{r}, t) + \frac{\mu\_0^{-1}}{2} B^2(\bm{r}, t) \Big) dV.
+	-\frac{\partial}{\partial t} \iiint\_{V} \Big( \frac{\epsilon_0}{2} E^2(\bm{r}, t) + \frac{\mu\_0^{-1}}{2} B^2(\bm{r}, t) \Big) dV.
 $$
 
 According to this interpretation, the *squared* magnitudes of the fields
 
 $$ \tag{3.16}
-	\frac{\partial}{\partial V} \mathcal{E\_e}(\bm{r}, t) = \frac{\epsilon\_0}{2} E^2(\bm{r}, t), \quad
+	\frac{\partial}{\partial V} \mathcal{E\_e}(\bm{r}, t) = \frac{\epsilon_0}{2} E^2(\bm{r}, t), \quad
 	\frac{\partial}{\partial V} \mathcal{E\_m}(\bm{r}, t) = \frac{\mu\_0^{-1}}{2} B^2(\bm{r}, t), \quad
 $$
 
@@ -851,20 +851,20 @@ $$
 
 is a valid solution for a certain value of \\(\bm{n}\\). To avoid clutter, we shall adhere to a common convention with the negative sign; the positive solution can be obtained by reversing the direction of \\(\bm{n}\\).
 
-How should we choose the direction of \\(\bm{n}\\)? It depends on the location of sources and optical interfaces. In general, we can use *any* value of \\(\bm{n}\\). And, since the Helmholtz equation is both linear and homogeneous, we can actually use *every* value of \\(\bm{n}\\) by invoking the [superposition principle](https://en.wikipedia.org/wiki/Superposition_principle). Thus the general solution is an integral taken over the surface of the unit sphere \\(\mathbb{S^2}\\) [measured](https://en.wikipedia.org/wiki/Lebesgue_integration#Construction) by the [solid angle](https://en.wikipedia.org/wiki/Solid_angle) \\(d\Omega\_n\\):
+How should we choose the direction of \\(\bm{n}\\)? It depends on the location of sources and optical interfaces. In general, we can use *any* value of \\(\bm{n}\\). And, since the Helmholtz equation is both linear and homogeneous, we can actually use *every* value of \\(\bm{n}\\) by invoking the [superposition principle](https://en.wikipedia.org/wiki/Superposition_principle). Thus the general solution is an integral taken over the surface of the unit sphere \\(\mathbb{S^2}\\) [measured](https://en.wikipedia.org/wiki/Lebesgue_integration#Construction) by the [solid angle](https://en.wikipedia.org/wiki/Solid_angle) \\(d\Omega_n\\):
 
 $$ \tag{5.15}
 	\psi(\bm{r}) =
-	\oiint\_{\mathbb{S}^2} \psi(\bm{r}, \bm{n}) \thinspace d\Omega\_n =
-	\oiint\_{\mathbb{S}^2} \psi(0, \bm{n}) e^{-i k (\bm{r} \cdot \bm{n})} d\Omega\_n.
+	\oiint\_{\mathbb{S}^2} \psi(\bm{r}, \bm{n}) \thinspace d\Omega_n =
+	\oiint\_{\mathbb{S}^2} \psi(0, \bm{n}) e^{-i k (\bm{r} \cdot \bm{n})} d\Omega_n.
 $$
 
 Equation 5.15 can be used to solve Equations 5.11 and 5.8:
 
 $$ \tag{5.16}
 	\bm{E}(\bm{r}) =
-	\oiint\_{\mathbb{S}^2} \bm{E}(\bm{r}, \bm{n}) \thinspace d\Omega\_n =
-	\oiint\_{\mathbb{S}^2} \bm{E}(0, \bm{n}) e^{-i k(\omega) (\bm{r} \cdot \bm{n})} d\Omega\_n.
+	\oiint\_{\mathbb{S}^2} \bm{E}(\bm{r}, \bm{n}) \thinspace d\Omega_n =
+	\oiint\_{\mathbb{S}^2} \bm{E}(0, \bm{n}) e^{-i k(\omega) (\bm{r} \cdot \bm{n})} d\Omega_n.
 $$
 
 That is a solution of the Maxwell equations in the frequency domain.
@@ -877,8 +877,8 @@ $$ \tag{6.1}
 \begin{aligned}
 	\bm{E}(\bm{r}, t)
 	&= \bm{E_0}(\bm{r}) + \sum\_{n = 1}^{\infin} 2 \thinspace \mathcal{Re} \big\lbrace \bm{E_p}(\bm{r}) e^{i \omega_p t} \big\rbrace \cr
-	&= \oiint\_{\mathbb{S}^2} \bm{E_0}(0, \bm{n}) d\Omega\_n
-	 + \sum\_{p = 1}^{\infin} \oiint\_{\mathbb{S}^2} 2 \thinspace \mathcal{Re} \big\lbrace \bm{E_p}(0, \bm{n}) e^{-i k(\omega_p) (\bm{r} \cdot \bm{n})} e^{i \omega_p t} \big\rbrace d\Omega\_n.
+	&= \oiint\_{\mathbb{S}^2} \bm{E_0}(0, \bm{n}) d\Omega_n
+	 + \sum\_{p = 1}^{\infin} \oiint\_{\mathbb{S}^2} 2 \thinspace \mathcal{Re} \big\lbrace \bm{E_p}(0, \bm{n}) e^{-i k(\omega_p) (\bm{r} \cdot \bm{n})} e^{i \omega_p t} \big\rbrace d\Omega_n.
 \end{aligned}
 $$
 
@@ -907,7 +907,7 @@ If we define the [relative permittivity](https://en.wikipedia.org/wiki/Relative_
 [^9]: Historically called the [relative complex dielectric constant](https://en.wikipedia.org/wiki/Relative_permittivity#Lossy_medium).
 
 $$ \tag{6.5}
-	\varepsilon\_r(\omega) = \frac{\varepsilon(\omega)}{\epsilon\_0}, \quad
+	\varepsilon\_r(\omega) = \frac{\varepsilon(\omega)}{\epsilon_0}, \quad
 	\mu\_r(\omega) = \frac{\mu(\omega)}{\mu\_0},
 $$
 
@@ -916,7 +916,7 @@ the complex wave number can be expressed as
 $$ \tag{6.6}
 	k(\omega) =
 	\omega \sqrt{\varepsilon(\omega) \mu(\omega)} =
-	\omega \sqrt{\epsilon\_0 \mu\_0} \sqrt{\varepsilon\_r(\omega) \mu\_r(\omega)} =
+	\omega \sqrt{\epsilon_0 \mu\_0} \sqrt{\varepsilon\_r(\omega) \mu\_r(\omega)} =
 	\frac{\omega}{c} \sqrt{\varepsilon\_r(\omega) \mu\_r(\omega)}.
 $$
 
@@ -1120,7 +1120,7 @@ Secondly, it means we can compute the Poynting vector without explicit considera
 $$ \tag{6.29}
 	\bm{S}(\bm{r}, t)
 	= \mu\_0^{-1} \frac{\eta(\omega)}{c} |\bm{E}(\bm{r}, t)|^2 \bm{n}
-	= \Big(\epsilon\_0 \eta c |E\_0|^2 e^{-2 \omega (\bm{r} \cdot \bm{n}) (\kappa / c)} \cos^2{\theta(\bm{r}, t)} \Big) \bm{n},
+	= \Big(\epsilon_0 \eta c |E\_0|^2 e^{-2 \omega (\bm{r} \cdot \bm{n}) (\kappa / c)} \cos^2{\theta(\bm{r}, t)} \Big) \bm{n},
 $$
 
 where we expanded the squared amplitude as per Equation 6.13.
@@ -1130,8 +1130,8 @@ The average value of a squared cosine is 1/2, so the corresponding irradiance[^1
 $$ \tag{6.30}
 	\mathtt{E}
 	= \braket{\bm{S}} \cdot \bm{n}
-	= \frac{1}{2} \epsilon\_0 \eta c |E\_0|^2 e^{-2 \omega (\bm{r} \cdot \bm{n}) (\kappa / c)}
-	= \frac{1}{2} \epsilon\_0 \eta c |E\_0|^2 e^{-\beta_a (\bm{r} \cdot \bm{n})},
+	= \frac{1}{2} \epsilon_0 \eta c |E\_0|^2 e^{-2 \omega (\bm{r} \cdot \bm{n}) (\kappa / c)}
+	= \frac{1}{2} \epsilon_0 \eta c |E\_0|^2 e^{-\beta_a (\bm{r} \cdot \bm{n})},
 $$
 
 [^11]: Since \\(\bm{E}(\bm{r})\\) is monochromatic, the expressions of irradiance and spectral irradiance are identical.
@@ -1236,9 +1236,9 @@ $$ \tag{7.12}
 \begin{aligned}
 	&\nabla \times \nabla \times \bm{A}(\bm{r}, t) + \frac{1}{c^2} \frac{\partial^2}{\partial t^2} \bm{A}(\bm{r}, t)
 	+ \nabla \frac{1}{c^2} \frac{\partial}{\partial t} \phi(\bm{r}, t)
-	= \frac{\bm{J}(\bm{r}, t)}{\epsilon\_0 c^2}, \cr
+	= \frac{\bm{J}(\bm{r}, t)}{\mu_0^{-1}}, \cr
 	&-\frac{\partial}{\partial t} \nabla \cdot \bm{A}(\bm{r}, t) - \nabla^2 \phi(\bm{r}, t)
-	= \frac{\rho(\bm{r}, t)}{\epsilon\_0}.
+	= \frac{\rho(\bm{r}, t)}{\epsilon_0}.
 \end{aligned}
 $$
 
@@ -1246,7 +1246,7 @@ We can immediately use the Lorenz condition to eliminate \\(\bm{A}\\) from Equat
 
 $$ \tag{7.13}
 	\nabla^2 \phi(\bm{r}, t) - \frac{1}{c^2} \frac{\partial^2}{\partial t^2} \phi(\bm{r}, t)
-	= -\frac{\rho(\bm{r}, t)}{\epsilon\_0}.
+	= -\frac{\rho(\bm{r}, t)}{\epsilon_0}.
 $$
 
 Equation 7.12.1 can be expanded using the [curl of curl](https://en.wikipedia.org/wiki/Vector_calculus_identities#Curl_of_curl) identity:
@@ -1254,14 +1254,14 @@ Equation 7.12.1 can be expanded using the [curl of curl](https://en.wikipedia.or
 $$ \tag{7.14}
 	\nabla \big( \nabla \cdot \bm{A}(\bm{r}, t) \big) - \nabla^2 \bm{A}(\bm{r}, t) + \frac{1}{c^2} \frac{\partial^2}{\partial t^2} \bm{A}(\bm{r}, t)
 	+ \nabla \frac{1}{c^2} \frac{\partial}{\partial t} \phi(\bm{r}, t)
-	= \frac{\bm{J}(\bm{r}, t)}{\epsilon\_0 c^2}.
+	= \frac{\bm{J}(\bm{r}, t)}{\mu_0^{-1}}.
 $$
 
 Once again, we use the Lorenz condition, but this time, we do it in order to eliminate \\(\phi\\). We obtain an inhomogeneous vector *wave equation*
 
 $$ \tag{7.15}
 	\nabla^2 \bm{A}(\bm{r}, t) - \frac{1}{c^2} \frac{\partial^2}{\partial t^2} \bm{A}(\bm{r}, t)
-	= -\frac{\bm{J}(\bm{r}, t)}{\epsilon\_0 c^2}.
+	= -\frac{\bm{J}(\bm{r}, t)}{\mu_0^{-1}}.
 $$
 
 Putting it all together, the formulation of the Maxwell equations in terms of the electromagnetic potential results in an decoupled system of partial differential equations:
@@ -1269,10 +1269,10 @@ Putting it all together, the formulation of the Maxwell equations in terms of th
 $$ \tag{7.16}
 \begin{aligned}
 	&\nabla^2 \bm{A}(\bm{r}, t) - \frac{1}{c^2} \frac{\partial^2}{\partial t^2} \bm{A}(\bm{r}, t)
-	= -\frac{\bm{J}(\bm{r}, t)}{\epsilon\_0 c^2}, &
+	= -\frac{\bm{J}(\bm{r}, t)}{\mu_0^{-1}}, &
 	&\bm{B}(\bm{r}, t) = \nabla \times \bm{A}(\bm{r}, t), \cr
 	&\nabla^2 \phi(\bm{r}, t) - \frac{1}{c^2} \frac{\partial^2}{\partial t^2} \phi(\bm{r}, t)
-	= -\frac{\rho(\bm{r}, t)}{\epsilon\_0}, &
+	= -\frac{\rho(\bm{r}, t)}{\epsilon_0}, &
 	&\bm{E}(\bm{r}, t) = -\frac{\partial}{\partial t} \bm{A}(\bm{r}, t) - \nabla \phi(\bm{r}, t).
 \end{aligned}
 $$
@@ -1362,7 +1362,7 @@ Equation 8.11 represents a *special* solution of the *inhomogeneous* Helmholtz e
 
 $$ \tag{8.12}
 	\psi(\bm{r}) 
-	= \oiint\_{\mathbb{S}^2} \psi(0, \bm{n}) e^{-i \omega (\bm{r} \cdot \bm{n}) / c} d\Omega\_n
+	= \oiint\_{\mathbb{S}^2} \psi(0, \bm{n}) e^{-i \omega (\bm{r} \cdot \bm{n}) / c} d\Omega_n
 	+ \iiint\_{\mathbb{R^3}} -\xi(\bm{r'}) \frac{e^{-i \omega |\bm{r} - \bm{r'}| / c}}{4 \pi |\bm{r} - \bm{r'}|} dV'.
 $$
 
@@ -1373,11 +1373,11 @@ We can immediately use Equation 8.12 to find the expressions of both the scalar 
 $$ \tag{8.13}
 \begin{aligned}
 	&\bm{A}(\bm{r})
-	= \oiint\_{\mathbb{S}^2} \psi(0, \bm{n}) e^{-i \omega (\bm{r} \cdot \bm{n}) / c} d\Omega\_n
-	+ \iiint\_{\mathbb{R^3}} \frac{\bm{J}(\bm{r'})}{\epsilon\_0 c^2} \frac{e^{-i \omega |\bm{r} - \bm{r'}| / c}}{4 \pi |\bm{r} - \bm{r'}|} dV', \cr
+	= \oiint\_{\mathbb{S}^2} \psi(0, \bm{n}) e^{-i \omega (\bm{r} \cdot \bm{n}) / c} d\Omega_n
+	+ \iiint\_{\mathbb{R^3}} \frac{\bm{J}(\bm{r'})}{\mu_0^{-1}} \frac{e^{-i \omega |\bm{r} - \bm{r'}| / c}}{4 \pi |\bm{r} - \bm{r'}|} dV', \cr
 	&\phi(\bm{r})
-	= \oiint\_{\mathbb{S}^2} \psi(0, \bm{n}) e^{-i \omega (\bm{r} \cdot \bm{n}) / c} d\Omega\_n
-	+ \iiint\_{\mathbb{R^3}} \frac{\rho(\bm{r'})}{\epsilon\_0} \frac{e^{-i \omega |\bm{r} - \bm{r'}| / c}}{4 \pi |\bm{r} - \bm{r'}|} dV'.
+	= \oiint\_{\mathbb{S}^2} \psi(0, \bm{n}) e^{-i \omega (\bm{r} \cdot \bm{n}) / c} d\Omega_n
+	+ \iiint\_{\mathbb{R^3}} \frac{\rho(\bm{r'})}{\epsilon_0} \frac{e^{-i \omega |\bm{r} - \bm{r'}| / c}}{4 \pi |\bm{r} - \bm{r'}|} dV'.
 \end{aligned}
 $$
 
