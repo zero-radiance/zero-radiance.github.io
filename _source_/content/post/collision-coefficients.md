@@ -1334,7 +1334,7 @@ $$
 
 Its solution is the *scalar* [Green function](https://en.wikipedia.org/wiki/Green%27s_function) \\(g\\). It represents an [impulse response](https://en.wikipedia.org/wiki/Impulse_response) of the linear operator \\(\mathcal{L}\\).
 
-Equation 8.7 is an inhomogeneous linear differential equation. Consequently, its solution depends on the linear operator in question, its domain of validity, as well as the initial or boundary conditions. According to Equation 8.5, our domain is the whole real space, and the only applicable restriction is the Sommerfeld radiation condition. Thus, it can be shown that the *free-space* scalar Green function \\(g_0\\) takes the form of an outgoing *sphere wave* \[[12](#references)\]:
+Equation 8.7 is an inhomogeneous linear differential equation. Consequently, its solution depends on the linear operator in question, its domain of validity, as well as the initial or boundary conditions. According to Equation 8.5, our domain is the whole real space, and the only applicable restriction is the Sommerfeld radiation condition. Thus, it can be shown that the *free-space* scalar Green function \\(g_0\\) takes the form of an diverging *sphere wave* \[[12](#references)\]:
 
 $$ \tag{8.8}
 	g_0(\bm{r}) = -\frac{e^{-i k_0 |\bm{r}|}}{4 \pi |\bm{r}|}.
