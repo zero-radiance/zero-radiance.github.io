@@ -577,7 +577,7 @@ $$ \tag{3.21}
 \begin{aligned}
 	\braket{\bm{S}}
 	= \mu\_0^{-1} \sum\_{p = -\infin}^{\infin} \sum\_{q = -\infin}^{\infin}
-	\bm{E_p} \times \big[ \bm{B_q} \big]^{\*}
+	\bm{E_p}(\bm{r}) \times \big[ \bm{B_q}(\bm{r}) \big]^{\*}
 	\Bigg(
 		\frac{1}{T} \int\_{-T/2}^{\thinspace T/2} e^{i (\omega_p - \omega_q) t'} dt'
 	\Bigg).
@@ -590,7 +590,7 @@ $$ \tag{3.22}
 \begin{aligned}
 	\braket{\bm{S}}
 	&=  \mu\_0^{-1} \sum\_{p = -\infin}^{\infin} \sum\_{q = -\infin}^{\infin}
-		\bm{E_p} \times \big[ \bm{B_q} \big]^{\*} \delta_{m,n} \cr
+		\bm{E_p} \times [\bm{B_q}]^{\*} \thinspace \delta_{m,n} \cr
 	&=  \mu\_0^{-1} \sum\_{p = -\infin}^{\infin}
 		\bm{E_p} \times [\bm{B_p}]^{\*} \cr
 	&=  \mu\_0^{-1} (\bm{E_0} \times \bm{B_0})
@@ -615,7 +615,7 @@ In the case when \\(T > T_1\\), the total value of \\(\braket{\bm{S}}\\) is a su
 Equation 3.22 allows us to define the *time-averaged* Poynting phasor
 
 $$ \tag{3.23}
-	\braket{\bm{S_p}} = \mu\_0^{-1} \big( \bm{E_p}(\bm{r}) \times [\bm{B_p}(\bm{r})]^{\*} \big)
+	\braket{\bm{S_p}} = \mu\_0^{-1} \Big( \bm{E_p}(\bm{r}) \times \big[ \bm{B_p}(\bm{r}) \big]^{\*} \Big)
 $$
 
 such that (cf. Equation 2.11)
