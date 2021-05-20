@@ -195,9 +195,9 @@ We take the Maxwell equations as axioms, and use them as a foundation on which w
 
 ## Maxwell Equations in the Frequency Domain
 
-the Maxwell equations can be simplified by transforming the fields from the time to the frequency domain.
+The Maxwell equations can be simplified by transforming the fields from the time to the frequency domain.
 
-Define[^1] the [Fourier transform](https://en.wikipedia.org/wiki/Fourier_transform) of the electric vector field \\(\bm{E}(\bm{r}, t)\\) as
+Define[^1] the [Fourier transform](https://en.wikipedia.org/wiki/Fourier_transform) of the electric *vector* field \\(\bm{E}(\bm{r}, t)\\) as
 
 [^1]: The choice of the sign of the complex exponential is arbitrary; it determines the sign of the imaginary components of both the complex permittivity and the complex refractive index.
 
@@ -273,7 +273,7 @@ $$ \tag{2.7}
 	= \sum\_{p = -\infin}^{\infin} \ket{u_p} \braket{u_p \vert \bm{E}}.
 $$
 
-where we defined \\(\omega_p = p \thinspace \omega_1\\), with the coefficients \\(\bm{E_p}\\) given by the integral
+where we defined \\(\omega_p = p \thinspace \omega_1\\), with the *Fourier coefficients* \\(\bm{E_p}\\) given by the integral
 
 $$ \tag{2.8}
 	\bm{E_p}(\bm{r})
@@ -612,7 +612,7 @@ is a real vector, as expected.
 
 In the case when \\(T > T_1\\), the total value of \\(\braket{\bm{S}}\\) is a sum of the contribution from a number of whole periods (which is given by Equation 3.22) plus the contribution from a fraction of a period. If the period used for time-averaging is very large \\((T \gg T_1)\\), the *relative* contribution from a fraction of a period will be much smaller than the *relative* contribution from a large number of whole periods, so the formula of Equation 3.22 should serve as a good approximation.
 
-Equation 3.22 allows us to define the *time-averaged* Poynting phasor
+Equation 3.22 allows us to define the *time-averaged* Poynting phasor (technically, the Fourier coefficient)
 
 $$ \tag{3.23}
 	\braket{\bm{S_p}} = \mu\_0^{-1} \Big( \bm{E_p}(\bm{r}) \times \big[ \bm{B_p}(\bm{r}) \big]^{\*} \Big)
@@ -753,7 +753,7 @@ $$ \tag{5.2}
 \end{aligned}
 $$
 
-Let us focus on the electric phasor \\(\bm{E}\\). Take curl of Equation 5.2.1 and substitute Equation 5.2.3:
+Let us focus on the electric field \\(\bm{E}\\). Take curl of Equation 5.2.1 and substitute Equation 5.2.3:
 
 $$ \tag{5.3}
 	\nabla \times \nabla \times \bm{E}(\bm{r}) + i \omega \mu(\omega) \big( i \omega \varepsilon(\omega) \bm{E}(\bm{r}) \big) = 0.
@@ -799,13 +799,13 @@ $$ \tag{5.7}
 	\nabla \big( \nabla \cdot \bm{E}(\bm{r}) \big) - \nabla^2 \bm{E}(\bm{r}) - \omega^2 \mu(\omega) \varepsilon(\omega) \bm{E}(\bm{r}) = 0.
 $$
 
-Substitution of Equation 5.2.4 into 5.7 yields the equation of the electric phasor \\(\bm{E}\\):
+Substitution of Equation 5.2.4 into 5.7 yields the equation of the electric field \\(\bm{E}\\):
 
 $$ \tag{5.8}
 	\nabla^2 \bm{E}(\bm{r}) + \omega^2 \mu(\omega) \varepsilon(\omega) \bm{E}(\bm{r}) = 0.
 $$
 
-Similarly, we can obtain an expression of the magnetic phasor \\(\bm{B}\\):
+Similarly, we can obtain an expression of the magnetic field \\(\bm{B}\\):
 
 $$ \tag{5.9}
 	\nabla^2 \bm{B}(\bm{r}) + \omega^2 \mu(\omega) \varepsilon(\omega) \bm{B}(\bm{r}) = 0.
@@ -1371,7 +1371,7 @@ $$
 
 This equation has a simple optical interpretation: the first integral on the right-hand side can be seen as an *incident* (or externally-generated) wave, and the second term corresponds to a *scattered* (or internally-generated) wave. Both waves propagate at the speed of light.
 
-We can immediately use Equation 8.12 to find the expressions of both the scalar and the vector potentials in the frequency domain by substituting the charge and the the current densities in place of the source function:
+We can immediately use Equation 8.12 to find the expressions of the Fourier coefficients by substituting the charge and the the current densities in place of the source function:
 
 $$ \tag{8.13}
 \begin{aligned}
@@ -1384,16 +1384,33 @@ $$ \tag{8.13}
 \end{aligned}
 $$
 
-The full expressions of the monochromatic phasor fields have the same form as Equation 2.14:
+To find the expressions of the monochromatic phasor fields, recall Equation 2.14, and adopt it for the wave and the source functions: 
 
 $$ \tag{8.14}
 \begin{aligned}
-	&\bm{A}(\bm{r}, \omega') = \sqrt{2 \pi} \Big( \bm{A_i}(\bm{r})
-	+ \iiint\_{\mathbb{R^3}} \frac{\bm{J}(\bm{r'})}{\mu_0^{-1}} \frac{e^{-i \omega |\bm{r} - \bm{r'}| / c}}{4 \pi |\bm{r} - \bm{r'}|} dV'
-	\Big) \delta(\omega - \omega'), \cr
-	&\phi(\bm{r}, \omega') = \sqrt{2 \pi} \Big( \phi_i(\bm{r})
-	+ \iiint\_{\mathbb{R^3}} \frac{\rho(\bm{r'})}{\epsilon_0} \frac{e^{-i \omega |\bm{r} - \bm{r'}| / c}}{4 \pi |\bm{r} - \bm{r'}|} dV'
-	\Big) \delta(\omega - \omega').
+	&\psi(\bm{r}, \omega') = \sqrt{2 \pi} \psi(\bm{r}) \delta(\omega - \omega'), &
+	&\xi (\bm{r}, \omega') = \sqrt{2 \pi} \xi (\bm{r}) \delta(\omega - \omega').
+\end{aligned}
+$$
+
+If we substitute Equations 8.12 into 8.14, we can observe that the equations of the Fourier components and the phasors have the same form:
+
+$$ \tag{8.15}
+\begin{aligned}
+	\psi(\bm{r}, \omega')
+	= \psi_i(\bm{r}, \omega')
+	+ \iiint\_{\mathbb{R^3}} -\xi(\bm{r'}, \omega') \frac{e^{-i \omega |\bm{r} - \bm{r'}| / c}}{4 \pi |\bm{r} - \bm{r'}|} dV'.
+\end{aligned}	
+$$
+
+Naturally, it directly translates to the expressions of the potentials:
+
+$$ \tag{8.16}
+\begin{aligned}
+	&\bm{A}(\bm{r}, \omega') = \bm{A_i}(\bm{r}, \omega')
+	+ \iiint\_{\mathbb{R^3}} \frac{\bm{J}(\bm{r'}, \omega')}{\mu_0^{-1}} \frac{e^{-i \omega |\bm{r} - \bm{r'}| / c}}{4 \pi |\bm{r} - \bm{r'}|} dV', \cr
+	&\phi(\bm{r}, \omega') = \phi_i(\bm{r}, \omega')
+	+ \iiint\_{\mathbb{R^3}} \frac{\rho(\bm{r'}, \omega')}{\epsilon_0} \frac{e^{-i \omega |\bm{r} - \bm{r'}| / c}}{4 \pi |\bm{r} - \bm{r'}|} dV'.
 \end{aligned}
 $$
 
