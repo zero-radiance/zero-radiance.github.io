@@ -260,7 +260,7 @@ $$ \tag{2.6}
 \end{aligned}
 $$
 
-Generally speaking, equality of integrands does not follow from equality of integrals (but the opposite is true). In order to simplify Equations 2.6 further, we must make an assumption that the electromagnetic field[^3] is *time-harmonic*. This implies that it is a [periodic function](https://en.wikipedia.org/wiki/Periodic_function) of time, such that the *fundamental period* \\(\thinspace T\_1 = 2 \pi / \omega_1\\) of both the electric and the magnetic fields is the same \[[5](#references) (vol. I, ch. 50) [6](#references) (ch. 1.3.3, 1.4.3)\]. This restriction is not as severe as it may seem, for we may choose the period to be as large as necessary. Handling non-periodic signals is also straightforward, since we can virtually repeat them outside the time interval of interest. And the benefits are great, since it allows us to represent[^4] the fields using the [Fourier series](https://en.wikipedia.org/wiki/Fourier_series#Complex-valued_functions)
+Generally speaking, equality of integrands does not follow from equality of integrals (but the opposite is true). In order to simplify Equations 2.6 further, we must make an assumption that the electromagnetic field[^3] is *time-harmonic*. This implies that it is a [periodic function](https://en.wikipedia.org/wiki/Periodic_function) of time, such that the *fundamental period* \\(\thinspace T\_1 = 2 \pi / \omega_1\\) of both the electric and the magnetic fields is the same \[[5](#references) (vol. I, ch. 50) [6](#references) (ch. 1.3.3, 1.4.3)\]. This restriction is not as severe as it may seem, for we may choose the period to be as large as necessary. In many cases, handling non-periodic signals is also possible, since we can virtually repeat them outside the time interval of interest. And the benefits are great, since it allows us to represent[^4] the fields using the [Fourier series](https://en.wikipedia.org/wiki/Fourier_series#Complex-valued_functions)
 
 [^3]: The fact that the electric and the magnetic fields cannot exist independently can be shown by a simple relativistic argument \[[11](#references) (ch 6.2)\].
 
@@ -1355,15 +1355,18 @@ $$
 and compare the result to Equation 8.3. We can see that we have found our solution:
 
 $$ \tag{8.11}
-	\psi(\bm{r}) = \iiint\_{\mathbb{R^3}} \xi(\bm{r'}) g_0(\bm{r} - \bm{r'}) dV'.
+	\psi_s(\bm{r}) = \iiint\_{\mathbb{R^3}} \xi(\bm{r'}) g_0(\bm{r} - \bm{r'}) dV'.
 $$
 
 Equation 8.11 represents a *special* solution of the *inhomogeneous* Helmholtz equation. Since a solution of a *homogeneous* equation doesn't change its right-hand side, due to linearity, we can obtain the *general* solution of Equation 8.3 by adding Equations 5.15 and 8.11:
 
 $$ \tag{8.12}
-	\psi(\bm{r}) 
-	= \oiint\_{\mathbb{S}^2} \psi(0, \bm{n}) e^{-i \omega (\bm{r} \cdot \bm{n}) / c} d\Omega_n
-	+ \iiint\_{\mathbb{R^3}} -\xi(\bm{r'}) \frac{e^{-i \omega |\bm{r} - \bm{r'}| / c}}{4 \pi |\bm{r} - \bm{r'}|} dV'.
+\begin{aligned}
+	\psi(\bm{r})
+	&= \psi_i(\bm{r}) + \psi_s(\bm{r}) \cr
+	&= \oiint\_{\mathbb{S}^2} \psi_i(0, \bm{n}) e^{-i \omega (\bm{r} \cdot \bm{n}) / c} d\Omega_n
+	 + \iiint\_{\mathbb{R^3}} -\xi(\bm{r'}) \frac{e^{-i \omega |\bm{r} - \bm{r'}| / c}}{4 \pi |\bm{r} - \bm{r'}|} dV'.
+\end{aligned}	
 $$
 
 This equation has a simple optical interpretation: the first integral on the right-hand side can be seen as an *incident* (or externally-generated) wave, and the second term corresponds to a *scattered* (or internally-generated) wave. Both waves propagate at the speed of light.
@@ -1373,13 +1376,60 @@ We can immediately use Equation 8.12 to find the expressions of both the scalar 
 $$ \tag{8.13}
 \begin{aligned}
 	&\bm{A}(\bm{r})
-	= \oiint\_{\mathbb{S}^2} \psi(0, \bm{n}) e^{-i \omega (\bm{r} \cdot \bm{n}) / c} d\Omega_n
+	= \bm{A_i}(\bm{r})
 	+ \iiint\_{\mathbb{R^3}} \frac{\bm{J}(\bm{r'})}{\mu_0^{-1}} \frac{e^{-i \omega |\bm{r} - \bm{r'}| / c}}{4 \pi |\bm{r} - \bm{r'}|} dV', \cr
 	&\phi(\bm{r})
-	= \oiint\_{\mathbb{S}^2} \psi(0, \bm{n}) e^{-i \omega (\bm{r} \cdot \bm{n}) / c} d\Omega_n
+	= \phi_i(\bm{r})
 	+ \iiint\_{\mathbb{R^3}} \frac{\rho(\bm{r'})}{\epsilon_0} \frac{e^{-i \omega |\bm{r} - \bm{r'}| / c}}{4 \pi |\bm{r} - \bm{r'}|} dV'.
 \end{aligned}
 $$
+
+The full expressions of the monochromatic phasor fields have the same form as Equation 2.14:
+
+$$ \tag{8.14}
+\begin{aligned}
+	&\bm{A}(\bm{r}, \omega') = \sqrt{2 \pi} \Big( \bm{A_i}(\bm{r})
+	+ \iiint\_{\mathbb{R^3}} \frac{\bm{J}(\bm{r'})}{\mu_0^{-1}} \frac{e^{-i \omega |\bm{r} - \bm{r'}| / c}}{4 \pi |\bm{r} - \bm{r'}|} dV'
+	\Big) \delta(\omega - \omega'), \cr
+	&\phi(\bm{r}, \omega') = \sqrt{2 \pi} \Big( \phi_i(\bm{r})
+	+ \iiint\_{\mathbb{R^3}} \frac{\rho(\bm{r'})}{\epsilon_0} \frac{e^{-i \omega |\bm{r} - \bm{r'}| / c}}{4 \pi |\bm{r} - \bm{r'}|} dV'
+	\Big) \delta(\omega - \omega').
+\end{aligned}
+$$
+
+## Retarded Potentials and Dipoles
+
+The physical meaning of the electromagnetic potential is more apparent in the time domain. With this goal in mind, perform the inverse Fourier transform of Equation 8.12:
+
+$$ \tag{9.3}
+	\psi(\bm{r}, t) = \int\_{-\infin}^{\infin} \Big( \psi_i(\bm{r}) e^{i \omega' t}
+	+ \iiint\_{\mathbb{R^3}} -\xi(\bm{r'}) \frac{e^{-i \omega |\bm{r} - \bm{r'}| / c} e^{i \omega' t}}{4 \pi |\bm{r} - \bm{r'}|} dV'
+	\Big) \delta(\omega - \omega') d\omega'.
+$$
+
+But that's not all. According to Equation 2.8, the source function \\(\xi\\) in Equation 9.3 is a time-averaged quantity:
+
+$$ \tag{9.4}
+	\xi(\bm{r})
+	= \frac{1}{T_1} \int\_{-T_1/2}^{\thinspace T_1/2} \xi(\bm{r}, t) e^{-i \omega t} dt.
+$$
+
+Write it as a Fourier transform???
+
+$$ \tag{2.13}
+	\\xi(\bm{r}, t)
+	= \mathcal{Re} \big\lbrace \xi(\bm{r}) e^{i \omega t} \big\rbrace,
+$$
+
+It is only present in the scattered term
+
+$$ \tag{9.3}
+	\psi_s(\bm{r}, t) = \frac{1}{T_1} \int\_{-T_1/2}^{\thinspace T_1/2} \int\_{-\infin}^{\infin}
+	\iiint\_{\mathbb{R^3}} -\xi(\bm{r'}, t) \frac{e^{-i \omega |\bm{r} - \bm{r'}| / c} e^{i (\omega' - \omega) t}}{4 \pi |\bm{r} - \bm{r'}|}
+	\delta(\omega - \omega') dV' d\omega' dt.
+$$
+
+The scattered fields are then
 
 Use Equation 2.14 and Fourier transform it...
 
