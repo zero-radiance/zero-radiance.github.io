@@ -80,7 +80,7 @@ $$ \tag{1.3}
 	\frac{\partial E\_x}{\partial x} + \frac{\partial E\_y}{\partial y} + \frac{\partial E\_z}{\partial z}
 $$
 
-is the [divergence](https://en.wikipedia.org/wiki/Divergence) operator, both given in Cartesian coordinates. \\(\epsilon_0\\) and \\(\mu\_0\\) are the [vacuum permittivity](https://en.wikipedia.org/wiki/Vacuum_permittivity) and the [vacuum permeability](https://en.wikipedia.org/wiki/Vacuum_permeability), respectively, which are related by the [speed of light](https://en.wikipedia.org/wiki/Speed_of_light)
+is the [divergence](https://en.wikipedia.org/wiki/Divergence) operator, both given in Cartesian coordinates. \\(\epsilon_0\\) and \\(\mu\_0\\) are the [vacuum permittivity](https://en.wikipedia.org/wiki/Vacuum_permittivity) and the [vacuum permeability](https://en.wikipedia.org/wiki/Vacuum_permeability), respectively, which are related to the [speed of light](https://en.wikipedia.org/wiki/Speed_of_light)
 
 $$ \tag{1.4}
 	c = \frac{1}{\sqrt{\epsilon_0 \mu\_0}}.
@@ -92,32 +92,32 @@ $$ \tag{1.5}
 	\nabla \cdot \bm{J}(\bm{r}, t) = - \frac{\partial}{\partial t} \rho(\bm{r}, t).
 $$
 
-Equation 1.5 is a [continuity equation](https://en.wikipedia.org/wiki/Continuity_equation) that tells us that a reduction of the charge density can be observed if the charges are carried away by a current.
+Equation 1.5 is a [continuity equation](https://en.wikipedia.org/wiki/Continuity_equation) that tells us that a reduction of the charge density is observed if the charges are carried away by a current.
 
-Sometimes, Equations 1.1 are referred to as the "vacuum version" of the Maxwell equations. This name can be a little misleading; in fact, the matter is right there - it is just represented as a distribution of charged [elementary particles](https://en.wikipedia.org/wiki/Elementary_particle) by the *volume* [charge density](https://en.wikipedia.org/wiki/Charge_density) \\(\rho\\), such that the total amount of charge \\(Q\\) inside the volume \\(V\\) is
+Sometimes, Equations 1.1 are referred to as the "vacuum version" of the Maxwell equations. This name can be a little misleading; since electromagnetic fields only interact with charged [particles](https://en.wikipedia.org/wiki/Elementary_particle) (called "charges"), the matter is represented by the *volume* [charge density](https://en.wikipedia.org/wiki/Charge_density) \\(\rho\\), such that the total amount of charge \\(Q\\) inside the volume \\(V\\) is
 
 $$ \tag{1.6}
 	Q(t) = \iiint\_{V} \rho(\bm{r}, t) \thinspace dV.
 $$
 
-Moving charged particles constitute a current. If their velocity is \\(\bm{v}\\), the *volume* [current density](https://en.wikipedia.org/wiki/Current_density) \\(\bm{J}\\) is simply
+Moving charges constitute a current. If their velocity is \\(\bm{v}\\), the *volume* [current density](https://en.wikipedia.org/wiki/Current_density) \\(\bm{J}\\) is simply
 
 $$ \tag{1.7}
 	\bm{J}(\bm{r}, t) = \rho(\bm{r}, t) \bm{v}(\bm{r}, t).
 $$
 
-Of course, individual particles may be located at different points, and have different charges and velocities - the density is just a convenient mathematical abstraction.
+Of course, individual charges may be located at different points, and have different charges and velocities - the density is just a convenient mathematical abstraction.
 
-While this kind of parametrization is simple and useful, due to the sheer number of charged particles in bulk matter, you can't see the forest for the trees. Therefore, applied physics often uses a different representation of matter which we shall now discuss.
+While this kind of parametrization is simple and useful, due to the sheer number of charges in bulk matter, you can't see the forest for the trees. Therefore, applied physics often uses a different representation of matter which we shall now discuss.
 
-First, we identify two types of charges - bound and free. As the name implies, *free* charges are able to effortlessly move around the material, the classic example being the conduction current in a copper wire.
+First, we identify two types of charges - bound and free. As the name suggests, *free* charges are able to move effortlessly around the material, the classic example being the conduction current in a copper wire.
 
 $$ \tag{1.8}
 	\bm{J}(\bm{r}, t) = \bm{J\_f}(\bm{r}, t) + \bm{J\_b}(\bm{r}, t), \quad
 	\rho(\bm{r}, t) = \rho\_f(\bm{r}, t) + \rho\_b(\bm{r}, t).
 $$
 
- The *bound* [current](https://en.wikipedia.org/wiki/Current_density#Polarization_and_magnetization_currents) and [charge densities](https://en.wikipedia.org/wiki/Charge_density#Bound_charge), \\(\bm{J\_b}\\) and \\(\rho\_b\\), are more difficult to reason about. Oscillating bound charges constitute (electric) *polarization* currents \\(\bm{J\_p}\\), and circulating bound charges are attributed to *magnetization* currents \\(\bm{J\_m}\\). They can be characterized in terms of [polarization of matter](https://en.wikipedia.org/wiki/Maxwell%27s_equations#Auxiliary_fields,_polarization_and_magnetization):
+ The *bound* [current](https://en.wikipedia.org/wiki/Current_density#Polarization_and_magnetization_currents) and [charge densities](https://en.wikipedia.org/wiki/Charge_density#Bound_charge), \\(\bm{J\_b}\\) and \\(\rho\_b\\), are more difficult to reason about. In short, oscillating bound charges constitute (electric) *polarization* currents \\(\bm{J\_p}\\), and circulating bound charges are attributed to *magnetization* currents \\(\bm{J\_m}\\). They can be characterized in terms of [polarization of matter](https://en.wikipedia.org/wiki/Maxwell%27s_equations#Auxiliary_fields,_polarization_and_magnetization):
 
 $$ \tag{1.9}
 \begin{aligned}
@@ -127,9 +127,7 @@ $$ \tag{1.9}
 \end{aligned}
 $$
 
-where \\(\bm{P}\\) is the [electric polarization](https://en.wikipedia.org/wiki/Polarization_density) (electric dipole moment per unit volume) and \\(\bm{M}\\) is the [magnetic polarization](https://en.wikipedia.org/wiki/Magnetization) (magnetic dipole moment per unit volume).
-
-
+where \\(\bm{P}\\) is the [electric polarization](https://en.wikipedia.org/wiki/Polarization_density) (electric dipole moment per unit volume) and \\(\bm{M}\\) is the [magnetic polarization](https://en.wikipedia.org/wiki/Magnetization) (magnetic dipole moment per unit volume). Note that, according to the [Gauss law](https://en.wikipedia.org/wiki/Gauss%27s_law_for_magnetism), no magnetic charges exist.
 
 Substitution of Equations 1.8.1, 1.9.1 into 1.1.3 and Equations 1.8.2, 1.9.2 into 1.1.4 yields
 
@@ -169,7 +167,7 @@ $$
 
 As discussed in \[[5](#references) (vol. II, ch 32.2), [6](#references) (ch. 1.1.1)\], \\(\bm{E}\\) and \\(\bm{B}\\) are the *fundamental fields*, and \\(\bm{D}\\) and \\(\bm{H}\\) are the [auxiliary fields](https://en.wikipedia.org/wiki/Maxwell%27s_equations#Auxiliary_fields,_polarization_and_magnetization) that arise due to the influence of matter. We shall soon see that, in certain cases, these two groups are related in a simple way.
 
-On the conceptual level, we would like the properties of matter to be continuous everywhere, which leads to continuous fields. But, sometimes, it is convenient to introduce a discontinuity to approximate a very rapid (yet continuous) variation of material properties. At the *optical interface*, the fields must satisfy the [boundary conditions](https://en.wikipedia.org/wiki/Interface_conditions_for_electromagnetic_fields) \[[6](#references) (ch. 1.1.3), [7](#references) (ch. 2.10), [8](#references) (ch. 2.4), [9](#references) (ch. 2.2)\]. If \\(\bm{n\_{12}}\\) is a unit normal vector pointing from region 1 to region 2, the normal components of the fields must be such that
+Conceptually, the properties of matter are continuous, which leads to continuous fields. But, sometimes, it is convenient to introduce a discontinuity to approximate a very rapid (yet continuous) variation of material properties. At the *optical interface*, the fields must satisfy the [boundary conditions](https://en.wikipedia.org/wiki/Interface_conditions_for_electromagnetic_fields) \[[6](#references) (ch. 1.1.3), [7](#references) (ch. 2.10), [8](#references) (ch. 2.4), [9](#references) (ch. 2.2)\]. If \\(\bm{n\_{12}}\\) is a unit normal vector pointing from region 1 to region 2, the normal components of the fields must be such that
 
 $$ \tag{1.14}
 	\bm{n\_{12}} \cdot  (\bm{B\_2} - \bm{B\_1}) = 0, \quad
@@ -189,7 +187,7 @@ In addition to the boundary conditions, the law of [conservation of energy](http
 
 - the *edge condition* says that the amount of electromagnetic energy stored near an edge must be finite even if the magnitude of the field at the edge becomes infinite;
 
-- the [Sommerfeld radiation condition](https://en.wikipedia.org/wiki/Sommerfeld_radiation_condition) prohibits the existence of sinks collecting an infinite amount of energy arriving from infinity - these "infinite" sinks must be "finite" sources instead.
+- the [Sommerfeld radiation condition](https://en.wikipedia.org/wiki/Sommerfeld_radiation_condition) prohibits the existence of sinks collecting (an infinite amount of) energy arriving from infinity - these "infinite" sinks must be "finite" sources instead.
 
 We take the Maxwell equations as axioms, and use them as a foundation on which we base the theory presented in the following sections.
 
@@ -247,26 +245,71 @@ $$ \tag{2.5}
 	= 2 r \cos{ \theta}.
 $$
 
-We can define the integral forms of the fields by replacing \\(\bm{E}\\) by \\(\bm{B}\\), \\(\bm{D}\\), \\(\bm{H}\\), \\(\bm{J\_f}\\) or \\(\rho\_f\\) in Equation 2.4. If we substitute these integrals into Equations 1.13 and apply the [Leibniz rule](https://en.wikipedia.org/wiki/Leibniz_integral_rule), the result is the system of integral equations
+We can define the integral forms of the fields by replacing \\(\bm{E}\\) by \\(\bm{B}\\), \\(\bm{D}\\), \\(\bm{H}\\), \\(\bm{J\_f}\\) or \\(\rho\_f\\) in Equation 2.4. If we substitute these integrals into Equations 1.13, the result is a system of integral equations
 
 $$ \tag{2.6}
 \begin{aligned}
-	&\int\_{-\infin}^{\infin} \Big( \nabla \times \big( \bm{E}(\bm{r}, \omega) e^{i \omega t} \big) + \frac{\partial}{\partial t} \big( \bm{B}(\bm{r}, \omega) e^{i \omega t} \big) \Big) d\omega = 0, \cr
-	&\int\_{-\infin}^{\infin} \Big( \nabla \cdot  \big( \bm{B}(\bm{r}, \omega) e^{i \omega t} \big) \Big) d\omega = 0, \cr
-	&\int\_{-\infin}^{\infin} \Big( \nabla \times \big( \bm{H}(\bm{r}, \omega) e^{i \omega t} \big) - \frac{\partial}{\partial t} \big( \bm{D}(\bm{r}, \omega) e^{i \omega t} \big) \Big) d\omega
-	= \int\_{-\infin}^{\infin} \Big( \bm{J\_f}(\bm{r}, \omega) e^{i \omega t} \Big) d\omega, \cr
-	&\int\_{-\infin}^{\infin} \Big( \nabla \cdot \big( \bm{D}(\bm{r}, \omega) e^{i \omega t} \big) \Big) d\omega
-	= \int\_{-\infin}^{\infin} \Big( \rho\_f(\bm{r}, \omega) e^{i \omega t} \Big) d\omega.
+	&\nabla \times \int\_{-\infin}^{\infin} \bm{E}(\bm{r}, \omega) e^{i \omega t} d\omega +
+	 \frac{\partial}{\partial t} \int\_{-\infin}^{\infin} \bm{B}(\bm{r}, \omega) e^{i \omega t} d\omega = 0, \cr
+	&\nabla \cdot  \int\_{-\infin}^{\infin} \bm{B}(\bm{r}, \omega) e^{i \omega t} d\omega = 0, \cr
+	&\nabla \times \int\_{-\infin}^{\infin} \bm{H}(\bm{r}, \omega) e^{i \omega t} d\omega -
+	 \frac{\partial}{\partial t} \int\_{-\infin}^{\infin} \bm{D}(\bm{r}, \omega) e^{i \omega t} d\omega =
+	 \int\_{-\infin}^{\infin} \bm{J_f}(\bm{r}, \omega) e^{i \omega t} d\omega, \cr
+	&\nabla \cdot \int\_{-\infin}^{\infin} \bm{D}(\bm{r}, \omega) e^{i \omega t} d\omega =
+	 \int\_{-\infin}^{\infin} \rho_f(\bm{r}, \omega) e^{i \omega t} d\omega.
 \end{aligned}
 $$
 
-Generally speaking, equality of integrands does not follow from equality of integrals (but the opposite is true). In order to simplify Equations 2.6 further, we must make an assumption that the electromagnetic field[^3] is *time-harmonic*. This implies that it is a [periodic function](https://en.wikipedia.org/wiki/Periodic_function) of time, such that the *fundamental period* \\(\thinspace T\_1 = 2 \pi / \omega_1\\) of both the electric and the magnetic fields is the same \[[5](#references) (vol. I, ch. 50) [6](#references) (ch. 1.3.3, 1.4.3)\]. This restriction is not as severe as it may seem, for we may choose the period to be as large as necessary. In many cases, handling non-periodic signals is also possible, since we can virtually repeat them outside the time interval of interest. And the benefits are great, since it allows us to represent[^4] the fields using the [Fourier series](https://en.wikipedia.org/wiki/Fourier_series#Complex-valued_functions)
+It can be further simplified by applying the [Leibniz rule](https://en.wikipedia.org/wiki/Leibniz_integral_rule), taking the time derivatives, and grouping the terms:
+
+$$ \tag{2.7}
+\begin{aligned}
+	&\int\_{-\infin}^{\infin} \big( \nabla \times \bm{E}(\bm{r}, \omega) +
+	 i \omega \bm{B}(\bm{r}, \omega) \big) e^{i \omega t} d\omega = 0, \cr
+	&\int\_{-\infin}^{\infin} \big( \nabla \cdot \bm{B}(\bm{r}, \omega) \big) e^{i \omega t} d\omega = 0, \cr
+	&\int\_{-\infin}^{\infin} \big( \nabla \times \bm{H}(\bm{r}, \omega) -
+	 i \omega \bm{D}(\bm{r}, \omega) \big) e^{i \omega t} d\omega =
+	 \int\_{-\infin}^{\infin} \bm{J_f}(\bm{r}, \omega) e^{i \omega t} d\omega, \cr
+	&\int\_{-\infin}^{\infin} \big( \nabla \cdot \bm{D}(\bm{r}, \omega) \big) e^{i \omega t} d\omega =
+	 \int\_{-\infin}^{\infin} \rho_f(\bm{r}, \omega) e^{i \omega t} d\omega.
+\end{aligned}
+$$
+
+Equivalently, using the Fourier transform operator notation,
+
+$$ \tag{2.8}
+\begin{aligned}
+	&\mathcal{F^{-1}} \big\lbrace \nabla \times \bm{E}(\bm{r}, \omega) +
+	 i \omega \bm{B}(\bm{r}, \omega) \big\rbrace = 0, \cr
+	&\mathcal{F^{-1}} \big\lbrace \nabla \cdot \bm{B}(\bm{r}, \omega) \big\rbrace = 0, \cr
+	&\mathcal{F^{-1}} \big\lbrace \nabla \times \bm{H}(\bm{r}, \omega) -
+	 i \omega \bm{D}(\bm{r}, \omega) \big\rbrace =
+	 \mathcal{F^{-1}} \big\lbrace \bm{J_f}(\bm{r}, \omega) \big\rbrace, \cr
+	&\mathcal{F^{-1}} \big\lbrace \nabla \cdot \bm{D}(\bm{r}, \omega) \big\rbrace =
+	 \mathcal{F^{-1}} \big\lbrace \rho_f(\bm{r}, \omega) \big\rbrace.
+\end{aligned}
+$$
+
+Generally speaking, equality of integrands (or function arguments) does not follow from equality of integrals (or function values). Luckily for us, the inverse Fourier transform is [uniquely defined](https://en.wikipedia.org/wiki/Fourier_inversion_theorem) for a large class of functions. So, under quite general [conditions](https://en.wikipedia.org/wiki/Fourier_inversion_theorem#Conditions_on_the_function), we can say that
+
+$$ \tag{2.9}
+\begin{aligned}
+	&\nabla \times \bm{E}(\bm{r}, \omega) + i \omega \bm{B}(\bm{r}, \omega) = 0, &
+	&\nabla \cdot  \bm{B}(\bm{r}, \omega) = 0, \cr
+	&\nabla \times \bm{H}(\bm{r}, \omega) - i \omega \bm{D}(\bm{r}, \omega) = \bm{J_f}(\bm{r}, \omega), &
+	&\nabla \cdot  \bm{D}(\bm{r}, \omega) = \rho_f(\bm{r}, \omega).
+\end{aligned}
+$$
+
+These are the Maxwell equations for electromagnetic fields with *arbitrary* time dependence. 
+
+Unsurprisingly, the most general solutions tend to be the most complex. As we shall see, certain assumptions can prove to be quite useful. In many real cases, it is reasonable to assume that the electromagnetic field is a [periodic function](https://en.wikipedia.org/wiki/Periodic_function) of time, such that the *fundamental period* \\(\thinspace T\_1 = 2 \pi / \omega_1\\) of both[^3] the electric and the magnetic fields is the same \[[5](#references) (vol. I, ch. 50) [6](#references) (ch. 1.3.3, 1.4.3)\]. This restriction is not as severe as it may seem: the fields can often be repeated virtually (outside the time interval of interest), and we may choose the period to be as large as necessary.
 
 [^3]: The fact that the electric and the magnetic fields cannot exist independently can be shown by a simple relativistic argument \[[11](#references) (ch 6.2)\].
 
-[^4]: This discrete representation only allows frequencies that belong to a certain [countable set](https://en.wikipedia.org/wiki/Countable_set). This is noteworthy because it suggests that fields are, in some sense, quantized, even though we are not using the [quantum theory of fields](https://en.wikipedia.org/wiki/Quantum_field_theory).
+One particular benefit of periodic functions is the existence of the [Fourier series](https://en.wikipedia.org/wiki/Fourier_series#Complex-valued_functions) representation:
 
-$$ \tag{2.7}
+$$ \tag{2.10}
 	\bm{E}(\bm{r}, t)
 	= \sum\_{p = -\infin}^{\infin} \bm{E_p}(\bm{r}) e^{i p \omega_1 t}
 	= \sum\_{p = -\infin}^{\infin} \bm{E_p}(\bm{r}) e^{i \omega_p t},
@@ -275,21 +318,23 @@ $$
 
 where we defined \\(\omega_p = p \thinspace \omega_1\\), with the *Fourier coefficients* \\(\bm{E_p}\\) given by the integral
 
-$$ \tag{2.8}
+$$ \tag{2.11}
 	\bm{E_p}(\bm{r})
 	= \frac{1}{T_1} \int\_{-T_1/2}^{\thinspace T_1/2} \bm{E}(\bm{r}, t) e^{-i \omega_p t} dt
 	= \braket{u_p \vert \bm{E}}.
 $$
 
-Equation 2.8 can be interpreted as the [projection](https://en.wikipedia.org/wiki/Hilbert_space#Fourier_analysis) onto the [discrete Fourier basis](https://en.wikipedia.org/wiki/Fourier_series#Hilbert_space_interpretation), with Equation 2.7 showing the reconstruction. The beautiful thing about the discrete Fourier basis is that it is orthonormal, which means that the individual elements of Equation 2.7 (called *harmonics*) are completely independent of each other:
+Equation 2.11 can be interpreted as the [projection](https://en.wikipedia.org/wiki/Hilbert_space#Fourier_analysis) onto the discrete [Fourier basis](https://en.wikipedia.org/wiki/Fourier_series#Hilbert_space_interpretation), with Equation 2.10 showing the reconstruction. The beautiful thing about the discrete Fourier basis is that it is orthonormal, which means that the individual elements of Equation 2.10 (called *harmonics*) are completely independent of each other:
 
-$$ \tag{2.9}
+$$ \tag{2.12}
 	\braket{u_p \vert u_q}
 	= \frac{1}{T_1} \int\_{-T_1/2}^{\thinspace T_1/2} e^{i (\omega_q - \omega_p) t} dt
 	= \delta_{p,q},
 $$
 
 where \\(\delta_{p,q}\\) is the [Kronecker delta](https://en.wikipedia.org/wiki/Kronecker_delta#Integral_representations) function.
+
+---
 
 Similarly to Equation 2.2, if the time-domain field is real,
 
@@ -323,7 +368,12 @@ $$ \tag{2.12}
 \end{aligned}
 $$
 
-where we used the exponential definition of the [Dirac delta](https://en.wikipedia.org/wiki/Dirac_delta_function) function \\(\delta(x)\\).
+where we used the exponential definition of the [Dirac delta](https://en.wikipedia.org/wiki/Dirac_delta_function) function \\(\delta(x)\\):
+
+$$ \tag{2.??}
+	\delta(x - \alpha)
+	= \frac{1}{2 \pi} \int\_{-\infin}^{\infin} e^{i (x - \alpha) y} dy.
+$$
 
 Since the individual harmonics are orthogonal (and, as a result, independent), analysis of a time-harmonic field with \\(N\\) components can be simplified by considering \\(N\\) *monochromatic* vector fields, such as
 
@@ -1291,30 +1341,46 @@ Formally, Equation 8.1 describes electromagnetic waves generated by sources in t
 Just as before, the problem becomes simpler in the frequency domain:
 
 $$ \tag{8.2}
-	\int\_{-\infin}^{\infin} \nabla^2 \psi(\bm{r}, \omega) e^{i \omega t} d\omega
-	- \frac{1}{c^2} \int\_{-\infin}^{\infin} \frac{\partial^2}{\partial t^2} \big( \psi(\bm{r}, \omega) e^{i \omega t} \big) d\omega
-	= \int\_{-\infin}^{\infin} \xi(\bm{r}, \omega) e^{i \omega t} d\omega.
+	\int\_{-\infin}^{\infin} \nabla^2 \psi(\bm{r}, \omega') e^{i \omega' t} d\omega'
+	- \frac{1}{c^2} \int\_{-\infin}^{\infin} \frac{\partial^2}{\partial t^2} \big( \psi(\bm{r}, \omega') e^{i \omega' t} \big) d\omega'
+	= \int\_{-\infin}^{\infin} \xi(\bm{r}, \omega') e^{i \omega' t} d\omega'.
 $$
 
-After invoking the time-harmonic assumption, the integral sign vanishes, and we are left with
+Take the time derivative and simplify. The result is
 
 $$ \tag{8.3}
+	\int\_{-\infin}^{\infin} \Big( \nabla^2 + \big( \omega' \negthinspace /c \big)^2 \Big) \psi(\bm{r}, \omega') e^{i \omega' t} d\omega'
+	= \int\_{-\infin}^{\infin} \xi(\bm{r}, \omega') e^{i \omega' t} d\omega'.
+$$
+
+After invoking the time-harmonic assumption (c.f. Equation 2.14)
+
+$$ \tag{8.4}
+\begin{aligned}
+	&\psi(\bm{r}, \omega') = \sqrt{2 \pi} \psi(\bm{r}) \delta(\omega - \omega'), &
+	&\xi (\bm{r}, \omega') = \sqrt{2 \pi} \xi (\bm{r}) \delta(\omega - \omega'),
+\end{aligned}
+$$
+
+the integral sign vanishes, and we are left with
+
+$$ \tag{8.5}
 	\big( \nabla^2 + k_0^2(\omega) \big) \psi(\bm{r}) = \xi(\bm{r}),
 $$
 
 which is an *inhomogeneous* [Helmholtz equation](https://en.wikipedia.org/wiki/Helmholtz_equation#Inhomogeneous_Helmholtz_equation), where \\(k_0 = \omega / c\\) is the *free-space* [wave number](https://en.wikipedia.org/wiki/Wavenumber).
 
-\\(\big( \nabla^2 + k_0^2(\omega) \big)\\) is called a Helmholtz operator, and it is a linear operator in 3 dimensions. Therefore, Equation 8.3 represents a linear transformation
+\\(\big( \nabla^2 + k_0^2(\omega) \big)\\) is called a Helmholtz operator, and it is a linear operator in 3 dimensions. Therefore, Equation 8.5 represents a linear transformation
 
-$$ \tag{8.4}
+$$ \tag{8.6}
 	\mathcal{L} \big\lbrace \psi(\bm{r}) \big\rbrace = \xi(\bm{r}).
 $$
 
-Unfortunately, unlike its homogeneous counterpart (Equation 5.11), Equation 8.3 does not have a [closed-form](https://en.wikipedia.org/wiki/Closed-form_expression) solution. Yet, we can still solve it analytically using a neat mathematical trick.
+Unfortunately, unlike its homogeneous counterpart (Equation 5.11), Equation 8.5 does not have a [closed-form](https://en.wikipedia.org/wiki/Closed-form_expression) solution. Yet, we can still solve it analytically using a neat mathematical trick.
 
 Use the [sifting property](https://en.wikipedia.org/wiki/Dirac_delta_function#Translation) of the Dirac delta function to express the source function
 
-$$ \tag{8.5}
+$$ \tag{8.7}
 	\xi(\bm{r}) = \iiint\_{\mathbb{R^3}} \xi(\bm{r'}) \delta(\bm{r} - \bm{r'}) dV'
 $$
 
@@ -1322,45 +1388,45 @@ as a volume integral (a 3-dimensional [convolution](https://en.wikipedia.org/wik
 
 While the resulting Helmholtz equation
 
-$$ \tag{8.6}
+$$ \tag{8.8}
 	\big( \nabla^2 + k_0^2(\omega) \big) \psi(\bm{r}) = \iiint\_{\mathbb{R^3}} \xi(\bm{r'}) \delta(\bm{r} - \bm{r'}) dV',
 $$
 
 does not appear to be simpler, as it turns out, we can easily solve the Helmholtz equation for a point source
 
-$$ \tag{8.7}
+$$ \tag{8.9}
 	\mathcal{L} \big\lbrace g(\bm{r}) \big\rbrace = \big( \nabla^2 + k_0^2 \big) g_0(\bm{r}) = \delta(\bm{r}).
 $$
 
 Its solution is the *scalar* [Green function](https://en.wikipedia.org/wiki/Green%27s_function) \\(g\\). It represents an [impulse response](https://en.wikipedia.org/wiki/Impulse_response) of the linear operator \\(\mathcal{L}\\).
 
-Equation 8.7 is an inhomogeneous linear differential equation. Consequently, its solution depends on the linear operator in question, its domain of validity, as well as the initial or boundary conditions. According to Equation 8.5, our domain is the whole real space, and the only applicable restriction is the Sommerfeld radiation condition. Thus, it can be shown that the *free-space* scalar Green function \\(g_0\\) takes the form of an diverging *sphere wave* \[[12](#references)\]:
+Equation 8.9 is an inhomogeneous linear differential equation. Consequently, its solution depends on the linear operator in question, its domain of validity, as well as the initial or boundary conditions. According to Equation 8.7, our domain is the whole real space, and the only applicable restriction is the Sommerfeld radiation condition. Thus, it can be shown that the *free-space* scalar Green function \\(g_0\\) takes the form of an diverging *sphere wave* \[[12](#references)\]:
 
-$$ \tag{8.8}
+$$ \tag{8.10}
 	g_0(\bm{r}) = -\frac{e^{-i k_0 |\bm{r}|}}{4 \pi |\bm{r}|}.
 $$
 
-In order to reconcile Equations 8.6 and 8.7, replace \\(\bm{r}\\) with \\(\bm{r} - \bm{r'}\\) and multiply both sides by \\(\xi(\bm{r'})\\):
+In order to reconcile Equations 8.8 and 8.9, replace \\(\bm{r}\\) with \\(\bm{r} - \bm{r'}\\) and multiply both sides by \\(\xi(\bm{r'})\\):
 
-$$ \tag{8.9}
+$$ \tag{8.11}
 	\big( \nabla^2 + k_0^2 \big) \xi(\bm{r'}) g_0(\bm{r} - \bm{r'}) = \xi(\bm{r'}) \delta(\bm{r} - \bm{r'}).
 $$
 
 Note that the Laplacian depends on \\(\bm{r}\\) rather than \\(\bm{r'}\\). Keeping this in mind, take the volume integral
 
-$$ \tag{8.10}
+$$ \tag{8.12}
 	\big( \nabla^2 + k_0^2 \big) \iiint\_{\mathbb{R^3}} \xi(\bm{r'}) g_0(\bm{r} - \bm{r'}) dV' = \xi(\bm{r}),
 $$
 
-and compare the result to Equation 8.3. We can see that we have found our solution:
+and compare the result to Equation 8.5. We can see that we have found our solution:
 
-$$ \tag{8.11}
+$$ \tag{8.13}
 	\psi_s(\bm{r}) = \iiint\_{\mathbb{R^3}} \xi(\bm{r'}) g_0(\bm{r} - \bm{r'}) dV'.
 $$
 
-Equation 8.11 represents a *special* solution of the *inhomogeneous* Helmholtz equation. Since a solution of a *homogeneous* equation doesn't change its right-hand side, due to linearity, we can obtain the *general* solution of Equation 8.3 by adding Equations 5.15 and 8.11:
+We have just found a *special* solution of the *inhomogeneous* Helmholtz equation. Since a solution of a *homogeneous* equation doesn't change its right-hand side, due to linearity, we can obtain the *general* solution of Equation 8.5 by adding Equations 5.15 and 8.13:
 
-$$ \tag{8.12}
+$$ \tag{8.14}
 \begin{aligned}
 	\psi(\bm{r})
 	&= \psi_i(\bm{r}) + \psi_s(\bm{r}) \cr
@@ -1371,9 +1437,9 @@ $$
 
 This equation has a simple optical interpretation: the first integral on the right-hand side can be seen as an *incident* (or externally-generated) wave, and the second term corresponds to a *scattered* (or internally-generated) wave. Both waves propagate at the speed of light.
 
-We can immediately use Equation 8.12 to find the expressions of the Fourier coefficients by substituting the charge and the the current densities in place of the source function:
+We can immediately use Equation 8.14 to find the expressions of the Fourier coefficients by substituting the current and charge densities in place of the source function:
 
-$$ \tag{8.13}
+$$ \tag{8.15}
 \begin{aligned}
 	&\bm{A}(\bm{r})
 	= \bm{A_i}(\bm{r})
@@ -1384,69 +1450,112 @@ $$ \tag{8.13}
 \end{aligned}
 $$
 
-To find the expressions of the monochromatic phasor fields, recall Equation 2.14, and adopt it for the wave and the source functions: 
+---
 
-$$ \tag{8.14}
+$$ \tag{8.13}
+	\psi(\bm{r}, \omega')
+	= \sqrt{2 \pi} \Big( \psi_i(\bm{r})
+	+ \iiint\_{\mathbb{R^3}} \xi(\bm{r'}) g_0(\bm{r} - \bm{r'}) dV' \Big) \delta(\omega - \omega').
+$$
+
+$$ \tag{8.13}
+	\frac{1}{\sqrt{2 \pi}} \int\_{-\infin}^{\infin} \psi_s(\bm{r}, \omega') e^{i \omega' t} d\omega'
+	= \int\_{-\infin}^{\infin} \iiint\_{\mathbb{R^3}}
+		\xi(\bm{r'}) g_0(\bm{r} - \bm{r'}) dV' \delta(\omega - \omega') e^{i \omega' t} d\omega'.
+$$
+
+$$ \tag{8.13}
+	\psi_s(\bm{r}, t)
+	= \sqrt{2 \pi} \iiint\_{\mathbb{R^3}}
+		\xi(\bm{r'}) g_0(\bm{r} - \bm{r'}) e^{i \omega t} dV'.
+$$
+
+---
+
+$$ \tag{8.13}
+	\sqrt{2 \pi} \psi(\bm{r}) \delta(\omega - \omega') = \sqrt{2 \pi} \Big( \psi_i(\bm{r}) + \iiint\_{\mathbb{R^3}} \xi(\bm{r'}) g_0(\bm{r} - \bm{r'}) dV' \Big) \delta(\omega - \omega').
+$$
+
+\psi(\bm{r}, \omega') = 
+
+$$ \tag{8.4}
 \begin{aligned}
-	&\psi(\bm{r}, \omega') = \sqrt{2 \pi} \psi(\bm{r}) \delta(\omega - \omega'), &
-	&\xi (\bm{r}, \omega') = \sqrt{2 \pi} \xi (\bm{r}) \delta(\omega - \omega').
+	&\psi_s(\bm{r}, \omega') / \big( \sqrt{2 \pi} \delta(\omega - \omega') \big) = \psi_s(\bm{r}) &
+	&\xi   (\bm{r}, \omega') / \big( \sqrt{2 \pi} \delta(\omega - \omega') \big)  = \xi   (\bm{r})
 \end{aligned}
 $$
 
-If we substitute Equations 8.12 into 8.14, we can observe that the equations of the Fourier components and the phasors have the same form:
+$$ \tag{8.14}
+	\psi_s(\bm{r})
+	= \iiint\_{\mathbb{R^3}} -\xi(\bm{r'}) \frac{e^{-i \omega |\bm{r} - \bm{r'}| / c}}{4 \pi |\bm{r} - \bm{r'}|} dV'.
+$$
+
+$$ \tag{8.14}
+	\psi_s(\bm{r}, \omega') \big( \sqrt{2 \pi} \delta(\omega - \omega') \big)^{-1}
+	= \iiint\_{\mathbb{R^3}} -\xi(\bm{r'}, \omega') \frac{e^{-i \omega |\bm{r} - \bm{r'}| / c}}{4 \pi |\bm{r} - \bm{r'}|} dV' \big( \sqrt{2 \pi} \delta(\omega - \omega') \big)^{-1}.
+$$
+
+$$ \tag{8.14}
+	\psi_s^{-1}(\bm{r}, \omega') \delta(\omega - \omega')
+	= \Bigg( \iiint\_{\mathbb{R^3}} -\xi(\bm{r'}, \omega') \frac{e^{-i \omega |\bm{r} - \bm{r'}| / c}}{4 \pi |\bm{r} - \bm{r'}|} dV' \Bigg)^{-1} \delta(\omega - \omega').
+$$
+
+$$ \tag{8.14}
+	\big( \sqrt{2 \pi} \delta(\omega - \omega') \big)^{-1} \psi_s(\bm{r}, \omega')
+	= \big( \sqrt{2 \pi} \delta(\omega - \omega') \big)^{-1} \iiint\_{\mathbb{R^3}} -\xi(\bm{r'}, \omega') \frac{e^{-i \omega |\bm{r} - \bm{r'}| / c}}{4 \pi |\bm{r} - \bm{r'}|} dV'.
+$$
+
+---
+
+To find the expressions of the phasor fields, compare Equations 8.3 and 8.5. Observe that the
 
 $$ \tag{8.15}
 \begin{aligned}
-	\psi(\bm{r}, \omega')
-	= \psi_i(\bm{r}, \omega')
-	+ \iiint\_{\mathbb{R^3}} -\xi(\bm{r'}, \omega') \frac{e^{-i \omega |\bm{r} - \bm{r'}| / c}}{4 \pi |\bm{r} - \bm{r'}|} dV'.
+	\psi(\bm{r}, \omega)
+	= \psi_i(\bm{r}, \omega)
+	+ \iiint\_{\mathbb{R^3}} -\xi(\bm{r'}, \omega) \frac{e^{-i \omega |\bm{r} - \bm{r'}| / c}}{4 \pi |\bm{r} - \bm{r'}|} dV'.
 \end{aligned}	
 $$
 
-Naturally, it directly translates to the expressions of the potentials:
+If we substitute Equations 8.14 into 8.12, we can observe that the equations of the Fourier components and the phasors have the same form:
+
+Naturally, it directly translates to the expressions of the phasor potentials:
 
 $$ \tag{8.16}
 \begin{aligned}
-	&\bm{A}(\bm{r}, \omega') = \bm{A_i}(\bm{r}, \omega')
-	+ \iiint\_{\mathbb{R^3}} \frac{\bm{J}(\bm{r'}, \omega')}{\mu_0^{-1}} \frac{e^{-i \omega |\bm{r} - \bm{r'}| / c}}{4 \pi |\bm{r} - \bm{r'}|} dV', \cr
-	&\phi(\bm{r}, \omega') = \phi_i(\bm{r}, \omega')
-	+ \iiint\_{\mathbb{R^3}} \frac{\rho(\bm{r'}, \omega')}{\epsilon_0} \frac{e^{-i \omega |\bm{r} - \bm{r'}| / c}}{4 \pi |\bm{r} - \bm{r'}|} dV'.
+	&\bm{A}(\bm{r}, \omega) = \bm{A_i}(\bm{r}, \omega)
+	+ \iiint\_{\mathbb{R^3}} \frac{\bm{J}(\bm{r'}, \omega)}{\mu_0^{-1}} \frac{e^{-i \omega |\bm{r} - \bm{r'}| / c}}{4 \pi |\bm{r} - \bm{r'}|} dV', \cr
+	&\phi(\bm{r}, \omega) = \phi_i(\bm{r}, \omega)
+	+ \iiint\_{\mathbb{R^3}} \frac{\rho(\bm{r'}, \omega)}{\epsilon_0} \frac{e^{-i \omega |\bm{r} - \bm{r'}| / c}}{4 \pi |\bm{r} - \bm{r'}|} dV'.
 \end{aligned}
 $$
 
-## Retarded Potentials and Dipoles
+## Retarded Potentials
 
-The physical meaning of the electromagnetic potential is more apparent in the time domain. With this goal in mind, perform the inverse Fourier transform of Equation 8.12:
+The physical meaning of the electromagnetic potential is more apparent in the time domain. With this goal in mind, perform the inverse Fourier transform of the scattered component given by Equation 8.15:
 
-$$ \tag{9.3}
-	\psi(\bm{r}, t) = \int\_{-\infin}^{\infin} \Big( \psi_i(\bm{r}) e^{i \omega' t}
-	+ \iiint\_{\mathbb{R^3}} -\xi(\bm{r'}) \frac{e^{-i \omega |\bm{r} - \bm{r'}| / c} e^{i \omega' t}}{4 \pi |\bm{r} - \bm{r'}|} dV'
-	\Big) \delta(\omega - \omega') d\omega'.
+$$ \tag{9.1}
+	\psi_s(\bm{r}, t)
+	= \frac{1}{\sqrt{2 \pi}} \int\_{-\infin}^{\infin} \iiint\_{\mathbb{R^3}}
+		-\xi(\bm{r'}, \omega) \frac{e^{-i \omega |\bm{r} - \bm{r'}| / c}}{4 \pi |\bm{r} - \bm{r'}|} e^{i \omega t}
+	dV' d\omega.
 $$
 
-But that's not all. According to Equation 2.8, the source function \\(\xi\\) in Equation 9.3 is a time-averaged quantity:
+But ...
 
-$$ \tag{9.4}
-	\xi(\bm{r})
-	= \frac{1}{T_1} \int\_{-T_1/2}^{\thinspace T_1/2} \xi(\bm{r}, t) e^{-i \omega t} dt.
+$$ \tag{2.1}
+	\xi(\bm{r'}, \omega)
+	= \frac{1}{\sqrt{2 \pi}} \int\_{-\infin}^{\infin} \xi(\bm{r'}, t') e^{-i \omega t'} dt',
 $$
 
-Write it as a Fourier transform???
+So ...
 
-$$ \tag{2.13}
-	\\xi(\bm{r}, t)
-	= \mathcal{Re} \big\lbrace \xi(\bm{r}) e^{i \omega t} \big\rbrace,
+$$ \tag{9.1}
+	\psi_s(\bm{r}, t)
+	= \frac{1}{\sqrt{2 \pi}} \int\_{-\infin}^{\infin} \iiint\_{\mathbb{R^3}}
+		-\frac{1}{\sqrt{2 \pi}} \int\_{-\infin}^{\infin} \xi(\bm{r'}, t') e^{-i \omega t'} dt' \frac{e^{-i \omega |\bm{r} - \bm{r'}| / c}}{4 \pi |\bm{r} - \bm{r'}|} e^{i \omega t}
+	dV' d\omega.
 $$
-
-It is only present in the scattered term
-
-$$ \tag{9.3}
-	\psi_s(\bm{r}, t) = \frac{1}{T_1} \int\_{-T_1/2}^{\thinspace T_1/2} \int\_{-\infin}^{\infin}
-	\iiint\_{\mathbb{R^3}} -\xi(\bm{r'}, t) \frac{e^{-i \omega |\bm{r} - \bm{r'}| / c} e^{i (\omega' - \omega) t}}{4 \pi |\bm{r} - \bm{r'}|}
-	\delta(\omega - \omega') dV' d\omega' dt.
-$$
-
-The scattered fields are then
 
 Use Equation 2.14 and Fourier transform it...
 
