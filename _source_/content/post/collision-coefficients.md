@@ -245,7 +245,7 @@ $$ \tag{2.5}
 	= 2 r \cos{ \theta}.
 $$
 
-We can define the integral forms of the fields by replacing \\(\bm{E}\\) by \\(\bm{B}\\), \\(\bm{D}\\), \\(\bm{H}\\), \\(\bm{J\_f}\\) or \\(\rho\_f\\) in Equation 2.4. If we substitute these integrals into Equations 1.13, the result is a system of integral equations
+We can define the integral forms of the fields by replacing \\(\bm{E}\\) by \\(\bm{B}\\), \\(\bm{D}\\), \\(\bm{H}\\), \\(\bm{J\_f}\\) or \\(\rho\_f\\) in Equation 2.4. If we substitute these integrals into Equations 1.13, the result is a system of integro-differential equations
 
 $$ \tag{2.6}
 \begin{aligned}
@@ -275,7 +275,7 @@ $$ \tag{2.7}
 \end{aligned}
 $$
 
-Equivalently, using the Fourier transform operator notation,
+Equivalently, using the transform operator notation,
 
 $$ \tag{2.8}
 \begin{aligned}
@@ -290,7 +290,7 @@ $$ \tag{2.8}
 \end{aligned}
 $$
 
-Generally speaking, equality of integrands (or function arguments) does not follow from equality of integrals (or function values). Luckily for us, the inverse Fourier transform is [uniquely defined](https://en.wikipedia.org/wiki/Fourier_inversion_theorem) for a large class of functions. So, under quite general [conditions](https://en.wikipedia.org/wiki/Fourier_inversion_theorem#Conditions_on_the_function), we can say that
+Generally speaking, the equality of integrands (or function arguments) does not follow from the equality of integrals (or function values). Luckily for us, the inverse Fourier transform is [uniquely defined](https://en.wikipedia.org/wiki/Fourier_inversion_theorem) for a large class of functions. So, under quite general [conditions](https://en.wikipedia.org/wiki/Fourier_inversion_theorem#Conditions_on_the_function), we may say that
 
 $$ \tag{2.9}
 \begin{aligned}
@@ -303,13 +303,19 @@ $$
 
 These are the Maxwell equations for electromagnetic fields with *arbitrary* time dependence. 
 
-Unsurprisingly, the most general solutions tend to be the most complex. As we shall see, certain assumptions can prove to be quite useful. In many real cases, it is reasonable to assume that the electromagnetic field is a [periodic function](https://en.wikipedia.org/wiki/Periodic_function) of time, such that the *fundamental period* \\(\thinspace T\_1 = 2 \pi / \omega_1\\) of both[^3] the electric and the magnetic fields is the same \[[5](#references) (vol. I, ch. 50) [6](#references) (ch. 1.3.3, 1.4.3)\]. This restriction is not as severe as it may seem: the fields can often be repeated virtually (outside the time interval of interest), and we may choose the period to be as large as necessary.
+An interesting property of the frequency-domain solution is the reduction in the number of independent the Maxwell equations from 4 to 2. Since the [divergence of curl](https://en.wikipedia.org/wiki/Vector_calculus_identities#Divergence_of_curl_is_zero) is zero, the divergence of Equations 2.9.1 and 2.9.3 (on the left) is equivalent to Equations 2.9.2 and 2.9.4 (on the right), respectively. The latter is true due to the expression of [conservation of charge](https://en.wikipedia.org/wiki/Charge_conservation) in the frequency domain:
+
+$$ \tag{2.10}
+	\nabla \cdot \bm{J\_f}(\bm{r}, \omega) = - i \omega \rho\_f(\bm{r}, \omega).
+$$
+
+Unsurprisingly, the most general solutions tend to be the most complex. Conversely, making certain assumptions can prove to be quite useful. For instance, we may impose a restriction that the electromagnetic field must be a [periodic function](https://en.wikipedia.org/wiki/Periodic_function) of time, such that the *fundamental period* \\(\thinspace T\_1 = 2 \pi / \omega_1\\) of both[^3] the electric and the magnetic fields is the same \[[5](#references) (vol. I, ch. 50) [6](#references) (ch. 1.3.3, 1.4.3)\]. This limitation is not a particularly severe: the fields can often be repeated virtually (outside the time interval of interest), and we may choose the period to be as large as necessary.
 
 [^3]: The fact that the electric and the magnetic fields cannot exist independently can be shown by a simple relativistic argument \[[11](#references) (ch 6.2)\].
 
 One particular benefit of periodic functions is the existence of the [Fourier series](https://en.wikipedia.org/wiki/Fourier_series#Complex-valued_functions) representation:
 
-$$ \tag{2.10}
+$$ \tag{2.11}
 	\bm{E}(\bm{r}, t)
 	= \sum\_{p = -\infin}^{\infin} \bm{E_p}(\bm{r}) e^{i p \omega_1 t}
 	= \sum\_{p = -\infin}^{\infin} \bm{E_p}(\bm{r}) e^{i \omega_p t},
@@ -318,15 +324,15 @@ $$
 
 where we defined \\(\omega_p = p \thinspace \omega_1\\), with the *Fourier coefficients* \\(\bm{E_p}\\) given by the integral
 
-$$ \tag{2.11}
+$$ \tag{2.12}
 	\bm{E_p}(\bm{r})
 	= \frac{1}{T_1} \int\_{-T_1/2}^{\thinspace T_1/2} \bm{E}(\bm{r}, t) e^{-i \omega_p t} dt
 	= \braket{u_p \vert \bm{E}}.
 $$
 
-Equation 2.11 can be interpreted as the [projection](https://en.wikipedia.org/wiki/Hilbert_space#Fourier_analysis) onto the discrete [Fourier basis](https://en.wikipedia.org/wiki/Fourier_series#Hilbert_space_interpretation), with Equation 2.10 showing the reconstruction. The beautiful thing about the discrete Fourier basis is that it is orthonormal, which means that the individual elements of Equation 2.10 (called *harmonics*) are completely independent of each other:
+Equation 2.12 can be interpreted as the [projection](https://en.wikipedia.org/wiki/Hilbert_space#Fourier_analysis) onto the discrete [Fourier basis](https://en.wikipedia.org/wiki/Fourier_series#Hilbert_space_interpretation), with Equation 2.11 showing the reconstruction. The beautiful thing about the discrete Fourier basis is that it is orthonormal, which means that the individual elements of Equation 2.11 (called *harmonics*) are completely independent of each other:
 
-$$ \tag{2.12}
+$$ \tag{2.13}
 	\braket{u_p \vert u_q}
 	= \frac{1}{T_1} \int\_{-T_1/2}^{\thinspace T_1/2} e^{i (\omega_q - \omega_p) t} dt
 	= \delta_{p,q},
@@ -334,17 +340,15 @@ $$
 
 where \\(\delta_{p,q}\\) is the [Kronecker delta](https://en.wikipedia.org/wiki/Kronecker_delta#Integral_representations) function.
 
----
-
 Similarly to Equation 2.2, if the time-domain field is real,
 
-$$ \tag{2.10}
+$$ \tag{2.14}
 	\bm{E_p}(\bm{r}) = [\bm{E_{-p}}(\bm{r})]^{\*},
 $$
 
-which permits us to simplify Equation 2.7:
+which permits us to simplify Equation 2.11:
 
-$$ \tag{2.11}
+$$ \tag{2.15}
 \begin{aligned}
 	\bm{E}(\bm{r}, t)
 	&= \bm{E_0}(\bm{r})
@@ -355,69 +359,54 @@ $$ \tag{2.11}
 \end{aligned}
 $$
 
-Intuitively, the harmonics produce an equivalent amount of vibration regardless of the sign of their frequency.
+Intuitively, harmonics produce an equivalent amount of vibration regardless of the sign of their frequency.
 
-What happens when we Fourier transform a periodic function? Combining Equations 2.1 and 2.7,
+What happens when we Fourier transform a periodic function? Combining Equations 2.1 and 2.11,
 
-$$ \tag{2.12}
+$$ \tag{2.16}
 \begin{aligned}
 	\bm{E}(\bm{r}, \omega)
 	&= \frac{1}{\sqrt{2 \pi}} \int\_{-\infin}^{\infin} \bm{E}(\bm{r}, t) e^{-i \omega t} dt \cr
 	&= \frac{1}{\sqrt{2 \pi}} \sum\_{p = -\infin}^{\infin} \bm{E_p}(\bm{r}) \int\_{-\infin}^{\infin} e^{i (\omega_p - \omega) t} dt \cr
-	&= \frac{1}{\sqrt{2 \pi}} \sum\_{p = -\infin}^{\infin} \bm{E_p}(\bm{r}) \big( 2 \pi \delta(\omega_p - \omega) \big),
+	&= \sqrt{2 \pi} \sum\_{p = -\infin}^{\infin} \bm{E_p}(\bm{r}) \delta(\omega_p - \omega),
 \end{aligned}
 $$
 
-where we used the exponential definition of the [Dirac delta](https://en.wikipedia.org/wiki/Dirac_delta_function) function \\(\delta(x)\\):
+where we used the exponential definition of the [Dirac delta](https://en.wikipedia.org/wiki/Dirac_delta_function) function 
 
-$$ \tag{2.??}
-	\delta(x - \alpha)
-	= \frac{1}{2 \pi} \int\_{-\infin}^{\infin} e^{i (x - \alpha) y} dy.
+$$ \tag{2.17}
+	\delta(x)
+	= \frac{1}{2 \pi} \int\_{-\infin}^{\infin} e^{i x y} dy.
 $$
 
-Since the individual harmonics are orthogonal (and, as a result, independent), analysis of a time-harmonic field with \\(N\\) components can be simplified by considering \\(N\\) *monochromatic* vector fields, such as
+Since the individual harmonics are orthogonal (and, as a result, independent), analysis of a *polychromatic* field with \\(N\\) harmonic components can be simplified by considering \\(N\\) *monochromatic* vector fields, such as
 
-$$ \tag{2.13}
+$$ \tag{2.18}
 	\bm{E}(\bm{r}, t)
 	= \mathcal{Re} \big\lbrace \bm{E_p}(\bm{r}) e^{i \omega_p t} \big\rbrace,
 $$
 
 in isolation, and the corresponding phasor fields
 
-$$ \tag{2.14}
+$$ \tag{2.19}
 	\bm{E}(\bm{r}, \omega)
 	= \sqrt{2 \pi} \bm{E_p}(\bm{r}) \delta(\omega_p - \omega).
 $$
 
-Substitution of Equation 2.14 (where we can replace \\(\bm{E}\\) by \\(\bm{B}\\), \\(\bm{D}\\), \\(\bm{H}\\), \\(\bm{J\_f}\\) or \\(\rho\_f\\)) into Equations 2.6 yields
+Substitution of Equation 2.19 (where we can replace \\(\bm{E}\\) by \\(\bm{B}\\), \\(\bm{D}\\), \\(\bm{H}\\), \\(\bm{J\_f}\\) or \\(\rho\_f\\)) into Equations 2.7 yields
 
-$$ \tag{2.15}
+$$ \tag{2.20}
 \begin{aligned}
-	&\nabla \times \big( \bm{E_p}(\bm{r}) e^{i \omega_p t} \big)
-	+ \frac{\partial}{\partial t} \big( \bm{B_p}(\bm{r}) e^{i \omega_p t} \big) = 0, &
-	&\nabla \cdot  \big( \bm{B_p}(\bm{r}) e^{i \omega_p t} \big) = 0, \cr
-	&\nabla \times \big( \bm{H_p}(\bm{r}) e^{i \omega_p t} \big)
-	- \frac{\partial}{\partial t} \big( \bm{D_p}(\bm{r}) e^{i \omega_p t} \big)
-	= \bm{J\_{f, \thinspace p}}(\bm{r}) e^{i \omega_p t}, &
-	&\nabla \cdot  \big( \bm{D_p}(\bm{r}) e^{i \omega_p t} \big)
-	= \rho\_{f, \thinspace p}(\bm{r}) e^{i \omega_p t}.
+	&\big( \nabla \times \bm{E_p}(\bm{r}) + i \omega_p \bm{B_p}(\bm{r}) \big) e^{i \omega_p t} = 0, &
+	&\nabla \cdot  \bm{B_p}(\bm{r}) e^{i \omega_p t} = 0, \cr
+	&\big( \nabla \times \bm{H_p}(\bm{r}) - i \omega_p \bm{D_p}(\bm{r}) \big) e^{i \omega_p t} = \bm{J\_{f, \thinspace p}}(\bm{r}) e^{i \omega_p t}, &
+	&\nabla \cdot  \bm{D_p}(\bm{r}) e^{i \omega_p t} = \rho\_{f, \thinspace p}(\bm{r}) e^{i \omega_p t}.
 \end{aligned}
 $$
 
-Performing differentiation with respect to time and division by the pervasive \\(e^{i \omega_p t}\\) factor yields the Maxwell equations for time-harmonic fields \[[7](#references) (ch. 2.4), [8](#references) (ch. 2.2), [9](#references) (ch. 2.3)\]:
+Elimination of the pervasive \\(e^{i \omega_p t}\\) factor and removal of redundant indexing (to simplify the notation) yields  the Maxwell equations for *time-harmonic* electromagnetic fields \[[7](#references) (ch. 2.4), [8](#references) (ch. 2.2), [9](#references) (ch. 2.3)\]:
 
-$$ \tag{2.16}
-\begin{aligned}
-	&\nabla \times \bm{E_p}(\bm{r}) + i \omega_p \bm{B_p}(\bm{r}) = 0, &
-	&\nabla \cdot  \bm{B_p}(\bm{r}) = 0, \cr
-	&\nabla \times \bm{H_p}(\bm{r}) - i \omega_p \bm{D_p}(\bm{r}) = \bm{J\_{f, \thinspace p}}(\bm{r}), &
-	&\nabla \cdot  \bm{D_p}(\bm{r}) = \rho\_{f, \thinspace p}(\bm{r}).
-\end{aligned}
-$$
-
-For monochromatic fields, we can remove redundant indexing to simplify the notation:
-
-$$ \tag{2.17}
+$$ \tag{2.21}
 \begin{aligned}
 	&\nabla \times \bm{E}(\bm{r}) + i \omega \bm{B}(\bm{r}) = 0, &
 	&\nabla \cdot  \bm{B}(\bm{r}) = 0, \cr
@@ -426,27 +415,7 @@ $$ \tag{2.17}
 \end{aligned}
 $$
 
-An interesting consequence of the time-harmonic assumption is the reduction in the number of independent the Maxwell equations from 4 to 2. Since the [divergence of curl](https://en.wikipedia.org/wiki/Vector_calculus_identities#Divergence_of_curl_is_zero) is zero, the divergence of Equations 2.17.1 and 2.17.3 (on the left) is mathematically identical to Equations 2.17.2 and 2.17.4 (on the right), respectively.
-
-Using this method, we can also obtain the expression of [conservation of charge](https://en.wikipedia.org/wiki/Charge_conservation) in the frequency domain:
-
-$$ \tag{2.18}
-	\nabla \cdot \bm{J\_f}(\bm{r}) = - i \omega \rho\_f(\bm{r}).
-$$
-
-For future convenience, we shall define the decomposition of the *free* charges and currents into the *source* and the *induced* parts:
-
-$$ \tag{2.19}
-	\rho\_f = \rho\_s + \rho\_i, \quad
-	\bm{J\_f} = \bm{J\_s} + \bm{J\_i}.
-$$
-
-Conservation of charge implies that
-
-$$ \tag{2.20}
-	\rho\_s(\bm{r}) = \frac{i}{\omega} \nabla \cdot \bm{J\_s}(\bm{r}), \quad
-	\rho\_i(\bm{r}) = \frac{i}{\omega} \nabla \cdot \bm{J\_i}(\bm{r}).
-$$
+Comparison of Equations 2.21 with Equations 2.9 reveals that they are virtually identical. This suggests the following course of action: we shall first try to solve a problem in the most general way possible (using Equations 2.9), and if that fails, we may resort to the periodic assumption for monochromatic (Equation 2.19) or polychromatic (Equation 2.16) fields. While it is somewhat disappointing that the time-harmonic equations are not simpler, the fact that they are not simpler is not entirely obvious. Due to the wide variety of contexts, both formulations of the Maxwell equations are very useful.
 
 ## Force, Energy, and Radiometry
 
@@ -702,6 +671,21 @@ $$
 Having defined both irradiance and spectral irradiance, we can compute all other [radiometric quantities](https://en.wikipedia.org/wiki/Radiometry) using integration and differentiation techniques as discussed in the previous article \[[3](#references)\].
 
 ## Constitutive Relations
+
+
+For future convenience, we shall define the decomposition of the *free* charges and currents into the *source* and the *induced* parts:
+
+$$ \tag{2.19}
+	\rho\_f = \rho\_s + \rho\_i, \quad
+	\bm{J\_f} = \bm{J\_s} + \bm{J\_i}.
+$$
+
+Conservation of charge implies that
+
+$$ \tag{2.20}
+	\rho\_s(\bm{r}) = \frac{i}{\omega} \nabla \cdot \bm{J\_s}(\bm{r}), \quad
+	\rho\_i(\bm{r}) = \frac{i}{\omega} \nabla \cdot \bm{J\_i}(\bm{r}).
+$$
 
 Considered in isolation, the Maxwell equations in the frequency domain is an [undetermined system](https://en.wikipedia.org/wiki/Underdetermined_system) - it has fewer equations than unknowns. This makes it necessary to specify the way the material responds to the applied electromagnetic field. Such assumptions about the material are called the *material equations*, or the [constitutive relations](https://en.wikipedia.org/wiki/Constitutive_equation#Electromagnetism).
 
