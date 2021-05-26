@@ -94,7 +94,7 @@ $$
 
 Equation 1.5 is a [continuity equation](https://en.wikipedia.org/wiki/Continuity_equation) that tells us that a reduction of the charge density is observed if the charges are carried away by a current.
 
-Sometimes, Equations 1.1 are referred to as the "vacuum version" of the Maxwell equations. This name can be a little misleading; since electromagnetic fields only interact with charged [particles](https://en.wikipedia.org/wiki/Elementary_particle) (called "charges"), the matter is represented by the *volume* [charge density](https://en.wikipedia.org/wiki/Charge_density) \\(\rho\\), such that the total amount of charge \\(Q\\) inside the volume \\(V\\) is
+Sometimes, Equations 1.1.1-1.1.4 are referred to as the "vacuum version" of the Maxwell equations. This name can be a little misleading; since electromagnetic fields only interact with charged [particles](https://en.wikipedia.org/wiki/Elementary_particle) (called "charges"), the matter is represented by the *volume* [charge density](https://en.wikipedia.org/wiki/Charge_density) \\(\rho\\), such that the total amount of charge \\(Q\\) inside the volume \\(V\\) is
 
 $$ \tag{1.6}
 	Q(t) = \iiint\_{V} \rho(\bm{r}, t) \thinspace dV.
@@ -401,7 +401,7 @@ $$ \tag{3.5}
 	= 2 r \cos{ \theta}.
 $$
 
-We can define the integral forms of the fields by replacing \\(\bm{E}\\) by \\(\bm{B}\\), \\(\bm{D}\\), \\(\bm{H}\\), \\(\bm{J\_f}\\) or \\(\rho\_f\\) in Equation 3.4. If we substitute these integrals into Equations 1.13, the result is a system of integro-differential equations
+We can define the integral forms of the fields by replacing \\(\bm{E}\\) by \\(\bm{B}\\), \\(\bm{D}\\), \\(\bm{H}\\), \\(\bm{J\_f}\\) or \\(\rho\_f\\) in Equation 3.4. If we substitute these integrals into Equations 1.13.1-1.13.4, the result is a system of integro-differential equations
 
 $$ \tag{3.6}
 \begin{aligned}
@@ -705,7 +705,7 @@ In general, media may be *dispersive* (dependent on the frequency), *lossy* (abs
 
 A radical simplification[^7] of the Maxwell equations can be achieved by assuming that the material is both *linear* and *isotropic* \[[6](#references) (ch. 1.1.2), [7](#references) (ch. 2.3), [8](#references) (ch. 2.3), [9](#references) (ch. 2.1)\]:
 
-[^7]: Equations 5.2 make a big assumption that is not appropriate for certain types of real materials. For instance, [crystals](https://en.wikipedia.org/wiki/Crystal) have a well-defined [internal structure](https://en.wikipedia.org/wiki/Crystal_structure) which makes them inherently anisotropic \[[5](#references) (vol. II, ch. 30)\]. Since our application is primarily concerned with simple fluids, a linear, isotropic material is reasonable assumption that offers significant theoretical advantages (such as simplicity). However, this assumption is potentially not suitable for a more general application \[[6](#references) (ch. 2)\].
+[^7]: Equations 5.2.1-5.2.3 make a big assumption that is not appropriate for certain types of real materials. For instance, [crystals](https://en.wikipedia.org/wiki/Crystal) have a well-defined [internal structure](https://en.wikipedia.org/wiki/Crystal_structure) which makes them inherently anisotropic \[[5](#references) (vol. II, ch. 30)\]. Since our application is primarily concerned with simple fluids, a linear, isotropic material is reasonable assumption that offers significant theoretical advantages (such as simplicity). However, this assumption is potentially not suitable for a more general application \[[6](#references) (ch. 2)\].
 
 $$ \tag{5.2}
 \begin{aligned}
@@ -761,16 +761,16 @@ $$
 
 ## Helmholtz Equation
 
-Consider a region of space without any source currents or charges. Physically, this means that there are no sources of fields in this region; but it doesn't mean the field contains no energy. The idea is to explore all solutions of the Maxwell equations (we can pick a particular solution once we specify the source or the boundary conditions), and determine how these solutions evolve over time.
+Consider a region of space without any source charges or currents. Physically, this means that there are no sources of fields in this region; but it doesn't mean the region contains no energy. To find an expression of the internal field, we shall explore all general solutions of the Maxwell equations (we can find a special solution once we specify the boundary conditions), and determine how these solutions evolve over time.
 
-Setting \\(\bm{J\_s} = \rho\_s = 0\\) in Equations 4.6, we obtain a coupled system of first-order linear homogeneous [partial differential equations](https://en.wikipedia.org/wiki/Partial_differential_equation):
+Setting \\(\bm{J\_s} = \rho\_s = 0\\) in Equations 5.7.3-5.7.4, we obtain a coupled system of first-order linear homogeneous [partial differential equations](https://en.wikipedia.org/wiki/Partial_differential_equation):
 
-$$ \tag{5.1}
+$$ \tag{6.1}
 \begin{aligned}
-	&\nabla \times \bm{E}(\bm{r}) + i \omega \mu(\bm{r}, \omega) \bm{H}(\bm{r}) = 0, &
-	&\nabla \cdot  \big( \mu(\bm{r}, \omega) \bm{H}(\bm{r}) \big) = 0, \cr
-	&\nabla \times \bm{H}(\bm{r}) - i \omega \varepsilon(\bm{r}, \omega) \bm{E}(\bm{r}) = 0, &
-	&\nabla \cdot  \big( \varepsilon(\bm{r}, \omega) \bm{E}(\bm{r}) \big) = 0.
+	&\nabla \times \bm{E}(\bm{r}, \omega) + i \omega \mu(\bm{r}, \omega) \bm{H}(\bm{r}, \omega) = 0, &
+	&\nabla \cdot  \big( \mu(\bm{r}, \omega) \bm{H}(\bm{r}, \omega) \big) = 0, \cr
+	&\nabla \times \bm{H}(\bm{r}, \omega) - i \omega \varepsilon(\bm{r}, \omega) \bm{E}(\bm{r}, \omega) = 0, &
+	&\nabla \cdot  \big( \varepsilon(\bm{r}, \omega) \bm{E}(\bm{r}, \omega) \big) = 0.
 \end{aligned}
 $$
 
@@ -778,30 +778,30 @@ Mathematically, the consequence is that a linear combination of several solution
 
 Next, assume that the medium is *homogeneous* (constant in space):
 
-$$ \tag{5.2}
+$$ \tag{6.2}
 \begin{aligned}
-	&\nabla \times \bm{E}(\bm{r}) + i \omega \mu(\omega) \bm{H}(\bm{r}) = 0, &
-	&\nabla \cdot  \bm{H}(\bm{r}) = 0, \cr
-	&\nabla \times \bm{H}(\bm{r}) - i \omega \varepsilon(\omega) \bm{E}(\bm{r}) = 0, &
-	&\nabla \cdot  \bm{E}(\bm{r}) = 0.
+	&\nabla \times \bm{E}(\bm{r}, \omega) + i \omega \mu(\omega) \bm{H}(\bm{r}, \omega) = 0, &
+	&\nabla \cdot  \bm{H}(\bm{r}, \omega) = 0, \cr
+	&\nabla \times \bm{H}(\bm{r}, \omega) - i \omega \varepsilon(\omega) \bm{E}(\bm{r}, \omega) = 0, &
+	&\nabla \cdot  \bm{E}(\bm{r}, \omega) = 0.
 \end{aligned}
 $$
 
-Let us focus on the electric field \\(\bm{E}\\). Take curl of Equation 5.2.1 and substitute Equation 5.2.3:
+Let us focus on the electric field \\(\bm{E}\\). Take curl of Equation 6.2.1 and substitute Equation 6.2.3:
 
-$$ \tag{5.3}
-	\nabla \times \nabla \times \bm{E}(\bm{r}) + i \omega \mu(\omega) \big( i \omega \varepsilon(\omega) \bm{E}(\bm{r}) \big) = 0.
+$$ \tag{6.3}
+	\nabla \times \nabla \times \bm{E}(\bm{r}, \omega) + i \omega \mu(\omega) \big( i \omega \varepsilon(\omega) \bm{E}(\bm{r}, \omega) \big) = 0.
 $$
 
 Introduce the [curl of curl](https://en.wikipedia.org/wiki/Vector_calculus_identities#Curl_of_curl) identity
 
-$$ \tag{5.4}
+$$ \tag{6.4}
 	\nabla \times (\nabla \times \bm{E}) = \nabla (\nabla \cdot \bm{E}) - \nabla^2 \bm{E},
 $$
 
 where 
 
-$$ \tag{5.5}
+$$ \tag{6.5}
 	\mathrm{grad}(s) =
 	\nabla s =
 	\begin{bmatrix}
@@ -818,7 +818,7 @@ $$
 
 is the [gradient](https://en.wikipedia.org/wiki/Gradient) operator and
 
-$$ \tag{5.6}
+$$ \tag{6.6}
 	\mathrm{div} \big( \mathrm{grad}(\bm{E}) \big) =
 	\nabla^2 \bm{E} =
 	(\nabla \cdot \nabla) \bm{E} =
@@ -827,49 +827,49 @@ $$
 
 is the *vector* [Laplace](https://en.wikipedia.org/wiki/Laplace_operator) operator (*scalar* Laplace operator applied to each vector component).
 
-Use Equation 5.4 to expand Equation 5.3:
+Use Equation 6.4 to expand Equation 6.3:
 
-$$ \tag{5.7}
-	\nabla \big( \nabla \cdot \bm{E}(\bm{r}) \big) - \nabla^2 \bm{E}(\bm{r}) - \omega^2 \mu(\omega) \varepsilon(\omega) \bm{E}(\bm{r}) = 0.
+$$ \tag{6.7}
+	\nabla \big( \nabla \cdot \bm{E}(\bm{r}, \omega) \big) - \nabla^2 \bm{E}(\bm{r}, \omega) - \omega^2 \mu(\omega) \varepsilon(\omega) \bm{E}(\bm{r}, \omega) = 0.
 $$
 
-Substitution of Equation 5.2.4 into 5.7 yields the equation of the electric field \\(\bm{E}\\):
+Substitution of Equation 6.2.4 into 6.7 yields the equation of the electric field \\(\bm{E}\\):
 
-$$ \tag{5.8}
-	\nabla^2 \bm{E}(\bm{r}) + \omega^2 \mu(\omega) \varepsilon(\omega) \bm{E}(\bm{r}) = 0.
+$$ \tag{6.8}
+	\nabla^2 \bm{E}(\bm{r}, \omega) + \omega^2 \mu(\omega) \varepsilon(\omega) \bm{E}(\bm{r}, \omega) = 0.
 $$
 
 Similarly, we can obtain an expression of the magnetic field \\(\bm{B}\\):
 
-$$ \tag{5.9}
-	\nabla^2 \bm{B}(\bm{r}) + \omega^2 \mu(\omega) \varepsilon(\omega) \bm{B}(\bm{r}) = 0.
+$$ \tag{6.9}
+	\nabla^2 \bm{B}(\bm{r}, \omega) + \omega^2 \mu(\omega) \varepsilon(\omega) \bm{B}(\bm{r}) = 0.
 $$
 
 If we define
 
-$$ \tag{5.10}
+$$ \tag{6.10}
 	k(\omega) = \omega \sqrt{\mu(\omega) \varepsilon(\omega)},
 $$
 
-we can separate the *vector* Equation 5.8 into three *homogeneous* [Helmholtz equations](https://en.wikipedia.org/wiki/Helmholtz_equation):
+we can separate the *vector* Equation 6.8 into three *homogeneous* [Helmholtz equations](https://en.wikipedia.org/wiki/Helmholtz_equation):
 
-$$ \tag{5.11}
+$$ \tag{6.11}
 \begin{aligned}
-	\big( \nabla^2 + k^2(\omega) \big) E\_x(\bm{r}) = 0, \cr
-	\big( \nabla^2 + k^2(\omega) \big) E\_y(\bm{r}) = 0, \cr
-	\big( \nabla^2 + k^2(\omega) \big) E\_z(\bm{r}) = 0. \cr
+	\big( \nabla^2 + k^2(\omega) \big) E\_x(\bm{r}, \omega) = 0, \cr
+	\big( \nabla^2 + k^2(\omega) \big) E\_y(\bm{r}, \omega) = 0, \cr
+	\big( \nabla^2 + k^2(\omega) \big) E\_z(\bm{r}, \omega) = 0. \cr
 \end{aligned}
 $$
 
 To find a solution, let us first consider a simpler 1-dimensional Helmholtz equation
 
-$$ \tag{5.12}
+$$ \tag{6.12}
 	\frac{d^2 \psi(x)}{d x^2} = -k^2 \psi(x).
 $$
 
 If the derivative of a function is the function itself (times a constant), the function is clearly an exponential:
 
-$$ \tag{5.13}
+$$ \tag{6.13}
 	\psi(x) =
 	\psi(0) e^{\pm i k x},
 $$
@@ -878,30 +878,30 @@ where \\(\psi(0)\\) is a complex constant.
 
 Extension to 3 dimensions is straightforward. If we rotate the coordinate frame so that the \\(x\\)-axis points along the unit vector \\(\bm{n}\\),
 
-$$ \tag{5.14}
+$$ \tag{6.14}
 	\psi(\bm{r}, \bm{n}) =
 	\psi(0, \bm{n}) e^{ \pm i k (\bm{r} \cdot \bm{n})}
 $$
 
 is a valid solution for a certain value of \\(\bm{n}\\). To avoid clutter, we shall adhere to a common convention with the negative sign; the positive solution can be obtained by reversing the direction of \\(\bm{n}\\).
 
-How should we choose the direction of \\(\bm{n}\\)? It depends on the location of sources and optical interfaces. In general, we can use *any* value of \\(\bm{n}\\). And, since the Helmholtz equation is both linear and homogeneous, we can actually use *every* value of \\(\bm{n}\\) by invoking the [superposition principle](https://en.wikipedia.org/wiki/Superposition_principle). Thus the general solution is an integral taken over the surface of the unit sphere \\(\mathbb{S^2}\\) [measured](https://en.wikipedia.org/wiki/Lebesgue_integration#Construction) by the [solid angle](https://en.wikipedia.org/wiki/Solid_angle) \\(d\Omega_n\\):
+How should we choose the direction of \\(\bm{n}\\)? It depends on the location of sources and optical interfaces. In general, we can use *any* value of \\(\bm{n}\\). And, since the Helmholtz equation is both linear and homogeneous, we can actually use *every* value of \\(\bm{n}\\) by invoking the [superposition principle](https://en.wikipedia.org/wiki/Superposition_principle). Thus, the general solution is an integral taken over the surface of the unit sphere \\(\mathbb{S^2}\\) [measured](https://en.wikipedia.org/wiki/Lebesgue_integration#Construction) by the [solid angle](https://en.wikipedia.org/wiki/Solid_angle) \\(d\Omega_n\\):
 
-$$ \tag{5.15}
+$$ \tag{6.15}
 	\psi(\bm{r}) =
 	\oiint\_{\mathbb{S}^2} \psi(\bm{r}, \bm{n}) \thinspace d\Omega_n =
 	\oiint\_{\mathbb{S}^2} \psi(0, \bm{n}) e^{-i k (\bm{r} \cdot \bm{n})} d\Omega_n.
 $$
 
-Equation 5.15 can be used to solve Equations 5.11 and 5.8:
+Equation 6.15 can be used to solve Equation 6.8:
 
-$$ \tag{5.16}
-	\bm{E}(\bm{r}) =
-	\oiint\_{\mathbb{S}^2} \bm{E}(\bm{r}, \bm{n}) \thinspace d\Omega_n =
-	\oiint\_{\mathbb{S}^2} \bm{E}(0, \bm{n}) e^{-i k(\omega) (\bm{r} \cdot \bm{n})} d\Omega_n.
+$$ \tag{6.16}
+	\bm{E}(\bm{r}, \omega) =
+	\oiint\_{\mathbb{S}^2} \bm{E}(\bm{r}, \bm{n}, \omega) \thinspace d\Omega_n =
+	\oiint\_{\mathbb{S}^2} \bm{E}(0, \bm{n}, \omega) e^{-i k(\omega) (\bm{r} \cdot \bm{n})} d\Omega_n.
 $$
 
-That is a solution of the Maxwell equations in the frequency domain.
+That is a general solution of the Maxwell equations for *linear, isotropic, homogeneous* media.
 
 ## Plane Waves
 
