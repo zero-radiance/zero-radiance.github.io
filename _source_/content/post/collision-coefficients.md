@@ -678,28 +678,7 @@ $$
 
 Having defined both irradiance and spectral irradiance, we can easily compute all other [radiometric quantities](https://en.wikipedia.org/wiki/Radiometry) using integration and differentiation techniques as discussed in the previous article \[[3](#references)\].
 
-
-
-
-
-
-
 ## Constitutive Relations
-
-
-For future convenience, we shall define the decomposition of the *free* charges and currents into the *source* and the *induced* parts:
-
-$$ \tag{2.19}
-	\rho\_f = \rho\_s + \rho\_i, \quad
-	\bm{J\_f} = \bm{J\_s} + \bm{J\_i}.
-$$
-
-Conservation of charge implies that
-
-$$ \tag{2.20}
-	\rho\_s(\bm{r}) = \frac{i}{\omega} \nabla \cdot \bm{J\_s}(\bm{r}), \quad
-	\rho\_i(\bm{r}) = \frac{i}{\omega} \nabla \cdot \bm{J\_i}(\bm{r}).
-$$
 
 Considered in isolation, the Maxwell equations in the frequency domain is an [undetermined system](https://en.wikipedia.org/wiki/Underdetermined_system) - it has fewer equations than unknowns. This makes it necessary to specify the way the material responds to the applied electromagnetic field. Such assumptions about the material are called the *material equations*, or the [constitutive relations](https://en.wikipedia.org/wiki/Constitutive_equation#Electromagnetism).
 
@@ -707,7 +686,7 @@ The simplest way is to assume that the material responds to weak electromagnetic
 
 [^6]: This means that omitting higher-order terms in the series expansion results in a negligible error.
 
-$$ \tag{4.1}
+$$ \tag{5.1}
 	\begin{bmatrix}
 		\bm{D} \cr
 		\bm{H} \cr
@@ -722,13 +701,13 @@ $$ \tag{4.1}
 	\end{bmatrix}.
 $$
 
-In general, media may be *dispersive* (dependent on the frequency), *lossy* (absorptive), and *anisotropic* (dependent on the orientation). This implies that each matrix entry \\(\bm{c_{ij}}\\) is a complex [tensor field](https://en.wikipedia.org/wiki/Tensor#Tensor_fields) that can be represented by a 3x3 matrix.
+In general, media may be *dispersive* (dependent on the frequency), *lossy* (absorptive), and *anisotropic* (dependent on the orientation). This implies that each coefficient \\(\bm{c_{ij}}\\) is a complex [tensor field](https://en.wikipedia.org/wiki/Tensor#Tensor_fields) that can be represented by a 3x3 matrix.
 
 A radical simplification[^7] of the Maxwell equations can be achieved by assuming that the material is both *linear* and *isotropic* \[[6](#references) (ch. 1.1.2), [7](#references) (ch. 2.3), [8](#references) (ch. 2.3), [9](#references) (ch. 2.1)\]:
 
-[^7]: Equations 4.2-4.3 make a big assumption that is not appropriate for certain types of real materials. For instance, [crystals](https://en.wikipedia.org/wiki/Crystal) have a well-defined [internal structure](https://en.wikipedia.org/wiki/Crystal_structure) which makes them inherently anisotropic \[[5](#references) (vol. II, ch. 30)\]. Since our application is primarily concerned with simple fluids, a linear, isotropic material is reasonable assumption that offers significant theoretical advantages (such as simplicity). However, this assumption is potentially not suitable for a more general application \[[6](#references) (ch. 2)\].
+[^7]: Equations 5.2 make a big assumption that is not appropriate for certain types of real materials. For instance, [crystals](https://en.wikipedia.org/wiki/Crystal) have a well-defined [internal structure](https://en.wikipedia.org/wiki/Crystal_structure) which makes them inherently anisotropic \[[5](#references) (vol. II, ch. 30)\]. Since our application is primarily concerned with simple fluids, a linear, isotropic material is reasonable assumption that offers significant theoretical advantages (such as simplicity). However, this assumption is potentially not suitable for a more general application \[[6](#references) (ch. 2)\].
 
-$$ \tag{4.2}
+$$ \tag{5.2}
 \begin{aligned}
 	&\bm{J\_i}(\bm{r}, \omega) \approx \sigma(\bm{r}, \omega) \bm{E}(\bm{r}, \omega), \cr
 	&\bm{D}   (\bm{r}, \omega) \approx \epsilon(\bm{r}, \omega) \bm{E}(\bm{r}, \omega), \cr
@@ -738,38 +717,45 @@ $$
 
 where \\(\sigma\\) is the [specific conductivity](https://en.wikipedia.org/wiki/Electrical_resistivity_and_conductivity), \\(\epsilon\\) is the [electric permittivity](https://en.wikipedia.org/wiki/Permittivity), and \\(\mu\\) is the [magnetic permeability](https://en.wikipedia.org/wiki/Permeability_(electromagnetism)).
 
-We can also combine Equations 2.20.2 and 4.2.1 to derive the relation of the induced charge density:
+Conservation of charge implies that
 
-$$ \tag{4.3}
-	\rho\_i(\bm{r}) \approx \frac{i}{\omega} \nabla \cdot \big( \sigma(\bm{r}, \omega) \bm{E}(\bm{r}) \big).
+$$ \tag{5.3}
+	\rho\_i(\bm{r}, \omega) = \frac{i}{\omega} \nabla \cdot \bm{J\_i}(\bm{r}, \omega).
 $$
 
-If the constitutive relations hold, the Maxwell equations for time-harmonic fields take the following form:
+Equations 5.2.1 and 5.3 assume that the *free* charges and currents may be decomposed into the *source* and the *induced* parts:
 
-$$ \tag{4.4}
+$$ \tag{5.4}
+	\rho\_f = \rho\_s + \rho\_i, \quad
+	\bm{J\_f} = \bm{J\_s} + \bm{J\_i}.
+$$
+
+If the constitutive relations hold, the Maxwell equations in the frequency domain take the following form:
+
+$$ \tag{5.5}
 \begin{aligned}
-	&\nabla \times \bm{E}(\bm{r}) + i \omega \mu(\bm{r}, \omega) \bm{H}(\bm{r}) = 0, \cr
-	&\nabla \cdot  \big( \mu(\bm{r}, \omega) \bm{H}(\bm{r}) \big) = 0, \cr
-	&\nabla \times \bm{H}(\bm{r}) - i \omega \epsilon(\bm{r}, \omega) \bm{E}(\bm{r})
-	= \bm{J\_s}(\bm{r}) + \sigma(\bm{r}, \omega) \bm{E}(\bm{r}), \cr
-	&\nabla \cdot  \big( \epsilon(\bm{r}, \omega) \bm{E}(\bm{r}) \big) = \rho\_s(\bm{r}) + \frac{i}{\omega} \nabla \cdot \big( \sigma(\bm{r}, \omega) \bm{E}(\bm{r}) \big).
+	&\nabla \times \bm{E}(\bm{r}, \omega) + i \omega \mu(\bm{r}, \omega) \bm{H}(\bm{r}, \omega) = 0, \cr
+	&\nabla \cdot  \big( \mu(\bm{r}, \omega) \bm{H}(\bm{r}, \omega) \big) = 0, \cr
+	&\nabla \times \bm{H}(\bm{r}, \omega) - i \omega \epsilon(\bm{r}, \omega) \bm{E}(\bm{r}, \omega)
+	= \bm{J\_s}(\bm{r}, \omega) + \sigma(\bm{r}, \omega) \bm{E}(\bm{r}, \omega), \cr
+	&\nabla \cdot  \big( \epsilon(\bm{r}, \omega) \bm{E}(\bm{r}, \omega) \big) = \rho\_s(\bm{r}, \omega) + \frac{i}{\omega} \nabla \cdot \big( \sigma(\bm{r}, \omega) \bm{E}(\bm{r}, \omega) \big).
 \end{aligned}
 $$
 
 Using the definition of the [complex permittivity](https://en.wikipedia.org/wiki/Permittivity#Complex_permittivity) \[[7](#references) (ch. 2.8), [8](#references) (ch. 2.3), [9](#references) (ch. 2.3)\]
 
-$$ \tag{4.5}
+$$ \tag{5.6}
 	\varepsilon(\bm{r}, \omega) = \epsilon(\bm{r}, \omega) - \frac{i}{\omega} \sigma(\bm{r}, \omega),
 $$
 
 we obtain the Maxwell equations for *linear, isotropic* media:
 
-$$ \tag{4.6}
+$$ \tag{5.7}
 \begin{aligned}
-	&\nabla \times \bm{E}(\bm{r}) + i \omega \mu(\bm{r}, \omega) \bm{H}(\bm{r}) = 0, &
-	&\nabla \cdot  \big( \mu(\bm{r}, \omega) \bm{H}(\bm{r}) \big) = 0, \cr
-	&\nabla \times \bm{H}(\bm{r}) - i \omega \varepsilon(\bm{r}, \omega) \bm{E}(\bm{r}) = \bm{J\_s}(\bm{r}), &
-	&\nabla \cdot  \big( \varepsilon(\bm{r}, \omega) \bm{E}(\bm{r}) \big) = \rho\_s(\bm{r}).
+	&\nabla \times \bm{E}(\bm{r}, \omega) + i \omega \mu(\bm{r}, \omega) \bm{H}(\bm{r}, \omega) = 0, &
+	&\nabla \cdot  \big( \mu(\bm{r}, \omega) \bm{H}(\bm{r}, \omega) \big) = 0, \cr
+	&\nabla \times \bm{H}(\bm{r}, \omega) - i \omega \varepsilon(\bm{r}, \omega) \bm{E}(\bm{r}, \omega) = \bm{J\_s}(\bm{r}, \omega), &
+	&\nabla \cdot  \big( \varepsilon(\bm{r}, \omega) \bm{E}(\bm{r}, \omega) \big) = \rho\_s(\bm{r}, \omega).
 \end{aligned}
 $$
 
