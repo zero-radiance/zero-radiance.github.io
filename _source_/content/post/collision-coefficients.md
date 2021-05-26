@@ -191,6 +191,162 @@ In addition to the boundary conditions, the law of [conservation of energy](http
 
 We take the Maxwell equations as axioms, and use them as a foundation on which we base the theory presented in the following sections.
 
+## Force and Energy
+
+Given a mathematical description of electromagnetic radiation in terms of vector fields, we would like to physically characterize it as an energy transfer process. In order to do that, we have to determine how much energy there is in a given volume element of space, and also the rate of energy flow \[[5](#references) (vol. II, ch. 27), [6](#references) (ch. 1.1.4), [7](#references) (ch. 2.11), [8](#references) (ch. 2.5), [9](#references) (ch. 2.4)\].
+
+[Conservation of energy](https://en.wikipedia.org/wiki/Conservation_of_energy) is one of the most important principles of physics. Here is one way to state it: the difference between the amount of external energy \\(\mathcal{E\_{ext}}\\) flowing into the volume \\(V\\) and the amount of internal energy \\(\mathcal{E\_{int}}\\) flowing out equals the amount of work \\(\mathcal{W}\\) done inside.
+
+$$ \tag{2.1}
+	\frac{\partial}{\partial t} \mathcal{E\_{ext}}(V, t) -
+	\frac{\partial}{\partial t} \mathcal{E\_{int}}(V, t) =
+	\frac{\partial}{\partial t} \mathcal{W}(V, t).
+$$
+
+In Equation 2.1, \\(\mathcal{E}\\) refers to a single type of energy: kinetic, electromagnetic, etc. Work transforms a portion of \\(\mathcal{E\_{ext}}\\) into a different type of energy: kinetic into potential, electromagnetic into thermal, and so on. If we account for all types of energy, the total amount of energy is conserved.
+
+Given our focus on electromagnetic energy, we can partition the total amount of energy into the *field energy* and the *matter energy*. In this context, work done by the field on the matter refers to *absorption*, and has a positive sign. Similarly, *emission* is the work done by the matter on the field, and has a negative sign. We shall not consider emissive materials in the analysis presented below.
+
+Mathematically, the [rate of doing work](https://en.wikipedia.org/wiki/Work_(physics)#Mathematical_calculation) is the product of force and velocity:
+
+$$ \tag{2.2}
+	\frac{\partial \mathcal{W}}{\partial t} = \bm{F} \cdot \bm{v}.
+$$ 
+
+Thus, to compute it, we must recall the definition of electromagnetic force.
+
+If a particle with the charge \\(q\\) moving at the velocity \\(\bm{v}\\) is placed in an electromagnetic field, it experiences the [Lorentz force](https://en.wikipedia.org/wiki/Lorentz_force)
+
+$$ \tag{2.3}
+	\bm{F}(\bm{r}, t) = q(\bm{r}, t) \big( \bm{E}(\bm{r}, t) + \bm{v}(\bm{r}, t) \times \bm{B}(\bm{r}, t) \big).
+$$
+
+For the charge density \\(\rho\\) and the volume element \\(dV\\), the corresponding equation is
+
+$$ \tag{2.4}
+	d\bm{F}(\bm{r}, t) = \rho(\bm{r}, t) \big( \bm{E}(\bm{r}, t) + \bm{v}(\bm{r}, t) \times \bm{B}(\bm{r}, t) \big) \thinspace dV.
+$$
+
+Therefore, the amount of work done per unit time by the field on the matter inside the volume \\(V\\) is
+
+$$ \tag{2.5}
+	\frac{\partial}{\partial t} \mathcal{W}(V, t) =
+	\iiint\_{V} \bm{v}(\bm{r}, t) \cdot d\bm{F}(\bm{r}, t) =
+	\iiint\_{V} \bm{E}(\bm{r}, t) \cdot \rho(\bm{r}, t) \bm{v}(\bm{r}, t) \thinspace dV.
+$$
+
+Since the current density is just the number of moving charges per unit volume (see Equation 1.7),
+
+$$ \tag{2.6}
+	\frac{\partial}{\partial t} \mathcal{W}(V, t) =
+	\iiint\_{V} \bm{E}(\bm{r}, t) \cdot \bm{J}(\bm{r}, t) \thinspace dV.
+$$
+
+The Maxwell equations allow us to relate a current to the generated fields. Substitution of Equation 1.1.3 yields
+
+$$ \tag{2.7}
+	\iiint\_{V} \bm{E} \cdot \bm{J} \thinspace dV = 
+	\iiint\_{V} \bm{E} \cdot \Big( \nabla \times \big( \mu\_0^{-1} \bm{B} \big) -
+	\frac{\partial}{\partial t} \big( \epsilon_0 \bm{E} \big) \Big) dV.
+$$
+
+Since [the divergence of the cross product](https://en.wikipedia.org/wiki/Vector_calculus_identities#Cross_product_rule) is
+
+$$ \tag{2.8}
+	\nabla \cdot (\bm{E} \times \bm{B}) = (\nabla \times \bm{E}) \cdot \bm{B} - \bm{E} \cdot (\nabla \times \bm{B}),
+$$
+
+we can reformulate the integrand of Equation 2.7 as
+
+$$ \tag{2.9}
+	\bm{E} \cdot \bm{J} = 
+	\mu\_0^{-1} \big( (\nabla \times \bm{E}) \cdot \bm{B} - \nabla \cdot (\bm{E} \times \bm{B}) \big) -
+	\epsilon_0 \bm{E} \cdot \frac{\partial \bm{E}}{\partial t}.
+$$
+
+The curl of \\(\bm{E}\\) is also given by the Maxwell equations (see Equation 1.1.1). Then it follows that
+
+$$ \tag{2.10}
+	\bm{E} \cdot \bm{J} = 
+	\mu\_0^{-1} \big( {-\bm{B}} \cdot \frac{\partial \bm{B}}{\partial t} - \nabla \cdot (\bm{E} \times \bm{B}) \big) -
+	\epsilon_0 \bm{E} \cdot \frac{\partial \bm{E}}{\partial t}.
+$$
+
+Moving the dot products under the derivative sign and grouping the derivatives produces a simpler expression
+
+$$ \tag{2.11}
+	\bm{E} \cdot \bm{J} =
+	{-\mu\_0^{-1}} \nabla \cdot (\bm{E} \times \bm{B}) -
+	\frac{\partial}{\partial t} \Big( \frac{\epsilon_0}{2} (\bm{E} \cdot \bm{E}) +
+	\frac{\mu\_0^{-1}}{2} (\bm{B} \cdot \bm{B}) \Big).
+$$
+
+We can observe that the rate of doing work is a balance of inflow of \\((\bm{E} \times \bm{B})\\) and the rate of change of the squared magnitudes of the fields. The physical significance of this expression becomes more apparent if we return to the integral form
+
+$$ \tag{2.12}
+	\frac{\partial \mathcal{W}}{\partial t}
+	= \iiint\_{V} \Big( {-\mu\_0^{-1}} \nabla \cdot (\bm{E} \times \bm{B}) \Big) dV -
+	\frac{\partial}{\partial t} \iiint\_{V} \Big( \frac{\epsilon_0}{2} E^2 + \frac{\mu\_0^{-1}}{2} B^2 \Big) dV 
+$$
+
+and use the [divergence theorem](https://en.wikipedia.org/wiki/Divergence_theorem) to replace the leftmost volume integral with an integral taken over the bounding surface \\(\delta V\\) of the volume \\(V\\):
+
+$$ \tag{2.13}
+	\frac{\partial \mathcal{W}}{\partial t}
+	= \oiint\_{\delta V} \Big( \mu\_0^{-1} (\bm{E} \times \bm{B}) \cdot (-\bm{n}) \Big) dA -
+	\frac{\partial}{\partial t} \iiint\_{V} \Big( \frac{\epsilon_0}{2} E^2 + \frac{\mu\_0^{-1}}{2} B^2 \Big) dV,
+$$
+
+where \\(\bm{n}\\) is the outward-facing surface normal.
+
+According to Equation 2.1, the right-hand side of Equation 2.13 represents the difference between the rates of inflow and outflow of energy. Thus, the first term gives the amount of external energy (per unit time) flowing through the bounding surface into the volume,
+
+$$ \tag{2.14}
+	\frac{\partial}{\partial t} \mathcal{E\_{ext}}(V, t) = 
+	\oiint\_{\delta V} \Big( \mu\_0^{-1} \big( \bm{E}(\bm{r}, t) \times \bm{B}(\bm{r}, t) \big) \cdot (-\bm{n}) \Big) dA,
+$$
+
+and the second term corresponds to the rate at which the amount of energy within the volume decreases:
+
+$$ \tag{2.15}
+	-\frac{\partial}{\partial t} \mathcal{E\_{int}}(V, t) =
+	-\frac{\partial}{\partial t} \iiint\_{V} \Big( \frac{\epsilon_0}{2} E^2(\bm{r}, t) + \frac{\mu\_0^{-1}}{2} B^2(\bm{r}, t) \Big) dV.
+$$
+
+According to this interpretation, the *squared* magnitudes of the fields
+
+$$ \tag{2.16}
+	\frac{\partial}{\partial V} \mathcal{E\_e}(\bm{r}, t) = \frac{\epsilon_0}{2} E^2(\bm{r}, t), \quad
+	\frac{\partial}{\partial V} \mathcal{E\_m}(\bm{r}, t) = \frac{\mu\_0^{-1}}{2} B^2(\bm{r}, t), \quad
+$$
+
+are the electric and the magnetic energy volume densities, and
+
+$$ \tag{2.17}
+	\bm{S}(\bm{r}, t) = \mu\_0^{-1} \big( \bm{E}(\bm{r}, t) \times \bm{B}(\bm{r}, t) \big)
+$$
+
+is the *instantaneous* [Poynting vector](https://en.wikipedia.org/wiki/Poynting_vector) that represents the direction and the rate of energy flow[^5].
+
+[^5]: This definition of field energy, while widely accepted, is somewhat ambiguous \[[5](#references) (vol. II, ch. 27.4)\]. It may be worth pointing out that there is an alternative definition in terms of the auxiliary fields \[[6](#references) (ch. 1.1.4), [7](#references) (ch. 2.11), [8](#references) (ch. 2.5), [9](#references) (ch. 2.4)\]. We prefer our version because it accounts for bound currents. The two definitions coincide for non-magnetic materials with \\(\mu = \mu_0\\).
+
+Since the electromagnetic fields oscillate so rapidly, the *time-averaged* Poynting vector is often used instead:
+
+$$ \tag{2.18}
+	\braket{\bm{S}}
+	= \frac{1}{T} \int\_{-T/2}^{\thinspace T/2} \bm{S}(\bm{r}, t + t') \thinspace dt'.
+$$
+
+It becomes particularly useful once you consider a fixed direction \\(\bm{n}\\). Then, according to Equation 2.14,
+
+$$ \tag{2.19}
+	\mathtt{E}
+	= \braket{\bm{S}} \cdot \bm{n}
+	= \braket{\bm{S}} \cos{\theta}
+$$
+
+is the amount of energy per second per unit area that flows through a surface with the normal \\(\bm{n}\\). That is the definition of [irradiance](https://en.wikipedia.org/wiki/Irradiance) \\(\mathtt{E}\\).
+
 ## Maxwell Equations in the Frequency Domain
 
 The Maxwell equations can be simplified by transforming the fields from the time to the frequency domain.
@@ -199,7 +355,7 @@ Define[^1] the [Fourier transform](https://en.wikipedia.org/wiki/Fourier_transfo
 
 [^1]: The choice of the sign of the complex exponential is arbitrary; it determines the sign of the imaginary components of both the complex permittivity and the complex refractive index.
 
-$$ \tag{2.1}
+$$ \tag{3.1}
 	\bm{E}(\bm{r}, \omega)
 	= \mathcal{F} \big\lbrace \bm{E}(\bm{r}, t) \big\rbrace 
 	= \frac{1}{\sqrt{2 \pi}} \int\_{-\infin}^{\infin} \bm{E}(\bm{r}, t) e^{-i \omega t} dt,
@@ -211,13 +367,13 @@ where \\(\omega\\) is the *angular frequency*. \\(\bm{E}(\bm{r}, \omega)\\) is t
 
 \\(\bm{E}(\bm{r}, t)\\), on the other hand, is real, which means its Fourier transform is [Hermitian](https://en.wikipedia.org/wiki/Hermitian_function):
 
-$$ \tag{2.2}
+$$ \tag{3.2}
 	\bm{E}(\bm{r}, \omega) = [\bm{E}(\bm{r}, -\omega)]^{\*},
 $$
 
 where the star denotes the [complex conjugate](https://en.wikipedia.org/wiki/Complex_conjugate)
 
-$$ \tag{2.3}
+$$ \tag{3.3}
 	z^{\*} = \big[ r e^{i \theta} \big]^{\*} = r e^{-i \theta}.
 $$
 
@@ -225,7 +381,7 @@ $$
 
 We can go back to the time domain by using the inverse Fourier transform:
 
-$$ \tag{2.4}
+$$ \tag{3.4}
 \begin{aligned}
 	\bm{E}(\bm{r}, t)
 	&= \mathcal{F^{-1}} \big\lbrace \bm{E}(\bm{r}, \omega) \big\rbrace \cr
@@ -239,15 +395,15 @@ $$
 
 where the last equality follows from the definition of the real part of a complex number:
 
-$$ \tag{2.5}
+$$ \tag{3.5}
 	2 \thinspace \mathcal{Re} \lbrace z \rbrace
 	= z + z^{\*}
 	= 2 r \cos{ \theta}.
 $$
 
-We can define the integral forms of the fields by replacing \\(\bm{E}\\) by \\(\bm{B}\\), \\(\bm{D}\\), \\(\bm{H}\\), \\(\bm{J\_f}\\) or \\(\rho\_f\\) in Equation 2.4. If we substitute these integrals into Equations 1.13, the result is a system of integro-differential equations
+We can define the integral forms of the fields by replacing \\(\bm{E}\\) by \\(\bm{B}\\), \\(\bm{D}\\), \\(\bm{H}\\), \\(\bm{J\_f}\\) or \\(\rho\_f\\) in Equation 3.4. If we substitute these integrals into Equations 1.13, the result is a system of integro-differential equations
 
-$$ \tag{2.6}
+$$ \tag{3.6}
 \begin{aligned}
 	&\nabla \times \int\_{-\infin}^{\infin} \bm{E}(\bm{r}, \omega) e^{i \omega t} d\omega +
 	 \frac{\partial}{\partial t} \int\_{-\infin}^{\infin} \bm{B}(\bm{r}, \omega) e^{i \omega t} d\omega = 0, \cr
@@ -262,7 +418,7 @@ $$
 
 It can be further simplified by applying the [Leibniz rule](https://en.wikipedia.org/wiki/Leibniz_integral_rule), taking the time derivatives, and grouping the terms:
 
-$$ \tag{2.7}
+$$ \tag{3.7}
 \begin{aligned}
 	&\int\_{-\infin}^{\infin} \big( \nabla \times \bm{E}(\bm{r}, \omega) +
 	 i \omega \bm{B}(\bm{r}, \omega) \big) e^{i \omega t} d\omega = 0, \cr
@@ -277,7 +433,7 @@ $$
 
 Equivalently, using the transform operator notation,
 
-$$ \tag{2.8}
+$$ \tag{3.8}
 \begin{aligned}
 	&\mathcal{F^{-1}} \big\lbrace \nabla \times \bm{E}(\bm{r}, \omega) +
 	 i \omega \bm{B}(\bm{r}, \omega) \big\rbrace = 0, \cr
@@ -292,7 +448,7 @@ $$
 
 Generally speaking, the equality of integrands (or function arguments) does not follow from the equality of integrals (or function values). Luckily for us, the inverse Fourier transform is [uniquely defined](https://en.wikipedia.org/wiki/Fourier_inversion_theorem) for a large class of functions. So, under quite general [conditions](https://en.wikipedia.org/wiki/Fourier_inversion_theorem#Conditions_on_the_function), we may say that
 
-$$ \tag{2.9}
+$$ \tag{3.9}
 \begin{aligned}
 	&\nabla \times \bm{E}(\bm{r}, \omega) + i \omega \bm{B}(\bm{r}, \omega) = 0, &
 	&\nabla \cdot  \bm{B}(\bm{r}, \omega) = 0, \cr
@@ -303,19 +459,51 @@ $$
 
 These are the Maxwell equations for electromagnetic fields with *arbitrary* time dependence. 
 
-An interesting property of the frequency-domain solution is the reduction in the number of independent the Maxwell equations from 4 to 2. Since the [divergence of curl](https://en.wikipedia.org/wiki/Vector_calculus_identities#Divergence_of_curl_is_zero) is zero, the divergence of Equations 2.9.1 and 2.9.3 (on the left) is equivalent to Equations 2.9.2 and 2.9.4 (on the right), respectively. The latter is true due to the expression of [conservation of charge](https://en.wikipedia.org/wiki/Charge_conservation) in the frequency domain:
+An interesting property of the frequency-domain solution is the reduction in the number of independent Maxwell equations from 4 to 2. Since the [divergence of curl](https://en.wikipedia.org/wiki/Vector_calculus_identities#Divergence_of_curl_is_zero) is zero, the divergence of Equations 3.9.1 and 3.9.3 (on the left) is equivalent to Equations 3.9.2 and 3.9.4 (on the right), respectively. The latter is true due to the expression of [conservation of charge](https://en.wikipedia.org/wiki/Charge_conservation) in the frequency domain:
 
-$$ \tag{2.10}
+$$ \tag{3.10}
 	\nabla \cdot \bm{J\_f}(\bm{r}, \omega) = - i \omega \rho\_f(\bm{r}, \omega).
 $$
 
-Unsurprisingly, the most general solutions tend to be the most complex. Conversely, making certain assumptions can prove to be quite useful. For instance, we may impose a restriction that the electromagnetic field must be a [periodic function](https://en.wikipedia.org/wiki/Periodic_function) of time, such that the *fundamental period* \\(\thinspace T\_1 = 2 \pi / \omega_1\\) of both[^3] the electric and the magnetic fields is the same \[[5](#references) (vol. I, ch. 50) [6](#references) (ch. 1.3.3, 1.4.3)\]. This limitation is not a particularly severe: the fields can often be repeated virtually (outside the time interval of interest), and we may choose the period to be as large as necessary.
+## Time-Harmonic Fields
+
+If we solve the Maxwell equations in the frequency domain, we may be interested in the spectral composition of the Poynting vector. In order to decompose it, we must express the fields using the inverse Fourier transform:
+
+$$ \tag{4.1}
+	\bm{S}(\bm{r}, t)
+	= \mu\_0^{-1} \Big( \bm{E}(\bm{r}, t) \times \bm{B}(\bm{r}, t) \Big)
+	= \mu\_0^{-1} \Big( \mathcal{F^{-1}} \big\lbrace \bm{E}(\bm{r}, \omega) \big\rbrace
+	\times \mathcal{F^{-1}} \big\lbrace \bm{B}(\bm{r}, \omega) \big\rbrace \Big).
+$$
+
+The expression of the corresponding Poynting phasor is
+
+$$ \tag{4.2}
+	\bm{S}(\bm{r}, \omega)
+	= \mathcal{F} \big\lbrace \bm{S}(\bm{r}, t) \big\rbrace
+	= \mu\_0^{-1} \mathcal{F} \Big\lbrace
+		\mathcal{F^{-1}} \big\lbrace \bm{E}(\bm{r}, \omega)
+		\times \mathcal{F^{-1}} \big\lbrace \bm{B}(\bm{r}, \omega) \big\rbrace
+	\Big\rbrace.
+$$
+
+But that is just a [convolution](https://en.wikipedia.org/wiki/Convolution_theorem#Convolution_theorem_for_inverse_Fourier_transform) of the electric and magnetic phasors:
+
+$$ \tag{4.3}
+	\bm{S}(\bm{r}, \omega)
+	= \mu\_0^{-1} \int\_{-\infin}^{\infin}
+	\bm{E}(\bm{r}, \omega') \times \bm{B}(\bm{r}, \omega - \omega') d\omega'.
+$$
+
+The expression is compact and simple, but not particularly useful, since the value of the Poynting phasor for a particular frequency depends on the entire electromagnetic spectrum.
+
+We can obtain a more practical result at the cost of some generality. Specifically, we must make an assumption that the electromagnetic field is a [periodic function](https://en.wikipedia.org/wiki/Periodic_function) of time, such that the *fundamental period* \\(\thinspace T\_1 = 2 \pi / \omega_1\\) of both[^3] the electric and the magnetic fields is the same \[[5](#references) (vol. I, ch. 50) [6](#references) (ch. 1.3.3, 1.4.3)\]. This limitation is not particularly severe: the fields can often be repeated virtually (outside the time interval of interest), and we may choose the period to be as large as necessary.
 
 [^3]: The fact that the electric and the magnetic fields cannot exist independently can be shown by a simple relativistic argument \[[11](#references) (ch 6.2)\].
 
-One particular benefit of periodic functions is the existence of the [Fourier series](https://en.wikipedia.org/wiki/Fourier_series#Complex-valued_functions) representation:
+One particular feature of periodic functions is the existence of the [Fourier series](https://en.wikipedia.org/wiki/Fourier_series#Complex-valued_functions) representation:
 
-$$ \tag{2.11}
+$$ \tag{4.4}
 	\bm{E}(\bm{r}, t)
 	= \sum\_{p = -\infin}^{\infin} \bm{E_p}(\bm{r}) e^{i p \omega_1 t}
 	= \sum\_{p = -\infin}^{\infin} \bm{E_p}(\bm{r}) e^{i \omega_p t},
@@ -324,31 +512,31 @@ $$
 
 where we defined \\(\omega_p = p \thinspace \omega_1\\), with the *Fourier coefficients* \\(\bm{E_p}\\) given by the integral
 
-$$ \tag{2.12}
+$$ \tag{4.5}
 	\bm{E_p}(\bm{r})
 	= \frac{1}{T_1} \int\_{-T_1/2}^{\thinspace T_1/2} \bm{E}(\bm{r}, t) e^{-i \omega_p t} dt
 	= \braket{u_p \vert \bm{E}}.
 $$
 
-Equation 2.12 can be interpreted as the [projection](https://en.wikipedia.org/wiki/Hilbert_space#Fourier_analysis) onto the discrete [Fourier basis](https://en.wikipedia.org/wiki/Fourier_series#Hilbert_space_interpretation), with Equation 2.11 showing the reconstruction. The beautiful thing about the discrete Fourier basis is that it is orthonormal, which means that the individual elements of Equation 2.11 (called *harmonics*) are completely independent of each other:
+Equation 4.5 can be interpreted as the [projection](https://en.wikipedia.org/wiki/Hilbert_space#Fourier_analysis) onto the discrete [Fourier basis](https://en.wikipedia.org/wiki/Fourier_series#Hilbert_space_interpretation), with Equation 4.4 showing the reconstruction. The individual elements of Equation 4.4 (called *harmonics*) possess a key property encapsulated by the *orthonormalization relation*
 
-$$ \tag{2.13}
+$$ \tag{4.6}
 	\braket{u_p \vert u_q}
 	= \frac{1}{T_1} \int\_{-T_1/2}^{\thinspace T_1/2} e^{i (\omega_q - \omega_p) t} dt
-	= \delta_{p,q},
+	= \delta_{p,q}
 $$
 
-where \\(\delta_{p,q}\\) is the [Kronecker delta](https://en.wikipedia.org/wiki/Kronecker_delta#Integral_representations) function.
+which serves as an integral representation of the [Kronecker delta](https://en.wikipedia.org/wiki/Kronecker_delta#Integral_representations) function \\(\delta_{p,q}\\).
 
-Similarly to Equation 2.2, if the time-domain field is real,
+Similarly to Equation 3.2, if the time-domain field is real,
 
-$$ \tag{2.14}
+$$ \tag{4.7}
 	\bm{E_p}(\bm{r}) = [\bm{E_{-p}}(\bm{r})]^{\*},
 $$
 
-which permits us to simplify Equation 2.11:
+which permits us to simplify Equation 4.4:
 
-$$ \tag{2.15}
+$$ \tag{4.8}
 \begin{aligned}
 	\bm{E}(\bm{r}, t)
 	&= \bm{E_0}(\bm{r})
@@ -359,11 +547,11 @@ $$ \tag{2.15}
 \end{aligned}
 $$
 
-Intuitively, harmonics produce an equivalent amount of vibration regardless of the sign of their frequency.
+Intuitively, a harmonic produces an equivalent amount of vibration regardless of the sign of its frequency.
 
-What happens when we Fourier transform a periodic function? Combining Equations 2.1 and 2.11,
+What happens when we Fourier transform a periodic function? Combining Equations 3.1 and 4.4,
 
-$$ \tag{2.16}
+$$ \tag{4.9}
 \begin{aligned}
 	\bm{E}(\bm{r}, \omega)
 	&= \frac{1}{\sqrt{2 \pi}} \int\_{-\infin}^{\infin} \bm{E}(\bm{r}, t) e^{-i \omega t} dt \cr
@@ -372,210 +560,30 @@ $$ \tag{2.16}
 \end{aligned}
 $$
 
-where we used the exponential definition of the [Dirac delta](https://en.wikipedia.org/wiki/Dirac_delta_function) function 
+where we used the exponential form of the [Dirac delta](https://en.wikipedia.org/wiki/Dirac_delta_function) function 
 
-$$ \tag{2.17}
+$$ \tag{4.10}
 	\delta(x)
 	= \frac{1}{2 \pi} \int\_{-\infin}^{\infin} e^{i x y} dy.
 $$
 
-Since the individual harmonics are orthogonal (and, as a result, independent), analysis of a *polychromatic* field with \\(N\\) harmonic components can be simplified by considering \\(N\\) *monochromatic* vector fields, such as
+Since the individual harmonics are orthogonal (and, as a result, independent), analysis of a *polychromatic* field with \\(N\\) components can be simplified by considering \\(N\\) *monochromatic* (or *time-harmonic*) vector fields, such as
 
-$$ \tag{2.18}
+$$ \tag{4.11}
 	\bm{E}(\bm{r}, t)
 	= \mathcal{Re} \big\lbrace \bm{E_p}(\bm{r}) e^{i \omega_p t} \big\rbrace,
 $$
 
-in isolation, and the corresponding phasor fields
+in isolation, with the corresponding phasor fields
 
-$$ \tag{2.19}
+$$ \tag{4.12}
 	\bm{E}(\bm{r}, \omega)
 	= \sqrt{2 \pi} \bm{E_p}(\bm{r}) \delta(\omega_p - \omega).
 $$
 
-Substitution of Equation 2.19 (where we can replace \\(\bm{E}\\) by \\(\bm{B}\\), \\(\bm{D}\\), \\(\bm{H}\\), \\(\bm{J\_f}\\) or \\(\rho\_f\\)) into Equations 2.7 yields
+Let's put the math to work. Assuming that the electromagnetic field is time-harmonic, Equation 2.17 of the Poynting vector can be written as
 
-$$ \tag{2.20}
-\begin{aligned}
-	&\big( \nabla \times \bm{E_p}(\bm{r}) + i \omega_p \bm{B_p}(\bm{r}) \big) e^{i \omega_p t} = 0, &
-	&\nabla \cdot  \bm{B_p}(\bm{r}) e^{i \omega_p t} = 0, \cr
-	&\big( \nabla \times \bm{H_p}(\bm{r}) - i \omega_p \bm{D_p}(\bm{r}) \big) e^{i \omega_p t} = \bm{J\_{f, \thinspace p}}(\bm{r}) e^{i \omega_p t}, &
-	&\nabla \cdot  \bm{D_p}(\bm{r}) e^{i \omega_p t} = \rho\_{f, \thinspace p}(\bm{r}) e^{i \omega_p t}.
-\end{aligned}
-$$
-
-Elimination of the pervasive \\(e^{i \omega_p t}\\) factor and removal of redundant indexing (to simplify the notation) yields  the Maxwell equations for *time-harmonic* electromagnetic fields \[[7](#references) (ch. 2.4), [8](#references) (ch. 2.2), [9](#references) (ch. 2.3)\]:
-
-$$ \tag{2.21}
-\begin{aligned}
-	&\nabla \times \bm{E}(\bm{r}) + i \omega \bm{B}(\bm{r}) = 0, &
-	&\nabla \cdot  \bm{B}(\bm{r}) = 0, \cr
-	&\nabla \times \bm{H}(\bm{r}) - i \omega \bm{D}(\bm{r}) = \bm{J\_f}(\bm{r}), &
-	&\nabla \cdot  \bm{D}(\bm{r}) = \rho\_f(\bm{r}).
-\end{aligned}
-$$
-
-Comparison of Equations 2.21 with Equations 2.9 reveals that they are virtually identical. This suggests the following course of action: we shall first try to solve a problem in the most general way possible (using Equations 2.9), and if that fails, we may resort to the periodic assumption for monochromatic (Equation 2.19) or polychromatic (Equation 2.16) fields. While it is somewhat disappointing that the time-harmonic equations are not simpler, the fact that they are not simpler is not entirely obvious. Due to the wide variety of contexts, both formulations of the Maxwell equations are very useful.
-
-## Force, Energy, and Radiometry
-
-Given a mathematical description of electromagnetic radiation in terms of vector fields, we would like to physically characterize it as an energy transfer process. In order to do that, we have to determine how much energy there is in a given volume element of space, and also the rate of energy flow \[[5](#references) (vol. II, ch. 27), [6](#references) (ch. 1.1.4), [7](#references) (ch. 2.11), [8](#references) (ch. 2.5), [9](#references) (ch. 2.4)\].
-
-[Conservation of energy](https://en.wikipedia.org/wiki/Conservation_of_energy) is one of the most important principles of physics. Here is one way to state it: the difference between the amount of external energy \\(\mathcal{E\_{ext}}\\) flowing into the volume \\(V\\) and the amount of internal energy \\(\mathcal{E\_{int}}\\) flowing out equals the amount of work \\(\mathcal{W}\\) done inside.
-
-$$ \tag{3.1}
-	\frac{\partial}{\partial t} \mathcal{E\_{ext}}(V, t) -
-	\frac{\partial}{\partial t} \mathcal{E\_{int}}(V, t) =
-	\frac{\partial}{\partial t} \mathcal{W}(V, t).
-$$
-
-In Equation 3.1, \\(\mathcal{E}\\) refers to a single type of energy: kinetic, electromagnetic, etc. Work transforms a portion of \\(\mathcal{E\_{ext}}\\) into a different type of energy: kinetic into potential, electromagnetic into thermal, and so on. If we account for all types of energy, the total amount of energy is conserved.
-
-Given our focus on electromagnetic energy, we can partition the total amount of energy into the *field energy* and the *matter energy*. In this context, work done by the field on the matter refers to *absorption*, and has a positive sign. Similarly, *emission* is the work done by the matter on the field, and has a negative sign. We shall not consider emissive materials in the analysis presented below.
-
-Mathematically, the [rate of doing work](https://en.wikipedia.org/wiki/Work_(physics)#Mathematical_calculation) is the product of force and velocity:
-
-$$ \tag{3.2}
-	\frac{\partial \mathcal{W}}{\partial t} = \bm{F} \cdot \bm{v}.
-$$ 
-
-Thus, to compute it, we must recall the definition of electromagnetic force.
-
-If a particle with the charge \\(q\\) moving at the velocity \\(\bm{v}\\) is placed in an electromagnetic field, it experiences the [Lorentz force](https://en.wikipedia.org/wiki/Lorentz_force)
-
-$$ \tag{3.3}
-	\bm{F}(\bm{r}, t) = q(\bm{r}, t) \big( \bm{E}(\bm{r}, t) + \bm{v}(\bm{r}, t) \times \bm{B}(\bm{r}, t) \big).
-$$
-
-For the charge density \\(\rho\\) and the volume element \\(dV\\), the corresponding equation is
-
-$$ \tag{3.4}
-	d\bm{F}(\bm{r}, t) = \rho(\bm{r}, t) \big( \bm{E}(\bm{r}, t) + \bm{v}(\bm{r}, t) \times \bm{B}(\bm{r}, t) \big) \thinspace dV.
-$$
-
-Therefore, the amount of work done per unit time by the field on the matter inside the volume \\(V\\) is
-
-$$ \tag{3.5}
-	\frac{\partial}{\partial t} \mathcal{W}(V, t) =
-	\iiint\_{V} \bm{v}(\bm{r}, t) \cdot d\bm{F}(\bm{r}, t) =
-	\iiint\_{V} \bm{E}(\bm{r}, t) \cdot \rho(\bm{r}, t) \bm{v}(\bm{r}, t) \thinspace dV.
-$$
-
-Since the current density is just the number of moving charges per unit volume (see Equation 1.7),
-
-$$ \tag{3.6}
-	\frac{\partial}{\partial t} \mathcal{W}(V, t) =
-	\iiint\_{V} \bm{E}(\bm{r}, t) \cdot \bm{J}(\bm{r}, t) \thinspace dV.
-$$
-
-The Maxwell equations allow us to relate a current to the generated fields. Substitution of Equation 1.1.3 yields
-
-$$ \tag{3.7}
-	\iiint\_{V} \bm{E} \cdot \bm{J} \thinspace dV = 
-	\iiint\_{V} \bm{E} \cdot \Big( \nabla \times \big( \mu\_0^{-1} \bm{B} \big) -
-	\frac{\partial}{\partial t} \big( \epsilon_0 \bm{E} \big) \Big) dV.
-$$
-
-Since [the divergence of the cross product](https://en.wikipedia.org/wiki/Vector_calculus_identities#Cross_product_rule) is
-
-$$ \tag{3.8}
-	\nabla \cdot (\bm{E} \times \bm{B}) = (\nabla \times \bm{E}) \cdot \bm{B} - \bm{E} \cdot (\nabla \times \bm{B}),
-$$
-
-we can reformulate the integrand of Equation 3.7 as
-
-$$ \tag{3.9}
-	\bm{E} \cdot \bm{J} = 
-	\mu\_0^{-1} \big( (\nabla \times \bm{E}) \cdot \bm{B} - \nabla \cdot (\bm{E} \times \bm{B}) \big) -
-	\epsilon_0 \bm{E} \cdot \frac{\partial \bm{E}}{\partial t}.
-$$
-
-The curl of \\(\bm{E}\\) is also given by the Maxwell equations (see Equation 1.1.1). Then it follows that
-
-$$ \tag{3.10}
-	\bm{E} \cdot \bm{J} = 
-	\mu\_0^{-1} \big( {-\bm{B}} \cdot \frac{\partial \bm{B}}{\partial t} - \nabla \cdot (\bm{E} \times \bm{B}) \big) -
-	\epsilon_0 \bm{E} \cdot \frac{\partial \bm{E}}{\partial t}.
-$$
-
-Moving the dot products under the derivative sign and grouping the derivatives produces a simpler expression
-
-$$ \tag{3.11}
-	\bm{E} \cdot \bm{J} =
-	{-\mu\_0^{-1}} \nabla \cdot (\bm{E} \times \bm{B}) -
-	\frac{\partial}{\partial t} \Big( \frac{\epsilon_0}{2} (\bm{E} \cdot \bm{E}) +
-	\frac{\mu\_0^{-1}}{2} (\bm{B} \cdot \bm{B}) \Big).
-$$
-
-We can observe that the rate of doing work is a balance of inflow of \\((\bm{E} \times \bm{B})\\) and the rate of change of the squared magnitudes of the fields. The physical significance of this expression becomes more apparent if we return to the integral form
-
-$$ \tag{3.12}
-	\frac{\partial \mathcal{W}}{\partial t}
-	= \iiint\_{V} \Big( {-\mu\_0^{-1}} \nabla \cdot (\bm{E} \times \bm{B}) \Big) dV -
-	\frac{\partial}{\partial t} \iiint\_{V} \Big( \frac{\epsilon_0}{2} E^2 + \frac{\mu\_0^{-1}}{2} B^2 \Big) dV 
-$$
-
-and use the [divergence theorem](https://en.wikipedia.org/wiki/Divergence_theorem) to replace the leftmost volume integral with an integral taken over the bounding surface \\(\delta V\\) of the volume \\(V\\):
-
-$$ \tag{3.13}
-	\frac{\partial \mathcal{W}}{\partial t}
-	= \oiint\_{\delta V} \Big( \mu\_0^{-1} (\bm{E} \times \bm{B}) \cdot (-\bm{n}) \Big) dA -
-	\frac{\partial}{\partial t} \iiint\_{V} \Big( \frac{\epsilon_0}{2} E^2 + \frac{\mu\_0^{-1}}{2} B^2 \Big) dV,
-$$
-
-where \\(\bm{n}\\) is the outward-facing surface normal.
-
-According to Equation 3.1, the right-hand side of Equation 3.13 represents the difference between the rates of inflow and outflow of energy. Thus, the first term gives the amount of external energy (per unit time) flowing through the bounding surface into the volume,
-
-$$ \tag{3.14}
-	\frac{\partial}{\partial t} \mathcal{E\_{ext}}(V, t) = 
-	\oiint\_{\delta V} \Big( \mu\_0^{-1} \big( \bm{E}(\bm{r}, t) \times \bm{B}(\bm{r}, t) \big) \cdot (-\bm{n}) \Big) dA,
-$$
-
-and the second term corresponds to the rate at which the amount of energy within the volume decreases:
-
-$$ \tag{3.15}
-	-\frac{\partial}{\partial t} \mathcal{E\_{int}}(V, t) =
-	-\frac{\partial}{\partial t} \iiint\_{V} \Big( \frac{\epsilon_0}{2} E^2(\bm{r}, t) + \frac{\mu\_0^{-1}}{2} B^2(\bm{r}, t) \Big) dV.
-$$
-
-According to this interpretation, the *squared* magnitudes of the fields
-
-$$ \tag{3.16}
-	\frac{\partial}{\partial V} \mathcal{E\_e}(\bm{r}, t) = \frac{\epsilon_0}{2} E^2(\bm{r}, t), \quad
-	\frac{\partial}{\partial V} \mathcal{E\_m}(\bm{r}, t) = \frac{\mu\_0^{-1}}{2} B^2(\bm{r}, t), \quad
-$$
-
-are the electric and the magnetic energy volume densities, and
-
-$$ \tag{3.17}
-	\bm{S}(\bm{r}, t) = \mu\_0^{-1} \big( \bm{E}(\bm{r}, t) \times \bm{B}(\bm{r}, t) \big)
-$$
-
-is the *instantaneous* [Poynting vector](https://en.wikipedia.org/wiki/Poynting_vector) that represents the direction and the rate of energy flow[^5].
-
-[^5]: This definition of field energy, while widely accepted, is somewhat ambiguous \[[5](#references) (vol. II, ch. 27.4)\]. It may be worth pointing out that there is an alternative definition in terms of the auxiliary fields \[[6](#references) (ch. 1.1.4), [7](#references) (ch. 2.11), [8](#references) (ch. 2.5), [9](#references) (ch. 2.4)\]. We prefer our version because it accounts for bound currents. The two definitions coincide for non-magnetic materials with \\(\mu = \mu_0\\).
-
-Since the electromagnetic fields oscillate so rapidly, the *time-averaged* Poynting vector is often used instead:
-
-$$ \tag{3.18}
-	\braket{\bm{S}}
-	= \frac{1}{T} \int\_{-T/2}^{\thinspace T/2} \bm{S}(\bm{r}, t + t') \thinspace dt'.
-$$
-
-It becomes particularly useful once you consider a fixed direction \\(\bm{n}\\). Then, according to Equation 3.14,
-
-$$ \tag{3.19}
-	\mathtt{E}
-	= \braket{\bm{S}} \cdot \bm{n}
-	= \braket{\bm{S}} \cos{\theta}
-$$
-
-is the amount of energy per second per unit area that flows through a surface with the normal \\(\bm{n}\\). That is the definition of [irradiance](https://en.wikipedia.org/wiki/Irradiance) \\(\mathtt{E}\\).
-
-If we solve the Maxwell equations in the frequency domain, we may be interested in the spectral composition of the Poynting vector. Assuming that the electromagnetic field is time-harmonic, Equation 3.17 can be written as
-
-$$ \tag{3.20}
+$$ \tag{4.13}
 \begin{aligned}
 	\bm{S}(\bm{r}, t)
 	&=  \mu\_0^{-1}
@@ -590,9 +598,9 @@ $$ \tag{3.20}
 \end{aligned}
 $$
 
-The corresponding equation of the time-averaged Poynting vector is
+The corresponding expression of the time-averaged Poynting vector (c.f. Equation 2.18) is
 
-$$ \tag{3.21}
+$$ \tag{4.14}
 \begin{aligned}
 	\braket{\bm{S}}
 	= \mu\_0^{-1} \sum\_{p = -\infin}^{\infin} \sum\_{q = -\infin}^{\infin}
@@ -603,9 +611,9 @@ $$ \tag{3.21}
 \end{aligned}
 $$
 
-First, consider the case when \\(T = T_1\\). Then, according to Equation 2.9,
+First, consider the case when \\(T = T_1\\). We can immediately apply the orthonormalization relation to obtain
 
-$$ \tag{3.22}
+$$ \tag{4.15}
 \begin{aligned}
 	\braket{\bm{S}}
 	&=  \mu\_0^{-1} \sum\_{p = -\infin}^{\infin} \sum\_{q = -\infin}^{\infin}
@@ -623,31 +631,31 @@ $$ \tag{3.22}
 		\Big) \cr
 	&=  \mu\_0^{-1} (\bm{E_0} \times \bm{B_0})
 	  + \mu\_0^{-1} \sum\_{p = 1}^{\infin}
-		2 \thinspace \mathcal{Re} \big\lbrace \bm{E_p} \times [\bm{B_p}]^{\*} \big\rbrace
+		2 \thinspace \mathcal{Re} \big\lbrace \bm{E_p} \times [\bm{B_p}]^{\*} \big\rbrace,
 \end{aligned}
 $$
 
-is a real vector, as expected.
+which is a real vector, as expected.
 
-In the case when \\(T > T_1\\), the total value of \\(\braket{\bm{S}}\\) is a sum of the contribution from a number of whole periods (which is given by Equation 3.22) plus the contribution from a fraction of a period. If the period used for time-averaging is very large \\((T \gg T_1)\\), the *relative* contribution from a fraction of a period will be much smaller than the *relative* contribution from a large number of whole periods, so the formula of Equation 3.22 should serve as a good approximation.
+In the case when \\(T > T_1\\), the total value of \\(\braket{\bm{S}}\\) is a sum of the contribution from a number of whole periods (given by Equation 4.15) and the contribution from a fraction of the period. If the period used for time-averaging is very large \\((T \gg T_1)\\), the *relative* contribution from a fraction of the period will be much smaller than the *relative* contribution from a large number of whole periods, so the formula of Equation 4.15 should serve as a good approximation.
 
-Equation 3.22 allows us to define the *time-averaged* Poynting phasor (technically, the Fourier coefficient)
+Equation 4.15 allows us to define the *time-averaged* Poynting phasor (technically, it's a Fourier coefficient)
 
-$$ \tag{3.23}
+$$ \tag{4.16}
 	\braket{\bm{S_p}} = \mu\_0^{-1} \Big( \bm{E_p}(\bm{r}) \times \big[ \bm{B_p}(\bm{r}) \big]^{\*} \Big)
 $$
 
-such that (cf. Equation 2.11)
+such that (cf. Equation 4.8)
 
-$$ \tag{3.24}
+$$ \tag{4.17}
 	\braket{\bm{S}}
 	= \braket{\bm{S_0}}
 	+ \sum\_{p = 1}^{\infin} 2 \thinspace \mathcal{Re} \big\lbrace \negthinspace \braket{\bm{S_p}} \negthinspace \big\rbrace.
 $$
 
-It produces a more compact expression of irradiance \\(\mathtt{E}\\)
+It produces a more compact expression of irradiance
 
-$$ \tag{3.25}
+$$ \tag{4.18}
 	\mathtt{E}
 	= \braket{\bm{S}} \cdot \bm{n}
 	= \braket{\bm{S_0}} \cdot \bm{n}
@@ -656,9 +664,9 @@ $$ \tag{3.25}
 	  \big\rbrace \cdot \bm{n}
 $$
 
-that can be written in terms of [spectral irradiance](https://en.wikipedia.org/wiki/Irradiance#Spectral_irradiance) \\(\mathtt{E_p}\\)
+that can be written in terms of [spectral irradiance](https://en.wikipedia.org/wiki/Irradiance#Spectral_irradiance)
 
-$$ \tag{3.26}
+$$ \tag{4.19}
 	\mathtt{E_p}
 	= \mathcal{Re} \big\lbrace
 		\negthinspace \braket{\bm{S_p}} \negthinspace
@@ -668,7 +676,13 @@ $$ \tag{3.26}
 	  \big\rbrace \cos{\theta}.
 $$
 
-Having defined both irradiance and spectral irradiance, we can compute all other [radiometric quantities](https://en.wikipedia.org/wiki/Radiometry) using integration and differentiation techniques as discussed in the previous article \[[3](#references)\].
+Having defined both irradiance and spectral irradiance, we can easily compute all other [radiometric quantities](https://en.wikipedia.org/wiki/Radiometry) using integration and differentiation techniques as discussed in the previous article \[[3](#references)\].
+
+
+
+
+
+
 
 ## Constitutive Relations
 
@@ -905,7 +919,7 @@ That is a solution of the Maxwell equations in the frequency domain.
 
 ## Plane Waves
 
-We can find a solution of the Maxwell equations in the time domain by substituting Equation 5.16 into 2.11:
+We can find a solution of the Maxwell equations in the time domain by substituting Equation 5.16 into 4.4:
 
 $$ \tag{6.1}
 \begin{aligned}
