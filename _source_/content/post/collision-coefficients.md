@@ -518,7 +518,7 @@ $$ \tag{4.5}
 	= \braket{u_p \vert \bm{E}}.
 $$
 
-Equation 4.5 can be interpreted as the [projection](https://en.wikipedia.org/wiki/Hilbert_space#Fourier_analysis) onto the discrete [Fourier basis](https://en.wikipedia.org/wiki/Fourier_series#Hilbert_space_interpretation), with Equation 4.4 showing the reconstruction. The individual elements of Equation 4.4 (called *harmonics*) possess a key property encapsulated by the *orthonormalization relation*
+Equation 4.5 can be interpreted as the [projection](https://en.wikipedia.org/wiki/Hilbert_space#Fourier_analysis) onto the discrete [Fourier basis](https://en.wikipedia.org/wiki/Fourier_series#Hilbert_space_interpretation), with Equation 4.4 showing the reconstruction. The individual elements of Equation 4.4 (called *harmonics*) possess a key property encapsulated in the *orthonormalization relation*
 
 $$ \tag{4.6}
 	\braket{u_p \vert u_q}
@@ -905,34 +905,30 @@ That is a general solution of the Maxwell equations for *linear, isotropic, homo
 
 ## Plane Waves
 
-We can find a solution of the Maxwell equations in the time domain by substituting Equation 5.16 into 4.4:
+We can find a solution of the Maxwell equations in the time domain by performing the inverse Fourier transform of Equation 6.16:
 
-$$ \tag{6.1}
-\begin{aligned}
+$$ \tag{7.1}
 	\bm{E}(\bm{r}, t)
-	&= \bm{E_0}(\bm{r}) + \sum\_{n = 1}^{\infin} 2 \thinspace \mathcal{Re} \big\lbrace \bm{E_p}(\bm{r}) e^{i \omega_p t} \big\rbrace \cr
-	&= \oiint\_{\mathbb{S}^2} \bm{E_0}(0, \bm{n}) d\Omega_n
-	 + \sum\_{p = 1}^{\infin} \oiint\_{\mathbb{S}^2} 2 \thinspace \mathcal{Re} \big\lbrace \bm{E_p}(0, \bm{n}) e^{-i k(\omega_p) (\bm{r} \cdot \bm{n})} e^{i \omega_p t} \big\rbrace d\Omega_n.
-\end{aligned}
+	= \frac{1}{\sqrt{2 \pi}} \int\_{-\infin}^{\infin} \oiint\_{\mathbb{S}^2} \bm{E}(0, \bm{n}, \omega) e^{-i k(\omega) (\bm{r} \cdot \bm{n})} e^{i \omega t} d\Omega_n d\omega.
 $$
 
-This sum of integrals represents a [wave packet](https://en.wikipedia.org/wiki/Wave_packet). It is a collection of monochromatic *vector* [plane waves](https://en.wikipedia.org/wiki/Plane_wave) \[[6](#references) (ch. 1.4.2), [8](#references) (ch. 3.2), [9](#references) (ch. 3.1)\] of the form
+This triple integral represents a [wave packet](https://en.wikipedia.org/wiki/Wave_packet). It is a collection of *vector* [plane waves](https://en.wikipedia.org/wiki/Plane_wave) \[[6](#references) (ch. 1.4.2), [8](#references) (ch. 3.2), [9](#references) (ch. 3.1)\] of the form
 
-$$ \tag{6.2}
-	\bm{E}(\bm{r}, \bm{n}) e^{i \omega t}
-	= \bm{E}(0, \bm{n}) e^{-i k(\omega) (\bm{r} \cdot \bm{n})} e^{i \omega t}
+$$ \tag{7.2}
+	\bm{E}(\bm{r}, \bm{n}, \omega) e^{i \omega t}
+	= \bm{E}(0, \bm{n}, \omega) e^{-i k(\omega) (\bm{r} \cdot \bm{n})} e^{i \omega t}
 $$
 
 each composed of three *scalar* plane waves such as
 
-$$ \tag{6.3}
-	E(\bm{r}, \bm{n}) e^{i \omega t}
-	= E(0, \bm{n}) e^{-i k(\omega) (\bm{r} \cdot \bm{n})} e^{i \omega t}
+$$ \tag{7.3}
+	E(\bm{r}, \bm{n}, \omega) e^{i \omega t}
+	= E(0, \bm{n}, \omega) e^{-i k(\omega) (\bm{r} \cdot \bm{n})} e^{i \omega t},
 $$
 
-expressed in terms the *complex* [wave number](https://en.wikipedia.org/wiki/Wavenumber#Complex)
+with the optical properies of the medium encapsulated in the [complex wave number](https://en.wikipedia.org/wiki/Wavenumber#Complex)
 
-$$ \tag{6.4}
+$$ \tag{7.4}
 	k(\omega) = \omega \sqrt{\varepsilon(\omega) \mu(\omega)}.
 $$
 
@@ -940,14 +936,14 @@ If we define the [relative permittivity](https://en.wikipedia.org/wiki/Relative_
 
 [^9]: Historically called the [relative complex dielectric constant](https://en.wikipedia.org/wiki/Relative_permittivity#Lossy_medium).
 
-$$ \tag{6.5}
+$$ \tag{7.5}
 	\varepsilon\_r(\omega) = \frac{\varepsilon(\omega)}{\epsilon_0}, \quad
 	\mu\_r(\omega) = \frac{\mu(\omega)}{\mu\_0},
 $$
 
-the complex wave number can be expressed as
+the complex wave number can be redefined as
 
-$$ \tag{6.6}
+$$ \tag{7.6}
 	k(\omega) =
 	\omega \sqrt{\varepsilon(\omega) \mu(\omega)} =
 	\omega \sqrt{\epsilon_0 \mu\_0} \sqrt{\varepsilon\_r(\omega) \mu\_r(\omega)} =
@@ -956,15 +952,15 @@ $$
 
 It is convenient to use a parametrization that does not involve taking a square root. Thus, we define two positive real numbers, the [refractive index](https://en.wikipedia.org/wiki/Refractive_index) \\(\eta\\) and the [attenuation index](https://en.wikipedia.org/wiki/Refractive_index#Complex_refractive_index) \\(\kappa\\) \[[6](#references) (ch. 14.1), [8](#references) (ch. 2.3), [9](#references) (ch. 3.1)\], by
 
-$$ \tag{6.7}
+$$ \tag{7.7}
 	\eta(\omega) - i \kappa(\omega) =
 	\sqrt{\varepsilon\_r(\omega) \mu\_r(\omega)} =
 	c \sqrt{\Big( \epsilon(\omega) - \frac{i}{\omega} \sigma(\omega) \Big) \mu(\omega)}.
 $$
 
-For high frequencies such as those encountered in optics, we may perform a [Laurent series](https://en.wikipedia.org/wiki/Laurent_series) [expansion](https://www.wolframalpha.com/input/?i=series+sqrt%28a-I%2Fw*b%29) at infinity:
+For high frequencies, such as those encountered in optics, we may perform a [Laurent series](https://en.wikipedia.org/wiki/Laurent_series) [expansion](https://www.wolframalpha.com/input/?i=series+sqrt%28a-I%2Fw*b%29) at infinity:
 
-$$ \tag{6.8}
+$$ \tag{7.8}
 	\eta(\omega) - i \kappa(\omega) \approx
 	c \Big( \sqrt{\epsilon \mu} - i \frac{\sigma \mu}{2 \omega \sqrt{\epsilon \mu}} \Big),
 $$
@@ -973,9 +969,9 @@ which gives an approximate mapping between the optical and the physical paramete
 
 [^10]: Keep in mind that, in general, the permittivity, permeability, and conductivity are complex.
 
-A combination of Equations 6.6-6.7 produces the [dispersion relation](https://en.wikipedia.org/wiki/Dispersion_relation)
+The combination of Equations 7.6-7.7 produces the [dispersion relation](https://en.wikipedia.org/wiki/Dispersion_relation)
 
-$$ \tag{6.9}
+$$ \tag{7.9}
 	k(\omega)
 	= \omega \Bigg( \frac{\eta(\omega)}{c} - i \frac{\kappa(\omega)}{c} \Bigg)
 	= \omega \Bigg( \frac{1}{v_p(\omega)} - \frac{i}{v_a(\omega)} \Bigg),
@@ -985,54 +981,53 @@ where \\(v_p = c/\eta\\) is the [phase velocity](https://en.wikipedia.org/wiki/P
 
 In order to develop some intuition about the role of the refractive index \[[5](#references) (vol. II, ch. 32.4)\], consider the spatial component of a scalar plane wave
 
-$$ \tag{6.10}
+$$ \tag{7.10}
 \begin{aligned}
-	E(\bm{r}, \bm{n})
+	E(\bm{r}, \bm{n}, \omega)
 	&= E\_0 e^{-i k (\bm{r} \cdot \bm{n})} \cr
 	&= |E\_0| e^{i \delta} e^{-i \omega (1/v_p - i/v_a) (\bm{r} \cdot \bm{n})} \cr
 	&= |E\_0| e^{-\omega (\bm{r} \cdot \bm{n}) / v_a} e^{i \delta - i \omega (\bm{r} \cdot \bm{n}) / v_p} \cr
-	&= |E(\bm{r}, \bm{n})| e^{i \theta(\bm{r}, \bm{n})}.
+	&= |E(\bm{r}, \bm{n}, \omega)| e^{i \theta(\bm{r}, \bm{n}, \omega)}.
 \end{aligned}
 $$
 
 As any complex number, it can be expressed in terms of the *magnitude* \\(|E|\\) and the *phase* \\(\theta\\), both of which are [real-valued functions](https://en.wikipedia.org/wiki/Real-valued_function).
 
-Multiplication by \\(e^{i \omega t}\\) by yields the full expression of a scalar plane wave:
+Multiplication by \\(e^{i \omega t}\\) yields the full expression of a scalar plane wave:
 
-$$ \tag{6.11}
+$$ \tag{7.11}
 \begin{aligned}
-	E(\bm{r}, \bm{n}) e^{i \omega t}
+	E(\bm{r}, \bm{n}, \omega) e^{i \omega t}
 	&= |E\_0| e^{-\omega (\bm{r} \cdot \bm{n}) / v_a} e^{i \delta - i \omega (\bm{r} \cdot \bm{n}) / v_p} e^{i \omega t}.
 \end{aligned}
 $$
 
-Let's perform [dimensional analysis](https://en.wikipedia.org/wiki/Dimensional_analysis) of Equation 6.11.
+Let's perform [dimensional analysis](https://en.wikipedia.org/wiki/Dimensional_analysis) of Equation 7.11.
 
 First, notice that \\((\bm{r} \cdot \bm{n}) / v\\) has units of time. Then, take the [argument](https://en.wikipedia.org/wiki/Argument_(complex_analysis)) of the expression
 
-$$ \tag{6.12}
+$$ \tag{7.12}
 	\theta(\bm{r}, t)
-	= \mathcal{Arg} \big\lbrace E(\bm{r}, \bm{n}) e^{i \omega t} \big\rbrace
-	= \theta(\bm{r}, \bm{n}) + \omega t
+	= \mathcal{Arg} \big\lbrace E(\bm{r}, \bm{n}, \omega) e^{i \omega t} \big\rbrace
 	= \delta - \omega \big(\bm{r} \cdot \bm{n} - v_p t \big) / v_p.
 $$
 
 Notice that, for any \\(\Delta t\\),
 
-$$ \tag{6.13}
+$$ \tag{7.13}
 	\theta(\bm{r}, t) = \theta(\bm{r} + (v_p \Delta t) \bm{n}, \thinspace t + \Delta t).
 $$
 
 This implies that \\(\theta\\) represents a plane propagating along its normal \\(\bm{n}\\) at the phase velocity \\(v_p\\). In general, surfaces of constant phase are called *cophasal*, or *wavefronts*.
 
-Taking the real part of Equation 6.11 allows us to uncover the *wave amplitude*
+Taking the real part of Equation 7.11 allows us to uncover the *wave amplitude*
 
-$$ \tag{6.14}
-	\mathcal{Re} \big\lbrace E(\bm{r}, \bm{n}) e^{i \omega t} \big\rbrace = 
+$$ \tag{7.14}
+	\mathcal{Re} \big\lbrace E(\bm{r}, \bm{n}, \omega) e^{i \omega t} \big\rbrace = 
 	|E\_0| e^{-\omega (\bm{r} \cdot \bm{n}) / v_a} \cos{\theta(\bm{r}, t)}.
 $$
 
-If the attenuation index \\(\kappa = 0\\), the amplitude velocity \\(v_a = \infty\\), and Equation 6.14 represents a regular sine wave.
+If the attenuation index \\(\kappa = 0\\), the amplitude velocity \\(v_a = \infty\\), and Equation 7.14 represents a regular sine wave.
 
 [Insert Picture Here]
 
@@ -1040,139 +1035,136 @@ On the other hand, \\(\kappa > 0\\) produces an exponential decay characteristic
 
 [Insert Picture Here]
 
-It's easy to show that, for linear, isotropic media, the field vectors oscillate in the plane of the wave. The Maxwell equations (c.f. Equation 5.1) tell us that, in the absence of sources,
+It's easy to show that for linear, isotropic, homogeneous media, the field vectors oscillate in the plane of the wave. The Maxwell equations (c.f. Equations 3.9.2, 3.9.4) tell us that
 
-$$ \tag{6.15}
-	\nabla \cdot \bm{B}(\bm{r}) = 0, \quad
-	\nabla \cdot \bm{D}(\bm{r}) = 0.
+$$ \tag{7.15}
+	\nabla \cdot \bm{B}(\bm{r}, \omega) = 0, \quad
+	\nabla \cdot \bm{D}(\bm{r}, \omega) = \rho_s(\bm{r}, \omega).
 $$
 
-More specifically, for linear, isotropic media (c.f. Equation 5.2),
+More specifically, in a source-free region of a linear, isotropic, homogeneous (c.f. Equation 6.2.2, 6.2.4),
 
-$$ \tag{6.16}
-	\nabla \cdot \bm{H}(\bm{r}) = 0, \quad
-	\nabla \cdot \bm{E}(\bm{r}) = 0.
+$$ \tag{7.16}
+	\nabla \cdot \bm{H}(\bm{r}, \omega) = 0, \quad
+	\nabla \cdot \bm{E}(\bm{r}, \omega) = 0.
 $$
 
-Taking \\(\bm{E}\\) as an example, substitution of the integrand of Equation 5.16 
+Take \\(\bm{E}\\) as an example. Substitute Equation 6.16 into 7.16.2:
 
-$$ \tag{6.17}
-	\bm{E}(\bm{r}, \bm{n}) = \bm{E}(0, \bm{n}) e^{-i k(\omega) (\bm{r} \cdot \bm{n})}
+$$ \tag{7.17}
+	\nabla \cdot \oiint\_{\mathbb{S}^2} \bm{E}(0, \bm{n}, \omega) e^{-i k(\omega) (\bm{r} \cdot \bm{n})} d\Omega_n = 0.
 $$
 
-into Equation 6.16.2 yields
+Moving divergence under the integral sign leads to 
 
-$$ \tag{6.18}
-	\nabla \cdot \bm{E}(\bm{r}, \bm{n})
-	= -i k(\omega) \bm{n} \cdot \bm{E}(\bm{r}, \bm{n})
+$$ \tag{7.18}
+	\nabla \cdot \bm{E}(\bm{r}, \bm{n}, \omega)
+	= -i k(\omega) \bm{n} \cdot \bm{E}(\bm{r}, \bm{n}, \omega)
 	= 0.
 $$
 
-After division by the constant \\(i k\\) and multiplication by \\(e^{i \omega t}\\), it is clear that the field vector is orthogonal to the plane normal:
+After division by the constant \\(i k\\) and multiplication by \\(e^{i \omega t}\\), it is clear that the field vector is orthogonal to the plane normal at all times:
 
-$$ \tag{6.19}
-	\bm{n} \cdot \mathcal{Re} \big\lbrace \bm{E}(\bm{r}, \bm{n}) e^{i \omega t} \big\rbrace
+$$ \tag{7.19}
+	\bm{n} \cdot \mathcal{Re} \big\lbrace \bm{E}(\bm{r}, \bm{n}, \omega) e^{i \omega t} \big\rbrace
 	= 0.
 $$
 
-Similarly, we can relate the electric and the magnetic field vectors. According to Equation 5.1.1,
+Similarly, we can relate the electric and the magnetic field vectors. According to Equation 3.9.1,
 
-$$ \tag{6.20}
-	\nabla \times \bm{E}(\bm{r}) = - i \omega \bm{B}(\bm{r}).
+$$ \tag{7.20}
+	\nabla \times \bm{E}(\bm{r}, \omega) = - i \omega \bm{B}(\bm{r}, \omega).
 $$
 
-Expand the expression of the curl
+Substitute Equation 6.16 again and expand the expression of the curl
 
-$$ \tag{6.21}
-	\nabla \times \bm{E}(\bm{r}, \bm{n})
-	= \begin{bmatrix}
-		-i k(\omega) n\_y E\_z(\bm{r}, \bm{n}) + i k(\omega) n\_z E\_y(\bm{r}, \bm{n}) \cr
-		-i k(\omega) n\_z E\_x(\bm{r}, \bm{n}) + i k(\omega) n\_x E\_z(\bm{r}, \bm{n}) \cr
-		-i k(\omega) n\_x E\_y(\bm{r}, \bm{n}) + i k(\omega) n\_y E\_x(\bm{r}, \bm{n})
-	  \end{bmatrix}
-	= -i k(\omega) \bm{n} \times \bm{E}(\bm{r}, \bm{n})
+$$ \tag{7.21}
+	\nabla \times \bm{E}(\bm{r}, \bm{n}, \omega)
+	= -i k(\omega) \bm{n} \times \bm{E}(\bm{r}, \bm{n}, \omega).
 $$
 
-and substitute it into Equation 6.20:
+Equation 7.20 is thus equivalent to
 
-$$ \tag{6.22}
-	-i k(\omega) \bm{n} \times \bm{E}(\bm{r}, \bm{n}) = - i \omega \bm{B}(\bm{r}, \bm{n}).
+$$ \tag{7.22}
+	-i k(\omega) \bm{n} \times \bm{E}(\bm{r}, \bm{n}, \omega) = - i \omega \bm{B}(\bm{r}, \bm{n}, \omega).
 $$
 
-Recall the definition of the wave number given by Equation 6.9
+Using the definition of the wave number given by Equation 7.9, we obtain the following equation:
 
-$$ \tag{6.23}
-	\bm{n} \times \Bigg( \frac{1}{c} \big(\eta(\omega) - i \kappa(\omega) \big) \bm{E}(\bm{r}, \bm{n}) \Bigg)
-	= \bm{B}(\bm{r}, \bm{n}),
+$$ \tag{7.23}
+	\frac{1}{c} \big(\eta(\omega) - i \kappa(\omega) \big) \bm{n} \times \bm{E}(\bm{r}, \bm{n}, \omega)
+	= \bm{B}(\bm{r}, \bm{n}, \omega).
 $$
 
 If we take the real part of this expression multiplied by \\(e^{i \omega t}\\), the result
 
-$$ \tag{6.24}
-	\frac{\eta(\omega)}{c} \bm{n} \times \mathcal{Re} \big\lbrace \bm{E}(\bm{r}, \bm{n}) e^{i \omega t} \big\rbrace
-	= \mathcal{Re} \big\lbrace \bm{B}(\bm{r}, \bm{n}) e^{i \omega t} \big\rbrace
+$$ \tag{7.24}
+	\frac{\eta(\omega)}{c} \bm{n} \times \mathcal{Re} \big\lbrace \bm{E}(\bm{r}, \bm{n}, \omega) e^{i \omega t} \big\rbrace
+	= \mathcal{Re} \big\lbrace \bm{B}(\bm{r}, \bm{n}, \omega) e^{i \omega t} \big\rbrace
 $$
 
-shows us that the electric and the magnetic field vectors are orthogonal. Thus, \\(\lbrace \bm{E}, \bm{B}, \bm{n} \rbrace\\) is an orthogonal triad of vectors that defines the geometric configuration of a plane wave in a linear, isotropic medium:
+shows us that the electric and the magnetic field vectors of a plane wave are orthogonal at all times. Thus, \\(\lbrace \bm{E}, \bm{B}, \bm{n} \rbrace\\) is an orthogonal triad of vectors that defines the geometric configuration of a plane wave in a linear, isotropic, homogeneous medium:
 
-$$ \tag{6.25}
-	\bm{n} \times \frac{\bm{E}(\bm{r}, t)}{|\bm{E}(\bm{r}, t)|} = \frac{\bm{B}(\bm{r}, t)}{|\bm{B}(\bm{r}, t)|}.
+$$ \tag{7.25}
+	\bm{n} \times \frac{\mathcal{Re} \big\lbrace \bm{E}(\bm{r}, \bm{n}, \omega) e^{i \omega t} \big\rbrace}{\big\vert \mathcal{Re} \big\lbrace \bm{E}(\bm{r}, \bm{n}, \omega) e^{i \omega t} \big\rbrace \big\vert}
+	= \frac{\mathcal{Re} \big\lbrace \bm{B}(\bm{r}, \bm{n}, \omega) e^{i \omega t} \big\rbrace}{\big\vert \mathcal{Re} \big\lbrace \bm{B}(\bm{r}, \bm{n}, \omega) e^{i \omega t} \big\rbrace \big\vert}.
 $$
 
 [Insert Picture Here]
 
-We have seen the \\(\bm{E} \times \bm{B}\\) expression before (c.f. Equation 3.17). Thus, 
+We have seen the \\(\bm{E} \times \bm{B}\\) expression before (c.f. Equation 2.17). Assuming the fields are monochromatic, Equation 7.25 suggests that
 
-$$ \tag{6.26}
+$$ \tag{7.26}
 	\bm{S}(\bm{r}, t)
 	= \mu\_0^{-1} \big( \bm{E}(\bm{r}, t) \times \bm{B}(\bm{r}, t) \big)
 	= \mu\_0^{-1} |\bm{E}(\bm{r}, t)| |\bm{B}(\bm{r}, t)| \bm{n}
 $$
 
-is the expression of the Poynting vector of the plane wave.
+is the expression of the Poynting vector of a plane wave.
 
-Since the vectors are orthogonal, Equations 6.24-6.25 define the ratio of wave amplitudes:
+Since the field vectors are orthogonal, Equations 7.24-7.25 define the ratio of wave amplitudes:
 
-$$ \tag{6.27}
-	\frac{\eta(\omega)}{c} |\bm{E}(\bm{r}, t)| = |\bm{B}(\bm{r}, t)|.
+$$ \tag{7.27}
+	\frac{\big\vert \mathcal{Re} \big\lbrace \bm{B}(\bm{r}, \bm{n}, \omega) e^{i \omega t} \big\rbrace \big\vert}{\big\vert \mathcal{Re} \big\lbrace \bm{E}(\bm{r}, \bm{n}, \omega) e^{i \omega t} \big\rbrace \big\vert}
+	= \frac{\eta(\omega)}{c}.
 $$
 
 This equality has two consequences. First, it says that the electric and the magnetic vectors of a plane wave oscillate *in phase*, with the magnitude of both vectors rising and falling at the same point in space and time, so the locations of peaks and troughs match.
 
 [Insert Picture Here]
 
-Stated more precisely, if we align the triad \\(\lbrace \bm{E}, \bm{B}, \bm{n} \rbrace\\) with the \\(\lbrace x,y,z \rbrace\\) axes of a Cartesian coordinate system, then
+Stated mathematically, if we align the triad \\(\lbrace \bm{E}, \bm{B}, \bm{n} \rbrace\\) with the \\(\lbrace x,y,z \rbrace\\) axes of a Cartesian coordinate system, then
 
-$$ \tag{6.28}
-	\mathcal{Arg} \big\lbrace E_x(0, \bm{n}) \big\rbrace =
-	\mathcal{Arg} \big\lbrace B_y(0, \bm{n}) \big\rbrace =
+$$ \tag{7.28}
+	\mathcal{Arg} \big\lbrace E_x(0, \bm{n}, \omega) \big\rbrace =
+	\mathcal{Arg} \big\lbrace B_y(0, \bm{n}, \omega) \big\rbrace =
 	\delta.
 $$
 
 Secondly, it means we can compute the Poynting vector without explicit consideration of the magnetic field:
 
-$$ \tag{6.29}
+$$ \tag{7.29}
 	\bm{S}(\bm{r}, t)
 	= \mu\_0^{-1} \frac{\eta(\omega)}{c} |\bm{E}(\bm{r}, t)|^2 \bm{n}
 	= \Big(\epsilon_0 \eta c |E\_0|^2 e^{-2 \omega (\bm{r} \cdot \bm{n}) (\kappa / c)} \cos^2{\theta(\bm{r}, t)} \Big) \bm{n},
 $$
 
-where we expanded the squared amplitude as per Equation 6.13.
+where we expanded the squared amplitude as per Equation 7.14.
 
-The average value of a squared cosine is 1/2, so the corresponding irradiance[^11] value (c.f. Equation 3.19) is
+The average value of a squared cosine is \\(\frac{1}{2}\\), so the corresponding irradiance[^11] value (c.f. Equation 2.19) is
 
-$$ \tag{6.30}
+$$ \tag{7.30}
 	\mathtt{E}
 	= \braket{\bm{S}} \cdot \bm{n}
 	= \frac{1}{2} \epsilon_0 \eta c |E\_0|^2 e^{-2 \omega (\bm{r} \cdot \bm{n}) (\kappa / c)}
 	= \frac{1}{2} \epsilon_0 \eta c |E\_0|^2 e^{-\beta_a (\bm{r} \cdot \bm{n})},
 $$
 
-[^11]: Since \\(\bm{E}(\bm{r})\\) is monochromatic, the expressions of irradiance and spectral irradiance are identical.
+[^11]: Since the fields are monochromatic, the expressions of irradiance and spectral irradiance are identical.
 
-where we combined several constants into the [absorption coefficient](https://en.wikipedia.org/wiki/Attenuation_coefficient#Absorption_and_scattering_coefficients)
+with the grouped constants forming the [absorption coefficient](https://en.wikipedia.org/wiki/Attenuation_coefficient#Absorption_and_scattering_coefficients)
 
-$$ \tag{6.31}
+$$ \tag{7.31}
 	\beta_a(\omega) = 2 \omega \frac{\kappa(\omega)}{c}.
 $$
 
