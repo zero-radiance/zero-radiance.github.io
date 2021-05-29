@@ -1170,11 +1170,11 @@ $$
 
 ## Electromagnetic Potential
 
-The solutions of the Maxwell equations we have found so far have a limited range of validity. The medium must be isotropic and either homogeneous (which prohibits scattering) or divided into several bounded homogeneous regions (which permits scattering at the boundaries), and the material's response to the incident electromagnetic field may only be purely linear. Moreover, while the method of solving a system of differential equations augmented with boundary conditions (the so-called [boundary value problem](https://en.wikipedia.org/wiki/Boundary_value_problem)) is appropriate for many simple cases (such as reflection and transmission of a plane wave at a planar interface, which leads to [Fresnel equations](https://en.wikipedia.org/wiki/Fresnel_equations)), it quickly becomes unwieldy for more complex problems. Another approach tends to become more viable, where one reformulates the field in terms of the [electromagnetic potential](https://en.wikipedia.org/wiki/Electromagnetic_four-potential), which leads to an integral (rather than a differential) solution of the Maxwell equations.
+The solutions of the Maxwell equations we have found so far have a limited range of validity. The medium must be isotropic and either homogeneous (which prohibits scattering) or divided into several bounded homogeneous regions (which permits scattering only at the boundaries), and the material's response to the incident electromagnetic field may only be purely linear. Moreover, while the method of solving a system of differential equations augmented with boundary conditions (the so-called [boundary value problem](https://en.wikipedia.org/wiki/Boundary_value_problem)) is suitable for many simple cases (such as reflection and transmission of a plane wave at a planar interface, which leads to [Fresnel equations](https://en.wikipedia.org/wiki/Fresnel_equations)), it quickly becomes unwieldy for more complex problems. Another approach tends to become more viable, where one reformulates the field in terms of the [electromagnetic potential](https://en.wikipedia.org/wiki/Electromagnetic_four-potential), as this leads to an integral (rather than a differential) solution of the Maxwell equations.
 
-Take another look at the Maxwell equations. Since the [divergence of curl](https://en.wikipedia.org/wiki/Vector_calculus_identities#Divergence_of_curl_is_zero) is zero, Equation 1.1.2 can be written as
+Take another look at the equation of the magnetic field. Since the [divergence of curl](https://en.wikipedia.org/wiki/Vector_calculus_identities#Divergence_of_curl_is_zero) is zero, Equation 1.1.2 can be written as
 
-$$ \tag{7.1}
+$$ \tag{8.1}
 	\nabla \cdot \bm{B}(\bm{r}, t) = \nabla \cdot \big( \nabla \times \bm{A}(\bm{r}, t) \big) = 0,
 $$
 
@@ -1182,19 +1182,19 @@ where \\(\bm{A}\\) is called a *vector potential* \[[5](#references) (vol. II, c
 
 Next, substitute the definition of \\(\bm{A}\\) into Equation 1.1.1 to obtain
 
-$$ \tag{7.2}
+$$ \tag{8.2}
 	\nabla \times \Big( \bm{E}(\bm{r}, t) + \frac{\partial}{\partial t} \bm{A}(\bm{r}, t) \Big) = 0.
 $$
 
-As the [curl of gradient](https://en.wikipedia.org/wiki/Vector_calculus_identities#Curl_of_gradient_is_zero) is zero, Equation 7.2 can be used to define the *scalar potential* \\(\phi\\):
+As the [curl of gradient](https://en.wikipedia.org/wiki/Vector_calculus_identities#Curl_of_gradient_is_zero) is zero, Equation 8.2 can be used to define the *scalar potential* \\(\phi\\):
 
-$$ \tag{7.3}
+$$ \tag{8.3}
 	\bm{E}(\bm{r}, t) + \frac{\partial}{\partial t} \bm{A}(\bm{r}, t) = -\nabla \phi(\bm{r}, t).
 $$
 
 Thus both the electric and the magnetic fields are uniquely defined by the vector and the scalar potentials:
 
-$$ \tag{7.4}
+$$ \tag{8.4}
 \begin{aligned}
 	&\bm{E}(\bm{r}, t) = -\frac{\partial}{\partial t} \bm{A}(\bm{r}, t) - \nabla \phi(\bm{r}, t), &
 	&\bm{B}(\bm{r}, t) = \nabla \times \bm{A}(\bm{r}, t).
@@ -1203,29 +1203,29 @@ $$
 
 The converse is not true. Since the [curl of gradient](https://en.wikipedia.org/wiki/Vector_calculus_identities#Curl_of_gradient_is_zero) is zero, the vector potential
 
-$$ \tag{7.5}
+$$ \tag{8.5}
 	\bm{A'}(\bm{r}, t) = \bm{A}(\bm{r}, t) + \nabla \chi(\bm{r}, t)
 $$
 
 corresponds to the same magnetic field
 
-$$ \tag{7.6}
+$$ \tag{8.6}
 	\bm{B}(\bm{r}, t) = \nabla \times \bm{A}(\bm{r}, t) = \nabla \times \bm{A'}(\bm{r}, t).
 $$
 
-If we substitute Equation 7.5 into 7.3 and group the terms under the gradient sign, we obtain the expression of the transformed scalar potential:
+If we substitute Equation 8.5 into 8.3 and group the terms under the gradient sign, we obtain the expression of the transformed scalar potential:
 
-$$ \tag{7.7}
+$$ \tag{8.7}
 	\phi'(\bm{r}, t) = \phi(\bm{r}, t) - \frac{\partial}{\partial t} \chi(\bm{r}, t).
 $$
 
-Since the electric and the magnetic field are independent of a particular choice of \\(\chi\\), they are said to be *invariant* under a [gauge transformation](https://en.wikipedia.org/wiki/Gauge_theory#Classical_electromagnetism) given by Equations 7.5 and 7.7.
+Since the electric and the magnetic field are independent of a particular choice of \\(\chi\\), they are said to be *invariant* under a [gauge transformation](https://en.wikipedia.org/wiki/Gauge_theory#Classical_electromagnetism) given by Equations 8.5 and 8.7.
 
 What is a good choice of \\(\chi\\)? That depends on the mathematical formulation of a particular problem. Usually, we want \\(\bm{A}\\) to have a certain desirable property that simplifies some equation.
 
 In general, a vector field \\(\bm{A}\\) can be represented as a sum of a divergence-free (*transverse*) component \\(\bm{A'}\\) and a curl-free (*longitudinal*) component \\(\bm{A''}\\):
 
-$$ \tag{7.8}
+$$ \tag{8.8}
 \begin{aligned}
 	&\bm{A}(\bm{r}, t) = \bm{A'}(\bm{r}, t) + \bm{A''}(\bm{r}, t), &
 	&\nabla \cdot  \bm{A' }(\bm{r}, t) = 0, &
@@ -1233,9 +1233,9 @@ $$ \tag{7.8}
 \end{aligned}
 $$
 
-This shows us a way to manipulate the divergence of \\(\bm{A}\\) without affecting its curl:
+This indicates a way to manipulate the divergence of \\(\bm{A}\\) without affecting its curl:
 
-$$ \tag{7.9}
+$$ \tag{8.9}
 \begin{aligned}
 	& \nabla \times \bm{A}(\bm{r}, t) = \nabla \times \bm{A'}(\bm{r}, t) = \bm{B}(\bm{r}, t), \cr
 	& \nabla \cdot \bm{A}(\bm{r}, t) = \nabla \cdot \bm{A''}(\bm{r}, t) = -\nabla^2 \chi(\bm{r}, t).
@@ -1244,21 +1244,21 @@ $$
 
 We shall relate \\(\chi\\) to \\(\phi\\) in a rather non-obvious (but, as we shall soon see, convenient) manner:
 
-$$ \tag{7.10}
+$$ \tag{8.10}
 	\nabla^2 \chi(\bm{r}, t) = \frac{1}{c^2} \frac{\partial}{\partial t} \phi(\bm{r}, t).
 $$
 
-The combination of Equations 7.9.2 and 7.10 yields the [Lorenz condition](https://en.wikipedia.org/wiki/Lorenz_gauge_condition)
+The combination of Equations 8.9.2 and 8.10 yields the [Lorenz condition](https://en.wikipedia.org/wiki/Lorenz_gauge_condition)
 
-$$ \tag{7.11}
+$$ \tag{8.11}
 \begin{aligned}
 	\nabla \cdot \bm{A}(\bm{r}, t) = -\frac{1}{c^2} \frac{\partial}{\partial t} \phi(\bm{r}, t).
 \end{aligned}
 $$
 
-Let us justify our choice of the gauge transformation by expressing the Maxwell equations in terms of the electromagnetic potential. Begin by substituting Equations 7.4 into 1.1.3-1.1.4:
+Let us justify our choice of the gauge transformation by expressing the Maxwell equations in terms of the electromagnetic potential. Begin by substituting Equations 8.4 into 1.1.3-1.1.4:
 
-$$ \tag{7.12}
+$$ \tag{8.12}
 \begin{aligned}
 	&\nabla \times \nabla \times \bm{A}(\bm{r}, t) + \frac{1}{c^2} \frac{\partial^2}{\partial t^2} \bm{A}(\bm{r}, t)
 	+ \nabla \frac{1}{c^2} \frac{\partial}{\partial t} \phi(\bm{r}, t)
@@ -1268,16 +1268,16 @@ $$ \tag{7.12}
 \end{aligned}
 $$
 
-We can immediately use the Lorenz condition to eliminate \\(\bm{A}\\) from Equation 7.12.2. The result is an inhomogeneous scalar *wave equation*
+We can immediately use the Lorenz condition to eliminate \\(\bm{A}\\) from Equation 8.12.2. The result is an inhomogeneous scalar *wave equation*
 
-$$ \tag{7.13}
+$$ \tag{8.13}
 	\nabla^2 \phi(\bm{r}, t) - \frac{1}{c^2} \frac{\partial^2}{\partial t^2} \phi(\bm{r}, t)
 	= -\frac{\rho(\bm{r}, t)}{\epsilon_0}.
 $$
 
-Equation 7.12.1 can be expanded using the [curl of curl](https://en.wikipedia.org/wiki/Vector_calculus_identities#Curl_of_curl) identity:
+Equation 8.12.1 can be expanded using the [curl of curl](https://en.wikipedia.org/wiki/Vector_calculus_identities#Curl_of_curl) identity:
 
-$$ \tag{7.14}
+$$ \tag{8.14}
 	\nabla \big( \nabla \cdot \bm{A}(\bm{r}, t) \big) - \nabla^2 \bm{A}(\bm{r}, t) + \frac{1}{c^2} \frac{\partial^2}{\partial t^2} \bm{A}(\bm{r}, t)
 	+ \nabla \frac{1}{c^2} \frac{\partial}{\partial t} \phi(\bm{r}, t)
 	= \frac{\bm{J}(\bm{r}, t)}{\mu_0^{-1}}.
@@ -1285,14 +1285,14 @@ $$
 
 Once again, we use the Lorenz condition, but this time, we do it in order to eliminate \\(\phi\\). We obtain an inhomogeneous vector *wave equation*
 
-$$ \tag{7.15}
+$$ \tag{8.15}
 	\nabla^2 \bm{A}(\bm{r}, t) - \frac{1}{c^2} \frac{\partial^2}{\partial t^2} \bm{A}(\bm{r}, t)
 	= -\frac{\bm{J}(\bm{r}, t)}{\mu_0^{-1}}.
 $$
 
 Putting it all together, the formulation of the Maxwell equations in terms of the electromagnetic potential results in an decoupled system of partial differential equations:
 
-$$ \tag{7.16}
+$$ \tag{8.16}
 \begin{aligned}
 	&\nabla^2 \bm{A}(\bm{r}, t) - \frac{1}{c^2} \frac{\partial^2}{\partial t^2} \bm{A}(\bm{r}, t)
 	= -\frac{\bm{J}(\bm{r}, t)}{\mu_0^{-1}}, &
