@@ -1464,7 +1464,35 @@ $$ \tag{10.3}
 \end{aligned}
 $$
 
-Physical interpretation...
+A more intuitive description of matter can be obtained by decomposing the *total* current and charge densities
+
+$$ \tag{10.4}
+\begin{aligned}
+	&\bm{J}(\bm{r}, t)
+	= \bm{J\_f}(\bm{r}, t) + \bm{J\_b}(\bm{r}, t)
+	= \bm{J\_f}(\bm{r}, t) + \frac{\partial}{\partial t} \bm{P}(\bm{r}, t) + \nabla \times \bm{M}(\bm{r}, t), \cr
+	&\rho(\bm{r}, t)
+	= \rho\_f(\bm{r}, t) + \rho\_b(\bm{r}, t)
+	= \rho\_f(\bm{r}, t) - \nabla \cdot \bm{P}(\bm{r}, t).
+\end{aligned}
+$$
+
+---
+
+read 2.2 ...
+
+---
+
+in terms of the **
+
+$$ \tag{1.9}
+\begin{aligned}
+	&\bm{J\_b}(\bm{r}, t) = \bm{J\_p}(\bm{r}, t) + \bm{J\_m}(\bm{r}, t) =
+	\frac{\partial}{\partial t} \bm{P}(\bm{r}, t) + \nabla \times \bm{M}(\bm{r}, t), \cr
+	&\rho\_b(\bm{r}, t) = -\nabla \cdot \bm{P}(\bm{r}, t),
+\end{aligned}
+$$
+
 
 <!--
 ## Polarization of Light
