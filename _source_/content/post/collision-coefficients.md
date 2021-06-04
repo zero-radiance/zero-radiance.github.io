@@ -94,7 +94,9 @@ $$
 
 Equation 1.5 is a [continuity equation](https://en.wikipedia.org/wiki/Continuity_equation) that tells us that a reduction of the charge density is observed if the charges are carried away by a current.
 
-Sometimes, Equations 1.1.1-1.1.4 are referred to as the "vacuum version" of the Maxwell equations. This name can be a little misleading; since electromagnetic fields only interact with charged [particles](https://en.wikipedia.org/wiki/Elementary_particle) (called "charges"), the matter is represented by the *volume* [charge density](https://en.wikipedia.org/wiki/Charge_density) \\(\rho\\), such that the total amount of charge \\(Q\\) inside the volume \\(V\\) is
+Sometimes, Equations 1.1.1-1.1.4 are referred to as the "vacuum version" of the Maxwell equations. In fact, these equations are based on the atomic theory of matter that describes it as a collection of [elementary particles](https://en.wikipedia.org/wiki/Elementary_particle) (electrons, protons, neutrons, and so on) embedded in vacuum. We prefer to call them the *microscopic* Maxwell equations instead.
+
+Since electromagnetic fields only interact with charged particles (or, simply, "charges"), the matter is represented (in the statistical sense) by the *volume* [charge density](https://en.wikipedia.org/wiki/Charge_density) \\(\rho\\), such that the total amount of charge \\(Q\\) inside the volume \\(V\\) is
 
 $$ \tag{1.6}
 	Q(t) = \iiint\_{V} \rho(\bm{r}, t) \thinspace dV.
