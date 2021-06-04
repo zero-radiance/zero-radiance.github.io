@@ -905,7 +905,7 @@ $$
 
 That is a general solution of the Maxwell equations for *linear, isotropic, homogeneous* media.
 
-## Plane Waves
+## Planar Waves
 
 We can find a solution of the Maxwell equations in the time domain by performing the inverse Fourier transform of Equation 6.16:
 
@@ -914,14 +914,14 @@ $$ \tag{7.1}
 	= \frac{1}{\sqrt{2 \pi}} \int\_{-\infin}^{\infin} \oiint\_{\mathbb{S}^2} \bm{E}(0, \bm{n}, \omega) e^{-i k(\omega) (\bm{r} \cdot \bm{n})} e^{i \omega t} d\Omega_n d\omega.
 $$
 
-This triple integral represents a [wave packet](https://en.wikipedia.org/wiki/Wave_packet). It is a collection of *vector* [plane waves](https://en.wikipedia.org/wiki/Plane_wave) \[[6](#references) (ch. 1.4.2), [8](#references) (ch. 3.2), [9](#references) (ch. 3.1)\] of the form
+This triple integral represents a [wave packet](https://en.wikipedia.org/wiki/Wave_packet). It is a collection of *vector* [planar waves](https://en.wikipedia.org/wiki/Plane_wave) \[[6](#references) (ch. 1.4.2), [8](#references) (ch. 3.2), [9](#references) (ch. 3.1)\] of the form
 
 $$ \tag{7.2}
 	\bm{E}(\bm{r}, \bm{n}, \omega) e^{i \omega t}
 	= \bm{E}(0, \bm{n}, \omega) e^{-i k(\omega) (\bm{r} \cdot \bm{n})} e^{i \omega t}
 $$
 
-each composed of three *scalar* plane waves such as
+each composed of three *scalar* planar waves such as
 
 $$ \tag{7.3}
 	E(\bm{r}, \bm{n}, \omega) e^{i \omega t}
@@ -981,7 +981,7 @@ $$
 
 where \\(v_p = c/\eta\\) is the [phase velocity](https://en.wikipedia.org/wiki/Phase_velocity) and \\(v_a=c/\kappa\\) is the *amplitude velocity*. It shows that, in a dispersive medium, waves of different frequencies propagate at different rates.
 
-In order to develop some intuition about the role of the refractive index \[[5](#references) (vol. II, ch. 32.4)\], consider the spatial component of a scalar plane wave
+In order to develop some intuition about the role of the refractive index \[[5](#references) (vol. II, ch. 32.4)\], consider the spatial component of a scalar planar wave
 
 $$ \tag{7.10}
 \begin{aligned}
@@ -995,7 +995,7 @@ $$
 
 As any complex number, it can be expressed in terms of the *magnitude* \\(|E|\\) and the *phase* \\(\theta\\), both of which are [real-valued functions](https://en.wikipedia.org/wiki/Real-valued_function).
 
-Multiplication by \\(e^{i \omega t}\\) yields the full expression of a scalar plane wave:
+Multiplication by \\(e^{i \omega t}\\) yields the full expression of a scalar planar wave:
 
 $$ \tag{7.11}
 \begin{aligned}
@@ -1105,7 +1105,7 @@ $$ \tag{7.24}
 	= \mathcal{Re} \big\lbrace \bm{B}(\bm{r}, \bm{n}, \omega) e^{i \omega t} \big\rbrace
 $$
 
-shows us that the electric and the magnetic field vectors of a plane wave are orthogonal at all times. Thus, \\(\lbrace \bm{E}, \bm{B}, \bm{n} \rbrace\\) is an orthogonal triad of vectors that defines the geometric configuration of a plane wave in a linear, isotropic, homogeneous medium:
+shows us that the electric and the magnetic field vectors of a planar wave are orthogonal at all times. Thus, \\(\lbrace \bm{E}, \bm{B}, \bm{n} \rbrace\\) is an orthogonal triad of vectors that defines the geometric configuration of a planar wave in a linear, isotropic, homogeneous medium:
 
 $$ \tag{7.25}
 	\bm{n} \times \frac{\mathcal{Re} \big\lbrace \bm{E}(\bm{r}, \bm{n}, \omega) e^{i \omega t} \big\rbrace}{\big\vert \mathcal{Re} \big\lbrace \bm{E}(\bm{r}, \bm{n}, \omega) e^{i \omega t} \big\rbrace \big\vert}
@@ -1122,7 +1122,7 @@ $$ \tag{7.26}
 	= \mu\_0^{-1} |\bm{E}(\bm{r}, t)| |\bm{B}(\bm{r}, t)| \bm{n}
 $$
 
-is the expression of the Poynting vector of a plane wave.
+is the expression of the Poynting vector of a planar wave.
 
 Since the field vectors are orthogonal, Equations 7.24-7.25 define the ratio of wave amplitudes:
 
@@ -1131,7 +1131,7 @@ $$ \tag{7.27}
 	= \frac{\eta(\omega)}{c}.
 $$
 
-This equality has two consequences. First, it says that the electric and the magnetic vectors of a plane wave oscillate *in phase*, with the magnitude of both vectors rising and falling at the same point in space and time, so the locations of peaks and troughs match.
+This equality has two consequences. First, it says that the electric and the magnetic vectors of a planar wave oscillate *in phase*, with the magnitude of both vectors rising and falling at the same point in space and time, so the locations of peaks and troughs match.
 
 [Insert Picture Here]
 
@@ -1172,7 +1172,7 @@ $$
 
 ## Electromagnetic Potential
 
-The solutions of the Maxwell equations we have found so far have a limited range of validity. The medium must be isotropic and either homogeneous (which prohibits scattering) or divided into several bounded homogeneous regions (which permits scattering only at the boundaries), and the material's response to the incident electromagnetic field may only be purely linear. Moreover, while the method of solving a system of differential equations augmented with boundary conditions (the so-called [boundary value problem](https://en.wikipedia.org/wiki/Boundary_value_problem)) is suitable for many simple cases (such as reflection and transmission of a plane wave at a planar interface, which leads to [Fresnel equations](https://en.wikipedia.org/wiki/Fresnel_equations)), it quickly becomes unwieldy for more complex problems. Another approach tends to become more viable, where one reformulates the field in terms of the [electromagnetic potential](https://en.wikipedia.org/wiki/Electromagnetic_four-potential), as this leads to an integral (rather than a differential) solution of the Maxwell equations.
+The solutions of the Maxwell equations we have found so far have a limited range of validity. The medium must be isotropic and either homogeneous (which prohibits scattering) or divided into several bounded homogeneous regions (which permits scattering only at the boundaries), and the material's response to the incident electromagnetic field may only be purely linear. Moreover, while the method of solving a system of differential equations augmented with boundary conditions (the so-called [boundary value problem](https://en.wikipedia.org/wiki/Boundary_value_problem)) is suitable for many simple cases (such as reflection and transmission of a planar wave at a planar interface, which leads to [Fresnel equations](https://en.wikipedia.org/wiki/Fresnel_equations)), it quickly becomes unwieldy for more complex problems. Another approach tends to become more viable, where one reformulates the field in terms of the [electromagnetic potential](https://en.wikipedia.org/wiki/Electromagnetic_four-potential), as this leads to an integral (rather than a differential) solution of the Maxwell equations.
 
 Take another look at the equation of the magnetic field. Since the [divergence of curl](https://en.wikipedia.org/wiki/Vector_calculus_identities#Divergence_of_curl_is_zero) is zero, Equation 1.1.2 can be written as
 
@@ -1375,7 +1375,7 @@ $$
 
 Its solution is the *scalar* [Green function](https://en.wikipedia.org/wiki/Green%27s_function) \\(g\\). It represents an [impulse response](https://en.wikipedia.org/wiki/Impulse_response) of the linear operator \\(\mathcal{L}\\).
 
-Equation 9.9 is an inhomogeneous linear differential equation. Consequently, its solution depends on the linear operator in question, its domain of validity, as well as the associated (initial or boundary) conditions. According to Equation 9.7, our domain is the whole real space, and the only applicable restriction is the Sommerfeld radiation condition. Thus, it can be shown that the *free-space* scalar Green function \\(g_0\\) takes the form of an diverging *sphere wave* \[[7](#references) (ch. 2.12), [8](#references) (ch. 5.2), [9](#references) (ap. B), [12](#references)\]:
+Equation 9.9 is an inhomogeneous linear differential equation. Consequently, its solution depends on the linear operator in question, its domain of validity, as well as the associated (initial or boundary) conditions. According to Equation 9.7, our domain is the whole real space, and the only applicable restriction is the Sommerfeld radiation condition. Thus, it can be shown that the *free-space* scalar Green function \\(g_0\\) takes the form of an diverging *spherical wave* \[[7](#references) (ch. 2.12), [8](#references) (ch. 5.2), [9](#references) (ap. B), [12](#references)\]:
 
 $$ \tag{9.10}
 	g_0(\bm{r} - \bm{r'}) = -\frac{e^{-i k_0 |\bm{r} - \bm{r'}|}}{4 \pi |\bm{r} - \bm{r'}|}.
