@@ -1375,7 +1375,7 @@ $$
 
 Its solution is the *scalar* [Green function](https://en.wikipedia.org/wiki/Green%27s_function) \\(g\\). It represents an [impulse response](https://en.wikipedia.org/wiki/Impulse_response) of the linear operator \\(\mathcal{L}\\).
 
-Equation 9.9 is an inhomogeneous linear differential equation. Consequently, its solution depends on the linear operator in question, its domain of validity, as well as the associated (initial or boundary) conditions. According to Equation 9.7, our domain is the whole real space, and the only applicable restriction is the Sommerfeld radiation condition. Thus, it can be shown that the *free-space* scalar Green function \\(g_0\\) takes the form of an diverging *sphere wave* \[[12](#references)\]:
+Equation 9.9 is an inhomogeneous linear differential equation. Consequently, its solution depends on the linear operator in question, its domain of validity, as well as the associated (initial or boundary) conditions. According to Equation 9.7, our domain is the whole real space, and the only applicable restriction is the Sommerfeld radiation condition. Thus, it can be shown that the *free-space* scalar Green function \\(g_0\\) takes the form of an diverging *sphere wave* \[[7](#references) (ch. 2.12), [8](#references) (ch. 5.2), [9](#references) (ap. B), [12](#references)\]:
 
 $$ \tag{9.10}
 	g_0(\bm{r} - \bm{r'}) = -\frac{e^{-i k_0 |\bm{r} - \bm{r'}|}}{4 \pi |\bm{r} - \bm{r'}|}.
@@ -1425,7 +1425,7 @@ $$ \tag{9.15}
 \end{aligned}
 $$
 
-## Retarded Potentials
+## Polarization and Magnetization
 
 The physical meaning of the electromagnetic potential is more apparent in the time domain. With this goal in mind, perform the inverse Fourier transform of Equation 9.15.2:
 
@@ -1455,7 +1455,7 @@ $$
 
 We have identified another inverse Fourier transform - the one that corresponds to an *earlier point in time*. The lag is precisely the amount of time it takes to traverse the distance from the source to the observation point at the speed of light.
 
-For this reason, in the time domain, \\(\bm{A_s}\\) and \\(\phi_s\\) are called the [retarded potentials](https://en.wikipedia.org/wiki/Retarded_potential):
+For this reason, in the time domain, \\(\bm{A_s}\\) and \\(\phi_s\\) are called the [retarded potentials](https://en.wikipedia.org/wiki/Retarded_potential) \[[6](#references) (ch. 2.1)\]:
 
 $$ \tag{10.3}
 \begin{aligned}
