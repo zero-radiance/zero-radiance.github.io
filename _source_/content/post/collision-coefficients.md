@@ -94,12 +94,12 @@ $$
 
 Equation 1.5 is a [continuity equation](https://en.wikipedia.org/wiki/Continuity_equation) that tells us that a reduction of the charge density is observed if the charges are carried away by a current.
 
-Sometimes, Equations 1.1.1-1.1.4 are referred to as the "vacuum version" of the Maxwell equations. In fact, these equations are based on the atomic theory of matter that describes it as a collection of [elementary particles](https://en.wikipedia.org/wiki/Elementary_particle) (electrons, protons, neutrons, and so on) embedded in vacuum. We prefer to call them the *microscopic* Maxwell equations instead.
+Sometimes, Equations 1.1.1-1.1.4 are referred to as the "vacuum version" of the Maxwell equations. In fact, these equations are based on the atomic theory of matter that describes it as a collection of particles (electrons, protons, and so on) embedded in vacuum. We prefer to call them the *microscopic* Maxwell equations instead.
 
 Since electromagnetic fields only interact with charged particles (or, simply, "charges"), the matter is represented (in the statistical sense) by the *volume* [charge density](https://en.wikipedia.org/wiki/Charge_density) \\(\rho\\), such that the total amount of charge \\(Q\\) inside the volume \\(V\\) is
 
 $$ \tag{1.6}
-	Q(t) = \iiint\_{V} \rho(\bm{r}, t) \thinspace dV.
+	Q(t) = \iiint\_{V} \rho(\bm{r}, t) dV.
 $$
 
 Moving charges constitute a current. If their velocity is \\(\bm{v}\\), the *volume* [current density](https://en.wikipedia.org/wiki/Current_density) \\(\bm{J}\\) is simply
@@ -226,7 +226,7 @@ $$
 For the charge density \\(\rho\\) and the volume element \\(dV\\), the corresponding equation is
 
 $$ \tag{2.4}
-	d\bm{F}(\bm{r}, t) = \rho(\bm{r}, t) \big( \bm{E}(\bm{r}, t) + \bm{v}(\bm{r}, t) \times \bm{B}(\bm{r}, t) \big) \thinspace dV.
+	d\bm{F}(\bm{r}, t) = \rho(\bm{r}, t) \big( \bm{E}(\bm{r}, t) + \bm{v}(\bm{r}, t) \times \bm{B}(\bm{r}, t) \big) dV.
 $$
 
 Therefore, the amount of work done per unit time by the field on the matter inside the volume \\(V\\) is
@@ -234,20 +234,20 @@ Therefore, the amount of work done per unit time by the field on the matter insi
 $$ \tag{2.5}
 	\frac{\partial}{\partial t} \mathcal{W}(V, t) =
 	\iiint\_{V} \bm{v}(\bm{r}, t) \cdot d\bm{F}(\bm{r}, t) =
-	\iiint\_{V} \bm{E}(\bm{r}, t) \cdot \rho(\bm{r}, t) \bm{v}(\bm{r}, t) \thinspace dV.
+	\iiint\_{V} \bm{E}(\bm{r}, t) \cdot \rho(\bm{r}, t) \bm{v}(\bm{r}, t) dV.
 $$
 
 Since the current density is just the number of moving charges per unit volume (see Equation 1.7),
 
 $$ \tag{2.6}
 	\frac{\partial}{\partial t} \mathcal{W}(V, t) =
-	\iiint\_{V} \bm{E}(\bm{r}, t) \cdot \bm{J}(\bm{r}, t) \thinspace dV.
+	\iiint\_{V} \bm{E}(\bm{r}, t) \cdot \bm{J}(\bm{r}, t) dV.
 $$
 
 The Maxwell equations allow us to relate a current to the generated fields. Substitution of Equation 1.1.3 yields
 
 $$ \tag{2.7}
-	\iiint\_{V} \bm{E} \cdot \bm{J} \thinspace dV = 
+	\iiint\_{V} \bm{E} \cdot \bm{J} dV =
 	\iiint\_{V} \bm{E} \cdot \Big( \nabla \times \big( \mu\_0^{-1} \bm{B} \big) -
 	\frac{\partial}{\partial t} \big( \epsilon_0 \bm{E} \big) \Big) dV.
 $$
@@ -336,7 +336,7 @@ Since the electromagnetic fields oscillate so rapidly, the *time-averaged* Poynt
 
 $$ \tag{2.18}
 	\braket{\bm{S}}
-	= \frac{1}{T} \int\_{-T/2}^{\thinspace T/2} \bm{S}(\bm{r}, t + t') \thinspace dt'.
+	= \frac{1}{T} \int\_{-T/2}^{\thinspace T/2} \bm{S}(\bm{r}, t + t') dt'.
 $$
 
 It becomes particularly useful once you consider a fixed direction \\(\bm{n}\\). Then, according to Equation 2.14,
@@ -891,7 +891,7 @@ How should we choose the direction of \\(\bm{n}\\)? It depends on the location o
 
 $$ \tag{6.15}
 	\psi(\bm{r}) =
-	\oiint\_{\mathbb{S}^2} \psi(\bm{r}, \bm{n}) \thinspace d\Omega_n =
+	\oiint\_{\mathbb{S}^2} \psi(\bm{r}, \bm{n}) d\Omega_n =
 	\oiint\_{\mathbb{S}^2} \psi(0, \bm{n}) e^{-i k (\bm{r} \cdot \bm{n})} d\Omega_n.
 $$
 
@@ -899,7 +899,7 @@ Equation 6.15 can be used to solve Equation 6.8:
 
 $$ \tag{6.16}
 	\bm{E}(\bm{r}, \omega) =
-	\oiint\_{\mathbb{S}^2} \bm{E}(\bm{r}, \bm{n}, \omega) \thinspace d\Omega_n =
+	\oiint\_{\mathbb{S}^2} \bm{E}(\bm{r}, \bm{n}, \omega) d\Omega_n =
 	\oiint\_{\mathbb{S}^2} \bm{E}(0, \bm{n}, \omega) e^{-i k(\omega) (\bm{r} \cdot \bm{n})} d\Omega_n.
 $$
 
@@ -1455,7 +1455,7 @@ $$
 
 We have identified another inverse Fourier transform - the one that corresponds to an *earlier point in time*. The lag is precisely the amount of time it takes to traverse the distance from the source to the observation point at the speed of light.
 
-For this reason, in the time domain, \\(\bm{A_s}\\) and \\(\phi_s\\) are called the [retarded potentials](https://en.wikipedia.org/wiki/Retarded_potential) \[[5](#references) (vol. II, ch. 21), [6](#references) (ch. 2.1)\]:
+For this reason, \\(\bm{A_s}\\) and \\(\phi_s\\) are called the [retarded potentials](https://en.wikipedia.org/wiki/Retarded_potential) \[[5](#references) (vol. II, ch. 21), [6](#references) (ch. 2.1)\]:
 
 $$ \tag{10.3}
 \begin{aligned}
@@ -1479,78 +1479,161 @@ $$ \tag{10.4}
 \end{aligned}
 $$
 
+Below, we assume that the material is non-conducting, such that \\(\bm{J\_f} = \rho\_f = 0\\).
+
 To keep the resulting expressions compact, let us introduce the notion of [retarded time](https://en.wikipedia.org/wiki/Retarded_time)
 
 $$ \tag{10.5}
 	t' = t - \frac{|\bm{r} - \bm{r'}|}{c},
 $$
 
-which is simply the point in time at which the wave was generated by the source located at \\(\bm{r'}\\). Note that this definition introduces a coupling between the space and time variables \\(\bm{r'}\\) and \\(t'\\).
+which is simply the point in time at which the wave was generated by the source located at \\(\bm{r'}\\).
 
-For example, consider the expression
+This definition couples the space and time variables. For instance, consider the following expression:
 
 $$ \tag{10.6}
-	\frac{\partial}{\partial x} f \big(x, t'(x) \big)
-	= \frac{\partial f(x, t)}{\partial x} \Big\vert_{t=t'}
-	+ \frac{\partial f(x, t)}{\partial t} \Big\vert_{t=t'} \frac{\partial t'(x)}{\partial x}.
+	\frac{\partial}{\partial x} f \big(\bm{r}, t'(\bm{r}) \big)
+	= \frac{\partial f(\bm{r}, t)}{\partial x} \Big\vert_{t=t'}
+	+ \frac{\partial f(\bm{r}, t)}{\partial t} \Big\vert_{t=t'} \frac{\partial t'(\bm{r})}{\partial x},
 $$
 
-(expand this to r' !!!)
-
-Since \\(t'\\) depends on \\(x\\), this "simple" \\(x\\)-derivative requires application of the [chain rule](https://en.wikipedia.org/wiki/Chain_rule#Multivariable_case).
-
-This expression can be made more compact by utilizing the *retarded value* notation:
+where 
 
 $$ \tag{10.7}
-	\frac{\partial}{\partial x} \Big\lfloor f(x, t) \Big\rfloor
-	= \Big\lfloor \frac{\partial f(x, t)}{\partial x} \Big\rfloor
-	+ \Big\lfloor \frac{\partial f(x, t)}{\partial t} \Big\rfloor \frac{\partial t'}{\partial x},
+	\frac{\partial t'(\bm{r})}{\partial x}
+	= -\frac{\bm{r} - \bm{r'}}{c |\bm{r} - \bm{r'}|} \cdot \frac{\partial (\bm{r} - \bm{r'})}{\partial x}.
+$$
+
+Since \\(t'\\) depends on \\(\bm{r}\\), this "simple" \\(x\\)-derivative of Equation 10.6 requires application of the [chain rule](https://en.wikipedia.org/wiki/Chain_rule#Multivariable_case).
+
+Equation 10.6 can be written in a more clear way by utilizing the *retarded value* notation:
+
+$$ \tag{10.8}
+	\frac{\partial}{\partial x} \Big\lfloor f(\bm{r}, t) \Big\rfloor
+	= \Big\lfloor \frac{\partial f(\bm{r}, t)}{\partial x} \Big\rfloor
+	+ \Big\lfloor \frac{\partial f(\bm{r}, t)}{\partial t} \Big\rfloor \frac{\partial t'}{\partial x},
 $$
 
 where the brackets tell us that we must first evaluate the expression inside, and then substitute \\(t = t'\\).
 
 We can use our new notation to combine Equations 10.3-10.4:
 
-$$ \tag{10.8}
+$$ \tag{10.9}
 \begin{aligned}
 	&\bm{A_s}(\bm{r}, t)
-	= \frac{1}{4 \pi \mu_0^{-1}} \iiint\_{\mathbb{R^3}} \frac{\lfloor \bm{J\_f}(\bm{r'}, t) \rfloor + \lfloor \frac{\partial}{\partial t} \bm{P}(\bm{r'}, t) \rfloor + \lfloor \nabla' \times \bm{M}(\bm{r'}, t) \rfloor}{|\bm{r} - \bm{r}|} dV', \cr
+	= \frac{1}{4 \pi \mu_0^{-1}} \iiint\_{\mathbb{R^3}} \frac{\lfloor \frac{\partial}{\partial t} \bm{P}(\bm{r'}, t) \rfloor + \lfloor \nabla' \times \bm{M}(\bm{r'}, t) \rfloor}{|\bm{r} - \bm{r'}|} dV', \cr
 	&\phi_s(\bm{r}, t)
-	= \frac{1}{4 \pi \epsilon_0} \iiint\_{\mathbb{R^3}} \frac{\lfloor \rho\_f(\bm{r'}, t) \rfloor - \lfloor \nabla' \cdot \bm{P}(\bm{r'}, t) \rfloor}{|\bm{r} - \bm{r'}|} dV',
+	= \frac{1}{4 \pi \epsilon_0} \iiint\_{\mathbb{R^3}} \frac{- \lfloor \nabla' \cdot \bm{P}(\bm{r'}, t) \rfloor}{|\bm{r} - \bm{r'}|} dV',
 \end{aligned}
 $$
 
-where \\(\nabla'\\) means we must take derivatives with respect to \\(\bm{r'}\\).
+where \\(\nabla'\\) tells us take derivatives with respect to \\(\bm{r'}\\) rather than \\(\bm{r}\\).
 
-In order to make sense of these equations, we must move space derivatives outside the brackets. We can achieve this goal by using the following chain rule identities:
+In order to be able to write these equation directly in terms of \\(t'\\), we must move the space derivatives outside the brackets. We can achieve this goal by using the chain rule in the way demonstrated by Equations 10.6-10.7:
 
-$$ \tag{10.8}
+$$ \tag{10.10}
 \begin{aligned}
-	& \nabla' \cdot \lfloor \bm{P}(\bm{r'}, t) \rfloor 
+	& \nabla' \times \lfloor \bm{M}(\bm{r'}, t) \rfloor 
+	= \lfloor \nabla' \times \bm{M}(\bm{r'}, t) \rfloor
+	+ \frac{\bm{r} - \bm{r'}}{c |\bm{r} - \bm{r'}|} \times \Big\lfloor \frac{\partial}{\partial t} \bm{M}(\bm{r'}, t) \Big\rfloor, \cr
+	& \nabla' \cdot \lfloor \bm{P}(\bm{r'}, t) \rfloor
 	= \lfloor \nabla' \cdot \bm{P}(\bm{r'}, t) \rfloor
-	+ \Big\lfloor \frac{\partial}{\partial t} \bm{P}(\bm{r'}, t) \Big\rfloor \cdot \frac{\bm{r} - \bm{r'}}{c |\bm{r} - \bm{r'}|},
+	+ \frac{\bm{r} - \bm{r'}}{c |\bm{r} - \bm{r'}|} \cdot \Big\lfloor \frac{\partial}{\partial t} \bm{P}(\bm{r'}, t) \Big\rfloor.
 \end{aligned}
 $$
 
+Substitution produces the following expressions:
 
-
-
-
----
-
-read 2.2 ...
-
----
-
-in terms of the **
-
-$$ \tag{1.9}
+$$ \tag{10.11}
 \begin{aligned}
-	&\bm{J\_b}(\bm{r}, t) = \bm{J\_p}(\bm{r}, t) + \bm{J\_m}(\bm{r}, t) =
-	\frac{\partial}{\partial t} \bm{P}(\bm{r}, t) + \nabla \times \bm{M}(\bm{r}, t), \cr
-	&\rho\_b(\bm{r}, t) = -\nabla \cdot \bm{P}(\bm{r}, t),
+	&\bm{A_s}(\bm{r}, t)
+	= \frac{1}{4 \pi \mu_0^{-1}} \iiint\_{\mathbb{R^3}} \frac{\lfloor \partial \bm{P} / \partial t \rfloor + \nabla' \times \lfloor \bm{M} \rfloor - \frac{\bm{r} - \bm{r'}}{c |\bm{r} - \bm{r'}|} \times \lfloor \partial \bm{M} / \partial t \rfloor}{|\bm{r} - \bm{r'}|} dV', \cr
+	&\phi_s(\bm{r}, t)
+	= \frac{1}{4 \pi \epsilon_0} \iiint\_{\mathbb{R^3}} \frac{- \nabla' \cdot \lfloor \bm{P} \rfloor + \frac{\bm{r} - \bm{r'}}{c |\bm{r} - \bm{r'}|} \cdot \lfloor \partial \bm{P} / \partial t \rfloor}{|\bm{r} - \bm{r'}|} dV',
 \end{aligned}
 $$
+
+where we omitted the \\(\bm{r'}\\) and \\(t\\) parameters for the sake of brevity.
+
+Furthermore, we can use the [product rule](https://en.wikipedia.org/wiki/Vector_calculus_identities#Product_rule_for_multiplication_by_a_scalar) to show that
+
+$$ \tag{10.12}
+\begin{aligned}
+	& \nabla' \cdot \frac{\bm{P}}{|\bm{r} - \bm{r'}|}
+	= \frac{1}{|\bm{r} - \bm{r'}|} \nabla' \cdot \bm{P}
+	+ \bm{P} \cdot \nabla' \frac{1}{|\bm{r} - \bm{r'}|} \cr
+	& \nabla' \times \frac{\bm{M}}{|\bm{r} - \bm{r'}|}
+	= \frac{1}{|\bm{r} - \bm{r'}|} \nabla' \times \bm{M}
+	- \bm{M} \times \nabla' \frac{1}{|\bm{r} - \bm{r'}|}.
+\end{aligned}
+$$
+
+Application of the [divergence theorem](https://en.wikipedia.org/wiki/Divergence_theorem) yields
+
+$$ \tag{10.13}
+\begin{aligned}
+	& \iiint \nabla' \cdot \frac{\bm{P}}{|\bm{r} - \bm{r'}|} dV'
+	= \oiint \frac{\bm{n} \cdot \bm{P}}{|\bm{r} - \bm{r'}|} dA', \cr
+	& \iiint \nabla' \times \frac{\bm{M}}{|\bm{r} - \bm{r'}|} dV'
+	= \oiint \frac{\bm{n} \times \bm{M}}{|\bm{r} - \bm{r'}|} dA'. \cr
+\end{aligned}
+$$
+
+Assuming that the region containing charges is finite, these integrals taken over its bounding surface vanish. Consequently,
+the volume integrals of Equations 10.12.1-10.12.2 take the following form:
+
+$$ \tag{10.14}
+\begin{aligned}
+	& \iiint \frac{-1}{|\bm{r} - \bm{r'}|} \nabla' \cdot \bm{P} dV'
+	= \iiint \bm{P} \cdot \nabla' \frac{1}{|\bm{r} - \bm{r'}|} dV', \cr
+	& \iiint \frac{1}{|\bm{r} - \bm{r'}|} \nabla' \times \bm{M} dV'
+	= \iiint \bm{M} \times \nabla' \frac{1}{|\bm{r} - \bm{r'}|} dV'.
+\end{aligned}
+$$
+
+We may combine Equations 10.14 and 10.11. Using the shorthand notation \\(\bm{R} = (\bm{r} - \bm{r'})\\), the result is
+
+$$ \tag{10.15}
+\begin{aligned}
+	&\bm{A_s}(\bm{r}, t)
+	= \frac{1}{4 \pi \mu_0^{-1}} \iiint\_{\mathbb{R^3}}
+		  \lfloor \bm{M} \rfloor \times \nabla' \frac{1}{|\bm{R}|}
+		+ \frac{\lfloor \partial \bm{P} / \partial t \rfloor}{|\bm{R}|}
+		- \frac{\bm{R} \times \lfloor \partial \bm{M} / \partial t \rfloor}{c |\bm{R}|^2} dV', \cr
+	&\phi_s(\bm{r}, t)
+	= \frac{1}{4 \pi \epsilon_0} \iiint\_{\mathbb{R^3}}
+		  \lfloor\bm{P} \rfloor \cdot \nabla' \frac{1}{|\bm{R}|}
+		+ \frac{\bm{R} \cdot \lfloor \partial \bm{P} / \partial t \rfloor}{c |\bm{R}|^2} dV'.
+\end{aligned}
+$$
+
+Equations 10.15.1-10.15.2 have the following interpretation in terms of the atomic theory of matter \[[6](#references) (ch. 2.2)\]. The [nucleus](https://en.wikipedia.org/wiki/Atomic_nucleus) of an atom contains [protons](https://en.wikipedia.org/wiki/Proton) with the charge \\(+q_e\\), and is surrounded by one or several [electrons](https://en.wikipedia.org/wiki/Electron) with the charge \\(-q_e\\). Thus, an electrically neutral molecule is a system of two (or more) charges, one negative and one positive, separated (in a statistical sense) by a certain distance \\(d\\). It is then said that the molecule is polarized, and that it has an [electric dipole moment](https://en.wikipedia.org/wiki/Electric_dipole_moment)
+
+$$ \tag{10.16}
+	\bm{p} = q \bm{d}.
+$$
+
+A molecule can become polarized for a variety of different reasons \[[5](#references) (vol. II, ch. 11)\]. If electrons become (statistically) separated from protons under the influence of an electric field, one speaks of *induced polarizaton*. If we assume that the effect is linear, the response is characterized by the [mean polarizability](https://en.wikipedia.org/wiki/Electric_susceptibility#Molecular_polarizability) tensor \\(\bm{\alpha_m}\\):
+
+$$ \tag{10.17}
+	\bm{p} \approx \bm{\alpha_m} \epsilon_0 \bm{E_{\mu}}.
+$$
+
+If there are \\(N\\) electric dipoles per unit volume, we can define the *electric polarization* as
+
+$$ \tag{10.18}
+	\bm{P} = N \bm{p} \approx N \bm{\alpha_m} \epsilon_0 \bm{E_{\mu}}.
+$$
+
+Note that, in general, the microscopic field \\(\bm{E_{\mu}}\\) acting on the dipole is different from the macroscopic field \\(\bm{E}\\). The reason is that the microscopic field varies vary rapidly inside the matter - it is very strong near the nucleus, and relatively weak in the gaps between the atoms. Thus, the density of matter plays an important role. If the dipoles are randomly distributed, this leads to a spherically symmetric configuration, and it can be shown that the two fields are related by the equation
+
+$$ \tag{10.19}
+	\epsilon_0 \bm{E_{\mu}} = \epsilon_0 \bm{E} + \frac{1}{3} \bm{P},
+$$
+
+where \\(\bm{P}\\) is the polarization of matter surrounding the molecule \[[5](#references) (vol. II, ch. 11), [6](#references) (ch. 2.3-2.4)\].
+
+
 
 
 <!--
