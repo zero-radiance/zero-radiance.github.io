@@ -1633,8 +1633,26 @@ $$
 
 where \\(\bm{P}\\) is the polarization of matter surrounding the molecule \[[5](#references) (vol. II, ch. 11), [6](#references) (ch. 2.3-2.4)\].
 
+By combining Equations 10.18 and 10.19,
 
+$$ \tag{10.20}
+	\bm{P}
+	= \frac{N \bm{\alpha_m}}{1 - \frac{1}{3} N \bm{\alpha_m}} \epsilon_0 \bm{E},
+$$
 
+we can incorporate the correction for the *microscopic* field into the *macroscopic* theory.
+
+In order to be able to use Equation 10.20, we need to determine both the density and the polarizability of the material. For an isotropic material composed of a single type of molecules, their product is given by the [Clausius–Mossotti relation](https://en.wikipedia.org/wiki/Clausius%E2%80%93Mossotti_relation):
+
+$$ \tag{10.21}
+	\frac{\varepsilon\_r - 1}{\varepsilon\_r + 2} = \frac{1}{3} N \alpha\_m.
+$$
+
+Thus, Equation 10.20 can be expressed very simply in terms of the relative permittivity \\(\varepsilon\_r\\):
+
+$$ \tag{10.22}
+	\bm{P} = (\varepsilon\_r - 1) \epsilon_0 \bm{E}.
+$$
 
 <!--
 ## Polarization of Light
