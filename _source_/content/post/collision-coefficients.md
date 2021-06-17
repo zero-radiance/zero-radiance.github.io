@@ -1607,13 +1607,13 @@ $$ \tag{10.15}
 \end{aligned}
 $$
 
-Equations 10.15.1-10.15.2 have the following interpretation in terms of the atomic theory of matter \[[6](#references) (ch. 2.2)\]. The [nucleus](https://en.wikipedia.org/wiki/Atomic_nucleus) of an atom contains [protons](https://en.wikipedia.org/wiki/Proton) with the charge \\(+q_e\\), and is surrounded by one or several [electrons](https://en.wikipedia.org/wiki/Electron) with the charge \\(-q_e\\). Thus, an electrically neutral molecule is a system of two (or more) charges, one negative and one positive, separated by a certain distance \\(d\\). If, on average, this distance is not zero, it is said that the molecule is polarized, and that it has an [electric dipole moment](https://en.wikipedia.org/wiki/Electric_dipole_moment)
+Equations 10.15.1-10.15.2 have the following interpretation in terms of the atomic theory of matter \[[6](#references) (ch. 2.2)\]. The [nucleus](https://en.wikipedia.org/wiki/Atomic_nucleus) of an atom contains [protons](https://en.wikipedia.org/wiki/Proton) with the charge \\(+q_e\\), and is surrounded by one or several [electrons](https://en.wikipedia.org/wiki/Electron) with the charge \\(-q_e\\). Thus, an electrically neutral molecule is a system of two (or more) charges, one negative and one positive, separated by a certain distance \\(d\\). If, on average, this distance is not zero, it is said that the molecule is polarized. That allows us to model it as a [dipole](https://en.wikipedia.org/wiki/Dipole) with an associated [electric dipole moment](https://en.wikipedia.org/wiki/Electric_dipole_moment)
 
 $$ \tag{10.16}
 	\bm{p} = q \bm{d}.
 $$
 
-A molecule can become polarized for a variety of reasons \[[5](#references) (vol. II, ch. 11)\]. If electrons become separated from protons under the influence of an electric field, one speaks of *induced polarizaton*. If we assume that the effect is linear, the response is characterized by the [mean polarizability](https://en.wikipedia.org/wiki/Electric_susceptibility#Molecular_polarizability) tensor \\(\bm{\alpha_m}\\):
+A molecule can become polarized for a variety of reasons \[[5](#references) (vol. II, ch. 11)\]. If the separation of charges occurs due the influence of an electric field, one speaks of *induced polarization*. If we assume that the effect is linear, the response is characterized by the [mean polarizability](https://en.wikipedia.org/wiki/Electric_susceptibility#Molecular_polarizability) tensor \\(\bm{\alpha_m}\\):
 
 $$ \tag{10.17}
 	\bm{p} \approx \bm{\alpha_m} \epsilon_0 \bm{E_{\mu}}.
@@ -1631,7 +1631,7 @@ $$ \tag{10.19}
 	\epsilon_0 \bm{E_{\mu}} = \epsilon_0 \bm{E} + \frac{1}{3} \bm{P},
 $$
 
-where \\(\bm{P}\\) is the polarization of matter surrounding the molecule \[[5](#references) (vol. II, ch. 11), [6](#references) (ch. 2.3-2.4)\].
+where \\(\bm{P}\\) is the electric polarization of matter surrounding the molecule \[[5](#references) (vol. II, ch. 11), [6](#references) (ch. 2.3-2.4)\].
 
 By combining Equations 10.18 and 10.19,
 
@@ -1642,7 +1642,7 @@ $$
 
 we can incorporate the correction for the *microscopic* field into the *macroscopic* theory.
 
-In order to be able to use Equation 10.20, we need to determine both the density and the polarizability of the material. For an isotropic material composed of a single type of molecules, their product is given by the [Clausius–Mossotti relation](https://en.wikipedia.org/wiki/Clausius%E2%80%93Mossotti_relation):
+In order to be able to use Equation 10.20, we need to determine both the density and the polarizability of the material. For an isotropic dielectric composed of a single type of molecules, their product is given by the [Clausius–Mossotti relation](https://en.wikipedia.org/wiki/Clausius%E2%80%93Mossotti_relation):
 
 $$ \tag{10.21}
 	\frac{\varepsilon\_r - 1}{\varepsilon\_r + 2} = \frac{1}{3} N \alpha\_m.
@@ -1662,7 +1662,7 @@ $$
 
 where \\(I\\) is the current, \\(A\\) is the area of the current loop, and \\(\bm{n}\\) is the unit vector normal to the loop.
 
-Like in the case of polarization, magnetism comes in different forms \[[5](#references) (vol. II, ch. 34)\]. Unfortunately, none of them appear to have a satisfactory explanation in terms of classical physics. In particular, there is no good analog of Equation 10.17 for induced magnetization.
+Like in the case of polarization, magnetism comes in different forms \[[5](#references) (vol. II, ch. 34)\]. Unfortunately, none of them appear to have a satisfactory explanation in terms of classical physics. In particular, to the best of the author's knowledge, there is no good analog of Equation 10.17 for induced magnetization.
 
 For weak fields, it is possible to combine Equations 1.12.2 and 5.2.3 to express the *magnetic polarization* \\(\bm{M}\\) in terms of the relative permeability \\(\mu\_r\\),
 
