@@ -115,8 +115,8 @@ While this kind of parametrization is simple and useful, due to the sheer number
 First, we identify two types of charges - bound and free. As the name suggests, *free* charges are able to move effortlessly around the material, the classic example being the conduction current in a copper wire.
 
 $$ \tag{1.8}
-	\bm{J}(\bm{r}, t) = \bm{J\_f}(\bm{r}, t) + \bm{J\_b}(\bm{r}, t), \quad
-	\rho(\bm{r}, t) = \rho\_f(\bm{r}, t) + \rho\_b(\bm{r}, t).
+	\bm{J} = \bm{J\_b} + \bm{J\_f}, \quad
+	\rho   = \rho\_b + \rho\_f.
 $$
 
  The *bound* [current](https://en.wikipedia.org/wiki/Current_density#Polarization_and_magnetization_currents) and [charge densities](https://en.wikipedia.org/wiki/Charge_density#Bound_charge), \\(\bm{J\_b}\\) and \\(\rho\_b\\), are more difficult to reason about. In short, oscillating bound charges constitute (electric) *polarization* currents \\(\bm{J\_p}\\), and circulating bound charges are attributed to *magnetization* currents \\(\bm{J\_m}\\). They can be characterized in terms of [polarization of matter](https://en.wikipedia.org/wiki/Maxwell%27s_equations#Auxiliary_fields,_polarization_and_magnetization):
@@ -728,8 +728,8 @@ $$
 Equations 5.2.1 and 5.3 assume that the *free* charges and currents may be decomposed into the *source* and the *induced* parts:
 
 $$ \tag{5.4}
-	\rho\_f = \rho\_s + \rho\_i, \quad
-	\bm{J\_f} = \bm{J\_s} + \bm{J\_i}.
+	\bm{J\_f} = \bm{J\_s} + \bm{J\_i}, \quad
+	\rho\_f = \rho\_s + \rho\_i.
 $$
 
 If the constitutive relations hold, the Maxwell equations in the frequency domain take the following form:
@@ -1172,7 +1172,7 @@ $$
 
 ## Electromagnetic Potential
 
-The solutions of the Maxwell equations we have found so far have a limited range of validity. The medium must be isotropic and either homogeneous (which prohibits scattering) or divided into several bounded homogeneous regions (which permits scattering only at the boundaries), and the material's response to the incident electromagnetic field may only be purely linear. Moreover, while the method of solving a system of differential equations augmented with boundary conditions (the so-called [boundary value problem](https://en.wikipedia.org/wiki/Boundary_value_problem)) is suitable for many simple cases (such as reflection and transmission of a planar wave at a planar interface, which leads to [Fresnel equations](https://en.wikipedia.org/wiki/Fresnel_equations)), it quickly becomes unwieldy for more complex problems. Another approach tends to become more viable, where one reformulates the field in terms of the [electromagnetic potential](https://en.wikipedia.org/wiki/Electromagnetic_four-potential), as this leads to an integral (rather than a differential) solution of the Maxwell equations.
+The solutions of the Maxwell equations we have found so far have a limited range of validity. The medium must be isotropic and either homogeneous (which prohibits scattering) or divided into several bounded homogeneous regions (which permits scattering only at the boundaries), and the material's response to the incident electromagnetic field may only be purely linear. Moreover, while the method of solving a system of differential equations augmented with boundary conditions (the so-called [boundary value problem](https://en.wikipedia.org/wiki/Boundary_value_problem)) is suitable for many simple cases (such as reflection and transmission of a planar wave at a planar interface, which leads to the [Fresnel equations](https://en.wikipedia.org/wiki/Fresnel_equations)), it quickly becomes unwieldy for more complex problems. Another approach tends to become more viable, where one reformulates the field in terms of the [electromagnetic potential](https://en.wikipedia.org/wiki/Electromagnetic_four-potential), as this leads to an integral (rather than a differential) solution of the Maxwell equations.
 
 Take another look at the equation of the magnetic field. Since the [divergence of curl](https://en.wikipedia.org/wiki/Vector_calculus_identities#Divergence_of_curl_is_zero) is zero, Equation 1.1.2 can be written as
 
@@ -1399,9 +1399,20 @@ $$ \tag{9.13}
 	\psi_s(\bm{r}) = \iiint\_{\mathbb{R^3}} \xi(\bm{r'}) g_0(\bm{r} - \bm{r'}) dV'.
 $$
 
-We have just found a *special* solution of the *inhomogeneous* Helmholtz equation. Since, due to linearity, adding a solution of a *homogeneous* equation doesn't change the right-hand side, we can obtain the *general* solution of Equation 9.5 by summing Equations 6.15 and 9.13:
+Equation 9.13 allows us to find the expressions of the scalar and the vector potentials in the frequency domain:
 
 $$ \tag{9.14}
+\begin{aligned}
+	&\bm{A}(\bm{r}, \omega)
+	= \iiint\_{\mathbb{R^3}} \frac{\bm{J}(\bm{r'}, \omega)}{\mu_0^{-1}} \frac{e^{-i \omega |\bm{r} - \bm{r'}| / c}}{4 \pi |\bm{r} - \bm{r'}|} dV', \cr
+	&\phi(\bm{r}, \omega)
+	= \iiint\_{\mathbb{R^3}} \frac{\rho(\bm{r'}, \omega)}{\epsilon_0} \frac{e^{-i \omega |\bm{r} - \bm{r'}| / c}}{4 \pi |\bm{r} - \bm{r'}|} dV'.
+\end{aligned}
+$$
+
+Note that Equation 9.13 represents a *special* solution of the *inhomogeneous* Helmholtz equation. Since, due to linearity, adding a solution of the *homogeneous* equation doesn't change the right-hand side, we can obtain the *general* solution of Equation 9.5 by summing Equations 6.15 and 9.13:
+
+$$ \tag{9.15}
 \begin{aligned}
 	\psi(\bm{r})
 	&= \psi_i(\bm{r}) + \psi_s(\bm{r}) \cr
@@ -1410,30 +1421,29 @@ $$ \tag{9.14}
 \end{aligned}	
 $$
 
-This equation has a simple optical interpretation: the first integral on the right-hand side can be seen as an *incident* (or externally-generated) wave, and the second term corresponds to a *scattered* (or internally-generated) wave. Both waves propagate at the speed of light.
+Since Equation 9.14 integrates over all currents and charges (the region of integration is the whole real space), all sources of electromagnetic fields are already accounted for, and the homogeneous part of the solution is 0. However, it is often convenient to specify the primary sources separately. In order to do that, we must recall the current and charge decomposition given by Equations 1.8 and 5.4. We can then use Equation 9.15 to write
 
-We can immediately use Equation 9.14 to find the expressions of the Fourier coefficients by substituting the current and charge densities in place of the source function:
-
-$$ \tag{9.15}
+$$ \tag{9.16}
 \begin{aligned}
 	&\bm{A}(\bm{r}, \omega)
 	= \bm{A_i}(\bm{r}, \omega)
-	+ \iiint\_{\mathbb{R^3}} \frac{\bm{J}(\bm{r'}, \omega)}{\mu_0^{-1}} \frac{e^{-i \omega |\bm{r} - \bm{r'}| / c}}{4 \pi |\bm{r} - \bm{r'}|} dV', \cr
+	+ \iiint\_{\mathbb{R^3}} \frac{\bm{J_b}(\bm{r'}, \omega) + \bm{J_i}(\bm{r'}, \omega)}{\mu_0^{-1}} \frac{e^{-i \omega |\bm{r} - \bm{r'}| / c}}{4 \pi |\bm{r} - \bm{r'}|} dV', \cr
 	&\phi(\bm{r}, \omega)
 	= \phi_i(\bm{r}, \omega)
-	+ \iiint\_{\mathbb{R^3}} \frac{\rho(\bm{r'}, \omega)}{\epsilon_0} \frac{e^{-i \omega |\bm{r} - \bm{r'}| / c}}{4 \pi |\bm{r} - \bm{r'}|} dV'.
+	+ \iiint\_{\mathbb{R^3}} \frac{\rho_b(\bm{r'}, \omega) + \rho_i(\bm{r'}, \omega)}{\epsilon_0} \frac{e^{-i \omega |\bm{r} - \bm{r'}| / c}}{4 \pi |\bm{r} - \bm{r'}|} dV'.
 \end{aligned}
 $$
 
+This equation has a simple optical interpretation: the first term on the right-hand side can be seen as an *incident* field (generated by primary sources), and the second integral corresponds to a *scattered* field (produced by secondary sources). Both fields propagate at the speed of light.
+
 ## Electric and Magnetic Polarization
 
-The physical meaning of the electromagnetic potential is more apparent in the time domain. With this goal in mind, perform the inverse Fourier transform of Equation 9.15.2:
+The physical meaning of the electromagnetic potential is more apparent in the time domain. With this goal in mind, perform the inverse Fourier transform of Equation 9.14.2:
 
 $$ \tag{10.1}
 \begin{aligned}
 	\phi(\bm{r}, t)
-	= \phi_i(\bm{r}, t)
-	+ \frac{1}{\sqrt{2 \pi}} \int\_{-\infin}^{\infin} \iiint\_{\mathbb{R^3}}
+	= \frac{1}{\sqrt{2 \pi}} \int\_{-\infin}^{\infin} \iiint\_{\mathbb{R^3}}
 		\frac{\rho(\bm{r'}, \omega)}{\epsilon_0} \frac{e^{-i \omega |\bm{r} - \bm{r'}| / c}}{4 \pi |\bm{r} - \bm{r'}|} e^{i \omega t}
 	dV' d\omega.
 \end{aligned}
@@ -1444,8 +1454,7 @@ After interchanging the integrals and grouping the terms, we obtain the followin
 $$ \tag{10.2}
 \begin{aligned}
 	\phi(\bm{r}, t)
-	= \phi_i(\bm{r}, t)
-	+ \frac{1}{4 \pi \epsilon_0} \iiint\_{\mathbb{R^3}} \Bigg(
+	= \frac{1}{4 \pi \epsilon_0} \iiint\_{\mathbb{R^3}} \Bigg(
 		\frac{1}{\sqrt{2 \pi}} \int\_{-\infin}^{\infin}
 			\frac{\rho(\bm{r'}, \omega)}{|\bm{r} - \bm{r'}|} e^{i \omega (t - |\bm{r} - \bm{r'}| / c)}
 		d\omega
@@ -1455,35 +1464,22 @@ $$
 
 We have identified another inverse Fourier transform - the one that corresponds to an *earlier point in time*. The lag is precisely the amount of time it takes to traverse the distance from the source to the observation point at the speed of light.
 
-For this reason, \\(\bm{A_s}\\) and \\(\phi_s\\) are called the [retarded potentials](https://en.wikipedia.org/wiki/Retarded_potential) \[[5](#references) (vol. II, ch. 21), [6](#references) (ch. 2.1)\]:
+For this reason, \\(\bm{A}\\) and \\(\phi\\) are called the [retarded potentials](https://en.wikipedia.org/wiki/Retarded_potential) \[[5](#references) (vol. II, ch. 21), [6](#references) (ch. 2.1)\]:
 
 $$ \tag{10.3}
 \begin{aligned}
-	&\bm{A_s}(\bm{r}, t)
+	&\bm{A}(\bm{r}, t)
 	= \frac{1}{4 \pi \mu_0^{-1}} \iiint\_{\mathbb{R^3}} \frac{\bm{J}(\bm{r'}, t - |\bm{r} - \bm{r'}| / c)}{|\bm{r} - \bm{r'}|} dV', \cr
-	&\phi_s(\bm{r}, t)
+	&\phi(\bm{r}, t)
 	= \frac{1}{4 \pi \epsilon_0} \iiint\_{\mathbb{R^3}} \frac{\rho(\bm{r'}, t - |\bm{r} - \bm{r'}| / c)}{|\bm{r} - \bm{r'}|} dV'.
 \end{aligned}
 $$
 
-It is apparent that the scattered wave is generated by currents and charges. Yet the simplicity of Equation 10.3 is deceptive. It tells us nothing about what kind of charges there are, or how they behave. It is thus advantageous to return to the macroscopic picture of matter, writing, as per Equation 1.9,
-
-$$ \tag{10.4}
-\begin{aligned}
-	&\bm{J}(\bm{r}, t)
-	= \bm{J\_f}(\bm{r}, t) + \bm{J\_b}(\bm{r}, t)
-	= \bm{J\_f}(\bm{r}, t) + \frac{\partial}{\partial t} \bm{P}(\bm{r}, t) + \nabla \times \bm{M}(\bm{r}, t), \cr
-	&\rho(\bm{r}, t)
-	= \rho\_f(\bm{r}, t) + \rho\_b(\bm{r}, t)
-	= \rho\_f(\bm{r}, t) - \nabla \cdot \bm{P}(\bm{r}, t).
-\end{aligned}
-$$
-
-Below, we assume that the material is non-conducting, such that \\(\bm{J\_f} = \rho\_f = 0\\).
+The simplicity of Equation 10.3 is deceptive. It tells us nothing about what kind of charges there are, or how they behave. It is thus advantageous to return to the macroscopic picture of matter by describing the bound currents and charges in terms of polarization of matter as per Equation 1.9. For simplicity, we assume that the material is non-conducting, so that \\(\bm{J\_f} = \rho\_f = 0\\).
 
 To keep the resulting expressions compact, let us introduce the notion of [retarded time](https://en.wikipedia.org/wiki/Retarded_time)
 
-$$ \tag{10.5}
+$$ \tag{10.4}
 	t' = t - \frac{|\bm{r} - \bm{r'}|}{c},
 $$
 
@@ -1491,7 +1487,7 @@ which is simply the point in time at which the wave was generated by the source 
 
 This definition couples the space and time variables. For instance, consider the following expression:
 
-$$ \tag{10.6}
+$$ \tag{10.5}
 	\frac{\partial}{\partial x} f \big(\bm{r}, t'(\bm{r}) \big)
 	= \frac{\partial f(\bm{r}, t)}{\partial x} \Big\vert_{t=t'}
 	+ \frac{\partial f(\bm{r}, t)}{\partial t} \Big\vert_{t=t'} \frac{\partial t'(\bm{r})}{\partial x},
@@ -1499,16 +1495,16 @@ $$
 
 where 
 
-$$ \tag{10.7}
+$$ \tag{10.6}
 	\frac{\partial t'(\bm{r})}{\partial x}
 	= -\frac{\bm{r} - \bm{r'}}{c |\bm{r} - \bm{r'}|} \cdot \frac{\partial (\bm{r} - \bm{r'})}{\partial x}.
 $$
 
 Since \\(t'\\) depends on \\(\bm{r}\\), this "simple" \\(x\\)-derivative of Equation 10.6 requires application of the [chain rule](https://en.wikipedia.org/wiki/Chain_rule#Multivariable_case).
 
-Equation 10.6 can be written in a more clear way by utilizing the *retarded value* notation:
+Equation 10.5 can be written in a more clear way by utilizing the *retarded value* notation:
 
-$$ \tag{10.8}
+$$ \tag{10.7}
 	\frac{\partial}{\partial x} \Big\lfloor f(\bm{r}, t) \Big\rfloor
 	= \Big\lfloor \frac{\partial f(\bm{r}, t)}{\partial x} \Big\rfloor
 	+ \Big\lfloor \frac{\partial f(\bm{r}, t)}{\partial t} \Big\rfloor \frac{\partial t'}{\partial x},
@@ -1516,9 +1512,9 @@ $$
 
 where the brackets tell us that we must first evaluate the expression inside, and then substitute \\(t = t'\\).
 
-We can use our new notation to combine Equations 10.3-10.4:
+We can use our new notation to write the expression of the potential of the scattered field:
 
-$$ \tag{10.9}
+$$ \tag{10.8}
 \begin{aligned}
 	&\bm{A_s}(\bm{r}, t)
 	= \frac{1}{4 \pi \mu_0^{-1}} \iiint\_{\mathbb{R^3}} \frac{\lfloor \frac{\partial}{\partial t} \bm{P}(\bm{r'}, t) \rfloor + \lfloor \nabla' \times \bm{M}(\bm{r'}, t) \rfloor}{|\bm{r} - \bm{r'}|} dV', \cr
@@ -1529,9 +1525,9 @@ $$
 
 where \\(\nabla'\\) tells us take derivatives with respect to \\(\bm{r'}\\) rather than \\(\bm{r}\\).
 
-In order to be able to write these equation directly in terms of \\(t'\\), we must move the space derivatives outside the brackets. We can achieve this goal by using the chain rule in the way demonstrated by Equations 10.6-10.7:
+In order to be able to write these equation directly in terms of \\(t'\\), we must move the space derivatives outside the brackets. We can achieve this goal by using the chain rule as demonstrated by Equations 10.5-10.6:
 
-$$ \tag{10.10}
+$$ \tag{10.9}
 \begin{aligned}
 	& \nabla' \times \lfloor \bm{M}(\bm{r'}, t) \rfloor 
 	= \lfloor \nabla' \times \bm{M}(\bm{r'}, t) \rfloor
@@ -1544,7 +1540,7 @@ $$
 
 Substitution produces the following expressions:
 
-$$ \tag{10.11}
+$$ \tag{10.10}
 \begin{aligned}
 	&\bm{A_s}(\bm{r}, t)
 	= \frac{1}{4 \pi \mu_0^{-1}} \iiint\_{\mathbb{R^3}} \frac{\lfloor \partial \bm{P} / \partial t \rfloor + \nabla' \times \lfloor \bm{M} \rfloor - \frac{\bm{r} - \bm{r'}}{c |\bm{r} - \bm{r'}|} \times \lfloor \partial \bm{M} / \partial t \rfloor}{|\bm{r} - \bm{r'}|} dV', \cr
@@ -1557,7 +1553,7 @@ where we omitted the \\(\bm{r'}\\) and \\(t\\) parameters for the sake of brevit
 
 Furthermore, we can use the [product rule](https://en.wikipedia.org/wiki/Vector_calculus_identities#Product_rule_for_multiplication_by_a_scalar) to show that
 
-$$ \tag{10.12}
+$$ \tag{10.11}
 \begin{aligned}
 	& \nabla' \cdot \frac{\bm{P}}{|\bm{r} - \bm{r'}|}
 	= \frac{1}{|\bm{r} - \bm{r'}|} \nabla' \cdot \bm{P}
@@ -1570,7 +1566,7 @@ $$
 
 Application of the [divergence theorem](https://en.wikipedia.org/wiki/Divergence_theorem) yields
 
-$$ \tag{10.13}
+$$ \tag{10.12}
 \begin{aligned}
 	& \iiint \nabla' \cdot \frac{\bm{P}}{|\bm{r} - \bm{r'}|} dV'
 	= \oiint \frac{\bm{n} \cdot \bm{P}}{|\bm{r} - \bm{r'}|} dA', \cr
@@ -1580,9 +1576,9 @@ $$ \tag{10.13}
 $$
 
 Assuming that the region containing charges is finite, these integrals taken over its bounding surface vanish. Consequently,
-the volume integrals of Equations 10.12.1-10.12.2 take the following form:
+the volume integrals of Equations 10.11.1-10.11.2 have the following form:
 
-$$ \tag{10.14}
+$$ \tag{10.13}
 \begin{aligned}
 	& \iiint \frac{-1}{|\bm{r} - \bm{r'}|} \nabla' \cdot \bm{P} dV'
 	= \iiint \bm{P} \cdot \nabla' \frac{1}{|\bm{r} - \bm{r'}|} dV', \cr
@@ -1591,9 +1587,9 @@ $$ \tag{10.14}
 \end{aligned}
 $$
 
-We may combine Equations 10.14 and 10.11. Using the shorthand notation \\(\bm{R} = (\bm{r} - \bm{r'})\\), the result is
+Let us combine Equations 10.10 and 10.13. Using the shorthand notation \\(\bm{R} = (\bm{r} - \bm{r'})\\), the result is
 
-$$ \tag{10.15}
+$$ \tag{10.14}
 \begin{aligned}
 	&\bm{A_s}(\bm{r}, t)
 	= \frac{1}{4 \pi \mu_0^{-1}} \iiint\_{\mathbb{R^3}}
@@ -1607,74 +1603,74 @@ $$ \tag{10.15}
 \end{aligned}
 $$
 
-Equations 10.15.1-10.15.2 have the following interpretation in terms of the atomic theory of matter \[[6](#references) (ch. 2.2)\]. The [nucleus](https://en.wikipedia.org/wiki/Atomic_nucleus) of an atom contains [protons](https://en.wikipedia.org/wiki/Proton) with the charge \\(+q_e\\), and is surrounded by one or several [electrons](https://en.wikipedia.org/wiki/Electron) with the charge \\(-q_e\\). Thus, an electrically neutral molecule is a system of two (or more) charges, one negative and one positive, separated by a certain distance \\(d\\). If, on average, this distance is not zero, it is said that the molecule is polarized. That allows us to model it as a [dipole](https://en.wikipedia.org/wiki/Dipole) with an associated [electric dipole moment](https://en.wikipedia.org/wiki/Electric_dipole_moment)
+Equations 10.14.1-10.14.2 have the following interpretation in terms of the atomic theory of matter \[[6](#references) (ch. 2.2)\]. The [nucleus](https://en.wikipedia.org/wiki/Atomic_nucleus) of an atom contains [protons](https://en.wikipedia.org/wiki/Proton) with the charge \\(+q_e\\), and is surrounded by one or several [electrons](https://en.wikipedia.org/wiki/Electron) with the charge \\(-q_e\\). Thus, an electrically neutral molecule is a system of two (or more) charges, one negative and one positive, separated by a certain distance \\(d\\). If, on average, this distance is not zero, it is said that the molecule is polarized. That allows us to model it as a [dipole](https://en.wikipedia.org/wiki/Dipole) with an associated [electric dipole moment](https://en.wikipedia.org/wiki/Electric_dipole_moment)
 
-$$ \tag{10.16}
+$$ \tag{10.15}
 	\bm{p} = q \bm{d}.
 $$
 
 A molecule can become polarized for a variety of reasons \[[5](#references) (vol. II, ch. 11)\]. If the separation of charges occurs due the influence of an electric field, one speaks of *induced polarization*. If we assume that the effect is linear, the response is characterized by the [mean polarizability](https://en.wikipedia.org/wiki/Electric_susceptibility#Molecular_polarizability) tensor \\(\bm{\alpha_m}\\):
 
-$$ \tag{10.17}
+$$ \tag{10.16}
 	\bm{p} \approx \bm{\alpha_m} \epsilon_0 \bm{E_{\mu}}.
 $$
 
 If there are \\(N\\) electric dipoles per unit volume, we can define the *electric polarization* \\(\bm{P}\\) as
 
-$$ \tag{10.18}
+$$ \tag{10.17}
 	\bm{P} = N \bm{p} \approx N \bm{\alpha_m} \epsilon_0 \bm{E_{\mu}}.
 $$
 
 Note that, in general, the microscopic field \\(\bm{E_{\mu}}\\) acting on the dipole is different from the macroscopic field \\(\bm{E}\\). The reason is that the microscopic field varies very rapidly inside the matter - it is very strong near the nucleus, and relatively weak in the gaps between the atoms. Thus, the density of matter plays an important role. If the dipoles are randomly distributed, this leads to a spherically symmetric configuration, and it can be shown that the two fields are related by the equation
 
-$$ \tag{10.19}
+$$ \tag{10.18}
 	\epsilon_0 \bm{E_{\mu}} = \epsilon_0 \bm{E} + \frac{1}{3} \bm{P},
 $$
 
 where \\(\bm{P}\\) is the electric polarization of matter surrounding the molecule \[[5](#references) (vol. II, ch. 11), [6](#references) (ch. 2.3-2.4)\].
 
-By combining Equations 10.18 and 10.19,
+By combining Equations 10.17 and 10.18,
 
-$$ \tag{10.20}
+$$ \tag{10.19}
 	\bm{P}
 	= \frac{N \bm{\alpha_m}}{1 - \frac{1}{3} N \bm{\alpha_m}} \epsilon_0 \bm{E},
 $$
 
 we can incorporate the correction for the *microscopic* field into the *macroscopic* theory.
 
-In order to be able to use Equation 10.20, we need to determine both the density and the polarizability of the material. For an isotropic dielectric composed of a single type of molecules, their product is given by the [Clausius–Mossotti relation](https://en.wikipedia.org/wiki/Clausius%E2%80%93Mossotti_relation):
+In order to be able to use Equation 10.19, we need to determine both the density and the polarizability of the material. For an isotropic dielectric composed of a single type of molecules, their product is given by the [Clausius–Mossotti relation](https://en.wikipedia.org/wiki/Clausius%E2%80%93Mossotti_relation):
 
-$$ \tag{10.21}
+$$ \tag{10.20}
 	\frac{\varepsilon\_r - 1}{\varepsilon\_r + 2} = \frac{1}{3} N \alpha\_m.
 $$
 
 Thus, Equation 10.20 can be expressed very simply in terms of the relative permittivity \\(\varepsilon\_r\\):
 
-$$ \tag{10.22}
+$$ \tag{10.21}
 	\bm{P} = (\varepsilon\_r - 1) \epsilon_0 \bm{E}.
 $$
 
 While the electric dipole moment \\(\bm{p}\\) is caused by oscillating atomic charges, the [magnetic dipole moment](https://en.wikipedia.org/wiki/Magnetic_moment#Amperian_loop_model) \\(\bm{m}\\) is generated by circulating atomic currents (charges going in circles):
 
-$$ \tag{10.23}
+$$ \tag{10.22}
 	\bm{m} = I A \bm{n},
 $$
 
 where \\(I\\) is the current, \\(A\\) is the area of the current loop, and \\(\bm{n}\\) is the unit vector normal to the loop.
 
-Like in the case of polarization, magnetism comes in different forms \[[5](#references) (vol. II, ch. 34)\]. Unfortunately, none of them appear to have a satisfactory explanation in terms of classical physics. In particular, to the best of the author's knowledge, there is no good analog of Equation 10.17 for induced magnetization.
+Like in the case of polarization, magnetism comes in different forms \[[5](#references) (vol. II, ch. 34)\]. Unfortunately, none of them appear to have a satisfactory explanation in terms of classical physics. In particular, to the best of the author's knowledge, there is no good analog of Equation 10.16 for induced magnetization.
 
-For weak fields, it is possible to combine Equations 1.12.2 and 5.2.3 to express the *magnetic polarization* \\(\bm{M}\\) in terms of the relative permeability \\(\mu\_r\\),
+For weak fields in [diamagnets](https://en.wikipedia.org/wiki/Diamagnet) and [paramagnets](https://en.wikipedia.org/wiki/Paramagnet), it is possible to combine Equations 1.12.2 and 5.2.3 to express the *magnetic polarization* \\(\bm{M}\\) in terms of the relative permeability \\(\mu\_r\\),
 
-$$ \tag{10.24}
+$$ \tag{10.23}
 	\bm{M}
 	= \mu\_0^{-1} \bm{B} - \bm{H}
 	\approx (1 - \mu_r^{-1}) \mu\_0^{-1} \bm{B},
 $$
 
-but for strong fields, it will result in a large error due to the [magnetic hysteresis](https://en.wikipedia.org/wiki/Magnetic_hysteresis) effect \[[5](#references) (vol. II, ch. 36)\].
+but for [ferromagnets](https://en.wikipedia.org/wiki/Ferromagnet), it may result in a large error due to the [magnetic hysteresis](https://en.wikipedia.org/wiki/Magnetic_hysteresis) effect \[[5](#references) (vol. II, ch. 36)\].
 
-In some sense, dipoles can be considered elementary field generators: an electric dipole produces the \\(\bm{E}\\) field, and a magnetic dipole is a source of the \\(\bm{B}\\) field. They can be used to describe any (bound) charge distribution, which makes them particularly useful for solving electromagnetic radiation and scattering problems.
+In some sense, dipoles can be considered elementary field generators: an electric dipole produces the \\(\bm{E}\\) field, and a magnetic dipole is a source of the \\(\bm{B}\\) field. They can be used to describe any (bound) current and charge distributions, which makes them particularly useful for solving electromagnetic radiation and scattering problems.
 
 [Insert pictures of field lines of electric and magnetic dipoles]
 
