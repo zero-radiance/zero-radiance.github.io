@@ -1674,6 +1674,7 @@ In some sense, dipoles can be considered elementary field generators: an electri
 
 [Insert pictures of field lines of electric and magnetic dipoles]
 
+Finally, we would like to emphasize certain properties of the solution of the Maxwell equations in terms of potentials. Perhaps the most obvious one is that the scattered field is expressed as a volume integral. While the geometry of the volume containing the charges plays an important role, it is now apparent that the interior of the volume is the actual source of what we perceive as the surface reflection \[[5](#references) (vol. I, ch. 31)\]. Furthermore, Equation 10.3 says that the (microscopic) electromagnetic field always propagates at the speed of light. That is true; macroscopically, the dipole field extinguishes the incident field and replaces it with another field that appears to have a lower phase velocity, which allows us to define the index of refraction. This mechanism is described by the [Ewald-Oseen extinction theorem](https://en.wikipedia.org/wiki/Ewald%E2%80%93Oseen_extinction_theorem) \[[6](#references) (ch. 2.4)\].
 <!--
 ## Polarization of Light
 
