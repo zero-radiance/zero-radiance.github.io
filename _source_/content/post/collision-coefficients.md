@@ -1713,7 +1713,7 @@ $$ \tag{10.14}
 \end{aligned}
 $$
 
-Equations 10.14.1-10.14.2 have the following interpretation in terms of the atomic theory of matter \[[6](#references) (ch. 2.2)\]. The [nucleus](https://en.wikipedia.org/wiki/Atomic_nucleus) of an atom contains [protons](https://en.wikipedia.org/wiki/Proton) with the charge \\(+q_e\\), and is surrounded by one or several [electrons](https://en.wikipedia.org/wiki/Electron) with the charge \\(-q_e\\). Thus, an electrically neutral molecule is a system of two (or more) charges, one negative and one positive, separated by a certain distance \\(d\\). If, on average, this distance is not zero, it is said that the molecule is polarized. That allows us to model it as a [dipole](https://en.wikipedia.org/wiki/Dipole) with an associated [electric dipole moment](https://en.wikipedia.org/wiki/Electric_dipole_moment)
+Equations 10.14.1-10.14.2 have the following interpretation in terms of the atomic theory of matter \[[6](#references) (ch. 2.2)\]. The [nucleus](https://en.wikipedia.org/wiki/Atomic_nucleus) of an atom contains [protons](https://en.wikipedia.org/wiki/Proton) with the charge \\(+q_e\\), and is surrounded by one or several [electrons](https://en.wikipedia.org/wiki/Electron) with the charge \\(-q_e\\). Thus, an electrically neutral molecule is a system of two (or more) charges, one negative and one positive, separated by a certain distance \\(d\\). If this distance is not zero, it is said that the molecule is polarized. That allows us to model it as a [dipole](https://en.wikipedia.org/wiki/Dipole) with an associated [electric dipole moment](https://en.wikipedia.org/wiki/Electric_dipole_moment)
 
 $$ \tag{10.15}
 	\bm{p} = q \bm{d}.
@@ -1785,6 +1785,34 @@ In some sense, dipoles can be considered elementary field generators: an electri
 [Insert pictures of field lines of electric and magnetic dipoles]
 
 Finally, we would like to emphasize certain properties of the solution of the Maxwell equations in terms of potentials. Perhaps the most obvious one is that the scattered field is expressed as a volume integral. While the geometry of the volume containing the charges plays an important role, it is now apparent that the interior of the volume is the actual source of what we consider the surface reflection \[[5](#references) (vol. I, ch. 31)\]. Furthermore, Equation 10.3 says that the (microscopic) electromagnetic field always propagates at the speed of light. That is true; macroscopically, the dipole field extinguishes the incident field and replaces it with another field that appears to have a lower phase velocity, which is used as the definition of the index of refraction. This mechanism is described by the [Ewald-Oseen extinction theorem](https://en.wikipedia.org/wiki/Ewald%E2%80%93Oseen_extinction_theorem) \[[6](#references) (ch. 2.4)\].
+
+## From the Maxwell Equations to the Radiative Transfer Equation
+
+In practice, it is very difficult to solve the Maxwell equations exactly, except under certain (idealized) conditions. Thus, one usually employs various approximations that are carefully chosen to minimize both the error and the complexity of the computation.
+
+One of the most important considerations is the scale of the observation. Evidently, even something as large and complex as a star can be approximated by a point source if the observer is sufficiently far away. A similar line of reasoning justifies modeling an electron as a point charge at the atomic scale.
+
+Going one step further, we can represent the average atom (or a molecule) as a dipole aligned with the driving field, thereby greatly restricting the expected behavior of microscopic charges and currents. In this approximation, constructive interference greatly amplifies the fields produced by the charges moving in sync, while the effects of motion that differs from the average are suppressed by both destructive interference and the lower probability of occurrence.
+
+Mathematically, the field of a (macroscopic) piece of matter is the (vector) sum of the fields of its (microscopic) parts. Yet, physically, the field of a single dipole often cannot be distinguished at all! The field of a tremendous number of identical dipoles acting together manifests itself by bending light rays (according to the refractive index) and reducing their intensity (proportionally to the attenuation index). In order for light scattering effects to appear, the medium must be inhomogeneous. Macroscopically, such a medium features spatially-varying *optical properties*; microscopically, this implies that the underlying distribution of dipoles is not the same throughout the medium. Clearly, a homogeneous medium is an idealization, yet it can serve as an effective approximation for tiny patches of uniformly dense matter (composed of scatterers smaller than the wavelength of light).
+
+[Insert picture here?]
+
+The macroscopic distribution of optical properties can (at least in theory) be completely arbitrary. In order to arrive at a concrete (and practical) solution, we shall consider the special case of sparse inhomogeneous particles embedded in a homogeneous medium. Notable examples of such *composite media* include [gases](https://en.wikipedia.org/wiki/Gas) and [colloids](https://en.wikipedia.org/wiki/Colloid).
+
+[Insert picture here]
+
+Given the source illuminating this medium, we can determine the *resultant field* that arises after propagation and scattering of electromagnetic waves. Clearly, if there are no particles, the medium is homogeneous everywhere, and the amplitude of field at the destination is the same as its amplitude at the source (before accounting for attenuation with distance). We shall refer to it as the *incident field*. The (mathematical) difference between the resultant field (with particles) and the incident field (without particles) constitutes the *scattered field*. The task of determining the scattered field is at the core of the *scattering problem*.
+
+[Insert picture here]
+
+In order to rigorously solve the scattering problem, we must specify not only the incident field, but also the composite medium *in its entirety*, since, according to the Maxwell equations, the value of the electromagnetic field at a certain point is the sum of the fields produced by all charges, everywhere. Clearly, this is highly inconvenient and, often, unnecessary. Thus, we make a compromise: we "chop" the composite medium into little pieces (that effectively shrink to a point), each filled with small particles, analogously to a region of the macroscopic medium formed by a distribution of microscopic dipoles. Extending the analogy further, just as the combined action of dipoles leads to the definition of optical properties,
+the *radiative properties* of the large-scale medium are determined by solving the Maxwell equations for the distribution of particles within each little piece. Finally, we use the *radiative transfer equation* to integrate the contribution of all little pieces, which is a process that is conceptually similar to combining the fields of all charges according to the Maxwell equations.
+
+## Mathematical Description of the Scattering Problem
+
+
+
 <!--
 ## Polarization of Light
 
