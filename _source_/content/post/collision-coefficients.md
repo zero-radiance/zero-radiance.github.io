@@ -1850,7 +1850,20 @@ $$ \tag{11.5}
 \end{aligned}
 $$
 
-Let us prepare Equation 11.1 by taking its curl and using the [curl of curl](https://en.wikipedia.org/wiki/Vector_calculus_identities#Curl_of_curl) identity:
+Since the [divergence of curl](https://en.wikipedia.org/wiki/Vector_calculus_identities#Divergence_of_curl_is_zero) is zero, the left-hand side vanishes, and we are left with
+
+$$ \tag{11.6}
+\begin{aligned}
+	&0 = \nabla \cdot \bm{E}(\bm{r}, \omega), \cr
+	&0 = \nabla \cdot \big( \varepsilon_2(\bm{r}, \omega) \bm{E}(\bm{r}, \omega) \big)
+	   = \varepsilon_2(\bm{r}, \omega) \big( \nabla \cdot \bm{E}(\bm{r}, \omega) \big)
+	   + \big( \nabla \varepsilon_2(\bm{r}, \omega) \big) \cdot \bm{E}(\bm{r}, \omega),
+\end{aligned}
+$$
+
+with the last equality resulting from the application of the [product rule](https://en.wikipedia.org/wiki/Vector_calculus_identities#Product_rule_for_multiplication_by_a_scalar).
+
+Let us prepare Equation 11.7 by taking its curl and using the [curl of curl](https://en.wikipedia.org/wiki/Vector_calculus_identities#Curl_of_curl) identity:
 
 $$ \tag{11.6}
 	\nabla \big( \nabla \cdot \bm{E}(\bm{r}, \omega) \big)
@@ -1858,17 +1871,89 @@ $$ \tag{11.6}
 	+ i \omega \big( \nabla \times \bm{B}(\bm{r}, \omega) \big) = 0.
 $$
 
-Substitution of Equations 11.5.1-11.5.2 readily yields
+Substitution of Equations 11.6.1-11.6.2 yields
 
 $$ \tag{11.7}
 \begin{aligned}
-	&\nabla \big( \nabla \cdot \bm{E}(\bm{r}, \omega) \big)
-	- \nabla^2 \bm{E}(\bm{r}, \omega)
-	- \omega^2 \mu_0 \varepsilon_1(\omega)  \bm{E}(\bm{r}, \omega) = 0, \cr
-	&\nabla \big( \nabla \cdot \bm{E}(\bm{r}, \omega) \big)
-	- \nabla^2 \bm{E}(\bm{r}, \omega)
-	- \omega^2 \mu_0 \varepsilon_2(\bm{r}, \omega) \bm{E}(\bm{r}, \omega) = 0.
+	&\nabla^2 \bm{E}(\bm{r}, \omega)
+	+ \omega^2 \mu_0 \varepsilon_1(\omega)  \bm{E}(\bm{r}, \omega)
+	= 0, \cr
+	&\nabla^2 \bm{E}(\bm{r}, \omega)
+	+ \omega^2 \mu_0 \varepsilon_2(\bm{r}, \omega) \bm{E}(\bm{r}, \omega)
+	= -\nabla \Bigg( \frac{\nabla \varepsilon_2(\bm{r}, \omega)}{\varepsilon_2(\bm{r}, \omega)} \cdot \bm{E}(\bm{r}, \omega) \Bigg).
 \end{aligned}
+$$
+
+$$ \tag{11.7}
+\begin{aligned}
+	-\nabla \Bigg( \frac{\nabla \varepsilon_2(\bm{r}, \omega)}{\varepsilon_2(\bm{r}, \omega)} \cdot \bm{E}(\bm{r}, \omega) \Bigg)
+	=
+\end{aligned}
+$$
+
+$$ \tag{1.9}
+\begin{aligned}
+	&\bm{J\_b}(\bm{r}, t) = \bm{J\_p}(\bm{r}, t) + \bm{J\_m}(\bm{r}, t) =
+	\frac{\partial}{\partial t} \bm{P}(\bm{r}, t) + \nabla \times \bm{M}(\bm{r}, t), \cr
+	&\rho\_b(\bm{r}, t) = -\nabla \cdot \bm{P}(\bm{r}, t),
+\end{aligned}
+$$
+
+$$ \tag{5.4}
+	\bm{J\_f} = \bm{J\_s} + \bm{J\_i}, \quad
+	\rho\_f = \rho\_s + \rho\_i.
+$$
+
+$$ \tag{5.2}
+\begin{aligned}
+	&\bm{J\_i}(\bm{r}, \omega) \approx \sigma(\bm{r}, \omega) \bm{E}(\bm{r}, \omega), \cr
+	&\bm{D}   (\bm{r}, \omega) \approx \epsilon(\bm{r}, \omega) \bm{E}(\bm{r}, \omega), \cr
+	&\bm{B}   (\bm{r}, \omega) \approx \mu(\bm{r}, \omega) \bm{H}(\bm{r}, \omega),
+\end{aligned}
+$$
+
+$$ \tag{10.21}
+	\bm{P} = (\epsilon_r - 1) \epsilon_0 \bm{E}.
+$$
+
+$$ \tag{11.?}
+\begin{aligned}
+	& \bm{J\_p}(\bm{r}, t)
+	= \frac{\partial}{\partial t} \bm{P}(\bm{r}, t)
+\end{aligned}
+$$
+
+$$ \tag{11.?}
+\begin{aligned}
+	& \bm{J\_p}(\bm{r}, \omega)
+	= i \omega \bm{P}(\bm{r}, \omega)
+	= i \omega \big( \epsilon_r(\bm{r}, \omega) - 1 \big) \epsilon_0 \bm{E}(\bm{r}, \omega)
+\end{aligned}
+$$
+
+$$ \tag{11.?}
+\begin{aligned}
+	& \bm{J'}(\bm{r}, \omega)
+	= \bm{J\_p}(\bm{r}, \omega) + \bm{J\_i}(\bm{r}, \omega)
+	= i \omega \big( \epsilon_r(\bm{r}, \omega) - \frac{i}{\omega} \frac{\sigma(\bm{r}, \omega)}{\epsilon_0} - 1) \big) \epsilon_0 \bm{E}(\bm{r}, \omega)
+\end{aligned}
+$$
+
+$$ \tag{11.?}
+\begin{aligned}
+	& \bm{J'}(\bm{r}, \omega)
+	= i \omega \big( \varepsilon_r(\bm{r}, \omega) - 1) \big) \epsilon_0 \bm{E}(\bm{r}, \omega)
+\end{aligned}
+$$
+
+$$ \tag{9.23}
+	\bm{E}(\bm{r}, \omega)
+	= i \omega \iiint\_{V} \cal{G_{ee}}(\bm{r} - \bm{r'}, \omega) \frac{\bm{J'}(\bm{r'}, \omega)}{\mu_0^{-1}} dV'
+$$
+
+$$ \tag{9.23}
+	\bm{E}(\bm{r}, \omega)
+	= -\frac{\omega^2}{c^2} \iiint\_{V} \cal{G_{ee}}(\bm{r} - \bm{r'}, \omega) \big( \varepsilon_r(\bm{r}, \omega) - 1) \bm{E}(\bm{r}, \omega) dV'
 $$
 
 ---
