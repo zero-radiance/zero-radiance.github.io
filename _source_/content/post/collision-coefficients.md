@@ -459,12 +459,29 @@ $$ \tag{3.9}
 \end{aligned}
 $$
 
-These are the Maxwell equations for electromagnetic fields with *arbitrary* time dependence. 
+These are the *macroscopic* Maxwell equations for electromagnetic fields with *arbitrary* time dependence.
 
-An interesting property of the frequency-domain solution is the reduction in the number of independent Maxwell equations from 4 to 2. Since the [divergence of curl](https://en.wikipedia.org/wiki/Vector_calculus_identities#Divergence_of_curl_is_zero) is zero, the divergence of Equations 3.9.1 and 3.9.3 (on the left) is equivalent to Equations 3.9.2 and 3.9.4 (on the right), respectively. The latter is true due to the expression of [conservation of charge](https://en.wikipedia.org/wiki/Charge_conservation) in the frequency domain:
+For future reference, we must also mention the frequency-domain representation of the *microscopic* Maxwell equations. The first two equations are the same, so their Fourier transforms remain unchanged; the third and the fourth equations can be quickly obtained by replacing \\(\bm{J_f}\\) with \\(\bm{J}\\), \\(\bm{D}\\) with \\(\epsilon_0 \bm{E}\\), and \\(\bm{H}\\) with \\(\mu\_0^{-1} \bm{B}\\):
 
 $$ \tag{3.10}
-	\nabla \cdot \bm{J\_f}(\bm{r}, \omega) = - i \omega \rho\_f(\bm{r}, \omega).
+\begin{aligned}
+	&\nabla \times \bm{E}(\bm{r}, \omega) + i \omega \bm{B}(\bm{r}, \omega) = 0, &
+	&\nabla \cdot  \bm{B}(\bm{r}, \omega) = 0, \cr
+	&\nabla \times \big( \mu\_0^{-1} \bm{B}(\bm{r}, \omega) \big) - i \omega \big( \epsilon_0 \bm{E}(\bm{r}, \omega) \big) = \bm{J}(\bm{r}, \omega), &
+	&\nabla \cdot  \big( \epsilon_0 \bm{E}(\bm{r}, \omega) \big) = \rho(\bm{r}, \omega).
+\end{aligned}
+$$
+
+An interesting property of the frequency-domain solution is the reduction in the number of independent Maxwell equations from four to two. Since the [divergence of curl](https://en.wikipedia.org/wiki/Vector_calculus_identities#Divergence_of_curl_is_zero) is zero, taking the divergence of the two equations on the left produces the equations on the right. The latter is true due to the expression of [conservation of charge](https://en.wikipedia.org/wiki/Charge_conservation) in the frequency domain:
+
+$$ \tag{3.11}
+	\nabla \cdot \bm{J}(\bm{r}, \omega) = -i \omega \rho(\bm{r}, \omega).
+$$
+
+Finally, observe that we only need to find the expression of the electric field. From Equations 3.9.1 and 3.10.1, it follows that
+
+$$ \tag{3.12}
+	\bm{B}(\bm{r}, \omega) = \frac{i}{\omega} \nabla \times \bm{E}(\bm{r}, \omega).
 $$
 
 ## Time-Harmonic Fields
