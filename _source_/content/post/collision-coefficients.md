@@ -1393,7 +1393,7 @@ Its solution is the *scalar* [Green function](https://en.wikipedia.org/wiki/Gree
 Equation 9.9 is an inhomogeneous linear differential equation. Consequently, its solution depends on the linear operator in question, its domain of validity, as well as the associated (initial or boundary) conditions. According to Equation 9.7, our domain is the whole real space, and the only applicable restriction is the Sommerfeld radiation condition. Thus, it can be shown that the *free-space* scalar Green function \\(g_0\\) takes the form of an diverging *spherical wave* \[[7](#references) (ch. 2.12), [8](#references) (ch. 5.2), [9](#references) (ap. B), [12](#references)\]:
 
 $$ \tag{9.10}
-	g_0(\bm{r} - \bm{r'}) = -\frac{e^{-i k_0 |\bm{r} - \bm{r'}|}}{4 \pi |\bm{r} - \bm{r'}|}.
+	g_0(\bm{r} - \bm{r'}) = g(\bm{r} - \bm{r'}, k_0) = -\frac{e^{-i k_0 |\bm{r} - \bm{r'}|}}{4 \pi |\bm{r} - \bm{r'}|}.
 $$
 
 In order to reconcile Equations 9.8 and 9.9, multiply both sides by \\(\xi(\bm{r'})\\):
@@ -1421,10 +1421,10 @@ Equation 9.13 allows us to find the expressions of the scalar and the vector pot
 $$ \tag{9.14}
 \begin{aligned}
 	&\bm{A}(\bm{r}, \omega)
-	= \iiint\_{V} -g_0(\bm{r} - \bm{r'}, \omega) \frac{\bm{J}(\bm{r'}, \omega)}{\mu_0^{-1}} dV'
+	= \iiint\_{V} -g(\bm{r} - \bm{r'}, \omega / c) \frac{\bm{J}(\bm{r'}, \omega)}{\mu_0^{-1}} dV'
 	= \iiint\_{V} \frac{\bm{J}(\bm{r'}, \omega)}{\mu_0^{-1}} \frac{e^{-i \omega |\bm{r} - \bm{r'}| / c}}{4 \pi |\bm{r} - \bm{r'}|} dV', \cr
 	&\phi(\bm{r}, \omega)
-	= \iiint\_{V} -g_0(\bm{r} - \bm{r'}, \omega) \frac{\rho(\bm{r'}, \omega)}{\epsilon_0} dV'
+	= \iiint\_{V} -g(\bm{r} - \bm{r'}, \omega / c) \frac{\rho(\bm{r'}, \omega)}{\epsilon_0} dV'
 	= \iiint\_{V} \frac{\rho(\bm{r'}, \omega)}{\epsilon_0} \frac{e^{-i \omega |\bm{r} - \bm{r'}| / c}}{4 \pi |\bm{r} - \bm{r'}|} dV',
 \end{aligned}
 $$
@@ -1521,22 +1521,22 @@ Let us now substitute the definition of \\(\bm{A}\\) given by Equation 9.14.1:
 $$ \tag{9.24}
 	\bm{E}(\bm{r}, \omega)
 	= -i \omega \Big( \cal{I} + \frac{c^2}{\omega^2} \nabla \otimes \nabla \Big) \iiint\_{V}
-	-g_0(\bm{r} - \bm{r'}, \omega) \frac{\bm{J}(\bm{r'}, \omega)}{\mu_0^{-1}} dV'.
+	-g(\bm{r} - \bm{r'}, \omega / c) \frac{\bm{J}(\bm{r'}, \omega)}{\mu_0^{-1}} dV'.
 $$
 
 Unfortunately, a complication arises when we try to move the new operator under the integral sign - if \\(\bm{r}\\) is inside \\(V\\), we must carefully account for the contribution of the singularity that arises at \\(\bm{r} = \bm{r'}\\). While we will not encounter this case in the course of solving our problem, for completeness, the full solution is
 
 $$ \tag{9.25}
 	\bm{E}(\bm{r}, \omega)
-	= i \omega \iiint\_{V} \cal{G_{ee}}(\bm{r} - \bm{r'}, \omega) \frac{\bm{J}(\bm{r'}, \omega)}{\mu_0^{-1}} dV'
-	+ i \frac{c}{\omega} \cal{D}(\bm{r}, \omega) \frac{\bm{J}(\bm{r}, \omega)}{\mu_0^{-1}},
+	= i \omega \iiint\_{V} \cal{G_{ee}}(\bm{r} - \bm{r'}, \omega / c) \frac{\bm{J}(\bm{r'}, \omega)}{\mu_0^{-1}} dV'
+	+ i \frac{c}{\omega} \cal{D}(\bm{r}, \omega / c) \frac{\bm{J}(\bm{r}, \omega)}{\mu_0^{-1}},
 $$
 
 where \\(\cal{D}\\) is the *depolarization tensor* and
 
 $$ \tag{9.26}
-	\cal{G_{ee}}(\bm{r} - \bm{r'}, \omega)
-	= \Big( \cal{I} + \frac{1}{k_0^2(\omega)} \nabla \otimes \nabla \Big) g_0(\bm{r} - \bm{r'}, \omega)
+	\cal{G_{ee}}(\bm{r} - \bm{r'}, k)
+	= \Big( \cal{I} + \frac{1}{k^2} \nabla \otimes \nabla \Big) g(\bm{r} - \bm{r'}, k)
 $$
 
 is the *electric Green tensor for the electric field*[^12].
@@ -1548,7 +1548,7 @@ To find the integral form of the magnetic field, we must expand Equation 9.21.2:
 $$ \tag{9.27}
 	\bm{B}(\bm{r}, \omega)
 	= \nabla \times \iiint\_{V}
-	-g_0(\bm{r} - \bm{r'}, \omega) \frac{\bm{J}(\bm{r'}, \omega)}{\mu_0^{-1}} dV'.
+	-g(\bm{r} - \bm{r'}, \omega / c) \frac{\bm{J}(\bm{r'}, \omega)}{\mu_0^{-1}} dV'.
 $$
 
 Using the [curl identity](https://en.wikipedia.org/wiki/Vector_calculus_identities#Curl_2)
@@ -1561,21 +1561,21 @@ where
 
 $$ \tag{9.29}
 	\nabla \times \bm{J}(\bm{r'}, \omega) = 0, \quad
-	\nabla' g_0(\bm{r} - \bm{r'}, \omega) = -\nabla g_0(\bm{r} - \bm{r'}, \omega),
+	\nabla' g(\bm{r} - \bm{r'}, k) = -\nabla g(\bm{r} - \bm{r'}, k),
 $$
 
 we obtain a convergent (improper) integral
 
 $$ \tag{9.30}
 	\bm{B}(\bm{r}, \omega)
-	= \iiint\_{V} \cal{G_{me}}(\bm{r} - \bm{r'}, \omega) \frac{\bm{J}(\bm{r'}, \omega)}{\mu_0^{-1}} dV',
+	= \iiint\_{V} \cal{G_{me}}(\bm{r} - \bm{r'}, \omega / c) \frac{\bm{J}(\bm{r'}, \omega)}{\mu_0^{-1}} dV',
 $$
 
 that features the *magnetic Green tensor for the electric field*
 
 $$ \tag{9.31}
-	\cal{G_{me}}(\bm{r} - \bm{r'}, \omega)
-	= \nabla' g_0(\bm{r} - \bm{r'}, \omega) \times
+	\cal{G_{me}}(\bm{r} - \bm{r'}, k)
+	= \nabla' g(\bm{r} - \bm{r'}, k) \times
 $$
 
 that may be expressed using the [matrix form of the cross product](https://en.wikipedia.org/wiki/Cross_product#Conversion_to_matrix_multiplication) \[[van Bladel](#references) (ch. 7.9)\].
