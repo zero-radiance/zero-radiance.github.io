@@ -1842,7 +1842,7 @@ Given the source illuminating this medium, we can determine the *resultant field
 In order to rigorously solve the scattering problem, we must specify not only the incident field, but also the composite medium *in its entirety*, since, according to the Maxwell equations, the value of the electromagnetic field at a certain point is the sum of the fields produced by all charges, everywhere. Clearly, this is highly inconvenient and, often, unnecessary. Thus, we make a compromise: we "chop" the composite medium into little pieces (that effectively shrink to a point), each filled with small particles, analogously to a region of the macroscopic medium formed by a distribution of microscopic dipoles. Extending the analogy further, just as the combined action of dipoles leads to the definition of optical properties,
 the *radiative properties* of the large-scale medium are determined by solving the Maxwell equations for the distribution of particles within each little piece. Finally, we use the *radiative transfer equation* to integrate the contribution of all little pieces, which is a process that is conceptually similar to combining the fields of all charges according to the Maxwell equations.
 
-## Mathematical Description of the Scattering Problem
+## Mathematical Formulation of the Scattering Problem
 
 We begin by splitting the space into two regions - homogeneous (1) and inhomogeneous (2). According to the Maxwell equations in the frequency domain (Equation 3.9.1), the following relation holds in both regions:
 
@@ -1880,13 +1880,67 @@ Further, assume that the media are non-magnetic:
 $$ \tag{11.5}
 \begin{aligned}
 	&\nabla \times \bm{B}(\bm{r}, \omega)
-	= i \omega \mu_0 \varepsilon_1(\omega)  \bm{E}(\bm{r}, \omega), \cr
+	= i \omega \mu_0 \varepsilon_1(\omega) \bm{E}(\bm{r}, \omega), \cr
 	&\nabla \times \bm{B}(\bm{r}, \omega)
 	= i \omega \mu_0 \varepsilon_2(\bm{r}, \omega) \bm{E}(\bm{r}, \omega),
 \end{aligned}
 $$
 
+$$ \tag{11.5}
+\begin{aligned}
+	&\nabla \times \nabla \times \bm{E}(\bm{r}, \omega) - \omega^2 \mu_0 \varepsilon_1(\omega) \bm{E}(\bm{r}, \omega) = 0, \cr
+	&\nabla \times \nabla \times \bm{E}(\bm{r}, \omega) - \omega^2 \mu_0 \varepsilon_2(\bm{r}, \omega) \bm{E}(\bm{r}, \omega) = 0
+\end{aligned}
+$$
+
+$$ \tag{11.5}
+\begin{aligned}
+	& \nabla \times \nabla \times \bm{E}(\bm{r}, \omega) - \omega^2 \mu_0 \varepsilon_1(\omega) \bm{E}(\bm{r}, \omega)
+	= 0, \cr
+	& \nabla \times \nabla \times \bm{E}(\bm{r}, \omega) - \omega^2 \mu_0 \varepsilon_1(\omega) \bm{E}(\bm{r}, \omega)
+	= \omega^2 \big( \mu_0 \varepsilon_2(\bm{r}, \omega) - \mu_0 \varepsilon_1(\omega) \big) \bm{E}(\bm{r}, \omega).
+\end{aligned}
+$$
+
+$$ \tag{1.1}
+\begin{aligned}
+	&\nabla \times \bm{E}(\bm{r}, t) + \frac{\partial}{\partial t} \bm{B}(\bm{r}, t) = 0, &
+	&\nabla \cdot  \bm{B}(\bm{r}, t) = 0, \cr
+	&\nabla \times \big( \mu\_0^{-1} \bm{B}(\bm{r}, t) \big) - \frac{\partial}{\partial t} \big( \epsilon_0 \bm{E}(\bm{r}, t) \big) = \bm{J}(\bm{r}, t), &
+	&\nabla \cdot \big( \epsilon_0 \bm{E}(\bm{r}, t) \big) = \rho(\bm{r}, t),
+\end{aligned}
+$$
+
+$$ \tag{1.1}
+\begin{aligned}
+	& \nabla \times \bm{E}(\bm{r}, \omega) + i \omega \bm{B}(\bm{r}, \omega) = 0, \cr
+	& \nabla \times \big( \mu\_0^{-1} \bm{B}(\bm{r}, \omega) \big) - i \omega \big( \epsilon_0 \bm{E}(\bm{r}, \omega) \big) = \bm{J}(\bm{r}, \omega), &
+\end{aligned}
+$$
+
+$$ \tag{1.1}
+\begin{aligned}
+	& \nabla \times \nabla \times \bm{E}(\bm{r}, \omega) + i \omega \mu\_0 \big( i \omega \epsilon_0 \bm{E}(\bm{r}, \omega) + \bm{J}(\bm{r}, \omega) \big) = 0, \cr
+\end{aligned}
+$$
+
+$$ \tag{1.1}
+\begin{aligned}
+	& \nabla \times \nabla \times \bm{E}(\bm{r}, \omega) - \omega^2 \mu\_0 \epsilon_0 \bm{E}(\bm{r}, \omega)
+	= - i \omega \mu\_0 \bm{J}(\bm{r}, \omega), \cr
+\end{aligned}
+$$
+
 Since the [divergence of curl](https://en.wikipedia.org/wiki/Vector_calculus_identities#Divergence_of_curl_is_zero) is zero, the left-hand side vanishes, and we are left with
+
+$$ \tag{11.6}
+\begin{aligned}
+	&0 = \nabla \cdot \bm{E}(\bm{r}, \omega), \cr
+	&0 = \nabla \cdot \big( \varepsilon_2(\bm{r}, \omega) \bm{E}(\bm{r}, \omega) \big)
+	   = \varepsilon_2(\bm{r}, \omega) \big( \nabla \cdot \bm{E}(\bm{r}, \omega) \big)
+	   + \big( \nabla \varepsilon_2(\bm{r}, \omega) \big) \cdot \bm{E}(\bm{r}, \omega),
+\end{aligned}
+$$
 
 $$ \tag{11.6}
 \begin{aligned}
