@@ -1539,7 +1539,7 @@ $$ \tag{9.26}
 	= \Big( \cal{I} + \frac{1}{k^2} \nabla \otimes \nabla \Big) g(\bm{r} - \bm{r'}, k)
 $$
 
-is the *electric Green tensor for the electric field*[^12].
+is the *electric Green tensor for electrical sources*[^12].
 
 [^12]: The Green tensors are also known as the [dyadic](https://en.wikipedia.org/wiki/Dyadics) Green functions. Dyadics are considered to be relatively obsolete.
 
@@ -1571,7 +1571,7 @@ $$ \tag{9.30}
 	= \iiint\_{V} \cal{G_{me}}(\bm{r} - \bm{r'}, \omega / c) \frac{\bm{J}(\bm{r'}, \omega)}{\mu_0^{-1}} dV',
 $$
 
-that features the *magnetic Green tensor for the electric field*
+that features the *magnetic Green tensor for electrical sources*
 
 $$ \tag{9.31}
 	\cal{G_{me}}(\bm{r} - \bm{r'}, k)
