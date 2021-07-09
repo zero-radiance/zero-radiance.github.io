@@ -812,15 +812,27 @@ $$ \tag{6.3}
 	\nabla \times \nabla \times \bm{E}(\bm{r}, \omega) - \omega^2 \mu(\omega) \varepsilon(\omega) \bm{E}(\bm{r}, \omega) = 0.
 $$
 
-Introduce the [curl of curl](https://en.wikipedia.org/wiki/Vector_calculus_identities#Curl_of_curl) identity
+It is convenient to group the constants by defining
 
 $$ \tag{6.4}
-	\nabla \times (\nabla \times \bm{E}) = \nabla (\nabla \cdot \bm{E}) - \nabla^2 \bm{E},
+	k(\omega) = \omega \sqrt{\mu(\omega) \varepsilon(\omega)},
+$$
+
+so that the Equation 6.3 can be written as
+
+$$ \tag{6.5}
+	\nabla \times \nabla \times \bm{E}(\bm{r}, \omega) - k^2(\omega) \bm{E}(\bm{r}, \omega) = 0.
+$$
+
+We can simplify this equation further by recalling the [curl of curl](https://en.wikipedia.org/wiki/Vector_calculus_identities#Curl_of_curl) identity
+
+$$ \tag{6.6}
+	\nabla \times \nabla \times \bm{E} = \nabla (\nabla \cdot \bm{E}) - \nabla^2 \bm{E},
 $$
 
 where
 
-$$ \tag{6.5}
+$$ \tag{6.7}
 	\mathrm{grad}(s) =
 	\nabla s =
 	\begin{bmatrix}
@@ -837,7 +849,7 @@ $$
 
 is the [gradient](https://en.wikipedia.org/wiki/Gradient) operator and
 
-$$ \tag{6.6}
+$$ \tag{6.8}
 	\mathrm{div} \big( \mathrm{grad}(\bm{E}) \big) =
 	\nabla^2 \bm{E} =
 	(\nabla \cdot \nabla) \bm{E} =
@@ -846,31 +858,20 @@ $$
 
 is the *vector* [Laplace](https://en.wikipedia.org/wiki/Laplace_operator) operator (*scalar* Laplace operator applied to each vector component).
 
-Use Equation 6.4 to expand Equation 6.3:
-
-$$ \tag{6.7}
-	\nabla \big( \nabla \cdot \bm{E}(\bm{r}, \omega) \big) - \nabla^2 \bm{E}(\bm{r}, \omega) - \omega^2 \mu(\omega) \varepsilon(\omega) \bm{E}(\bm{r}, \omega) = 0.
-$$
-
-Substitution of Equation 6.2.4 into 6.7 yields the equation of the electric field \\(\bm{E}\\):
-
-$$ \tag{6.8}
-	\nabla^2 \bm{E}(\bm{r}, \omega) + \omega^2 \mu(\omega) \varepsilon(\omega) \bm{E}(\bm{r}, \omega) = 0.
-$$
-
-Similarly, we can obtain an expression of the magnetic field \\(\bm{B}\\):
+Use Equation 6.6 to expand Equation 6.5:
 
 $$ \tag{6.9}
-	\nabla^2 \bm{B}(\bm{r}, \omega) + \omega^2 \mu(\omega) \varepsilon(\omega) \bm{B}(\bm{r}) = 0.
+	\nabla \big( \nabla \cdot \bm{E}(\bm{r}, \omega) \big) - \nabla^2 \bm{E}(\bm{r}, \omega) - k^2(\omega) \bm{E}(\bm{r}, \omega) = 0.
 $$
 
-If we define
+Substitution of Equation 6.2.4 into 6.9 yields the vector equation of the electric field \\(\bm{E}\\):
 
 $$ \tag{6.10}
-	k(\omega) = \omega \sqrt{\mu(\omega) \varepsilon(\omega)},
+	\nabla^2 \bm{E}(\bm{r}, \omega) + k^2(\omega) \bm{E}(\bm{r}, \omega) = 0.
 $$
 
-we can separate the *vector* Equation 6.8 into three *homogeneous* [Helmholtz equations](https://en.wikipedia.org/wiki/Helmholtz_equation):
+
+By considering each vector component, we obtain a system of three *homogeneous* [Helmholtz equations](https://en.wikipedia.org/wiki/Helmholtz_equation):
 
 $$ \tag{6.11}
 \begin{aligned}
@@ -912,7 +913,7 @@ $$ \tag{6.15}
 	\oiint\_{\mathbb{S}^2} \psi(0, \bm{n}) e^{-i k (\bm{r} \cdot \bm{n})} d\Omega_n.
 $$
 
-Equation 6.15 can be used to solve Equation 6.8:
+Equation 6.15 can be used to solve Equation 6.10:
 
 $$ \tag{6.16}
 	\bm{E}(\bm{r}, \omega) =
@@ -1421,11 +1422,11 @@ Equation 9.13 allows us to find the expressions of the scalar and the vector pot
 $$ \tag{9.14}
 \begin{aligned}
 	&\bm{A}(\bm{r}, \omega)
-	= \iiint\_{V} -g(\bm{r} - \bm{r'}, \omega / c) \frac{\bm{J}(\bm{r'}, \omega)}{\mu_0^{-1}} dV'
-	= \iiint\_{V} \frac{\bm{J}(\bm{r'}, \omega)}{\mu_0^{-1}} \frac{e^{-i \omega |\bm{r} - \bm{r'}| / c}}{4 \pi |\bm{r} - \bm{r'}|} dV', \cr
+	= \iiint\_{V} -g \big( \bm{r} - \bm{r'}, k_0(\omega) \big) \frac{\bm{J}(\bm{r'}, \omega)}{\mu_0^{-1}} dV'
+	= \iiint\_{V} \frac{\bm{J}(\bm{r'}, \omega)}{\mu_0^{-1}} \frac{e^{-i k_0(\omega) |\bm{r} - \bm{r'}|}}{4 \pi |\bm{r} - \bm{r'}|} dV', \cr
 	&\phi(\bm{r}, \omega)
-	= \iiint\_{V} -g(\bm{r} - \bm{r'}, \omega / c) \frac{\rho(\bm{r'}, \omega)}{\epsilon_0} dV'
-	= \iiint\_{V} \frac{\rho(\bm{r'}, \omega)}{\epsilon_0} \frac{e^{-i \omega |\bm{r} - \bm{r'}| / c}}{4 \pi |\bm{r} - \bm{r'}|} dV',
+	= \iiint\_{V} -g \big( \bm{r} - \bm{r'}, k_0(\omega) \big) \frac{\rho(\bm{r'}, \omega)}{\epsilon_0} dV'
+	= \iiint\_{V} \frac{\rho(\bm{r'}, \omega)}{\epsilon_0} \frac{e^{-i k_0(\omega) |\bm{r} - \bm{r'}|}}{4 \pi |\bm{r} - \bm{r'}|} dV',
 \end{aligned}
 $$
 
@@ -1448,10 +1449,10 @@ $$ \tag{9.16}
 \begin{aligned}
 	&\bm{A}(\bm{r}, \omega)
 	= \bm{A_i}(\bm{r}, \omega)
-	+ \iiint\_{V} \frac{\bm{J_b}(\bm{r'}, \omega) + \bm{J_i}(\bm{r'}, \omega)}{\mu_0^{-1}} \frac{e^{-i \omega |\bm{r} - \bm{r'}| / c}}{4 \pi |\bm{r} - \bm{r'}|} dV', \cr
+	+ \iiint\_{V} \frac{\bm{J_b}(\bm{r'}, \omega) + \bm{J_i}(\bm{r'}, \omega)}{\mu_0^{-1}} \frac{e^{-i k_0(\omega) |\bm{r} - \bm{r'}|}}{4 \pi |\bm{r} - \bm{r'}|} dV', \cr
 	&\phi(\bm{r}, \omega)
 	= \phi_i(\bm{r}, \omega)
-	+ \iiint\_{V} \frac{\rho_b(\bm{r'}, \omega) + \rho_i(\bm{r'}, \omega)}{\epsilon_0} \frac{e^{-i \omega |\bm{r} - \bm{r'}| / c}}{4 \pi |\bm{r} - \bm{r'}|} dV'.
+	+ \iiint\_{V} \frac{\rho_b(\bm{r'}, \omega) + \rho_i(\bm{r'}, \omega)}{\epsilon_0} \frac{e^{-i k_0(\omega) |\bm{r} - \bm{r'}|}}{4 \pi |\bm{r} - \bm{r'}|} dV'.
 \end{aligned}
 $$
 
@@ -1470,7 +1471,7 @@ and substitute \\(\nabla \times \bm{B}\\) from the second equation into the curl
 
 $$ \tag{9.18}
 \begin{aligned}
-	& \nabla \times \nabla \times \bm{E}(\bm{r}, \omega) - \omega^2 \mu\_0 \epsilon_0 \bm{E}(\bm{r}, \omega)
+	& \nabla \times \nabla \times \bm{E}(\bm{r}, \omega) - k_0^2(\omega) \bm{E}(\bm{r}, \omega)
 	= -i \omega \frac{\bm{J}(\bm{r}, \omega)}{\mu\_0^{-1}}, \cr
 	& \bm{B}(\bm{r}, \omega) = \frac{i}{\omega} \nabla \times \bm{E}(\bm{r}, \omega).
 \end{aligned}
@@ -1520,16 +1521,16 @@ Let us now substitute the definition of \\(\bm{A}\\) given by Equation 9.14.1:
 
 $$ \tag{9.24}
 	\bm{E}(\bm{r}, \omega)
-	= -i \omega \Big( \cal{I} + \frac{c^2}{\omega^2} \nabla \otimes \nabla \Big) \iiint\_{V}
-	-g(\bm{r} - \bm{r'}, \omega / c) \frac{\bm{J}(\bm{r'}, \omega)}{\mu_0^{-1}} dV'.
+	= -i \omega \Big( \cal{I} + \frac{1}{k_0^2(\omega)} \nabla \otimes \nabla \Big) \iiint\_{V}
+	-g \big( \bm{r} - \bm{r'}, k_0(\omega) \big) \frac{\bm{J}(\bm{r'}, \omega)}{\mu_0^{-1}} dV'.
 $$
 
 Unfortunately, a complication arises when we try to move the new operator under the integral sign - if \\(\bm{r}\\) is inside \\(V\\), we must carefully account for the contribution of the singularity that arises at \\(\bm{r} = \bm{r'}\\). While we will not encounter this case in the course of solving our problem, for completeness, the full solution is
 
 $$ \tag{9.25}
 	\bm{E}(\bm{r}, \omega)
-	= i \omega \iiint\_{V} \cal{G_{ee}}(\bm{r} - \bm{r'}, \omega / c) \frac{\bm{J}(\bm{r'}, \omega)}{\mu_0^{-1}} dV'
-	+ i \frac{c}{\omega} \cal{D}(\bm{r}, \omega / c) \frac{\bm{J}(\bm{r}, \omega)}{\mu_0^{-1}},
+	= i \omega \iiint\_{V} \cal{G_{ee}} \big( \bm{r} - \bm{r'}, k_0(\omega) \big) \frac{\bm{J}(\bm{r'}, \omega)}{\mu_0^{-1}} dV'
+	+ i \frac{c}{\omega} \cal{D} \big( \bm{r}, k_0(\omega) \big) \frac{\bm{J}(\bm{r}, \omega)}{\mu_0^{-1}},
 $$
 
 where \\(\cal{D}\\) is the *depolarization tensor* and
@@ -1548,7 +1549,7 @@ To find the integral form of the magnetic field, we must expand Equation 9.21.2:
 $$ \tag{9.27}
 	\bm{B}(\bm{r}, \omega)
 	= \nabla \times \iiint\_{V}
-	-g(\bm{r} - \bm{r'}, \omega / c) \frac{\bm{J}(\bm{r'}, \omega)}{\mu_0^{-1}} dV'.
+	-g \big( \bm{r} - \bm{r'}, k_0(\omega) \big) \frac{\bm{J}(\bm{r'}, \omega)}{\mu_0^{-1}} dV'.
 $$
 
 Using the [curl identity](https://en.wikipedia.org/wiki/Vector_calculus_identities#Curl_2)
@@ -1568,7 +1569,7 @@ we obtain a convergent (improper) integral
 
 $$ \tag{9.30}
 	\bm{B}(\bm{r}, \omega)
-	= \iiint\_{V} \cal{G_{me}}(\bm{r} - \bm{r'}, \omega / c) \frac{\bm{J}(\bm{r'}, \omega)}{\mu_0^{-1}} dV',
+	= \iiint\_{V} \cal{G_{me}} \big( \bm{r} - \bm{r'}, k_0(\omega) \big) \frac{\bm{J}(\bm{r'}, \omega)}{\mu_0^{-1}} dV',
 $$
 
 that features the *magnetic Green tensor for electrical sources*
