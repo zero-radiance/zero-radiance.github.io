@@ -1530,7 +1530,7 @@ Unfortunately, a complication arises when we try to move the new operator under 
 $$ \tag{9.25}
 	\bm{E}(\bm{r}, \omega)
 	= i \omega \iiint\_{V} \mathcal{G_{ee}} \big( \bm{r} - \bm{r'}, k_0(\omega) \big) \frac{\bm{J}(\bm{r'}, \omega)}{\mu_0^{-1}} dV'
-	+ i \frac{c}{\omega} \mathcal{D} \big( \bm{r}, k_0(\omega) \big) \frac{\bm{J}(\bm{r}, \omega)}{\mu_0^{-1}},
+	+ \frac{i}{k_0(\omega)} \mathcal{D} \big( \bm{r}, k_0(\omega) \big) \frac{\bm{J}(\bm{r}, \omega)}{\mu_0^{-1}},
 $$
 
 where \\(\mathcal{D}\\) is the *depolarization tensor* and
@@ -1845,7 +1845,7 @@ the *radiative properties* of the large-scale medium are determined by solving t
 
 ## Mathematical Formulation of the Scattering Problem
 
-Participating media can be divided into two categories - homogeneous and inhomogeneous. This suggests that we may split any medium into two regions: 1) homogeneous, and 2) the remaining space (that may possibly be inhomogeneous).
+Participating media can be divided into two categories - homogeneous and inhomogeneous. This suggests that we may split any medium into two regions: 1) homogeneous, and 2) the remaining space (that is possibly inhomogeneous).
 
 [Picture?]
 
@@ -1855,13 +1855,13 @@ $$ \tag{11.1}
 	\nabla \times \bm{E}(\bm{r}, \omega) + i \omega \bm{B}(\bm{r}, \omega) = 0.
 $$
 
-On the other hand, the second Maxwell equation (3.9.3) depends the region under consideration:
+On the other hand, the second Maxwell equation (3.9.3) depends on the region under consideration:
 
 $$ \tag{11.2}
 	\nabla \times \bm{H}(\bm{r}, \omega) - i \omega \bm{D}(\bm{r}, \omega) = \bm{J_f}(\bm{r}, \omega).
 $$
 
-Assuming that the media are linear, isotropic, and source-free, we may use Equation 6.1.3 instead:
+Assuming that the media are linear, isotropic, and source-free, Equation 11.2 can be replaced by Equation 6.1.3:
 
 $$ \tag{11.3}
 \begin{aligned}
@@ -1894,9 +1894,9 @@ $$ \tag{11.5}
 \end{aligned}
 $$
 
-where we have grouped the constants according to the definition of the complex wave number \\(k\\) given by Equation 7.4.
+with the constants grouped according to the definition of the complex wave number \\(k\\) given by Equation 7.4.
 
-We must make one more modification of Equation 11.5.2 by subtracting \\(k_1^2 \bm{E}\\) from both sides:
+To make these two equations more alike, we can subtract \\(k_1^2 \bm{E}\\) from both sides of Equation 11.5.2:
 
 $$ \tag{11.6}
 \begin{aligned}
@@ -1912,38 +1912,45 @@ $$ \tag{11.7}
 \bm{J'}(\bm{r}, \omega) =
 \begin{cases}
    0 &\text{if } \bm{r} \in V_1, \cr
-   \big( k_2^2(\bm{r_2}, \omega) - k_1^2(\omega) \big) \bm{E}(\bm{r_2}, \omega) &\text{if } \bm{r} \in V_2,
+   k_1^2(\omega) \big( m^2(\bm{r}, \omega) - 1 \big) \bm{E}(\bm{r}, \omega) &\text{if } \bm{r} \in V_2,
 \end{cases},
+$$
+
+such that
+
+$$ \tag{11.8}
+	m(\bm{r}, \omega)
+	= \frac{k_2(\bm{r}, \omega)}{k_1(\omega)}
+	= \frac{\varepsilon_2(\bm{r}, \omega)}{\varepsilon_1(\omega)},
 $$
 
 we can replace Equations 11.6.1 and 11.6.2 by a single equation
 
-$$ \tag{11.8}
+$$ \tag{11.9}
 	\nabla \times \nabla \times \bm{E}(\bm{r}, \omega) - k_1^2(\omega) \bm{E}(\bm{r}, \omega)
 	= \bm{J'}(\bm{r}, \omega).
 $$
 
-We have already encountered a mathematically identical problem stated in Equation 9.18.1. After matching the constants, the solution is readily given by Equation 9.25:
+We have already encountered a mathematically identical problem stated by Equation 9.18.1. After matching the constants, the solution is readily given by Equation 9.25:
 
-$$ \tag{11.9}
+$$ \tag{11.10}
 	\bm{E_s}(\bm{r}, \omega)
-	= \iiint\_{V_2} -\mathcal{G_{ee}} \big( \bm{r} - \bm{r'}, k_1(\omega) \big) \bm{J}(\bm{r'}, \omega) dV',
+	= \iiint\_{V_2} -\mathcal{G_{ee}} \big( \bm{r} - \bm{r'}, k_1(\omega) \big) \bm{J'}(\bm{r'}, \omega) dV'.
 $$
 
-where we have further assumed that \\(\bm{r}\\) is located within the homogeneous region.
+where have neglected the singularity term by assuming that \\(\bm{r}\\) is located within the homogeneous region.
 
 Equations 11.9 is a special solution of Equation 11.8 (just like Equation 9.13 is a special solution of Equation 9.5). To obtain a general solution of the inhomogeneous equation, we must combine it with the solution of the homogeneous equation, which physically amounts to adding the primary sources. In our particular case, the homogeneous equation is mathematically equivalent to Equation 6.5, which allows us to directly use the solution given by Equation 6.16:
 
-$$ \tag{11.10}
+$$ \tag{11.11}
 \begin{aligned}
-	   \bm{E}(\bm{r}, \omega)
-	&= \bm{E_i}(\bm{r}, \omega) + \bm{E_s}(\bm{r}, \omega) \cr
-	&= \oiint\_{\mathbb{S}^2} \bm{E}(0, \bm{n}, \omega) e^{-i k_1(\omega) (\bm{r} \cdot \bm{n})} d\Omega_n
-	+ \iiint\_{V_2} -\mathcal{G_{ee}} \big( \bm{r} - \bm{r'}, k_1(\omega) \big) \bm{J}(\bm{r'}, \omega) dV'.
+    \bm{E}(\bm{r}, \omega)
+	&= \oiint\_{\mathbb{S}^2} \bm{E}(0, \bm{n}, \omega) e^{-i k_1(\omega) (\bm{r} \cdot \bm{n})} d\Omega_n \cr
+	&+ \iiint\_{V_2} -\mathcal{G_{ee}} \big( \bm{r} - \bm{r'}, k_1(\omega) \big) \bm{J'}(\bm{r'}, \omega) dV'.
 \end{aligned}
 $$
 
-In addition to the mathematical approach presented above, we can use our physical intuition to arrive at the same result.
+In addition to the mathematical approach presented above, we can arrive at the same result in a more "physical" way.
 
 ---
 
