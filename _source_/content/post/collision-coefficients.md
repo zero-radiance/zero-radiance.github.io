@@ -197,22 +197,22 @@ We take the Maxwell equations as axioms, and use them as a foundation on which w
 
 Given a mathematical description of electromagnetic radiation in terms of vector fields, we would like to physically characterize it as an energy transfer process. In order to do that, we have to determine how much energy there is in a given volume element of space, and also the rate of energy flow \[[5](#references) (vol. II, ch. 27), [6](#references) (ch. 1.1.4), [7](#references) (ch. 2.11), [8](#references) (ch. 2.5), [9](#references) (ch. 2.4)\].
 
-[Conservation of energy](https://en.wikipedia.org/wiki/Conservation_of_energy) is one of the most important principles of physics. Here is one way to state it: the difference between the amount of external energy \\(\cal{E\_{ext}}\\) flowing into the volume \\(V\\) and the amount of internal energy \\(\cal{E\_{int}}\\) flowing out equals the amount of work \\(\cal{W}\\) done inside.
+[Conservation of energy](https://en.wikipedia.org/wiki/Conservation_of_energy) is one of the most important principles of physics. Here is one way to state it: the difference between the amount of external energy \\(\mathcal{E\_{ext}}\\) flowing into the volume \\(V\\) and the amount of internal energy \\(\mathcal{E\_{int}}\\) flowing out equals the amount of work \\(\mathcal{W}\\) done inside.
 
 $$ \tag{2.1}
-	\frac{\partial}{\partial t} \cal{E\_{ext}}(V, t) -
-	\frac{\partial}{\partial t} \cal{E\_{int}}(V, t) =
-	\frac{\partial}{\partial t} \cal{W}(V, t).
+	\frac{\partial}{\partial t} \mathcal{E\_{ext}}(V, t) -
+	\frac{\partial}{\partial t} \mathcal{E\_{int}}(V, t) =
+	\frac{\partial}{\partial t} \mathcal{W}(V, t).
 $$
 
-In Equation 2.1, \\(\cal{E}\\) refers to a single type of energy: kinetic, electromagnetic, etc. Work transforms a portion of \\(\cal{E\_{ext}}\\) into a different type of energy: kinetic into potential, electromagnetic into thermal, and so on. If we account for all types of energy, the total amount of energy is conserved.
+In Equation 2.1, \\(\mathcal{E}\\) refers to a single type of energy: kinetic, electromagnetic, etc. Work transforms a portion of \\(\mathcal{E\_{ext}}\\) into a different type of energy: kinetic into potential, electromagnetic into thermal, and so on. If we account for all types of energy, the total amount of energy is conserved.
 
 Given our focus on electromagnetic energy, we can partition the total amount of energy into the *field energy* and the *matter energy*. In this context, work done by the field on the matter refers to *absorption*, and has a positive sign. Similarly, *emission* is the work done by the matter on the field, and has a negative sign. We shall not consider emissive materials in the analysis presented below.
 
 Mathematically, the [rate of doing work](https://en.wikipedia.org/wiki/Work_(physics)#Mathematical_calculation) is the product of force and velocity:
 
 $$ \tag{2.2}
-	\frac{\partial \cal{W}}{\partial t} = \bm{F} \cdot \bm{v}.
+	\frac{\partial \mathcal{W}}{\partial t} = \bm{F} \cdot \bm{v}.
 $$ 
 
 Thus, to compute it, we must recall the definition of electromagnetic force.
@@ -232,7 +232,7 @@ $$
 Therefore, the amount of work done per unit time by the field on the matter inside the volume \\(V\\) is
 
 $$ \tag{2.5}
-	\frac{\partial}{\partial t} \cal{W}(V, t) =
+	\frac{\partial}{\partial t} \mathcal{W}(V, t) =
 	\iiint\_{V} \bm{v}(\bm{r}, t) \cdot d\bm{F}(\bm{r}, t) =
 	\iiint\_{V} \bm{E}(\bm{r}, t) \cdot \rho(\bm{r}, t) \bm{v}(\bm{r}, t) dV.
 $$
@@ -240,7 +240,7 @@ $$
 Since the current density is just the number of moving charges per unit volume (see Equation 1.7),
 
 $$ \tag{2.6}
-	\frac{\partial}{\partial t} \cal{W}(V, t) =
+	\frac{\partial}{\partial t} \mathcal{W}(V, t) =
 	\iiint\_{V} \bm{E}(\bm{r}, t) \cdot \bm{J}(\bm{r}, t) dV.
 $$
 
@@ -286,7 +286,7 @@ $$
 We can observe that the rate of doing work is a balance of inflow of \\((\bm{E} \times \bm{B})\\) and the rate of change of the squared magnitudes of the fields. The physical significance of this expression becomes more apparent if we return to the integral form
 
 $$ \tag{2.12}
-	\frac{\partial \cal{W}}{\partial t}
+	\frac{\partial \mathcal{W}}{\partial t}
 	= \iiint\_{V} \Big( {-\mu\_0^{-1}} \nabla \cdot (\bm{E} \times \bm{B}) \Big) dV -
 	\frac{\partial}{\partial t} \iiint\_{V} \Big( \frac{\epsilon_0}{2} E^2 + \frac{\mu\_0^{-1}}{2} B^2 \Big) dV 
 $$
@@ -294,7 +294,7 @@ $$
 and use the [divergence theorem](https://en.wikipedia.org/wiki/Divergence_theorem) to replace the leftmost volume integral with an integral taken over the bounding surface \\(\delta V\\) of the volume \\(V\\):
 
 $$ \tag{2.13}
-	\frac{\partial \cal{W}}{\partial t}
+	\frac{\partial \mathcal{W}}{\partial t}
 	= \oiint\_{\delta V} \Big( \mu\_0^{-1} (\bm{E} \times \bm{B}) \cdot (-\bm{n}) \Big) dA -
 	\frac{\partial}{\partial t} \iiint\_{V} \Big( \frac{\epsilon_0}{2} E^2 + \frac{\mu\_0^{-1}}{2} B^2 \Big) dV,
 $$
@@ -304,22 +304,22 @@ where \\(\bm{n}\\) is the outward-facing surface normal.
 According to Equation 2.1, the right-hand side of Equation 2.13 represents the difference between the rates of inflow and outflow of energy. Thus, the first term gives the amount of external energy (per unit time) flowing through the bounding surface into the volume,
 
 $$ \tag{2.14}
-	\frac{\partial}{\partial t} \cal{E\_{ext}}(V, t) =
+	\frac{\partial}{\partial t} \mathcal{E\_{ext}}(V, t) =
 	\oiint\_{\delta V} \Big( \mu\_0^{-1} \big( \bm{E}(\bm{r}, t) \times \bm{B}(\bm{r}, t) \big) \cdot (-\bm{n}) \Big) dA,
 $$
 
 and the second term corresponds to the rate at which the amount of energy within the volume decreases:
 
 $$ \tag{2.15}
-	-\frac{\partial}{\partial t} \cal{E\_{int}}(V, t) =
+	-\frac{\partial}{\partial t} \mathcal{E\_{int}}(V, t) =
 	-\frac{\partial}{\partial t} \iiint\_{V} \Big( \frac{\epsilon_0}{2} E^2(\bm{r}, t) + \frac{\mu\_0^{-1}}{2} B^2(\bm{r}, t) \Big) dV.
 $$
 
 According to this interpretation, the *squared* magnitudes of the fields
 
 $$ \tag{2.16}
-	\frac{\partial}{\partial V} \cal{E\_e}(\bm{r}, t) = \frac{\epsilon_0}{2} E^2(\bm{r}, t), \quad
-	\frac{\partial}{\partial V} \cal{E\_m}(\bm{r}, t) = \frac{\mu\_0^{-1}}{2} B^2(\bm{r}, t), \quad
+	\frac{\partial}{\partial V} \mathcal{E\_e}(\bm{r}, t) = \frac{\epsilon_0}{2} E^2(\bm{r}, t), \quad
+	\frac{\partial}{\partial V} \mathcal{E\_m}(\bm{r}, t) = \frac{\mu\_0^{-1}}{2} B^2(\bm{r}, t), \quad
 $$
 
 are the electric and the magnetic energy volume densities, and
@@ -359,7 +359,7 @@ Define[^1] the [Fourier transform](https://en.wikipedia.org/wiki/Fourier_transfo
 
 $$ \tag{3.1}
 	\bm{E}(\bm{r}, \omega)
-	= \cal{F} \big\lbrace \bm{E}(\bm{r}, t) \big\rbrace
+	= \mathcal{F} \big\lbrace \bm{E}(\bm{r}, t) \big\rbrace
 	= \frac{1}{\sqrt{2 \pi}} \int\_{-\infin}^{\infin} \bm{E}(\bm{r}, t) e^{-i \omega t} dt,
 $$
 
@@ -386,19 +386,19 @@ We can go back to the time domain by using the inverse Fourier transform:
 $$ \tag{3.4}
 \begin{aligned}
 	\bm{E}(\bm{r}, t)
-	&= \cal{F^{-1}} \big\lbrace \bm{E}(\bm{r}, \omega) \big\rbrace \cr
+	&= \mathcal{F^{-1}} \big\lbrace \bm{E}(\bm{r}, \omega) \big\rbrace \cr
 	&= \frac{1}{\sqrt{2 \pi}} \int\_{-\infin}^{\infin} \bm{E}(\bm{r}, \omega) e^{i \omega t} d\omega \cr
 	&= \frac{1}{\sqrt{2 \pi}} \int\_{0}^{\infin} \bm{E}(\bm{r}, \omega) e^{i \omega t} d\omega
 	 + \frac{1}{\sqrt{2 \pi}} \int\_{-\infin}^{0} \bm{E}(\bm{r}, \omega) e^{i \omega t} d\omega \cr
 	&= \frac{1}{\sqrt{2 \pi}} \int\_{0}^{\infin} \Big( \bm{E}(\bm{r}, \omega) e^{i \omega t} + \big[ \bm{E}(\bm{r}, \omega) e^{i \omega t} \big]^{\*} \Big) d\omega \cr
-	&= \frac{1}{\sqrt{2 \pi}} \int\_{0}^{\infin} 2 \thinspace \cal{Re} \big\lbrace \bm{E}(\bm{r}, \omega) e^{i \omega t} \big\rbrace d\omega,
+	&= \frac{1}{\sqrt{2 \pi}} \int\_{0}^{\infin} 2 \thinspace \mathcal{Re} \big\lbrace \bm{E}(\bm{r}, \omega) e^{i \omega t} \big\rbrace d\omega,
 \end{aligned}
 $$
 
 where the last equality follows from the definition of the real part of a complex number:
 
 $$ \tag{3.5}
-	2 \thinspace \cal{Re} \lbrace z \rbrace
+	2 \thinspace \mathcal{Re} \lbrace z \rbrace
 	= z + z^{\*}
 	= 2 r \cos{ \theta}.
 $$
@@ -437,14 +437,14 @@ Equivalently, using the transform operator notation,
 
 $$ \tag{3.8}
 \begin{aligned}
-	&\cal{F^{-1}} \big\lbrace \nabla \times \bm{E}(\bm{r}, \omega) +
+	&\mathcal{F^{-1}} \big\lbrace \nabla \times \bm{E}(\bm{r}, \omega) +
 	 i \omega \bm{B}(\bm{r}, \omega) \big\rbrace = 0, \cr
-	&\cal{F^{-1}} \big\lbrace \nabla \cdot \bm{B}(\bm{r}, \omega) \big\rbrace = 0, \cr
-	&\cal{F^{-1}} \big\lbrace \nabla \times \bm{H}(\bm{r}, \omega) -
+	&\mathcal{F^{-1}} \big\lbrace \nabla \cdot \bm{B}(\bm{r}, \omega) \big\rbrace = 0, \cr
+	&\mathcal{F^{-1}} \big\lbrace \nabla \times \bm{H}(\bm{r}, \omega) -
 	 i \omega \bm{D}(\bm{r}, \omega) \big\rbrace =
-	 \cal{F^{-1}} \big\lbrace \bm{J_f}(\bm{r}, \omega) \big\rbrace, \cr
-	&\cal{F^{-1}} \big\lbrace \nabla \cdot \bm{D}(\bm{r}, \omega) \big\rbrace =
-	 \cal{F^{-1}} \big\lbrace \rho_f(\bm{r}, \omega) \big\rbrace.
+	 \mathcal{F^{-1}} \big\lbrace \bm{J_f}(\bm{r}, \omega) \big\rbrace, \cr
+	&\mathcal{F^{-1}} \big\lbrace \nabla \cdot \bm{D}(\bm{r}, \omega) \big\rbrace =
+	 \mathcal{F^{-1}} \big\lbrace \rho_f(\bm{r}, \omega) \big\rbrace.
 \end{aligned}
 $$
 
@@ -491,18 +491,18 @@ If we solve the Maxwell equations in the frequency domain, we may be interested 
 $$ \tag{4.1}
 	\bm{S}(\bm{r}, t)
 	= \mu\_0^{-1} \Big( \bm{E}(\bm{r}, t) \times \bm{B}(\bm{r}, t) \Big)
-	= \mu\_0^{-1} \Big( \cal{F^{-1}} \big\lbrace \bm{E}(\bm{r}, \omega) \big\rbrace
-	\times \cal{F^{-1}} \big\lbrace \bm{B}(\bm{r}, \omega) \big\rbrace \Big).
+	= \mu\_0^{-1} \Big( \mathcal{F^{-1}} \big\lbrace \bm{E}(\bm{r}, \omega) \big\rbrace
+	\times \mathcal{F^{-1}} \big\lbrace \bm{B}(\bm{r}, \omega) \big\rbrace \Big).
 $$
 
 The expression of the corresponding Poynting phasor is
 
 $$ \tag{4.2}
 	\bm{S}(\bm{r}, \omega)
-	= \cal{F} \big\lbrace \bm{S}(\bm{r}, t) \big\rbrace
-	= \mu\_0^{-1} \cal{F} \Big\lbrace
-		\cal{F^{-1}} \big\lbrace \bm{E}(\bm{r}, \omega)
-		\times \cal{F^{-1}} \big\lbrace \bm{B}(\bm{r}, \omega) \big\rbrace
+	= \mathcal{F} \big\lbrace \bm{S}(\bm{r}, t) \big\rbrace
+	= \mu\_0^{-1} \mathcal{F} \Big\lbrace
+		\mathcal{F^{-1}} \big\lbrace \bm{E}(\bm{r}, \omega)
+		\times \mathcal{F^{-1}} \big\lbrace \bm{B}(\bm{r}, \omega) \big\rbrace
 	\Big\rbrace.
 $$
 
@@ -562,7 +562,7 @@ $$ \tag{4.8}
 	 + \sum\_{p = 1}^{\infin} \bm{E_p}(\bm{r}) e^{i \omega_p t}
 	 + \sum\_{p = -\infin}^{-1} \bm{E_p}(\bm{r}) e^{i \omega_p t} \cr
 	&= \bm{E_0}(\bm{r}) + \sum\_{p = 1}^{\infin} \Big( \bm{E_p}(\bm{r}) e^{i \omega_p t} + \big[ \bm{E_p}(\bm{r}) e^{i \omega_p t} \big]^{\*} \Big) \cr
-	&= \bm{E_0}(\bm{r}) + \sum\_{p = 1}^{\infin} 2 \thinspace \cal{Re} \big\lbrace \bm{E_p}(\bm{r}) e^{i \omega_p t} \big\rbrace.
+	&= \bm{E_0}(\bm{r}) + \sum\_{p = 1}^{\infin} 2 \thinspace \mathcal{Re} \big\lbrace \bm{E_p}(\bm{r}) e^{i \omega_p t} \big\rbrace.
 \end{aligned}
 $$
 
@@ -590,7 +590,7 @@ Since the individual harmonics are orthogonal (and, as a result, independent), a
 
 $$ \tag{4.11}
 	\bm{E}(\bm{r}, t)
-	= \cal{Re} \big\lbrace \bm{E_p}(\bm{r}) e^{i \omega_p t} \big\rbrace,
+	= \mathcal{Re} \big\lbrace \bm{E_p}(\bm{r}) e^{i \omega_p t} \big\rbrace,
 $$
 
 in isolation, with the corresponding phasor fields
@@ -650,7 +650,7 @@ $$ \tag{4.15}
 		\Big) \cr
 	&=  \mu\_0^{-1} (\bm{E_0} \times \bm{B_0})
 	  + \mu\_0^{-1} \sum\_{p = 1}^{\infin}
-		2 \thinspace \cal{Re} \big\lbrace \bm{E_p} \times [\bm{B_p}]^{\*} \big\rbrace,
+		2 \thinspace \mathcal{Re} \big\lbrace \bm{E_p} \times [\bm{B_p}]^{\*} \big\rbrace,
 \end{aligned}
 $$
 
@@ -669,7 +669,7 @@ such that (cf. Equation 4.8)
 $$ \tag{4.17}
 	\braket{\bm{S}}
 	= \braket{\bm{S_0}}
-	+ \sum\_{p = 1}^{\infin} 2 \thinspace \cal{Re} \big\lbrace \negthinspace \braket{\bm{S_p}} \negthinspace \big\rbrace.
+	+ \sum\_{p = 1}^{\infin} 2 \thinspace \mathcal{Re} \big\lbrace \negthinspace \braket{\bm{S_p}} \negthinspace \big\rbrace.
 $$
 
 It produces a more compact expression of irradiance
@@ -678,7 +678,7 @@ $$ \tag{4.18}
 	\mathtt{E}
 	= \braket{\bm{S}} \cdot \bm{n}
 	= \braket{\bm{S_0}} \cdot \bm{n}
-	+ \sum\_{p = 1}^{\infin} 2 \thinspace \cal{Re} \big\lbrace
+	+ \sum\_{p = 1}^{\infin} 2 \thinspace \mathcal{Re} \big\lbrace
 		\negthinspace \braket{\bm{S_p}} \negthinspace
 	  \big\rbrace \cdot \bm{n}
 $$
@@ -687,10 +687,10 @@ that can be written in terms of [spectral irradiance](https://en.wikipedia.org/w
 
 $$ \tag{4.19}
 	\mathtt{E_p}
-	= \cal{Re} \big\lbrace
+	= \mathcal{Re} \big\lbrace
 		\negthinspace \braket{\bm{S_p}} \negthinspace
 	  \big\rbrace \cdot \bm{n}
-	= \cal{Re} \big\lbrace
+	= \mathcal{Re} \big\lbrace
 		\negthinspace \braket{\bm{S_p}} \negthinspace
 	  \big\rbrace \cos{\theta}.
 $$
@@ -711,8 +711,8 @@ $$ \tag{5.1}
 		\bm{H} \cr
 	\end{bmatrix} =
 	\begin{bmatrix}
-		\cal{C_{11}} & \cal{C_{12}} \cr
-		\cal{C_{21}} & \cal{C_{22}} \cr
+		\mathcal{C_{11}} & \mathcal{C_{12}} \cr
+		\mathcal{C_{21}} & \mathcal{C_{22}} \cr
 	\end{bmatrix}
 	\begin{bmatrix}
 		\bm{E} \cr
@@ -720,7 +720,7 @@ $$ \tag{5.1}
 	\end{bmatrix}.
 $$
 
-In general, media may be *dispersive* (dependent on the frequency), *lossy* (absorptive), and *anisotropic* (dependent on the orientation). This implies that each coefficient \\(\cal{C_{ij}}\\) is a complex [tensor field](https://en.wikipedia.org/wiki/Tensor#Tensor_fields) that can be represented by a 3x3 matrix.
+In general, media may be *dispersive* (dependent on the frequency), *lossy* (absorptive), and *anisotropic* (dependent on the orientation). This implies that each coefficient \\(\mathcal{C_{ij}}\\) is a complex [tensor field](https://en.wikipedia.org/wiki/Tensor#Tensor_fields) that can be represented by a 3x3 matrix.
 
 A radical simplification[^7] of the Maxwell equations can be achieved by assuming that the material is both *linear* and *isotropic* \[[6](#references) (ch. 1.1.2), [7](#references) (ch. 2.3), [8](#references) (ch. 2.3), [9](#references) (ch. 2.1)\]:
 
@@ -1026,7 +1026,7 @@ First, notice that \\((\bm{r} \cdot \bm{n}) / v\\) has units of time. Then, take
 
 $$ \tag{7.12}
 	\theta(\bm{r}, t)
-	= \cal{Arg} \big\lbrace E(\bm{r}, \bm{n}, \omega) e^{i \omega t} \big\rbrace
+	= \mathcal{Arg} \big\lbrace E(\bm{r}, \bm{n}, \omega) e^{i \omega t} \big\rbrace
 	= \delta - \omega \big(\bm{r} \cdot \bm{n} - v_p t \big) / v_p.
 $$
 
@@ -1041,7 +1041,7 @@ This implies that \\(\theta\\) represents a plane propagating along its normal \
 Taking the real part of Equation 7.11 allows us to uncover the *wave amplitude*
 
 $$ \tag{7.14}
-	\cal{Re} \big\lbrace E(\bm{r}, \bm{n}, \omega) e^{i \omega t} \big\rbrace =
+	\mathcal{Re} \big\lbrace E(\bm{r}, \bm{n}, \omega) e^{i \omega t} \big\rbrace =
 	|E\_0| e^{-\omega (\bm{r} \cdot \bm{n}) / v_a} \cos{\theta(\bm{r}, t)}.
 $$
 
@@ -1084,7 +1084,7 @@ $$
 After division by the constant \\(i k\\) and multiplication by \\(e^{i \omega t}\\), it is clear that the field vector is orthogonal to the plane normal at all times:
 
 $$ \tag{7.19}
-	\bm{n} \cdot \cal{Re} \big\lbrace \bm{E}(\bm{r}, \bm{n}, \omega) e^{i \omega t} \big\rbrace
+	\bm{n} \cdot \mathcal{Re} \big\lbrace \bm{E}(\bm{r}, \bm{n}, \omega) e^{i \omega t} \big\rbrace
 	= 0.
 $$
 
@@ -1117,15 +1117,15 @@ $$
 If we take the real part of this expression multiplied by \\(e^{i \omega t}\\), the result
 
 $$ \tag{7.24}
-	\frac{\eta(\omega)}{c} \bm{n} \times \cal{Re} \big\lbrace \bm{E}(\bm{r}, \bm{n}, \omega) e^{i \omega t} \big\rbrace
-	= \cal{Re} \big\lbrace \bm{B}(\bm{r}, \bm{n}, \omega) e^{i \omega t} \big\rbrace
+	\frac{\eta(\omega)}{c} \bm{n} \times \mathcal{Re} \big\lbrace \bm{E}(\bm{r}, \bm{n}, \omega) e^{i \omega t} \big\rbrace
+	= \mathcal{Re} \big\lbrace \bm{B}(\bm{r}, \bm{n}, \omega) e^{i \omega t} \big\rbrace
 $$
 
 shows us that the electric and the magnetic field vectors of a planar wave are orthogonal at all times. Thus, \\(\lbrace \bm{E}, \bm{B}, \bm{n} \rbrace\\) is an orthogonal triad of vectors that defines the geometric configuration of a planar wave in a linear, isotropic, homogeneous medium:
 
 $$ \tag{7.25}
-	\bm{n} \times \frac{\cal{Re} \big\lbrace \bm{E}(\bm{r}, \bm{n}, \omega) e^{i \omega t} \big\rbrace}{\big\vert \cal{Re} \big\lbrace \bm{E}(\bm{r}, \bm{n}, \omega) e^{i \omega t} \big\rbrace \big\vert}
-	= \frac{\cal{Re} \big\lbrace \bm{B}(\bm{r}, \bm{n}, \omega) e^{i \omega t} \big\rbrace}{\big\vert \cal{Re} \big\lbrace \bm{B}(\bm{r}, \bm{n}, \omega) e^{i \omega t} \big\rbrace \big\vert}.
+	\bm{n} \times \frac{\mathcal{Re} \big\lbrace \bm{E}(\bm{r}, \bm{n}, \omega) e^{i \omega t} \big\rbrace}{\big\vert \mathcal{Re} \big\lbrace \bm{E}(\bm{r}, \bm{n}, \omega) e^{i \omega t} \big\rbrace \big\vert}
+	= \frac{\mathcal{Re} \big\lbrace \bm{B}(\bm{r}, \bm{n}, \omega) e^{i \omega t} \big\rbrace}{\big\vert \mathcal{Re} \big\lbrace \bm{B}(\bm{r}, \bm{n}, \omega) e^{i \omega t} \big\rbrace \big\vert}.
 $$
 
 [Insert Picture Here]
@@ -1143,7 +1143,7 @@ is the expression of the Poynting vector of a planar wave.
 Since the field vectors are orthogonal, Equations 7.24-7.25 define the ratio of wave amplitudes:
 
 $$ \tag{7.27}
-	\frac{\big\vert \cal{Re} \big\lbrace \bm{B}(\bm{r}, \bm{n}, \omega) e^{i \omega t} \big\rbrace \big\vert}{\big\vert \cal{Re} \big\lbrace \bm{E}(\bm{r}, \bm{n}, \omega) e^{i \omega t} \big\rbrace \big\vert}
+	\frac{\big\vert \mathcal{Re} \big\lbrace \bm{B}(\bm{r}, \bm{n}, \omega) e^{i \omega t} \big\rbrace \big\vert}{\big\vert \mathcal{Re} \big\lbrace \bm{E}(\bm{r}, \bm{n}, \omega) e^{i \omega t} \big\rbrace \big\vert}
 	= \frac{\eta(\omega)}{c}.
 $$
 
@@ -1154,8 +1154,8 @@ This equality has two consequences. First, it says that the electric and the mag
 Stated mathematically, if we align the triad \\(\lbrace \bm{E}, \bm{B}, \bm{n} \rbrace\\) with the \\(\lbrace x,y,z \rbrace\\) axes of a Cartesian coordinate system, then
 
 $$ \tag{7.28}
-	\cal{Arg} \big\lbrace E_x(0, \bm{n}, \omega) \big\rbrace =
-	\cal{Arg} \big\lbrace B_y(0, \bm{n}, \omega) \big\rbrace =
+	\mathcal{Arg} \big\lbrace E_x(0, \bm{n}, \omega) \big\rbrace =
+	\mathcal{Arg} \big\lbrace B_y(0, \bm{n}, \omega) \big\rbrace =
 	\delta.
 $$
 
@@ -1364,7 +1364,7 @@ where \\(k_0 = \omega / c\\) is the *free-space* wave number.
 The Helmholtz operator \\(\big( \nabla^2 + k_0^2 \big)\\) is a linear operator in 3 dimensions. Therefore, Equation 9.5 represents a linear transformation
 
 $$ \tag{9.6}
-	\cal{L} \big\lbrace \psi(\bm{r}) \big\rbrace = \xi(\bm{r}).
+	\mathcal{L} \big\lbrace \psi(\bm{r}) \big\rbrace = \xi(\bm{r}).
 $$
 
 Unfortunately, unlike its homogeneous counterpart (Equation 6.11), Equation 9.5 does not have a [closed-form](https://en.wikipedia.org/wiki/Closed-form_expression) solution. Yet, we can still solve it analytically using a neat mathematical trick.
@@ -1386,10 +1386,10 @@ $$
 does not appear to be simpler, as it turns out, we can easily solve the Helmholtz equation for a point source
 
 $$ \tag{9.9}
-	\cal{L} \big\lbrace g_0(\bm{r} - \bm{r'}) \big\rbrace = \big( \nabla^2 + k_0^2 \big) g_0(\bm{r} - \bm{r'}) = \delta(\bm{r} - \bm{r'}).
+	\mathcal{L} \big\lbrace g_0(\bm{r} - \bm{r'}) \big\rbrace = \big( \nabla^2 + k_0^2 \big) g_0(\bm{r} - \bm{r'}) = \delta(\bm{r} - \bm{r'}).
 $$
 
-Its solution is the *scalar* [Green function](https://en.wikipedia.org/wiki/Green%27s_function) \\(g\\). It represents an [impulse response](https://en.wikipedia.org/wiki/Impulse_response) of the linear operator \\(\cal{L}\\).
+Its solution is the *scalar* [Green function](https://en.wikipedia.org/wiki/Green%27s_function) \\(g\\). It represents an [impulse response](https://en.wikipedia.org/wiki/Impulse_response) of the linear operator \\(\mathcal{L}\\).
 
 Equation 9.9 is an inhomogeneous linear differential equation. Consequently, its solution depends on the linear operator in question, its domain of validity, as well as the associated (initial or boundary) conditions. According to Equation 9.7, our domain is the whole real space, and the only applicable restriction is the Sommerfeld radiation condition. Thus, it can be shown that the *free-space* scalar Green function \\(g_0\\) takes the form of an diverging *spherical wave* \[[7](#references) (ch. 2.12), [8](#references) (ch. 5.2), [9](#references) (ap. B), [12](#references)\]:
 
@@ -1507,21 +1507,21 @@ As we group the terms, we encounter a curious operator acting on \\(\bm{A}\\):
 
 $$ \tag{9.22}
 	\bm{E}(\bm{r}, \omega)
-	= -i \omega \Big( \cal{I} + \frac{c^2}{\omega^2} \nabla \nabla \cdot \Big) \bm{A}(\bm{r}, \omega).
+	= -i \omega \Big( \mathcal{I} + \frac{c^2}{\omega^2} \nabla \nabla \cdot \Big) \bm{A}(\bm{r}, \omega).
 $$
 
 Note that the gradient is a column vector, and the divergence can be visualized as a row vector. In this specific order, they represent an [outer product](https://en.wikipedia.org/wiki/Outer_product) that forms a square matrix:
 
 $$ \tag{9.23}
 	\bm{E}(\bm{r}, \omega) =
-	-i \omega \Big( \cal{I} + \frac{c^2}{\omega^2} \nabla \otimes \nabla \Big) \bm{A}(\bm{r}, \omega).
+	-i \omega \Big( \mathcal{I} + \frac{c^2}{\omega^2} \nabla \otimes \nabla \Big) \bm{A}(\bm{r}, \omega).
 $$
 
 Let us now substitute the definition of \\(\bm{A}\\) given by Equation 9.14.1:
 
 $$ \tag{9.24}
 	\bm{E}(\bm{r}, \omega)
-	= -i \omega \Big( \cal{I} + \frac{1}{k_0^2(\omega)} \nabla \otimes \nabla \Big) \iiint\_{V}
+	= -i \omega \Big( \mathcal{I} + \frac{1}{k_0^2(\omega)} \nabla \otimes \nabla \Big) \iiint\_{V}
 	-g \big( \bm{r} - \bm{r'}, k_0(\omega) \big) \frac{\bm{J}(\bm{r'}, \omega)}{\mu_0^{-1}} dV'.
 $$
 
@@ -1529,15 +1529,15 @@ Unfortunately, a complication arises when we try to move the new operator under 
 
 $$ \tag{9.25}
 	\bm{E}(\bm{r}, \omega)
-	= i \omega \iiint\_{V} \cal{G_{ee}} \big( \bm{r} - \bm{r'}, k_0(\omega) \big) \frac{\bm{J}(\bm{r'}, \omega)}{\mu_0^{-1}} dV'
-	+ i \frac{c}{\omega} \cal{D} \big( \bm{r}, k_0(\omega) \big) \frac{\bm{J}(\bm{r}, \omega)}{\mu_0^{-1}},
+	= i \omega \iiint\_{V} \mathcal{G_{ee}} \big( \bm{r} - \bm{r'}, k_0(\omega) \big) \frac{\bm{J}(\bm{r'}, \omega)}{\mu_0^{-1}} dV'
+	+ i \frac{c}{\omega} \mathcal{D} \big( \bm{r}, k_0(\omega) \big) \frac{\bm{J}(\bm{r}, \omega)}{\mu_0^{-1}},
 $$
 
-where \\(\cal{D}\\) is the *depolarization tensor* and
+where \\(\mathcal{D}\\) is the *depolarization tensor* and
 
 $$ \tag{9.26}
-	\cal{G_{ee}}(\bm{r} - \bm{r'}, k)
-	= \Big( \cal{I} + \frac{1}{k^2} \nabla \otimes \nabla \Big) g(\bm{r} - \bm{r'}, k)
+	\mathcal{G_{ee}}(\bm{r} - \bm{r'}, k)
+	= \Big( \mathcal{I} + \frac{1}{k^2} \nabla \otimes \nabla \Big) g(\bm{r} - \bm{r'}, k)
 $$
 
 is the *electric Green tensor for electrical sources*[^12].
@@ -1569,13 +1569,13 @@ we obtain a convergent (improper) integral
 
 $$ \tag{9.30}
 	\bm{B}(\bm{r}, \omega)
-	= \iiint\_{V} \cal{G_{me}} \big( \bm{r} - \bm{r'}, k_0(\omega) \big) \frac{\bm{J}(\bm{r'}, \omega)}{\mu_0^{-1}} dV',
+	= \iiint\_{V} \mathcal{G_{me}} \big( \bm{r} - \bm{r'}, k_0(\omega) \big) \frac{\bm{J}(\bm{r'}, \omega)}{\mu_0^{-1}} dV',
 $$
 
 that features the *magnetic Green tensor for electrical sources*
 
 $$ \tag{9.31}
-	\cal{G_{me}}(\bm{r} - \bm{r'}, k)
+	\mathcal{G_{me}}(\bm{r} - \bm{r'}, k)
 	= \nabla' g(\bm{r} - \bm{r'}, k) \times
 $$
 
@@ -1753,16 +1753,16 @@ $$ \tag{10.15}
 	\bm{p} = q \bm{d}.
 $$
 
-A molecule can become polarized for a variety of reasons \[[5](#references) (vol. II, ch. 11)\]. If the separation of charges occurs due the influence of an electric field, one speaks of *induced polarization*. If we assume that the effect is linear, the response is characterized by the [mean polarizability](https://en.wikipedia.org/wiki/Electric_susceptibility#Molecular_polarizability) tensor \\(\cal{\Alpha_m}\\):
+A molecule can become polarized for a variety of reasons \[[5](#references) (vol. II, ch. 11)\]. If the separation of charges occurs due the influence of an electric field, one speaks of *induced polarization*. If we assume that the effect is linear, the response is characterized by the [mean polarizability](https://en.wikipedia.org/wiki/Electric_susceptibility#Molecular_polarizability) tensor \\(\mathcal{\Alpha_m}\\):
 
 $$ \tag{10.16}
-	\bm{p} \approx \cal{\Alpha_m} \epsilon_0 \bm{E_{\mu}}.
+	\bm{p} \approx \mathcal{\Alpha_m} \epsilon_0 \bm{E_{\mu}}.
 $$
 
 If there are \\(N\\) electric dipoles per unit volume, we can define the *electric polarization* \\(\bm{P}\\) as
 
 $$ \tag{10.17}
-	\bm{P} = N \bm{p} \approx N \cal{\Alpha_m} \epsilon_0 \bm{E_{\mu}}.
+	\bm{P} = N \bm{p} \approx N \mathcal{\Alpha_m} \epsilon_0 \bm{E_{\mu}}.
 $$
 
 Note that, in general, the microscopic field \\(\bm{E_{\mu}}\\) acting on the dipole is different from the macroscopic field \\(\bm{E}\\). The reason is that the microscopic field varies very rapidly inside the matter - it is very strong near the nucleus, and relatively weak in the gaps between the atoms. Thus, the density of matter plays an important role. If the dipoles are randomly distributed, this leads to a spherically symmetric configuration, and it can be shown that the two fields are related by the equation
@@ -1777,7 +1777,7 @@ By combining Equations 10.17 and 10.18,
 
 $$ \tag{10.19}
 	\bm{P}
-	= \frac{N \cal{\Alpha_m}}{1 - \frac{1}{3} N \cal{\Alpha_m}} \epsilon_0 \bm{E},
+	= \frac{N \mathcal{\Alpha_m}}{1 - \frac{1}{3} N \mathcal{\Alpha_m}} \epsilon_0 \bm{E},
 $$
 
 we can incorporate the correction for the *microscopic* field into the *macroscopic* theory.
@@ -1845,54 +1845,107 @@ the *radiative properties* of the large-scale medium are determined by solving t
 
 ## Mathematical Formulation of the Scattering Problem
 
-We begin by splitting the space into two regions - homogeneous (1) and inhomogeneous (2). According to the Maxwell equations in the frequency domain (Equation 3.9.1), the following relation holds in both regions:
+Participating media can be divided into two categories - homogeneous and inhomogeneous. This suggests that we may split any medium into two regions: 1) homogeneous, and 2) the remaining space (that may possibly be inhomogeneous).
+
+[Picture?]
+
+According to the Maxwell equations in the frequency domain (Equation 3.9.1), the following relation holds in both regions:
 
 $$ \tag{11.1}
 	\nabla \times \bm{E}(\bm{r}, \omega) + i \omega \bm{B}(\bm{r}, \omega) = 0.
 $$
 
-This implies that we only need to find the expression of \\(\bm{E}\\), and the magnetic field is then given by
+On the other hand, the second Maxwell equation (3.9.3) depends the region under consideration:
 
 $$ \tag{11.2}
-	\bm{B}(\bm{r}, \omega) = \frac{i}{\omega} \nabla \times \bm{E}(\bm{r}, \omega).
-$$
-
-On the other hand, the second Maxwell equation depends the region under consideration:
-
-$$ \tag{11.3}
 	\nabla \times \bm{H}(\bm{r}, \omega) - i \omega \bm{D}(\bm{r}, \omega) = \bm{J_f}(\bm{r}, \omega).
 $$
 
 Assuming that the media are linear, isotropic, and source-free, we may use Equation 6.1.3 instead:
 
+$$ \tag{11.3}
+\begin{aligned}
+	& \nabla \times \big( \mu_1^{-1}(\omega) \bm{B}(\bm{r_1}, \omega) \big)
+	= i \omega \varepsilon_1(\omega)  \bm{E}(\bm{r_1}, \omega), \cr
+	& \nabla \times \big( \mu_2^{-1}(\bm{r_2}, \omega) \bm{B}(\bm{r_2}, \omega) \big)
+	= i \omega \varepsilon_2(\bm{r_2}, \omega) \bm{E}(\bm{r_2}, \omega),
+\end{aligned}
+$$
+
+where the first equation only holds in the region 1, and the second equation - in the region 2.
+
+Further, assume that the media are non-magnetic. This implies that
+
 $$ \tag{11.4}
 \begin{aligned}
-	&\nabla \times \big( \mu_1^{-1}(\omega) \bm{B}(\bm{r}, \omega) \big)
-	= i \omega \varepsilon_1(\omega)  \bm{E}(\bm{r}, \omega), \cr
-	&\nabla \times \big( \mu_2^{-1}(\bm{r}, \omega) \bm{B}(\bm{r}, \omega) \big)
-	= i \omega \varepsilon_2(\bm{r}, \omega) \bm{E}(\bm{r}, \omega),
+	& \nabla \times \bm{B}(\bm{r_1}, \omega)
+	= i \omega \mu_0 \varepsilon_1(\omega) \bm{E}(\bm{r_1}, \omega), \cr
+	& \nabla \times \bm{B}(\bm{r_2}, \omega)
+	= i \omega \mu_0 \varepsilon_2(\bm{r_2}, \omega) \bm{E}(\bm{r_2}, \omega),
 \end{aligned}
 $$
 
-where the first equation is only valid in the region 1, and the second equation - in the region 2.
-
-Further, assume that the media are non-magnetic:
+These equations are ready for substitution into the curl of Equation 11.1. The result is
 
 $$ \tag{11.5}
 \begin{aligned}
-	&\nabla \times \bm{B}(\bm{r}, \omega)
-	= i \omega \mu_0 \varepsilon_1(\omega) \bm{E}(\bm{r}, \omega), \cr
-	&\nabla \times \bm{B}(\bm{r}, \omega)
-	= i \omega \mu_0 \varepsilon_2(\bm{r}, \omega) \bm{E}(\bm{r}, \omega),
+	& \nabla \times \nabla \times \bm{E}(\bm{r_1}, \omega) - k_1^2(\omega) \bm{E}(\bm{r_1}, \omega) = 0, \cr
+	& \nabla \times \nabla \times \bm{E}(\bm{r_2}, \omega) - k_2^2(\bm{r_2}, \omega) \bm{E}(\bm{r_2}, \omega) = 0,
 \end{aligned}
 $$
 
-$$ \tag{11.5}
+where we have grouped the constants according to the definition of the complex wave number \\(k\\) given by Equation 7.4.
+
+We must make one more modification of Equation 11.5.2 by subtracting \\(k_1^2 \bm{E}\\) from both sides:
+
+$$ \tag{11.6}
 \begin{aligned}
-	&\nabla \times \nabla \times \bm{E}(\bm{r}, \omega) - \omega^2 \mu_0 \varepsilon_1(\omega) \bm{E}(\bm{r}, \omega) = 0, \cr
-	&\nabla \times \nabla \times \bm{E}(\bm{r}, \omega) - \omega^2 \mu_0 \varepsilon_2(\bm{r}, \omega) \bm{E}(\bm{r}, \omega) = 0
+	& \nabla \times \nabla \times \bm{E}(\bm{r_1}, \omega) - k_1^2(\omega) \bm{E}(\bm{r_1}, \omega) = 0, \cr
+	& \nabla \times \nabla \times \bm{E}(\bm{r_2}, \omega) - k_1^2(\omega) \bm{E}(\bm{r_2}, \omega)
+	= \big( k_2^2(\bm{r_2}, \omega) - k_1^2(\omega) \big) \bm{E}(\bm{r_2}, \omega).
 \end{aligned}
 $$
+
+We are now in a good position to state a single equation that unifies the two region. By introducing the term
+
+$$ \tag{11.7}
+\bm{J'}(\bm{r}, \omega) =
+\begin{cases}
+   0 &\text{if } \bm{r} \in V_1, \cr
+   \big( k_2^2(\bm{r_2}, \omega) - k_1^2(\omega) \big) \bm{E}(\bm{r_2}, \omega) &\text{if } \bm{r} \in V_2,
+\end{cases},
+$$
+
+we can replace Equations 11.6.1 and 11.6.2 by a single equation
+
+$$ \tag{11.8}
+	\nabla \times \nabla \times \bm{E}(\bm{r}, \omega) - k_1^2(\omega) \bm{E}(\bm{r}, \omega)
+	= \bm{J'}(\bm{r}, \omega).
+$$
+
+We have already encountered a mathematically identical problem stated in Equation 9.18.1. After matching the constants, the solution is readily given by Equation 9.25:
+
+$$ \tag{11.9}
+	\bm{E_s}(\bm{r}, \omega)
+	= \iiint\_{V_2} -\mathcal{G_{ee}} \big( \bm{r} - \bm{r'}, k_1(\omega) \big) \bm{J}(\bm{r'}, \omega) dV',
+$$
+
+where we have further assumed that \\(\bm{r}\\) is located within the homogeneous region.
+
+Equations 11.9 is a special solution of Equation 11.8 (just like Equation 9.13 is a special solution of Equation 9.5). To obtain a general solution of the inhomogeneous equation, we must combine it with the solution of the homogeneous equation, which physically amounts to adding the primary sources. In our particular case, the homogeneous equation is mathematically equivalent to Equation 6.5, which allows us to directly use the solution given by Equation 6.16:
+
+$$ \tag{11.10}
+\begin{aligned}
+	   \bm{E}(\bm{r}, \omega)
+	&= \bm{E_i}(\bm{r}, \omega) + \bm{E_s}(\bm{r}, \omega) \cr
+	&= \oiint\_{\mathbb{S}^2} \bm{E}(0, \bm{n}, \omega) e^{-i k_1(\omega) (\bm{r} \cdot \bm{n})} d\Omega_n
+	+ \iiint\_{V_2} -\mathcal{G_{ee}} \big( \bm{r} - \bm{r'}, k_1(\omega) \big) \bm{J}(\bm{r'}, \omega) dV'.
+\end{aligned}
+$$
+
+In addition to the mathematical approach presented above, we can use our physical intuition to arrive at the same result.
+
+---
 
 $$ \tag{11.5}
 \begin{aligned}
@@ -2039,12 +2092,12 @@ $$
 
 $$ \tag{9.23}
 	\bm{E}(\bm{r}, \omega)
-	= i \omega \iiint\_{V} \cal{G_{ee}}(\bm{r} - \bm{r'}, \omega) \frac{\bm{J'}(\bm{r'}, \omega)}{\mu_0^{-1}} dV'
+	= i \omega \iiint\_{V} \mathcal{G_{ee}}(\bm{r} - \bm{r'}, \omega) \frac{\bm{J'}(\bm{r'}, \omega)}{\mu_0^{-1}} dV'
 $$
 
 $$ \tag{9.23}
 	\bm{E}(\bm{r}, \omega)
-	= -\frac{\omega^2}{c^2} \iiint\_{V} \cal{G_{ee}}(\bm{r} - \bm{r'}, \omega) \big( \varepsilon_r(\bm{r}, \omega) - 1) \bm{E}(\bm{r}, \omega) dV'
+	= -\frac{\omega^2}{c^2} \iiint\_{V} \mathcal{G_{ee}}(\bm{r} - \bm{r'}, \omega) \big( \varepsilon_r(\bm{r}, \omega) - 1) \bm{E}(\bm{r}, \omega) dV'
 $$
 
 ---
@@ -2146,12 +2199,12 @@ where \\(\phi(\bm{r})\\) is isotropic, and the phase difference between the two 
 The significance of Equation 19 can be better seen if we express it using complex numbers
 
 $$ \tag{??}
-	\bm{E}(\bm{r},t) = \cal{Re}
+	\bm{E}(\bm{r},t) = \mathcal{Re}
 	\begin{Bmatrix}
 		\phantom{\pm} \bar{E}\_a(\bm{r}) \phantom{e^{-i \pi/2}} e^{i(\phi(\bm{r}) + \omega t)} \cr
 				 \pm  \bar{E}\_b(\bm{r}) 		  e^{-i \pi/2}  e^{i(\phi(\bm{r}) + \omega t)}
 	\end{Bmatrix} =
-	\cal{Re} \big\lbrace \bm{\bar{E}}(\bm{r}) e^{i \phi(\bm{r})} e^{i \omega t} \big\rbrace,
+	\mathcal{Re} \big\lbrace \bm{\bar{E}}(\bm{r}) e^{i \phi(\bm{r})} e^{i \omega t} \big\rbrace,
 $$
 
 which makes it the vector analog of the complex amplitude of a scalar time-harmonic wave.
