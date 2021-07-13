@@ -1510,7 +1510,7 @@ $$ \tag{9.22}
 	= -i \omega \Big( \mathcal{I} + \frac{c^2}{\omega^2} \nabla \nabla \cdot \Big) \bm{A}(\bm{r}, \omega).
 $$
 
-Note that the gradient is a column vector, and the divergence can be visualized as a row vector. In this specific order, they represent an [outer product](https://en.wikipedia.org/wiki/Outer_product) that forms a square matrix:
+Note that the gradient is a column vector, and the divergence can be visualized as a row vector. In this specific order, they represent an [tensor product](https://en.wikipedia.org/wiki/Tensor_product):
 
 $$ \tag{9.23}
 	\bm{E}(\bm{r}, \omega) =
@@ -1558,25 +1558,18 @@ $$ \tag{9.28}
 	\nabla \times (g \bm{J}) = g (\nabla \times \bm{J}) + \nabla g \times \bm{J},
 $$
 
-where
+and noting that \\(\bm{J}\\) does not depend on \\(\bm{r}\\), we obtain a convergent (improper) integral
 
 $$ \tag{9.29}
-	\nabla \times \bm{J}(\bm{r'}, \omega) = 0, \quad
-	\nabla' g(\bm{r} - \bm{r'}, k) = -\nabla g(\bm{r} - \bm{r'}, k),
-$$
-
-we obtain a convergent (improper) integral
-
-$$ \tag{9.30}
 	\bm{B}(\bm{r}, \omega)
 	= \iiint\_{V} \mathcal{G_{me}} \big( \bm{r} - \bm{r'}, k_0(\omega) \big) \frac{\bm{J}(\bm{r'}, \omega)}{\mu_0^{-1}} dV',
 $$
 
 that features the *magnetic Green tensor for electrical sources*
 
-$$ \tag{9.31}
+$$ \tag{9.30}
 	\mathcal{G_{me}}(\bm{r} - \bm{r'}, k)
-	= \nabla' g(\bm{r} - \bm{r'}, k) \times
+	= -\nabla g(\bm{r} - \bm{r'}, k) \times
 $$
 
 that may be expressed using the [matrix form of the cross product](https://en.wikipedia.org/wiki/Cross_product#Conversion_to_matrix_multiplication) \[[van Bladel](#references) (ch. 7.9)\].
@@ -1642,7 +1635,8 @@ where
 
 $$ \tag{10.6}
 	\frac{\partial t'(\bm{r})}{\partial x}
-	= -\frac{\bm{r} - \bm{r'}}{c |\bm{r} - \bm{r'}|} \cdot \frac{\partial (\bm{r} - \bm{r'})}{\partial x}.
+	= -\frac{1}{c} \frac{\partial}{\partial x} \big( (\bm{r} - \bm{r'}) \cdot (\bm{r} - \bm{r'}) \big)^{1/2}
+	= -\frac{\bm{r} - \bm{r'}}{c |\bm{r} - \bm{r'}|} \cdot \frac{\partial}{\partial x} (\bm{r} - \bm{r'}).
 $$
 
 Since \\(t'\\) depends on \\(\bm{r}\\), this "simple" \\(x\\)-derivative of Equation 10.6 requires application of the [chain rule](https://en.wikipedia.org/wiki/Chain_rule#Multivariable_case).
@@ -2041,15 +2035,117 @@ $$ \tag{11.22}
 	-i \omega \Big( \mathcal{I} + \frac{1}{k_1^2(\omega)} \nabla \otimes \nabla \Big) \bm{A}(\bm{r}, \omega).
 $$
 
-After performing a substitution of Equation 11.21, and assuming that \\(\bm{r}\\) lies outside the inhomogeneous region, we obtain the expanded version of Equation 11.11:
+After performing a substitution of Equation 11.21, and assuming that \\(\bm{r}\\) lies outside the inhomogeneous region, we obtain an expanded version of Equation 11.11:
 
 $$ \tag{11.23}
 \begin{aligned}
     \bm{E}(\bm{r}, \omega)
 	&= \oiint\_{\mathbb{S}^2} \bm{E}(0, \bm{n}, \omega) e^{-i k_1(\omega) (\bm{r} \cdot \bm{n})} d\Omega_n \cr
-	&+ \iiint\_{V_2} \big( m^2(\bm{r'}, \omega) - 1 \big) \big( k_1^2(\omega) \mathcal{I} + \nabla \otimes \nabla \big) \frac{e^{-i k_1(\omega) |\bm{r} - \bm{r'}|}}{4 \pi |\bm{r} - \bm{r'}|} \bm{E}(\bm{r'}, \omega) dV'.
+	&+ \frac{k_1^2(\omega)}{4 \pi} \iiint\_{V_2} \big( m^2(\bm{r'}, \omega) - 1 \big) \big( \mathcal{I} + \frac{1}{k_1^2(\omega)} \nabla \otimes \nabla \big) \frac{e^{-i k_1(\omega) |\bm{r} - \bm{r'}|}}{|\bm{r} - \bm{r'}|} \bm{E}(\bm{r'}, \omega) dV'.
 \end{aligned}
 $$
+
+In the future, when no confusion arises, we shall drop redundant indexing by writing \\(k = k_1\\) and \\(V  = V_2\\).
+
+## Near and Far Field Approximations
+
+In order to compute the scattered field given by Equation 11.11, we need a way to evaluate the electric Green tensor given by Equation 9.26. Arguably, the simplest way to do that is to write it using the Cartesian coordinates:
+
+$$ \tag{12.1}
+\begin{aligned}
+    \Big( \mathcal{I} + \frac{1}{k^2} \nabla \otimes \nabla \Big) g(\bm{r} - \bm{r'}, k)
+    = \begin{bmatrix}
+	    1 + \frac{1}{k^2} \frac{\partial^2 g}{\partial x^2} & \frac{1}{k^2} \frac{\partial^2 g}{\partial x \partial y} & \frac{1}{k^2} \frac{\partial^2 g}{\partial x \partial z} \cr
+	    \frac{1}{k^2} \frac{\partial^2 g}{\partial y \partial x} & 1 + \frac{1}{k^2} \frac{\partial^2 g}{\partial y^2} & \frac{1}{k^2} \frac{\partial^2 g}{\partial y \partial z} \cr
+	    \frac{1}{k^2} \frac{\partial^2 g}{\partial z \partial x} & \frac{1}{k^2} \frac{\partial^2 g}{\partial z \partial y} & 1 + \frac{1}{k^2} \frac{\partial^2 g}{\partial z^2} \cr
+	\end{bmatrix},
+\end{aligned}
+$$
+
+with the Green function \\(g\\) defined according to Equation 9.10.
+
+The components of the tensor have the form
+
+$$ \tag{12.2}
+    \frac{\partial^2}{\partial \\_ \partial \\_} \Bigg( \frac{-e^{-i k |\bm{r} - \bm{r'}|}}{k^2 |\bm{r} - \bm{r'}|} \Bigg),
+$$
+
+where we may substitute \\(x\\), \\(y\\), or \\(z\\) into the blanks.
+
+Under the previous assumption that \\(\bm{r} \neq \bm{r'}\\), the Green function and its partial derivatives are continuous, which allows us to interchange the order of differentiation. Consequently, the matrix of Equation 12.1 is [symmetric](https://en.wikipedia.org/wiki/Symmetric_matrix).
+
+The process of differentiation is straightforward: we use the identity
+
+$$ \tag{12.3}
+    \frac{\partial}{\partial x} |\bm{r} - \bm{r'}|^{n}
+    = \frac{\partial}{\partial x} \big( (\bm{r} - \bm{r'}) \cdot (\bm{r} - \bm{r'}) \big)^{n/2}
+    = n \frac{\bm{r} - \bm{r'}}{|\bm{r} - \bm{r'}|^{2-n}} \cdot \frac{\partial}{\partial x} (\bm{r} - \bm{r'})
+$$
+
+and repeatedly apply the [product rule](https://en.wikipedia.org/wiki/Product_rule). Skipping the details of the calculation, a typical result is
+
+$$ \tag{12.2}
+\begin{aligned}
+    \frac{\partial^2}{\partial y \partial x} \Bigg( \frac{e^{-i k |\bm{r} - \bm{r'}|}}{k^2 |\bm{r} - \bm{r'}|} \Bigg)
+    = \Bigg(
+      \frac{3 k^{-2}}{|\bm{r} - \bm{r'}|^3}
+    + \frac{3 i k^{-1}}{|\bm{r} - \bm{r'}|^2}
+    - \frac{1}{|\bm{r} - \bm{r'}|}
+      \Bigg) \frac{(x - x') (y - y')}{|\bm{r} - \bm{r'}|^2} e^{-i k |\bm{r} - \bm{r'}|}
+\end{aligned}
+$$
+
+From Equation 12.4, it follows that
+
+$$ \tag{12.5}
+    \frac{\partial}{\partial x} \frac{1}{k_1^2 |\bm{r} - \bm{r'}|}
+    = - \frac{\bm{r} - \bm{r'}}{k_1^2 |\bm{r} - \bm{r'}|^3} \cdot \frac{\partial}{\partial x} (\bm{r} - \bm{r'})
+$$
+
+and
+
+$$ \tag{12.6}
+    \frac{\partial}{\partial x} e^{-i k_1 |\bm{r} - \bm{r'}|}
+    = -i k_1 \Bigg( \frac{\bm{r} - \bm{r'}}{|\bm{r} - \bm{r'}|} \cdot \frac{\partial}{\partial x} (\bm{r} - \bm{r'}) \Bigg) e^{-i k_1 |\bm{r} - \bm{r'}|}.
+$$
+
+Assume that the particle is very far away from the observation point, so that \\(k_1^2 |\bm{r} - \bm{r'}|^2 \gg 1\\). The value of the expression in Equation 12.5 then approaches 0, and
+
+$$ \tag{12.7}
+    \frac{\partial}{\partial x} \Bigg( \frac{e^{-i k_1 |\bm{r} - \bm{r'}|}}{k_1^2 |\bm{r} - \bm{r'}|} \Bigg)
+    \approx -i k_1 \frac{x - x'}{|\bm{r} - \bm{r'}|} \Bigg( \frac{e^{-i k_1 |\bm{r} - \bm{r'}|}}{k_1^2 |\bm{r} - \bm{r'}|} \Bigg).
+$$
+
+Thus, the derivative of the function is the function itself multiplied by a scaling factor.
+
+To obtain the second derivative, we can use the product rule again. At a great distance, the derivative of the scaling factor approaches zero for the same reason as discussed above, and the only remaining term is
+
+$$ \tag{12.8}
+\begin{aligned}
+    \frac{\partial^2}{\partial y \partial x} \Bigg( \frac{e^{-i k_1 |\bm{r} - \bm{r'}|}}{k_1^2 |\bm{r} - \bm{r'}|} \Bigg)
+    &\approx -i k_1 \frac{x - x'}{|\bm{r} - \bm{r'}|} \frac{\partial}{\partial y}\Bigg( \frac{e^{-i k_1 |\bm{r} - \bm{r'}|}}{k_1^2 |\bm{r} - \bm{r'}|} \Bigg) \cr
+    &\approx -\frac{(x - x')(y - y')}{|\bm{r} - \bm{r'}|^2} \Bigg( \frac{e^{-i k_1 |\bm{r} - \bm{r'}|}}{|\bm{r} - \bm{r'}|} \Bigg).
+\end{aligned}
+$$
+
+The other matrix elements of Equation 12.1 can be obtained by taking Equation 12.8 and replacing \\(x\\) and \\(y\\) with \\(x\\), \\(y\\), or \\(z\\).
+
+-- Novony 6.3.2 --
+
+Thus, in the *far field*, the expression of the scattered field given by Equation 11.23 becomes
+
+$$ \tag{12.9}
+    \bm{E_s}(\bm{r}, \omega)
+	= \frac{k_1^2(\omega)}{4 \pi} \iiint\_{V_2} \big( m^2(\bm{r'}, \omega) - 1 \big) \mathcal{R}(\bm{r} - \bm{r'})  \Bigg[ \bm{E}(\bm{r'}, \omega) \frac{e^{-i k_1(\omega) |\bm{r} - \bm{r'}|}}{|\bm{r} - \bm{r'}|} \Bigg] dV',
+$$
+
+where \\(\mathcal{R}\\) is a purely geometric operator defined by the equation
+
+$$ \tag{12.10}
+    \mathcal{R}(\bm{R})
+	= \mathcal{I} - \frac{1}{|\bm{R}|^2} \big( \bm{R} \otimes \bm{R} \big).
+$$
+
 
 ---
 
