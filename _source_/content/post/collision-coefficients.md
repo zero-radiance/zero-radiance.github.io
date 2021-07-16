@@ -2047,38 +2047,40 @@ $$ \tag{11.23}
 \begin{aligned}
     \bm{E}(\bm{r}, \omega)
 	&= \oiint\_{\mathbb{S}^2} \bm{E}(0, \bm{n}, \omega) e^{-i k_1(\omega) (\bm{r} \cdot \bm{n})} d\Omega_n \cr
-	&+ \frac{k_1^2(\omega)}{4 \pi} \iiint\_{V_2} \big( m^2(\bm{r'}, \omega) - 1 \big) \big( \mathcal{I} + \frac{1}{k_1^2(\omega)} \nabla \otimes \nabla \big) \frac{e^{-i k_1(\omega) |\bm{r} - \bm{r'}|}}{|\bm{r} - \bm{r'}|} \bm{E}(\bm{r'}, \omega) dV'.
+	&+ k_1^2(\omega) \iiint\_{V_2} \Big( m^2(\bm{r'}, \omega) - 1 \Big) \Big( \mathcal{I} + \frac{1}{k_1^2(\omega)} \nabla \otimes \nabla \Big) \frac{e^{-i k_1(\omega) |\bm{r} - \bm{r'}|}}{4 \pi |\bm{r} - \bm{r'}|} \bm{E}(\bm{r'}, \omega) dV'.
 \end{aligned}
 $$
 
 In the future, when no confusion arises, we shall drop redundant indexing by writing \\(k = k_1\\) and \\(V  = V_2\\).
 
-## Near and Far Field Approximations
+## Near- and Far-Field Approximations
 
-In order to compute the scattered field given by Equation 11.11, we need a way to evaluate the electric Green tensor given by Equation 9.26. Arguably, the simplest way to do that is to write it using the Cartesian coordinates:
+In order to compute the scattered field given by Equation 11.10, we need a way to evaluate the Green tensor defined by Equation 9.26. Let's take a look at its matrix representation in the Cartesian coordinates:
 
 $$ \tag{12.1}
 \begin{aligned}
-    \Big( \mathcal{I} + \frac{1}{k^2} \nabla \otimes \nabla \Big) g(\bm{r} - \bm{r'}, k)
-    = \begin{bmatrix}
-	    1 + \frac{1}{k^2} \frac{\partial^2 g}{\partial x^2} & \frac{1}{k^2} \frac{\partial^2 g}{\partial x \partial y} & \frac{1}{k^2} \frac{\partial^2 g}{\partial x \partial z} \cr
-	    \frac{1}{k^2} \frac{\partial^2 g}{\partial y \partial x} & 1 + \frac{1}{k^2} \frac{\partial^2 g}{\partial y^2} & \frac{1}{k^2} \frac{\partial^2 g}{\partial y \partial z} \cr
-	    \frac{1}{k^2} \frac{\partial^2 g}{\partial z \partial x} & \frac{1}{k^2} \frac{\partial^2 g}{\partial z \partial y} & 1 + \frac{1}{k^2} \frac{\partial^2 g}{\partial z^2} \cr
+    \mathcal{G_{ee}}(\bm{r} - \bm{r'}, k)
+    = \Big( \mathcal{I} + \frac{1}{k^2} \nabla \otimes \nabla \Big) g(\bm{r} - \bm{r'}, k)
+    = \mathcal{I} g + \frac{1}{k^2}
+    \begin{bmatrix}
+	    \frac{\partial^2 g}{\partial x^2} & \frac{\partial^2 g}{\partial x \partial y} & \frac{\partial^2 g}{\partial x \partial z} \cr
+	    \frac{\partial^2 g}{\partial y \partial x} & \frac{\partial^2 g}{\partial y^2} & \frac{\partial^2 g}{\partial y \partial z} \cr
+	    \frac{\partial^2 g}{\partial z \partial x} & \frac{\partial^2 g}{\partial z \partial y} & \frac{\partial^2 g}{\partial z^2} \cr
 	\end{bmatrix},
 \end{aligned}
 $$
 
-with the Green function \\(g\\) defined according to Equation 9.10.
+where the Green function \\(g\\) is defined according to Equation 9.10.
 
-The components of the tensor have the form
+If we ignore the \\(4 \pi\\) factor, the matrix elements have the form
 
 $$ \tag{12.2}
-    \frac{\partial^2}{\partial \\_ \partial \\_} \Bigg( \frac{-e^{-i k |\bm{r} - \bm{r'}|}}{k^2 |\bm{r} - \bm{r'}|} \Bigg),
+    \frac{\partial^2}{\partial \\_ \partial \\_} \Bigg( \frac{e^{-i k |\bm{r} - \bm{r'}|}}{k^2 |\bm{r} - \bm{r'}|} \Bigg),
 $$
 
 where we may substitute \\(x\\), \\(y\\), or \\(z\\) into the blanks.
 
-Under the previous assumption that \\(\bm{r} \neq \bm{r'}\\), the Green function and its partial derivatives are continuous, which allows us to interchange the order of differentiation. Consequently, the matrix of Equation 12.1 is [symmetric](https://en.wikipedia.org/wiki/Symmetric_matrix).
+Under the previous assumption that \\(\bm{r} \neq \bm{r'}\\), the Green function and its partial derivatives are continuous, which means the order of partial differentiation makes no difference. Consequently, the matrix of Equation 12.1 is [symmetric](https://en.wikipedia.org/wiki/Symmetric_matrix).
 
 The process of differentiation is straightforward: we use the identity
 
@@ -2088,70 +2090,97 @@ $$ \tag{12.3}
     = n \frac{\bm{r} - \bm{r'}}{|\bm{r} - \bm{r'}|^{2-n}} \cdot \frac{\partial}{\partial x} (\bm{r} - \bm{r'})
 $$
 
-and repeatedly apply the [product rule](https://en.wikipedia.org/wiki/Product_rule). Skipping the details of the calculation, a typical result is
+and repeatedly apply the [product rule](https://en.wikipedia.org/wiki/Product_rule). Skipping the details of the calculation, and using the the shorthand notation \\(\bm{R} = (\bm{r} - \bm{r'}), R = |\bm{R}|\\), a typical off-diagonal element has the form
 
-$$ \tag{12.2}
+$$ \tag{12.4}
 \begin{aligned}
     \frac{\partial^2}{\partial y \partial x} \Bigg( \frac{e^{-i k |\bm{r} - \bm{r'}|}}{k^2 |\bm{r} - \bm{r'}|} \Bigg)
-    = \Bigg(
-      \frac{3 k^{-2}}{|\bm{r} - \bm{r'}|^3}
-    + \frac{3 i k^{-1}}{|\bm{r} - \bm{r'}|^2}
-    - \frac{1}{|\bm{r} - \bm{r'}|}
-      \Bigg) \frac{(x - x') (y - y')}{|\bm{r} - \bm{r'}|^2} e^{-i k |\bm{r} - \bm{r'}|}
+    = e^{-i k R} \frac{R_x R_y}{R^2}
+    	\bigg(
+		      \frac{3 k^{-2}}{R^3}
+		    + \frac{3 i k^{-1}}{R^2}
+		    - \frac{1}{R}
+      	\bigg),
 \end{aligned}
 $$
 
-From Equation 12.4, it follows that
+while the elements on the main diagonal are similar to
 
 $$ \tag{12.5}
-    \frac{\partial}{\partial x} \frac{1}{k_1^2 |\bm{r} - \bm{r'}|}
-    = - \frac{\bm{r} - \bm{r'}}{k_1^2 |\bm{r} - \bm{r'}|^3} \cdot \frac{\partial}{\partial x} (\bm{r} - \bm{r'})
+\begin{aligned}
+    \frac{\partial^2}{\partial x^2} \Bigg( \frac{e^{-i k |\bm{r} - \bm{r'}|}}{k^2 |\bm{r} - \bm{r'}|} \Bigg)
+	= e^{-i k R} \frac{R_x^2}{R^2}
+    	\bigg(
+		      \frac{3 k^{-2}}{R^3}
+		    + \frac{3 i k^{-1}}{R^2}
+		    - \frac{1}{R}
+      	\bigg)
+    - e^{-i k R}
+    	\bigg(
+		      \frac{k^{-2}}{R^3}
+		    + \frac{i k^{-1}}{R^2}
+      	\bigg).
+\end{aligned}
 $$
 
-and
+
+Take a look at the individual factors: those outside the brackets oscillate between 0 and 1, while the terms  inside greatly depend on the distance between the observation point \\(\bm{r}\\) and the center of the volume element \\(\bm{r'}\\). This suggests that we may divide the entire space space into zones based on the proximity to the observation point. If we are interested in the value of the field located near a source, we say that the observation point belongs to the [near-field](https://en.wikipedia.org/wiki/Near_and_far_field) zone. Similarly, far-away points are said to be located in the [far-field](https://en.wikipedia.org/wiki/Near_and_far_field) zone. Between them is a region called the *transition* zone.
+
+If we fix the value of \\(k\\), we may decompose the Green tensor into the near-, transition-, and far-field components with magnitudes proportional to \\(R^{-1}\\), \\(R^{-2}\\), and \\(R^{-3}\\), respectfully:
 
 $$ \tag{12.6}
-    \frac{\partial}{\partial x} e^{-i k_1 |\bm{r} - \bm{r'}|}
-    = -i k_1 \Bigg( \frac{\bm{r} - \bm{r'}}{|\bm{r} - \bm{r'}|} \cdot \frac{\partial}{\partial x} (\bm{r} - \bm{r'}) \Bigg) e^{-i k_1 |\bm{r} - \bm{r'}|}.
+\begin{aligned}
+    \mathcal{G_{ee}}
+    = \mathcal{G_n}
+    + \mathcal{G_t}
+    + \mathcal{G_f}
+\end{aligned},
 $$
 
-Assume that the particle is very far away from the observation point, so that \\(k_1^2 |\bm{r} - \bm{r'}|^2 \gg 1\\). The value of the expression in Equation 12.5 then approaches 0, and
+such that
 
 $$ \tag{12.7}
-    \frac{\partial}{\partial x} \Bigg( \frac{e^{-i k_1 |\bm{r} - \bm{r'}|}}{k_1^2 |\bm{r} - \bm{r'}|} \Bigg)
-    \approx -i k_1 \frac{x - x'}{|\bm{r} - \bm{r'}|} \Bigg( \frac{e^{-i k_1 |\bm{r} - \bm{r'}|}}{k_1^2 |\bm{r} - \bm{r'}|} \Bigg).
+\begin{aligned}
+    & \mathcal{G_n}(\bm{R}, k)
+    = -\frac{1}{k^2 R^2} \bigg(\mathcal{I} - 3 \frac{\bm{R} \otimes \bm{R}}{\bm{R} \cdot \bm{R}} \bigg) g(\bm{R}, k), \cr
+    & \mathcal{G_t}(\bm{R}, k)
+    = -\frac{i}{k R} \bigg(\mathcal{I} - 3 \frac{\bm{R} \otimes \bm{R}}{\bm{R} \cdot \bm{R}} \bigg) g(\bm{R}, k), \cr
+	& \mathcal{G_f}(\bm{R}, k)
+    = \bigg( \mathcal{I} - \frac{\bm{R} \otimes \bm{R}}{\bm{R} \cdot \bm{R}} \bigg) g(\bm{R}, k),
+\end{aligned}
 $$
 
-Thus, the derivative of the function is the function itself multiplied by a scaling factor.
+with the Green function containing an additional \\(R^{-1}\\) factor.
 
-To obtain the second derivative, we can use the product rule again. At a great distance, the derivative of the scaling factor approaches zero for the same reason as discussed above, and the only remaining term is
+If we wish to discard any of the terms of Equation 12.6, we should consider their magnitudes relative to each other. Specifically, in order for Equations 12.7.1 and 12.7.2 to vanish, we must assume that \\(k R \gg 1\\). That allows us to substitute \\(\mathcal{G_f}\\) for \\(\mathcal{G_{ee}}\\) in Equation 11.10:
 
 $$ \tag{12.8}
 \begin{aligned}
-    \frac{\partial^2}{\partial y \partial x} \Bigg( \frac{e^{-i k_1 |\bm{r} - \bm{r'}|}}{k_1^2 |\bm{r} - \bm{r'}|} \Bigg)
-    &\approx -i k_1 \frac{x - x'}{|\bm{r} - \bm{r'}|} \frac{\partial}{\partial y}\Bigg( \frac{e^{-i k_1 |\bm{r} - \bm{r'}|}}{k_1^2 |\bm{r} - \bm{r'}|} \Bigg) \cr
-    &\approx -\frac{(x - x')(y - y')}{|\bm{r} - \bm{r'}|^2} \Bigg( \frac{e^{-i k_1 |\bm{r} - \bm{r'}|}}{|\bm{r} - \bm{r'}|} \Bigg).
+    \bm{E_s}(\bm{r}, \omega)
+	&\approx k^2(\omega) \iiint\_{V} \big( m^2(\bm{r'}, \omega) - 1 \big) \frac{e^{-i k(\omega) R}}{4 \pi R} \bigg( \mathcal{I} - \frac{\bm{R} \otimes \bm{R}}{\bm{R} \cdot \bm{R}} \bigg)  \bm{E}(\bm{r'}, \omega) dV'.
 \end{aligned}
 $$
 
-The other matrix elements of Equation 12.1 can be obtained by taking Equation 12.8 and replacing \\(x\\) and \\(y\\) with \\(x\\), \\(y\\), or \\(z\\).
-
--- Novony 6.3.2 --
-
-Thus, in the *far field*, the expression of the scattered field given by Equation 11.23 becomes
+What is \\(k R\\)? According to Equation 12.8, it is the phase difference (in radians) between the observation point \\(\bm{r}\\) and the center of the volume element \\(\bm{r'}\\). This may be confirmed by dimensional analysis of Equations 7.6-7.7:
 
 $$ \tag{12.9}
-    \bm{E_s}(\bm{r}, \omega)
-	= \frac{k_1^2(\omega)}{4 \pi} \iiint\_{V_2} \big( m^2(\bm{r'}, \omega) - 1 \big) \mathcal{R}(\bm{r} - \bm{r'})  \Bigg[ \bm{E}(\bm{r'}, \omega) \frac{e^{-i k_1(\omega) |\bm{r} - \bm{r'}|}}{|\bm{r} - \bm{r'}|} \Bigg] dV',
+    k R = (\eta - i \kappa) \omega c^{-1} R = [\text{1}] [\text{rad/s}] [\text{s/m}] [\text{m}] = [\text{rad}].
 $$
 
-where \\(\mathcal{R}\\) is a purely geometric operator defined by the equation
+Intuitively, \\(k R \gg 1\\) means that the spherical wavelet generated by the volume element will go through a great number of periods of oscillation before reaching the observation point.
+
+The wavelets are spherical because the rate of change of the phase is independent of orientation; furthermore, the electric field vectors are transverse with respect to the direction of propagation \\(\bm{R}\\), since
 
 $$ \tag{12.10}
-    \mathcal{R}(\bm{R})
-	= \mathcal{I} - \frac{1}{|\bm{R}|^2} \big( \bm{R} \otimes \bm{R} \big).
+\begin{aligned}
+    \bm{R} \cdot \bigg( \mathcal{I} - \frac{\bm{R} \otimes \bm{R}}{\bm{R} \cdot \bm{R}} \bigg)
+    = \Bigg( \bigg( \mathcal{I} - \frac{\bm{R} \otimes \bm{R}}{\bm{R} \cdot \bm{R}} \bigg)^{T} \bm{R} \Bigg)^{T}
+    = \Bigg( \bigg( \mathcal{I} - \bm{R} \frac{\bm{R} \cdot}{\bm{R} \cdot \bm{R}} \bigg) \bm{R} \Bigg)^{T}
+    = 0,
+\end{aligned}
 $$
 
+where we utilized the symmetry property and the alternative expression of the tensor product given by Equations 9.22-9.23.
 
 ---
 
