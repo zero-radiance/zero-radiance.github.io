@@ -1940,9 +1940,18 @@ $$
 
 where have neglected the singularity term by assuming that \\(\bm{r}\\) is located within the homogeneous region.
 
-Equations 11.10 is a special solution of the inhomogeneous Equation 11.9 (just like Equation 9.13 is a special solution of Equation 9.5). To obtain a general solution, we must combine Equation 11.10 with the solution of the homogeneous equation, which physically amounts to adding the primary sources. In our particular case, the homogeneous equation is mathematically equivalent to Equation 6.5, which allows us to directly use the solution given by Equation 6.16:
+Similarly, the magnetic field is given by Equation 9.29:
 
 $$ \tag{11.11}
+	\bm{B_s}(\bm{r}, \omega)
+	= \frac{i}{\omega} \iiint\_{V_2} \mathcal{G_{me}} \big( \bm{r} - \bm{r'}, k_1(\omega) \big) \bm{J'}(\bm{r'}, \omega) dV',
+$$
+
+where you will recognize from Equation 3.12 that \\(\mathcal{G_{me}} = \nabla \times \mathcal{G_{ee}}\\).
+
+Equations 11.10 is a special solution of the inhomogeneous Equation 11.9 (just like Equation 9.13 is a special solution of Equation 9.5). To obtain a general solution, we must combine Equation 11.10 with the solution of the homogeneous equation, which physically amounts to adding the primary sources. In our particular case, the homogeneous equation is mathematically equivalent to Equation 6.5, which allows us to directly use the solution given by Equation 6.16:
+
+$$ \tag{11.12}
 \begin{aligned}
     \bm{E}(\bm{r}, \omega)
 	&= \oiint\_{\mathbb{S}^2} \bm{E}(0, \bm{n}, \omega) e^{-i k_1(\omega) (\bm{r} \cdot \bm{n})} d\Omega_n \cr
@@ -1954,7 +1963,7 @@ In addition to the mathematical approach presented above, we can arrive at the s
 
 Consider a particle group embedded in vacuum. The solution in terms of potentials is given by Equation 9.16:
 
-$$ \tag{11.12}
+$$ \tag{11.13}
 \begin{aligned}
 	\bm{A}(\bm{r}, \omega)
 	&= \oiint\_{\mathbb{S}^2} \bm{A}(0, \bm{n}, \omega) e^{-i k_0(\omega) (\bm{r} \cdot \bm{n})} d\Omega_n \cr
@@ -1964,31 +1973,31 @@ $$
 
 If the medium is non-magnetic, the magnetization current \\(\bm{J_m}\\) is zero, and, according to Equation 1.9.1, the bound current is
 
-$$ \tag{11.13}
+$$ \tag{11.14}
 	\bm{J\_b}(\bm{r}, t) = \bm{J\_p}(\bm{r}, t) = \frac{\partial}{\partial t} \bm{P}(\bm{r}, t).
 $$
 
 In the frequency domain, the corresponding equation is
 
-$$ \tag{11.14}
+$$ \tag{11.15}
 	\bm{J\_p}(\bm{r}, \omega) = i \omega \bm{P}(\bm{r}, \omega).
 $$
 
 Using Equation 10.21 that relates polarization to the macroscopic optical properties, we may write
 
-$$ \tag{11.15}
+$$ \tag{11.16}
 	\bm{J\_p}(\bm{r}, \omega) = i \omega \big( \epsilon_r(\bm{r}, \omega) - 1 \big) \epsilon_0 \bm{E}(\bm{r}, \omega).
 $$
 
 If the medium is conductive, Equation 5.2.1 says that
 
-$$ \tag{11.16}
+$$ \tag{11.17}
 	\bm{J\_i}(\bm{r}, \omega) = \sigma(\bm{r}, \omega) \bm{E}(\bm{r}, \omega).
 $$
 
 Thus, in terms of the complex permittivity (c.f. Equation 5.6), the total current is
 
-$$ \tag{11.17}
+$$ \tag{11.18}
 \begin{aligned}
 	& \bm{J'}(\bm{r}, \omega)
 	= \bm{J\_p}(\bm{r}, \omega) + \bm{J\_i}(\bm{r}, \omega)
@@ -1996,9 +2005,9 @@ $$ \tag{11.17}
 \end{aligned}
 $$
 
-Substitution into Equation 11.12 yields
+Substitution into Equation 11.13 yields
 
-$$ \tag{11.18}
+$$ \tag{11.19}
 \begin{aligned}
 	\bm{A}(\bm{r}, \omega)
 	&= \oiint\_{\mathbb{S}^2} \bm{A}(0, \bm{n}, \omega) e^{-i \omega (\bm{r} \cdot \bm{n}) / c} d\Omega_n \cr
@@ -2008,15 +2017,15 @@ $$
 
 Pay close attention to the expression inside the square brackets. It is the difference between the physical properties of the interior \\((\varepsilon, \mu)\\) and the exterior \\((\epsilon_0, \mu_0)\\), with \\(\mu = \mu_0\\). Furthermore, we know that they determine the *absolute* (as opposed to \\(\varepsilon_r\\) and \\(\mu_r\\), which are *relative*) wave velocities in the respective media. Specifically, in vacuum, according to Equation 1.4, the phase velocity is
 
-$$ \tag{11.19}
+$$ \tag{11.20}
 	c = \frac{1}{\sqrt{\epsilon_0 \mu\_0}},
 $$
 
-Intuitively, all the \\(c\\) factors that exist in Equation 11.18 arise due to wave propagation in vacuum.
+Intuitively, all the \\(c\\) factors that exist in Equation 11.19 arise due to wave propagation in vacuum.
 
-If we wish to replace vacuum with another homogeneous medium, we must, in a sense, reduce wave velocities by replacing \\(\epsilon_0\\) with \\(\varepsilon_1\\), and, as a consequence, \\(c\\) with \\((\varepsilon_1 \mu_0)^{-1/2}\\), all while maintaining the absolute speed of light in the inhomogeneous region. These modifications transform Equation 11.18 into
+If we wish to replace vacuum with another homogeneous medium, we must, in a sense, reduce wave velocities by replacing \\(\epsilon_0\\) with \\(\varepsilon_1\\), and, as a consequence, \\(c\\) with \\((\varepsilon_1 \mu_0)^{-1/2}\\), all while maintaining the absolute speed of light in the inhomogeneous region. These modifications transform Equation 11.19 into
 
-$$ \tag{11.20}
+$$ \tag{11.21}
 \begin{aligned}
 	\bm{A}(\bm{r}, \omega)
 	&= \oiint\_{\mathbb{S}^2} \bm{A}(0, \bm{n}, \omega) e^{-i \omega \sqrt{\varepsilon_1(\omega) \mu\_0} (\bm{r} \cdot \bm{n})} d\Omega_n \cr
@@ -2026,7 +2035,7 @@ $$
 
 or, using the wave number notation,
 
-$$ \tag{11.21}
+$$ \tag{11.22}
 \begin{aligned}
 	\bm{A}(\bm{r}, \omega)
 	&= \oiint\_{\mathbb{S}^2} \bm{A}(0, \bm{n}, \omega) e^{-i k_1(\omega) (\bm{r} \cdot \bm{n})} d\Omega_n \cr
@@ -2036,12 +2045,12 @@ $$
 
 Since the definition of the Lorenz condition is based on the Maxwell equations in vacuum, it must also be modified. Replacing \\(c\\) in Equations 8.11 and 9.20 leads us to the modified version of Equation 9.23:
 
-$$ \tag{11.22}
+$$ \tag{11.23}
 	\bm{E}(\bm{r}, \omega) =
 	-i \omega \Big( \mathcal{I} + \frac{1}{k_1^2(\omega)} \nabla \otimes \nabla \Big) \bm{A}(\bm{r}, \omega).
 $$
 
-After performing a substitution of Equation 11.21, and assuming that \\(\bm{r}\\) lies outside the inhomogeneous region, we obtain an expanded version of Equation 11.11:
+After performing a substitution of Equation 11.22, and assuming that \\(\bm{r}\\) lies outside the inhomogeneous region, we obtain an expanded version of Equation 11.12:
 
 $$ \tag{11.23}
 \begin{aligned}
@@ -2055,7 +2064,7 @@ In the future, when no confusion arises, we shall drop redundant indexing by wri
 
 ## Near- and Far-Field Approximations
 
-In order to compute the scattered field given by Equation 11.10, we need a way to evaluate the Green tensor defined by Equation 9.26. Let's take a look at its matrix representation in the Cartesian coordinates:
+In order to compute the scattered field according to Equation 11.10, we need a way to evaluate the Green tensor defined by Equation 9.26. Let's take a look at its matrix representation in the Cartesian coordinates:
 
 $$ \tag{12.1}
 \begin{aligned}
