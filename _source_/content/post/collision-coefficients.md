@@ -1575,7 +1575,7 @@ that features the *magnetic Green tensor for electrical sources*
 
 $$ \tag{9.30}
 	\mathcal{G_{me}}(\bm{r} - \bm{r'}, k)
-	= \nabla g(\bm{r} - \bm{r'}, k) \times
+	= \nabla g(\bm{r} - \bm{r'}, k) \times \mathcal{I}
 $$
 
 that may be expressed using the [matrix form of the cross product](https://en.wikipedia.org/wiki/Cross_product#Conversion_to_matrix_multiplication) \[[van Bladel](#references) (ch. 7.9)\].
@@ -2081,10 +2081,10 @@ $$
 
 where the Green function \\(g\\) is given by Equation 9.10.
 
-If we ignore the \\(4 \pi\\) factor, the matrix elements have the form
+Ignoring the multiplicative constant \\(1/(4 \pi k^2)\\), the matrix elements have the form
 
 $$ \tag{12.2}
-    \frac{\partial^2}{\partial \\_ \partial \\_} \Bigg( \frac{e^{-i k |\bm{r} - \bm{r'}|}}{k^2 |\bm{r} - \bm{r'}|} \Bigg),
+    \frac{\partial^2}{\partial \\_ \partial \\_} \Bigg( \frac{e^{-i k |\bm{r} - \bm{r'}|}}{|\bm{r} - \bm{r'}|} \Bigg),
 $$
 
 where we may substitute \\(x\\), \\(y\\), or \\(z\\) into the blanks.
@@ -2099,88 +2099,101 @@ $$ \tag{12.3}
     = n \frac{\bm{r} - \bm{r'}}{|\bm{r} - \bm{r'}|^{2-n}} \cdot \frac{\partial}{\partial x} (\bm{r} - \bm{r'})
 $$
 
-and repeatedly apply the [product rule](https://en.wikipedia.org/wiki/Product_rule). Skipping the details of the calculation, and using the the shorthand notation \\(\bm{R} = (\bm{r} - \bm{r'}), R = |\bm{R}|\\), a typical off-diagonal element has the form
+and repeatedly apply the [product rule](https://en.wikipedia.org/wiki/Product_rule). Skipping the details of the calculation, and using the the shorthand notation \\(\bm{R} = (\bm{r} - \bm{r'}), R = |\bm{R}|\\), a typical first derivative is
 
 $$ \tag{12.4}
 \begin{aligned}
-    \frac{\partial^2}{\partial y \partial x} \Bigg( \frac{e^{-i k |\bm{r} - \bm{r'}|}}{k^2 |\bm{r} - \bm{r'}|} \Bigg)
+    \frac{\partial}{\partial x} \Bigg( \frac{e^{-i k |\bm{r} - \bm{r'}|}}{|\bm{r} - \bm{r'}|} \Bigg)
+    = -e^{-i k R} \frac{R_x}{R}
+    	\bigg(
+		      \frac{1}{R^2}
+		    + \frac{i k}{R}
+      	\bigg),
+\end{aligned}
+$$
+
+the off-diagonal elements of the matrix have the form
+
+$$ \tag{12.5}
+\begin{aligned}
+    \frac{\partial^2}{\partial y \partial x} \Bigg( \frac{e^{-i k |\bm{r} - \bm{r'}|}}{|\bm{r} - \bm{r'}|} \Bigg)
     = e^{-i k R} \frac{R_x R_y}{R^2}
     	\bigg(
-		      \frac{3 k^{-2}}{R^3}
-		    + \frac{3 i k^{-1}}{R^2}
-		    - \frac{1}{R}
+		      \frac{3}{R^3}
+		    + \frac{3 i k}{R^2}
+		    - \frac{k^2}{R}
       	\bigg),
 \end{aligned}
 $$
 
 while the elements on the main diagonal are similar to
 
-$$ \tag{12.5}
+$$ \tag{12.6}
 \begin{aligned}
-    \frac{\partial^2}{\partial x^2} \Bigg( \frac{e^{-i k |\bm{r} - \bm{r'}|}}{k^2 |\bm{r} - \bm{r'}|} \Bigg)
+    \frac{\partial^2}{\partial x^2} \Bigg( \frac{e^{-i k |\bm{r} - \bm{r'}|}}{|\bm{r} - \bm{r'}|} \Bigg)
 	= e^{-i k R} \frac{R_x^2}{R^2}
     	\bigg(
-		      \frac{3 k^{-2}}{R^3}
-		    + \frac{3 i k^{-1}}{R^2}
-		    - \frac{1}{R}
+		      \frac{3}{R^3}
+		    + \frac{3 i k}{R^2}
+		    - \frac{k^2}{R}
       	\bigg)
     - e^{-i k R}
     	\bigg(
-		      \frac{k^{-2}}{R^3}
-		    + \frac{i k^{-1}}{R^2}
+		      \frac{1}{R^3}
+		    + \frac{i k}{R^2}
       	\bigg).
 \end{aligned}
 $$
 
-
-Take a look at the individual factors: those outside the brackets oscillate between 0 and 1, while the terms  inside greatly depend on the distance between the observation point \\(\bm{r}\\) and the center of the volume element \\(\bm{r'}\\). This suggests that we may divide the entire space into zones based on the proximity to the observation point. If we are interested in the value of the field located near the source, we say that the observation point belongs to the [near-field](https://en.wikipedia.org/wiki/Near_and_far_field) zone. Similarly, far-away points are said to be located in the [far-field](https://en.wikipedia.org/wiki/Near_and_far_field) zone. Between them is a region called the *transition* zone.
+Take a look at the individual factors in Equations 12.4-12.6: those outside the brackets oscillate between 0 and 1, while the terms  inside greatly depend on the distance between the observation point \\(\bm{r}\\) and the center of the volume element \\(\bm{r'}\\). This suggests that we may divide the entire space into zones based on the proximity to the observation point. If we are interested in the value of the field located near the source, we say that the observation point belongs to the [near-field](https://en.wikipedia.org/wiki/Near_and_far_field) zone. Similarly, far-away points are said to be located in the [far-field](https://en.wikipedia.org/wiki/Near_and_far_field) zone. Between them is a region called the *transition* zone.
 
 If we fix the value of \\(k\\), we may decompose the electric Green tensor into the near-, transition-, and far-field components with magnitudes proportional to \\(R^{-1}\\), \\(R^{-2}\\), and \\(R^{-3}\\), respectfully:
 
-$$ \tag{12.6}
+$$ \tag{12.7}
 \begin{aligned}
     \mathcal{G_{ee}}
-    = \mathcal{G_n}
-    + \mathcal{G_t}
-    + \mathcal{G_f}
+    = \mathcal{G_{en}}
+    + \mathcal{G_{et}}
+    + \mathcal{G_{ef}}
+    = \mathcal{G_{ef}} \bigg(1 + \frac{\mathcal{G_{et}}}{\mathcal{G_{ef}}} + \frac{\mathcal{G_{en}}}{\mathcal{G_{ef}}} \bigg)
 \end{aligned},
 $$
 
 such that
 
-$$ \tag{12.7}
+$$ \tag{12.8}
 \begin{aligned}
-    & \mathcal{G_n}(\bm{R}, k)
+    & \mathcal{G_{en}}(\bm{R}, k)
     = -\frac{1}{k^2 R^2} \bigg(\mathcal{I} - 3 \frac{\bm{R} \otimes \bm{R}}{\bm{R} \cdot \bm{R}} \bigg) g(\bm{R}, k), \cr
-    & \mathcal{G_t}(\bm{R}, k)
+    & \mathcal{G_{et}}(\bm{R}, k)
     = -\frac{i}{k R} \bigg(\mathcal{I} - 3 \frac{\bm{R} \otimes \bm{R}}{\bm{R} \cdot \bm{R}} \bigg) g(\bm{R}, k), \cr
-	& \mathcal{G_f}(\bm{R}, k)
+	& \mathcal{G_{ef}}(\bm{R}, k)
     = \bigg( \mathcal{I} - \frac{\bm{R} \otimes \bm{R}}{\bm{R} \cdot \bm{R}} \bigg) g(\bm{R}, k),
 \end{aligned}
 $$
 
 with the Green function containing an additional \\(R^{-1}\\) factor.
 
-If we wish to discard any of the terms of Equation 12.6, we should consider their magnitudes relative to each other. Specifically, in order for Equations 12.7.1 and 12.7.2 to vanish, we must assume that \\(k R \gg 1\\). That allows us to substitute \\(\mathcal{G_f}\\) for \\(\mathcal{G_{ee}}\\) in Equation 11.10:
+If we wish to discard any of the terms of Equation 12.7, we should consider their magnitudes relative to each other. Specifically, in the far-field limit, we must assume that \\(k R \gg 1\\). That allows us to replace \\(\mathcal{G_{ee}}\\) with \\(\mathcal{G_{ef}}\\) in Equation 11.10:
 
-$$ \tag{12.8}
+$$ \tag{12.9}
 \begin{aligned}
     \bm{E_s}(\bm{r}, \omega)
-	&\approx k^2(\omega) \iiint\_{V} \big( m^2(\bm{r'}, \omega) - 1 \big) \frac{e^{-i k(\omega) R}}{4 \pi R} \bigg( \mathcal{I} - \frac{\bm{R} \otimes \bm{R}}{\bm{R} \cdot \bm{R}} \bigg)  \bm{E}(\bm{r'}, \omega) dV'.
+	&\approx k^2(\omega) \iiint\_{V} \big( m^2(\bm{r'}, \omega) - 1 \big) \frac{e^{-i k(\omega) R}}{4 \pi R} \bigg( \mathcal{I} - \frac{\bm{R} \otimes \bm{R}}{\bm{R} \cdot \bm{R}} \bigg) \bm{E}(\bm{r'}, \omega) dV'.
 \end{aligned}
 $$
 
-What is \\(k R\\)? According to Equation 12.8, it is the phase difference (in radians) between the observation point \\(\bm{r}\\) and the center of the volume element \\(\bm{r'}\\). We may confirm this by dimensional analysis of Equations 7.6-7.7:
+What is \\(k R\\)? According to Equation 12.9, it is the phase difference (in radians) between the observation point \\(\bm{r}\\) and the center of the volume element \\(\bm{r'}\\). We may confirm this by dimensional analysis of Equations 7.6-7.7:
 
-$$ \tag{12.9}
+$$ \tag{12.10}
     k R = (\eta - i \kappa) \omega c^{-1} R = [\text{1}] [\text{rad/s}] [\text{s/m}] [\text{m}] = [\text{rad}].
 $$
 
-Intuitively, \\(k R \gg 1\\) means that the wavelets generated by the volume element will go through a great number of periods of oscillation before reaching the observation point.
+Intuitively, \\(k R \gg 1\\) implies that a wavelet generated by the volume element will go through a great number of periods of oscillation before reaching the observation point.
 
-Each wavelet is spherical, since the rate of change of the phase is independent of orientation. Furthermore, the scattered field vectors are transverse with respect to the direction of propagation \\(\bm{R}\\):
+Equation 12.9 also shows that each wavelet is spherical, since the rate of change of the phase is independent of orientation. Furthermore, the scattered field vectors are transverse with respect to the direction of propagation:
 
-$$ \tag{12.10}
+$$ \tag{12.11}
 \begin{aligned}
     \bm{R} \cdot \bigg( \mathcal{I} - \frac{\bm{R} \otimes \bm{R}}{\bm{R} \cdot \bm{R}} \bigg)
     = \Bigg( \bigg( \mathcal{I} - \frac{\bm{R} \otimes \bm{R}}{\bm{R} \cdot \bm{R}} \bigg)^{T} \bm{R} \Bigg)^{T}
@@ -2190,6 +2203,73 @@ $$ \tag{12.10}
 $$
 
 where we utilized the symmetry property in addition to the alternative expression of the tensor product given by Equations 9.22-9.23.
+
+Let us analyze the magnetic Green tensor in the same way. Expand Equation 9.30 in the Cartesian coordinates:
+
+$$ \tag{12.12}
+\begin{aligned}
+	\mathcal{G_{me}}(\bm{r} - \bm{r'}, k)
+	= \nabla g(\bm{r} - \bm{r'}, k) \times \mathcal{I}
+	= \begin{bmatrix}
+		\partial g / \partial x \cr
+		\partial g / \partial y \cr
+		\partial g / \partial z \cr
+	\end{bmatrix} \times \mathcal{I}
+	= \begin{bmatrix}
+		0 & -\frac{\partial g}{\partial z} & \frac{\partial g}{\partial y} \cr
+		\frac{\partial g}{\partial z} & 0 & -\frac{\partial g}{\partial x} \cr
+		-\frac{\partial g}{\partial y} & \frac{\partial g}{\partial x} & 0 \cr
+	\end{bmatrix}.
+\end{aligned}
+$$
+
+Clearly, the matrix is anti-symmetric.
+
+According to the expression of the first derivative given by Equation 12.4, the tensor only has two components:
+
+$$ \tag{12.13}
+\begin{aligned}
+    \mathcal{G_{me}}
+    = \mathcal{G_{mn}}
+    + \mathcal{G_{mf}}
+    = \mathcal{G_{mf}} \bigg(1 + \frac{\mathcal{G_{mn}}}{\mathcal{G_{mf}}} \bigg)
+\end{aligned},
+$$
+
+such that
+
+$$ \tag{12.14}
+\begin{aligned}
+    & \mathcal{G_{mn}}(\bm{R}, k)
+    = -\frac{1}{R} \bigg(\frac{\bm{R} \times \mathcal{I}}{R} \bigg) g(\bm{R}, k), \cr
+	& \mathcal{G_{mf}}(\bm{R}, k)
+    = -i k \bigg(\frac{\bm{R} \times \mathcal{I}}{R} \bigg) g(\bm{R}, k).
+\end{aligned}
+$$
+
+The ratio \\(\mathcal{G_{mn}} / \mathcal{G_{mf}}\\) shows that the far-field criterion is the same: \\(k R \gg 1\\).
+
+We can combine Equations 11.7, 11.11 and 12.14.2 to obtain the far-field expression of the magnetic field:
+
+$$ \tag{12.15}
+	\bm{B_s}(\bm{r}, \omega)
+	= \frac{k^3(\omega)}{\omega} \iiint\_{V} \big( m^2(\bm{r}, \omega) - 1 \big) \frac{e^{-i k(\omega) R}}{4 \pi R} \bigg(\frac{\bm{R} \times \mathcal{I}}{R} \bigg) \bm{E}(\bm{r}, \omega) dV'.
+$$
+
+Equation 12.9 and 12.15 share certain properties: both integrate spherical wavelets with field vectors orthogonal to the direction of propagation. In fact, we can show that the electric and the magnetic fields are also mutually orthogonal:
+
+$$ \tag{12.16}
+	\bigg( \mathcal{I} - \frac{\bm{R} \otimes \bm{R}}{\bm{R} \cdot \bm{R}} \bigg) \bm{E} \cdot
+	\bigg( \frac{\bm{R} \times \mathcal{I}}{R} \bigg) \bm{E}
+	= \bm{E} \cdot
+		\bigg( \mathcal{I} - \bm{R} \frac{\bm{R} \cdot}{\bm{R} \cdot \bm{R}} \bigg)
+		\bigg( \frac{\bm{R} \times \bm{E}}{R} \bigg)
+	= 0.
+$$
+
+Thus, at a sufficient distance, we have an equivalent of a plane wave, except that the amplitude varies as \\(R^{-1}\\). Note that surfaces of constant phase do not coincide with surfaces of constant amplitude, since the initial amplitude depends on the direction of propagation.
+
+So far, our far-field analysis concerned a single volume element (or a single dipole). In order to extend it to the volume ...
 
 ---
 
