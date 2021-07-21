@@ -1747,7 +1747,7 @@ $$ \tag{10.14}
 \end{aligned}
 $$
 
-Equations 10.14.1-10.14.2 have the following interpretation in terms of the atomic theory of matter \[[6](#references) (ch. 2.2)\]. The [nucleus](https://en.wikipedia.org/wiki/Atomic_nucleus) of an atom contains [protons](https://en.wikipedia.org/wiki/Proton) with the charge \\(+q_e\\), and is surrounded by one or several [electrons](https://en.wikipedia.org/wiki/Electron) with the charge \\(-q_e\\). Thus, an electrically neutral molecule is a system of two (or more) charges, one negative and one positive, separated by a certain distance \\(d\\). If this distance is not zero, it is said that the molecule is polarized. That allows us to model it as a [dipole](https://en.wikipedia.org/wiki/Dipole) with an associated [electric dipole moment](https://en.wikipedia.org/wiki/Electric_dipole_moment)
+Equations 10.14.1-10.14.2 have the following interpretation in terms of the atomic theory of matter \[[6](#references) (ch. 2.2)\]. The [nucleus](https://en.wikipedia.org/wiki/Atomic_nucleus) of an atom contains [protons](https://en.wikipedia.org/wiki/Proton) with the charge \\(+q_e\\), and is surrounded by one or several [electrons](https://en.wikipedia.org/wiki/Electron) with the charge \\(-q_e\\). A molecule is an electrically neutral group of several atoms. Thus, a molecule is a system of several charges, half being negative, and the other half - positive, separated by a certain distance \\(d\\). If this distance is not zero, it is said that the the molecule is polarized. That allows us to model it as a [dipole](https://en.wikipedia.org/wiki/Dipole) with an associated [electric dipole moment](https://en.wikipedia.org/wiki/Electric_dipole_moment)
 
 $$ \tag{10.15}
 	\bm{p} = q \bm{d}.
@@ -1765,13 +1765,13 @@ $$ \tag{10.17}
 	\bm{P} = N \bm{p} \approx N \mathcal{\Alpha_m} \epsilon_0 \bm{E_{\mu}}.
 $$
 
-Note that, in general, the microscopic field \\(\bm{E_{\mu}}\\) acting on the dipole is different from the macroscopic field \\(\bm{E}\\). The reason is that the microscopic field varies very rapidly inside the matter - it is very strong near the nucleus, and relatively weak in the gaps between the atoms. Thus, the density of matter plays an important role. If the dipoles are randomly distributed, this leads to a spherically symmetric configuration, and it can be shown that the two fields are related by the equation
+Note that, in general, the microscopic field \\(\bm{E_{\mu}}\\) acting on the dipole is different from the macroscopic field \\(\bm{E}\\). The reason is that the microscopic field varies very rapidly inside the matter - it is very strong next to the nucleus, and relatively weak in the gaps between the molecules. Thus, the density of matter plays an important role. If the dipoles are randomly distributed, this leads to a spherically symmetric configuration, and it can be shown that the two fields are related by the equation
 
 $$ \tag{10.18}
 	\epsilon_0 \bm{E_{\mu}} = \epsilon_0 \bm{E} + \frac{1}{3} \bm{P},
 $$
 
-where \\(\bm{P}\\) is the electric polarization of matter surrounding the molecule \[[5](#references) (vol. II, ch. 11), [6](#references) (ch. 2.3-2.4)\].
+where \\(\bm{P}\\) is the electric polarization of matter surrounding the dipole \[[5](#references) (vol. II, ch. 11), [6](#references) (ch. 2.3-2.4)\].
 
 By combining Equations 10.17 and 10.18,
 
