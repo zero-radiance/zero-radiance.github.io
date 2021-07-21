@@ -2062,7 +2062,7 @@ $$
 
 In the future, when no confusion arises, we shall drop redundant indexing by writing \\(k = k_1\\) and \\(V  = V_2\\).
 
-## Near- and Far-Field Approximations
+## Fields of a Dipole. Rayleigh Scattering
 
 In order to compute the scattered field according to Equation 11.10, we need a way to evaluate the electric Green tensor defined by Equation 9.26. Let's take a look at its matrix representation in the Cartesian coordinates:
 
