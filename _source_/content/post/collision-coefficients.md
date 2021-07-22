@@ -94,7 +94,7 @@ $$
 
 Equation 1.5 is a [continuity equation](https://en.wikipedia.org/wiki/Continuity_equation) that tells us that a reduction of the charge density is observed if the charges are carried away by a current.
 
-Sometimes, Equations 1.1.1-1.1.4 are referred to as the "vacuum version" of the Maxwell equations. In fact, these equations are based on the atomic theory of matter that describes it as a collection of particles (electrons, protons, and so on) embedded in vacuum. We prefer to call them the *microscopic* Maxwell equations instead.
+Sometimes, Equations 1.1.1-1.1.4 are referred to as the "vacuum version" of the Maxwell equations. In fact, these equations are based on the atomic theory of matter that describes it as a collection of charged particles (electrons and protons) embedded in vacuum. We prefer to call them the *microscopic* Maxwell equations instead.
 
 Since electromagnetic fields only interact with charged particles (or, simply, "charges"), the matter is represented (in the statistical sense) by the *volume* [charge density](https://en.wikipedia.org/wiki/Charge_density) \\(\rho\\), such that the total amount of charge \\(Q\\) inside the volume \\(V\\) is
 
@@ -2066,7 +2066,7 @@ In the future, when no confusion arises, we shall drop redundant indexing by wri
 
 In general, it is not possible to evaluate the integrals of Equations 11.9 and 11.10 in closed form since the definition of the current (given by Equation 11.7) contains the electric field term the value of which is not known (TODO: write about the transition operator). Thus, we must make certain assumptions and employ various approximations in order to make computation feasible.
 
-Consider a particle enclosed in a bounding sphere of radius \\(a\\). Assume that the size of the particle is much smaller than the the wavelength and that its refractive index is sufficiently small (a more precise quantitative statement will be made later); as a result, the amplitude of the driving field (equal to the incident field) is effectively constant across the particle's volume. Under this assumption, we may represent the particle by an electric dipole so that, according to Equation 10.17,
+Consider a particle enclosed in a bounding sphere of radius \\(a\\). Assume that the size of the particle is much smaller than the the wavelength and that its refractive index is sufficiently small (a more precise quantitative statement will be made later); as a result, the amplitude of the driving field (equal to the incident field) is effectively constant across the particle's volume, and the entire particle is radiating with the same phase. Under this assumption, we may represent the particle by an electric dipole so that, according to Equation 10.17,
 
 $$ \tag{12.1}
 	\bm{P}(\bm{r}, \omega) \approx \delta(\bm{r} - \bm{r_0}) \bm{p}(\bm{r}, \omega) = \delta(\bm{r} - \bm{r_0}) \mathcal{\Alpha_m}(\bm{r}, \omega) \epsilon_0 \bm{E_i}(\bm{r}, \omega),
@@ -2074,11 +2074,13 @@ $$
 
 where \\(\mathcal{\Alpha_m}\\) is the mean polarizability tensor that allows us to handle non-spherical (and otherwise electrically anisotropic) particles \[[6](#references) (ch. 6)\].
 
-Note that \\(\mathcal{\Alpha_m}\\) has dimensions of a volume. It will be advantageous to introduce a dimensionless quantity \\(\mathcal{\Alpha_m'}\\) such that
+Note that \\(\mathcal{\Alpha_m}\\) has dimensions of a volume. It will be advantageous to introduce a dimensionless quantity
 
 $$ \tag{12.1}
-	\bm{P}(\bm{r}, \omega) \approx \delta(\bm{r} - \bm{r_0}) V \mathcal{\Alpha_m'}(\bm{r}, \omega) \epsilon_0 \bm{E_i}(\bm{r}, \omega),
+	\mathcal{\Alpha_m'} = \frac{1}{V} \mathcal{\Alpha_m}(\bm{r}, \omega).
 $$
+
+For a spherical particle, \\(V = 4/3 \pi a^3\\).
 
 In order to compute the scattered field according to Equation 11.10, we need a way to evaluate the electric Green tensor defined by Equation 9.26. Let's take a look at its matrix representation in the Cartesian coordinates:
 
