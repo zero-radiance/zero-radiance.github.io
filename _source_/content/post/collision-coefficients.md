@@ -2062,7 +2062,23 @@ $$
 
 In the future, when no confusion arises, we shall drop redundant indexing by writing \\(k = k_1\\) and \\(V  = V_2\\).
 
-## Fields of a Dipole. Rayleigh Scattering
+## Dipole Radiation
+
+In general, it is not possible to evaluate the integrals of Equations 11.9 and 11.10 in closed form since the definition of the current (given by Equation 11.7) contains the electric field term the value of which is not known (TODO: write about the transition operator). Thus, we must make certain assumptions and employ various approximations in order to make computation feasible.
+
+Consider a particle enclosed in a bounding sphere of radius \\(a\\). Assume that the size of the particle is much smaller than the the wavelength and that its refractive index is sufficiently small (a more precise quantitative statement will be made later); as a result, the amplitude of the driving field (equal to the incident field) is effectively constant across the particle's volume. Under this assumption, we may represent the particle by an electric dipole so that, according to Equation 10.17,
+
+$$ \tag{12.1}
+	\bm{P}(\bm{r}, \omega) \approx \delta(\bm{r} - \bm{r_0}) \bm{p}(\bm{r}, \omega) = \delta(\bm{r} - \bm{r_0}) \mathcal{\Alpha_m}(\bm{r}, \omega) \epsilon_0 \bm{E_i}(\bm{r}, \omega),
+$$
+
+where \\(\mathcal{\Alpha_m}\\) is the mean polarizability tensor that allows us to handle non-spherical (and otherwise electrically anisotropic) particles \[[6](#references) (ch. 6)\].
+
+Note that \\(\mathcal{\Alpha_m}\\) has dimensions of a volume. It will be advantageous to introduce a dimensionless quantity \\(\mathcal{\Alpha_m'}\\) such that
+
+$$ \tag{12.1}
+	\bm{P}(\bm{r}, \omega) \approx \delta(\bm{r} - \bm{r_0}) V \mathcal{\Alpha_m'}(\bm{r}, \omega) \epsilon_0 \bm{E_i}(\bm{r}, \omega),
+$$
 
 In order to compute the scattered field according to Equation 11.10, we need a way to evaluate the electric Green tensor defined by Equation 9.26. Let's take a look at its matrix representation in the Cartesian coordinates:
 
