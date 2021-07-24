@@ -1750,19 +1750,19 @@ $$
 Equations 10.14.1-10.14.2 have the following interpretation in terms of the atomic theory of matter \[[6](#references) (ch. 2.2)\]. The [nucleus](https://en.wikipedia.org/wiki/Atomic_nucleus) of an atom contains [protons](https://en.wikipedia.org/wiki/Proton) with the charge \\(+q_e\\), and is surrounded by one or several [electrons](https://en.wikipedia.org/wiki/Electron) with the charge \\(-q_e\\). A molecule is an electrically neutral group of several atoms. Thus, a molecule is a system of several charges, half being negative, and the other half - positive, separated by a certain distance \\(d\\). If this distance is not zero, it is said that the the molecule is polarized. That allows us to model it as a [dipole](https://en.wikipedia.org/wiki/Dipole) with an associated [electric dipole moment](https://en.wikipedia.org/wiki/Electric_dipole_moment)
 
 $$ \tag{10.15}
-	\bm{p_1} = q \bm{d}.
+	\bm{p_m} = q \bm{d}.
 $$
 
-A molecule can become polarized for a variety of reasons \[[5](#references) (vol. II, ch. 11)\]. If the separation of charges occurs due the influence of an electric field, one speaks of *induced polarization*. If we assume that the effect is linear, the response is characterized by the [mean polarizability](https://en.wikipedia.org/wiki/Electric_susceptibility#Molecular_polarizability) tensor \\(\mathcal{\Alpha_m}\\):
+A molecule can become polarized for a variety of reasons \[[5](#references) (vol. II, ch. 11)\]. If the separation of charges occurs due the influence of an electric field, one speaks of *induced polarization*. If we assume that the effect is linear, the response is characterized by the [mean molecular polarizability](https://en.wikipedia.org/wiki/Electric_susceptibility#Molecular_polarizability) tensor \\(\mathcal{\Alpha_m}\\):
 
 $$ \tag{10.16}
-	\bm{p_1} \approx \mathcal{\Alpha_m} \epsilon_0 \bm{E_{\mu}}.
+	\bm{p_m} \approx \mathcal{\Alpha_m} \epsilon_0 \bm{E_{\mu}}.
 $$
 
 If there are \\(N\\) electric dipoles per unit volume, we can define the *electric polarization* \\(\bm{P}\\) as
 
 $$ \tag{10.17}
-	\bm{P} = \frac{d\bm{p}}{dV} = N \bm{p_1} \approx N \mathcal{\Alpha_m} \epsilon_0 \bm{E_{\mu}}.
+	\bm{P} = \frac{d\bm{p}}{dV} = N \bm{p_m} \approx N \mathcal{\Alpha_m} \epsilon_0 \bm{E_{\mu}}.
 $$
 
 Note that, in general, the microscopic field \\(\bm{E_{\mu}}\\) acting on the dipole is different from the macroscopic field \\(\bm{E}\\). The reason is that the microscopic field varies very rapidly inside the matter - it is very strong next to the nucleus, and relatively weak in the gaps between the molecules. Thus, the density of matter plays an important role. If the dipoles are randomly distributed, this leads to a spherically symmetric configuration, and it can be shown that the two fields are related by the equation
@@ -1788,7 +1788,7 @@ $$ \tag{10.20}
 	\frac{\epsilon\_r - 1}{\epsilon\_r + 2} = \frac{1}{3} N \alpha\_m.
 $$
 
-Thus, Equation 10.20 can be expressed very simply in terms of the relative permittivity \\(\epsilon_r\\):
+Thus, Equation 10.20 can be expressed very simply in terms of the [relative permittivity](https://en.wikipedia.org/wiki/Relative_permittivity) (dielectric constant) \\(\epsilon_r\\):
 
 $$ \tag{10.21}
 	\bm{P} \approx (\epsilon_r - 1) \epsilon_0 \bm{E}.
@@ -1921,7 +1921,7 @@ such that
 $$ \tag{11.8}
 	m(\bm{r}, \omega)
 	= \frac{k_2(\bm{r}, \omega)}{k_1(\omega)}
-	= \frac{\varepsilon_2(\bm{r}, \omega)}{\varepsilon_1(\omega)},
+	= \sqrt{ \frac{\varepsilon_2(\bm{r}, \omega)}{\varepsilon_1(\omega)} },
 $$
 
 we can replace Equations 11.6.1 and 11.6.2 by a single equation
@@ -2064,15 +2064,57 @@ In the future, when no confusion arises, we shall drop redundant indexing by wri
 
 ## Dipole Radiation
 
-In general, it is not possible to evaluate the integrals of Equations 11.9 and 11.10 in closed form since the definition of the current (given by Equation 11.7) contains the electric field term the value of which is not known (TODO: write about the transition operator). Thus, we must make certain assumptions and employ various approximations in order to make computation feasible.
+Typically, it is not possible to evaluate the integrals of Equations 11.9 and 11.10 in closed form, since the definition of the current (given by Equation 11.7) contains the electric field term, the value of which is, in general, not known (TODO: write about the transition operator). Thus, we must make certain assumptions and employ various approximations in order to make computations feasible.
 
-Consider a particle enclosed in a bounding sphere of radius \\(a\\). Assume that the size of the particle is much smaller than the the wavelength and that its refractive index is sufficiently small (a more precise quantitative statement will be made later); as a result, the amplitude of the driving field (equal to the incident field) is effectively constant across the particle's volume, and the entire particle is radiating with the same phase. Under this assumption, we may represent the particle by an electric dipole so that, according to Equation 10.17,
+Consider a particle enclosed by a bounding sphere of radius \\(a\\). Assume that the size of the particle is much smaller than the the wavelength of incident light, and that its relative refractive index is sufficiently small (a more precise statement will be made later). Two conclusions follow: first, the incident field is not significantly modified by the presence of the particle; and second, all dipoles of the the entire particle are driven (and radiate) in-phase.
+
+[Insert picture here]
+
+Under these assumptions, the particle acts like a single dipole located at \\(\bm{r_0}\\), and we may use Equation 10.16 to write the expression of its electric dipole moment:
 
 $$ \tag{12.1}
-	\bm{P}(\bm{r}, \omega) \approx \delta(\bm{r} - \bm{r_0}) \bm{p}(\bm{r}, \omega) = \delta(\bm{r} - \bm{r_0}) \mathcal{\Alpha_m}(\bm{r}, \omega) \epsilon_0 \bm{E_i}(\bm{r}, \omega),
+	\bm{p}(\bm{r_0}, \omega) \approx \mathcal{\Alpha_p}(\omega) \epsilon_1(\omega) \bm{E_i}(\bm{r_0}, \omega),
 $$
 
-where \\(\mathcal{\Alpha_m}\\) is the mean polarizability tensor that allows us to handle non-spherical (and otherwise electrically anisotropic) particles \[[6](#references) (ch. 6)\].
+where \\(\mathcal{\Alpha_p}\\) is the particle's polarizability tensor (which has units of a volume).
+
+The matrix representation of \\(\mathcal{\Alpha_p}\\) is a convenient way to model polar molecules or asymmetric particles; it acts by rotating and non-uniformly scaling the electric field phasor. To make the resulting formulas easier to interpret, we will assume that the particle is spherical (of radius \\(a\\)) and isotropic (so that \\(\mathcal{\Alpha_p} = \alpha_p\\)).
+
+A particle's polarizability can be specified in several different ways. If the particle contains \\(N\\) molecules per unit volume, we may integrate Equation 10.17 to obtain
+
+$$ \tag{12.2}
+	\bm{p}(\bm{r_0}, \omega) = \int_V N \bm{p_m} dV \approx V N \alpha_m(\omega) \epsilon_1(\omega) \bm{E_i}(\bm{r_0}, \omega),
+$$
+
+with a predictable conclusion that the polarizability of a particle is the product of the number of molecules and the mean molecular polarizability of a single molecule:
+
+$$ \tag{12.3}
+	\alpha_p(\omega) = V N \alpha_m(\omega).
+$$
+
+Alternatively, we may integrate the electric polarization given by Equation 10.21:
+
+$$ \tag{12.4}
+	\bm{p}(\bm{r_0}, \omega)
+	= \int_V \bm{P}(\bm{r}, \omega) dV
+	= \int_V (m^2(\bm{r}, \omega) - 1) \epsilon_1(\omega) \bm{E_i}(\bm{r_0}, \omega) dV,
+$$
+
+where we replaced \\(\epsilon_0\\) with \\(\epsilon_1\\), so it is understood that \\(\epsilon_r = \epsilon_2 / \epsilon_1\\) and \\(m^2 = \epsilon_r\\).
+
+For a homogeneous particle, comparison of Equations 12.1 and 12.4 yields
+
+$$ \tag{12.3}
+	m^2(\omega) - 1 = \frac{\alpha_p(\omega)}{V},
+$$
+
+and if the particle is spherical, with radius \\(a\\),
+
+$$ \tag{12.3}
+	m^2(\omega) - 1 = \frac{\alpha_p(\omega)}{4/3 \pi a^3},
+$$
+
+\bm{P} \approx (\epsilon_r - 1) \epsilon_0 \bm{E}.
 
 Note that \\(\mathcal{\Alpha_m}\\) has dimensions of a volume. It will be advantageous to introduce a dimensionless quantity
 
