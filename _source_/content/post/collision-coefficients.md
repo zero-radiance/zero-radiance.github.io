@@ -1750,19 +1750,19 @@ $$
 Equations 10.14.1-10.14.2 have the following interpretation in terms of the atomic theory of matter \[[6](#references) (ch. 2.2)\]. The [nucleus](https://en.wikipedia.org/wiki/Atomic_nucleus) of an atom contains [protons](https://en.wikipedia.org/wiki/Proton) with the charge \\(+q_e\\), and is surrounded by one or several [electrons](https://en.wikipedia.org/wiki/Electron) with the charge \\(-q_e\\). A molecule is an electrically neutral group of several atoms. Thus, a molecule is a system of several charges, half being negative, and the other half - positive, separated by a certain distance \\(d\\). If this distance is not zero, it is said that the the molecule is polarized. That allows us to model it as a [dipole](https://en.wikipedia.org/wiki/Dipole) with an associated [electric dipole moment](https://en.wikipedia.org/wiki/Electric_dipole_moment)
 
 $$ \tag{10.15}
-	\bm{p} = q \bm{d}.
+	\bm{p_1} = q \bm{d}.
 $$
 
 A molecule can become polarized for a variety of reasons \[[5](#references) (vol. II, ch. 11)\]. If the separation of charges occurs due the influence of an electric field, one speaks of *induced polarization*. If we assume that the effect is linear, the response is characterized by the [mean polarizability](https://en.wikipedia.org/wiki/Electric_susceptibility#Molecular_polarizability) tensor \\(\mathcal{\Alpha_m}\\):
 
 $$ \tag{10.16}
-	\bm{p} \approx \mathcal{\Alpha_m} \epsilon_0 \bm{E_{\mu}}.
+	\bm{p_1} \approx \mathcal{\Alpha_m} \epsilon_0 \bm{E_{\mu}}.
 $$
 
 If there are \\(N\\) electric dipoles per unit volume, we can define the *electric polarization* \\(\bm{P}\\) as
 
 $$ \tag{10.17}
-	\bm{P} = N \bm{p} \approx N \mathcal{\Alpha_m} \epsilon_0 \bm{E_{\mu}}.
+	\bm{P} = \frac{d\bm{p}}{dV} = N \bm{p_1} \approx N \mathcal{\Alpha_m} \epsilon_0 \bm{E_{\mu}}.
 $$
 
 Note that, in general, the microscopic field \\(\bm{E_{\mu}}\\) acting on the dipole is different from the macroscopic field \\(\bm{E}\\). The reason is that the microscopic field varies very rapidly inside the matter - it is very strong next to the nucleus, and relatively weak in the gaps between the molecules. Thus, the density of matter plays an important role. If the dipoles are randomly distributed, this leads to a spherically symmetric configuration, and it can be shown that the two fields are related by the equation
