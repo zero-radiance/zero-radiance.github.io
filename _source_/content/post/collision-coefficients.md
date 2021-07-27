@@ -1747,22 +1747,55 @@ $$ \tag{10.14}
 \end{aligned}
 $$
 
-Equations 10.14.1-10.14.2 have the following interpretation in terms of the atomic theory of matter \[[6](#references) (ch. 2.2)\]. The [nucleus](https://en.wikipedia.org/wiki/Atomic_nucleus) of an atom contains [protons](https://en.wikipedia.org/wiki/Proton) with the charge \\(+q_e\\), and is surrounded by one or several [electrons](https://en.wikipedia.org/wiki/Electron) with the charge \\(-q_e\\). A molecule is an electrically neutral group of several atoms. Thus, a molecule is a system of several charges, half being negative, and the other half - positive, separated by a certain distance \\(d\\). If this distance is not zero, it is said that the the molecule is polarized. That allows us to model it as a [dipole](https://en.wikipedia.org/wiki/Dipole) with an associated [electric dipole moment](https://en.wikipedia.org/wiki/Electric_dipole_moment)
+Equations 10.14.1-10.14.2 have the following interpretation in terms of the atomic theory of matter \[[6](#references) (ch. 2.2)\]. The [nucleus](https://en.wikipedia.org/wiki/Atomic_nucleus) of an atom contains [protons](https://en.wikipedia.org/wiki/Proton) with the charge \\(+q_e\\), and is surrounded by one or several [electrons](https://en.wikipedia.org/wiki/Electron) with the charge \\(-q_e\\). A molecule is an electrically neutral group of several atoms. Thus, a molecule is a system of several charges, half being negative, and the other half - positive, separated by a certain distance \\(d\\). If this distance is not zero, it is said that the the molecule is polarized. That allows us to model it as a [dipole](https://en.wikipedia.org/wiki/Dipole) with an associated (first) [electric dipole moment](https://en.wikipedia.org/wiki/Electric_dipole_moment)
 
 $$ \tag{10.15}
-	\bm{p_m} = q \bm{d}.
+	\bm{p_m}(\bm{r}, t)
+	= q \bm{d}(\bm{r}, t),
 $$
 
-A molecule can become polarized for a variety of reasons \[[5](#references) (vol. II, ch. 11)\]. If the separation of charges occurs due the influence of an electric field, one speaks of *induced polarization*. If we assume that the effect is linear, the response is characterized by the [mean molecular polarizability](https://en.wikipedia.org/wiki/Electric_susceptibility#Molecular_polarizability) tensor \\(\mathcal{\Alpha_m}\\):
+or, more generally,
+
+$$ \tag{10.15}
+	\bm{p}(\bm{r}, t)
+	= \sum_m \bm{p_m}(\bm{r}, t)
+	= \iiint\_{V} \rho_b(\bm{r'}, t) (\bm{r'} - \bm{r}) dV'.
+$$
+
+A molecule can become polarized for a variety of reasons \[[5](#references) (vol. II, ch. 11)\]. If the separation of charges occurs due the influence of an electric field, one speaks of *induced polarization*. If we assume that the effect is linear, the response is characterized by the [molecular polarizability](https://en.wikipedia.org/wiki/Electric_susceptibility#Molecular_polarizability) tensor \\(\mathcal{\Alpha_m}\\):
 
 $$ \tag{10.16}
-	\bm{p_m} \approx \mathcal{\Alpha_m} \epsilon_0 \bm{E_{\mu}}.
+	\bm{p_m}(\bm{r}, \omega) \approx \mathcal{\Alpha_m}(\omega) \epsilon_0 \bm{E_{\mu}}(\bm{r}, \omega).
 $$
 
-If there are \\(N\\) electric dipoles per unit volume, we can define the *electric polarization* \\(\bm{P}\\) as
+If there are \\(N\\) identical electric dipoles per unit volume, we can define the *electric polarization* \\(\bm{P}\\) as
 
 $$ \tag{10.17}
-	\bm{P} = \frac{d\bm{p}}{dV} = N \bm{p_m} \approx N \mathcal{\Alpha_m} \epsilon_0 \bm{E_{\mu}}.
+	\bm{P}(\bm{r}, \omega)
+	= N \bm{p_m}(\bm{r}, \omega)
+	\approx N \mathcal{\Alpha_m}(\omega) \epsilon_0 \bm{E_{\mu}}(\bm{r}, \omega),
+$$
+
+or, more generally,
+
+$$ \tag{10.15}
+	P = dp/dV
+$$
+
+so that
+
+$$ \tag{10.17}
+	p = \iiint\_{V} P dV
+$$
+
+$$ \tag{10.17}
+	\frac{d}{dt} p = \iiint\_{V} \frac{d}{dt}P dV = \iiint\_{V} J_p dV
+$$
+
+or
+
+$$ \tag{10.17}
+	i w p = \iiint\_{V} J_p dV
 $$
 
 Note that, in general, the microscopic field \\(\bm{E_{\mu}}\\) acting on the dipole is different from the macroscopic field \\(\bm{E}\\). The reason is that the microscopic field varies very rapidly inside the matter - it is very strong next to the nucleus, and relatively weak in the gaps between the molecules. Thus, the density of matter plays an important role. If the dipoles are randomly distributed, this leads to a spherically symmetric configuration, and it can be shown that the two fields are related by the equation
@@ -2086,7 +2119,7 @@ $$ \tag{12.2}
 	\bm{p}(\bm{r_0}, \omega) = \int_V N \bm{p_m} dV \approx V N \alpha_m(\omega) \epsilon_1(\omega) \bm{E_i}(\bm{r_0}, \omega),
 $$
 
-with a predictable conclusion that the polarizability of a particle is the product of the number of molecules and the mean molecular polarizability of a single molecule:
+with a predictable conclusion that the polarizability of a particle is the product of the number of molecules and the molecular polarizability of a single molecule:
 
 $$ \tag{12.3}
 	\alpha_p(\omega) = V N \alpha_m(\omega).
