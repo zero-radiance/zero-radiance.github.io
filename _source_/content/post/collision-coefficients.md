@@ -1747,105 +1747,127 @@ $$ \tag{10.14}
 \end{aligned}
 $$
 
-Equations 10.14.1-10.14.2 have the following interpretation in terms of the atomic theory of matter \[[6](#references) (ch. 2.2)\]. The [nucleus](https://en.wikipedia.org/wiki/Atomic_nucleus) of an atom contains [protons](https://en.wikipedia.org/wiki/Proton) with the charge \\(+q_e\\), and is surrounded by one or several [electrons](https://en.wikipedia.org/wiki/Electron) with the charge \\(-q_e\\). A molecule is an electrically neutral group of several atoms. Thus, a molecule is a system of several charges, half being negative, and the other half - positive, separated by a certain distance \\(d\\). If this distance is not zero, it is said that the the molecule is polarized. That allows us to model it as a [dipole](https://en.wikipedia.org/wiki/Dipole) with an associated (first) [electric dipole moment](https://en.wikipedia.org/wiki/Electric_dipole_moment)
+Equations 10.14.1-10.14.2 have the following interpretation in terms of the atomic theory of matter \[[6](#references) (ch. 2.2)\]. The [nucleus](https://en.wikipedia.org/wiki/Atomic_nucleus) of an atom contains [protons](https://en.wikipedia.org/wiki/Proton) with the charge \\(+q_e\\), and is surrounded by one or several [electrons](https://en.wikipedia.org/wiki/Electron) with the charge \\(-q_e\\). A molecule is an electrically neutral group of several atoms. Thus, an atom or a molecule is a system of several charges, half being negative, and the other half - positive, separated (on average) by a certain distance \\(d\\). If this distance is not zero, it is said that the the molecule is polarized. We can use this property to model an atom or a small molecule as a [dipole](https://en.wikipedia.org/wiki/Dipole) with an associated [electric dipole moment](https://en.wikipedia.org/wiki/Electric_dipole_moment)
 
 $$ \tag{10.15}
-	\bm{p_m}(\bm{r}, t)
-	= q \bm{d}(\bm{r}, t),
+	\bm{p} = q \bm{d}.
 $$
 
-or, more generally,
-
-$$ \tag{10.15}
-	\bm{p}(\bm{r}, t)
-	= \sum_m \bm{p_m}(\bm{r}, t)
-	= \iiint\_{V} \rho_b(\bm{r'}, t) (\bm{r'} - \bm{r}) dV'.
-$$
-
-A molecule can become polarized for a variety of reasons \[[5](#references) (vol. II, ch. 11)\]. If the separation of charges occurs due the influence of an electric field, one speaks of *induced polarization*. If we assume that the effect is linear, the response is characterized by the [molecular polarizability](https://en.wikipedia.org/wiki/Electric_susceptibility#Molecular_polarizability) tensor \\(\mathcal{\Alpha_m}\\):
+Notice that the moment of the dipole does not depend on its location, \\(\bm{r_0}\\). That is because it describes the displacement from the mean, which is relative by definition. It is easy to show that by expressing the electric dipole moment in terms of the bound charge density:
 
 $$ \tag{10.16}
-	\bm{p_m}(\bm{r}, \omega) \approx \mathcal{\Alpha_m}(\omega) \epsilon_0 \bm{E_{\mu}}(\bm{r}, \omega).
+	\bm{p}(t)
+	= \iiint\_{V} \rho_b(\bm{r}, t) (\bm{r} - \bm{r_0}) dV
+	= - Q_b(t) \bm{r_0} + \iiint\_{V} \rho_b(\bm{r}, t) \bm{r} dV ,
 $$
 
-If there are \\(N\\) identical electric dipoles per unit volume, we can define the *electric polarization* \\(\bm{P}\\) as
+where \\(Q_b\\) is the total bound charge (also called the [electric monopole moment](https://en.wikipedia.org/wiki/Multipole_expansion)):
 
 $$ \tag{10.17}
+	Q_b(t) = \iiint\_{V} \rho_b(\bm{r}, t) dV,
+$$
+
+which is zero for electrically neutral objects.
+
+On the other hand, the electric dipole moment per unit volume \\(\bm{P}\\) is position-dependent:
+
+$$ \tag{10.18}
+	\bm{p}(t)
+	= \iiint\_{V} \bm{P}(\bm{r}, t) dV.
+$$
+
+This expression is useful, since we can directly relate it to the definition of the polarization current density \\(\bm{J_p}\\) given by Equation 1.9.1:
+
+$$ \tag{10.19}
+	\frac{\partial}{\partial t} \bm{p}(t) = \iiint\_{V} \bm{J_p}(\bm{r}, t) dV,
+	\qquad
+	i \omega \bm{p}(\omega) = \iiint\_{V} \bm{J_p}(\bm{r}, \omega) dV.
+$$
+
+Equation 10.19 implies that we can represent an arbitrary polarization current density by oscillating electric dipole moments:
+
+$$ \tag{10.20}
+	\bm{J_p}(\bm{r}, t) = \frac{\partial}{\partial t} \bm{p}(t) \delta(\bm{r} - \bm{r_0}),
+	\qquad
+	\bm{J_p}(\bm{r}, \omega) = i \omega \bm{p}(\omega) \delta(\bm{r} - \bm{r_0}).
+$$
+
+A molecule can become polarized for a variety of reasons \[[5](#references) (vol. II, ch. 11)\]. If the separation of charges (such as the displacement of the electron cloud relative to the nucleus) occurs due the influence of an electric field, one speaks of *induced polarization*. If we assume that the effect is linear, the response is characterized by the [molecular polarizability](https://en.wikipedia.org/wiki/Electric_susceptibility#Molecular_polarizability) tensor \\(\mathcal{\Alpha_m}\\):
+
+$$ \tag{10.21}
+	\bm{p}(\omega) \approx \mathcal{\Alpha_m}(\bm{r}, \omega) \epsilon_0 \bm{E_{\mu}}(\bm{r}, \omega).
+$$
+
+If there are \\(N\\) identical electric dipoles per unit volume, we can define the electric polarization \\(\bm{P}\\) as
+
+$$ \tag{10.22}
 	\bm{P}(\bm{r}, \omega)
-	= N \bm{p_m}(\bm{r}, \omega)
-	\approx N \mathcal{\Alpha_m}(\omega) \epsilon_0 \bm{E_{\mu}}(\bm{r}, \omega),
-$$
-
-or, more generally,
-
-$$ \tag{10.15}
-	P = dp/dV
-$$
-
-so that
-
-$$ \tag{10.17}
-	p = \iiint\_{V} P dV
-$$
-
-$$ \tag{10.17}
-	\frac{d}{dt} p = \iiint\_{V} \frac{d}{dt}P dV = \iiint\_{V} J_p dV
-$$
-
-or
-
-$$ \tag{10.17}
-	i w p = \iiint\_{V} J_p dV
+	= N \bm{p}(\omega)
+	\approx N \mathcal{\Alpha_m}(\bm{r}, \omega) \epsilon_0 \bm{E_{\mu}}(\bm{r}, \omega).
 $$
 
 Note that, in general, the microscopic field \\(\bm{E_{\mu}}\\) acting on the dipole is different from the macroscopic field \\(\bm{E}\\). The reason is that the microscopic field varies very rapidly inside the matter - it is very strong next to the nucleus, and relatively weak in the gaps between the molecules. Thus, the density of matter plays an important role. If the dipoles are randomly distributed, this leads to a spherically symmetric configuration, and it can be shown that the two fields are related by the equation
 
-$$ \tag{10.18}
-	\epsilon_0 \bm{E_{\mu}} = \epsilon_0 \bm{E} + \frac{1}{3} \bm{P},
+$$ \tag{10.23}
+	\epsilon_0 \bm{E_{\mu}}(\bm{r}, \omega) = \epsilon_0 \bm{E}(\bm{r}, \omega) + \frac{1}{3} \bm{P}(\bm{r}, \omega),
 $$
 
-where \\(\bm{P}\\) is the electric polarization of matter surrounding the dipole \[[5](#references) (vol. II, ch. 11), [6](#references) (ch. 2.3-2.4)\].
+where \\(\bm{P}\\) describes the electric polarization of matter surrounding the dipole \[[5](#references) (vol. II, ch. 11), [6](#references) (ch. 2.3-2.4)\].
 
-By combining Equations 10.17 and 10.18,
+By combining Equations 10.22 and 10.23,
 
-$$ \tag{10.19}
-	\bm{P}
-	\approx \frac{N \mathcal{\Alpha_m}}{1 - \frac{1}{3} N \mathcal{\Alpha_m}} \epsilon_0 \bm{E},
+$$ \tag{10.24}
+	\bm{P}(\bm{r}, \omega)
+	\approx \frac{N \mathcal{\Alpha_m}(\bm{r}, \omega)}{1 - \frac{1}{3} N \mathcal{\Alpha_m}(\bm{r}, \omega)} \epsilon_0 \bm{E}(\bm{r}, \omega),
 $$
 
 we can incorporate the correction for the *microscopic* field into the *macroscopic* theory.
 
-In order to be able to use Equation 10.19, we need to determine both the density and the polarizability of the material. For an isotropic dielectric composed of a single type of molecules, their product is given by the [Clausius–Mossotti relation](https://en.wikipedia.org/wiki/Clausius%E2%80%93Mossotti_relation):
+In order to be able to use Equation 10.24, we need to determine both the density and the polarizability of the material. For an isotropic dielectric composed of a single type of molecules, their product is given by the [Clausius–Mossotti relation](https://en.wikipedia.org/wiki/Clausius%E2%80%93Mossotti_relation):
 
-$$ \tag{10.20}
-	\frac{\epsilon\_r - 1}{\epsilon\_r + 2} = \frac{1}{3} N \alpha\_m.
+$$ \tag{10.25}
+	\frac{\epsilon\_r(\bm{r}, \omega) - 1}{\epsilon\_r(\bm{r}, \omega) + 2} = \frac{1}{3} N \alpha\_m(\bm{r}, \omega).
 $$
 
-Thus, Equation 10.20 can be expressed very simply in terms of the [relative permittivity](https://en.wikipedia.org/wiki/Relative_permittivity) (dielectric constant) \\(\epsilon_r\\):
+Thus, Equation 10.24 can be expressed very simply in terms of the [relative permittivity](https://en.wikipedia.org/wiki/Relative_permittivity) (dielectric constant) \\(\epsilon_r\\):
 
-$$ \tag{10.21}
-	\bm{P} \approx (\epsilon_r - 1) \epsilon_0 \bm{E}.
+$$ \tag{10.26}
+	\bm{P}(\bm{r}, \omega) \approx \big( \epsilon_r(\bm{r}, \omega) - 1 \big) \epsilon_0 \bm{E}(\bm{r}, \omega).
 $$
 
-While the electric dipole moment \\(\bm{p}\\) is caused by oscillating atomic charges, the [magnetic dipole moment](https://en.wikipedia.org/wiki/Magnetic_moment#Amperian_loop_model) \\(\bm{m}\\) is generated by circulating atomic currents (charges going in circles):
+While the electric dipole moment \\(\bm{p}\\) is produced by oscillating atomic charges, the [magnetic dipole moment](https://en.wikipedia.org/wiki/Magnetic_moment#Amperian_loop_model) \\(\bm{m}\\) is generated by circulating atomic currents (charges going in circles):
 
-$$ \tag{10.22}
-	\bm{m} = I A \bm{n},
+$$ \tag{10.27}
+	\bm{m} = I \bm{s},
 $$
 
-where \\(I\\) is the current, \\(A\\) is the area of the current loop, and \\(\bm{n}\\) is the unit vector normal to the loop.
+where \\(I\\) is the current, and \\(\bm{s}\\) is the oriented area of the loop.
 
-Like in the case of polarization, magnetism comes in different forms \[[5](#references) (vol. II, ch. 34)\]. Unfortunately, none of them appear to have a satisfactory explanation in terms of classical physics. In particular, to the best of the author's knowledge, there is no good analog of Equation 10.16 for induced magnetization.
+Formally, the magnetic dipole moment can be expressed in terms of the magnetization current by the integral
 
-For weak fields in [diamagnets](https://en.wikipedia.org/wiki/Diamagnet) and [paramagnets](https://en.wikipedia.org/wiki/Paramagnet), it is possible to combine Equations 1.12.2 and 5.2.3 to express the *magnetic polarization* \\(\bm{M}\\) in terms of the relative permeability \\(\mu\_r\\),
-
-$$ \tag{10.23}
-	\bm{M}
-	= \mu\_0^{-1} \bm{B} - \bm{H}
-	\approx (1 - \mu_r^{-1}) \mu\_0^{-1} \bm{B},
+$$ \tag{10.28}
+	\bm{m}(t)
+	= \frac{1}{2} \iiint\_{V} \bm{r} \times \bm{J_m}(\bm{r}, t) dV,
 $$
 
-but for [ferromagnets](https://en.wikipedia.org/wiki/Ferromagnet), it may result in a large error due to the [magnetic hysteresis](https://en.wikipedia.org/wiki/Magnetic_hysteresis) effect \[[5](#references) (vol. II, ch. 36)\].
+or, in terms of the magnetic polarization per unit volume \\(\bm{M}\\),
+
+$$ \tag{10.29}
+	\bm{m}(t)
+	= \iiint\_{V} \bm{M}(\bm{r}, t) dV.
+$$
+
+Like in the case of polarization, magnetism comes in different forms \[[5](#references) (vol. II, ch. 34)\]. Unfortunately, none of them appear to have a satisfactory explanation in terms of classical physics. In particular, to the best of the author's knowledge, there is no simple analog of Equation 10.21 for induced magnetization.
+
+For weak fields in [diamagnets](https://en.wikipedia.org/wiki/Diamagnet) and [paramagnets](https://en.wikipedia.org/wiki/Paramagnet), it is possible to combine Equations 1.12.2 and 5.2.3 to express the magnetic polarization \\(\bm{M}\\) in terms of the relative permeability \\(\mu\_r\\),
+
+$$ \tag{10.30}
+	\bm{M}(\bm{r}, \omega)
+	= \mu\_0^{-1} \bm{B}(\bm{r}, \omega) - \bm{H}(\bm{r}, \omega)
+	\approx \big( 1 - \mu_r^{-1}(\bm{r}, \omega) \big) \mu\_0^{-1} \bm{B}(\bm{r}, \omega),
+$$
+
+but for [ferromagnets](https://en.wikipedia.org/wiki/Ferromagnet), this expression may be inaccurate due to the [magnetic hysteresis](https://en.wikipedia.org/wiki/Magnetic_hysteresis) effect \[[5](#references) (vol. II, ch. 36)\].
 
 In some sense, dipoles can be considered elementary field generators: an electric dipole produces the \\(\bm{E}\\) field, and a magnetic dipole is a source of the \\(\bm{B}\\) field. They can be used to describe any (bound) current and charge distributions, which makes them particularly useful for solving electromagnetic radiation and scattering problems.
 
@@ -2157,7 +2179,7 @@ $$
 
 For a spherical particle, \\(V = 4/3 \pi a^3\\).
 
-In order to compute the scattered field according to Equation 11.10, we need a way to evaluate the electric Green tensor defined by Equation 9.26. Let's take a look at its matrix representation in the Cartesian coordinates:
+In order to compute the scattered field according to Equation 11.10, we need a way to evaluate the electric Green tensor defined by Equation 9.26. Let us take a look at its matrix representation in the Cartesian coordinates:
 
 $$ \tag{12.1}
 \begin{aligned}
