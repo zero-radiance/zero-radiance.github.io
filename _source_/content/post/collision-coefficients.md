@@ -1795,7 +1795,7 @@ $$
 A molecule can become polarized for a variety of reasons \[[5](#references) (vol. II, ch. 11)\]. If the separation of charges (such as the displacement of the electron cloud relative to the nucleus) occurs due the influence of an electric field, one speaks of *induced polarization*. If we assume that the effect is linear, the response is characterized by the [molecular polarizability](https://en.wikipedia.org/wiki/Electric_susceptibility#Molecular_polarizability) tensor \\(\mathcal{\Alpha_m}\\):
 
 $$ \tag{10.21}
-	\bm{p}(\omega) \approx \mathcal{\Alpha_m}(\bm{r}, \omega) \epsilon_0 \bm{E_{\mu}}(\bm{r}, \omega).
+	\bm{p}(\omega) \approx \mathcal{\Alpha_m}(\bm{r_0}, \omega) \epsilon_0 \bm{E_{\mu}}(\bm{r_0}, \omega).
 $$
 
 If there are \\(N\\) identical electric dipoles per unit volume, we can define the electric polarization \\(\bm{P}\\) as
@@ -1803,30 +1803,30 @@ If there are \\(N\\) identical electric dipoles per unit volume, we can define t
 $$ \tag{10.22}
 	\bm{P}(\bm{r}, \omega)
 	= N \bm{p}(\omega)
-	\approx N \mathcal{\Alpha_m}(\bm{r}, \omega) \epsilon_0 \bm{E_{\mu}}(\bm{r}, \omega).
+	\approx N \mathcal{\Alpha_m}(\bm{r_0}, \omega) \epsilon_0 \bm{E_{\mu}}(\bm{r_0}, \omega).
 $$
 
 Note that, in general, the microscopic field \\(\bm{E_{\mu}}\\) acting on the dipole is different from the macroscopic field \\(\bm{E}\\). The reason is that the microscopic field varies very rapidly inside the matter - it is very strong next to the nucleus, and relatively weak in the gaps between the molecules. Thus, the density of matter plays an important role. If the dipoles are randomly distributed, this leads to a spherically symmetric configuration, and it can be shown that the two fields are related by the equation
 
 $$ \tag{10.23}
-	\epsilon_0 \bm{E_{\mu}}(\bm{r}, \omega) = \epsilon_0 \bm{E}(\bm{r}, \omega) + \frac{1}{3} \bm{P}(\bm{r}, \omega),
+	\epsilon_0 \bm{E_{\mu}}(\bm{r_0}, \omega) = \epsilon_0 \bm{E}(\bm{r}, \omega) + \frac{1}{3} \bm{P}(\bm{r}, \omega),
 $$
 
 where \\(\bm{P}\\) describes the electric polarization of matter surrounding the dipole \[[5](#references) (vol. II, ch. 11), [6](#references) (ch. 2.3-2.4)\].
 
-By combining Equations 10.22 and 10.23,
+By combining Equations 10.22 and 10.23, and assuming that polarizability is isotropic (such that \\(\Alpha_m = \alpha_m\\)),
 
 $$ \tag{10.24}
 	\bm{P}(\bm{r}, \omega)
-	\approx \frac{N \mathcal{\Alpha_m}(\bm{r}, \omega)}{1 - \frac{1}{3} N \mathcal{\Alpha_m}(\bm{r}, \omega)} \epsilon_0 \bm{E}(\bm{r}, \omega),
+	\approx \frac{N \mathcal{\alpha_m}(\bm{r_0}, \omega)}{1 - \frac{1}{3} N \mathcal{\alpha_m}(\bm{r_0}, \omega)} \epsilon_0 \bm{E}(\bm{r}, \omega),
 $$
 
 we can incorporate the correction for the *microscopic* field into the *macroscopic* theory.
 
-In order to be able to use Equation 10.24, we need to determine both the density and the polarizability of the material. For an isotropic dielectric composed of a single type of molecules, their product is given by the [Clausius–Mossotti relation](https://en.wikipedia.org/wiki/Clausius%E2%80%93Mossotti_relation):
+In order to be able to use Equation 10.24, we need to determine both the density and the polarizability of the material. For a dielectric composed of a single type of molecules, their product is given by the [Clausius–Mossotti relation](https://en.wikipedia.org/wiki/Clausius%E2%80%93Mossotti_relation):
 
 $$ \tag{10.25}
-	\frac{\epsilon\_r(\bm{r}, \omega) - 1}{\epsilon\_r(\bm{r}, \omega) + 2} = \frac{1}{3} N \alpha\_m(\bm{r}, \omega).
+	\frac{\epsilon\_r(\bm{r}, \omega) - 1}{\epsilon\_r(\bm{r}, \omega) + 2} = \frac{1}{3} N \alpha\_m(\bm{r_0}, \omega).
 $$
 
 Thus, Equation 10.24 can be expressed very simply in terms of the [relative permittivity](https://en.wikipedia.org/wiki/Relative_permittivity) (dielectric constant) \\(\epsilon_r\\):
@@ -2038,7 +2038,7 @@ $$ \tag{11.15}
 	\bm{J\_p}(\bm{r}, \omega) = i \omega \bm{P}(\bm{r}, \omega).
 $$
 
-Using Equation 10.21 that relates polarization to the macroscopic optical properties, we may write
+Using Equation 10.26 that relates polarization to the macroscopic optical properties, we may write
 
 $$ \tag{11.16}
 	\bm{J\_p}(\bm{r}, \omega) = i \omega \big( \epsilon_r(\bm{r}, \omega) - 1 \big) \epsilon_0 \bm{E}(\bm{r}, \omega).
@@ -2066,11 +2066,11 @@ $$ \tag{11.19}
 \begin{aligned}
 	\bm{A}(\bm{r}, \omega)
 	&= \oiint\_{\mathbb{S}^2} \bm{A}(0, \bm{n}, \omega) e^{-i \omega (\bm{r} \cdot \bm{n}) / c} d\Omega_n \cr
-	&+ i \omega \iiint\_{V} \big[ \varepsilon(\bm{r'}, \omega) \mu - \epsilon_0 \mu_0 \big] \frac{e^{-i \omega  |\bm{r} - \bm{r'}| / c}}{4 \pi |\bm{r} - \bm{r'}|} \bm{E}(\bm{r'}, \omega) dV'.
+	&+ i \omega \iiint\_{V} \big[ \varepsilon(\bm{r'}, \omega) \mu_0 - \epsilon_0 \mu_0 \big] \frac{e^{-i \omega  |\bm{r} - \bm{r'}| / c}}{4 \pi |\bm{r} - \bm{r'}|} \bm{E}(\bm{r'}, \omega) dV'.
 \end{aligned}
 $$
 
-Pay close attention to the expression inside the square brackets. It is the difference between the physical properties of the interior \\((\varepsilon, \mu)\\) and the exterior \\((\epsilon_0, \mu_0)\\), with \\(\mu = \mu_0\\). Furthermore, we know that they determine the *absolute* (as opposed to \\(\varepsilon_r\\) and \\(\mu_r\\), which are *relative*) wave velocities in the respective media. Specifically, in vacuum, according to Equation 1.4, the phase velocity is
+Pay close attention to the expression inside the square brackets. It is the difference between the physical properties of the interior \\(\lbrace \varepsilon, \mu_0 \rbrace\\) and the exterior \\(\lbrace \epsilon_0, \mu_0 \rbrace\\). Furthermore, we know that they determine the *absolute* (as opposed to \\(\varepsilon_r\\) and \\(\mu_r\\), which are *relative*) wave velocities in the respective media. Specifically, in vacuum, according to Equation 1.4, the phase velocity is
 
 $$ \tag{11.20}
 	c = \frac{1}{\sqrt{\epsilon_0 \mu\_0}},
@@ -2119,7 +2119,9 @@ In the future, when no confusion arises, we shall drop redundant indexing by wri
 
 ## Dipole Radiation
 
-Typically, it is not possible to evaluate the integrals of Equations 11.9 and 11.10 in closed form, since the definition of the current (given by Equation 11.7) contains the electric field term, the value of which is, in general, not known (TODO: write about the transition operator). Thus, we must make certain assumptions and employ various approximations in order to make computations feasible.
+Typically, it is not possible to evaluate the integrals of Equations 11.10 and 11.11 in closed form, since the definition of the current (given by Equation 11.7) contains the electric field term, the value of which is, in general, not known (TODO: write about the transition operator). Thus, we must make certain assumptions and employ various approximations in order to make computations feasible.
+
+
 
 Consider a particle enclosed by a bounding sphere of radius \\(a\\). Assume that the size of the particle is much smaller than the the wavelength of incident light, and that its relative refractive index is sufficiently small (a more precise statement will be made later). Two conclusions follow: first, the incident field is not significantly modified by the presence of the particle; and second, all dipoles of the the entire particle are driven (and radiate) in-phase.
 
@@ -2287,7 +2289,18 @@ $$ \tag{12.8}
 \end{aligned}
 $$
 
-with the Green function containing an additional \\(R^{-1}\\) factor.
+with the Green function containing an additional \\(R^{-1}\\) factor, so that
+
+$$ \tag{12.?}
+    k^{-1} \mathcal{G_{en}}
+    \varpropto (k R)^{-3},
+    \qquad
+    k^{-1} \mathcal{G_{et}}
+    \varpropto (k R)^{-2},
+    \qquad
+	k^{-1} \mathcal{G_{ef}}
+    \varpropto (k R)^{-1}.
+$$
 
 If we wish to discard any of the terms of Equation 12.7, we should consider their magnitudes relative to each other. Specifically, in the far-field limit, we must assume that \\(k R \gg 1\\). That allows us to replace \\(\mathcal{G_{ee}}\\) with \\(\mathcal{G_{ef}}\\) in Equation 11.10:
 
