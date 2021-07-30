@@ -1772,14 +1772,17 @@ which is zero for electrically neutral objects.
 On the other hand, the electric dipole moment per unit volume \\(\bm{P}\\) is position-dependent:
 
 $$ \tag{10.18}
-	\bm{p}(t)
-	= \iiint\_{V} \bm{P}(\bm{r}, t) dV.
+	\bm{p}(t) = \iiint\_{V} \bm{P}(\bm{r}, t) dV,
+	\qquad
+	\bm{p}(\omega) = \iiint\_{V} \bm{P}(\bm{r}, \omega) dV.
 $$
 
 This expression is useful, since we can directly relate it to the definition of the polarization current density \\(\bm{J_p}\\) given by Equation 1.9.1:
 
 $$ \tag{10.19}
-	\frac{\partial}{\partial t} \bm{p}(t) = \iiint\_{V} \bm{J_p}(\bm{r}, t) dV.
+	\frac{\partial}{\partial t} \bm{p}(t) = \iiint\_{V} \bm{J_p}(\bm{r}, t) dV,
+	\qquad
+	i \omega \bm{p}(\omega) = \iiint\_{V} \bm{J_p}(\bm{r}, \omega) dV.
 $$
 
 Equation 10.19 implies that we can represent an arbitrary polarization current density by oscillating electric dipole moments:
@@ -1793,14 +1796,14 @@ $$
 A molecule can become polarized for a variety of reasons \[[5](#references) (vol. II, ch. 11)\]. If the separation of charges (such as the displacement of the electron cloud relative to the nucleus) occurs due the influence of an electric field, one speaks of *induced polarization*. If we assume that the effect is linear, the response is characterized by the [molecular polarizability](https://en.wikipedia.org/wiki/Electric_susceptibility#Molecular_polarizability) tensor \\(\mathcal{\Alpha_m}\\):
 
 $$ \tag{10.21}
-	\bm{p_0}(\omega) \approx \mathcal{\Alpha_m}(\bm{r_0}, \omega) \epsilon_0 \bm{E_{\mu}}(\bm{r_0}, \omega).
+	\bm{p}(\omega) \approx \mathcal{\Alpha_m}(\bm{r_0}, \omega) \epsilon_0 \bm{E_{\mu}}(\bm{r_0}, \omega).
 $$
 
 If there are \\(N\\) identical electric dipoles per unit volume, we can define the electric polarization \\(\bm{P}\\) as
 
 $$ \tag{10.22}
 	\bm{P}(\bm{r}, \omega)
-	= N \bm{p_0}(\omega)
+	= N \bm{p}(\omega)
 	\approx N \mathcal{\Alpha_m}(\bm{r_0}, \omega) \epsilon_0 \bm{E_{\mu}}(\bm{r_0}, \omega).
 $$
 
@@ -2039,21 +2042,21 @@ $$
 Using Equation 10.26 that relates polarization to the macroscopic optical properties, we may write
 
 $$ \tag{11.16}
-	\bm{J\_p}(\bm{r}, \omega) = i \omega \big( \epsilon_r(\bm{r}, \omega) - 1 \big) \epsilon_0 \bm{E}(\bm{r}, \omega).
+	\bm{J\_p}(\bm{r}, \omega) = i \omega \big( \epsilon_2(\bm{r}, \omega) - \epsilon_0 \big)  \bm{E}(\bm{r}, \omega).
 $$
 
 If the medium is conductive, Equation 5.2.1 says that
 
 $$ \tag{11.17}
-	\bm{J\_i}(\bm{r}, \omega) = \sigma(\bm{r}, \omega) \bm{E}(\bm{r}, \omega).
+	\bm{J\_i}(\bm{r}, \omega) = \sigma_2(\bm{r}, \omega) \bm{E}(\bm{r}, \omega).
 $$
 
 Let us now introduce
 
 $$ \tag{11.18}
 	\bm{J'}(\bm{r}, \omega)
-	= -i \omega \frac{\bm{J_b}(\bm{r}, \omega) + \bm{J_i}(\bm{r}, \omega)}{\mu_0^{-1}}
-	= \omega^2 \big( \varepsilon(\bm{r}, \omega) \mu_0 - \epsilon_0 \mu_0 \big) \bm{E}(\bm{r}, \omega).
+	= -i \omega \frac{\bm{J_p}(\bm{r}, \omega) + \bm{J_i}(\bm{r}, \omega)}{\mu_0^{-1}}
+	= \omega^2 \big( \varepsilon_2(\bm{r}, \omega) \mu_0 - \epsilon_0 \mu_0 \big) \bm{E}(\bm{r}, \omega).
 $$
 
 We may write it in terms of wave velocities using Equations 1.4 and 7.9:
@@ -2106,75 +2109,98 @@ $$ \tag{11.24}
 \begin{aligned}
     \bm{E}(\bm{r}, \omega)
 	&= \oiint\_{\mathbb{S}^2} \bm{E}(0, \bm{n}, \omega) e^{-i k_1(\omega) (\bm{r} \cdot \bm{n})} d\Omega_n \cr
-	&+ k_1^2(\omega) \iiint\_{V} \Big( m^2(\bm{r'}, \omega) - 1 \Big) \Big( \mathcal{I} + \frac{1}{k_1^2(\omega)} \nabla \otimes \nabla \Big) \frac{e^{-i k_1(\omega) |\bm{r} - \bm{r'}|}}{4 \pi |\bm{r} - \bm{r'}|} \bm{E}(\bm{r'}, \omega) dV'.
+	&+ k_1^2(\omega)  \iiint\_{V} \Big( m^2(\bm{r'}, \omega) - 1 \Big) \Big( \mathcal{I} + \frac{1}{k_1^2(\omega)} \nabla \otimes \nabla \Big) \frac{e^{-i k_1(\omega) |\bm{r} - \bm{r'}|}}{4 \pi |\bm{r} - \bm{r'}|} \bm{E}(\bm{r'}, \omega) dV'.
 \end{aligned}
 $$
 
-In the future, when no ambiguity arises, we may drop redundant indexing by writing \\(k = k_1\\).
+In the future, when no ambiguity arises, we may drop redundant indexing by writing \\(k = k_1\\) and \\(\varepsilon = \varepsilon_1\\):
+
+$$ \tag{11.25}
+\begin{aligned}
+	& \bm{E_s}(\bm{r}, \omega)
+	= k^2(\omega) \iiint\_{V} \big( m^2(\bm{r'}, \omega) - 1 \big) \mathcal{G_{ee}} \big( \bm{r} - \bm{r'}, k(\omega) \big) \bm{E}(\bm{r'}, \omega) dV', \cr
+	& \bm{B_s}(\bm{r}, \omega)
+	= \frac{i}{\omega} k^2(\omega) \iiint\_{V} \big( m^2(\bm{r'}, \omega) - 1 \big) \mathcal{G_{me}} \big( \bm{r} - \bm{r'}, k(\omega) \big) \bm{E}(\bm{r'}, \omega) dV'.
+\end{aligned}
+$$
 
 ## Dipole Radiation
 
-Typically, it is not possible to evaluate the integrals of Equations 11.10 and 11.11 in closed form, since the definition of the current (given by Equation 11.7) contains the electric field term, the value of which is, in general, not known (TODO: write about the transition operator). Thus, we must make certain assumptions and employ various approximations in order to make computations feasible.
+Typically, it is not possible to evaluate the integrals of Equations 11.25 in closed form, since the value of the internal electric field term is not known (TODO: write about the transition operator). Thus, we must make certain assumptions and employ various approximations in order to make computations feasible.
 
+The simplest problem that can be solved to a high degree of accuracy is that of a single atom or a small molecule embedded in a homogeneous medium. This case corresponds to a tiny particle in vacuum, or an [impurity](https://en.wikipedia.org/wiki/Impurity) in an otherwise pure material. We shall represent it as an electric dipole - an oriented point source.
 
+The statement of the problem leads to three simplifications [^13]:
 
-Consider a particle enclosed by a bounding sphere of radius \\(a\\). Assume that the size of the particle is much smaller than the the wavelength of incident light, and that its relative refractive index is sufficiently small (a more precise statement will be made later). Two conclusions follow: first, the incident field is not significantly modified by the presence of the particle; and second, all dipoles of the the entire particle are driven (and radiate) in-phase.
+[^13]: These simplifications are stated as assumptions. Their range of validity with regards to the general case shall be considered in the next section.
 
-[Insert picture here]
+1. we neglect the effect of the fields generated by the particle on itself;
 
-Under these assumptions, the particle acts like a single dipole located at \\(\bm{r_0}\\), and we may use Equation 10.16 to write the expression of its electric dipole moment:
+2. the magnitude and the phase of the field driving the charges (which we set equal to the incident field) is the same throughout the particle;
+
+3. the resulting source of radiation is sufficiently localized, which permits us to evaluate the fields at practically any distance from the particle.
+
+Assume that the particle is non-conducting. Equation 11.18 can then be simplified to
 
 $$ \tag{12.1}
-	\bm{p}(\bm{r_0}, \omega) \approx \mathcal{\Alpha_p}(\omega) \epsilon_1(\omega) \bm{E_i}(\bm{r_0}, \omega),
+	\bm{J'}(\bm{r}, \omega)
+	= -i \omega \frac{\bm{J_p}(\bm{r}, \omega)}{\mu_0^{-1}}.
 $$
 
-where \\(\mathcal{\Alpha_p}\\) is the particle's polarizability tensor (which has units of a volume).
-
-The matrix representation of \\(\mathcal{\Alpha_p}\\) is a convenient way to model polar molecules or asymmetric particles; it acts by rotating and non-uniformly scaling the electric field phasor. To make the resulting formulas easier to interpret, we will assume that the particle is spherical (of radius \\(a\\)) and isotropic (so that \\(\mathcal{\Alpha_p} = \alpha_p\\)).
-
-A particle's polarizability can be specified in several different ways. If the particle contains \\(N\\) molecules per unit volume, we may integrate Equation 10.17 to obtain
+According to Equation 10.20, polarization current may be attributed to an oscillating dipole:
 
 $$ \tag{12.2}
-	\bm{p}(\bm{r_0}, \omega) = \int_V N \bm{p_m} dV \approx V N \alpha_m(\omega) \epsilon_1(\omega) \bm{E_i}(\bm{r_0}, \omega),
+	\bm{J_p}(\bm{r}, \omega) = i \omega \bm{p}(\omega) \delta(\bm{r} - \bm{r_0}).
 $$
 
-with a predictable conclusion that the polarizability of a particle is the product of the number of molecules and the molecular polarizability of a single molecule:
+Furthermore, we may use the definition of the dipole moment given by Equation 10.21:
 
 $$ \tag{12.3}
-	\alpha_p(\omega) = V N \alpha_m(\omega).
+	\bm{p}(\omega) \approx \mathcal{\Alpha_m}(\bm{r_0}, \omega) \varepsilon(\omega) \bm{E_i}(\bm{r_0}, \omega).
 $$
 
-Alternatively, we may integrate the electric polarization given by Equation 10.21:
+where we replaced \\(\epsilon_0\\) with \\(\varepsilon\\) (to account for the properties of the surrounding medium) and \\(\bm{E_{\mu}}\\) with \\(\bm{E_i}\\) (according to the simplification discussed above).
+
+The combination of Equations 12.1-12.3 results in
 
 $$ \tag{12.4}
-	\bm{p}(\bm{r_0}, \omega)
+	\bm{J'}(\bm{r}, \omega)
+	= k^2(\omega) \mathcal{\Alpha_m}(\bm{r_0}, \omega) \bm{E_i}(\bm{r_0}, \omega) \delta(\bm{r} - \bm{r_0}).
+$$
+
+The matrix representation of \\(\mathcal{\Alpha_m}\\) is a convenient way to model polar molecules (or asymmetric particles); it acts by rotating and non-uniformly scaling the electric field phasor. To make the resulting formulas easier to interpret, we will assume that the particle is spherical (of radius \\(a\\)) and isotropic, so that \\(\mathcal{\Alpha_m} = \alpha_m\\).
+
+Now let us substitute Equation 12.4 into Equations 11.10-11.11:
+
+$$ \tag{12.5}
+\begin{aligned}
+	& \bm{E_s}(\bm{r}, \omega)
+	= k^2(\omega) \mathcal{\alpha_m}(\bm{r_0}, \omega) \mathcal{G_{ee}} \big( \bm{r} - \bm{r_0}, k(\omega) \big) \bm{E_i}(\bm{r_0}, \omega), \cr
+	& \bm{B_s}(\bm{r}, \omega)
+	= \frac{i}{\omega} k^2(\omega) \mathcal{\alpha_m}(\bm{r_0}, \omega) \mathcal{G_{me}} \big( \bm{r} - \bm{r_0}, k(\omega) \big) \bm{E_i}(\bm{r_0}, \omega).
+\end{aligned}
+$$
+
+We can see that Equation 12.5 corresponds to the contribution of a volume element of Equation 11.25 occupied by a single atom or a small molecule, with the internal field replaced by the incident field, and with the polarizability \\(\alpha_m\\) taking the role of the relative refractive index \\(m\\).
+
+Note that the polarizability \\(\alpha_m\\) has units of volume \[[4](#references) (ch. 6.22)\]:
+
+$$ \tag{12.6}
+	\alpha_m(\bm{r_0}, \omega)
+	= \int_V \big( m^2(\bm{r}, \omega) - 1 \big) dV.
+$$
+
+This can be shown by combining Equations 10.18.2 and 10.26
+
+$$ \tag{12.7}
+	\bm{p}(\omega)
 	= \int_V \bm{P}(\bm{r}, \omega) dV
-	= \int_V (m^2(\bm{r}, \omega) - 1) \epsilon_1(\omega) \bm{E_i}(\bm{r_0}, \omega) dV,
+	= \int_V \big( m^2(\bm{r}, \omega) - 1 \big) \varepsilon(\omega) \bm{E_i}(\bm{r_0}, \omega) dV
 $$
 
-where we replaced \\(\epsilon_0\\) with \\(\epsilon_1\\), so it is understood that \\(\epsilon_r = \epsilon_2 / \epsilon_1\\) and \\(m^2 = \epsilon_r\\).
+and comparing the result with Equation 12.3.
 
-For a homogeneous particle, comparison of Equations 12.1 and 12.4 yields
-
-$$ \tag{12.3}
-	m^2(\omega) - 1 = \frac{\alpha_p(\omega)}{V},
-$$
-
-and if the particle is spherical, with radius \\(a\\),
-
-$$ \tag{12.3}
-	m^2(\omega) - 1 = \frac{\alpha_p(\omega)}{4/3 \pi a^3},
-$$
-
-\bm{P} \approx (\epsilon_r - 1) \epsilon_0 \bm{E}.
-
-Note that \\(\mathcal{\Alpha_m}\\) has dimensions of a volume. It will be advantageous to introduce a dimensionless quantity
-
-$$ \tag{12.1}
-	\mathcal{\Alpha_m'} = \frac{1}{V} \mathcal{\Alpha_m}(\bm{r}, \omega).
-$$
-
-For a spherical particle, \\(V = 4/3 \pi a^3\\).
+---
 
 In order to compute the scattered field according to Equation 11.10, we need a way to evaluate the electric Green tensor defined by Equation 9.26. Let us take a look at its matrix representation in the Cartesian coordinates:
 
