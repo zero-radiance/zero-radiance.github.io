@@ -991,8 +991,8 @@ The combination of Equations 7.6-7.7 produces the [dispersion relation](https://
 
 $$ \tag{7.9}
 	k(\omega)
-	= \omega \Bigg( \frac{\eta(\omega)}{c} - i \frac{\kappa(\omega)}{c} \Bigg)
-	= \omega \Bigg( \frac{1}{v_p(\omega)} - \frac{i}{v_a(\omega)} \Bigg),
+	= \frac{\omega}{c} \big( \eta(\omega) - i \kappa(\omega) \big)
+	= \omega \bigg( \frac{1}{v_p(\omega)} - \frac{i}{v_a(\omega)} \bigg),
 $$
 
 where \\(v_p = c/\eta\\) is the [phase velocity](https://en.wikipedia.org/wiki/Phase_velocity) and \\(v_a=c/\kappa\\) is the *amplitude velocity*. It shows that, in a dispersive medium, waves of different frequencies propagate at different rates.
@@ -1779,9 +1779,7 @@ $$
 This expression is useful, since we can directly relate it to the definition of the polarization current density \\(\bm{J_p}\\) given by Equation 1.9.1:
 
 $$ \tag{10.19}
-	\frac{\partial}{\partial t} \bm{p}(t) = \iiint\_{V} \bm{J_p}(\bm{r}, t) dV,
-	\qquad
-	i \omega \bm{p}(\omega) = \iiint\_{V} \bm{J_p}(\bm{r}, \omega) dV.
+	\frac{\partial}{\partial t} \bm{p}(t) = \iiint\_{V} \bm{J_p}(\bm{r}, t) dV.
 $$
 
 Equation 10.19 implies that we can represent an arbitrary polarization current density by oscillating electric dipole moments:
@@ -1795,14 +1793,14 @@ $$
 A molecule can become polarized for a variety of reasons \[[5](#references) (vol. II, ch. 11)\]. If the separation of charges (such as the displacement of the electron cloud relative to the nucleus) occurs due the influence of an electric field, one speaks of *induced polarization*. If we assume that the effect is linear, the response is characterized by the [molecular polarizability](https://en.wikipedia.org/wiki/Electric_susceptibility#Molecular_polarizability) tensor \\(\mathcal{\Alpha_m}\\):
 
 $$ \tag{10.21}
-	\bm{p}(\omega) \approx \mathcal{\Alpha_m}(\bm{r_0}, \omega) \epsilon_0 \bm{E_{\mu}}(\bm{r_0}, \omega).
+	\bm{p_0}(\omega) \approx \mathcal{\Alpha_m}(\bm{r_0}, \omega) \epsilon_0 \bm{E_{\mu}}(\bm{r_0}, \omega).
 $$
 
 If there are \\(N\\) identical electric dipoles per unit volume, we can define the electric polarization \\(\bm{P}\\) as
 
 $$ \tag{10.22}
 	\bm{P}(\bm{r}, \omega)
-	= N \bm{p}(\omega)
+	= N \bm{p_0}(\omega)
 	\approx N \mathcal{\Alpha_m}(\bm{r_0}, \omega) \epsilon_0 \bm{E_{\mu}}(\bm{r_0}, \omega).
 $$
 
@@ -1900,7 +1898,7 @@ the *radiative properties* of the large-scale medium are determined by solving t
 
 ## Mathematical Formulation of the Scattering Problem
 
-Participating media can be broadly divided into two categories - homogeneous and inhomogeneous. This suggests that we may split any medium into two regions: 1) homogeneous, and 2) the remaining space (that is possibly inhomogeneous).
+Participating media can be broadly divided into two categories - homogeneous and inhomogeneous. This suggests that we may split any medium into two regions: 1) homogeneous, and 2) the remaining space (that can be reinterpreted as a single particle or particle group) contained within the volume \\(V\\).
 
 [Picture?]
 
@@ -1927,7 +1925,7 @@ $$ \tag{11.3}
 \end{aligned}
 $$
 
-where the first equation only holds in the region 1, and the second equation - in the region 2.
+where the first equation only holds in the (homogeneous) region 1, and the second - in the (inhomogeneous) region 2.
 
 Further, assume that the media are non-magnetic. This implies that
 
@@ -1966,9 +1964,9 @@ We are now in a good position to state a single equation that unifies the two re
 $$ \tag{11.7}
 \bm{J'}(\bm{r}, \omega) =
 \begin{cases}
-   0 &\text{if } \bm{r} \in V_1, \cr
-   k_1^2(\omega) \big( m^2(\bm{r}, \omega) - 1 \big) \bm{E}(\bm{r}, \omega) &\text{if } \bm{r} \in V_2,
-\end{cases},
+   k_1^2(\omega) \big( m^2(\bm{r}, \omega) - 1 \big) \bm{E}(\bm{r}, \omega) &\text{if } \bm{r} \in V, \cr
+   0 &\text{otherwise},
+\end{cases}
 $$
 
 such that
@@ -1990,7 +1988,7 @@ We have already encountered a mathematically identical problem stated by Equatio
 
 $$ \tag{11.10}
 	\bm{E_s}(\bm{r}, \omega)
-	= \iiint\_{V_2} \mathcal{G_{ee}} \big( \bm{r} - \bm{r'}, k_1(\omega) \big) \bm{J'}(\bm{r'}, \omega) dV',
+	= \iiint\_{V} \mathcal{G_{ee}} \big( \bm{r} - \bm{r'}, k_1(\omega) \big) \bm{J'}(\bm{r'}, \omega) dV',
 $$
 
 where have neglected the singularity term by assuming that \\(\bm{r}\\) is located within the homogeneous region.
@@ -1999,18 +1997,18 @@ Similarly, the magnetic field is given by Equation 9.29:
 
 $$ \tag{11.11}
 	\bm{B_s}(\bm{r}, \omega)
-	= \frac{i}{\omega} \iiint\_{V_2} \mathcal{G_{me}} \big( \bm{r} - \bm{r'}, k_1(\omega) \big) \bm{J'}(\bm{r'}, \omega) dV',
+	= \frac{i}{\omega} \iiint\_{V} \mathcal{G_{me}} \big( \bm{r} - \bm{r'}, k_1(\omega) \big) \bm{J'}(\bm{r'}, \omega) dV',
 $$
 
-where you will recognize from Equation 3.12 that \\(\mathcal{G_{me}} = \nabla \times \mathcal{G_{ee}}\\).
+where you may recognize \\(\mathcal{G_{me}} = \nabla \times \mathcal{G_{ee}}\\) from Equation 3.12.
 
-Equations 11.10 is a special solution of the inhomogeneous Equation 11.9 (just like Equation 9.13 is a special solution of Equation 9.5). To obtain a general solution, we must combine Equation 11.10 with the solution of the homogeneous equation, which physically amounts to adding the primary sources. In our particular case, the homogeneous equation is mathematically equivalent to Equation 6.5, which allows us to directly use the solution given by Equation 6.16:
+Equation 11.10 is a special solution of the inhomogeneous Equation 11.9 (just like Equation 9.13 is a special solution of Equation 9.5). To obtain a general solution, we must combine Equation 11.10 with the solution of the homogeneous equation, which physically amounts to adding the primary sources. In our particular case, the homogeneous equation is mathematically equivalent to Equation 6.5, which allows us to directly use the solution given by Equation 6.16:
 
 $$ \tag{11.12}
 \begin{aligned}
     \bm{E}(\bm{r}, \omega)
 	&= \oiint\_{\mathbb{S}^2} \bm{E}(0, \bm{n}, \omega) e^{-i k_1(\omega) (\bm{r} \cdot \bm{n})} d\Omega_n \cr
-	&+ \iiint\_{V_2} \mathcal{G_{ee}} \big( \bm{r} - \bm{r'}, k_1(\omega) \big) \bm{J'}(\bm{r'}, \omega) dV'.
+	&+ \iiint\_{V} \mathcal{G_{ee}} \big( \bm{r} - \bm{r'}, k_1(\omega) \big) \bm{J'}(\bm{r'}, \omega) dV'.
 \end{aligned}
 $$
 
@@ -2050,41 +2048,38 @@ $$ \tag{11.17}
 	\bm{J\_i}(\bm{r}, \omega) = \sigma(\bm{r}, \omega) \bm{E}(\bm{r}, \omega).
 $$
 
-Thus, in terms of the complex permittivity (c.f. Equation 5.6), the total current is
+Let us now introduce
 
 $$ \tag{11.18}
-\begin{aligned}
-	& \bm{J'}(\bm{r}, \omega)
-	= \bm{J\_p}(\bm{r}, \omega) + \bm{J\_i}(\bm{r}, \omega)
-	= i \omega \big( \varepsilon(\bm{r}, \omega) - \epsilon_0 \big) \bm{E}(\bm{r}, \omega)
-\end{aligned}
+	\bm{J'}(\bm{r}, \omega)
+	= -i \omega \frac{\bm{J_b}(\bm{r}, \omega) + \bm{J_i}(\bm{r}, \omega)}{\mu_0^{-1}}
+	= \omega^2 \big( \varepsilon(\bm{r}, \omega) \mu_0 - \epsilon_0 \mu_0 \big) \bm{E}(\bm{r}, \omega).
+$$
+
+We may write it in terms of wave velocities using Equations 1.4 and 7.9:
+
+$$ \tag{11.19}
+	\bm{J'}(\bm{r}, \omega)
+	= \omega^2 \Bigg( \bigg( \frac{1}{v_p(\bm{r}, \omega)} - \frac{i}{v_a(\bm{r}, \omega)} \bigg)^2 - \frac{1}{c^2} \Bigg) \bm{E}(\bm{r}, \omega).
 $$
 
 Substitution into Equation 11.13 yields
 
-$$ \tag{11.19}
+$$ \tag{11.20}
 \begin{aligned}
 	\bm{A}(\bm{r}, \omega)
 	&= \oiint\_{\mathbb{S}^2} \bm{A}(0, \bm{n}, \omega) e^{-i \omega (\bm{r} \cdot \bm{n}) / c} d\Omega_n \cr
-	&+ i \omega \iiint\_{V} \big[ \varepsilon(\bm{r'}, \omega) \mu_0 - \epsilon_0 \mu_0 \big] \frac{e^{-i \omega  |\bm{r} - \bm{r'}| / c}}{4 \pi |\bm{r} - \bm{r'}|} \bm{E}(\bm{r'}, \omega) dV'.
+	&+ i \omega \iiint\_{V} \Bigg( \bigg( \frac{1}{v_p(\bm{r'}, \omega)} - \frac{i}{v_a(\bm{r'}, \omega)} \bigg)^2 - \frac{1}{c^2} \Bigg) \frac{e^{-i \omega  |\bm{r} - \bm{r'}| / c}}{4 \pi |\bm{r} - \bm{r'}|} \bm{E}(\bm{r'}, \omega) dV'.
 \end{aligned}
 $$
 
-Pay close attention to the expression inside the square brackets. It is the difference between the physical properties of the interior \\(\lbrace \varepsilon, \mu_0 \rbrace\\) and the exterior \\(\lbrace \epsilon_0, \mu_0 \rbrace\\). Furthermore, we know that they determine the *absolute* (as opposed to \\(\varepsilon_r\\) and \\(\mu_r\\), which are *relative*) wave velocities in the respective media. Specifically, in vacuum, according to Equation 1.4, the phase velocity is
-
-$$ \tag{11.20}
-	c = \frac{1}{\sqrt{\epsilon_0 \mu\_0}},
-$$
-
-Intuitively, all the \\(c\\) factors that exist in Equation 11.19 arise due to wave propagation in vacuum.
-
-If we wish to replace vacuum with another homogeneous medium, we must, in a sense, reduce wave velocities by replacing \\(\epsilon_0\\) with \\(\varepsilon_1\\), and, as a consequence, \\(c\\) with \\((\varepsilon_1 \mu_0)^{-1/2}\\), all while maintaining the absolute speed of light in the inhomogeneous region. These modifications transform Equation 11.19 into
+If the volume integral vanishes, we are left with the incident wave propagating at the speed of light \\(c\\). If we wish to replace vacuum with another homogeneous medium, we must reduce the wave velocities in the exterior by replacing \\(c\\) with \\(c/(\eta_1 - i \kappa_1)\\). Specifically, in our case, this means we must substitute \\(\varepsilon_1\\) for \\(\epsilon_0\\) and, as a consequence, \\((\varepsilon_1 \mu_0)^{-1/2}\\) for \\(c\\).  These modifications do not affect the wave velocities within the inhomogeneous region. The result is
 
 $$ \tag{11.21}
 \begin{aligned}
 	\bm{A}(\bm{r}, \omega)
 	&= \oiint\_{\mathbb{S}^2} \bm{A}(0, \bm{n}, \omega) e^{-i \omega \sqrt{\varepsilon_1(\omega) \mu\_0} (\bm{r} \cdot \bm{n})} d\Omega_n \cr
-	&+ i \omega \iiint\_{V_2} \big( \varepsilon_2(\bm{r'}, \omega) \mu\_0 - \varepsilon_1(\omega) \mu\_0 \big) \frac{e^{-i \omega \sqrt{\varepsilon_1(\omega) \mu\_0} |\bm{r} - \bm{r'}|}}{4 \pi |\bm{r} - \bm{r'}|} \bm{E}(\bm{r'}, \omega) dV',
+	&+ i \omega \iiint\_{V} \big( \varepsilon_2(\bm{r'}, \omega) \mu\_0 - \varepsilon_1(\omega) \mu\_0 \big) \frac{e^{-i \omega \sqrt{\varepsilon_1(\omega) \mu\_0} |\bm{r} - \bm{r'}|}}{4 \pi |\bm{r} - \bm{r'}|} \bm{E}(\bm{r'}, \omega) dV',
 \end{aligned}
 $$
 
@@ -2094,7 +2089,7 @@ $$ \tag{11.22}
 \begin{aligned}
 	\bm{A}(\bm{r}, \omega)
 	&= \oiint\_{\mathbb{S}^2} \bm{A}(0, \bm{n}, \omega) e^{-i k_1(\omega) (\bm{r} \cdot \bm{n})} d\Omega_n \cr
-	&+ \frac{i}{\omega} \iiint\_{V_2} \big( k_2^2(\bm{r'}, \omega) - k_1^2(\omega) \big)  \frac{e^{-i k_1(\omega) |\bm{r} - \bm{r'}|}}{4 \pi |\bm{r} - \bm{r'}|} \bm{E}(\bm{r'}, \omega) dV'.
+	&+ \frac{i}{\omega} \iiint\_{V} \big( k_2^2(\bm{r'}, \omega) - k_1^2(\omega) \big)  \frac{e^{-i k_1(\omega) |\bm{r} - \bm{r'}|}}{4 \pi |\bm{r} - \bm{r'}|} \bm{E}(\bm{r'}, \omega) dV'.
 \end{aligned}
 $$
 
@@ -2107,15 +2102,15 @@ $$
 
 After performing a substitution of Equation 11.22, and assuming that \\(\bm{r}\\) lies outside the inhomogeneous region, we obtain an expanded version of Equation 11.12:
 
-$$ \tag{11.23}
+$$ \tag{11.24}
 \begin{aligned}
     \bm{E}(\bm{r}, \omega)
 	&= \oiint\_{\mathbb{S}^2} \bm{E}(0, \bm{n}, \omega) e^{-i k_1(\omega) (\bm{r} \cdot \bm{n})} d\Omega_n \cr
-	&+ k_1^2(\omega) \iiint\_{V_2} \Big( m^2(\bm{r'}, \omega) - 1 \Big) \Big( \mathcal{I} + \frac{1}{k_1^2(\omega)} \nabla \otimes \nabla \Big) \frac{e^{-i k_1(\omega) |\bm{r} - \bm{r'}|}}{4 \pi |\bm{r} - \bm{r'}|} \bm{E}(\bm{r'}, \omega) dV'.
+	&+ k_1^2(\omega) \iiint\_{V} \Big( m^2(\bm{r'}, \omega) - 1 \Big) \Big( \mathcal{I} + \frac{1}{k_1^2(\omega)} \nabla \otimes \nabla \Big) \frac{e^{-i k_1(\omega) |\bm{r} - \bm{r'}|}}{4 \pi |\bm{r} - \bm{r'}|} \bm{E}(\bm{r'}, \omega) dV'.
 \end{aligned}
 $$
 
-In the future, when no confusion arises, we shall drop redundant indexing by writing \\(k = k_1\\) and \\(V  = V_2\\).
+In the future, when no ambiguity arises, we may drop redundant indexing by writing \\(k = k_1\\).
 
 ## Dipole Radiation
 
