@@ -2426,7 +2426,7 @@ So far, our far-field analysis concerned a single volume element (or a single di
 
 ## Acknowledgments
 
-Pharr, Jakob, Humphreys, NASA
+Pharr & Jakob, Bohren & Huffman, NASA
 
 ## References
 
