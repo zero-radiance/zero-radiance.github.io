@@ -1429,10 +1429,10 @@ $$ \tag{9.14}
 \begin{aligned}
 	&\bm{A}(\bm{r}, \omega)
 	= \iiint\_{V} g \big( \bm{r} - \bm{r'}, k_0(\omega) \big) \frac{\bm{J}(\bm{r'}, \omega)}{\mu_0^{-1}} dV'
-	= \iiint\_{V} \frac{\bm{J}(\bm{r'}, \omega)}{\mu_0^{-1}} \frac{e^{-i k_0(\omega) |\bm{r} - \bm{r'}|}}{4 \pi |\bm{r} - \bm{r'}|} dV', \cr
+	= \iiint\_{V} \frac{e^{-i k_0(\omega) |\bm{r} - \bm{r'}|}}{4 \pi |\bm{r} - \bm{r'}|} \frac{\bm{J}(\bm{r'}, \omega)}{\mu_0^{-1}} dV', \cr
 	&\phi(\bm{r}, \omega)
 	= \iiint\_{V} g \big( \bm{r} - \bm{r'}, k_0(\omega) \big) \frac{\rho(\bm{r'}, \omega)}{\epsilon_0} dV'
-	= \iiint\_{V} \frac{\rho(\bm{r'}, \omega)}{\epsilon_0} \frac{e^{-i k_0(\omega) |\bm{r} - \bm{r'}|}}{4 \pi |\bm{r} - \bm{r'}|} dV',
+	= \iiint\_{V} \frac{e^{-i k_0(\omega) |\bm{r} - \bm{r'}|}}{4 \pi |\bm{r} - \bm{r'}|} \frac{\rho(\bm{r'}, \omega)}{\epsilon_0} dV',
 \end{aligned}
 $$
 
@@ -1445,7 +1445,7 @@ $$ \tag{9.15}
 	\psi(\bm{r})
 	&= \psi_i(\bm{r}) + \psi_s(\bm{r}) \cr
 	&= \oiint\_{\mathbb{S}^2} \psi_i(0, \bm{n}) e^{-i k_0 (\bm{r} \cdot \bm{n})} d\Omega_n
-	 + \iiint\_{\mathbb{R^3}} \xi(\bm{r'}) \frac{e^{-i k_0 |\bm{r} - \bm{r'}|}}{4 \pi |\bm{r} - \bm{r'}|} dV'.
+	 + \iiint\_{\mathbb{R^3}} \frac{e^{-i k_0 |\bm{r} - \bm{r'}|}}{4 \pi |\bm{r} - \bm{r'}|} \xi(\bm{r'}) dV'.
 \end{aligned}
 $$
 
@@ -1455,10 +1455,10 @@ $$ \tag{9.16}
 \begin{aligned}
 	&\bm{A}(\bm{r}, \omega)
 	= \bm{A_i}(\bm{r}, \omega)
-	+ \iiint\_{V} \frac{\bm{J_b}(\bm{r'}, \omega) + \bm{J_i}(\bm{r'}, \omega)}{\mu_0^{-1}} \frac{e^{-i k_0(\omega) |\bm{r} - \bm{r'}|}}{4 \pi |\bm{r} - \bm{r'}|} dV', \cr
+	+ \iiint\_{V} \frac{e^{-i k_0(\omega) |\bm{r} - \bm{r'}|}}{4 \pi |\bm{r} - \bm{r'}|} \frac{\bm{J_b}(\bm{r'}, \omega) + \bm{J_i}(\bm{r'}, \omega)}{\mu_0^{-1}} dV', \cr
 	&\phi(\bm{r}, \omega)
 	= \phi_i(\bm{r}, \omega)
-	+ \iiint\_{V} \frac{\rho_b(\bm{r'}, \omega) + \rho_i(\bm{r'}, \omega)}{\epsilon_0} \frac{e^{-i k_0(\omega) |\bm{r} - \bm{r'}|}}{4 \pi |\bm{r} - \bm{r'}|} dV'.
+	+ \iiint\_{V} \frac{e^{-i k_0(\omega) |\bm{r} - \bm{r'}|}}{4 \pi |\bm{r} - \bm{r'}|} \frac{\rho_b(\bm{r'}, \omega) + \rho_i(\bm{r'}, \omega)}{\epsilon_0} dV'.
 \end{aligned}
 $$
 
@@ -1796,15 +1796,15 @@ $$
 A molecule can become polarized for a variety of reasons \[[5](#references) (vol. II, ch. 11)\]. If the separation of charges (such as the displacement of the electron cloud relative to the nucleus) occurs due the influence of an electric field, one speaks of *induced polarization*. If we assume that the effect is linear, the response is characterized by the [molecular polarizability](https://en.wikipedia.org/wiki/Electric_susceptibility#Molecular_polarizability) tensor \\(\mathcal{\Alpha_m}\\):
 
 $$ \tag{10.21}
-	\bm{p}(\omega) \approx \mathcal{\Alpha_m}(\bm{r_0}, \omega) \epsilon_0 \bm{E_{\mu}}(\bm{r_0}, \omega).
+	\bm{p}(\omega) \approx \mathcal{\Alpha_m}(\omega) \epsilon_0 \bm{E_{\mu}}(\bm{r_0}, \omega).
 $$
 
 If there are \\(N\\) identical electric dipoles per unit volume, we can define the electric polarization \\(\bm{P}\\) as
 
 $$ \tag{10.22}
 	\bm{P}(\bm{r}, \omega)
-	= N \bm{p}(\omega)
-	\approx N \mathcal{\Alpha_m}(\bm{r_0}, \omega) \epsilon_0 \bm{E_{\mu}}(\bm{r_0}, \omega).
+	= N(\bm{r}) \bm{p}(\omega)
+	\approx N(\bm{r}) \mathcal{\Alpha_m}(\omega) \epsilon_0 \bm{E_{\mu}}(\bm{r_0}, \omega).
 $$
 
 Note that, in general, the microscopic field \\(\bm{E_{\mu}}\\) acting on the dipole is different from the macroscopic field \\(\bm{E}\\). The reason is that the microscopic field varies very rapidly inside the matter - it is very strong next to the nucleus, and relatively weak in the gaps between the molecules. Thus, the density of matter plays an important role. If the dipoles are randomly distributed, this leads to a spherically symmetric configuration, and it can be shown that the two fields are related by the equation
@@ -1815,11 +1815,11 @@ $$
 
 where \\(\bm{P}\\) describes the electric polarization of matter surrounding the dipole \[[5](#references) (vol. II, ch. 11), [6](#references) (ch. 2.3-2.4)\].
 
-By combining Equations 10.22 and 10.23, and assuming that polarizability is isotropic (such that \\(\Alpha_m = \alpha_m\\)),
+By combining Equations 10.22 and 10.23, and assuming that polarizability is isotropic (such that \\(\mathcal{\Alpha_m} = \alpha_m\\)),
 
 $$ \tag{10.24}
 	\bm{P}(\bm{r}, \omega)
-	\approx \frac{N \mathcal{\alpha_m}(\bm{r_0}, \omega)}{1 - \frac{1}{3} N \mathcal{\alpha_m}(\bm{r_0}, \omega)} \epsilon_0 \bm{E}(\bm{r}, \omega),
+	\approx \frac{N(\bm{r})\alpha_m(\omega)}{1 - \frac{1}{3} N(\bm{r})\alpha_m(\omega)} \epsilon_0 \bm{E}(\bm{r}, \omega),
 $$
 
 we can incorporate the correction for the *microscopic* field into the *macroscopic* theory.
@@ -1827,7 +1827,7 @@ we can incorporate the correction for the *microscopic* field into the *macrosco
 In order to be able to use Equation 10.24, we need to determine both the density and the polarizability of the material. For a dielectric composed of a single type of molecules, their product is given by the [Clausius–Mossotti relation](https://en.wikipedia.org/wiki/Clausius%E2%80%93Mossotti_relation):
 
 $$ \tag{10.25}
-	\frac{\epsilon\_r(\bm{r}, \omega) - 1}{\epsilon\_r(\bm{r}, \omega) + 2} = \frac{1}{3} N \alpha\_m(\bm{r_0}, \omega).
+	\frac{\epsilon\_r(\bm{r}, \omega) - 1}{\epsilon\_r(\bm{r}, \omega) + 2} = \frac{1}{3} N(\bm{r}) \alpha\_m(\omega).
 $$
 
 Thus, Equation 10.24 can be expressed very simply in terms of the [relative permittivity](https://en.wikipedia.org/wiki/Relative_permittivity) (dielectric constant) \\(\epsilon_r\\):
@@ -2023,7 +2023,7 @@ $$ \tag{11.13}
 \begin{aligned}
 	\bm{A}(\bm{r}, \omega)
 	&= \oiint\_{\mathbb{S}^2} \bm{A}(0, \bm{n}, \omega) e^{-i k_0(\omega) (\bm{r} \cdot \bm{n})} d\Omega_n \cr
-	&+ \iiint\_{V} \frac{\bm{J_b}(\bm{r'}, \omega) + \bm{J_i}(\bm{r'}, \omega)}{\mu_0^{-1}} \frac{e^{-i k_0(\omega) |\bm{r} - \bm{r'}|}}{4 \pi |\bm{r} - \bm{r'}|} dV'.
+	&+ \iiint\_{V} \frac{e^{-i k_0(\omega) |\bm{r} - \bm{r'}|}}{4 \pi |\bm{r} - \bm{r'}|} \frac{\bm{J_b}(\bm{r'}, \omega) + \bm{J_i}(\bm{r'}, \omega)}{\mu_0^{-1}} dV'.
 \end{aligned}
 $$
 
@@ -2072,7 +2072,7 @@ $$ \tag{11.20}
 \begin{aligned}
 	\bm{A}(\bm{r}, \omega)
 	&= \oiint\_{\mathbb{S}^2} \bm{A}(0, \bm{n}, \omega) e^{-i \omega (\bm{r} \cdot \bm{n}) / c} d\Omega_n \cr
-	&+ i \omega \iiint\_{V} \Bigg( \bigg( \frac{1}{v_p(\bm{r'}, \omega)} - \frac{i}{v_a(\bm{r'}, \omega)} \bigg)^2 - \frac{1}{c^2} \Bigg) \frac{e^{-i \omega  |\bm{r} - \bm{r'}| / c}}{4 \pi |\bm{r} - \bm{r'}|} \bm{E}(\bm{r'}, \omega) dV'.
+	&+ i \omega \iiint\_{V} \frac{e^{-i \omega |\bm{r} - \bm{r'}| / c}}{4 \pi |\bm{r} - \bm{r'}|} \Bigg( \bigg( \frac{1}{v_p(\bm{r'}, \omega)} - \frac{i}{v_a(\bm{r'}, \omega)} \bigg)^2 - \frac{1}{c^2} \Bigg) \bm{E}(\bm{r'}, \omega) dV'.
 \end{aligned}
 $$
 
@@ -2082,7 +2082,7 @@ $$ \tag{11.21}
 \begin{aligned}
 	\bm{A}(\bm{r}, \omega)
 	&= \oiint\_{\mathbb{S}^2} \bm{A}(0, \bm{n}, \omega) e^{-i \omega \sqrt{\varepsilon_1(\omega) \mu\_0} (\bm{r} \cdot \bm{n})} d\Omega_n \cr
-	&+ i \omega \iiint\_{V} \big( \varepsilon_2(\bm{r'}, \omega) \mu\_0 - \varepsilon_1(\omega) \mu\_0 \big) \frac{e^{-i \omega \sqrt{\varepsilon_1(\omega) \mu\_0} |\bm{r} - \bm{r'}|}}{4 \pi |\bm{r} - \bm{r'}|} \bm{E}(\bm{r'}, \omega) dV',
+	&+ i \omega \iiint\_{V} \frac{e^{-i \omega \sqrt{\varepsilon_1(\omega) \mu\_0} |\bm{r} - \bm{r'}|}}{4 \pi |\bm{r} - \bm{r'}|} \big( \varepsilon_2(\bm{r'}, \omega) \mu\_0 - \varepsilon_1(\omega) \mu\_0 \big) \bm{E}(\bm{r'}, \omega) dV',
 \end{aligned}
 $$
 
@@ -2092,7 +2092,7 @@ $$ \tag{11.22}
 \begin{aligned}
 	\bm{A}(\bm{r}, \omega)
 	&= \oiint\_{\mathbb{S}^2} \bm{A}(0, \bm{n}, \omega) e^{-i k_1(\omega) (\bm{r} \cdot \bm{n})} d\Omega_n \cr
-	&+ \frac{i}{\omega} \iiint\_{V} \big( k_2^2(\bm{r'}, \omega) - k_1^2(\omega) \big)  \frac{e^{-i k_1(\omega) |\bm{r} - \bm{r'}|}}{4 \pi |\bm{r} - \bm{r'}|} \bm{E}(\bm{r'}, \omega) dV'.
+	&+ \frac{i}{\omega} \iiint\_{V} \frac{e^{-i k_1(\omega) |\bm{r} - \bm{r'}|}}{4 \pi |\bm{r} - \bm{r'}|} \big( k_2^2(\bm{r'}, \omega) - k_1^2(\omega) \big) \bm{E}(\bm{r'}, \omega) dV'.
 \end{aligned}
 $$
 
@@ -2109,7 +2109,7 @@ $$ \tag{11.24}
 \begin{aligned}
     \bm{E}(\bm{r}, \omega)
 	&= \oiint\_{\mathbb{S}^2} \bm{E}(0, \bm{n}, \omega) e^{-i k_1(\omega) (\bm{r} \cdot \bm{n})} d\Omega_n \cr
-	&+ k_1^2(\omega)  \iiint\_{V} \Big( m^2(\bm{r'}, \omega) - 1 \Big) \Big( \mathcal{I} + \frac{1}{k_1^2(\omega)} \nabla \otimes \nabla \Big) \frac{e^{-i k_1(\omega) |\bm{r} - \bm{r'}|}}{4 \pi |\bm{r} - \bm{r'}|} \bm{E}(\bm{r'}, \omega) dV'.
+	&+ k_1^2(\omega) \iiint\_{V} \Big( \mathcal{I} + \frac{1}{k_1^2(\omega)} \nabla \otimes \nabla \Big) \frac{e^{-i k_1(\omega) |\bm{r} - \bm{r'}|}}{4 \pi |\bm{r} - \bm{r'}|} \big( m^2(\bm{r'}, \omega) - 1 \big) \bm{E}(\bm{r'}, \omega) dV'.
 \end{aligned}
 $$
 
@@ -2118,11 +2118,13 @@ In the future, when no ambiguity arises, we may drop redundant indexing by writi
 $$ \tag{11.25}
 \begin{aligned}
 	& \bm{E_s}(\bm{r}, \omega)
-	= k^2(\omega) \iiint\_{V} \big( m^2(\bm{r'}, \omega) - 1 \big) \mathcal{G_{ee}} \big( \bm{r} - \bm{r'}, k(\omega) \big) \bm{E}(\bm{r'}, \omega) dV', \cr
+	= k^2(\omega) \iiint\_{V} \mathcal{G_{ee}} \big( \bm{r} - \bm{r'}, k(\omega) \big) \big( m^2(\bm{r'}, \omega) - 1 \big) \bm{E}(\bm{r'}, \omega) dV', \cr
 	& \bm{B_s}(\bm{r}, \omega)
-	= \frac{i}{\omega} k^2(\omega) \iiint\_{V} \big( m^2(\bm{r'}, \omega) - 1 \big) \mathcal{G_{me}} \big( \bm{r} - \bm{r'}, k(\omega) \big) \bm{E}(\bm{r'}, \omega) dV'.
+	= \frac{i}{\omega} k^2(\omega) \iiint\_{V} \mathcal{G_{me}} \big( \bm{r} - \bm{r'}, k(\omega) \big) \big( m^2(\bm{r'}, \omega) - 1 \big) \bm{E}(\bm{r'}, \omega) dV'.
 \end{aligned}
 $$
+
+In the literature, Equation 11.25 is often called the *volume integral equation* \[[9](#references) (ch. 4)\]
 
 ## Dipole Radiation
 
@@ -2156,7 +2158,7 @@ $$
 with the dipole moment defined by Equation 10.21:
 
 $$ \tag{12.3}
-	\bm{p}(\omega) \approx \mathcal{\Alpha_m}(\bm{r_0}, \omega) \varepsilon(\omega) \bm{E_i}(\bm{r_0}, \omega).
+	\bm{p}(\omega) \approx \mathcal{\Alpha_m}(\omega) \varepsilon(\omega) \bm{E_i}(\bm{r_0}, \omega).
 $$
 
 where we replaced \\(\epsilon_0\\) with \\(\varepsilon\\) (to account for the properties of the surrounding medium) and \\(\bm{E_{\mu}}\\) with \\(\bm{E_i}\\) (according to the simplification discussed above).
@@ -2165,19 +2167,19 @@ The combination of Equations 12.1-12.3 results in
 
 $$ \tag{12.4}
 	\bm{J'}(\bm{r}, \omega)
-	= k^2(\omega) \mathcal{\Alpha_m}(\bm{r_0}, \omega) \bm{E_i}(\bm{r_0}, \omega) \delta(\bm{r} - \bm{r_0}).
+	= k^2(\omega) \mathcal{\Alpha_m}(\omega) \bm{E_i}(\bm{r_0}, \omega) \delta(\bm{r} - \bm{r_0}).
 $$
 
-The matrix representation of \\(\mathcal{\Alpha_m}\\) is a convenient way to model polar molecules (or asymmetric particles); it acts by rotating and non-uniformly scaling the electric field phasor. To make the resulting formulas easier to interpret, we shall assume that the particle is spherical (of radius \\(a\\)) and isotropic, so that \\(\mathcal{\Alpha_m} = \alpha_m\\).
+The matrix representation of \\(\mathcal{\Alpha_m}\\) is a convenient way to model polar molecules (or asymmetric particles); it acts by rotating and non-uniformly scaling the electric field phasor. To make the resulting formulas easier to interpret, we shall assume that the particle is isotropic, so that \\(\mathcal{\Alpha_m} = \alpha_m\\).
 
 Let us substitute Equation 12.4 into Equations 11.10-11.11:
 
 $$ \tag{12.5}
 \begin{aligned}
 	& \bm{E_s}(\bm{r}, \omega)
-	= k^2(\omega) \mathcal{G_{ee}} \big( \bm{r} - \bm{r_0}, k(\omega) \big) \mathcal{\alpha_m}(\bm{r_0}, \omega) \bm{E_i}(\bm{r_0}, \omega), \cr
+	= k^2(\omega) \mathcal{G_{ee}} \big( \bm{r} - \bm{r_0}, k(\omega) \big) \alpha_m(\omega) \bm{E_i}(\bm{r_0}, \omega), \cr
 	& \bm{B_s}(\bm{r}, \omega)
-	= \frac{i}{\omega} k^2(\omega) \mathcal{G_{me}} \big( \bm{r} - \bm{r_0}, k(\omega) \big) \mathcal{\alpha_m}(\bm{r_0}, \omega) \bm{E_i}(\bm{r_0}, \omega).
+	= \frac{i}{\omega} k^2(\omega) \mathcal{G_{me}} \big( \bm{r} - \bm{r_0}, k(\omega) \big) \alpha_m(\omega) \bm{E_i}(\bm{r_0}, \omega).
 \end{aligned}
 $$
 
@@ -2186,16 +2188,16 @@ Comparison with Equation 11.25 shows that Equation 12.5 corresponds to the contr
 Note that the polarizability \\(\alpha_m\\) has units of volume \[[4](#references) (ch. 6.22)\]:
 
 $$ \tag{12.6}
-	\alpha_m(\bm{r_0}, \omega)
-	= \int_V \big( m^2(\bm{r'}, \omega) - 1 \big) dV'.
+	\alpha_m(\omega)
+	= \int_V \big( m^2(\bm{r}, \omega) - 1 \big) dV.
 $$
 
 This can be shown by combining Equations 10.18.2 and 10.26
 
 $$ \tag{12.7}
 	\bm{p}(\omega)
-	= \int_V \bm{P}(\bm{r'}, \omega) dV'
-	= \int_V \big( m^2(\bm{r'}, \omega) - 1 \big) \varepsilon(\omega) \bm{E}(\bm{r'}, \omega) dV'
+	= \int_V \bm{P}(\bm{r}, \omega) dV
+	= \int_V \big( m^2(\bm{r}, \omega) - 1 \big) \varepsilon(\omega) \bm{E}(\bm{r}, \omega) dV
 $$
 
 and comparing the result with Equation 12.3.
@@ -2225,7 +2227,7 @@ $$
 
 where we may substitute \\(x\\), \\(y\\), or \\(z\\) into the blanks.
 
-Under the previous assumption that \\(\bm{r} \neq \bm{r'}\\), the Green function and its partial derivatives are continuous, which means the order of partial differentiation makes no difference. Consequently, the matrix of Equation 12.8 is [symmetric](https://en.wikipedia.org/wiki/Symmetric_matrix), such that \\(\mathcal{G_{ee}} = \mathcal{G_{ee}}^T\\).
+Under the previous assumption that \\(\bm{r} \neq \bm{r_0}\\), the Green function and its partial derivatives are continuous, which means the order of partial differentiation makes no difference. Consequently, the matrix of Equation 12.8 is [symmetric](https://en.wikipedia.org/wiki/Symmetric_matrix), such that \\(\mathcal{G_{ee}} = \mathcal{G_{ee}}^T\\).
 
 The process of differentiation is straightforward: we use the identity
 
@@ -2281,7 +2283,7 @@ $$ \tag{12.13}
 \end{aligned}
 $$
 
-Take a look at the individual factors in Equations 12.11-12.13: those outside the brackets oscillate between 0 and 1, while the terms  inside greatly depend on the distance between the observation point \\(\bm{r}\\) and the source \\(\bm{r'}\\). This suggests that we may divide the entire space into zones based on the proximity to the observation point. If we are interested in the value of the field located near the source, we say that the observation point belongs to the [near-field](https://en.wikipedia.org/wiki/Near_and_far_field) zone. Similarly, far-away points are said to be located in the [far-field](https://en.wikipedia.org/wiki/Near_and_far_field) zone. Between them is a region called the *transition* zone.
+Take a look at the individual factors in Equations 12.11-12.13: those outside the brackets oscillate between 0 and 1, while the terms  inside greatly depend on the distance between the observation point \\(\bm{r}\\) and the source \\(\bm{r_0}\\). This suggests that we may divide the entire space into zones based on the proximity to the observation point. If we are interested in the value of the field located near the source, we say that the observation point belongs to the [near-field](https://en.wikipedia.org/wiki/Near_and_far_field) zone. Similarly, far-away points are said to be located in the [far-field](https://en.wikipedia.org/wiki/Near_and_far_field) zone. Between them is a region called the *transition* zone.
 
 If we fix a value of \\(k\\), we may decompose the electric Green tensor into the near-, transition-, and far-field components:
 
@@ -2370,82 +2372,194 @@ This implies that, as \\(k R \to \infin\\), the magnitude of the magnetic field 
 
 ## Radiation in the Far-Field Zone
 
----
+Let us focus on the case when the observation point is far away from the source. It is important for two reasons: first, if we are dealing with small particles, a typical observation falls into this category, and second, because this assumption greatly simplifies the behavior of the scattered wave, as we shall now demonstrate.
 
-$$ \tag{12.14}
-\begin{aligned}
+The idea behind the far-field approximation is simple: we discard certain terms in Equations 12.14 and 12.18. In order to do that, we must consider their magnitudes relative to each other:
+
+$$ \tag{13.1}
     \mathcal{G_{ee}}
-    = \mathcal{G_{en}}
-    + \mathcal{G_{et}}
-    + \mathcal{G_{ef}}
-    = \mathcal{G_{ef}} \bigg(1 + \frac{\mathcal{G_{et}}}{\mathcal{G_{ef}}} + \frac{\mathcal{G_{en}}}{\mathcal{G_{ef}}} \bigg),
-\end{aligned}
-$$
-
-$$ \tag{12.13}
-\begin{aligned}
+    = \bigg( 1 + \frac{\mathcal{G_{et}}}{\mathcal{G_{ef}}} + \frac{\mathcal{G_{en}}}{\mathcal{G_{ef}}} \bigg) \mathcal{G_{ef}}, \qquad
     \mathcal{G_{me}}
-    = \mathcal{G_{mn}}
-    + \mathcal{G_{mf}}
-    = \mathcal{G_{mf}} \bigg(1 + \frac{\mathcal{G_{mn}}}{\mathcal{G_{mf}}} \bigg),
-\end{aligned}
+    = \bigg( 1 + \frac{\mathcal{G_{mn}}}{\mathcal{G_{mf}}} \bigg) \mathcal{G_{mf}}.
 $$
 
-If we wish to discard any of the terms of Equation 12.7, we should consider their magnitudes relative to each other. Specifically, in the far-field limit, we must assume that \\(k R \gg 1\\). That allows us to replace \\(\mathcal{G_{ee}}\\) with \\(\mathcal{G_{ef}}\\) in Equation 11.10:
+According to Equation 12.15, for any fixed direction, the relative difference between the three electric tensors primarily arises from the leading scalar terms. Moreover, the two magnetic tensors given by Equation 12.19 exhibit identical angular dependence. Following this logic, we use Equations 12.16 and 12.20 to approximate
 
-$$ \tag{12.9}
+$$ \tag{13.2}
+    \mathcal{G_{ee}}
+    = \bigg( 1 + \mathrm{O} \Big( (k R)^{-1} \Big) + \mathrm{O} \Big( (k R)^{-2} \Big) \bigg) \mathcal{G_{ef}}, \qquad
+    \mathcal{G_{me}}
+    = \bigg( 1 + \mathrm{O} \Big( (k R)^{-1} \Big) \bigg)
+    \mathcal{G_{mf}}.
+$$
+
+If \\(k R \gg 1\\), the values of the expressions in the brackets approach 1. This allows us to write Equation 12.5 as
+
+$$ \tag{13.3}
 \begin{aligned}
-    \bm{E_s}(\bm{r}, \omega)
-	&\approx k^2(\omega) \iiint\_{V} \big( m^2(\bm{r'}, \omega) - 1 \big) \frac{e^{-i k(\omega) R}}{4 \pi R} \bigg( \mathcal{I} - \frac{\bm{R} \otimes \bm{R}}{\bm{R} \cdot \bm{R}} \bigg) \bm{E}(\bm{r'}, \omega) dV'.
+	& \bm{E_s}(\bm{r}, \omega)
+	\approx k^2(\omega) \bigg( \mathcal{I} - \frac{\bm{R} \otimes \bm{R}}{\bm{R} \cdot \bm{R}} \bigg) \frac{e^{-i k(\omega) R}}{4 \pi R} \alpha_m(\omega) \bm{E_i}(\bm{r'}, \omega), \cr
+	& \bm{B_s}(\bm{r}, \omega)
+	\approx \frac{k^3(\omega)}{\omega} \bigg(\frac{\bm{R} \times \mathcal{I}}{R} \bigg) \frac{e^{-i k(\omega) R}}{4 \pi R} \alpha_m(\omega) \bm{E_i}(\bm{r'}, \omega),
 \end{aligned}
 $$
 
-What is \\(k R\\)? According to Equation 12.9, it is the phase difference (in radians) between the observation point \\(\bm{r}\\) and the center of the volume element \\(\bm{r'}\\). We may confirm this by dimensional analysis of Equations 7.6-7.7:
+where we renamed \\(\bm{r_0}\\) to \\(\bm{r'}\\) in order to avoid introducing auxiliary variables.
 
-$$ \tag{12.10}
+Equation 13.3 can be reduced to a simpler form by aligning the origin of the coordinate system with the location of the dipole (so that \\(\bm{r'} = 0\\) and \\(\bm{R} = \bm{r}\\)) and introducing the direction of observation \\(\bm{n} = \bm{r} / r\\):
+
+$$ \tag{13.4}
+\begin{aligned}
+	& \bm{E_s}(\bm{r}, \omega)
+	\approx k^2(\omega) \big( \mathcal{I} - \bm{n} \otimes \bm{n} \big) \frac{e^{-i k(\omega) r}}{4 \pi r} \alpha_m(\omega) \bm{E_i}(0, \omega), \cr
+	& \bm{B_s}(\bm{r}, \omega)
+	\approx \frac{k^3(\omega)}{\omega} \big(\bm{n} \times \mathcal{I} \big) \frac{e^{-i k(\omega) r}}{4 \pi r} \alpha_m(\omega) \bm{E_i}(0, \omega).
+\end{aligned}
+$$
+
+Let us pause for a moment to consider what \\(k R\\) represents. According to Equation 13.4, it is the phase difference (in radians) between the observation point \\(\bm{r}\\) and the location of the dipole \\(\bm{r'}\\). We may confirm this by dimensional analysis of Equations 7.6-7.7:
+
+$$ \tag{13.5}
     k R = (\eta - i \kappa) \omega c^{-1} R = [\text{1}] [\text{rad/s}] [\text{s/m}] [\text{m}] = [\text{rad}].
 $$
 
-Intuitively, \\(k R \gg 1\\) implies that a wavelet generated by the volume element will go through a great number of periods of oscillation before reaching the observation point.
+Intuitively, \\(k R \gg 1\\) implies that a wavelet generated by the dipole will go through a great number of cycles before reaching the observation point.
 
-Equation 12.9 also shows that each wavelet is spherical, since the rate of change of the phase is independent of orientation. Furthermore, the scattered field vectors are transverse with respect to the direction of propagation:
+Equation 13.4 also shows that each wavelet is spherical, since the phase factor does not depend on the direction of observation. Note that surfaces of constant phase do not coincide with surfaces of constant amplitude, since the initial amplitude depends on the direction of observation.
 
-$$ \tag{12.11}
+Another important property of the far-field solution is the fact that the scattered field vectors are transverse with respect to the direction of observation:
+
+$$ \tag{13.6}
 \begin{aligned}
-    \bm{R} \cdot \bigg( \mathcal{I} - \frac{\bm{R} \otimes \bm{R}}{\bm{R} \cdot \bm{R}} \bigg)
-    = \Bigg( \bigg( \mathcal{I} - \frac{\bm{R} \otimes \bm{R}}{\bm{R} \cdot \bm{R}} \bigg)^{T} \bm{R} \Bigg)^{T}
-    = \Bigg( \bigg( \mathcal{I} - \bm{R} \frac{\bm{R} \cdot}{\bm{R} \cdot \bm{R}} \bigg) \bm{R} \Bigg)^{T}
-    = 0,
+    & \bm{n} \cdot \big( \mathcal{I} - \bm{n} \otimes \bm{n} \big)
+    = \Big( \big( \mathcal{I} - \bm{n} \otimes \bm{n} \big)^{T} \bm{n} \Big)^{T}
+    = \big( \bm{n} - \bm{n} (\bm{n} \cdot \bm{n}) \big)^{T}
+    = 0, \cr
+	& \bm{n} \cdot \big( \bm{n} \times \mathcal{I} \big)
+    = \Big( \big( \bm{n} \times \mathcal{I} \big)^{T} \bm{n} \Big)^{T}
+    = \big( {-\bm{n}} \times \bm{n} \big)^{T}
+	 = 0,
 \end{aligned}
 $$
 
-where we utilized the symmetry property in addition to the alternative expression of the tensor product given by Equations 9.22-9.23.
+where we utilized the symmetry properties in addition to the alternative expression of the tensor product given by Equations 9.22-9.23.
 
+We can also show that the electric and the magnetic fields are mutually orthogonal:
 
-
-The ratio \\(\mathcal{G_{mn}} / \mathcal{G_{mf}}\\) shows that the far-field criterion is the same: \\(k R \gg 1\\).
-
-We can combine Equations 11.7, 11.11 and 12.14.2 to obtain the far-field expression of the magnetic field:
-
-$$ \tag{12.15}
-	\bm{B_s}(\bm{r}, \omega)
-	= \frac{k^3(\omega)}{\omega} \iiint\_{V} \big( m^2(\bm{r}, \omega) - 1 \big) \frac{e^{-i k(\omega) R}}{4 \pi R} \bigg(\frac{\bm{R} \times \mathcal{I}}{R} \bigg) \bm{E}(\bm{r}, \omega) dV'.
-$$
-
-Equation 12.9 and 12.15 share certain properties: both integrate spherical wavelets with field vectors orthogonal to the direction of propagation. In fact, we can show that the electric and the magnetic fields are also mutually orthogonal:
-
-$$ \tag{12.16}
-	\bigg( \mathcal{I} - \frac{\bm{R} \otimes \bm{R}}{\bm{R} \cdot \bm{R}} \bigg) \bm{E} \cdot
-	\bigg( \frac{\bm{R} \times \mathcal{I}}{R} \bigg) \bm{E}
+$$ \tag{13.7}
+	\big( \mathcal{I} - \bm{n} \otimes \bm{n} \big) \bm{E} \cdot
+	\big( \bm{n} \times \mathcal{I} \big) \bm{E}
 	= \bm{E} \cdot
-		\bigg( \mathcal{I} - \bm{R} \frac{\bm{R} \cdot}{\bm{R} \cdot \bm{R}} \bigg)
-		\bigg( \frac{\bm{R} \times \bm{E}}{R} \bigg)
+		\big( (\bm{n} \times \bm{E}) - \bm{n} \big( \bm{n} \cdot (\bm{n} \times \bm{E}) \big)
 	= 0.
 $$
 
-Thus, at a sufficient distance, we have an equivalent of a plane wave, except that the amplitude varies as \\(R^{-1}\\). Note that surfaces of constant phase do not coincide with surfaces of constant amplitude, since the initial amplitude depends on the direction of propagation.
+Thus, at a large distance, for a fixed direction of observation, such a spherical wavelet is an analog of a planar wave with the amplitude decreasing as \\(R^{-1}\\).
 
-So far, our far-field analysis concerned a single volume element (or a single dipole). In order to extend it to the volume ...
+[Picture]
+
+We can make the similarity (with Equation 7.2) more apparent by introducing
+
+$$ \tag{13.8}
+\begin{aligned}
+	& \bm{E_s}(\bm{r'}, \bm{n}, \omega) =
+	k^2(\omega) \big( \mathcal{I} - \bm{n} \otimes \bm{n} \big) \alpha_m(\omega) \bm{E_i}(\bm{r'}, \omega) e^{i k(\omega) (\bm{n} \cdot \bm{r'})}, \cr
+	& \bm{B_s}(\bm{r'}, \bm{n}, \omega)
+	= \frac{k^3(\omega)}{\omega} \big( \bm{n} \times \mathcal{I} \big) \alpha_m(\omega) \bm{E_i}(\bm{r'}, \omega) e^{i k(\omega) (\bm{n} \cdot \bm{r'})},
+\end{aligned}
+$$
+
+so that Equation 13.4 becomes
+
+$$ \tag{13.9}
+\begin{aligned}
+	& \bm{E_s}(\bm{r}, \omega) e^{i \omega t}
+	\approx \frac{1}{4 \pi r} \bm{E_s}(0, \bm{n}, \omega) e^{-i k(\omega) (\bm{n} \cdot \bm{r})} e^{i \omega t}, \cr
+	& \bm{B_s}(\bm{r}, \omega) e^{i \omega t}
+	\approx \frac{1}{4 \pi r} \bm{B_s}(0, \bm{n}, \omega) e^{-i k(\omega) (\bm{n} \cdot \bm{r})} e^{i \omega t}.
+\end{aligned}
+$$
+
+We are now ready to formulate the far-field solution of the general case of a particle group. Assume that the observation point is in the far-field zone with respect to each individual volume element, so that \\(k R \gg 1\\). Equation 11.25 then takes the form
+
+$$ \tag{13.10}
+\begin{aligned}
+	& \bm{E_s}(\bm{r}, \omega)
+	\approx k^2(\omega) \iiint\_{V} \bigg( \mathcal{I} - \frac{\bm{R} \otimes \bm{R}}{\bm{R} \cdot \bm{R}} \bigg) \frac{e^{-i k(\omega) R}}{4 \pi R} \big( m^2(\bm{r'}, \omega) - 1 \big) \bm{E}(\bm{r'}, \omega) dV', \cr
+	& \bm{B_s}(\bm{r}, \omega)
+	\approx \frac{k^3(\omega)}{\omega} \iiint\_{V} \bigg(\frac{\bm{R} \times \mathcal{I}}{R} \bigg) \frac{e^{-i k(\omega) R}}{4 \pi R} \big( m^2(\bm{r'}, \omega) - 1 \big) \bm{E}(\bm{r'}, \omega) dV'.
+\end{aligned}
+$$
+
+Consider a particle (or a particle group) bounded by a sphere of radius \\(a\\) centered at the origin of the coordinate system. If that is the case, the requirement \\(k R \gg 1\\) is equivalent to \\(k (r - a) \gg 1\\).
+
+Now, assume that the sphere covers a small solid angle when viewed from the observation point, which implies that \\(a/r \ll 1\\). As the bounding volume shrinks to a point, the directions of observation corresponding to individual volume elements align, and we may write
+
+$$ \tag{13.11}
+	\frac{\bm{R}}{R} \approx \bm{n}.
+$$
+
+Let us now consider the expression of the radial distance
+
+$$ \tag{13.12}
+\begin{aligned}
+	R
+	&= \sqrt{(\bm{r} - \bm{r'}) \cdot (\bm{r} - \bm{r'})} \cr
+	&= \sqrt{|\bm{r}|^2 - 2 (\bm{r} \cdot \bm{r'}) + |\bm{r'}|^2} \cr
+	&= r \sqrt{1 - 2 (\bm{n} \cdot \bm{n'}) (r'/r) + (r'/r)^2}.
+\end{aligned}
+$$
+
+We may expand the square root (and its reciprocal) in the Taylor series of \\(r'/r\\) around \\(0\\):
+
+$$ \tag{13.13}
+\begin{aligned}
+	& k R
+	= k r \bigg( 1 - (\bm{n} \cdot \bm{n'}) (r'/r) + \frac{1}{2} \Big( 1 - (\bm{n} \cdot \bm{n'})^2 \Big) (r'/r)^2 + \mathrm{O} \Big( (r'/r)^3 \Big) \bigg), \cr
+	& \frac{1}{R}
+	= \frac{1}{r} \bigg( 1 + (\bm{n} \cdot \bm{n'}) (r'/r) + \mathrm{O} \Big( (r'/r)^2 \Big) \bigg).
+\end{aligned}
+$$
+
+If \\(a/r \ll 1\\), then \\(r'/r \ll 1\\) as well. Further assuming that \\(k a^2/r \ll 1\\), we arrive at the approximation
+
+$$ \tag{13.14}
+	k R \approx k r - k (\bm{n} \cdot \bm{r'}), \qquad
+	\frac{1}{R} \approx \frac{1}{r}.
+$$
+
+Substitution of Equations 13.11 and 13.14 into Equation 13.10 produces the *far-field approximation* of the volume integral equation:
+
+$$ \tag{13.15}
+\begin{aligned}
+	& \bm{E_s}(\bm{r}, \omega) \approx k^2(\omega)
+	\big( \mathcal{I} - \bm{n} \otimes \bm{n} \big)
+	\frac{e^{-i k(\omega) r}}{4 \pi r}
+	\iiint\_{V} \big( m^2(\bm{r'}, \omega) - 1 \big)
+	\bm{E}(\bm{r'}, \omega) e^{i k(\omega) (\bm{n} \cdot \bm{r'})} dV', \cr
+	& \bm{B_s}(\bm{r}, \omega) \approx \frac{k^3(\omega)}{\omega}
+	\big(\bm{n} \times \mathcal{I} \big)
+	\frac{e^{-i k(\omega) r}}{4 \pi r}
+	\iiint\_{V} \big( m^2(\bm{r'}, \omega) - 1 \big)
+	\bm{E}(\bm{r'}, \omega) e^{i k(\omega) (\bm{n} \cdot \bm{r'})} dV', \cr
+\end{aligned}
+$$
+
+subject to the conditions \[[9](#references) (ch. 5)\]
+
+$$ \tag{13.16}
+	k (r - a) \gg 1, \qquad
+	a/r \ll 1, \qquad
+	k a^2/r \ll 1.
+$$
+
+(TODO: write about the meaning of \\(k a^2/r \ll 1\\)?)
+
+---
+
+Scattering Matrix...
+Relative magnitude... Poynting vector... Radiative Transfer Coefficients...
+Analytic solution for a non-magnetic conducting sphere (L-M)...
 
 ---
 
