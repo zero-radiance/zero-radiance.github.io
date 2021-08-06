@@ -2557,6 +2557,8 @@ $$ \tag{13.16}
 	k a^2/(2 r) \ll 1.
 $$
 
+We would like to caution that conditions stated in Equation 13.16 are, strictly speaking, only valid for Equation 13.5. If one considers a derived quantity (such as the time-averaged Poynting vector), the preceding analysis may no longer hold, and the assumptions may change.
+
 (TODO: write about the meaning of \\(k a^2/r \ll 1\\)?)
 
 ---
