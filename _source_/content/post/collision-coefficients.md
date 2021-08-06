@@ -33,6 +33,8 @@ You may wonder why we have to use *wave optics*. One of the reasons is that *geo
 
 It is not expected that you understand the prior statement fully before reading the rest of the article. However, it should (hopefully) encourage you to learn a little bit about wave optics. A modest introduction is given below.
 
+# Classical Electrodynamics
+
 ## Maxwell Equations in the Time Domain
 
 At the fundamental level, optics is built on the theory of fields. What is a field? A *field* is a [mathematical](https://en.wikipedia.org/wiki/Field_(mathematics)) construct; it is a function defined for all points in space \\(\bm{r}\\) and time \\(t\\). In [physics](https://en.wikipedia.org/wiki/Field_(physics)), a typical field has a source, contains energy, and exerts a force.
@@ -1875,6 +1877,8 @@ In some sense, dipoles can be considered elementary field generators: an electri
 [Insert pictures of field lines of electric and magnetic dipoles]
 
 Finally, we would like to emphasize certain properties of the solution of the Maxwell equations in terms of potentials. Perhaps the most obvious one is that the scattered field is expressed as a volume integral. While the geometry of the volume containing the charges plays an important role, it is now apparent that the interior of the volume is the actual source of what we consider the surface reflection \[[5](#references) (vol. I, ch. 31)\]. Furthermore, Equation 10.3 says that the (microscopic) electromagnetic field always propagates at the speed of light. That is true; macroscopically, the dipole field extinguishes the incident field and replaces it with another field that appears to have a lower phase velocity, which is used as the definition of the index of refraction. This mechanism is described by the [Ewald-Oseen extinction theorem](https://en.wikipedia.org/wiki/Ewald%E2%80%93Oseen_extinction_theorem) \[[6](#references) (ch. 2.4)\].
+
+# Light Scattering and Radiative Transfer
 
 ## From the Maxwell Equations to the Radiative Transfer Equation
 
