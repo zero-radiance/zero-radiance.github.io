@@ -2525,7 +2525,7 @@ $$ \tag{13.13}
 \end{aligned}
 $$
 
-If \\(a/r \ll 1\\), then \\(r'/r \ll 1\\) as well. Further assuming that \\(k a^2/r \ll 1\\), we arrive at the approximation
+If \\(a/r \ll 1\\), then \\(r'/r \ll 1\\) as well. Further assuming that \\(k a^2/(2 r) \ll 1\\), we arrive at the approximation
 
 $$ \tag{13.14}
 	k R \approx k r - k (\bm{n} \cdot \bm{r'}), \qquad
@@ -2554,7 +2554,7 @@ subject to the conditions \[[9](#references) (ch. 5)\]
 $$ \tag{13.16}
 	k (r - a) \gg 1, \qquad
 	a/r \ll 1, \qquad
-	k a^2/r \ll 1.
+	k a^2/(2 r) \ll 1.
 $$
 
 (TODO: write about the meaning of \\(k a^2/r \ll 1\\)?)
