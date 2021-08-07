@@ -1733,7 +1733,7 @@ $$ \tag{10.13}
 \end{aligned}
 $$
 
-Let us combine Equations 10.10 and 10.13. Using the shorthand notation \\(\bm{R} = (\bm{r} - \bm{r'}), R = |\bm{R}|\\), the result is
+Let us combine Equations 10.10 and 10.13. Using the shorthand notation \\(\bm{R} = \bm{r} - \bm{r'}, R = |\bm{R}|\\), the result is
 
 $$ \tag{10.14}
 \begin{aligned}
@@ -2241,7 +2241,7 @@ $$ \tag{12.10}
     = n \frac{\bm{r} - \bm{r'}}{|\bm{r} - \bm{r'}|^{2-n}} \cdot \frac{\partial}{\partial x} (\bm{r} - \bm{r'})
 $$
 
-and repeatedly apply the [product rule](https://en.wikipedia.org/wiki/Product_rule). Skipping the details of the calculation, and using the the shorthand notation \\(\bm{R} = (\bm{r} - \bm{r'}), R = |\bm{R}|\\), a typical first derivative is
+and repeatedly apply the [product rule](https://en.wikipedia.org/wiki/Product_rule). Skipping the details of the calculation, and using the the shorthand notation \\(\bm{R} = \bm{r} - \bm{r'}, R = |\bm{R}|\\), a typical first derivative is
 
 $$ \tag{12.11}
 \begin{aligned}
@@ -2410,7 +2410,7 @@ $$
 
 where we renamed \\(\bm{r_0}\\) to \\(\bm{r'}\\) in order to avoid introducing auxiliary variables.
 
-Equation 13.3 can be reduced to a simpler form by aligning the origin of the coordinate system with the location of the dipole (so that \\(\bm{r'} = 0\\) and \\(\bm{R} = \bm{r}\\)) and introducing the direction of observation \\(\bm{n} = \bm{r} / r\\):
+Equation 13.3 can be reduced to a simpler form by aligning the origin of the coordinate system with the location of the dipole (so that \\(\bm{r'} = 0\\) and \\(\bm{R} = \bm{r}\\)) and introducing the direction of observation \\(\bm{n} = \bm{r}/|\bm{r}| = \bm{r} / r\\):
 
 $$ \tag{13.4}
 \begin{aligned}
@@ -2497,26 +2497,22 @@ $$
 
 Consider a particle (or a particle group) bounded by a sphere of radius \\(a\\) centered at the origin of the coordinate system. If that is the case, the requirement \\(k R \gg 1\\) is equivalent to \\(k (r - a) \gg 1\\).
 
-Now, assume that the sphere covers a small solid angle when viewed from the observation point, which implies that \\(a/r \ll 1\\). As the bounding volume shrinks to a point, the directions of observation corresponding to individual volume elements align, and we may write
+Let us consider the expression of the radial distance between the observation point and the volume element:
 
 $$ \tag{13.11}
-	\frac{\bm{R}}{R} \approx \bm{n}.
-$$
-
-Let us now consider the expression of the radial distance
-
-$$ \tag{13.12}
 \begin{aligned}
 	R
 	&= \sqrt{(\bm{r} - \bm{r'}) \cdot (\bm{r} - \bm{r'})} \cr
 	&= \sqrt{|\bm{r}|^2 - 2 (\bm{r} \cdot \bm{r'}) + |\bm{r'}|^2} \cr
-	&= r \sqrt{1 - 2 (\bm{n} \cdot \bm{n'}) (r'/r) + (r'/r)^2}.
+	&= r \sqrt{1 - 2 (\bm{n} \cdot \bm{n'}) (r'/r) + (r'/r)^2},
 \end{aligned}
 $$
 
-We may expand the square root (and its reciprocal) in the Taylor series of \\(r'/r\\) around \\(0\\):
+where \\(\bm{n'} = \bm{r'}/|\bm{r'}| = \bm{r'}/r\\).
 
-$$ \tag{13.13}
+We may expand the square root (and its reciprocal) in the Taylor series of \\(r'/r\\) around zero:
+
+$$ \tag{13.12}
 \begin{aligned}
 	& k R
 	= k r \bigg( 1 - (\bm{n} \cdot \bm{n'}) (r'/r) + \frac{1}{2} \Big( 1 - (\bm{n} \cdot \bm{n'})^2 \Big) (r'/r)^2 + \mathrm{O} \Big( (r'/r)^3 \Big) \bigg), \cr
@@ -2525,16 +2521,32 @@ $$ \tag{13.13}
 \end{aligned}
 $$
 
-If \\(a/r \ll 1\\), then \\(r'/r \ll 1\\) as well. Further assuming that \\(k a^2/(2 r) \ll 1\\), we arrive at the approximation
+In order for \\(r'/r \ll 1\\) for all \\(r'\\), we require that \\(a/r \ll 1\\) (or, alternatively, \\(kr \gg ka\\)). Further assuming that \\(\frac{1}{2} k a (a/r) \ll 1\\), which is formally equivalent to \\(kr \gg \frac{1}{2} (ka)^2\\), we arrive at the approximation
 
-$$ \tag{13.14}
+$$ \tag{13.13}
 	k R \approx k r - k (\bm{n} \cdot \bm{r'}), \qquad
 	\frac{1}{R} \approx \frac{1}{r}.
 $$
 
-Substitution of Equations 13.11 and 13.14 into Equation 13.10 produces the *far-field approximation* of the volume integral equation:
+Next, we shall examine the expression of the directions of observation of individual volume element:
+
+$$ \tag{13.14}
+\begin{aligned}
+	\frac{\bm{R}}{R}
+	&= \frac{\bm{r} - \bm{r'}}{r \sqrt{1 - 2 (\bm{n} \cdot \bm{n'}) (r'/r) + (r'/r)^2}} \cr
+	&= \bigg( \bm{n} - (r'/r) \bm{n'} \bigg) \bigg( 1 + (\bm{n} \cdot \bm{n'}) (r'/r) + \mathrm{O} \Big( (r'/r)^2 \Big) \bigg).
+\end{aligned}
+$$
+
+Assume that the sphere covers a small solid angle when viewed from the observation point, which implies that \\(a/r \ll 1\\) . As the bounding volume shrinks to a point, the directions of observation corresponding to individual volume elements align, and we may write
 
 $$ \tag{13.15}
+	\frac{\bm{R}}{R} \approx \bm{n}.
+$$
+
+Substitution of Equations 13.13 and 13.15 into Equation 13.10 produces the *far-field approximation* of the volume integral equation:
+
+$$ \tag{13.16}
 \begin{aligned}
 	& \bm{E_s}(\bm{r}, \omega) \approx k^2(\omega)
 	\big( \mathcal{I} - \bm{n} \otimes \bm{n} \big)
@@ -2551,15 +2563,13 @@ $$
 
 subject to the conditions \[[9](#references) (ch. 5)\]
 
-$$ \tag{13.16}
-	k (r - a) \gg 1, \qquad
-	a/r \ll 1, \qquad
-	k a^2/(2 r) \ll 1.
+$$ \tag{13.17}
+	k r - k a \gg 1, \qquad
+	kr \gg ka, \qquad
+	kr \gg \frac{1}{2} (ka)^2.
 $$
 
-We would like to caution that conditions stated in Equation 13.16 are, strictly speaking, only valid for Equation 13.5. If one considers a derived quantity (such as the time-averaged Poynting vector), the preceding analysis may no longer hold, and the assumptions may change.
-
-(TODO: write about the meaning of \\(k a^2/r \ll 1\\)?)
+We would like to caution that conditions stated in Equation 13.17 are, strictly speaking, only valid for Equation 13.6. If one considers a derived quantity (such as the time-averaged Poynting vector), the preceding analysis may no longer hold, and the assumptions may change.
 
 ---
 
