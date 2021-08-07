@@ -1423,7 +1423,7 @@ $$ \tag{9.13}
 	\psi(\bm{r}) = \iiint\_{\mathbb{R^3}} g_0(\bm{r} - \bm{r'}) \xi(\bm{r'}) dV'.
 $$
 
-Note that, despite the \\(1/|\bm{r} - \bm{r'}|\\) factor in the Green function making the integral [improper](https://en.wikipedia.org/wiki/Improper_integral), it is convergent provided that \\(\xi\\) is a piecewise-continuous function \[[van Bladel](#references) (ch. 3.2)\].
+Note that, despite the \\(1/|\bm{r} - \bm{r'}|\\) factor in the Green function making the integral [improper](https://en.wikipedia.org/wiki/Improper_integral), it is convergent provided that \\(\xi\\) is a piecewise-continuous function \[[7](#references) (ch. 3.2)\].
 
 Equation 9.13 allows us to find the expressions of the scalar and the vector potentials in the frequency domain:
 
@@ -1548,7 +1548,7 @@ $$ \tag{9.26}
 	= \Big( \mathcal{I} + \frac{1}{k^2} \nabla \otimes \nabla \Big) g(\bm{r} - \bm{r'}, k)
 $$
 
-is the *electric Green tensor for electrical sources*[^12] \[[van Bladel](#references) (ch. 7.9)\].
+is the *electric Green tensor for electrical sources*[^12] \[[7](#references) (ch. 7.9)\].
 
 [^12]: The Green tensors are also known as the [dyadic](https://en.wikipedia.org/wiki/Dyadics) Green functions. Dyadics are considered to be relatively obsolete.
 
@@ -1580,7 +1580,7 @@ $$ \tag{9.30}
 	= \nabla g(\bm{r} - \bm{r'}, k) \times \mathcal{I}
 $$
 
-that may be expressed using the [matrix form of the cross product](https://en.wikipedia.org/wiki/Cross_product#Conversion_to_matrix_multiplication) \[[van Bladel](#references) (ch. 7.9)\].
+that may be expressed using the [matrix form of the cross product](https://en.wikipedia.org/wiki/Cross_product#Conversion_to_matrix_multiplication) \[[7](#references) (ch. 7.9)\].
 
 ## Electric and Magnetic Polarization
 
@@ -1878,7 +1878,7 @@ In some sense, dipoles can be considered elementary field generators: an electri
 
 Finally, we would like to emphasize certain properties of the solution of the Maxwell equations in terms of potentials. Perhaps the most obvious one is that the scattered field is expressed as a volume integral. While the geometry of the volume containing the charges plays an important role, it is now apparent that the interior of the volume is the actual source of what we consider the surface reflection \[[5](#references) (vol. I, ch. 31)\]. Furthermore, Equation 10.3 says that the (microscopic) electromagnetic field always propagates at the speed of light. That is true; macroscopically, the dipole field extinguishes the incident field and replaces it with another field that appears to have a lower phase velocity, which is used as the definition of the index of refraction. This mechanism is described by the [Ewald-Oseen extinction theorem](https://en.wikipedia.org/wiki/Ewald%E2%80%93Oseen_extinction_theorem) \[[6](#references) (ch. 2.4)\].
 
-# Light Scattering and Radiative Transfer
+# Electromagnetic Scattering and Radiative Transfer
 
 ## From the Maxwell Equations to the Radiative Transfer Equation
 
@@ -2585,7 +2585,7 @@ Pharr & Jakob, Bohren & Huffman, NASA
 4. van de Hulst, H. C. [Light scattering by small particles](https://doi.org/10.1002/qj.49708436025) (1957).
 5. Feynman, R. P., Leighton, R. B., & Sands, M. [The Feynman lectures on physics](https://www.feynmanlectures.caltech.edu/) (1965).
 6. Born, M., & Wolf, E. [Principles of Optics](https://doi.org/10.1017/CBO9781139644181) (7th ed., 1999).
-7. Novotny, L., & Hecht, B. [Principles of Nano-Optics](https://doi.org/10.1017/CBO9780511794193) (2nd ed., 2012).
+7. Van Bladel, J. G. [Electromagnetic Fields](https://doi.org/10.1002/047012458X) (2nd ed., 2007).
 8. Ishimaru, A. [Electromagnetic Wave Propagation, Radiation, and Scattering](https://doi.org/10.1002/9781119079699) (2nd ed., 2017).
 9. Mishchenko, M. [Electromagnetic Scattering by Particles and Particle Groups](https://doi.org/10.1017/CBO9781139019064) (2014).
 10. Keller, S. M., & Carman, G. P. [Electromagnetic wave propagation in (bianisotropic) magnetoelectric materials](https://doi.org/10.1177/1045389X12467518) (2013).
