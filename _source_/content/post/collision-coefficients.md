@@ -33,15 +33,15 @@ You may wonder why we have to use *wave optics*. One of the reasons is that *geo
 
 It is not expected that you understand the prior statement fully before reading the rest of the article. However, it should (hopefully) encourage you to learn a little bit about wave optics. A modest introduction is given below.
 
-# Classical Electrodynamics
+## I. Classical Electrodynamics
 
-## Maxwell Equations in the Time Domain
+### 1. Maxwell Equations in the Time Domain
 
-At the fundamental level, optics is built on the theory of fields. What is a field? A *field* is a [mathematical](https://en.wikipedia.org/wiki/Field_(mathematics)) construct; it is a function defined for all points in space \\(\bm{r}\\) and time \\(t\\). In [physics](https://en.wikipedia.org/wiki/Field_(physics)), a typical field has a source, contains energy, and exerts a force.
+[Classical electrodynamics](https://en.wikipedia.org/wiki/Classical_electromagnetism) is a branch of physics that studies the interactions between moving particles that carry [electric charge](https://en.wikipedia.org/wiki/Electric_charge) (or, simply, "charges"). These interactions are embodied by the [electromagnetic field](https://en.wikipedia.org/wiki/Electromagnetic_field).
 
-Since we are primarily concerned with electromagnetic radiation, we shall focus our attention on two real vector fields: the [electric field](https://en.wikipedia.org/wiki/Electric_field) \\(\bm{E}\\) and the [magnetic field](https://en.wikipedia.org/wiki/Magnetic_field#The_B-field) \\(\bm{B}\\).
+What is a field? A *field* is a [mathematical](https://en.wikipedia.org/wiki/Field_(mathematics)) construct; it is a function defined for all points in space \\(\bm{r}\\) and time \\(t\\). In [physics](https://en.wikipedia.org/wiki/Field_(physics)), a typical field has a source, contains energy, and exerts a force.
 
-They satisfy the differential form of the [Maxwell equations](https://en.wikipedia.org/wiki/Maxwell%27s_equations#Formulation_in_SI_units_convention) \[[5](#references) (vol. II, ch. 18), [6](#references) (ch. 2.1)\]:
+The electromagnetic field can be viewed as a combination of two real vector fields: the [electric field](https://en.wikipedia.org/wiki/Electric_field) \\(\bm{E}\\) and the [magnetic field](https://en.wikipedia.org/wiki/Magnetic_field#The_B-field) \\(\bm{B}\\). They satisfy the differential form of the [Maxwell equations](https://en.wikipedia.org/wiki/Maxwell%27s_equations#Formulation_in_SI_units_convention) \[[5](#references) (vol. II, ch. 18), [6](#references) (ch. 2.1)\]:
 
 $$ \tag{1.1}
 \begin{aligned}
@@ -88,42 +88,54 @@ $$ \tag{1.4}
 	c = \frac{1}{\sqrt{\epsilon_0 \mu\_0}}.
 $$
 
-Since the [divergence of curl](https://en.wikipedia.org/wiki/Vector_calculus_identities#Divergence_of_curl_is_zero) is zero, the difference of the divergence of Equation 1.1.3 and the time derivative of Equation 1.1.4 expresses [conservation of charge](https://en.wikipedia.org/wiki/Charge_conservation):
+Since the electromagnetic field only interacts with charged particles, the matter is represented[^4] by the *volume* [charge density](https://en.wikipedia.org/wiki/Charge_density) \\(\rho\\), such that the total amount of charge \\(Q\\) inside the volume \\(V\\) is
+
+[^4]: In the statistical sense, which matches the point of view of quantum mechanics.
 
 $$ \tag{1.5}
-	\nabla \cdot \bm{J}(\bm{r}, t) = - \frac{\partial}{\partial t} \rho(\bm{r}, t).
-$$
-
-Equation 1.5 is a [continuity equation](https://en.wikipedia.org/wiki/Continuity_equation) that tells us that a reduction of the charge density is observed if the charges are carried away by a current.
-
-Sometimes, Equations 1.1.1-1.1.4 are referred to as the "vacuum version" of the Maxwell equations. In fact, these equations are based on the atomic theory of matter that describes it as a collection of charged particles (electrons and protons) embedded in vacuum. We prefer to call them the *microscopic* Maxwell equations instead.
-
-Since electromagnetic fields only interact with charged particles (or, simply, "charges"), the matter is represented (in the statistical sense) by the *volume* [charge density](https://en.wikipedia.org/wiki/Charge_density) \\(\rho\\), such that the total amount of charge \\(Q\\) inside the volume \\(V\\) is
-
-$$ \tag{1.6}
 	Q(t) = \iiint\_{V} \rho(\bm{r}, t) dV.
 $$
 
-Moving charges constitute a current. If their velocity is \\(\bm{v}\\), the *volume* [current density](https://en.wikipedia.org/wiki/Current_density) \\(\bm{J}\\) is simply
+Moving charges constitute a current. If their mean velocity is \\(\bm{v}\\), the *volume* [current density](https://en.wikipedia.org/wiki/Current_density) \\(\bm{J}\\) is simply
 
-$$ \tag{1.7}
+$$ \tag{1.6}
 	\bm{J}(\bm{r}, t) = \rho(\bm{r}, t) \bm{v}(\bm{r}, t).
 $$
 
-Of course, individual charges may be located at different points, and have different charges and velocities - the density is just a convenient mathematical abstraction.
+Since the [divergence of curl](https://en.wikipedia.org/wiki/Vector_calculus_identities#Divergence_of_curl_is_zero) is zero, the difference of the divergence of Equation 1.1.3 and the time derivative of Equation 1.1.4 expresses [conservation of charge](https://en.wikipedia.org/wiki/Charge_conservation):
 
-While this kind of parametrization is simple and useful, due to the sheer number of charges in bulk matter, you can't see the forest for the trees. Therefore, applied physics often uses a different representation of matter which we shall now discuss.
+$$ \tag{1.7}
+	\nabla \cdot \bm{J}(\bm{r}, t) = - \frac{\partial}{\partial t} \rho(\bm{r}, t).
+$$
+
+Equation 1.7 is a [continuity equation](https://en.wikipedia.org/wiki/Continuity_equation) that tells us that a reduction of the charge density is observed if the charges are carried away by a current.
+
+Sometimes, Equations 1.1.1-1.1.4 are referred to as the the Maxwell equations *in vacuum*. This name highlights the fact that these equations are based on the atomic theory of matter as a collection of particles (electrons, protons, neutrons) embedded in vacuum. It also explains the presence of the "vacuum factors" \\(\epsilon_0\\) and \\(\mu\_0\\).
+
+The fields generated by such *microscopic* objects have extremely high spatial frequency. In addition, certain effects are not present (or can't be detected) when measurements are performed at the *macroscopic* scale. Effectively, due to the sheer number of charges in bulk matter, you sometimes can't see the forest for the trees.
+
+This leads us to the idea of *Lorentz averaging*: we determine the values of the electric and the magnetic fields using Equations 1.1.1-1.1.4, and then compute their spatial average:
+
+$$ \tag{1.8}
+	\bm{E}(\bm{r}, t) = \frac{1}{V} \iiint\_{V} \bm{E\_{\mu}}(\bm{r} + \bm{r'}, t) dV',
+$$
+
+where the volume \\(V\\) is sufficiently large to contain a great number of atoms.
+
+Application of this technique allows us to transform the *microscopic* Maxwell equations in vacuum into the *macroscopic* Maxwell equations in bulk matter. The former set of equations is often used in theoretical physics, while the latter is dominant in applied branches, such as [wave optics](https://en.wikipedia.org/wiki/Physical_optics).
+
+Because Equations 1.1.1-1.1.2 are linear, and are independent of the description of matter, a linear transformation (such as the one given by Equation 1.8) does not change their form, since we may interchange the operations of differentiation and transformation (move the derivatives inside or outside the integral). On the other hand, Equations 1.1.3-1.1.4 are defined in terms of current and charge densities, and must be modified.
 
 First, we identify two types of charges - bound and free. As the name suggests, *free* charges are able to move effortlessly around the material, the classic example being the conduction current in a copper wire.
 
-$$ \tag{1.8}
+$$ \tag{1.9}
 	\bm{J} = \bm{J\_b} + \bm{J\_f}, \quad
 	\rho   = \rho\_b + \rho\_f.
 $$
 
- The *bound* [current](https://en.wikipedia.org/wiki/Current_density#Polarization_and_magnetization_currents) and [charge densities](https://en.wikipedia.org/wiki/Charge_density#Bound_charge), \\(\bm{J\_b}\\) and \\(\rho\_b\\), are more difficult to reason about. In short, oscillating bound charges constitute (electric) *polarization* currents \\(\bm{J\_p}\\), and circulating bound charges are attributed to *magnetization* currents \\(\bm{J\_m}\\). They can be characterized in terms of [polarization of matter](https://en.wikipedia.org/wiki/Maxwell%27s_equations#Auxiliary_fields,_polarization_and_magnetization):
+ The *bound* [current](https://en.wikipedia.org/wiki/Current_density#Polarization_and_magnetization_currents) and [charge densities](https://en.wikipedia.org/wiki/Charge_density#Bound_charge), \\(\bm{J\_b}\\) and \\(\rho\_b\\), are more difficult to reason about. A short, but unsatisfactory, explanation is that oscillating bound charges constitute (electric) *polarization* currents \\(\bm{J\_p}\\), and circulating bound charges are attributed to *magnetization* currents \\(\bm{J\_m}\\). They can be characterized in terms of [polarization of matter](https://en.wikipedia.org/wiki/Maxwell%27s_equations#Auxiliary_fields,_polarization_and_magnetization):
 
-$$ \tag{1.9}
+$$ \tag{1.10}
 \begin{aligned}
 	&\bm{J\_b}(\bm{r}, t) = \bm{J\_p}(\bm{r}, t) + \bm{J\_m}(\bm{r}, t) =
 	\frac{\partial}{\partial t} \bm{P}(\bm{r}, t) + \nabla \times \bm{M}(\bm{r}, t), \cr
@@ -131,11 +143,11 @@ $$ \tag{1.9}
 \end{aligned}
 $$
 
-where \\(\bm{P}\\) is the [electric polarization](https://en.wikipedia.org/wiki/Polarization_density) (electric dipole moment per unit volume) and \\(\bm{M}\\) is the [magnetic polarization](https://en.wikipedia.org/wiki/Magnetization) (magnetic dipole moment per unit volume). Note that, according to the [Gauss law](https://en.wikipedia.org/wiki/Gauss%27s_law_for_magnetism), no magnetic charges exist.
+where \\(\bm{P}\\) is the [electric polarization](https://en.wikipedia.org/wiki/Polarization_density) (electric dipole moment per unit volume) and \\(\bm{M}\\) is the [magnetic polarization](https://en.wikipedia.org/wiki/Magnetization) (magnetic dipole moment per unit volume). Note that, according to the [Gauss law](https://en.wikipedia.org/wiki/Gauss%27s_law_for_magnetism) given by Equation 1.1.2, no magnetic charges exist.
 
-Substitution of Equations 1.8.1, 1.9.1 into 1.1.3 and Equations 1.8.2, 1.9.2 into 1.1.4 yields
+Substitution of Equations 1.9.1, 1.10.1 into 1.1.3 and Equations 1.9.2, 1.10.2 into 1.1.4 yields
 
-$$ \tag{1.10}
+$$ \tag{1.11}
 \begin{aligned}
 	&\nabla \times \big( \mu\_0^{-1} \bm{B}(\bm{r}, t) \big) - \frac{\partial}{\partial t} \big( \epsilon_0 \bm{E}(\bm{r}, t) \big) = \bm{J\_f}(\bm{r}, t) + \frac{\partial}{\partial t} \bm{P}(\bm{r}, t) + \nabla \times \bm{M}(\bm{r}, t), \cr
 	&\nabla \cdot \big( \epsilon_0 \bm{E}(\bm{r}, t) \big) = \rho\_f(\bm{r}, t) - \nabla \cdot \bm{P}(\bm{r}, t).
@@ -144,7 +156,7 @@ $$
 
 We can group the terms to simplify the expressions:
 
-$$ \tag{1.11}
+$$ \tag{1.12}
 \begin{aligned}
 	&\nabla \times \big( \mu\_0^{-1} \bm{B}(\bm{r}, t) - \bm{M}(\bm{r}, t) \big) - \frac{\partial}{\partial t} \big( \epsilon_0 \bm{E}(\bm{r}, t) + \bm{P}(\bm{r}, t) \big) = \bm{J\_f}(\bm{r}, t), \cr
 	&\nabla \cdot \big( \epsilon_0 \bm{E}(\bm{r}, t) + \bm{P}(\bm{r}, t) \big) = \rho\_f(\bm{r}, t).
@@ -153,14 +165,14 @@ $$
 
 A pattern begins to emerge. If we define the [electric displacement](https://en.wikipedia.org/wiki/Electric_displacement_field) \\(\bm{D}\\) and the [magnetic intensity](https://en.wikipedia.org/wiki/Magnetic_field#The_H-field) \\(\bm{H}\\) as
 
-$$ \tag{1.12}
+$$ \tag{1.13}
 	\bm{D}(\bm{r}, t) = \epsilon_0 \bm{E}(\bm{r}, t) + \bm{P}(\bm{r}, t), \quad 
 	\bm{H}(\bm{r}, t) = \mu\_0^{-1} \bm{B}(\bm{r}, t) - \bm{M}(\bm{r}, t),
 $$
 
-substitute them into Equations 1.11.1-1.11.2, and group the resulting expressions with Equations 1.1.1-1.1.2, we obtain the [macroscopic formulation](https://en.wikipedia.org/wiki/Maxwell%27s_equations#Macroscopic_formulation) of the Maxwell equations \[[6](#references) (ch. 1.1.1), [7](#references) (ch. 2.1), [8](#references) (ch. 2.1), [9](#references) (ch. 2.1)\]:
+substitute them into Equations 1.12.1-1.12.2, and group the resulting expressions with Equations 1.1.1-1.1.2, we obtain the [macroscopic formulation](https://en.wikipedia.org/wiki/Maxwell%27s_equations#Macroscopic_formulation) of the Maxwell equations \[[6](#references) (ch. 1.1.1), [7](#references) (ch. 2.1), [8](#references) (ch. 2.1), [9](#references) (ch. 2.1)\]:
 
-$$ \tag{1.13}
+$$ \tag{1.14}
 \begin{aligned}
 	&\nabla \times \bm{E}(\bm{r}, t) + \frac{\partial}{\partial t} \bm{B}(\bm{r}, t) = 0, &
 	&\nabla \cdot  \bm{B}(\bm{r}, t) = 0, \cr
@@ -171,16 +183,16 @@ $$
 
 As discussed in \[[5](#references) (vol. II, ch 32.2), [6](#references) (ch. 1.1.1)\], \\(\bm{E}\\) and \\(\bm{B}\\) are the *fundamental fields*, and \\(\bm{D}\\) and \\(\bm{H}\\) are the [auxiliary fields](https://en.wikipedia.org/wiki/Maxwell%27s_equations#Auxiliary_fields,_polarization_and_magnetization) that arise due to the influence of matter. We shall soon see that, in certain cases, these two groups are related in a simple way.
 
-Conceptually, the properties of matter are continuous, which leads to continuous fields. But, sometimes, it is convenient to introduce a discontinuity to approximate a very rapid (yet continuous) variation of material properties. At the *optical interface*, the fields must satisfy the [boundary conditions](https://en.wikipedia.org/wiki/Interface_conditions_for_electromagnetic_fields) \[[6](#references) (ch. 1.1.3), [7](#references) (ch. 2.10), [8](#references) (ch. 2.4), [9](#references) (ch. 2.2)\]. If \\(\bm{n\_{12}}\\) is a unit normal vector pointing from region 1 to region 2, the normal components of the fields must be such that
+Since the microscopic properties of matter are continuous, this leads to continuous fields. But, sometimes, it is convenient to introduce a macroscopic discontinuity to approximate a very rapid (yet continuous) variation of material properties. At the *optical interface*, the fields must satisfy the [boundary conditions](https://en.wikipedia.org/wiki/Interface_conditions_for_electromagnetic_fields) \[[6](#references) (ch. 1.1.3), [7](#references) (ch. 2.10), [8](#references) (ch. 2.4), [9](#references) (ch. 2.2)\]. If \\(\bm{n\_{12}}\\) is a unit normal vector pointing from region 1 to region 2, the normal components of the fields must be such that
 
-$$ \tag{1.14}
+$$ \tag{1.15}
 	\bm{n\_{12}} \cdot  (\bm{B\_2} - \bm{B\_1}) = 0, \quad
 	\bm{n\_{12}} \cdot  (\bm{D\_2} - \bm{D\_1}) = \rho\_n,
 $$
 
 where \\(\rho\_n\\) is the *surface* charge density. For the tangential components, it can be shown that
 
-$$ \tag{1.15}
+$$ \tag{1.16}
 	\bm{n\_{12}} \times (\bm{E\_2} - \bm{E\_1}) = 0, \quad
 	\bm{n\_{12}} \times (\bm{H\_2} - \bm{H\_1}) = \bm{J_n},
 $$
@@ -193,9 +205,9 @@ In addition to the boundary conditions, the law of [conservation of energy](http
 
 - the [Sommerfeld radiation condition](https://en.wikipedia.org/wiki/Sommerfeld_radiation_condition) prohibits the existence of sinks collecting (an infinite amount of) energy arriving from infinity - these "infinite" sinks must be "finite" sources instead.
 
-We take the Maxwell equations as axioms, and use them as a foundation on which we base the theory presented in the following sections.
+We take the Maxwell equations as axioms, and use them as the foundation on which we base the theory presented in the following sections.
 
-## Force and Energy
+### Force and Energy
 
 Given a mathematical description of electromagnetic radiation in terms of vector fields, we would like to physically characterize it as an energy transfer process. In order to do that, we have to determine how much energy there is in a given volume element of space, and also the rate of energy flow \[[5](#references) (vol. II, ch. 27), [6](#references) (ch. 1.1.4), [7](#references) (ch. 2.11), [8](#references) (ch. 2.5), [9](#references) (ch. 2.4)\].
 
@@ -239,7 +251,7 @@ $$ \tag{2.5}
 	\iiint\_{V} \bm{E}(\bm{r}, t) \cdot \rho(\bm{r}, t) \bm{v}(\bm{r}, t) dV.
 $$
 
-Since the current density is just the number of moving charges per unit volume (see Equation 1.7),
+Since the current density is just the number of moving charges per unit volume (see Equation 1.6),
 
 $$ \tag{2.6}
 	\frac{\partial}{\partial t} \mathcal{W}(V, t) =
@@ -351,7 +363,7 @@ $$
 
 is the amount of energy per second per unit area that flows through a surface with the normal \\(\bm{n}\\). That is the definition of [irradiance](https://en.wikipedia.org/wiki/Irradiance) \\(\mathtt{E}\\).
 
-## Maxwell Equations in the Frequency Domain
+### Maxwell Equations in the Frequency Domain
 
 The Maxwell equations can be simplified by transforming the fields from the time to the frequency domain.
 
@@ -405,7 +417,7 @@ $$ \tag{3.5}
 	= 2 r \cos{ \theta}.
 $$
 
-We can define the integral forms of the fields by replacing \\(\bm{E}\\) by \\(\bm{B}\\), \\(\bm{D}\\), \\(\bm{H}\\), \\(\bm{J\_f}\\) or \\(\rho\_f\\) in Equation 3.4. If we substitute these integrals into Equations 1.13.1-1.13.4, the result is a system of integro-differential equations
+We can define the integral forms of the fields by replacing \\(\bm{E}\\) by \\(\bm{B}\\), \\(\bm{D}\\), \\(\bm{H}\\), \\(\bm{J\_f}\\) or \\(\rho\_f\\) in Equation 3.4. If we substitute these integrals into Equations 1.14.1-1.14.4, the result is a system of integro-differential equations
 
 $$ \tag{3.6}
 \begin{aligned}
@@ -486,7 +498,7 @@ $$ \tag{3.12}
 	\bm{B}(\bm{r}, \omega) = \frac{i}{\omega} \nabla \times \bm{E}(\bm{r}, \omega).
 $$
 
-## Time-Harmonic Fields
+### Time-Harmonic Fields
 
 If we solve the Maxwell equations in the frequency domain, we may be interested in the spectral composition of the Poynting vector. In order to decompose it, we must express the fields using the inverse Fourier transform:
 
@@ -699,7 +711,7 @@ $$
 
 Having defined both irradiance and spectral irradiance, we can easily compute all other [radiometric quantities](https://en.wikipedia.org/wiki/Radiometry) using integration and differentiation techniques as discussed in the previous article \[[3](#references)\].
 
-## Constitutive Relations
+### Constitutive Relations
 
 Considered in isolation, the Maxwell equations in the frequency domain is an [undetermined system](https://en.wikipedia.org/wiki/Underdetermined_system) - it has fewer equations than unknowns. This makes it necessary to specify the way the material responds to the applied electromagnetic field. Such assumptions about the material are called the *material equations*, or the [constitutive relations](https://en.wikipedia.org/wiki/Constitutive_equation#Electromagnetism).
 
@@ -780,7 +792,7 @@ $$ \tag{5.7}
 \end{aligned}
 $$
 
-## Helmholtz Equation
+### Helmholtz Equation
 
 Consider a region of space without any source charges or currents. Physically, this means that there are no sources of fields in this region; but it doesn't mean the region contains no energy. To find an expression of the internal field, we shall explore all general solutions of the Maxwell equations (we can find a special solution once we specify the boundary conditions), and determine how these solutions evolve over time.
 
@@ -925,7 +937,7 @@ $$
 
 That is a general solution of the Maxwell equations for *linear, isotropic, homogeneous* media.
 
-## Planar Waves
+### Planar Waves
 
 We can find a solution of the Maxwell equations in the time domain by performing the inverse Fourier transform of Equation 6.16:
 
@@ -1188,7 +1200,7 @@ $$ \tag{7.31}
 	\beta_a(\omega) = 2 \omega \frac{\kappa(\omega)}{c}.
 $$
 
-## Electromagnetic Potential
+### Electromagnetic Potential
 
 The solutions of the Maxwell equations we have found so far have a limited range of validity. The medium must be isotropic and either homogeneous (which prohibits scattering) or divided into several bounded homogeneous regions (which permits scattering only at the boundaries), and the material's response to the incident electromagnetic field may only be purely linear. Moreover, while the method of solving a system of differential equations augmented with boundary conditions (the so-called [boundary value problem](https://en.wikipedia.org/wiki/Boundary_value_problem)) is suitable for many simple cases (such as reflection and transmission of a planar wave at a planar interface, which leads to the [Fresnel equations](https://en.wikipedia.org/wiki/Fresnel_equations)), it quickly becomes unwieldy for more complex problems. Another approach tends to become more viable, where one reformulates the field in terms of the [electromagnetic potential](https://en.wikipedia.org/wiki/Electromagnetic_four-potential), as this leads to an integral (rather than a differential) solution of the Maxwell equations.
 
@@ -1323,7 +1335,7 @@ $$ \tag{8.16}
 \end{aligned}
 $$
 
-## Green Functions
+### Green Functions
 
 Compare Equation 8.16.3 to a single component of Equation 8.16.1 in the Cartesian coordinate system. Both have the same form
 
@@ -1451,7 +1463,7 @@ $$ \tag{9.15}
 \end{aligned}
 $$
 
-Since Equation 9.14 integrates over all currents and charges, all sources of electromagnetic fields are already accounted for, and the homogeneous part of the solution is 0. However, it is often convenient to specify the primary sources separately. In order to do that, we must recall the current and charge decomposition given by Equations 1.8 and 5.4. After substitution, the solution may be alternatively written as
+Since Equation 9.14 integrates over all currents and charges, all sources of electromagnetic fields are already accounted for, and the homogeneous part of the solution is 0. However, it is often convenient to specify the primary sources separately. In order to do that, we must recall the current and charge decomposition given by Equations 1.9 and 5.4. After substitution, the solution may be alternatively written as
 
 $$ \tag{9.16}
 \begin{aligned}
@@ -1582,7 +1594,7 @@ $$
 
 that may be expressed using the [matrix form of the cross product](https://en.wikipedia.org/wiki/Cross_product#Conversion_to_matrix_multiplication) \[[7](#references) (ch. 7.9)\].
 
-## Electric and Magnetic Polarization
+### Electric and Magnetic Polarization
 
 The physical meaning of the electromagnetic potential is more apparent in the time domain. With this goal in mind, perform the inverse Fourier transform of Equation 9.14.2:
 
@@ -1862,7 +1874,7 @@ $$
 
 Like in the case of polarization, magnetism comes in different forms \[[5](#references) (vol. II, ch. 34)\]. Unfortunately, none of them appear to have a satisfactory explanation in terms of classical physics. In particular, to the best of the author's knowledge, there is no simple analog of Equation 10.21 for induced magnetization.
 
-For weak fields in [diamagnets](https://en.wikipedia.org/wiki/Diamagnet) and [paramagnets](https://en.wikipedia.org/wiki/Paramagnet), it is possible to combine Equations 1.12.2 and 5.2.3 to express the magnetic polarization \\(\bm{M}\\) in terms of the relative permeability \\(\mu\_r\\),
+For weak fields in [diamagnets](https://en.wikipedia.org/wiki/Diamagnet) and [paramagnets](https://en.wikipedia.org/wiki/Paramagnet), it is possible to combine Equations 1.13.2 and 5.2.3 to express the magnetic polarization \\(\bm{M}\\) in terms of the relative permeability \\(\mu\_r\\),
 
 $$ \tag{10.30}
 	\bm{M}(\bm{r}, \omega)
@@ -1878,9 +1890,9 @@ In some sense, dipoles can be considered elementary field generators: an electri
 
 Finally, we would like to emphasize certain properties of the solution of the Maxwell equations in terms of potentials. Perhaps the most obvious one is that the scattered field is expressed as a volume integral. While the geometry of the volume containing the charges plays an important role, it is now apparent that the interior of the volume is the actual source of what we consider the surface reflection \[[5](#references) (vol. I, ch. 31)\]. Furthermore, Equation 10.3 says that the (microscopic) electromagnetic field always propagates at the speed of light. That is true; macroscopically, the dipole field extinguishes the incident field and replaces it with another field that appears to have a lower phase velocity, which is used as the definition of the index of refraction. This mechanism is described by the [Ewald-Oseen extinction theorem](https://en.wikipedia.org/wiki/Ewald%E2%80%93Oseen_extinction_theorem) \[[6](#references) (ch. 2.4)\].
 
-# Electromagnetic Scattering and Radiative Transfer
+## II. Electromagnetic Scattering
 
-## From the Maxwell Equations to the Radiative Transfer Equation
+### From Maxwell Equations to Radiative Transfer
 
 In practice, it is very difficult to solve the Maxwell equations exactly, except under certain (idealized) conditions. Thus, one usually employs various approximations that are carefully chosen to minimize both the error and the complexity of the computation.
 
@@ -1903,7 +1915,7 @@ Given the source illuminating this medium, we can determine the *resultant field
 In order to rigorously solve the scattering problem, we must specify not only the incident field, but also the composite medium *in its entirety*, since, according to the Maxwell equations, the value of the electromagnetic field at a certain point is the sum of the fields produced by all charges, everywhere. Clearly, this is highly inconvenient and, often, unnecessary. Thus, we make a compromise: we "chop" the composite medium into little pieces (that effectively shrink to a point), each filled with small particles, analogously to a region of the macroscopic medium formed by a distribution of microscopic dipoles. Extending the analogy further, just as the combined action of dipoles leads to the definition of optical properties,
 the *radiative properties* of the large-scale medium are determined by solving the Maxwell equations for the distribution of particles within each little piece. Finally, we use the *radiative transfer equation* to integrate the contribution of all little pieces, which is a process that is conceptually similar to combining the fields of all charges according to the Maxwell equations.
 
-## Mathematical Formulation of the Scattering Problem
+### Scattering Problem
 
 Participating media can be broadly divided into two categories - homogeneous and inhomogeneous. This suggests that we may split any medium into two regions: 1) homogeneous, and 2) the remaining space (that can be reinterpreted as a single particle or particle group) contained within the volume \\(V\\).
 
@@ -2130,7 +2142,7 @@ $$
 
 In the literature, Equation 11.25 is often called the *volume integral equation* \[[9](#references) (ch. 4)\]
 
-## Dipole Radiation
+### Dipole Radiation
 
 Typically, it is not possible to evaluate the integrals of Equations 11.25 in closed form, since, in general, the value of the electric field in the interior of the volume is not known (TODO: write about the transition operator). Thus, we must make certain assumptions and employ various approximations in order to make computations feasible. This leads to a number of special cases.
 
@@ -2374,7 +2386,7 @@ $$
 
 This implies that, as \\(k R \to \infin\\), the magnitude of the magnetic field becomes vanishingly small in comparison to that of the electric field, which explains why the dipole is called *electric*.
 
-## Radiation in the Far-Field Zone
+### Radiation in the Far-Field Zone
 
 Let us focus on the case when the observation point is far away from the source. It is important for two reasons: first, if we are dealing with small particles, a typical observation falls into this category, and second, because this assumption greatly simplifies the behavior of the scattered wave, as we shall now demonstrate.
 
@@ -2577,15 +2589,15 @@ Scattering Matrix...
 Relative magnitude... Poynting vector... Radiative Transfer Coefficients...
 Analytic solution for a non-magnetic conducting sphere (L-M)...
 
----
+## III. Simple Formulas for Practical Use
 
 [Rayleigh](https://en.wikipedia.org/wiki/Rayleigh_scattering) - [Tyndall](https://en.wikipedia.org/wiki/Tyndall_effect) - [Mie](https://en.wikipedia.org/wiki/Mie_scattering)
 
-## Acknowledgments
+### Acknowledgments
 
 Pharr & Jakob, Bohren & Huffman, NASA
 
-## References
+### References
 
 <!-- Modified APA style -->
 
@@ -2604,7 +2616,7 @@ Pharr & Jakob, Bohren & Huffman, NASA
 99. Hansen, J. E., & Travis, L. D. [Light scattering in planetary atmospheres](https://doi.org/10.1007/BF00168069) (1974).
 
 <!--
-## Polarization of Light
+### Polarization of Light
 
 We have just seen that transverse waves are composed of two independent scalar components. Can we separate them? The answer is yes.
 
