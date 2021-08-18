@@ -538,7 +538,7 @@ $$ \tag{3.10}
 \end{aligned}
 $$
 
-An interesting property of the frequency-domain solution is the reduction in the number of independent Maxwell equations from four to two. Since the [divergence of curl](https://en.wikipedia.org/wiki/Vector_calculus_identities#Divergence_of_curl_is_zero) is zero, taking the divergence of the two equations on the left produces the equations on the right. The latter is true due to the expression of [conservation of charge](https://en.wikipedia.org/wiki/Charge_conservation) in the frequency domain:
+A useful property of the frequency-domain solution is the reduction in the number of independent Maxwell equations from four to two. Since the [divergence of curl](https://en.wikipedia.org/wiki/Vector_calculus_identities#Divergence_of_curl_is_zero) is zero, taking the divergence of the two equations on the left produces the equations on the right. The latter is true due to the expression of [conservation of charge](https://en.wikipedia.org/wiki/Charge_conservation) in the frequency domain:
 
 $$ \tag{3.11}
 	\nabla \cdot \bm{J}(\bm{r}, \omega) = -i \omega \rho(\bm{r}, \omega).
@@ -765,11 +765,11 @@ Having defined both irradiance and spectral irradiance, we can easily compute al
 
 ### Constitutive Relations
 
-Considered in isolation, the Maxwell equations in the frequency domain is an [undetermined system](https://en.wikipedia.org/wiki/Underdetermined_system) - it has fewer equations than unknowns. This makes it necessary to specify the way the material responds to the applied electromagnetic field. Such assumptions about the material are called the *material equations*, or the [constitutive relations](https://en.wikipedia.org/wiki/Constitutive_equation#Electromagnetism).
+Considered in isolation, the macroscopic formulation of the Maxwell equations is an [undetermined system](https://en.wikipedia.org/wiki/Underdetermined_system) - it has fewer equations than unknowns. This makes it necessary to specify the way the material responds to the applied electromagnetic field. Such assumptions about the material are called the *material equations*, or the [constitutive relations](https://en.wikipedia.org/wiki/Constitutive_equation#Electromagnetism).
 
 The simplest way is to assume that the material responds to weak electromagnetic fields in an approximately linear manner[^6]. Under this assumption, we may express \\(\bm{D}\\) and \\(\bm{H}\\) as [bilinear](https://en.wikipedia.org/wiki/Bilinear_map) functions of \\(\bm{E}\\) and \\(\bm{B}\\) \[[8](#references) (ch. 8.22), [10](#references)\]:
 
-[^6]: This means that omitting higher-order terms in the series expansion results in a negligible error.
+[^6]: This assumes that omitting the quadratic (and higher order) terms in the Taylor series expansion results in a negligible error.
 
 $$ \tag{5.1}
 	\begin{bmatrix}
@@ -801,6 +801,8 @@ $$ \tag{5.2}
 $$
 
 where \\(\sigma\\) is the [specific conductivity](https://en.wikipedia.org/wiki/Electrical_resistivity_and_conductivity), \\(\epsilon\\) is the [electric permittivity](https://en.wikipedia.org/wiki/Permittivity), and \\(\mu\\) is the [magnetic permeability](https://en.wikipedia.org/wiki/Permeability_(electromagnetism)).
+
+Care must taken when transforming Equations 5.2.1-5.2.3 to the time domain, since a multiplication in the frequency domain leads to a convolution in the time domain.
 
 Conservation of charge implies that
 
