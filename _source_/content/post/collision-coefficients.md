@@ -1502,7 +1502,7 @@ $$ \tag{9.13}
 	\psi(\bm{r}) = \iiint\_{\mathbb{R^3}} g_0(\bm{r} - \bm{r'}) \xi(\bm{r'}) dV'.
 $$
 
-Note that, despite the \\(1/|\bm{r} - \bm{r'}|\\) factor in the Green function making the integral [improper](https://en.wikipedia.org/wiki/Improper_integral), it is convergent provided that \\(\xi\\) is a piecewise-continuous function \[[7](#references) (ch. 3.2)\].
+Note that, despite the \\(1/|\bm{r} - \bm{r'}|\\) factor in the scalar Green function making the integral [improper](https://en.wikipedia.org/wiki/Improper_integral), it is convergent provided that \\(\xi\\) is a piecewise-continuous function \[[7](#references) (ch. 3.2)\].
 
 Equation 9.13 allows us to find the expressions of the scalar and the vector potentials in the frequency domain:
 
@@ -1627,9 +1627,9 @@ $$ \tag{9.26}
 	= \Big( \mathcal{I} + \frac{1}{k^2} \nabla \otimes \nabla \Big) g(\bm{r} - \bm{r'}, k)
 $$
 
-is the *electric Green tensor for electrical sources*[^12] \[[7](#references) (ch. 7.9)\].
+is the electric tensor Green function for electrical sources[^12], or the *electric tensor* for short. \[[7](#references) (ch. 7.9)\].
 
-[^12]: The Green tensors are also known as the [dyadic](https://en.wikipedia.org/wiki/Dyadics) Green functions. Dyadics are considered to be relatively obsolete.
+[^12]: The tensor Green functions are also known as the dyadic Green functions. A [dyadic](https://en.wikipedia.org/wiki/Dyadics) is a special type of tensor that is considered to be relatively obsolete.
 
 To find the integral form of the magnetic field, we must expand Equation 9.21.2:
 
@@ -1652,7 +1652,7 @@ $$ \tag{9.29}
 	= \iiint\_{V} \mathcal{G_{me}} \big( \bm{r} - \bm{r'}, k_0(\omega) \big) \frac{\bm{J}(\bm{r'}, \omega)}{\mu_0^{-1}} dV',
 $$
 
-that features the *magnetic Green tensor for electrical sources*
+that features the magnetic tensor Green function for electrical sources (or, simply, the *magnetic tensor*)
 
 $$ \tag{9.30}
 	\mathcal{G_{me}}(\bm{r} - \bm{r'}, k)
@@ -2289,7 +2289,7 @@ $$
 
 and comparing the result with Equation 12.3.
 
-In order to compute the scattered fields according to Equation 12.5, we need to evaluate the Green tensors. Let us first consider the electric Green tensor defined by Equation 9.26. Its matrix representation in the Cartesian coordinate system is
+In order to compute the scattered fields according to Equation 12.5, we need to evaluate the tensor Green functions. Let us first consider the electric tensor defined by Equation 9.26. Its matrix representation in the Cartesian coordinate system is
 
 $$ \tag{12.8}
 \begin{aligned}
@@ -2304,7 +2304,7 @@ $$ \tag{12.8}
 \end{aligned}
 $$
 
-where the Green function \\(g\\) is given by Equation 9.10.
+where the scalar Green function \\(g\\) is given by Equation 9.10.
 
 Ignoring the multiplicative constant \\(1/(4 \pi k^2)\\), the matrix elements have the form
 
@@ -2314,7 +2314,7 @@ $$
 
 where we may substitute \\(x\\), \\(y\\), or \\(z\\) into the blanks.
 
-Under the previous assumption that \\(\bm{r} \neq \bm{r_0}\\), the Green function and its partial derivatives are continuous, which means the order of partial differentiation makes no difference. Consequently, the matrix of Equation 12.8 is [symmetric](https://en.wikipedia.org/wiki/Symmetric_matrix), such that \\(\mathcal{G_{ee}} = \mathcal{G_{ee}}^T\\).
+Under the previous assumption that \\(\bm{r} \neq \bm{r_0}\\), the scalar Green function and its partial derivatives are continuous, which means the order of partial differentiation makes no difference. Consequently, the matrix of Equation 12.8 is [symmetric](https://en.wikipedia.org/wiki/Symmetric_matrix), such that \\(\mathcal{G_{ee}} = \mathcal{G_{ee}}^T\\).
 
 The process of differentiation is straightforward: we use the identity
 
@@ -2372,7 +2372,7 @@ $$
 
 Take a look at the individual factors in Equations 12.11-12.13: those outside the brackets oscillate between 0 and 1, while the terms  inside greatly depend on the distance between the observation point \\(\bm{r}\\) and the source \\(\bm{r_0}\\). This suggests that we may divide the entire space into zones based on the proximity to the observation point. If we are interested in the value of the field located near the source, we say that the observation point belongs to the [near-field](https://en.wikipedia.org/wiki/Near_and_far_field) zone. Similarly, far-away points are said to be located in the [far-field](https://en.wikipedia.org/wiki/Near_and_far_field) zone. Between them is a region called the *transition* zone.
 
-If we fix a value of \\(k\\), we may decompose the electric Green tensor into the near-, transition-, and far-field components:
+If we fix a value of \\(k\\), we may decompose the electric tensor into the near-, transition-, and far-field components:
 
 $$ \tag{12.14}
     \mathcal{G_{ee}}
@@ -2394,7 +2394,7 @@ $$ \tag{12.15}
 \end{aligned}
 $$
 
-with the Green function containing an additional \\(R^{-1}\\) factor, so that
+with the scalar Green function containing an additional \\(R^{-1}\\) factor, so that
 
 $$ \tag{12.16}
     k^{-1} \mathcal{G_{en}}
@@ -2407,7 +2407,7 @@ $$ \tag{12.16}
     \varpropto (k R)^{-1}.
 $$
 
-Let us analyze the magnetic Green tensor in the same way. Write Equation 9.30 in the Cartesian coordinate system:
+Let us analyze the magnetic tensor in the same way. Write Equation 9.30 in the Cartesian coordinate system:
 
 $$ \tag{12.17}
 \begin{aligned}
@@ -2445,7 +2445,7 @@ $$ \tag{12.19}
 \end{aligned}
 $$
 
-Note that the constants of proportionality are different in comparison to the electric Green tensor:
+Note that the constants of proportionality are different in comparison to the electric tensor:
 
 $$ \tag{12.20}
     k^{-3} \mathcal{G_{mn}}
