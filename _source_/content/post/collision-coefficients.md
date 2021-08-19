@@ -846,6 +846,19 @@ $$ \tag{5.7}
 \end{aligned}
 $$
 
+Alternatively, the same set of equations can be expressed in terms of the \\(\bm{B}\\) field:
+
+$$ \tag{5.8}
+\begin{aligned}
+	&\nabla \times \bm{E}(\bm{r}, \omega) + i \omega \bm{B}(\bm{r}, \omega) = 0, &
+	&\nabla \cdot  \bm{B}(\bm{r}, \omega) = 0, \cr
+	&\nabla \times \big( \mu^{-1}(\bm{r}, \omega) \bm{B}(\bm{r}, \omega) \big) - i \omega \big( \varepsilon(\bm{r}, \omega) \bm{E}(\bm{r}, \omega) \big) = \bm{J_s}(\bm{r}, \omega), &
+	&\nabla \cdot  \big( \varepsilon(\bm{r}, \omega) \bm{E}(\bm{r}, \omega) \big) = \rho_s(\bm{r}, \omega).
+\end{aligned}
+$$
+
+Writing the Maxwell equations this way allows us to compare the macroscopic Equations 5.8 with the microscopic Equations 3.10. Observe that, when \\(\varepsilon\\) and \\(\mu\\) are independent from \\(\bm{r}\\), their solutions are formally the same.
+
 ### Helmholtz Equation
 
 Consider a region of space without any source charges or currents. Physically, this means that there are no sources of fields in this region; but it does not mean the region contains no energy. To find an expression of the internal field, we shall explore all general solutions of the Maxwell equations (we can find a special solution once we specify the boundary conditions), and determine how these solutions evolve over time.
@@ -1376,7 +1389,7 @@ $$ \tag{8.15}
 	= -\frac{\bm{J}(\bm{r}, t)}{\mu_0^{-1}}.
 $$
 
-Putting it all together, the formulation of the Maxwell equations in terms of the electromagnetic potential results in an decoupled system of partial differential equations:
+Putting it all together, the microscopic formulation of the Maxwell equations in terms of the electromagnetic potential results in an decoupled system of partial differential equations:
 
 $$ \tag{8.16}
 \begin{aligned}
@@ -2646,6 +2659,8 @@ Analytic solution for a non-magnetic conducting sphere (L-M)...
 ## III. Simple Formulas for Practical Use
 
 [Rayleigh](https://en.wikipedia.org/wiki/Rayleigh_scattering) - [Tyndall](https://en.wikipedia.org/wiki/Tyndall_effect) - [Mie](https://en.wikipedia.org/wiki/Mie_scattering)
+
+Inelastic [Raman scattering](https://en.wikipedia.org/wiki/Raman_scattering)
 
 ### Acknowledgments
 
