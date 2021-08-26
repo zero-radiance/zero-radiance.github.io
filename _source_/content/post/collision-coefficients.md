@@ -403,7 +403,7 @@ $$ \tag{2.23}
 	+ \bm{B}(\bm{r}, t) \cdot \frac{\partial}{\partial t}\bm{H}(\bm{r}, t).
 $$
 
-Comparison of Equations 2.17 and 2.22 shows that both formulations of the Poynting vector are equivalent if the measurement is performed inside a *non-magnetic* material. That explains the \\(\mu\_0^{-1}\\) factor: according to the microscopic formulation of the Maxwell equations, an electron (or a proton) is simply a charged region of vacuum. In comparison, wave propagation at the macroscopic scale can be considerably more complex.
+Comparison of Equations 2.17 and 2.22 shows that both formulations of the Poynting vector are equivalent if the measurement is performed inside a *non-magnetic* material. That explains the \\(\mu\_0^{-1}\\) factor: according to the microscopic formulation of the Maxwell equations, an electron (or a proton) is simply a charged region of vacuum. In comparison, propagation of electromagnetic fields at the macroscopic scale can be considerably more complex.
 
 Since electromagnetic fields oscillate so rapidly, one typically measures the *time-averaged* Poynting vector
 
@@ -795,7 +795,7 @@ $$
 
 In general, media may be *dispersive* (dependent on the frequency), *lossy* (absorptive), and *anisotropic* (dependent on the orientation). This implies that each coefficient \\(\mathcal{C_{ij}}\\) is a complex [tensor field](https://en.wikipedia.org/wiki/Tensor#Tensor_fields) that can be represented by a 3x3 matrix.
 
-A radical simplification[^7] of the Maxwell equations can be achieved by assuming that the material is both *linear* and *isotropic* \[[6](#references) (ch. 1.1.2), [7](#references) (ch. 2.3), [8](#references) (ch. 2.3), [9](#references) (ch. 2.1)\]:
+A radical simplification[^7] of the Maxwell equations can be achieved by assuming that the material is both *linear* and *isotropic*, which means that it can be characterized by three complex numbers:
 
 [^7]: Equations 5.2.1-5.2.3 make a big assumption that is not appropriate for certain types of real materials. For instance, [crystals](https://en.wikipedia.org/wiki/Crystal) have a well-defined [internal structure](https://en.wikipedia.org/wiki/Crystal_structure) which makes them inherently anisotropic \[[5](#references) (vol. II, ch. 30)\]. Since our application is primarily concerned with simple fluids, a linear, isotropic material is reasonable assumption that offers significant theoretical advantages (such as simplicity). However, this assumption is potentially not suitable for a more general application \[[6](#references) (ch. 2)\].
 
@@ -807,7 +807,7 @@ $$ \tag{5.2}
 \end{aligned}
 $$
 
-where \\(\sigma\\) is the [specific conductivity](https://en.wikipedia.org/wiki/Electrical_resistivity_and_conductivity), \\(\epsilon\\) is the [electric permittivity](https://en.wikipedia.org/wiki/Permittivity), and \\(\mu\\) is the [magnetic permeability](https://en.wikipedia.org/wiki/Permeability_(electromagnetism)).
+where \\(\sigma\\) is the [specific conductivity](https://en.wikipedia.org/wiki/Electrical_resistivity_and_conductivity), \\(\epsilon\\) is the [electric permittivity](https://en.wikipedia.org/wiki/Permittivity), and \\(\mu\\) is the [magnetic permeability](https://en.wikipedia.org/wiki/Permeability_(electromagnetism)) \[[6](#references) (ch. 1.1.2), [7](#references) (ch. 2.3), [8](#references) (ch. 2.3), [9](#references) (ch. 2.1)\].
 
 Care must taken when transforming Equations 5.2.1-5.2.3 to the time domain, since a multiplication in the frequency domain leads to a convolution in the time domain.
 
@@ -868,7 +868,7 @@ Writing the Maxwell equations this way allows us to compare the macroscopic Equa
 
 ### Helmholtz Equation
 
-Consider a region of space without any source charges or currents. Physically, this means that there are no sources of fields in this region; but it does not mean the region contains no energy. To find an expression of the internal field, we shall explore all general solutions of the Maxwell equations (we can find a special solution once we specify the boundary conditions), and determine how these solutions evolve over time.
+Consider a region of space without any source charges or currents. Physically, this means that the region is *source-free*; but that does not mean it contains no energy. To find an expression of the internal field, we shall explore all general solutions of the Maxwell equations (we can find a special solution once we specify the boundary conditions), and determine how these solutions evolve over time.
 
 Setting \\(\bm{J\_s} = \rho\_s = 0\\) in Equations 5.7.3-5.7.4, we obtain a coupled system of linear homogeneous equations:
 
@@ -991,7 +991,7 @@ $$
 
 is a valid solution for a certain value of \\(\bm{n}\\). To avoid clutter, we shall adhere to a common convention with the negative sign; the positive solution can be obtained by reversing the direction of \\(\bm{n}\\).
 
-How should we choose the direction of \\(\bm{n}\\)? It depends on the location of sources. In general, we can use *any* value of \\(\bm{n}\\). And, since the Helmholtz equation is both linear and homogeneous, we can actually use *every* value of \\(\bm{n}\\) by invoking the superposition principle. Thus, the general solution is an integral taken over the surface of the unit sphere \\(\mathbb{S^2}\\) [measured](https://en.wikipedia.org/wiki/Lebesgue_integration#Construction) by the [solid angle](https://en.wikipedia.org/wiki/Solid_angle) \\(d\Omega_n\\):
+How should we choose the direction of \\(\bm{n}\\)? It depends on the location of sources. Unless they are explicitly specified, we can use *any* value of \\(\bm{n}\\). And because the Helmholtz equation is both linear and homogeneous, we can actually use *every* value of \\(\bm{n}\\) by invoking the superposition principle. Thus, the general solution is an integral taken over the surface of the unit sphere \\(\mathbb{S^2}\\) [measured](https://en.wikipedia.org/wiki/Lebesgue_integration#Construction) by the [solid angle](https://en.wikipedia.org/wiki/Solid_angle) \\(d\Omega_n\\):
 
 $$ \tag{6.15}
 	\psi(\bm{r}) =
@@ -1007,7 +1007,7 @@ $$ \tag{6.16}
 	\oiint\_{\mathbb{S}^2} \bm{E}(0, \bm{n}, \omega) e^{-i k(\omega) (\bm{r} \cdot \bm{n})} d\Omega_n.
 $$
 
-That is a general solution of the Maxwell equations for *linear, isotropic, homogeneous* media.
+That is a general solution of the Maxwell equations for *linear, isotropic, homogeneous, source-free* media.
 
 ### Planar Waves
 
@@ -1015,7 +1015,7 @@ We can find a solution of the Maxwell equations in the time domain by performing
 
 $$ \tag{7.1}
 	\bm{E}(\bm{r}, t)
-	= \frac{1}{\sqrt{2 \pi}} \int\_{-\infin}^{\infin} \oiint\_{\mathbb{S}^2} \bm{E}(0, \bm{n}, \omega) e^{-i k(\omega) (\bm{r} \cdot \bm{n})} e^{i \omega t} d\Omega_n d\omega.
+	= \sqrt{\frac{2}{\pi}} \int\_{0}^{\infin} \oiint\_{\mathbb{S}^2} \mathcal{Re} \big\lbrace \bm{E}(0, \bm{n}, \omega) e^{-i k(\omega) (\bm{r} \cdot \bm{n})} e^{i \omega t} \big\rbrace d\Omega_n d\omega.
 $$
 
 This triple integral represents a [wave packet](https://en.wikipedia.org/wiki/Wave_packet). It is a collection of *vector* [planar waves](https://en.wikipedia.org/wiki/Plane_wave) \[[6](#references) (ch. 1.4.2), [8](#references) (ch. 3.2), [9](#references) (ch. 3.1)\] of the form
@@ -1071,7 +1071,7 @@ $$
 
 which gives an approximate mapping between the optical and the physical parameters[^10].
 
-[^10]: Keep in mind that, in general, the permittivity, permeability, and conductivity are complex.
+[^10]: Keep in mind that, in general, the permittivity, permeability, and conductivity are complex numbers.
 
 The combination of Equations 7.6-7.7 produces the [dispersion relation](https://en.wikipedia.org/wiki/Dispersion_relation)
 
@@ -1097,7 +1097,7 @@ $$
 
 As any complex number, it can be expressed in terms of the *magnitude* \\(|E|\\) and the *phase* \\(\theta\\), both of which are [real-valued functions](https://en.wikipedia.org/wiki/Real-valued_function).
 
-Multiplication by \\(e^{i \omega t}\\) yields the full expression of a scalar planar wave:
+Multiplication by the temporal component \\(e^{i \omega t}\\) yields the full expression of a scalar planar wave:
 
 $$ \tag{7.11}
 \begin{aligned}
@@ -1128,8 +1128,10 @@ Taking the real part of Equation 7.11 allows us to uncover the *wave amplitude*
 
 $$ \tag{7.14}
 	\mathcal{Re} \big\lbrace E(\bm{r}, \bm{n}, \omega) e^{i \omega t} \big\rbrace =
-	|E\_0| e^{-\omega (\bm{r} \cdot \bm{n}) / v_a} \cos{\theta(\bm{r}, t)}.
+	|E\_0| e^{-\omega (\bm{r} \cdot \bm{n}) / v_a} \cos{\theta(\bm{r}, t)},
 $$
+
+where \\(|E\_0|\\) is sometimes called the *initial amplitude* (or the *peak amplitude* in non-absorbing media).
 
 If the attenuation index \\(\kappa = 0\\), the amplitude velocity \\(v_a = \infty\\), and Equation 7.14 represents a regular sine wave.
 
@@ -1139,14 +1141,18 @@ On the other hand, \\(\kappa > 0\\) produces an exponential decay characteristic
 
 [Insert Picture Here]
 
-It's easy to show that for linear, isotropic, homogeneous media, the field vectors oscillate in the plane of the wave. The Maxwell equations (c.f. Equations 3.9.2, 3.9.4) tell us that
+Equation 7.1 can be seen as a decomposition of the electric field into planar waves interfering with each other. By [interference](https://en.wikipedia.org/wiki/Wave_interference), we simply mean that when we add two waves (often assumed to be of the same frequency), the initial (or the peak) amplitude of the resulting wave is, in general, different from the sum of the initial amplitudes unless the waves oscillate *in-phase* (in such a way that the phase difference is zero), in which case interference is said to be *constructive*. In the worst case scenario, the peaks align with the troughs, and *destructive* interference causes the waves to completely cancel each other. A typical *out-of-phase* case falls in between these two extremes \[[5](#references) (vol. I, ch. 29)\].
+
+[Insert Picture Here]
+
+It's easy to show that, under favorable conditions, the field vectors oscillate in the plane of the wave. In general, the Maxwell equations (c.f. Equations 3.9.2, 3.9.4) tell us that
 
 $$ \tag{7.15}
 	\nabla \cdot \bm{B}(\bm{r}, \omega) = 0, \quad
 	\nabla \cdot \bm{D}(\bm{r}, \omega) = \rho_s(\bm{r}, \omega).
 $$
 
-More specifically, in a source-free region of a linear, isotropic, homogeneous (c.f. Equation 6.2.2, 6.2.4),
+More specifically, in a source-free region of a linear, isotropic, homogeneous medium (c.f. Equation 6.2.2, 6.2.4),
 
 $$ \tag{7.16}
 	\nabla \cdot \bm{H}(\bm{r}, \omega) = 0, \quad
@@ -1207,7 +1213,7 @@ $$ \tag{7.24}
 	= \mathcal{Re} \big\lbrace \bm{B}(\bm{r}, \bm{n}, \omega) e^{i \omega t} \big\rbrace
 $$
 
-shows us that the electric and the magnetic field vectors of a planar wave are orthogonal at all times. Thus, \\(\lbrace \bm{E}, \bm{B}, \bm{n} \rbrace\\) is an orthogonal triad of vectors that defines the geometric configuration of a planar wave in a linear, isotropic, homogeneous medium:
+shows us that the electric and the magnetic field vectors of a planar wave are orthogonal at all times. Thus, \\(\lbrace \bm{E}, \bm{B}, \bm{n} \rbrace\\) is an orthogonal triad of vectors that defines the geometric configuration of a planar wave in a linear, isotropic, homogeneous, source-free medium:
 
 $$ \tag{7.25}
 	\bm{n} \times \frac{\mathcal{Re} \big\lbrace \bm{E}(\bm{r}, \bm{n}, \omega) e^{i \omega t} \big\rbrace}{\big\vert \mathcal{Re} \big\lbrace \bm{E}(\bm{r}, \bm{n}, \omega) e^{i \omega t} \big\rbrace \big\vert}
@@ -1233,11 +1239,7 @@ $$ \tag{7.27}
 	= \frac{\eta(\omega)}{c}.
 $$
 
-This equality has two consequences. First, it says that the electric and the magnetic vectors of a planar wave oscillate *in phase*, with the magnitude of both vectors rising and falling at the same point in space and time, so the locations of peaks and troughs match.
-
-[Insert Picture Here]
-
-Stated mathematically, if we align the triad \\(\lbrace \bm{E}, \bm{B}, \bm{n} \rbrace\\) with the \\(\lbrace x,y,z \rbrace\\) axes of a Cartesian coordinate system, then
+This equality has two consequences. First, it says that the electric and the magnetic vectors of a planar wave oscillate in-phase, with the magnitude of both vectors rising and falling at the same point in space and time. Stated mathematically, if we align the triad \\(\lbrace \bm{E}, \bm{B}, \bm{n} \rbrace\\) with the \\(\lbrace x,y,z \rbrace\\) axes of a Cartesian coordinate system, then
 
 $$ \tag{7.28}
 	\mathcal{Arg} \big\lbrace E_x(0, \bm{n}, \omega) \big\rbrace =
