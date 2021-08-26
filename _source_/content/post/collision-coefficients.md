@@ -1090,12 +1090,9 @@ $$ \tag{7.10}
 	E(\bm{r}, \bm{n}, \omega)
 	&= E\_0 e^{-i k (\bm{r} \cdot \bm{n})} \cr
 	&= |E\_0| e^{i \delta} e^{-i \omega (1/v_p - i/v_a) (\bm{r} \cdot \bm{n})} \cr
-	&= |E\_0| e^{-\omega (\bm{r} \cdot \bm{n}) / v_a} e^{i \delta - i \omega (\bm{r} \cdot \bm{n}) / v_p} \cr
-	&= |E(\bm{r}, \bm{n}, \omega)| e^{i \theta(\bm{r}, \bm{n}, \omega)}.
+	&= |E\_0| e^{-\omega (\bm{r} \cdot \bm{n}) / v_a} e^{i \delta - i \omega (\bm{r} \cdot \bm{n}) / v_p}.
 \end{aligned}
 $$
-
-As any complex number, it can be expressed in terms of the *magnitude* \\(|E|\\) and the *phase* \\(\theta\\), both of which are [real-valued functions](https://en.wikipedia.org/wiki/Real-valued_function).
 
 Multiplication by the temporal component \\(e^{i \omega t}\\) yields the full expression of a scalar planar wave:
 
@@ -1105,6 +1102,8 @@ $$ \tag{7.11}
 	&= |E\_0| e^{-\omega (\bm{r} \cdot \bm{n}) / v_a} e^{i \delta - i \omega (\bm{r} \cdot \bm{n}) / v_p} e^{i \omega t}.
 \end{aligned}
 $$
+
+As any complex number, it can be expressed in terms of the *amplitude* \\(|E|\\) and the *phase* \\(\theta\\), both of which are [real-valued functions](https://en.wikipedia.org/wiki/Real-valued_function).
 
 Let us perform [dimensional analysis](https://en.wikipedia.org/wiki/Dimensional_analysis) of Equation 7.11.
 
@@ -1127,11 +1126,12 @@ This implies that \\(\theta\\) represents a plane propagating along its normal \
 Taking the real part of Equation 7.11 allows us to uncover the *wave amplitude*
 
 $$ \tag{7.14}
-	\mathcal{Re} \big\lbrace E(\bm{r}, \bm{n}, \omega) e^{i \omega t} \big\rbrace =
-	|E\_0| e^{-\omega (\bm{r} \cdot \bm{n}) / v_a} \cos{\theta(\bm{r}, t)},
+	\mathcal{Re} \big\lbrace E(\bm{r}, \bm{n}, \omega) e^{i \omega t} \big\rbrace
+	= |E\_0| e^{-\omega (\bm{r} \cdot \bm{n}) / v_a} \cos{\theta},
+	= |E(\bm{r}, \bm{n}, \omega)| \cos{\theta},
 $$
 
-where \\(|E\_0|\\) is sometimes called the *initial amplitude* (or the *peak amplitude* in non-absorbing media).
+where \\(|E|\\) is the spatially-varying *peak amplitude*.
 
 If the attenuation index \\(\kappa = 0\\), the amplitude velocity \\(v_a = \infty\\), and Equation 7.14 represents a regular sine wave.
 
@@ -1141,7 +1141,7 @@ On the other hand, \\(\kappa > 0\\) produces an exponential decay characteristic
 
 [Insert Picture Here]
 
-Equation 7.1 can be seen as a decomposition of the electric field into planar waves interfering with each other. By [interference](https://en.wikipedia.org/wiki/Wave_interference), we simply mean that when we add two waves (often assumed to be of the same frequency), the initial (or the peak) amplitude of the resulting wave is, in general, different from the sum of the initial amplitudes unless the waves oscillate *in-phase* (in such a way that the phase difference is zero), in which case interference is said to be *constructive*. In the worst case scenario, the peaks align with the troughs, and *destructive* interference causes the waves to completely cancel each other. A typical *out-of-phase* case falls in between these two extremes \[[5](#references) (vol. I, ch. 29)\].
+Equation 7.1 can be seen as a decomposition of the electric field into planar waves interfering with each other. By [interference](https://en.wikipedia.org/wiki/Wave_interference), we simply mean that when two waves (often assumed to be of the same frequency) are added together, the peak amplitude of the resulting wave is, in general, different from the sum of the peak amplitudes unless the waves oscillate *in-phase* (in such a way that the phase difference is zero), in which case interference is said to be *constructive*. In the worst case scenario, the peaks align with the troughs, and *destructive* interference causes the waves to completely cancel each other. A typical *out-of-phase* case falls in between these two extremes \[[5](#references) (vol. I, ch. 29)\].
 
 [Insert Picture Here]
 
@@ -1976,9 +1976,9 @@ In practice, it is very difficult to solve the Maxwell equations exactly, except
 
 One of the most important considerations is the scale of the observation. Evidently, even something as large and complex as a star can be approximated by a point source if the observer is sufficiently far away. A similar line of reasoning justifies modeling an electron as a point charge at the microscopic scale.
 
-Going one step further, we can represent the average atom (or a molecule) as a dipole aligned with the driving field, thereby greatly restricting the expected behavior of microscopic charges and currents. In this approximation, constructive interference greatly amplifies the fields produced by the charges moving in sync, while the effects of motion that differs from the average are suppressed by both destructive interference and the lower probability of occurrence.
+Stepping farther away, we can represent the average atom (or a molecule) as a dipole aligned with the driving field, thereby greatly restricting the expected behavior of microscopic charges and currents. In this approximation, constructive interference reinforces the fields produced by the charges moving in sync, while the effects of motion that differs from the average are suppressed by both destructive interference and the lower probability of occurrence.
 
-Mathematically, the field of a (macroscopic) piece of matter is the (vector) sum of the fields of its (microscopic) parts. Yet, physically, the field of a single dipole often cannot be distinguished at all! The field of a tremendous number of identical dipoles acting together manifests itself by bending light rays (according to the refractive index) and reducing their intensity (proportionally to the attenuation index). In order for light scattering effects to appear, the medium must be inhomogeneous. Macroscopically, such a medium features spatially-varying *optical properties*; microscopically, this implies that the underlying distribution of dipoles is not the same throughout the medium. Clearly, a homogeneous medium is an idealization, yet it can serve as an effective approximation for tiny patches of uniformly dense matter (composed of scatterers smaller than the wavelength of light).
+Mathematically, the field of a (macroscopic) piece of matter is the (vector) sum of the fields of its (microscopic) parts. Yet, at the macroscopic scale, the field of a single dipole often cannot be distinguished at all! The field of a tremendous number of identical dipoles acting together manifests itself by bending light rays (according to the refractive index) and reducing their intensity (proportionally to the attenuation index). In order for light scattering effects to appear, the medium must be inhomogeneous. Macroscopically, such a medium features spatially-varying *optical properties*; microscopically, this implies that the underlying distribution of dipoles is not the same throughout the medium. Clearly, a homogeneous medium is an idealization, yet it can serve as an effective approximation for tiny patches of uniformly dense matter (composed of scatterers smaller than the wavelength of light).
 
 [Insert picture here?]
 
@@ -1986,7 +1986,7 @@ The macroscopic distribution of optical properties can (at least in theory) be c
 
 [Insert picture here]
 
-Given the source illuminating this medium, we can determine the *total field* that arises after propagation and scattering of electromagnetic waves. Clearly, if there are no particles, the medium is homogeneous everywhere, and the magnitude of the field at the destination is the same as its magnitude at the source (before accounting for attenuation with distance). We shall refer to it as the *incident field*. The (mathematical) difference between the total field (with particles) and the incident field (without particles) constitutes the *scattered field*. The task of determining the scattered field is at the core of the *scattering problem*.
+Given the source illuminating the medium, we can determine the *total field* that arises after propagation and scattering of electromagnetic waves. Clearly, if there are no particles, the medium is homogeneous everywhere, and the magnitude of the field at the destination is the same as its magnitude at the source (before accounting for attenuation with distance). We shall refer to it as the *incident field*. The (mathematical) difference between the total field (with particles) and the incident field (without particles) constitutes the *scattered field*. The task of determining the scattered field is at the core of the *scattering problem*.
 
 [Insert picture here]
 
