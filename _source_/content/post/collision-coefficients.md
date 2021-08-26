@@ -1090,12 +1090,9 @@ $$ \tag{7.10}
 	E(\bm{r}, \bm{n}, \omega)
 	&= E\_0 e^{-i k (\bm{r} \cdot \bm{n})} \cr
 	&= |E\_0| e^{i \delta} e^{-i \omega (1/v_p - i/v_a) (\bm{r} \cdot \bm{n})} \cr
-	&= |E\_0| e^{-\omega (\bm{r} \cdot \bm{n}) / v_a} e^{i \delta - i \omega (\bm{r} \cdot \bm{n}) / v_p} \cr
-	&= |E(\bm{r}, \bm{n}, \omega)| e^{i \theta(\bm{r}, \bm{n}, \omega)}.
+	&= |E\_0| e^{-\omega (\bm{r} \cdot \bm{n}) / v_a} e^{i \delta - i \omega (\bm{r} \cdot \bm{n}) / v_p}.
 \end{aligned}
 $$
-
-As any complex number, it can be expressed in terms of the *magnitude* \\(|E|\\) and the *phase* \\(\theta\\), both of which are [real-valued functions](https://en.wikipedia.org/wiki/Real-valued_function).
 
 Multiplication by the temporal component \\(e^{i \omega t}\\) yields the full expression of a scalar planar wave:
 
@@ -1105,6 +1102,8 @@ $$ \tag{7.11}
 	&= |E\_0| e^{-\omega (\bm{r} \cdot \bm{n}) / v_a} e^{i \delta - i \omega (\bm{r} \cdot \bm{n}) / v_p} e^{i \omega t}.
 \end{aligned}
 $$
+
+As any complex number, it can be expressed in terms of the *amplitude* \\(|E|\\) and the *phase* \\(\theta\\), both of which are [real-valued functions](https://en.wikipedia.org/wiki/Real-valued_function).
 
 Let us perform [dimensional analysis](https://en.wikipedia.org/wiki/Dimensional_analysis) of Equation 7.11.
 
@@ -1127,11 +1126,12 @@ This implies that \\(\theta\\) represents a plane propagating along its normal \
 Taking the real part of Equation 7.11 allows us to uncover the *wave amplitude*
 
 $$ \tag{7.14}
-	\mathcal{Re} \big\lbrace E(\bm{r}, \bm{n}, \omega) e^{i \omega t} \big\rbrace =
-	|E\_0| e^{-\omega (\bm{r} \cdot \bm{n}) / v_a} \cos{\theta(\bm{r}, t)},
+	\mathcal{Re} \big\lbrace E(\bm{r}, \bm{n}, \omega) e^{i \omega t} \big\rbrace
+	= |E\_0| e^{-\omega (\bm{r} \cdot \bm{n}) / v_a} \cos{\theta},
+	= |E(\bm{r}, \bm{n}, \omega)| \cos{\theta},
 $$
 
-where \\(|E\_0|\\) is sometimes called the *initial amplitude* (or the *peak amplitude* in non-absorbing media).
+where \\(|E|\\) is the spatially-varying *peak amplitude*.
 
 If the attenuation index \\(\kappa = 0\\), the amplitude velocity \\(v_a = \infty\\), and Equation 7.14 represents a regular sine wave.
 
@@ -1141,7 +1141,7 @@ On the other hand, \\(\kappa > 0\\) produces an exponential decay characteristic
 
 [Insert Picture Here]
 
-Equation 7.1 can be seen as a decomposition of the electric field into planar waves interfering with each other. By [interference](https://en.wikipedia.org/wiki/Wave_interference), we simply mean that when we add two waves (often assumed to be of the same frequency), the initial (or the peak) amplitude of the resulting wave is, in general, different from the sum of the initial amplitudes unless the waves oscillate *in-phase* (in such a way that the phase difference is zero), in which case interference is said to be *constructive*. In the worst case scenario, the peaks align with the troughs, and *destructive* interference causes the waves to completely cancel each other. A typical *out-of-phase* case falls in between these two extremes \[[5](#references) (vol. I, ch. 29)\].
+Equation 7.1 can be seen as a decomposition of the electric field into planar waves interfering with each other. By [interference](https://en.wikipedia.org/wiki/Wave_interference), we simply mean that when we add two waves (often assumed to be of the same frequency), the peak amplitude of the resulting wave is, in general, different from the sum of the peak amplitudes unless the waves oscillate *in-phase* (in such a way that the phase difference is zero), in which case interference is said to be *constructive*. In the worst case scenario, the peaks align with the troughs, and *destructive* interference causes the waves to completely cancel each other. A typical *out-of-phase* case falls in between these two extremes \[[5](#references) (vol. I, ch. 29)\].
 
 [Insert Picture Here]
 
