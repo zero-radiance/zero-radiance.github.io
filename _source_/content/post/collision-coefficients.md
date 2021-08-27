@@ -1463,10 +1463,10 @@ $$
 
 where \\(k_0 = \omega / c\\) is the *free-space* wave number.
 
-The Helmholtz operator \\(\big( \nabla^2 + k_0^2 \big)\\) is a linear operator in 3 dimensions. Therefore, Equation 9.5 represents a linear transformation
+The Helmholtz operator \\(\big( \nabla^2 + k_0^2 \big)\\) is a linear operator \\(\mathcal{H}\\) in 3 dimensions. Therefore, Equation 9.5 represents a linear transformation
 
 $$ \tag{9.6}
-	\mathcal{L} \big\lbrace \psi(\bm{r}) \big\rbrace = -\xi(\bm{r}).
+	\mathcal{H} \big\lbrace \psi(\bm{r}) \big\rbrace = -\xi(\bm{r}).
 $$
 
 Unfortunately, unlike its homogeneous counterpart (Equation 6.11), Equation 9.5 does not have a [closed-form](https://en.wikipedia.org/wiki/Closed-form_expression) solution. Yet, we can still solve it analytically using a neat mathematical trick.
@@ -1489,12 +1489,12 @@ $$
 does not appear to be simpler, as it turns out, we can easily solve the Helmholtz equation for a point source
 
 $$ \tag{9.9}
-	\mathcal{L} \big\lbrace g_0(\bm{r} - \bm{r'}) \big\rbrace
-	= \big( \nabla^2 + k_0^2 \big) g_0(\bm{r} - \bm{r'})
+	  \big( \nabla^2 + k_0^2 \big) g_0(\bm{r} - \bm{r'})
+	= \mathcal{H} \big\lbrace g_0(\bm{r} - \bm{r'}) \big\rbrace
 	= -\delta(\bm{r} - \bm{r'}).
 $$
 
-Its solution is the *scalar* [Green function](https://en.wikipedia.org/wiki/Green%27s_function) \\(g\\). It represents an [impulse response](https://en.wikipedia.org/wiki/Impulse_response) of the linear operator \\(\mathcal{L}\\).
+Its solution is the *scalar* [Green function](https://en.wikipedia.org/wiki/Green%27s_function) \\(g\\). It represents an [impulse response](https://en.wikipedia.org/wiki/Impulse_response) of the linear operator \\(\mathcal{H}\\).
 
 Equation 9.9 is an inhomogeneous linear differential equation. Consequently, its solution depends on the linear operator in question, its domain of validity, as well as the associated (initial or boundary) conditions. According to Equation 9.7, our domain is the whole real space, and the only applicable restriction is the Sommerfeld radiation condition. Thus, it can be shown that the *free-space* scalar Green function \\(g_0\\) takes the form[^9] of an diverging *spherical wave* \[[7](#references) (ch. 2.12), [8](#references) (ch. 5.2), [9](#references) (ap. B), [12](#references)\]:
 
