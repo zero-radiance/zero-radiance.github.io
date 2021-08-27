@@ -557,6 +557,19 @@ $$ \tag{3.12}
 	\bm{B}(\bm{r}, \omega) = \frac{i}{\omega} \nabla \times \bm{E}(\bm{r}, \omega).
 $$
 
+In certain situations, it may be advantageous to do it the other way around: find the expression of the magnetic field first, and then use Equation 3.9.3 or 3.10.3 to calculate
+
+$$ \tag{3.13}
+\begin{aligned}
+	\bm{D}(\bm{r}, \omega)
+	&= \frac{i}{\omega} \Big( \bm{J_f}(\bm{r}, \omega)
+	- \nabla \times \bm{H}(\bm{r}, \omega) \Big), \cr
+	\epsilon_0 \bm{E}(\bm{r}, \omega)
+	&= \frac{i}{\omega} \Big( \bm{J}(\bm{r}, \omega)
+	- \nabla \times \big( \mu\_0^{-1} \bm{B}(\bm{r}, \omega) \big) \Big).
+\end{aligned}
+$$
+
 ### Time-Harmonic Fields
 
 If we solve the Maxwell equations in the frequency domain, we may be interested in the spectral composition of the Poynting vector. In order to decompose it, we must express the fields using the inverse Fourier transform:
