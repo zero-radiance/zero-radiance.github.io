@@ -1619,24 +1619,24 @@ $$ \tag{9.24}
 	g \big( \bm{r} - \bm{r'}, k_0(\omega) \big) \frac{\bm{J}(\bm{r'}, \omega)}{\mu_0^{-1}} dV'.
 $$
 
-Unfortunately, a complication arises when we try to move the new operator under the integral sign - if \\(\bm{r}\\) is inside \\(V\\), we must carefully account for the contribution of the singularity that arises at \\(\bm{r} = \bm{r'}\\). While we will not encounter this case in the course of solving our problem, for completeness, the full solution is
+Unfortunately, a complication arises when we try to move the new operator under the integral sign - if \\(\bm{r}\\) is inside \\(V\\), this action introduces a singularity (a pole of order 3) at \\(\bm{r} = \bm{r'}\\). We can avoid this issue by creating a tiny spherical cavity \\(V_{\delta}\\) around \\(\bm{r}\\), and separately evaluating the field produced by the ball of matter excised from the cavity. The result is
 
 $$ \tag{9.25}
 	\bm{E}(\bm{r}, \omega)
-	= -i \omega \iiint\_{V} \mathcal{G_{e}} \big( \bm{r} - \bm{r'}, k_0(\omega) \big) \frac{\bm{J}(\bm{r'}, \omega)}{\mu_0^{-1}} dV'
-	+ \frac{i \omega}{k_0^2(\omega)} \mathcal{D} \big( \bm{r}, k_0(\omega) \big) \frac{\bm{J}(\bm{r}, \omega)}{\mu_0^{-1}},
+	= -i \omega \bigg( \lim_{\delta \to 0} \iiint\_{V - V_{\delta}} \mathcal{G_{e}} \big( \bm{r} - \bm{r'}, k_0(\omega) \big) \frac{\bm{J}(\bm{r'}, \omega)}{\mu_0^{-1}} dV'
+	- \frac{1}{k_0^2(\omega)} \mathcal{L} (\bm{r}) \frac{\bm{J}(\bm{r}, \omega)}{\mu_0^{-1}} \bigg),
 $$
 
-where \\(\mathcal{D}\\) is the *depolarization tensor* and
+where \\(\mathcal{L} = (1/3) \mathcal{I}\\) is the *depolarization tensor* of a spherical cavity \[[7](#references) (ch. 3.9)\], and
 
 $$ \tag{9.26}
 	\mathcal{G_{e}}(\bm{r} - \bm{r'}, k)
 	= \Big( \mathcal{I} + \frac{1}{k^2} \nabla \otimes \nabla \Big) g(\bm{r} - \bm{r'}, k)
 $$
 
-is the electric tensor Green function for electrical sources[^12], or the *electric tensor* for short. \[[7](#references) (ch. 7.9)\].
+is the *electric tensor* Green function[^12] \[[7](#references) (ch. 7.9)\].
 
-[^12]: The tensor Green functions are also known as the dyadic Green functions. A [dyadic](https://en.wikipedia.org/wiki/Dyadics) is a special type of tensor that is considered to be relatively obsolete.
+[^12]: The tensor Green functions are also known as the dyadic Green functions. A [dyadic](https://en.wikipedia.org/wiki/Dyadics) is a second order tensor that uses a special notation that is considered to be relatively obsolete.
 
 To find the integral form of the magnetic field, we must expand Equation 9.21.2:
 
@@ -1652,21 +1652,21 @@ $$ \tag{9.28}
 	\nabla \times (g \bm{J}) = g (\nabla \times \bm{J}) + \nabla g \times \bm{J},
 $$
 
-and noting that \\(\bm{J}\\) does not depend on \\(\bm{r}\\), we obtain a convergent (improper) integral
+and noting that \\(\bm{J}\\) does not depend on \\(\bm{r}\\), we obtain a convergent integral
 
 $$ \tag{9.29}
 	\bm{B}(\bm{r}, \omega)
-	= \iiint\_{V} \mathcal{G_{m}} \big( \bm{r} - \bm{r'}, k_0(\omega) \big) \frac{\bm{J}(\bm{r'}, \omega)}{\mu_0^{-1}} dV',
+	= \lim_{\delta \to 0} \iiint\_{V - V_{\delta}} \mathcal{G_{m}} \big( \bm{r} - \bm{r'}, k_0(\omega) \big) \frac{\bm{J}(\bm{r'}, \omega)}{\mu_0^{-1}} dV',
 $$
 
-that features the magnetic tensor Green function for electrical sources (or, simply, the *magnetic tensor*)
+that features the *magnetic tensor* Green function \[[7](#references) (ch. 7.9)\]
 
 $$ \tag{9.30}
 	\mathcal{G_{m}}(\bm{r} - \bm{r'}, k)
 	= \nabla g(\bm{r} - \bm{r'}, k) \times \mathcal{I}
 $$
 
-that may be expressed using the [matrix form of the cross product](https://en.wikipedia.org/wiki/Cross_product#Conversion_to_matrix_multiplication) \[[7](#references) (ch. 7.9)\].
+that may be expressed using the [matrix form of the cross product](https://en.wikipedia.org/wiki/Cross_product#Conversion_to_matrix_multiplication).
 
 ### Electric and Magnetic Polarization
 
@@ -1895,7 +1895,7 @@ $$ \tag{10.22}
 	\approx N(\bm{r}) \mathcal{\Alpha_m}(\omega) \epsilon_0 \bm{E_{\mu}}(\bm{r_0}, \omega).
 $$
 
-Note that, in general, the microscopic field \\(\bm{E_{\mu}}\\) acting on the dipole is different from the macroscopic field \\(\bm{E}\\). The reason is that the microscopic field varies very rapidly inside the matter - it is very strong next to the nucleus, and relatively weak in the gaps between the molecules. Thus, the density of matter plays an important role. If the dipoles are randomly distributed, this leads to a spherically symmetric configuration, and it can be shown that the two fields are related by the equation
+Note that, in general, the microscopic field \\(\bm{E_{\mu}}\\) acting on the dipole is different from the macroscopic field \\(\bm{E}\\). The reason is that the microscopic field varies very rapidly inside the matter - it is very strong next to the nucleus, and relatively weak in the gaps between the molecules. Thus, the density of matter plays an important role. If the dipoles are randomly distributed, we can assume that the dipole under consideration is located within a spherical cavity of a uniformly polarized material, and it can be shown that the two fields are related by the equation
 
 $$ \tag{10.23}
 	\epsilon_0 \bm{E_{\mu}}(\bm{r_0}, \omega) = \epsilon_0 \bm{E}(\bm{r}, \omega) + \frac{1}{3} \bm{P}(\bm{r}, \omega),
