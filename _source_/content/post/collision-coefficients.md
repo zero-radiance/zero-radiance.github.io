@@ -1632,15 +1632,15 @@ $$ \tag{9.24}
 	g \big( \bm{r} - \bm{r'}, k_0(\omega) \big) \frac{\bm{J}(\bm{r'}, \omega)}{\mu_0^{-1}} dV'.
 $$
 
-Unfortunately, a complication arises when we try to move the new operator under the integral sign - if \\(\bm{r}\\) is inside \\(V\\), this action introduces a singularity (a pole of order 3) at \\(\bm{r} = \bm{r'}\\). We can avoid this issue by creating a tiny spherical cavity \\(V_{\delta}\\) around \\(\bm{r}\\), and separately evaluating the field produced by the ball of matter excised from the cavity. The result is
+Unfortunately, a complication arises when we try to move the new operator under the integral sign - if \\(\bm{r}\\) is inside \\(V\\), this action introduces a singularity (a pole of order 3) at \\(\bm{r} = \bm{r'}\\). We can avoid this issue by creating a tiny cavity \\(V_{\delta}\\) centered at \\(\bm{r}\\), and separately evaluating the field produced by the piece of matter excised from the cavity. The result is
 
 $$ \tag{9.25}
 	\bm{E}(\bm{r}, \omega)
 	= -i \omega \bigg( \lim_{\delta \to 0} \iiint\_{V - V_{\delta}} \mathcal{G_{e}} \big( \bm{r} - \bm{r'}, k_0(\omega) \big) \frac{\bm{J}(\bm{r'}, \omega)}{\mu_0^{-1}} dV'
-	- \frac{1}{k_0^2(\omega)} \mathcal{L} (\bm{r}) \frac{\bm{J}(\bm{r}, \omega)}{\mu_0^{-1}} \bigg),
+	- \frac{\mathcal{L}}{k_0^2(\omega)} \frac{\bm{J}(\bm{r}, \omega)}{\mu_0^{-1}} \bigg),
 $$
 
-where \\(\mathcal{L} = (1/3) \mathcal{I}\\) is the *depolarization tensor* of a spherical cavity \[[7](#references) (ch. 3.9)\], and
+where \\(\mathcal{L}\\) is the *depolarization tensor*, the form of which depends on the shape of the cavity \[[7](#references) (ch. 3.9)\], and
 
 $$ \tag{9.26}
 	\mathcal{G_{e}}(\bm{r} - \bm{r'}, k)
@@ -1651,9 +1651,23 @@ is the *electric tensor* Green function[^12] \[[7](#references) (ch. 7.9)\].
 
 [^12]: The tensor Green functions are also known as the dyadic Green functions. A [dyadic](https://en.wikipedia.org/wiki/Dyadics) is a second order tensor that uses a special notation that is considered to be relatively obsolete.
 
-To find the integral form of the magnetic field, we must expand Equation 9.21.2:
+Equation 9.25 can be cast in a more compact form by using the [principle value](https://en.wikipedia.org/wiki/Cauchy_principal_value) of the electric tensor. If we define the *total electric tensor* Green function as
 
 $$ \tag{9.27}
+	\mathcal{G_{te}}(\bm{r} - \bm{r'}, k)
+	= \text{p.v.} \big( \mathcal{G_{e}}(\bm{r} - \bm{r'}, k) \big) - \frac{\mathcal{L}}{k^2} \delta(\bm{r} - \bm{r'}),
+$$
+
+the expression of the electric field is reduced to
+
+$$ \tag{9.28}
+	\bm{E}(\bm{r}, \omega)
+	= -i \omega \iiint\_{V} \mathcal{G_{te}} \big( \bm{r} - \bm{r'}, k_0(\omega) \big) \frac{\bm{J}(\bm{r'}, \omega)}{\mu_0^{-1}} dV'.
+$$
+
+To find the integral form of the magnetic field, we must expand Equation 9.21.2:
+
+$$ \tag{9.29}
 	\bm{B}(\bm{r}, \omega)
 	= \nabla \times \iiint\_{V}
 	g \big( \bm{r} - \bm{r'}, k_0(\omega) \big) \frac{\bm{J}(\bm{r'}, \omega)}{\mu_0^{-1}} dV'.
@@ -1661,20 +1675,20 @@ $$
 
 Using the [curl identity](https://en.wikipedia.org/wiki/Vector_calculus_identities#Curl_2)
 
-$$ \tag{9.28}
+$$ \tag{9.30}
 	\nabla \times (g \bm{J}) = g (\nabla \times \bm{J}) + \nabla g \times \bm{J},
 $$
 
 and noting that \\(\bm{J}\\) does not depend on \\(\bm{r}\\), we obtain a convergent integral
 
-$$ \tag{9.29}
+$$ \tag{9.31}
 	\bm{B}(\bm{r}, \omega)
 	= \lim_{\delta \to 0} \iiint\_{V - V_{\delta}} \mathcal{G_{m}} \big( \bm{r} - \bm{r'}, k_0(\omega) \big) \frac{\bm{J}(\bm{r'}, \omega)}{\mu_0^{-1}} dV',
 $$
 
 that features the *magnetic tensor* Green function \[[7](#references) (ch. 7.9)\]
 
-$$ \tag{9.30}
+$$ \tag{9.32}
 	\mathcal{G_{m}}(\bm{r} - \bm{r'}, k)
 	= \nabla g(\bm{r} - \bm{r'}, k) \times \mathcal{I}
 $$
@@ -2098,16 +2112,20 @@ We have already encountered a mathematically identical problem stated by Equatio
 
 $$ \tag{11.10}
 	\bm{E_s}(\bm{r}, \omega)
-	= \iiint\_{V} \mathcal{G_{e}} \big( \bm{r} - \bm{r'}, k_1(\omega) \big) \bm{J'}(\bm{r'}, \omega) dV',
+	= \iiint\_{V} \mathcal{G_{e}} \big( \bm{r} - \bm{r'}, k_1(\omega) \big) \bm{J'}(\bm{r'}, \omega) dV'
+	\qquad
+	\text{if } \bm{r} \notin V,
 $$
 
 where have neglected the singularity term by assuming that \\(\bm{r}\\) is located in the homogeneous region.
 
-Similarly, the magnetic field is given by Equation 9.29:
+Similarly, the magnetic field is given by Equation 9.31:
 
 $$ \tag{11.11}
 	\bm{B_s}(\bm{r}, \omega)
-	= \frac{i}{\omega} \iiint\_{V} \mathcal{G_{m}} \big( \bm{r} - \bm{r'}, k_1(\omega) \big) \bm{J'}(\bm{r'}, \omega) dV',
+	= \frac{i}{\omega} \iiint\_{V} \mathcal{G_{m}} \big( \bm{r} - \bm{r'}, k_1(\omega) \big) \bm{J'}(\bm{r'}, \omega) dV'
+	\qquad
+	\text{if } \bm{r} \notin V,
 $$
 
 where you may recognize \\(\mathcal{G_{m}} = \nabla \times \mathcal{G_{e}}\\) from Equation 3.12.
@@ -2428,7 +2446,7 @@ $$ \tag{12.16}
     \varpropto (k R)^{-1}.
 $$
 
-Let us analyze the magnetic tensor in the same way. Write Equation 9.30 in the Cartesian coordinate system:
+Let us analyze the magnetic tensor in the same way. Write Equation 9.32 in the Cartesian coordinate system:
 
 $$ \tag{12.17}
 \begin{aligned}
