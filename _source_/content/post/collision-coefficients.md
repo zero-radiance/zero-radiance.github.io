@@ -557,6 +557,19 @@ $$ \tag{3.12}
 	\bm{B}(\bm{r}, \omega) = \frac{i}{\omega} \nabla \times \bm{E}(\bm{r}, \omega).
 $$
 
+In certain situations, it may be advantageous to do it the other way around: find the expression of the magnetic field first, and then use Equation 3.9.3 or 3.10.3 to calculate
+
+$$ \tag{3.13}
+\begin{aligned}
+	\bm{D}(\bm{r}, \omega)
+	&= \frac{i}{\omega} \Big( \bm{J_f}(\bm{r}, \omega)
+	- \nabla \times \bm{H}(\bm{r}, \omega) \Big), \cr
+	\epsilon_0 \bm{E}(\bm{r}, \omega)
+	&= \frac{i}{\omega} \Big( \bm{J}(\bm{r}, \omega)
+	- \nabla \times \big( \mu\_0^{-1} \bm{B}(\bm{r}, \omega) \big) \Big).
+\end{aligned}
+$$
+
 ### Time-Harmonic Fields
 
 If we solve the Maxwell equations in the frequency domain, we may be interested in the spectral composition of the Poynting vector. In order to decompose it, we must express the fields using the inverse Fourier transform:
@@ -1141,7 +1154,7 @@ On the other hand, \\(\kappa > 0\\) produces an exponential decay characteristic
 
 [Insert Picture Here]
 
-Equation 7.1 can be seen as a decomposition of the electric field into planar waves interfering with each other. By [interference](https://en.wikipedia.org/wiki/Wave_interference), we simply mean that when we add two waves (often assumed to be of the same frequency), the peak amplitude of the resulting wave is, in general, different from the sum of the peak amplitudes unless the waves oscillate *in-phase* (in such a way that the phase difference is zero), in which case interference is said to be *constructive*. In the worst case scenario, the peaks align with the troughs, and *destructive* interference causes the waves to completely cancel each other. A typical *out-of-phase* case falls in between these two extremes \[[5](#references) (vol. I, ch. 29)\].
+Equation 7.1 can be seen as a decomposition of the electric field into planar waves interfering with each other. By [interference](https://en.wikipedia.org/wiki/Wave_interference), we simply mean that when two waves (often assumed to be of the same frequency) are added together, the peak amplitude of the resulting wave is, in general, different from the sum of the peak amplitudes unless the waves oscillate *in-phase* (in such a way that the phase difference is zero), in which case interference is said to be *constructive*. In the worst case scenario, the peaks align with the troughs, and *destructive* interference causes the waves to completely cancel each other. A typical *out-of-phase* case falls in between these two extremes \[[5](#references) (vol. I, ch. 29)\].
 
 [Insert Picture Here]
 
@@ -1450,10 +1463,10 @@ $$
 
 where \\(k_0 = \omega / c\\) is the *free-space* wave number.
 
-The Helmholtz operator \\(\big( \nabla^2 + k_0^2 \big)\\) is a linear operator in 3 dimensions. Therefore, Equation 9.5 represents a linear transformation
+The Helmholtz operator \\(\big( \nabla^2 + k_0^2 \big)\\) is a linear operator \\(\mathcal{H}\\) in 3 dimensions. Therefore, Equation 9.5 represents a linear transformation
 
 $$ \tag{9.6}
-	\mathcal{L} \big\lbrace \psi(\bm{r}) \big\rbrace = -\xi(\bm{r}).
+	\mathcal{H} \big\lbrace \psi(\bm{r}) \big\rbrace = -\xi(\bm{r}).
 $$
 
 Unfortunately, unlike its homogeneous counterpart (Equation 6.11), Equation 9.5 does not have a [closed-form](https://en.wikipedia.org/wiki/Closed-form_expression) solution. Yet, we can still solve it analytically using a neat mathematical trick.
@@ -1476,12 +1489,12 @@ $$
 does not appear to be simpler, as it turns out, we can easily solve the Helmholtz equation for a point source
 
 $$ \tag{9.9}
-	\mathcal{L} \big\lbrace g_0(\bm{r} - \bm{r'}) \big\rbrace
-	= \big( \nabla^2 + k_0^2 \big) g_0(\bm{r} - \bm{r'})
+	  \big( \nabla^2 + k_0^2 \big) g_0(\bm{r} - \bm{r'})
+	= \mathcal{H} \big\lbrace g_0(\bm{r} - \bm{r'}) \big\rbrace
 	= -\delta(\bm{r} - \bm{r'}).
 $$
 
-Its solution is the *scalar* [Green function](https://en.wikipedia.org/wiki/Green%27s_function) \\(g\\). It represents an [impulse response](https://en.wikipedia.org/wiki/Impulse_response) of the linear operator \\(\mathcal{L}\\).
+Its solution is the *scalar* [Green function](https://en.wikipedia.org/wiki/Green%27s_function) \\(g\\). It represents an [impulse response](https://en.wikipedia.org/wiki/Impulse_response) of the linear operator \\(\mathcal{H}\\).
 
 Equation 9.9 is an inhomogeneous linear differential equation. Consequently, its solution depends on the linear operator in question, its domain of validity, as well as the associated (initial or boundary) conditions. According to Equation 9.7, our domain is the whole real space, and the only applicable restriction is the Sommerfeld radiation condition. Thus, it can be shown that the *free-space* scalar Green function \\(g_0\\) takes the form[^9] of an diverging *spherical wave* \[[7](#references) (ch. 2.12), [8](#references) (ch. 5.2), [9](#references) (ap. B), [12](#references)\]:
 
@@ -1619,24 +1632,24 @@ $$ \tag{9.24}
 	g \big( \bm{r} - \bm{r'}, k_0(\omega) \big) \frac{\bm{J}(\bm{r'}, \omega)}{\mu_0^{-1}} dV'.
 $$
 
-Unfortunately, a complication arises when we try to move the new operator under the integral sign - if \\(\bm{r}\\) is inside \\(V\\), we must carefully account for the contribution of the singularity that arises at \\(\bm{r} = \bm{r'}\\). While we will not encounter this case in the course of solving our problem, for completeness, the full solution is
+Unfortunately, a complication arises when we try to move the new operator under the integral sign - if \\(\bm{r}\\) is inside \\(V\\), this action introduces a singularity (a pole of order 3) at \\(\bm{r} = \bm{r'}\\). We can avoid this issue by creating a tiny spherical cavity \\(V_{\delta}\\) around \\(\bm{r}\\), and separately evaluating the field produced by the ball of matter excised from the cavity. The result is
 
 $$ \tag{9.25}
 	\bm{E}(\bm{r}, \omega)
-	= -i \omega \iiint\_{V} \mathcal{G_{e}} \big( \bm{r} - \bm{r'}, k_0(\omega) \big) \frac{\bm{J}(\bm{r'}, \omega)}{\mu_0^{-1}} dV'
-	+ \frac{i \omega}{k_0^2(\omega)} \mathcal{D} \big( \bm{r}, k_0(\omega) \big) \frac{\bm{J}(\bm{r}, \omega)}{\mu_0^{-1}},
+	= -i \omega \bigg( \lim_{\delta \to 0} \iiint\_{V - V_{\delta}} \mathcal{G_{e}} \big( \bm{r} - \bm{r'}, k_0(\omega) \big) \frac{\bm{J}(\bm{r'}, \omega)}{\mu_0^{-1}} dV'
+	- \frac{1}{k_0^2(\omega)} \mathcal{L} (\bm{r}) \frac{\bm{J}(\bm{r}, \omega)}{\mu_0^{-1}} \bigg),
 $$
 
-where \\(\mathcal{D}\\) is the *depolarization tensor* and
+where \\(\mathcal{L} = (1/3) \mathcal{I}\\) is the *depolarization tensor* of a spherical cavity \[[7](#references) (ch. 3.9)\], and
 
 $$ \tag{9.26}
 	\mathcal{G_{e}}(\bm{r} - \bm{r'}, k)
 	= \Big( \mathcal{I} + \frac{1}{k^2} \nabla \otimes \nabla \Big) g(\bm{r} - \bm{r'}, k)
 $$
 
-is the electric tensor Green function for electrical sources[^12], or the *electric tensor* for short. \[[7](#references) (ch. 7.9)\].
+is the *electric tensor* Green function[^12] \[[7](#references) (ch. 7.9)\].
 
-[^12]: The tensor Green functions are also known as the dyadic Green functions. A [dyadic](https://en.wikipedia.org/wiki/Dyadics) is a special type of tensor that is considered to be relatively obsolete.
+[^12]: The tensor Green functions are also known as the dyadic Green functions. A [dyadic](https://en.wikipedia.org/wiki/Dyadics) is a second order tensor that uses a special notation that is considered to be relatively obsolete.
 
 To find the integral form of the magnetic field, we must expand Equation 9.21.2:
 
@@ -1652,21 +1665,21 @@ $$ \tag{9.28}
 	\nabla \times (g \bm{J}) = g (\nabla \times \bm{J}) + \nabla g \times \bm{J},
 $$
 
-and noting that \\(\bm{J}\\) does not depend on \\(\bm{r}\\), we obtain a convergent (improper) integral
+and noting that \\(\bm{J}\\) does not depend on \\(\bm{r}\\), we obtain a convergent integral
 
 $$ \tag{9.29}
 	\bm{B}(\bm{r}, \omega)
-	= \iiint\_{V} \mathcal{G_{m}} \big( \bm{r} - \bm{r'}, k_0(\omega) \big) \frac{\bm{J}(\bm{r'}, \omega)}{\mu_0^{-1}} dV',
+	= \lim_{\delta \to 0} \iiint\_{V - V_{\delta}} \mathcal{G_{m}} \big( \bm{r} - \bm{r'}, k_0(\omega) \big) \frac{\bm{J}(\bm{r'}, \omega)}{\mu_0^{-1}} dV',
 $$
 
-that features the magnetic tensor Green function for electrical sources (or, simply, the *magnetic tensor*)
+that features the *magnetic tensor* Green function \[[7](#references) (ch. 7.9)\]
 
 $$ \tag{9.30}
 	\mathcal{G_{m}}(\bm{r} - \bm{r'}, k)
 	= \nabla g(\bm{r} - \bm{r'}, k) \times \mathcal{I}
 $$
 
-that may be expressed using the [matrix form of the cross product](https://en.wikipedia.org/wiki/Cross_product#Conversion_to_matrix_multiplication) \[[7](#references) (ch. 7.9)\].
+that may be expressed using the [matrix form of the cross product](https://en.wikipedia.org/wiki/Cross_product#Conversion_to_matrix_multiplication).
 
 ### Electric and Magnetic Polarization
 
@@ -1895,7 +1908,7 @@ $$ \tag{10.22}
 	\approx N(\bm{r}) \mathcal{\Alpha_m}(\omega) \epsilon_0 \bm{E_{\mu}}(\bm{r_0}, \omega).
 $$
 
-Note that, in general, the microscopic field \\(\bm{E_{\mu}}\\) acting on the dipole is different from the macroscopic field \\(\bm{E}\\). The reason is that the microscopic field varies very rapidly inside the matter - it is very strong next to the nucleus, and relatively weak in the gaps between the molecules. Thus, the density of matter plays an important role. If the dipoles are randomly distributed, this leads to a spherically symmetric configuration, and it can be shown that the two fields are related by the equation
+Note that, in general, the microscopic field \\(\bm{E_{\mu}}\\) acting on the dipole is different from the macroscopic field \\(\bm{E}\\). The reason is that the microscopic field varies very rapidly inside the matter - it is very strong next to the nucleus, and relatively weak in the gaps between the molecules. Thus, the density of matter plays an important role. If the dipoles are randomly distributed, we can assume that the dipole under consideration is located within a spherical cavity of a uniformly polarized material, and it can be shown that the two fields are related by the equation
 
 $$ \tag{10.23}
 	\epsilon_0 \bm{E_{\mu}}(\bm{r_0}, \omega) = \epsilon_0 \bm{E}(\bm{r}, \omega) + \frac{1}{3} \bm{P}(\bm{r}, \omega),
@@ -1976,9 +1989,9 @@ In practice, it is very difficult to solve the Maxwell equations exactly, except
 
 One of the most important considerations is the scale of the observation. Evidently, even something as large and complex as a star can be approximated by a point source if the observer is sufficiently far away. A similar line of reasoning justifies modeling an electron as a point charge at the microscopic scale.
 
-Going one step further, we can represent the average atom (or a molecule) as a dipole aligned with the driving field, thereby greatly restricting the expected behavior of microscopic charges and currents. In this approximation, constructive interference greatly amplifies the fields produced by the charges moving in sync, while the effects of motion that differs from the average are suppressed by both destructive interference and the lower probability of occurrence.
+Stepping farther away, we can represent the average atom (or a molecule) as a dipole aligned with the driving field, thereby greatly restricting the expected behavior of microscopic charges and currents. In this approximation, constructive interference reinforces the fields produced by the charges moving in sync, while the effects of motion that differs from the average are suppressed by both destructive interference and the lower probability of occurrence.
 
-Mathematically, the field of a (macroscopic) piece of matter is the (vector) sum of the fields of its (microscopic) parts. Yet, physically, the field of a single dipole often cannot be distinguished at all! The field of a tremendous number of identical dipoles acting together manifests itself by bending light rays (according to the refractive index) and reducing their intensity (proportionally to the attenuation index). In order for light scattering effects to appear, the medium must be inhomogeneous. Macroscopically, such a medium features spatially-varying *optical properties*; microscopically, this implies that the underlying distribution of dipoles is not the same throughout the medium. Clearly, a homogeneous medium is an idealization, yet it can serve as an effective approximation for tiny patches of uniformly dense matter (composed of scatterers smaller than the wavelength of light).
+Mathematically, the field of a (macroscopic) piece of matter is the (vector) sum of the fields of its (microscopic) parts. Yet, at the macroscopic scale, the field of a single dipole often cannot be distinguished at all! The field of a tremendous number of identical dipoles acting together manifests itself by bending light rays (according to the refractive index) and reducing their intensity (proportionally to the attenuation index). In order for light scattering effects to appear, the medium must be inhomogeneous. Macroscopically, such a medium features spatially-varying *optical properties*; microscopically, this implies that the underlying distribution of dipoles is not the same throughout the medium. Clearly, a homogeneous medium is an idealization, yet it can serve as an effective approximation for tiny patches of uniformly dense matter (composed of scatterers smaller than the wavelength of light).
 
 [Insert picture here?]
 
@@ -1986,7 +1999,7 @@ The macroscopic distribution of optical properties can (at least in theory) be c
 
 [Insert picture here]
 
-Given the source illuminating this medium, we can determine the *total field* that arises after propagation and scattering of electromagnetic waves. Clearly, if there are no particles, the medium is homogeneous everywhere, and the magnitude of the field at the destination is the same as its magnitude at the source (before accounting for attenuation with distance). We shall refer to it as the *incident field*. The (mathematical) difference between the total field (with particles) and the incident field (without particles) constitutes the *scattered field*. The task of determining the scattered field is at the core of the *scattering problem*.
+Given the source illuminating the medium, we can determine the *total field* that arises after propagation and scattering of electromagnetic waves. Clearly, if there are no particles, the medium is homogeneous everywhere, and the magnitude of the field at the destination is the same as its magnitude at the source (before accounting for attenuation with distance). We shall refer to it as the *incident field*. The (mathematical) difference between the total field (with particles) and the incident field (without particles) constitutes the *scattered field*. The task of determining the scattered field is at the core of the *scattering problem*.
 
 [Insert picture here]
 
