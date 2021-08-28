@@ -2695,42 +2695,34 @@ We would like to caution that conditions stated in Equation 13.17 are, strictly 
 
 ### Transition Operator and Scattering Tensor
 
-The volume integral equation can be reduced to a relatively simple expression by assuming that the observation point is located in the far-field zone of the particle (or the particle group). However, the value of the electric field in the interior remains unknown. For a single atom or a small molecule, we can reasonably assume that it doesn't drive itself, which makes the field driving the molecule the same as the incident field, with the resulting (simplified) expression of Equation 13.16 given by Equation 13.4. Yet, in general, this assumption does not hold. It is easy to convince ourselves by considering a highly reflective or absorptive particle - it seems fairly obvious that the total field deep inside the particle has a lower magnitude in comparison to the incident field at the same location if the particle wasn't there.
+The volume integral equation can be reduced to a relatively simple expression by assuming that the observation point is located in the far-field zone of the particle (or the particle group). However, the value of the electric field in the interior remains unknown. For a single atom or a small molecule, we can reasonably assume that it doesn't drive itself, which makes the field driving the molecule the same as the incident field, with the resulting (simplified) expression of Equation 13.16 given by Equation 13.4. Yet, in general, this assumption does not hold. It is easy to convince ourselves by considering a highly reflective or absorptive particle - it seems fairly obvious that the total field deep inside the particle has (on average) a lower magnitude in comparison to the incident field at the same location if the particle wasn't there.
 
-Recall that scattering is an interference phenomenon. In a dielectric, the incident field drives the dipoles, which in turn act as sources of scattered wavelets interfering with the incident field according to the superposition principle. We may continue this line of thought by considering the effect of a dipole as a secondary source on all other dipoles surrounding it, effectively treating the dipole field as the secondary incident field. Repeated application of this iterative approach leads to evaluation of successive orders of scattering one by one. This is the general idea behind the [Born approximation](https://en.wikipedia.org/wiki/Born_approximation) \[[6](#references) (ch. 13.1)\].
+Let us recall the mechanics of scattering. In a dielectric, the incident field drives the dipoles, which in turn act as sources of scattered wavelets interfering with the incident field according to the superposition principle. We may continue this line of thinking by considering the effect of a dipole as a secondary source on all other dipoles surrounding it, effectively treating the dipole field as the secondary incident field. Repeated application of this iterative approach leads to evaluation of successive orders of scattering one by one. This is the general idea behind the [Born approximation](https://en.wikipedia.org/wiki/Born_approximation) \[[6](#references) (ch. 13.1)\].
 
-We can formalize this approach in the following way \[[9](#references) (ch. 4.5)\]. We *assume* that the current term (given by Equation 11.7) can be represented by the tensor *transition operator* in the following way:
-
-$$ \tag{11.7}
-\bm{J'}(\bm{r}, \omega) =
-\begin{cases}
-   \iiint\_{V} \mathcal{T} \big( \bm{r'} - \bm{r''}, k_1(\omega) \big) \bm{E_i}(\bm{r''}, \omega) dV'' &\text{if } \bm{r} \in V, \cr
-   0 &\text{otherwise},
-\end{cases}
-$$
+We can formalize this approach in the following way \[[9](#references) (ch. 4.5)\]. We start with Equation 11.12, where we substitute the total electric tensor (cf. Equations 9.27-9.28) to ensure that the integral remains valid even if the observation point is inside the volume \\(V\\):
 
 $$ \tag{14.1}
-	\bm{J'}(\bm{r'}, \omega)
-	= ,
+    \bm{E}(\bm{r}, \omega)
+    = \bm{E_i}(\bm{r}, \omega)
+	+ \iiint\_{V} \mathcal{G_{te}} \big(\bm{r} - \bm{r'}, k(\omega) \big) \bm{J'}(\bm{r'}, \omega) dV'.
 $$
 
-Substitution into Equation 11.12 yields
+Next, for we substitute the expression of the source term \\(\bm{J'}\\) given by Equation 11.7:
 
-$$ \tag{11.10}
-	\bm{E}(\bm{r}, \omega)
-	= \bm{E_i}(\bm{r}, \omega)
-	+ \iiint\_{V} \mathcal{G_{e}} \big( \bm{r} - \bm{r'}, k_1(\omega) \big) \iiint\_{V} \mathcal{T} \big( \bm{r'} - \bm{r''}, k_1(\omega) \big) \bm{E_i}(\bm{r''}, \omega) dV'' dV',
+$$ \tag{14.2}
+    \bm{E}(\bm{r}, \omega)
+    = \bm{E_i}(\bm{r}, \omega)
+	+ k^2(\omega) \iiint\_{V} \mathcal{G_{te}} \big(\bm{r} - \bm{r'}, k(\omega) \big) \big( m^2(\bm{r'}, \omega) - 1 \big) \bm{E}(\bm{r'}, \omega) dV'.
 $$
 
-$$ \tag{11.7}
-\bm{J'}(\bm{r}, \omega) =
-\begin{cases}
-   k_1^2(\omega) \big( m^2(\bm{r}, \omega) - 1 \big) \bm{E}(\bm{r}, \omega) &\text{if } \bm{r} \in V, \cr
-   0 &\text{otherwise},
-\end{cases}
-$$
+The resulting equation is recursive.
 
 ---
+
+$$ \tag{14.2}
+    \bm{E_s}(\bm{r}, \omega)
+	= \iiint\_{V} \mathcal{G_{te}} \big(\bm{r} - \bm{r'}, k(\omega) \big) \iiint\_{V} \mathcal{T} \big(\bm{r'} - \bm{r''}, k(\omega) \big) \bm{E_i}(\bm{r''}, \omega) dV' dV''.
+$$
 
 Scattering Matrix...
 Relative magnitude... Poynting vector... Radiative Transfer Coefficients...
@@ -2743,6 +2735,8 @@ Analytic solution for a non-magnetic conducting sphere (L-M)...
 Inelastic [Raman scattering](https://en.wikipedia.org/wiki/Raman_scattering)
 
 Field Magnitude <-> Wave Amplitude
+
+Is a spherical cavity the right choice for the transition operator?
 
 ## Acknowledgments
 
