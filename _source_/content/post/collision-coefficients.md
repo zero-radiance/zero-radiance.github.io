@@ -1987,7 +1987,7 @@ $$ \tag{10.30}
 	\approx \big( 1 - \mu_r^{-1}(\bm{r}, \omega) \big) \mu\_0^{-1} \bm{B}(\bm{r}, \omega),
 $$
 
-but for [ferromagnets](https://en.wikipedia.org/wiki/Ferromagnet), this expression may be inaccurate due to the [magnetic hysteresis](https://en.wikipedia.org/wiki/Magnetic_hysteresis) effect \[[5](#references) (vol. II, ch. 36)\].
+but for [ferromagnets](https://en.wikipedia.org/wiki/Ferromagnet), this expression is invalid due to the [magnetic hysteresis](https://en.wikipedia.org/wiki/Magnetic_hysteresis) effect \[[5](#references) (vol. II, ch. 36)\].
 
 In some sense, dipoles can be considered elementary field generators: an electric dipole produces the \\(\bm{E}\\) field, and a magnetic dipole is a source of the \\(\bm{B}\\) field. They can be used to describe any (bound) current and charge distributions, which makes them particularly useful for solving electromagnetic radiation and scattering problems.
 
