@@ -1632,7 +1632,7 @@ $$ \tag{9.24}
 	g \big( \bm{r} - \bm{r'}, k_0(\omega) \big) \frac{\bm{J}(\bm{r'}, \omega)}{\mu_0^{-1}} dV'.
 $$
 
-Unfortunately, a complication arises when we try to move the new operator under the integral sign - if \\(\bm{r}\\) is inside \\(V\\), this action introduces a singularity (a pole of order 3) at \\(\bm{r} = \bm{r'}\\). We can avoid this issue by creating a tiny cavity \\(V_{\delta}\\) centered at \\(\bm{r}\\), and separately evaluating the field produced by the piece of matter excised from the cavity. The result is
+Unfortunately, a complication arises when we try to move the new operator under the integral sign - if \\(\bm{r}\\) is inside \\(V\\), this action introduces a *singularity* (a pole of order 3) at \\(\bm{r} = \bm{r'}\\). We can avoid this issue by creating a tiny cavity \\(V_{\delta}\\) centered at \\(\bm{r}\\), and separately evaluating the field produced by the piece of matter excised from the cavity. The result is
 
 $$ \tag{9.25}
 	\bm{E}(\bm{r}, \omega)
@@ -1647,7 +1647,7 @@ $$ \tag{9.26}
 	= \Big( \mathcal{I} + \frac{1}{k^2} \nabla \otimes \nabla \Big) g(\bm{r} - \bm{r'}, k)
 $$
 
-is the *electric tensor* Green function[^12] \[[7](#references) (ch. 7.9)\].
+is the *electric tensor* Green function \[[7](#references) (ch. 7.9)\]. As a special case, \\(\mathcal{G\_0}(\bm{r} - \bm{r'}) = \mathcal{G\_{e}}(\bm{r} - \bm{r'}, k\_0)\\) is called the *free-space tensor* Green function[^12].
 
 [^12]: The tensor Green functions are also known as the dyadic Green functions. A [dyadic](https://en.wikipedia.org/wiki/Dyadics) is a second order tensor that uses a special notation that is considered to be relatively obsolete.
 
