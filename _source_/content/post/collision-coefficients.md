@@ -403,7 +403,7 @@ $$ \tag{2.23}
 	+ \bm{B}(\bm{r}, t) \cdot \frac{\partial}{\partial t}\bm{H}(\bm{r}, t).
 $$
 
-Comparison of Equations 2.17 and 2.22 shows that both formulations of the Poynting vector are equivalent if the measurement is performed inside a *non-magnetic* material. That explains the \\(\mu\_0^{-1}\\) factor: according to the microscopic formulation of the Maxwell equations, an electron (or a proton) is simply a charged region of vacuum. In comparison, propagation of electromagnetic fields at the macroscopic scale can be considerably more complex.
+Comparison of Equations 2.17 and 2.22 shows that both formulations of the Poynting vector are equivalent if the measurement is performed inside a *non-magnetic* material. That explains the \\(\mu\_0^{-1}\\) factor: according to the microscopic formulation of the Maxwell equations, an electron (or a proton) is simply a charged region of vacuum. In comparison, due to the spatially-varying index of refraction, propagation of electromagnetic fields at the macroscopic scale can be considerably more complex.
 
 Since electromagnetic fields oscillate so rapidly, one typically measures the *time-averaged* Poynting vector
 
@@ -576,9 +576,9 @@ If we solve the Maxwell equations in the frequency domain, we may be interested 
 
 $$ \tag{4.1}
 	\bm{S}(\bm{r}, t)
-	= \mu\_0^{-1} \Big( \bm{E}(\bm{r}, t) \times \bm{B}(\bm{r}, t) \Big)
-	= \mu\_0^{-1} \Big( \mathcal{F^{-1}} \big\lbrace \bm{E}(\bm{r}, \omega) \big\rbrace
-	\times \mathcal{F^{-1}} \big\lbrace \bm{B}(\bm{r}, \omega) \big\rbrace \Big).
+	= \bm{E}(\bm{r}, t) \times \bm{H}(\bm{r}, t)
+	= \mathcal{F^{-1}} \big\lbrace \bm{E}(\bm{r}, \omega) \big\rbrace
+	\times \mathcal{F^{-1}} \big\lbrace \bm{H}(\bm{r}, \omega) \big\rbrace \Big).
 $$
 
 The expression of the corresponding Poynting phasor is
@@ -586,9 +586,9 @@ The expression of the corresponding Poynting phasor is
 $$ \tag{4.2}
 	\bm{S}(\bm{r}, \omega)
 	= \mathcal{F} \big\lbrace \bm{S}(\bm{r}, t) \big\rbrace
-	= \mu\_0^{-1} \mathcal{F} \Big\lbrace
+	= \mathcal{F} \Big\lbrace
 		\mathcal{F^{-1}} \big\lbrace \bm{E}(\bm{r}, \omega)
-		\times \mathcal{F^{-1}} \big\lbrace \bm{B}(\bm{r}, \omega) \big\rbrace
+		\times \mathcal{F^{-1}} \big\lbrace \bm{H}(\bm{r}, \omega) \big\rbrace
 	\Big\rbrace.
 $$
 
@@ -596,8 +596,8 @@ But that is just a [convolution](https://en.wikipedia.org/wiki/Convolution_theor
 
 $$ \tag{4.3}
 	\bm{S}(\bm{r}, \omega)
-	= \mu\_0^{-1} \int\_{-\infin}^{\infin}
-	\bm{E}(\bm{r}, \omega') \times \bm{B}(\bm{r}, \omega - \omega') d\omega'.
+	= \int\_{-\infin}^{\infin}
+	\bm{E}(\bm{r}, \omega') \times \bm{H}(\bm{r}, \omega - \omega') d\omega'.
 $$
 
 The expression is compact and simple, but not particularly useful, since the value of the Poynting phasor for a particular frequency depends on the entire electromagnetic spectrum.
@@ -686,20 +686,20 @@ $$ \tag{4.12}
 	= \sqrt{2 \pi} \bm{E_p}(\bm{r}) \delta(\omega_p - \omega).
 $$
 
-Let us put the math to work. Assuming that the electromagnetic field is time-harmonic, Equation 2.17 of the Poynting vector can be written as
+Let us put the math to work. Assuming that the electromagnetic field is time-harmonic, Equation 2.22 of the Poynting vector can be written as
 
 $$ \tag{4.13}
 \begin{aligned}
 	\bm{S}(\bm{r}, t)
 	&=  \mu\_0^{-1}
 		\Bigg( \sum\_{p = -\infin}^{\infin} \bm{E_p}(\bm{r}) e^{i \omega_p t} \Bigg) \times
-		\Bigg( \sum\_{q = -\infin}^{\infin} \bm{B_q}(\bm{r}) e^{i \omega_q t} \Bigg) \cr
-	&=  \mu\_0^{-1} \sum\_{p = -\infin}^{\infin} \sum\_{q = -\infin}^{\infin}
+		\Bigg( \sum\_{q = -\infin}^{\infin} \bm{H_q}(\bm{r}) e^{i \omega_q t} \Bigg) \cr
+	&=  \sum\_{p = -\infin}^{\infin} \sum\_{q = -\infin}^{\infin}
 		\big( \bm{E_p}(\bm{r}) e^{i \omega_p t} \big) \times
-		\big( \bm{B_q}(\bm{r}) e^{i \omega_q t} \big) \cr
-	&=  \mu\_0^{-1} \sum\_{p = -\infin}^{\infin} \sum\_{q = -\infin}^{\infin}
+		\big( \bm{H_q}(\bm{r}) e^{i \omega_q t} \big) \cr
+	&=  \sum\_{p = -\infin}^{\infin} \sum\_{q = -\infin}^{\infin}
 		\big( \bm{E_p}(\bm{r}) e^{i \omega_p t} \big) \times
-		\big[ \bm{B_q}(\bm{r}) e^{i \omega_q t} \big]^{\*}.
+		\big[ \bm{H_q}(\bm{r}) e^{i \omega_q t} \big]^{\*}.
 \end{aligned}
 $$
 
@@ -708,8 +708,8 @@ The corresponding expression of the time-averaged Poynting vector (c.f. Equation
 $$ \tag{4.14}
 \begin{aligned}
 	\braket{\bm{S}}
-	= \mu\_0^{-1} \sum\_{p = -\infin}^{\infin} \sum\_{q = -\infin}^{\infin}
-	\bm{E_p}(\bm{r}) \times \big[ \bm{B_q}(\bm{r}) \big]^{\*}
+	= \sum\_{p = -\infin}^{\infin} \sum\_{q = -\infin}^{\infin}
+	\bm{E_p}(\bm{r}) \times \big[ \bm{H_q}(\bm{r}) \big]^{\*}
 	\Bigg(
 		\frac{1}{T} \int\_{-T/2}^{\thinspace T/2} e^{i (\omega_p - \omega_q) t'} dt'
 	\Bigg).
@@ -721,22 +721,22 @@ First, consider the case when \\(T = T_1\\). We can immediately apply the orthon
 $$ \tag{4.15}
 \begin{aligned}
 	\braket{\bm{S}}
-	&=  \mu\_0^{-1} \sum\_{p = -\infin}^{\infin} \sum\_{q = -\infin}^{\infin}
-		\bm{E_p} \times [\bm{B_q}]^{\*} \thinspace \delta_{m,n} \cr
-	&=  \mu\_0^{-1} \sum\_{p = -\infin}^{\infin}
-		\bm{E_p} \times [\bm{B_p}]^{\*} \cr
-	&=  \mu\_0^{-1} (\bm{E_0} \times \bm{B_0})
-	  + \mu\_0^{-1} \sum\_{p = 1}^{\infin} \bm{E_p} \times [\bm{B_p}]^{\*}
-	  + \mu\_0^{-1} \sum\_{p = -\infin}^{-1} \bm{E_p} \times [\bm{B_p}]^{\*} \cr
-	&=  \mu\_0^{-1} (\bm{E_0} \times \bm{B_0})
-	  + \mu\_0^{-1} \sum\_{p = 1}^{\infin}
+	&=  \sum\_{p = -\infin}^{\infin} \sum\_{q = -\infin}^{\infin}
+		\bm{E_p} \times [\bm{H_q}]^{\*} \thinspace \delta_{m,n} \cr
+	&=  \sum\_{p = -\infin}^{\infin}
+		\bm{E_p} \times [\bm{H_p}]^{\*} \cr
+	&=  (\bm{E_0} \times \bm{H_0})
+	  + \sum\_{p = 1}^{\infin} \bm{E_p} \times [\bm{H_p}]^{\*}
+	  + \sum\_{p = -\infin}^{-1} \bm{E_p} \times [\bm{H_p}]^{\*} \cr
+	&=  (\bm{E_0} \times \bm{H_0})
+	  + \sum\_{p = 1}^{\infin}
 		\Big( 
-			\big( \bm{E_p} \times [\bm{B_p}]^{\*} \big)
-		  + \big[ \bm{E_p} \times [\bm{B_p}]^{\*} \big]^{\*}
+			\big( \bm{E_p} \times [\bm{H_p}]^{\*} \big)
+		  + \big[ \bm{E_p} \times [\bm{H_p}]^{\*} \big]^{\*}
 		\Big) \cr
-	&=  \mu\_0^{-1} (\bm{E_0} \times \bm{B_0})
-	  + \mu\_0^{-1} \sum\_{p = 1}^{\infin}
-		2 \thinspace \mathcal{Re} \big\lbrace \bm{E_p} \times [\bm{B_p}]^{\*} \big\rbrace,
+	&=  (\bm{E_0} \times \bm{H_0})
+	  + \sum\_{p = 1}^{\infin}
+		2 \thinspace \mathcal{Re} \big\lbrace \bm{E_p} \times [\bm{H_p}]^{\*} \big\rbrace,
 \end{aligned}
 $$
 
@@ -747,7 +747,7 @@ In the case when \\(T > T_1\\), the total value of \\(\braket{\bm{S}}\\) is a su
 Equation 4.15 allows us to define the *time-averaged* Poynting phasor (technically, it's a Fourier coefficient)
 
 $$ \tag{4.16}
-	\braket{\bm{S_p}} = \mu\_0^{-1} \Big( \bm{E_p}(\bm{r}) \times \big[ \bm{B_p}(\bm{r}) \big]^{\*} \Big)
+	\braket{\bm{S_p}} = \Big( \bm{E_p}(\bm{r}) \times \big[ \bm{H_p}(\bm{r}) \big]^{\*} \Big)
 $$
 
 such that (cf. Equation 4.8)
@@ -1175,6 +1175,7 @@ $$
 Take \\(\bm{E}\\) as an example. Substitute Equation 6.16 into 7.16.2:
 
 $$ \tag{7.17}
+	\nabla \cdot \oiint\_{\mathbb{S}^2} \bm{E}(\bm{r}, \bm{n}, \omega) d\Omega_n =
 	\nabla \cdot \oiint\_{\mathbb{S}^2} \bm{E}(0, \bm{n}, \omega) e^{-i k(\omega) (\bm{r} \cdot \bm{n})} d\Omega_n = 0.
 $$
 
@@ -1199,7 +1200,7 @@ $$ \tag{7.20}
 	\nabla \times \bm{E}(\bm{r}, \omega) = - i \omega \bm{B}(\bm{r}, \omega).
 $$
 
-Substitute Equation 6.16 again and expand the expression of the curl
+Substitute Equation 6.16 again (into both sides) and expand the expression of the curl
 
 $$ \tag{7.21}
 	\nabla \times \bm{E}(\bm{r}, \bm{n}, \omega)
@@ -1235,7 +1236,7 @@ $$
 
 [Insert Picture Here]
 
-We have seen the \\(\bm{E} \times \bm{B}\\) expression before (c.f. Equation 2.17). Assuming the fields are monochromatic, Equation 7.25 suggests that
+We have seen the \\(\bm{E} \times \bm{B}\\) expression before (c.f. Equation 2.17). Assuming the fields are monochromatic, and the medium where we perform the measurements - non-magnetic, Equation 7.25 suggests that
 
 $$ \tag{7.26}
 	\bm{S}(\bm{r}, t)
