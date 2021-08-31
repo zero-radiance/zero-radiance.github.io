@@ -1632,7 +1632,7 @@ $$ \tag{9.24}
 	g \big( \bm{r} - \bm{r'}, k_0(\omega) \big) \frac{\bm{J}(\bm{r'}, \omega)}{\mu_0^{-1}} dV'.
 $$
 
-Unfortunately, a complication arises when we try to move the new operator under the integral sign - if \\(\bm{r}\\) is inside \\(V\\), this action introduces a *singularity* (a pole of order 3) at \\(\bm{r} = \bm{r'}\\). We can avoid this issue by creating a tiny cavity \\(V_{\delta}\\) centered at \\(\bm{r}\\), and separately evaluating the field produced by the piece of matter excised from the cavity. The result is
+Unfortunately, a complication arises when we try to move the new operator under the integral sign - if \\(\bm{r}\\) is inside \\(V\\), this action introduces a *singularity* (a pole of order 3) at \\(\bm{r} = \bm{r'}\\). We can sidestep this issue by creating a tiny cavity \\(V_{\delta}\\) centered at \\(\bm{r}\\), and separately evaluating the field produced by the piece of matter excised from the cavity. The result is
 
 $$ \tag{9.25}
 	\bm{E}(\bm{r}, \omega)
@@ -1922,7 +1922,7 @@ $$ \tag{10.22}
 	\approx N(\bm{r}) \mathcal{\Alpha_m}(\omega) \epsilon_0 \bm{E_{\mu}}(\bm{r_0}, \omega).
 $$
 
-Note that, in general, the microscopic field \\(\bm{E_{\mu}}\\) acting on the dipole is different from the macroscopic field \\(\bm{E}\\). The reason is that the microscopic field varies very rapidly inside the matter - it is very strong next to the nucleus, and relatively weak in the gaps between the molecules. Thus, the density of matter plays an important role. If the dipoles are randomly distributed, we can assume that the dipole under consideration is located within a spherical cavity of a uniformly polarized material, and it can be shown that the two fields are related by the equation
+Note that, in general, the microscopic field \\(\bm{E_{\mu}}\\) acting on the dipole is different from the macroscopic field \\(\bm{E}\\). The reason is that the microscopic field varies very rapidly inside the matter - it is very strong next to the nucleus, and relatively weak in the gaps between the molecules. Thus, the density of matter plays an important role. If the dipoles are randomly distributed, we can assume that the dipole under consideration is located within a spherical cavity of a uniformly polarized material. For an isotropic material, it can be shown that the two fields are related by the equation
 
 $$ \tag{10.23}
 	\epsilon_0 \bm{E_{\mu}}(\bm{r_0}, \omega) = \epsilon_0 \bm{E}(\bm{r}, \omega) + \frac{1}{3} \bm{P}(\bm{r}, \omega),
@@ -1930,7 +1930,7 @@ $$
 
 where \\(\bm{P}\\) describes the electric polarization of matter surrounding the dipole \[[5](#references) (vol. II, ch. 11), [6](#references) (ch. 2.3-2.4)\].
 
-By combining Equations 10.22 and 10.23, and assuming that polarizability is isotropic (such that \\(\mathcal{\Alpha_m} = \alpha_m\\)),
+By combining Equations 10.22 and 10.23, and setting \\(\mathcal{\Alpha_m} = \alpha_m\\),
 
 $$ \tag{10.24}
 	\bm{P}(\bm{r}, \omega)
