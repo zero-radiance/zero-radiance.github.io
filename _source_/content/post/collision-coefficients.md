@@ -2728,7 +2728,7 @@ u(\bm{r}, \omega) =
 \end{cases}
 $$
 
-such that
+that allows us to write Equation 14.2 in a more compact form:
 
 $$ \tag{14.4}
     \bm{E}(\bm{r}, \omega)
@@ -2755,7 +2755,7 @@ $$ \tag{14.6}
 	= \bm{E}(\bm{r}).
 $$
 
-In addition, we can define the *potential operator* \\(U\\) in the position representation as
+In addition, we can define the *potential operator* \\(U\\), such that, in the position representation,
 
 $$ \tag{14.7}
 	\bra{\bm{r}} U = u(\bm{r}) \bra{\bm{r}}.
@@ -2812,7 +2812,7 @@ $$ \tag{14.14}
     \ket{E} = \ket{E_i} + G T \ket{E_i}.
 $$
 
-Written in the position representation,
+In the position representation,
 
 $$ \tag{14.15}
     \braket{\bm{r} \vert E}
@@ -2881,7 +2881,7 @@ Translation of Equation 14.21 into the integral form yields
 
 $$ \tag{14.22}
     \mathcal{T} \big( \bm{r'}, \bm{r''} \big)
-    = u(\bm{r'}) \bigg( \delta(\bm{r'} - \bm{r''}) + \int_V \mathcal{G} \big( \bm{r'}, \bm{r} \big) \mathcal{T} \big( \bm{r}, \bm{r''} \big) dV \bigg).
+    = u(\bm{r'}) \bigg( \delta(\bm{r'} - \bm{r''}) \mathcal{I} + \int_V \mathcal{G} \big( \bm{r'}, \bm{r} \big) \mathcal{T} \big( \bm{r}, \bm{r''} \big) dV \bigg).
 $$
 
 ---
@@ -2898,7 +2898,7 @@ Inelastic [Raman scattering](https://en.wikipedia.org/wiki/Raman_scattering)
 
 Field Magnitude <-> Wave Amplitude
 
-Is a spherical cavity the right choice for the transition operator?
+Is a spherical cavity the right choice for the depolarization operator?
 
 ## Acknowledgments
 
