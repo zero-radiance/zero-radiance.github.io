@@ -2257,7 +2257,7 @@ In the literature, Equation 11.25 is often called the *volume integral equation*
 
 ### Dipole Radiation
 
-Typically, it is not possible to evaluate the integrals of Equations 11.25 in closed form, since, in general, the value of the electric field in the interior of the volume is not known (TODO: write about the transition operator). Thus, we must make certain assumptions and employ various approximations in order to make computations feasible. This leads to a number of special cases.
+Typically, it is not possible to evaluate the integrals of Equations 11.25 in closed form, since the value of the electric field in the interior of the volume is not known. Thus, we must make certain assumptions and employ various approximations in order to make computations feasible. This leads to a number of special cases.
 
 One of the simplest problems that can be solved using our mathematical framework (of classical physics) is that of a single atom or a small molecule embedded in a homogeneous medium. This case corresponds to a tiny particle in vacuum, or an [impurity](https://en.wikipedia.org/wiki/Impurity) in an otherwise pure material. We represent it as an electric dipole - an oriented point source.
 
