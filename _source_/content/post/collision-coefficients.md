@@ -2768,13 +2768,13 @@ $$ \tag{14.8}
 	\braket{\bm{r} \vert T \vert \bm{r'}} = \mathcal{T}(\bm{r}, \bm{r'}).
 $$
 
-Finally, we must define the *orthonormalization*
+Finally, we must define the *orthonormalization* relation
 
 $$ \tag{14.9}
 	  \braket{\bm{r} \vert \bm{r'}} = \delta(\bm{r} - \bm{r'})
 $$
 
-and the *closure* relations
+and the *closure* relation
 
 $$ \tag{14.10}
 	\int dV \ket{\bm{r}} \bra{\bm{r}} = \mathcal{I},
