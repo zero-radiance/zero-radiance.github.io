@@ -2918,7 +2918,7 @@ Pharr & Jakob, Bohren & Huffman, NASA
 8. Ishimaru, A. [Electromagnetic Wave Propagation, Radiation, and Scattering](https://doi.org/10.1002/9781119079699) (2nd ed., 2017).
 9. Mishchenko, M. I. [Electromagnetic Scattering by Particles and Particle Groups](https://doi.org/10.1017/CBO9781139019064) (2014).
 10. Kong, J. A. [Electromagnetic Wave Theory](https://www.piers.org/emwave/) (2008).
-11. Tsang, L., & Kong, J. A. [Scattering of Electromagnetic Waves: Advanced Topics](https://10.1002/0471224278) (2004).
+11. Tsang, L., & Kong, J. A. [Scattering of Electromagnetic Waves: Advanced Topics](https://10.1002/0471224278) (2001).
 12. Fleisch, D. [Student's Guide to Vectors and Tensors](https://doi.org/doi:10.1017/CBO9781139031035) (2011).
 13. Talalai, G. [Derivation of the Free-Space Green’s Function](https://www.researchgate.net/publication/324729639_Derivation_of_the_Free-Space_Green's_Function_and_Radiation_from_a_Hertzian_Dipole) (2016).
 99. Hansen, J. E., & Travis, L. D. [Light Scattering in Planetary Atmospheres](https://doi.org/10.1007/BF00168069) (1974).
