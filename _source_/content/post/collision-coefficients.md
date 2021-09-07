@@ -2747,47 +2747,47 @@ where \\(\mathcal{T}\\) is the *transition tensor*, the expression of which is y
 
 Recursive equations written in the integral form quickly become unwieldy. Instead, we shall convert them into the operator form by using the [bra-ket notation](https://en.wikipedia.org/wiki/Bra%E2%80%93ket_notation). Additionally, dependence on the frequency shall be implicit.
 
-Our building blocks are state vectors (or *kets*), such as \\(\ket{E}\\), and linear functionals (or *bras*), such as \\(\bra{\bm{r}}\\). Put together, they represent the projection (the [inner product](https://en.wikipedia.org/wiki/Inner_product)) of the two vectors:
+Our building blocks are state vectors (or *kets*), such as \\(\ket{E}\\), and linear functionals (or *bras*), such as \\(\bra{r}\\). Put together, they represent the projection (the [inner product](https://en.wikipedia.org/wiki/Inner_product)) of the two vectors:
 
 $$ \tag{14.6}
-	  \braket{\bm{r} \vert E}
-	= \big( \ket{\bm{r}}, \ket{E} \big)
+	  \braket{r \vert E}
+	= \big( \ket{r}, \ket{E} \big)
 	= \bm{E}(\bm{r}).
 $$
 
 In addition, we can define the *potential operator* \\(U\\), such that, in the position representation,
 
 $$ \tag{14.7}
-	\bra{\bm{r}} U = u(\bm{r}) \bra{\bm{r}}.
+	\bra{r} U = u(\bm{r}) \bra{r}.
 $$
 
 Similarly, we define the *Green operator* \\(G\\) and the *transition operator* \\(T\\) as
 
 $$ \tag{14.8}
-	\braket{\bm{r} \vert G \vert \bm{r'}} = \mathcal{G}(\bm{r}, \bm{r'}), \quad
-	\braket{\bm{r} \vert T \vert \bm{r'}} = \mathcal{T}(\bm{r}, \bm{r'}).
+	\braket{r \vert G \vert r'} = \mathcal{G}(\bm{r}, \bm{r'}), \quad
+	\braket{r \vert T \vert r'} = \mathcal{T}(\bm{r}, \bm{r'}).
 $$
 
 Finally, we must define the *orthonormalization* relation
 
 $$ \tag{14.9}
-	  \braket{\bm{r} \vert \bm{r'}} = \delta(\bm{r} - \bm{r'})
+	  \braket{r \vert r'} = \delta(\bm{r} - \bm{r'})
 $$
 
 and the *closure* relation
 
 $$ \tag{14.10}
-	\int dV \ket{\bm{r}} \bra{\bm{r}} = \mathcal{I},
+	\int dV \ket{r} \bra{r} = \mathcal{I},
 $$
 
-which, when taken together, say that the set of \\(\ket{\bm{r}}\\) vectors constitutes a basis.
+which, when taken together, say that the set of \\(\ket{r}\\) vectors constitutes a basis.
 
 In the new notation, Equation 14.4 can be written as
 
 $$ \tag{14.11}
-    \braket{\bm{r} \vert E}
-    = \braket{\bm{r} \vert E_i}
-	+ \int dV' \braket{\bm{r} \vert G \vert \bm{r'}} \braket{\bm{r'} \vert U \vert E},
+    \braket{r \vert E}
+    = \braket{r \vert E_i}
+	+ \int dV' \braket{r \vert G \vert r'} \braket{r' \vert U \vert E},
 $$
 
 or, in the representation-independent form,
@@ -2815,10 +2815,10 @@ $$
 In the position representation,
 
 $$ \tag{14.15}
-    \braket{\bm{r} \vert E}
-    = \braket{\bm{r} \vert E_i}
-    + \int dV' \int dV'' \braket{\bm{r} \vert G \vert \bm{r'}}
-    \braket{\bm{r'} \vert T \vert \bm{r''}} \braket{\bm{r''} \vert E},
+    \braket{r \vert E}
+    = \braket{r \vert E_i}
+    + \int dV' \int dV'' \braket{r \vert G \vert r'}
+    \braket{r' \vert T \vert r''} \braket{r'' \vert E},
 $$
 
 and the corresponding integral form is
@@ -2870,10 +2870,10 @@ Let us now complete the derivation by writing Equation 14.19 in the position rep
 
 $$ \tag{14.21}
 \begin{aligned}
-    \braket{\bm{r'} \vert T \vert \bm{r''}}
-    &= \braket{\bm{r'} \vert U (I + G T) \vert \bm{r''}} \cr
-    &= u(\bm{r'}) \braket{\bm{r'} \vert I + G T \vert \bm{r''}} \cr
-    &= u(\bm{r'}) \bigg( \braket{\bm{r'} \vert \bm{r''}} + \int dV \braket{\bm{r'} \vert G \vert \bm{r}} \braket{\bm{r} \vert T \vert \bm{r''}} \bigg).
+    \braket{r' \vert T \vert r''}
+    &= \braket{r' \vert U (I + G T) \vert r''} \cr
+    &= u(\bm{r'}) \braket{r' \vert I + G T \vert r''} \cr
+    &= u(\bm{r'}) \bigg( \braket{r' \vert r''} + \int dV \braket{r' \vert G \vert r} \braket{r \vert T \vert r''} \bigg).
 \end{aligned}
 $$
 
