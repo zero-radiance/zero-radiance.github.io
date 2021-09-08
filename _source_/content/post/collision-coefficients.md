@@ -1004,20 +1004,20 @@ $$
 
 is a valid solution for a certain value of \\(\bm{n}\\). To avoid clutter, we shall adhere to a common convention with the negative sign; the positive solution can be obtained by reversing the direction of \\(\bm{n}\\).
 
-How should we choose the direction of \\(\bm{n}\\)? It depends on the location of sources. Unless they are explicitly specified, we can use *any* value of \\(\bm{n}\\). And because the Helmholtz equation is both linear and homogeneous, we can actually use *every* value of \\(\bm{n}\\) by invoking the superposition principle. Thus, the general solution is an integral taken over the surface of the unit sphere \\(\mathbb{S^2}\\) [measured](https://en.wikipedia.org/wiki/Lebesgue_integration#Construction) by the [solid angle](https://en.wikipedia.org/wiki/Solid_angle) \\(d\Omega_n\\):
+How should we choose the direction of \\(\bm{n}\\)? It depends on the location of sources. Unless they are explicitly specified, we can use *any* value of \\(\bm{n}\\). And because the Helmholtz equation is both linear and homogeneous, we can actually use *every* value of \\(\bm{n}\\) by invoking the superposition principle. Thus, the general solution is an integral taken over the surface of the unit sphere \\(\mathbb{S^2}\\) [measured](https://en.wikipedia.org/wiki/Lebesgue_integration#Construction) by the [solid angle](https://en.wikipedia.org/wiki/Solid_angle) \\(d\Omega\\):
 
 $$ \tag{6.15}
 	\psi(\bm{r}) =
-	\oint\_{\mathbb{S}^2} \psi(\bm{r}, \bm{n}) d\Omega_n =
-	\oint\_{\mathbb{S}^2} \psi(0, \bm{n}) e^{-i k (\bm{r} \cdot \bm{n})} d\Omega_n.
+	\oint\_{\mathbb{S}^2} \psi(\bm{r}, \bm{n}) d\Omega =
+	\oint\_{\mathbb{S}^2} \psi(0, \bm{n}) e^{-i k (\bm{r} \cdot \bm{n})} d\Omega.
 $$
 
 Equation 6.15 can be used to solve Equation 6.10:
 
 $$ \tag{6.16}
 	\bm{E}(\bm{r}, \omega) =
-	\oint\_{\mathbb{S}^2} \bm{E}(\bm{r}, \bm{n}, \omega) d\Omega_n =
-	\oint\_{\mathbb{S}^2} \bm{E}(0, \bm{n}, \omega) e^{-i k(\omega) (\bm{r} \cdot \bm{n})} d\Omega_n.
+	\oint\_{\mathbb{S}^2} \bm{E}(\bm{r}, \bm{n}, \omega) d\Omega =
+	\oint\_{\mathbb{S}^2} \bm{E}(0, \bm{n}, \omega) e^{-i k(\omega) (\bm{r} \cdot \bm{n})} d\Omega.
 $$
 
 That is a general solution of the Maxwell equations for *linear, isotropic, homogeneous, source-free* media.
@@ -1027,8 +1027,11 @@ That is a general solution of the Maxwell equations for *linear, isotropic, homo
 We can find a solution of the Maxwell equations in the time domain by performing the inverse Fourier transform of Equation 6.16:
 
 $$ \tag{7.1}
+\begin{aligned}
 	\bm{E}(\bm{r}, t)
-	= \sqrt{\frac{2}{\pi}} \int\_{0}^{\infin} \oint\_{\mathbb{S}^2} \mathcal{Re} \big\lbrace \bm{E}(0, \bm{n}, \omega) e^{-i k(\omega) (\bm{r} \cdot \bm{n})} e^{i \omega t} \big\rbrace d\Omega_n d\omega.
+	&= \frac{1}{\sqrt{2 \pi}} \int\_{-\infin}^{\infin} \oint\_{\mathbb{S}^2} \bm{E}(0, \bm{n}, \omega) e^{-i k(\omega) (\bm{r} \cdot \bm{n})} e^{i \omega t} d\Omega d\omega \cr
+	&= \sqrt{\frac{2}{\pi}} \int\_{0}^{\infin} \oint\_{\mathbb{S}^2} \mathcal{Re} \big\lbrace \bm{E}(0, \bm{n}, \omega) e^{-i k(\omega) (\bm{r} \cdot \bm{n})} e^{i \omega t} \big\rbrace d\Omega d\omega.
+\end{aligned}
 $$
 
 This triple integral represents a [wave packet](https://en.wikipedia.org/wiki/Wave_packet). It is a collection of *vector* [plane waves](https://en.wikipedia.org/wiki/Plane_wave) \[[6](#references) (ch. 1.4.2), [8](#references) (ch. 3.2), [9](#references) (ch. 3.1)\] of the form
@@ -1175,8 +1178,8 @@ $$
 Take \\(\bm{E}\\) as an example. Substitute Equation 6.16 into 7.16.2:
 
 $$ \tag{7.17}
-	\nabla \cdot \oint\_{\mathbb{S}^2} \bm{E}(\bm{r}, \bm{n}, \omega) d\Omega_n =
-	\nabla \cdot \oint\_{\mathbb{S}^2} \bm{E}(0, \bm{n}, \omega) e^{-i k(\omega) (\bm{r} \cdot \bm{n})} d\Omega_n = 0.
+	\nabla \cdot \oint\_{\mathbb{S}^2} \bm{E}(\bm{r}, \bm{n}, \omega) d\Omega =
+	\nabla \cdot \oint\_{\mathbb{S}^2} \bm{E}(0, \bm{n}, \omega) e^{-i k(\omega) (\bm{r} \cdot \bm{n})} d\Omega = 0.
 $$
 
 Moving divergence under the integral sign leads to
@@ -1546,7 +1549,7 @@ $$ \tag{9.15}
 \begin{aligned}
 	\psi(\bm{r})
 	&= \psi_i(\bm{r}) + \psi_s(\bm{r}) \cr
-	&= \oint\_{\mathbb{S}^2} \psi_i(0, \bm{n}) e^{-i k_0 (\bm{r} \cdot \bm{n})} d\Omega_n
+	&= \oint\_{\mathbb{S}^2} \psi_i(0, \bm{n}) e^{-i k_0 (\bm{r} \cdot \bm{n})} d\Omega
 	 + \int\_{\mathbb{R^3}} \frac{e^{-i k_0 |\bm{r} - \bm{r'}|}}{4 \pi |\bm{r} - \bm{r'}|} \xi(\bm{r'}) dV'.
 \end{aligned}
 $$
@@ -2139,7 +2142,7 @@ $$ \tag{11.12}
 \begin{aligned}
     \bm{E}(\bm{r}, \omega)
     &= \bm{E_i}(\bm{r}, \omega) + \bm{E_s}(\bm{r}, \omega) \cr
-	&= \oint\_{\mathbb{S}^2} \bm{E}(0, \bm{n}, \omega) e^{-i k_1(\omega) (\bm{r} \cdot \bm{n})} d\Omega_n \cr
+	&= \oint\_{\mathbb{S}^2} \bm{E}(0, \bm{n}, \omega) e^{-i k_1(\omega) (\bm{r} \cdot \bm{n})} d\Omega \cr
 	&+ \int\_{V} \mathcal{G_{e}} \big( \bm{r}, \bm{r'}, k_1(\omega) \big) \bm{J'}(\bm{r'}, \omega) dV'.
 \end{aligned}
 $$
@@ -2151,7 +2154,7 @@ Consider a particle group embedded in vacuum. The solution in terms of potential
 $$ \tag{11.13}
 \begin{aligned}
 	\bm{A}(\bm{r}, \omega)
-	&= \oint\_{\mathbb{S}^2} \bm{A}(0, \bm{n}, \omega) e^{-i k_0(\omega) (\bm{r} \cdot \bm{n})} d\Omega_n \cr
+	&= \oint\_{\mathbb{S}^2} \bm{A}(0, \bm{n}, \omega) e^{-i k_0(\omega) (\bm{r} \cdot \bm{n})} d\Omega \cr
 	&+ \int\_{V} \frac{e^{-i k_0(\omega) |\bm{r} - \bm{r'}|}}{4 \pi |\bm{r} - \bm{r'}|} \frac{\bm{J_b}(\bm{r'}, \omega) + \bm{J_i}(\bm{r'}, \omega)}{\mu_0^{-1}} dV'.
 \end{aligned}
 $$
@@ -2200,7 +2203,7 @@ Substitution into Equation 11.13 yields
 $$ \tag{11.20}
 \begin{aligned}
 	\bm{A}(\bm{r}, \omega)
-	&= \oint\_{\mathbb{S}^2} \bm{A}(0, \bm{n}, \omega) e^{-i \omega (\bm{r} \cdot \bm{n}) / c} d\Omega_n \cr
+	&= \oint\_{\mathbb{S}^2} \bm{A}(0, \bm{n}, \omega) e^{-i \omega (\bm{r} \cdot \bm{n}) / c} d\Omega \cr
 	&+ i \omega \int\_{V} \frac{e^{-i \omega |\bm{r} - \bm{r'}| / c}}{4 \pi |\bm{r} - \bm{r'}|} \Bigg( \bigg( \frac{1}{v_p(\bm{r'}, \omega)} - \frac{i}{v_a(\bm{r'}, \omega)} \bigg)^2 - \frac{1}{c^2} \Bigg) \bm{E}(\bm{r'}, \omega) dV'.
 \end{aligned}
 $$
@@ -2210,7 +2213,7 @@ If the volume integral vanishes, we are left with the incident wave propagating 
 $$ \tag{11.21}
 \begin{aligned}
 	\bm{A}(\bm{r}, \omega)
-	&= \oint\_{\mathbb{S}^2} \bm{A}(0, \bm{n}, \omega) e^{-i \omega \sqrt{\varepsilon_1(\omega) \mu\_0} (\bm{r} \cdot \bm{n})} d\Omega_n \cr
+	&= \oint\_{\mathbb{S}^2} \bm{A}(0, \bm{n}, \omega) e^{-i \omega \sqrt{\varepsilon_1(\omega) \mu\_0} (\bm{r} \cdot \bm{n})} d\Omega \cr
 	&+ i \omega \int\_{V} \frac{e^{-i \omega \sqrt{\varepsilon_1(\omega) \mu\_0} |\bm{r} - \bm{r'}|}}{4 \pi |\bm{r} - \bm{r'}|} \big( \varepsilon_2(\bm{r'}, \omega) \mu\_0 - \varepsilon_1(\omega) \mu\_0 \big) \bm{E}(\bm{r'}, \omega) dV',
 \end{aligned}
 $$
@@ -2220,7 +2223,7 @@ or, using the wave number notation,
 $$ \tag{11.22}
 \begin{aligned}
 	\bm{A}(\bm{r}, \omega)
-	&= \oint\_{\mathbb{S}^2} \bm{A}(0, \bm{n}, \omega) e^{-i k_1(\omega) (\bm{r} \cdot \bm{n})} d\Omega_n \cr
+	&= \oint\_{\mathbb{S}^2} \bm{A}(0, \bm{n}, \omega) e^{-i k_1(\omega) (\bm{r} \cdot \bm{n})} d\Omega \cr
 	&+ \frac{i}{\omega} \int\_{V} \frac{e^{-i k_1(\omega) |\bm{r} - \bm{r'}|}}{4 \pi |\bm{r} - \bm{r'}|} \big( k_2^2(\bm{r'}, \omega) - k_1^2(\omega) \big) \bm{E}(\bm{r'}, \omega) dV'.
 \end{aligned}
 $$
@@ -2237,7 +2240,7 @@ After performing a substitution of Equation 11.22, and assuming that \\(\bm{r}\\
 $$ \tag{11.24}
 \begin{aligned}
     \bm{E}(\bm{r}, \omega)
-	&= \oint\_{\mathbb{S}^2} \bm{E}(0, \bm{n}, \omega) e^{-i k_1(\omega) (\bm{r} \cdot \bm{n})} d\Omega_n \cr
+	&= \oint\_{\mathbb{S}^2} \bm{E}(0, \bm{n}, \omega) e^{-i k_1(\omega) (\bm{r} \cdot \bm{n})} d\Omega \cr
 	&+ k_1^2(\omega) \int\_{V} \Big( \mathcal{I} + \frac{1}{k_1^2(\omega)} \nabla \otimes \nabla \Big) \frac{e^{-i k_1(\omega) |\bm{r} - \bm{r'}|}}{4 \pi |\bm{r} - \bm{r'}|} \big( m^2(\bm{r'}, \omega) - 1 \big) \bm{E}(\bm{r'}, \omega) dV'.
 \end{aligned}
 $$
@@ -2702,7 +2705,7 @@ The volume integral equation can be reduced to a relatively simple expression by
 
 Let us recall the mechanics of scattering. In a dielectric, the incident field drives the dipoles, which in turn act as sources of scattered wavelets interfering with the incident field according to the superposition principle. We may continue this line of thinking by considering the effect of a dipole as a secondary source on all other dipoles surrounding it, effectively treating the dipole field as the secondary incident field. Repeated application of this iterative approach leads to evaluation of successive orders of scattering one by one. This is the general idea behind the [Born series](https://en.wikipedia.org/wiki/Born_series) \[[6](#references) (ch. 13.1)\].
 
-We can formalize this approach in the following way \[[9](#references) (ch. 4.5)\]. We start with Equation 11.12, where we substitute the total electric tensor (cf. Equations 9.27-9.28) to ensure that the integral remains valid even if the observation point is inside the volume \\(V\\):
+We can formalize this approach in the following way \[[9](#references) (ch. 4.5)\]. We start with Equation 11.12, where we substitute the total electric tensor (cf. Equations 9.27-9.28) to ensure that the integral remains valid even if the integration point is inside the volume \\(V\\):
 
 $$ \tag{14.1}
     \bm{E}(\bm{r}, \omega)
@@ -2798,7 +2801,7 @@ $$
 
 Equation 14.12 is formally identical to the [Lippmann–Schwinger equation](https://en.wikipedia.org/wiki/Lippmann%E2%80%93Schwinger_equation).
 
-Similarly, Equation 14.5 is transformed into
+Similarly, Equation 14.5 can be transformed into
 
 $$ \tag{14.13}
     U \ket{E} = T \ket{E_i},
@@ -2826,7 +2829,7 @@ and the corresponding integral form is
 $$ \tag{14.16}
     \bm{E}(\bm{r})
     = \bm{E_i}(\bm{r})
-	+ \int\_{V} \mathcal{G} \big( \bm{r}, \bm{r'}) \int\_{V} \mathcal{T} (\bm{r'}, \bm{r''}) \bm{E_i}(\bm{r''}) dV'' dV'.
+	+ \int\_{V} \mathcal{G} (\bm{r}, \bm{r'}) \int\_{V} \mathcal{T} (\bm{r'}, \bm{r''}) \bm{E_i}(\bm{r''}) dV'' dV'.
 $$
 
 Note that Equation 14.16 is identical to the combination of Equations 14.4 and 14.5.
@@ -2883,6 +2886,39 @@ $$ \tag{14.22}
     \mathcal{T} \big( \bm{r'}, \bm{r''} \big)
     = u(\bm{r'}) \bigg( \delta(\bm{r'} - \bm{r''}) \mathcal{I} + \int_V \mathcal{G} \big( \bm{r'}, \bm{r} \big) \mathcal{T} \big( \bm{r}, \bm{r''} \big) dV \bigg).
 $$
+
+## Scattering Matrix
+
+An arbitrary stream of electromagnetic radiation can decomposed into a sum (or an integral) of individual plane waves. Specifically, in a *linear, isotropic, homogeneous* medium, the expression of the incident field is given by Equation 6.16:
+
+$$ \tag{15.1}
+	\bm{E_i}(\bm{r}, \omega) =
+	\oint\_{\mathbb{S}^2} \bm{E_i}(\bm{r}, \bm{n_i}, \omega) d\Omega_i =
+	\oint\_{\mathbb{S}^2} \bm{E_i}(0, \bm{n_i}, \omega) e^{-i k(\omega) (\bm{r} \cdot \bm{n_i})} d\Omega_i.
+$$
+
+We have also learned (c.f. Equation 14.16) that both the total and the scattered field are linear functions of the incident field. This allows us to utilize the superposition principle, according to which, the scattered field is a superposition of scattered waves generated by individual incident plane waves. Stated more precisely,
+
+$$ \tag{15.2}
+    \bm{E_s}(\bm{r}, \omega) =
+	\oint\_{\mathbb{S}^2} \bm{E_s}(\bm{r}, \bm{n_i}, \omega) d\Omega_i,
+$$
+
+where
+
+$$ \tag{15.3}
+    \bm{E_s}(\bm{r}, \bm{n_i}, \omega)
+	= \int\_{V} \mathcal{G} \big( \bm{r}, \bm{r'}, k(\omega) \big) \int\_{V} \mathcal{T} (\bm{r'}, \bm{r''}, \omega) \bm{E_i}(0, \bm{n_i}, \omega) e^{-i k(\omega) (\bm{r''} \cdot \bm{n_i})} dV'' dV'.
+$$
+
+By taking the initial value of the incident electric field outside the integral, we find the that the scattered field is related to the incident field by the *scattering tensor* \\(\mathcal{S}\\):
+
+$$ \tag{15.4}
+    \bm{E_s}(\bm{r}, \bm{n_i}, \omega)
+	= \mathcal{S} (\bm{r}, \bm{n_i}, \omega) \bm{E_i}(0, \bm{n_i}, \omega).
+$$
+
+Far field ...
 
 ---
 
