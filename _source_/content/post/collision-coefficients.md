@@ -1022,7 +1022,7 @@ $$
 
 That is a general solution of the Maxwell equations for *linear, isotropic, homogeneous, source-free* media.
 
-### Planar Waves
+### Plane waves
 
 We can find a solution of the Maxwell equations in the time domain by performing the inverse Fourier transform of Equation 6.16:
 
@@ -1031,14 +1031,14 @@ $$ \tag{7.1}
 	= \sqrt{\frac{2}{\pi}} \int\_{0}^{\infin} \oint\_{\mathbb{S}^2} \mathcal{Re} \big\lbrace \bm{E}(0, \bm{n}, \omega) e^{-i k(\omega) (\bm{r} \cdot \bm{n})} e^{i \omega t} \big\rbrace d\Omega_n d\omega.
 $$
 
-This triple integral represents a [wave packet](https://en.wikipedia.org/wiki/Wave_packet). It is a collection of *vector* [planar waves](https://en.wikipedia.org/wiki/Plane_wave) \[[6](#references) (ch. 1.4.2), [8](#references) (ch. 3.2), [9](#references) (ch. 3.1)\] of the form
+This triple integral represents a [wave packet](https://en.wikipedia.org/wiki/Wave_packet). It is a collection of *vector* [plane waves](https://en.wikipedia.org/wiki/Plane_wave) \[[6](#references) (ch. 1.4.2), [8](#references) (ch. 3.2), [9](#references) (ch. 3.1)\] of the form
 
 $$ \tag{7.2}
 	\bm{E}(\bm{r}, \bm{n}, \omega) e^{i \omega t}
 	= \bm{E}(0, \bm{n}, \omega) e^{-i k(\omega) (\bm{r} \cdot \bm{n})} e^{i \omega t}
 $$
 
-each composed of three *scalar* planar waves such as
+each composed of three *scalar* plane waves such as
 
 $$ \tag{7.3}
 	E(\bm{r}, \bm{n}, \omega) e^{i \omega t}
@@ -1096,7 +1096,7 @@ $$
 
 where \\(v_p = c/\eta\\) is the [phase velocity](https://en.wikipedia.org/wiki/Phase_velocity) and \\(v_a=c/\kappa\\) is the *amplitude velocity*. It shows that, in a dispersive medium, waves of different frequencies propagate at different rates.
 
-In order to develop some intuition about the role of the refractive index \[[5](#references) (vol. II, ch. 32.4)\], consider the spatial component of a scalar planar wave
+In order to develop some intuition about the role of the refractive index \[[5](#references) (vol. II, ch. 32.4)\], consider the spatial component of a scalar plane wave
 
 $$ \tag{7.10}
 \begin{aligned}
@@ -1107,7 +1107,7 @@ $$ \tag{7.10}
 \end{aligned}
 $$
 
-Multiplication by the temporal component \\(e^{i \omega t}\\) yields the full expression of a scalar planar wave:
+Multiplication by the temporal component \\(e^{i \omega t}\\) yields the full expression of a scalar plane wave:
 
 $$ \tag{7.11}
 \begin{aligned}
@@ -1154,7 +1154,7 @@ On the other hand, \\(\kappa > 0\\) produces an exponential decay characteristic
 
 [Insert Picture Here]
 
-Equation 7.1 can be seen as a decomposition of the electric field into planar waves interfering with each other. By [interference](https://en.wikipedia.org/wiki/Wave_interference), we simply mean that when two waves (often assumed to be of the same frequency) are added together, the peak amplitude of the resulting wave is, in general, different from the sum of the peak amplitudes unless the waves oscillate *in-phase* (in such a way that the phase difference is zero), in which case interference is said to be *constructive*. In the worst case scenario, the peaks align with the troughs, and *destructive* interference causes the waves to completely cancel each other. A typical *out-of-phase* case falls in between these two extremes \[[5](#references) (vol. I, ch. 29)\].
+Equation 7.1 can be seen as a decomposition of the electric field into plane waves interfering with each other. By [interference](https://en.wikipedia.org/wiki/Wave_interference), we simply mean that when two waves (often assumed to be of the same frequency) are added together, the peak amplitude of the resulting wave is, in general, different from the sum of the peak amplitudes unless the waves oscillate *in-phase* (in such a way that the phase difference is zero), in which case interference is said to be *constructive*. In the worst case scenario, the peaks align with the troughs, and *destructive* interference causes the waves to completely cancel each other. A typical *out-of-phase* case falls in between these two extremes \[[5](#references) (vol. I, ch. 29)\].
 
 [Insert Picture Here]
 
@@ -1227,7 +1227,7 @@ $$ \tag{7.24}
 	= \mathcal{Re} \big\lbrace \bm{B}(\bm{r}, \bm{n}, \omega) e^{i \omega t} \big\rbrace
 $$
 
-shows us that the electric and the magnetic field vectors of a planar wave are orthogonal at all times. Thus, \\(\lbrace \bm{E}, \bm{B}, \bm{n} \rbrace\\) is an orthogonal triad of vectors that defines the geometric configuration of a planar wave in a linear, isotropic, homogeneous, source-free medium:
+shows us that the electric and the magnetic field vectors of a plane wave are orthogonal at all times. Thus, \\(\lbrace \bm{E}, \bm{B}, \bm{n} \rbrace\\) is an orthogonal triad of vectors that defines the geometric configuration of a plane wave in a linear, isotropic, homogeneous, source-free medium:
 
 $$ \tag{7.25}
 	\bm{n} \times \frac{\mathcal{Re} \big\lbrace \bm{E}(\bm{r}, \bm{n}, \omega) e^{i \omega t} \big\rbrace}{\big\vert \mathcal{Re} \big\lbrace \bm{E}(\bm{r}, \bm{n}, \omega) e^{i \omega t} \big\rbrace \big\vert}
@@ -1244,7 +1244,7 @@ $$ \tag{7.26}
 	= \mu\_0^{-1} |\bm{E}(\bm{r}, t)| |\bm{B}(\bm{r}, t)| \bm{n}
 $$
 
-is the expression of the Poynting vector of a planar wave.
+is the expression of the Poynting vector of a plane wave.
 
 Since the field vectors are orthogonal, Equations 7.24-7.25 define the ratio of wave amplitudes:
 
@@ -1253,7 +1253,7 @@ $$ \tag{7.27}
 	= \frac{\eta(\omega)}{c}.
 $$
 
-This equality has two consequences. First, it says that the electric and the magnetic vectors of a planar wave oscillate in-phase, with the magnitude of both vectors rising and falling at the same point in space and time. Stated mathematically, if we align the triad \\(\lbrace \bm{E}, \bm{B}, \bm{n} \rbrace\\) with the \\(\lbrace x,y,z \rbrace\\) axes of a Cartesian coordinate system, then
+This equality has two consequences. First, it says that the electric and the magnetic vectors of a plane wave oscillate in-phase, with the magnitude of both vectors rising and falling at the same point in space and time. Stated mathematically, if we align the triad \\(\lbrace \bm{E}, \bm{B}, \bm{n} \rbrace\\) with the \\(\lbrace x,y,z \rbrace\\) axes of a Cartesian coordinate system, then
 
 $$ \tag{7.28}
 	\mathcal{Arg} \big\lbrace E_x(0, \bm{n}, \omega) \big\rbrace =
@@ -1290,7 +1290,7 @@ $$
 
 ### Electromagnetic Potential
 
-The solutions of the Maxwell equations we have found so far have a limited range of validity. The medium must be isotropic and either homogeneous (which prohibits scattering) or divided into several bounded homogeneous regions (which permits scattering only at the boundaries), and the material's response to the incident electromagnetic field may only be purely linear. Moreover, while the method of solving a system of differential equations augmented with boundary conditions (the so-called [boundary value problem](https://en.wikipedia.org/wiki/Boundary_value_problem)) is suitable for many simple cases (such as reflection and transmission of a planar wave at a planar interface, which leads to the [Fresnel equations](https://en.wikipedia.org/wiki/Fresnel_equations)), it quickly becomes unwieldy for more complex problems. Another approach tends to become more viable, where one reformulates the field in terms of the [electromagnetic potential](https://en.wikipedia.org/wiki/Electromagnetic_four-potential), as this leads to an integral (rather than a differential) solution of the Maxwell equations.
+The solutions of the Maxwell equations we have found so far have a limited range of validity. The medium must be isotropic and either homogeneous (which prohibits scattering) or divided into several bounded homogeneous regions (which permits scattering only at the boundaries), and the material's response to the incident electromagnetic field may only be purely linear. Moreover, while the method of solving a system of differential equations augmented with boundary conditions (the so-called [boundary value problem](https://en.wikipedia.org/wiki/Boundary_value_problem)) is suitable for many simple cases (such as reflection and transmission of a plane wave at a planar interface, which leads to the [Fresnel equations](https://en.wikipedia.org/wiki/Fresnel_equations)), it quickly becomes unwieldy for more complex problems. Another approach tends to become more viable, where one reformulates the field in terms of the [electromagnetic potential](https://en.wikipedia.org/wiki/Electromagnetic_four-potential), as this leads to an integral (rather than a differential) solution of the Maxwell equations.
 
 Take another look at the equation of the magnetic field. Since the [divergence of curl](https://en.wikipedia.org/wiki/Vector_calculus_identities#Divergence_of_curl_is_zero) is zero, Equation 1.1.2 can be written as
 
@@ -2583,7 +2583,7 @@ $$ \tag{13.7}
 	= 0.
 $$
 
-Thus, at a large distance, for a fixed direction of observation, such a spherical wavelet is an analog of a planar wave with the amplitude decreasing as \\(R^{-1}\\).
+Thus, at a large distance, for a fixed direction of observation, such a spherical wavelet is an analog of a plane wave with the amplitude decreasing as \\(R^{-1}\\).
 
 [Picture]
 
