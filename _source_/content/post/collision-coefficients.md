@@ -1190,6 +1190,7 @@ Moving divergence under the integral sign leads to
 
 $$ \tag{7.18}
 	\nabla \cdot \bm{E}(\bm{r}, \bm{n}, \omega)
+	= \Big( \nabla e^{-i k(\omega) (\bm{r} \cdot \bm{n})} \Big) \cdot \bm{E}(0, \bm{n}, \omega)
 	= -i k(\omega) \bm{n} \cdot \bm{E}(\bm{r}, \bm{n}, \omega)
 	= 0.
 $$
@@ -1207,17 +1208,33 @@ $$ \tag{7.20}
 	\nabla \times \bm{E}(\bm{r}, \omega) = - i \omega \bm{B}(\bm{r}, \omega).
 $$
 
-Substitute Equation 6.16 again (into both sides) and expand the expression of the curl
+Substitute Equation 6.16 into the left-hand side and expand the expression of the curl
 
 $$ \tag{7.21}
 	\nabla \times \bm{E}(\bm{r}, \bm{n}, \omega)
+	= \Big( \nabla e^{-i k(\omega) (\bm{r} \cdot \bm{n})} \Big) \times \bm{E}(0, \bm{n}, \omega)
 	= -i k(\omega) \bm{n} \times \bm{E}(\bm{r}, \bm{n}, \omega).
 $$
 
 Equation 7.20 is thus equivalent to
 
 $$ \tag{7.22}
-	-i k(\omega) \bm{n} \times \bm{E}(\bm{r}, \bm{n}, \omega) = - i \omega \bm{B}(\bm{r}, \bm{n}, \omega).
+	-i k(\omega) \bm{n} \times \bm{E}(\bm{r}, \bm{n}, \omega) = -i \omega \bm{B}(\bm{r}, \bm{n}, \omega).
+$$
+
+After taking the dot product with \\(\bm{n}\\), we obtain an analog of Equation 7.18:
+
+$$ \tag{7.23}
+	\frac{k(\omega)}{\omega} \bm{n} \cdot \big( \bm{n} \times \bm{E}(\bm{r}, \bm{n}, \omega) \big)
+	= \bm{n} \cdot \bm{B}(\bm{r}, \bm{n}, \omega)
+	= 0,
+$$
+
+which, similarly, leads to
+
+$$ \tag{7.24}
+	\bm{n} \cdot \mathcal{Re} \big\lbrace \bm{B}(\bm{r}, \bm{n}, \omega) e^{i \omega t} \big\rbrace
+	= 0.
 $$
 
 Using the definition of the wave number given by Equation 7.9, we obtain the following equation:
@@ -1227,7 +1244,17 @@ $$ \tag{7.23}
 	= \bm{B}(\bm{r}, \bm{n}, \omega).
 $$
 
+FIX MEEEEE
+
+
+
 If we take the real part of this expression multiplied by \\(e^{i \omega t}\\), the result
+
+$$ \tag{7.24}
+	\bm{n} \times \bigg( \frac{\eta(\omega)}{c} \mathcal{Re} \big\lbrace \bm{E}(\bm{r}, \bm{n}, \omega) e^{i \omega t} \big\rbrace
+	+ \frac{\kappa(\omega)}{c} \mathcal{Im} \big\lbrace \bm{E}(\bm{r}, \bm{n}, \omega) e^{i \omega t} \big\rbrace \bigg)
+	= \mathcal{Re} \big\lbrace \bm{B}(\bm{r}, \bm{n}, \omega) e^{i \omega t} \big\rbrace
+$$
 
 $$ \tag{7.24}
 	\frac{\eta(\omega)}{c} \bm{n} \times \mathcal{Re} \big\lbrace \bm{E}(\bm{r}, \bm{n}, \omega) e^{i \omega t} \big\rbrace
@@ -2590,6 +2617,8 @@ $$ \tag{13.7}
 	= 0.
 $$
 
+CHECK MEEE
+
 Thus, at a large distance, for a fixed direction of observation, such a spherical wavelet is an analog of a plane wave with the amplitude decreasing as \\(R^{-1}\\).
 
 [Picture]
@@ -2915,7 +2944,7 @@ $$ \tag{15.3}
 	= \int\_{V} \mathcal{G} \big( \bm{r}, \bm{r'}, k(\omega) \big) \int\_{V} \mathcal{T} (\bm{r'}, \bm{r''}, \omega) \bm{E_i}(0, \bm{n_i}, \omega) e^{-i k(\omega) (\bm{r''} \cdot \bm{n_i})} dV'' dV'.
 $$
 
-By taking the initial value of the incident electric field outside the integral, we find the that the scattered field is related to the incident field by the *scattering tensor* \\(\mathcal{S}\\):
+By taking the initial value of the incident electric field outside the integral, we find the that the scattered field is related to the incident field by the *scattering tensor* \\(\mathcal{S}\\) \[[9](#references) (ch. 5.3)\]:
 
 $$ \tag{15.4}
     \bm{E_s}(\bm{r}, \bm{n_i}, \omega)
@@ -2960,6 +2989,10 @@ $$ \tag{15.7}
 	\int\_{V} \int\_{V} e^{i k(\omega) (\bm{r'} \cdot \bm{n_s} - \bm{r''} \cdot \bm{n_i})} \mathcal{T} \big( \bm{r'}, \bm{r''}, \omega \big) dV'' dV'.
 \end{aligned}
 $$
+
+Expressions given above are independent of the choice of a coordinate system. In practice, it is rather convenient to assert that the incident wave propagates along the \\(z\\)-axis. That way, the initial value of the incident field can be represented using only two components. These components are typically defined with respect to a certain *plane of reference* that contains the incident direction \[[4](#references) (ch. 5.11)\]. While the choice of the orientation of the plane is, in principle, arbitrary (for instance, one could use the \\(xz\\) or the \\(yz\\) plane), a convenient choice for a scattering problem is to use the plane spanned by the directions of incidence and scattering.
+
+
 
 ---
 
