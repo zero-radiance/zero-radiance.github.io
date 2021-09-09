@@ -464,7 +464,7 @@ $$ \tag{3.4}
 	&= \frac{1}{\sqrt{2 \pi}} \int\_{0}^{\infin} \bm{E}(\bm{r}, \omega) e^{i \omega t} d\omega
 	 + \frac{1}{\sqrt{2 \pi}} \int\_{-\infin}^{0} \bm{E}(\bm{r}, \omega) e^{i \omega t} d\omega \cr
 	&= \frac{1}{\sqrt{2 \pi}} \int\_{0}^{\infin} \Big( \bm{E}(\bm{r}, \omega) e^{i \omega t} + \big[ \bm{E}(\bm{r}, \omega) e^{i \omega t} \big]^{\*} \Big) d\omega \cr
-	&= \frac{1}{\sqrt{2 \pi}} \int\_{0}^{\infin} 2 \thinspace \mathcal{Re} \big\lbrace \bm{E}(\bm{r}, \omega) e^{i \omega t} \big\rbrace d\omega,
+	&= \sqrt{\frac{2}{\pi}} \int\_{0}^{\infin} \thinspace \mathcal{Re} \big\lbrace \bm{E}(\bm{r}, \omega) e^{i \omega t} \big\rbrace d\omega,
 \end{aligned}
 $$
 
@@ -661,7 +661,9 @@ $$ \tag{4.9}
 	\bm{E}(\bm{r}, \omega)
 	&= \frac{1}{\sqrt{2 \pi}} \int\_{-\infin}^{\infin} \bm{E}(\bm{r}, t) e^{-i \omega t} dt \cr
 	&= \frac{1}{\sqrt{2 \pi}} \sum\_{p = -\infin}^{\infin} \bm{E_p}(\bm{r}) \int\_{-\infin}^{\infin} e^{i (\omega_p - \omega) t} dt \cr
-	&= \sqrt{2 \pi} \sum\_{p = -\infin}^{\infin} \bm{E_p}(\bm{r}) \delta(\omega_p - \omega),
+	&= \sqrt{2 \pi} \sum\_{p = -\infin}^{\infin} \bm{E_p}(\bm{r}) \delta(\omega_p - \omega) \cr
+	&= \sqrt{2 \pi} \bigg( \bm{E_0}(\bm{r}) \delta(\omega) +
+	\sum\_{p = 1}^{\infin} \Big( \bm{E_p}(\bm{r}) \delta(\omega_p - \omega) + \big[ \bm{E_p}(\bm{r}) \big]^{\*} \delta(-\omega_p - \omega) \Big) \bigg),
 \end{aligned}
 $$
 
@@ -676,15 +678,17 @@ Since the individual harmonics are orthogonal (and, as a result, independent), a
 
 $$ \tag{4.11}
 	\bm{E}(\bm{r}, t)
-	= \mathcal{Re} \big\lbrace \bm{E_p}(\bm{r}) e^{i \omega_p t} \big\rbrace,
+	= \sqrt{\frac{2}{\pi}} \mathcal{Re} \big\lbrace \bm{E_p}(\bm{r}) e^{i \omega_p t} \big\rbrace,
 $$
 
 in isolation, with the corresponding phasor fields
 
 $$ \tag{4.12}
 	\bm{E}(\bm{r}, \omega)
-	= \sqrt{2 \pi} \bm{E_p}(\bm{r}) \delta(\omega_p - \omega).
+	= \bm{E_p}(\bm{r}) \delta(\omega_p - \omega) + \big[ \bm{E_p}(\bm{r}) \big]^{\*} \delta(-\omega_p - \omega).
 $$
+
+In practice, it is not necessary to solve the Maxwell equations for the complex conjugate. We simply take \\(\bm{E_p}(\bm{r}) \delta(\omega_p - \omega)\\) and substitute it in place of \\(\bm{E}(\bm{r}, \omega)\\) into Equation 3.7. As a result, we obtain a system formally equivalent to Equation 3.9, with \\(\bm{E}(\bm{r}, \omega)\\) replaced by \\(\bm{E_p}(\bm{r})\\), and \\(\omega\\) by \\(\omega_p\\). After solving for \\(\bm{E_p}(\bm{r})\\), we use Equation 4.11 to obtain the expression of the real electric vector \\(\bm{E}(\bm{r}, t)\\).
 
 Let us put the math to work. Assuming that the electromagnetic field is time-harmonic, Equation 2.22 of the Poynting vector can be written as
 
