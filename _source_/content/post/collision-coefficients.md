@@ -1195,14 +1195,14 @@ $$ \tag{7.18}
 	= 0.
 $$
 
-After division by the constant \\(i k\\) and multiplication by \\(e^{i \omega t}\\), it is clear that the field vector is orthogonal to the plane normal at all times:
+After division by the constant \\(i k\\) and multiplication by \\(e^{i \omega t}\\), it is clear that the electric field vector is orthogonal to the plane normal at all times:
 
 $$ \tag{7.19}
 	\bm{n} \cdot \mathcal{Re} \big\lbrace \bm{E}(\bm{r}, \bm{n}, \omega) e^{i \omega t} \big\rbrace
 	= 0.
 $$
 
-Similarly, we can relate the electric and the magnetic field vectors. According to Equation 3.9.1,
+We can prove that the magnetic vector possesses the same property in a similar manner. According to Equation 3.9.1,
 
 $$ \tag{7.20}
 	\nabla \times \bm{E}(\bm{r}, \omega) = - i \omega \bm{B}(\bm{r}, \omega).
@@ -1230,49 +1230,40 @@ $$ \tag{7.23}
 	= 0,
 $$
 
-which, similarly, leads to
+where the last equality is obtained by rearranging the [triple product](https://en.wikipedia.org/wiki/Triple_product) \\(\bm{n} \cdot (\bm{n} \times \bm{E}) = \bm{E} \cdot (\bm{n} \times \bm{n}) = 0\\).
 
 $$ \tag{7.24}
 	\bm{n} \cdot \mathcal{Re} \big\lbrace \bm{B}(\bm{r}, \bm{n}, \omega) e^{i \omega t} \big\rbrace
 	= 0.
 $$
 
-Using the definition of the wave number given by Equation 7.9, we obtain the following equation:
+With \\(\bm{E}\\) and \\(\bm{B}\\) both orthogonal to \\(\bm{n}\\), the only remaining question is regarding their mutual orientation. Using the definition of the wave number given by Equation 7.9, Equation 7.22 can be written as
 
-$$ \tag{7.23}
+$$ \tag{7.25}
 	\frac{1}{c} \big(\eta(\omega) - i \kappa(\omega) \big) \bm{n} \times \bm{E}(\bm{r}, \bm{n}, \omega)
 	= \bm{B}(\bm{r}, \bm{n}, \omega).
 $$
 
-FIX MEEEEE
+If we multiply the both sides by \\(e^{i \omega t}\\) and take the real part, the result
 
-
-
-If we take the real part of this expression multiplied by \\(e^{i \omega t}\\), the result
-
-$$ \tag{7.24}
+$$ \tag{7.26}
 	\bm{n} \times \bigg( \frac{\eta(\omega)}{c} \mathcal{Re} \big\lbrace \bm{E}(\bm{r}, \bm{n}, \omega) e^{i \omega t} \big\rbrace
 	+ \frac{\kappa(\omega)}{c} \mathcal{Im} \big\lbrace \bm{E}(\bm{r}, \bm{n}, \omega) e^{i \omega t} \big\rbrace \bigg)
 	= \mathcal{Re} \big\lbrace \bm{B}(\bm{r}, \bm{n}, \omega) e^{i \omega t} \big\rbrace
 $$
 
-$$ \tag{7.24}
-	\frac{\eta(\omega)}{c} \bm{n} \times \mathcal{Re} \big\lbrace \bm{E}(\bm{r}, \bm{n}, \omega) e^{i \omega t} \big\rbrace
-	= \mathcal{Re} \big\lbrace \bm{B}(\bm{r}, \bm{n}, \omega) e^{i \omega t} \big\rbrace
-$$
+shows us that the electric and the magnetic field vectors of a plane wave are perpendicular only if \\(\kappa = 0\\). If that is the case, \\(\lbrace \bm{E}, \bm{B}, \bm{n} \rbrace\\) is an orthogonal triad of vectors that defines the geometric configuration of a plane wave in a non-absorbing, linear, isotropic, homogeneous, source-free medium:
 
-shows us that the electric and the magnetic field vectors of a plane wave are orthogonal at all times. Thus, \\(\lbrace \bm{E}, \bm{B}, \bm{n} \rbrace\\) is an orthogonal triad of vectors that defines the geometric configuration of a plane wave in a linear, isotropic, homogeneous, source-free medium:
-
-$$ \tag{7.25}
+$$ \tag{7.27}
 	\bm{n} \times \frac{\mathcal{Re} \big\lbrace \bm{E}(\bm{r}, \bm{n}, \omega) e^{i \omega t} \big\rbrace}{\big\vert \mathcal{Re} \big\lbrace \bm{E}(\bm{r}, \bm{n}, \omega) e^{i \omega t} \big\rbrace \big\vert}
 	= \frac{\mathcal{Re} \big\lbrace \bm{B}(\bm{r}, \bm{n}, \omega) e^{i \omega t} \big\rbrace}{\big\vert \mathcal{Re} \big\lbrace \bm{B}(\bm{r}, \bm{n}, \omega) e^{i \omega t} \big\rbrace \big\vert}.
 $$
 
 [Insert Picture Here]
 
-We have seen the \\(\bm{E} \times \bm{B}\\) expression before (c.f. Equation 2.17). Assuming the fields are monochromatic, and the medium where we perform the measurements - non-magnetic, Equation 7.25 suggests that
+Recall that we have seen the \\(\bm{E} \times \bm{B}\\) expression before (c.f. Equation 2.17). Assuming the fields are monochromatic, and the medium where we perform the measurements - non-magnetic, Equation 7.27 suggests that
 
-$$ \tag{7.26}
+$$ \tag{7.28}
 	\bm{S}(\bm{r}, t)
 	= \mu\_0^{-1} \big( \bm{E}(\bm{r}, t) \times \bm{B}(\bm{r}, t) \big)
 	= \mu\_0^{-1} |\bm{E}(\bm{r}, t)| |\bm{B}(\bm{r}, t)| \bm{n}
@@ -1280,16 +1271,16 @@ $$
 
 is the expression of the Poynting vector of a plane wave.
 
-Since the field vectors are orthogonal, Equations 7.24-7.25 define the ratio of wave amplitudes:
+If the field vectors are orthogonal, Equations 7.26-7.27 define the ratio of wave amplitudes:
 
-$$ \tag{7.27}
+$$ \tag{7.29}
 	\frac{\big\vert \mathcal{Re} \big\lbrace \bm{B}(\bm{r}, \bm{n}, \omega) e^{i \omega t} \big\rbrace \big\vert}{\big\vert \mathcal{Re} \big\lbrace \bm{E}(\bm{r}, \bm{n}, \omega) e^{i \omega t} \big\rbrace \big\vert}
 	= \frac{\eta(\omega)}{c}.
 $$
 
 This equality has two consequences. First, it says that the electric and the magnetic vectors of a plane wave oscillate in-phase, with the magnitude of both vectors rising and falling at the same point in space and time. Stated mathematically, if we align the triad \\(\lbrace \bm{E}, \bm{B}, \bm{n} \rbrace\\) with the \\(\lbrace x,y,z \rbrace\\) axes of a Cartesian coordinate system, then
 
-$$ \tag{7.28}
+$$ \tag{7.30}
 	\mathcal{Arg} \big\lbrace E_x(0, \bm{n}, \omega) \big\rbrace =
 	\mathcal{Arg} \big\lbrace B_y(0, \bm{n}, \omega) \big\rbrace =
 	\delta.
@@ -1297,29 +1288,22 @@ $$
 
 Secondly, it means we can compute the Poynting vector without explicit consideration of the magnetic field:
 
-$$ \tag{7.29}
+$$ \tag{7.31}
 	\bm{S}(\bm{r}, t)
 	= \mu\_0^{-1} \frac{\eta(\omega)}{c} |\bm{E}(\bm{r}, t)|^2 \bm{n}
-	= \Big(\epsilon_0 \eta c |E\_0|^2 e^{-2 \omega (\bm{r} \cdot \bm{n}) (\kappa / c)} \cos^2{\theta(\bm{r}, t)} \Big) \bm{n},
+	= \big( \epsilon_0 \eta c |E\_0|^2 \cos^2{\theta} \big) \bm{n},
 $$
 
 where we expanded the squared amplitude as per Equation 7.14.
 
 The average value of a squared cosine is \\(\frac{1}{2}\\), so the corresponding irradiance[^11] value (c.f. Equation 2.25) is
 
-$$ \tag{7.30}
-	\mathtt{E}
-	= \braket{\bm{S}} \cdot \bm{n}
-	= \frac{1}{2} \epsilon_0 \eta c |E\_0|^2 e^{-2 \omega (\bm{r} \cdot \bm{n}) (\kappa / c)}
-	= \frac{1}{2} \epsilon_0 \eta c |E\_0|^2 e^{-\beta_a (\bm{r} \cdot \bm{n})},
-$$
-
 [^11]: Since the fields are monochromatic, the expressions of irradiance and spectral irradiance are identical.
 
-with the grouped constants forming the [absorption coefficient](https://en.wikipedia.org/wiki/Attenuation_coefficient#Absorption_and_scattering_coefficients)
-
-$$ \tag{7.31}
-	\beta_a(\omega) = 2 \omega \frac{\kappa(\omega)}{c}.
+$$ \tag{7.32}
+	\mathtt{E}
+	= \braket{\bm{S}} \cdot \bm{n}
+	= \frac{1}{2} \epsilon_0 \eta c |E\_0|^2.
 $$
 
 ### Electromagnetic Potential
