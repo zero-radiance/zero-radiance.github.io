@@ -371,7 +371,7 @@ A more pressing question is whether our derivation, which exclusively used the m
 
 A typical derivation[^5] replaces \\(\bm{J}\\) with \\(\bm{J_f}\\) in Equation 2.6, which, after substitution of Equation 1.14.3, leads to the macroscopic counterpart of Equation 2.7 \[[6](#references) (ch. 1.1.4), [8](#references) (ch. 2.5), [9](#references) (ch. 2.4)\]:
 
-[^5]: I do not have a good reason why ignoring the bound current is valid in this context.
+[^5]: Work done on the bound current is implicit, since the latter is used to define \\(\bm{D}\\) and \\(\bm{H}\\).
 
 $$ \tag{2.20}
 	\int\_{V} \bm{E} \cdot \bm{J_f} \thinspace dV =
