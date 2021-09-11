@@ -610,17 +610,19 @@ One particular feature of periodic functions is the existence of the [Fourier se
 
 $$ \tag{4.4}
 	\bm{E}(\bm{r}, t)
-	= \sum\_{p = -\infin}^{\infin} \bm{E_p}(\bm{r}) e^{i p \omega_1 t}
-	= \sum\_{p = -\infin}^{\infin} \bm{E_p}(\bm{r}) e^{i \omega_p t},
-	= \sum\_{p = -\infin}^{\infin} \ket{u_p} \braket{u_p \vert \bm{E}}.
+	= \frac{1}{2} \sum\_{p = -\infin}^{\infin} \bm{E_p}(\bm{r}) e^{i p \omega_1 t}
+	= \frac{1}{2} \sum\_{p = -\infin}^{\infin} \bm{E_p}(\bm{r}) e^{i \omega_p t}
+	= \frac{1}{2} \sum\_{p = -\infin}^{\infin} \ket{u_p} \braket{u_p \vert \bm{E}}.
 $$
 
-where we defined \\(\omega_p = p \thinspace \omega_1\\), with the *Fourier coefficients* \\(\bm{E_p}\\) given by the integral
+where we defined \\(\omega_p = p \thinspace \omega_1\\), with the *Fourier coefficients* \\(\bm{E_p}\\) given by the integral[^8]
+
+[^8]: In order to obtain the same results found in the physics literature, we had to multiply the series by 1/2, and the coefficients by 2.
 
 $$ \tag{4.5}
 	\bm{E_p}(\bm{r})
-	= \frac{1}{T_1} \int\_{-T_1/2}^{\thinspace T_1/2} \bm{E}(\bm{r}, t) e^{-i \omega_p t} dt
-	= \braket{u_p \vert \bm{E}}.
+	= \frac{2}{T_1} \int\_{-T_1/2}^{\thinspace T_1/2} \bm{E}(\bm{r}, t) e^{-i \omega_p t} dt
+	= 2 \braket{u_p \vert \bm{E}}.
 $$
 
 Equation 4.5 can be interpreted as the [projection](https://en.wikipedia.org/wiki/Hilbert_space#Fourier_analysis) onto the discrete [Fourier basis](https://en.wikipedia.org/wiki/Fourier_series#Hilbert_space_interpretation), with Equation 4.4 showing the reconstruction. The individual elements of Equation 4.4 (called *harmonics*) possess a key property encapsulated in the *orthonormalization relation*
@@ -644,11 +646,13 @@ which permits us to simplify Equation 4.4:
 $$ \tag{4.8}
 \begin{aligned}
 	\bm{E}(\bm{r}, t)
-	&= \bm{E_0}(\bm{r})
-	 + \sum\_{p = 1}^{\infin} \bm{E_p}(\bm{r}) e^{i \omega_p t}
-	 + \sum\_{p = -\infin}^{-1} \bm{E_p}(\bm{r}) e^{i \omega_p t} \cr
-	&= \bm{E_0}(\bm{r}) + \sum\_{p = 1}^{\infin} \Big( \bm{E_p}(\bm{r}) e^{i \omega_p t} + \big[ \bm{E_p}(\bm{r}) e^{i \omega_p t} \big]^{\*} \Big) \cr
-	&= \bm{E_0}(\bm{r}) + \sum\_{p = 1}^{\infin} 2 \thinspace \mathcal{Re} \big\lbrace \bm{E_p}(\bm{r}) e^{i \omega_p t} \big\rbrace.
+	& = \frac{1}{2} \bm{E_0}(\bm{r})
+	+ \frac{1}{2} \sum\_{p = 1}^{\infin} \bm{E_p}(\bm{r}) e^{i \omega_p t}
+	+ \frac{1}{2} \sum\_{p = -\infin}^{-1} \bm{E_p}(\bm{r}) e^{i \omega_p t} \cr
+	&= \frac{1}{2} \bm{E_0}(\bm{r})
+	+ \frac{1}{2} \sum\_{p = 1}^{\infin} \Big( \bm{E_p}(\bm{r}) e^{i \omega_p t} + \big[ \bm{E_p}(\bm{r}) e^{i \omega_p t} \big]^{\*} \Big) \cr
+	& = \frac{1}{2} \bm{E_0}(\bm{r})
+	+ \sum\_{p = 1}^{\infin} \thinspace \mathcal{Re} \big\lbrace \bm{E_p}(\bm{r}) e^{i \omega_p t} \big\rbrace.
 \end{aligned}
 $$
 
@@ -660,9 +664,9 @@ $$ \tag{4.9}
 \begin{aligned}
 	\bm{E}(\bm{r}, \omega)
 	&= \frac{1}{\sqrt{2 \pi}} \int\_{-\infin}^{\infin} \bm{E}(\bm{r}, t) e^{-i \omega t} dt \cr
-	&= \frac{1}{\sqrt{2 \pi}} \sum\_{p = -\infin}^{\infin} \bm{E_p}(\bm{r}) \int\_{-\infin}^{\infin} e^{i (\omega_p - \omega) t} dt \cr
-	&= \sqrt{2 \pi} \sum\_{p = -\infin}^{\infin} \bm{E_p}(\bm{r}) \delta(\omega_p - \omega) \cr
-	&= \sqrt{2 \pi} \bigg( \bm{E_0}(\bm{r}) \delta(\omega) +
+	&= \frac{1}{2 \sqrt{2 \pi}} \sum\_{p = -\infin}^{\infin} \bm{E_p}(\bm{r}) \int\_{-\infin}^{\infin} e^{i (\omega_p - \omega) t} dt \cr
+	&= \sqrt{\frac{\pi}{2}} \sum\_{p = -\infin}^{\infin} \bm{E_p}(\bm{r}) \delta(\omega_p - \omega) \cr
+	&= \sqrt{\frac{\pi}{2}} \bigg( \bm{E_0}(\bm{r}) \delta(\omega) +
 	\sum\_{p = 1}^{\infin} \Big( \bm{E_p}(\bm{r}) \delta(\omega_p - \omega) + \big[ \bm{E_p}(\bm{r}) \big]^{\*} \delta(-\omega_p - \omega) \Big) \bigg),
 \end{aligned}
 $$
@@ -678,14 +682,14 @@ Since the individual harmonics are orthogonal (and, as a result, independent), a
 
 $$ \tag{4.11}
 	\bm{E}(\bm{r}, t)
-	= 2 \mathcal{Re} \big\lbrace \bm{E_p}(\bm{r}) e^{i \omega_p t} \big\rbrace,
+	= \mathcal{Re} \big\lbrace \bm{E_p}(\bm{r}) e^{i \omega_p t} \big\rbrace,
 $$
 
 in isolation, with the corresponding phasor fields
 
 $$ \tag{4.12}
 	\bm{E}(\bm{r}, \omega)
-	= \sqrt{2 \pi} \Big( \bm{E_p}(\bm{r}) \delta(\omega_p - \omega) + \big[ \bm{E_p}(\bm{r}) \big]^{\*} \delta(-\omega_p - \omega) \Big).
+	= \sqrt{\frac{\pi}{2}} \bigg( \bm{E_p}(\bm{r}) \delta(\omega_p - \omega) + \big[ \bm{E_p}(\bm{r}) \big]^{\*} \delta(-\omega_p - \omega) \bigg).
 $$
 
 In practice, it is not necessary to solve the Maxwell equations for the complex conjugate. We simply take \\(\bm{E_p}(\bm{r}) \delta(\omega_p - \omega)\\) and substitute it in place of \\(\bm{E}(\bm{r}, \omega)\\) into Equation 3.7. As a result, we obtain a system formally equivalent to Equation 3.9, with \\(\bm{E}(\bm{r}, \omega)\\) replaced by \\(\bm{E_p}(\bm{r})\\), and \\(\omega\\) by \\(\omega_p\\). After solving for \\(\bm{E_p}(\bm{r})\\), we use Equation 4.11 to obtain the expression of the real electric vector \\(\bm{E}(\bm{r}, t)\\).
@@ -695,13 +699,12 @@ Let us put the math to work. Assuming that the electromagnetic field is time-har
 $$ \tag{4.13}
 \begin{aligned}
 	\bm{S}(\bm{r}, t)
-	&=  \mu\_0^{-1}
-		\Bigg( \sum\_{p = -\infin}^{\infin} \bm{E_p}(\bm{r}) e^{i \omega_p t} \Bigg) \times
-		\Bigg( \sum\_{q = -\infin}^{\infin} \bm{H_q}(\bm{r}) e^{i \omega_q t} \Bigg) \cr
-	&=  \sum\_{p = -\infin}^{\infin} \sum\_{q = -\infin}^{\infin}
+	&=  \Bigg( \frac{1}{2} \sum\_{p = -\infin}^{\infin} \bm{E_p}(\bm{r}) e^{i \omega_p t} \Bigg) \times
+		\Bigg( \frac{1}{2} \sum\_{q = -\infin}^{\infin} \bm{H_q}(\bm{r}) e^{i \omega_q t} \Bigg) \cr
+	&=  \frac{1}{4} \sum\_{p = -\infin}^{\infin} \sum\_{q = -\infin}^{\infin}
 		\big( \bm{E_p}(\bm{r}) e^{i \omega_p t} \big) \times
 		\big( \bm{H_q}(\bm{r}) e^{i \omega_q t} \big) \cr
-	&=  \sum\_{p = -\infin}^{\infin} \sum\_{q = -\infin}^{\infin}
+	&=  \frac{1}{4} \sum\_{p = -\infin}^{\infin} \sum\_{q = -\infin}^{\infin}
 		\big( \bm{E_p}(\bm{r}) e^{i \omega_p t} \big) \times
 		\big[ \bm{H_q}(\bm{r}) e^{i \omega_q t} \big]^{\*}.
 \end{aligned}
@@ -712,7 +715,7 @@ The corresponding expression of the time-averaged Poynting vector (c.f. Equation
 $$ \tag{4.14}
 \begin{aligned}
 	\braket{\bm{S}}
-	= \sum\_{p = -\infin}^{\infin} \sum\_{q = -\infin}^{\infin}
+	= \frac{1}{4} \sum\_{p = -\infin}^{\infin} \sum\_{q = -\infin}^{\infin}
 	\bm{E_p}(\bm{r}) \times \big[ \bm{H_q}(\bm{r}) \big]^{\*}
 	\Bigg(
 		\frac{1}{T} \int\_{-T/2}^{\thinspace T/2} e^{i (\omega_p - \omega_q) t'} dt'
@@ -725,22 +728,22 @@ First, consider the case when \\(T = T_1\\). We can immediately apply the orthon
 $$ \tag{4.15}
 \begin{aligned}
 	\braket{\bm{S}}
-	&=  \sum\_{p = -\infin}^{\infin} \sum\_{q = -\infin}^{\infin}
+	&=  \frac{1}{4} \sum\_{p = -\infin}^{\infin} \sum\_{q = -\infin}^{\infin}
 		\bm{E_p} \times [\bm{H_q}]^{\*} \thinspace \delta_{m,n} \cr
-	&=  \sum\_{p = -\infin}^{\infin}
+	&=  \frac{1}{4} \sum\_{p = -\infin}^{\infin}
 		\bm{E_p} \times [\bm{H_p}]^{\*} \cr
-	&=  (\bm{E_0} \times \bm{H_0})
-	  + \sum\_{p = 1}^{\infin} \bm{E_p} \times [\bm{H_p}]^{\*}
-	  + \sum\_{p = -\infin}^{-1} \bm{E_p} \times [\bm{H_p}]^{\*} \cr
-	&=  (\bm{E_0} \times \bm{H_0})
-	  + \sum\_{p = 1}^{\infin}
+	&=  \frac{1}{4} (\bm{E_0} \times \bm{H_0})
+	  + \frac{1}{4} \sum\_{p = 1}^{\infin} \bm{E_p} \times [\bm{H_p}]^{\*}
+	  + \frac{1}{4} \sum\_{p = -\infin}^{-1} \bm{E_p} \times [\bm{H_p}]^{\*} \cr
+	&=  \frac{1}{4} (\bm{E_0} \times \bm{H_0})
+	  + \frac{1}{4} \sum\_{p = 1}^{\infin}
 		\Big( 
-			\big( \bm{E_p} \times [\bm{H_p}]^{\*} \big)
+			      \bm{E_p} \times [\bm{H_p}]^{\*}
 		  + \big[ \bm{E_p} \times [\bm{H_p}]^{\*} \big]^{\*}
 		\Big) \cr
-	&=  (\bm{E_0} \times \bm{H_0})
-	  + \sum\_{p = 1}^{\infin}
-		2 \thinspace \mathcal{Re} \big\lbrace \bm{E_p} \times [\bm{H_p}]^{\*} \big\rbrace,
+	&=  \frac{1}{4} (\bm{E_0} \times \bm{H_0})
+	  + \frac{1}{2} \sum\_{p = 1}^{\infin}
+		\thinspace \mathcal{Re} \big\lbrace \bm{E_p} \times [\bm{H_p}]^{\*} \big\rbrace,
 \end{aligned}
 $$
 
@@ -758,8 +761,8 @@ such that (cf. Equation 4.8)
 
 $$ \tag{4.17}
 	\braket{\bm{S}}
-	= \braket{\bm{S_0}}
-	+ \sum\_{p = 1}^{\infin} 2 \thinspace \mathcal{Re} \big\lbrace \negthinspace \braket{\bm{S_p}} \negthinspace \big\rbrace.
+	= \frac{1}{4} \braket{\bm{S_0}}
+	+ \sum\_{p = 1}^{\infin} \frac{1}{2} \thinspace \mathcal{Re} \big\lbrace \negthinspace \braket{\bm{S_p}} \negthinspace \big\rbrace.
 $$
 
 It produces a more compact expression of irradiance
@@ -767,8 +770,8 @@ It produces a more compact expression of irradiance
 $$ \tag{4.18}
 	\mathtt{E}
 	= \braket{\bm{S}} \cdot \bm{n}
-	= \braket{\bm{S_0}} \cdot \bm{n}
-	+ \sum\_{p = 1}^{\infin} 2 \thinspace \mathcal{Re} \big\lbrace
+	= \frac{1}{4} \braket{\bm{S_0}} \cdot \bm{n}
+	+ \sum\_{p = 1}^{\infin} \thinspace \frac{1}{2} \mathcal{Re} \big\lbrace
 		\negthinspace \braket{\bm{S_p}} \negthinspace
 	  \big\rbrace \cdot \bm{n}
 $$
@@ -777,10 +780,10 @@ that can be written in terms of [spectral irradiance](https://en.wikipedia.org/w
 
 $$ \tag{4.19}
 	\mathtt{E_p}
-	= \mathcal{Re} \big\lbrace
+	= \frac{1}{2} \mathcal{Re} \big\lbrace
 		\negthinspace \braket{\bm{S_p}} \negthinspace
 	  \big\rbrace \cdot \bm{n}
-	= 2 \mathcal{Re} \big\lbrace
+	= \frac{1}{2} \mathcal{Re} \big\lbrace
 		\negthinspace \braket{\bm{S_p}} \negthinspace
 	  \big\rbrace \cos{\theta}.
 $$
