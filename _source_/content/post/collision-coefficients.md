@@ -2594,17 +2594,46 @@ $$
 
 where we utilized the symmetry properties in addition to the alternative expression of the tensor product given by Equations 9.22-9.23.
 
-We can also show that the electric and the magnetic fields are mutually orthogonal:
+We can also show that the electric and the magnetic fields are mutually orthogonal. We begin by factoring out the common term
 
-$$ \tag{13.7}
-	\big( \mathcal{I} - \bm{n} \otimes \bm{n} \big) \bm{E} \cdot
-	\big( \bm{n} \times \mathcal{I} \big) \bm{E}
-	= \bm{E} \cdot
-		\big( (\bm{n} \times \bm{E}) - \bm{n} \big( \bm{n} \cdot (\bm{n} \times \bm{E}) \big)
-	= 0.
+$$
+	\bm{E_k}(r, \omega)
+	= k^2(\omega) \frac{e^{-i k(\omega) r}}{4 \pi r} \alpha_m(\omega) \bm{E_i}(0, \omega),
 $$
 
-CHECK MEEE
+which allows us to write Equation 13.4 as
+
+$$
+\begin{aligned}
+	& \bm{E_s}(\bm{r}, \omega) e^{i \omega t}
+	\approx \big( \mathcal{I} - \bm{n} \otimes \bm{n} \big) \bm{E_k}(r, \omega) e^{i \omega t}, \cr
+	& \bm{B_s}(\bm{r}, \omega) e^{i \omega t}
+	\approx \frac{1}{c} \big(\eta(\omega) - i \kappa(\omega) \big) \big(\bm{n} \times \mathcal{I} \big) \bm{E_k}(r, \omega) e^{i \omega t}.
+\end{aligned}
+$$
+
+After taking the real part, we obtain the expressions
+
+$$
+\begin{aligned}
+	& \mathcal{Re} \big\lbrace \bm{E_s}(\bm{r}, \omega) e^{i \omega t} \big\rbrace
+	\approx \big( \mathcal{I} - \bm{n} \otimes \bm{n} \big) \mathcal{Re} \big\lbrace \bm{E_k}(r, \omega) e^{i \omega t} \big\rbrace, \cr
+	& \mathcal{Re} \big\lbrace \bm{B_s}(\bm{r}, \omega) e^{i \omega t} \big\rbrace
+	\approx \big(\bm{n} \times \mathcal{I} \big) \bigg(
+	\frac{\eta(\omega)}{c} \mathcal{Re} \big\lbrace \bm{E_k}(r, \omega) e^{i \omega t} \big\rbrace
+	+ \frac{\kappa(\omega)}{c} \mathcal{Im} \big\lbrace \bm{E_k}(r, \omega) e^{i \omega t} \big\rbrace \bigg)
+\end{aligned}
+$$
+
+that resemble Equation 7.26. We encounter a similar situation, where the absorbing character of the homogeneous medium poses a complication. If we assume that \\(\kappa = 0\\), the dot product of the two expressions is
+
+$$ \tag{13.7}
+	\big( \mathcal{I} - \bm{n} \otimes \bm{n} \big) \bm{E_k} \cdot
+	\big( \bm{n} \times \mathcal{I} \big) \bm{E_k}
+	= \big( \bm{E_k} - (\bm{n} \cdot \bm{E_k}) \bm{n} \big) \cdot
+	\big( \bm{n} \times \bm{E_k} \big)
+	= 0.
+$$
 
 Thus, at a large distance, for a fixed direction of observation, such a spherical wavelet is an analog of a plane wave with the amplitude decreasing as \\(R^{-1}\\).
 
