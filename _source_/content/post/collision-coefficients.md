@@ -234,7 +234,7 @@ Mathematically, the [rate of doing work](https://en.wikipedia.org/wiki/Work_(phy
 
 $$ \tag{2.2}
 	\frac{\partial \mathcal{W}}{\partial t} = \bm{F} \cdot \bm{v}.
-$$ 
+$$
 
 Thus, to compute it, we must recall the definition of electromagnetic force.
 
@@ -282,7 +282,7 @@ $$
 we can reformulate the integrand of Equation 2.7 as
 
 $$ \tag{2.9}
-	\bm{E} \cdot \bm{J} = 
+	\bm{E} \cdot \bm{J} =
 	\mu\_0^{-1} \big( (\nabla \times \bm{E}) \cdot \bm{B} - \nabla \cdot (\bm{E} \times \bm{B}) \big) -
 	\epsilon_0 \bm{E} \cdot \frac{\partial \bm{E}}{\partial t}.
 $$
@@ -290,7 +290,7 @@ $$
 The curl of \\(\bm{E}\\) is also given by the Maxwell equations (see Equation 1.1.1). Then it follows that
 
 $$ \tag{2.10}
-	\bm{E} \cdot \bm{J} = 
+	\bm{E} \cdot \bm{J} =
 	\mu\_0^{-1} \big( {-\bm{B}} \cdot \frac{\partial \bm{B}}{\partial t} - \nabla \cdot (\bm{E} \times \bm{B}) \big) -
 	\epsilon_0 \bm{E} \cdot \frac{\partial \bm{E}}{\partial t}.
 $$
@@ -671,7 +671,7 @@ $$ \tag{4.9}
 \end{aligned}
 $$
 
-where we used the exponential form of the [Dirac delta](https://en.wikipedia.org/wiki/Dirac_delta_function) function 
+where we used the exponential form of the [Dirac delta](https://en.wikipedia.org/wiki/Dirac_delta_function) function
 
 $$ \tag{4.10}
 	\delta(x)
@@ -737,8 +737,8 @@ $$ \tag{4.15}
 	  + \frac{1}{4} \sum\_{p = -\infin}^{-1} \bm{E_p} \times [\bm{H_p}]^{\*} \cr
 	&=  \frac{1}{4} (\bm{E_0} \times \bm{H_0})
 	  + \frac{1}{4} \sum\_{p = 1}^{\infin}
-		\Big( 
-			      \bm{E_p} \times [\bm{H_p}]^{\*}
+		\Big(
+				  \bm{E_p} \times [\bm{H_p}]^{\*}
 		  + \big[ \bm{E_p} \times [\bm{H_p}]^{\*} \big]^{\*}
 		\Big) \cr
 	&=  \frac{1}{4} (\bm{E_0} \times \bm{H_0})
@@ -2046,7 +2046,7 @@ the *radiative properties* of the large-scale medium are determined by solving t
 
 ### Scattering Problem
 
-Participating media can be broadly divided into two categories - homogeneous and inhomogeneous. This suggests that we may split any medium into two regions: 1) homogeneous, and 2) the remaining space (that can be reinterpreted as a single particle or particle group) contained within the volume \\(V\\).
+Participating media can be broadly divided into two categories - homogeneous and inhomogeneous. This suggests that we may split any medium into two regions: 1) infinite homogeneous, and 2) the remaining space (that can be reinterpreted as a single particle or particle group) contained within the volume \\(V\\).
 
 [Picture?]
 
@@ -2158,8 +2158,8 @@ Equation 11.10 is a special solution of the inhomogeneous Equation 11.9 (just li
 
 $$ \tag{11.12}
 \begin{aligned}
-    \bm{E}(\bm{r}, \omega)
-    &= \bm{E_i}(\bm{r}, \omega) + \bm{E_s}(\bm{r}, \omega) \cr
+	\bm{E}(\bm{r}, \omega)
+	&= \bm{E_i}(\bm{r}, \omega) + \bm{E_s}(\bm{r}, \omega) \cr
 	&= \oint\_{\mathbb{S}^2} \bm{E}(0, \bm{n}, \omega) e^{-i k_1(\omega) (\bm{r} \cdot \bm{n})} d\Omega \cr
 	&+ \int\_{V} \mathcal{G_{e}} \big( \bm{r}, \bm{r'}, k_1(\omega) \big) \bm{J'}(\bm{r'}, \omega) dV'.
 \end{aligned}
@@ -2167,7 +2167,7 @@ $$
 
 In addition to the mathematical approach presented above, we can arrive at the same result in a more "physical" way.
 
-Consider a particle group embedded in vacuum. The solution in terms of potentials is given by Equation 9.16:
+Consider a particle embedded in vacuum. The solution in terms of potentials is given by Equation 9.16:
 
 $$ \tag{11.13}
 \begin{aligned}
@@ -2257,7 +2257,7 @@ After performing a substitution of Equation 11.22, and assuming that \\(\bm{r}\\
 
 $$ \tag{11.24}
 \begin{aligned}
-    \bm{E}(\bm{r}, \omega)
+	\bm{E}(\bm{r}, \omega)
 	&= \oint\_{\mathbb{S}^2} \bm{E}(0, \bm{n}, \omega) e^{-i k_1(\omega) (\bm{r} \cdot \bm{n})} d\Omega \cr
 	&+ k_1^2(\omega) \int\_{V} \Big( \mathcal{I} + \frac{1}{k_1^2(\omega)} \nabla \otimes \nabla \Big) \frac{e^{-i k_1(\omega) |\bm{r} - \bm{r'}|}}{4 \pi |\bm{r} - \bm{r'}|} \big( m^2(\bm{r'}, \omega) - 1 \big) \bm{E}(\bm{r'}, \omega) dV'.
 \end{aligned}
@@ -2356,13 +2356,13 @@ In order to compute the scattered fields according to Equation 12.5, we need to 
 
 $$ \tag{12.8}
 \begin{aligned}
-    \mathcal{G_{e}}(\bm{r}, \bm{r'}, k)
-    = \Big( \mathcal{I} + \frac{1}{k^2} \nabla \otimes \nabla \Big) g(\bm{r} - \bm{r'}, k)
-    = \mathcal{I} g + \frac{1}{k^2}
-    \begin{bmatrix}
-	    \frac{\partial^2 g}{\partial x^2} & \frac{\partial^2 g}{\partial x \partial y} & \frac{\partial^2 g}{\partial x \partial z} \cr
-	    \frac{\partial^2 g}{\partial y \partial x} & \frac{\partial^2 g}{\partial y^2} & \frac{\partial^2 g}{\partial y \partial z} \cr
-	    \frac{\partial^2 g}{\partial z \partial x} & \frac{\partial^2 g}{\partial z \partial y} & \frac{\partial^2 g}{\partial z^2} \cr
+	\mathcal{G_{e}}(\bm{r}, \bm{r'}, k)
+	= \Big( \mathcal{I} + \frac{1}{k^2} \nabla \otimes \nabla \Big) g(\bm{r} - \bm{r'}, k)
+	= \mathcal{I} g + \frac{1}{k^2}
+	\begin{bmatrix}
+		\frac{\partial^2 g}{\partial x^2} & \frac{\partial^2 g}{\partial x \partial y} & \frac{\partial^2 g}{\partial x \partial z} \cr
+		\frac{\partial^2 g}{\partial y \partial x} & \frac{\partial^2 g}{\partial y^2} & \frac{\partial^2 g}{\partial y \partial z} \cr
+		\frac{\partial^2 g}{\partial z \partial x} & \frac{\partial^2 g}{\partial z \partial y} & \frac{\partial^2 g}{\partial z^2} \cr
 	\end{bmatrix},
 \end{aligned}
 $$
@@ -2372,7 +2372,7 @@ where the scalar Green function \\(g\\) is given by Equation 9.10.
 Ignoring the multiplicative constant \\(1/(4 \pi k^2)\\), the matrix elements have the form
 
 $$ \tag{12.9}
-    \frac{\partial^2}{\partial \\_ \partial \\_} \Bigg( \frac{e^{-i k |\bm{r} - \bm{r'}|}}{|\bm{r} - \bm{r'}|} \Bigg),
+	\frac{\partial^2}{\partial \\_ \partial \\_} \Bigg( \frac{e^{-i k |\bm{r} - \bm{r'}|}}{|\bm{r} - \bm{r'}|} \Bigg),
 $$
 
 where we may substitute \\(x\\), \\(y\\), or \\(z\\) into the blanks.
@@ -2382,21 +2382,21 @@ Under the previous assumption that \\(\bm{r} \neq \bm{r_0}\\), the scalar Green 
 The process of differentiation is straightforward: we use the identity
 
 $$ \tag{12.10}
-    \frac{\partial}{\partial x} |\bm{r} - \bm{r'}|^{n}
-    = \frac{\partial}{\partial x} \big( (\bm{r} - \bm{r'}) \cdot (\bm{r} - \bm{r'}) \big)^{n/2}
-    = n \frac{\bm{r} - \bm{r'}}{|\bm{r} - \bm{r'}|^{2-n}} \cdot \frac{\partial}{\partial x} (\bm{r} - \bm{r'})
+	\frac{\partial}{\partial x} |\bm{r} - \bm{r'}|^{n}
+	= \frac{\partial}{\partial x} \big( (\bm{r} - \bm{r'}) \cdot (\bm{r} - \bm{r'}) \big)^{n/2}
+	= n \frac{\bm{r} - \bm{r'}}{|\bm{r} - \bm{r'}|^{2-n}} \cdot \frac{\partial}{\partial x} (\bm{r} - \bm{r'})
 $$
 
 and repeatedly apply the [product rule](https://en.wikipedia.org/wiki/Product_rule). Skipping the details of the calculation, and using the the shorthand notation \\(\bm{R} = \bm{r} - \bm{r'}, R = |\bm{R}|\\), a typical first derivative is
 
 $$ \tag{12.11}
 \begin{aligned}
-    \frac{\partial}{\partial x} \Bigg( \frac{e^{-i k |\bm{r} - \bm{r'}|}}{|\bm{r} - \bm{r'}|} \Bigg)
-    = -e^{-i k R} \frac{R_x}{R}
-    	\bigg(
-		      \frac{1}{R^2}
-		    + \frac{i k}{R}
-      	\bigg),
+	\frac{\partial}{\partial x} \Bigg( \frac{e^{-i k |\bm{r} - \bm{r'}|}}{|\bm{r} - \bm{r'}|} \Bigg)
+	= -e^{-i k R} \frac{R_x}{R}
+		\bigg(
+			  \frac{1}{R^2}
+			+ \frac{i k}{R}
+		\bigg),
 \end{aligned}
 $$
 
@@ -2404,13 +2404,13 @@ the off-diagonal elements of the matrix have the form
 
 $$ \tag{12.12}
 \begin{aligned}
-    \frac{\partial^2}{\partial y \partial x} \Bigg( \frac{e^{-i k |\bm{r} - \bm{r'}|}}{|\bm{r} - \bm{r'}|} \Bigg)
-    = e^{-i k R} \frac{R_x R_y}{R^2}
-    	\bigg(
-		      \frac{3}{R^3}
-		    + \frac{3 i k}{R^2}
-		    - \frac{k^2}{R}
-      	\bigg),
+	\frac{\partial^2}{\partial y \partial x} \Bigg( \frac{e^{-i k |\bm{r} - \bm{r'}|}}{|\bm{r} - \bm{r'}|} \Bigg)
+	= e^{-i k R} \frac{R_x R_y}{R^2}
+		\bigg(
+			  \frac{3}{R^3}
+			+ \frac{3 i k}{R^2}
+			- \frac{k^2}{R}
+		\bigg),
 \end{aligned}
 $$
 
@@ -2418,18 +2418,18 @@ while the elements on the main diagonal are equivalent to
 
 $$ \tag{12.13}
 \begin{aligned}
-    \frac{\partial^2}{\partial x^2} \Bigg( \frac{e^{-i k |\bm{r} - \bm{r'}|}}{|\bm{r} - \bm{r'}|} \Bigg)
+	\frac{\partial^2}{\partial x^2} \Bigg( \frac{e^{-i k |\bm{r} - \bm{r'}|}}{|\bm{r} - \bm{r'}|} \Bigg)
 	= e^{-i k R} \frac{R_x^2}{R^2}
-    	\bigg(
-		      \frac{3}{R^3}
-		    + \frac{3 i k}{R^2}
-		    - \frac{k^2}{R}
-      	\bigg)
-    - e^{-i k R}
-    	\bigg(
-		      \frac{1}{R^3}
-		    + \frac{i k}{R^2}
-      	\bigg).
+		\bigg(
+			  \frac{3}{R^3}
+			+ \frac{3 i k}{R^2}
+			- \frac{k^2}{R}
+		\bigg)
+	- e^{-i k R}
+		\bigg(
+			  \frac{1}{R^3}
+			+ \frac{i k}{R^2}
+		\bigg).
 \end{aligned}
 $$
 
@@ -2438,36 +2438,36 @@ Take a look at the individual factors in Equations 12.11-12.13: those outside th
 If we fix a value of \\(k\\), we may decompose the electric tensor into the near-, transition-, and far-field components:
 
 $$ \tag{12.14}
-    \mathcal{G_{e}}
-    = \mathcal{G_{en}}
-    + \mathcal{G_{et}}
-    + \mathcal{G_{ef}},
+	\mathcal{G_{e}}
+	= \mathcal{G_{en}}
+	+ \mathcal{G_{et}}
+	+ \mathcal{G_{ef}},
 $$
 
 such that
 
 $$ \tag{12.15}
 \begin{aligned}
-    & \mathcal{G_{en}}(\bm{R}, k)
-    = -\frac{1}{k^2 R^2} \bigg(\mathcal{I} - 3 \frac{\bm{R} \otimes \bm{R}}{\bm{R} \cdot \bm{R}} \bigg) g(\bm{R}, k), \cr
-    & \mathcal{G_{et}}(\bm{R}, k)
-    = -\frac{i}{k R} \bigg(\mathcal{I} - 3 \frac{\bm{R} \otimes \bm{R}}{\bm{R} \cdot \bm{R}} \bigg) g(\bm{R}, k), \cr
+	& \mathcal{G_{en}}(\bm{R}, k)
+	= -\frac{1}{k^2 R^2} \bigg(\mathcal{I} - 3 \frac{\bm{R} \otimes \bm{R}}{\bm{R} \cdot \bm{R}} \bigg) g(\bm{R}, k), \cr
+	& \mathcal{G_{et}}(\bm{R}, k)
+	= -\frac{i}{k R} \bigg(\mathcal{I} - 3 \frac{\bm{R} \otimes \bm{R}}{\bm{R} \cdot \bm{R}} \bigg) g(\bm{R}, k), \cr
 	& \mathcal{G_{ef}}(\bm{R}, k)
-    = \bigg( \mathcal{I} - \frac{\bm{R} \otimes \bm{R}}{\bm{R} \cdot \bm{R}} \bigg) g(\bm{R}, k),
+	= \bigg( \mathcal{I} - \frac{\bm{R} \otimes \bm{R}}{\bm{R} \cdot \bm{R}} \bigg) g(\bm{R}, k),
 \end{aligned}
 $$
 
 with the scalar Green function containing an additional \\(R^{-1}\\) factor, so that
 
 $$ \tag{12.16}
-    k^{-1} \mathcal{G_{en}}
-    \varpropto (k R)^{-3},
-    \qquad
-    k^{-1} \mathcal{G_{et}}
-    \varpropto (k R)^{-2},
-    \qquad
+	k^{-1} \mathcal{G_{en}}
+	\varpropto (k R)^{-3},
+	\qquad
+	k^{-1} \mathcal{G_{et}}
+	\varpropto (k R)^{-2},
+	\qquad
 	k^{-1} \mathcal{G_{ef}}
-    \varpropto (k R)^{-1}.
+	\varpropto (k R)^{-1}.
 $$
 
 Let us analyze the magnetic tensor in the same way. Write Equation 9.32 in the Cartesian coordinate system:
@@ -2494,28 +2494,28 @@ Clearly, the matrix is anti-symmetric: \\(\mathcal{G_{m}} = -\mathcal{G_{m}}^T\\
 According to the expression of the first derivative given by Equation 12.11, the tensor only has two components:
 
 $$ \tag{12.18}
-    \mathcal{G_{m}} = \mathcal{G_{mn}} + \mathcal{G_{mf}},
+	\mathcal{G_{m}} = \mathcal{G_{mn}} + \mathcal{G_{mf}},
 $$
 
 such that
 
 $$ \tag{12.19}
 \begin{aligned}
-    & \mathcal{G_{mn}}(\bm{R}, k)
-    = -\frac{1}{R} \bigg(\frac{\bm{R} \times \mathcal{I}}{R} \bigg) g(\bm{R}, k), \cr
+	& \mathcal{G_{mn}}(\bm{R}, k)
+	= -\frac{1}{R} \bigg(\frac{\bm{R} \times \mathcal{I}}{R} \bigg) g(\bm{R}, k), \cr
 	& \mathcal{G_{mf}}(\bm{R}, k)
-    = -i k \bigg(\frac{\bm{R} \times \mathcal{I}}{R} \bigg) g(\bm{R}, k).
+	= -i k \bigg(\frac{\bm{R} \times \mathcal{I}}{R} \bigg) g(\bm{R}, k).
 \end{aligned}
 $$
 
 Note that the constants of proportionality are different in comparison to the electric tensor:
 
 $$ \tag{12.20}
-    k^{-3} \mathcal{G_{mn}}
-    \varpropto (k R)^{-3},
-    \qquad
+	k^{-3} \mathcal{G_{mn}}
+	\varpropto (k R)^{-3},
+	\qquad
 	k^{-3} \mathcal{G_{mf}}
-    \varpropto (k R)^{-2}.
+	\varpropto (k R)^{-2}.
 $$
 
 This implies that, as \\(k R \to \infin\\), the magnitude of the magnetic field becomes vanishingly small in comparison to that of the electric field, which explains why the dipole is called *electric*.
@@ -2527,20 +2527,20 @@ Let us focus on the case when the observation point is far away from the source.
 The idea behind the far-field approximation is simple: we discard certain terms in Equations 12.14 and 12.18. In order to do that, we must consider their magnitudes relative to each other:
 
 $$ \tag{13.1}
-    \mathcal{G_{e}}
-    = \bigg( 1 + \frac{\mathcal{G_{et}}}{\mathcal{G_{ef}}} + \frac{\mathcal{G_{en}}}{\mathcal{G_{ef}}} \bigg) \mathcal{G_{ef}}, \qquad
-    \mathcal{G_{m}}
-    = \bigg( 1 + \frac{\mathcal{G_{mn}}}{\mathcal{G_{mf}}} \bigg) \mathcal{G_{mf}}.
+	\mathcal{G_{e}}
+	= \bigg( 1 + \frac{\mathcal{G_{et}}}{\mathcal{G_{ef}}} + \frac{\mathcal{G_{en}}}{\mathcal{G_{ef}}} \bigg) \mathcal{G_{ef}}, \qquad
+	\mathcal{G_{m}}
+	= \bigg( 1 + \frac{\mathcal{G_{mn}}}{\mathcal{G_{mf}}} \bigg) \mathcal{G_{mf}}.
 $$
 
 According to Equation 12.15, for any fixed direction, the relative difference between the three electric tensors primarily arises from the leading scalar terms. Moreover, the two magnetic tensors given by Equation 12.19 exhibit identical angular dependence. Following this logic, we use Equations 12.16 and 12.20 to approximate
 
 $$ \tag{13.2}
-    \mathcal{G_{e}}
-    = \bigg( 1 + \mathrm{O} \Big( (k R)^{-1} \Big) + \mathrm{O} \Big( (k R)^{-2} \Big) \bigg) \mathcal{G_{ef}}, \qquad
-    \mathcal{G_{m}}
-    = \bigg( 1 + \mathrm{O} \Big( (k R)^{-1} \Big) \bigg)
-    \mathcal{G_{mf}}.
+	\mathcal{G_{e}}
+	= \bigg( 1 + \mathrm{O} \Big( (k R)^{-1} \Big) + \mathrm{O} \Big( (k R)^{-2} \Big) \bigg) \mathcal{G_{ef}}, \qquad
+	\mathcal{G_{m}}
+	= \bigg( 1 + \mathrm{O} \Big( (k R)^{-1} \Big) \bigg)
+	\mathcal{G_{mf}}.
 $$
 
 If \\(k R \gg 1\\), the values of the expressions in the brackets approach 1. This allows us to write Equation 12.5 as
@@ -2570,7 +2570,7 @@ $$
 Let us pause for a moment to consider what \\(k R\\) represents. According to Equation 13.4, it is the phase difference (in radians) between the observation point \\(\bm{r}\\) and the location of the dipole \\(\bm{r'}\\). We may confirm this by dimensional analysis of Equations 7.6-7.7:
 
 $$ \tag{13.5}
-    k R = (\eta - i \kappa) \omega c^{-1} R = [\text{1}] [\text{rad/s}] [\text{s/m}] [\text{m}] = [\text{rad}].
+	k R = (\eta - i \kappa) \omega c^{-1} R = [\text{1}] [\text{rad/s}] [\text{s/m}] [\text{m}] = [\text{rad}].
 $$
 
 Intuitively, \\(k R \gg 1\\) implies that a wavelet generated by the dipole will go through a great number of cycles before reaching the observation point.
@@ -2581,13 +2581,13 @@ Another important property of the far-field solution is the fact that the scatte
 
 $$ \tag{13.6}
 \begin{aligned}
-    & \bm{n} \cdot \big( \mathcal{I} - \bm{n} \otimes \bm{n} \big)
-    = \Big( \big( \mathcal{I} - \bm{n} \otimes \bm{n} \big)^{T} \bm{n} \Big)^{T}
-    = \big( \bm{n} - \bm{n} (\bm{n} \cdot \bm{n}) \big)^{T}
-    = 0, \cr
+	& \bm{n} \cdot \big( \mathcal{I} - \bm{n} \otimes \bm{n} \big)
+	= \Big( \big( \mathcal{I} - \bm{n} \otimes \bm{n} \big)^{T} \bm{n} \Big)^{T}
+	= \big( \bm{n} - \bm{n} (\bm{n} \cdot \bm{n}) \big)^{T}
+	= 0, \cr
 	& \bm{n} \cdot \big( \bm{n} \times \mathcal{I} \big)
-    = \Big( \big( \bm{n} \times \mathcal{I} \big)^{T} \bm{n} \Big)^{T}
-    = \big( {-\bm{n}} \times \bm{n} \big)^{T}
+	= \Big( \big( \bm{n} \times \mathcal{I} \big)^{T} \bm{n} \Big)^{T}
+	= \big( {-\bm{n}} \times \bm{n} \big)^{T}
 	 = 0,
 \end{aligned}
 $$
@@ -2661,7 +2661,7 @@ $$ \tag{13.9}
 \end{aligned}
 $$
 
-We are now ready to formulate the far-field solution of the general case of a particle group. Assume that the observation point is in the far-field zone with respect to each individual volume element, so that \\(k R \gg 1\\). Equation 11.25 then takes the form
+We are now ready to formulate the far-field solution of the general case of a particle. Assume that the observation point is in the far-field zone with respect to each individual volume element, so that \\(k R \gg 1\\). Equation 11.25 then takes the form
 
 $$ \tag{13.10}
 \begin{aligned}
@@ -2672,7 +2672,7 @@ $$ \tag{13.10}
 \end{aligned}
 $$
 
-Consider a particle (or a particle group) bounded by a sphere of radius \\(a\\) centered at the origin of the coordinate system. If that is the case, the requirement \\(k R \gg 1\\) is equivalent to \\(k (r - a) \gg 1\\).
+Consider a particle bounded by a sphere of radius \\(a\\) centered at the origin of the coordinate system. If that is the case, the requirement \\(k R \gg 1\\) is equivalent to \\(k (r - a) \gg 1\\).
 
 Let us consider the expression of the radial distance between the observation point and the volume element:
 
@@ -2750,23 +2750,23 @@ We would like to caution that conditions stated in Equation 13.17 are, strictly 
 
 ### Transition Operator
 
-The volume integral equation can be reduced to a relatively simple expression by assuming that the observation point is located in the far-field zone of the particle (or the particle group). However, the value of the electric field in the interior remains unknown. For a single atom or a small molecule, we can reasonably assume that it doesn't drive itself, which makes the field driving the molecule the same as the incident field, with the resulting (simplified) expression of Equation 13.16 given by Equation 13.4. Yet, in general, this assumption does not hold. It is easy to convince ourselves by considering a highly reflective or absorptive particle - it seems fairly obvious that the total field deep inside the particle has (on average) a lower magnitude in comparison to the incident field at the same location if the particle wasn't there.
+The volume integral equation can be reduced to a relatively simple expression by assuming that the observation point is located in the far-field zone of the particle. However, the value of the electric field in the interior remains unknown. For a single atom or a small molecule, we can reasonably assume that it doesn't drive itself, which makes the field driving the molecule the same as the incident field, with the resulting (simplified) expression of Equation 13.16 given by Equation 13.4. Yet, in general, this assumption does not hold. It is easy to convince ourselves by considering a highly reflective or absorptive particle - it seems fairly obvious that the total field deep inside the particle has (on average) a lower magnitude in comparison to the incident field at the same location if the particle wasn't there.
 
 Let us recall the mechanics of scattering. In a dielectric, the incident field drives the dipoles, which in turn act as sources of scattered wavelets interfering with the incident field according to the superposition principle. We may continue this line of thinking by considering the effect of a dipole as a secondary source on all other dipoles surrounding it, effectively treating the dipole field as the secondary incident field. Repeated application of this iterative approach leads to evaluation of successive orders of scattering one by one. This is the general idea behind the [Born series](https://en.wikipedia.org/wiki/Born_series) \[[6](#references) (ch. 13.1)\].
 
 We can formalize this approach in the following way \[[9](#references) (ch. 4.5)\]. We start with Equation 11.12, where we substitute the total electric tensor (cf. Equations 9.27-9.28) to ensure that the integral remains valid even if the integration point is inside the volume \\(V\\):
 
 $$ \tag{14.1}
-    \bm{E}(\bm{r}, \omega)
-    = \bm{E_i}(\bm{r}, \omega)
+	\bm{E}(\bm{r}, \omega)
+	= \bm{E_i}(\bm{r}, \omega)
 	+ \int\_{V} \mathcal{G} \big( \bm{r}, \bm{r'}, k(\omega) \big) \bm{J'}(\bm{r'}, \omega) dV'.
 $$
 
 Next, for we substitute the expression of the source term \\(\bm{J'}\\) given by Equation 11.7:
 
 $$ \tag{14.2}
-    \bm{E}(\bm{r}, \omega)
-    = \bm{E_i}(\bm{r}, \omega)
+	\bm{E}(\bm{r}, \omega)
+	= \bm{E_i}(\bm{r}, \omega)
 	+ \int\_{V} \mathcal{G} \big( \bm{r}, \bm{r'}, k(\omega) \big) k^2(\omega) \big( m^2(\bm{r'}, \omega) - 1 \big) \bm{E}(\bm{r'}, \omega) dV'.
 $$
 
@@ -2783,15 +2783,15 @@ $$
 that allows us to write Equation 14.2 in a more compact form:
 
 $$ \tag{14.4}
-    \bm{E}(\bm{r}, \omega)
-    = \bm{E_i}(\bm{r}, \omega)
+	\bm{E}(\bm{r}, \omega)
+	= \bm{E_i}(\bm{r}, \omega)
 	+ \int\_{V} \mathcal{G} \big( \bm{r}, \bm{r'}, k(\omega) \big) u(\bm{r'}, \omega) \bm{E}(\bm{r'}, \omega) dV'.
 $$
 
 The resulting equation is recursive. Substitution makes it fairly obvious that the total electric field can be expressed as volume integral of the transformed incident field. While this fact can be rigorously derived from the properties of the tensor Green functions \[[11](#references) (ch. 5.1)\], for simplicity, let us assume that the solution exists:
 
 $$ \tag{14.5}
-    u(\bm{r'}, \omega) \bm{E}(\bm{r'}, \omega)
+	u(\bm{r'}, \omega) \bm{E}(\bm{r'}, \omega)
 	= \int\_{V} \mathcal{T} \big( \bm{r'}, \bm{r''}, \omega \big) \bm{E_i}(\bm{r''}, \omega) dV'',
 $$
 
@@ -2837,15 +2837,15 @@ which, when taken together, say that the set of \\(\ket{r}\\) vectors constitute
 In the new notation, Equation 14.4 can be written as
 
 $$ \tag{14.11}
-    \braket{r \vert E}
-    = \braket{r \vert E_i}
+	\braket{r \vert E}
+	= \braket{r \vert E_i}
 	+ \int dV' \braket{r \vert G \vert r'} \braket{r' \vert U \vert E},
 $$
 
 or, in the representation-independent form,
 
 $$ \tag{14.12}
-    \ket{E} = \ket{E_i} + G U \ket{E}.
+	\ket{E} = \ket{E_i} + G U \ket{E}.
 $$
 
 Equation 14.12 is formally identical to the [Lippmann–Schwinger equation](https://en.wikipedia.org/wiki/Lippmann%E2%80%93Schwinger_equation).
@@ -2853,7 +2853,7 @@ Equation 14.12 is formally identical to the [Lippmann–Schwinger equation](http
 Similarly, Equation 14.5 can be transformed into
 
 $$ \tag{14.13}
-    U \ket{E} = T \ket{E_i},
+	U \ket{E} = T \ket{E_i},
 $$
 
 which shows a transition from the state \\(\ket{E_i}\\) to \\(\ket{E}\\).
@@ -2861,23 +2861,23 @@ which shows a transition from the state \\(\ket{E_i}\\) to \\(\ket{E}\\).
 Substitution of Equation 14.13 into 14.12 produces an alternative expression of the total field
 
 $$ \tag{14.14}
-    \ket{E} = \ket{E_i} + G T \ket{E_i}.
+	\ket{E} = \ket{E_i} + G T \ket{E_i}.
 $$
 
 In the position representation,
 
 $$ \tag{14.15}
-    \braket{r \vert E}
-    = \braket{r \vert E_i}
-    + \int dV' \int dV'' \braket{r \vert G \vert r'}
-    \braket{r' \vert T \vert r''} \braket{r'' \vert E},
+	\braket{r \vert E}
+	= \braket{r \vert E_i}
+	+ \int dV' \int dV'' \braket{r \vert G \vert r'}
+	\braket{r' \vert T \vert r''} \braket{r'' \vert E},
 $$
 
 and the corresponding integral form is
 
 $$ \tag{14.16}
-    \bm{E}(\bm{r})
-    = \bm{E_i}(\bm{r})
+	\bm{E}(\bm{r})
+	= \bm{E_i}(\bm{r})
 	+ \int\_{V} \mathcal{G} (\bm{r}, \bm{r'}) \int\_{V} \mathcal{T} (\bm{r'}, \bm{r''}) \bm{E_i}(\bm{r''}) dV'' dV'.
 $$
 
@@ -2886,33 +2886,33 @@ Note that Equation 14.16 is identical to the combination of Equations 14.4 and 1
 Now, let us multiply both sides of Equation 14.14 by \\(U\\):
 
 $$ \tag{14.17}
-    U \ket{E}
-    = U \ket{E_i} + U G T \ket{E_i}
-    = U (I + G T) \ket{E_i},
+	U \ket{E}
+	= U \ket{E_i} + U G T \ket{E_i}
+	= U (I + G T) \ket{E_i},
 $$
 
 and substitute Equation 14.13 once more:
 
 $$ \tag{14.18}
-    T \ket{E_i} = U (I + G T) \ket{E_i}.
+	T \ket{E_i} = U (I + G T) \ket{E_i}.
 $$
 
 Since the ket \\(\ket{E_i}\\) is arbitrary, it means the transition operator does not depend on the incident field:
 
 $$ \tag{14.19}
-    T = U (I + G T)
+	T = U (I + G T)
 $$
 
-It does, however, depend on the geometry and the composition of the volume containing the particle group.
+It does, however, depend on the geometry and the composition of the volume containing the particle.
 
 Notice that, when we combine Equations 14.13 and 14.19, the potential operator cancels out, and we obtain a series expansion
 
 $$ \tag{14.20}
 \begin{aligned}
-    \ket{E}
-    &= (I + G T) \ket{E_i} \cr
-    &= \big( I + G U (I + G T) \big) \ket{E_i} \cr
-    &= \ket{E_i} + G U \ket{E_i} + (G U)^2 \ket{E_i} + \dots
+	\ket{E}
+	&= (I + G T) \ket{E_i} \cr
+	&= \big( I + G U (I + G T) \big) \ket{E_i} \cr
+	&= \ket{E_i} + G U \ket{E_i} + (G U)^2 \ket{E_i} + \dots
 \end{aligned}
 $$
 
@@ -2922,18 +2922,18 @@ Let us now complete the derivation by writing Equation 14.19 in the position rep
 
 $$ \tag{14.21}
 \begin{aligned}
-    \braket{r' \vert T \vert r''}
-    &= \braket{r' \vert U (I + G T) \vert r''} \cr
-    &= u(\bm{r'}) \braket{r' \vert I + G T \vert r''} \cr
-    &= u(\bm{r'}) \bigg( \braket{r' \vert r''} + \int dV \braket{r' \vert G \vert r} \braket{r \vert T \vert r''} \bigg).
+	\braket{r' \vert T \vert r''}
+	&= \braket{r' \vert U (I + G T) \vert r''} \cr
+	&= u(\bm{r'}) \braket{r' \vert I + G T \vert r''} \cr
+	&= u(\bm{r'}) \bigg( \braket{r' \vert r''} + \int dV \braket{r' \vert G \vert r} \braket{r \vert T \vert r''} \bigg).
 \end{aligned}
 $$
 
 Translation of Equation 14.21 into the integral form yields
 
 $$ \tag{14.22}
-    \mathcal{T} \big( \bm{r'}, \bm{r''} \big)
-    = u(\bm{r'}) \bigg( \delta(\bm{r'} - \bm{r''}) \mathcal{I} + \int_V \mathcal{G} \big( \bm{r'}, \bm{r} \big) \mathcal{T} \big( \bm{r}, \bm{r''} \big) dV \bigg).
+	\mathcal{T} \big( \bm{r'}, \bm{r''} \big)
+	= u(\bm{r'}) \bigg( \delta(\bm{r'} - \bm{r''}) \mathcal{I} + \int_V \mathcal{G} \big( \bm{r'}, \bm{r} \big) \mathcal{T} \big( \bm{r}, \bm{r''} \big) dV \bigg).
 $$
 
 ## Scattering Matrix
@@ -2946,28 +2946,28 @@ $$ \tag{15.1}
 	\oint\_{\mathbb{S}^2} \bm{E_i}(0, \bm{n_i}, \omega) e^{-i k(\omega) (\bm{r} \cdot \bm{n_i})} d\Omega_i.
 $$
 
-We have also learned (c.f. Equation 14.16) that the scattered field is a linear function of the incident field. This allows us to utilize the superposition principle, according to which, the scattered field is a superposition of scattered waves generated by individual incident plane waves. Stated more precisely,
+We have also learned (c.f. Equation 14.16) that the scattered field is a linear function of the incident field. This allows us to utilize the superposition principle, according to which, the scattered field is a superposition of scattered waves generated by individual incident plane waves. Stated mathematically,
 
 $$ \tag{15.2}
-    \bm{E_s}(\bm{r}, \omega) =
+	\bm{E_s}(\bm{r}, \omega) =
 	\oint\_{\mathbb{S}^2} \bm{E_s}(\bm{r}, \bm{n_i}, \omega) d\Omega_i,
 $$
 
 where
 
 $$ \tag{15.3}
-    \bm{E_s}(\bm{r}, \bm{n_i}, \omega)
+	\bm{E_s}(\bm{r}, \bm{n_i}, \omega)
 	= \int\_{V} \mathcal{G} \big( \bm{r}, \bm{r'}, k(\omega) \big) \int\_{V} \mathcal{T} (\bm{r'}, \bm{r''}, \omega) \bm{E_i}(0, \bm{n_i}, \omega) e^{-i k(\omega) (\bm{r''} \cdot \bm{n_i})} dV'' dV'.
 $$
 
-By taking the initial value of the incident electric field outside the integral, we find the that the scattered field is related to the incident field by the *scattering tensor* \\(\mathcal{S}\\) \[[9](#references) (ch. 5.3)\]:
+By taking the initial value of the incident electric field \\(\bm{E_i}(0)\\)  outside the integral, we find the that the scattered field is related to the incident field by the *scattering tensor* \\(\mathcal{S}\\) \[[9](#references) (ch. 5.3)\]:
 
 $$ \tag{15.4}
-    \bm{E_s}(\bm{r}, \bm{n_i}, \omega)
+	\bm{E_s}(\bm{r}, \bm{n_i}, \omega)
 	= \frac{e^{-i k(\omega) r}}{r} \mathcal{S_e} (\bm{r}, \bm{n_i}, \omega) \bm{E_i}(0, \bm{n_i}, \omega).
 $$
 
-In general, the scattered field depends on the position of the observation point relative to the scatterer. However, if the observation point is very far away, we can utilize the far-field expression of the Green function (cf. Equations 13.16 and 14.5) to write
+In general, the scattering tensor depends on the position of the observation point relative to the scatterer. However, if the observation point is very far away, we can utilize the far-field expression of the Green function (cf. Equations 13.16 and 14.5) to write
 
 $$ \tag{15.5}
 \begin{aligned}
@@ -2975,18 +2975,18 @@ $$ \tag{15.5}
 	\big( \mathcal{I} - \bm{n_s} \otimes \bm{n_s} \big)
 	\frac{e^{-i k(\omega) r}}{4 \pi r}
 	\int\_{V} e^{i k(\omega) (\bm{r'} \cdot \bm{n_s})} \int\_{V} \mathcal{T} \big( \bm{r'}, \bm{r''}, \omega \big) \bm{E_i}(\bm{r''}, \omega) dV'' dV', \cr
-	& \bm{B_s}(\bm{r}, \omega) \approx \frac{k(\omega)}{\omega}
-	\big(\bm{n_s} \times \mathcal{I} \big)
+	& \bm{B_s}(\bm{r}, \omega) \approx
+	\big(\bm{n_s} \times \mathcal{I} \big) \frac{k(\omega)}{\omega}
 	\frac{e^{-i k(\omega) r}}{4 \pi r}
 	\int\_{V} e^{i k(\omega) (\bm{r'} \cdot \bm{n_s})} \int\_{V} \mathcal{T} \big( \bm{r'}, \bm{r''}, \omega \big) \bm{E_i}(\bm{r''}, \omega) dV'' dV',
 \end{aligned}
 $$
 
-from which it follows that the scattering tensor is no longer dependent on the distance to the observation point:
+making the scattering tensor independent from the distance to the observation point:
 
 $$ \tag{15.6}
 \begin{aligned}
-    & \bm{E_s}(r \bm{n_s}, \bm{n_i}, \omega)
+	& \bm{E_s}(r \bm{n_s}, \bm{n_i}, \omega)
 	\approx \frac{e^{-i k(\omega) r}}{r} \mathcal{S_{ef}} (\bm{n_s}, \bm{n_i}, \omega) \bm{E_i}(0, \bm{n_i}, \omega), \cr
 	& \bm{B_s}(r \bm{n_s}, \bm{n_i}, \omega)
 	\approx \frac{e^{-i k(\omega) r}}{r} \mathcal{S_{mf}} (\bm{n_s}, \bm{n_i}, \omega) \bm{E_i}(0, \bm{n_i}, \omega).
@@ -3000,21 +3000,132 @@ $$ \tag{15.7}
 	& \mathcal{S_{ef}} (\bm{n_s}, \bm{n_i}, \omega) \approx \frac{1}{4 \pi}
 	\big( \mathcal{I} - \bm{n_s} \otimes \bm{n_s} \big)
 	\int\_{V} \int\_{V} e^{i k(\omega) (\bm{r'} \cdot \bm{n_s} - \bm{r''} \cdot \bm{n_i})} \mathcal{T} \big( \bm{r'}, \bm{r''}, \omega \big) dV'' dV', \cr
-	& \mathcal{S_{mf}} (\bm{n_s}, \bm{n_i}, \omega) \approx \frac{1}{4 \pi} \frac{k(\omega)}{\omega}
-	\big(\bm{n_s} \times \mathcal{I} \big)
+	& \mathcal{S_{mf}} (\bm{n_s}, \bm{n_i}, \omega) \approx \frac{1}{4 \pi}
+	\big(\bm{n_s} \times \mathcal{I} \big) \frac{k(\omega)}{\omega}
 	\int\_{V} \int\_{V} e^{i k(\omega) (\bm{r'} \cdot \bm{n_s} - \bm{r''} \cdot \bm{n_i})} \mathcal{T} \big( \bm{r'}, \bm{r''}, \omega \big) dV'' dV'.
 \end{aligned}
 $$
 
-Expressions given above are independent of the choice of a coordinate system. In practice, it is rather convenient to assert that the incident wave propagates along the \\(z\\)-axis. That way, the initial value of the incident field can be represented using only two components. These components are typically defined with respect to a certain *plane of reference* that contains the incident direction \[[4](#references) (ch. 5.11)\]. While the choice of the orientation of the plane is, in principle, arbitrary (for instance, one could use the \\(xz\\) or the \\(yz\\) plane), a convenient choice for a scattering problem is to use the plane spanned by the directions of incidence and scattering.
+Expressions given above are independent of the choice of a coordinate system. In practice, it is rather convenient to establish a certain coordinate convention.
 
+[Insert picture here]
 
+First, recall that \\(r\\) in Equation 15.6 stands for the distance from the center of the particle to the observation point. This makes the center of the particle a suitable choice for the origin of the coordinate system.
+
+Next, assume that the direction of incidence \\(\bm{n_i}\\) is fixed; conventionally, it is aligned with the \\(z\\)-axis. That is convenient, because it allows us to describe the incident electric field vector (or phasor) using only two Cartesian components, \\(x\\) and \\(y\\), since, according to Equations 7.18-7.19, the component along \\(\bm{n_i}\\) is zero.
+
+We must also choose the *plane of reference* that fixes the orientation of the coordinate frame \[[4](#references) (ch. 5.11)\]. The decision is somewhat arbitrary (except for the fact that the plane should contain \\(\bm{n_i}\\) for the reason outlined above). A simple choice that reduces the number of degrees of freedom is to use the *plane of scattering* spanned by \\(\bm{n_i}\\) and \\(\bm{n_s}\\) \[[4](#references) (ch. 5.22)\]. In summary, the coordinate convention for the incident field is
+
+$$ \tag{15.8}
+	\bm{z} = \bm{n_i}, \quad
+	\bm{y} = \frac{\bm{n_i} \times \bm{n_s}}{\vert \bm{n_i} \times \bm{n_s} \vert}, \quad
+	\bm{x} = \bm{y} \times \bm{z}.
+$$
+
+Imagine that the *scattering coordinate system* \\(xyz\\) is initially aligned with the *global coordinate system* \\(XYZ\\), so that
+
+$$ \tag{15.9}
+	\bm{Z} = \bm{n_i}, \quad
+	\bm{Y} = \bm{n_i} \times \bm{n_p}, \quad
+	\bm{X} = \bm{n_p}.
+$$
+
+ The latter could, for instance, represent the coordinate frame of the particle. We can now rotate \\(xyz\\) and define its orientation relative to \\(XYZ\\) in terms of the [Euler angles](https://en.wikipedia.org/wiki/Euler_angles). We are particularly interested in rotating the scattering plane \\(xz\\) about the \\(Z\\)-axis, as that allows the set of possible direction of scattering to cover the entire the unit sphere. If the azimuthal (plane rotation) angle is \\(\phi\\) and the polar angle is \\(\theta\\), the [spherical coordinates](https://en.wikipedia.org/wiki/List_of_common_coordinate_transformations#To_spherical_coordinates) of \\(\bm{n_s}\\) are
+
+$$ \tag{15.10}
+\bm{n_s} =
+\begin{bmatrix}
+	\theta \cr
+	\phi   \cr
+\end{bmatrix} =
+\begin{bmatrix}
+	\arccos (Z)   \cr
+	\arccos \negmedspace\Big( X/\sqrt{1-Z^2} \Big) \cr
+\end{bmatrix} =
+\begin{bmatrix}
+	\arccos (\bm{n_s} \cdot \bm{n_i})   \cr
+	\arccos \negmedspace\Big( (\bm{n_s} \cdot \bm{n_p})/\sqrt{1-(\bm{n_s} \cdot \bm{n_i})^2} \Big) \cr
+\end{bmatrix}. $$
+
+It can be seen that \\(\theta = 0\\) corresponds to *forward scattering*, and \\(\theta = \pi\\) -- to *back-scattering*.
+
+Unfortunately, the rotation of the coordinate frame causes the values of the components of the incident electric field to change \[[4](#references) (ch. 5.31)\]. If the angle of rotation of the plane is \\(\phi\\), the field vectors (and phasors) are correspondingly rotated by \\(-\phi\\) radians:
+
+$$ \tag{15.11}
+\begin{bmatrix}
+	E\_{x}(\phi) \cr
+	E\_{y}(\phi) \cr
+	E\_{z}(\phi) \cr
+\end{bmatrix} =
+\begin{bmatrix}
+	\phantom{-}\cos{\phi} & \sin{\phi} & 0 \cr
+	-\sin{\phi}           & \cos{\phi} & 0 \cr
+	0                     & 0          & 1 \cr
+\end{bmatrix}
+\begin{bmatrix}
+	E\_{X} \cr
+	E\_{Y} \cr
+	E\_{Z} \cr
+\end{bmatrix}.
+$$
+
+On the other hand, this convention makes computing the coordinates of the scattered wave vectors (and phasors) easy.  Since \\(\bm{n_s}\\) is orthogonal to \\(\bm{y}\\), we can define
+
+$$ \tag{15.12}
+	\bm{z'} = \bm{n_s}, \quad
+	\bm{y'} = \bm{y}, \quad
+	\bm{x'} = \bm{y} \times \bm{n_s}.
+$$
+
+As Equation 13.6 shows, the scattered field vectors (and phasors) are orthogonal to \\(\bm{n_s}\\). Thus, in the \\(x' y' z'\\) coordinate system, only the \\(x'\\) and \\(y'\\) components of \\(\bm{E_s}\\) and \\(\bm{B_s}\\) are non-zero.
+
+Equation 15.12 represents a rotation of the \\(x' y'\\) plane about the \\(y\\)-axis:
+
+$$ \tag{15.13}
+\begin{bmatrix}
+	E\_{x'}(\theta, \phi) \cr
+	E\_{y'}(\theta, \phi) \cr
+	E\_{z'}(\theta, \phi) \cr
+\end{bmatrix} =
+\begin{bmatrix}
+	\phantom{-}\cos{\theta} & 0 & \sin{\theta} \cr
+	0                       & 1 & 0            \cr
+	-\sin{\theta}           & 0 & \cos{\theta} \cr
+\end{bmatrix}
+\begin{bmatrix}
+	E\_{x}(\phi) \cr
+	E\_{y}(\phi) \cr
+	E\_{z}(\phi) \cr
+\end{bmatrix}.
+$$
+
+Since we can represent both incident and the scattering field using only two components (each), Equation 15.6.1 can be expressed in terms of the scattering matrix[^14]
+
+[^14]: The numbering convention and the division by \\(i k\\) are retained to match the results in the book by van de Hulst \[[4](#references) (ch. 4.41)\]. However, we do not make any changes to the tensor form of Equations 15.6-15.7 that follow the book by Mishchenko \[[9](#references) (ch. 5.3)\], since we find them entirely appropriate.
+
+$$ \tag{15.14}
+S(\theta, \phi, \omega) =
+\begin{bmatrix}
+	s_2(\theta, \phi, \omega) & s_3(\theta, \phi, \omega) \cr
+	s_4(\theta, \phi, \omega) & s_1(\theta, \phi, \omega) \cr
+\end{bmatrix},
+$$
+
+such that, if the values of the incident field are only known at the plane \\(-z\\),
+
+$$ \tag{15.15}
+\begin{bmatrix}
+	E\_{s,x'}(r, \theta, \phi, \omega) \cr
+	E\_{s,y}(r, \theta, \phi, \omega) \cr
+\end{bmatrix} =
+\frac{e^{-i k(\omega) r + i k(\omega) z}}{i k r} S(\theta, \phi, \omega)
+\begin{bmatrix}
+	E\_{i,x}(-z, \phi, \omega) \cr
+	E\_{i,y}(-z, \phi, \omega) \cr
+\end{bmatrix}.
+$$
 
 ---
-
-Scattering Matrix...
-Relative magnitude... Poynting vector... Radiative Transfer Coefficients...
-Analytic solution for a non-magnetic conducting sphere (L-M)...
 
 ## III. Simple Formulas for Practical Use
 
@@ -3113,7 +3224,7 @@ $$ \tag{19}
 	\end{bmatrix} =
 	\begin{bmatrix}
 		\phantom{\pm} \bar{E}\_a(\bm{r}) \cos(\phi(\bm{r}) + \omega t) \cr
-		\pm   	      \bar{E}\_b(\bm{r}) \sin(\phi(\bm{r}) + \omega t)
+		\pm           \bar{E}\_b(\bm{r}) \sin(\phi(\bm{r}) + \omega t)
 	\end{bmatrix},
 $$
 
@@ -3125,7 +3236,7 @@ $$ \tag{??}
 	\bm{E}(\bm{r},t) = \mathcal{Re}
 	\begin{Bmatrix}
 		\phantom{\pm} \bar{E}\_a(\bm{r}) \phantom{e^{-i \pi/2}} e^{i(\phi(\bm{r}) + \omega t)} \cr
-				 \pm  \bar{E}\_b(\bm{r}) 		  e^{-i \pi/2}  e^{i(\phi(\bm{r}) + \omega t)}
+				 \pm  \bar{E}\_b(\bm{r})          e^{-i \pi/2}  e^{i(\phi(\bm{r}) + \omega t)}
 	\end{Bmatrix} =
 	\mathcal{Re} \big\lbrace \bm{\bar{E}}(\bm{r}) e^{i \phi(\bm{r})} e^{i \omega t} \big\rbrace,
 $$
