@@ -3099,11 +3099,25 @@ $$ \tag{15.13}
 \end{bmatrix}.
 $$
 
-Since we can represent both incident and the scattering field using only two components (each), Equation 15.6.1 can be expressed in terms of the scattering matrix[^14]
+Suppose that the amplitude and the phase of the incident field is known at the plane \\(z = z_0\\):
+
+$$ \tag{15.14}
+\begin{bmatrix}
+	E\_{i,x}(0, 0, \phi, \omega) \cr
+	E\_{i,y}(0, 0, \phi, \omega) \cr
+\end{bmatrix} =
+e^{i k(\omega) z_0}
+\begin{bmatrix}
+	E\_{i,x}(z_0, 0, \phi, \omega) \cr
+	E\_{i,y}(z_0, 0, \phi, \omega) \cr
+\end{bmatrix}.
+$$
+
+Since we can represent both the incident and the scattering fields using only two components (each), Equation 15.6.1 can be expressed in terms of the complex *scattering matrix*[^14]
 
 [^14]: The numbering convention and the division by \\(i k\\) are retained to match the results in the book by van de Hulst \[[4](#references) (ch. 4.41)\]. However, we do not make any changes to the tensor form of Equations 15.6-15.7 that follow the book by Mishchenko \[[9](#references) (ch. 5.3)\], since we find them entirely appropriate.
 
-$$ \tag{15.14}
+$$ \tag{15.15}
 S(\theta, \phi, \omega) =
 \begin{bmatrix}
 	s_2(\theta, \phi, \omega) & s_3(\theta, \phi, \omega) \cr
@@ -3111,19 +3125,25 @@ S(\theta, \phi, \omega) =
 \end{bmatrix},
 $$
 
-such that, if the values of the incident field are only known at the plane \\(-z\\),
+such that
 
-$$ \tag{15.15}
+$$ \tag{15.16}
 \begin{bmatrix}
 	E\_{s,x'}(r, \theta, \phi, \omega) \cr
 	E\_{s,y}(r, \theta, \phi, \omega) \cr
 \end{bmatrix} =
-\frac{e^{-i k(\omega) r + i k(\omega) z}}{i k r} S(\theta, \phi, \omega)
+\frac{e^{-i k(\omega) r + i k(\omega) z_0}}{i k r} S(\theta, \phi, \omega)
 \begin{bmatrix}
-	E\_{i,x}(-z, \phi, \omega) \cr
-	E\_{i,y}(-z, \phi, \omega) \cr
+	E\_{i,x}(z_0, 0, \phi, \omega) \cr
+	E\_{i,y}(z_0, 0, \phi, \omega) \cr
 \end{bmatrix}.
 $$
+
+In general, the elements of the scattering matrix depend on the azimuthal angle \\(\phi\\), since, as we rotate the scattering plane (\\(x z\\) or \\(x' z'\\)) around the \\(Z\\)-axis, the particle appears to rotate (in the opposite direction) in both the \\(x y z\\) and \\(x' y' z'\\) coordinate systems. However, if the particle is symmetric with respect to the \\(Z\\)-axis, which is the case for spherical and an axis-aligned [spheroidal](https://en.wikipedia.org/wiki/Spheroid) particles, the matrix only depends on the polar angle \\(\theta\\). This causes the scattering matrix to become diagonal \[[4](#references) (ch. 4.42)\].
+
+It's easy to see why that is the case. Perform mirror reflection of Equation 15.15 around the \\(y z\\) (or \\(x z\\)) plane. \\(E\_{s,x'}\\) and \\(E\_{i,x}\\) (or \\(E\_{s,y}\\) and \\(E\_{i,y}\\)) change sign, but since the particle possesses mirror-symmetry, the scattering matrix remains unchanged. Thus, the off-diagonal elements \\(s_3 = s_4 = 0\\).
+
+In addition, a similar proof shows that axial symmetry leads to another important property of forward scattering: \\(s_1(0) = s_2(0)\\).
 
 ---
 
