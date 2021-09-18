@@ -1293,20 +1293,34 @@ Secondly, it means we can compute the Poynting vector without explicit considera
 
 $$ \tag{7.31}
 	\bm{S}(\bm{r}, t)
-	= \mu\_0^{-1} \frac{\eta(\omega)}{c} |\bm{E}(\bm{r}, t)|^2 \bm{n}
-	= \big( \epsilon_0 \eta c |E\_0|^2 \cos^2{\theta} \big) \bm{n},
+	= \mu\_0^{-1} \frac{\eta(\omega)}{c} {\big\vert \mathcal{Re} \big\lbrace \bm{E}(\bm{r}, \bm{n}, \omega) e^{i \omega t} \big\rbrace \big\vert}^2 \bm{n}
+	= \mu\_0^{-1} \frac{\eta}{c} |E\_0|^2 \cos^2{\theta} \thinspace \bm{n},
 $$
 
 where we expanded the squared amplitude as per Equation 7.14.
 
 The average value of a squared cosine is \\(\frac{1}{2}\\), so the corresponding irradiance[^11] value (c.f. Equation 2.25) is
 
-[^11]: Since the fields are monochromatic, the expressions of irradiance and spectral irradiance are identical.
+[^11]: Since the electromagnetic fields is monochromatic, the expressions of irradiance and spectral irradiance are identical.
 
 $$ \tag{7.32}
 	\mathtt{E}
 	= \braket{\bm{S}} \cdot \bm{n}
-	= \frac{1}{2} \epsilon_0 \eta c |E\_0|^2.
+	= \frac{1}{2} \mu\_0^{-1} \frac{\eta}{c} |E\_0|^2.
+$$
+
+Without proof, we shall state an interesting fact. The time-averaged energy density (c.f. Equations 2.23-2.24) of the field of a plane wave is
+
+$$ \tag{7.33}
+	\bigg\langle \frac{\partial \mathcal{E\_{em}}}{\partial V} \bigg\rangle
+	= \frac{1}{2} \mu\_0^{-1} \frac{\eta^2}{c^2} |E\_0|^2.
+$$
+
+This implies that the amount of energy that goes through a unit area per unit time is the amount of energy per unit volume times the velocity at which the energy flows \[[5](#references) (vol. II, ch. 27)\]:
+
+$$ \tag{7.34}
+	\mathtt{E}
+	= \frac{c}{\eta} \bigg\langle \frac{\partial \mathcal{E\_{em}}}{\partial V} \bigg\rangle.
 $$
 
 ### Electromagnetic Potential
@@ -1466,14 +1480,14 @@ $$
 Apply the Leibniz rule, take the time derivative, and simplify. The result is
 
 $$ \tag{9.3}
-	\int\_{-\infin}^{\infin} \Big( \nabla^2 + \big( \omega / c \big)^2 \Big) \psi(\bm{r}, \omega) e^{i \omega t} d\omega
+	\int\_{-\infin}^{\infin} \big( \nabla^2 + \omega^2 / c^2 \big) \psi(\bm{r}, \omega) e^{i \omega t} d\omega
 	= \int\_{-\infin}^{\infin} -\xi(\bm{r}, \omega) e^{i \omega t} d\omega.
 $$
 
 Assume that the Fourier transform is uniquely defined. This permits us to remove the integral sign:
 
 $$ \tag{9.4}
-	\big( \nabla^2 + \big( \omega / c \big)^2 \big) \psi(\bm{r}, \omega) e^{i \omega t}
+	\big( \nabla^2 + \omega^2 / c^2 \big) \psi(\bm{r}, \omega) e^{i \omega t}
 	= -\xi(\bm{r}, \omega) e^{i \omega t}.
 $$
 
