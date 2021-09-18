@@ -2027,6 +2027,8 @@ $$
 
 but for [ferromagnets](https://en.wikipedia.org/wiki/Ferromagnet), this expression is invalid due to the [magnetic hysteresis](https://en.wikipedia.org/wiki/Magnetic_hysteresis) effect \[[5](#references) (vol. II, ch. 36)\].
 
+Fortunately, for optical applications, the situation is rather simple. Paramagnetism and diamagnetism are both very weak in general; the same is true for ferromagnetism at optical frequencies in particular. This leads to \\(\mu\_r \approx 1\\) \[[14](#references) (vol. I, ch. 27)\].
+
 In some sense, dipoles can be considered elementary field generators: an electric dipole produces the \\(\bm{E}\\) field, and a magnetic dipole is a source of the \\(\bm{B}\\) field. They can be used to describe any (bound) current and charge distributions, which makes them particularly useful for solving electromagnetic radiation and scattering problems.
 
 [Insert pictures of field lines of electric and magnetic dipoles]
@@ -3188,10 +3190,11 @@ Pharr & Jakob, Bohren & Huffman, NASA
 7. Van Bladel, J. G. [Electromagnetic Fields](https://doi.org/10.1002/047012458X) (2nd ed., 2007).
 8. Ishimaru, A. [Electromagnetic Wave Propagation, Radiation, and Scattering](https://doi.org/10.1002/9781119079699) (2nd ed., 2017).
 9. Mishchenko, M. I. [Electromagnetic Scattering by Particles and Particle Groups](https://doi.org/10.1017/CBO9781139019064) (2014).
-10. Kong, J. A. [Electromagnetic Wave Theory](https://www.piers.org/emwave/) (2008).
-11. Tsang, L., & Kong, J. A. [Scattering of Electromagnetic Waves: Advanced Topics](https://10.1002/0471224278) (2001).
-12. Fleisch, D. [Student's Guide to Vectors and Tensors](https://doi.org/doi:10.1017/CBO9781139031035) (2011).
+10. Kong, J. A. [Electromagnetic Wave Theory](https://www.worldcat.org/title/electromagnetic-wave-theory/oclc/248547001) (2008).
+11. Tsang, L., & Kong, J. A. [Scattering of Electromagnetic Waves: Advanced Topics](https://doi.org/10.1002/0471224278) (2001).
+12. Fleisch, D. [Student's Guide to Vectors and Tensors](https://doi.org/10.1017/CBO9781139031035) (2011).
 13. Talalai, G. [Derivation of the Free-Space Green’s Function](https://www.researchgate.net/publication/324729639_Derivation_of_the_Free-Space_Green's_Function_and_Radiation_from_a_Hertzian_Dipole) (2016).
+14. Pauli, W. [Pauli Lectures on Physics](https://www.worldcat.org/title/pauli-lectures-on-physics-vol-1-electrodynamics/oclc/439349741) (1973).
 99. Hansen, J. E., & Travis, L. D. [Light Scattering in Planetary Atmospheres](https://doi.org/10.1007/BF00168069) (1974).
 
 <!--
