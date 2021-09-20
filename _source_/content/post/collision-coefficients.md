@@ -2956,7 +2956,7 @@ $$ \tag{14.22}
 	= u(\bm{r'}) \bigg( \delta(\bm{r'} - \bm{r''}) \mathcal{I} + \int_V \mathcal{G} \big( \bm{r'}, \bm{r} \big) \mathcal{T} \big( \bm{r}, \bm{r''} \big) dV \bigg).
 $$
 
-## Scattering Matrix
+### Scattering Matrix
 
 An arbitrary stream of electromagnetic radiation can decomposed into a number of individual plane waves. Specifically, in a *linear, isotropic, homogeneous* medium, the expression of the incident field is given by Equation 6.16:
 
