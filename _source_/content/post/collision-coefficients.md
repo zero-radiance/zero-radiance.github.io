@@ -2449,7 +2449,7 @@ $$ \tag{12.13}
 \end{aligned}
 $$
 
-Take a look at the individual factors in Equations 12.11-12.13: those outside the brackets oscillate between 0 and 1, while the terms  inside greatly depend on the distance between the observation point \\(\bm{r}\\) and the source \\(\bm{r_0}\\). This suggests that we may divide the entire space into zones based on the proximity to the observation point. If we are interested in the value of the field located near the source, we say that the observation point belongs to the [near-field](https://en.wikipedia.org/wiki/Near_and_far_field) zone. Similarly, far-away points are said to be located in the [far-field](https://en.wikipedia.org/wiki/Near_and_far_field) zone. Between them is a region called the *transition* zone.
+Take a look at the individual factors in Equations 12.11-12.13: those outside the brackets oscillate between 0 and 1, while the terms  inside greatly depend on the distance between the observation point \\(\bm{r}\\) and the source \\(\bm{r_0}\\). This suggests that we may divide the entire space into zones based on the proximity to the observation point. If we are interested in the value of the field located near the source (the so-called *near field*), we say that the observation point belongs to the [near zone](https://en.wikipedia.org/wiki/Near_and_far_field). Similarly, far-away points are said to be located in the [far zone](https://en.wikipedia.org/wiki/Near_and_far_field) (and the field in that range is called the *far field*). Between them is a region called the *transition zone*.
 
 If we fix a value of \\(k\\), we may decompose the electric tensor into the near-, transition-, and far-field components:
 
@@ -2536,7 +2536,7 @@ $$
 
 This implies that, as \\(k R \to \infin\\), the magnitude of the magnetic field becomes vanishingly small in comparison to that of the electric field, which explains why the dipole is called *electric*.
 
-### Radiation in the Far-Field Zone
+### Far-field Approximation
 
 Let us focus on the case when the observation point is far away from the source. It is important for two reasons: first, if we are dealing with small particles, a typical observation falls into this category, and second, because this assumption greatly simplifies the behavior of the scattered wave, as we shall now demonstrate.
 
@@ -2677,7 +2677,7 @@ $$ \tag{13.9}
 \end{aligned}
 $$
 
-We are now ready to formulate the far-field solution of the general case of a particle. Assume that the observation point is in the far-field zone with respect to each individual volume element, so that \\(k R \gg 1\\). Equation 11.25 then takes the form
+We are now ready to formulate the far-field solution of the general case of a particle. Assume that the observation point is in the far zone with respect to each individual volume element, so that \\(k R \gg 1\\). Equation 11.25 then takes the form
 
 $$ \tag{13.10}
 \begin{aligned}
@@ -2766,7 +2766,7 @@ We would like to caution that conditions stated in Equation 13.17 are, strictly 
 
 ### Transition Operator
 
-The volume integral equation can be reduced to a relatively simple expression by assuming that the observation point is located in the far-field zone of the particle. However, the value of the electric field in the interior remains unknown. For a single atom or a small molecule, we can reasonably assume that it doesn't drive itself, which makes the field driving the molecule the same as the incident field, with the resulting (simplified) expression of Equation 13.16 given by Equation 13.4. Yet, in general, this assumption does not hold. It is easy to convince ourselves by considering a highly reflective or absorptive particle - it seems fairly obvious that the total field deep inside the particle has (on average) a lower magnitude in comparison to the incident field at the same location if the particle wasn't there.
+The volume integral equation can be reduced to a relatively simple expression by assuming that the observation point is located in the far zone of the particle. However, the value of the electric field in the interior remains unknown. For a single atom or a small molecule, we can reasonably assume that it doesn't drive itself, which makes the field driving the molecule the same as the incident field, with the resulting (simplified) expression of Equation 13.16 given by Equation 13.4. Yet, in general, this assumption does not hold. It is easy to convince ourselves by considering a highly reflective or absorptive particle - it seems fairly obvious that the total field deep inside the particle has (on average) a lower magnitude in comparison to the incident field at the same location if the particle wasn't there.
 
 Let us recall the mechanics of scattering. In a dielectric, the incident field drives the dipoles, which in turn act as sources of scattered wavelets interfering with the incident field according to the superposition principle. We may continue this line of thinking by considering the effect of a dipole as a secondary source on all other dipoles surrounding it, effectively treating the dipole field as the secondary incident field. Repeated application of this iterative approach leads to evaluation of successive orders of scattering one by one. This is the general idea behind the [Born series](https://en.wikipedia.org/wiki/Born_series) \[[6](#references) (ch. 13.1)\].
 
