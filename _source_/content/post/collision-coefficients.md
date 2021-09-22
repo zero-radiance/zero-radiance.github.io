@@ -3028,7 +3028,7 @@ $$
 
 Expressions given above are independent of the choice of a coordinate system. In practice, it is rather convenient to establish a certain coordinate convention.
 
-[Insert picture here]
+{{< figure src="/img/scat_coord.svg" caption="*Figure N: the scattering coordinate system.*" >}}
 
 First, recall that \\(r\\) in Equation 15.6 stands for the distance from the center of the particle to the observation point. This makes the center of the particle a suitable choice for the origin of the coordinate system.
 
@@ -3050,7 +3050,7 @@ $$ \tag{15.9}
 	\bm{X} = \bm{n_p}.
 $$
 
- The latter could, for instance, represent the coordinate frame of the particle. We can now rotate \\(xyz\\) and define its orientation relative to \\(XYZ\\) in terms of the [Euler angles](https://en.wikipedia.org/wiki/Euler_angles). We are particularly interested in rotating the scattering plane \\(xz\\) about the \\(Z\\)-axis, as that allows the set of possible direction of scattering to cover the entire the unit sphere. If the azimuthal (plane rotation) angle is \\(\phi\\) and the polar angle is \\(\theta\\), the spherical coordinates of \\(\bm{n_s}\\) are
+ The latter could, for instance, represent the coordinate frame of the particle. We can now rotate \\(xyz\\) and define its orientation relative to \\(XYZ\\) in terms of the [Euler angles](https://en.wikipedia.org/wiki/Euler_angles). We are particularly interested in rotating the scattering plane \\(xz\\) about the \\(Z\\)-axis, as that allows the set of possible direction of scattering to cover the entire the unit sphere. If the azimuthal (plane rotation) angle is \\(\phi\\) and the polar angle is \\(\theta\\), the spherical coordinates of \\(\bm{n_s}\\) with respect to the \\(XYZ\\) frame are
 
 $$ \tag{15.10}
 \bm{n_s} =
@@ -3121,7 +3121,7 @@ $$ \tag{15.13}
 \end{bmatrix}.
 $$
 
-Suppose that the amplitude and the phase of the incident field is known at the plane with the \\(z\\)-coordinate
+Suppose that the amplitude and the phase of the incident field is known at the plane with the \\(z\\)-coordinate (where \\(z\\) is a negative number). Then the value of the field at the origin is
 
 $$ \tag{15.14}
 \begin{bmatrix}
