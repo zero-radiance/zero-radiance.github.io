@@ -3050,7 +3050,7 @@ $$ \tag{15.9}
 	\bm{X} = \bm{n_p}.
 $$
 
- The latter could, for instance, represent the coordinate frame of the particle. We can now rotate \\(xyz\\) and define its orientation relative to \\(XYZ\\) in terms of the [Euler angles](https://en.wikipedia.org/wiki/Euler_angles). We are particularly interested in rotating the scattering plane \\(xz\\) about the \\(Z\\)-axis, as that allows the set of possible direction of scattering to cover the entire the unit sphere. If the azimuthal (plane rotation) angle is \\(\phi\\) and the polar angle is \\(\theta\\), the [spherical coordinates](https://en.wikipedia.org/wiki/List_of_common_coordinate_transformations#To_spherical_coordinates) of \\(\bm{n_s}\\) are
+ The latter could, for instance, represent the coordinate frame of the particle. We can now rotate \\(xyz\\) and define its orientation relative to \\(XYZ\\) in terms of the [Euler angles](https://en.wikipedia.org/wiki/Euler_angles). We are particularly interested in rotating the scattering plane \\(xz\\) about the \\(Z\\)-axis, as that allows the set of possible direction of scattering to cover the entire the unit sphere. If the azimuthal (plane rotation) angle is \\(\phi\\) and the polar angle is \\(\theta\\), the spherical coordinates of \\(\bm{n_s}\\) are
 
 $$ \tag{15.10}
 \bm{n_s} =
@@ -3059,13 +3059,15 @@ $$ \tag{15.10}
 	\phi   \cr
 \end{bmatrix} =
 \begin{bmatrix}
-	\arccos (Z)   \cr
-	\arccos \negmedspace\Big( X/\sqrt{1-Z^2} \Big) \cr
+	\mathrm{atan2}(X, Z) \cr
+	\mathrm{atan2}(Y, X) \cr
 \end{bmatrix} =
 \begin{bmatrix}
-	\arccos (\bm{n_s} \cdot \bm{n_i})   \cr
-	\arccos \negmedspace\Big( (\bm{n_s} \cdot \bm{n_p})/\sqrt{1-(\bm{n_s} \cdot \bm{n_i})^2} \Big) \cr
+	\mathrm{atan2}(\bm{n_s} \cdot \bm{n_p}, \bm{n_s} \cdot \bm{n_i}) \cr
+	\mathrm{atan2}(\bm{n_s} \cdot (\bm{n_i} \times \bm{n_p}), \bm{n_s} \cdot \bm{n_p}) \cr
 \end{bmatrix}. $$
+
+Note that we must use the [atan2](https://en.wikipedia.org/wiki/Atan2) function in order to obtain the full range of values of \\(\theta\\) and \\(\phi\\).
 
 It can be seen that \\(\theta = 0\\) corresponds to *forward scattering*, and \\(\theta = \pi\\) -- to *back-scattering*.
 
