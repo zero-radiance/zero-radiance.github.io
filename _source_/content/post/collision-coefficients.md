@@ -3119,17 +3119,17 @@ $$ \tag{15.13}
 \end{bmatrix}.
 $$
 
-Suppose that the amplitude and the phase of the incident field is known at the plane \\(z = z_0\\):
+Suppose that the amplitude and the phase of the incident field is known at the plane with the \\(z\\)-coordinate
 
 $$ \tag{15.14}
 \begin{bmatrix}
 	E\_{i,x}(0, 0, \phi, \omega) \cr
 	E\_{i,y}(0, 0, \phi, \omega) \cr
 \end{bmatrix} =
-e^{i k(\omega) z_0}
+e^{i k(\omega) z}
 \begin{bmatrix}
-	E\_{i,x}(z_0, 0, \phi, \omega) \cr
-	E\_{i,y}(z_0, 0, \phi, \omega) \cr
+	E\_{i,x}(z, 0, \phi, \omega) \cr
+	E\_{i,y}(z, 0, \phi, \omega) \cr
 \end{bmatrix}.
 $$
 
@@ -3152,10 +3152,10 @@ $$ \tag{15.16}
 	E\_{s,x'}(r, \theta, \phi, \omega) \cr
 	E\_{s,y}(r, \theta, \phi, \omega) \cr
 \end{bmatrix} =
-\frac{e^{-i k(\omega) r + i k(\omega) z_0}}{i k r} S(\theta, \phi, \omega)
+\frac{e^{-i k(\omega) r + i k(\omega) z}}{i k r} S(\theta, \phi, \omega)
 \begin{bmatrix}
-	E\_{i,x}(z_0, 0, \phi, \omega) \cr
-	E\_{i,y}(z_0, 0, \phi, \omega) \cr
+	E\_{i,x}(z, 0, \phi, \omega) \cr
+	E\_{i,y}(z, 0, \phi, \omega) \cr
 \end{bmatrix}.
 $$
 
