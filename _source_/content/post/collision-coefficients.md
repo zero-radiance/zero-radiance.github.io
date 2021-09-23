@@ -3169,6 +3169,8 @@ It's easy to see why that is the case. Consider changing the handedness of the \
 
 In addition, a similar proof shows that axial symmetry leads to another important property of forward scattering: \\(s_1(0) = s_2(0)\\).
 
+### Optical Theorem
+
 ---
 
 ## III. Simple Formulas for Practical Use
