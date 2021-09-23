@@ -678,7 +678,9 @@ $$ \tag{4.10}
 	= \frac{1}{2 \pi} \int\_{-\infin}^{\infin} e^{i x y} dy.
 $$
 
-Since the individual harmonics are orthogonal (and, as a result, independent), analysis of a *polychromatic* field with \\(N\\) components can be simplified by considering \\(N\\) *monochromatic* (or *time-harmonic*) vector fields, such as
+Since the individual harmonics are orthogonal (and, as a result, independent), analysis of a *polychromatic* field with \\(N\\) components can be simplified by considering \\(N\\) *monochromatic* (or *time-harmonic*)[^13] vector fields, such as
+
+[^13]: Many authors abuse the notation by writing Equation 4.11 as \\(\mathcal{Re} \big\lbrace \bm{E}(\bm{r}) e^{i \omega t} \big\rbrace\\) or \\(\mathcal{Re} \big\lbrace \bm{E}(\bm{r}, \omega) e^{i \omega t} \big\rbrace\\).
 
 $$ \tag{4.11}
 	\bm{E}(\bm{r}, t)
