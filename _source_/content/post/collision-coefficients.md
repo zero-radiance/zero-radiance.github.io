@@ -1210,7 +1210,7 @@ $$
 We can prove that the magnetic vector possesses the same property in a similar manner. According to Equation 3.9.1,
 
 $$ \tag{7.20}
-	\nabla \times \bm{E}(\bm{r}, \omega) = - i \omega \bm{B}(\bm{r}, \omega).
+	\nabla \times \bm{E}(\bm{r}, \omega) = -i \omega \bm{B}(\bm{r}, \omega).
 $$
 
 Substitute Equation 6.16 into the left-hand side and expand the expression of the curl
@@ -1221,13 +1221,13 @@ $$ \tag{7.21}
 	= -i k(\omega) \bm{n} \times \bm{E}(\bm{r}, \bm{n}, \omega).
 $$
 
-Equation 7.20 is thus equivalent to
+After division by \\(-i \omega\\), Equation 7.20 becomes equivalent to
 
 $$ \tag{7.22}
-	-i k(\omega) \bm{n} \times \bm{E}(\bm{r}, \bm{n}, \omega) = -i \omega \bm{B}(\bm{r}, \bm{n}, \omega).
+	\frac{k(\omega)}{\omega} \bm{n} \times \bm{E}(\bm{r}, \bm{n}, \omega) = \bm{B}(\bm{r}, \bm{n}, \omega).
 $$
 
-After taking the dot product with \\(\bm{n}\\), we obtain an analog of Equation 7.18:
+By taking the dot product of the resulting expression with \\(\bm{n}\\), we obtain an analog of Equation 7.18:
 
 $$ \tag{7.23}
 	\frac{k(\omega)}{\omega} \bm{n} \cdot \big( \bm{n} \times \bm{E}(\bm{r}, \bm{n}, \omega) \big)
@@ -1235,7 +1235,9 @@ $$ \tag{7.23}
 	= 0,
 $$
 
-where the last equality is obtained by rearranging the [triple product](https://en.wikipedia.org/wiki/Triple_product) \\(\bm{n} \cdot (\bm{n} \times \bm{E}) = \bm{E} \cdot (\bm{n} \times \bm{n}) = 0\\).
+where the last equality follows from the property of the [triple product](https://en.wikipedia.org/wiki/Triple_product) \\(\bm{n} \cdot (\bm{n} \times \bm{E}) = \bm{E} \cdot (\bm{n} \times \bm{n})\\).
+
+Thus, the magnetic field vector is also orthogonal to the plane normal:
 
 $$ \tag{7.24}
 	\bm{n} \cdot \mathcal{Re} \big\lbrace \bm{B}(\bm{r}, \bm{n}, \omega) e^{i \omega t} \big\rbrace
@@ -1283,23 +1285,30 @@ $$ \tag{7.29}
 	= \frac{\eta(\omega)}{c}.
 $$
 
-This equality has two consequences. First, it says that the electric and the magnetic vectors of a plane wave oscillate in-phase, with the magnitude of both vectors rising and falling at the same point in space and time. Stated mathematically, if we align the triad \\(\lbrace \bm{E}, \bm{B}, \bm{n} \rbrace\\) with the \\(\lbrace x,y,z \rbrace\\) axes of a Cartesian coordinate system, then
+This equality has two consequences. First, it says that the electric and the magnetic vectors of a plane wave oscillate in-phase, with the magnitude of both vectors rising and falling at the same point in space and time. Stated mathematically, if we align the triad \\(\lbrace \bm{E_0}, \bm{B_0}, \bm{n} \rbrace\\) with the \\(\lbrace x,y,z \rbrace\\) axes of a Cartesian coordinate system, then
 
 $$ \tag{7.30}
-	\mathcal{Arg} \big\lbrace E_x(0, \bm{n}, \omega) \big\rbrace =
+\begin{aligned}
+	\mathcal{Arg} \big\lbrace E_x(0, \bm{n}, \omega) \big\rbrace &=
 	\mathcal{Arg} \big\lbrace B_y(0, \bm{n}, \omega) \big\rbrace =
-	\delta.
+	\delta, \cr
+	\mathcal{Arg} \big\lbrace E_y(0, \bm{n}, \omega) \big\rbrace &=
+	\mathcal{Arg} \big\lbrace B_x(0, \bm{n}, \omega) \big\rbrace =
+	\frac{\pi}{2} \pm \pi n.
+\end{aligned}
 $$
 
 Secondly, it means we can compute the Poynting vector without explicit consideration of the magnetic field:
 
 $$ \tag{7.31}
+\begin{aligned}
 	\bm{S}(\bm{r}, t)
-	= \mu\_0^{-1} \frac{\eta(\omega)}{c} {\big\vert \mathcal{Re} \big\lbrace \bm{E}(\bm{r}, \bm{n}, \omega) e^{i \omega t} \big\rbrace \big\vert}^2 \bm{n}
-	= \mu\_0^{-1} \frac{\eta}{c} |E\_0|^2 \cos^2{\theta} \thinspace \bm{n},
+	&= \mu\_0^{-1} \frac{\eta(\omega)}{c} {\big\vert \mathcal{Re} \big\lbrace \bm{E}(\bm{r}, \bm{n}, \omega) e^{i \omega t} \big\rbrace \big\vert}^2 \bm{n} \cr
+	&= \mu\_0^{-1} \frac{\eta(\omega)}{c} \Big( |E_{0,x}|^2 \cos^2{\theta_x} + |E_{0,y}|^2 \cos^2{\theta_y} \Big) \bm{n},
+\end{aligned}
 $$
 
-where we expanded the squared amplitude as per Equation 7.14.
+where we have utilized the expression of the phase given by Equation 7.12.
 
 The average value of a squared cosine is \\(\frac{1}{2}\\), so the corresponding irradiance[^11] value (c.f. Equation 2.25) is
 
@@ -1534,7 +1543,7 @@ $$
 
 Its solution is the *scalar* [Green function](https://en.wikipedia.org/wiki/Green%27s_function) \\(g\\). It represents an [impulse response](https://en.wikipedia.org/wiki/Impulse_response) of the linear operator \\(\mathcal{H}\\).
 
-Equation 9.9 is an inhomogeneous linear differential equation. Consequently, its solution depends on the linear operator in question, its domain of validity, as well as the associated (initial or boundary) conditions. According to Equation 9.7, our domain is the whole real space, and the only applicable restriction is the Sommerfeld radiation condition. Thus, it can be shown that the *free-space* scalar Green function \\(g_0\\) takes the form[^9] of an diverging *spherical wave* \[[7](#references) (ch. 2.12), [8](#references) (ch. 5.2), [9](#references) (ap. B), [13](#references)\]:
+Equation 9.9 is an inhomogeneous linear differential equation. Consequently, its solution depends on the linear operator in question, its domain of validity, as well as the associated (initial or boundary) conditions. According to Equation 9.7, our domain is the whole real space, and the only applicable restriction is the Sommerfeld radiation condition. Thus, it can be shown that the *free-space* scalar Green function \\(g_0\\) takes the form[^9] of an diverging *scalar* [spherical wave](https://en.wikipedia.org/wiki/Wave_equation#Spherical_waves) \[[7](#references) (ch. 2.12), [8](#references) (ch. 5.2), [9](#references) (ap. B), [13](#references)\]:
 
 $$ \tag{9.10}
 	g_0(R) = g(R, k_0) = \frac{e^{-i k_0 R}}{4 \pi R}.
