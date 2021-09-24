@@ -2553,7 +2553,7 @@ This implies that, as \\(k R \to \infin\\), the magnitude of the magnetic field 
 
 ### Spherical Waves
 
-Let us focus on the case when the observation point is far away from the source. It is important for two reasons: first, if we are dealing with small particles, a typical observation falls into this category, and second, because this assumption greatly simplifies the behavior of the scattered wave, as we shall now demonstrate.
+Let us focus on the case when the observation point is far away from the source. It is important for two reasons: first, if we are dealing with small particles, a typical observation falls into this category, and second, because this assumption greatly simplifies the behavior of the scattered wave, as we shall soon demonstrate.
 
 The idea behind the far-field approximation is simple: we discard certain terms in Equations 12.14 and 12.18. In order to do that, we must consider their magnitudes relative to each other:
 
@@ -2587,7 +2587,7 @@ $$
 
 where we renamed \\(\bm{r_0}\\) to \\(\bm{r'}\\) in order to avoid introducing auxiliary variables.
 
-Let us pause for a moment to consider what \\(k R\\) represents. According to Equation 13.4, it is the phase difference (in radians) between the observation point \\(\bm{r}\\) and the location of the dipole \\(\bm{r'}\\). We may confirm this by dimensional analysis of Equations 7.6-7.7:
+Let us stop for a moment to consider what \\(k R\\) represents. According to Equation 13.3, it is the phase difference (in radians) between the observation point \\(\bm{r}\\) and the location of the dipole \\(\bm{r'}\\). We may confirm this by dimensional analysis of Equations 7.6-7.7:
 
 $$ \tag{13.4}
 	k R = (\eta - i \kappa) \omega c^{-1} R = [\text{1}] [\text{rad/s}] [\text{s/m}] [\text{m}] = [\text{rad}].
@@ -2800,7 +2800,7 @@ that follow the [inverse-square law](https://en.wikipedia.org/wiki/Inverse-squar
 
 ### Transition Operator
 
-The volume integral equation can be reduced to a relatively simple expression by assuming that the observation point is located in the far zone of the particle. However, the value of the electric field in the interior remains unknown. For a single atom or a small molecule, we can reasonably assume that it doesn't drive itself, which makes the field driving the molecule the same as the incident field, with the resulting (simplified) expression of Equation 13.16 given by Equation 13.4. Yet, in general, this assumption does not hold. It is easy to convince ourselves by considering a highly reflective or absorptive particle - it seems fairly obvious that the total field deep inside the particle has (on average) a lower magnitude in comparison to the incident field at the same location if the particle wasn't there.
+The volume integral equation can be reduced to a relatively simple expression by assuming that the observation point is located in the far zone of the particle. However, the value of the electric field in the interior remains unknown. For a single atom or a small molecule, we can reasonably assume that it doesn't drive itself, which makes the field driving the molecule the same as the incident field, with the resulting (simplified) expression of Equation 13.12 given by Equation 13.5. Yet, in general, this assumption does not hold. It is easy to convince ourselves by considering a highly reflective or absorptive particle - it seems fairly obvious that the total field deep inside the particle has (on average) a lower magnitude in comparison to the incident field at the same location if the particle wasn't there.
 
 Let us recall the mechanics of scattering. In a dielectric, the incident field drives the dipoles, which in turn act as sources of scattered wavelets interfering with the incident field according to the superposition principle. We may continue this line of thinking by considering the effect of a dipole as a secondary source on all other dipoles surrounding it, effectively treating the dipole field as the secondary incident field. Repeated application of this iterative approach leads to evaluation of successive orders of scattering one by one. This is the general idea behind the [Born series](https://en.wikipedia.org/wiki/Born_series) \[[6](#references) (ch. 13.1)\].
 
@@ -3017,7 +3017,7 @@ $$ \tag{15.4}
 	= \frac{e^{-i k(\omega) r}}{r} \mathcal{S_e} (\bm{r}, \bm{n_i}, \omega) \bm{E_i}(0, \bm{n_i}, \omega).
 $$
 
-In general, the scattering tensor depends on the position of the observation point relative to the scatterer. However, if the observation point is very far away, we can utilize the far-field expression of the Green function (cf. Equations 13.16 and 14.5) to write
+In general, the scattering tensor depends on the position of the observation point relative to the scatterer. However, if the observation point is very far away, we can utilize the far-field expression of the Green function (c.f. Equations 13.12, 14.3, and 14.5) to write
 
 $$ \tag{15.5}
 \begin{aligned}
@@ -3129,7 +3129,7 @@ $$ \tag{15.12}
 	\bm{x'} = \bm{y} \times \bm{n_s}.
 $$
 
-As Equation 13.6 shows, the scattered field vectors (and phasors) are orthogonal to \\(\bm{n_s}\\). Thus, in the \\(x' y' z'\\) coordinate system, only the \\(x'\\) and \\(y'\\) components of \\(\bm{E_s}\\) and \\(\bm{B_s}\\) are non-zero.
+As Equation 13.14 shows, the scattered field vectors (and phasors) are orthogonal to \\(\bm{n_s}\\). Thus, in the \\(x' y' z'\\) coordinate system, only the \\(x'\\) and \\(y'\\) components of \\(\bm{E_s}\\) and \\(\bm{B_s}\\) are non-zero.
 
 Equation 15.12 represents a rotation of the \\(x' y'\\) plane about the \\(y\\)-axis:
 
