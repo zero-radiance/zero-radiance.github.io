@@ -367,7 +367,7 @@ $$
 
 without violating the Poynting theorem \[[5](#references) (vol. II, ch. 27.4)\]. Yet, to the best of the author's knowledge, no disagreement with experiments has been found.
 
-A more pressing question is whether our derivation, which exclusively used the microscopic formulation of the Maxwell equations, is valid at the microscopic scale. The answer is: almost.
+A more pressing concern is whether our formulas, which were found using the microscopic formulation of the Maxwell equations, are valid at the microscopic scale. The answer is: almost always.
 
 A typical derivation[^5] replaces \\(\bm{J}\\) with \\(\bm{J_f}\\) in Equation 2.6, which, after substitution of Equation 1.14.3, leads to the macroscopic counterpart of Equation 2.7 \[[6](#references) (ch. 1.1.4), [8](#references) (ch. 2.5), [9](#references) (ch. 2.4)\]:
 
@@ -415,12 +415,12 @@ $$
 It becomes particularly useful once you consider a fixed direction \\(\bm{n}\\). Then, according to Equation 2.14,
 
 $$ \tag{2.25}
-	\mathtt{E}
+	\Epsilon
 	= \braket{\bm{S}} \cdot \bm{n}
 	= \braket{\bm{S}} \cos{\theta}
 $$
 
-is the amount of energy per second per unit area that flows through a surface with the normal \\(\bm{n}\\). That is the definition of [irradiance](https://en.wikipedia.org/wiki/Irradiance) \\(\mathtt{E}\\).
+is the amount of energy per second per unit area that flows through a surface with the normal \\(\bm{n}\\). That is the definition of [irradiance](https://en.wikipedia.org/wiki/Irradiance) \\(\Epsilon\\).
 
 ### Maxwell Equations in the Frequency Domain
 
@@ -428,7 +428,7 @@ The Maxwell equations can be simplified by transforming the fields from the time
 
 Define[^1] the [Fourier transform](https://en.wikipedia.org/wiki/Fourier_transform) of the electric *vector* field \\(\bm{E}(\bm{r}, t)\\) as
 
-[^1]: The choice of the sign of the complex exponential is arbitrary; it determines the sign of the imaginary components of both the complex permittivity and the complex refractive index.
+[^1]: The choice of the sign of the complex exponential is arbitrary; it determines the sign of the imaginary components of both the complex permittivity and the complex refractive index. The symmetric [choice of constants](https://en.wikipedia.org/wiki/Fourier_transform#Other_conventions) ensures that the transformation is [unitary](https://en.wikipedia.org/wiki/Unitary_transformation).
 
 $$ \tag{3.1}
 	\bm{E}(\bm{r}, \omega)
@@ -438,7 +438,7 @@ $$
 
 where \\(\omega\\) is the *angular frequency*. \\(\bm{E}(\bm{r}, \omega)\\) is the electric [phasor](https://en.wikipedia.org/wiki/Phasor) field - a field of complex (phase) vectors[^2].
 
-[^2]: This implies that all factors comprising the expression of the complex field are also complex.
+[^2]: Operations and identities of real vector algebra can be applied to any complex vector \\(\bm{c} = \bm{a} + i \bm{b}\\) by expressing it as a combination of two real vectors \\(\bm{a}\\) and \\(\bm{b}\\). The magnitude of the complex vector \\(|\bm{c}| = \bm{c} \cdot \bm{c^{\*}} = \sqrt{\sum{|c_n|^2}}\\) can be computed most efficiently by writing each component in its polar form \\(c_n = r_n \exp(i \theta_n)\\).
 
 \\(\bm{E}(\bm{r}, t)\\), on the other hand, is real, which means its Fourier transform is [Hermitian](https://en.wikipedia.org/wiki/Hermitian_function):
 
@@ -753,27 +753,27 @@ which is a real vector, as expected.
 
 In the case when \\(T > T_1\\), the total value of \\(\braket{\bm{S}}\\) is a sum of the contribution from a number of whole periods (given by Equation 4.15) and the contribution from a fraction of the period. If the period used for time-averaging is very large \\((T \gg T_1)\\), the *relative* contribution from a fraction of the period will be much smaller than the *relative* contribution from a large number of whole periods, so the formula of Equation 4.15 should serve as a good approximation.
 
-Equation 4.15 allows us to define the *time-averaged* Poynting phasor (technically, it is a Fourier coefficient)
+Equation 4.15 allows us to define the *time-averaged* Poynting phasor \[[8](#references) (ch. 2.5), [9](#references) (ch. 2.4)\]
 
 $$ \tag{4.16}
-	\braket{\bm{S_p}} = \bm{E_p}(\bm{r}) \times \big[ \bm{H_p}(\bm{r}) \big]^{\*}
+	\braket{\bm{S_p}} = \frac{1}{2} \bm{E_p}(\bm{r}) \times \big[ \bm{H_p}(\bm{r}) \big]^{\*}
 $$
 
 such that (cf. Equation 4.8)
 
 $$ \tag{4.17}
 	\braket{\bm{S}}
-	= \frac{1}{4} \braket{\bm{S_0}}
-	+ \sum\_{p = 1}^{\infin} \frac{1}{2} \thinspace \mathcal{Re} \big\lbrace \negthinspace \braket{\bm{S_p}} \negthinspace \big\rbrace.
+	= \frac{1}{2} \braket{\bm{S_0}}
+	+ \sum\_{p = 1}^{\infin} \mathcal{Re} \big\lbrace \negthinspace \braket{\bm{S_p}} \negthinspace \big\rbrace.
 $$
 
 It produces a more compact expression of irradiance
 
 $$ \tag{4.18}
-	\mathtt{E}
+	\Epsilon
 	= \braket{\bm{S}} \cdot \bm{n}
-	= \frac{1}{4} \braket{\bm{S_0}} \cdot \bm{n}
-	+ \sum\_{p = 1}^{\infin} \thinspace \frac{1}{2} \mathcal{Re} \big\lbrace
+	= \frac{1}{2} \braket{\bm{S_0}} \cdot \bm{n}
+	+ \sum\_{p = 1}^{\infin} \mathcal{Re} \big\lbrace
 		\negthinspace \braket{\bm{S_p}} \negthinspace
 	  \big\rbrace \cdot \bm{n}
 $$
@@ -781,11 +781,11 @@ $$
 that can be written in terms of [spectral irradiance](https://en.wikipedia.org/wiki/Irradiance#Spectral_irradiance)
 
 $$ \tag{4.19}
-	\mathtt{E_p}
-	= \frac{1}{2} \mathcal{Re} \big\lbrace
+	\mathrm{E_p}
+	= \mathcal{Re} \big\lbrace
 		\negthinspace \braket{\bm{S_p}} \negthinspace
 	  \big\rbrace \cdot \bm{n}
-	= \frac{1}{2} \mathcal{Re} \big\lbrace
+	= \mathcal{Re} \big\lbrace
 		\negthinspace \braket{\bm{S_p}} \negthinspace
 	  \big\rbrace \cos{\theta}.
 $$
@@ -1048,13 +1048,15 @@ This triple integral represents a [wave packet](https://en.wikipedia.org/wiki/Wa
 $$ \tag{7.2}
 	\bm{E}(\bm{r}, \bm{n}, \omega) e^{i \omega t}
 	= \bm{E}(0, \bm{n}, \omega) e^{-i k(\omega) (\bm{r} \cdot \bm{n})} e^{i \omega t}
+	= \bm{E_0}(\bm{n}, \omega) e^{-i k(\omega) (\bm{r} \cdot \bm{n}) + i \omega t},
 $$
 
 each composed of three *scalar* plane waves such as
 
 $$ \tag{7.3}
 	E(\bm{r}, \bm{n}, \omega) e^{i \omega t}
-	= E(0, \bm{n}, \omega) e^{-i k(\omega) (\bm{r} \cdot \bm{n})} e^{i \omega t},
+	= E(0, \bm{n}, \omega) e^{-i k(\omega) (\bm{r} \cdot \bm{n})} e^{i \omega t}
+	= E_0(\bm{n}, \omega) e^{-i k(\omega) (\bm{r} \cdot \bm{n}) + i \omega t},
 $$
 
 with the optical properies of the medium encapsulated in the [complex wave number](https://en.wikipedia.org/wiki/Wavenumber#Complex)
@@ -1091,7 +1093,7 @@ For high frequencies, such as those encountered in optics, we may perform a [Lau
 
 $$ \tag{7.8}
 	\eta(\omega) - i \kappa(\omega) \approx
-	c \Big( \sqrt{\epsilon \mu} - i \frac{\sigma \mu}{2 \omega \sqrt{\epsilon \mu}} \Big),
+	c \bigg( \sqrt{\epsilon \mu} - i \frac{\sigma \mu}{2 \omega \sqrt{\epsilon \mu}} \bigg),
 $$
 
 which gives an approximate mapping between the optical and the physical parameters[^10].
@@ -1119,7 +1121,7 @@ $$ \tag{7.10}
 \end{aligned}
 $$
 
-Multiplication by the temporal component \\(e^{i \omega t}\\) yields the full expression of a scalar plane wave:
+Multiplication by the temporal component \\(\exp(i \omega t)\\) yields the full expression of a scalar plane wave:
 
 $$ \tag{7.11}
 \begin{aligned}
@@ -1152,8 +1154,8 @@ Taking the real part of Equation 7.11 allows us to uncover the *wave amplitude*
 
 $$ \tag{7.14}
 	\mathcal{Re} \big\lbrace E(\bm{r}, \bm{n}, \omega) e^{i \omega t} \big\rbrace
+	= |E| \cos{\theta}
 	= |E\_0| e^{-\omega (\bm{r} \cdot \bm{n}) / v_a} \cos{\theta},
-	= |E(\bm{r}, \bm{n}, \omega)| \cos{\theta},
 $$
 
 where \\(|E|\\) is the spatially-varying *peak amplitude*.
@@ -1200,7 +1202,7 @@ $$ \tag{7.18}
 	= 0.
 $$
 
-After division by the constant \\(i k\\) and multiplication by \\(e^{i \omega t}\\), it is clear that the electric field vector is orthogonal to the plane normal at all times:
+After division by the constant \\(i k\\) and multiplication by \\(\exp(i \omega t)\\), it is clear that the electric field vector is orthogonal to the plane normal at all times:
 
 $$ \tag{7.19}
 	\bm{n} \cdot \mathcal{Re} \big\lbrace \bm{E}(\bm{r}, \bm{n}, \omega) e^{i \omega t} \big\rbrace
@@ -1237,7 +1239,7 @@ $$
 
 where the last equality follows from the property of the [triple product](https://en.wikipedia.org/wiki/Triple_product) \\(\bm{n} \cdot (\bm{n} \times \bm{E}) = \bm{E} \cdot (\bm{n} \times \bm{n})\\).
 
-Thus, the magnetic field vector is also orthogonal to the plane normal:
+Thus, the magnetic field vector is always orthogonal to the plane normal:
 
 $$ \tag{7.24}
 	\bm{n} \cdot \mathcal{Re} \big\lbrace \bm{B}(\bm{r}, \bm{n}, \omega) e^{i \omega t} \big\rbrace
@@ -1251,7 +1253,7 @@ $$ \tag{7.25}
 	= \bm{B}(\bm{r}, \bm{n}, \omega).
 $$
 
-If we multiply the both sides by \\(e^{i \omega t}\\) and take the real part, the result
+If we multiply the both sides by \\(\exp(i \omega t)\\) and take the real part, the result
 
 $$ \tag{7.26}
 	\bm{n} \times \bigg( \frac{\eta(\omega)}{c} \mathcal{Re} \big\lbrace \bm{E}(\bm{r}, \bm{n}, \omega) e^{i \omega t} \big\rbrace
@@ -1259,7 +1261,7 @@ $$ \tag{7.26}
 	= \mathcal{Re} \big\lbrace \bm{B}(\bm{r}, \bm{n}, \omega) e^{i \omega t} \big\rbrace
 $$
 
-shows us that the electric and the magnetic field vectors of a plane wave are perpendicular only if \\(\kappa = 0\\). If that is the case, \\(\lbrace \bm{E}, \bm{B}, \bm{n} \rbrace\\) is an orthogonal triad of vectors that defines the geometric configuration of a plane wave in a non-absorbing, linear, isotropic, homogeneous, source-free medium:
+shows us that the electric and the magnetic field vectors of a plane wave are perpendicular only if \\(\kappa = 0\\). If that is the case, \\(\lbrace \bm{E}, \bm{B}, \bm{n} \rbrace\\) is an orthogonal triad of vectors that defines the geometric configuration of a plane wave in a non-absorptive, linear, isotropic, homogeneous, source-free medium:
 
 $$ \tag{7.27}
 	\bm{n} \times \frac{\mathcal{Re} \big\lbrace \bm{E}(\bm{r}, \bm{n}, \omega) e^{i \omega t} \big\rbrace}{\big\vert \mathcal{Re} \big\lbrace \bm{E}(\bm{r}, \bm{n}, \omega) e^{i \omega t} \big\rbrace \big\vert}
@@ -1278,7 +1280,7 @@ $$
 
 is the expression of the Poynting vector of a plane wave.
 
-If the field vectors are orthogonal, Equations 7.26-7.27 define the ratio of wave amplitudes:
+If the field vectors are mutually orthogonal, Equations 7.26-7.27 define the ratio of wave amplitudes:
 
 $$ \tag{7.29}
 	\frac{\big\vert \mathcal{Re} \big\lbrace \bm{B}(\bm{r}, \bm{n}, \omega) e^{i \omega t} \big\rbrace \big\vert}{\big\vert \mathcal{Re} \big\lbrace \bm{E}(\bm{r}, \bm{n}, \omega) e^{i \omega t} \big\rbrace \big\vert}
@@ -1304,7 +1306,7 @@ $$ \tag{7.31}
 \begin{aligned}
 	\bm{S}(\bm{r}, t)
 	&= \mu\_0^{-1} \frac{\eta(\omega)}{c} {\big\vert \mathcal{Re} \big\lbrace \bm{E}(\bm{r}, \bm{n}, \omega) e^{i \omega t} \big\rbrace \big\vert}^2 \bm{n} \cr
-	&= \mu\_0^{-1} \frac{\eta(\omega)}{c} \Big( |E_{0,x}|^2 \cos^2{\theta_x} + |E_{0,y}|^2 \cos^2{\theta_y} \Big) \bm{n},
+	&= \mu\_0^{-1} \frac{\eta}{c} \Big( |E_{0,x}|^2 \cos^2{\theta_x} + |E_{0,y}|^2 \cos^2{\theta_y} \Big) \bm{n},
 \end{aligned}
 $$
 
@@ -1315,7 +1317,7 @@ The average value of a squared cosine is \\(\frac{1}{2}\\), so the corresponding
 [^11]: Since the electromagnetic fields is monochromatic, the expressions of irradiance and spectral irradiance are identical.
 
 $$ \tag{7.32}
-	\mathtt{E}
+	\Epsilon
 	= \braket{\bm{S}} \cdot \bm{n}
 	= \frac{1}{2} \mu\_0^{-1} \frac{\eta}{c} |\bm{E_0}|^2.
 $$
@@ -1330,8 +1332,88 @@ $$
 This implies that the amount of energy that goes through a unit area per unit time is the amount of energy per unit volume times the velocity at which the energy flows \[[5](#references) (vol. II, ch. 27)\]:
 
 $$ \tag{7.34}
-	\mathtt{E}
+	\Epsilon
 	= \frac{c}{\eta} \bigg\langle \frac{\partial \mathcal{E\_{em}}}{\partial V} \bigg\rangle.
+$$
+
+If the medium is absorptive or magnetic, the formula of the *instantaneous* Poynting vector becomes more complicated. Nevertheless, we can easily find the *time-averaged* Poynting vector using Equations 4.16-4.17:
+
+$$ \tag{7.35}
+	\braket{\bm{S}}
+	= \frac{1}{2} \mathcal{Re} \Big\lbrace \bm{E}(\bm{r}, \bm{n}, \omega) \times \big[ \bm{H}(\bm{r}, \bm{n}, \omega) \big]^{\*} \Big\rbrace.
+$$
+
+Now, according to Equations 5.2.3 and 7.22,
+
+$$ \tag{7.36}
+	\frac{k(\omega)}{\omega \mu(\omega)} \bm{n} \times \bm{E}(\bm{r}, \bm{n}, \omega) = \bm{H}(\bm{r}, \bm{n}, \omega).
+$$
+
+If we take the complex conjugate of Equation 7.36, substitute it into Equation 7.35, and apply the [vector triple product](https://en.wikipedia.org/wiki/Triple_product#Vector_triple_product) identity
+
+$$ \tag{7.37}
+	\bm{a} \times (\bm{b} \times \bm{c}) =
+	\bm{b} (\bm{a} \cdot \bm{c}) -
+	\bm{c} (\bm{a} \cdot \bm{b})
+$$
+
+that is valid for both real and complex vectors, we obtain the expression
+
+$$ \tag{7.38}
+	\braket{\bm{S}}
+	= \frac{1}{2} \mathcal{Re} \bigg\lbrace
+		\frac{k^{\*}}{\omega \mu^{\*}}
+		\Big( \bm{E} \times \bm{n} \times \bm{E^{\*}} \Big)
+	\bigg\rbrace
+	= \frac{1}{2} \mathcal{Re} \bigg\lbrace
+		\frac{k^{\*}}{\omega \mu^{\*}}
+		\Big( \bm{n} \big( \bm{E} \cdot \bm{E^{\*}} \big) -
+		\bm{E^{\*}} \big( \bm{E} \cdot \bm{n} \big) \Big)
+	\bigg\rbrace.
+$$
+
+From the definitions of \\(\bm{E}\\) and \\(k\\) given by Equations 7.2 and 7.9, respectively, it follows that
+
+$$ \tag{7.39}
+	\bm{E} \cdot \bm{E^{\*}}
+	= |\bm{E}|^2
+	= |\bm{E_0}|^2 e^{-(2 \kappa \omega / c) (\bm{r} \cdot \bm{n})}
+$$
+
+is a real number. The constants in the exponential may be combined, giving rise to the [absorption coefficient](https://en.wikipedia.org/wiki/Attenuation_coefficient#Absorption_and_scattering_coefficients)
+
+$$ \tag{7.40}
+	\alpha(\omega)
+	= 2 \kappa(\omega) \frac{\omega}{c}
+	= 4 \pi \frac{\kappa(\omega)}{\lambda_0},
+$$
+
+where \\(\lambda_0\\) is the *free-space* wavelength.
+
+Furthermore, the alternative definition of the complex wave number (c.f. Equation 7.6) suggests that
+
+$$ \tag{7.41}
+	\mathcal{Re} \bigg\lbrace
+		\frac{k^{\*}}{\omega \mu^{\*}}
+	\bigg\rbrace
+	= \mathcal{Re} \bigg\lbrace
+		\frac{ \omega \sqrt{\varepsilon^{\*} \mu^{\*}} }{ \omega \mu^{\*} }
+	\bigg\rbrace
+	= \mathcal{Re} \bigg\lbrace
+		\sqrt{ \frac{\varepsilon^{\*}}{\mu^{\*}} }
+	\bigg\rbrace
+	= \mathcal{Re} \bigg\lbrace
+		\sqrt{ \frac{\varepsilon}{\mu} }
+	\bigg\rbrace.
+$$
+
+Finally, according to Equation 7.18, \\(\bm{E} \cdot \bm{n} = 0\\). Thus, if we combine Equations 7.38-7.41, we obtain the general expression of the time-averaged Poynting vector that accounts for absorption and magnetization:
+
+$$ \tag{7.42}
+	\braket{\bm{S}}
+	= \frac{1}{2} \mathcal{Re} \bigg\lbrace
+		\sqrt{ \frac{\varepsilon}{\mu} }
+	\bigg\rbrace |\bm{E_0}|^2 e^{-\alpha (\bm{r} \cdot \bm{n})} \bm{n}.
 $$
 
 ### Electromagnetic Potential
@@ -1605,7 +1687,7 @@ $$ \tag{9.16}
 	= \bm{A_i}(\bm{r}, \omega)
 	+ \int\_{V} \frac{e^{-i k_0(\omega) |\bm{r} - \bm{r'}|}}{4 \pi |\bm{r} - \bm{r'}|} \frac{\bm{J_b}(\bm{r'}, \omega) + \bm{J_i}(\bm{r'}, \omega)}{\mu_0^{-1}} dV', \cr
 	&\phi(\bm{r}, \omega)
-	= \phi_i(\bm{r}, \omega)
+	= \Phi_{+}(\bm{r}, \omega)
 	+ \int\_{V} \frac{e^{-i k_0(\omega) |\bm{r} - \bm{r'}|}}{4 \pi |\bm{r} - \bm{r'}|} \frac{\rho_b(\bm{r'}, \omega) + \rho_i(\bm{r'}, \omega)}{\epsilon_0} dV'.
 \end{aligned}
 $$
@@ -2073,7 +2155,7 @@ the *radiative properties* of the large-scale medium are determined by solving t
 
 ### Scattering Problem
 
-Participating media can be broadly divided into two categories - homogeneous and inhomogeneous. This suggests that we may split any medium into two regions: 1) infinite homogeneous, and 2) the remaining space (that can be reinterpreted as a single particle or particle group) contained within the volume \\(V\\).
+Participating media can be broadly divided into two categories - homogeneous and inhomogeneous. This suggests that we may split any medium into two regions: 1) infinite homogeneous, and 2) the remaining space (that can be interpreted as a particle group, and which we treat as a single inhomogeneous object, or a particle) contained within the volume \\(V\\).
 
 [Picture?]
 
@@ -2102,14 +2184,14 @@ $$
 
 where the first equation only holds in the (homogeneous) region 1, and the second - in the (inhomogeneous) region 2.
 
-Further, assume that the media are non-magnetic. This implies that
+Further, assume that the region 1 is non-magnetic, and that the magnetic permeability is constant within the region 2. This implies that
 
 $$ \tag{11.4}
 \begin{aligned}
 	& \nabla \times \bm{B}(\bm{r_1}, \omega)
 	= i \omega \mu_0 \varepsilon_1(\omega) \bm{E}(\bm{r_1}, \omega), \cr
 	& \nabla \times \bm{B}(\bm{r_2}, \omega)
-	= i \omega \mu_0 \varepsilon_2(\bm{r_2}, \omega) \bm{E}(\bm{r_2}, \omega),
+	= i \omega \mu_2(\omega) \varepsilon_2(\bm{r_2}, \omega) \bm{E}(\bm{r_2}, \omega),
 \end{aligned}
 $$
 
@@ -2149,7 +2231,7 @@ such that
 $$ \tag{11.8}
 	m(\bm{r}, \omega)
 	= \frac{k_2(\bm{r}, \omega)}{k_1(\omega)}
-	= \sqrt{ \frac{\varepsilon_2(\bm{r}, \omega)}{\varepsilon_1(\omega)} },
+	= \sqrt{ \frac{\varepsilon_2(\bm{r}, \omega) \mu_2(\omega)}{\varepsilon_1(\omega) \mu_0} },
 $$
 
 we can replace Equations 11.6.1 and 11.6.2 by a single equation
@@ -2204,25 +2286,34 @@ $$ \tag{11.13}
 \end{aligned}
 $$
 
-If the medium is non-magnetic, the magnetization current \\(\bm{J_m}\\) is zero, and, according to Equation 1.9.1, the bound current is
+The expression of the bound current is given by Equation 1.10.1. In the frequency domain, the corresponding equation is
 
 $$ \tag{11.14}
-	\bm{J\_b}(\bm{r}, t) = \bm{J\_p}(\bm{r}, t) = \frac{\partial}{\partial t} \bm{P}(\bm{r}, t).
-$$
-
-In the frequency domain, the corresponding equation is
-
-$$ \tag{11.15}
-	\bm{J\_p}(\bm{r}, \omega) = i \omega \bm{P}(\bm{r}, \omega).
+	\bm{J\_b}(\bm{r}, \omega)
+	= \bm{J\_p}(\bm{r}, \omega) + \bm{J\_m}(\bm{r}, \omega)
+	= i \omega \bm{P}(\bm{r}, \omega) + \nabla \times \bm{M}(\bm{r}, \omega).
 $$
 
 Using Equation 10.26 that relates polarization to the macroscopic optical properties, we may write
 
-$$ \tag{11.16}
+$$ \tag{11.15}
 	\bm{J\_p}(\bm{r}, \omega) = i \omega \big( \epsilon_2(\bm{r}, \omega) - \epsilon_0 \big)  \bm{E}(\bm{r}, \omega).
 $$
 
-If the medium is conductive, Equation 5.2.1 says that
+Similarly, for magnetization, we may adopt Equation 10.30:
+
+$$ \tag{11.16}
+\begin{aligned}
+	\bm{J\_m}(\bm{r}, \omega)
+	&= \mu\_0^{-1} \nabla \times \bm{B}(\bm{r}, \omega) - \nabla \times \bm{H}(\bm{r}, \omega) \cr
+	&= \big( \mu\_2(\omega) / \mu\_0 - 1 \big) \nabla \times \bm{H}(\bm{r}, \omega) \cr
+	&= \big( \mu\_2(\omega) / \mu\_0 - 1 \big) \big( \sigma_2(\bm{r}, \omega) + i \omega \epsilon_2(\bm{r}, \omega) \big) \bm{E}(\bm{r}, \omega),
+\end{aligned}
+$$
+
+where we additionally utilized Equation 5.2.3 and 5.5.3 to expand the expression of the curl.
+
+If the particle is conductive, Equation 5.2.1 says that
 
 $$ \tag{11.17}
 	\bm{J\_i}(\bm{r}, \omega) = \sigma_2(\bm{r}, \omega) \bm{E}(\bm{r}, \omega).
@@ -2232,8 +2323,8 @@ Let us now introduce
 
 $$ \tag{11.18}
 	\bm{J'}(\bm{r}, \omega)
-	= -i \omega \frac{\bm{J_p}(\bm{r}, \omega) + \bm{J_i}(\bm{r}, \omega)}{\mu_0^{-1}}
-	= \omega^2 \big( \varepsilon_2(\bm{r}, \omega) \mu_0 - \epsilon_0 \mu_0 \big) \bm{E}(\bm{r}, \omega).
+	= -i \omega \frac{\bm{J_b}(\bm{r}, \omega) + \bm{J_i}(\bm{r}, \omega)}{\mu_0^{-1}}
+	= \omega^2 \big( \varepsilon_2(\bm{r}, \omega) \mu_2(\omega) - \epsilon_0 \mu_0 \big) \bm{E}(\bm{r}, \omega).
 $$
 
 We may write it in terms of wave velocities using Equations 1.4 and 7.9:
@@ -2259,7 +2350,7 @@ $$ \tag{11.21}
 \begin{aligned}
 	\bm{A}(\bm{r}, \omega)
 	&= \oint\_{\mathbb{S}^2} \bm{A}(0, \bm{n}, \omega) e^{-i \omega \sqrt{\varepsilon_1(\omega) \mu\_0} (\bm{r} \cdot \bm{n})} d\Omega \cr
-	&+ i \omega \int\_{V} \frac{e^{-i \omega \sqrt{\varepsilon_1(\omega) \mu\_0} |\bm{r} - \bm{r'}|}}{4 \pi |\bm{r} - \bm{r'}|} \big( \varepsilon_2(\bm{r'}, \omega) \mu\_0 - \varepsilon_1(\omega) \mu\_0 \big) \bm{E}(\bm{r'}, \omega) dV',
+	&+ i \omega \int\_{V} \frac{e^{-i \omega \sqrt{\varepsilon_1(\omega) \mu\_0} |\bm{r} - \bm{r'}|}}{4 \pi |\bm{r} - \bm{r'}|} \big( \varepsilon_2(\bm{r'}, \omega) \mu\_2(\omega) - \varepsilon_1(\omega) \mu\_0 \big) \bm{E}(\bm{r'}, \omega) dV',
 \end{aligned}
 $$
 
@@ -2706,11 +2797,11 @@ $$ \tag{13.14}
 	& \bm{n} \cdot \big( \bm{n} \times \mathcal{I} \big)
 	= \Big( \big( \bm{n} \times \mathcal{I} \big)^{T} \bm{n} \Big)^{T}
 	= \big( {-\bm{n}} \times \bm{n} \big)^{T}
-	 = 0,
+	= 0.
 \end{aligned}
 $$
 
-where we utilized the symmetry properties in addition to the alternative expression of the tensor product given by Equations 9.22-9.23.
+Above, we utilized the symmetry properties in addition to the alternative expression of the tensor product given by Equations 9.22-9.23.
 
 We can also show that, under certain conditions, the electric and the magnetic fields are mutually orthogonal. We begin by factoring out the common term
 
@@ -2720,83 +2811,94 @@ $$ \tag{13.15}
 	\bm{E}(\bm{r'}, \omega) dV',
 $$
 
-which allows us to write Equation 13.12 as
+which simplifies Equation 13.12 to
 
 $$ \tag{13.16}
 \begin{aligned}
-	& \bm{E_s}(\bm{r}, \omega) e^{i \omega t}
-	\approx \big( \mathcal{I} - \bm{n} \otimes \bm{n} \big) \bm{K}(\bm{r}, \omega) e^{i \omega t}, \cr
-	& \bm{B_s}(\bm{r}, \omega) e^{i \omega t}
-	\approx \frac{1}{c} \big(\eta(\omega) - i \kappa(\omega) \big) \big(\bm{n} \times \mathcal{I} \big) \bm{K}(\bm{r}, \omega) e^{i \omega t}.
+	& \bm{E_s}(\bm{r}, \omega)
+	\approx \big( \mathcal{I} - \bm{n} \otimes \bm{n} \big) \bm{K}(\bm{r}, \omega), \cr
+	& \bm{B_s}(\bm{r}, \omega)
+	\approx \frac{k(\omega)}{\omega} \big(\bm{n} \times \mathcal{I} \big) \bm{K}(\bm{r}, \omega).
 \end{aligned}
 $$
 
-The real part of these expressions
+Now, take the cross product of the direction of observation with Equation 13.16.1, multiply the result by \\(k/\omega\\), and compare it to Equation 13.16.2. The expressions are clearly identical:
 
 $$ \tag{13.17}
-\begin{aligned}
-	& \mathcal{Re} \big\lbrace \bm{E_s}(\bm{r}, \omega) e^{i \omega t} \big\rbrace
-	\approx \big( \mathcal{I} - \bm{n} \otimes \bm{n} \big) \mathcal{Re} \big\lbrace \bm{K}(\bm{r}, \omega) e^{i \omega t} \big\rbrace, \cr
-	& \mathcal{Re} \big\lbrace \bm{B_s}(\bm{r}, \omega) e^{i \omega t} \big\rbrace
-	\approx \big(\bm{n} \times \mathcal{I} \big) \bigg(
-	\frac{\eta(\omega)}{c} \mathcal{Re} \big\lbrace \bm{K}(\bm{r}, \omega) e^{i \omega t} \big\rbrace
-	+ \frac{\kappa(\omega)}{c} \mathcal{Im} \big\lbrace \bm{K}(\bm{r}, \omega) e^{i \omega t} \big\rbrace \bigg)
-\end{aligned}
+	\frac{k(\omega)}{\omega} \bm{n} \times \bm{E_s}(\bm{r}, \omega)
+	\approx \bm{B_s}(\bm{r}, \omega)
 $$
 
-resemble Equation 7.26. We encounter a situation similar to vector plane waves, where the absorbing character of the homogeneous medium poses a complication. If we assume that \\(\kappa = 0\\), the dot product of the two expressions is
+Furthermore, notice the resemblance of Equation 13.17 to 7.22.
+
+Next, multiply Equation 13.17 by \\(\exp(i \omega t)\\), expand the expression of the complex wave number as per Equation 7.9, and take the real part of both sides of the equation:
 
 $$ \tag{13.18}
-	\big( \mathcal{I} - \bm{n} \otimes \bm{n} \big) \bm{K} \cdot
-	\big( \bm{n} \times \mathcal{I} \big) \bm{K}
-	= \big( \bm{K} - (\bm{n} \cdot \bm{K}) \bm{n} \big) \cdot
-	\big( \bm{n} \times \bm{K} \big)
-	= 0.
+	\bm{n} \times \bigg(
+	\frac{\eta(\omega)}{c} \mathcal{Re} \big\lbrace \bm{E_s}(\bm{r}, \omega) e^{i \omega t} \big\rbrace
+	+ \frac{\kappa(\omega)}{c} \mathcal{Im} \big\lbrace \bm{E_s}(\bm{r}, \omega) e^{i \omega t} \big\rbrace \bigg)
+	\approx \mathcal{Re} \big\lbrace \bm{B_s}(\bm{r}, \omega) e^{i \omega t} \big\rbrace.
 $$
 
-And, if the field vectors are orthogonal, we obtain a counterpart of Equation 7.29:
+We encounter a situation similar to vector plane waves, where the absorptive character of the homogeneous medium poses a complication. If we assume that \\(\kappa = 0\\), the field vectors become orthogonal, and we obtain a counterpart of Equation 7.29:
 
 $$ \tag{13.19}
 	\frac{\big\vert \mathcal{Re} \big\lbrace \bm{B_s}(\bm{r}, \omega) e^{i \omega t} \big\rbrace \big\vert}{\big\vert \mathcal{Re} \big\lbrace \bm{E_s}(\bm{r}, \omega) e^{i \omega t} \big\rbrace \big\vert}
 	= \frac{\eta(\omega)}{c}.
 $$
 
-Thus, at a large distance, for a fixed direction of observation, a spherical wave is an analog of a plane wave with the amplitude decreasing as \\(r^{-1}\\).
+Thus, at a large distance, for a fixed direction of observation, a spherical wave is an analog of a plane wave (c.f. Equation 7.2) with the amplitude decreasing as \\(r^{-1}\\):
+
+$$ \tag{13.20}
+	\bm{E_s}(\bm{r}, \omega) e^{i \omega t}
+	= \frac{1}{r} \bm{E_1}(\bm{n}, \omega) e^{-i k(\omega) (\bm{r} \cdot \bm{n}) + i \omega t}
+	\quad
+	\text{where}
+	\quad
+	\bm{n} = \frac{\bm{r}}{r}.
+$$
 
 [Picture]
 
-Since the field vectors are orthogonal, and the ratio of their magnitudes is known, the (monochromatic) Poynting vector has the form
+If the field vectors are orthogonal, and the ratio of their magnitudes is known, the (monochromatic) Poynting vector has the form
 
-$$ \tag{13.20}
+$$ \tag{13.21}
 	\bm{S}(\bm{r}, t)
 	= \mu\_0^{-1} \frac{\eta(\omega)}{c} {\big\vert \mathcal{Re} \big\lbrace \bm{E_s}(\bm{r}, \omega) e^{i \omega t} \big\rbrace \big\vert}^2 \bm{n}.
 $$
 
-Note that the energy density is proportional to the square of the wave amplitude. If we isolate the dependence on the radial distance by introducing
-
-$$ \tag{13.21}
-\begin{aligned}
-	& \bm{E_0}(\bm{n}, \omega) = r \bm{E_s}(\bm{r}, \omega), \cr
-	& \bm{B_0}(\bm{n}, \omega) = r \bm{B_s}(\bm{r}, \omega), \cr
-\end{aligned}
-$$
-
-and, just like in the case of plane waves, form a Cartesian coordinate frame using the set of vectors \\(\lbrace \bm{E_0}, \bm{B_0}, \bm{n} \rbrace\\), we obtain the expressions of the Poynting vector (c.f. Equation 7.31)
+Similarly to the case of plane waves, we may form a Cartesian coordinate frame using the set of vectors \\(\lbrace \bm{E_1}, \bm{B_1}, \bm{n} \rbrace\\), we obtain the expressions of the Poynting vector (c.f. Equation 7.31)
 
 $$ \tag{13.22}
 	\bm{S}(\bm{r}, t)
-	= \mu\_0^{-1} \frac{\eta(\omega)}{c} \bigg( \frac{|E_{0,x}|^2}{r^2} \cos^2{\theta_x} + \frac{|E_{0,y}|^2}{r^2} \cos^2{\theta_y} \bigg) \bm{n},
+	= \mu\_0^{-1} \frac{\eta}{c} \bigg( \frac{|E_{1,x}|^2}{r^2} \cos^2{\theta_x} + \frac{|E_{1,y}|^2}{r^2} \cos^2{\theta_y} \bigg) \bm{n}
 $$
 
 and irradiance (c.f. Equation 7.32)
 
 $$ \tag{13.23}
-	\mathtt{E}
+	\Epsilon
 	= \braket{\bm{S}} \cdot \bm{n}
-	= \frac{1}{2} \mu\_0^{-1} \frac{\eta}{c} \frac{|\bm{E_0}|^2}{r^2}
+	= \frac{1}{2} \mu\_0^{-1} \frac{\eta}{c} \frac{|\bm{E_1}|^2}{r^2}
 $$
 
 that follow the [inverse-square law](https://en.wikipedia.org/wiki/Inverse-square_law).
+
+For completeness, we would like to point out that it is possible to support the case when the host medium is absorptive and magnetic. The absorption requirement makes \\(k\\) complex; in addition, we must globally replace \\(\mu\_0\\) by \\(\mu_1(\omega)\\) starting from Equation 11.4. Since the vectors are no longer orthogonal, Equations 13.21-13.23 become invalid, and we must follow the Poynting phasor route given by Equations 4.16-4.17 instead:
+
+$$ \tag{13.24}
+	\braket{\bm{S}}
+	= \frac{1}{2} \mathcal{Re} \Big\lbrace \bm{E_s}(\bm{r}, \omega) \times \big[ \bm{B_s}(\bm{r}, \omega) \big]^{\*} \Big\rbrace.
+$$
+
+Compare Equation 13.24 to 7.35; except for the names of the fields, their properties are the same (up to the \\(1/r\\) factor). Thus, the analysis performed in Equations 7.36-7.41 still applies, and we thus arrive at the analog of Equation 7.42:
+
+$$ \tag{13.26}
+	\braket{\bm{S}}
+	= \frac{1}{2} \mathcal{Re} \bigg\lbrace
+		\sqrt{ \frac{\varepsilon}{\mu} }
+	\bigg\rbrace \frac{|\bm{E_1}|^2}{r^2} e^{-\alpha (\bm{r} \cdot \bm{n})} \bm{n}.
+$$
 
 ### Transition Operator
 
@@ -3080,7 +3182,7 @@ $$ \tag{15.9}
 	\bm{X} = \bm{n_p}.
 $$
 
- The latter could, for instance, represent the coordinate frame of the particle. We can now rotate \\(xyz\\) and define its orientation relative to \\(XYZ\\) in terms of the [Euler angles](https://en.wikipedia.org/wiki/Euler_angles). We are particularly interested in rotating the scattering plane \\(xz\\) about the \\(Z\\)-axis, as that allows the set of possible direction of scattering to cover the entire the unit sphere. If the azimuthal (plane rotation) angle is \\(\phi\\) and the polar angle is \\(\theta\\), the spherical coordinates of \\(\bm{n_s}\\) with respect to the \\(XYZ\\) frame are
+ The latter could, for instance, represent the coordinate frame of the particle. We can now rotate \\(xyz\\) and define its orientation relative to \\(XYZ\\) in terms of the [Euler angles](https://en.wikipedia.org/wiki/Euler_angles). We are particularly interested in rotating the scattering plane \\(xz\\) about the \\(Z\\)-axis, as that allows the set of possible direction of observation to cover the entire the unit sphere. If the azimuthal (plane rotation) angle is \\(\phi\\) and the polar angle is \\(\theta\\), the spherical coordinates of \\(\bm{n_s}\\) with respect to the \\(XYZ\\) frame are
 
 $$ \tag{15.10}
 \bm{n_s} =
@@ -3197,7 +3299,263 @@ It's easy to see why that is the case. Consider changing the handedness of the \
 
 In addition, a similar proof shows that axial symmetry leads to another important property of forward scattering: \\(s_1(0) = s_2(0)\\).
 
-### Optical Theorem
+### Optical Cross-Section Theorem
+
+For radiative transfer applications, we may introduce a simpler description of the scattering and absorption properties of a particle by describing the outcome of the scattering process in radometric (rather than optical) terms \[[6](#references) (ch. 13.6), [9](#references) (ch. 13.1, 13.4)\].
+
+Consider the incident time-harmonic[^15] electromagnetic field \\(\bm{E_i}\\) and \\(\bm{B_i}\\). In a linear, isotropic, homogeneous, source-free medium, the field can be decomposed (c.f. Equations 4.8, 7.1) into individual plane waves (c.f. Equations 4.11, 7.2) of the form
+
+[^15]: The fields are given in their monochromatic forms, as per Equation 4.11. Extension to a polychromatic field is trivial, and amounts to summing up the individual harmonic terms according to Equation 4.8.
+
+$$ \tag{16.1}
+\begin{aligned}
+	& \bm{E_i}(\bm{r}, t)
+	= \mathcal{Re} \big\lbrace \bm{E_0} e^{-i k (\bm{r} \cdot \bm{n_i}) + i \omega t} \big\rbrace, \cr
+	& \bm{B_i}(\bm{r}, t)
+	= \mathcal{Re} \big\lbrace \bm{B_0} e^{-i k (\bm{r} \cdot \bm{n_i}) + i \omega t} \big\rbrace,
+\end{aligned}
+$$
+
+where \\(\bm{E_0}\\) and \\(\bm{B_0}\\) are the field phasors at the origin, and \\(\bm{n_i}\\) is the direction of propagation.
+
+According to Equations 7.18, 7.23, and 7.25, if the medium is non-absorptive, they satisfy the relations
+
+$$ \tag{16.2}
+	\bm{n_i} \cdot  \bm{E_0} = 0, \quad
+	\bm{n_i} \cdot  \bm{B_0} = 0, \quad
+	\bm{n_i} \times \bm{E_0} = \frac{c}{\eta} \bm{B_0}, \quad
+	\bm{B_0} \times \bm{n_i} = \frac{\eta}{c} \bm{E_0}.
+$$
+
+With each plane wave, we may associate the Poynting vector \\(\bm{S_i}\\) (c.f. Equations 2.17, 7.28) pointing along the direction of propagation. If the medium is non-magnetic, the expression of the time-averaged Poynting vector (c.f. Equations 4.16-4.17, 7.31-7.32) is particularly simple:
+
+$$ \tag{16.3}
+	\braket{\bm{S_i}}
+	= \frac{1}{2} \mu\_0^{-1} \mathcal{Re}
+	\big\lbrace \bm{E_0} \times \bm{B_0^{\*}} \big\rbrace
+	= \frac{1}{2} \mu\_0^{-1} \frac{\eta}{c} |\bm{E_0}|^2 \bm{n_i}.
+$$
+
+As a result, the amount of power per unit area (c.f. Equations 2.25, 7.32) flowing through an arbitrary virtual surface element is
+
+$$ \tag{16.4}
+	\Epsilon_i
+	= \braket{\bm{S_i}} \cdot \bm{n}
+	= \frac{1}{2} \mu\_0^{-1} \frac{\eta}{c} |\bm{E_0}|^2 (\bm{n_i} \cdot \bm{n}),
+$$
+
+where \\(\bm{n}\\) is the surface normal.
+
+The total amount of power flowing through the entire virtual surface is then
+
+$$ \tag{16.5}
+	\Delta \Phi
+	= \int_{A} \braket{\bm{S_i}} \cdot \bm{n} \thinspace dA
+	= \frac{1}{2} \mu\_0^{-1} \frac{\eta}{c} |\bm{E_0}|^2 \int_{A} \bm{n_i} \cdot \bm{n} \thinspace dA.
+$$
+
+The integral given above simply computes the signed area of the projection of the surface onto the plane of the incident wave. For a closed surface, the value of the integral is zero.
+
+[Insert picture here]
+
+Equation 16.5 expresses the energy conservation law:
+
+$$ \tag{16.6}
+	\Delta \Phi
+	= \frac{1}{2} \mu\_0^{-1} \frac{\eta}{c} |\bm{E_0}|^2 \bigg(
+	  \oint_{A} \mathrm{max}(0, -\bm{n} \cdot \bm{n_i}) dA
+	- \oint_{A} \mathrm{max}(0,  \bm{n} \cdot \bm{n_i}) dA \bigg) = 0.
+$$
+
+It shows that the rate at which energy enters the volume (bounded by the virtual surface) is perfectly balanced by the rate of energy leaving the volume.
+
+Clearly, under more general conditions, the equality
+
+$$ \tag{16.7}
+	\Delta \Phi = 0
+$$
+
+does not hold. If the medium is absorptive,
+
+$$ \tag{16.8}
+	\Delta \Phi < 0.
+$$
+
+Otherwise, if sources are present,
+
+$$ \tag{16.9}
+	\Delta \Phi > 0.
+$$
+
+Our goal is to find a similar expression for the case when the volume contains particles.
+
+We begin by constructing a virtual surface centered at the particle, and sufficiently large to be located in its far zone. The scattered fields are then given by Equation 15.6:
+
+$$ \tag{16.10}
+\begin{aligned}
+	& \bm{E_s}(\bm{r}, t)
+	\approx \mathcal{Re} \bigg\lbrace \frac{e^{-i k r}}{r} \mathcal{S_{ef}} \bm{E_0} e^{i \omega t} \bigg\rbrace
+	= \frac{1}{r} \mathcal{Re} \big\lbrace \bm{E_1} e^{-i k r + i \omega t} \big\rbrace, \cr
+	& \bm{B_s}(\bm{r}, t)
+	\approx \mathcal{Re} \bigg\lbrace \frac{e^{-i k r}}{r} \mathcal{S_{mf}} \bm{E_0} e^{i \omega t} \bigg\rbrace
+	= \frac{1}{r} \mathcal{Re} \big\lbrace \bm{B_1} e^{-i k r + i \omega t} \big\rbrace,
+\end{aligned}
+$$
+
+where \\(\bm{E_1}\\) and \\(\bm{B_1}\\) are the field phasors at the unit distance from the origin.
+
+Consider a fixed direction of observation \\(\bm{n_s} = \bm{r}/r\\). According to Equations 13.14, 13.16, 13.17, and 13.21, if the host medium is non-absorptive, the following relations exist:
+
+$$ \tag{16.11}
+	\bm{n_s} \cdot  \bm{E_1} = 0, \quad
+	\bm{n_s} \cdot  \bm{B_1} = 0, \quad
+	\bm{n_s} \times \bm{E_1} = \frac{c}{\eta} \bm{B_1}, \quad
+	\bm{B_1} \times \bm{n_s} = \frac{\eta}{c} \bm{E_1}.
+$$
+
+The Poynting vector of the scattered far field points radially outward. If the host medium is non-magnetic, the corresponding time-averaged Poynting vector (c.f. Equations 13.20-13.23) is
+
+$$ \tag{16.12}
+	\braket{\bm{S_s}}
+	= \frac{1}{2} \mu\_0^{-1} \frac{1}{r^2} \mathcal{Re}
+	\big\lbrace \bm{E_1} \times \bm{B_1^{\*}} \big\rbrace
+	= \frac{1}{2} \mu\_0^{-1} \frac{\eta}{c} \frac{|\bm{E_1}|^2}{r^2} \bm{n_s}.
+$$
+
+In order to calculate the amount of scattered power, it is convenient to use a spherical surface \\(\mathbb{S}^2\\). Since the differential solid angle is
+
+$$ \tag{16.13}
+	d\Omega = \frac{\bm{n} \cdot \bm{n_s}}{r^2} dA
+$$
+
+setting \\(\bm{n} = \bm{r}/r = \bm{n_s}\\) results in an integral that is formally independent of the radial distance:
+
+$$ \tag{16.14}
+	\Phi_s
+	= \oint_{A} \braket{\bm{S_s}} \cdot \bm{n} \thinspace dA
+	= \frac{1}{2} \mu\_0^{-1} \frac{\eta}{c} \oint\_{\mathbb{S}^2} |\bm{E_1}|^2 d\Omega.
+$$
+
+From the radiometric point of view, the squared magnitude of the scattered field corresponds to [radiant intensity](https://en.wikipedia.org/wiki/Radiant_intensity)
+
+$$ \tag{16.15}
+	\Iota_s
+	= \frac{1}{2} \mu\_0^{-1} \frac{\eta}{c} |\bm{E_1}|^2.
+$$
+
+The scattered field does not exist in isolation. Since it is generated by the incident field, the total field is formed by the superposition of the two waves (c.f. Equation 11.12):
+
+$$ \tag{16.16}
+\begin{aligned}
+	& \bm{E}(\bm{r}, t) =
+	\bm{E_i}(\bm{r}, t) +
+	\bm{E_s}(\bm{r}, t), \cr
+	& \bm{B}(\bm{r}, t) =
+	\bm{B_i}(\bm{r}, t) +
+	\bm{B_s}(\bm{r}, t).
+\end{aligned}
+$$
+
+The Poynting vector of the combined wave is then given by the cross product (c.f. Equation 2.17)
+
+$$ \tag{16.17}
+\begin{aligned}
+	\bm{S}(\bm{r}, t)
+	&= \mu\_0^{-1} \big( \bm{E}(\bm{r}, t) \times \bm{B}(\bm{r}, t) \big) \cr
+	&= \mu\_0^{-1} \big( \bm{E_i} \times \bm{B_i} + \bm{E_s} \times \bm{B_s} + \bm{E_i} \times \bm{B_s} + \bm{E_s} \times \bm{B_i} \big) \cr
+	&= \bm{S_i} + \bm{S_s} + \bm{S'}.
+\end{aligned}
+$$
+
+In order to see what the new term represents, we must once again integrate the time-averaged Poynting vector over a closed surface:
+
+$$ \tag{16.18}
+	\Delta \Phi
+	= \oint_{A} \braket{\bm{S}} \cdot \bm{n} \thinspace dA
+	= \oint_{A} \Big( \negthinspace \braket{\bm{S_i}} + \braket{\bm{S_s}} + \braket{\bm{S'}} \negthinspace \Big) \cdot \bm{n} \thinspace dA.
+$$
+
+Since the formula is the same, the conclusions of Equations 16.7-16.9 remain valid. In addition, Equations 16.5-16.6 show that \\(\oint \braket{\bm{S_i}} \cdot \bm{n} \thinspace dA = 0\\). Thus, in the absence of primary sources, Equations 16.8 and 16.18 tell us that
+
+$$ \tag{16.19}
+	\Phi_a
+	= - \Phi_s - \oint_{A} \braket{\bm{S'}} \cdot \bm{n} \thinspace dA
+$$
+
+is the amount of power absorbed by the particle, where
+
+$$ \tag{16.20}
+	\braket{\bm{S'}}
+	= \mu\_0^{-1} \braket{\bm{E_i} \times \bm{B_s} + \bm{E_s} \times \bm{B_i}}.
+$$
+
+Now, recall (c.f. Equations 4.8, 4.15) that we have found, under quite general conditions, that the time average of the cross product of two vectors oscillating at exactly the same frequency is
+
+$$ \tag{16.21}
+	\Big\langle
+		\mathcal{Re} \big\lbrace \bm{V} e^{i \omega t} \big\rbrace
+		\times
+		\mathcal{Re} \big\lbrace \bm{W} e^{i \omega t} \big\rbrace
+	\Big\rangle
+	= \frac{1}{2} \mathcal{Re} \big\lbrace \bm{V} \times \bm{W}^{\*} \big\rbrace.
+$$
+
+Thus, the time average of the mixed Poynting vector can be written as
+
+$$ \tag{16.22}
+	\braket{\bm{S'}} =
+	\frac{\mu_0^{-1}}{2 r} \mathcal{Re} \bigg\lbrace
+	\Big( \bm{E_0} e^{-i k (\bm{r} \cdot \bm{n_i})} \Big) \times \Big[ \bm{B_1} e^{-i k r} \Big]^{\*} +
+	\Big( \bm{E_1} e^{-i k r} \Big) \times \Big[ \bm{B_0} e^{-i k (\bm{r} \cdot \bm{n_i})} \Big]^{\*}
+	\bigg\rbrace.
+$$
+
+The next step is to project \\(\braket{\bm{S'}}\\) onto the normal of the virtual sphere. This task can be carried out most efficiently with the help of the following [triple product](https://en.wikipedia.org/wiki/Triple_product) identities:
+
+$$ \tag{16.23}
+\begin{aligned}
+&	\bm{a} \cdot (\bm{b} \times \bm{c}) =
+	\bm{b} \cdot (\bm{c} \times \bm{a}) =
+	\bm{c} \cdot (\bm{a} \times \bm{b}),
+	\cr
+&	\bm{a} \times (\bm{b} \times \bm{c}) =
+	\bm{b} (\bm{a} \cdot \bm{c}) -
+	\bm{c} (\bm{a} \cdot \bm{b}).
+\end{aligned}
+$$
+
+None of these work when vectors are complex... FML. Check Mischenko?
+
+---
+
+By combining Equations 16.2, 16.11, and 16.23, the magnetic phasor factors may be eliminated:
+
+$$ \tag{16.24}
+\begin{aligned}
+	\braket{\bm{E_i} \times \bm{B_s}} \cdot \bm{n}
+	&= \frac{1}{2 r} \mathcal{Re} \Big\lbrace
+	\bm{n} \cdot \big( \bm{E_0} \times \bm{B_1^{\*}} \big) e^{i k (r - \bm{r} \cdot \bm{n_i})}
+	\Big\rbrace
+	\cr
+	&= \frac{1}{2 r} \mathcal{Re} \Big\lbrace
+	\bm{E_0} \cdot \big( \bm{B_1^{\*}} \times \bm{n} \big) e^{i k (r - \bm{r} \cdot \bm{n_i})}
+	\Big\rbrace
+	\cr
+	&= \frac{1}{2 r} \frac{\eta}{c} \mathcal{Re} \Big\lbrace
+	\big( \bm{E_0} \cdot \bm{E_1^{\*}} \big) e^{i k (r - \bm{r} \cdot \bm{n_i})}
+	\Big\rbrace
+	\cr
+	\braket{\bm{E_i} \times \bm{B_s}} \cdot \bm{n}
+	&= \frac{1}{2 r} \mathcal{Re} \Big\lbrace
+	\bm{n} \cdot \big( \bm{E_1} \times \bm{B_0^{\*}} \big) e^{-i k (r - \bm{r} \cdot \bm{n_i})}
+	\Big\rbrace
+	\cr
+	&= \frac{1}{2 r} \frac{\eta}{c} \mathcal{Re} \Big\lbrace
+	\bm{n} \cdot \big( \bm{E_1} \times \bm{n_i} \times \bm{E_0^{\*}} \big) e^{-i k (r - \bm{r} \cdot \bm{n_i})}
+	\Big\rbrace
+	\cr
+\end{aligned}
+$$
 
 ---
 
