@@ -2502,7 +2502,7 @@ $$
 
 where we may substitute \\(x\\), \\(y\\), or \\(z\\) into the blanks.
 
-Under the previous assumption that \\(\bm{r} \neq \bm{r_0}\\), the scalar Green function and its partial derivatives are continuous, which means the order of partial differentiation makes no difference. Consequently, the matrix of Equation 12.8 is [symmetric](https://en.wikipedia.org/wiki/Symmetric_matrix), such that \\(\mathcal{G_{e}} = \mathcal{G_{e}}^T\\).
+Under the previous assumption that \\(\bm{r} \neq \bm{r'}\\), the scalar Green function and its partial derivatives are continuous, which means the order of partial differentiation makes no difference. Consequently, the matrix of Equation 12.8 is [symmetric](https://en.wikipedia.org/wiki/Symmetric_matrix), such that \\(\mathcal{G_{e}} = \mathcal{G_{e}}^T\\).
 
 The process of differentiation is straightforward: we use the identity
 
@@ -2516,11 +2516,11 @@ and repeatedly apply the [product rule](https://en.wikipedia.org/wiki/Product_ru
 
 $$ \tag{12.11}
 \begin{aligned}
-	\frac{\partial}{\partial x} \Bigg( \frac{e^{-i k |\bm{r} - \bm{r'}|}}{|\bm{r} - \bm{r'}|} \Bigg)
-	= -e^{-i k R} \frac{R_x}{R}
+	\frac{\partial}{\partial x} \Bigg( \frac{e^{i k |\bm{r} - \bm{r'}|}}{|\bm{r} - \bm{r'}|} \Bigg)
+	= -e^{i k R} \frac{R_x}{R}
 		\bigg(
 			  \frac{1}{R^2}
-			+ \frac{i k}{R}
+			- \frac{i k}{R}
 		\bigg),
 \end{aligned}
 $$
@@ -2529,11 +2529,11 @@ the off-diagonal elements of the matrix have the form
 
 $$ \tag{12.12}
 \begin{aligned}
-	\frac{\partial^2}{\partial y \partial x} \Bigg( \frac{e^{-i k |\bm{r} - \bm{r'}|}}{|\bm{r} - \bm{r'}|} \Bigg)
-	= e^{-i k R} \frac{R_x R_y}{R^2}
+	\frac{\partial^2}{\partial y \partial x} \Bigg( \frac{e^{i k |\bm{r} - \bm{r'}|}}{|\bm{r} - \bm{r'}|} \Bigg)
+	= e^{i k R} \frac{R_x R_y}{R^2}
 		\bigg(
 			  \frac{3}{R^3}
-			+ \frac{3 i k}{R^2}
+			- \frac{3 i k}{R^2}
 			- \frac{k^2}{R}
 		\bigg),
 \end{aligned}
@@ -2543,22 +2543,22 @@ while the elements on the main diagonal are equivalent to
 
 $$ \tag{12.13}
 \begin{aligned}
-	\frac{\partial^2}{\partial x^2} \Bigg( \frac{e^{-i k |\bm{r} - \bm{r'}|}}{|\bm{r} - \bm{r'}|} \Bigg)
-	= e^{-i k R} \frac{R_x^2}{R^2}
+	\frac{\partial^2}{\partial x^2} \Bigg( \frac{e^{i k |\bm{r} - \bm{r'}|}}{|\bm{r} - \bm{r'}|} \Bigg)
+	= e^{i k R} \frac{R_x^2}{R^2}
 		\bigg(
 			  \frac{3}{R^3}
-			+ \frac{3 i k}{R^2}
+			- \frac{3 i k}{R^2}
 			- \frac{k^2}{R}
 		\bigg)
-	- e^{-i k R}
+	- e^{i k R}
 		\bigg(
 			  \frac{1}{R^3}
-			+ \frac{i k}{R^2}
+			- \frac{i k}{R^2}
 		\bigg).
 \end{aligned}
 $$
 
-Take a look at the individual factors in Equations 12.11-12.13: those outside the brackets oscillate between 0 and 1, while the terms  inside greatly depend on the distance between the observation point \\(\bm{r}\\) and the source \\(\bm{r_0}\\). This suggests that we may divide the entire space into zones based on the proximity to the observation point. If we are interested in the value of the field located near the source (the so-called *near field*), we say that the observation point belongs to the [near zone](https://en.wikipedia.org/wiki/Near_and_far_field). Similarly, far-away points are said to be located in the [far zone](https://en.wikipedia.org/wiki/Near_and_far_field) (and the field in that range is called the *far field*). Between them is a region called the *transition zone*.
+Take a look at the individual factors in Equations 12.11-12.13: those outside the brackets oscillate between 0 and 1, while the terms  inside greatly depend on the distance between the observation point \\(\bm{r}\\) and the source \\(\bm{r'}\\). This suggests that we may divide the entire space into zones based on the proximity to the observation point. If we are interested in the value of the field located near the source (the so-called *near field*), we say that the observation point belongs to the [near zone](https://en.wikipedia.org/wiki/Near_and_far_field). Similarly, far-away points are said to be located in the [far zone](https://en.wikipedia.org/wiki/Near_and_far_field) (and the field in that range is called the *far field*). Between them is a region called the *transition zone*.
 
 If we fix a value of \\(k\\), we may decompose the electric tensor into the near-, transition-, and far-field components:
 
@@ -2576,7 +2576,7 @@ $$ \tag{12.15}
 	& \mathcal{G_{en}}(\bm{R}, k)
 	= -\frac{1}{k^2 R^2} \bigg(\mathcal{I} - 3 \frac{\bm{R} \otimes \bm{R}}{\bm{R} \cdot \bm{R}} \bigg) g(\bm{R}, k), \cr
 	& \mathcal{G_{et}}(\bm{R}, k)
-	= -\frac{i}{k R} \bigg(\mathcal{I} - 3 \frac{\bm{R} \otimes \bm{R}}{\bm{R} \cdot \bm{R}} \bigg) g(\bm{R}, k), \cr
+	= \frac{i}{k R} \bigg(\mathcal{I} - 3 \frac{\bm{R} \otimes \bm{R}}{\bm{R} \cdot \bm{R}} \bigg) g(\bm{R}, k), \cr
 	& \mathcal{G_{ef}}(\bm{R}, k)
 	= \bigg( \mathcal{I} - \frac{\bm{R} \otimes \bm{R}}{\bm{R} \cdot \bm{R}} \bigg) g(\bm{R}, k),
 \end{aligned}
@@ -2619,31 +2619,29 @@ Clearly, the matrix is anti-symmetric: \\(\mathcal{G_{m}} = -\mathcal{G_{m}}^T\\
 According to the expression of the first derivative given by Equation 12.11, the tensor only has two components:
 
 $$ \tag{12.18}
-	\mathcal{G_{m}} = \mathcal{G_{mn}} + \mathcal{G_{mf}},
+	\mathcal{G_{m}} = \mathcal{G_{mt}} + \mathcal{G_{mf}},
 $$
 
 such that
 
 $$ \tag{12.19}
 \begin{aligned}
-	& \mathcal{G_{mn}}(\bm{R}, k)
+	& \mathcal{G_{mt}}(\bm{R}, k)
 	= -\frac{1}{R} \bigg(\frac{\bm{R} \times \mathcal{I}}{R} \bigg) g(\bm{R}, k), \cr
 	& \mathcal{G_{mf}}(\bm{R}, k)
-	= -i k \bigg(\frac{\bm{R} \times \mathcal{I}}{R} \bigg) g(\bm{R}, k).
+	= i k \bigg(\frac{\bm{R} \times \mathcal{I}}{R} \bigg) g(\bm{R}, k).
 \end{aligned}
 $$
 
-Note that the constants of proportionality are different in comparison to the electric tensor:
+Note that, as expected from Equation 9.33, the constants of proportionality are different in comparison to the electric tensor:
 
 $$ \tag{12.20}
-	k^{-3} \mathcal{G_{mn}}
-	\varpropto (k R)^{-3},
+	k^{-2} \mathcal{G_{mt}}
+	\varpropto (k R)^{-2},
 	\qquad
-	k^{-3} \mathcal{G_{mf}}
-	\varpropto (k R)^{-2}.
+	k^{-2} \mathcal{G_{mf}}
+	\varpropto (k R)^{-1}.
 $$
-
-This implies that, as \\(k R \to \infin\\), the magnitude of the magnetic field becomes vanishingly small in comparison to that of the electric field, which explains why the dipole is called *electric*.
 
 ### Spherical Waves
 
@@ -2655,7 +2653,7 @@ $$ \tag{13.1}
 	\mathcal{G_{e}}
 	= \bigg( 1 + \frac{\mathcal{G_{et}}}{\mathcal{G_{ef}}} + \frac{\mathcal{G_{en}}}{\mathcal{G_{ef}}} \bigg) \mathcal{G_{ef}}, \qquad
 	\mathcal{G_{m}}
-	= \bigg( 1 + \frac{\mathcal{G_{mn}}}{\mathcal{G_{mf}}} \bigg) \mathcal{G_{mf}}.
+	= \bigg( 1 + \frac{\mathcal{G_{mt}}}{\mathcal{G_{mf}}} \bigg) \mathcal{G_{mf}}.
 $$
 
 According to Equation 12.15, for any fixed direction, the relative difference between the three electric tensors primarily arises from the leading scalar terms. Moreover, the two magnetic tensors given by Equation 12.19 exhibit identical angular dependence. Following this logic, we use Equations 12.16 and 12.20 to approximate
