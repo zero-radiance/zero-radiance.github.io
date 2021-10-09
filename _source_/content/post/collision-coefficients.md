@@ -2039,9 +2039,9 @@ $$
 Equation 10.19 implies that we can represent an arbitrary polarization current density by oscillating electric dipole moments:
 
 $$ \tag{10.20}
-	\bm{J_p}(\bm{r}, t) = \frac{\partial}{\partial t} \sum_n \bm{p_n}(V_n, t) \delta(\bm{r_n} - \bm{r}),
+	\bm{J_p}(\bm{r}, t) = \frac{\partial}{\partial t} \sum_n \bm{p_n}(V_n, t) \delta(\bm{r} - \bm{r_n}),
 	\qquad
-	\bm{J_p}(\bm{r}, \omega) = -i \omega \sum_n \bm{p_n}(V_n, \omega) \delta(\bm{r_n} - \bm{r}).
+	\bm{J_p}(\bm{r}, \omega) = -i \omega \sum_n \bm{p_n}(V_n, \omega) \delta(\bm{r} - \bm{r_n}).
 $$
 
 A molecule can become polarized for a variety of reasons \[[5](#references) (vol. II, ch. 11)\]. If the separation of charges (such as the displacement of the electron cloud relative to the nucleus) occurs due the influence of an electric field, one speaks of *induced polarization*. If we assume that the effect is linear, the response is characterized by the [molecular polarizability](https://en.wikipedia.org/wiki/Electric_susceptibility#Molecular_polarizability) tensor \\(\mathcal{\Alpha_m}\\):
@@ -2417,23 +2417,23 @@ This requirement leads to three simplifications:
 
 3. the resulting source of radiation is sufficiently localized, which permits us to evaluate the fields at practically any distance from the particle.
 
-Assume that the particle is non-conducting. Equation 11.18 can then be simplified to
+Assume that the particle is non-magnetic and non-conducting. Equation 11.18 can then be simplified to
 
 $$ \tag{12.1}
 	\bm{J'}(\bm{r}, \omega)
-	= -i \omega \frac{\bm{J_p}(\bm{r}, \omega)}{\mu_0^{-1}}.
+	= i \omega \frac{\bm{J_p}(\bm{r}, \omega)}{\mu_0^{-1}}.
 $$
 
 According to Equation 10.20, polarization current may be attributed to an oscillating dipole:
 
 $$ \tag{12.2}
-	\bm{J_p}(\bm{r}, \omega) = i \omega \bm{p}(\omega) \delta(\bm{r} - \bm{r_0}),
+	\bm{J_p}(\bm{r}, \omega) = -i \omega \bm{p}(V, \omega) \delta(\bm{r} - \bm{r_0}),
 $$
 
 with the dipole moment defined by Equation 10.21:
 
 $$ \tag{12.3}
-	\bm{p}(\omega) \approx \mathcal{\Alpha_m}(\omega) \varepsilon(\omega) \bm{E_i}(\bm{r_0}, \omega).
+	\bm{p}(V, \omega) \approx \mathcal{\Alpha_m}(V, \omega) \varepsilon(\omega) \bm{E_i}(\bm{r_0}, \omega).
 $$
 
 where we replaced \\(\epsilon_0\\) with \\(\varepsilon\\) (to account for the properties of the surrounding medium) and \\(\bm{E_{\mu}}\\) with \\(\bm{E_i}\\) (according to the simplification discussed above).
@@ -2442,19 +2442,19 @@ The combination of Equations 12.1-12.3 results in
 
 $$ \tag{12.4}
 	\bm{J'}(\bm{r}, \omega)
-	= k^2(\omega) \mathcal{\Alpha_m}(\omega) \bm{E_i}(\bm{r_0}, \omega) \delta(\bm{r} - \bm{r_0}).
+	= k^2(\omega) \mathcal{\Alpha_m}(V, \omega) \bm{E_i}(\bm{r_0}, \omega) \delta(\bm{r} - \bm{r_0}).
 $$
 
-The matrix representation of \\(\mathcal{\Alpha_m}\\) is a convenient way to model polar molecules (or asymmetric particles); it acts by rotating and non-uniformly scaling the electric field phasor. To make the resulting formulas easier to interpret, we shall assume that the particle is isotropic, so that \\(\mathcal{\Alpha_m} = \alpha_m\\).
+The tensor form of \\(\mathcal{\Alpha_m}\\) is a convenient way to model polar molecules (or asymmetric particles); it acts by rotating and non-uniformly scaling the electric field phasor. To make the resulting formulas easier to interpret, we shall assume that the particle is isotropic, so that \\(\mathcal{\Alpha_m} = \alpha_m\\).
 
 Let us substitute Equation 12.4 into Equations 11.10-11.11:
 
 $$ \tag{12.5}
 \begin{aligned}
 	& \bm{E_s}(\bm{r}, \omega)
-	= k^2(\omega) \mathcal{G_{e}} \big( \bm{r} - \bm{r_0}, k(\omega) \big) \alpha_m(\omega) \bm{E_i}(\bm{r_0}, \omega), \cr
+	= k^2(\omega) \mathcal{G_{e}} \big( \bm{r}, \bm{r_0}, k(\omega) \big) \alpha_m(V, \omega) \bm{E_i}(\bm{r_0}, \omega), \cr
 	& \bm{B_s}(\bm{r}, \omega)
-	= \frac{i}{\omega} k^2(\omega) \mathcal{G_{m}} \big( \bm{r} - \bm{r_0}, k(\omega) \big) \alpha_m(\omega) \bm{E_i}(\bm{r_0}, \omega).
+	= \frac{k^2(\omega)}{i \omega} \mathcal{G_{m}} \big( \bm{r}, \bm{r_0}, k(\omega) \big) \alpha_m(V, \omega) \bm{E_i}(\bm{r_0}, \omega).
 \end{aligned}
 $$
 
@@ -2463,14 +2463,14 @@ Comparison with Equation 11.25 shows that Equation 12.5 corresponds to the contr
 Note that the polarizability \\(\alpha_m\\) has units of volume \[[4](#references) (ch. 6.22)\]:
 
 $$ \tag{12.6}
-	\alpha_m(\omega)
+	\alpha_m(V, \omega)
 	= \int_V \big( m^2(\bm{r}, \omega) - 1 \big) dV.
 $$
 
 This can be shown by combining Equations 10.18.2 and 10.26
 
 $$ \tag{12.7}
-	\bm{p}(\omega)
+	\bm{p}(V, \omega)
 	= \int_V \bm{P}(\bm{r}, \omega) dV
 	= \int_V \big( m^2(\bm{r}, \omega) - 1 \big) \varepsilon(\omega) \bm{E}(\bm{r}, \omega) dV
 $$
@@ -2497,7 +2497,7 @@ where the scalar Green function \\(g\\) is given by Equation 9.10.
 Ignoring the multiplicative constant \\(1/(4 \pi k^2)\\), the matrix elements have the form
 
 $$ \tag{12.9}
-	\frac{\partial^2}{\partial \\_ \partial \\_} \Bigg( \frac{e^{-i k |\bm{r} - \bm{r'}|}}{|\bm{r} - \bm{r'}|} \Bigg),
+	\frac{\partial^2}{\partial \\_ \partial \\_ } \Bigg( \frac{e^{i k |\bm{r} - \bm{r'}|}}{|\bm{r} - \bm{r'}|} \Bigg),
 $$
 
 where we may substitute \\(x\\), \\(y\\), or \\(z\\) into the blanks.
@@ -2673,9 +2673,9 @@ If \\(k R \gg 1\\), the values of the expressions in the brackets approach 1. Th
 $$ \tag{13.3}
 \begin{aligned}
 	& \bm{E_s}(\bm{r}, \omega)
-	\approx k^2(\omega) \bigg( \mathcal{I} - \frac{\bm{R} \otimes \bm{R}}{\bm{R} \cdot \bm{R}} \bigg) \frac{e^{-i k(\omega) R}}{4 \pi R} \alpha_m(\omega) \bm{E_i}(\bm{r'}, \omega), \cr
+	\approx k^2(\omega) \bigg( \mathcal{I} - \frac{\bm{R} \otimes \bm{R}}{\bm{R} \cdot \bm{R}} \bigg) \frac{e^{-i k(\omega) R}}{4 \pi R} \alpha_m(V, \omega) \bm{E_i}(\bm{r'}, \omega), \cr
 	& \bm{B_s}(\bm{r}, \omega)
-	\approx \frac{k^3(\omega)}{\omega} \bigg(\frac{\bm{R} \times \mathcal{I}}{R} \bigg) \frac{e^{-i k(\omega) R}}{4 \pi R} \alpha_m(\omega) \bm{E_i}(\bm{r'}, \omega),
+	\approx \frac{k^3(\omega)}{\omega} \bigg(\frac{\bm{R} \times \mathcal{I}}{R} \bigg) \frac{e^{-i k(\omega) R}}{4 \pi R} \alpha_m(V, \omega) \bm{E_i}(\bm{r'}, \omega),
 \end{aligned}
 $$
 
@@ -2694,9 +2694,9 @@ Equation 13.3 can be reduced to a simpler form by aligning the origin of the coo
 $$ \tag{13.5}
 \begin{aligned}
 	& \bm{E_s}(\bm{r}, \omega)
-	\approx k^2(\omega) \big( \mathcal{I} - \bm{n} \otimes \bm{n} \big) \frac{e^{-i k(\omega) r}}{4 \pi r} \alpha_m(\omega) \bm{E_i}(0, \omega), \cr
+	\approx k^2(\omega) \big( \mathcal{I} - \bm{n} \otimes \bm{n} \big) \frac{e^{-i k(\omega) r}}{4 \pi r} \alpha_m(V, \omega) \bm{E_i}(0, \omega), \cr
 	& \bm{B_s}(\bm{r}, \omega)
-	\approx \frac{k^3(\omega)}{\omega} \big(\bm{n} \times \mathcal{I} \big) \frac{e^{-i k(\omega) r}}{4 \pi r} \alpha_m(\omega) \bm{E_i}(0, \omega).
+	\approx \frac{k^3(\omega)}{\omega} \big(\bm{n} \times \mathcal{I} \big) \frac{e^{-i k(\omega) r}}{4 \pi r} \alpha_m(V, \omega) \bm{E_i}(0, \omega).
 \end{aligned}
 $$
 
