@@ -1316,8 +1316,8 @@ The average value of a squared cosine is \\(\frac{1}{2}\\), so the corresponding
 
 $$ \tag{7.32}
 	\Epsilon
-	= \braket{\bm{S}} \cdot \bm{n}
-	= \frac{1}{2} \mu\_0^{-1} \frac{\eta}{c} |\bm{E_0}|^2.
+	= \braket{\bm{S}} \cdot \bm{n'}
+	= \frac{1}{2} \mu\_0^{-1} \frac{\eta}{c} |\bm{E_0}|^2 \big( \bm{n} \cdot \bm{n'} \big).
 $$
 
 Without proof, we shall state an interesting fact. The time-averaged energy density (c.f. Equations 2.23-2.24) of the field of a plane wave is
@@ -1331,7 +1331,7 @@ This implies that the amount of energy that goes through a unit area per unit ti
 
 $$ \tag{7.34}
 	\Epsilon
-	= \frac{c}{\eta} \bigg\langle \frac{\partial \mathcal{E\_{em}}}{\partial V} \bigg\rangle.
+	= \frac{c}{\eta} \bigg\langle \frac{\partial \mathcal{E\_{em}}}{\partial V} \bigg\rangle \big( \bm{n} \cdot \bm{n'} \big).
 $$
 
 If the medium is absorptive or magnetic, the formula of the *instantaneous* Poynting vector becomes more complicated. Nevertheless, we can easily find the *time-averaged* Poynting vector using Equations 4.16-4.17:
@@ -1352,10 +1352,10 @@ If we take the complex conjugate of Equation 7.36, substitute it into Equation 7
 $$ \tag{7.37}
 	\bm{a} \times (\bm{b} \times \bm{c}) =
 	\bm{b} (\bm{a} \cdot \bm{c}) -
-	\bm{c} (\bm{a} \cdot \bm{b})
+	\bm{c} (\bm{a} \cdot \bm{b}),
 $$
 
-that is valid for both real and complex vectors, we obtain the expression
+which is valid for both real and complex vectors, we obtain the expression
 
 $$ \tag{7.38}
 	\braket{\bm{S}}
@@ -2075,7 +2075,7 @@ $$
 
 we can incorporate the correction for the *microscopic* field into the *macroscopic* theory.
 
-In order to be able to use Equation 10.24, we need to determine both the density and the polarizability of the material. For a dielectric composed of a single type of molecules, their product is given by the [Clausius–Mossotti relation](https://en.wikipedia.org/wiki/Clausius%E2%80%93Mossotti_relation):
+In order to be able to use Equation 10.24, we need to determine both the density and the polarizability of the material. For an isotropic dielectric composed of a single type of small (compared to the wavelength) molecules, their product is given by the [Clausius–Mossotti relation](https://en.wikipedia.org/wiki/Clausius%E2%80%93Mossotti_relation):
 
 $$ \tag{10.25}
 	\frac{\epsilon\_r(\bm{r}, \omega) - 1}{\epsilon\_r(\bm{r}, \omega) + 2} = \frac{1}{3} N(\bm{r}) \alpha\_m(V, \omega).
@@ -2729,9 +2729,9 @@ We may expand the square root (and its reciprocal) in the Taylor series of \\(r'
 $$ \tag{13.8}
 \begin{aligned}
 	& k R
-	= k r \bigg( 1 - (\bm{n} \cdot \bm{n'}) (r'/r) + \frac{1}{2} \Big( 1 - (\bm{n} \cdot \bm{n'})^2 \Big) (r'/r)^2 + \mathrm{O} \Big( (r'/r)^3 \Big) \bigg), \cr
+	= k r \bigg( 1 - \big( \bm{n} \cdot \bm{n'} \big) (r'/r) + \frac{1}{2} \Big( 1 - \big( \bm{n} \cdot \bm{n'} \big)^2 \Big) (r'/r)^2 + \mathrm{O} \Big( (r'/r)^3 \Big) \bigg), \cr
 	& \frac{1}{R}
-	= \frac{1}{r} \bigg( 1 + (\bm{n} \cdot \bm{n'}) (r'/r) + \mathrm{O} \Big( (r'/r)^2 \Big) \bigg).
+	= \frac{1}{r} \bigg( 1 + \big( \bm{n} \cdot \bm{n'} \big) (r'/r) + \mathrm{O} \Big( (r'/r)^2 \Big) \bigg).
 \end{aligned}
 $$
 
@@ -2747,8 +2747,8 @@ Next, we shall examine the expression of the directions of observation of indivi
 $$ \tag{13.10}
 \begin{aligned}
 	\frac{\bm{R}}{R}
-	&= \frac{\bm{r} - \bm{r'}}{r \sqrt{1 - 2 (\bm{n} \cdot \bm{n'}) (r'/r) + (r'/r)^2}} \cr
-	&= \bigg( \bm{n} - (r'/r) \bm{n'} \bigg) \bigg( 1 + (\bm{n} \cdot \bm{n'}) (r'/r) + \mathrm{O} \Big( (r'/r)^2 \Big) \bigg).
+	&= \frac{\bm{r} - \bm{r'}}{r \sqrt{1 - 2 \big( \bm{n} \cdot \bm{n'} \big) (r'/r) + (r'/r)^2}} \cr
+	&= \bigg( \bm{n} - (r'/r) \bm{n'} \bigg) \bigg( 1 + \big( \bm{n} \cdot \bm{n'} \big) (r'/r) + \mathrm{O} \Big( (r'/r)^2 \Big) \bigg).
 \end{aligned}
 $$
 
@@ -2881,8 +2881,8 @@ and irradiance (c.f. Equation 7.32)
 
 $$ \tag{13.23}
 	\Epsilon
-	= \braket{\bm{S}} \cdot \bm{n}
-	= \frac{1}{2} \mu\_0^{-1} \frac{\eta}{c} \frac{|\bm{E_1}|^2}{r^2}
+	= \braket{\bm{S}} \cdot \bm{n'}
+	= \frac{1}{2} \mu\_0^{-1} \frac{\eta}{c} \frac{|\bm{E_1}|^2}{r^2} \big( \bm{n} \cdot \bm{n'} \big)
 $$
 
 that follow the [inverse-square law](https://en.wikipedia.org/wiki/Inverse-square_law).
@@ -3148,7 +3148,7 @@ $$ \tag{15.6}
 \end{aligned}
 $$
 
-For completeness, the expressions of the scattering tensor for the electric and the magnetic fields are given below:
+For completeness, the expressions of the scattering tensors for the electric and the magnetic fields are given below:
 
 $$ \tag{15.7}
 \begin{aligned}
@@ -3270,7 +3270,7 @@ e^{-i k(\omega) z}
 \end{bmatrix}.
 $$
 
-Since we can represent both the incident and the scattering fields using only two components (each), Equation 15.6.1 can be expressed in terms of the complex *scattering matrix*[^14]
+Since we can represent both the incident and the scattering fields using only two components (each), Equation 15.6.1 can be expressed[^14] in terms of the complex *scattering matrix*, or the [S-matrix](https://en.wikipedia.org/wiki/S-matrix) for short.
 
 [^14]: The numbering convention and the division by \\(i k\\) are retained to match the results in the book by van de Hulst \[[4](#references) (ch. 4.41)\]. However, we do not make any changes to the tensor form of Equations 15.6-15.7 that follow the book by Mishchenko \[[9](#references) (ch. 5.3)\], since we find them entirely appropriate.
 
@@ -3300,28 +3300,28 @@ In general, the elements of the scattering matrix depend on the azimuthal angle 
 
 It's easy to see why that is the case. Consider changing the handedness of the \\(x y z\\) coordinate frame, so that the basis vector of the \\(x\\)-axis (or \\(y\\)-axis) becomes \\(-\bm{x}\\) (or \\(-\bm{y}\\)), and vice versa. In the reflected coordinate system, both \\(E\_{s,x'}\\) and \\(E\_{i,x}\\) (or \\(E\_{s,y}\\) and \\(E\_{i,y}\\)) change the sign, but, since the particle possesses reflection symmetry, the scattering matrix remains unchanged. In order for the magnitudes of the scattered field components to remain unchanged, the off-diagonal elements \\(s_3\\) and \\(s_4\\) must be equal to \\(0\\). This decouples the \\(x\\) and \\(y\\) components of the field, which allows us to represent the vector scattering process in terms of two independent scalar waves.
 
-In addition, a similar proof shows that axial symmetry leads to another important property of forward scattering: \\(s_1(0) = s_2(0)\\).
+In addition, a very similar proof shows that axial symmetry leads to another important property of forward scattering: \\(s_1(0, \phi) = s_2(0, \phi) = s_0\\).
 
 ### Optical Cross-Section Theorem
 
 For radiative transfer applications, we may introduce a simpler description of the scattering and absorption properties of a particle by describing the outcome of the scattering process in radometric (rather than optical) terms \[[6](#references) (ch. 13.6), [9](#references) (ch. 13.1, 13.4)\].
 
-Consider the incident time-harmonic[^15] electromagnetic field \\(\bm{E_i}\\) and \\(\bm{B_i}\\). In a linear, isotropic, homogeneous, source-free medium, the field can be decomposed (c.f. Equations 4.8, 7.1) into individual plane waves (c.f. Equations 4.11, 7.2) of the form
+Consider the incident time-harmonic[^15] electromagnetic field \\(\bm{E_i}\\) and \\(\bm{B_i}\\). In a linear, isotropic, homogeneous, source-free medium, the field can be decomposed into individual plane waves (c.f. Equations 7.1-7.2) of the form
 
-[^15]: The fields are given in their monochromatic forms, as per Equation 4.11. Extension to a polychromatic field is trivial, and amounts to summing up the individual harmonic terms according to Equation 4.8.
+[^15]: We used the the monochromatic forms of the fields given by Equation 4.11. Extension to a polychromatic field is trivial, and amounts to summing up the individual harmonic terms per Equation 4.8.
 
 $$ \tag{16.1}
 \begin{aligned}
 	& \bm{E_i}(\bm{r}, t)
-	= \mathcal{Re} \big\lbrace \bm{E_0} e^{-i k (\bm{r} \cdot \bm{n_i}) + i \omega t} \big\rbrace, \cr
+	= \mathcal{Re} \big\lbrace \bm{E_0}(\bm{n_i}) e^{i k (\bm{r} \cdot \bm{n_i}) - i \omega t} \big\rbrace, \cr
 	& \bm{B_i}(\bm{r}, t)
-	= \mathcal{Re} \big\lbrace \bm{B_0} e^{-i k (\bm{r} \cdot \bm{n_i}) + i \omega t} \big\rbrace,
+	= \mathcal{Re} \big\lbrace \bm{B_0}(\bm{n_i}) e^{i k (\bm{r} \cdot \bm{n_i}) - i \omega t} \big\rbrace,
 \end{aligned}
 $$
 
 where \\(\bm{E_0}\\) and \\(\bm{B_0}\\) are the field phasors at the origin, and \\(\bm{n_i}\\) is the direction of propagation.
 
-According to Equations 7.18, 7.23, and 7.25, if the medium is non-absorptive, they satisfy the relations
+According to Equations 7.18, 7.23 and 7.25, if the medium is non-absorptive, they satisfy the relations
 
 $$ \tag{16.2}
 	\bm{n_i} \cdot  \bm{E_0} = 0, \quad
@@ -3330,7 +3330,7 @@ $$ \tag{16.2}
 	\bm{B_0} \times \bm{n_i} = \frac{\eta}{c} \bm{E_0}.
 $$
 
-With each plane wave, we may associate the Poynting vector \\(\bm{S_i}\\) (c.f. Equations 2.17, 7.28) pointing along the direction of propagation. If the medium is non-magnetic, the expression of the time-averaged Poynting vector (c.f. Equations 4.16-4.17, 7.31-7.32) is particularly simple:
+With each plane wave, we may associate the Poynting vector \\(\bm{S_i}\\) (c.f. Equation 7.28) pointing along the direction of propagation. If the medium is non-absorptive and non-magnetic, the expression of the time-averaged Poynting vector (c.f. Equations 7.31-7.32) is particularly simple:
 
 $$ \tag{16.3}
 	\braket{\bm{S_i}}
@@ -3339,7 +3339,7 @@ $$ \tag{16.3}
 	= \frac{1}{2} \mu\_0^{-1} \frac{\eta}{c} |\bm{E_0}|^2 \bm{n_i}.
 $$
 
-As a result, the amount of power per unit area (c.f. Equations 2.25, 7.32) flowing through an arbitrary virtual surface element is
+As a result, the amount of power per unit area (c.f. Equation 7.32) flowing through an arbitrary virtual surface element is
 
 $$ \tag{16.4}
 	\Epsilon_i
@@ -3357,7 +3357,7 @@ $$ \tag{16.5}
 	= \frac{1}{2} \mu\_0^{-1} \frac{\eta}{c} |\bm{E_0}|^2 \int_{A} \bm{n_i} \cdot \bm{n} \thinspace dA.
 $$
 
-The integral given above simply computes the signed area of the projection of the surface onto the plane of the incident wave. For a closed surface, the value of the integral is zero.
+The integral given above simply computes the signed projected area of the surface onto the plane of the incident wave. For a closed surface, the value of the integral is zero.
 
 [Insert picture here]
 
@@ -3392,22 +3392,22 @@ $$
 
 Our goal is to find a similar expression for the case when the volume contains particles.
 
-We begin by constructing a virtual surface centered at the particle, and sufficiently large to be located in its far zone. The scattered fields are then given by Equation 15.6:
+We begin by constructing a virtual surface that is both centered at the particle and is sufficiently large to be located in its far zone. The scattered fields are then given by Equation 15.6:
 
 $$ \tag{16.10}
 \begin{aligned}
 	& \bm{E_s}(\bm{r}, t)
-	\approx \mathcal{Re} \bigg\lbrace \frac{e^{-i k r}}{r} \mathcal{S_{ef}} \bm{E_0} e^{i \omega t} \bigg\rbrace
-	= \frac{1}{r} \mathcal{Re} \big\lbrace \bm{E_1} e^{-i k r + i \omega t} \big\rbrace, \cr
+	\approx \mathcal{Re} \bigg\lbrace \frac{e^{i k r}}{r} \mathcal{S_{ef}} \bm{E_0} e^{-i \omega t} \bigg\rbrace
+	= \frac{1}{r} \mathcal{Re} \big\lbrace \bm{E_1}(\bm{n_s}) e^{i k r - i \omega t} \big\rbrace, \cr
 	& \bm{B_s}(\bm{r}, t)
-	\approx \mathcal{Re} \bigg\lbrace \frac{e^{-i k r}}{r} \mathcal{S_{mf}} \bm{E_0} e^{i \omega t} \bigg\rbrace
-	= \frac{1}{r} \mathcal{Re} \big\lbrace \bm{B_1} e^{-i k r + i \omega t} \big\rbrace,
+	\approx \mathcal{Re} \bigg\lbrace \frac{e^{i k r}}{r} \mathcal{S_{mf}} \bm{E_0} e^{-i \omega t} \bigg\rbrace
+	= \frac{1}{r} \mathcal{Re} \big\lbrace \bm{B_1}(\bm{n_s}) e^{i k r - i \omega t} \big\rbrace,
 \end{aligned}
 $$
 
 where \\(\bm{E_1}\\) and \\(\bm{B_1}\\) are the field phasors at the unit distance from the origin.
 
-Consider a fixed direction of observation \\(\bm{n_s} = \bm{r}/r\\). According to Equations 13.14, 13.16, 13.17, and 13.21, if the host medium is non-absorptive, the following relations exist:
+Consider a fixed direction of observation \\(\bm{n_s} = \bm{r}/r\\). According to Equations 13.14-13.17 and 13.21, if the host medium is non-absorptive, the following relations exist:
 
 $$ \tag{16.11}
 	\bm{n_s} \cdot  \bm{E_1} = 0, \quad
@@ -3416,13 +3416,13 @@ $$ \tag{16.11}
 	\bm{B_1} \times \bm{n_s} = \frac{\eta}{c} \bm{E_1}.
 $$
 
-The Poynting vector of the scattered far field points radially outward. If the host medium is non-magnetic, the corresponding time-averaged Poynting vector (c.f. Equations 13.20-13.23) is
+The Poynting vector of the scattered far field points radially outward. If the host medium is is non-absorptive and non-magnetic, the corresponding time-averaged Poynting vector (c.f. Equations 13.21-13.23) is
 
 $$ \tag{16.12}
 	\braket{\bm{S_s}}
 	= \frac{1}{2} \mu\_0^{-1} \frac{1}{r^2} \mathcal{Re}
 	\big\lbrace \bm{E_1} \times \bm{B_1^{\*}} \big\rbrace
-	= \frac{1}{2} \mu\_0^{-1} \frac{\eta}{c} \frac{|\bm{E_1}|^2}{r^2} \bm{n_s}.
+	= \frac{1}{2} \mu\_0^{-1} \frac{\eta}{c} \frac{\big\vert \bm{E_1}(\bm{n_s}) \big\vert^2}{r^2} \bm{n_s}.
 $$
 
 In order to calculate the amount of scattered power, it is convenient to use a spherical surface \\(\mathbb{S}^2\\). Since the differential solid angle is
@@ -3431,19 +3431,19 @@ $$ \tag{16.13}
 	d\Omega = \frac{\bm{n} \cdot \bm{n_s}}{r^2} dA
 $$
 
-setting \\(\bm{n} = \bm{r}/r = \bm{n_s}\\) results in an integral that is formally independent of the radial distance:
+setting \\(\bm{n} = \bm{r}/r = \bm{n_s}\\) results in an integral that is formally independent of the radius of the sphere:
 
 $$ \tag{16.14}
 	\Phi_s
-	= \oint_{A} \braket{\bm{S_s}} \cdot \bm{n} \thinspace dA
-	= \frac{1}{2} \mu\_0^{-1} \frac{\eta}{c} \oint\_{\mathbb{S}^2} |\bm{E_1}|^2 d\Omega.
+	= \oint_{A} \braket{\bm{S_s}} \cdot \bm{n_s} \thinspace dA
+	= \frac{1}{2} \mu\_0^{-1} \frac{\eta}{c} \oint\_{\mathbb{S}^2} \big\vert \bm{E_1}(\bm{n_s}) \big\vert^2 d\Omega.
 $$
 
 From the radiometric point of view, the squared magnitude of the scattered field corresponds to [radiant intensity](https://en.wikipedia.org/wiki/Radiant_intensity)
 
 $$ \tag{16.15}
 	\Iota_s
-	= \frac{1}{2} \mu\_0^{-1} \frac{\eta}{c} |\bm{E_1}|^2.
+	= \frac{1}{2} \mu\_0^{-1} \frac{\eta}{c} \big\vert \bm{E_1}(\bm{n_s}) \big\vert^2.
 $$
 
 The scattered field does not exist in isolation. Since it is generated by the incident field, the total field is formed by the superposition of the two waves (c.f. Equation 11.12):
@@ -3466,35 +3466,46 @@ $$ \tag{16.17}
 	\bm{S}(\bm{r}, t)
 	&= \mu\_0^{-1} \big( \bm{E}(\bm{r}, t) \times \bm{B}(\bm{r}, t) \big) \cr
 	&= \mu\_0^{-1} \big( \bm{E_i} \times \bm{B_i} + \bm{E_s} \times \bm{B_s} + \bm{E_i} \times \bm{B_s} + \bm{E_s} \times \bm{B_i} \big) \cr
-	&= \bm{S_i} + \bm{S_s} + \bm{S'}.
+	&= \bm{S_i} + \bm{S_s} - \bm{S_t}.
 \end{aligned}
 $$
 
-In order to see what the new term represents, we must once again integrate the time-averaged Poynting vector over a closed surface:
+The \\(\bm{S_t}\\) term shows that the incident and the scattered waves interfere. In order to determine the extent it influences the flow of energy, we must once again integrate the time-averaged Poynting vector over a closed surface:
 
 $$ \tag{16.18}
 	\Delta \Phi
 	= \oint_{A} \braket{\bm{S}} \cdot \bm{n} \thinspace dA
-	= \oint_{A} \Big( \negthinspace \braket{\bm{S_i}} + \braket{\bm{S_s}} + \braket{\bm{S'}} \negthinspace \Big) \cdot \bm{n} \thinspace dA.
+	= \oint_{A} \Big( \negthinspace \braket{\bm{S_i}} + \braket{\bm{S_s}} - \braket{\bm{S_t}} \negthinspace \Big) \cdot \bm{n} \thinspace dA.
 $$
 
-Since the formula is the same, the conclusions of Equations 16.7-16.9 remain valid. In addition, Equations 16.5-16.6 show that \\(\oint \braket{\bm{S_i}} \cdot \bm{n} \thinspace dA = 0\\). Thus, in the absence of primary sources, Equations 16.8 and 16.18 tell us that
+Since the formula is the same, the conclusions of Equations 16.7-16.9 remain valid. In addition, Equations 16.5-16.6 show that \\(\oint \braket{\bm{S_i}} \cdot \bm{n} \thinspace dA = 0\\). Thus, in the absence of primary sources within the region, Equations 16.8 and 16.18 tell us that
 
 $$ \tag{16.19}
-	\Phi_a
-	= - \Phi_s - \oint_{A} \braket{\bm{S'}} \cdot \bm{n} \thinspace dA
+	-\Delta \Phi
+	= \Phi_a
+	= \oint_{A} \braket{\bm{S_t}} \cdot \bm{n} \thinspace dA - \Phi_s
+	= \Phi_t - \Phi_s
 $$
 
 is the amount of power absorbed by the particle, where
 
 $$ \tag{16.20}
-	\braket{\bm{S'}}
-	= \mu\_0^{-1} \braket{\bm{E_i} \times \bm{B_s} + \bm{E_s} \times \bm{B_i}}.
+	\braket{\bm{S_t}}
+	= -\mu\_0^{-1} \braket{\bm{E_i} \times \bm{B_s} + \bm{E_s} \times \bm{B_i}}.
 $$
+
+In the context of Equation 16.19,
+
+$$ \tag{16.21}
+	\Phi_t
+	= \Phi_a + \Phi_s
+$$
+
+represents the total amount of power dissipated (absorbed or scattered) by the particle.
 
 Now, recall (c.f. Equations 4.8, 4.15) that we have found, under quite general conditions, that the time average of the cross product of two vectors oscillating at exactly the same frequency is
 
-$$ \tag{16.21}
+$$ \tag{16.22}
 	\Big\langle
 		\mathcal{Re} \big\lbrace \bm{V} e^{i \omega t} \big\rbrace
 		\times
@@ -3505,17 +3516,25 @@ $$
 
 Thus, the time average of the mixed Poynting vector can be written as
 
-$$ \tag{16.22}
-	\braket{\bm{S'}} =
-	\frac{\mu_0^{-1}}{2 r} \mathcal{Re} \bigg\lbrace
-	\Big( \bm{E_0} e^{-i k (\bm{r} \cdot \bm{n_i})} \Big) \times \Big[ \bm{B_1} e^{-i k r} \Big]^{\*} +
-	\Big( \bm{E_1} e^{-i k r} \Big) \times \Big[ \bm{B_0} e^{-i k (\bm{r} \cdot \bm{n_i})} \Big]^{\*}
+$$ \tag{16.23}
+	\braket{\bm{S_t}} =
+	-\frac{\mu_0^{-1}}{2 r} \mathcal{Re} \bigg\lbrace
+	\Big( \bm{E_0} e^{i k (\bm{r} \cdot \bm{n_i})} \Big) \times \Big[ \bm{B_1} e^{i k r} \Big]^{\*} +
+	\Big( \bm{E_1} e^{i k r} \Big) \times \Big[ \bm{B_0} e^{i k (\bm{r} \cdot \bm{n_i})} \Big]^{\*}
 	\bigg\rbrace.
 $$
 
-The next step is to project \\(\braket{\bm{S'}}\\) onto the normal of the virtual sphere. This task can be carried out most efficiently with the help of the following [triple product](https://en.wikipedia.org/wiki/Triple_product) identities:
+The next step is to project \\(\braket{\bm{S_t}}\\) onto the normal of the virtual sphere. The statement of the problem leads to two relations:
 
-$$ \tag{16.23}
+$$ \tag{16.24}
+	\bm{n} = \bm{n_s},
+	\qquad
+	\bm{r} = r \bm{n_s}.
+$$
+
+This task can be carried out most efficiently with the help of the following [triple product](https://en.wikipedia.org/wiki/Triple_product) identities:
+
+$$ \tag{16.25}
 \begin{aligned}
 &	\bm{a} \cdot (\bm{b} \times \bm{c}) =
 	\bm{b} \cdot (\bm{c} \times \bm{a}) =
@@ -3523,42 +3542,199 @@ $$ \tag{16.23}
 	\cr
 &	\bm{a} \times (\bm{b} \times \bm{c}) =
 	\bm{b} (\bm{a} \cdot \bm{c}) -
-	\bm{c} (\bm{a} \cdot \bm{b}).
+	\bm{c} (\bm{a} \cdot \bm{b}),
 \end{aligned}
 $$
 
-None of these work when vectors are complex... FML. Check Mischenko?
+which are valid for both real and complex vectors.
 
----
+By combining Equations 16.2, 16.11, 16.24 and 16.25, all magnetic phasor factors can be eliminated:
 
-By combining Equations 16.2, 16.11, and 16.23, the magnetic phasor factors may be eliminated:
-
-$$ \tag{16.24}
+$$ \tag{16.26}
 \begin{aligned}
-	\braket{\bm{E_i} \times \bm{B_s}} \cdot \bm{n}
+	\bm{n_s} \cdot \braket{\bm{E_i} \times \bm{B_s}}
 	&= \frac{1}{2 r} \mathcal{Re} \Big\lbrace
-	\bm{n} \cdot \big( \bm{E_0} \times \bm{B_1^{\*}} \big) e^{i k (r - \bm{r} \cdot \bm{n_i})}
+	\bm{n_s} \cdot \big( \bm{E_0} \times \bm{B_1^{\*}} \big) e^{-i k r} e^{i k r (\bm{n_s} \cdot \bm{n_i})}
 	\Big\rbrace
 	\cr
 	&= \frac{1}{2 r} \mathcal{Re} \Big\lbrace
-	\bm{E_0} \cdot \big( \bm{B_1^{\*}} \times \bm{n} \big) e^{i k (r - \bm{r} \cdot \bm{n_i})}
+	\bm{E_0} \cdot \big( \bm{B_1^{\*}} \times \bm{n_s} \big) e^{-i k r} e^{i k r (\bm{n_s} \cdot \bm{n_i})}
 	\Big\rbrace
 	\cr
 	&= \frac{1}{2 r} \frac{\eta}{c} \mathcal{Re} \Big\lbrace
-	\big( \bm{E_0} \cdot \bm{E_1^{\*}} \big) e^{i k (r - \bm{r} \cdot \bm{n_i})}
-	\Big\rbrace
+	\big( \bm{E_0} \cdot \bm{E_1^{\*}} \big) e^{-i k r} e^{i k r (\bm{n_s} \cdot \bm{n_i})}
+	\Big\rbrace,
 	\cr
-	\braket{\bm{E_i} \times \bm{B_s}} \cdot \bm{n}
+	\braket{\bm{E_i} \times \bm{B_s}}
 	&= \frac{1}{2 r} \mathcal{Re} \Big\lbrace
-	\bm{n} \cdot \big( \bm{E_1} \times \bm{B_0^{\*}} \big) e^{-i k (r - \bm{r} \cdot \bm{n_i})}
+	\big( \bm{E_1} \times \bm{B_0^{\*}} \big) e^{i k r} e^{-i k r (\bm{n_s} \cdot \bm{n_i})}
 	\Big\rbrace
 	\cr
 	&= \frac{1}{2 r} \frac{\eta}{c} \mathcal{Re} \Big\lbrace
-	\bm{n} \cdot \big( \bm{E_1} \times \bm{n_i} \times \bm{E_0^{\*}} \big) e^{-i k (r - \bm{r} \cdot \bm{n_i})}
+	\big( \bm{E_1} \times \bm{n_i} \times \bm{E_0^{\*}} \big) e^{i k r} e^{-i k r (\bm{n_s} \cdot \bm{n_i})}
 	\Big\rbrace
 	\cr
+	&= \frac{1}{2 r} \frac{\eta}{c} \mathcal{Re} \Big\lbrace
+	\Big(
+	\bm{n_i} \big( \bm{E_0^{\*} \cdot \bm{E_1}} \big) -
+	\bm{E_0^{\*}} \big( \bm{n_i} \cdot \bm{E_1} \big)
+	\Big)
+	e^{i k r} e^{-i k r (\bm{n_s} \cdot \bm{n_i})}
+	\Big\rbrace.
 \end{aligned}
 $$
+
+Based on Equation 16.26, it is convenient to define two functions independent of \\(k\\) and \\(r\\):
+
+$$ \tag{16.27}
+\begin{aligned}
+	f_1(\bm{n})
+	&= \bm{E_0} \cdot \big[ \bm{E_1}(\bm{n}) \big]^{\*},
+	\cr
+	f_2(\bm{n})
+	&= \big( \bm{n} \cdot \bm{n_i} \big) \big( \bm{E_0^{\*}} \cdot \bm{E_1}(\bm{n}) \big)
+	 - \big( \bm{n} \cdot \bm{E_0^{\*}} \big) \big( \bm{n_i} \cdot \bm{E_1}(\bm{n}) \big).
+\end{aligned}
+$$
+
+Let us now integrate the normal component of \\(\braket{\bm{S_t}}\\) over a large sphere:
+
+$$ \tag{16.28}
+	\Phi_t
+	= \oint_{\mathbb{S}^2} \braket{\bm{S_t}} \cdot \bm{n_s} \thinspace dA
+	= -\mu\_0^{-1} \oint_{\mathbb{S}^2} \braket{\bm{E_i} \times \bm{B_s} + \bm{E_s} \times \bm{B_i}} \cdot \bm{n_s} \thinspace dA.
+$$
+
+Splitting Equation 16.23 into two parts are before, and omitting the leading constant terms, we obtain
+
+$$ \tag{16.29}
+\begin{aligned}
+	\oint\_{\mathbb{S}^2} \braket{\bm{E_i} \times \bm{B_s}} \cdot \bm{n_s} \thinspace dA
+	&= \frac{1}{2} \frac{\eta}{c} \mathcal{Re} \Big\lbrace e^{-i k r} \frac{1}{r}
+	\oint\_{\mathbb{S}^2} f_1(\bm{n_s}) e^{-i k r (-\bm{n_i} \cdot \bm{n_s})} dA
+	\Big\rbrace,
+	\cr
+	\oint\_{\mathbb{S}^2} \braket{\bm{E_i} \times \bm{B_s}} \cdot \bm{n_s} \thinspace dA
+	&= \frac{1}{2} \frac{\eta}{c} \mathcal{Re} \Big\lbrace e^{i k r} \frac{1}{r}
+	\oint\_{\mathbb{S}^2} f_2(\bm{n_s}) e^{-i k r (\bm{n_i} \cdot \bm{n_s})} dA
+	\Big\rbrace.
+\end{aligned}
+$$
+
+The two integrals found in Equation 16.29 have the same form. That allows us to apply Jones' lemma \[[6](#references) (ap. XII)\], which says that, for \\(k r \to \infty\\), the [asymptotic expansion](https://en.wikipedia.org/wiki/Asymptotic_expansion) of the surface integral over a sphere of radius \\(r\\) is
+
+$$ \tag{16.30}
+	\frac{1}{r} \oint\_{\mathbb{S}^2} f(\bm{n}) e^{-i k r (\bm{u} \cdot \bm{n})} dA
+	\approx \frac{2 \pi i}{k} \Big( f(\bm{u}) e^{-i k r} - f(-\bm{u}) e^{i k r} \Big),
+$$
+
+where \\(\bm{n}\\) is the outward facing normal vector, and \\(\bm{u}\\) is a constant real unit vector.
+
+Application of Equation 16.30 to 16.29 shows that
+
+$$ \tag{16.31}
+\begin{aligned}
+	\oint\_{\mathbb{S}^2} \braket{\bm{E_i} \times \bm{B_s}} \cdot \bm{n_s} \thinspace dA
+	&\approx \frac{\eta}{c} \frac{2 \pi}{k} \mathcal{Re} \bigg\lbrace \frac{i}{2}
+	\Big( \bm{E_0} \cdot \big[ \bm{E_1}(-\bm{n_i}) \big]^{\*} e^{-2 i k r} - \bm{E_0} \cdot \big[ \bm{E_1}(\bm{n_i}) \big]^{\*} \Big)
+	\bigg\rbrace,
+	\cr
+	\oint\_{\mathbb{S}^2} \braket{\bm{E_i} \times \bm{B_s}} \cdot \bm{n_s} \thinspace dA
+	&\approx \frac{\eta}{c} \frac{2 \pi}{k} \mathcal{Re} \bigg\lbrace \frac{i}{2}
+	\Big( \bm{E_0^{\*}} \cdot \bm{E_1}(\bm{n_i}) + \bm{E_0^{\*}} \cdot \bm{E_1}(-\bm{n_i}) e^{2 i k r} \Big)
+	\bigg\rbrace.
+\end{aligned}
+$$
+
+Notice that
+
+$$ \tag{16.32}
+	\frac{i}{2} \Big( \bm{E_0} \cdot \bm{E_1^{\*}} e^{-2 i k r} + \bm{E_0^{\*}} \cdot \bm{E_1} e^{2 i k r} \Big)
+	= i \mathcal{Re} \Big\lbrace \bm{E_0} \cdot \bm{E_1^{\*}} e^{-2 i k r} \Big\rbrace
+$$
+
+is a purely imaginary number, so its real part is 0. Similarly,
+
+$$ \tag{16.33}
+	\frac{i}{2} \big( \bm{E_0^{\*}} \cdot \bm{E_1} - \bm{E_0} \cdot \bm{E_1^{\*}} \big)
+	= -\mathcal{Im} \big\lbrace \bm{E_0^{\*}} \cdot \bm{E_1} \big\rbrace
+$$
+
+is a real number. Thus, the total amount of power dissipated by the particle
+
+$$ \tag{16.34}
+	\Phi_t
+	= -\mu\_0^{-1} \oint_{\mathbb{S}^2} \braket{\bm{E_i} \times \bm{B_s} + \bm{E_s} \times \bm{B_i}} \cdot \bm{n_s} \thinspace dA
+	\approx \mu\_0^{-1} \frac{\eta}{c} \frac{2 \pi}{k} \mathcal{Im} \big\lbrace \bm{E_0^{\*}} \cdot \bm{E_1}(\bm{n_i}) \big\rbrace
+$$
+
+depends on the scattering amplitude in the forward direction only. In general, the same is not true for the amount of power absorbed:
+
+$$ \tag{16.35}
+	\Phi_a
+	= \Phi_t - \Phi_s
+	\approx \frac{1}{2} \mu\_0^{-1} \frac{\eta}{c} \bigg(
+	\frac{4 \pi}{k} \mathcal{Im} \big\lbrace \bm{E_0^{\*}} \cdot \bm{E_1}(\bm{n_i}) \big\rbrace
+	- \oint\_{\mathbb{S}^2} \big\vert \bm{E_1}(\bm{n_s}) \big\vert^2 d\Omega \bigg).
+$$
+
+The amount of power dissipated by the particle obviously depends on the amount of incident power the particle intercepts. The latter can be characterized with the help of the projected area of the particle - its *geometric cross-section* \\(C_g\\). For a convex particle, it is given by the integral
+
+$$ \tag{16.36}
+	C_g
+	= \oint_{A} \mathrm{max}(0, -\bm{n} \cdot \bm{n_i}) dA.
+$$
+
+The amount of incident power is then (c.f. Equations 16.3-16.5)
+
+$$ \tag{16.37}
+	\Phi_i
+	= \frac{1}{2} \mu\_0^{-1} \frac{\eta}{c} |\bm{E_0}|^2
+	  \oint_{A} \mathrm{max}(0, -\bm{n} \cdot \bm{n_i}) dA
+	= \Epsilon_i(\bm{n_i}) C_g
+	= \vert \negthinspace \braket{\bm{S_i}} \negthinspace \vert C_g.
+$$
+
+This allows us to introduce dimensionless absorption, scattering, and extinction *efficiencies*
+
+$$ \tag{16.38}
+\begin{aligned}
+	& Q_a
+	= \frac{\Phi_a}{\Phi_i}
+	= \frac{\Phi_s + \Phi_t}{\Phi_i},
+	\cr
+	& Q_s
+	= \frac{\Phi_s}{\Phi_i}
+	= \frac{\oint |\bm{E_1}(\bm{n_s})|^2 d\Omega}{|\bm{E_0}|^2 C_g},
+	\cr
+	& Q_t
+	= \frac{\Phi_t}{\Phi_i}
+	= \frac{4 \pi}{k} \frac{\mathcal{Im} \big\lbrace \bm{E_0^{\*}} \cdot \bm{E_1}(\bm{n_i}) \big\rbrace}{|\bm{E_0}|^2 C_g}.
+\end{aligned}
+$$
+
+If normalization with respect to the projected area is not required, we may utilize the absorption, scattering, and extinction *cross-sections* instead:
+
+$$ \tag{16.39}
+\begin{aligned}
+	& C_a
+	= Q_a C_g
+	= \frac{\Phi_a}{\Phi_i}
+	= \frac{\Phi_s + \Phi_t}{\vert \negthinspace \braket{\bm{S_i}} \negthinspace \vert},
+	\cr
+	& C_s
+	= Q_s C_g
+	= \frac{\Phi_s}{\vert \negthinspace \braket{\bm{S_i}} \negthinspace \vert}
+	= \frac{\oint |\bm{E_1}(\bm{n_s})|^2 d\Omega}{|\bm{E_0}|^2},
+	\cr
+	& C_t
+	= Q_t C_g
+	= \frac{\Phi_t}{\vert \negthinspace \braket{\bm{S_i}} \negthinspace \vert}
+	= \frac{4 \pi}{k} \frac{\mathcal{Im} \big\lbrace \bm{E_0^{\*}} \cdot \bm{E_1}(\bm{n_i}) \big\rbrace}{|\bm{E_0}|^2}.
+\end{aligned}
+$$
+
+Equations 16.39.1-16.39.3 are known as the *optical cross-section theorem*, or the [optical theorem](https://en.wikipedia.org/wiki/Optical_theorem) for short. In particular, Equation 16.39.3 is known as the *extinction theorem* \[[4](#references) (ch. 4.2)\].
 
 ---
 
