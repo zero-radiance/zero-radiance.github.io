@@ -170,7 +170,7 @@ $$ \tag{1.13}
 	\bm{H} = \mu\_0^{-1} \bm{B} - \bm{M},
 $$
 
-substitute them into Equations 1.12.1-1.12.2, and group the resulting expressions with Equations 1.1.1-1.1.2, we obtain the [macroscopic formulation](https://en.wikipedia.org/wiki/Maxwell%27s_equations#Macroscopic_formulation) of the Maxwell equations \[[6](#references) (ch. 1.1.1), [7](#references) (ch. 2.1), [8](#references) (ch. 2.1), [9](#references) (ch. 2.1)\]:
+substitute them into Equations 1.12.1-1.12.2, and group the resulting expressions with Equations 1.1.1-1.1.2, we obtain the [macroscopic formulation](https://en.wikipedia.org/wiki/Maxwell%27s_equations#Macroscopic_formulation) of the Maxwell equations \[[6](#references) (ch. 1.1.1), [7](#references) (ch. 2.1), [9](#references) (ch. 2.1)\]:
 
 $$ \tag{1.14}
 \begin{aligned}
@@ -190,7 +190,7 @@ $$ \tag{1.15}
 	\lbrace \bm{E_1} + \bm{E_2}, \bm{B_1} + \bm{B_2} \rbrace.
 $$
 
-Since the microscopic properties of matter are continuous, this leads to continuous fields. But, sometimes, it is convenient to introduce a macroscopic discontinuity to approximate a very rapid (yet continuous) variation of material properties. At the *optical interface*, the fields must satisfy the [boundary conditions](https://en.wikipedia.org/wiki/Interface_conditions_for_electromagnetic_fields) \[[6](#references) (ch. 1.1.3), [7](#references) (ch. 2.10), [8](#references) (ch. 2.4), [9](#references) (ch. 2.2)\]. If \\(\bm{n\_{12}}\\) is a unit normal vector pointing from region 1 to region 2, the normal components of the fields must be such that
+Since the microscopic properties of matter are continuous, this leads to continuous fields. But, sometimes, it is convenient to introduce a macroscopic discontinuity to approximate a very rapid (yet continuous) variation of material properties. At the *optical interface*, the fields must satisfy the [boundary conditions](https://en.wikipedia.org/wiki/Interface_conditions_for_electromagnetic_fields) \[[6](#references) (ch. 1.1.3), [7](#references) (ch. 2.10), [9](#references) (ch. 2.2)\]. If \\(\bm{n\_{12}}\\) is a unit normal vector pointing from region 1 to region 2, the normal components of the fields must be such that
 
 $$ \tag{1.16}
 	\bm{n\_{12}} \cdot  (\bm{B\_2} - \bm{B\_1}) = 0, \quad
@@ -216,7 +216,7 @@ We take the Maxwell equations as axioms, and use them as the foundation on which
 
 ### Force and Energy
 
-Given a mathematical description of electromagnetic radiation in terms of vector fields, we would like to physically characterize it as an energy transfer process. In order to do that, we have to determine how much energy there is in a given volume element of space, and also the rate of energy flow \[[5](#references) (vol. II, ch. 27), [6](#references) (ch. 1.1.4), [7](#references) (ch. 2.11), [8](#references) (ch. 2.5), [9](#references) (ch. 2.4)\].
+Given a mathematical description of electromagnetic radiation in terms of vector fields, we would like to physically characterize it as an energy transfer process. In order to do that, we have to determine how much energy there is in a given volume element of space, and also the rate of energy flow \[[5](#references) (vol. II, ch. 27), [6](#references) (ch. 1.1.4), [7](#references) (ch. 2.11), [9](#references) (ch. 2.4)\].
 
 [Conservation of energy](https://en.wikipedia.org/wiki/Conservation_of_energy) is one of the most important principles of physics. Here is one way to state it: the difference between the amount of external energy \\(\mathcal{E\_{ext}}\\) flowing into the volume \\(V\\) and the amount of internal energy \\(\mathcal{E\_{int}}\\) flowing out equals the amount of work \\(\mathcal{W}\\) done inside.
 
@@ -369,7 +369,7 @@ without violating the Poynting theorem \[[5](#references) (vol. II, ch. 27.4)\].
 
 A more pressing concern is whether our formulas, which were found using the microscopic formulation of the Maxwell equations, are valid at the microscopic scale. The answer is: almost always.
 
-A typical derivation[^5] replaces \\(\bm{J}\\) with \\(\bm{J_f}\\) in Equation 2.6, which, after substitution of Equation 1.14.3, leads to the macroscopic counterpart of Equation 2.7 \[[6](#references) (ch. 1.1.4), [8](#references) (ch. 2.5), [9](#references) (ch. 2.4)\]:
+A typical derivation[^5] replaces \\(\bm{J}\\) with \\(\bm{J_f}\\) in Equation 2.6, which, after substitution of Equation 1.14.3, leads to the macroscopic counterpart of Equation 2.7 \[[6](#references) (ch. 1.1.4), [9](#references) (ch. 2.4)\]:
 
 [^5]: Work done on the bound current is implicit, since the latter is used to define \\(\bm{D}\\) and \\(\bm{H}\\).
 
@@ -751,7 +751,7 @@ which is a real vector, as expected.
 
 In the case when \\(T > T_1\\), the total value of \\(\braket{\bm{S}}\\) is a sum of the contribution from a number of whole periods (given by Equation 4.15) and the contribution from a fraction of the period. If the period used for time-averaging is very large \\((T \gg T_1)\\), the *relative* contribution from a fraction of the period will be much smaller than the *relative* contribution from a large number of whole periods, so the formula of Equation 4.15 should serve as a good approximation.
 
-Equation 4.15 allows us to define the *time-averaged* Poynting phasor \[[8](#references) (ch. 2.5), [9](#references) (ch. 2.4)\]
+Equation 4.15 allows us to define the *time-averaged* Poynting phasor \[[9](#references) (ch. 2.4)\]
 
 $$ \tag{4.16}
 	\braket{\bm{S_p}} = \frac{1}{2} \bm{E_p}(\bm{r}) \times \big[ \bm{H_p}(\bm{r}) \big]^{\*}
@@ -827,7 +827,7 @@ $$ \tag{5.2}
 \end{aligned}
 $$
 
-where \\(\sigma\\) is the [specific conductivity](https://en.wikipedia.org/wiki/Electrical_resistivity_and_conductivity), \\(\epsilon\\) is the [electric permittivity](https://en.wikipedia.org/wiki/Permittivity), and \\(\mu\\) is the [magnetic permeability](https://en.wikipedia.org/wiki/Permeability_(electromagnetism)) \[[6](#references) (ch. 1.1.2), [7](#references) (ch. 2.3), [8](#references) (ch. 2.3), [9](#references) (ch. 2.1)\].
+where \\(\sigma\\) is the [specific conductivity](https://en.wikipedia.org/wiki/Electrical_resistivity_and_conductivity), \\(\epsilon\\) is the [electric permittivity](https://en.wikipedia.org/wiki/Permittivity), and \\(\mu\\) is the [magnetic permeability](https://en.wikipedia.org/wiki/Permeability_(electromagnetism)) \[[6](#references) (ch. 1.1.2), [7](#references) (ch. 2.3), [9](#references) (ch. 2.1)\].
 
 Care must taken when transforming Equations 5.2.1-5.2.3 to the time domain, since a multiplication in the frequency domain leads to a convolution in the time domain.
 
@@ -856,7 +856,7 @@ $$ \tag{5.5}
 \end{aligned}
 $$
 
-Using the definition of the [complex permittivity](https://en.wikipedia.org/wiki/Permittivity#Complex_permittivity) \[[7](#references) (ch. 2.8), [8](#references) (ch. 2.3), [9](#references) (ch. 2.3)\]
+Using the definition of the [complex permittivity](https://en.wikipedia.org/wiki/Permittivity#Complex_permittivity) \[[7](#references) (ch. 2.8), [9](#references) (ch. 2.3)\]
 
 $$ \tag{5.6}
 	\varepsilon(\bm{r}, \omega) = \epsilon(\bm{r}, \omega) + i \frac{\sigma(\bm{r}, \omega)}{\omega},
@@ -1041,7 +1041,7 @@ $$ \tag{7.1}
 \end{aligned}
 $$
 
-This triple integral represents a [wave packet](https://en.wikipedia.org/wiki/Wave_packet). It is a collection of *vector* [plane waves](https://en.wikipedia.org/wiki/Plane_wave) \[[6](#references) (ch. 1.4.2), [8](#references) (ch. 3.2), [9](#references) (ch. 3.1)\] of the form
+This triple integral represents a [wave packet](https://en.wikipedia.org/wiki/Wave_packet). It is a collection of *vector* [plane waves](https://en.wikipedia.org/wiki/Plane_wave) \[[6](#references) (ch. 1.4.2), [9](#references) (ch. 3.1)\] of the form
 
 $$ \tag{7.2}
 	\bm{E}(\bm{r}, \bm{n}, \omega) e^{-i \omega t}
@@ -1079,7 +1079,7 @@ $$ \tag{7.6}
 	\frac{\omega}{c} \sqrt{\varepsilon\_r(\omega) \mu\_r(\omega)}.
 $$
 
-It is convenient to use a parametrization that does not involve taking a square root. Thus, we define two positive real numbers, the [refractive index](https://en.wikipedia.org/wiki/Refractive_index) \\(\eta\\) and the [attenuation index](https://en.wikipedia.org/wiki/Refractive_index#Complex_refractive_index) \\(\kappa\\) \[[6](#references) (ch. 14.1), [8](#references) (ch. 2.3), [9](#references) (ch. 3.1)\], by
+It is convenient to use a parametrization that does not involve taking a square root. Thus, we define two positive real numbers, the [refractive index](https://en.wikipedia.org/wiki/Refractive_index) \\(\eta\\) and the [attenuation index](https://en.wikipedia.org/wiki/Refractive_index#Complex_refractive_index) \\(\kappa\\) \[[6](#references) (ch. 14.1), [9](#references) (ch. 3.1)\], by
 
 $$ \tag{7.7}
 	\eta(\omega) + i \kappa(\omega) =
@@ -1424,7 +1424,7 @@ $$ \tag{8.1}
 	\nabla \cdot \bm{B}(\bm{r}, t) = \nabla \cdot \big( \nabla \times \bm{A}(\bm{r}, t) \big) = 0,
 $$
 
-where \\(\bm{A}\\) is called a *vector potential* \[[5](#references) (vol. II, ch. 18), [6](#references) (ch. 2.1), [8](#references) (ch. 2.6)\].
+where \\(\bm{A}\\) is called a *vector potential* \[[5](#references) (vol. II, ch. 18), [6](#references) (ch. 2.1)\].
 
 Next, substitute the definition of \\(\bm{A}\\) into Equation 1.1.1 to obtain
 
@@ -1623,7 +1623,7 @@ $$
 
 Its solution is the *scalar* [Green function](https://en.wikipedia.org/wiki/Green%27s_function) \\(g\\). It represents an [impulse response](https://en.wikipedia.org/wiki/Impulse_response) of the linear operator \\(\mathcal{H}\\).
 
-Equation 9.9 is an inhomogeneous linear differential equation. Consequently, its solution depends on the linear operator in question, its domain of validity, as well as the associated (initial or boundary) conditions. According to Equation 9.7, our domain is the whole real space, and the only applicable restriction is the Sommerfeld radiation condition. Thus, it can be shown that the *free-space* scalar Green function \\(g_0\\) takes the form[^9] of an diverging *scalar* [spherical wave](https://en.wikipedia.org/wiki/Wave_equation#Spherical_waves) \[[7](#references) (ch. 2.12), [8](#references) (ch. 5.2), [9](#references) (ap. B), [13](#references)\]:
+Equation 9.9 is an inhomogeneous linear differential equation. Consequently, its solution depends on the linear operator in question, its domain of validity, as well as the associated (initial or boundary) conditions. According to Equation 9.7, our domain is the whole real space, and the only applicable restriction is the Sommerfeld radiation condition. Thus, it can be shown that the *free-space* scalar Green function \\(g_0\\) takes the form[^9] of an diverging *scalar* [spherical wave](https://en.wikipedia.org/wiki/Wave_equation#Spherical_waves) \[[7](#references) (ch. 2.12), [9](#references) (ap. B), [13](#references)\]:
 
 $$ \tag{9.10}
 	g_0(R) = g(R, k_0) = \frac{e^{i k_0 R}}{4 \pi R}.
@@ -2780,7 +2780,7 @@ subject to the conditions \[[9](#references) (ch. 5)\]
 $$ \tag{13.13}
 	k r - k a \gg 1, \qquad
 	kr \gg ka, \qquad
-	kr \gg \frac{1}{2} (ka)^2.
+	kr \gg \frac{1}{2} (k a)^2.
 $$
 
 We would like to caution that these conditions are, strictly speaking, only valid for Equation 13.6. If one considers a derived quantity (such as the time-averaged Poynting vector), the results of the preceding error analysis are no longer accurate, and the final expression should be examined instead.
@@ -3317,11 +3317,11 @@ $$
 
 with the angles \\(\theta\\) and \\(\phi\\) given by Equation 15.10.
 
-In general, the elements of the scattering matrix depend on the azimuthal angle \\(\phi\\), since, as we rotate the scattering plane (\\(x z\\) or \\(x' z'\\)) around the \\(Z\\)-axis, the particle appears to rotate (in the opposite direction) in both the \\(x y z\\) and \\(x' y' z'\\) coordinate systems. However, if the particle is symmetric (both geometrically and morphologically) with respect to the \\(Z\\)-axis, which is the case for spherical and an axis-aligned [spheroidal](https://en.wikipedia.org/wiki/Spheroid) particles, the matrix only depends on the polar angle \\(\theta\\). This causes the scattering matrix to become diagonal \[[4](#references) (ch. 4.42)\].
+In general, the elements of the scattering matrix depend on the azimuthal angle \\(\phi\\), since, as we rotate the scattering plane (\\(x z\\) or \\(x' z'\\)) around the \\(Z\\)-axis, the particle appears to rotate (in the opposite direction) in both the \\(x y z\\) and \\(x' y' z'\\) coordinate systems. However, if the particle is symmetric (both geometrically and morphologically) with respect to the \\(Z\\)-axis, which is the case for spherical and an axis-aligned [spheroidal](https://en.wikipedia.org/wiki/Spheroid) particles, the matrix only depends on the polar angle \\(\theta\\). This causes the scattering matrix to become diagonal, with \\(s_3 = s_4 = 0\\) \[[4](#references) (ch. 4.42)\].
 
 It's easy to see why that is the case. Consider changing the handedness of the \\(x y z\\) coordinate frame, so that the basis vector of the \\(x\\)-axis (or \\(y\\)-axis) becomes \\(-\bm{x}\\) (or \\(-\bm{y}\\)), and vice versa. In the reflected coordinate system, both \\(E\_{s,x'}\\) and \\(E\_{i,x}\\) (or \\(E\_{s,y}\\) and \\(E\_{i,y}\\)) change the sign, but, since the particle possesses reflection symmetry, the scattering matrix remains unchanged. In order for the magnitudes of the scattered field components to remain unchanged, the off-diagonal elements \\(s_3\\) and \\(s_4\\) must be equal to \\(0\\). This decouples the \\(x\\) and \\(y\\) components of the field, which allows us to represent the vector scattering process in terms of two independent scalar waves.
 
-In addition, a very similar proof shows that axial symmetry leads to another important property of forward scattering: \\(s_1(0, \phi) = s_2(0, \phi) = s_0\\).
+In addition, a very similar proof shows that axial symmetry with respect to the direction of incidence leads to another important property of forward scattering: \\(s_1(0, \phi) = s_2(0, \phi) = s_0\\).
 
 ### Optical Cross-Section Theorem
 
@@ -3739,23 +3739,63 @@ If normalization with respect to the projected area is not required, we may util
 $$ \tag{16.39}
 \begin{aligned}
 	& C_a
-	= Q_a C_g
 	= \frac{\Phi_a}{\Phi_i}
+	= Q_a C_g
 	= \frac{\Phi_s + \Phi_t}{\vert \negthinspace \braket{\bm{S_i}} \negthinspace \vert},
 	\cr
 	& C_s
-	= Q_s C_g
 	= \frac{\Phi_s}{\vert \negthinspace \braket{\bm{S_i}} \negthinspace \vert}
+	= Q_s C_g
 	= \frac{\oint |\bm{E_1}(\bm{n_s})|^2 d\Omega}{|\bm{E_0}|^2},
 	\cr
 	& C_t
-	= Q_t C_g
 	= \frac{\Phi_t}{\vert \negthinspace \braket{\bm{S_i}} \negthinspace \vert}
+	= Q_t C_g
 	= \frac{4 \pi}{k} \frac{\mathcal{Im} \big\lbrace \bm{E_0^{\*}} \cdot \bm{E_1}(\bm{n_i}) \big\rbrace}{|\bm{E_0}|^2}.
 \end{aligned}
 $$
 
 Equations 16.39.1-16.39.3 are known as the *optical cross-section theorem*, or the [optical theorem](https://en.wikipedia.org/wiki/Optical_theorem) for short. In particular, Equation 16.39.3 is known as the *extinction theorem* \[[4](#references) (ch. 4.2)\].
+
+The equations of the extinction theorem can be simplified if the particle possesses axial symmetry with respect to the direction of incidence.
+
+To show this, express \\(\bm{E_1}\\) in terms of the scattering tensor \\(\mathcal{S_{ef}}\\) according to Equation 16.10:
+
+$$ \tag{16.40}
+	\Phi_t
+	\approx \mu\_0^{-1} \frac{\eta}{c} \frac{2 \pi}{k} \mathcal{Im} \big\lbrace \bm{E_0^{\*}} \cdot \mathcal{S_{ef}}(\bm{n_i}, \bm{n_i}) \bm{E_0} \big\rbrace,
+$$
+
+or, alternatively, in terms of the scattering matrix \\(S\\), by setting \\(\theta=0\\) in Equation 15.17:
+
+$$ \tag{16.41}
+	\Phi_t
+	\approx \mu\_0^{-1} \frac{\eta}{c} \frac{2 \pi}{k^2} \mathcal{Re} \big\lbrace \bm{E_0^{\*}} \cdot S(0, \phi, \omega) \bm{E_0} \big\rbrace.
+$$
+
+Now, for a symmetric particle, we have previously demonstrated that
+
+$$ \tag{16.42}
+	s_1(0, \phi) = s_2(0, \phi) = s_0,
+	\qquad
+	s_3 = s_4 = 0.
+$$
+
+Thus, we obtain the expressions
+
+$$ \tag{16.43}
+\begin{aligned}
+	& Q_t
+	= \frac{4 \pi}{k^2} \frac{\mathcal{Re} \big\lbrace s_0 (\bm{E_0^{\*}} \cdot \bm{E_0}) \big\rbrace}{|\bm{E_0}|^2 C_g}
+	= \frac{4 \pi}{k^2} \frac{\mathcal{Re} \lbrace s_0 \rbrace}{C_g},
+	\cr
+	& C_t
+	= Q_t C_g
+	= 4 \pi k^{-2} \mathcal{Re} \lbrace s_0 \rbrace,
+\end{aligned}
+$$
+
+which matches the results found using the scalar wave theory \[[4](#references) (ch. 4.21, 4.42)\]. Intuitively, this makes sense, since the particle looks the same regardless of the choice of the plane of reference (assuming the latter contains the direction of incidence), and the sensor (that only measures power) is not sensitive to the orientation of incoming light.
 
 ---
 
