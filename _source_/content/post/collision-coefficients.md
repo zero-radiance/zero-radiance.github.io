@@ -3312,7 +3312,7 @@ Comparison with Equation 15.6 (after after taking Equation 15.13 into account) s
 
 $$ \tag{15.17}
 	S(\theta, \phi, \omega)
-	= i k(\omega) R_y(-\theta) \mathcal{S_{mf}} (\bm{n_s}, \bm{n_i}, \omega),
+	= i k(\omega) R_y(-\theta) \mathcal{S_{ef}} (\bm{n_s}, \bm{n_i}, \omega),
 $$
 
 with the angles \\(\theta\\) and \\(\phi\\) given by Equation 15.10.
