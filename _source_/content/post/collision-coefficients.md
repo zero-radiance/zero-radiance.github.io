@@ -3206,13 +3206,19 @@ Note that we must use the [atan2](https://en.wikipedia.org/wiki/Atan2) function 
 
 It can be seen that \\(\theta = 0\\) corresponds to *forward scattering*, and \\(\theta = \pi\\) -- to *back-scattering*.
 
-Unfortunately, the rotation of the coordinate frame causes the values of the components of the incident electric field to change \[[4](#references) (ch. 5.31)\]. If the angle of rotation of the plane is \\(\phi\\), the field vectors (and phasors) are correspondingly rotated by \\(-\phi\\) radians:
+Unfortunately, the rotation of the coordinate frame causes the values of the components of the incident electric field to change \[[4](#references) (ch. 5.31)\]. If the angle of rotation of the plane is \\(\phi\\), the field vectors (and phasors) are [correspondingly](https://en.wikipedia.org/wiki/Active_and_passive_transformation#Passive_transformation) rotated by \\(-\phi\\) radians:
 
 $$ \tag{15.11}
 \begin{bmatrix}
 	E\_{x}(\phi) \cr
 	E\_{y}(\phi) \cr
 	E\_{z}(\phi) \cr
+\end{bmatrix} =
+R_z(-\phi)
+\begin{bmatrix}
+	E\_{X} \cr
+	E\_{Y} \cr
+	E\_{Z} \cr
 \end{bmatrix} =
 \begin{bmatrix}
 	\phantom{-}\cos{\phi} & \sin{\phi} & 0 \cr
@@ -3244,10 +3250,16 @@ $$ \tag{15.13}
 	E\_{y'}(\theta, \phi) \cr
 	E\_{z'}(\theta, \phi) \cr
 \end{bmatrix} =
+R_y(-\theta)
 \begin{bmatrix}
-	\phantom{-}\cos{\theta} & 0 & \sin{\theta} \cr
-	0                       & 1 & 0            \cr
-	-\sin{\theta}           & 0 & \cos{\theta} \cr
+	E\_{x}(\phi) \cr
+	E\_{y}(\phi) \cr
+	E\_{z}(\phi) \cr
+\end{bmatrix} =
+\begin{bmatrix}
+	\cos{\theta} & 0 & -\sin{\theta} \cr
+	0            & 1 & 0             \cr
+	\sin{\theta} & 0 & \phantom{-}\cos{\theta} \cr
 \end{bmatrix}
 \begin{bmatrix}
 	E\_{x}(\phi) \cr
@@ -3287,14 +3299,23 @@ such that
 $$ \tag{15.16}
 \begin{bmatrix}
 	E\_{s,x'}(r, \theta, \phi, \omega) \cr
-	E\_{s,y}(r, \theta, \phi, \omega) \cr
-\end{bmatrix} =
-\frac{e^{i k(\omega) r - i k(\omega) z}}{i k r} S(\theta, \phi, \omega)
+	E\_{s,y }(r, \theta, \phi, \omega) \cr
+\end{bmatrix} \approx
+\frac{e^{i k(\omega) r - i k(\omega) z}}{i k(\omega) r} S(\theta, \phi, \omega)
 \begin{bmatrix}
 	E\_{i,x}(z, 0, \phi, \omega) \cr
 	E\_{i,y}(z, 0, \phi, \omega) \cr
 \end{bmatrix}.
 $$
+
+Comparison with Equation 15.6 (after after taking Equation 15.13 into account) shows that
+
+$$ \tag{15.17}
+	S(\theta, \phi, \omega)
+	= i k(\omega) R_y(-\theta) \mathcal{S_{mf}} (\bm{n_s}, \bm{n_i}, \omega),
+$$
+
+with the angles \\(\theta\\) and \\(\phi\\) given by Equation 15.10.
 
 In general, the elements of the scattering matrix depend on the azimuthal angle \\(\phi\\), since, as we rotate the scattering plane (\\(x z\\) or \\(x' z'\\)) around the \\(Z\\)-axis, the particle appears to rotate (in the opposite direction) in both the \\(x y z\\) and \\(x' y' z'\\) coordinate systems. However, if the particle is symmetric (both geometrically and morphologically) with respect to the \\(Z\\)-axis, which is the case for spherical and an axis-aligned [spheroidal](https://en.wikipedia.org/wiki/Spheroid) particles, the matrix only depends on the polar angle \\(\theta\\). This causes the scattering matrix to become diagonal \[[4](#references) (ch. 4.42)\].
 
