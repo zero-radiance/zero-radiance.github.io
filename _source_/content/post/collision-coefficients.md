@@ -170,7 +170,7 @@ $$ \tag{1.13}
 	\bm{H} = \mu\_0^{-1} \bm{B} - \bm{M},
 $$
 
-substitute them into Equations 1.12.1-1.12.2, and group the resulting expressions with Equations 1.1.1-1.1.2, we obtain the [macroscopic formulation](https://en.wikipedia.org/wiki/Maxwell%27s_equations#Macroscopic_formulation) of the Maxwell equations \[[6](#references) (ch. 1.1.1), [7](#references) (ch. 2.1), [9](#references) (ch. 2.1)\]:
+substitute them into Equations 1.12.1-1.12.2, and group the resulting expressions with Equations 1.1.1-1.1.2, we obtain the [macroscopic formulation](https://en.wikipedia.org/wiki/Maxwell%27s_equations#Macroscopic_formulation) of the Maxwell equations \[[6](#references) (ch. 1.1.1), [7](#references) (ch. 2.1), [8](#references) (ch. 2.1)\]:
 
 $$ \tag{1.14}
 \begin{aligned}
@@ -190,7 +190,7 @@ $$ \tag{1.15}
 	\lbrace \bm{E_1} + \bm{E_2}, \bm{B_1} + \bm{B_2} \rbrace.
 $$
 
-Since the microscopic properties of matter are continuous, this leads to continuous fields. But, sometimes, it is convenient to introduce a macroscopic discontinuity to approximate a very rapid (yet continuous) variation of material properties. At the *optical interface*, the fields must satisfy the [boundary conditions](https://en.wikipedia.org/wiki/Interface_conditions_for_electromagnetic_fields) \[[6](#references) (ch. 1.1.3), [7](#references) (ch. 2.10), [9](#references) (ch. 2.2)\]. If \\(\bm{n\_{12}}\\) is a unit normal vector pointing from region 1 to region 2, the normal components of the fields must be such that
+Since the microscopic properties of matter are continuous, this leads to continuous fields. But, sometimes, it is convenient to introduce a macroscopic discontinuity to approximate a very rapid (yet continuous) variation of material properties. At the *optical interface*, the fields must satisfy the [boundary conditions](https://en.wikipedia.org/wiki/Interface_conditions_for_electromagnetic_fields) \[[6](#references) (ch. 1.1.3), [7](#references) (ch. 2.10), [8](#references) (ch. 2.2)\]. If \\(\bm{n\_{12}}\\) is a unit normal vector pointing from region 1 to region 2, the normal components of the fields must be such that
 
 $$ \tag{1.16}
 	\bm{n\_{12}} \cdot  (\bm{B\_2} - \bm{B\_1}) = 0, \quad
@@ -216,7 +216,7 @@ We take the Maxwell equations as axioms, and use them as the foundation on which
 
 ### Force and Energy
 
-Given a mathematical description of electromagnetic radiation in terms of vector fields, we would like to physically characterize it as an energy transfer process. In order to do that, we have to determine how much energy there is in a given volume element of space, and also the rate of energy flow \[[5](#references) (vol. II, ch. 27), [6](#references) (ch. 1.1.4), [7](#references) (ch. 2.11), [9](#references) (ch. 2.4)\].
+Given a mathematical description of electromagnetic radiation in terms of vector fields, we would like to physically characterize it as an energy transfer process. In order to do that, we have to determine how much energy there is in a given volume element of space, and also the rate of energy flow \[[5](#references) (vol. II, ch. 27), [6](#references) (ch. 1.1.4), [7](#references) (ch. 2.11), [8](#references) (ch. 2.4)\].
 
 [Conservation of energy](https://en.wikipedia.org/wiki/Conservation_of_energy) is one of the most important principles of physics. Here is one way to state it: the difference between the amount of external energy \\(\mathcal{E\_{ext}}\\) flowing into the volume \\(V\\) and the amount of internal energy \\(\mathcal{E\_{int}}\\) flowing out equals the amount of work \\(\mathcal{W}\\) done inside.
 
@@ -369,7 +369,7 @@ without violating the Poynting theorem \[[5](#references) (vol. II, ch. 27.4)\].
 
 A more pressing concern is whether our formulas, which were found using the microscopic formulation of the Maxwell equations, are valid at the microscopic scale. The answer is: almost always.
 
-A typical derivation[^5] replaces \\(\bm{J}\\) with \\(\bm{J_f}\\) in Equation 2.6, which, after substitution of Equation 1.14.3, leads to the macroscopic counterpart of Equation 2.7 \[[6](#references) (ch. 1.1.4), [9](#references) (ch. 2.4)\]:
+A typical derivation[^5] replaces \\(\bm{J}\\) with \\(\bm{J_f}\\) in Equation 2.6, which, after substitution of Equation 1.14.3, leads to the macroscopic counterpart of Equation 2.7 \[[6](#references) (ch. 1.1.4), [8](#references) (ch. 2.4)\]:
 
 [^5]: Work done on the bound current is implicit, since the latter is used to define \\(\bm{D}\\) and \\(\bm{H}\\).
 
@@ -751,7 +751,7 @@ which is a real vector, as expected.
 
 In the case when \\(T > T_1\\), the total value of \\(\braket{\bm{S}}\\) is a sum of the contribution from a number of whole periods (given by Equation 4.15) and the contribution from a fraction of the period. If the period used for time-averaging is very large \\((T \gg T_1)\\), the *relative* contribution from a fraction of the period will be much smaller than the *relative* contribution from a large number of whole periods, so the formula of Equation 4.15 should serve as a good approximation.
 
-Equation 4.15 allows us to define the *time-averaged* Poynting phasor \[[9](#references) (ch. 2.4)\]
+Equation 4.15 allows us to define the *time-averaged* Poynting phasor \[[8](#references) (ch. 2.4)\]
 
 $$ \tag{4.16}
 	\braket{\bm{S_p}} = \frac{1}{2} \bm{E_p}(\bm{r}) \times \big[ \bm{H_p}(\bm{r}) \big]^{\*}
@@ -827,7 +827,7 @@ $$ \tag{5.2}
 \end{aligned}
 $$
 
-where \\(\sigma\\) is the [specific conductivity](https://en.wikipedia.org/wiki/Electrical_resistivity_and_conductivity), \\(\epsilon\\) is the [electric permittivity](https://en.wikipedia.org/wiki/Permittivity), and \\(\mu\\) is the [magnetic permeability](https://en.wikipedia.org/wiki/Permeability_(electromagnetism)) \[[6](#references) (ch. 1.1.2), [7](#references) (ch. 2.3), [9](#references) (ch. 2.1)\].
+where \\(\sigma\\) is the [specific conductivity](https://en.wikipedia.org/wiki/Electrical_resistivity_and_conductivity), \\(\epsilon\\) is the [electric permittivity](https://en.wikipedia.org/wiki/Permittivity), and \\(\mu\\) is the [magnetic permeability](https://en.wikipedia.org/wiki/Permeability_(electromagnetism)) \[[6](#references) (ch. 1.1.2), [7](#references) (ch. 2.3), [8](#references) (ch. 2.1)\].
 
 Care must taken when transforming Equations 5.2.1-5.2.3 to the time domain, since a multiplication in the frequency domain leads to a convolution in the time domain.
 
@@ -856,7 +856,7 @@ $$ \tag{5.5}
 \end{aligned}
 $$
 
-Using the definition of the [complex permittivity](https://en.wikipedia.org/wiki/Permittivity#Complex_permittivity) \[[7](#references) (ch. 2.8), [9](#references) (ch. 2.3)\]
+Using the definition of the [complex permittivity](https://en.wikipedia.org/wiki/Permittivity#Complex_permittivity) \[[7](#references) (ch. 2.8), [8](#references) (ch. 2.3)\]
 
 $$ \tag{5.6}
 	\varepsilon(\bm{r}, \omega) = \epsilon(\bm{r}, \omega) + i \frac{\sigma(\bm{r}, \omega)}{\omega},
@@ -1041,7 +1041,7 @@ $$ \tag{7.1}
 \end{aligned}
 $$
 
-This triple integral represents a [wave packet](https://en.wikipedia.org/wiki/Wave_packet). It is a collection of *vector* [plane waves](https://en.wikipedia.org/wiki/Plane_wave) \[[6](#references) (ch. 1.4.2), [9](#references) (ch. 3.1)\] of the form
+This triple integral represents a [wave packet](https://en.wikipedia.org/wiki/Wave_packet). It is a collection of *vector* [plane waves](https://en.wikipedia.org/wiki/Plane_wave) \[[6](#references) (ch. 1.4.2), [8](#references) (ch. 3.1)\] of the form
 
 $$ \tag{7.2}
 	\bm{E}(\bm{r}, \bm{n}, \omega) e^{-i \omega t}
@@ -1079,7 +1079,7 @@ $$ \tag{7.6}
 	\frac{\omega}{c} \sqrt{\varepsilon\_r(\omega) \mu\_r(\omega)}.
 $$
 
-It is convenient to use a parametrization that does not involve taking a square root. Thus, we define two positive real numbers, the [refractive index](https://en.wikipedia.org/wiki/Refractive_index) \\(\eta\\) and the [attenuation index](https://en.wikipedia.org/wiki/Refractive_index#Complex_refractive_index) \\(\kappa\\) \[[6](#references) (ch. 14.1), [9](#references) (ch. 3.1)\], by
+It is convenient to use a parametrization that does not involve taking a square root. Thus, we define two positive real numbers, the [refractive index](https://en.wikipedia.org/wiki/Refractive_index) \\(\eta\\) and the [attenuation index](https://en.wikipedia.org/wiki/Refractive_index#Complex_refractive_index) \\(\kappa\\) \[[6](#references) (ch. 14.1), [8](#references) (ch. 3.1)\], by
 
 $$ \tag{7.7}
 	\eta(\omega) + i \kappa(\omega) =
@@ -1623,7 +1623,7 @@ $$
 
 Its solution is the *scalar* [Green function](https://en.wikipedia.org/wiki/Green%27s_function) \\(g\\). It represents an [impulse response](https://en.wikipedia.org/wiki/Impulse_response) of the linear operator \\(\mathcal{H}\\).
 
-Equation 9.9 is an inhomogeneous linear differential equation. Consequently, its solution depends on the linear operator in question, its domain of validity, as well as the associated (initial or boundary) conditions. According to Equation 9.7, our domain is the whole real space, and the only applicable restriction is the Sommerfeld radiation condition. Thus, it can be shown that the *free-space* scalar Green function \\(g_0\\) takes the form[^9] of an diverging *scalar* [spherical wave](https://en.wikipedia.org/wiki/Wave_equation#Spherical_waves) \[[7](#references) (ch. 2.12), [9](#references) (ap. B), [13](#references)\]:
+Equation 9.9 is an inhomogeneous linear differential equation. Consequently, its solution depends on the linear operator in question, its domain of validity, as well as the associated (initial or boundary) conditions. According to Equation 9.7, our domain is the whole real space, and the only applicable restriction is the Sommerfeld radiation condition. Thus, it can be shown that the *free-space* scalar Green function \\(g_0\\) takes the form[^9] of an diverging *scalar* [spherical wave](https://en.wikipedia.org/wiki/Wave_equation#Spherical_waves) \[[7](#references) (ch. 2.12), [8](#references) (ap. B), [13](#references)\]:
 
 $$ \tag{9.10}
 	g_0(R) = g(R, k_0) = \frac{e^{i k_0 R}}{4 \pi R}.
@@ -2125,7 +2125,7 @@ $$
 
 but for [ferromagnets](https://en.wikipedia.org/wiki/Ferromagnet), this expression is invalid due to the [magnetic hysteresis](https://en.wikipedia.org/wiki/Magnetic_hysteresis) effect \[[5](#references) (vol. II, ch. 36)\].
 
-Fortunately, for optical applications, the situation is rather simple. Paramagnetism and diamagnetism are both very weak in general; the same is true for ferromagnetism at optical frequencies in particular. This leads to \\(\mu\_r \approx 1\\) \[[14](#references) (vol. I, ch. 27)\].
+Fortunately, for optical applications, the situation is rather simple. Paramagnetism and diamagnetism are both very weak in general; the same is true for ferromagnetism at optical frequencies in particular. This leads to \\(\mu\_r \approx 1\\) \[[9](#references) (vol. I, ch. 27)\].
 
 In some sense, dipoles can be considered elementary field generators: an electric dipole produces the \\(\bm{E}\\) field, and a magnetic dipole is a source of the \\(\bm{B}\\) field. They can be used to describe any (bound) current and charge distributions, which makes them particularly useful for solving electromagnetic radiation and scattering problems.
 
@@ -2395,7 +2395,7 @@ $$ \tag{11.25}
 \end{aligned}
 $$
 
-In the literature, Equation 11.25 is often called the *volume integral equation* \[[9](#references) (ch. 4)\]
+In the literature, Equation 11.25 is often called the *volume integral equation* \[[8](#references) (ch. 4)\]
 
 ### Dipole Radiation
 
@@ -2775,7 +2775,7 @@ $$ \tag{13.12}
 \end{aligned}
 $$
 
-subject to the conditions \[[9](#references) (ch. 5)\]
+subject to the conditions \[[8](#references) (ch. 5)\]
 
 $$ \tag{13.13}
 	k r - k a \gg 1, \qquad
@@ -2909,7 +2909,7 @@ The volume integral equation can be reduced to a relatively simple expression by
 
 Let us recall the mechanics of scattering. In a dielectric, the incident field drives the dipoles, which in turn act as sources of scattered wavelets interfering with the incident field according to the superposition principle. We may continue this line of thinking by considering the effect of a dipole as a secondary source on all other dipoles surrounding it, effectively treating the dipole field as the secondary incident field. Repeated application of this iterative approach leads to evaluation of successive orders of scattering one by one. This is the general idea behind the [Born series](https://en.wikipedia.org/wiki/Born_series) \[[6](#references) (ch. 13.1)\].
 
-We can formalize this approach in the following way \[[9](#references) (ch. 4.5)\]. We start with Equation 11.12, where we substitute the total electric tensor (cf. Equations 9.27-9.28) to ensure that the integral remains valid even if the integration point is inside the volume \\(V\\):
+We can formalize this approach in the following way \[[8](#references) (ch. 4.5)\]. We start with Equation 11.12, where we substitute the total electric tensor (cf. Equations 9.27-9.28) to ensure that the integral remains valid even if the integration point is inside the volume \\(V\\):
 
 $$ \tag{14.1}
 	\bm{E}(\bm{r}, \omega)
@@ -3115,7 +3115,7 @@ $$ \tag{15.3}
 	= \int\_{V} \mathcal{G} \big( \bm{r}, \bm{r'}, k(\omega) \big) \int\_{V} \mathcal{T} (\bm{r'}, \bm{r''}, \omega) \bm{E_i}(0, \bm{n_i}, \omega) e^{i k(\omega) (\bm{r''} \cdot \bm{n_i})} dV'' dV'.
 $$
 
-By taking the initial value of the incident electric field \\(\bm{E_i}(0)\\)  outside the integral, we find the that the scattered field is related to the incident field by the *scattering tensor* \\(\mathcal{S}\\) \[[9](#references) (ch. 5.3)\]:
+By taking the initial value of the incident electric field \\(\bm{E_i}(0)\\)  outside the integral, we find the that the scattered field is related to the incident field by the *scattering tensor* \\(\mathcal{S}\\) \[[8](#references) (ch. 5.3)\]:
 
 $$ \tag{15.4}
 	\bm{E_s}(\bm{r}, \bm{n_i}, \omega)
@@ -3284,7 +3284,7 @@ $$
 
 Since we can represent both the incident and the scattering fields using only two components (each), Equation 15.6.1 can be expressed[^14] in terms of the complex *scattering matrix*, or the [S-matrix](https://en.wikipedia.org/wiki/S-matrix) for short.
 
-[^14]: The numbering convention and the division by \\(i k\\) are retained to match the results in the book by van de Hulst \[[4](#references) (ch. 4.41)\]. However, we do not make any changes to the tensor form of Equations 15.6-15.7 that follow the book by Mishchenko \[[9](#references) (ch. 5.3)\], since we find them entirely appropriate.
+[^14]: The numbering convention and the division by \\(i k\\) are retained to match the results in the book by van de Hulst \[[4](#references) (ch. 4.41)\]. However, we do not make any changes to the tensor form of Equations 15.6-15.7 that follow the book by Mishchenko \[[8](#references) (ch. 5.3)\], since we find them entirely appropriate.
 
 $$ \tag{15.15}
 S(\theta, \phi, \omega) =
@@ -3325,7 +3325,7 @@ In addition, a very similar proof shows that axial symmetry with respect to the 
 
 ### Optical Cross-Section Theorem
 
-For radiative transfer applications, we may introduce a simpler description of the scattering and absorption properties of a particle by describing the outcome of the scattering process in radometric (rather than optical) terms \[[6](#references) (ch. 13.6), [9](#references) (ch. 13.1, 13.4)\].
+For radiative transfer applications, we may introduce a simpler description of the scattering and absorption properties of a particle by describing the outcome of the scattering process in radometric (rather than optical) terms \[[6](#references) (ch. 13.6), [8](#references) (ch. 13.1, 13.4)\].
 
 Consider the incident time-harmonic[^15] electromagnetic field \\(\bm{E_i}\\) and \\(\bm{B_i}\\). In a linear, isotropic, homogeneous, source-free medium, the field can be decomposed into individual plane waves (c.f. Equations 7.1-7.2) of the form
 
@@ -3824,13 +3824,12 @@ Pharr & Jakob, Bohren & Huffman, NASA
 5. Feynman, R. P., Leighton, R. B., & Sands, M. [The Feynman Lectures on Physics](https://www.feynmanlectures.caltech.edu/) (1965).
 6. Born, M., & Wolf, E. [Principles of Optics](https://doi.org/10.1017/CBO9781139644181) (7th ed., 1999).
 7. Van Bladel, J. G. [Electromagnetic Fields](https://doi.org/10.1002/047012458X) (2nd ed., 2007).
-8. Ishimaru, A. [Electromagnetic Wave Propagation, Radiation, and Scattering](https://doi.org/10.1002/9781119079699) (2nd ed., 2017).
-9. Mishchenko, M. I. [Electromagnetic Scattering by Particles and Particle Groups](https://doi.org/10.1017/CBO9781139019064) (2014).
+8. Mishchenko, M. I. [Electromagnetic Scattering by Particles and Particle Groups](https://doi.org/10.1017/CBO9781139019064) (2014).
+9. Pauli, W. [Pauli Lectures on Physics](https://www.worldcat.org/title/pauli-lectures-on-physics-vol-1-electrodynamics/oclc/439349741) (1973).
 10. Kong, J. A. [Electromagnetic Wave Theory](https://www.worldcat.org/title/electromagnetic-wave-theory/oclc/248547001) (2008).
 11. Tsang, L., & Kong, J. A. [Scattering of Electromagnetic Waves: Advanced Topics](https://doi.org/10.1002/0471224278) (2001).
 12. Fleisch, D. [Student's Guide to Vectors and Tensors](https://doi.org/10.1017/CBO9781139031035) (2011).
 13. Talalai, G. [Derivation of the Free-Space Green’s Function](https://www.researchgate.net/publication/324729639_Derivation_of_the_Free-Space_Green's_Function_and_Radiation_from_a_Hertzian_Dipole) (2016).
-14. Pauli, W. [Pauli Lectures on Physics](https://www.worldcat.org/title/pauli-lectures-on-physics-vol-1-electrodynamics/oclc/439349741) (1973).
 99. Hansen, J. E., & Travis, L. D. [Light Scattering in Planetary Atmospheres](https://doi.org/10.1007/BF00168069) (1974).
 
 <!--
@@ -3840,7 +3839,7 @@ We have just seen that transverse waves are composed of two independent scalar c
 
 In the framework of geometric optics, light is represented by oriented ray. When this ray encounters a birefringent crystal (such as calcite), double refraction occurs, and the original light ray splits into the *ordinary* and *extraordinary* rays.
 
-The idea behind [polarization of light](http://hyperphysics.phy-astr.gsu.edu/hbase/phyopt/polarcon.html#c1) \[Chandra?, [4](#references) (ch. 5), [5](#references) (vol. I, ch. 33), [6](#references) (ch. 1.4), [7](#references), [8](#references) (p. 527-533), [9](#references)\] (not to be confused with [polarization of matter](http://hyperphysics.phy-astr.gsu.edu/hbase/electric/dielec.html#c1) \[[4](#references) (ch. 4.5), [5](#references) (vol. II, ch. 32), [6](#references) (ch. 2.3), [9](#references)\]) is simple. Consider a fixed point[^5] in space; at that point, imagine the plane[^6] containing the electric and the magnetic vectors. Over time, the tip of the electric (and the magnetic) vector traces a closed[^7] curve. That shape of that curve is called polarization.
+The idea behind [polarization of light](http://hyperphysics.phy-astr.gsu.edu/hbase/phyopt/polarcon.html#c1) \[Chandra?, [4](#references) (ch. 5), [5](#references) (vol. I, ch. 33), [6](#references) (ch. 1.4), [7](#references), [8](#references) (p. 527-533), [8](#references)\] (not to be confused with [polarization of matter](http://hyperphysics.phy-astr.gsu.edu/hbase/electric/dielec.html#c1) \[[4](#references) (ch. 4.5), [5](#references) (vol. II, ch. 32), [6](#references) (ch. 2.3), [8](#references)\]) is simple. Consider a fixed point[^5] in space; at that point, imagine the plane[^6] containing the electric and the magnetic vectors. Over time, the tip of the electric (and the magnetic) vector traces a closed[^7] curve. That shape of that curve is called polarization.
 
 [^5]: In general, polarization depends on position \[[6](#references) (p. 38)\].
 
