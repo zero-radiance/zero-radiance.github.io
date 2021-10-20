@@ -403,7 +403,7 @@ $$ \tag{2.23}
 	+ \bm{B}(\bm{r}, t) \cdot \frac{\partial}{\partial t}\bm{H}(\bm{r}, t).
 $$
 
-Comparison of Equations 2.17 and 2.22 shows that both formulations of the Poynting vector are equivalent if the measurement is performed inside a *non-magnetic* material. That explains the \\(\mu\_0^{-1}\\) factor: according to the microscopic formulation of the Maxwell equations, an electron (or a proton) is simply a charged region of vacuum. In comparison, due to the spatially-varying index of refraction, propagation of electromagnetic fields at the macroscopic scale can be considerably more complex.
+Comparison of Equations 2.17 and 2.22 shows that both formulations of the Poynting vector are equivalent if the measurement is performed inside a *non-magnetic* material. That explains the \\(\mu\_0^{-1}\\) factor: according to the microscopic formulation of the Maxwell equations, an electron (or a proton) is simply a charged region of vacuum. In comparison, due to the spatially-varying refractive index, propagation of electromagnetic fields at the macroscopic scale can be considerably more complex.
 
 Since electromagnetic fields oscillate so rapidly, one typically measures the *time-averaged* Poynting vector
 
@@ -710,7 +710,7 @@ $$ \tag{4.13}
 \end{aligned}
 $$
 
-The corresponding expression of the time-averaged Poynting vector (c.f. Equation 2.24) is
+The corresponding expression of the time-averaged Poynting vector (cf. Equation 2.24) is
 
 $$ \tag{4.14}
 \begin{aligned}
@@ -1170,14 +1170,14 @@ Equation 7.1 can be seen as a decomposition of the electric field into plane wav
 
 [Insert Picture Here]
 
-It is easy to show that, under favorable conditions, the field vectors oscillate in the plane of the wave. In general, the Maxwell equations (c.f. Equations 3.9.2, 3.9.4) tell us that
+It is easy to show that, under favorable conditions, the field vectors oscillate in the plane of the wave. In general, the Maxwell equations (cf. Equations 3.9.2, 3.9.4) tell us that
 
 $$ \tag{7.15}
 	\nabla \cdot \bm{B}(\bm{r}, \omega) = 0, \quad
 	\nabla \cdot \bm{D}(\bm{r}, \omega) = \rho_s(\bm{r}, \omega).
 $$
 
-More specifically, in a source-free region of a linear, isotropic, homogeneous medium (c.f. Equation 6.2.2, 6.2.4),
+More specifically, in a source-free region of a linear, isotropic, homogeneous medium (cf. Equation 6.2.2, 6.2.4),
 
 $$ \tag{7.16}
 	\nabla \cdot \bm{H}(\bm{r}, \omega) = 0, \quad
@@ -1268,7 +1268,7 @@ $$
 
 [Insert Picture Here]
 
-Recall that we have seen the \\(\bm{E} \times \bm{B}\\) expression before (c.f. Equation 2.17). Assuming the fields are monochromatic, and the medium where we perform the measurements - non-magnetic, Equation 7.27 suggests that
+Recall that we have seen the \\(\bm{E} \times \bm{B}\\) expression before (cf. Equation 2.17). Assuming the fields are monochromatic, and the medium where we perform the measurements - non-magnetic, Equation 7.27 suggests that
 
 $$ \tag{7.28}
 	\bm{S}(\bm{r}, t)
@@ -1310,7 +1310,7 @@ $$
 
 where we have utilized the expression of the wave amplitude of Equation 7.14.
 
-The average value of a squared cosine is \\(\frac{1}{2}\\), so the corresponding irradiance[^11] value (c.f. Equation 2.25) is
+The average value of a squared cosine is \\(\frac{1}{2}\\), so the corresponding irradiance[^11] value (cf. Equation 2.25) is
 
 [^11]: Since the electromagnetic fields is monochromatic, the expressions of irradiance and spectral irradiance are identical.
 
@@ -1320,7 +1320,7 @@ $$ \tag{7.32}
 	= \frac{1}{2} \mu\_0^{-1} \frac{\eta}{c} |\bm{E_0}|^2 \big( \bm{n} \cdot \bm{n'} \big).
 $$
 
-Without proof, we shall state an interesting fact. The time-averaged energy density (c.f. Equations 2.23-2.24) of the field of a plane wave is
+Without proof, we shall state an interesting fact. The time-averaged energy density (cf. Equations 2.23-2.24) of the field of a plane wave is
 
 $$ \tag{7.33}
 	\bigg\langle \frac{\partial \mathcal{E\_{em}}}{\partial V} \bigg\rangle
@@ -1388,7 +1388,7 @@ $$
 
 where \\(\lambda_0\\) is the *free-space* wavelength.
 
-Furthermore, the alternative definition of the complex wave number (c.f. Equation 7.6) suggests that
+Furthermore, the alternative definition of the complex wave number (cf. Equation 7.6) suggests that
 
 $$ \tag{7.41}
 	\mathcal{Re} \bigg\lbrace
@@ -1766,10 +1766,10 @@ Unfortunately, a complication arises when we try to move the new operator under 
 $$ \tag{9.25}
 	\bm{E}(\bm{r}, \omega)
 	= i \omega \bigg( \lim_{\delta \to 0} \int\_{V - V_{\delta}} \mathcal{G_{e}} \big( \bm{r}, \bm{r'}, k_0(\omega) \big) \frac{\bm{J}(\bm{r'}, \omega)}{\mu_0^{-1}} dV'
-	- \frac{\mathcal{L}}{k_0^2(\omega)} \frac{\bm{J}(\bm{r}, \omega)}{\mu_0^{-1}} \bigg),
+	- \frac{\mathcal{L}(\bm{r})}{k_0^2(\omega)} \frac{\bm{J}(\bm{r}, \omega)}{\mu_0^{-1}} \bigg),
 $$
 
-where \\(\mathcal{L}\\) is the *depolarization tensor*, the form of which depends on the shape of the cavity \[[7](#references) (ch. 3.9)\], and
+where \\(\mathcal{L}\\) is the dimensionless *depolarization tensor*, the form of which depends on the shape (but not the size) of the cavity \[[7](#references) (ch. 3.9)\], and
 
 $$ \tag{9.26}
 	\mathcal{G_{e}}(\bm{r}, \bm{r'}, k)
@@ -1780,11 +1780,11 @@ is the *electric tensor* Green function \[[7](#references) (ch. 7.9)\]. As a spe
 
 [^12]: The tensor Green functions are also known as the dyadic Green functions. A [dyadic](https://en.wikipedia.org/wiki/Dyadics) is a second order tensor that uses a special notation that is considered to be relatively obsolete.
 
-Equation 9.25 can be cast in a more compact form by using the [principle value](https://en.wikipedia.org/wiki/Cauchy_principal_value) of the electric tensor. If we define the *total electric tensor* Green function as
+Equation 9.25 can be cast in a more compact form by using the [principal value](https://en.wikipedia.org/wiki/Cauchy_principal_value) of the electric tensor. If we define the *total electric tensor* Green function as
 
 $$ \tag{9.27}
 	\mathcal{G}(\bm{r}, \bm{r'}, k)
-	= \mathcal{P.V.} \big\lbrace \mathcal{G_{e}}(\bm{r}, \bm{r'}, k) \big\rbrace - \frac{\mathcal{L}}{k^2} \delta(\bm{r} - \bm{r'}),
+	= \mathcal{P.V.} \big\lbrace \mathcal{G_{e}}(\bm{r}, \bm{r'}, k) \big\rbrace - \frac{\mathcal{L}(\bm{r})}{k^2} \delta(\bm{r} - \bm{r'}),
 $$
 
 the expression of the electric field is reduced to
@@ -2131,7 +2131,7 @@ In some sense, dipoles can be considered elementary field generators: an electri
 
 [Insert pictures of field lines of electric and magnetic dipoles]
 
-Finally, we would like to emphasize certain properties of the solution of the Maxwell equations in terms of potentials. Perhaps the most obvious one is that the scattered field is expressed as a volume integral. While the geometry of the volume containing the charges plays an important role, it is now apparent that the interior of the volume is the actual source of what we consider the surface reflection \[[5](#references) (vol. I, ch. 31)\]. Furthermore, Equation 10.3 says that the microscopic electromagnetic field always propagates at the speed of light. The dipole field interferes with the incident field in such a way that the total macroscopic field appears to have a lower phase velocity, which is used as the definition of the index of refraction. This mechanism is described by the [Ewald-Oseen extinction theorem](https://en.wikipedia.org/wiki/Ewald%E2%80%93Oseen_extinction_theorem) \[[6](#references) (ch. 2.4)\].
+Finally, we would like to emphasize certain properties of the solution of the Maxwell equations in terms of potentials. Perhaps the most obvious one is that the scattered field is expressed as a volume integral. While the geometry of the volume containing the charges plays an important role, it is now apparent that the interior of the volume is the actual source of what we consider the surface reflection \[[5](#references) (vol. I, ch. 31)\]. Furthermore, Equation 10.3 says that the microscopic electromagnetic field always propagates at the speed of light. The dipole field interferes with the incident field in such a way that the total macroscopic field appears to have a lower phase velocity, which is used as the definition of the refractive index. This mechanism is described by the [Ewald-Oseen extinction theorem](https://en.wikipedia.org/wiki/Ewald%E2%80%93Oseen_extinction_theorem) \[[6](#references) (ch. 2.4)\].
 
 ## II. Electromagnetic Scattering
 
@@ -2231,7 +2231,7 @@ $$ \tag{11.7}
 \end{cases}
 $$
 
-such that
+such that the *relative refractive index* is
 
 $$ \tag{11.8}
 	m(\bm{r}, \omega)
@@ -2848,7 +2848,7 @@ $$ \tag{13.19}
 	= \frac{\eta(\omega)}{c}.
 $$
 
-Thus, at a large distance, for a fixed direction of observation, a spherical wave is an analog of a plane wave (c.f. Equation 7.2) with the amplitude decreasing as \\(r^{-1}\\):
+Thus, at a large distance, for a fixed direction of observation, a spherical wave is an analog of a plane wave (cf. Equation 7.2) with the amplitude decreasing as \\(r^{-1}\\):
 
 $$ \tag{13.20}
 	\bm{E_s}(\bm{r}, \omega) e^{-i \omega t}
@@ -2870,14 +2870,14 @@ $$ \tag{13.21}
 	= \mu\_0^{-1} \frac{\eta(\omega)}{c} {\big\vert \mathcal{Re} \big\lbrace \bm{E_s}(\bm{r}, \omega) e^{-i \omega t} \big\rbrace \big\vert}^2 \bm{n}.
 $$
 
-Similarly to the case of plane waves, we may form a Cartesian coordinate frame using the set of vectors \\(\lbrace \bm{E_1}, \bm{B_1}, \bm{n} \rbrace\\), we obtain the expressions of the Poynting vector (c.f. Equation 7.31)
+Similarly to the case of plane waves, we may form a Cartesian coordinate frame using the set of vectors \\(\lbrace \bm{E_1}, \bm{B_1}, \bm{n} \rbrace\\), we obtain the expressions of the Poynting vector (cf. Equation 7.31)
 
 $$ \tag{13.22}
 	\bm{S}(\bm{r}, t)
 	= \mu\_0^{-1} \frac{\eta}{c} \bigg( \frac{|E_{1,x}|^2}{r^2} \cos^2{\theta_x} + \frac{|E_{1,y}|^2}{r^2} \cos^2{\theta_y} \bigg) \bm{n}
 $$
 
-and irradiance (c.f. Equation 7.32)
+and irradiance (cf. Equation 7.32)
 
 $$ \tag{13.23}
 	\Epsilon
@@ -2952,7 +2952,7 @@ $$
 
 where \\(\mathcal{T}\\) is the *transition tensor*, the expression of which is yet to be determined.
 
-Recursive equations written in the integral form quickly become unwieldy. Instead, we shall convert them into the operator form by using the [bra-ket notation](https://en.wikipedia.org/wiki/Bra%E2%80%93ket_notation). Additionally, dependence on the frequency shall be implicit.
+Recursive equations written in the integral form quickly become unwieldy. Instead, we shall convert them into the operator form by using the [bra-ket notation](https://en.wikipedia.org/wiki/Bra%E2%80%93ket_notation). Additionally, any dependence on the frequency or the wave number shall be kept implicit.
 
 Our building blocks are state vectors (or *kets*), such as \\(\ket{E}\\), and linear functionals (or *bras*), such as \\(\bra{r}\\). Put together, they represent the projection (the [inner product](https://en.wikipedia.org/wiki/Inner_product)) of the two vectors:
 
@@ -3091,6 +3091,32 @@ $$ \tag{14.22}
 	= u(\bm{r'}) \bigg( \delta(\bm{r'} - \bm{r''}) \mathcal{I} + \int_V \mathcal{G} \big( \bm{r'}, \bm{r} \big) \mathcal{T} \big( \bm{r}, \bm{r''} \big) dV \bigg).
 $$
 
+We may expand the expression of the transition operator using Equations 9.25, 9.27, and 14.3:
+
+$$ \tag{14.23}
+\begin{aligned}
+	\mathcal{T} \big( \bm{r'}, \bm{r''} \big)
+	&= k^2 \big( m^2(\bm{r'}) - 1 \big)
+	\bigg( \delta(\bm{r'} - \bm{r''}) \mathcal{I} \cr
+	&- \frac{1}{k^2} \mathcal{L}(\bm{r'}) \mathcal{T} \big( \bm{r'}, \bm{r''} \big)
+	+ \lim_{\delta \to 0} \int\_{V - V_{\delta}}  \mathcal{G_e} \big( \bm{r'}, \bm{r} \big) \mathcal{T} \big( \bm{r}, \bm{r''} \big) dV \bigg).
+\end{aligned}
+$$
+
+Notice that the \\(1/k^2\\) term in front of the depolarization tensor cancels out. After rearranging the terms and making the frequency dependence explicit again, we obtain the expanded definition of the scattering tensor:
+
+$$ \tag{14.24}
+\begin{aligned}
+	\mathcal{T} \big( \bm{r'}, \bm{r''}, \omega \big)
+	= k^2(\omega)
+	& \big( m^2(\bm{r'}, \omega) - 1 \big)
+	\big( \mathcal{I} + \big( m^2(\bm{r'}, \omega) - 1 \big) \mathcal{L}(\bm{r'}) \big)^{-1}
+	\cr
+	& \bigg( \delta(\bm{r'} - \bm{r''}) \mathcal{I}
+	+ \lim_{\delta \to 0} \int\_{V - V_{\delta}}  \mathcal{G_e} \big( \bm{r'}, \bm{r}, k(\omega) \big) \mathcal{T} \big( \bm{r}, \bm{r''}, \omega \big) dV \bigg).
+\end{aligned}
+$$
+
 ### Scattering Matrix
 
 An arbitrary stream of electromagnetic radiation can decomposed into a number of individual plane waves. Specifically, in a *linear, isotropic, homogeneous* medium, the expression of the incident field is given by Equation 6.16:
@@ -3101,7 +3127,7 @@ $$ \tag{15.1}
 	\oint\_{\mathbb{S}^2} \bm{E_i}(0, \bm{n_i}, \omega) e^{i k(\omega) (\bm{r} \cdot \bm{n_i})} d\Omega_i.
 $$
 
-We have also learned (c.f. Equation 14.16) that the scattered field is a linear function of the incident field. This allows us to utilize the superposition principle, according to which, the scattered field is a superposition of scattered waves generated by individual incident plane waves. Stated mathematically,
+We have also learned (cf. Equation 14.16) that the scattered field is a linear function of the incident field. This allows us to utilize the superposition principle, according to which, the scattered field is a superposition of scattered waves generated by individual incident plane waves. Stated mathematically,
 
 $$ \tag{15.2}
 	\bm{E_s}(\bm{r}, \omega) =
@@ -3122,7 +3148,7 @@ $$ \tag{15.4}
 	= \frac{e^{i k(\omega) r}}{r} \mathcal{S_e} (\bm{r}, \bm{n_i}, \omega) \bm{E_i}(0, \bm{n_i}, \omega).
 $$
 
-In general, the scattering tensor depends on the position of the observation point relative to the scatterer. However, if the observation point is very far away, we can utilize the far-field expression of the Green function (c.f. Equations 13.12, 14.3, and 14.5) to write
+In general, the scattering tensor depends on the position of the observation point relative to the scatterer. However, if the observation point is very far away, we can utilize the far-field expression of the Green function (cf. Equations 13.12, 14.3, and 14.5) to write
 
 $$ \tag{15.5}
 \begin{aligned}
@@ -3329,7 +3355,7 @@ In addition, a very similar proof shows that axial symmetry with respect to the 
 
 For radiative transfer applications, we may introduce a simpler description of the scattering and absorption properties of a particle by describing the outcome of the scattering process in radometric (rather than optical) terms \[[6](#references) (ch. 13.6), [8](#references) (ch. 13.1, 13.4)\].
 
-Consider the incident time-harmonic[^15] electromagnetic field \\(\bm{E_i}\\) and \\(\bm{B_i}\\). In a linear, isotropic, homogeneous, source-free medium, the field can be decomposed into individual plane waves (c.f. Equations 7.1-7.2) of the form
+Consider the incident time-harmonic[^15] electromagnetic field \\(\bm{E_i}\\) and \\(\bm{B_i}\\). In a linear, isotropic, homogeneous, source-free medium, the field can be decomposed into individual plane waves (cf. Equations 7.1-7.2) of the form
 
 [^15]: We used the the monochromatic forms of the fields given by Equation 4.11. Extension to a polychromatic field is trivial, and amounts to summing up the individual harmonic terms per Equation 4.8.
 
@@ -3353,7 +3379,7 @@ $$ \tag{16.2}
 	\bm{B_0} \times \bm{n_i} = \frac{\eta}{c} \bm{E_0}.
 $$
 
-With each plane wave, we may associate the Poynting vector \\(\bm{S_i}\\) (c.f. Equation 7.28) pointing along the direction of propagation. If the medium is non-absorptive and non-magnetic, the expression of the time-averaged Poynting vector (c.f. Equations 7.31-7.32) is particularly simple:
+With each plane wave, we may associate the Poynting vector \\(\bm{S_i}\\) (cf. Equation 7.28) pointing along the direction of propagation. If the medium is non-absorptive and non-magnetic, the expression of the time-averaged Poynting vector (cf. Equations 7.31-7.32) is particularly simple:
 
 $$ \tag{16.3}
 	\braket{\bm{S_i}}
@@ -3362,7 +3388,7 @@ $$ \tag{16.3}
 	= \frac{1}{2} \mu\_0^{-1} \frac{\eta}{c} |\bm{E_0}|^2 \bm{n_i}.
 $$
 
-As a result, the amount of power per unit area (c.f. Equation 7.32) flowing through an arbitrary virtual surface element is
+As a result, the amount of power per unit area (cf. Equation 7.32) flowing through an arbitrary virtual surface element is
 
 $$ \tag{16.4}
 	\Epsilon_i
@@ -3439,7 +3465,7 @@ $$ \tag{16.11}
 	\bm{B_1} \times \bm{n_s} = \frac{\eta}{c} \bm{E_1}.
 $$
 
-The Poynting vector of the scattered far field points radially outward. If the host medium is is non-absorptive and non-magnetic, the corresponding time-averaged Poynting vector (c.f. Equations 13.21-13.23) is
+The Poynting vector of the scattered far field points radially outward. If the host medium is is non-absorptive and non-magnetic, the corresponding time-averaged Poynting vector (cf. Equations 13.21-13.23) is
 
 $$ \tag{16.12}
 	\braket{\bm{S_s}}
@@ -3469,7 +3495,7 @@ $$ \tag{16.15}
 	= \frac{1}{2} \mu\_0^{-1} \frac{\eta}{c} \big\vert \bm{E_1}(\bm{n_s}) \big\vert^2.
 $$
 
-The scattered field does not exist in isolation. Since it is generated by the incident field, the total field is formed by the superposition of the two waves (c.f. Equation 11.12):
+The scattered field does not exist in isolation. Since it is generated by the incident field, the total field is formed by the superposition of the two waves (cf. Equation 11.12):
 
 $$ \tag{16.16}
 \begin{aligned}
@@ -3482,7 +3508,7 @@ $$ \tag{16.16}
 \end{aligned}
 $$
 
-The Poynting vector of the combined wave is then given by the cross product (c.f. Equation 2.17)
+The Poynting vector of the combined wave is then given by the cross product (cf. Equation 2.17)
 
 $$ \tag{16.17}
 \begin{aligned}
@@ -3526,7 +3552,7 @@ $$
 
 represents the total amount of power dissipated (absorbed or scattered) by the particle.
 
-Now, recall (c.f. Equations 4.8, 4.15) that we have found, under quite general conditions, that the time average of the cross product of two vectors oscillating at exactly the same frequency is
+Now, recall (cf. Equations 4.8, 4.15) that we have found, under quite general conditions, that the time average of the cross product of two vectors oscillating at exactly the same frequency is
 
 $$ \tag{16.22}
 	\Big\langle
@@ -3708,7 +3734,7 @@ $$ \tag{16.36}
 	= \oint_{A} \mathrm{max}(0, -\bm{n} \cdot \bm{n_i}) dA.
 $$
 
-The amount of incident power is then (c.f. Equations 16.3-16.5)
+The amount of incident power is then (cf. Equations 16.3-16.5)
 
 $$ \tag{16.37}
 	\Phi_i
