@@ -1057,7 +1057,7 @@ $$ \tag{7.3}
 	= E_0(\bm{n}, \omega) e^{i k(\omega) (\bm{r} \cdot \bm{n}) - i \omega t},
 $$
 
-with the optical properies of the medium encapsulated in the [complex wave number](https://en.wikipedia.org/wiki/Wavenumber#Complex)
+with the optical properies of the medium encapsulated in the [complex wavenumber](https://en.wikipedia.org/wiki/Wavenumber#Complex)
 
 $$ \tag{7.4}
 	k(\omega) = \omega \sqrt{\varepsilon(\omega) \mu(\omega)}.
@@ -1070,7 +1070,7 @@ $$ \tag{7.5}
 	\mu\_r(\omega) = \frac{\mu(\omega)}{\mu\_0},
 $$
 
-the complex wave number can be redefined as
+the complex wavenumber can be redefined as
 
 $$ \tag{7.6}
 	k(\omega) =
@@ -1244,7 +1244,7 @@ $$ \tag{7.24}
 	= 0.
 $$
 
-With \\(\bm{E}\\) and \\(\bm{B}\\) both orthogonal to \\(\bm{n}\\), the only remaining question is regarding their mutual orientation. Using the definition of the wave number given by Equation 7.9, Equation 7.22 can be written as
+With \\(\bm{E}\\) and \\(\bm{B}\\) both orthogonal to \\(\bm{n}\\), the only remaining question is regarding their mutual orientation. Using the definition of the wavenumber given by Equation 7.9, Equation 7.22 can be written as
 
 $$ \tag{7.25}
 	\frac{1}{c} \big(\eta(\omega) + i \kappa(\omega) \big) \bm{n} \times \bm{E}(\bm{r}, \bm{n}, \omega)
@@ -1388,7 +1388,7 @@ $$
 
 where \\(\lambda_0\\) is the *free-space* wavelength.
 
-Furthermore, the alternative definition of the complex wave number (cf. Equation 7.6) suggests that
+Furthermore, the alternative definition of the complex wavenumber (cf. Equation 7.6) suggests that
 
 $$ \tag{7.41}
 	\mathcal{Re} \bigg\lbrace
@@ -1588,7 +1588,7 @@ $$ \tag{9.5}
 	\big( \nabla^2 + k_0^2 \big) \psi(\bm{r}) = -\xi(\bm{r}),
 $$
 
-where \\(k_0 = \omega / c\\) is the *free-space* wave number.
+where \\(k_0 = \omega / c\\) is the *free-space* wavenumber.
 
 The Helmholtz operator \\(\big( \nabla^2 + k_0^2 \big)\\) is a linear operator \\(\mathcal{H}\\) in 3 dimensions. Therefore, Equation 9.5 represents a linear transformation
 
@@ -1774,6 +1774,7 @@ where \\(\mathcal{L}\\) is the dimensionless *depolarization tensor*, the form o
 $$ \tag{9.26}
 	\mathcal{G_{e}}(\bm{r}, \bm{r'}, k)
 	= \Big( \mathcal{I} + \frac{1}{k^2} \nabla \otimes \nabla \Big) g(\bm{r} - \bm{r'}, k)
+	= \Big( \mathcal{I} + \frac{1}{k^2} \nabla \otimes \nabla \Big) \frac{e^{i k |\bm{r} - \bm{r'}|}}{4 \pi |\bm{r} - \bm{r'}|}
 $$
 
 is the *electric tensor* Green function \[[7](#references) (ch. 7.9)\]. As a special case, \\(\mathcal{G\_0}(\bm{r}, \bm{r'}) = \mathcal{G\_{e}}(\bm{r}, \bm{r'}, k\_0)\\) is called the *free-space tensor* Green function[^12].
@@ -1820,6 +1821,7 @@ that features the *magnetic tensor* Green function \[[7](#references) (ch. 7.9)\
 $$ \tag{9.32}
 	\mathcal{G_{m}}(\bm{r}, \bm{r'}, k)
 	= \nabla g(\bm{r} - \bm{r'}, k) \times \mathcal{I}
+	= \nabla \frac{e^{i k |\bm{r} - \bm{r'}|}}{4 \pi |\bm{r} - \bm{r'}|} \times \mathcal{I}
 $$
 
 that may be expressed using the [matrix form of the cross product](https://en.wikipedia.org/wiki/Cross_product#Conversion_to_matrix_multiplication). You may also recognize that
@@ -2209,7 +2211,7 @@ $$ \tag{11.5}
 \end{aligned}
 $$
 
-with the constants grouped according to the definition of the complex wave number \\(k\\) given by Equation 7.4.
+with the constants grouped according to the definition of the complex wavenumber \\(k\\) given by Equation 7.4.
 
 To make these two equations more alike, we can subtract \\(k_1^2 \bm{E}\\) from both sides of Equation 11.5.2:
 
@@ -2357,7 +2359,7 @@ $$ \tag{11.21}
 \end{aligned}
 $$
 
-or, using the wave number notation,
+or, using the wavenumber notation,
 
 $$ \tag{11.22}
 \begin{aligned}
@@ -2832,7 +2834,7 @@ $$
 
 Furthermore, notice the resemblance of Equation 13.17 to 7.22.
 
-Next, multiply Equation 13.17 by \\(\exp(-i \omega t)\\), expand the expression of the complex wave number as per Equation 7.9, and take the real part of both sides of the equation:
+Next, multiply Equation 13.17 by \\(\exp(-i \omega t)\\), expand the expression of the complex wavenumber as per Equation 7.9, and take the real part of both sides of the equation:
 
 $$ \tag{13.18}
 	\bm{n} \times \bigg(
@@ -2928,9 +2930,9 @@ $$
 For convenience, we define the *potential function*
 
 $$ \tag{14.3}
-u(\bm{r}, \omega) =
+u(\bm{r}, k, \omega) =
 \begin{cases}
-   k^2(\omega) \big( m^2(\bm{r}, \omega) - 1 \big) &\text{if } \bm{r} \in V, \cr
+   k^2 \big( m^2(\bm{r}, \omega) - 1 \big) &\text{if } \bm{r} \in V, \cr
    0 &\text{otherwise},
 \end{cases}
 $$
@@ -2940,19 +2942,19 @@ that allows us to write Equation 14.2 in a more compact form:
 $$ \tag{14.4}
 	\bm{E}(\bm{r}, \omega)
 	= \bm{E_i}(\bm{r}, \omega)
-	+ \int\_{V} \mathcal{G} \big( \bm{r}, \bm{r'}, k(\omega) \big) u(\bm{r'}, \omega) \bm{E}(\bm{r'}, \omega) dV'.
+	+ \int\_{V} \mathcal{G} \big( \bm{r}, \bm{r'}, k(\omega) \big) u \big( \bm{r'}, k(\omega), \omega \big)  \bm{E}(\bm{r'}, \omega) dV'.
 $$
 
 The resulting equation is recursive. Substitution makes it fairly obvious that the total electric field can be expressed as volume integral of the transformed incident field. While this fact can be rigorously derived from the properties of the tensor Green functions \[[11](#references) (ch. 5.1)\], for simplicity, let us assume that the solution exists:
 
 $$ \tag{14.5}
-	u(\bm{r'}, \omega) \bm{E}(\bm{r'}, \omega)
-	= \int\_{V} \mathcal{T} \big( \bm{r'}, \bm{r''}, \omega \big) \bm{E_i}(\bm{r''}, \omega) dV'',
+	u \big( \bm{r'}, k(\omega), \omega \big) \bm{E}(\bm{r'}, \omega)
+	= \int\_{V} \mathcal{T} \big( \bm{r'}, \bm{r''}, k(\omega), \omega \big) \bm{E_i}(\bm{r''}, \omega) dV'',
 $$
 
 where \\(\mathcal{T}\\) is the *transition tensor*, the expression of which is yet to be determined.
 
-Recursive equations written in the integral form quickly become unwieldy. Instead, we shall convert them into the operator form by using the [bra-ket notation](https://en.wikipedia.org/wiki/Bra%E2%80%93ket_notation). Additionally, any dependence on the frequency or the wave number shall be kept implicit.
+Recursive equations written in the integral form quickly become unwieldy. Instead, we shall convert them into the operator form by using the [bra-ket notation](https://en.wikipedia.org/wiki/Bra%E2%80%93ket_notation). Additionally, any dependence on the frequency or the wavenumber shall be kept implicit.
 
 Our building blocks are state vectors (or *kets*), such as \\(\ket{E}\\), and linear functionals (or *bras*), such as \\(\bra{r}\\). Put together, they represent the projection (the [inner product](https://en.wikipedia.org/wiki/Inner_product)) of the two vectors:
 
@@ -3077,43 +3079,60 @@ Let us now complete the derivation by writing Equation 14.19 in the position rep
 
 $$ \tag{14.21}
 \begin{aligned}
-	\braket{r' \vert T \vert r''}
-	&= \braket{r' \vert U (I + G T) \vert r''} \cr
-	&= u(\bm{r'}) \braket{r' \vert I + G T \vert r''} \cr
-	&= u(\bm{r'}) \bigg( \braket{r' \vert r''} + \int dV \braket{r' \vert G \vert r} \braket{r \vert T \vert r''} \bigg).
+	\braket{r \vert T \vert r'}
+	&= \braket{r \vert U (I + G T) \vert r'} \cr
+	&= u(\bm{r}) \braket{r \vert I + G T \vert r'} \cr
+	&= u(\bm{r}) \bigg( \braket{r \vert r'} + \int dV \braket{r \vert G \vert r''} \braket{r'' \vert T \vert r'} \bigg).
 \end{aligned}
 $$
 
-Translation of Equation 14.21 into the integral form yields
+Translation of Equation 14.21 into the integral form yields the definition of the transition tensor:
 
 $$ \tag{14.22}
-	\mathcal{T} \big( \bm{r'}, \bm{r''} \big)
-	= u(\bm{r'}) \bigg( \delta(\bm{r'} - \bm{r''}) \mathcal{I} + \int_V \mathcal{G} \big( \bm{r'}, \bm{r} \big) \mathcal{T} \big( \bm{r}, \bm{r''} \big) dV \bigg).
+\begin{aligned}
+	\mathcal{T} (\bm{r}, \bm{r'}, k)
+	&= u(\bm{r}, k) \bigg( \delta(\bm{r} - \bm{r'}) \mathcal{I} + \int_V \mathcal{G} (\bm{r}, \bm{r''}, k) \mathcal{T} (\bm{r''}, \bm{r'}) dV'' \bigg)
+	\cr
+	&= k^2 \big( m^2(\bm{r}) - 1 \big) \bigg( \delta(\bm{r} - \bm{r'}) \mathcal{I} + \int_V \mathcal{G} (\bm{r}, \bm{r''}, k) \mathcal{T} (\bm{r''}, \bm{r'}, k) dV'' \bigg).
+\end{aligned}
 $$
 
-We may expand the expression of the transition operator using Equations 9.25, 9.27, and 14.3:
+The total electric tensor (defined in Equation 9.27) can be expanded in two different ways. One way is to take its part outside the integral (thus avoiding the singularity), as was done in Equation 9.24:
 
 $$ \tag{14.23}
 \begin{aligned}
-	\mathcal{T} \big( \bm{r'}, \bm{r''} \big)
-	&= k^2 \big( m^2(\bm{r'}) - 1 \big)
-	\bigg( \delta(\bm{r'} - \bm{r''}) \mathcal{I} \cr
-	&- \frac{1}{k^2} \mathcal{L}(\bm{r'}) \mathcal{T} \big( \bm{r'}, \bm{r''} \big)
-	+ \lim_{\delta \to 0} \int\_{V - V_{\delta}}  \mathcal{G_e} \big( \bm{r'}, \bm{r} \big) \mathcal{T} \big( \bm{r}, \bm{r''} \big) dV \bigg).
+	\mathcal{T} (\bm{r}, \bm{r'}, k)
+	&= k^2 \big( m^2(\bm{r}) - 1 \big) \bigg(
+	\delta(\bm{r} - \bm{r'}) \mathcal{I}
+	\cr
+	&+ \Big( \mathcal{I} + \frac{1}{k^2} \nabla \otimes \nabla \Big) \int\_{V}
+	g( \bm{r} - \bm{r''}, k) \mathcal{T} (\bm{r''}, \bm{r'}) dV'' \bigg).
 \end{aligned}
 $$
 
-Notice that the \\(1/k^2\\) term in front of the depolarization tensor cancels out. After rearranging the terms and making the frequency dependence explicit again, we obtain the expanded definition of the scattering tensor:
+Another way is to split it into the electric tensor \\(\mathcal{G_e}\\) and the depolarization tensor \\(\mathcal{L}\\), like in Equation 9.25:
 
 $$ \tag{14.24}
 \begin{aligned}
-	\mathcal{T} \big( \bm{r'}, \bm{r''}, \omega \big)
-	= k^2(\omega)
-	& \big( m^2(\bm{r'}, \omega) - 1 \big)
-	\big( \mathcal{I} + \big( m^2(\bm{r'}, \omega) - 1 \big) \mathcal{L}(\bm{r'}) \big)^{-1}
+	\mathcal{T} (\bm{r}, \bm{r'}, k)
+	&= k^2 \big( m^2(\bm{r}) - 1 \big) \bigg(
+	\delta(\bm{r} - \bm{r'}) \mathcal{I}
 	\cr
-	& \bigg( \delta(\bm{r'} - \bm{r''}) \mathcal{I}
-	+ \lim_{\delta \to 0} \int\_{V - V_{\delta}}  \mathcal{G_e} \big( \bm{r'}, \bm{r}, k(\omega) \big) \mathcal{T} \big( \bm{r}, \bm{r''}, \omega \big) dV \bigg).
+	&- \frac{1}{k^2} \mathcal{L}(\bm{r}) \mathcal{T} (\bm{r}, \bm{r'})
+	+ \lim_{\delta \to 0} \int\_{V - V_{\delta}} \mathcal{G_e} (\bm{r}, \bm{r''}) \mathcal{T} (\bm{r''}, \bm{r'}, k) dV'' \bigg).
+\end{aligned}
+$$
+
+Notice that the \\(1/k^2\\) term in front of the depolarization tensor cancels out. After rearranging the terms, we obtain the full definition of the transition tensor:
+
+$$ \tag{14.25}
+\begin{aligned}
+	\mathcal{T} (\bm{r}, \bm{r'}, k)
+	&= k^2 \big( m^2(\bm{r}) - 1 \big)
+	\Big( \mathcal{I} + \big( m^2(\bm{r}) - 1 \big) \mathcal{L}(\bm{r}) \Big)^{-1} \bigg(
+	\delta(\bm{r} - \bm{r'}) \mathcal{I}
+	\cr
+	&+ \lim_{\delta \to 0} \int\_{V - V_{\delta}} \mathcal{G_e} (\bm{r}, \bm{r''}, k) \mathcal{T} (\bm{r''}, \bm{r'}, k) dV'' \bigg).
 \end{aligned}
 $$
 
@@ -3155,11 +3174,11 @@ $$ \tag{15.5}
 	& \bm{E_s}(\bm{r}, \omega) \approx
 	\big( \mathcal{I} - \bm{n_s} \otimes \bm{n_s} \big)
 	\frac{e^{i k(\omega) r}}{4 \pi r}
-	\int\_{V} e^{-i k(\omega) (\bm{r'} \cdot \bm{n_s})} \int\_{V} \mathcal{T} \big( \bm{r'}, \bm{r''}, \omega \big) \bm{E_i}(\bm{r''}, \omega) dV'' dV', \cr
+	\int\_{V} e^{-i k(\omega) (\bm{r'} \cdot \bm{n_s})} \int\_{V} \mathcal{T} \big( \bm{r}, \bm{r''}, k(\omega), \omega \big) \bm{E_i}(\bm{r''}, \omega) dV'' dV', \cr
 	& \bm{B_s}(\bm{r}, \omega) \approx
 	\big(\bm{n_s} \times \mathcal{I} \big) \frac{k(\omega)}{\omega}
 	\frac{e^{i k(\omega) r}}{4 \pi r}
-	\int\_{V} e^{-i k(\omega) (\bm{r'} \cdot \bm{n_s})} \int\_{V} \mathcal{T} \big( \bm{r'}, \bm{r''}, \omega \big) \bm{E_i}(\bm{r''}, \omega) dV'' dV',
+	\int\_{V} e^{-i k(\omega) (\bm{r'} \cdot \bm{n_s})} \int\_{V} \mathcal{T} \big( \bm{r}, \bm{r''}, k(\omega), \omega \big) \bm{E_i}(\bm{r''}, \omega) dV'' dV',
 \end{aligned}
 $$
 
@@ -3180,10 +3199,10 @@ $$ \tag{15.7}
 \begin{aligned}
 	& \mathcal{S_{ef}} (\bm{n_s}, \bm{n_i}, \omega) \approx \frac{1}{4 \pi}
 	\big( \mathcal{I} - \bm{n_s} \otimes \bm{n_s} \big)
-	\iint\_{V} e^{-i k(\omega) (\bm{r'} \cdot \bm{n_s} - \bm{r''} \cdot \bm{n_i})} \mathcal{T} \big( \bm{r'}, \bm{r''}, \omega \big) dV'' dV', \cr
+	\iint\_{V} e^{-i k(\omega) (\bm{r'} \cdot \bm{n_s} - \bm{r''} \cdot \bm{n_i})} \mathcal{T} (\bm{r}, \bm{r''}, k(\omega), \omega) dV'' dV', \cr
 	& \mathcal{S_{mf}} (\bm{n_s}, \bm{n_i}, \omega) \approx \frac{1}{4 \pi}
 	\big(\bm{n_s} \times \mathcal{I} \big) \frac{k(\omega)}{\omega}
-	\iint\_{V} e^{-i k(\omega) (\bm{r'} \cdot \bm{n_s} - \bm{r''} \cdot \bm{n_i})} \mathcal{T} \big( \bm{r'}, \bm{r''}, \omega \big) dV'' dV'.
+	\iint\_{V} e^{-i k(\omega) (\bm{r'} \cdot \bm{n_s} - \bm{r''} \cdot \bm{n_i})} \mathcal{T} (\bm{r}, \bm{r''}, k(\omega), \omega) dV'' dV'.
 \end{aligned}
 $$
 
@@ -3350,6 +3369,73 @@ In general, the elements of the scattering matrix depend on the azimuthal angle 
 It's easy to see why that is the case. Consider changing the handedness of the \\(x y z\\) coordinate frame, so that the basis vector of the \\(x\\)-axis (or \\(y\\)-axis) becomes \\(-\bm{x}\\) (or \\(-\bm{y}\\)), and vice versa. In the reflected coordinate system, both \\(E\_{s,x'}\\) and \\(E\_{i,x}\\) (or \\(E\_{s,y}\\) and \\(E\_{i,y}\\)) change the sign, but, since the particle possesses reflection symmetry, the scattering matrix remains unchanged. In order for the magnitudes of the scattered field components to remain unchanged, the off-diagonal elements \\(s_3\\) and \\(s_4\\) must be equal to \\(0\\). This decouples the \\(x\\) and \\(y\\) components of the field, which allows us to represent the vector scattering process in terms of two independent scalar waves.
 
 In addition, a very similar proof shows that axial symmetry with respect to the direction of incidence leads to another important property of forward scattering: \\(s_1(0, \phi) = s_2(0, \phi) = s_0\\).
+
+Finally, we would like to highlight the *scale invariance* property of electromagnetic scattering (also known as the principle of electrodynamic similitude) \[[8](#references) (ch. 5.5)\]. The gist of it is that the dimensionless scattering and absorption characteristics of a particle (or a group of particles) do not depend on its linear dimension \\(a\\) and the wavenumber \\(k\\) separately, but rather the so-called relative *size parameter* \\(x = k a = 2 \pi a / \lambda\\). Thus, increasing both the linear dimension of the object and the wavelength by the same factor \\(f\\) leaves the formula unchanged: \\(x' = 2 \pi (a f) / (f \lambda) = x \\). This [reduces the dimensionality](https://en.wikipedia.org/wiki/Dimensionality_reduction) of the problem, since two independent parameters can be replaced with just one.
+
+To show that it is true, let us introduce a dimensionless quantity and an operator
+
+$$ \tag{15.18}
+	\bm{\hat{r}} = k \bm{r},
+	\qquad
+	\hat{\nabla} = k^{-1} \nabla,
+$$
+
+such that \\(\hat{\nabla} \bm{\hat{r}} = \nabla \bm{r}\\).
+
+The electric tensor of Equation 9.26 can then be written without explicit consideration of the wavenumber:
+
+$$ \tag{15.19}
+	\mathcal{\hat{G}\_{e}}(\bm{\hat{r}}, \bm{\hat{r}'})
+	= \Big( \mathcal{I} + \hat{\nabla} \otimes \hat{\nabla} \Big) \frac{e^{i |\bm{\hat{r}} - \bm{\hat{r}'}|}}{4 \pi |\bm{\hat{r}} - \bm{\hat{r}'}|}.
+$$
+
+Note that this transformation increases the magnitude of the denominator in the scalar part of the Green function by a factor of \\(k\\). Thus,
+
+$$ \tag{15.20}
+	\mathcal{\hat{G}\_{e}}(\bm{\hat{r}}, \bm{\hat{r}'})
+	= \frac{1}{k} \mathcal{G_{e}}(\bm{r}, \bm{r'}, k).
+$$
+
+For the moment, we leave the expression of the total electric tensor given by Equation 9.27 unchanged.
+
+Now, consider the transition tensor (as defined by Equation 14.24, which we restate below for convenience):
+
+$$
+\begin{aligned}
+	\mathcal{T} (\bm{r'}, \bm{r''}, k)
+	= k^2
+	& \big( m^2(\bm{r'}) - 1 \big)
+	\big( \mathcal{I} + \big( m^2(\bm{r'}) - 1 \big) \mathcal{L}(\bm{r'}) \big)^{-1}
+	\cr
+	& \bigg( \delta(\bm{r'} - \bm{r''}) \mathcal{I}
+	+ \lim_{\delta \to 0} \int\_{V - V_{\delta}}  \mathcal{G_e} \big( \bm{r'}, \bm{r}, k \big) \mathcal{T} \big( \bm{r}, \bm{r''}, k \big) dV \bigg).
+\end{aligned}
+$$
+
+In order to replace \\(\bm{r}\\) with \\(\bm{\hat{r}}\\) inside the integral, we must perform a change of variables
+
+$$ \tag{15.21}
+	dV = dx \thinspace dy \thinspace dz
+	\quad \to \quad
+	d \hat{V} = dkx \thinspace dky \thinspace dkz = k^3 dV.
+$$
+
+Furthermore, the [scaling property](https://en.wikipedia.org/wiki/Dirac_delta_function#Scaling_and_symmetry) of the delta function tells us that
+
+$$ \tag{15.22}
+	\delta(\bm{r})
+	= \delta \bigg(\frac{\bm{\hat{r}}}{k} \bigg)
+	= k^3 \delta(\bm{\hat{r}})
+$$
+
+The depolarization tensor \\(\mathcal{L}\\) and the relative refractive index \\(m\\) do not depend on \\(k\\), which allows us to reparametrize them in the following way:
+
+$$ \tag{15.23}
+	\hat{m}(\bm{\hat{r}}) = m(\bm{r}),
+	\qquad
+	\mathcal{\hat{L}}(\bm{\hat{r}}) = \mathcal{L}(\bm{r}),
+$$
+
 
 ### Optical Cross-Section Theorem
 
