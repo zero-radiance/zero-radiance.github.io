@@ -602,7 +602,7 @@ The expression is compact and simple, but not particularly useful, since the val
 
 We can obtain a more practical result at the cost of some generality. Specifically, we must make an assumption that the electromagnetic field is a [periodic function](https://en.wikipedia.org/wiki/Periodic_function) of time, such that the *fundamental period* \\(\thinspace T\_1 = 2 \pi / \omega_1\\) of both[^3] the electric and the magnetic fields is the same \[[5](#references) (vol. I, ch. 50) [6](#references) (ch. 1.3.3, 1.4.3)\]. This limitation is not particularly severe: the fields can often be repeated virtually (outside the time interval of interest), and we may choose the period to be as large as necessary.
 
-[^3]: The fact that the electric and the magnetic fields cannot exist independently can be shown by a simple relativistic argument \[[12](#references) (ch 6.2)\].
+[^3]: The fact that the electric and the magnetic fields cannot exist independently can be shown by a simple relativistic argument \[[13](#references) (ch 6.2)\].
 
 One particular feature of periodic functions is the existence of the [Fourier series](https://en.wikipedia.org/wiki/Fourier_series#Complex-valued_functions) representation:
 
@@ -794,7 +794,7 @@ Having defined both irradiance and spectral irradiance, we can easily compute al
 
 Considered in isolation, the macroscopic formulation of the Maxwell equations is an [undetermined system](https://en.wikipedia.org/wiki/Underdetermined_system) - it has fewer equations than unknowns. This makes it necessary to specify the way the material responds to the applied electromagnetic field. Such assumptions about the material are called the *material equations*, or the [constitutive relations](https://en.wikipedia.org/wiki/Constitutive_equation#Electromagnetism).
 
-The simplest way is to assume that the material responds to weak electromagnetic fields in an approximately linear manner[^6]. In this case, we may express \\(\bm{D}\\) and \\(\bm{H}\\) as [bilinear](https://en.wikipedia.org/wiki/Bilinear_map) functions of \\(\bm{E}\\) and \\(\bm{B}\\) \[[10](#references) (ch. 3.2)\]:
+The simplest way is to assume that the material responds to weak electromagnetic fields in an approximately linear manner[^6]. In this case, we may express \\(\bm{D}\\) and \\(\bm{H}\\) as [bilinear](https://en.wikipedia.org/wiki/Bilinear_map) functions of \\(\bm{E}\\) and \\(\bm{B}\\) \[[11](#references) (ch. 3.2)\]:
 
 [^6]: This assumes that omitting the quadratic (and higher order) terms in the Taylor series expansion results in a negligible error.
 
@@ -1623,10 +1623,10 @@ $$
 
 Its solution is the *scalar* [Green function](https://en.wikipedia.org/wiki/Green%27s_function) \\(g\\). It represents an [impulse response](https://en.wikipedia.org/wiki/Impulse_response) of the linear operator \\(\mathcal{H}\\).
 
-Equation 9.9 is an inhomogeneous linear differential equation. Consequently, its solution depends on the linear operator in question, its domain of validity, as well as the associated (initial or boundary) conditions. According to Equation 9.7, our domain is the whole real space, and the only applicable restriction is the Sommerfeld radiation condition. Thus, it can be shown that the *free-space* scalar Green function \\(g_0\\) takes the form[^9] of an diverging *scalar* [spherical wave](https://en.wikipedia.org/wiki/Wave_equation#Spherical_waves) \[[7](#references) (ch. 2.12), [8](#references) (ap. B), [13](#references)\]:
+Equation 9.9 is an inhomogeneous linear differential equation. Consequently, its solution depends on the linear operator in question, its domain of validity, as well as the associated (initial or boundary) conditions. According to Equation 9.7, our domain is the whole real space, and the only applicable restriction is the Sommerfeld radiation condition. Thus, it can be shown that the *free-space* scalar Green function \\(g_0\\) takes the form[^9] of an diverging *scalar* [spherical wave](https://en.wikipedia.org/wiki/Wave_equation#Spherical_waves) \[[7](#references) (ch. 2.12), [8](#references) (ap. B), [14](#references)\]:
 
 $$ \tag{9.10}
-	g_0(R) = g(R, k_0) = \frac{e^{i k_0 R}}{4 \pi R}.
+	g_0(\bm{r}) = g(\bm{r}, k_0) = \frac{e^{i k_0 |\bm{r}|}}{4 \pi |\bm{r}|}.
 $$
 
 [^9]: Mathematicians often move the minus sign from Equation 9.9 to 9.10. This introduces a significant amount of bookkeeping and is, ultimately, undesirable.
@@ -2127,7 +2127,7 @@ $$
 
 but for [ferromagnets](https://en.wikipedia.org/wiki/Ferromagnet), this expression is invalid due to the [magnetic hysteresis](https://en.wikipedia.org/wiki/Magnetic_hysteresis) effect \[[5](#references) (vol. II, ch. 36)\].
 
-Fortunately, for optical applications, the situation is rather simple. Paramagnetism and diamagnetism are both very weak in general; the same is true for ferromagnetism at optical frequencies in particular. This leads to \\(\mu\_r \approx 1\\) \[[9](#references) (vol. I, ch. 27)\].
+Fortunately, for optical applications, the situation is rather simple. Paramagnetism and diamagnetism are both very weak in general; the same is true for ferromagnetism at optical frequencies in particular. This leads to \\(\mu\_r \approx 1\\) \[[10](#references) (vol. I, ch. 27)\].
 
 In some sense, dipoles can be considered elementary field generators: an electric dipole produces the \\(\bm{E}\\) field, and a magnetic dipole is a source of the \\(\bm{B}\\) field. They can be used to describe any (bound) current and charge distributions, which makes them particularly useful for solving electromagnetic radiation and scattering problems.
 
@@ -2945,7 +2945,7 @@ $$ \tag{14.4}
 	+ \int\_{V} \mathcal{G} \big( \bm{r}, \bm{r'}, k(\omega) \big) u \big( \bm{r'}, k(\omega), \omega \big)  \bm{E}(\bm{r'}, \omega) dV'.
 $$
 
-The resulting equation is recursive. Substitution makes it fairly obvious that the total electric field can be expressed as volume integral of the transformed incident field. While this fact can be rigorously derived from the properties of the tensor Green functions \[[11](#references) (ch. 5.1)\], for simplicity, let us assume that the solution exists:
+The resulting equation is recursive. Substitution makes it fairly obvious that the total electric field can be expressed as volume integral of the transformed incident field. While this fact can be rigorously derived from the properties of the tensor Green functions \[[12](#references) (ch. 5.1)\], for simplicity, let us assume that the solution exists:
 
 $$ \tag{14.5}
 	u \big( \bm{r'}, k(\omega), \omega \big) \bm{E}(\bm{r'}, \omega)
@@ -3091,7 +3091,7 @@ Translation of Equation 14.21 into the integral form yields the definition of th
 $$ \tag{14.22}
 \begin{aligned}
 	\mathcal{T} (\bm{r}, \bm{r'}, k)
-	&= u(\bm{r}, k) \bigg( \delta(\bm{r} - \bm{r'}) \mathcal{I} + \int_V \mathcal{G} (\bm{r}, \bm{r''}, k) \mathcal{T} (\bm{r''}, \bm{r'}) dV'' \bigg)
+	&= u(\bm{r}, k) \bigg( \delta(\bm{r} - \bm{r'}) \mathcal{I} + \int_V \mathcal{G} (\bm{r}, \bm{r''}, k) \mathcal{T} (\bm{r''}, \bm{r'}, k) dV'' \bigg)
 	\cr
 	&= k^2 \big( m^2(\bm{r}) - 1 \big) \bigg( \delta(\bm{r} - \bm{r'}) \mathcal{I} + \int_V \mathcal{G} (\bm{r}, \bm{r''}, k) \mathcal{T} (\bm{r''}, \bm{r'}, k) dV'' \bigg).
 \end{aligned}
@@ -3106,7 +3106,7 @@ $$ \tag{14.23}
 	\delta(\bm{r} - \bm{r'}) \mathcal{I}
 	\cr
 	&+ \Big( \mathcal{I} + \frac{1}{k^2} \nabla \otimes \nabla \Big) \int\_{V}
-	g( \bm{r} - \bm{r''}, k) \mathcal{T} (\bm{r''}, \bm{r'}) dV'' \bigg).
+	g( \bm{r} - \bm{r''}, k) \mathcal{T} (\bm{r''}, \bm{r'}, k) dV'' \bigg).
 \end{aligned}
 $$
 
@@ -3374,45 +3374,34 @@ It's easy to see why that is the case. Consider changing the handedness of the \
 
 In addition, a very similar proof shows that axial symmetry with respect to the direction of incidence leads to another important property of forward scattering: \\(s_1(0, \phi) = s_2(0, \phi) = s_0\\).
 
-Finally, we would like to highlight the *scale invariance* property of electromagnetic scattering (also known as the principle of electrodynamic similitude) \[[8](#references) (ch. 5.5)\]. The gist of it is that the dimensionless scattering and absorption characteristics of a particle (or a group of particles) do not depend on its linear dimension \\(a\\) and the wavenumber \\(k\\) separately, but rather the so-called relative *size parameter* \\(x = k a = 2 \pi a / \lambda\\). Thus, increasing both the linear dimension of the object and the wavelength by the same factor \\(f\\) leaves the formula unchanged: \\(x' = 2 \pi (a f) / (f \lambda) = x \\). This [reduces the dimensionality](https://en.wikipedia.org/wiki/Dimensionality_reduction) of the problem, since two independent parameters can be replaced with just one.
+Finally, we would like to highlight the *scale invariance* property of electromagnetic scattering (also known as the principle of electrodynamic similitude) \[[8](#references) (ch. 5.5), [9](#references) (ch. 3.5)\]. The gist of it is that the dimensionless scattering and absorption characteristics of a particle (or a group of particles) do not depend on its linear dimension \\(a\\) and the wavenumber \\(k\\) separately, but rather the so-called relative *size parameter* \\(x = k a = 2 \pi a / \lambda\\). Thus, increasing both the linear dimension of the object and the wavelength by the same factor \\(f\\) leaves the formula unchanged: \\(x' = 2 \pi (a f) / (f \lambda) = x \\). This [reduces the dimensionality](https://en.wikipedia.org/wiki/Dimensionality_reduction) of the problem, since two independent parameters can be replaced with just one.
 
-To show that it is true, let us introduce a dimensionless quantity and an operator
+In order to prove that it is true, we must show that the expressions used to calculate the electromagnetic fields can be written in terms of the dimensionless quantity
 
 $$ \tag{15.18}
-	\bm{\hat{r}} = k \bm{r},
-	\qquad
-	\hat{\nabla} = k^{-1} \nabla,
+	\bm{\hat{r}} = k \bm{r}.
 $$
 
-such that \\(\hat{\nabla} \bm{\hat{r}} = \nabla \bm{r}\\).
-
-The electric tensor of Equation 9.26 can then be written without explicit consideration of the wavenumber:
+As a simple example, consider the scalar Green function \\(g\\) introduced in Equation 9.10. If we divide it by \\(k\\), we obtain its dimensionless counterpart \\(\hat{g}\\):
 
 $$ \tag{15.19}
-	\mathcal{\hat{G}\_{e}}(\bm{\hat{r}}, \bm{\hat{r}'})
-	= \Big( \mathcal{I} + \hat{\nabla} \otimes \hat{\nabla} \Big) \frac{e^{i |\bm{\hat{r}} - \bm{\hat{r}'}|}}{4 \pi |\bm{\hat{r}} - \bm{\hat{r}'}|}.
+	\frac{1}{k} g(\bm{r}, k)
+	= \hat{g}(\bm{\hat{r}})
+	= \frac{e^{i |\bm{\hat{r}}|}}{4 \pi |\bm{\hat{r}}|}.
 $$
 
-Note that this transformation increases the magnitude of the denominator in the scalar part of the Green function by a factor of \\(k\\). Thus,
+The expression of the total field is the sum of the incident and the scattered fields. Equation 15.1 of the incident field can be transformed into the dimensionless form by a trivial substitution of Equation 15.18. On the other hand, Equation 15.3 of the scattered field is more complicated, as it contains the total electric and transition tensors. According to Equation 14.22, the transition tensor is itself defined in terms of the total electric tensor. Thus, we only need to transform the expression of the former. For convenience, we elect to use the expanded definition given by Equation 14.23, which we restate below:
 
 $$ \tag{15.20}
-	\mathcal{\hat{G}\_{e}}(\bm{\hat{r}}, \bm{\hat{r}'})
-	= \frac{1}{k} \mathcal{G_{e}}(\bm{r}, \bm{r'}, k).
-$$
-
-For the moment, we leave the expression of the total electric tensor given by Equation 9.27 unchanged.
-
-Now, consider the transition tensor (as defined by Equation 14.24, which we restate below for convenience):
-
-$$
 \begin{aligned}
-	\mathcal{T} (\bm{r'}, \bm{r''}, k)
-	= k^2
-	& \big( m^2(\bm{r'}) - 1 \big)
-	\big( \mathcal{I} + \big( m^2(\bm{r'}) - 1 \big) \mathcal{L}(\bm{r'}) \big)^{-1}
+	\mathcal{T} (\bm{r}, \bm{r'}, k)
+	&= k^2 \big( m^2(\bm{r}) - 1 \big) \bigg( \delta(\bm{r} - \bm{r'}) \mathcal{I} + \int_V \mathcal{G} (\bm{r}, \bm{r''}, k) \mathcal{T} (\bm{r''}, \bm{r'}, k) dV'' \bigg)
 	\cr
-	& \bigg( \delta(\bm{r'} - \bm{r''}) \mathcal{I}
-	+ \lim_{\delta \to 0} \int\_{V - V_{\delta}}  \mathcal{G_e} \big( \bm{r'}, \bm{r}, k \big) \mathcal{T} \big( \bm{r}, \bm{r''}, k \big) dV \bigg).
+	&= k^2 \big( m^2(\bm{r}) - 1 \big) \bigg(
+	\delta(\bm{r} - \bm{r'}) \mathcal{I}
+	\cr
+	&+ \Big( \mathcal{I} + \frac{1}{k^2} \nabla \otimes \nabla \Big) \int\_{V}
+	g( \bm{r} - \bm{r''}, k) \mathcal{T} (\bm{r''}, \bm{r'}, k) dV'' \bigg).
 \end{aligned}
 $$
 
@@ -3432,13 +3421,56 @@ $$ \tag{15.22}
 	= k^3 \delta(\bm{\hat{r}})
 $$
 
-The depolarization tensor \\(\mathcal{L}\\) and the relative refractive index \\(m\\) do not depend on \\(k\\), which allows us to reparametrize them in the following way:
+To handle the total electric tensor, we introduce
 
 $$ \tag{15.23}
-	\hat{m}(\bm{\hat{r}}) = m(\bm{r}),
-	\qquad
-	\mathcal{\hat{L}}(\bm{\hat{r}}) = \mathcal{L}(\bm{r}),
+	\hat{\nabla} = k^{-1} \nabla,
 $$
+
+such that
+
+$$ \tag{15.25}
+	\hat{\nabla} \bm{\hat{r}} = \nabla \bm{r},
+$$
+
+which, coupled with Equation 15.19, directly leads to
+
+$$ \tag{15.26}
+	\mathcal{\hat{G}}(\bm{\hat{r}}, \bm{\hat{r}'})
+	= \frac{1}{k} \mathcal{G}(\bm{r}, \bm{r'}, k).
+$$
+
+The only expression left to transform is the relative refractive index \\(m\\) given by Equation 11.8. It is already a dimensionless quantity; if we further assume that it is defined to be scale-invariant (e.i. the molecular properties and the density do not depend on the scale), then we may reparametrize \\(m\\) in the following way:
+
+$$ \tag{15.27}
+	\hat{m}(\bm{\hat{r}}) = m(\bm{r}).
+$$
+
+Using the new definitions, Equation 15.20 becomes
+
+$$ \tag{15.28}
+\begin{aligned}
+	\mathcal{T} (\bm{r}, \bm{r'}, k)
+	&= \big( \hat{m}^2(\bm{\hat{r}}) - 1 \big) \bigg(
+	k^5 \delta(\bm{\hat{r}} - \bm{\hat{r}'}) \mathcal{I}
+	+ \int\_{V} \mathcal{\hat{G}}(\bm{\hat{r}}, \bm{\hat{r}''}) \mathcal{T} (\bm{r''}, \bm{r'}, k) d \hat{V}'' \bigg)
+	\cr
+	&= \big( \hat{m}^2(\bm{\hat{r}}) - 1 \big) \bigg(
+	k^5 \delta(\bm{\hat{r}} - \bm{\hat{r}'}) \mathcal{I}
+	\cr
+	&+ \Big( \mathcal{I} + \hat{\nabla} \otimes \hat{\nabla} \Big) \int\_{V}
+	\hat{g}( \bm{\hat{r}} - \bm{\hat{r}''}) \mathcal{T} (\bm{r''}, \bm{r'}, k) d \hat{V}'' \bigg),
+\end{aligned}
+$$
+
+from which it immediately follows that defining
+
+$$ \tag{15.29}
+	\mathcal{\hat{T}} (\bm{\hat{r}}, \bm{\hat{r}'}) = \frac{1}{k^5}
+	\mathcal{T} (\bm{r}, \bm{r'}, k)
+$$
+
+makes Equation 15.28 fully dimensionless. Additionally, in the operator notation, Equations 15.20 and 15.28 are formally identical. As a result, both formulations can be written as the Born series of Equation 14.20, and thus produce the same fields. This completes the proof of the scale invariance property of electromagnetic scattering.
 
 
 ### Optical Cross-Section Theorem
@@ -3943,11 +3975,12 @@ Pharr & Jakob, Bohren & Huffman, NASA
 6. Born, M., & Wolf, E. [Principles of Optics](https://doi.org/10.1017/CBO9781139644181) (7th ed., 1999).
 7. Van Bladel, J. G. [Electromagnetic Fields](https://doi.org/10.1002/047012458X) (2nd ed., 2007).
 8. Mishchenko, M. I. [Electromagnetic Scattering by Particles and Particle Groups](https://doi.org/10.1017/CBO9781139019064) (2014).
-9. Pauli, W. [Pauli Lectures on Physics](https://www.worldcat.org/title/pauli-lectures-on-physics-vol-1-electrodynamics/oclc/439349741) (1973).
-10. Kong, J. A. [Electromagnetic Wave Theory](https://www.worldcat.org/title/electromagnetic-wave-theory/oclc/248547001) (2008).
-11. Tsang, L., & Kong, J. A. [Scattering of Electromagnetic Waves: Advanced Topics](https://doi.org/10.1002/0471224278) (2001).
-12. Fleisch, D. [Student's Guide to Vectors and Tensors](https://doi.org/10.1017/CBO9781139031035) (2011).
-13. Talalai, G. [Derivation of the Free-Space Green’s Function](https://www.researchgate.net/publication/324729639_Derivation_of_the_Free-Space_Green's_Function_and_Radiation_from_a_Hertzian_Dipole) (2016).
+9. Mishchenko, M. I., Travis, L. D., & Lacis, A. A. [Multiple Scattering of Light by Particles](https://www.cambridge.org/us/academic/subjects/earth-and-environmental-science/atmospheric-science-and-meteorology/multiple-scattering-light-particles-radiative-transfer-and-coherent-backscattering?format=HB&isbn=9780521834902) (2006).
+10. Pauli, W. [Pauli Lectures on Physics](https://www.worldcat.org/title/pauli-lectures-on-physics-vol-1-electrodynamics/oclc/439349741) (1973).
+11. Kong, J. A. [Electromagnetic Wave Theory](https://www.worldcat.org/title/electromagnetic-wave-theory/oclc/248547001) (2008).
+12. Tsang, L., & Kong, J. A. [Scattering of Electromagnetic Waves: Advanced Topics](https://doi.org/10.1002/0471224278) (2001).
+13. Fleisch, D. [Student's Guide to Vectors and Tensors](https://doi.org/10.1017/CBO9781139031035) (2011).
+14. Talalai, G. [Derivation of the Free-Space Green’s Function](https://www.researchgate.net/publication/324729639_Derivation_of_the_Free-Space_Green's_Function_and_Radiation_from_a_Hertzian_Dipole) (2016).
 99. Hansen, J. E., & Travis, L. D. [Light Scattering in Planetary Atmospheres](https://doi.org/10.1007/BF00168069) (1974).
 
 <!--
