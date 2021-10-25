@@ -3082,7 +3082,7 @@ $$ \tag{14.21}
 	\braket{r \vert T \vert r'}
 	&= \braket{r \vert U (I + G T) \vert r'} \cr
 	&= u(\bm{r}) \braket{r \vert I + G T \vert r'} \cr
-	&= u(\bm{r}) \bigg( \braket{r \vert r'} + \int dV \braket{r \vert G \vert r''} \braket{r'' \vert T \vert r'} \bigg).
+	&= u(\bm{r}) \bigg( \negmedspace \braket{r \vert r'} + \int dV \braket{r \vert G \vert r''} \braket{r'' \vert T \vert r'} \negmedspace \bigg).
 \end{aligned}
 $$
 
@@ -3097,7 +3097,7 @@ $$ \tag{14.22}
 \end{aligned}
 $$
 
-The total electric tensor (defined in Equation 9.27) can be expanded in two different ways. One way is to take its part outside the integral (thus avoiding the singularity), as was done in Equation 9.24:
+The total electric tensor (defined in Equation 9.27) can be expanded in two different ways. One way is to write it as a product, and take the factor that contains derivatives the integral (thus avoiding the singularity), as was done in Equation 9.24:
 
 $$ \tag{14.23}
 \begin{aligned}
@@ -3110,7 +3110,7 @@ $$ \tag{14.23}
 \end{aligned}
 $$
 
-Another way is to split it into the electric tensor \\(\mathcal{G_e}\\) and the depolarization tensor \\(\mathcal{L}\\), like in Equation 9.25:
+The second way is to represent it by a sum of the electric tensor \\(\mathcal{G_e}\\) and the depolarization tensor \\(\mathcal{L}\\), like in Equation 9.25:
 
 $$ \tag{14.24}
 \begin{aligned}
@@ -3156,8 +3156,12 @@ $$
 where
 
 $$ \tag{15.3}
+\begin{aligned}
 	\bm{E_s}(\bm{r}, \bm{n_i}, \omega)
-	= \int\_{V} \mathcal{G} \big( \bm{r}, \bm{r'}, k(\omega) \big) \int\_{V} \mathcal{T} (\bm{r'}, \bm{r''}, \omega) \bm{E_i}(0, \bm{n_i}, \omega) e^{i k(\omega) (\bm{r''} \cdot \bm{n_i})} dV'' dV'.
+	&= \int\_{V} \mathcal{G} \big( \bm{r}, \bm{r'}, k(\omega) \big) \int\_{V} \mathcal{T} (\bm{r'}, \bm{r''}, k(\omega), \omega) \bm{E_i}(\bm{r''}, \bm{n_i}, \omega) dV'' dV'
+	\cr
+	&= \int\_{V} \mathcal{G} \big( \bm{r}, \bm{r'}, k(\omega) \big) \int\_{V} \mathcal{T} (\bm{r'}, \bm{r''}, k(\omega), \omega) \bm{E_i}(0, \bm{n_i}, \omega) e^{i k(\omega) (\bm{r''} \cdot \bm{n_i})} dV'' dV'.
+\end{aligned}
 $$
 
 By taking the initial value of the incident electric field \\(\bm{E_i}(0)\\)  outside the integral, we find the that the scattered field is related to the incident field by the *scattering tensor* \\(\mathcal{S}\\) \[[8](#references) (ch. 5.3)\]:
@@ -3174,11 +3178,11 @@ $$ \tag{15.5}
 	& \bm{E_s}(\bm{r}, \omega) \approx
 	\big( \mathcal{I} - \bm{n_s} \otimes \bm{n_s} \big)
 	\frac{e^{i k(\omega) r}}{4 \pi r}
-	\int\_{V} e^{-i k(\omega) (\bm{r'} \cdot \bm{n_s})} \int\_{V} \mathcal{T} \big( \bm{r}, \bm{r''}, k(\omega), \omega \big) \bm{E_i}(\bm{r''}, \omega) dV'' dV', \cr
+	\int\_{V} e^{-i k(\omega) (\bm{r'} \cdot \bm{n_s})} \int\_{V} \mathcal{T} \big( \bm{r'}, \bm{r''}, k(\omega), \omega \big) \bm{E_i}(\bm{r''}, \omega) dV'' dV', \cr
 	& \bm{B_s}(\bm{r}, \omega) \approx
 	\big(\bm{n_s} \times \mathcal{I} \big) \frac{k(\omega)}{\omega}
 	\frac{e^{i k(\omega) r}}{4 \pi r}
-	\int\_{V} e^{-i k(\omega) (\bm{r'} \cdot \bm{n_s})} \int\_{V} \mathcal{T} \big( \bm{r}, \bm{r''}, k(\omega), \omega \big) \bm{E_i}(\bm{r''}, \omega) dV'' dV',
+	\int\_{V} e^{-i k(\omega) (\bm{r'} \cdot \bm{n_s})} \int\_{V} \mathcal{T} \big( \bm{r'}, \bm{r''}, k(\omega), \omega \big) \bm{E_i}(\bm{r''}, \omega) dV'' dV',
 \end{aligned}
 $$
 
@@ -3199,10 +3203,10 @@ $$ \tag{15.7}
 \begin{aligned}
 	& \mathcal{S_{ef}} (\bm{n_s}, \bm{n_i}, \omega) \approx \frac{1}{4 \pi}
 	\big( \mathcal{I} - \bm{n_s} \otimes \bm{n_s} \big)
-	\iint\_{V} e^{-i k(\omega) (\bm{r'} \cdot \bm{n_s} - \bm{r''} \cdot \bm{n_i})} \mathcal{T} (\bm{r}, \bm{r''}, k(\omega), \omega) dV'' dV', \cr
+	\iint\_{V} e^{-i k(\omega) (\bm{r'} \cdot \bm{n_s} - \bm{r''} \cdot \bm{n_i})} \mathcal{T} (\bm{r'}, \bm{r''}, k(\omega), \omega) dV'' dV', \cr
 	& \mathcal{S_{mf}} (\bm{n_s}, \bm{n_i}, \omega) \approx \frac{1}{4 \pi}
 	\big(\bm{n_s} \times \mathcal{I} \big) \frac{k(\omega)}{\omega}
-	\iint\_{V} e^{-i k(\omega) (\bm{r'} \cdot \bm{n_s} - \bm{r''} \cdot \bm{n_i})} \mathcal{T} (\bm{r}, \bm{r''}, k(\omega), \omega) dV'' dV'.
+	\iint\_{V} e^{-i k(\omega) (\bm{r'} \cdot \bm{n_s} - \bm{r''} \cdot \bm{n_i})} \mathcal{T} (\bm{r'}, \bm{r''}, k(\omega), \omega) dV'' dV'.
 \end{aligned}
 $$
 
