@@ -2162,7 +2162,7 @@ the *radiative properties* of the large-scale medium are determined by solving t
 
 ### Scattering Problem
 
-Participating media can be broadly divided into two categories - homogeneous and inhomogeneous. This suggests that we may split any medium into two regions: 1) infinite homogeneous, and 2) the remaining space (that can be interpreted as a particle group, and which we treat as a single inhomogeneous object, or a particle) contained within the volume \\(V\\).
+Participating media can be broadly divided into two categories - homogeneous and inhomogeneous. This suggests that we may split any medium into two regions: 1) infinite homogeneous, and 2) the remaining space of finite volume \\(V\\). The latter can be interpreted as a single particle or a particle group, or, more generally, as a scattering object (or a *scatterer* for short).
 
 [Picture?]
 
@@ -2281,7 +2281,7 @@ $$
 
 In addition to the mathematical approach presented above, we can arrive at the same result in a more "physical" way.
 
-Consider a particle embedded in vacuum. The solution in terms of potentials is given by Equation 9.16:
+Consider an object embedded in vacuum. The solution in terms of potentials is given by Equation 9.16:
 
 $$ \tag{11.13}
 \begin{aligned}
@@ -2318,7 +2318,7 @@ $$
 
 where we additionally utilized Equation 5.2.3 and 5.5.3 to expand the expression of the curl.
 
-If the particle is conductive, Equation 5.2.1 says that
+If the object is conductive, Equation 5.2.1 says that
 
 $$ \tag{11.17}
 	\bm{J\_i}(\bm{r}, \omega) = \sigma_2(\bm{r}, \omega) \bm{E}(\bm{r}, \omega).
@@ -2700,7 +2700,7 @@ $$ \tag{13.5}
 \end{aligned}
 $$
 
-Let us return to the general case of a particle. Assume that the observation point is in the far zone with respect to each individual volume element, so that \\(k R \gg 1\\). Equation 11.25 then takes the form
+Let us return to the general case of a scattering object. Assume that the observation point is in the far zone with respect to each individual volume element, so that \\(k R \gg 1\\). Equation 11.25 then takes the form
 
 $$ \tag{13.6}
 \begin{aligned}
@@ -2711,7 +2711,7 @@ $$ \tag{13.6}
 \end{aligned}
 $$
 
-Bounded the particle by a sphere of radius \\(a\\) centered at the origin of the coordinate system. This allows us to express the requirement that \\(k R \gg 1\\) for each individual volume element by \\(k (r - a) \gg 1\\).
+Bound the object by a sphere of radius \\(a\\) centered at the origin of the coordinate system. This allows us to express the requirement that \\(k R \gg 1\\) for each individual volume element by \\(k (r - a) \gg 1\\).
 
 Consider the expression of the radial distance between the observation point and the volume element:
 
@@ -2907,7 +2907,7 @@ $$
 
 ### Transition Operator
 
-The volume integral equation can be reduced to a relatively simple expression by assuming that the observation point is located in the far zone of the particle. However, the value of the electric field in the interior remains unknown. For a single atom or a small molecule, we can reasonably assume that it doesn't drive itself, which makes the field driving the molecule the same as the incident field, with the resulting (simplified) expression of Equation 13.12 given by Equation 13.5. Yet, in general, this assumption does not hold. It is easy to convince ourselves by considering a highly reflective or absorptive particle - it seems fairly obvious that the total field deep inside the particle has (on average) a lower magnitude in comparison to the incident field at the same location if the particle wasn't there.
+The volume integral equation can be reduced to a relatively simple expression by assuming that the observation point is located in the far zone of the scatterer. However, the value of the electric field in the interior remains unknown. For a single atom or a small molecule, we can reasonably assume that it doesn't drive itself, which makes the field driving the molecule the same as the incident field, with the resulting (simplified) expression of Equation 13.12 given by Equation 13.5. Yet, in general, this assumption does not hold. It is easy to convince ourselves by considering a highly reflective or absorptive particle - it seems fairly obvious that the total field deep inside the particle has (on average) a lower magnitude in comparison to the incident field at the same location if the particle wasn't there.
 
 Let us recall the mechanics of scattering. In a dielectric, the incident field drives the dipoles, which in turn act as sources of scattered wavelets interfering with the incident field according to the superposition principle. We may continue this line of thinking by considering the effect of a dipole as a secondary source on all other dipoles surrounding it, effectively treating the dipole field as the secondary incident field. Repeated application of this iterative approach leads to evaluation of successive orders of scattering one by one. This is the general idea behind the [Born series](https://en.wikipedia.org/wiki/Born_series) \[[6](#references) (ch. 13.1)\].
 
@@ -3060,7 +3060,7 @@ $$ \tag{14.19}
 	T = U (I + G T)
 $$
 
-It does, however, depend on the geometry and the composition of the volume containing the particle.
+It does, however, depend on the geometry and the structure of scattering object.
 
 Notice that, when we combine Equations 14.13 and 14.19, the potential operator cancels out, and we obtain a series expansion
 
@@ -3214,7 +3214,7 @@ Expressions given above are independent of the choice of a coordinate system. In
 
 {{< figure src="/img/scat_coord.svg" caption="*Figure N: the scattering coordinate system.*" >}}
 
-First, recall that \\(r\\) in Equation 15.6 stands for the distance from the center of the particle to the observation point. This makes the center of the particle a suitable choice for the origin of the coordinate system.
+First, recall that \\(r\\) in Equation 15.6 stands for the distance from the center of the scattering object to the observation point. This makes the center of the object a suitable choice for the origin of the coordinate system.
 
 Next, assume that the direction of incidence \\(\bm{n_i}\\) is fixed; conventionally, it is aligned with the \\(z\\)-axis. That is convenient, because it allows us to describe the incident electric field vector (or phasor) using only two Cartesian components, \\(x\\) and \\(y\\), since, according to Equations 7.18-7.19, the component along \\(\bm{n_i}\\) is zero.
 
@@ -3234,7 +3234,7 @@ $$ \tag{15.9}
 	\bm{X} = \bm{n_p}.
 $$
 
- The latter could, for instance, represent the coordinate frame of the particle. We can now rotate \\(xyz\\) and define its orientation relative to \\(XYZ\\) in terms of the [Euler angles](https://en.wikipedia.org/wiki/Euler_angles). We are particularly interested in rotating the plane of observation \\(xz\\) about the \\(Z\\)-axis, as that allows the set of possible direction of observation to cover the entire the unit sphere. If the azimuthal (plane rotation) angle is \\(\phi\\) and the polar angle is \\(\theta\\), the spherical coordinates of \\(\bm{n_s}\\) with respect to the \\(XYZ\\) frame are
+ The latter could, for instance, represent the coordinate frame of the scatterer. We can now rotate \\(xyz\\) and define its orientation relative to \\(XYZ\\) in terms of the [Euler angles](https://en.wikipedia.org/wiki/Euler_angles). We are particularly interested in rotating the plane of observation \\(xz\\) about the \\(Z\\)-axis, as that allows the set of possible direction of observation to cover the entire the unit sphere. If the azimuthal (plane rotation) angle is \\(\phi\\) and the polar angle is \\(\theta\\), the spherical coordinates of \\(\bm{n_s}\\) with respect to the \\(XYZ\\) frame are
 
 $$ \tag{15.10}
 \bm{n_s} =
@@ -3368,13 +3368,13 @@ with the angles \\(\theta\\) and \\(\phi\\) given by Equation 15.10.
 
 The reason for introducing the \\(i k\\) constant in the expression above is twofold. Multiplication by the \\(k\\) factor makes the scattering matrix a dimensionless quantity, which is evident from Equations 13.4 and 15.16. As for the \\(i\\) factor, we shall see (in the next section) that it allows us to focus on the real part of the scattering matrix for radiometric computations, which is consistent with the way we handle the complex representation of electromagnetic waves.
 
-In general, the elements of the scattering matrix depend on the azimuthal angle \\(\phi\\), since, as we rotate the plane of observation (\\(x z\\) or \\(x' z'\\)) around the \\(Z\\)-axis, the particle appears to rotate (in the opposite direction) in both the \\(x y z\\) and \\(x' y' z'\\) coordinate systems. However, if the particle is symmetric (both geometrically and morphologically) with respect to the \\(Z\\)-axis, which is the case for spherical and an axis-aligned [spheroidal](https://en.wikipedia.org/wiki/Spheroid) particles, the matrix only depends on the polar angle \\(\theta\\). This causes the scattering matrix to become diagonal, with \\(s_3 = s_4 = 0\\) \[[4](#references) (ch. 4.42)\].
+In general, the elements of the scattering matrix depend on the azimuthal angle \\(\phi\\), since, as we rotate the plane of observation (\\(x z\\) or \\(x' z'\\)) around the \\(Z\\)-axis, the scattering object appears to rotate (in the opposite direction) in both the \\(x y z\\) and \\(x' y' z'\\) coordinate systems. However, if the object is symmetric (both geometrically and structurally) with respect to the \\(Z\\)-axis, which is the case for spherical and an axis-aligned [spheroidal](https://en.wikipedia.org/wiki/Spheroid) particles, the matrix only depends on the polar angle \\(\theta\\). This causes the scattering matrix to become diagonal, with \\(s_3 = s_4 = 0\\) \[[4](#references) (ch. 4.42)\].
 
 It's easy to see why that is the case. Consider changing the handedness of the \\(x y z\\) coordinate frame, so that the basis vector of the \\(x\\)-axis (or \\(y\\)-axis) becomes \\(-\bm{x}\\) (or \\(-\bm{y}\\)), and vice versa. In the reflected coordinate system, both \\(E\_{s,x'}\\) and \\(E\_{i,x}\\) (or \\(E\_{s,y}\\) and \\(E\_{i,y}\\)) change the sign, but, since the particle possesses reflection symmetry, the scattering matrix remains unchanged. In order for the magnitudes of the scattered field components to remain unchanged, the off-diagonal elements \\(s_3\\) and \\(s_4\\) must be equal to \\(0\\). This decouples the \\(x\\) and \\(y\\) components of the field, which allows us to represent the vector scattering process in terms of two independent scalar waves.
 
 In addition, a very similar proof shows that axial symmetry with respect to the direction of incidence leads to another important property of forward scattering: \\(s_1(0, \phi) = s_2(0, \phi) = s_0\\).
 
-Finally, we would like to highlight the *scale invariance* property of electromagnetic scattering (also known as the principle of electrodynamic similitude) \[[8](#references) (ch. 5.5), [9](#references) (ch. 3.5)\]. The gist of it is that the dimensionless scattering and absorption characteristics of a particle (or a group of particles) do not depend on its linear dimension \\(a\\) and the wavenumber \\(k\\) separately, but rather the so-called relative *size parameter* \\(x = k a = 2 \pi a / \lambda\\). Thus, increasing both the linear dimension of the object and the wavelength by the same factor \\(f\\) leaves the formula unchanged: \\(x' = 2 \pi (a f) / (f \lambda) = x \\). This [reduces the dimensionality](https://en.wikipedia.org/wiki/Dimensionality_reduction) of the problem, since two independent parameters can be replaced with just one.
+Finally, we would like to highlight the *scale invariance* property of electromagnetic scattering (also known as the principle of electrodynamic similitude) \[[8](#references) (ch. 5.5), [9](#references) (ch. 3.5)\]. The gist of it is that the dimensionless scattering and absorption characteristics of the scattering object do not depend on its linear dimension \\(a\\) and the wavenumber \\(k\\) separately, but rather the so-called relative *size parameter* \\(x = k a = 2 \pi a / \lambda\\). Thus, increasing both the linear dimension of the object and the wavelength by the same factor \\(f\\) leaves the formula unchanged: \\(x' = 2 \pi (a f) / (f \lambda) = x \\). This [reduces the dimensionality](https://en.wikipedia.org/wiki/Dimensionality_reduction) of the problem, since two independent parameters can be replaced with just one.
 
 In order to prove that it is true, we must show that the expressions used to calculate the electromagnetic fields can be written in terms of the dimensionless quantity
 
