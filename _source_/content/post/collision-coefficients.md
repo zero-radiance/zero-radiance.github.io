@@ -1386,7 +1386,7 @@ $$ \tag{7.40}
 	= 4 \pi \frac{\kappa(\omega)}{\lambda_0},
 $$
 
-where \\(\lambda_0\\) is the *free-space* wavelength.
+where \\(\lambda_0 = 2 \pi c / \omega\\) is the *free-space* wavelength.
 
 Furthermore, the alternative definition of the complex wavenumber (cf. Equation 7.6) suggests that
 
@@ -3440,11 +3440,17 @@ $$ \tag{15.26}
 	= \frac{1}{k} \mathcal{G}(\bm{r}, \bm{r'}, k).
 $$
 
-The only expression left to transform is the relative refractive index \\(m\\) given by Equation 11.8. It is already a dimensionless quantity; if we further assume that it is defined to be scale-invariant (e.i. the molecular properties and the density do not depend on the scale), then we may reparametrize \\(m\\) in the following way:
+The only expression left to transform is the relative refractive index \\(m\\) given by Equation 11.8. It is already a dimensionless quantity; if we further assume that it has been defined as scale-invariant (both the index and its spatial distribution do not change as the object is rescaled), then we may reparametrize \\(m\\) in the following way:
 
 $$ \tag{15.27}
-	\hat{m}(\bm{\hat{r}}) = m(\bm{r}).
+	\hat{m}(\bm{\hat{r}})
+	= m(\bm{r})
+	= \frac{k_2}{k_1}
+	= \frac{(\omega / c) \big( \eta + i \kappa \big)}{2 \pi / \lambda_1}
+	= \frac{\lambda_1}{\lambda_2} + i \frac{\lambda_1 \alpha}{4 \pi}.
 $$
+
+The expanded expression clarifies why it remains invariant: the wavelength in the interior of the object is directly proportional to the wavelength outside, and as we increase the size of the object, the absorption coefficient linearly decreases in order to maintain the absorption characteristics of the scatterer.
 
 Using the new definitions, Equation 15.20 becomes
 
