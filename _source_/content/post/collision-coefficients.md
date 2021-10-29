@@ -977,7 +977,7 @@ $$ \tag{6.10}
 $$
 
 
-By considering each vector component, we obtain a system of three *homogeneous* [Helmholtz equations](https://en.wikipedia.org/wiki/Helmholtz_equation):
+By considering each vector component in a Cartesian coordinate system, we obtain a system of three *homogeneous* [Helmholtz equations](https://en.wikipedia.org/wiki/Helmholtz_equation):
 
 $$ \tag{6.11}
 \begin{aligned}
@@ -3478,6 +3478,8 @@ $$
 
 makes Equation 15.28 fully dimensionless. Additionally, in the operator notation, Equations 15.20 and 15.28 are formally identical. As a result, both formulations can be written as the Born series of Equation 14.20, and thus produce the same fields. This completes the proof of the scale invariance property of electromagnetic scattering.
 
+(Consider Stratton's proof, p. 488)
+
 
 ### Optical Cross-Section Theorem
 
@@ -3953,6 +3955,180 @@ $$
 
 which matches the results found using the scalar wave theory \[[4](#references) (ch. 4.21, 4.42)\]. Intuitively, this makes sense, since the particle looks the same regardless of the choice of the plane of reference (assuming the latter contains the direction of incidence), and the sensor (that only measures power) is not sensitive to the orientation of incoming light.
 
+## Lorenz-Mie-Debye Theory
+
+The Lorenz-Mie-Debye theory presents a rigorous solution to the problem of [diffraction](https://en.wikipedia.org/wiki/Diffraction) by an isotropic conducting sphere, also known as [Mie scattering](https://en.wikipedia.org/wiki/Mie_scattering). The solution is exact in the sense that it does not employ any approximations, so it exhibits all classical and semi-classical (e.i. non-quantum) effects, and thus shows an excellent agreement with experimental data (see \[[16](#references) (ch. 5)\] for a list of references).
+
+The original theory was independently formulated by Lorenz (1890), Mie (1908), and Debye (1909). The derivation of the relevant formulas can be found in many popular textbooks, such as \[[4](#references) (ch. 9), [6](#references) (ch. 14.5)\]. A more mathematically elegant treatment of the problem was given by Hansen (1935, 1936, 1937). It has been presented in a recent open access paper \[[15](#references)\], which we use as the foundation of this section.
+
+The general idea behind the solution is fairly simple. We treat electromagnetic scattering as a boundary value problem. If we expand the expression of the electromagnetic field in series of [vector spherical harmonics](https://en.wikipedia.org/wiki/Vector_spherical_harmonics), the boundary conditions take a particularly simple form, which can be harnessed to find the (initially unknown) coefficients of the series expansion.
+
+Consider the Maxwell equations in a linear, isotropic, homogeneous region of space given by Equation 6.2. We have seen that, after a number of transformations, they are reduced to a vector Helmholtz equation (6.10) shown below:
+
+$$ \tag{17.1}
+	\nabla^2 \bm{E}(\bm{r}, \omega) + k^2(\omega) \bm{E}(\bm{r}, \omega) = 0.
+$$
+
+We have previously solved this equation by writing it in Cartesian coordinates. That allowed us to separate a single vector equation into three scalar equations, which could then be solved individually. While this leads to a convenient (plane wave) representation of the incident field, it is a poor fit for the scattered field, since the latter takes the form of a spherical wave in the far zone. In addition, the geometry of the scatterer suggests that we should exploit the spherical symmetry of the problem in some way.
+
+Equation 17.1 can be written in yet another way. Recall (c.f. Equation 8.3) that we can express the electric field \\(\bm{E}\\) in terms of the vector potential \\(\bm{A}\\) and the scalar potential \\(\phi\\)
+
+$$ \tag{17.2}
+	\bm{E}(\bm{r}, t) + \frac{\partial}{\partial t} \bm{A}(\bm{r}, t) = -\nabla \phi(\bm{r}, t),
+$$
+
+that admit the gauge transformation (c.f. Equations 8.5, 8.7)
+
+$$ \tag{17.3}
+\begin{aligned}
+	\bm{A'}(\bm{r}, t) &= \bm{A}(\bm{r}, t) + \nabla \chi(\bm{r}, t)
+	\cr
+	\phi'(\bm{r}, t) &= \phi(\bm{r}, t) - \frac{\partial}{\partial t} \chi(\bm{r}, t).
+\end{aligned}
+$$
+
+...
+
+This leads to the definition of vector spherical harmonics:
+
+$$
+	\bm{L} = \nabla \psi,
+	\quad
+	\bm{M} = \nabla \times (\psi \bm{a}),
+	\quad
+	\bm{N} = \frac{1}{k} \nabla \times \bm{M},
+$$
+
+where \\(\psi\\) satisfies the scalar Helmholtz equation
+
+$$
+	\big( \nabla^2 + k^2 \big) \psi = 0,
+$$
+
+which, in [spherical coordinates](https://en.wikipedia.org/wiki/Laplace_operator#Three_dimensions), takes the form
+
+$$
+	\frac{1}{r^2} \frac{\partial}{\partial r} \bigg( r^2 \frac{\partial \psi}{\partial r} \bigg)
+	+ \frac{1}{r^2 \sin{\theta}} \frac{\partial}{\partial \theta} \bigg( \sin{\theta} \frac{\partial \psi}{\partial \theta} \bigg)
+	+ \frac{1}{r^2 \sin^2{\theta}} \frac{\partial^2 \psi}{\partial \phi^2}
+	+ k^2 \psi = 0.
+$$
+
+\\(\bm{a}\\) is called the *pilot vector*. It is convenient to assume that it belongs to an [irrotational](https://en.wikipedia.org/wiki/Conservative_vector_field#Irrotational_vector_fields) vector field, such that
+
+$$
+	\nabla \times \bm{a} = 0,
+	\quad \text{or} \quad
+	\bm{a} = \nabla b.
+$$
+
+Coupled with the [product rule](https://en.wikipedia.org/wiki/Vector_calculus_identities#Product_rule_for_multiplication_by_a_scalar), Equation (above) leads to a simpler definition of \\(\bm{M}\\):
+
+$$
+	\bm{M} = \psi (\nabla \times \bm{a}) + (\nabla \psi) \times \bm{a} = \bm{L} \times \bm{a}.
+$$
+
+If \\(\bm{a}\\) is a real vector, this leads to a geometrical interpretation in terms of orthogonal vectors:
+
+$$
+	\bm{M} \cdot \bm{a} = 0,
+	\quad \text{or} \quad
+	\bm{M} \cdot \bm{L} = 0.
+$$
+
+Since both [curl of gradient](https://en.wikipedia.org/wiki/Vector_calculus_identities#Curl_of_gradient_is_zero) and [divergence of curl](https://en.wikipedia.org/wiki/Vector_calculus_identities#Divergence_of_curl_is_zero) are zero, \\(\bm{L}\\) is irrotational, and \\(\bm{M}\\) and \\(\bm{N}\\) are [solenoidal](https://en.wikipedia.org/wiki/Solenoidal_vector_field):
+
+$$
+	\nabla \times \bm{L} = 0,
+	\quad
+	\nabla \cdot \bm{M} = 0,
+	\quad
+	\nabla \cdot \bm{N} = 0,
+$$
+
+Each of the three vectors, \\(\bm{L}\\), \\(\bm{M}\\), and \\(\bm{N}\\), can be used to form a vector Helmholtz equation. That is trivial to show this for \\(\bm{L}\\):
+
+$$
+	\big( \nabla^2 + k^2 \big) \bm{L} = \nabla \big( \nabla^2 + k^2 \big) \psi = 0,
+$$
+
+For \\(\bm{M}\\), the corresponding expression is
+
+$$
+	\big( \nabla^2 + k^2 \big) \bm{M}
+	= \big( \nabla^2 + k^2 \big) \big( \nabla \times (\psi \bm{a}) \big)
+	= \nabla \times \Big( \big( \nabla^2 + k^2 \big) \big( \psi \bm{a} \big) \Big).
+$$
+
+If \\(\bm{a}\\) is a constant vector, then it immediately follows that
+
+$$
+	\big( \nabla^2 + k^2 \big) \bm{M}
+	= \nabla \times \Big( \bm{a} \big( \nabla^2 + k^2 \big) \psi \Big) = 0.
+$$
+
+For an arbitrary \\(\bm{a}\\), in general, that is not the case. In spherical coordinates, a special choice of
+
+$$
+	\bm{a} = \bm{r} = r \bm{e_r}
+$$
+
+exists, such that
+
+$$
+	\bm{M} = \bm{L} \times \bm{a} = \bm{L} \times (r \bm{e_r})
+$$
+
+is tangent to the sphere, which implies that
+
+$$
+	M_r = 0.
+$$
+
+Then, if we define
+
+$$
+	\psi' = \psi \bm{a} = \psi \bm{r} = \psi r \bm{e_r},
+$$
+
+it follows from the product rule that
+
+$$
+\begin{aligned}
+	& \frac{\partial \psi'}{\partial r}
+	= \frac{\partial \psi}{\partial r} \bm{r} + \psi \frac{\partial \bm{r}}{\partial r}
+	= r \frac{\partial \psi}{\partial r} \bm{e_r} + \psi \bm{e_r},
+	\cr
+	& \frac{\partial \psi'}{\partial \theta}
+	= \frac{\partial \psi}{\partial \theta} \bm{r} + \psi \frac{\partial \bm{r}}{\partial \theta}
+	= r \frac{\partial \psi}{\partial \theta} \bm{e_r} + r \psi \bm{e_{\theta}},
+	\cr
+	& \frac{\partial \psi'}{\partial \phi}
+	= \frac{\partial \psi}{\partial \phi} \bm{r} + \psi \frac{\partial \bm{r}}{\partial \phi}
+	= r \frac{\partial \psi}{\partial \phi} \bm{e_r} + r \psi \sin{\theta} \bm{e_{\phi}}.
+\end{aligned}
+$$
+
+Similarly,
+
+$$
+\begin{aligned}
+	& \frac{1}{r^2} \frac{\partial}{\partial r} \bigg( r^2 \frac{\partial \psi'}{\partial r} \bigg)
+	= \frac{1}{r^2} \frac{\partial}{\partial r} \bigg( r^3 \frac{\partial \psi}{\partial r} \bm{e_r} + r^2 \psi \bm{e_r} \bigg)
+	= \frac{\partial \psi}{\partial r} r \bm{e_r} + \psi \bm{e_r},
+	\cr
+	& \frac{\partial \psi'}{\partial \theta}
+	= \frac{\partial \psi}{\partial \theta} \bm{r} + \psi \frac{\partial \bm{r}}{\partial \theta}
+	= \frac{\partial \psi}{\partial \theta} r \bm{e_r} + \psi r \bm{e_{\theta}},
+	\cr
+	& \frac{\partial \psi'}{\partial \phi}
+	= \frac{\partial \psi}{\partial \phi} \bm{r} + \psi \frac{\partial \bm{r}}{\partial \phi}
+	= \frac{\partial \psi}{\partial \phi} r \bm{e_r} + \psi r \sin{\theta} \bm{e_{\phi}}.
+\end{aligned}
+$$
+
+
+
 ---
 
 ## III. Simple Formulas for Practical Use
@@ -3987,6 +4163,8 @@ Pharr & Jakob, Bohren & Huffman, NASA
 12. Tsang, L., & Kong, J. A. [Scattering of Electromagnetic Waves: Advanced Topics](https://doi.org/10.1002/0471224278) (2001).
 13. Fleisch, D. [Student's Guide to Vectors and Tensors](https://doi.org/10.1017/CBO9781139031035) (2011).
 14. Talalai, G. [Derivation of the Free-Space Green’s Function](https://www.researchgate.net/publication/324729639_Derivation_of_the_Free-Space_Green's_Function_and_Radiation_from_a_Hertzian_Dipole) (2016).
+15. Frezza, F., Mangini, F., & Tedeschi, N. [Introduction to Electromagnetic Scattering: Tutorial](https://doi.org/10.1364/JOSAA.35.000163) (2018).
+16. Nussenzveig, H. M. [Diffraction Effects in Semiclassical Scattering](https://www.cambridge.org/us/academic/subjects/physics/theoretical-physics-and-mathematical-physics/diffraction-effects-semiclassical-scattering?format=PB) (1992).
 99. Hansen, J. E., & Travis, L. D. [Light Scattering in Planetary Atmospheres](https://doi.org/10.1007/BF00168069) (1974).
 
 <!--
