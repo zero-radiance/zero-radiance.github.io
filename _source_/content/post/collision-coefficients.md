@@ -3643,16 +3643,16 @@ $$ \tag{16.17}
 	\bm{S}(\bm{r}, t)
 	&= \mu\_0^{-1} \big( \bm{E}(\bm{r}, t) \times \bm{B}(\bm{r}, t) \big) \cr
 	&= \mu\_0^{-1} \big( \bm{E_i} \times \bm{B_i} + \bm{E_s} \times \bm{B_s} + \bm{E_i} \times \bm{B_s} + \bm{E_s} \times \bm{B_i} \big) \cr
-	&= \bm{S_i} + \bm{S_s} - \bm{S_t}.
+	&= \bm{S_i} + \bm{S_s} - \bm{S_e}.
 \end{aligned}
 $$
 
-The \\(\bm{S_t}\\) term shows that the incident and the scattered waves interfere. In order to determine the extent it influences the flow of energy, we must once again integrate the time-averaged Poynting vector over a closed surface:
+The \\(\bm{S_e}\\) term shows that the incident and the scattered waves interfere. In order to determine the extent it influences the flow of energy, we must once again integrate the time-averaged Poynting vector over a closed surface:
 
 $$ \tag{16.18}
 	\Delta \Phi
 	= \oint_{A} \braket{\bm{S}} \cdot \bm{n} \thinspace dA
-	= \oint_{A} \Big( \negthinspace \braket{\bm{S_i}} + \braket{\bm{S_s}} - \braket{\bm{S_t}} \negthinspace \Big) \cdot \bm{n} \thinspace dA.
+	= \oint_{A} \Big( \negthinspace \braket{\bm{S_i}} + \braket{\bm{S_s}} - \braket{\bm{S_e}} \negthinspace \Big) \cdot \bm{n} \thinspace dA.
 $$
 
 Since the formula is the same, the conclusions of Equations 16.7-16.9 remain valid. In addition, Equations 16.5-16.6 show that \\(\oint \braket{\bm{S_i}} \cdot \bm{n} \thinspace dA = 0\\). Thus, in the absence of primary sources within the region, Equations 16.8 and 16.18 tell us that
@@ -3660,21 +3660,21 @@ Since the formula is the same, the conclusions of Equations 16.7-16.9 remain val
 $$ \tag{16.19}
 	-\Delta \Phi
 	= \Phi_a
-	= \oint_{A} \braket{\bm{S_t}} \cdot \bm{n} \thinspace dA - \Phi_s
-	= \Phi_t - \Phi_s
+	= \oint_{A} \braket{\bm{S_e}} \cdot \bm{n} \thinspace dA - \Phi_s
+	= \Phi_e - \Phi_s
 $$
 
 is the amount of power absorbed by the particle, where
 
 $$ \tag{16.20}
-	\braket{\bm{S_t}}
+	\braket{\bm{S_e}}
 	= -\mu\_0^{-1} \braket{\bm{E_i} \times \bm{B_s} + \bm{E_s} \times \bm{B_i}}.
 $$
 
 In the context of Equation 16.19,
 
 $$ \tag{16.21}
-	\Phi_t
+	\Phi_e
 	= \Phi_a + \Phi_s
 $$
 
@@ -3694,14 +3694,14 @@ $$
 Thus, the time average of the mixed Poynting vector can be written as
 
 $$ \tag{16.23}
-	\braket{\bm{S_t}} =
+	\braket{\bm{S_e}} =
 	-\frac{\mu_0^{-1}}{2 r} \mathcal{Re} \bigg\lbrace
 	\Big( \bm{E_0} e^{i k (\bm{r} \cdot \bm{n_i})} \Big) \times \Big[ \bm{B_1} e^{i k r} \Big]^{\*} +
 	\Big( \bm{E_1} e^{i k r} \Big) \times \Big[ \bm{B_0} e^{i k (\bm{r} \cdot \bm{n_i})} \Big]^{\*}
 	\bigg\rbrace.
 $$
 
-The next step is to project \\(\braket{\bm{S_t}}\\) onto the normal of the virtual sphere. The statement of the problem leads to two relations:
+The next step is to project \\(\braket{\bm{S_e}}\\) onto the normal of the virtual sphere. The statement of the problem leads to two relations:
 
 $$ \tag{16.24}
 	\bm{n} = \bm{n_s},
@@ -3774,11 +3774,11 @@ $$ \tag{16.27}
 \end{aligned}
 $$
 
-Let us now integrate the normal component of \\(\braket{\bm{S_t}}\\) over a large sphere:
+Let us now integrate the normal component of \\(\braket{\bm{S_e}}\\) over a large sphere:
 
 $$ \tag{16.28}
-	\Phi_t
-	= \oint_{\mathbb{S}^2} \braket{\bm{S_t}} \cdot \bm{n_s} \thinspace dA
+	\Phi_e
+	= \oint_{\mathbb{S}^2} \braket{\bm{S_e}} \cdot \bm{n_s} \thinspace dA
 	= -\mu\_0^{-1} \oint_{\mathbb{S}^2} \braket{\bm{E_i} \times \bm{B_s} + \bm{E_s} \times \bm{B_i}} \cdot \bm{n_s} \thinspace dA.
 $$
 
@@ -3840,7 +3840,7 @@ $$
 is a real number. Thus, the total amount of power dissipated by the particle
 
 $$ \tag{16.34}
-	\Phi_t
+	\Phi_e
 	= -\mu\_0^{-1} \oint_{\mathbb{S}^2} \braket{\bm{E_i} \times \bm{B_s} + \bm{E_s} \times \bm{B_i}} \cdot \bm{n_s} \thinspace dA
 	\approx \mu\_0^{-1} \frac{\eta}{c} \frac{2 \pi}{k} \mathcal{Im} \big\lbrace \bm{E_0^{\*}} \cdot \bm{E_1}(\bm{n_i}) \big\rbrace
 $$
@@ -3849,7 +3849,7 @@ depends on the scattering amplitude in the forward direction only. In general, t
 
 $$ \tag{16.35}
 	\Phi_a
-	= \Phi_t - \Phi_s
+	= \Phi_e - \Phi_s
 	\approx \frac{1}{2} \mu\_0^{-1} \frac{\eta}{c} \bigg(
 	\frac{4 \pi}{k} \mathcal{Im} \big\lbrace \bm{E_0^{\*}} \cdot \bm{E_1}(\bm{n_i}) \big\rbrace
 	- \oint\_{\mathbb{S}^2} \big\vert \bm{E_1}(\bm{n_s}) \big\vert^2 d\Omega \bigg).
@@ -3878,14 +3878,14 @@ $$ \tag{16.38}
 \begin{aligned}
 	& Q_a
 	= \frac{\Phi_a}{\Phi_i}
-	= \frac{\Phi_s + \Phi_t}{\Phi_i},
+	= \frac{\Phi_s + \Phi_e}{\Phi_i},
 	\cr
 	& Q_s
 	= \frac{\Phi_s}{\Phi_i}
 	= \frac{\oint |\bm{E_1}(\bm{n_s})|^2 d\Omega}{|\bm{E_0}|^2 C_g},
 	\cr
-	& Q_t
-	= \frac{\Phi_t}{\Phi_i}
+	& Q_e
+	= \frac{\Phi_e}{\Phi_i}
 	= \frac{4 \pi}{k} \frac{\mathcal{Im} \big\lbrace \bm{E_0^{\*}} \cdot \bm{E_1}(\bm{n_i}) \big\rbrace}{|\bm{E_0}|^2 C_g}.
 \end{aligned}
 $$
@@ -3897,16 +3897,16 @@ $$ \tag{16.39}
 	& C_a
 	= \frac{\Phi_a}{\Phi_i}
 	= Q_a C_g
-	= \frac{\Phi_s + \Phi_t}{\vert \negthinspace \braket{\bm{S_i}} \negthinspace \vert},
+	= \frac{\Phi_s + \Phi_e}{\vert \negthinspace \braket{\bm{S_i}} \negthinspace \vert},
 	\cr
 	& C_s
 	= \frac{\Phi_s}{\vert \negthinspace \braket{\bm{S_i}} \negthinspace \vert}
 	= Q_s C_g
 	= \frac{\oint |\bm{E_1}(\bm{n_s})|^2 d\Omega}{|\bm{E_0}|^2},
 	\cr
-	& C_t
-	= \frac{\Phi_t}{\vert \negthinspace \braket{\bm{S_i}} \negthinspace \vert}
-	= Q_t C_g
+	& C_e
+	= \frac{\Phi_e}{\vert \negthinspace \braket{\bm{S_i}} \negthinspace \vert}
+	= Q_e C_g
 	= \frac{4 \pi}{k} \frac{\mathcal{Im} \big\lbrace \bm{E_0^{\*}} \cdot \bm{E_1}(\bm{n_i}) \big\rbrace}{|\bm{E_0}|^2}.
 \end{aligned}
 $$
@@ -3918,14 +3918,14 @@ The equations of the extinction theorem can be simplified if the particle posses
 To show this, express \\(\bm{E_1}\\) in terms of the scattering tensor \\(\mathcal{S_{ef}}\\) according to Equation 16.10:
 
 $$ \tag{16.40}
-	\Phi_t
+	\Phi_e
 	\approx \mu\_0^{-1} \frac{\eta}{c} \frac{2 \pi}{k} \mathcal{Im} \big\lbrace \bm{E_0^{\*}} \cdot \mathcal{S_{ef}}(\bm{n_i}, \bm{n_i}) \bm{E_0} \big\rbrace,
 $$
 
 or, alternatively, in terms of the scattering matrix \\(S\\), by setting \\(\theta=0\\) in Equation 15.17:
 
 $$ \tag{16.41}
-	\Phi_t
+	\Phi_e
 	\approx \mu\_0^{-1} \frac{\eta}{c} \frac{2 \pi}{k^2} \mathcal{Re} \big\lbrace \bm{E_0^{\*}} \cdot S(0, \phi, \omega) \bm{E_0} \big\rbrace.
 $$
 
@@ -3941,12 +3941,12 @@ Thus, we obtain the expressions
 
 $$ \tag{16.43}
 \begin{aligned}
-	& Q_t
+	& Q_e
 	= \frac{4 \pi}{k^2} \frac{\mathcal{Re} \big\lbrace s_0 (\bm{E_0^{\*}} \cdot \bm{E_0}) \big\rbrace}{|\bm{E_0}|^2 C_g}
 	= \frac{4 \pi}{k^2} \frac{\mathcal{Re} \lbrace s_0 \rbrace}{C_g},
 	\cr
-	& C_t
-	= Q_t C_g
+	& C_e
+	= Q_e C_g
 	= 4 \pi k^{-2} \mathcal{Re} \lbrace s_0 \rbrace,
 \end{aligned}
 $$
