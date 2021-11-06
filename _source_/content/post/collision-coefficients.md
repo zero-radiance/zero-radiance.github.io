@@ -1469,7 +1469,7 @@ Since the electric and the magnetic field are independent of a particular choice
 
 What is a good choice of \\(\chi\\)? That depends on the mathematical formulation of a particular problem. Usually, we want \\(\bm{A}\\) to have a certain desirable property that simplifies some equation.
 
-In general, a vector field \\(\bm{A}\\) can be represented as a sum of a divergence-free (*transverse*) component \\(\bm{A'}\\) and a curl-free (*longitudinal*) component \\(\bm{A''}\\):
+In general, a smooth vector field \\(\bm{A}\\) can be [decomposed](https://en.wikipedia.org/wiki/Helmholtz_decomposition) into a sum of a divergence-free ([solenoidal](https://en.wikipedia.org/wiki/Solenoidal_vector_field)) component \\(\bm{A'}\\) and a curl-free ([irrotational](https://en.wikipedia.org/wiki/Conservative_vector_field#Irrotational_vector_fields)) component \\(\bm{A''}\\):
 
 $$ \tag{8.8}
 \begin{aligned}
