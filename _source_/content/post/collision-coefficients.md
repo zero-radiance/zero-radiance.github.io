@@ -4019,7 +4019,7 @@ $$
 $$
 	\nabla \times \bm{a} = 0,
 	\quad \text{or} \quad
-	\bm{a} = \nabla b.
+	\bm{a} = \nabla g.
 $$
 
 Coupled with the [product rule](https://en.wikipedia.org/wiki/Vector_calculus_identities#Product_rule_for_multiplication_by_a_scalar), Equation (above) leads to a simpler definition of \\(\bm{M}\\):
@@ -4049,7 +4049,9 @@ $$
 Each of the three vectors, \\(\bm{L}\\), \\(\bm{M}\\), and \\(\bm{N}\\), can be used to form a vector Helmholtz equation. That is trivial to show this for \\(\bm{L}\\):
 
 $$
-	\big( \nabla^2 + k^2 \big) \bm{L} = \nabla \big( \nabla^2 + k^2 \big) \psi = 0,
+	\big( \nabla^2 + k^2 \big) \bm{L}
+	= \big( \nabla^2 + k^2 \big) \nabla \psi
+	= \nabla \big( \nabla^2 + k^2 \big) \psi = 0,
 $$
 
 For \\(\bm{M}\\), the corresponding expression is
@@ -4060,14 +4062,94 @@ $$
 	= \nabla \times \Big( \big( \nabla^2 + k^2 \big) \big( \psi \bm{a} \big) \Big).
 $$
 
-If \\(\bm{a}\\) is a constant vector, then it immediately follows that
+If \\(\bm{a}\\) is a *constant* vector, then it immediately follows that
 
 $$
 	\big( \nabla^2 + k^2 \big) \bm{M}
 	= \nabla \times \Big( \bm{a} \big( \nabla^2 + k^2 \big) \psi \Big) = 0.
 $$
 
-For an arbitrary \\(\bm{a}\\), in general, that is not the case. In spherical coordinates, a special choice of
+In general, for an arbitrary \\(\bm{a}\\), that is not the case.
+
+Assumption
+
+$$
+	\nabla \times (\psi \bm{a})
+	= \nabla \times (\psi \nabla g)
+	= \nabla \psi \times \nabla g
+	= \nabla \psi \times \bm{a}
+$$
+
+We want to find \\(\bm{a}\\) such that
+
+$$
+	\nabla^2 (\nabla \times (\psi \bm{a}))
+	= \nabla \times (\bm{a} \nabla^2 \psi)
+$$
+
+Left side
+
+$$
+	\nabla^2 (\nabla \times (\psi \bm{a}))
+	= -\nabla \times \nabla \times (\nabla \times (\psi \bm{a}))
+	= -\nabla \times \nabla \times (\nabla \psi \times \bm{a})
+$$
+
+Remove one curl
+
+$$
+	-\nabla \times (\nabla \psi \times \bm{a})
+	= \bm{a} \nabla^2 \psi
+$$
+
+or
+
+$$
+	\nabla \times (\bm{a} \times \bm{b})
+	= \bm{a} (\nabla \cdot \bm{b})
+$$
+
+We know that
+
+$$
+	\nabla^2 (\psi \bm{a})
+	= \bm{a} \nabla^2 \psi
+	+ 2 (\nabla \psi \cdot \nabla) \bm{a}
+	+ \psi \nabla^2 \bm{a}
+$$
+
+and
+
+$$
+	(\nabla \psi \cdot \nabla) \bm{r}
+	= \nabla \psi
+$$
+
+And curl of gradient is zero.
+
+Assume
+
+$$
+	\nabla^2 \bm{a} = 0
+$$
+
+Expand
+
+$$
+	(\nabla \psi \cdot \nabla) \bm{a}
+	= (\bm{b} \cdot \nabla) \bm{a}
+	= \frac{1}{2} \bigg( \nabla (\bm{a} \cdot \bm{b}) + \nabla \times (\bm{a} \times \bm{b}) - \bm{a} (\nabla \cdot \bm{b}) + \bm{b} (\nabla \cdot \bm{a}) \bigg)
+$$
+
+$$
+	\nabla (\bm{a} \cdot \bm{b})
+	= (\bm{a} \cdot \nabla) \bm{b}
+	+ (\bm{b} \cdot \nabla) \bm{a}
+$$
+
+---
+
+In spherical coordinates, a special choice of
 
 $$
 	\bm{a} = \bm{r} = r \bm{e_r}
