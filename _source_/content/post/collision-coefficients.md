@@ -4017,9 +4017,7 @@ $$
 \\(\bm{a}\\) is called the *pilot vector*. It is convenient to assume that it belongs to an [irrotational](https://en.wikipedia.org/wiki/Conservative_vector_field#Irrotational_vector_fields) vector field, such that
 
 $$
-	\nabla \times \bm{a} = 0,
-	\quad \text{or} \quad
-	\bm{a} = \nabla g.
+	\nabla \times \bm{a} = 0.
 $$
 
 Coupled with the [product rule](https://en.wikipedia.org/wiki/Vector_calculus_identities#Product_rule_for_multiplication_by_a_scalar), Equation (above) leads to a simpler definition of \\(\bm{M}\\):
@@ -4069,47 +4067,7 @@ $$
 	= \nabla \times \Big( \bm{a} \big( \nabla^2 + k^2 \big) \psi \Big) = 0.
 $$
 
-In general, for an arbitrary \\(\bm{a}\\), that is not the case.
-
-Assumption
-
-$$
-	\nabla \times (\psi \bm{a})
-	= \nabla \times (\psi \nabla g)
-	= \nabla \psi \times \nabla g
-	= \nabla \psi \times \bm{a}
-$$
-
-We want to find \\(\bm{a}\\) such that
-
-$$
-	\nabla^2 (\nabla \times (\psi \bm{a}))
-	= \nabla \times (\bm{a} \nabla^2 \psi)
-$$
-
-Left side
-
-$$
-	\nabla^2 (\nabla \times (\psi \bm{a}))
-	= -\nabla \times \nabla \times (\nabla \times (\psi \bm{a}))
-	= -\nabla \times \nabla \times (\nabla \psi \times \bm{a})
-$$
-
-Remove one curl
-
-$$
-	-\nabla \times (\nabla \psi \times \bm{a})
-	= \bm{a} \nabla^2 \psi
-$$
-
-or
-
-$$
-	\nabla \times (\bm{a} \times \bm{b})
-	= \bm{a} (\nabla \cdot \bm{b})
-$$
-
-We know that
+In general, for an arbitrary \\(\bm{a}\\), that is not the case. We may use the identity
 
 $$
 	\nabla^2 (\psi \bm{a})
@@ -4118,98 +4076,31 @@ $$
 	+ \psi \nabla^2 \bm{a}
 $$
 
-and
+to expand Equation Y:
 
 $$
-	(\nabla \psi \cdot \nabla) \bm{r}
-	= \nabla \psi
+	\big( \nabla^2 + k^2 \big) \bm{M}
+	= \nabla \times \big( \bm{a} \big( \nabla^2 + k^2 \big) \psi
+	+ 2 (\nabla \psi \cdot \nabla) \bm{a}
+	+ \psi \nabla^2 \bm{a} \big).
 $$
 
-And curl of gradient is zero.
-
-Assume
+Thus, \\(\bm{M}\\) satisfies a vector Helmholtz equation if
 
 $$
-	\nabla^2 \bm{a} = 0
+	\nabla \times \big(2 (\nabla \psi \cdot \nabla) \bm{a} + \psi \nabla^2 \bm{a} \big) = 0.
 $$
 
-Expand
+If we make a simple, but non-obvious choice of \\(\bm{a} = \bm{r}\\), it is easy to show that
 
 $$
-	(\nabla \psi \cdot \nabla) \bm{a}
-	= (\bm{b} \cdot \nabla) \bm{a}
-	= \frac{1}{2} \bigg( \nabla (\bm{a} \cdot \bm{b}) + \nabla \times (\bm{a} \times \bm{b}) - \bm{a} (\nabla \cdot \bm{b}) + \bm{b} (\nabla \cdot \bm{a}) \bigg)
+	\nabla^2 \bm{r} = 0,
+	\quad
+	\nabla \times \big((\nabla \psi \cdot \nabla) \bm{r} \big)
+	= \nabla \times \nabla \psi = 0,
 $$
 
-$$
-	\nabla (\bm{a} \cdot \bm{b})
-	= (\bm{a} \cdot \nabla) \bm{b}
-	+ (\bm{b} \cdot \nabla) \bm{a}
-$$
-
----
-
-In spherical coordinates, a special choice of
-
-$$
-	\bm{a} = \bm{r} = r \bm{e_r}
-$$
-
-exists, such that
-
-$$
-	\bm{M} = \bm{L} \times \bm{a} = \bm{L} \times (r \bm{e_r})
-$$
-
-is tangent to the sphere, which implies that
-
-$$
-	M_r = 0.
-$$
-
-Then, if we define
-
-$$
-	\psi' = \psi \bm{a} = \psi \bm{r} = \psi r \bm{e_r},
-$$
-
-it follows from the product rule that
-
-$$
-\begin{aligned}
-	& \frac{\partial \psi'}{\partial r}
-	= \frac{\partial \psi}{\partial r} \bm{r} + \psi \frac{\partial \bm{r}}{\partial r}
-	= r \frac{\partial \psi}{\partial r} \bm{e_r} + \psi \bm{e_r},
-	\cr
-	& \frac{\partial \psi'}{\partial \theta}
-	= \frac{\partial \psi}{\partial \theta} \bm{r} + \psi \frac{\partial \bm{r}}{\partial \theta}
-	= r \frac{\partial \psi}{\partial \theta} \bm{e_r} + r \psi \bm{e_{\theta}},
-	\cr
-	& \frac{\partial \psi'}{\partial \phi}
-	= \frac{\partial \psi}{\partial \phi} \bm{r} + \psi \frac{\partial \bm{r}}{\partial \phi}
-	= r \frac{\partial \psi}{\partial \phi} \bm{e_r} + r \psi \sin{\theta} \bm{e_{\phi}}.
-\end{aligned}
-$$
-
-Similarly,
-
-$$
-\begin{aligned}
-	& \frac{1}{r^2} \frac{\partial}{\partial r} \bigg( r^2 \frac{\partial \psi'}{\partial r} \bigg)
-	= \frac{1}{r^2} \frac{\partial}{\partial r} \bigg( r^3 \frac{\partial \psi}{\partial r} \bm{e_r} + r^2 \psi \bm{e_r} \bigg)
-	= \frac{\partial \psi}{\partial r} r \bm{e_r} + \psi \bm{e_r},
-	\cr
-	& \frac{\partial \psi'}{\partial \theta}
-	= \frac{\partial \psi}{\partial \theta} \bm{r} + \psi \frac{\partial \bm{r}}{\partial \theta}
-	= \frac{\partial \psi}{\partial \theta} r \bm{e_r} + \psi r \bm{e_{\theta}},
-	\cr
-	& \frac{\partial \psi'}{\partial \phi}
-	= \frac{\partial \psi}{\partial \phi} \bm{r} + \psi \frac{\partial \bm{r}}{\partial \phi}
-	= \frac{\partial \psi}{\partial \phi} r \bm{e_r} + \psi r \sin{\theta} \bm{e_{\phi}}.
-\end{aligned}
-$$
-
-
+which confirms our guess.
 
 ---
 
