@@ -4094,13 +4094,68 @@ $$
 If we make a simple, but non-obvious choice of \\(\bm{a} = \bm{r}\\), it is easy to show that
 
 $$
-	\nabla^2 \bm{r} = 0,
+	(\nabla \psi \cdot \nabla) \bm{r}
+	= \nabla \psi,
 	\quad
-	\nabla \times \big((\nabla \psi \cdot \nabla) \bm{r} \big)
-	= \nabla \times \nabla \psi = 0,
+	\nabla^2 \bm{r} = 0,
 $$
 
-which confirms our guess.
+which, coupled with Equation X, confirms that
+
+$$
+	\big( \nabla^2 + k^2 \big) \bm{M}
+	= \nabla \times \big( \bm{r} \big( \nabla^2 + k^2 \big) \psi
+	+ \nabla \psi \big) = 0.
+$$
+
+Since \\(\bm{N}\\) is defined in terms of \\(\bm{M}\\), it directly follows that
+
+$$
+	\big( \nabla^2 + k^2 \big) \bm{N}
+	= \frac{1}{k} \nabla \times \Big( \big( \nabla^2 + k^2 \big) \bm{M} \Big) = 0.
+$$
+
+Now, consider what happens when we take the curl of \\(\bm{N}\\):
+
+$$
+	\frac{1}{k} \nabla \times \bm{N}
+	= \frac{1}{k^2} \nabla \times \nabla \times \nabla \times (\psi \bm{a})
+	= -\frac{1}{k^2} \nabla \times \big( \nabla^2(\psi \bm{a}) \big).
+$$
+
+Since, according to Equation W,
+
+$$
+	\nabla^2 \psi = -k^2 \psi,
+$$
+
+for *constant* \\(\bm{a}\\), Equation Z is yet another definition of \\(\bm{M}\\):
+
+$$
+	\bm{M}
+	= \nabla \times (\psi \bm{a})
+	= \frac{1}{k} \nabla \times \bm{N}.
+$$
+
+In order to show that it's also the case for \\(\bm{a} = \bm{r}\\), we must substitute Equations N, M, and O:
+
+$$
+\begin{aligned}
+	\frac{1}{k} \nabla \times \bm{N}
+	&= -\frac{1}{k^2} \nabla \times \big( \nabla^2(\psi \bm{a}) \big)
+	\cr
+	&= -\frac{1}{k^2} \nabla \times \big(
+		\bm{a} \nabla^2 \psi
+		+ 2 (\nabla \psi \cdot \nabla) \bm{a}
+		+ \psi \nabla^2 \bm{a} \big)
+	\cr
+	&= -\frac{1}{k^2} \nabla \times \big(
+		\bm{r} \nabla^2 \psi
+		+ 2 \nabla \psi \big)
+	\cr
+	&= \nabla \times (\psi \bm{a}) = \bm{M}.
+\end{aligned}
+$$
 
 ---
 
