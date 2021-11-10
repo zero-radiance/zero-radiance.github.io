@@ -1521,7 +1521,7 @@ $$ \tag{8.13}
 	= -\frac{\rho(\bm{r}, t)}{\epsilon_0}.
 $$
 
-Equation 8.12.1 can be expanded using the [curl of curl](https://en.wikipedia.org/wiki/Vector_calculus_identities#Curl_of_curl) identity:
+Equation 8.12.1 can be expanded using the curl of curl identity given by Equation 6.6:
 
 $$ \tag{8.14}
 	\nabla \big( \nabla \cdot \bm{A}(\bm{r}, t) \big) - \nabla^2 \bm{A}(\bm{r}, t) + \frac{1}{c^2} \frac{\partial^2}{\partial t^2} \bm{A}(\bm{r}, t)
@@ -1637,7 +1637,7 @@ $$ \tag{9.11}
 	\big( \nabla^2 + k_0^2 \big) g_0(\bm{r} - \bm{r'}) \xi(\bm{r'}) = -\delta(\bm{r} - \bm{r'}) \xi(\bm{r'}).
 $$
 
-Note that the Laplacian depends on \\(\bm{r}\\) rather than \\(\bm{r'}\\). Keeping this in mind, take the volume integral
+Note that the Laplace operator depends on \\(\bm{r}\\) rather than \\(\bm{r'}\\). Keeping this in mind, take the volume integral
 
 $$ \tag{9.12}
 	\big( \nabla^2 + k_0^2 \big) \int\_{\mathbb{R^3}} g_0(\bm{r} - \bm{r'}) \xi(\bm{r'}) dV' = -\xi(\bm{r}),
@@ -3957,24 +3957,27 @@ which matches the results found using the scalar wave theory \[[4](#references) 
 
 ## Lorenz-Mie-Debye Theory
 
-The Lorenz-Mie-Debye theory presents a rigorous solution to the problem of [diffraction](https://en.wikipedia.org/wiki/Diffraction) by an isotropic conducting sphere, also known as [Mie scattering](https://en.wikipedia.org/wiki/Mie_scattering). The solution is exact in the sense that it does not employ any approximations, so it exhibits all classical and semi-classical (e.i. non-quantum) effects, and thus shows an excellent agreement with experimental data (see \[[16](#references) (ch. 5)\] for a list of references).
+The Lorenz-Mie-Debye theory presents a rigorous solution to the problem of [diffraction](https://en.wikipedia.org/wiki/Diffraction) by an isotropic conducting sphere, also known as [Mie scattering](https://en.wikipedia.org/wiki/Mie_scattering). The solution is exact in the sense that it does not employ any approximations, so it exhibits all classical and semi-classical (e.i. wave-mechanical) effects, and thus shows an excellent agreement with experimental data (see \[[16](#references) (ch. 5)\] for a list of references).
 
-The original theory was independently formulated by Lorenz (1890), Mie (1908), and Debye (1909). The derivation of the relevant formulas can be found in many popular textbooks, such as \[[4](#references) (ch. 9), [6](#references) (ch. 14.5)\]. A more mathematically elegant treatment of the problem was given by Hansen (1935, 1936, 1937). It has been presented in a recent open access paper \[[15](#references)\], which we use as the foundation of this section.
+The original theory was independently formulated by Lorenz (1890), Mie (1908), and Debye (1909). The derivation of the relevant formulas can be found in many popular textbooks, such as \[[4](#references) (ch. 9), [6](#references) (ch. 14.5)\]. A more mathematically elegant treatment of the problem was given by Hansen (1935, 1936, 1937). It has also been presented in a recent open access paper \[[15](#references)\], which we use as the foundation of this section.
 
 The general idea behind the solution is fairly simple. We treat electromagnetic scattering as a boundary value problem. If we expand the expression of the electromagnetic field in series of [vector spherical harmonics](https://en.wikipedia.org/wiki/Vector_spherical_harmonics), the boundary conditions take a particularly simple form, which can be harnessed to find the (initially unknown) coefficients of the series expansion.
 
-Consider the Maxwell equations in a linear, isotropic, homogeneous region of space given by Equation 6.2. We have seen that, after a number of transformations, they are reduced to a vector Helmholtz equation (6.10) shown below:
+Consider the Maxwell equations in a linear, isotropic, homogeneous region of space given by Equation 6.3. We have seen that, after a number of transformations, they are reduced to a vector Helmholtz equation shown below:
 
 $$ \tag{17.1}
 	\nabla^2 \bm{E}(\bm{r}, \omega) + k^2(\omega) \bm{E}(\bm{r}, \omega) = 0.
 $$
 
-We have previously solved this equation by writing it in Cartesian coordinates. That allowed us to separate a single vector equation into three scalar equations, which could then be solved individually. While this leads to a convenient (plane wave) representation of the incident field, it is a poor fit for the scattered field, since the latter takes the form of a spherical wave in the far zone. In addition, the geometry of the scatterer suggests that we should exploit the spherical symmetry of the problem in some way.
+We have previously solved this equation by explicitly writing it in Cartesian coordinates. That allowed us to separate a single vector equation into three scalar equations, which could then be solved individually. While this leads to a convenient (plane wave) representation of the incident field, it is a poor fit for the scattered field, since the latter takes the form of a spherical wave in the far zone. In addition, the geometry of the scatterer suggests that we should exploit the spherical symmetry of the problem in some way.
 
-Equation 17.1 can be written in yet another way. Recall (c.f. Equation 8.3) that we can express the electric field \\(\bm{E}\\) in terms of the vector potential \\(\bm{A}\\) and the scalar potential \\(\phi\\)
+Equation 17.1 can be written in yet another way. Recall (c.f. Equation 8.4) that we can express the electric field \\(\bm{E}\\) in terms of the vector potential \\(\bm{A}\\) and the scalar potential \\(\phi\\)
 
 $$ \tag{17.2}
-	\bm{E}(\bm{r}, t) + \frac{\partial}{\partial t} \bm{A}(\bm{r}, t) = -\nabla \phi(\bm{r}, t),
+\begin{aligned}
+	&\bm{E}(\bm{r}, t) = -\frac{\partial}{\partial t} \bm{A}(\bm{r}, t) - \nabla \phi(\bm{r}, t), &
+	&\bm{B}(\bm{r}, t) = \nabla \times \bm{A}(\bm{r}, t).
+\end{aligned}
 $$
 
 that admit the gauge transformation (c.f. Equations 8.5, 8.7)
@@ -3983,9 +3986,66 @@ $$ \tag{17.3}
 \begin{aligned}
 	\bm{A'}(\bm{r}, t) &= \bm{A}(\bm{r}, t) + \nabla \chi(\bm{r}, t)
 	\cr
-	\phi'(\bm{r}, t) &= \phi(\bm{r}, t) - \frac{\partial}{\partial t} \chi(\bm{r}, t).
+	\phi'(\bm{r}, t) &= \phi(\bm{r}, t) - \frac{\partial}{\partial t} \chi(\bm{r}, t),
 \end{aligned}
 $$
+
+where \\(\chi\\) is subject to the condition (c.f. Equation 8.9)
+
+$$ \tag{17.4}
+	\nabla \cdot \bm{A}(\bm{r}, t) = -\nabla^2 \chi(\bm{r}, t).
+$$
+
+Thus, we are free to choose the value of \\(\nabla \cdot \bm{A}\\) to suit our particular problem.
+
+In the frequency domain, Equation 9.19 takes the place of Equation 8.4 (and 17.2):
+
+$$ \tag{17.5}
+\begin{aligned}
+	&\bm{E}(\bm{r}, \omega) = i \omega \bm{A}(\bm{r}, \omega) - \nabla \phi(\bm{r}, \omega), &
+	&\bm{B}(\bm{r}, \omega) = \nabla \times \bm{A}(\bm{r}, \omega).
+\end{aligned}
+$$
+
+The form of Equation 8.9 (and 17.4) remains unchanged:
+
+$$ \tag{17.6}
+	\nabla \cdot \bm{A}(\bm{r}, \omega) = -\nabla^2 \chi(\bm{r}, \omega).
+$$
+
+Let us find the formulation in terms of the electromagnetic potential by substituting Equation 17.5 and 5.2.3 into 6.2.3-6.2.4:
+
+$$ \tag{17.7}
+\begin{aligned}
+	& \nabla \times \nabla \times \bm{A}(\bm{r}, \omega)
+	+ i \omega \mu(\omega) \varepsilon(\omega) \big( i \omega \bm{A}(\bm{r}, \omega) - \nabla \phi(\bm{r}, \omega) \big) = 0,
+	\cr
+	& \nabla \cdot \big( i \omega \bm{A}(\bm{r}, \omega) - \nabla \phi(\bm{r}, \omega) \big) = 0.
+\end{aligned}
+$$
+
+After simplification, using the definition of the Laplace operator, and applying the curl of curl identity given by Equation 6.6, we obtain
+
+$$ \tag{17.8}
+\begin{aligned}
+	& \nabla \big( \nabla \cdot \bm{A}(\bm{r}, \omega) \big) - \nabla^2 \bm{A}(\bm{r}, \omega)
+	+ i \omega \mu(\omega) \varepsilon(\omega) \big( i \omega \bm{A}(\bm{r}, \omega) - \nabla \phi(\bm{r}, \omega) \big) = 0,
+	\cr
+	& \nabla \cdot \bm{A}(\bm{r}, \omega) = \frac{1}{i \omega} \nabla^2 \phi(\bm{r}, \omega).
+\end{aligned}
+$$
+
+These two equations may be combined, and the Laplace operator and the gradient may be [interchanged](https://en.wikipedia.org/wiki/Vector_calculus_identities#Third_derivatives):
+
+$$ \tag{17.9}
+\begin{aligned}
+	& \nabla^2 \big( i \omega \bm{A}(\bm{r}, \omega) - \nabla \phi(\bm{r}, \omega) \big)
+	+ \omega^2 \mu(\omega) \varepsilon(\omega) \big( i \omega \bm{A}(\bm{r}, \omega) - \nabla \phi(\bm{r}, \omega) \big) = 0,
+	\cr
+	& \nabla \cdot \bm{A}(\bm{r}, \omega) = \frac{1}{i \omega} \nabla^2 \phi(\bm{r}, \omega).
+\end{aligned}
+$$
+
 
 ...
 
