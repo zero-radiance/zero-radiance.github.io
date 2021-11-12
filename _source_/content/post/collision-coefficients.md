@@ -1724,7 +1724,7 @@ You may recall that we have used the Lorenz condition to relate the potentials. 
 
 $$ \tag{9.20}
 \begin{aligned}
-	\phi(\bm{r}, \omega) = \frac{c^2}{i \omega} \nabla \cdot \bm{A}(\bm{r}, \omega).
+	\nabla \cdot \bm{A}(\bm{r}, \omega) = \frac{i \omega}{c^2} \phi(\bm{r}, \omega).
 \end{aligned}
 $$
 
@@ -3966,7 +3966,7 @@ The general idea behind the solution is fairly simple. We treat electromagnetic 
 Consider the Maxwell equations in a linear, isotropic, homogeneous region of space given by Equation 6.3. We have seen that, after a number of transformations, they are reduced to a vector Helmholtz equation shown below:
 
 $$ \tag{17.1}
-	\nabla^2 \bm{E}(\bm{r}, \omega) + k^2(\omega) \bm{E}(\bm{r}, \omega) = 0.
+	\big( \nabla^2 + k^2(\omega) \big) \bm{E}(\bm{r}, \omega) = 0.
 $$
 
 We have previously solved this equation by explicitly writing it in Cartesian coordinates. That allowed us to separate a single vector equation into three scalar equations, which could then be solved individually. While this leads to a convenient (plane wave) representation of the incident field, it is a poor fit for the scattered field, since the latter takes the form of a spherical wave in the far zone. In addition, the geometry of the scatterer suggests that we should exploit the spherical symmetry of the problem in some way.
@@ -4047,7 +4047,48 @@ $$ \tag{17.9}
 $$
 
 
-...
+Note that, per Equation 17.6, \\(\nabla \cdot \bm{A}\\) is arbitrary. We may take inspiration from the free-space condition of Equation 9.20, and assume that
+
+$$ \tag{17.10}
+	\nabla \cdot \bm{A}(\bm{r}, \omega) = i \omega \mu(\omega) \varepsilon(\omega) \phi(\bm{r}, \omega).
+$$
+
+From Equation 9.21, it immediately follows that
+
+$$ \tag{17.11}
+	\frac{1}{i \omega} \nabla^2 \phi(\bm{r}, \omega)
+	= i \omega \mu(\omega) \varepsilon(\omega) \phi(\bm{r}, \omega),
+$$
+
+which implies that \\(\phi\\) satisfies the scalar Helmholtz equation:
+
+$$ \tag{17.12}
+	\big( \nabla^2 + k^2(\omega) \big) \phi(\bm{r}, \omega) = 0,
+$$
+
+where \\(k\\) is the complex wavenumber:
+
+$$ \tag{17.13}
+	k(\omega) = \omega \sqrt{\varepsilon(\omega) \mu(\omega)}.
+$$
+
+Similarly, substitution into Equation 17.9.1 shows that \\(\bm{A}\\) satisfies a vector Helmholtz equation:
+
+$$ \tag{17.14}
+	\big( \nabla^2 + k^2(\omega) \big) \bm{A}(\bm{r}, \omega) = 0.
+$$
+
+Since the Helmholtz equation is both homogeneous and linear, it has multiple special solutions that can be combined into a single general solution:
+
+$$ \tag{17.12}
+	\phi = \sum_n c_n \psi_n,
+$$
+
+where each special solution \\(\psi_n\\) satisfies the same equation
+
+$$
+	\big( \nabla^2 + k^2 \big) \psi_n = 0.
+$$
 
 This leads to the definition of vector spherical harmonics:
 
