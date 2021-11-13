@@ -4046,7 +4046,6 @@ $$ \tag{17.9}
 \end{aligned}
 $$
 
-
 Note that, per Equation 17.6, \\(\nabla \cdot \bm{A}\\) is arbitrary. We may take inspiration from the free-space condition of Equation 9.20, and assume that
 
 $$ \tag{17.10}
@@ -4078,17 +4077,64 @@ $$ \tag{17.14}
 	\big( \nabla^2 + k^2(\omega) \big) \bm{A}(\bm{r}, \omega) = 0.
 $$
 
-Since the Helmholtz equation is both homogeneous and linear, it has multiple special solutions that can be combined into a single general solution:
+Since the Helmholtz equation is both homogeneous and linear, it has multiple special solutions that can be combined into a single general solution in the form of a series expansion:
 
-$$ \tag{17.12}
-	\phi = \sum_n c_n \psi_n,
+$$ \tag{17.15}
+	\phi(\bm{r}, \omega) = -\sum_n c_n(\omega) \psi_n(\bm{r}, \omega),
 $$
 
 where each special solution \\(\psi_n\\) satisfies the same equation
 
+$$ \tag{17.16}
+	\big( \nabla^2 + k^2(\omega) \big) \psi_n(\bm{r}, \omega) = 0.
 $$
-	\big( \nabla^2 + k^2 \big) \psi_n = 0.
+
+Similarly, in 3-dimensional space, the vector potential \\(\bm{A}\\) can be represented by series of 3 linearly independent vectors \\(\bm{L_n}, \bm{M_n}, \bm{N_n}\\):
+
+$$ \tag{17.17}
+\begin{aligned}
+	\bm{A}(\bm{r}, \omega)
+	&= \frac{i}{w} \sum_n \bm{A_n}(\bm{r}, \omega)
+	\cr
+	&= \frac{i}{w} \sum_n \big( a_n(\omega) \bm{M_n}(\bm{r}, \omega) + b_n(\omega) \bm{N_n}(\bm{r}, \omega) + c_n(\omega) \bm{L_n}(\bm{r}, \omega) \big).
+\end{aligned}
 $$
+
+How should we define these 3 vectors? According to the Helmholtz decomposition (Equation 8.8), any vector \\(\bm{A}\\) can be represented by a sum
+
+$$ \tag{17.18}
+\begin{aligned}
+	&\bm{A} = \bm{A'} + \bm{A''}, &
+	&\nabla \cdot  \bm{A' } = 0, &
+	&\nabla \times \bm{A''} = 0. &
+\end{aligned}
+$$
+
+From Equations 17.9.2, 17.15, and 17.17, it follows that
+
+$$ \tag{17.19}
+	\nabla \cdot \bm{A_n} = \nabla \cdot (c_n \nabla \psi_n).
+$$
+
+In other words,
+
+$$ \tag{17.20}
+\begin{aligned}
+	& \bm{L_n} = \nabla \psi_n,  &
+	& \nabla \cdot \bm{M_n} = 0, &
+	& \nabla \cdot \bm{N_n} = 0. &
+\end{aligned}
+$$
+
+Furthermore,
+
+$$ \tag{17.21}
+	\nabla \times \bm{A_n} = \nabla \times (a_n \bm{M_n} + b_n \bm{N_n}),
+	\quad
+	\nabla \times \bm{L_n} = 0.
+$$
+
+---
 
 This leads to the definition of vector spherical harmonics:
 
