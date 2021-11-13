@@ -3955,7 +3955,7 @@ $$
 
 which matches the results found using the scalar wave theory \[[4](#references) (ch. 4.21, 4.42)\]. Intuitively, this makes sense, since the particle looks the same regardless of the choice of the plane of reference (assuming the latter contains the direction of incidence), and the sensor (that only measures power) is not sensitive to the orientation of incoming light.
 
-## Lorenz-Mie-Debye Theory
+### Lorenz-Mie-Debye Theory
 
 The Lorenz-Mie-Debye theory presents a rigorous solution to the problem of [diffraction](https://en.wikipedia.org/wiki/Diffraction) by an isotropic conducting sphere, also known as [Mie scattering](https://en.wikipedia.org/wiki/Mie_scattering). The solution is exact in the sense that it does not employ any approximations, so it exhibits all classical and semi-classical (e.i. wave-mechanical) effects, and thus shows an excellent agreement with experimental data (see \[[16](#references) (ch. 5)\] for a list of references).
 
@@ -4133,6 +4133,20 @@ $$ \tag{17.21}
 	\quad
 	\nabla \times \bm{L_n} = 0.
 $$
+
+Since divergence of curl is zero, Equation 17.20 suggests that both \\(\bm{M_n}\\) and \\(\bm{N_n}\\) should be a curl of something. In addition, both should be a function of \\(\psi_n\\). Since \\(\psi_n\\) is a scalar, its curl is undefined; a simple way to fix that is to introduce an additional vector \\(\bm{a}\\):
+
+$$ \tag{17.22}
+	\bm{M_n} = \nabla \times (\psi_n \bm{a}).
+$$
+
+Finally, a curl of a non-zero vector is linearly independent from it. Thus, we choose
+
+$$ \tag{17.23}
+	\bm{N_n} = \frac{1}{k} \nabla \times \bm{M_n},
+$$
+
+where the \\(1/k\\) constant is chosen for further convenience.
 
 ---
 
