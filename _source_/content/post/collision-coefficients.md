@@ -3961,9 +3961,9 @@ The Lorenz-Mie-Debye theory presents a rigorous solution to the problem of [diff
 
 The original theory was independently formulated by Lorenz (1890), Mie (1908), and Debye (1909). The derivation of the relevant formulas can be found in many popular textbooks, such as \[[4](#references) (ch. 9), [6](#references) (ch. 14.5)\]. A more mathematically elegant treatment of the problem was given by Hansen (1935, 1936, 1937). It has also been presented in a recent open access paper \[[15](#references)\], which we use as the foundation of this section.
 
-The general idea behind the solution is fairly simple. We treat electromagnetic scattering as a boundary value problem. If we expand the expression of the electromagnetic field in series of [vector spherical harmonics](https://en.wikipedia.org/wiki/Vector_spherical_harmonics), the boundary conditions take a particularly simple form, which can be harnessed to find the (initially unknown) coefficients of the series expansion.
+The general idea behind the solution is fairly simple. We treat electromagnetic scattering as a boundary value problem. If we expand the expression of the electromagnetic field in series of vector spherical harmonics, the boundary conditions take a particularly simple form, which can be harnessed to find the (initially unknown) coefficients of the series expansion.
 
-Consider the Maxwell equations in a linear, isotropic, homogeneous region of space given by Equation 6.3. We have seen that, after a number of transformations, they are reduced to a vector Helmholtz equation shown below:
+Consider the Maxwell equations in a linear, isotropic, homogeneous region of space given by Equation 6.3. We have seen that, after a number of transformations, they are reduced to a *vector* Helmholtz equation
 
 $$ \tag{17.1}
 	\big( \nabla^2 + k^2(\omega) \big) \bm{E}(\bm{r}, \omega) = 0.
@@ -3971,51 +3971,20 @@ $$
 
 We have previously solved this equation by explicitly writing it in Cartesian coordinates. That allowed us to separate a single vector equation into three scalar equations, which could then be solved individually. While this leads to a convenient (plane wave) representation of the incident field, it is a poor fit for the scattered field, since the latter takes the form of a spherical wave in the far zone. In addition, the geometry of the scatterer suggests that we should exploit the spherical symmetry of the problem in some way.
 
-Equation 17.1 can be written in yet another way. Recall (c.f. Equation 8.4) that we can express the electric field \\(\bm{E}\\) in terms of the vector potential \\(\bm{A}\\) and the scalar potential \\(\phi\\)
+Equation 17.1 can be written in yet another way. Recall (c.f. Equation 9.19) that we can express the electric field \\(\bm{E}\\) in terms of the vector potential \\(\bm{A}\\) and the scalar potential \\(\phi\\)
 
 $$ \tag{17.2}
-\begin{aligned}
-	&\bm{E}(\bm{r}, t) = -\frac{\partial}{\partial t} \bm{A}(\bm{r}, t) - \nabla \phi(\bm{r}, t), &
-	&\bm{B}(\bm{r}, t) = \nabla \times \bm{A}(\bm{r}, t).
-\end{aligned}
-$$
-
-that admit the gauge transformation (c.f. Equations 8.5, 8.7)
-
-$$ \tag{17.3}
-\begin{aligned}
-	\bm{A'}(\bm{r}, t) &= \bm{A}(\bm{r}, t) + \nabla \chi(\bm{r}, t)
-	\cr
-	\phi'(\bm{r}, t) &= \phi(\bm{r}, t) - \frac{\partial}{\partial t} \chi(\bm{r}, t),
-\end{aligned}
-$$
-
-where \\(\chi\\) is subject to the condition (c.f. Equation 8.9)
-
-$$ \tag{17.4}
-	\nabla \cdot \bm{A}(\bm{r}, t) = -\nabla^2 \chi(\bm{r}, t).
-$$
-
-Thus, we are free to choose the value of \\(\nabla \cdot \bm{A}\\) to suit our particular problem.
-
-In the frequency domain, Equation 9.19 takes the place of Equation 8.4 (and 17.2):
-
-$$ \tag{17.5}
 \begin{aligned}
 	&\bm{E}(\bm{r}, \omega) = i \omega \bm{A}(\bm{r}, \omega) - \nabla \phi(\bm{r}, \omega), &
 	&\bm{B}(\bm{r}, \omega) = \nabla \times \bm{A}(\bm{r}, \omega).
 \end{aligned}
 $$
 
-The form of Equation 8.9 (and 17.4) remains unchanged:
+Note that we are free to choose the value of \\(\nabla \cdot \bm{A}\\) to suit our particular problem.
 
-$$ \tag{17.6}
-	\nabla \cdot \bm{A}(\bm{r}, \omega) = -\nabla^2 \chi(\bm{r}, \omega).
-$$
+Let us find the formulation in terms of the electromagnetic potential by substituting Equation 17.2 and 5.2.3 into the Maxwell equations 6.2.3-6.2.4:
 
-Let us find the formulation in terms of the electromagnetic potential by substituting Equation 17.5 and 5.2.3 into 6.2.3-6.2.4:
-
-$$ \tag{17.7}
+$$ \tag{17.3}
 \begin{aligned}
 	& \nabla \times \nabla \times \bm{A}(\bm{r}, \omega)
 	+ i \omega \mu(\omega) \varepsilon(\omega) \big( i \omega \bm{A}(\bm{r}, \omega) - \nabla \phi(\bm{r}, \omega) \big) = 0,
@@ -4026,7 +3995,7 @@ $$
 
 After simplification, using the definition of the Laplace operator, and applying the curl of curl identity given by Equation 6.6, we obtain
 
-$$ \tag{17.8}
+$$ \tag{17.4}
 \begin{aligned}
 	& \nabla \big( \nabla \cdot \bm{A}(\bm{r}, \omega) \big) - \nabla^2 \bm{A}(\bm{r}, \omega)
 	+ i \omega \mu(\omega) \varepsilon(\omega) \big( i \omega \bm{A}(\bm{r}, \omega) - \nabla \phi(\bm{r}, \omega) \big) = 0,
@@ -4037,7 +4006,7 @@ $$
 
 These two equations may be combined, and the Laplace operator and the gradient may be [interchanged](https://en.wikipedia.org/wiki/Vector_calculus_identities#Third_derivatives):
 
-$$ \tag{17.9}
+$$ \tag{17.5}
 \begin{aligned}
 	& \nabla^2 \big( i \omega \bm{A}(\bm{r}, \omega) - \nabla \phi(\bm{r}, \omega) \big)
 	+ \omega^2 \mu(\omega) \varepsilon(\omega) \big( i \omega \bm{A}(\bm{r}, \omega) - \nabla \phi(\bm{r}, \omega) \big) = 0,
@@ -4046,52 +4015,52 @@ $$ \tag{17.9}
 \end{aligned}
 $$
 
-Note that, per Equation 17.6, \\(\nabla \cdot \bm{A}\\) is arbitrary. We may take inspiration from the free-space condition of Equation 9.20, and assume that
+Since the value of \\(\nabla \cdot \bm{A}\\) is arbitrary, we may take inspiration from the free-space condition of Equation 9.20, and assume that
 
-$$ \tag{17.10}
+$$ \tag{17.6}
 	\nabla \cdot \bm{A}(\bm{r}, \omega) = i \omega \mu(\omega) \varepsilon(\omega) \phi(\bm{r}, \omega).
 $$
 
 From Equation 9.21, it immediately follows that
 
-$$ \tag{17.11}
+$$ \tag{17.7}
 	\frac{1}{i \omega} \nabla^2 \phi(\bm{r}, \omega)
 	= i \omega \mu(\omega) \varepsilon(\omega) \phi(\bm{r}, \omega),
 $$
 
-which implies that \\(\phi\\) satisfies the scalar Helmholtz equation:
+which implies that \\(\phi\\) satisfies the scalar Helmholtz equation
 
-$$ \tag{17.12}
+$$ \tag{17.8}
 	\big( \nabla^2 + k^2(\omega) \big) \phi(\bm{r}, \omega) = 0,
 $$
 
 where \\(k\\) is the complex wavenumber:
 
-$$ \tag{17.13}
+$$ \tag{17.9}
 	k(\omega) = \omega \sqrt{\varepsilon(\omega) \mu(\omega)}.
 $$
 
-Similarly, substitution into Equation 17.9.1 shows that \\(\bm{A}\\) satisfies a vector Helmholtz equation:
+Similarly, substitution into Equation 17.5.1 shows that \\(\bm{A}\\) satisfies the vector Helmholtz equation
 
-$$ \tag{17.14}
+$$ \tag{17.10}
 	\big( \nabla^2 + k^2(\omega) \big) \bm{A}(\bm{r}, \omega) = 0.
 $$
 
-Since the Helmholtz equation is both homogeneous and linear, it has multiple special solutions that can be combined into a single general solution in the form of a series expansion:
+Since the Helmholtz equation is both homogeneous and linear, it has multiple special solutions that can be combined into a single general solution according to the superposition principle:
 
-$$ \tag{17.15}
+$$ \tag{17.11}
 	\phi(\bm{r}, \omega) = -\sum_n c_n(\omega) \psi_n(\bm{r}, \omega),
 $$
 
-where each special solution \\(\psi_n\\) satisfies the same equation
+with each special solution \\(\psi_n\\) satisfying the same equation
 
-$$ \tag{17.16}
+$$ \tag{17.12}
 	\big( \nabla^2 + k^2(\omega) \big) \psi_n(\bm{r}, \omega) = 0.
 $$
 
-Similarly, in 3-dimensional space, the vector potential \\(\bm{A}\\) can be represented by series of 3 linearly independent vectors \\(\bm{L_n}, \bm{M_n}, \bm{N_n}\\):
+Similarly, in 3-dimensional space, the vector potential \\(\bm{A_n}\\) can be represented by a sum of 3 linearly independent vectors \\(\bm{L_n}, \bm{M_n}, \bm{N_n}\\):
 
-$$ \tag{17.17}
+$$ \tag{17.13}
 \begin{aligned}
 	\bm{A}(\bm{r}, \omega)
 	&= \frac{i}{w} \sum_n \bm{A_n}(\bm{r}, \omega)
@@ -4100,9 +4069,9 @@ $$ \tag{17.17}
 \end{aligned}
 $$
 
-How should we define these 3 vectors? According to the Helmholtz decomposition (Equation 8.8), any vector \\(\bm{A}\\) can be represented by a sum
+How should we define these 3 vectors? According to the Helmholtz decomposition (Equation 8.8), any sufficiently smooth vector field \\(\bm{A}\\) can be represented by a sum
 
-$$ \tag{17.18}
+$$ \tag{17.14}
 \begin{aligned}
 	&\bm{A} = \bm{A'} + \bm{A''}, &
 	&\nabla \cdot  \bm{A' } = 0, &
@@ -4110,212 +4079,192 @@ $$ \tag{17.18}
 \end{aligned}
 $$
 
-From Equations 17.9.2, 17.15, and 17.17, it follows that
+Let us choose \\(\bm{L_n}\\) as [irrotational](https://en.wikipedia.org/wiki/Conservative_vector_field#Irrotational_vector_fields), and \\(\bm{M_n}\\) and \\(\bm{N_n}\\) as [solenoidal](https://en.wikipedia.org/wiki/Solenoidal_vector_field):
 
-$$ \tag{17.19}
+$$ \tag{17.15}
+	\bm{A_n'} = a_n \bm{M_n} + b_n \bm{N_n},
+	\quad
+	\bm{A_n''} = c_n \bm{L_n}.
+$$
+
+From Equations 17.5.2, 17.11, and 17.13, it follows that
+
+$$ \tag{17.16}
 	\nabla \cdot \bm{A_n} = \nabla \cdot (c_n \nabla \psi_n).
 $$
 
 In other words,
 
-$$ \tag{17.20}
-\begin{aligned}
-	& \bm{L_n} = \nabla \psi_n,  &
-	& \nabla \cdot \bm{M_n} = 0, &
-	& \nabla \cdot \bm{N_n} = 0. &
-\end{aligned}
-$$
-
-Furthermore,
-
-$$ \tag{17.21}
-	\nabla \times \bm{A_n} = \nabla \times (a_n \bm{M_n} + b_n \bm{N_n}),
+$$ \tag{17.17}
+	\bm{L_n} = \nabla \psi_n,
 	\quad
 	\nabla \times \bm{L_n} = 0.
 $$
 
-Since divergence of curl is zero, Equation 17.20 suggests that both \\(\bm{M_n}\\) and \\(\bm{N_n}\\) should be a curl of something. In addition, both should be a function of \\(\psi_n\\). Since \\(\psi_n\\) is a scalar, its curl is undefined; a simple way to fix that is to introduce an additional vector \\(\bm{a}\\):
+Since divergence of curl is zero, Equations 17.14.2 and 17.15.1 suggests that both \\(\bm{M_n}\\) and \\(\bm{N_n}\\) should be a curl of something. In addition, both should depend on \\(\psi_n\\). Since \\(\psi_n\\) is a scalar, its curl is undefined; a simple way to fix that is to introduce an additional vector \\(\bm{a}\\):
 
-$$ \tag{17.22}
-	\bm{M_n} = \nabla \times (\psi_n \bm{a}).
+$$ \tag{17.18}
+	\bm{M_n} = \nabla \times (\psi_n \bm{a}),
+	\quad
+	\nabla \cdot \bm{M_n} = 0.
 $$
 
-Finally, a curl of a non-zero vector is linearly independent from it. Thus, we choose
+Finally, the curl of a non-zero vector field is linearly independent from the source field. Thus, we may choose
 
-$$ \tag{17.23}
-	\bm{N_n} = \frac{1}{k} \nabla \times \bm{M_n},
+$$ \tag{17.19}
+	\bm{N_n} = \frac{1}{k} \nabla \times \bm{N_n},
+	\quad
+	\nabla \cdot \bm{N_n} = 0,
 $$
 
 where the \\(1/k\\) constant is chosen for further convenience.
 
----
+The three series of vectors \\(\bm{L_n}, \bm{M_n}, \bm{N_n}\\) are called [vector spherical harmonics](https://en.wikipedia.org/wiki/Vector_spherical_harmonics). \\(\bm{a}\\) is called the *pilot vector*. It is convenient to assume that it belongs to an [irrotational](https://en.wikipedia.org/wiki/Conservative_vector_field#Irrotational_vector_fields) vector field, such that
 
-This leads to the definition of vector spherical harmonics:
-
+$$ \tag{17.20}
+	\nabla \times \bm{a} = 0.
 $$
-	\bm{L} = \nabla \psi,
+
+Coupled with the [product rule](https://en.wikipedia.org/wiki/Vector_calculus_identities#Product_rule_for_multiplication_by_a_scalar), Equation 17.20 leads to a simpler definition of \\(\bm{M_n}\\):
+
+$$ \tag{17.21}
+	\bm{M_n} = \psi (\nabla \times \bm{a}) + (\nabla \psi_n) \times \bm{a} = \bm{L_n} \times \bm{a}.
+$$
+
+If \\(\bm{a}\\) is a real vector, this leads to a simple geometrical interpretation in terms of orthogonal vectors:
+
+$$ \tag{17.22}
+	\bm{M_n} \cdot \bm{a} = 0,
+	\quad \text{or} \quad
+	\bm{L_n} \cdot \bm{M_n} = 0.
+$$
+
+Each of the three vectors, \\(\bm{L_n}\\), \\(\bm{M_n}\\), and \\(\bm{N_n}\\), can be used to form a vector Helmholtz equation. That is trivial to show this for \\(\bm{L_n}\\):
+
+$$ \tag{17.23}
+	\big( \nabla^2 + k^2 \big) \bm{L_n}
+	= \big( \nabla^2 + k^2 \big) \nabla \psi_n
+	= \nabla \big( \nabla^2 + k^2 \big) \psi_n = 0,
+$$
+
+For \\(\bm{M_n}\\), the corresponding expression is
+
+$$ \tag{17.24}
+	\big( \nabla^2 + k^2 \big) \bm{M_n}
+	= \big( \nabla^2 + k^2 \big) \big( \nabla \times (\psi_n \bm{a}) \big)
+	= \nabla \times \Big( \big( \nabla^2 + k^2 \big) \big( \psi_n \bm{a} \big) \Big).
+$$
+
+If \\(\bm{a}\\) is a *constant* vector, from Equation 17.12, it immediately follows that
+
+$$ \tag{17.25}
+	\big( \nabla^2 + k^2 \big) \bm{M_n}
+	= \nabla \times \Big( \bm{a} \big( \nabla^2 + k^2 \big) \psi_n \Big) = 0.
+$$
+
+In general, for an arbitrary \\(\bm{a}\\), that is not the case. We may use the identity
+
+$$ \tag{17.26}
+	\nabla^2 (\psi_n \bm{a})
+	= \bm{a} \nabla^2 \psi_n
+	+ 2 (\nabla \psi_n \cdot \nabla) \bm{a}
+	+ \psi_n \nabla^2 \bm{a}
+$$
+
+to expand Equation 17.24:
+
+$$ \tag{17.27}
+	\big( \nabla^2 + k^2 \big) \bm{M_n}
+	= \nabla \times \big( \bm{a} \big( \nabla^2 + k^2 \big) \psi_n
+	+ 2 (\nabla \psi_n \cdot \nabla) \bm{a}
+	+ \psi_n \nabla^2 \bm{a} \big).
+$$
+
+Thus, \\(\bm{M_n}\\) satisfies a vector Helmholtz equation if
+
+$$ \tag{17.28}
+	\nabla \times \big(2 (\nabla \psi_n \cdot \nabla) \bm{a} + \psi_n \nabla^2 \bm{a} \big) = 0.
+$$
+
+If we make a simple, but non-obvious choice of \\(\bm{a} = \bm{r}\\), it is easy to show that
+
+$$ \tag{17.29}
+	(\nabla \psi_n \cdot \nabla) \bm{r}
+	= \nabla \psi_n,
 	\quad
-	\bm{M} = \nabla \times (\psi \bm{a}),
-	\quad
-	\bm{N} = \frac{1}{k} \nabla \times \bm{M},
+	\nabla^2 \bm{r} = 0,
 $$
 
-where \\(\psi\\) satisfies the scalar Helmholtz equation
+which confirms that
+
+$$ \tag{17.30}
+	\big( \nabla^2 + k^2 \big) \bm{M_n}
+	= \nabla \times \big( \bm{r} \big( \nabla^2 + k^2 \big) \psi_n
+	+ \nabla \psi_n \big) = 0.
+$$
+
+Since \\(\bm{N_n}\\) is defined in terms of \\(\bm{M_n}\\), it directly follows that
+
+$$ \tag{17.31}
+	\big( \nabla^2 + k^2 \big) \bm{N_n}
+	= \frac{1}{k} \nabla \times \Big( \big( \nabla^2 + k^2 \big) \bm{M_n} \Big) = 0.
+$$
+
+Now, consider what happens when we take the curl of \\(\bm{N_n}\\):
+
+$$ \tag{17.32}
+	\frac{1}{k} \nabla \times \bm{N_n}
+	= \frac{1}{k^2} \nabla \times \nabla \times \nabla \times (\psi_n \bm{a})
+	= -\frac{1}{k^2} \nabla \times \big( \nabla^2(\psi_n \bm{a}) \big).
+$$
+
+Since, according to Equation 17.12,
+
+$$ \tag{17.33}
+	\nabla^2 \psi_n = -k^2 \psi_n,
+$$
+
+for *constant* \\(\bm{a}\\), Equation 17.32 leads to yet another definition of \\(\bm{M_n}\\):
+
+$$ \tag{17.34}
+	\bm{M_n}
+	= \nabla \times (\psi_n \bm{a})
+	= \frac{1}{k} \nabla \times \bm{N_n}.
+$$
+
+In order to show that it is also the case for \\(\bm{a} = \bm{r}\\), we must substitute Equations 17.26,  17.29, and 17.33 into 17.32:
+
+$$ \tag{17.35}
+\begin{aligned}
+	\frac{1}{k} \nabla \times \bm{N_n}
+	&= -\frac{1}{k^2} \nabla \times \big( \nabla^2(\psi_n \bm{a}) \big)
+	\cr
+	&= -\frac{1}{k^2} \nabla \times \big(
+		\bm{a} \nabla^2 \psi_n
+		+ 2 (\nabla \psi_n \cdot \nabla) \bm{a}
+		+ \psi_n \nabla^2 \bm{a} \big)
+	\cr
+	&= -\frac{1}{k^2} \nabla \times \big(
+		\bm{r} \nabla^2 \psi_n
+		+ 2 \nabla \psi_n \big)
+	\cr
+	&= \nabla \times (\psi_n \bm{a}) = \bm{M_n}.
+\end{aligned}
+$$
+
+\\(\psi_n\\) satisfies the scalar Helmholtz equation
 
 $$
-	\big( \nabla^2 + k^2 \big) \psi = 0,
+	\big( \nabla^2 + k^2 \big) \psi_n = 0,
 $$
 
 which, in [spherical coordinates](https://en.wikipedia.org/wiki/Laplace_operator#Three_dimensions), takes the form
 
 $$
-	\frac{1}{r^2} \frac{\partial}{\partial r} \bigg( r^2 \frac{\partial \psi}{\partial r} \bigg)
-	+ \frac{1}{r^2 \sin{\theta}} \frac{\partial}{\partial \theta} \bigg( \sin{\theta} \frac{\partial \psi}{\partial \theta} \bigg)
-	+ \frac{1}{r^2 \sin^2{\theta}} \frac{\partial^2 \psi}{\partial \phi^2}
-	+ k^2 \psi = 0.
-$$
-
-\\(\bm{a}\\) is called the *pilot vector*. It is convenient to assume that it belongs to an [irrotational](https://en.wikipedia.org/wiki/Conservative_vector_field#Irrotational_vector_fields) vector field, such that
-
-$$
-	\nabla \times \bm{a} = 0.
-$$
-
-Coupled with the [product rule](https://en.wikipedia.org/wiki/Vector_calculus_identities#Product_rule_for_multiplication_by_a_scalar), Equation (above) leads to a simpler definition of \\(\bm{M}\\):
-
-$$
-	\bm{M} = \psi (\nabla \times \bm{a}) + (\nabla \psi) \times \bm{a} = \bm{L} \times \bm{a}.
-$$
-
-If \\(\bm{a}\\) is a real vector, this leads to a geometrical interpretation in terms of orthogonal vectors:
-
-$$
-	\bm{M} \cdot \bm{a} = 0,
-	\quad \text{or} \quad
-	\bm{M} \cdot \bm{L} = 0.
-$$
-
-Since both [curl of gradient](https://en.wikipedia.org/wiki/Vector_calculus_identities#Curl_of_gradient_is_zero) and [divergence of curl](https://en.wikipedia.org/wiki/Vector_calculus_identities#Divergence_of_curl_is_zero) are zero, \\(\bm{L}\\) is irrotational, and \\(\bm{M}\\) and \\(\bm{N}\\) are [solenoidal](https://en.wikipedia.org/wiki/Solenoidal_vector_field):
-
-$$
-	\nabla \times \bm{L} = 0,
-	\quad
-	\nabla \cdot \bm{M} = 0,
-	\quad
-	\nabla \cdot \bm{N} = 0,
-$$
-
-Each of the three vectors, \\(\bm{L}\\), \\(\bm{M}\\), and \\(\bm{N}\\), can be used to form a vector Helmholtz equation. That is trivial to show this for \\(\bm{L}\\):
-
-$$
-	\big( \nabla^2 + k^2 \big) \bm{L}
-	= \big( \nabla^2 + k^2 \big) \nabla \psi
-	= \nabla \big( \nabla^2 + k^2 \big) \psi = 0,
-$$
-
-For \\(\bm{M}\\), the corresponding expression is
-
-$$
-	\big( \nabla^2 + k^2 \big) \bm{M}
-	= \big( \nabla^2 + k^2 \big) \big( \nabla \times (\psi \bm{a}) \big)
-	= \nabla \times \Big( \big( \nabla^2 + k^2 \big) \big( \psi \bm{a} \big) \Big).
-$$
-
-If \\(\bm{a}\\) is a *constant* vector, then it immediately follows that
-
-$$
-	\big( \nabla^2 + k^2 \big) \bm{M}
-	= \nabla \times \Big( \bm{a} \big( \nabla^2 + k^2 \big) \psi \Big) = 0.
-$$
-
-In general, for an arbitrary \\(\bm{a}\\), that is not the case. We may use the identity
-
-$$
-	\nabla^2 (\psi \bm{a})
-	= \bm{a} \nabla^2 \psi
-	+ 2 (\nabla \psi \cdot \nabla) \bm{a}
-	+ \psi \nabla^2 \bm{a}
-$$
-
-to expand Equation Y:
-
-$$
-	\big( \nabla^2 + k^2 \big) \bm{M}
-	= \nabla \times \big( \bm{a} \big( \nabla^2 + k^2 \big) \psi
-	+ 2 (\nabla \psi \cdot \nabla) \bm{a}
-	+ \psi \nabla^2 \bm{a} \big).
-$$
-
-Thus, \\(\bm{M}\\) satisfies a vector Helmholtz equation if
-
-$$
-	\nabla \times \big(2 (\nabla \psi \cdot \nabla) \bm{a} + \psi \nabla^2 \bm{a} \big) = 0.
-$$
-
-If we make a simple, but non-obvious choice of \\(\bm{a} = \bm{r}\\), it is easy to show that
-
-$$
-	(\nabla \psi \cdot \nabla) \bm{r}
-	= \nabla \psi,
-	\quad
-	\nabla^2 \bm{r} = 0,
-$$
-
-which, coupled with Equation X, confirms that
-
-$$
-	\big( \nabla^2 + k^2 \big) \bm{M}
-	= \nabla \times \big( \bm{r} \big( \nabla^2 + k^2 \big) \psi
-	+ \nabla \psi \big) = 0.
-$$
-
-Since \\(\bm{N}\\) is defined in terms of \\(\bm{M}\\), it directly follows that
-
-$$
-	\big( \nabla^2 + k^2 \big) \bm{N}
-	= \frac{1}{k} \nabla \times \Big( \big( \nabla^2 + k^2 \big) \bm{M} \Big) = 0.
-$$
-
-Now, consider what happens when we take the curl of \\(\bm{N}\\):
-
-$$
-	\frac{1}{k} \nabla \times \bm{N}
-	= \frac{1}{k^2} \nabla \times \nabla \times \nabla \times (\psi \bm{a})
-	= -\frac{1}{k^2} \nabla \times \big( \nabla^2(\psi \bm{a}) \big).
-$$
-
-Since, according to Equation W,
-
-$$
-	\nabla^2 \psi = -k^2 \psi,
-$$
-
-for *constant* \\(\bm{a}\\), Equation Z is yet another definition of \\(\bm{M}\\):
-
-$$
-	\bm{M}
-	= \nabla \times (\psi \bm{a})
-	= \frac{1}{k} \nabla \times \bm{N}.
-$$
-
-In order to show that it's also the case for \\(\bm{a} = \bm{r}\\), we must substitute Equations N, M, and O:
-
-$$
-\begin{aligned}
-	\frac{1}{k} \nabla \times \bm{N}
-	&= -\frac{1}{k^2} \nabla \times \big( \nabla^2(\psi \bm{a}) \big)
-	\cr
-	&= -\frac{1}{k^2} \nabla \times \big(
-		\bm{a} \nabla^2 \psi
-		+ 2 (\nabla \psi \cdot \nabla) \bm{a}
-		+ \psi \nabla^2 \bm{a} \big)
-	\cr
-	&= -\frac{1}{k^2} \nabla \times \big(
-		\bm{r} \nabla^2 \psi
-		+ 2 \nabla \psi \big)
-	\cr
-	&= \nabla \times (\psi \bm{a}) = \bm{M}.
-\end{aligned}
+	\frac{1}{r^2} \frac{\partial}{\partial r} \bigg( r^2 \frac{\partial \psi_n}{\partial r} \bigg)
+	+ \frac{1}{r^2 \sin{\theta}} \frac{\partial}{\partial \theta} \bigg( \sin{\theta} \frac{\partial \psi_n}{\partial \theta} \bigg)
+	+ \frac{1}{r^2 \sin^2{\theta}} \frac{\partial^2 \psi_n}{\partial \phi^2}
+	+ k^2 \psi_n = 0.
 $$
 
 ---
