@@ -1063,6 +1063,8 @@ $$ \tag{7.4}
 	k(\omega) = \omega \sqrt{\varepsilon(\omega) \mu(\omega)}.
 $$
 
+\\(\bm{E_0}\\) is called the *polarization phasor* (for reasons that go beyond the scope of this article).
+
 If we define the [relative complex permittivity](https://en.wikipedia.org/wiki/Relative_permittivity#Lossy_medium) \\(\varepsilon\_r\\) and the [relative permeability](https://en.wikipedia.org/wiki/Permeability_(electromagnetism)#Relative_permeability_and_magnetic_susceptibility) \\(\mu\_r\\) using the vacuum as reference,
 
 $$ \tag{7.5}
@@ -3164,7 +3166,7 @@ $$ \tag{15.3}
 \end{aligned}
 $$
 
-By taking the initial value of the incident electric field \\(\bm{E_i}(0)\\)  outside the integral, we find the that the scattered field is related to the incident field by the *scattering tensor* \\(\mathcal{S}\\) \[[8](#references) (ch. 5.3)\]:
+By taking the polarization phasor \\(\bm{E_i}(0)\\) outside the integral, we find the that the scattered field is related to the incident field by the *scattering tensor* \\(\mathcal{S}\\) \[[8](#references) (ch. 5.3)\]:
 
 $$ \tag{15.4}
 	\bm{E_s}(\bm{r}, \bm{n_i}, \omega)
@@ -3584,7 +3586,7 @@ $$ \tag{16.10}
 \end{aligned}
 $$
 
-where \\(\bm{E_1}\\) and \\(\bm{B_1}\\) are the field phasors at the unit distance from the origin.
+where \\(\bm{E_1}\\) and \\(\bm{B_1}\\) are the *polarization phasors* defined at the unit distance from the origin.
 
 Consider a fixed direction of observation \\(\bm{n_s} = \bm{r}/r\\). According to Equations 13.14-13.17 and 13.21, if the host medium is non-absorptive, the following relations exist:
 
