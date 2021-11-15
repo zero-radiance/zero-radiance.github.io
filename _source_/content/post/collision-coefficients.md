@@ -796,7 +796,7 @@ Considered in isolation, the macroscopic formulation of the Maxwell equations is
 
 The simplest way is to assume that the material responds to weak electromagnetic fields in an approximately linear manner[^6]. In this case, we may express \\(\bm{D}\\) and \\(\bm{H}\\) as [bilinear](https://en.wikipedia.org/wiki/Bilinear_map) functions of \\(\bm{E}\\) and \\(\bm{B}\\) \[[11](#references) (ch. 3.2)\]:
 
-[^6]: This assumes that omitting the quadratic (and higher order) terms in the Taylor series expansion results in a negligible error.
+[^6]: In general, the values of the coefficients depend on the intensity of the field. We make an assumption that omitting the higher order terms in the corresponding Taylor series expansion results in a negligible error.
 
 $$ \tag{5.1}
 	\begin{bmatrix}
