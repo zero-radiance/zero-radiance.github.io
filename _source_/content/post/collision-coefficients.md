@@ -902,7 +902,7 @@ $$ \tag{5.8}
 \begin{aligned}
 	&\nabla \times \bm{E}(\bm{r}, \omega) - i \omega \bm{B}(\bm{r}, \omega) = 0, &
 	&\nabla \cdot  \bm{B}(\bm{r}, \omega) = 0, \cr
-	&\nabla \times \big( \mu^{-1}(\bm{r}, \omega) \bm{B}(\bm{r}, \omega) \big) + i \omega \big( \varepsilon(\bm{r}, \omega) \bm{E}(\bm{r}, \omega) \big) = \bm{J_s}(\bm{r}, \omega), &
+	&\nabla \times \big( \mu^{-1}(\bm{r}, \omega) \bm{B}(\bm{r}, \omega) \big) + i \omega \varepsilon(\bm{r}, \omega) \bm{E}(\bm{r}, \omega) = \bm{J_s}(\bm{r}, \omega), &
 	&\nabla \cdot  \big( \varepsilon(\bm{r}, \omega) \bm{E}(\bm{r}, \omega) \big) = \rho_s(\bm{r}, \omega).
 \end{aligned}
 $$
@@ -4137,7 +4137,7 @@ $$
 Finally, the curl of a non-zero vector field is linearly independent from the source field. Thus, we may choose
 
 $$ \tag{17.19}
-	\bm{N_n} = \frac{1}{k} \nabla \times \bm{N_n},
+	\bm{N_n} = \frac{1}{k} \nabla \times \bm{M_n},
 	\quad
 	\nabla \cdot \bm{N_n} = 0,
 $$
