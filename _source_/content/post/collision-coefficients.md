@@ -212,6 +212,29 @@ In addition to the boundary conditions, the law of conservation of energy impose
 
 - the [Sommerfeld radiation condition](https://en.wikipedia.org/wiki/Sommerfeld_radiation_condition) prohibits the existence of sinks collecting (an infinite amount of) energy arriving from infinity - these "infinite" sinks must be "finite" sources instead.
 
+Finally, it is worth pointing out that the Maxwell equations (both 1.1 and 1.14) are not independent \[[Stratton](#references) (ch 1.3)\]. For instance, take the divergence of Equations 1.14.1 and 1.14.3. Since the [divergence of curl](https://en.wikipedia.org/wiki/Vector_calculus_identities#Divergence_of_curl_is_zero) is zero, the resulting expression may be simplified to
+
+$$ \tag{1.18}
+	\nabla \cdot \bigg( \frac{\partial}{\partial t} \bm{B}(\bm{r}, t) \bigg) = 0,
+	\quad
+	- \nabla \cdot \bigg( \frac{\partial}{\partial t} \bm{D}(\bm{r}, t) \bigg)
+	= \nabla \cdot \bm{J\_f}(\bm{r}, t)
+	= - \frac{\partial}{\partial t} \rho_f(\bm{r}, t),
+$$
+
+where the last equality is a consequence of the conservation of charge (Equation 1.7).
+
+At all ordinary points, all fields and their first derivatives are assumed to be continuous. That allows us to interchange the order of the space and the time derivatives to obtain
+
+$$ \tag{1.19}
+	\frac{\partial}{\partial t} \bigg( \nabla \cdot \bm{B}(\bm{r}, t) \bigg) = 0,
+	\quad
+	\frac{\partial}{\partial t} \bigg( \nabla \cdot \bm{D}(\bm{r}, t) \bigg)
+	= \frac{\partial}{\partial t} \rho_f(\bm{r}, t).
+$$
+
+The first equation tells us that the divergence of the magnetic field is does not change over time. Assuming that the sources of the field have existed for a finite amount of time, this constant is zero, which is consistent with Equation 1.14.2. Using similar logic, the constant of integration of Equation 1.19 is also zero, thus reproducing Equation 1.14.4.
+
 We take the Maxwell equations as axioms, and use them as the foundation on which we base the theory presented in the following sections.
 
 ### Force and Energy
@@ -545,7 +568,7 @@ $$ \tag{3.10}
 \end{aligned}
 $$
 
-A useful property of the frequency-domain solution is the reduction in the number of independent Maxwell equations from four to two. Since the [divergence of curl](https://en.wikipedia.org/wiki/Vector_calculus_identities#Divergence_of_curl_is_zero) is zero, taking the divergence of the two equations on the left produces the equations on the right. The latter is true due to the expression of [conservation of charge](https://en.wikipedia.org/wiki/Charge_conservation) in the frequency domain:
+Recall that the Maxwell equations are not independent. Since the divergence of curl is zero, taking the divergence of the two equations on the left produces the equations on the right. Of course, if we reduce the total number of equations from four to two, we must also add the expression of conservation of charge, which, in the frequency domain, is
 
 $$ \tag{3.11}
 	\rho(\bm{r}, \omega) = \frac{1}{i \omega} \nabla \cdot \bm{J}(\bm{r}, \omega).
