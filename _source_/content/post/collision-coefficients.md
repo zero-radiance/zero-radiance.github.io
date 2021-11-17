@@ -4311,6 +4311,10 @@ $$
 
 Note that the relative order of the vectors in Equations 17.36 and 17.37 is reversed.
 
+Delete the text below and copy 5. SCATTERING BY A SPHERICAL OBJECT.
+
+---
+
 Expressions given above are valid for arbitrary electromagnetic fields. Let us now consider a concrete example of a plane wave, which is often used to describe the incident radiation of a distant source.
 
 The general plane wave form of the electric field is given by Equation 6.16:
