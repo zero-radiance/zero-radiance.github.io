@@ -4311,6 +4311,45 @@ $$
 
 Note that the relative order of the vectors in Equations 17.36 and 17.37 is reversed.
 
+Expressions given above are valid for arbitrary electromagnetic fields. Let us now consider a concrete example of a plane wave, which is often used to describe the incident radiation of a distant source.
+
+The general plane wave form of the electric field is given by Equation 6.16:
+
+$$ \tag{17.38}
+	\bm{E}(\bm{r}, \omega) =
+	\oint\_{\mathbb{S}^2} \bm{E}(0, \bm{n}, \omega) e^{i k(\omega) (\bm{r} \cdot \bm{n})} d\Omega.
+$$
+
+If we only consider a single direction of incidence \\(\bm{n} = \bm{n_i}\\), the expression above reduces to
+
+$$ \tag{17.39}
+	\bm{E_i}(\bm{r}, \omega) =
+	\bm{E_i}(0, \bm{n_i}, \omega) e^{i k(\omega) (\bm{r} \cdot \bm{n_i})}.
+$$
+
+It is straightforward to verify that a suitable description in terms of the electromagnetic potential is
+
+$$ \tag{17.40}
+\begin{aligned}
+	& \bm{A_i}(\bm{r}, \omega)
+	= \bm{A_i}(0, \bm{n_i}, \omega) e^{i k(\omega) (\bm{r} \cdot \bm{n_i})},
+	\cr
+	& \phi_i(\bm{r}, \omega)
+	= \phi_i(0, \bm{n_i}, \omega) e^{i k(\omega) (\bm{r} \cdot \bm{n_i})}.
+\end{aligned}
+$$
+
+After substituting \\(\psi_n = \phi_i\\) in Equations 17.17-17.19, we obtain
+
+$$ \tag{17.41}
+	\bm{L_n} = i k \phi_i \bm{n_i},
+	\quad
+	\bm{M_n} = i k \phi_i \bm{n_i} \times \bm{a},
+	\quad
+	\bm{N_n} = \frac{1}{k} \nabla \times \bm{M_n} = ???.
+$$
+
+
 ---
 
 
