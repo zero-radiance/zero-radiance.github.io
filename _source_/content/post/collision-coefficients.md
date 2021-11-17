@@ -4088,9 +4088,9 @@ Similarly, in 3-dimensional space, the vector potential \\(\bm{A_n}\\) can be re
 $$ \tag{17.13}
 \begin{aligned}
 	\bm{A}(\bm{r}, \omega)
-	&= \frac{i}{w} \sum_n \bm{A_n}(\bm{r}, \omega)
+	&= \frac{i}{\omega} \sum_n \bm{A_n}(\bm{r}, \omega)
 	\cr
-	&= \frac{i}{w} \sum_n \big( a_n(\omega) \bm{M_n}(\bm{r}, \omega) + b_n(\omega) \bm{N_n}(\bm{r}, \omega) + c_n(\omega) \bm{L_n}(\bm{r}, \omega) \big).
+	&= \frac{i}{\omega} \sum_n \big( a_n(\omega) \bm{M_n}(\bm{r}, \omega) + b_n(\omega) \bm{N_n}(\bm{r}, \omega) + c_n(\omega) \bm{L_n}(\bm{r}, \omega) \big).
 \end{aligned}
 $$
 
@@ -4137,7 +4137,7 @@ $$
 Finally, the curl of a non-zero vector field is linearly independent from the source field. Thus, we may choose
 
 $$ \tag{17.19}
-	\bm{N_n} = \frac{1}{k} \nabla \times \bm{N_n},
+	\bm{N_n} = \frac{1}{k} \nabla \times \bm{M_n},
 	\quad
 	\nabla \cdot \bm{N_n} = 0,
 $$
@@ -4257,7 +4257,7 @@ $$ \tag{17.34}
 	= \frac{1}{k} \nabla \times \bm{N_n}.
 $$
 
-In order to show that it is also the case for \\(\bm{a} = \bm{r}\\), we must substitute Equations 17.26,  17.29, and 17.33 into 17.32:
+In order to show that it is also the case for \\(\bm{a} = \bm{r}\\), we must substitute Equations 17.26, 17.29, and 17.33 into 17.32:
 
 $$ \tag{17.35}
 \begin{aligned}
@@ -4276,6 +4276,43 @@ $$ \tag{17.35}
 	&= \nabla \times (\psi_n \bm{a}) = \bm{M_n}.
 \end{aligned}
 $$
+
+Now that we have proved some basics properties of vector spherical harmonics (what about full orthogonality?), we can start applying them to simple problems.
+
+Suppose that we have obtained the expansion of the electromagnetic potential in vector spherical harmonics. How can we find the associated electric and magnetic fields?
+
+According to Equations 17.2.1, 17.11, 17.13, and 17.17,
+
+$$ \tag{17.36}
+\begin{aligned}
+	\bm{E}(\bm{r}, \omega)
+	&= i \omega \bm{A}(\bm{r}, \omega) - \nabla \phi(\bm{r}, \omega)
+	\cr
+	&= -\sum_n \big( \bm{A_n}(\bm{r}, \omega) - c_n(\omega) \nabla \psi_n(\bm{r}, \omega) \big)
+	\cr
+	&= -\sum_n \big( a_n(\omega) \bm{M_n}(\bm{r}, \omega) + b_n(\omega) \bm{N_n}(\bm{r}, \omega) \big).
+\end{aligned}
+$$
+
+The result is a solenoidal phasor field, which is consistent with the Maxwell equations for linear, isotropic, homogeneous, source-free media.
+
+Similarly, the magnetic field can be determined using Equations 17.2.2, 17.13, 17.17, 17.19, and 17.35:
+
+$$ \tag{17.37}
+\begin{aligned}
+	\bm{B}(\bm{r}, \omega)
+	&= \nabla \times \bm{A}(\bm{r}, \omega)
+	\cr
+	&= \frac{i}{\omega} \sum_n \Big( a_n(\omega) \big( \nabla \times \bm{M_n}(\bm{r}, \omega) \big) + b_n(\omega) \big( \nabla \times \bm{N_n}(\bm{r}, \omega) \big) \Big)
+	\cr
+	&= - \frac{k}{i \omega} \sum_n \big( a_n(\omega) \bm{N_n}(\bm{r}, \omega) + b_n(\omega) \bm{M_n}(\bm{r}, \omega) \big).
+\end{aligned}
+$$
+
+Note that the relative order of the vectors in Equations 17.36 and 17.37 is reversed.
+
+---
+
 
 \\(\psi_n\\) satisfies the scalar Helmholtz equation
 
