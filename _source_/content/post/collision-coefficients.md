@@ -4279,7 +4279,7 @@ $$
 
 Now that we have proved some basics properties of vector spherical harmonics (what about full orthogonality?), we can start applying them to simple problems.
 
-Suppose that we have obtained the expansion of the electromagnetic potential in vector spherical harmonics. How can we find the associated electric and magnetic fields?
+Suppose that we have obtained the coefficients of the expansion of the electromagnetic potential in vector spherical harmonics. How can we find the associated electric and magnetic fields?
 
 According to Equations 17.2.1, 17.11, 17.13, and 17.17,
 
@@ -4294,7 +4294,7 @@ $$ \tag{17.36}
 \end{aligned}
 $$
 
-The result is a solenoidal phasor field, which is consistent with the Maxwell equations for linear, isotropic, homogeneous, source-free media.
+The result is a solenoidal phasor field, which is consistent with the Maxwell equations in linear, isotropic, homogeneous, source-free media.
 
 Similarly, the magnetic field can be determined using Equations 17.2.2, 17.13, 17.17, 17.19, and 17.35:
 
@@ -4309,13 +4309,88 @@ $$ \tag{17.37}
 \end{aligned}
 $$
 
-Note that the relative order of the vectors in Equations 17.36 and 17.37 is reversed.
+The resulting field is irrotational. Note that the relative order of the vectors in Equations 17.36 and 17.37 is reversed.
 
-Delete the text below and copy 5. SCATTERING BY A SPHERICAL OBJECT.
+Expressions given above are valid for arbitrary electromagnetic fields. They have also been painstakingly crafted in a coordinate-independent manner. In practice, to obtain numerical results, once must choose a certain coordinate system. As it was hinted at the beginning of this section, the symmetry of the problem suggests that it is advantageous to approach the problem in spherical coordinates.
+
+Consider again the scalar Helmholtz equation (17.8). In [spherical coordinates](https://en.wikipedia.org/wiki/Laplace_operator#Three_dimensions), it can be expressed as
+
+$$ \tag{17.38}
+	\frac{1}{r^2} \frac{\partial}{\partial r} \bigg( r^2 \frac{\partial f}{\partial r} \bigg)
+	+ \frac{1}{r^2 \sin{\theta}} \frac{\partial}{\partial \theta} \bigg( \sin{\theta} \frac{\partial f}{\partial \theta} \bigg)
+	+ \frac{1}{r^2 \sin^2{\theta}} \frac{\partial^2 f}{\partial \phi^2}
+	+ k^2 f = 0.
+$$
+
+If we look for a solution of the form
+
+$$ \tag{17.39}
+	f(r, \theta, \phi) = f_r(r) f_{\theta}(\theta) f_{\phi}(\phi),
+$$
+
+substitution results in three separate ordinary differential equations:
+
+$$ \tag{17.40}
+\begin{aligned}
+	& r^2 \frac{d^2 f_r}{d r^2}
+	+ 2 r \frac{d f_r}{d r}
+	+ \big( k^2 r^2 - p^2 \big) f_r = 0,
+	\cr
+	& \frac{1}{\sin{\theta}} \frac{d}{d \theta} \bigg( \sin{\theta} \frac{ d f_{\theta} }{d \theta} \bigg)
+	+ \bigg( p^2 - \frac{q^2}{\sin^2{\theta}} \bigg) f_{\theta} = 0,
+	\cr
+	& \frac{d^2 f_{\phi}}{d \phi^2}
+	+ q^2 f_{\phi} = 0,
+\end{aligned}
+$$
+
+where \\(p\\) and \\(q\\) are separation constants that ensure the solutions are finite and single-valued.
+
+Differential equations of this type are well known in the literature \[[Stratton](#references) (ch 7.3)\]. Without proof, suitable solutions are:
+
+$$ \tag{17.41}
+	f_r(r) = z_n(k r),
+	\quad
+	f_{\theta}(\theta) = P_n^m(\cos{\theta}),
+	\quad
+	f_{\phi}(\phi) = e^{i m \phi},
+$$
+
+and thus the general solution of Equation 17.38 is
+
+$$ \tag{17.42}
+	f(r, \theta, \phi)
+	= \sum_{m,n} c_{mn} \psi_{mn}(r, \theta, \phi)
+	= \sum_{m,n} c_{mn} z_n(k r) P_n^m(\cos{\theta}) e^{i m \phi},
+$$
+
+where \\(c_{mn}\\) is a complex constant, \\(z_n\\) is a [spherical Bessel function](https://en.wikipedia.org/wiki/Bessel_function#Spherical_Bessel_functions:_jn,_yn) of order \\(n\\), and \\(P_n^m\\) is an [associated Legendre polynomial](https://en.wikipedia.org/wiki/Associated_Legendre_polynomials) of degree \\(n\\) and order \\(m\\). Note that, as expected, the solution depends on the distance \\(r\\) only through the phase difference \\(k r.\\)
+
+Let us examine the angular component of the solution
+
+$$ \tag{17.43}
+	P_n^m(\cos{\theta}) e^{i m \phi}
+	= P_n^m(\cos{\theta}) \cos(m \phi)
+	+ i P_n^m(\cos{\theta}) \sin(m \phi).
+$$
+
+If we set \\(m=0\\), the dependence on the azimuthal angle \\(\phi\\) disappears, and we obtain the [Legendre polynomial](https://en.wikipedia.org/wiki/Legendre_polynomials) \\(P_n\\) plotted below.
+
+{{< figure src="/img/legendre.svg" caption="*Figure N: Legendere polynomials of degree n=0 (blue), n=1 (orange), n=2 (green), n=3 (red).*" >}}
+
+The degree of a polynomial is also the number of zeros of the function. Coupled with the fact that \\(P_n(\cos{\theta})\\) is independent of \\(\phi\\), we can observe that the Legendre polynomial of degree \\(n\\) divides the surface of a sphere into \\(n\\) zones of alternating sign. For this reason, the family of functions \\(P_n(\cos{\theta})\\) is sometimes referred to as *zonal harmonics*.
+
+The situation changes when \\(m \neq 0\\). As can be seen from the graph below, the value of the associated Legendre polynomial \\(P_n^m(\cos{\theta})\\) goes to zero at \\(|\cos{\theta}| = 1\\). In addition, the total number of zeros of the function is \\(n - m + 2\\).
+
+{{< figure src="/img/assoc_legendre.svg" caption="*Figure N: Associated Legendere polynomials of degree 3 and order m=0 (blue), m=1 (orange), m=2 (green), m=3 (red).*" >}}
+
+Let us now return to Equation 17.43. Since that function has harmonic dependence on \\(\phi\\), if we plot one of its parts (with either sine or cosine), we can observe that it divides the surface of a sphere into \\(2 m \times (n - m + 1)\\) rectangular domains, or tesserae. Thus, \\(P_n^m(\cos{\theta}) \cos(m \phi)\\) and \\(P_n^m(\cos{\theta}) \sin(m \phi)\\) are called *tesseral harmonics*.
+
+{{< figure src="/img/assoc_legendre_3.png" caption="*Figure N: Tesseral harmonics of degree 3 and order m=1 (left), m=2 (center), m=3 (right). Warm colors correspond to positive values of the function, and cold colors - to negative values.*" >}}
 
 ---
 
-Expressions given above are valid for arbitrary electromagnetic fields. Let us now consider a concrete example of a plane wave, which is often used to describe the incident radiation of a distant source.
+ Let us now consider a concrete example of a plane wave, which is often used to describe the incident radiation of a distant source.
 
 The general plane wave form of the electric field is given by Equation 6.16:
 
@@ -4353,25 +4428,6 @@ $$ \tag{17.41}
 	\bm{N_n} = \frac{1}{k} \nabla \times \bm{M_n} = ???.
 $$
 
-
----
-
-
-\\(\psi_n\\) satisfies the scalar Helmholtz equation
-
-$$
-	\big( \nabla^2 + k^2 \big) \psi_n = 0,
-$$
-
-which, in [spherical coordinates](https://en.wikipedia.org/wiki/Laplace_operator#Three_dimensions), takes the form
-
-$$
-	\frac{1}{r^2} \frac{\partial}{\partial r} \bigg( r^2 \frac{\partial \psi_n}{\partial r} \bigg)
-	+ \frac{1}{r^2 \sin{\theta}} \frac{\partial}{\partial \theta} \bigg( \sin{\theta} \frac{\partial \psi_n}{\partial \theta} \bigg)
-	+ \frac{1}{r^2 \sin^2{\theta}} \frac{\partial^2 \psi_n}{\partial \phi^2}
-	+ k^2 \psi_n = 0.
-$$
-
 ---
 
 ## III. Simple Formulas for Practical Use
@@ -4386,7 +4442,7 @@ Is a spherical cavity the right choice for the depolarization operator?
 
 ## Acknowledgments
 
-Pharr & Jakob, Bohren & Huffman, NASA
+Pharr & Jakob, Bohren & Huffman, Robin Green, Larry Travis @ NASA.
 
 ## References
 
