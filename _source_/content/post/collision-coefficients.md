@@ -4366,7 +4366,19 @@ $$
 
 where \\(c_{mn}\\) is a complex constant, \\(z_n\\) is a [spherical Bessel function](https://en.wikipedia.org/wiki/Bessel_function#Spherical_Bessel_functions:_jn,_yn) of order \\(n\\), and \\(P_n^m\\) is an [associated Legendre polynomial](https://en.wikipedia.org/wiki/Associated_Legendre_polynomials) of degree \\(n\\) and order \\(m\\). Note that, as expected, the solution depends on the distance \\(r\\) only through the phase difference \\(k r.\\)
 
-Let us examine the angular component of the solution
+We shall first take a look at the radial function \\(z_n(k r)\\). It may be used to represent any of the four kinds of spherical Bessel functions \[[Stratton](#references) (ch 7.4)\]:
+
+$$ \tag{17.43}
+\begin{aligned}
+	& j_n(k r) = \sqrt{\frac{\pi}{2 k r}} J_{n+1/2}(k r), &
+	& y_n(k r) = \sqrt{\frac{\pi}{2 k r}} Y_{n+1/2}(k r),
+	\cr
+	& h_n^{(1)}(k r) = \sqrt{\frac{\pi}{2 k r}} H_{n+1/2}^{(1)}(k r), &
+	& h_n^{(2)}(k r) = \sqrt{\frac{\pi}{2 k r}} H_{n+1/2}^{(2)}(k r),
+\end{aligned}
+$$
+
+Let us now examine the angular component of the solution
 
 $$ \tag{17.43}
 	P_n^m(\cos{\theta}) e^{i m \phi}
