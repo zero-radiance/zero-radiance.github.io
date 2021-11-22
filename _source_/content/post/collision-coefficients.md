@@ -4346,7 +4346,7 @@ $$
 
 where \\(p\\) and \\(q\\) are separation constants that ensure the solutions are finite and single-valued.
 
-Differential equations of this type are well known in the literature \[[Stratton](#references) (ch 7.3)\]. Without proof, suitable solutions are:
+Differential equations of this type are well known in the literature \[[Stratton](#references) (ch 7.3)\]. Without proof, their solutions are:
 
 $$ \tag{17.41}
 	f_r(r) = z_n(k r),
@@ -4374,11 +4374,11 @@ $$ \tag{17.43}
 	+ i P_n^m(\cos{\theta}) \sin(m \phi).
 $$
 
-If we set \\(m=0\\), the dependence on the azimuthal angle \\(\phi\\) disappears, and we obtain the [Legendre polynomial](https://en.wikipedia.org/wiki/Legendre_polynomials) \\(P_n\\) plotted below.
+If we set \\(m=0\\), the dependence on the azimuthal angle \\(\phi\\) disappears, and we are left with the [Legendre polynomial](https://en.wikipedia.org/wiki/Legendre_polynomials) \\(P_n\\) plotted below.
 
 {{< figure src="/img/legendre.svg" caption="*Figure N: Legendere polynomials of degree n=0 (blue), n=1 (orange), n=2 (green), n=3 (red).*" >}}
 
-The degree of a polynomial is also the number of zeros of the function. Coupled with the fact that \\(P_n(\cos{\theta})\\) is independent of \\(\phi\\), we can observe that the Legendre polynomial of degree \\(n\\) divides the surface of a sphere into \\(n\\) zones of alternating sign. For this reason, the family of functions \\(P_n(\cos{\theta})\\) is sometimes referred to as *zonal harmonics*.
+The degree of a polynomial is also the number of zeros of the function. Coupled with the fact that \\(P_n(\cos{\theta})\\) is independent of \\(\phi\\), we can observe that the Legendre polynomial of degree \\(n\\) divides the surface of a sphere into \\(n + 1\\) zones of alternating sign. For this reason, the family of functions \\(P_n(\cos{\theta})\\) is sometimes referred to as *zonal harmonics*.
 
 The situation changes when \\(m \neq 0\\). As can be seen from the graph below, the value of the associated Legendre polynomial \\(P_n^m(\cos{\theta})\\) goes to zero at \\(|\cos{\theta}| = 1\\). In addition, the total number of zeros of the function is \\(n - m + 2\\).
 
