@@ -4366,21 +4366,54 @@ $$
 
 where \\(c_{mn}\\) is a complex constant, \\(z_n\\) is a [spherical Bessel function](https://en.wikipedia.org/wiki/Bessel_function#Spherical_Bessel_functions:_jn,_yn) of order \\(n\\), and \\(P_n^m\\) is an [associated Legendre polynomial](https://en.wikipedia.org/wiki/Associated_Legendre_polynomials) of degree \\(n\\) and order \\(m\\). Note that, as expected, the solution depends on the distance \\(r\\) only through the phase difference \\(k r.\\)
 
-We shall first take a look at the radial function \\(z_n(k r)\\). It may be used to represent any of the four kinds of spherical Bessel functions \[[Stratton](#references) (ch 7.4)\]:
+We shall first examine the radial functions \\(z_n(k r)\\). THey may be used to represent any of the four kinds of spherical Bessel functions \[[Stratton](#references) (ch 7.4)\]:
 
 $$ \tag{17.43}
 \begin{aligned}
-	& j_n(k r) = \sqrt{\frac{\pi}{2 k r}} J_{n+1/2}(k r), &
-	& y_n(k r) = \sqrt{\frac{\pi}{2 k r}} Y_{n+1/2}(k r),
+	& j_n(x) = \sqrt{\frac{\pi}{2 x}} J_{n+1/2}(x), &
+	& y_n(x) = \sqrt{\frac{\pi}{2 x}} Y_{n+1/2}(x),
 	\cr
-	& h_n^{(1)}(k r) = \sqrt{\frac{\pi}{2 k r}} H_{n+1/2}^{(1)}(k r), &
-	& h_n^{(2)}(k r) = \sqrt{\frac{\pi}{2 k r}} H_{n+1/2}^{(2)}(k r),
+	& h_n^{(1)}(x) = \sqrt{\frac{\pi}{2 x}} H_{n+1/2}^{(1)}(x), &
+	& h_n^{(2)}(x) = \sqrt{\frac{\pi}{2 x}} H_{n+1/2}^{(2)}(x),
 \end{aligned}
 $$
 
-Let us now examine the angular component of the solution
+where \\(J_n\\) and \\(Y_n\\) are the Bessel functions of the [first](https://en.wikipedia.org/wiki/Bessel_function#Bessel_functions_of_the_first_kind:_J%CE%B1) and the [second](https://en.wikipedia.org/wiki/Bessel_function#Bessel_functions_of_the_second_kind:_Y%CE%B1) kind, respectively, while \\(H_n^{(1)}\\) and \\(H_n^{(1)}\\) are the [Hankel functions](https://en.wikipedia.org/wiki/Bessel_function#Hankel_functions:_H(1)%CE%B1,\_H(2)%CE%B1) of the first and the second kind,
+which are related to the Bessel functions in a very simple manner:
 
-$$ \tag{17.43}
+$$ \tag{17.44}
+	H_n^{(1)}(x) = J_n(x) + i Y_n(x),
+	\quad
+	H_n^{(2)}(x) = J_n(x) - i Y_n(x).
+$$
+
+\\(H_n^{(1)}\\) and \\(H_n^{(1)}\\) are also known as Bessel functions of the third and the fourth kind, respectively.
+
+As expected from the general scattering theory, the behavior of these functions is rather different depending on whether the magnitude of the argument is very large or very small.
+
+{{< figure src="/img/spherical_bessel_j.svg" caption="*Figure N: Spherical Bessel functions of the first kind of order n=0 (blue), n=1 (orange), n=2 (green), n=3 (red).*" >}}
+
+{{< figure src="/img/spherical_bessel_y.svg" caption="*Figure N: Spherical Bessel functions of the second kind of order n=0 (blue), n=1 (orange), n=2 (green), n=3 (red).*" >}}
+
+In particular, in the far zone, as \\(k r \to \infin\\), both functions behave as decaying sine waves, which can be clearly seen on the plot below.
+
+{{< figure src="/img/spherical_hankel_1.svg" caption="*Figure N: Spherical Hankel functions of the first kind of order n=0 (blue), n=1 (orange), n=2 (green), n=3 (red). Solid lines correspond to the real part, while the imaginary part is drawn using dashed lines.*" >}}
+
+In addition, observe that the real and the imaginary components (the Bessel functions of the first and the second kind, respectively) are out-of-phase by a constant factor. This leads to the asymptotic forms
+
+$$ \tag{17.45}
+\begin{aligned}
+	& j_n(x) \approx \frac{1}{x} \cos\Big( x - \frac{n+1}{2} \pi \Big), &
+	& y_n(x) \approx \frac{1}{x} \sin\Big( x - \frac{n+1}{2} \pi \Big),
+	\cr
+	& h_n^{(1)}(x) \approx \frac{1}{x} (-i)^{n+1} e^{i \rho}, &
+	& h_n^{(2)}(x) \approx \frac{1}{x} (i)^{n+1} e^{+i \rho}.
+\end{aligned}
+$$
+
+Let us now turn our attention to the angular component of the solution
+
+$$ \tag{17.46}
 	P_n^m(\cos{\theta}) e^{i m \phi}
 	= P_n^m(\cos{\theta}) \cos(m \phi)
 	+ i P_n^m(\cos{\theta}) \sin(m \phi).
@@ -4396,7 +4429,7 @@ The situation changes when \\(m \neq 0\\). As can be seen from the graph below, 
 
 {{< figure src="/img/assoc_legendre.svg" caption="*Figure N: Associated Legendere polynomials of degree 3 and order m=0 (blue), m=1 (orange), m=2 (green), m=3 (red).*" >}}
 
-Let us now return to Equation 17.43. Since that function has harmonic dependence on \\(\phi\\), if we plot one of its parts (with either sine or cosine), we can observe that it divides the surface of a sphere into \\(2 m \times (n - m + 1)\\) rectangular domains, or tesserae. Thus, \\(P_n^m(\cos{\theta}) \cos(m \phi)\\) and \\(P_n^m(\cos{\theta}) \sin(m \phi)\\) are called *tesseral harmonics*.
+We are now ready to interpret Equation 17.46 in full. Since that function has harmonic dependence on \\(\phi\\), if we plot one of its parts (either real or imaginary), we can observe that it divides the surface of a sphere into \\(2 m \times (n - m + 1)\\) rectangular domains, or tesserae. Thus, \\(P_n^m(\cos{\theta}) \cos(m \phi)\\) and \\(P_n^m(\cos{\theta}) \sin(m \phi)\\) are called *tesseral harmonics*.
 
 {{< figure src="/img/assoc_legendre_3.png" caption="*Figure N: Tesseral harmonics of degree 3 and order m=1 (left), m=2 (center), m=3 (right). Warm colors correspond to positive values of the function, and cold colors - to negative values.*" >}}
 
