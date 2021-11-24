@@ -4429,9 +4429,39 @@ The situation changes when \\(m \neq 0\\). As can be seen from the graph below, 
 
 {{< figure src="/img/assoc_legendre.svg" caption="*Figure N: Associated Legendere polynomials of degree 3 and order m=0 (blue), m=1 (orange), m=2 (green), m=3 (red).*" >}}
 
-We are now ready to interpret Equation 17.46 in full. Since that function has harmonic dependence on \\(\phi\\), if we plot one of its parts (either real or imaginary), we can observe that it divides the surface of a sphere into \\(2 m \times (n - m + 1)\\) rectangular domains, or tesserae. Thus, \\(P_n^m(\cos{\theta}) \cos(m \phi)\\) and \\(P_n^m(\cos{\theta}) \sin(m \phi)\\) are called *tesseral harmonics*.
+We are now ready to interpret Equation 17.46 in full. Since that function has harmonic dependence on \\(\phi\\), if we plot one of its parts (either real or imaginary), we can observe that it divides the surface of a sphere into \\(2 m \times (n - m + 1)\\) rectangular domains, or tesserae. Thus, \\(P_n^m(\cos{\theta}) \cos(m \phi)\\) and \\(P_n^m(\cos{\theta}) \sin(m \phi)\\) are called *tesseral harmonics* for \\(|m| < n\\) and *sectorial harmonics* for \\(|m| = n\\).
 
 {{< figure src="/img/assoc_legendre_3.png" caption="*Figure N: Tesseral harmonics of degree 3 and order m=1 (left), m=2 (center), m=3 (right). Warm colors correspond to positive values of the function, and cold colors - to negative values.*" >}}
+
+Associated Legendre polynomials have a powerful property - they are orthogonal \[[Stratton](#references) (ch 7.3)\]:
+
+$$ \tag{17.47}
+\begin{aligned}
+	& \int_{-1}^{1} P_n^m(y) P_l^m(y) dy = \frac{2}{2n + 1} \frac{(n+m)!}{(n-m)!} \delta_{l,n},
+	\cr
+	& \int_{-1}^{1} P_n^m(y) P_n^l(y) \frac{dy}{1-y^2} = \frac{1}{m} \frac{(n+m)!}{(n-m)!} \delta_{l,m}.
+\end{aligned}
+$$
+
+In addition, we know that any sufficiently smooth univariate function can be expanded into a Fourier series, since
+
+$$ \tag{17.48}
+	\int_{-\pi}^{\pi} \sin(m x) dx = 0,
+	\quad
+	\int_{-\pi}^{\pi} \cos(n x) dx = 0,
+	\quad
+	\int_{-\pi}^{\pi} \sin(m x) \cos(n x) dx = 0,
+$$
+
+$$ \tag{17.49}
+	\int_{-\pi}^{\pi} \sin(m x) \sin(n x) dx = \pi \delta_{m,n},
+	\quad
+	\int_{-\pi}^{\pi} \cos(m x) \cos(n x) dx = \pi \delta_{m,n},
+$$
+
+for \\(m,n \neq 0\\).
+
+Remarkably, by the means of double integration, these two facts can be combined to show that tesseral harmonics form a complete orthogonal system on the surface of a sphere [citation needed; Courant-Hilbert?].
 
 ---
 
