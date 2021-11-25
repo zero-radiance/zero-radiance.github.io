@@ -19,6 +19,8 @@ While we may spend more time and energy fiddling with various combinations of pa
 
 <!--more-->
 
+<!--
+
 The method can be briefly outlined as follows:
 
 1. We describe the shape, the size, and the composition of an individual particle.
@@ -627,7 +629,7 @@ We can obtain a more practical result at the cost of some generality. Specifical
 
 [^3]: The fact that the electric and the magnetic fields cannot exist independently can be shown by a simple relativistic argument \[[13](#references) (ch 6.2)\].
 
-One particular feature of periodic functions is the existence of the [Fourier series](https://en.wikipedia.org/wiki/Fourier_series#Complex-valued_functions) representation:
+One particular feature of periodic functions is the existence of a [Fourier series](https://en.wikipedia.org/wiki/Fourier_series#Complex-valued_functions) representation:
 
 $$ \tag{4.4}
 	\bm{E}(\bm{r}, t)
@@ -3980,11 +3982,13 @@ $$
 
 which matches the results found using the scalar wave theory \[[4](#references) (ch. 4.21, 4.42)\]. Intuitively, this makes sense, since the particle looks the same regardless of the choice of the plane of reference (assuming the latter contains the direction of incidence), and the sensor (that only measures power) is not sensitive to the orientation of incoming light.
 
+-->
+
 ### Lorenz-Mie-Debye Theory
 
 The Lorenz-Mie-Debye theory presents a rigorous solution to the problem of [diffraction](https://en.wikipedia.org/wiki/Diffraction) by an isotropic conducting sphere, also known as [Mie scattering](https://en.wikipedia.org/wiki/Mie_scattering). The solution is exact in the sense that it does not employ any approximations, so it exhibits all classical and semi-classical (e.i. wave-mechanical) effects, and thus shows an excellent agreement with experimental data (see \[[16](#references) (ch. 5)\] for a list of references).
 
-The original theory was independently formulated by Lorenz (1890), Mie (1908), and Debye (1909). The derivation of the relevant formulas can be found in many popular textbooks, such as \[[4](#references) (ch. 9), [6](#references) (ch. 14.5)\]. A more mathematically elegant treatment of the problem was given by Hansen (1935, 1936, 1937). It has also been presented in a recent open access paper \[[15](#references)\], which we use as the foundation of this section.
+The original theory was independently formulated by Lorenz (1890), Mie (1908), and Debye (1909). The derivation of the relevant formulas can be found in many popular textbooks, such as \[[4](#references) (ch. 9), [6](#references) (ch. 14.5)\]. A more mathematically elegant treatment of the problem was given by Hansen in a series of papers (1935, 1936, 1937). It has also been presented in a recent open access paper \[[15](#references)\], which we use as the foundation of this section.
 
 The general idea behind the solution is fairly simple. We treat electromagnetic scattering as a boundary value problem. If we expand the expression of the electromagnetic field in series of vector spherical harmonics, the boundary conditions take a particularly simple form, which can be harnessed to find the (initially unknown) coefficients of the series expansion.
 
@@ -3994,7 +3998,7 @@ $$ \tag{17.1}
 	\big( \nabla^2 + k^2(\omega) \big) \bm{E}(\bm{r}, \omega) = 0.
 $$
 
-We have previously solved this equation by explicitly writing it in Cartesian coordinates. That allowed us to separate a single vector equation into three scalar equations, which could then be solved individually. While this leads to a convenient (plane wave) representation of the incident field, it is a poor fit for the scattered field, since the latter takes the form of a spherical wave in the far zone. In addition, the geometry of the scatterer suggests that we should exploit the spherical symmetry of the problem in some way.
+We have previously solved this equation by expanding it in Cartesian coordinates. That allowed us to separate a single vector equation into three scalar equations, which could then be solved individually. While this leads to a convenient (plane wave) representation of the incident field, it is a poor fit for the scattered field, since the latter takes the form of a spherical wave in the far zone. In addition, the geometry of the scatterer suggests that we should exploit the spherical symmetry of the problem in some way.
 
 Equation 17.1 can be written in yet another way. Recall (c.f. Equation 9.19) that we can express the electric field \\(\bm{E}\\) in terms of the vector potential \\(\bm{A}\\) and the scalar potential \\(\phi\\)
 
@@ -4018,7 +4022,7 @@ $$ \tag{17.3}
 \end{aligned}
 $$
 
-After simplification, using the definition of the Laplace operator, and applying the curl of curl identity given by Equation 6.6, we obtain
+After using the definition of the Laplace operator and applying the curl of curl identity given by Equation 6.6, we obtain the following expressions:
 
 $$ \tag{17.4}
 \begin{aligned}
@@ -4029,7 +4033,7 @@ $$ \tag{17.4}
 \end{aligned}
 $$
 
-These two equations may be combined, and the Laplace operator and the gradient may be [interchanged](https://en.wikipedia.org/wiki/Vector_calculus_identities#Third_derivatives):
+These two equations may be combined, and the Laplace operator and the gradient -- [interchanged](https://en.wikipedia.org/wiki/Vector_calculus_identities#Third_derivatives):
 
 $$ \tag{17.5}
 \begin{aligned}
@@ -4040,7 +4044,7 @@ $$ \tag{17.5}
 \end{aligned}
 $$
 
-Since the value of \\(\nabla \cdot \bm{A}\\) is arbitrary, we may take inspiration from the free-space condition of Equation 9.20, and assume that
+Since the value of \\(\nabla \cdot \bm{A}\\) is arbitrary, we may take inspiration from the free-space Lorenz condition of Equation 9.20, and assume that
 
 $$ \tag{17.6}
 	\nabla \cdot \bm{A}(\bm{r}, \omega) = i \omega \mu(\omega) \varepsilon(\omega) \phi(\bm{r}, \omega).
@@ -4074,23 +4078,23 @@ $$
 Since the Helmholtz equation is both homogeneous and linear, it has multiple special solutions that can be combined into a single general solution according to the superposition principle:
 
 $$ \tag{17.11}
-	\phi(\bm{r}, \omega) = -\sum_n c_n(\omega) \psi_n(\bm{r}, \omega),
+	\phi(\bm{r}, \omega) = -\sum_{m,n} c_{mn}(\omega) \psi_{mn}(\bm{r}, \omega),
 $$
 
-with each special solution \\(\psi_n\\) satisfying the same equation
+with each special solution \\(\psi_{mn}\\) satisfying the same equation
 
 $$ \tag{17.12}
-	\big( \nabla^2 + k^2(\omega) \big) \psi_n(\bm{r}, \omega) = 0.
+	\big( \nabla^2 + k^2(\omega) \big) \psi_{mn}(\bm{r}, \omega) = 0.
 $$
 
-Similarly, in 3-dimensional space, the vector potential \\(\bm{A_n}\\) can be represented by a sum of 3 linearly independent vectors \\(\bm{L_n}, \bm{M_n}, \bm{N_n}\\):
+Similarly, in 3-dimensional space, the vector potential \\(\bm{A_{mn}}\\) can be represented by a sum of 3 linearly independent vectors \\(\bm{L_{mn}}, \bm{M_{mn}}, \bm{N_{mn}}\\):
 
 $$ \tag{17.13}
 \begin{aligned}
 	\bm{A}(\bm{r}, \omega)
-	&= \frac{i}{\omega} \sum_n \bm{A_n}(\bm{r}, \omega)
+	&= \frac{i}{\omega} \sum_{m,n} \bm{A_{mn}}(\bm{r}, \omega)
 	\cr
-	&= \frac{i}{\omega} \sum_n \big( a_n(\omega) \bm{M_n}(\bm{r}, \omega) + b_n(\omega) \bm{N_n}(\bm{r}, \omega) + c_n(\omega) \bm{L_n}(\bm{r}, \omega) \big).
+	&= \frac{i}{\omega} \sum_{m,n} \big( a_{mn}(\omega) \bm{M_{mn}}(\bm{r}, \omega) + b_{mn}(\omega) \bm{N_{mn}}(\bm{r}, \omega) + c_{mn}(\omega) \bm{L_{mn}}(\bm{r}, \omega) \big).
 \end{aligned}
 $$
 
@@ -4104,118 +4108,118 @@ $$ \tag{17.14}
 \end{aligned}
 $$
 
-Let us choose \\(\bm{L_n}\\) as [irrotational](https://en.wikipedia.org/wiki/Conservative_vector_field#Irrotational_vector_fields), and \\(\bm{M_n}\\) and \\(\bm{N_n}\\) as [solenoidal](https://en.wikipedia.org/wiki/Solenoidal_vector_field):
+Let us choose \\(\bm{L_{mn}}\\) as [irrotational](https://en.wikipedia.org/wiki/Conservative_vector_field#Irrotational_vector_fields), and \\(\bm{M_{mn}}\\) and \\(\bm{N_{mn}}\\) as [solenoidal](https://en.wikipedia.org/wiki/Solenoidal_vector_field):
 
 $$ \tag{17.15}
-	\bm{A_n'} = a_n \bm{M_n} + b_n \bm{N_n},
+	\bm{A_{mn}'} = a_{mn} \bm{M_{mn}} + b_{mn} \bm{N_{mn}},
 	\quad
-	\bm{A_n''} = c_n \bm{L_n}.
+	\bm{A_{mn}''} = c_{mn} \bm{L_{mn}}.
 $$
 
 From Equations 17.5.2, 17.11, and 17.13, it follows that
 
 $$ \tag{17.16}
-	\nabla \cdot \bm{A_n} = \nabla \cdot (c_n \nabla \psi_n).
+	\nabla \cdot \bm{A_{mn}} = \nabla \cdot (c_{mn} \nabla \psi_{mn}).
 $$
 
 In other words,
 
 $$ \tag{17.17}
-	\bm{L_n} = \nabla \psi_n,
+	\bm{L_{mn}} = \nabla \psi_{mn},
 	\quad
-	\nabla \times \bm{L_n} = 0.
+	\nabla \times \bm{L_{mn}} = 0.
 $$
 
-Since divergence of curl is zero, Equations 17.14.2 and 17.15.1 suggests that both \\(\bm{M_n}\\) and \\(\bm{N_n}\\) should be a curl of something. In addition, both should depend on \\(\psi_n\\). Since \\(\psi_n\\) is a scalar, its curl is undefined; a simple way to fix that is to introduce an additional vector \\(\bm{a}\\):
+Since divergence of curl is zero, Equations 17.14.2 and 17.15.1 suggests that both \\(\bm{M_{mn}}\\) and \\(\bm{N_{mn}}\\) should be a curl of something. In addition, both should depend on \\(\psi_{mn}\\). Since \\(\psi_{mn}\\) is a scalar, its curl is undefined; a simple way to fix that is to introduce an additional vector \\(\bm{a}\\):
 
 $$ \tag{17.18}
-	\bm{M_n} = \nabla \times (\psi_n \bm{a}),
+	\bm{M_{mn}} = \nabla \times (\psi_{mn} \bm{a}),
 	\quad
-	\nabla \cdot \bm{M_n} = 0.
+	\nabla \cdot \bm{M_{mn}} = 0.
 $$
 
 Finally, the curl of a non-zero vector field is linearly independent from the source field. Thus, we may choose
 
 $$ \tag{17.19}
-	\bm{N_n} = \frac{1}{k} \nabla \times \bm{M_n},
+	\bm{N_{mn}} = \frac{1}{k} \nabla \times \bm{M_{mn}},
 	\quad
-	\nabla \cdot \bm{N_n} = 0,
+	\nabla \cdot \bm{N_{mn}} = 0,
 $$
 
 where the \\(1/k\\) constant is chosen for further convenience.
 
-The three series of vectors \\(\bm{L_n}, \bm{M_n}, \bm{N_n}\\) are called [vector spherical harmonics](https://en.wikipedia.org/wiki/Vector_spherical_harmonics). \\(\bm{a}\\) is called the *pilot vector*. It is convenient to assume that it belongs to an [irrotational](https://en.wikipedia.org/wiki/Conservative_vector_field#Irrotational_vector_fields) vector field, such that
+The three series of vectors \\(\bm{L\_{mn}}, \bm{M\_{mn}}, \bm{N\_{mn}}\\) are called [vector spherical harmonics](https://en.wikipedia.org/wiki/Vector_spherical_harmonics). \\(\bm{a}\\) is called the *pilot vector*. It is convenient to assume that it belongs to an [irrotational](https://en.wikipedia.org/wiki/Conservative_vector_field#Irrotational_vector_fields) vector field, such that
 
 $$ \tag{17.20}
 	\nabla \times \bm{a} = 0.
 $$
 
-Coupled with the [product rule](https://en.wikipedia.org/wiki/Vector_calculus_identities#Product_rule_for_multiplication_by_a_scalar), Equation 17.20 leads to a simpler definition of \\(\bm{M_n}\\):
+Coupled with the [product rule](https://en.wikipedia.org/wiki/Vector_calculus_identities#Product_rule_for_multiplication_by_a_scalar), Equation 17.20 leads to a simpler definition of \\(\bm{M_{mn}}\\):
 
 $$ \tag{17.21}
-	\bm{M_n} = \psi (\nabla \times \bm{a}) + (\nabla \psi_n) \times \bm{a} = \bm{L_n} \times \bm{a}.
+	\bm{M_{mn}} = \psi (\nabla \times \bm{a}) + (\nabla \psi_{mn}) \times \bm{a} = \bm{L_{mn}} \times \bm{a}.
 $$
 
 If \\(\bm{a}\\) is a real vector, this leads to a simple geometrical interpretation in terms of orthogonal vectors:
 
 $$ \tag{17.22}
-	\bm{M_n} \cdot \bm{a} = 0,
+	\bm{M_{mn}} \cdot \bm{a} = 0,
 	\quad \text{or} \quad
-	\bm{L_n} \cdot \bm{M_n} = 0.
+	\bm{L_{mn}} \cdot \bm{M_{mn}} = 0.
 $$
 
-Each of the three vectors, \\(\bm{L_n}\\), \\(\bm{M_n}\\), and \\(\bm{N_n}\\), can be used to form a vector Helmholtz equation. That is trivial to show this for \\(\bm{L_n}\\):
+Each of the three vectors, \\(\bm{L_{mn}}\\), \\(\bm{M_{mn}}\\), and \\(\bm{N_{mn}}\\), can be used to form a vector Helmholtz equation. That is trivial to show this for \\(\bm{L_{mn}}\\):
 
 $$ \tag{17.23}
-	\big( \nabla^2 + k^2 \big) \bm{L_n}
-	= \big( \nabla^2 + k^2 \big) \nabla \psi_n
-	= \nabla \big( \nabla^2 + k^2 \big) \psi_n = 0,
+	\big( \nabla^2 + k^2 \big) \bm{L_{mn}}
+	= \big( \nabla^2 + k^2 \big) \nabla \psi_{mn}
+	= \nabla \big( \nabla^2 + k^2 \big) \psi_{mn} = 0,
 $$
 
-For \\(\bm{M_n}\\), the corresponding expression is
+For \\(\bm{M_{mn}}\\), the corresponding expression is
 
 $$ \tag{17.24}
-	\big( \nabla^2 + k^2 \big) \bm{M_n}
-	= \big( \nabla^2 + k^2 \big) \big( \nabla \times (\psi_n \bm{a}) \big)
-	= \nabla \times \Big( \big( \nabla^2 + k^2 \big) \big( \psi_n \bm{a} \big) \Big).
+	\big( \nabla^2 + k^2 \big) \bm{M_{mn}}
+	= \big( \nabla^2 + k^2 \big) \big( \nabla \times (\psi_{mn} \bm{a}) \big)
+	= \nabla \times \Big( \big( \nabla^2 + k^2 \big) \big( \psi_{mn} \bm{a} \big) \Big).
 $$
 
 If \\(\bm{a}\\) is a *constant* vector, from Equation 17.12, it immediately follows that
 
 $$ \tag{17.25}
-	\big( \nabla^2 + k^2 \big) \bm{M_n}
-	= \nabla \times \Big( \bm{a} \big( \nabla^2 + k^2 \big) \psi_n \Big) = 0.
+	\big( \nabla^2 + k^2 \big) \bm{M_{mn}}
+	= \nabla \times \Big( \bm{a} \big( \nabla^2 + k^2 \big) \psi_{mn} \Big) = 0.
 $$
 
 In general, for an arbitrary \\(\bm{a}\\), that is not the case. We may use the identity
 
 $$ \tag{17.26}
-	\nabla^2 (\psi_n \bm{a})
-	= \bm{a} \nabla^2 \psi_n
-	+ 2 (\nabla \psi_n \cdot \nabla) \bm{a}
-	+ \psi_n \nabla^2 \bm{a}
+	\nabla^2 (\psi_{mn} \bm{a})
+	= \bm{a} \nabla^2 \psi_{mn}
+	+ 2 (\nabla \psi_{mn} \cdot \nabla) \bm{a}
+	+ \psi_{mn} \nabla^2 \bm{a}
 $$
 
 to expand Equation 17.24:
 
 $$ \tag{17.27}
-	\big( \nabla^2 + k^2 \big) \bm{M_n}
-	= \nabla \times \big( \bm{a} \big( \nabla^2 + k^2 \big) \psi_n
-	+ 2 (\nabla \psi_n \cdot \nabla) \bm{a}
-	+ \psi_n \nabla^2 \bm{a} \big).
+	\big( \nabla^2 + k^2 \big) \bm{M_{mn}}
+	= \nabla \times \big( \bm{a} \big( \nabla^2 + k^2 \big) \psi_{mn}
+	+ 2 (\nabla \psi_{mn} \cdot \nabla) \bm{a}
+	+ \psi_{mn} \nabla^2 \bm{a} \big).
 $$
 
-Thus, \\(\bm{M_n}\\) satisfies a vector Helmholtz equation if
+Thus, \\(\bm{M_{mn}}\\) satisfies a vector Helmholtz equation if
 
 $$ \tag{17.28}
-	\nabla \times \big(2 (\nabla \psi_n \cdot \nabla) \bm{a} + \psi_n \nabla^2 \bm{a} \big) = 0.
+	\nabla \times \big(2 (\nabla \psi_{mn} \cdot \nabla) \bm{a} + \psi_{mn} \nabla^2 \bm{a} \big) = 0.
 $$
 
 If we make a simple, but non-obvious choice of \\(\bm{a} = \bm{r}\\), it is easy to show that
 
 $$ \tag{17.29}
-	(\nabla \psi_n \cdot \nabla) \bm{r}
-	= \nabla \psi_n,
+	(\nabla \psi_{mn} \cdot \nabla) \bm{r}
+	= \nabla \psi_{mn},
 	\quad
 	\nabla^2 \bm{r} = 0,
 $$
@@ -4223,57 +4227,57 @@ $$
 which confirms that
 
 $$ \tag{17.30}
-	\big( \nabla^2 + k^2 \big) \bm{M_n}
-	= \nabla \times \big( \bm{r} \big( \nabla^2 + k^2 \big) \psi_n
-	+ \nabla \psi_n \big) = 0.
+	\big( \nabla^2 + k^2 \big) \bm{M_{mn}}
+	= \nabla \times \big( \bm{r} \big( \nabla^2 + k^2 \big) \psi_{mn}
+	+ \nabla \psi_{mn} \big) = 0.
 $$
 
-Since \\(\bm{N_n}\\) is defined in terms of \\(\bm{M_n}\\), it directly follows that
+Since \\(\bm{N_{mn}}\\) is defined in terms of \\(\bm{M_{mn}}\\), it directly follows that
 
 $$ \tag{17.31}
-	\big( \nabla^2 + k^2 \big) \bm{N_n}
-	= \frac{1}{k} \nabla \times \Big( \big( \nabla^2 + k^2 \big) \bm{M_n} \Big) = 0.
+	\big( \nabla^2 + k^2 \big) \bm{N_{mn}}
+	= \frac{1}{k} \nabla \times \Big( \big( \nabla^2 + k^2 \big) \bm{M_{mn}} \Big) = 0.
 $$
 
-Now, consider what happens when we take the curl of \\(\bm{N_n}\\):
+Now, consider what happens when we take the curl of \\(\bm{N_{mn}}\\):
 
 $$ \tag{17.32}
-	\frac{1}{k} \nabla \times \bm{N_n}
-	= \frac{1}{k^2} \nabla \times \nabla \times \nabla \times (\psi_n \bm{a})
-	= -\frac{1}{k^2} \nabla \times \big( \nabla^2(\psi_n \bm{a}) \big).
+	\frac{1}{k} \nabla \times \bm{N_{mn}}
+	= \frac{1}{k^2} \nabla \times \nabla \times \nabla \times (\psi_{mn} \bm{a})
+	= -\frac{1}{k^2} \nabla \times \big( \nabla^2(\psi_{mn} \bm{a}) \big).
 $$
 
 Since, according to Equation 17.12,
 
 $$ \tag{17.33}
-	\nabla^2 \psi_n = -k^2 \psi_n,
+	\nabla^2 \psi_{mn} = -k^2 \psi_{mn},
 $$
 
-for *constant* \\(\bm{a}\\), Equation 17.32 leads to yet another definition of \\(\bm{M_n}\\):
+for *constant* \\(\bm{a}\\), Equation 17.32 leads to yet another definition of \\(\bm{M_{mn}}\\):
 
 $$ \tag{17.34}
-	\bm{M_n}
-	= \nabla \times (\psi_n \bm{a})
-	= \frac{1}{k} \nabla \times \bm{N_n}.
+	\bm{M_{mn}}
+	= \nabla \times (\psi_{mn} \bm{a})
+	= \frac{1}{k} \nabla \times \bm{N_{mn}}.
 $$
 
 In order to show that it is also the case for \\(\bm{a} = \bm{r}\\), we must substitute Equations 17.26, 17.29, and 17.33 into 17.32:
 
 $$ \tag{17.35}
 \begin{aligned}
-	\frac{1}{k} \nabla \times \bm{N_n}
-	&= -\frac{1}{k^2} \nabla \times \big( \nabla^2(\psi_n \bm{a}) \big)
+	\frac{1}{k} \nabla \times \bm{N_{mn}}
+	&= -\frac{1}{k^2} \nabla \times \big( \nabla^2(\psi_{mn} \bm{a}) \big)
 	\cr
 	&= -\frac{1}{k^2} \nabla \times \big(
-		\bm{a} \nabla^2 \psi_n
-		+ 2 (\nabla \psi_n \cdot \nabla) \bm{a}
-		+ \psi_n \nabla^2 \bm{a} \big)
+		\bm{a} \nabla^2 \psi_{mn}
+		+ 2 (\nabla \psi_{mn} \cdot \nabla) \bm{a}
+		+ \psi_{mn} \nabla^2 \bm{a} \big)
 	\cr
 	&= -\frac{1}{k^2} \nabla \times \big(
-		\bm{r} \nabla^2 \psi_n
-		+ 2 \nabla \psi_n \big)
+		\bm{r} \nabla^2 \psi_{mn}
+		+ 2 \nabla \psi_{mn} \big)
 	\cr
-	&= \nabla \times (\psi_n \bm{a}) = \bm{M_n}.
+	&= \nabla \times (\psi_{mn} \bm{a}) = \bm{M_{mn}}.
 \end{aligned}
 $$
 
@@ -4288,9 +4292,9 @@ $$ \tag{17.36}
 	\bm{E}(\bm{r}, \omega)
 	&= i \omega \bm{A}(\bm{r}, \omega) - \nabla \phi(\bm{r}, \omega)
 	\cr
-	&= -\sum_n \big( \bm{A_n}(\bm{r}, \omega) - c_n(\omega) \nabla \psi_n(\bm{r}, \omega) \big)
+	&= -\sum_{m,n} \big( \bm{A_{mn}}(\bm{r}, \omega) - c_{mn}(\omega) \nabla \psi_{mn}(\bm{r}, \omega) \big)
 	\cr
-	&= -\sum_n \big( a_n(\omega) \bm{M_n}(\bm{r}, \omega) + b_n(\omega) \bm{N_n}(\bm{r}, \omega) \big).
+	&= -\sum_{m,n} \big( a_{mn}(\omega) \bm{M_{mn}}(\bm{r}, \omega) + b_{mn}(\omega) \bm{N_{mn}}(\bm{r}, \omega) \big).
 \end{aligned}
 $$
 
@@ -4303,9 +4307,9 @@ $$ \tag{17.37}
 	\bm{B}(\bm{r}, \omega)
 	&= \nabla \times \bm{A}(\bm{r}, \omega)
 	\cr
-	&= \frac{i}{\omega} \sum_n \Big( a_n(\omega) \big( \nabla \times \bm{M_n}(\bm{r}, \omega) \big) + b_n(\omega) \big( \nabla \times \bm{N_n}(\bm{r}, \omega) \big) \Big)
+	&= \frac{i}{\omega} \sum_{m,n} \Big( a_{mn}(\omega) \big( \nabla \times \bm{M_{mn}}(\bm{r}, \omega) \big) + b_{mn}(\omega) \big( \nabla \times \bm{N_{mn}}(\bm{r}, \omega) \big) \Big)
 	\cr
-	&= - \frac{k}{i \omega} \sum_n \big( a_n(\omega) \bm{N_n}(\bm{r}, \omega) + b_n(\omega) \bm{M_n}(\bm{r}, \omega) \big).
+	&= - \frac{k}{i \omega} \sum_{m,n} \big( a_{mn}(\omega) \bm{N_{mn}}(\bm{r}, \omega) + b_{mn}(\omega) \bm{M_{mn}}(\bm{r}, \omega) \big).
 \end{aligned}
 $$
 
@@ -4351,92 +4355,91 @@ where \\(p\\) and \\(q\\) are separation constants that ensure the solutions are
 Differential equations of this type are well known in the literature \[[Stratton](#references) (ch 7.3)\]. Without proof, their solutions are:
 
 $$ \tag{17.41}
-	f_r(r) = z_l(k r),
+	f_r(r) = z_n(k r),
 	\quad
-	f_{\theta}(\theta) = P_l^m(\cos{\theta}),
+	f_{\theta}(\theta) = P_n^m(\cos{\theta}),
 	\quad
-	f_{\phi}(\phi) = e^{i m \phi},
+	f_{\phi}(\phi) = e^{i m \phi}.
 $$
 
-and thus the general solution of Equation 17.38 is
+Since the solutions of the Helmholtz equation that are continuous (within the domain), finite, and single-valued form a discrete set, the general solution of Equation 17.38 is
 
 $$ \tag{17.42}
 \begin{aligned}
 	& f(r, \theta, \phi)
-	= - \sum_{n=0}^{\infin} c_n \psi_n(r, \theta, \phi)
-	= - \sum_{l=0}^{\infin} \sum_{m=-l}^{l} c_{lm} \psi_{lm}(r, \theta, \phi),
+	= - \sum_{m,n} c_{mn} \psi_{mn}(r, \theta, \phi),
 	\cr
-	& \psi_{lm}(r, \theta, \phi)
-	= z_l(k r) P_l^m(\cos{\theta}) e^{i m \phi},
+	& \psi_{mn}(r, \theta, \phi)
+	= z_n(k r) P_n^m(\cos{\theta}) e^{i m \phi},
 \end{aligned}
 $$
 
-where \\(c_{lm}\\) is a complex constant, \\(z_l\\) is a [spherical Bessel function](https://en.wikipedia.org/wiki/Bessel_function#Spherical_Bessel_functions:_jn,_yn) of order \\(l\\), and \\(P_l^m\\) is an [associated Legendre polynomial](https://en.wikipedia.org/wiki/Associated_Legendre_polynomials) of degree \\(l\\) and order \\(m\\). Note that, as expected, the solution depends on the distance \\(r\\) only through the phase difference \\(k r.\\)
+where \\(c_{mn}\\) is a complex constant, \\(z_n\\) is a [spherical Bessel function](https://en.wikipedia.org/wiki/Bessel_function#Spherical_Bessel_functions:_jn,_yn) of order \\(n\\), and \\(P_n^m\\) is an [associated Legendre polynomial](https://en.wikipedia.org/wiki/Associated_Legendre_polynomials) of degree \\(n\\) and order \\(m\\). Note that, as expected, the solution depends on the distance \\(r\\) only through the phase difference \\(k r.\\)
 
-We shall first examine the radial functions \\(z_l(k r)\\). They may be used to represent any of the four kinds of spherical Bessel functions \[[Stratton](#references) (ch 7.4)\]:
+We shall first examine the radial functions \\(z_n(k r)\\). They may be used to represent any of the four kinds of spherical Bessel functions \[[Stratton](#references) (ch 7.4)\]:
 
 $$ \tag{17.43}
 \begin{aligned}
-	& j_l(x) = \sqrt{\frac{\pi}{2 x}} J_{l+1/2}(x), &
-	& y_l(x) = \sqrt{\frac{\pi}{2 x}} Y_{l+1/2}(x),
+	& j_n(x) = \sqrt{\frac{\pi}{2 x}} J_{n+1/2}(x), &
+	& y_n(x) = \sqrt{\frac{\pi}{2 x}} Y_{n+1/2}(x),
 	\cr
-	& h_l^{(1)}(x) = \sqrt{\frac{\pi}{2 x}} H_{l+1/2}^{(1)}(x), &
-	& h_l^{(2)}(x) = \sqrt{\frac{\pi}{2 x}} H_{l+1/2}^{(2)}(x),
+	& h_n^{(1)}(x) = \sqrt{\frac{\pi}{2 x}} H_{n+1/2}^{(1)}(x), &
+	& h_n^{(2)}(x) = \sqrt{\frac{\pi}{2 x}} H_{n+1/2}^{(2)}(x),
 \end{aligned}
 $$
 
-where \\(J_l\\) and \\(Y_l\\) are the Bessel functions of the [first](https://en.wikipedia.org/wiki/Bessel_function#Bessel_functions_of_the_first_kind:_J%CE%B1) and the [second](https://en.wikipedia.org/wiki/Bessel_function#Bessel_functions_of_the_second_kind:_Y%CE%B1) kind, respectively, while \\(H_l^{(1)}\\) and \\(H_l^{(1)}\\) are the [Hankel functions](https://en.wikipedia.org/wiki/Bessel_function#Hankel_functions:_H(1)%CE%B1,\_H(2)%CE%B1) of the first and the second kind,
+where \\(J_n\\) and \\(Y_n\\) are the Bessel functions of the [first](https://en.wikipedia.org/wiki/Bessel_function#Bessel_functions_of_the_first_kind:_J%CE%B1) and the [second](https://en.wikipedia.org/wiki/Bessel_function#Bessel_functions_of_the_second_kind:_Y%CE%B1) kind, respectively, while \\(H_n^{(1)}\\) and \\(H_n^{(1)}\\) are the [Hankel functions](https://en.wikipedia.org/wiki/Bessel_function#Hankel_functions:_H(1)%CE%B1,\_H(2)%CE%B1) of the first and the second kind,
 which are related to the Bessel functions in a very simple manner:
 
 $$ \tag{17.44}
-	H_l^{(1)}(x) = J_l(x) + i Y_l(x),
+	H_n^{(1)}(x) = J_n(x) + i Y_n(x),
 	\quad
-	H_l^{(2)}(x) = J_l(x) - i Y_l(x).
+	H_n^{(2)}(x) = J_n(x) - i Y_n(x).
 $$
 
-\\(H_l^{(1)}\\) and \\(H_l^{(1)}\\) are also known as Bessel functions of the third and the fourth kind, respectively.
+\\(H_n^{(1)}\\) and \\(H_n^{(1)}\\) are also known as Bessel functions of the third and the fourth kind, respectively.
 
 As expected from the general scattering theory, the behavior of these functions is rather different depending on whether the magnitude of the argument is very large or very small.
 
-{{< figure src="/img/spherical_bessel_j.svg" caption="*Figure N: Spherical Bessel functions of the first kind of order l=0 (blue), l=1 (orange), l=2 (green), l=3 (red).*" >}}
+{{< figure src="/img/spherical_bessel_j.svg" caption="*Figure N: Spherical Bessel functions of the first kind of order n=0 (blue), n=1 (orange), n=2 (green), n=3 (red).*" >}}
 
-{{< figure src="/img/spherical_bessel_y.svg" caption="*Figure N: Spherical Bessel functions of the second kind of order l=0 (blue), l=1 (orange), l=2 (green), l=3 (red).*" >}}
+{{< figure src="/img/spherical_bessel_y.svg" caption="*Figure N: Spherical Bessel functions of the second kind of order n=0 (blue), n=1 (orange), n=2 (green), n=3 (red).*" >}}
 
 In particular, in the far zone, as \\(k r \to \infin\\), both functions behave as decaying sine waves, which can be clearly seen on the plot below.
 
-{{< figure src="/img/spherical_hankel_1.svg" caption="*Figure N: Spherical Hankel functions of the first kind of order l=0 (blue), l=1 (orange), l=2 (green), l=3 (red). Solid lines correspond to the real part, while the imaginary part is drawn using dashed lines.*" >}}
+{{< figure src="/img/spherical_hankel_1.svg" caption="*Figure N: Spherical Hankel functions of the first kind of order n=0 (blue), n=1 (orange), n=2 (green), n=3 (red). Solid lines correspond to the real part, while the imaginary part is drawn using dashed lines.*" >}}
 
 In addition, observe that the real and the imaginary components (the Bessel functions of the first and the second kind, respectively) are out-of-phase by a constant factor. This leads to the asymptotic forms
 
 $$ \tag{17.45}
 \begin{aligned}
-	& j_l(x) \approx \frac{1}{x} \cos\Big( x - \frac{l+1}{2} \pi \Big), &
-	& y_l(x) \approx \frac{1}{x} \sin\Big( x - \frac{l+1}{2} \pi \Big),
+	& j_n(x) \approx \frac{1}{x} \cos\Big( x - \frac{n+1}{2} \pi \Big), &
+	& y_n(x) \approx \frac{1}{x} \sin\Big( x - \frac{n+1}{2} \pi \Big),
 	\cr
-	& h_l^{(1)}(x) \approx \frac{1}{x} (-i)^{l+1} e^{i x}, &
-	& h_l^{(2)}(x) \approx \frac{1}{x} (i)^{l+1} e^{+i x}.
+	& h_n^{(1)}(x) \approx \frac{1}{x} (-i)^{n+1} e^{i x}, &
+	& h_n^{(2)}(x) \approx \frac{1}{x} (i)^{n+1} e^{+i x}.
 \end{aligned}
 $$
 
 Let us now turn our attention to the angular component of the solution
 
 $$ \tag{17.46}
-	P_l^m(\cos{\theta}) e^{i m \phi}
-	= P_l^m(\cos{\theta}) \cos(m \phi)
-	+ i P_l^m(\cos{\theta}) \sin(m \phi).
+	P_n^m(\cos{\theta}) e^{i m \phi}
+	= P_n^m(\cos{\theta}) \cos(m \phi)
+	+ i P_n^m(\cos{\theta}) \sin(m \phi).
 $$
 
-If we set \\(m=0\\), the dependence on the azimuthal angle \\(\phi\\) disappears, and we are left with the [Legendre polynomial](https://en.wikipedia.org/wiki/Legendre_polynomials) \\(P_l\\) plotted below.
+If we set \\(m=0\\), the dependence on the azimuthal angle \\(\phi\\) disappears, and we are left with the [Legendre polynomial](https://en.wikipedia.org/wiki/Legendre_polynomials) \\(P_n\\) plotted below.
 
-{{< figure src="/img/legendre.svg" caption="*Figure N: Legendere polynomials of degree l=0 (blue), l=1 (orange), l=2 (green), l=3 (red).*" >}}
+{{< figure src="/img/legendre.svg" caption="*Figure N: Legendere polynomials of degree n=0 (blue), n=1 (orange), n=2 (green), n=3 (red).*" >}}
 
-The degree of a polynomial is also the number of zeros of the function. Coupled with the fact that \\(P_l(\cos{\theta})\\) is independent of \\(\phi\\), we can observe that the Legendre polynomial of degree \\(l\\) divides the surface of a sphere into \\(l + 1\\) zones of alternating sign. For this reason, the family of functions \\(P_l(\cos{\theta})\\) is sometimes referred to as *zonal harmonics*.
+The degree of a polynomial is also the number of zeros of the function. Coupled with the fact that \\(P_n(\cos{\theta})\\) is independent of \\(\phi\\), we can observe that the Legendre polynomial of degree \\(n\\) divides the surface of a sphere into \\(n + 1\\) zones of alternating sign. For this reason, the family of functions \\(P_n(\cos{\theta})\\) is sometimes referred to as *zonal harmonics*.
 
-The situation changes when \\(m \neq 0\\). As can be seen from the graph below, the value of the associated Legendre polynomial \\(P_l^m(\cos{\theta})\\) goes to zero at \\(|\cos{\theta}| = 1\\). In addition, the total number of zeros of the function is \\(l - m + 2\\).
+The situation changes when \\(m \neq 0\\). As can be seen from the graph below, the value of the associated Legendre polynomial \\(P_n^m(\cos{\theta})\\) goes to zero at \\(|\cos{\theta}| = 1\\). In addition, the total number of zeros of the function is \\(n - m + 2\\).
 
 {{< figure src="/img/assoc_legendre.svg" caption="*Figure N: Associated Legendere polynomials of degree 3 and order m=0 (blue), m=1 (orange), m=2 (green), m=3 (red).*" >}}
 
-We are now ready to interpret the complete Equation 17.46. Since that function has harmonic dependence on \\(\phi\\), if we plot one of its parts (either real or imaginary), we can observe that it divides the surface of a sphere into \\(2 m \times (l - m + 1)\\) rectangular domains, or tesserae. Thus, \\(P_l^m(\cos{\theta}) \cos(m \phi)\\) and \\(P_l^m(\cos{\theta}) \sin(m \phi)\\) are called *tesseral harmonics* for \\(|m| < l\\) and *sectorial harmonics* for \\(|m| = l\\).
+We are now ready to interpret the complete Equation 17.46. Since that function has harmonic dependence on \\(\phi\\), if we plot one of its parts (either real or imaginary), we can observe that it divides the surface of a sphere into \\(2 m \times (n - m + 1)\\) rectangular domains, or tesserae. Thus, \\(P_n^m(\cos{\theta}) \cos(m \phi)\\) and \\(P_n^m(\cos{\theta}) \sin(m \phi)\\) are called *tesseral harmonics* for \\(|m| < n\\) and *sectorial harmonics* for \\(|m| = n\\).
 
 {{< figure src="/img/assoc_legendre_3.png" caption="*Figure N: Tesseral harmonics of degree 3 and order m=1 (left), m=2 (center), m=3 (right). Warm colors correspond to positive values of the function, and cold colors - to negative values.*" >}}
 
@@ -4444,9 +4447,9 @@ Associated Legendre polynomials have a powerful property - they are orthogonal \
 
 $$ \tag{17.47}
 \begin{aligned}
-	& \int_{-1}^{1} P_k^m(y) P_l^m(y) dy = \frac{2}{2n + 1} \frac{(l+m)!}{(l-m)!} \delta_{k,l},
+	& \int_{-1}^{1} P_l^m(y) P_n^m(y) dy = \frac{2}{2n + 1} \frac{(n+m)!}{(n-m)!} \delta_{l,n},
 	\cr
-	& \int_{-1}^{1} P_l^m(y) P_l^n(y) \frac{dy}{1-y^2} = \frac{1}{m} \frac{(l+m)!}{(l-m)!} \delta_{m,n}.
+	& \int_{-1}^{1} P_n^m(y) P_n^k(y)  \frac{dy}{1-y^2} = \frac{1}{m} \frac{(n+m)!}{(n-m)!} \delta_{m,k}.
 \end{aligned}
 $$
 
@@ -4455,45 +4458,49 @@ In addition, we know that any sufficiently smooth univariate function can be exp
 $$ \tag{17.48}
 	\int_{-\pi}^{\pi} \sin(m x) dx = 0,
 	\quad
-	\int_{-\pi}^{\pi} \cos(l x) dx = 0,
+	\int_{-\pi}^{\pi} \cos(n x) dx = 0,
 	\quad
-	\int_{-\pi}^{\pi} \sin(m x) \cos(l x) dx = 0,
+	\int_{-\pi}^{\pi} \sin(m x) \cos(n x) dx = 0,
 $$
 
 $$ \tag{17.49}
-	\int_{-\pi}^{\pi} \sin(m x) \sin(l x) dx = \pi \delta_{m,l},
+	\int_{-\pi}^{\pi} \sin(m x) \sin(n x) dx = \pi \delta_{m,n},
 	\quad
-	\int_{-\pi}^{\pi} \cos(m x) \cos(l x) dx = \pi \delta_{m,l},
+	\int_{-\pi}^{\pi} \cos(m x) \cos(n x) dx = \pi \delta_{m,n},
 $$
 
-for \\(m,l \neq 0\\).
+for \\(m,n \neq 0\\).
 
-Remarkably, by means of double integration over \\(\phi\\) and \\(\cos{\theta}\\), these two facts can be combined to show that tesseral harmonics form a complete orthogonal system on the surface of a sphere [citation needed; Courant-Hilbert?].
+Remarkably, by means of double integration over \\(\phi\\) and \\(\cos{\theta}\\), these two facts can be combined to show that tesseral harmonics form a *complete orthogonal system* of basis functions on the surface of a sphere [citation needed; Courant-Hilbert?].
 
-Tesseral harmonics are [real-valued](https://en.wikipedia.org/wiki/Spherical_harmonics#Real_form) basis functions, which is sufficient for most problems. However, the theory can be trivially extended to complex values by combining even and odd tesseral harmonics according to Equation 17.46. This directly leads to the definition of [scalar spherical harmonics](https://en.wikipedia.org/wiki/Spherical_harmonics)
+Tesseral harmonics are [real-valued basis functions](https://en.wikipedia.org/wiki/Spherical_harmonics#Real_form), which is sufficient for most problems. However, the theory can be trivially extended to complex values by combining even and odd tesseral harmonics according to Equation 17.46. This directly leads to the definition of [scalar spherical harmonics](https://en.wikipedia.org/wiki/Spherical_harmonics)
 
-$$ \tag{17.49}
-	Y_l^m(\theta, \phi)
-	= N P_l^m(\cos{\theta}) e^{i m \phi},
+$$ \tag{17.50}
+	Y_n^m(\theta, \phi)
+	= N P_n^m(\cos{\theta}) e^{i m \phi},
 $$
 
 where N is the normalization constant chosen such that
 
-$$ \tag{17.50}
-	\int_{0}^{2 \pi}  \int_{-\pi}^{\pi} \big[ Y_k^n(\theta, \phi) \big]^{\*} Y_l^m(\theta, \phi)  \thinspace d\theta d\phi = N^2 \delta_{k,l} \delta_{m,n}.
+$$ \tag{17.51}
+	\int_{0}^{2 \pi} \int_{-\pi}^{\pi} \big[ Y_l^k(\theta, \phi) \big]^{\*} Y_n^m(\theta, \phi)   \sin{\theta} \thinspace d\theta d\phi = \delta_{k,m} \delta_{l,n}.
 $$
 
 The solution of Equation 17.38 given by Equation 17.42 can then be more compactly written as
 
-$$ \tag{17.51}
-	f(r, \theta, \phi)
-	= - \sum_{l=0}^{\infin} \sum_{m=-l}^{l} c_{lm} \psi_{lm}(r, \theta, \phi)
-	= - \sum_{l=0}^{\infin} \sum_{m=-l}^{l} c_{lm} z_l(k r) Y_l^m(\theta, \phi).
+$$ \tag{17.52}
+\begin{aligned}
+	& f(r, \theta, \phi)
+	= - \sum_{n=0}^{\infin} \sum_{m=-n}^{n} c_{mn} \psi_{mn}(r, \theta, \phi),
+	\cr
+	& \psi_{mn}(r, \theta, \phi)
+	= z_n(k r) Y_n^m(\theta, \phi),
+\end{aligned}
 $$
 
-Incidentally, if we substitute Equation 17.51 in place of Equation 17.11, and carry on the subsequent derivation, it becomes clear where the name *vector spherical coordinates* originates from.
+We may now substitute Equation 17.52 in place of Equation 17.11, and carry out the subsequent derivation to find the explicit form of the solution of the *vector* Helmholtz equation (in terms of *vector* spherical harmonics) that complements the solution of the *scalar* Helmholtz equation (in terms of *scalar* spherical harmonics).
 
-Now we can finally define M_{lm} like in the paper....
+Now we can finally define M_{mn} like in the paper....
 
 ---
 
