@@ -4313,7 +4313,9 @@ The resulting field is irrotational. Note that the relative order of the vectors
 
 Expressions given above are valid for arbitrary electromagnetic fields. They have also been painstakingly crafted in a coordinate-independent manner. In practice, to obtain numerical results, once must choose a certain coordinate system. As it was hinted at the beginning of this section, the symmetry of the problem suggests that it is advantageous to approach the problem in spherical coordinates.
 
-Consider again the scalar Helmholtz equation (17.8). In [spherical coordinates](https://en.wikipedia.org/wiki/Laplace_operator#Three_dimensions), it can be expressed as
+Consider again the scalar Helmholtz equation (17.8). In [spherical coordinates](https://en.wikipedia.org/wiki/Laplace_operator#Three_dimensions), it can be expressed as[^16]
+
+[^16]: We use \\(f\\) in place of \\(\phi\\), since the letter used for the scalar potential clashes with the notation used for spherical coordinates.
 
 $$ \tag{17.38}
 	\frac{1}{r^2} \frac{\partial}{\partial r} \bigg( r^2 \frac{\partial f}{\partial r} \bigg)
@@ -4349,9 +4351,9 @@ where \\(p\\) and \\(q\\) are separation constants that ensure the solutions are
 Differential equations of this type are well known in the literature \[[Stratton](#references) (ch 7.3)\]. Without proof, their solutions are:
 
 $$ \tag{17.41}
-	f_r(r) = z_n(k r),
+	f_r(r) = z_l(k r),
 	\quad
-	f_{\theta}(\theta) = P_n^m(\cos{\theta}),
+	f_{\theta}(\theta) = P_l^m(\cos{\theta}),
 	\quad
 	f_{\phi}(\phi) = e^{i m \phi},
 $$
@@ -4359,77 +4361,82 @@ $$
 and thus the general solution of Equation 17.38 is
 
 $$ \tag{17.42}
-	f(r, \theta, \phi)
-	= \sum_{m,n} c_{mn} \psi_{mn}(r, \theta, \phi)
-	= \sum_{m,n} c_{mn} z_n(k r) P_n^m(\cos{\theta}) e^{i m \phi},
-$$
-
-where \\(c_{mn}\\) is a complex constant, \\(z_n\\) is a [spherical Bessel function](https://en.wikipedia.org/wiki/Bessel_function#Spherical_Bessel_functions:_jn,_yn) of order \\(n\\), and \\(P_n^m\\) is an [associated Legendre polynomial](https://en.wikipedia.org/wiki/Associated_Legendre_polynomials) of degree \\(n\\) and order \\(m\\). Note that, as expected, the solution depends on the distance \\(r\\) only through the phase difference \\(k r.\\)
-
-We shall first examine the radial functions \\(z_n(k r)\\). THey may be used to represent any of the four kinds of spherical Bessel functions \[[Stratton](#references) (ch 7.4)\]:
-
-$$ \tag{17.43}
 \begin{aligned}
-	& j_n(x) = \sqrt{\frac{\pi}{2 x}} J_{n+1/2}(x), &
-	& y_n(x) = \sqrt{\frac{\pi}{2 x}} Y_{n+1/2}(x),
+	& f(r, \theta, \phi)
+	= - \sum_{n=0}^{\infin} c_n \psi_n(r, \theta, \phi)
+	= - \sum_{l=0}^{\infin} \sum_{m=-l}^{l} c_{lm} \psi_{lm}(r, \theta, \phi),
 	\cr
-	& h_n^{(1)}(x) = \sqrt{\frac{\pi}{2 x}} H_{n+1/2}^{(1)}(x), &
-	& h_n^{(2)}(x) = \sqrt{\frac{\pi}{2 x}} H_{n+1/2}^{(2)}(x),
+	& \psi_{lm}(r, \theta, \phi)
+	= z_l(k r) P_l^m(\cos{\theta}) e^{i m \phi},
 \end{aligned}
 $$
 
-where \\(J_n\\) and \\(Y_n\\) are the Bessel functions of the [first](https://en.wikipedia.org/wiki/Bessel_function#Bessel_functions_of_the_first_kind:_J%CE%B1) and the [second](https://en.wikipedia.org/wiki/Bessel_function#Bessel_functions_of_the_second_kind:_Y%CE%B1) kind, respectively, while \\(H_n^{(1)}\\) and \\(H_n^{(1)}\\) are the [Hankel functions](https://en.wikipedia.org/wiki/Bessel_function#Hankel_functions:_H(1)%CE%B1,\_H(2)%CE%B1) of the first and the second kind,
+where \\(c_{lm}\\) is a complex constant, \\(z_l\\) is a [spherical Bessel function](https://en.wikipedia.org/wiki/Bessel_function#Spherical_Bessel_functions:_jn,_yn) of order \\(l\\), and \\(P_l^m\\) is an [associated Legendre polynomial](https://en.wikipedia.org/wiki/Associated_Legendre_polynomials) of degree \\(l\\) and order \\(m\\). Note that, as expected, the solution depends on the distance \\(r\\) only through the phase difference \\(k r.\\)
+
+We shall first examine the radial functions \\(z_l(k r)\\). They may be used to represent any of the four kinds of spherical Bessel functions \[[Stratton](#references) (ch 7.4)\]:
+
+$$ \tag{17.43}
+\begin{aligned}
+	& j_l(x) = \sqrt{\frac{\pi}{2 x}} J_{l+1/2}(x), &
+	& y_l(x) = \sqrt{\frac{\pi}{2 x}} Y_{l+1/2}(x),
+	\cr
+	& h_l^{(1)}(x) = \sqrt{\frac{\pi}{2 x}} H_{l+1/2}^{(1)}(x), &
+	& h_l^{(2)}(x) = \sqrt{\frac{\pi}{2 x}} H_{l+1/2}^{(2)}(x),
+\end{aligned}
+$$
+
+where \\(J_l\\) and \\(Y_l\\) are the Bessel functions of the [first](https://en.wikipedia.org/wiki/Bessel_function#Bessel_functions_of_the_first_kind:_J%CE%B1) and the [second](https://en.wikipedia.org/wiki/Bessel_function#Bessel_functions_of_the_second_kind:_Y%CE%B1) kind, respectively, while \\(H_l^{(1)}\\) and \\(H_l^{(1)}\\) are the [Hankel functions](https://en.wikipedia.org/wiki/Bessel_function#Hankel_functions:_H(1)%CE%B1,\_H(2)%CE%B1) of the first and the second kind,
 which are related to the Bessel functions in a very simple manner:
 
 $$ \tag{17.44}
-	H_n^{(1)}(x) = J_n(x) + i Y_n(x),
+	H_l^{(1)}(x) = J_l(x) + i Y_l(x),
 	\quad
-	H_n^{(2)}(x) = J_n(x) - i Y_n(x).
+	H_l^{(2)}(x) = J_l(x) - i Y_l(x).
 $$
 
-\\(H_n^{(1)}\\) and \\(H_n^{(1)}\\) are also known as Bessel functions of the third and the fourth kind, respectively.
+\\(H_l^{(1)}\\) and \\(H_l^{(1)}\\) are also known as Bessel functions of the third and the fourth kind, respectively.
 
 As expected from the general scattering theory, the behavior of these functions is rather different depending on whether the magnitude of the argument is very large or very small.
 
-{{< figure src="/img/spherical_bessel_j.svg" caption="*Figure N: Spherical Bessel functions of the first kind of order n=0 (blue), n=1 (orange), n=2 (green), n=3 (red).*" >}}
+{{< figure src="/img/spherical_bessel_j.svg" caption="*Figure N: Spherical Bessel functions of the first kind of order l=0 (blue), l=1 (orange), l=2 (green), l=3 (red).*" >}}
 
-{{< figure src="/img/spherical_bessel_y.svg" caption="*Figure N: Spherical Bessel functions of the second kind of order n=0 (blue), n=1 (orange), n=2 (green), n=3 (red).*" >}}
+{{< figure src="/img/spherical_bessel_y.svg" caption="*Figure N: Spherical Bessel functions of the second kind of order l=0 (blue), l=1 (orange), l=2 (green), l=3 (red).*" >}}
 
 In particular, in the far zone, as \\(k r \to \infin\\), both functions behave as decaying sine waves, which can be clearly seen on the plot below.
 
-{{< figure src="/img/spherical_hankel_1.svg" caption="*Figure N: Spherical Hankel functions of the first kind of order n=0 (blue), n=1 (orange), n=2 (green), n=3 (red). Solid lines correspond to the real part, while the imaginary part is drawn using dashed lines.*" >}}
+{{< figure src="/img/spherical_hankel_1.svg" caption="*Figure N: Spherical Hankel functions of the first kind of order l=0 (blue), l=1 (orange), l=2 (green), l=3 (red). Solid lines correspond to the real part, while the imaginary part is drawn using dashed lines.*" >}}
 
 In addition, observe that the real and the imaginary components (the Bessel functions of the first and the second kind, respectively) are out-of-phase by a constant factor. This leads to the asymptotic forms
 
 $$ \tag{17.45}
 \begin{aligned}
-	& j_n(x) \approx \frac{1}{x} \cos\Big( x - \frac{n+1}{2} \pi \Big), &
-	& y_n(x) \approx \frac{1}{x} \sin\Big( x - \frac{n+1}{2} \pi \Big),
+	& j_l(x) \approx \frac{1}{x} \cos\Big( x - \frac{l+1}{2} \pi \Big), &
+	& y_l(x) \approx \frac{1}{x} \sin\Big( x - \frac{l+1}{2} \pi \Big),
 	\cr
-	& h_n^{(1)}(x) \approx \frac{1}{x} (-i)^{n+1} e^{i \rho}, &
-	& h_n^{(2)}(x) \approx \frac{1}{x} (i)^{n+1} e^{+i \rho}.
+	& h_l^{(1)}(x) \approx \frac{1}{x} (-i)^{l+1} e^{i x}, &
+	& h_l^{(2)}(x) \approx \frac{1}{x} (i)^{l+1} e^{+i x}.
 \end{aligned}
 $$
 
 Let us now turn our attention to the angular component of the solution
 
 $$ \tag{17.46}
-	P_n^m(\cos{\theta}) e^{i m \phi}
-	= P_n^m(\cos{\theta}) \cos(m \phi)
-	+ i P_n^m(\cos{\theta}) \sin(m \phi).
+	P_l^m(\cos{\theta}) e^{i m \phi}
+	= P_l^m(\cos{\theta}) \cos(m \phi)
+	+ i P_l^m(\cos{\theta}) \sin(m \phi).
 $$
 
-If we set \\(m=0\\), the dependence on the azimuthal angle \\(\phi\\) disappears, and we are left with the [Legendre polynomial](https://en.wikipedia.org/wiki/Legendre_polynomials) \\(P_n\\) plotted below.
+If we set \\(m=0\\), the dependence on the azimuthal angle \\(\phi\\) disappears, and we are left with the [Legendre polynomial](https://en.wikipedia.org/wiki/Legendre_polynomials) \\(P_l\\) plotted below.
 
-{{< figure src="/img/legendre.svg" caption="*Figure N: Legendere polynomials of degree n=0 (blue), n=1 (orange), n=2 (green), n=3 (red).*" >}}
+{{< figure src="/img/legendre.svg" caption="*Figure N: Legendere polynomials of degree l=0 (blue), l=1 (orange), l=2 (green), l=3 (red).*" >}}
 
-The degree of a polynomial is also the number of zeros of the function. Coupled with the fact that \\(P_n(\cos{\theta})\\) is independent of \\(\phi\\), we can observe that the Legendre polynomial of degree \\(n\\) divides the surface of a sphere into \\(n + 1\\) zones of alternating sign. For this reason, the family of functions \\(P_n(\cos{\theta})\\) is sometimes referred to as *zonal harmonics*.
+The degree of a polynomial is also the number of zeros of the function. Coupled with the fact that \\(P_l(\cos{\theta})\\) is independent of \\(\phi\\), we can observe that the Legendre polynomial of degree \\(l\\) divides the surface of a sphere into \\(l + 1\\) zones of alternating sign. For this reason, the family of functions \\(P_l(\cos{\theta})\\) is sometimes referred to as *zonal harmonics*.
 
-The situation changes when \\(m \neq 0\\). As can be seen from the graph below, the value of the associated Legendre polynomial \\(P_n^m(\cos{\theta})\\) goes to zero at \\(|\cos{\theta}| = 1\\). In addition, the total number of zeros of the function is \\(n - m + 2\\).
+The situation changes when \\(m \neq 0\\). As can be seen from the graph below, the value of the associated Legendre polynomial \\(P_l^m(\cos{\theta})\\) goes to zero at \\(|\cos{\theta}| = 1\\). In addition, the total number of zeros of the function is \\(l - m + 2\\).
 
 {{< figure src="/img/assoc_legendre.svg" caption="*Figure N: Associated Legendere polynomials of degree 3 and order m=0 (blue), m=1 (orange), m=2 (green), m=3 (red).*" >}}
 
-We are now ready to interpret Equation 17.46 in full. Since that function has harmonic dependence on \\(\phi\\), if we plot one of its parts (either real or imaginary), we can observe that it divides the surface of a sphere into \\(2 m \times (n - m + 1)\\) rectangular domains, or tesserae. Thus, \\(P_n^m(\cos{\theta}) \cos(m \phi)\\) and \\(P_n^m(\cos{\theta}) \sin(m \phi)\\) are called *tesseral harmonics* for \\(|m| < n\\) and *sectorial harmonics* for \\(|m| = n\\).
+We are now ready to interpret the complete Equation 17.46. Since that function has harmonic dependence on \\(\phi\\), if we plot one of its parts (either real or imaginary), we can observe that it divides the surface of a sphere into \\(2 m \times (l - m + 1)\\) rectangular domains, or tesserae. Thus, \\(P_l^m(\cos{\theta}) \cos(m \phi)\\) and \\(P_l^m(\cos{\theta}) \sin(m \phi)\\) are called *tesseral harmonics* for \\(|m| < l\\) and *sectorial harmonics* for \\(|m| = l\\).
 
 {{< figure src="/img/assoc_legendre_3.png" caption="*Figure N: Tesseral harmonics of degree 3 and order m=1 (left), m=2 (center), m=3 (right). Warm colors correspond to positive values of the function, and cold colors - to negative values.*" >}}
 
@@ -4437,31 +4444,56 @@ Associated Legendre polynomials have a powerful property - they are orthogonal \
 
 $$ \tag{17.47}
 \begin{aligned}
-	& \int_{-1}^{1} P_n^m(y) P_l^m(y) dy = \frac{2}{2n + 1} \frac{(n+m)!}{(n-m)!} \delta_{l,n},
+	& \int_{-1}^{1} P_k^m(y) P_l^m(y) dy = \frac{2}{2n + 1} \frac{(l+m)!}{(l-m)!} \delta_{k,l},
 	\cr
-	& \int_{-1}^{1} P_n^m(y) P_n^l(y) \frac{dy}{1-y^2} = \frac{1}{m} \frac{(n+m)!}{(n-m)!} \delta_{l,m}.
+	& \int_{-1}^{1} P_l^m(y) P_l^n(y) \frac{dy}{1-y^2} = \frac{1}{m} \frac{(l+m)!}{(l-m)!} \delta_{m,n}.
 \end{aligned}
 $$
 
-In addition, we know that any sufficiently smooth univariate function can be expanded into a Fourier series, since
+In addition, we know that any sufficiently smooth univariate function can be expanded into a [Fourier series](https://en.wikipedia.org/wiki/Fourier_series), since
 
 $$ \tag{17.48}
 	\int_{-\pi}^{\pi} \sin(m x) dx = 0,
 	\quad
-	\int_{-\pi}^{\pi} \cos(n x) dx = 0,
+	\int_{-\pi}^{\pi} \cos(l x) dx = 0,
 	\quad
-	\int_{-\pi}^{\pi} \sin(m x) \cos(n x) dx = 0,
+	\int_{-\pi}^{\pi} \sin(m x) \cos(l x) dx = 0,
 $$
 
 $$ \tag{17.49}
-	\int_{-\pi}^{\pi} \sin(m x) \sin(n x) dx = \pi \delta_{m,n},
+	\int_{-\pi}^{\pi} \sin(m x) \sin(l x) dx = \pi \delta_{m,l},
 	\quad
-	\int_{-\pi}^{\pi} \cos(m x) \cos(n x) dx = \pi \delta_{m,n},
+	\int_{-\pi}^{\pi} \cos(m x) \cos(l x) dx = \pi \delta_{m,l},
 $$
 
-for \\(m,n \neq 0\\).
+for \\(m,l \neq 0\\).
 
-Remarkably, by the means of double integration, these two facts can be combined to show that tesseral harmonics form a complete orthogonal system on the surface of a sphere [citation needed; Courant-Hilbert?].
+Remarkably, by means of double integration over \\(\phi\\) and \\(\cos{\theta}\\), these two facts can be combined to show that tesseral harmonics form a complete orthogonal system on the surface of a sphere [citation needed; Courant-Hilbert?].
+
+Tesseral harmonics are [real-valued](https://en.wikipedia.org/wiki/Spherical_harmonics#Real_form) basis functions, which is sufficient for most problems. However, the theory can be trivially extended to complex values by combining even and odd tesseral harmonics according to Equation 17.46. This directly leads to the definition of [scalar spherical harmonics](https://en.wikipedia.org/wiki/Spherical_harmonics)
+
+$$ \tag{17.49}
+	Y_l^m(\theta, \phi)
+	= N P_l^m(\cos{\theta}) e^{i m \phi},
+$$
+
+where N is the normalization constant chosen such that
+
+$$ \tag{17.50}
+	\int_{0}^{2 \pi}  \int_{-\pi}^{\pi} \big[ Y_k^n(\theta, \phi) \big]^{\*} Y_l^m(\theta, \phi)  \thinspace d\theta d\phi = N^2 \delta_{k,l} \delta_{m,n}.
+$$
+
+The solution of Equation 17.38 given by Equation 17.42 can then be more compactly written as
+
+$$ \tag{17.51}
+	f(r, \theta, \phi)
+	= - \sum_{l=0}^{\infin} \sum_{m=-l}^{l} c_{lm} \psi_{lm}(r, \theta, \phi)
+	= - \sum_{l=0}^{\infin} \sum_{m=-l}^{l} c_{lm} z_l(k r) Y_l^m(\theta, \phi).
+$$
+
+Incidentally, if we substitute Equation 17.51 in place of Equation 17.11, and carry on the subsequent derivation, it becomes clear where the name *vector spherical coordinates* originates from.
+
+Now we can finally define M_{lm} like in the paper....
 
 ---
 
