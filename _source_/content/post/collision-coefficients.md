@@ -4146,7 +4146,7 @@ $$ \tag{17.19}
 	\nabla \cdot \bm{N_{mn}} = 0,
 $$
 
-where the \\(1/k\\) constant is chosen for further convenience.
+where the \\(1/k\\) constant is chosen in order to make the resulting expression dimensionless.
 
 The three series of vectors \\(\bm{L\_{mn}}, \bm{M\_{mn}}, \bm{N\_{mn}}\\) are called [vector spherical harmonics](https://en.wikipedia.org/wiki/Vector_spherical_harmonics). \\(\bm{a}\\) is called the *pilot vector*. It is convenient to assume that it belongs to an [irrotational](https://en.wikipedia.org/wiki/Conservative_vector_field#Irrotational_vector_fields) vector field, such that
 
@@ -4471,7 +4471,7 @@ $$
 
 for \\(m,n \neq 0\\).
 
-Remarkably, by means of double integration over \\(\phi\\) and \\(\cos{\theta}\\), these two facts can be combined to show that tesseral harmonics form a *complete orthogonal system* of basis functions on the surface of a sphere [citation needed; Courant-Hilbert?].
+Remarkably, by means of double integration over \\(\theta\\) and \\(\phi\\), these two facts can be combined to show that tesseral harmonics form a *complete orthogonal system* of basis functions on the surface of a sphere [citation needed; Courant-Hilbert?].
 
 Tesseral harmonics are [real-valued basis functions](https://en.wikipedia.org/wiki/Spherical_harmonics#Real_form), which is sufficient for most problems. However, the theory can be trivially extended to complex values by combining even and odd tesseral harmonics according to Equation 17.46. This directly leads to the definition of [scalar spherical harmonics](https://en.wikipedia.org/wiki/Spherical_harmonics)
 
@@ -4483,10 +4483,10 @@ $$
 where N is the normalization constant chosen such that
 
 $$ \tag{17.51}
-	\int_{0}^{2 \pi} \int_{-\pi}^{\pi} \big[ Y_l^k(\theta, \phi) \big]^{\*} Y_n^m(\theta, \phi)   \sin{\theta} \thinspace d\theta d\phi = \delta_{k,m} \delta_{l,n}.
+	\int_{0}^{2 \pi} \int_{-1}^{1} \big[ Y_l^k(\theta, \phi) \big]^{\*} Y_n^m(\theta, \phi) \thinspace d(\cos{\theta}) d\phi = \delta_{k,m} \delta_{l,n}.
 $$
 
-The solution of Equation 17.38 given by Equation 17.42 can then be more compactly written as
+Thus, the solution of Equation 17.38 (given by Equation 17.42) can be more compactly written as
 
 $$ \tag{17.52}
 \begin{aligned}
@@ -4494,13 +4494,55 @@ $$ \tag{17.52}
 	= - \sum_{n=0}^{\infin} \sum_{m=-n}^{n} c_{mn} \psi_{mn}(r, \theta, \phi),
 	\cr
 	& \psi_{mn}(r, \theta, \phi)
-	= z_n(k r) Y_n^m(\theta, \phi),
+	= \frac{1}{N} z_n(k r) Y_n^m(\theta, \phi),
 \end{aligned}
 $$
 
 We may now substitute Equation 17.52 in place of Equation 17.11, and carry out the subsequent derivation to find the explicit form of the solution of the *vector* Helmholtz equation (in terms of *vector* spherical harmonics) that complements the solution of the *scalar* Helmholtz equation (in terms of *scalar* spherical harmonics).
 
-Now we can finally define M_{mn} like in the paper....
+The expression of the first vector \\(\bm{L_{mn}}\\) is given by Equation 17.17.1:
+
+$$ \tag{17.53}
+\begin{aligned}
+	\bm{L_{mn}}
+	&= \frac{\partial z_n(k r)}{\partial r} P_n^m(\cos{\theta}) e^{i m \phi} \bm{e_r}
+	\cr
+	&+ \frac{1}{r} z_n(k r) \frac{\partial P_n^m(\cos{\theta})}{\partial \theta} e^{i m \phi} \bm{e_{\theta}}
+	\cr
+	&+ \frac{i m}{r \sin{\theta}} z_n(k r) P_n^m(\cos{\theta}) e^{i m \phi} \bm{e_{\phi}},
+\end{aligned}
+$$
+
+where \\(\lbrace \bm{e_r}, \bm{e_{\theta}}, \bm{e_{\phi}} \rbrace\\) is the set of unit vectors pointing along the spherical coordinate axes.
+
+Similarly, we can determine the expression of \\(\bm{M_{mn}}\\) by using Equation 17.21 and setting \\(\bm{a} = \bm{r}\\):
+
+$$ \tag{17.54}
+\begin{aligned}
+	\bm{M_{mn}}
+	&= \frac{i m}{\sin{\theta}} z_n(k r) P_n^m(\cos{\theta}) e^{i m \phi} \bm{e_{\theta}}
+	\cr
+	&- z_n(k r) \frac{\partial P_n^m(\cos{\theta})}{\partial \theta} e^{i m \phi} \bm{e_{\phi}}.
+\end{aligned}
+$$
+
+Note that the radial component is zero, as expected from a formulation that involves a cross product with \\(\bm{r}\\).
+
+Finally, we may find \\(\bm{N_{mn}}\\) by expanding Equation 17.19.1:
+
+$$ \tag{17.55}
+\begin{aligned}
+	\bm{N_{mn}}
+	&= \frac{1}{kr} z_n(k r) \bigg( \frac{m^2}{\sin^2{\theta}} P_n^m(\cos{\theta})
+	 - \frac{\cos{\theta}}{\sin{\theta}} \frac{\partial P_n^m(\cos{\theta})}{\partial \theta} - \frac{\partial^2 P_n^m(\cos{\theta})}{\partial^2 \theta} \bigg) e^{i m \phi} \bm{e_r}
+	\cr
+	&+ \frac{1}{kr} \bigg( z_n(k r) + r \frac{\partial z_n(k r)}{\partial r} \bigg) \frac{\partial P_n^m(\cos{\theta})}{\partial \theta} e^{i m \phi} \bm{e_{\theta}}
+	\cr
+	&+ \frac{i m}{kr \sin{\theta}} \bigg( z_n(k r) + r \frac{\partial z_n(k r)}{\partial r} \bigg) P_n^m(\cos{\theta}) e^{i m \phi} \bm{e_{\phi}}.
+\end{aligned}
+$$
+
+According to 17.22, L.M=0. Is L.N=0? Is M.N=0?
 
 ---
 
