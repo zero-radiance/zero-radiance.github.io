@@ -4325,18 +4325,30 @@ $$ \tag{17.38}
 	\frac{1}{r^2} \frac{\partial}{\partial r} \bigg( r^2 \frac{\partial f}{\partial r} \bigg)
 	+ \frac{1}{r^2 \sin{\theta}} \frac{\partial}{\partial \theta} \bigg( \sin{\theta} \frac{\partial f}{\partial \theta} \bigg)
 	+ \frac{1}{r^2 \sin^2{\theta}} \frac{\partial^2 f}{\partial \phi^2}
+	+ k^2 f = 0,
+$$
+
+or, fully expanded, as
+
+$$ \tag{17.39}
+	\frac{1}{r^2} \bigg(
+	  \frac{\partial^2 f}{\partial \theta^2}
+	+ \frac{\cos{\theta}}{\sin{\theta}} \frac{\partial f}{\partial \theta}
+	+ \frac{1}{\sin^2{\theta}} \frac{\partial^2 f}{\partial \phi^2} \bigg)
+	+ \frac{\partial^2 f}{\partial r^2}
+	+ \frac{2}{r} \frac{\partial f}{\partial r}
 	+ k^2 f = 0.
 $$
 
 If we look for a solution of the form
 
-$$ \tag{17.39}
+$$ \tag{17.40}
 	f(r, \theta, \phi) = f_r(r) f_{\theta}(\theta) f_{\phi}(\phi),
 $$
 
 substitution results in three separate ordinary differential equations:
 
-$$ \tag{17.40}
+$$ \tag{17.41}
 \begin{aligned}
 	& r^2 \frac{d^2 f_r}{d r^2}
 	+ 2 r \frac{d f_r}{d r}
@@ -4352,9 +4364,17 @@ $$
 
 where \\(p\\) and \\(q\\) are separation constants that ensure the solutions are finite and single-valued.
 
-Differential equations of this type are well known in the literature \[[Stratton](#references) (ch 7.3)\]. Without proof, their solutions are:
+Differential equations of this type are well known in the literature \[[Stratton](#references) (ch 7.3)\]. If we make a particular choice of
 
-$$ \tag{17.41}
+$$ \tag{17.42}
+	p^2 = n (n+1),
+	\quad
+	q = m,
+$$
+
+without proof, the solutions of Equations 17.41.1-17.41.3 are
+
+$$ \tag{17.43}
 	f_r(r) = z_n(k r),
 	\quad
 	f_{\theta}(\theta) = P_n^m(\cos{\theta}),
@@ -4362,9 +4382,9 @@ $$ \tag{17.41}
 	f_{\phi}(\phi) = e^{i m \phi}.
 $$
 
-Since the solutions of the Helmholtz equation that are continuous (within the domain), finite, and single-valued form a discrete set, the general solution of Equation 17.38 is
+Since the solutions of the Helmholtz equation that are continuous (within a certain domain), finite, and single-valued form a *discrete set*, the general solution of Equation 17.38 is
 
-$$ \tag{17.42}
+$$ \tag{17.44}
 \begin{aligned}
 	& f(r, \theta, \phi)
 	= - \sum_{m,n} c_{mn} \psi_{mn}(r, \theta, \phi),
@@ -4378,7 +4398,7 @@ where \\(c_{mn}\\) is a complex constant, \\(z_n\\) is a [spherical Bessel funct
 
 We shall first examine the radial functions \\(z_n(k r)\\). They may be used to represent any of the four kinds of spherical Bessel functions \[[Stratton](#references) (ch 7.4)\]:
 
-$$ \tag{17.43}
+$$ \tag{17.45}
 \begin{aligned}
 	& j_n(x) = \sqrt{\frac{\pi}{2 x}} J_{n+1/2}(x), &
 	& y_n(x) = \sqrt{\frac{\pi}{2 x}} Y_{n+1/2}(x),
@@ -4391,7 +4411,7 @@ $$
 where \\(J_n\\) and \\(Y_n\\) are the Bessel functions of the [first](https://en.wikipedia.org/wiki/Bessel_function#Bessel_functions_of_the_first_kind:_J%CE%B1) and the [second](https://en.wikipedia.org/wiki/Bessel_function#Bessel_functions_of_the_second_kind:_Y%CE%B1) kind, respectively, while \\(H_n^{(1)}\\) and \\(H_n^{(1)}\\) are the [Hankel functions](https://en.wikipedia.org/wiki/Bessel_function#Hankel_functions:_H(1)%CE%B1,\_H(2)%CE%B1) of the first and the second kind,
 which are related to the Bessel functions in a very simple manner:
 
-$$ \tag{17.44}
+$$ \tag{17.46}
 	H_n^{(1)}(x) = J_n(x) + i Y_n(x),
 	\quad
 	H_n^{(2)}(x) = J_n(x) - i Y_n(x).
@@ -4411,7 +4431,7 @@ In particular, in the far zone, as \\(k r \to \infin\\), both functions behave a
 
 In addition, observe that the real and the imaginary components (the Bessel functions of the first and the second kind, respectively) are out-of-phase by a constant factor. This leads to the asymptotic forms
 
-$$ \tag{17.45}
+$$ \tag{17.47}
 \begin{aligned}
 	& j_n(x) \approx \frac{1}{x} \cos\Big( x - \frac{n+1}{2} \pi \Big), &
 	& y_n(x) \approx \frac{1}{x} \sin\Big( x - \frac{n+1}{2} \pi \Big),
@@ -4423,7 +4443,7 @@ $$
 
 Let us now turn our attention to the angular component of the solution
 
-$$ \tag{17.46}
+$$ \tag{17.48}
 	P_n^m(\cos{\theta}) e^{i m \phi}
 	= P_n^m(\cos{\theta}) \cos(m \phi)
 	+ i P_n^m(\cos{\theta}) \sin(m \phi).
@@ -4439,13 +4459,13 @@ The situation changes when \\(m \neq 0\\). As can be seen from the graph below, 
 
 {{< figure src="/img/assoc_legendre.svg" caption="*Figure N: Associated Legendere polynomials of degree 3 and order m=0 (blue), m=1 (orange), m=2 (green), m=3 (red).*" >}}
 
-We are now ready to interpret the complete Equation 17.46. Since that function has harmonic dependence on \\(\phi\\), if we plot one of its parts (either real or imaginary), we can observe that it divides the surface of a sphere into \\(2 m \times (n - m + 1)\\) rectangular domains, or tesserae. Thus, \\(P_n^m(\cos{\theta}) \cos(m \phi)\\) and \\(P_n^m(\cos{\theta}) \sin(m \phi)\\) are called *tesseral harmonics* for \\(|m| < n\\) and *sectorial harmonics* for \\(|m| = n\\).
+We are now ready to interpret the entire Equation 17.48. Since that function has harmonic dependence on \\(\phi\\), if we plot one of its parts (either real or imaginary), we can observe that it divides the surface of a sphere into \\(2 m \times (n - m + 1)\\) rectangular domains, or tesserae. Thus, \\(P_n^m(\cos{\theta}) \cos(m \phi)\\) and \\(P_n^m(\cos{\theta}) \sin(m \phi)\\) are called *tesseral harmonics* for \\(|m| < n\\) and *sectorial harmonics* for \\(|m| = n\\).
 
 {{< figure src="/img/assoc_legendre_3.png" caption="*Figure N: Tesseral harmonics of degree 3 and order m=1 (left), m=2 (center), m=3 (right). Warm colors correspond to positive values of the function, and cold colors - to negative values.*" >}}
 
 Associated Legendre polynomials have a powerful property - they are orthogonal \[[Stratton](#references) (ch 7.3)\]:
 
-$$ \tag{17.47}
+$$ \tag{17.49}
 \begin{aligned}
 	& \int_{-1}^{1} P_l^m(y) P_n^m(y) dy = \frac{2}{2n + 1} \frac{(n+m)!}{(n-m)!} \delta_{l,n},
 	\cr
@@ -4455,7 +4475,7 @@ $$
 
 In addition, we know that any sufficiently smooth univariate function can be expanded into a [Fourier series](https://en.wikipedia.org/wiki/Fourier_series), since
 
-$$ \tag{17.48}
+$$ \tag{17.50}
 	\int_{-\pi}^{\pi} \sin(m x) dx = 0,
 	\quad
 	\int_{-\pi}^{\pi} \cos(n x) dx = 0,
@@ -4463,7 +4483,7 @@ $$ \tag{17.48}
 	\int_{-\pi}^{\pi} \sin(m x) \cos(n x) dx = 0,
 $$
 
-$$ \tag{17.49}
+$$ \tag{17.51}
 	\int_{-\pi}^{\pi} \sin(m x) \sin(n x) dx = \pi \delta_{m,n},
 	\quad
 	\int_{-\pi}^{\pi} \cos(m x) \cos(n x) dx = \pi \delta_{m,n},
@@ -4473,22 +4493,22 @@ for \\(m,n \neq 0\\).
 
 Remarkably, by means of double integration over \\(\theta\\) and \\(\phi\\), these two facts can be combined to show that tesseral harmonics form a *complete orthogonal system* of basis functions on the surface of a sphere [citation needed; Courant-Hilbert?].
 
-Tesseral harmonics are [real-valued basis functions](https://en.wikipedia.org/wiki/Spherical_harmonics#Real_form), which is sufficient for most problems. However, the theory can be trivially extended to complex values by combining even and odd tesseral harmonics according to Equation 17.46. This directly leads to the definition of [scalar spherical harmonics](https://en.wikipedia.org/wiki/Spherical_harmonics)
+Tesseral harmonics are [real-valued basis functions](https://en.wikipedia.org/wiki/Spherical_harmonics#Real_form), which is sufficient for most problems. However, the theory can be trivially extended to complex values by combining even and odd tesseral harmonics according to Equation 17.48. This directly leads to the definition of [scalar spherical harmonics](https://en.wikipedia.org/wiki/Spherical_harmonics)
 
-$$ \tag{17.50}
+$$ \tag{17.52}
 	Y_n^m(\theta, \phi)
 	= N P_n^m(\cos{\theta}) e^{i m \phi},
 $$
 
 where N is the normalization constant chosen such that
 
-$$ \tag{17.51}
+$$ \tag{17.53}
 	\int_{0}^{2 \pi} \int_{-1}^{1} \big[ Y_l^k(\theta, \phi) \big]^{\*} Y_n^m(\theta, \phi) \thinspace d(\cos{\theta}) d\phi = \delta_{k,m} \delta_{l,n}.
 $$
 
-Thus, the solution of Equation 17.38 (given by Equation 17.42) can be more compactly written as
+Thus, the solution of Equation 17.38 (given by Equation 17.44) can be more compactly written as
 
-$$ \tag{17.52}
+$$ \tag{17.54}
 \begin{aligned}
 	& f(r, \theta, \phi)
 	= - \sum_{n=0}^{\infin} \sum_{m=-n}^{n} c_{mn} \psi_{mn}(r, \theta, \phi),
@@ -4498,11 +4518,11 @@ $$ \tag{17.52}
 \end{aligned}
 $$
 
-We may now substitute Equation 17.52 in place of Equation 17.11, and carry out the subsequent derivation to find the explicit form of the solution of the *vector* Helmholtz equation (in terms of *vector* spherical harmonics) that complements the solution of the *scalar* Helmholtz equation (in terms of *scalar* spherical harmonics).
+We may now substitute Equation 17.54 in place of Equation 17.11, and carry out the subsequent derivation to find the explicit form of the solution of the *vector* Helmholtz equation (in terms of *vector* spherical harmonics) that complements the solution of the *scalar* Helmholtz equation (in terms of *scalar* spherical harmonics).
 
 The expression of the first vector \\(\bm{L_{mn}}\\) is given by Equation 17.17.1:
 
-$$ \tag{17.53}
+$$ \tag{17.55}
 \begin{aligned}
 	\bm{L_{mn}}
 	&= \frac{\partial z_n(k r)}{\partial r} P_n^m(\cos{\theta}) e^{i m \phi} \bm{e_r}
@@ -4515,32 +4535,74 @@ $$
 
 where \\(\lbrace \bm{e_r}, \bm{e_{\theta}}, \bm{e_{\phi}} \rbrace\\) is the set of unit vectors pointing along the spherical coordinate axes.
 
-Similarly, we can determine the expression of \\(\bm{M_{mn}}\\) by using Equation 17.21 and setting \\(\bm{a} = \bm{r}\\):
+Similarly, we can determine the expression of \\(\bm{M_{mn}}\\) by expanding Equation 17.18.1 with \\(\bm{a} = \bm{r}\\):
 
-$$ \tag{17.54}
+$$ \tag{17.56}
 \begin{aligned}
 	\bm{M_{mn}}
-	&= \frac{i m}{\sin{\theta}} z_n(k r) P_n^m(\cos{\theta}) e^{i m \phi} \bm{e_{\theta}}
+	&= \frac{1}{\sin{\theta}} \frac{\partial \psi_{mn}(r, \theta, \phi)}{\partial \phi} \bm{e_{\theta}}
+	 - \frac{\partial \psi_{mn}(r, \theta, \phi)}{\partial \theta} \bm{e_{\phi}}
 	\cr
-	&- z_n(k r) \frac{\partial P_n^m(\cos{\theta})}{\partial \theta} e^{i m \phi} \bm{e_{\phi}}.
+	&= \frac{i m}{\sin{\theta}} z_n(k r) P_n^m(\cos{\theta}) e^{i m \phi} \bm{e_{\theta}}
+	 - z_n(k r) \frac{\partial P_n^m(\cos{\theta})}{\partial \theta} e^{i m \phi} \bm{e_{\phi}}.
 \end{aligned}
 $$
 
-Note that the radial component is zero, as expected from a formulation that involves a cross product with \\(\bm{r}\\).
+Note that the radial component is zero, as expected from Equation 17.21 that contains a cross product with \\(\bm{r}\\).
 
-Finally, we may find \\(\bm{N_{mn}}\\) by expanding Equation 17.19.1:
+Finally, we may find the representation of \\(\bm{N_{mn}}\\) by substituting Equation 17.56 into 17.19.1:
 
-$$ \tag{17.55}
+$$ \tag{17.57}
 \begin{aligned}
 	\bm{N_{mn}}
-	&= \frac{1}{kr} z_n(k r) \bigg( \frac{m^2}{\sin^2{\theta}} P_n^m(\cos{\theta})
-	 - \frac{\cos{\theta}}{\sin{\theta}} \frac{\partial P_n^m(\cos{\theta})}{\partial \theta} - \frac{\partial^2 P_n^m(\cos{\theta})}{\partial^2 \theta} \bigg) e^{i m \phi} \bm{e_r}
+	&= \frac{-1}{kr} \bigg(
+	   \frac{\partial^2 \psi_{mn}(r, \theta, \phi)}{\partial \theta^2}
+	 + \frac{\cos{\theta}}{\sin{\theta}} \frac{\partial \psi_{mn}(r, \theta, \phi)}{\partial \theta}
+	 + \frac{1}{\sin^2{\theta}} \frac{\partial^2 \psi_{mn}(r, \theta, \phi)}{\partial \phi^2} \bigg) \bm{e_r}
 	\cr
-	&+ \frac{1}{kr} \bigg( z_n(k r) + r \frac{\partial z_n(k r)}{\partial r} \bigg) \frac{\partial P_n^m(\cos{\theta})}{\partial \theta} e^{i m \phi} \bm{e_{\theta}}
+	&+ \frac{1}{kr} \bigg(
+	   \frac{\partial \psi_{mn}(r, \theta, \phi)}{\partial \theta}
+	 + r \frac{\partial^2 \psi_{mn}(r, \theta, \phi)}{\partial r \partial \theta} \bigg) \bm{e_{\theta}}
 	\cr
-	&+ \frac{i m}{kr \sin{\theta}} \bigg( z_n(k r) + r \frac{\partial z_n(k r)}{\partial r} \bigg) P_n^m(\cos{\theta}) e^{i m \phi} \bm{e_{\phi}}.
+	&+ \frac{1}{kr \sin{\theta}} \bigg(
+	   \frac{\partial \psi_{mn}(r, \theta, \phi)}{\partial \phi}
+	 + r \frac{\partial^2 \psi_{mn}(r, \theta, \phi)}{\partial r \partial \phi} \bigg) \bm{e_{\phi}}.
 \end{aligned}
 $$
+
+Careful comparison of the expression of the radial component to Equation 17.39 yields
+
+$$ \tag{17.58}
+	(\bm{N_{mn}})\_r
+	= \frac{1}{kr} \bigg(
+	     r^2 \frac{\partial^2 \psi_{mn}}{\partial r^2}
+	   + 2 r \frac{\partial \psi_{mn}}{\partial r}
+	   + k^2 r^2 \psi_{mn} \bigg).
+$$
+
+If we recall that \\(\psi_{mn}\\) is separable, it becomes clear that it satisfies Equation 17.41. Coupled with the definition of \\(p^2\\) given by Equation 17.42.1, we obtain a simplified expression
+
+$$ \tag{17.59}
+	(\bm{N_{mn}})\_r
+	= \frac{n (n + 1)}{kr} \psi_{mn}.
+$$
+
+The explicit form of the components can be obtained by substitution of Equation 17.44:
+
+$$ \tag{17.60}
+\begin{aligned}
+	\bm{N_{mn}}
+	&= \frac{n (n + 1)}{kr} z_n(k r) P_n^m(\cos{\theta}) e^{i m \phi} \bm{e_r}
+	\cr
+	&+ \frac{1}{kr} \bigg( z_n(k r) + r \frac{\partial z_n(k r)}{\partial r} \bigg)
+	   \frac{\partial P_n^m(\cos{\theta})}{\partial \theta} e^{i m \phi} \bm{e_{\theta}}
+	\cr
+	&+ \frac{i m}{kr \sin{\theta}} \bigg( z_n(k r) + r \frac{\partial z_n(k r)}{\partial r} \bigg)
+	   P_n^m(\cos{\theta}) e^{i m \phi} \bm{e_{\phi}}.
+\end{aligned}
+$$
+
+---
 
 According to 17.22, L.M=0. Is L.N=0? Is M.N=0?
 
