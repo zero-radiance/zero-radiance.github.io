@@ -4328,7 +4328,7 @@ $$ \tag{17.38}
 	+ k^2 f = 0,
 $$
 
-or, fully expanded, as
+or, in its fully expanded form, as
 
 $$ \tag{17.39}
 	\frac{1}{r^2} \bigg(
@@ -4529,7 +4529,7 @@ $$ \tag{17.55}
 	\cr
 	&+ \frac{1}{r} z_n(k r) \frac{\partial P_n^m(\cos{\theta})}{\partial \theta} e^{i m \phi} \bm{e_{\theta}}
 	\cr
-	&+ \frac{i m}{r \sin{\theta}} z_n(k r) P_n^m(\cos{\theta}) e^{i m \phi} \bm{e_{\phi}},
+	&+ \frac{i m}{r} z_n(k r) \frac{P_n^m(\cos{\theta})}{\sin{\theta}} e^{i m \phi} \bm{e_{\phi}},
 \end{aligned}
 $$
 
@@ -4543,7 +4543,7 @@ $$ \tag{17.56}
 	&= \frac{1}{\sin{\theta}} \frac{\partial \psi_{mn}(r, \theta, \phi)}{\partial \phi} \bm{e_{\theta}}
 	 - \frac{\partial \psi_{mn}(r, \theta, \phi)}{\partial \theta} \bm{e_{\phi}}
 	\cr
-	&= \frac{i m}{\sin{\theta}} z_n(k r) P_n^m(\cos{\theta}) e^{i m \phi} \bm{e_{\theta}}
+	&= i m z_n(k r) \frac{P_n^m(\cos{\theta})}{\sin{\theta}} e^{i m \phi} \bm{e_{\theta}}
 	 - z_n(k r) \frac{\partial P_n^m(\cos{\theta})}{\partial \theta} e^{i m \phi} \bm{e_{\phi}}.
 \end{aligned}
 $$
@@ -4597,8 +4597,57 @@ $$ \tag{17.60}
 	&+ \frac{1}{kr} \bigg( z_n(k r) + r \frac{\partial z_n(k r)}{\partial r} \bigg)
 	   \frac{\partial P_n^m(\cos{\theta})}{\partial \theta} e^{i m \phi} \bm{e_{\theta}}
 	\cr
-	&+ \frac{i m}{kr \sin{\theta}} \bigg( z_n(k r) + r \frac{\partial z_n(k r)}{\partial r} \bigg)
-	   P_n^m(\cos{\theta}) e^{i m \phi} \bm{e_{\phi}}.
+	&+ \frac{i m}{k r} \bigg( z_n(k r) + r \frac{\partial z_n(k r)}{\partial r} \bigg)
+	   \frac{P_n^m(\cos{\theta})}{\sin{\theta}} e^{i m \phi} \bm{e_{\phi}}.
+\end{aligned}
+$$
+
+The expressions given above may be shortened by noting that
+
+$$ \tag{17.61}
+	\frac{\partial \big[ r z_n(k r) \big]}{\partial r}
+	=  z_n(k r) + r \frac{\partial z_n(k r)}{\partial r},
+$$
+
+and defining two new scalar zonal functions
+
+$$ \tag{17.62}
+	\pi_{mn}(\theta) = m \frac{P_n^m(\cos{\theta})}{\sin{\theta}},
+	\quad
+	\tau_{mn}(\theta) = \frac{\partial P_n^m(\cos{\theta})}{\partial \theta}.
+$$
+
+After substitution into Equations 17.55, 17.56, and 17.60, we immediately obtain
+
+$$ \tag{17.63}
+\begin{aligned}
+	\bm{L_{mn}}
+	&= e^{i m \phi} \bigg( \frac{\partial z_n(k r)}{\partial r} P_n^m(\cos{\theta}) \bm{e_r}
+	 + \frac{z_n(k r)}{r}
+	 \Big( \tau_{mn}(\theta) \bm{e_{\theta}} + i \pi_{mn}(\theta) \bm{e_{\phi}} \Big) \bigg),
+	\cr
+	\bm{M_{mn}}
+	&= e^{i m \phi}  z_n(k r)
+	\Big( i \pi_{mn}(\theta) \bm{e_{\theta}} - \tau_{mn}(\theta) \bm{e_{\phi}} \Big),
+	\cr
+	\bm{N_{mn}}
+	&= \frac{e^{i m \phi}}{kr} \bigg( n (n + 1) z_n(k r) P_n^m(\cos{\theta}) \bm{e_r}
+	 + \frac{\partial \big[ r z_n(k r) \big]}{\partial r}
+	 \Big( \tau_{mn}(\theta) \bm{e_{\theta}} + i \pi_{mn}(\theta) \bm{e_{\phi}} \Big) \bigg).
+\end{aligned}
+$$
+
+Note that the scalar zonal functions are used to form weighted combinations of the basis vectors. This observation suggests that we should define the vector tesseral functions
+
+$$ \tag{17.64}
+\begin{aligned}
+	\bm{l}\_{mn}(\theta, \phi) &= e^{i m \phi} \Big( P_n^m(\cos{\theta}) \bm{e_r} \Big),
+	\cr
+	\bm{m}\_{mn}(\theta, \phi)
+	&= e^{i m \phi} \Big( i \pi_{mn}(\theta) \bm{e_{\theta}} - \tau_{mn}(\theta) \bm{e_{\phi}} \Big),
+	\cr
+	\bm{n}\_{mn}(\theta, \phi)
+	&= e^{i m \phi} \Big( \tau_{mn}(\theta) \bm{e_{\theta}} + i \pi_{mn}(\theta) \bm{e_{\phi}} \Big),
 \end{aligned}
 $$
 
