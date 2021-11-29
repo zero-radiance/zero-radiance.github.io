@@ -4437,7 +4437,7 @@ $$ \tag{17.47}
 	& y_n(x) \approx \frac{1}{x} \sin\Big( x - \frac{n+1}{2} \pi \Big),
 	\cr
 	& h_n^{(1)}(x) \approx \frac{1}{x} (-i)^{n+1} e^{i x}, &
-	& h_n^{(2)}(x) \approx \frac{1}{x} (i)^{n+1} e^{+i x}.
+	& h_n^{(2)}(x) \approx \frac{1}{x} i^{n+1} e^{-i x}.
 \end{aligned}
 $$
 
