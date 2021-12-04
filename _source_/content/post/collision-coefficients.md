@@ -4509,9 +4509,9 @@ Associated Legendre polynomials have a powerful property - they are orthogonal \
 
 $$ \tag{17.54}
 \begin{aligned}
-	& \int_{-1}^{1} P_l^m(\cos{\theta}) P_n^m(\cos{\theta}) d(\cos{\theta}) = \frac{2}{2n + 1} \frac{(n+m)!}{(n-m)!} \delta_{l,n},
+	& \int_{0}^{\pi} P_l^m(\cos{\theta}) P_n^m(\cos{\theta}) \sin{\theta} \thinspace d\theta = \frac{2}{(2n + 1)} \frac{(n+m)!}{(n-m)!} \delta_{l,n},
 	\cr
-	& \int_{-1}^{1} P_n^m(\cos{\theta}) P_n^l(\cos{\theta}) \frac{d(\cos{\theta})}{\sin^2{\theta}} = \frac{1}{m} \frac{(n+m)!}{(n-m)!} \delta_{m,l}.
+	& \int_{0}^{\pi} P_n^m(\cos{\theta}) P_n^l(\cos{\theta}) \frac{d\theta}{\sin{\theta}} = \frac{1}{m} \frac{(n+m)!}{(n-m)!} \delta_{m,l}.
 \end{aligned}
 $$
 
@@ -4662,12 +4662,20 @@ and defining two new scalar zonal functions
 $$ \tag{17.67}
 	\pi_{m,n}(\theta) = m \frac{P_n^m(\cos{\theta})}{\sin{\theta}},
 	\quad
-	\tau_{m,n}(\theta) = \frac{\partial P_n^m(\cos{\theta})}{\partial \theta}.
+	\tau_{m,n}(\theta) = \frac{\partial P_n^m(\cos{\theta})}{\partial \theta}
+$$
+
+that satisfy the relation
+
+$$ \tag{17.68}
+	\int_{0}^{\pi} \Big( \pi_{m,n}(\theta) \pi_{m,l}(\theta)
+	+ \tau_{m,n}(\theta) \tau_{m,l}(\theta) \Big) \sin{\theta} \thinspace d\theta
+	= n (n+1) \frac{2}{(2n + 1)} \frac{(n+m)!}{(n-m)!} \delta_{l,n}.
 $$
 
 After substitution into Equations 17.60, 17.61, and 17.65, we immediately obtain
 
-$$ \tag{17.68}
+$$ \tag{17.69}
 \begin{aligned}
 	\bm{L_{m,n}}
 	&= N_n^m e^{i m \phi} \bigg( \frac{\partial z_n(k r)}{\partial r} P_n^m(\cos{\theta}) \bm{e_r}
@@ -4687,7 +4695,7 @@ $$
 
 The complex conjugates of the vector spherical harmonics are
 
-$$ \tag{17.69}
+$$ \tag{17.70}
 \begin{aligned}
 	\bm{L_{m,n}^{\*}}
 	&= N_n^m e^{-i m \phi} \bigg( \bigg[ \frac{\partial z_n(k r)}{\partial r} \bigg]^{\*} P_n^m(\cos{\theta}) \bm{e_r}
@@ -4705,9 +4713,9 @@ $$ \tag{17.69}
 \end{aligned}
 $$
 
-Let us show certain notable properties of vector spherical harmonics. For real values of \\(k\\), and if the spherical Bessel function is real (which excludes the Hankel functions), they exhibit the following symmetry property (that follows from Equation 17.47), which is direct result of normalization:
+Let us show certain notable properties of vector spherical harmonics. For real values of \\(k\\), and if the spherical Bessel function is real (which excludes the Hankel functions), they exhibit the following symmetry property (that follows from Equation 17.47) which is a direct result of normalization:
 
-$$ \tag{17.70}
+$$ \tag{17.71}
 	\bm{L_{-m,n}}
 	= (-1)^m \bm{L_{m,n}^{\*}},
 	\quad
@@ -4720,9 +4728,9 @@ $$
 
 Note that it mirrors the property of scalar spherical harmonics given by Equation 17.58.
 
-According to Equation 17.22, \\(\bm{L_{m,n}}\\) and \\(\bm{M_{m,n}}\\) are mutually orthogonal in the  3-dimensional space. Equation 17.68 allows us to determine the state of affairs for the remaining two pairs of vectors. Since the spherical basis vectors are orthogonal,
+According to Equation 17.22, \\(\bm{L_{m,n}}\\) and \\(\bm{M_{m,n}}\\) are mutually orthogonal in the  3-dimensional space. Equation 17.69 allows us to determine the state of affairs for the remaining two pairs of vectors. Since the spherical basis vectors are orthogonal,
 
-$$ \tag{17.71}
+$$ \tag{17.72}
 	\bm{M_{m,n}} \cdot \bm{N_{m,n}}
 	\propto \big( i \pi_{m,n}(\theta) \bm{e_{\theta}} - \tau_{m,n}(\theta) \bm{e_{\phi}} \big)
 	\cdot \big( \tau_{m,n}(\theta) \bm{e_{\theta}} + i \pi_{m,n}(\theta) \bm{e_{\phi}} \big) = 0.
@@ -4736,7 +4744,7 @@ As can be seen from the (fairly representative) plot shown above, the vectors \\
 
 One may wonder if the full orthogonality between all three vectors can be achieved. Since two out of three vectors are already mutually orthogonal, we could, for instance, choose
 
-$$ \tag{17.72}
+$$ \tag{17.73}
 	\bm{N_{m,n}'} = \bm{L_{m,n}} \times \bm{M_{m,n}},
 	\quad \text{or} \quad
 	\bm{L_{m,n}'} = \bm{M_{m,n}} \times \bm{N_{m,n}}.
@@ -4744,11 +4752,11 @@ $$
 
 One immediate downside is that the resulting expressions of the new vectors are relatively complicated. More radical departures from the formulation of the vector spherical harmonics presented here can be found in the [literature](https://en.wikipedia.org/wiki/Vector_spherical_harmonics).
 
-In addition to partial orthogonality in the real 3-dimensional space, we may show that the vector spherical harmonics are orthogonal in the [Hilbert space](https://en.wikipedia.org/wiki/Hilbert_space), which (very roughly) means that they are orthogonal on the surface of a sphere for different values of \\(m\\) and \\(n\\).
+In addition to partial orthogonality in the real 3-dimensional space, we may show that the vector spherical harmonics are orthogonal in the [Hilbert space](https://en.wikipedia.org/wiki/Hilbert_space), which (very roughly) means that they are orthogonal on the surface of a sphere for all values of \\(m\\) and \\(n\\).
 
-Let us begin by considering the integral of the type
+Let us begin by considering the double integral
 
-$$ \tag{17.73}
+$$ \tag{17.74}
 \begin{aligned}
 	&\int_{0}^{2 \pi} \int_{0}^{\pi} \big[ \bm{L_{s,t}}(r, \theta, \phi) \big]^{\*} \bm{L_{m,n}}(r, \theta, \phi) \sin{\theta} \thinspace d\theta d\phi
 	\cr
@@ -4760,7 +4768,18 @@ $$ \tag{17.73}
 	&+ N_t^s N_n^m
 		\frac{\big[ z_t(k r) \big]^{\*} z_n(k r)}{r^2}
 		\int_{0}^{\pi} \Big( \tau_{s,t}(\theta) \tau_{m,n}(\theta) + \pi_{s,t}(\theta) \pi_{m,n}(\theta) \Big) \sin{\theta} \thinspace d\theta
-		\int_{0}^{2 \pi} e^{i (m - s) \phi} \thinspace d\phi
+		\int_{0}^{2 \pi} e^{i (m - s) \phi} \thinspace d\phi.
+\end{aligned}
+$$
+
+Analysis shows that it can be separated into a product of several terms. We may recognize from Equation 4.6 that the integral over \\(\phi\\) is nothing other than the rescaled Kronecker delta function \\(\delta_{m,s}\\). Thus, the value of the double integral is 0 unless \\(m = s\\) . Similarly, according to Equations 17.54 and 17.68, the integrals over \\(\theta\\) are  proportional to another Kronecker delta function \\(\delta_{t,n}\\). After we tally up the constants, the final result is
+
+$$ \tag{17.75}
+\begin{aligned}
+	&\int_{0}^{2 \pi} \int_{0}^{\pi} \big[ \bm{L_{s,t}}(r, \theta, \phi) \big]^{\*} \bm{L_{m,n}}(r, \theta, \phi) \sin{\theta} \thinspace d\theta d\phi
+	\cr
+	&= \Bigg( \bigg| \frac{\partial z_n(k r)}{\partial r} \bigg|^2
+	   	+ n (n+1) \frac{\big| z_n(k r) \big|^2}{r^2} \Bigg) \delta_{m,s} \delta_{t,n}.
 \end{aligned}
 $$
 
