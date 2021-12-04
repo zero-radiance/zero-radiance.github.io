@@ -4716,7 +4716,7 @@ $$ \tag{17.71}
 	\cr
 	\bm{N_{m,n}^{\*}}
 	&= N_n^m \frac{e^{-i m \phi}}{k^{\*} r} \bigg( n (n + 1) \big[ z_n(k r) \big]^{\*} P_n^m(\cos{\theta}) \bm{e_r}
-	 + \bigg[ \frac{\partial r z_n(k r)}{\partial r} \bigg]^{\*}
+	 + \Bigg[ \frac{\partial \big[ r z_n(k r) \big]}{\partial r} \Bigg]^{\*}
 	 \Big( \tau_{m,n}(\theta) \bm{e_{\theta}} - i \pi_{m,n}(\theta) \bm{e_{\phi}} \Big) \bigg).
 \end{aligned}
 $$
@@ -4744,15 +4744,29 @@ $$ \tag{17.73}
 	\cdot \big( \tau_{m,n}(\theta) \bm{e_{\theta}} + i \pi_{m,n}(\theta) \bm{e_{\phi}} \big) = 0.
 $$
 
-The relationship between \\(\bm{L_{m,n}}\\) and \\(\bm{N_{m,n}}\\) is more complicated. For \\(m = n = 0\\), the polynomals turn into constants, and it is easy to show that \\(\bm{L_{0,0}} \cdot \bm{N_{0,0}} = 0\\). The analysis of the general case is more complicated.
+The relationship between \\(\bm{L_{m,n}}\\) and \\(\bm{N_{m,n}}\\) is more complicated.
+
+$$ \tag{17.74}
+\begin{aligned}
+	\bm{L_{m,n}} \cdot \bm{N_{m,n}}
+	= \big[ N_n^m \big]^2 \frac{e^{2 i m \phi}}{kr}
+	&\bigg( n (n + 1) z_n(k r) \frac{\partial z_n(k r)}{\partial r} \big[ P_n^m(\cos{\theta}) \big]^2
+	\cr
+	&+ \frac{z_n(k r)}{r} \frac{\partial \big[ r z_n(k r) \big]}{\partial r}
+	   \Big( \tau_{m,n}^2(\theta) - \pi_{m,n}^2(\theta) \Big)
+	\bigg).
+\end{aligned}
+$$
+
+For \\(m = n = 0\\), the polynomals turn into constants, and it is easy to show that \\(\bm{L_{0,0}} \cdot \bm{N_{0,0}} = 0\\). The analysis of the general case is more complicated.
 
 {{< figure src="/img/l_dot_n.svg" caption="*Figure N: \\(\bm{L\_{0,n}} \cdot \bm{N\_{0,n}}\\) defined in terms of the spherical Bessel function of the first kind as a function of the radial distance \\(r\\) and degree \\(n=1\\) (blue), \\(n=2\\) (orange), \\(n=3\\) (green), \\(n=4\\) (red) with fixed values of \\(k = 1, \thinspace \theta = \pi/2, \thinspace \phi = 0\\).*" >}}
 
-As can be seen from the (fairly representative) plot shown above, the vectors \\(\bm{L_{m,n}}\\) and \\(\bm{M_{m,n}}\\) are linearly independent. The largest deviation from the perpendicular orientation occurs for \\(n = 1\\), with the vectors becoming completely orthogonal as \\(r \to \infin\\), which is evident if one substitutes the asymptotic form of a spherical Bessel function given by Equation 17.51.
+As can be seen from the (fairly representative) plot shown above, the vectors \\(\bm{L_{m,n}}\\) and \\(\bm{M_{m,n}}\\) are linearly independent. The largest deviation from the perpendicular orientation occurs for \\(n = 1\\), with the vectors becoming completely orthogonal as \\(r \to \infin\\), which is evident if one substitutes the asymptotic form of a spherical Bessel function given by Equation 17.51 and takes the \\(1/r\\) factors into account.
 
 One may wonder if the full orthogonality between all three vectors can be achieved. Since two out of three vectors are already mutually orthogonal, we could, for instance, choose
 
-$$ \tag{17.74}
+$$ \tag{17.75}
 	\bm{N_{m,n}'} = \bm{L_{m,n}} \times \bm{M_{m,n}},
 	\quad \text{or} \quad
 	\bm{L_{m,n}'} = \bm{M_{m,n}} \times \bm{N_{m,n}}.
@@ -4764,7 +4778,7 @@ In addition to partial orthogonality in the real 3-dimensional space, we may sho
 
 Let us begin by considering the double integral
 
-$$ \tag{17.75}
+$$ \tag{17.76}
 \begin{aligned}
 	&\int_{0}^{2 \pi} \int_{0}^{\pi} \big[ \bm{L_{s,t}}(r, \theta, \phi) \big]^{\*} \bm{L_{m,n}}(r, \theta, \phi) \sin{\theta} \thinspace d\theta d\phi
 	\cr
@@ -4780,14 +4794,61 @@ $$ \tag{17.75}
 \end{aligned}
 $$
 
-Analysis shows that it can be separated into a product of several terms. We may recognize from Equation 4.6 that the integral over \\(\phi\\) is nothing other than the rescaled Kronecker delta function \\(\delta_{m,s}\\). Thus, the value of the double integral is 0 unless \\(m = s\\) . Similarly, according to Equations 17.55 and 17.69, the integrals over \\(\theta\\) are  proportional to another Kronecker delta function \\(\delta_{t,n}\\). After we tally up the constants, the final result is
+Analysis shows that it can be separated into a product of several terms. We may recognize from Equation 4.6 that the integral over \\(\phi\\) is nothing other than the rescaled Kronecker delta function \\(\delta_{m,s}\\). Thus, the value of the double integral is 0 unless \\(m = s\\) . Similarly, according to Equations 17.55 and 17.69, the integrals over \\(\theta\\) are  proportional to another Kronecker delta function \\(\delta_{t,n}\\). After we tally up the constants, the result is
 
-$$ \tag{17.75}
+$$ \tag{17.77}
 \begin{aligned}
 	&\int_{0}^{2 \pi} \int_{0}^{\pi} \big[ \bm{L_{s,t}}(r, \theta, \phi) \big]^{\*} \bm{L_{m,n}}(r, \theta, \phi) \sin{\theta} \thinspace d\theta d\phi
 	\cr
 	&= \Bigg( \bigg| \frac{\partial z_n(k r)}{\partial r} \bigg|^2
-	   	+ n (n+1) \frac{\big| z_n(k r) \big|^2}{r^2} \Bigg) \delta_{m,s} \delta_{t,n}.
+	   	+ n (n+1) \bigg| \frac{z_n(k r)}{r} \bigg|^2 \Bigg) \delta_{m,s} \delta_{t,n}.
+\end{aligned}
+$$
+
+The derivative can be eliminated by considering the recurrence relations of Equation 17.50:
+
+$$ \tag{17.78}
+\begin{aligned}
+	&\int_{0}^{2 \pi} \int_{0}^{\pi} \big[ \bm{L_{s,t}}(r, \theta, \phi) \big]^{\*} \bm{L_{m,n}}(r, \theta, \phi) \sin{\theta} \thinspace d\theta d\phi
+	\cr
+	&= \frac{1}{(2 n + 1)^2} \Bigg(
+		\Big| k \big(n z_{n-1}(k r) - (n + 1) z_{n+1}(k r) \big) \Big|^2
+	 	+ n (n+1) \Big| k \big( z_{n-1}(k r) + z_{n+1}(k r) \big) \Big|^2
+	\Bigg) \delta_{m,s} \delta_{t,n}.
+\end{aligned}
+$$
+
+Further simplification can only be achieved by assuming that \\(k\\) is real.
+
+The same formulas lead to
+
+$$ \tag{17.79}
+	\int_{0}^{2 \pi} \int_{0}^{\pi} \big[ \bm{M_{s,t}}(r, \theta, \phi) \big]^{\*} \bm{M_{m,n}}(r, \theta, \phi) \sin{\theta} \thinspace d\theta d\phi
+	= n (n+1) \big| z_n(k r) \big|^2 \delta_{m,s} \delta_{t,n}
+$$
+
+and
+
+$$ \tag{17.78}
+\begin{aligned}
+	&\int_{0}^{2 \pi} \int_{0}^{\pi} \big[ \bm{N_{s,t}}(r, \theta, \phi) \big]^{\*} \bm{N_{m,n}}(r, \theta, \phi) \sin{\theta} \thinspace d\theta d\phi
+	\cr
+	&= N_t^s N_n^m t n (t + 1) (n + 1)
+		\frac{\big[ z_t(k r) \big]^{\*} z_n(k r)}{|k|^2 r^2}
+		\int_{0}^{\pi} P_t^s(\cos{\theta}) P_n^m(\cos{\theta}) \sin{\theta} \thinspace d\theta
+		\int_{0}^{2 \pi} e^{i (m - s) \phi} \thinspace d\phi
+	\cr
+	&+ N_t^s N_n^m \frac{1}{|k|^2 r^2}
+		\Bigg[ \frac{\partial \big[ r z_t(k r) \big]}{\partial r} \Bigg]^{\*} \frac{\partial \big[ r z_n(k r) \big]}{\partial r}
+		\int_{0}^{\pi} \Big( \tau_{s,t}(\theta) \tau_{m,n}(\theta) + \pi_{s,t}(\theta) \pi_{m,n}(\theta) \Big) \sin{\theta} \thinspace d\theta
+		\int_{0}^{2 \pi} e^{i (m - s) \phi} \thinspace d\phi
+	\cr
+	&= \frac{n (n+1)}{|k|^2} \Bigg(
+		\frac{1}{r^2} \bigg| \frac{\partial \big[ r z_n(k r) \big]}{\partial r} \bigg|^2
+		+ n (n+1) \bigg| \frac{z_n(k r)}{r} \bigg|^2
+		\Bigg) \delta_{m,s} \delta_{t,n}
+	\cr
+	&=
 \end{aligned}
 $$
 
