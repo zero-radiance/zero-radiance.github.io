@@ -4445,6 +4445,14 @@ $$
 
 \\(H_n^{(1)}\\) and \\(H_n^{(1)}\\) are also collectively known as Bessel functions of the third kind.
 
+Spherical Bessel functions satisfy the recurrence relations
+
+$$ \tag{17.50}
+	\frac{z_n(x)}{x} = \frac{z_{n-1}(x) + z_{n+1}(x)}{2 n + 1},
+	\quad
+	\frac{\partial z_n(x)}{\partial x} = \frac{n z_{n-1}(x) - (n + 1) z_{n+1}(x)}{2 n + 1}.
+$$
+
 As expected from the general scattering theory, the behavior of these functions is rather different depending on whether the magnitude of the argument is very large or very small.
 
 {{< figure src="/img/spherical_bessel_j.svg" caption="*Figure N: Spherical Bessel functions of the first kind of order n=0 (blue), n=1 (orange), n=2 (green), n=3 (red).*" >}}
@@ -4457,7 +4465,7 @@ In particular, in the far zone, as \\(k r \to \infin\\), both functions behave a
 
 In addition, observe that the real and the imaginary components (the Bessel functions of the first and the second kind, respectively) are out-of-phase by a constant factor. This leads to the asymptotic forms
 
-$$ \tag{17.50}
+$$ \tag{17.51}
 \begin{aligned}
 	& j_n(x) \approx \frac{1}{x} \cos\Big( x - \frac{n+1}{2} \pi \Big), &
 	& y_n(x) \approx \frac{1}{x} \sin\Big( x - \frac{n+1}{2} \pi \Big),
@@ -4469,7 +4477,7 @@ $$
 
 Let us now turn our attention to the angular component of the solution
 
-$$ \tag{17.51}
+$$ \tag{17.52}
 	P_n^m(\cos{\theta}) e^{i m \phi}
 	= P_n^m(\cos{\theta}) \cos(m \phi)
 	+ i P_n^m(\cos{\theta}) \sin(m \phi).
@@ -4477,7 +4485,7 @@ $$
 
 If we set \\(m=0\\), the dependence on the azimuthal angle \\(\phi\\) disappears, and we are left with the [Legendre polynomial](https://en.wikipedia.org/wiki/Legendre_polynomials) \\(P_n\\)
 
-$$ \tag{17.52}
+$$ \tag{17.53}
 	P_n(x)
 	= \frac{1}{2^n n!} \frac{d^n}{d x^n} (x^2 - 1)^n
 $$
@@ -4490,7 +4498,7 @@ The degree of a polynomial is also the number of zeros of the function. Coupled 
 
 The situation changes when \\(m \neq 0\\):
 
-$$ \tag{17.53}
+$$ \tag{17.54}
 	P_n^m(x)
 	= (-1)^m (1 - x^2)^{n/2} \frac{d^m}{d x^m} P_n(x)
 	\qquad
@@ -4501,13 +4509,13 @@ $$
 
 {{< figure src="/img/assoc_legendre.svg" caption="*Figure N: Associated Legendere polynomials of degree 3 and order \\(m=0\\) (blue), \\(m=1\\) (orange), \\(m=2\\) (green), \\(m=3\\) (red).*" >}}
 
-We are now ready to interpret the entire Equation 17.51. Since that function has harmonic dependence on \\(\phi\\), if we plot one of its parts (either real or imaginary), we can observe that it divides the surface of a sphere into \\(2 m \times (n - m + 1)\\) rectangular domains, or tesserae. Thus, \\(P_n^m(\cos{\theta}) \cos(m \phi)\\) and \\(P_n^m(\cos{\theta}) \sin(m \phi)\\) are called *tesseral harmonics* for \\(m < n\\) and *sectorial harmonics* for \\(m = n\\).
+We are now ready to interpret the entire Equation 17.52. Since that function has harmonic dependence on \\(\phi\\), if we plot one of its parts (either real or imaginary), we can observe that it divides the surface of a sphere into \\(2 m \times (n - m + 1)\\) rectangular domains, or tesserae. Thus, \\(P_n^m(\cos{\theta}) \cos(m \phi)\\) and \\(P_n^m(\cos{\theta}) \sin(m \phi)\\) are called *tesseral harmonics* for \\(m < n\\) and *sectorial harmonics* for \\(m = n\\).
 
 {{< figure src="/img/assoc_legendre_3.png" caption="*Figure N: Tesseral harmonics of degree 3 and order \\(m=1\\) (left), \\(m=2\\) (center), \\(m=3\\) (right). Warm colors correspond to positive values of the function, and cold colors - to negative values.*" >}}
 
 Associated Legendre polynomials have a powerful property - they are orthogonal \[[Stratton](#references) (ch 7.3)\]:
 
-$$ \tag{17.54}
+$$ \tag{17.55}
 \begin{aligned}
 	& \int_{0}^{\pi} P_l^m(\cos{\theta}) P_n^m(\cos{\theta}) \sin{\theta} \thinspace d\theta = \frac{2}{(2n + 1)} \frac{(n+m)!}{(n-m)!} \delta_{l,n},
 	\cr
@@ -4517,7 +4525,7 @@ $$
 
 In addition, we know that any sufficiently smooth univariate function can be expanded into a [Fourier series](https://en.wikipedia.org/wiki/Fourier_series), since, for \\(m,n \neq 0\\),
 
-$$ \tag{17.55}
+$$ \tag{17.56}
 \begin{aligned}
 	& \int_{0}^{2 \pi} \sin(m x) \cos(n x) dx = 0,
 	\cr
@@ -4531,9 +4539,9 @@ where \\(\delta_{m,n}\\) is the Kronecker delta function given by Equation 4.6.
 
 Remarkably, by means of double integration over \\(\theta\\) and \\(\phi\\), these two facts can be combined to show that tesseral harmonics \\(P_n^m(\cos{\theta}) \cos(m \phi)\\) and \\(P_n^m(\cos{\theta}) \sin(m \phi)\\) form a *complete orthogonal system* of basis functions on the surface of a sphere [citation needed; Courant-Hilbert?].
 
-Tesseral harmonics are [real-valued basis functions](https://en.wikipedia.org/wiki/Spherical_harmonics#Real_form), which is sufficient for most problems. However, the theory can be trivially extended to complex values by combining even and odd tesseral harmonics according to Equation 17.51. This directly leads to the definition of [scalar spherical harmonics](https://en.wikipedia.org/wiki/Spherical_harmonics)
+Tesseral harmonics are [real-valued basis functions](https://en.wikipedia.org/wiki/Spherical_harmonics#Real_form), which is sufficient for most problems. However, the theory can be trivially extended to complex values by combining even and odd tesseral harmonics according to Equation 17.52. This directly leads to the definition of [scalar spherical harmonics](https://en.wikipedia.org/wiki/Spherical_harmonics)
 
-$$ \tag{17.56}
+$$ \tag{17.57}
 	Y_n^m(\theta, \phi)
 	= N_n^m P_n^m(\cos{\theta}) e^{i m \phi}
 	= \sqrt{\frac{(2 n + 1)}{4 \pi} \frac{(n - m)!}{(n + m)!}} P_n^m(\cos{\theta}) e^{i m \phi}
@@ -4543,20 +4551,20 @@ $$
 
 where \\(N_n^m\\) is the normalization constant chosen such that
 
-$$ \tag{17.57}
+$$ \tag{17.58}
 	\int_{0}^{2 \pi} \int_{-1}^{1} \big[ Y_t^s(\theta, \phi) \big]^{\*} Y_n^m(\theta, \phi) \thinspace d(\cos{\theta}) d\phi = \delta_{s,m} \delta_{t,n}.
 $$
 
 In addition, Equation 17.47 shows that normalization leads to a simple relation
 
-$$ \tag{17.58}
+$$ \tag{17.59}
 	Y_n^{-m}
 	= (-1)^m \big[ Y_n^m \big]^{\*}.
 $$
 
 Thus, the solution of Equation 17.38 (given by Equation 17.44) can be more compactly written as
 
-$$ \tag{17.59}
+$$ \tag{17.60}
 \begin{aligned}
 	& f(r, \theta, \phi)
 	= - \sum_{n=0}^{\infin} \sum_{m=-n}^{n} c_{m,n} \psi_{m,n}(r, \theta, \phi),
@@ -4566,11 +4574,11 @@ $$ \tag{17.59}
 \end{aligned}
 $$
 
-We may now substitute Equation 17.59 in place of Equation 17.11, and carry out the subsequent derivation to find the explicit form of the solution of the Helmholtz equation of the *vector* potential (in terms of *vector* spherical harmonics) that complements the solution of the Helmholtz equation of the *scalar* potential (in terms of *scalar* spherical harmonics).
+We may now substitute Equation 17.60 in place of Equation 17.11, and carry out the subsequent derivation to find the explicit form of the solution of the Helmholtz equation of the *vector* potential (in terms of *vector* spherical harmonics) that complements the solution of the Helmholtz equation of the *scalar* potential (in terms of *scalar* spherical harmonics).
 
 The expression of the first vector \\(\bm{L_{m,n}}\\) is given by Equation 17.17.1:
 
-$$ \tag{17.60}
+$$ \tag{17.61}
 \begin{aligned}
 	\frac{1}{N_n^m} \bm{L_{m,n}}
 	&= \frac{\partial z_n(k r)}{\partial r} P_n^m(\cos{\theta}) e^{i m \phi} \bm{e_r}
@@ -4585,7 +4593,7 @@ where \\(\lbrace \bm{e_r}, \bm{e_{\theta}}, \bm{e_{\phi}} \rbrace\\) is the set 
 
 Similarly, we can determine the expression of \\(\bm{M_{m,n}}\\) by expanding Equation 17.18.1 with \\(\bm{a} = \bm{r}\\):
 
-$$ \tag{17.61}
+$$ \tag{17.62}
 \begin{aligned}
 	\frac{1}{N_n^m} \bm{M_{m,n}}
 	&= \frac{1}{\sin{\theta}} \frac{\partial \psi_{m,n}(r, \theta, \phi)}{\partial \phi} \bm{e_{\theta}}
@@ -4598,9 +4606,9 @@ $$
 
 Note that the radial component is zero, as expected from Equation 17.21 that contains a cross product with \\(\bm{r}\\).
 
-Finally, we may find the representation of \\(\bm{N_{m,n}}\\) by substituting Equation 17.61 into 17.19.1:
+Finally, we may find the representation of \\(\bm{N_{m,n}}\\) by substituting Equation 17.62 into 17.19.1:
 
-$$ \tag{17.62}
+$$ \tag{17.63}
 \begin{aligned}
 	\frac{1}{N_n^m} \bm{N_{m,n}}
 	&= \frac{-1}{kr} \bigg(
@@ -4620,7 +4628,7 @@ $$
 
 Careful comparison of the expression of the radial component to Equation 17.39 yields
 
-$$ \tag{17.63}
+$$ \tag{17.64}
 	\frac{1}{N_n^m} (\bm{N_{m,n}})\_r
 	= \frac{1}{kr} \bigg(
 	     r^2 \frac{\partial^2 \psi_{m,n}}{\partial r^2}
@@ -4630,14 +4638,14 @@ $$
 
 Since \\(\psi_{m,n}\\) is separable, it satisfies Equation 17.41.1. Coupled with the definition of \\(p^2\\) given by Equation 17.42.1, we obtain a simplified expression
 
-$$ \tag{17.64}
+$$ \tag{17.65}
 	\frac{1}{N_n^m} (\bm{N_{m,n}})\_r
 	= \frac{n (n + 1)}{kr} \psi_{m,n}.
 $$
 
 The explicit form of the components can be obtained by substitution of Equation 17.44:
 
-$$ \tag{17.65}
+$$ \tag{17.66}
 \begin{aligned}
 	\frac{1}{N_n^m} \bm{N_{m,n}}
 	&= \frac{n (n + 1)}{kr} z_n(k r) P_n^m(\cos{\theta}) e^{i m \phi} \bm{e_r}
@@ -4652,14 +4660,14 @@ $$
 
 The expressions given above may be shortened by noting that
 
-$$ \tag{17.66}
+$$ \tag{17.67}
 	\frac{\partial \big[ r z_n(k r) \big]}{\partial r}
 	= z_n(k r) + r \frac{\partial z_n(k r)}{\partial r},
 $$
 
 and defining two new scalar zonal functions
 
-$$ \tag{17.67}
+$$ \tag{17.68}
 	\pi_{m,n}(\theta) = m \frac{P_n^m(\cos{\theta})}{\sin{\theta}},
 	\quad
 	\tau_{m,n}(\theta) = \frac{\partial P_n^m(\cos{\theta})}{\partial \theta}
@@ -4667,15 +4675,15 @@ $$
 
 that satisfy the relation
 
-$$ \tag{17.68}
+$$ \tag{17.69}
 	\int_{0}^{\pi} \Big( \pi_{m,n}(\theta) \pi_{m,l}(\theta)
 	+ \tau_{m,n}(\theta) \tau_{m,l}(\theta) \Big) \sin{\theta} \thinspace d\theta
 	= n (n+1) \frac{2}{(2n + 1)} \frac{(n+m)!}{(n-m)!} \delta_{l,n}.
 $$
 
-After substitution into Equations 17.60, 17.61, and 17.65, we immediately obtain
+After substitution into Equations 17.61, 17.62, and 17.66, we immediately obtain
 
-$$ \tag{17.69}
+$$ \tag{17.70}
 \begin{aligned}
 	\bm{L_{m,n}}
 	&= N_n^m e^{i m \phi} \bigg( \frac{\partial z_n(k r)}{\partial r} P_n^m(\cos{\theta}) \bm{e_r}
@@ -4695,7 +4703,7 @@ $$
 
 The complex conjugates of the vector spherical harmonics are
 
-$$ \tag{17.70}
+$$ \tag{17.71}
 \begin{aligned}
 	\bm{L_{m,n}^{\*}}
 	&= N_n^m e^{-i m \phi} \bigg( \bigg[ \frac{\partial z_n(k r)}{\partial r} \bigg]^{\*} P_n^m(\cos{\theta}) \bm{e_r}
@@ -4715,7 +4723,7 @@ $$
 
 Let us show certain notable properties of vector spherical harmonics. For real values of \\(k\\), and if the spherical Bessel function is real (which excludes the Hankel functions), they exhibit the following symmetry property (that follows from Equation 17.47) which is a direct result of normalization:
 
-$$ \tag{17.71}
+$$ \tag{17.72}
 	\bm{L_{-m,n}}
 	= (-1)^m \bm{L_{m,n}^{\*}},
 	\quad
@@ -4726,11 +4734,11 @@ $$ \tag{17.71}
 	= (-1)^m \bm{N_{m,n}^{\*}}.
 $$
 
-Note that it mirrors the property of scalar spherical harmonics given by Equation 17.58.
+Note that it mirrors the property of scalar spherical harmonics given by Equation 17.59.
 
-According to Equation 17.22, \\(\bm{L_{m,n}}\\) and \\(\bm{M_{m,n}}\\) are mutually orthogonal in the  3-dimensional space. Equation 17.69 allows us to determine the state of affairs for the remaining two pairs of vectors. Since the spherical basis vectors are orthogonal,
+According to Equation 17.22, \\(\bm{L_{m,n}}\\) and \\(\bm{M_{m,n}}\\) are mutually orthogonal in the  3-dimensional space. Equation 17.70 allows us to determine the state of affairs for the remaining two pairs of vectors. Since the spherical basis vectors are orthogonal,
 
-$$ \tag{17.72}
+$$ \tag{17.73}
 	\bm{M_{m,n}} \cdot \bm{N_{m,n}}
 	\propto \big( i \pi_{m,n}(\theta) \bm{e_{\theta}} - \tau_{m,n}(\theta) \bm{e_{\phi}} \big)
 	\cdot \big( \tau_{m,n}(\theta) \bm{e_{\theta}} + i \pi_{m,n}(\theta) \bm{e_{\phi}} \big) = 0.
@@ -4740,11 +4748,11 @@ The relationship between \\(\bm{L_{m,n}}\\) and \\(\bm{N_{m,n}}\\) is more compl
 
 {{< figure src="/img/l_dot_n.svg" caption="*Figure N: \\(\bm{L\_{0,n}} \cdot \bm{N\_{0,n}}\\) defined in terms of the spherical Bessel function of the first kind as a function of the radial distance \\(r\\) and degree \\(n=1\\) (blue), \\(n=2\\) (orange), \\(n=3\\) (green), \\(n=4\\) (red) with fixed values of \\(k = 1, \thinspace \theta = \pi/2, \thinspace \phi = 0\\).*" >}}
 
-As can be seen from the (fairly representative) plot shown above, the vectors \\(\bm{L_{m,n}}\\) and \\(\bm{M_{m,n}}\\) are linearly independent. The largest deviation from the perpendicular orientation occurs for \\(n = 1\\), with the vectors becoming completely orthogonal as \\(r \to \infin\\), which is evident if one substitutes the asymptotic form of a spherical Bessel function given by Equation 17.50.
+As can be seen from the (fairly representative) plot shown above, the vectors \\(\bm{L_{m,n}}\\) and \\(\bm{M_{m,n}}\\) are linearly independent. The largest deviation from the perpendicular orientation occurs for \\(n = 1\\), with the vectors becoming completely orthogonal as \\(r \to \infin\\), which is evident if one substitutes the asymptotic form of a spherical Bessel function given by Equation 17.51.
 
 One may wonder if the full orthogonality between all three vectors can be achieved. Since two out of three vectors are already mutually orthogonal, we could, for instance, choose
 
-$$ \tag{17.73}
+$$ \tag{17.74}
 	\bm{N_{m,n}'} = \bm{L_{m,n}} \times \bm{M_{m,n}},
 	\quad \text{or} \quad
 	\bm{L_{m,n}'} = \bm{M_{m,n}} \times \bm{N_{m,n}}.
@@ -4756,7 +4764,7 @@ In addition to partial orthogonality in the real 3-dimensional space, we may sho
 
 Let us begin by considering the double integral
 
-$$ \tag{17.74}
+$$ \tag{17.75}
 \begin{aligned}
 	&\int_{0}^{2 \pi} \int_{0}^{\pi} \big[ \bm{L_{s,t}}(r, \theta, \phi) \big]^{\*} \bm{L_{m,n}}(r, \theta, \phi) \sin{\theta} \thinspace d\theta d\phi
 	\cr
@@ -4772,7 +4780,7 @@ $$ \tag{17.74}
 \end{aligned}
 $$
 
-Analysis shows that it can be separated into a product of several terms. We may recognize from Equation 4.6 that the integral over \\(\phi\\) is nothing other than the rescaled Kronecker delta function \\(\delta_{m,s}\\). Thus, the value of the double integral is 0 unless \\(m = s\\) . Similarly, according to Equations 17.54 and 17.68, the integrals over \\(\theta\\) are  proportional to another Kronecker delta function \\(\delta_{t,n}\\). After we tally up the constants, the final result is
+Analysis shows that it can be separated into a product of several terms. We may recognize from Equation 4.6 that the integral over \\(\phi\\) is nothing other than the rescaled Kronecker delta function \\(\delta_{m,s}\\). Thus, the value of the double integral is 0 unless \\(m = s\\) . Similarly, according to Equations 17.55 and 17.69, the integrals over \\(\theta\\) are  proportional to another Kronecker delta function \\(\delta_{t,n}\\). After we tally up the constants, the final result is
 
 $$ \tag{17.75}
 \begin{aligned}
