@@ -4818,37 +4818,59 @@ $$ \tag{17.78}
 \end{aligned}
 $$
 
-Further simplification can only be achieved by assuming that \\(k\\) is real.
+Further simplification can only be achieved by assuming that \\(k\\) is real:
+
+$$ \tag{17.79}
+\begin{aligned}
+	&\int_{0}^{2 \pi} \int_{0}^{\pi} \big[ \bm{L_{s,t}}(r, \theta, \phi) \big]^{\*} \bm{L_{m,n}}(r, \theta, \phi) \sin{\theta} \thinspace d\theta d\phi
+	\cr
+	&= \frac{k^2}{2 n + 1} \Big( n \big[ z_{n-1}(k r) \big]^2 + (n + 1) \big[ z_{n+1}(k r) \big]^2 \Big) \delta_{m,s} \delta_{t,n}
+	\qquad
+	(k \in \mathcal{R}).
+\end{aligned}
+$$
 
 The same formulas lead to
 
-$$ \tag{17.79}
+$$ \tag{17.80}
 	\int_{0}^{2 \pi} \int_{0}^{\pi} \big[ \bm{M_{s,t}}(r, \theta, \phi) \big]^{\*} \bm{M_{m,n}}(r, \theta, \phi) \sin{\theta} \thinspace d\theta d\phi
 	= n (n+1) \big| z_n(k r) \big|^2 \delta_{m,s} \delta_{t,n}
 $$
 
 and
 
-$$ \tag{17.78}
+$$ \tag{17.81}
 \begin{aligned}
 	&\int_{0}^{2 \pi} \int_{0}^{\pi} \big[ \bm{N_{s,t}}(r, \theta, \phi) \big]^{\*} \bm{N_{m,n}}(r, \theta, \phi) \sin{\theta} \thinspace d\theta d\phi
 	\cr
-	&= N_t^s N_n^m t n (t + 1) (n + 1)
-		\frac{\big[ z_t(k r) \big]^{\*} z_n(k r)}{|k|^2 r^2}
-		\int_{0}^{\pi} P_t^s(\cos{\theta}) P_n^m(\cos{\theta}) \sin{\theta} \thinspace d\theta
-		\int_{0}^{2 \pi} e^{i (m - s) \phi} \thinspace d\phi
-	\cr
-	&+ N_t^s N_n^m \frac{1}{|k|^2 r^2}
-		\Bigg[ \frac{\partial \big[ r z_t(k r) \big]}{\partial r} \Bigg]^{\*} \frac{\partial \big[ r z_n(k r) \big]}{\partial r}
-		\int_{0}^{\pi} \Big( \tau_{s,t}(\theta) \tau_{m,n}(\theta) + \pi_{s,t}(\theta) \pi_{m,n}(\theta) \Big) \sin{\theta} \thinspace d\theta
-		\int_{0}^{2 \pi} e^{i (m - s) \phi} \thinspace d\phi
-	\cr
 	&= \frac{n (n+1)}{|k|^2} \Bigg(
-		\frac{1}{r^2} \bigg| \frac{\partial \big[ r z_n(k r) \big]}{\partial r} \bigg|^2
+		\bigg| \frac{1}{r} \frac{\partial \big[ r z_n(k r) \big]}{\partial r} \bigg|^2
 		+ n (n+1) \bigg| \frac{z_n(k r)}{r} \bigg|^2
 		\Bigg) \delta_{m,s} \delta_{t,n}
 	\cr
-	&=
+	&= \frac{n (n+1)}{|k|^2} \Bigg(
+		\bigg| \frac{z_n(k r)}{r} + k \frac{\partial z_n(k r)}{\partial (k r)} \bigg|^2
+		+ n (n+1) \bigg| \frac{z_n(k r)}{r} \bigg|^2
+		\Bigg) \delta_{m,s} \delta_{t,n}
+	\cr
+	&= \frac{n (n+1)}{(2 n + 1)^2 |k|^2} \bigg(
+		\Big| k \big( (n + 1) z_{n-1}(k r) - n z_{n+1}(k r) \big) \Big|^2
+		+ n (n+1) \Big| k \big( z_{n-1}(k r) + z_{n+1}(k r) \big) \Big|^2
+		\bigg) \delta_{m,s} \delta_{t,n},
+\end{aligned}
+$$
+
+which, if \\(k\\) is real, is equal to
+
+$$ \tag{17.82}
+\begin{aligned}
+	&\int_{0}^{2 \pi} \int_{0}^{\pi} \big[ \bm{N_{s,t}}(r, \theta, \phi) \big]^{\*} \bm{N_{m,n}}(r, \theta, \phi) \sin{\theta} \thinspace d\theta d\phi
+	\cr
+	&= \frac{n (n+1)}{(2 n + 1)} \Big(
+		(n + 1) \big[ z_{n-1}(k r) \big]^2 + n \big[ z_{n+1}(k r) \big]^2
+		\Big) \delta_{m,s} \delta_{t,n}
+	\qquad
+	(k \in \mathcal{R}).
 \end{aligned}
 $$
 
