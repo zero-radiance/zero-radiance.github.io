@@ -4673,12 +4673,21 @@ $$ \tag{17.68}
 	\tau_{m,n}(\theta) = \frac{\partial P_n^m(\cos{\theta})}{\partial \theta}
 $$
 
-that satisfy the relation
+that satisfy the relations (???) \[[Stratton](#references) (ch 7.13)\]
 
 $$ \tag{17.69}
 	\int_{0}^{\pi} \Big( \pi_{m,n}(\theta) \pi_{m,l}(\theta)
 	+ \tau_{m,n}(\theta) \tau_{m,l}(\theta) \Big) \sin{\theta} \thinspace d\theta
-	= n (n+1) \frac{2}{(2n + 1)} \frac{(n+m)!}{(n-m)!} \delta_{l,n}.
+	= \frac{2}{(2n + 1)} \frac{(n+m)!}{(n-m)!} n (n+1) \delta_{l,n}
+$$
+
+and (???)
+
+$$ \tag{17.69}
+	\int_{0}^{\pi} \Big( \tau_{m,n}(\theta) \pi_{m,l}(\theta)
+	+ \pi_{m,n}(\theta) \tau_{m,l}(\theta) \Big) \sin{\theta} \thinspace d\theta
+	= m \int_{0}^{\pi} \frac{\partial \big[ P_n^m(\cos{\theta}) P_l^m(\cos{\theta}) \big]}{\partial \theta} \thinspace d\theta
+	= ?
 $$
 
 After substitution into Equations 17.61, 17.62, and 17.66, we immediately obtain
@@ -4762,7 +4771,7 @@ For \\(m = n = 0\\), the polynomals turn into constants, and it is easy to show 
 
 {{< figure src="/img/l_dot_n.svg" caption="*Figure N: \\(\bm{L\_{0,n}} \cdot \bm{N\_{0,n}}\\) defined in terms of the spherical Bessel function of the first kind as a function of the radial distance \\(r\\) and degree \\(n=1\\) (blue), \\(n=2\\) (orange), \\(n=3\\) (green), \\(n=4\\) (red) with fixed values of \\(k = 1, \thinspace \theta = \pi/2, \thinspace \phi = 0\\).*" >}}
 
-As can be seen from the (fairly representative) plot shown above, the vectors \\(\bm{L_{m,n}}\\) and \\(\bm{M_{m,n}}\\) are linearly independent. The largest deviation from the perpendicular orientation occurs for \\(n = 1\\), with the vectors becoming completely orthogonal as \\(r \to \infin\\), which is evident if one substitutes the asymptotic form of a spherical Bessel function given by Equation 17.51 and takes the \\(1/r\\) factors into account.
+As can be seen from the (fairly representative) plot shown above, the largest deviation from the perpendicular orientation occurs for \\(n = 1\\), with the vectors becoming completely orthogonal as \\(r \to \infin\\), which is evident if one substitutes the asymptotic form of a spherical Bessel function given by Equation 17.51 and takes the \\(1/r\\) factors into account.
 
 One may wonder if the full orthogonality between all three vectors can be achieved. Since two out of three vectors are already mutually orthogonal, we could, for instance, choose
 
@@ -4774,7 +4783,7 @@ $$
 
 One immediate downside is that the resulting expressions of the new vectors are relatively complicated. More radical departures from the formulation of the vector spherical harmonics presented here can be found in the [literature](https://en.wikipedia.org/wiki/Vector_spherical_harmonics).
 
-In addition to partial orthogonality in the real 3-dimensional space, we may show that the vector spherical harmonics are orthogonal in the [Hilbert space](https://en.wikipedia.org/wiki/Hilbert_space), which (very roughly) means that they are orthogonal on the surface of a sphere for all values of \\(m\\) and \\(n\\).
+In addition to partial orthogonality in the real 3-dimensional space, we may show that the vector spherical harmonics are partially orthogonal in the [Hilbert space](https://en.wikipedia.org/wiki/Hilbert_space), which (very roughly) means that they are orthogonal on the surface of a sphere for all values of \\(m\\) and \\(n\\).
 
 Let us begin by considering the double integral
 
@@ -4871,6 +4880,26 @@ $$ \tag{17.82}
 		\Big) \delta_{m,s} \delta_{t,n}
 	\qquad
 	(k \in \mathcal{R}).
+\end{aligned}
+$$
+
+We have just shown that the vectors of the same type (but of different orders) are orthogonal in the Hilbert space. What remains is to determine whether that holds for different types of vectors as well.
+
+We begin by considering the pairs of \\(\bm{L_{m,n}}\\) and \\(\bm{M_{m,n}}\\)
+
+$$ \tag{17.83}
+\begin{aligned}
+	&\int_{0}^{2 \pi} \int_{0}^{\pi} \big[ \bm{L_{s,t}}(r, \theta, \phi) \big]^{\*} \bm{M_{m,n}}(r, \theta, \phi) \sin{\theta} \thinspace d\theta d\phi
+	\cr
+	&= i N_t^s N_n^m
+		\frac{\big[ z_t(k r) \big]^{\*} z_n(k r)}{r}
+		\int_{0}^{\pi} \Big( \tau_{s,t}(\theta) \pi_{m,n}(\theta) + \pi_{s,t}(\theta) \tau_{m,n}(\theta) \Big) \sin{\theta} \thinspace d\theta
+		\int_{0}^{2 \pi} e^{i (m - s) \phi} \thinspace d\phi
+	\cr
+	&= 2 \pi i N_t^m N_n^m
+		\frac{\big[ z_t(k r) \big]^{\*} z_n(k r)}{r}
+		\int_{0}^{\pi} \Big( \tau_{m,t}(\theta) \pi_{m,n}(\theta) + \pi_{m,t}(\theta) \tau_{m,n}(\theta) \Big) \sin{\theta} \thinspace d\theta
+		\delta_{m,s} .
 \end{aligned}
 $$
 
