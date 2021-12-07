@@ -4672,7 +4672,7 @@ $$ \tag{17.68}
 	\tau_{m,n}(\theta) = \frac{\partial P_n^m(\cos{\theta})}{\partial \theta}
 $$
 
-that satisfy the relations (???) \[[Stratton](#references) (ch 7.13)\]
+that satisfy the relations \[[Stratton](#references) (ch. 7.13)\]
 
 $$ \tag{17.69}
 	\int_{0}^{\pi} \Big( \pi_{m,n}(\theta) \pi_{m,l}(\theta)
@@ -4680,18 +4680,24 @@ $$ \tag{17.69}
 	= \frac{2}{(2n + 1)} \frac{(n+m)!}{(n-m)!} n (n+1) \delta_{l,n}
 $$
 
-and (???)
+and
 
-$$ \tag{17.69}
-	\int_{0}^{\pi} \Big( \tau_{m,n}(\theta) \pi_{m,l}(\theta)
+$$ \tag{17.70}
+\begin{aligned}
+	&\int_{0}^{\pi} \Big( \tau_{m,n}(\theta) \pi_{m,l}(\theta)
 	+ \pi_{m,n}(\theta) \tau_{m,l}(\theta) \Big) \sin{\theta} \thinspace d\theta
-	= m \int_{0}^{\pi} \frac{\partial \big[ P_n^m(\cos{\theta}) P_l^m(\cos{\theta}) \big]}{\partial \theta} \thinspace d\theta
-	= ?
+	\cr
+	&= m \int_{0}^{\pi} \frac{\partial \big[ P_n^m(\cos{\theta}) P_l^m(\cos{\theta}) \big]}{\partial \theta} \thinspace d\theta
+	\cr
+	&= m \Big( P_n^m(1) P_l^m(1) - P_n^m(-1) P_l^m(-1) \Big) = 0,
+\end{aligned}
 $$
+
+since the associated Legendre polynomials go to zero at \\(\cos{\theta} = \pm 1\\).
 
 After substitution into Equations 17.61, 17.62, and 17.66, we immediately obtain
 
-$$ \tag{17.70}
+$$ \tag{17.71}
 \begin{aligned}
 	\bm{L_{m,n}}
 	&= N_n^m e^{i m \phi} \bigg( \frac{\partial z_n(k r)}{\partial r} P_n^m(\cos{\theta}) \bm{e_r}
@@ -4711,7 +4717,7 @@ $$
 
 The complex conjugates of the vector spherical harmonics are
 
-$$ \tag{17.71}
+$$ \tag{17.72}
 \begin{aligned}
 	\bm{L_{m,n}^{\*}}
 	&= N_n^m e^{-i m \phi} \bigg( \bigg[ \frac{\partial z_n(k r)}{\partial r} \bigg]^{\*} P_n^m(\cos{\theta}) \bm{e_r}
@@ -4731,7 +4737,7 @@ $$
 
 Let us show certain notable properties of vector spherical harmonics. For real values of \\(k\\), and if the spherical Bessel function is real (which excludes the Hankel functions), they exhibit the following symmetry property (that follows from Equation 17.47) which is a direct result of normalization:
 
-$$ \tag{17.72}
+$$ \tag{17.73}
 	\bm{L_{-m,n}}
 	= (-1)^m \bm{L_{m,n}^{\*}},
 	\quad
@@ -4746,7 +4752,7 @@ Note that it mirrors the property of scalar spherical harmonics given by Equatio
 
 According to Equation 17.22, \\(\bm{L_{m,n}}\\) and \\(\bm{M_{m,n}}\\) are mutually orthogonal in the  3-dimensional space. Equation 17.70 allows us to determine the state of affairs for the remaining two pairs of vectors. Since the spherical basis vectors are orthogonal,
 
-$$ \tag{17.73}
+$$ \tag{17.74}
 	\bm{M_{m,n}} \cdot \bm{N_{m,n}}
 	\propto \big( i \pi_{m,n}(\theta) \bm{e_{\theta}} - \tau_{m,n}(\theta) \bm{e_{\phi}} \big)
 	\cdot \big( \tau_{m,n}(\theta) \bm{e_{\theta}} + i \pi_{m,n}(\theta) \bm{e_{\phi}} \big) = 0.
@@ -4754,7 +4760,7 @@ $$
 
 The relationship between \\(\bm{L_{m,n}}\\) and \\(\bm{N_{m,n}}\\) is more complicated.
 
-$$ \tag{17.74}
+$$ \tag{17.75}
 \begin{aligned}
 	\bm{L_{m,n}} \cdot \bm{N_{m,n}}
 	= \big[ N_n^m \big]^2 \frac{e^{2 i m \phi}}{kr}
@@ -4774,7 +4780,7 @@ As can be seen from the (fairly representative) plot shown above, the largest de
 
 One may wonder if the full orthogonality between all three vectors can be achieved. Since two out of three vectors are already mutually orthogonal, we could, for instance, choose
 
-$$ \tag{17.75}
+$$ \tag{17.76}
 	\bm{N_{m,n}'} = \bm{L_{m,n}} \times \bm{M_{m,n}},
 	\quad \text{or} \quad
 	\bm{L_{m,n}'} = \bm{M_{m,n}} \times \bm{N_{m,n}}.
@@ -4786,7 +4792,7 @@ In addition to partial orthogonality in the real 3-dimensional space, we may sho
 
 Let us begin by considering the double integral
 
-$$ \tag{17.76}
+$$ \tag{17.77}
 \begin{aligned}
 	&\int_{0}^{2 \pi} \int_{0}^{\pi} \big[ \bm{L_{s,t}}(r, \theta, \phi) \big]^{\*} \bm{L_{m,n}}(r, \theta, \phi) \sin{\theta} \thinspace d\theta d\phi
 	\cr
@@ -4804,7 +4810,7 @@ $$
 
 Analysis shows that it can be separated into a product of several terms. We may recognize from Equation 4.6 that the integral over \\(\phi\\) is nothing other than the rescaled Kronecker delta function \\(\delta_{m,s}\\). Thus, the value of the double integral is 0 unless \\(m = s\\) . Similarly, according to Equations 17.55 and 17.69, the integrals over \\(\theta\\) are  proportional to another Kronecker delta function \\(\delta_{t,n}\\). After we tally up the constants, the result is
 
-$$ \tag{17.77}
+$$ \tag{17.78}
 \begin{aligned}
 	&\int_{0}^{2 \pi} \int_{0}^{\pi} \big[ \bm{L_{s,t}}(r, \theta, \phi) \big]^{\*} \bm{L_{m,n}}(r, \theta, \phi) \sin{\theta} \thinspace d\theta d\phi
 	\cr
@@ -4815,7 +4821,7 @@ $$
 
 The derivative can be eliminated by considering the recurrence relations of Equation 17.50:
 
-$$ \tag{17.78}
+$$ \tag{17.79}
 \begin{aligned}
 	&\int_{0}^{2 \pi} \int_{0}^{\pi} \big[ \bm{L_{s,t}}(r, \theta, \phi) \big]^{\*} \bm{L_{m,n}}(r, \theta, \phi) \sin{\theta} \thinspace d\theta d\phi
 	\cr
@@ -4828,7 +4834,7 @@ $$
 
 Further simplification can only be achieved by assuming that \\(k\\) is real:
 
-$$ \tag{17.79}
+$$ \tag{17.80}
 \begin{aligned}
 	&\int_{0}^{2 \pi} \int_{0}^{\pi} \big[ \bm{L_{s,t}}(r, \theta, \phi) \big]^{\*} \bm{L_{m,n}}(r, \theta, \phi) \sin{\theta} \thinspace d\theta d\phi
 	\cr
@@ -4840,14 +4846,14 @@ $$
 
 The same formulas lead to
 
-$$ \tag{17.80}
+$$ \tag{17.81}
 	\int_{0}^{2 \pi} \int_{0}^{\pi} \big[ \bm{M_{s,t}}(r, \theta, \phi) \big]^{\*} \bm{M_{m,n}}(r, \theta, \phi) \sin{\theta} \thinspace d\theta d\phi
 	= n (n+1) \big| z_n(k r) \big|^2 \delta_{m,s} \delta_{t,n}
 $$
 
 and
 
-$$ \tag{17.81}
+$$ \tag{17.82}
 \begin{aligned}
 	&\int_{0}^{2 \pi} \int_{0}^{\pi} \big[ \bm{N_{s,t}}(r, \theta, \phi) \big]^{\*} \bm{N_{m,n}}(r, \theta, \phi) \sin{\theta} \thinspace d\theta d\phi
 	\cr
@@ -4870,7 +4876,7 @@ $$
 
 which, if \\(k\\) is real, is equal to
 
-$$ \tag{17.82}
+$$ \tag{17.83}
 \begin{aligned}
 	&\int_{0}^{2 \pi} \int_{0}^{\pi} \big[ \bm{N_{s,t}}(r, \theta, \phi) \big]^{\*} \bm{N_{m,n}}(r, \theta, \phi) \sin{\theta} \thinspace d\theta d\phi
 	\cr
@@ -4884,23 +4890,21 @@ $$
 
 We have just shown that the vectors of the same type (but of different orders) are orthogonal in the Hilbert space. What remains is to determine whether that holds for different types of vectors as well.
 
-We begin by considering the pairs of \\(\bm{L_{m,n}}\\) and \\(\bm{M_{m,n}}\\)
+We begin by considering the pairs of \\(\bm{L_{m,n}}\\) and \\(\bm{M_{m,n}}\\):
 
-$$ \tag{17.83}
+$$ \tag{17.84}
 \begin{aligned}
 	&\int_{0}^{2 \pi} \int_{0}^{\pi} \big[ \bm{L_{s,t}}(r, \theta, \phi) \big]^{\*} \bm{M_{m,n}}(r, \theta, \phi) \sin{\theta} \thinspace d\theta d\phi
 	\cr
-	&= i N_t^s N_n^m
-		\frac{\big[ z_t(k r) \big]^{\*} z_n(k r)}{r}
-		\int_{0}^{\pi} \Big( \tau_{s,t}(\theta) \pi_{m,n}(\theta) + \pi_{s,t}(\theta) \tau_{m,n}(\theta) \Big) \sin{\theta} \thinspace d\theta
+	&\propto
 		\int_{0}^{2 \pi} e^{i (m - s) \phi} \thinspace d\phi
+		\int_{0}^{\pi} \Big( \tau_{s,t}(\theta) \pi_{m,n}(\theta) + \pi_{s,t}(\theta) \tau_{m,n}(\theta) \Big) \sin{\theta} \thinspace d\theta
 	\cr
-	&= 2 \pi i N_t^m N_n^m
-		\frac{\big[ z_t(k r) \big]^{\*} z_n(k r)}{r}
-		\int_{0}^{\pi} \Big( \tau_{m,t}(\theta) \pi_{m,n}(\theta) + \pi_{m,t}(\theta) \tau_{m,n}(\theta) \Big) \sin{\theta} \thinspace d\theta
-		\delta_{m,s} .
+	&= 2 \pi \delta_{m,s} \int_{0}^{\pi} \Big( \tau_{m,t}(\theta) \pi_{m,n}(\theta) + \pi_{m,t}(\theta) \tau_{m,n}(\theta) \Big) \sin{\theta} \thinspace d\theta \thinspace = 0
 \end{aligned}
 $$
+
+by Equation 17.70.
 
 ---
 
