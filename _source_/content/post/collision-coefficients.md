@@ -4776,7 +4776,7 @@ For \\(m = n = 0\\), the polynomals turn into constants, and it is easy to show 
 
 {{< figure src="/img/l_dot_n.svg" caption="*Figure N: \\(\bm{L\_{0,n}} \cdot \bm{N\_{0,n}}\\) defined in terms of the spherical Bessel function of the first kind as a function of the radial distance \\(r\\) and degree \\(n=1\\) (blue), \\(n=2\\) (orange), \\(n=3\\) (green), \\(n=4\\) (red) with fixed values of \\(k = 1, \thinspace \theta = \pi/2, \thinspace \phi = 0\\).*" >}}
 
-As can be seen from the (fairly representative) plot shown above, the largest deviation from the perpendicular orientation occurs for \\(n = 1\\), with the vectors becoming completely orthogonal as \\(r \to \infin\\), which is evident if one substitutes the asymptotic form of a spherical Bessel function given by Equation 17.51 and takes the \\(1/r\\) factors into account.
+As can be seen from the (fairly representative) plot shown above, the largest deviation from the perpendicular orientation occurs for \\(n = 1\\), with the vectors becoming fully orthogonal as \\(r \to \infin\\), which is evident if one substitutes the asymptotic form of a spherical Bessel function given by Equation 17.51 and takes the \\(1/r\\) factors into account.
 
 One may wonder if the full orthogonality between all three vectors can be achieved. Since two out of three vectors are already mutually orthogonal, we could, for instance, choose
 
@@ -4788,7 +4788,7 @@ $$
 
 One immediate downside is that the resulting expressions of the new vectors are relatively complicated. More radical departures from the formulation of the vector spherical harmonics presented here can be found in the [literature](https://en.wikipedia.org/wiki/Vector_spherical_harmonics).
 
-In addition to partial orthogonality in the real 3-dimensional space, we may show that the vector spherical harmonics are partially orthogonal in the [Hilbert space](https://en.wikipedia.org/wiki/Hilbert_space), which (very roughly) means that they are orthogonal on the surface of a sphere for all values of \\(m\\) and \\(n\\).
+In addition to partial orthogonality in the real 3-dimensional space, we may show that the vector spherical harmonics are also partially orthogonal in the [Hilbert space](https://en.wikipedia.org/wiki/Hilbert_space), which (very roughly) means that they are orthogonal on the surface of a sphere for all values of \\(m\\) and \\(n\\).
 
 Let us begin by considering the double integral
 
@@ -4874,7 +4874,7 @@ $$ \tag{17.82}
 \end{aligned}
 $$
 
-which, if \\(k\\) is real, is equal to
+which, if \\(k\\) is real, can be reduced to
 
 $$ \tag{17.83}
 \begin{aligned}
@@ -4888,7 +4888,7 @@ $$ \tag{17.83}
 \end{aligned}
 $$
 
-We have just shown that the vectors of the same type (but of different orders) are orthogonal in the Hilbert space. What remains is to determine whether that holds for different types of vectors as well.
+We have just shown that the vectors of the same type (but of different orders) are orthogonal in the Hilbert space. What remains is to determine whether that holds for combinations of different types of vectors as well.
 
 We begin by considering the pairs of \\(\bm{L_{m,n}}\\) and \\(\bm{M_{m,n}}\\):
 
@@ -4912,7 +4912,43 @@ $$ \tag{17.85}
 	\int_{0}^{2 \pi} \int_{0}^{\pi} \big[ \bm{M_{s,t}}(r, \theta, \phi) \big]^{\*} \bm{N_{m,n}}(r, \theta, \phi) \sin{\theta} \thinspace d\theta d\phi = 0.
 $$
 
-Since, according to Equation 17.55, \\(\bm{L_{m,n}}\\) and \\(\bm{N_{m,n}}\\) are not completely orthogonal in the 3-dimensional space, we should expect similar difficulties in the Hilbert space:
+Since, according to Equation 17.55, \\(\bm{L_{m,n}}\\) and \\(\bm{N_{m,n}}\\) are not fully orthogonal in the 3-dimensional space, we should also expect some complications in the Hilbert space:
+
+$$ \tag{17.86}
+\begin{aligned}
+	&\int_{0}^{2 \pi} \int_{0}^{\pi} \big[ \bm{L_{s,t}}(r, \theta, \phi) \big]^{\*} \bm{N_{m,n}}(r, \theta, \phi) \sin{\theta} \thinspace d\theta d\phi
+	\cr
+	&= \frac{N^s_t N^m_n}{kr} \bigg[ \frac{\partial z_t(k r)}{\partial r} \bigg]^{\*} n (n + 1) z_n(k r)
+		\int_{0}^{\pi} P_t^s(\cos{\theta}) P_n^m(\cos{\theta}) \sin{\theta} \thinspace d\theta
+		\int_{0}^{2 \pi} e^{i (m - s) \phi} \thinspace d\phi
+	\cr
+	&+ \frac{N^s_t N^m_n}{kr} \frac{\big[ z_t(k r) \big]^{\*}}{r} \frac{\partial \big[ r z_n(k r) \big]}{\partial r}
+		\int_{0}^{\pi} \Big( \tau_{s,t}(\theta) \tau_{m,n}(\theta) + \pi_{s,t}(\theta) \pi_{m,n}(\theta) \Big) \sin{\theta} \thinspace d\theta
+		\int_{0}^{2 \pi} e^{i (m - s) \phi} \thinspace d\phi
+	\cr
+	&= \frac{n (n + 1)}{kr} \Bigg( z_n(k r) \bigg[ \frac{\partial z_n(k r)}{\partial r} \bigg]^{\*}
+	 + \frac{\big[ z_n(k r) \big]^{\*}}{r} \frac{\partial \big[ r z_n(k r) \big]}{\partial r}
+	 \Bigg) \delta_{m,s} \delta_{t,n}.
+\end{aligned}
+$$
+
+For real \\(k\\), Equation 17.86 has a simpler expression
+
+$$ \tag{17.87}
+\begin{aligned}
+	&\int_{0}^{2 \pi} \int_{0}^{\pi} \big[ \bm{L_{s,t}}(r, \theta, \phi) \big]^{\*} \bm{N_{m,n}}(r, \theta, \phi) \sin{\theta} \thinspace d\theta d\phi
+	\cr
+	&= n (n + 1) \frac{z_n(k r)}{r}
+	\Big( z_{n-1}(k r) - z_{n+1}(k r) \Big) \delta_{m,s} \delta_{t,n}
+	\cr
+	&= \frac{n (n + 1)}{2 n + 1} k
+	\Big( \big[ z_{n-1}(k r) \big]^2 - \big[ z_{n+1}(k r) \big]^2 \Big) \delta_{m,s} \delta_{t,n},
+\end{aligned}
+$$
+
+where we once again utilized the identities of Equation 17.50.
+
+For our application, the partial orthogonality between \\(\bm{L_{m,n}}\\) and \\(\bm{N_{m,n}}\\) is not a real concern. According to Equations 17.36 and 17.37, the electric and the magnetic fields can be expressed solely in terms of \\(\bm{M_{m,n}}\\) and \\(\bm{N_{m,n}}\\), which are mutually orthogonal, as has been shown in Equations 17.74 and 17.85.
 
 ---
 
