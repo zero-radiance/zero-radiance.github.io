@@ -4689,11 +4689,11 @@ $$ \tag{17.70}
 	\cr
 	&= m \int_{0}^{\pi} \frac{\partial \big[ P_n^m(\cos{\theta}) P_l^m(\cos{\theta}) \big]}{\partial \theta} \thinspace d\theta
 	\cr
-	&= m \Big( P_n^m(1) P_l^m(1) - P_n^m(-1) P_l^m(-1) \Big) = 0,
+	&= m \Big( P_n^m(1) P_l^m(1) - P_n^m(-1) P_l^m(-1) \Big) = 0
 \end{aligned}
 $$
 
-since the associated Legendre polynomials go to zero at \\(\cos{\theta} = \pm 1\\).
+due to the fact that the value of the associated Legendre polynomials is zero at \\(\cos{\theta} = \pm 1\\).
 
 After substitution into Equations 17.61, 17.62, and 17.66, we immediately obtain
 
@@ -4750,7 +4750,7 @@ $$
 
 Note that it mirrors the property of scalar spherical harmonics given by Equation 17.59.
 
-According to Equation 17.22, \\(\bm{L_{m,n}}\\) and \\(\bm{M_{m,n}}\\) are mutually orthogonal in the  3-dimensional space. Equation 17.70 allows us to determine the state of affairs for the remaining two pairs of vectors. Since the spherical basis vectors are orthogonal,
+According to Equation 17.22, \\(\bm{L_{m,n}}\\) and \\(\bm{M_{m,n}}\\) are mutually orthogonal in the  3-dimensional space. Equation 17.69 allows us to determine the state of affairs for the remaining two pairs of vectors. Since the spherical basis vectors are orthogonal,
 
 $$ \tag{17.74}
 	\bm{M_{m,n}} \cdot \bm{N_{m,n}}
@@ -4900,11 +4900,19 @@ $$ \tag{17.84}
 		\int_{0}^{2 \pi} e^{i (m - s) \phi} \thinspace d\phi
 		\int_{0}^{\pi} \Big( \tau_{s,t}(\theta) \pi_{m,n}(\theta) + \pi_{s,t}(\theta) \tau_{m,n}(\theta) \Big) \sin{\theta} \thinspace d\theta
 	\cr
-	&= 2 \pi \delta_{m,s} \int_{0}^{\pi} \Big( \tau_{m,t}(\theta) \pi_{m,n}(\theta) + \pi_{m,t}(\theta) \tau_{m,n}(\theta) \Big) \sin{\theta} \thinspace d\theta \thinspace = 0
+	&= 2 \pi \delta_{m,s} \int_{0}^{\pi} \Big( \tau_{m,t}(\theta) \pi_{m,n}(\theta) + \pi_{m,t}(\theta) \tau_{m,n}(\theta) \Big) \sin{\theta} \thinspace d\theta \thinspace = 0,
 \end{aligned}
 $$
 
-by Equation 17.70.
+where the last equality follows from Equation 17.70.
+
+An identical calculation leads to
+
+$$ \tag{17.85}
+	\int_{0}^{2 \pi} \int_{0}^{\pi} \big[ \bm{M_{s,t}}(r, \theta, \phi) \big]^{\*} \bm{N_{m,n}}(r, \theta, \phi) \sin{\theta} \thinspace d\theta d\phi = 0.
+$$
+
+Since, according to Equation 17.55, \\(\bm{L_{m,n}}\\) and \\(\bm{N_{m,n}}\\) are not completely orthogonal in the 3-dimensional space, we should expect similar difficulties in the Hilbert space:
 
 ---
 
