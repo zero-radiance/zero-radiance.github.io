@@ -4392,7 +4392,7 @@ $$ \tag{17.44}
 \end{aligned}
 $$
 
-where \\(c_{m,n}\\) is a complex constant, \\(N_{m,n}\\) is a certain normalization constant, \\(z_n\\) is a [spherical Bessel function](https://en.wikipedia.org/wiki/Bessel_function#Spherical_Bessel_functions:_jn,_yn) of order \\(n\\), and \\(P_n^m\\) is an [associated Legendre polynomial](https://en.wikipedia.org/wiki/Associated_Legendre_polynomials) of degree \\(n\\) and order \\(m\\). Note that, as expected, the solution depends on the distance \\(r\\) only through the phase difference \\(k r\\).
+where \\(m\\) and \\(n\\) are integers, \\(c_{m,n}\\) is a complex constant, \\(N_{m,n}\\) is a certain normalization constant, \\(z_n\\) is a [spherical Bessel function](https://en.wikipedia.org/wiki/Bessel_function#Spherical_Bessel_functions:_jn,_yn) of order \\(n\\), and \\(P_n^m\\) is an [associated Legendre polynomial](https://en.wikipedia.org/wiki/Associated_Legendre_polynomials) of degree \\(n\\) and order \\(m\\). Note that, as expected, the solution depends on the distance \\(r\\) only through the phase difference \\(k r\\).
 
 We would like to point out that the same solution can be written in a slightly different way \[[Stratton](#references) (ch 7.3)\]:
 
@@ -4417,9 +4417,7 @@ and the associated Legendre polynomials of negative orders differ from their pos
 
 $$ \tag{17.47}
 	P_n^{-m}
-	= (-1)^m \frac{(n - m)!}{(n + m)!} P_n^m
-	\qquad
-	(m \geq 0).
+	= (-1)^m \frac{(n - m)!}{(n + m)!} P_n^m.
 $$
 
 Let us begin by examining the radial functions \\(z_n(k r)\\). They may be used to represent any of the three kinds of spherical Bessel functions \[[Stratton](#references) (ch 7.4)\]:
@@ -4513,25 +4511,28 @@ We are now ready to interpret the entire Equation 17.52. Since that function has
 
 {{< figure src="/img/assoc_legendre_3.png" caption="*Figure N: Tesseral harmonics of degree 3 and order \\(m=1\\) (left), \\(m=2\\) (center), \\(m=3\\) (right). Warm colors correspond to positive values of the function, and cold colors - to negative values.*" >}}
 
-Associated Legendre polynomials have a powerful property - they are orthogonal \[[Stratton](#references) (ch 7.3)\]:
+Associated Legendre polynomials have a powerful property - they are [orthogonal](https://en.wikipedia.org/wiki/Associated_Legendre_polynomials#Reparameterization_in_terms_of_angles) \[[Stratton](#references) (ch 7.3)\]:
 
 $$ \tag{17.55}
 \begin{aligned}
 	& \int_{0}^{\pi} P_l^m(\cos{\theta}) P_n^m(\cos{\theta}) \sin{\theta} \thinspace d\theta = \frac{2}{(2n + 1)} \frac{(n+m)!}{(n-m)!} \delta_{l,n},
 	\cr
-	& \int_{0}^{\pi} P_n^m(\cos{\theta}) P_n^l(\cos{\theta}) \frac{d\theta}{\sin{\theta}} = \frac{1}{m} \frac{(n+m)!}{(n-m)!} \delta_{m,l}.
+	& \int_{0}^{\pi} P_n^m(\cos{\theta}) P_n^l(\cos{\theta}) \frac{d\theta}{\sin{\theta}} = \frac{1}{|m|} \frac{(n+m)!}{(n-m)!} \delta_{m,l}.
 \end{aligned}
 $$
 
-In addition, we know that any sufficiently smooth univariate function can be expanded into a [Fourier series](https://en.wikipedia.org/wiki/Fourier_series), since, for \\(m,n \neq 0\\),
+In addition, we know that any sufficiently smooth univariate function can be expanded into a [Fourier series](https://en.wikipedia.org/wiki/Fourier_series), since
 
 $$ \tag{17.56}
 \begin{aligned}
 	& \int_{0}^{2 \pi} \sin(m x) \cos(n x) dx = 0,
+	& (m \neq 0 \text{ or } n \neq 0),
 	\cr
-	& \int_{0}^{2 \pi} \sin(m x) \sin(n x) dx = \pi \delta_{m,n},
+	& \int_{0}^{2 \pi} \sin(m x) \sin(n x) dx = \pi \delta_{m,n}
+	& (m \neq 0 \text{ or } n \neq 0),
 	\cr
-	& \int_{0}^{2 \pi} \cos(m x) \cos(n x) dx = \pi \delta_{m,n},
+	& \int_{0}^{2 \pi} \cos(m x) \cos(n x) dx = \pi \delta_{m,n}
+	& (m \neq 0 \text{ or } n \neq 0),
 \end{aligned}
 $$
 
@@ -4544,9 +4545,7 @@ Tesseral harmonics are [real-valued basis functions](https://en.wikipedia.org/wi
 $$ \tag{17.57}
 	Y_n^m(\theta, \phi)
 	= N_n^m P_n^m(\cos{\theta}) e^{i m \phi}
-	= \sqrt{\frac{(2 n + 1)}{4 \pi} \frac{(n - m)!}{(n + m)!}} P_n^m(\cos{\theta}) e^{i m \phi}
-	\qquad
-	(m \geq 0),
+	= \sqrt{\frac{(2 n + 1)}{4 \pi} \frac{(n - m)!}{(n + m)!}} P_n^m(\cos{\theta}) e^{i m \phi},
 $$
 
 where \\(N_n^m\\) is the normalization constant chosen such that
