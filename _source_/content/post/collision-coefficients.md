@@ -1054,6 +1054,8 @@ $$
 
 That is a general solution of the Maxwell equations for *linear, isotropic, homogeneous, source-free* media.
 
+-->
+
 ### Plane waves
 
 We can find a solution of the Maxwell equations in the time domain by performing the inverse Fourier transform of Equation 6.16:
@@ -1440,6 +1442,8 @@ $$ \tag{7.42}
 		\sqrt{ \frac{\varepsilon}{\mu} }
 	\bigg\rbrace |\bm{E_0}|^2 e^{-\alpha (\bm{r} \cdot \bm{n})} \bm{n}.
 $$
+
+<!--
 
 ### Electromagnetic Potential
 
@@ -3239,7 +3243,11 @@ $$
 
 Expressions given above are independent of the choice of a coordinate system. In practice, it is rather convenient to establish a certain coordinate convention.
 
+-->
+
 {{< figure src="/img/scat_coord.svg" caption="*Figure N: the scattering coordinate system.*" >}}
+
+<!--
 
 First, recall that \\(r\\) in Equation 15.6 stands for the distance from the center of the scattering object to the observation point. This makes the center of the object a suitable choice for the origin of the coordinate system.
 
@@ -4408,9 +4416,9 @@ $$
 There is no essential difference (except for readability). The solution given by Equation 17.45 assumes that \\(m \geq 0\\). If we allow all positive and negative values of \\(|m| \leq n\\), we can always construct the real solutions from the complex ones, since, according to Euler's formula,
 
 $$ \tag{17.46}
-	\cos(m \phi) = \frac{1}{2} \Big( e^{i m \phi} + e^{i (-m \phi)} \Big),
+	\cos(m \phi) = \frac{1}{2} \Big( e^{i m \phi} + e^{-i m \phi} \Big),
 	\quad
-	\sin(m \phi) = \frac{1}{2 i} \Big( e^{i m \phi} - e^{i (-m \phi)} \Big),
+	\sin(m \phi) = \frac{1}{2 i} \Big( e^{i m \phi} - e^{-i m \phi} \Big),
 $$
 
 and the associated Legendre polynomials of negative orders differ from their positive counterparts by a [constant](https://en.wikipedia.org/wiki/Associated_Legendre_polynomials#Negative_m_and/or_negative_%E2%84%93)
@@ -4420,7 +4428,7 @@ $$ \tag{17.47}
 	= (-1)^m \frac{(n - m)!}{(n + m)!} P_n^m.
 $$
 
-Let us begin by examining the radial functions \\(z_n(k r)\\). They may be used to represent any of the three kinds of spherical Bessel functions \[[Stratton](#references) (ch 7.4)\]:
+Let us begin by examining the radial functions \\(z_n(k r)\\). They may be used to represent any of the three kinds of *spherical Bessel functions* \[[Stratton](#references) (ch 7.4)\]:
 
 $$ \tag{17.48}
 \begin{aligned}
@@ -4432,8 +4440,7 @@ $$ \tag{17.48}
 \end{aligned}
 $$
 
-where \\(J_n\\) and \\(Y_n\\) are the (non-spherical) [Bessel functions](https://en.wikipedia.org/wiki/Bessel_function) of the first and the second kind, respectively, while \\(H_n^{(1)}\\) and \\(H_n^{(1)}\\) are the [Hankel functions](https://en.wikipedia.org/wiki/Bessel_function#Hankel_functions:_H(1)%CE%B1,\_H(2)%CE%B1) of the first and the second kind,
-which are related to the Bessel functions in a very simple manner:
+where \\(J_n\\) and \\(Y_n\\) are the [Bessel functions](https://en.wikipedia.org/wiki/Bessel_function) of the first and the second kind, while \\(H_n^{(1)}\\) and \\(H_n^{(2)}\\) are the [Hankel functions](https://en.wikipedia.org/wiki/Bessel_function#Hankel_functions:_H(1)%CE%B1,\_H(2)%CE%B1) of the first and the second kind. The latter are related to the Bessel functions in a very simple manner:
 
 $$ \tag{17.49}
 	H_n^{(1)}(x) = J_n(x) + i Y_n(x),
@@ -4441,9 +4448,9 @@ $$ \tag{17.49}
 	H_n^{(2)}(x) = J_n(x) - i Y_n(x).
 $$
 
-\\(H_n^{(1)}\\) and \\(H_n^{(1)}\\) are also collectively known as Bessel functions of the third kind.
+\\(H_n^{(1)}\\) and \\(H_n^{(2)}\\) are also collectively known as Bessel functions of the third kind.
 
-Spherical Bessel functions satisfy the recurrence relations
+All spherical Bessel functions satisfy the recurrence relations
 
 $$ \tag{17.50}
 	\frac{z_n(x)}{x} = \frac{z_{n-1}(x) + z_{n+1}(x)}{2 n + 1},
@@ -4457,19 +4464,27 @@ As expected from the general scattering theory, the behavior of these functions 
 
 {{< figure src="/img/spherical_bessel_y.svg" caption="*Figure N: Spherical Bessel functions of the second kind of order n=0 (blue), n=1 (orange), n=2 (green), n=3 (red).*" >}}
 
-In particular, in the far zone, as \\(k r \to \infin\\), both functions behave as decaying sine waves, which can be clearly seen on the plot below.
+For small values of the argument, the behavior is both different and relatively complicated. In particular, the functions of the first kind take on finite values, while the functions of the second kind diverge at the origin. In the far zone, as \\(k r \to \infin\\), both types of functions behave as decaying sine waves, which can be clearly seen on the plot below.
 
 {{< figure src="/img/spherical_hankel_1.svg" caption="*Figure N: Spherical Hankel functions of the first kind of order n=0 (blue), n=1 (orange), n=2 (green), n=3 (red). Solid lines correspond to the real part, while the imaginary part is drawn using dashed lines.*" >}}
 
-In addition, observe that the real and the imaginary components (the Bessel functions of the first and the second kind, respectively) are out-of-phase by a constant factor. This leads to the asymptotic forms
+From the graph above, or, alternatively, from Rayleigh's formulas
+
+$$ \tag{17.??}
+	j_n(x) = (-x)^n \bigg( \frac{1}{x} \frac{d}{dx} \bigg)^n \frac{\sin{x}}{x},
+	\quad
+	y_n(x) = -(-x)^n \bigg( \frac{1}{x} \frac{d}{dx} \bigg)^n \frac{\cos{x}}{x},
+$$
+
+we can deduce that, for large values of the argument, the Bessel functions of the first and the second kind are out-of-phase by a factor of \\(\pi\\). This is a key property of the asymptotic forms
 
 $$ \tag{17.51}
 \begin{aligned}
 	& j_n(x) \approx \frac{1}{x} \cos\Big( x - \frac{n+1}{2} \pi \Big), &
 	& y_n(x) \approx \frac{1}{x} \sin\Big( x - \frac{n+1}{2} \pi \Big),
 	\cr
-	& h_n^{(1)}(x) \approx \frac{1}{x} (-i)^{n+1} e^{i x}, &
-	& h_n^{(2)}(x) \approx \frac{1}{x} i^{n+1} e^{-i x}.
+	& h_n^{(1)}(x) \approx (-i)^{n+1} \frac{e^{ i x}}{x}, &
+	& h_n^{(2)}(x) \approx i^{n+1}    \frac{e^{-i x}}{x}.
 \end{aligned}
 $$
 
@@ -4498,7 +4513,7 @@ The situation changes when \\(m \neq 0\\):
 
 $$ \tag{17.54}
 	P_n^m(x)
-	= (-1)^m (1 - x^2)^{n/2} \frac{d^m}{d x^m} P_n(x)
+	= (-1)^m (1 - x^2)^{m/2} \frac{d^m}{d x^m} P_n(x)
 	\qquad
 	(m \geq 0).
 $$
@@ -4548,10 +4563,15 @@ $$ \tag{17.57}
 	= \sqrt{\frac{(2 n + 1)}{4 \pi} \frac{(n - m)!}{(n + m)!}} P_n^m(\cos{\theta}) e^{i m \phi},
 $$
 
-where \\(N_n^m\\) is the normalization constant chosen such that
+where \\(N_n^m\\) is the normalization constant chosen in order to satisfy the normalization and the completeness relations
 
 $$ \tag{17.58}
-	\int_{0}^{2 \pi} \int_{-1}^{1} \big[ Y_t^s(\theta, \phi) \big]^{\*} Y_n^m(\theta, \phi) \thinspace d(\cos{\theta}) d\phi = \delta_{s,m} \delta_{t,n}.
+\begin{aligned}
+	& \int_{0}^{2 \pi} \int_{-1}^{1} \big[ Y_t^s(\theta, \phi) \big]^{\*} Y_n^m(\theta, \phi) \thinspace d(\cos{\theta}) d\phi = \delta_{s,m} \delta_{t,n},
+	\cr
+	& \sum_{n=0}^{\infin} \sum_{m=-n}^{n} \big[ Y_n^m(\theta', \phi') \big]^{\*} Y_n^m(\theta, \phi)
+	= \delta(\theta - \theta') \delta(\phi - \phi').
+\end{aligned}
 $$
 
 In addition, Equation 17.47 shows that normalization leads to a simple relation
@@ -4735,7 +4755,7 @@ $$ \tag{17.72}
 \end{aligned}
 $$
 
-Let us show certain notable properties of vector spherical harmonics. For real values of \\(k\\), and if the spherical Bessel function is real (which excludes the Hankel functions), they exhibit the following symmetry property (that follows from Equation 17.47) which is a direct result of normalization:
+Let us show certain notable properties of vector spherical harmonics. For real values of \\(k\\), and if the spherical Bessel function is real (which excludes the Hankel functions), they exhibit the following symmetry property (which follows from Equation 17.47) that is a direct result of normalization:
 
 $$ \tag{17.73}
 	\bm{L_{-m,n}}
@@ -4794,7 +4814,7 @@ Let us begin by considering the double integral
 
 $$ \tag{17.77}
 \begin{aligned}
-	&\int_{0}^{2 \pi} \int_{0}^{\pi} \big[ \bm{L_{s,t}}(r, \theta, \phi) \big]^{\*} \bm{L_{m,n}}(r, \theta, \phi) \sin{\theta} \thinspace d\theta d\phi
+	&\int_{0}^{2 \pi} \int_{0}^{\pi} \big[ \bm{L_{s,t}}(r, \theta, \phi) \big]^{\*} \cdot \bm{L_{m,n}}(r, \theta, \phi) \sin{\theta} \thinspace d\theta d\phi
 	\cr
 	&= N_t^s N_n^m
 		\bigg[ \frac{\partial z_t(k r)}{\partial r} \bigg]^{\*} \frac{\partial z_n(k r)}{\partial r}
@@ -4812,7 +4832,7 @@ Analysis shows that it can be separated into a product of several terms. We may 
 
 $$ \tag{17.78}
 \begin{aligned}
-	&\int_{0}^{2 \pi} \int_{0}^{\pi} \big[ \bm{L_{s,t}}(r, \theta, \phi) \big]^{\*} \bm{L_{m,n}}(r, \theta, \phi) \sin{\theta} \thinspace d\theta d\phi
+	&\int_{0}^{2 \pi} \int_{0}^{\pi} \big[ \bm{L_{s,t}}(r, \theta, \phi) \big]^{\*} \cdot \bm{L_{m,n}}(r, \theta, \phi) \sin{\theta} \thinspace d\theta d\phi
 	\cr
 	&= \Bigg( \bigg| \frac{\partial z_n(k r)}{\partial r} \bigg|^2
 	   	+ n (n+1) \bigg| \frac{z_n(k r)}{r} \bigg|^2 \Bigg) \delta_{m,s} \delta_{t,n}.
@@ -4823,7 +4843,7 @@ The derivative can be eliminated by considering the recurrence relations of Equa
 
 $$ \tag{17.79}
 \begin{aligned}
-	&\int_{0}^{2 \pi} \int_{0}^{\pi} \big[ \bm{L_{s,t}}(r, \theta, \phi) \big]^{\*} \bm{L_{m,n}}(r, \theta, \phi) \sin{\theta} \thinspace d\theta d\phi
+	&\int_{0}^{2 \pi} \int_{0}^{\pi} \big[ \bm{L_{s,t}}(r, \theta, \phi) \big]^{\*} \cdot \bm{L_{m,n}}(r, \theta, \phi) \sin{\theta} \thinspace d\theta d\phi
 	\cr
 	&= \frac{1}{(2 n + 1)^2} \Bigg(
 		\Big| k \big(n z_{n-1}(k r) - (n + 1) z_{n+1}(k r) \big) \Big|^2
@@ -4836,7 +4856,7 @@ Further simplification can only be achieved by assuming that \\(k\\) is real:
 
 $$ \tag{17.80}
 \begin{aligned}
-	&\int_{0}^{2 \pi} \int_{0}^{\pi} \big[ \bm{L_{s,t}}(r, \theta, \phi) \big]^{\*} \bm{L_{m,n}}(r, \theta, \phi) \sin{\theta} \thinspace d\theta d\phi
+	&\int_{0}^{2 \pi} \int_{0}^{\pi} \big[ \bm{L_{s,t}}(r, \theta, \phi) \big]^{\*} \cdot \bm{L_{m,n}}(r, \theta, \phi) \sin{\theta} \thinspace d\theta d\phi
 	\cr
 	&= \frac{k^2}{2 n + 1} \Big( n \big[ z_{n-1}(k r) \big]^2 + (n + 1) \big[ z_{n+1}(k r) \big]^2 \Big) \delta_{m,s} \delta_{t,n}
 	\qquad
@@ -4847,7 +4867,7 @@ $$
 The same formulas lead to
 
 $$ \tag{17.81}
-	\int_{0}^{2 \pi} \int_{0}^{\pi} \big[ \bm{M_{s,t}}(r, \theta, \phi) \big]^{\*} \bm{M_{m,n}}(r, \theta, \phi) \sin{\theta} \thinspace d\theta d\phi
+	\int_{0}^{2 \pi} \int_{0}^{\pi} \big[ \bm{M_{s,t}}(r, \theta, \phi) \big]^{\*} \cdot \bm{M_{m,n}}(r, \theta, \phi) \sin{\theta} \thinspace d\theta d\phi
 	= n (n+1) \big| z_n(k r) \big|^2 \delta_{m,s} \delta_{t,n}
 $$
 
@@ -4855,7 +4875,7 @@ and
 
 $$ \tag{17.82}
 \begin{aligned}
-	&\int_{0}^{2 \pi} \int_{0}^{\pi} \big[ \bm{N_{s,t}}(r, \theta, \phi) \big]^{\*} \bm{N_{m,n}}(r, \theta, \phi) \sin{\theta} \thinspace d\theta d\phi
+	&\int_{0}^{2 \pi} \int_{0}^{\pi} \big[ \bm{N_{s,t}}(r, \theta, \phi) \big]^{\*} \cdot \bm{N_{m,n}}(r, \theta, \phi) \sin{\theta} \thinspace d\theta d\phi
 	\cr
 	&= \frac{n (n+1)}{|k|^2} \Bigg(
 		\bigg| \frac{1}{r} \frac{\partial \big[ r z_n(k r) \big]}{\partial r} \bigg|^2
@@ -4878,7 +4898,7 @@ which, if \\(k\\) is real, can be reduced to
 
 $$ \tag{17.83}
 \begin{aligned}
-	&\int_{0}^{2 \pi} \int_{0}^{\pi} \big[ \bm{N_{s,t}}(r, \theta, \phi) \big]^{\*} \bm{N_{m,n}}(r, \theta, \phi) \sin{\theta} \thinspace d\theta d\phi
+	&\int_{0}^{2 \pi} \int_{0}^{\pi} \big[ \bm{N_{s,t}}(r, \theta, \phi) \big]^{\*} \cdot \bm{N_{m,n}}(r, \theta, \phi) \sin{\theta} \thinspace d\theta d\phi
 	\cr
 	&= \frac{n (n+1)}{(2 n + 1)} \Big(
 		(n + 1) \big[ z_{n-1}(k r) \big]^2 + n \big[ z_{n+1}(k r) \big]^2
@@ -4894,7 +4914,7 @@ We begin by considering the pairs of \\(\bm{L_{m,n}}\\) and \\(\bm{M_{m,n}}\\):
 
 $$ \tag{17.84}
 \begin{aligned}
-	&\int_{0}^{2 \pi} \int_{0}^{\pi} \big[ \bm{L_{s,t}}(r, \theta, \phi) \big]^{\*} \bm{M_{m,n}}(r, \theta, \phi) \sin{\theta} \thinspace d\theta d\phi
+	&\int_{0}^{2 \pi} \int_{0}^{\pi} \big[ \bm{L_{s,t}}(r, \theta, \phi) \big]^{\*} \cdot \bm{M_{m,n}}(r, \theta, \phi) \sin{\theta} \thinspace d\theta d\phi
 	\cr
 	&\propto
 		\int_{0}^{2 \pi} e^{i (m - s) \phi} \thinspace d\phi
@@ -4909,14 +4929,14 @@ where the last equality follows from Equation 17.70.
 An identical calculation leads to
 
 $$ \tag{17.85}
-	\int_{0}^{2 \pi} \int_{0}^{\pi} \big[ \bm{M_{s,t}}(r, \theta, \phi) \big]^{\*} \bm{N_{m,n}}(r, \theta, \phi) \sin{\theta} \thinspace d\theta d\phi = 0.
+	\int_{0}^{2 \pi} \int_{0}^{\pi} \big[ \bm{M_{s,t}}(r, \theta, \phi) \big]^{\*} \cdot \bm{N_{m,n}}(r, \theta, \phi) \sin{\theta} \thinspace d\theta d\phi = 0.
 $$
 
 Since, according to Equation 17.55, \\(\bm{L_{m,n}}\\) and \\(\bm{N_{m,n}}\\) are not fully orthogonal in the 3-dimensional space, we should also expect some complications in the Hilbert space:
 
 $$ \tag{17.86}
 \begin{aligned}
-	&\int_{0}^{2 \pi} \int_{0}^{\pi} \big[ \bm{L_{s,t}}(r, \theta, \phi) \big]^{\*} \bm{N_{m,n}}(r, \theta, \phi) \sin{\theta} \thinspace d\theta d\phi
+	&\int_{0}^{2 \pi} \int_{0}^{\pi} \big[ \bm{L_{s,t}}(r, \theta, \phi) \big]^{\*} \cdot \bm{N_{m,n}}(r, \theta, \phi) \sin{\theta} \thinspace d\theta d\phi
 	\cr
 	&= \frac{N^s_t N^m_n}{kr} \bigg[ \frac{\partial z_t(k r)}{\partial r} \bigg]^{\*} n (n + 1) z_n(k r)
 		\int_{0}^{\pi} P_t^s(\cos{\theta}) P_n^m(\cos{\theta}) \sin{\theta} \thinspace d\theta
@@ -4936,7 +4956,7 @@ For real \\(k\\), Equation 17.86 has a simpler expression
 
 $$ \tag{17.87}
 \begin{aligned}
-	&\int_{0}^{2 \pi} \int_{0}^{\pi} \big[ \bm{L_{s,t}}(r, \theta, \phi) \big]^{\*} \bm{N_{m,n}}(r, \theta, \phi) \sin{\theta} \thinspace d\theta d\phi
+	&\int_{0}^{2 \pi} \int_{0}^{\pi} \big[ \bm{L_{s,t}}(r, \theta, \phi) \big]^{\*} \cdot \bm{N_{m,n}}(r, \theta, \phi) \sin{\theta} \thinspace d\theta d\phi
 	\cr
 	&= n (n + 1) \frac{z_n(k r)}{r}
 	\Big( z_{n-1}(k r) - z_{n+1}(k r) \Big) \delta_{m,s} \delta_{t,n}
@@ -4949,6 +4969,142 @@ $$
 where we once again utilized the identities of Equation 17.50.
 
 For our application, the partial orthogonality between \\(\bm{L_{m,n}}\\) and \\(\bm{N_{m,n}}\\) is not a real concern. According to Equations 17.36 and 17.37, the electric and the magnetic fields can be expressed solely in terms of \\(\bm{M_{m,n}}\\) and \\(\bm{N_{m,n}}\\), which are mutually orthogonal, as has been shown in Equations 17.74 and 17.85.
+
+We must consider three distinct types of electromagnetic fields: the incident field produced by an external source, the internal field (inside the sphere) that is established under the influence of the incident field, and the scattered field (outside the sphere).
+
+We shall suppose that the incident field is represented by a plane wave. That is a suitable description for a large source located in the far zone; a more general source could be represented by a superposition of plane waves.
+
+Making the usual assumption that the region outside the sphere is filled with a linear, isotropic, homogeneous, source-free medium, the expression of the incident vector plane wave is given by Equation 7.2:
+
+$$ \tag{17.88}
+	\bm{E_i}(\bm{r}, \omega) e^{- i \omega t}
+	= \bm{E_0}(\bm{n_i}, \omega) e^{i k(\omega) (\bm{r} \cdot \bm{n_i}) - i \omega t}.
+$$
+
+If \\(\bm{n_i}\\) is aligned with the \\(z\\)-axis (as shown in Figure N), the explicit coordinate representation of \\(\bm{r}\\) is
+
+$$ \tag{17.89}
+	\bm{r} = \lbrace r, \theta, \phi \rbrace,
+$$
+
+such that
+
+$$ \tag{17.90}
+	\bm{r} \cdot \bm{n_i} = z = r \cos{\theta}.
+$$
+
+Furthermore, recall that an electromagnetic plane wave is transverse with respect to its direction of propagation (as shown by Equations 7.18 and 7.23). Therefore, in Cartesian coordinates, the polarization phasor \\(\bm{E_0}\\) of a plane wave can be completely described in terms of the tangential (with respect to \\(\bm{n_i} = \bm{e_z}\\)) components \\(E_x\\) and \\(E_y\\):
+
+$$ \tag{17.91}
+	\bm{E_0}(\bm{n_i}, \omega)
+	= E_x(\omega) \bm{e_x} + E_y(\omega) \bm{e_y}.
+$$
+
+The definition of the polarization phasor does not contain explicit dependence on \\(\bm{r}\\). However, in spherical coordinates, the basis vectors are [not static](https://en.wikipedia.org/wiki/Vector_fields_in_cylindrical_and_spherical_coordinates#Spherical_coordinate_system), and implicitly depend on the point of reference \\(\bm{r}\\):
+
+$$ \tag{17.92}
+\begin{aligned}
+	\bm{e_x} &= \sin{\theta} \cos{\phi} \thinspace \bm{e_{r}}
+			  + \cos{\theta} \cos{\phi} \thinspace \bm{e_{\theta}}
+			  - \sin{\phi} \thinspace \bm{e_{\phi}},
+	\cr
+	\bm{e_y} &= \sin{\theta} \sin{\phi} \thinspace \bm{e_{r}}
+			  + \cos{\theta} \sin{\phi} \thinspace \bm{e_{\theta}}
+			  + \cos{\phi} \thinspace \bm{e_{\phi}},
+	\cr
+	\bm{e_z} &= \cos{\theta} \thinspace \bm{e_{r}}
+			  - \sin{\theta} \thinspace \bm{e_{\theta}}.
+	\cr
+\end{aligned}
+$$
+
+The combination of Equations 17.91 and 17.92 is
+
+$$ \tag{17.93}
+\begin{aligned}
+	\bm{E_i}(\bm{r}, \omega) = \Big(
+	  \thinspace &\bm{e_{r}}      \big( E_x(\omega) \cos{\phi} + E_y(\omega) \sin{\phi} \big) \sin{\theta}
+	\cr
+	+ \thinspace &\bm{e_{\theta}} \big( E_x(\omega) \cos{\phi} + E_y(\omega) \sin{\phi} \big) \cos{\theta}
+	\cr
+	+ \thinspace &\bm{e_{\phi}}   \big( E_y(\omega) \cos{\phi} - E_x(\omega) \sin{\phi} \big)
+	\Big) e^{i k(\omega) r \cos{\theta}}.
+\end{aligned}
+$$
+
+Now, recall that, according to Equation 17.36, an electric field has a vector spherical harmonic representation
+
+$$ \tag{17.94}
+	\bm{E_i}(\bm{r}, \omega)
+	= -\sum_{n=0}^{\infin} \sum_{m=-n}^{n} \big( a_{m,n}(\omega) \bm{M_{m,n}^{(1)}}(\bm{r}, \omega) + b_{m,n}(\omega) \bm{N_{m,n}^{(1)}}(\bm{r}, \omega) \big),
+$$
+
+where the superscript \\((1)\\) indicates that, for the incident field, we have made the choice of a spherical Bessel function of the first kind, since it is the only type that takes on finite values at the origin (c.f. Figure N).
+
+Equations 17.93 and 17.94 describe the same physical quantity. Assuming that all parameters used to define Equations 17.93 are given, we may find the unknown coefficients \\(a_{m,n}\\) and \\(b_{m,n}\\) of the vector spherical harmonic expansion by applying the orthogonality relations we have just derived.
+
+In order to determine the value of \\(a_{m,n}\\), project Equation 17.94 on \\(\bm{M_{s,t}^{(1)}}\\) and integrate the resulting expression over the unit sphere. Application of Equations 17.81 and 17.85 yields the result[^17]
+
+[^17]: For brevity, we omit the dependence on the frequency \\(\omega\\).
+
+$$ \tag{17.95}
+	\int_{0}^{2 \pi} \int_{0}^{\pi} \big[ \bm{M_{m,n}^{(1)}}(r, \theta, \phi) \big]^{\*} \cdot \bm{E_i}(r, \theta, \phi) \sin{\theta} \thinspace d\theta d\phi
+	= -a_{m,n} n (n+1) \big| j_n(k r) \big|^2.
+$$
+
+For the next step, we must evaluate the integral on the left-hand side. Once we utilize the spherical coordinate representation of Equation 17.93, the problem is reduced to evaluation of three integrals:
+
+$$ \tag{17.96}
+\begin{aligned}
+	&\int_{0}^{2 \pi} \int_{0}^{\pi} \big[ \bm{M_{m,n}^{(1)}}(r, \theta, \phi) \big]^{\*} \cdot \bm{E_i}(r, \theta, \phi) \sin{\theta} \thinspace d\theta d\phi
+	\cr
+	&= \int_{0}^{2 \pi} \int_{0}^{\pi} \big[ \bm{M_{m,n}^{(1)}}(r, \theta, \phi) \big]^{\*}
+	   \cdot \Big( \bm{e_{r}} \big( E_x \cos{\phi} + E_y \sin{\phi} \big) \sin{\theta} e^{i k r \cos{\theta}} \Big) \sin{\theta} \thinspace d\theta d\phi
+    \cr
+	&+ \int_{0}^{2 \pi} \int_{0}^{\pi} \big[ \bm{M_{m,n}^{(1)}}(r, \theta, \phi) \big]^{\*}
+	   \cdot \Big( \bm{e_{\theta}} \big( E_x \cos{\phi} + E_y \sin{\phi} \big) \cos{\theta} e^{i k r \cos{\theta}} \Big) \sin{\theta} \thinspace d\theta d\phi
+    \cr
+	&+ \int_{0}^{2 \pi} \int_{0}^{\pi} \big[ \bm{M_{m,n}^{(1)}}(r, \theta, \phi) \big]^{\*}
+	   \cdot \Big( \bm{e_{\phi}} \big( E_y \cos{\phi} - E_x \sin{\phi} \big) e^{i k r \cos{\theta}} \Big) \sin{\theta} \thinspace d\theta d\phi.
+\end{aligned}
+$$
+
+According to Equation 17.72.2, the radial component of \\(\bm{M_{m,n}^{\*}}\\) is zero. For the polar component, we obtain
+
+$$ \tag{17.96}
+\begin{aligned}
+	&  \int_{0}^{2 \pi} \int_{0}^{\pi} \big[ \bm{M_{m,n}^{(1)}}(r, \theta, \phi) \big]^{\*}
+	   \cdot \Big( \bm{e_{\theta}} \big( E_x \cos{\phi} + E_y \sin{\phi} \big) \cos{\theta} e^{i k r \cos{\theta}} \Big) \sin{\theta} \thinspace d\theta d\phi
+    \cr
+	&= -i N_n^m \big[ j_n(k r) \big]^{\*}
+	\int_{0}^{\pi} \pi_{m,n}(\theta) e^{i k r \cos{\theta}} \cos{\theta} \sin{\theta} \thinspace d\theta
+	\int_{0}^{2 \pi} \big( E_x \cos{\phi} + E_y \sin{\phi} \big) e^{-i m \phi} \thinspace d\phi.
+\end{aligned}
+$$
+
+After applying Euler's identity from Equation 17.46, the integral over \\(\phi\\) can be easily evaluated:
+
+$$ \tag{17.96}
+\begin{aligned}
+	&  \int_{0}^{2 \pi} \big( E_x \cos{\phi} + E_y \sin{\phi} \big) e^{-i m \phi} \thinspace d\phi
+	\cr
+	&= \frac{E_x}{2}   \int_{0}^{2 \pi} \Big( 1 + e^{-2 i m \phi} \Big) \thinspace d\phi
+	 + \frac{E_y}{2 i} \int_{0}^{2 \pi} \Big( 1 - e^{-2 i m \phi} \Big) \thinspace d\phi
+\end{aligned}
+$$
+
+
+$$ \tag{17.46}
+	\cos(m \phi) = \frac{1}{2} \Big( e^{i m \phi} + e^{i (-m \phi)} \Big),
+	\quad
+	\sin(m \phi) = \frac{1}{2 i} \Big( e^{i m \phi} - e^{i (-m \phi)} \Big),
+$$
+
+$$ \tag{17.68}
+	\pi_{m,n}(\theta) = m \frac{P_n^m(\cos{\theta})}{\sin{\theta}},
+	\quad
+	\tau_{m,n}(\theta) = \frac{\partial P_n^m(\cos{\theta})}{\partial \theta}
+$$
 
 ---
 
