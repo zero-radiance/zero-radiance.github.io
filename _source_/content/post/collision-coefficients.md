@@ -4396,7 +4396,7 @@ $$ \tag{17.44}
 	= - \sum_{m,n} c_{m,n} \psi_{m,n}(r, \theta, \phi),
 	\cr
 	& \psi_{m,n}(r, \theta, \phi)
-	= N_n^m z_n(k r) P_n^m(\cos{\theta}) e^{i m \phi},
+	= \gamma_{m,n} z_n(k r) P_n^m(\cos{\theta}) e^{i m \phi},
 \end{aligned}
 $$
 
@@ -4559,11 +4559,11 @@ Tesseral harmonics are [real-valued basis functions](https://en.wikipedia.org/wi
 
 $$ \tag{17.57}
 	Y_n^m(\theta, \phi)
-	= N_n^m P_n^m(\cos{\theta}) e^{i m \phi}
+	= \gamma_{m,n} P_n^m(\cos{\theta}) e^{i m \phi}
 	= \sqrt{\frac{(2 n + 1)}{4 \pi} \frac{(n - m)!}{(n + m)!}} P_n^m(\cos{\theta}) e^{i m \phi},
 $$
 
-where \\(N_n^m\\) is the normalization constant chosen in order to satisfy the normalization and the completeness relations
+where \\(\gamma_{m,n}\\) is the normalization constant chosen in order to satisfy the normalization and the completeness relations
 
 $$ \tag{17.58}
 \begin{aligned}
@@ -4599,7 +4599,7 @@ The expression of the first vector \\(\bm{L_{m,n}}\\) is given by Equation 17.17
 
 $$ \tag{17.61}
 \begin{aligned}
-	\frac{1}{N_n^m} \bm{L_{m,n}}
+	\frac{1}{\gamma_{m,n}} \bm{L_{m,n}}
 	&= \frac{\partial z_n(k r)}{\partial r} P_n^m(\cos{\theta}) e^{i m \phi} \bm{e_r}
 	\cr
 	&+ \frac{1}{r} z_n(k r) \frac{\partial P_n^m(\cos{\theta})}{\partial \theta} e^{i m \phi} \bm{e_{\theta}}
@@ -4614,7 +4614,7 @@ Similarly, we can determine the expression of \\(\bm{M_{m,n}}\\) by expanding Eq
 
 $$ \tag{17.62}
 \begin{aligned}
-	\frac{1}{N_n^m} \bm{M_{m,n}}
+	\frac{1}{\gamma_{m,n}} \bm{M_{m,n}}
 	&= \frac{1}{\sin{\theta}} \frac{\partial \psi_{m,n}(r, \theta, \phi)}{\partial \phi} \bm{e_{\theta}}
 	 - \frac{\partial \psi_{m,n}(r, \theta, \phi)}{\partial \theta} \bm{e_{\phi}}
 	\cr
@@ -4629,7 +4629,7 @@ Finally, we may find the representation of \\(\bm{N_{m,n}}\\) by substituting Eq
 
 $$ \tag{17.63}
 \begin{aligned}
-	\frac{1}{N_n^m} \bm{N_{m,n}}
+	\frac{1}{\gamma_{m,n}} \bm{N_{m,n}}
 	&= \frac{-1}{kr} \bigg(
 	   \frac{\partial^2 \psi_{m,n}(r, \theta, \phi)}{\partial \theta^2}
 	 + \frac{\cos{\theta}}{\sin{\theta}} \frac{\partial \psi_{m,n}(r, \theta, \phi)}{\partial \theta}
@@ -4648,7 +4648,7 @@ $$
 Careful comparison of the expression of the radial component to Equation 17.39 yields
 
 $$ \tag{17.64}
-	\frac{1}{N_n^m} (\bm{N_{m,n}})\_r
+	\frac{1}{\gamma_{m,n}} (\bm{N_{m,n}})\_r
 	= \frac{1}{kr} \bigg(
 	     r^2 \frac{\partial^2 \psi_{m,n}}{\partial r^2}
 	   + 2 r \frac{\partial \psi_{m,n}}{\partial r}
@@ -4658,7 +4658,7 @@ $$
 Since \\(\psi_{m,n}\\) is separable, it satisfies Equation 17.41.1. Coupled with the definition of \\(p^2\\) given by Equation 17.42.1, we obtain a simplified expression
 
 $$ \tag{17.65}
-	\frac{1}{N_n^m} (\bm{N_{m,n}})\_r
+	\frac{1}{\gamma_{m,n}} (\bm{N_{m,n}})\_r
 	= \frac{n (n + 1)}{kr} \psi_{m,n}.
 $$
 
@@ -4666,7 +4666,7 @@ The explicit form of the components can be obtained by substitution of Equation 
 
 $$ \tag{17.66}
 \begin{aligned}
-	\frac{1}{N_n^m} \bm{N_{m,n}}
+	\frac{1}{\gamma_{m,n}} \bm{N_{m,n}}
 	&= \frac{n (n + 1)}{kr} z_n(k r) P_n^m(\cos{\theta}) e^{i m \phi} \bm{e_r}
 	\cr
 	&+ \frac{1}{kr} \bigg( z_n(k r) + r \frac{\partial z_n(k r)}{\partial r} \bigg)
@@ -4720,16 +4720,16 @@ After substitution into Equations 17.61, 17.62, and 17.66, we immediately obtain
 $$ \tag{17.71}
 \begin{aligned}
 	\bm{L_{m,n}}
-	&= N_n^m e^{i m \phi} \bigg( \frac{\partial z_n(k r)}{\partial r} P_n^m(\cos{\theta}) \bm{e_r}
+	&= \gamma_{m,n} e^{i m \phi} \bigg( \frac{\partial z_n(k r)}{\partial r} P_n^m(\cos{\theta}) \bm{e_r}
 	 + \frac{z_n(k r)}{r}
 	 \Big( \tau_{m,n}(\theta) \bm{e_{\theta}} + i \pi_{m,n}(\theta) \bm{e_{\phi}} \Big) \bigg),
 	\cr
 	\bm{M_{m,n}}
-	&= N_n^m e^{i m \phi}  z_n(k r)
+	&= \gamma_{m,n} e^{i m \phi}  z_n(k r)
 	\Big( i \pi_{m,n}(\theta) \bm{e_{\theta}} - \tau_{m,n}(\theta) \bm{e_{\phi}} \Big),
 	\cr
 	\bm{N_{m,n}}
-	&= N_n^m \frac{e^{i m \phi}}{kr} \bigg( n (n + 1) z_n(k r) P_n^m(\cos{\theta}) \bm{e_r}
+	&= \gamma_{m,n} \frac{e^{i m \phi}}{kr} \bigg( n (n + 1) z_n(k r) P_n^m(\cos{\theta}) \bm{e_r}
 	 + \frac{\partial \big[ r z_n(k r) \big]}{\partial r}
 	 \Big( \tau_{m,n}(\theta) \bm{e_{\theta}} + i \pi_{m,n}(\theta) \bm{e_{\phi}} \Big) \bigg).
 \end{aligned}
@@ -4740,16 +4740,16 @@ The complex conjugates of the vector spherical harmonics are
 $$ \tag{17.72}
 \begin{aligned}
 	\bm{L_{m,n}^{\*}}
-	&= N_n^m e^{-i m \phi} \bigg( \bigg[ \frac{\partial z_n(k r)}{\partial r} \bigg]^{\*} P_n^m(\cos{\theta}) \bm{e_r}
+	&= \gamma_{m,n} e^{-i m \phi} \bigg( \bigg[ \frac{\partial z_n(k r)}{\partial r} \bigg]^{\*} P_n^m(\cos{\theta}) \bm{e_r}
 	 + \frac{\big[ z_n(k r) \big]^{\*}}{r}
 	 \Big( \tau_{m,n}(\theta) \bm{e_{\theta}} - i \pi_{m,n}(\theta) \bm{e_{\phi}} \Big) \bigg),
 	\cr
 	\bm{M_{m,n}^{\*}}
-	&= N_n^m e^{-i m \phi} \big[ z_n(k r) \big]^{\*}
+	&= \gamma_{m,n} e^{-i m \phi} \big[ z_n(k r) \big]^{\*}
 	\Big( {-i} \pi_{m,n}(\theta) \bm{e_{\theta}} - \tau_{m,n}(\theta) \bm{e_{\phi}} \Big),
 	\cr
 	\bm{N_{m,n}^{\*}}
-	&= N_n^m \frac{e^{-i m \phi}}{k^{\*} r} \bigg( n (n + 1) \big[ z_n(k r) \big]^{\*} P_n^m(\cos{\theta}) \bm{e_r}
+	&= \gamma_{m,n} \frac{e^{-i m \phi}}{k^{\*} r} \bigg( n (n + 1) \big[ z_n(k r) \big]^{\*} P_n^m(\cos{\theta}) \bm{e_r}
 	 + \Bigg[ \frac{\partial \big[ r z_n(k r) \big]}{\partial r} \Bigg]^{\*}
 	 \Big( \tau_{m,n}(\theta) \bm{e_{\theta}} - i \pi_{m,n}(\theta) \bm{e_{\phi}} \Big) \bigg).
 \end{aligned}
@@ -4783,7 +4783,7 @@ The relationship between \\(\bm{L_{m,n}}\\) and \\(\bm{N_{m,n}}\\) is more compl
 $$ \tag{17.75}
 \begin{aligned}
 	\bm{L_{m,n}} \cdot \bm{N_{m,n}}
-	= \big[ N_n^m \big]^2 \frac{e^{2 i m \phi}}{kr}
+	= \gamma_{m,n}^2 \frac{e^{2 i m \phi}}{kr}
 	&\bigg( n (n + 1) z_n(k r) \frac{\partial z_n(k r)}{\partial r} \big[ P_n^m(\cos{\theta}) \big]^2
 	\cr
 	&+ \frac{z_n(k r)}{r} \frac{\partial \big[ r z_n(k r) \big]}{\partial r}
@@ -4816,12 +4816,12 @@ $$ \tag{17.77}
 \begin{aligned}
 	&\int_{0}^{2 \pi} \int_{0}^{\pi} \big[ \bm{L_{s,t}}(r, \theta, \phi) \big]^{\*} \cdot \bm{L_{m,n}}(r, \theta, \phi) \sin{\theta} \thinspace d\theta d\phi
 	\cr
-	&= N_t^s N_n^m
+	&= N_t^s \gamma_{m,n}
 		\bigg[ \frac{\partial z_t(k r)}{\partial r} \bigg]^{\*} \frac{\partial z_n(k r)}{\partial r}
 		\int_{0}^{\pi} P_t^s(\cos{\theta}) P_n^m(\cos{\theta}) \sin{\theta} \thinspace d\theta
 		\int_{0}^{2 \pi} e^{i (m - s) \phi} \thinspace d\phi
 	\cr
-	&+ N_t^s N_n^m
+	&+ N_t^s \gamma_{m,n}
 		\frac{\big[ z_t(k r) \big]^{\*} z_n(k r)}{r^2}
 		\int_{0}^{\pi} \Big( \tau_{s,t}(\theta) \tau_{m,n}(\theta) + \pi_{s,t}(\theta) \pi_{m,n}(\theta) \Big) \sin{\theta} \thinspace d\theta
 		\int_{0}^{2 \pi} e^{i (m - s) \phi} \thinspace d\phi.
@@ -4938,11 +4938,11 @@ $$ \tag{17.86}
 \begin{aligned}
 	&\int_{0}^{2 \pi} \int_{0}^{\pi} \big[ \bm{L_{s,t}}(r, \theta, \phi) \big]^{\*} \cdot \bm{N_{m,n}}(r, \theta, \phi) \sin{\theta} \thinspace d\theta d\phi
 	\cr
-	&= \frac{N^s_t N^m_n}{kr} \bigg[ \frac{\partial z_t(k r)}{\partial r} \bigg]^{\*} n (n + 1) z_n(k r)
+	&= \frac{\gamma_{s,t} \gamma_{m,n}}{kr} \bigg[ \frac{\partial z_t(k r)}{\partial r} \bigg]^{\*} n (n + 1) z_n(k r)
 		\int_{0}^{\pi} P_t^s(\cos{\theta}) P_n^m(\cos{\theta}) \sin{\theta} \thinspace d\theta
 		\int_{0}^{2 \pi} e^{i (m - s) \phi} \thinspace d\phi
 	\cr
-	&+ \frac{N^s_t N^m_n}{kr} \frac{\big[ z_t(k r) \big]^{\*}}{r} \frac{\partial \big[ r z_n(k r) \big]}{\partial r}
+	&+ \frac{\gamma_{s,t} \gamma_{m,n}}{kr} \frac{\big[ z_t(k r) \big]^{\*}}{r} \frac{\partial \big[ r z_n(k r) \big]}{\partial r}
 		\int_{0}^{\pi} \Big( \tau_{s,t}(\theta) \tau_{m,n}(\theta) + \pi_{s,t}(\theta) \pi_{m,n}(\theta) \Big) \sin{\theta} \thinspace d\theta
 		\int_{0}^{2 \pi} e^{i (m - s) \phi} \thinspace d\phi
 	\cr
@@ -5076,7 +5076,7 @@ $$ \tag{17.96}
 	&  \int_{0}^{2 \pi} \int_{0}^{\pi} \big[ \bm{M_{m,n}^{(1)}}(r, \theta, \phi) \big]^{\*}
 	   \cdot \Big( \bm{e_{\theta}} \big( E_x \cos{\phi} + E_y \sin{\phi} \big) \cos{\theta} e^{i k r \cos{\theta}} \Big) \sin{\theta} \thinspace d\theta d\phi
     \cr
-	&= -i N_n^m \big[ j_n(k r) \big]^{\*}
+	&= -i \gamma_{m,n} \big[ j_n(k r) \big]^{\*}
 	\int_{0}^{\pi} \pi_{m,n}(\theta) e^{i k r \cos{\theta}} \cos{\theta} \sin{\theta} \thinspace d\theta
 	\int_{0}^{2 \pi} \big( E_x \cos{\phi} + E_y \sin{\phi} \big) e^{-i m \phi} \thinspace d\phi.
 \end{aligned}
@@ -5105,6 +5105,10 @@ $$ \tag{17.68}
 	\quad
 	\tau_{m,n}(\theta) = \frac{\partial P_n^m(\cos{\theta})}{\partial \theta}
 $$
+
+---
+
+Use integral representations! Tsang & Kong I p. 28, or Stratton...
 
 ---
 
