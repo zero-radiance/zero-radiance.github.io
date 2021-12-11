@@ -4993,6 +4993,32 @@ $$ \tag{17.90}
 	\bm{r} \cdot \bm{n_i} = z = r \cos{\theta}.
 $$
 
+---
+
+Since the set of Cartesian basis vectors is both orthogonal and complete,
+
+$$ \tag{17.91}
+	\sum_{i=x,y,z} \bm{e_i} \bm{e_i^T} = \mathcal{I}
+$$
+
+$$ \tag{17.92}
+	  \bm{E_0}
+	= \mathcal{I} \bm{E_0}
+	= \sum_{i=x,y,z} \bm{e_i} (\bm{e_i} \cdot \bm{E_0})
+	= E_x \bm{e_x} + E_y \bm{e_y} + E_z \bm{e_z}.
+$$
+
+or
+
+$$ \tag{17.93}
+	\bm{E_i}(\bm{r}, \omega)
+	= \sum_{i=x,y,z} (\bm{e_i} e^{i k r \cos{\theta}}) (\bm{e_i} \cdot \bm{E_0})
+$$
+
+so ???
+
+---
+
 Furthermore, recall that an electromagnetic plane wave is transverse with respect to its direction of propagation (as shown by Equations 7.18 and 7.23). Therefore, in Cartesian coordinates, the polarization phasor \\(\bm{E_0}\\) of a plane wave can be completely described in terms of the tangential (with respect to \\(\bm{n_i} = \bm{e_z}\\)) components \\(E_x\\) and \\(E_y\\):
 
 $$ \tag{17.91}
