@@ -3998,7 +3998,7 @@ The Lorenz-Mie-Debye theory presents a rigorous solution to the problem of [diff
 
 The original theory was independently formulated by Lorenz (1890), Mie (1908), and Debye (1909). The derivation of the relevant formulas can be found in many popular textbooks, such as \[[4](#references) (ch. 9), [6](#references) (ch. 14.5)\]. A more mathematically elegant treatment of the problem was given by Hansen in a series of papers (1935, 1936, 1937). It has also been presented in a recent open access paper \[[15](#references)\], which we use as the foundation of this section.
 
-The general idea behind the solution is fairly simple. We treat electromagnetic scattering as a boundary value problem. If we expand the expression of the electromagnetic field in series of vector spherical harmonics, the boundary conditions take a particularly simple form, which can be harnessed to find the (initially unknown) coefficients of the series expansion.
+The general idea behind the solution is fairly simple. We treat electromagnetic scattering as a boundary value problem. If we expand the expression of the electromagnetic field in series of vector harmonics, the boundary conditions take a particularly simple form, which can be harnessed to find the (initially unknown) coefficients of the series expansion.
 
 Consider the Maxwell equations in a linear, isotropic, homogeneous region of space given by Equation 6.3. We have seen that, after a number of transformations, they are reduced to a *vector* Helmholtz equation
 
@@ -4106,7 +4106,7 @@ $$ \tag{17.13}
 \end{aligned}
 $$
 
-How should we define these 3 vectors? According to the Helmholtz decomposition (Equation 8.8), any sufficiently smooth vector field \\(\bm{A}\\) can be represented by a sum
+How should we define these 3 vectors? According to the [Helmholtz decomposition](https://en.wikipedia.org/wiki/Helmholtz_decomposition) (Equation 8.8), any sufficiently smooth vector field \\(\bm{A}\\) can be represented by a sum
 
 $$ \tag{17.14}
 \begin{aligned}
@@ -4138,7 +4138,7 @@ $$ \tag{17.17}
 	\nabla \times \bm{L_{m,n}} = 0.
 $$
 
-Since divergence of curl is zero, Equations 17.14.2 and 17.15.1 suggests that both \\(\bm{M_{m,n}}\\) and \\(\bm{N_{m,n}}\\) should be a curl of something. In addition, both should depend on \\(\psi_{m,n}\\). Since \\(\psi_{m,n}\\) is a scalar, its curl is undefined; a simple way to fix that is to introduce an additional vector \\(\bm{a}\\):
+Since divergence of curl is zero, Equations 17.14.2 and 17.15.1 suggests that both \\(\bm{M\_{m,n}}\\) and \\(\bm{N\_{m,n}}\\) should be the curl of something. In addition, both should depend on \\(\psi\_{m,n}\\). Since \\(\psi\_{m,n}\\) is a scalar, its curl is undefined; a simple way to fix that is to introduce a vector \\(\bm{a}\\):
 
 $$ \tag{17.18}
 	\bm{M_{m,n}} = \nabla \times (\psi_{m,n} \bm{a}),
@@ -4146,7 +4146,7 @@ $$ \tag{17.18}
 	\nabla \cdot \bm{M_{m,n}} = 0.
 $$
 
-Finally, the curl of a non-zero vector field is linearly independent from the source field. Thus, we may choose
+Finally, the curl generates a linearly independent vector field. Thus, we may choose
 
 $$ \tag{17.19}
 	\bm{N_{m,n}} = \frac{1}{k} \nabla \times \bm{M_{m,n}},
@@ -4156,7 +4156,9 @@ $$
 
 where the \\(1/k\\) constant is chosen in order to make the resulting expression dimensionless.
 
-The three series of vectors \\(\bm{L\_{m,n}}, \bm{M\_{m,n}}, \bm{N\_{m,n}}\\) are called *vector harmonics*. \\(\bm{a}\\) is often referred to as the *pilot vector*. It is convenient to assume that it belongs to an [irrotational](https://en.wikipedia.org/wiki/Conservative_vector_field#Irrotational_vector_fields) vector field, such that
+\\(\bm{a}\\) is often referred to as the *guiding* vector, and the three series of vectors \\(\bm{L\_{m,n}}, \bm{M\_{m,n}}, \bm{N\_{m,n}}\\) are called *guided vector harmonics*. They are defined in terms of the scalar *generating function* \\(\psi\_{m,n}\\).
+
+It is convenient to assume that the guiding vector belongs to an [irrotational](https://en.wikipedia.org/wiki/Conservative_vector_field#Irrotational_vector_fields) vector field, such that
 
 $$ \tag{17.20}
 	\nabla \times \bm{a} = 0.
@@ -4176,7 +4178,7 @@ $$ \tag{17.22}
 	\bm{L_{m,n}} \cdot \bm{M_{m,n}} = 0.
 $$
 
-Each of the three vectors, \\(\bm{L_{m,n}}\\), \\(\bm{M_{m,n}}\\), and \\(\bm{N_{m,n}}\\), can be used to form a vector Helmholtz equation. That is trivial to show this for \\(\bm{L_{m,n}}\\):
+Each of the three vectors, \\(\bm{L_{m,n}}\\), \\(\bm{M_{m,n}}\\), and \\(\bm{N_{m,n}}\\), can be used to form (and solve) a vector Helmholtz equation. That is trivial to show this for \\(\bm{L_{m,n}}\\):
 
 $$ \tag{17.23}
 	\big( \nabla^2 + k^2 \big) \bm{L_{m,n}}
@@ -4287,7 +4289,7 @@ $$ \tag{17.35}
 \end{aligned}
 $$
 
-The set of vectors \\(\lbrace \bm{L\_{m,n}}, \bm{M\_{m,n}}, \bm{N\_{m,n}} \rbrace\\) produced by the choice of \\(\bm{a} = \bm{r}\\) is called [vector spherical harmonics](https://en.wikipedia.org/wiki/Vector_spherical_harmonics#Alternative_definition). We have just demonstrated some of their basics properties, and we can begin to apply them to simple problems.
+Going forward, we shall focus on the set of vectors \\(\lbrace \bm{L\_{m,n}}, \bm{M\_{m,n}}, \bm{N\_{m,n}} \rbrace\\) produced with the choice of \\(\bm{a} = \bm{r}\\). We have just demonstrated some of their basic properties, and we now can begin to apply them to simple problems.
 
 Suppose that we have obtained the coefficients of the expansion of the electromagnetic potential in terms of vector spherical harmonics (given by Equation 17.13). How can we find the associated electric and magnetic fields?
 
@@ -4553,7 +4555,7 @@ $$
 
 where \\(\delta_{m,n}\\) is the Kronecker delta function given by Equation 4.6.
 
-Remarkably, by means of double integration over \\(\theta\\) and \\(\phi\\), these two facts can be combined to show that tesseral harmonics \\(P_n^m(\cos{\theta}) \cos(m \phi)\\) and \\(P_n^m(\cos{\theta}) \sin(m \phi)\\) form a *complete orthogonal system* of basis functions on the surface of a sphere [citation needed; Courant-Hilbert?].
+Remarkably, by means of double integration over \\(\theta\\) and \\(\phi\\), these two facts can be combined to show that tesseral harmonics \\(P_n^m(\cos{\theta}) \cos(m \phi)\\) and \\(P_n^m(\cos{\theta}) \sin(m \phi)\\) form a *complete orthogonal system* of basis functions on the surface of a sphere [Courant-Hilbert].
 
 Tesseral harmonics are [real-valued basis functions](https://en.wikipedia.org/wiki/Spherical_harmonics#Real_form), which is sufficient for most problems. However, the theory can be trivially extended to complex values by combining even and odd tesseral harmonics according to Equation 17.52. This directly leads to the definition of [scalar spherical harmonics](https://en.wikipedia.org/wiki/Spherical_harmonics)
 
@@ -4570,7 +4572,7 @@ $$ \tag{17.58}
 	& \int_{0}^{2 \pi} \int_{-1}^{1} \big[ Y_t^s(\theta, \phi) \big]^{\*} Y_n^m(\theta, \phi) \thinspace d(\cos{\theta}) d\phi = \delta_{s,m} \delta_{t,n},
 	\cr
 	& \sum_{n=0}^{\infin} \sum_{m=-n}^{n} \big[ Y_n^m(\theta', \phi') \big]^{\*} Y_n^m(\theta, \phi)
-	= \delta(\theta - \theta') \delta(\phi - \phi').
+	= \delta(\cos{\theta} - \cos{\theta'}) \delta(\phi - \phi').
 \end{aligned}
 $$
 
@@ -4593,7 +4595,7 @@ $$ \tag{17.60}
 \end{aligned}
 $$
 
-We may now substitute Equation 17.60 in place of Equation 17.11, and carry out the subsequent derivation to find the explicit form of the solution of the Helmholtz equation of the *vector* potential (in terms of *vector* spherical harmonics) that complements the solution of the Helmholtz equation of the *scalar* potential (in terms of *scalar* spherical harmonics).
+We may now substitute Equation 17.60 in place of Equation 17.11, and carry out the subsequent derivation to find the explicit form of the solution of the Helmholtz equation of the *vector* potential (in terms of guided *vector* harmonics) that complements the solution of the Helmholtz equation of the *scalar* potential (in terms of *scalar* generating functions).
 
 The expression of the first vector \\(\bm{L_{m,n}}\\) is given by Equation 17.17.1:
 
@@ -4692,19 +4694,11 @@ $$ \tag{17.68}
 	\tau_{m,n}(\theta) = \frac{\partial P_n^m(\cos{\theta})}{\partial \theta}
 $$
 
-that satisfy the relations \[[Stratton](#references) (ch. 7.13)\]
+that satisfy the relations
 
 $$ \tag{17.69}
-	\int_{0}^{\pi} \Big( \pi_{m,n}(\theta) \pi_{m,l}(\theta)
-	+ \tau_{m,n}(\theta) \tau_{m,l}(\theta) \Big) \sin{\theta} \thinspace d\theta
-	= \frac{2}{(2n + 1)} \frac{(n+m)!}{(n-m)!} n (n+1) \delta_{l,n}
-$$
-
-and
-
-$$ \tag{17.70}
 \begin{aligned}
-	&\int_{0}^{\pi} \Big( \tau_{m,n}(\theta) \pi_{m,l}(\theta)
+	& \int_{0}^{\pi} \Big( \tau_{m,n}(\theta) \pi_{m,l}(\theta)
 	+ \pi_{m,n}(\theta) \tau_{m,l}(\theta) \Big) \sin{\theta} \thinspace d\theta
 	\cr
 	&= m \int_{0}^{\pi} \frac{\partial \big[ P_n^m(\cos{\theta}) P_l^m(\cos{\theta}) \big]}{\partial \theta} \thinspace d\theta
@@ -4713,7 +4707,27 @@ $$ \tag{17.70}
 \end{aligned}
 $$
 
-due to the fact that the value of the associated Legendre polynomials is zero at \\(\cos{\theta} = \pm 1\\).
+and
+
+$$ \tag{17.70}
+\begin{aligned}
+	& \int_{0}^{\pi} \Big( \pi_{m,n}(\theta) \pi_{m,l}(\theta)
+	+ \tau_{m,n}(\theta) \tau_{m,l}(\theta) \Big) \sin{\theta} \thinspace d\theta
+	\cr
+	&= \int_{0}^{\pi} n (n+1) P_n^m P_l^m \sin{\theta} \thinspace d\theta
+	\cr
+	&+ \frac{1}{2} \int_{0}^{\pi} \bigg( \frac{\partial}{\partial \theta} \bigg( \sin{\theta} \frac{\partial P_n^m}{\partial \theta} \bigg) P_l^m
+	+ 2 \sin{\theta} \frac{\partial P_n^m}{\partial \theta} \frac{\partial P_l^m}{\partial \theta}
+	+ \frac{\partial}{\partial \theta} \bigg( \sin{\theta} \frac{\partial P_l^m}{\partial \theta} \bigg) P_n^m \bigg) d\theta
+	\cr
+	&= \int_{0}^{\pi} n (n+1) P_n^m P_l^m \sin{\theta} \thinspace d\theta
+	 + \frac{1}{2} \int_{0}^{\pi} \frac{\partial}{\partial \theta} \bigg( \sin{\theta} \frac{\partial P_n^m}{\partial \theta} P_l^m + \sin{\theta} \frac{\partial P_l^m}{\partial \theta} P_n^m \bigg) d\theta
+	\cr
+	&= \frac{2}{(2n + 1)} \frac{(n+m)!}{(n-m)!} n (n+1) \delta_{l,n}
+\end{aligned}
+$$
+
+that follow from Equations 17.41.2, 17.55.1, and the fact that the value of the associated Legendre polynomials is zero for \\(\cos{\theta} = \pm 1\\) unless \\(m = 0\\).
 
 After substitution into Equations 17.61, 17.62, and 17.66, we immediately obtain
 
@@ -4735,7 +4749,7 @@ $$ \tag{17.71}
 \end{aligned}
 $$
 
-The complex conjugates of the vector spherical harmonics are
+The complex conjugates of the guided vector harmonics are
 
 $$ \tag{17.72}
 \begin{aligned}
@@ -4770,7 +4784,7 @@ $$
 
 Note that it mirrors the property of scalar spherical harmonics given by Equation 17.59.
 
-According to Equation 17.22, \\(\bm{L_{m,n}}\\) and \\(\bm{M_{m,n}}\\) are mutually orthogonal in the  3-dimensional space. Equation 17.69 allows us to determine the state of affairs for the remaining two pairs of vectors. Since the spherical basis vectors are orthogonal,
+According to Equation 17.22, \\(\bm{L_{m,n}}\\) and \\(\bm{M_{m,n}}\\) are mutually orthogonal in the  3-dimensional space. Equation 17.71 allows us to determine the state of affairs for the remaining two pairs of vectors. Since the spherical basis vectors are orthogonal,
 
 $$ \tag{17.74}
 	\bm{M_{m,n}} \cdot \bm{N_{m,n}}
@@ -4828,7 +4842,7 @@ $$ \tag{17.77}
 \end{aligned}
 $$
 
-Analysis shows that it can be separated into a product of several terms. We may recognize from Equation 4.6 that the integral over \\(\phi\\) is nothing other than the rescaled Kronecker delta function \\(\delta_{m,s}\\). Thus, the value of the double integral is 0 unless \\(m = s\\) . Similarly, according to Equations 17.55 and 17.69, the integrals over \\(\theta\\) are  proportional to another Kronecker delta function \\(\delta_{t,n}\\). After we tally up the constants, the result is
+Analysis shows that it can be separated into a product of several terms. We may recognize from Equation 4.6 that the integral over \\(\phi\\) is nothing other than the rescaled Kronecker delta function \\(\delta_{m,s}\\). Thus, the value of the double integral is 0 unless \\(m = s\\) . Similarly, according to Equations 17.55 and 17.70, the integrals over \\(\theta\\) are  proportional to another Kronecker delta function \\(\delta_{t,n}\\). After we tally up the constants, the result is
 
 $$ \tag{17.78}
 \begin{aligned}
@@ -4924,7 +4938,7 @@ $$ \tag{17.84}
 \end{aligned}
 $$
 
-where the last equality follows from Equation 17.70.
+where the last equality follows from Equation 17.69.
 
 An identical calculation leads to
 
