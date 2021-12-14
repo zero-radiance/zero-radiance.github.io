@@ -1054,8 +1054,6 @@ $$
 
 That is a general solution of the Maxwell equations for *linear, isotropic, homogeneous, source-free* media.
 
--->
-
 ### Plane waves
 
 We can find a solution of the Maxwell equations in the time domain by performing the inverse Fourier transform of Equation 6.16:
@@ -1442,8 +1440,6 @@ $$ \tag{7.42}
 		\sqrt{ \frac{\varepsilon}{\mu} }
 	\bigg\rbrace |\bm{E_0}|^2 e^{-\alpha (\bm{r} \cdot \bm{n})} \bm{n}.
 $$
-
-<!--
 
 ### Electromagnetic Potential
 
@@ -3382,8 +3378,8 @@ such that
 
 $$ \tag{15.16}
 \begin{bmatrix}
-	E\_{s,x'}(r, \theta, \phi, \omega) \cr
-	E\_{s,y }(r, \theta, \phi, \omega) \cr
+	E\_{s,x'}(\bm{r}, \omega) \cr
+	E\_{s,y }(\bm{r}, \omega) \cr
 \end{bmatrix} \approx
 \frac{e^{i k(\omega) r - i k(\omega) z}}{i k(\omega) r} S(\theta, \phi, \omega)
 \begin{bmatrix}
@@ -4124,19 +4120,21 @@ $$ \tag{17.15}
 	\bm{A_{m,n}''} = c_{m,n} \bm{L_{m,n}}.
 $$
 
-From Equations 17.5.2, 17.11, and 17.13, it follows that
+From Equations 17.5.2 and 17.11, and 17.13, it follows that
 
 $$ \tag{17.16}
 	\nabla \cdot \bm{A_{m,n}} = \nabla \cdot (c_{m,n} \nabla \psi_{m,n}).
 $$
 
-In other words,
+In other words, Equations 17.13 and 17.16 suggest that we may define
 
 $$ \tag{17.17}
-	\bm{L_{m,n}} = \nabla \psi_{m,n},
+	\bm{L_{m,n}} = \frac{1}{k} \nabla \psi_{m,n},
 	\quad
-	\nabla \times \bm{L_{m,n}} = 0.
+	\nabla \times \bm{L_{m,n}} = 0,
 $$
+
+where the \\(1/k\\) constant is chosen in order to make the resulting expression dimensionless [Tsang & Kong I].
 
 Since divergence of curl is zero, Equations 17.14.2 and 17.15.1 suggests that both \\(\bm{M\_{m,n}}\\) and \\(\bm{N\_{m,n}}\\) should be the curl of something. In addition, both should depend on \\(\psi\_{m,n}\\). Since \\(\psi\_{m,n}\\) is a scalar, its curl is undefined; a simple way to fix that is to introduce a vector \\(\bm{a}\\):
 
@@ -4151,12 +4149,10 @@ Finally, the curl generates a linearly independent vector field. Thus, we may ch
 $$ \tag{17.19}
 	\bm{N_{m,n}} = \frac{1}{k} \nabla \times \bm{M_{m,n}},
 	\quad
-	\nabla \cdot \bm{N_{m,n}} = 0,
+	\nabla \cdot \bm{N_{m,n}} = 0.
 $$
 
-where the \\(1/k\\) constant is chosen in order to make the resulting expression dimensionless.
-
-\\(\bm{a}\\) is often referred to as the *guiding* vector, and the three series of vectors \\(\bm{L\_{m,n}}, \bm{M\_{m,n}}, \bm{N\_{m,n}}\\) are called *guided vector harmonics*. They are defined in terms of the scalar *generating function* \\(\psi\_{m,n}\\).
+\\(\bm{a}\\) is called the *guiding* vector; thus, the three sets of vectors \\(\bm{L\_{m,n}}, \bm{M\_{m,n}}, \bm{N\_{m,n}}\\) are sometimes referred to as the *guided vector harmonics*. They are defined in terms of the *generating function* \\(\psi\_{m,n}\\).
 
 It is convenient to assume that the guiding vector belongs to an [irrotational](https://en.wikipedia.org/wiki/Conservative_vector_field#Irrotational_vector_fields) vector field, such that
 
@@ -4167,7 +4163,7 @@ $$
 Coupled with the [product rule](https://en.wikipedia.org/wiki/Vector_calculus_identities#Product_rule_for_multiplication_by_a_scalar), Equation 17.20 leads to a simpler definition of \\(\bm{M_{m,n}}\\):
 
 $$ \tag{17.21}
-	\bm{M_{m,n}} = \psi (\nabla \times \bm{a}) + (\nabla \psi_{m,n}) \times \bm{a} = \bm{L_{m,n}} \times \bm{a}.
+	\bm{M_{m,n}} = \psi (\nabla \times \bm{a}) + (\nabla \psi_{m,n}) \times \bm{a} = \bm{L_{m,n}} \times (k \bm{a}).
 $$
 
 If \\(\bm{a}\\) is a real vector, the new expression has a simple geometrical interpretation in terms of orthogonal vectors:
@@ -4182,8 +4178,8 @@ Each of the three vectors, \\(\bm{L_{m,n}}\\), \\(\bm{M_{m,n}}\\), and \\(\bm{N_
 
 $$ \tag{17.23}
 	\big( \nabla^2 + k^2 \big) \bm{L_{m,n}}
-	= \big( \nabla^2 + k^2 \big) \nabla \psi_{m,n}
-	= \nabla \big( \nabla^2 + k^2 \big) \psi_{m,n} = 0,
+	= \frac{1}{k} \big( \nabla^2 + k^2 \big) \nabla \psi_{m,n}
+	= \frac{1}{k} \nabla \big( \nabla^2 + k^2 \big) \psi_{m,n} = 0.
 $$
 
 For \\(\bm{M_{m,n}}\\), the corresponding expression is
@@ -4291,7 +4287,7 @@ $$
 
 Going forward, we shall focus on the set of vectors \\(\lbrace \bm{L\_{m,n}}, \bm{M\_{m,n}}, \bm{N\_{m,n}} \rbrace\\) produced with the choice of \\(\bm{a} = \bm{r}\\). We have just demonstrated some of their basic properties, and we now can begin to apply them to simple problems.
 
-Suppose that we have obtained the coefficients of the expansion of the electromagnetic potential in terms of vector spherical harmonics (given by Equation 17.13). How can we find the associated electric and magnetic fields?
+Suppose that we have obtained the coefficients of the expansion of the electromagnetic potential in terms of the guided vector harmonics (given by Equation 17.13). How can we find the associated electric and magnetic fields?
 
 According to Equations 17.2.1, 17.11, 17.13, and 17.17,
 
@@ -4351,7 +4347,7 @@ $$
 If we look for a solution of the form
 
 $$ \tag{17.40}
-	f(r, \theta, \phi) = f_r(r) f_{\theta}(\theta) f_{\phi}(\phi),
+	f(\bm{r}) = f_r(r) f_{\theta}(\theta) f_{\phi}(\phi),
 $$
 
 substitution results in three separate ordinary differential equations:
@@ -4394,10 +4390,10 @@ Since the solutions of the Helmholtz equation that are continuous (within a cert
 
 $$ \tag{17.44}
 \begin{aligned}
-	& f(r, \theta, \phi)
-	= - \sum_{m,n} c_{m,n} \psi_{m,n}(r, \theta, \phi),
+	& f(\bm{r})
+	= - \sum_{m,n} c_{m,n} \psi_{m,n}(\bm{r}),
 	\cr
-	& \psi_{m,n}(r, \theta, \phi)
+	& \psi_{m,n}(\bm{r})
 	= \gamma_{m,n} z_n(k r) P_n^m(\cos{\theta}) e^{i m \phi},
 \end{aligned}
 $$
@@ -4407,7 +4403,7 @@ where \\(m\\) and \\(n\\) are integers, \\(c_{m,n}\\) is a complex constant, \\(
 We would like to point out that the same solution can be written in a slightly different way \[[Stratton](#references) (ch 7.3)\]:
 
 $$ \tag{17.45}
-	\psi_{^e_o m,n}(r, \theta, \phi)
+	\psi_{^e_o m,n}(\bm{r})
 	= z_n(k r) P_n^m(\cos{\theta})
 	\begin{array}{cc}
 	   \cos \cr
@@ -4472,7 +4468,7 @@ For small values of the argument, the behavior is both different and relatively 
 
 From the graph above, or, alternatively, from Rayleigh's formulas
 
-$$ \tag{17.??}
+$$ \tag{17.51}
 	j_n(x) = (-x)^n \bigg( \frac{1}{x} \frac{d}{dx} \bigg)^n \frac{\sin{x}}{x},
 	\quad
 	y_n(x) = -(-x)^n \bigg( \frac{1}{x} \frac{d}{dx} \bigg)^n \frac{\cos{x}}{x},
@@ -4480,7 +4476,7 @@ $$
 
 we can deduce that, for large values of the argument, the Bessel functions of the first and the second kind are out-of-phase by a factor of \\(\pi\\). This is a key property of the asymptotic forms
 
-$$ \tag{17.51}
+$$ \tag{17.52}
 \begin{aligned}
 	& j_n(x) \approx \frac{1}{x} \cos\Big( x - \frac{n+1}{2} \pi \Big), &
 	& y_n(x) \approx \frac{1}{x} \sin\Big( x - \frac{n+1}{2} \pi \Big),
@@ -4492,7 +4488,7 @@ $$
 
 Let us now turn our attention to the angular component of the solution
 
-$$ \tag{17.52}
+$$ \tag{17.53}
 	P_n^m(\cos{\theta}) e^{i m \phi}
 	= P_n^m(\cos{\theta}) \cos(m \phi)
 	+ i P_n^m(\cos{\theta}) \sin(m \phi).
@@ -4500,7 +4496,7 @@ $$
 
 If we set \\(m=0\\), the dependence on the azimuthal angle \\(\phi\\) disappears, and we are left with the [Legendre polynomial](https://en.wikipedia.org/wiki/Legendre_polynomials) \\(P_n\\)
 
-$$ \tag{17.53}
+$$ \tag{17.54}
 	P_n(x)
 	= \frac{1}{2^n n!} \frac{d^n}{d x^n} (x^2 - 1)^n
 $$
@@ -4513,24 +4509,24 @@ The degree of a polynomial is also the number of zeros of the function. Coupled 
 
 The situation changes when \\(m \neq 0\\):
 
-$$ \tag{17.54}
+$$ \tag{17.55}
 	P_n^m(x)
-	= (-1)^m (1 - x^2)^{m/2} \frac{d^m}{d x^m} P_n(x)
+	= (-1)^m (1 - x^2)^{m/2} \frac{d^m}{d x^m} P_n(x).
 	\qquad
-	(m \geq 0).
+	(m \geq 0)
 $$
 
  As can be seen from the graph below, the value of the associated Legendre polynomial \\(P_n^m(\cos{\theta})\\) goes to zero at \\(\cos{\theta} = \pm 1\\). In addition, the total number of zeros of the function is \\(n - m + 2\\).
 
 {{< figure src="/img/assoc_legendre.svg" caption="*Figure N: Associated Legendere polynomials of degree 3 and order \\(m=0\\) (blue), \\(m=1\\) (orange), \\(m=2\\) (green), \\(m=3\\) (red).*" >}}
 
-We are now ready to interpret the entire Equation 17.52. Since that function has harmonic dependence on \\(\phi\\), if we plot one of its parts (either real or imaginary), we can observe that it divides the surface of a sphere into \\(2 m \times (n - m + 1)\\) rectangular domains, or tesserae. Thus, \\(P_n^m(\cos{\theta}) \cos(m \phi)\\) and \\(P_n^m(\cos{\theta}) \sin(m \phi)\\) are called *tesseral harmonics* for \\(m < n\\) and *sectorial harmonics* for \\(m = n\\).
+We are now ready to interpret the entire Equation 17.53. Since that function has harmonic dependence on \\(\phi\\), if we plot one of its parts (either real or imaginary), we can observe that it divides the surface of a sphere into \\(2 m \times (n - m + 1)\\) rectangular domains, or tesserae. Thus, \\(P_n^m(\cos{\theta}) \cos(m \phi)\\) and \\(P_n^m(\cos{\theta}) \sin(m \phi)\\) are called *tesseral harmonics* for \\(m < n\\) and *sectorial harmonics* for \\(m = n\\).
 
 {{< figure src="/img/assoc_legendre_3.png" caption="*Figure N: Tesseral harmonics of degree 3 and order \\(m=1\\) (left), \\(m=2\\) (center), \\(m=3\\) (right). Warm colors correspond to positive values of the function, and cold colors - to negative values.*" >}}
 
 Associated Legendre polynomials have a powerful property - they are [orthogonal](https://en.wikipedia.org/wiki/Associated_Legendre_polynomials#Reparameterization_in_terms_of_angles) \[[Stratton](#references) (ch 7.3)\]:
 
-$$ \tag{17.55}
+$$ \tag{17.56}
 \begin{aligned}
 	& \int_{0}^{\pi} P_l^m(\cos{\theta}) P_n^m(\cos{\theta}) \sin{\theta} \thinspace d\theta = \frac{2}{(2n + 1)} \frac{(n+m)!}{(n-m)!} \delta_{l,n},
 	\cr
@@ -4540,7 +4536,7 @@ $$
 
 In addition, we know that any sufficiently smooth univariate function can be expanded into a [Fourier series](https://en.wikipedia.org/wiki/Fourier_series), since
 
-$$ \tag{17.56}
+$$ \tag{17.57}
 \begin{aligned}
 	& \int_{0}^{2 \pi} \sin(m x) \cos(n x) dx = 0,
 	& (m \neq 0 \text{ or } n \neq 0),
@@ -4557,9 +4553,9 @@ where \\(\delta_{m,n}\\) is the Kronecker delta function given by Equation 4.6.
 
 Remarkably, by means of double integration over \\(\theta\\) and \\(\phi\\), these two facts can be combined to show that tesseral harmonics \\(P_n^m(\cos{\theta}) \cos(m \phi)\\) and \\(P_n^m(\cos{\theta}) \sin(m \phi)\\) form a *complete orthogonal system* of basis functions on the surface of a sphere [Courant-Hilbert].
 
-Tesseral harmonics are [real-valued basis functions](https://en.wikipedia.org/wiki/Spherical_harmonics#Real_form), which is sufficient for most problems. However, the theory can be trivially extended to complex values by combining even and odd tesseral harmonics according to Equation 17.52. This directly leads to the definition of [scalar spherical harmonics](https://en.wikipedia.org/wiki/Spherical_harmonics)
+Tesseral harmonics are [real-valued basis functions](https://en.wikipedia.org/wiki/Spherical_harmonics#Real_form), which is sufficient for most problems. However, the theory can be trivially extended to complex values by combining even and odd tesseral harmonics according to Equation 17.53. This directly leads to the definition of [scalar spherical harmonics](https://en.wikipedia.org/wiki/Spherical_harmonics)
 
-$$ \tag{17.57}
+$$ \tag{17.58}
 	Y_n^m(\theta, \phi)
 	= \gamma_{m,n} P_n^m(\cos{\theta}) e^{i m \phi}
 	= \sqrt{\frac{(2 n + 1)}{4 \pi} \frac{(n - m)!}{(n + m)!}} P_n^m(\cos{\theta}) e^{i m \phi},
@@ -4567,7 +4563,7 @@ $$
 
 where \\(\gamma_{m,n}\\) is the normalization constant chosen in order to satisfy the normalization and the completeness relations
 
-$$ \tag{17.58}
+$$ \tag{17.59}
 \begin{aligned}
 	& \int_{0}^{2 \pi} \int_{-1}^{1} \big[ Y_t^s(\theta, \phi) \big]^{\*} Y_n^m(\theta, \phi) \thinspace d(\cos{\theta}) d\phi = \delta_{s,m} \delta_{t,n},
 	\cr
@@ -4578,35 +4574,35 @@ $$
 
 In addition, Equation 17.47 shows that normalization leads to a simple relation
 
-$$ \tag{17.59}
+$$ \tag{17.60}
 	Y_n^{-m}
 	= (-1)^m \big[ Y_n^m \big]^{\*}.
 $$
 
 Thus, the solution of Equation 17.38 (given by Equation 17.44) can be more compactly written as
 
-$$ \tag{17.60}
+$$ \tag{17.61}
 \begin{aligned}
-	& f(r, \theta, \phi)
-	= - \sum_{n=0}^{\infin} \sum_{m=-n}^{n} c_{m,n} \psi_{m,n}(r, \theta, \phi),
+	& f(\bm{r})
+	= - \sum_{n=0}^{\infin} \sum_{m=-n}^{n} c_{m,n} \psi_{m,n}(\bm{r}),
 	\cr
-	& \psi_{m,n}(r, \theta, \phi)
+	& \psi_{m,n}(\bm{r})
 	= z_n(k r) Y_n^m(\theta, \phi).
 \end{aligned}
 $$
 
-We may now substitute Equation 17.60 in place of Equation 17.11, and carry out the subsequent derivation to find the explicit form of the solution of the Helmholtz equation of the *vector* potential (in terms of guided *vector* harmonics) that complements the solution of the Helmholtz equation of the *scalar* potential (in terms of *scalar* generating functions).
+We may now substitute Equation 17.61 in place of Equation 17.11, and carry out the subsequent derivation to find the explicit form of the solution of the Helmholtz equation of the *vector* potential (in terms of guided vector harmonics) that complements the solution of the Helmholtz equation of the *scalar* potential (in terms of scalar generating functions).
 
 The expression of the first vector \\(\bm{L_{m,n}}\\) is given by Equation 17.17.1:
 
-$$ \tag{17.61}
+$$ \tag{17.62}
 \begin{aligned}
-	\frac{1}{\gamma_{m,n}} \bm{L_{m,n}}
-	&= \frac{\partial z_n(k r)}{\partial r} P_n^m(\cos{\theta}) e^{i m \phi} \bm{e_r}
+	\frac{1}{\gamma_{m,n}} \bm{L_{m,n}}(\bm{r})
+	&= \frac{\partial z_n(k r)}{\partial (k r)} P_n^m(\cos{\theta}) e^{i m \phi} \bm{e_r}
 	\cr
-	&+ \frac{1}{r} z_n(k r) \frac{\partial P_n^m(\cos{\theta})}{\partial \theta} e^{i m \phi} \bm{e_{\theta}}
+	&+ \frac{z_n(k r)}{k r} \frac{\partial P_n^m(\cos{\theta})}{\partial \theta} e^{i m \phi} \bm{e_{\theta}}
 	\cr
-	&+ \frac{i m}{r} z_n(k r) \frac{P_n^m(\cos{\theta})}{\sin{\theta}} e^{i m \phi} \bm{e_{\phi}},
+	&+ i m \frac{z_n(k r)}{k r} \frac{P_n^m(\cos{\theta})}{\sin{\theta}} e^{i m \phi} \bm{e_{\phi}},
 \end{aligned}
 $$
 
@@ -4614,11 +4610,11 @@ where \\(\lbrace \bm{e_r}, \bm{e_{\theta}}, \bm{e_{\phi}} \rbrace\\) is the set 
 
 Similarly, we can determine the expression of \\(\bm{M_{m,n}}\\) by expanding Equation 17.18.1 with \\(\bm{a} = \bm{r}\\):
 
-$$ \tag{17.62}
+$$ \tag{17.63}
 \begin{aligned}
-	\frac{1}{\gamma_{m,n}} \bm{M_{m,n}}
-	&= \frac{1}{\sin{\theta}} \frac{\partial \psi_{m,n}(r, \theta, \phi)}{\partial \phi} \bm{e_{\theta}}
-	 - \frac{\partial \psi_{m,n}(r, \theta, \phi)}{\partial \theta} \bm{e_{\phi}}
+	\frac{1}{\gamma_{m,n}} \bm{M_{m,n}}(\bm{r})
+	&= \frac{1}{\sin{\theta}} \frac{\partial \psi_{m,n}}{\partial \phi} \bm{e_{\theta}}
+	 - \frac{\partial \psi_{m,n}}{\partial \theta} \bm{e_{\phi}}
 	\cr
 	&= i m z_n(k r) \frac{P_n^m(\cos{\theta})}{\sin{\theta}} e^{i m \phi} \bm{e_{\theta}}
 	 - z_n(k r) \frac{\partial P_n^m(\cos{\theta})}{\partial \theta} e^{i m \phi} \bm{e_{\phi}}.
@@ -4627,29 +4623,29 @@ $$
 
 Note that the radial component is zero, as expected from Equation 17.21 that contains a cross product with \\(\bm{r}\\).
 
-Finally, we may find the representation of \\(\bm{N_{m,n}}\\) by substituting Equation 17.62 into 17.19.1:
+Finally, we may find the representation of \\(\bm{N_{m,n}}\\) by substituting Equation 17.63 into 17.19.1:
 
-$$ \tag{17.63}
+$$ \tag{17.64}
 \begin{aligned}
-	\frac{1}{\gamma_{m,n}} \bm{N_{m,n}}
+	\frac{1}{\gamma_{m,n}} \bm{N_{m,n}}(\bm{r})
 	&= \frac{-1}{kr} \bigg(
-	   \frac{\partial^2 \psi_{m,n}(r, \theta, \phi)}{\partial \theta^2}
-	 + \frac{\cos{\theta}}{\sin{\theta}} \frac{\partial \psi_{m,n}(r, \theta, \phi)}{\partial \theta}
-	 + \frac{1}{\sin^2{\theta}} \frac{\partial^2 \psi_{m,n}(r, \theta, \phi)}{\partial \phi^2} \bigg) \bm{e_r}
+	   \frac{\partial^2 \psi_{m,n}}{\partial \theta^2}
+	 + \frac{\cos{\theta}}{\sin{\theta}} \frac{\partial \psi_{m,n}}{\partial \theta}
+	 + \frac{1}{\sin^2{\theta}} \frac{\partial^2 \psi_{m,n}}{\partial \phi^2} \bigg) \bm{e_r}
 	\cr
 	&+ \frac{1}{kr} \bigg(
-	   \frac{\partial \psi_{m,n}(r, \theta, \phi)}{\partial \theta}
-	 + r \frac{\partial^2 \psi_{m,n}(r, \theta, \phi)}{\partial r \partial \theta} \bigg) \bm{e_{\theta}}
+	   \frac{\partial \psi_{m,n}}{\partial \theta}
+	 + r \frac{\partial^2 \psi_{m,n}}{\partial r \partial \theta} \bigg) \bm{e_{\theta}}
 	\cr
 	&+ \frac{1}{kr \sin{\theta}} \bigg(
-	   \frac{\partial \psi_{m,n}(r, \theta, \phi)}{\partial \phi}
-	 + r \frac{\partial^2 \psi_{m,n}(r, \theta, \phi)}{\partial r \partial \phi} \bigg) \bm{e_{\phi}}.
+	   \frac{\partial \psi_{m,n}}{\partial \phi}
+	 + r \frac{\partial^2 \psi_{m,n}}{\partial r \partial \phi} \bigg) \bm{e_{\phi}}.
 \end{aligned}
 $$
 
 Careful comparison of the expression of the radial component to Equation 17.39 yields
 
-$$ \tag{17.64}
+$$ \tag{17.65}
 	\frac{1}{\gamma_{m,n}} (\bm{N_{m,n}})\_r
 	= \frac{1}{kr} \bigg(
 	     r^2 \frac{\partial^2 \psi_{m,n}}{\partial r^2}
@@ -4659,34 +4655,27 @@ $$
 
 Since \\(\psi_{m,n}\\) is separable, it satisfies Equation 17.41.1. Coupled with the definition of \\(p^2\\) given by Equation 17.42.1, we obtain a simplified expression
 
-$$ \tag{17.65}
+$$ \tag{17.66}
 	\frac{1}{\gamma_{m,n}} (\bm{N_{m,n}})\_r
 	= \frac{n (n + 1)}{kr} \psi_{m,n}.
 $$
 
 The explicit form of the components can be obtained by substitution of Equation 17.44:
 
-$$ \tag{17.66}
+$$ \tag{17.67}
 \begin{aligned}
-	\frac{1}{\gamma_{m,n}} \bm{N_{m,n}}
-	&= \frac{n (n + 1)}{kr} z_n(k r) P_n^m(\cos{\theta}) e^{i m \phi} \bm{e_r}
+	\frac{1}{\gamma_{m,n}} \bm{N_{m,n}}(\bm{r})
+	&= n (n + 1) \frac{z_n(k r)}{k r}  P_n^m(\cos{\theta}) e^{i m \phi} \bm{e_r}
 	\cr
-	&+ \frac{1}{kr} \bigg( z_n(k r) + r \frac{\partial z_n(k r)}{\partial r} \bigg)
+	&+ \bigg(\frac{z_n(k r)}{k r} + \frac{\partial z_n(k r)}{\partial (k r)} \bigg)
 	   \frac{\partial P_n^m(\cos{\theta})}{\partial \theta} e^{i m \phi} \bm{e_{\theta}}
 	\cr
-	&+ \frac{i m}{k r} \bigg( z_n(k r) + r \frac{\partial z_n(k r)}{\partial r} \bigg)
+	&+ i m \bigg(\frac{z_n(k r)}{k r} + \frac{\partial z_n(k r)}{\partial (k r)} \bigg)
 	   \frac{P_n^m(\cos{\theta})}{\sin{\theta}} e^{i m \phi} \bm{e_{\phi}}.
 \end{aligned}
 $$
 
-The expressions given above may be shortened by noting that
-
-$$ \tag{17.67}
-	\frac{\partial \big[ r z_n(k r) \big]}{\partial r}
-	= z_n(k r) + r \frac{\partial z_n(k r)}{\partial r},
-$$
-
-and defining two new scalar zonal functions
+The expressions given above may be shortened by defining two new zonal functions
 
 $$ \tag{17.68}
 	\pi_{m,n}(\theta) = m \frac{P_n^m(\cos{\theta})}{\sin{\theta}},
@@ -4711,8 +4700,8 @@ and
 
 $$ \tag{17.70}
 \begin{aligned}
-	& \int_{0}^{\pi} \Big( \pi_{m,n}(\theta) \pi_{m,l}(\theta)
-	+ \tau_{m,n}(\theta) \tau_{m,l}(\theta) \Big) \sin{\theta} \thinspace d\theta
+	& \int_{0}^{\pi} \big( \pi_{m,n}(\theta) \pi_{m,l}(\theta)
+	+ \tau_{m,n}(\theta) \tau_{m,l}(\theta) \big) \sin{\theta} \thinspace d\theta
 	\cr
 	&= \int_{0}^{\pi} n (n+1) P_n^m P_l^m \sin{\theta} \thinspace d\theta
 	\cr
@@ -4727,51 +4716,173 @@ $$ \tag{17.70}
 \end{aligned}
 $$
 
-that follow from Equations 17.41.2, 17.55.1, and the fact that the value of the associated Legendre polynomials is zero for \\(\cos{\theta} = \pm 1\\) unless \\(m = 0\\).
+that follow from Equations 17.41.2, 17.56.1, and the fact that the value of the associated Legendre polynomials is zero for \\(\cos{\theta} = \pm 1\\) unless \\(m = 0\\).
 
-After substitution into Equations 17.61, 17.62, and 17.66, we immediately obtain
+After substitution into Equations 17.62, 17.63, and 17.67, we immediately obtain the specific expressions of the guided vector harmonics:
 
 $$ \tag{17.71}
 \begin{aligned}
-	\bm{L_{m,n}}
-	&= \gamma_{m,n} e^{i m \phi} \bigg( \frac{\partial z_n(k r)}{\partial r} P_n^m(\cos{\theta}) \bm{e_r}
-	 + \frac{z_n(k r)}{r}
-	 \Big( \tau_{m,n}(\theta) \bm{e_{\theta}} + i \pi_{m,n}(\theta) \bm{e_{\phi}} \Big) \bigg),
+	\bm{L_{m,n}}(\bm{r})
+	&= \gamma_{m,n} e^{i m \phi} \bigg( \frac{\partial z_n(k r)}{\partial (k r)} P_n^m(\cos{\theta}) \bm{e_r}
+	 + \frac{z_n(k r)}{k r}
+	 \big( \tau_{m,n}(\theta) \bm{e_{\theta}} + i \pi_{m,n}(\theta) \bm{e_{\phi}} \big) \bigg),
 	\cr
-	\bm{M_{m,n}}
+	\bm{M_{m,n}}(\bm{r})
 	&= \gamma_{m,n} e^{i m \phi}  z_n(k r)
-	\Big( i \pi_{m,n}(\theta) \bm{e_{\theta}} - \tau_{m,n}(\theta) \bm{e_{\phi}} \Big),
+	\big( i \pi_{m,n}(\theta) \bm{e_{\theta}} - \tau_{m,n}(\theta) \bm{e_{\phi}} \big),
 	\cr
-	\bm{N_{m,n}}
-	&= \gamma_{m,n} \frac{e^{i m \phi}}{kr} \bigg( n (n + 1) z_n(k r) P_n^m(\cos{\theta}) \bm{e_r}
-	 + \frac{\partial \big[ r z_n(k r) \big]}{\partial r}
-	 \Big( \tau_{m,n}(\theta) \bm{e_{\theta}} + i \pi_{m,n}(\theta) \bm{e_{\phi}} \Big) \bigg).
+	\bm{N_{m,n}}(\bm{r})
+	&= \gamma_{m,n} e^{i m \phi} n (n + 1) \frac{z_n(k r)}{k r} P_n^m(\cos{\theta}) \bm{e_r}
+	\cr
+	&+ \gamma_{m,n} e^{i m \phi} \bigg(\frac{z_n(k r)}{k r} + \frac{\partial z_n(k r)}{\partial (k r)} \bigg)
+	 \big( \tau_{m,n}(\theta) \bm{e_{\theta}} + i \pi_{m,n}(\theta) \bm{e_{\phi}} \big).
 \end{aligned}
 $$
 
-The complex conjugates of the guided vector harmonics are
+You may notice that the expressions given above exhibit a certain pattern. That is not a coincidence. Indeed, guided vector harmonics are directly related to the three sets of vectors
 
 $$ \tag{17.72}
 \begin{aligned}
-	\bm{L_{m,n}^{\*}}
-	&= \gamma_{m,n} e^{-i m \phi} \bigg( \bigg[ \frac{\partial z_n(k r)}{\partial r} \bigg]^{\*} P_n^m(\cos{\theta}) \bm{e_r}
-	 + \frac{\big[ z_n(k r) \big]^{\*}}{r}
-	 \Big( \tau_{m,n}(\theta) \bm{e_{\theta}} - i \pi_{m,n}(\theta) \bm{e_{\phi}} \Big) \bigg),
+	(P) &\bm{\Upsilon_{m,n}}(\theta, \phi)
+	= Y^m_n \bm{e_r} = \gamma_{m,n} e^{i m \phi} P_n^m(\cos{\theta}) \bm{e_r},
 	\cr
-	\bm{M_{m,n}^{\*}}
-	&= \gamma_{m,n} e^{-i m \phi} \big[ z_n(k r) \big]^{\*}
-	\Big( {-i} \pi_{m,n}(\theta) \bm{e_{\theta}} - \tau_{m,n}(\theta) \bm{e_{\phi}} \Big),
+	(C) &\bm{\Phi_{m,n}}(\theta, \phi)
+	= \nabla \times \big( Y^m_n \bm{r} \big)
+	= \bm{\Psi_{m,n}} \times \bm{e_r}
+	= \gamma_{m,n} e^{i m \phi} \big( i \pi_{m,n}(\theta) \bm{e_{\theta}} - \tau_{m,n}(\theta) \bm{e_{\phi}} \big),
 	\cr
-	\bm{N_{m,n}^{\*}}
-	&= \gamma_{m,n} \frac{e^{-i m \phi}}{k^{\*} r} \bigg( n (n + 1) \big[ z_n(k r) \big]^{\*} P_n^m(\cos{\theta}) \bm{e_r}
-	 + \Bigg[ \frac{\partial \big[ r z_n(k r) \big]}{\partial r} \Bigg]^{\*}
-	 \Big( \tau_{m,n}(\theta) \bm{e_{\theta}} - i \pi_{m,n}(\theta) \bm{e_{\phi}} \Big) \bigg).
+	(B) &\bm{\Psi_{m,n}}(\theta, \phi)
+	= r \nabla Y^m_n
+	= \bm{e_r} \times \bm{\Phi_{m,n}}
+	= \gamma_{m,n} e^{i m \phi} \big( \tau_{m,n}(\theta) \bm{e_{\theta}} + i \pi_{m,n}(\theta) \bm{e_{\phi}} \big),
 \end{aligned}
 $$
 
-Let us show certain notable properties of vector spherical harmonics. For real values of \\(k\\), and if the spherical Bessel function is real (which excludes the Hankel functions), they exhibit the following symmetry property (which follows from Equation 17.47) that is a direct result of normalization:
+called [vector spherical harmonics](https://en.wikipedia.org/wiki/Vector_spherical_harmonics#Alternative_definition) [Morse and Feshbach]. They are an extension of the scalar spherical harmonics (Equation 17.58) to vectors fields on the surface of a sphere. Unlike the guided vector harmonics, they do not depend on the radial distance \\(r\\).
+
+Most properties of the vector spherical harmonics are a direct consequence of the fact that they are built on the scalar spherical harmonics combined with the radial basis vector \\(\bm{e_r}\\). For instance, the symmetry property of Equation 17.60 leads to
 
 $$ \tag{17.73}
+	\bm{\Upsilon_{-m,n}}
+	= (-1)^m \bm{\Upsilon_{m,n}^{\*}},
+	\quad
+	\bm{\Phi_{-m,n}}
+	= (-1)^m \bm{\Phi_{m,n}^{\*}},
+	\quad
+	\bm{\Psi_{-m,n}}
+	= (-1)^m \bm{\Psi_{m,n}^{\*}}.
+$$
+
+The particular manner of dependence on a single vector \\(\bm{e_r}\\) leads to orthogonality in the 3-dimensional space:
+
+$$ \tag{17.74}
+\begin{aligned}
+	\bm{\Upsilon_{s,t}} 	 \cdot \bm{\Phi_{m,n}} =
+	\bm{\Upsilon_{s,t}^{\*}} \cdot \bm{\Phi_{m,n}} = 0,
+	\cr
+	\bm{\Upsilon_{s,t}} 	 \cdot \bm{\Psi_{m,n}} =
+	\bm{\Upsilon_{s,t}^{\*}} \cdot \bm{\Psi_{m,n}} = 0,
+	\cr
+	\bm{\Phi_{m,n}} \cdot \bm{\Psi_{m,n}} = 0.
+\end{aligned}
+$$
+
+Furthermore, let us demonstrate that the vector spherical harmonics are also orthogonal in the [Hilbert space](https://en.wikipedia.org/wiki/Hilbert_space), which (very roughly) means that the vectors with different indices are orthogonal on the surface of a sphere.
+
+Let us begin by considering the double integral
+
+$$ \tag{17.75}
+\begin{aligned}
+	&\int_{0}^{2 \pi} \int_{0}^{\pi} \big[ \bm{\Upsilon_{s,t}}(\theta, \phi) \big]^{\*} \cdot \bm{\Upsilon_{m,n}}(\theta, \phi) \sin{\theta} \thinspace d\theta d\phi
+	\cr
+	&= \gamma_{s,t} \gamma_{m,n}
+		\int_{0}^{\pi} P_t^s(\cos{\theta}) P_n^m(\cos{\theta}) \sin{\theta} \thinspace d\theta
+		\int_{0}^{2 \pi} e^{i (m - s) \phi} \thinspace d\phi.
+\end{aligned}
+$$
+
+Analysis shows that the initial expression can be separated into a product of several terms. We may recognize from Equation 4.6 that the integral over \\(\phi\\) is nothing other than the rescaled Kronecker delta function \\(\delta_{m,s}\\). Thus, the value of the double integral is 0 unless \\(m = s\\). Similarly, according to Equation 17.56.1, the integral over \\(\theta\\) is proportional to another Kronecker delta function \\(\delta_{t,n}\\). A simple calculation shows that the various constants cancel out, and we are left with
+
+$$ \tag{17.76}
+\begin{aligned}
+	\int_{0}^{2 \pi} \int_{0}^{\pi} \big[ \bm{\Upsilon_{s,t}}(\theta, \phi) \big]^{\*} \cdot \bm{\Upsilon_{m,n}}(\theta, \phi) \sin{\theta} \thinspace d\theta d\phi
+	= \delta_{m,s} \delta_{t,n}.
+\end{aligned}
+$$
+
+Similarly, from Equations 4.6 and 17.70, it follows that
+
+$$ \tag{17.77}
+\begin{aligned}
+	& \int_{0}^{2 \pi} \int_{0}^{\pi} \big[ \bm{\Phi_{s,t}}(\theta, \phi) \big]^{\*} \cdot \bm{\Phi_{m,n}}(\theta, \phi) \sin{\theta} \thinspace d\theta d\phi
+	\cr
+	&= \int_{0}^{2 \pi} \int_{0}^{\pi} \big[ \bm{\Psi_{s,t}}(\theta, \phi) \big]^{\*} \cdot \bm{\Psi_{m,n}}(\theta, \phi) \sin{\theta} \thinspace d\theta d\phi
+	\cr
+	&= \gamma_{s,t} \gamma_{m,n}
+		\int_{0}^{\pi}
+		\big( \pi_{s,t}(\theta) \pi_{m,n}(\theta) + \tau_{s,t}(\theta) \tau_{m,n}(\theta) \big) \sin{\theta} \thinspace d\theta
+		\int_{0}^{2 \pi} e^{i (m - s) \phi} \thinspace d\phi
+	\cr
+	&= n (n + 1) \delta_{m,s} \delta_{t,n}.
+\end{aligned}
+$$
+
+We can also show that the various mixed products are zero. Using Equation 17.72 and the orthogonality property of the cross product,
+
+$$ \tag{17.78}
+\begin{aligned}
+	& \int_{0}^{2 \pi} \int_{0}^{\pi} \big[ \bm{\Upsilon_{s,t}}(\theta, \phi) \big]^{\*} \cdot \bm{\Phi_{m,n}}(\theta, \phi) \sin{\theta} \thinspace d\theta d\phi
+	\cr
+	&= \int_{0}^{2 \pi} \int_{0}^{\pi} \big[ Y^m_n(\theta, \phi) \big]^{\*} \bm{e_r} \cdot \big( \bm{\Psi_{m,n}}(\theta, \phi) \times \bm{e_r} \big) \sin{\theta} \thinspace d\theta d\phi
+	= 0,
+\end{aligned}
+$$
+
+and
+
+$$ \tag{17.79}
+\begin{aligned}
+	& \int_{0}^{2 \pi} \int_{0}^{\pi} \big[ \bm{\Upsilon_{s,t}}(\theta, \phi) \big]^{\*} \cdot \bm{\Psi_{m,n}}(\theta, \phi) \sin{\theta} \thinspace d\theta d\phi
+	\cr
+	&= \int_{0}^{2 \pi} \int_{0}^{\pi} \big[ Y^m_n(\theta, \phi) \big]^{\*} \bm{e_r} \cdot \big( \bm{e_r} \times \bm{\Phi_{m,n}}(\theta, \phi) \big) \sin{\theta} \thinspace d\theta d\phi
+	= 0.
+\end{aligned}
+$$
+
+For the last pair of vectors, the proof involves Equation 17.69 instead:
+
+$$ \tag{17.80}
+\begin{aligned}
+	& \int_{0}^{2 \pi} \int_{0}^{\pi} \big[ \bm{\Phi_{s,t}}(\theta, \phi) \big]^{\*} \cdot \bm{\Psi_{m,n}}(\theta, \phi) \sin{\theta} \thinspace d\theta d\phi
+	\cr
+	&= -i \gamma_{s,t} \gamma_{m,n}
+		\int_{0}^{\pi}
+		\big( \pi_{s,t}(\theta) \tau_{m,n}(\theta) + \tau_{s,t}(\theta) \pi_{m,n}(\theta) \big) \sin{\theta} \thinspace d\theta
+		\int_{0}^{2 \pi} e^{i (m - s) \phi} \thinspace d\phi
+	= 0.
+\end{aligned}
+$$
+
+Let us now return to the expression of the guided vector harmonics given in Equation 17.71. They can be expressed as a weighted combination of the vector spherical harmonics, effectively extending them to the entire 3-dimensional space:
+
+$$ \tag{17.81}
+\begin{aligned}
+	\bm{L_{m,n}}(\bm{r})
+	&= \frac{\partial z_n(k r)}{\partial (k r)} \bm{\Upsilon_{m,n}}(\theta, \phi)
+	 + \frac{z_n(k r)}{k r} \bm{\Psi_{m,n}}(\theta, \phi),
+	\cr
+	\bm{M_{m,n}}(\bm{r})
+	&= z_n(k r) \bm{\Phi_{m,n}}(\theta, \phi),
+	\cr
+	\bm{N_{m,n}}(\bm{r})
+	&= n (n + 1) \frac{z_n(k r)}{kr} \bm{\Upsilon_{m,n}}(\theta, \phi)
+	 + \bigg( \frac{z_n(k r)}{k r} + \frac{\partial z_n(k r)}{\partial (k r)} \bigg) \bm{\Psi_{m,n}}(\theta, \phi).
+\end{aligned}
+$$
+
+Most properties of the vector spherical harmonics are, to some degree, shared by the guided vector harmonics. For real values of \\(k\\), and if the spherical Bessel function is real (which excludes Hankel functions), they exhibit the symmetry property that follows from Equation 17.73:
+
+$$ \tag{17.82}
 	\bm{L_{-m,n}}
 	= (-1)^m \bm{L_{m,n}^{\*}},
 	\quad
@@ -4782,145 +4893,125 @@ $$ \tag{17.73}
 	= (-1)^m \bm{N_{m,n}^{\*}}.
 $$
 
-Note that it mirrors the property of scalar spherical harmonics given by Equation 17.59.
+According to Equation 17.22, \\(\bm{L_{m,n}}\\) and \\(\bm{M_{m,n}}\\) are mutually orthogonal in the  3-dimensional space. Equation 17.81 allows us to determine the state of affairs for the remaining two pairs of vectors. Since, according to Equation 17.74, the spherical harmonic vectors are orthogonal,
 
-According to Equation 17.22, \\(\bm{L_{m,n}}\\) and \\(\bm{M_{m,n}}\\) are mutually orthogonal in the  3-dimensional space. Equation 17.71 allows us to determine the state of affairs for the remaining two pairs of vectors. Since the spherical basis vectors are orthogonal,
-
-$$ \tag{17.74}
-	\bm{M_{m,n}} \cdot \bm{N_{m,n}}
-	\propto \big( i \pi_{m,n}(\theta) \bm{e_{\theta}} - \tau_{m,n}(\theta) \bm{e_{\phi}} \big)
-	\cdot \big( \tau_{m,n}(\theta) \bm{e_{\theta}} + i \pi_{m,n}(\theta) \bm{e_{\phi}} \big) = 0.
+$$ \tag{17.83}
+	\bm{M_{m,n}} \cdot \bm{N_{m,n}} = 0.
 $$
 
-The relationship between \\(\bm{L_{m,n}}\\) and \\(\bm{N_{m,n}}\\) is more complicated.
+The relationship between \\(\bm{L_{m,n}}\\) and \\(\bm{N_{m,n}}\\) is more complicated:
 
-$$ \tag{17.75}
+$$ \tag{17.84}
 \begin{aligned}
 	\bm{L_{m,n}} \cdot \bm{N_{m,n}}
-	= \gamma_{m,n}^2 \frac{e^{2 i m \phi}}{kr}
-	&\bigg( n (n + 1) z_n(k r) \frac{\partial z_n(k r)}{\partial r} \big[ P_n^m(\cos{\theta}) \big]^2
+	&= \gamma_{m,n}^2 e^{2 i m \phi}
+	n (n + 1) \frac{z_n(k r)}{k r} \frac{\partial z_n(k r)}{\partial (k r)} \big[ P_n^m(\cos{\theta}) \big]^2
 	\cr
-	&+ \frac{z_n(k r)}{r} \frac{\partial \big[ r z_n(k r) \big]}{\partial r}
-	   \Big( \tau_{m,n}^2(\theta) - \pi_{m,n}^2(\theta) \Big)
-	\bigg).
+	&+ \gamma_{m,n}^2 e^{2 i m \phi} \frac{z_n(k r)}{k r}
+	   \bigg(\frac{z_n(k r)}{k r} + \frac{\partial z_n(k r)}{\partial (k r)} \bigg)
+	   \Big( \tau_{m,n}^2(\theta) - \pi_{m,n}^2(\theta) \Big).
 \end{aligned}
 $$
 
-For \\(m = n = 0\\), the polynomals turn into constants, and it is easy to show that \\(\bm{L_{0,0}} \cdot \bm{N_{0,0}} = 0\\). The analysis of the general case is more complicated.
+
+For \\(m = n = 0\\), the polynomals turn into constants, and it is easy to show that \\(\bm{L_{0,0}} \cdot \bm{N_{0,0}} = 0\\). In general, the situation is rather involved.
 
 {{< figure src="/img/l_dot_n.svg" caption="*Figure N: \\(\bm{L\_{0,n}} \cdot \bm{N\_{0,n}}\\) defined in terms of the spherical Bessel function of the first kind as a function of the radial distance \\(r\\) and degree \\(n=1\\) (blue), \\(n=2\\) (orange), \\(n=3\\) (green), \\(n=4\\) (red) with fixed values of \\(k = 1, \thinspace \theta = \pi/2, \thinspace \phi = 0\\).*" >}}
 
-As can be seen from the (fairly representative) plot shown above, the largest deviation from the perpendicular orientation occurs for \\(n = 1\\), with the vectors becoming fully orthogonal as \\(r \to \infin\\), which is evident if one substitutes the asymptotic form of a spherical Bessel function given by Equation 17.51 and takes the \\(1/r\\) factors into account.
+As can be seen from the (fairly representative) plot shown above, the largest deviation from the perpendicular orientation occurs for \\(n = 1\\), with the vectors becoming fully orthogonal as \\(r \to \infin\\), which is evident if one substitutes the asymptotic form of a spherical Bessel function given by Equation 17.52 and takes the inverse distance factors into account.
 
-One may wonder if the full orthogonality between all three vectors can be achieved. Since two out of three vectors are already mutually orthogonal, we could, for instance, choose
+In addition to partial orthogonality in the real 3-dimensional space, we can show that the guided vector harmonics are also partially orthogonal in the Hilbert space. In order to do that, we shall utilize the definition given by Equation 17.81 and the orthogonality relations of Equation 17.74:
 
-$$ \tag{17.76}
-	\bm{N_{m,n}'} = \bm{L_{m,n}} \times \bm{M_{m,n}},
-	\quad \text{or} \quad
-	\bm{L_{m,n}'} = \bm{M_{m,n}} \times \bm{N_{m,n}}.
-$$
+Noting that, according to Equation 17.74, Let us evaluate the integral taken over the surface of a sphere.
 
-One immediate downside is that the resulting expressions of the new vectors are relatively complicated. More radical departures from the formulation of the vector spherical harmonics presented here can be found in the [literature](https://en.wikipedia.org/wiki/Vector_spherical_harmonics).
-
-In addition to partial orthogonality in the real 3-dimensional space, we may show that the vector spherical harmonics are also partially orthogonal in the [Hilbert space](https://en.wikipedia.org/wiki/Hilbert_space), which (very roughly) means that they are orthogonal on the surface of a sphere for all values of \\(m\\) and \\(n\\).
-
-Let us begin by considering the double integral
-
-$$ \tag{17.77}
+$$ \tag{17.85}
 \begin{aligned}
-	&\int_{0}^{2 \pi} \int_{0}^{\pi} \big[ \bm{L_{s,t}}(r, \theta, \phi) \big]^{\*} \cdot \bm{L_{m,n}}(r, \theta, \phi) \sin{\theta} \thinspace d\theta d\phi
+	&\int_{0}^{2 \pi} \int_{0}^{\pi} \big[ \bm{L_{s,t}}(\bm{r}) \big]^{\*} \cdot \bm{L_{m,n}}(\bm{r}) \sin{\theta} \thinspace d\theta d\phi
 	\cr
-	&= N_t^s \gamma_{m,n}
-		\bigg[ \frac{\partial z_t(k r)}{\partial r} \bigg]^{\*} \frac{\partial z_n(k r)}{\partial r}
-		\int_{0}^{\pi} P_t^s(\cos{\theta}) P_n^m(\cos{\theta}) \sin{\theta} \thinspace d\theta
-		\int_{0}^{2 \pi} e^{i (m - s) \phi} \thinspace d\phi
+	&=  \bigg[ \frac{\partial z_t(k r)}{\partial (k r)} \bigg]^{\*} \frac{\partial z_n(k r)}{\partial (k r)}
+		\int_{0}^{2 \pi} \int_{0}^{\pi} \big[ \bm{\Upsilon_{s,t}}(\theta, \phi) \big]^{\*} \cdot \bm{\Upsilon_{m,n}}(\theta, \phi) \sin{\theta} \thinspace d\theta d\phi
 	\cr
-	&+ N_t^s \gamma_{m,n}
-		\frac{\big[ z_t(k r) \big]^{\*} z_n(k r)}{r^2}
-		\int_{0}^{\pi} \Big( \tau_{s,t}(\theta) \tau_{m,n}(\theta) + \pi_{s,t}(\theta) \pi_{m,n}(\theta) \Big) \sin{\theta} \thinspace d\theta
-		\int_{0}^{2 \pi} e^{i (m - s) \phi} \thinspace d\phi.
+	&+ 	\frac{\big[ z_t(k r) \big]^{\*} z_n(k r)}{|k r|^2}
+		\int_{0}^{2 \pi} \int_{0}^{\pi} \big[ \bm{\Psi_{s,t}}(\theta, \phi) \big]^{\*} \cdot \bm{\Psi_{m,n}}(\theta, \phi) \sin{\theta} \thinspace d\theta d\phi.
 \end{aligned}
 $$
 
-Analysis shows that it can be separated into a product of several terms. We may recognize from Equation 4.6 that the integral over \\(\phi\\) is nothing other than the rescaled Kronecker delta function \\(\delta_{m,s}\\). Thus, the value of the double integral is 0 unless \\(m = s\\) . Similarly, according to Equations 17.55 and 17.70, the integrals over \\(\theta\\) are  proportional to another Kronecker delta function \\(\delta_{t,n}\\). After we tally up the constants, the result is
+Substitution of Equations 17.76 and 17.77 immediately yields
 
-$$ \tag{17.78}
+$$ \tag{17.86}
 \begin{aligned}
-	&\int_{0}^{2 \pi} \int_{0}^{\pi} \big[ \bm{L_{s,t}}(r, \theta, \phi) \big]^{\*} \cdot \bm{L_{m,n}}(r, \theta, \phi) \sin{\theta} \thinspace d\theta d\phi
+	&\int_{0}^{2 \pi} \int_{0}^{\pi} \big[ \bm{L_{s,t}}(\bm{r}) \big]^{\*} \cdot \bm{L_{m,n}}(\bm{r}) \sin{\theta} \thinspace d\theta d\phi
 	\cr
-	&= \Bigg( \bigg| \frac{\partial z_n(k r)}{\partial r} \bigg|^2
-	   	+ n (n+1) \bigg| \frac{z_n(k r)}{r} \bigg|^2 \Bigg) \delta_{m,s} \delta_{t,n}.
+	&= \Bigg( \bigg| \frac{\partial z_n(k r)}{\partial (k r)} \bigg|^2
+	   	+ n (n+1) \bigg| \frac{z_n(k r)}{k r} \bigg|^2 \Bigg) \delta_{m,s} \delta_{t,n}.
 \end{aligned}
 $$
 
 The derivative can be eliminated by considering the recurrence relations of Equation 17.50:
 
-$$ \tag{17.79}
+$$ \tag{17.87}
 \begin{aligned}
-	&\int_{0}^{2 \pi} \int_{0}^{\pi} \big[ \bm{L_{s,t}}(r, \theta, \phi) \big]^{\*} \cdot \bm{L_{m,n}}(r, \theta, \phi) \sin{\theta} \thinspace d\theta d\phi
+	&\int_{0}^{2 \pi} \int_{0}^{\pi} \big[ \bm{L_{s,t}}(\bm{r}) \big]^{\*} \cdot \bm{L_{m,n}}(\bm{r}) \sin{\theta} \thinspace d\theta d\phi
 	\cr
-	&= \frac{1}{(2 n + 1)^2} \Bigg(
-		\Big| k \big(n z_{n-1}(k r) - (n + 1) z_{n+1}(k r) \big) \Big|^2
-	 	+ n (n+1) \Big| k \big( z_{n-1}(k r) + z_{n+1}(k r) \big) \Big|^2
-	\Bigg) \delta_{m,s} \delta_{t,n}.
+	&= \frac{1}{(2 n + 1)^2} \Big(
+		\big| n z_{n-1}(k r) - (n + 1) z_{n+1}(k r) \big|^2
+	 	+ n (n+1) \big| z_{n-1}(k r) + z_{n+1}(k r) \big|^2
+	\Big) \delta_{m,s} \delta_{t,n}.
 \end{aligned}
 $$
 
-Further simplification can only be achieved by assuming that \\(k\\) is real:
+Further simplification can be only achieved by assuming that no complex numbers are involved:
 
-$$ \tag{17.80}
+$$ \tag{17.88}
 \begin{aligned}
-	&\int_{0}^{2 \pi} \int_{0}^{\pi} \big[ \bm{L_{s,t}}(r, \theta, \phi) \big]^{\*} \cdot \bm{L_{m,n}}(r, \theta, \phi) \sin{\theta} \thinspace d\theta d\phi
+	&\int_{0}^{2 \pi} \int_{0}^{\pi} \big[ \bm{L_{s,t}}(\bm{r}) \big]^{\*} \cdot \bm{L_{m,n}}(\bm{r}) \sin{\theta} \thinspace d\theta d\phi
 	\cr
-	&= \frac{k^2}{2 n + 1} \Big( n \big[ z_{n-1}(k r) \big]^2 + (n + 1) \big[ z_{n+1}(k r) \big]^2 \Big) \delta_{m,s} \delta_{t,n}
+	&= \frac{1}{2 n + 1} \Big( n \big[ z_{n-1}(k r) \big]^2 + (n + 1) \big[ z_{n+1}(k r) \big]^2 \Big) \delta_{m,s} \delta_{t,n}.
 	\qquad
-	(k \in \mathcal{R}).
+	(k, z_n \in \mathcal{R})
 \end{aligned}
 $$
 
 The same formulas lead to
 
-$$ \tag{17.81}
-	\int_{0}^{2 \pi} \int_{0}^{\pi} \big[ \bm{M_{s,t}}(r, \theta, \phi) \big]^{\*} \cdot \bm{M_{m,n}}(r, \theta, \phi) \sin{\theta} \thinspace d\theta d\phi
+$$ \tag{17.89}
+	\int_{0}^{2 \pi} \int_{0}^{\pi} \big[ \bm{M_{s,t}}(\bm{r}) \big]^{\*} \cdot \bm{M_{m,n}}(\bm{r}) \sin{\theta} \thinspace d\theta d\phi
 	= n (n+1) \big| z_n(k r) \big|^2 \delta_{m,s} \delta_{t,n}
 $$
 
 and
 
-$$ \tag{17.82}
+$$ \tag{17.90}
 \begin{aligned}
-	&\int_{0}^{2 \pi} \int_{0}^{\pi} \big[ \bm{N_{s,t}}(r, \theta, \phi) \big]^{\*} \cdot \bm{N_{m,n}}(r, \theta, \phi) \sin{\theta} \thinspace d\theta d\phi
+	&\int_{0}^{2 \pi} \int_{0}^{\pi} \big[ \bm{N_{s,t}}(\bm{r}) \big]^{\*} \cdot \bm{N_{m,n}}(\bm{r}) \sin{\theta} \thinspace d\theta d\phi
 	\cr
-	&= \frac{n (n+1)}{|k|^2} \Bigg(
-		\bigg| \frac{1}{r} \frac{\partial \big[ r z_n(k r) \big]}{\partial r} \bigg|^2
-		+ n (n+1) \bigg| \frac{z_n(k r)}{r} \bigg|^2
+	&= n (n+1) \Bigg(
+		\bigg| \frac{z_n(k r)}{k r} + \frac{\partial z_n(k r)}{\partial (k r)} \bigg|^2
+		+ n (n+1) \bigg| \frac{z_n(k r)}{k r} \bigg|^2
 		\Bigg) \delta_{m,s} \delta_{t,n}
 	\cr
-	&= \frac{n (n+1)}{|k|^2} \Bigg(
-		\bigg| \frac{z_n(k r)}{r} + k \frac{\partial z_n(k r)}{\partial (k r)} \bigg|^2
-		+ n (n+1) \bigg| \frac{z_n(k r)}{r} \bigg|^2
-		\Bigg) \delta_{m,s} \delta_{t,n}
-	\cr
-	&= \frac{n (n+1)}{(2 n + 1)^2 |k|^2} \bigg(
-		\Big| k \big( (n + 1) z_{n-1}(k r) - n z_{n+1}(k r) \big) \Big|^2
-		+ n (n+1) \Big| k \big( z_{n-1}(k r) + z_{n+1}(k r) \big) \Big|^2
-		\bigg) \delta_{m,s} \delta_{t,n},
+	&= \frac{n (n+1)}{(2 n + 1)^2} \Big(
+		\big| (n + 1) z_{n-1}(k r) - n z_{n+1}(k r) \big|^2
+		+ n (n+1) \big| z_{n-1}(k r) + z_{n+1}(k r) \big|^2
+		\Big) \delta_{m,s} \delta_{t,n},
 \end{aligned}
 $$
 
-which, if \\(k\\) is real, can be reduced to
+which, for real numbers, can be reduced to
 
-$$ \tag{17.83}
+$$ \tag{17.91}
 \begin{aligned}
-	&\int_{0}^{2 \pi} \int_{0}^{\pi} \big[ \bm{N_{s,t}}(r, \theta, \phi) \big]^{\*} \cdot \bm{N_{m,n}}(r, \theta, \phi) \sin{\theta} \thinspace d\theta d\phi
+	&\int_{0}^{2 \pi} \int_{0}^{\pi} \big[ \bm{N_{s,t}}(\bm{r}) \big]^{\*} \cdot \bm{N_{m,n}}(\bm{r}) \sin{\theta} \thinspace d\theta d\phi
 	\cr
 	&= \frac{n (n+1)}{(2 n + 1)} \Big(
 		(n + 1) \big[ z_{n-1}(k r) \big]^2 + n \big[ z_{n+1}(k r) \big]^2
-		\Big) \delta_{m,s} \delta_{t,n}
+		\Big) \delta_{m,s} \delta_{t,n}.
 	\qquad
-	(k \in \mathcal{R}).
+	(k, z_n \in \mathcal{R})
 \end{aligned}
 $$
+
+---
 
 We have just shown that the vectors of the same type (but of different orders) are orthogonal in the Hilbert space. What remains is to determine whether that holds for combinations of different types of vectors as well.
 
@@ -4928,7 +5019,7 @@ We begin by considering the pairs of \\(\bm{L_{m,n}}\\) and \\(\bm{M_{m,n}}\\):
 
 $$ \tag{17.84}
 \begin{aligned}
-	&\int_{0}^{2 \pi} \int_{0}^{\pi} \big[ \bm{L_{s,t}}(r, \theta, \phi) \big]^{\*} \cdot \bm{M_{m,n}}(r, \theta, \phi) \sin{\theta} \thinspace d\theta d\phi
+	&\int_{0}^{2 \pi} \int_{0}^{\pi} \big[ \bm{L_{s,t}}(\bm{r}) \big]^{\*} \cdot \bm{M_{m,n}}(\bm{r}) \sin{\theta} \thinspace d\theta d\phi
 	\cr
 	&\propto
 		\int_{0}^{2 \pi} e^{i (m - s) \phi} \thinspace d\phi
@@ -4943,14 +5034,14 @@ where the last equality follows from Equation 17.69.
 An identical calculation leads to
 
 $$ \tag{17.85}
-	\int_{0}^{2 \pi} \int_{0}^{\pi} \big[ \bm{M_{s,t}}(r, \theta, \phi) \big]^{\*} \cdot \bm{N_{m,n}}(r, \theta, \phi) \sin{\theta} \thinspace d\theta d\phi = 0.
+	\int_{0}^{2 \pi} \int_{0}^{\pi} \big[ \bm{M_{s,t}}(\bm{r}) \big]^{\*} \cdot \bm{N_{m,n}}(\bm{r}) \sin{\theta} \thinspace d\theta d\phi = 0.
 $$
 
-Since, according to Equation 17.55, \\(\bm{L_{m,n}}\\) and \\(\bm{N_{m,n}}\\) are not fully orthogonal in the 3-dimensional space, we should also expect some complications in the Hilbert space:
+Since, according to Equation 17.56, \\(\bm{L_{m,n}}\\) and \\(\bm{N_{m,n}}\\) are not fully orthogonal in the 3-dimensional space, we should also expect some complications in the Hilbert space:
 
 $$ \tag{17.86}
 \begin{aligned}
-	&\int_{0}^{2 \pi} \int_{0}^{\pi} \big[ \bm{L_{s,t}}(r, \theta, \phi) \big]^{\*} \cdot \bm{N_{m,n}}(r, \theta, \phi) \sin{\theta} \thinspace d\theta d\phi
+	&\int_{0}^{2 \pi} \int_{0}^{\pi} \big[ \bm{L_{s,t}}(\bm{r}) \big]^{\*} \cdot \bm{N_{m,n}}(\bm{r}) \sin{\theta} \thinspace d\theta d\phi
 	\cr
 	&= \frac{\gamma_{s,t} \gamma_{m,n}}{kr} \bigg[ \frac{\partial z_t(k r)}{\partial r} \bigg]^{\*} n (n + 1) z_n(k r)
 		\int_{0}^{\pi} P_t^s(\cos{\theta}) P_n^m(\cos{\theta}) \sin{\theta} \thinspace d\theta
@@ -4970,7 +5061,7 @@ For real \\(k\\), Equation 17.86 has a simpler expression
 
 $$ \tag{17.87}
 \begin{aligned}
-	&\int_{0}^{2 \pi} \int_{0}^{\pi} \big[ \bm{L_{s,t}}(r, \theta, \phi) \big]^{\*} \cdot \bm{N_{m,n}}(r, \theta, \phi) \sin{\theta} \thinspace d\theta d\phi
+	&\int_{0}^{2 \pi} \int_{0}^{\pi} \big[ \bm{L_{s,t}}(\bm{r}) \big]^{\*} \cdot \bm{N_{m,n}}(\bm{r}) \sin{\theta} \thinspace d\theta d\phi
 	\cr
 	&= n (n + 1) \frac{z_n(k r)}{r}
 	\Big( z_{n-1}(k r) - z_{n+1}(k r) \Big) \delta_{m,s} \delta_{t,n}
@@ -4998,7 +5089,7 @@ $$
 If \\(\bm{n_i}\\) is aligned with the \\(z\\)-axis (as shown in Figure N), the explicit coordinate representation of \\(\bm{r}\\) is
 
 $$ \tag{17.89}
-	\bm{r} = \lbrace r, \theta, \phi \rbrace,
+	\bm{r} = \lbrace \bm{r} \rbrace,
 $$
 
 such that
@@ -5088,7 +5179,7 @@ In order to determine the value of \\(a_{m,n}\\), project Equation 17.94 on \\(\
 [^17]: For brevity, we omit the dependence on the frequency \\(\omega\\).
 
 $$ \tag{17.95}
-	\int_{0}^{2 \pi} \int_{0}^{\pi} \big[ \bm{M_{m,n}^{(1)}}(r, \theta, \phi) \big]^{\*} \cdot \bm{E_i}(r, \theta, \phi) \sin{\theta} \thinspace d\theta d\phi
+	\int_{0}^{2 \pi} \int_{0}^{\pi} \big[ \bm{M_{m,n}^{(1)}}(\bm{r}) \big]^{\*} \cdot \bm{E_i}(\bm{r}) \sin{\theta} \thinspace d\theta d\phi
 	= -a_{m,n} n (n+1) \big| j_n(k r) \big|^2.
 $$
 
@@ -5096,15 +5187,15 @@ For the next step, we must evaluate the integral on the left-hand side. Once we 
 
 $$ \tag{17.96}
 \begin{aligned}
-	&\int_{0}^{2 \pi} \int_{0}^{\pi} \big[ \bm{M_{m,n}^{(1)}}(r, \theta, \phi) \big]^{\*} \cdot \bm{E_i}(r, \theta, \phi) \sin{\theta} \thinspace d\theta d\phi
+	&\int_{0}^{2 \pi} \int_{0}^{\pi} \big[ \bm{M_{m,n}^{(1)}}(\bm{r}) \big]^{\*} \cdot \bm{E_i}(\bm{r}) \sin{\theta} \thinspace d\theta d\phi
 	\cr
-	&= \int_{0}^{2 \pi} \int_{0}^{\pi} \big[ \bm{M_{m,n}^{(1)}}(r, \theta, \phi) \big]^{\*}
+	&= \int_{0}^{2 \pi} \int_{0}^{\pi} \big[ \bm{M_{m,n}^{(1)}}(\bm{r}) \big]^{\*}
 	   \cdot \Big( \bm{e_{r}} \big( E_x \cos{\phi} + E_y \sin{\phi} \big) \sin{\theta} e^{i k r \cos{\theta}} \Big) \sin{\theta} \thinspace d\theta d\phi
     \cr
-	&+ \int_{0}^{2 \pi} \int_{0}^{\pi} \big[ \bm{M_{m,n}^{(1)}}(r, \theta, \phi) \big]^{\*}
+	&+ \int_{0}^{2 \pi} \int_{0}^{\pi} \big[ \bm{M_{m,n}^{(1)}}(\bm{r}) \big]^{\*}
 	   \cdot \Big( \bm{e_{\theta}} \big( E_x \cos{\phi} + E_y \sin{\phi} \big) \cos{\theta} e^{i k r \cos{\theta}} \Big) \sin{\theta} \thinspace d\theta d\phi
     \cr
-	&+ \int_{0}^{2 \pi} \int_{0}^{\pi} \big[ \bm{M_{m,n}^{(1)}}(r, \theta, \phi) \big]^{\*}
+	&+ \int_{0}^{2 \pi} \int_{0}^{\pi} \big[ \bm{M_{m,n}^{(1)}}(\bm{r}) \big]^{\*}
 	   \cdot \Big( \bm{e_{\phi}} \big( E_y \cos{\phi} - E_x \sin{\phi} \big) e^{i k r \cos{\theta}} \Big) \sin{\theta} \thinspace d\theta d\phi.
 \end{aligned}
 $$
@@ -5113,7 +5204,7 @@ According to Equation 17.72.2, the radial component of \\(\bm{M_{m,n}^{\*}}\\) i
 
 $$ \tag{17.96}
 \begin{aligned}
-	&  \int_{0}^{2 \pi} \int_{0}^{\pi} \big[ \bm{M_{m,n}^{(1)}}(r, \theta, \phi) \big]^{\*}
+	&  \int_{0}^{2 \pi} \int_{0}^{\pi} \big[ \bm{M_{m,n}^{(1)}}(\bm{r}) \big]^{\*}
 	   \cdot \Big( \bm{e_{\theta}} \big( E_x \cos{\phi} + E_y \sin{\phi} \big) \cos{\theta} e^{i k r \cos{\theta}} \Big) \sin{\theta} \thinspace d\theta d\phi
     \cr
 	&= -i \gamma_{m,n} \big[ j_n(k r) \big]^{\*}
