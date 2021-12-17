@@ -4827,31 +4827,20 @@ $$ \tag{17.77}
 \end{aligned}
 $$
 
-We can also show that the various mixed products are zero. Using Equation 17.72 and the orthogonality property of the cross product,
+We can also show that the all mixed products are zero. According to Equation 17.74,
 
 $$ \tag{17.78}
 \begin{aligned}
 	& \int_{0}^{2 \pi} \int_{0}^{\pi} \big[ \bm{\Upsilon_{s,t}}(\theta, \phi) \big]^{\*} \cdot \bm{\Phi_{m,n}}(\theta, \phi) \sin{\theta} \thinspace d\theta d\phi
 	\cr
-	&= \int_{0}^{2 \pi} \int_{0}^{\pi} \big[ Y^m_n(\theta, \phi) \big]^{\*} \bm{e_r} \cdot \big( \bm{\Psi_{m,n}}(\theta, \phi) \times \bm{e_r} \big) \sin{\theta} \thinspace d\theta d\phi
-	= 0,
-\end{aligned}
-$$
-
-and
-
-$$ \tag{17.79}
-\begin{aligned}
-	& \int_{0}^{2 \pi} \int_{0}^{\pi} \big[ \bm{\Upsilon_{s,t}}(\theta, \phi) \big]^{\*} \cdot \bm{\Psi_{m,n}}(\theta, \phi) \sin{\theta} \thinspace d\theta d\phi
-	\cr
-	&= \int_{0}^{2 \pi} \int_{0}^{\pi} \big[ Y^m_n(\theta, \phi) \big]^{\*} \bm{e_r} \cdot \big( \bm{e_r} \times \bm{\Phi_{m,n}}(\theta, \phi) \big) \sin{\theta} \thinspace d\theta d\phi
+	&= \int_{0}^{2 \pi} \int_{0}^{\pi} \big[ \bm{\Upsilon_{s,t}}(\theta, \phi) \big]^{\*} \cdot \bm{\Psi_{m,n}}(\theta, \phi) \sin{\theta} \thinspace d\theta d\phi
 	= 0.
 \end{aligned}
 $$
 
 For the last pair of vectors, the proof involves Equation 17.69 instead:
 
-$$ \tag{17.80}
+$$ \tag{17.79}
 \begin{aligned}
 	& \int_{0}^{2 \pi} \int_{0}^{\pi} \big[ \bm{\Phi_{s,t}}(\theta, \phi) \big]^{\*} \cdot \bm{\Psi_{m,n}}(\theta, \phi) \sin{\theta} \thinspace d\theta d\phi
 	\cr
@@ -4865,7 +4854,7 @@ $$
 
 Let us now return to the expression of the guided vector harmonics given in Equation 17.71. They can be expressed as a weighted combination of the vector spherical harmonics, effectively extending them to the entire 3-dimensional space:
 
-$$ \tag{17.81}
+$$ \tag{17.80}
 \begin{aligned}
 	\bm{L_{m,n}}(\bm{r})
 	&= \frac{\partial z_n(k r)}{\partial (k r)} \bm{\Upsilon_{m,n}}(\theta, \phi)
@@ -4875,14 +4864,14 @@ $$ \tag{17.81}
 	&= z_n(k r) \bm{\Phi_{m,n}}(\theta, \phi),
 	\cr
 	\bm{N_{m,n}}(\bm{r})
-	&= n (n + 1) \frac{z_n(k r)}{kr} \bm{\Upsilon_{m,n}}(\theta, \phi)
+	&= n (n + 1) \frac{z_n(k r)}{k r} \bm{\Upsilon_{m,n}}(\theta, \phi)
 	 + \bigg( \frac{z_n(k r)}{k r} + \frac{\partial z_n(k r)}{\partial (k r)} \bigg) \bm{\Psi_{m,n}}(\theta, \phi).
 \end{aligned}
 $$
 
 Most properties of the vector spherical harmonics are, to some degree, shared by the guided vector harmonics. For real values of \\(k\\), and if the spherical Bessel function is real (which excludes Hankel functions), they exhibit the symmetry property that follows from Equation 17.73:
 
-$$ \tag{17.82}
+$$ \tag{17.81}
 	\bm{L_{-m,n}}
 	= (-1)^m \bm{L_{m,n}^{\*}},
 	\quad
@@ -4893,15 +4882,15 @@ $$ \tag{17.82}
 	= (-1)^m \bm{N_{m,n}^{\*}}.
 $$
 
-According to Equation 17.22, \\(\bm{L_{m,n}}\\) and \\(\bm{M_{m,n}}\\) are mutually orthogonal in the  3-dimensional space. Equation 17.81 allows us to determine the state of affairs for the remaining two pairs of vectors. Since, according to Equation 17.74, the spherical harmonic vectors are orthogonal,
+According to Equation 17.22, \\(\bm{L_{m,n}}\\) and \\(\bm{M_{m,n}}\\) are mutually orthogonal in the  3-dimensional space. Equation 17.80 allows us to determine the state of affairs for the remaining two pairs of vectors. Since, according to Equation 17.74, the spherical harmonic vectors are orthogonal,
 
-$$ \tag{17.83}
+$$ \tag{17.82}
 	\bm{M_{m,n}} \cdot \bm{N_{m,n}} = 0.
 $$
 
 The relationship between \\(\bm{L_{m,n}}\\) and \\(\bm{N_{m,n}}\\) is more complicated:
 
-$$ \tag{17.84}
+$$ \tag{17.83}
 \begin{aligned}
 	\bm{L_{m,n}} \cdot \bm{N_{m,n}}
 	&= \gamma_{m,n}^2 e^{2 i m \phi}
@@ -4920,11 +4909,11 @@ For \\(m = n = 0\\), the polynomals turn into constants, and it is easy to show 
 
 As can be seen from the (fairly representative) plot shown above, the largest deviation from the perpendicular orientation occurs for \\(n = 1\\), with the vectors becoming fully orthogonal as \\(r \to \infin\\), which is evident if one substitutes the asymptotic form of a spherical Bessel function given by Equation 17.52 and takes the inverse distance factors into account.
 
-In addition to partial orthogonality in the real 3-dimensional space, we can show that the guided vector harmonics are also partially orthogonal in the Hilbert space. In order to do that, we shall utilize the definition given by Equation 17.81 and the orthogonality relations of Equation 17.74:
+In addition to partial orthogonality in the real 3-dimensional space, we can show that the guided vector harmonics are also partially orthogonal in the Hilbert space. In order to do that, we shall utilize the definition given by Equation 17.80 and the orthogonality relations of Equation 17.74:
 
 Noting that, according to Equation 17.74, Let us evaluate the integral taken over the surface of a sphere.
 
-$$ \tag{17.85}
+$$ \tag{17.84}
 \begin{aligned}
 	&\int_{0}^{2 \pi} \int_{0}^{\pi} \big[ \bm{L_{s,t}}(\bm{r}) \big]^{\*} \cdot \bm{L_{m,n}}(\bm{r}) \sin{\theta} \thinspace d\theta d\phi
 	\cr
@@ -4938,7 +4927,7 @@ $$
 
 Substitution of Equations 17.76 and 17.77 immediately yields
 
-$$ \tag{17.86}
+$$ \tag{17.85}
 \begin{aligned}
 	&\int_{0}^{2 \pi} \int_{0}^{\pi} \big[ \bm{L_{s,t}}(\bm{r}) \big]^{\*} \cdot \bm{L_{m,n}}(\bm{r}) \sin{\theta} \thinspace d\theta d\phi
 	\cr
@@ -4949,7 +4938,7 @@ $$
 
 The derivative can be eliminated by considering the recurrence relations of Equation 17.50:
 
-$$ \tag{17.87}
+$$ \tag{17.86}
 \begin{aligned}
 	&\int_{0}^{2 \pi} \int_{0}^{\pi} \big[ \bm{L_{s,t}}(\bm{r}) \big]^{\*} \cdot \bm{L_{m,n}}(\bm{r}) \sin{\theta} \thinspace d\theta d\phi
 	\cr
@@ -4962,7 +4951,7 @@ $$
 
 Further simplification can be only achieved by assuming that no complex numbers are involved:
 
-$$ \tag{17.88}
+$$ \tag{17.87}
 \begin{aligned}
 	&\int_{0}^{2 \pi} \int_{0}^{\pi} \big[ \bm{L_{s,t}}(\bm{r}) \big]^{\*} \cdot \bm{L_{m,n}}(\bm{r}) \sin{\theta} \thinspace d\theta d\phi
 	\cr
@@ -4974,14 +4963,14 @@ $$
 
 The same formulas lead to
 
-$$ \tag{17.89}
+$$ \tag{17.88}
 	\int_{0}^{2 \pi} \int_{0}^{\pi} \big[ \bm{M_{s,t}}(\bm{r}) \big]^{\*} \cdot \bm{M_{m,n}}(\bm{r}) \sin{\theta} \thinspace d\theta d\phi
 	= n (n+1) \big| z_n(k r) \big|^2 \delta_{m,s} \delta_{t,n}
 $$
 
 and
 
-$$ \tag{17.90}
+$$ \tag{17.89}
 \begin{aligned}
 	&\int_{0}^{2 \pi} \int_{0}^{\pi} \big[ \bm{N_{s,t}}(\bm{r}) \big]^{\*} \cdot \bm{N_{m,n}}(\bm{r}) \sin{\theta} \thinspace d\theta d\phi
 	\cr
@@ -4999,7 +4988,7 @@ $$
 
 which, for real numbers, can be reduced to
 
-$$ \tag{17.91}
+$$ \tag{17.90}
 \begin{aligned}
 	&\int_{0}^{2 \pi} \int_{0}^{\pi} \big[ \bm{N_{s,t}}(\bm{r}) \big]^{\*} \cdot \bm{N_{m,n}}(\bm{r}) \sin{\theta} \thinspace d\theta d\phi
 	\cr
@@ -5011,69 +5000,60 @@ $$ \tag{17.91}
 \end{aligned}
 $$
 
----
-
 We have just shown that the vectors of the same type (but of different orders) are orthogonal in the Hilbert space. What remains is to determine whether that holds for combinations of different types of vectors as well.
 
 We begin by considering the pairs of \\(\bm{L_{m,n}}\\) and \\(\bm{M_{m,n}}\\):
 
-$$ \tag{17.84}
+$$ \tag{17.91}
 \begin{aligned}
 	&\int_{0}^{2 \pi} \int_{0}^{\pi} \big[ \bm{L_{s,t}}(\bm{r}) \big]^{\*} \cdot \bm{M_{m,n}}(\bm{r}) \sin{\theta} \thinspace d\theta d\phi
 	\cr
-	&\propto
-		\int_{0}^{2 \pi} e^{i (m - s) \phi} \thinspace d\phi
-		\int_{0}^{\pi} \Big( \tau_{s,t}(\theta) \pi_{m,n}(\theta) + \pi_{s,t}(\theta) \tau_{m,n}(\theta) \Big) \sin{\theta} \thinspace d\theta
+	&= \bigg[ \frac{\partial z_t(k r)}{\partial (k r)} \bigg]^{\*} z_n(k r) \int_{0}^{2 \pi} \int_{0}^{\pi} \big[ \bm{\Upsilon_{s,t}}(\theta, \phi) \big]^{\*} \cdot \bm{\Phi_{m,n}}(\theta, \phi) \sin{\theta} \thinspace d\theta d\phi
 	\cr
-	&= 2 \pi \delta_{m,s} \int_{0}^{\pi} \Big( \tau_{m,t}(\theta) \pi_{m,n}(\theta) + \pi_{m,t}(\theta) \tau_{m,n}(\theta) \Big) \sin{\theta} \thinspace d\theta \thinspace = 0,
+	&+ \bigg[ \frac{z_t(k r)}{k r} \bigg]^{\*} z_n(k r) \int_{0}^{2 \pi} \int_{0}^{\pi} \big[ \bm{\Psi_{s,t}}(\theta, \phi) \big]^{\*} \cdot \bm{\Phi_{m,n}}(\theta, \phi) \sin{\theta} \thinspace d\theta d\phi = 0,
 \end{aligned}
 $$
 
-where the last equality follows from Equation 17.69.
+which directly follows from orthogonality of the vector spherical harmonics demonstrated by Equations 17.78 and 17.79.
 
 An identical calculation leads to
 
-$$ \tag{17.85}
+$$ \tag{17.92}
 	\int_{0}^{2 \pi} \int_{0}^{\pi} \big[ \bm{M_{s,t}}(\bm{r}) \big]^{\*} \cdot \bm{N_{m,n}}(\bm{r}) \sin{\theta} \thinspace d\theta d\phi = 0.
 $$
 
-Since, according to Equation 17.56, \\(\bm{L_{m,n}}\\) and \\(\bm{N_{m,n}}\\) are not fully orthogonal in the 3-dimensional space, we should also expect some complications in the Hilbert space:
+Since, according to Equation 17.83, \\(\bm{L_{m,n}}\\) and \\(\bm{N_{m,n}}\\) are not fully orthogonal in the 3-dimensional space, we should also expect some complications in the Hilbert space. From Equations 17.74, 17.76 and 17.77 it follows that
 
-$$ \tag{17.86}
+$$ \tag{17.93}
 \begin{aligned}
 	&\int_{0}^{2 \pi} \int_{0}^{\pi} \big[ \bm{L_{s,t}}(\bm{r}) \big]^{\*} \cdot \bm{N_{m,n}}(\bm{r}) \sin{\theta} \thinspace d\theta d\phi
 	\cr
-	&= \frac{\gamma_{s,t} \gamma_{m,n}}{kr} \bigg[ \frac{\partial z_t(k r)}{\partial r} \bigg]^{\*} n (n + 1) z_n(k r)
-		\int_{0}^{\pi} P_t^s(\cos{\theta}) P_n^m(\cos{\theta}) \sin{\theta} \thinspace d\theta
-		\int_{0}^{2 \pi} e^{i (m - s) \phi} \thinspace d\phi
-	\cr
-	&+ \frac{\gamma_{s,t} \gamma_{m,n}}{kr} \frac{\big[ z_t(k r) \big]^{\*}}{r} \frac{\partial \big[ r z_n(k r) \big]}{\partial r}
-		\int_{0}^{\pi} \Big( \tau_{s,t}(\theta) \tau_{m,n}(\theta) + \pi_{s,t}(\theta) \pi_{m,n}(\theta) \Big) \sin{\theta} \thinspace d\theta
-		\int_{0}^{2 \pi} e^{i (m - s) \phi} \thinspace d\phi
-	\cr
-	&= \frac{n (n + 1)}{kr} \Bigg( z_n(k r) \bigg[ \frac{\partial z_n(k r)}{\partial r} \bigg]^{\*}
-	 + \frac{\big[ z_n(k r) \big]^{\*}}{r} \frac{\partial \big[ r z_n(k r) \big]}{\partial r}
-	 \Bigg) \delta_{m,s} \delta_{t,n}.
+	&= n (n + 1) \Bigg( \bigg[ \frac{\partial z_n(k r)}{\partial (k r)} \bigg]^{\*} \frac{z_n(k r)}{k r}
+	+ \bigg[ \frac{z_n(k r)}{k r} \bigg]^{\*} \bigg( \frac{z_n(k r)}{k r} + \frac{\partial z_n(k r)}{\partial (k r)} \bigg) \Bigg) \delta_{m,s} \delta_{t,n}.
 \end{aligned}
 $$
 
-For real \\(k\\), Equation 17.86 has a simpler expression
+In the absence of complex numbers, Equation 17.93 has a simpler expression
 
-$$ \tag{17.87}
+$$ \tag{17.94}
 \begin{aligned}
 	&\int_{0}^{2 \pi} \int_{0}^{\pi} \big[ \bm{L_{s,t}}(\bm{r}) \big]^{\*} \cdot \bm{N_{m,n}}(\bm{r}) \sin{\theta} \thinspace d\theta d\phi
 	\cr
-	&= n (n + 1) \frac{z_n(k r)}{r}
-	\Big( z_{n-1}(k r) - z_{n+1}(k r) \Big) \delta_{m,s} \delta_{t,n}
+	&= n (n + 1) \frac{z_n(k r)}{k r}
+	\bigg( \frac{z_n(k r)}{k r} + 2 \frac{\partial z_n(k r)}{\partial (k r)} \bigg) \delta_{m,s} \delta_{t,n}
 	\cr
-	&= \frac{n (n + 1)}{2 n + 1} k
+	&= \frac{n (n + 1)}{2 n + 1}
 	\Big( \big[ z_{n-1}(k r) \big]^2 - \big[ z_{n+1}(k r) \big]^2 \Big) \delta_{m,s} \delta_{t,n},
+	\qquad
+	(k, z_n \in \mathcal{R})
 \end{aligned}
 $$
 
 where we once again utilized the identities of Equation 17.50.
 
-For our application, the partial orthogonality between \\(\bm{L_{m,n}}\\) and \\(\bm{N_{m,n}}\\) is not a real concern. According to Equations 17.36 and 17.37, the electric and the magnetic fields can be expressed solely in terms of \\(\bm{M_{m,n}}\\) and \\(\bm{N_{m,n}}\\), which are mutually orthogonal, as has been shown in Equations 17.74 and 17.85.
+For our application, the partial orthogonality between \\(\bm{L_{m,n}}\\) and \\(\bm{N_{m,n}}\\) is not a real concern. According to Equations 17.36 and 17.37, the electric and the magnetic fields can be expressed solely in terms of \\(\bm{M_{m,n}}\\) and \\(\bm{N_{m,n}}\\), which are mutually orthogonal, as has been shown in Equations 17.82 and 17.92.
+
+---
 
 We must consider three distinct types of electromagnetic fields: the incident field produced by an external source, the internal field (inside the sphere) that is established under the influence of the incident field, and the scattered field (outside the sphere).
 
@@ -5081,20 +5061,20 @@ We shall suppose that the incident field is represented by a plane wave. That is
 
 Making the usual assumption that the region outside the sphere is filled with a linear, isotropic, homogeneous, source-free medium, the expression of the incident vector plane wave is given by Equation 7.2:
 
-$$ \tag{17.88}
+$$ \tag{17.87}
 	\bm{E_i}(\bm{r}, \omega) e^{- i \omega t}
 	= \bm{E_0}(\bm{n_i}, \omega) e^{i k(\omega) (\bm{r} \cdot \bm{n_i}) - i \omega t}.
 $$
 
 If \\(\bm{n_i}\\) is aligned with the \\(z\\)-axis (as shown in Figure N), the explicit coordinate representation of \\(\bm{r}\\) is
 
-$$ \tag{17.89}
+$$ \tag{17.88}
 	\bm{r} = \lbrace \bm{r} \rbrace,
 $$
 
 such that
 
-$$ \tag{17.90}
+$$ \tag{17.89}
 	\bm{r} \cdot \bm{n_i} = z = r \cos{\theta}.
 $$
 
@@ -5102,11 +5082,11 @@ $$
 
 Since the set of Cartesian basis vectors is both orthogonal and complete,
 
-$$ \tag{17.91}
+$$ \tag{17.90}
 	\sum_{i=x,y,z} \bm{e_i} \bm{e_i^T} = \mathcal{I}
 $$
 
-$$ \tag{17.92}
+$$ \tag{17.91}
 	  \bm{E_0}
 	= \mathcal{I} \bm{E_0}
 	= \sum_{i=x,y,z} \bm{e_i} (\bm{e_i} \cdot \bm{E_0})
@@ -5115,7 +5095,7 @@ $$
 
 or
 
-$$ \tag{17.93}
+$$ \tag{17.92}
 	\bm{E_i}(\bm{r}, \omega)
 	= \sum_{i=x,y,z} (\bm{e_i} e^{i k r \cos{\theta}}) (\bm{e_i} \cdot \bm{E_0})
 $$
@@ -5126,14 +5106,14 @@ so ???
 
 Furthermore, recall that an electromagnetic plane wave is transverse with respect to its direction of propagation (as shown by Equations 7.18 and 7.23). Therefore, in Cartesian coordinates, the polarization phasor \\(\bm{E_0}\\) of a plane wave can be completely described in terms of the tangential (with respect to \\(\bm{n_i} = \bm{e_z}\\)) components \\(E_x\\) and \\(E_y\\):
 
-$$ \tag{17.91}
+$$ \tag{17.90}
 	\bm{E_0}(\bm{n_i}, \omega)
 	= E_x(\omega) \bm{e_x} + E_y(\omega) \bm{e_y}.
 $$
 
 The definition of the polarization phasor does not contain explicit dependence on \\(\bm{r}\\). However, in spherical coordinates, the basis vectors are [not static](https://en.wikipedia.org/wiki/Vector_fields_in_cylindrical_and_spherical_coordinates#Spherical_coordinate_system), and implicitly depend on the point of reference \\(\bm{r}\\):
 
-$$ \tag{17.92}
+$$ \tag{17.91}
 \begin{aligned}
 	\bm{e_x} &= \sin{\theta} \cos{\phi} \thinspace \bm{e_{r}}
 			  + \cos{\theta} \cos{\phi} \thinspace \bm{e_{\theta}}
@@ -5149,9 +5129,9 @@ $$ \tag{17.92}
 \end{aligned}
 $$
 
-The combination of Equations 17.91 and 17.92 is
+The combination of Equations 17.90 and 17.91 is
 
-$$ \tag{17.93}
+$$ \tag{17.92}
 \begin{aligned}
 	\bm{E_i}(\bm{r}, \omega) = \Big(
 	  \thinspace &\bm{e_{r}}      \big( E_x(\omega) \cos{\phi} + E_y(\omega) \sin{\phi} \big) \sin{\theta}
@@ -5165,16 +5145,16 @@ $$
 
 Now, recall that, according to Equation 17.36, an electric field has a vector spherical harmonic representation
 
-$$ \tag{17.94}
+$$ \tag{17.93}
 	\bm{E_i}(\bm{r}, \omega)
 	= -\sum_{n=0}^{\infin} \sum_{m=-n}^{n} \big( a_{m,n}(\omega) \bm{M_{m,n}^{(1)}}(\bm{r}, \omega) + b_{m,n}(\omega) \bm{N_{m,n}^{(1)}}(\bm{r}, \omega) \big),
 $$
 
 where the superscript \\((1)\\) indicates that, for the incident field, we have made the choice of a spherical Bessel function of the first kind, since it is the only type that takes on finite values at the origin (c.f. Figure N).
 
-Equations 17.93 and 17.94 describe the same physical quantity. Assuming that all parameters used to define Equations 17.93 are given, we may find the unknown coefficients \\(a_{m,n}\\) and \\(b_{m,n}\\) of the vector spherical harmonic expansion by applying the orthogonality relations we have just derived.
+Equations 17.92 and 17.93 describe the same physical quantity. Assuming that all parameters used to define Equations 17.92 are given, we may find the unknown coefficients \\(a_{m,n}\\) and \\(b_{m,n}\\) of the vector spherical harmonic expansion by applying the orthogonality relations we have just derived.
 
-In order to determine the value of \\(a_{m,n}\\), project Equation 17.94 on \\(\bm{M_{s,t}^{(1)}}\\) and integrate the resulting expression over the unit sphere. Application of Equations 17.81 and 17.85 yields the result[^17]
+In order to determine the value of \\(a_{m,n}\\), project Equation 17.93 on \\(\bm{M_{s,t}^{(1)}}\\) and integrate the resulting expression over the unit sphere. Application of Equations 17.80 and 17.84 yields the result[^17]
 
 [^17]: For brevity, we omit the dependence on the frequency \\(\omega\\).
 
@@ -5183,7 +5163,7 @@ $$ \tag{17.95}
 	= -a_{m,n} n (n+1) \big| j_n(k r) \big|^2.
 $$
 
-For the next step, we must evaluate the integral on the left-hand side. Once we utilize the spherical coordinate representation of Equation 17.93, the problem is reduced to evaluation of three integrals:
+For the next step, we must evaluate the integral on the left-hand side. Once we utilize the spherical coordinate representation of Equation 17.92, the problem is reduced to evaluation of three integrals:
 
 $$ \tag{17.96}
 \begin{aligned}
