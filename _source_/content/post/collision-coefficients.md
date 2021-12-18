@@ -1054,6 +1054,8 @@ $$
 
 That is a general solution of the Maxwell equations for *linear, isotropic, homogeneous, source-free* media.
 
+-->
+
 ### Plane waves
 
 We can find a solution of the Maxwell equations in the time domain by performing the inverse Fourier transform of Equation 6.16:
@@ -1440,6 +1442,8 @@ $$ \tag{7.42}
 		\sqrt{ \frac{\varepsilon}{\mu} }
 	\bigg\rbrace |\bm{E_0}|^2 e^{-\alpha (\bm{r} \cdot \bm{n})} \bm{n}.
 $$
+
+<!--
 
 ### Electromagnetic Potential
 
@@ -5051,69 +5055,71 @@ $$
 
 where we once again utilized the identities of Equation 17.50.
 
-For our application, the partial orthogonality between \\(\bm{L_{m,n}}\\) and \\(\bm{N_{m,n}}\\) is not a real concern. According to Equations 17.36 and 17.37, the electric and the magnetic fields can be expressed solely in terms of \\(\bm{M_{m,n}}\\) and \\(\bm{N_{m,n}}\\), which are mutually orthogonal, as has been shown in Equations 17.82 and 17.92.
+For our application, the partial orthogonality between \\(\bm{L_{m,n}}\\) and \\(\bm{N_{m,n}}\\) is not a real concern. According to Equations 17.36 and 17.37, the electric and the magnetic fields can be expressed solely in terms of \\(\bm{M_{m,n}}\\) and \\(\bm{N_{m,n}}\\), which are mutually orthogonal, as has been shown by Equations 17.82 and 17.92.
 
----
+Now, let us return to the scattering problem. In general, we may arrive at the solution by determining the values of the set of coefficients \\(\lbrace a_{m,n}, b_{m,n} \rbrace\\) of the guided vector harmonic expansion
 
-We must consider three distinct types of electromagnetic fields: the incident field produced by an external source, the internal field (inside the sphere) that is established under the influence of the incident field, and the scattered field (outside the sphere).
+$$ \tag{17.95}
+	\bm{E}(\bm{r}, \omega)
+	= -\sum_{n=0}^{\infin} \sum_{m=-n}^{n} \big( a_{m,n}(\omega) \bm{M_{m,n}}(\bm{r}, \omega) + b_{m,n}(\omega) \bm{N_{m,n}}(\bm{r}, \omega) \big).
+$$
 
-We shall suppose that the incident field is represented by a plane wave. That is a suitable description for a large source located in the far zone; a more general source could be represented by a superposition of plane waves.
+In order to find these coefficients, we must consider three distinct types of electromagnetic fields: the incident field produced by an external source, the scattered field in the far zone of the particle, and the total internal field induced inside the sphere. The reason for this kind of decomposition will become apparent shortly.
 
-Making the usual assumption that the region outside the sphere is filled with a linear, isotropic, homogeneous, source-free medium, the expression of the incident vector plane wave is given by Equation 7.2:
+We shall start with the incident field. Evidently, its expression must be known a priori. That permits us to determine the values of the coefficients \\(a_{m,n}\\) and \\(b_{m,n}\\) by projecting Equation 17.95 onto \\(\bm{M_{s,t}}\\) and \\(\bm{N_{s,t}}\\) using Equations 17.88 and 17.89, respectively:
 
-$$ \tag{17.87}
+$$ \tag{17.96}
+\begin{aligned}
+	a_{m,n}^{(1)} &= \frac{ - \int_{0}^{2 \pi} \int_{0}^{\pi} \big[ \bm{M_{m,n}^{(1)}}(\bm{r}) \big]^{\*} \cdot \bm{E_i}(\bm{r}) \sin{\theta} \thinspace d\theta d\phi }
+	{ n (n+1) \big| j_n(k r) \big|^2 },
+	\cr
+	b_{m,n}^{(1)} &= \frac{ - \int_{0}^{2 \pi} \int_{0}^{\pi} \big[ \bm{N_{m,n}^{(1)}}(\bm{r}) \big]^{\*} \cdot \bm{E_i}(\bm{r}) \sin{\theta} \thinspace d\theta d\phi }
+	{ \frac{n (n+1)}{(2 n + 1)^2} \Big(
+		\big| (n + 1) j_{n-1}(k r) - n j_{n+1}(k r) \big|^2
+		+ n (n+1) \big| j_{n-1}(k r) + j_{n+1}(k r) \big|^2
+		\Big) }.
+\end{aligned}
+$$
+
+Above, the superscript \\((1)\\) indicates that we have made the choice of a spherical Bessel function of the first kind
+
+$$ \tag{17.97}
+	z_n^{(1)}(k r) = j_n(k r)
+$$
+
+motivated by its non-singular behavior at the origin (c.f. Figure N). This property makes it suitable for expressing a smooth, finite-valued incident field.
+
+Let us further assume that the incident field can be represented by a plane wave. This is a valid description of an extended source located in the far zone of a small particle; a more general source could be modeled by superposition of plane waves.
+
+If the region of space is filled with a linear, isotropic, homogeneous, source-free medium, the expression of the incident vector plane wave is given by Equation 7.2:
+
+$$ \tag{17.98}
 	\bm{E_i}(\bm{r}, \omega) e^{- i \omega t}
 	= \bm{E_0}(\bm{n_i}, \omega) e^{i k(\omega) (\bm{r} \cdot \bm{n_i}) - i \omega t}.
 $$
 
-If \\(\bm{n_i}\\) is aligned with the \\(z\\)-axis (as shown in Figure N), the explicit coordinate representation of \\(\bm{r}\\) is
+In spherical coordinates, the explicit representation of \\(\bm{r}\\) is
 
-$$ \tag{17.88}
-	\bm{r} = \lbrace \bm{r} \rbrace,
+$$ \tag{17.99}
+	\bm{r} = \lbrace r, \theta, \phi \rbrace.
 $$
 
-such that
+We may take advantage of the symmetry of the problem by aligning \\(\bm{n_i}\\) with the \\(z\\)-axis (c.f. Figure N). Then,
 
-$$ \tag{17.89}
-	\bm{r} \cdot \bm{n_i} = z = r \cos{\theta}.
+$$ \tag{17.100}
+	\bm{r} \cdot \bm{n_i} = r \cos{\theta}.
 $$
 
----
+Further simplification can be achieved by recalling that an electromagnetic plane wave is transverse with respect to its direction of propagation (as shown by Equations 7.18 and 7.23). Therefore, in Cartesian coordinates, the polarization phasor \\(\bm{E_0}\\) of a plane wave can be completely described in terms of the tangential components \\(E_x\\) and \\(E_y\\):
 
-Since the set of Cartesian basis vectors is both orthogonal and complete,
-
-$$ \tag{17.90}
-	\sum_{i=x,y,z} \bm{e_i} \bm{e_i^T} = \mathcal{I}
-$$
-
-$$ \tag{17.91}
-	  \bm{E_0}
-	= \mathcal{I} \bm{E_0}
-	= \sum_{i=x,y,z} \bm{e_i} (\bm{e_i} \cdot \bm{E_0})
-	= E_x \bm{e_x} + E_y \bm{e_y} + E_z \bm{e_z}.
-$$
-
-or
-
-$$ \tag{17.92}
-	\bm{E_i}(\bm{r}, \omega)
-	= \sum_{i=x,y,z} (\bm{e_i} e^{i k r \cos{\theta}}) (\bm{e_i} \cdot \bm{E_0})
-$$
-
-so ???
-
----
-
-Furthermore, recall that an electromagnetic plane wave is transverse with respect to its direction of propagation (as shown by Equations 7.18 and 7.23). Therefore, in Cartesian coordinates, the polarization phasor \\(\bm{E_0}\\) of a plane wave can be completely described in terms of the tangential (with respect to \\(\bm{n_i} = \bm{e_z}\\)) components \\(E_x\\) and \\(E_y\\):
-
-$$ \tag{17.90}
-	\bm{E_0}(\bm{n_i}, \omega)
+$$ \tag{17.101}
+	\bm{E_0}(\bm{e_z}, \omega)
 	= E_x(\omega) \bm{e_x} + E_y(\omega) \bm{e_y}.
 $$
 
-The definition of the polarization phasor does not contain explicit dependence on \\(\bm{r}\\). However, in spherical coordinates, the basis vectors are [not static](https://en.wikipedia.org/wiki/Vector_fields_in_cylindrical_and_spherical_coordinates#Spherical_coordinate_system), and implicitly depend on the point of reference \\(\bm{r}\\):
+The polarization phasor does not explicitly depend on the point of reference \\(\bm{r}\\). However, in spherical coordinates, the basis vectors [vary in space](https://en.wikipedia.org/wiki/Vector_fields_in_cylindrical_and_spherical_coordinates#Spherical_coordinate_system):
 
-$$ \tag{17.91}
+$$ \tag{17.102}
 \begin{aligned}
 	\bm{e_x} &= \sin{\theta} \cos{\phi} \thinspace \bm{e_{r}}
 			  + \cos{\theta} \cos{\phi} \thinspace \bm{e_{\theta}}
@@ -5129,97 +5135,55 @@ $$ \tag{17.91}
 \end{aligned}
 $$
 
-The combination of Equations 17.90 and 17.91 is
-
-$$ \tag{17.92}
-\begin{aligned}
-	\bm{E_i}(\bm{r}, \omega) = \Big(
-	  \thinspace &\bm{e_{r}}      \big( E_x(\omega) \cos{\phi} + E_y(\omega) \sin{\phi} \big) \sin{\theta}
-	\cr
-	+ \thinspace &\bm{e_{\theta}} \big( E_x(\omega) \cos{\phi} + E_y(\omega) \sin{\phi} \big) \cos{\theta}
-	\cr
-	+ \thinspace &\bm{e_{\phi}}   \big( E_y(\omega) \cos{\phi} - E_x(\omega) \sin{\phi} \big)
-	\Big) e^{i k(\omega) r \cos{\theta}}.
-\end{aligned}
-$$
-
-Now, recall that, according to Equation 17.36, an electric field has a vector spherical harmonic representation
-
-$$ \tag{17.93}
-	\bm{E_i}(\bm{r}, \omega)
-	= -\sum_{n=0}^{\infin} \sum_{m=-n}^{n} \big( a_{m,n}(\omega) \bm{M_{m,n}^{(1)}}(\bm{r}, \omega) + b_{m,n}(\omega) \bm{N_{m,n}^{(1)}}(\bm{r}, \omega) \big),
-$$
-
-where the superscript \\((1)\\) indicates that, for the incident field, we have made the choice of a spherical Bessel function of the first kind, since it is the only type that takes on finite values at the origin (c.f. Figure N).
-
-Equations 17.92 and 17.93 describe the same physical quantity. Assuming that all parameters used to define Equations 17.92 are given, we may find the unknown coefficients \\(a_{m,n}\\) and \\(b_{m,n}\\) of the vector spherical harmonic expansion by applying the orthogonality relations we have just derived.
-
-In order to determine the value of \\(a_{m,n}\\), project Equation 17.93 on \\(\bm{M_{s,t}^{(1)}}\\) and integrate the resulting expression over the unit sphere. Application of Equations 17.80 and 17.84 yields the result[^17]
-
-[^17]: For brevity, we omit the dependence on the frequency \\(\omega\\).
-
-$$ \tag{17.95}
-	\int_{0}^{2 \pi} \int_{0}^{\pi} \big[ \bm{M_{m,n}^{(1)}}(\bm{r}) \big]^{\*} \cdot \bm{E_i}(\bm{r}) \sin{\theta} \thinspace d\theta d\phi
-	= -a_{m,n} n (n+1) \big| j_n(k r) \big|^2.
-$$
-
-For the next step, we must evaluate the integral on the left-hand side. Once we utilize the spherical coordinate representation of Equation 17.92, the problem is reduced to evaluation of three integrals:
-
-$$ \tag{17.96}
-\begin{aligned}
-	&\int_{0}^{2 \pi} \int_{0}^{\pi} \big[ \bm{M_{m,n}^{(1)}}(\bm{r}) \big]^{\*} \cdot \bm{E_i}(\bm{r}) \sin{\theta} \thinspace d\theta d\phi
-	\cr
-	&= \int_{0}^{2 \pi} \int_{0}^{\pi} \big[ \bm{M_{m,n}^{(1)}}(\bm{r}) \big]^{\*}
-	   \cdot \Big( \bm{e_{r}} \big( E_x \cos{\phi} + E_y \sin{\phi} \big) \sin{\theta} e^{i k r \cos{\theta}} \Big) \sin{\theta} \thinspace d\theta d\phi
-    \cr
-	&+ \int_{0}^{2 \pi} \int_{0}^{\pi} \big[ \bm{M_{m,n}^{(1)}}(\bm{r}) \big]^{\*}
-	   \cdot \Big( \bm{e_{\theta}} \big( E_x \cos{\phi} + E_y \sin{\phi} \big) \cos{\theta} e^{i k r \cos{\theta}} \Big) \sin{\theta} \thinspace d\theta d\phi
-    \cr
-	&+ \int_{0}^{2 \pi} \int_{0}^{\pi} \big[ \bm{M_{m,n}^{(1)}}(\bm{r}) \big]^{\*}
-	   \cdot \Big( \bm{e_{\phi}} \big( E_y \cos{\phi} - E_x \sin{\phi} \big) e^{i k r \cos{\theta}} \Big) \sin{\theta} \thinspace d\theta d\phi.
-\end{aligned}
-$$
-
-According to Equation 17.72.2, the radial component of \\(\bm{M_{m,n}^{\*}}\\) is zero. For the polar component, we obtain
-
-$$ \tag{17.96}
-\begin{aligned}
-	&  \int_{0}^{2 \pi} \int_{0}^{\pi} \big[ \bm{M_{m,n}^{(1)}}(\bm{r}) \big]^{\*}
-	   \cdot \Big( \bm{e_{\theta}} \big( E_x \cos{\phi} + E_y \sin{\phi} \big) \cos{\theta} e^{i k r \cos{\theta}} \Big) \sin{\theta} \thinspace d\theta d\phi
-    \cr
-	&= -i \gamma_{m,n} \big[ j_n(k r) \big]^{\*}
-	\int_{0}^{\pi} \pi_{m,n}(\theta) e^{i k r \cos{\theta}} \cos{\theta} \sin{\theta} \thinspace d\theta
-	\int_{0}^{2 \pi} \big( E_x \cos{\phi} + E_y \sin{\phi} \big) e^{-i m \phi} \thinspace d\phi.
-\end{aligned}
-$$
-
-After applying Euler's identity from Equation 17.46, the integral over \\(\phi\\) can be easily evaluated:
-
-$$ \tag{17.96}
-\begin{aligned}
-	&  \int_{0}^{2 \pi} \big( E_x \cos{\phi} + E_y \sin{\phi} \big) e^{-i m \phi} \thinspace d\phi
-	\cr
-	&= \frac{E_x}{2}   \int_{0}^{2 \pi} \Big( 1 + e^{-2 i m \phi} \Big) \thinspace d\phi
-	 + \frac{E_y}{2 i} \int_{0}^{2 \pi} \Big( 1 - e^{-2 i m \phi} \Big) \thinspace d\phi
-\end{aligned}
-$$
-
-
-$$ \tag{17.46}
-	\cos(m \phi) = \frac{1}{2} \Big( e^{i m \phi} + e^{i (-m \phi)} \Big),
-	\quad
-	\sin(m \phi) = \frac{1}{2 i} \Big( e^{i m \phi} - e^{i (-m \phi)} \Big),
-$$
-
-$$ \tag{17.68}
-	\pi_{m,n}(\theta) = m \frac{P_n^m(\cos{\theta})}{\sin{\theta}},
-	\quad
-	\tau_{m,n}(\theta) = \frac{\partial P_n^m(\cos{\theta})}{\partial \theta}
-$$
+Equation 17.102 offers a more useful representation of the basis vectors, since we can readily from products with the guided vector harmonics of Equation 17.71 (or the vector spherical harmonics of Equation 17.72). Now, since a vector plane wave is a product of the polarization phasor and a scalar plane wave, we should be able to find a guided harmonic vector expansion of Equation 17.98 if we find a matching alternative formulation of the complex exponential term.
 
 ---
 
-Use integral representations! Tsang & Kong I p. 28, or Stratton...
+First, consider the expression of a scalar plane wave
+
+$$ \tag{17.104}
+	f(\bm{r})
+	= f_0 e^{i k (\bm{r} \cdot \bm{n_i}) - i \omega t}
+	= f_0 e^{i k r \cos{\theta} - i \omega t}.
+$$
+
+We know that, for all values of the time parameter \\(t\\) (we shall set \\(t = 0\\)), it is a solution of the scalar Helmholtz equation, such as Equation 17.8 (see Equations 6.11-6.14 for a derivation).
+
+But we have also found another solution in terms of the generating functions given by Equations 17.44:
+
+$$ \tag{17.105}
+\begin{aligned}
+	& f(\bm{r})
+	= - \sum_{n=0}^{\infin} \sum_{m=-n}^{n} c_{m,n} \gamma_{m,n} j_n(k r) P_n^m(\cos{\theta}) e^{i m \phi}.
+\end{aligned}
+$$
+
+Now, Equation 17.105 depends on the azimuthal angle \\(\phi\\), while Equation 17.104 does not. This implies that we must set \\(m = 0\\), and therefore
+
+$$ \tag{17.106}
+	e^{i k r \cos{\theta}}
+	= -\frac{1}{f_0} \sum_{n=0}^{\infin} c_{n} \gamma_{n} z_n(k r) P_n(\cos{\theta}).
+$$
+
+The quickest way to determine the coefficient of the expansion \\(c_{m,n}\\) is to multiply both sides of the expression by \\(P_n(\cos{\theta}) \sin{\theta}\\), integrate the result from \\(0\\) to \\(\pi\\), and use the orthogonality relation of Equation 17.56.1:
+
+$$ \tag{17.106}
+	\int_{0}^{\pi} e^{i k r \cos{\theta}} P_n(\cos{\theta}) \sin{\theta} \thinspace d\theta
+	= -\frac{1}{f_0} c_{n} \sqrt{\frac{(2 n + 1)}{4 \pi}} z_n(k r) \frac{2}{(2n + 1)}.
+$$
+
+$$ \tag{17.106}
+	\int_{0}^{\pi} e^{i k r \cos{\theta}} P_l(\cos{\theta}) \sin{\theta} \thinspace d\theta
+	= -\frac{1}{f_0} \sum_{n=0}^{\infin} c_{m,n} \gamma_{m,n} z_n(k r) \int_{0}^{\pi} P_l(\cos{\theta}) P_n(\cos{\theta}) \sin{\theta} \thinspace d\theta.
+$$
+
+$$ \tag{17.56}
+\begin{aligned}
+	& \int_{0}^{\pi} P_l^m(\cos{\theta}) P_n^m(\cos{\theta}) \sin{\theta} \thinspace d\theta = \frac{2}{(2n + 1)} \frac{(n+m)!}{(n-m)!} \delta_{l,n},
+	\cr
+	& \int_{0}^{\pi} P_n^m(\cos{\theta}) P_n^l(\cos{\theta}) \frac{d\theta}{\sin{\theta}} = \frac{1}{|m|} \frac{(n+m)!}{(n-m)!} \delta_{m,l}.
+\end{aligned}
+$$
 
 ---
 
