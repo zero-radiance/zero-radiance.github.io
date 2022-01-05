@@ -4156,7 +4156,7 @@ $$ \tag{17.19}
 	\nabla \cdot \bm{N_{m,n}} = 0.
 $$
 
-\\(\bm{a}\\) is called the *guiding* vector; thus, the three sets of vectors \\(\bm{L\_{m,n}}, \bm{M\_{m,n}}, \bm{N\_{m,n}}\\) are sometimes referred to as the *guided vector harmonics*. They are defined in terms of the *generating function* \\(\psi\_{m,n}\\).
+The set of vectors \\(\lbrace \bm{L\_{m,n}}, \bm{M\_{m,n}}, \bm{N\_{m,n}} \rbrace\\) is called the *vector spherical wave functions*. They are defined in terms of the *scalar spherical wave functions* \\(\psi\_{m,n}\\) and the *guiding vector* \\(\bm{a}\\).
 
 It is convenient to assume that the guiding vector belongs to an [irrotational](https://en.wikipedia.org/wiki/Conservative_vector_field#Irrotational_vector_fields) vector field, such that
 
@@ -4291,7 +4291,7 @@ $$
 
 Going forward, we shall focus on the set of vectors \\(\lbrace \bm{L\_{m,n}}, \bm{M\_{m,n}}, \bm{N\_{m,n}} \rbrace\\) produced with the choice of \\(\bm{a} = \bm{r}\\). We have just demonstrated some of their basic properties, and we now can begin to apply them to simple problems.
 
-Suppose that we have obtained the coefficients of the expansion of the electromagnetic potential in terms of the guided vector harmonics (given by Equation 17.13). How can we find the associated electric and magnetic fields?
+Suppose that we have obtained the coefficients of the vector spherical wave series expansion of the electromagnetic potential (given by Equation 17.13). How can we find the associated electric and magnetic fields?
 
 According to Equations 17.2.1, 17.11, 17.13, and 17.17,
 
@@ -4583,7 +4583,7 @@ $$ \tag{17.60}
 	= (-1)^m \big[ Y_n^m \big]^{\*}.
 $$
 
-Thus, the solution of Equation 17.38 (given by Equation 17.44) can be more compactly written as
+Thus, the spherical wave solution of Equation 17.38 (given by Equation 17.44) can be more compactly written as
 
 $$ \tag{17.61}
 \begin{aligned}
@@ -4595,7 +4595,7 @@ $$ \tag{17.61}
 \end{aligned}
 $$
 
-We may now substitute Equation 17.61 in place of Equation 17.11, and carry out the subsequent derivation to find the explicit form of the solution of the Helmholtz equation of the *vector* potential (in terms of guided vector harmonics) that complements the solution of the Helmholtz equation of the *scalar* potential (in terms of scalar generating functions).
+We may now substitute Equation 17.61 in place of Equation 17.11, and carry out the subsequent derivation to find the explicit form of the solution of the Helmholtz equation of the *vector* potential (in terms of the vector spherical wave functions) that complements the solution of the Helmholtz equation of the *scalar* potential (in terms of the scalar spherical wave functions).
 
 The expression of the first vector \\(\bm{L_{m,n}}\\) is given by Equation 17.17.1:
 
@@ -4722,7 +4722,7 @@ $$
 
 that follow from Equations 17.41.2, 17.56.1, and the fact that the value of the associated Legendre polynomials is zero for \\(\cos{\theta} = \pm 1\\) unless \\(m = 0\\).
 
-After substitution into Equations 17.62, 17.63, and 17.67, we immediately obtain the specific expressions of the guided vector harmonics:
+After substitution into Equations 17.62, 17.63, and 17.67, we immediately obtain the reduced expressions of the vector spherical wave functions:
 
 $$ \tag{17.71}
 \begin{aligned}
@@ -4743,7 +4743,7 @@ $$ \tag{17.71}
 \end{aligned}
 $$
 
-You may notice that the expressions given above exhibit a certain pattern. That is not a coincidence. Indeed, guided vector harmonics are directly related to the three sets of vectors
+You may notice that the expressions given above exhibit a certain pattern. That is not a coincidence. Indeed, the vector spherical wave functions are directly related to the set of vectors
 
 $$ \tag{17.72}
 \begin{aligned}
@@ -4752,17 +4752,17 @@ $$ \tag{17.72}
 	\cr
 	(C) &\bm{\Phi_{m,n}}(\theta, \phi)
 	= \nabla \times \big( Y^m_n \bm{r} \big)
-	= \bm{\Psi_{m,n}} \times \bm{e_r}
-	= \gamma_{m,n} e^{i m \phi} \big( i \pi_{m,n}(\theta) \bm{e_{\theta}} - \tau_{m,n}(\theta) \bm{e_{\phi}} \big),
+	= \gamma_{m,n} e^{i m \phi} \big( i \pi_{m,n}(\theta) \bm{e_{\theta}} - \tau_{m,n}(\theta) \bm{e_{\phi}} \big)
+	= \bm{\Psi_{m,n}} \times \bm{e_r},
 	\cr
 	(B) &\bm{\Psi_{m,n}}(\theta, \phi)
 	= r \nabla Y^m_n
-	= \bm{e_r} \times \bm{\Phi_{m,n}}
-	= \gamma_{m,n} e^{i m \phi} \big( \tau_{m,n}(\theta) \bm{e_{\theta}} + i \pi_{m,n}(\theta) \bm{e_{\phi}} \big),
+	= \gamma_{m,n} e^{i m \phi} \big( \tau_{m,n}(\theta) \bm{e_{\theta}} + i \pi_{m,n}(\theta) \bm{e_{\phi}} \big)
+	= \bm{e_r} \times \bm{\Phi_{m,n}},
 \end{aligned}
 $$
 
-called [vector spherical harmonics](https://en.wikipedia.org/wiki/Vector_spherical_harmonics#Alternative_definition) [Morse and Feshbach]. They are an extension of the scalar spherical harmonics (Equation 17.58) to vectors fields on the surface of a sphere. Unlike the guided vector harmonics, they do not depend on the radial distance \\(r\\).
+called [vector spherical harmonics](https://en.wikipedia.org/wiki/Vector_spherical_harmonics#Alternative_definition). They are an extension of the scalar spherical harmonics (Equation 17.58) to vectors fields on the surface of a sphere. Like the scalar spherical harmonics, they form a complete set of orthogonal basis functions [Morse and Feshbach]. Unlike the vector spherical wave functions, they do not depend on the radial distance \\(r\\).
 
 Most properties of the vector spherical harmonics are a direct consequence of the fact that they are built on the scalar spherical harmonics combined with the radial basis vector \\(\bm{e_r}\\). For instance, the symmetry property of Equation 17.60 leads to
 
@@ -4856,7 +4856,7 @@ $$ \tag{17.79}
 \end{aligned}
 $$
 
-Let us now return to the expression of the guided vector harmonics given in Equation 17.71. They can be expressed as a weighted combination of the vector spherical harmonics, effectively extending them to the entire 3-dimensional space:
+Let us now return to the expression of the vector spherical wave functions given in Equation 17.71. They can be expressed as a weighted combination of the vector spherical harmonics, effectively extending them to the entire 3-dimensional space:
 
 $$ \tag{17.80}
 \begin{aligned}
@@ -4873,7 +4873,7 @@ $$ \tag{17.80}
 \end{aligned}
 $$
 
-Most properties of the vector spherical harmonics are, to some degree, shared by the guided vector harmonics. For real values of \\(k\\), and if the spherical Bessel function is real (which excludes Hankel functions), they exhibit the symmetry property that follows from Equation 17.73:
+Most properties of the vector spherical harmonics are, to some degree, shared by the vector spherical wave functions. For real values of \\(k\\), and if the spherical Bessel function is real (which excludes Hankel functions), they exhibit the symmetry property that follows from Equation 17.73:
 
 $$ \tag{17.81}
 	\bm{L_{-m,n}}
@@ -4913,7 +4913,7 @@ For \\(m = n = 0\\), the polynomals turn into constants, and it is easy to show 
 
 As can be seen from the (fairly representative) plot shown above, the largest deviation from the perpendicular orientation occurs for \\(n = 1\\), with the vectors becoming fully orthogonal as \\(r \to \infin\\), which is evident if one substitutes the asymptotic form of a spherical Bessel function given by Equation 17.52 and takes the inverse distance factors into account.
 
-In addition to partial orthogonality in the real 3-dimensional space, we can show that the guided vector harmonics are also partially orthogonal in the Hilbert space. In order to do that, we shall utilize the definition given by Equation 17.80 and the orthogonality relations of Equation 17.74:
+In addition to partial orthogonality in the real 3-dimensional space, we can show that the vector spherical wave functions are also partially orthogonal in the Hilbert space. In order to do that, we shall utilize the definition given by Equation 17.80 and the orthogonality relations of Equation 17.74:
 
 Noting that, according to Equation 17.74, Let us evaluate the integral taken over the surface of a sphere.
 
@@ -5057,7 +5057,7 @@ where we once again utilized the identities of Equation 17.50.
 
 For our application, the partial orthogonality between \\(\bm{L_{m,n}}\\) and \\(\bm{N_{m,n}}\\) is not a real concern. According to Equations 17.36 and 17.37, the electric and the magnetic fields can be expressed solely in terms of \\(\bm{M_{m,n}}\\) and \\(\bm{N_{m,n}}\\), which are mutually orthogonal, as has been shown by Equations 17.82 and 17.92.
 
-Now, let us return to the scattering problem. In general, we may arrive at the solution by determining the values of the set of coefficients \\(\lbrace a_{m,n}, b_{m,n} \rbrace\\) of the guided vector harmonic expansion
+Now, let us return to the scattering problem. In general, we may arrive at the solution by determining the values of the set of coefficients \\(\lbrace a_{m,n}, b_{m,n} \rbrace\\) of the vector spherical wave series expansion
 
 $$ \tag{17.95}
 	\bm{E}(\bm{r}, \omega)
@@ -5135,7 +5135,7 @@ $$ \tag{17.102}
 \end{aligned}
 $$
 
-Despite the apparent complexity, Equation 17.102 offers a more useful representation of the basis vectors, since we can readily from products with the guided vector harmonics of Equation 17.71 (or the vector spherical harmonics of Equation 17.72). Now, since a vector plane wave is a product of the polarization phasor and a scalar plane wave, we should be able to perform a guided harmonic vector expansion of Equation 17.98 if we find a suitable alternative formulation of its complex exponential term.
+Despite the apparent complexity, Equation 17.102 offers a more useful representation of the basis vectors, since we can readily from products with the vector spherical wave functions of Equation 17.71 (or the vector spherical harmonics of Equation 17.72). Now, since a vector plane wave is a product of the polarization phasor and a scalar plane wave, we should be able to perform a vector spherical wave series expansion of Equation 17.98 if we find a suitable alternative formulation of its complex exponential term.
 
 We have initially encountered scalar plane waves when we set out to solve the scalar Helmholtz equation in the Cartesian coordinate system (c.f. Equations 6.11-6.14). More recently, we have also found a solution in spherical coordinates (given by Equation 17.44). Obviously, both solutions refer to the same function, the only difference being the coordinate representation. Thus, if we adhere to the convention established by Equation 17.100,
 
@@ -5175,10 +5175,43 @@ $$ \tag{17.107}
 	\int_{0}^{\pi} P_n(\cos{\theta}) e^{i x \cos{\theta}} \sin{\theta} \thinspace d\theta.
 $$
 
-Since both sides of Equation 17.105 contain the spherical Bessel function of the first kind \\(j_n(k r)\\), it may be eliminated, and we readily obtain the value of the expansion coefficient
+Since both sides of Equation 17.105 contain the spherical Bessel function of the first kind \\(j_n(k r)\\), it may be eliminated, and we readily obtain the value of the series expansion coefficient
 
 $$ \tag{17.108}
 	d_{n} = i^n (2n + 1).
+$$
+
+Substitution into Equation 17.104 yields the [plane wave expansion](https://en.wikipedia.org/wiki/Plane-wave_expansion)
+
+$$ \tag{17.109}
+	e^{i k r \cos{\theta}}
+	= \sum_{n=0}^{\infin} i^n (2n + 1) j_n(k r) P_n(\cos{\theta})
+	= - \sum_{n=0}^{\infin} i^n \sqrt{4 \pi (2 n + 1)} \psi_{0,n}^{(1)}(\bm{r})
+$$
+
+in terms of the scalar spherical wave functions of the first kind \\(\psi_{m,n}^{(1)}\\).
+
+One may construct an arbitrary vector plane wave by taking a weighted combination of the basis vectors and multiplying it by the scalar plane wave component. We have just found the expression of the latter written as a series of scalar spherical wave functions; similarly, we can decompose the former into a sum of the vector spherical waves.
+
+---
+
+Let us combine the results we have obtained so far. We started with Equation 17.98, and  subsequently expanded it using Equations 17.100-17.102 and 17.109:
+
+$$ \tag{17.102}
+\begin{aligned}
+	\bm{E_i}(\bm{r}, \omega)
+	&= E_x \big(
+		  \sin{\theta} \cos{\phi} \thinspace \bm{e_{r}}
+	  	+ \cos{\theta} \cos{\phi} \thinspace \bm{e_{\theta}}
+	  	- \sin{\phi} \thinspace \bm{e_{\phi}}
+	  \big) \sum_{n=0}^{\infin} i^n (2n + 1) j_n(k r) P_n(\cos{\theta})
+	\cr
+	&+ E_y \big(
+			  \sin{\theta} \sin{\phi} \thinspace \bm{e_{r}}
+			+ \cos{\theta} \sin{\phi} \thinspace \bm{e_{\theta}}
+			+ \cos{\phi} \thinspace \bm{e_{\phi}}
+	\big) \sum_{n=0}^{\infin} i^n (2n + 1) j_n(k r) P_n(\cos{\theta})
+\end{aligned}
 $$
 
 ---
