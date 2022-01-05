@@ -4452,7 +4452,7 @@ $$
 
 \\(H_n^{(1)}\\) and \\(H_n^{(2)}\\) are also collectively known as Bessel functions of the third kind.
 
-All spherical Bessel functions satisfy the recurrence relations
+All spherical Bessel functions satisfy the recurrence relations \[[Stratton](#references) (ch 7.4)\]
 
 $$ \tag{17.50}
 	\frac{z_n(x)}{x} = \frac{z_{n-1}(x) + z_{n+1}(x)}{2 n + 1},
@@ -5135,54 +5135,50 @@ $$ \tag{17.102}
 \end{aligned}
 $$
 
-Equation 17.102 offers a more useful representation of the basis vectors, since we can readily from products with the guided vector harmonics of Equation 17.71 (or the vector spherical harmonics of Equation 17.72). Now, since a vector plane wave is a product of the polarization phasor and a scalar plane wave, we should be able to find a guided harmonic vector expansion of Equation 17.98 if we find a matching alternative formulation of the complex exponential term.
+Despite the apparent complexity, Equation 17.102 offers a more useful representation of the basis vectors, since we can readily from products with the guided vector harmonics of Equation 17.71 (or the vector spherical harmonics of Equation 17.72). Now, since a vector plane wave is a product of the polarization phasor and a scalar plane wave, we should be able to perform a guided harmonic vector expansion of Equation 17.98 if we find a suitable alternative formulation of its complex exponential term.
 
----
+We have initially encountered scalar plane waves when we set out to solve the scalar Helmholtz equation in the Cartesian coordinate system (c.f. Equations 6.11-6.14). More recently, we have also found a solution in spherical coordinates (given by Equation 17.44). Obviously, both solutions refer to the same function, the only difference being the coordinate representation. Thus, if we adhere to the convention established by Equation 17.100,
 
-First, consider the expression of a scalar plane wave
+$$ \tag{17.103}
+\begin{aligned}
+	& e^{i k r \cos{\theta}}
+	= \sum_{n=0}^{\infin} \sum_{m=-n}^{n} d_{m,n} j_n(k r) P_n^m(\cos{\theta}) e^{i m \phi}.
+\end{aligned}
+$$
+
+The left-hand side of this equation does not depend on the azimuthal angle \\(\phi\\). Comparison with the right-hand side suggests that we may set \\(m = 0\\):
 
 $$ \tag{17.104}
-	f(\bm{r})
-	= f_0 e^{i k (\bm{r} \cdot \bm{n_i}) - i \omega t}
-	= f_0 e^{i k r \cos{\theta} - i \omega t}.
+	e^{i k r \cos{\theta}}
+	= \sum_{n=0}^{\infin} d_{n} j_n(k r) P_n(\cos{\theta}).
 $$
 
-We know that, for all values of the time parameter \\(t\\) (we shall set \\(t = 0\\)), it is a solution of the scalar Helmholtz equation, such as Equation 17.8 (see Equations 6.11-6.14 for a derivation).
-
-But we have also found another solution in terms of the generating functions given by Equations 17.44:
+The quickest way to determine the value of the coefficients \\(d_{n}\\) is to multiply both sides of Equation 17.104 by \\(P_l(\cos{\theta}) \sin{\theta}\\), integrate the result from \\(0\\) to \\(\pi\\), and use the orthogonality relation given by Equation 17.56.1:
 
 $$ \tag{17.105}
-\begin{aligned}
-	& f(\bm{r})
-	= - \sum_{n=0}^{\infin} \sum_{m=-n}^{n} c_{m,n} \gamma_{m,n} j_n(k r) P_n^m(\cos{\theta}) e^{i m \phi}.
-\end{aligned}
+	\int_{0}^{\pi} P_n(\cos{\theta}) e^{i k r \cos{\theta}} \sin{\theta} \thinspace d\theta
+	= d_{n} \frac{2}{(2n + 1)} j_n(k r).
 $$
 
-Now, Equation 17.105 depends on the azimuthal angle \\(\phi\\), while Equation 17.104 does not. This implies that we must set \\(m = 0\\), and therefore
+The presence of the \\(k r\\) factor poses a difficulty for evaluation of the integral. It may be overcome by taking \\(n\\) partial derivatives with respect to \\(k r\\) and subsequently setting \\(k r = 0\\) \[[Stratton](#references) (ch 7.6)\]. That way, one obtains Gegenbauer's generalization of Poisson's integral \[[Watson](#references) (ch 3.32)\]
 
 $$ \tag{17.106}
-	e^{i k r \cos{\theta}}
-	= -\frac{1}{f_0} \sum_{n=0}^{\infin} c_{n} \gamma_{n} z_n(k r) P_n(\cos{\theta}).
+	J_{n+1/2}(x)
+	= (-i)^n \sqrt{\frac{x}{2 \pi}}
+	\int_{0}^{\pi} P_n(\cos{\theta}) e^{i x \cos{\theta}} \sin{\theta} \thinspace d\theta,
 $$
 
-The quickest way to determine the coefficient of the expansion \\(c_{m,n}\\) is to multiply both sides of the expression by \\(P_n(\cos{\theta}) \sin{\theta}\\), integrate the result from \\(0\\) to \\(\pi\\), and use the orthogonality relation of Equation 17.56.1:
+which, after taking Equation 17.48.1 into account, leads to
 
-$$ \tag{17.106}
-	\int_{0}^{\pi} e^{i k r \cos{\theta}} P_n(\cos{\theta}) \sin{\theta} \thinspace d\theta
-	= -\frac{1}{f_0} c_{n} \sqrt{\frac{(2 n + 1)}{4 \pi}} z_n(k r) \frac{2}{(2n + 1)}.
+$$ \tag{17.107}
+	j_n(x) = \frac{(-i)^n}{2}
+	\int_{0}^{\pi} P_n(\cos{\theta}) e^{i x \cos{\theta}} \sin{\theta} \thinspace d\theta.
 $$
 
-$$ \tag{17.106}
-	\int_{0}^{\pi} e^{i k r \cos{\theta}} P_l(\cos{\theta}) \sin{\theta} \thinspace d\theta
-	= -\frac{1}{f_0} \sum_{n=0}^{\infin} c_{m,n} \gamma_{m,n} z_n(k r) \int_{0}^{\pi} P_l(\cos{\theta}) P_n(\cos{\theta}) \sin{\theta} \thinspace d\theta.
-$$
+Since both sides of Equation 17.105 contain the spherical Bessel function of the first kind \\(j_n(k r)\\), it may be eliminated, and we readily obtain the value of the expansion coefficient
 
-$$ \tag{17.56}
-\begin{aligned}
-	& \int_{0}^{\pi} P_l^m(\cos{\theta}) P_n^m(\cos{\theta}) \sin{\theta} \thinspace d\theta = \frac{2}{(2n + 1)} \frac{(n+m)!}{(n-m)!} \delta_{l,n},
-	\cr
-	& \int_{0}^{\pi} P_n^m(\cos{\theta}) P_n^l(\cos{\theta}) \frac{d\theta}{\sin{\theta}} = \frac{1}{|m|} \frac{(n+m)!}{(n-m)!} \delta_{m,l}.
-\end{aligned}
+$$ \tag{17.108}
+	d_{n} = i^n (2n + 1).
 $$
 
 ---
