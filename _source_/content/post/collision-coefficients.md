@@ -4390,7 +4390,7 @@ $$ \tag{17.43}
 	f_{\phi}(\phi) = e^{i m \phi}.
 $$
 
-Since the solutions of the Helmholtz equation that are continuous (within a certain domain), finite, and single-valued form a *discrete set*, the general solution of Equation 17.38 is
+Since the solutions of the Helmholtz equation that are continuous (within a certain domain), finite, and single-valued, form a *discrete set*, the general solution of Equation 17.38 is
 
 $$ \tag{17.44}
 \begin{aligned}
@@ -4502,7 +4502,7 @@ If we set \\(m=0\\), the dependence on the azimuthal angle \\(\phi\\) disappears
 
 $$ \tag{17.54}
 	P_n(x)
-	= \frac{1}{2^n n!} \frac{d^n}{d x^n} (x^2 - 1)^n
+	= \frac{1}{2^n n!} \frac{\partial^n}{\partial x^n} (x^2 - 1)^n
 $$
 
 plotted below:
@@ -4515,7 +4515,7 @@ The situation changes when \\(m \neq 0\\):
 
 $$ \tag{17.55}
 	P_n^m(x)
-	= (-1)^m (1 - x^2)^{m/2} \frac{d^m}{d x^m} P_n(x).
+	= (-1)^m (1 - x^2)^{m/2} \frac{\partial^m}{\partial x^m} P_n(x).
 	\qquad
 	(m \geq 0)
 $$
@@ -4657,7 +4657,7 @@ $$ \tag{17.65}
 	   + k^2 r^2 \psi_{m,n} \bigg).
 $$
 
-Since \\(\psi_{m,n}\\) is separable, it satisfies Equation 17.41.1. Coupled with the definition of \\(p^2\\) given by Equation 17.42.1, we obtain a simplified expression
+Since \\(\psi_{m,n}\\) is separable, it satisfies Bessel's differential Equation 17.41.1. Coupled with the definition of \\(p^2\\) given by Equation 17.42.1, we obtain a simplified expression
 
 $$ \tag{17.66}
 	\frac{1}{\gamma_{m,n}} (\bm{N_{m,n}})\_r
@@ -5156,34 +5156,26 @@ $$
 The quickest way to determine the value of the coefficients \\(d_{n}\\) is to multiply both sides of Equation 17.104 by \\(P_l(\cos{\theta}) \sin{\theta}\\), integrate the result from \\(0\\) to \\(\pi\\), and use the orthogonality relation given by Equation 17.56.1:
 
 $$ \tag{17.105}
-	\int_{0}^{\pi} P_n(\cos{\theta}) e^{i k r \cos{\theta}} \sin{\theta} \thinspace d\theta
+	\int_{0}^{\pi} e^{i k r \cos{\theta}} P_n(\cos{\theta}) \sin{\theta} \thinspace d\theta
 	= d_{n} \frac{2}{(2n + 1)} j_n(k r).
 $$
 
-The presence of the \\(k r\\) factor poses a difficulty for evaluation of the integral. It may be overcome by taking \\(n\\) partial derivatives with respect to \\(k r\\) and subsequently setting \\(k r = 0\\) \[[Stratton](#references) (ch 7.6)\]. That way, one obtains Gegenbauer's generalization of Poisson's integral \[[Watson](#references) (ch 3.32)\]
+After taking [Gegenbauer's integral representation](https://dlmf.nist.gov/10.54) of the spherical Bessel function of the first kind \[[Watson](#references) (ch 3.32)\]
 
 $$ \tag{17.106}
-	J_{n+1/2}(x)
-	= (-i)^n \sqrt{\frac{x}{2 \pi}}
-	\int_{0}^{\pi} P_n(\cos{\theta}) e^{i x \cos{\theta}} \sin{\theta} \thinspace d\theta,
+	j_n(x) = \frac{(-i)^n}{2}
+	\int_{0}^{\pi} e^{i x \cos{\theta}} P_n(\cos{\theta}) \sin{\theta} \thinspace d\theta
 $$
 
-which, after taking Equation 17.48.1 into account, leads to
+into account, we readily obtain the value of the series expansion coefficient
 
 $$ \tag{17.107}
-	j_n(x) = \frac{(-i)^n}{2}
-	\int_{0}^{\pi} P_n(\cos{\theta}) e^{i x \cos{\theta}} \sin{\theta} \thinspace d\theta.
-$$
-
-Since both sides of Equation 17.105 contain the spherical Bessel function of the first kind \\(j_n(k r)\\), it may be eliminated, and we readily obtain the value of the series expansion coefficient
-
-$$ \tag{17.108}
 	d_{n} = i^n (2n + 1).
 $$
 
 Substitution into Equation 17.104 yields the [plane wave expansion](https://en.wikipedia.org/wiki/Plane-wave_expansion)
 
-$$ \tag{17.109}
+$$ \tag{17.108}
 	e^{i k r \cos{\theta}}
 	= \sum_{n=0}^{\infin} i^n (2n + 1) j_n(k r) P_n(\cos{\theta})
 	= - \sum_{n=0}^{\infin} i^n \sqrt{4 \pi (2 n + 1)} \psi_{0,n}^{(1)}(\bm{r})
@@ -5191,28 +5183,165 @@ $$
 
 in terms of the scalar spherical wave functions of the first kind \\(\psi_{m,n}^{(1)}\\).
 
-One may construct an arbitrary vector plane wave by taking a weighted combination of the basis vectors and multiplying it by the scalar plane wave component. We have just found the expression of the latter written as a series of scalar spherical wave functions; similarly, we can decompose the former into a sum of the vector spherical waves.
+Let us combine the results we have obtained so far. We started with Equation 17.98, and  subsequently expanded it using Equations 17.100-17.102 and 17.108:
 
----
-
-Let us combine the results we have obtained so far. We started with Equation 17.98, and  subsequently expanded it using Equations 17.100-17.102 and 17.109:
-
-$$ \tag{17.102}
+$$ \tag{17.109}
 \begin{aligned}
-	\bm{E_i}(\bm{r}, \omega)
+	\bm{E_i}(\bm{r})
 	&= E_x \big(
 		  \sin{\theta} \cos{\phi} \thinspace \bm{e_{r}}
 	  	+ \cos{\theta} \cos{\phi} \thinspace \bm{e_{\theta}}
 	  	- \sin{\phi} \thinspace \bm{e_{\phi}}
-	  \big) \sum_{n=0}^{\infin} i^n (2n + 1) j_n(k r) P_n(\cos{\theta})
+	  \big) \sum_{l=0}^{\infin} i^l (2 l + 1) j_l(k r) P_l(\cos{\theta})
 	\cr
 	&+ E_y \big(
 			  \sin{\theta} \sin{\phi} \thinspace \bm{e_{r}}
 			+ \cos{\theta} \sin{\phi} \thinspace \bm{e_{\theta}}
 			+ \cos{\phi} \thinspace \bm{e_{\phi}}
-	\big) \sum_{n=0}^{\infin} i^n (2n + 1) j_n(k r) P_n(\cos{\theta})
+	\big) \sum_{l=0}^{\infin} i^l (2 l + 1) j_l(k r) P_l(\cos{\theta})
 \end{aligned}
 $$
+
+Equation 17.109 is composed of the same expressions used to define the vector spherical wave functions (Equations 17.62, 17.63, and 17.67). This makes the integrals found in Equations 17.96.1 and 17.96.2 approachable.
+
+We shall first evaluate
+
+$$ \tag{17.110}
+	\int_{0}^{2 \pi} \int_{0}^{\pi} \big[ \bm{M_{m,n}^{(1)}}(\bm{r}) \big]^{\*} \cdot \bm{E_i}(\bm{r}) \sin{\theta} \thinspace d\theta d\phi.
+$$
+
+Since Equation 17.110 only contains first-order harmonic functions of \\(\phi\\), orthogonality of the Fourier basis makes the integral of Equation 17.111 vanish unless \\(m = \pm 1\\). Furthermore, the definition of \\(\bm{M_{m,n}}\\) (given by Equation 17.63) omits the radial basis vector, so the latter does not require further consideration.
+
+---
+
+$$ \tag{17.63}
+\begin{aligned}
+	\frac{1}{\gamma_{m,n}} \bm{M_{m,n}}(\bm{r})
+	&= i m z_n(k r) \frac{P_n^m(\cos{\theta})}{\sin{\theta}} e^{i m \phi} \bm{e_{\theta}}
+	 - z_n(k r) \frac{\partial P_n^m(\cos{\theta})}{\partial \theta} e^{i m \phi} \bm{e_{\phi}}.
+\end{aligned}
+$$
+
+$$ \tag{17.63}
+\begin{aligned}
+	\bm{M_{m,n}^{\*}}(\bm{r})
+	&= - \gamma_{m,n} \big[ z_n(k r) \big]^{\*} e^{-i m \phi} \bigg( i m \frac{P_n^m(\cos{\theta})}{\sin{\theta}} \bm{e_{\theta}} +
+	  \frac{\partial P_n^m(\cos{\theta})}{\partial \theta} \bm{e_{\phi}} \bigg).
+\end{aligned}
+$$
+
+Do
+
+$$ \tag{17.111}
+\begin{aligned}
+	& \frac{-1}{ \gamma_{m,n} \big[ z_n(k r) \big]^{\*} }\int_{0}^{2 \pi} \int_{0}^{\pi} \big[ \bm{M_{m,n}^{(1)}}(\bm{r}) \big]^{\*} \cdot \bm{E_i}(\bm{r}) \sin{\theta} \thinspace d\theta d\phi
+	\cr
+	&= E_x \int_{0}^{2 \pi} \int_{0}^{\pi} \bigg(
+		i m \frac{P_n^m(\cos{\theta})}{\sin{\theta}} \cos{\theta} \cos{\phi}
+		- \frac{\partial P_n^m(\cos{\theta})}{\partial \theta} \sin{\phi}
+	\bigg) e^{-i m \phi + i k r \cos{\theta}} \sin{\theta} \thinspace d\theta d\phi
+	\cr
+	&+ E_y \int_{0}^{2 \pi} \int_{0}^{\pi} \bigg(
+		i m \frac{P_n^m(\cos{\theta})}{\sin{\theta}} \cos{\theta} \sin{\phi}
+		+ \frac{\partial P_n^m(\cos{\theta})}{\partial \theta} \cos{\phi}
+	\bigg) e^{-i m \phi + i k r \cos{\theta}} \sin{\theta} \thinspace d\theta d\phi
+\end{aligned}
+$$
+
+Use
+
+$$ \tag{17.111}
+	\int_{0}^{2 \pi} \sin{\phi} \thinspace e^{\pm i \phi} \thinspace d\phi = \pm i \pi,
+	\qquad
+	\int_{0}^{2 \pi} \cos{\phi} \thinspace e^{\pm i \phi} \thinspace d\phi = \pi
+$$
+
+Then
+
+$$ \tag{17.111}
+\begin{aligned}
+	& \frac{-1}{ \gamma_{m,n} \big[ z_n(k r) \big]^{\*} }\int_{0}^{2 \pi} \int_{0}^{\pi} \big[ \bm{M_{m,n}^{(1)}}(\bm{r}) \big]^{\*} \cdot \bm{E_i}(\bm{r}) \sin{\theta} \thinspace d\theta d\phi
+	\cr
+	&= \delta_{m,\pm 1} \pi \bigg( im E_x + E_y \bigg) \int_{0}^{\pi} \bigg(
+		  \frac{P_n^m(\cos{\theta})}{\sin{\theta}} \cos{\theta}
+		+ \frac{\partial P_n^m(\cos{\theta})}{\partial \theta}
+	\bigg) e^{i k r \cos{\theta}} \sin{\theta} \thinspace d\theta
+\end{aligned}
+$$
+
+From the definitions (Equations 17.47 and 17.55), it follows that
+
+$$ \tag{17.111}
+	P_n^{1}(\cos{\theta}) = \frac{\partial}{\partial \theta} P_n(\cos{\theta}),
+	\qquad
+	P_n^{-1}(\cos{\theta}) = - \frac{(n - 1)!}{(n + 1)!} \frac{\partial}{\partial \theta} P_n(\cos{\theta}).
+$$
+
+Thus
+
+$$ \tag{17.111}
+\begin{aligned}
+	  \bigg( \frac{P_n^1(\cos{\theta})}{\sin{\theta}} \cos{\theta}
+	+ \frac{\partial P_n^1(\cos{\theta})}{\partial \theta} \bigg) \sin{\theta}
+	= \bigg( \sin{\theta} \frac{\partial^2}{\partial \theta^2}
+	+ \cos{\theta} \frac{\partial}{\partial \theta} \bigg) P_n(\cos{\theta})
+\end{aligned}
+$$
+
+Use Legendre's differential Equation 17.41.2
+
+
+After expanding Equation 17.111, the only non-trivial integral involved is
+
+$$ \tag{17.111}
+\begin{aligned}
+	I_p
+	&= \int_{0}^{\pi} \bigg(
+		i m \frac{P_n^m(\cos{\theta})}{\sin{\theta}} \cos{\theta}
+		+ \frac{\partial P_n^m(\cos{\theta})}{\partial \theta}
+	\bigg) e^{i k r \cos{\theta}} \sin{\theta} \thinspace d\theta
+	\cr
+\end{aligned}
+$$
+
+$$ \tag{17.106}
+	j_n(x) = \frac{(-i)^n}{2}
+	\int_{0}^{\pi} e^{i x \cos{\theta}} P_n(\cos{\theta}) \sin{\theta} \thinspace d\theta
+$$
+
+$$ \tag{17.106}
+	\frac{\partial \big( x j_n(x) \big)}{\partial x} = j_n(x) + x \frac{\partial j_n(x)}{\partial x}
+$$
+
+$$ \tag{17.106}
+	\frac{\partial (x j_n(x))}{\partial x} = \frac{(-i)^n}{2}
+	\int_{0}^{\pi} \bigg( e^{i x \cos{\theta}} + x \frac{\partial e^{i x \cos{\theta}}}{\partial x} \bigg) P_n(\cos{\theta}) \sin{\theta} \thinspace d\theta
+$$
+
+$$ \tag{17.106}
+	\frac{\partial (x j_n(x))}{\partial x} = \sum_{l=0}^{\infin} \frac{(-i)^n}{2}
+	i^l (2 l + 1) \bigg( j_l(x) + x \frac{\partial j_n(x)}{\partial x} \bigg) \int_{0}^{\pi} P_l(\cos{\theta}) P_n(\cos{\theta}) \sin{\theta} \thinspace d\theta
+$$
+
+$$ \tag{17.106}
+	P_n^{m+1}(\cos{\theta}) \sin{\theta} = (n - m + 1) P_{n+1}^m(\cos{\theta}) - (n + m + 1) P_n^m(\cos{\theta}) \cos{\theta}
+$$
+
+$$ \tag{17.111}
+\begin{aligned}
+	& \int_{0}^{2 \pi} \int_{0}^{\pi} \big[ \bm{M_{m,n}^{(1)}}(\bm{r}) \big]^{\*} \cdot \bm{E_i}(\bm{r}) \sin{\theta} \thinspace d\theta d\phi
+	\cr
+	&= \gamma_{m,n} \sum_{l=0}^{\infin} i^l (2 l + 1) j_l(k r) \big[ j_n(k r) \big]^{\*} \int_{0}^{2 \pi} e^{-i m \phi} \cos{\phi} \thinspace d\phi \int_{0}^{\pi} P_l(\cos{\theta}) P_n^m(\cos{\theta}) \cos{\theta} \thinspace d\theta
+	\cr
+\end{aligned}
+$$
+
+$$ \tag{17.106}
+	P_n^{m+1}(\cos{\theta}) \sin{\theta} = (n - m + 1) P_{n+1}^m(\cos{\theta}) - (n + m + 1) P_n^m(\cos{\theta}) \cos{\theta}
+$$
+
+
+
 
 ---
 
