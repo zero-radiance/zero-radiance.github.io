@@ -4714,13 +4714,13 @@ $$ \tag{17.70}
 	+ \frac{\partial}{\partial \theta} \bigg( \sin{\theta} \frac{\partial P_l^m}{\partial \theta} \bigg) P_n^m \bigg) d\theta
 	\cr
 	&= \int_{0}^{\pi} n (n+1) P_n^m P_l^m \sin{\theta} \thinspace d\theta
-	 + \frac{1}{2} \int_{0}^{\pi} \frac{\partial}{\partial \theta} \bigg( \sin{\theta} \frac{\partial P_n^m}{\partial \theta} P_l^m + \sin{\theta} \frac{\partial P_l^m}{\partial \theta} P_n^m \bigg) d\theta
+	 + \frac{1}{2} \int_{0}^{\pi} \frac{\partial}{\partial \theta} \Bigg( \sin{\theta} \frac{\partial \big[ P_n^m(\cos{\theta}) P_l^m(\cos{\theta}) \big]}{\partial \theta} \Bigg) d\theta
 	\cr
 	&= \frac{2}{(2n + 1)} \frac{(n+m)!}{(n-m)!} n (n+1) \delta_{l,n}
 \end{aligned}
 $$
 
-that follow from Equations 17.41.2, 17.56.1, and the fact that the value of the associated Legendre polynomials is zero for \\(\cos{\theta} = \pm 1\\) unless \\(m = 0\\).
+where we used Legendre's differential equation (Equation 17.41.2), the orthogonality property of Legendre's polynomials (Equation 17.56.1), and the fact that the value of the associated Legendre polynomials is zero for \\(\cos{\theta} = \pm 1\\) unless \\(m = 0\\).
 
 After substitution into Equations 17.62, 17.63, and 17.67, we immediately obtain the reduced expressions of the vector spherical wave functions:
 
@@ -4907,11 +4907,9 @@ $$ \tag{17.83}
 $$
 
 
-For \\(m = n = 0\\), the polynomals turn into constants, and it is easy to show that \\(\bm{L_{0,0}} \cdot \bm{N_{0,0}} = 0\\). In general, the situation is rather involved.
+For \\(m = n = 0\\), the polynomals turn into constants, and it is easy to show that \\(\bm{L_{0,0}} \cdot \bm{N_{0,0}} = 0\\). For arbitrary \\(m\\) and \\(n\\), all that can be said is that \\(|\bm{L_{m,n}} \cdot \bm{N_{m,n}}|/(|\bm{L_{m,n}}||\bm{N_{m,n}}|) \leq 1\\), and the two vectors periodically become parallel or anti-parallel for certain isolated values of \\(\theta\\).
 
-{{< figure src="/img/l_dot_n.svg" caption="*Figure N: \\(\bm{L\_{0,n}} \cdot \bm{N\_{0,n}}\\) defined in terms of the spherical Bessel function of the first kind as a function of the radial distance \\(r\\) and degree \\(n=1\\) (blue), \\(n=2\\) (orange), \\(n=3\\) (green), \\(n=4\\) (red) with fixed values of \\(k = 1, \thinspace \theta = \pi/2, \thinspace \phi = 0\\).*" >}}
-
-As can be seen from the (fairly representative) plot shown above, the largest deviation from the perpendicular orientation occurs for \\(n = 1\\), with the vectors becoming fully orthogonal as \\(r \to \infin\\), which is evident if one substitutes the asymptotic form of a spherical Bessel function given by Equation 17.52 and takes the inverse distance factors into account.
+{{< figure src="/img/l_dot_n.svg" caption="*Figure N: \\((\bm{L\_{0,n}^{(1)}} \cdot \bm{N\_{0,n}^{(1)}})/(|\bm{L\_{0,n}^{(1)}}| |\bm{N\_{0,n}^{(1)}}|)\\) of order \\(m=0\\) and degree \\(n=1\\) (blue), \\(n=2\\) (orange), \\(n=3\\) (green), defined in terms of the spherical Bessel function of the first kind, as a function of the polar angle \\(\theta\\), with fixed values of \\(k = r = 1, \thinspace \thinspace \phi = 0\\).*" >}}
 
 In addition to partial orthogonality in the real 3-dimensional space, we can show that the vector spherical wave functions are also partially orthogonal in the Hilbert space. In order to do that, we shall utilize the definition given by Equation 17.80 and the orthogonality relations of Equation 17.74:
 
@@ -5055,20 +5053,28 @@ $$
 
 where we once again utilized the identities of Equation 17.50.
 
+Given the asymptotic behavior of the spherical Bessel functions given by Equation 17.52, it follows that
+
+$$ \tag{17.95}
+	\lim_{|kr| \to \infty}
+	\int_{0}^{2 \pi} \int_{0}^{\pi} \big[ \bm{L_{s,t}}(\bm{r}) \big]^{\*} \cdot \bm{N_{m,n}}(\bm{r}) \sin{\theta} \thinspace d\theta d\phi
+	 = 0.
+$$
+
 For our application, the partial orthogonality between \\(\bm{L_{m,n}}\\) and \\(\bm{N_{m,n}}\\) is not a real concern. According to Equations 17.36 and 17.37, the electric and the magnetic fields can be expressed solely in terms of \\(\bm{M_{m,n}}\\) and \\(\bm{N_{m,n}}\\), which are mutually orthogonal, as has been shown by Equations 17.82 and 17.92.
 
 Now, let us return to the scattering problem. In general, we may arrive at the solution by determining the values of the set of coefficients \\(\lbrace a_{m,n}, b_{m,n} \rbrace\\) of the vector spherical wave series expansion
 
-$$ \tag{17.95}
+$$ \tag{17.96}
 	\bm{E}(\bm{r}, \omega)
 	= -\sum_{n=0}^{\infin} \sum_{m=-n}^{n} \big( a_{m,n}(\omega) \bm{M_{m,n}}(\bm{r}, \omega) + b_{m,n}(\omega) \bm{N_{m,n}}(\bm{r}, \omega) \big).
 $$
 
 In order to find these coefficients, we must consider three distinct types of electromagnetic fields: the incident field produced by an external source, the scattered field in the far zone of the particle, and the total internal field induced inside the sphere. The reason for this kind of decomposition will become apparent shortly.
 
-We shall start with the incident field. Evidently, its expression must be known a priori. That permits us to determine the values of the coefficients \\(a_{m,n}\\) and \\(b_{m,n}\\) by projecting Equation 17.95 onto \\(\bm{M_{s,t}}\\) and \\(\bm{N_{s,t}}\\) using Equations 17.88 and 17.89, respectively:
+We shall start with the incident field. Evidently, its expression must be known a priori. That permits us to determine the values of the coefficients \\(a_{m,n}\\) and \\(b_{m,n}\\) by projecting Equation 17.96 onto \\(\bm{M_{s,t}}\\) and \\(\bm{N_{s,t}}\\) using Equations 17.88 and 17.89, respectively:
 
-$$ \tag{17.96}
+$$ \tag{17.97}
 \begin{aligned}
 	a_{m,n}^{(1)} &= \frac{ - \int_{0}^{2 \pi} \int_{0}^{\pi} \big[ \bm{M_{m,n}^{(1)}}(\bm{r}) \big]^{\*} \cdot \bm{E_i}(\bm{r}) \sin{\theta} \thinspace d\theta d\phi }
 	{ n (n+1) \big| j_n(k r) \big|^2 },
@@ -5083,7 +5089,7 @@ $$
 
 Above, the superscript \\((1)\\) indicates that we have made the choice of a spherical Bessel function of the first kind
 
-$$ \tag{17.97}
+$$ \tag{17.98}
 	z_n^{(1)}(k r) = j_n(k r)
 $$
 
@@ -5093,33 +5099,33 @@ Let us further assume that the incident field can be represented by a plane wave
 
 If the region of space is filled with a linear, isotropic, homogeneous, source-free medium, the expression of the incident vector plane wave is given by Equation 7.2:
 
-$$ \tag{17.98}
+$$ \tag{17.99}
 	\bm{E_i}(\bm{r}, \omega) e^{- i \omega t}
 	= \bm{E_0}(\bm{n_i}, \omega) e^{i k(\omega) (\bm{r} \cdot \bm{n_i}) - i \omega t}.
 $$
 
 In spherical coordinates, the explicit representation of \\(\bm{r}\\) is
 
-$$ \tag{17.99}
+$$ \tag{17.100}
 	\bm{r} = \lbrace r, \theta, \phi \rbrace.
 $$
 
 We may take advantage of the symmetry of the problem by aligning \\(\bm{n_i}\\) with the \\(z\\)-axis (c.f. Figure N). Then,
 
-$$ \tag{17.100}
+$$ \tag{17.101}
 	\bm{r} \cdot \bm{n_i} = r \cos{\theta}.
 $$
 
 Further simplification can be achieved by recalling that an electromagnetic plane wave is transverse with respect to its direction of propagation (as shown by Equations 7.18 and 7.23). Therefore, in Cartesian coordinates, the polarization phasor \\(\bm{E_0}\\) of a plane wave can be completely described in terms of the tangential components \\(E_x\\) and \\(E_y\\):
 
-$$ \tag{17.101}
+$$ \tag{17.102}
 	\bm{E_0}(\bm{e_z}, \omega)
 	= E_x(\omega) \bm{e_x} + E_y(\omega) \bm{e_y}.
 $$
 
 The polarization phasor does not explicitly depend on the point of reference \\(\bm{r}\\). However, in spherical coordinates, the basis vectors [vary in space](https://en.wikipedia.org/wiki/Vector_fields_in_cylindrical_and_spherical_coordinates#Spherical_coordinate_system):
 
-$$ \tag{17.102}
+$$ \tag{17.103}
 \begin{aligned}
 	\bm{e_x} &= \sin{\theta} \cos{\phi} \thinspace \bm{e_{r}}
 			  + \cos{\theta} \cos{\phi} \thinspace \bm{e_{\theta}}
@@ -5135,11 +5141,11 @@ $$ \tag{17.102}
 \end{aligned}
 $$
 
-Despite the apparent complexity, Equation 17.102 offers a more useful representation of the basis vectors, since we can readily from products with the vector spherical wave functions of Equation 17.71 (or the vector spherical harmonics of Equation 17.72). Now, since a vector plane wave is a product of the polarization phasor and a scalar plane wave, we should be able to perform a vector spherical wave series expansion of Equation 17.98 if we find a suitable alternative formulation of its complex exponential term.
+Despite the apparent complexity, Equation 17.103 offers a more useful representation of the basis vectors, since we can readily from products with the vector spherical wave functions of Equation 17.71 (or the vector spherical harmonics of Equation 17.72). Now, since a vector plane wave is a product of the polarization phasor and a scalar plane wave, we should be able to perform a vector spherical wave series expansion of Equation 17.99 if we find a suitable alternative formulation of its complex exponential term.
 
-We have initially encountered scalar plane waves when we set out to solve the scalar Helmholtz equation in the Cartesian coordinate system (c.f. Equations 6.11-6.14). More recently, we have also found a solution in spherical coordinates (given by Equation 17.44). Obviously, both solutions refer to the same function, the only difference being the coordinate representation. Thus, if we adhere to the convention established by Equation 17.100,
+We have initially encountered scalar plane waves when we set out to solve the scalar Helmholtz equation in the Cartesian coordinate system (c.f. Equations 6.11-6.14). More recently, we have also found a solution in spherical coordinates (given by Equation 17.44). Obviously, both solutions refer to the same function, the only difference being the coordinate representation. Thus, if we adhere to the convention established by Equation 17.101,
 
-$$ \tag{17.103}
+$$ \tag{17.104}
 \begin{aligned}
 	& e^{i k r \cos{\theta}}
 	= \sum_{n=0}^{\infin} \sum_{m=-n}^{n} d_{m,n} j_n(k r) P_n^m(\cos{\theta}) e^{i m \phi}.
@@ -5148,34 +5154,34 @@ $$
 
 The left-hand side of this equation does not depend on the azimuthal angle \\(\phi\\). Comparison with the right-hand side suggests that we may set \\(m = 0\\):
 
-$$ \tag{17.104}
+$$ \tag{17.105}
 	e^{i k r \cos{\theta}}
 	= \sum_{n=0}^{\infin} d_{n} j_n(k r) P_n(\cos{\theta}).
 $$
 
-The quickest way to determine the value of the coefficients \\(d_{n}\\) is to multiply both sides of Equation 17.104 by \\(P_l(\cos{\theta}) \sin{\theta}\\), integrate the result from \\(0\\) to \\(\pi\\), and use the orthogonality relation given by Equation 17.56.1:
+The quickest way to determine the value of the coefficients \\(d_{n}\\) is to multiply both sides of Equation 17.105 by \\(P_l(\cos{\theta}) \sin{\theta}\\), integrate the result from \\(0\\) to \\(\pi\\), and use the orthogonality relation given by Equation 17.56.1:
 
-$$ \tag{17.105}
+$$ \tag{17.106}
 	\int_{0}^{\pi} e^{i k r \cos{\theta}} P_n(\cos{\theta}) \sin{\theta} \thinspace d\theta
 	= d_{n} \frac{2}{(2n + 1)} j_n(k r).
 $$
 
 After taking [Gegenbauer's integral representation](https://dlmf.nist.gov/10.54) of the spherical Bessel function of the first kind \[[Watson](#references) (ch 3.32)\]
 
-$$ \tag{17.106}
+$$ \tag{17.107}
 	j_n(x) = \frac{(-i)^n}{2}
 	\int_{0}^{\pi} e^{i x \cos{\theta}} P_n(\cos{\theta}) \sin{\theta} \thinspace d\theta
 $$
 
 into account, we readily obtain the value of the series expansion coefficient
 
-$$ \tag{17.107}
+$$ \tag{17.108}
 	d_{n} = i^n (2n + 1).
 $$
 
-Substitution into Equation 17.104 yields the [plane wave expansion](https://en.wikipedia.org/wiki/Plane-wave_expansion)
+Substitution into Equation 17.105 yields the [plane wave expansion](https://en.wikipedia.org/wiki/Plane-wave_expansion)
 
-$$ \tag{17.108}
+$$ \tag{17.109}
 	e^{i k r \cos{\theta}}
 	= \sum_{n=0}^{\infin} i^n (2n + 1) j_n(k r) P_n(\cos{\theta})
 	= - \sum_{n=0}^{\infin} i^n \sqrt{4 \pi (2 n + 1)} \psi_{0,n}^{(1)}(\bm{r})
@@ -5183,9 +5189,9 @@ $$
 
 in terms of the scalar spherical wave functions of the first kind \\(\psi_{m,n}^{(1)}\\).
 
-Let us combine the results we have obtained so far. We started with Equation 17.98, and  subsequently expanded it using Equations 17.100-17.102 and 17.108:
+Let us combine the results we have obtained so far. We started with Equation 17.99, and  subsequently expanded it using Equations 17.101-17.103 and 17.109:
 
-$$ \tag{17.109}
+$$ \tag{17.110}
 \begin{aligned}
 	\bm{E_i}(\bm{r})
 	&= E_x \big(
@@ -5202,15 +5208,15 @@ $$ \tag{17.109}
 \end{aligned}
 $$
 
-Equation 17.109 is composed of the same expressions used to define the vector spherical wave functions (Equations 17.62, 17.63, and 17.67). This makes the integrals found in Equations 17.96.1 and 17.96.2 approachable.
+Equation 17.110 is composed of the same expressions used to define the vector spherical wave functions (Equations 17.62, 17.63, and 17.67). This makes the integrals found in Equations 17.97.1 and 17.97.2 approachable.
 
 We shall first evaluate
 
-$$ \tag{17.110}
+$$ \tag{17.111}
 	\int_{0}^{2 \pi} \int_{0}^{\pi} \big[ \bm{M_{m,n}^{(1)}}(\bm{r}) \big]^{\*} \cdot \bm{E_i}(\bm{r}) \sin{\theta} \thinspace d\theta d\phi.
 $$
 
-Since Equation 17.110 only contains first-order harmonic functions of \\(\phi\\), orthogonality of the Fourier basis makes the integral of Equation 17.111 vanish unless \\(m = \pm 1\\). Furthermore, the definition of \\(\bm{M_{m,n}}\\) (given by Equation 17.63) omits the radial basis vector, so the latter does not require further consideration.
+Since Equation 17.111 only contains first-order harmonic functions of \\(\phi\\), orthogonality of the Fourier basis makes the integral of Equation 17.112 vanish unless \\(m = \pm 1\\). Furthermore, the definition of \\(\bm{M_{m,n}}\\) (given by Equation 17.63) omits the radial basis vector, so the latter does not require further consideration.
 
 ---
 
@@ -5232,7 +5238,7 @@ $$
 
 Do
 
-$$ \tag{17.111}
+$$ \tag{17.112}
 \begin{aligned}
 	& \frac{-1}{ \gamma_{m,n} \big[ z_n(k r) \big]^{\*} }\int_{0}^{2 \pi} \int_{0}^{\pi} \big[ \bm{M_{m,n}^{(1)}}(\bm{r}) \big]^{\*} \cdot \bm{E_i}(\bm{r}) \sin{\theta} \thinspace d\theta d\phi
 	\cr
@@ -5250,7 +5256,7 @@ $$
 
 Use
 
-$$ \tag{17.111}
+$$ \tag{17.112}
 	\int_{0}^{2 \pi} \sin{\phi} \thinspace e^{\pm i \phi} \thinspace d\phi = \pm i \pi,
 	\qquad
 	\int_{0}^{2 \pi} \cos{\phi} \thinspace e^{\pm i \phi} \thinspace d\phi = \pi
@@ -5258,7 +5264,7 @@ $$
 
 Then
 
-$$ \tag{17.111}
+$$ \tag{17.112}
 \begin{aligned}
 	& \frac{-1}{ \gamma_{m,n} \big[ z_n(k r) \big]^{\*} }\int_{0}^{2 \pi} \int_{0}^{\pi} \big[ \bm{M_{m,n}^{(1)}}(\bm{r}) \big]^{\*} \cdot \bm{E_i}(\bm{r}) \sin{\theta} \thinspace d\theta d\phi
 	\cr
@@ -5271,7 +5277,7 @@ $$
 
 From the definitions (Equations 17.47 and 17.55), it follows that
 
-$$ \tag{17.111}
+$$ \tag{17.112}
 	P_n^{1}(\cos{\theta}) = \frac{\partial}{\partial \theta} P_n(\cos{\theta}),
 	\qquad
 	P_n^{-1}(\cos{\theta}) = - \frac{(n - 1)!}{(n + 1)!} \frac{\partial}{\partial \theta} P_n(\cos{\theta}).
@@ -5279,7 +5285,7 @@ $$
 
 Thus
 
-$$ \tag{17.111}
+$$ \tag{17.112}
 \begin{aligned}
 	  \bigg( \frac{P_n^1(\cos{\theta})}{\sin{\theta}} \cos{\theta}
 	+ \frac{\partial P_n^1(\cos{\theta})}{\partial \theta} \bigg) \sin{\theta}
@@ -5291,9 +5297,9 @@ $$
 Use Legendre's differential Equation 17.41.2
 
 
-After expanding Equation 17.111, the only non-trivial integral involved is
+After expanding Equation 17.112, the only non-trivial integral involved is
 
-$$ \tag{17.111}
+$$ \tag{17.112}
 \begin{aligned}
 	I_p
 	&= \int_{0}^{\pi} \bigg(
@@ -5304,30 +5310,30 @@ $$ \tag{17.111}
 \end{aligned}
 $$
 
-$$ \tag{17.106}
+$$ \tag{17.107}
 	j_n(x) = \frac{(-i)^n}{2}
 	\int_{0}^{\pi} e^{i x \cos{\theta}} P_n(\cos{\theta}) \sin{\theta} \thinspace d\theta
 $$
 
-$$ \tag{17.106}
+$$ \tag{17.107}
 	\frac{\partial \big( x j_n(x) \big)}{\partial x} = j_n(x) + x \frac{\partial j_n(x)}{\partial x}
 $$
 
-$$ \tag{17.106}
+$$ \tag{17.107}
 	\frac{\partial (x j_n(x))}{\partial x} = \frac{(-i)^n}{2}
 	\int_{0}^{\pi} \bigg( e^{i x \cos{\theta}} + x \frac{\partial e^{i x \cos{\theta}}}{\partial x} \bigg) P_n(\cos{\theta}) \sin{\theta} \thinspace d\theta
 $$
 
-$$ \tag{17.106}
+$$ \tag{17.107}
 	\frac{\partial (x j_n(x))}{\partial x} = \sum_{l=0}^{\infin} \frac{(-i)^n}{2}
 	i^l (2 l + 1) \bigg( j_l(x) + x \frac{\partial j_n(x)}{\partial x} \bigg) \int_{0}^{\pi} P_l(\cos{\theta}) P_n(\cos{\theta}) \sin{\theta} \thinspace d\theta
 $$
 
-$$ \tag{17.106}
+$$ \tag{17.107}
 	P_n^{m+1}(\cos{\theta}) \sin{\theta} = (n - m + 1) P_{n+1}^m(\cos{\theta}) - (n + m + 1) P_n^m(\cos{\theta}) \cos{\theta}
 $$
 
-$$ \tag{17.111}
+$$ \tag{17.112}
 \begin{aligned}
 	& \int_{0}^{2 \pi} \int_{0}^{\pi} \big[ \bm{M_{m,n}^{(1)}}(\bm{r}) \big]^{\*} \cdot \bm{E_i}(\bm{r}) \sin{\theta} \thinspace d\theta d\phi
 	\cr
@@ -5336,7 +5342,7 @@ $$ \tag{17.111}
 \end{aligned}
 $$
 
-$$ \tag{17.106}
+$$ \tag{17.107}
 	P_n^{m+1}(\cos{\theta}) \sin{\theta} = (n - m + 1) P_{n+1}^m(\cos{\theta}) - (n + m + 1) P_n^m(\cos{\theta}) \cos{\theta}
 $$
 
