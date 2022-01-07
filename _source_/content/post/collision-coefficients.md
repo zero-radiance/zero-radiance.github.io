@@ -1054,8 +1054,6 @@ $$
 
 That is a general solution of the Maxwell equations for *linear, isotropic, homogeneous, source-free* media.
 
--->
-
 ### Plane waves
 
 We can find a solution of the Maxwell equations in the time domain by performing the inverse Fourier transform of Equation 6.16:
@@ -1442,8 +1440,6 @@ $$ \tag{7.42}
 		\sqrt{ \frac{\varepsilon}{\mu} }
 	\bigg\rbrace |\bm{E_0}|^2 e^{-\alpha (\bm{r} \cdot \bm{n})} \bm{n}.
 $$
-
-<!--
 
 ### Electromagnetic Potential
 
@@ -4700,7 +4696,7 @@ $$ \tag{17.69}
 \end{aligned}
 $$
 
-and
+and (evgenii: explain this better?)
 
 $$ \tag{17.70}
 \begin{aligned}
@@ -4720,7 +4716,7 @@ $$ \tag{17.70}
 \end{aligned}
 $$
 
-where we used Legendre's differential equation (Equation 17.41.2), the orthogonality property of Legendre's polynomials (Equation 17.56.1), and the fact that the value of the associated Legendre polynomials is zero for \\(\cos{\theta} = \pm 1\\) unless \\(m = 0\\).
+where we used Legendre's differential equation (Equations 17.41.2 and 17.42), the orthogonality property of Legendre's polynomials (Equation 17.56.1), and the fact that the value of the associated Legendre polynomials is zero for \\(\cos{\theta} = \pm 1\\) unless \\(m = 0\\).
 
 After substitution into Equations 17.62, 17.63, and 17.67, we immediately obtain the reduced expressions of the vector spherical wave functions:
 
@@ -5189,34 +5185,73 @@ $$
 
 in terms of the scalar spherical wave functions of the first kind \\(\psi_{m,n}^{(1)}\\).
 
-Let us combine the results we have obtained so far. We started with Equation 17.99, and  subsequently expanded it using Equations 17.101-17.103 and 17.109:
-
-$$ \tag{17.110}
-\begin{aligned}
-	\bm{E_i}(\bm{r})
-	&= E_x \big(
-		  \sin{\theta} \cos{\phi} \thinspace \bm{e_{r}}
-	  	+ \cos{\theta} \cos{\phi} \thinspace \bm{e_{\theta}}
-	  	- \sin{\phi} \thinspace \bm{e_{\phi}}
-	  \big) \sum_{l=0}^{\infin} i^l (2 l + 1) j_l(k r) P_l(\cos{\theta})
-	\cr
-	&+ E_y \big(
-			  \sin{\theta} \sin{\phi} \thinspace \bm{e_{r}}
-			+ \cos{\theta} \sin{\phi} \thinspace \bm{e_{\theta}}
-			+ \cos{\phi} \thinspace \bm{e_{\phi}}
-	\big) \sum_{l=0}^{\infin} i^l (2 l + 1) j_l(k r) P_l(\cos{\theta})
-\end{aligned}
-$$
-
-Equation 17.110 is composed of the same expressions used to define the vector spherical wave functions (Equations 17.62, 17.63, and 17.67). This makes the integrals found in Equations 17.97.1 and 17.97.2 approachable.
+We now have all the tools required to determine the series coefficients of an actual electromagnetic plane wave. As shown by Equation 17.97, this is accomplished by projecting the vector plane wave (Equations 17.99-17.103) onto the vector spherical wave functions (Equations 17.63 and 17.67).
 
 We shall first evaluate
 
-$$ \tag{17.111}
+$$ \tag{17.110}
 	\int_{0}^{2 \pi} \int_{0}^{\pi} \big[ \bm{M_{m,n}^{(1)}}(\bm{r}) \big]^{\*} \cdot \bm{E_i}(\bm{r}) \sin{\theta} \thinspace d\theta d\phi.
 $$
 
-Since Equation 17.111 only contains first-order harmonic functions of \\(\phi\\), orthogonality of the Fourier basis makes the integral of Equation 17.112 vanish unless \\(m = \pm 1\\). Furthermore, the definition of \\(\bm{M_{m,n}}\\) (given by Equation 17.63) omits the radial basis vector, so the latter does not require further consideration.
+Since the product of Equation 17.103 and 17.109 only contains first-order harmonic functions of \\(\phi\\), orthogonality of the Fourier basis makes the integral of Equation 17.110 vanish unless \\(m = \pm 1\\). Furthermore, the definition of \\(\bm{M_{m,n}}\\) (given by Equation 17.63) omits the radial basis vector, so the latter does not require further consideration. Therefore,
+
+$$ \tag{17.111}
+\begin{aligned}
+	& \frac{-1}{ \gamma_{m,n} \big[ z_n(k r) \big]^{\*} }\int_{0}^{2 \pi} \int_{0}^{\pi} \big[ \bm{M_{m,n}^{(1)}}(\bm{r}) \big]^{\*} \cdot \bm{E_i}(\bm{r}) \sin{\theta} \thinspace d\theta d\phi
+	\cr
+	&= E_x \int_{0}^{2 \pi} \int_{0}^{\pi} \bigg(
+		i m \frac{P_n^m(\cos{\theta})}{\sin{\theta}} \cos{\theta} \cos{\phi}
+		- \frac{\partial P_n^m(\cos{\theta})}{\partial \theta} \sin{\phi}
+	\bigg) e^{-i m \phi + i k r \cos{\theta}} \sin{\theta} \thinspace d\theta d\phi
+	\cr
+	&+ E_y \int_{0}^{2 \pi} \int_{0}^{\pi} \bigg(
+		i m \frac{P_n^m(\cos{\theta})}{\sin{\theta}} \cos{\theta} \sin{\phi}
+		+ \frac{\partial P_n^m(\cos{\theta})}{\partial \theta} \cos{\phi}
+	\bigg) e^{-i m \phi + i k r \cos{\theta}} \sin{\theta} \thinspace d\theta d\phi.
+\end{aligned}
+$$
+
+Each term of the sum given above can be separated into a product of \\(r\\), \\(\theta\\), \\(\phi\\) components. Using the identities
+
+$$ \tag{17.112}
+	\int_{0}^{2 \pi} \sin{\phi} \thinspace e^{\pm i \phi} \thinspace d\phi = \pm i \pi,
+	\qquad
+	\int_{0}^{2 \pi} \cos{\phi} \thinspace e^{\pm i \phi} \thinspace d\phi = \pi,
+$$
+
+the integrals over \\(\phi\\) can be evaluated analytically. Equation 17.111 is thus reduced to
+
+$$ \tag{17.113}
+\begin{aligned}
+	& \frac{-1}{ \gamma_{m,n} \big[ z_n(k r) \big]^{\*} }\int_{0}^{2 \pi} \int_{0}^{\pi} \big[ \bm{M_{m,n}^{(1)}}(\bm{r}) \big]^{\*} \cdot \bm{E_i}(\bm{r}) \sin{\theta} \thinspace d\theta d\phi
+	\cr
+	&= \delta_{m,\pm 1} \pi \bigg( im E_x + E_y \bigg) \int_{0}^{\pi} \bigg(
+		  \frac{P_n^m(\cos{\theta})}{\sin{\theta}} \cos{\theta}
+		+ \frac{\partial P_n^m(\cos{\theta})}{\partial \theta}
+	\bigg) \sin{\theta} \thinspace e^{i k r \cos{\theta}} \thinspace d\theta.
+\end{aligned}
+$$
+
+Since \\(m = \pm 1\\), then, according to Equations 17.47 and 17.55, the associated Legendre polynomials are related to the unassociated ones in a very simple manner:
+
+$$ \tag{17.114}
+	P_n^{1}(\cos{\theta}) = \frac{\partial}{\partial \theta} P_n(\cos{\theta}),
+	\qquad
+	P_n^{-1}(\cos{\theta}) = \frac{-1}{n (n + 1)} \frac{\partial}{\partial \theta} P_n(\cos{\theta}).
+$$
+
+Now, transform the expression found in Equation 17.113:
+
+$$ \tag{17.115}
+\begin{aligned}
+	  \bigg( \frac{P_n^1(\cos{\theta})}{\sin{\theta}} \cos{\theta}
+	+ \frac{\partial P_n^1(\cos{\theta})}{\partial \theta} \bigg) \sin{\theta}
+	= \bigg( \sin{\theta} \frac{\partial^2}{\partial \theta^2}
+	+ \cos{\theta} \frac{\partial}{\partial \theta} \bigg) P_n(\cos{\theta}).
+\end{aligned}
+$$
+
+In its new form, it directly maps onto Legendre's differential Equation 17.41.2 (with the constants given by Equation 17.42):
 
 ---
 
@@ -5238,63 +5273,19 @@ $$
 
 Do
 
-$$ \tag{17.112}
-\begin{aligned}
-	& \frac{-1}{ \gamma_{m,n} \big[ z_n(k r) \big]^{\*} }\int_{0}^{2 \pi} \int_{0}^{\pi} \big[ \bm{M_{m,n}^{(1)}}(\bm{r}) \big]^{\*} \cdot \bm{E_i}(\bm{r}) \sin{\theta} \thinspace d\theta d\phi
-	\cr
-	&= E_x \int_{0}^{2 \pi} \int_{0}^{\pi} \bigg(
-		i m \frac{P_n^m(\cos{\theta})}{\sin{\theta}} \cos{\theta} \cos{\phi}
-		- \frac{\partial P_n^m(\cos{\theta})}{\partial \theta} \sin{\phi}
-	\bigg) e^{-i m \phi + i k r \cos{\theta}} \sin{\theta} \thinspace d\theta d\phi
-	\cr
-	&+ E_y \int_{0}^{2 \pi} \int_{0}^{\pi} \bigg(
-		i m \frac{P_n^m(\cos{\theta})}{\sin{\theta}} \cos{\theta} \sin{\phi}
-		+ \frac{\partial P_n^m(\cos{\theta})}{\partial \theta} \cos{\phi}
-	\bigg) e^{-i m \phi + i k r \cos{\theta}} \sin{\theta} \thinspace d\theta d\phi
-\end{aligned}
-$$
 
-Use
 
-$$ \tag{17.112}
-	\int_{0}^{2 \pi} \sin{\phi} \thinspace e^{\pm i \phi} \thinspace d\phi = \pm i \pi,
-	\qquad
-	\int_{0}^{2 \pi} \cos{\phi} \thinspace e^{\pm i \phi} \thinspace d\phi = \pi
-$$
+
 
 Then
 
-$$ \tag{17.112}
-\begin{aligned}
-	& \frac{-1}{ \gamma_{m,n} \big[ z_n(k r) \big]^{\*} }\int_{0}^{2 \pi} \int_{0}^{\pi} \big[ \bm{M_{m,n}^{(1)}}(\bm{r}) \big]^{\*} \cdot \bm{E_i}(\bm{r}) \sin{\theta} \thinspace d\theta d\phi
-	\cr
-	&= \delta_{m,\pm 1} \pi \bigg( im E_x + E_y \bigg) \int_{0}^{\pi} \bigg(
-		  \frac{P_n^m(\cos{\theta})}{\sin{\theta}} \cos{\theta}
-		+ \frac{\partial P_n^m(\cos{\theta})}{\partial \theta}
-	\bigg) e^{i k r \cos{\theta}} \sin{\theta} \thinspace d\theta
-\end{aligned}
-$$
 
-From the definitions (Equations 17.47 and 17.55), it follows that
 
-$$ \tag{17.112}
-	P_n^{1}(\cos{\theta}) = \frac{\partial}{\partial \theta} P_n(\cos{\theta}),
-	\qquad
-	P_n^{-1}(\cos{\theta}) = - \frac{(n - 1)!}{(n + 1)!} \frac{\partial}{\partial \theta} P_n(\cos{\theta}).
-$$
+
 
 Thus
 
-$$ \tag{17.112}
-\begin{aligned}
-	  \bigg( \frac{P_n^1(\cos{\theta})}{\sin{\theta}} \cos{\theta}
-	+ \frac{\partial P_n^1(\cos{\theta})}{\partial \theta} \bigg) \sin{\theta}
-	= \bigg( \sin{\theta} \frac{\partial^2}{\partial \theta^2}
-	+ \cos{\theta} \frac{\partial}{\partial \theta} \bigg) P_n(\cos{\theta})
-\end{aligned}
-$$
 
-Use Legendre's differential Equation 17.41.2
 
 
 After expanding Equation 17.112, the only non-trivial integral involved is
