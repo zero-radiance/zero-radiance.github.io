@@ -5197,7 +5197,7 @@ Since the product of Equation 17.103 and 17.109 only contains first-order harmon
 
 $$ \tag{17.111}
 \begin{aligned}
-	& \frac{-1}{ \gamma_{m,n} \big[ z_n(k r) \big]^{\*} }\int_{0}^{2 \pi} \int_{0}^{\pi} \big[ \bm{M_{m,n}^{(1)}}(\bm{r}) \big]^{\*} \cdot \bm{E_i}(\bm{r}) \sin{\theta} \thinspace d\theta d\phi
+	& \frac{-1}{ \gamma_{m,n} \big[ j_n(k r) \big]^{\*} }\int_{0}^{2 \pi} \int_{0}^{\pi} \big[ \bm{M_{m,n}^{(1)}}(\bm{r}) \big]^{\*} \cdot \bm{E_i}(\bm{r}) \sin{\theta} \thinspace d\theta d\phi
 	\cr
 	&= E_x \int_{0}^{2 \pi} \int_{0}^{\pi} \bigg(
 		i m \frac{P_n^m(\cos{\theta})}{\sin{\theta}} \cos{\theta} \cos{\phi}
@@ -5223,16 +5223,16 @@ the integrals over \\(\phi\\) can be evaluated analytically. Equation 17.111 is 
 
 $$ \tag{17.113}
 \begin{aligned}
-	& \frac{-1}{ \gamma_{m,n} \big[ z_n(k r) \big]^{\*} }\int_{0}^{2 \pi} \int_{0}^{\pi} \big[ \bm{M_{m,n}^{(1)}}(\bm{r}) \big]^{\*} \cdot \bm{E_i}(\bm{r}) \sin{\theta} \thinspace d\theta d\phi
+	& \frac{-1}{ \gamma_{m,n} \big[ j_n(k r) \big]^{\*} }\int_{0}^{2 \pi} \int_{0}^{\pi} \big[ \bm{M_{m,n}^{(1)}}(\bm{r}) \big]^{\*} \cdot \bm{E_i}(\bm{r}) \sin{\theta} \thinspace d\theta d\phi
 	\cr
-	&= \delta_{m,\pm 1} \pi \bigg( im E_x + E_y \bigg) \int_{0}^{\pi} \bigg(
+	&= \delta_{m,\pm 1} (i m E_x + E_y) \pi \int_{0}^{\pi} \bigg(
 		  \frac{P_n^m(\cos{\theta})}{\sin{\theta}} \cos{\theta}
 		+ \frac{\partial P_n^m(\cos{\theta})}{\partial \theta}
 	\bigg) \sin{\theta} \thinspace e^{i k r \cos{\theta}} \thinspace d\theta.
 \end{aligned}
 $$
 
-Since \\(m = \pm 1\\), then, according to Equations 17.47 and 17.55, the associated Legendre polynomials are related to the unassociated ones in a very simple manner:
+If \\(m = \pm 1\\), then, according to Equations 17.47 and 17.55, the associated Legendre polynomials are related to the unassociated ones in a very simple manner:
 
 $$ \tag{17.114}
 	P_n^{1}(\cos{\theta}) = \frac{\partial}{\partial \theta} P_n(\cos{\theta}),
@@ -5240,105 +5240,55 @@ $$ \tag{17.114}
 	P_n^{-1}(\cos{\theta}) = \frac{-1}{n (n + 1)} \frac{\partial}{\partial \theta} P_n(\cos{\theta}).
 $$
 
-Now, transform the expression found in Equation 17.113:
+Once we transform the expression found in Equation 17.113,
 
 $$ \tag{17.115}
 \begin{aligned}
 	  \bigg( \frac{P_n^1(\cos{\theta})}{\sin{\theta}} \cos{\theta}
 	+ \frac{\partial P_n^1(\cos{\theta})}{\partial \theta} \bigg) \sin{\theta}
-	= \bigg( \sin{\theta} \frac{\partial^2}{\partial \theta^2}
-	+ \cos{\theta} \frac{\partial}{\partial \theta} \bigg) P_n(\cos{\theta}).
+	= \bigg( \cos{\theta} \frac{\partial}{\partial \theta}
+	+ \sin{\theta} \frac{\partial^2}{\partial \theta^2} \bigg) P_n(\cos{\theta}).
 \end{aligned}
 $$
 
-In its new form, it directly maps onto Legendre's differential Equation 17.41.2 (with the constants given by Equation 17.42):
+we discover that it directly maps onto Legendre's differential Equation 17.41.2 (with the constants given by Equation 17.42):
 
----
-
-$$ \tag{17.63}
+$$ \tag{17.116}
 \begin{aligned}
-	\frac{1}{\gamma_{m,n}} \bm{M_{m,n}}(\bm{r})
-	&= i m z_n(k r) \frac{P_n^m(\cos{\theta})}{\sin{\theta}} e^{i m \phi} \bm{e_{\theta}}
-	 - z_n(k r) \frac{\partial P_n^m(\cos{\theta})}{\partial \theta} e^{i m \phi} \bm{e_{\phi}}.
+	  \bigg( \cos{\theta} \frac{\partial}{\partial \theta}
+	+ \sin{\theta} \frac{\partial^2}{\partial \theta^2} \bigg) P_n(\cos{\theta})
+	= -n (n+1) P_n(\cos{\theta}) \sin{\theta}.
 \end{aligned}
 $$
 
-$$ \tag{17.63}
-\begin{aligned}
-	\bm{M_{m,n}^{\*}}(\bm{r})
-	&= - \gamma_{m,n} \big[ z_n(k r) \big]^{\*} e^{-i m \phi} \bigg( i m \frac{P_n^m(\cos{\theta})}{\sin{\theta}} \bm{e_{\theta}} +
-	  \frac{\partial P_n^m(\cos{\theta})}{\partial \theta} \bm{e_{\phi}} \bigg).
-\end{aligned}
-$$
+Upon substitution into Equation 17.113 and accounting for the polynomials with \\(m = -1\\),
 
-Do
-
-
-
-
-
-Then
-
-
-
-
-
-Thus
-
-
-
-
-After expanding Equation 17.112, the only non-trivial integral involved is
-
-$$ \tag{17.112}
-\begin{aligned}
-	I_p
-	&= \int_{0}^{\pi} \bigg(
-		i m \frac{P_n^m(\cos{\theta})}{\sin{\theta}} \cos{\theta}
-		+ \frac{\partial P_n^m(\cos{\theta})}{\partial \theta}
-	\bigg) e^{i k r \cos{\theta}} \sin{\theta} \thinspace d\theta
-	\cr
-\end{aligned}
-$$
-
-$$ \tag{17.107}
-	j_n(x) = \frac{(-i)^n}{2}
-	\int_{0}^{\pi} e^{i x \cos{\theta}} P_n(\cos{\theta}) \sin{\theta} \thinspace d\theta
-$$
-
-$$ \tag{17.107}
-	\frac{\partial \big( x j_n(x) \big)}{\partial x} = j_n(x) + x \frac{\partial j_n(x)}{\partial x}
-$$
-
-$$ \tag{17.107}
-	\frac{\partial (x j_n(x))}{\partial x} = \frac{(-i)^n}{2}
-	\int_{0}^{\pi} \bigg( e^{i x \cos{\theta}} + x \frac{\partial e^{i x \cos{\theta}}}{\partial x} \bigg) P_n(\cos{\theta}) \sin{\theta} \thinspace d\theta
-$$
-
-$$ \tag{17.107}
-	\frac{\partial (x j_n(x))}{\partial x} = \sum_{l=0}^{\infin} \frac{(-i)^n}{2}
-	i^l (2 l + 1) \bigg( j_l(x) + x \frac{\partial j_n(x)}{\partial x} \bigg) \int_{0}^{\pi} P_l(\cos{\theta}) P_n(\cos{\theta}) \sin{\theta} \thinspace d\theta
-$$
-
-$$ \tag{17.107}
-	P_n^{m+1}(\cos{\theta}) \sin{\theta} = (n - m + 1) P_{n+1}^m(\cos{\theta}) - (n + m + 1) P_n^m(\cos{\theta}) \cos{\theta}
-$$
-
-$$ \tag{17.112}
+$$ \tag{17.117}
 \begin{aligned}
 	& \int_{0}^{2 \pi} \int_{0}^{\pi} \big[ \bm{M_{m,n}^{(1)}}(\bm{r}) \big]^{\*} \cdot \bm{E_i}(\bm{r}) \sin{\theta} \thinspace d\theta d\phi
 	\cr
-	&= \gamma_{m,n} \sum_{l=0}^{\infin} i^l (2 l + 1) j_l(k r) \big[ j_n(k r) \big]^{\*} \int_{0}^{2 \pi} e^{-i m \phi} \cos{\phi} \thinspace d\phi \int_{0}^{\pi} P_l(\cos{\theta}) P_n^m(\cos{\theta}) \cos{\theta} \thinspace d\theta
-	\cr
+	&= \delta_{m,\pm 1} (i E_x + m E_y) \pi \gamma_{1,n} n (n+1) \big[ j_n(k r) \big]^{\*} \int_{0}^{\pi} e^{i k r \cos{\theta}} P_n(\cos{\theta}) \sin{\theta} \thinspace d\theta,
 \end{aligned}
 $$
 
-$$ \tag{17.107}
-	P_n^{m+1}(\cos{\theta}) \sin{\theta} = (n - m + 1) P_{n+1}^m(\cos{\theta}) - (n + m + 1) P_n^m(\cos{\theta}) \cos{\theta}
+we readily identify a component of Equation 17.107, thus solving the integral:
+
+$$ \tag{17.118}
+\begin{aligned}
+	& \int_{0}^{2 \pi} \int_{0}^{\pi} \big[ \bm{M_{m,n}^{(1)}}(\bm{r}) \big]^{\*} \cdot \bm{E_i}(\bm{r}) \sin{\theta} \thinspace d\theta d\phi
+	\cr
+	&= \delta_{m,\pm 1} (i E_x + m E_y) 2 \pi i^n \gamma_{1,n} n (n+1) \big\vert j_n(k r) \big\vert^2.
+\end{aligned}
 $$
 
+Comparison with Equation 17.97.1 yields the value of the first expansion coefficient
 
+$$ \tag{17.119}
+	a_{m,n}^{(1)}
+	= -\delta_{m,\pm 1} (i E_x + m E_y) 2 \pi i^n \gamma_{1,n}.
+$$
 
+Compare with Stratton!!!
 
 ---
 
