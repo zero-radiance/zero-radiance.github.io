@@ -4696,7 +4696,7 @@ $$ \tag{17.69}
 \end{aligned}
 $$
 
-and (evgenii: explain this better?)
+and (evgenii: explain this better? put 17.116 here? factor out all the identities for re-usability!)
 
 $$ \tag{17.70}
 \begin{aligned}
@@ -4874,12 +4874,14 @@ Most properties of the vector spherical harmonics are, to some degree, shared by
 $$ \tag{17.81}
 	\bm{L_{-m,n}}
 	= (-1)^m \bm{L_{m,n}^{\*}},
-	\quad
+	\enspace
 	\bm{M_{-m,n}}
 	= (-1)^m \bm{M_{m,n}^{\*}},
-	\quad
+	\enspace
 	\bm{N_{-m,n}}
 	= (-1)^m \bm{N_{m,n}^{\*}}.
+	\enspace
+	(z_n \in \mathcal{R})
 $$
 
 According to Equation 17.22, \\(\bm{L_{m,n}}\\) and \\(\bm{M_{m,n}}\\) are mutually orthogonal in the  3-dimensional space. Equation 17.80 allows us to determine the state of affairs for the remaining two pairs of vectors. Since, according to Equation 17.74, the spherical harmonic vectors are orthogonal,
@@ -4955,7 +4957,7 @@ $$ \tag{17.87}
 	\cr
 	&= \frac{1}{2 n + 1} \Big( n \big[ z_{n-1}(k r) \big]^2 + (n + 1) \big[ z_{n+1}(k r) \big]^2 \Big) \delta_{m,s} \delta_{t,n}.
 	\qquad
-	(k, z_n \in \mathcal{R})
+	(z_n \in \mathcal{R})
 \end{aligned}
 $$
 
@@ -4994,7 +4996,7 @@ $$ \tag{17.90}
 		(n + 1) \big[ z_{n-1}(k r) \big]^2 + n \big[ z_{n+1}(k r) \big]^2
 		\Big) \delta_{m,s} \delta_{t,n}.
 	\qquad
-	(k, z_n \in \mathcal{R})
+	(z_n \in \mathcal{R})
 \end{aligned}
 $$
 
@@ -5043,7 +5045,7 @@ $$ \tag{17.94}
 	&= \frac{n (n + 1)}{2 n + 1}
 	\Big( \big[ z_{n-1}(k r) \big]^2 - \big[ z_{n+1}(k r) \big]^2 \Big) \delta_{m,s} \delta_{t,n},
 	\qquad
-	(k, z_n \in \mathcal{R})
+	(z_n \in \mathcal{R})
 \end{aligned}
 $$
 
@@ -5059,14 +5061,14 @@ $$
 
 For our application, the partial orthogonality between \\(\bm{L_{m,n}}\\) and \\(\bm{N_{m,n}}\\) is not a real concern. According to Equations 17.36 and 17.37, the electric and the magnetic fields can be expressed solely in terms of \\(\bm{M_{m,n}}\\) and \\(\bm{N_{m,n}}\\), which are mutually orthogonal, as has been shown by Equations 17.82 and 17.92.
 
-Now, let us return to the scattering problem. In general, we may arrive at the solution by determining the values of the set of coefficients \\(\lbrace a_{m,n}, b_{m,n} \rbrace\\) of the vector spherical wave series expansion
+Now, let us return to the scattering problem. In general, we may arrive at the solution by determining the values of the set of coefficients \\(\lbrace a_{m,n}, b_{m,n} \rbrace\\) of the vector spherical wave series expansion given by Equations 17.36:
 
 $$ \tag{17.96}
 	\bm{E}(\bm{r}, \omega)
 	= -\sum_{n=0}^{\infin} \sum_{m=-n}^{n} \big( a_{m,n}(\omega) \bm{M_{m,n}}(\bm{r}, \omega) + b_{m,n}(\omega) \bm{N_{m,n}}(\bm{r}, \omega) \big).
 $$
 
-In order to find these coefficients, we must consider three distinct types of electromagnetic fields: the incident field produced by an external source, the scattered field in the far zone of the particle, and the total internal field induced inside the sphere. The reason for this kind of decomposition will become apparent shortly.
+In order to obtain these coefficients, we must consider three (???) distinct types of electromagnetic fields: the incident field produced by an external source, the scattered field in the far zone of the particle, and the total internal field induced inside the sphere. The reason for this kind of decomposition will become apparent shortly.
 
 We shall start with the incident field. Evidently, its expression must be known a priori. That permits us to determine the values of the coefficients \\(a_{m,n}\\) and \\(b_{m,n}\\) by projecting Equation 17.96 onto \\(\bm{M_{s,t}}\\) and \\(\bm{N_{s,t}}\\) using Equations 17.88 and 17.89, respectively:
 
@@ -5091,7 +5093,7 @@ $$
 
 motivated by its non-singular behavior at the origin (c.f. Figure N). This property makes it suitable for expressing a smooth, finite-valued incident field.
 
-Let us further assume that the incident field can be represented by a plane wave. This is a valid description of an extended source located in the far zone of a small particle; a more general source could be modeled by superposition of plane waves.
+Let us further assume that the incident field can be represented by a plane wave. This is a valid description of an extended source located in the far zone of a small particle; a more general source could be modeled as a superposition of plane waves.
 
 If the region of space is filled with a linear, isotropic, homogeneous, source-free medium, the expression of the incident vector plane wave is given by Equation 7.2:
 
@@ -5119,7 +5121,7 @@ $$ \tag{17.102}
 	= E_x(\omega) \bm{e_x} + E_y(\omega) \bm{e_y}.
 $$
 
-The polarization phasor does not explicitly depend on the point of reference \\(\bm{r}\\). However, in spherical coordinates, the basis vectors [vary in space](https://en.wikipedia.org/wiki/Vector_fields_in_cylindrical_and_spherical_coordinates#Spherical_coordinate_system):
+Equation 17.102 does not explicitly depend on the point of reference \\(\bm{r}\\). However, the spherical coordinate basis vectors [vary in space](https://en.wikipedia.org/wiki/Vector_fields_in_cylindrical_and_spherical_coordinates#Spherical_coordinate_system):
 
 $$ \tag{17.103}
 \begin{aligned}
@@ -5137,9 +5139,9 @@ $$ \tag{17.103}
 \end{aligned}
 $$
 
-Despite the apparent complexity, Equation 17.103 offers a more useful representation of the basis vectors, since we can readily from products with the vector spherical wave functions of Equation 17.71 (or the vector spherical harmonics of Equation 17.72). Now, since a vector plane wave is a product of the polarization phasor and a scalar plane wave, we should be able to perform a vector spherical wave series expansion of Equation 17.99 if we find a suitable alternative formulation of its complex exponential term.
+Despite the apparent complexity, Equation 17.103 offers a useful representation of the basis vectors, since we can readily from products with the vector spherical wave functions of Equation 17.71 (or the vector spherical harmonics of Equation 17.72). Now, since a vector plane wave is a product of the polarization phasor and a scalar plane wave, we should be able to perform a vector spherical wave series expansion of Equation 17.99 if we find a suitable alternative formulation of its complex exponential term.
 
-We have initially encountered scalar plane waves when we set out to solve the scalar Helmholtz equation in the Cartesian coordinate system (c.f. Equations 6.11-6.14). More recently, we have also found a solution in spherical coordinates (given by Equation 17.44). Obviously, both solutions refer to the same function, the only difference being the coordinate representation. Thus, if we adhere to the convention established by Equation 17.101,
+We have initially encountered scalar plane waves when we set out to solve the scalar Helmholtz equation in the Cartesian coordinate system (c.f. Equations 6.11-6.14). More recently, we have also found a solution in spherical coordinates (given by Equation 17.44). Obviously, both solutions refer to the same function, the only difference being the coordinate representation. Thus, if we adhere to the convention established by Equation 17.101, then
 
 $$ \tag{17.104}
 \begin{aligned}
@@ -5162,10 +5164,10 @@ $$ \tag{17.106}
 	= d_{n} \frac{2}{(2n + 1)} j_n(k r).
 $$
 
-After taking [Gegenbauer's integral representation](https://dlmf.nist.gov/10.54) of the spherical Bessel function of the first kind \[[Watson](#references) (ch 3.32)\]
+By taking [Gegenbauer's representation](https://dlmf.nist.gov/10.54) of the spherical Bessel function of the first kind \[[Watson](#references) (ch 3.32)\]
 
 $$ \tag{17.107}
-	j_n(x) = \frac{(-i)^n}{2}
+	j_n(x) = \frac{i^{-n}}{2}
 	\int_{0}^{\pi} e^{i x \cos{\theta}} P_n(\cos{\theta}) \sin{\theta} \thinspace d\theta
 $$
 
@@ -5175,7 +5177,7 @@ $$ \tag{17.108}
 	d_{n} = i^n (2n + 1).
 $$
 
-Substitution into Equation 17.105 yields the [plane wave expansion](https://en.wikipedia.org/wiki/Plane-wave_expansion)
+Substitution into Equation 17.105 yields the [scalar plane wave expansion](https://en.wikipedia.org/wiki/Plane-wave_expansion)
 
 $$ \tag{17.109}
 	e^{i k r \cos{\theta}}
@@ -5185,7 +5187,7 @@ $$
 
 in terms of the scalar spherical wave functions of the first kind \\(\psi_{m,n}^{(1)}\\).
 
-We now have all the tools required to determine the series coefficients of an actual electromagnetic plane wave. As shown by Equation 17.97, this is accomplished by projecting the vector plane wave (Equations 17.99-17.103) onto the vector spherical wave functions (Equations 17.63 and 17.67).
+We now have all the tools required to determine the series coefficients of an actual electromagnetic plane wave. As shown by Equation 17.97, this can be accomplished by projecting the vector plane wave (Equations 17.99-17.103) onto the vector spherical wave functions (Equations 17.63 and 17.67).
 
 We shall first evaluate
 
@@ -5202,16 +5204,16 @@ $$ \tag{17.111}
 	&= E_x \int_{0}^{2 \pi} \int_{0}^{\pi} \bigg(
 		i m \frac{P_n^m(\cos{\theta})}{\sin{\theta}} \cos{\theta} \cos{\phi}
 		- \frac{\partial P_n^m(\cos{\theta})}{\partial \theta} \sin{\phi}
-	\bigg) e^{-i m \phi + i k r \cos{\theta}} \sin{\theta} \thinspace d\theta d\phi
+	\bigg) \sin{\theta} \thinspace e^{-i m \phi + i k r \cos{\theta}} \thinspace d\theta d\phi
 	\cr
 	&+ E_y \int_{0}^{2 \pi} \int_{0}^{\pi} \bigg(
 		i m \frac{P_n^m(\cos{\theta})}{\sin{\theta}} \cos{\theta} \sin{\phi}
 		+ \frac{\partial P_n^m(\cos{\theta})}{\partial \theta} \cos{\phi}
-	\bigg) e^{-i m \phi + i k r \cos{\theta}} \sin{\theta} \thinspace d\theta d\phi.
+	\bigg) \sin{\theta} \thinspace e^{-i m \phi + i k r \cos{\theta}} \thinspace d\theta d\phi.
 \end{aligned}
 $$
 
-Each term of the sum given above can be separated into a product of \\(r\\), \\(\theta\\), \\(\phi\\) components. Using the identities
+Each term of the sum given above can be factored into a product of the \\(r\\), \\(\theta\\), \\(\phi\\) components. Using the identities
 
 $$ \tag{17.112}
 	\int_{0}^{2 \pi} \sin{\phi} \thinspace e^{\pm i \phi} \thinspace d\phi = \pm i \pi,
@@ -5219,7 +5221,7 @@ $$ \tag{17.112}
 	\int_{0}^{2 \pi} \cos{\phi} \thinspace e^{\pm i \phi} \thinspace d\phi = \pi,
 $$
 
-the integrals over \\(\phi\\) can be evaluated analytically. Equation 17.111 is thus reduced to
+the integrals taken over the \\(\phi\\) angle can be evaluated analytically. Equation 17.111 is thus reduced to
 
 $$ \tag{17.113}
 \begin{aligned}
@@ -5265,6 +5267,19 @@ Upon substitution into Equation 17.113 and accounting for the polynomials with \
 
 $$ \tag{17.117}
 \begin{aligned}
+	& \int_{0}^{\pi} \bigg(
+		  \frac{P_n^1(\cos{\theta})}{\sin{\theta}} \cos{\theta}
+		+ \frac{\partial P_n^1(\cos{\theta})}{\partial \theta}
+	\bigg) \sin{\theta} \thinspace e^{i k r \cos{\theta}} \thinspace d\theta
+	\cr
+	&= -n (n+1) \int_{0}^{\pi} e^{i k r \cos{\theta}} P_n(\cos{\theta}) \sin{\theta} \thinspace d\theta = -2 i^n n (n+1) j_n(k r)
+\end{aligned}
+$$
+
+FIXMEEEE
+
+$$ \tag{17.117}
+\begin{aligned}
 	& \int_{0}^{2 \pi} \int_{0}^{\pi} \big[ \bm{M_{m,n}^{(1)}}(\bm{r}) \big]^{\*} \cdot \bm{E_i}(\bm{r}) \sin{\theta} \thinspace d\theta d\phi
 	\cr
 	&= \delta_{m,\pm 1} (i E_x + m E_y) \pi \gamma_{1,n} n (n+1) \big[ j_n(k r) \big]^{\*} \int_{0}^{\pi} e^{i k r \cos{\theta}} P_n(\cos{\theta}) \sin{\theta} \thinspace d\theta,
@@ -5288,7 +5303,141 @@ $$ \tag{17.119}
 	= -\delta_{m,\pm 1} (i E_x + m E_y) 2 \pi i^n \gamma_{1,n}.
 $$
 
-Compare with Stratton!!!
+The value of the second coefficient can be obtained in a similar manner, except, this time, the radial component can no longer be ignored. Substitution of Equations 17.67 and 17.99-17.103 into 17.97.2 produces the following expression:
+
+$$ \tag{17.120}
+\small
+\begin{aligned}
+	& \frac{1}{\gamma_{m,n}} \int_{0}^{2 \pi} \int_{0}^{\pi} \big[ \bm{N_{m,n}^{(1)}}(\bm{r}) \big]^{\*} \cdot \bm{E_i}(\bm{r}) \sin{\theta} \thinspace d\theta d\phi
+	\cr
+	&= E_x \bigg[ \frac{j_n(k r)}{k r} + \frac{\partial j_n(k r)}{\partial (k r)} \bigg]^{\*} \int_{0}^{2 \pi} \int_{0}^{\pi} \bigg(
+		\frac{\partial P_n^m(\cos{\theta})}{\partial \theta} \cos{\theta} \cos{\phi}
+		+ i m \frac{P_n^m(\cos{\theta})}{\sin{\theta}} \sin{\phi}
+	\bigg) e^{-i m \phi + i k r \cos{\theta}} \sin{\theta} \thinspace d\theta d\phi
+	\cr
+	&+ E_x \bigg[ \frac{j_n(k r)}{k r} \bigg]^{\*} n (n + 1) \int_{0}^{2 \pi} \int_{0}^{\pi}
+		P_n^m(\cos{\theta}) \sin^2{\theta} \cos{\phi}
+	\thinspace e^{-i m \phi + i k r \cos{\theta}} \thinspace d\theta d\phi
+	\cr
+	&+ E_y \bigg[ \frac{j_n(k r)}{k r} \bigg]^{\*} n (n + 1) \int_{0}^{2 \pi} \int_{0}^{\pi}
+		P_n^m(\cos{\theta}) \sin^2{\theta} \sin{\phi}
+	\thinspace e^{-i m \phi + i k r \cos{\theta}} \thinspace d\theta d\phi
+	\cr
+	&+ E_y \bigg[ \frac{j_n(k r)}{k r} + \frac{\partial j_n(k r)}{\partial (k r)} \bigg]^{\*} \int_{0}^{2 \pi} \int_{0}^{\pi} \bigg(
+		\frac{\partial P_n^m(\cos{\theta})}{\partial \theta} \cos{\theta} \sin{\phi}
+		- i m \frac{P_n^m(\cos{\theta})}{\sin{\theta}} \cos{\phi}
+	\bigg) e^{-i m \phi + i k r \cos{\theta}} \sin{\theta} \thinspace d\theta d\phi.
+\end{aligned}
+$$
+
+Since, once again, \\(m = \pm 1\\), we may utilize Equation 17.112 to perform integration over the \\(\phi\\) angle:
+
+$$ \tag{17.121}
+\small
+\begin{aligned}
+	& \frac{1}{\gamma_{m,n}} \int_{0}^{2 \pi} \int_{0}^{\pi} \big[ \bm{N_{m,n}^{(1)}}(\bm{r}) \big]^{\*} \cdot \bm{E_i}(\bm{r}) \sin{\theta} \thinspace d\theta d\phi
+	\cr
+	&= \delta_{m,\pm 1} (E_x - i m E_y) \bigg[ \frac{j_n(k r)}{k r} \bigg]^{\*} \pi n (n + 1) \int_{0}^{\pi}
+		P_n^m(\cos{\theta}) \sin^2{\theta}
+	\thinspace e^{i k r \cos{\theta}} \thinspace d\theta
+	\cr
+	&+ \delta_{m,\pm 1} (E_x - i m E_y) \bigg[ \frac{j_n(k r)}{k r} + \frac{\partial j_n(k r)}{\partial (k r)} \bigg]^{\*} \pi \int_{0}^{\pi} \bigg(
+		\frac{\partial P_n^m(\cos{\theta})}{\partial \theta} \cos{\theta}
+		+ \frac{P_n^m(\cos{\theta})}{\sin{\theta}}
+	\bigg) e^{i k r \cos{\theta}} \sin{\theta} \thinspace d\theta.
+\end{aligned}
+$$
+
+The first expression can be [integrated by parts](https://en.wikipedia.org/wiki/Integration_by_parts). If we utilize Equations 17.114 and 17.116 to define
+
+$$ \tag{17.122}
+\begin{aligned}
+	u(n, \theta) &= P_n^{1}(\cos{\theta}) \sin{\theta} = \sin{\theta} \frac{\partial}{\partial \theta} P_n(\cos{\theta}),
+	\cr
+	\frac{\partial u(n, \theta)}{\partial \theta} &= \bigg( \cos{\theta} \frac{\partial}{\partial \theta}
+	+ \sin{\theta} \frac{\partial^2}{\partial \theta^2} \bigg) P_n(\cos{\theta})
+	= -n (n+1) P_n(\cos{\theta}) \sin{\theta},
+	\cr
+	\frac{\partial v(kr, \theta)}{\partial \theta} &= \sin{\theta} \thinspace e^{i k r \cos{\theta}},
+	\cr
+	v(kr, \theta) &= \frac{i}{k r} e^{i k r \cos{\theta}},
+\end{aligned}
+$$
+
+and apply Equation 17.107, we readily obtain
+
+$$ \tag{17.123}
+\begin{aligned}
+	&\int_{0}^{\pi}
+		P_n^1(\cos{\theta}) \sin^2{\theta}
+	\thinspace e^{i k r \cos{\theta}} \thinspace d\theta
+	\cr
+	&= u(n, \pi) v(kr, \pi) - u(n, 0) v(kr, 0) - \int_{0}^{\pi} \frac{\partial u(n, \theta)}{\partial \theta} v(kr, \theta) \thinspace d\theta
+	\cr
+	&= n (n+1) \frac{i}{k r} \int_{0}^{\pi} e^{i k r \cos{\theta}} P_n(\cos{\theta}) \sin{\theta} \thinspace d\theta
+	 = 2 n i^{n+1} (n+1) \frac{j_n(k r)}{k r}.
+\end{aligned}
+$$
+
+In order to be able to evaluate the first integral, we must return to Equation 17.107 and transform it into
+
+$$ \tag{17.124}
+	\frac{j_n(x)}{x} + \frac{\partial j_n(k r)}{\partial x}
+	= \frac{j_n(x)}{x} +
+	i \int_{0}^{\pi} e^{i x \cos{\theta}} P_n(\cos{\theta}) \sin{\theta} \cos{\theta} \thinspace d\theta.
+$$
+
+As for the second integral of Equation 17.121, we have already encountered it in Equation 17.113.
+
+$$ \tag{17.125}
+\small
+\begin{aligned}
+	& \frac{1}{\gamma_{1,n}} \int_{0}^{2 \pi} \int_{0}^{\pi} \big[ \bm{N_{m,n}^{(1)}}(\bm{r}) \big]^{\*} \cdot \bm{E_i}(\bm{r}) \sin{\theta} \thinspace d\theta d\phi
+	\cr
+	&= \delta_{m,\pm 1} (m E_x - i E_y) 2 \pi i^{n + 1} n^2 (n + 1)^2 \bigg\vert \frac{j_n(k r)}{k r} \bigg\vert^2
+	\cr
+	&+ \delta_{m,\pm 1} (m E_x - i E_y) \bigg[ \frac{j_n(k r)}{k r} + \frac{\partial j_n(k r)}{\partial (k r)} \bigg]^{\*} \pi \int_{0}^{\pi} \bigg(
+		\frac{\partial P_n^m(\cos{\theta})}{\partial \theta} \cos{\theta}
+		+ \frac{P_n^m(\cos{\theta})}{\sin{\theta}}
+	\bigg) e^{i k r \cos{\theta}} \sin{\theta} \thinspace d\theta.
+\end{aligned}
+$$
+
+---
+
+$$ \tag{17.67}
+\begin{aligned}
+	\bm{N_{m,n}^{\*}}(\bm{r})
+	&= \gamma_{m,n} n (n + 1) \bigg[ \frac{z_n(k r)}{k r} \bigg]^{\*} P_n^m(\cos{\theta}) e^{-i m \phi} \bm{e_r}
+	\cr
+	&+ \gamma_{m,n} \bigg[ \frac{z_n(k r)}{k r} + \frac{\partial z_n(k r)}{\partial (k r)} \bigg]^{\*}
+	   \frac{\partial P_n^m(\cos{\theta})}{\partial \theta} e^{-i m \phi} \bm{e_{\theta}}
+	\cr
+	&- \gamma_{m,n} i m \bigg[ \frac{z_n(k r)}{k r} + \frac{\partial z_n(k r)}{\partial (k r)} \bigg]^{\*}
+	   \frac{P_n^m(\cos{\theta})}{\sin{\theta}} e^{-i m \phi} \bm{e_{\phi}}.
+\end{aligned}
+$$
+
+
+$$ \tag{17.103}
+\begin{aligned}
+	\bm{e_x} &= \sin{\theta} \cos{\phi} \thinspace \bm{e_{r}}
+			  + \cos{\theta} \cos{\phi} \thinspace \bm{e_{\theta}}
+			  - \sin{\phi} \thinspace \bm{e_{\phi}},
+	\cr
+	\bm{e_y} &= \sin{\theta} \sin{\phi} \thinspace \bm{e_{r}}
+			  + \cos{\theta} \sin{\phi} \thinspace \bm{e_{\theta}}
+			  + \cos{\phi} \thinspace \bm{e_{\phi}},
+	\cr
+	\bm{e_z} &= \cos{\theta} \thinspace \bm{e_{r}}
+			  - \sin{\theta} \thinspace \bm{e_{\theta}}.
+	\cr
+\end{aligned}
+$$
+
+---
+
+Both Stratton and myself appear to be correct. Show how to arrive to Stratton's results...
 
 ---
 
