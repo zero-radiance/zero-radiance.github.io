@@ -4680,10 +4680,10 @@ The expressions given above may be shortened by defining two new zonal functions
 $$ \tag{17.68}
 	\pi_{m,n}(\theta) = m \frac{P_n^m(\cos{\theta})}{\sin{\theta}},
 	\quad
-	\tau_{m,n}(\theta) = \frac{\partial P_n^m(\cos{\theta})}{\partial \theta}
+	\tau_{m,n}(\theta) = \frac{\partial P_n^m(\cos{\theta})}{\partial \theta},
 $$
 
-that satisfy the relations
+that satisfy the relation
 
 $$ \tag{17.69}
 \begin{aligned}
@@ -4696,27 +4696,36 @@ $$ \tag{17.69}
 \end{aligned}
 $$
 
-and (evgenii: explain this better? put 17.116 here? factor out all the identities for re-usability!)
+the modified Legendre's differential equation (Equations 17.41.2 and 17.42)
+
+$$ \tag{17.??}
+	m \pi_{m,n} = \frac{\partial}{\partial \theta} ( \tau_{m,n} \sin{\theta} )
+	+ n ( n + 1) P_n^m \sin{\theta},
+$$
+
+which leads to
 
 $$ \tag{17.70}
 \begin{aligned}
 	& \int_{0}^{\pi} \big( \pi_{m,n}(\theta) \pi_{m,l}(\theta)
 	+ \tau_{m,n}(\theta) \tau_{m,l}(\theta) \big) \sin{\theta} \thinspace d\theta
 	\cr
-	&= \int_{0}^{\pi} n (n+1) P_n^m P_l^m \sin{\theta} \thinspace d\theta
+	&= \frac{1}{2} \int_{0}^{\pi} \Big( m \pi_{m,n}(\theta) P^m_l(\cos{\theta}) + m \pi_{m,l}(\theta) P^m_n(\cos{\theta}) \Big) \thinspace d\theta
+	+ \int_{0}^{\pi} \tau_{m,n}(\theta) \tau_{m,l}(\theta) \sin{\theta} \thinspace d\theta
 	\cr
-	&+ \frac{1}{2} \int_{0}^{\pi} \bigg( \frac{\partial}{\partial \theta} \bigg( \sin{\theta} \frac{\partial P_n^m}{\partial \theta} \bigg) P_l^m
-	+ 2 \sin{\theta} \frac{\partial P_n^m}{\partial \theta} \frac{\partial P_l^m}{\partial \theta}
-	+ \frac{\partial}{\partial \theta} \bigg( \sin{\theta} \frac{\partial P_l^m}{\partial \theta} \bigg) P_n^m \bigg) d\theta
+	&= \int_{0}^{\pi} n (n+1) P_n^m(\cos{\theta}) P_l^m(\cos{\theta}) \sin{\theta} \thinspace d\theta
 	\cr
-	&= \int_{0}^{\pi} n (n+1) P_n^m P_l^m \sin{\theta} \thinspace d\theta
+	&+ \frac{1}{2} \int_{0}^{\pi} \bigg( \frac{\partial}{\partial \theta} \big( \tau_{m,n} \sin{\theta} \big) P_l^m
+	+ 2 \tau_{m,n} \tau_{m,l} \sin{\theta}
+	+ \frac{\partial}{\partial \theta} \big( \tau_{m,l} \sin{\theta} \big) P_n^m \bigg) d\theta
+	\cr
+	&= \int_{0}^{\pi} n (n+1) P_n^m(\cos{\theta}) P_l^m(\cos{\theta}) \sin{\theta} \thinspace d\theta
 	 + \frac{1}{2} \int_{0}^{\pi} \frac{\partial}{\partial \theta} \Bigg( \sin{\theta} \frac{\partial \big[ P_n^m(\cos{\theta}) P_l^m(\cos{\theta}) \big]}{\partial \theta} \Bigg) d\theta
 	\cr
-	&= \frac{2}{(2n + 1)} \frac{(n+m)!}{(n-m)!} n (n+1) \delta_{l,n}
+	&= \frac{2}{(2n + 1)} \frac{(n+m)!}{(n-m)!} n (n+1) \delta_{l,n},
 \end{aligned}
 $$
-
-where we used Legendre's differential equation (Equations 17.41.2 and 17.42), the orthogonality property of Legendre's polynomials (Equation 17.56.1), and the fact that the value of the associated Legendre polynomials is zero for \\(\cos{\theta} = \pm 1\\) unless \\(m = 0\\).
+where we additionally utilized the orthogonality property of Legendre's polynomials (Equation 17.56.1) and the fact that the value of the associated Legendre polynomials is zero for \\(\cos{\theta} = \pm 1\\) unless \\(m = 0\\).
 
 After substitution into Equations 17.62, 17.63, and 17.67, we immediately obtain the reduced expressions of the vector spherical wave functions:
 
