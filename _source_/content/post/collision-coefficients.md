@@ -5310,7 +5310,7 @@ $$ \tag{17.120}
 	= -\delta_{m,\pm 1} (i E_x + m E_y) 2 \pi i^n \gamma_{1,n}.
 $$
 
-The value of the second coefficient can be obtained in a similar manner, except, this time, the radial component can no longer be ignored. Substitution of Equations 17.67 and 17.99-17.103 into 17.97.2 produces the following expression:
+The value of the second coefficient can be obtained in a similar manner (except, this time, the radial component can no longer be ignored). Substitution of Equations 17.67 and 17.99-17.103 into 17.97.2 produces the following expression:
 
 $$ \tag{17.121}
 \small
@@ -5382,33 +5382,24 @@ $$ \tag{17.124}
 	&= u(n, \pi) v(kr, \pi) - u(n, 0) v(kr, 0) - \int_{0}^{\pi} \frac{\partial u(n, \theta)}{\partial \theta} v(kr, \theta) \thinspace d\theta
 	\cr
 	&= n (n+1) \frac{i}{k r} \int_{0}^{\pi} e^{i k r \cos{\theta}} P_n(\cos{\theta}) \sin{\theta} \thinspace d\theta
-	 = 2 n i^{n+1} (n+1) \frac{j_n(k r)}{k r}.
+	 = 2 i^{n+1} n (n+1) \frac{j_n(k r)}{k r}.
 \end{aligned}
 $$
 
-In order to be able to evaluate the first integral, we must return to Equation 17.107 and transform it into
-
-$$ \tag{17.125}
-	\frac{j_n(x)}{x} + \frac{\partial j_n(k r)}{\partial x}
-	= \frac{j_n(x)}{x} +
-	i \int_{0}^{\pi} e^{i x \cos{\theta}} P_n(\cos{\theta}) \sin{\theta} \cos{\theta} \thinspace d\theta.
-$$
-
-As for the second integral of Equation 17.122, we have already encountered it in Equation 17.113.
+As for the second integral of Equation 17.122, we have already encountered it in Equation 17.117. Thus,
 
 $$ \tag{17.125}
 \small
 \begin{aligned}
-	& \frac{1}{\gamma_{1,n}} \int_{0}^{2 \pi} \int_{0}^{\pi} \big[ \bm{N_{m,n}^{(1)}}(\bm{r}) \big]^{\*} \cdot \bm{E_i}(\bm{r}) \sin{\theta} \thinspace d\theta d\phi
+	& \int_{0}^{2 \pi} \int_{0}^{\pi} \big[ \bm{N_{m,n}^{(1)}}(\bm{r}) \big]^{\*} \cdot \bm{E_i}(\bm{r}) \sin{\theta} \thinspace d\theta d\phi
 	\cr
-	&= \delta_{m,\pm 1} (m E_x - i E_y) 2 \pi i^{n + 1} n^2 (n + 1)^2 \bigg\vert \frac{j_n(k r)}{k r} \bigg\vert^2
+	&= \delta_{m,\pm 1} (m E_x - i E_y) 2 \pi i^{n + 1} \gamma_{1,n} n^2 (n + 1)^2 \bigg\vert \frac{j_n(k r)}{k r} \bigg\vert^2
 	\cr
-	&+ \delta_{m,\pm 1} (m E_x - i E_y) \bigg[ \frac{j_n(k r)}{k r} + \frac{\partial j_n(k r)}{\partial (k r)} \bigg]^{\*} \pi \int_{0}^{\pi} \bigg(
-		\frac{\partial P_n^m(\cos{\theta})}{\partial \theta} \cos{\theta}
-		+ \frac{P_n^m(\cos{\theta})}{\sin{\theta}}
-	\bigg) e^{i k r \cos{\theta}} \sin{\theta} \thinspace d\theta.
+	&- \delta_{m,\pm 1} (m E_x - i E_y) \bigg[ \frac{j_n(k r)}{k r} + \frac{\partial j_n(k r)}{\partial (k r)} \bigg]^{\*} 2 \pi i^n \gamma_{1,n} n (n+1) j_n(k r).
 \end{aligned}
 $$
+
+What the fuck? Check in Mathematica. Try 17.50...
 
 ---
 
