@@ -5272,7 +5272,7 @@ $$ \tag{17.116}
 \end{aligned}
 $$
 
-Upon substitution into Equation 17.113 and accounting for the polynomials with \\(m = -1\\),
+Equations 17.115 and 17.116, coupled with the integral formulation of the spherical Bessel function of the first kind given by Equation 17.107, allow us to analytically evaluate the integral found in Equation 17.113:
 
 $$ \tag{17.117}
 \begin{aligned}
@@ -5281,23 +5281,21 @@ $$ \tag{17.117}
 		+ \frac{\partial P_n^1(\cos{\theta})}{\partial \theta}
 	\bigg) \sin{\theta} \thinspace e^{i k r \cos{\theta}} \thinspace d\theta
 	\cr
-	&= -n (n+1) \int_{0}^{\pi} e^{i k r \cos{\theta}} P_n(\cos{\theta}) \sin{\theta} \thinspace d\theta = -2 i^n n (n+1) j_n(k r)
+	&= -n (n+1) \int_{0}^{\pi} e^{i k r \cos{\theta}} P_n(\cos{\theta}) \sin{\theta} \thinspace d\theta = -2 i^n n (n+1) j_n(k r).
 \end{aligned}
 $$
 
-FIXMEEEE
-
-$$ \tag{17.117}
-\begin{aligned}
-	& \int_{0}^{2 \pi} \int_{0}^{\pi} \big[ \bm{M_{m,n}^{(1)}}(\bm{r}) \big]^{\*} \cdot \bm{E_i}(\bm{r}) \sin{\theta} \thinspace d\theta d\phi
-	\cr
-	&= \delta_{m,\pm 1} (i E_x + m E_y) \pi \gamma_{1,n} n (n+1) \big[ j_n(k r) \big]^{\*} \int_{0}^{\pi} e^{i k r \cos{\theta}} P_n(\cos{\theta}) \sin{\theta} \thinspace d\theta,
-\end{aligned}
-$$
-
-we readily identify a component of Equation 17.107, thus solving the integral:
+We may extend our result to the \\(m = -1\\) case by examining Equations 17.58 and 17.114.2 and noting that
 
 $$ \tag{17.118}
+\begin{aligned}
+	\gamma_{1,n} = \frac{\gamma_{-1,n}}{n (n + 1)}.
+\end{aligned}
+$$
+
+Furthermore, the minus sign found in Equation 17.114.2 can be dealt with by multiplying both the positive and the negative solutions by \\(m\\). Thus, with the help of Equations 17.117-17.118, the unified value of Equation 17.113 is
+
+$$ \tag{17.119}
 \begin{aligned}
 	& \int_{0}^{2 \pi} \int_{0}^{\pi} \big[ \bm{M_{m,n}^{(1)}}(\bm{r}) \big]^{\*} \cdot \bm{E_i}(\bm{r}) \sin{\theta} \thinspace d\theta d\phi
 	\cr
@@ -5307,14 +5305,14 @@ $$
 
 Comparison with Equation 17.97.1 yields the value of the first expansion coefficient
 
-$$ \tag{17.119}
+$$ \tag{17.120}
 	a_{m,n}^{(1)}
 	= -\delta_{m,\pm 1} (i E_x + m E_y) 2 \pi i^n \gamma_{1,n}.
 $$
 
 The value of the second coefficient can be obtained in a similar manner, except, this time, the radial component can no longer be ignored. Substitution of Equations 17.67 and 17.99-17.103 into 17.97.2 produces the following expression:
 
-$$ \tag{17.120}
+$$ \tag{17.121}
 \small
 \begin{aligned}
 	& \frac{1}{\gamma_{m,n}} \int_{0}^{2 \pi} \int_{0}^{\pi} \big[ \bm{N_{m,n}^{(1)}}(\bm{r}) \big]^{\*} \cdot \bm{E_i}(\bm{r}) \sin{\theta} \thinspace d\theta d\phi
@@ -5341,7 +5339,7 @@ $$
 
 Since, once again, \\(m = \pm 1\\), we may utilize Equation 17.112 to perform integration over the \\(\phi\\) angle:
 
-$$ \tag{17.121}
+$$ \tag{17.122}
 \small
 \begin{aligned}
 	& \frac{1}{\gamma_{m,n}} \int_{0}^{2 \pi} \int_{0}^{\pi} \big[ \bm{N_{m,n}^{(1)}}(\bm{r}) \big]^{\*} \cdot \bm{E_i}(\bm{r}) \sin{\theta} \thinspace d\theta d\phi
@@ -5359,7 +5357,7 @@ $$
 
 The first expression can be [integrated by parts](https://en.wikipedia.org/wiki/Integration_by_parts). If we utilize Equations 17.114 and 17.116 to define
 
-$$ \tag{17.122}
+$$ \tag{17.123}
 \begin{aligned}
 	u(n, \theta) &= P_n^{1}(\cos{\theta}) \sin{\theta} = \sin{\theta} \frac{\partial}{\partial \theta} P_n(\cos{\theta}),
 	\cr
@@ -5375,7 +5373,7 @@ $$
 
 and apply Equation 17.107, we readily obtain
 
-$$ \tag{17.123}
+$$ \tag{17.124}
 \begin{aligned}
 	&\int_{0}^{\pi}
 		P_n^1(\cos{\theta}) \sin^2{\theta}
@@ -5390,13 +5388,13 @@ $$
 
 In order to be able to evaluate the first integral, we must return to Equation 17.107 and transform it into
 
-$$ \tag{17.124}
+$$ \tag{17.125}
 	\frac{j_n(x)}{x} + \frac{\partial j_n(k r)}{\partial x}
 	= \frac{j_n(x)}{x} +
 	i \int_{0}^{\pi} e^{i x \cos{\theta}} P_n(\cos{\theta}) \sin{\theta} \cos{\theta} \thinspace d\theta.
 $$
 
-As for the second integral of Equation 17.121, we have already encountered it in Equation 17.113.
+As for the second integral of Equation 17.122, we have already encountered it in Equation 17.113.
 
 $$ \tag{17.125}
 \small
