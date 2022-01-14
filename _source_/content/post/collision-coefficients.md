@@ -5087,10 +5087,10 @@ $$ \tag{17.97}
 	{ n (n+1) \big| j_n(k r) \big|^2 },
 	\cr
 	b_{m,n}^{(1)} &= \frac{ - \int_{0}^{2 \pi} \int_{0}^{\pi} \big[ \bm{N_{m,n}^{(1)}}(\bm{r}) \big]^{\*} \cdot \bm{E_i}(\bm{r}) \sin{\theta} \thinspace d\theta d\phi }
-	{ \frac{n (n+1)}{(2 n + 1)^2} \Big(
-		\big| (n + 1) j_{n-1}(k r) - n j_{n+1}(k r) \big|^2
-		+ n (n+1) \big| j_{n-1}(k r) + j_{n+1}(k r) \big|^2
-		\Big) }.
+	{ n (n+1) \bigg(
+		\Big| \frac{j_n(k r)}{k r} + \frac{\partial j_n(k r)}{\partial (k r)} \Big|^2
+		+ n (n+1) \Big| \frac{j_n(k r)}{k r} \Big|^2
+		\bigg) }.
 \end{aligned}
 $$
 
@@ -5123,7 +5123,7 @@ $$ \tag{17.101}
 	\bm{r} \cdot \bm{n_i} = r \cos{\theta}.
 $$
 
-Further simplification can be achieved by recalling that an electromagnetic plane wave is transverse with respect to its direction of propagation (as shown by Equations 7.18 and 7.23). Therefore, in Cartesian coordinates, the polarization phasor \\(\bm{E_0}\\) of a plane wave can be completely described in terms of the tangential components \\(E_x\\) and \\(E_y\\):
+Further simplification can be achieved by recalling that an electromagnetic plane wave is transverse with respect to its direction of propagation (as shown by Equations 7.18 and 7.23). Therefore, in Cartesian coordinates, the polarization phasor \\(\bm{E_0}\\) of a plane wave can be completely described by two complex numbers \\(E_x\\) and \\(E_y\\):
 
 $$ \tag{17.102}
 	\bm{E_0}(\bm{e_z}, \omega)
@@ -5210,15 +5210,15 @@ $$ \tag{17.111}
 \begin{aligned}
 	& \frac{-1}{ \gamma_{m,n} \big[ j_n(k r) \big]^{\*} }\int_{0}^{2 \pi} \int_{0}^{\pi} \big[ \bm{M_{m,n}^{(1)}}(\bm{r}) \big]^{\*} \cdot \bm{E_i}(\bm{r}) \sin{\theta} \thinspace d\theta d\phi
 	\cr
-	&= E_x \int_{0}^{2 \pi} \int_{0}^{\pi} \bigg(
+	&= E_x \int_{0}^{2 \pi} \int_{0}^{\pi} e^{-i m \phi + i k r \cos{\theta}} \bigg(
 		i m \frac{P_n^m(\cos{\theta})}{\sin{\theta}} \cos{\theta} \cos{\phi}
 		- \frac{\partial P_n^m(\cos{\theta})}{\partial \theta} \sin{\phi}
-	\bigg) \sin{\theta} \thinspace e^{-i m \phi + i k r \cos{\theta}} \thinspace d\theta d\phi
+	\bigg) \sin{\theta} \thinspace d\theta d\phi
 	\cr
-	&+ E_y \int_{0}^{2 \pi} \int_{0}^{\pi} \bigg(
+	&+ E_y \int_{0}^{2 \pi} \int_{0}^{\pi} e^{-i m \phi + i k r \cos{\theta}} \bigg(
 		i m \frac{P_n^m(\cos{\theta})}{\sin{\theta}} \cos{\theta} \sin{\phi}
 		+ \frac{\partial P_n^m(\cos{\theta})}{\partial \theta} \cos{\phi}
-	\bigg) \sin{\theta} \thinspace e^{-i m \phi + i k r \cos{\theta}} \thinspace d\theta d\phi.
+	\bigg) \sin{\theta} \thinspace d\theta d\phi.
 \end{aligned}
 $$
 
@@ -5236,10 +5236,10 @@ $$ \tag{17.113}
 \begin{aligned}
 	& \frac{-1}{ \gamma_{m,n} \big[ j_n(k r) \big]^{\*} }\int_{0}^{2 \pi} \int_{0}^{\pi} \big[ \bm{M_{m,n}^{(1)}}(\bm{r}) \big]^{\*} \cdot \bm{E_i}(\bm{r}) \sin{\theta} \thinspace d\theta d\phi
 	\cr
-	&= \delta_{m,\pm 1} (i m E_x + E_y) \pi \int_{0}^{\pi} \bigg(
+	&= \delta_{m,\pm 1} (i m E_x + E_y) \pi \int_{0}^{\pi} e^{i k r \cos{\theta}} \bigg(
 		  \frac{P_n^m(\cos{\theta})}{\sin{\theta}} \cos{\theta}
 		+ \frac{\partial P_n^m(\cos{\theta})}{\partial \theta}
-	\bigg) \sin{\theta} \thinspace e^{i k r \cos{\theta}} \thinspace d\theta.
+	\bigg) \sin{\theta} \thinspace d\theta.
 \end{aligned}
 $$
 
@@ -5276,10 +5276,10 @@ Equations 17.115 and 17.116, coupled with the integral formulation of the spheri
 
 $$ \tag{17.117}
 \begin{aligned}
-	& \int_{0}^{\pi} \bigg(
+	& \int_{0}^{\pi} e^{i k r \cos{\theta}} \bigg(
 		  \frac{P_n^1(\cos{\theta})}{\sin{\theta}} \cos{\theta}
 		+ \frac{\partial P_n^1(\cos{\theta})}{\partial \theta}
-	\bigg) \sin{\theta} \thinspace e^{i k r \cos{\theta}} \thinspace d\theta
+	\bigg) \sin{\theta} \thinspace d\theta
 	\cr
 	&= -n (n+1) \int_{0}^{\pi} e^{i k r \cos{\theta}} P_n(\cos{\theta}) \sin{\theta} \thinspace d\theta = -2 i^n n (n+1) j_n(k r).
 \end{aligned}
@@ -5317,23 +5317,26 @@ $$ \tag{17.121}
 \begin{aligned}
 	& \frac{1}{\gamma_{m,n}} \int_{0}^{2 \pi} \int_{0}^{\pi} \big[ \bm{N_{m,n}^{(1)}}(\bm{r}) \big]^{\*} \cdot \bm{E_i}(\bm{r}) \sin{\theta} \thinspace d\theta d\phi
 	\cr
-	&= E_x \bigg[ \frac{j_n(k r)}{k r} + \frac{\partial j_n(k r)}{\partial (k r)} \bigg]^{\*} \int_{0}^{2 \pi} \int_{0}^{\pi} \bigg(
+	&= E_x \bigg[ \frac{j_n(k r)}{k r} + \frac{\partial j_n(k r)}{\partial (k r)} \bigg]^{\*}
+		\int_{0}^{2 \pi} \int_{0}^{\pi} e^{-i m \phi + i k r \cos{\theta}} \bigg(
 		\frac{\partial P_n^m(\cos{\theta})}{\partial \theta} \cos{\theta} \cos{\phi}
 		+ i m \frac{P_n^m(\cos{\theta})}{\sin{\theta}} \sin{\phi}
-	\bigg) e^{-i m \phi + i k r \cos{\theta}} \sin{\theta} \thinspace d\theta d\phi
+	\bigg) \sin{\theta} \thinspace d\theta d\phi
 	\cr
-	&+ E_x \bigg[ \frac{j_n(k r)}{k r} \bigg]^{\*} n (n + 1) \int_{0}^{2 \pi} \int_{0}^{\pi}
+	&+ E_x \bigg[ \frac{j_n(k r)}{k r} \bigg]^{\*} n (n + 1)
+		\int_{0}^{2 \pi} \int_{0}^{\pi} e^{-i m \phi + i k r \cos{\theta}}
 		P_n^m(\cos{\theta}) \sin^2{\theta} \cos{\phi}
-	\thinspace e^{-i m \phi + i k r \cos{\theta}} \thinspace d\theta d\phi
+	\thinspace d\theta d\phi
 	\cr
-	&+ E_y \bigg[ \frac{j_n(k r)}{k r} \bigg]^{\*} n (n + 1) \int_{0}^{2 \pi} \int_{0}^{\pi}
+	&+ E_y \bigg[ \frac{j_n(k r)}{k r} \bigg]^{\*} n (n + 1)
+		\int_{0}^{2 \pi} \int_{0}^{\pi} e^{-i m \phi + i k r \cos{\theta}}
 		P_n^m(\cos{\theta}) \sin^2{\theta} \sin{\phi}
-	\thinspace e^{-i m \phi + i k r \cos{\theta}} \thinspace d\theta d\phi
+	\thinspace d\theta d\phi
 	\cr
-	&+ E_y \bigg[ \frac{j_n(k r)}{k r} + \frac{\partial j_n(k r)}{\partial (k r)} \bigg]^{\*} \int_{0}^{2 \pi} \int_{0}^{\pi} \bigg(
+	&+ E_y \bigg[ \frac{j_n(k r)}{k r} + \frac{\partial j_n(k r)}{\partial (k r)} \bigg]^{\*} 	  \int_{0}^{2 \pi} \int_{0}^{\pi} e^{-i m \phi + i k r \cos{\theta}} \bigg(
 		\frac{\partial P_n^m(\cos{\theta})}{\partial \theta} \cos{\theta} \sin{\phi}
 		- i m \frac{P_n^m(\cos{\theta})}{\sin{\theta}} \cos{\phi}
-	\bigg) e^{-i m \phi + i k r \cos{\theta}} \sin{\theta} \thinspace d\theta d\phi.
+	\bigg)  \sin{\theta} \thinspace d\theta d\phi.
 \end{aligned}
 $$
 
@@ -5344,18 +5347,19 @@ $$ \tag{17.122}
 \begin{aligned}
 	& \frac{1}{\gamma_{m,n}} \int_{0}^{2 \pi} \int_{0}^{\pi} \big[ \bm{N_{m,n}^{(1)}}(\bm{r}) \big]^{\*} \cdot \bm{E_i}(\bm{r}) \sin{\theta} \thinspace d\theta d\phi
 	\cr
-	&= \delta_{m,\pm 1} (E_x - i m E_y) \bigg[ \frac{j_n(k r)}{k r} \bigg]^{\*} \pi n (n + 1) \int_{0}^{\pi}
+	&= \delta_{m,\pm 1} (E_x - i m E_y) \bigg[ \frac{j_n(k r)}{k r} \bigg]^{\*} \pi n (n + 1) \int_{0}^{\pi} e^{i k r \cos{\theta}}
 		P_n^m(\cos{\theta}) \sin^2{\theta}
-	\thinspace e^{i k r \cos{\theta}} \thinspace d\theta
+	\thinspace d\theta
 	\cr
-	&+ \delta_{m,\pm 1} (E_x - i m E_y) \bigg[ \frac{j_n(k r)}{k r} + \frac{\partial j_n(k r)}{\partial (k r)} \bigg]^{\*} \pi \int_{0}^{\pi} \bigg(
+	&+ \delta_{m,\pm 1} (E_x - i m E_y) \bigg[ \frac{j_n(k r)}{k r} + \frac{\partial j_n(k r)}{\partial (k r)} \bigg]^{\*} \pi
+	 \int_{0}^{\pi} e^{i k r \cos{\theta}} \bigg(
 		\frac{\partial P_n^m(\cos{\theta})}{\partial \theta} \cos{\theta}
 		+ \frac{P_n^m(\cos{\theta})}{\sin{\theta}}
-	\bigg) e^{i k r \cos{\theta}} \sin{\theta} \thinspace d\theta.
+	\bigg) \sin{\theta} \thinspace d\theta.
 \end{aligned}
 $$
 
-The first expression can be [integrated by parts](https://en.wikipedia.org/wiki/Integration_by_parts). If we utilize Equations 17.114 and 17.116 to define
+The first term can be [integrated by parts](https://en.wikipedia.org/wiki/Integration_by_parts). If we use Equations 17.114 and 17.116 to define
 
 $$ \tag{17.123}
 \begin{aligned}
@@ -5365,7 +5369,7 @@ $$ \tag{17.123}
 	+ \sin{\theta} \frac{\partial^2}{\partial \theta^2} \bigg) P_n(\cos{\theta})
 	= -n (n+1) P_n(\cos{\theta}) \sin{\theta},
 	\cr
-	\frac{\partial v(kr, \theta)}{\partial \theta} &= \sin{\theta} \thinspace e^{i k r \cos{\theta}},
+	\frac{\partial v(kr, \theta)}{\partial \theta} &= e^{i k r \cos{\theta}} \sin{\theta},
 	\cr
 	v(kr, \theta) &= \frac{i}{k r} e^{i k r \cos{\theta}},
 \end{aligned}
@@ -5375,9 +5379,9 @@ and apply Equation 17.107, we readily obtain
 
 $$ \tag{17.124}
 \begin{aligned}
-	&\int_{0}^{\pi}
+	&\int_{0}^{\pi} e^{i k r \cos{\theta}}
 		P_n^1(\cos{\theta}) \sin^2{\theta}
-	\thinspace e^{i k r \cos{\theta}} \thinspace d\theta
+	\thinspace d\theta
 	\cr
 	&= u(n, \pi) v(kr, \pi) - u(n, 0) v(kr, 0) - \int_{0}^{\pi} \frac{\partial u(n, \theta)}{\partial \theta} v(kr, \theta) \thinspace d\theta
 	\cr
@@ -5386,56 +5390,60 @@ $$ \tag{17.124}
 \end{aligned}
 $$
 
-As for the second integral of Equation 17.122, we have already encountered it in Equation 17.117. Thus,
+The second integral of Equation 17.122 must not be confused with the one in Equation 17.117. Here, we use a different approach: if we differentiate Equation 17.107 to obtain
 
 $$ \tag{17.125}
-\small
+	\frac{\partial j_n(x)}{\partial x}
+	= \frac{i^{-n + 1}}{2}
+	\int_{0}^{\pi} e^{i x \cos{\theta}} P_n(\cos{\theta}) \sin{\theta} \cos{\theta} \thinspace d\theta,
+$$
+
+and utilize Equations 17.114, 17.116, and 17.124 once more, we may show that
+
+$$ \tag{17.126}
+\begin{aligned}
+	& \int_{0}^{\pi} e^{i k r \cos{\theta}} \bigg(
+		\frac{\partial P_n^1(\cos{\theta})}{\partial \theta} \cos{\theta}
+		+ \frac{P_n^1(\cos{\theta})}{\sin{\theta}}
+	\bigg) \sin{\theta} \thinspace d\theta
+	\cr
+	&= \int_{0}^{\pi} e^{i k r \cos{\theta}} \bigg(
+		\cos{\theta} \sin{\theta} \frac{\partial^2 P_n(\cos{\theta})}{\partial \theta^2}
+		+ P_n^1(\cos{\theta})
+	\bigg) \thinspace d\theta
+	\cr
+	&= -n (n+1) \int_{0}^{\pi} e^{i k r \cos{\theta}} P_n(\cos{\theta}) \sin{\theta} \cos{\theta} \thinspace d\theta
+		+ \int_{0}^{\pi} e^{i k r \cos{\theta}} P_n^1(\cos{\theta}) \sin^2{\theta} \thinspace d\theta
+	\cr
+	&= 2 i^{n+1} n (n+1) \bigg( \frac{\partial j_n(k r)}{\partial (k r)} + \frac{j_n(k r)}{k r} \bigg).
+\end{aligned}
+$$
+
+Substitution of Equations 17.124 and 17.126 finally allows us to evaluate Equation 17.122:
+
+$$ \tag{17.127}
 \begin{aligned}
 	& \int_{0}^{2 \pi} \int_{0}^{\pi} \big[ \bm{N_{m,n}^{(1)}}(\bm{r}) \big]^{\*} \cdot \bm{E_i}(\bm{r}) \sin{\theta} \thinspace d\theta d\phi
 	\cr
-	&= \delta_{m,\pm 1} (m E_x - i E_y) 2 \pi i^{n + 1} \gamma_{1,n} n^2 (n + 1)^2 \bigg\vert \frac{j_n(k r)}{k r} \bigg\vert^2
-	\cr
-	&- \delta_{m,\pm 1} (m E_x - i E_y) \bigg[ \frac{j_n(k r)}{k r} + \frac{\partial j_n(k r)}{\partial (k r)} \bigg]^{\*} 2 \pi i^n \gamma_{1,n} n (n+1) j_n(k r).
+	&= \delta_{m,\pm 1} (i m E_x + E_y) 2 \pi i^n \gamma_{1,n} n (n+1)
+	\Bigg( \bigg\vert \frac{j_n(k r)}{k r} + \frac{\partial j_n(k r)}{\partial (k r)} \bigg\vert^2 + n (n + 1) \bigg\vert \frac{j_n(k r)}{k r} \bigg\vert^2
+	\Bigg).
 \end{aligned}
 $$
 
-What the fuck? Check in Mathematica. Try 17.50...
+As before, we have unified the expressions of both orders by multiplying each term by \\(m\\) (refer to Equation 17.118 and the discussion in the surrounding text).
 
----
+As we return to Equation 17.97, we observe that the factor containing the Bessel function cancels out, and the expression of the second coefficient is particularly simple:
 
-$$ \tag{17.67}
+$$ \tag{17.128}
 \begin{aligned}
-	\bm{N_{m,n}^{\*}}(\bm{r})
-	&= \gamma_{m,n} n (n + 1) \bigg[ \frac{z_n(k r)}{k r} \bigg]^{\*} P_n^m(\cos{\theta}) e^{-i m \phi} \bm{e_r}
-	\cr
-	&+ \gamma_{m,n} \bigg[ \frac{z_n(k r)}{k r} + \frac{\partial z_n(k r)}{\partial (k r)} \bigg]^{\*}
-	   \frac{\partial P_n^m(\cos{\theta})}{\partial \theta} e^{-i m \phi} \bm{e_{\theta}}
-	\cr
-	&- \gamma_{m,n} i m \bigg[ \frac{z_n(k r)}{k r} + \frac{\partial z_n(k r)}{\partial (k r)} \bigg]^{\*}
-	   \frac{P_n^m(\cos{\theta})}{\sin{\theta}} e^{-i m \phi} \bm{e_{\phi}}.
-\end{aligned}
-$$
-
-
-$$ \tag{17.103}
-\begin{aligned}
-	\bm{e_x} &= \sin{\theta} \cos{\phi} \thinspace \bm{e_{r}}
-			  + \cos{\theta} \cos{\phi} \thinspace \bm{e_{\theta}}
-			  - \sin{\phi} \thinspace \bm{e_{\phi}},
-	\cr
-	\bm{e_y} &= \sin{\theta} \sin{\phi} \thinspace \bm{e_{r}}
-			  + \cos{\theta} \sin{\phi} \thinspace \bm{e_{\theta}}
-			  + \cos{\phi} \thinspace \bm{e_{\phi}},
-	\cr
-	\bm{e_z} &= \cos{\theta} \thinspace \bm{e_{r}}
-			  - \sin{\theta} \thinspace \bm{e_{\theta}}.
-	\cr
+	b_{m,n}^{(1)} &= -\delta_{m,\pm 1} (i m E_x + E_y) 2 \pi i^n \gamma_{1,n}.
 \end{aligned}
 $$
 
 ---
 
-Both Stratton and myself appear to be correct. Show how to arrive to Stratton's results...
+Both Stratton and myself appear to be correct. Show how to arrive at Stratton's results... Connection with VSH...
 
 ---
 
