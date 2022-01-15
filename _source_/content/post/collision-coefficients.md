@@ -4408,7 +4408,7 @@ $$ \tag{17.45}
 	\begin{array}{cc}
 	   \cos \cr
 	   \sin
-	\end{array} m \phi.
+	\end{array} (m \phi).
 $$
 
 There is no essential difference (except for readability). The solution given by Equation 17.45 assumes that \\(m \geq 0\\). If we allow all positive and negative values of \\(|m| \leq n\\), we can always construct the real solutions from the complex ones, since, according to Euler's formula,
@@ -4752,15 +4752,15 @@ You may notice that the expressions given above exhibit a certain pattern. That 
 
 $$ \tag{17.72}
 \begin{aligned}
-	(P) &\bm{\Upsilon_{m,n}}(\theta, \phi)
+	& \bm{\Upsilon_{m,n}}(\theta, \phi)
 	= Y^m_n \bm{e_r} = \gamma_{m,n} e^{i m \phi} P_n^m(\cos{\theta}) \bm{e_r},
 	\cr
-	(C) &\bm{\Phi_{m,n}}(\theta, \phi)
+	& \bm{\Phi_{m,n}}(\theta, \phi)
 	= \nabla \times \big( Y^m_n \bm{r} \big)
 	= \gamma_{m,n} e^{i m \phi} \big( i \pi_{m,n}(\theta) \bm{e_{\theta}} - \tau_{m,n}(\theta) \bm{e_{\phi}} \big)
 	= \bm{\Psi_{m,n}} \times \bm{e_r},
 	\cr
-	(B) &\bm{\Psi_{m,n}}(\theta, \phi)
+	& \bm{\Psi_{m,n}}(\theta, \phi)
 	= r \nabla Y^m_n
 	= \gamma_{m,n} e^{i m \phi} \big( \tau_{m,n}(\theta) \bm{e_{\theta}} + i \pi_{m,n}(\theta) \bm{e_{\phi}} \big)
 	= \bm{e_r} \times \bm{\Phi_{m,n}},
@@ -5431,13 +5431,84 @@ $$ \tag{17.127}
 \end{aligned}
 $$
 
-As before, we have unified the expressions of both orders by multiplying each term by \\(m\\) (refer to Equation 17.118 and the discussion in the surrounding text).
+As before, we have unified the expressions of both orders by multiplying each term by \\(m\\).
 
-As we return to Equation 17.97, we observe that the factor containing the Bessel function cancels out, and the expression of the second coefficient is particularly simple:
+Once we substitute the value of the integral into Equation 17.97.2, the factor containing the Bessel function cancels out, making the expression of the second coefficient is particularly simple:
 
 $$ \tag{17.128}
 \begin{aligned}
 	b_{m,n}^{(1)} &= -\delta_{m,\pm 1} (i m E_x + E_y) 2 \pi i^n \gamma_{1,n}.
+\end{aligned}
+$$
+
+Derivation of the coefficients given by Equations 17.120 and 17.128 completes the vector spherical wave series expansion of an electromagnetic plane wave:
+
+$$ \tag{17.129}
+\begin{aligned}
+	\bm{E_i}(\bm{r}, \omega)
+	= \bm{E_0}(\bm{e_z}, \omega) e^{i k(\omega) r \cos{\theta}}
+	&= 2 \pi \sum_{n=0}^{\infin} i^n \gamma_{1,n} \sum_{m= \pm 1} \big( (i E_x(\omega) + m E_y(\omega) \big) \bm{M_{m,n}^{(1)}}(\bm{r}, \omega)
+	\cr
+	&+ 2 \pi \sum_{n=0}^{\infin} i^n \gamma_{1,n} \sum_{m= \pm 1} \big( i m E_x(\omega) + E_y(\omega) \big) \bm{N_{m,n}^{(1)}}(\bm{r}, \omega)
+	\cr
+	&= 2 \pi E_x(\omega) \sum_{n=0}^{\infin} i^n \gamma_{1,n} \sum_{m= \pm 1} i \big( \bm{M_{m,n}^{(1)}}(\bm{r}, \omega) + m \bm{N_{m,n}^{(1)}}(\bm{r}, \omega) \big)
+	\cr
+	&+ 2 \pi E_y(\omega) \sum_{n=0}^{\infin} i^n \gamma_{1,n} \sum_{m= \pm 1} \big( m \bm{M_{m,n}^{(1)}}(\bm{r}, \omega) + \bm{N_{m,n}^{(1)}}(\bm{r}, \omega) \big).
+\end{aligned}
+$$
+
+The \\(i\\) factor following \\(E_x\\) should not come as a surprise. Since, according to [Euler's formula](https://en.wikipedia.org/wiki/Euler%27s_formula),
+
+$$ \tag{17.130}
+	e^{i \pi/2} = i,
+$$
+
+it simply expresses the fact that the angle between the \\(x\\) and \\(y\\) axes is 90 degrees. This introduces a phase shift: if the \\(y\\)-wave behaves as \\(\sin{\theta}\\), then the \\(x\\)-wave is proportional to \\(\cos{\theta}\\) instead.
+
+Another way to show this is by introducing even and odd vector spherical functions [Stratton 7.11]
+
+$$ \tag{17.71}
+\begin{aligned}
+	\bm{M_{^e_o m,n}}(\bm{r})
+	&= z_n(k r)
+	\Big( \mp \pi_{m,n}(\theta)
+	\begin{array}{cc}
+	   \sin \cr
+	   \cos
+	\end{array} (m \phi) \bm{e_{\theta}} - \tau_{m,n}(\theta)
+	\begin{array}{cc}
+	   \cos \cr
+	   \sin
+	\end{array} \bm{e_{\phi}} \Big),
+	\cr
+	\bm{N_{^e_o m,n}}(\bm{r})
+	&= e^{i m \phi} n (n + 1) \frac{z_n(k r)}{k r} P_n^m(\cos{\theta}) \bm{e_r}
+	\cr
+	&+ e^{i m \phi} \bigg(\frac{z_n(k r)}{k r} + \frac{\partial z_n(k r)}{\partial (k r)} \bigg)
+	 \big( \tau_{m,n}(\theta) \bm{e_{\theta}} + i \pi_{m,n}(\theta) \bm{e_{\phi}} \big).
+\end{aligned}
+$$
+
+$$ \tag{17.45}
+	\bm{M_{^e_o m,n}}(\bm{r})
+	= \mp z_n(k r)
+\begin{array}{cc}
+	   \cos \cr
+	   \sin
+	\end{array} (m \phi)
+$$
+
+$$ \tag{17.71}
+\begin{aligned}
+	\bm{M_{m,n}}(\bm{r})
+	&= \gamma_{m,n} e^{i m \phi}  z_n(k r)
+	\big( i \pi_{m,n}(\theta) \bm{e_{\theta}} - \tau_{m,n}(\theta) \bm{e_{\phi}} \big),
+	\cr
+	\bm{N_{m,n}}(\bm{r})
+	&= \gamma_{m,n} e^{i m \phi} n (n + 1) \frac{z_n(k r)}{k r} P_n^m(\cos{\theta}) \bm{e_r}
+	\cr
+	&+ \gamma_{m,n} e^{i m \phi} \bigg(\frac{z_n(k r)}{k r} + \frac{\partial z_n(k r)}{\partial (k r)} \bigg)
+	 \big( \tau_{m,n}(\theta) \bm{e_{\theta}} + i \pi_{m,n}(\theta) \bm{e_{\phi}} \big).
 \end{aligned}
 $$
 
