@@ -4403,15 +4403,15 @@ where \\(m\\) and \\(n\\) are integers, \\(c_{m,n}\\) is a complex constant, \\(
 We would like to point out that the same solution can be written in a slightly different way \[[Stratton](#references) (ch 7.3)\]:
 
 $$ \tag{17.45}
-	\psi_{^e_o m,n}(\bm{r})
+	\psi_{^e_o,m,n}(\bm{r})
 	= z_n(k r) P_n^m(\cos{\theta})
-	\begin{array}{cc}
+	\negthickspace \begin{array}{cc}
 	   \cos \cr
 	   \sin
-	\end{array} (m \phi).
+	\end{array} \negthickspace (m \phi).
 $$
 
-There is no essential difference (except for readability). The solution given by Equation 17.45 assumes that \\(m \geq 0\\). If we allow all positive and negative values of \\(|m| \leq n\\), we can always construct the real solutions from the complex ones, since, according to Euler's formula,
+There is no essential difference (except for readability). The solution given by Equation 17.45 assumes that \\(m \geq 0\\). If we allow all positive and negative values of \\(|m| \leq n\\), we can always construct the real solutions from the complex ones, since, according to [Euler's formula](https://en.wikipedia.org/wiki/Euler%27s_formula#Relationship_to_trigonometry),
 
 $$ \tag{17.46}
 	\cos(m \phi) = \frac{1}{2} \Big( e^{i m \phi} + e^{-i m \phi} \Big),
@@ -4551,7 +4551,7 @@ $$
 
 where \\(\delta_{m,n}\\) is the Kronecker delta function given by Equation 4.6.
 
-Remarkably, by means of double integration over \\(\theta\\) and \\(\phi\\), these two facts can be combined to show that tesseral harmonics \\(P_n^m(\cos{\theta}) \cos(m \phi)\\) and \\(P_n^m(\cos{\theta}) \sin(m \phi)\\) form a *complete orthogonal system* of basis functions on the surface of a sphere [Courant-Hilbert].
+Remarkably, by means of double integration over \\(\theta\\) and \\(\phi\\), these two facts can be combined to show that the tesseral (and sectorial) harmonics \\(P_n^m(\cos{\theta}) \cos(m \phi)\\) and \\(P_n^m(\cos{\theta}) \sin(m \phi)\\) form a *complete orthogonal system* of basis functions on the surface of a sphere [Courant-Hilbert].
 
 Tesseral harmonics are [real-valued basis functions](https://en.wikipedia.org/wiki/Spherical_harmonics#Real_form), which is sufficient for most problems. However, the theory can be trivially extended to complex values by combining even and odd tesseral harmonics according to Equation 17.53. This directly leads to the definition of [scalar spherical harmonics](https://en.wikipedia.org/wiki/Spherical_harmonics)
 
@@ -4878,24 +4878,9 @@ $$ \tag{17.80}
 \end{aligned}
 $$
 
-Most properties of the vector spherical harmonics are, to some degree, shared by the vector spherical wave functions. For real values of \\(k\\), and if the spherical Bessel function is real (which excludes Hankel functions), they exhibit the symmetry property that follows from Equation 17.73:
+Most properties of the vector spherical harmonics are, to some degree, shared by the vector spherical wave functions. For instance, they exhibit the symmetry property that follows from Equation 17.73:
 
 $$ \tag{17.81}
-	\bm{L_{-m,n}}
-	= (-1)^m \bm{L_{m,n}^{\*}},
-	\enspace
-	\bm{M_{-m,n}}
-	= (-1)^m \bm{M_{m,n}^{\*}},
-	\enspace
-	\bm{N_{-m,n}}
-	= (-1)^m \bm{N_{m,n}^{\*}}.
-	\enspace
-	(z_n \in \mathcal{R})
-$$
-
-In general, one has to take complex conjugates of the vector spherical harmonics instead:
-
-$$ \tag{17.8x}
 \begin{aligned}
 	\bm{L_{-m,n}}(\bm{r})
 	&= (-1)^m \bigg( \frac{\partial z_n(k r)}{\partial (k r)} \big[ \bm{\Upsilon_{m,n}}(\theta, \phi) \big]^{\*}
@@ -4908,6 +4893,21 @@ $$ \tag{17.8x}
 	&= (-1)^m \bigg( n (n + 1) \frac{z_n(k r)}{k r} \big[ \bm{\Upsilon_{m,n}}(\theta, \phi) \big]^{\*}
 	 + \bigg( \frac{z_n(k r)}{k r} + \frac{\partial z_n(k r)}{\partial (k r)} \bigg) \big[ \bm{\Psi_{m,n}}(\theta, \phi) \big]^{\*} \bigg).
 \end{aligned}
+$$
+
+For real values of \\(k\\), and if the spherical Bessel function is real (which excludes the Hankel functions), the expressions given above can be simplified to
+
+$$ \tag{17.8x}
+	\bm{L_{-m,n}}
+	= (-1)^m \bm{L_{m,n}^{\*}},
+	\enspace
+	\bm{M_{-m,n}}
+	= (-1)^m \bm{M_{m,n}^{\*}},
+	\enspace
+	\bm{N_{-m,n}}
+	= (-1)^m \bm{N_{m,n}^{\*}}.
+	\enspace
+	(z_n \in \mathcal{R})
 $$
 
 According to Equation 17.22, \\(\bm{L_{m,n}}\\) and \\(\bm{M_{m,n}}\\) are mutually orthogonal in the  3-dimensional space. Equation 17.80 allows us to determine the state of affairs for the remaining two pairs of vectors. Since, according to Equation 17.74, the spherical harmonic vectors are orthogonal,
@@ -5473,65 +5473,95 @@ $$ \tag{17.129}
 \end{aligned}
 $$
 
-The \\(i\\) factor following \\(E_x\\) should not come as a surprise. Since, according to [Euler's formula](https://en.wikipedia.org/wiki/Euler%27s_formula),
+The \\(i\\) factor following \\(E_x\\) should not come as a surprise. Since, according to [Euler's identity](https://en.wikipedia.org/wiki/Euler%27s_identity),
 
 $$ \tag{17.130}
-	e^{i \pi/2} = i,
+	e^{\pm i \pi/2} = \pm i,
 $$
 
 it simply expresses the fact that the angle between the \\(x\\) and \\(y\\) axes is 90 degrees. This introduces a phase shift: if the \\(y\\)-wave behaves as \\(\sin{\theta}\\) (or \\(\cos{\theta}\\)), then the \\(x\\)-wave is proportional to \\(\cos{\theta}\\) (or \\(-\sin{\theta}\\)) instead.
 
-Another way to show this is by introducing even and odd vector spherical functions [Stratton 7.11]
+Another way to show this is by introducing the even and odd vector spherical functions
 
-$$ \tag{17.71}
+$$ \tag{17.131}
 \begin{aligned}
-	\bm{L_{^e_o m,n}}
-	&= \frac{1}{2} (\frac{\bm{L_{m,n}}}{} \pm )
+	\bm{L_{^e_o,m,n}}(\bm{r})
+	&= \negthickspace \begin{array}{cc}
+	   1 \cr
+	   i^{-1}
+	\end{array} \negthickspace
+	\frac{\bm{L_{m,n}}(\bm{r}) \pm (-1)^m \bm{L_{-m,n}}(\bm{r})}{2 \gamma_{m,n}},
+	\cr
+	\bm{M_{^e_o,m,n}}(\bm{r})
+	&= \negthickspace \begin{array}{cc}
+	   1 \cr
+	   i^{-1}
+	\end{array} \negthickspace
+	\frac{\bm{M_{m,n}}(\bm{r}) \pm (-1)^m \bm{M_{-m,n}}(\bm{r})}{2 \gamma_{m,n}},
+	\cr
+	\bm{N_{^e_o,m,n}}(\bm{r})
+	&= \negthickspace \begin{array}{cc}
+	   1 \cr
+	   i^{-1}
+	\end{array} \negthickspace
+	\frac{\bm{N_{m,n}}(\bm{r}) \pm (-1)^m \bm{N_{-m,n}}(\bm{r})}{2 \gamma_{m,n}},
 \end{aligned}
 $$
 
-$$ \tag{17.71}
+that mirror Euler's formulas of Equation 17.46.
+
+Using the definitions of the vector spherical harmonics (Equations 17.72-17.73) and the vector spherical wave functions (Equations 17.80-17.81), it may be shown that the functions of Equation 17.131 are weighted combinations of the (real) vector tesseral (or sectorial) harmonics. In order to save some space, we shall simply state the resulting expressions [Stratton 7.11] below:
+
+$$ \tag{17.132}
 \begin{aligned}
-	\bm{M_{^e_o m,n}}(\bm{r})
-	&= z_n(k r)
-	\Big( \mp \pi_{m,n}(\theta)
-	\begin{array}{cc}
+	\bm{L_{^e_o,m,n}}(\bm{r})
+	&= \frac{\partial z_n(k r)}{\partial (k r)} P_n^m(\cos{\theta})
+	\negthickspace \begin{array}{cc}
+	   \cos \cr
+	   \sin
+	\end{array} \negthickspace (m \phi) \thinspace \bm{e_r}
+	\cr
+	&+ \frac{z_n(k r)}{k r}	\Big( \tau_{m,n}(\theta)
+	\negthickspace \begin{array}{cc}
+	   \cos \cr
+	   \sin
+	\end{array} \negthickspace (m \phi) \thinspace \bm{e_{\theta}}
+	\mp \pi_{m,n}(\theta)
+	\negthickspace \begin{array}{cc}
 	   \sin \cr
 	   \cos
-	\end{array} (m \phi) \bm{e_{\theta}} - \tau_{m,n}(\theta)
-	\begin{array}{cc}
+	\end{array} \negthickspace (m \phi) \thinspace \bm{e_{\phi}} \Big)
+	\cr
+	\bm{M_{^e_o,m,n}}(\bm{r})
+	&= z_n(k r)
+	\Big( \mp \pi_{m,n}(\theta)
+	\negthickspace \begin{array}{cc}
+	   \sin \cr
+	   \cos
+	\end{array} \negthickspace (m \phi) \thinspace \bm{e_{\theta}} - \tau_{m,n}(\theta)
+	\negthickspace \begin{array}{cc}
 	   \cos \cr
 	   \sin
-	\end{array} \bm{e_{\phi}} \Big),
+	\end{array} \negthickspace (m \phi) \thinspace \bm{e_{\phi}} \Big),
 	\cr
-	\bm{N_{^e_o m,n}}(\bm{r})
-	&= e^{i m \phi} n (n + 1) \frac{z_n(k r)}{k r} P_n^m(\cos{\theta}) \bm{e_r}
-	\cr
-	&+ e^{i m \phi} \bigg(\frac{z_n(k r)}{k r} + \frac{\partial z_n(k r)}{\partial (k r)} \bigg)
-	 \big( \tau_{m,n}(\theta) \bm{e_{\theta}} + i \pi_{m,n}(\theta) \bm{e_{\phi}} \big).
-\end{aligned}
-$$
-
-$$ \tag{17.45}
-	\bm{M_{^e_o m,n}}(\bm{r})
-	= \mp z_n(k r)
-\begin{array}{cc}
+	\bm{N_{^e_o,m,n}}(\bm{r})
+	&= n (n + 1) \frac{z_n(k r)}{k r} P_n^m(\cos{\theta})
+	\negthickspace \begin{array}{cc}
 	   \cos \cr
 	   \sin
-	\end{array} (m \phi)
-$$
-
-$$ \tag{17.71}
-\begin{aligned}
-	\bm{M_{m,n}}(\bm{r})
-	&= \gamma_{m,n} e^{i m \phi}  z_n(k r)
-	\big( i \pi_{m,n}(\theta) \bm{e_{\theta}} - \tau_{m,n}(\theta) \bm{e_{\phi}} \big),
+	\end{array} \negthickspace (m \phi) \thinspace \bm{e_r}
 	\cr
-	\bm{N_{m,n}}(\bm{r})
-	&= \gamma_{m,n} e^{i m \phi} n (n + 1) \frac{z_n(k r)}{k r} P_n^m(\cos{\theta}) \bm{e_r}
-	\cr
-	&+ \gamma_{m,n} e^{i m \phi} \bigg(\frac{z_n(k r)}{k r} + \frac{\partial z_n(k r)}{\partial (k r)} \bigg)
-	 \big( \tau_{m,n}(\theta) \bm{e_{\theta}} + i \pi_{m,n}(\theta) \bm{e_{\phi}} \big).
+	&+ \bigg(\frac{z_n(k r)}{k r} + \frac{\partial z_n(k r)}{\partial (k r)} \bigg)
+	\Big( \tau_{m,n}(\theta)
+	\negthickspace \begin{array}{cc}
+	   \cos \cr
+	   \sin
+	\end{array} \negthickspace (m \phi) \thinspace \bm{e_{\theta}}
+	\mp \pi_{m,n}(\theta)
+	\negthickspace \begin{array}{cc}
+	   \sin \cr
+	   \cos
+	\end{array} \negthickspace (m \phi) \thinspace \bm{e_{\phi}} \Big).
 \end{aligned}
 $$
 
