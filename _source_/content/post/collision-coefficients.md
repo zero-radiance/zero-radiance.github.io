@@ -4893,6 +4893,23 @@ $$ \tag{17.81}
 	(z_n \in \mathcal{R})
 $$
 
+In general, one has to take complex conjugates of the vector spherical harmonics instead:
+
+$$ \tag{17.8x}
+\begin{aligned}
+	\bm{L_{-m,n}}(\bm{r})
+	&= (-1)^m \bigg( \frac{\partial z_n(k r)}{\partial (k r)} \big[ \bm{\Upsilon_{m,n}}(\theta, \phi) \big]^{\*}
+	 + \frac{z_n(k r)}{k r} \big[ \bm{\Psi_{m,n}}(\theta, \phi) \big]^{\*} \bigg),
+	\cr
+	\bm{M_{-m,n}}(\bm{r})
+	&= (-1)^m \bigg( z_n(k r) \big[ \bm{\Phi_{m,n}}(\theta, \phi) \big]^{\*} \bigg),
+	\cr
+	\bm{N_{-m,n}}(\bm{r})
+	&= (-1)^m \bigg( n (n + 1) \frac{z_n(k r)}{k r} \big[ \bm{\Upsilon_{m,n}}(\theta, \phi) \big]^{\*}
+	 + \bigg( \frac{z_n(k r)}{k r} + \frac{\partial z_n(k r)}{\partial (k r)} \bigg) \big[ \bm{\Psi_{m,n}}(\theta, \phi) \big]^{\*} \bigg).
+\end{aligned}
+$$
+
 According to Equation 17.22, \\(\bm{L_{m,n}}\\) and \\(\bm{M_{m,n}}\\) are mutually orthogonal in the  3-dimensional space. Equation 17.80 allows us to determine the state of affairs for the remaining two pairs of vectors. Since, according to Equation 17.74, the spherical harmonic vectors are orthogonal,
 
 $$ \tag{17.82}
@@ -5120,7 +5137,7 @@ $$
 We may take advantage of the symmetry of the problem by aligning \\(\bm{n_i}\\) with the \\(z\\)-axis (c.f. Figure N). Then,
 
 $$ \tag{17.101}
-	\bm{r} \cdot \bm{n_i} = r \cos{\theta}.
+	\bm{r} \cdot \bm{e_z} = r \cos{\theta}.
 $$
 
 Further simplification can be achieved by recalling that an electromagnetic plane wave is transverse with respect to its direction of propagation (as shown by Equations 7.18 and 7.23). Therefore, in Cartesian coordinates, the polarization phasor \\(\bm{E_0}\\) of a plane wave can be completely described by two complex numbers \\(E_x\\) and \\(E_y\\):
@@ -5445,8 +5462,7 @@ Derivation of the coefficients given by Equations 17.120 and 17.128 completes th
 
 $$ \tag{17.129}
 \begin{aligned}
-	\bm{E_i}(\bm{r}, \omega)
-	= \bm{E_0}(\bm{e_z}, \omega) e^{i k(\omega) r \cos{\theta}}
+	\bm{E_0}(\bm{e_z}, \omega) e^{i k(\omega) (\bm{r} \cdot \bm{e_z})}
 	&= 2 \pi \sum_{n=0}^{\infin} i^n \gamma_{1,n} \sum_{m= \pm 1} \big( (i E_x(\omega) + m E_y(\omega) \big) \bm{M_{m,n}^{(1)}}(\bm{r}, \omega)
 	\cr
 	&+ 2 \pi \sum_{n=0}^{\infin} i^n \gamma_{1,n} \sum_{m= \pm 1} \big( i m E_x(\omega) + E_y(\omega) \big) \bm{N_{m,n}^{(1)}}(\bm{r}, \omega)
@@ -5463,9 +5479,16 @@ $$ \tag{17.130}
 	e^{i \pi/2} = i,
 $$
 
-it simply expresses the fact that the angle between the \\(x\\) and \\(y\\) axes is 90 degrees. This introduces a phase shift: if the \\(y\\)-wave behaves as \\(\sin{\theta}\\), then the \\(x\\)-wave is proportional to \\(\cos{\theta}\\) instead.
+it simply expresses the fact that the angle between the \\(x\\) and \\(y\\) axes is 90 degrees. This introduces a phase shift: if the \\(y\\)-wave behaves as \\(\sin{\theta}\\) (or \\(\cos{\theta}\\)), then the \\(x\\)-wave is proportional to \\(\cos{\theta}\\) (or \\(-\sin{\theta}\\)) instead.
 
 Another way to show this is by introducing even and odd vector spherical functions [Stratton 7.11]
+
+$$ \tag{17.71}
+\begin{aligned}
+	\bm{L_{^e_o m,n}}
+	&= \frac{1}{2} (\frac{\bm{L_{m,n}}}{} \pm )
+\end{aligned}
+$$
 
 $$ \tag{17.71}
 \begin{aligned}
