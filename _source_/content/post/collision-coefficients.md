@@ -4665,7 +4665,7 @@ The explicit form of the components can be obtained by substitution of Equation 
 $$ \tag{17.67}
 \begin{aligned}
 	\frac{1}{\gamma_{m,n}} \bm{N_{m,n}}(\bm{r})
-	&= n (n + 1) \frac{z_n(k r)}{k r}  P_n^m(\cos{\theta}) e^{i m \phi} \bm{e_r}
+	&= n (n + 1) \frac{z_n(k r)}{k r} P_n^m(\cos{\theta}) e^{i m \phi} \bm{e_r}
 	\cr
 	&+ \bigg(\frac{z_n(k r)}{k r} + \frac{\partial z_n(k r)}{\partial (k r)} \bigg)
 	   \frac{\partial P_n^m(\cos{\theta})}{\partial \theta} e^{i m \phi} \bm{e_{\theta}}
@@ -4674,6 +4674,8 @@ $$ \tag{17.67}
 	   \frac{P_n^m(\cos{\theta})}{\sin{\theta}} e^{i m \phi} \bm{e_{\phi}}.
 \end{aligned}
 $$
+
+Straightforward substitution shows that, in general, \\(\bm{L_{0,0}} \neq 0\\), while \\(\bm{M_{0,0}} = \bm{N_{0,0}} = 0\\). Therefore, the series expansions that involve the only the last two vectors may begin at \\(n = 1\\).
 
 The expressions given above may be shortened by defining two new zonal functions
 
@@ -5091,7 +5093,7 @@ Now, let us return to the scattering problem. In general, we may arrive at the s
 
 $$ \tag{17.96}
 	\bm{E}(\bm{r}, \omega)
-	= -\sum_{n=0}^{\infin} \sum_{m=-n}^{n} \big( a_{m,n}(\omega) \bm{M_{m,n}}(\bm{r}, \omega) + b_{m,n}(\omega) \bm{N_{m,n}}(\bm{r}, \omega) \big).
+	= -\sum_{n=1}^{\infin} \sum_{m=-n}^{n} \big( a_{m,n}(\omega) \bm{M_{m,n}}(\bm{r}, \omega) + b_{m,n}(\omega) \bm{N_{m,n}}(\bm{r}, \omega) \big).
 $$
 
 In order to obtain these coefficients, we must consider three (???) distinct types of electromagnetic fields: the incident field produced by an external source, the scattered field in the far zone of the particle, and the total internal field induced inside the sphere. The reason for this kind of decomposition will become apparent shortly.
@@ -5463,13 +5465,13 @@ Derivation of the coefficients given by Equations 17.120 and 17.128 completes th
 $$ \tag{17.129}
 \begin{aligned}
 	\bm{E_0}(\bm{e_z}, \omega) e^{i k(\omega) (\bm{r} \cdot \bm{e_z})}
-	&= 2 \pi \sum_{n=0}^{\infin} i^n \gamma_{1,n} \sum_{m= \pm 1} \big( (i E_x(\omega) + m E_y(\omega) \big) \bm{M_{m,n}^{(1)}}(\bm{r}, \omega)
+	&= 2 \pi \sum_{n=1}^{\infin} i^n \gamma_{1,n} \sum_{m= \pm 1} \big( (i E_x(\omega) + m E_y(\omega) \big) \bm{M_{m,n}^{(1)}}(\bm{r}, \omega)
 	\cr
-	&+ 2 \pi \sum_{n=0}^{\infin} i^n \gamma_{1,n} \sum_{m= \pm 1} \big( i m E_x(\omega) + E_y(\omega) \big) \bm{N_{m,n}^{(1)}}(\bm{r}, \omega)
+	&+ 2 \pi \sum_{n=1}^{\infin} i^n \gamma_{1,n} \sum_{m= \pm 1} \big( i m E_x(\omega) + E_y(\omega) \big) \bm{N_{m,n}^{(1)}}(\bm{r}, \omega)
 	\cr
-	&= 2 \pi E_x(\omega) \sum_{n=0}^{\infin} i^n \gamma_{1,n} \sum_{m= \pm 1} i \big( \bm{M_{m,n}^{(1)}}(\bm{r}, \omega) + m \bm{N_{m,n}^{(1)}}(\bm{r}, \omega) \big)
+	&= 2 \pi E_x(\omega) \sum_{n=1}^{\infin} i^n \gamma_{1,n} \sum_{m= \pm 1} i \big( \bm{M_{m,n}^{(1)}}(\bm{r}, \omega) + m \bm{N_{m,n}^{(1)}}(\bm{r}, \omega) \big)
 	\cr
-	&+ 2 \pi E_y(\omega) \sum_{n=0}^{\infin} i^n \gamma_{1,n} \sum_{m= \pm 1} \big( m \bm{M_{m,n}^{(1)}}(\bm{r}, \omega) + \bm{N_{m,n}^{(1)}}(\bm{r}, \omega) \big).
+	&+ 2 \pi E_y(\omega) \sum_{n=1}^{\infin} i^n \gamma_{1,n} \sum_{m= \pm 1} \big( m \bm{M_{m,n}^{(1)}}(\bm{r}, \omega) + \bm{N_{m,n}^{(1)}}(\bm{r}, \omega) \big).
 \end{aligned}
 $$
 
@@ -5510,7 +5512,7 @@ $$
 
 that mirror Euler's formulas of Equation 17.46.
 
-Using the definitions of the vector spherical harmonics (Equations 17.72-17.73) and the vector spherical wave functions (Equations 17.80-17.81), it may be shown that the functions of Equation 17.131 are weighted combinations of the (real) vector tesseral (and sectorial) harmonics \\(\bm{\Upsilon_{^e_o,m,n}}, \bm{\Phi_{^e_o,m,n}}, \bm{\Psi_{^e_o,m,n}}\\). In order to save some space, we shall simply state the resulting expressions [Stratton 7.11] below:
+Using the definitions of the vector spherical harmonics (Equations 17.72-17.73) and the vector spherical wave functions (Equations 17.80-17.81), it may be shown that the functions of Equation 17.131 are weighted combinations of the (real) vector tesseral (and sectorial) harmonics \\(\bm{\Upsilon_{^e_o,m,n}}, \bm{\Phi_{^e_o,m,n}}, \bm{\Psi_{^e_o,m,n}}\\). In order to save some space, we shall simply state the resulting expressions below:
 
 $$ \tag{17.132}
 \begin{aligned}
@@ -5570,15 +5572,17 @@ It is now straightforward to show that the electromagnetic plane wave expansion 
 $$ \tag{17.133}
 \begin{aligned}
 	\bm{E_0}(\bm{e_z}, \omega) e^{i k(\omega) (\bm{r} \cdot \bm{e_z})}
-	&= 4 \pi E_x(\omega) \sum_{n=0}^{\infin} i^n (\gamma_{1,n})^2 \big( {-\bm{M_{o,1,n}^{(1)}}}(\bm{r}, \omega) + i \bm{N_{e,1,n}^{(1)}}(\bm{r}, \omega) \big)
+	&= E_x(\omega) \sum_{n=1}^{\infin} i^n \frac{(2 n + 1)}{n (n + 1)} \big( {-\bm{M_{o,1,n}^{(1)}}}(\bm{r}, \omega) + i \bm{N_{e,1,n}^{(1)}}(\bm{r}, \omega) \big)
 	\cr
-	&+ 4 \pi E_y(\omega) \sum_{n=0}^{\infin} i^n (\gamma_{1,n})^2 \big( {\bm{M_{e,1,n}^{(1)}}}(\bm{r}, \omega) + i \bm{N_{o,1,n}^{(1)}}(\bm{r}, \omega) \big).
+	&+ E_y(\omega) \sum_{n=1}^{\infin} i^n \frac{(2 n + 1)}{n (n + 1)} \big( {\bm{M_{e,1,n}^{(1)}}}(\bm{r}, \omega) + i \bm{N_{o,1,n}^{(1)}}(\bm{r}, \omega) \big).
 \end{aligned}
 $$
 
+Equation 17.133 can be found in [Stratton 7.11]. Unfortunately, the author does not show the entire derivation and, in the process, arrives at the result with the opposite sign.
+
 ---
 
-Both Stratton and myself appear to be correct. Show how to arrive at Stratton's results... Connection with VSH...
+Connection with VSH...
 
 ---
 
