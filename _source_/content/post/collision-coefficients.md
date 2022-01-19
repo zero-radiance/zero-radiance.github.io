@@ -5510,7 +5510,7 @@ $$
 
 that mirror Euler's formulas of Equation 17.46.
 
-Using the definitions of the vector spherical harmonics (Equations 17.72-17.73) and the vector spherical wave functions (Equations 17.80-17.81), it may be shown that the functions of Equation 17.131 are weighted combinations of the (real) vector tesseral (or sectorial) harmonics. In order to save some space, we shall simply state the resulting expressions [Stratton 7.11] below:
+Using the definitions of the vector spherical harmonics (Equations 17.72-17.73) and the vector spherical wave functions (Equations 17.80-17.81), it may be shown that the functions of Equation 17.131 are weighted combinations of the (real) vector tesseral (and sectorial) harmonics \\(\bm{\Upsilon_{^e_o,m,n}}, \bm{\Phi_{^e_o,m,n}}, \bm{\Psi_{^e_o,m,n}}\\). In order to save some space, we shall simply state the resulting expressions [Stratton 7.11] below:
 
 $$ \tag{17.132}
 \begin{aligned}
@@ -5562,6 +5562,17 @@ $$ \tag{17.132}
 	   \sin \cr
 	   \cos
 	\end{array} \negthickspace (m \phi) \thinspace \bm{e_{\phi}} \Big).
+\end{aligned}
+$$
+
+It is now straightforward to show that the electromagnetic plane wave expansion of Equation 17.129 can be reduced to
+
+$$ \tag{17.133}
+\begin{aligned}
+	\bm{E_0}(\bm{e_z}, \omega) e^{i k(\omega) (\bm{r} \cdot \bm{e_z})}
+	&= 4 \pi E_x(\omega) \sum_{n=0}^{\infin} i^n (\gamma_{1,n})^2 \big( {-\bm{M_{o,1,n}^{(1)}}}(\bm{r}, \omega) + i \bm{N_{e,1,n}^{(1)}}(\bm{r}, \omega) \big)
+	\cr
+	&+ 4 \pi E_y(\omega) \sum_{n=0}^{\infin} i^n (\gamma_{1,n})^2 \big( {\bm{M_{e,1,n}^{(1)}}}(\bm{r}, \omega) + i \bm{N_{o,1,n}^{(1)}}(\bm{r}, \omega) \big).
 \end{aligned}
 $$
 
