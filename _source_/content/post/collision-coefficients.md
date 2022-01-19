@@ -4675,8 +4675,6 @@ $$ \tag{17.67}
 \end{aligned}
 $$
 
-Straightforward substitution shows that, in general, \\(\bm{L_{0,0}} \neq 0\\), while \\(\bm{M_{0,0}} = \bm{N_{0,0}} = 0\\). Therefore, the series expansions that involve the only the last two vectors may begin at \\(n = 1\\).
-
 The expressions given above may be shortened by defining two new zonal functions
 
 $$ \tag{17.68}
@@ -4879,6 +4877,8 @@ $$ \tag{17.80}
 	 + \bigg( \frac{z_n(k r)}{k r} + \frac{\partial z_n(k r)}{\partial (k r)} \bigg) \bm{\Psi_{m,n}}(\theta, \phi).
 \end{aligned}
 $$
+
+By simplifying Equation 17.72, we may show that, in general, \\(\bm{\Upsilon_{0,0}} \neq 0\\), while \\(\bm{\Phi_{0,0}} = \bm{\Psi_{0,0}} = 0\\). Substitution into Equation 17.80 leads to \\(\bm{L_{0,0}} \neq 0\\) and \\(\bm{M_{0,0}} = \bm{N_{0,0}} = 0\\). Consequently, the series expansions that exclude the \\(\bm{L_{m,n}}\\) vectors may begin at \\(n = 1\\).
 
 Most properties of the vector spherical harmonics are, to some degree, shared by the vector spherical wave functions. For instance, they exhibit the symmetry property that follows from Equation 17.73:
 
