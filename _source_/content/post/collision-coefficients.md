@@ -5692,7 +5692,7 @@ $$
 
 ---
 
-## III. Simple Formulas for Practical Use
+## III. Approximate Methods for Practical Use
 
 [Rayleigh](https://en.wikipedia.org/wiki/Rayleigh_scattering) - [Tyndall](https://en.wikipedia.org/wiki/Tyndall_effect) - [Mie](https://en.wikipedia.org/wiki/Mie_scattering)
 
