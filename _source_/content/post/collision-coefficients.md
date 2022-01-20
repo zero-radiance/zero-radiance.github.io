@@ -3509,7 +3509,7 @@ $$
 
 makes Equation 15.28 fully dimensionless. Additionally, in the operator notation, Equations 15.20 and 15.28 are formally identical. As a result, both formulations can be written as the Born series of Equation 14.20, and thus produce the same fields. This completes the proof of the scale invariance property of electromagnetic scattering.
 
-(Consider Stratton's proof, p. 488)
+[Evgenii: Consider Stratton's proof, p. 488]
 
 
 ### Optical Cross-Section Theorem
@@ -4675,7 +4675,7 @@ $$ \tag{17.67}
 \end{aligned}
 $$
 
-The expressions given above may be shortened by defining two new zonal functions
+The expressions given above may be shortened by defining two new angle-dependent functions
 
 $$ \tag{17.68}
 	\pi_{m,n}(\theta) = m \frac{P_n^m(\cos{\theta})}{\sin{\theta}},
@@ -4756,7 +4756,7 @@ $$ \tag{17.72}
 	= Y^m_n \bm{e_r} = \gamma_{m,n} e^{i m \phi} P_n^m(\cos{\theta}) \bm{e_r},
 	\cr
 	& \bm{\Phi_{m,n}}(\theta, \phi)
-	= \nabla \times \big( Y^m_n \bm{r} \big)
+	= \nabla \times \big( r Y^m_n \bm{e_r} \big)
 	= \gamma_{m,n} e^{i m \phi} \big( i \pi_{m,n}(\theta) \bm{e_{\theta}} - \tau_{m,n}(\theta) \bm{e_{\phi}} \big)
 	= \bm{\Psi_{m,n}} \times \bm{e_r},
 	\cr
@@ -4782,7 +4782,7 @@ $$ \tag{17.73}
 	= (-1)^m \bm{\Psi_{m,n}^{\*}}.
 $$
 
-The particular manner of dependence on a single vector \\(\bm{e_r}\\) leads to orthogonality in the 3-dimensional space:
+The particular manner of dependence on a single vector \\(\bm{e_r}\\) leads to orthogonality in the 3-dimensional space
 
 $$ \tag{17.74}
 \begin{aligned}
@@ -4792,9 +4792,11 @@ $$ \tag{17.74}
 	\bm{\Upsilon_{s,t}} 	 \cdot \bm{\Psi_{m,n}} =
 	\bm{\Upsilon_{s,t}^{\*}} \cdot \bm{\Psi_{m,n}} = 0,
 	\cr
-	\bm{\Phi_{m,n}} \cdot \bm{\Psi_{m,n}} = 0.
+	\bm{\Phi_{m,n}} \cdot \bm{\Psi_{m,n}} = 0,
 \end{aligned}
 $$
+
+for arbitrary values of \\(m,n,s,t\\).
 
 Furthermore, let us demonstrate that the vector spherical harmonics are also orthogonal in the [Hilbert space](https://en.wikipedia.org/wiki/Hilbert_space), which (very roughly) means that the vectors with different indices are orthogonal on the surface of a sphere.
 
@@ -5096,16 +5098,16 @@ $$ \tag{17.96}
 	= -\sum_{n=1}^{\infin} \sum_{m=-n}^{n} \big( a_{m,n}(\omega) \bm{M_{m,n}}(\bm{r}, \omega) + b_{m,n}(\omega) \bm{N_{m,n}}(\bm{r}, \omega) \big).
 $$
 
-In order to obtain these coefficients, we must consider three (???) distinct types of electromagnetic fields: the incident field produced by an external source, the scattered field in the far zone of the particle, and the total internal field induced inside the sphere. The reason for this kind of decomposition will become apparent shortly.
+In order to obtain these coefficients, we must consider three distinct types of electromagnetic fields: the incident field produced by an external source, the scattered field in the far zone of the particle, and the total internal field induced inside the spherical particle. The reason for this kind of decomposition will become apparent shortly.
 
 We shall start with the incident field. Evidently, its expression must be known a priori. That permits us to determine the values of the coefficients \\(a_{m,n}\\) and \\(b_{m,n}\\) by projecting Equation 17.96 onto \\(\bm{M_{s,t}}\\) and \\(\bm{N_{s,t}}\\) using Equations 17.88 and 17.89, respectively:
 
 $$ \tag{17.97}
 \begin{aligned}
-	a_{m,n}^{(1)} &= \frac{ - \int_{0}^{2 \pi} \int_{0}^{\pi} \big[ \bm{M_{m,n}^{(1)}}(\bm{r}) \big]^{\*} \cdot \bm{E_i}(\bm{r}) \sin{\theta} \thinspace d\theta d\phi }
+	a_{m,n} &= \frac{ - \int_{0}^{2 \pi} \int_{0}^{\pi} \big[ \bm{M_{m,n}^{(1)}}(\bm{r}) \big]^{\*} \cdot \bm{E_i}(\bm{r}) \sin{\theta} \thinspace d\theta d\phi }
 	{ n (n+1) \big| j_n(k r) \big|^2 },
 	\cr
-	b_{m,n}^{(1)} &= \frac{ - \int_{0}^{2 \pi} \int_{0}^{\pi} \big[ \bm{N_{m,n}^{(1)}}(\bm{r}) \big]^{\*} \cdot \bm{E_i}(\bm{r}) \sin{\theta} \thinspace d\theta d\phi }
+	b_{m,n} &= \frac{ - \int_{0}^{2 \pi} \int_{0}^{\pi} \big[ \bm{N_{m,n}^{(1)}}(\bm{r}) \big]^{\*} \cdot \bm{E_i}(\bm{r}) \sin{\theta} \thinspace d\theta d\phi }
 	{ n (n+1) \bigg(
 		\Big| \frac{j_n(k r)}{k r} + \frac{\partial j_n(k r)}{\partial (k r)} \Big|^2
 		+ n (n+1) \Big| \frac{j_n(k r)}{k r} \Big|^2
@@ -5325,7 +5327,7 @@ $$
 Comparison with Equation 17.97.1 yields the value of the first expansion coefficient
 
 $$ \tag{17.120}
-	a_{m,n}^{(1)}
+	a_{m,n}
 	= -\delta_{m,\pm 1} (i E_x + m E_y) 2 \pi i^n \gamma_{1,n}.
 $$
 
@@ -5456,7 +5458,7 @@ Once we substitute the value of the integral into Equation 17.97.2, the factor c
 
 $$ \tag{17.128}
 \begin{aligned}
-	b_{m,n}^{(1)} &= -\delta_{m,\pm 1} (i m E_x + E_y) 2 \pi i^n \gamma_{1,n}.
+	b_{m,n} &= -\delta_{m,\pm 1} (i m E_x + E_y) 2 \pi i^n \gamma_{1,n}.
 \end{aligned}
 $$
 
@@ -5465,13 +5467,13 @@ Derivation of the coefficients given by Equations 17.120 and 17.128 completes th
 $$ \tag{17.129}
 \begin{aligned}
 	\bm{E_0}(\bm{e_z}, \omega) e^{i k(\omega) (\bm{r} \cdot \bm{e_z})}
-	&= 2 \pi \sum_{n=1}^{\infin} i^n \gamma_{1,n} \sum_{m= \pm 1} \big( (i E_x(\omega) + m E_y(\omega) \big) \bm{M_{m,n}^{(1)}}(\bm{r}, \omega)
+	&= \sum_{n=1}^{\infin} 2 \pi i^n \gamma_{1,n} \sum_{m= \pm 1} \big( i E_x(\omega) + m E_y(\omega) \big) \bm{M_{m,n}^{(1)}}(\bm{r}, \omega)
 	\cr
-	&+ 2 \pi \sum_{n=1}^{\infin} i^n \gamma_{1,n} \sum_{m= \pm 1} \big( i m E_x(\omega) + E_y(\omega) \big) \bm{N_{m,n}^{(1)}}(\bm{r}, \omega)
+	&+ \sum_{n=1}^{\infin} 2 \pi i^n \gamma_{1,n} \sum_{m= \pm 1} \big( i m E_x(\omega) + E_y(\omega) \big) \bm{N_{m,n}^{(1)}}(\bm{r}, \omega)
 	\cr
-	&= 2 \pi E_x(\omega) \sum_{n=1}^{\infin} i^n \gamma_{1,n} \sum_{m= \pm 1} i \big( \bm{M_{m,n}^{(1)}}(\bm{r}, \omega) + m \bm{N_{m,n}^{(1)}}(\bm{r}, \omega) \big)
+	&= E_x(\omega) \sum_{n=1}^{\infin} 2 \pi i^{n+1} \gamma_{1,n} \sum_{m= \pm 1} \big( \bm{M_{m,n}^{(1)}}(\bm{r}, \omega) + m \bm{N_{m,n}^{(1)}}(\bm{r}, \omega) \big)
 	\cr
-	&+ 2 \pi E_y(\omega) \sum_{n=1}^{\infin} i^n \gamma_{1,n} \sum_{m= \pm 1} \big( m \bm{M_{m,n}^{(1)}}(\bm{r}, \omega) + \bm{N_{m,n}^{(1)}}(\bm{r}, \omega) \big).
+	&+ E_y(\omega) \sum_{n=1}^{\infin} 2 \pi i^n \gamma_{1,n} \sum_{m= \pm 1} \big( m \bm{M_{m,n}^{(1)}}(\bm{r}, \omega) + \bm{N_{m,n}^{(1)}}(\bm{r}, \omega) \big).
 \end{aligned}
 $$
 
@@ -5567,7 +5569,7 @@ $$ \tag{17.132}
 \end{aligned}
 $$
 
-It is now straightforward to show that the electromagnetic plane wave expansion of Equation 17.129 can be reduced to
+Equations 17.131 make it easy to show that the plane wave expansion of Equation 17.129 can be reduced to
 
 $$ \tag{17.133}
 \begin{aligned}
@@ -5580,9 +5582,113 @@ $$
 
 Equation 17.133 can be found in [Stratton 7.11]. Unfortunately, the author does not show the entire derivation and, in the process, arrives at the result with the opposite sign.
 
----
+For our purposes, the most useful expression of the incident field given by Equation 17.129 is in terms of the vector spherical harmonics (as shown by Equations 17.80-17.81):
 
-Connection with VSH...
+$$ \tag{17.134}
+\begin{aligned}
+	\bm{E_i}(\bm{r}, \omega)
+	&= \bm{E_0}(\bm{e_z}, \omega) e^{i k(\omega) (\bm{r} \cdot \bm{e_z})}
+	\cr
+	= &- \sum_{m,n} a\_{m,n}(\omega) j_n(k r) \bm{\Phi_{m,n}}(\theta, \phi)
+	\cr
+	&- \sum_{m,n} b\_{m,n}(\omega) \bigg( n (n + 1) \frac{j_n(k r)}{k r} \bm{\Upsilon_{m,n}}(\theta, \phi)
+	 + \bigg( \frac{j_n(k r)}{k r} + \frac{\partial j_n(k r)}{\partial (k r)} \bigg) \bm{\Psi_{m,n}}(\theta, \phi) \bigg).
+\end{aligned}
+$$
+
+The expression of the scattered field remains unknown. Since it is a component of the total field
+
+$$ \tag{17.135}
+	\bm{E_1} = \bm{E_i} + \bm{E_s},
+$$
+
+we know that its vector and scalar potentials satisfy the Helmholtz equations; thus, by linearity, Equation 17.36 remains applicable. In addition, thanks to Equation 15.6, we know the asymptotic behavior of the scattered field as \\(k r \to \infty\\). As we compare it to Equation 17.52, it becomes clear that we must choose the spherical Bessel function of the third kind
+
+$$ \tag{17.136}
+	z_n^{(3)}(k r) = h_n^{(1)}(k r)
+$$
+
+for the vector spherical wave function series expansion
+
+$$ \tag{17.137}
+\begin{aligned}
+	\bm{E_s}(\bm{r}, \omega)
+	= &- \sum_{m,n} \big( a'\_{m,n}(\omega) \bm{M_{m,n}^{(3)}}(\bm{r}, \omega) + b'\_{m,n}(\omega) \bm{N_{m,n}^{(3)}}(\bm{r}, \omega) \big)
+	\cr
+	= &- \sum_{m,n} a'\_{m,n}(\omega) h_n^{(1)}(k r) \bm{\Phi_{m,n}}(\theta, \phi)
+	\cr
+	&- \sum_{m,n} b'\_{m,n}(\omega) \bigg( n (n + 1) \frac{h_n^{(1)}(k r)}{k r} \bm{\Upsilon_{m,n}}(\theta, \phi)
+	 + \bigg( \frac{h_n^{(1)}(k r)}{k r} + \frac{\partial h_n^{(1)}(k r)}{\partial (k r)} \bigg) \bm{\Psi_{m,n}}(\theta, \phi) \bigg).
+\end{aligned}
+$$
+
+Finally, in addition to the total field \\(\bm{E_1}\\) in the exterior region of the particle, we must determine the expression of the internal field \\(\bm{E_2}\\) established inside the sphere. Two facts are known about this field: first, in order for the solution to be physically plausible, the field must take on finite values at the origin, which means we must employ the spherical Bessel function of the first kind; and second, the wavenumber \\(k_2\\) inside the sphere depends on its index of refraction (c.f. Equation 11.8), and is thus necessarily different from the wavenumber \\(k_1 = k\\) in the surrounding medium.
+
+The combination of these two facts motivates the following series expansion of the internal field:
+
+$$ \tag{17.138}
+\begin{aligned}
+	\bm{E_2}(\bm{r}, \omega)
+	= &- \sum_{m,n} \big( a''\_{m,n}(\omega) \bm{M_{m,n}^{(1)}}(\bm{r}, \omega) + b''\_{m,n}(\omega) \bm{N_{m,n}^{(1)}}(\bm{r}, \omega) \big)
+	\cr
+	= &- \sum_{m,n} a''\_{m,n}(\omega) j_n(k_2 r) \bm{\Phi_{m,n}}(\theta, \phi)
+	\cr
+	&- \sum_{m,n} b''\_{m,n}(\omega) \bigg( n (n + 1) \frac{j_n(k_2 r)}{k_2 r} \bm{\Upsilon_{m,n}}(\theta, \phi)
+	 + \bigg( \frac{j_n(k_2 r)}{k_2 r} + \frac{\partial j_n(k_2 r)}{\partial (k_2 r)} \bigg) \bm{\Psi_{m,n}}(\theta, \phi) \bigg).
+\end{aligned}
+$$
+
+How are the internal and the external fields related? According to Equation 1.17, the tangential component of the electric field must be continuous at the optical interface - the surface of the sphere:
+
+$$ \tag{17.139}
+	\bm{e_r} \times (\bm{E_2} - \bm{E_1}) = 0.
+$$
+
+This is where the form of the vector spherical harmonics given by Equation 17.72 becomes particularly useful. From the definitions, it immediately follows that
+
+$$ \tag{17.140}
+	\bm{e_r} \times \bm{\Upsilon_{m,n}}
+	= 0,
+	\quad
+	\bm{e_r} \times \bm{\Phi_{m,n}}
+	= \bm{\Psi_{m,n}},
+	\quad
+	\bm{e_r} \times \bm{\Psi_{m,n}}
+	= - \bm{\Phi_{m,n}}.
+$$
+
+Thus,
+
+$$ \tag{17.141}
+\small
+\begin{aligned}
+	\bm{e_r} \times \bm{E_2}(\bm{r}, \omega)
+	= &- \sum_{m,n} a''\_{m,n} j_n(k_2 r) \bm{\Psi_{m,n}}(\theta, \phi)
+	+ \sum_{m,n} b''\_{m,n} \bigg( \frac{j_n(k_2 r)}{k_2 r} + \frac{\partial j_n(k_2 r)}{\partial (k_2 r)} \bigg) \bm{\Phi_{m,n}}(\theta, \phi),
+	\cr
+	\bm{e_r} \times \bm{E_1}(\bm{r}, \omega)
+	= &- \sum_{m,n}
+		\big( a\_{m,n} j_n(k_1 r) + a'\_{m,n} h_n^{(1)}(k_1 r) \big)
+	\bm{\Psi_{m,n}}(\theta, \phi)
+	\cr
+	&+ \sum_{m,n} \Bigg(
+		b\_{m,n} \bigg( \frac{j_n(k_1 r)}{k_1 r} + \frac{\partial j_n(k_1 r)}{\partial (k_1 r)} \bigg)
+		+ b'\_{m,n} \bigg( \frac{h_n^{(1)}(k_1 r)}{k_1 r} + \frac{\partial h_n^{(1)}(k_1 r)}{\partial (k_1 r)} \bigg)
+	\Bigg) \bm{\Phi_{m,n}}(\theta, \phi).
+\end{aligned}
+$$
+
+Since all vector spherical harmonics are orthogonal, we may treat the sets of unknown coefficients \\(\lbrace a'\_{m,n} \rbrace, \lbrace b'\_{m,n} \rbrace, \lbrace a''\_{m,n} \rbrace, \lbrace b''\_{m,n} \rbrace\\) as vectors. Yet, even in this interpretation, the unknowns outnumber the equations 2-to-1. Therefore, we must also apply the second boundary condition of Equation 1.17:
+
+$$ \tag{17.142}
+	\bm{e_r} \times (\bm{H_2} - \bm{H_1}) = \bm{J_n},
+$$
+
+Assuming the conductivity is not enormous, the surface current term \\(\bm{J_n}\\) vanishes [Stratton 1.13], and we may combine Equations 3.12, 5.2.3 and 17.142 into
+
+$$ \tag{17.143}
+	\bm{e_r} \times (\nabla \times \bm{E_2} - \nabla \times \bm{E_1}) = 0.
+$$
 
 ---
 
