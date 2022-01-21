@@ -5467,6 +5467,8 @@ Derivation of the coefficients given by Equations 17.120 and 17.128 completes th
 $$ \tag{17.129}
 \begin{aligned}
 	\bm{E_0}(\bm{e_z}, \omega) e^{i k(\omega) (\bm{r} \cdot \bm{e_z})}
+	= &- \sum_{m,n} \big( a_{m,n}(\omega) \bm{M_{m,n}^{(1)}}(\bm{r}, \omega) + b_{m,n}(\omega) \bm{N_{m,n}^{(1)}}(\bm{r}, \omega) \big)
+	\cr
 	&= \sum_{n=1}^{\infin} 2 \pi i^n \gamma_{1,n} \sum_{m= \pm 1} \big( i E_x(\omega) + m E_y(\omega) \big) \bm{M_{m,n}^{(1)}}(\bm{r}, \omega)
 	\cr
 	&+ \sum_{n=1}^{\infin} 2 \pi i^n \gamma_{1,n} \sum_{m= \pm 1} \big( i m E_x(\omega) + E_y(\omega) \big) \bm{N_{m,n}^{(1)}}(\bm{r}, \omega)
@@ -5589,9 +5591,9 @@ $$ \tag{17.134}
 	\bm{E_i}(\bm{r}, \omega)
 	&= \bm{E_0}(\bm{e_z}, \omega) e^{i k(\omega) (\bm{r} \cdot \bm{e_z})}
 	\cr
-	= &- \sum_{m,n} a\_{m,n}(\omega) j_n(k r) \bm{\Phi_{m,n}}(\theta, \phi)
+	= &- \sum_{m,n} a_{m,n}(\omega) j_n(k r) \bm{\Phi_{m,n}}(\theta, \phi)
 	\cr
-	&- \sum_{m,n} b\_{m,n}(\omega) \bigg( n (n + 1) \frac{j_n(k r)}{k r} \bm{\Upsilon_{m,n}}(\theta, \phi)
+	&- \sum_{m,n} b_{m,n}(\omega) \bigg( n (n + 1) \frac{j_n(k r)}{k r} \bm{\Upsilon_{m,n}}(\theta, \phi)
 	 + \bigg( \frac{j_n(k r)}{k r} + \frac{\partial j_n(k r)}{\partial (k r)} \bigg) \bm{\Psi_{m,n}}(\theta, \phi) \bigg).
 \end{aligned}
 $$
@@ -5613,11 +5615,11 @@ for the vector spherical wave function series expansion
 $$ \tag{17.137}
 \begin{aligned}
 	\bm{E_s}(\bm{r}, \omega)
-	= &- \sum_{m,n} \big( a'\_{m,n}(\omega) \bm{M_{m,n}^{(3)}}(\bm{r}, \omega) + b'\_{m,n}(\omega) \bm{N_{m,n}^{(3)}}(\bm{r}, \omega) \big)
+	= &- \sum_{m,n} \big( a_{m,n}'(\omega) \bm{M_{m,n}^{(3)}}(\bm{r}, \omega) + b_{m,n}'(\omega) \bm{N_{m,n}^{(3)}}(\bm{r}, \omega) \big)
 	\cr
-	= &- \sum_{m,n} a'\_{m,n}(\omega) h_n^{(1)}(k r) \bm{\Phi_{m,n}}(\theta, \phi)
+	= &- \sum_{m,n} a_{m,n}'(\omega) h_n^{(1)}(k r) \bm{\Phi_{m,n}}(\theta, \phi)
 	\cr
-	&- \sum_{m,n} b'\_{m,n}(\omega) \bigg( n (n + 1) \frac{h_n^{(1)}(k r)}{k r} \bm{\Upsilon_{m,n}}(\theta, \phi)
+	&- \sum_{m,n} b_{m,n}'(\omega) \bigg( n (n + 1) \frac{h_n^{(1)}(k r)}{k r} \bm{\Upsilon_{m,n}}(\theta, \phi)
 	 + \bigg( \frac{h_n^{(1)}(k r)}{k r} + \frac{\partial h_n^{(1)}(k r)}{\partial (k r)} \bigg) \bm{\Psi_{m,n}}(\theta, \phi) \bigg).
 \end{aligned}
 $$
@@ -5629,11 +5631,11 @@ The combination of these two facts motivates the following series expansion of t
 $$ \tag{17.138}
 \begin{aligned}
 	\bm{E_2}(\bm{r}, \omega)
-	= &- \sum_{m,n} \big( a''\_{m,n}(\omega) \bm{M_{m,n}^{(1)}}(\bm{r}, \omega) + b''\_{m,n}(\omega) \bm{N_{m,n}^{(1)}}(\bm{r}, \omega) \big)
+	= &- \sum_{m,n} \big( a_{m,n}''(\omega) \bm{M_{m,n}^{(1)}}(\bm{r}, \omega) + b_{m,n}''(\omega) \bm{N_{m,n}^{(1)}}(\bm{r}, \omega) \big)
 	\cr
-	= &- \sum_{m,n} a''\_{m,n}(\omega) j_n(k_2 r) \bm{\Phi_{m,n}}(\theta, \phi)
+	= &- \sum_{m,n} a_{m,n}''(\omega) j_n(k_2 r) \bm{\Phi_{m,n}}(\theta, \phi)
 	\cr
-	&- \sum_{m,n} b''\_{m,n}(\omega) \bigg( n (n + 1) \frac{j_n(k_2 r)}{k_2 r} \bm{\Upsilon_{m,n}}(\theta, \phi)
+	&- \sum_{m,n} b_{m,n}''(\omega) \bigg( n (n + 1) \frac{j_n(k_2 r)}{k_2 r} \bm{\Upsilon_{m,n}}(\theta, \phi)
 	 + \bigg( \frac{j_n(k_2 r)}{k_2 r} + \frac{\partial j_n(k_2 r)}{\partial (k_2 r)} \bigg) \bm{\Psi_{m,n}}(\theta, \phi) \bigg).
 \end{aligned}
 $$
@@ -5657,37 +5659,68 @@ $$ \tag{17.140}
 	= - \bm{\Phi_{m,n}}.
 $$
 
-Thus,
+Thus, we must either eliminate, swap, or negate and swap the spherical harmonic vectors:
 
 $$ \tag{17.141}
 \small
 \begin{aligned}
-	\bm{e_r} \times \bm{E_2}(\bm{r}, \omega)
-	= &- \sum_{m,n} a''\_{m,n} j_n(k_2 r) \bm{\Psi_{m,n}}(\theta, \phi)
-	+ \sum_{m,n} b''\_{m,n} \bigg( \frac{j_n(k_2 r)}{k_2 r} + \frac{\partial j_n(k_2 r)}{\partial (k_2 r)} \bigg) \bm{\Phi_{m,n}}(\theta, \phi),
+	\bm{e_r} \times \bm{E_2}
+	= &- \sum_{m,n} \bigg( a_{m,n}'' j_n(k_2 r) \bm{\Psi_{m,n}}(\theta, \phi)
+	- b_{m,n}'' \bigg( \frac{j_n(k_2 r)}{k_2 r} + \frac{\partial j_n(k_2 r)}{\partial (k_2 r)} \bigg) \bm{\Phi_{m,n}}(\theta, \phi) \bigg),
 	\cr
-	\bm{e_r} \times \bm{E_1}(\bm{r}, \omega)
+	\bm{e_r} \times \bm{E_1}
 	= &- \sum_{m,n}
-		\big( a\_{m,n} j_n(k_1 r) + a'\_{m,n} h_n^{(1)}(k_1 r) \big)
+		\big( a_{m,n} j_n(k_1 r) + a_{m,n}' h_n^{(1)}(k_1 r) \big)
 	\bm{\Psi_{m,n}}(\theta, \phi)
 	\cr
 	&+ \sum_{m,n} \Bigg(
-		b\_{m,n} \bigg( \frac{j_n(k_1 r)}{k_1 r} + \frac{\partial j_n(k_1 r)}{\partial (k_1 r)} \bigg)
-		+ b'\_{m,n} \bigg( \frac{h_n^{(1)}(k_1 r)}{k_1 r} + \frac{\partial h_n^{(1)}(k_1 r)}{\partial (k_1 r)} \bigg)
+		b_{m,n} \bigg( \frac{j_n(k_1 r)}{k_1 r} + \frac{\partial j_n(k_1 r)}{\partial (k_1 r)} \bigg)
+		+ b_{m,n}' \bigg( \frac{h_n^{(1)}(k_1 r)}{k_1 r} + \frac{\partial h_n^{(1)}(k_1 r)}{\partial (k_1 r)} \bigg)
 	\Bigg) \bm{\Phi_{m,n}}(\theta, \phi).
 \end{aligned}
 $$
 
-Since all vector spherical harmonics are orthogonal, we may treat the sets of unknown coefficients \\(\lbrace a'\_{m,n} \rbrace, \lbrace b'\_{m,n} \rbrace, \lbrace a''\_{m,n} \rbrace, \lbrace b''\_{m,n} \rbrace\\) as vectors. Yet, even in this interpretation, the unknowns outnumber the equations 2-to-1. Therefore, we must also apply the second boundary condition of Equation 1.17:
+Since all vector spherical harmonics are orthogonal, we may treat the sets of unknown coefficients \\(\lbrace a\_{m,n}' \rbrace, \lbrace b\_{m,n}' \rbrace, \lbrace a\_{m,n}'' \rbrace, \lbrace b\_{m,n}'' \rbrace\\) as vectors. Yet, even in this interpretation, the unknowns outnumber the equations 2-to-1. Therefore, we must also apply the second boundary condition of Equation 1.17:
 
 $$ \tag{17.142}
 	\bm{e_r} \times (\bm{H_2} - \bm{H_1}) = \bm{J_n},
 $$
 
-Assuming the conductivity is not enormous, the surface current term \\(\bm{J_n}\\) vanishes [Stratton 1.13], and we may combine Equations 3.12, 5.2.3 and 17.142 into
+Assuming the conductivity is not enormous, the surface current term \\(\bm{J_n}\\) can be neglected [Stratton 1.13], and we may combine Equations 3.12, 5.2.3 and 17.142 into
 
 $$ \tag{17.143}
-	\bm{e_r} \times (\nabla \times \bm{E_2} - \nabla \times \bm{E_1}) = 0.
+	\bm{e_r} \times \nabla \times (\bm{E_2} - \bm{E_1}) = 0.
+$$
+
+The simplest way to take the curl of the electric field is by utilizing the properties of its vector spherical wave function series representation. According to Equations 17.17, 17.19, and 17.34,
+
+$$ \tag{17.144}
+	\nabla \times \bm{L_{m,n}} = 0,
+	\quad
+	\nabla \times \bm{M_{m,n}} = k \bm{N_{m,n}},
+	\quad
+	\nabla \times \bm{N_{m,n}} = k \bm{M_{m,n}},
+$$
+
+which, in our case, simply means that the corresponding series coefficients must be rescaled and interchanged:
+
+$$ \tag{17.145}
+\small
+\begin{aligned}
+	\bm{e_r} \times \nabla \times \bm{E_2}
+	= &- \sum_{m,n} k_2 \bigg( b_{m,n}'' j_n(k_2 r) \bm{\Psi_{m,n}}(\theta, \phi)
+	- a_{m,n}'' \bigg( \frac{j_n(k_2 r)}{k_2 r} + \frac{\partial j_n(k_2 r)}{\partial (k_2 r)} \bigg) \bm{\Phi_{m,n}}(\theta, \phi) \bigg),
+	\cr
+	\bm{e_r} \times \nabla \times \bm{E_1}
+	= &- \sum_{m,n}
+		k_1 \big( b_{m,n} j_n(k_1 r) + b_{m,n}' h_n^{(1)}(k_1 r) \big)
+	\bm{\Psi_{m,n}}(\theta, \phi)
+	\cr
+	&+ \sum_{m,n} k_1 \Bigg(
+		a_{m,n} \bigg( \frac{j_n(k_1 r)}{k_1 r} + \frac{\partial j_n(k_1 r)}{\partial (k_1 r)} \bigg)
+		+ a_{m,n}' \bigg( \frac{h_n^{(1)}(k_1 r)}{k_1 r} + \frac{\partial h_n^{(1)}(k_1 r)}{\partial (k_1 r)} \bigg)
+	\Bigg) \bm{\Phi_{m,n}}(\theta, \phi).
+\end{aligned}
 $$
 
 ---
