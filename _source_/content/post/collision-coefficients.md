@@ -5103,11 +5103,18 @@ In order to obtain these coefficients, we must consider three distinct types of 
 We shall start with the incident field. Evidently, its expression must be known a priori. That permits us to determine the values of the coefficients \\(a_{m,n}\\) and \\(b_{m,n}\\) by combining Equation 17.96 with 17.88 and 17.89, respectively:
 
 $$ \tag{17.97}
+\small
 \begin{aligned}
-	a_{m,n} &= \frac{ \int_{0}^{2 \pi} \int_{0}^{\pi} \big[ \bm{M_{m,n}^{(1)}}(\bm{r}) \big]^{\*} \cdot \bm{E_i}(\bm{r}) \sin{\theta} \thinspace d\theta d\phi }
+	a_{m,n}
+	&= \frac{ \int_{0}^{2 \pi} \int_{0}^{\pi} \big[ \bm{M_{m,n}^{(1)}}(\bm{r}) \big]^{\*} \cdot \bm{E_i}(\bm{r}) \sin{\theta} \thinspace d\theta d\phi }
+	{ \int_{0}^{2 \pi} \int_{0}^{\pi} \big\vert \bm{M_{m,n}^{(1)}}(\bm{r}) \big\vert^2 \sin{\theta} \thinspace d\theta d\phi }
+	= \frac{ \int_{0}^{2 \pi} \int_{0}^{\pi} \big[ \bm{M_{m,n}^{(1)}}(\bm{r}) \big]^{\*} \cdot \bm{E_i}(\bm{r}) \sin{\theta} \thinspace d\theta d\phi }
 	{ n (n+1) \big| j_n(k r) \big|^2 },
 	\cr
-	b_{m,n} &= \frac{ \int_{0}^{2 \pi} \int_{0}^{\pi} \big[ \bm{N_{m,n}^{(1)}}(\bm{r}) \big]^{\*} \cdot \bm{E_i}(\bm{r}) \sin{\theta} \thinspace d\theta d\phi }
+	b_{m,n}
+	&= \frac{ \int_{0}^{2 \pi} \int_{0}^{\pi} \big[ \bm{N_{m,n}^{(1)}}(\bm{r}) \big]^{\*} \cdot \bm{E_i}(\bm{r}) \sin{\theta} \thinspace d\theta d\phi }
+	{ \int_{0}^{2 \pi} \int_{0}^{\pi} \big\vert \bm{N_{m,n}^{(1)}}(\bm{r}) \big\vert^2 \sin{\theta} \thinspace d\theta d\phi }
+	= \frac{ \int_{0}^{2 \pi} \int_{0}^{\pi} \big[ \bm{N_{m,n}^{(1)}}(\bm{r}) \big]^{\*} \cdot \bm{E_i}(\bm{r}) \sin{\theta} \thinspace d\theta d\phi }
 	{ n (n+1) \bigg(
 		\Big| \frac{j_n(k r)}{k r} + \frac{\partial j_n(k r)}{\partial (k r)} \Big|^2
 		+ n (n+1) \Big| \frac{j_n(k r)}{k r} \Big|^2
@@ -5122,6 +5129,38 @@ $$ \tag{17.98}
 $$
 
 motivated by its non-singular behavior at the origin (c.f. Figure N). This property makes it suitable for expressing a smooth, finite-valued incident field.
+
+Equations 17.96 and 17.97 have a simple geometric interpretation. If we define the *Hilbert space norm*
+
+$$ \tag{17.xx}
+	\mathcal{N_h}(\bm{V})
+	= \sqrt{\mathcal{P_h}(\bm{V}, \bm{V})},
+$$
+
+in terms of the *Hilbert space projection operator*
+
+$$ \tag{17.yy}
+	\mathcal{P_h}(\bm{V}, \bm{W})
+	= \int_{0}^{2 \pi} \int_{0}^{\pi} \big[ \bm{W}(\bm{r}) \big]^{\*} \cdot \bm{V}(\bm{r}) \sin{\theta} \thinspace d\theta d\phi,
+$$
+
+then Equation 17.97 can be interpreted the projection in the Hilbert space,
+
+$$ \tag{17.zz}
+	a_{m,n} = \frac{ \mathcal{P_h} \big( \bm{E}, \bm{M_{m,n}} \big) }{ \mathcal{N_h}^2 \big( \bm{M_{m,n}} \big) },
+	\quad
+	b_{m,n} = \frac{ \mathcal{P_h} \big( \bm{E}, \bm{N_{m,n}} \big) }{ \mathcal{N_h}^2 \big( \bm{N_{m,n}} \big) },
+$$
+
+with Equation 17.96 performing the reconstruction:
+
+$$ \tag{17.ww}
+\small
+\bm{E}
+= \sum_{n=1}^{\infin} \sum_{m=-n}^{n} \Bigg(
+	\mathcal{P_h} \Bigg( \bm{E}, \frac{ \bm{M_{m,n}} }{ \mathcal{N_h} \big( \bm{M_{m,n}} \big) } \Bigg) \frac{ \bm{M_{m,n}} }{ \mathcal{N_h} \big( \bm{M_{m,n}} \big) } +
+	\mathcal{P_h} \Bigg( \bm{E}, \frac{ \bm{N_{m,n}} }{ \mathcal{N_h} \big( \bm{N_{m,n}} \big) } \Bigg) \frac{ \bm{N_{m,n}} }{ \mathcal{N_h} \big( \bm{N_{m,n}} \big) } \Bigg).
+$$
 
 Let us further assume that the incident field can be represented by a plane wave. This is a valid description of an extended source located in the far zone of a small particle; a more general source could be modeled as a superposition of plane waves.
 
