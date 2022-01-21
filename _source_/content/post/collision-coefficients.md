@@ -4082,7 +4082,7 @@ $$
 Since the Helmholtz equation is both homogeneous and linear, it has multiple special solutions that can be combined into a single general solution according to the superposition principle:
 
 $$ \tag{17.11}
-	\phi(\bm{r}, \omega) = -\sum_{m,n} c_{m,n}(\omega) \psi_{m,n}(\bm{r}, \omega),
+	\phi(\bm{r}, \omega) = \sum_{m,n} c_{m,n}(\omega) \psi_{m,n}(\bm{r}, \omega),
 $$
 
 with each special solution \\(\psi_{m,n}\\) satisfying the same equation
@@ -4096,9 +4096,9 @@ Similarly, in 3-dimensional space, the vector potential \\(\bm{A_{m,n}}\\) can b
 $$ \tag{17.13}
 \begin{aligned}
 	\bm{A}(\bm{r}, \omega)
-	&= \frac{i}{\omega} \sum_{m,n} \bm{A_{m,n}}(\bm{r}, \omega)
+	&= \frac{1}{i \omega} \sum_{m,n} \bm{A_{m,n}}(\bm{r}, \omega)
 	\cr
-	&= \frac{i}{\omega} \sum_{m,n} \big( a_{m,n}(\omega) \bm{M_{m,n}}(\bm{r}, \omega) + b_{m,n}(\omega) \bm{N_{m,n}}(\bm{r}, \omega) + c_{m,n}(\omega) \bm{L_{m,n}}(\bm{r}, \omega) \big).
+	&= \frac{1}{i \omega} \sum_{m,n} \big( a_{m,n}(\omega) \bm{M_{m,n}}(\bm{r}, \omega) + b_{m,n}(\omega) \bm{N_{m,n}}(\bm{r}, \omega) + c_{m,n}(\omega) \bm{L_{m,n}}(\bm{r}, \omega) \big).
 \end{aligned}
 $$
 
@@ -4296,9 +4296,9 @@ $$ \tag{17.36}
 	\bm{E}(\bm{r}, \omega)
 	&= i \omega \bm{A}(\bm{r}, \omega) - \nabla \phi(\bm{r}, \omega)
 	\cr
-	&= -\sum_{m,n} \big( \bm{A_{m,n}}(\bm{r}, \omega) - c_{m,n}(\omega) \nabla \psi_{m,n}(\bm{r}, \omega) \big)
+	&= \sum_{m,n} \big( \bm{A_{m,n}}(\bm{r}, \omega) - c_{m,n}(\omega) \nabla \psi_{m,n}(\bm{r}, \omega) \big)
 	\cr
-	&= -\sum_{m,n} \big( a_{m,n}(\omega) \bm{M_{m,n}}(\bm{r}, \omega) + b_{m,n}(\omega) \bm{N_{m,n}}(\bm{r}, \omega) \big).
+	&= \sum_{m,n} \big( a_{m,n}(\omega) \bm{M_{m,n}}(\bm{r}, \omega) + b_{m,n}(\omega) \bm{N_{m,n}}(\bm{r}, \omega) \big).
 \end{aligned}
 $$
 
@@ -4311,9 +4311,9 @@ $$ \tag{17.37}
 	\bm{B}(\bm{r}, \omega)
 	&= \nabla \times \bm{A}(\bm{r}, \omega)
 	\cr
-	&= \frac{i}{\omega} \sum_{m,n} \Big( a_{m,n}(\omega) \big( \nabla \times \bm{M_{m,n}}(\bm{r}, \omega) \big) + b_{m,n}(\omega) \big( \nabla \times \bm{N_{m,n}}(\bm{r}, \omega) \big) \Big)
+	&= \frac{1}{i \omega} \sum_{m,n} \Big( a_{m,n}(\omega) \big( \nabla \times \bm{M_{m,n}}(\bm{r}, \omega) \big) + b_{m,n}(\omega) \big( \nabla \times \bm{N_{m,n}}(\bm{r}, \omega) \big) \Big)
 	\cr
-	&= - \frac{k}{i \omega} \sum_{m,n} \big( a_{m,n}(\omega) \bm{N_{m,n}}(\bm{r}, \omega) + b_{m,n}(\omega) \bm{M_{m,n}}(\bm{r}, \omega) \big).
+	&= \frac{k}{i \omega} \sum_{m,n} \big( a_{m,n}(\omega) \bm{N_{m,n}}(\bm{r}, \omega) + b_{m,n}(\omega) \bm{M_{m,n}}(\bm{r}, \omega) \big).
 \end{aligned}
 $$
 
@@ -4391,7 +4391,7 @@ Since the solutions of the Helmholtz equation that are continuous (within a cert
 $$ \tag{17.44}
 \begin{aligned}
 	& f(\bm{r})
-	= - \sum_{m,n} c_{m,n} \psi_{m,n}(\bm{r}),
+	= \sum_{m,n} c_{m,n} \psi_{m,n}(\bm{r}),
 	\cr
 	& \psi_{m,n}(\bm{r})
 	= \gamma_{m,n} z_n(k r) P_n^m(\cos{\theta}) e^{i m \phi},
@@ -4584,7 +4584,7 @@ Thus, the spherical wave solution of Equation 17.38 (given by Equation 17.44) ca
 $$ \tag{17.61}
 \begin{aligned}
 	& f(\bm{r})
-	= - \sum_{n=0}^{\infin} \sum_{m=-n}^{n} c_{m,n} \psi_{m,n}(\bm{r}),
+	= \sum_{n=0}^{\infin} \sum_{m=-n}^{n} c_{m,n} \psi_{m,n}(\bm{r}),
 	\cr
 	& \psi_{m,n}(\bm{r})
 	= z_n(k r) Y_n^m(\theta, \phi).
@@ -5095,19 +5095,19 @@ Now, let us return to the scattering problem. In general, we may arrive at the s
 
 $$ \tag{17.96}
 	\bm{E}(\bm{r}, \omega)
-	= -\sum_{n=1}^{\infin} \sum_{m=-n}^{n} \big( a_{m,n}(\omega) \bm{M_{m,n}}(\bm{r}, \omega) + b_{m,n}(\omega) \bm{N_{m,n}}(\bm{r}, \omega) \big).
+	= \sum_{n=1}^{\infin} \sum_{m=-n}^{n} \big( a_{m,n}(\omega) \bm{M_{m,n}}(\bm{r}, \omega) + b_{m,n}(\omega) \bm{N_{m,n}}(\bm{r}, \omega) \big).
 $$
 
 In order to obtain these coefficients, we must consider three distinct types of electromagnetic fields: the incident field produced by an external source, the scattered field in the far zone of the particle, and the total internal field induced inside the spherical particle. The reason for this kind of decomposition will become apparent shortly.
 
-We shall start with the incident field. Evidently, its expression must be known a priori. That permits us to determine the values of the coefficients \\(a_{m,n}\\) and \\(b_{m,n}\\) by projecting Equation 17.96 onto \\(\bm{M_{s,t}}\\) and \\(\bm{N_{s,t}}\\) using Equations 17.88 and 17.89, respectively:
+We shall start with the incident field. Evidently, its expression must be known a priori. That permits us to determine the values of the coefficients \\(a_{m,n}\\) and \\(b_{m,n}\\) by combining Equation 17.96 with 17.88 and 17.89, respectively:
 
 $$ \tag{17.97}
 \begin{aligned}
-	a_{m,n} &= \frac{ - \int_{0}^{2 \pi} \int_{0}^{\pi} \big[ \bm{M_{m,n}^{(1)}}(\bm{r}) \big]^{\*} \cdot \bm{E_i}(\bm{r}) \sin{\theta} \thinspace d\theta d\phi }
+	a_{m,n} &= \frac{ \int_{0}^{2 \pi} \int_{0}^{\pi} \big[ \bm{M_{m,n}^{(1)}}(\bm{r}) \big]^{\*} \cdot \bm{E_i}(\bm{r}) \sin{\theta} \thinspace d\theta d\phi }
 	{ n (n+1) \big| j_n(k r) \big|^2 },
 	\cr
-	b_{m,n} &= \frac{ - \int_{0}^{2 \pi} \int_{0}^{\pi} \big[ \bm{N_{m,n}^{(1)}}(\bm{r}) \big]^{\*} \cdot \bm{E_i}(\bm{r}) \sin{\theta} \thinspace d\theta d\phi }
+	b_{m,n} &= \frac{ \int_{0}^{2 \pi} \int_{0}^{\pi} \big[ \bm{N_{m,n}^{(1)}}(\bm{r}) \big]^{\*} \cdot \bm{E_i}(\bm{r}) \sin{\theta} \thinspace d\theta d\phi }
 	{ n (n+1) \bigg(
 		\Big| \frac{j_n(k r)}{k r} + \frac{\partial j_n(k r)}{\partial (k r)} \Big|^2
 		+ n (n+1) \Big| \frac{j_n(k r)}{k r} \Big|^2
@@ -5212,7 +5212,7 @@ Substitution into Equation 17.105 yields the [scalar plane wave expansion](https
 $$ \tag{17.109}
 	e^{i k r \cos{\theta}}
 	= \sum_{n=0}^{\infin} i^n (2n + 1) j_n(k r) P_n(\cos{\theta})
-	= - \sum_{n=0}^{\infin} i^n \sqrt{4 \pi (2 n + 1)} \psi_{0,n}^{(1)}(\bm{r})
+	= \sum_{n=0}^{\infin} i^n \sqrt{4 \pi (2 n + 1)} \psi_{0,n}^{(1)}(\bm{r})
 $$
 
 in terms of the scalar spherical wave functions of the first kind \\(\psi_{m,n}^{(1)}\\).
@@ -5328,7 +5328,7 @@ Comparison with Equation 17.97.1 yields the value of the first expansion coeffic
 
 $$ \tag{17.120}
 	a_{m,n}
-	= -\delta_{m,\pm 1} (i E_x + m E_y) 2 \pi i^n \gamma_{1,n}.
+	= \delta_{m,\pm 1} (i E_x + m E_y) 2 \pi i^n \gamma_{1,n}.
 $$
 
 The value of the second coefficient can be obtained in a similar manner (except, this time, the radial component can no longer be ignored). Substitution of Equations 17.67 and 17.99-17.103 into 17.97.2 produces the following expression:
@@ -5458,7 +5458,7 @@ Once we substitute the value of the integral into Equation 17.97.2, the factor c
 
 $$ \tag{17.128}
 \begin{aligned}
-	b_{m,n} &= -\delta_{m,\pm 1} (i m E_x + E_y) 2 \pi i^n \gamma_{1,n}.
+	b_{m,n} &= \delta_{m,\pm 1} (i m E_x + E_y) 2 \pi i^n \gamma_{1,n}.
 \end{aligned}
 $$
 
@@ -5467,7 +5467,7 @@ Derivation of the coefficients given by Equations 17.120 and 17.128 completes th
 $$ \tag{17.129}
 \begin{aligned}
 	\bm{E_0}(\bm{e_z}, \omega) e^{i k(\omega) (\bm{r} \cdot \bm{e_z})}
-	= &- \sum_{m,n} \big( a_{m,n}(\omega) \bm{M_{m,n}^{(1)}}(\bm{r}, \omega) + b_{m,n}(\omega) \bm{N_{m,n}^{(1)}}(\bm{r}, \omega) \big)
+	&= \sum_{m,n} \big( a_{m,n}(\omega) \bm{M_{m,n}^{(1)}}(\bm{r}, \omega) + b_{m,n}(\omega) \bm{N_{m,n}^{(1)}}(\bm{r}, \omega) \big)
 	\cr
 	&= \sum_{n=1}^{\infin} 2 \pi i^n \gamma_{1,n} \sum_{m= \pm 1} \big( i E_x(\omega) + m E_y(\omega) \big) \bm{M_{m,n}^{(1)}}(\bm{r}, \omega)
 	\cr
@@ -5591,9 +5591,9 @@ $$ \tag{17.134}
 	\bm{E_i}(\bm{r}, \omega)
 	&= \bm{E_0}(\bm{e_z}, \omega) e^{i k(\omega) (\bm{r} \cdot \bm{e_z})}
 	\cr
-	= &- \sum_{m,n} a_{m,n}(\omega) j_n(k r) \bm{\Phi_{m,n}}(\theta, \phi)
+	&= \sum_{m,n} a_{m,n}(\omega) j_n(k r) \bm{\Phi_{m,n}}(\theta, \phi)
 	\cr
-	&- \sum_{m,n} b_{m,n}(\omega) \bigg( n (n + 1) \frac{j_n(k r)}{k r} \bm{\Upsilon_{m,n}}(\theta, \phi)
+	&+ \sum_{m,n} b_{m,n}(\omega) \bigg( n (n + 1) \frac{j_n(k r)}{k r} \bm{\Upsilon_{m,n}}(\theta, \phi)
 	 + \bigg( \frac{j_n(k r)}{k r} + \frac{\partial j_n(k r)}{\partial (k r)} \bigg) \bm{\Psi_{m,n}}(\theta, \phi) \bigg).
 \end{aligned}
 $$
@@ -5615,11 +5615,11 @@ for the vector spherical wave function series expansion
 $$ \tag{17.137}
 \begin{aligned}
 	\bm{E_s}(\bm{r}, \omega)
-	= &- \sum_{m,n} \big( a_{m,n}'(\omega) \bm{M_{m,n}^{(3)}}(\bm{r}, \omega) + b_{m,n}'(\omega) \bm{N_{m,n}^{(3)}}(\bm{r}, \omega) \big)
+	&= \sum_{m,n} \big( a_{m,n}'(\omega) \bm{M_{m,n}^{(3)}}(\bm{r}, \omega) + b_{m,n}'(\omega) \bm{N_{m,n}^{(3)}}(\bm{r}, \omega) \big)
 	\cr
-	= &- \sum_{m,n} a_{m,n}'(\omega) h_n^{(1)}(k r) \bm{\Phi_{m,n}}(\theta, \phi)
+	&= \sum_{m,n} a_{m,n}'(\omega) h_n^{(1)}(k r) \bm{\Phi_{m,n}}(\theta, \phi)
 	\cr
-	&- \sum_{m,n} b_{m,n}'(\omega) \bigg( n (n + 1) \frac{h_n^{(1)}(k r)}{k r} \bm{\Upsilon_{m,n}}(\theta, \phi)
+	&+ \sum_{m,n} b_{m,n}'(\omega) \bigg( n (n + 1) \frac{h_n^{(1)}(k r)}{k r} \bm{\Upsilon_{m,n}}(\theta, \phi)
 	 + \bigg( \frac{h_n^{(1)}(k r)}{k r} + \frac{\partial h_n^{(1)}(k r)}{\partial (k r)} \bigg) \bm{\Psi_{m,n}}(\theta, \phi) \bigg).
 \end{aligned}
 $$
@@ -5631,11 +5631,11 @@ The combination of these two facts motivates the following series expansion of t
 $$ \tag{17.138}
 \begin{aligned}
 	\bm{E_2}(\bm{r}, \omega)
-	= &- \sum_{m,n} \big( a_{m,n}''(\omega) \bm{M_{m,n}^{(1)}}(\bm{r}, \omega) + b_{m,n}''(\omega) \bm{N_{m,n}^{(1)}}(\bm{r}, \omega) \big)
+	&= \sum_{m,n} \big( a_{m,n}''(\omega) \bm{M_{m,n}^{(1)}}(\bm{r}, \omega) + b_{m,n}''(\omega) \bm{N_{m,n}^{(1)}}(\bm{r}, \omega) \big)
 	\cr
-	= &- \sum_{m,n} a_{m,n}''(\omega) j_n(k_2 r) \bm{\Phi_{m,n}}(\theta, \phi)
+	&= \sum_{m,n} a_{m,n}''(\omega) j_n(k_2 r) \bm{\Phi_{m,n}}(\theta, \phi)
 	\cr
-	&- \sum_{m,n} b_{m,n}''(\omega) \bigg( n (n + 1) \frac{j_n(k_2 r)}{k_2 r} \bm{\Upsilon_{m,n}}(\theta, \phi)
+	&+ \sum_{m,n} b_{m,n}''(\omega) \bigg( n (n + 1) \frac{j_n(k_2 r)}{k_2 r} \bm{\Upsilon_{m,n}}(\theta, \phi)
 	 + \bigg( \frac{j_n(k_2 r)}{k_2 r} + \frac{\partial j_n(k_2 r)}{\partial (k_2 r)} \bigg) \bm{\Psi_{m,n}}(\theta, \phi) \bigg).
 \end{aligned}
 $$
@@ -5665,15 +5665,15 @@ $$ \tag{17.141}
 \small
 \begin{aligned}
 	\bm{e_r} \times \bm{E_2}
-	= &- \sum_{m,n} \bigg( a_{m,n}'' j_n(k_2 r) \bm{\Psi_{m,n}}(\theta, \phi)
+	&= \sum_{m,n} \bigg( a_{m,n}'' j_n(k_2 r) \bm{\Psi_{m,n}}(\theta, \phi)
 	- b_{m,n}'' \bigg( \frac{j_n(k_2 r)}{k_2 r} + \frac{\partial j_n(k_2 r)}{\partial (k_2 r)} \bigg) \bm{\Phi_{m,n}}(\theta, \phi) \bigg),
 	\cr
 	\bm{e_r} \times \bm{E_1}
-	= &- \sum_{m,n}
+	&= \sum_{m,n}
 		\big( a_{m,n} j_n(k_1 r) + a_{m,n}' h_n^{(1)}(k_1 r) \big)
 	\bm{\Psi_{m,n}}(\theta, \phi)
 	\cr
-	&+ \sum_{m,n} \Bigg(
+	&- \sum_{m,n} \Bigg(
 		b_{m,n} \bigg( \frac{j_n(k_1 r)}{k_1 r} + \frac{\partial j_n(k_1 r)}{\partial (k_1 r)} \bigg)
 		+ b_{m,n}' \bigg( \frac{h_n^{(1)}(k_1 r)}{k_1 r} + \frac{\partial h_n^{(1)}(k_1 r)}{\partial (k_1 r)} \bigg)
 	\Bigg) \bm{\Phi_{m,n}}(\theta, \phi).
@@ -5708,15 +5708,15 @@ $$ \tag{17.145}
 \small
 \begin{aligned}
 	\bm{e_r} \times \nabla \times \bm{E_2}
-	= &- \sum_{m,n} k_2 \bigg( b_{m,n}'' j_n(k_2 r) \bm{\Psi_{m,n}}(\theta, \phi)
+	&= \sum_{m,n} k_2 \bigg( b_{m,n}'' j_n(k_2 r) \bm{\Psi_{m,n}}(\theta, \phi)
 	- a_{m,n}'' \bigg( \frac{j_n(k_2 r)}{k_2 r} + \frac{\partial j_n(k_2 r)}{\partial (k_2 r)} \bigg) \bm{\Phi_{m,n}}(\theta, \phi) \bigg),
 	\cr
 	\bm{e_r} \times \nabla \times \bm{E_1}
-	= &- \sum_{m,n}
+	&= \sum_{m,n}
 		k_1 \big( b_{m,n} j_n(k_1 r) + b_{m,n}' h_n^{(1)}(k_1 r) \big)
 	\bm{\Psi_{m,n}}(\theta, \phi)
 	\cr
-	&+ \sum_{m,n} k_1 \Bigg(
+	&- \sum_{m,n} k_1 \Bigg(
 		a_{m,n} \bigg( \frac{j_n(k_1 r)}{k_1 r} + \frac{\partial j_n(k_1 r)}{\partial (k_1 r)} \bigg)
 		+ a_{m,n}' \bigg( \frac{h_n^{(1)}(k_1 r)}{k_1 r} + \frac{\partial h_n^{(1)}(k_1 r)}{\partial (k_1 r)} \bigg)
 	\Bigg) \bm{\Phi_{m,n}}(\theta, \phi).
