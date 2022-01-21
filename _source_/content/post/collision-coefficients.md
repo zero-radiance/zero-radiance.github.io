@@ -5725,7 +5725,7 @@ $$ \tag{17.142}
 	\bm{e_r} \times (\bm{H_2} - \bm{H_1}) = \bm{J_n},
 $$
 
-Assuming the conductivity is not enormous, the surface current term \\(\bm{J_n}\\) can be neglected [Stratton 1.13], and we may combine Equations 3.12, 5.2.3 and 17.142 into
+Assuming the conductivity of the sphere is not enormous, the surface current term \\(\bm{J_n}\\) can be neglected [Stratton 1.13], and we may combine Equations 3.12, 5.2.3 and 17.142 into
 
 $$ \tag{17.143}
 	\bm{e_r} \times \nabla \times (\bm{E_2} - \bm{E_1}) = 0.
@@ -5761,6 +5761,101 @@ $$ \tag{17.145}
 	\Bigg) \bm{\Phi_{m,n}}(\theta, \phi).
 \end{aligned}
 $$
+
+Let us first solve Equation 17.139. It tells us that the expressions given by Equations 17.141.1 and 17.141.2 are equal. If perform Hilbert space projection onto \\(\Psi_{s,t}\\) or \\(\Phi_{s,t}\\) using Equations 17.77 and 17.79, we obtain the relations for the expansion coefficients of the internal field:
+
+$$ \tag{17.146}
+\begin{aligned}
+	a_{m,n}''
+	&= \frac{ a_{m,n} j_n(k_1 r) + a_{m,n}' h_n^{(1)}(k_1 r) }{ j_n(k_2 r) },
+	\cr
+	b_{m,n}''
+	&= \frac{ b_{m,n} \Big( \frac{j_n(k_1 r)}{k_1 r} + \frac{\partial j_n(k_1 r)}{\partial (k_1 r)} \Big)
+	+ b_{m,n}' \Big( \frac{h_n^{(1)}(k_1 r)}{k_1 r} + \frac{\partial h_n^{(1)}(k_1 r)}{\partial (k_1 r)} \Big) }{ \frac{j_n(k_2 r)}{k_2 r} + \frac{\partial j_n(k_2 r)}{\partial (k_2 r)} }.
+\end{aligned}
+$$
+
+Performing the same steps for Equations 17.143 and 17.145 leads to
+
+$$ \tag{17.147}
+\small
+\begin{aligned}
+	a_{m,n}''
+	&= \frac{ a_{m,n} \Big( \frac{j_n(k_1 r)}{k_1 r} + \frac{\partial j_n(k_1 r)}{\partial (k_1 r)} \Big)
+	+ a_{m,n}' \Big( \frac{h_n^{(1)}(k_1 r)}{k_1 r} + \frac{\partial h_n^{(1)}(k_1 r)}{\partial (k_1 r)} \Big) }{ \frac{k_2}{k_1} \Big( \frac{j_n(k_2 r)}{k_2 r} + \frac{\partial j_n(k_2 r)}{\partial (k_2 r)} \Big) },
+	\cr
+	b_{m,n}''
+	&= \frac{ b_{m,n} j_n(k_1 r) + b_{m,n}' h_n^{(1)}(k_1 r) }{ \frac{k_2}{k_1} j_n(k_2 r) }.
+\end{aligned}
+$$
+
+The expansion coefficients of the incident field \\(a\_{m,n}\\) and \\(b\_{m,n}\\) are known. By combining Equations 17.146 and 17.147, we can determine the coefficients of the scattered field:
+
+$$ \tag{17.148}
+\begin{aligned}
+  	a_{m,n}'
+	&= -a_{m,n} \frac{
+		\Big( \frac{j_n(k_1 r)}{k_1 r} + \frac{\partial j_n(k_1 r)}{\partial (k_1 r)} \Big) j_n(k_2 r)
+		- \frac{k_2}{k_1} j_n(k_1 r) \Big( \frac{j_n(k_2 r)}{k_2 r} + \frac{\partial j_n(k_2 r)}{\partial (k_2 r)} \Big)
+	}{
+		\Big( \frac{h_n^{(1)}(k_1 r)}{k_1 r} + \frac{\partial h_n^{(1)}(k_1 r)}{\partial (k_1 r)} \Big) j_n(k_2 r)
+		- \frac{k_2}{k_1} h_n^{(1)}(k_1 r) \Big( \frac{j_n(k_2 r)}{k_2 r} + \frac{\partial j_n(k_2 r)}{\partial (k_2 r)} \Big)
+	},
+	\cr
+	b_{m,n}'
+	&= - b_{m,n} \frac
+	{
+		j_n(k_1 r) \Big( \frac{j_n(k_2 r)}{k_2 r} + \frac{\partial j_n(k_2 r)}{\partial (k_2 r)} \Big)
+		- \frac{k_2}{k_1} \Big( \frac{j_n(k_1 r)}{k_1 r} + \frac{\partial j_n(k_1 r)}{\partial (k_1 r)} \Big) j_n(k_2 r)
+	}{
+		h_n^{(1)}(k_1 r) \Big( \frac{j_n(k_2 r)}{k_2 r} + \frac{\partial j_n(k_2 r)}{\partial (k_2 r)} \Big)
+		- \frac{k_2}{k_1} \Big( \frac{h_n^{(1)}(k_1 r)}{k_1 r} + \frac{\partial h_n^{(1)}(k_1 r)}{\partial (k_1 r)} \Big) j_n(k_2 r)
+	}.
+\end{aligned}
+$$
+
+We can observe that both the scattered and the internal fields are directly proportional to the incident field. Recalling Equations 17.120 and 17.128, the only non-zero coefficients correspond to the order \\(m = \pm 1\\):
+
+$$ \tag{17.149}
+\begin{aligned}
+	a_{\pm 1,n} &= (i E_x \pm E_y) i^n \sqrt{\frac{\pi (2 n + 1)}{n (n + 1)}},
+	\cr
+	b_{\pm 1,n} &= (\pm i E_x + E_y) i^n \sqrt{\frac{\pi (2 n + 1)}{n (n + 1)}}.
+\end{aligned}
+$$
+
+If we re-introduce the traditional notation by calling the radius of the spherical particle \\(a\\), the relative refractive index \\(m = k_2 / k_1 = k_2 / k\\), and the prevalent derivative of the spherical Bessel function
+
+$$ \tag{17.150}
+\begin{aligned}
+	\tilde{z}\_n(x)
+	= \frac{1}{x} \frac{\partial \big[ x z_n(x) \big]}{\partial x}
+	= \frac{z_n(x)}{x} + \frac{\partial z_n(x)}{\partial x},
+\end{aligned}
+$$
+
+then the boundary condition for the scattered field can be compactly expressed as
+
+$$ \tag{17.151}
+\begin{aligned}
+  	a_{\pm 1,n}'
+	&= (i E_x \pm E_y) i^{n+2} \sqrt{\frac{\pi (2 n + 1)}{n (n + 1)}} \frac{
+		\tilde{j}\_n(k a) j_n(m k a) - m j_n(k a) \tilde{j}\_n(m k a)
+	}{
+		\tilde{h}\_n^{(1)}(k a) j_n(m k a) - m h_n^{(1)}(k a) \tilde{j}\_n(m k a)
+	},
+	\cr
+	b_{\pm 1,n}'
+	&= (\pm i E_x + E_y) i^{n+2} \sqrt{\frac{\pi (2 n + 1)}{n (n + 1)}} \frac
+	{
+		j_n(k a) \tilde{j}\_n(m k a) - m \tilde{j}\_n(k a) j_n(m k a)
+	}{
+		h_n^{(1)}(k a) \tilde{j}\_n(m k a) - m \tilde{h}\_n^{(1)}(k a) j_n(m k a)
+	}.
+\end{aligned}
+$$
+
+This completes the derivation of the Lorenz-Mie-Debye formula.
 
 ---
 
