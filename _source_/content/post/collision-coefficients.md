@@ -5789,7 +5789,7 @@ $$ \tag{17.151}
 \end{aligned}
 $$
 
-The expansion coefficients of the incident field \\(a\_{m,n}\\) and \\(b\_{m,n}\\) are known. By combining Equations 17.150 and 17.151, we can determine the coefficients of the scattered field:
+The expansion coefficients \\(a\_{m,n}\\) and \\(b\_{m,n}\\) of the incident field are known. By combining Equations 17.150 and 17.151, we can finally determine the value of the coefficients of the scattered field:
 
 $$ \tag{17.152}
 \begin{aligned}
@@ -5814,48 +5814,72 @@ $$ \tag{17.152}
 \end{aligned}
 $$
 
-We can observe that both the scattered and the internal fields are directly proportional to the incident field. Recalling Equations 17.124 and 17.132, the only non-zero coefficients correspond to the vector spherical wave functions of orders \\(m = \pm 1\\):
+We can observe that both the scattered and the internal fields are directly proportional to the incident field. Furthermore, the coefficients of proportionality are independent of \\(m\\). They may be written down neatly if we re-introduce the traditional notation that calls the radius of the spherical particle \\(a\\), the relative refractive index \\(m = k_2 / k_1\\), the size parameter \\(x = k_1 a\\), and the prevalent derivative of the spherical Bessel function
 
 $$ \tag{17.153}
 \begin{aligned}
-	a_{\pm 1,n} &= (i E_x \pm E_y) i^n \sqrt{\frac{\pi (2 n + 1)}{n (n + 1)}},
-	\cr
-	b_{\pm 1,n} &= (\pm i E_x + E_y) i^n \sqrt{\frac{\pi (2 n + 1)}{n (n + 1)}}.
+	\tilde{z}\_n(x)
+	= \frac{1}{x} \frac{\partial \big[ x z_n(x) \big]}{\partial x}
+	= \frac{z_n(x)}{x} + \frac{\partial z_n(x)}{\partial x}.
 \end{aligned}
 $$
 
-If we re-introduce the traditional notation by calling the radius of the spherical particle \\(a\\), the relative refractive index \\(m = k_2 / k_1 = k_2 / k\\), and the prevalent derivative of the spherical Bessel function
+The order-independent multiplicative factors of Equation 17.152 can then be written as
 
 $$ \tag{17.154}
 \begin{aligned}
-	\tilde{z}\_n(x)
-	= \frac{1}{x} \frac{\partial \big[ x z_n(x) \big]}{\partial x}
-	= \frac{z_n(x)}{x} + \frac{\partial z_n(x)}{\partial x},
-\end{aligned}
-$$
-
-then the boundary condition for the scattered field can be compactly expressed as
-
-$$ \tag{17.155}
-\begin{aligned}
-  	a_{\pm 1,n}'
-	&= (i E_x \pm E_y) i^{n+2} \sqrt{\frac{\pi (2 n + 1)}{n (n + 1)}} \frac{
-		\tilde{j}\_n(k a) j_n(m k a) - m j_n(k a) \tilde{j}\_n(m k a)
+  	a_{n}'(\omega)
+  	&= -\frac{
+		\tilde{j}\_n(x) j_n(m x) - m j_n(x) \tilde{j}\_n(m x)
 	}{
-		\tilde{h}\_n^{(1)}(k a) j_n(m k a) - m h_n^{(1)}(k a) \tilde{j}\_n(m k a)
+		\tilde{h}\_n^{(1)}(x) j_n(m x) - m h_n^{(1)}(x) \tilde{j}\_n(m x)
 	},
 	\cr
-	b_{\pm 1,n}'
-	&= (\pm i E_x + E_y) i^{n+2} \sqrt{\frac{\pi (2 n + 1)}{n (n + 1)}} \frac
+	b_{n}'(\omega)
+	&= -\frac
 	{
-		j_n(k a) \tilde{j}\_n(m k a) - m \tilde{j}\_n(k a) j_n(m k a)
+		j_n(x) \tilde{j}\_n(m x) - m \tilde{j}\_n(x) j_n(m x)
 	}{
-		h_n^{(1)}(k a) \tilde{j}\_n(m k a) - m \tilde{h}\_n^{(1)}(k a) j_n(m k a)
+		h_n^{(1)}(x) \tilde{j}\_n(m x) - m \tilde{h}\_n^{(1)}(x) j_n(m x)
 	}.
 \end{aligned}
 $$
 
-This completes the derivation of the Lorenz-Mie-Debye formula.
+Similarly, the scaling factors from Equations 17.150.1 and 17.151.2 of the internal field are
+
+$$ \tag{17.155}
+\begin{aligned}
+	a_{n}''(\omega)
+	&= \frac{ j_n(x) + a_{n}' h_n^{(1)}(x) }{ j_n(m x) },
+	\cr
+	b_{n}''(\omega)
+	&= \frac{ j_n(x) + b_{n}' h_n^{(1)}(x) }{ m j_n(m x) }.
+\end{aligned}
+$$
+
+Now, recall the transformation of Equation 17.133 into 17.137, where we introduced the even and off vector spherical functions. If the expansion coefficients of the incident field differ from those of the scattered field only by a constant, it's easy to see that the overall structure of the expression remains the same; we simply have to attach the corresponding factors to the \\(\bm{M}\\) and \\(\bm{N}\\) vectors:
+
+$$ \tag{17.156}
+\begin{aligned}
+	\bm{E_s}(\bm{r}, \omega)
+	&= E_x(\omega) \sum_{n=1}^{\infin} i^n \frac{(2 n + 1)}{n (n + 1)} \big( {-a_{n}'(\omega) \bm{M_{o,1,n}^{(3)}}}(\bm{r}, \omega) + i b_{n}'(\omega) \bm{N_{e,1,n}^{(3)}}(\bm{r}, \omega) \big)
+	\cr
+	&+ E_y(\omega) \sum_{n=1}^{\infin} i^n \frac{(2 n + 1)}{n (n + 1)} \big( a_{n}'(\omega) {\bm{M_{e,1,n}^{(3)}}}(\bm{r}, \omega) + i b_{n}'(\omega) \bm{N_{o,1,n}^{(3)}}(\bm{r}, \omega) \big).
+\end{aligned}
+$$
+
+Similarly, the expression of the internal field is
+
+$$ \tag{17.157}
+\begin{aligned}
+	\bm{E_2}(\bm{r}, \omega)
+	&= E_x(\omega) \sum_{n=1}^{\infin} i^n \frac{(2 n + 1)}{n (n + 1)} \big( {-a_{n}''(\omega) \bm{M_{o,1,n}^{(1)}}}(\bm{r}, \omega) + i b_{n}''(\omega) \bm{N_{e,1,n}^{(1)}}(\bm{r}, \omega) \big)
+	\cr
+	&+ E_y(\omega) \sum_{n=1}^{\infin} i^n \frac{(2 n + 1)}{n (n + 1)} \big( a_{n}''(\omega) {\bm{M_{e,1,n}^{(1)}}}(\bm{r}, \omega) + i b_{n}''(\omega) \bm{N_{o,1,n}^{(1)}}(\bm{r}, \omega) \big).
+\end{aligned}
+$$
+
+Equations 17.137, 17.156 and 17.157 allow us to determine the value of the electric field at any point in space, both inside and outside the particle. Thus, the problem is solved. This completes the derivation of the Lorenz-Mie-Debye formula.
 
 ---
 
