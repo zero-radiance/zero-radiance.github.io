@@ -214,7 +214,7 @@ In addition to the boundary conditions, the law of conservation of energy impose
 
 - the [Sommerfeld radiation condition](https://en.wikipedia.org/wiki/Sommerfeld_radiation_condition) prohibits the existence of sinks collecting (an infinite amount of) energy arriving from infinity - these "infinite" sinks must be "finite" sources instead.
 
-Finally, it is worth pointing out that the Maxwell equations (both 1.1 and 1.14) are not independent \[[Stratton](#references) (ch 1.3)\]. For instance, take the divergence of Equations 1.14.1 and 1.14.3. Since the [divergence of curl](https://en.wikipedia.org/wiki/Vector_calculus_identities#Divergence_of_curl_is_zero) is zero, the resulting expression may be simplified to
+Finally, it is worth pointing out that the Maxwell equations (both 1.1 and 1.14) are not independent \[[17](#references) (ch 1.3)\]. For instance, take the divergence of Equations 1.14.1 and 1.14.3. Since the [divergence of curl](https://en.wikipedia.org/wiki/Vector_calculus_identities#Divergence_of_curl_is_zero) is zero, the resulting expression may be simplified to
 
 $$ \tag{1.18}
 	\nabla \cdot \bigg( \frac{\partial}{\partial t} \bm{B}(\bm{r}, t) \bigg) = 0,
@@ -3511,7 +3511,6 @@ makes Equation 15.28 fully dimensionless. Additionally, in the operator notation
 
 [Evgenii: Consider Stratton's proof, p. 488]
 
-
 ### Optical Cross-Section Theorem
 
 For radiative transfer applications, we may introduce a simpler description of the scattering and absorption properties of a particle by describing the outcome of the scattering process in radometric (rather than optical) terms \[[6](#references) (ch. 13.6), [8](#references) (ch. 13.1, 13.4)\].
@@ -4368,7 +4367,7 @@ $$
 
 where \\(p\\) and \\(q\\) are separation constants that ensure the solutions are finite and single-valued.
 
-Differential equations of this type are well known in the literature \[[Stratton](#references) (ch 7.3)\]. If we make a particular choice of
+Differential equations of this type are well known in the literature \[[17](#references) (ch 7.3)\]. If we make a particular choice of
 
 $$ \tag{17.42}
 	p^2 = n (n+1),
@@ -4400,7 +4399,7 @@ $$
 
 where \\(m\\) and \\(n\\) are integers, \\(c_{m,n}\\) is a complex constant, \\(N_{m,n}\\) is a certain normalization constant, \\(z_n\\) is a [spherical Bessel function](https://en.wikipedia.org/wiki/Bessel_function#Spherical_Bessel_functions:_jn,_yn) of order \\(n\\), and \\(P_n^m\\) is an [associated Legendre polynomial](https://en.wikipedia.org/wiki/Associated_Legendre_polynomials) of degree \\(n\\) and order \\(m\\). Note that, as expected, the solution depends on the distance \\(r\\) only through the phase difference \\(k r\\).
 
-We would like to point out that the same solution can be written in a slightly different way \[[Stratton](#references) (ch 7.3)\]:
+We would like to point out that the same solution can be written in a slightly different way \[[17](#references) (ch 7.3)\]:
 
 $$ \tag{17.45}
 	\psi_{^e_o,m,n}(\bm{r})
@@ -4426,7 +4425,7 @@ $$ \tag{17.47}
 	= (-1)^m \frac{(n - m)!}{(n + m)!} P_n^m.
 $$
 
-Let us begin by examining the radial functions \\(z_n(k r)\\). They may be used to represent any of the three kinds of *spherical Bessel functions* \[[Stratton](#references) (ch 7.4)\]:
+Let us begin by examining the radial functions \\(z_n(k r)\\). They may be used to represent any of the three kinds of *spherical Bessel functions* \[[17](#references) (ch 7.4)\]:
 
 $$ \tag{17.48}
 \begin{aligned}
@@ -4448,7 +4447,7 @@ $$
 
 \\(H_n^{(1)}\\) and \\(H_n^{(2)}\\) are also collectively known as Bessel functions of the third kind.
 
-All spherical Bessel functions satisfy the recurrence relations \[[Stratton](#references) (ch 7.4)\]
+All spherical Bessel functions satisfy the recurrence relations \[[17](#references) (ch 7.4)\]
 
 $$ \tag{17.50}
 	\frac{z_n(x)}{x} = \frac{z_{n-1}(x) + z_{n+1}(x)}{2 n + 1},
@@ -4524,7 +4523,7 @@ We are now ready to interpret the entire Equation 17.53. Since that function has
 
 {{< figure src="/img/assoc_legendre_3.png" caption="*Figure N: Tesseral harmonics of degree 3 and order \\(m=1\\) (left), \\(m=2\\) (center), \\(m=3\\) (right). Warm colors correspond to positive values of the function, and cold colors - to negative values.*" >}}
 
-Associated Legendre polynomials have a powerful property - they are [orthogonal](https://en.wikipedia.org/wiki/Associated_Legendre_polynomials#Reparameterization_in_terms_of_angles) \[[Stratton](#references) (ch 7.3)\]:
+Associated Legendre polynomials have a powerful property - they are [orthogonal](https://en.wikipedia.org/wiki/Associated_Legendre_polynomials#Reparameterization_in_terms_of_angles) \[[17](#references) (ch 7.3)\]:
 
 $$ \tag{17.56}
 \begin{aligned}
@@ -4551,7 +4550,7 @@ $$
 
 where \\(\delta_{m,n}\\) is the Kronecker delta function given by Equation 4.6.
 
-Remarkably, by means of double integration over \\(\theta\\) and \\(\phi\\), these two facts can be combined to show that the tesseral (and sectorial) harmonics \\(P_n^m(\cos{\theta}) \cos(m \phi)\\) and \\(P_n^m(\cos{\theta}) \sin(m \phi)\\) form a *complete orthogonal system* of basis functions on the surface of a sphere [Courant-Hilbert].
+Remarkably, by means of double integration over \\(\theta\\) and \\(\phi\\), these two facts can be combined to show that the tesseral (and sectorial) harmonics \\(P_n^m(\cos{\theta}) \cos(m \phi)\\) and \\(P_n^m(\cos{\theta}) \sin(m \phi)\\) form a *complete orthogonal system* of basis functions on the surface of a sphere \[[18](#references) (ch 7.5)\].
 
 Tesseral harmonics are [real-valued basis functions](https://en.wikipedia.org/wiki/Spherical_harmonics#Real_form), which is sufficient for most problems. However, the theory can be trivially extended to complex values by combining even and odd tesseral harmonics according to Equation 17.53. This directly leads to the definition of [scalar spherical harmonics](https://en.wikipedia.org/wiki/Spherical_harmonics)
 
@@ -4767,7 +4766,7 @@ $$ \tag{17.72}
 \end{aligned}
 $$
 
-called [vector spherical harmonics](https://en.wikipedia.org/wiki/Vector_spherical_harmonics#Alternative_definition). They are an extension of the scalar spherical harmonics (Equation 17.58) to vectors fields on the surface of a sphere. Like the scalar spherical harmonics, they form a complete set of orthogonal basis functions [Morse and Feshbach]. Unlike the vector spherical wave functions, they do not depend on the radial distance \\(r\\).
+called [vector spherical harmonics](https://en.wikipedia.org/wiki/Vector_spherical_harmonics#Alternative_definition). They are an extension of the scalar spherical harmonics (Equation 17.58) to vectors fields on the surface of a sphere. Like the scalar spherical harmonics, they form a complete set of orthogonal basis functions \[[19](#references) (ch 13.3)\]. Unlike the vector spherical wave functions, they do not depend on the radial distance \\(r\\).
 
 Most properties of the vector spherical harmonics are a direct consequence of the fact that they are built on the scalar spherical harmonics combined with the radial basis vector \\(\bm{e_r}\\). For instance, the symmetry property of Equation 17.60 leads to
 
@@ -5617,7 +5616,7 @@ $$ \tag{17.137}
 \end{aligned}
 $$
 
-Equation 17.137 can be found in [Stratton 7.11]. The author does not show the entire derivation, and, unfortunately, arrives at the result with the opposite sign.
+Equation 17.137 can be found in \[[17](#references) (ch 7.11)\]. The author does not show the entire derivation, and, unfortunately, arrives at the result with the opposite sign.
 
 For many purposes, the most useful expression of the incident field given by Equation 17.133 is in terms of the vector spherical harmonics (as shown by Equations 17.80-17.81):
 
@@ -5721,7 +5720,7 @@ $$ \tag{17.146}
 	\bm{e_r} \times (\bm{H_2} - \bm{H_1}) = \bm{J_n},
 $$
 
-Assuming the conductivity of the sphere is not enormous, the surface current term \\(\bm{J_n}\\) can be neglected [Stratton 1.13], and we may combine Equations 3.12, 5.2.3 and 17.146 into
+Assuming the conductivity of the sphere is not enormous, the surface current term \\(\bm{J_n}\\) can be neglected \[[17](#references) (ch 1.13)\], and we may combine Equations 3.12, 5.2.3 and 17.146 into
 
 $$ \tag{17.147}
 	\bm{e_r} \times \nabla \times (\bm{E_2} - \bm{E_1}) = 0.
@@ -5913,6 +5912,9 @@ Pharr & Jakob, Bohren & Huffman, Robin Green, Larry Travis @ NASA.
 14. Talalai, G. [Derivation of the Free-Space Green’s Function](https://www.researchgate.net/publication/324729639_Derivation_of_the_Free-Space_Green's_Function_and_Radiation_from_a_Hertzian_Dipole) (2016).
 15. Frezza, F., Mangini, F., & Tedeschi, N. [Introduction to Electromagnetic Scattering: Tutorial](https://doi.org/10.1364/JOSAA.35.000163) (2018).
 16. Nussenzveig, H. M. [Diffraction Effects in Semiclassical Scattering](https://www.cambridge.org/us/academic/subjects/physics/theoretical-physics-and-mathematical-physics/diffraction-effects-semiclassical-scattering?format=PB) (1992).
+17. Stratton, J. A. [Electromagnetic Theory](https://doi.org/10.1002/9781119134640) (1941).
+18. Courant, R., & Hilbert, D. [Methods of Mathematical Physics](https://doi.org/10.1002/9783527617210) (1953).
+19. Morse, P. M., & Feshbach, H. [Methods of Theoretical Physics](https://www.worldcat.org/title/methods-of-theoretical-physics/oclc/468127798) (1953).
 99. Hansen, J. E., & Travis, L. D. [Light Scattering in Planetary Atmospheres](https://doi.org/10.1007/BF00168069) (1974).
 
 <!--
