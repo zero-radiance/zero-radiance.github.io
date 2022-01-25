@@ -5824,7 +5824,7 @@ $$ \tag{17.153}
 \end{aligned}
 $$
 
-The order-independent multiplicative factors of Equation 17.152 can then be written as
+The order-independent multiplicative factors of Equation 17.152 can then be expressed as
 
 $$ \tag{17.154}
 \begin{aligned}
@@ -5845,7 +5845,7 @@ $$ \tag{17.154}
 \end{aligned}
 $$
 
-Similarly, the scaling factors from Equations 17.150.1 and 17.151.2 of the internal field are
+Similarly, the scaling factors found in Equations 17.150.1 and 17.151.2 of the internal field are
 
 $$ \tag{17.155}
 \begin{aligned}
@@ -5857,7 +5857,7 @@ $$ \tag{17.155}
 \end{aligned}
 $$
 
-Now, recall the transformation of Equation 17.133 into 17.137, where we introduced the even and off vector spherical functions. If the expansion coefficients of the incident field differ from those of the scattered field only by a constant, it's easy to see that the overall structure of the expression remains the same; we simply have to attach the corresponding factors to the \\(\bm{M}\\) and \\(\bm{N}\\) vectors:
+Now, recall the transformation of Equation 17.133 into 17.137, where we introduced the even and off vector spherical functions. If the expansion coefficients differ from those of the incident field only by a constant, it's easy to see that the overall structure of the expression remains the same; novel expressions can be obtained by attaching the corresponding factors to the \\(\bm{M}\\) and \\(\bm{N}\\) vectors:
 
 $$ \tag{17.156}
 \begin{aligned}
@@ -5868,7 +5868,7 @@ $$ \tag{17.156}
 \end{aligned}
 $$
 
-Similarly, the expression of the internal field is
+Analogously, the expression of the internal field is
 
 $$ \tag{17.157}
 \begin{aligned}
