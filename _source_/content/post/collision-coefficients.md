@@ -5508,11 +5508,7 @@ $$ \tag{17.133}
 	\bm{E_0}(\bm{e_z}, \omega) e^{i k(\omega) (\bm{r} \cdot \bm{e_z})}
 	&= \sum_{m,n} \big( a_{m,n}(\omega) \bm{M_{m,n}^{(1)}}(\bm{r}, \omega) + b_{m,n}(\omega) \bm{N_{m,n}^{(1)}}(\bm{r}, \omega) \big)
 	\cr
-	&= \sum_{n=1}^{\infin} 2 \pi i^n \gamma_{1,n} \sum_{m= \pm 1} \big( i E_x(\omega) + m E_y(\omega) \big) \bm{M_{m,n}^{(1)}}(\bm{r}, \omega)
-	\cr
-	&+ \sum_{n=1}^{\infin} 2 \pi i^n \gamma_{1,n} \sum_{m= \pm 1} \big( i m E_x(\omega) + E_y(\omega) \big) \bm{N_{m,n}^{(1)}}(\bm{r}, \omega)
-	\cr
-	&= E_x(\omega) \sum_{n=1}^{\infin} 2 \pi i^{n+1} \gamma_{1,n} \sum_{m= \pm 1} \big( \bm{M_{m,n}^{(1)}}(\bm{r}, \omega) + m \bm{N_{m,n}^{(1)}}(\bm{r}, \omega) \big)
+	&= E_x(\omega) \sum_{n=1}^{\infin} 2 \pi i^n \gamma_{1,n} \sum_{m= \pm 1} i \big( \bm{M_{m,n}^{(1)}}(\bm{r}, \omega) + m \bm{N_{m,n}^{(1)}}(\bm{r}, \omega) \big)
 	\cr
 	&+ E_y(\omega) \sum_{n=1}^{\infin} 2 \pi i^n \gamma_{1,n} \sum_{m= \pm 1} \big( m \bm{M_{m,n}^{(1)}}(\bm{r}, \omega) + \bm{N_{m,n}^{(1)}}(\bm{r}, \omega) \big).
 \end{aligned}
@@ -5621,9 +5617,9 @@ $$ \tag{17.137}
 \end{aligned}
 $$
 
-Equation 17.137 can be found in [Stratton 7.11]. Unfortunately, the author does not show the entire derivation and, in the process, arrives at the result with the opposite sign.
+Equation 17.137 can be found in [Stratton 7.11]. The author does not show the entire derivation, and, unfortunately, arrives at the result with the opposite sign.
 
-For our purposes, the most useful expression of the incident field given by Equation 17.133 is in terms of the vector spherical harmonics (as shown by Equations 17.80-17.81):
+For many purposes, the most useful expression of the incident field given by Equation 17.133 is in terms of the vector spherical harmonics (as shown by Equations 17.80-17.81):
 
 $$ \tag{17.138}
 \begin{aligned}
@@ -5663,7 +5659,7 @@ $$ \tag{17.141}
 \end{aligned}
 $$
 
-Finally, in addition to the total field \\(\bm{E_1}\\) in the exterior region of the particle, we must determine the expression of the internal field \\(\bm{E_2}\\) established inside the sphere. Two facts are known about this field: first, in order for the solution to be physically plausible, the field must take on finite values at the origin, which means we must employ the spherical Bessel function of the first kind; and second, the wavenumber \\(k_2\\) inside the sphere depends on its index of refraction (c.f. Equation 11.8), and is thus necessarily different from the wavenumber \\(k_1 = k\\) in the surrounding medium.
+In addition to the total field \\(\bm{E_1}\\) in the exterior region of the particle, we must also determine the expression of the internal field \\(\bm{E_2}\\) induced inside the sphere. We can deduce two of its features: first, in order for the solution to be physically plausible, the field must take on finite values at the origin, which means we must employ the spherical Bessel function of the first kind; and second, the wavenumber \\(k_2\\) inside the sphere depends on its index of refraction (c.f. Equation 11.8), and is thus necessarily different from the wavenumber \\(k = k_1\\) in the surrounding (host) medium.
 
 The combination of these two facts motivates the following series expansion of the internal field:
 
@@ -5679,7 +5675,7 @@ $$ \tag{17.142}
 \end{aligned}
 $$
 
-How are the internal and the external fields related? According to Equation 1.17, the tangential component of the electric field must be continuous at the optical interface - the surface of the sphere:
+How are the internal and the external fields related? According to Equation 1.17, the tangential component of the electric field must be continuous at the optical interface, e.i. along the surface of the sphere:
 
 $$ \tag{17.143}
 	\bm{e_r} \times (\bm{E_2} - \bm{E_1}) = 0.
@@ -5698,7 +5694,7 @@ $$ \tag{17.144}
 	= - \bm{\Phi_{m,n}}.
 $$
 
-Thus, we must either eliminate, swap, or negate and swap the spherical harmonic vectors:
+Thus, in order to take the cross product, we must either eliminate, swap, or negate and swap the spherical harmonic vectors:
 
 $$ \tag{17.145}
 \small
@@ -5719,7 +5715,7 @@ $$ \tag{17.145}
 \end{aligned}
 $$
 
-Since all vector spherical harmonics are orthogonal, we may treat the sets of unknown coefficients \\(\lbrace a\_{m,n}' \rbrace, \lbrace b\_{m,n}' \rbrace, \lbrace a\_{m,n}'' \rbrace, \lbrace b\_{m,n}'' \rbrace\\) as vectors. Yet, even in this interpretation, the unknowns outnumber the equations 2-to-1. Therefore, we must also apply the second boundary condition of Equation 1.17:
+Since the vector spherical harmonics are orthogonal, we may conceptually treat the sets of unknown coefficients \\(\lbrace a\_{m,n}' \rbrace, \lbrace b\_{m,n}' \rbrace, \lbrace a\_{m,n}'' \rbrace, \lbrace b\_{m,n}'' \rbrace\\) as vectors. Yet, even in this interpretation, the unknowns outnumber the equations 2-to-1. Therefore, we must also apply the second boundary condition of Equation 1.17:
 
 $$ \tag{17.146}
 	\bm{e_r} \times (\bm{H_2} - \bm{H_1}) = \bm{J_n},
@@ -5731,7 +5727,7 @@ $$ \tag{17.147}
 	\bm{e_r} \times \nabla \times (\bm{E_2} - \bm{E_1}) = 0.
 $$
 
-The simplest way to take the curl of the electric field is by utilizing the properties of its vector spherical wave function series representation. According to Equations 17.17, 17.19, and 17.34,
+The simplest way to take the curl of the electric field is by utilizing its vector spherical wave function series representation. According to Equations 17.17, 17.19, and 17.34,
 
 $$ \tag{17.148}
 	\nabla \times \bm{L_{m,n}} = 0,
@@ -5762,7 +5758,7 @@ $$ \tag{17.149}
 \end{aligned}
 $$
 
-Let us first solve Equation 17.143. It tells us that the expressions given by Equations 17.145.1 and 17.145.2 are equal. If perform Hilbert space projection onto \\(\Psi_{s,t}\\) or \\(\Phi_{s,t}\\) using Equations 17.77 and 17.79, we obtain the relations for the expansion coefficients of the internal field:
+Let us first consider Equation 17.143. It tells us that the expressions given by Equations 17.145.1 and 17.145.2 are equal. If perform Hilbert space projection onto \\(\Psi_{s,t}\\) or \\(\Phi_{s,t}\\) using Equations 17.77 and 17.79, we obtain the relations that connect the expansion coefficients of the internal field to those of the external field:
 
 $$ \tag{17.150}
 \begin{aligned}
@@ -5789,7 +5785,7 @@ $$ \tag{17.151}
 \end{aligned}
 $$
 
-The expansion coefficients \\(a\_{m,n}\\) and \\(b\_{m,n}\\) of the incident field are known. By combining Equations 17.150 and 17.151, we can finally determine the value of the coefficients of the scattered field:
+The value of the expansion coefficients \\(a\_{m,n}\\) and \\(b\_{m,n}\\) of the incident field is known. By combining Equations 17.150 and 17.151, we can finally evaluate the coefficients of the scattered field:
 
 $$ \tag{17.152}
 \begin{aligned}
@@ -5814,7 +5810,7 @@ $$ \tag{17.152}
 \end{aligned}
 $$
 
-We can observe that both the scattered and the internal fields are directly proportional to the incident field. Furthermore, the coefficients of proportionality are independent of \\(m\\). They may be written down neatly if we re-introduce the traditional notation that calls the radius of the spherical particle \\(a\\), the relative refractive index \\(m = k_2 / k_1\\), the size parameter \\(x = k_1 a\\), and the prevalent derivative of the spherical Bessel function
+We may observe that both the scattered and the internal fields are directly proportional to the incident field. Furthermore, the coefficients of proportionality are independent of \\(m\\). They may be written down neatly if we re-introduce the traditional notation that calls the radius of the spherical particle \\(a\\), the relative refractive index \\(m = k_2 / k_1\\), the size parameter \\(x = k_1 a\\), and the prevalent derivative of the spherical Bessel function
 
 $$ \tag{17.153}
 \begin{aligned}
@@ -5845,7 +5841,7 @@ $$ \tag{17.154}
 \end{aligned}
 $$
 
-Similarly, the scaling factors found in Equations 17.150.1 and 17.151.2 of the internal field are
+The coefficients of proportionality of the internal field can be taken from Equations 17.150.1 and 17.151.2:
 
 $$ \tag{17.155}
 \begin{aligned}
@@ -5857,7 +5853,7 @@ $$ \tag{17.155}
 \end{aligned}
 $$
 
-Now, recall the transformation of Equation 17.133 into 17.137, where we introduced the even and off vector spherical functions. If the expansion coefficients differ from those of the incident field only by a constant, it's easy to see that the overall structure of the expression remains the same; novel expressions can be obtained by attaching the corresponding factors to the \\(\bm{M}\\) and \\(\bm{N}\\) vectors:
+Now, recall the transformation of the expression of the incident field (Equations 17.133-17.137), where we introduced the even and off vector spherical functions. Since the expansion coefficients of the scattered and the internal fields differ from those of the incident field only by a multiplicative factor, it's easy to see that the overall structure of the expression remains the same; novel expressions can be obtained by attaching the corresponding factors to the spherical wave function vectors:
 
 $$ \tag{17.156}
 \begin{aligned}
@@ -5868,7 +5864,7 @@ $$ \tag{17.156}
 \end{aligned}
 $$
 
-Analogously, the expression of the internal field is
+Similarly, the expression of the internal field can be written as
 
 $$ \tag{17.157}
 \begin{aligned}
@@ -5879,7 +5875,7 @@ $$ \tag{17.157}
 \end{aligned}
 $$
 
-Equations 17.137, 17.156 and 17.157 allow us to determine the value of the electric field at any point in space, both inside and outside the particle. Thus, the problem is solved. This completes the derivation of the Lorenz-Mie-Debye formula.
+Equations 17.137, 17.156 and 17.157 allow us to determine the value of the electromagnetic field at any point in space, both inside and outside the spherical particle. Thus, the problem is solved. This completes the derivation of the Lorenz-Mie-Debye formula.
 
 ---
 
