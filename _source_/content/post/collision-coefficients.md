@@ -2218,12 +2218,12 @@ $$
 
 where the first equation only holds in the (homogeneous) region 1, and the second - in the (inhomogeneous) region 2.
 
-Further, assume that the region 1 is non-magnetic, and that the magnetic permeability is constant within the region 2. This implies that
+Further, assume that the magnetic permeability is constant within the region 2. This implies that
 
 $$ \tag{11.4}
 \begin{aligned}
 	& \nabla \times \bm{B}(\bm{r_1}, \omega)
-	= -i \omega \mu_0 \varepsilon_1(\omega) \bm{E}(\bm{r_1}, \omega), \cr
+	= -i \omega \mu_1(\omega) \varepsilon_1(\omega) \bm{E}(\bm{r_1}, \omega), \cr
 	& \nabla \times \bm{B}(\bm{r_2}, \omega)
 	= -i \omega \mu_2(\omega) \varepsilon_2(\bm{r_2}, \omega) \bm{E}(\bm{r_2}, \omega),
 \end{aligned}
@@ -2265,7 +2265,7 @@ such that the *relative refractive index* is
 $$ \tag{11.8}
 	m(\bm{r}, \omega)
 	= \frac{k_2(\bm{r}, \omega)}{k_1(\omega)}
-	= \sqrt{ \frac{\varepsilon_2(\bm{r}, \omega) \mu_2(\omega)}{\varepsilon_1(\omega) \mu_0} },
+	= \sqrt{ \frac{\varepsilon_2(\bm{r}, \omega) \mu_2(\omega)}{\varepsilon_1(\omega) \mu_1(\omega)} },
 $$
 
 we can replace Equations 11.6.1 and 11.6.2 by a single equation
@@ -2376,13 +2376,13 @@ $$ \tag{11.20}
 \end{aligned}
 $$
 
-If the volume integral vanishes, we are left with the incident wave propagating at the speed of light \\(c\\). If we wish to replace vacuum with another homogeneous medium, we must reduce the wave velocities in the exterior region by a factor of \\((\eta_1 + i \kappa_1)^{-1}\\). Specifically, in our case, this means we must substitute \\(\varepsilon_1\\) for \\(\epsilon_0\\) and, as a consequence, \\((\varepsilon_1 \mu_0)^{-1/2}\\) for \\(c\\). These modifications do not affect the wave velocities in the interior region. The result is
+If the volume integral vanishes, we are left with the incident wave propagating at the speed of light \\(c\\). If we wish to replace vacuum with another homogeneous medium, we must reduce the wave velocities in the exterior region by a factor of \\((\eta_1 + i \kappa_1)^{-1}\\). Specifically, in our case, this means we must substitute \\(\varepsilon_1 \mu_1\\) for \\(\epsilon_0 \mu_0\\) and, as a consequence, \\((\varepsilon_1 \mu_1)^{-1/2}\\) for \\(c\\). These modifications do not affect the wave velocities in the interior region. The result is
 
 $$ \tag{11.21}
 \begin{aligned}
 	\bm{A}(\bm{r}, \omega)
-	&= \oint\_{\mathbb{S}^2} \bm{A}(0, \bm{n}, \omega) e^{i \omega \sqrt{\varepsilon_1(\omega) \mu\_0} (\bm{r} \cdot \bm{n})} d\Omega \cr
-	&- i \omega \int\_{V} \frac{e^{i \omega \sqrt{\varepsilon_1(\omega) \mu\_0} |\bm{r} - \bm{r'}|}}{4 \pi |\bm{r} - \bm{r'}|} \big( \varepsilon_2(\bm{r'}, \omega) \mu\_2(\omega) - \varepsilon_1(\omega) \mu\_0 \big) \bm{E}(\bm{r'}, \omega) dV',
+	&= \oint\_{\mathbb{S}^2} \bm{A}(0, \bm{n}, \omega) e^{i \omega \sqrt{\varepsilon_1(\omega) \mu_1(\omega)} (\bm{r} \cdot \bm{n})} d\Omega \cr
+	&- i \omega \int\_{V} \frac{e^{i \omega \sqrt{\varepsilon_1(\omega) \mu_1(\omega)} |\bm{r} - \bm{r'}|}}{4 \pi |\bm{r} - \bm{r'}|} \big( \varepsilon_2(\bm{r'}, \omega) \mu\_2(\omega) - \varepsilon_1(\omega) \mu_1(\omega) \big) \bm{E}(\bm{r'}, \omega) dV',
 \end{aligned}
 $$
 
@@ -2916,7 +2916,7 @@ $$
 
 that follow the [inverse-square law](https://en.wikipedia.org/wiki/Inverse-square_law).
 
-For completeness, we would like to point out that it is possible to support the case when the host medium is absorptive and magnetic. The absorption requirement makes \\(k\\) complex; in addition, we must globally replace \\(\mu\_0\\) by \\(\mu_1(\omega)\\) starting from Equation 11.4. Since the vectors are no longer orthogonal, Equations 13.21-13.23 become invalid, and we must follow the Poynting phasor route given by Equations 4.16-4.17 instead:
+For completeness, we would like to point out that it is possible to support the case when the host medium is absorptive and magnetic. The absorption requirement makes \\(k\\) complex; in addition, we must replace \\(\mu\_0\\) by \\(\mu_1(\omega)\\). Since the vectors are no longer orthogonal, Equations 13.21-13.23 become invalid, and we must follow the Poynting phasor route given by Equations 4.16-4.17 instead:
 
 $$ \tag{13.24}
 	\braket{\bm{S}}
