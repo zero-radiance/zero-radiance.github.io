@@ -2260,7 +2260,7 @@ $$ \tag{11.7}
 \end{cases}
 $$
 
-such that the *relative refractive index* is
+such that the *relative wavenumber* is
 
 $$ \tag{11.8}
 	m(\bm{r}, \omega)
@@ -2487,7 +2487,7 @@ $$ \tag{12.5}
 \end{aligned}
 $$
 
-Comparison with Equation 11.25 shows that Equation 12.5 corresponds to the contribution of a volume element occupied by a single atom or a small molecule, with the internal field replaced by the incident field, and with the polarizability \\(\alpha_m\\) taking the role of the relative refractive index \\(m\\).
+Comparison with Equation 11.25 shows that Equation 12.5 corresponds to the contribution of a volume element occupied by a single atom or a small molecule, with the internal field replaced by the incident field, and with the polarizability \\(\alpha_m\\) taking the role of the relative wavenumber \\(m\\).
 
 Note that the polarizability \\(\alpha_m\\) has units of volume \[[4](#references) (ch. 6.22)\]:
 
@@ -3471,7 +3471,7 @@ $$ \tag{15.26}
 	= \frac{1}{k} \mathcal{G}(\bm{r}, \bm{r'}, k).
 $$
 
-The only expression left to transform is the relative refractive index \\(m\\) given by Equation 11.8. It is already a dimensionless quantity; if we further assume that it has been defined as scale-invariant (both the index and its spatial distribution do not change as the object is rescaled), then we may reparametrize \\(m\\) in the following way:
+The only expression left to transform is the relative wavenumber \\(m\\) given by Equation 11.8. It is already a dimensionless quantity; if we further assume that it has been defined as scale-invariant (both the index and its spatial distribution do not change as the object is rescaled), then we may reparametrize \\(m\\) in the following way:
 
 $$ \tag{15.27}
 	\hat{m}(\bm{\hat{r}})
@@ -5658,7 +5658,7 @@ $$ \tag{17.141}
 \end{aligned}
 $$
 
-In addition to the total field \\(\bm{E_1}\\) in the exterior region of the particle, we must also determine the expression of the internal field \\(\bm{E_2}\\) induced inside the sphere. We can deduce two of its features: first, in order for the solution to be physically plausible, the field must take on finite values at the origin, which means we must employ the spherical Bessel function of the first kind; and second, the wavenumber \\(k_2\\) inside the sphere depends on its index of refraction (c.f. Equation 11.8), and is thus necessarily different from the wavenumber \\(k = k_1\\) in the surrounding (host) medium.
+In addition to the total field \\(\bm{E_1}\\) in the exterior region of the particle, we must also determine the expression of the internal field \\(\bm{E_2}\\) induced inside the sphere. We can deduce two of its features: first, in order for the solution to be physically plausible, the field must take on finite values at the origin, which means we must employ the spherical Bessel function of the first kind; and second, the wavenumber \\(k_2\\) inside the sphere depends on its permittivity and permeability (c.f. Equation 11.8), and is thus necessarily different from the wavenumber \\(k = k_1\\) in the surrounding (host) medium.
 
 The combination of these two facts motivates the following series expansion of the internal field:
 
@@ -5809,7 +5809,7 @@ $$ \tag{17.152}
 \end{aligned}
 $$
 
-We may observe that both the scattered and the internal fields are directly proportional to the incident field. Furthermore, the coefficients of proportionality are independent of \\(m\\). They may be written down neatly if we re-introduce the traditional notation that calls the radius of the spherical particle \\(a\\), the relative refractive index \\(m = k_2 / k_1\\), the inverse relative permeability \\(w = \mu_1 / \mu_2\\), the size parameter \\(x = k_1 a\\), and use a compact notation for the product derivative of the spherical Bessel function
+We may observe that both the scattered and the internal fields are directly proportional to the incident field. Furthermore, the coefficients of proportionality are independent of \\(m\\). They may be written down neatly if we re-introduce the traditional notation that calls the radius of the spherical particle \\(a\\), the relative wavenumber \\(m = k_2 / k_1\\), the inverse relative permeability \\(w = \mu_1 / \mu_2\\), the size parameter \\(x = k_1 a\\), and use a compact notation for the product derivative of the spherical Bessel function
 
 $$ \tag{17.153}
 \begin{aligned}
