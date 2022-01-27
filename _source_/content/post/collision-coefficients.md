@@ -5723,7 +5723,7 @@ $$
 Assuming the conductivity of the sphere is not enormous, the surface current term \\(\bm{J_n}\\) can be neglected \[[17](#references) (ch 1.13)\], and we may combine Equations 3.12, 5.2.3 and 17.146 into
 
 $$ \tag{17.147}
-	\bm{e_r} \times \nabla \times (\bm{E_2} - \bm{E_1}) = 0.
+	\bm{e_r} \times \bigg( \frac{1}{\mu_2} \nabla \times \bm{E_2} - \frac{1}{\mu_1} \nabla \times \bm{E_1} \bigg) = 0.
 $$
 
 The simplest way to take the curl of the electric field is by utilizing its vector spherical wave function series representation. According to Equations 17.17, 17.19, and 17.34,
@@ -5777,10 +5777,10 @@ $$ \tag{17.151}
 \begin{aligned}
 	a_{m,n}''
 	&= \frac{ a_{m,n} \Big( \frac{j_n(k_1 r)}{k_1 r} + \frac{\partial j_n(k_1 r)}{\partial (k_1 r)} \Big)
-	+ a_{m,n}' \Big( \frac{h_n^{(1)}(k_1 r)}{k_1 r} + \frac{\partial h_n^{(1)}(k_1 r)}{\partial (k_1 r)} \Big) }{ \frac{k_2}{k_1} \Big( \frac{j_n(k_2 r)}{k_2 r} + \frac{\partial j_n(k_2 r)}{\partial (k_2 r)} \Big) },
+	+ a_{m,n}' \Big( \frac{h_n^{(1)}(k_1 r)}{k_1 r} + \frac{\partial h_n^{(1)}(k_1 r)}{\partial (k_1 r)} \Big) }{ \frac{\mu_1 k_2}{\mu_2 k_1} \Big( \frac{j_n(k_2 r)}{k_2 r} + \frac{\partial j_n(k_2 r)}{\partial (k_2 r)} \Big) },
 	\cr
 	b_{m,n}''
-	&= \frac{ b_{m,n} j_n(k_1 r) + b_{m,n}' h_n^{(1)}(k_1 r) }{ \frac{k_2}{k_1} j_n(k_2 r) }.
+	&= \frac{ b_{m,n} j_n(k_1 r) + b_{m,n}' h_n^{(1)}(k_1 r) }{ \frac{\mu_1 k_2}{\mu_2 k_1} j_n(k_2 r) }.
 \end{aligned}
 $$
 
@@ -5791,51 +5791,51 @@ $$ \tag{17.152}
   	a_{m,n}'
 	&= -a_{m,n} \frac{
 		\Big( \frac{j_n(k_1 r)}{k_1 r} + \frac{\partial j_n(k_1 r)}{\partial (k_1 r)} \Big) j_n(k_2 r)
-		- \frac{k_2}{k_1} j_n(k_1 r) \Big( \frac{j_n(k_2 r)}{k_2 r} + \frac{\partial j_n(k_2 r)}{\partial (k_2 r)} \Big)
+		- \frac{\mu_1 k_2}{\mu_2 k_1} j_n(k_1 r) \Big( \frac{j_n(k_2 r)}{k_2 r} + \frac{\partial j_n(k_2 r)}{\partial (k_2 r)} \Big)
 	}{
 		\Big( \frac{h_n^{(1)}(k_1 r)}{k_1 r} + \frac{\partial h_n^{(1)}(k_1 r)}{\partial (k_1 r)} \Big) j_n(k_2 r)
-		- \frac{k_2}{k_1} h_n^{(1)}(k_1 r) \Big( \frac{j_n(k_2 r)}{k_2 r} + \frac{\partial j_n(k_2 r)}{\partial (k_2 r)} \Big)
+		- \frac{\mu_1 k_2}{\mu_2 k_1} h_n^{(1)}(k_1 r) \Big( \frac{j_n(k_2 r)}{k_2 r} + \frac{\partial j_n(k_2 r)}{\partial (k_2 r)} \Big)
 	},
 	\cr
 	b_{m,n}'
 	&= - b_{m,n} \frac
 	{
 		j_n(k_1 r) \Big( \frac{j_n(k_2 r)}{k_2 r} + \frac{\partial j_n(k_2 r)}{\partial (k_2 r)} \Big)
-		- \frac{k_2}{k_1} \Big( \frac{j_n(k_1 r)}{k_1 r} + \frac{\partial j_n(k_1 r)}{\partial (k_1 r)} \Big) j_n(k_2 r)
+		- \frac{\mu_1 k_2}{\mu_2 k_1} \Big( \frac{j_n(k_1 r)}{k_1 r} + \frac{\partial j_n(k_1 r)}{\partial (k_1 r)} \Big) j_n(k_2 r)
 	}{
 		h_n^{(1)}(k_1 r) \Big( \frac{j_n(k_2 r)}{k_2 r} + \frac{\partial j_n(k_2 r)}{\partial (k_2 r)} \Big)
-		- \frac{k_2}{k_1} \Big( \frac{h_n^{(1)}(k_1 r)}{k_1 r} + \frac{\partial h_n^{(1)}(k_1 r)}{\partial (k_1 r)} \Big) j_n(k_2 r)
+		- \frac{\mu_1 k_2}{\mu_2 k_1} \Big( \frac{h_n^{(1)}(k_1 r)}{k_1 r} + \frac{\partial h_n^{(1)}(k_1 r)}{\partial (k_1 r)} \Big) j_n(k_2 r)
 	}.
 \end{aligned}
 $$
 
-We may observe that both the scattered and the internal fields are directly proportional to the incident field. Furthermore, the coefficients of proportionality are independent of \\(m\\). They may be written down neatly if we re-introduce the traditional notation that calls the radius of the spherical particle \\(a\\), the relative refractive index \\(m = k_2 / k_1\\), the size parameter \\(x = k_1 a\\), and the prevalent derivative of the spherical Bessel function
+We may observe that both the scattered and the internal fields are directly proportional to the incident field. Furthermore, the coefficients of proportionality are independent of \\(m\\). They may be written down neatly if we re-introduce the traditional notation that calls the radius of the spherical particle \\(a\\), the relative refractive index \\(m = k_2 / k_1\\), the inverse relative permeability \\(w = \mu_1 / \mu_2\\), the size parameter \\(x = k_1 a\\), and use a compact notation for the product derivative of the spherical Bessel function
 
 $$ \tag{17.153}
 \begin{aligned}
-	\tilde{z}\_n(x)
+	  \frac{z_n(x)}{x} + \frac{\partial z_n(x)}{\partial x}
 	= \frac{1}{x} \frac{\partial \big[ x z_n(x) \big]}{\partial x}
-	= \frac{z_n(x)}{x} + \frac{\partial z_n(x)}{\partial x}.
+	= \frac{1}{x} \big[ x z_n(x) \big]'.
 \end{aligned}
 $$
 
-The order-independent multiplicative factors of Equation 17.152 can then be expressed as
+The order-independent multiplicative factors of Equation 17.152 can then be expressed as \[[17](#references) (ch 9.25)\]
 
 $$ \tag{17.154}
 \begin{aligned}
   	a_{n}'(\omega)
   	&= -\frac{
-		\tilde{j}\_n(x) j_n(m x) - m j_n(x) \tilde{j}\_n(m x)
+		\big[ x j_n(x) \big]' j_n(m x) - w j_n(x) \big[ m x j_n(m x) \big]'
 	}{
-		\tilde{h}\_n^{(1)}(x) j_n(m x) - m h_n^{(1)}(x) \tilde{j}\_n(m x)
+		\big[ x h_n^{(1)}(x) \big]' j_n(m x) - w h_n^{(1)}(x) \big[ m x j_n(m x) \big]'
 	},
 	\cr
 	b_{n}'(\omega)
 	&= -\frac
 	{
-		j_n(x) \tilde{j}\_n(m x) - m \tilde{j}\_n(x) j_n(m x)
+		j_n(x) \big[ m x j_n(m x) \big]' - w m^2 \big[ x j_n(x) \big]' j_n(m x)
 	}{
-		h_n^{(1)}(x) \tilde{j}\_n(m x) - m \tilde{h}\_n^{(1)}(x) j_n(m x)
+		h_n^{(1)}(x) \big[ m x j_n(m x) \big]' - w m^2 \big[ x h_n^{(1)}(x) \big]' j_n(m x)
 	}.
 \end{aligned}
 $$
@@ -5848,7 +5848,7 @@ $$ \tag{17.155}
 	&= \frac{ j_n(x) + a_{n}' h_n^{(1)}(x) }{ j_n(m x) },
 	\cr
 	b_{n}''(\omega)
-	&= \frac{ j_n(x) + b_{n}' h_n^{(1)}(x) }{ m j_n(m x) }.
+	&= \frac{ j_n(x) + b_{n}' h_n^{(1)}(x) }{ w m j_n(m x) }.
 \end{aligned}
 $$
 
