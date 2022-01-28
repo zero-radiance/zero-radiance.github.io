@@ -392,7 +392,7 @@ $$
 
 without violating the Poynting theorem \[[5](#references) (vol. II, ch. 27.4)\]. Yet, to the best of the author's knowledge, no disagreement with experiments has been found.
 
-A more pressing concern is whether our formulas, which were found using the microscopic formulation of the Maxwell equations, are valid at the microscopic scale. The answer is: almost always.
+A more pressing concern is whether our formulae, which were found using the microscopic formulation of the Maxwell equations, are valid at the microscopic scale. The answer is: almost always.
 
 A typical derivation[^5] replaces \\(\bm{J}\\) with \\(\bm{J_f}\\) in Equation 2.6, which, after substitution of Equation 1.14.3, leads to the macroscopic counterpart of Equation 2.7 \[[6](#references) (ch. 1.1.4), [8](#references) (ch. 2.4)\]:
 
@@ -2474,7 +2474,7 @@ $$ \tag{12.4}
 	= k^2(\omega) \mathcal{\Alpha_m}(V, \omega) \bm{E_i}(\bm{r_0}, \omega) \delta(\bm{r} - \bm{r_0}).
 $$
 
-The tensor form of \\(\mathcal{\Alpha_m}\\) is a convenient way to model polar molecules (or asymmetric particles); it acts by rotating and non-uniformly scaling the electric field phasor. To make the resulting formulas easier to interpret, we shall assume that the particle is isotropic, so that \\(\mathcal{\Alpha_m} = \alpha_m\\).
+The tensor form of \\(\mathcal{\Alpha_m}\\) is a convenient way to model polar molecules (or asymmetric particles); it acts by rotating and non-uniformly scaling the electric field phasor. To make the resulting formulae easier to interpret, we shall assume that the particle is isotropic, so that \\(\mathcal{\Alpha_m} = \alpha_m\\).
 
 Let us substitute Equation 12.4 into Equations 11.10-11.11:
 
@@ -3163,6 +3163,8 @@ $$ \tag{14.25}
 \end{aligned}
 $$
 
+-->
+
 ### Scattering Matrix
 
 An arbitrary stream of electromagnetic radiation can decomposed into a number of individual plane waves. Specifically, in a *linear, isotropic, homogeneous* medium, the expression of the incident field is given by Equation 6.16:
@@ -3239,11 +3241,7 @@ $$
 
 Expressions given above are independent of the choice of a coordinate system. In practice, it is rather convenient to establish a certain coordinate convention.
 
--->
-
 {{< figure src="/img/scat_coord.svg" caption="*Figure N: the scattering coordinate system.*" >}}
-
-<!--
 
 First, recall that \\(r\\) in Equation 15.6 stands for the distance from the center of the scattering object to the observation point. This makes the center of the object a suitable choice for the origin of the coordinate system.
 
@@ -3985,13 +3983,11 @@ $$
 
 which matches the results found using the scalar wave theory \[[4](#references) (ch. 4.21, 4.42)\]. Intuitively, this makes sense, since the particle looks the same regardless of the choice of the plane of reference (assuming the latter contains the direction of incidence), and the sensor (that only measures power) is not sensitive to the orientation of incoming light.
 
--->
-
 ### Lorenz-Mie-Debye Theory
 
-The Lorenz-Mie-Debye theory presents a rigorous solution to the problem of [diffraction](https://en.wikipedia.org/wiki/Diffraction) by an isotropic conducting sphere, also known as [Mie scattering](https://en.wikipedia.org/wiki/Mie_scattering). The solution is exact in the sense that it does not employ any approximations, so it exhibits all classical and semi-classical (e.i. wave-mechanical) effects, and thus shows an excellent agreement with experimental data (see \[[16](#references) (ch. 5)\] for a list of references).
+The Lorenz-Mie-Debye theory presents a rigorous solution to the problem of [diffraction](https://en.wikipedia.org/wiki/Diffraction) by a conducting sphere, also known as [Mie scattering](https://en.wikipedia.org/wiki/Mie_scattering). The solution is exact in the sense that it does not employ any approximations, so it exhibits all classical and semi-classical (e.i. wave-mechanical) effects, and thus shows an excellent agreement with experimental data (see \[[16](#references) (ch. 5)\] for a list of references).
 
-The original theory was independently formulated by Lorenz (1890), Mie (1908), and Debye (1909). The derivation of the relevant formulas can be found in many popular textbooks, such as \[[4](#references) (ch. 9), [6](#references) (ch. 14.5)\]. A more mathematically elegant treatment of the problem was given by Hansen in a series of papers (1935, 1936, 1937). It has also been presented in a recent open access paper \[[15](#references)\], which we use as the foundation of this section.
+The original theory was independently formulated by Lorenz (1890), Mie (1908), and Debye (1909). The derivation of the relevant formulae can be found in many popular textbooks, such as \[[4](#references) (ch. 9), [6](#references) (ch. 14.5)\]. A more mathematically elegant treatment of the problem was given by Hansen in a series of papers (1935, 1936, 1937). It has also been presented in a recent open access paper \[[15](#references)\], which we use as the foundation of this section.
 
 The general idea behind the solution is fairly simple. We treat electromagnetic scattering as a boundary value problem. If we expand the expression of the electromagnetic field in series of vector harmonics, the boundary conditions take a particularly simple form, which can be harnessed to find the (initially unknown) coefficients of the series expansion.
 
@@ -4465,7 +4461,7 @@ For small values of the argument, the behavior is both different and relatively 
 
 {{< figure src="/img/spherical_hankel_1.svg" caption="*Figure N: Spherical Hankel functions of the first kind of order n=0 (blue), n=1 (orange), n=2 (green), n=3 (red). Solid lines correspond to the real part, while the imaginary part is drawn using dashed lines.*" >}}
 
-From the graph above, or, alternatively, from Rayleigh's formulas
+From the graph above, or, alternatively, from Rayleigh's formulae
 
 $$ \tag{17.51}
 	j_n(x) = (-x)^n \bigg( \frac{1}{x} \frac{d}{dx} \bigg)^n \frac{\sin{x}}{x},
@@ -4990,7 +4986,7 @@ $$ \tag{17.87}
 \end{aligned}
 $$
 
-The same formulas lead to
+The same formulae lead to
 
 $$ \tag{17.88}
 	\int_{0}^{2 \pi} \int_{0}^{\pi} \big[ \bm{M_{s,t}}(\bm{r}) \big]^{\*} \cdot \bm{M_{m,n}}(\bm{r}) \sin{\theta} \thinspace d\theta d\phi
@@ -5548,7 +5544,7 @@ $$ \tag{17.135}
 \end{aligned}
 $$
 
-that mirror Euler's formulas of Equation 17.46.
+that mirror Euler's formulae of Equation 17.46.
 
 Using the definitions of the vector spherical harmonics (Equations 17.72-17.73) and the vector spherical wave functions (Equations 17.80-17.81), it may be shown that the functions of Equation 17.135 are weighted combinations of the (real) vector tesseral (and sectorial) harmonics \\(\bm{\Upsilon_{^e_o,m,n}}, \bm{\Phi_{^e_o,m,n}}, \bm{\Psi_{^e_o,m,n}}\\). In order to save some space, we shall simply state the resulting expressions below:
 
@@ -5910,6 +5906,21 @@ $$ \tag{17.159}
 $$
 
 Equations 17.137, 17.158 and 17.159 allow us to determine the value of the electromagnetic field at any point in space, both inside and outside the spherical particle. Thus, the problem is solved. This completes the derivation of the Lorenz-Mie-Debye formula.
+
+### Interpretation of the Lorenz-Mie-Debye Formulae
+
+The solution of the Lorenz-Mie-Debye theory is rigorous and exact (to the extent permitted by the assumptions inherent in the statement of the problem). Unfortunately, the fact that the resulting formulae take the form of a series expansion has numerous drawbacks. One obvious issue is the difficulty of making a physical interpretation of the results.
+
+$$ \tag{18.1}
+\begin{aligned}
+	\cos{x} - \sin{x} &= 1-x-\frac{x^2}{2}+\frac{x^3}{6}+\frac{x^4}{24}+O\left(x^5\right),
+	\cr
+	e^{-x} &= 1-x+\frac{x^2}{2}-\frac{x^3}{6}+\frac{x^4}{24}+O\left(x^5\right),
+\end{aligned}
+$$
+
+
+
 
 ---
 
