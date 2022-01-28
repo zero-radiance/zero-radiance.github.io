@@ -5784,7 +5784,7 @@ $$ \tag{17.151}
 \end{aligned}
 $$
 
-The value of the expansion coefficients \\(a\_{m,n}\\) and \\(b\_{m,n}\\) of the incident field is known. By combining Equations 17.150 and 17.151, we can finally evaluate the coefficients of the scattered field:
+The value of the expansion coefficients \\(a\_{m,n}\\) and \\(b\_{m,n}\\) of the incident field is known. By combining Equations 17.150 and 17.151, we can finally evaluate the coefficients of the scattered field \[[15](#references)\]:
 
 $$ \tag{17.152}
 \begin{aligned}
@@ -5840,21 +5840,56 @@ $$ \tag{17.154}
 \end{aligned}
 $$
 
-The coefficients of proportionality of the internal field can be taken from Equations 17.150.1 and 17.151.2:
+Many authors \[[4](#references) (ch 9.22), [6](#references) (ch 14.5)\] prefer to give this formula in terms of the [Riccati-Bessel functions](https://en.wikipedia.org/wiki/Bessel_function#Riccati%E2%80%93Bessel_functions:_Sn,_Cn,_%CE%BEn,_%CE%B6n)
 
 $$ \tag{17.155}
 \begin{aligned}
+	\psi_n(x) = x j_{n}(x),
+	\qquad
+	\zeta_n(x) = x h_n^{(1)}(x),
+\end{aligned}
+$$
+
+instead:
+
+$$ \tag{17.156}
+\begin{aligned}
+  	a_{n}'(\omega)
+  	&= -\frac{
+		\psi_n'(x) \psi_n(m x) - w m  \psi_n(x) \psi_n'(m x)
+	}{
+		\zeta_n'(x) \psi_n(m x) - w m \zeta_n(x) \psi_n'(m x)
+	},
+	\cr
+	b_{n}'(\omega)
+	&= -\frac
+	{
+		\psi_n(x) \psi_n'(m x) - w m \psi_n'(x) \psi_n(m x)
+	}{
+		\zeta_n(x) \psi_n'(m x) - w m \zeta_n'(x) \psi_n(m x)
+	}.
+\end{aligned}
+$$
+
+Equation 17.156 does not always match those found in the literature because different authors employ different conventions in their series expansions.
+
+The coefficients of proportionality of the internal field can be taken from Equations 17.150.1 and 17.151.2:
+
+$$ \tag{17.157}
+\begin{aligned}
 	a_{n}''(\omega)
-	&= \frac{ j_n(x) + a_{n}' h_n^{(1)}(x) }{ j_n(m x) },
+	&= \frac{ j_n(x) + a_{n}' h_n^{(1)}(x) }{ j_n(m x) }
+	 = m \frac{ \psi_n(x) + a_{n}' \zeta_n(x) }{ \psi_n(m x) },
 	\cr
 	b_{n}''(\omega)
-	&= \frac{ j_n(x) + b_{n}' h_n^{(1)}(x) }{ w m j_n(m x) }.
+	&= \frac{ j_n(x) + b_{n}' h_n^{(1)}(x) }{ w m j_n(m x) }
+	 = \frac{1}{w} \frac{ \psi_n(x) + b_{n}' \zeta_n(x) }{ \psi_n(m x) }.
 \end{aligned}
 $$
 
 Now, recall the transformation of the expression of the incident field (Equations 17.133-17.137), where we introduced the even and off vector spherical functions. Since the expansion coefficients of the scattered and the internal fields differ from those of the incident field only by a multiplicative factor, it's easy to see that the overall structure of the expression remains the same; novel expressions can be obtained by attaching the corresponding factors to the spherical wave function vectors:
 
-$$ \tag{17.156}
+$$ \tag{17.158}
 \begin{aligned}
 	\bm{E_s}(\bm{r}, \omega)
 	&= E_x(\omega) \sum_{n=1}^{\infin} i^n \frac{(2 n + 1)}{n (n + 1)} \big( {-a_{n}'(\omega) \bm{M_{o,1,n}^{(3)}}}(\bm{r}, \omega) + i b_{n}'(\omega) \bm{N_{e,1,n}^{(3)}}(\bm{r}, \omega) \big)
@@ -5865,7 +5900,7 @@ $$
 
 Similarly, the expression of the internal field can be written as
 
-$$ \tag{17.157}
+$$ \tag{17.159}
 \begin{aligned}
 	\bm{E_2}(\bm{r}, \omega)
 	&= E_x(\omega) \sum_{n=1}^{\infin} i^n \frac{(2 n + 1)}{n (n + 1)} \big( {-a_{n}''(\omega) \bm{M_{o,1,n}^{(1)}}}(\bm{r}, \omega) + i b_{n}''(\omega) \bm{N_{e,1,n}^{(1)}}(\bm{r}, \omega) \big)
@@ -5874,7 +5909,7 @@ $$ \tag{17.157}
 \end{aligned}
 $$
 
-Equations 17.137, 17.156 and 17.157 allow us to determine the value of the electromagnetic field at any point in space, both inside and outside the spherical particle. Thus, the problem is solved. This completes the derivation of the Lorenz-Mie-Debye formula.
+Equations 17.137, 17.158 and 17.159 allow us to determine the value of the electromagnetic field at any point in space, both inside and outside the spherical particle. Thus, the problem is solved. This completes the derivation of the Lorenz-Mie-Debye formula.
 
 ---
 
