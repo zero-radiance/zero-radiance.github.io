@@ -2727,7 +2727,7 @@ $$ \tag{13.5}
 \end{aligned}
 $$
 
-Let us return to the general case of a scattering object. Assume that the observation point is in the far zone with respect to each individual volume element, so that \\(k R \gg 1\\). Equation 11.25 then takes the form
+Let us return to the general case of a scattering object. Assume that the observation point is in the radiation zone with respect to each individual volume element, so that \\(k R \gg 1\\). Equation 11.25 then takes the form
 
 $$ \tag{13.6}
 \begin{aligned}
@@ -2934,7 +2934,7 @@ $$
 
 ### Transition Operator
 
-The volume integral equation can be reduced to a relatively simple expression by assuming that the observation point is located in the far zone of the scatterer. However, the value of the electric field in the interior remains unknown. For a single atom or a small molecule, we can reasonably assume that it doesn't drive itself, which makes the field driving the molecule the same as the incident field, with the resulting (simplified) expression of Equation 13.12 given by Equation 13.5. Yet, in general, this assumption does not hold. It is easy to convince ourselves by considering a highly reflective or absorptive particle - it seems fairly obvious that the total field deep inside the particle has (on average) a lower magnitude in comparison to the incident field at the same location if the particle wasn't there.
+The volume integral equation can be reduced to a relatively simple expression by assuming that the observation point is located in the radiation zone of the scatterer. However, the value of the electric field in the interior remains unknown. For a single atom or a small molecule, we can reasonably assume that it doesn't drive itself, which makes the field driving the molecule the same as the incident field, with the resulting (simplified) expression of Equation 13.12 given by Equation 13.5. Yet, in general, this assumption does not hold. It is easy to convince ourselves by considering a highly reflective or absorptive particle - it seems fairly obvious that the total field deep inside the particle has (on average) a lower magnitude in comparison to the incident field at the same location if the particle wasn't there.
 
 Let us recall the mechanics of scattering. In a dielectric, the incident field drives the dipoles, which in turn act as sources of scattered wavelets interfering with the incident field according to the superposition principle. We may continue this line of thinking by considering the effect of a dipole as a secondary source on all other dipoles surrounding it, effectively treating the dipole field as the secondary incident field. Repeated application of this iterative approach leads to evaluation of successive orders of scattering one by one. This is the general idea behind the [Born series](https://en.wikipedia.org/wiki/Born_series) \[[6](#references) (ch. 13.1)\].
 
@@ -3599,7 +3599,7 @@ $$
 
 Our goal is to find a similar expression for the case when the volume contains particles.
 
-We begin by constructing a virtual surface that is both centered at the particle and is sufficiently large to be located in its far zone. The scattered fields are then given by Equation 15.6:
+We begin by constructing a virtual surface that is both centered at the particle and is sufficiently large to be located in its radiation zone. The scattered fields are then given by Equation 15.6:
 
 $$ \tag{16.10}
 \begin{aligned}
@@ -3997,7 +3997,7 @@ $$ \tag{17.1}
 	\big( \nabla^2 + k^2(\omega) \big) \bm{E}(\bm{r}, \omega) = 0.
 $$
 
-We have previously solved this equation by expanding it in Cartesian coordinates. That allowed us to separate a single vector equation into three scalar equations, which could then be solved individually. While this leads to a convenient (plane wave) representation of the incident field, it is a poor fit for the scattered field, since the latter takes the form of a spherical wave in the far zone. In addition, the geometry of the scatterer suggests that we should exploit the spherical symmetry of the problem in some way.
+We have previously solved this equation by expanding it in Cartesian coordinates. That allowed us to separate a single vector equation into three scalar equations, which could then be solved individually. While this leads to a convenient (plane wave) representation of the incident field, it is a poor fit for the scattered field, since the latter takes the form of a spherical wave in the radiation zone. In addition, the geometry of the scatterer suggests that we should exploit the spherical symmetry of the problem in some way.
 
 Equation 17.1 can be written in yet another way. Recall (c.f. Equation 9.19) that we can express the electric field \\(\bm{E}\\) in terms of the vector potential \\(\bm{A}\\) and the scalar potential \\(\phi\\)
 
@@ -4457,7 +4457,7 @@ As expected from the general scattering theory, the behavior of these functions 
 
 {{< figure src="/img/spherical_bessel_y.svg" caption="*Figure N: Spherical Bessel functions of the second kind of order n=0 (blue), n=1 (orange), n=2 (green), n=3 (red).*" >}}
 
-For small values of the argument, the behavior is both different and relatively complicated. In particular, the functions of the first kind take on finite values, while the functions of the second kind diverge at the origin. In the far zone, as \\(k r \to \infin\\), both types of functions behave as decaying sine waves, which can be clearly seen on the plot below.
+For small values of the argument, the behavior is both different and relatively complicated. In particular, the functions of the first kind take on finite values, while the functions of the second kind diverge at the origin. In the radiation zone, as \\(k r \to \infin\\), both types of functions behave as decaying sine waves, which can be clearly seen on the plot below.
 
 {{< figure src="/img/spherical_hankel_1.svg" caption="*Figure N: Spherical Hankel functions of the first kind of order n=0 (blue), n=1 (orange), n=2 (green), n=3 (red). Solid lines correspond to the real part, while the imaginary part is drawn using dashed lines.*" >}}
 
@@ -5093,7 +5093,7 @@ $$ \tag{17.96}
 	= \sum_{n=1}^{\infin} \sum_{m=-n}^{n} \big( a_{m,n}(\omega) \bm{M_{m,n}}(\bm{r}, \omega) + b_{m,n}(\omega) \bm{N_{m,n}}(\bm{r}, \omega) \big).
 $$
 
-In order to obtain these coefficients, we must consider three distinct types of electromagnetic fields: the incident field produced by an external source, the scattered field in the far zone of the particle, and the total internal field induced inside the spherical particle. The reason for this kind of decomposition will become apparent shortly.
+In order to obtain these coefficients, we must consider three distinct types of electromagnetic fields: the incident field produced by an external source, the scattered field in the radiation zone of the particle, and the total internal field induced inside the spherical particle. The reason for this kind of decomposition will become apparent shortly.
 
 We shall start with the incident field. Evidently, its expression must be known a priori. That permits us to determine the values of the coefficients \\(a_{m,n}\\) and \\(b_{m,n}\\) by combining Equation 17.96 with 17.88 and 17.89, respectively:
 
@@ -5157,7 +5157,7 @@ $$ \tag{17.102}
 	\mathcal{P_h} \Bigg( \bm{E}, \frac{ \bm{N_{m,n}} }{ \mathcal{N_h} \big( \bm{N_{m,n}} \big) } \Bigg) \frac{ \bm{N_{m,n}} }{ \mathcal{N_h} \big( \bm{N_{m,n}} \big) } \Bigg).
 $$
 
-Let us further assume that the incident field can be represented by a plane wave. This is a valid description of an extended source located in the far zone of a small particle; a more general source could be modeled as a superposition of plane waves.
+Let us further assume that the incident field can be represented by a plane wave. This is a valid description of an extended source located in the radiation zone of a small particle; a more general source could be modeled as a superposition of plane waves.
 
 If the region of space is filled with a linear, isotropic, homogeneous, source-free medium, the expression of the incident vector plane wave is given by Equation 7.2:
 
