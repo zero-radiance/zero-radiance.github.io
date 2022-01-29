@@ -5909,18 +5909,27 @@ Equations 17.137, 17.158 and 17.159 allow us to determine the value of the elect
 
 ### Interpretation of the Lorenz-Mie-Debye Formulae
 
-The solution of the Lorenz-Mie-Debye theory is rigorous and exact (to the extent permitted by the assumptions inherent in the statement of the problem). Unfortunately, the fact that the resulting formulae take the form of a series expansion has numerous drawbacks. One obvious issue is the difficulty of making a physical interpretation of the results.
+The solution of the Lorenz-Mie-Debye theory is rigorous and exact (to the extent permitted by the assumptions inherent to the statement of the problem). Unfortunately, the form of the solution - a series expansion - has numerous drawbacks. One of the biggest issues is the difficulty of finding a physical interpretation of the results.
+
+To see why that is the case, consider the Taylor series expansions of two elementary functions:
 
 $$ \tag{18.1}
 \begin{aligned}
 	\cos{x} - \sin{x} &= 1-x-\frac{x^2}{2}+\frac{x^3}{6}+\frac{x^4}{24}+O\left(x^5\right),
 	\cr
-	e^{-x} &= 1-x+\frac{x^2}{2}-\frac{x^3}{6}+\frac{x^4}{24}+O\left(x^5\right),
+	e^{-x} &= 1-x+\frac{x^2}{2}-\frac{x^3}{6}+\frac{x^4}{24}+O\left(x^5\right).
 \end{aligned}
 $$
 
+These functions have radically different behavior, yet correctly guessing the function given the first few terms of its series expansion is a nontrivial task. And even if the function were known, the method of derivation still obscures the mechanism of the physical process.
 
+The problem is exacerbated by the convergence properties of the series. It was shown by Debye (1909) that the asymptotic expression of the scattered field (for points in the radiation zone) requires on the order of \\(n \approx x\\) terms; this number can reach \\(x = k a = 2 \pi (3 \text{ mm} / 380 \text{ nm}) \approx 49600 \\) for large rain drops in the visible light, making the computation impractical.
 
+Let us examine the individual terms of Equation 17.158; they are called *partial waves*. From the definition of the vector tesseral harmonics given by Equation 17.136, we may note that the waves with \\(b_n'\\) coefficient have a radial component, while those prefixed with \\(a_n'\\) don't. Since an electric charge is the source of an electric field (and the place of origin of radial lines of force), the sphere must contain charges; therefore, the partial waves prefixed with \\(b_n'\\) are said to be of the *electric type*. In the expression of the magnetic field, the coefficients \\(a_n'\\) and \\(b_n'\\) are interchanged; similar steps then lead to the logical conclusion that the partial waves prefixed with \\(a_n'\\) are of the *magnetic type* \[[17](#references) (ch 9.22)\].
+
+... transverse ... \[[6](#references) (ch 14.5)\]
+
+in particular, the partial waves with \\(b_n\\) coefficients are called *electric* (or *transverse magnetic*), and those with \\(a_n\\) are called *magnetic* (or *transverse electric*).
 
 ---
 
