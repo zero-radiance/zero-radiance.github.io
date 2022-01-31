@@ -1117,7 +1117,7 @@ $$
 For high frequencies, such as those encountered in optics, we may perform a [Laurent series](https://en.wikipedia.org/wiki/Laurent_series) [expansion](https://www.wolframalpha.com/input/?i=series+sqrt%28a-I%2Fw*b%29) at infinity:
 
 $$ \tag{7.8}
-	\eta(\omega) + i \kappa(\omega) \approx
+	\eta(\omega) + i \kappa(\omega) \backsimeq
 	c \bigg( \sqrt{\epsilon \mu} + i \frac{\sigma \mu}{2 \omega \sqrt{\epsilon \mu}} \bigg),
 $$
 
@@ -2695,14 +2695,14 @@ $$ \tag{13.2}
 	\mathcal{G_{mf}}.
 $$
 
-If \\(k R \gg 1\\), the values of the expressions in the brackets approach 1. This allows us to write Equation 12.5 as
+If \\(k R \gg 1\\), the values of the expressions in the brackets approach 1. This allows us to write the asymptotic form of Equation 12.5 as
 
 $$ \tag{13.3}
 \begin{aligned}
 	& \bm{E_s}(\bm{r}, \omega)
-	\approx k^2(\omega) \bigg( \mathcal{I} - \frac{\bm{R} \otimes \bm{R}}{\bm{R} \cdot \bm{R}} \bigg) \frac{e^{i k(\omega) R}}{4 \pi R} \alpha_m(V, \omega) \bm{E_i}(\bm{r'}, \omega), \cr
+	\backsimeq k^2(\omega) \bigg( \mathcal{I} - \frac{\bm{R} \otimes \bm{R}}{\bm{R} \cdot \bm{R}} \bigg) \frac{e^{i k(\omega) R}}{4 \pi R} \alpha_m(V, \omega) \bm{E_i}(\bm{r'}, \omega), \cr
 	& \bm{B_s}(\bm{r}, \omega)
-	\approx \frac{k^3(\omega)}{\omega} \bigg(\frac{\bm{R} \times \mathcal{I}}{R} \bigg) \frac{e^{i k(\omega) R}}{4 \pi R} \alpha_m(V, \omega) \bm{E_i}(\bm{r'}, \omega),
+	\backsimeq \frac{k^3(\omega)}{\omega} \bigg(\frac{\bm{R} \times \mathcal{I}}{R} \bigg) \frac{e^{i k(\omega) R}}{4 \pi R} \alpha_m(V, \omega) \bm{E_i}(\bm{r'}, \omega),
 \end{aligned}
 $$
 
@@ -2721,9 +2721,9 @@ Equation 13.3 can be reduced to a simpler form by aligning the origin of the coo
 $$ \tag{13.5}
 \begin{aligned}
 	& \bm{E_s}(\bm{r}, \omega)
-	\approx k^2(\omega) \big( \mathcal{I} - \bm{n} \otimes \bm{n} \big) \frac{e^{i k(\omega) r}}{4 \pi r} \alpha_m(V, \omega) \bm{E_i}(0, \omega), \cr
+	\backsimeq k^2(\omega) \big( \mathcal{I} - \bm{n} \otimes \bm{n} \big) \frac{e^{i k(\omega) r}}{4 \pi r} \alpha_m(V, \omega) \bm{E_i}(0, \omega), \cr
 	& \bm{B_s}(\bm{r}, \omega)
-	\approx \frac{k^3(\omega)}{\omega} \big(\bm{n} \times \mathcal{I} \big) \frac{e^{i k(\omega) r}}{4 \pi r} \alpha_m(V, \omega) \bm{E_i}(0, \omega).
+	\backsimeq \frac{k^3(\omega)}{\omega} \big(\bm{n} \times \mathcal{I} \big) \frac{e^{i k(\omega) r}}{4 \pi r} \alpha_m(V, \omega) \bm{E_i}(0, \omega).
 \end{aligned}
 $$
 
@@ -2732,9 +2732,9 @@ Let us return to the general case of a scattering object. Assume that the observ
 $$ \tag{13.6}
 \begin{aligned}
 	& \bm{E_s}(\bm{r}, \omega)
-	\approx k^2(\omega) \int\_{V} \bigg( \mathcal{I} - \frac{\bm{R} \otimes \bm{R}}{\bm{R} \cdot \bm{R}} \bigg) \frac{e^{i k(\omega) R}}{4 \pi R} \big( m^2(\bm{r'}, \omega) - 1 \big) \bm{E}(\bm{r'}, \omega) dV', \cr
+	\backsimeq k^2(\omega) \int\_{V} \bigg( \mathcal{I} - \frac{\bm{R} \otimes \bm{R}}{\bm{R} \cdot \bm{R}} \bigg) \frac{e^{i k(\omega) R}}{4 \pi R} \big( m^2(\bm{r'}, \omega) - 1 \big) \bm{E}(\bm{r'}, \omega) dV', \cr
 	& \bm{B_s}(\bm{r}, \omega)
-	\approx \frac{k^3(\omega)}{\omega} \int\_{V} \bigg(\frac{\bm{R} \times \mathcal{I}}{R} \bigg) \frac{e^{i k(\omega) R}}{4 \pi R} \big( m^2(\bm{r'}, \omega) - 1 \big) \bm{E}(\bm{r'}, \omega) dV'.
+	\backsimeq \frac{k^3(\omega)}{\omega} \int\_{V} \bigg(\frac{\bm{R} \times \mathcal{I}}{R} \bigg) \frac{e^{i k(\omega) R}}{4 \pi R} \big( m^2(\bm{r'}, \omega) - 1 \big) \bm{E}(\bm{r'}, \omega) dV'.
 \end{aligned}
 $$
 
@@ -2767,8 +2767,8 @@ $$
 In order for \\(r'/r \ll 1\\) for all \\(r'\\), we require that \\(a/r \ll 1\\) (or, alternatively, \\(kr \gg ka\\)). Further assuming that \\(\frac{1}{2} k a (a/r) \ll 1\\), which is formally equivalent to \\(kr \gg \frac{1}{2} (ka)^2\\), we arrive at the approximation
 
 $$ \tag{13.9}
-	k R \approx k r - k (\bm{r'} \cdot \bm{n}), \qquad
-	\frac{1}{R} \approx \frac{1}{r}.
+	k R \backsimeq k r - k (\bm{r'} \cdot \bm{n}), \qquad
+	\frac{1}{R} \backsimeq \frac{1}{r}.
 $$
 
 Next, we shall examine the expression of the directions of observation of individual volume element:
@@ -2784,19 +2784,19 @@ $$
 Assume that the sphere covers a small solid angle when viewed from the observation point, which implies that \\(a/r \ll 1\\) . As the bounding volume shrinks to a point, the directions of observation corresponding to individual volume elements align, and we may write
 
 $$ \tag{13.11}
-	\frac{\bm{R}}{R} \approx \bm{n}.
+	\frac{\bm{R}}{R} \backsimeq \bm{n}.
 $$
 
 Substitution of Equations 13.9 and 13.11 into Equation 13.6 produces the *far-field approximation* of the volume integral equation:
 
 $$ \tag{13.12}
 \begin{aligned}
-	& \bm{E_s}(\bm{r}, \omega) \approx k^2(\omega)
+	& \bm{E_s}(\bm{r}, \omega) \backsimeq k^2(\omega)
 	\big( \mathcal{I} - \bm{n} \otimes \bm{n} \big)
 	\frac{e^{i k(\omega) r}}{4 \pi r}
 	\int\_{V} e^{-i k(\omega) (\bm{r'} \cdot \bm{n})} \big( m^2(\bm{r'}, \omega) - 1 \big)
 	\bm{E}(\bm{r'}, \omega) dV', \cr
-	& \bm{B_s}(\bm{r}, \omega) \approx \frac{k^3(\omega)}{\omega}
+	& \bm{B_s}(\bm{r}, \omega) \backsimeq \frac{k^3(\omega)}{\omega}
 	\big(\bm{n} \times \mathcal{I} \big)
 	\frac{e^{i k(\omega) r}}{4 \pi r}
 	\int\_{V} e^{-i k(\omega) (\bm{r'} \cdot \bm{n})} \big( m^2(\bm{r'}, \omega) - 1 \big)
@@ -2846,9 +2846,9 @@ which simplifies Equation 13.12 to
 $$ \tag{13.16}
 \begin{aligned}
 	& \bm{E_s}(\bm{r}, \omega)
-	\approx \big( \mathcal{I} - \bm{n} \otimes \bm{n} \big) \bm{K}(\bm{r}, \omega), \cr
+	\backsimeq \big( \mathcal{I} - \bm{n} \otimes \bm{n} \big) \bm{K}(\bm{r}, \omega), \cr
 	& \bm{B_s}(\bm{r}, \omega)
-	\approx \frac{k(\omega)}{\omega} \big(\bm{n} \times \mathcal{I} \big) \bm{K}(\bm{r}, \omega).
+	\backsimeq \frac{k(\omega)}{\omega} \big(\bm{n} \times \mathcal{I} \big) \bm{K}(\bm{r}, \omega).
 \end{aligned}
 $$
 
@@ -2856,7 +2856,7 @@ Now, take the cross product of the direction of observation with Equation 13.16.
 
 $$ \tag{13.17}
 	\frac{k(\omega)}{\omega} \bm{n} \times \bm{E_s}(\bm{r}, \omega)
-	\approx \bm{B_s}(\bm{r}, \omega)
+	\backsimeq \bm{B_s}(\bm{r}, \omega)
 $$
 
 Furthermore, notice the resemblance of Equation 13.17 to 7.22.
@@ -2867,7 +2867,7 @@ $$ \tag{13.18}
 	\bm{n} \times \bigg(
 	\frac{\eta(\omega)}{c} \mathcal{Re} \big\lbrace \bm{E_s} e^{-i \omega t} \big\rbrace
 	- \frac{\kappa(\omega)}{c} \mathcal{Im} \big\lbrace \bm{E_s} e^{-i \omega t} \big\rbrace \bigg)
-	\approx \mathcal{Re} \big\lbrace \bm{B_s} e^{-i \omega t} \big\rbrace.
+	\backsimeq \mathcal{Re} \big\lbrace \bm{B_s} e^{-i \omega t} \big\rbrace.
 $$
 
 We encounter a situation similar to vector plane waves, where the absorptive character of the homogeneous medium poses a complication. If we assume that \\(\kappa = 0\\), the field vectors become orthogonal, and we obtain a counterpart of Equation 7.29:
@@ -3204,11 +3204,11 @@ In general, the scattering tensor depends on the position of the observation poi
 
 $$ \tag{15.5}
 \begin{aligned}
-	& \bm{E_s}(\bm{r}, \omega) \approx
+	& \bm{E_s}(\bm{r}, \omega) \backsimeq
 	\big( \mathcal{I} - \bm{n_s} \otimes \bm{n_s} \big)
 	\frac{e^{i k(\omega) r}}{4 \pi r}
 	\int\_{V} e^{-i k(\omega) (\bm{r'} \cdot \bm{n_s})} \int\_{V} \mathcal{T} \big( \bm{r'}, \bm{r''}, k(\omega), \omega \big) \bm{E_i}(\bm{r''}, \omega) dV'' dV', \cr
-	& \bm{B_s}(\bm{r}, \omega) \approx
+	& \bm{B_s}(\bm{r}, \omega) \backsimeq
 	\big(\bm{n_s} \times \mathcal{I} \big) \frac{k(\omega)}{\omega}
 	\frac{e^{i k(\omega) r}}{4 \pi r}
 	\int\_{V} e^{-i k(\omega) (\bm{r'} \cdot \bm{n_s})} \int\_{V} \mathcal{T} \big( \bm{r'}, \bm{r''}, k(\omega), \omega \big) \bm{E_i}(\bm{r''}, \omega) dV'' dV',
@@ -3220,9 +3220,9 @@ making the scattering tensor independent from the distance to the observation po
 $$ \tag{15.6}
 \begin{aligned}
 	& \bm{E_s}(r \bm{n_s}, \bm{n_i}, \omega)
-	\approx \frac{e^{i k(\omega) r}}{r} \mathcal{S_{ef}} (\bm{n_s}, \bm{n_i}, \omega) \bm{E_i}(0, \bm{n_i}, \omega), \cr
+	\backsimeq \frac{e^{i k(\omega) r}}{r} \mathcal{S_{ef}} (\bm{n_s}, \bm{n_i}, \omega) \bm{E_i}(0, \bm{n_i}, \omega), \cr
 	& \bm{B_s}(r \bm{n_s}, \bm{n_i}, \omega)
-	\approx \frac{e^{i k(\omega) r}}{r} \mathcal{S_{mf}} (\bm{n_s}, \bm{n_i}, \omega) \bm{E_i}(0, \bm{n_i}, \omega).
+	\backsimeq \frac{e^{i k(\omega) r}}{r} \mathcal{S_{mf}} (\bm{n_s}, \bm{n_i}, \omega) \bm{E_i}(0, \bm{n_i}, \omega).
 \end{aligned}
 $$
 
@@ -3230,10 +3230,10 @@ For completeness, the expressions of the scattering tensors for the electric and
 
 $$ \tag{15.7}
 \begin{aligned}
-	& \mathcal{S_{ef}} (\bm{n_s}, \bm{n_i}, \omega) \approx \frac{1}{4 \pi}
+	& \mathcal{S_{ef}} (\bm{n_s}, \bm{n_i}, \omega) \backsimeq \frac{1}{4 \pi}
 	\big( \mathcal{I} - \bm{n_s} \otimes \bm{n_s} \big)
 	\iint\_{V} e^{-i k(\omega) (\bm{r'} \cdot \bm{n_s} - \bm{r''} \cdot \bm{n_i})} \mathcal{T} (\bm{r'}, \bm{r''}, k(\omega), \omega) dV'' dV', \cr
-	& \mathcal{S_{mf}} (\bm{n_s}, \bm{n_i}, \omega) \approx \frac{1}{4 \pi}
+	& \mathcal{S_{mf}} (\bm{n_s}, \bm{n_i}, \omega) \backsimeq \frac{1}{4 \pi}
 	\big(\bm{n_s} \times \mathcal{I} \big) \frac{k(\omega)}{\omega}
 	\iint\_{V} e^{-i k(\omega) (\bm{r'} \cdot \bm{n_s} - \bm{r''} \cdot \bm{n_i})} \mathcal{T} (\bm{r'}, \bm{r''}, k(\omega), \omega) dV'' dV'.
 \end{aligned}
@@ -3378,7 +3378,7 @@ $$ \tag{15.16}
 \begin{bmatrix}
 	E\_{s,x'}(\bm{r}, \omega) \cr
 	E\_{s,y }(\bm{r}, \omega) \cr
-\end{bmatrix} \approx
+\end{bmatrix} \backsimeq
 \frac{e^{i k(\omega) r - i k(\omega) z}}{i k(\omega) r} S(\theta, \phi, \omega)
 \begin{bmatrix}
 	E\_{i,x}(z, 0, \phi, \omega) \cr
@@ -3604,10 +3604,10 @@ We begin by constructing a virtual surface that is both centered at the particle
 $$ \tag{16.10}
 \begin{aligned}
 	& \bm{E_s}(\bm{r}, t)
-	\approx \mathcal{Re} \bigg\lbrace \frac{e^{i k r}}{r} \mathcal{S_{ef}} \bm{E_0} e^{-i \omega t} \bigg\rbrace
+	\backsimeq \mathcal{Re} \bigg\lbrace \frac{e^{i k r}}{r} \mathcal{S_{ef}} \bm{E_0} e^{-i \omega t} \bigg\rbrace
 	= \frac{1}{r} \mathcal{Re} \big\lbrace \bm{E_1}(\bm{n_s}) e^{i k r - i \omega t} \big\rbrace, \cr
 	& \bm{B_s}(\bm{r}, t)
-	\approx \mathcal{Re} \bigg\lbrace \frac{e^{i k r}}{r} \mathcal{S_{mf}} \bm{E_0} e^{-i \omega t} \bigg\rbrace
+	\backsimeq \mathcal{Re} \bigg\lbrace \frac{e^{i k r}}{r} \mathcal{S_{mf}} \bm{E_0} e^{-i \omega t} \bigg\rbrace
 	= \frac{1}{r} \mathcal{Re} \big\lbrace \bm{B_1}(\bm{n_s}) e^{i k r - i \omega t} \big\rbrace,
 \end{aligned}
 $$
@@ -3832,7 +3832,7 @@ The two integrals found in Equation 16.29 have the same form. That allows us to 
 
 $$ \tag{16.30}
 	\frac{1}{r} \oint\_{\mathbb{S}^2} f(\bm{n}) e^{-i k r (\bm{u} \cdot \bm{n})} dA
-	\approx \frac{2 \pi i}{k} \Big( f(\bm{u}) e^{-i k r} - f(-\bm{u}) e^{i k r} \Big),
+	\backsimeq \frac{2 \pi i}{k} \Big( f(\bm{u}) e^{-i k r} - f(-\bm{u}) e^{i k r} \Big),
 $$
 
 where \\(\bm{n}\\) is the outward facing normal vector, and \\(\bm{u}\\) is a constant real unit vector.
@@ -3842,12 +3842,12 @@ Application of Equation 16.30 to 16.29 shows that
 $$ \tag{16.31}
 \begin{aligned}
 	\oint\_{\mathbb{S}^2} \braket{\bm{E_i} \times \bm{B_s}} \cdot \bm{n_s} \thinspace dA
-	&\approx \frac{\eta}{c} \frac{2 \pi}{k} \mathcal{Re} \bigg\lbrace \frac{i}{2}
+	&\backsimeq \frac{\eta}{c} \frac{2 \pi}{k} \mathcal{Re} \bigg\lbrace \frac{i}{2}
 	\Big( \bm{E_0} \cdot \big[ \bm{E_1}(-\bm{n_i}) \big]^{\*} e^{-2 i k r} - \bm{E_0} \cdot \big[ \bm{E_1}(\bm{n_i}) \big]^{\*} \Big)
 	\bigg\rbrace,
 	\cr
 	\oint\_{\mathbb{S}^2} \braket{\bm{E_i} \times \bm{B_s}} \cdot \bm{n_s} \thinspace dA
-	&\approx \frac{\eta}{c} \frac{2 \pi}{k} \mathcal{Re} \bigg\lbrace \frac{i}{2}
+	&\backsimeq \frac{\eta}{c} \frac{2 \pi}{k} \mathcal{Re} \bigg\lbrace \frac{i}{2}
 	\Big( \bm{E_0^{\*}} \cdot \bm{E_1}(\bm{n_i}) + \bm{E_0^{\*}} \cdot \bm{E_1}(-\bm{n_i}) e^{2 i k r} \Big)
 	\bigg\rbrace.
 \end{aligned}
@@ -3872,7 +3872,7 @@ is a real number. Thus, the total amount of power dissipated by the particle
 $$ \tag{16.34}
 	\Phi_e
 	= -\mu\_0^{-1} \oint_{\mathbb{S}^2} \braket{\bm{E_i} \times \bm{B_s} + \bm{E_s} \times \bm{B_i}} \cdot \bm{n_s} \thinspace dA
-	\approx \mu\_0^{-1} \frac{\eta}{c} \frac{2 \pi}{k} \mathcal{Im} \big\lbrace \bm{E_0^{\*}} \cdot \bm{E_1}(\bm{n_i}) \big\rbrace
+	\backsimeq \mu\_0^{-1} \frac{\eta}{c} \frac{2 \pi}{k} \mathcal{Im} \big\lbrace \bm{E_0^{\*}} \cdot \bm{E_1}(\bm{n_i}) \big\rbrace
 $$
 
 depends on the scattering amplitude in the forward direction only. In general, the same is not true for the amount of power absorbed:
@@ -3880,7 +3880,7 @@ depends on the scattering amplitude in the forward direction only. In general, t
 $$ \tag{16.35}
 	\Phi_a
 	= \Phi_e - \Phi_s
-	\approx \frac{1}{2} \mu\_0^{-1} \frac{\eta}{c} \bigg(
+	\backsimeq \frac{1}{2} \mu\_0^{-1} \frac{\eta}{c} \bigg(
 	\frac{4 \pi}{k} \mathcal{Im} \big\lbrace \bm{E_0^{\*}} \cdot \bm{E_1}(\bm{n_i}) \big\rbrace
 	- \oint\_{\mathbb{S}^2} \big\vert \bm{E_1}(\bm{n_s}) \big\vert^2 d\Omega \bigg).
 $$
@@ -3949,14 +3949,14 @@ To show this, express \\(\bm{E_1}\\) in terms of the scattering tensor \\(\mathc
 
 $$ \tag{16.40}
 	\Phi_e
-	\approx \mu\_0^{-1} \frac{\eta}{c} \frac{2 \pi}{k} \mathcal{Im} \big\lbrace \bm{E_0^{\*}} \cdot \mathcal{S_{ef}}(\bm{n_i}, \bm{n_i}) \bm{E_0} \big\rbrace,
+	\backsimeq \mu\_0^{-1} \frac{\eta}{c} \frac{2 \pi}{k} \mathcal{Im} \big\lbrace \bm{E_0^{\*}} \cdot \mathcal{S_{ef}}(\bm{n_i}, \bm{n_i}) \bm{E_0} \big\rbrace,
 $$
 
 or, alternatively, in terms of the scattering matrix \\(S\\), by setting \\(\theta=0\\) in Equation 15.17:
 
 $$ \tag{16.41}
 	\Phi_e
-	\approx \mu\_0^{-1} \frac{\eta}{c} \frac{2 \pi}{k^2} \mathcal{Re} \big\lbrace \bm{E_0^{\*}} \cdot S(0, \phi, \omega) \bm{E_0} \big\rbrace.
+	\backsimeq \mu\_0^{-1} \frac{\eta}{c} \frac{2 \pi}{k^2} \mathcal{Re} \big\lbrace \bm{E_0^{\*}} \cdot S(0, \phi, \omega) \bm{E_0} \big\rbrace.
 $$
 
 Now, for a symmetric particle, we have previously demonstrated that
@@ -4469,15 +4469,15 @@ $$ \tag{17.51}
 	y_n(x) = -(-x)^n \bigg( \frac{1}{x} \frac{d}{dx} \bigg)^n \frac{\cos{x}}{x},
 $$
 
-we can deduce that, for large values of the argument, the Bessel functions of the first and the second kind are out-of-phase by a factor of \\(\pi\\). This is a key property of the asymptotic forms
+we can deduce that, for large values of the argument, the Bessel functions of the first and the second kind are out-of-phase by a factor of \\(\pi\\). This is a key property of the asymptotic forms (for large \\(x\\))
 
 $$ \tag{17.52}
 \begin{aligned}
-	& j_n(x) \approx \frac{1}{x} \cos\Big( x - \frac{n+1}{2} \pi \Big), &
-	& y_n(x) \approx \frac{1}{x} \sin\Big( x - \frac{n+1}{2} \pi \Big),
+	& j_n(x) \backsimeq \frac{1}{x} \sin\Big( x - \frac{n}{2} \pi \Big), &
+	& y_n(x) \backsimeq - \frac{1}{x} \cos\Big( x - \frac{n}{2} \pi \Big),
 	\cr
-	& h_n^{(1)}(x) \approx (-i)^{n+1} \frac{e^{ i x}}{x}, &
-	& h_n^{(2)}(x) \approx i^{n+1}    \frac{e^{-i x}}{x}.
+	& h_n^{(1)}(x) \backsimeq i^{-n-1} \frac{e^{ i x}}{x}, &
+	& h_n^{(2)}(x) \backsimeq i^{n+1}    \frac{e^{-i x}}{x}.
 \end{aligned}
 $$
 
@@ -5079,9 +5079,8 @@ where we once again utilized the identities of Equation 17.50.
 Given the asymptotic behavior of the spherical Bessel functions given by Equation 17.52, it follows that
 
 $$ \tag{17.95}
-	\lim_{|kr| \to \infty}
 	\int_{0}^{2 \pi} \int_{0}^{\pi} \big[ \bm{L_{s,t}}(\bm{r}) \big]^{\*} \cdot \bm{N_{m,n}}(\bm{r}) \sin{\theta} \thinspace d\theta d\phi
-	 = 0.
+	\backsimeq 0.
 $$
 
 For our application, the partial orthogonality between \\(\bm{L_{m,n}}\\) and \\(\bm{N_{m,n}}\\) is not a real concern. According to Equations 17.36 and 17.37, the electric and the magnetic fields can be expressed solely in terms of \\(\bm{M_{m,n}}\\) and \\(\bm{N_{m,n}}\\), which are mutually orthogonal, as has been shown by Equations 17.82 and 17.92.
@@ -5796,11 +5795,11 @@ $$ \tag{17.152}
 	b_{m,n}'
 	&= - b_{m,n} \frac
 	{
-		j_n(k_1 r) \Big( \frac{j_n(k_2 r)}{k_2 r} + \frac{\partial j_n(k_2 r)}{\partial (k_2 r)} \Big)
-		- \frac{\mu_1 k_2}{\mu_2 k_1} \Big( \frac{j_n(k_1 r)}{k_1 r} + \frac{\partial j_n(k_1 r)}{\partial (k_1 r)} \Big) j_n(k_2 r)
+		\frac{\mu_1 k_2}{\mu_2 k_1} \Big( \frac{j_n(k_1 r)}{k_1 r} + \frac{\partial j_n(k_1 r)}{\partial (k_1 r)} \Big) j_n(k_2 r)
+		- j_n(k_1 r) \Big( \frac{j_n(k_2 r)}{k_2 r} + \frac{\partial j_n(k_2 r)}{\partial (k_2 r)} \Big)
 	}{
-		h_n^{(1)}(k_1 r) \Big( \frac{j_n(k_2 r)}{k_2 r} + \frac{\partial j_n(k_2 r)}{\partial (k_2 r)} \Big)
-		- \frac{\mu_1 k_2}{\mu_2 k_1} \Big( \frac{h_n^{(1)}(k_1 r)}{k_1 r} + \frac{\partial h_n^{(1)}(k_1 r)}{\partial (k_1 r)} \Big) j_n(k_2 r)
+		\frac{\mu_1 k_2}{\mu_2 k_1} \Big( \frac{h_n^{(1)}(k_1 r)}{k_1 r} + \frac{\partial h_n^{(1)}(k_1 r)}{\partial (k_1 r)} \Big) j_n(k_2 r)
+		- h_n^{(1)}(k_1 r) \Big( \frac{j_n(k_2 r)}{k_2 r} + \frac{\partial j_n(k_2 r)}{\partial (k_2 r)} \Big)
 	}.
 \end{aligned}
 $$
@@ -5829,9 +5828,9 @@ $$ \tag{17.154}
 	b_{n}'(\omega)
 	&= -\frac
 	{
-		j_n(x) \big[ m x j_n(m x) \big]' - w m^2 \big[ x j_n(x) \big]' j_n(m x)
+		w m^2 \big[ x j_n(x) \big]' j_n(m x) - j_n(x) \big[ m x j_n(m x) \big]'
 	}{
-		h_n^{(1)}(x) \big[ m x j_n(m x) \big]' - w m^2 \big[ x h_n^{(1)}(x) \big]' j_n(m x)
+		w m^2 \big[ x h_n^{(1)}(x) \big]' j_n(m x) - h_n^{(1)}(x) \big[ m x j_n(m x) \big]'
 	}.
 \end{aligned}
 $$
@@ -5842,7 +5841,7 @@ $$ \tag{17.155}
 \begin{aligned}
 	\psi_n(x) = x j_{n}(x),
 	\qquad
-	\zeta_n(x) = x h_n^{(1)}(x),
+	\xi_n(x) = x h_n^{(1)}(x),
 \end{aligned}
 $$
 
@@ -5854,15 +5853,15 @@ $$ \tag{17.156}
   	&= -\frac{
 		\psi_n'(x) \psi_n(m x) - w m  \psi_n(x) \psi_n'(m x)
 	}{
-		\zeta_n'(x) \psi_n(m x) - w m \zeta_n(x) \psi_n'(m x)
+		\xi_n'(x) \psi_n(m x) - w m \xi_n(x) \psi_n'(m x)
 	},
 	\cr
 	b_{n}'(\omega)
 	&= -\frac
 	{
-		\psi_n(x) \psi_n'(m x) - w m \psi_n'(x) \psi_n(m x)
+		w m \psi_n'(x) \psi_n(m x) - \psi_n(x) \psi_n'(m x)
 	}{
-		\zeta_n(x) \psi_n'(m x) - w m \zeta_n'(x) \psi_n(m x)
+		w m \xi_n'(x) \psi_n(m x) - \xi_n(x) \psi_n'(m x)
 	}.
 \end{aligned}
 $$
@@ -5875,11 +5874,11 @@ $$ \tag{17.157}
 \begin{aligned}
 	a_{n}''(\omega)
 	&= \frac{ j_n(x) + a_{n}' h_n^{(1)}(x) }{ j_n(m x) }
-	 = m \frac{ \psi_n(x) + a_{n}' \zeta_n(x) }{ \psi_n(m x) },
+	 = m \frac{ \psi_n(x) + a_{n}' \xi_n(x) }{ \psi_n(m x) },
 	\cr
 	b_{n}''(\omega)
 	&= \frac{ j_n(x) + b_{n}' h_n^{(1)}(x) }{ w m j_n(m x) }
-	 = \frac{1}{w} \frac{ \psi_n(x) + b_{n}' \zeta_n(x) }{ \psi_n(m x) }.
+	 = \frac{1}{w} \frac{ \psi_n(x) + b_{n}' \xi_n(x) }{ \psi_n(m x) }.
 \end{aligned}
 $$
 
@@ -5909,9 +5908,9 @@ Equations 17.137, 17.158 and 17.159 allow us to determine the value of the elect
 
 ### Interpretation of the Lorenz-Mie-Debye Formulae
 
-The solution of the Lorenz-Mie-Debye theory is rigorous and exact (to the extent permitted by the assumptions inherent to the statement of the problem). Unfortunately, the form of the solution - a series expansion - has numerous drawbacks. One of the biggest issues is the difficulty of finding a physical interpretation of the results.
+The solution of the Lorenz-Mie-Debye theory is rigorous and exact (to the extent permitted by the assumptions inherent to the statement of the problem). Unfortunately, the form of the solution - a series expansion - has significant drawbacks.
 
-To see why that is the case, consider the Taylor series expansions of two elementary functions:
+One of the biggest issues is the difficulty of finding a physical interpretation of the results. To see why that is the case, consider the Taylor series expansions of two elementary functions:
 
 $$ \tag{18.1}
 \begin{aligned}
@@ -5921,15 +5920,73 @@ $$ \tag{18.1}
 \end{aligned}
 $$
 
-These functions have radically different behavior, yet correctly guessing the function given the first few terms of its series expansion is a nontrivial task. And even if the function were known, the method of derivation still obscures the mechanism of the physical process.
+These functions have radically different behavior, yet correctly guessing the function given the first few terms of its series expansion is a nontrivial task. And even if the function were known, the method of derivation still obscures the mechanism of the underlying physical process.
 
-The problem is exacerbated by the convergence properties of the series. It was shown by Debye (1909) that the asymptotic expression of the scattered field (for points in the radiation zone) requires on the order of \\(n \approx x\\) terms; this number can reach \\(x = k a = 2 \pi (3 \text{ mm} / 380 \text{ nm}) \approx 49600 \\) for large rain drops in the visible light, making the computation impractical.
+The problem is exacerbated by the convergence properties of the series. It was shown by Debye (1909) that, for points in the radiation zone, the asymptotic expression (for large \\(x\\)) of the scattered field  requires on the order of \\(n \backsim x\\) terms; this number can reach \\(x = k a = 2 \pi (3 \text{ mm} / 380 \text{ nm}) \approx 49600 \\) for large rain drops illuminated by visible light, making the computation impractical.
 
-Let us examine the individual terms of Equation 17.158; they are called *partial waves*. From the definition of the vector tesseral harmonics given by Equation 17.136, we may note that the waves with \\(b_n'\\) coefficient have a radial component, while those prefixed with \\(a_n'\\) don't. Since an electric charge is the source of an electric field (and the place of origin of radial lines of force), the sphere must contain charges; therefore, the partial waves prefixed with \\(b_n'\\) are said to be of the *electric type*. In the expression of the magnetic field, the coefficients \\(a_n'\\) and \\(b_n'\\) are interchanged; similar steps then lead to the logical conclusion that the partial waves prefixed with \\(a_n'\\) are of the *magnetic type* \[[17](#references) (ch 9.22)\].
+The most straightforward interpretation of Equation 17.158 treats the individual terms as *partial waves*. If we examine the definition of the vector tesseral harmonics given by Equation 17.136, we may note that \\(\bm{N\_{m,n}}\\) has a radial component, while \\(\bm{M\_{m,n}}\\) does not. Since an electric charge is a source of a radially-symmetric electric field, we may interpret the existence of the radial component if the electric field as a sign of the fact that the sphere contains a distribution of electric charges; therefore, the partial waves prefixed with \\(b_n'\\) are said to be of the *electric type*. In the expression of the magnetic field, the coefficients \\(a_n'\\) and \\(b_n'\\) are interchanged; similar logical steps lead to the conclusion that the partial waves prefixed with \\(a_n'\\) are of the *magnetic type* \[[17](#references) (ch 9.22)\].
 
-... transverse ... \[[6](#references) (ch 14.5)\]
+We may also show that the field becomes transverse in the radiation zone (see Equation 13.14 for the general case). Using the asymptotic expressions of the spherical Bessel functions given by Equation 17.52, for large \\(x\\), the corresponding Riccati-Bessel functions (and their derivatives) take the form
 
-in particular, the partial waves with \\(b_n\\) coefficients are called *electric* (or *transverse magnetic*), and those with \\(a_n\\) are called *magnetic* (or *transverse electric*).
+$$ \tag{18.2}
+\begin{aligned}
+	& \psi_n(x) \backsimeq \sin\Big( x - \frac{n}{2} \pi \Big), &
+	& \xi_n(x) \backsimeq i^{-n-1} e^{i x},
+	\cr
+	& \psi_n'(x) \backsimeq \cos\Big( x - \frac{n}{2} \pi \Big), &
+	& \xi_n'(x) \backsimeq i^{-n} e^{i x}.
+\end{aligned}
+$$
+
+If we substitute Equation 18.2 into 17.136 and neglect the inverse square term, we can observe that neither vector has a radial component:
+
+$$ \tag{18.3}
+\begin{aligned}
+	\bm{M_{^e_o,1,n}^{(3)}}(\bm{r})
+	&\backsimeq i^{-n-1} \frac{e^{i k r}}{k r}
+	\Big( \mp \pi_{1,n}(\theta)
+	\negthickspace \begin{array}{cc}
+	   \sin \cr
+	   \cos
+	\end{array} \negthickspace (\phi) \thinspace \bm{e_{\theta}} - \tau_{1,n}(\theta)
+	\negthickspace \begin{array}{cc}
+	   \cos \cr
+	   \sin
+	\end{array} \negthickspace (\phi) \thinspace \bm{e_{\phi}} \Big),
+	\cr
+	\bm{N_{^e_o,1,n}^{(3)}}(\bm{r})
+	&\backsimeq i^{-n} \frac{e^{i k r}}{k r}
+	\Big( \tau_{1,n}(\theta)
+	\negthickspace \begin{array}{cc}
+	   \cos \cr
+	   \sin
+	\end{array} \negthickspace (\phi) \thinspace \bm{e_{\theta}}
+	\mp \pi_{1,n}(\theta)
+	\negthickspace \begin{array}{cc}
+	   \sin \cr
+	   \cos
+	\end{array} \negthickspace (\phi) \thinspace \bm{e_{\phi}} \Big).
+\end{aligned}
+$$
+
+These vectors are mutually orthogonal to each other. Hence, in the radiation zone, partial waves of the electric type are sometimes called *transverse magnetic modes*, and those of the magnetic type are referred to as *transverse electric modes*.
+
+Substitution into Equation 17.158 produces a convenient asymptotic expansion of the scattered field:
+
+$$ \tag{18.4}
+\begin{aligned}
+	\bm{E_s}(\bm{r}, \omega)
+	&\backsimeq \frac{e^{i k r}}{i k r} \sum_{n=1}^{\infin} \frac{(2 n + 1)}{n (n + 1)}
+	\Big( {-a_{n}'} \pi_{1,n}(\theta) - b_{n}' \tau_{1,n}(\theta) \Big)
+	\Big( E_x \cos(\phi) + E_y \sin(\phi) \Big) \bm{e_{\theta}}
+	\cr
+	&+ \frac{e^{i k r}}{i k r} \sum_{n=1}^{\infin} \frac{(2 n + 1)}{n (n + 1)}
+	\Big( {-a_{n}'} \tau_{1,n}(\theta) - b_{n}' \pi_{1,n}(\theta) \Big)
+	\Big( {-E_x} \sin(\phi) + E_y \cos(\phi) \Big) \bm{e_{\phi}}.
+\end{aligned}
+$$
+
+\[[6](#references) (ch 14.5)\]
 
 ---
 
