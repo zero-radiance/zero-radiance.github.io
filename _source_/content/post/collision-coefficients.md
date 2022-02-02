@@ -3250,17 +3250,19 @@ Next, assume that the direction of incidence \\(\bm{n_i}\\) is fixed; convention
 We must also choose the *plane of reference* that fixes the orientation of the coordinate frame \[[4](#references) (ch. 5.11)\]. The decision is somewhat arbitrary (except for the fact that the plane should contain \\(\bm{n_i}\\) for the reason outlined above). A simple choice that reduces the number of degrees of freedom is to use the *plane of observation* spanned by \\(\bm{n_i}\\) and \\(\bm{n_s}\\) \[[4](#references) (ch. 5.22)\]. In summary, the coordinate convention for the incident field is
 
 $$ \tag{15.8}
-	\bm{z} = \bm{n_i}, \quad
-	\bm{y} = \frac{\bm{n_i} \times \bm{n_s}}{\vert \bm{n_i} \times \bm{n_s} \vert}, \quad
-	\bm{x} = \bm{y} \times \bm{z}.
+	\bm{e_z} = \bm{n_i}, \quad
+	\bm{e_y} = \frac{\bm{n_i} \times \bm{n_s}}{\vert \bm{n_i} \times \bm{n_s} \vert}, \quad
+	\bm{e_x} = \bm{e_y} \times \bm{e_z}.
 $$
+
+We may also reinterpret this convention in spherical coordinates: if \\(\theta = \phi = 0\\), then \\(\bm{e_x} = \bm{e_{\theta}}\\) and \\(\bm{e_y} = \bm{e_{\phi}}.\\)
 
 Imagine that the *scattering coordinate system* \\(xyz\\) is initially aligned with the *global coordinate system* \\(XYZ\\), so that
 
 $$ \tag{15.9}
-	\bm{Z} = \bm{n_i}, \quad
-	\bm{Y} = \bm{n_i} \times \bm{n_p}, \quad
-	\bm{X} = \bm{n_p}.
+	\bm{e_Z} = \bm{n_i}, \quad
+	\bm{e_Y} = \bm{n_i} \times \bm{n_p}, \quad
+	\bm{e_X} = \bm{n_p}.
 $$
 
  The latter could, for instance, represent the coordinate frame of the scatterer. We can now rotate \\(xyz\\) and define its orientation relative to \\(XYZ\\) in terms of the [Euler angles](https://en.wikipedia.org/wiki/Euler_angles). We are particularly interested in rotating the plane of observation \\(xz\\) about the \\(Z\\)-axis, as that allows the set of possible direction of observation to cover the entire the unit sphere. If the azimuthal (plane rotation) angle is \\(\phi\\) and the polar angle is \\(\theta\\), the spherical coordinates of \\(\bm{n_s}\\) with respect to the \\(XYZ\\) frame are
@@ -3284,7 +3286,7 @@ Note that we must use the [atan2](https://en.wikipedia.org/wiki/Atan2) function 
 
 It can be seen that \\(\theta = 0\\) corresponds to *forward scattering*, and \\(\theta = \pi\\) -- to *back-scattering*.
 
-Unfortunately, the rotation of the coordinate frame causes the values of the components of the incident electric field to change \[[4](#references) (ch. 5.31)\]. If the angle of rotation of the plane is \\(\phi\\), the field vectors (and phasors) are [correspondingly](https://en.wikipedia.org/wiki/Active_and_passive_transformation#Passive_transformation) rotated by \\(-\phi\\) radians:
+Unfortunately, the rotation of the coordinate frame causes the values of the components of the incident electric field to change \[[4](#references) (ch. 5.31)\]. If the angle of rotation of the plane is \\(\phi\\), the field vectors (and phasors) are [passively](https://en.wikipedia.org/wiki/Active_and_passive_transformation#Passive_transformation) rotated by \\(-\phi\\) radians:
 
 $$ \tag{15.11}
 \begin{bmatrix}
@@ -3310,13 +3312,15 @@ R_z(-\phi)
 \end{bmatrix}.
 $$
 
-On the other hand, this convention makes computing the coordinates of the scattered field vectors (and phasors) easy.  Since \\(\bm{n_s}\\) is orthogonal to \\(\bm{y}\\), we can define
+On the other hand, this convention makes computing the coordinates of the scattered field vectors (and phasors) easy.  Since \\(\bm{n_s}\\) is orthogonal to \\(\bm{e_y}\\), we can define
 
 $$ \tag{15.12}
-	\bm{z'} = \bm{n_s}, \quad
-	\bm{y'} = \bm{y}, \quad
-	\bm{x'} = \bm{y} \times \bm{n_s}.
+	\bm{e_z'} = \bm{n_s}, \quad
+	\bm{e_y'} = \bm{e_y}, \quad
+	\bm{e_x'} = \bm{e_y} \times \bm{n_s}.
 $$
+
+In spherical coordinates, it becomes even simpler: for a given pair \\(\lbrace \theta, \phi \rbrace\\) of \\(\bm{n_s}\\), \\(\bm{e_x'} = \bm{e_{\theta}}\\) and \\(\bm{e_y'} = \bm{e_{\phi}}.\\)
 
 As Equation 13.14 shows, the scattered field vectors (and phasors) are orthogonal to \\(\bm{n_s}\\). Thus, in the \\(x' y' z'\\) coordinate system, only the \\(x'\\) and \\(y'\\) components of \\(\bm{E_s}\\) and \\(\bm{B_s}\\) are non-zero.
 
@@ -3399,7 +3403,7 @@ The reason for introducing the \\(i k\\) constant in the expression above is two
 
 In general, the elements of the scattering matrix depend on the azimuthal angle \\(\phi\\), since, as we rotate the plane of observation (\\(x z\\) or \\(x' z'\\)) around the \\(Z\\)-axis, the scattering object appears to rotate (in the opposite direction) in both the \\(x y z\\) and \\(x' y' z'\\) coordinate systems. However, if the object is symmetric (both geometrically and structurally) with respect to the \\(Z\\)-axis, which is the case for spherical and an axis-aligned [spheroidal](https://en.wikipedia.org/wiki/Spheroid) particles, the matrix only depends on the polar angle \\(\theta\\). This causes the scattering matrix to become diagonal, with \\(s_3 = s_4 = 0\\) \[[4](#references) (ch. 4.42)\].
 
-It's easy to see why that is the case. Consider changing the handedness of the \\(x y z\\) coordinate frame, so that the basis vector of the \\(x\\)-axis (or \\(y\\)-axis) becomes \\(-\bm{x}\\) (or \\(-\bm{y}\\)), and vice versa. In the reflected coordinate system, both \\(E\_{s,x'}\\) and \\(E\_{i,x}\\) (or \\(E\_{s,y}\\) and \\(E\_{i,y}\\)) change the sign, but, since the particle possesses reflection symmetry, the scattering matrix remains unchanged. In order for the magnitudes of the scattered field components to remain unchanged, the off-diagonal elements \\(s_3\\) and \\(s_4\\) must be equal to \\(0\\). This decouples the \\(x\\) and \\(y\\) components of the field, which allows us to represent the vector scattering process in terms of two independent scalar waves.
+It's easy to see why that is the case. Consider changing the handedness of the \\(x y z\\) coordinate frame, so that the basis vector of the \\(x\\)-axis (or \\(y\\)-axis) becomes \\(-\bm{e_x}\\) (or \\(-\bm{e_y}\\)), and vice versa. In the reflected coordinate system, both \\(E\_{s,x'}\\) and \\(E\_{i,x}\\) (or \\(E\_{s,y}\\) and \\(E\_{i,y}\\)) change the sign, but, since the particle possesses reflection symmetry, the scattering matrix remains unchanged. In order for the magnitudes of the scattered field components to remain unchanged, the off-diagonal elements \\(s_3\\) and \\(s_4\\) must be equal to \\(0\\). This decouples the \\(x\\) and \\(y\\) components of the field, which allows us to represent the vector scattering process in terms of two independent scalar waves.
 
 In addition, a very similar proof shows that axial symmetry with respect to the direction of incidence leads to another important property of forward scattering: \\(s_1(0, \phi) = s_2(0, \phi) = s_0\\).
 
