@@ -4682,7 +4682,14 @@ $$ \tag{17.68}
 	\tau_{m,n}(\theta) = \frac{\partial P_n^m(\cos{\theta})}{\partial \theta},
 $$
 
-that satisfy the relation
+that satisfy the modified Legendre's differential equation (c.f. Equations 17.41.2 and 17.42)
+
+$$ \tag{17.??}
+	m \pi_{m,n}(\theta) = \frac{\partial}{\partial \theta} \big( \tau_{m,n}(\theta) \sin{\theta} \big)
+	+ n ( n + 1) P_n^m(\cos{\theta}) \sin{\theta},
+$$
+
+and possess two orthogonality properties:
 
 $$ \tag{17.69}
 \begin{aligned}
@@ -4691,18 +4698,11 @@ $$ \tag{17.69}
 	\cr
 	&= m \int_{0}^{\pi} \frac{\partial \big[ P_n^m(\cos{\theta}) P_l^m(\cos{\theta}) \big]}{\partial \theta} \thinspace d\theta
 	\cr
-	&= m \Big( P_n^m(1) P_l^m(1) - P_n^m(-1) P_l^m(-1) \Big) = 0
+	&= m \Big( P_n^m(1) P_l^m(1) - P_n^m(-1) P_l^m(-1) \Big) = 0,
 \end{aligned}
 $$
 
-the modified Legendre's differential equation (Equations 17.41.2 and 17.42)
-
-$$ \tag{17.??}
-	m \pi_{m,n} = \frac{\partial}{\partial \theta} ( \tau_{m,n} \sin{\theta} )
-	+ n ( n + 1) P_n^m \sin{\theta},
-$$
-
-which leads to
+and
 
 $$ \tag{17.70}
 \begin{aligned}
@@ -4714,9 +4714,9 @@ $$ \tag{17.70}
 	\cr
 	&= \int_{0}^{\pi} n (n+1) P_n^m(\cos{\theta}) P_l^m(\cos{\theta}) \sin{\theta} \thinspace d\theta
 	\cr
-	&+ \frac{1}{2} \int_{0}^{\pi} \bigg( \frac{\partial}{\partial \theta} \big( \tau_{m,n} \sin{\theta} \big) P_l^m
-	+ 2 \tau_{m,n} \tau_{m,l} \sin{\theta}
-	+ \frac{\partial}{\partial \theta} \big( \tau_{m,l} \sin{\theta} \big) P_n^m \bigg) d\theta
+	&+ \frac{1}{2} \int_{0}^{\pi} \bigg( \frac{\partial \big[ \tau_{m,n}(\theta) \sin{\theta} \big]}{\partial \theta} P_l^m(\cos{\theta})
+	+ 2 \tau_{m,n}(\theta) \tau_{m,l}(\theta) \sin{\theta}
+	+ \frac{\partial \big[ \tau_{m,l}(\theta) \sin{\theta} \big]}{\partial \theta} P_n^m(\cos{\theta}) \bigg) d\theta
 	\cr
 	&= \int_{0}^{\pi} n (n+1) P_n^m(\cos{\theta}) P_l^m(\cos{\theta}) \sin{\theta} \thinspace d\theta
 	 + \frac{1}{2} \int_{0}^{\pi} \frac{\partial}{\partial \theta} \Bigg( \sin{\theta} \frac{\partial \big[ P_n^m(\cos{\theta}) P_l^m(\cos{\theta}) \big]}{\partial \theta} \Bigg) d\theta
@@ -4724,7 +4724,18 @@ $$ \tag{17.70}
 	&= \frac{2}{(2n + 1)} \frac{(n+m)!}{(n-m)!} n (n+1) \delta_{l,n},
 \end{aligned}
 $$
-where we additionally utilized the orthogonality property of Legendre's polynomials (Equation 17.56.1) and the fact that the value of the associated Legendre polynomials is zero for \\(\cos{\theta} = \pm 1\\) unless \\(m = 0\\).
+
+where, in the addition to Legendre's equation, we utilized the orthogonality property of Legendre's polynomials (Equation 17.56.1) and the fact that the value of the associated Legendre polynomials is zero for \\(\cos{\theta} = \pm 1\\) unless \\(m = 0\\).
+
+To save some space, let us introduce a compact notation for the product derivative of the spherical Bessel function:
+
+$$ \tag{17.??}
+\begin{aligned}
+	  \frac{z_n(x)}{x} + \frac{\partial z_n(x)}{\partial x}
+	= \frac{1}{x} \frac{\partial \big[ x z_n(x) \big]}{\partial x}
+	= \frac{\big[ x z_n(x) \big]'}{x}.
+\end{aligned}
+$$
 
 After substitution into Equations 17.62, 17.63, and 17.67, we immediately obtain the reduced expressions of the vector spherical wave functions:
 
@@ -4740,10 +4751,10 @@ $$ \tag{17.71}
 	\big( i \pi_{m,n}(\theta) \bm{e_{\theta}} - \tau_{m,n}(\theta) \bm{e_{\phi}} \big),
 	\cr
 	\bm{N_{m,n}}(\bm{r})
-	&= \gamma_{m,n} e^{i m \phi} n (n + 1) \frac{z_n(k r)}{k r} P_n^m(\cos{\theta}) \bm{e_r}
-	\cr
-	&+ \gamma_{m,n} e^{i m \phi} \bigg(\frac{z_n(k r)}{k r} + \frac{\partial z_n(k r)}{\partial (k r)} \bigg)
-	 \big( \tau_{m,n}(\theta) \bm{e_{\theta}} + i \pi_{m,n}(\theta) \bm{e_{\phi}} \big).
+	&= \gamma_{m,n} e^{i m \phi} \bigg(
+	n (n + 1) \frac{z_n(k r)}{k r} P_n^m(\cos{\theta}) \bm{e_r}
+	+ \frac{\big[ k r z_n(k r) \big]'}{k r}
+	\big( \tau_{m,n}(\theta) \bm{e_{\theta}} + i \pi_{m,n}(\theta) \bm{e_{\phi}} \big) \bigg).
 \end{aligned}
 $$
 
@@ -4875,7 +4886,7 @@ $$ \tag{17.80}
 	\cr
 	\bm{N_{m,n}}(\bm{r})
 	&= n (n + 1) \frac{z_n(k r)}{k r} \bm{\Upsilon_{m,n}}(\theta, \phi)
-	 + \bigg( \frac{z_n(k r)}{k r} + \frac{\partial z_n(k r)}{\partial (k r)} \bigg) \bm{\Psi_{m,n}}(\theta, \phi).
+	 + \frac{\big[ k r z_n(k r) \big]'}{k r} \bm{\Psi_{m,n}}(\theta, \phi).
 \end{aligned}
 $$
 
@@ -4894,7 +4905,7 @@ $$ \tag{17.81}
 	\cr
 	\bm{N_{-m,n}}(\bm{r})
 	&= (-1)^m \bigg( n (n + 1) \frac{z_n(k r)}{k r} \big[ \bm{\Upsilon_{m,n}}(\theta, \phi) \big]^{\*}
-	 + \bigg( \frac{z_n(k r)}{k r} + \frac{\partial z_n(k r)}{\partial (k r)} \bigg) \big[ \bm{\Psi_{m,n}}(\theta, \phi) \big]^{\*} \bigg).
+	 + \frac{\big[ k r z_n(k r) \big]'}{k r} \big[ \bm{\Psi_{m,n}}(\theta, \phi) \big]^{\*} \bigg).
 \end{aligned}
 $$
 
@@ -4927,14 +4938,14 @@ $$ \tag{17.83}
 	&= \gamma_{m,n}^2 e^{2 i m \phi}
 	n (n + 1) \frac{z_n(k r)}{k r} \frac{\partial z_n(k r)}{\partial (k r)} \big[ P_n^m(\cos{\theta}) \big]^2
 	\cr
-	&+ \gamma_{m,n}^2 e^{2 i m \phi} \frac{z_n(k r)}{k r}
-	   \bigg(\frac{z_n(k r)}{k r} + \frac{\partial z_n(k r)}{\partial (k r)} \bigg)
+	&+ \gamma_{m,n}^2 e^{2 i m \phi}
+	   \frac{z_n(k r) \big[ k r z_n(k r) \big]'}{k^2 r^2}
 	   \Big( \tau_{m,n}^2(\theta) - \pi_{m,n}^2(\theta) \Big).
 \end{aligned}
 $$
 
 
-For \\(m = n = 0\\), the polynomals turn into constants, and it is easy to show that \\(\bm{L_{0,0}} \cdot \bm{N_{0,0}} = 0\\). For arbitrary \\(m\\) and \\(n\\), all that can be said is that \\(|\bm{L_{m,n}} \cdot \bm{N_{m,n}}|/(|\bm{L_{m,n}}||\bm{N_{m,n}}|) \leq 1\\), and the two vectors periodically become parallel or anti-parallel for certain isolated values of \\(\theta\\).
+For \\(m = n = 0\\), the polynomals turn into constants, and it is easy to show that \\(\bm{L_{0,0}} \cdot \bm{N_{0,0}} = 0\\). For arbitrary \\(m\\) and \\(n\\), all that can be said is that \\(|\bm{L_{m,n}} \cdot \bm{N_{m,n}}|/(|\bm{L_{m,n}}||\bm{N_{m,n}}|) \leq 1\\), and the two vectors periodically become aligned for certain isolated values of \\(\theta\\).
 
 {{< figure src="/img/l_dot_n.svg" caption="*Figure N: \\((\bm{L\_{0,n}^{(1)}} \cdot \bm{N\_{0,n}^{(1)}})/(|\bm{L\_{0,n}^{(1)}}| |\bm{N\_{0,n}^{(1)}}|)\\) of order \\(m=0\\) and degree \\(n=1\\) (blue), \\(n=2\\) (orange), \\(n=3\\) (green), defined in terms of the spherical Bessel function of the first kind, as a function of the polar angle \\(\theta\\), with fixed values of \\(k = r = 1, \thinspace \thinspace \phi = 0\\).*" >}}
 
@@ -5004,7 +5015,7 @@ $$ \tag{17.89}
 	&\int_{0}^{2 \pi} \int_{0}^{\pi} \big[ \bm{N_{s,t}}(\bm{r}) \big]^{\*} \cdot \bm{N_{m,n}}(\bm{r}) \sin{\theta} \thinspace d\theta d\phi
 	\cr
 	&= n (n+1) \Bigg(
-		\bigg| \frac{z_n(k r)}{k r} + \frac{\partial z_n(k r)}{\partial (k r)} \bigg|^2
+		\Bigg| \frac{\big[ k r z_n(k r) \big]'}{k r} \Bigg|^2
 		+ n (n+1) \bigg| \frac{z_n(k r)}{k r} \bigg|^2
 		\Bigg) \delta_{m,s} \delta_{t,n}
 	\cr
@@ -5058,7 +5069,7 @@ $$ \tag{17.93}
 	&\int_{0}^{2 \pi} \int_{0}^{\pi} \big[ \bm{L_{s,t}}(\bm{r}) \big]^{\*} \cdot \bm{N_{m,n}}(\bm{r}) \sin{\theta} \thinspace d\theta d\phi
 	\cr
 	&= n (n + 1) \Bigg( \bigg[ \frac{\partial z_n(k r)}{\partial (k r)} \bigg]^{\*} \frac{z_n(k r)}{k r}
-	+ \bigg[ \frac{z_n(k r)}{k r} \bigg]^{\*} \bigg( \frac{z_n(k r)}{k r} + \frac{\partial z_n(k r)}{\partial (k r)} \bigg) \Bigg) \delta_{m,s} \delta_{t,n}.
+	+ \bigg[ \frac{z_n(k r)}{k r} \bigg]^{\*} \frac{\big[ k r z_n(k r) \big]'}{k r} \Bigg) \delta_{m,s} \delta_{t,n}.
 \end{aligned}
 $$
 
@@ -5113,10 +5124,10 @@ $$ \tag{17.97}
 	&= \frac{ \int_{0}^{2 \pi} \int_{0}^{\pi} \big[ \bm{N_{m,n}^{(1)}}(\bm{r}) \big]^{\*} \cdot \bm{E_i}(\bm{r}) \sin{\theta} \thinspace d\theta d\phi }
 	{ \int_{0}^{2 \pi} \int_{0}^{\pi} \big\vert \bm{N_{m,n}^{(1)}}(\bm{r}) \big\vert^2 \sin{\theta} \thinspace d\theta d\phi }
 	= \frac{ \int_{0}^{2 \pi} \int_{0}^{\pi} \big[ \bm{N_{m,n}^{(1)}}(\bm{r}) \big]^{\*} \cdot \bm{E_i}(\bm{r}) \sin{\theta} \thinspace d\theta d\phi }
-	{ n (n+1) \bigg(
-		\Big| \frac{j_n(k r)}{k r} + \frac{\partial j_n(k r)}{\partial (k r)} \Big|^2
-		+ n (n+1) \Big| \frac{j_n(k r)}{k r} \Big|^2
-		\bigg) }.
+	{ n (n+1) \Big(
+		\big| [k r j_n(k r)]' / (k r) \big|^2
+		+ n (n+1) \big| j_n(k r) / (k r) \big|^2
+		\Big) }.
 \end{aligned}
 $$
 
@@ -5375,7 +5386,7 @@ $$ \tag{17.125}
 \begin{aligned}
 	& \frac{1}{\gamma_{m,n}} \int_{0}^{2 \pi} \int_{0}^{\pi} \big[ \bm{N_{m,n}^{(1)}}(\bm{r}) \big]^{\*} \cdot \bm{E_i}(\bm{r}) \sin{\theta} \thinspace d\theta d\phi
 	\cr
-	&= E_x \bigg[ \frac{j_n(k r)}{k r} + \frac{\partial j_n(k r)}{\partial (k r)} \bigg]^{\*}
+	&= E_x \Bigg[ \frac{\big[ k r j_n(k r) \big]'}{k r} \Bigg]^{\*}
 		\int_{0}^{2 \pi} \int_{0}^{\pi} e^{-i m \phi + i k r \cos{\theta}} \bigg(
 		\frac{\partial P_n^m(\cos{\theta})}{\partial \theta} \cos{\theta} \cos{\phi}
 		+ i m \frac{P_n^m(\cos{\theta})}{\sin{\theta}} \sin{\phi}
@@ -5391,7 +5402,7 @@ $$ \tag{17.125}
 		P_n^m(\cos{\theta}) \sin^2{\theta} \sin{\phi}
 	\thinspace d\theta d\phi
 	\cr
-	&+ E_y \bigg[ \frac{j_n(k r)}{k r} + \frac{\partial j_n(k r)}{\partial (k r)} \bigg]^{\*} 	  \int_{0}^{2 \pi} \int_{0}^{\pi} e^{-i m \phi + i k r \cos{\theta}} \bigg(
+	&+ E_y \Bigg[ \frac{\big[ k r j_n(k r) \big]'}{k r} \Bigg]^{\*} 	  \int_{0}^{2 \pi} \int_{0}^{\pi} e^{-i m \phi + i k r \cos{\theta}} \bigg(
 		\frac{\partial P_n^m(\cos{\theta})}{\partial \theta} \cos{\theta} \sin{\phi}
 		- i m \frac{P_n^m(\cos{\theta})}{\sin{\theta}} \cos{\phi}
 	\bigg)  \sin{\theta} \thinspace d\theta d\phi.
@@ -5405,12 +5416,15 @@ $$ \tag{17.126}
 \begin{aligned}
 	& \frac{1}{\gamma_{m,n}} \int_{0}^{2 \pi} \int_{0}^{\pi} \big[ \bm{N_{m,n}^{(1)}}(\bm{r}) \big]^{\*} \cdot \bm{E_i}(\bm{r}) \sin{\theta} \thinspace d\theta d\phi
 	\cr
-	&= \delta_{m,\pm 1} (E_x - i m E_y) \bigg[ \frac{j_n(k r)}{k r} \bigg]^{\*} \pi n (n + 1) \int_{0}^{\pi} e^{i k r \cos{\theta}}
+	&= \delta_{m,\pm 1} (E_x - i m E_y)
+	\bigg[ \frac{j_n(k r)}{k r} \bigg]^{\*}
+	\pi n (n + 1) \int_{0}^{\pi} e^{i k r \cos{\theta}}
 		P_n^m(\cos{\theta}) \sin^2{\theta}
 	\thinspace d\theta
 	\cr
-	&+ \delta_{m,\pm 1} (E_x - i m E_y) \bigg[ \frac{j_n(k r)}{k r} + \frac{\partial j_n(k r)}{\partial (k r)} \bigg]^{\*} \pi
-	 \int_{0}^{\pi} e^{i k r \cos{\theta}} \bigg(
+	&+ \delta_{m,\pm 1} (E_x - i m E_y)
+	\Bigg[ \frac{\big[ k r j_n(k r) \big]'}{k r} \Bigg]^{\*}
+	\pi \int_{0}^{\pi} e^{i k r \cos{\theta}} \bigg(
 		\frac{\partial P_n^m(\cos{\theta})}{\partial \theta} \cos{\theta}
 		+ \frac{P_n^m(\cos{\theta})}{\sin{\theta}}
 	\bigg) \sin{\theta} \thinspace d\theta.
@@ -5473,7 +5487,7 @@ $$ \tag{17.130}
 	&= -n (n+1) \int_{0}^{\pi} e^{i k r \cos{\theta}} P_n(\cos{\theta}) \sin{\theta} \cos{\theta} \thinspace d\theta
 		+ \int_{0}^{\pi} e^{i k r \cos{\theta}} P_n^1(\cos{\theta}) \sin^2{\theta} \thinspace d\theta
 	\cr
-	&= 2 i^{n+1} n (n+1) \bigg( \frac{\partial j_n(k r)}{\partial (k r)} + \frac{j_n(k r)}{k r} \bigg).
+	&= 2 i^{n+1} n (n+1) \frac{\big[ k r j_n(k r) \big]'}{k r}.
 \end{aligned}
 $$
 
@@ -5484,7 +5498,7 @@ $$ \tag{17.131}
 	& \int_{0}^{2 \pi} \int_{0}^{\pi} \big[ \bm{N_{m,n}^{(1)}}(\bm{r}) \big]^{\*} \cdot \bm{E_i}(\bm{r}) \sin{\theta} \thinspace d\theta d\phi
 	\cr
 	&= \delta_{m,\pm 1} (i m E_x + E_y) 2 \pi i^n \gamma_{1,n} n (n+1)
-	\Bigg( \bigg\vert \frac{j_n(k r)}{k r} + \frac{\partial j_n(k r)}{\partial (k r)} \bigg\vert^2 + n (n + 1) \bigg\vert \frac{j_n(k r)}{k r} \bigg\vert^2
+	\Bigg( \Bigg\vert \frac{\big[ k r j_n(k r) \big]'}{k r} \Bigg\vert^2 + n (n + 1) \bigg\vert \frac{j_n(k r)}{k r} \bigg\vert^2
 	\Bigg).
 \end{aligned}
 $$
@@ -5590,7 +5604,7 @@ $$ \tag{17.136}
 	   \sin
 	\end{array} \negthickspace (m \phi) \thinspace \bm{e_r}
 	\cr
-	&+ \bigg(\frac{z_n(k r)}{k r} + \frac{\partial z_n(k r)}{\partial (k r)} \bigg)
+	&+ \frac{\big[ k r z_n(k r) \big]'}{k r}
 	\Big( \tau_{m,n}(\theta)
 	\negthickspace \begin{array}{cc}
 	   \cos \cr
@@ -5627,7 +5641,7 @@ $$ \tag{17.138}
 	&= \sum_{m,n} a_{m,n}(\omega) j_n(k r) \bm{\Phi_{m,n}}(\theta, \phi)
 	\cr
 	&+ \sum_{m,n} b_{m,n}(\omega) \bigg( n (n + 1) \frac{j_n(k r)}{k r} \bm{\Upsilon_{m,n}}(\theta, \phi)
-	 + \bigg( \frac{j_n(k r)}{k r} + \frac{\partial j_n(k r)}{\partial (k r)} \bigg) \bm{\Psi_{m,n}}(\theta, \phi) \bigg).
+	 + \frac{\big[ k r j_n(k r) \big]'}{k r} \bm{\Psi_{m,n}}(\theta, \phi) \bigg).
 \end{aligned}
 $$
 
@@ -5653,7 +5667,7 @@ $$ \tag{17.141}
 	&= \sum_{m,n} a_{m,n}'(\omega) h_n^{(1)}(k r) \bm{\Phi_{m,n}}(\theta, \phi)
 	\cr
 	&+ \sum_{m,n} b_{m,n}'(\omega) \bigg( n (n + 1) \frac{h_n^{(1)}(k r)}{k r} \bm{\Upsilon_{m,n}}(\theta, \phi)
-	 + \bigg( \frac{h_n^{(1)}(k r)}{k r} + \frac{\partial h_n^{(1)}(k r)}{\partial (k r)} \bigg) \bm{\Psi_{m,n}}(\theta, \phi) \bigg).
+	 + \frac{\big[ k r h_n^{(1)}(k r) \big]'}{k r} \bm{\Psi_{m,n}}(\theta, \phi) \bigg).
 \end{aligned}
 $$
 
@@ -5669,7 +5683,7 @@ $$ \tag{17.142}
 	&= \sum_{m,n} a_{m,n}''(\omega) j_n(k_2 r) \bm{\Phi_{m,n}}(\theta, \phi)
 	\cr
 	&+ \sum_{m,n} b_{m,n}''(\omega) \bigg( n (n + 1) \frac{j_n(k_2 r)}{k_2 r} \bm{\Upsilon_{m,n}}(\theta, \phi)
-	 + \bigg( \frac{j_n(k_2 r)}{k_2 r} + \frac{\partial j_n(k_2 r)}{\partial (k_2 r)} \bigg) \bm{\Psi_{m,n}}(\theta, \phi) \bigg).
+	 + \frac{\big[ k_2 r j_n(k_2 r) \big]'}{k_2 r} \bm{\Psi_{m,n}}(\theta, \phi) \bigg).
 \end{aligned}
 $$
 
@@ -5699,7 +5713,7 @@ $$ \tag{17.145}
 \begin{aligned}
 	\bm{e_r} \times \bm{E_2}
 	&= \sum_{m,n} \bigg( a_{m,n}'' j_n(k_2 r) \bm{\Psi_{m,n}}(\theta, \phi)
-	- b_{m,n}'' \bigg( \frac{j_n(k_2 r)}{k_2 r} + \frac{\partial j_n(k_2 r)}{\partial (k_2 r)} \bigg) \bm{\Phi_{m,n}}(\theta, \phi) \bigg),
+	- b_{m,n}'' \frac{\big[ k_2 r j_n(k_2 r) \big]'}{k_2 r} \bm{\Phi_{m,n}}(\theta, \phi) \bigg),
 	\cr
 	\bm{e_r} \times \bm{E_1}
 	&= \sum_{m,n}
@@ -5707,8 +5721,8 @@ $$ \tag{17.145}
 	\bm{\Psi_{m,n}}(\theta, \phi)
 	\cr
 	&- \sum_{m,n} \Bigg(
-		b_{m,n} \bigg( \frac{j_n(k_1 r)}{k_1 r} + \frac{\partial j_n(k_1 r)}{\partial (k_1 r)} \bigg)
-		+ b_{m,n}' \bigg( \frac{h_n^{(1)}(k_1 r)}{k_1 r} + \frac{\partial h_n^{(1)}(k_1 r)}{\partial (k_1 r)} \bigg)
+		b_{m,n} \frac{\big[ k_1 r j_n(k_1 r) \big]'}{k_1 r}
+		+ b_{m,n}' \frac{\big[ k_1 r h_n^{(1)}(k_1 r) \big]'}{k_1 r}
 	\Bigg) \bm{\Phi_{m,n}}(\theta, \phi).
 \end{aligned}
 $$
@@ -5742,7 +5756,7 @@ $$ \tag{17.149}
 \begin{aligned}
 	\bm{e_r} \times \nabla \times \bm{E_2}
 	&= \sum_{m,n} k_2 \bigg( b_{m,n}'' j_n(k_2 r) \bm{\Psi_{m,n}}(\theta, \phi)
-	- a_{m,n}'' \bigg( \frac{j_n(k_2 r)}{k_2 r} + \frac{\partial j_n(k_2 r)}{\partial (k_2 r)} \bigg) \bm{\Phi_{m,n}}(\theta, \phi) \bigg),
+	- a_{m,n}'' \frac{\big[ k_2 r j_n(k_2 r) \big]'}{k_2 r} \bm{\Phi_{m,n}}(\theta, \phi) \bigg),
 	\cr
 	\bm{e_r} \times \nabla \times \bm{E_1}
 	&= \sum_{m,n}
@@ -5750,9 +5764,9 @@ $$ \tag{17.149}
 	\bm{\Psi_{m,n}}(\theta, \phi)
 	\cr
 	&- \sum_{m,n} k_1 \Bigg(
-		a_{m,n} \bigg( \frac{j_n(k_1 r)}{k_1 r} + \frac{\partial j_n(k_1 r)}{\partial (k_1 r)} \bigg)
-		+ a_{m,n}' \bigg( \frac{h_n^{(1)}(k_1 r)}{k_1 r} + \frac{\partial h_n^{(1)}(k_1 r)}{\partial (k_1 r)} \bigg)
-	\Bigg) \bm{\Phi_{m,n}}(\theta, \phi).
+		a_{m,n}  \frac{\big[ k_1 r j_n(k_1 r) \big]'}{k_1 r} +
+		a_{m,n}' \frac{\big[ k_1 r h_n^{(1)}(k_1 r) \big]'}{k_1 r} \Bigg)
+	\bm{\Phi_{m,n}}(\theta, \phi).
 \end{aligned}
 $$
 
@@ -5764,8 +5778,9 @@ $$ \tag{17.150}
 	&= \frac{ a_{m,n} j_n(k_1 r) + a_{m,n}' h_n^{(1)}(k_1 r) }{ j_n(k_2 r) },
 	\cr
 	b_{m,n}''
-	&= \frac{ b_{m,n} \Big( \frac{j_n(k_1 r)}{k_1 r} + \frac{\partial j_n(k_1 r)}{\partial (k_1 r)} \Big)
-	+ b_{m,n}' \Big( \frac{h_n^{(1)}(k_1 r)}{k_1 r} + \frac{\partial h_n^{(1)}(k_1 r)}{\partial (k_1 r)} \Big) }{ \frac{j_n(k_2 r)}{k_2 r} + \frac{\partial j_n(k_2 r)}{\partial (k_2 r)} }.
+	&=
+	\frac{ b_{m,n} \big[ k r j_n(k_1 r) \big]' + b_{m,n}' \big[ k_1 r h_n^{(1)}(k_1 r) \big]'
+	}{ \frac{k_1}{k_2} \big[ k r j_n(k_2 r) \big]' }.
 \end{aligned}
 $$
 
@@ -5775,8 +5790,8 @@ $$ \tag{17.151}
 \small
 \begin{aligned}
 	a_{m,n}''
-	&= \frac{ a_{m,n} \Big( \frac{j_n(k_1 r)}{k_1 r} + \frac{\partial j_n(k_1 r)}{\partial (k_1 r)} \Big)
-	+ a_{m,n}' \Big( \frac{h_n^{(1)}(k_1 r)}{k_1 r} + \frac{\partial h_n^{(1)}(k_1 r)}{\partial (k_1 r)} \Big) }{ \frac{\mu_1 k_2}{\mu_2 k_1} \Big( \frac{j_n(k_2 r)}{k_2 r} + \frac{\partial j_n(k_2 r)}{\partial (k_2 r)} \Big) },
+	&= \frac{ a_{m,n} \big[ k r j_n(k_1 r) \big]' + a_{m,n}' \big[ k_1 r h_n^{(1)}(k_1 r) \big]'
+	}{ \frac{\mu_1}{\mu_2} \big[ k r j_n(k_2 r) \big]' },
 	\cr
 	b_{m,n}''
 	&= \frac{ b_{m,n} j_n(k_1 r) + b_{m,n}' h_n^{(1)}(k_1 r) }{ \frac{\mu_1 k_2}{\mu_2 k_1} j_n(k_2 r) }.
@@ -5789,52 +5804,38 @@ $$ \tag{17.152}
 \begin{aligned}
   	a_{m,n}'
 	&= -a_{m,n} \frac{
-		\Big( \frac{j_n(k_1 r)}{k_1 r} + \frac{\partial j_n(k_1 r)}{\partial (k_1 r)} \Big) j_n(k_2 r)
-		- \frac{\mu_1 k_2}{\mu_2 k_1} j_n(k_1 r) \Big( \frac{j_n(k_2 r)}{k_2 r} + \frac{\partial j_n(k_2 r)}{\partial (k_2 r)} \Big)
+		j_n(k_2 r) \big[ k_1 r j_n(k_1 r) \big]' - \frac{\mu_1}{\mu_2} j_n(k_1 r) \big[ k_2 r j_n(k_2 r) \big]'
 	}{
-		\Big( \frac{h_n^{(1)}(k_1 r)}{k_1 r} + \frac{\partial h_n^{(1)}(k_1 r)}{\partial (k_1 r)} \Big) j_n(k_2 r)
-		- \frac{\mu_1 k_2}{\mu_2 k_1} h_n^{(1)}(k_1 r) \Big( \frac{j_n(k_2 r)}{k_2 r} + \frac{\partial j_n(k_2 r)}{\partial (k_2 r)} \Big)
+		j_n(k_2 r) \big[ k_1 r h_n^{(1)}(k_1 r) \big]' - \frac{\mu_1}{\mu_2} h_n^{(1)}(k_1 r) \big[ k_2 r j_n(k_2 r) \big]'
 	},
 	\cr
 	b_{m,n}'
 	&= - b_{m,n} \frac
 	{
-		\frac{\mu_1 k_2}{\mu_2 k_1} \Big( \frac{j_n(k_1 r)}{k_1 r} + \frac{\partial j_n(k_1 r)}{\partial (k_1 r)} \Big) j_n(k_2 r)
-		- j_n(k_1 r) \Big( \frac{j_n(k_2 r)}{k_2 r} + \frac{\partial j_n(k_2 r)}{\partial (k_2 r)} \Big)
+		\frac{\mu_1 k_2^2}{\mu_2 k_1^2} j_n(k_2 r) \big[ k_1 r j_n(k_1 r) \big]' - j_n(k_1 r) \big[ k_2 r j_n(k_2 r) \big]'
 	}{
-		\frac{\mu_1 k_2}{\mu_2 k_1} \Big( \frac{h_n^{(1)}(k_1 r)}{k_1 r} + \frac{\partial h_n^{(1)}(k_1 r)}{\partial (k_1 r)} \Big) j_n(k_2 r)
-		- h_n^{(1)}(k_1 r) \Big( \frac{j_n(k_2 r)}{k_2 r} + \frac{\partial j_n(k_2 r)}{\partial (k_2 r)} \Big)
+		\frac{\mu_1 k_2^2}{\mu_2 k_1^2} j_n(k_2 r) \big[ k_1 r h_n^{(1)}(k_1 r) \big]' - h_n^{(1)}(k_1 r) \big[ k_2 r j_n(k_2 r) \big]'
 	}.
 \end{aligned}
 $$
 
-We may observe that both the scattered and the internal fields are directly proportional to the incident field. Furthermore, the coefficients of proportionality are independent of \\(m\\). They may be written down neatly if we re-introduce the traditional notation that calls the radius of the spherical particle \\(a\\), the relative wavenumber \\(m = k_2 / k_1\\), the inverse relative permeability \\(w = \mu_1 / \mu_2\\), the size parameter \\(x = k_1 a\\), and use a compact notation for the product derivative of the spherical Bessel function
-
-$$ \tag{17.153}
-\begin{aligned}
-	  \frac{z_n(x)}{x} + \frac{\partial z_n(x)}{\partial x}
-	= \frac{1}{x} \frac{\partial \big[ x z_n(x) \big]}{\partial x}
-	= \frac{1}{x} \big[ x z_n(x) \big]'.
-\end{aligned}
-$$
-
-The order-independent multiplicative factors of Equation 17.152 can then be expressed as \[[17](#references) (ch 9.25)\]
+We may observe that both the scattered and the internal fields are directly proportional to the incident field. Furthermore, the coefficients of proportionality are independent of \\(m\\). They may be written down neatly if we re-introduce the traditional notation that calls the radius of the spherical particle \\(a\\), the relative wavenumber \\(m = k_2 / k_1\\), the inverse relative permeability \\(w = \mu_1 / \mu_2\\), and the size parameter \\(x = k_1 a\\). The order-independent multiplicative factors of Equation 17.152 can then be expressed as \[[17](#references) (ch 9.25)\]
 
 $$ \tag{17.154}
 \begin{aligned}
   	a_{n}'(\omega)
   	&= -\frac{
-		\big[ x j_n(x) \big]' j_n(m x) - w j_n(x) \big[ m x j_n(m x) \big]'
+		j_n(m x) \big[ x j_n(x) \big]' - w j_n(x) \big[ m x j_n(m x) \big]'
 	}{
-		\big[ x h_n^{(1)}(x) \big]' j_n(m x) - w h_n^{(1)}(x) \big[ m x j_n(m x) \big]'
+		j_n(m x) \big[ x h_n^{(1)}(x) \big]' - w h_n^{(1)}(x) \big[ m x j_n(m x) \big]'
 	},
 	\cr
 	b_{n}'(\omega)
 	&= -\frac
 	{
-		w m^2 \big[ x j_n(x) \big]' j_n(m x) - j_n(x) \big[ m x j_n(m x) \big]'
+		w m^2 j_n(m x) \big[ x j_n(x) \big]' - j_n(x) \big[ m x j_n(m x) \big]'
 	}{
-		w m^2 \big[ x h_n^{(1)}(x) \big]' j_n(m x) - h_n^{(1)}(x) \big[ m x j_n(m x) \big]'
+		w m^2 j_n(m x) \big[ x h_n^{(1)}(x) \big]' - h_n^{(1)}(x) \big[ m x j_n(m x) \big]'
 	}.
 \end{aligned}
 $$
@@ -5855,17 +5856,17 @@ $$ \tag{17.156}
 \begin{aligned}
   	a_{n}'(\omega)
   	&= -\frac{
-		\psi_n'(x) \psi_n(m x) - w m  \psi_n(x) \psi_n'(m x)
+		\psi_n(m x) \psi_n'(x) - w m  \psi_n(x) \psi_n'(m x)
 	}{
-		\xi_n'(x) \psi_n(m x) - w m \xi_n(x) \psi_n'(m x)
+		\psi_n(m x) \xi_n'(x) - w m \xi_n(x) \psi_n'(m x)
 	},
 	\cr
 	b_{n}'(\omega)
 	&= -\frac
 	{
-		w m \psi_n'(x) \psi_n(m x) - \psi_n(x) \psi_n'(m x)
+		w m \psi_n(m x) \psi_n'(x) - \psi_n(x) \psi_n'(m x)
 	}{
-		w m \xi_n'(x) \psi_n(m x) - \xi_n(x) \psi_n'(m x)
+		w m \psi_n(m x) \xi_n'(x) - \xi_n(x) \psi_n'(m x)
 	}.
 \end{aligned}
 $$
@@ -5875,14 +5876,28 @@ Equation 17.156 does not always match those found in the literature because diff
 The coefficients of proportionality of the internal field can be taken from Equations 17.150.1 and 17.151.2:
 
 $$ \tag{17.157}
+\small
 \begin{aligned}
 	a_{n}''(\omega)
 	&= \frac{ j_n(x) + a_{n}' h_n^{(1)}(x) }{ j_n(m x) }
-	 = m \frac{ \psi_n(x) + a_{n}' \xi_n(x) }{ \psi_n(m x) },
+	 = m \frac{ \psi_n(x) + a_{n}' \xi_n(x) }{ \psi_n(m x) }
+	 = m \frac{\psi_n(x)}{ \psi_n(m x) }
+	 -\frac{
+		\psi_n(m x) \psi_n'(x) - w m  \psi_n(x) \psi_n'(m x)
+	}{
+		\psi_n(m x) \xi_n'(x) - w m \xi_n(x) \psi_n'(m x)
+	} \frac{ \xi_n(x) }{ \psi_n(m x) },
 	\cr
 	b_{n}''(\omega)
 	&= \frac{ j_n(x) + b_{n}' h_n^{(1)}(x) }{ w m j_n(m x) }
-	 = \frac{1}{w} \frac{ \psi_n(x) + b_{n}' \xi_n(x) }{ \psi_n(m x) }.
+	 = \frac{1}{w} \frac{ \psi_n(x) + b_{n}' \xi_n(x) }{ \psi_n(m x) }
+	 = \frac{1}{w} \frac{ \psi_n(x) }{ \psi_n(m x) }
+	-\frac
+	{
+		w m \psi_n(m x) \psi_n'(x) - \psi_n(x) \psi_n'(m x)
+	}{
+		w m \psi_n(m x) \xi_n'(x) - \xi_n(x) \psi_n'(m x)
+	} \frac{1}{w} \frac{ \xi_n(x) }{ \psi_n(m x) }
 \end{aligned}
 $$
 
