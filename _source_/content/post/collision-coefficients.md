@@ -3315,12 +3315,12 @@ $$
 On the other hand, this convention makes computing the coordinates of the scattered field vectors (and phasors) easy.  Since \\(\bm{n_s}\\) is orthogonal to \\(\bm{e_y}\\), we can define
 
 $$ \tag{15.12}
-	\bm{e_z'} = \bm{n_s}, \quad
-	\bm{e_y'} = \bm{e_y}, \quad
-	\bm{e_x'} = \bm{e_y} \times \bm{n_s}.
+	\bm{e_{z'}} = \bm{n_s}, \quad
+	\bm{e_{y'}} = \bm{e_y}, \quad
+	\bm{e_{x'}} = \bm{e_y} \times \bm{n_s}.
 $$
 
-In spherical coordinates, it becomes even simpler: for a given pair \\(\lbrace \theta, \phi \rbrace\\) of \\(\bm{n_s}\\), \\(\bm{e_x'} = \bm{e_{\theta}}\\) and \\(\bm{e_y'} = \bm{e_{\phi}}.\\)
+In spherical coordinates, it becomes even simpler: for a given pair \\(\lbrace \theta, \phi \rbrace\\) of \\(\bm{n_s}\\), \\(\bm{e_{x'}} = \bm{e_{\theta}}\\) and \\(\bm{e_{y'}} = \bm{e_{\phi}}.\\)
 
 As Equation 13.14 shows, the scattered field vectors (and phasors) are orthogonal to \\(\bm{n_s}\\). Thus, in the \\(x' y' z'\\) coordinate system, only the \\(x'\\) and \\(y'\\) components of \\(\bm{E_s}\\) and \\(\bm{B_s}\\) are non-zero.
 
@@ -4674,7 +4674,7 @@ $$ \tag{17.67}
 \end{aligned}
 $$
 
-The expressions given above may be shortened by defining two new angle-dependent functions
+The expressions given above may be shortened by defining two new polar functions
 
 $$ \tag{17.68}
 	\pi_{m,n}(\theta) = m \frac{P_n^m(\cos{\theta})}{\sin{\theta}},
@@ -5192,11 +5192,11 @@ $$ \tag{17.105}
 	\bm{r} \cdot \bm{e_z} = r \cos{\theta}.
 $$
 
-Further simplification can be achieved by recalling that an electromagnetic plane wave is transverse with respect to its direction of propagation (as shown by Equations 7.18 and 7.23). Therefore, in Cartesian coordinates, the polarization phasor \\(\bm{E_0}\\) of a plane wave can be completely described by two complex numbers \\(E_x\\) and \\(E_y\\):
+Further simplification can be achieved by recalling that an electromagnetic plane wave is transverse with respect to its direction of propagation (as shown by Equations 7.18 and 7.23). Therefore, in Cartesian coordinates, the polarization phasor \\(\bm{E_0}\\) of a plane wave can be completely described by two complex numbers \\(E_X\\) and \\(E_Y\\):
 
 $$ \tag{17.106}
 	\bm{E_0}(\bm{e_z}, \omega)
-	= E_x(\omega) \bm{e_x} + E_y(\omega) \bm{e_y}.
+	= E_X(\omega) \bm{e_x} + E_Y(\omega) \bm{e_y}.
 $$
 
 Equation 17.106 does not explicitly depend on the point of reference \\(\bm{r}\\). However, the spherical coordinate basis vectors [vary in space](https://en.wikipedia.org/wiki/Vector_fields_in_cylindrical_and_spherical_coordinates#Spherical_coordinate_system):
@@ -5279,12 +5279,12 @@ $$ \tag{17.115}
 \begin{aligned}
 	& \frac{-1}{ \gamma_{m,n} \big[ j_n(k r) \big]^{\*} }\int_{0}^{2 \pi} \int_{0}^{\pi} \big[ \bm{M_{m,n}^{(1)}}(\bm{r}) \big]^{\*} \cdot \bm{E_i}(\bm{r}) \sin{\theta} \thinspace d\theta d\phi
 	\cr
-	&= E_x \int_{0}^{2 \pi} \int_{0}^{\pi} e^{-i m \phi + i k r \cos{\theta}} \bigg(
+	&= E_X \int_{0}^{2 \pi} \int_{0}^{\pi} e^{-i m \phi + i k r \cos{\theta}} \bigg(
 		i m \frac{P_n^m(\cos{\theta})}{\sin{\theta}} \cos{\theta} \cos{\phi}
 		- \frac{\partial P_n^m(\cos{\theta})}{\partial \theta} \sin{\phi}
 	\bigg) \sin{\theta} \thinspace d\theta d\phi
 	\cr
-	&+ E_y \int_{0}^{2 \pi} \int_{0}^{\pi} e^{-i m \phi + i k r \cos{\theta}} \bigg(
+	&+ E_Y \int_{0}^{2 \pi} \int_{0}^{\pi} e^{-i m \phi + i k r \cos{\theta}} \bigg(
 		i m \frac{P_n^m(\cos{\theta})}{\sin{\theta}} \cos{\theta} \sin{\phi}
 		+ \frac{\partial P_n^m(\cos{\theta})}{\partial \theta} \cos{\phi}
 	\bigg) \sin{\theta} \thinspace d\theta d\phi.
@@ -5305,7 +5305,7 @@ $$ \tag{17.117}
 \begin{aligned}
 	& \frac{-1}{ \gamma_{m,n} \big[ j_n(k r) \big]^{\*} }\int_{0}^{2 \pi} \int_{0}^{\pi} \big[ \bm{M_{m,n}^{(1)}}(\bm{r}) \big]^{\*} \cdot \bm{E_i}(\bm{r}) \sin{\theta} \thinspace d\theta d\phi
 	\cr
-	&= \delta_{m,\pm 1} (i m E_x + E_y) \pi \int_{0}^{\pi} e^{i k r \cos{\theta}} \bigg(
+	&= \delta_{m,\pm 1} (i m E_X + E_Y) \pi \int_{0}^{\pi} e^{i k r \cos{\theta}} \bigg(
 		  \frac{P_n^m(\cos{\theta})}{\sin{\theta}} \cos{\theta}
 		+ \frac{\partial P_n^m(\cos{\theta})}{\partial \theta}
 	\bigg) \sin{\theta} \thinspace d\theta.
@@ -5368,7 +5368,7 @@ $$ \tag{17.123}
 \begin{aligned}
 	& \int_{0}^{2 \pi} \int_{0}^{\pi} \big[ \bm{M_{m,n}^{(1)}}(\bm{r}) \big]^{\*} \cdot \bm{E_i}(\bm{r}) \sin{\theta} \thinspace d\theta d\phi
 	\cr
-	&= \delta_{m,\pm 1} (i E_x + m E_y) 2 \pi i^n \gamma_{1,n} n (n+1) \big\vert j_n(k r) \big\vert^2.
+	&= \delta_{m,\pm 1} (i E_X + m E_Y) 2 \pi i^n \gamma_{1,n} n (n+1) \big\vert j_n(k r) \big\vert^2.
 \end{aligned}
 $$
 
@@ -5376,7 +5376,7 @@ Comparison with Equation 17.97.1 yields the value of the first expansion coeffic
 
 $$ \tag{17.124}
 	a_{m,n}
-	= \delta_{m,\pm 1} (i E_x + m E_y) 2 \pi i^n \gamma_{1,n}.
+	= \delta_{m,\pm 1} (i E_X + m E_Y) 2 \pi i^n \gamma_{1,n}.
 $$
 
 The value of the second coefficient can be obtained in a similar manner (except, this time, the radial component can no longer be ignored). Substitution of Equations 17.67 and 17.103-17.107 into 17.97.2 produces the following expression:
@@ -5386,23 +5386,23 @@ $$ \tag{17.125}
 \begin{aligned}
 	& \frac{1}{\gamma_{m,n}} \int_{0}^{2 \pi} \int_{0}^{\pi} \big[ \bm{N_{m,n}^{(1)}}(\bm{r}) \big]^{\*} \cdot \bm{E_i}(\bm{r}) \sin{\theta} \thinspace d\theta d\phi
 	\cr
-	&= E_x \Bigg[ \frac{\big[ k r j_n(k r) \big]'}{k r} \Bigg]^{\*}
+	&= E_X \Bigg[ \frac{\big[ k r j_n(k r) \big]'}{k r} \Bigg]^{\*}
 		\int_{0}^{2 \pi} \int_{0}^{\pi} e^{-i m \phi + i k r \cos{\theta}} \bigg(
 		\frac{\partial P_n^m(\cos{\theta})}{\partial \theta} \cos{\theta} \cos{\phi}
 		+ i m \frac{P_n^m(\cos{\theta})}{\sin{\theta}} \sin{\phi}
 	\bigg) \sin{\theta} \thinspace d\theta d\phi
 	\cr
-	&+ E_x \bigg[ \frac{j_n(k r)}{k r} \bigg]^{\*} n (n + 1)
+	&+ E_X \bigg[ \frac{j_n(k r)}{k r} \bigg]^{\*} n (n + 1)
 		\int_{0}^{2 \pi} \int_{0}^{\pi} e^{-i m \phi + i k r \cos{\theta}}
 		P_n^m(\cos{\theta}) \sin^2{\theta} \cos{\phi}
 	\thinspace d\theta d\phi
 	\cr
-	&+ E_y \bigg[ \frac{j_n(k r)}{k r} \bigg]^{\*} n (n + 1)
+	&+ E_Y \bigg[ \frac{j_n(k r)}{k r} \bigg]^{\*} n (n + 1)
 		\int_{0}^{2 \pi} \int_{0}^{\pi} e^{-i m \phi + i k r \cos{\theta}}
 		P_n^m(\cos{\theta}) \sin^2{\theta} \sin{\phi}
 	\thinspace d\theta d\phi
 	\cr
-	&+ E_y \Bigg[ \frac{\big[ k r j_n(k r) \big]'}{k r} \Bigg]^{\*} 	  \int_{0}^{2 \pi} \int_{0}^{\pi} e^{-i m \phi + i k r \cos{\theta}} \bigg(
+	&+ E_Y \Bigg[ \frac{\big[ k r j_n(k r) \big]'}{k r} \Bigg]^{\*} 	  \int_{0}^{2 \pi} \int_{0}^{\pi} e^{-i m \phi + i k r \cos{\theta}} \bigg(
 		\frac{\partial P_n^m(\cos{\theta})}{\partial \theta} \cos{\theta} \sin{\phi}
 		- i m \frac{P_n^m(\cos{\theta})}{\sin{\theta}} \cos{\phi}
 	\bigg)  \sin{\theta} \thinspace d\theta d\phi.
@@ -5416,13 +5416,13 @@ $$ \tag{17.126}
 \begin{aligned}
 	& \frac{1}{\gamma_{m,n}} \int_{0}^{2 \pi} \int_{0}^{\pi} \big[ \bm{N_{m,n}^{(1)}}(\bm{r}) \big]^{\*} \cdot \bm{E_i}(\bm{r}) \sin{\theta} \thinspace d\theta d\phi
 	\cr
-	&= \delta_{m,\pm 1} (E_x - i m E_y)
+	&= \delta_{m,\pm 1} (E_X - i m E_Y)
 	\bigg[ \frac{j_n(k r)}{k r} \bigg]^{\*}
 	\pi n (n + 1) \int_{0}^{\pi} e^{i k r \cos{\theta}}
 		P_n^m(\cos{\theta}) \sin^2{\theta}
 	\thinspace d\theta
 	\cr
-	&+ \delta_{m,\pm 1} (E_x - i m E_y)
+	&+ \delta_{m,\pm 1} (E_X - i m E_Y)
 	\Bigg[ \frac{\big[ k r j_n(k r) \big]'}{k r} \Bigg]^{\*}
 	\pi \int_{0}^{\pi} e^{i k r \cos{\theta}} \bigg(
 		\frac{\partial P_n^m(\cos{\theta})}{\partial \theta} \cos{\theta}
@@ -5497,7 +5497,7 @@ $$ \tag{17.131}
 \begin{aligned}
 	& \int_{0}^{2 \pi} \int_{0}^{\pi} \big[ \bm{N_{m,n}^{(1)}}(\bm{r}) \big]^{\*} \cdot \bm{E_i}(\bm{r}) \sin{\theta} \thinspace d\theta d\phi
 	\cr
-	&= \delta_{m,\pm 1} (i m E_x + E_y) 2 \pi i^n \gamma_{1,n} n (n+1)
+	&= \delta_{m,\pm 1} (i m E_X + E_Y) 2 \pi i^n \gamma_{1,n} n (n+1)
 	\Bigg( \Bigg\vert \frac{\big[ k r j_n(k r) \big]'}{k r} \Bigg\vert^2 + n (n + 1) \bigg\vert \frac{j_n(k r)}{k r} \bigg\vert^2
 	\Bigg).
 \end{aligned}
@@ -5509,7 +5509,7 @@ Once we substitute the value of the integral into Equation 17.97.2, the factor c
 
 $$ \tag{17.132}
 \begin{aligned}
-	b_{m,n} &= \delta_{m,\pm 1} (i m E_x + E_y) 2 \pi i^n \gamma_{1,n}.
+	b_{m,n} &= \delta_{m,\pm 1} (i m E_X + E_Y) 2 \pi i^n \gamma_{1,n}.
 \end{aligned}
 $$
 
@@ -5520,13 +5520,13 @@ $$ \tag{17.133}
 	\bm{E_0}(\bm{e_z}, \omega) e^{i k(\omega) (\bm{r} \cdot \bm{e_z})}
 	&= \sum_{m,n} \big( a_{m,n}(\omega) \bm{M_{m,n}^{(1)}}(\bm{r}, \omega) + b_{m,n}(\omega) \bm{N_{m,n}^{(1)}}(\bm{r}, \omega) \big)
 	\cr
-	&= E_x(\omega) \sum_{n=1}^{\infin} 2 \pi i^n \gamma_{1,n} \sum_{m= \pm 1} i \big( \bm{M_{m,n}^{(1)}}(\bm{r}, \omega) + m \bm{N_{m,n}^{(1)}}(\bm{r}, \omega) \big)
+	&= E_X(\omega) \sum_{n=1}^{\infin} 2 \pi i^n \gamma_{1,n} \sum_{m= \pm 1} i \big( \bm{M_{m,n}^{(1)}}(\bm{r}, \omega) + m \bm{N_{m,n}^{(1)}}(\bm{r}, \omega) \big)
 	\cr
-	&+ E_y(\omega) \sum_{n=1}^{\infin} 2 \pi i^n \gamma_{1,n} \sum_{m= \pm 1} \big( m \bm{M_{m,n}^{(1)}}(\bm{r}, \omega) + \bm{N_{m,n}^{(1)}}(\bm{r}, \omega) \big).
+	&+ E_Y(\omega) \sum_{n=1}^{\infin} 2 \pi i^n \gamma_{1,n} \sum_{m= \pm 1} \big( m \bm{M_{m,n}^{(1)}}(\bm{r}, \omega) + \bm{N_{m,n}^{(1)}}(\bm{r}, \omega) \big).
 \end{aligned}
 $$
 
-The \\(i\\) factor following \\(E_x\\) should not come as a surprise. Since, according to [Euler's identity](https://en.wikipedia.org/wiki/Euler%27s_identity),
+The \\(i\\) factor following \\(E_X\\) should not come as a surprise. Since, according to [Euler's identity](https://en.wikipedia.org/wiki/Euler%27s_identity),
 
 $$ \tag{17.134}
 	e^{\pm i \pi/2} = \pm i,
@@ -5623,9 +5623,9 @@ Equations 17.135 make it easy to show that the plane wave expansion of Equation 
 $$ \tag{17.137}
 \begin{aligned}
 	\bm{E_0}(\bm{e_z}, \omega) e^{i k(\omega) (\bm{r} \cdot \bm{e_z})}
-	&= E_x(\omega) \sum_{n=1}^{\infin} i^n \frac{(2 n + 1)}{n (n + 1)} \big( {-\bm{M_{o,1,n}^{(1)}}}(\bm{r}, \omega) + i \bm{N_{e,1,n}^{(1)}}(\bm{r}, \omega) \big)
+	&= E_X(\omega) \sum_{n=1}^{\infin} i^n \frac{(2 n + 1)}{n (n + 1)} \big( {-\bm{M_{o,1,n}^{(1)}}}(\bm{r}, \omega) + i \bm{N_{e,1,n}^{(1)}}(\bm{r}, \omega) \big)
 	\cr
-	&+ E_y(\omega) \sum_{n=1}^{\infin} i^n \frac{(2 n + 1)}{n (n + 1)} \big( {\bm{M_{e,1,n}^{(1)}}}(\bm{r}, \omega) + i \bm{N_{o,1,n}^{(1)}}(\bm{r}, \omega) \big).
+	&+ E_Y(\omega) \sum_{n=1}^{\infin} i^n \frac{(2 n + 1)}{n (n + 1)} \big( {\bm{M_{e,1,n}^{(1)}}}(\bm{r}, \omega) + i \bm{N_{o,1,n}^{(1)}}(\bm{r}, \omega) \big).
 \end{aligned}
 $$
 
@@ -5721,7 +5721,6 @@ $$
 Thus, in order to take the cross product, we must either eliminate, swap, or negate and swap the spherical harmonic vectors:
 
 $$ \tag{17.145}
-\small
 \begin{aligned}
 	\bm{e_r} \times \bm{E_2}
 	&= \sum_{m,n} \bigg( a_{m,n}'' j_n(k_2 r) \bm{\Psi_{m,n}}(\theta, \phi)
@@ -5764,7 +5763,6 @@ $$
 which, in our case, simply means that the corresponding series coefficients must be rescaled and interchanged:
 
 $$ \tag{17.149}
-\small
 \begin{aligned}
 	\bm{e_r} \times \nabla \times \bm{E_2}
 	&= \sum_{m,n} k_2 \bigg( b_{m,n}'' j_n(k_2 r) \bm{\Psi_{m,n}}(\theta, \phi)
@@ -5885,7 +5883,6 @@ $$
 The coefficients of proportionality of the internal field can be taken from Equations 17.151.1 and 17.150.2:
 
 $$ \tag{17.157}
-\small
 \begin{aligned}
 	a_{n}''(\omega)
 	&= \frac{1}{w} \frac{ \psi_n'(x) + a_{n}' \xi_n'(x) }{ \psi_n'(m x) }
@@ -5904,9 +5901,9 @@ Now, recall the transformation of the expression of the incident field (Equation
 $$ \tag{17.158}
 \begin{aligned}
 	\bm{E_s}(\bm{r}, \omega)
-	&= E_x(\omega) \sum_{n=1}^{\infin} i^n \frac{(2 n + 1)}{n (n + 1)} \big( {-a_{n}'(\omega) \bm{M_{o,1,n}^{(3)}}}(\bm{r}, \omega) + i b_{n}'(\omega) \bm{N_{e,1,n}^{(3)}}(\bm{r}, \omega) \big)
+	&= E_X(\omega) \sum_{n=1}^{\infin} i^n \frac{(2 n + 1)}{n (n + 1)} \big( {-a_{n}'(\omega) \bm{M_{o,1,n}^{(3)}}}(\bm{r}, \omega) + i b_{n}'(\omega) \bm{N_{e,1,n}^{(3)}}(\bm{r}, \omega) \big)
 	\cr
-	&+ E_y(\omega) \sum_{n=1}^{\infin} i^n \frac{(2 n + 1)}{n (n + 1)} \big( a_{n}'(\omega) {\bm{M_{e,1,n}^{(3)}}}(\bm{r}, \omega) + i b_{n}'(\omega) \bm{N_{o,1,n}^{(3)}}(\bm{r}, \omega) \big).
+	&+ E_Y(\omega) \sum_{n=1}^{\infin} i^n \frac{(2 n + 1)}{n (n + 1)} \big( a_{n}'(\omega) {\bm{M_{e,1,n}^{(3)}}}(\bm{r}, \omega) + i b_{n}'(\omega) \bm{N_{o,1,n}^{(3)}}(\bm{r}, \omega) \big).
 \end{aligned}
 $$
 
@@ -5915,15 +5912,15 @@ Similarly, the expression of the internal field can be written as
 $$ \tag{17.159}
 \begin{aligned}
 	\bm{E_2}(\bm{r}, \omega)
-	&= E_x(\omega) \sum_{n=1}^{\infin} i^n \frac{(2 n + 1)}{n (n + 1)} \big( {-a_{n}''(\omega) \bm{M_{o,1,n}^{(1)}}}(\bm{r}, \omega) + i b_{n}''(\omega) \bm{N_{e,1,n}^{(1)}}(\bm{r}, \omega) \big)
+	&= E_X(\omega) \sum_{n=1}^{\infin} i^n \frac{(2 n + 1)}{n (n + 1)} \big( {-a_{n}''(\omega) \bm{M_{o,1,n}^{(1)}}}(\bm{r}, \omega) + i b_{n}''(\omega) \bm{N_{e,1,n}^{(1)}}(\bm{r}, \omega) \big)
 	\cr
-	&+ E_y(\omega) \sum_{n=1}^{\infin} i^n \frac{(2 n + 1)}{n (n + 1)} \big( a_{n}''(\omega) {\bm{M_{e,1,n}^{(1)}}}(\bm{r}, \omega) + i b_{n}''(\omega) \bm{N_{o,1,n}^{(1)}}(\bm{r}, \omega) \big).
+	&+ E_Y(\omega) \sum_{n=1}^{\infin} i^n \frac{(2 n + 1)}{n (n + 1)} \big( a_{n}''(\omega) {\bm{M_{e,1,n}^{(1)}}}(\bm{r}, \omega) + i b_{n}''(\omega) \bm{N_{o,1,n}^{(1)}}(\bm{r}, \omega) \big).
 \end{aligned}
 $$
 
 Equations 17.137, 17.158 and 17.159 allow us to determine the value of the electromagnetic field at any point in space, both inside and outside the spherical particle. Thus, the scattering problem is solved. This completes the derivation of the Lorenz-Mie-Debye formula.
 
-### Analysis of the Lorenz-Mie-Debye Formulae
+### Analysis and Interpretation of the Lorenz-Mie-Debye Formulae
 
 The solution of the Lorenz-Mie-Debye theory is rigorous and exact (to the extent permitted by the assumptions inherent to the statement of the problem). Unfortunately, the form of the solution - a series expansion - has significant drawbacks.
 
@@ -5990,18 +5987,104 @@ These vectors are mutually orthogonal to each other. Hence, in the radiation zon
 
 Substitution into Equation 17.158 produces a convenient asymptotic expansion of the scattered field:
 
-$$ \tag{18.5}
+$$ \tag{18.4}
 \begin{aligned}
 	\bm{E_s}(\bm{r}, \omega)
 	&\backsimeq \frac{e^{i k r}}{i k r} \sum_{n=1}^{\infin} \frac{(2 n + 1)}{n (n + 1)}
-	\Big( {-a_{n}'} \pi_{1,n}(\theta) - b_{n}' \tau_{1,n}(\theta) \Big)
-	\Big( E_x \cos(\phi) + E_y \sin(\phi) \Big) \bm{e_{\theta}}
+	\big( {-a_{n}'} \pi_{1,n}(\theta) - b_{n}' \tau_{1,n}(\theta) \big)
+	\big( E_X \cos(\phi) + E_Y \sin(\phi) \big) \bm{e_{\theta}}
 	\cr
 	&+ \frac{e^{i k r}}{i k r} \sum_{n=1}^{\infin} \frac{(2 n + 1)}{n (n + 1)}
-	\Big( {-a_{n}'} \tau_{1,n}(\theta) - b_{n}' \pi_{1,n}(\theta) \Big)
-	\Big( {-E_x} \sin(\phi) + E_y \cos(\phi) \Big) \bm{e_{\phi}}.
+	\big( {-a_{n}'} \tau_{1,n}(\theta) - b_{n}' \pi_{1,n}(\theta) \big)
+	\big( {-E_X} \sin(\phi) + E_Y \cos(\phi) \big) \bm{e_{\phi}}.
 \end{aligned}
 $$
+
+The explicit coordinate representation[^17] is more revealing:
+
+[^17]: We omit the radial component because its value is zero.
+
+$$ \tag{18.5}
+\begin{aligned}
+	\bm{E_s}(\bm{r}, \omega)
+	&\backsimeq \frac{e^{i k r}}{i k r}
+	\Bigg( \sum_{n=1}^{\infin} \frac{(2 n + 1)}{n (n + 1)}
+	a_{n}'
+	\begin{bmatrix}
+		-\pi_{1,n}(\theta) & 0 \cr
+		0 & -\tau_{1,n}(\theta) \cr
+	\end{bmatrix}
+	\Bigg)
+	\begin{bmatrix}
+		\phantom{-}\cos(\phi) & \sin(\phi) \cr
+		-\sin(\phi) & \cos(\phi) \cr
+	\end{bmatrix}
+	\begin{bmatrix}
+		E_X \cr
+		E_Y \cr
+	\end{bmatrix}
+	\cr
+	&+ \frac{e^{i k r}}{i k r}
+	\Bigg( \sum_{n=1}^{\infin} \frac{(2 n + 1)}{n (n + 1)}
+	b_{n}'
+	\begin{bmatrix}
+		-\tau_{1,n}(\theta) & 0 \cr
+		0 & -\pi_{1,n}(\theta) \cr
+	\end{bmatrix}
+	\Bigg)
+	\begin{bmatrix}
+		\phantom{-}\cos(\phi) & \sin(\phi) \cr
+		-\sin(\phi) & \cos(\phi) \cr
+	\end{bmatrix}
+	\begin{bmatrix}
+		E_X \cr
+		E_Y \cr
+	\end{bmatrix}.
+\end{aligned}
+$$
+
+In both cases, we observe a rotation of the *components* of incident electric field \\([E_X, E_Y]^T\\) around the \\(z\\)-axis; this results in the coordinate representation \\([E_x(\phi), E_y(\phi)]^T\\) relative to the plane of observation (c.f. Equation 15.11 and Figure N).
+
+Otherwise, the angular dependence is confined to the polar functions \\(\pi_{1,n}\\) and \\(\tau_{1,n}\\) defined by Equation 17.68. Using Equations 17.54 and 17.55, it can be shown that the polar functions satisfy the recurrence relations
+
+$$ \tag{18.6}
+\begin{aligned}
+	\pi_{1,n}(\theta)
+	&= \frac{2 n - 1}{n - 1}\cos(\theta) \pi_{1,n-1}(\theta) - \frac{n}{n - 1} \pi_{1,n-2}(\theta),
+	\cr
+	\tau_{1,n}(\theta)
+	&= n \cos(\theta) \pi_{1,n}(\theta) - (n + 1) \pi_{1,n-1}(\theta).
+\end{aligned}
+$$
+
+Let us take a look at the first three of these functions:
+
+$$ \tag{18.7}
+\begin{aligned}
+	-\tau_{1,1}(\theta) &= \cos(\theta), &
+	-\pi_{1,1}(\theta)  &= 1,
+	\cr
+	-\tau_{1,2}(\theta) &= 3 \cos(2 \theta), &
+	-\pi_{1,2}(\theta)  &= 3 \cos(\theta),
+	\cr
+	-\tau_{1,3}(\theta) &= \frac{3}{8} \big( \cos (\theta)+15 \cos (3 \theta) \big), &
+	-\pi_{1,3}(\theta)  &= \frac{3}{4} \big( 5 \cos (2 \theta)+3 \big).
+\end{aligned}
+$$
+
+Normally, these functions are only defined in the range of \\(\theta \in [0, \pi)\\). However, since the scattered field is essentially "upside-down" for \\(\phi \in [\pi, 2 \pi)\\) relative to the case when \\(\phi \in [0, \pi)\\), it is instructive to consider the full 360 degree polar plot of these functions.
+
+{{< figure src="/img/polar_tau.svg" caption="*Figure N: Polar functions \\(\tau\_{1,n}\\) of order n=0 (blue), n=1 (orange), n=2 (green).*" >}}
+
+{{< figure src="/img/polar_pi.svg" caption="*Figure N: Polar functions \\(\pi\_{1,n}\\) of order n=0 (blue), n=1 (orange), n=2 (green).*" >}}
+
+Equation 18.5 contains a sum of the polar functions. The plots demonstrate that their greatest overlap is along the forward direction \\(\theta = 0\\). Thus, as the particle size increases and we accumulate more terms, we should expect forward scattering to become a dominant effect. [Evgenii: remember to write about the diffraction interpretation later.]
+
+The explicit form of the polar functions given by Equation 18.7 leads to a physical interpretation of the first few partial waves.
+
+First, we consider the electric waves by setting \\(a_n' = 0\\) in Equation 18.5. Then, the matrix representation of the first electric wave (given by the first line of Equation 18.7) performs a rotation of the *components* of the incident electric field \\([E_x(\phi), E_y(\phi)]^T\\) about the \\(y\\)-axis using Equation 15.13; effectively, we just reinterpret the incident field in a new frame of reference by making a transformation from the Cartesian \\(\lbrace x,y,z \rbrace\\) to the spherical \\(\lbrace r, \theta, \phi \rbrace\\) coordinates (such that \\(\bm{e_y} = \bm{e_{\phi}}\\)).
+
+Thus, once we eliminate the radial component, the incident and the scattered electric field vectors become completely aligned. Furthermore, according to Equation 18.5, both remaining (tangential) components propagate as scalar spherical waves. These are the key features of the far field of an *electric dipole*, something we have already encountered in Equation 13.5.
 
 \[[6](#references) (ch 14.5)\]
 
