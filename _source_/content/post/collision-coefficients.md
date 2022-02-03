@@ -5631,6 +5631,18 @@ $$
 
 Equation 17.137 can be found in \[[17](#references) (ch 7.11)\]. The author does not show the entire derivation, and, unfortunately, arrives at the result with the opposite sign.
 
+Note that, since the odd and the even vector harmonics are used to represent the \\(x\\) and \\(y\\) components of the fields, they can, in general, be obtained by performing 90 degree rotations:
+
+$$ \tag{17.????}
+\begin{aligned}
+	\bm{L_{e,m,n}}(r, \theta, \phi) &= \bm{L_{o,m,n}} \bigg( r, \theta, \phi + \frac{\pi}{2 m} \bigg),
+	\cr
+	\bm{M_{e,m,n}}(r, \theta, \phi) &= \bm{M_{o,m,n}} \bigg( r, \theta, \phi + \frac{\pi}{2 m} \bigg),
+	\cr
+	\bm{N_{e,m,n}}(r, \theta, \phi) &= \bm{N_{o,m,n}} \bigg( r, \theta, \phi + \frac{\pi}{2 m} \bigg).
+\end{aligned}
+$$
+
 For many purposes, the most useful expression of the incident field given by Equation 17.133 is in terms of the vector spherical harmonics (as shown by Equations 17.80-17.81):
 
 $$ \tag{17.138}
@@ -5770,7 +5782,7 @@ $$ \tag{17.149}
 \end{aligned}
 $$
 
-Let us first consider Equation 17.143. It tells us that the expressions given by Equations 17.145.1 and 17.145.2 are equal. If perform Hilbert space projection onto \\(\Psi_{s,t}\\) or \\(\Phi_{s,t}\\) using Equations 17.77 and 17.79, we obtain the relations that connect the expansion coefficients of the internal field to those of the external field:
+Let us first consider Equation 17.143. It tells us that the expressions given by Equations 17.145.1 and 17.145.2 are equal. If perform Hilbert space projection onto \\(\Psi_{s,t}\\) or \\(\Phi_{s,t}\\) using Equations 17.77 and 17.79, we obtain the relations that connect the expansion coefficients of the external field to those of the internal field:
 
 $$ \tag{17.150}
 \begin{aligned}
@@ -5779,26 +5791,25 @@ $$ \tag{17.150}
 	\cr
 	b_{m,n}''
 	&=
-	\frac{ b_{m,n} \big[ k r j_n(k_1 r) \big]' + b_{m,n}' \big[ k_1 r h_n^{(1)}(k_1 r) \big]'
-	}{ \frac{k_1}{k_2} \big[ k r j_n(k_2 r) \big]' }.
+	\frac{ b_{m,n} \big[ k_1 r j_n(k_1 r) \big]' + b_{m,n}' \big[ k_1 r h_n^{(1)}(k_1 r) \big]'
+	}{ \frac{k_1}{k_2} \big[ k_2 r j_n(k_2 r) \big]' }.
 \end{aligned}
 $$
 
 Performing the same steps for Equations 17.147 and 17.149 leads to
 
 $$ \tag{17.151}
-\small
 \begin{aligned}
 	a_{m,n}''
-	&= \frac{ a_{m,n} \big[ k r j_n(k_1 r) \big]' + a_{m,n}' \big[ k_1 r h_n^{(1)}(k_1 r) \big]'
-	}{ \frac{\mu_1}{\mu_2} \big[ k r j_n(k_2 r) \big]' },
+	&= \frac{ a_{m,n} \big[ k_1 r j_n(k_1 r) \big]' + a_{m,n}' \big[ k_1 r h_n^{(1)}(k_1 r) \big]'
+	}{ \frac{\mu_1}{\mu_2} \big[ k_2 r j_n(k_2 r) \big]' },
 	\cr
 	b_{m,n}''
 	&= \frac{ b_{m,n} j_n(k_1 r) + b_{m,n}' h_n^{(1)}(k_1 r) }{ \frac{\mu_1 k_2}{\mu_2 k_1} j_n(k_2 r) }.
 \end{aligned}
 $$
 
-The value of the expansion coefficients \\(a\_{m,n}\\) and \\(b\_{m,n}\\) of the incident field is known. By combining Equations 17.150 and 17.151, we can finally evaluate the coefficients of the scattered field \[[15](#references)\]:
+The value of the coefficients \\(a\_{m,n}\\) and \\(b\_{m,n}\\) of the incident field is known. By combining Equations 17.150 and 17.151, we can finally evaluate the coefficients of the scattered field \[[15](#references)\]:
 
 $$ \tag{17.152}
 \begin{aligned}
@@ -5810,7 +5821,7 @@ $$ \tag{17.152}
 	},
 	\cr
 	b_{m,n}'
-	&= - b_{m,n} \frac
+	&= -b_{m,n} \frac
 	{
 		\frac{\mu_1 k_2^2}{\mu_2 k_1^2} j_n(k_2 r) \big[ k_1 r j_n(k_1 r) \big]' - j_n(k_1 r) \big[ k_2 r j_n(k_2 r) \big]'
 	}{
@@ -5819,7 +5830,7 @@ $$ \tag{17.152}
 \end{aligned}
 $$
 
-We may observe that both the scattered and the internal fields are directly proportional to the incident field. Furthermore, the coefficients of proportionality are independent of \\(m\\). They may be written down neatly if we re-introduce the traditional notation that calls the radius of the spherical particle \\(a\\), the relative wavenumber \\(m = k_2 / k_1\\), the inverse relative permeability \\(w = \mu_1 / \mu_2\\), and the size parameter \\(x = k_1 a\\). The order-independent multiplicative factors of Equation 17.152 can then be expressed as \[[17](#references) (ch 9.25)\]
+We may observe that both the scattered and the internal fields are directly proportional to the incident field. Furthermore, the coefficients of proportionality are independent of \\(m\\). They may be written down neatly if we re-introduce the traditional notation that calls the radius of the spherical particle \\(a\\), the size parameter \\(x = k_1 a\\), the relative wavenumber \\(m = k_2 / k_1\\), and the inverse relative permeability \\(w = \mu_1 / \mu_2\\). The order-independent multiplicative factors of Equation 17.152 can then be expressed as \[[17](#references) (ch 9.25)\]
 
 $$ \tag{17.154}
 \begin{aligned}
@@ -5871,37 +5882,24 @@ $$ \tag{17.156}
 \end{aligned}
 $$
 
-Equation 17.156 does not always match those found in the literature because different authors employ different conventions in their series expansions.
-
-The coefficients of proportionality of the internal field can be taken from Equations 17.150.1 and 17.151.2:
+The coefficients of proportionality of the internal field can be taken from Equations 17.151.1 and 17.150.2:
 
 $$ \tag{17.157}
 \small
 \begin{aligned}
 	a_{n}''(\omega)
-	&= \frac{ j_n(x) + a_{n}' h_n^{(1)}(x) }{ j_n(m x) }
-	 = m \frac{ \psi_n(x) + a_{n}' \xi_n(x) }{ \psi_n(m x) }
-	 = m \frac{\psi_n(x)}{ \psi_n(m x) }
-	 -\frac{
-		\psi_n(m x) \psi_n'(x) - w m  \psi_n(x) \psi_n'(m x)
-	}{
-		\psi_n(m x) \xi_n'(x) - w m \xi_n(x) \psi_n'(m x)
-	} \frac{ \xi_n(x) }{ \psi_n(m x) },
+	&= \frac{1}{w} \frac{ \psi_n'(x) + a_{n}' \xi_n'(x) }{ \psi_n'(m x) }
+	= m \frac{\psi_n(x) \xi_n'(x) - \xi_n(x) \psi_n'(x)}{\psi_n(m x) \xi_n'(x) - w m \xi_n(x) \psi_n'(m x)},
 	\cr
 	b_{n}''(\omega)
-	&= \frac{ j_n(x) + b_{n}' h_n^{(1)}(x) }{ w m j_n(m x) }
-	 = \frac{1}{w} \frac{ \psi_n(x) + b_{n}' \xi_n(x) }{ \psi_n(m x) }
-	 = \frac{1}{w} \frac{ \psi_n(x) }{ \psi_n(m x) }
-	-\frac
-	{
-		w m \psi_n(m x) \psi_n'(x) - \psi_n(x) \psi_n'(m x)
-	}{
-		w m \psi_n(m x) \xi_n'(x) - \xi_n(x) \psi_n'(m x)
-	} \frac{1}{w} \frac{ \xi_n(x) }{ \psi_n(m x) }
+	&= m \frac{ \psi_n'(x) + b_{n}' \xi_n'(x) }{ \psi_n'(m x) }
+	= m \frac{\psi_n(x) \xi_n'(x) - \xi_n(x) \psi_n'(x)}{w m \psi_n(m x) \xi_n'(x) - \xi_n(x) \psi_n'(m x)}.
 \end{aligned}
 $$
 
-Now, recall the transformation of the expression of the incident field (Equations 17.133-17.137), where we introduced the even and off vector spherical functions. Since the expansion coefficients of the scattered and the internal fields differ from those of the incident field only by a multiplicative factor, it's easy to see that the overall structure of the expression remains the same; novel expressions can be obtained by attaching the corresponding factors to the spherical wave function vectors:
+Note that the numerators of Equations 17.157.1 and 17.157.2 are the same, while the denominators match Equations 17.156.1 and 17.156.2, respectively. Thus, the fields are, in this sense, proportional to each other.
+
+Now, recall the transformation of the expression of the incident field (Equations 17.133-17.137), where we introduced the even and off vector spherical functions. Since the expansion coefficients of the scattered and the internal fields differ from those of the incident field only by a multiplicative factor, it's easy to see that the overall structure of the expression remains the same; novel expressions, such as that of the scattered field, can be obtained by attaching the corresponding factors to the spherical wave function vectors:
 
 $$ \tag{17.158}
 \begin{aligned}
@@ -5923,9 +5921,9 @@ $$ \tag{17.159}
 \end{aligned}
 $$
 
-Equations 17.137, 17.158 and 17.159 allow us to determine the value of the electromagnetic field at any point in space, both inside and outside the spherical particle. Thus, the problem is solved. This completes the derivation of the Lorenz-Mie-Debye formula.
+Equations 17.137, 17.158 and 17.159 allow us to determine the value of the electromagnetic field at any point in space, both inside and outside the spherical particle. Thus, the scattering problem is solved. This completes the derivation of the Lorenz-Mie-Debye formula.
 
-### Interpretation of the Lorenz-Mie-Debye Formulae
+### Analysis of the Lorenz-Mie-Debye Formulae
 
 The solution of the Lorenz-Mie-Debye theory is rigorous and exact (to the extent permitted by the assumptions inherent to the statement of the problem). Unfortunately, the form of the solution - a series expansion - has significant drawbacks.
 
@@ -5943,7 +5941,7 @@ These functions have radically different behavior, yet correctly guessing the fu
 
 The problem is exacerbated by the convergence properties of the series. It was shown by Debye (1909) that, for points in the radiation zone, the asymptotic expression (for large \\(x\\)) of the scattered field  requires on the order of \\(n \backsim x\\) terms; this number can reach \\(x = k a = 2 \pi (3 \text{ mm} / 380 \text{ nm}) \approx 49600 \\) for large rain drops illuminated by visible light, making the computation impractical.
 
-The most straightforward interpretation of Equation 17.158 treats the individual terms as *partial waves*. If we examine the definition of the vector tesseral harmonics given by Equation 17.136, we may note that \\(\bm{N\_{m,n}}\\) has a radial component, while \\(\bm{M\_{m,n}}\\) does not. Since an electric charge is a source of a radially-symmetric electric field, we may interpret the existence of the radial component if the electric field as a sign of the fact that the sphere contains a distribution of electric charges; therefore, the partial waves prefixed with \\(b_n'\\) are said to be of the *electric type*. In the expression of the magnetic field, the coefficients \\(a_n'\\) and \\(b_n'\\) are interchanged; similar logical steps lead to the conclusion that the partial waves prefixed with \\(a_n'\\) are of the *magnetic type* \[[17](#references) (ch 9.22)\].
+The most straightforward interpretation of Equations 17.158 and 17.159 treats the individual terms as *partial waves*. If we examine the definition of the vector tesseral harmonics given by Equation 17.136, we may note that \\(\bm{N\_{m,n}}\\) has a radial component, while \\(\bm{M\_{m,n}}\\) does not. Since an electric charge is a source of a radially-symmetric electric field, we may interpret the existence of the radial component of \\(b_n' \bm{N\_{m,n}}\\) as a sign of the fact that the sphere contains a distribution of electric charges; therefore, the partial waves prefixed with \\(b_n'\\) are said to be of the *electric type*. In comparison (c.f. Equation 17.36-17.37), the expression of the magnetic field has the coefficients \\(a_n'\\) and \\(b_n'\\) interchanged; similar logical steps lead to the conclusion that the partial waves prefixed with \\(a_n'\\) are of the *magnetic type* \[[17](#references) (ch 9.22)\].
 
 We may also show that the field becomes transverse in the radiation zone (see Equation 13.14 for the general case). Using the asymptotic expressions of the spherical Bessel functions given by Equation 17.52, for large \\(x\\), the corresponding Riccati-Bessel functions (and their derivatives) take the form
 
@@ -5992,7 +5990,7 @@ These vectors are mutually orthogonal to each other. Hence, in the radiation zon
 
 Substitution into Equation 17.158 produces a convenient asymptotic expansion of the scattered field:
 
-$$ \tag{18.4}
+$$ \tag{18.5}
 \begin{aligned}
 	\bm{E_s}(\bm{r}, \omega)
 	&\backsimeq \frac{e^{i k r}}{i k r} \sum_{n=1}^{\infin} \frac{(2 n + 1)}{n (n + 1)}
