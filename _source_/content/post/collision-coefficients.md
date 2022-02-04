@@ -6094,6 +6094,10 @@ Once the size of the particle approaches or exceeds the wavelength in the interi
 
 ## III. Approximate Methods for Practical Use
 
+---
+
+TODO
+
 [Rayleigh](https://en.wikipedia.org/wiki/Rayleigh_scattering) - [Tyndall](https://en.wikipedia.org/wiki/Tyndall_effect) - [Mie](https://en.wikipedia.org/wiki/Mie_scattering)
 
 Inelastic [Raman scattering](https://en.wikipedia.org/wiki/Raman_scattering)
@@ -6101,6 +6105,12 @@ Inelastic [Raman scattering](https://en.wikipedia.org/wiki/Raman_scattering)
 Field Magnitude <-> Wave Amplitude
 
 Is a spherical cavity the right choice for the depolarization operator?
+
+x' and y' coordinates are just theta and phi.
+
+Multipole expansion is uniform subdivision of a disk aligned with the x-y plane.
+
+---
 
 ## Acknowledgments
 
