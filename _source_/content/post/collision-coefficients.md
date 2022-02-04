@@ -6086,6 +6086,8 @@ First, we consider the electric waves by setting \\(a_n' = 0\\) in Equation 18.5
 
 Thus, once we eliminate the radial component, the incident and the scattered electric field vectors become completely aligned. Furthermore, according to Equation 18.5, both remaining (tangential) components propagate as scalar spherical waves. These are the key features of the far field of an *electric dipole*, something we have already encountered in Equation 13.5.
 
+Once the size of the particle approaches or exceeds the wavelength in the interior of the sphere, then the atoms no longer oscillate in-phase because they are too far apart \[[5](#references) (vol. I, ch. 32.5)\]; this renders the single dipole approximation insufficient. One approach, something that we have already explored in Equation 13.12, consists of taking an integral over the volume of the particle filled with dipoles. Alternatively, as shown by the Lorenz-Mie-Debye formula, one may perform [multipole expansion](https://en.wikipedia.org/wiki/Multipole_expansion) instead.
+
 \[[6](#references) (ch 14.5)\]
 
 ---
