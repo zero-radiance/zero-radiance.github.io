@@ -6002,9 +6002,7 @@ $$ \tag{18.4}
 \end{aligned}
 $$
 
-The explicit coordinate representation[^17] is more revealing:
-
-[^17]: We omit the radial component because its value is zero.
+The explicit coordinate representation is more revealing:
 
 $$ \tag{18.5}
 \begin{aligned}
@@ -6050,6 +6048,21 @@ $$
 
 In both cases, we observe a rotation of the *components* of incident electric field \\([E_X, E_Y]^T\\) around the \\(z\\)-axis; this results in the coordinate representation \\([E_x(\phi), E_y(\phi)]^T\\) relative to the plane of observation (c.f. Equation 15.11 and Figure N).
 
+If we evaluate the incident field at a certain coordinate \\(z < 0\\) and substitute the resulting phasor into Equation 18.5, the resulting expression is a perfect match for the template shown in Equation 15.16. This allows us to isolate the expression of the scattering matrix
+
+$$ \tag{18.6}
+	S(\theta, \omega)
+	= \sum_{n=1}^{\infin} \frac{(2 n + 1)}{n (n + 1)}
+	\begin{bmatrix}
+		-a_{n}' \pi_{1,n}(\theta) - b_{n}'\tau_{1,n}(\theta) & 0 \cr
+		0 & -a_{n}'\tau_{1,n}(\theta) - b_{n}' \pi_{1,n}(\theta) \cr
+	\end{bmatrix}.
+$$
+
+It is both diagonal and independent of the azimuthal angle \\(\phi\\). This is consistent with the general scattering theory of spherical particles which we have briefly encountered in Section 15.
+
+---
+
 Otherwise, the angular dependence is confined to the polar functions \\(\pi_{1,n}\\) and \\(\tau_{1,n}\\) defined by Equation 17.68. Using Equations 17.54 and 17.55, it can be shown that the polar functions satisfy the recurrence relations
 
 $$ \tag{18.6}
@@ -6091,7 +6104,7 @@ First, we consider the electric waves by setting \\(a_n' = 0\\) in Equation 18.5
 
 Thus, once we eliminate the radial component, the incident and the scattered electric field vectors become completely aligned. Furthermore, according to Equation 18.5, both remaining (tangential) components propagate as scalar spherical waves. These are the key features of the far field of an *electric dipole*, something we have already encountered in Equation 13.5.
 
-Once the size of the particle approaches or exceeds the wavelength in the interior of the sphere, then the atoms no longer oscillate in-phase because they are too far apart \[[5](#references) (vol. I, ch. 32.5)\]; this renders the single dipole approximation insufficient. One approach, something that we have already explored in Equation 13.12, consists of taking an integral over the volume of the particle filled with dipoles. Alternatively, as shown by the Lorenz-Mie-Debye formula, one may perform [multipole expansion](https://en.wikipedia.org/wiki/Multipole_expansion) instead.
+Once the size of the particle approaches or exceeds the wavelength in the interior of the sphere, then the atoms no longer oscillate in-phase (for two different reasons! elaborate) because they are too far apart \[[5](#references) (vol. I, ch. 32.5)\]; this renders the single dipole approximation insufficient. One approach, something that we have already explored in Equation 13.12, consists of taking an integral over the volume of the particle filled with dipoles. Alternatively, as shown by the Lorenz-Mie-Debye formula, one may perform [multipole expansion](https://en.wikipedia.org/wiki/Multipole_expansion) instead.
 
 \[[6](#references) (ch 14.5)\]
 
