@@ -3243,7 +3243,7 @@ Expressions given above are independent of the choice of a coordinate system. In
 
 {{< figure src="/img/scat_coord.svg" caption="*Figure N: the scattering coordinate system.*" >}}
 
-First, recall that \\(r\\) in Equation 15.6 stands for the distance from the center of the scattering object to the observation point. This makes the center of the object a suitable choice for the origin of the coordinate system.
+First, recall that \\(r\\) in Equation 15.6 stands for the distance from the center of the scattering object to the observation point. This makes the center of the scatterer a suitable choice for the origin of the coordinate system.
 
 Next, assume that the direction of incidence \\(\bm{n_i}\\) is fixed; conventionally, it is aligned with the \\(z\\)-axis. That is convenient, because it allows us to describe the incident electric field vector (or phasor) using only two Cartesian components, \\(x\\) and \\(y\\), since, according to Equations 7.18-7.19, the component along \\(\bm{n_i}\\) is zero.
 
@@ -3262,10 +3262,12 @@ Imagine that the *scattering coordinate system* \\(xyz\\) is initially aligned w
 $$ \tag{15.9}
 	\bm{e_Z} = \bm{n_i}, \quad
 	\bm{e_Y} = \bm{n_i} \times \bm{n_p}, \quad
-	\bm{e_X} = \bm{n_p}.
+	\bm{e_X} = \bm{n_p},
 $$
 
- The latter could, for instance, represent the coordinate frame of the scatterer. We can now rotate \\(xyz\\) and define its orientation relative to \\(XYZ\\) in terms of the [Euler angles](https://en.wikipedia.org/wiki/Euler_angles). We are particularly interested in rotating the plane of observation \\(xz\\) about the \\(Z\\)-axis, as that allows the set of possible direction of observation to cover the entire the unit sphere. If the azimuthal (plane rotation) angle is \\(\phi\\) and the polar angle is \\(\theta\\), the spherical coordinates of \\(\bm{n_s}\\) with respect to the \\(XYZ\\) frame are
+where \\(\bm{n_p}\\) is the principal axis of the particle.
+
+The latter could, for instance, represent the coordinate frame of the scatterer. We can now rotate \\(xyz\\) and define its orientation relative to \\(XYZ\\) in terms of the [Euler angles](https://en.wikipedia.org/wiki/Euler_angles). We are particularly interested in rotating the plane of observation \\(xz\\) about the \\(Z\\)-axis, as that allows the set of possible direction of observation to cover the entire the unit sphere. If the azimuthal (plane rotation) angle is \\(\phi\\) and the polar angle is \\(\theta\\), the spherical coordinates of \\(\bm{n_s}\\) with respect to the \\(XYZ\\) frame are
 
 $$ \tag{15.10}
 \bm{n_s} =
@@ -3282,7 +3284,7 @@ $$ \tag{15.10}
 	\mathrm{atan2}(\bm{n_s} \cdot (\bm{n_i} \times \bm{n_p}), \bm{n_s} \cdot \bm{n_p}) \cr
 \end{bmatrix}. $$
 
-Note that we must use the [atan2](https://en.wikipedia.org/wiki/Atan2) function in order to obtain the full range of values of \\(\theta\\) and \\(\phi\\).
+Note that we must use the [atan2](https://en.wikipedia.org/wiki/Atan2) function in order to realize the full range of values of \\(\theta\\) and \\(\phi\\).
 
 It can be seen that \\(\theta = 0\\) corresponds to *forward scattering*, and \\(\theta = \pi\\) -- to *back-scattering*.
 
@@ -3312,25 +3314,25 @@ R_z(-\phi)
 \end{bmatrix}.
 $$
 
-On the other hand, this convention makes computing the coordinates of the scattered field vectors (and phasors) easy.  Since \\(\bm{n_s}\\) is orthogonal to \\(\bm{e_y}\\), we can define
+On the other hand, this convention makes computing the coordinates of the scattered field vectors (and phasors) easy. Since \\(\bm{n_s}\\) is orthogonal to \\(\bm{e_y}\\), we can define a spherical coordinate system centered at the particle:
 
 $$ \tag{15.12}
-	\bm{e_{z'}} = \bm{n_s}, \quad
-	\bm{e_{y'}} = \bm{e_y}, \quad
-	\bm{e_{x'}} = \bm{e_y} \times \bm{n_s}.
+	\bm{e_r} = \bm{n_s},
+	\quad
+	\bm{e_{\theta}} = \bm{e_y} \times \bm{n_s},
+	\quad
+	\bm{e_{\phi}} = \bm{e_y}.
 $$
 
-In spherical coordinates, it becomes even simpler: for a given pair \\(\lbrace \theta, \phi \rbrace\\) of \\(\bm{n_s}\\), \\(\bm{e_{x'}} = \bm{e_{\theta}}\\) and \\(\bm{e_{y'}} = \bm{e_{\phi}}.\\)
+As Equation 13.14 shows, the scattered field vectors (and phasors) are orthogonal to \\(\bm{n_s}\\). Thus, in the spherical coordinate system, only the tangential (\\(\theta\\) and \\(\phi\\)) components of \\(\bm{E_s}\\) and \\(\bm{B_s}\\) are non-zero.
 
-As Equation 13.14 shows, the scattered field vectors (and phasors) are orthogonal to \\(\bm{n_s}\\). Thus, in the \\(x' y' z'\\) coordinate system, only the \\(x'\\) and \\(y'\\) components of \\(\bm{E_s}\\) and \\(\bm{B_s}\\) are non-zero.
-
-Equation 15.12 represents a rotation of the \\(x' y'\\) plane about the \\(y\\)-axis:
+Equation 15.12 represents a rotation of the \\(\theta \phi\\)-plane about the \\(\phi\\)-axis:
 
 $$ \tag{15.13}
 \begin{bmatrix}
-	E\_{x'}(\theta, \phi) \cr
-	E\_{y'}(\theta, \phi) \cr
-	E\_{z'}(\theta, \phi) \cr
+	E\_{r}(\theta, \phi) \cr
+	E\_{\theta}(\theta, \phi) \cr
+	E\_{\phi}(\theta, \phi) \cr
 \end{bmatrix} =
 R_y(-\theta)
 \begin{bmatrix}
@@ -3350,7 +3352,7 @@ R_y(-\theta)
 \end{bmatrix}.
 $$
 
-Suppose that the amplitude and the phase of the incident field is known at the plane with the \\(z\\)-coordinate (where \\(z\\) is a negative number). Then the value of the field at the origin is
+Suppose that the amplitude and the phase of the incident field is known at the plane with a certain \\(z\\)-coordinate (where \\(z\\) is a negative number). Then the value of the field at the origin is
 
 $$ \tag{15.14}
 \begin{bmatrix}
@@ -3380,8 +3382,8 @@ such that
 
 $$ \tag{15.16}
 \begin{bmatrix}
-	E\_{s,x'}(\bm{r}, \omega) \cr
-	E\_{s,y }(\bm{r}, \omega) \cr
+	E\_{s,\theta}(\bm{r}, \omega) \cr
+	E\_{s,\phi}(\bm{r}, \omega) \cr
 \end{bmatrix} \backsimeq
 \frac{e^{i k(\omega) r - i k(\omega) z}}{i k(\omega) r} S(\theta, \phi, \omega)
 \begin{bmatrix}
@@ -3390,26 +3392,26 @@ $$ \tag{15.16}
 \end{bmatrix}.
 $$
 
-Comparison with Equation 15.6 (after after taking Equation 15.13 into account) shows that
+Comparison with Equation 15.6 (after taking Equation 15.13 into account) shows that
 
 $$ \tag{15.17}
 	S(\theta, \phi, \omega)
 	= i k(\omega) R_y(-\theta) \mathcal{S_{ef}} (\bm{n_s}, \bm{n_i}, \omega),
 $$
 
-with the angles \\(\theta\\) and \\(\phi\\) given by Equation 15.10.
+with the angles \\(\theta\\) and \\(\phi\\) defined by Equation 15.10.
 
 The reason for introducing the \\(i k\\) constant in the expression above is twofold. Multiplication by the \\(k\\) factor makes the scattering matrix a dimensionless quantity, which is evident from Equations 13.4 and 15.16. As for the \\(i\\) factor, we shall see (in the next section) that it allows us to focus on the real part of the scattering matrix for radiometric computations, which is consistent with the way we handle the complex representation of electromagnetic waves.
 
-In general, the elements of the scattering matrix depend on the azimuthal angle \\(\phi\\), since, as we rotate the plane of observation (\\(x z\\) or \\(x' z'\\)) around the \\(Z\\)-axis, the scattering object appears to rotate (in the opposite direction) in both the \\(x y z\\) and \\(x' y' z'\\) coordinate systems. However, if the object is symmetric (both geometrically and structurally) with respect to the \\(Z\\)-axis, which is the case for spherical and an axis-aligned [spheroidal](https://en.wikipedia.org/wiki/Spheroid) particles, the matrix only depends on the polar angle \\(\theta\\). This causes the scattering matrix to become diagonal, with \\(s_3 = s_4 = 0\\) \[[4](#references) (ch. 4.42)\].
+In general, the elements of the scattering matrix depend on the azimuthal angle \\(\phi\\), since, as we rotate the plane of observation (\\(x z\\) or \\(r \theta\\)) around the \\(z\\)-axis, the scattering object appears to rotate in the opposite direction. However, if the object is symmetric (both geometrically and structurally) with respect to the \\(z\\)-axis, which is the case for spherical and an axis-aligned [spheroidal](https://en.wikipedia.org/wiki/Spheroid) particles, the matrix only depends on the polar angle \\(\theta\\). This causes the scattering matrix to become diagonal, with \\(s_3 = s_4 = 0\\) \[[4](#references) (ch. 4.42)\].
 
-It's easy to see why that is the case. Consider changing the handedness of the \\(x y z\\) coordinate frame, so that the basis vector of the \\(x\\)-axis (or \\(y\\)-axis) becomes \\(-\bm{e_x}\\) (or \\(-\bm{e_y}\\)), and vice versa. In the reflected coordinate system, both \\(E\_{s,x'}\\) and \\(E\_{i,x}\\) (or \\(E\_{s,y}\\) and \\(E\_{i,y}\\)) change the sign, but, since the particle possesses reflection symmetry, the scattering matrix remains unchanged. In order for the magnitudes of the scattered field components to remain unchanged, the off-diagonal elements \\(s_3\\) and \\(s_4\\) must be equal to \\(0\\). This decouples the \\(x\\) and \\(y\\) components of the field, which allows us to represent the vector scattering process in terms of two independent scalar waves.
+It's easy to see why that is the case. Consider changing the handedness of the Cartesian coordinate frame, so that the basis vector of the \\(x\\)-axis (or the \\(y\\)-axis) becomes \\(-\bm{e_x}\\) (or \\(-\bm{e_y}\\)), and vice versa. In the reflected coordinate system, both \\(E\_{i,x}\\) and \\(E\_{s,\theta}\\) (or \\(E\_{i,y}\\) and \\(E\_{s,\phi}\\)) change the sign, but, since the particle possesses reflection symmetry, the scattering matrix remains unchanged. In order for the magnitudes of the scattered field components to remain unchanged, the off-diagonal elements \\(s_3\\) and \\(s_4\\) must be equal to \\(0\\). This decouples the \\(x\\) and \\(y\\) components of the field, which allows us to represent the vector scattering process in terms of two independent scalar waves.
 
 In addition, a very similar proof shows that axial symmetry with respect to the direction of incidence leads to another important property of forward scattering: \\(s_1(0, \phi) = s_2(0, \phi) = s_0\\).
 
 Finally, we would like to highlight the *scale invariance* property of electromagnetic scattering (also known as the principle of electrodynamic similitude) \[[8](#references) (ch. 5.5), [9](#references) (ch. 3.5)\]. The gist of it is that the dimensionless scattering and absorption characteristics of the scattering object do not depend on its linear dimension \\(a\\) and the wavenumber \\(k\\) separately, but rather the so-called relative *size parameter* \\(x = k a = 2 \pi a / \lambda\\). Thus, increasing both the linear dimension of the object and the wavelength by the same factor \\(f\\) leaves the formula unchanged: \\(x' = 2 \pi (a f) / (f \lambda) = x \\). This [reduces the dimensionality](https://en.wikipedia.org/wiki/Dimensionality_reduction) of the problem, since two independent parameters can be replaced with just one.
 
-In order to prove that it is true, we must show that the expressions used to calculate the electromagnetic fields can be written in terms of the dimensionless quantity
+In order to prove that it is true, we must show that the expressions used to calculate the electromagnetic fields can be written in terms of the dimensionless quantity (which we indicate by the hat symbol)
 
 $$ \tag{15.18}
 	\bm{\hat{r}} = k \bm{r}.
@@ -6006,7 +6008,10 @@ The explicit coordinate representation[^17] is more revealing:
 
 $$ \tag{18.5}
 \begin{aligned}
-	\bm{E_s}(\bm{r}, \omega)
+	\begin{bmatrix}
+		E_{s,\theta}(\bm{r}, \omega) \cr
+		E_{s,\phi}(\bm{r}, \omega) \cr
+	\end{bmatrix}
 	&\backsimeq \frac{e^{i k r}}{i k r}
 	\Bigg( \sum_{n=1}^{\infin} \frac{(2 n + 1)}{n (n + 1)}
 	a_{n}'
@@ -6105,8 +6110,6 @@ Inelastic [Raman scattering](https://en.wikipedia.org/wiki/Raman_scattering)
 Field Magnitude <-> Wave Amplitude
 
 Is a spherical cavity the right choice for the depolarization operator?
-
-x' and y' coordinates are just theta and phi.
 
 Multipole expansion is uniform subdivision of a disk aligned with the x-y plane.
 
