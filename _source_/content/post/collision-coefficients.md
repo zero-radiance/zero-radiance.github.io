@@ -6063,6 +6063,8 @@ It is both diagonal and independent of the azimuthal angle \\(\phi\\). This is c
 
 ---
 
+???
+
 Otherwise, the angular dependence is confined to the polar functions \\(\pi_{1,n}\\) and \\(\tau_{1,n}\\) defined by Equation 17.68. Using Equations 17.54 and 17.55, it can be shown that the polar functions satisfy the recurrence relations
 
 $$ \tag{18.6}
@@ -6090,11 +6092,20 @@ $$ \tag{18.7}
 \end{aligned}
 $$
 
-Normally, these functions are only defined in the range of \\(\theta \in [0, \pi)\\). However, since the scattered field is essentially "upside-down" for \\(\phi \in [\pi, 2 \pi)\\) relative to the case when \\(\phi \in [0, \pi)\\), it is instructive to consider the full 360 degree polar plot of these functions.
+In a spherical coordinate system, the polar functions are only defined in the range of \\(\theta \in [0, \pi)\\). However, since Equation 18.4 makes it apparent that
 
-{{< figure src="/img/polar_tau.svg" caption="*Figure N: Polar functions \\(\tau\_{1,n}\\) of order n=0 (blue), n=1 (orange), n=2 (green).*" >}}
+$$ \tag{18.8}
+\begin{aligned}
+	\bm{E_s}(r, \theta, \phi + \pi, \omega)
+	= -\bm{E_s}(r, \theta, \phi, \omega),
+\end{aligned}
+$$
 
-{{< figure src="/img/polar_pi.svg" caption="*Figure N: Polar functions \\(\pi\_{1,n}\\) of order n=0 (blue), n=1 (orange), n=2 (green).*" >}}
+we shall encounter these functions with both the positive and the negative sign. While we could account for all values of \\(\phi\\) by plotting 2-dimensional spherical distributions defined by Equation 18.5, they look fairly complicated, and it is much more convenient to just consider a slice where either \\(\phi = 0\\) or \\(\phi = \pi\\).
+
+{{< figure src="/img/polar_tau.svg" caption="*Figure N: Polar functions \\(\mp \tau\_{1,n}\\) of order n=0 (blue), n=1 (orange), n=2 (green). Dashed plots correspond to \\(\tau\_{1,n}\\).*" >}}
+
+{{< figure src="/img/polar_pi.svg" caption="*Figure N: Polar functions \\(\mp \pi\_{1,n}\\) of order n=0 (blue), n=1 (orange), n=2 (green). Dashed plots correspond to \\(\pi\_{1,n}\\)*" >}}
 
 Equation 18.5 contains a sum of the polar functions. The plots demonstrate that their greatest overlap is along the forward direction \\(\theta = 0\\). Thus, as the particle size increases and we accumulate more terms, we should expect forward scattering to become a dominant effect. [Evgenii: remember to write about the diffraction interpretation later.]
 
