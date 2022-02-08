@@ -6046,7 +6046,7 @@ $$ \tag{18.5}
 \end{aligned}
 $$
 
-In both cases, we observe a rotation of the *components* of incident electric field \\([E_X, E_Y]^T\\) around the \\(z\\)-axis; this results in the coordinate representation \\([E_x(\phi), E_y(\phi)]^T\\) relative to the plane of observation (c.f. Equation 15.11 and Figure N).
+In both cases, we observe a rotation of the incident electric field \\([E_X, E_Y]^T\\) around the \\(z\\)-axis; this results in the coordinate representation \\([E_x(\phi), E_y(\phi)]^T\\) relative to the plane of observation (c.f. Equation 15.11 and Figure N).
 
 If we evaluate the incident field at a certain coordinate \\(z < 0\\) and substitute the resulting phasor into Equation 18.5, the resulting expression is a perfect match for the template shown in Equation 15.16. This allows us to isolate the expression of the scattering matrix
 
@@ -6061,13 +6061,9 @@ $$
 
 It is both diagonal and independent of the azimuthal angle \\(\phi\\). This is consistent with the general scattering theory of spherical particles which we have briefly encountered in Section 15.
 
----
+We can study the angular dependence of the scattering matrix by analyzing the polar functions \\(\pi_{1,n}\\) and \\(\tau_{1,n}\\) defined in Equation 17.68. Using Equations 17.54 and 17.55, it can be shown that the polar functions satisfy the recurrence relations
 
-???
-
-Otherwise, the angular dependence is confined to the polar functions \\(\pi_{1,n}\\) and \\(\tau_{1,n}\\) defined by Equation 17.68. Using Equations 17.54 and 17.55, it can be shown that the polar functions satisfy the recurrence relations
-
-$$ \tag{18.6}
+$$ \tag{18.7}
 \begin{aligned}
 	\pi_{1,n}(\theta)
 	&= \frac{2 n - 1}{n - 1}\cos(\theta) \pi_{1,n-1}(\theta) - \frac{n}{n - 1} \pi_{1,n-2}(\theta),
@@ -6077,9 +6073,11 @@ $$ \tag{18.6}
 \end{aligned}
 $$
 
-Let us take a look at the first three of these functions:
+This property is particularly useful for iterative evaluation of series such as the one given by Equation 18.6.
 
-$$ \tag{18.7}
+The explicit form of the first three of these functions is:
+
+$$ \tag{18.8}
 \begin{aligned}
 	-\tau_{1,1}(\theta) &= \cos(\theta), &
 	-\pi_{1,1}(\theta)  &= 1,
@@ -6092,30 +6090,58 @@ $$ \tag{18.7}
 \end{aligned}
 $$
 
-In a spherical coordinate system, the polar functions are only defined in the range of \\(\theta \in [0, \pi)\\). However, since Equation 18.4 makes it apparent that
+Since \\(\phi \in [0, 2 \pi]\\) in a spherical coordinate system, the values of the argument of the polar functions are limited to the range of \\(\theta \in [0, \pi]\\), which corresponds the upper half of a unit circle. Nevertheless, we are interested in the angular behavior of the scattered field for all possible directions which, when taken together, form the surface of a unit sphere. We could approach this problem by plotting the 2-dimensional spherical distributions found in Equation 18.5; however, they look fairly complicated, and it is much simpler to consider a slice of a unit sphere where either \\(\phi = 0\\) or \\(\phi = \pi\\).
 
-$$ \tag{18.8}
+Guided by the fact that the polar functions are often negated, and using the relation
+
+$$ \tag{18.9}
 \begin{aligned}
 	\bm{E_s}(r, \theta, \phi + \pi, \omega)
 	= -\bm{E_s}(r, \theta, \phi, \omega),
 \end{aligned}
 $$
 
-we shall encounter these functions with both the positive and the negative sign. While we could account for all values of \\(\phi\\) by plotting 2-dimensional spherical distributions defined by Equation 18.5, they look fairly complicated, and it is much more convenient to just consider a slice where either \\(\phi = 0\\) or \\(\phi = \pi\\).
+we define the extended polar functions
 
-{{< figure src="/img/polar_tau.svg" caption="*Figure N: Polar functions \\(\mp \tau\_{1,n}\\) of order n=0 (blue), n=1 (orange), n=2 (green). Dashed plots correspond to \\(\tau\_{1,n}\\).*" >}}
+$$ \tag{18.10}
+\hat{\pi}\_{1,n}(\theta) =
+\begin{cases}
+   -\pi_{1,n}(\theta) &\text{if } \theta \in [0, \pi], \cr
+   \phantom{-}\pi_{1,n}(\theta) &\text{if } \theta \in (-\pi, 0), \cr
+\end{cases}
+\quad
+\hat{\tau}\_{1,n}(\theta) =
+\begin{cases}
+   -\tau_{1,n}(\theta) &\text{if } \theta \in [0, \pi], \cr
+   \phantom{-}\tau_{1,n}(\theta) &\text{if } \theta \in (-\pi, 0), \cr
+\end{cases}
+$$
 
-{{< figure src="/img/polar_pi.svg" caption="*Figure N: Polar functions \\(\mp \pi\_{1,n}\\) of order n=0 (blue), n=1 (orange), n=2 (green). Dashed plots correspond to \\(\pi\_{1,n}\\)*" >}}
+that adequately illustrate the angular behavior of Equation 18.5. Their plots are shown below.
 
-Equation 18.5 contains a sum of the polar functions. The plots demonstrate that their greatest overlap is along the forward direction \\(\theta = 0\\). Thus, as the particle size increases and we accumulate more terms, we should expect forward scattering to become a dominant effect. [Evgenii: remember to write about the diffraction interpretation later.]
+{{< figure src="/img/polar_tau.svg" caption="*Figure N: Extended polar functions \\(\hat{\tau}\_{1,n}\\) of order n=0 (blue), n=1 (orange), n=2 (green). Dashed lines indicate negative values.*" >}}
 
-The explicit form of the polar functions given by Equation 18.7 leads to a physical interpretation of the first few partial waves.
+{{< figure src="/img/polar_pi.svg" caption="*Figure N: Extended polar functions \\(\hat{\pi}\_{1,n}\\) of order n=0 (blue), n=1 (orange), n=2 (green). Dashed lines indicate negative values.*" >}}
 
-First, we consider the electric waves by setting \\(a_n' = 0\\) in Equation 18.5. Then, the matrix representation of the first electric wave (given by the first line of Equation 18.7) performs a rotation of the *components* of the incident electric field \\([E_x(\phi), E_y(\phi)]^T\\) about the \\(y\\)-axis using Equation 15.13; effectively, we just reinterpret the incident field in a new frame of reference by making a transformation from the Cartesian \\(\lbrace x,y,z \rbrace\\) to the spherical \\(\lbrace r, \theta, \phi \rbrace\\) coordinates (such that \\(\bm{e_y} = \bm{e_{\phi}}\\)).
+Care must be taken when interpreting these plots. Typically, if the value of a function is negative, it is plotted with a positive magnitude in the opposite direction. This can be misleading. Instead, we simply utilize dashed lines for negative values (plotted in the original direction).
 
-Thus, once we eliminate the radial component, the incident and the scattered electric field vectors become completely aligned. Furthermore, according to Equation 18.5, both remaining (tangential) components propagate as scalar spherical waves. These are the key features of the far field of an *electric dipole*, something we have already encountered in Equation 13.5.
+Now, Equation 18.5 contains a sum of the (negated) polar functions. Their plots demonstrate that the largest amount of overlap occurs along the horizontal axis. Yet, we must also account for the sign of the functions involved. In this sense, the forward direction is unique, because only when \\(\theta = 0\\) are the values of all functions positive. Thus, as the particle size increases and we accumulate more terms, we should expect forward scattering to become a dominant effect.
 
-Once the size of the particle approaches or exceeds the wavelength in the interior of the sphere, then the atoms no longer oscillate in-phase (for two different reasons! elaborate) because they are too far apart \[[5](#references) (vol. I, ch. 32.5)\]; this renders the single dipole approximation insufficient. One approach, something that we have already explored in Equation 13.12, consists of taking an integral over the volume of the particle filled with dipoles. Alternatively, as shown by the Lorenz-Mie-Debye formula, one may perform [multipole expansion](https://en.wikipedia.org/wiki/Multipole_expansion) instead.
+[Evgenii: remember to write about the diffraction interpretation later.]
+
+The explicit forms of the polar functions (and their plots) allow us to determine the *apparent* distributions of charges that correspond to the first few partial waves.
+
+First, let us consider the electric waves by setting \\(a_n' = 0\\) in Equation 18.5. Then, according to Equation 15.13, the scattering matrix of the first electric wave (given by the first line of Equation 18.8) performs a *rotation* of the coordinate axes -- one that allows for *reinterpretation* of the components of incident electric field \\([E_x(\phi), E_y(\phi), 0]^T\\) in spherical coordinates -- followed by a projection onto the tangent plane of a sphere that discards the radial component of the field.
+
+Another way of saying this is that the tangential component of the incident electric field is parallel to the scattered field of the first electric wave. Furthermore, Equation 18.5 shows that the components of the scattered field propagate as scalar spherical wave. These are the key features of the far field of an *electric dipole*, something we have already encountered in Equation 13.5.
+
+Once the size of the particle approaches (or exceeds) the wavelength measured in the interior of the sphere, its atoms no longer oscillate in-phase because they are too far apart \[[5](#references) (vol. I, ch. 32.4)\]. This renders the single dipole approximation insufficient, and thus requires a more general description of the scatterer. One approach, something that we have already explored in Equation 13.12, consists of taking an integral over the volume of the particle filled with dipoles. However, that's not how the Lorenz-Mie-Debye formula works; it should be interpreted as a [multipole expansion](https://en.wikipedia.org/wiki/Multipole_expansion) instead.
+
+Let us see how it works. Imagine a particle in the radiation zone. Since the particle is so small (or so far away), it appears point-like to us. However, a single point charge, due to its symmetry, is not able to produce radiation that is transverse. Thus, we should reimagine the small particle in question as a tiny disk instead.
+
+How should we orient this disk with respect to the incident wave? If the disk contains electric charges, the electromagnetic force (given by Equation 2.3) will push them the direction of the electric field vector. Since the latter is transverse, unless the disk is perpendicular to the direction of propagation of the incident wave, the charges will not oscillate in the plane of the disk.
+
+Suppose that the disk contains a pair of oscillating charges of opposite sign -- a time-harmonic dipole. In the radiation zone, we can obtain its scattered field by projecting the incident field  onto the tangent plane of a sphere centered at the dipole.
 
 \[[6](#references) (ch 14.5)\]
 
