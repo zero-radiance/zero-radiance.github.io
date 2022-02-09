@@ -6129,19 +6129,27 @@ Now, Equation 18.5 contains a sum of the (negated) polar functions. Their plots 
 
 [Evgenii: remember to write about the diffraction interpretation later.]
 
-The explicit forms of the polar functions (and their plots) allow us to determine the *apparent* distributions of charges that correspond to the first few partial waves.
+The explicit expressions of the polar functions (and their plots) allow us to determine the *apparent* charge configurations responsible for the first few partial waves.
 
-First, let us consider the electric waves by setting \\(a_n' = 0\\) in Equation 18.5. Then, according to Equation 15.13, the scattering matrix of the first electric wave (given by the first line of Equation 18.8) performs a *rotation* of the coordinate axes -- one that allows for *reinterpretation* of the components of incident electric field \\([E_x(\phi), E_y(\phi), 0]^T\\) in spherical coordinates -- followed by a projection onto the tangent plane of a sphere that discards the radial component of the field.
+First, let us consider the electric waves by setting \\(a_n' = 0\\) in Equation 18.5. Then, according to Equation 15.13, the scattering matrix of the first electric wave (given by the first line of Equation 18.8) performs a *rotation* of the coordinate axes -- one that corresponds to *reinterpretation* of the components of incident electric phasor \\([E_x(\phi), E_y(\phi), 0]^T\\) in spherical coordinates -- followed by a *projection* onto the tangent plane of a sphere; this results in the radial component of the scattered electric phasor being discarded.
 
-Another way of saying this is that the tangential component of the incident electric field is parallel to the scattered field of the first electric wave. Furthermore, Equation 18.5 shows that the components of the scattered field propagate as scalar spherical wave. These are the key features of the far field of an *electric dipole*, something we have already encountered in Equation 13.5.
+Another way of saying this is that the tangential component of the incident electric phasor is parallel to the scattered electric phasor of the first electric wave. Furthermore, Equation 18.5 shows that the components of the scattered field propagate as scalar spherical waves. These are the key features of the far field of an *electric dipole*, something we have already encountered in Equation 13.5.
 
-Once the size of the particle approaches (or exceeds) the wavelength measured in the interior of the sphere, its atoms no longer oscillate in-phase because they are too far apart \[[5](#references) (vol. I, ch. 32.4)\]. This renders the single dipole approximation insufficient, and thus requires a more general description of the scatterer. One approach, something that we have already explored in Equation 13.12, consists of taking an integral over the volume of the particle filled with dipoles. However, that's not how the Lorenz-Mie-Debye formula works; it should be interpreted as a [multipole expansion](https://en.wikipedia.org/wiki/Multipole_expansion) instead.
+Once the size of the particle begins to approach the wavelength of light (as measured in the interior of the sphere), the atoms no longer oscillate in-phase because they are too far apart \[[5](#references) (vol. I, ch. 32.4)\]. This renders the single dipole approximation insufficient, and therefore requires a more general description of the scatterer. One approach, something that we have already explored in Equation 13.12, consists of taking an integral over the volume of the particle filled with dipoles. However, that's not how the Lorenz-Mie-Debye formula works; it should be interpreted as a [multipole expansion](https://en.wikipedia.org/wiki/Multipole_expansion) instead.
 
-Let us see how it works. Imagine a particle in the radiation zone. Since the particle is so small (or so far away), it appears point-like to us. However, a single point charge, due to its symmetry, is not able to produce radiation that is transverse. Thus, we should reimagine the small particle in question as a tiny disk instead.
+Let us see how it works. Imagine a particle in the radiation zone. Since the particle is so small (or so far away), it appears point-like to us. However, a single point charge (a monopole), due to its symmetry, is not able to produce radiation that is transverse. Thus, we should reimagine the small particle in question as a tiny disk instead.
 
-How should we orient this disk with respect to the incident wave? If the disk contains electric charges, the electromagnetic force (given by Equation 2.3) will push them the direction of the electric field vector. Since the latter is transverse, unless the disk is perpendicular to the direction of propagation of the incident wave, the charges will not oscillate in the plane of the disk.
+How should we orient this disk with respect to the incident wave? If the disk contains electric charges, the electromagnetic force (given by Equation 2.3) will make them oscillate along the direction of the electric field. And since the latter is transverse, the charges will not oscillate in the plane of the disk unless the disk happens to be perpendicular (WRONG!) to the direction of propagation of the incident wave.
 
-Suppose that the disk contains a pair of oscillating charges of opposite sign -- a time-harmonic dipole. In the radiation zone, we can obtain its scattered field by projecting the incident field  onto the tangent plane of a sphere centered at the dipole.
+---
+
+To model reflection, rather than just a rotated dipole, we need a left/right tilt...
+
+---
+
+If the particle is very small -- such as an atom or a small molecule -- then perhaps modeling it as a pair of oscillating charges of opposite sign -- a time-harmonic electric dipole -- is sufficient. It can only vibrate along the electric field vector that drives it, and is characterized by vanishing \\(\theta\\)-component of the scattered electric field when the direction of observation lies in the plane of the disk. This can be clearly seen as two vertical dips in the graph of Figure N.
+
+If the particle is larger, its behavior gets more complicated, and we require more electric charges to model its scattering behavior. Thus we may add the second electric wave that corresponds to an [electric quadrupole](https://en.wikipedia.org/wiki/Quadrupole) that subdivides the perimeter of the disk into four (rather than two) segments terminated by charges of opposite sign.
 
 \[[6](#references) (ch 14.5)\]
 
