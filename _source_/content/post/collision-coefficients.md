@@ -6090,6 +6090,8 @@ $$ \tag{18.8}
 \end{aligned}
 $$
 
+Evidently, these polar functions are even.
+
 Since \\(\phi \in [0, 2 \pi]\\) in a spherical coordinate system, the values of the argument of the polar functions are limited to the range of \\(\theta \in [0, \pi]\\), which corresponds the upper half of a unit circle. Nevertheless, we are interested in the angular behavior of the scattered field for all possible directions which, when taken together, form the surface of a unit sphere. We could approach this problem by plotting the 2-dimensional spherical distributions found in Equation 18.5; however, they look fairly complicated, and it is much simpler to consider a slice of a unit sphere where either \\(\phi = 0\\) or \\(\phi = \pi\\).
 
 Guided by the fact that the polar functions are often negated, and using the relation
@@ -6101,7 +6103,7 @@ $$ \tag{18.9}
 \end{aligned}
 $$
 
-we define the extended polar functions
+we define the odd polar functions
 
 $$ \tag{18.10}
 \hat{\pi}\_{1,n}(\theta) =
@@ -6125,31 +6127,27 @@ that adequately illustrate the angular behavior of Equation 18.5. Their plots ar
 
 Care must be taken when interpreting these plots. Typically, if the value of a function is negative, it is plotted with a positive magnitude in the opposite direction. This can be misleading. Instead, we simply utilize dashed lines for negative values (plotted in the original direction).
 
-Now, Equation 18.5 contains a sum of the (negated) polar functions. Their plots demonstrate that the largest amount of overlap occurs along the horizontal axis. Yet, we must also account for the sign of the functions involved. In this sense, the forward direction is unique, because only when \\(\theta = 0\\) are the values of all functions positive. Thus, as the particle size increases and we accumulate more terms, we should expect forward scattering to become a dominant effect.
+Now, recall that Equation 18.5 contains a sum of the (negated) polar functions. Their plots demonstrate that the largest amount of overlap occurs along the horizontal axis. Yet, we must also account for the sign of the functions involved. In this sense, the forward direction is unique, because only when \\(\theta = 0\\) are the values of all functions positive. Thus, as the particle size increases and we accumulate more terms, we should expect forward scattering to become a dominant effect.
 
 [Evgenii: remember to write about the diffraction interpretation later.]
 
-The explicit expressions of the polar functions (and their plots) allow us to determine the *apparent* charge configurations responsible for the first few partial waves.
+We may also use the explicit expressions of the polar functions (and their plots) to determine the *apparent* charge configurations responsible for the first few partial waves.
 
-First, let us consider the electric waves by setting \\(a_n' = 0\\) in Equation 18.5. Then, according to Equation 15.13, the scattering matrix of the first electric wave (given by the first line of Equation 18.8) performs a *rotation* of the coordinate axes -- one that corresponds to *reinterpretation* of the components of incident electric phasor \\([E_x(\phi), E_y(\phi), 0]^T\\) in spherical coordinates -- followed by a *projection* onto the tangent plane of a sphere; this results in the radial component of the scattered electric phasor being discarded.
+First, let us consider the electric partial waves by setting \\(a_n' = 0\\) in Equation 18.5. Then, according to Equation 15.13, the scattering matrix of the first electric partial wave (given by the first line of Equation 18.8) performs a *rotation* of the coordinate axes -- one that corresponds to *reinterpretation* of the components of the incident electric phasor \\([E_x(\phi), E_y(\phi), 0]^T\\) in spherical coordinates -- followed by a *projection* onto the tangent plane of a sphere; this results in the radial component of the phasor being discarded.
 
-Another way of saying this is that the tangential component of the incident electric phasor is parallel to the scattered electric phasor of the first electric wave. Furthermore, Equation 18.5 shows that the components of the scattered field propagate as scalar spherical waves. These are the key features of the far field of an *electric dipole*, something we have already encountered in Equation 13.5.
+Another way of saying this is that the *tangential component* of the incident electric phasor is parallel to the scattered electric phasor of the first electric partial wave. Furthermore, Equation 18.5 indicates that the components of the scattered field propagate as scalar spherical waves. These are the key features of the far field of an *electric dipole*, something we have already encountered in Equation 13.5.
 
-Once the size of the particle begins to approach the wavelength of light (as measured in the interior of the sphere), the atoms no longer oscillate in-phase because they are too far apart \[[5](#references) (vol. I, ch. 32.4)\]. This renders the single dipole approximation insufficient, and therefore requires a more general description of the scatterer. One approach, something that we have already explored in Equation 13.12, consists of taking an integral over the volume of the particle filled with dipoles. However, that's not how the Lorenz-Mie-Debye formula works; it should be interpreted as a [multipole expansion](https://en.wikipedia.org/wiki/Multipole_expansion) instead.
+Once the size of the particle begins to approach the wavelength of light (as measured in the interior of the sphere), the atoms no longer oscillate in-phase because they are too far apart \[[5](#references) (vol. I, ch. 32.4)\]. This renders the single dipole approximation insufficient, and therefore requires a more general description of the scatterer. One approach, something that we have already explored in Equation 13.12, consists of taking an integral over the volume of the particle filled with dipoles. However, that's not how the Lorenz-Mie-Debye formula works; it may be interpreted as a [multipole expansion](https://en.wikipedia.org/wiki/Multipole_expansion) instead.
 
 Let us see how it works. Imagine a particle in the radiation zone. Since the particle is so small (or so far away), it appears point-like to us. However, a single point charge (a monopole), due to its symmetry, is not able to produce radiation that is transverse. Thus, we should reimagine the small particle in question as a tiny disk instead.
 
-How should we orient this disk with respect to the incident wave? If the disk contains electric charges, the electromagnetic force (given by Equation 2.3) will make them oscillate along the direction of the electric field. And since the latter is transverse, the charges will not oscillate in the plane of the disk unless the disk happens to be perpendicular (WRONG!) to the direction of propagation of the incident wave.
+How should we orient this disk with respect to the incident wave? Since the axis of an electric dipole is aligned with the electric field vector, the disk must contain the latter. Then, by symmetry, we have two remaining options for the orientation: either transverse or along the direction of propagation. The first option allows us to rotate the dipole around the axis of the incident beam, but this can be also accomplished by using a complex coefficient in front of the dipole term. The second option is much more versatile, since it allows us to imagine sources of scattered radiation at arbitrary polar angles with respect to the incident beam.
 
----
+We begin the multipole expansion process by splitting the perimeter of the disk into two segments using a pair of charges of opposite sign. They represent the dipole term. Projection makes the \\(\theta\\)-component of its far field vanish along the axis of the dipole; this can be clearly seen as two vertical dips in the blue graph of Figure N.
 
-To model reflection, rather than just a rotated dipole, we need a left/right tilt...
+If the particle is larger, its behavior gets more complicated, and we require more electric charges to model its scattering behavior. Thus we may add the second electric partial wave that corresponds to an [electric quadrupole](https://en.wikipedia.org/wiki/Quadrupole) that subdivides the perimeter of the disk into four segments terminated by two pairs of charges of opposite sign. In the standard orientation, the pattern resembles the vertices of an axis-aligned square; this explains why both the zeros and the lobes of the orange graph of Figure 4 are rotated by 45 degrees. In addition, since the charges on the diagonal have the same sign, so do the values of the function on the graph.
 
----
-
-If the particle is very small -- such as an atom or a small molecule -- then perhaps modeling it as a pair of oscillating charges of opposite sign -- a time-harmonic electric dipole -- is sufficient. It can only vibrate along the electric field vector that drives it, and is characterized by vanishing \\(\theta\\)-component of the scattered electric field when the direction of observation lies in the plane of the disk. This can be clearly seen as two vertical dips in the graph of Figure N.
-
-If the particle is larger, its behavior gets more complicated, and we require more electric charges to model its scattering behavior. Thus we may add the second electric wave that corresponds to an [electric quadrupole](https://en.wikipedia.org/wiki/Quadrupole) that subdivides the perimeter of the disk into four (rather than two) segments terminated by charges of opposite sign.
+We can continue the subdivision process by using three pairs of charges of opposite sign, obtaining a *sextupole* that corresponds to the third electric partial wave. Naturally, its graph (in green) has six zeros and six lobes.
 
 \[[6](#references) (ch 14.5)\]
 
