@@ -5898,7 +5898,7 @@ $$
 
 Note that the numerators of Equations 17.157.1 and 17.157.2 are the same, while the denominators match Equations 17.156.1 and 17.156.2, respectively. Thus, the fields are, in this sense, proportional to each other.
 
-Now, recall the transformation of the expression of the incident field (Equations 17.133-17.137), where we introduced the even and off vector spherical functions. Since the expansion coefficients of the scattered and the internal fields differ from those of the incident field only by a multiplicative factor, it's easy to see that the overall structure of the expression remains the same; novel expressions, such as that of the scattered field, can be obtained by attaching the corresponding factors to the spherical wave function vectors:
+Now, recall the transformation of the expression of the incident field (Equations 17.133-17.137), where we introduced the even and off vector spherical functions. Since the expansion coefficients of the scattered and the internal fields differ from those of the incident field only by a multiplicative factor, it is easy to see that the overall structure of the expression remains the same; novel expressions, such as that of the scattered field, can be obtained by attaching the corresponding factors to the spherical wave function vectors:
 
 $$ \tag{17.158}
 \begin{aligned}
@@ -5940,7 +5940,7 @@ These functions have radically different behavior, yet correctly guessing the fu
 
 The problem is exacerbated by the convergence properties of the series. It was shown by Debye (1909) that, for points in the radiation zone, the asymptotic expression (for large \\(x\\)) of the scattered field  requires on the order of \\(n \backsim x\\) terms; this number can reach \\(x = k a = 2 \pi (3 \text{ mm} / 380 \text{ nm}) \approx 49600 \\) for large rain drops illuminated by visible light, making the computation impractical.
 
-The most straightforward interpretation of Equations 17.158 and 17.159 treats the individual terms as *partial waves*. If we examine the definition of the vector tesseral harmonics given by Equation 17.136, we may note that \\(\bm{N\_{m,n}}\\) has a radial component, while \\(\bm{M\_{m,n}}\\) does not. Since an electric charge is a source of a radially-symmetric electric field, we may interpret the existence of the radial component of \\(b_n' \bm{N\_{m,n}}\\) as a sign of the fact that the sphere contains a distribution of electric charges; therefore, the partial waves prefixed with \\(b_n'\\) are said to be of the *electric type*. In comparison (c.f. Equation 17.36-17.37), the expression of the magnetic field has the coefficients \\(a_n'\\) and \\(b_n'\\) interchanged; similar logical steps lead to the conclusion that the partial waves prefixed with \\(a_n'\\) are of the *magnetic type* \[[17](#references) (ch 9.22)\].
+The most straightforward interpretation of Equations 17.158 and 17.159 treats the individual terms as *partial waves*. If we examine the definition of the vector tesseral harmonics given by Equation 17.136, we may note that \\(\bm{N\_{m,n}}\\) has a radial component, while \\(\bm{M\_{m,n}}\\) does not. Since an electric charge is a source of a radially-symmetric electric field, we may interpret the existence of the radial component of \\(\bm{N\_{m,n}}\\) as a sign of the fact that the sphere contains a distribution of electric charges; therefore, the partial waves prefixed with \\(b_n'\\) are said to be of the *electric type*. At the same time, in comparison to Equation 17.36 of the electric field, Equation 17.37 of the magnetic field has the coefficients \\(a_n'\\) and \\(b_n'\\) interchanged; similar logical steps lead to the conclusion that the partial waves prefixed with \\(a_n'\\) are of the *magnetic type* \[[17](#references) (ch 9.22)\].
 
 We may also show that the field becomes transverse in the radiation zone (see Equation 13.14 for the general case). Using the asymptotic expressions of the spherical Bessel functions given by Equation 17.52, for large \\(x\\), the corresponding Riccati-Bessel functions (and their derivatives) take the form
 
@@ -5985,7 +5985,7 @@ $$ \tag{18.3}
 \end{aligned}
 $$
 
-These vectors are mutually orthogonal to each other. Hence, in the radiation zone, partial waves of the electric type are sometimes called *transverse magnetic modes*, and those of the magnetic type are referred to as *transverse electric modes*.
+Furthermore, these vectors are mutually orthogonal to each other. Hence, in the radiation zone, partial waves of the electric type are sometimes called *transverse magnetic modes*, and those of the magnetic type are referred to as *transverse electric modes*.
 
 Substitution into Equation 17.158 produces a convenient asymptotic expansion of the scattered field:
 
@@ -6002,7 +6002,7 @@ $$ \tag{18.4}
 \end{aligned}
 $$
 
-The explicit coordinate representation is more revealing:
+Its explicit coordinate representation is more revealing:
 
 $$ \tag{18.5}
 \begin{aligned}
@@ -6059,9 +6059,9 @@ $$ \tag{18.6}
 	\end{bmatrix}.
 $$
 
-It is both diagonal and independent of the azimuthal angle \\(\phi\\). This is consistent with the general scattering theory of spherical particles which we have briefly encountered in Section 15.
+It is both diagonal and independent of the azimuthal angle \\(\phi\\). This is consistent with the predictions of the general scattering theory of spherical particles of Section 15.
 
-We can study the angular dependence of the scattering matrix by analyzing the polar functions \\(\pi_{1,n}\\) and \\(\tau_{1,n}\\) defined in Equation 17.68. Using Equations 17.54 and 17.55, it can be shown that the polar functions satisfy the recurrence relations
+We can study the angular dependence of the scattering matrix by analyzing the polar functions \\(\pi_{1,n}\\) and \\(\tau_{1,n}\\) defined in Equation 17.68. Using the definition of the associated Legendre polynomials (Equations 17.54 and 17.55), it can be shown that the polar functions satisfy the recurrence relations
 
 $$ \tag{18.7}
 \begin{aligned}
@@ -6073,9 +6073,9 @@ $$ \tag{18.7}
 \end{aligned}
 $$
 
-This property is particularly useful for iterative evaluation of series such as the one given by Equation 18.6.
+This property is particularly useful for iterative evaluation of series, such as the one given by Equation 18.6.
 
-The explicit form of the first three of these functions is:
+The explicit form of the first three of these functions is
 
 $$ \tag{18.8}
 \begin{aligned}
@@ -6090,9 +6090,9 @@ $$ \tag{18.8}
 \end{aligned}
 $$
 
-Evidently, these polar functions are even.
+Evidently, the polar functions are even.
 
-Since \\(\phi \in [0, 2 \pi]\\) in a spherical coordinate system, the values of the argument of the polar functions are limited to the range of \\(\theta \in [0, \pi]\\), which corresponds the upper half of a unit circle. Nevertheless, we are interested in the angular behavior of the scattered field for all possible directions which, when taken together, form the surface of a unit sphere. We could approach this problem by plotting the 2-dimensional spherical distributions found in Equation 18.5; however, they look fairly complicated, and it is much simpler to consider a slice of a unit sphere where either \\(\phi = 0\\) or \\(\phi = \pi\\).
+Since \\(\phi \in [0, 2 \pi)\\) in a spherical coordinate system, the values of the argument of the polar functions are limited to the range of \\(\theta \in [0, \pi]\\), which corresponds to the upper half of a circle. Nevertheless, we are interested in the angular behavior of the scattered field for all possible directions of observation which, when taken together, form the surface of a unit sphere. We could approach this problem by plotting the 2-dimensional spherical distributions found in Equation 18.5; however, the resulting plots are fairly complicated, and it is much simpler to consider a slice of a unit sphere formed by two semicircles with \\(\phi = 0\\) and \\(\phi = \pi\\).
 
 Guided by the fact that the polar functions are often negated, and using the relation
 
@@ -6103,7 +6103,7 @@ $$ \tag{18.9}
 \end{aligned}
 $$
 
-we define the odd polar functions
+that follows from Equation 18.5, we can define the odd polar functions
 
 $$ \tag{18.10}
 \hat{\pi}\_{1,n}(\theta) =
@@ -6125,31 +6125,48 @@ that adequately illustrate the angular behavior of Equation 18.5. Their plots ar
 
 {{< figure src="/img/polar_pi.svg" caption="*Figure N: Extended polar functions \\(\hat{\pi}\_{1,n}\\) of order n=0 (blue), n=1 (orange), n=2 (green). Dashed lines indicate negative values.*" >}}
 
-Care must be taken when interpreting these plots. Typically, if the value of a function is negative, it is plotted with a positive magnitude in the opposite direction. This can be misleading. Instead, we simply utilize dashed lines for negative values (plotted in the original direction).
+Care must be taken when interpreting these plots. Typically, if the value of a function is negative, it is plotted with a positive magnitude in the opposite direction. Such visualizations can be misleading. Instead, we simply utilize dashed lines for negative values (plotted in the original direction).
 
-Now, recall that Equation 18.5 contains a sum of the (negated) polar functions. Their plots demonstrate that the largest amount of overlap occurs along the horizontal axis. Yet, we must also account for the sign of the functions involved. In this sense, the forward direction is unique, because only when \\(\theta = 0\\) are the values of all functions positive. Thus, as the particle size increases and we accumulate more terms, we should expect forward scattering to become a dominant effect.
+Now, recall that Equation 18.5 contains a sum of the (negated) polar functions. Evidently, their plots show the largest amount of overlap along the horizontal axis. Yet, we must also account for the sign of the functions involved. In this sense, the forward direction is unique, because only when \\(\theta = 0\\) are the values of all functions positive. Thus, as the particle size increases and we accumulate more terms, we should expect forward scattering to become a dominant effect.
 
 [Evgenii: remember to write about the diffraction interpretation later.]
 
-We may also use the explicit expressions of the polar functions (and their plots) to determine the *apparent* charge configurations responsible for the first few partial waves.
+The explicit expressions of the polar functions (and their plots) also allow us to determine the *apparent* charge configurations responsible for the first few partial waves.
 
 First, let us consider the electric partial waves by setting \\(a_n' = 0\\) in Equation 18.5. Then, according to Equation 15.13, the scattering matrix of the first electric partial wave (given by the first line of Equation 18.8) performs a *rotation* of the coordinate axes -- one that corresponds to *reinterpretation* of the components of the incident electric phasor \\([E_x(\phi), E_y(\phi), 0]^T\\) in spherical coordinates -- followed by a *projection* onto the tangent plane of a sphere; this results in the radial component of the phasor being discarded.
 
-Another way of saying this is that the *tangential component* of the incident electric phasor is parallel to the scattered electric phasor of the first electric partial wave. Furthermore, Equation 18.5 indicates that the components of the scattered field propagate as spherical waves. These are the key features of the far field of an *electric dipole*, something we have already encountered in Equation 13.5.
+Another way of saying this is that the *tangential component* of the incident electric field is parallel to the scattered electric field of the first electric partial wave. Furthermore, Equation 18.5 indicates that the components of the scattered field propagate as spherical waves. These are key features of the far field of an *electric dipole*, a concept we have previously encountered in Section 13.
 
-Once the size of the particle begins to approach the wavelength of light (as measured in the interior of the sphere), the atoms no longer oscillate in-phase because they are too far apart \[[5](#references) (vol. I, ch. 32.4)\]. This renders the dipole approximation insufficient, and therefore requires a more general description of the scatterer. One approach, something that we have already explored in Equation 13.12, consists of taking an integral over the volume of the particle filled with dipoles. However, that's not how the Lorenz-Mie-Debye formula works; it may be interpreted as a [multipole expansion](https://en.wikipedia.org/wiki/Multipole_expansion) instead.
+Once the size of the particle begins to approach the wavelength of light (as measured in the interior of the sphere), the atoms no longer oscillate in-phase because they are too far apart \[[5](#references) (vol. I, ch. 32.4)\]. This renders the dipole approximation insufficient, and therefore requires a more general description of the scatterer. One approach, something that we have already explored in Equation 13.12, consists of taking an integral over the volume of the particle filled with dipoles. However, that is not how the Lorenz-Mie-Debye formula works; we may interpret it as a [multipole expansion](https://en.wikipedia.org/wiki/Multipole_expansion) instead.
 
 Let us see how it works. Imagine a particle in the radiation zone. Since the particle is so small (or so far away), it appears point-like to us. However, a single point charge (a monopole), due to its symmetry, is not able to produce radiation that is transverse. Thus, we should reimagine the small particle in question as a tiny disk instead.
 
-How should we orient this disk with respect to the incident wave? Since the axis of a dipole is aligned with the vector of the incident field, the disk must contain the latter. Then, by symmetry, we have two remaining options for the orientation: either transverse or along the direction of propagation of the incident wave. The first option allows us to rotate the dipole around the axis of the incident beam, but this can be also accomplished by using a complex coefficient in front of the dipole term. The second option is much more versatile, since it allows us to imagine sources of scattered radiation at arbitrary polar angles with respect to the direction of incidence.
+How should we orient this disk with respect to the incident wave? Since the axis of a dipole is aligned with the vector of the incident field, the disk must contain the latter. Then, by symmetry, we have two remaining options for the orientation: either across or along the direction of propagation of the incident wave. While the first option allows us to rotate the dipole around the axis of the incident beam, this can also be accomplished by using a complex coefficient in front of the dipole term. The second option is much more versatile, since it allows us to imagine sources of scattered radiation at arbitrary (polar) angles with respect to the direction of incidence.
 
-The multipole expansion process consists of splitting the perimeter of the disk into segments terminated by pairs of charges of opposite sign. A single pair rotated by 90 degrees represents the dipole term. The \\(\theta\\)-component of its far field is split into two lobes separated by the plane that contains the dipole and is oriented transversely with respect to the direction of incidence. In this plane, projection makes the \\(\theta\\)-component of the far field vanish. This can be clearly seen as two vertical dips in the blue graph of Figure N.
+The multipole expansion process consists of splitting the perimeter of the disk into segments terminated by pairs of charges of opposite sign. A single pair rotated by 90 degrees represents the dipole term. The \\(\theta\\)-component of its far field is split into two lobes separated by the plane oriented transversely with respect to the direction of incidence. In this plane, projection of the field vector makes the \\(\theta\\)-component of the far field vanish. This can be clearly seen as two vertical dips in the blue graph of Figure N.
 
-If the particle is larger, its behavior gets more complicated, and we require more electric charges to model its scattering behavior. Thus we may add the second partial wave -- the [quadrupole](https://en.wikipedia.org/wiki/Quadrupole) term -- by subdividing the perimeter of the disk into four segments. In the standard orientation, the pattern formed by the charges resembles the vertices of an axis-aligned square; this explains why both the zeros of the orange graph of Figure 4 are rotated by 45 degrees. In addition, since the charges on the diagonal have the same sign, so do the values of the function on the graph.
+If the particle is larger, we may require a greater number of electric charges to model its scattering behavior. Thus, we may add the second partial wave -- the [quadrupole](https://en.wikipedia.org/wiki/Quadrupole) term -- by subdividing the perimeter of the disk into four segments. In the standard orientation, the pattern formed by the charges resembles the vertices of an axis-aligned square; this explains why both the zeros of the orange graph of Figure 4 are rotated by 45 degrees.
 
-We can continue the subdivision process by using three pairs of charges of opposite sign rotated by 30 degrees, obtaining a *sextupole* that corresponds to the third partial wave. Naturally, its graph (in green) has six zeros and six lobes. Additional terms can be obtained in the same way.
+We can continue the subdivision process by using three pairs of charges of opposite sign rotated by 30 degrees, forming a *sextupole* that generates the third partial wave. Naturally, its graph (in green) has six zeros and six lobes. Higher order terms can be obtained in a similar manner.
 
-So far, we have specifically focused on the *electric* partial waves of the form \\(b_n' \bm{N\_{m,n}}\\) that are generated by accelerating *electric* charges. But, in fact, the *magnetic* partial waves of the form \\(a_n' \bm{M\_{m,n}}\\) have a similar (dual) underlying mechanism, except that the source charges are *magnetic*. As Equations 17.36-17.37 show, an oscillating electric field of a magnetic wave corresponds to a curling magnetic field, and the latter is one of the defining features of a *magnetic multipole*. This correspondence is nicely illustrated by Mie in his original paper \[[6](#references) (ch 14.5)\].
+[Insert an illustraction of dipole/quadrupole/sextupole here]
+
+So far, we have specifically focused on *electric* partial waves of the form \\( \sum\_{m} b\_{m,n}' \bm{N\_{m,n}^{(3)}} \\) that are generated by oscillating *electric* charges. However, examination of Equation 17.37 shows that \\( \sum\_{m} a\_{m,n}' \bm{N\_{m,n}^{(3)}} \\) is a *magnetic* field that exhibits a pattern similar to the corresponding electric partial wave (up to rotation and scale). Thus, we may propose a similar explanation in terms of *magnetic* charges of opposite polarity (or, equivalently, loops of circulating current), which makes \\( \sum\_{m} a\_{m,n}' \bm{N\_{m,n}^{(3)}} \\) the magnetic field of a *magnetic multipole*.
+
+In order to show its connection to the *magnetic* partial wave \\( \sum\_{m} a\_{m,n}' \bm{M\_{m,n}^{(3)}} \\), return to Equation 17.36, set \\(b_n' = 0\\), then take its curl (as shown by Equation 3.12) and examine the result:
+
+$$ \tag{18.11}
+\begin{aligned}
+	\frac{1}{i \omega} \nabla \times \bm{E'}
+	= \frac{1}{i \omega} \nabla \times \bigg( \sum\_{m} a_{m,n}' \bm{M_{m,n}^{(3)}} \bigg)
+	= \frac{k}{i \omega} \sum\_{m} a_{m,n}' \bm{N_{m,n}^{(3)}}
+	= \bm{B'}.
+\end{aligned}
+$$
+
+Equation 18.11 shows that the magnetic partial wave corresponds to the electric field of a magnetic multipole. Since the curl of this electric field is the magnetic field of a magnetic multipole, the electric field must circulate. This is nicely illustrated by Mie in his original paper \[[6](#references) (ch 14.5)\].
+
+Electric *multipole* partial wave and magnetic *multipole* partial wave.
 
 {{< figure src="/img/partial_waves.png" caption="*Figure N: the first three partial waves.*" >}}
 
