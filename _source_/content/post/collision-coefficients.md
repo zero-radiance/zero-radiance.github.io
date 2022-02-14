@@ -5896,7 +5896,7 @@ $$ \tag{17.157}
 \end{aligned}
 $$
 
-Note that the numerators of Equations 17.157.1 and 17.157.2 are the same, while the denominators match Equations 17.156.1 and 17.156.2, respectively. Thus, the fields are, in this sense, proportional to each other.
+Note that the numerators of Equations 17.157.1 and 17.157.2 are the same. Thus, if their denominators vary slowly, \\(a_{n}''\\) and \\(b_{n}''\\) change at the same rate. In addition, the denominators of Equations 17.156.1 and 17.156.2 match those of Equations 17.157.1 and 17.157.2, respectively. Therefore, we should expect the peaks of \\(a_{n}'\\) and \\(a_{n}''\\) (or \\(b_{n}'\\) and \\(b_{n}''\\)) to be co-located in the same region of the \\(m\text{-}x\\) domain.
 
 Now, recall the transformation of the expression of the incident field (Equations 17.133-17.137), where we introduced the even and off vector spherical functions. Since the expansion coefficients of the scattered and the internal fields differ from those of the incident field only by a multiplicative factor, it is easy to see that the overall structure of the expression remains the same; novel expressions, such as that of the scattered field, can be obtained by attaching the corresponding factors to the spherical wave function vectors:
 
@@ -5940,16 +5940,18 @@ These functions have radically different behavior, yet correctly guessing the fu
 
 The problem is exacerbated by the convergence properties of the series. It was shown by Debye (1909) that, for points in the radiation zone, the asymptotic expression (for large \\(x\\)) of the scattered field  requires on the order of \\(n \backsim x\\) terms; this number can reach \\(x = k a = 2 \pi (3 \text{ mm} / 380 \text{ nm}) \approx 49600 \\) for large rain drops illuminated by visible light, making the computation impractical.
 
-The most straightforward interpretation of Equations 17.158 and 17.159 treats the individual terms as *partial waves*. If we examine the definition of the vector tesseral harmonics given by Equation 17.136, we may note that \\(\bm{N\_{m,n}}\\) has a radial component, while \\(\bm{M\_{m,n}}\\) does not. Since an electric charge is a source of a radially-symmetric electric field, we may interpret the existence of the radial component of \\(\bm{N\_{m,n}}\\) as a sign of the fact that the sphere contains a distribution of electric charges; therefore, the partial waves prefixed with \\(b_n'\\) are said to be of the *electric type*. At the same time, in comparison to Equation 17.36 of the electric field, Equation 17.37 of the magnetic field has the coefficients \\(a_n'\\) and \\(b_n'\\) interchanged; similar logical steps lead to the conclusion that the partial waves prefixed with \\(a_n'\\) are of the *magnetic type* \[[17](#references) (ch 9.22)\].
+#### Partial Waves
+
+The most straightforward interpretation of Equations 17.158 and 17.159 treats the individual terms as *partial waves*. If we examine the definition of the vector tesseral harmonics given by Equation 17.136, we may note that \\(\bm{N\_{m,n}}\\) has a radial component, while \\(\bm{M\_{m,n}}\\) does not. Since an electric charge is a source of a radially-symmetric electric field, we may interpret the existence of the radial component of \\(\bm{N\_{m,n}}\\) as a sign of the fact that the sphere contains a distribution of electric charges; therefore, the partial waves prefixed with \\(b_n\\) are said to be of the *electric type*. At the same time, in comparison to Equation 17.36 of the electric field, Equation 17.37 of the magnetic field has the coefficients \\(a_n\\) and \\(b_n\\) interchanged; similar logical steps lead to the conclusion that the partial waves prefixed with \\(a_n\\) are of the *magnetic type* \[[17](#references) (ch 9.22)\].
 
 We may also show that the field becomes transverse in the radiation zone (see Equation 13.14 for the case of a scattering object of an arbitrary shape). Using the asymptotic expressions of the spherical Bessel functions given by Equation 17.52, for large \\(x\\), the corresponding Riccati-Bessel functions (and their derivatives) take the form
 
 $$ \tag{18.2}
 \begin{aligned}
-	& \psi_n(x) \backsimeq \sin\Big( x - \frac{n}{2} \pi \Big), &
+	& \psi_n(x) \backsimeq \sin\negmedspace\Big( x - \frac{n}{2} \pi \Big), &
 	& \xi_n(x) \backsimeq i^{-n-1} e^{i x},
 	\cr
-	& \psi_n'(x) \backsimeq \cos\Big( x - \frac{n}{2} \pi \Big), &
+	& \psi_n'(x) \backsimeq \cos\negmedspace\Big( x - \frac{n}{2} \pi \Big), &
 	& \xi_n'(x) \backsimeq i^{-n} e^{i x}.
 \end{aligned}
 $$
@@ -6149,13 +6151,32 @@ In order to show its connection to the *magnetic* partial wave \\( \sum\_{m} a\_
 $$ \tag{18.11}
 \begin{aligned}
 	\frac{1}{i \omega} \nabla \times \bm{E'}
-	= \frac{1}{i \omega} \nabla \times \bigg( \sum\_{m} a_{m,n}' \bm{M_{m,n}^{(3)}} \bigg)
-	= \frac{k}{i \omega} \sum\_{m} a_{m,n}' \bm{N_{m,n}^{(3)}}
+	= \frac{1}{i \omega} \nabla \times \sum\_{m} a_{m,n}' \bm{M_{m,n}^{(3)}} = \frac{k}{i \omega} \sum\_{m} a_{m,n}' \bm{N_{m,n}^{(3)}}
 	= \bm{B'}.
 \end{aligned}
 $$
 
 Equation 18.11 shows that a *magnetic* partial wave is the electric field of a *magnetic* multipole. Since the curl of this electric field is the magnetic field of a magnetic multipole, the electric field must circulate. This is nicely illustrated by Mie in his original paper \[Mie 1908\].
+
+#### Resonance
+
+Since a sphere is a body bounded by a closed surface, its interior can sustain a certain number of standing waves, also known as [normal modes](https://en.wikipedia.org/wiki/Normal_mode) \[[5](#references) (vol. I, ch. 49)\]. These waves oscillate at [natural frequencies](https://en.wikipedia.org/wiki/Natural_frequency) that depend on the size and the composition of the particle. It can be shown that they form a discrete set \[[17](#references) (ch 9.22)\].
+
+The natural frequencies \\(\omega\_n\\) of the magnetic modes can be determined by setting the denominator of Equation 17.156.1 (or Equation 17.156.2 for the electric modes) to zero and solving the resulting transcendental equation for \\(x_n = x\\); the latter can then be related to the former using Equations 7.6 and 7.7:
+
+$$ \tag{18.12}
+\begin{aligned}
+	x_n^2 &= k^2(\omega) a^2 = \Big( \omega_n^2 \epsilon(\omega) + i \omega_n \sigma(\omega) \Big) \mu(\omega) a^2,
+	\cr
+	\omega_n &= \sqrt{\frac{x_n^2}{a^2 \epsilon(\omega) \mu(\omega)} - \frac{\sigma^2(\omega)}{4 \epsilon^2(\omega)}} - i \frac{\sigma(\omega)}{2 \epsilon(\omega)}.
+\end{aligned}
+$$
+
+The resulting natural frequencies are complex. This implies that, no matter what the frequency of the incident wave is, the amplitudes of the scattered and the internal fields remain finite. Nevertheless, certain frequencies may reduce the value of the denominator to a very small value, producing a spike in the plot of the expansion coefficient; this phenomenon is called [resonance](https://en.wikipedia.org/wiki/Resonance) \[[5](#references) (vol. I, ch. 23)\].
+
+Let us now take a closer look at the expressions of the expansion coefficients given by Equations 17.156 and 17.157.
+
+|x| << 1, |m x| << 1 (Born & Wolf)
 
 ---
 
