@@ -2053,7 +2053,7 @@ On the other hand, the electric dipole moment per unit volume \\(\bm{P}\\) is po
 
 $$ \tag{10.18}
 	\bm{p}(V, t) = \int\_{V} \bm{P}(\bm{r}, t) dV,
-	\qquad
+	\quad
 	\bm{p}(V, \omega) = \int\_{V} \bm{P}(\bm{r}, \omega) dV.
 $$
 
@@ -2061,7 +2061,7 @@ This expression is useful, since we can directly relate it to the definition of 
 
 $$ \tag{10.19}
 	\frac{\partial}{\partial t} \bm{p}(V, t) = \int\_{V} \bm{J_p}(\bm{r}, t) dV,
-	\qquad
+	\quad
 	-i \omega \bm{p}(V, \omega) = \int\_{V} \bm{J_p}(\bm{r}, \omega) dV.
 $$
 
@@ -2069,7 +2069,7 @@ Equation 10.19 implies that we can represent an arbitrary polarization current d
 
 $$ \tag{10.20}
 	\bm{J_p}(\bm{r}, t) = \frac{\partial}{\partial t} \sum_n \bm{p_n}(V_n, t) \delta(\bm{r} - \bm{r_n}),
-	\qquad
+	\quad
 	\bm{J_p}(\bm{r}, \omega) = -i \omega \sum_n \bm{p_n}(V_n, \omega) \delta(\bm{r} - \bm{r_n}).
 $$
 
@@ -2280,7 +2280,7 @@ We have already encountered a mathematically identical problem shown in Equation
 $$ \tag{11.10}
 	\bm{E_s}(\bm{r}, \omega)
 	= \int\_{V} \mathcal{G_{e}} \big( \bm{r}, \bm{r'}, k_1(\omega) \big) \bm{J'}(\bm{r'}, \omega) dV'
-	\qquad
+	\quad
 	\text{if } \bm{r} \notin V,
 $$
 
@@ -2291,7 +2291,7 @@ Similarly, the magnetic field is given by Equation 9.31:
 $$ \tag{11.11}
 	\bm{B_s}(\bm{r}, \omega)
 	= \frac{1}{i \omega} \int\_{V} \mathcal{G_{m}} \big( \bm{r}, \bm{r'}, k_1(\omega) \big) \bm{J'}(\bm{r'}, \omega) dV'
-	\qquad
+	\quad
 	\text{if } \bm{r} \notin V.
 $$
 
@@ -2616,10 +2616,10 @@ with the scalar Green function containing an additional \\(R^{-1}\\) factor, so 
 $$ \tag{12.16}
 	k^{-1} \mathcal{G_{en}}
 	\varpropto (k R)^{-3},
-	\qquad
+	\quad
 	k^{-1} \mathcal{G_{et}}
 	\varpropto (k R)^{-2},
-	\qquad
+	\quad
 	k^{-1} \mathcal{G_{ef}}
 	\varpropto (k R)^{-1}.
 $$
@@ -2667,7 +2667,7 @@ Note that, as expected from Equation 9.33, the constants of proportionality are 
 $$ \tag{12.20}
 	k^{-2} \mathcal{G_{mt}}
 	\varpropto (k R)^{-2},
-	\qquad
+	\quad
 	k^{-2} \mathcal{G_{mf}}
 	\varpropto (k R)^{-1}.
 $$
@@ -2680,7 +2680,7 @@ The idea behind the far-field approximation is simple: we discard certain terms 
 
 $$ \tag{13.1}
 	\mathcal{G_{e}}
-	= \bigg( 1 + \frac{\mathcal{G_{et}}}{\mathcal{G_{ef}}} + \frac{\mathcal{G_{en}}}{\mathcal{G_{ef}}} \bigg) \mathcal{G_{ef}}, \qquad
+	= \bigg( 1 + \frac{\mathcal{G_{et}}}{\mathcal{G_{ef}}} + \frac{\mathcal{G_{en}}}{\mathcal{G_{ef}}} \bigg) \mathcal{G_{ef}}, \quad
 	\mathcal{G_{m}}
 	= \bigg( 1 + \frac{\mathcal{G_{mt}}}{\mathcal{G_{mf}}} \bigg) \mathcal{G_{mf}}.
 $$
@@ -2689,7 +2689,7 @@ According to Equation 12.15, for any fixed direction, the relative difference be
 
 $$ \tag{13.2}
 	\mathcal{G_{e}}
-	= \bigg( 1 + \mathrm{O} \Big( (k R)^{-1} \Big) + \mathrm{O} \Big( (k R)^{-2} \Big) \bigg) \mathcal{G_{ef}}, \qquad
+	= \bigg( 1 + \mathrm{O} \Big( (k R)^{-1} \Big) + \mathrm{O} \Big( (k R)^{-2} \Big) \bigg) \mathcal{G_{ef}}, \quad
 	\mathcal{G_{m}}
 	= \bigg( 1 + \mathrm{O} \Big( (k R)^{-1} \Big) \bigg)
 	\mathcal{G_{mf}}.
@@ -2767,7 +2767,7 @@ $$
 In order for \\(r'/r \ll 1\\) for all \\(r'\\), we require that \\(a/r \ll 1\\) (or, alternatively, \\(kr \gg ka\\)). Further assuming that \\(\frac{1}{2} k a (a/r) \ll 1\\), which is formally equivalent to \\(kr \gg \frac{1}{2} (ka)^2\\), we arrive at the approximation
 
 $$ \tag{13.9}
-	k R \backsimeq k r - k (\bm{r'} \cdot \bm{n}), \qquad
+	k R \backsimeq k r - k (\bm{r'} \cdot \bm{n}), \quad
 	\frac{1}{R} \backsimeq \frac{1}{r}.
 $$
 
@@ -2807,8 +2807,8 @@ $$
 subject to the conditions \[[8](#references) (ch. 5)\]
 
 $$ \tag{13.13}
-	k r - k a \gg 1, \qquad
-	kr \gg ka, \qquad
+	k r - k a \gg 1, \quad
+	kr \gg ka, \quad
 	kr \gg \frac{1}{2} (k a)^2.
 $$
 
@@ -3741,7 +3741,7 @@ The next step is to project \\(\braket{\bm{S_e}}\\) onto the normal of the virtu
 
 $$ \tag{16.24}
 	\bm{n} = \bm{n_s},
-	\qquad
+	\quad
 	\bm{r} = r \bm{n_s}.
 $$
 
@@ -3969,7 +3969,7 @@ Now, for a symmetric particle, we have previously demonstrated that
 
 $$ \tag{16.42}
 	s_1(0, \phi) = s_2(0, \phi) = s_0,
-	\qquad
+	\quad
 	s_3 = s_4 = 0.
 $$
 
@@ -4513,7 +4513,7 @@ The situation changes when \\(m \neq 0\\):
 $$ \tag{17.55}
 	P_n^m(x)
 	= (-1)^m (1 - x^2)^{m/2} \frac{\partial^m}{\partial x^m} P_n(x).
-	\qquad
+	\quad
 	(m \geq 0)
 $$
 
@@ -4998,7 +4998,7 @@ $$ \tag{17.87}
 	&\int_{0}^{2 \pi} \int_{0}^{\pi} \big[ \bm{L_{s,t}}(\bm{r}) \big]^{\*} \cdot \bm{L_{m,n}}(\bm{r}) \sin{\theta} \thinspace d\theta d\phi
 	\cr
 	&= \frac{1}{2 n + 1} \Big( n \big[ z_{n-1}(k r) \big]^2 + (n + 1) \big[ z_{n+1}(k r) \big]^2 \Big) \delta_{m,s} \delta_{t,n}.
-	\qquad
+	\quad
 	(z_n \in \mathcal{R})
 \end{aligned}
 $$
@@ -5037,7 +5037,7 @@ $$ \tag{17.90}
 	&= \frac{n (n+1)}{(2 n + 1)} \Big(
 		(n + 1) \big[ z_{n-1}(k r) \big]^2 + n \big[ z_{n+1}(k r) \big]^2
 		\Big) \delta_{m,s} \delta_{t,n}.
-	\qquad
+	\quad
 	(z_n \in \mathcal{R})
 \end{aligned}
 $$
@@ -5086,7 +5086,7 @@ $$ \tag{17.94}
 	\cr
 	&= \frac{n (n + 1)}{2 n + 1}
 	\Big( \big[ z_{n-1}(k r) \big]^2 - \big[ z_{n+1}(k r) \big]^2 \Big) \delta_{m,s} \delta_{t,n},
-	\qquad
+	\quad
 	(z_n \in \mathcal{R})
 \end{aligned}
 $$
@@ -5297,7 +5297,7 @@ Each term of the sum given above can be factored into a product of the \\(r\\), 
 
 $$ \tag{17.116}
 	\int_{0}^{2 \pi} \sin{\phi} \thinspace e^{\pm i \phi} \thinspace d\phi = \pm i \pi,
-	\qquad
+	\quad
 	\int_{0}^{2 \pi} \cos{\phi} \thinspace e^{\pm i \phi} \thinspace d\phi = \pi,
 $$
 
@@ -5318,7 +5318,7 @@ If \\(m = \pm 1\\), then, according to Equations 17.47 and 17.55, the associated
 
 $$ \tag{17.118}
 	P_n^{1}(\cos{\theta}) = \frac{\partial}{\partial \theta} P_n(\cos{\theta}),
-	\qquad
+	\quad
 	P_n^{-1}(\cos{\theta}) = \frac{-1}{n (n + 1)} \frac{\partial}{\partial \theta} P_n(\cos{\theta}).
 $$
 
@@ -5856,7 +5856,9 @@ Many authors \[[4](#references) (ch 9.22), [6](#references) (ch 14.5)\] prefer t
 $$ \tag{17.155}
 \begin{aligned}
 	\psi_n(x) = x j_{n}(x),
-	\qquad
+	\quad
+	\chi_n(x) = x y_{n}(x),
+	\quad
 	\xi_n(x) = x h_n^{(1)}(x),
 \end{aligned}
 $$
@@ -6096,7 +6098,7 @@ However, in general, the polar functions are odd:
 
 $$ \tag{18.9}
 	\pi_{1,n}(-\theta) = -\pi_{1,n}(\theta),
-	\qquad
+	\quad
 	\tau_{1,n}(-\theta) = -\tau_{1,n}(\theta).
 $$
 
@@ -6160,9 +6162,9 @@ Equation 18.11 shows that a *magnetic* partial wave is the electric field of a *
 
 #### Resonance
 
-Since a sphere is a body bounded by a closed surface, its interior can sustain a certain number of standing waves, also known as [normal modes](https://en.wikipedia.org/wiki/Normal_mode) \[[5](#references) (vol. I, ch. 49)\]. These waves oscillate at [natural frequencies](https://en.wikipedia.org/wiki/Natural_frequency) that depend on the size and the composition of the particle. It can be shown that they form a discrete set \[[17](#references) (ch 9.22)\].
+Since a sphere is a body bounded by a closed surface, its interior can sustain a certain number of standing waves, also known as [normal modes](https://en.wikipedia.org/wiki/Normal_mode) \[[5](#references) (vol. I, ch. 49)\]. These waves oscillate at [natural frequencies](https://en.wikipedia.org/wiki/Natural_frequency) that depend on the size and the composition of the particle.
 
-The natural frequencies \\(\omega\_n\\) of the magnetic modes can be determined by setting the denominator of Equation 17.156.1 (or Equation 17.156.2 for the electric modes) to zero and solving the resulting transcendental equation for \\(x_n = x\\); the latter can then be related to the former using Equations 7.6 and 7.7:
+The natural frequencies \\(\omega\_n\\) of the magnetic modes can be determined by setting the denominator of Equation 17.156.1 (or Equation 17.156.2 for the electric modes) to zero and solving the resulting transcendental equation for \\(x_n = x\\) \[[17](#references) (ch 9.22)\]; the latter can then be related to the former using Equations 7.6 and 7.7:
 
 $$ \tag{18.12}
 \begin{aligned}
@@ -6172,11 +6174,84 @@ $$ \tag{18.12}
 \end{aligned}
 $$
 
-The resulting natural frequencies are complex. This implies that, no matter what the frequency of the incident wave is, the amplitudes of the scattered and the internal fields remain finite. Nevertheless, certain frequencies may reduce the value of the denominator to a very small value, producing a spike in the plot of the expansion coefficient; this phenomenon is called [resonance](https://en.wikipedia.org/wiki/Resonance) \[[5](#references) (vol. I, ch. 23)\].
+The resulting natural frequencies are complex. This implies that, no matter what the frequency of the incident wave is, the amplitudes of the scattered and the internal fields remain finite. Nevertheless, certain frequencies in close proximity to the natural frequency may reduce the denominator to a very small value, producing a spike in the plot of the expansion coefficient; this phenomenon is called [resonance](https://en.wikipedia.org/wiki/Resonance) \[[5](#references) (vol. I, ch. 23)\].
 
-Let us now take a closer look at the expressions of the expansion coefficients given by Equations 17.156 and 17.157.
+#### Limiting Cases
 
-|x| << 1, |m x| << 1 (Born & Wolf)
+Let us now take a closer look at the expressions of the expansion coefficients given by Equation 17.156.
+
+Suppose that the index of refraction is very large, and the size of the particle is not too small. Then, \\(\vert m \vert \gg 1\\) and \\(\vert m x \vert \gg 1\\), which makes the asymptotic expansions of Equation 18.2 applicable:
+
+$$ \tag{18.13}
+\begin{aligned}
+  	a_{n}'(\omega)
+  	&\backsimeq -\frac{
+		\sin(m x - \pi n / 2) \psi_n'(x) - w m \psi_n(x) \cos(m x - \pi n / 2)
+	}{
+		\sin(m x - \pi n / 2) \xi_n'(x) - w m \xi_n(x) \cos(m x - \pi n / 2)
+	},
+	\cr
+	b_{n}'(\omega)
+	&\backsimeq -\frac
+	{
+		w m \sin(m x - \pi n / 2) \psi_n'(x) - \psi_n(x) \cos(m x - \pi n / 2)
+	}{
+		w m \sin(m x - \pi n / 2) \xi_n'(x) - \xi_n(x) \cos(m x - \pi n / 2)
+	}.
+\end{aligned}
+$$
+
+Now, suppose that the value of the argument \\(x\\) is such that the oscillating functions that are multiplied by \\(w m\\), such as \\(\psi_n(x) \cos(m x - \pi n / 2)\\), are sufficiently far away from their zeros. Then Equation 18.13 can be simplified to
+
+$$ \tag{18.14}
+  	a_{n}'(\omega)
+  	\backsimeq -\frac{ \psi_n(x) }{ \xi_n(x) },
+	\quad
+	b_{n}'(\omega)
+	\backsimeq -\frac{ \psi_n'(x) }{ \xi_n'(x) }.
+$$
+
+If the oscillating functions are zero, then the values of the coefficients are exchanged:
+
+$$ \tag{18.15}
+  	a_{n}'(\omega)
+	\backsimeq -\frac{ \psi_n'(x) }{ \xi_n'(x) },
+	\quad
+	b_{n}'(\omega)
+  	\backsimeq -\frac{ \psi_n(x) }{ \xi_n(x) }.
+$$
+
+This switching behavior makes robust computations of the value of the electric field problematic. However, as we shall see, certain applications do not care about the order of the coefficients, making this approximation useful in practice.
+
+Equations 18.14 and 18.15 can be expressed in a yet another way \[[17](#references) (ch 9.25)\]. Let us define
+
+$$ \tag{18.16}
+	\tan{\gamma_n} = \frac{ \chi_n(x) }{ \psi_n(x) },
+	\quad
+	r_n = \sqrt{\psi_n^2(x) + \chi_n^2(x)}.
+$$
+
+These expressions allow us to convert Equation 17.155 to the exponential form:
+
+$$ \tag{18.17}
+	\psi_n(x) = r_n \cos{\gamma_n},
+	\quad
+	\chi_n(x) = r_n \sin{\gamma_n},
+	\quad
+	\xi_n(x) = \psi_n(x) + i \chi_n(x) = r_n e^{i \gamma_n},
+$$
+
+yielding
+
+$$ \tag{18.18}
+  	\frac{ \psi_n(x) }{ \xi_n(x) } = \cos{\gamma_n} e^{-i \gamma_n},
+	\quad
+	\frac{ \psi_n'(x) }{ \xi_n'(x) } = \cos{\gamma_n'} e^{-i \gamma_n'}.
+$$
+
+This method of *phase angles* is most convenient when \\(x\\) is real, since that makes the angles and all the derived quantities real as well. It can be trivially extended to spheres of arbitrary refractive index \[[4](#references) (ch. 10.21)\].
+
+x is large...
 
 ---
 
