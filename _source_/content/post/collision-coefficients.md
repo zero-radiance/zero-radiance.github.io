@@ -4475,12 +4475,12 @@ $$ \tag{17.51}
 	y_n(x) = -(-x)^n \bigg( \frac{1}{x} \frac{d}{dx} \bigg)^n \frac{\cos{x}}{x},
 $$
 
-we can deduce that, for large values of the argument, the Bessel functions of the first and the second kind are out-of-phase by a factor of \\(\pi\\). This is a key property of the asymptotic forms (for large \\(x\\))
+we can deduce that, for large values of the argument, the Bessel functions of the first and the second kind are out-of-phase by a factor of \\(\pi\\). This is a key property of the [asymptotic forms](https://dlmf.nist.gov/10.52) (for large \\(x\\))
 
 $$ \tag{17.52}
 \begin{aligned}
-	& j_n(x) \backsimeq \frac{1}{x} \sin\Big( x - \frac{n}{2} \pi \Big), &
-	& y_n(x) \backsimeq - \frac{1}{x} \cos\Big( x - \frac{n}{2} \pi \Big),
+	& j_n(x) \backsimeq \frac{1}{x} \sin\Big( x - \frac{\pi n}{2}  \Big), &
+	& y_n(x) \backsimeq - \frac{1}{x} \cos\Big( x - \frac{\pi n}{2}  \Big),
 	\cr
 	& h_n^{(1)}(x) \backsimeq i^{-n-1} \frac{e^{ i x}}{x}, &
 	& h_n^{(2)}(x) \backsimeq i^{n+1}    \frac{e^{-i x}}{x}.
@@ -5950,10 +5950,12 @@ We may also show that the field becomes transverse in the radiation zone (see Eq
 
 $$ \tag{18.2}
 \begin{aligned}
-	& \psi_n(x) \backsimeq \sin\negmedspace\Big( x - \frac{n}{2} \pi \Big), &
+	& \psi_n(x) \backsimeq \sin\negmedspace\Big( x - \frac{\pi n}{2} \Big), &
+	& \chi_n(x) \backsimeq -\cos\negmedspace\Big( x - \frac{\pi n}{2} \Big), &
 	& \xi_n(x) \backsimeq i^{-n-1} e^{i x},
 	\cr
-	& \psi_n'(x) \backsimeq \cos\negmedspace\Big( x - \frac{n}{2} \pi \Big), &
+	& \psi_n'(x) \backsimeq \cos\negmedspace\Big( x - \frac{\pi n}{2} \Big), &
+	& \chi_n'(x) \backsimeq \sin\negmedspace\Big( x - \frac{\pi n}{2} \Big), &
 	& \xi_n'(x) \backsimeq i^{-n} e^{i x}.
 \end{aligned}
 $$
@@ -6164,7 +6166,7 @@ Equation 18.11 shows that a *magnetic* partial wave is the electric field of a *
 
 Since a sphere is a body bounded by a closed surface, its interior can sustain a certain number of standing waves, also known as [normal modes](https://en.wikipedia.org/wiki/Normal_mode) \[[5](#references) (vol. I, ch. 49)\]. These waves oscillate at [natural frequencies](https://en.wikipedia.org/wiki/Natural_frequency) that depend on the size and the composition of the particle.
 
-The natural frequencies \\(\omega\_n\\) of the magnetic modes can be determined by setting the denominator of Equation 17.156.1 (or Equation 17.156.2 for the electric modes) to zero and solving the resulting transcendental equation for \\(x_n = x\\) \[[17](#references) (ch 9.22)\]; the latter can then be related to the former using Equations 7.6 and 7.7:
+The natural frequencies \\(\omega\_n\\) of the magnetic modes can be determined by setting the denominator of Equation 17.156.1 (or Equation 17.156.2 for the electric modes) to zero and solving the resulting transcendental equation for \\(x_n = x\\) \[[17](#references) (ch 9.22)\]; subsequently, the latter can be related to the former using Equations 7.6 and 7.7:
 
 $$ \tag{18.12}
 \begin{aligned}
@@ -6180,7 +6182,7 @@ The resulting natural frequencies are complex. This implies that, no matter what
 
 Let us now take a closer look at the expressions of the expansion coefficients given by Equation 17.156.
 
-Suppose that the index of refraction is very large, and the size of the particle is not too small. Then, \\(\vert m \vert \gg 1\\) and \\(\vert m x \vert \gg 1\\), which makes the asymptotic expansions of Equation 18.2 applicable:
+Suppose that the relative wavenumber is very large, and the size of the particle is not too small. Then, \\(\vert m \vert \gg 1\\) and \\(\vert m x \vert \gg 1\\), which makes the asymptotic expansions of Equation 18.2 applicable:
 
 $$ \tag{18.13}
 \begin{aligned}
@@ -6201,7 +6203,7 @@ $$ \tag{18.13}
 \end{aligned}
 $$
 
-Now, suppose that the value of the argument \\(x\\) is such that the oscillating functions that are multiplied by \\(w m\\), such as \\(\psi_n(x) \cos(m x - \pi n / 2)\\), are sufficiently far away from their zeros. Then Equation 18.13 can be simplified to
+Assuming that the value of the argument \\(x\\) is such that the values of oscillating functions multiplied by \\(w m\\) are sufficiently far from zero, Equation 18.13 can be simplified to
 
 $$ \tag{18.14}
   	a_{n}'(\omega)
@@ -6211,7 +6213,7 @@ $$ \tag{18.14}
 	\backsimeq -\frac{ \psi_n'(x) }{ \xi_n'(x) }.
 $$
 
-If the oscillating functions are zero, then the values of the coefficients are exchanged:
+If this assumption fails, then the values of the coefficients must be exchanged:
 
 $$ \tag{18.15}
   	a_{n}'(\omega)
@@ -6226,32 +6228,66 @@ This switching behavior makes robust computations of the value of the electric f
 Equations 18.14 and 18.15 can be expressed in a yet another way \[[17](#references) (ch 9.25)\]. Let us define
 
 $$ \tag{18.16}
-	\tan{\gamma_n} = \frac{ \chi_n(x) }{ \psi_n(x) },
-	\quad
-	r_n = \sqrt{\psi_n^2(x) + \chi_n^2(x)}.
+\begin{aligned}
+	&\tan{\gamma_n} = -\frac{ \psi_n(x) }{ \chi_n(x) },
+	&
+	&r_n = \sqrt{\psi_n^2(x) + \chi_n^2(x)},
+	\cr
+	&\cot{\gamma_n'} = \frac{ \psi_n'(x) }{ \chi_n'(x) },
+	&
+	&r_n' = \sqrt{\psi_n'^2(x) + \chi_n'^2(x)},
+\end{aligned}
 $$
 
 These expressions allow us to convert Equation 17.155 to the exponential form:
 
 $$ \tag{18.17}
-	\psi_n(x) = r_n \cos{\gamma_n},
-	\quad
-	\chi_n(x) = r_n \sin{\gamma_n},
-	\quad
-	\xi_n(x) = \psi_n(x) + i \chi_n(x) = r_n e^{i \gamma_n},
+\begin{aligned}
+	&\psi_n(x) = r_n \sin{\gamma_n},
+	&
+	&\chi_n(x) = -r_n \cos{\gamma_n},
+	&
+	&i \xi_n(x) = i \psi_n(x) - \chi_n(x) = r_n e^{i \gamma_n},
+	\cr
+	&\psi_n'(x) = r_n \cos{\gamma_n'},
+	&
+	&\chi_n'(x) = r_n \sin{\gamma_n'},
+	&
+	&\xi_n'(x) = \psi_n'(x) + i \chi_n'(x) = r_n e^{i \gamma_n'}.
+\end{aligned}
 $$
 
-yielding
+This reduces the number of special functions we need to consider:
 
 $$ \tag{18.18}
-  	\frac{ \psi_n(x) }{ \xi_n(x) } = \cos{\gamma_n} e^{-i \gamma_n},
+  	\frac{ \psi_n(x) }{ \xi_n(x) } = i \sin{\gamma_n} e^{-i \gamma_n},
 	\quad
 	\frac{ \psi_n'(x) }{ \xi_n'(x) } = \cos{\gamma_n'} e^{-i \gamma_n'}.
 $$
 
-This method of *phase angles* is most convenient when \\(x\\) is real, since that makes the angles and all the derived quantities real as well. It can be trivially extended to spheres of arbitrary refractive index \[[4](#references) (ch. 10.21)\].
+This method of the *phase angles* is most attractive when \\(x\\) is real, since that makes the angles real as well. It can be easily extended to spheres of arbitrary refractive index \[[4](#references) (ch. 10.21)\].
 
-x is large...
+We shall not explore the properties of these angles in great detail \[[4](#references) (ch. 10.21)\]. Instead, for simplicity, let us suppose that the size of the particle is very large, such that \\(\vert x \vert \gg 1\\). That allows us to employ Equation 18.2 once more, and show that the values of the phase angles become equal:
+
+$$ \tag{18.19}
+	\gamma_n = \gamma_n' = x - \frac{\pi n}{2} .
+$$
+
+Unfortunately, this does not imply that the expansion coefficients end up being equal. However, it does allow us to simplify Equation 18.18 considerably:
+
+$$ \tag{18.20}
+  	\frac{ \psi_n(x) }{ \xi_n(x) } = i^{n+1} \sin\negmedspace\Big( x - \frac{\pi n}{2} \Big) e^{-i x},
+	\quad
+	\frac{ \psi_n'(x) }{ \xi_n'(x) } = i^n \cos\negmedspace\Big( x - \frac{\pi n}{2} \Big) e^{-i x}.
+$$
+
+If we use the exponential notation, it turns out that both of these expressions behave as a shifted second harmonic, and only differ by the sign:
+
+$$ \tag{18.21}
+  	\frac{ \psi_n(x) }{ \xi_n(x) } = \frac{1}{2} \left( 1 - (-1)^n e^{-i 2 x} \right),
+	\quad
+	\frac{ \psi_n'(x) }{ \xi_n'(x) } = \frac{1}{2} \left( 1+(-1)^n e^{-i 2 x} \right).
+$$
 
 ---
 
