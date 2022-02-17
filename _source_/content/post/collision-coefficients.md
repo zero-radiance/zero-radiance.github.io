@@ -6180,9 +6180,9 @@ The resulting natural frequencies are complex. This implies that, no matter what
 
 #### Limiting Cases
 
-Let us now take a closer look at the expressions of the expansion coefficients given by Equation 17.156.
+Let us take a closer look at the expressions of the expansion coefficients given by Equation 17.156.
 
-Suppose that the relative wavenumber is very large, and the size of the particle is not too small. Then, \\(\vert m \vert \gg 1\\) and \\(\vert m x \vert \gg 1\\), which makes the asymptotic expansions of Equation 18.2 applicable:
+Suppose that the relative wavenumber \\(m\\) is very large, and the size parameter \\(x\\) is not too small. Then, both \\(\vert m \vert \gg 1\\) and \\(\vert m x \vert \gg 1\\), which makes the asymptotic expansions of Equation 18.2 applicable:
 
 $$ \tag{18.13}
 \begin{aligned}
@@ -6203,7 +6203,7 @@ $$ \tag{18.13}
 \end{aligned}
 $$
 
-Assuming that the value of the argument \\(x\\) is such that the values of oscillating functions multiplied by \\(w m\\) are sufficiently far from zero, Equation 18.13 can be simplified to
+Assuming that the value of the argument \\(x\\) is such that the values of oscillating functions multiplied by \\(m\\) are sufficiently far from zero, Equation 18.13 can be simplified to
 
 $$ \tag{18.14}
   	a_{n}'(\omega)
@@ -6213,7 +6213,7 @@ $$ \tag{18.14}
 	\backsimeq -\frac{ \psi_n'(x) }{ \xi_n'(x) }.
 $$
 
-If this assumption fails, then the values of the coefficients must be exchanged:
+If this assumption fails, then the expressions of the coefficients must be interchanged:
 
 $$ \tag{18.15}
   	a_{n}'(\omega)
@@ -6223,7 +6223,7 @@ $$ \tag{18.15}
   	\backsimeq -\frac{ \psi_n(x) }{ \xi_n(x) }.
 $$
 
-This switching behavior makes robust computations of the value of the electric field problematic. However, as we shall see, certain applications do not care about the order of the coefficients, making this approximation useful in practice.
+This switching behavior makes robust computations of the value of the electric field problematic. However, as we shall soon see, certain applications do not care about the order of the coefficients, making this approximation useful in practice.
 
 Equations 18.14 and 18.15 can be expressed in a yet another way \[[17](#references) (ch 9.25)\]. Let us define
 
@@ -6267,13 +6267,13 @@ $$
 
 This method of the *phase angles* is most attractive when \\(x\\) is real, since that makes the angles real as well. It can be easily extended to spheres of arbitrary refractive index \[[4](#references) (ch. 10.21)\].
 
-We shall not explore the properties of these angles in great detail \[[4](#references) (ch. 10.21)\]. Instead, for simplicity, let us suppose that the size of the particle is very large, such that \\(\vert x \vert \gg 1\\). That allows us to employ Equation 18.2 once more, and show that the values of the phase angles become equal:
+We shall not explore the properties of these angles in great detail \[[4](#references) (ch. 10.21)\]. Instead, for simplicity, let us suppose that the size parameter is very large, such that \\(\vert x \vert \gg 1\\). That allows us to employ Equation 18.2 once more, and thus show that the values of the phase angles become equal:
 
 $$ \tag{18.19}
 	\gamma_n = \gamma_n' = x - \frac{\pi n}{2} .
 $$
 
-Unfortunately, this does not imply that the expansion coefficients end up being equal. However, it does allow us to simplify Equation 18.18 considerably:
+Unfortunately, this does not imply that the expansion coefficients end up being equal as well. But this does allow us to simplify Equation 18.18 considerably:
 
 $$ \tag{18.20}
   	\frac{ \psi_n(x) }{ \xi_n(x) } = i^{n+1} \sin\negmedspace\Big( x - \frac{\pi n}{2} \Big) e^{-i x},
@@ -6281,7 +6281,7 @@ $$ \tag{18.20}
 	\frac{ \psi_n'(x) }{ \xi_n'(x) } = i^n \cos\negmedspace\Big( x - \frac{\pi n}{2} \Big) e^{-i x}.
 $$
 
-If we use the exponential notation, it turns out that both of these expressions behave as a shifted second harmonic, and only differ by the sign:
+If we use the exponential notation, it turns out that both of these expressions behave as a shifted second harmonic:
 
 $$ \tag{18.21}
   	\frac{ \psi_n(x) }{ \xi_n(x) } = \frac{1}{2} \left( 1 - (-1)^n e^{-i 2 x} \right),
@@ -6289,7 +6289,9 @@ $$ \tag{18.21}
 	\frac{ \psi_n'(x) }{ \xi_n'(x) } = \frac{1}{2} \left( 1+(-1)^n e^{-i 2 x} \right).
 $$
 
-Let us now consider the particles on the opposite end of the size spectrum, with \\(\vert x \vert \ll 1\\). The relative wavenumber remains arbitrary. The [asymptotic forms](https://dlmf.nist.gov/10.52) (for small \\(x\\)) of the spherical Bessel functions are
+Note that the values of different coefficients of even/odd orders are the same.
+
+Let us now consider the particles on the opposite end of the size spectrum, with \\(\vert x \vert \ll 1\\). For the moment, the relative wavenumber \\(m\\) remains arbitrary. The [asymptotic forms](https://dlmf.nist.gov/10.52) (for small \\(x\\)) of the spherical Bessel functions are
 
 $$ \tag{18.22}
 \begin{aligned}
@@ -6318,6 +6320,44 @@ $$ \tag{18.23}
 	&\xi_n'(x) \simeq -\frac{n (2 n - 1)!!}{ i x^{n+1} }.
 \end{aligned}
 $$
+
+Substitution into Equation 17.156 yields the following expressions of the expansion coefficients of the scattered field:
+
+$$ \tag{18.24}
+\begin{aligned}
+  	a_{n}'(\omega)
+  	&\simeq \frac{i x^{2 n+1}}{(2 n - 1)!! (2 n + 1)!!}
+  	\frac{
+  		(n+1) \psi_n(m x) - x w m \psi_n'(m x)
+  	}{
+  		n \psi_n(m x) + x w m \psi_n'(m x)
+  	},
+	\cr
+	b_{n}'(\omega)
+	&\simeq \frac{i x^{2 n+1}}{(2 n-1)!! (2 n+1)!!}
+	\frac{
+		(n+1) w m \psi_n(m x)-x \psi_n'(m x)
+	}{
+		n w m \psi_n(m x)+x \psi_n'(m x)
+	}.
+\end{aligned}
+$$
+
+Since \\(\vert x \vert \ll 1\\), Equation 18.24.2 can be further simplified by neglecting the trailing terms in the numerator and the denominator:
+
+$$ \tag{18.25}
+	b_{n}'(\omega)
+	\simeq \frac{i (n+1) x^{2 n + 1}}{n (2 n-1)!! (2 n+1)!!}.
+$$
+
+In addition, if the magnitude of \\(w m\\) is not too great, then Equation 18.24.1 has the same expression:
+
+$$ \tag{18.26}
+  	a_{n}'(\omega)
+  	\simeq \frac{i (n+1) x^{2 n + 1}}{n (2 n-1)!! (2 n+1)!!}.
+$$
+
+Due to the rapidly decreasing nature of these expressions, the coefficients with \\(n > 1\\) make a negligible contribution to the overall result. Therefore, the scattering matrix (c.f. Equation 18.6) has a cubic dependence on the size parameter, which is a characteristic feature of [Rayleigh scattering](https://en.wikipedia.org/wiki/Rayleigh_scattering).
 
 ---
 
