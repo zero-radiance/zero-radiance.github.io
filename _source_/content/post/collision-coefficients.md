@@ -6289,6 +6289,36 @@ $$ \tag{18.21}
 	\frac{ \psi_n'(x) }{ \xi_n'(x) } = \frac{1}{2} \left( 1+(-1)^n e^{-i 2 x} \right).
 $$
 
+Let us now consider the particles on the opposite end of the size spectrum, with \\(\vert x \vert \ll 1\\). The relative wavenumber remains arbitrary. The [asymptotic forms](https://dlmf.nist.gov/10.52) (for small \\(x\\)) of the spherical Bessel functions are
+
+$$ \tag{18.22}
+\begin{aligned}
+	& j_n(x) \simeq \frac{x^n}{(2 n + 1)!!}, &
+	& y_n(x) \simeq -\frac{(2 n - 1)!!}{ x^{n+1} },
+	\cr
+	& h_n^{(1)}(x) \simeq \frac{(2 n - 1)!!}{ i x^{n+1} }, &
+	& h_n^{(2)}(x) \simeq -\frac{(2 n - 1)!!}{ i x^{n+1} }.
+\end{aligned}
+$$
+
+The relevant Riccati-Bessel functions (and their derivatives) defined by Equation 17.155 differ from the expressions above only by a factor of \\(x\\) (or a constant):
+
+$$ \tag{18.23}
+\begin{aligned}
+	&\psi_n(x) \simeq \frac{ x^{n+1} }{(2 n + 1)!!},
+	&
+	&\chi_n(x) \simeq -\frac{(2 n - 1)!!}{ x^n },
+	&
+	&\xi_n(x) \simeq \frac{(2 n - 1)!!}{ i x^n },
+	\cr
+	&\psi_n'(x) \simeq \frac{ (n+1) x^n }{(2 n + 1)!!},
+	&
+	&\chi_n'(x) \simeq \frac{n (2 n - 1)!!}{ x^{n+1} },
+	&
+	&\xi_n'(x) \simeq -\frac{n (2 n - 1)!!}{ i x^{n+1} }.
+\end{aligned}
+$$
+
 ---
 
 ## III. Approximate Methods for Practical Use
