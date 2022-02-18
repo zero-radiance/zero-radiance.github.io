@@ -6203,7 +6203,7 @@ $$ \tag{18.13}
 \end{aligned}
 $$
 
-Assuming that the value of the argument \\(x\\) is such that the values of oscillating functions multiplied by \\(m\\) are sufficiently far from zero, Equation 18.13 can be simplified to
+If we consider the most typical scenario, in which \\(x\\) is such that the values of the four oscillating functions multiplied by \\(m\\) are not very close to zero, then Equation 18.13 can be simplified to
 
 $$ \tag{18.14}
   	a_{n}'(\omega)
@@ -6213,21 +6213,11 @@ $$ \tag{18.14}
 	\backsimeq -\frac{ \psi_n'(x) }{ \xi_n'(x) }.
 $$
 
-If this assumption fails, then the expressions of the coefficients must be interchanged:
+In general, for isolated zeros, several intermediate states exist. In order to simplify the discussion, we shall not consider them here.
+
+Equation 18.14 can be expressed in a yet another way \[[17](#references) (ch 9.25)\]. Let us define
 
 $$ \tag{18.15}
-  	a_{n}'(\omega)
-	\backsimeq -\frac{ \psi_n'(x) }{ \xi_n'(x) },
-	\quad
-	b_{n}'(\omega)
-  	\backsimeq -\frac{ \psi_n(x) }{ \xi_n(x) }.
-$$
-
-This switching behavior makes robust computations of the value of the electric field problematic. However, as we shall soon see, certain applications do not care about the order of the coefficients, making this approximation useful in practice.
-
-Equations 18.14 and 18.15 can be expressed in a yet another way \[[17](#references) (ch 9.25)\]. Let us define
-
-$$ \tag{18.16}
 \begin{aligned}
 	&\tan{\gamma_n} = -\frac{ \psi_n(x) }{ \chi_n(x) },
 	&
@@ -6241,7 +6231,7 @@ $$
 
 These expressions allow us to convert Equation 17.155 to the exponential form:
 
-$$ \tag{18.17}
+$$ \tag{18.16}
 \begin{aligned}
 	&\psi_n(x) = r_n \sin{\gamma_n},
 	&
@@ -6259,41 +6249,48 @@ $$
 
 This reduces the number of special functions we need to consider:
 
-$$ \tag{18.18}
-  	\frac{ \psi_n(x) }{ \xi_n(x) } = i \sin{\gamma_n} e^{-i \gamma_n},
+$$ \tag{18.17}
+  	a_{n}'(\omega)
+  	\backsimeq -i \sin{\gamma_n} e^{-i \gamma_n},
 	\quad
-	\frac{ \psi_n'(x) }{ \xi_n'(x) } = \cos{\gamma_n'} e^{-i \gamma_n'}.
+	b_{n}'(\omega)
+  	\backsimeq -\cos{\gamma_n'} e^{-i \gamma_n'}.
 $$
 
 This method of the *phase angles* is most attractive when \\(x\\) is real, since that makes the angles real as well. It can be easily extended to spheres of arbitrary refractive index \[[4](#references) (ch. 10.21)\].
 
-We shall not explore the properties of these angles in great detail \[[4](#references) (ch. 10.21)\]. Instead, for simplicity, let us suppose that the size parameter is very large, such that \\(\vert x \vert \gg 1\\). That allows us to employ Equation 18.2 once more, and thus show that the values of the phase angles become equal:
+We shall not explore the properties of these angles in great detail \[[4](#references) (ch. 10.21)\]. Instead, let us suppose that the size parameter is very large, such that \\(\vert x \vert \gg 1\\). That allows us to employ Equation 18.2 once more, which makes the values of the phase angles equal:
 
-$$ \tag{18.19}
+$$ \tag{18.18}
 	\gamma_n = \gamma_n' = x - \frac{\pi n}{2} .
 $$
 
-Unfortunately, this does not imply that the expansion coefficients end up being equal as well. But this does allow us to simplify Equation 18.18 considerably:
+Unfortunately, this does not imply that the expansion coefficients become equal as well. But this does allow us to simplify Equation 18.17 considerably:
 
-$$ \tag{18.20}
-  	\frac{ \psi_n(x) }{ \xi_n(x) } = i^{n+1} \sin\negmedspace\Big( x - \frac{\pi n}{2} \Big) e^{-i x},
+$$ \tag{18.19}
+  	a_{n}'(\omega)
+  	\backsimeq -i^{n+1} \sin\negmedspace\Big( x - \frac{\pi n}{2} \Big) e^{-i x},
 	\quad
-	\frac{ \psi_n'(x) }{ \xi_n'(x) } = i^n \cos\negmedspace\Big( x - \frac{\pi n}{2} \Big) e^{-i x}.
+	b_{n}'(\omega)
+  	\backsimeq -i^n \cos\negmedspace\Big( x - \frac{\pi n}{2} \Big) e^{-i x}.
 $$
 
 If we use the exponential notation, it turns out that both of these expressions behave as a shifted second harmonic:
 
-$$ \tag{18.21}
-  	\frac{ \psi_n(x) }{ \xi_n(x) } = \frac{1}{2} \left( 1 - (-1)^n e^{-i 2 x} \right),
+$$ \tag{18.20}
+  	a_{n}'(\omega)
+  	\backsimeq \frac{1}{2} \left( (-1)^n e^{-i 2 x} - 1 \right),
 	\quad
-	\frac{ \psi_n'(x) }{ \xi_n'(x) } = \frac{1}{2} \left( 1+(-1)^n e^{-i 2 x} \right).
+	b_{n}'(\omega)
+  	\backsimeq \frac{1}{2} \left( (-1)^{n+1} e^{-i 2 x} - 1 \right)
+  	= a_{n+1}'(\omega).
 $$
 
-Note that the values of different coefficients of even/odd orders are the same.
+Note that, for any given value of \\(x\\), there are only 2 unique values of the coefficients.
 
 Let us now consider the particles on the opposite end of the size spectrum, with \\(\vert x \vert \ll 1\\). For the moment, the relative wavenumber \\(m\\) remains arbitrary. The [asymptotic forms](https://dlmf.nist.gov/10.52) (for small \\(x\\)) of the spherical Bessel functions are
 
-$$ \tag{18.22}
+$$ \tag{18.21}
 \begin{aligned}
 	& j_n(x) \simeq \frac{x^n}{(2 n + 1)!!}, &
 	& y_n(x) \simeq -\frac{(2 n - 1)!!}{ x^{n+1} },
@@ -6305,7 +6302,7 @@ $$
 
 The relevant Riccati-Bessel functions (and their derivatives) defined by Equation 17.155 differ from the expressions above only by a factor of \\(x\\) (or a constant):
 
-$$ \tag{18.23}
+$$ \tag{18.22}
 \begin{aligned}
 	&\psi_n(x) \simeq \frac{ x^{n+1} }{(2 n + 1)!!},
 	&
@@ -6323,7 +6320,7 @@ $$
 
 Substitution into Equation 17.156 yields the following expressions of the expansion coefficients of the scattered field:
 
-$$ \tag{18.24}
+$$ \tag{18.23}
 \begin{aligned}
   	a_{n}'(\omega)
   	&\simeq \frac{i x^{2 n+1}}{(2 n - 1)!! (2 n + 1)!!}
@@ -6343,21 +6340,21 @@ $$ \tag{18.24}
 \end{aligned}
 $$
 
-Since \\(\vert x \vert \ll 1\\), Equation 18.24.2 can be further simplified by neglecting the trailing terms in the numerator and the denominator:
+Since \\(\vert x \vert \ll 1\\), Equation 18.23.2 can be further simplified by neglecting the trailing terms in the numerator and the denominator:
 
-$$ \tag{18.25}
+$$ \tag{18.24}
 	b_{n}'(\omega)
 	\simeq \frac{i (n+1) x^{2 n + 1}}{n (2 n-1)!! (2 n+1)!!}.
 $$
 
-In addition, if the magnitude of \\(w m\\) is not too great, then Equation 18.24.1 has the same expression:
+In addition, if the magnitude of \\(w m\\) is not too great, then Equation 18.23.1 has the same expression:
 
-$$ \tag{18.26}
+$$ \tag{18.25}
   	a_{n}'(\omega)
   	\simeq \frac{i (n+1) x^{2 n + 1}}{n (2 n-1)!! (2 n+1)!!}.
 $$
 
-Due to the rapidly decreasing nature of these expressions, the coefficients with \\(n > 1\\) make a negligible contribution to the overall result. Therefore, the scattering matrix (c.f. Equation 18.6) has a cubic dependence on the size parameter, which is a characteristic feature of [Rayleigh scattering](https://en.wikipedia.org/wiki/Rayleigh_scattering).
+Since the magnitudes of the coefficients decrease so rapidly with increasing \\(n\\), the terms with \\(n > 1\\) make a negligible contribution to the overall result. Therefore, the scattering matrix (c.f. Equation 18.6) has a cubic dependence on the size parameter, which is a characteristic feature of [Rayleigh scattering](https://en.wikipedia.org/wiki/Rayleigh_scattering).
 
 ---
 
