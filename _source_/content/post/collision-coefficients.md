@@ -1185,7 +1185,7 @@ $$
 
 where \\(|E|\\) is the spatially-varying *peak amplitude*.
 
-If the attenuation index \\(\kappa = 0\\), the amplitude velocity \\(v_a = \infty\\), and Equation 7.14 represents a regular sine wave.
+If the attenuation index \\(\kappa = 0\\), the amplitude velocity \\(v_a = \infin\\), and Equation 7.14 represents a regular sine wave.
 
 [Insert Picture Here]
 
@@ -3834,7 +3834,7 @@ $$ \tag{16.29}
 \end{aligned}
 $$
 
-The two integrals found in Equation 16.29 have the same form. That allows us to apply Jones' lemma \[[6](#references) (ap. XII)\], which says that, for \\(k r \to \infty\\), the [asymptotic expansion](https://en.wikipedia.org/wiki/Asymptotic_expansion) of the surface integral over a sphere of radius \\(r\\) is
+The two integrals found in Equation 16.29 have the same form. That allows us to apply Jones' lemma \[[6](#references) (ap. XII)\], which says that, for \\(k r \to \infin\\), the [asymptotic expansion](https://en.wikipedia.org/wiki/Asymptotic_expansion) of the surface integral over a sphere of radius \\(r\\) is
 
 $$ \tag{16.30}
 	\frac{1}{r} \oint\_{\mathbb{S}^2} f(\bm{n}) e^{-i k r (\bm{u} \cdot \bm{n})} dA
@@ -5665,7 +5665,7 @@ $$ \tag{17.139}
 	\bm{E_1} = \bm{E_i} + \bm{E_s},
 $$
 
-we know that its vector and scalar potentials satisfy the Helmholtz equations; thus, by linearity, Equation 17.36 remains applicable. In addition, thanks to Equation 15.6, we know the asymptotic behavior of the scattered field as \\(k r \to \infty\\). As we compare it to Equation 17.52, it becomes clear that we must choose the spherical Bessel function of the third kind
+we know that its vector and scalar potentials satisfy the Helmholtz equations; thus, by linearity, Equation 17.36 remains applicable. In addition, thanks to Equation 15.6, we know the asymptotic behavior of the scattered field as \\(k r \to \infin\\). As we compare it to Equation 17.52, it becomes clear that we must choose the spherical Bessel function of the third kind
 
 $$ \tag{17.140}
 	z_n^{(3)}(k r) = h_n^{(1)}(k r)
@@ -5859,7 +5859,7 @@ $$ \tag{17.155}
 	\quad
 	\chi_n(x) = x y_{n}(x),
 	\quad
-	\xi_n(x) = x h_n^{(1)}(x),
+	\xi_n(x) = x h_n^{(1)}(x) = \psi_n(x) + i \chi_n(x),
 \end{aligned}
 $$
 
@@ -6288,55 +6288,45 @@ $$
 
 Note that, for any given value of \\(x\\), there are only 2 unique values of the coefficients.
 
-Let us now consider the particles on the opposite end of the size spectrum, with \\(\vert x \vert \ll 1\\). For the moment, the relative wavenumber \\(m\\) remains arbitrary. The [asymptotic forms](https://dlmf.nist.gov/10.52) (for small \\(x\\)) of the spherical Bessel functions are
+Let us now consider the particles on the opposite end of the size spectrum, with \\(\vert x \vert \ll 1\\). For the moment, the relative wavenumber \\(m\\) remains arbitrary. The [Taylor series](https://dlmf.nist.gov/10.53) expansions of the Riccati-Bessel functions are
 
 $$ \tag{18.21}
 \begin{aligned}
-	& j_n(x) \simeq \frac{x^n}{(2 n + 1)!!}, &
-	& y_n(x) \simeq -\frac{(2 n - 1)!!}{ x^{n+1} },
+	\psi_n(x)
+	&= x^{n+1} \sum_{k=0}^{\infin} \frac{ (-1)^k x^{2 k} }{ 2^k k! (2 n + 2 k + 1)!! },
 	\cr
-	& h_n^{(1)}(x) \simeq \frac{(2 n - 1)!!}{ i x^{n+1} }, &
-	& h_n^{(2)}(x) \simeq -\frac{(2 n - 1)!!}{ i x^{n+1} }.
+	\chi_n(x)
+	&= -\frac{1}{x^n} \sum_{k=0}^{n} \frac{ x^{2 k} (2 n - 2 k - 1)!! }{ 2^k k! }
+	 - \frac{ (-1)^n }{x^n} \sum_{k=n+1}^{\infin} \frac{ (-1)^k x^{2 k} }{ 2^k k! (2 k - 2 n - 1)!! }.
 \end{aligned}
 $$
 
-The relevant Riccati-Bessel functions (and their derivatives) defined by Equation 17.155 differ from the expressions above only by a factor of \\(x\\) (or a constant):
+We can obtain the Taylor expansion of \\(\xi_n(x)\\) by combining the expressions listed above with Equation 17.155.3.
+
+For small values of \\(x\\), it suffices to only consider the first few terms:
 
 $$ \tag{18.22}
 \begin{aligned}
-	&\psi_n(x) \simeq \frac{ x^{n+1} }{(2 n + 1)!!},
+	\psi_1(x)
+	&= \frac{x^2}{3} - \frac{x^4}{30} + \mathrm{O} \big( x^6 \big),
 	&
-	&\chi_n(x) \simeq -\frac{(2 n - 1)!!}{ x^n },
-	&
-	&\xi_n(x) \simeq \frac{(2 n - 1)!!}{ i x^n },
+	\chi_1(x)
+	&= -\frac{1}{x} - \frac{x}{2} + \frac{x^3}{8} + \mathrm{O} \big( x^5 \big),
 	\cr
-	&\psi_n'(x) \simeq \frac{ (n+1) x^n }{(2 n + 1)!!},
+	\psi_2(x)
+	&= \frac{x^3}{15} + \mathrm{O} \big( x^5 \big),
 	&
-	&\chi_n'(x) \simeq \frac{n (2 n - 1)!!}{ x^{n+1} },
-	&
-	&\xi_n'(x) \simeq -\frac{n (2 n - 1)!!}{ i x^{n+1} }.
+	\chi_2(x)
+	&= -\frac{3}{x^2} - \frac{1}{2} - \frac{x^2}{8} + \frac{x^4}{48} + \mathrm{O} \big( x^6 \big).
 \end{aligned}
 $$
 
 Substitution into Equation 17.156 yields the following expressions of the expansion coefficients of the scattered field:
 
 $$ \tag{18.23}
+\small
 \begin{aligned}
-  	a_{n}'(\omega)
-  	&\simeq \frac{i x^{2 n+1}}{(2 n - 1)!! (2 n + 1)!!}
-  	\frac{
-  		(n+1) \psi_n(m x) - x w m \psi_n'(m x)
-  	}{
-  		n \psi_n(m x) + x w m \psi_n'(m x)
-  	},
-	\cr
-	b_{n}'(\omega)
-	&\simeq \frac{i x^{2 n+1}}{(2 n-1)!! (2 n+1)!!}
-	\frac{
-		(n+1) w m \psi_n(m x)-x \psi_n'(m x)
-	}{
-		n w m \psi_n(m x)+x \psi_n'(m x)
-	}.
+  	...
 \end{aligned}
 $$
 
@@ -6355,6 +6345,15 @@ $$ \tag{18.25}
 $$
 
 Since the magnitudes of the coefficients decrease so rapidly with increasing \\(n\\), the terms with \\(n > 1\\) make a negligible contribution to the overall result. Therefore, the scattering matrix (c.f. Equation 18.6) has a cubic dependence on the size parameter, which is a characteristic feature of [Rayleigh scattering](https://en.wikipedia.org/wiki/Rayleigh_scattering).
+
+
+$$ \tag{13.2}
+	\mathcal{G_{e}}
+	= \bigg( 1 + \mathrm{O} \Big( (k R)^{-1} \Big) + \mathrm{O} \Big( (k R)^{-2} \Big) \bigg) \mathcal{G_{ef}}, \quad
+	\mathcal{G_{m}}
+	= \bigg( 1 + \mathrm{O} \Big( (k R)^{-1} \Big) \bigg)
+	\mathcal{G_{mf}}.
+$$
 
 ---
 
