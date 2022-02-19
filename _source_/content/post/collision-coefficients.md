@@ -6288,18 +6288,23 @@ $$
 
 Note that, for any given value of \\(x\\), there are only 2 unique values of the coefficients.
 
-Let us now consider the particles on the opposite end of the size spectrum, with \\(\vert x \vert \ll 1\\). For the moment, the relative wavenumber \\(m\\) remains arbitrary. The [Taylor series](https://dlmf.nist.gov/10.53) expansions of the Riccati-Bessel functions are
+Let us now consider the particles on the opposite end of the size spectrum, with \\(\vert x \vert \ll 1\\). For the moment, the relative wavenumber \\(m\\) remains arbitrary. The Taylor expansions of the Riccati-Bessel functions \[[17](#references) (ch 7.4)\] are
 
 $$ \tag{18.21}
 \begin{aligned}
 	\psi_n(x)
-	&= x^{n+1} \sum_{k=0}^{\infin} \frac{ (-1)^k x^{2 k} }{ 2^k k! (2 n + 2 k + 1)!! },
+	&= 2^n x^{n+1} \sum_{m=0}^{\infin} \frac{(-1)^m (m+n)!}{m! (2 m+2 n+1)!} x^{2 m},
 	\cr
 	\chi_n(x)
-	&= -\frac{1}{x^n} \sum_{k=0}^{n} \frac{ x^{2 k} (2 n - 2 k - 1)!! }{ 2^k k! }
-	 - \frac{ (-1)^n }{x^n} \sum_{k=n+1}^{\infin} \frac{ (-1)^k x^{2 k} }{ 2^k k! (2 k - 2 n - 1)!! }.
+	&= \frac{(-1)^{n+1}}{2^n x^n} \sum_{m=0}^{\infin} \frac{(-1)^m (m-n)!}{m! (2 m-2 n)!} x^{2 m} .
 \end{aligned}
 $$
+
+https://archive.lib.msu.edu/crcmath/math/math/s/s567.htm
+
+https://archive.lib.msu.edu/crcmath/math/math/s/s568.htm
+
+Plots!
 
 We can obtain the Taylor expansion of \\(\xi_n(x)\\) by combining the expressions listed above with Equation 17.155.3.
 
