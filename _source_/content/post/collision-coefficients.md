@@ -4463,7 +4463,7 @@ As expected from the general scattering theory, the behavior of these functions 
 
 {{< figure src="/img/spherical_bessel_y.svg" caption="*Figure N: Spherical Bessel functions of the second kind of order n=0 (blue), n=1 (orange), n=2 (green), n=3 (red).*" >}}
 
-For small values of the argument, the behavior is both different and relatively complicated. In particular, the functions of the first kind take on finite values, while the functions of the second kind diverge at the origin. In the radiation zone, as \\(k r \to \infin\\), both types of functions behave as decaying sine waves, which can be clearly seen on the plot below.
+For small values of the argument, the behavior is both varied and relatively complicated. In particular, the functions of the first kind take on finite values, while the functions of the second kind diverge at the origin. In the radiation zone, as \\(k r \to \infin\\), both types of functions behave as decaying sine waves, which can be clearly seen on the plot below.
 
 {{< figure src="/img/spherical_hankel_1.svg" caption="*Figure N: Spherical Hankel functions of the first kind of order n=0 (blue), n=1 (orange), n=2 (green), n=3 (red). Solid lines correspond to the real part, while the imaginary part is drawn using dashed lines.*" >}}
 
@@ -4475,7 +4475,7 @@ $$ \tag{17.51}
 	y_n(x) = -(-x)^n \bigg( \frac{1}{x} \frac{d}{dx} \bigg)^n \frac{\cos{x}}{x},
 $$
 
-we can deduce that, for large values of the argument, the Bessel functions of the first and the second kind are out-of-phase by a factor of \\(\pi\\). This is a key property of the [asymptotic forms](https://dlmf.nist.gov/10.52) (for large \\(x\\))
+we can deduce that, for large values of the argument, the spherical Bessel functions of the first and the second kinds differ in phase by a factor of \\(\pi\\). The latter is prominently featured in the [asymptotic forms](https://dlmf.nist.gov/10.52) (for large \\(x\\))
 
 $$ \tag{17.52}
 \begin{aligned}
@@ -5883,6 +5883,10 @@ $$ \tag{17.156}
 	}.
 \end{aligned}
 $$
+
+{{< figure src="/img/riccati_psi.svg" caption="*Figure N: Riccati-Bessel functions of the first kind of order n=1 (blue), n=2 (orange), n=3 (green).*" >}}
+
+{{< figure src="/img/riccati_chi.svg" caption="*Figure N: Riccati-Bessel functions of the second kind of order n=1 (blue), n=2 (orange), n=3 (green).*" >}}
 
 The coefficients of proportionality of the internal field can be taken from Equations 17.151.1 and 17.150.2:
 
