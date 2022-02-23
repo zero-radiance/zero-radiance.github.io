@@ -5884,10 +5884,6 @@ $$ \tag{17.156}
 \end{aligned}
 $$
 
-{{< figure src="/img/riccati_psi.svg" caption="*Figure N: Riccati-Bessel functions of the first kind of order n=1 (blue), n=2 (orange), n=3 (green).*" >}}
-
-{{< figure src="/img/riccati_chi.svg" caption="*Figure N: Riccati-Bessel functions of the second kind of order n=1 (blue), n=2 (orange), n=3 (green).*" >}}
-
 The coefficients of proportionality of the internal field can be taken from Equations 17.151.1 and 17.150.2:
 
 $$ \tag{17.157}
@@ -5903,6 +5899,10 @@ $$ \tag{17.157}
 $$
 
 Note that the numerators of Equations 17.157.1 and 17.157.2 are the same. Thus, if their denominators vary slowly, \\(a_{n}''\\) and \\(b_{n}''\\) change at the same rate. In addition, the denominators of Equations 17.156.1 and 17.156.2 match those of Equations 17.157.1 and 17.157.2, respectively. Therefore, we should expect the peaks of \\(a_{n}'\\) and \\(a_{n}''\\) (or \\(b_{n}'\\) and \\(b_{n}''\\)) to be co-located in the same region of the \\(m\text{-}x\\) domain.
+
+{{< figure src="/img/riccati_psi.svg" caption="*Figure N: Riccati-Bessel functions of the first kind of order n=1 (blue), n=2 (orange), n=3 (green).*" >}}
+
+{{< figure src="/img/riccati_chi.svg" caption="*Figure N: Riccati-Bessel functions of the second kind of order n=1 (blue), n=2 (orange), n=3 (green).*" >}}
 
 Now, recall the transformation of the expression of the incident field (Equations 17.133-17.137), where we introduced the even and off vector spherical functions. Since the expansion coefficients of the scattered and the internal fields differ from those of the incident field only by a multiplicative factor, it is easy to see that the overall structure of the expression remains the same; novel expressions, such as that of the scattered field, can be obtained by attaching the corresponding factors to the spherical wave function vectors:
 
@@ -6217,7 +6217,7 @@ $$ \tag{18.14}
 	\backsimeq -\frac{ \psi_n'(x) }{ \xi_n'(x) }.
 $$
 
-In general, for isolated zeros, several intermediate states exist. In order to simplify the discussion, we shall not consider them here.
+In general, for isolated zeros, several intermediate states exist. For brevity, we shall not consider them here.
 
 Equation 18.14 can be expressed in a yet another way \[[17](#references) (ch 9.25)\]. Let us define
 
@@ -6233,7 +6233,7 @@ $$ \tag{18.15}
 \end{aligned}
 $$
 
-These expressions allow us to convert Equation 17.155 to the exponential form:
+These expressions allow us to express the Riccati-Bessel functions in the exponential form:
 
 $$ \tag{18.16}
 \begin{aligned}
@@ -6251,7 +6251,7 @@ $$ \tag{18.16}
 \end{aligned}
 $$
 
-This reduces the number of special functions we need to consider:
+Doing so reduces the number of special functions we need to consider:
 
 $$ \tag{18.17}
   	a_{n}'(\omega)
@@ -6263,7 +6263,7 @@ $$
 
 This method of the *phase angles* is most attractive when \\(x\\) is real, since that makes the angles real as well. It can be easily extended to spheres of arbitrary refractive index \[[4](#references) (ch. 10.21)\].
 
-We shall not explore the properties of these angles in great detail \[[4](#references) (ch. 10.21)\]. Instead, let us suppose that the size parameter is very large, such that \\(\vert x \vert \gg 1\\). That allows us to employ Equation 18.2 once more, which makes the values of the phase angles equal:
+We shall not explore the properties of these angles in great detail \[[4](#references) (ch. 10.22)\]. Instead, let us suppose that the size parameter is very large, such that \\(\vert x \vert \gg 1\\). This allows us to employ Equation 18.2 once more, and makes the values of the phase angles equal:
 
 $$ \tag{18.18}
 	\gamma_n = \gamma_n' = x - \frac{\pi n}{2} .
@@ -6290,27 +6290,37 @@ $$ \tag{18.20}
   	= a_{n+1}'(\omega).
 $$
 
-Note that, for any given value of \\(x\\), there are only 2 unique values of the coefficients.
+Note that, for any given value of \\(x\\), only 2 unique values of the coefficients exist.
 
-Let us now consider the particles on the opposite end of the size spectrum, with \\(\vert x \vert \ll 1\\). For the moment, the relative wavenumber \\(m\\) remains arbitrary. The Taylor expansions of the Riccati-Bessel functions \[[17](#references) (ch 7.4)\] are
+Let us now consider the particles on the opposite end of the size spectrum, with \\(\vert x \vert \ll 1\\). The Taylor series expansions of the Riccati-Bessel functions \[[17](#references) (ch 7.4)\] are
 
 $$ \tag{18.21}
 \begin{aligned}
 	\psi_n(x)
-	&= 2^n x^{n+1} \sum_{m=0}^{\infin} \frac{(-1)^m (m+n)!}{m! (2 m+2 n+1)!} x^{2 m},
-	\cr
+	&= 2^n x^{n+1} \sum_{k=0}^{\infin} \frac{(-1)^k (n + k)!}{k! (2 n + 2 k + 1)!} x^{2 k},
+ 	\cr
 	\chi_n(x)
-	&= \frac{(-1)^{n+1}}{2^n x^n} \sum_{m=0}^{\infin} \frac{(-1)^m (m-n)!}{m! (2 m-2 n)!} x^{2 m} .
+	&= -\frac{1}{2^n x^n} \sum_{k=0}^{\infin} \frac{\Gamma(2 n - 2 k + 1)}{k! \Gamma(n - k + 1)} x^{2 k},
 \end{aligned}
 $$
 
-https://archive.lib.msu.edu/crcmath/math/math/s/s567.htm
+where
 
-https://archive.lib.msu.edu/crcmath/math/math/s/s568.htm
+$$ \tag{18.22}
+\begin{aligned}
+	\Gamma(n) = (n-1)! \qquad (n \in \mathcal{Z}, n>0)
+\end{aligned}
+$$
 
-Plots!
+is the [Gamma function](https://en.wikipedia.org/wiki/Gamma_function). The Taylor expansion of \\(\xi_n(x)\\) can be obtained by combining the expressions listed above with Equation 17.155.3.
 
-We can obtain the Taylor expansion of \\(\xi_n(x)\\) by combining the expressions listed above with Equation 17.155.3.
+The two functions of Equation 18.21 exhibit the opposite behavior at the origin. On the one hand, the function of the first kind is positive, and quickly approaches 0 as \\(n\\) increases. On the other hand, the function of the second kind is negative, and rapidly diverges from 0. For both power series, the leading \\(k=0\\) plot has a dominant influence. This can be clearly seen on the almost perfectly straight [log-log plots](https://en.wikipedia.org/wiki/Log%E2%80%93log_plot) shown below.
+
+{{< figure src="/img/small_psi.svg" caption="*Figure N: Riccati-Bessel functions of the first kind of order n=1 (blue), n=2 (orange), n=3 (green).*" >}}
+
+{{< figure src="/img/small_chi.svg" caption="*Figure N: Negated Riccati-Bessel functions of the second kind of order n=1 (blue), n=2 (orange), n=3 (green).*" >}}
+
+
 
 For small values of \\(x\\), it suffices to only consider the first few terms:
 
