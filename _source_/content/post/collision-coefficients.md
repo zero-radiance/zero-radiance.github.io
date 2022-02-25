@@ -6186,7 +6186,7 @@ The resulting natural frequencies are complex. This implies that, no matter what
 
 Let us take a closer look at the expressions of the expansion coefficients given by Equation 17.156.
 
-Suppose that the relative wavenumber \\(m\\) is very large, and the size parameter \\(x\\) is not too small. Then, both \\(\vert m \vert \gg 1\\) and \\(\vert m x \vert \gg 1\\), which makes the asymptotic expansions of Equation 18.2 applicable:
+Suppose that the relative wavenumber \\(m\\) is very large, and the size parameter \\(x\\) is not too small. Then, \\(\vert m x \vert \gg 1\\), which makes the asymptotic expansions of Equation 18.2 applicable:
 
 $$ \tag{18.13}
 \begin{aligned}
@@ -6207,7 +6207,7 @@ $$ \tag{18.13}
 \end{aligned}
 $$
 
-If we consider the most typical scenario, in which \\(x\\) is such that the values of the four oscillating functions multiplied by \\(m\\) are not very close to zero, then Equation 18.13 can be simplified to
+If we consider the most typical scenario, in which \\(x\\) is such that the values of the four oscillating functions multiplied by \\(m\\) are not very close to zero, and if \\(\vert w m \vert \gg 1\\), then Equation 18.13 can be simplified to
 
 $$ \tag{18.14}
   	a_{n}'(\omega)
@@ -6314,15 +6314,65 @@ $$
 
 is the [Gamma function](https://en.wikipedia.org/wiki/Gamma_function). The Taylor expansion of \\(\xi_n(x)\\) can be obtained by combining the expressions listed above with Equation 17.155.3.
 
-The two functions of Equation 18.21 exhibit the opposite behavior at the origin. On the one hand, the function of the first kind is positive, and quickly approaches 0 as \\(n\\) increases. On the other hand, the function of the second kind is negative, and rapidly diverges from 0. For both power series, the leading \\(k=0\\) plot has a dominant influence. This can be clearly seen on the almost perfectly straight [log-log plots](https://en.wikipedia.org/wiki/Log%E2%80%93log_plot) shown below.
+The two functions of Equation 18.21 exhibit the opposite behavior at the origin. On the one hand, the function of the first kind is positive, and quickly approaches 0 as \\(n\\) increases. On the other hand, the function of the second kind is negative, and rapidly diverges from 0. Both power series are dominated by the leading \\(k=0\\) term. This is clearly demonstrated by the almost perfectly straight [log-log plots](https://en.wikipedia.org/wiki/Log%E2%80%93log_plot) shown below.
 
 {{< figure src="/img/small_psi.svg" caption="*Figure N: Riccati-Bessel functions of the first kind of order n=1 (blue), n=2 (orange), n=3 (green).*" >}}
 
 {{< figure src="/img/small_chi.svg" caption="*Figure N: Negated Riccati-Bessel functions of the second kind of order n=1 (blue), n=2 (orange), n=3 (green).*" >}}
 
+Suppose we are given a fairly small particle made of a very good conductor. If the frequency is sufficiently low, then \\(\vert m x \vert \gg 1\\) and \\(\vert w m \vert \gg 1\\), which makes Equation 18.15 applicable. Utilizing the series expansions given by Equation 18.21, we obtain
 
+$$ \tag{18.23}
+\begin{aligned}
+	&\tan{\gamma_n} = N x^{2 n + 1} + \mathrm{O} \big( x^{2 n + 3} \big)
+	\cr
+	&\cot{\gamma_n'} = \frac{(n+1)}{n} N x^{2 n + 1} + \mathrm{O} \big( x^{2 n + 3} \big),
+\end{aligned}
+$$
 
-For small values of \\(x\\), it suffices to only consider the first few terms:
+where
+
+$$ \tag{18.24}
+	N(n) = \frac{2^{2 n} (n!)^2}{(2 n)! (2 n+1)!}
+$$
+
+is a rapidly decreasing function of \\(n\\), with \\(N(1)=2/3.\\)
+
+Since the values of the trigonometric functions are small, they can also be expanded in the Taylor series:
+
+$$ \tag{18.25}
+\begin{aligned}
+	&\tan{y} = y + \mathrm{O} \big( y^3 \big) = \sin{y},
+	&
+	&\cot{y} = \frac{\pi}{2} - y + \mathrm{O} \negmedspace\left( \left( y - \frac{\pi}{2} \right)^3 \right) = \cos{y}.
+\end{aligned}
+$$
+
+Thus, if \\(\vert x \vert \ll 1\\),
+
+$$ \tag{18.26}
+\begin{aligned}
+	&\gamma_n \simeq N x^{2 n + 1},
+	&
+	&\gamma_n' \simeq \frac{\pi}{2} - \frac{(n+1)}{n} N x^{2 n + 1}.
+\end{aligned}
+$$
+
+which leads to the following asymptotic formulation of Equation 18.17:
+
+$$ \tag{18.27}
+\begin{aligned}
+  	a_{n}'(\omega)
+  	&\simeq -N x^{2 n + 1} \left( N x^{2 n + 1} + i \right),
+	\cr
+	b_{n}'(\omega)
+  	&\simeq -\frac{(n+1)}{n} N x^{2 n + 1} \left( \frac{(n+1)}{n} N x^{2 n + 1} - i \right).
+\end{aligned}
+$$
+
+We can observe that, for small particles, ...
+
+---
 
 $$ \tag{18.22}
 \begin{aligned}
