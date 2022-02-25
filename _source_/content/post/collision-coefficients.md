@@ -5828,14 +5828,14 @@ We may observe that both the scattered and the internal fields are directly prop
 
 $$ \tag{17.154}
 \begin{aligned}
-  	a_{n}'(\omega)
+  	a_{n}'
   	&= -\frac{
 		j_n(m x) \big[ x j_n(x) \big]' - w j_n(x) \big[ m x j_n(m x) \big]'
 	}{
 		j_n(m x) \big[ x h_n^{(1)}(x) \big]' - w h_n^{(1)}(x) \big[ m x j_n(m x) \big]'
 	},
 	\cr
-	b_{n}'(\omega)
+	b_{n}'
 	&= -\frac
 	{
 		w m^2 j_n(m x) \big[ x j_n(x) \big]' - j_n(x) \big[ m x j_n(m x) \big]'
@@ -5861,14 +5861,14 @@ instead:
 
 $$ \tag{17.156}
 \begin{aligned}
-  	a_{n}'(\omega)
+  	a_{n}'
   	&= -\frac{
 		\psi_n(m x) \psi_n'(x) - w m  \psi_n(x) \psi_n'(m x)
 	}{
 		\psi_n(m x) \xi_n'(x) - w m \xi_n(x) \psi_n'(m x)
 	},
 	\cr
-	b_{n}'(\omega)
+	b_{n}'
 	&= -\frac
 	{
 		w m \psi_n(m x) \psi_n'(x) - \psi_n(x) \psi_n'(m x)
@@ -5882,11 +5882,11 @@ The coefficients of proportionality of the internal field can be taken from Equa
 
 $$ \tag{17.157}
 \begin{aligned}
-	a_{n}''(\omega)
+	a_{n}''
 	&= \frac{1}{w} \frac{ \psi_n'(x) + a_{n}' \xi_n'(x) }{ \psi_n'(m x) }
 	= m \frac{\psi_n(x) \xi_n'(x) - \xi_n(x) \psi_n'(x)}{\psi_n(m x) \xi_n'(x) - w m \xi_n(x) \psi_n'(m x)},
 	\cr
-	b_{n}''(\omega)
+	b_{n}''
 	&= m \frac{ \psi_n'(x) + b_{n}' \xi_n'(x) }{ \psi_n'(m x) }
 	= m \frac{\psi_n(x) \xi_n'(x) - \xi_n(x) \psi_n'(x)}{w m \psi_n(m x) \xi_n'(x) - \xi_n(x) \psi_n'(m x)}.
 \end{aligned}
@@ -6185,7 +6185,7 @@ First, suppose that the spherical particle is very large. If we ignore the possi
 $$ \tag{18.13}
 \small
 \begin{aligned}
-  	a_{n}'(\omega)
+  	a_{n}'
   	&\backsimeq -i^n e^{-i x} \frac
   	{
 		\sin(m x - \pi n / 2) \cos(x - \pi n / 2) - w m \cos(m x - \pi n / 2) \sin(x - \pi n / 2)
@@ -6193,7 +6193,7 @@ $$ \tag{18.13}
 		\sin(m x - \pi n / 2) + i w m \cos(m x - \pi n / 2)
 	},
 	\cr
-	b_{n}'(\omega)
+	b_{n}'
 	&\backsimeq -i^{n + 1} e^{-i x} \frac
 	{
 		-\cos(m x - \pi n / 2) \sin(x - \pi n / 2) + w m \sin(m x - \pi n / 2) \cos(x - \pi n / 2)
@@ -6223,7 +6223,7 @@ Equation 18.13 can be equivalently expressed as
 
 $$ \tag{18.15}
 \begin{aligned}
-  	a_{n}'(\omega)
+  	a_{n}'
   	&\backsimeq \frac{1}{2} \left( (-1)^n \frac
   	{
 		-\sin(m x - \pi n / 2) + i w m \cos(m x - \pi n / 2)
@@ -6231,7 +6231,7 @@ $$ \tag{18.15}
 		\sin(m x - \pi n / 2) + i w m \cos(m x - \pi n / 2)
 	} e^{-i 2 x} - 1 \right),
 	\cr
-	b_{n}'(\omega)
+	b_{n}'
 	&\backsimeq \frac{1}{2} \left( (-1)^{n+1} \frac
 	{
 		\cos(m x - \pi n / 2) + i w m \sin(m x - \pi n / 2)
@@ -6245,12 +6245,12 @@ Additional simplification can be achieved by rewriting the formulas in terms of 
 
 $$ \tag{18.16}
 \begin{aligned}
-  	a_{n}'(\omega)
+  	a_{n}'
   	&\backsimeq (-1)^n
   	\left( \frac{1}{1 - i (w m)^{-1} \tan(m x - \pi n / 2)} - \frac{1}{2} \right)
 	e^{-i 2 x} - \frac{1}{2},
 	\cr
-	b_{n}'(\omega)
+	b_{n}'
 	&\backsimeq (-1)^n
 		\left( \frac{1}{1 - i w m \tan(m x - \pi n / 2)} - \frac{1}{2} \right)
 	e^{-i 2 x} - \frac{1}{2}.
@@ -6331,10 +6331,10 @@ which leads to the following asymptotic formulation of Equation 18.17:
 
 $$ \tag{18.27}
 \begin{aligned}
-  	a_{n}'(\omega)
+  	a_{n}'
   	&\simeq -N x^{2 n + 1} \left( N x^{2 n + 1} + i \right),
 	\cr
-	b_{n}'(\omega)
+	b_{n}'
   	&\simeq -\frac{(n+1)}{n} N x^{2 n + 1} \left( \frac{(n+1)}{n} N x^{2 n + 1} - i \right).
 \end{aligned}
 $$
@@ -6371,14 +6371,14 @@ $$
 Since \\(\vert x \vert \ll 1\\), Equation 18.23.2 can be further simplified by neglecting the trailing terms in the numerator and the denominator:
 
 $$ \tag{18.24}
-	b_{n}'(\omega)
+	b_{n}'
 	\simeq \frac{i (n+1) x^{2 n + 1}}{n (2 n-1)!! (2 n+1)!!}.
 $$
 
 In addition, if the magnitude of \\(w m\\) is not too great, then Equation 18.23.1 has the same expression:
 
 $$ \tag{18.25}
-  	a_{n}'(\omega)
+  	a_{n}'
   	\simeq \frac{i (n+1) x^{2 n + 1}}{n (2 n-1)!! (2 n+1)!!}.
 $$
 
