@@ -6180,113 +6180,88 @@ The resulting natural frequencies are complex. This implies that, no matter what
 
 Let us take a closer look at the expressions of the expansion coefficients given by Equation 17.156.
 
-Suppose that the relative wavenumber \\(m\\) is very large, and the size parameter \\(x\\) is not too small. Then, \\(\vert m x \vert \gg 1\\), which makes the asymptotic expansions of Equation 18.2 applicable:
+First, suppose that the spherical particle is very large. If we ignore the possibility that it represents a cavity, then \\(\vert m \vert > 1\\), which, coupled with \\(\vert x \vert \gg 1\\), leads to \\(\vert m x \vert \gg 1\\). This allows us to evaluate the expansion coefficients of the first few orders using the asymptotic expressions given by Equation 18.2:
 
 $$ \tag{18.13}
+\small
 \begin{aligned}
   	a_{n}'(\omega)
-  	&\backsimeq -\frac{
-		\sin(m x - \pi n / 2) \psi_n'(x) - w m \psi_n(x) \cos(m x - \pi n / 2)
+  	&\backsimeq -i^n e^{-i x} \frac
+  	{
+		\sin(m x - \pi n / 2) \cos(x - \pi n / 2) - w m \cos(m x - \pi n / 2) \sin(x - \pi n / 2)
 	}{
-		\sin(m x - \pi n / 2) \xi_n'(x) - w m \xi_n(x) \cos(m x - \pi n / 2)
+		\sin(m x - \pi n / 2) + i w m \cos(m x - \pi n / 2)
 	},
 	\cr
 	b_{n}'(\omega)
-	&\backsimeq -\frac
+	&\backsimeq -i^{n + 1} e^{-i x} \frac
 	{
-		w m \sin(m x - \pi n / 2) \psi_n'(x) - \psi_n(x) \cos(m x - \pi n / 2)
+		-\cos(m x - \pi n / 2) \sin(x - \pi n / 2) + w m \sin(m x - \pi n / 2) \cos(x - \pi n / 2)
 	}{
-		w m \sin(m x - \pi n / 2) \xi_n'(x) - \xi_n(x) \cos(m x - \pi n / 2)
+		-\cos(m x - \pi n / 2) + i w m \sin(m x - \pi n / 2)
 	}.
 \end{aligned}
 $$
 
-If we consider the most typical scenario, in which \\(x\\) is such that the values of the four oscillating functions multiplied by \\(m\\) are not very close to zero, and if \\(\vert w m \vert \gg 1\\), then Equation 18.13 can be simplified to
+These expressions are only valid provided that both \\(\vert x \vert \gg n\\) and \\(\vert m x \vert \gg n\\). The asymptotic expressions valid for all \\(n\\) have been found by Debye (1909); they are considerably more complicated, and we shall not discuss them here.
+
+The coefficients of Equation 18.13 are highly cyclical: \\(a\_{n+4} = a\_n\\) and \\(a\_{n+1} = b\_n\\). Thus, for any given value of \\(x,\\) only 4 unique coefficients exist.
+
+These formulas can be simplified by introducing the exponential notation. Since
 
 $$ \tag{18.14}
-  	a_{n}'(\omega)
-  	\backsimeq -\frac{ \psi_n(x) }{ \xi_n(x) },
-	\quad
-	b_{n}'(\omega)
-	\backsimeq -\frac{ \psi_n'(x) }{ \xi_n'(x) }.
+\begin{aligned}
+  	-i^{n+1} \sin\negmedspace\Big( x - \frac{\pi n}{2} \Big) e^{-i x}
+  	&= \frac{1}{2} \left( (-1)^n e^{-i 2 x} - 1 \right),
+	\cr
+	-i^n \cos\negmedspace\Big( x - \frac{\pi n}{2} \Big) e^{-i x}
+	&= \frac{1}{2} \left( (-1)^{n+1} e^{-i 2 x} - 1 \right),
+\end{aligned}
 $$
 
-In general, for isolated zeros, several intermediate states exist. For brevity, we shall not consider them here.
-
-Equation 18.14 can be expressed in a yet another way \[[17](#references) (ch 9.25)\]. Let us define
+Equation 18.13 can be equivalently expressed as
 
 $$ \tag{18.15}
 \begin{aligned}
-	&\tan{\gamma_n} = -\frac{ \psi_n(x) }{ \chi_n(x) },
-	&
-	&r_n = \sqrt{\psi_n^2(x) + \chi_n^2(x)},
+  	a_{n}'(\omega)
+  	&\backsimeq \frac{1}{2} \left( (-1)^n \frac
+  	{
+		-\sin(m x - \pi n / 2) + i w m \cos(m x - \pi n / 2)
+	}{
+		\sin(m x - \pi n / 2) + i w m \cos(m x - \pi n / 2)
+	} e^{-i 2 x} - 1 \right),
 	\cr
-	&\cot{\gamma_n'} = \frac{ \psi_n'(x) }{ \chi_n'(x) },
-	&
-	&r_n' = \sqrt{\psi_n'^2(x) + \chi_n'^2(x)},
+	b_{n}'(\omega)
+	&\backsimeq \frac{1}{2} \left( (-1)^{n+1} \frac
+	{
+		\cos(m x - \pi n / 2) + i w m \sin(m x - \pi n / 2)
+	}{
+		-\cos(m x - \pi n / 2) + i w m \sin(m x - \pi n / 2)
+	} e^{-i 2 x} - 1 \right).
 \end{aligned}
 $$
 
-These expressions allow us to express the Riccati-Bessel functions in the exponential form:
+Additional simplification can be achieved by rewriting the formulas in terms of \\(\tan(m x - \pi n / 2)\\):
 
 $$ \tag{18.16}
 \begin{aligned}
-	&\psi_n(x) = r_n \sin{\gamma_n},
-	&
-	&\chi_n(x) = -r_n \cos{\gamma_n},
-	&
-	&i \xi_n(x) = i \psi_n(x) - \chi_n(x) = r_n e^{i \gamma_n},
+  	a_{n}'(\omega)
+  	&\backsimeq (-1)^n
+  	\left( \frac{1}{1 - i (w m)^{-1} \tan(m x - \pi n / 2)} - \frac{1}{2} \right)
+	e^{-i 2 x} - \frac{1}{2},
 	\cr
-	&\psi_n'(x) = r_n \cos{\gamma_n'},
-	&
-	&\chi_n'(x) = r_n \sin{\gamma_n'},
-	&
-	&\xi_n'(x) = \psi_n'(x) + i \chi_n'(x) = r_n e^{i \gamma_n'}.
+	b_{n}'(\omega)
+	&\backsimeq (-1)^n
+		\left( \frac{1}{1 - i w m \tan(m x - \pi n / 2)} - \frac{1}{2} \right)
+	e^{-i 2 x} - \frac{1}{2}.
 \end{aligned}
 $$
 
-Doing so reduces the number of special functions we need to consider:
+If all parameters \\((w,m,x)\\) are real, then the magnitudes of the coefficients rapidly oscillate between 0 and 1.
 
-$$ \tag{18.17}
-  	a_{n}'(\omega)
-  	\backsimeq -i \sin{\gamma_n} e^{-i \gamma_n},
-	\quad
-	b_{n}'(\omega)
-  	\backsimeq -\cos{\gamma_n'} e^{-i \gamma_n'}.
-$$
+---
 
-This method of the *phase angles* is most attractive when \\(x\\) is real, since that makes the angles real as well. It can be easily extended to spheres of arbitrary refractive index \[[4](#references) (ch. 10.21)\].
-
-We shall not explore the properties of these angles in great detail \[[4](#references) (ch. 10.22)\]. Instead, let us suppose that the size parameter is very large, such that \\(\vert x \vert \gg 1\\). This allows us to employ Equation 18.2 once more, and makes the values of the phase angles equal:
-
-$$ \tag{18.18}
-	\gamma_n = \gamma_n' = x - \frac{\pi n}{2} .
-$$
-
-Unfortunately, this does not imply that the expansion coefficients become equal as well. But this does allow us to simplify Equation 18.17 considerably:
-
-$$ \tag{18.19}
-  	a_{n}'(\omega)
-  	\backsimeq -i^{n+1} \sin\negmedspace\Big( x - \frac{\pi n}{2} \Big) e^{-i x},
-	\quad
-	b_{n}'(\omega)
-  	\backsimeq -i^n \cos\negmedspace\Big( x - \frac{\pi n}{2} \Big) e^{-i x}.
-$$
-
-If we use the exponential notation, it turns out that both of these expressions behave as a shifted second harmonic:
-
-$$ \tag{18.20}
-  	a_{n}'(\omega)
-  	\backsimeq \frac{1}{2} \left( (-1)^n e^{-i 2 x} - 1 \right),
-	\quad
-	b_{n}'(\omega)
-  	\backsimeq \frac{1}{2} \left( (-1)^{n+1} e^{-i 2 x} - 1 \right)
-  	= a_{n+1}'(\omega).
-$$
-
-Note that, for any given value of \\(x\\), only 2 unique values of the coefficients exist.
-
-Let us now consider the particles on the opposite end of the size spectrum, with \\(\vert x \vert \ll 1\\). The Taylor series expansions of the Riccati-Bessel functions \[[17](#references) (ch 7.4)\] are
+Next, let us turn our attention to particles on the opposite end of the size spectrum, with \\(\vert x \vert \ll 1\\). The Taylor series expansions of the Riccati-Bessel functions \[[17](#references) (ch 7.4)\] are
 
 $$ \tag{18.21}
 \begin{aligned}
