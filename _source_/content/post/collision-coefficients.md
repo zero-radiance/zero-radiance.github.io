@@ -4475,7 +4475,7 @@ $$ \tag{17.51}
 	y_n(x) = -(-x)^n \bigg( \frac{1}{x} \frac{d}{dx} \bigg)^n \frac{\cos{x}}{x},
 $$
 
-we can deduce that, for large values of the argument, the spherical Bessel functions of the first and the second kinds differ in phase by a factor of \\(\pi\\). The latter is prominently featured in the [asymptotic forms](https://dlmf.nist.gov/10.52) (for large \\(x\\))
+we can deduce that, for large values of the argument, the spherical Bessel functions of the first and the second kinds differ in phase by a factor of \\(\pi\\). The latter is prominently featured in the [asymptotic forms](https://dlmf.nist.gov/10.52) (for \\(\vert x \vert \gg 1\\) and \\(\vert x \vert \gg n\\))
 
 $$ \tag{17.52}
 \begin{aligned}
@@ -4991,15 +4991,13 @@ $$ \tag{17.86}
 \end{aligned}
 $$
 
-Further simplification can be only achieved by assuming that no complex numbers are involved:
+Further simplification can be only achieved by assuming that no complex numbers are involved \\((z_n \in \mathcal{R})\\):
 
 $$ \tag{17.87}
 \begin{aligned}
 	&\int_{0}^{2 \pi} \int_{0}^{\pi} \big[ \bm{L_{s,t}}(\bm{r}) \big]^{\*} \cdot \bm{L_{m,n}}(\bm{r}) \sin{\theta} \thinspace d\theta d\phi
 	\cr
 	&= \frac{1}{2 n + 1} \Big( n \big[ z_{n-1}(k r) \big]^2 + (n + 1) \big[ z_{n+1}(k r) \big]^2 \Big) \delta_{m,s} \delta_{t,n}.
-	\quad
-	(z_n \in \mathcal{R})
 \end{aligned}
 $$
 
@@ -5028,7 +5026,7 @@ $$ \tag{17.89}
 \end{aligned}
 $$
 
-which, for real numbers, can be reduced to
+which, for real numbers \\((z_n \in \mathcal{R})\\), can be reduced to
 
 $$ \tag{17.90}
 \begin{aligned}
@@ -5037,8 +5035,6 @@ $$ \tag{17.90}
 	&= \frac{n (n+1)}{(2 n + 1)} \Big(
 		(n + 1) \big[ z_{n-1}(k r) \big]^2 + n \big[ z_{n+1}(k r) \big]^2
 		\Big) \delta_{m,s} \delta_{t,n}.
-	\quad
-	(z_n \in \mathcal{R})
 \end{aligned}
 $$
 
@@ -5075,7 +5071,7 @@ $$ \tag{17.93}
 \end{aligned}
 $$
 
-In the absence of complex numbers, Equation 17.93 has a simpler expression
+In the absence of complex numbers \\((z_n \in \mathcal{R})\\), Equation 17.93 has a simpler expression
 
 $$ \tag{17.94}
 \begin{aligned}
@@ -5086,8 +5082,6 @@ $$ \tag{17.94}
 	\cr
 	&= \frac{n (n + 1)}{2 n + 1}
 	\Big( \big[ z_{n-1}(k r) \big]^2 - \big[ z_{n+1}(k r) \big]^2 \Big) \delta_{m,s} \delta_{t,n},
-	\quad
-	(z_n \in \mathcal{R})
 \end{aligned}
 $$
 
@@ -5950,7 +5944,7 @@ The problem is exacerbated by the convergence properties of the series. It was s
 
 The most straightforward interpretation of Equations 17.158 and 17.159 treats the individual terms as *partial waves*. If we examine the definition of the vector tesseral harmonics given by Equation 17.136, we may note that \\(\bm{N\_{m,n}}\\) has a radial component, while \\(\bm{M\_{m,n}}\\) does not. Since an electric charge is a source of a radially-symmetric electric field, we may interpret the existence of the radial component of \\(\bm{N\_{m,n}}\\) as a sign of the fact that the sphere contains a distribution of electric charges; therefore, the partial waves prefixed with \\(b_n\\) are said to be of the *electric type*. At the same time, in comparison to Equation 17.36 of the electric field, Equation 17.37 of the magnetic field has the coefficients \\(a_n\\) and \\(b_n\\) interchanged; similar logical steps lead to the conclusion that the partial waves prefixed with \\(a_n\\) are of the *magnetic type* \[[17](#references) (ch 9.22)\].
 
-We may also show that the field becomes transverse in the radiation zone (see Equation 13.14 for the case of a scattering object of an arbitrary shape). Using the asymptotic expressions of the spherical Bessel functions given by Equation 17.52, for large \\(x\\), the corresponding Riccati-Bessel functions (and their derivatives) take the form
+We may also show that the field becomes transverse in the radiation zone (see Equation 13.14 for the case of a scattering object of an arbitrary shape). Using the asymptotic expressions of the spherical Bessel functions (for \\(\vert x \vert \gg 1\\) and \\(\vert x \vert \gg n\\)) given by Equation 17.52, the corresponding Riccati-Bessel functions (and their derivatives) take the form
 
 $$ \tag{18.2}
 \begin{aligned}
@@ -6348,7 +6342,7 @@ $$ \tag{18.25}
 \end{aligned}
 $$
 
-Thus, if \\(\vert x \vert \ll 1\\),
+Thus, if \\(\vert x \vert \ll 1\\) and \\(\vert m x \vert \gg 1\\),
 
 $$ \tag{18.26}
 \begin{aligned}
