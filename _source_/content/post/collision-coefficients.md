@@ -6180,7 +6180,7 @@ The resulting natural frequencies are complex. This implies that, no matter what
 
 Let us take a closer look at the expressions of the expansion coefficients of the scattered field given by Equation 17.156.
 
-First, let us consider a very large spherical particle. If we ignore the possibility that it represents a cavity, then \\(\vert m \vert > 1\\), which, coupled with \\(\vert x \vert \gg 1\\), leads to \\(\vert m x \vert \gg 1\\). This allows us to evaluate the expansion coefficients of the first few orders using the asymptotic expressions given by Equation 18.2:
+First, let us consider a very large spherical particle. If we ignore the possibility that it represents a cavity, then \\(\vert m \vert > 1\\), which, once combined with \\(\vert x \vert \gg 1\\), leads to \\(\vert m x \vert \gg 1\\). This allows us to evaluate the expansion coefficients of the first few orders using the asymptotic expressions given by Equation 18.2:
 
 $$ \tag{18.13}
 \small
@@ -6203,9 +6203,9 @@ $$ \tag{18.13}
 \end{aligned}
 $$
 
-These expressions are only valid provided that both \\(\vert x \vert \gg n\\) and \\(\vert m x \vert \gg n\\). The asymptotic expressions valid for all orders \\(n\\) have been found by Debye (1909); they are considerably more complicated, and we shall not discuss them here.
+These expressions are only valid provided that both \\(\vert x \vert \gg n\\) and \\(\vert m x \vert \gg n\\). The asymptotic expressions valid for all orders \\(n\\) have been found by Debye (1909); they are considerably more complicated, so we shall not discuss them here.
 
-The coefficients of Equation 18.13 are highly cyclical: \\(a\_{n+4} = a\_n\\) and \\(a\_{n+1} = b\_n\\). Thus, for any given value of \\(x,\\) only 4 unique coefficients exist.
+The coefficients of Equation 18.13 are highly cyclical: \\(a\_{n+4} \backsimeq a\_n\\) and \\(a\_{n+1} \backsimeq b\_n\\). Thus, for any given value of \\(x,\\) only 4 unique coefficients exist.
 
 These formulas can be simplified by introducing the exponential notation. Since
 
@@ -6257,7 +6257,7 @@ $$ \tag{18.16}
 \end{aligned}
 $$
 
-If all parameters \\((u,m,x)\\) are real, then the magnitudes of the coefficients rapidly oscillate between 0 and 1.
+The expressions given above demonstrate that, if all arguments \\((u,m,x)\\) are real, then the magnitudes of the coefficients rapidly oscillate between 0 and 1.
 
 Next, let us turn our attention to particles on the opposite end of the size spectrum, with \\(\vert m x \vert \ll 1\\). If we assume that \\(\vert m \vert > 1\\), then it follows that \\(\vert x \vert \ll 1\\) as well. The Taylor series expansions of the Riccati-Bessel functions \[[17](#references) (ch 7.4)\] are
 
@@ -6287,7 +6287,7 @@ The two functions of Equation 18.21 exhibit the opposite behavior at the origin.
 
 {{< figure src="/img/small_chi.svg" caption="*Figure N: Negated Riccati-Bessel functions of the second kind of order n=1 (blue), n=2 (orange), n=3 (green).*" >}}
 
-Thus, we can estimate the asymptotic behavior of the expansion coefficients of the scattered field by using a single term of Equations 18.17.1 and 18.17.2:
+Thus, we can estimate the asymptotic behavior of the expansion coefficients of the scattered field by taking a single term from each of Equations 18.17.1 and 18.17.2:
 
 $$ \tag{18.19}
 \begin{aligned}
@@ -6310,9 +6310,9 @@ $$
 
 is a rapidly growing function of \\(n\\), with \\(N(1)=3/2.\\)
 
-In our crude approximation, the magnetic coefficients \\(a_{n}'\\) vanish for non-magnetic particles with \\(u=1\\). In addition, the magnetic coefficients do not depend on the relative wavenumber \\(m\\) at all. However, for our purposes, this approximation is sufficient, since it clearly demonstrates that the magnitudes of both coefficients are roughly proportional \\(N^{-1} x^{2 n + 1}\\). Therefore, for \\(\vert x \vert \ll 1\\), we may restrict ourselves to the fist couple of terms.
+In our crude approximation, the magnetic coefficients \\(a_{n}'\\) vanish for non-magnetic materials with \\(u=1\\). In addition, the magnetic coefficients do not depend on the relative wavenumber \\(m\\) at all. However, for our purposes, this approximation is sufficient, since it clearly demonstrates that the magnitudes of both coefficients are roughly proportional \\(N^{-1} x^{2 n + 1}\\). Since the latter plummets with increasing \\(n\\), for \\(\vert x \vert \ll 1\\), we may restrict ourselves to the fist couple of terms.
 
-In general, the expansion coefficients of orders \\(n=1\\) or \\(n=2\\) can be easily evaluated exactly by using the closed forms of the Riccati-Bessel functions:
+In general, for an arbitrary set of parameters, the expansion coefficients of orders \\(n=1\\) or \\(n=2\\) can be easily evaluated *exactly* by using the closed forms of the Riccati-Bessel functions:
 
 $$ \tag{18.21}
 \begin{aligned}
@@ -6335,132 +6335,56 @@ However, for small particles with \\(\vert m x \vert \ll 1\\), it is slightly mo
 $$ \tag{18.22}
 \begin{aligned}
   	a_{1}'
-  	&= -i \frac{2}{3} \negthinspace\left( \frac{u-1}{2 u+1} \right)\negthinspace x^3
-  	+ i \frac{u m^2+4 u^2-6 u+1}{5 (2 u+1)^2} x^5
+  	&= -i \frac{2}{3} \frac{u-1}{2 u+1} x^3
+  	+ i \frac{1}{5} \frac{u m^2+4 u^2-6 u+1}{(2 u+1)^2} x^5
   	+ \mathrm{O}\big( x^6 \big),
 	\cr
 	b_{1}'
-	&= i \frac{2}{3} \negthinspace\left( \frac{u m^2-1}{u m^2+2} \right)\negthinspace x^3
-	+ i \frac{u m^2 (u m^2 + m^2 - 6) + 4}{5 \left(u m^2+2\right)^2} x^5
+	&= i \frac{2}{3} \frac{u m^2-1}{u m^2+2} x^3
+	+ i \frac{1}{5} \frac{u m^2 \left(u m^2 + m^2 - 6\right) + 4}{\left(u m^2+2\right)^2} x^5
 	+ \mathrm{O}\big( x^6 \big),
 	\cr
   	a_{2}'
-  	&= -i \frac{1}{15} \negthinspace\left( \frac{u-1}{3 u+2} \right)\negthinspace x^5
+  	&= -i \frac{1}{15} \frac{u-1}{3 u+2} x^5
   	+ \mathrm{O}\big( x^7 \big),
 	\cr
 	b_{2}'
-	&= i \frac{1}{15} \negthinspace\left( \frac{u m^2-1}{2 u m^2+3} \right)\negthinspace x^5
+	&= i \frac{1}{15} \frac{u m^2-1}{2 u m^2+3} x^5
 	+ \mathrm{O}\big( x^7 \big).
 \end{aligned}
 $$
 
-\\(a\_2 \neq b\_1\\), wtf?
-
----
-
-Suppose we are given a fairly small particle made of a very good conductor. If the frequency is sufficiently low, then \\(\vert m x \vert \gg 1\\) and \\(\vert u m \vert \gg 1\\), which makes Equation 18.15 applicable. Utilizing the series expansions given by Equation 18.21, we obtain
+If the material is non-magnetic, we may set \\(u=1\\):
 
 $$ \tag{18.23}
 \begin{aligned}
-	&\tan{\gamma_n} = N x^{2 n + 1} + \mathrm{O} \big( x^{2 n + 3} \big)
+  	a_{1}'
+  	&= i \frac{1}{45} \left(m^2-1\right) x^5
+  	+ \mathrm{O}\big( x^6 \big),
 	\cr
-	&\cot{\gamma_n'} = \frac{(n+1)}{n} N x^{2 n + 1} + \mathrm{O} \big( x^{2 n + 3} \big),
+	b_{1}'
+	&= i \frac{2}{3} \frac{m^2-1}{m^2+2} x^3
+	+i \frac{2}{5} \frac{m^2 \left(m^2 - 3\right)+2}{\left(m^2+2\right)^2} x^5
+	+ \mathrm{O}\big( x^6 \big),
+	\cr
+  	a_{2}'
+  	&= \mathrm{O}\big( x^7 \big),
+	\cr
+	b_{2}'
+	&= i \frac{1}{15} \frac{m^2-1}{2 m^2+3} x^5
+	+ \mathrm{O}\big( x^7 \big).
 \end{aligned}
 $$
 
-where
+Note that, for small particles, the relationship between the electric and the magnetic coefficients is reversed: \\(a\_n \approx b\_{n+1}\\) as opposed to \\(a\_{n+1} \backsimeq b\_n\\) when particles are large.
+
+For small molecules, even the \\(x^5\\) term is often neglected. In this case, all coefficients except for
 
 $$ \tag{18.24}
-	N(n) = \frac{2^{2 n} (n!)^2}{(2 n)! (2 n+1)!}
+	b_{1}' \simeq i \frac{2}{3} \frac{m^2-1}{m^2+2} x^3
 $$
 
-is a rapidly decreasing function of \\(n\\), with \\(N(1)=2/3.\\)
-
-Since the values of the trigonometric functions are small, they can also be expanded in the Taylor series:
-
-$$ \tag{18.25}
-\begin{aligned}
-	&\tan{y} = y + \mathrm{O} \big( y^3 \big) = \sin{y},
-	&
-	&\cot{y} = \frac{\pi}{2} - y + \mathrm{O} \negmedspace\left( \left( y - \frac{\pi}{2} \right)^3 \right) = \cos{y}.
-\end{aligned}
-$$
-
-Thus, if \\(\vert x \vert \ll 1\\) and \\(\vert m x \vert \gg 1\\),
-
-$$ \tag{18.26}
-\begin{aligned}
-	&\gamma_n \simeq N x^{2 n + 1},
-	&
-	&\gamma_n' \simeq \frac{\pi}{2} - \frac{(n+1)}{n} N x^{2 n + 1}.
-\end{aligned}
-$$
-
-which leads to the following asymptotic formulation of Equation 18.17:
-
-$$ \tag{18.27}
-\begin{aligned}
-  	a_{n}'
-  	&\simeq -N x^{2 n + 1} \left( N x^{2 n + 1} + i \right),
-	\cr
-	b_{n}'
-  	&\simeq -\frac{(n+1)}{n} N x^{2 n + 1} \left( \frac{(n+1)}{n} N x^{2 n + 1} - i \right).
-\end{aligned}
-$$
-
-We can observe that, for small particles, ...
-
----
-
-$$ \tag{18.22}
-\begin{aligned}
-	\psi_1(x)
-	&= \frac{x^2}{3} - \frac{x^4}{30} + \mathrm{O} \big( x^6 \big),
-	&
-	\chi_1(x)
-	&= -\frac{1}{x} - \frac{x}{2} + \frac{x^3}{8} + \mathrm{O} \big( x^5 \big),
-	\cr
-	\psi_2(x)
-	&= \frac{x^3}{15} + \mathrm{O} \big( x^5 \big),
-	&
-	\chi_2(x)
-	&= -\frac{3}{x^2} - \frac{1}{2} - \frac{x^2}{8} + \frac{x^4}{48} + \mathrm{O} \big( x^6 \big).
-\end{aligned}
-$$
-
-Substitution into Equation 17.156 yields the following expressions of the expansion coefficients of the scattered field:
-
-$$ \tag{18.23}
-\small
-\begin{aligned}
-  	...
-\end{aligned}
-$$
-
-Since \\(\vert x \vert \ll 1\\), Equation 18.23.2 can be further simplified by neglecting the trailing terms in the numerator and the denominator:
-
-$$ \tag{18.24}
-	b_{n}'
-	\simeq \frac{i (n+1) x^{2 n + 1}}{n (2 n-1)!! (2 n+1)!!}.
-$$
-
-In addition, if the magnitude of \\(u m\\) is not too great, then Equation 18.23.1 has the same expression:
-
-$$ \tag{18.25}
-  	a_{n}'
-  	\simeq \frac{i (n+1) x^{2 n + 1}}{n (2 n-1)!! (2 n+1)!!}.
-$$
-
-Since the magnitudes of the coefficients decrease so rapidly with increasing \\(n\\), the terms with \\(n > 1\\) make a negligible contribution to the overall result. Therefore, the scattering matrix (c.f. Equation 18.6) has a cubic dependence on the size parameter, which is a characteristic feature of [Rayleigh scattering](https://en.wikipedia.org/wiki/Rayleigh_scattering).
-
-
-$$ \tag{13.2}
-	\mathcal{G_{e}}
-	= \bigg( 1 + \mathrm{O} \Big( (k R)^{-1} \Big) + \mathrm{O} \Big( (k R)^{-2} \Big) \bigg) \mathcal{G_{ef}}, \quad
-	\mathcal{G_{m}}
-	= \bigg( 1 + \mathrm{O} \Big( (k R)^{-1} \Big) \bigg)
-	\mathcal{G_{mf}}.
-$$
+vanish. This is the origin of the famous law of [Rayleigh scattering](https://en.wikipedia.org/wiki/Rayleigh_scattering) which explains the color of the sky: when molecules of the atmosphere scatter sunlight, the intensity of blue light, which has a shorter wavelength, is much greater than of the rest of the [visible spectrum](https://en.wikipedia.org/wiki/Visible_spectrum), since the intensity of molecular scattering roughly follows the \\(x^4 \backsim \lambda^{-4}\\) rule.
 
 ---
 
