@@ -5824,23 +5824,23 @@ $$ \tag{17.152}
 \end{aligned}
 $$
 
-We may observe that both the scattered and the internal fields are directly proportional to the incident field. Furthermore, the coefficients of proportionality are independent of \\(m\\). They may be written down neatly if we re-introduce the traditional notation that calls the radius of the spherical particle \\(a\\), the size parameter \\(x = k_1 a\\), the relative wavenumber \\(m = k_2 / k_1\\), and the inverse relative permeability \\(w = \mu_1 / \mu_2\\). The order-independent multiplicative factors of Equation 17.152 can then be expressed as \[[17](#references) (ch 9.25)\]
+We may observe that both the scattered and the internal fields are directly proportional to the incident field. Furthermore, the coefficients of proportionality are independent of \\(m\\). They may be written down neatly if we re-introduce the traditional notation that calls the radius of the spherical particle \\(a\\), the size parameter \\(x = k_1 a\\), the relative wavenumber \\(m = k_2 / k_1\\), and the inverse relative permeability \\(u = \mu_1 / \mu_2\\). The order-independent multiplicative factors of Equation 17.152 can then be expressed as \[[17](#references) (ch 9.25)\]
 
 $$ \tag{17.154}
 \begin{aligned}
   	a_{n}'
   	&= -\frac{
-		j_n(m x) \big[ x j_n(x) \big]' - w j_n(x) \big[ m x j_n(m x) \big]'
+		j_n(m x) \big[ x j_n(x) \big]' - u j_n(x) \big[ m x j_n(m x) \big]'
 	}{
-		j_n(m x) \big[ x h_n^{(1)}(x) \big]' - w h_n^{(1)}(x) \big[ m x j_n(m x) \big]'
+		j_n(m x) \big[ x h_n^{(1)}(x) \big]' - u h_n^{(1)}(x) \big[ m x j_n(m x) \big]'
 	},
 	\cr
 	b_{n}'
 	&= -\frac
 	{
-		w m^2 j_n(m x) \big[ x j_n(x) \big]' - j_n(x) \big[ m x j_n(m x) \big]'
+		u m^2 j_n(m x) \big[ x j_n(x) \big]' - j_n(x) \big[ m x j_n(m x) \big]'
 	}{
-		w m^2 j_n(m x) \big[ x h_n^{(1)}(x) \big]' - h_n^{(1)}(x) \big[ m x j_n(m x) \big]'
+		u m^2 j_n(m x) \big[ x h_n^{(1)}(x) \big]' - h_n^{(1)}(x) \big[ m x j_n(m x) \big]'
 	}.
 \end{aligned}
 $$
@@ -5863,17 +5863,17 @@ $$ \tag{17.156}
 \begin{aligned}
   	a_{n}'
   	&= -\frac{
-		\psi_n(m x) \psi_n'(x) - w m  \psi_n(x) \psi_n'(m x)
+		\psi_n(m x) \psi_n'(x) - u m  \psi_n(x) \psi_n'(m x)
 	}{
-		\psi_n(m x) \xi_n'(x) - w m \xi_n(x) \psi_n'(m x)
+		\psi_n(m x) \xi_n'(x) - u m \xi_n(x) \psi_n'(m x)
 	},
 	\cr
 	b_{n}'
 	&= -\frac
 	{
-		w m \psi_n(m x) \psi_n'(x) - \psi_n(x) \psi_n'(m x)
+		u m \psi_n(m x) \psi_n'(x) - \psi_n(x) \psi_n'(m x)
 	}{
-		w m \psi_n(m x) \xi_n'(x) - \xi_n(x) \psi_n'(m x)
+		u m \psi_n(m x) \xi_n'(x) - \xi_n(x) \psi_n'(m x)
 	}.
 \end{aligned}
 $$
@@ -5883,12 +5883,12 @@ The coefficients of proportionality of the internal field can be taken from Equa
 $$ \tag{17.157}
 \begin{aligned}
 	a_{n}''
-	&= \frac{1}{w} \frac{ \psi_n'(x) + a_{n}' \xi_n'(x) }{ \psi_n'(m x) }
-	= m \frac{\psi_n(x) \xi_n'(x) - \xi_n(x) \psi_n'(x)}{\psi_n(m x) \xi_n'(x) - w m \xi_n(x) \psi_n'(m x)},
+	&= \frac{1}{u} \frac{ \psi_n'(x) + a_{n}' \xi_n'(x) }{ \psi_n'(m x) }
+	= m \frac{\psi_n(x) \xi_n'(x) - \xi_n(x) \psi_n'(x)}{\psi_n(m x) \xi_n'(x) - u m \xi_n(x) \psi_n'(m x)},
 	\cr
 	b_{n}''
 	&= m \frac{ \psi_n'(x) + b_{n}' \xi_n'(x) }{ \psi_n'(m x) }
-	= m \frac{\psi_n(x) \xi_n'(x) - \xi_n(x) \psi_n'(x)}{w m \psi_n(m x) \xi_n'(x) - \xi_n(x) \psi_n'(m x)}.
+	= m \frac{\psi_n(x) \xi_n'(x) - \xi_n(x) \psi_n'(x)}{u m \psi_n(m x) \xi_n'(x) - \xi_n(x) \psi_n'(m x)}.
 \end{aligned}
 $$
 
@@ -6188,17 +6188,17 @@ $$ \tag{18.13}
   	a_{n}'
   	&\backsimeq -i^n e^{-i x} \frac
   	{
-		\sin(m x - \pi n / 2) \cos(x - \pi n / 2) - w m \cos(m x - \pi n / 2) \sin(x - \pi n / 2)
+		\sin(m x - \pi n / 2) \cos(x - \pi n / 2) - u m \cos(m x - \pi n / 2) \sin(x - \pi n / 2)
 	}{
-		\sin(m x - \pi n / 2) + i w m \cos(m x - \pi n / 2)
+		\sin(m x - \pi n / 2) + i u m \cos(m x - \pi n / 2)
 	},
 	\cr
 	b_{n}'
 	&\backsimeq -i^{n + 1} e^{-i x} \frac
 	{
-		-\cos(m x - \pi n / 2) \sin(x - \pi n / 2) + w m \sin(m x - \pi n / 2) \cos(x - \pi n / 2)
+		-\cos(m x - \pi n / 2) \sin(x - \pi n / 2) + u m \sin(m x - \pi n / 2) \cos(x - \pi n / 2)
 	}{
-		-\cos(m x - \pi n / 2) + i w m \sin(m x - \pi n / 2)
+		-\cos(m x - \pi n / 2) + i u m \sin(m x - \pi n / 2)
 	}.
 \end{aligned}
 $$
@@ -6226,17 +6226,17 @@ $$ \tag{18.15}
   	a_{n}'
   	&\backsimeq \frac{1}{2} \left( (-1)^n \frac
   	{
-		-\sin(m x - \pi n / 2) + i w m \cos(m x - \pi n / 2)
+		-\sin(m x - \pi n / 2) + i u m \cos(m x - \pi n / 2)
 	}{
-		\sin(m x - \pi n / 2) + i w m \cos(m x - \pi n / 2)
+		\sin(m x - \pi n / 2) + i u m \cos(m x - \pi n / 2)
 	} e^{-i 2 x} - 1 \right),
 	\cr
 	b_{n}'
 	&\backsimeq \frac{1}{2} \left( (-1)^{n+1} \frac
 	{
-		\cos(m x - \pi n / 2) + i w m \sin(m x - \pi n / 2)
+		\cos(m x - \pi n / 2) + i u m \sin(m x - \pi n / 2)
 	}{
-		-\cos(m x - \pi n / 2) + i w m \sin(m x - \pi n / 2)
+		-\cos(m x - \pi n / 2) + i u m \sin(m x - \pi n / 2)
 	} e^{-i 2 x} - 1 \right).
 \end{aligned}
 $$
@@ -6247,17 +6247,17 @@ $$ \tag{18.16}
 \begin{aligned}
   	a_{n}'
   	&\backsimeq (-1)^n
-  	\left( \frac{1}{1 - i (w m)^{-1} \tan(m x - \pi n / 2)} - \frac{1}{2} \right)
+  	\left( \frac{1}{1 - i (u m)^{-1} \tan(m x - \pi n / 2)} - \frac{1}{2} \right)
 	e^{-i 2 x} - \frac{1}{2},
 	\cr
 	b_{n}'
 	&\backsimeq (-1)^n
-		\left( \frac{1}{1 - i w m \tan(m x - \pi n / 2)} - \frac{1}{2} \right)
+		\left( \frac{1}{1 - i u m \tan(m x - \pi n / 2)} - \frac{1}{2} \right)
 	e^{-i 2 x} - \frac{1}{2}.
 \end{aligned}
 $$
 
-If all parameters \\((w,m,x)\\) are real, then the magnitudes of the coefficients rapidly oscillate between 0 and 1.
+If all parameters \\((u,m,x)\\) are real, then the magnitudes of the coefficients rapidly oscillate between 0 and 1.
 
 Next, let us turn our attention to particles on the opposite end of the size spectrum, with \\(\vert m x \vert \ll 1\\). If we assume that \\(\vert m \vert > 1\\), then it follows that \\(\vert x \vert \ll 1\\) as well. The Taylor series expansions of the Riccati-Bessel functions \[[17](#references) (ch 7.4)\] are
 
@@ -6292,13 +6292,13 @@ Thus, we can estimate the asymptotic behavior of the expansion coefficients of t
 $$ \tag{18.19}
 \begin{aligned}
   	a_{n}'
-  	&\simeq -\frac{ w - 1 }
-  	{ (w - 1) - i (n (w + 1) + w) N x^{-2 n-1}
+  	&\simeq -\frac{ u - 1 }
+  	{ (u - 1) - i (n (u + 1) + u) N x^{-2 n-1}
   	},
 	\cr
 	b_{n}'
-	&\simeq -\frac{w m^2 - 1}
-	{ (w m^2 - 1) + i (n (w m^2 + 1) + 1) N x^{-2 n-1} },
+	&\simeq -\frac{u m^2 - 1}
+	{ (u m^2 - 1) + i (n (u m^2 + 1) + 1) N x^{-2 n-1} },
 \end{aligned}
 $$
 
@@ -6310,7 +6310,7 @@ $$
 
 is a rapidly growing function of \\(n\\), with \\(N(1)=3/2.\\)
 
-In our crude approximation, the magnetic coefficients \\(a_{n}'\\) vanish for non-magnetic particles with \\(w=1\\). In addition, the magnetic coefficients don't depend on the relative wavenumber at all. However, for our purposes, this approximation is sufficient, since it clearly demonstrates that the magnitudes of both coefficients are roughly proportional \\(N^{-1} x^{2 n + 1}\\). Therefore, for \\(\vert x \vert \ll 1\\), we may restrict ourselves to the fist couple of terms.
+In our crude approximation, the magnetic coefficients \\(a_{n}'\\) vanish for non-magnetic particles with \\(u=1\\). In addition, the magnetic coefficients don't depend on the relative wavenumber at all. However, for our purposes, this approximation is sufficient, since it clearly demonstrates that the magnitudes of both coefficients are roughly proportional \\(N^{-1} x^{2 n + 1}\\). Therefore, for \\(\vert x \vert \ll 1\\), we may restrict ourselves to the fist couple of terms.
 
 In general, the expansion coefficients of orders \\(n=1\\) or \\(n=2\\) can be easily evaluated exactly by using the closed forms of the Riccati-Bessel functions:
 
@@ -6335,21 +6335,21 @@ For small particles, it is slightly more efficient to use a Taylor series expans
 $$ \tag{18.22}
 \begin{aligned}
   	a_{1}'
-  	&= -i\frac{2 (w-1)}{3 (2 w+1)} x^3
-  	+ i \frac{w m^2+4 w^2-6 w+1}{5 (2 w+1)^2} x^5
+  	&= -i\frac{2 (u-1)}{3 (2 u+1)} x^3
+  	+ i \frac{u m^2+4 u^2-6 u+1}{5 (2 u+1)^2} x^5
   	+ \mathrm{O}\big( x^6 \big),
 	\cr
 	b_{1}'
-	&= i \frac{2 \left(w m^2-1\right)}{3 \left(w m^2+2\right)} x^3
-	+ i \frac{w m^2 (w m^2 + m^2 - 6) + 4}{5 \left(w m^2+2\right)^2} x^5
+	&= i \frac{2 \left(u m^2-1\right)}{3 \left(u m^2+2\right)} x^3
+	+ i \frac{u m^2 (u m^2 + m^2 - 6) + 4}{5 \left(u m^2+2\right)^2} x^5
 	+ \mathrm{O}\big( x^6 \big),
 	\cr
   	a_{2}'
-  	&= -i \frac{(w-1)}{15 (3 w+2)} x^5
+  	&= -i \frac{(u-1)}{15 (3 u+2)} x^5
   	+ \mathrm{O}\big( x^7 \big),
 	\cr
 	b_{2}'
-	&= i \frac{\left(w m^2-1\right)}{15 \left(2 w m^2+3\right)} x^5
+	&= i \frac{\left(u m^2-1\right)}{15 \left(2 u m^2+3\right)} x^5
 	+ \mathrm{O}\big( x^7 \big).
 \end{aligned}
 $$
@@ -6358,7 +6358,7 @@ $$
 
 ---
 
-Suppose we are given a fairly small particle made of a very good conductor. If the frequency is sufficiently low, then \\(\vert m x \vert \gg 1\\) and \\(\vert w m \vert \gg 1\\), which makes Equation 18.15 applicable. Utilizing the series expansions given by Equation 18.21, we obtain
+Suppose we are given a fairly small particle made of a very good conductor. If the frequency is sufficiently low, then \\(\vert m x \vert \gg 1\\) and \\(\vert u m \vert \gg 1\\), which makes Equation 18.15 applicable. Utilizing the series expansions given by Equation 18.21, we obtain
 
 $$ \tag{18.23}
 \begin{aligned}
@@ -6444,7 +6444,7 @@ $$ \tag{18.24}
 	\simeq \frac{i (n+1) x^{2 n + 1}}{n (2 n-1)!! (2 n+1)!!}.
 $$
 
-In addition, if the magnitude of \\(w m\\) is not too great, then Equation 18.23.1 has the same expression:
+In addition, if the magnitude of \\(u m\\) is not too great, then Equation 18.23.1 has the same expression:
 
 $$ \tag{18.25}
   	a_{n}'
