@@ -6310,7 +6310,7 @@ $$
 
 is a rapidly growing function of \\(n\\), with \\(N(1)=3/2.\\)
 
-In our crude approximation, the magnetic coefficients \\(a_{n}'\\) vanish for non-magnetic particles with \\(u=1\\). In addition, the magnetic coefficients don't depend on the relative wavenumber at all. However, for our purposes, this approximation is sufficient, since it clearly demonstrates that the magnitudes of both coefficients are roughly proportional \\(N^{-1} x^{2 n + 1}\\). Therefore, for \\(\vert x \vert \ll 1\\), we may restrict ourselves to the fist couple of terms.
+In our crude approximation, the magnetic coefficients \\(a_{n}'\\) vanish for non-magnetic particles with \\(u=1\\). In addition, the magnetic coefficients do not depend on the relative wavenumber \\(m\\) at all. However, for our purposes, this approximation is sufficient, since it clearly demonstrates that the magnitudes of both coefficients are roughly proportional \\(N^{-1} x^{2 n + 1}\\). Therefore, for \\(\vert x \vert \ll 1\\), we may restrict ourselves to the fist couple of terms.
 
 In general, the expansion coefficients of orders \\(n=1\\) or \\(n=2\\) can be easily evaluated exactly by using the closed forms of the Riccati-Bessel functions:
 
@@ -6330,26 +6330,26 @@ $$ \tag{18.21}
 \end{aligned}
 $$
 
-For small particles, it is slightly more efficient to use a Taylor series expansion. Restricting ourselves to polynomials of degree 5, we obtain
+However, for small particles with \\(\vert m x \vert \ll 1\\), it is slightly more efficient to use a Taylor series expansion. Restricting ourselves to polynomials of degree 5, we obtain
 
 $$ \tag{18.22}
 \begin{aligned}
   	a_{1}'
-  	&= -i\frac{2 (u-1)}{3 (2 u+1)} x^3
+  	&= -i \frac{2}{3} \negthinspace\left( \frac{u-1}{2 u+1} \right)\negthinspace x^3
   	+ i \frac{u m^2+4 u^2-6 u+1}{5 (2 u+1)^2} x^5
   	+ \mathrm{O}\big( x^6 \big),
 	\cr
 	b_{1}'
-	&= i \frac{2 \left(u m^2-1\right)}{3 \left(u m^2+2\right)} x^3
+	&= i \frac{2}{3} \negthinspace\left( \frac{u m^2-1}{u m^2+2} \right)\negthinspace x^3
 	+ i \frac{u m^2 (u m^2 + m^2 - 6) + 4}{5 \left(u m^2+2\right)^2} x^5
 	+ \mathrm{O}\big( x^6 \big),
 	\cr
   	a_{2}'
-  	&= -i \frac{(u-1)}{15 (3 u+2)} x^5
+  	&= -i \frac{1}{15} \negthinspace\left( \frac{u-1}{3 u+2} \right)\negthinspace x^5
   	+ \mathrm{O}\big( x^7 \big),
 	\cr
 	b_{2}'
-	&= i \frac{\left(u m^2-1\right)}{15 \left(2 u m^2+3\right)} x^5
+	&= i \frac{1}{15} \negthinspace\left( \frac{u m^2-1}{2 u m^2+3} \right)\negthinspace x^5
 	+ \mathrm{O}\big( x^7 \big).
 \end{aligned}
 $$
