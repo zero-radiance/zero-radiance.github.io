@@ -6178,9 +6178,9 @@ The resulting natural frequencies are complex. This implies that, no matter what
 
 #### Limiting Cases
 
-Let us take a closer look at the expressions of the expansion coefficients given by Equation 17.156.
+Let us take a closer look at the expressions of the expansion coefficients of the scattered field given by Equation 17.156.
 
-First, suppose that the spherical particle is very large. If we ignore the possibility that it represents a cavity, then \\(\vert m \vert > 1\\), which, coupled with \\(\vert x \vert \gg 1\\), leads to \\(\vert m x \vert \gg 1\\). This allows us to evaluate the expansion coefficients of the first few orders using the asymptotic expressions given by Equation 18.2:
+First, let us consider a very large spherical particle. If we ignore the possibility that it represents a cavity, then \\(\vert m \vert > 1\\), which, coupled with \\(\vert x \vert \gg 1\\), leads to \\(\vert m x \vert \gg 1\\). This allows us to evaluate the expansion coefficients of the first few orders using the asymptotic expressions given by Equation 18.2:
 
 $$ \tag{18.13}
 \small
@@ -6203,7 +6203,7 @@ $$ \tag{18.13}
 \end{aligned}
 $$
 
-These expressions are only valid provided that both \\(\vert x \vert \gg n\\) and \\(\vert m x \vert \gg n\\). The asymptotic expressions valid for all \\(n\\) have been found by Debye (1909); they are considerably more complicated, and we shall not discuss them here.
+These expressions are only valid provided that both \\(\vert x \vert \gg n\\) and \\(\vert m x \vert \gg n\\). The asymptotic expressions valid for all orders \\(n\\) have been found by Debye (1909); they are considerably more complicated, and we shall not discuss them here.
 
 The coefficients of Equation 18.13 are highly cyclical: \\(a\_{n+4} = a\_n\\) and \\(a\_{n+1} = b\_n\\). Thus, for any given value of \\(x,\\) only 4 unique coefficients exist.
 
@@ -6259,11 +6259,9 @@ $$
 
 If all parameters \\((w,m,x)\\) are real, then the magnitudes of the coefficients rapidly oscillate between 0 and 1.
 
----
+Next, let us turn our attention to particles on the opposite end of the size spectrum, with \\(\vert m x \vert \ll 1\\). If we assume that \\(\vert m \vert > 1\\), then it follows that \\(\vert x \vert \ll 1\\) as well. The Taylor series expansions of the Riccati-Bessel functions \[[17](#references) (ch 7.4)\] are
 
-Next, let us turn our attention to particles on the opposite end of the size spectrum, with \\(\vert x \vert \ll 1\\). The Taylor series expansions of the Riccati-Bessel functions \[[17](#references) (ch 7.4)\] are
-
-$$ \tag{18.21}
+$$ \tag{18.17}
 \begin{aligned}
 	\psi_n(x)
 	&= 2^n x^{n+1} \sum_{k=0}^{\infin} \frac{(-1)^k (n + k)!}{k! (2 n + 2 k + 1)!} x^{2 k},
@@ -6275,19 +6273,90 @@ $$
 
 where
 
-$$ \tag{18.22}
+$$ \tag{18.18}
 \begin{aligned}
-	\Gamma(n) = (n-1)! \qquad (n \in \mathcal{Z}, n>0)
+	\Gamma(n + 1) = n! \qquad (n \in \mathcal{Z}, n>0)
 \end{aligned}
 $$
 
-is the [Gamma function](https://en.wikipedia.org/wiki/Gamma_function). The Taylor expansion of \\(\xi_n(x)\\) can be obtained by combining the expressions listed above with Equation 17.155.3.
+is the [Gamma function](https://en.wikipedia.org/wiki/Gamma_function). The Taylor series expansion of \\(\xi_n(x)\\) can be obtained by combining the expressions listed above according to Equation 17.155.3.
 
 The two functions of Equation 18.21 exhibit the opposite behavior at the origin. On the one hand, the function of the first kind is positive, and quickly approaches 0 as \\(n\\) increases. On the other hand, the function of the second kind is negative, and rapidly diverges from 0. Both power series are dominated by the leading \\(k=0\\) term. This is clearly demonstrated by the almost perfectly straight [log-log plots](https://en.wikipedia.org/wiki/Log%E2%80%93log_plot) shown below.
 
 {{< figure src="/img/small_psi.svg" caption="*Figure N: Riccati-Bessel functions of the first kind of order n=1 (blue), n=2 (orange), n=3 (green).*" >}}
 
 {{< figure src="/img/small_chi.svg" caption="*Figure N: Negated Riccati-Bessel functions of the second kind of order n=1 (blue), n=2 (orange), n=3 (green).*" >}}
+
+Thus, we can estimate the asymptotic behavior of the expansion coefficients of the scattered field by using a single term of Equations 18.17.1 and 18.17.2:
+
+$$ \tag{18.19}
+\begin{aligned}
+  	a_{n}'
+  	&\simeq -\frac{ w - 1 }
+  	{ (w - 1) - i (n (w + 1) + w) N x^{-2 n-1}
+  	},
+	\cr
+	b_{n}'
+	&\simeq -\frac{w m^2 - 1}
+	{ (w m^2 - 1) + i (n (w m^2 + 1) + 1) N x^{-2 n-1} },
+\end{aligned}
+$$
+
+where
+
+$$ \tag{18.20}
+	N(n) = \frac{ (2 n)! (2 n+1)! }{ 4^n (n!)^2 (n+1) }
+$$
+
+is a rapidly growing function of \\(n\\), with \\(N(1)=3/2.\\)
+
+In our crude approximation, the magnetic coefficients \\(a_{n}'\\) vanish for non-magnetic particles with \\(w=1\\). In addition, the magnetic coefficients don't depend on the relative wavenumber at all. However, for our purposes, this approximation is sufficient, since it clearly demonstrates that the magnitudes of both coefficients are roughly proportional \\(N^{-1} x^{2 n + 1}\\). Therefore, for \\(\vert x \vert \ll 1\\), we may restrict ourselves to the fist couple of terms.
+
+In general, the expansion coefficients of orders \\(n=1\\) or \\(n=2\\) can be easily evaluated exactly by using the closed forms of the Riccati-Bessel functions:
+
+$$ \tag{18.21}
+\begin{aligned}
+	& \psi_1(x) = \frac{\sin (x)}{x}-\cos (x),
+	&
+	& \psi_2(x) = \left(\frac{3}{x^2}-1\right) \sin (x)-\frac{3 \cos (x)}{x},
+	\cr
+	& \chi_1(x) = -\frac{x \sin (x)+\cos (x)}{x},
+	&
+	& \chi_2(x) = -\frac{3 \cos (x)}{x^2}-\frac{3 \sin (x)}{x}+\cos (x),
+	\cr
+	& \xi_1(x) = -\frac{e^{i x} (x+i)}{x},
+	&
+	& \xi_2(x) = \frac{i e^{i x} \left(x^2+3 i x-3\right)}{x^2}.
+\end{aligned}
+$$
+
+For small particles, it is slightly more efficient to use a Taylor series expansion. Restricting ourselves to polynomials of degree 5, we obtain
+
+$$ \tag{18.22}
+\begin{aligned}
+  	a_{1}'
+  	&= -i\frac{2 (w-1)}{3 (2 w+1)} x^3
+  	+ i \frac{w m^2+4 w^2-6 w+1}{5 (2 w+1)^2} x^5
+  	+ \mathrm{O}\big( x^6 \big),
+	\cr
+	b_{1}'
+	&= i \frac{2 \left(w m^2-1\right)}{3 \left(w m^2+2\right)} x^3
+	+ i \frac{w m^2 (w m^2 + m^2 - 6) + 4}{5 \left(w m^2+2\right)^2} x^5
+	+ \mathrm{O}\big( x^6 \big),
+	\cr
+  	a_{2}'
+  	&= -i \frac{(w-1)}{15 (3 w+2)} x^5
+  	+ \mathrm{O}\big( x^7 \big),
+	\cr
+	b_{2}'
+	&= i \frac{\left(w m^2-1\right)}{15 \left(2 w m^2+3\right)} x^5
+	+ \mathrm{O}\big( x^7 \big).
+\end{aligned}
+$$
+
+\\(a\_2 \neq b\_1\\), wtf?
+
+---
 
 Suppose we are given a fairly small particle made of a very good conductor. If the frequency is sufficiently low, then \\(\vert m x \vert \gg 1\\) and \\(\vert w m \vert \gg 1\\), which makes Equation 18.15 applicable. Utilizing the series expansions given by Equation 18.21, we obtain
 
@@ -6409,7 +6478,7 @@ Field Magnitude <-> Wave Amplitude
 
 Is a spherical cavity the right choice for the depolarization operator?
 
-Multipole expansion is uniform subdivision of a disk aligned with the x-y plane.
+Should I call relative wavenumber \\(w\\) and relative permeability \\(m\\)?
 
 ---
 
