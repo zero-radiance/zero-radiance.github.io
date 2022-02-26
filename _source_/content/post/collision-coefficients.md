@@ -6330,7 +6330,7 @@ $$ \tag{18.21}
 \end{aligned}
 $$
 
-However, for small particles with \\(\vert m x \vert \ll 1\\), it is slightly more efficient to use a Taylor series expansion. Restricting ourselves to polynomials of degree 5, we obtain
+However, for very small particles with \\(\vert m x \vert \ll 1\\), it is slightly more efficient to use a Taylor series expansion. Restricting ourselves to polynomials of degree 5, we obtain
 
 $$ \tag{18.22}
 \begin{aligned}
@@ -6376,7 +6376,7 @@ $$ \tag{18.23}
 \end{aligned}
 $$
 
-Note that, for small particles, the relationship between the electric and the magnetic coefficients is reversed: \\(a\_n \approx b\_{n+1}\\) as opposed to \\(a\_{n+1} \backsimeq b\_n\\) when particles are large.
+Note that, for very small particles, the relationship between the electric and the magnetic coefficients is reversed: \\(a\_n \approx b\_{n+1}\\) as opposed to \\(a\_{n+1} \backsimeq b\_n\\) when particles are very large.
 
 For small molecules, even the \\(x^5\\) term is often neglected. In this case, all coefficients except for
 
