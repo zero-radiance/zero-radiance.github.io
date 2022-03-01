@@ -6404,6 +6404,8 @@ Is a spherical cavity the right choice for the depolarization operator?
 
 Should I call relative wavenumber \\(w\\) and relative permeability \\(m\\)?
 
+How to extract a plane wave inside the sphere? Use the internal coefficients? But the corresponding vector spherical wave functions are defined in terms of \\(k r\\) rather than \\(m k r\\)...
+
 ---
 
 ## Acknowledgments
