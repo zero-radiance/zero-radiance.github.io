@@ -6180,7 +6180,7 @@ The resulting natural frequencies are complex. This implies that, no matter what
 
 Let us take a closer look at the expressions of the expansion coefficients of the scattered field given by Equation 17.156.
 
-First, let us consider a very large spherical particle. If we ignore the possibility that it represents a cavity, then \\(\vert m \vert > 1\\), which, once combined with \\(\vert x \vert \gg 1\\), leads to \\(\vert m x \vert \gg 1\\). This allows us to evaluate the expansion coefficients of the first few orders using the asymptotic expressions given by Equation 18.2:
+First, let us consider a very large spherical particle. If we ignore the possibility that it actually represents a cavity, then \\(\vert m \vert > 1\\), which, once combined with \\(\vert x \vert \gg 1\\), leads to \\(\vert m x \vert \gg 1\\). This allows us to evaluate the expansion coefficients of the first few orders using the asymptotic expressions given by Equation 18.2:
 
 $$ \tag{18.13}
 \small
@@ -6203,9 +6203,9 @@ $$ \tag{18.13}
 \end{aligned}
 $$
 
-These expressions are only valid provided that both \\(\vert x \vert \gg n\\) and \\(\vert m x \vert \gg n\\). The asymptotic expressions valid for all orders \\(n\\) have been found by Debye (1909); they are considerably more complicated, so we shall not discuss them here.
+These expressions are only valid provided that both \\(\vert x \vert \gg n\\) and \\(\vert m x \vert \gg n\\). The asymptotic expressions valid for all orders \\(n\\) have been found by Debye (1909); they are considerably more complicated, and we shall not discuss them here.
 
-The coefficients of Equation 18.13 are highly cyclical: \\(a\_{n+4} \backsimeq a\_n\\) and \\(a\_{n+1} \backsimeq b\_n\\). Thus, for any given value of \\(x,\\) only 4 unique coefficients exist.
+We may observe that the resulting coefficients are highly cyclical: \\(a\_{n+4} \backsimeq a\_n\\) and \\(a\_{n+1} \backsimeq b\_n\\). Thus, for any given value of \\(x,\\) only 4 unique coefficients exist.
 
 These formulas can be simplified by introducing the exponential notation. Since
 
@@ -6241,7 +6241,7 @@ $$ \tag{18.15}
 \end{aligned}
 $$
 
-Additional simplification can be achieved by rewriting the formulas in terms of \\(\tan(m x - \pi n / 2)\\):
+Further reduction can be achieved by rewriting the formulas in terms of \\(\tan(m x - \pi n / 2)\\):
 
 $$ \tag{18.16}
 \begin{aligned}
@@ -6257,7 +6257,7 @@ $$ \tag{18.16}
 \end{aligned}
 $$
 
-The expressions given above demonstrate that, if all arguments \\((u,m,x)\\) are real, then the magnitudes of the coefficients rapidly oscillate between 0 and 1.
+These expressions demonstrate that, if all arguments \\((u,m,x)\\) are real, then the magnitudes of the coefficients rapidly oscillate between 0 and 1.
 
 Next, let us turn our attention to particles on the opposite end of the size spectrum, with \\(\vert m x \vert \ll 1\\). If we assume that \\(\vert m \vert > 1\\), then it follows that \\(\vert x \vert \ll 1\\) as well. The Taylor series expansions of the Riccati-Bessel functions \[[17](#references) (ch 7.4)\] are
 
@@ -6281,7 +6281,7 @@ $$
 
 is the [Gamma function](https://en.wikipedia.org/wiki/Gamma_function). The Taylor series expansion of \\(\xi_n(x)\\) can be obtained by combining the expressions listed above according to Equation 17.155.3.
 
-The two functions of Equation 18.21 exhibit the opposite behavior at the origin. On the one hand, the function of the first kind is positive, and quickly approaches 0 as \\(n\\) increases. On the other hand, the function of the second kind is negative, and rapidly diverges from 0. Both power series are dominated by the leading \\(k=0\\) term. This is clearly demonstrated by the almost perfectly straight [log-log plots](https://en.wikipedia.org/wiki/Log%E2%80%93log_plot) shown below.
+The two functions of Equation 18.17 exhibit the opposite behavior near the origin. On the one hand, the function of the first kind is positive, and quickly approaches 0 as \\(n\\) increases. On the other hand, the function of the second kind is negative, and rapidly diverges from 0. Both power series are dominated by the leading \\(k=0\\) term: this is clearly demonstrated by the almost perfectly straight [log-log plots](https://en.wikipedia.org/wiki/Log%E2%80%93log_plot) shown below.
 
 {{< figure src="/img/small_psi.svg" caption="*Figure N: Riccati-Bessel functions of the first kind of order n=1 (blue), n=2 (orange), n=3 (green).*" >}}
 
@@ -6310,9 +6310,9 @@ $$
 
 is a rapidly growing function of \\(n\\), with \\(N(1)=3/2.\\)
 
-In our crude approximation, the magnetic coefficients \\(a_{n}'\\) vanish for non-magnetic materials with \\(u=1\\). In addition, the magnetic coefficients do not depend on the relative wavenumber \\(m\\) at all. However, for our purposes, this approximation is sufficient, since it clearly demonstrates that the magnitudes of both coefficients are roughly proportional \\(N^{-1} x^{2 n + 1}\\). Since the latter plummets with increasing \\(n\\), for \\(\vert x \vert \ll 1\\), we may restrict ourselves to the fist couple of terms.
+In this crude approximation, the magnetic coefficients \\(a_{n}'\\) vanish for non-magnetic materials with \\(u=1\\). In addition, the magnetic coefficients do not depend on the relative wavenumber \\(m\\) at all. However, this approximation serves it purpose, since it clearly demonstrates that the magnitudes of both coefficients are roughly proportional \\(N^{-1} x^{2 n + 1}\\). Since, for \\(\vert x \vert \ll 1\\), the latter plummets with increasing \\(n\\), we may restrict ourselves to just the fist couple of terms.
 
-In general, for an arbitrary set of parameters, the expansion coefficients of orders \\(n=1\\) or \\(n=2\\) can be easily evaluated *exactly* by using the closed forms of the Riccati-Bessel functions:
+In general, for arbitrary argument values, the expansion coefficients of orders \\(n=1\\) or \\(n=2\\) can be easily evaluated *exactly* by using the closed forms of the Riccati-Bessel functions:
 
 $$ \tag{18.21}
 \begin{aligned}
@@ -6376,7 +6376,7 @@ $$ \tag{18.23}
 \end{aligned}
 $$
 
-Note that, for very small particles, the relationship between the electric and the magnetic coefficients is reversed: \\(a\_n \approx b\_{n+1}\\) as opposed to \\(a\_{n+1} \backsimeq b\_n\\) when particles are very large.
+Unexpectedly, for very small particles, the relationship between the electric and the magnetic coefficients is reversed: \\(a\_n \simeq b\_{n+1}\\) as opposed to \\(a\_{n+1} \backsimeq b\_n\\) when particles are very large.
 
 For small molecules, even the \\(x^5\\) term is often neglected. In this case, all coefficients except for
 
@@ -6384,7 +6384,7 @@ $$ \tag{18.24}
 	b_{1}' \simeq i \frac{2}{3} \frac{m^2-1}{m^2+2} x^3
 $$
 
-vanish. This is the origin of the famous law of [Rayleigh scattering](https://en.wikipedia.org/wiki/Rayleigh_scattering) which explains the color of the sky: when molecules of the atmosphere scatter sunlight, the intensity of blue light, which has a shorter wavelength, is much greater than of the rest of the [visible spectrum](https://en.wikipedia.org/wiki/Visible_spectrum), since the intensity of molecular scattering roughly follows the \\(x^4 \backsim \lambda^{-4}\\) rule.
+vanish. Equation 18.24 is the basis of the famous law of [Rayleigh scattering](https://en.wikipedia.org/wiki/Rayleigh_scattering) that explains the color of the sky: when molecules of the atmosphere scatter sunlight, the intensity of blue light, which has a shorter wavelength, is much greater than of the rest of the [visible spectrum](https://en.wikipedia.org/wiki/Visible_spectrum), since the size parameter \\(x\\) is inversely proportional to the wavelength \\(\lambda\\).
 
 ---
 
