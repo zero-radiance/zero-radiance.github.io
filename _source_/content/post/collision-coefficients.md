@@ -6122,7 +6122,7 @@ we may use polar plots of \\(-\tau_{1,n}\\) and \\(-\pi_{1,n}\\) to illustrate t
 
 Care must be taken when interpreting these plots. Typically, if the value of a function is negative, it is plotted with a positive magnitude in the opposite direction. Such visualizations can be misleading. Instead, we utilize dashed lines for negative values and plot them in the original direction. Also, note the sign reversal at the horizontal axis. It does not imply a discontinuity of the field; rather, during the transition from \\(\phi = 0\\) to \\(\phi = \pi,\\) it is the direction of the spherical coordinate basis vectors that is reversed.
 
-Now, recall that Equation 18.5 contains a sum of the (negated) polar functions. Evidently, their plots show the largest amount of overlap along the horizontal axis. Yet, we must also account for the sign of the functions involved. In this sense, the forward direction is unique, because only then do the values of all functions share the same sign. Thus, as the particle size increases and we accumulate more terms, we should expect forward scattering to become a dominant effect.
+Now, recall that Equation 18.5 contains a sum of the (negated) polar functions. Evidently, their plots show the largest amount of overlap along the horizontal axis. Yet, we must also account for the sign of the functions involved. In this sense, the forward direction is unique, because only then do the values of all functions share the same sign. Thus, as the particle size increases and we accumulate more terms, a larger percentage of total energy is scattered in the forward direction. This phenomenon is called the *Mie effect*.
 
 [Evgenii: remember to write about the diffraction interpretation later.]
 
