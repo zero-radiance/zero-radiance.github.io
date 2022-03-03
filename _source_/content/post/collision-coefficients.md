@@ -848,11 +848,11 @@ $$ \tag{5.2}
 \begin{aligned}
 	&\bm{J\_i}(\bm{r}, \omega) \approx \sigma(\bm{r}, \omega) \bm{E}(\bm{r}, \omega), \cr
 	&\bm{D}   (\bm{r}, \omega) \approx \epsilon(\bm{r}, \omega) \bm{E}(\bm{r}, \omega), \cr
-	&\bm{B}   (\bm{r}, \omega) \approx \mu(\bm{r}, \omega) \bm{H}(\bm{r}, \omega),
+	&\bm{H}   (\bm{r}, \omega) \approx \mu^{-1}(\bm{r}, \omega) \bm{B}(\bm{r}, \omega),
 \end{aligned}
 $$
 
-where \\(\sigma\\) is the [specific conductivity](https://en.wikipedia.org/wiki/Electrical_resistivity_and_conductivity), \\(\epsilon\\) is the [electric permittivity](https://en.wikipedia.org/wiki/Permittivity), and \\(\mu\\) is the [magnetic permeability](https://en.wikipedia.org/wiki/Permeability_(electromagnetism)) \[[6](#references) (ch. 1.1.2), [7](#references) (ch. 2.3), [8](#references) (ch. 2.1)\].
+where \\(\sigma\\) is the [specific conductivity](https://en.wikipedia.org/wiki/Electrical_resistivity_and_conductivity), \\(\epsilon\\) is the [electric permittivity](https://en.wikipedia.org/wiki/Permittivity), and \\(\mu\\) is the [magnetic permeability](https://en.wikipedia.org/wiki/Permeability_(electromagnetism)) \[[6](#references) (ch. 1.1.2), [7](#references) (ch. 2.3), [8](#references) (ch. 2.1)\]. Note that the reciprocal of the permeability is used -- it is a historical accident caused by the confusion over whether \\(\bm{H}\\) or \\(\bm{B}\\) is the fundamental magnetic field.
 
 Care must taken when transforming Equations 5.2.1-5.2.3 to the time domain, since a multiplication in the frequency domain leads to a convolution in the time domain.
 
@@ -5824,7 +5824,9 @@ $$ \tag{17.152}
 \end{aligned}
 $$
 
-We may observe that both the scattered and the internal fields are directly proportional to the incident field. Furthermore, the coefficients of proportionality are independent of \\(m\\). They may be written down neatly if we re-introduce the traditional notation that calls the radius of the spherical particle \\(a\\), the size parameter \\(x = k_1 a\\), the relative wavenumber \\(m = k_2 / k_1\\), and the inverse relative permeability \\(u = \mu_1 / \mu_2\\). The order-independent multiplicative factors of Equation 17.152 can then be expressed as \[[17](#references) (ch 9.25)\]
+We may observe that both the scattered and the internal fields are directly proportional to the incident field. Furthermore, the coefficients of proportionality are independent of \\(m\\). They may be written down neatly if we re-introduce the traditional notation that calls the radius of the spherical particle \\(a\\), the size parameter \\(x = k_1 a\\), the relative wavenumber \\(m = k_2 / k_1\\), and the reciprocal[^17] of the relative permeability \\(u = \mu_1 / \mu_2\\). The order-independent multiplicative factors of Equation 17.152 can then be expressed as \[[17](#references) (ch 9.25)\]
+
+[^17]: Recall Equation 5.2.3 and the subsequent discussion.
 
 $$ \tag{17.154}
 \begin{aligned}
