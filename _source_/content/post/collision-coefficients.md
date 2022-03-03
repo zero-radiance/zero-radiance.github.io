@@ -2874,14 +2874,14 @@ We encounter a situation similar to vector plane waves, where the absorptive cha
 
 $$ \tag{13.19}
 	\frac{\big\vert \mathcal{Re} \big\lbrace \bm{B_s}(\bm{r}, \omega) e^{-i \omega t} \big\rbrace \big\vert}{\big\vert \mathcal{Re} \big\lbrace \bm{E_s}(\bm{r}, \omega) e^{-i \omega t} \big\rbrace \big\vert}
-	= \frac{\eta(\omega)}{c}.
+	\backsimeq \frac{\eta(\omega)}{c}.
 $$
 
 Thus, at a large distance, for a fixed direction of observation, a spherical wave is an analog of a plane wave (cf. Equation 7.2) with the amplitude decreasing as \\(r^{-1}\\):
 
 $$ \tag{13.20}
 	\bm{E_s}(\bm{r}, \omega) e^{-i \omega t}
-	= \frac{1}{r} \bm{E_1}(\bm{n}, \omega) e^{i k(\omega) (\bm{r} \cdot \bm{n}) - i \omega t}
+	\backsimeq \frac{1}{r} \bm{E_1}(\bm{n}, \omega) e^{i k(\omega) (\bm{r} \cdot \bm{n}) - i \omega t}
 	\quad
 	\text{where}
 	\quad
@@ -2896,21 +2896,21 @@ If the field vectors are orthogonal, and the ratio of their magnitudes is known,
 
 $$ \tag{13.21}
 	\bm{S}(\bm{r}, t)
-	= \mu\_0^{-1} \frac{\eta(\omega)}{c} {\big\vert \mathcal{Re} \big\lbrace \bm{E_s}(\bm{r}, \omega) e^{-i \omega t} \big\rbrace \big\vert}^2 \bm{n}.
+	\backsimeq \mu\_0^{-1} \frac{\eta(\omega)}{c} {\big\vert \mathcal{Re} \big\lbrace \bm{E_s}(\bm{r}, \omega) e^{-i \omega t} \big\rbrace \big\vert}^2 \bm{n}.
 $$
 
 Similarly to the case of plane waves, we may form a Cartesian coordinate frame using the set of vectors \\(\lbrace \bm{E_1}, \bm{B_1}, \bm{n} \rbrace\\), we obtain the expressions of the Poynting vector (cf. Equation 7.31)
 
 $$ \tag{13.22}
 	\bm{S}(\bm{r}, t)
-	= \mu\_0^{-1} \frac{\eta}{c} \bigg( \frac{|E_{1,x}|^2}{r^2} \cos^2{\theta_x} + \frac{|E_{1,y}|^2}{r^2} \cos^2{\theta_y} \bigg) \bm{n}
+	\backsimeq \mu\_0^{-1} \frac{\eta}{c} \bigg( \frac{|E_{1,x}|^2}{r^2} \cos^2{\theta_x} + \frac{|E_{1,y}|^2}{r^2} \cos^2{\theta_y} \bigg) \bm{n}
 $$
 
 and irradiance (cf. Equation 7.32)
 
 $$ \tag{13.23}
 	\Epsilon
-	= \braket{\bm{S}} \cdot \bm{n'}
+	\backsimeq \braket{\bm{S}} \cdot \bm{n'}
 	= \frac{1}{2} \mu\_0^{-1} \frac{\eta}{c} \frac{|\bm{E_1}|^2}{r^2} \big( \bm{n} \cdot \bm{n'} \big)
 $$
 
@@ -2920,14 +2920,14 @@ For completeness, we would like to point out that it is possible to support the 
 
 $$ \tag{13.24}
 	\braket{\bm{S}}
-	= \frac{1}{2} \mathcal{Re} \Big\lbrace \bm{E_s}(\bm{r}, \omega) \times \big[ \bm{B_s}(\bm{r}, \omega) \big]^{\*} \Big\rbrace.
+	\backsimeq \frac{1}{2} \mathcal{Re} \Big\lbrace \bm{E_s}(\bm{r}, \omega) \times \big[ \bm{B_s}(\bm{r}, \omega) \big]^{\*} \Big\rbrace.
 $$
 
 Compare Equation 13.24 to 7.35; except for the names of the fields, their properties are the same (up to the \\(1/r\\) factor). Thus, the analysis performed in Equations 7.36-7.41 still applies, and we thus arrive at the analog of Equation 7.42:
 
 $$ \tag{13.26}
 	\braket{\bm{S}}
-	= \frac{1}{2} \mathcal{Re} \bigg\lbrace
+	\backsimeq \frac{1}{2} \mathcal{Re} \bigg\lbrace
 		\sqrt{ \frac{\varepsilon}{\mu} }
 	\bigg\rbrace \frac{|\bm{E_1}|^2}{r^2} e^{-\alpha (\bm{r} \cdot \bm{n})} \bm{n}.
 $$
