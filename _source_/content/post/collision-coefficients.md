@@ -3939,7 +3939,7 @@ If normalization with respect to the projected area is not required, we may util
 $$ \tag{16.39}
 \begin{aligned}
 	& C_a
-	= \frac{\Phi_a}{\Phi_i}
+	= \frac{\Phi_a}{\vert \negthinspace \braket{\bm{S_i}} \negthinspace \vert}
 	= Q_a C_g
 	= \frac{\Phi_s + \Phi_e}{\vert \negthinspace \braket{\bm{S_i}} \negthinspace \vert},
 	\cr
