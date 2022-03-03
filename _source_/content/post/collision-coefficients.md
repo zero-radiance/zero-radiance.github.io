@@ -2888,7 +2888,13 @@ $$ \tag{13.20}
 	\bm{n} = \frac{\bm{r}}{r},
 $$
 
-where the absorption coefficient \\(\alpha\\) is defined according to Equation 7.40.
+where
+
+$$ \tag{13.??}
+	\bm{E_1}(\bm{n}, \omega)
+	= \frac{k^2(\omega)}{4 \pi} \big( \mathcal{I} - \bm{n} \otimes \bm{n} \big) \int\_{V} e^{-i k(\omega) (\bm{r'} \cdot \bm{n})} \big( m^2(\bm{r'}, \omega) - 1 \big)
+	\bm{E}(\bm{r'}, \omega) dV'.
+$$
 
 [Picture]
 
@@ -2929,8 +2935,10 @@ $$ \tag{13.26}
 	\braket{\bm{S}}
 	\backsimeq \frac{1}{2} \mathcal{Re} \bigg\lbrace
 		\sqrt{ \frac{\varepsilon}{\mu} }
-	\bigg\rbrace \frac{|\bm{E_1}|^2}{r^2} e^{-\alpha (\bm{r} \cdot \bm{n})} \bm{n}.
+	\bigg\rbrace \frac{|\bm{E_1}|^2}{r^2} e^{-\alpha (\bm{r} \cdot \bm{n})} \bm{n},
 $$
+
+where the absorption coefficient \\(\alpha\\) is defined according to Equation 7.40.
 
 ### Transition Operator
 
