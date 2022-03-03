@@ -390,7 +390,7 @@ $$ \tag{2.19}
 	\bm{S'}(\bm{r}, t) = \bm{S}(\bm{r}, t) + \nabla \times \bm{X}(\bm{r}, t)
 $$
 
-without violating the Poynting theorem \[[5](#references) (vol. II, ch. 27.4)\]. Yet, to the best of the author's knowledge, no disagreement with experiments has been found.
+without violating the Poynting theorem \[[5](#references) (vol. II, ch. 27.4)\]. However, in practice, it does not pose a problem, since both the amount of electromagnetic energy (that is either measured or computed by integration) and its time rate of change remain invariant with respect to this transformation. [\[8](#references) (ch. 2.4)\]
 
 A more pressing concern is whether our formulae, which were found using the microscopic formulation of the Maxwell equations, are valid at the microscopic scale. The answer is: almost always.
 
@@ -6397,6 +6397,41 @@ $$
 vanish. Equation 18.24 is the basis of the famous law of [Rayleigh scattering](https://en.wikipedia.org/wiki/Rayleigh_scattering) that explains the color of the sky: when molecules of the atmosphere scatter sunlight, the intensity of blue light, which has a shorter wavelength, is much greater than of the rest of the [visible spectrum](https://en.wikipedia.org/wiki/Visible_spectrum), since the size parameter \\(x\\) is inversely proportional to the wavelength \\(\lambda\\).
 
 #### Light Intensity and Efficiency Factors
+
+Suppose the host medium is non-absorbing and non-magnetic. Then \\(\kappa = 0\\) and \\(\mu = \mu_0\\), and the intensity of the scattered light is given by Equation 16.15:
+
+$$ \tag{18.25}
+	\Iota_s
+	= \frac{1}{2} \mu\_0^{-1} \frac{\eta}{c} \big\vert \bm{E_1}(\bm{n_s}) \big\vert^2.
+$$
+
+This formula deserves several remarks. First, we must emphasize that it gives the intensity of the scattered field \\(\bm{E_s}\\) -- and *not* the total field \\(\bm{E} = \bm{E_i} + \bm{E_s}\\). Since we know the irradiance of the incident field
+
+$$ \tag{18.26}
+	\Epsilon_i
+	= \frac{1}{2} \mu\_0^{-1} \frac{\eta}{c} |\bm{E_0}|^2 (\bm{n_i} \cdot \bm{n_s}),
+$$
+
+given by Equation 16.4, we could speak of the irradiance of the total field
+
+$$ \tag{18.27}
+	\Epsilon
+	= \Epsilon_i + \frac{\Iota_s}{r^2}
+	= \frac{1}{2} \mu\_0^{-1} \frac{\eta}{c}
+		\left( |\bm{E_0}|^2 (\bm{n_i} \cdot \bm{n_s}) + \frac{\big\vert \bm{E_1}(\bm{n_s}) \big\vert^2}{r^2} \right).
+$$
+
+Strictly speaking, Equation 18.27 is *not* valid for a single particle, since it completely ignores the interference effects between the incident and the scattered fields. However, it is approximately valid for a cloud of particles if we make several assumptions:
+
+1. The particles are randomly distributed in space, so that the phase difference along the light paths (from the source, through the particle, to the detector) is uniformly distributed around the average.
+2. On average, the scattered fields of the particles do not noticeably influence the fields driving the other particles. This requirement makes the particles weakly scattering, and forces them to stay at large distances from one another, which corresponds to a cloud of low density. This is typically called the *independent scattering approximation*.
+3. The particles are sufficiently numerous in order for their properties to be representable by statistical distributions. However, their number can not be too great, as that would violate the second assumption.
+4. Ideally, the particles should be identical. Otherwise, we must speak of several non-interacting clouds of particles. Unfortunately, this makes the conflict between the second and the third points more severe, particularly if the dimensions of the volume containing the particles is small (and the latter directly influences the distance at which the far-field approximation is applicable).
+
+Given these assumptions, all particles are driven by the same incident field, and, if we consider the average particle, the interference effects 1) between different particles, and 2) between each individual particle and the incident field, are eliminated by the averaging process. Thus, the *average irradiance* (that is, the irradiance of the cloud divided by the number of particles) is given by Equation 18.27.
+
+
+\[[4](#references) (ch 4.22)\]
 
 ---
 
