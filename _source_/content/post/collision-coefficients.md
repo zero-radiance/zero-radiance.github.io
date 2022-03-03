@@ -6388,6 +6388,8 @@ $$
 
 vanish. Equation 18.24 is the basis of the famous law of [Rayleigh scattering](https://en.wikipedia.org/wiki/Rayleigh_scattering) that explains the color of the sky: when molecules of the atmosphere scatter sunlight, the intensity of blue light, which has a shorter wavelength, is much greater than of the rest of the [visible spectrum](https://en.wikipedia.org/wiki/Visible_spectrum), since the size parameter \\(x\\) is inversely proportional to the wavelength \\(\lambda\\).
 
+#### Light Intensity and Efficiency Factors
+
 ---
 
 ## III. Approximate Methods for Practical Use
