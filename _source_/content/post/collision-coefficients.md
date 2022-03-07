@@ -625,7 +625,7 @@ $$
 
 The expression is compact and simple, but not particularly useful, since the value of the Poynting phasor for a particular frequency depends on the entire electromagnetic spectrum.
 
-We can obtain a more practical result at the cost of some generality. Specifically, we must make an assumption that the electromagnetic field is a [periodic function](https://en.wikipedia.org/wiki/Periodic_function) of time, such that the *fundamental period* \\(\thinspace T\_1 = 2 \pi / \omega_1\\) of both[^3] the electric and the magnetic fields is the same \[[5](#references) (vol. I, ch. 50) [6](#references) (ch. 1.3.3, 1.4.3)\]. This limitation is not particularly severe: the fields can often be repeated virtually (outside the time interval of interest), and we may choose the period to be as large as necessary.
+We can obtain a more practical result at the cost of some generality. Specifically, we must assume that the electromagnetic field is a [periodic function](https://en.wikipedia.org/wiki/Periodic_function) of time, such that the *fundamental period* \\(\thinspace T\_1 = 2 \pi / \omega_1\\) of both[^3] the electric and the magnetic fields is the same \[[5](#references) (vol. I, ch. 50) [6](#references) (ch. 1.3.3, 1.4.3)\]. In most cases, this limitation is not particularly severe: for visible light, the fundamental period is typically very short, and the fields can often be virtually repeated outside the time interval of interest.
 
 [^3]: The fact that the electric and the magnetic fields cannot exist independently can be shown by a simple relativistic argument \[[13](#references) (ch 6.2)\].
 
@@ -680,6 +680,15 @@ $$ \tag{4.8}
 $$
 
 Intuitively, a harmonic produces an equivalent amount of vibration regardless of the sign of its frequency.
+
+Equation 4.8 highlights the primary limitation of the periodic assumption -- the complex amplitudes \\(\bm{E_p}(\bm{r})\\) of the harmonic components can not vary in time. This restriction can be relaxed to a certain degree by assuming that these amplitudes change slowly in comparison with both the fundamental period \\(T\_1\\) and the time \\(T\\) it takes to perform a measurement. If that is the case, we can use the mean value of the complex amplitude
+
+$$ \tag{4.??}
+	\braket{\bm{E_p}}
+	= \frac{1}{T} \int\_{-T/2}^{\thinspace T/2} \bm{E_p}(\bm{r}, t + t') dt'
+$$
+
+taken over the duration of the measurement in place of the fixed value \\(\bm{E_p}(\bm{r})\\) \[[8](#references) (ch. 9.3)\].
 
 What happens when we Fourier transform a periodic function? Combining Equations 3.1 and 4.4,
 
@@ -774,7 +783,7 @@ $$
 
 which is a real vector, as expected.
 
-In the case when \\(T > T_1\\), the total value of \\(\braket{\bm{S}}\\) is a sum of the contribution from a number of whole periods (given by Equation 4.15) and the contribution from a fraction of the period. If the period used for time-averaging is very large \\((T \gg T_1)\\), the *relative* contribution from a fraction of the period will be much smaller than the *relative* contribution from a large number of whole periods, so the formula of Equation 4.15 should serve as a good approximation.
+In the case when \\(T > T_1\\), the total value of \\(\braket{\bm{S}}\\) is a sum of the contribution from a number of whole periods (given by Equation 4.15) and the contribution from a fraction of the period. If the duration of the measurement is very large \\((T \gg T_1)\\), the *relative* contribution from a fraction of the period will be much smaller than the *relative* contribution from a large number of whole periods, so the formula of Equation 4.15 should serve as a good approximation.
 
 Equation 4.15 allows us to define the *time-averaged* Poynting phasor \[[8](#references) (ch. 2.4)\]
 
