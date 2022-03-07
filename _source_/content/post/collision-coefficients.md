@@ -4006,6 +4006,10 @@ $$
 
 which matches the results found using the scalar wave theory \[[4](#references) (ch. 4.21, 4.42)\]. Intuitively, this makes sense, since the particle looks the same regardless of the choice of the plane of reference (assuming the latter contains the direction of incidence), and the sensor (that only measures power) is not sensitive to the orientation of incoming light.
 
+### Measurement Problem and Radiative Transfer
+
+...
+
 ### Lorenz-Mie-Debye Theory
 
 The Lorenz-Mie-Debye theory presents a rigorous solution to the problem of [diffraction](https://en.wikipedia.org/wiki/Diffraction) by a conducting sphere, also known as [Mie scattering](https://en.wikipedia.org/wiki/Mie_scattering). The solution is exact in the sense that it does not employ any approximations, so it exhibits all classical and semi-classical (e.i. wave-mechanical) effects, and thus shows an excellent agreement with experimental data (see \[[16](#references) (ch. 5)\] for a list of references).
