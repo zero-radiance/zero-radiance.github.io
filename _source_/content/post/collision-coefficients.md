@@ -625,7 +625,7 @@ $$
 
 The expression is compact and simple, but not particularly useful, since the value of the Poynting phasor for a particular frequency depends on the entire electromagnetic spectrum.
 
-We can obtain a more practical result at the cost of some generality. Specifically, we must assume that the electromagnetic field is a [periodic function](https://en.wikipedia.org/wiki/Periodic_function) of time, such that the *fundamental period* \\(\thinspace T\_1 = 2 \pi / \omega_1\\) of both[^3] the electric and the magnetic fields is the same \[[5](#references) (vol. I, ch. 50) [6](#references) (ch. 1.3.3, 1.4.3)\]. In most cases, this limitation is not particularly severe: for visible light, the fundamental period is typically very short, and the fields can often be virtually repeated outside the time interval of interest.
+We can obtain a more practical result at the cost of some generality. Specifically, we must assume that the electromagnetic field is a [periodic function](https://en.wikipedia.org/wiki/Periodic_function) of time, such that the *fundamental period* \\(\thinspace T\_1 = 2 \pi / \omega_1\\) of both[^3] the electric and the magnetic fields is the same \[[5](#references) (vol. I, ch. 50) [6](#references) (ch. 1.3.3, 1.4.3)\]. In most cases, the limitations imposed by this condition are not particularly severe: usually, for visible light, the fundamental period is very short, and the fields can often be virtually repeated outside the time interval of interest.
 
 [^3]: The fact that the electric and the magnetic fields cannot exist independently can be shown by a simple relativistic argument \[[13](#references) (ch 6.2)\].
 
@@ -681,7 +681,7 @@ $$
 
 Intuitively, a harmonic produces an equivalent amount of vibration regardless of the sign of its frequency.
 
-Equation 4.8 highlights the primary limitation of the periodic assumption -- the complex amplitudes \\(\bm{E_p}(\bm{r})\\) of the harmonic components can not vary in time. This restriction can be relaxed to a certain degree by assuming that these amplitudes change slowly in comparison with both the fundamental period \\(T\_1\\) and the time \\(T\\) it takes to perform a measurement. If that is the case, we can use the mean value of the complex amplitude
+Equation 4.8 highlights the primary disadvantage of the periodic assumption -- the inability of the complex amplitudes \\(\bm{E_p}(\bm{r})\\) of the harmonic components to vary in time. This restriction can be relaxed to a certain degree by assuming that these amplitudes change slowly in comparison with both the fundamental period \\(T\_1\\) and the time \\(T\\) it takes to perform a measurement. If that is the case, we can use the mean value of the complex amplitude
 
 $$ \tag{4.??}
 	\braket{\bm{E_p}}
