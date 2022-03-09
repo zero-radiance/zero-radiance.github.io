@@ -2847,7 +2847,7 @@ We can also show that, under certain conditions, the electric and the magnetic f
 
 $$ \tag{13.15}
 	\bm{K}(\bm{r}, \omega)
-	= k^2(\omega) \frac{e^{i k(\omega) r}}{4 \pi r} \int\_{V} e^{-i k(\omega) (\bm{r'} \cdot \bm{n})} \big( m^2(\bm{r'}, \omega) - 1 \big)
+	= \frac{k^2(\omega)}{4 \pi} \frac{e^{i k(\omega) r}}{r} \int\_{V} e^{-i k(\omega) (\bm{r'} \cdot \bm{n})} \big( m^2(\bm{r'}, \omega) - 1 \big)
 	\bm{E}(\bm{r'}, \omega) dV',
 $$
 
@@ -3243,7 +3243,7 @@ $$ \tag{15.5}
 \end{aligned}
 $$
 
-making the scattering tensor independent from the distance to the observation point:
+making the far-field scattering tensors independent from the distance to the observation point:
 
 $$ \tag{15.6}
 \begin{aligned}
@@ -3251,6 +3251,18 @@ $$ \tag{15.6}
 	\backsimeq \frac{e^{i k(\omega) r}}{r} \mathcal{S_{ef}} (\bm{n_s}, \bm{n_i}, \omega) \bm{E_0}(\bm{n_i}, \omega), \cr
 	& \bm{B_s}(r \bm{n_s}, \bm{n_i}, \omega)
 	\backsimeq \frac{e^{i k(\omega) r}}{r} \mathcal{S_{mf}} (\bm{n_s}, \bm{n_i}, \omega) \bm{E_0}(\bm{n_i}, \omega).
+\end{aligned}
+$$
+
+Comparison with Equation 13.20 directly leads to
+
+$$ \tag{15.?}
+\begin{aligned}
+	& \bm{E_1}(\bm{n}, \omega)
+	= \mathcal{S_{ef}} (\bm{n_s}, \bm{n_i}, \omega) \bm{E_0}(\bm{n_i}, \omega),
+	\cr
+	& \bm{B_1}(\bm{n}, \omega)
+	= \mathcal{S_{mf}} (\bm{n_s}, \bm{n_i}, \omega) \bm{E_0}(\bm{n_i}, \omega).
 \end{aligned}
 $$
 
@@ -3633,7 +3645,7 @@ $$
 
 Our goal is to find a similar expression for the case when the volume contains particles.
 
-We begin by constructing a virtual surface that is both centered at the particle and is sufficiently large to be located in its radiation zone. The scattered fields are then given by Equation 15.6:
+We begin by constructing a virtual surface that is both centered at the particle and is sufficiently large to be located in its radiation zone. The scattered fields are then given by Equations 15.6-15.?:
 
 $$ \tag{16.10}
 \begin{aligned}
@@ -3646,7 +3658,7 @@ $$ \tag{16.10}
 \end{aligned}
 $$
 
-where \\(\bm{E_1}\\) and \\(\bm{B_1}\\) are the polarization phasors at the unit distance from the origin defined by Equation 13.??, and \\(\bm{n_s} = \bm{r}/r\\) is the direction of observation.
+where \\(\bm{E_1}\\) and \\(\bm{B_1}\\) are the polarization phasors at the unit distance from the origin, and \\(\bm{n_s} = \bm{r}/r\\) is the direction of observation.
 
 According to Equations 13.14-13.17 and 13.20-13.??, if the host medium is non-absorptive, the following relations exist:
 
@@ -6484,7 +6496,12 @@ $$ \tag{18.25}
 	= \frac{1}{2} \mu\_0^{-1} \frac{\eta}{c} \big\vert \bm{E_1}(\bm{n_s}) \big\vert^2,
 $$
 
+Equation 15.? shows that the polarization phasors of the incident and the scattered field, \\(\bm{E_0}\\) and \\(\bm{E_1}\\), are directly connected by the electric far-field scattering tensor \\(\mathcal{S_{ef}}\\). Therefore,
 
+$$ \tag{18.26}
+	\Iota_s
+	= \frac{1}{2} \mu\_0^{-1} \frac{\eta}{c} \big\vert \mathcal{S_{ef}}(\bm{n_s}, \bm{n_i}) \bm{E_0}(\bm{n_i}) \big\vert^2.
+$$
 
 ---
 
