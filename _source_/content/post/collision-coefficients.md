@@ -428,7 +428,7 @@ $$ \tag{2.23}
 	+ \bm{B}(\bm{r}, t) \cdot \frac{\partial}{\partial t}\bm{H}(\bm{r}, t).
 $$
 
-Comparison of Equations 2.17 and 2.22 shows that both formulations of the Poynting vector are equivalent if the measurement is performed inside a *non-magnetic* material. That explains the \\(\mu\_0^{-1}\\) factor: according to the microscopic formulation of the Maxwell equations, an electron (or a proton) is simply a charged region of vacuum. In comparison, due to the spatially-varying refractive index, propagation of electromagnetic fields at the macroscopic scale can be considerably more complex.
+Comparison of Equations 2.17 and 2.22 shows that both formulations of the Poynting vector are equivalent if the measurement is performed inside a *non-magnetic* material. That explains the \\(\mu\_0^{-1}\\) factor: according to the microscopic formulation of the Maxwell equations, an electron (or a proton) is simply a charged region of vacuum. In comparison, due to the spatially-varying optical properties, propagation of electromagnetic fields at the macroscopic scale can be considerably more complex.
 
 Since electromagnetic fields oscillate so rapidly, one typically measures the *time-averaged* Poynting vector
 
@@ -2269,12 +2269,13 @@ $$ \tag{11.7}
 \end{cases}
 $$
 
-such that the *relative wavenumber* is
+such that the *relative wavenumber* (or the *relative refractive index*) is
 
 $$ \tag{11.8}
 	m(\bm{r}, \omega)
 	= \frac{k_2(\bm{r}, \omega)}{k_1(\omega)}
-	= \sqrt{ \frac{\varepsilon_2(\bm{r}, \omega) \mu_2(\omega)}{\varepsilon_1(\omega) \mu_1(\omega)} },
+	= \sqrt{ \frac{\varepsilon_2(\bm{r}, \omega) \mu_2(\omega)}{\varepsilon_1(\omega) \mu_1(\omega)} }
+	= \frac{\eta_2(\bm{r}, \omega) + i \kappa_2(\bm{r}, \omega)}{\eta_1(\omega) + i \kappa_1(\omega)},
 $$
 
 we can replace Equations 11.6.1 and 11.6.2 by a single equation
@@ -2671,7 +2672,7 @@ $$ \tag{12.19}
 \end{aligned}
 $$
 
-Note that, as expected from Equation 9.33, the constants of proportionality are different in comparison to the electric tensor:
+Note that, as expected from Equation 9.33, the constants of proportionality are different in comparison with the electric tensor:
 
 $$ \tag{12.20}
 	k^{-2} \mathcal{G_{mt}}
@@ -2951,7 +2952,7 @@ where the absorption coefficient \\(\alpha\\) is defined according to Equation 7
 
 ### Transition Operator
 
-The volume integral equation can be reduced to a relatively simple expression by assuming that the observation point is located in the radiation zone of the scatterer. However, the value of the electric field in the interior remains unknown. For a single atom or a small molecule, we can reasonably assume that it doesn't drive itself, which makes the field driving the molecule the same as the incident field, with the resulting (simplified) expression of Equation 13.12 given by Equation 13.5. Yet, in general, this assumption does not hold. It is easy to convince ourselves by considering a highly reflective or absorptive particle - it seems fairly obvious that the total field deep inside the particle has (on average) a lower magnitude in comparison to the incident field at the same location if the particle wasn't there.
+The volume integral equation can be reduced to a relatively simple expression by assuming that the observation point is located in the radiation zone of the scatterer. However, the value of the electric field in the interior remains unknown. For a single atom or a small molecule, we can reasonably assume that it doesn't drive itself, which makes the field driving the molecule the same as the incident field, with the resulting (simplified) expression of Equation 13.12 given by Equation 13.5. Yet, in general, this assumption does not hold. It is easy to convince ourselves by considering a highly reflective or absorptive particle - it seems fairly obvious that the total field deep inside the particle has (on average) a lower magnitude in comparison with the incident field at the same location if the particle wasn't there.
 
 Let us recall the mechanics of scattering. In a dielectric, the incident field drives the dipoles, which in turn act as sources of scattered wavelets interfering with the incident field according to the superposition principle. We may continue this line of thinking by considering the effect of a dipole as a secondary source on all other dipoles surrounding it, effectively treating the dipole field as the secondary incident field. Repeated application of this iterative approach leads to evaluation of successive orders of scattering one by one. This is the general idea behind the [Born series](https://en.wikipedia.org/wiki/Born_series) \[[6](#references) (ch. 13.1)\].
 
@@ -4500,11 +4501,17 @@ we can deduce that, for large values of the argument, the spherical Bessel funct
 
 $$ \tag{17.52}
 \begin{aligned}
-	& j_n(x) \backsimeq \frac{1}{x} \sin\Big( x - \frac{\pi n}{2}  \Big), &
-	& y_n(x) \backsimeq - \frac{1}{x} \cos\Big( x - \frac{\pi n}{2}  \Big),
+	& j_n(x) = \frac{1}{x} \sin\Big( x - \frac{\pi n}{2} \Big)
+	+ \mathrm{O}\big( x^{-2} \big),
+	&
+	& y_n(x) = - \frac{1}{x} \cos\Big( x - \frac{\pi n}{2} \Big)
+	+ \mathrm{O}\big( x^{-2} \big),
 	\cr
-	& h_n^{(1)}(x) \backsimeq i^{-n-1} \frac{e^{ i x}}{x}, &
-	& h_n^{(2)}(x) \backsimeq i^{n+1}    \frac{e^{-i x}}{x}.
+	& h_n^{(1)}(x) = i^{-n-1} \frac{e^{ i x}}{x}
+	+ \mathrm{O}\big( x^{-2} \big),
+	&
+	& h_n^{(2)}(x) = i^{n+1}  \frac{e^{-i x}}{x}
+	+ \mathrm{O}\big( x^{-2} \big).
 \end{aligned}
 $$
 
@@ -5965,19 +5972,30 @@ The problem is exacerbated by the convergence properties of the series. It was s
 
 #### Partial Waves
 
-The most straightforward interpretation of Equations 17.158 and 17.159 treats the individual terms as *partial waves*. If we examine the definition of the vector tesseral harmonics given by Equation 17.136, we may note that \\(\bm{N\_{m,n}}\\) has a radial component, while \\(\bm{M\_{m,n}}\\) does not. Since an electric charge is a source of a radially-symmetric electric field, we may interpret the existence of the radial component of \\(\bm{N\_{m,n}}\\) as a sign of the fact that the sphere contains a distribution of electric charges; therefore, the partial waves prefixed with \\(b_n\\) are said to be of the *electric type*. At the same time, in comparison to Equation 17.36 of the electric field, Equation 17.37 of the magnetic field has the coefficients \\(a_n\\) and \\(b_n\\) interchanged; similar logical steps lead to the conclusion that the partial waves prefixed with \\(a_n\\) are of the *magnetic type* \[[17](#references) (ch 9.22)\].
+The most straightforward interpretation of Equations 17.158 and 17.159 treats the individual terms as *partial waves*. If we examine the definition of the vector tesseral harmonics given by Equation 17.136, we may note that \\(\bm{N\_{m,n}}\\) has a radial component, while \\(\bm{M\_{m,n}}\\) does not. Since an electric charge is a source of a radially-symmetric electric field, we may interpret the existence of the radial component of \\(\bm{N\_{m,n}}\\) as a sign of the fact that the sphere contains a distribution of electric charges; therefore, the partial waves prefixed with \\(b_n\\) are said to be of the *electric type*. At the same time, in comparison with Equation 17.36 of the electric field, Equation 17.37 of the magnetic field has the coefficients \\(a_n\\) and \\(b_n\\) interchanged; similar logical steps lead to the conclusion that the partial waves prefixed with \\(a_n\\) are of the *magnetic type* \[[17](#references) (ch 9.22)\].
 
 We may also show that the field becomes transverse in the radiation zone (see Equation 13.14 for the case of a scattering object of an arbitrary shape). Using the asymptotic expressions of the spherical Bessel functions (for \\(\vert x \vert \gg 1\\) and \\(\vert x \vert \gg n\\)) given by Equation 17.52, the corresponding Riccati-Bessel functions (and their derivatives) take the form
 
 $$ \tag{18.2}
+\small
 \begin{aligned}
-	& \psi_n(x) \backsimeq \sin\negmedspace\Big( x - \frac{\pi n}{2} \Big), &
-	& \chi_n(x) \backsimeq -\cos\negmedspace\Big( x - \frac{\pi n}{2} \Big), &
-	& \xi_n(x) \backsimeq i^{-n-1} e^{i x},
+	& \psi_n(x) = \sin\negmedspace\Big( x - \frac{\pi n}{2} \Big)
+	+ \mathrm{O}\big( x^{-1} \big),
+	&
+	& \chi_n(x) = -\cos\negmedspace\Big( x - \frac{\pi n}{2} \Big)
+	+ \mathrm{O}\big( x^{-1} \big),
+	&
+	& \xi_n(x) = i^{-n-1} e^{i x}
+	+ \mathrm{O}\big( x^{-1} \big),
 	\cr
-	& \psi_n'(x) \backsimeq \cos\negmedspace\Big( x - \frac{\pi n}{2} \Big), &
-	& \chi_n'(x) \backsimeq \sin\negmedspace\Big( x - \frac{\pi n}{2} \Big), &
-	& \xi_n'(x) \backsimeq i^{-n} e^{i x}.
+	& \psi_n'(x) = \cos\negmedspace\Big( x - \frac{\pi n}{2} \Big)
+	+ \mathrm{O}\big( x^{-2} \big),
+	&
+	& \chi_n'(x) = \sin\negmedspace\Big( x - \frac{\pi n}{2} \Big)
+	+ \mathrm{O}\big( x^{-2} \big),
+	&
+	& \xi_n'(x) = i^{-n} e^{i x}
+	+ \mathrm{O}\big( x^{-2} \big).
 \end{aligned}
 $$
 
