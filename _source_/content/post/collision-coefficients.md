@@ -1295,7 +1295,7 @@ $$ \tag{7.26}
 	= \mathcal{Re} \big\lbrace \bm{B} e^{-i \omega t} \big\rbrace
 $$
 
-shows us that the electric and the magnetic field vectors of a plane wave are perpendicular only if \\(\kappa = 0\\). If that is the case, \\(\lbrace \bm{E}, \bm{B}, \bm{n} \rbrace\\) is an orthogonal triad of vectors that defines the geometric configuration of a plane wave in a non-absorptive, linear, isotropic, homogeneous, source-free medium:
+shows us that the electric and the magnetic field vectors of a plane wave are orthogonal only if \\(\kappa = 0\\). If that is the case, \\(\lbrace \bm{E}, \bm{B}, \bm{n} \rbrace\\) is an orthogonal triad of vectors that defines the geometric configuration of a plane wave in a non-absorptive, linear, isotropic, homogeneous, source-free medium:
 
 $$ \tag{7.27}
 	\bm{n} \times \frac{\mathcal{Re} \big\lbrace \bm{E}(\bm{r}, \bm{n}, \omega) e^{-i \omega t} \big\rbrace}{\big\vert \mathcal{Re} \big\lbrace \bm{E}(\bm{r}, \bm{n}, \omega) e^{-i \omega t} \big\rbrace \big\vert}
@@ -1330,7 +1330,7 @@ $$ \tag{7.30}
 	\delta, \cr
 	\mathcal{Arg} \big\lbrace E_y(0, \bm{n}, \omega) \big\rbrace &=
 	\mathcal{Arg} \big\lbrace B_x(0, \bm{n}, \omega) \big\rbrace =
-	\frac{\pi}{2} \pm \pi n.
+	\pm \frac{\pi}{2} \pm \pi n.
 \end{aligned}
 $$
 
@@ -1353,14 +1353,14 @@ The average value of a squared cosine is \\(\frac{1}{2}\\), so the corresponding
 $$ \tag{7.32}
 	\Epsilon
 	= \braket{\bm{S}} \cdot \bm{n'}
-	= \frac{1}{2} \mu\_0^{-1} \frac{\eta}{c} |\bm{E_0}|^2 \big( \bm{n} \cdot \bm{n'} \big).
+	= \frac{\mu\_0^{-1}}{2} \frac{\eta}{c} |\bm{E_0}|^2 \big( \bm{n} \cdot \bm{n'} \big).
 $$
 
 Without proof, we shall state an interesting fact. The time-averaged energy density (cf. Equations 2.23-2.24) of the field of a plane wave is
 
 $$ \tag{7.33}
 	\bigg\langle \frac{\partial \mathcal{E\_{em}}}{\partial V} \bigg\rangle
-	= \frac{1}{2} \mu\_0^{-1} \frac{\eta^2}{c^2} |\bm{E_0}|^2.
+	= \frac{\mu\_0^{-1}}{2} \frac{\eta^2}{c^2} |\bm{E_0}|^2.
 $$
 
 This implies that the amount of energy that goes through a unit area per unit time is the amount of energy per unit volume times the velocity at which the energy flows \[[5](#references) (vol. II, ch. 27)\]:
@@ -2682,6 +2682,8 @@ $$ \tag{12.20}
 	\varpropto (k R)^{-1}.
 $$
 
+-->
+
 ### Spherical Waves
 
 Let us focus on the case when the observation point is far away from the source. It is important for two reasons: first, if we are dealing with small particles, a typical observation falls into this category, and second, because this assumption greatly simplifies the behavior of the scattered wave, as we shall soon demonstrate.
@@ -2937,7 +2939,7 @@ and irradiance (cf. Equation 7.32)
 $$ \tag{13.23}
 	\Epsilon
 	= \braket{\bm{S}} \cdot \bm{n'}
-	\backsimeq \frac{1}{2} \mu\_0^{-1} \frac{\eta}{c} \frac{|\bm{E_1}|^2}{r^2} \big( \bm{n} \cdot \bm{n'} \big)
+	\backsimeq \frac{\mu\_0^{-1}}{2} \frac{\eta}{c} \frac{|\bm{E_1}|^2}{r^2} \big( \bm{n} \cdot \bm{n'} \big)
 $$
 
 that follow the [inverse-square law](https://en.wikipedia.org/wiki/Inverse-square_law).
@@ -3191,8 +3193,6 @@ $$ \tag{14.25}
 \end{aligned}
 $$
 
--->
-
 ### Scattering Matrix
 
 An arbitrary stream of electromagnetic radiation can decomposed into a number of individual plane waves. Specifically, in a *linear, isotropic, homogeneous* medium, the expression of the incident field is given by Equation 6.16:
@@ -3432,14 +3432,14 @@ $$ \tag{15.16}
 \end{bmatrix}.
 $$
 
-Comparison with Equation 15.6 (after taking Equation 15.13 into account) shows that
+Comparison with Equation 15.6 shows that
 
 $$ \tag{15.17}
 	S(\theta, \phi, \omega)
-	= i k(\omega) R_y(-\theta) \mathcal{S_{ef}} (\bm{n_s}, \bm{n_i}, \omega),
+	= i k(\omega) \mathcal{S_{ef}} (\bm{n_s}, \bm{n_i}, \omega),
 $$
 
-with the angles \\(\theta\\) and \\(\phi\\) defined by Equation 15.10.
+with the angles \\(\theta\\) and \\(\phi\\) defined by Equation 15.10. We shall see that, in certain cases, the scattering matrix explicitly features the rotation of the coordinate frame \\(R_y(-\theta)\\) defined by Equation 15.13.
 
 The reason for introducing the \\(i k\\) constant in the expression above is twofold. Multiplication by the \\(k\\) factor makes the scattering matrix a dimensionless quantity, which is evident from Equations 13.4 and 15.16. As for the \\(i\\) factor, we shall see (in the next section) that it allows us to focus on the real part of the scattering matrix for radiometric computations, which is consistent with the way we handle the complex representation of electromagnetic waves.
 
@@ -3587,9 +3587,9 @@ With each plane wave, we may associate the Poynting vector \\(\bm{S_i}\\) (cf. E
 
 $$ \tag{16.3}
 	\braket{\bm{S_i}}
-	= \frac{1}{2} \mu\_0^{-1} \mathcal{Re}
+	= \frac{\mu\_0^{-1}}{2} \mathcal{Re}
 	\big\lbrace \bm{E_0} \times \bm{B_0^{\*}} \big\rbrace
-	= \frac{1}{2} \mu\_0^{-1} \frac{\eta}{c} |\bm{E_0}|^2 \bm{n_i}.
+	= \frac{\mu\_0^{-1}}{2} \frac{\eta}{c} |\bm{E_0}|^2 \bm{n_i}.
 $$
 
 As a result, the amount of power per unit area (cf. Equation 7.32) flowing through an arbitrary virtual surface element is
@@ -3597,7 +3597,7 @@ As a result, the amount of power per unit area (cf. Equation 7.32) flowing throu
 $$ \tag{16.4}
 	\Epsilon_i
 	= \braket{\bm{S_i}} \cdot \bm{n}
-	= \frac{1}{2} \mu\_0^{-1} \frac{\eta}{c} |\bm{E_0}|^2 (\bm{n_i} \cdot \bm{n}),
+	= \frac{\mu\_0^{-1}}{2} \frac{\eta}{c} |\bm{E_0}|^2 (\bm{n_i} \cdot \bm{n}),
 $$
 
 where \\(\bm{n}\\) is the surface normal.
@@ -3607,7 +3607,7 @@ The total amount of power flowing through the entire virtual surface is then
 $$ \tag{16.5}
 	\Delta \Phi
 	= \int_{A} \braket{\bm{S_i}} \cdot \bm{n} \thinspace dA
-	= \frac{1}{2} \mu\_0^{-1} \frac{\eta}{c} |\bm{E_0}|^2 \int_{A} \bm{n_i} \cdot \bm{n} \thinspace dA.
+	= \frac{\mu\_0^{-1}}{2} \frac{\eta}{c} |\bm{E_0}|^2 \int_{A} \bm{n_i} \cdot \bm{n} \thinspace dA.
 $$
 
 The integral given above simply computes the signed projected area of the surface onto the plane of the incident wave. For a closed surface, the value of the integral is zero.
@@ -3618,7 +3618,7 @@ Equation 16.5 expresses the energy conservation law:
 
 $$ \tag{16.6}
 	\Delta \Phi
-	= \frac{1}{2} \mu\_0^{-1} \frac{\eta}{c} |\bm{E_0}|^2 \bigg(
+	= \frac{\mu\_0^{-1}}{2} \frac{\eta}{c} |\bm{E_0}|^2 \bigg(
 	  \oint_{A} \mathrm{max}(0, -\bm{n} \cdot \bm{n_i}) dA
 	- \oint_{A} \mathrm{max}(0,  \bm{n} \cdot \bm{n_i}) dA \bigg) = 0.
 $$
@@ -3673,9 +3673,9 @@ The Poynting vector of the scattered far field points radially outward. If the h
 
 $$ \tag{16.12}
 	\braket{\bm{S_s}}
-	\backsimeq \frac{1}{2} \mu\_0^{-1} \frac{1}{r^2} \mathcal{Re}
+	\backsimeq \frac{\mu\_0^{-1}}{2} \frac{1}{r^2} \mathcal{Re}
 	\big\lbrace \bm{E_1} \times \bm{B_1^{\*}} \big\rbrace
-	= \frac{1}{2} \mu\_0^{-1} \frac{\eta}{c} \frac{\big\vert \bm{E_1}(\bm{n_s}) \big\vert^2}{r^2} \bm{n_s}.
+	= \frac{\mu\_0^{-1}}{2} \frac{\eta}{c} \frac{\big\vert \bm{E_1}(\bm{n_s}) \big\vert^2}{r^2} \bm{n_s}.
 $$
 
 In order to calculate the amount of scattered power, it is convenient to use a spherical surface \\(\mathbb{S}^2\\). Since the differential solid angle is
@@ -3689,14 +3689,14 @@ setting \\(\bm{n} = \bm{r}/r = \bm{n_s}\\) results in an integral that is formal
 $$ \tag{16.14}
 	\Phi_s
 	= \oint_{A} \braket{\bm{S_s}} \cdot \bm{n_s} \thinspace dA
-	\backsimeq \frac{1}{2} \mu\_0^{-1} \frac{\eta}{c} \oint\_{\mathbb{S}^2} \big\vert \bm{E_1}(\bm{n_s}) \big\vert^2 d\Omega.
+	\backsimeq \frac{\mu\_0^{-1}}{2} \frac{\eta}{c} \oint\_{\mathbb{S}^2} \big\vert \bm{E_1}(\bm{n_s}) \big\vert^2 d\Omega.
 $$
 
 From the radiometric point of view, the squared magnitude of the scattered field corresponds to [radiant intensity](https://en.wikipedia.org/wiki/Radiant_intensity)
 
 $$ \tag{16.15}
 	\Iota_s
-	\backsimeq \frac{1}{2} \mu\_0^{-1} \frac{\eta}{c} \big\vert \bm{E_1}(\bm{n_s}) \big\vert^2.
+	\backsimeq \frac{\mu\_0^{-1}}{2} \frac{\eta}{c} \big\vert \bm{E_1}(\bm{n_s}) \big\vert^2.
 $$
 
 The scattered field does not exist in isolation. Since it is generated by the incident field, the total field is formed by the superposition of the two waves (cf. Equation 11.12):
@@ -3926,7 +3926,7 @@ depends on the scattering amplitude in the forward direction only. In general, t
 $$ \tag{16.35}
 	\Phi_a
 	= \Phi_e - \Phi_s
-	\backsimeq \frac{1}{2} \mu\_0^{-1} \frac{\eta}{c} \bigg(
+	\backsimeq \frac{\mu\_0^{-1}}{2} \frac{\eta}{c} \bigg(
 	\frac{4 \pi}{k} \mathcal{Im} \big\lbrace \bm{E_0^{\*}} \cdot \bm{E_1}(\bm{n_i}) \big\rbrace
 	- \oint\_{\mathbb{S}^2} \big\vert \bm{E_1}(\bm{n_s}) \big\vert^2 d\Omega \bigg).
 $$
@@ -3942,7 +3942,7 @@ The amount of incident power is then (cf. Equations 16.3-16.5)
 
 $$ \tag{16.37}
 	\Phi_i
-	= \frac{1}{2} \mu\_0^{-1} \frac{\eta}{c} |\bm{E_0}|^2
+	= \frac{\mu\_0^{-1}}{2} \frac{\eta}{c} |\bm{E_0}|^2
 	  \oint_{A} \mathrm{max}(0, -\bm{n} \cdot \bm{n_i}) dA
 	= \Epsilon_i(\bm{n_i}) C_g
 	= \vert \negthinspace \braket{\bm{S_i}} \negthinspace \vert C_g.
@@ -4039,14 +4039,14 @@ Suppose the host medium is non-absorbing and non-magnetic. Then \\(\kappa = 0\\)
 
 $$ \tag{18.25}
 	\Iota_s
-	= \frac{1}{2} \mu\_0^{-1} \frac{\eta}{c} \big\vert \bm{E_1}(\bm{n_s}) \big\vert^2.
+	= \frac{\mu\_0^{-1}}{2} \frac{\eta}{c} \big\vert \bm{E_1}(\bm{n_s}) \big\vert^2.
 $$
 
 This formula deserves several remarks. First, we must emphasize that it gives the intensity of the scattered field \\(\bm{E_s}\\) -- and *not* the total field \\(\bm{E} = \bm{E_i} + \bm{E_s}\\). Since we know the irradiance of the incident field
 
 $$ \tag{18.26}
 	\Epsilon_i
-	= \frac{1}{2} \mu\_0^{-1} \frac{\eta}{c} |\bm{E_0}|^2 (\bm{n_i} \cdot \bm{n_s}),
+	= \frac{\mu\_0^{-1}}{2} \frac{\eta}{c} |\bm{E_0}|^2 (\bm{n_i} \cdot \bm{n_s}),
 $$
 
 given by Equation 16.4, we could speak of the irradiance of the total field
@@ -4054,7 +4054,7 @@ given by Equation 16.4, we could speak of the irradiance of the total field
 $$ \tag{18.27}
 	\Epsilon
 	= \Epsilon_i + \frac{\Iota_s}{r^2}
-	= \frac{1}{2} \mu\_0^{-1} \frac{\eta}{c}
+	= \frac{\mu\_0^{-1}}{2} \frac{\eta}{c}
 		\left( |\bm{E_0}|^2 (\bm{n_i} \cdot \bm{n_s}) + \frac{\big\vert \bm{E_1}(\bm{n_s}) \big\vert^2}{r^2} \right).
 $$
 
@@ -4087,7 +4087,7 @@ $$
 
 We have previously solved this equation by expanding it in Cartesian coordinates. That allowed us to separate a single vector equation into three scalar equations, which could then be solved individually. While this leads to a convenient (plane wave) representation of the incident field, it is a poor fit for the scattered field, since the latter takes the form of a spherical wave in the radiation zone. In addition, the geometry of the scatterer suggests that we should exploit the spherical symmetry of the problem in some way.
 
-Equation 17.1 can be written in yet another way. Recall (c.f. Equation 9.19) that we can express the electric field \\(\bm{E}\\) in terms of the vector potential \\(\bm{A}\\) and the scalar potential \\(\phi\\)
+Equation 17.1 can be written in yet another way. Recall (cf. Equation 9.19) that we can express the electric field \\(\bm{E}\\) in terms of the vector potential \\(\bm{A}\\) and the scalar potential \\(\phi\\)
 
 $$ \tag{17.2}
 \begin{aligned}
@@ -4772,7 +4772,7 @@ $$ \tag{17.68}
 	\tau_{m,n}(\theta) = \frac{\partial P_n^m(\cos{\theta})}{\partial \theta},
 $$
 
-that satisfy the modified Legendre's differential equation (c.f. Equations 17.41.2 and 17.42)
+that satisfy the modified Legendre's differential equation (cf. Equations 17.41.2 and 17.42)
 
 $$ \tag{17.??}
 	m \pi_{m,n}(\theta) = \frac{\partial}{\partial \theta} \big( \tau_{m,n}(\theta) \sin{\theta} \big)
@@ -5221,7 +5221,7 @@ $$ \tag{17.98}
 	z_n^{(1)}(k r) = j_n(k r)
 $$
 
-motivated by its non-singular behavior at the origin (c.f. Figure N). This property makes it suitable for expressing a smooth, finite-valued incident field.
+motivated by its non-singular behavior at the origin (cf. Figure N). This property makes it suitable for expressing a smooth, finite-valued incident field.
 
 Equations 17.96 and 17.97 have a simple geometric interpretation. If we define the *Hilbert space norm*
 
@@ -5270,7 +5270,7 @@ $$ \tag{17.104}
 	\bm{r} = \lbrace r, \theta, \phi \rbrace.
 $$
 
-We may take advantage of the symmetry of the problem by aligning \\(\bm{n_i}\\) with the \\(z\\)-axis (c.f. Figure N). Then,
+We may take advantage of the symmetry of the problem by aligning \\(\bm{n_i}\\) with the \\(z\\)-axis (cf. Figure N). Then,
 
 $$ \tag{17.105}
 	\bm{r} \cdot \bm{e_z} = r \cos{\theta}.
@@ -5303,7 +5303,7 @@ $$
 
 Despite the apparent complexity, Equation 17.107 offers a useful representation of the basis vectors, since we can readily from products with the vector spherical wave functions of Equation 17.71 (or the vector spherical harmonics of Equation 17.72). Now, since a vector plane wave is a product of the polarization phasor and a scalar plane wave, we should be able to perform a vector spherical wave series expansion of Equation 17.103 if we find a suitable alternative formulation of its complex exponential term.
 
-We have initially encountered scalar plane waves when we set out to solve the scalar Helmholtz equation in the Cartesian coordinate system (c.f. Equations 6.11-6.14). More recently, we have also found a solution in spherical coordinates (given by Equation 17.44). Obviously, both solutions refer to the same function, the only difference being the coordinate representation. Thus, if we adhere to the convention established by Equation 17.105, then
+We have initially encountered scalar plane waves when we set out to solve the scalar Helmholtz equation in the Cartesian coordinate system (cf. Equations 6.11-6.14). More recently, we have also found a solution in spherical coordinates (given by Equation 17.44). Obviously, both solutions refer to the same function, the only difference being the coordinate representation. Thus, if we adhere to the convention established by Equation 17.105, then
 
 $$ \tag{17.108}
 \begin{aligned}
@@ -5604,13 +5604,13 @@ $$ \tag{17.133}
 	\bm{E_0}(\bm{e_z}, \omega) e^{i k(\omega) (\bm{r} \cdot \bm{e_z})}
 	&= \sum_{m,n} \big( a_{m,n}(\omega) \bm{M_{m,n}^{(1)}}(\bm{r}, \omega) + b_{m,n}(\omega) \bm{N_{m,n}^{(1)}}(\bm{r}, \omega) \big)
 	\cr
-	&= E_X(\omega) \sum_{n=1}^{\infin} 2 \pi i^n \gamma_{1,n} \sum_{m= \pm 1} i \big( \bm{M_{m,n}^{(1)}}(\bm{r}, \omega) + m \bm{N_{m,n}^{(1)}}(\bm{r}, \omega) \big)
+	&= i E_X(\omega) \sum_{n=1}^{\infin} 2 \pi i^n \gamma_{1,n} \sum_{m= \pm 1} \big( \bm{M_{m,n}^{(1)}}(\bm{r}, \omega) + m \bm{N_{m,n}^{(1)}}(\bm{r}, \omega) \big)
 	\cr
 	&+ E_Y(\omega) \sum_{n=1}^{\infin} 2 \pi i^n \gamma_{1,n} \sum_{m= \pm 1} \big( m \bm{M_{m,n}^{(1)}}(\bm{r}, \omega) + \bm{N_{m,n}^{(1)}}(\bm{r}, \omega) \big).
 \end{aligned}
 $$
 
-The \\(i\\) factor following \\(E_X\\) should not come as a surprise. Since, according to [Euler's identity](https://en.wikipedia.org/wiki/Euler%27s_identity),
+The \\(i\\) factor preceding \\(E_X\\) should not come as a surprise. Since, according to [Euler's identity](https://en.wikipedia.org/wiki/Euler%27s_identity),
 
 $$ \tag{17.134}
 	e^{\pm i \pi/2} = \pm i,
@@ -5767,7 +5767,7 @@ $$ \tag{17.141}
 \end{aligned}
 $$
 
-In addition to the total field \\(\bm{E_1}\\) in the exterior region of the particle, we must also determine the expression of the internal field \\(\bm{E_2}\\) induced inside the sphere. We can deduce two of its features: first, in order for the solution to be physically plausible, the field must take on finite values at the origin, which means we must employ the spherical Bessel function of the first kind; and second, the wavenumber \\(k_2\\) inside the sphere depends on its permittivity and permeability (c.f. Equation 11.8), and is thus necessarily different from the wavenumber \\(k = k_1\\) in the surrounding (host) medium.
+In addition to the total field \\(\bm{E_1}\\) in the exterior region of the particle, we must also determine the expression of the internal field \\(\bm{E_2}\\) induced inside the sphere. We can deduce two of its features: first, in order for the solution to be physically plausible, the field must take on finite values at the origin, which means we must employ the spherical Bessel function of the first kind; and second, the wavenumber \\(k_2\\) inside the sphere depends on its permittivity and permeability (cf. Equation 11.8), and is thus necessarily different from the wavenumber \\(k = k_1\\) in the surrounding (host) medium.
 
 The combination of these two facts motivates the following series expansion of the internal field:
 
@@ -6151,7 +6151,7 @@ $$ \tag{18.5}
 \end{aligned}
 $$
 
-We can identify a rotation of the incident electric field \\([E_X, E_Y]^T\\) around the \\(z\\)-axis; this results in the coordinate representation \\([E_x(\phi), E_y(\phi)]^T\\) relative to the plane of observation (c.f. Equation 15.11 and Figure N).
+We can identify a rotation of the incident electric field \\([E_X, E_Y]^T\\) around the \\(z\\)-axis; this results in the coordinate representation \\([E_x(\phi), E_y(\phi)]^T\\) relative to the plane of observation (cf. Equation 15.11 and Figure N).
 
 If we specify the incident field at a certain coordinate \\(z < 0\\) and substitute the resulting phasor into Equation 18.5, the resulting expression is a perfect match for the template of Equation 15.16. This allows us to isolate the expression of the scattering matrix
 
@@ -6489,18 +6489,157 @@ vanish. Equation 18.24 is the basis of the famous law of [Rayleigh scattering](h
 
 #### Light Intensity and Efficiency Factors
 
-Suppose the host medium is non-absorbing and non-magnetic. Then \\(\kappa = 0\\) and \\(\mu = \mu_0\\), and the intensity of the scattered light is given by Equation 16.15:
+Neither the electric field nor the magnetic field can be measured directly \[[8](#references) (ch. 7)\]. Therefore, practical applications of light scattering are concerned with the rate of the flow of electromagnetic energy, which is connected to light intensity via the optical theorem.
+
+Suppose that the host medium is non-absorbing and non-magnetic. Then \\(\kappa = 0, \mu = \mu_0, k \in \mathcal{R}\\), and the intensity of the scattered light is given by Equation 16.15:
 
 $$ \tag{18.25}
-	\Iota_s
-	= \frac{1}{2} \mu\_0^{-1} \frac{\eta}{c} \big\vert \bm{E_1}(\bm{n_s}) \big\vert^2,
+	\Iota_s(\bm{n_s}, \omega)
+	\backsimeq \frac{\mu\_0^{-1}}{2} \frac{\eta(\omega)}{c} \left| \bm{E_1}(\bm{n_s}, \omega) \right|^2.
 $$
 
-Equation 15.? shows that the polarization phasors of the incident and the scattered field, \\(\bm{E_0}\\) and \\(\bm{E_1}\\), are directly connected by the electric far-field scattering tensor \\(\mathcal{S_{ef}}\\). Therefore,
+Equation 15.? shows that the polarization phasor \\(\bm{E_0}\\) of the incident field can be transformed into the polarization phasor \\(\bm{E_1}\\) of the scattered far field by the electric far-field scattering tensor \\(\mathcal{S_{ef}}\\). Substitution into Equation 18.25 results in
 
 $$ \tag{18.26}
-	\Iota_s
-	= \frac{1}{2} \mu\_0^{-1} \frac{\eta}{c} \big\vert \mathcal{S_{ef}}(\bm{n_s}, \bm{n_i}) \bm{E_0}(\bm{n_i}) \big\vert^2.
+	\Iota_s(\bm{n_s}, \omega)
+	\backsimeq \frac{\mu\_0^{-1}}{2} \frac{\eta(\omega)}{c}\left| \mathcal{S_{ef}}(\bm{n_s}, \bm{n_i}, \omega) \bm{E_0}(\bm{n_i}, \omega) \right|^2.
+$$
+
+Both \\(\mathcal{S_{ef}}\\) and \\(\bm{E_0}\\) are coordinate-independent entities. In practice, we shall utilize the convention established in Section 15, according to which both the incident and the scattered far field are described using only two components each. After taking Equations 15.15-15.17 into account, we obtain
+
+$$ \tag{18.27}
+	\Iota_s(\theta, \phi, \omega)
+	\backsimeq \frac{\mu\_0^{-1}}{2} \frac{\eta(\omega)}{c} \frac{1}{k^2(\omega)} \left| S(\theta, \omega)
+	\begin{bmatrix}
+		E_{x}(\phi, \omega) \cr
+		E_{y}(\phi, \omega) \cr
+	\end{bmatrix}
+	\right|^2,
+$$
+
+where \\(S\\) is the scattering matrix given by Equation 18.6.
+
+Presently, it is most convenient to use the exponential form of the incident field phasor:
+
+$$ \tag{18.28}
+	\begin{bmatrix}
+		E_{x}(\phi, \omega) \cr
+		E_{y}(\phi, \omega) \cr
+	\end{bmatrix}
+	= \frac{ \big| \bm{E_0}(\bm{n_i}, \omega) \big| }{ \sqrt{2} }
+	\begin{bmatrix}
+		e^{i \delta_x(\phi, \omega)} \cr
+		e^{i \delta_y(\phi, \omega)} \cr
+	\end{bmatrix}.
+$$
+
+It allows us to directly relate the scattered intensity to the incident irradiance defined with respect to a virtual surface orthogonal to the direction of propagation:
+
+$$ \tag{18.29}
+	\Iota_s(\theta, \phi, \omega)
+	\backsimeq \frac{\Epsilon_i(\omega)}{k^2(\omega)} \left| \frac{S(\theta, \omega)}{ \sqrt{2} }
+	\begin{bmatrix}
+		e^{i \delta_x(\phi, \omega)} \cr
+		e^{i \delta_y(\phi, \omega)} \cr
+	\end{bmatrix}
+	\right|^2.
+$$
+
+The magnitude of a complex vector is invariant under rotation. Since a multiplication by a complex exponential performs a rotation, we may simplify Equation 18.29 to
+
+$$ \tag{18.30}
+	\Iota_s(\theta, \phi, \omega)
+	\backsimeq \frac{\Epsilon_i(\omega)}{k^2(\omega)} \left| \frac{S(\theta, \omega)}{ \sqrt{2} }
+	\begin{bmatrix}
+		1 \cr
+		e^{i \delta(\phi, \omega)} \cr
+	\end{bmatrix}
+	\right|^2
+$$
+
+by multiplying the vector within by \\(\exp(-i \delta_x)\\) and introducing the phase difference
+
+$$ \tag{18.31}
+	\delta(\phi, \omega) = \delta_y(\phi, \omega) - \delta_x(\phi, \omega).
+$$
+
+Now, essentially, our task is to determine the squared magnitude of the complex vector
+
+$$ \tag{18.32}
+	\begin{bmatrix}
+		E_{1} \cr
+		E_{2} \cr
+	\end{bmatrix}
+	=
+	\begin{bmatrix}
+		s_2 & s_3 \cr
+		s_4 & s_1 \cr
+	\end{bmatrix}
+	\begin{bmatrix}
+		1 \cr
+		e^{i \delta} \cr
+	\end{bmatrix}
+	=
+	\sum_{n=1}^{\infin} \frac{(2 n + 1)}{n (n + 1)}
+	\begin{bmatrix}
+		-a_{n}' \pi_{1,n} - b_{n}' \tau_{1,n} & 0 \cr
+		0 & -a_{n}' \tau_{1,n} - b_{n}' \pi_{1,n} \cr
+	\end{bmatrix}
+	\begin{bmatrix}
+		1 \cr
+		e^{i \delta} \cr
+	\end{bmatrix},
+$$
+
+which, as it turns out, is independent of the phase difference:
+
+$$ \tag{18.33}
+\begin{aligned}
+	\begin{vmatrix}
+		E_{1} \cr
+		E_{2} \cr
+	\end{vmatrix}^2
+	&=
+	\begin{bmatrix}
+		1 &
+		e^{-i \delta}
+	\end{bmatrix}
+	\begin{bmatrix}
+		s_2^{\*} & 0 \cr
+		0 & s_1^{\*} \cr
+	\end{bmatrix}
+	\begin{bmatrix}
+		s_2 & 0 \cr
+		0 & s_1 \cr
+	\end{bmatrix}
+	\begin{bmatrix}
+		1 \cr
+		e^{i \delta} \cr
+	\end{bmatrix}
+	= |s_1|^2 + |s_2|^2.
+\end{aligned}
+$$
+
+Thus, we arrive at the formula
+
+$$ \tag{18.34}
+	\Iota_s(\theta, \phi, \omega)
+	\backsimeq \frac{\Epsilon_i(\omega)}{k^2(\omega)}
+	\frac{ \left| s_1(\theta, \omega) \right|^2 + \left| s_2(\theta, \omega) \right|^2 }{2},
+$$
+
+where
+
+$$ \tag{18.33}
+\begin{aligned}
+	s_1(\theta, \omega)
+	&= \sum_{n=1}^{\infin} \frac{(2 n + 1)}{n (n + 1)}
+	\big( {-a_{n}'}(\omega) \tau_{1,n}(\theta) - b_{n}'(\omega) \pi_{1,n}(\theta) \big),
+	\cr
+	s_2(\theta, \omega)
+	&= \sum_{n=1}^{\infin} \frac{(2 n + 1)}{n (n + 1)}
+	\big( {-a_{n}'}(\omega) \pi_{1,n}(\theta) - b_{n}'(\omega) \tau_{1,n}(\theta) \big).
+\end{aligned}
 $$
 
 ---
