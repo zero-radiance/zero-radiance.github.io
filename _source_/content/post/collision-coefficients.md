@@ -6498,14 +6498,14 @@ $$ \tag{18.25}
 	\backsimeq \frac{\mu\_0^{-1}}{2} \frac{\eta(\omega)}{c} \left| \bm{E_1}(\bm{n_s}, \omega) \right|^2.
 $$
 
-Equation 15.? shows that the polarization phasor \\(\bm{E_0}\\) of the incident field can be transformed into the polarization phasor \\(\bm{E_1}\\) of the scattered far field by the electric far-field scattering tensor \\(\mathcal{S_{ef}}\\). Substitution into Equation 18.25 results in
+Equation 15.? shows that the polarization phasor \\(\bm{E_0}\\) of the incident field can be transformed into the polarization phasor \\(\bm{E_1}\\) of the scattered field by the electric far-field scattering tensor \\(\mathcal{S_{ef}}\\). Substitution into Equation 18.25 results in
 
 $$ \tag{18.26}
 	\Iota_s(\bm{n_s}, \omega)
 	\backsimeq \frac{\mu\_0^{-1}}{2} \frac{\eta(\omega)}{c}\left| \mathcal{S_{ef}}(\bm{n_s}, \bm{n_i}, \omega) \bm{E_0}(\bm{n_i}, \omega) \right|^2.
 $$
 
-Both \\(\mathcal{S_{ef}}\\) and \\(\bm{E_0}\\) are coordinate-independent entities. In practice, we shall utilize the convention established in Section 15, according to which both the incident and the scattered far field are described using only two components each. After taking Equations 15.15-15.17 into account, we obtain
+Both \\(\mathcal{S_{ef}}\\) and \\(\bm{E_0}\\) are coordinate-independent entities. In practice, we shall utilize the convention established in Section 15, according to which both the incident and the scattered far field can be described using only two components each. After taking Equations 15.15-15.17 into account, it follows that
 
 $$ \tag{18.27}
 	\Iota_s(\theta, \phi, \omega)
@@ -6517,7 +6517,7 @@ $$ \tag{18.27}
 	\right|^2,
 $$
 
-where \\(S\\) is the scattering matrix given by Equation 18.6.
+where \\(S\\) is the scattering matrix.
 
 Presently, it is most convenient to use the exponential form of the incident field phasor:
 
@@ -6533,7 +6533,7 @@ $$ \tag{18.28}
 	\end{bmatrix}.
 $$
 
-It allows us to directly relate the scattered intensity to the incident irradiance defined with respect to a virtual surface orthogonal to the direction of propagation:
+This allows us to directly relate the scattered intensity \\(\Iota_s\\) to the incident irradiance \\(\Epsilon_i\\) defined with respect to a virtual surface orthogonal to the direction of propagation of the incident wave:
 
 $$ \tag{18.29}
 	\Iota_s(\theta, \phi, \omega)
@@ -6545,55 +6545,27 @@ $$ \tag{18.29}
 	\right|^2.
 $$
 
-The magnitude of a complex vector is invariant under rotation. Since a multiplication by a complex exponential performs a rotation, we may simplify Equation 18.29 to
+Since the scattering matrix of a spherical particle is diagonal (see Equation 18.6), our task is reduced to determination of the squared magnitude of the complex vector
 
 $$ \tag{18.30}
-	\Iota_s(\theta, \phi, \omega)
-	\backsimeq \frac{\Epsilon_i(\omega)}{k^2(\omega)} \left| \frac{S(\theta, \omega)}{ \sqrt{2} }
-	\begin{bmatrix}
-		1 \cr
-		e^{i \delta(\phi, \omega)} \cr
-	\end{bmatrix}
-	\right|^2
-$$
-
-by multiplying the vector within by \\(\exp(-i \delta_x)\\) and introducing the phase difference
-
-$$ \tag{18.31}
-	\delta(\phi, \omega) = \delta_y(\phi, \omega) - \delta_x(\phi, \omega).
-$$
-
-Now, essentially, our task is to determine the squared magnitude of the complex vector
-
-$$ \tag{18.32}
 	\begin{bmatrix}
 		E_{1} \cr
 		E_{2} \cr
 	\end{bmatrix}
 	=
 	\begin{bmatrix}
-		s_2 & s_3 \cr
-		s_4 & s_1 \cr
+		s_2 & 0 \cr
+		0 & s_1 \cr
 	\end{bmatrix}
 	\begin{bmatrix}
-		1 \cr
-		e^{i \delta} \cr
-	\end{bmatrix}
-	=
-	\sum_{n=1}^{\infin} \frac{(2 n + 1)}{n (n + 1)}
-	\begin{bmatrix}
-		-a_{n}' \pi_{1,n} - b_{n}' \tau_{1,n} & 0 \cr
-		0 & -a_{n}' \tau_{1,n} - b_{n}' \pi_{1,n} \cr
-	\end{bmatrix}
-	\begin{bmatrix}
-		1 \cr
-		e^{i \delta} \cr
+		e^{i \delta_x} \cr
+		e^{i \delta_y} \cr
 	\end{bmatrix},
 $$
 
-which, as it turns out, is independent of the phase difference:
+which, as it turns out, is independent of the state of the incident wave:
 
-$$ \tag{18.33}
+$$ \tag{18.31}
 \begin{aligned}
 	\begin{vmatrix}
 		E_{1} \cr
@@ -6601,8 +6573,8 @@ $$ \tag{18.33}
 	\end{vmatrix}^2
 	&=
 	\begin{bmatrix}
-		1 &
-		e^{-i \delta}
+		e^{-i \delta_x} &
+		e^{-i \delta_y} \cr
 	\end{bmatrix}
 	\begin{bmatrix}
 		s_2^{\*} & 0 \cr
@@ -6613,22 +6585,22 @@ $$ \tag{18.33}
 		0 & s_1 \cr
 	\end{bmatrix}
 	\begin{bmatrix}
-		1 \cr
-		e^{i \delta} \cr
+		e^{i \delta_x} \cr
+		e^{i \delta_y} \cr
 	\end{bmatrix}
 	= |s_1|^2 + |s_2|^2.
 \end{aligned}
 $$
 
-Thus, we arrive at the formula
+Thus, we arrive at the important result
 
-$$ \tag{18.34}
+$$ \tag{18.32}
 	\Iota_s(\theta, \phi, \omega)
 	\backsimeq \frac{\Epsilon_i(\omega)}{k^2(\omega)}
 	\frac{ \left| s_1(\theta, \omega) \right|^2 + \left| s_2(\theta, \omega) \right|^2 }{2},
 $$
 
-where
+where the non-zero elements of the scattering matrix are
 
 $$ \tag{18.33}
 \begin{aligned}
@@ -6641,6 +6613,8 @@ $$ \tag{18.33}
 	\big( {-a_{n}'}(\omega) \pi_{1,n}(\theta) - b_{n}'(\omega) \tau_{1,n}(\theta) \big).
 \end{aligned}
 $$
+
+Equation 18.32 deserves a few remarks. First, the right-hand side is independent of the azimuthal angle \\(\phi\\), which should not come as a surprise, as the particle is spherical. What is surprising is that the formula manages to almost entirely conceal the wave nature of light, since the incident irradiance is directly transformed into the scattered radiant intensity, with all the wave-optical calculations relegated to the internals of the scattering matrix.
 
 ---
 
