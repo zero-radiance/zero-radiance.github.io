@@ -5240,19 +5240,19 @@ $$
 then Equation 17.97 can be interpreted the projection in the Hilbert space,
 
 $$ \tag{17.101}
-	a_{m,n} = \frac{ \mathcal{P_h} \big( \bm{E}, \bm{M_{m,n}} \big) }{ \mathcal{N_h}^2 \big( \bm{M_{m,n}} \big) },
+	a_{m,n} = \frac{ \mathcal{P_h} \big( \bm{E_i}, \bm{M_{m,n}} \big) }{ \mathcal{N_h}^2 \big( \bm{M_{m,n}} \big) },
 	\quad
-	b_{m,n} = \frac{ \mathcal{P_h} \big( \bm{E}, \bm{N_{m,n}} \big) }{ \mathcal{N_h}^2 \big( \bm{N_{m,n}} \big) },
+	b_{m,n} = \frac{ \mathcal{P_h} \big( \bm{E_i}, \bm{N_{m,n}} \big) }{ \mathcal{N_h}^2 \big( \bm{N_{m,n}} \big) },
 $$
 
 with Equation 17.96 performing the reconstruction:
 
 $$ \tag{17.102}
 \small
-\bm{E}
+\bm{E_i}
 = \sum_{n=1}^{\infin} \sum_{m=-n}^{n} \Bigg(
-	\mathcal{P_h} \Bigg( \bm{E}, \frac{ \bm{M_{m,n}} }{ \mathcal{N_h} \big( \bm{M_{m,n}} \big) } \Bigg) \frac{ \bm{M_{m,n}} }{ \mathcal{N_h} \big( \bm{M_{m,n}} \big) } +
-	\mathcal{P_h} \Bigg( \bm{E}, \frac{ \bm{N_{m,n}} }{ \mathcal{N_h} \big( \bm{N_{m,n}} \big) } \Bigg) \frac{ \bm{N_{m,n}} }{ \mathcal{N_h} \big( \bm{N_{m,n}} \big) } \Bigg).
+	\mathcal{P_h} \Bigg( \bm{E_i}, \frac{ \bm{M_{m,n}} }{ \mathcal{N_h} \big( \bm{M_{m,n}} \big) } \Bigg) \frac{ \bm{M_{m,n}} }{ \mathcal{N_h} \big( \bm{M_{m,n}} \big) } +
+	\mathcal{P_h} \Bigg( \bm{E_i}, \frac{ \bm{N_{m,n}} }{ \mathcal{N_h} \big( \bm{N_{m,n}} \big) } \Bigg) \frac{ \bm{N_{m,n}} }{ \mathcal{N_h} \big( \bm{N_{m,n}} \big) } \Bigg).
 $$
 
 Let us further assume that the incident field can be represented by a plane wave. This is a valid description of an extended source located in the radiation zone of a small particle; a more general source could be modeled as a superposition of plane waves.
