@@ -2948,7 +2948,7 @@ For completeness, we would like to point out that it is possible to support the 
 
 $$ \tag{13.24}
 	\braket{\bm{S}}
-	\backsimeq \frac{1}{2} \mathcal{Re} \Big\lbrace \bm{E_s}(\bm{r}, \omega) \times \big[ \bm{B_s}(\bm{r}, \omega) \big]^{\*} \Big\rbrace.
+	\backsimeq \frac{1}{2} \mathcal{Re} \Big\lbrace \bm{E_s}(\bm{r}, \omega) \times \big[ \bm{H_s}(\bm{r}, \omega) \big]^{\*} \Big\rbrace.
 $$
 
 Compare Equation 13.24 to 7.35; except for the names of the fields, their properties are the same (up to the \\(1/r\\) factor). Thus, the analysis performed in Equations 7.36-7.41 still applies, and we thus arrive at the analog of Equation 7.42:
@@ -3954,7 +3954,7 @@ $$ \tag{16.38}
 \begin{aligned}
 	& Q_a
 	= \frac{\Phi_a}{\Phi_i}
-	= \frac{\Phi_s + \Phi_e}{\Phi_i},
+	= \frac{\Phi_e - \Phi_s}{\Phi_i},
 	\cr
 	& Q_s
 	= \frac{\Phi_s}{\Phi_i}
@@ -3973,7 +3973,7 @@ $$ \tag{16.39}
 	& C_a
 	= \frac{\Phi_a}{\vert \negthinspace \braket{\bm{S_i}} \negthinspace \vert}
 	= Q_a C_g
-	= \frac{\Phi_s + \Phi_e}{\vert \negthinspace \braket{\bm{S_i}} \negthinspace \vert},
+	= \frac{\Phi_e - \Phi_s}{\vert \negthinspace \braket{\bm{S_i}} \negthinspace \vert},
 	\cr
 	& C_s
 	= \frac{\Phi_s}{\vert \negthinspace \braket{\bm{S_i}} \negthinspace \vert}
@@ -3991,7 +3991,7 @@ Equations 16.39.1-16.39.3 are known as the *optical cross-section theorem*, or t
 
 The equations of the extinction theorem can be simplified if the particle possesses axial symmetry with respect to the direction of incidence.
 
-To show this, express \\(\bm{E_1}\\) in terms of the scattering tensor \\(\mathcal{S_{ef}}\\) according to Equation 16.10:
+To show this, express \\(\bm{E_1}\\) in terms of the scattering tensor \\(\mathcal{S_{ef}}\\) according to Equation 15.?:
 
 $$ \tag{16.40}
 	\Phi_e
