@@ -5237,7 +5237,7 @@ $$ \tag{17.100}
 	= \int_{0}^{2 \pi} \int_{0}^{\pi} \big[ \bm{W}(\bm{r}) \big]^{\*} \cdot \bm{V}(\bm{r}) \sin{\theta} \thinspace d\theta d\phi,
 $$
 
-then Equation 17.97 can be interpreted the projection in the Hilbert space,
+then Equation 17.97 can be interpreted the projection into the Hilbert space,
 
 $$ \tag{17.101}
 	a_{m,n} = \frac{ \mathcal{P_h} \big( \bm{E_i}, \bm{M_{m,n}} \big) }{ \mathcal{N_h}^2 \big( \bm{M_{m,n}} \big) },
@@ -5301,63 +5301,15 @@ $$ \tag{17.107}
 \end{aligned}
 $$
 
-Despite the apparent complexity, Equation 17.107 offers a useful representation of the basis vectors, since we can readily from products with the vector spherical wave functions of Equation 17.71 (or the vector spherical harmonics of Equation 17.72). Now, since a vector plane wave is a product of the polarization phasor and a scalar plane wave, we should be able to perform a vector spherical wave series expansion of Equation 17.103 if we find a suitable alternative formulation of its complex exponential term.
+Equations 17.103-17.107 give a complete description of an electromagnetic plane wave in the spherical coordinates. We may now determine the values of the series coefficients (using Equation 17.97) by projecting the vector plane wave onto the vector spherical wave functions.
 
-We have initially encountered scalar plane waves when we set out to solve the scalar Helmholtz equation in the Cartesian coordinate system (cf. Equations 6.11-6.14). More recently, we have also found a solution in spherical coordinates (given by Equation 17.44). Obviously, both solutions refer to the same function, the only difference being the coordinate representation. Thus, if we adhere to the convention established by Equation 17.105, then
-
-$$ \tag{17.108}
-\begin{aligned}
-	& e^{i k r \cos{\theta}}
-	= \sum_{n=0}^{\infin} \sum_{m=-n}^{n} d_{m,n} j_n(k r) P_n^m(\cos{\theta}) e^{i m \phi}.
-\end{aligned}
-$$
-
-The left-hand side of this equation does not depend on the azimuthal angle \\(\phi\\). Comparison with the right-hand side suggests that we may set \\(m = 0\\):
-
-$$ \tag{17.109}
-	e^{i k r \cos{\theta}}
-	= \sum_{n=0}^{\infin} d_{n} j_n(k r) P_n(\cos{\theta}).
-$$
-
-The quickest way to determine the value of the coefficients \\(d_{n}\\) is to multiply both sides of Equation 17.109 by \\(P_l(\cos{\theta}) \sin{\theta}\\), integrate the result from \\(0\\) to \\(\pi\\), and use the orthogonality relation given by Equation 17.56.1:
-
-$$ \tag{17.110}
-	\int_{0}^{\pi} e^{i k r \cos{\theta}} P_n(\cos{\theta}) \sin{\theta} \thinspace d\theta
-	= d_{n} \frac{2}{(2n + 1)} j_n(k r).
-$$
-
-By taking [Gegenbauer's representation](https://dlmf.nist.gov/10.54) of the spherical Bessel function of the first kind \[[Watson](#references) (ch 3.32)\]
-
-$$ \tag{17.111}
-	j_n(x) = \frac{i^{-n}}{2}
-	\int_{0}^{\pi} e^{i x \cos{\theta}} P_n(\cos{\theta}) \sin{\theta} \thinspace d\theta
-$$
-
-into account, we readily obtain the value of the series expansion coefficient
-
-$$ \tag{17.112}
-	d_{n} = i^n (2n + 1).
-$$
-
-Substitution into Equation 17.109 yields the [scalar plane wave expansion](https://en.wikipedia.org/wiki/Plane-wave_expansion)
-
-$$ \tag{17.113}
-	e^{i k r \cos{\theta}}
-	= \sum_{n=0}^{\infin} i^n (2n + 1) j_n(k r) P_n(\cos{\theta})
-	= \sum_{n=0}^{\infin} i^n \sqrt{4 \pi (2 n + 1)} \psi_{0,n}^{(1)}(\bm{r})
-$$
-
-in terms of the scalar spherical wave functions of the first kind \\(\psi_{m,n}^{(1)}\\).
-
-We now have all the tools required to determine the series coefficients of an actual electromagnetic plane wave. As shown by Equation 17.97, this can be accomplished by projecting the vector plane wave (Equations 17.103-17.107) onto the vector spherical wave functions (Equations 17.63 and 17.67).
-
-We shall first evaluate
+Let us first evaluate
 
 $$ \tag{17.114}
 	\int_{0}^{2 \pi} \int_{0}^{\pi} \big[ \bm{M_{m,n}^{(1)}}(\bm{r}) \big]^{\*} \cdot \bm{E_i}(\bm{r}) \sin{\theta} \thinspace d\theta d\phi.
 $$
 
-Since the product of Equation 17.107 and 17.113 only contains first-order harmonic functions of \\(\phi\\), orthogonality of the Fourier basis makes the integral of Equation 17.114 vanish unless \\(m = \pm 1\\). Furthermore, the definition of \\(\bm{M_{m,n}}\\) (given by Equation 17.63) omits the radial basis vector, so the latter does not require further consideration. Therefore,
+Since, according to Equation 17.107, the expression of the incident wave only contains first-order harmonic functions of \\(\phi\\), orthogonality of the Fourier basis makes the integral of Equation 17.114 vanish unless \\(m = \pm 1\\). Furthermore, the definition of \\(\bm{M_{m,n}}\\) (given by Equation 17.63) omits the radial basis vector, so the latter does not require further consideration. Therefore,
 
 $$ \tag{17.115}
 \begin{aligned}
@@ -5425,7 +5377,14 @@ $$ \tag{17.120}
 \end{aligned}
 $$
 
-Equations 17.119 and 17.120, coupled with the integral formulation of the spherical Bessel function of the first kind given by Equation 17.111, allow us to analytically evaluate the integral found in Equation 17.117:
+Equations 17.119 and 17.120, coupled with [Gegenbauer's representation](https://dlmf.nist.gov/10.54) of the spherical Bessel function of the first kind \[[Watson](#references) (ch 3.32)\]
+
+$$ \tag{17.1??}
+	j_n(x) = \frac{i^{-n}}{2}
+	\int_{0}^{\pi} e^{i x \cos{\theta}} P_n(\cos{\theta}) \sin{\theta} \thinspace d\theta,
+$$
+
+allow us to analytically evaluate the integral found in Equation 17.117:
 
 $$ \tag{17.121}
 \begin{aligned}
@@ -5531,7 +5490,7 @@ $$ \tag{17.127}
 \end{aligned}
 $$
 
-and apply Equation 17.111, we readily obtain
+and apply Equation 17.1??, we readily obtain
 
 $$ \tag{17.128}
 \begin{aligned}
@@ -5546,7 +5505,7 @@ $$ \tag{17.128}
 \end{aligned}
 $$
 
-The second integral of Equation 17.126 must not be confused with the one in Equation 17.121. Here, we use a different approach: if we differentiate Equation 17.111 to obtain
+The second integral of Equation 17.126 must not be confused with the one in Equation 17.121. Here, we use a different approach: if we differentiate Equation 17.1??,
 
 $$ \tag{17.129}
 	\frac{\partial j_n(x)}{\partial x}
