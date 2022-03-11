@@ -5184,27 +5184,35 @@ $$
 
 For our application, the partial orthogonality between \\(\bm{L_{m,n}}\\) and \\(\bm{N_{m,n}}\\) is not a real concern. According to Equations 17.36 and 17.37, the electric and the magnetic fields can be expressed solely in terms of \\(\bm{M_{m,n}}\\) and \\(\bm{N_{m,n}}\\), which are mutually orthogonal, as has been shown by Equations 17.82 and 17.92.
 
-Now, let us return to the scattering problem. In general, we may arrive at the solution by determining the values of the set of coefficients \\(\lbrace a_{m,n}, b_{m,n} \rbrace\\) of the vector spherical wave series expansion given by Equations 17.36:
+Now, let us return to the scattering problem. In general, we may arrive at the solution by determining the values of the set of coefficients of the vector spherical wave series expansion given by Equations 17.36. In order to obtain these coefficients, we must consider three distinct types of electromagnetic fields: the incident field produced by an external source, the scattered field in the radiation zone of the particle, and the total internal field induced inside the sphere. The reason for this kind of decomposition will become apparent shortly.
+
+Let us begin by considering the expansion of the incident field:
 
 $$ \tag{17.96}
-	\bm{E}(\bm{r}, \omega)
-	= \sum_{n=1}^{\infin} \sum_{m=-n}^{n} \big( a_{m,n}(\omega) \bm{M_{m,n}}(\bm{r}, \omega) + b_{m,n}(\omega) \bm{N_{m,n}}(\bm{r}, \omega) \big).
+	\bm{E_i}(\bm{r}, \omega)
+	= \sum_{n=1}^{\infin} \sum_{m=-n}^{n} \big( c_{m,n}(\omega) \bm{M_{m,n}^{(1)}}(\bm{r}, \omega) + d_{m,n}(\omega) \bm{N_{m,n}^{(1)}}(\bm{r}, \omega) \big).
 $$
 
-In order to obtain these coefficients, we must consider three distinct types of electromagnetic fields: the incident field produced by an external source, the scattered field in the radiation zone of the particle, and the total internal field induced inside the spherical particle. The reason for this kind of decomposition will become apparent shortly.
-
-We shall start with the incident field. Evidently, its expression must be known a priori. That permits us to determine the values of the coefficients \\(a_{m,n}\\) and \\(b_{m,n}\\) by combining Equation 17.96 with 17.88 and 17.89, respectively:
+The superscript \\((1)\\) indicates that we have made the choice of a spherical Bessel function of the first kind
 
 $$ \tag{17.97}
+	z_n^{(1)}(k r) = j_n(k r)
+$$
+
+motivated by its non-singular behavior at the origin (cf. Figure N). This property makes it suitable for expressing a smooth, finite-valued electromagnetic field.
+
+Evidently, the analytic expression of the incident field must be known a priori. This fact permits us to determine the values of the coefficients \\(c_{m,n}\\) and \\(d_{m,n}\\) by combining Equation 17.96 with 17.88 and 17.89, respectively:
+
+$$ \tag{17.98}
 \small
 \begin{aligned}
-	a_{m,n}
+	c_{m,n}
 	&= \frac{ \int_{0}^{2 \pi} \int_{0}^{\pi} \big[ \bm{M_{m,n}^{(1)}}(\bm{r}) \big]^{\*} \cdot \bm{E_i}(\bm{r}) \sin{\theta} \thinspace d\theta d\phi }
 	{ \int_{0}^{2 \pi} \int_{0}^{\pi} \big\vert \bm{M_{m,n}^{(1)}}(\bm{r}) \big\vert^2 \sin{\theta} \thinspace d\theta d\phi }
 	= \frac{ \int_{0}^{2 \pi} \int_{0}^{\pi} \big[ \bm{M_{m,n}^{(1)}}(\bm{r}) \big]^{\*} \cdot \bm{E_i}(\bm{r}) \sin{\theta} \thinspace d\theta d\phi }
 	{ n (n+1) \big| j_n(k r) \big|^2 },
 	\cr
-	b_{m,n}
+	d_{m,n}
 	&= \frac{ \int_{0}^{2 \pi} \int_{0}^{\pi} \big[ \bm{N_{m,n}^{(1)}}(\bm{r}) \big]^{\*} \cdot \bm{E_i}(\bm{r}) \sin{\theta} \thinspace d\theta d\phi }
 	{ \int_{0}^{2 \pi} \int_{0}^{\pi} \big\vert \bm{N_{m,n}^{(1)}}(\bm{r}) \big\vert^2 \sin{\theta} \thinspace d\theta d\phi }
 	= \frac{ \int_{0}^{2 \pi} \int_{0}^{\pi} \big[ \bm{N_{m,n}^{(1)}}(\bm{r}) \big]^{\*} \cdot \bm{E_i}(\bm{r}) \sin{\theta} \thinspace d\theta d\phi }
@@ -5215,15 +5223,7 @@ $$ \tag{17.97}
 \end{aligned}
 $$
 
-Above, the superscript \\((1)\\) indicates that we have made the choice of a spherical Bessel function of the first kind
-
-$$ \tag{17.98}
-	z_n^{(1)}(k r) = j_n(k r)
-$$
-
-motivated by its non-singular behavior at the origin (cf. Figure N). This property makes it suitable for expressing a smooth, finite-valued incident field.
-
-Equations 17.96 and 17.97 have a simple geometric interpretation. If we define the *Hilbert space norm*
+Equations 17.96 and 17.98 have a simple geometric interpretation. If we define the *Hilbert space norm*
 
 $$ \tag{17.99}
 	\mathcal{N_h}(\bm{V})
@@ -5237,12 +5237,12 @@ $$ \tag{17.100}
 	= \int_{0}^{2 \pi} \int_{0}^{\pi} \big[ \bm{W}(\bm{r}) \big]^{\*} \cdot \bm{V}(\bm{r}) \sin{\theta} \thinspace d\theta d\phi,
 $$
 
-then Equation 17.97 can be interpreted the projection into the Hilbert space,
+then Equation 17.98 can be interpreted the projection into the Hilbert space,
 
 $$ \tag{17.101}
-	a_{m,n} = \frac{ \mathcal{P_h} \big( \bm{E_i}, \bm{M_{m,n}} \big) }{ \mathcal{N_h}^2 \big( \bm{M_{m,n}} \big) },
+	c_{m,n} = \frac{ \mathcal{P_h} \big( \bm{E_i}, \bm{M_{m,n}^{(1)}} \big) }{ \mathcal{N_h}^2 \big( \bm{M_{m,n}^{(1)}} \big) },
 	\quad
-	b_{m,n} = \frac{ \mathcal{P_h} \big( \bm{E_i}, \bm{N_{m,n}} \big) }{ \mathcal{N_h}^2 \big( \bm{N_{m,n}} \big) },
+	d_{m,n} = \frac{ \mathcal{P_h} \big( \bm{E_i}, \bm{N_{m,n}^{(1)}} \big) }{ \mathcal{N_h}^2 \big( \bm{N_{m,n}^{(1)}} \big) },
 $$
 
 with Equation 17.96 performing the reconstruction:
@@ -5251,8 +5251,8 @@ $$ \tag{17.102}
 \small
 \bm{E_i}
 = \sum_{n=1}^{\infin} \sum_{m=-n}^{n} \Bigg(
-	\mathcal{P_h} \Bigg( \bm{E_i}, \frac{ \bm{M_{m,n}} }{ \mathcal{N_h} \big( \bm{M_{m,n}} \big) } \Bigg) \frac{ \bm{M_{m,n}} }{ \mathcal{N_h} \big( \bm{M_{m,n}} \big) } +
-	\mathcal{P_h} \Bigg( \bm{E_i}, \frac{ \bm{N_{m,n}} }{ \mathcal{N_h} \big( \bm{N_{m,n}} \big) } \Bigg) \frac{ \bm{N_{m,n}} }{ \mathcal{N_h} \big( \bm{N_{m,n}} \big) } \Bigg).
+	\mathcal{P_h} \Bigg( \bm{E_i}, \frac{ \bm{M_{m,n}^{(1)}} }{ \mathcal{N_h} \big( \bm{M_{m,n}^{(1)}} \big) } \Bigg) \frac{ \bm{M_{m,n}^{(1)}} }{ \mathcal{N_h} \big( \bm{M_{m,n}^{(1)}} \big) } +
+	\mathcal{P_h} \Bigg( \bm{E_i}, \frac{ \bm{N_{m,n}^{(1)}} }{ \mathcal{N_h} \big( \bm{N_{m,n}^{(1)}} \big) } \Bigg) \frac{ \bm{N_{m,n}^{(1)}} }{ \mathcal{N_h} \big( \bm{N_{m,n}^{(1)}} \big) } \Bigg).
 $$
 
 Let us further assume that the incident field can be represented by a plane wave. This is a valid description of an extended source located in the radiation zone of a small particle; a more general source could be modeled as a superposition of plane waves.
@@ -5301,7 +5301,7 @@ $$ \tag{17.107}
 \end{aligned}
 $$
 
-Equations 17.103-17.107 give a complete description of an electromagnetic plane wave in the spherical coordinates. We may now determine the values of the series coefficients (using Equation 17.97) by projecting the vector plane wave onto the vector spherical wave functions.
+Equations 17.103-17.107 give a complete description of an electromagnetic plane wave in the spherical coordinates. We may now determine the values of the series coefficients (using Equation 17.98) by projecting the vector plane wave onto the vector spherical wave functions.
 
 Let us first evaluate
 
@@ -5415,14 +5415,14 @@ $$ \tag{17.123}
 \end{aligned}
 $$
 
-Comparison with Equation 17.97.1 yields the value of the first expansion coefficient
+Comparison with Equation 17.98.1 yields the value of the first expansion coefficient
 
 $$ \tag{17.124}
-	a_{m,n}
+	c_{m,n}
 	= \delta_{m,\pm 1} (i E_X + m E_Y) 2 \pi i^n \gamma_{1,n}.
 $$
 
-The value of the second coefficient can be obtained in a similar manner (except, this time, the radial component can no longer be ignored). Substitution of Equations 17.67 and 17.103-17.107 into 17.97.2 produces the following expression:
+The value of the second coefficient can be obtained in a similar manner (except, this time, the radial component can no longer be ignored). Substitution of Equations 17.67 and 17.103-17.107 into 17.98.2 produces the following expression:
 
 $$ \tag{17.125}
 \small
@@ -5548,11 +5548,11 @@ $$
 
 As before, we have unified the expressions of both orders by multiplying each term by \\(m\\).
 
-Once we substitute the value of the integral into Equation 17.97.2, the factor containing the Bessel function cancels out, making the expression of the second coefficient is particularly simple:
+Once we substitute the value of the integral into Equation 17.98.2, the factor containing the Bessel function cancels out, making the expression of the second coefficient is particularly simple:
 
 $$ \tag{17.132}
 \begin{aligned}
-	b_{m,n} &= \delta_{m,\pm 1} (i m E_X + E_Y) 2 \pi i^n \gamma_{1,n}.
+	d_{m,n} &= \delta_{m,\pm 1} (i m E_X + E_Y) 2 \pi i^n \gamma_{1,n}.
 \end{aligned}
 $$
 
@@ -5561,7 +5561,7 @@ Derivation of the coefficients given by Equations 17.124 and 17.132 completes th
 $$ \tag{17.133}
 \begin{aligned}
 	\bm{E_0}(\bm{e_z}, \omega) e^{i k(\omega) (\bm{r} \cdot \bm{e_z})}
-	&= \sum_{m,n} \big( a_{m,n}(\omega) \bm{M_{m,n}^{(1)}}(\bm{r}, \omega) + b_{m,n}(\omega) \bm{N_{m,n}^{(1)}}(\bm{r}, \omega) \big)
+	&= \sum_{n=1}^{\infin} \sum_{m=-n}^{n} \big( c_{m,n}(\omega) \bm{M_{m,n}^{(1)}}(\bm{r}, \omega) + d_{m,n}(\omega) \bm{N_{m,n}^{(1)}}(\bm{r}, \omega) \big)
 	\cr
 	&= i E_X(\omega) \sum_{n=1}^{\infin} 2 \pi i^n \gamma_{1,n} \sum_{m= \pm 1} \big( \bm{M_{m,n}^{(1)}}(\bm{r}, \omega) + m \bm{N_{m,n}^{(1)}}(\bm{r}, \omega) \big)
 	\cr
@@ -5693,9 +5693,9 @@ $$ \tag{17.138}
 	\bm{E_i}(\bm{r}, \omega)
 	&= \bm{E_0}(\bm{e_z}, \omega) e^{i k(\omega) (\bm{r} \cdot \bm{e_z})}
 	\cr
-	&= \sum_{m,n} a_{m,n}(\omega) j_n(k r) \bm{\Phi_{m,n}}(\theta, \phi)
+	&= \sum_{m,n} c_{m,n}(\omega) j_n(k r) \bm{\Phi_{m,n}}(\theta, \phi)
 	\cr
-	&+ \sum_{m,n} b_{m,n}(\omega) \bigg( n (n + 1) \frac{j_n(k r)}{k r} \bm{\Upsilon_{m,n}}(\theta, \phi)
+	&+ \sum_{m,n} d_{m,n}(\omega) \bigg( n (n + 1) \frac{j_n(k r)}{k r} \bm{\Upsilon_{m,n}}(\theta, \phi)
 	 + \frac{\big[ k r j_n(k r) \big]'}{k r} \bm{\Psi_{m,n}}(\theta, \phi) \bigg).
 \end{aligned}
 $$
@@ -5717,11 +5717,11 @@ for the vector spherical wave function series expansion
 $$ \tag{17.141}
 \begin{aligned}
 	\bm{E_s}(\bm{r}, \omega)
-	&= \sum_{m,n} \big( a_{m,n}'(\omega) \bm{M_{m,n}^{(3)}}(\bm{r}, \omega) + b_{m,n}'(\omega) \bm{N_{m,n}^{(3)}}(\bm{r}, \omega) \big)
+	&= \sum_{m,n} \big( a_{m,n}(\omega) \bm{M_{m,n}^{(3)}}(\bm{r}, \omega) + b_{m,n}(\omega) \bm{N_{m,n}^{(3)}}(\bm{r}, \omega) \big)
 	\cr
-	&= \sum_{m,n} a_{m,n}'(\omega) h_n^{(1)}(k r) \bm{\Phi_{m,n}}(\theta, \phi)
+	&= \sum_{m,n} a_{m,n}(\omega) h_n^{(1)}(k r) \bm{\Phi_{m,n}}(\theta, \phi)
 	\cr
-	&+ \sum_{m,n} b_{m,n}'(\omega) \bigg( n (n + 1) \frac{h_n^{(1)}(k r)}{k r} \bm{\Upsilon_{m,n}}(\theta, \phi)
+	&+ \sum_{m,n} b_{m,n}(\omega) \bigg( n (n + 1) \frac{h_n^{(1)}(k r)}{k r} \bm{\Upsilon_{m,n}}(\theta, \phi)
 	 + \frac{\big[ k r h_n^{(1)}(k r) \big]'}{k r} \bm{\Psi_{m,n}}(\theta, \phi) \bigg).
 \end{aligned}
 $$
@@ -5733,11 +5733,11 @@ The combination of these two facts motivates the following series expansion of t
 $$ \tag{17.142}
 \begin{aligned}
 	\bm{E_2}(\bm{r}, \omega)
-	&= \sum_{m,n} \big( a_{m,n}''(\omega) \bm{M_{m,n}^{(1)}}(\bm{r}, \omega) + b_{m,n}''(\omega) \bm{N_{m,n}^{(1)}}(\bm{r}, \omega) \big)
+	&= \sum_{m,n} \big( a_{m,n}^{\circ}(\omega) \bm{M_{m,n}^{(1)}}(\bm{r}, \omega) + b_{m,n}^{\circ}(\omega) \bm{N_{m,n}^{(1)}}(\bm{r}, \omega) \big)
 	\cr
-	&= \sum_{m,n} a_{m,n}''(\omega) j_n(k_2 r) \bm{\Phi_{m,n}}(\theta, \phi)
+	&= \sum_{m,n} a_{m,n}^{\circ}(\omega) j_n(k_2 r) \bm{\Phi_{m,n}}(\theta, \phi)
 	\cr
-	&+ \sum_{m,n} b_{m,n}''(\omega) \bigg( n (n + 1) \frac{j_n(k_2 r)}{k_2 r} \bm{\Upsilon_{m,n}}(\theta, \phi)
+	&+ \sum_{m,n} b_{m,n}^{\circ}(\omega) \bigg( n (n + 1) \frac{j_n(k_2 r)}{k_2 r} \bm{\Upsilon_{m,n}}(\theta, \phi)
 	 + \frac{\big[ k_2 r j_n(k_2 r) \big]'}{k_2 r} \bm{\Psi_{m,n}}(\theta, \phi) \bigg).
 \end{aligned}
 $$
@@ -5766,22 +5766,22 @@ Thus, in order to take the cross product, we must either eliminate, swap, or neg
 $$ \tag{17.145}
 \begin{aligned}
 	\bm{e_r} \times \bm{E_2}
-	&= \sum_{m,n} \bigg( a_{m,n}'' j_n(k_2 r) \bm{\Psi_{m,n}}(\theta, \phi)
-	- b_{m,n}'' \frac{\big[ k_2 r j_n(k_2 r) \big]'}{k_2 r} \bm{\Phi_{m,n}}(\theta, \phi) \bigg),
+	&= \sum_{m,n} \bigg( a_{m,n}^{\circ} j_n(k_2 r) \bm{\Psi_{m,n}}(\theta, \phi)
+	- b_{m,n}^{\circ} \frac{\big[ k_2 r j_n(k_2 r) \big]'}{k_2 r} \bm{\Phi_{m,n}}(\theta, \phi) \bigg),
 	\cr
 	\bm{e_r} \times \bm{E_1}
 	&= \sum_{m,n}
-		\big( a_{m,n} j_n(k_1 r) + a_{m,n}' h_n^{(1)}(k_1 r) \big)
+		\big( c_{m,n} j_n(k_1 r) + a_{m,n} h_n^{(1)}(k_1 r) \big)
 	\bm{\Psi_{m,n}}(\theta, \phi)
 	\cr
 	&- \sum_{m,n} \Bigg(
-		b_{m,n} \frac{\big[ k_1 r j_n(k_1 r) \big]'}{k_1 r}
-		+ b_{m,n}' \frac{\big[ k_1 r h_n^{(1)}(k_1 r) \big]'}{k_1 r}
+		d_{m,n} \frac{\big[ k_1 r j_n(k_1 r) \big]'}{k_1 r}
+		+ b_{m,n} \frac{\big[ k_1 r h_n^{(1)}(k_1 r) \big]'}{k_1 r}
 	\Bigg) \bm{\Phi_{m,n}}(\theta, \phi).
 \end{aligned}
 $$
 
-Since the vector spherical harmonics are orthogonal, we may conceptually treat the sets of unknown coefficients \\(\lbrace a\_{m,n}' \rbrace, \lbrace b\_{m,n}' \rbrace, \lbrace a\_{m,n}'' \rbrace, \lbrace b\_{m,n}'' \rbrace\\) as vectors. Yet, even in this interpretation, the unknowns outnumber the equations 2-to-1. Therefore, we must also apply the second boundary condition of Equation 1.17:
+Since the vector spherical harmonics are orthogonal, we may conceptually treat the sets of unknown coefficients \\(\lbrace a_{m,n} \rbrace, \lbrace b_{m,n} \rbrace, \lbrace a_{m,n}^{\circ} \rbrace, \lbrace b_{m,n}^{\circ} \rbrace\\) as vectors. Yet, even in this interpretation, the unknowns outnumber the equations 2-to-1. Therefore, we must also apply the second boundary condition of Equation 1.17:
 
 $$ \tag{17.146}
 	\bm{e_r} \times (\bm{H_2} - \bm{H_1}) = \bm{J_n},
@@ -5808,17 +5808,17 @@ which, in our case, simply means that the corresponding series coefficients must
 $$ \tag{17.149}
 \begin{aligned}
 	\bm{e_r} \times \nabla \times \bm{E_2}
-	&= \sum_{m,n} k_2 \bigg( b_{m,n}'' j_n(k_2 r) \bm{\Psi_{m,n}}(\theta, \phi)
-	- a_{m,n}'' \frac{\big[ k_2 r j_n(k_2 r) \big]'}{k_2 r} \bm{\Phi_{m,n}}(\theta, \phi) \bigg),
+	&= \sum_{m,n} k_2 \bigg( b_{m,n}^{\circ} j_n(k_2 r) \bm{\Psi_{m,n}}(\theta, \phi)
+	- a_{m,n}^{\circ} \frac{\big[ k_2 r j_n(k_2 r) \big]'}{k_2 r} \bm{\Phi_{m,n}}(\theta, \phi) \bigg),
 	\cr
 	\bm{e_r} \times \nabla \times \bm{E_1}
 	&= \sum_{m,n}
-		k_1 \big( b_{m,n} j_n(k_1 r) + b_{m,n}' h_n^{(1)}(k_1 r) \big)
+		k_1 \big( d_{m,n} j_n(k_1 r) + b_{m,n} h_n^{(1)}(k_1 r) \big)
 	\bm{\Psi_{m,n}}(\theta, \phi)
 	\cr
 	&- \sum_{m,n} k_1 \Bigg(
-		a_{m,n}  \frac{\big[ k_1 r j_n(k_1 r) \big]'}{k_1 r} +
-		a_{m,n}' \frac{\big[ k_1 r h_n^{(1)}(k_1 r) \big]'}{k_1 r} \Bigg)
+		c_{m,n}  \frac{\big[ k_1 r j_n(k_1 r) \big]'}{k_1 r} +
+		a_{m,n} \frac{\big[ k_1 r h_n^{(1)}(k_1 r) \big]'}{k_1 r} \Bigg)
 	\bm{\Phi_{m,n}}(\theta, \phi).
 \end{aligned}
 $$
@@ -5827,12 +5827,12 @@ Let us first consider Equation 17.143. It tells us that the expressions given by
 
 $$ \tag{17.150}
 \begin{aligned}
-	a_{m,n}''
-	&= \frac{ a_{m,n} j_n(k_1 r) + a_{m,n}' h_n^{(1)}(k_1 r) }{ j_n(k_2 r) },
+	a_{m,n}^{\circ}
+	&= \frac{ c_{m,n} j_n(k_1 r) + a_{m,n} h_n^{(1)}(k_1 r) }{ j_n(k_2 r) },
 	\cr
-	b_{m,n}''
+	b_{m,n}^{\circ}
 	&=
-	\frac{ b_{m,n} \big[ k_1 r j_n(k_1 r) \big]' + b_{m,n}' \big[ k_1 r h_n^{(1)}(k_1 r) \big]'
+	\frac{ d_{m,n} \big[ k_1 r j_n(k_1 r) \big]' + b_{m,n} \big[ k_1 r h_n^{(1)}(k_1 r) \big]'
 	}{ \frac{k_1}{k_2} \big[ k_2 r j_n(k_2 r) \big]' }.
 \end{aligned}
 $$
@@ -5841,28 +5841,28 @@ Performing the same steps for Equations 17.147 and 17.149 leads to
 
 $$ \tag{17.151}
 \begin{aligned}
-	a_{m,n}''
-	&= \frac{ a_{m,n} \big[ k_1 r j_n(k_1 r) \big]' + a_{m,n}' \big[ k_1 r h_n^{(1)}(k_1 r) \big]'
+	a_{m,n}^{\circ}
+	&= \frac{ c_{m,n} \big[ k_1 r j_n(k_1 r) \big]' + a_{m,n} \big[ k_1 r h_n^{(1)}(k_1 r) \big]'
 	}{ \frac{\mu_1}{\mu_2} \big[ k_2 r j_n(k_2 r) \big]' },
 	\cr
-	b_{m,n}''
-	&= \frac{ b_{m,n} j_n(k_1 r) + b_{m,n}' h_n^{(1)}(k_1 r) }{ \frac{\mu_1 k_2}{\mu_2 k_1} j_n(k_2 r) }.
+	b_{m,n}^{\circ}
+	&= \frac{ d_{m,n} j_n(k_1 r) + b_{m,n} h_n^{(1)}(k_1 r) }{ \frac{\mu_1 k_2}{\mu_2 k_1} j_n(k_2 r) }.
 \end{aligned}
 $$
 
-The value of the coefficients \\(a\_{m,n}\\) and \\(b\_{m,n}\\) of the incident field is known. By combining Equations 17.150 and 17.151, we can finally evaluate the coefficients of the scattered field \[[15](#references)\]:
+The value of the coefficients \\(c_{m,n}\\) and \\(d_{m,n}\\) of the incident field is known. By combining Equations 17.150 and 17.151, we can finally evaluate the coefficients of the scattered field \[[15](#references)\]:
 
 $$ \tag{17.152}
 \begin{aligned}
-  	a_{m,n}'
-	&= -a_{m,n} \frac{
+  	a_{m,n}
+	&= -c_{m,n} \frac{
 		j_n(k_2 r) \big[ k_1 r j_n(k_1 r) \big]' - \frac{\mu_1}{\mu_2} j_n(k_1 r) \big[ k_2 r j_n(k_2 r) \big]'
 	}{
 		j_n(k_2 r) \big[ k_1 r h_n^{(1)}(k_1 r) \big]' - \frac{\mu_1}{\mu_2} h_n^{(1)}(k_1 r) \big[ k_2 r j_n(k_2 r) \big]'
 	},
 	\cr
-	b_{m,n}'
-	&= -b_{m,n} \frac
+	b_{m,n}
+	&= -d_{m,n} \frac
 	{
 		\frac{\mu_1 k_2^2}{\mu_2 k_1^2} j_n(k_2 r) \big[ k_1 r j_n(k_1 r) \big]' - j_n(k_1 r) \big[ k_2 r j_n(k_2 r) \big]'
 	}{
@@ -5877,14 +5877,14 @@ We may observe that both the scattered and the internal fields are directly prop
 
 $$ \tag{17.154}
 \begin{aligned}
-  	a_{n}'
+  	a_n
   	&= -\frac{
 		j_n(m x) \big[ x j_n(x) \big]' - u j_n(x) \big[ m x j_n(m x) \big]'
 	}{
 		j_n(m x) \big[ x h_n^{(1)}(x) \big]' - u h_n^{(1)}(x) \big[ m x j_n(m x) \big]'
 	},
 	\cr
-	b_{n}'
+	b_n
 	&= -\frac
 	{
 		u m^2 j_n(m x) \big[ x j_n(x) \big]' - j_n(x) \big[ m x j_n(m x) \big]'
@@ -5910,14 +5910,14 @@ instead:
 
 $$ \tag{17.156}
 \begin{aligned}
-  	a_{n}'
+  	a_n
   	&= -\frac{
 		\psi_n(m x) \psi_n'(x) - u m  \psi_n(x) \psi_n'(m x)
 	}{
 		\psi_n(m x) \xi_n'(x) - u m \xi_n(x) \psi_n'(m x)
 	},
 	\cr
-	b_{n}'
+	b_n
 	&= -\frac
 	{
 		u m \psi_n(m x) \psi_n'(x) - \psi_n(x) \psi_n'(m x)
@@ -5931,17 +5931,17 @@ The coefficients of proportionality of the internal field can be taken from Equa
 
 $$ \tag{17.157}
 \begin{aligned}
-	a_{n}''
-	&= \frac{1}{u} \frac{ \psi_n'(x) + a_{n}' \xi_n'(x) }{ \psi_n'(m x) }
+	a_n^{\circ}
+	&= \frac{1}{u} \frac{ \psi_n'(x) + a_n \xi_n'(x) }{ \psi_n'(m x) }
 	= m \frac{\psi_n(x) \xi_n'(x) - \xi_n(x) \psi_n'(x)}{\psi_n(m x) \xi_n'(x) - u m \xi_n(x) \psi_n'(m x)},
 	\cr
-	b_{n}''
-	&= m \frac{ \psi_n'(x) + b_{n}' \xi_n'(x) }{ \psi_n'(m x) }
+	b_n^{\circ}
+	&= m \frac{ \psi_n'(x) + b_n \xi_n'(x) }{ \psi_n'(m x) }
 	= m \frac{\psi_n(x) \xi_n'(x) - \xi_n(x) \psi_n'(x)}{u m \psi_n(m x) \xi_n'(x) - \xi_n(x) \psi_n'(m x)}.
 \end{aligned}
 $$
 
-Note that the numerators of Equations 17.157.1 and 17.157.2 are the same. Thus, if their denominators vary slowly, \\(a_{n}''\\) and \\(b_{n}''\\) change at the same rate. In addition, the denominators of Equations 17.156.1 and 17.156.2 match those of Equations 17.157.1 and 17.157.2, respectively. Therefore, we should expect the peaks of \\(a_{n}'\\) and \\(a_{n}''\\) (or \\(b_{n}'\\) and \\(b_{n}''\\)) to be co-located in the same region of the \\(m\text{-}x\\) domain.
+Note that the numerators of Equations 17.157.1 and 17.157.2 are the same. Thus, if their denominators vary slowly, \\(a_n^{\circ}\\) and \\(b_n^{\circ}\\) change roughly at the same rate. In addition, the denominators of Equations 17.156.1 and 17.156.2 match those of Equations 17.157.1 and 17.157.2, respectively. Therefore, we should expect the peaks of \\(a_n\\) and \\(a_n^{\circ}\\) (or \\(b_n\\) and \\(b_n^{\circ}\\)) to be co-located in the same region of the \\(m\text{-}x\\) domain.
 
 {{< figure src="/img/riccati_psi.svg" caption="*Figure N: Riccati-Bessel functions of the first kind of order n=1 (blue), n=2 (orange), n=3 (green).*" >}}
 
@@ -5952,9 +5952,9 @@ Now, recall the transformation of the expression of the incident field (Equation
 $$ \tag{17.158}
 \begin{aligned}
 	\bm{E_s}(\bm{r}, \omega)
-	&= E_X(\omega) \sum_{n=1}^{\infin} i^n \frac{(2 n + 1)}{n (n + 1)} \big( {-a_{n}'(\omega) \bm{M_{o,1,n}^{(3)}}}(\bm{r}, \omega) + i b_{n}'(\omega) \bm{N_{e,1,n}^{(3)}}(\bm{r}, \omega) \big)
+	&= E_X(\omega) \sum_{n=1}^{\infin} i^n \frac{(2 n + 1)}{n (n + 1)} \big( {-a_n(\omega) \bm{M_{o,1,n}^{(3)}}}(\bm{r}, \omega) + i b_n(\omega) \bm{N_{e,1,n}^{(3)}}(\bm{r}, \omega) \big)
 	\cr
-	&+ E_Y(\omega) \sum_{n=1}^{\infin} i^n \frac{(2 n + 1)}{n (n + 1)} \big( a_{n}'(\omega) {\bm{M_{e,1,n}^{(3)}}}(\bm{r}, \omega) + i b_{n}'(\omega) \bm{N_{o,1,n}^{(3)}}(\bm{r}, \omega) \big).
+	&+ E_Y(\omega) \sum_{n=1}^{\infin} i^n \frac{(2 n + 1)}{n (n + 1)} \big( a_n(\omega) {\bm{M_{e,1,n}^{(3)}}}(\bm{r}, \omega) + i b_n(\omega) \bm{N_{o,1,n}^{(3)}}(\bm{r}, \omega) \big).
 \end{aligned}
 $$
 
@@ -5963,9 +5963,9 @@ Similarly, the expression of the internal field can be written as
 $$ \tag{17.159}
 \begin{aligned}
 	\bm{E_2}(\bm{r}, \omega)
-	&= E_X(\omega) \sum_{n=1}^{\infin} i^n \frac{(2 n + 1)}{n (n + 1)} \big( {-a_{n}''(\omega) \bm{M_{o,1,n}^{(1)}}}(\bm{r}, \omega) + i b_{n}''(\omega) \bm{N_{e,1,n}^{(1)}}(\bm{r}, \omega) \big)
+	&= E_X(\omega) \sum_{n=1}^{\infin} i^n \frac{(2 n + 1)}{n (n + 1)} \big( {-a_n^{\circ}(\omega) \bm{M_{o,1,n}^{(1)}}}(\bm{r}, \omega) + i b_n^{\circ}(\omega) \bm{N_{e,1,n}^{(1)}}(\bm{r}, \omega) \big)
 	\cr
-	&+ E_Y(\omega) \sum_{n=1}^{\infin} i^n \frac{(2 n + 1)}{n (n + 1)} \big( a_{n}''(\omega) {\bm{M_{e,1,n}^{(1)}}}(\bm{r}, \omega) + i b_{n}''(\omega) \bm{N_{o,1,n}^{(1)}}(\bm{r}, \omega) \big).
+	&+ E_Y(\omega) \sum_{n=1}^{\infin} i^n \frac{(2 n + 1)}{n (n + 1)} \big( a_n^{\circ}(\omega) {\bm{M_{e,1,n}^{(1)}}}(\bm{r}, \omega) + i b_n^{\circ}(\omega) \bm{N_{o,1,n}^{(1)}}(\bm{r}, \omega) \big).
 \end{aligned}
 $$
 
@@ -6057,11 +6057,11 @@ $$ \tag{18.4}
 \begin{aligned}
 	\bm{E_s}(\bm{r}, \omega)
 	&\backsimeq \frac{e^{i k r}}{i k r} \sum_{n=1}^{\infin} \frac{(2 n + 1)}{n (n + 1)}
-	\big( {-a_{n}'} \pi_{1,n}(\theta) - b_{n}' \tau_{1,n}(\theta) \big)
+	\big( {-a_n} \pi_{1,n}(\theta) - b_n \tau_{1,n}(\theta) \big)
 	\big( E_X \cos(\phi) + E_Y \sin(\phi) \big) \bm{e_{\theta}}
 	\cr
 	&+ \frac{e^{i k r}}{i k r} \sum_{n=1}^{\infin} \frac{(2 n + 1)}{n (n + 1)}
-	\big( {-a_{n}'} \tau_{1,n}(\theta) - b_{n}' \pi_{1,n}(\theta) \big)
+	\big( {-a_n} \tau_{1,n}(\theta) - b_n \pi_{1,n}(\theta) \big)
 	\big( {-E_X} \sin(\phi) + E_Y \cos(\phi) \big) \bm{e_{\phi}}.
 \end{aligned}
 $$
@@ -6076,7 +6076,7 @@ $$ \tag{18.5}
 	\end{bmatrix}
 	&\backsimeq \frac{e^{i k r}}{i k r}
 	\Bigg( \sum_{n=1}^{\infin} \frac{(2 n + 1)}{n (n + 1)}
-	a_{n}'
+	a_n
 	\begin{bmatrix}
 		-\pi_{1,n}(\theta) & 0 \cr
 		0 & -\tau_{1,n}(\theta) \cr
@@ -6093,7 +6093,7 @@ $$ \tag{18.5}
 	\cr
 	&+ \frac{e^{i k r}}{i k r}
 	\Bigg( \sum_{n=1}^{\infin} \frac{(2 n + 1)}{n (n + 1)}
-	b_{n}'
+	b_n
 	\begin{bmatrix}
 		-\tau_{1,n}(\theta) & 0 \cr
 		0 & -\pi_{1,n}(\theta) \cr
@@ -6118,8 +6118,8 @@ $$ \tag{18.6}
 	S(\theta, \omega)
 	= \sum_{n=1}^{\infin} \frac{(2 n + 1)}{n (n + 1)}
 	\begin{bmatrix}
-		-a_{n}' \pi_{1,n}(\theta) - b_{n}'\tau_{1,n}(\theta) & 0 \cr
-		0 & -a_{n}'\tau_{1,n}(\theta) - b_{n}' \pi_{1,n}(\theta) \cr
+		-a_n \pi_{1,n}(\theta) - b_n\tau_{1,n}(\theta) & 0 \cr
+		0 & -a_n\tau_{1,n}(\theta) - b_n \pi_{1,n}(\theta) \cr
 	\end{bmatrix}.
 $$
 
@@ -6188,7 +6188,7 @@ Now, recall that Equation 18.5 contains a sum of the (negated) polar functions. 
 
 The explicit expressions of the polar functions (and their plots) also allow us to determine the *apparent* charge configurations responsible for the first few partial waves.
 
-First, let us consider the *electric* partial waves by setting \\(a_n' = 0\\) in Equation 18.5. Then, according to Equation 15.13, the scattering matrix of the first electric partial wave (given by the first line of Equation 18.8) performs a *rotation* of the coordinate axes -- one that corresponds to *reinterpretation* of the components of the incident electric phasor \\([E_x(\phi), E_y(\phi), 0]^T\\) in spherical coordinates -- followed by a *projection* onto the tangent plane of a sphere; this results in the radial component of the phasor being discarded.
+First, let us consider the *electric* partial waves by setting \\(a_n = 0\\) in Equation 18.5. Then, according to Equation 15.13, the scattering matrix of the first electric partial wave (given by the first line of Equation 18.8) performs a *rotation* of the coordinate axes -- one that corresponds to *reinterpretation* of the components of the incident electric phasor \\([E_x(\phi), E_y(\phi), 0]^T\\) in spherical coordinates -- followed by a *projection* onto the tangent plane of a sphere; this results in the radial component of the phasor being discarded.
 
 Another way of saying this is that the *tangential component* of the incident electric field is parallel to the electric field of the first electric partial wave. Furthermore, Equation 18.5 indicates that the components of the scattered field propagate as spherical waves. These are key features of the far field of an *electric dipole*, a concept we have previously encountered in Section 13.
 
@@ -6206,14 +6206,14 @@ We can continue the subdivision process by using three pairs of charges of oppos
 
 {{< figure src="/img/partial_waves.png" caption="*Figure N: Partial waves. Top row: electric type, bottom row: magnetic type. Columns, left to right: dipole, quadrupole, sextupole. (Mie, 1908)*" >}}
 
-So far, we have specifically focused on *electric* partial waves of the form \\( \sum\_{m} b\_{m,n}' \bm{N\_{m,n}^{(3)}} \\) that are generated by oscillating *electric* charges. However, examination of Equation 17.37 shows that \\( \sum\_{m} a\_{m,n}' \bm{N\_{m,n}^{(3)}} \\) is a *magnetic* field that exhibits a pattern similar to the corresponding electric partial wave (up to rotation and scale). Thus, we may propose a similar explanation in terms of *magnetic* charges of opposite polarity (or, equivalently, loops of circulating current). This makes \\( \sum\_{m} a\_{m,n}' \bm{N\_{m,n}^{(3)}} \\) the magnetic field of a *magnetic* multipole.
+So far, we have specifically focused on *electric* partial waves of the form \\( \sum\_{m} b_{m,n} \bm{N\_{m,n}^{(3)}} \\) that are generated by oscillating *electric* charges. However, examination of Equation 17.37 shows that \\( \sum\_{m} a_{m,n} \bm{N\_{m,n}^{(3)}} \\) is a *magnetic* field that exhibits a pattern similar to the corresponding electric partial wave (up to rotation and scale). Thus, we may propose a similar explanation in terms of *magnetic* charges of opposite polarity (or, equivalently, loops of circulating current). This makes \\( \sum\_{m} a_{m,n} \bm{N\_{m,n}^{(3)}} \\) the magnetic field of a *magnetic* multipole.
 
-In order to show its connection to the *magnetic* partial wave \\( \sum\_{m} a\_{m,n}' \bm{M\_{m,n}^{(3)}} \\), return to Equation 17.36, set \\(b_n' = 0\\), then take its curl (as shown by Equation 3.12) and examine the result:
+In order to show its connection to the *magnetic* partial wave \\( \sum\_{m} a_{m,n} \bm{M\_{m,n}^{(3)}} \\), return to Equation 17.36, set \\(b_n' = 0\\), then take its curl (as shown by Equation 3.12) and examine the result:
 
 $$ \tag{18.11}
 \begin{aligned}
 	\frac{1}{i \omega} \nabla \times \bm{E'}
-	= \frac{1}{i \omega} \nabla \times \sum\_{m} a_{m,n}' \bm{M_{m,n}^{(3)}} = \frac{k}{i \omega} \sum\_{m} a_{m,n}' \bm{N_{m,n}^{(3)}}
+	= \frac{1}{i \omega} \nabla \times \sum\_{m} a_{m,n} \bm{M_{m,n}^{(3)}} = \frac{k}{i \omega} \sum\_{m} a_{m,n} \bm{N_{m,n}^{(3)}}
 	= \bm{B'}.
 \end{aligned}
 $$
@@ -6245,7 +6245,7 @@ First, let us consider a very large spherical particle. If we ignore the possibi
 $$ \tag{18.13}
 \small
 \begin{aligned}
-  	a_{n}'
+  	a_n
   	&\backsimeq -i^n e^{-i x} \frac
   	{
 		\sin(m x - \pi n / 2) \cos(x - \pi n / 2) - u m \cos(m x - \pi n / 2) \sin(x - \pi n / 2)
@@ -6253,7 +6253,7 @@ $$ \tag{18.13}
 		\sin(m x - \pi n / 2) + i u m \cos(m x - \pi n / 2)
 	},
 	\cr
-	b_{n}'
+	b_n
 	&\backsimeq -i^{n + 1} e^{-i x} \frac
 	{
 		-\cos(m x - \pi n / 2) \sin(x - \pi n / 2) + u m \sin(m x - \pi n / 2) \cos(x - \pi n / 2)
@@ -6265,7 +6265,7 @@ $$
 
 These expressions are only valid provided that both \\(\vert x \vert \gg n\\) and \\(\vert m x \vert \gg n\\). The asymptotic expressions valid for all orders \\(n\\) have been found by Debye (1909); they are considerably more complicated, and we shall not discuss them here.
 
-We may observe that the resulting coefficients are highly cyclical: \\(a\_{n+4} \backsimeq a\_n\\) and \\(a\_{n+1} \backsimeq b\_n\\). Thus, for any given value of \\(x,\\) only 4 unique coefficients exist.
+We may observe that the resulting coefficients are highly cyclical: \\(a_{n+4} \backsimeq a\_n\\) and \\(a_{n+1} \backsimeq b\_n\\). Thus, for any given value of \\(x,\\) only 4 unique coefficients exist.
 
 These formulas can be simplified by introducing the exponential notation. Since
 
@@ -6283,7 +6283,7 @@ Equation 18.13 can be equivalently expressed as
 
 $$ \tag{18.15}
 \begin{aligned}
-  	a_{n}'
+  	a_n
   	&\backsimeq \frac{1}{2} \left( (-1)^n \frac
   	{
 		-\sin(m x - \pi n / 2) + i u m \cos(m x - \pi n / 2)
@@ -6291,7 +6291,7 @@ $$ \tag{18.15}
 		\sin(m x - \pi n / 2) + i u m \cos(m x - \pi n / 2)
 	} e^{-i 2 x} - 1 \right),
 	\cr
-	b_{n}'
+	b_n
 	&\backsimeq \frac{1}{2} \left( (-1)^{n+1} \frac
 	{
 		\cos(m x - \pi n / 2) + i u m \sin(m x - \pi n / 2)
@@ -6305,12 +6305,12 @@ Further reduction can be achieved by rewriting the formulas in terms of \\(\tan(
 
 $$ \tag{18.16}
 \begin{aligned}
-  	a_{n}'
+  	a_n
   	&\backsimeq (-1)^n
   	\left( \frac{1}{1 - i (u m)^{-1} \tan(m x - \pi n / 2)} - \frac{1}{2} \right)
 	e^{-i 2 x} - \frac{1}{2},
 	\cr
-	b_{n}'
+	b_n
 	&\backsimeq (-1)^n
 		\left( \frac{1}{1 - i u m \tan(m x - \pi n / 2)} - \frac{1}{2} \right)
 	e^{-i 2 x} - \frac{1}{2}.
@@ -6351,12 +6351,12 @@ Thus, we can estimate the asymptotic behavior of the expansion coefficients of t
 
 $$ \tag{18.19}
 \begin{aligned}
-  	a_{n}'
+  	a_n
   	&\simeq -\frac{ u - 1 }
   	{ (u - 1) - i (n (u + 1) + u) N x^{-2 n-1}
   	},
 	\cr
-	b_{n}'
+	b_n
 	&\simeq -\frac{u m^2 - 1}
 	{ (u m^2 - 1) + i (n (u m^2 + 1) + 1) N x^{-2 n-1} },
 \end{aligned}
@@ -6370,7 +6370,7 @@ $$
 
 is a rapidly growing function of \\(n\\), with \\(N(1)=3/2.\\)
 
-In this crude approximation, the magnetic coefficients \\(a_{n}'\\) vanish for non-magnetic materials with \\(u=1\\). In addition, the magnetic coefficients do not depend on the relative wavenumber \\(m\\) at all. However, this approximation serves it purpose, since it clearly demonstrates that the magnitudes of both coefficients are roughly proportional \\(N^{-1} x^{2 n + 1}\\). Since, for \\(\vert x \vert \ll 1\\), the latter plummets with increasing \\(n\\), we may restrict ourselves to just the fist couple of terms.
+In this crude approximation, the magnetic coefficients \\(a_n\\) vanish for non-magnetic materials with \\(u=1\\). In addition, the magnetic coefficients do not depend on the relative wavenumber \\(m\\) at all. However, this approximation serves it purpose, since it clearly demonstrates that the magnitudes of both coefficients are roughly proportional \\(N^{-1} x^{2 n + 1}\\). Since, for \\(\vert x \vert \ll 1\\), the latter plummets with increasing \\(n\\), we may restrict ourselves to just the fist couple of terms.
 
 In general, for arbitrary argument values, the expansion coefficients of orders \\(n=1\\) or \\(n=2\\) can be easily evaluated *exactly* by using the closed forms of the Riccati-Bessel functions:
 
@@ -6436,7 +6436,7 @@ $$ \tag{18.23}
 \end{aligned}
 $$
 
-Unexpectedly, for very small particles, the relationship between the electric and the magnetic coefficients is reversed: \\(a\_n \simeq b\_{n+1}\\) as opposed to \\(a\_{n+1} \backsimeq b\_n\\) when particles are very large.
+Unexpectedly, for very small particles, the relationship between the electric and the magnetic coefficients is reversed: \\(a\_n \simeq b_{n+1}\\) as opposed to \\(a_{n+1} \backsimeq b\_n\\) when particles are very large.
 
 For small molecules, even the \\(x^5\\) term is often neglected. In this case, all coefficients except for
 
@@ -6565,11 +6565,11 @@ $$ \tag{18.33}
 \begin{aligned}
 	s_1(\theta, \omega)
 	&= \sum_{n=1}^{\infin} \frac{(2 n + 1)}{n (n + 1)}
-	\big( {-a_{n}'}(\omega) \tau_{1,n}(\theta) - b_{n}'(\omega) \pi_{1,n}(\theta) \big),
+	\big( {-a_n}(\omega) \tau_{1,n}(\theta) - b_n(\omega) \pi_{1,n}(\theta) \big),
 	\cr
 	s_2(\theta, \omega)
 	&= \sum_{n=1}^{\infin} \frac{(2 n + 1)}{n (n + 1)}
-	\big( {-a_{n}'}(\omega) \pi_{1,n}(\theta) - b_{n}'(\omega) \tau_{1,n}(\theta) \big).
+	\big( {-a_n}(\omega) \pi_{1,n}(\theta) - b_n(\omega) \tau_{1,n}(\theta) \big).
 \end{aligned}
 $$
 
