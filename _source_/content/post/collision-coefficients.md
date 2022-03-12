@@ -19,7 +19,7 @@ While we may spend more time and energy fiddling with various combinations of pa
 
 <!--more-->
 
-
+<!--
 
 The method can be briefly outlined as follows:
 
@@ -2682,7 +2682,7 @@ $$ \tag{12.20}
 	\varpropto (k R)^{-1}.
 $$
 
-
+-->
 
 ### Spherical Waves
 
@@ -2890,7 +2890,7 @@ $$ \tag{13.19}
 	\backsimeq \frac{\eta(\omega)}{c}.
 $$
 
-Thus, at a large distance, for a fixed direction of observation, a spherical wave is an analog of a plane wave (cf. Equation 7.2) with the amplitude decreasing as \\((k r)^{-1}\\):
+Thus, at a large distance, for a fixed direction of observation, a spherical wave is an analog of a plane wave with the amplitude decreasing proportionally to \\(k r\\):
 
 $$ \tag{13.20}
 \begin{aligned}
@@ -2898,11 +2898,11 @@ $$ \tag{13.20}
 	\backsimeq \frac{1}{k r} \bm{E_1}(\bm{n}, \omega) e^{i k(\omega) (\bm{r} \cdot \bm{n}) - i \omega t},
 	\cr
 	& \bm{B_s}(\bm{r}, \omega) e^{-i \omega t}
-	\backsimeq \frac{1}{k r} \bm{B_1}(\bm{n}, \omega) e^{i k(\omega) (\bm{r} \cdot \bm{n}) - i \omega t},
+	\backsimeq \frac{1}{k r} \bm{B_1}(\bm{n}, \omega) e^{i k(\omega) (\bm{r} \cdot \bm{n}) - i \omega t}.
 \end{aligned}
 $$
 
-where \\(\bm{n} = \bm{r} / r\\), and
+Comparison with Equations 7.2 and 13.12 makes it clear that
 
 $$ \tag{13.??}
 \begin{aligned}
@@ -3435,7 +3435,7 @@ $$ \tag{15.16}
 \end{bmatrix}.
 $$
 
-Equation 15.16 matches the one given in the book by Hendrik van de Hulst \[[4](#references) (ch. 4.41)\], except for the sign of the complex exponential and the missing \\(i\\) factor in the denominator. Hendrik claims that this factor makes the formulas more convenient \[[4](#references) (ch. 4.1)\]. While that is indeed the case, it is also prone to sign errors, and occasionally introduces seemingly complex coefficients are, in fact, real.
+Equation 15.16 matches the one given in the book by Hendrik van de Hulst \[[4](#references) (ch. 4.41)\], except for the sign of the complex exponential and the missing \\(i\\) factor in the denominator. Hendrik claims that this factor makes the formulas more convenient \[[4](#references) (ch. 4.1)\]. While that is indeed the case, the convention is prone to sign errors, and also introduces seemingly imaginary coefficients that are, in fact, real.
 
 In general, the elements of the scattering matrix depend on the azimuthal angle \\(\phi\\), since, as we rotate the plane of observation (\\(x z\\) or \\(r \theta\\)) around the \\(z\\)-axis, the scattering object appears to rotate in the opposite direction. However, if the object is symmetric (both geometrically and structurally) with respect to the \\(z\\)-axis, which is the case for spherical and an axis-aligned [spheroidal](https://en.wikipedia.org/wiki/Spheroid) particles, the matrix only depends on the polar angle \\(\theta\\). This causes the scattering matrix to become diagonal, with \\(s_3 = s_4 = 0\\) \[[4](#references) (ch. 4.42)\].
 
@@ -6052,17 +6052,17 @@ Substitution into Equation 17.158 produces a convenient asymptotic expansion of 
 $$ \tag{18.4}
 \begin{aligned}
 	\bm{E_s}(\bm{r}, \omega)
-	&\backsimeq \frac{e^{i k r}}{i k r} \sum_{n=1}^{\infin} \frac{(2 n + 1)}{n (n + 1)}
-	\big( {-a_n} \pi_{1,n}(\theta) - b_n \tau_{1,n}(\theta) \big)
+	&\backsimeq \frac{e^{i k r}}{k r} \sum_{n=1}^{\infin} \frac{(2 n + 1)}{n (n + 1)}
+	i \big( a_n \pi_{1,n}(\theta) + b_n \tau_{1,n}(\theta) \big)
 	\big( E_X \cos(\phi) + E_Y \sin(\phi) \big) \bm{e_{\theta}}
 	\cr
-	&+ \frac{e^{i k r}}{i k r} \sum_{n=1}^{\infin} \frac{(2 n + 1)}{n (n + 1)}
-	\big( {-a_n} \tau_{1,n}(\theta) - b_n \pi_{1,n}(\theta) \big)
+	&+ \frac{e^{i k r}}{k r} \sum_{n=1}^{\infin} \frac{(2 n + 1)}{n (n + 1)}
+	i \big( a_n \tau_{1,n}(\theta) + b_n \pi_{1,n}(\theta) \big)
 	\big( {-E_X} \sin(\phi) + E_Y \cos(\phi) \big) \bm{e_{\phi}}.
 \end{aligned}
 $$
 
-Its explicit coordinate representation is more illuminating:
+Unfortunately, the standard definitions (which we follow) of \\(a_n\\) and \\(b_n\\) makes them predominately imaginary, while \\(\pi_{1,n}\\) and \\(\tau_{1,n}\\) are negative for all angles of interest. Therefore, it is prudent to formulate the explicit coordinate representation of Equation 18.4 in the following way:
 
 $$ \tag{18.5}
 \begin{aligned}
@@ -6070,9 +6070,9 @@ $$ \tag{18.5}
 		E_{s,\theta}(\bm{r}, \omega) \cr
 		E_{s,\phi}(\bm{r}, \omega) \cr
 	\end{bmatrix}
-	&\backsimeq \frac{e^{i k r}}{i k r}
+	&\backsimeq \frac{e^{i k r}}{k r}
 	\Bigg( \sum_{n=1}^{\infin} \frac{(2 n + 1)}{n (n + 1)}
-	a_n
+	\frac{a_n}{i}
 	\begin{bmatrix}
 		-\pi_{1,n}(\theta) & 0 \cr
 		0 & -\tau_{1,n}(\theta) \cr
@@ -6087,9 +6087,9 @@ $$ \tag{18.5}
 		E_Y \cr
 	\end{bmatrix}
 	\cr
-	&+ \frac{e^{i k r}}{i k r}
+	&+ \frac{e^{i k r}}{k r}
 	\Bigg( \sum_{n=1}^{\infin} \frac{(2 n + 1)}{n (n + 1)}
-	b_n
+	\frac{b_n}{i}
 	\begin{bmatrix}
 		-\tau_{1,n}(\theta) & 0 \cr
 		0 & -\pi_{1,n}(\theta) \cr
@@ -6112,10 +6112,10 @@ If we specify the incident field at a certain coordinate \\(z < 0\\) and substit
 
 $$ \tag{18.6}
 	S(\theta, \omega)
-	= \sum_{n=1}^{\infin} \frac{(2 n + 1)}{n (n + 1)}
+	= \sum_{n=1}^{\infin} \frac{(2 n + 1)}{n (n + 1)} i
 	\begin{bmatrix}
-		-a_n \pi_{1,n}(\theta) - b_n\tau_{1,n}(\theta) & 0 \cr
-		0 & -a_n\tau_{1,n}(\theta) - b_n \pi_{1,n}(\theta) \cr
+		a_n \pi_{1,n}(\theta) + b_n\tau_{1,n}(\theta) & 0 \cr
+		0 & a_n\tau_{1,n}(\theta) + b_n \pi_{1,n}(\theta) \cr
 	\end{bmatrix}.
 $$
 
