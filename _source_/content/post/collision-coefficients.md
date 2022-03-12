@@ -19,7 +19,7 @@ While we may spend more time and energy fiddling with various combinations of pa
 
 <!--more-->
 
-<!--
+
 
 The method can be briefly outlined as follows:
 
@@ -2682,7 +2682,7 @@ $$ \tag{12.20}
 	\varpropto (k R)^{-1}.
 $$
 
--->
+
 
 ### Spherical Waves
 
@@ -2890,15 +2890,15 @@ $$ \tag{13.19}
 	\backsimeq \frac{\eta(\omega)}{c}.
 $$
 
-Thus, at a large distance, for a fixed direction of observation, a spherical wave is an analog of a plane wave (cf. Equation 7.2) with the amplitude decreasing as \\(r^{-1}\\):
+Thus, at a large distance, for a fixed direction of observation, a spherical wave is an analog of a plane wave (cf. Equation 7.2) with the amplitude decreasing as \\((k r)^{-1}\\):
 
 $$ \tag{13.20}
 \begin{aligned}
 	& \bm{E_s}(\bm{r}, \omega) e^{-i \omega t}
-	\backsimeq \frac{1}{r} \bm{E_1}(\bm{n}, \omega) e^{i k(\omega) (\bm{r} \cdot \bm{n}) - i \omega t},
+	\backsimeq \frac{1}{k r} \bm{E_1}(\bm{n}, \omega) e^{i k(\omega) (\bm{r} \cdot \bm{n}) - i \omega t},
 	\cr
 	& \bm{B_s}(\bm{r}, \omega) e^{-i \omega t}
-	\backsimeq \frac{1}{r} \bm{B_1}(\bm{n}, \omega) e^{i k(\omega) (\bm{r} \cdot \bm{n}) - i \omega t},
+	\backsimeq \frac{1}{k r} \bm{B_1}(\bm{n}, \omega) e^{i k(\omega) (\bm{r} \cdot \bm{n}) - i \omega t},
 \end{aligned}
 $$
 
@@ -2907,16 +2907,16 @@ where \\(\bm{n} = \bm{r} / r\\), and
 $$ \tag{13.??}
 \begin{aligned}
 	& \bm{E_1}(\bm{n}, \omega)
-	= \frac{k^2(\omega)}{4 \pi} \big( \mathcal{I} - \bm{n} \otimes \bm{n} \big) \int\_{V} e^{-i k(\omega) (\bm{r'} \cdot \bm{n})} \big( m^2(\bm{r'}, \omega) - 1 \big)
+	= \frac{k^3(\omega)}{4 \pi} \big( \mathcal{I} - \bm{n} \otimes \bm{n} \big) \int\_{V} e^{-i k(\omega) (\bm{r'} \cdot \bm{n})} \big( m^2(\bm{r'}, \omega) - 1 \big)
 	\bm{E}(\bm{r'}, \omega) dV',
 	\cr
 	& \bm{B_1}(\bm{r}, \omega)
-	= \frac{k^3(\omega)}{4 \pi \omega} \big(\bm{n} \times \mathcal{I} \big) \int\_{V} e^{-i k(\omega) (\bm{r'} \cdot \bm{n})} \big( m^2(\bm{r'}, \omega) - 1 \big)
+	= \frac{k^4(\omega)}{4 \pi \omega} \big(\bm{n} \times \mathcal{I} \big) \int\_{V} e^{-i k(\omega) (\bm{r'} \cdot \bm{n})} \big( m^2(\bm{r'}, \omega) - 1 \big)
 	\bm{E}(\bm{r'}, \omega) dV',
 \end{aligned}
 $$
 
-are the *polarization phasors* of the spherical wave.
+are the *polarization phasors* of the spherical wave. Note that we must divide by \\(k r\\) (rather than just \\(r\\)) in order for \\(\bm{E_1}\\) and \\(\bm{B_1}\\) to have the same units as the electric and the magnetic field, respectively. This may fail to match the convention used by other authors \[[6](#references) (ch. 13.6), [8](#references) (ch. 5.1)\].
 
 [Picture]
 
@@ -2931,7 +2931,7 @@ Similarly to the case of plane waves, we may form a Cartesian coordinate frame u
 
 $$ \tag{13.22}
 	\bm{S}(\bm{r}, t)
-	\backsimeq \mu\_0^{-1} \frac{\eta}{c} \bigg( \frac{|E_{1,x}|^2}{r^2} \cos^2{\theta_x} + \frac{|E_{1,y}|^2}{r^2} \cos^2{\theta_y} \bigg) \bm{n}
+	\backsimeq \mu\_0^{-1} \frac{\eta}{c} \bigg( \frac{|E_{1,x}|^2}{k^2 r^2} \cos^2{\theta_x} + \frac{|E_{1,y}|^2}{k^2 r^2} \cos^2{\theta_y} \bigg) \bm{n}
 $$
 
 and irradiance (cf. Equation 7.32)
@@ -2939,7 +2939,7 @@ and irradiance (cf. Equation 7.32)
 $$ \tag{13.23}
 	\Epsilon
 	= \braket{\bm{S}} \cdot \bm{n'}
-	\backsimeq \frac{\mu\_0^{-1}}{2} \frac{\eta}{c} \frac{|\bm{E_1}|^2}{r^2} \big( \bm{n} \cdot \bm{n'} \big)
+	\backsimeq \frac{\mu\_0^{-1}}{2} \frac{\eta}{c} \frac{|\bm{E_1}|^2}{k^2 r^2} \big( \bm{n} \cdot \bm{n'} \big)
 $$
 
 that follow the [inverse-square law](https://en.wikipedia.org/wiki/Inverse-square_law).
@@ -2948,16 +2948,17 @@ For completeness, we would like to point out that it is possible to support the 
 
 $$ \tag{13.24}
 	\braket{\bm{S}}
-	\backsimeq \frac{1}{2} \mathcal{Re} \Big\lbrace \bm{E_s}(\bm{r}, \omega) \times \big[ \bm{H_s}(\bm{r}, \omega) \big]^{\*} \Big\rbrace.
+	\backsimeq \frac{1}{2} \mathcal{Re} \Big\lbrace \bm{E_s}(\bm{r}, \omega) \times \big[ \bm{H_s}(\bm{r}, \omega) \big]^{\*} \Big\rbrace
+	= \frac{1}{2 |k r|^2} \mathcal{Re} \Big\lbrace \bm{E_1}(\bm{r}, \omega) \times \big[ \bm{H_1}(\bm{r}, \omega) \big]^{\*} \Big\rbrace.
 $$
 
-Compare Equation 13.24 to 7.35; except for the names of the fields, their properties are the same (up to the \\(1/r\\) factor). Thus, the analysis performed in Equations 7.36-7.41 still applies, and we thus arrive at the analog of Equation 7.42:
+Compare Equation 13.24 to 7.35; except for the names of the fields, the equations are essentially the same. Thus, the analysis performed in Equations 7.36-7.41 still holds, and we can reuse it to arrive at the analog of Equation 7.42:
 
 $$ \tag{13.25}
 	\braket{\bm{S}}
 	\backsimeq \frac{1}{2} \mathcal{Re} \bigg\lbrace
 		\sqrt{ \frac{\varepsilon}{\mu} }
-	\bigg\rbrace \frac{|\bm{E_1}|^2}{r^2} e^{-\alpha (\bm{r} \cdot \bm{n})} \bm{n},
+	\bigg\rbrace \frac{|\bm{E_1}|^2}{|k r|^2} e^{-\alpha (\bm{r} \cdot \bm{n})} \bm{n},
 $$
 
 where the absorption coefficient \\(\alpha\\) is defined according to Equation 7.40.
@@ -3225,10 +3226,10 @@ By taking the polarization phasor \\(\bm{E_0}\\) outside the integral, we find t
 
 $$ \tag{15.4}
 	\bm{E_s}(\bm{r}, \bm{n_i}, \omega)
-	= \frac{e^{i k(\omega) r}}{r} \mathcal{S_e} (\bm{r}, \bm{n_i}, \omega) \bm{E_0}(\bm{n_i}, \omega).
+	= \frac{e^{i k(\omega) r}}{k(\omega) r} \mathcal{S_e} (\bm{r}, \bm{n_i}, \omega) \bm{E_0}(\bm{n_i}, \omega).
 $$
 
-In general, the scattering tensor depends on the position of the observation point relative to the scatterer. However, if the observation point is very far away, we can utilize the far-field expression of the Green function (cf. Equations 13.12, 14.3, and 14.5) to write
+In general, the scattering tensor depends on the position of the observation point relative to the scatterer. However, if the observation point is very far away, we can utilize the far-field expression of the Green function, and combine Equations 13.12, 14.3, and 14.5 to write
 
 $$ \tag{15.5}
 \begin{aligned}
@@ -3248,9 +3249,9 @@ making the far-field scattering tensors independent from the distance to the obs
 $$ \tag{15.6}
 \begin{aligned}
 	& \bm{E_s}(r \bm{n_s}, \bm{n_i}, \omega)
-	\backsimeq \frac{e^{i k(\omega) r}}{r} \mathcal{S_{ef}} (\bm{n_s}, \bm{n_i}, \omega) \bm{E_0}(\bm{n_i}, \omega), \cr
+	\backsimeq \frac{e^{i k(\omega) r}}{k(\omega) r} \mathcal{S_{ef}} (\bm{n_s}, \bm{n_i}, \omega) \bm{E_0}(\bm{n_i}, \omega), \cr
 	& \bm{B_s}(r \bm{n_s}, \bm{n_i}, \omega)
-	\backsimeq \frac{e^{i k(\omega) r}}{r} \mathcal{S_{mf}} (\bm{n_s}, \bm{n_i}, \omega) \bm{E_0}(\bm{n_i}, \omega).
+	\backsimeq \frac{e^{i k(\omega) r}}{k(\omega) r} \mathcal{S_{mf}} (\bm{n_s}, \bm{n_i}, \omega) \bm{E_0}(\bm{n_i}, \omega).
 \end{aligned}
 $$
 
@@ -3266,20 +3267,24 @@ $$ \tag{15.?}
 \end{aligned}
 $$
 
-For completeness, the expressions of the scattering tensors for the electric and the magnetic fields are given below:
+For completeness, the formulae of the electric and the magnetic far-field scattering tensors are given below:
 
 $$ \tag{15.7}
 \begin{aligned}
-	& \mathcal{S_{ef}} (\bm{n_s}, \bm{n_i}, \omega) \backsimeq \frac{1}{4 \pi}
+	& \mathcal{S_{ef}} (\bm{n_s}, \bm{n_i}, \omega) \backsimeq
 	\big( \mathcal{I} - \bm{n_s} \otimes \bm{n_s} \big)
+	\frac{k(\omega)}{4 \pi}
 	\iint\_{V} e^{-i k(\omega) (\bm{r'} \cdot \bm{n_s} - \bm{r''} \cdot \bm{n_i})} \mathcal{T} (\bm{r'}, \bm{r''}, k(\omega), \omega) dV'' dV', \cr
-	& \mathcal{S_{mf}} (\bm{n_s}, \bm{n_i}, \omega) \backsimeq \frac{1}{4 \pi}
-	\big(\bm{n_s} \times \mathcal{I} \big) \frac{k(\omega)}{\omega}
+	& \mathcal{S_{mf}} (\bm{n_s}, \bm{n_i}, \omega) \backsimeq
+	\big(\bm{n_s} \times \mathcal{I} \big)
+	\frac{k^2(\omega)}{4 \pi \omega}
 	\iint\_{V} e^{-i k(\omega) (\bm{r'} \cdot \bm{n_s} - \bm{r''} \cdot \bm{n_i})} \mathcal{T} (\bm{r'}, \bm{r''}, k(\omega), \omega) dV'' dV'.
 \end{aligned}
 $$
 
-Expressions given above are independent of the choice of a coordinate system. In practice, it is rather convenient to establish a certain coordinate convention.
+We shall soon find out (REF EQ. AFTER MOVE TO SEC. 14) that \\(\mathcal{T} \backsim k^5\\), which implies that both of these tensors are dimensionless. In comparison, certain authors prefer to divide their tensors by \\(k\\) \[[8](#references) (ch. 5.3)\].
+
+All the expressions given above are independent of the choice of a coordinate system. In practice, it is rather convenient to establish a certain coordinate convention.
 
 {{< figure src="/img/scat_coord.svg" caption="*Figure N: the scattering coordinate system.*" >}}
 
@@ -3406,9 +3411,7 @@ e^{-i k(\omega) z}
 \end{bmatrix}.
 $$
 
-Since we can represent both the incident and the scattering fields using only two components (each), Equation 15.6.1 can be expressed[^14] in terms of the complex *scattering matrix*, or the [S-matrix](https://en.wikipedia.org/wiki/S-matrix) for short.
-
-[^14]: The numbering convention and the division by \\(i k\\) are retained to match the results in the book by van de Hulst \[[4](#references) (ch. 4.41)\]. However, we do not make any changes to the tensor form of Equations 15.6-15.7 that follow the book by Mishchenko \[[8](#references) (ch. 5.3)\], since we find them entirely appropriate.
+Since we can represent both the incident and the scattering fields using only two components (each), Equation 15.6.1 can be expressed in terms of the complex *scattering matrix*, or the [S-matrix](https://en.wikipedia.org/wiki/S-matrix) for short.
 
 $$ \tag{15.15}
 S(\theta, \phi, \omega) =
@@ -3432,22 +3435,15 @@ $$ \tag{15.16}
 \end{bmatrix}.
 $$
 
-Comparison with Equation 15.6 shows that
-
-$$ \tag{15.17}
-	S(\theta, \phi, \omega)
-	= i k(\omega) \mathcal{S_{ef}} (\bm{n_s}, \bm{n_i}, \omega),
-$$
-
-with the angles \\(\theta\\) and \\(\phi\\) defined by Equation 15.10. We shall see that, in certain cases, the scattering matrix explicitly features the rotation of the coordinate frame \\(R_y(-\theta)\\) defined by Equation 15.13.
-
-The reason for introducing the \\(i k\\) constant in the expression above is twofold. Multiplication by the \\(k\\) factor makes the scattering matrix a dimensionless quantity, which is evident from Equations 13.4 and 15.16. As for the \\(i\\) factor, we shall see (in the next section) that it allows us to focus on the real part of the scattering matrix for radiometric computations, which is consistent with the way we handle the complex representation of electromagnetic waves.
+Equation 15.16 matches the one given in the book by Hendrik van de Hulst \[[4](#references) (ch. 4.41)\], except for the sign of the complex exponential and the missing \\(i\\) factor in the denominator. Hendrik claims that this factor makes the formulas more convenient \[[4](#references) (ch. 4.1)\]. While that is indeed the case, it is also prone to sign errors, and occasionally introduces seemingly complex coefficients are, in fact, real.
 
 In general, the elements of the scattering matrix depend on the azimuthal angle \\(\phi\\), since, as we rotate the plane of observation (\\(x z\\) or \\(r \theta\\)) around the \\(z\\)-axis, the scattering object appears to rotate in the opposite direction. However, if the object is symmetric (both geometrically and structurally) with respect to the \\(z\\)-axis, which is the case for spherical and an axis-aligned [spheroidal](https://en.wikipedia.org/wiki/Spheroid) particles, the matrix only depends on the polar angle \\(\theta\\). This causes the scattering matrix to become diagonal, with \\(s_3 = s_4 = 0\\) \[[4](#references) (ch. 4.42)\].
 
 It's easy to see why that is the case. Consider changing the handedness of the Cartesian coordinate frame, so that the basis vector of the \\(x\\)-axis (or the \\(y\\)-axis) becomes \\(-\bm{e_x}\\) (or \\(-\bm{e_y}\\)), and vice versa. In the reflected coordinate system, both \\(E\_{i,x}\\) and \\(E\_{s,\theta}\\) (or \\(E\_{i,y}\\) and \\(E\_{s,\phi}\\)) change the sign, but, since the particle possesses reflection symmetry, the scattering matrix remains unchanged. In order for the magnitudes of the scattered field components to remain unchanged, the off-diagonal elements \\(s_3\\) and \\(s_4\\) must be equal to \\(0\\). This decouples the \\(x\\) and \\(y\\) components of the field, which allows us to represent the vector scattering process in terms of two independent scalar waves.
 
 In addition, a very similar proof shows that axial symmetry with respect to the direction of incidence leads to another important property of forward scattering: \\(s_1(0, \phi) = s_2(0, \phi) = s_0\\).
+
+MOVE THIS TO SEC. 14.
 
 Finally, we would like to highlight the *scale invariance* property of electromagnetic scattering (also known as the principle of electrodynamic similitude) \[[8](#references) (ch. 5.5), [9](#references) (ch. 3.5)\]. The gist of it is that the dimensionless scattering and absorption characteristics of the scattering object do not depend on its linear dimension \\(a\\) and the wavenumber \\(k\\) separately, but rather the so-called relative *size parameter* \\(x = k a = 2 \pi a / \lambda\\). Thus, increasing both the linear dimension of the object and the wavelength by the same factor \\(f\\) leaves the formula unchanged: \\(x' = 2 \pi (a f) / (f \lambda) = x \\). This [reduces the dimensionality](https://en.wikipedia.org/wiki/Dimensionality_reduction) of the problem, since two independent parameters can be replaced with just one.
 
@@ -3650,11 +3646,11 @@ We begin by constructing a virtual surface that is both centered at the particle
 $$ \tag{16.10}
 \begin{aligned}
 	& \bm{E_s}(\bm{r}, t)
-	\backsimeq \mathcal{Re} \bigg\lbrace \frac{e^{i k r}}{r} \mathcal{S_{ef}}(\bm{n_s}, \bm{n_i}) \bm{E_0} e^{-i \omega t} \bigg\rbrace
-	= \frac{1}{r} \mathcal{Re} \big\lbrace \bm{E_1}(\bm{n_s}) e^{i k r - i \omega t} \big\rbrace, \cr
+	\backsimeq \mathcal{Re} \bigg\lbrace \frac{e^{i k r}}{k r} \mathcal{S_{ef}}(\bm{n_s}, \bm{n_i}) \bm{E_0} e^{-i \omega t} \bigg\rbrace
+	= \frac{1}{k r} \mathcal{Re} \bigg\lbrace \bm{E_1}(\bm{n_s}) e^{i k r - i \omega t} \bigg\rbrace, \cr
 	& \bm{B_s}(\bm{r}, t)
-	\backsimeq \mathcal{Re} \bigg\lbrace \frac{e^{i k r}}{r} \mathcal{S_{mf}}(\bm{n_s}, \bm{n_i}) \bm{E_0} e^{-i \omega t} \bigg\rbrace
-	= \frac{1}{r} \mathcal{Re} \big\lbrace \bm{B_1}(\bm{n_s}) e^{i k r - i \omega t} \big\rbrace,
+	\backsimeq \mathcal{Re} \bigg\lbrace \frac{e^{i k r}}{k r} \mathcal{S_{mf}}(\bm{n_s}, \bm{n_i}) \bm{E_0} e^{-i \omega t} \bigg\rbrace
+	= \frac{1}{k r} \mathcal{Re} \bigg\lbrace \bm{B_1}(\bm{n_s}) e^{i k r - i \omega t} \bigg\rbrace,
 \end{aligned}
 $$
 
@@ -3669,13 +3665,11 @@ $$ \tag{16.11}
 	\bm{B_1} \times \bm{n_s} = \frac{\eta}{c} \bm{E_1}.
 $$
 
-The Poynting vector of the scattered far field points radially outward. If the host medium is is non-absorptive and non-magnetic, the corresponding time-averaged Poynting vector (cf. Equations 13.21-13.23) is
+The Poynting vector of the scattered far field points radially outward. If the host medium is is non-absorptive and non-magnetic, the corresponding time-averaged Poynting vector (see Equation 13.23) is
 
 $$ \tag{16.12}
 	\braket{\bm{S_s}}
-	\backsimeq \frac{\mu\_0^{-1}}{2} \frac{1}{r^2} \mathcal{Re}
-	\big\lbrace \bm{E_1} \times \bm{B_1^{\*}} \big\rbrace
-	= \frac{\mu\_0^{-1}}{2} \frac{\eta}{c} \frac{\big\vert \bm{E_1}(\bm{n_s}) \big\vert^2}{r^2} \bm{n_s}.
+	\backsimeq \frac{\mu\_0^{-1}}{2} \frac{\eta}{c} \frac{\big\vert \bm{E_1}(\bm{n_s}) \big\vert^2}{k^2 r^2} \bm{n_s}.
 $$
 
 In order to calculate the amount of scattered power, it is convenient to use a spherical surface \\(\mathbb{S}^2\\). Since the differential solid angle is
@@ -3689,14 +3683,14 @@ setting \\(\bm{n} = \bm{r}/r = \bm{n_s}\\) results in an integral that is formal
 $$ \tag{16.14}
 	\Phi_s
 	= \oint_{A} \braket{\bm{S_s}} \cdot \bm{n_s} \thinspace dA
-	\backsimeq \frac{\mu\_0^{-1}}{2} \frac{\eta}{c} \oint\_{\mathbb{S}^2} \big\vert \bm{E_1}(\bm{n_s}) \big\vert^2 d\Omega.
+	\backsimeq \frac{\mu\_0^{-1}}{2} \frac{\eta}{c} \frac{1}{k^2} \oint\_{\mathbb{S}^2} \big\vert \bm{E_1}(\bm{n_s}) \big\vert^2 d\Omega.
 $$
 
 From the radiometric point of view, the squared magnitude of the scattered field corresponds to [radiant intensity](https://en.wikipedia.org/wiki/Radiant_intensity)
 
 $$ \tag{16.15}
 	\Iota_s
-	\backsimeq \frac{\mu\_0^{-1}}{2} \frac{\eta}{c} \big\vert \bm{E_1}(\bm{n_s}) \big\vert^2.
+	\backsimeq \frac{\mu\_0^{-1}}{2} \frac{\eta}{c} \frac{1}{k^2} \big\vert \bm{E_1}(\bm{n_s}) \big\vert^2.
 $$
 
 The scattered field does not exist in isolation. Since it is generated by the incident field, the total field is formed by the superposition of the two waves (cf. Equation 11.12):
@@ -3771,7 +3765,7 @@ Thus, the time average of the mixed Poynting vector can be written as
 
 $$ \tag{16.23}
 	\braket{\bm{S_e}} =
-	-\frac{\mu_0^{-1}}{2 r} \mathcal{Re} \bigg\lbrace
+	-\frac{\mu_0^{-1}}{2 k r} \mathcal{Re} \bigg\lbrace
 	\Big( \bm{E_0} e^{i k (\bm{r} \cdot \bm{n_i})} \Big) \times \Big[ \bm{B_1} e^{i k r} \Big]^{\*} +
 	\Big( \bm{E_1} e^{i k r} \Big) \times \Big[ \bm{B_0} e^{i k (\bm{r} \cdot \bm{n_i})} \Big]^{\*}
 	\bigg\rbrace.
@@ -3806,28 +3800,28 @@ By combining Equations 16.2, 16.11, 16.24 and 16.25, all magnetic phasor factors
 $$ \tag{16.26}
 \begin{aligned}
 	\bm{n_s} \cdot \braket{\bm{E_i} \times \bm{B_s}}
-	&= \frac{1}{2 r} \mathcal{Re} \Big\lbrace
+	&= \frac{1}{2 k r} \mathcal{Re} \Big\lbrace
 	\bm{n_s} \cdot \big( \bm{E_0} \times \bm{B_1^{\*}} \big) e^{-i k r} e^{i k r (\bm{n_s} \cdot \bm{n_i})}
 	\Big\rbrace
 	\cr
-	&= \frac{1}{2 r} \mathcal{Re} \Big\lbrace
+	&= \frac{1}{2 k r} \mathcal{Re} \Big\lbrace
 	\bm{E_0} \cdot \big( \bm{B_1^{\*}} \times \bm{n_s} \big) e^{-i k r} e^{i k r (\bm{n_s} \cdot \bm{n_i})}
 	\Big\rbrace
 	\cr
-	&= \frac{1}{2 r} \frac{\eta}{c} \mathcal{Re} \Big\lbrace
+	&= \frac{1}{2 k r} \frac{\eta}{c} \mathcal{Re} \Big\lbrace
 	\big( \bm{E_0} \cdot \bm{E_1^{\*}} \big) e^{-i k r} e^{i k r (\bm{n_s} \cdot \bm{n_i})}
 	\Big\rbrace,
 	\cr
 	\braket{\bm{E_i} \times \bm{B_s}}
-	&= \frac{1}{2 r} \mathcal{Re} \Big\lbrace
+	&= \frac{1}{2 k r} \mathcal{Re} \Big\lbrace
 	\big( \bm{E_1} \times \bm{B_0^{\*}} \big) e^{i k r} e^{-i k r (\bm{n_s} \cdot \bm{n_i})}
 	\Big\rbrace
 	\cr
-	&= \frac{1}{2 r} \frac{\eta}{c} \mathcal{Re} \Big\lbrace
+	&= \frac{1}{2 k r} \frac{\eta}{c} \mathcal{Re} \Big\lbrace
 	\big( \bm{E_1} \times \bm{n_i} \times \bm{E_0^{\*}} \big) e^{i k r} e^{-i k r (\bm{n_s} \cdot \bm{n_i})}
 	\Big\rbrace
 	\cr
-	&= \frac{1}{2 r} \frac{\eta}{c} \mathcal{Re} \Big\lbrace
+	&= \frac{1}{2 k r} \frac{\eta}{c} \mathcal{Re} \Big\lbrace
 	\Big(
 	\bm{n_i} \big( \bm{E_0^{\*} \cdot \bm{E_1}} \big) -
 	\bm{E_0^{\*}} \big( \bm{n_i} \cdot \bm{E_1} \big)
@@ -3858,17 +3852,17 @@ $$ \tag{16.28}
 	= -\mu\_0^{-1} \oint_{\mathbb{S}^2} \braket{\bm{E_i} \times \bm{B_s} + \bm{E_s} \times \bm{B_i}} \cdot \bm{n_s} \thinspace dA.
 $$
 
-Splitting Equation 16.23 into two parts are before, and omitting the leading constant terms, we obtain
+If we express the integrand using Equation 16.23, and omit the leading constant, we obtain
 
 $$ \tag{16.29}
 \begin{aligned}
 	\oint\_{\mathbb{S}^2} \braket{\bm{E_i} \times \bm{B_s}} \cdot \bm{n_s} \thinspace dA
-	&= \frac{1}{2} \frac{\eta}{c} \mathcal{Re} \Big\lbrace e^{-i k r} \frac{1}{r}
+	&= \frac{1}{2} \frac{\eta}{c} \frac{1}{k} \mathcal{Re} \Big\lbrace e^{-i k r} \frac{1}{r}
 	\oint\_{\mathbb{S}^2} f_1(\bm{n_s}) e^{-i k r (-\bm{n_i} \cdot \bm{n_s})} dA
 	\Big\rbrace,
 	\cr
 	\oint\_{\mathbb{S}^2} \braket{\bm{E_i} \times \bm{B_s}} \cdot \bm{n_s} \thinspace dA
-	&= \frac{1}{2} \frac{\eta}{c} \mathcal{Re} \Big\lbrace e^{i k r} \frac{1}{r}
+	&= \frac{1}{2} \frac{\eta}{c} \frac{1}{k} \mathcal{Re} \Big\lbrace e^{i k r} \frac{1}{r}
 	\oint\_{\mathbb{S}^2} f_2(\bm{n_s}) e^{-i k r (\bm{n_i} \cdot \bm{n_s})} dA
 	\Big\rbrace.
 \end{aligned}
@@ -3888,12 +3882,12 @@ Application of Equation 16.30 to 16.29 shows that
 $$ \tag{16.31}
 \begin{aligned}
 	\oint\_{\mathbb{S}^2} \braket{\bm{E_i} \times \bm{B_s}} \cdot \bm{n_s} \thinspace dA
-	&\backsimeq \frac{\eta}{c} \frac{2 \pi}{k} \mathcal{Re} \bigg\lbrace \frac{i}{2}
+	&\backsimeq \frac{\eta}{c} \frac{2 \pi}{k^2} \mathcal{Re} \bigg\lbrace \frac{i}{2}
 	\Big( \bm{E_0} \cdot \big[ \bm{E_1}(-\bm{n_i}) \big]^{\*} e^{-2 i k r} - \bm{E_0} \cdot \big[ \bm{E_1}(\bm{n_i}) \big]^{\*} \Big)
 	\bigg\rbrace,
 	\cr
 	\oint\_{\mathbb{S}^2} \braket{\bm{E_i} \times \bm{B_s}} \cdot \bm{n_s} \thinspace dA
-	&\backsimeq \frac{\eta}{c} \frac{2 \pi}{k} \mathcal{Re} \bigg\lbrace \frac{i}{2}
+	&\backsimeq \frac{\eta}{c} \frac{2 \pi}{k^2} \mathcal{Re} \bigg\lbrace \frac{i}{2}
 	\Big( \bm{E_0^{\*}} \cdot \bm{E_1}(\bm{n_i}) + \bm{E_0^{\*}} \cdot \bm{E_1}(-\bm{n_i}) e^{2 i k r} \Big)
 	\bigg\rbrace.
 \end{aligned}
@@ -3918,7 +3912,7 @@ is a real number. Thus, the total amount of power dissipated by the particle
 $$ \tag{16.34}
 	\Phi_e
 	= -\mu\_0^{-1} \oint_{\mathbb{S}^2} \braket{\bm{E_i} \times \bm{B_s} + \bm{E_s} \times \bm{B_i}} \cdot \bm{n_s} \thinspace dA
-	\backsimeq \mu\_0^{-1} \frac{\eta}{c} \frac{2 \pi}{k} \mathcal{Im} \big\lbrace \bm{E_0^{\*}} \cdot \bm{E_1}(\bm{n_i}) \big\rbrace
+	\backsimeq \frac{\mu\_0^{-1}}{2} \frac{\eta}{c} \frac{4 \pi}{k^2} \mathcal{Im} \big\lbrace \bm{E_0^{\*}} \cdot \bm{E_1}(\bm{n_i}) \big\rbrace
 $$
 
 depends on the scattering amplitude in the forward direction only. In general, the same is not true for the amount of power absorbed:
@@ -3926,9 +3920,11 @@ depends on the scattering amplitude in the forward direction only. In general, t
 $$ \tag{16.35}
 	\Phi_a
 	= \Phi_e - \Phi_s
-	\backsimeq \frac{\mu\_0^{-1}}{2} \frac{\eta}{c} \bigg(
-	\frac{4 \pi}{k} \mathcal{Im} \big\lbrace \bm{E_0^{\*}} \cdot \bm{E_1}(\bm{n_i}) \big\rbrace
-	- \oint\_{\mathbb{S}^2} \big\vert \bm{E_1}(\bm{n_s}) \big\vert^2 d\Omega \bigg).
+	\backsimeq \frac{\mu\_0^{-1}}{2} \frac{\eta}{c} \frac{4 \pi}{k^2}
+	\left(
+		\mathcal{Im} \big\lbrace \bm{E_0^{\*}} \cdot \bm{E_1}(\bm{n_i}) \big\rbrace - \frac{1}{4 \pi}
+		\oint\_{\mathbb{S}^2} \big\vert \bm{E_1}(\bm{n_s}) \big\vert^2 d\Omega
+	\right).
 $$
 
 The amount of power dissipated by the particle obviously depends on the amount of incident power the particle intercepts. The latter can be characterized with the help of the projected area of the particle - its *geometric cross-section* \\(C_g\\). For a convex particle, it is given by the integral
@@ -3954,15 +3950,15 @@ $$ \tag{16.38}
 \begin{aligned}
 	& Q_a
 	= \frac{\Phi_a}{\Phi_i}
-	= \frac{\Phi_e - \Phi_s}{\Phi_i},
+	\backsimeq \frac{\Phi_e - \Phi_s}{\Phi_i},
 	\cr
 	& Q_s
 	= \frac{\Phi_s}{\Phi_i}
-	= \frac{\oint |\bm{E_1}(\bm{n_s})|^2 d\Omega}{|\bm{E_0}|^2 C_g},
+	\backsimeq \frac{\oint |\bm{E_1}(\bm{n_s})|^2 d\Omega}{k^2 C_g |\bm{E_0}|^2},
 	\cr
 	& Q_e
 	= \frac{\Phi_e}{\Phi_i}
-	= \frac{4 \pi}{k} \frac{\mathcal{Im} \big\lbrace \bm{E_0^{\*}} \cdot \bm{E_1}(\bm{n_i}) \big\rbrace}{|\bm{E_0}|^2 C_g}.
+	\backsimeq \frac{4 \pi \thinspace \mathcal{Im} \big\lbrace \bm{E_0^{\*}} \cdot \bm{E_1}(\bm{n_i}) \big\rbrace}{k^2 C_g |\bm{E_0}|^2}.
 \end{aligned}
 $$
 
@@ -3978,12 +3974,12 @@ $$ \tag{16.39}
 	& C_s
 	= \frac{\Phi_s}{\vert \negthinspace \braket{\bm{S_i}} \negthinspace \vert}
 	= Q_s C_g
-	= \frac{\oint |\bm{E_1}(\bm{n_s})|^2 d\Omega}{|\bm{E_0}|^2},
+	\backsimeq \frac{\oint |\bm{E_1}(\bm{n_s})|^2 d\Omega}{k^2 |\bm{E_0}|^2},
 	\cr
 	& C_e
 	= \frac{\Phi_e}{\vert \negthinspace \braket{\bm{S_i}} \negthinspace \vert}
 	= Q_e C_g
-	= \frac{4 \pi}{k} \frac{\mathcal{Im} \big\lbrace \bm{E_0^{\*}} \cdot \bm{E_1}(\bm{n_i}) \big\rbrace}{|\bm{E_0}|^2}.
+	\backsimeq \frac{4 \pi \thinspace \mathcal{Im} \big\lbrace \bm{E_0^{\*}} \cdot \bm{E_1}(\bm{n_i}) \big\rbrace}{k^2 |\bm{E_0}|^2}.
 \end{aligned}
 $$
 
@@ -3995,14 +3991,14 @@ To show this, express \\(\bm{E_1}\\) in terms of the scattering tensor \\(\mathc
 
 $$ \tag{16.40}
 	\Phi_e
-	\backsimeq \mu\_0^{-1} \frac{\eta}{c} \frac{2 \pi}{k} \mathcal{Im} \big\lbrace \bm{E_0^{\*}} \cdot \mathcal{S_{ef}}(\bm{n_i}, \bm{n_i}) \bm{E_0} \big\rbrace,
+	\backsimeq \frac{\mu\_0^{-1}}{2} \frac{\eta}{c} \frac{4 \pi}{k^2} \mathcal{Im} \big\lbrace \bm{E_0^{\*}} \cdot \mathcal{S_{ef}}(\bm{n_i}, \bm{n_i}) \bm{E_0} \big\rbrace.
 $$
 
-or, alternatively, in terms of the scattering matrix \\(S\\), by setting \\(\theta=0\\) in Equation 15.17:
+Once we choose a coordinate system, we can substitute the scattering matrix with \\(\theta=0\\):
 
 $$ \tag{16.41}
 	\Phi_e
-	\backsimeq \mu\_0^{-1} \frac{\eta}{c} \frac{2 \pi}{k^2} \mathcal{Re} \big\lbrace \bm{E_0^{\*}} \cdot S(0, \phi, \omega) \bm{E_0} \big\rbrace.
+	\backsimeq \frac{\mu\_0^{-1}}{2} \frac{\eta}{c} \frac{4 \pi}{k^2} \mathcal{Im} \big\lbrace \bm{E_0^{\*}} \cdot S(0, \phi, \omega) \bm{E_0} \big\rbrace.
 $$
 
 Now, for a symmetric particle, we have previously demonstrated that
@@ -4018,16 +4014,16 @@ Thus, we obtain the expressions
 $$ \tag{16.43}
 \begin{aligned}
 	& Q_e
-	= \frac{4 \pi}{k^2} \frac{\mathcal{Re} \big\lbrace s_0 (\bm{E_0^{\*}} \cdot \bm{E_0}) \big\rbrace}{|\bm{E_0}|^2 C_g}
-	= \frac{4 \pi}{k^2} \frac{\mathcal{Re} \lbrace s_0 \rbrace}{C_g},
+	\backsimeq \frac{4 \pi \thinspace \mathcal{Im} \big\lbrace s_0 \bm{E_0^{\*}} \cdot \bm{E_0} \big\rbrace}{k^2 C_g |\bm{E_0}|^2}
+	= \frac{4 \pi \thinspace \mathcal{Im} \lbrace s_0 \rbrace}{k^2 C_g},
 	\cr
 	& C_e
 	= Q_e C_g
-	= 4 \pi k^{-2} \mathcal{Re} \lbrace s_0 \rbrace,
+	\backsimeq 4 \pi k^{-2} \mathcal{Im} \lbrace s_0 \rbrace,
 \end{aligned}
 $$
 
-which matches the results found using the scalar wave theory \[[4](#references) (ch. 4.21, 4.42)\]. Intuitively, this makes sense, since the particle looks the same regardless of the choice of the plane of reference (assuming the latter contains the direction of incidence), and the sensor (that only measures power) is not sensitive to the orientation of incoming light.
+which matches the results found using the scalar wave theory \[[4](#references) (ch. 4.42)\]. Intuitively, this makes sense, since the particle looks the same regardless of the choice of the plane of reference (assuming the latter contains the direction of incidence), and the sensor (that only measures power) is not sensitive to the orientation of incoming light.
 
 ### Measurement Problem and Radiative Transfer
 
@@ -6450,7 +6446,7 @@ vanish. Equation 18.24 is the basis of the famous law of [Rayleigh scattering](h
 
 Neither the electric field nor the magnetic field can be measured directly \[[8](#references) (ch. 7)\]. Therefore, practical applications of light scattering are concerned with the rate of the flow of electromagnetic energy, which is connected to light intensity via the optical theorem.
 
-Suppose that the host medium is non-absorbing and non-magnetic. Then \\(\kappa = 0, \mu = \mu_0, k \in \mathcal{R}\\), and the intensity of the scattered light is given by Equation 16.15:
+Suppose that the host medium is non-absorbing and non-magnetic. Then \\(\kappa = 0, \mu = \mu_0, k\\) is real, and the intensity of the scattered light is given by Equation 16.15:
 
 $$ \tag{18.25}
 	\Iota_s(\bm{n_s}, \omega)
