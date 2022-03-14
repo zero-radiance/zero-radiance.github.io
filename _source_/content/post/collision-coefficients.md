@@ -3684,7 +3684,7 @@ $$ \tag{16.14}
 	\backsimeq \frac{\mu\_0^{-1}}{2} \frac{\eta}{c} \frac{1}{k^2} \oint\_{\mathbb{S}^2} \big\vert \bm{E_1}(\bm{n_s}) \big\vert^2 d\Omega.
 $$
 
-From the radiometric point of view, the squared magnitude of the scattered field corresponds to [radiant intensity](https://en.wikipedia.org/wiki/Radiant_intensity)
+From the radiometric point of view, the squared magnitude of the scattered field corresponds to [intensity](https://en.wikipedia.org/wiki/Radiant_intensity)
 
 $$ \tag{16.15}
 	\Iota_s
@@ -3918,9 +3918,9 @@ depends on the scattering amplitude in the forward direction only. In general, t
 $$ \tag{16.35}
 	\Phi_a
 	= \Phi_e - \Phi_s
-	\backsimeq \frac{\mu\_0^{-1}}{2} \frac{\eta}{c} \frac{4 \pi}{k^2}
+	\backsimeq \frac{\mu\_0^{-1}}{2} \frac{\eta}{c} \frac{1}{k^2}
 	\left(
-		\mathcal{Im} \big\lbrace \bm{E_0^{\*}} \cdot \bm{E_1}(\bm{n_i}) \big\rbrace - \frac{1}{4 \pi}
+		4 \pi \thinspace \mathcal{Im} \big\lbrace \bm{E_0^{\*}} \cdot \bm{E_1}(\bm{n_i}) \big\rbrace -
 		\oint\_{\mathbb{S}^2} \big\vert \bm{E_1}(\bm{n_s}) \big\vert^2 d\Omega
 	\right).
 $$
@@ -6450,17 +6450,17 @@ Suppose that the host medium is non-absorbing and non-magnetic. Then \\(\kappa =
 
 $$ \tag{18.25}
 	\Iota_s(\bm{n_s}, \omega)
-	\backsimeq \frac{\mu\_0^{-1}}{2} \frac{\eta(\omega)}{c} \left| \bm{E_1}(\bm{n_s}, \omega) \right|^2.
+	\backsimeq \frac{\mu\_0^{-1}}{2} \frac{\eta(\omega)}{c} \frac{1}{k^2(\omega)} \left| \bm{E_1}(\bm{n_s}, \omega) \right|^2.
 $$
 
 Equation 15.? shows that the polarization phasor \\(\bm{E_0}\\) of the incident field can be transformed into the polarization phasor \\(\bm{E_1}\\) of the scattered field by the electric far-field scattering tensor \\(\mathcal{S_{ef}}\\). Substitution into Equation 18.25 results in
 
 $$ \tag{18.26}
 	\Iota_s(\bm{n_s}, \omega)
-	\backsimeq \frac{\mu\_0^{-1}}{2} \frac{\eta(\omega)}{c}\left| \mathcal{S_{ef}}(\bm{n_s}, \bm{n_i}, \omega) \bm{E_0}(\bm{n_i}, \omega) \right|^2.
+	\backsimeq \frac{\mu\_0^{-1}}{2} \frac{\eta(\omega)}{c} \frac{1}{k^2(\omega)} \left| \mathcal{S_{ef}}(\bm{n_s}, \bm{n_i}, \omega) \bm{E_0}(\bm{n_i}, \omega) \right|^2.
 $$
 
-Both \\(\mathcal{S_{ef}}\\) and \\(\bm{E_0}\\) are coordinate-independent entities. In practice, we shall utilize the convention established in Section 15, according to which both the incident and the scattered far field can be described using only two components each. After taking Equations 15.15-15.17 into account, it follows that
+Both \\(\mathcal{S_{ef}}\\) and \\(\bm{E_0}\\) are coordinate-independent entities. In practice, we shall utilize the convention established in Section 15, according to which both the incident and the scattered far field can be described using only two components each. After taking Equations 15.14-15.16 into account, it follows that
 
 $$ \tag{18.27}
 	\Iota_s(\theta, \phi, \omega)
@@ -6488,7 +6488,7 @@ $$ \tag{18.28}
 	\end{bmatrix}.
 $$
 
-This allows us to directly relate the scattered intensity \\(\Iota_s\\) to the incident irradiance \\(\Epsilon_i\\) defined with respect to a virtual surface orthogonal to the direction of propagation of the incident wave:
+It allows us to directly relate the scattered intensity \\(\Iota_s\\) to the incident irradiance \\(\Epsilon_i\\) (defined by Equation 16.4):
 
 $$ \tag{18.29}
 	\Iota_s(\theta, \phi, \omega)
@@ -6497,10 +6497,12 @@ $$ \tag{18.29}
 		e^{i \delta_x(\phi, \omega)} \cr
 		e^{i \delta_y(\phi, \omega)} \cr
 	\end{bmatrix}
-	\right|^2.
+	\right|^2,
 $$
 
-Since the scattering matrix of a spherical particle is diagonal (see Equation 18.6), our task is reduced to determination of the squared magnitude of the complex vector
+the latter measured with respect to a plane orthogonal to the direction of propagation of the incident wave.
+
+Since the scattering matrix of a spherical particle (given by Equation 18.6) is diagonal, our task is reduced to determination of the squared magnitude of the complex vector
 
 $$ \tag{18.30}
 	\begin{bmatrix}
@@ -6547,7 +6549,7 @@ $$ \tag{18.31}
 \end{aligned}
 $$
 
-Thus, we arrive at the important result
+Thus, we arrive at the important result that relates the scattered intensity to the incident irradiance:
 
 $$ \tag{18.32}
 	\Iota_s(\theta, \phi, \omega)
@@ -6560,16 +6562,16 @@ where the non-zero elements of the scattering matrix are
 $$ \tag{18.33}
 \begin{aligned}
 	s_1(\theta, \omega)
-	&= \sum_{n=1}^{\infin} \frac{(2 n + 1)}{n (n + 1)}
-	\big( {-a_n}(\omega) \tau_{1,n}(\theta) - b_n(\omega) \pi_{1,n}(\theta) \big),
+	&= \sum_{n=1}^{\infin} \frac{(2 n + 1)}{n (n + 1)} i
+	\big( a_n(\omega) \tau_{1,n}(\theta) + b_n(\omega) \pi_{1,n}(\theta) \big),
 	\cr
 	s_2(\theta, \omega)
-	&= \sum_{n=1}^{\infin} \frac{(2 n + 1)}{n (n + 1)}
-	\big( {-a_n}(\omega) \pi_{1,n}(\theta) - b_n(\omega) \tau_{1,n}(\theta) \big).
+	&= \sum_{n=1}^{\infin} \frac{(2 n + 1)}{n (n + 1)} i
+	\big( a_n(\omega) \pi_{1,n}(\theta) + b_n(\omega) \tau_{1,n}(\theta) \big).
 \end{aligned}
 $$
 
-Equation 18.32 deserves a few remarks. First, the right-hand side is independent of the azimuthal angle \\(\phi\\), which should not come as a surprise, as the particle is spherical. What is surprising is that the formula manages to almost entirely conceal the wave nature of light, since the incident irradiance is directly transformed into the scattered radiant intensity, with all the wave-optical calculations relegated to the internals of the scattering matrix.
+Equation 18.32 deserves a few remarks. First, the right-hand side is independent of the azimuthal angle \\(\phi\\), which should not come as a surprise, as the particle is spherical. What is surprising is that the formula manages to almost entirely conceal the wave nature of light, since the incident irradiance is directly transformed into the scattered intensity, with all the wave-optical calculations confined within the formula of the scattering matrix.
 
 ---
 
