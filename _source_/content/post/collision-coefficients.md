@@ -3282,7 +3282,7 @@ $$ \tag{15.7}
 \end{aligned}
 $$
 
-We shall soon find out (REF EQ. AFTER MOVE TO SEC. 14) that \\(\mathcal{T} \backsim k^5\\), which implies that both of these tensors are dimensionless. In comparison, certain authors prefer to divide their tensors by \\(k\\) \[[8](#references) (ch. 5.3)\].
+At the end of this section [Evgenii: reorder], we will demonstrate that \\(\mathcal{T} \backsim k^5\\), which implies that both of these tensors are dimensionless. In comparison, certain authors prefer to divide their tensors by \\(k\\) \[[8](#references) (ch. 5.3)\].
 
 All the expressions given above are independent of the choice of a coordinate system. In practice, it is rather convenient to establish a certain coordinate convention.
 
@@ -3443,9 +3443,11 @@ It's easy to see why that is the case. Consider changing the handedness of the C
 
 In addition, a very similar proof shows that axial symmetry with respect to the direction of incidence leads to another important property of forward scattering: \\(s_1(0, \phi) = s_2(0, \phi) = s_0\\).
 
-MOVE THIS TO SEC. 14.
+[Evgenii: this piece should come before Section 15]
 
-Finally, we would like to highlight the *scale invariance* property of electromagnetic scattering (also known as the principle of electrodynamic similitude) \[[8](#references) (ch. 5.5), [9](#references) (ch. 3.5)\]. The gist of it is that the dimensionless scattering and absorption characteristics of the scattering object do not depend on its linear dimension \\(a\\) and the wavenumber \\(k\\) separately, but rather the so-called relative *size parameter* \\(x = k a = 2 \pi a / \lambda\\). Thus, increasing both the linear dimension of the object and the wavelength by the same factor \\(f\\) leaves the formula unchanged: \\(x' = 2 \pi (a f) / (f \lambda) = x \\). This [reduces the dimensionality](https://en.wikipedia.org/wiki/Dimensionality_reduction) of the problem, since two independent parameters can be replaced with just one.
+Finally, we would like to highlight the *scale invariance* property of electromagnetic scattering (also known as the principle of electrodynamic similitude) \[[8](#references) (ch. 5.5), [9](#references) (ch. 3.5)\]. The gist of it is that the dimensionless scattering and absorption characteristics of the scattering object do not depend on its linear dimension \\(a\\) and the wavenumber \\(k\\) separately, but rather the so-called *size parameter* \\(x = k a = 2 \pi a / \lambda\\). Thus, increasing both the linear dimension of the object and the wavelength by the same factor \\(f\\) leaves the formula unchanged: \\(x' = 2 \pi (a f) / (f \lambda) = x \\). This [reduces the dimensionality](https://en.wikipedia.org/wiki/Dimensionality_reduction) of the problem, since two independent parameters can be replaced with just one.
+
+[Insert picture here]
 
 In order to prove that it is true, we must show that the expressions used to calculate the electromagnetic fields can be written in terms of the dimensionless quantity (which we indicate by the hat symbol)
 
@@ -3511,17 +3513,13 @@ $$ \tag{15.26}
 	= \frac{1}{k} \mathcal{G}(\bm{r}, \bm{r'}, k).
 $$
 
-The only expression left to transform is the relative wavenumber \\(m\\) given by Equation 11.8. It is already a dimensionless quantity; if we further assume that it has been defined as scale-invariant (both the index and its spatial distribution do not change as the object is rescaled), then we may reparametrize \\(m\\) in the following way:
+The only expression left to transform is the relative wavenumber \\(m\\) given by Equation 11.8. It is already a dimensionless quantity; thus, if we rescale the radius of the object by a factor of \\(k\\), we can define the function
 
 $$ \tag{15.27}
-	\hat{m}(\bm{\hat{r}})
-	= m(\bm{r})
-	= \frac{k_2}{k_1}
-	= \frac{(\omega / c) \big( \eta + i \kappa \big)}{2 \pi / \lambda_1}
-	= \frac{\lambda_1}{\lambda_2} + i \frac{\lambda_1 \alpha}{4 \pi}.
+	\hat{m}(\bm{\hat{r}}) = m(\bm{r})
 $$
 
-The expanded expression clarifies why it remains invariant: the wavelength in the interior of the object is directly proportional to the wavelength outside, and as we increase the size of the object, the absorption coefficient linearly decreases in order to maintain the absorption characteristics of the scatterer.
+that operates in dimensionless coordinates.
 
 Using the new definitions, Equation 15.20 becomes
 
