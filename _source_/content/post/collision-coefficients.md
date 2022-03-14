@@ -3435,7 +3435,7 @@ $$ \tag{15.16}
 \end{bmatrix}.
 $$
 
-Equation 15.16 matches the one given in the book by Hendrik van de Hulst \[[4](#references) (ch. 4.41)\], except for the sign of the complex exponential and the missing \\(i\\) factor in the denominator. Hendrik claims that this factor makes the formulas more convenient \[[4](#references) (ch. 4.1)\]. While that is indeed the case, the convention is prone to sign errors, and also introduces seemingly imaginary coefficients that are, in fact, real.
+Equation 15.16 matches the one given in the book by van de Hulst, except for the sign of the complex exponential and the missing \\(i\\) factor in the denominator \[[4](#references) (ch. 4.41)\]. The author claims that this factor makes the formulas more convenient \[[4](#references) (ch. 4.1)\]. While that is indeed the case, the convention is prone to sign errors, and also introduces seemingly imaginary coefficients that are, in fact, real.
 
 In general, the elements of the scattering matrix depend on the azimuthal angle \\(\phi\\), since, as we rotate the plane of observation (\\(x z\\) or \\(r \theta\\)) around the \\(z\\)-axis, the scattering object appears to rotate in the opposite direction. However, if the object is symmetric (both geometrically and structurally) with respect to the \\(z\\)-axis, which is the case for spherical and an axis-aligned [spheroidal](https://en.wikipedia.org/wiki/Spheroid) particles, the matrix only depends on the polar angle \\(\theta\\). This causes the scattering matrix to become diagonal, with \\(s_3 = s_4 = 0\\) \[[4](#references) (ch. 4.42)\].
 
@@ -6062,7 +6062,7 @@ $$ \tag{18.4}
 \end{aligned}
 $$
 
-Unfortunately, the standard definitions (which we follow) of \\(a_n\\) and \\(b_n\\) makes them predominately imaginary, while \\(\pi_{1,n}\\) and \\(\tau_{1,n}\\) are negative for all angles of interest. Therefore, it is prudent to formulate the explicit coordinate representation of Equation 18.4 in the following way:
+As we shall soon see, the standard definitions of \\(a_n\\) and \\(b_n\\) often produce imaginary coefficients, while the expressions of \\(\pi_{1,n}\\) and \\(\tau_{1,n}\\) composed of elementary functions are negative. Therefore, for clarity, it makes sense to structure Equation 18.4 in the following way:
 
 $$ \tag{18.5}
 \begin{aligned}
@@ -6106,7 +6106,7 @@ $$ \tag{18.5}
 \end{aligned}
 $$
 
-We can identify a rotation of the incident electric field \\([E_X, E_Y]^T\\) around the \\(z\\)-axis; this results in the coordinate representation \\([E_x(\phi), E_y(\phi)]^T\\) relative to the plane of observation (cf. Equation 15.11 and Figure N).
+In addition to the benefits described above, it allows us identify a rotation of the incident electric field \\([E_X, E_Y]^T\\) around the \\(z\\)-axis. If we refer to Equation 15.11 and Figure N, we may recognize the components of the the phasor \\([E_x(\phi), E_y(\phi)]^T\\) defined relative to the plane of observation.
 
 If we specify the incident field at a certain coordinate \\(z < 0\\) and substitute the resulting phasor into Equation 18.5, the resulting expression is a perfect match for the template of Equation 15.16. This allows us to isolate the expression of the scattering matrix
 
@@ -6160,7 +6160,7 @@ $$
 
 Since \\(\phi \in [0, 2 \pi)\\) in a spherical coordinate system, the values of the argument of the polar functions are formally limited to the range of \\(\theta \in [0, \pi]\\), which corresponds to the upper half of a circle. Nevertheless, we are interested in the angular behavior of the scattered field for all possible directions of observation which, when taken together, form the surface of a unit sphere. We could approach this problem by plotting the 2-dimensional spherical distributions found in Equation 18.5; however, the resulting plots are fairly complicated, and it is much simpler to consider a slice of a unit sphere formed by two semicircles with \\(\phi = 0\\) and \\(\phi = \pi\\) instead.
 
-Since the electric field is also an odd function of \\(\theta\\),
+Since the scattered electric field is also an odd function of \\(\theta\\),
 
 $$ \tag{18.10}
 \begin{aligned}
@@ -6347,14 +6347,13 @@ Thus, we can estimate the asymptotic behavior of the expansion coefficients of t
 
 $$ \tag{18.19}
 \begin{aligned}
-  	a_n
-  	&\simeq -\frac{ u - 1 }
-  	{ (u - 1) - i (n (u + 1) + u) N x^{-2 n-1}
-  	},
+  	\frac{a_n}{i}
+  	&\simeq \frac{ 1 - u }
+  	{ N x^{-2 n-1} (n (u + 1) + u) - i (1 - u) },
 	\cr
-	b_n
-	&\simeq -\frac{u m^2 - 1}
-	{ (u m^2 - 1) + i (n (u m^2 + 1) + 1) N x^{-2 n-1} },
+	\frac{b_n}{i}
+	&\simeq \frac{u m^2 - 1}
+	{ N x^{-2 n-1} (n (u m^2 + 1) + 1) - i (u m^2 - 1) },
 \end{aligned}
 $$
 
@@ -6386,26 +6385,28 @@ $$ \tag{18.21}
 \end{aligned}
 $$
 
-However, for very small particles with \\(\vert m x \vert \ll 1\\), it is slightly more efficient to use a Taylor series expansion. Restricting ourselves to polynomials of degree 5, we obtain
+However, for very small particles with \\(\vert m x \vert \ll 1\\), it is slightly more efficient to use a Taylor series expansion. Restricting ourselves to polynomials of degree 6, we obtain
 
 $$ \tag{18.22}
 \begin{aligned}
-  	a_{1}'
-  	&= -i \frac{2}{3} \frac{u-1}{2 u+1} x^3
-  	+ i \frac{1}{5} \frac{u m^2+4 u^2-6 u+1}{(2 u+1)^2} x^5
-  	+ \mathrm{O}\big( x^6 \big),
-	\cr
-	b_{1}'
-	&= i \frac{2}{3} \frac{u m^2-1}{u m^2+2} x^3
-	+ i \frac{1}{5} \frac{u m^2 \left(u m^2 + m^2 - 6\right) + 4}{\left(u m^2+2\right)^2} x^5
-	+ \mathrm{O}\big( x^6 \big),
-	\cr
-  	a_{2}'
-  	&= -i \frac{1}{15} \frac{u-1}{3 u+2} x^5
+  	\frac{a_{1}}{i}
+  	&= \frac{2}{3} \frac{1-u}{1 + 2 u} x^3
+  	+ \frac{1}{5} \frac{u m^2+4 u^2-6 u+1}{(1 + 2 u)^2} x^5
+  	- i \frac{4}{9} \frac{(1-u)^2}{(1 + 2 u)^2} x^6
   	+ \mathrm{O}\big( x^7 \big),
 	\cr
-	b_{2}'
-	&= i \frac{1}{15} \frac{u m^2-1}{2 u m^2+3} x^5
+	\frac{b_{1}}{i}
+	&= \frac{2}{3} \frac{u m^2-1}{u m^2+2} x^3
+	+ \frac{1}{5} \frac{u^2 m^4 +u m^4 -6 u m^2 +4}{\left(u m^2+2\right)^2} x^5
+	- i \frac{4}{9} \frac{(u m^2 -1)^2}{(u m^2 +2)^2} x^6
+	+ \mathrm{O}\big( x^7 \big),
+	\cr
+  	\frac{a_{2}}{i}
+  	&= \frac{1}{15} \frac{1-u}{2 + 3 u} x^5
+  	+ \mathrm{O}\big( x^7 \big),
+	\cr
+	\frac{b_{2}}{i}
+	&= \frac{1}{15} \frac{u m^2-1}{2 u m^2+3} x^5
 	+ \mathrm{O}\big( x^7 \big).
 \end{aligned}
 $$
@@ -6414,20 +6415,21 @@ If the material is non-magnetic, we may set \\(u=1\\):
 
 $$ \tag{18.23}
 \begin{aligned}
-  	a_{1}'
-  	&= i \frac{1}{45} \left(m^2-1\right) x^5
-  	+ \mathrm{O}\big( x^6 \big),
+  	\frac{a_{1}}{i}
+  	&= \frac{1}{45} \left(m^2-1\right) x^5
+  	+ \mathrm{O}\big( x^7 \big),
 	\cr
-	b_{1}'
-	&= i \frac{2}{3} \frac{m^2-1}{m^2+2} x^3
-	+i \frac{2}{5} \frac{m^2 \left(m^2 - 3\right)+2}{\left(m^2+2\right)^2} x^5
-	+ \mathrm{O}\big( x^6 \big),
+	\frac{b_{1}}{i}
+	&= \frac{2}{3} \frac{m^2-1}{m^2+2} x^3
+	+\frac{2}{5} \frac{(m^2 - 1)(m^2 - 2)}{\left(m^2+2\right)^2} x^5
+	- i \frac{4}{9} \frac{(m^2 -1)^2}{(m^2 +2)^2} x^6
+	+ \mathrm{O}\big( x^7 \big),
 	\cr
-  	a_{2}'
+  	\frac{a_{2}}{i}
   	&= \mathrm{O}\big( x^7 \big),
 	\cr
-	b_{2}'
-	&= i \frac{1}{15} \frac{m^2-1}{2 m^2+3} x^5
+	\frac{b_{2}}{i}
+	&= \frac{1}{15} \frac{m^2-1}{2 m^2+3} x^5
 	+ \mathrm{O}\big( x^7 \big).
 \end{aligned}
 $$
@@ -6437,7 +6439,7 @@ Unexpectedly, for very small particles, the relationship between the electric an
 For small molecules, even the \\(x^5\\) term is often neglected. In this case, all coefficients except for
 
 $$ \tag{18.24}
-	b_{1}' \simeq i \frac{2}{3} \frac{m^2-1}{m^2+2} x^3
+	\frac{b_{1}}{i} \simeq \frac{2}{3} \frac{m^2-1}{m^2+2} x^3
 $$
 
 vanish. Equation 18.24 is the basis of the famous law of [Rayleigh scattering](https://en.wikipedia.org/wiki/Rayleigh_scattering) that explains the color of the sky: when molecules of the atmosphere scatter sunlight, the intensity of blue light, which has a shorter wavelength, is much greater than of the rest of the [visible spectrum](https://en.wikipedia.org/wiki/Visible_spectrum), since the size parameter \\(x\\) is inversely proportional to the wavelength \\(\lambda\\).
