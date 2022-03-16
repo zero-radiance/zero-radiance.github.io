@@ -6133,7 +6133,17 @@ $$
 
 This property is particularly useful for iterative evaluation of series, such as the one given by Equation 18.6.
 
-Assuming that \\(\theta \in [0, \pi]\\), the explicit form of the first three of these functions is
+The values of these functions at the ends of the \\([0, \pi]\\) interval must be determined by a careful limiting process. The final result is always an integer:
+
+$$ \tag{18.?}
+\begin{aligned}
+	-\tau_{1,n}(0) &= -\pi_{1,n}(0) = \frac{n (n+1)}{2},
+	\cr
+	-\tau_{1,n}(\pi) &= +\pi_{1,n}(0) = (-1)^n \frac{n (n+1)}{2}.
+\end{aligned}
+$$
+
+Assuming that \\(\theta \in [0, \pi]\\), the explicit form of the first three polar functions is
 
 $$ \tag{18.8}
 \begin{aligned}
@@ -6148,7 +6158,9 @@ $$ \tag{18.8}
 \end{aligned}
 $$
 
-However, in general, the polar functions are odd:
+Since \\(\phi \in [0, 2 \pi)\\) in a spherical coordinate system, the values of the argument of the polar functions are formally limited to the range of \\(\theta \in [0, \pi]\\), which corresponds to the upper half of a circle. Nevertheless, we are interested in the angular behavior of the scattered field for all possible directions of observation which, when taken together, form the surface of a unit sphere. We could approach this problem by plotting the 2-dimensional spherical distributions found in Equation 18.5; however, the resulting plots are fairly complicated, and it is much simpler to consider a slice of a unit sphere formed by two semicircles with \\(\phi = 0\\) and \\(\phi = \pi\\) instead.
+
+In general, \\(\pi_{1,n}\\) and \\(\tau_{1,n}\\) are odd functions of \\(\theta\\):
 
 $$ \tag{18.9}
 	\pi_{1,n}(-\theta) = -\pi_{1,n}(\theta),
@@ -6156,19 +6168,17 @@ $$ \tag{18.9}
 	\tau_{1,n}(-\theta) = -\tau_{1,n}(\theta).
 $$
 
-Since \\(\phi \in [0, 2 \pi)\\) in a spherical coordinate system, the values of the argument of the polar functions are formally limited to the range of \\(\theta \in [0, \pi]\\), which corresponds to the upper half of a circle. Nevertheless, we are interested in the angular behavior of the scattered field for all possible directions of observation which, when taken together, form the surface of a unit sphere. We could approach this problem by plotting the 2-dimensional spherical distributions found in Equation 18.5; however, the resulting plots are fairly complicated, and it is much simpler to consider a slice of a unit sphere formed by two semicircles with \\(\phi = 0\\) and \\(\phi = \pi\\) instead.
-
-Since the scattered electric field is also an odd function of \\(\theta\\),
+And because the scattered electric field is also an odd function of \\(\theta\\),
 
 $$ \tag{18.10}
 \begin{aligned}
 	\bm{E_s}(r, \theta, \phi + \pi, \omega)
-	= \bm{E_s}(r, -\theta, \phi, \omega)
-	= -\bm{E_s}(r, \theta, \phi, \omega),
+	= -\bm{E_s}(r, \theta, \phi, \omega)
+	= \bm{E_s}(r, -\theta, \phi, \omega),
 \end{aligned}
 $$
 
-we may use polar plots of \\(-\tau_{1,n}\\) and \\(-\pi_{1,n}\\) to illustrate the angular behavior of Equation 18.5.
+we may use the polar plots of \\(-\tau_{1,n}\\) and \\(-\pi_{1,n}\\) on the interval \\(\theta \in [-\pi, \pi]\\) to illustrate the angular behavior of Equation 18.5.
 
 {{< figure src="/img/polar_tau.svg" caption="*Figure N: Polar functions \\(-\tau\_{1,n}\\) of order n=1 (blue), n=2 (orange), n=3 (green). Dashed lines indicate negative values.*" >}}
 
@@ -6587,9 +6597,9 @@ $$
 
 We may observe that the intensity directly depends on the wavenumber \\(k\\) of the host medium, and indirectly on the size parameter \\(x\\), the relative wavenumber \\(m\\), and the reciprocal of the the relative permeability \\(u\\) through the Equation 17.156 of the expansion coefficients \\(a_n\\) and \\(b_n\\). Not all of these parameters are independent: for instance, \\(m\\) is a function of both \\(u\\) and \\(k\\), and the latter also influences \\(x\\) (since \\(x = k a\\)). In the following analysis, we shall use a simplified model by setting \\(u = 1\\), fixing the values of \\(k\\) and \\(m\\), and varying the size of the particle \\(a\\), thereby directly controlling the value of the size parameter \\(x\\).
 
-Consider a water droplet suspended in vacuum illuminated by orange light. Assuming the free-space wavelength \\(\lambda_0 = 600 \text{ nm}\\), the corresponding angular frequency is \\(\omega = 2 \pi c / \lambda_0 \approx 3.139 \times 10^{15} \text{ rad/s}\\). We may also use it to compute the value of the free-space wavenumber \\(k = 2 \pi / \lambda_0 \approx 1.047 \times 10^7 \text{ m}^{-1}\\). The comples index of refraction of [water](https://refractiveindex.info/?shelf=main&book=H2O&page=Hale) illuminated by \\(600 \text{ nm}\\) light is \\(\eta + i \kappa \approx 1.332 + i 1.09 \times 10^{-8}\\), and, if the host medium is vacuum, \\(m = \eta + i \kappa\\).
+Consider a water droplet suspended in vacuum illuminated by orange light. Assuming the free-space wavelength \\(\lambda_0 = 600 \text{ nm}\\), the corresponding angular frequency is \\(\omega = 2 \pi c / \lambda_0 \approx 3.139 \times 10^{15} \text{ rad/s}\\). We may also use the free-space wavelength to compute the wavenumber \\(k = k_0 = 2 \pi / \lambda_0 \approx 1.047 \times 10^7 \text{ m}^{-1}\\). The index of refraction of [water](https://refractiveindex.info/?shelf=main&book=H2O&page=Hale) illuminated by visible light is \\(\eta + i \kappa \approx 4/3\\). If the host medium is vacuum, then \\(m = \eta + i \kappa\\).
 
-The smallest possible water droplet we can consider is a [single molecule](https://water.lsbu.ac.uk/water/water_molecule.html) of radius \\(a \approx 0.1375 \text{ nm}\\), which leads to \\(x = k a \approx 1.44 \times 10^{-3}\\). If we ignore the anisotropy of the molecule and imagine it as a sphere, we can compute its scattered intensity using the Lorenz-Mie-Debye theory and display it on a polar plot shown below.
+The smallest possible water droplet we can consider is a [single molecule](https://water.lsbu.ac.uk/water/water_molecule.html) of radius \\(a \approx 0.1375 \text{ nm}\\), which corresponds to \\(x = k a \approx 1.44 \times 10^{-3}\\). If we ignore the anisotropy of the molecule and imagine it as a sphere, we can compute its scattered intensity using the Lorenz-Mie-Debye theory and display it on a polar plot shown below.
 
 {{< figure src="/img/water_molecule.svg" caption="*Figure N: Scattered intensity of a water molecule (solid line). The vertical and the horizontal intensities are plotted using dashed and dotted lines, respectfully.*" >}}
 
