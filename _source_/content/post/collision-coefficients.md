@@ -3715,7 +3715,7 @@ $$ \tag{16.17}
 \end{aligned}
 $$
 
-The \\(\bm{S_e}\\) term shows that the incident and the scattered waves interfere. In order to determine the extent it influences the flow of energy, we must once again integrate the time-averaged Poynting vector over a closed surface:
+The \\(\bm{S_e}\\) term shows that *the incident and the scattered waves interfere*. In order to determine the extent it influences the flow of energy, we must once again integrate the time-averaged Poynting vector over a closed surface:
 
 $$ \tag{16.18}
 	\Delta \Phi
@@ -3905,7 +3905,7 @@ $$ \tag{16.33}
 	= -\mathcal{Im} \big\lbrace \bm{E_0^{\*}} \cdot \bm{E_1} \big\rbrace
 $$
 
-is a real number. Thus, the total amount of power dissipated by the particle
+is a real number. Thus, the total amount of power dissipated by the particle (which is the amount of energy removed from the incident wave)
 
 $$ \tag{16.34}
 	\Phi_e
@@ -5981,7 +5981,7 @@ $$
 
 These functions have radically different behavior, yet correctly guessing the function given the first few terms of its series expansion is a nontrivial task. And even if the function were known, the method of derivation still obscures the mechanism of the underlying physical process.
 
-The problem is exacerbated by the convergence properties of the series. It was shown by Debye (1909) that, for points in the radiation zone, the asymptotic expression (for large \\(x\\)) of the scattered field  requires on the order of \\(n \backsim x\\) terms; this number can reach \\(x = 2 \pi (2 \text{ mm} / 380 \text{ nm}) \approx 33000 \\) for large rain drops illuminated by visible light, making computation impractical.
+The problem is exacerbated by the convergence properties of the series. It was shown by Debye (1909) that, for points in the radiation zone, the asymptotic expression (for large \\(x\\)) of the scattered field  requires on the order of \\(n \backsim x\\) terms; this number can reach \\(x = 2 \pi (1 \text{ mm} / 380 \text{ nm}) = 16535 \\) for large [raindrops](https://glossary.ametsoc.org/wiki/Raindrop) illuminated by visible light, making computation impractical.
 
 #### Partial Waves
 
@@ -6597,7 +6597,7 @@ $$
 
 We may observe that the intensity directly depends on the wavenumber \\(k\\) of the host medium, and indirectly on the size parameter \\(x\\), the relative wavenumber \\(m\\), and the reciprocal of the the relative permeability \\(u\\) through the Equation 17.156 of the expansion coefficients \\(a_n\\) and \\(b_n\\). Not all of these parameters are independent: for instance, \\(m\\) is a function of both \\(u\\) and \\(k\\), and the latter also influences \\(x\\) (since \\(x = k a\\)). In the following analysis, we shall use a simplified model by setting \\(u = 1\\), fixing the values of \\(k\\) and \\(m\\), and varying the size of the particle \\(a\\), thereby directly controlling the value of the size parameter \\(x\\).
 
-Consider a water droplet suspended in vacuum illuminated by orange light. Assuming the free-space wavelength \\(\lambda_0 = 600 \text{ nm}\\), the corresponding angular frequency is \\(\omega = 2 \pi c / \lambda_0 \approx 3.139 \times 10^{15} \text{ rad/s}\\). We may also use the free-space wavelength to compute the wavenumber \\(k = k_0 = 2 \pi / \lambda_0 \approx 1.047 \times 10^7 \text{ m}^{-1}\\). The index of refraction of [water](https://refractiveindex.info/?shelf=main&book=H2O&page=Hale) illuminated by visible light is \\(\eta + i \kappa \approx 4/3\\). If the host medium is vacuum, then \\(m = \eta + i \kappa\\).
+Consider a water droplet suspended in vacuum illuminated by orange light. Assuming the free-space wavelength \\(\lambda_0 = 600 \text{ nm}\\), the corresponding wavenumber is \\(k = k_0 = 2 \pi / \lambda_0 \approx 0.01 \text{ nm}^{-1}\\). The index of refraction of [water](https://refractiveindex.info/?shelf=main&book=H2O&page=Hale) under visible light is \\(\eta + i \kappa \approx 4/3\\). And if the host medium is vacuum, then \\(m = \eta + i \kappa\\).
 
 The smallest possible water droplet we can consider is a [single molecule](https://water.lsbu.ac.uk/water/water_molecule.html) of radius \\(a \approx 0.1375 \text{ nm}\\), which corresponds to \\(x = k a \approx 0.00144\\). If we ignore the anisotropy of the molecule and imagine it as a sphere, we can compute its scattered intensity using the Lorenz-Mie-Debye theory and display it on a polar plot shown below.
 
