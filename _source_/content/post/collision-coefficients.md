@@ -5981,7 +5981,7 @@ $$
 
 These functions have radically different behavior, yet correctly guessing the function given the first few terms of its series expansion is a nontrivial task. And even if the function were known, the method of derivation still obscures the mechanism of the underlying physical process.
 
-The problem is exacerbated by the convergence properties of the series. It was shown by Debye (1909) that, for points in the radiation zone, the asymptotic expression (for large \\(x\\)) of the scattered field  requires on the order of \\(n \backsim x\\) terms; this number can reach \\(x = k a = 2 \pi (3 \text{ mm} / 380 \text{ nm}) \approx 49600 \\) for large rain drops illuminated by visible light, making the computation impractical.
+The problem is exacerbated by the convergence properties of the series. It was shown by Debye (1909) that, for points in the radiation zone, the asymptotic expression (for large \\(x\\)) of the scattered field  requires on the order of \\(n \backsim x\\) terms; this number can reach \\(x = 2 \pi (2 \text{ mm} / 380 \text{ nm}) \approx 33000 \\) for large rain drops illuminated by visible light, making computation impractical.
 
 #### Partial Waves
 
@@ -6139,7 +6139,7 @@ $$ \tag{18.?}
 \begin{aligned}
 	-\tau_{1,n}(0) &= -\pi_{1,n}(0) = \frac{n (n+1)}{2},
 	\cr
-	-\tau_{1,n}(\pi) &= +\pi_{1,n}(0) = (-1)^n \frac{n (n+1)}{2}.
+	-\tau_{1,n}(\pi) &= +\pi_{1,n}(\pi) = (-1)^n \frac{n (n+1)}{2}.
 \end{aligned}
 $$
 
@@ -6599,11 +6599,27 @@ We may observe that the intensity directly depends on the wavenumber \\(k\\) of 
 
 Consider a water droplet suspended in vacuum illuminated by orange light. Assuming the free-space wavelength \\(\lambda_0 = 600 \text{ nm}\\), the corresponding angular frequency is \\(\omega = 2 \pi c / \lambda_0 \approx 3.139 \times 10^{15} \text{ rad/s}\\). We may also use the free-space wavelength to compute the wavenumber \\(k = k_0 = 2 \pi / \lambda_0 \approx 1.047 \times 10^7 \text{ m}^{-1}\\). The index of refraction of [water](https://refractiveindex.info/?shelf=main&book=H2O&page=Hale) illuminated by visible light is \\(\eta + i \kappa \approx 4/3\\). If the host medium is vacuum, then \\(m = \eta + i \kappa\\).
 
-The smallest possible water droplet we can consider is a [single molecule](https://water.lsbu.ac.uk/water/water_molecule.html) of radius \\(a \approx 0.1375 \text{ nm}\\), which corresponds to \\(x = k a \approx 1.44 \times 10^{-3}\\). If we ignore the anisotropy of the molecule and imagine it as a sphere, we can compute its scattered intensity using the Lorenz-Mie-Debye theory and display it on a polar plot shown below.
+The smallest possible water droplet we can consider is a [single molecule](https://water.lsbu.ac.uk/water/water_molecule.html) of radius \\(a \approx 0.1375 \text{ nm}\\), which corresponds to \\(x = k a \approx 0.00144\\). If we ignore the anisotropy of the molecule and imagine it as a sphere, we can compute its scattered intensity using the Lorenz-Mie-Debye theory and display it on a polar plot shown below.
 
-{{< figure src="/img/water_molecule.svg" caption="*Figure N: Scattered intensity of a water molecule (solid line). The vertical and the horizontal intensities are plotted using dashed and dotted lines, respectfully.*" >}}
+{{< figure src="/img/water_molecule.svg" caption="*Figure N: Linear plot of the scattered intensity of a water droplet of size \\(x = 0.00144\\) (solid line). The vertical and the horizontal intensities are plotted using the dashed and the dotted lines, respectfully.*" >}}
 
 We can observe that the intensity distribution is symmetric with respect to the vertical plane containing the incident electric field vector. At the same time, while the horizontal component is isotropic, the value of the vertical component is 0 at the angle of 90 degrees. Comparison with the plots of the polar functions (Figures N and M) shows that only the functions of the first order are present, indicating that the intensity of molecular scattering is dominated by the contribution of first electric partial wave, with the molecule acting as an electric dipole.
+
+When the size of the droplet approaches the wavelength (\\(x \to 1\\)), the Mie effect becomes apparent: both the horizontal and the vertical components start to compress and shift towards the forward direction.
+
+{{< figure src="/img/water_x1.svg" caption="*Figure N: Linear plot of the scattered intensity of a water droplet of size \\(x = 1\\) (solid line). The vertical and the horizontal intensities are plotted using the dashed and the dotted lines, respectfully.*" >}}
+
+As the size of the particle increases, the two components continue to converge towards their average.
+
+{{< figure src="/img/water_x2.svg" caption="*Figure N: Linear plot of the scattered intensity of a water droplet of size \\(x = 2\\) (solid line). The vertical and the horizontal intensities are plotted using the dashed and the dotted lines, respectfully.*" >}}
+
+For particles much larger than the wavelength (\\(x \gg 1\\)), we can observe the formation of the secondary interference structure around the forward direction. Rainbow... changes with the wavelength...
+
+{{< figure src="/img/water_x10.svg" caption="*Figure N: Linear plot of the scattered intensity of a water droplet of size \\(x = 10\\).*" >}}
+
+Let us now consider the case of a typical [cloud droplet](https://ntrs.nasa.gov/citations/20160014659) of radius \\(a \approx 10 \text{ μm}\\), which corresponds to \\(x \approx 104.7\\).
+
+{{< figure src="/img/water_cloud.svg" caption="*Figure N: Logarithmic plot of the scattered intensity of a water droplet of size \\(x = 104.7\\).*" >}}
 
 ---
 
