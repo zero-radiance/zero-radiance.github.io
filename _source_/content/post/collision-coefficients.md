@@ -4071,7 +4071,7 @@ The Lorenz-Mie-Debye theory presents a rigorous solution to the problem of [diff
 
 The original theory was independently formulated by Lorenz (1890), Mie (1908), and Debye (1909). The derivation of the relevant formulae can be found in many popular textbooks, such as \[[4](#references) (ch. 9), [6](#references) (ch. 14.5)\]. A more mathematically elegant treatment of the problem was given by Hansen in a series of papers (1935, 1936, 1937). It has also been presented in a recent open access paper \[[15](#references)\], which we use as the foundation of this section.
 
-The general idea behind the solution is fairly simple. We treat electromagnetic scattering as a boundary value problem. If we expand the expression of the electromagnetic field in series of vector harmonics, the boundary conditions take a particularly simple form, which can be harnessed to find the (initially unknown) coefficients of the series expansion.
+The general idea behind the solution is fairly simple. We treat electromagnetic scattering as a boundary value problem. If we expand the expression of the electromagnetic field in series of vector spherical harmonics, the boundary conditions take a particularly simple form, which can be harnessed to find the (initially unknown) coefficients of the series expansion.
 
 Consider the Maxwell equations in a linear, isotropic, homogeneous region of space given by Equation 6.3. We have seen that, after a number of transformations, they are reduced to a *vector* Helmholtz equation
 
@@ -4364,7 +4364,7 @@ $$
 
 Going forward, we shall focus on the set of vectors \\(\lbrace \bm{L\_{m,n}}, \bm{M\_{m,n}}, \bm{N\_{m,n}} \rbrace\\) produced with the choice of \\(\bm{a} = \bm{r}\\). We have just demonstrated some of their basic properties, and we now can begin to apply them to simple problems.
 
-Suppose that we have obtained the coefficients of the vector spherical wave series expansion of the electromagnetic potential (given by Equation 17.13). How can we find the associated electric and magnetic fields?
+Suppose that we have obtained the coefficients of the series expansion of the electromagnetic potential given by Equation 17.13. How can we find the associated electric and magnetic fields?
 
 According to Equations 17.2.1, 17.11, 17.13, and 17.17,
 
@@ -4475,47 +4475,21 @@ $$ \tag{17.44}
 \end{aligned}
 $$
 
-where \\(m\\) and \\(n\\) are integers, \\(c_{m,n}\\) is a complex constant, \\(N_{m,n}\\) is a certain normalization constant, \\(z_n\\) is a [spherical Bessel function](https://en.wikipedia.org/wiki/Bessel_function#Spherical_Bessel_functions:_jn,_yn) of order \\(n\\), and \\(P_n^m\\) is an [associated Legendre polynomial](https://en.wikipedia.org/wiki/Associated_Legendre_polynomials) of degree \\(n\\) and order \\(m\\). Note that, as expected, the solution depends on the distance \\(r\\) only through the phase difference \\(k r\\).
-
-We would like to point out that the same solution can be written in a slightly different way \[[17](#references) (ch 7.3)\]:
-
-$$ \tag{17.45}
-	\psi_{^e_o,m,n}(\bm{r})
-	= z_n(k r) P_n^m(\cos{\theta})
-	\negthickspace \begin{array}{cc}
-	   \cos \cr
-	   \sin
-	\end{array} \negthickspace (m \phi).
-$$
-
-There is no essential difference (except for readability). The solution given by Equation 17.45 assumes that \\(m \geq 0\\). If we allow all positive and negative values of \\(|m| \leq n\\), we can always construct the real solutions from the complex ones, since, according to [Euler's formula](https://en.wikipedia.org/wiki/Euler%27s_formula#Relationship_to_trigonometry),
-
-$$ \tag{17.46}
-	\cos(m \phi) = \frac{1}{2} \Big( e^{i m \phi} + e^{-i m \phi} \Big),
-	\quad
-	\sin(m \phi) = \frac{1}{2 i} \Big( e^{i m \phi} - e^{-i m \phi} \Big),
-$$
-
-and the associated Legendre polynomials of negative orders differ from their positive counterparts by a [constant](https://en.wikipedia.org/wiki/Associated_Legendre_polynomials#Negative_m_and/or_negative_%E2%84%93)
-
-$$ \tag{17.47}
-	P_n^{-m}
-	= (-1)^m \frac{(n - m)!}{(n + m)!} P_n^m.
-$$
+where \\(m\\) and \\(n\\) are integers \\((n \ge 0)\\), \\(c_{m,n}\\) is a complex constant, \\(N_{m,n}\\) is a certain normalization constant, \\(z_n\\) is a [spherical Bessel function](https://en.wikipedia.org/wiki/Bessel_function#Spherical_Bessel_functions:_jn,_yn) of order \\(n\\), and \\(P_n^m\\) is an [associated Legendre polynomial](https://en.wikipedia.org/wiki/Associated_Legendre_polynomials) of degree \\(n\\) and order \\(m\\). Note that, as expected, the solution depends on the distance \\(r\\) only through the phase difference \\(k r\\).
 
 Let us begin by examining the radial functions \\(z_n(k r)\\). They may be used to represent any of the three kinds of *spherical Bessel functions* \[[17](#references) (ch 7.4)\]:
 
 $$ \tag{17.48}
 \begin{aligned}
-	& j_n(x) = \sqrt{\frac{\pi}{2 x}} J_{n+1/2}(x), &
+	& j_n(x) = \sqrt{\frac{\pi}{2 x}} J_{n+1/2}(x),
+	&
 	& y_n(x) = \sqrt{\frac{\pi}{2 x}} Y_{n+1/2}(x),
-	\cr
-	& h_n^{(1)}(x) = \sqrt{\frac{\pi}{2 x}} H_{n+1/2}^{(1)}(x), &
-	& h_n^{(2)}(x) = \sqrt{\frac{\pi}{2 x}} H_{n+1/2}^{(2)}(x),
+	&
+	& h_n^{(k)}(x) = \sqrt{\frac{\pi}{2 x}} H_{n+1/2}^{(k)}(x),
 \end{aligned}
 $$
 
-where \\(J_n\\) and \\(Y_n\\) are the [Bessel functions](https://en.wikipedia.org/wiki/Bessel_function) of the first and the second kind, while \\(H_n^{(1)}\\) and \\(H_n^{(2)}\\) are the [Hankel functions](https://en.wikipedia.org/wiki/Bessel_function#Hankel_functions:_H(1)%CE%B1,\_H(2)%CE%B1) of the first and the second kind. The latter are related to the Bessel functions in a very simple manner:
+where \\(J_n\\), \\(Y_n\\), and \\(H_n^{(k)}\\) are the [Bessel functions](https://en.wikipedia.org/wiki/Bessel_function) of the first, the second, and the third kind, respectively. More specifically, \\(H_n^{(1)}\\) and \\(H_n^{(2)}\\) are called the [Hankel functions](https://en.wikipedia.org/wiki/Bessel_function#Hankel_functions:_H(1)%CE%B1,\_H(2)%CE%B1) of the first and the second kind, and they are related to the ordinary Bessel functions in a very simple manner:
 
 $$ \tag{17.49}
 	H_n^{(1)}(x) = J_n(x) + i Y_n(x),
@@ -4523,14 +4497,30 @@ $$ \tag{17.49}
 	H_n^{(2)}(x) = J_n(x) - i Y_n(x).
 $$
 
-\\(H_n^{(1)}\\) and \\(H_n^{(2)}\\) are also collectively known as Bessel functions of the third kind.
-
-All spherical Bessel functions satisfy the recurrence relations \[[17](#references) (ch 7.4)\]
+All spherical Bessel functions satisfy the [recurrence relations](https://dlmf.nist.gov/10.51) \[[17](#references) (ch 7.4)\]
 
 $$ \tag{17.50}
 	\frac{z_n(x)}{x} = \frac{z_{n-1}(x) + z_{n+1}(x)}{2 n + 1},
 	\quad
 	\frac{\partial z_n(x)}{\partial x} = \frac{n z_{n-1}(x) - (n + 1) z_{n+1}(x)}{2 n + 1}.
+$$
+
+This implies that we can compute the value of the spherical Bessel function (or its derivative) of any order \\(n\\) if we utilize the [closed-form expressions](https://dlmf.nist.gov/10.49) of the functions of the orders 0 and 1:
+
+$$ \tag{17.51}
+\begin{aligned}
+	& j_0(x) = \frac{\sin{x}}{x},
+	&
+	& j_1(x) = \frac{j_0(x)}{x} + y_0(x),
+	&
+	& j_n(x) = (2 n - 1) \frac{j_{n-1}(x)}{x} - j_{n-2}(x),
+	\cr
+	& y_0(x) = -\frac{\cos{x}}{x},
+	&
+	& y_1(x) = \frac{y_0(x)}{x} - j_0(x),
+	&
+	& y_n(x) = (2 n - 1) \frac{y_{n-1}(x)}{x} - y_{n-2}(x).
+\end{aligned}
 $$
 
 As expected from the general scattering theory, the behavior of these functions is rather different depending on whether the magnitude of the argument is very large or very small.
@@ -4539,19 +4529,11 @@ As expected from the general scattering theory, the behavior of these functions 
 
 {{< figure src="/img/spherical_bessel_y.svg" caption="*Figure N: Spherical Bessel functions of the second kind of order n=0 (blue), n=1 (orange), n=2 (green), n=3 (red).*" >}}
 
-For small values of the argument, the behavior is both varied and relatively complicated. In particular, the functions of the first kind take on finite values, while the functions of the second kind diverge at the origin. In the radiation zone, as \\(k r \to \infin\\), both types of functions behave as decaying sine waves, which can be clearly seen on the plot below.
+For small values of the argument, the behavior is both varied and relatively complicated. In particular, the functions of the first kind take on finite values, while the functions of the second kind diverge at the origin. In the radiation zone, as \\(k r \to \infin\\), both types of functions behave as decaying sine waves.
 
 {{< figure src="/img/spherical_hankel_1.svg" caption="*Figure N: Spherical Hankel functions of the first kind of order n=0 (blue), n=1 (orange), n=2 (green), n=3 (red). Solid lines correspond to the real part, while the imaginary part is drawn using dashed lines.*" >}}
 
-From the graph above, or, alternatively, from Rayleigh's formulae
-
-$$ \tag{17.51}
-	j_n(x) = (-x)^n \bigg( \frac{1}{x} \frac{d}{dx} \bigg)^n \frac{\sin{x}}{x},
-	\quad
-	y_n(x) = -(-x)^n \bigg( \frac{1}{x} \frac{d}{dx} \bigg)^n \frac{\cos{x}}{x},
-$$
-
-we can deduce that, for large values of the argument, the spherical Bessel functions of the first and the second kinds differ in phase by a factor of \\(\pi\\). The latter is prominently featured in the [asymptotic forms](https://dlmf.nist.gov/10.52) (for \\(\vert x \vert \gg 1\\) and \\(\vert x \vert \gg n\\))
+For large values of the argument, the spherical Bessel functions of the first and the second kinds differ in phase by a factor of \\(\pi\\). The latter is prominently featured in the [asymptotic forms](https://dlmf.nist.gov/10.52) (for \\(\vert x \vert \gg 1\\) and \\(\vert x \vert \gg n\\))
 
 $$ \tag{17.52}
 \begin{aligned}
@@ -4590,20 +4572,25 @@ plotted below:
 
 The degree of a polynomial is also the number of zeros of the function. Coupled with the fact that \\(P_n(\cos{\theta})\\) is independent of \\(\phi\\), we can observe that the Legendre polynomial of degree \\(n\\) divides the surface of a sphere into \\(n + 1\\) zones of alternating sign. For this reason, the family of functions \\(P_n(\cos{\theta})\\) is sometimes referred to as *zonal harmonics*.
 
-The situation changes when \\(m \neq 0\\):
+If \\(0 < m \leq n\\), we can derive the formulae of the associated Legendre polynomials from the unassociated ones:
 
 $$ \tag{17.55}
 	P_n^m(x)
 	= (-1)^m (1 - x^2)^{m/2} \frac{\partial^m}{\partial x^m} P_n(x).
-	\quad
-	(m \geq 0)
+$$
+
+The polynomials of negative orders differ from their positive counterparts by a [constant](https://en.wikipedia.org/wiki/Associated_Legendre_polynomials#Negative_m_and/or_negative_%E2%84%93):
+
+$$ \tag{17.47}
+	P_n^{-m}
+	= (-1)^m \frac{(n - m)!}{(n + m)!} P_n^m.
 $$
 
  As can be seen from the graph below, the value of the associated Legendre polynomial \\(P_n^m(\cos{\theta})\\) goes to zero at \\(\cos{\theta} = \pm 1\\). In addition, the total number of zeros of the function is \\(n - m + 2\\).
 
-{{< figure src="/img/assoc_legendre.svg" caption="*Figure N: Associated Legendere polynomials of degree 3 and order \\(m=0\\) (blue), \\(m=1\\) (orange), \\(m=2\\) (green), \\(m=3\\) (red).*" >}}
+{{< figure src="/img/assoc_legendre.svg" caption="*Figure N: Associated Legendere polynomials of degree 3 and order \\(m=1\\) (blue), \\(m=2\\) (orange), \\(m=3\\) (green).*" >}}
 
-We are now ready to interpret the entire Equation 17.53. Since that function has harmonic dependence on \\(\phi\\), if we plot one of its parts (either real or imaginary), we can observe that it divides the surface of a sphere into \\(2 m \times (n - m + 1)\\) rectangular domains, or tesserae. Thus, \\(P_n^m(\cos{\theta}) \cos(m \phi)\\) and \\(P_n^m(\cos{\theta}) \sin(m \phi)\\) are called *tesseral harmonics* for \\(m < n\\) and *sectorial harmonics* for \\(m = n\\).
+We are now ready to interpret the entire Equation 17.53. Since that function has harmonic dependence on \\(\phi\\), if we plot one of its parts (either real or imaginary), we can observe that it divides the surface of a sphere into \\(2 m \times (n - m + 1)\\) rectangular domains, or tesserae. Thus, \\(P_n^m(\cos{\theta}) \cos(m \phi)\\) and \\(P_n^m(\cos{\theta}) \sin(m \phi)\\) are called the even and odd *tesseral harmonics* (and, occasionally, *sectorial harmonics* if \\(m = n\\)).
 
 {{< figure src="/img/assoc_legendre_3.png" caption="*Figure N: Tesseral harmonics of degree 3 and order \\(m=1\\) (left), \\(m=2\\) (center), \\(m=3\\) (right). Warm colors correspond to positive values of the function, and cold colors - to negative values.*" >}}
 
@@ -4634,9 +4621,9 @@ $$
 
 where \\(\delta_{m,n}\\) is the Kronecker delta function given by Equation 4.6.
 
-Remarkably, by means of double integration over \\(\theta\\) and \\(\phi\\), these two facts can be combined to show that the tesseral (and sectorial) harmonics \\(P_n^m(\cos{\theta}) \cos(m \phi)\\) and \\(P_n^m(\cos{\theta}) \sin(m \phi)\\) form a *complete orthogonal system* of basis functions on the surface of a sphere \[[18](#references) (ch 7.5)\].
+Remarkably, by means of double integration over \\(\theta\\) and \\(\phi\\), these two facts can be combined to show that the tesseral harmonics \\(P_n^m(\cos{\theta}) \cos(m \phi)\\) and \\(P_n^m(\cos{\theta}) \sin(m \phi)\\) form a *complete orthogonal system* of basis functions on the surface of a sphere \[[18](#references) (ch 7.5)\].
 
-Tesseral harmonics are [real-valued basis functions](https://en.wikipedia.org/wiki/Spherical_harmonics#Real_form), which is sufficient for most problems. However, the theory can be trivially extended to complex values by combining even and odd tesseral harmonics according to Equation 17.53. This directly leads to the definition of [scalar spherical harmonics](https://en.wikipedia.org/wiki/Spherical_harmonics)
+Tesseral harmonics are [real-valued basis functions](https://en.wikipedia.org/wiki/Spherical_harmonics#Real_form), which is sufficient for most problems. However, the theory can be trivially extended to complex values by combining the tesseral harmonics according to Equation 17.53. This directly leads to the definition of [scalar spherical harmonics](https://en.wikipedia.org/wiki/Spherical_harmonics)
 
 $$ \tag{17.58}
 	Y_n^m(\theta, \phi)
@@ -4761,9 +4748,12 @@ $$
 The expressions given above may be shortened by defining two new polar functions
 
 $$ \tag{17.68}
-	\pi_{m,n}(\theta) = m \frac{P_n^m(\cos{\theta})}{\sin{\theta}},
+	\pi_{m,n}(\theta)
+	= m \frac{P_n^m(\cos{\theta})}{\sin{\theta}},
 	\quad
-	\tau_{m,n}(\theta) = \frac{\partial P_n^m(\cos{\theta})}{\partial \theta},
+	\tau_{m,n}(\theta)
+	= \frac{\partial P_n^m(\cos{\theta})}{\partial \theta}
+	= -\sin{\theta} \frac{\partial P_n^m(\cos{\theta})}{\partial (\cos{\theta})},
 $$
 
 that satisfy the modified Legendre's differential equation (cf. Equations 17.41.2 and 17.42)
@@ -5571,7 +5561,7 @@ $$
 
 it simply expresses the fact that the angle between the \\(x\\) and \\(y\\) axes is 90 degrees. This introduces a phase shift: if the \\(y\\)-wave behaves as \\(\sin{\theta}\\) (or \\(\cos{\theta}\\)), then the \\(x\\)-wave is proportional to \\(\cos{\theta}\\) (or \\(-\sin{\theta}\\)) instead.
 
-Another way to show this is by introducing the even and odd vector spherical functions
+Another way to show this is by introducing the even and odd vector tesseral wave functions
 
 $$ \tag{17.135}
 \begin{aligned}
@@ -5598,9 +5588,17 @@ $$ \tag{17.135}
 \end{aligned}
 $$
 
-that mirror Euler's formulae of Equation 17.46.
+by mirroring [Euler's formulae](https://en.wikipedia.org/wiki/Euler%27s_formula#Relationship_to_trigonometry)
 
-Using the definitions of the vector spherical harmonics (Equations 17.72-17.73) and the vector spherical wave functions (Equations 17.80-17.81), it may be shown that the functions of Equation 17.135 are weighted combinations of the (real) vector tesseral (and sectorial) harmonics \\(\bm{\Upsilon_{^e_o,m,n}}, \bm{\Phi_{^e_o,m,n}}, \bm{\Psi_{^e_o,m,n}}\\). In order to save some space, we shall simply state the resulting expressions below:
+$$
+	\cos(m \phi) = \frac{1}{2} \Big( e^{i m \phi} + e^{-i m \phi} \Big),
+	\quad
+	\sin(m \phi) = \frac{1}{2 i} \Big( e^{i m \phi} - e^{-i m \phi} \Big),
+$$
+
+and accounting for the symmetry property of the vector spherical harmonics given by Equation 17.73.
+
+Using the definitions of the vector spherical harmonics (Equations 17.72-17.73) and the vector spherical wave functions (Equations 17.80-17.81), it may be shown that the functions of Equation 17.135 are weighted combinations of the (real) vector tesseral harmonics \\(\bm{\Upsilon_{^e_o,m,n}}, \bm{\Phi_{^e_o,m,n}}, \bm{\Psi_{^e_o,m,n}}\\). In order to save some space, we shall simply state the resulting expressions below:
 
 $$ \tag{17.136}
 \begin{aligned}
@@ -5668,9 +5666,9 @@ $$
 
 Equation 17.137 can be found in \[[17](#references) (ch 7.11)\]. The author does not show the entire derivation, and, unfortunately, arrives at the result with the opposite sign.
 
-Note that, since the odd and the even vector harmonics are used to represent the \\(x\\) and \\(y\\) components of the fields, they can, in general, be obtained by performing 90 degree rotations:
+Note that, since the vector tesseral wave functions are used to represent the \\(x\\) and \\(y\\) components of the fields, we can transform the odd functions into the even ones by performing a 90 degree rotation:
 
-$$ \tag{17.????}
+$$ \tag{17.???}
 \begin{aligned}
 	\bm{L_{e,m,n}}(r, \theta, \phi) &= \bm{L_{o,m,n}} \bigg( r, \theta, \phi + \frac{\pi}{2 m} \bigg),
 	\cr
@@ -5941,7 +5939,7 @@ Note that the numerators of Equations 17.157.1 and 17.157.2 are the same. Thus, 
 
 {{< figure src="/img/riccati_chi.svg" caption="*Figure N: Riccati-Bessel functions of the second kind of order n=1 (blue), n=2 (orange), n=3 (green).*" >}}
 
-Now, recall the transformation of the expression of the incident field (Equations 17.133-17.137), where we introduced the even and off vector spherical functions. Since the expansion coefficients of the scattered and the internal fields differ from those of the incident field only by a multiplicative factor, it is easy to see that the overall structure of the expression remains the same; novel expressions, such as that of the scattered field, can be obtained by attaching the corresponding factors to the spherical wave function vectors:
+Now, recall the transformation of the expression of the incident field (Equations 17.133-17.137), where we introduced the vector tesseral wave functions. Since the expansion coefficients of the scattered and the internal fields differ from those of the incident field only by a multiplicative factor, it is easy to see that the overall structure of the expression remains the same; novel expressions, such as that of the scattered field, can be obtained by attaching the corresponding factors to the tesseral vectors:
 
 $$ \tag{17.158}
 \begin{aligned}
@@ -5990,21 +5988,14 @@ The most straightforward interpretation of Equations 17.158 and 17.159 treats th
 We may also show that the field becomes transverse in the radiation zone (see Equation 13.14 for the case of a scattering object of an arbitrary shape). Using the asymptotic expressions of the spherical Bessel functions (for \\(\vert x \vert \gg 1\\) and \\(\vert x \vert \gg n\\)) given by Equation 17.52, the corresponding Riccati-Bessel functions (and their derivatives) take the form
 
 $$ \tag{18.2}
-\small
 \begin{aligned}
 	& \psi_n(x) = \sin\negmedspace\Big( x - \frac{\pi n}{2} \Big)
-	+ \mathrm{O}\big( x^{-1} \big),
-	&
-	& \chi_n(x) = -\cos\negmedspace\Big( x - \frac{\pi n}{2} \Big)
 	+ \mathrm{O}\big( x^{-1} \big),
 	&
 	& \xi_n(x) = i^{-n-1} e^{i x}
 	+ \mathrm{O}\big( x^{-1} \big),
 	\cr
 	& \psi_n'(x) = \cos\negmedspace\Big( x - \frac{\pi n}{2} \Big)
-	+ \mathrm{O}\big( x^{-2} \big),
-	&
-	& \chi_n'(x) = \sin\negmedspace\Big( x - \frac{\pi n}{2} \Big)
 	+ \mathrm{O}\big( x^{-2} \big),
 	&
 	& \xi_n'(x) = i^{-n} e^{i x}
@@ -6119,21 +6110,37 @@ $$
 
 It is both diagonal and independent of the azimuthal angle \\(\phi\\). This is consistent with the predictions of the general scattering theory of spherical particles of Section 15.
 
-We can study the angular dependence of the scattering matrix by analyzing the polar functions \\(\pi_{1,n}\\) and \\(\tau_{1,n}\\) given by Equation 17.68. Using the definition of the associated Legendre polynomials (see Equations 17.54 and 17.55), it can be shown that the polar functions satisfy the recurrence relations
+We can study the angular dependence of the scattering matrix by analyzing the polar functions \\(\pi_{1,n}\\) and \\(\tau_{1,n}\\) given by Equation 17.68. Using the definition of the associated Legendre polynomials (see Equations 17.54 and 17.55), it can be shown \[cite B&H?\] that the polar functions satisfy the recurrence relations
 
 $$ \tag{18.7}
 \begin{aligned}
+	-\pi_{1,1}(\theta) &= \mathrm{sign}(\theta),
+	&
 	\pi_{1,n}(\theta)
 	&= \frac{2 n - 1}{n - 1}\cos(\theta) \pi_{1,n-1}(\theta) - \frac{n}{n - 1} \pi_{1,n-2}(\theta),
 	\cr
+	-\pi_{1,2}(\theta) &= \mathrm{sign}(\theta) \thinspace 3 \cos(\theta)
+	&
 	\tau_{1,n}(\theta)
-	&= n \cos(\theta) \pi_{1,n}(\theta) - (n + 1) \pi_{1,n-1}(\theta).
+	&= n \cos(\theta) \pi_{1,n}(\theta) - (n + 1) \pi_{1,n-1}(\theta),
 \end{aligned}
 $$
 
-This property is particularly useful for iterative evaluation of series, such as the one given by Equation 18.6.
+Coupled with the recurrence relations of the spherical Bessel functions given by Equation 17.51, it gives rise to a powerful [memoization](https://en.wikipedia.org/wiki/Memoization)-based method of computation, which is the key to rapid evaluation of the scattering matrix.
 
-The values of these functions at the ends of the \\([0, \pi]\\) interval must be determined by a careful limiting process. The final result is always an integer:
+On the \\([0, \pi]\\) interval, the polar functions can be expressed in terms of \\(\cos{\theta}\\). In this particular case, the explicit formulae for the first couple of orders are
+
+$$ \tag{18.8}
+\begin{aligned}
+	-\tau_{1,1}(\theta) &= \cos(\theta), &
+	-\pi_{1,1}(\theta)  &= 1,
+	\cr
+	-\tau_{1,2}(\theta) &= 3 \cos(2 \theta), &
+	-\pi_{1,2}(\theta)  &= 3 \cos(\theta).
+\end{aligned}
+$$
+
+The values of these functions at the endpoints of the \\([0, \pi]\\) interval must be determined by a careful limiting process. The final result is always an integer:
 
 $$ \tag{18.?}
 \begin{aligned}
@@ -6143,24 +6150,9 @@ $$ \tag{18.?}
 \end{aligned}
 $$
 
-Assuming that \\(\theta \in [0, \pi]\\), the explicit form of the first three polar functions is
-
-$$ \tag{18.8}
-\begin{aligned}
-	-\tau_{1,1}(\theta) &= \cos(\theta), &
-	-\pi_{1,1}(\theta)  &= 1,
-	\cr
-	-\tau_{1,2}(\theta) &= 3 \cos(2 \theta), &
-	-\pi_{1,2}(\theta)  &= 3 \cos(\theta),
-	\cr
-	-\tau_{1,3}(\theta) &= \frac{3}{8} \big( \cos (\theta)+15 \cos (3 \theta) \big), &
-	-\pi_{1,3}(\theta)  &= \frac{3}{4} \big( 5 \cos (2 \theta)+3 \big).
-\end{aligned}
-$$
-
 Since \\(\phi \in [0, 2 \pi)\\) in a spherical coordinate system, the values of the argument of the polar functions are formally limited to the range of \\(\theta \in [0, \pi]\\), which corresponds to the upper half of a circle. Nevertheless, we are interested in the angular behavior of the scattered field for all possible directions of observation which, when taken together, form the surface of a unit sphere. We could approach this problem by plotting the 2-dimensional spherical distributions found in Equation 18.5; however, the resulting plots are fairly complicated, and it is much simpler to consider a slice of a unit sphere formed by two semicircles with \\(\phi = 0\\) and \\(\phi = \pi\\) instead.
 
-In general, \\(\pi_{1,n}\\) and \\(\tau_{1,n}\\) are odd functions of \\(\theta\\):
+In general, Equation 18.7 shows that \\(\pi_{1,n}\\) and \\(\tau_{1,n}\\) are odd functions of \\(\theta\\):
 
 $$ \tag{18.9}
 	\pi_{1,n}(-\theta) = -\pi_{1,n}(\theta),
@@ -6202,11 +6194,11 @@ Let us see how it works. Imagine a particle in the radiation zone. Since the par
 
 How should we orient this disk with respect to the incident wave? Since the axis of a dipole is aligned with the vector of the incident field, the disk must contain the latter. Then, by symmetry, we have two remaining options for the orientation: either across or along the direction of propagation of the incident wave. While the first option allows us to rotate the dipole around the axis of the incident beam, this action can also be accomplished by using a complex coefficient in front of the dipole term. The second option is much more versatile, since it allows us to imagine sources of scattered radiation at arbitrary (polar) angles with respect to the direction of incidence.
 
-The multipole expansion process consists of splitting the perimeter of the disk into segments terminated by pairs of charges of opposite sign. A single pair rotated by 90 degrees represents the dipole term. The \\(\theta\\)-component of its far field is split into two lobes separated by the plane oriented transversely with respect to the direction of incidence. In this plane, due to the projection angle, the \\(\theta\\)-component of the far field vanishes. This can be clearly seen as two vertical dips in the blue graph of Figure N.
+The multipole expansion process consists of splitting the perimeter of the disk into segments terminated by pairs of charges of opposite sign. A single pair rotated by \\(\pi/2\\) radians represents the dipole term. The \\(\theta\\)-component of its far field is split into two lobes separated by the plane oriented transversely with respect to the direction of incidence. In this plane, due to the projection angle, the \\(\theta\\)-component of the far field vanishes. This can be clearly seen as two vertical dips in the blue graph of Figure N.
 
-For a larger particle, we may require a greater number of electric charges to model its scattering behavior. Thus, we may add the second partial wave -- the [quadrupole](https://en.wikipedia.org/wiki/Quadrupole) term -- by subdividing the perimeter of the disk into four segments. In the standard orientation, the pattern formed by the charges resembles the vertices of an axis-aligned square; this explains why the orange graph of Figure 4 is rotated by 45 degrees.
+For a larger particle, we may require a greater number of electric charges to model its scattering behavior. Thus, we may add the second partial wave -- the [quadrupole](https://en.wikipedia.org/wiki/Quadrupole) term -- by subdividing the perimeter of the disk into four segments. In the standard orientation, the pattern formed by the charges resembles the vertices of an axis-aligned square; this explains why the orange graph of Figure 4 is rotated by \\(\pi/4\\) radians.
 
-We can continue the subdivision process by using three pairs of charges of opposite sign rotated by 30 degrees, forming a *sextupole* that generates the third partial wave. Naturally, its graph (in green) has six zeros and six lobes. Higher order terms can be obtained in a similar manner. In summary, an *electric* partial wave is the electric field of an *electric* multipole.
+We can continue the subdivision process by using three pairs of charges of opposite sign rotated by \\(\pi/6\\) radians, forming a *sextupole* that generates the third partial wave. Naturally, its graph (in green) has six zeros and six lobes. Higher order terms can be obtained in a similar manner. In summary, an *electric* partial wave is the electric field of an *electric* multipole.
 
 {{< figure src="/img/partial_waves.png" caption="*Figure N: Partial waves. Top row: electric type, bottom row: magnetic type. Columns, left to right: dipole, quadrupole, sextupole. (Mie, 1908)*" >}}
 
@@ -6375,17 +6367,13 @@ is a rapidly growing function of \\(n\\), with \\(N(1)=3/2.\\)
 
 In this crude approximation, the magnetic coefficients \\(a_n\\) vanish for non-magnetic materials with \\(u=1\\). In addition, the magnetic coefficients do not depend on the relative wavenumber \\(m\\) at all. However, this approximation serves it purpose, since it clearly demonstrates that the magnitudes of both coefficients are roughly proportional \\(N^{-1} x^{2 n + 1}\\). Since, for \\(\vert x \vert \ll 1\\), the latter plummets with increasing \\(n\\), we may restrict ourselves to just the fist couple of terms.
 
-In general, for arbitrary argument values, the expansion coefficients of orders \\(n=1\\) or \\(n=2\\) can be easily evaluated *exactly* by using the closed forms of the Riccati-Bessel functions:
+In general, for arbitrary argument values, the expansion coefficients of the first couple of orders can be easily evaluated *exactly* using the explicit formulae of the Riccati-Bessel functions derived from Equations 17.51 and 17.155:
 
 $$ \tag{18.21}
 \begin{aligned}
-	& \psi_1(x) = \frac{\sin (x)}{x}-\cos (x),
+	& \psi_1(x) = \frac{\sin{x}}{x}-\cos{x},
 	&
-	& \psi_2(x) = \left(\frac{3}{x^2}-1\right) \sin (x)-\frac{3 \cos (x)}{x},
-	\cr
-	& \chi_1(x) = -\frac{x \sin (x)+\cos (x)}{x},
-	&
-	& \chi_2(x) = -\frac{3 \cos (x)}{x^2}-\frac{3 \sin (x)}{x}+\cos (x),
+	& \psi_2(x) = \frac{\left( 3-x^2 \right) \sin{x} - 3 x \cos{x}}{x^2},
 	\cr
 	& \xi_1(x) = -\frac{e^{i x} (x+i)}{x},
 	&
@@ -6622,7 +6610,7 @@ For particles much larger than the wavelength (\\(x \gg 1\\)), we can observe th
 
 {{< figure src="/img/water_x10.svg" caption="*Figure N: Linear plot of the scattered intensity of a water droplet of size \\(x = 10\\).*" >}}
 
-In particular, if the refractive index \\(|m|\\) of the particle is large, the distribution of these peaks can be predicted by the [Huygens–Fresnel principle](https://en.wikipedia.org/wiki/Huygens%E2%80%93Fresnel_principle), which says that the field in the immediate vicinity of an aperture (or, in our case, an obstacle) is given by the integral of spherical wavelets formed in the plane of the aperture (or the area around the obstacle) \[[4](#references) (ch 3.1), [6](#references) (ch 8.2, 14.5.2.c)\]. This results in an apparent failure of the obstacle to block the incident light; it is then said that the wave nature of light causes it to [diffract](https://en.wikipedia.org/wiki/Diffraction) around the opaque object.
+In particular, if the refractive index \\(|m|\\) of the particle is large, the distribution of these peaks can be predicted by the [Huygens–Fresnel principle](https://en.wikipedia.org/wiki/Huygens%E2%80%93Fresnel_principle), which says that the field in the immediate vicinity of an aperture (or, in our case, an obstacle) is given by the integral of spherical wavelets formed in the plane of the aperture (or the area around the obstacle) \[[4](#references) (ch 3.1), [6](#references) (ch 8.2, 14.5.2.c)\]. This results in an apparent failure of the obstacle to block the incident light; it is then said that the wave nature of light causes it to [diffract](https://en.wikipedia.org/wiki/Diffraction), or bend around the object.
 
 For a typical [cloud droplet](https://ntrs.nasa.gov/citations/20160014659) of radius \\(a \approx 10 \text{ μm}\\) (which corresponds to \\(x \approx 104.7\\)), the intensity of forward scattering is so high that we must use a logarithmic plot of intensity in order to discern the details of the distribution of scattered light.
 
