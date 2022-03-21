@@ -6114,12 +6114,12 @@ We can study the angular dependence of the scattering matrix by analyzing the po
 
 $$ \tag{18.7}
 \begin{aligned}
-	-\pi_{1,1}(\theta) &= \mathrm{sign}(\theta),
+	-\pi_{1,0}(\theta) &= 0,
 	&
 	\pi_{1,n}(\theta)
 	&= \frac{2 n - 1}{n - 1}\cos(\theta) \pi_{1,n-1}(\theta) - \frac{n}{n - 1} \pi_{1,n-2}(\theta),
 	\cr
-	-\pi_{1,2}(\theta) &= \mathrm{sign}(\theta) \thinspace 3 \cos(\theta)
+	-\pi_{1,1}(\theta) &= \mathrm{sign}(\theta),
 	&
 	\tau_{1,n}(\theta)
 	&= n \cos(\theta) \pi_{1,n}(\theta) - (n + 1) \pi_{1,n-1}(\theta),
