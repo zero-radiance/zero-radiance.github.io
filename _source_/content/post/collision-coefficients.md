@@ -6451,14 +6451,14 @@ $$ \tag{18.25}
 	\backsimeq \frac{\mu\_0^{-1}}{2} \frac{\eta(\omega)}{c} \frac{1}{k^2(\omega)} \left| \bm{E_1}(\bm{n_s}, \omega) \right|^2.
 $$
 
-Equation 15.? shows that the polarization phasor \\(\bm{E_0}\\) of the incident field can be transformed into the polarization phasor \\(\bm{E_1}\\) of the scattered field by the electric far-field scattering tensor \\(\mathcal{S_{ef}}\\). Substitution into Equation 18.25 results in
+Equation 15.? shows that the polarization phasor \\(\bm{E_0}\\) of the incident field can be transformed into the polarization phasor \\(\bm{E_1}\\) of the scattered field by the electric far-field scattering tensor \\(\mathcal{S_{ef}}\\). Therefore,
 
 $$ \tag{18.26}
 	\Iota_s(\bm{n_s}, \omega)
 	\backsimeq \frac{\mu\_0^{-1}}{2} \frac{\eta(\omega)}{c} \frac{1}{k^2(\omega)} \left| \mathcal{S_{ef}}(\bm{n_s}, \bm{n_i}, \omega) \bm{E_0}(\bm{n_i}, \omega) \right|^2.
 $$
 
-Both \\(\mathcal{S_{ef}}\\) and \\(\bm{E_0}\\) are coordinate-independent entities. In practice, we shall utilize the convention established in Section 15, according to which both the incident and the scattered far field can be described using only two components each. After taking Equations 15.14-15.16 into account, Equation 18.26 can be reformulated into
+Both \\(\mathcal{S_{ef}}\\) and \\(\bm{E_0}\\) are coordinate-independent entities. In practice, we shall utilize the convention established in Section 15, according to which both the incident and the scattered fields can be described using only two components each. After taking Equations 15.14-15.16 into account, Equation 18.26 takes the form
 
 $$ \tag{18.27}
 	\Iota_s(\theta, \phi, \omega)
@@ -6472,7 +6472,7 @@ $$
 
 where \\(S\\) is the scattering matrix.
 
-Presently, it is most convenient to use the exponential form of the incident field phasor:
+Presently, it is most convenient to write the expression of the incident field phasor using the exponential notation:
 
 $$ \tag{18.28}
 	\begin{bmatrix}
@@ -6498,7 +6498,7 @@ $$ \tag{18.29}
 	\right|^2.
 $$
 
-Note that the cosine factor in the formula of the latter (cf. Equation 16.4) has been omitted because a spherical particle is invariant under rotation of the direction of propagation of the incident wave.
+Note that the cosine factor in the formula of the latter (cf. Equation 16.4) has been omitted; that is permissible because a spherical particle is invariant under rotation of the direction of propagation of the incident wave.
 
 Since the scattering matrix of a spherical particle (given by Equation 18.6) is diagonal, our task is reduced to determination of the squared magnitude of the complex vector
 
@@ -6569,7 +6569,7 @@ $$ \tag{18.33}
 \end{aligned}
 $$
 
-Equation 18.32 deserves a few remarks. First, the right-hand side is independent of the azimuthal angle \\(\phi\\), which should not come as a surprise, as the particle is spherical. What is surprising is that the formula manages to almost entirely conceal the wave nature of light, since the incident irradiance is directly transformed into the scattered intensity, with all the wave-optical calculations confined within the formula of the scattering matrix.
+Equation 18.32 deserves a few remarks. First, the right-hand side is independent of the azimuthal angle \\(\phi\\), which should not come as a surprise, since the particle is spherical. What is surprising is the fact that the formula manages to almost entirely conceal the wave nature of light, since the incident irradiance is directly transformed into the scattered intensity, with all the wave-optical calculations confined within the expression of the scattering matrix.
 
 For illustrative purposes, we may split the intensity into the average of the vertical (or parallel) component \\(\Iota_{\parallel}\\) that corresponds to the electric field oriented along the \\(\theta\\)-axis, and the horizontal (or perpendicular) component \\(\Iota_{\perp}\\) derived from the electric field oriented along the \\(\phi\\)-axis:
 
@@ -6588,15 +6588,15 @@ $$ \tag{18.34}
 \end{aligned}
 $$
 
-We may observe that the intensity directly depends on the wavenumber \\(k\\) of the host medium, and indirectly on the size parameter \\(x\\), the relative wavenumber \\(m\\), and the reciprocal of the the relative permeability \\(u\\), through the Equation 17.156 of the expansion coefficients \\(a_n\\) and \\(b_n\\). Not all of these parameters are independent: for instance, \\(m\\) is a function of both \\(u\\) and \\(k\\), and the latter also influences \\(x\\) (since \\(x = k a\\)). In the following analysis, we shall use a simplified model by setting \\(u = 1\\), fixing the values of \\(k\\) and \\(m\\), and varying the size of the particle \\(a\\), which determines the value of the size parameter \\(x\\).
+We may observe that the intensity directly depends on the wavenumber \\(k\\) of the host medium, and indirectly on the size parameter \\(x\\), the relative wavenumber \\(m\\), and the reciprocal of the the relative permeability \\(u\\), through Equation 17.156 of the expansion coefficients \\(a_n\\) and \\(b_n\\). Not all of these parameters are independent; for instance, both \\(m\\) and \\(x\\) are proportional to \\(k\\). In order to make the analysis intelligible, we shall fix the values of \\(k\\), \\(m\\) and \\(u\\), and vary the size of the particle \\(a\\), thereby determining the value of the size parameter \\(x\\).
 
-Consider a water droplet suspended in vacuum illuminated by orange light. Assuming the free-space wavelength \\(\lambda_0 = 600 \text{ nm}\\), the corresponding wavenumber is \\(k = k_0 = 2 \pi / \lambda_0 \approx 0.01 \text{ nm}^{-1}\\). The index of refraction of [water](https://refractiveindex.info/?shelf=main&book=H2O&page=Hale) under visible light is \\(\eta + i \kappa \approx 4/3\\). And if the host medium is vacuum, then \\(m = \eta + i \kappa\\).
+Consider a water droplet suspended in vacuum illuminated by orange light. Assuming the free-space wavelength \\(\lambda_0 = 600 \text{ nm}\\), the corresponding wavenumber is \\(k = k_0 = 2 \pi / \lambda_0 \approx 0.01 \text{ nm}^{-1}\\). The index of refraction of [water](https://refractiveindex.info/?shelf=main&book=H2O&page=Hale) under visible light is \\(\eta + i \kappa \approx 4/3\\), with \\(\mu \approx 1\\). And since the particle is in vacuum, \\(m \approx 4/3\\) and \\(u \approx 1\\).
 
-The smallest possible water droplet we can consider is a [single molecule](https://water.lsbu.ac.uk/water/water_molecule.html) of radius \\(a \approx 0.1375 \text{ nm}\\), which corresponds to \\(x = k a \approx 0.00144\\). If we ignore the anisotropy of the molecule and imagine it to be a sphere, we can apply the Lorenz-Mie-Debye theory to determine the intensity of the scattered light.
+The smallest possible water droplet we can conceive is a [single molecule](https://water.lsbu.ac.uk/water/water_molecule.html) of radius \\(a \approx 0.1375 \text{ nm}\\), which corresponds to \\(x = k a \approx 0.00144\\). If we ignore the anisotropy of the molecule and imagine it to be a sphere, we can apply the Lorenz-Mie-Debye theory to determine the intensity of the scattered light.
 
 {{< figure src="/img/water_molecule.svg" caption="*Figure N: Linear plot of the scattered intensity of a water droplet of size \\(x = 0.00144\\) (solid line). The vertical and the horizontal intensities are plotted using the dashed and the dotted lines, respectfully.*" >}}
 
-The resulting intensity distribution is symmetric with respect to the vertical plane containing the incident electric field vector. At the same time, while the horizontal component is isotropic, the value of the vertical component is 0 at the angle of 90 degrees. Comparison with the plots of the polar functions (Figures N and M) shows that only the functions of the first order are present, indicating that the intensity of molecular scattering is dominated by the contribution of first electric partial wave, with the molecule acting as an electric dipole.
+The resulting distribution is symmetric with respect to the vertical plane containing the incident electric field vector. At the same time, while the horizontal component is isotropic, the value of the vertical component is 0 at the angle of 90 degrees. Comparison with the plots of the polar functions (Figures N and M) shows that only the functions of the first order are present, indicating that the intensity of molecular scattering is dominated by the contribution of first electric partial wave, with the molecule acting as an electric dipole.
 
 Once the size of the droplet approaches the wavelength of the incident light (\\(x \to 1\\)), the Mie effect becomes apparent: both the horizontal and the vertical components begin to compress and shift towards the forward direction.
 
@@ -6610,21 +6610,21 @@ For particles much larger than the wavelength (\\(x \gg 1\\)), we can observe  f
 
 {{< figure src="/img/water_x10.svg" caption="*Figure N: Linear plot of the scattered intensity of a water droplet of size \\(x = 10\\).*" >}}
 
-If the refractive index of the particle is large \\(\left( |m| \gg 1 \right)\\), the distribution of these peaks can be predicted by the [Huygens–Fresnel principle](https://en.wikipedia.org/wiki/Huygens%E2%80%93Fresnel_principle), which says that, in the immediate vicinity of an aperture (or, in our case, an obstacle), the total field is given by the integral of spherical wavelets formed in the plane of the aperture (or the area around the obstacle) \[[4](#references) (ch 3.1), [6](#references) (ch 8.2, 14.5.2.c)\]. This results in an apparent failure of the obstacle to block the incident light; it is then said that the wave nature of light causes it to [diffract](https://en.wikipedia.org/wiki/Diffraction), or bend around the object.
+If the refractive index of the particle is large \\(\left( |m| \gg 1 \right)\\), the distribution of these peaks can be predicted by the [Huygens–Fresnel principle](https://en.wikipedia.org/wiki/Huygens%E2%80%93Fresnel_principle), according to which, for small scattering angles, the total field is given by the integral of spherical wavelets formed in the plane of the aperture (or, conversely, the area around the obstacle) \[[4](#references) (ch 3.1), [6](#references) (ch 8.2, 14.5.2.c)\]. This results in an apparent failure of the obstacle to block the incident light; it is then said that the wave nature of light causes it to [diffract](https://en.wikipedia.org/wiki/Diffraction) or, in other words, bend around the object.
 
-For a typical [cloud droplet](https://ntrs.nasa.gov/citations/20160014659) of radius \\(a \approx 10 \text{ μm}\\) (which corresponds to \\(x \approx 104.7\\)), the intensity of forward scattering is so high that we must use a logarithmic plot of intensity in order to discern the details of the distribution of scattered light.
+For a typical [cloud droplet](https://ntrs.nasa.gov/citations/20160014659) of radius \\(a \approx 10 \text{ μm}\\) (which corresponds to \\(x \approx 104.7\\)), the intensity of forward scattering is so high that we must use a logarithmic plot in order to discern the details of the angular distribution of scattered light.
 
 {{< figure src="/img/water_cloud.svg" caption="*Figure N: Logarithmic plot of the scattered intensity of a water droplet of size \\(x = 104.7\\).*" >}}
 
 A logarithmic polar plot can hardly convey how large the forward peak is. A rectangular plot shows that there is a 5 orders-of-magnitude difference between the highest peak and the lowest trough.
 
-{{< figure src="/img/water_cloud_intensity.svg" caption="*Figure N: Logarithmic plot of the scattered intensity of a water droplet of size \\(x = 104.7\\). The horizontal axis represents the polar angle of the sensor.*" >}}
+{{< figure src="/img/water_cloud_intensity.svg" caption="*Figure N: Logarithmic plot of the scattered intensity of a water droplet of size \\(x = 104.7\\). The horizontal axis represents the polar angle of the direction of the sensor.*" >}}
 
 How large is the contribution of the secondary components of the scattering function? We can answer this question by plotting the total amount of power scattered by the particle as a function of the solid angle, where a small solid angle corresponds to a tiny sensor directly in front of the droplet, and \\(4 \pi\\) represents a hypothetical spherical sensor completely surrounding the particle.
 
-{{< figure src="/img/water_cloud_power.svg" caption="*Figure N: Linear plot of the fraction of the scattered power of a water droplet of size \\(x = 104.7\\). The horizontal axis represents the solid angle of the sensor.*" >}}
+{{< figure src="/img/water_cloud_power.svg" caption="*Figure N: Linear plot of the fraction of the scattered power of a water droplet of size \\(x = 104.7\\). The horizontal axis represents the solid angle subtended by the sensor.*" >}}
 
-It is convenient to normalize the graph by the total amount of power scattered by the droplet. That way, it is easy to see that, while around 50% of the scattered power is concentrated in the forward direction, the remaining 50% is channeled elsewhere.
+It is convenient to normalize the graph by the total amount of power scattered by the droplet. This makes it easy to see that, while around 50% of the scattered power is concentrated in the forward direction, the remaining 50% is channeled elsewhere.
 
 ---
 
