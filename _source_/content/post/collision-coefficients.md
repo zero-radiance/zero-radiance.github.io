@@ -6462,7 +6462,7 @@ Both \\(\mathcal{S_{ef}}\\) and \\(\bm{E_0}\\) are coordinate-independent entiti
 
 $$ \tag{18.27}
 	\Iota_s(\theta, \phi, \omega)
-	\backsimeq \frac{\mu\_0^{-1}}{2} \frac{\eta(\omega)}{c} \frac{1}{k^2(\omega)} \left| S(\theta, \omega)
+	\backsimeq \frac{\mu\_0^{-1}}{2} \frac{\eta(\omega)}{c} \frac{1}{k^2(\omega)} \left| S(\theta, \phi, \omega)
 	\begin{bmatrix}
 		E_{x}(\phi, \omega) \cr
 		E_{y}(\phi, \omega) \cr
@@ -6490,7 +6490,7 @@ It allows us to directly relate the scattered intensity \\(\Iota_s\\) to the inc
 
 $$ \tag{18.29}
 	\Iota_s(\theta, \phi, \omega)
-	\backsimeq \frac{\Epsilon_i(\omega)}{k^2(\omega)} \left| \frac{S(\theta, \omega)}{ \sqrt{2} }
+	\backsimeq \frac{\Epsilon_i(\omega)}{k^2(\omega)} \left| \frac{S(\theta, \phi, \omega)}{ \sqrt{2} }
 	\begin{bmatrix}
 		e^{i \delta_x(\phi, \omega)} \cr
 		e^{i \delta_y(\phi, \omega)} \cr
@@ -6625,6 +6625,37 @@ How large is the contribution of the secondary components of the scattering func
 {{< figure src="/img/water_cloud_power.svg" caption="*Figure N: Linear plot of the fraction of the scattered power of a water droplet of size \\(x = 104.7\\). The horizontal axis represents the solid angle subtended by the sensor.*" >}}
 
 It is convenient to normalize the graph by the total amount of power scattered by the droplet. This makes it easy to see that, while around 50% of the scattered power is concentrated in the forward direction, the remaining 50% is channeled elsewhere.
+
+Asymmetry of the angular distribution of the scattered light can be characterized in several different ways. For instance, one could consider the ratio of the intensities in the forward and the backward directions.
+
+{{< figure src="/img/water_intensity_ratio.svg" caption="*Figure N: Logarithmic plot of the scattered intensity of a water droplet in the forward direction divided by the intensity in the backward direction. The horizontal axis represents the size parameter of the particle.*" >}}
+
+As it turns out, the resulting value is a strongly varying function of \\(x\\). This can be explained by the presence of the secondary interference structure for \\(x \gg 1\\), which causes the scattered intensity in the backward direction to rapidly oscillate.
+
+There is a more robust parameter used to characterize the asymmetry of the angular distribution of the scattered light called the *mean cosine*. In order to compute it, we must first define the [probability density function](https://en.wikipedia.org/wiki/Probability_density_function)
+
+$$ \tag{18.35}
+	p_s(\theta, \phi, \omega)
+	= \frac{\Iota_s(\theta, \phi, \omega)}{\iint \Iota_s(\theta', \phi', \omega) \sin{\theta'} d\theta' d\phi'}
+	= \frac{\Iota_s(\theta, \phi, \omega)}{\Phi_s(\omega)}
+$$
+
+on the surface of a unit sphere. It is directly related to the [phase function](https://glossary.ametsoc.org/wiki/Phase_function)
+
+$$ \tag{18.36}
+	f_p(\theta, \phi, \omega)
+	= 4 \pi p_s(\theta, \phi, \omega).
+$$
+
+The [expected value](https://en.wikipedia.org/wiki/Expected_value) of \\(\cos{\theta}\\) can then be calculated as
+
+$$ \tag{18.37}
+	g(\omega)
+	= \braket{\cos{\theta}}
+	= \int_{0}^{2 \pi} \int_{0}^{\pi} \cos{\theta'} p_s(\theta', \phi', \omega) \sin{\theta'} d\theta' d\phi'.
+$$
+
+If the angular distribution is *isotropic*, e.i. invariant with respect to direction, then \\(f_p = 1\\) and \\(g = 0\\). For spherical particles, we should expect \\(g \to 1\\) as \\(x \to \infty\\).
 
 ---
 
