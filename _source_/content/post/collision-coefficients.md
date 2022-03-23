@@ -6668,12 +6668,12 @@ In the particular case of spherical particles, we may utilize Equations 18.32 an
 $$ \tag{18.39}
 \begin{aligned}
 	\Phi_s(\omega)
-	\backsimeq \frac{\Epsilon_i(\omega)}{k^2(\omega)}
-	2 \pi \int_{0}^{\pi} \frac{ \left| s_1(\theta, \omega) \right|^2 + \left| s_2(\theta, \omega) \right|^2 }{2} \sin{\theta} d\theta,
+	\backsimeq 2 \pi \frac{\Epsilon_i(\omega)}{k^2(\omega)}
+	\int_{0}^{\pi} \frac{ \left| s_1(\theta, \omega) \right|^2 + \left| s_2(\theta, \omega) \right|^2 }{2} \sin{\theta} d\theta,
 \end{aligned}
 $$
 
-where we choose to express the squared magnitudes of the elements of the scattering matrix by double infinite series:
+where we choose to express the squared magnitudes of the elements of the scattering matrix by double series:
 
 $$ \tag{18.40}
 \begin{aligned}
@@ -6687,14 +6687,12 @@ $$ \tag{18.40}
 \end{aligned}
 $$
 
-Normally, it is simpler to evaluate a single series and then compute the magnitude of the resulting complex number. However, this seemingly complicated expression allows us to efficiently eliminate the outer integral by considering the identities given by Equations 17.69 and 17.70, yielding
+Normally, it is simpler to evaluate a single series and then compute the magnitude of the resulting complex number. However, this somewhat complicated expression allows us to efficiently eliminate the outer integral by considering the identities given by Equations 17.69 and 17.70, yielding
 
 $$ \tag{18.41}
 \begin{aligned}
-	\int_{0}^{\pi} \left| s_1(\theta, \omega) \right|^2 \sin{\theta} d\theta
-	=
-	\int_{0}^{\pi} \left| s_2(\theta, \omega) \right|^2 \sin{\theta} d\theta
-	= \sum_{n=1}^{\infin} 2 (2 n + 1) \left( |a_n|^2 + |b_n|^2 \right).
+	\int_{0}^{\pi} \frac{ \left| s_1(\theta, \omega) \right|^2 + \left| s_2(\theta, \omega) \right|^2 }{2} \sin{\theta} d\theta
+	= \sum_{n=1}^{\infin} (2 n + 1) \left( |a_n|^2 + |b_n|^2 \right).
 \end{aligned}
 $$
 
@@ -6703,8 +6701,8 @@ Thus, the amount of power scattered by a spherical particle is
 $$ \tag{18.42}
 \begin{aligned}
 	\Phi_s(\omega)
-	\backsimeq \frac{\Epsilon_i(\omega)}{k^2(\omega)}
-	4 \pi \sum_{n=1}^{\infin} (2 n + 1) \left( \big| a_n(\omega) \big|^2 + \big| b_n(\omega) \big|^2 \right).
+	\backsimeq 2 \pi \frac{\Epsilon_i(\omega)}{k^2(\omega)}
+	\sum_{n=1}^{\infin} (2 n + 1) \left( \big| a_n(\omega) \big|^2 + \big| b_n(\omega) \big|^2 \right).
 \end{aligned}
 $$
 
