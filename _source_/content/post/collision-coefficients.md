@@ -6626,21 +6626,20 @@ How large is the contribution of the secondary components of the scattering func
 
 It is convenient to normalize the graph by the total amount of power scattered by the droplet. This makes it easy to see that, while around 50% of the scattered power is concentrated in the forward direction, the remaining 50% is channeled elsewhere.
 
-Asymmetry of the angular distribution of the scattered light can be characterized in several different ways. For instance, one could consider the ratio of the intensities in the forward and the backward directions.
+Asymmetry of the angular distribution of the scattered light can be characterized in several different ways. For instance, one could consider the ratio of the intensities in the forward versus the backward direction.
 
 {{< figure src="/img/water_intensity_ratio.svg" caption="*Figure N: Logarithmic plot of the scattered intensity of a water droplet in the forward direction divided by the intensity in the backward direction. The horizontal axis represents the size parameter of the particle.*" >}}
 
 As it turns out, the resulting value is a strongly varying function of \\(x\\). This can be explained by the presence of the secondary interference structure for \\(x \gg 1\\), which causes the scattered intensity in the backward direction to rapidly oscillate.
 
-There is a more robust parameter used to characterize the asymmetry of the angular distribution of the scattered light called the *mean cosine*. In order to compute it, we must first define the [probability density function](https://en.wikipedia.org/wiki/Probability_density_function)
+There is a more robust parameter used to characterize the asymmetry of the angular distribution of the scattered light called the *mean cosine*. In order to compute it, we must first define the corresponding [probability density function](https://en.wikipedia.org/wiki/Probability_density_function)
 
 $$ \tag{18.35}
 	p_s(\theta, \phi, \omega)
-	= \frac{\Iota_s(\theta, \phi, \omega)}{\iint \Iota_s(\theta', \phi', \omega) \sin{\theta'} d\theta' d\phi'}
 	= \frac{\Iota_s(\theta, \phi, \omega)}{\Phi_s(\omega)}
 $$
 
-on the surface of a unit sphere. It is directly related to the [phase function](https://glossary.ametsoc.org/wiki/Phase_function)
+on the surface of a unit sphere. The former is directly related to the [phase function](https://glossary.ametsoc.org/wiki/Phase_function)
 
 $$ \tag{18.36}
 	f_p(\theta, \phi, \omega)
@@ -6652,10 +6651,62 @@ The [expected value](https://en.wikipedia.org/wiki/Expected_value) of \\(\cos{\t
 $$ \tag{18.37}
 	g(\omega)
 	= \braket{\cos{\theta}}
-	= \int_{0}^{2 \pi} \int_{0}^{\pi} \cos{\theta'} p_s(\theta', \phi', \omega) \sin{\theta'} d\theta' d\phi'.
+	= \int_{0}^{2 \pi} \int_{0}^{\pi} p_s(\theta, \phi, \omega) \cos{\theta} \sin{\theta} d\theta d\phi.
 $$
 
-If the angular distribution is *isotropic*, e.i. invariant with respect to direction, then \\(f_p = 1\\) and \\(g = 0\\). For spherical particles, we should expect \\(g \to 1\\) as \\(x \to \infty\\).
+If the angular distribution is *isotropic* (that is, invariant with respect to direction), then \\(f_p = 1\\) and \\(g = 0\\). For spherical particles, we should expect \\(g \to 1\\) as \\(x \to \infty\\).
+
+In order to compute the probability density function, we must be able to evaluate both the scattered intensity and the scattered power. The former is given by Equation 18.32; the latter can be obtained by combining Equations 16.14 and 16.15:
+
+$$ \tag{18.38}
+	\Phi_s(\omega)
+	= \int_{0}^{2 \pi} \int_{0}^{\pi} \Iota_s(\theta, \phi, \omega) \sin{\theta} d\theta d\phi.
+$$
+
+In the particular case of spherical particles, we may utilize Equations 18.32 and 18.33 once more:
+
+$$ \tag{18.39}
+\begin{aligned}
+	\Phi_s(\omega)
+	\backsimeq \frac{\Epsilon_i(\omega)}{k^2(\omega)}
+	2 \pi \int_{0}^{\pi} \frac{ \left| s_1(\theta, \omega) \right|^2 + \left| s_2(\theta, \omega) \right|^2 }{2} \sin{\theta} d\theta,
+\end{aligned}
+$$
+
+where we choose to express the squared magnitudes of the elements of the scattering matrix by double infinite series:
+
+$$ \tag{18.40}
+\begin{aligned}
+	\left| s_1(\theta, \omega) \right|^2
+	&= \sum_{l=1}^{\infin} \sum_{n=1}^{\infin} \frac{(2 l + 1)}{l (l + 1)} \frac{(2 n + 1)}{n (n + 1)}
+	\big( a_l^{\*} \tau_{1,l}(\theta) + b_l^{\*} \pi_{1,l}(\theta) \big) \big( a_n \tau_{1,n}(\theta) + b_n \pi_{1,n}(\theta) \big),
+	\cr
+	\left| s_2(\theta, \omega) \right|^2
+	&= \sum_{l=1}^{\infin} \sum_{n=1}^{\infin} \frac{(2 l + 1)}{l (l + 1)} \frac{(2 n + 1)}{n (n + 1)}
+	\big( a_l^{\*} \pi_{1,l}(\theta) + b_l^{\*} \tau_{1,l}(\theta) \big) \big( a_n \pi_{1,n}(\theta) + b_n \tau_{1,n}(\theta) \big).
+\end{aligned}
+$$
+
+Normally, it is simpler to evaluate a single series and then compute the magnitude of the resulting complex number. However, this seemingly complicated expression allows us to efficiently eliminate the outer integral by considering the identities given by Equations 17.69 and 17.70, yielding
+
+$$ \tag{18.41}
+\begin{aligned}
+	\int_{0}^{\pi} \left| s_1(\theta, \omega) \right|^2 \sin{\theta} d\theta
+	=
+	\int_{0}^{\pi} \left| s_2(\theta, \omega) \right|^2 \sin{\theta} d\theta
+	= \sum_{n=1}^{\infin} 2 (2 n + 1) \left( |a_n|^2 + |b_n|^2 \right).
+\end{aligned}
+$$
+
+Thus, the amount of power scattered by a spherical particle is
+
+$$ \tag{18.42}
+\begin{aligned}
+	\Phi_s(\omega)
+	\backsimeq \frac{\Epsilon_i(\omega)}{k^2(\omega)}
+	4 \pi \sum_{n=1}^{\infin} (2 n + 1) \left( \big| a_n(\omega) \big|^2 + \big| b_n(\omega) \big|^2 \right).
+\end{aligned}
+$$
 
 ---
 
