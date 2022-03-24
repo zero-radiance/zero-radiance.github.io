@@ -6442,7 +6442,7 @@ vanish. Equation 18.24 is the basis of the famous law of [Rayleigh scattering](h
 
 #### Light Intensity and Efficiency Factors
 
-Neither the electric field nor the magnetic field can be measured directly \[[8](#references) (ch. 7)\]. Therefore, practical applications of light scattering are concerned with the rate of the flow of electromagnetic energy, which is connected to light intensity via the optical theorem.
+Since the frequencies of the electromagnetic radiation associated with visible light are so high, it is practically impossible to measure the instantaneous values of the electromagnetic field \[[8](#references) (ch. 7)\]. For this reason, typical applications of light scattering are concerned with the rate of the flow of electromagnetic energy, which is connected to light intensity via the optical theorem.
 
 Suppose that the host medium is non-absorbing and non-magnetic. Then \\(\kappa = 0, \mu = \mu_0, k\\) is real, and the intensity of the scattered light is given by Equation 16.15:
 
@@ -6472,7 +6472,7 @@ $$
 
 where \\(S\\) is the scattering matrix.
 
-Presently, it is most convenient to write the expression of the incident field phasor using the exponential notation:
+Presently, it is desirable to write the expression of the incident field phasor using the exponential notation:
 
 $$ \tag{18.28}
 	\begin{bmatrix}
@@ -6518,7 +6518,7 @@ $$ \tag{18.30}
 	\end{bmatrix}.
 $$
 
-As it turns out, the magnitude is independent of the state of the incident wave:
+As it turns out, this magnitude is independent of the state of the incident wave:
 
 $$ \tag{18.31}
 \begin{aligned}
@@ -6588,15 +6588,15 @@ $$ \tag{18.34}
 \end{aligned}
 $$
 
-We may observe that the intensity directly depends on the wavenumber \\(k\\) of the host medium, and indirectly on the size parameter \\(x\\), the relative wavenumber \\(m\\), and the reciprocal of the the relative permeability \\(u\\), through Equation 17.156 of the expansion coefficients \\(a_n\\) and \\(b_n\\). Not all of these parameters are independent; for instance, both \\(m\\) and \\(x\\) are proportional to \\(k\\). In order to make the analysis intelligible, we shall fix the values of \\(k\\), \\(m\\) and \\(u\\), and vary the size of the particle \\(a\\), thereby determining the value of the size parameter \\(x\\).
+We may observe that the intensity directly depends on the wavenumber \\(k\\) in the host medium, and indirectly on the size parameter \\(x\\), the relative wavenumber \\(m\\), and the reciprocal of the the relative permeability \\(u\\), through Equation 17.156 of the expansion coefficients \\(a_n\\) and \\(b_n\\). Not all of these parameters are independent; for instance, both \\(m\\) and \\(x\\) are proportional to \\(k\\). In order to make the analysis simple, we shall fix the values of \\(k\\), \\(m\\) and \\(u\\), and only vary the size of the particle \\(a\\), thereby determining the value of the size parameter \\(x\\).
 
-Consider a water droplet suspended in vacuum illuminated by orange light. Assuming the free-space wavelength \\(\lambda_0 = 600 \text{ nm}\\), the corresponding wavenumber is \\(k = k_0 = 2 \pi / \lambda_0 \approx 0.01 \text{ nm}^{-1}\\). The index of refraction of [water](https://refractiveindex.info/?shelf=main&book=H2O&page=Hale) under visible light is \\(\eta + i \kappa \approx 4/3\\), with \\(\mu \approx 1\\). And since the particle is in vacuum, \\(m \approx 4/3\\) and \\(u \approx 1\\).
+Consider a water droplet suspended in vacuum illuminated by orange light. Assuming the free-space wavelength \\(\lambda_0 = 600 \text{ nm}\\), the corresponding wavenumber is \\(k = k_0 = 2 \pi / \lambda_0 \approx 0.01 \text{ nm}^{-1}\\). The index of refraction of [water](https://refractiveindex.info/?shelf=main&book=H2O&page=Hale) under visible light is \\(\eta + i \kappa \approx 4/3\\), with \\(\mu \approx 1\\). And since the particle is assumed to be located in vacuum, \\(m \approx 4/3\\) and \\(u \approx 1\\).
 
-The smallest possible water droplet we can conceive is a [single molecule](https://water.lsbu.ac.uk/water/water_molecule.html) of radius \\(a \approx 0.1375 \text{ nm}\\), which corresponds to \\(x = k a \approx 0.00144\\). If we ignore the anisotropy of the molecule and imagine it to be a sphere, we can apply the Lorenz-Mie-Debye theory to determine the intensity of the scattered light.
+The smallest possible water droplet is a [single molecule](https://water.lsbu.ac.uk/water/water_molecule.html) of radius \\(a \approx 0.1375 \text{ nm}\\), which corresponds to \\(x = k a \approx 0.00144\\). If we ignore the anisotropy of the molecule and imagine it to be a sphere, we can apply the Lorenz-Mie-Debye theory to determine the intensity of the scattered light.
 
 {{< figure src="/img/water_molecule.svg" caption="*Figure N: Linear plot of the scattered intensity of a water droplet of size \\(x = 0.00144\\) (solid line). The vertical and the horizontal intensities are plotted using the dashed and the dotted lines, respectfully.*" >}}
 
-The resulting distribution is symmetric with respect to the vertical plane containing the incident electric field vector. At the same time, while the horizontal component is isotropic, the value of the vertical component is 0 at the angle of 90 degrees. Comparison with the plots of the polar functions (Figures N and M) shows that only the functions of the first order are present, indicating that the intensity of molecular scattering is dominated by the contribution of first electric partial wave, with the molecule acting as an electric dipole.
+The resulting distribution of scattered light is symmetric with respect to the vertical plane containing the incident electric field vector; and it is, of course, also symmetric around the direction of propagation of the incident light (from left to right). At the same time, while the horizontal component is isotropic, the value of the vertical component is 0 at the angle of 90 degrees. Comparison with the plots of the polar functions (Figures N and M) shows that only the functions of the first order are present, indicating that the intensity of molecular scattering is dominated by the contribution of first electric partial wave, with the molecule acting as an electric dipole.
 
 Once the size of the droplet approaches the wavelength of the incident light (\\(x \to 1\\)), the Mie effect becomes apparent: both the horizontal and the vertical components begin to compress and shift towards the forward direction.
 
@@ -6616,11 +6616,11 @@ For a typical [cloud droplet](https://ntrs.nasa.gov/citations/20160014659) of ra
 
 {{< figure src="/img/water_cloud.svg" caption="*Figure N: Logarithmic plot of the scattered intensity of a water droplet of size \\(x = 104.7\\).*" >}}
 
-A logarithmic polar plot can hardly convey how large the forward peak is. A rectangular plot shows that there is a 5 orders-of-magnitude difference between the highest peak and the lowest trough.
+A logarithmic polar plot can hardly convey how large the forward peak is. A rectangular plot shows that there is a 5 order-of-magnitude difference between the highest peak and the lowest trough.
 
 {{< figure src="/img/water_cloud_intensity.svg" caption="*Figure N: Logarithmic plot of the scattered intensity of a water droplet of size \\(x = 104.7\\). The horizontal axis represents the polar angle of the direction of the sensor.*" >}}
 
-How large is the contribution of the secondary components of the scattering function? We can answer this question by plotting the total amount of power scattered by the particle as a function of the solid angle, where a small solid angle corresponds to a tiny sensor directly in front of the droplet, and \\(4 \pi\\) represents a hypothetical spherical sensor completely surrounding the particle.
+How large is the contribution of the secondary components of the scattering function? We can answer this question by plotting the total amount of power scattered by the particle as a function of the solid angle, where a small solid angle corresponds to a tiny sensor located directly in front of the droplet, and \\(4 \pi\\) represents a hypothetical spherical sensor that completely surrounds the particle.
 
 {{< figure src="/img/water_cloud_power.svg" caption="*Figure N: Linear plot of the fraction of the scattered power of a water droplet of size \\(x = 104.7\\). The horizontal axis represents the solid angle subtended by the sensor.*" >}}
 
@@ -6630,7 +6630,7 @@ Asymmetry of the angular distribution of the scattered light can be characterize
 
 {{< figure src="/img/water_intensity_ratio.svg" caption="*Figure N: Logarithmic plot of the scattered intensity of a water droplet in the forward direction divided by the intensity in the backward direction. The horizontal axis represents the size parameter of the particle.*" >}}
 
-As it turns out, the resulting value is a strongly varying function of \\(x\\). This can be explained by the presence of the secondary interference structure for \\(x \gg 1\\), which causes the scattered intensity in the backward direction to rapidly oscillate.
+As it turns out, the result is a strongly varying function of \\(x\\). This can be explained by the presence of the secondary interference structure for \\(x \gg 1\\), which causes the scattered intensity in the backward direction to rapidly oscillate.
 
 There is a more robust parameter used to characterize the asymmetry of the angular distribution of the scattered light called the *mean cosine*. In order to compute it, we must first define the corresponding [probability density function](https://en.wikipedia.org/wiki/Probability_density_function)
 
@@ -6646,7 +6646,7 @@ $$ \tag{18.36}
 	= 4 \pi p_s(\theta, \phi, \omega).
 $$
 
-The [expected value](https://en.wikipedia.org/wiki/Expected_value) of \\(\cos{\theta}\\) can then be calculated as
+Given the probability density function, the [expected value](https://en.wikipedia.org/wiki/Expected_value) of \\(\cos{\theta}\\) can be calculated as
 
 $$ \tag{18.37}
 	g(\omega)
@@ -6654,9 +6654,9 @@ $$ \tag{18.37}
 	= \int_{0}^{2 \pi} \int_{0}^{\pi} p_s(\theta, \phi, \omega) \cos{\theta} \sin{\theta} d\theta d\phi.
 $$
 
-If the angular distribution is *isotropic* (that is, invariant with respect to direction), then \\(f_p = 1\\) and \\(g = 0\\). For spherical particles, we should expect \\(g \to 1\\) as \\(x \to \infty\\).
+If the angular distribution is *isotropic* (that is, invariant with respect to direction), then \\(f_p = 1\\) and \\(g = 0\\). For spherical particles, due to the Mie effect, we should expect \\(g \to 1\\) as \\(x \to \infty\\).
 
-In order to compute the probability density function, we must be able to evaluate both the scattered intensity and the scattered power. The former is given by Equation 18.32; the latter can be obtained by combining Equations 16.14 and 16.15:
+In order to compute the probability density function, we need to evaluate both the scattered intensity and the scattered power. The former is given by Equation 18.32; the latter can be obtained by combining Equations 16.14 and 16.15:
 
 $$ \tag{18.38}
 	\Phi_s(\omega)
@@ -6668,7 +6668,7 @@ In the particular case of spherical particles, we may utilize Equations 18.32 an
 $$ \tag{18.39}
 \begin{aligned}
 	\Phi_s(\omega)
-	\backsimeq 2 \pi \frac{\Epsilon_i(\omega)}{k^2(\omega)}
+	\backsimeq \frac{2 \pi}{k^2(\omega)} \Epsilon_i(\omega)
 	\int_{0}^{\pi} \frac{ \left| s_1(\theta, \omega) \right|^2 + \left| s_2(\theta, \omega) \right|^2 }{2} \sin{\theta} d\theta,
 \end{aligned}
 $$
@@ -6687,22 +6687,81 @@ $$ \tag{18.40}
 \end{aligned}
 $$
 
-Normally, it is simpler to evaluate a single series and then compute the magnitude of the resulting complex number. However, this somewhat complicated expression allows us to efficiently eliminate the outer integral by considering the identities given by Equations 17.69 and 17.70, yielding
+Normally, it is simpler to evaluate a single series and then compute the magnitude of the resulting complex number. However, the somewhat complicated expression given above allows us to efficiently eliminate the outer integral by considering the identities given by Equations 17.69 and 17.70, yielding
 
 $$ \tag{18.41}
-\begin{aligned}
 	\int_{0}^{\pi} \frac{ \left| s_1(\theta, \omega) \right|^2 + \left| s_2(\theta, \omega) \right|^2 }{2} \sin{\theta} d\theta
 	= \sum_{n=1}^{\infin} (2 n + 1) \left( |a_n|^2 + |b_n|^2 \right).
-\end{aligned}
 $$
 
 Thus, the amount of power scattered by a spherical particle is
 
 $$ \tag{18.42}
-\begin{aligned}
 	\Phi_s(\omega)
-	\backsimeq 2 \pi \frac{\Epsilon_i(\omega)}{k^2(\omega)}
+	\backsimeq \frac{2 \pi}{k^2(\omega)} \Epsilon_i(\omega)
 	\sum_{n=1}^{\infin} (2 n + 1) \left( \big| a_n(\omega) \big|^2 + \big| b_n(\omega) \big|^2 \right).
+$$
+
+Returning to Equation 18.37, we are now faced with another integral
+
+$$ \tag{18.43}
+\begin{aligned}
+	g(\omega)
+	&= \frac{2 \pi}{\Phi_s(\omega)} \int_{0}^{\pi} I_s(\theta, \phi, \omega) \cos{\theta} \sin{\theta} d\theta
+	\cr
+	&\backsimeq \frac{2 \pi}{k^2(\omega)} \frac{\Epsilon_i(\omega)}{\Phi_s(\omega)}
+	\int_{0}^{\pi} \frac{ \left| s_1(\theta, \omega) \right|^2 + \left| s_2(\theta, \omega) \right|^2 }{2} \cos{\theta} \sin{\theta} d\theta.
+\end{aligned}
+$$
+
+After taking Equation 18.40 into account, it is clear that we must establish two additional properties of the polar functions:
+
+$$ \tag{18.44}
+\begin{aligned}
+	& \int_{0}^{\pi} \big( \tau_{m,n}(\theta) \pi_{m,l}(\theta)
+	+ \pi_{m,n}(\theta) \tau_{m,l}(\theta) \big) \cos{\theta} \sin{\theta} \thinspace d\theta
+	\cr
+	&= -m \int_{-1}^{1} \left( \frac{\partial P_n^m(x)}{\partial x} P_l^m(x)
+	+ P_n^m(x) \frac{\partial P_l^m(x)}{\partial x} \right) x dx
+	\cr
+	&= m \int_{-1}^{1} P_n^m(x) P_l^m(x) dx
+	- m \int_{-1}^{1} \frac{\partial \big[x P_n^m(x) P_l^m(x) \big]}{\partial x} dx
+	= \frac{2 m}{(2n + 1)} \frac{(n+m)!}{(n-m)!} \delta_{l,n},
+\end{aligned}
+$$
+
+derived analogously to Equation 17.69.1
+
+$$ \tag{17.68}
+\tau_{m,n}(\theta)
+	= \frac{\partial P_n^m(\cos{\theta})}{\partial \theta}
+	= -\sin{\theta} \frac{\partial P_n^m(\cos{\theta})}{\partial (\cos{\theta})}
+	,
+	\pi_{m,n}(\theta)
+	= m \frac{P_n^m(\cos{\theta})}{\sin{\theta}},
+	\quad
+$$
+
+and
+
+$$ \tag{17.70}
+\begin{aligned}
+	& \int_{0}^{\pi} \big( \pi_{m,n}(\theta) \pi_{m,l}(\theta)
+	+ \tau_{m,n}(\theta) \tau_{m,l}(\theta) \big) \sin{\theta} \thinspace d\theta
+	\cr
+	&= \frac{1}{2} \int_{0}^{\pi} \Big( m \pi_{m,n}(\theta) P^m_l(\cos{\theta}) + m \pi_{m,l}(\theta) P^m_n(\cos{\theta}) \Big) \thinspace d\theta
+	+ \int_{0}^{\pi} \tau_{m,n}(\theta) \tau_{m,l}(\theta) \sin{\theta} \thinspace d\theta
+	\cr
+	&= \int_{0}^{\pi} n (n+1) P_n^m(\cos{\theta}) P_l^m(\cos{\theta}) \sin{\theta} \thinspace d\theta
+	\cr
+	&+ \frac{1}{2} \int_{0}^{\pi} \bigg( \frac{\partial \big[ \tau_{m,n}(\theta) \sin{\theta} \big]}{\partial \theta} P_l^m(\cos{\theta})
+	+ 2 \tau_{m,n}(\theta) \tau_{m,l}(\theta) \sin{\theta}
+	+ \frac{\partial \big[ \tau_{m,l}(\theta) \sin{\theta} \big]}{\partial \theta} P_n^m(\cos{\theta}) \bigg) d\theta
+	\cr
+	&= \int_{0}^{\pi} n (n+1) P_n^m(\cos{\theta}) P_l^m(\cos{\theta}) \sin{\theta} \thinspace d\theta
+	 + \frac{1}{2} \int_{0}^{\pi} \frac{\partial}{\partial \theta} \Bigg( \sin{\theta} \frac{\partial \big[ P_n^m(\cos{\theta}) P_l^m(\cos{\theta}) \big]}{\partial \theta} \Bigg) d\theta
+	\cr
+	&= \frac{2}{(2n + 1)} \frac{(n+m)!}{(n-m)!} n (n+1) \delta_{l,n},
 \end{aligned}
 $$
 
