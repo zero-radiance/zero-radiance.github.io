@@ -4598,9 +4598,7 @@ Associated Legendre polynomials have a powerful property - they are [orthogonal]
 
 $$ \tag{17.56}
 \begin{aligned}
-	& \int_{0}^{\pi} P_l^m(\cos{\theta}) P_n^m(\cos{\theta}) \sin{\theta} \thinspace d\theta = \frac{2}{(2n + 1)} \frac{(n+m)!}{(n-m)!} \delta_{l,n},
-	\cr
-	& \int_{0}^{\pi} P_n^m(\cos{\theta}) P_n^l(\cos{\theta}) \frac{d\theta}{\sin{\theta}} = \frac{1}{|m|} \frac{(n+m)!}{(n-m)!} \delta_{m,l}.
+	\int_{0}^{\pi} P_l^m(\cos{\theta}) P_n^m(\cos{\theta}) \sin{\theta} \thinspace d\theta = \frac{2}{(2n + 1)} \frac{(n+m)!}{(n-m)!} \delta_{l,n}.
 \end{aligned}
 $$
 
@@ -4763,7 +4761,7 @@ $$ \tag{17.??}
 	+ n ( n + 1) P_n^m(\cos{\theta}) \sin{\theta},
 $$
 
-and possess two orthogonality properties:
+and possess the following orthogonality properties:
 
 $$ \tag{17.69}
 \begin{aligned}
@@ -4773,6 +4771,22 @@ $$ \tag{17.69}
 	&= m \int_{0}^{\pi} \frac{\partial \big[ P_n^m(\cos{\theta}) P_l^m(\cos{\theta}) \big]}{\partial \theta} \thinspace d\theta
 	\cr
 	&= m \Big( P_n^m(1) P_l^m(1) - P_n^m(-1) P_l^m(-1) \Big) = 0,
+\end{aligned}
+$$
+
+and
+
+$$ \tag{17.6?}
+\begin{aligned}
+	& \int_{0}^{\pi} \big( \tau_{m,n}(\theta) \pi_{m,l}(\theta)
+	+ \pi_{m,n}(\theta) \tau_{m,l}(\theta) \big) \cos{\theta} \sin{\theta} \thinspace d\theta
+	\cr
+	&= -m \int_{-1}^{1} \left( \frac{\partial P_n^m(x)}{\partial x} P_l^m(x)
+	+ P_n^m(x) \frac{\partial P_l^m(x)}{\partial x} \right) x \thinspace dx
+	\cr
+	&= m \int_{-1}^{1} P_n^m(x) P_l^m(x) \thinspace dx
+	- m \int_{-1}^{1} \frac{\partial \big[x P_n^m(x) P_l^m(x) \big]}{\partial x} dx
+	= \frac{2 m}{(2n + 1)} \frac{(n+m)!}{(n-m)!} \delta_{l,n},
 \end{aligned}
 $$
 
@@ -4799,7 +4813,61 @@ $$ \tag{17.70}
 \end{aligned}
 $$
 
-where, in the addition to Legendre's equation, we utilized the orthogonality property of Legendre's polynomials (Equation 17.56.1) and the fact that the value of the associated Legendre polynomials is zero for \\(\cos{\theta} = \pm 1\\) unless \\(m = 0\\).
+and
+
+$$ \tag{17.7?}
+\begin{aligned}
+	& \int_{0}^{\pi} \big( \pi_{m,n}(\theta) \pi_{m,l}(\theta)
+	+ \tau_{m,n}(\theta) \tau_{m,l}(\theta) \big) \cos{\theta} \sin{\theta} \thinspace d\theta
+	\cr
+	&= \int_{0}^{\pi} \left( m^2 \frac{P_n^m(\cos{\theta}) P_l^m(\cos{\theta})}{\sin^2{\theta}}
+	+ \sin^2{\theta} \frac{\partial P_n^m(\cos{\theta})}{\partial (\cos{\theta})} \frac{\partial P_l^m(\cos{\theta})}{\partial (\cos{\theta})} \right) \cos{\theta} \sin{\theta} \thinspace d\theta
+	\cr
+	&= \int_{-1}^{1} \left( m^2 \frac{P_n^m(x) P_l^m(x)}{1-x^2}
+	+ \left( 1-x^2 \right) \frac{\partial P_n^m(x)}{\partial x} \frac{\partial P_l^m(x)}{\partial x} \right) x \thinspace dx
+	\cr
+	&= \int_{-1}^{1} m^2 \frac{P_n^m(x) P_l^m(x)}{1-x^2} x \thinspace dx
+	\cr
+	&+ \frac{1}{2 l + 1} \int_{-1}^{1}\frac{\partial P_n^m(x)}{\partial x} \left( (l + 1) (l + m) P_{l-1}^m(x)
+	- l (l - m + 1) P_{l+1}^m(x) \right) x \thinspace dx
+	\cr
+	&= \int_{-1}^{1} \left( m^2 \frac{P_n^m(x) P_l^m(x)}{1-x^2}
+	+ \left( 1-x^2 \right) \frac{\partial P_n^m(x)}{\partial x} \frac{\partial P_l^m(x)}{\partial x} \right) x \thinspace dx
+	\cr
+	&= m^2 \int_{-1}^{1} \frac{P_n^m(x) P_l^m(x)}{1-x^2} x \thinspace dx
+	\cr
+	&+ \frac{1}{2 l + 1} \int_{-1}^{1}\frac{\partial P_n^m(x)}{\partial x} \left( (l + 1) (l + m) P_{l-1}^m(x)
+	- l (l - m + 1) P_{l+1}^m(x) \right) x \thinspace dx
+	\cr
+	&= m^2 \int_{-1}^{1} \frac{P_n^m(x) P_l^m(x)}{1-x^2} x \thinspace dx
+	+ m \int_{-1}^{1} \frac{\partial P_n^m(x)}{\partial x} P_{l-1}^m(x) x \thinspace dx
+	\cr
+	&+ \frac{l (l - m + 1)}{2 l + 1} \int_{-1}^{1}\frac{\partial P_n^m(x)}{\partial x} \left( P_{l-1}^m(x) - P_{l+1}^m(x) \right) x \thinspace dx
+\end{aligned}
+$$
+
+---
+
+$$ \tag{17.68}
+	\pi_{m,n}(\theta)
+	= m \frac{P_n^m(\cos{\theta})}{\sin{\theta}},
+	\quad
+	\tau_{m,n}(\theta)
+	= \frac{\partial P_n^m(\cos{\theta})}{\partial \theta}
+	= -\sin{\theta} \frac{\partial P_n^m(\cos{\theta})}{\partial (\cos{\theta})},
+$$
+
+---
+
+$$ \tag{17.118}
+	\left( 1-x^2 \right) \frac{\partial P_l^m(x)}{\partial x}
+	= \frac{1}{2 l + 1} \left( (l + 1) (l + m) P_{l-1}^m(x)
+	- l (l - m + 1) P_{l+1}^m(x) \right)
+$$
+
+---
+
+where, in the addition to Legendre's equation, we utilized the orthogonality property of Legendre's polynomials (Equation 17.56) and the fact that the value of the associated Legendre polynomials is zero for \\(\cos{\theta} = \pm 1\\) unless \\(m = 0\\).
 
 To save some space, let us introduce a compact notation for the product derivative of the spherical Bessel function:
 
@@ -4896,7 +4964,7 @@ $$ \tag{17.75}
 \end{aligned}
 $$
 
-Analysis shows that the initial expression can be separated into a product of several terms. We may recognize from Equation 4.6 that the integral over \\(\phi\\) is nothing other than the rescaled Kronecker delta function \\(\delta_{m,s}\\). Thus, the value of the double integral is 0 unless \\(m = s\\). Similarly, according to Equation 17.56.1, the integral over \\(\theta\\) is proportional to another Kronecker delta function \\(\delta_{t,n}\\). A simple calculation shows that the various constants cancel out, and we are left with
+Analysis shows that the initial expression can be separated into a product of several terms. We may recognize from Equation 4.6 that the integral over \\(\phi\\) is nothing other than the rescaled Kronecker delta function \\(\delta_{m,s}\\). Thus, the value of the double integral is 0 unless \\(m = s\\). Similarly, according to Equation 17.56, the integral over \\(\theta\\) is proportional to another Kronecker delta function \\(\delta_{t,n}\\). A simple calculation shows that the various constants cancel out, and we are left with
 
 $$ \tag{17.76}
 \begin{aligned}
@@ -6716,19 +6784,7 @@ $$
 
 After taking Equation 18.40 into account, it is clear that we must establish two additional properties of the polar functions:
 
-$$ \tag{18.44}
-\begin{aligned}
-	& \int_{0}^{\pi} \big( \tau_{m,n}(\theta) \pi_{m,l}(\theta)
-	+ \pi_{m,n}(\theta) \tau_{m,l}(\theta) \big) \cos{\theta} \sin{\theta} \thinspace d\theta
-	\cr
-	&= -m \int_{-1}^{1} \left( \frac{\partial P_n^m(x)}{\partial x} P_l^m(x)
-	+ P_n^m(x) \frac{\partial P_l^m(x)}{\partial x} \right) x dx
-	\cr
-	&= m \int_{-1}^{1} P_n^m(x) P_l^m(x) dx
-	- m \int_{-1}^{1} \frac{\partial \big[x P_n^m(x) P_l^m(x) \big]}{\partial x} dx
-	= \frac{2 m}{(2n + 1)} \frac{(n+m)!}{(n-m)!} \delta_{l,n},
-\end{aligned}
-$$
+
 
 derived analogously to Equation 17.69.1
 
