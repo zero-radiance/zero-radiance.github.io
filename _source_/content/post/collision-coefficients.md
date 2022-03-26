@@ -3483,7 +3483,7 @@ In order to replace \\(\bm{r}\\) with \\(\bm{\hat{r}}\\) inside the integral, we
 $$ \tag{15.21}
 	dV = dx \thinspace dy \thinspace dz
 	\quad \to \quad
-	d \hat{V} = dkx \thinspace dky \thinspace dkz = k^3 dV.
+	d \hat{V} = d(kx) \thinspace d(ky) \thinspace d(kz) = k^3 dV.
 $$
 
 Furthermore, the [scaling property](https://en.wikipedia.org/wiki/Dirac_delta_function#Scaling_and_symmetry) of the delta function tells us that
@@ -4597,9 +4597,7 @@ We are now ready to interpret the entire Equation 17.53. Since that function has
 Associated Legendre polynomials have a powerful property - they are [orthogonal](https://en.wikipedia.org/wiki/Associated_Legendre_polynomials#Reparameterization_in_terms_of_angles) \[[17](#references) (ch 7.3)\]:
 
 $$ \tag{17.56}
-\begin{aligned}
-	\int_{0}^{\pi} P_l^m(\cos{\theta}) P_n^m(\cos{\theta}) \sin{\theta} \thinspace d\theta = \frac{2}{(2n + 1)} \frac{(n+m)!}{(n-m)!} \delta_{l,n}.
-\end{aligned}
+	\int_{-1}^{1} P_l^m(x) P_n^m(x) dx = \frac{2}{2n + 1} \frac{(n+m)!}{(n-m)!} \delta_{l,n}.
 $$
 
 In addition, we know that any sufficiently smooth univariate function can be expanded into a [Fourier series](https://en.wikipedia.org/wiki/Fourier_series), since
@@ -4757,7 +4755,8 @@ $$
 that satisfy the modified Legendre's differential equation (cf. Equations 17.41.2 and 17.42)
 
 $$ \tag{17.??}
-	m \pi_{m,n}(\theta) = \frac{\partial}{\partial \theta} \big( \tau_{m,n}(\theta) \sin{\theta} \big)
+	m \pi_{m,n}(\theta)
+	= \frac{\partial \big[ \tau_{m,n}(\theta) \sin{\theta} \big] }{\partial \theta}
 	+ n ( n + 1) P_n^m(\cos{\theta}) \sin{\theta},
 $$
 
@@ -4769,8 +4768,7 @@ $$ \tag{17.69}
 	+ \pi_{m,n}(\theta) \tau_{m,l}(\theta) \Big) \sin{\theta} \thinspace d\theta
 	\cr
 	&= m \int_{0}^{\pi} \frac{\partial \big[ P_n^m(\cos{\theta}) P_l^m(\cos{\theta}) \big]}{\partial \theta} \thinspace d\theta
-	\cr
-	&= m \Big( P_n^m(1) P_l^m(1) - P_n^m(-1) P_l^m(-1) \Big) = 0,
+	= 0,
 \end{aligned}
 $$
 
@@ -4781,12 +4779,9 @@ $$ \tag{17.6?}
 	& \int_{0}^{\pi} \big( \tau_{m,n}(\theta) \pi_{m,l}(\theta)
 	+ \pi_{m,n}(\theta) \tau_{m,l}(\theta) \big) \cos{\theta} \sin{\theta} \thinspace d\theta
 	\cr
-	&= -m \int_{-1}^{1} \left( \frac{\partial P_n^m(x)}{\partial x} P_l^m(x)
-	+ P_n^m(x) \frac{\partial P_l^m(x)}{\partial x} \right) x \thinspace dx
-	\cr
 	&= m \int_{-1}^{1} P_n^m(x) P_l^m(x) \thinspace dx
 	- m \int_{-1}^{1} \frac{\partial \big[x P_n^m(x) P_l^m(x) \big]}{\partial x} dx
-	= \frac{2 m}{(2n + 1)} \frac{(n+m)!}{(n-m)!} \delta_{l,n},
+	= \frac{2 m}{2n + 1} \frac{(n+m)!}{(n-m)!} \delta_{l,n},
 \end{aligned}
 $$
 
@@ -4797,72 +4792,149 @@ $$ \tag{17.70}
 	& \int_{0}^{\pi} \big( \pi_{m,n}(\theta) \pi_{m,l}(\theta)
 	+ \tau_{m,n}(\theta) \tau_{m,l}(\theta) \big) \sin{\theta} \thinspace d\theta
 	\cr
-	&= \frac{1}{2} \int_{0}^{\pi} \Big( m \pi_{m,n}(\theta) P^m_l(\cos{\theta}) + m \pi_{m,l}(\theta) P^m_n(\cos{\theta}) \Big) \thinspace d\theta
-	+ \int_{0}^{\pi} \tau_{m,n}(\theta) \tau_{m,l}(\theta) \sin{\theta} \thinspace d\theta
+	&= \frac{1}{2} \int_{0}^{\pi} \big( m \pi_{m,n}(\theta) P^m_l(\cos{\theta}) + m \pi_{m,l}(\theta) P^m_n(\cos{\theta}) + 2 \tau_{m,n}(\theta) \tau_{m,l}(\theta) \sin{\theta} \big) \thinspace d\theta
 	\cr
-	&= \int_{0}^{\pi} n (n+1) P_n^m(\cos{\theta}) P_l^m(\cos{\theta}) \sin{\theta} \thinspace d\theta
+	&= \frac{1}{2} \int_{0}^{\pi} \frac{\partial}{\partial \theta} \left( \sin{\theta} \frac{\partial \big[ P_n^m(\cos{\theta}) P_l^m(\cos{\theta}) \big]}{\partial \theta} \right) d\theta
 	\cr
-	&+ \frac{1}{2} \int_{0}^{\pi} \bigg( \frac{\partial \big[ \tau_{m,n}(\theta) \sin{\theta} \big]}{\partial \theta} P_l^m(\cos{\theta})
-	+ 2 \tau_{m,n}(\theta) \tau_{m,l}(\theta) \sin{\theta}
-	+ \frac{\partial \big[ \tau_{m,l}(\theta) \sin{\theta} \big]}{\partial \theta} P_n^m(\cos{\theta}) \bigg) d\theta
-	\cr
-	&= \int_{0}^{\pi} n (n+1) P_n^m(\cos{\theta}) P_l^m(\cos{\theta}) \sin{\theta} \thinspace d\theta
-	 + \frac{1}{2} \int_{0}^{\pi} \frac{\partial}{\partial \theta} \Bigg( \sin{\theta} \frac{\partial \big[ P_n^m(\cos{\theta}) P_l^m(\cos{\theta}) \big]}{\partial \theta} \Bigg) d\theta
-	\cr
-	&= \frac{2}{(2n + 1)} \frac{(n+m)!}{(n-m)!} n (n+1) \delta_{l,n},
+	&+ \frac{n (n+1) + l (l+1)}{2} \int_{-1}^{1} P_n^m(x) P_l^m(x) \thinspace dx
+	= \frac{2 n (n+1)}{2n + 1} \frac{(n+m)!}{(n-m)!} \delta_{l,n},
 \end{aligned}
 $$
 
 and
 
 $$ \tag{17.7?}
+\small
 \begin{aligned}
 	& \int_{0}^{\pi} \big( \pi_{m,n}(\theta) \pi_{m,l}(\theta)
 	+ \tau_{m,n}(\theta) \tau_{m,l}(\theta) \big) \cos{\theta} \sin{\theta} \thinspace d\theta
 	\cr
-	&= \int_{0}^{\pi} \left( m^2 \frac{P_n^m(\cos{\theta}) P_l^m(\cos{\theta})}{\sin^2{\theta}}
-	+ \sin^2{\theta} \frac{\partial P_n^m(\cos{\theta})}{\partial (\cos{\theta})} \frac{\partial P_l^m(\cos{\theta})}{\partial (\cos{\theta})} \right) \cos{\theta} \sin{\theta} \thinspace d\theta
+	&= \frac{1}{2} \int_{0}^{\pi} \big( m \pi_{m,n}(\theta) P^m_l(\cos{\theta}) + m \pi_{m,l}(\theta) P^m_n(\cos{\theta}) + 2 \tau_{m,n}(\theta) \tau_{m,l}(\theta) \sin{\theta} \big) \cos{\theta} \thinspace d\theta
 	\cr
-	&= \int_{-1}^{1} \left( m^2 \frac{P_n^m(x) P_l^m(x)}{1-x^2}
-	+ \left( 1-x^2 \right) \frac{\partial P_n^m(x)}{\partial x} \frac{\partial P_l^m(x)}{\partial x} \right) x \thinspace dx
+	&= \frac{1}{2} \int_{0}^{\pi}
+		\frac{\partial \big[ \tau_{m,n}(\theta) \sin{\theta} \big] }{\partial \theta} P^m_l(\cos{\theta}) \cos{\theta} \thinspace d\theta
 	\cr
-	&= \int_{-1}^{1} m^2 \frac{P_n^m(x) P_l^m(x)}{1-x^2} x \thinspace dx
+	&+ \frac{1}{2} \int_{0}^{\pi}
+		\frac{\partial \big[ \tau_{m,l}(\theta) \sin{\theta} \big] }{\partial \theta} P^m_n(\cos{\theta}) \cos{\theta} \thinspace d\theta
 	\cr
-	&+ \frac{1}{2 l + 1} \int_{-1}^{1}\frac{\partial P_n^m(x)}{\partial x} \left( (l + 1) (l + m) P_{l-1}^m(x)
-	- l (l - m + 1) P_{l+1}^m(x) \right) x \thinspace dx
+	&+ \frac{1}{2} \int_{0}^{\pi} 2 \tau_{m,n}(\theta) \tau_{m,l}(\theta) \sin{\theta} \cos{\theta} \thinspace d\theta
 	\cr
-	&= \int_{-1}^{1} \left( m^2 \frac{P_n^m(x) P_l^m(x)}{1-x^2}
-	+ \left( 1-x^2 \right) \frac{\partial P_n^m(x)}{\partial x} \frac{\partial P_l^m(x)}{\partial x} \right) x \thinspace dx
+	&+ \frac{n (n+1) + l (l+1)}{2} \int_{-1}^{1} P_n^m(x) x P_l^m(x) \thinspace dx
 	\cr
-	&= m^2 \int_{-1}^{1} \frac{P_n^m(x) P_l^m(x)}{1-x^2} x \thinspace dx
+	&= \frac{1}{2} \int_{0}^{\pi}
+		\frac{\partial \big[ \tau_{m,n}(\theta) \sin{\theta} \big] }{\partial \theta}
+		\left(
+			\frac{(l - m + 1)}{(2 l + 1)} P_{l+1}^m(\cos{\theta}) +
+			\frac{(l + m)}{(2 l + 1)} P_{l-1}^m(\cos{\theta})
+		\right) d\theta
 	\cr
-	&+ \frac{1}{2 l + 1} \int_{-1}^{1}\frac{\partial P_n^m(x)}{\partial x} \left( (l + 1) (l + m) P_{l-1}^m(x)
-	- l (l - m + 1) P_{l+1}^m(x) \right) x \thinspace dx
+	&+ \frac{1}{2} \int_{0}^{\pi}
+		\left(
+			\frac{(l - m + 1)}{(2 l + 1)} \frac{\partial \big[ \tau_{m,l+1}(\theta) \sin{\theta} \big] }{\partial \theta}
+			+ \frac{(l + m)}{(2 l + 1)} \frac{\partial \big[ \tau_{m,l-1}(\theta) \sin{\theta} \big] }{\partial \theta}
+			+ \sin{\theta} \left( P_l^m(\cos{\theta}) \cos{\theta} + \tau_{m,l}(\theta) \sin{\theta} \right)
+		\right) P^m_n(\cos{\theta}) \thinspace d\theta
 	\cr
-	&= m^2 \int_{-1}^{1} \frac{P_n^m(x) P_l^m(x)}{1-x^2} x \thinspace dx
-	+ m \int_{-1}^{1} \frac{\partial P_n^m(x)}{\partial x} P_{l-1}^m(x) x \thinspace dx
+	&+ \frac{1}{2} \int_{0}^{\pi}
+		2 \tau_{m,n}(\theta)
+		\left(
+			\frac{(l - m + 1)}{(2 l + 1)} \tau_{l+1}^m(\cos{\theta})
+			+ \frac{(l + m)}{(2 l + 1)} \tau_{l-1}^m(\cos{\theta})
+			+ P_l^m(\cos{\theta}) \sin{\theta}
+		\right) \sin{\theta} \thinspace d\theta
 	\cr
-	&+ \frac{l (l - m + 1)}{2 l + 1} \int_{-1}^{1}\frac{\partial P_n^m(x)}{\partial x} \left( P_{l-1}^m(x) - P_{l+1}^m(x) \right) x \thinspace dx
+	&+ \frac{n (n+1) + l (l+1)}{2} \int_{-1}^{1} P_n^m(x)
+		\left(
+			\frac{(l - m + 1)}{(2 l + 1)} P_{l+1}^m(x) + \frac{(l + m)}{(2 l + 1)} P_{l-1}^m(x)
+		\right) \thinspace dx
+	\cr
+	&= \frac{1}{2} \frac{(l - m + 1)}{(2 l + 1)} \int_{0}^{\pi} \frac{\partial}{\partial \theta} \left( \sin{\theta} \frac{\partial \big[ P_n^m(\cos{\theta}) P_{l+1}^m(\cos{\theta}) \big]}{\partial \theta} \right) d\theta
+	\cr
+	&+ \frac{1}{2} \frac{(l + m)}{(2 l + 1)} \int_{0}^{\pi} \frac{\partial}{\partial \theta} \left( \sin{\theta} \frac{\partial \big[ P_n^m(\cos{\theta}) P_{l-1}^m(\cos{\theta}) \big]}{\partial \theta} \right) d\theta
+	\cr
+	&+ \frac{1}{2} \int_{0}^{\pi}
+		\left( P^m_n(\cos{\theta}) \tau_{m,l}(\theta)
+		+ 2 \tau_{m,n}(\theta) P_l^m(\cos{\theta}) \right)
+		\sin^2{\theta} \thinspace d\theta
+	\cr
+	&+ \frac{n (n+1) + l (l+1) + 1}{2} \int_{-1}^{1} P_n^m(x)
+		\left(
+			\frac{(l - m + 1)}{(2 l + 1)} P_{l+1}^m(x) + \frac{(l + m)}{(2 l + 1)} P_{l-1}^m(x)
+		\right) \thinspace dx
+	\cr
+	&= \frac{1}{2} \int_{0}^{\pi}
+		\left( P^m_n(\cos{\theta}) \tau_{m,l}(\theta)
+		+ 2 \tau_{m,n}(\theta) P_l^m(\cos{\theta}) \right)
+		\sin^2{\theta} \thinspace d\theta
+	\cr
+	&+ \frac{n (n+1) + l (l+1) + 1}{2n + 1} \frac{(n+m)!}{(n-m)!}
+		\left(
+			\frac{(l - m + 1)}{(2 l + 1)} \delta_{n,l+1}
+			+ \frac{(l + m)}{(2 l + 1)} \delta_{n,l-1}
+		\right)
+	\cr
 \end{aligned}
 $$
 
 ---
 
-$$ \tag{17.68}
-	\pi_{m,n}(\theta)
-	= m \frac{P_n^m(\cos{\theta})}{\sin{\theta}},
-	\quad
-	\tau_{m,n}(\theta)
-	= \frac{\partial P_n^m(\cos{\theta})}{\partial \theta}
-	= -\sin{\theta} \frac{\partial P_n^m(\cos{\theta})}{\partial (\cos{\theta})},
+$$
+	(l - m + 1) P_{l+1}^m(x) = (2 l + 1) x P_l^m(x) - (l + m) P_{l-1}^m(x)
 $$
 
----
+$$
+	x P_l^m(x) = \frac{(l - m + 1)}{(2 l + 1)} P_{l+1}^m(x) + \frac{(l + m)}{(2 l + 1)} P_{l-1}^m(x)
+$$
 
-$$ \tag{17.118}
-	\left( 1-x^2 \right) \frac{\partial P_l^m(x)}{\partial x}
-	= \frac{1}{2 l + 1} \left( (l + 1) (l + m) P_{l-1}^m(x)
-	- l (l - m + 1) P_{l+1}^m(x) \right)
+$$
+	\tau_{m,l}(\theta) \cos{\theta}
+	= \frac{(l - m + 1)}{(2 l + 1)} \tau_{l+1}^m(\theta)
+	+ \frac{(l + m)}{(2 l + 1)} \tau_{l-1}^m(\theta)
+	+ P_l^m(\cos{\theta}) \sin{\theta}
+$$
+
+$$
+\begin{aligned}
+	\frac{\partial \tau_{m,l}}{\partial \theta} \cos{\theta}
+	&= \frac{(l - m + 1)}{(2 l + 1)} \frac{\partial \tau_{l+1}^m}{\partial \theta}
+	+ \frac{(l + m)}{(2 l + 1)} \frac{\partial \tau_{l-1}^m}{\partial \theta}
+	+ \frac{\partial \big[ P_l^m(\cos{\theta}) \sin{\theta} \big]}{\partial \theta}
+	+ \tau_{m,l}(\theta) \sin{\theta}
+\end{aligned}
+$$
+
+$$
+	\frac{\partial \big[ \tau_{m,l}(\theta) \sin{\theta} \big] }{\partial \theta}
+	= \cos{\theta} \tau_{m,l}(\theta) + \sin{\theta} \frac{\partial \tau_{m,l}}{\partial \theta}
+$$
+
+$$
+\small
+\begin{aligned}
+	\frac{\partial \big[ \tau_{m,l}(\theta) \sin{\theta} \big] }{\partial \theta} \cos{\theta}
+	&= \cos{\theta}
+	\left(
+		\frac{(l - m + 1)}{(2 l + 1)} \tau_{l+1}^m(\theta)
+		+ \frac{(l + m)}{(2 l + 1)} \tau_{l-1}^m(\theta)
+		+ P_l^m(\cos{\theta}) \sin{\theta}
+	\right)
+	\cr
+	&+ \sin{\theta}
+	\left(
+		\frac{(l - m + 1)}{(2 l + 1)} \frac{\partial \tau_{l+1}^m}{\partial \theta}
+		+ \frac{(l + m)}{(2 l + 1)} \frac{\partial \tau_{l-1}^m}{\partial \theta}
+		+ \frac{\partial \big[ P_l^m(\cos{\theta}) \sin{\theta} \big]}{\partial \theta}
+		+ \tau_{m,l}(\theta) \sin{\theta}
+	\right)
+	\cr
+	&= \frac{(l - m + 1)}{(2 l + 1)}
+	\frac{\partial \big[ \tau_{m,l+1}(\theta) \sin{\theta} \big] }{\partial \theta}
+	+ \frac{(l + m)}{(2 l + 1)}
+	\frac{\partial \big[ \tau_{m,l-1}(\theta) \sin{\theta} \big] }{\partial \theta}
+	\cr
+	&+ \sin{\theta}
+	\left( P_l^m(\cos{\theta}) \cos{\theta} + \tau_{m,l}(\theta) \sin{\theta} \right)
+\end{aligned}
 $$
 
 ---
@@ -6817,7 +6889,7 @@ $$ \tag{17.70}
 	&= \int_{0}^{\pi} n (n+1) P_n^m(\cos{\theta}) P_l^m(\cos{\theta}) \sin{\theta} \thinspace d\theta
 	 + \frac{1}{2} \int_{0}^{\pi} \frac{\partial}{\partial \theta} \Bigg( \sin{\theta} \frac{\partial \big[ P_n^m(\cos{\theta}) P_l^m(\cos{\theta}) \big]}{\partial \theta} \Bigg) d\theta
 	\cr
-	&= \frac{2}{(2n + 1)} \frac{(n+m)!}{(n-m)!} n (n+1) \delta_{l,n},
+	&= \frac{2}{2n + 1} \frac{(n+m)!}{(n-m)!} n (n+1) \delta_{l,n},
 \end{aligned}
 $$
 
