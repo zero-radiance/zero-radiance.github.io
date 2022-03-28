@@ -3435,7 +3435,7 @@ $$ \tag{15.16}
 \end{bmatrix}.
 $$
 
-Equation 15.16 matches the one given in the book by van de Hulst, except for the sign of the complex exponential and the missing \\(i\\) factor in the denominator \[[4](#references) (ch. 4.41)\]. The author claims that this factor makes the formulas more convenient \[[4](#references) (ch. 4.1)\]. While that is indeed the case, the convention is prone to sign errors, and also introduces seemingly imaginary coefficients that are, in fact, real.
+Equation 15.16 matches the one given in the book by van de Hulst, except for the sign of the complex exponential and the missing \\(i\\) factor in the denominator \[[4](#references) (ch. 4.41)\]. The author claims that this factor makes the formulae more convenient \[[4](#references) (ch. 4.1)\]. While that is indeed the case, the convention is prone to sign errors, and also introduces seemingly imaginary coefficients that are, in fact, real.
 
 In general, the elements of the scattering matrix depend on the azimuthal angle \\(\phi\\), since, as we rotate the plane of observation (\\(x z\\) or \\(r \theta\\)) around the \\(z\\)-axis, the scattering object appears to rotate in the opposite direction. However, if the object is symmetric (both geometrically and structurally) with respect to the \\(z\\)-axis, which is the case for spherical and an axis-aligned [spheroidal](https://en.wikipedia.org/wiki/Spheroid) particles, the matrix only depends on the polar angle \\(\theta\\). This causes the scattering matrix to become diagonal, with \\(s_3 = s_4 = 0\\) \[[4](#references) (ch. 4.42)\].
 
@@ -4572,7 +4572,7 @@ plotted below:
 
 The degree of a polynomial is also the number of zeros of the function. Coupled with the fact that \\(P_n(\cos{\theta})\\) is independent of \\(\phi\\), we can observe that the Legendre polynomial of degree \\(n\\) divides the surface of a sphere into \\(n + 1\\) zones of alternating sign. For this reason, the family of functions \\(P_n(\cos{\theta})\\) is sometimes referred to as *zonal harmonics*.
 
-If \\(0 < m \leq n\\), we can derive the formulae of the associated Legendre polynomials from the unassociated ones:
+If \\(0 < m \leq n\\), we can define the associated Legendre polynomials in terms of the unassociated ones:
 
 $$ \tag{17.55}
 	P_n^m(x)
@@ -4586,7 +4586,13 @@ $$ \tag{17.47}
 	= (-1)^m \frac{(n - m)!}{(n + m)!} P_n^m.
 $$
 
- As can be seen from the graph below, the value of the associated Legendre polynomial \\(P_n^m(\cos{\theta})\\) goes to zero at \\(\cos{\theta} = \pm 1\\). In addition, the total number of zeros of the function is \\(n - m + 2\\).
+Additionally, by careful manipulating the derivatives of Equations 17.54 and 17.55, one may show that the associated Legendre polynomials satisfy the [recurrence relation](https://en.wikipedia.org/wiki/Associated_Legendre_polynomials#Recurrence_formula)
+
+$$ \tag{17.5?}
+	x P_n^m(x) = \frac{n - m + 1}{2 n + 1} P_{n+1}^m(x) + \frac{n + m}{2 n + 1} P_{n-1}^m(x).
+$$
+
+As can be seen from the graph below, the value of the associated Legendre polynomial \\(P_n^m(\cos{\theta})\\) goes to zero at \\(\cos{\theta} = \pm 1\\). In addition, the total number of zeros of the function is \\(n - m + 2\\).
 
 {{< figure src="/img/assoc_legendre.svg" caption="*Figure N: Associated Legendere polynomials of degree 3 and order \\(m=1\\) (blue), \\(m=2\\) (orange), \\(m=3\\) (green).*" >}}
 
@@ -4765,20 +4771,20 @@ and possess the following orthogonality properties:
 
 $$ \tag{17.69}
 \begin{aligned}
-	& \int_{0}^{\pi} \Big( \tau_{m,n}(\theta) \pi_{m,l}(\theta)
-	+ \pi_{m,n}(\theta) \tau_{m,l}(\theta) \Big) \sin{\theta} \thinspace d\theta
+	& \int_{0}^{\pi} \big( \pi_{m,n}(\theta) \tau_{m,l}(\theta)
+	+ \tau_{m,n}(\theta) \pi_{m,l}(\theta) \big) \sin{\theta} \thinspace d\theta
 	\cr
 	&= m \int_{0}^{\pi} \frac{\partial \big[ P_n^m(\cos{\theta}) P_l^m(\cos{\theta}) \big]}{\partial \theta} \thinspace d\theta
 	= 0,
 \end{aligned}
 $$
 
-and
+plus
 
 $$ \tag{17.6?}
 \begin{aligned}
-	& \int_{0}^{\pi} \big( \tau_{m,n}(\theta) \pi_{m,l}(\theta)
-	+ \pi_{m,n}(\theta) \tau_{m,l}(\theta) \big) \cos{\theta} \sin{\theta} \thinspace d\theta
+	& \int_{0}^{\pi} \big( \pi_{m,n}(\theta) \tau_{m,l}(\theta)
+	+ \tau_{m,n}(\theta) \pi_{m,l}(\theta) \big) \cos{\theta} \sin{\theta} \thinspace d\theta
 	\cr
 	&= m \int_{-1}^{1} P_n^m(x) P_l^m(x) \thinspace dx
 	- m \int_{-1}^{1} \frac{\partial \big[x P_n^m(x) P_l^m(x) \big]}{\partial x} dx
@@ -4786,7 +4792,7 @@ $$ \tag{17.6?}
 \end{aligned}
 $$
 
-and
+as well as
 
 $$ \tag{17.70}
 \begin{aligned}
@@ -4802,56 +4808,23 @@ $$ \tag{17.70}
 \end{aligned}
 $$
 
-and
+and, finally,
 
 $$ \tag{17.7?}
-\small
 \begin{aligned}
 	& \int_{0}^{\pi} \big( \pi_{m,n}(\theta) \pi_{m,l}(\theta)
 	+ \tau_{m,n}(\theta) \tau_{m,l}(\theta) \big) \cos{\theta} \sin{\theta} \thinspace d\theta
 	\cr
-	&= \frac{1}{2} \int_{0}^{\pi} \big( m \pi_{m,n}(\theta) P^m_l(\cos{\theta}) + m P^m_n(\cos{\theta}) \pi_{m,l}(\theta) + 2 \tau_{m,n}(\theta) \tau_{m,l}(\theta) \sin{\theta} \big) \cos{\theta} \thinspace d\theta
+	&= \frac{1}{2} \int_{0}^{\pi} \big( m \pi_{m,n}(\theta) P^m_l(\cos{\theta}) + m \pi_{m,l}(\theta) P^m_n(\cos{\theta}) + 2 \tau_{m,n}(\theta) \tau_{m,l}(\theta) \sin{\theta} \big) \cos{\theta} \thinspace d\theta
 	\cr
 	&= \frac{1}{2} \int_{0}^{\pi}
-		\frac{\partial \big[ \tau_{m,n}(\theta) \sin{\theta} \big] }{\partial \theta} P^m_l(\cos{\theta}) \cos{\theta} \thinspace d\theta
-	\cr
-	&+ \frac{1}{2} \int_{0}^{\pi}
-		P^m_n(\cos{\theta}) \frac{\partial \big[ \tau_{m,l}(\theta) \sin{\theta} \big] }{\partial \theta} \cos{\theta} \thinspace d\theta
-	\cr
-	&+ \frac{1}{2} \int_{0}^{\pi} 2 \tau_{m,n}(\theta) \tau_{m,l}(\theta) \cos{\theta} \sin{\theta} \thinspace d\theta
-	\cr
-	&+ \frac{n (n+1) + l (l+1)}{2} \int_{-1}^{1} P_n^m(x) x P_l^m(x) \thinspace dx
-	\cr
-	&= \frac{1}{2} \int_{0}^{\pi} \frac{\partial \big[ \tau_{m,n}(\theta) \sin{\theta} \big] }{\partial \theta}
 		\left(
-			\frac{(l - m + 1)}{(2 l + 1)} P_{l+1}^m(\cos{\theta}) +
-			\frac{(l + m)}{(2 l + 1)} P_{l-1}^m(\cos{\theta})
+			\frac{\partial \big[ \tau_{m,n}(\theta) \sin{\theta} \big] }{\partial \theta} P^m_l(\cos{\theta}) \cos{\theta} +
+			P^m_n(\cos{\theta}) \frac{\partial \big[ \tau_{m,l}(\theta) \sin{\theta} \big] }{\partial \theta} \cos{\theta}
 		\right) d\theta
 	\cr
-	&+ \frac{1}{2} \int_{0}^{\pi} P^m_n(\cos{\theta})
-		\left(
-			\frac{(l - m + 1)}{(2 l + 1)}
-			\frac{\partial \big[ \tau_{m,l+1}(\theta) \sin{\theta} \big] }{\partial \theta}
-			+ \frac{(l + m)}{(2 l + 1)}
-			\frac{\partial \big[ \tau_{m,l-1}(\theta) \sin{\theta} \big] }{\partial \theta}
-		\right) \thinspace d\theta
-	\cr
-	&+ \frac{1}{2} \int_{0}^{\pi} 2 P^m_n(\cos{\theta})
-		\left(
-			P_l^m(\cos{\theta}) \cos{\theta} +
-			\tau_{m,l}(\theta) \sin{\theta}
-		\right) \sin{\theta}
-		\thinspace d\theta
-	\cr
-	&+ \frac{1}{2} \int_{0}^{\pi}
-		2 \tau_{m,n}(\theta)
-		\left(
-			\frac{(l - m + 1)}{(2 l + 1)} \tau_{l+1}^m(\cos{\theta})
-			+ \frac{(l + m)}{(2 l + 1)} \tau_{l-1}^m(\cos{\theta})
-			+ P_l^m(\cos{\theta}) \sin{\theta}
-		\right) \sin{\theta} \thinspace d\theta
-	\cr
-	&+ \frac{n (n+1) + l (l+1)}{2} \int_{-1}^{1} P_n^m(x) x P_l^m(x) \thinspace dx
+	&+ \frac{1}{2} \int_{0}^{\pi} 2 \tau_{m,n}(\theta) \tau_{m,l}(\theta) \cos{\theta} \sin{\theta} \thinspace d\theta
+	+ \frac{n (n+1) + l (l+1)}{2} \int_{-1}^{1} P_n^m(x) x P_l^m(x) \thinspace dx
 	\cr
 	&= \frac{1}{2} \frac{(l - m + 1)}{(2 l + 1)} \int_{0}^{\pi} \frac{\partial}{\partial \theta} \left( \sin{\theta} \frac{\partial \big[ P_n^m(\cos{\theta}) P_{l+1}^m(\cos{\theta}) \big]}{\partial \theta} \right) d\theta
 	\cr
@@ -4860,152 +4833,37 @@ $$ \tag{17.7?}
 	&+ \int_{0}^{\pi}
 		\left( P^m_n(\cos{\theta}) \tau_{m,l}(\theta)
 		+ \tau_{m,n}(\theta) P_l^m(\cos{\theta}) \right)
-		\sin^2{\theta} \thinspace d\theta
+		\left( 1 - \cos^2{\theta} \right) d\theta
 	\cr
 	&+ \frac{n (n+1) + l (l+1) + 2}{2} \int_{-1}^{1} P_n^m(x) x P_l^m(x) \thinspace dx
-	\cr
-	&= \frac{n (n+1) + l (l+1) + 2}{2} \int_{-1}^{1} P_n^m(x) x P_l^m(x) \thinspace dx
-	\cr
-	&- \int_{0}^{\pi}
-		\left( P^m_n(\cos{\theta}) \tau_{m,l}(\theta)
-		+ \tau_{m,n}(\theta) P_l^m(\cos{\theta}) \right)
-		\cos^2{\theta} \thinspace d\theta
-	\cr
-	&= \frac{n (n+1) + l (l+1) + 2}{2} \int_{-1}^{1} P_n^m(x) x P_l^m(x) \thinspace dx
-	\cr
-	&- \int_{0}^{\pi}
-		P^m_n(\cos{\theta})
-		\left(
-			\frac{(l - m + 1)}{(2 l + 1)} \tau_{l+1}^m(\theta)
-			+ \frac{(l + m)}{(2 l + 1)} \tau_{l-1}^m(\theta)
-			+ P_l^m(\cos{\theta}) \sin{\theta}
-		\right)
-		\cos{\theta} \thinspace d\theta
-	\cr
-	&- \int_{0}^{\pi}
-		\tau_{m,n}(\theta)
-		\left(
-			\frac{(l - m + 1)}{(2 l + 1)} P_{l+1}^m(\cos{\theta}) +
-			\frac{(l + m)}{(2 l + 1)} P_{l-1}^m(\cos{\theta})
-		\right)
-		\cos{\theta} \thinspace d\theta
 	\cr
 	&= \frac{n (n+1) + l (l+1)}{2} \int_{-1}^{1} P_n^m(x)
 		\left(
 			\frac{(l - m + 1)}{(2 l + 1)} P_{l+1}^m(x) +
 			\frac{(l + m)}{(2 l + 1)} P_{l-1}^m(x)
-		\right) \thinspace dx
+		\right) dx
 	\cr
 	&- \frac{(l - m + 1)}{(2 l + 1)} \frac{1}{m} \int_{0}^{\pi}
 		\left(
-			\pi_{m,n}(\theta) \tau_{l+1}^m(\theta)
+			\pi_{m,n}(\theta) \tau_{m,l+1}(\theta)
 			+ \tau_{m,n}(\theta) \pi_{m,l+1}(\theta)
 		\right)
 		\cos{\theta} \sin{\theta} \thinspace d\theta
 	\cr
 	&- \frac{(l + m)}{(2 l + 1)} \frac{1}{m} \int_{0}^{\pi}
 		\left(
-			\pi_{m,n}(\theta) \tau_{l-1}^m(\theta)
+			\pi_{m,n}(\theta) \tau_{m,l-1}(\theta)
 			+ \tau_{m,n}(\theta) \pi_{m,l-1}(\theta)
 		\right)
 		\cos{\theta} \sin{\theta} \thinspace d\theta
 	\cr
-	&= \frac{1}{2n + 1} \frac{(n+m)!}{(n-m)!} \bigg(
-	\left( n (n+1) + l (l+1) - 2 \right)
-	\frac{(l - m + 1)}{(2 l + 1)} \delta_{l+1,n}
-	\cr
-	&+ \left( n (n+1) + l (l+1) - 2 \right)
-	\frac{(l + m)}{(2 l + 1)} \delta_{l-1,n}
-	\bigg)
-	\cr
-	&= \frac{2}{2n + 1} \frac{(n+m)!}{(n-m)!} \bigg(
-	\frac{\left(n^2-1\right) (n-m)}{2 n-1} \delta_{l+1,n}
-	\cr
-	&+ \frac{n (n+2) (m+n+1)}{2 n+3} \delta_{l-1,n}
-	 \bigg)
+	&= \frac{2}{2n + 1} \frac{(n+m)!}{(n-m)!} \left(
+	\frac{(n^2-1) (n-m)}{2 n-1} \delta_{l+1,n}
+	+ \frac{n (n+2) (m+n+1)}{2 n+3} \delta_{l-1,n} \right),
 \end{aligned}
 $$
 
----
-
-$$
-	(l - m + 1) P_{l+1}^m(x) = (2 l + 1) x P_l^m(x) - (l + m) P_{l-1}^m(x)
-$$
-
-$$
-	x P_l^m(x) = \frac{(l - m + 1)}{(2 l + 1)} P_{l+1}^m(x) + \frac{(l + m)}{(2 l + 1)} P_{l-1}^m(x)
-$$
-
-$$
-	\tau_{m,l}(\theta) \cos{\theta}
-	= \frac{(l - m + 1)}{(2 l + 1)} \tau_{l+1}^m(\theta)
-	+ \frac{(l + m)}{(2 l + 1)} \tau_{l-1}^m(\theta)
-	+ P_l^m(\cos{\theta}) \sin{\theta}
-$$
-
-$$
-\begin{aligned}
-	\frac{\partial \tau_{m,l}}{\partial \theta} \cos{\theta}
-	&= \frac{(l - m + 1)}{(2 l + 1)} \frac{\partial \tau_{l+1}^m}{\partial \theta}
-	+ \frac{(l + m)}{(2 l + 1)} \frac{\partial \tau_{l-1}^m}{\partial \theta}
-	+ \frac{\partial \big[ P_l^m(\cos{\theta}) \sin{\theta} \big]}{\partial \theta}
-	+ \tau_{m,l}(\theta) \sin{\theta}
-\end{aligned}
-$$
-
-$$
-	\frac{\partial \big[ P_l^m(\cos{\theta}) \sin{\theta} \big]}{\partial \theta}
-	= P_l^m(\cos{\theta}) \cos{\theta} + \tau_{m,l}(\theta) \sin{\theta}
-$$
-
-$$
-\begin{aligned}
-	\frac{\partial \tau_{m,l}}{\partial \theta} \cos{\theta}
-	&= \frac{(l - m + 1)}{(2 l + 1)} \frac{\partial \tau_{l+1}^m}{\partial \theta}
-	+ \frac{(l + m)}{(2 l + 1)} \frac{\partial \tau_{l-1}^m}{\partial \theta}
-	+ 2 \tau_{m,l}(\theta) \sin{\theta}
-	+ P_l^m(\cos{\theta}) \cos{\theta}
-\end{aligned}
-$$
-
-$$
-	\frac{\partial \big[ \tau_{m,l}(\theta) \sin{\theta} \big] }{\partial \theta}
-	= \cos{\theta} \tau_{m,l}(\theta) + \sin{\theta} \frac{\partial \tau_{m,l}}{\partial \theta}
-$$
-
-$$
-\small
-\begin{aligned}
-	\frac{\partial \big[ \tau_{m,l}(\theta) \sin{\theta} \big] }{\partial \theta} \cos{\theta}
-	&= \cos{\theta}
-	\left(
-		\frac{(l - m + 1)}{(2 l + 1)} \tau_{l+1}^m(\theta)
-		+ \frac{(l + m)}{(2 l + 1)} \tau_{l-1}^m(\theta)
-		+ P_l^m(\cos{\theta}) \sin{\theta}
-	\right)
-	\cr
-	&+ \sin{\theta}
-	\left(
-		\frac{(l - m + 1)}{(2 l + 1)} \frac{\partial \tau_{l+1}^m}{\partial \theta}
-		+ \frac{(l + m)}{(2 l + 1)} \frac{\partial \tau_{l-1}^m}{\partial \theta}
-		+ 2 \tau_{m,l}(\theta) \sin{\theta}
-		+ P_l^m(\cos{\theta}) \cos{\theta}
-	\right)
-	\cr
-	&= \frac{(l - m + 1)}{(2 l + 1)}
-	\frac{\partial \big[ \tau_{m,l+1}(\theta) \sin{\theta} \big] }{\partial \theta}
-	+ \frac{(l + m)}{(2 l + 1)}
-	\frac{\partial \big[ \tau_{m,l-1}(\theta) \sin{\theta} \big] }{\partial \theta}
-	\cr
-	&+
-	\left( 2 P_l^m(\cos{\theta}) \cos{\theta}
-	+ 2 \tau_{m,l}(\theta) \sin{\theta} \right) \sin{\theta}
-\end{aligned}
-$$
-
----
-
-where, in the addition to Legendre's equation, we utilized the orthogonality property of Legendre's polynomials (Equation 17.56) and the fact that the value of the associated Legendre polynomials is zero for \\(\cos{\theta} = \pm 1\\) unless \\(m = 0\\).
+where, in the addition to Legendre's differential equation (Equation 17.??), we utilized the orthogonality property of Legendre's polynomials (Equation 17.56), the recurrence relation (Equation 17.5?), and the fact that the value of the associated Legendre polynomials is zero for \\(\cos{\theta} = \pm 1\\) unless \\(m = 0\\).
 
 To save some space, let us introduce a compact notation for the product derivative of the spherical Bessel function:
 
@@ -6316,7 +6174,7 @@ $$
 
 It is both diagonal and independent of the azimuthal angle \\(\phi\\). This is consistent with the predictions of the general scattering theory of spherical particles of Section 15.
 
-We can study the angular dependence of the scattering matrix by analyzing the polar functions \\(\pi_{1,n}\\) and \\(\tau_{1,n}\\) given by Equation 17.68. Using the definition of the associated Legendre polynomials (see Equations 17.54 and 17.55), it can be shown \[cite B&H?\] that the polar functions satisfy the recurrence relations
+We can study the angular dependence of the scattering matrix by analyzing the polar functions \\(\pi_{1,n}\\) and \\(\tau_{1,n}\\) given by Equation 17.68. If we substitute the recurrence relation of the associated Legendre polynomials (Equation 17.5?) into the formulae of the polar functions, it is straightforward to show that the latter satisfy the recurrence relations
 
 $$ \tag{18.7}
 \begin{aligned}
@@ -6469,7 +6327,7 @@ These expressions are only valid provided that both \\(\vert x \vert \gg n\\) an
 
 We may observe that the resulting coefficients are highly cyclical: \\(a_{n+4} \backsimeq a\_n\\) and \\(a_{n+1} \backsimeq b\_n\\). Thus, for any given value of \\(x,\\) only 4 unique coefficients exist.
 
-These formulas can be simplified by introducing the exponential notation. Since
+These formulae can be simplified by introducing the exponential notation. Since
 
 $$ \tag{18.14}
 \begin{aligned}
@@ -6503,7 +6361,7 @@ $$ \tag{18.15}
 \end{aligned}
 $$
 
-Further reduction can be achieved by rewriting the formulas in terms of \\(\tan(m x - \pi n / 2)\\):
+Further reduction can be achieved by rewriting the formulae in terms of \\(\tan(m x - \pi n / 2)\\):
 
 $$ \tag{18.16}
 \begin{aligned}
