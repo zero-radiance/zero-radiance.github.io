@@ -6737,7 +6737,7 @@ $$ \tag{18.39}
 \end{aligned}
 $$
 
-where we choose to express the squared magnitudes of the elements of the scattering matrix by double series:
+where we choose to express the squared magnitudes of the elements of the scattering matrix by a double series:
 
 $$ \tag{18.40}
 \begin{aligned}
@@ -6763,10 +6763,10 @@ Thus, the amount of power scattered by a spherical particle is
 $$ \tag{18.42}
 	\Phi_s(\omega)
 	\backsimeq \frac{2 \pi}{k^2(\omega)} \Epsilon_i(\omega)
-	\sum_{n=1}^{\infin} (2 n + 1) \left( \big| a_n(\omega) \big|^2 + \big| b_n(\omega) \big|^2 \right).
+	\sum_{n=1}^{\infin} (2 n + 1) \left( |a_n|^2 + |b_n|^2 \right).
 $$
 
-Returning to Equation 18.37, we are now faced with another integral
+If we return to Equation 18.37 and take Equation 18.32 into account, we will face another integral
 
 $$ \tag{18.43}
 \begin{aligned}
@@ -6774,46 +6774,36 @@ $$ \tag{18.43}
 	&= \frac{2 \pi}{\Phi_s(\omega)} \int_{0}^{\pi} I_s(\theta, \phi, \omega) \cos{\theta} \sin{\theta} d\theta
 	\cr
 	&\backsimeq \frac{2 \pi}{k^2(\omega)} \frac{\Epsilon_i(\omega)}{\Phi_s(\omega)}
-	\int_{0}^{\pi} \frac{ \left| s_1(\theta, \omega) \right|^2 + \left| s_2(\theta, \omega) \right|^2 }{2} \cos{\theta} \sin{\theta} d\theta.
+	\int_{0}^{\pi} \frac{ \left| s_1(\theta, \omega) \right|^2 + \left| s_2(\theta, \omega) \right|^2 }{2} \cos{\theta} \sin{\theta} d\theta
+	\cr
+	&\backsimeq \frac{
+		\int_{0}^{\pi} \left( \left| s_1(\theta, \omega) \right|^2 + \left| s_2(\theta, \omega) \right|^2 \right) \cos{\theta} \sin{\theta} d\theta
+	}{
+		\int_{0}^{\pi} \left( \left| s_1(\theta, \omega) \right|^2 + \left| s_2(\theta, \omega) \right|^2 \right) \sin{\theta} d\theta
+	}.
 \end{aligned}
 $$
 
-After taking Equation 18.40 into account, it is clear that we must establish two additional properties of the polar functions:
+We may once again substitute the double series of Equation 18.40; however, this time, the additional cosine term in the resulting integrals requires application of a different set of orthogonality properties, namely, Equations 17.6? and 17.7?, yielding
 
-
-
-derived analogously to Equation 17.69.1
-
-$$ \tag{17.68}
-\tau_{m,n}(\theta)
-	= \frac{\partial P_n^m(\cos{\theta})}{\partial \theta}
-	= -\sin{\theta} \frac{\partial P_n^m(\cos{\theta})}{\partial (\cos{\theta})}
-	,
-	\pi_{m,n}(\theta)
-	= m \frac{P_n^m(\cos{\theta})}{\sin{\theta}},
-	\quad
+$$ \tag{18.44}
+\begin{aligned}
+	& \int_{0}^{\pi} \frac{ \left| s_1(\theta, \omega) \right|^2 + \left| s_2(\theta, \omega) \right|^2 }{2} \cos{\theta} \sin{\theta} d\theta
+	\cr
+	&= \sum_{n=1}^{\infin} \frac{2 (2 n + 1)}{n (n + 1)} \mathcal{Re} \lbrace a_n b_n^{\*} \rbrace
+	+ \sum_{n=1}^{\infin} \frac{2 n (n+2)}{n+1}
+	\mathcal{Re} \lbrace a_n a_{n+1}^{\*} + b_n b_{n+1}^{\*} \rbrace.
+\end{aligned}
 $$
 
-and
+The combination of Equations 18.41-18.44 produces the analytic expression of the mean cosine of a spherical particle:
 
-$$ \tag{17.70}
+$$ \tag{18.45}
 \begin{aligned}
-	& \int_{0}^{\pi} \big( \pi_{m,n}(\theta) \pi_{m,l}(\theta)
-	+ \tau_{m,n}(\theta) \tau_{m,l}(\theta) \big) \sin{\theta} \thinspace d\theta
-	\cr
-	&= \frac{1}{2} \int_{0}^{\pi} \Big( m \pi_{m,n}(\theta) P^m_l(\cos{\theta}) + m \pi_{m,l}(\theta) P^m_n(\cos{\theta}) \Big) \thinspace d\theta
-	+ \int_{0}^{\pi} \tau_{m,n}(\theta) \tau_{m,l}(\theta) \sin{\theta} \thinspace d\theta
-	\cr
-	&= \int_{0}^{\pi} n (n+1) P_n^m(\cos{\theta}) P_l^m(\cos{\theta}) \sin{\theta} \thinspace d\theta
-	\cr
-	&+ \frac{1}{2} \int_{0}^{\pi} \bigg( \frac{\partial \big[ \tau_{m,n}(\theta) \sin{\theta} \big]}{\partial \theta} P_l^m(\cos{\theta})
-	+ 2 \tau_{m,n}(\theta) \tau_{m,l}(\theta) \sin{\theta}
-	+ \frac{\partial \big[ \tau_{m,l}(\theta) \sin{\theta} \big]}{\partial \theta} P_n^m(\cos{\theta}) \bigg) d\theta
-	\cr
-	&= \int_{0}^{\pi} n (n+1) P_n^m(\cos{\theta}) P_l^m(\cos{\theta}) \sin{\theta} \thinspace d\theta
-	 + \frac{1}{2} \int_{0}^{\pi} \frac{\partial}{\partial \theta} \Bigg( \sin{\theta} \frac{\partial \big[ P_n^m(\cos{\theta}) P_l^m(\cos{\theta}) \big]}{\partial \theta} \Bigg) d\theta
-	\cr
-	&= \frac{2}{2n + 1} \frac{(n+m)!}{(n-m)!} n (n+1) \delta_{l,n},
+	g(\omega)
+	&\backsimeq \frac{\sum_{n=1}^{\infin} \frac{2 (2 n + 1)}{n (n + 1)} \mathcal{Re} \lbrace a_n b_n^{\*} \rbrace
+	+ \sum_{n=1}^{\infin} \frac{2 n (n+2)}{n+1}
+	\mathcal{Re} \lbrace a_n a_{n+1}^{\*} + b_n b_{n+1}^{\*} \rbrace}{\sum_{n=1}^{\infin} (2 n + 1) \left( |a_n|^2 + |b_n|^2 \right)}.
 \end{aligned}
 $$
 
