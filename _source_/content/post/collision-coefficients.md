@@ -6807,6 +6807,10 @@ $$ \tag{18.45}
 \end{aligned}
 $$
 
+Equation 18.45 allows us to plot the mean cosine of a water droplet as a function of its size.
+
+{{< figure src="/img/water_mean_cos.svg" caption="*Figure N: Linear plot of the mean cosine of a water droplet. The horizontal axis represents the size parameter of the particle.*" >}}
+
 ---
 
 ## III. Approximate Methods for Practical Use
