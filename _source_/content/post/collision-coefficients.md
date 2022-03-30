@@ -6658,41 +6658,45 @@ Consider a water droplet suspended in vacuum illuminated by orange light. Assumi
 
 The smallest possible water droplet is a [single molecule](https://water.lsbu.ac.uk/water/water_molecule.html) of radius \\(a \approx 0.1375 \text{ nm}\\), which corresponds to \\(x = k a \approx 0.00144\\). If we ignore the anisotropy of the molecule and imagine it to be a sphere, we can apply the Lorenz-Mie-Debye theory to determine the intensity of the scattered light.
 
-{{< figure src="/img/water_molecule.svg" caption="*Figure N: Linear plot of the scattered intensity of a water droplet of size \\(x = 0.00144\\) (solid line). The vertical and the horizontal intensities are plotted using the dashed and the dotted lines, respectfully.*" >}}
+{{< figure src="/img/water_molecule.svg" caption="*Figure N: Linear plot of the intensity of light scattered by a water droplet of size \\(x = 0.00144\\) (solid line). The vertical and the horizontal intensities are plotted using the dashed and the dotted lines, respectfully.*" >}}
 
 The resulting distribution of scattered light is symmetric with respect to the vertical plane containing the incident electric field vector; and it is, of course, also symmetric around the direction of propagation of the incident light (from left to right). At the same time, while the horizontal component is isotropic, the value of the vertical component is 0 at the angle of 90 degrees. Comparison with the plots of the polar functions (Figures N and M) shows that only the functions of the first order are present, indicating that the intensity of molecular scattering is dominated by the contribution of first electric partial wave, with the molecule acting as an electric dipole.
 
 Once the size of the droplet approaches the wavelength of the incident light (\\(x \to 1\\)), the Mie effect becomes apparent: both the horizontal and the vertical components begin to compress and shift towards the forward direction.
 
-{{< figure src="/img/water_x1.svg" caption="*Figure N: Linear plot of the scattered intensity of a water droplet of size \\(x = 1\\) (solid line). The vertical and the horizontal intensities are plotted using the dashed and the dotted lines, respectfully.*" >}}
+{{< figure src="/img/water_x1.svg" caption="*Figure N: Linear plot of the intensity of light scattered by a water droplet of size \\(x = 1\\) (solid line). The vertical and the horizontal intensities are plotted using the dashed and the dotted lines, respectfully.*" >}}
 
 As the size of the particle increases, the two components continue to converge towards their average.
 
-{{< figure src="/img/water_x2.svg" caption="*Figure N: Linear plot of the scattered intensity of a water droplet of size \\(x = 2\\) (solid line). The vertical and the horizontal intensities are plotted using the dashed and the dotted lines, respectfully.*" >}}
+{{< figure src="/img/water_x2.svg" caption="*Figure N: Linear plot of the intensity of light scattered by a water droplet of size \\(x = 2\\) (solid line). The vertical and the horizontal intensities are plotted using the dashed and the dotted lines, respectfully.*" >}}
 
 For particles much larger than the wavelength (\\(x \gg 1\\)), we can observe  formation of the secondary interference structure around the forward direction. The shape and the complexity of this structure changes rapidly with both \\(m\\) and \\(x\\), leading to a colorful effect called *polychroism*.
 
-{{< figure src="/img/water_x10.svg" caption="*Figure N: Linear plot of the scattered intensity of a water droplet of size \\(x = 10\\).*" >}}
+{{< figure src="/img/water_x10.svg" caption="*Figure N: Linear plot of the intensity of light scattered by a water droplet of size \\(x = 10\\).*" >}}
 
 If the refractive index of the particle is large \\(\left( |m| \gg 1 \right)\\), the distribution of these peaks can be predicted by the [Huygens–Fresnel principle](https://en.wikipedia.org/wiki/Huygens%E2%80%93Fresnel_principle), according to which, for small scattering angles, the total field is given by the integral of spherical wavelets formed in the plane of the aperture (or, conversely, the area around the obstacle) \[[4](#references) (ch 3.1), [6](#references) (ch 8.2, 14.5.2.c)\]. This results in an apparent failure of the obstacle to block the incident light; it is then said that the wave nature of light causes it to [diffract](https://en.wikipedia.org/wiki/Diffraction) or, in other words, bend around the object.
 
 For a typical [cloud droplet](https://ntrs.nasa.gov/citations/20160014659) of radius \\(a \approx 10 \text{ μm}\\) (which corresponds to \\(x \approx 104.7\\)), the intensity of forward scattering is so high that we must use a logarithmic plot in order to discern the details of the angular distribution of scattered light.
 
-{{< figure src="/img/water_cloud.svg" caption="*Figure N: Logarithmic plot of the scattered intensity of a water droplet of size \\(x = 104.7\\).*" >}}
+{{< figure src="/img/water_cloud.svg" caption="*Figure N: Logarithmic plot of the intensity of light scattered by a water droplet of size \\(x = 104.7\\).*" >}}
 
 A logarithmic polar plot can hardly convey how large the forward peak is. A rectangular plot shows that there is a 5 order-of-magnitude difference between the highest peak and the lowest trough.
 
-{{< figure src="/img/water_cloud_intensity.svg" caption="*Figure N: Logarithmic plot of the scattered intensity of a water droplet of size \\(x = 104.7\\). The horizontal axis represents the polar angle of the direction of the sensor.*" >}}
+{{< figure src="/img/water_cloud_intensity.svg" caption="*Figure N: Logarithmic plot of the intensity of light scattered by a water droplet of size \\(x = 104.7\\). The horizontal axis represents the polar angle of the direction of the sensor.*" >}}
 
 How large is the contribution of the secondary components of the scattering function? We can answer this question by plotting the total amount of power scattered by the particle as a function of the solid angle, where a small solid angle corresponds to a tiny sensor located directly in front of the droplet, and \\(4 \pi\\) represents a hypothetical spherical sensor that completely surrounds the particle.
 
-{{< figure src="/img/water_cloud_power.svg" caption="*Figure N: Linear plot of the fraction of the scattered power of a water droplet of size \\(x = 104.7\\). The horizontal axis represents the solid angle subtended by the sensor.*" >}}
+{{< figure src="/img/water_cloud_power.svg" caption="*Figure N: Linear plot of the fraction of the scattered power for a water droplet of size \\(x = 104.7\\). The horizontal axis represents the solid angle subtended by the sensor.*" >}}
 
 It is convenient to normalize the graph by the total amount of power scattered by the droplet. This makes it easy to see that, while around 50% of the scattered power is concentrated in the forward direction, the remaining 50% is channeled elsewhere.
 
-Asymmetry of the angular distribution of the scattered light can be characterized in several different ways. For instance, one could consider the ratio of the intensities in the forward versus the backward direction.
+Asymmetry of the angular distribution of the scattered light can be characterized in several different ways. For instance, we could take the intensity of light scattered in the forward direction
 
-{{< figure src="/img/water_intensity_ratio.svg" caption="*Figure N: Logarithmic plot of the scattered intensity of a water droplet in the forward direction divided by the intensity in the backward direction. The horizontal axis represents the size parameter of the particle.*" >}}
+{{< figure src="/img/water_intensity.svg" caption="*Figure N: Logarithmic plot of the intensity of light scattered by a water droplet in the forward direction. The horizontal axis represents the size parameter of the particle.*" >}}
+
+and divide it by the intensity in the backward direction.
+
+{{< figure src="/img/water_intensity_ratio.svg" caption="*Figure N: Logarithmic plot of the ratio of the intensities of light scattered by a water droplet in the forward versus the backward direction. The horizontal axis represents the size parameter of the particle.*" >}}
 
 As it turns out, the result is a strongly varying function of \\(x\\). This can be explained by the presence of the secondary interference structure for \\(x \gg 1\\), which causes the scattered intensity in the backward direction to rapidly oscillate.
 
@@ -6807,7 +6811,9 @@ Equation 18.45 allows us to plot the mean cosine of a water droplet as a functio
 
 {{< figure src="/img/water_mean_cos.svg" caption="*Figure N: Linear plot of the mean cosine of a water droplet. The horizontal axis represents the size parameter of the particle.*" >}}
 
-Up to \\(x \approx 5\\), the value of the mean cosine increases in line with the prediction based on the Mie effect. For larger particles, the size parameter \\(x \gg 1\\), and, as we have already seen, this condition leads to formation of a secondary interference structure around the forward direction. Initially, its magnitude is significant in comparison with the size of the forward peak, which explains the dip in the plot at \\(x \approx 10\\). For particles larger still, the intensity of light scattered in the forward direction grows at a relatively quick pace, which leads to the (asymptotically) rising value of the mean cosine.
+Up to \\(x \approx 5\\), the value of the mean cosine increases in line with the prediction based on the Mie effect. For larger particles, the size parameter \\(x \gg 1\\), and, as we have already seen, this condition leads to formation of a secondary interference structure around the forward direction. Initially, its magnitude is significant in comparison with the size of the forward peak, which explains the dip in the plot at \\(x \approx 10\\). For particles larger still, the intensity of light scattered in the forward direction grows exponentially, while most of the secondary components grow at a slower pace, which leads to the (asymptotically) rising value of the mean cosine.
+
+It is interesting to consider the
 
 ---
 
