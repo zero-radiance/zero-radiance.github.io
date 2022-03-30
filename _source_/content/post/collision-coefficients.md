@@ -3965,17 +3965,17 @@ If normalization with respect to the projected area is not required, we may util
 $$ \tag{16.39}
 \begin{aligned}
 	& C_a
-	= \frac{\Phi_a}{\vert \negthinspace \braket{\bm{S_i}} \negthinspace \vert}
+	= \frac{\Phi_a}{\Epsilon_i}
 	= Q_a C_g
 	= \frac{\Phi_e - \Phi_s}{\vert \negthinspace \braket{\bm{S_i}} \negthinspace \vert},
 	\cr
 	& C_s
-	= \frac{\Phi_s}{\vert \negthinspace \braket{\bm{S_i}} \negthinspace \vert}
+	= \frac{\Phi_s}{\Epsilon_i}
 	= Q_s C_g
 	\backsimeq \frac{\oint |\bm{E_1}(\bm{n_s})|^2 d\Omega}{k^2 |\bm{E_0}|^2},
 	\cr
 	& C_e
-	= \frac{\Phi_e}{\vert \negthinspace \braket{\bm{S_i}} \negthinspace \vert}
+	= \frac{\Phi_e}{\Epsilon_i}
 	= Q_e C_g
 	\backsimeq \frac{4 \pi \thinspace \mathcal{Im} \big\lbrace \bm{E_0^{\*}} \cdot \bm{E_1}(\bm{n_i}) \big\rbrace}{k^2 |\bm{E_0}|^2}.
 \end{aligned}
@@ -6690,11 +6690,7 @@ How large is the contribution of the secondary components of the scattering func
 
 It is convenient to normalize the graph by the total amount of power scattered by the droplet. This makes it easy to see that, while around 50% of the scattered power is concentrated in the forward direction, the remaining 50% is channeled elsewhere.
 
-Asymmetry of the angular distribution of the scattered light can be characterized in several different ways. For instance, we could take the intensity of light scattered in the forward direction
-
-{{< figure src="/img/water_intensity.svg" caption="*Figure N: Logarithmic plot of the intensity of light scattered by a water droplet in the forward direction. The horizontal axis represents the size parameter of the particle.*" >}}
-
-and divide it by the intensity in the backward direction.
+Asymmetry of the angular distribution of the scattered light can be characterized in several different ways. For instance, we could take the intensity of light scattered in the forward direction and divide it by the intensity in the backward direction.
 
 {{< figure src="/img/water_intensity_ratio.svg" caption="*Figure N: Logarithmic plot of the ratio of the intensities of light scattered by a water droplet in the forward versus the backward direction. The horizontal axis represents the size parameter of the particle.*" >}}
 
@@ -6813,7 +6809,25 @@ Equation 18.45 allows us to plot the mean cosine of a water droplet as a functio
 
 Up to \\(x \approx 5\\), the value of the mean cosine increases in line with the prediction based on the Mie effect. For larger particles, the size parameter \\(x \gg 1\\), and, as we have already seen, this condition leads to formation of a secondary interference structure around the forward direction. Initially, its magnitude is significant in comparison with the size of the forward peak, which explains the dip in the plot at \\(x \approx 10\\). For particles larger still, the intensity of light scattered in the forward direction grows exponentially, while most of the secondary components grow at a slower pace, which leads to the (asymptotically) rising value of the mean cosine.
 
-It is interesting to consider the
+{{< figure src="/img/water_intensity.svg" caption="*Figure N: Logarithmic plot of the intensity of light scattered by a water droplet in the forward direction. The horizontal axis represents the size parameter of the particle.*" >}}
+
+The prominent wave pattern featured in the plot of Figure N can be explained by the fact that the mean cosine \\(g\\) is inversely proportional to the scattered power \\(\Phi_s\\). The latter is best illustrated by plotting the dimensional scattering efficiency
+
+$$ \tag{16.38}
+\begin{aligned}
+	& Q_s(\omega)
+	= \frac{\Phi_s(\omega)}{\Phi_i(\omega)}
+	= \frac{\Phi_s(\omega)}{\Epsilon_i(\omega) C_g}
+	= \frac{2}{x^2}
+	\sum_{n=1}^{\infin} (2 n + 1) \left( |a_n|^2 + |b_n|^2 \right).
+\end{aligned}
+$$
+
+defined in Equation 16.38.2.
+
+{{< figure src="/img/water_sca_eff.svg" caption="*Figure N: Linear plot of the scattering efficiency of a water droplet. The horizontal axis represents the size parameter of the particle.*" >}}
+
+Recall that, when a light sensor is placed *precisely* along the forward direction, the measured intensity is, in general, not the sum of the intensities of the incident and the scattered light, since this perfect alignment causes them to interfere.
 
 ---
 
