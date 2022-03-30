@@ -6771,12 +6771,8 @@ If we return to Equation 18.37 and take Equation 18.32 into account, we will fac
 $$ \tag{18.43}
 \begin{aligned}
 	g(\omega)
-	&= \frac{2 \pi}{\Phi_s(\omega)} \int_{0}^{\pi} I_s(\theta, \phi, \omega) \cos{\theta} \sin{\theta} d\theta
-	\cr
-	&\backsimeq \frac{2 \pi}{k^2(\omega)} \frac{\Epsilon_i(\omega)}{\Phi_s(\omega)}
-	\int_{0}^{\pi} \frac{ \left| s_1(\theta, \omega) \right|^2 + \left| s_2(\theta, \omega) \right|^2 }{2} \cos{\theta} \sin{\theta} d\theta
-	\cr
-	&\backsimeq \frac{
+	&= 2 \pi \int_{0}^{\pi} \frac{I_s(\theta, \phi, \omega)}{\Phi_s(\omega)} \cos{\theta} \sin{\theta} d\theta
+	\backsimeq \frac{
 		\int_{0}^{\pi} \left( \left| s_1(\theta, \omega) \right|^2 + \left| s_2(\theta, \omega) \right|^2 \right) \cos{\theta} \sin{\theta} d\theta
 	}{
 		\int_{0}^{\pi} \left( \left| s_1(\theta, \omega) \right|^2 + \left| s_2(\theta, \omega) \right|^2 \right) \sin{\theta} d\theta
@@ -6810,6 +6806,8 @@ $$
 Equation 18.45 allows us to plot the mean cosine of a water droplet as a function of its size.
 
 {{< figure src="/img/water_mean_cos.svg" caption="*Figure N: Linear plot of the mean cosine of a water droplet. The horizontal axis represents the size parameter of the particle.*" >}}
+
+Up to \\(x \approx 5\\), the value of the mean cosine increases in line with the prediction based on the Mie effect. For larger particles, the size parameter \\(x \gg 1\\), and, as we have already seen, this condition leads to formation of a secondary interference structure around the forward direction. Initially, its magnitude is significant in comparison with the size of the forward peak, which explains the dip in the plot at \\(x \approx 10\\). For particles larger still, the intensity of light scattered in the forward direction grows at a relatively quick pace, which leads to the (asymptotically) rising value of the mean cosine.
 
 ---
 
