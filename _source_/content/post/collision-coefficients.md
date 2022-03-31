@@ -2179,7 +2179,7 @@ Finally, we would like to emphasize certain properties of the solution of the Ma
 
 ## II. Electromagnetic Scattering
 
-### From Maxwell Equations to Radiative Transfer
+### Scattering Problem
 
 In practice, it is very difficult to solve the Maxwell equations exactly, except under certain (idealized) conditions. Thus, one usually employs various approximations that are carefully chosen to minimize both the error and the complexity of the computation.
 
@@ -2202,7 +2202,7 @@ Given the source illuminating the medium, we can determine the *total field* tha
 In order to rigorously solve the scattering problem, we must specify not only the incident field, but also the composite medium *in its entirety*, since, according to the Maxwell equations, the value of the electromagnetic field at a certain point is the sum of the fields produced by all charges, everywhere. Clearly, this is highly inconvenient and, often, unnecessary. Thus, we make a compromise: we "chop" the composite medium into little pieces (that effectively shrink to a point), each filled with small particles, analogously to a region of the macroscopic medium formed by a distribution of microscopic dipoles. Extending the analogy further, just as the combined action of dipoles leads to the definition of optical properties,
 the *radiative properties* of the large-scale medium are determined by solving the Maxwell equations for the distribution of particles within each little piece. Finally, we use the *radiative transfer equation* to integrate the contribution of all little pieces, which is a process that is conceptually similar to combining the fields of all charges according to the Maxwell equations.
 
-### Scattering Problem
+### Volume Integral Equation
 
 Participating media can be broadly divided into two categories - homogeneous and inhomogeneous. This suggests that we may split any medium into two regions: 1) infinite homogeneous, and 2) the remaining space of finite volume \\(V\\). The latter can be interpreted as a single particle or a particle group, or, more generally, as a scattering object (or a *scatterer* for short).
 
@@ -2441,6 +2441,10 @@ $$ \tag{11.25}
 $$
 
 In the literature, Equation 11.25 is often called the *volume integral equation* \[[8](#references) (ch. 4)\]
+
+### Surface Integral Equation
+
+...
 
 ### Dipole Radiation
 
