@@ -3942,7 +3942,7 @@ $$ \tag{16.37}
 	= \vert \negthinspace \braket{\bm{S_i}} \negthinspace \vert C_g.
 $$
 
-This allows us to introduce dimensionless absorption, scattering, and extinction *efficiencies*
+This allows us to introduce dimensionless absorption, scattering, and extinction *efficiency factors*
 
 $$ \tag{16.38}
 \begin{aligned}
