@@ -1869,6 +1869,8 @@ $$
 
 Therefore, our results are consistent with Equation 3.12.
 
+-->
+
 ### Electric and Magnetic Polarization
 
 The physical meaning of the electromagnetic potential is more apparent in the time domain. With this goal in mind, perform the inverse Fourier transform of Equation 9.14.2:
@@ -2036,13 +2038,13 @@ $$ \tag{10.14}
 \end{aligned}
 $$
 
-Equations 10.14.1-10.14.2 have the following interpretation in terms of the atomic theory of matter \[[6](#references) (ch. 2.2)\]. The [nucleus](https://en.wikipedia.org/wiki/Atomic_nucleus) of an atom contains [protons](https://en.wikipedia.org/wiki/Proton) with the charge \\(+q_e\\), and is surrounded by one or several [electrons](https://en.wikipedia.org/wiki/Electron) with the charge \\(-q_e\\). A molecule is an electrically neutral group of several atoms. Thus, an atom or a molecule is a system of several charges, half being negative, and the other half - positive, separated (on average) by a certain distance \\(d\\). If this distance is not zero, it is said that the the molecule is polarized. We can use this property to model an atom or a small molecule as a [dipole](https://en.wikipedia.org/wiki/Dipole) with an associated [electric dipole moment](https://en.wikipedia.org/wiki/Electric_dipole_moment)
+Equations 10.14.1-10.14.2 have the following interpretation in terms of the atomic theory of matter \[[6](#references) (ch. 2.2)\]. The [nucleus](https://en.wikipedia.org/wiki/Atomic_nucleus) of an atom contains [protons](https://en.wikipedia.org/wiki/Proton) with the charge \\(+q_e\\), and is surrounded by one or several [electrons](https://en.wikipedia.org/wiki/Electron) with the charge \\(-q_e\\). A molecule is an electrically neutral group of several atoms. Thus, an atom or a molecule is a system of several charges, half being negative, and the other half -- positive, separated (on average) by a certain distance \\(d\\). If this distance is not zero, it is said that the the molecule is polarized. We can use this property to model an atom or a small molecule as a pair of point charges of opposite sign called a [dipole](https://en.wikipedia.org/wiki/Dipole) with an associated [electric dipole moment](https://en.wikipedia.org/wiki/Electric_dipole_moment)
 
 $$ \tag{10.15}
 	\bm{p} = q \bm{d}.
 $$
 
-Notice that the moment of the dipole does not depend on its location, \\(\bm{r_0}\\). That is because it describes the displacement from the mean, which is relative by definition. It is easy to show that by expressing the electric dipole moment in terms of the bound charge density:
+The moment of a dipole does not depend on its location, \\(\bm{r_0}\\). That is because it describes the displacement from the mean, which is relative by definition. It is easy to show that by expressing the electric dipole moment in terms of the bound charge density:
 
 $$ \tag{10.16}
 	\bm{p}(V, t)
@@ -2135,7 +2137,7 @@ $$ \tag{10.27}
 	\bm{m} = I \bm{s},
 $$
 
-where \\(I\\) is the current, and \\(\bm{s}\\) is the oriented area of the loop.
+where \\(I\\) is the current, and \\(\bm{s}\\) is the [oriented area](https://en.wikipedia.org/wiki/Vector_area) of the loop. The Maxwell equations show that the effect of this *electric* loop is equivalent to a pair of oscillating *magnetic* charges, which is the reason why this configuration is also considered a dipole.
 
 Formally, the magnetic dipole moment can be expressed in terms of the magnetization current by the integral
 
@@ -2165,11 +2167,15 @@ but for [ferromagnets](https://en.wikipedia.org/wiki/Ferromagnet), this expressi
 
 Fortunately, for optical applications, the situation is rather simple. Paramagnetism and diamagnetism are both very weak in general; the same is true for ferromagnetism at optical frequencies in particular. This leads to \\(\mu\_r \approx 1\\) \[[10](#references) (vol. I, ch. 27)\].
 
-In some sense, dipoles can be considered elementary field generators: an electric dipole produces an electric field, and a magnetic dipole is a source of a magnetic field. They can be used to describe any (bound) current and charge distributions, which makes them particularly useful for solving electromagnetic radiation and scattering problems.
+In some sense, dipoles can be considered elementary sources of oscillating fields of the same type[^14]. They can be used to describe any (bound) current and charge distributions, which makes them particularly useful for solving electromagnetic radiation and scattering problems.
+
+[^14]: Dipoles also generate circulating fields of the opposite type.
 
 [Insert pictures of field lines of electric and magnetic dipoles]
 
-Finally, we would like to emphasize certain properties of the solution of the Maxwell equations in terms of potentials. Perhaps the most obvious one is that the scattered field is expressed as a volume integral. While the geometry of the volume containing the charges plays an important role, it is now apparent that the interior of the volume is the actual source of what we consider the surface reflection \[[5](#references) (vol. I, ch. 31)\]. Furthermore, Equation 10.3 says that the microscopic electromagnetic field always propagates at the speed of light. The dipole field interferes with the incident field in such a way that the total macroscopic field appears to have a lower phase velocity, which is used as the definition of the refractive index. This mechanism is described by the [Ewald-Oseen extinction theorem](https://en.wikipedia.org/wiki/Ewald%E2%80%93Oseen_extinction_theorem) \[[6](#references) (ch. 2.4)\].
+Finally, we would like to emphasize certain properties of the solution of the Maxwell equations in terms of potentials. Perhaps the most obvious one is that the scattered field is expressed as a volume integral. While the geometry of the volume containing the charges plays an important role, it is now apparent that the interior of the volume is the actual source of what we consider to be surface reflection. Furthermore, Equation 10.3 says that *microscopic* electromagnetic fields always propagate at the speed of light. The reason for different (typically, lower) phase velocity of *macroscopic* fields in matter is the remarkable fact that the dipole field interferes with the incident field in such a way that the latter is completely extinguished and replaced by the internal field that propagates in accordance with the index of refraction of the medium \[[5](#references) (vol. I, ch. 31)\]. Formally, this mechanism is described by the [extinction theorem](https://en.wikipedia.org/wiki/Ewald%E2%80%93Oseen_extinction_theorem) \[[6](#references) (ch. 2.4)\].
+
+<!--
 
 ## II. Electromagnetic Scattering
 
@@ -3549,7 +3555,7 @@ makes Equation 15.28 fully dimensionless. Additionally, in the operator notation
 
 [Evgenii: Consider Stratton's proof, p. 488]
 
-### Optical Cross-Section Theorem
+### Optical Theorem
 
 For radiative transfer applications, we may introduce a simpler description of the scattering and absorption properties of a particle by describing the outcome of the scattering process in radometric (rather than optical) terms \[[6](#references) (ch. 13.6), [8](#references) (ch. 13.1, 13.4)\].
 
@@ -3981,7 +3987,7 @@ $$ \tag{16.39}
 \end{aligned}
 $$
 
-Equations 16.39.1-16.39.3 are known as the *optical cross-section theorem*, or the [optical theorem](https://en.wikipedia.org/wiki/Optical_theorem) for short. In particular, Equation 16.39.3 is known as the *extinction theorem* \[[4](#references) (ch. 4.2)\].
+Equations 16.39.1-16.39.3 are known as the [optical theorem](https://en.wikipedia.org/wiki/Optical_theorem) for short.
 
 The equations of the extinction theorem can be simplified if the particle possesses axial symmetry with respect to the direction of incidence.
 
@@ -6047,7 +6053,7 @@ The problem is exacerbated by the convergence properties of the series. It was s
 
 #### Partial Waves
 
-The most straightforward interpretation of Equations 17.158 and 17.159 treats the individual terms as *partial waves*. If we examine the definition of the vector tesseral harmonics given by Equation 17.136, we may note that \\(\bm{N\_{m,n}}\\) has a radial component, while \\(\bm{M\_{m,n}}\\) does not. Since an electric charge is a source of a radially-symmetric electric field, we may interpret the existence of the radial component of \\(\bm{N\_{m,n}}\\) as a sign of the fact that the sphere contains a distribution of electric charges; therefore, the partial waves prefixed with \\(b_n\\) are said to be of the *electric type*. At the same time, in comparison with Equation 17.36 of the electric field, Equation 17.37 of the magnetic field has the coefficients \\(a_n\\) and \\(b_n\\) interchanged; similar logical steps lead to the conclusion that the partial waves prefixed with \\(a_n\\) are of the *magnetic type* \[[17](#references) (ch 9.22)\].
+The most straightforward interpretation of Equations 17.158 and 17.159 treats the individual terms as *partial waves*. If we examine the definition of the vector tesseral harmonics given by Equation 17.136, we may note that \\(\bm{N\_{m,n}}\\) has a radial component, while \\(\bm{M\_{m,n}}\\) does not. Since an electric charge is a source of a radially-symmetric electric field, we may interpret the existence of the radial component of \\(\bm{N\_{m,n}}\\) as a sign of the fact that the sphere contains a distribution of electric charges; therefore, the partial waves prefixed with \\(b\_n\\) are said to be of the *electric type*. At the same time, in comparison with Equation 17.36 of the electric field, Equation 17.37 of the magnetic field has the coefficients \\(a\_n\\) and \\(b\_n\\) interchanged; similar logical steps lead to the conclusion that the partial waves prefixed with \\(a\_n\\) are of the *magnetic type* \[[17](#references) (ch 9.22)\].
 
 We may also show that the field becomes transverse in the radiation zone (see Equation 13.14 for the case of a scattering object of an arbitrary shape). Using the asymptotic expressions of the spherical Bessel functions (for \\(\vert x \vert \gg 1\\) and \\(\vert x \vert \gg n\\)) given by Equation 17.52, the corresponding Riccati-Bessel functions (and their derivatives) take the form
 
@@ -6115,7 +6121,7 @@ $$ \tag{18.4}
 \end{aligned}
 $$
 
-As we shall soon see, the standard definitions of \\(a_n\\) and \\(b_n\\) often produce imaginary coefficients, while the expressions of \\(\pi_{1,n}\\) and \\(\tau_{1,n}\\) composed of elementary functions are negative. Therefore, for clarity, it makes sense to structure Equation 18.4 in the following way:
+As we shall soon see, the standard definitions of \\(a\_n\\) and \\(b\_n\\) often produce imaginary coefficients, while the expressions of \\(\pi\_{1,n}\\) and \\(\tau\_{1,n}\\) composed of elementary functions are negative. Therefore, for clarity, it makes sense to structure Equation 18.4 in the following way:
 
 $$ \tag{18.5}
 \begin{aligned}
@@ -6159,7 +6165,7 @@ $$ \tag{18.5}
 \end{aligned}
 $$
 
-In addition to the benefits described above, it allows us identify a rotation of the incident electric field \\([E_X, E_Y]^T\\) around the \\(z\\)-axis. If we refer to Equation 15.11 and Figure N, we may recognize the components of the the phasor \\([E_x(\phi), E_y(\phi)]^T\\) defined relative to the plane of observation.
+In addition to the benefits described above, it allows us identify a rotation of the incident electric field \\([E_X, E_Y]^T\\) around the \\(z\\)-axis. If we refer to Equation 15.11 and Figure N, we may recognize the components of the the phasor \\([E\_x(\phi), E\_y(\phi)]^T\\) defined relative to the plane of observation.
 
 If we specify the incident field at a certain coordinate \\(z < 0\\) and substitute the resulting phasor into Equation 18.5, the resulting expression is a perfect match for the template of Equation 15.16. This allows us to isolate the expression of the scattering matrix
 
@@ -6174,7 +6180,7 @@ $$
 
 It is both diagonal and independent of the azimuthal angle \\(\phi\\). This is consistent with the predictions of the general scattering theory of spherical particles of Section 15.
 
-We can study the angular dependence of the scattering matrix by analyzing the polar functions \\(\pi_{1,n}\\) and \\(\tau_{1,n}\\) given by Equation 17.68. If we substitute the recurrence relation of the associated Legendre polynomials (Equation 17.5?) into the formulae of the polar functions, it is straightforward to show that the latter satisfy the recurrence relations
+We can study the angular dependence of the scattering matrix by analyzing the polar functions \\(\pi\_{1,n}\\) and \\(\tau\_{1,n}\\) given by Equation 17.68. If we substitute the recurrence relation of the associated Legendre polynomials (Equation 17.5?) into the formulae of the polar functions, it is straightforward to show that the latter satisfy the recurrence relations
 
 $$ \tag{18.7}
 \begin{aligned}
@@ -6216,7 +6222,7 @@ $$
 
 Since \\(\phi \in [0, 2 \pi)\\) in a spherical coordinate system, the values of the argument of the polar functions are formally limited to the range of \\(\theta \in [0, \pi]\\), which corresponds to the upper half of a circle. Nevertheless, we are interested in the angular behavior of the scattered field for all possible directions of observation which, when taken together, form the surface of a unit sphere. We could approach this problem by plotting the 2-dimensional spherical distributions found in Equation 18.5; however, the resulting plots are fairly complicated, and it is much simpler to consider a slice of a unit sphere formed by two semicircles with \\(\phi = 0\\) and \\(\phi = \pi\\) instead.
 
-In general, Equation 18.7 shows that \\(\pi_{1,n}\\) and \\(\tau_{1,n}\\) are odd functions of \\(\theta\\):
+In general, Equation 18.7 shows that \\(\pi\_{1,n}\\) and \\(\tau\_{1,n}\\) are odd functions of \\(\theta\\):
 
 $$ \tag{18.9}
 	\pi_{1,n}(-\theta) = -\pi_{1,n}(\theta),
@@ -6234,7 +6240,7 @@ $$ \tag{18.10}
 \end{aligned}
 $$
 
-we may use the polar plots of \\(-\tau_{1,n}\\) and \\(-\pi_{1,n}\\) on the interval \\(\theta \in [-\pi, \pi]\\) to illustrate the angular behavior of Equation 18.5.
+we may use the polar plots of \\(-\tau\_{1,n}\\) and \\(-\pi\_{1,n}\\) on the interval \\(\theta \in [-\pi, \pi]\\) to illustrate the angular behavior of Equation 18.5.
 
 {{< figure src="/img/polar_tau.svg" caption="*Figure N: Polar functions \\(-\tau\_{1,n}\\) of order n=1 (blue), n=2 (orange), n=3 (green). Dashed lines indicate negative values.*" >}}
 
@@ -6248,9 +6254,9 @@ Now, recall that Equation 18.5 contains a sum of the (negated) polar functions. 
 
 The explicit expressions of the polar functions (and their plots) also allow us to determine the *apparent* charge configurations responsible for the first few partial waves.
 
-First, let us consider the *electric* partial waves by setting \\(a_n = 0\\) in Equation 18.5. Then, according to Equation 15.13, the scattering matrix of the first electric partial wave (given by the first line of Equation 18.8) performs a *rotation* of the coordinate axes -- one that corresponds to *reinterpretation* of the components of the incident electric phasor \\([E_x(\phi), E_y(\phi), 0]^T\\) in spherical coordinates -- followed by a *projection* onto the tangent plane of a sphere; this results in the radial component of the phasor being discarded.
+First, let us consider the *electric* partial waves by setting \\(a\_n = 0\\) in Equation 18.5. Then, according to Equation 15.13, the scattering matrix of the first electric partial wave (given by the first line of Equation 18.8) performs a *rotation* of the coordinate axes -- one that corresponds to *reinterpretation* of the components of the incident electric phasor \\([E\_x(\phi), E\_y(\phi), 0]^T\\) in spherical coordinates -- followed by a *projection* onto the tangent plane of a sphere; this results in the radial component of the phasor being discarded.
 
-Another way of saying this is that the *tangential component* of the incident electric field is parallel to the electric field of the first electric partial wave. Furthermore, Equation 18.5 indicates that the components of the scattered field propagate as spherical waves. These are key features of the far field of an *electric dipole*, a concept we have previously encountered in Section 13.
+Another way of saying this is that the *tangential component* of the incident electric field is parallel to the electric field of the first electric partial wave. Furthermore, Equation 18.5 indicates that the components of the scattered field propagate as spherical waves. These are key features of the far field of an *electric dipole*, a concept we have previously encountered in Sections 10 and 13.
 
 Once the size of the particle begins to approach the wavelength of light (as measured in the interior of the sphere), the atoms in its interior no longer oscillate in-phase because they are too far apart \[[5](#references) (vol. I, ch. 32.4)\]. This renders the dipole approximation insufficient, and therefore requires a more general description of the scatterer. One approach, something that we have already explored in Equation 13.12, consists of taking an integral over the volume of the particle filled with dipoles. However, that is not how the Lorenz-Mie-Debye formula works; we may interpret it as a [multipole expansion](https://en.wikipedia.org/wiki/Multipole_expansion) instead.
 
@@ -6258,7 +6264,7 @@ Let us see how it works. Imagine a particle in the radiation zone. Since the par
 
 How should we orient this disk with respect to the incident wave? Since the axis of a dipole is aligned with the vector of the incident field, the disk must contain the latter. Then, by symmetry, we have two remaining options for the orientation: either across or along the direction of propagation of the incident wave. While the first option allows us to rotate the dipole around the axis of the incident beam, this action can also be accomplished by using a complex coefficient in front of the dipole term. The second option is much more versatile, since it allows us to imagine sources of scattered radiation at arbitrary (polar) angles with respect to the direction of incidence.
 
-The multipole expansion process consists of splitting the perimeter of the disk into segments terminated by pairs of charges of opposite sign. A single pair rotated by \\(\pi/2\\) radians represents the dipole term. The \\(\theta\\)-component of its far field is split into two lobes separated by the plane oriented transversely with respect to the direction of incidence. In this plane, due to the projection angle, the \\(\theta\\)-component of the far field vanishes. This can be clearly seen as two vertical dips in the blue graph of Figure N.
+The multipole expansion process consists of splitting the perimeter of the disk into segments terminated by equidistant pairs of charges of opposite sign. A single pair rotated by \\(\pi/2\\) radians represents the dipole term. The \\(\theta\\)-component of its far field is split into two lobes separated by the plane oriented transversely with respect to the direction of incidence. In this plane, due to the projection angle, the \\(\theta\\)-component of the far field vanishes. This can be clearly seen as two vertical dips in the blue graph of Figure N.
 
 For a larger particle, we may require a greater number of electric charges to model its scattering behavior. Thus, we may add the second partial wave -- the [quadrupole](https://en.wikipedia.org/wiki/Quadrupole) term -- by subdividing the perimeter of the disk into four segments. In the standard orientation, the pattern formed by the charges resembles the vertices of an axis-aligned square; this explains why the orange graph of Figure 4 is rotated by \\(\pi/4\\) radians.
 
@@ -6266,9 +6272,9 @@ We can continue the subdivision process by using three pairs of charges of oppos
 
 {{< figure src="/img/partial_waves.png" caption="*Figure N: Partial waves. Top row: electric type, bottom row: magnetic type. Columns, left to right: dipole, quadrupole, sextupole. (Mie, 1908)*" >}}
 
-So far, we have specifically focused on *electric* partial waves of the form \\( \sum\_{m} b_{m,n} \bm{N\_{m,n}^{(3)}} \\) that are generated by oscillating *electric* charges. However, examination of Equation 17.37 shows that \\( \sum\_{m} a_{m,n} \bm{N\_{m,n}^{(3)}} \\) is a *magnetic* field that exhibits a pattern similar to the corresponding electric partial wave (up to rotation and scale). Thus, we may propose a similar explanation in terms of *magnetic* charges of opposite polarity (or, equivalently, loops of circulating current). This makes \\( \sum\_{m} a_{m,n} \bm{N\_{m,n}^{(3)}} \\) the magnetic field of a *magnetic* multipole.
+So far, we have specifically focused on *electric* partial waves of the form \\( \sum\_{m} b\_{m,n} \bm{N\_{m,n}^{(3)}} \\) that are generated by oscillating *electric* charges. However, examination of Equation 17.37 shows that \\( \sum\_{m} a\_{m,n} \bm{N\_{m,n}^{(3)}} \\) is a *magnetic* field that exhibits a pattern similar to the corresponding electric partial wave (up to rotation and scale). Thus, we may propose a similar explanation in terms of *magnetic* charges of opposite polarity (or, equivalently, loops of circulating current). This makes \\( \sum\_{m} a\_{m,n} \bm{N\_{m,n}^{(3)}} \\) the magnetic field of a *magnetic* multipole.
 
-In order to show its connection to the *magnetic* partial wave \\( \sum\_{m} a_{m,n} \bm{M\_{m,n}^{(3)}} \\), return to Equation 17.36, set \\(b_n' = 0\\), then take its curl (as shown by Equation 3.12) and examine the result:
+In order to show its connection to the *magnetic* partial wave \\( \sum\_{m} a\_{m,n} \bm{M\_{m,n}^{(3)}} \\), return to Equation 17.36, set \\(b\_n' = 0\\), then take its curl (as shown by Equation 3.12) and examine the result:
 
 $$ \tag{18.11}
 \begin{aligned}
@@ -6284,7 +6290,7 @@ Equation 18.11 shows that a *magnetic* partial wave is the electric field of a *
 
 Since a sphere is a body bounded by a closed surface, its interior can sustain a certain number of standing waves, also known as [normal modes](https://en.wikipedia.org/wiki/Normal_mode) \[[5](#references) (vol. I, ch. 49)\]. These waves oscillate at [natural frequencies](https://en.wikipedia.org/wiki/Natural_frequency) that depend on the size and the composition of the particle.
 
-The natural frequencies \\(\omega\_n\\) of the magnetic modes can be determined by setting the denominator of Equation 17.156.1 (or Equation 17.156.2 for the electric modes) to zero and solving the resulting transcendental equation for \\(x_n = x\\) \[[17](#references) (ch 9.22)\]; subsequently, the latter can be related to the former using Equations 7.6 and 7.7:
+The natural frequencies \\(\omega\_n\\) of the magnetic modes can be determined by setting the denominator of Equation 17.156.1 (or Equation 17.156.2 for the electric modes) to zero and solving the resulting transcendental equation for \\(x\_n = x\\) \[[17](#references) (ch 9.22)\]; subsequently, the latter can be related to the former using Equations 7.6 and 7.7:
 
 $$ \tag{18.12}
 \begin{aligned}
