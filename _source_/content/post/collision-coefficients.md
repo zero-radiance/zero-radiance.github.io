@@ -3993,7 +3993,7 @@ $$
 
 Equations 16.39.1-16.39.3 are known as the [optical theorem](https://en.wikipedia.org/wiki/Optical_theorem) for short.
 
-The equations of the extinction theorem can be simplified if the particle possesses axial symmetry with respect to the direction of incidence.
+Equations 16.38.3 and 16.39.3 can be simplified if the particle possesses axial symmetry with respect to the direction of incidence.
 
 To show this, express \\(\bm{E_1}\\) in terms of the scattering tensor \\(\mathcal{S_{ef}}\\) according to Equation 15.?:
 
