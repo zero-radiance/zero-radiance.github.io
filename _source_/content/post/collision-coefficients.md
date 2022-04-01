@@ -374,7 +374,7 @@ $$ \tag{2.17}
 	\bm{S}(\bm{r}, t) = \mu\_0^{-1} \big( \bm{E}(\bm{r}, t) \times \bm{B}(\bm{r}, t) \big)
 $$
 
-is the *instantaneous* [Poynting vector](https://en.wikipedia.org/wiki/Poynting_vector) that represents the direction and the rate of energy flow.
+is the *instantaneous* [Poynting vector](https://en.wikipedia.org/wiki/Poynting_vector) that characterizes the direction, the density, and the rate of energy flow.
 
 Definitions given in Equations 2.16-2.17 transform Equation 2.11 into a statement of the [Poynting theorem](https://en.wikipedia.org/wiki/Poynting%27s_theorem):
 
@@ -384,13 +384,13 @@ $$ \tag{2.18}
 	\frac{\partial^2 \mathcal{E\_{em}}}{\partial V \partial t}.
 $$
 
-A close examination of 2.18 reveals the fact that our definitions of the field energy and the Poynting vector are not unique, since one may also express the latter as
+A close examination of 2.18 reveals the fact that our definitions of the energy density and the Poynting vector are not unique, since one may also express the latter as
 
 $$ \tag{2.19}
 	\bm{S'}(\bm{r}, t) = \bm{S}(\bm{r}, t) + \nabla \times \bm{X}(\bm{r}, t)
 $$
 
-without violating the Poynting theorem \[[5](#references) (vol. II, ch. 27.4)\]. However, in practice, it does not pose a problem, since both the amount of electromagnetic energy (that is either measured or computed by integration) and its time rate of change remain invariant with respect to this transformation. [\[8](#references) (ch. 2.4)\]
+without violating the Poynting theorem \[[5](#references) (vol. II, ch. 27.4)\]. However, in practice, it does not pose a problem, since it is not actually possible to measure the Poyinting vector (or the energy density) directly, and if one measures the amount (or the time rate) of electromagnetic energy, the spatial integration process resolves the ambiguity and makes the measurable quantities invariant with respect to this transformation. [\[8](#references) (ch. 2.4, 11)\]
 
 A more pressing concern is whether our formulae, which were found using the microscopic formulation of the Maxwell equations, are valid at the microscopic scale. The answer is: almost always.
 
