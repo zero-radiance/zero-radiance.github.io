@@ -3758,7 +3758,7 @@ $$ \tag{16.21}
 	= \Phi_a + \Phi_s
 $$
 
-represents the total amount of power dissipated (absorbed or scattered) by the particle. We must caution against taking this interpretation literally: Equation 16.16 is just a convenient *mathematical decomposition*, and, in reality, the incident and the scattered fields cannot be completely *physically separated*. As a result, we can only measure the incident power \\(\Phi_i\\) (by removing the particle and installing a sensor) and the absorbed power \\(\Phi_a\\) (by comparing \\(\Phi_i\\) to the power measurement with the particle in place), while \\(\Phi_s\\) and \\(\Phi_e\\) are mathematical quantities that are *largely not measurable*.
+represents the total amount of power dissipated (absorbed or scattered) by the particle. We must caution against taking this interpretation literally: Equation 16.16 is just a convenient *mathematical decomposition*, and, in reality, the incident and the scattered fields cannot be completely *physically separated*. As a result, we can only measure the incident power \\(\Phi_i\\) (by removing the particle and installing a sensor) and the absorbed power \\(\Phi_a\\) (by comparing \\(\Phi_i\\) to the power measurement with the particle in place), while \\(\Phi_s\\) and \\(\Phi_e\\) are mathematical quantities that *are not measurable*, derived from the fields that *cannot individually exist*.
 
 Now, recall (cf. Equations 4.8, 4.15) that we have found, under quite general conditions, that the time average of the cross product of two vectors oscillating at exactly the same frequency is
 
@@ -6823,13 +6823,12 @@ Up to \\(x \approx 5\\), the value of the mean cosine increases in line with the
 
 {{< figure src="/img/water_intensity.svg" caption="*Figure N: Logarithmic plot of the intensity of light scattered by a water droplet in the forward direction. The horizontal axis represents the size parameter of the particle.*" >}}
 
-The prominent wave pattern featured in the plot of Figure N can be explained by the fact that the mean cosine \\(g\\) is inversely proportional to the scattered power \\(\Phi_s\\). The latter is best illustrated by plotting the dimensional scattering efficiency
+The prominent wave pattern featured in the plot of Figure N can be explained by the fact that the mean cosine \\(g\\) is inversely proportional to the scattered power \\(\Phi_s\\). The latter is best illustrated by plotting the dimensional scattering efficiency factor
 
-$$ \tag{16.38}
+$$ \tag{18.46}
 \begin{aligned}
 	& Q_s(\omega)
 	= \frac{\Phi_s(\omega)}{\Phi_i(\omega)}
-	= \frac{\Phi_s(\omega)}{\Epsilon_i(\omega) C_g}
 	= \frac{2}{x^2}
 	\sum_{n=1}^{\infin} (2 n + 1) \left( |a_n|^2 + |b_n|^2 \right).
 \end{aligned}
@@ -6837,9 +6836,33 @@ $$
 
 defined in Equation 16.38.2.
 
-{{< figure src="/img/water_sca_eff.svg" caption="*Figure N: Linear plot of the scattering efficiency of a water droplet. The horizontal axis represents the size parameter of the particle.*" >}}
+{{< figure src="/img/water_sca_eff.svg" caption="*Figure N: Linear plot of the scattering efficiency factor of a water droplet. The horizontal axis represents the size parameter of the particle.*" >}}
 
-Recall that, when a light sensor is placed *precisely* along the forward direction, the measured intensity is, in general, not the sum of the intensities of the incident and the scattered light, since this perfect alignment causes them to interfere.
+If the particle is non-absorbing, then, from Equation 16.38.1, it follows that the scattering and the extinction efficiencies are identical:
+
+$$ \tag{18.47}
+	Q_a = 0
+	\quad
+	\iff
+	\quad
+	Q_e = Q_s.
+$$
+
+The latter is given by Equation 16.38.3 and, for the particular case of a spherical particle, by the combination of Equations 16.43.1, 18.?.1, and 18.33:
+
+$$ \tag{18.48}
+\begin{aligned}
+	& Q_e(\omega)
+	= \frac{\Phi_a(\omega) + \Phi_s(\omega)}{\Phi_i(\omega)}
+	= -\frac{2}{x^2} \sum_{n=1}^{\infin} (2 n + 1) \mathcal{Re} \lbrace a_n + b_n \rbrace.
+\end{aligned}
+$$
+
+If you are not very familiar with the subject, then comparison of Equation 18.46 with Figure N may suggest that something is wrong, since the amount of power scattered by the particle may significantly exceed the amount of incident power. Since the scattered power is also featured in the expression of the extinction efficiency factor, it exhibits the same problem, telling us that the amount of power "removed" from the incident beam is larger than the amount of power geometrically intercepted by the particle. This surprising behavior is known as the [extinction paradox](https://en.wikipedia.org/wiki/Extinction_paradox) \[[4](#references) (ch 8.22), [20](#references), [21](#references)\].
+
+arbitrary particle shape...
+
+mirror...
 
 perfect dielectic reflector, perfect conductor...
 
@@ -6892,6 +6915,8 @@ Pharr & Jakob, Bohren & Huffman, Robin Green, Larry Travis @ NASA.
 17. Stratton, J. A. [Electromagnetic Theory](https://doi.org/10.1002/9781119134640) (1941).
 18. Courant, R., & Hilbert, D. [Methods of Mathematical Physics](https://doi.org/10.1002/9783527617210) (1953).
 19. Morse, P. M., & Feshbach, H. [Methods of Theoretical Physics](https://www.worldcat.org/title/methods-of-theoretical-physics/oclc/468127798) (1953).
+20. Berg, M. J., Sorensen, C. M., & Chakrabarti, A. [A New Explanation of the Extinction Paradox](https://digitalcommons.unl.edu/cgi/viewcontent.cgi?article=1109&context=usarmyresearch) (2011).
+21. Markel, V. A. [Extinction, Scattering and Absorption of Electromagnetic Waves in the Coupled-Dipole Approximation](http://whale.seas.upenn.edu/vmarkel/EPUBS/JQSRT-2019-236-106611_AAM.pdf) (2019).
 99. Hansen, J. E., & Travis, L. D. [Light Scattering in Planetary Atmospheres](https://doi.org/10.1007/BF00168069) (1974).
 
 <!--
