@@ -6682,11 +6682,15 @@ As the size of the particle increases, the two components continue to converge t
 
 {{< figure src="/img/water_x2.svg" caption="*Figure N: Linear plot of the intensity of light scattered by a water droplet of size \\(x = 2\\) (solid line). The vertical and the horizontal intensities are plotted using the dashed and the dotted lines, respectfully.*" >}}
 
-For particles much larger than the wavelength (\\(x \gg 1\\)), we can observe  formation of the secondary interference structure around the forward direction. The shape and the complexity of this structure changes rapidly with both \\(m\\) and \\(x\\), leading to a colorful effect called *polychroism*.
+For particles much larger than the wavelength (\\(x \gg 1\\)), we can observe formation of the secondary interference structure around the forward direction. The shape and the complexity of this structure changes rapidly with both \\(m\\) and \\(x\\), leading to a colorful effect called *polychroism*.
 
 {{< figure src="/img/water_x10.svg" caption="*Figure N: Linear plot of the intensity of light scattered by a water droplet of size \\(x = 10\\).*" >}}
 
-If the refractive index of the particle is large \\(\left( |m| \gg 1 \right)\\), the distribution of these peaks can be predicted by the [Huygens–Fresnel principle](https://en.wikipedia.org/wiki/Huygens%E2%80%93Fresnel_principle), according to which, for small scattering angles, the total field is given by the integral of spherical wavelets formed in the plane of the aperture (or, conversely, the area around the obstacle) \[[4](#references) (ch 3.1), [6](#references) (ch 8.2, 14.5.2.c)\]. This results in an apparent failure of the obstacle to block the incident light; it is then said that the wave nature of light causes it to [diffract](https://en.wikipedia.org/wiki/Diffraction) or, in other words, bend around the object.
+If the refractive index of the particle is large \\(\left( |m| \gg 1 \right)\\), for small scattering angles, the distribution of peaks can be predicted using the [Huygens–Fresnel principle](https://en.wikipedia.org/wiki/Huygens%E2%80%93Fresnel_principle), according to which, the total field in the far zone is given by the integral of spherical wavelets formed in the plane of the aperture \[[4](#references) (ch 3.1), [5](#references) (vol. I, ch. 30), [6](#references) (ch 8.2, 14.5.2.c)\]. Connection with the present case can be made by application of [Babinet's principle](https://en.wikipedia.org/wiki/Babinet%27s_principle), which states that, except for the overall intensity, the interference patterns of an aperture and an opaque body of the same size and shape are identical.
+
+[Insert picture here]
+
+The Huygens–Fresnel principle indicates an apparent failure of the obstacle to block the incident light; it is then said that the wave nature of light causes light to be [diffracted](https://en.wikipedia.org/wiki/Diffraction) or, in other words, bent around the object.
 
 For a typical [cloud droplet](https://ntrs.nasa.gov/citations/20160014659) of radius \\(a \approx 10 \text{ μm}\\) (which corresponds to \\(x \approx 104.7\\)), the intensity of forward scattering is so high that we must use a logarithmic plot in order to discern the details of the angular distribution of scattered light.
 
