@@ -3950,8 +3950,8 @@ $$ \tag{16.37}
 	\Phi_i
 	= \frac{\mu\_0^{-1}}{2} \frac{\eta}{c} |\bm{E_0}|^2
 	  \oint_{A} \mathrm{max}(0, -\bm{n} \cdot \bm{n_i}) dA
-	= \Epsilon_i(\bm{n_i}) C_g
-	= \vert \negthinspace \braket{\bm{S_i}} \negthinspace \vert C_g.
+	= \vert \negthinspace \braket{\bm{S_i}} \negthinspace \vert C_g
+	= \Epsilon_i(\bm{n_i}) C_g.
 $$
 
 This allows us to introduce dimensionless absorption, scattering, and extinction *efficiency factors*
@@ -6686,11 +6686,11 @@ For particles much larger than the wavelength (\\(x \gg 1\\)), we can observe fo
 
 {{< figure src="/img/water_x10.svg" caption="*Figure N: Linear plot of the intensity of light scattered by a water droplet of size \\(x = 10\\).*" >}}
 
-If the refractive index of the particle is large \\(\left( |m| \gg 1 \right)\\), for small scattering angles, the distribution of peaks can be predicted using the [Huygens–Fresnel principle](https://en.wikipedia.org/wiki/Huygens%E2%80%93Fresnel_principle), according to which, the total field in the far zone is given by the integral of spherical wavelets formed in the plane of the aperture \[[4](#references) (ch 3.1), [5](#references) (vol. I, ch. 30), [6](#references) (ch 8.2, 14.5.2.c)\]. Connection with the present case can be made by application of [Babinet's principle](https://en.wikipedia.org/wiki/Babinet%27s_principle), which states that, except for the overall intensity, the interference patterns of an aperture and an opaque body of the same size and shape are identical.
+If the refractive index of the particle is large \\(\left( |m| \gg 1 \right)\\), for small scattering angles, the distribution of peaks can be predicted using the [Huygens–Fresnel principle](https://en.wikipedia.org/wiki/Huygens%E2%80%93Fresnel_principle), according to which, given an opaque screen with a hole, the total field in the far zone is given by the integral of spherical wavelets formed in the plane of the aperture \[[4](#references) (ch 3.1), [5](#references) (vol. I, ch. 30), [6](#references) (ch 8.2, 14.5.2.c)\]. Connection with the present case of a spherical obstacle can be made by application of [Babinet's principle](https://en.wikipedia.org/wiki/Babinet%27s_principle), which states that, except for the overall intensity, the interference patterns of an aperture and an opaque body (a complementary screen) of the same size and shape are identical.
 
 [Insert picture here]
 
-The Huygens–Fresnel principle indicates an apparent failure of the obstacle to block the incident light; it is then said that the wave nature of light causes light to be [diffracted](https://en.wikipedia.org/wiki/Diffraction) or, in other words, bent around the object.
+The Huygens–Fresnel principle indicates an apparent failure of the obstacle to block the incident light; it is then said that the wave nature of light causes it to be [diffracted](https://en.wikipedia.org/wiki/Diffraction) (or bent) around the object.
 
 For a typical [cloud droplet](https://ntrs.nasa.gov/citations/20160014659) of radius \\(a \approx 10 \text{ μm}\\) (which corresponds to \\(x \approx 104.7\\)), the intensity of forward scattering is so high that we must use a logarithmic plot in order to discern the details of the angular distribution of scattered light.
 
@@ -6842,6 +6842,8 @@ defined in Equation 16.38.2.
 
 {{< figure src="/img/water_sca_eff.svg" caption="*Figure N: Linear plot of the scattering efficiency factor of a water droplet. The horizontal axis represents the size parameter of the particle.*" >}}
 
+We can observe that the scattering efficiency is an oscillating function of the particle size. In addition to the large undulations, the curve also exhibits a fine *ripple* structure, which is often attributed to the existence of the [surface waves](https://en.wikipedia.org/wiki/Surface_wave) \[[4](#references) (ch. 17.3), [23](#references)\]. Ripple is not present in the plots of absorbing spheres, since the amplitude of a surface wave is easily attenuated; moreover, ripple is usually almost entirely eliminated if one averages the electric field scattered by spheres of varying size.
+
 If the particle is non-absorbing, then, from Equation 16.38.1, it follows that the scattering and the extinction efficiencies are identical:
 
 $$ \tag{18.47}
@@ -6852,7 +6854,7 @@ $$ \tag{18.47}
 	Q_e = Q_s.
 $$
 
-The latter is given by Equation 16.38.3 and, for the particular case of a spherical particle, by the combination of Equations 16.43.1, 18.?.1, and 18.33:
+The general expression of the latter is given by Equation 16.38.3 and, for the particular case of a spherical particle, by the combination of Equations 16.43.1, 18.?.1, and 18.33:
 
 $$ \tag{18.48}
 \begin{aligned}
@@ -6862,13 +6864,21 @@ $$ \tag{18.48}
 \end{aligned}
 $$
 
-If you are not very familiar with the subject, then comparison of Equation 18.46 with Figure N may suggest that something is wrong, since the amount of power scattered by the particle may significantly exceed the amount of incident power. Since the scattered power is also featured in the expression of the extinction efficiency factor, it exhibits the same problem, telling us that the amount of power "removed" from the incident beam is larger than the amount of power geometrically intercepted by the particle. This surprising behavior is known as the [extinction paradox](https://en.wikipedia.org/wiki/Extinction_paradox) \[[4](#references) (ch 8.22), [20](#references), [21](#references)\].
+If you are not very familiar with the subject, then comparison of Equation 18.46 with Figure N may suggest that something is wrong, since the amount of power scattered by the particle may significantly exceed the amount of incident power. Since the scattered power is also featured in the expression of the extinction efficiency factor, the latter exhibits the same problem, telling us that the amount of power "removed" from the incident beam is larger than the amount of power geometrically intercepted by the particle. This surprising behavior is known as the [extinction paradox](https://en.wikipedia.org/wiki/Extinction_paradox).
 
-arbitrary particle shape...
+This phenomenon is not limited to a particular composition or a certain shape of a particle. However, it does strongly depend on the size. Why is that the case?
 
-mirror...
+First, let us examine the expression of the incident power \\(\Phi_i\\) given by Equation 16.37. It is computed as the product of the geometrical cross-section \\(C_g\\) of the particle and the irradiance \\(\Epsilon_i\\) of the incident plane wave. This definition is motivated by the fact that a plane wave has an infinite spatial extent, so its power and energy are also infinite. This makes it clear that a plane wave is a mathematical construct that is not physically realizable.
 
-perfect dielectic reflector, perfect conductor...
+While this definition is intuitive, it assumes that the incident field not geometrically intercepted by the particle does not influence its scattered field in any way. Strictly speaking, that is not true; electromagnetic scattering is a global process, and the value of the electric field at any given point depends on all values of the electric and the magnetic fields everywhere else. "Cutting it too short" may reduce or eliminate certain edge effects, such as diffraction briefly described above.
+
+It is reasonable to imagine that the relative contribution of the edge effects towards the total amount of scattered power should diminish as the size of the particle increases (while the wavelength stays fixed), since the cross-sectional area grows quadratically, and the perimeter of the edge is linearly proportional to \\(x\\). Figure N shows that, while this does indeed occur, \\(Q_s \to 2\\) as \\(|m x| \to \infin\\), so this does not provide a complete explanation.
+
+Now, suppose that \\(x\\) is very large, so that \\(\Phi_i\\) provides a reasonably accurate estimate. Since the paradox manifests itself regardless of the geometry and the optical properties of the particle, let us imagine the particle to be a flat mirror. It perfectly reflects the incident light, contributing a factor of \\(1\\) to \\(Q_s\\). As the mirror is large, it also casts a shadow, which indicates that the value of the electric field behind the mirror is \\(0\\). If we recall that the incident field is not modified by the addition of the scattering object in any way, this leads to the conclusion that the scattered field behind the mirror must have the same magnitude and the opposite phase in order to cancel the incident light via destructive interference. Thus, for a flat mirror, \\(Q_s = 2\\), which explains the paradox \[[21](#references), [22](#references)\].
+
+Since an arbitrary particle with \\(|m x| \to \infin\\) may not be sufficiently large, and may not have a well-defined shadow, we require an alternative explanation. Suppose \\(|m| \to \infin\\), and \\(x\\) is not too small. This implies that the particle is either a *perfect dielectric reflector* \\((\epsilon, \eta \to \infin)\\) or a *perfect electric conductor* \\((\sigma, \kappa \to \infin)\\). In both cases, the particle is a perfect reflector, and the value of its internal field is \\(0\\). Because the extinction theorem requires the scattered field to extinguish the incident field inside the particle, these two facts also lead to \\(Q_s = 2\\) \[[20](#references), [21](#references)\].
+
+Note that, unlike the scattered power, the power of the total field has no apparent issues with energy conservation, since its magnitude is zero in inaccessible areas. This underscores the importance of understanding the fact that only the total field is an actual physical entity, while the incident and the scattered fields are mathematical constructs.
 
 ---
 
@@ -6919,8 +6929,10 @@ Pharr & Jakob, Bohren & Huffman, Robin Green, Larry Travis @ NASA.
 17. Stratton, J. A. [Electromagnetic Theory](https://doi.org/10.1002/9781119134640) (1941).
 18. Courant, R., & Hilbert, D. [Methods of Mathematical Physics](https://doi.org/10.1002/9783527617210) (1953).
 19. Morse, P. M., & Feshbach, H. [Methods of Theoretical Physics](https://www.worldcat.org/title/methods-of-theoretical-physics/oclc/468127798) (1953).
-20. Berg, M. J., Sorensen, C. M., & Chakrabarti, A. [A New Explanation of the Extinction Paradox](https://digitalcommons.unl.edu/cgi/viewcontent.cgi?article=1109&context=usarmyresearch) (2011).
-21. Markel, V. A. [Extinction, Scattering and Absorption of Electromagnetic Waves in the Coupled-Dipole Approximation](http://whale.seas.upenn.edu/vmarkel/EPUBS/JQSRT-2019-236-106611_AAM.pdf) (2019).
+20. Berg, M. J., Sorensen, C. M., & Chakrabarti, A. [A New Explanation of the Extinction Paradox](https://doi.org/10.1016/j.jqsrt.2010.08.024) (2011).
+21. Markel, V. A. [Extinction, Scattering and Absorption of Electromagnetic Waves in the Coupled-Dipole Approximation](https://doi.org/10.1016/j.jqsrt.2019.106611) (2019).
+22. Brillouin, L. [The Scattering Cross Section of Spheres for Electromagnetic Waves](https://doi.org/10.1063/1.1698280) (1949).
+23. Mitchell, D. L. [Parameterization of the Mie Extinction and Absorption Coefficients for Water Clouds](https://doi.org/10.1175/1520-0469(2000)057%3C1311:POTMEA%3E2.0.CO;2) (2000).
 99. Hansen, J. E., & Travis, L. D. [Light Scattering in Planetary Atmospheres](https://doi.org/10.1007/BF00168069) (1974).
 
 <!--
