@@ -6905,7 +6905,7 @@ How to extract a plane wave inside the sphere? Use the internal coefficients? Bu
 
 ## Acknowledgments
 
-Pharr & Jakob, Bohren & Huffman, Robin Green, Larry Travis @ NASA.
+Bohren & Huffman, Larry Travis, Pharr & Jakob, Jeppe Frisvad, Robin Green.
 
 ## References
 
