@@ -6531,7 +6531,7 @@ $$ \tag{18.25}
 	\simeq \frac{\mu\_0^{-1}}{2} \frac{\eta(\omega)}{c} \frac{1}{k^2(\omega)} \left| \bm{E_1}(\bm{n_s}, \omega) \right|^2.
 $$
 
-Equation 15.? shows that the polarization phasor \\(\bm{E_0}\\) of the incident field can be transformed into the polarization phasor \\(\bm{E_1}\\) of the scattered field by the electric far-field scattering dyadic \\(\mathcal{S_{ef}}\\). Therefore,
+Equation 15.? allows us to replace the polarization phasor \\(\bm{E_1}\\) of the scattered field with the product the of the electric far-field scattering dyadic \\(\mathcal{S_{ef}}\\) and the polarization phasor \\(\bm{E_0}\\) of the incident field:
 
 $$ \tag{18.26}
 	\Iota_s(\bm{n_s}, \omega)
