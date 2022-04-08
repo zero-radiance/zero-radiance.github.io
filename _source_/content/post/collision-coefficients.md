@@ -1780,32 +1780,34 @@ $$ \tag{9.22}
 	= i \omega \Big( \mathcal{I} + \frac{c^2}{\omega^2} \nabla \nabla \cdot \Big) \bm{A}(\bm{r}, \omega),
 $$
 
-where \\(\mathcal{I}\\) is the *identity tensor*.
+where \\(\mathcal{I}\\) is the *identity operator*.
 
-Note that the gradient is a column vector, and the divergence can be visualized as a row vector. In this specific order, they represent an [tensor product](https://en.wikipedia.org/wiki/Tensor_product):
+In the component representation of Equation 9.22, the gradient operator is a column vector, while the divergence operator is as a row vector. When combined in this particular order, they form a [tensor product](https://en.wikipedia.org/wiki/Tensor_product) that can be represented by a 3x3 matrix:
 
 $$ \tag{9.23}
 	\bm{E}(\bm{r}, \omega) =
-	i \omega \Big( \mathcal{I} + \frac{c^2}{\omega^2} \nabla \otimes \nabla \Big) \bm{A}(\bm{r}, \omega).
+	i \omega \Big( \mathcal{I} + \frac{c^2}{\omega^2} \nabla \otimes \nabla \Big) \cdot \bm{A}(\bm{r}, \omega).
 $$
 
 Let us now substitute the definition of \\(\bm{A}\\) given by Equation 9.14.1:
 
 $$ \tag{9.24}
 	\bm{E}(\bm{r}, \omega)
-	= i \omega \Big( \mathcal{I} + \frac{1}{k_0^2(\omega)} \nabla \otimes \nabla \Big) \int\_{V}
+	= i \omega \Big( \mathcal{I} + \frac{1}{k_0^2(\omega)} \nabla \otimes \nabla \Big) \cdot \int\_{V}
 	g \big( \bm{r} - \bm{r'}, k_0(\omega) \big) \frac{\bm{J}(\bm{r'}, \omega)}{\mu_0^{-1}} dV'.
 $$
 
-Unfortunately, a complication arises when we try to move the new operator under the integral sign - if \\(\bm{r}\\) is inside \\(V\\), this action introduces a *singularity* (a pole of order 3) at \\(\bm{r} = \bm{r'}\\). We can sidestep this issue by creating a tiny cavity \\(V_{\delta}\\) centered at \\(\bm{r}\\), and separately evaluating the field produced by the piece of matter excised from the cavity. The result is
+Unfortunately, a complication arises when we try to move the new operator under the integral sign - if \\(\bm{r}\\) is inside \\(V\\), this action introduces a [singularity](https://en.wikipedia.org/wiki/Singularity_(mathematics)) (a [pole](https://en.wikipedia.org/wiki/Zeros_and_poles) of order 3) at \\(\bm{r} = \bm{r'}\\). We can sidestep this issue by creating a tiny cavity \\(V_{\delta}\\) centered at \\(\bm{r}\\), and separately evaluating the field produced by the piece of matter excised from the cavity. The result is
 
 $$ \tag{9.25}
 	\bm{E}(\bm{r}, \omega)
-	= i \omega \bigg( \lim_{\delta \to 0} \int\_{V - V_{\delta}} \mathcal{G_{e}} \big( \bm{r}, \bm{r'}, k_0(\omega) \big) \frac{\bm{J}(\bm{r'}, \omega)}{\mu_0^{-1}} dV'
-	- \frac{\mathcal{L}(\bm{r})}{k_0^2(\omega)} \frac{\bm{J}(\bm{r}, \omega)}{\mu_0^{-1}} \bigg),
+	= i \omega \bigg( \lim_{\delta \to 0} \int\_{V - V_{\delta}} \mathcal{G_{e}} \big( \bm{r}, \bm{r'}, k_0(\omega) \big) \cdot \frac{\bm{J}(\bm{r'}, \omega)}{\mu_0^{-1}} dV'
+	- \frac{\mathcal{L}(\bm{r})}{k_0^2(\omega)} \cdot \frac{\bm{J}(\bm{r}, \omega)}{\mu_0^{-1}} \bigg),
 $$
 
-where \\(\mathcal{L}\\) is the dimensionless *depolarization tensor*, the form of which depends on the shape (but not the size) of the cavity \[[7](#references) (ch. 3.9)\], and
+where \\(\mathcal{L}\\) is the dimensionless *depolarization dyadic*[^12], the form of which depends on the shape (but not the size) of the cavity \[[7](#references) (ch. 3.9)\], and
+
+[^12]: A [dyadic](https://en.wikipedia.org/wiki/Dyadics) is a second rank tensor with a notation borrowed from linear algebra. A second rank [tensor](https://en.wikipedia.org/wiki/Tensor) is a scalar-valued [multilinear](multilinear) function with two slots that accept vector arguments; if only one argument is provided, it becomes a vector-valued linear function. For example, an equation with the depolarization dyadic could be written in the standard tensor notation as \\(\bm{E} = \mathcal{L}(\\_,\bm{J}).\\) We retain the dyadic notation due to its prevalence in the literarture.
 
 $$ \tag{9.26}
 	\mathcal{G_{e}}(\bm{r}, \bm{r'}, k)
@@ -1813,22 +1815,20 @@ $$ \tag{9.26}
 	= \Big( \mathcal{I} + \frac{1}{k^2} \nabla \otimes \nabla \Big) \frac{e^{i k |\bm{r} - \bm{r'}|}}{4 \pi |\bm{r} - \bm{r'}|}
 $$
 
-is the *electric tensor* Green function \[[7](#references) (ch. 7.9)\]. As a special case, \\(\mathcal{G\_0}(\bm{r}, \bm{r'}) = \mathcal{G\_{e}}(\bm{r}, \bm{r'}, k\_0)\\) is called the *free-space tensor* Green function[^12].
+is the *electric dyadic* Green function \[[7](#references) (ch. 7.9)\]. As a special case, \\(\mathcal{G\_0}(\bm{r}, \bm{r'}) = \mathcal{G\_{e}}(\bm{r}, \bm{r'}, k\_0)\\) is called the *free-space dyadic* Green function.
 
-[^12]: The tensor Green functions are also known as the dyadic Green functions. A [dyadic](https://en.wikipedia.org/wiki/Dyadics) is a second order tensor that uses a special notation that is considered to be relatively obsolete.
-
-Equation 9.25 can be cast in a more compact form by using the [principal value](https://en.wikipedia.org/wiki/Cauchy_principal_value) of the electric tensor. If we define the *total electric tensor* Green function as
+Equation 9.25 can be cast in a more compact form by using the [principal value](https://en.wikipedia.org/wiki/Cauchy_principal_value) of the electric dyadic. If we define the *total dyadic* Green function as
 
 $$ \tag{9.27}
 	\mathcal{G}(\bm{r}, \bm{r'}, k)
-	= \mathcal{P.V.} \big\lbrace \mathcal{G_{e}}(\bm{r}, \bm{r'}, k) \big\rbrace - \frac{\mathcal{L}(\bm{r})}{k^2} \delta(\bm{r} - \bm{r'}),
+	= \mathcal{P.V.} \big\lbrace \mathcal{G_{e}}(\bm{r}, \bm{r'}, k) \big\rbrace - \delta(\bm{r} - \bm{r'}) \frac{\mathcal{L}(\bm{r})}{k^2},
 $$
 
 the expression of the electric field is reduced to
 
 $$ \tag{9.28}
 	\bm{E}(\bm{r}, \omega)
-	= i \omega \int\_{V} \mathcal{G} \big( \bm{r}, \bm{r'}, k_0(\omega) \big) \frac{\bm{J}(\bm{r'}, \omega)}{\mu_0^{-1}} dV'.
+	= i \omega \int\_{V} \mathcal{G} \big( \bm{r}, \bm{r'}, k_0(\omega) \big) \cdot \frac{\bm{J}(\bm{r'}, \omega)}{\mu_0^{-1}} dV'.
 $$
 
 To find the integral form of the magnetic field, we must expand Equation 9.21.2 using 9.14.1:
@@ -1849,10 +1849,10 @@ and noting that \\(\bm{J}\\) does not depend on \\(\bm{r}\\), we obtain a conver
 
 $$ \tag{9.31}
 	\bm{B}(\bm{r}, \omega)
-	= \lim_{\delta \to 0} \int\_{V - V_{\delta}} \mathcal{G_{m}} \big( \bm{r}, \bm{r'}, k_0(\omega) \big) \frac{\bm{J}(\bm{r'}, \omega)}{\mu_0^{-1}} dV',
+	= \lim_{\delta \to 0} \int\_{V - V_{\delta}} \mathcal{G_{m}} \big( \bm{r}, \bm{r'}, k_0(\omega) \big)  \cdot\frac{\bm{J}(\bm{r'}, \omega)}{\mu_0^{-1}} dV',
 $$
 
-that features the *magnetic tensor* Green function \[[7](#references) (ch. 7.9)\]
+that features the *magnetic dyadic* Green function \[[7](#references) (ch. 7.9)\]
 
 $$ \tag{9.32}
 	\mathcal{G_{m}}(\bm{r}, \bm{r'}, k)
@@ -1860,7 +1860,7 @@ $$ \tag{9.32}
 	= \nabla \frac{e^{i k |\bm{r} - \bm{r'}|}}{4 \pi |\bm{r} - \bm{r'}|} \times \mathcal{I}
 $$
 
-that may be expressed using the [matrix form of the cross product](https://en.wikipedia.org/wiki/Cross_product#Conversion_to_matrix_multiplication). You may also recognize that
+that can be expressed using the [matrix form of the cross product](https://en.wikipedia.org/wiki/Cross_product#Conversion_to_matrix_multiplication). You may recognize that
 
 $$ \tag{9.33}
 	\mathcal{G_{m}}(\bm{r}, \bm{r'}, k)
@@ -2084,10 +2084,10 @@ $$ \tag{10.20}
 	\bm{J_p}(\bm{r}, \omega) = -i \omega \sum_n \bm{p_n}(V_n, \omega) \delta(\bm{r} - \bm{r_n}).
 $$
 
-A molecule can become polarized for a variety of reasons \[[5](#references) (vol. II, ch. 11)\]. If the separation of charges (such as the displacement of the electron cloud relative to the nucleus) occurs due the influence of an electric field, one speaks of *induced polarization*. If we assume that the effect is linear, the response is characterized by the [molecular polarizability](https://en.wikipedia.org/wiki/Electric_susceptibility#Molecular_polarizability) tensor \\(\mathcal{\Alpha_m}\\):
+A molecule can become polarized for a variety of reasons \[[5](#references) (vol. II, ch. 11)\]. If the separation of charges (such as the displacement of the electron cloud relative to the nucleus) occurs due the influence of an electric field, one speaks of *induced polarization*. If we assume that the effect is linear, the response is characterized by the [molecular polarizability](https://en.wikipedia.org/wiki/Electric_susceptibility#Molecular_polarizability) dyadic \\(\mathcal{\Alpha_m}\\):
 
 $$ \tag{10.21}
-	\bm{p}(V, \omega) \approx \mathcal{\Alpha_m}(V, \omega) \epsilon_0 \bm{E_{\mu}}(\bm{r_0}, \omega).
+	\bm{p}(V, \omega) \approx \mathcal{\Alpha_m}(V, \omega) \cdot \epsilon_0 \bm{E_{\mu}}(\bm{r_0}, \omega).
 $$
 
 If there are \\(N\\) identical electric dipoles per unit volume, we can define the electric polarization \\(\bm{P}\\) as
@@ -2095,7 +2095,7 @@ If there are \\(N\\) identical electric dipoles per unit volume, we can define t
 $$ \tag{10.22}
 	\bm{P}(\bm{r}, \omega)
 	= N(\bm{r}) \bm{p}(V, \omega)
-	\approx N(\bm{r}) \mathcal{\Alpha_m}(V, \omega) \epsilon_0 \bm{E_{\mu}}(\bm{r_0}, \omega).
+	\approx N(\bm{r}) \mathcal{\Alpha_m}(V, \omega) \cdot \epsilon_0 \bm{E_{\mu}}(\bm{r_0}, \omega).
 $$
 
 Note that, in general, the microscopic field \\(\bm{E_{\mu}}\\) acting on the dipole is different from the macroscopic field \\(\bm{E}\\). The reason is that the microscopic field varies very rapidly inside the matter - it is very strong next to the nucleus, and relatively weak in the gaps between the molecules. Thus, the density of matter plays an important role. If the dipoles are randomly distributed, we can assume that the dipole under consideration is located within a spherical cavity of a uniformly polarized material. For an isotropic material, it can be shown that the two fields are related by the equation
@@ -2295,7 +2295,7 @@ We have already encountered a mathematically identical problem shown in Equation
 
 $$ \tag{11.10}
 	\bm{E_s}(\bm{r}, \omega)
-	= \int\_{V} \mathcal{G_{e}} \big( \bm{r}, \bm{r'}, k_1(\omega) \big) \bm{J'}(\bm{r'}, \omega) dV'
+	= \int\_{V} \mathcal{G_{e}} \big( \bm{r}, \bm{r'}, k_1(\omega) \big) \cdot \bm{J'}(\bm{r'}, \omega) dV'
 	\quad
 	\text{if } \bm{r} \notin V,
 $$
@@ -2306,7 +2306,7 @@ Similarly, the magnetic field is given by Equation 9.31:
 
 $$ \tag{11.11}
 	\bm{B_s}(\bm{r}, \omega)
-	= \frac{1}{i \omega} \int\_{V} \mathcal{G_{m}} \big( \bm{r}, \bm{r'}, k_1(\omega) \big) \bm{J'}(\bm{r'}, \omega) dV'
+	= \frac{1}{i \omega} \int\_{V} \mathcal{G_{m}} \big( \bm{r}, \bm{r'}, k_1(\omega) \big) \cdot \bm{J'}(\bm{r'}, \omega) dV'
 	\quad
 	\text{if } \bm{r} \notin V.
 $$
@@ -2318,7 +2318,7 @@ $$ \tag{11.12}
 	\bm{E}(\bm{r}, \omega)
 	&= \bm{E_i}(\bm{r}, \omega) + \bm{E_s}(\bm{r}, \omega) \cr
 	&= \oint\_{\mathbb{S}^2} \bm{E}(0, \bm{n}, \omega) e^{i k_1(\omega) (\bm{r} \cdot \bm{n})} d\Omega \cr
-	&+ \int\_{V} \mathcal{G_{e}} \big( \bm{r}, \bm{r'}, k_1(\omega) \big) \bm{J'}(\bm{r'}, \omega) dV'.
+	&+ \int\_{V} \mathcal{G_{e}} \big( \bm{r}, \bm{r'}, k_1(\omega) \big) \cdot \bm{J'}(\bm{r'}, \omega) dV'.
 \end{aligned}
 $$
 
@@ -2416,7 +2416,7 @@ Since the definition of the Lorenz condition is based on the Maxwell equations i
 
 $$ \tag{11.23}
 	\bm{E}(\bm{r}, \omega) =
-	i \omega \Big( \mathcal{I} + \frac{1}{k_1^2(\omega)} \nabla \otimes \nabla \Big) \bm{A}(\bm{r}, \omega).
+	i \omega \Big( \mathcal{I} + \frac{1}{k_1^2(\omega)} \nabla \otimes \nabla \Big) \cdot \bm{A}(\bm{r}, \omega).
 $$
 
 After performing the substitution of Equation 11.22, recalling the definition of \\(m\\) given by Equation 11.8, and assuming that \\(\bm{r}\\) lies outside the inhomogeneous region, we obtain an expanded version of Equation 11.12:
@@ -2425,7 +2425,7 @@ $$ \tag{11.24}
 \begin{aligned}
 	\bm{E}(\bm{r}, \omega)
 	&= \oint\_{\mathbb{S}^2} \bm{E}(0, \bm{n}, \omega) e^{i k_1(\omega) (\bm{r} \cdot \bm{n})} d\Omega \cr
-	&+ k_1^2(\omega) \int\_{V} \Big( \mathcal{I} + \frac{1}{k_1^2(\omega)} \nabla \otimes \nabla \Big) \frac{e^{i k_1(\omega) |\bm{r} - \bm{r'}|}}{4 \pi |\bm{r} - \bm{r'}|} \big( m^2(\bm{r'}, \omega) - 1 \big) \bm{E}(\bm{r'}, \omega) dV'.
+	&+ k_1^2(\omega) \int\_{V} \big( m^2(\bm{r'}, \omega) - 1 \big) \Big( \mathcal{I} + \frac{1}{k_1^2(\omega)} \nabla \otimes \nabla \Big) \frac{e^{i k_1(\omega) |\bm{r} - \bm{r'}|}}{4 \pi |\bm{r} - \bm{r'}|} \cdot \bm{E}(\bm{r'}, \omega) dV'.
 \end{aligned}
 $$
 
@@ -2434,9 +2434,11 @@ In the future, when no ambiguity arises, we may drop redundant indexing by writi
 $$ \tag{11.25}
 \begin{aligned}
 	& \bm{E_s}(\bm{r}, \omega)
-	= k^2(\omega) \int\_{V} \mathcal{G_{e}} \big( \bm{r}, \bm{r'}, k(\omega) \big) \big( m^2(\bm{r'}, \omega) - 1 \big) \bm{E}(\bm{r'}, \omega) dV', \cr
+	= k^2(\omega) \int\_{V} \big( m^2(\bm{r'}, \omega) - 1 \big)
+	\mathcal{G_{e}} \big( \bm{r}, \bm{r'}, k(\omega) \big) \cdot \bm{E}(\bm{r'}, \omega) dV', \cr
 	& \bm{B_s}(\bm{r}, \omega)
-	= \frac{k^2(\omega)}{i \omega} \int\_{V} \mathcal{G_{m}} \big( \bm{r}, \bm{r'}, k(\omega) \big) \big( m^2(\bm{r'}, \omega) - 1 \big) \bm{E}(\bm{r'}, \omega) dV'.
+	= \frac{k^2(\omega)}{i \omega} \int\_{V} \big( m^2(\bm{r'}, \omega) - 1 \big)
+	\mathcal{G_{m}} \big( \bm{r}, \bm{r'}, k(\omega) \big) \cdot \bm{E}(\bm{r'}, \omega) dV'.
 \end{aligned}
 $$
 
@@ -2482,7 +2484,7 @@ $$
 with the dipole moment defined by Equation 10.21:
 
 $$ \tag{12.3}
-	\bm{p}(V, \omega) \approx \mathcal{\Alpha_m}(V, \omega) \varepsilon(\omega) \bm{E_i}(\bm{r_0}, \omega).
+	\bm{p}(V, \omega) \approx \mathcal{\Alpha_m}(V, \omega) \cdot \varepsilon(\omega) \bm{E_i}(\bm{r_0}, \omega).
 $$
 
 where we replaced \\(\epsilon_0\\) with \\(\varepsilon\\) (to account for the properties of the surrounding medium) and \\(\bm{E_{\mu}}\\) with \\(\bm{E_i}\\) (according to the simplification discussed above).
@@ -2491,19 +2493,19 @@ The combination of Equations 12.1-12.3 results in
 
 $$ \tag{12.4}
 	\bm{J'}(\bm{r}, \omega)
-	= k^2(\omega) \mathcal{\Alpha_m}(V, \omega) \bm{E_i}(\bm{r_0}, \omega) \delta(\bm{r} - \bm{r_0}).
+	= k^2(\omega) \mathcal{\Alpha_m}(V, \omega) \cdot \bm{E_i}(\bm{r_0}, \omega) \delta(\bm{r} - \bm{r_0}).
 $$
 
-The tensor form of \\(\mathcal{\Alpha_m}\\) is a convenient way to model polar molecules (or asymmetric particles); it acts by rotating and non-uniformly scaling the electric field phasor. To make the resulting formulae easier to interpret, we shall assume that the particle is isotropic, so that \\(\mathcal{\Alpha_m} = \alpha_m\\).
+The dyadic form of \\(\mathcal{\Alpha_m}\\) is a convenient way to model polar molecules (or asymmetric particles); it acts by rotating and non-uniformly scaling the electric field phasor. To make the resulting formulae easier to interpret, we shall assume that the particle is isotropic, so that \\(\mathcal{\Alpha_m} = \alpha_m\\).
 
 Let us substitute Equation 12.4 into Equations 11.10-11.11:
 
 $$ \tag{12.5}
 \begin{aligned}
 	& \bm{E_s}(\bm{r}, \omega)
-	= k^2(\omega) \mathcal{G_{e}} \big( \bm{r}, \bm{r_0}, k(\omega) \big) \alpha_m(V, \omega) \bm{E_i}(\bm{r_0}, \omega), \cr
+	= k^2(\omega) \alpha_m(V, \omega) \mathcal{G_{e}} \big( \bm{r}, \bm{r_0}, k(\omega) \big) \cdot \bm{E_i}(\bm{r_0}, \omega), \cr
 	& \bm{B_s}(\bm{r}, \omega)
-	= \frac{k^2(\omega)}{i \omega} \mathcal{G_{m}} \big( \bm{r}, \bm{r_0}, k(\omega) \big) \alpha_m(V, \omega) \bm{E_i}(\bm{r_0}, \omega).
+	= \frac{k^2(\omega)}{i \omega} \alpha_m(V, \omega) \mathcal{G_{m}} \big( \bm{r}, \bm{r_0}, k(\omega) \big) \cdot \bm{E_i}(\bm{r_0}, \omega).
 \end{aligned}
 $$
 
@@ -2526,7 +2528,7 @@ $$
 
 and comparing the result with Equation 12.3.
 
-In order to compute the scattered fields according to Equation 12.5, we need to evaluate the tensor Green functions. Let us first consider the electric tensor defined by Equation 9.26. Its matrix representation in the Cartesian coordinate system is
+In order to compute the scattered fields according to Equation 12.5, we need to evaluate the dyadic Green functions. Let us first consider the electric dyadic defined by Equation 9.26. Its matrix representation in the Cartesian coordinate system is
 
 $$ \tag{12.8}
 \begin{aligned}
@@ -2609,7 +2611,7 @@ $$
 
 Take a look at the individual factors in Equations 12.11-12.13: those outside the brackets oscillate between 0 and 1, while the terms  inside greatly depend on the distance between the observation point \\(\bm{r}\\) and the source \\(\bm{r'}\\). This suggests that we may divide the entire space into zones based on the proximity to the observation point. If we are interested in the value of the field located near the source (the so-called *near field*), we say that the observation point belongs to the [near zone](https://en.wikipedia.org/wiki/Near_and_far_field). Similarly, far-away points (and the *far field*) are said to be located in the [far zone](https://en.wikipedia.org/wiki/Near_and_far_field) (also known as the *radiation zone*). Between them is a region called the *transition zone*.
 
-If we fix a value of \\(k\\), we may decompose the electric tensor into the near-, transition-, and far-field components:
+If we fix a value of \\(k\\), we may decompose the electric dyadic into the near-, transition-, and far-field terms:
 
 $$ \tag{12.14}
 	\mathcal{G_{e}}
@@ -2623,11 +2625,11 @@ such that
 $$ \tag{12.15}
 \begin{aligned}
 	& \mathcal{G_{en}}(\bm{R}, k)
-	= -\frac{1}{k^2 R^2} \bigg(\mathcal{I} - 3 \frac{\bm{R} \otimes \bm{R}}{\bm{R} \cdot \bm{R}} \bigg) g(\bm{R}, k), \cr
+	= -\frac{g(\bm{R}, k) }{k^2 R^2} \bigg(\mathcal{I} - 3 \frac{\bm{R} \otimes \bm{R}}{\bm{R} \cdot \bm{R}} \bigg), \cr
 	& \mathcal{G_{et}}(\bm{R}, k)
-	= \frac{i}{k R} \bigg(\mathcal{I} - 3 \frac{\bm{R} \otimes \bm{R}}{\bm{R} \cdot \bm{R}} \bigg) g(\bm{R}, k), \cr
+	= i \frac{g(\bm{R}, k) }{k R} \bigg(\mathcal{I} - 3 \frac{\bm{R} \otimes \bm{R}}{\bm{R} \cdot \bm{R}} \bigg), \cr
 	& \mathcal{G_{ef}}(\bm{R}, k)
-	= \bigg( \mathcal{I} - \frac{\bm{R} \otimes \bm{R}}{\bm{R} \cdot \bm{R}} \bigg) g(\bm{R}, k),
+	= g(\bm{R}, k) \bigg( \mathcal{I} - \frac{\bm{R} \otimes \bm{R}}{\bm{R} \cdot \bm{R}} \bigg),
 \end{aligned}
 $$
 
@@ -2644,7 +2646,7 @@ $$ \tag{12.16}
 	\varpropto (k R)^{-1}.
 $$
 
-Let us analyze the magnetic tensor in the same way. Write Equation 9.32 in the Cartesian coordinate system:
+Let us analyze the magnetic dyadic in the same way. Write Equation 9.32 in the Cartesian coordinate system:
 
 $$ \tag{12.17}
 \begin{aligned}
@@ -2665,7 +2667,7 @@ $$
 
 Clearly, the matrix is anti-symmetric: \\(\mathcal{G_{m}} = -\mathcal{G_{m}}^T\\).
 
-According to the expression of the first derivative given by Equation 12.11, the tensor only has two components:
+According to the expression of the first derivative given by Equation 12.11, the dyadic is composed of two terms:
 
 $$ \tag{12.18}
 	\mathcal{G_{m}} = \mathcal{G_{mt}} + \mathcal{G_{mf}},
@@ -2676,13 +2678,13 @@ such that
 $$ \tag{12.19}
 \begin{aligned}
 	& \mathcal{G_{mt}}(\bm{R}, k)
-	= -\frac{1}{R} \bigg(\frac{\bm{R} \times \mathcal{I}}{R} \bigg) g(\bm{R}, k), \cr
+	= -\frac{g(\bm{R}, k)}{R} \bigg(\frac{\bm{R} \times \mathcal{I}}{R} \bigg), \cr
 	& \mathcal{G_{mf}}(\bm{R}, k)
-	= i k \bigg(\frac{\bm{R} \times \mathcal{I}}{R} \bigg) g(\bm{R}, k).
+	= i k g(\bm{R}, k) \bigg(\frac{\bm{R} \times \mathcal{I}}{R} \bigg).
 \end{aligned}
 $$
 
-Note that, as expected from Equation 9.33, the constants of proportionality are different in comparison with the electric tensor:
+Note that, as expected from Equation 9.33, the constants of proportionality are different in comparison with the electric dyadic:
 
 $$ \tag{12.20}
 	k^{-2} \mathcal{G_{mt}}
@@ -2707,7 +2709,7 @@ $$ \tag{13.1}
 	= \bigg( 1 + \frac{\mathcal{G_{mt}}}{\mathcal{G_{mf}}} \bigg) \mathcal{G_{mf}}.
 $$
 
-According to Equation 12.15, for any fixed direction, the relative difference between the three electric tensors primarily arises from the leading scalar terms. Moreover, the two magnetic tensors given by Equation 12.19 exhibit identical angular dependence. Following this logic, we use Equations 12.16 and 12.20 to approximate
+According to Equation 12.15, for any fixed direction, the relative difference between the three electric dyadics primarily arises from the leading scalar terms. Moreover, the two magnetic dyadics given by Equation 12.19 exhibit identical angular dependence. Following this logic, we use Equations 12.16 and 12.20 to approximate
 
 $$ \tag{13.2}
 	\mathcal{G_{e}}
@@ -2722,9 +2724,9 @@ If \\(k R \gg 1\\), the values of the expressions in the brackets approach 1. Th
 $$ \tag{13.3}
 \begin{aligned}
 	& \bm{E_s}(\bm{r}, \omega)
-	\simeq k^2(\omega) \bigg( \mathcal{I} - \frac{\bm{R} \otimes \bm{R}}{\bm{R} \cdot \bm{R}} \bigg) \frac{e^{i k(\omega) R}}{4 \pi R} \alpha_m(V, \omega) \bm{E_i}(\bm{r'}, \omega), \cr
+	\simeq k^2(\omega) \alpha_m(V, \omega) \frac{e^{i k(\omega) R}}{4 \pi R} \bigg( \mathcal{I} - \frac{\bm{R} \otimes \bm{R}}{\bm{R} \cdot \bm{R}} \bigg) \cdot \bm{E_i}(\bm{r'}, \omega), \cr
 	& \bm{B_s}(\bm{r}, \omega)
-	\simeq \frac{k^3(\omega)}{\omega} \bigg(\frac{\bm{R} \times \mathcal{I}}{R} \bigg) \frac{e^{i k(\omega) R}}{4 \pi R} \alpha_m(V, \omega) \bm{E_i}(\bm{r'}, \omega),
+	\simeq \frac{k^3(\omega)}{\omega} \alpha_m(V, \omega) \frac{e^{i k(\omega) R}}{4 \pi R} \bigg(\frac{\bm{R} \times \mathcal{I}}{R} \bigg) \cdot \bm{E_i}(\bm{r'}, \omega),
 \end{aligned}
 $$
 
@@ -2743,9 +2745,9 @@ Equation 13.3 can be reduced to a simpler form by aligning the origin of the coo
 $$ \tag{13.5}
 \begin{aligned}
 	& \bm{E_s}(\bm{r}, \omega)
-	\simeq k^2(\omega) \big( \mathcal{I} - \bm{n} \otimes \bm{n} \big) \frac{e^{i k(\omega) r}}{4 \pi r} \alpha_m(V, \omega) \bm{E_i}(0, \omega), \cr
+	\simeq k^2(\omega) \alpha_m(V, \omega) \frac{e^{i k(\omega) r}}{4 \pi r} \big( \mathcal{I} - \bm{n} \otimes \bm{n} \big) \cdot \bm{E_i}(0, \omega), \cr
 	& \bm{B_s}(\bm{r}, \omega)
-	\simeq \frac{k^3(\omega)}{\omega} \big(\bm{n} \times \mathcal{I} \big) \frac{e^{i k(\omega) r}}{4 \pi r} \alpha_m(V, \omega) \bm{E_i}(0, \omega).
+	\simeq \frac{k^3(\omega)}{\omega} \alpha_m(V, \omega) \frac{e^{i k(\omega) r}}{4 \pi r} \big(\bm{n} \times \mathcal{I} \big) \cdot \bm{E_i}(0, \omega).
 \end{aligned}
 $$
 
@@ -2754,9 +2756,11 @@ Let us return to the general case of a scattering object. Assume that the observ
 $$ \tag{13.6}
 \begin{aligned}
 	& \bm{E_s}(\bm{r}, \omega)
-	\simeq k^2(\omega) \int\_{V} \bigg( \mathcal{I} - \frac{\bm{R} \otimes \bm{R}}{\bm{R} \cdot \bm{R}} \bigg) \frac{e^{i k(\omega) R}}{4 \pi R} \big( m^2(\bm{r'}, \omega) - 1 \big) \bm{E}(\bm{r'}, \omega) dV', \cr
+	\simeq k^2(\omega) \int\_{V}
+	\big( m^2(\bm{r'}, \omega) - 1 \big) \frac{e^{i k(\omega) R}}{4 \pi R} \bigg( \mathcal{I} - \frac{\bm{R} \otimes \bm{R}}{\bm{R} \cdot \bm{R}} \bigg) \cdot \bm{E}(\bm{r'}, \omega) dV', \cr
 	& \bm{B_s}(\bm{r}, \omega)
-	\simeq \frac{k^3(\omega)}{\omega} \int\_{V} \bigg(\frac{\bm{R} \times \mathcal{I}}{R} \bigg) \frac{e^{i k(\omega) R}}{4 \pi R} \big( m^2(\bm{r'}, \omega) - 1 \big) \bm{E}(\bm{r'}, \omega) dV'.
+	\simeq \frac{k^3(\omega)}{\omega} \int\_{V}
+	\big( m^2(\bm{r'}, \omega) - 1 \big) \frac{e^{i k(\omega) R}}{4 \pi R} \bigg(\frac{\bm{R} \times \mathcal{I}}{R} \bigg) \cdot \bm{E}(\bm{r'}, \omega) dV'.
 \end{aligned}
 $$
 
@@ -2814,13 +2818,13 @@ Substitution of Equations 13.9 and 13.11 into Equation 13.6 produces the *far-fi
 $$ \tag{13.12}
 \begin{aligned}
 	& \bm{E_s}(\bm{r}, \omega) \simeq k^2(\omega)
-	\big( \mathcal{I} - \bm{n} \otimes \bm{n} \big)
 	\frac{e^{i k(\omega) r}}{4 \pi r}
+	\big( \mathcal{I} - \bm{n} \otimes \bm{n} \big) \cdot
 	\int\_{V} e^{-i k(\omega) (\bm{r'} \cdot \bm{n})} \big( m^2(\bm{r'}, \omega) - 1 \big)
 	\bm{E}(\bm{r'}, \omega) dV', \cr
 	& \bm{B_s}(\bm{r}, \omega) \simeq \frac{k^3(\omega)}{\omega}
-	\big(\bm{n} \times \mathcal{I} \big)
 	\frac{e^{i k(\omega) r}}{4 \pi r}
+	\big(\bm{n} \times \mathcal{I} \big) \cdot
 	\int\_{V} e^{-i k(\omega) (\bm{r'} \cdot \bm{n})} \big( m^2(\bm{r'}, \omega) - 1 \big)
 	\bm{E}(\bm{r'}, \omega) dV', \cr
 \end{aligned}
@@ -2843,17 +2847,14 @@ An important property of the far-field solution is the fact that the scattered f
 $$ \tag{13.14}
 \begin{aligned}
 	& \bm{n} \cdot \big( \mathcal{I} - \bm{n} \otimes \bm{n} \big)
-	= \Big( \big( \mathcal{I} - \bm{n} \otimes \bm{n} \big)^{T} \bm{n} \Big)^{T}
-	= \big( \bm{n} - \bm{n} (\bm{n} \cdot \bm{n}) \big)^{T}
+	= \bm{n} - (\bm{n} \cdot \bm{n}) \bm{n}
 	= 0, \cr
 	& \bm{n} \cdot \big( \bm{n} \times \mathcal{I} \big)
-	= \Big( \big( \bm{n} \times \mathcal{I} \big)^{T} \bm{n} \Big)^{T}
-	= \big( {-\bm{n}} \times \bm{n} \big)^{T}
+	= -\bm{n} \cdot \big( \mathcal{I} \times \bm{n} \big)
+	= -\bm{n} \times \bm{n}
 	= 0.
 \end{aligned}
 $$
-
-Above, we utilized the symmetry properties in addition to the alternative expression of the tensor product given by Equations 9.22-9.23.
 
 We can also show that, under certain conditions, the electric and the magnetic fields are mutually orthogonal. We begin by factoring out the common term
 
@@ -2868,10 +2869,10 @@ which simplifies Equation 13.12 to
 $$ \tag{13.16}
 \begin{aligned}
 	& \bm{E_s}(\bm{r}, \omega)
-	\simeq \big( \mathcal{I} - \bm{n} \otimes \bm{n} \big) \bm{K}(\bm{r}, \omega),
+	\simeq \big( \mathcal{I} - \bm{n} \otimes \bm{n} \big) \cdot \bm{K}(\bm{r}, \omega),
 	\cr
 	& \bm{B_s}(\bm{r}, \omega)
-	\simeq \frac{k(\omega)}{\omega} \big(\bm{n} \times \mathcal{I} \big) \bm{K}(\bm{r}, \omega).
+	\simeq \frac{k(\omega)}{\omega} \big(\bm{n} \times \mathcal{I} \big) \cdot \bm{K}(\bm{r}, \omega).
 \end{aligned}
 $$
 
@@ -2917,11 +2918,11 @@ Comparison with Equations 7.2 and 13.12 makes it clear that
 $$ \tag{13.??}
 \begin{aligned}
 	& \bm{E_1}(\bm{n}, \omega)
-	= \frac{k^3(\omega)}{4 \pi} \big( \mathcal{I} - \bm{n} \otimes \bm{n} \big) \int\_{V} e^{-i k(\omega) (\bm{r'} \cdot \bm{n})} \big( m^2(\bm{r'}, \omega) - 1 \big)
+	= \frac{k^3(\omega)}{4 \pi} \big( \mathcal{I} - \bm{n} \otimes \bm{n} \big) \cdot \int\_{V} e^{-i k(\omega) (\bm{r'} \cdot \bm{n})} \big( m^2(\bm{r'}, \omega) - 1 \big)
 	\bm{E}(\bm{r'}, \omega) dV',
 	\cr
 	& \bm{B_1}(\bm{r}, \omega)
-	= \frac{k^4(\omega)}{4 \pi \omega} \big(\bm{n} \times \mathcal{I} \big) \int\_{V} e^{-i k(\omega) (\bm{r'} \cdot \bm{n})} \big( m^2(\bm{r'}, \omega) - 1 \big)
+	= \frac{k^4(\omega)}{4 \pi \omega} \big(\bm{n} \times \mathcal{I} \big) \cdot \int\_{V} e^{-i k(\omega) (\bm{r'} \cdot \bm{n})} \big( m^2(\bm{r'}, \omega) - 1 \big)
 	\bm{E}(\bm{r'}, \omega) dV',
 \end{aligned}
 $$
@@ -2979,12 +2980,12 @@ The volume integral equation can be reduced to a relatively simple expression by
 
 Let us recall the mechanics of scattering. In a dielectric, the incident field (primary wave) drives the dipoles, which in turn act as sources of scattered wavelets (secondary waves) interfering with the incident field according to the superposition principle. We may continue this line of thinking by considering the effect of a dipole as a secondary source on all other dipoles surrounding it, effectively treating the dipole field as the secondary incident field. Repeated application of this iterative approach leads to evaluation of successive orders of scattering one by one. This is the general idea behind the [Born series](https://en.wikipedia.org/wiki/Born_series) \[[6](#references) (ch. 13.1)\].
 
-We can formalize this approach in the following way \[[8](#references) (ch. 4.5)\]. We start with Equation 11.12, where we substitute the total electric tensor (cf. Equations 9.27-9.28) to ensure that the integral remains valid even if the integration point is inside the volume \\(V\\):
+We can formalize this approach in the following way \[[8](#references) (ch. 4.5)\]. We start with Equation 11.12, where we substitute the total dyadic (cf. Equations 9.27-9.28) to ensure that the integral remains valid even if the integration point is inside the volume \\(V\\):
 
 $$ \tag{14.1}
 	\bm{E}(\bm{r}, \omega)
 	= \bm{E_i}(\bm{r}, \omega)
-	+ \int\_{V} \mathcal{G} \big( \bm{r}, \bm{r'}, k(\omega) \big) \bm{J'}(\bm{r'}, \omega) dV'.
+	+ \int\_{V} \mathcal{G} \big( \bm{r}, \bm{r'}, k(\omega) \big) \cdot \bm{J'}(\bm{r'}, \omega) dV'.
 $$
 
 Next, for we substitute the expression of the source term \\(\bm{J'}\\) given by Equation 11.7:
@@ -2992,7 +2993,7 @@ Next, for we substitute the expression of the source term \\(\bm{J'}\\) given by
 $$ \tag{14.2}
 	\bm{E}(\bm{r}, \omega)
 	= \bm{E_i}(\bm{r}, \omega)
-	+ \int\_{V} \mathcal{G} \big( \bm{r}, \bm{r'}, k(\omega) \big) k^2(\omega) \big( m^2(\bm{r'}, \omega) - 1 \big) \bm{E}(\bm{r'}, \omega) dV'.
+	+ \int\_{V} k^2(\omega) \big( m^2(\bm{r'}, \omega) - 1 \big) \mathcal{G} \big( \bm{r}, \bm{r'}, k(\omega) \big) \cdot \bm{E}(\bm{r'}, \omega) dV'.
 $$
 
 For convenience, we define the *potential function*
@@ -3010,17 +3011,17 @@ that allows us to write Equation 14.2 in a more compact form:
 $$ \tag{14.4}
 	\bm{E}(\bm{r}, \omega)
 	= \bm{E_i}(\bm{r}, \omega)
-	+ \int\_{V} \mathcal{G} \big( \bm{r}, \bm{r'}, k(\omega) \big) u \big( \bm{r'}, k(\omega), \omega \big)  \bm{E}(\bm{r'}, \omega) dV'.
+	+ \int\_{V} u \big( \bm{r'}, k(\omega), \omega \big) \mathcal{G} \big( \bm{r}, \bm{r'}, k(\omega) \big) \cdot \bm{E}(\bm{r'}, \omega) dV'.
 $$
 
-The resulting equation is recursive. Substitution makes it fairly obvious that the total electric field can be expressed as volume integral of the transformed incident field. While this fact can be rigorously derived from the properties of the tensor Green functions \[[12](#references) (ch. 5.1)\], for simplicity, let us assume that the solution exists:
+The resulting equation is recursive. Substitution makes it fairly obvious that the total electric field can be expressed as volume integral of the transformed incident field. While this fact can be rigorously derived from the properties of the dyadic Green functions \[[12](#references) (ch. 5.1)\], for simplicity, let us assume that the solution exists:
 
 $$ \tag{14.5}
 	u \big( \bm{r'}, k(\omega), \omega \big) \bm{E}(\bm{r'}, \omega)
-	= \int\_{V} \mathcal{T} \big( \bm{r'}, \bm{r''}, k(\omega), \omega \big) \bm{E_i}(\bm{r''}, \omega) dV'',
+	= \int\_{V} \mathcal{T} \big( \bm{r'}, \bm{r''}, k(\omega), \omega \big) \cdot \bm{E_i}(\bm{r''}, \omega) dV'',
 $$
 
-where \\(\mathcal{T}\\) is the *transition tensor*, the expression of which is yet to be determined.
+where \\(\mathcal{T}\\) is the *transition dyadic*, the expression of which is yet to be determined.
 
 Recursive equations written in the integral form quickly become unwieldy. Instead, we shall convert them into the operator form by using the [bra-ket notation](https://en.wikipedia.org/wiki/Bra%E2%80%93ket_notation). Additionally, any dependence on the frequency or the wavenumber shall be kept implicit.
 
@@ -3098,12 +3099,12 @@ $$ \tag{14.15}
 	\braket{r' \vert T \vert r''} \braket{r'' \vert E},
 $$
 
-and the corresponding integral form is
+and the corresponding dyadic expression is
 
 $$ \tag{14.16}
 	\bm{E}(\bm{r})
 	= \bm{E_i}(\bm{r})
-	+ \int\_{V} \mathcal{G} (\bm{r}, \bm{r'}) \int\_{V} \mathcal{T} (\bm{r'}, \bm{r''}) \bm{E_i}(\bm{r''}) dV'' dV'.
+	+ \int\_{V} \mathcal{G} (\bm{r}, \bm{r'}) \int\_{V} \mathcal{T} (\bm{r'}, \bm{r''}) \cdot \bm{E_i}(\bm{r''}) dV'' dV'.
 $$
 
 Note that Equation 14.16 is identical to the combination of Equations 14.4 and 14.5.
@@ -3154,7 +3155,7 @@ $$ \tag{14.21}
 \end{aligned}
 $$
 
-Translation of Equation 14.21 into the integral form yields the definition of the transition tensor:
+Translation of Equation 14.21 into the integral form yields the definition of the transition dyadic:
 
 $$ \tag{14.22}
 \begin{aligned}
@@ -3165,7 +3166,7 @@ $$ \tag{14.22}
 \end{aligned}
 $$
 
-The total electric tensor (defined in Equation 9.27) can be expanded in two different ways. One way is to write it as a product, and take the factor that contains derivatives the integral (thus avoiding the singularity), as was done in Equation 9.24:
+The total dyadic (defined in Equation 9.27) can be expanded in two different ways. One way is to write it as a product, and take the factor that contains derivatives the integral (thus avoiding the singularity), as was done in Equation 9.24:
 
 $$ \tag{14.23}
 \begin{aligned}
@@ -3178,7 +3179,7 @@ $$ \tag{14.23}
 \end{aligned}
 $$
 
-The second way is to represent it by a sum of the electric tensor \\(\mathcal{G_e}\\) and the depolarization tensor \\(\mathcal{L}\\), like in Equation 9.25:
+The second way is to represent it by a sum of the electric dyadic \\(\mathcal{G_e}\\) and the depolarization dyadic \\(\mathcal{L}\\), like in Equation 9.25:
 
 $$ \tag{14.24}
 \begin{aligned}
@@ -3191,7 +3192,7 @@ $$ \tag{14.24}
 \end{aligned}
 $$
 
-Notice that the \\(1/k^2\\) term in front of the depolarization tensor cancels out. After rearranging the terms, we obtain the full definition of the transition tensor:
+Notice that the \\(1/k^2\\) term in front of the depolarization dyadic cancels out. After rearranging the terms, we obtain the full definition of the transition dyadic:
 
 $$ \tag{14.25}
 \begin{aligned}
@@ -3473,7 +3474,7 @@ $$ \tag{15.19}
 	= \frac{e^{i |\bm{\hat{r}}|}}{4 \pi |\bm{\hat{r}}|}.
 $$
 
-The expression of the total field is the sum of the incident and the scattered fields. Equation 15.1 of the incident field can be transformed into the dimensionless form by a trivial substitution of Equation 15.18. On the other hand, Equation 15.3 of the scattered field is more complicated, as it contains the total electric and transition tensors. According to Equation 14.22, the transition tensor is itself defined in terms of the total electric tensor. Thus, we only need to transform the expression of the former. For convenience, we elect to use the expanded definition given by Equation 14.23, which we restate below:
+The expression of the total field is the sum of the incident and the scattered fields. Equation 15.1 of the incident field can be transformed into the dimensionless form by a trivial substitution of Equation 15.18. On the other hand, Equation 15.3 of the scattered field is more complicated, as it contains the total electric and transition dyadics. According to Equation 14.22, the transition dyadic is itself defined in terms of the total dyadic. Thus, we only need to transform the expression of the former. For convenience, we elect to use the expanded definition given by Equation 14.23, which we restate below:
 
 $$ \tag{15.20}
 \begin{aligned}
@@ -3504,7 +3505,7 @@ $$ \tag{15.22}
 	= k^3 \delta(\bm{\hat{r}})
 $$
 
-To handle the total electric tensor, we introduce
+To handle the total dyadic, we introduce
 
 $$ \tag{15.23}
 	\hat{\nabla} = k^{-1} \nabla,
