@@ -1782,7 +1782,7 @@ $$
 
 where \\(\mathcal{I}\\) is the *identity operator*.
 
-In the component representation of Equation 9.22, the gradient operator is a column vector, while the divergence operator is as a row vector. When combined in this particular order, they form a [tensor product](https://en.wikipedia.org/wiki/Tensor_product) that can be represented by a 3x3 matrix:
+In the component representation of Equation 9.22, the gradient operator is a column vector, while the divergence operator is as a row vector. When combined in this particular order, they form a [dyadic (or tensor) product](https://en.wikipedia.org/wiki/Tensor_product) that can be represented by a 3x3 matrix:
 
 $$ \tag{9.23}
 	\bm{E}(\bm{r}, \omega) =
@@ -1807,7 +1807,7 @@ $$
 
 where \\(\mathcal{L}\\) is the dimensionless *depolarization dyadic*[^12], the form of which depends on the shape (but not the size) of the cavity \[[7](#references) (ch. 3.9)\], and
 
-[^12]: A [dyadic](https://en.wikipedia.org/wiki/Dyadics) is a second rank tensor with a notation borrowed from linear algebra. A second rank [tensor](https://en.wikipedia.org/wiki/Tensor) is a scalar-valued [multilinear](multilinear) function with two slots that accept vector arguments; if only one argument is provided, it becomes a vector-valued linear function. For example, an equation with the depolarization dyadic could be written in the standard tensor notation as \\(\bm{E} = \mathcal{L}(\\_,\bm{J}).\\) We retain the dyadic notation due to its prevalence in the literarture. A brief introduction to dyadic analysis is available in \[[7](#references) (ap. 4), [8](#references) (ap. A)\].
+[^12]: A [dyadic](https://en.wikipedia.org/wiki/Dyadics) is a second rank tensor with a notation borrowed from linear algebra. A second rank [tensor](https://en.wikipedia.org/wiki/Tensor) is a scalar-valued [multilinear](multilinear) function with two slots that accept vector arguments; if only one argument is provided, it becomes a vector-valued linear function. For example, the dyadic expression \\(\bm{E} = \mathcal{L} \cdot \bm{J}\\) could be written in the standard tensor notation as \\(\bm{E} = \mathcal{L}(\\_,\bm{J})\\). We retain the dyadic notation due to its prevalence in the light scattering literarture. A brief introduction to the dyadic analysis is available in \[[7](#references) (ap. 4), [8](#references) (ap. A)\].
 
 $$ \tag{9.26}
 	\mathcal{G_{e}}(\bm{r}, \bm{r'}, k)
@@ -3105,7 +3105,7 @@ $$ \tag{14.16}
 	\bm{E}(\bm{r})
 	= \bm{E_i}(\bm{r}) + \bm{E_s}(\bm{r})
 	= \bm{E_i}(\bm{r})
-	+ \int\_{V} \mathcal{G} (\bm{r}, \bm{r'}) \int\_{V} \mathcal{T} (\bm{r'}, \bm{r''}) \cdot \bm{E_i}(\bm{r''}) dV'' dV'.
+	+ \int\_{V} \mathcal{G} (\bm{r}, \bm{r'}) \cdot \int\_{V} \mathcal{T} (\bm{r'}, \bm{r''}) \cdot \bm{E_i}(\bm{r''}) dV'' dV'.
 $$
 
 Note that Equation 14.16 is identical to the combination of Equations 14.4 and 14.5.
@@ -3161,9 +3161,9 @@ Translation of Equation 14.21 into the integral form yields the definition of th
 $$ \tag{14.22}
 \begin{aligned}
 	\mathcal{T} (\bm{r}, \bm{r'}, k)
-	&= u(\bm{r}, k) \bigg( \delta(\bm{r} - \bm{r'}) \mathcal{I} + \int_V \mathcal{G} (\bm{r}, \bm{r''}, k) \mathcal{T} (\bm{r''}, \bm{r'}, k) dV'' \bigg)
+	&= u(\bm{r}, k) \bigg( \delta(\bm{r} - \bm{r'}) \mathcal{I} + \int_V \mathcal{G} (\bm{r}, \bm{r''}, k) \cdot \mathcal{T} (\bm{r''}, \bm{r'}, k) dV'' \bigg)
 	\cr
-	&= k^2 \big( m^2(\bm{r}) - 1 \big) \bigg( \delta(\bm{r} - \bm{r'}) \mathcal{I} + \int_V \mathcal{G} (\bm{r}, \bm{r''}, k) \mathcal{T} (\bm{r''}, \bm{r'}, k) dV'' \bigg).
+	&= k^2 \big( m^2(\bm{r}) - 1 \big) \bigg( \delta(\bm{r} - \bm{r'}) \mathcal{I} + \int_V \mathcal{G} (\bm{r}, \bm{r''}, k) \cdot \mathcal{T} (\bm{r''}, \bm{r'}, k) dV'' \bigg).
 \end{aligned}
 $$
 
@@ -3175,12 +3175,12 @@ $$ \tag{14.23}
 	&= k^2 \big( m^2(\bm{r}) - 1 \big) \bigg(
 	\delta(\bm{r} - \bm{r'}) \mathcal{I}
 	\cr
-	&+ \Big( \mathcal{I} + \frac{1}{k^2} \nabla \otimes \nabla \Big) \int\_{V}
+	&+ \Big( \mathcal{I} + \frac{1}{k^2} \nabla \otimes \nabla \Big) \cdot \int\_{V}
 	g( \bm{r} - \bm{r''}, k) \mathcal{T} (\bm{r''}, \bm{r'}, k) dV'' \bigg).
 \end{aligned}
 $$
 
-The second way is to represent it by a sum of the electric dyadic \\(\mathcal{G_e}\\) and the depolarization dyadic \\(\mathcal{L}\\), like in Equation 9.25:
+The second way is to represent it by a sum of the electric dyadic \\(\mathcal{G_e}\\) and the depolarization dyadic \\(\mathcal{L}\\) as demonstrated by Equation 9.25:
 
 $$ \tag{14.24}
 \begin{aligned}
@@ -3188,21 +3188,21 @@ $$ \tag{14.24}
 	&= k^2 \big( m^2(\bm{r}) - 1 \big) \bigg(
 	\delta(\bm{r} - \bm{r'}) \mathcal{I}
 	\cr
-	&- \frac{1}{k^2} \mathcal{L}(\bm{r}) \mathcal{T} (\bm{r}, \bm{r'})
-	+ \lim_{\delta \to 0} \int\_{V - V_{\delta}} \mathcal{G_e} (\bm{r}, \bm{r''}) \mathcal{T} (\bm{r''}, \bm{r'}, k) dV'' \bigg).
+	&- \frac{1}{k^2} \mathcal{L}(\bm{r}) \cdot \mathcal{T} (\bm{r}, \bm{r'})
+	+ \lim_{\delta \to 0} \int\_{V - V_{\delta}} \mathcal{G_e} (\bm{r}, \bm{r''}) \cdot \mathcal{T} (\bm{r''}, \bm{r'}, k) dV'' \bigg).
 \end{aligned}
 $$
 
-Notice that the \\(1/k^2\\) term in front of the depolarization dyadic cancels out. After rearranging the terms, we obtain the full definition of the transition dyadic:
+Notice that the \\(1/k^2\\) term in front of the depolarization dyadic cancels out. If we move it to the left-hand side of the equation and rearrange the terms, we obtain the full definition of the transition dyadic:
 
 $$ \tag{14.25}
 \begin{aligned}
 	\mathcal{T} (\bm{r}, \bm{r'}, k)
 	&= k^2 \big( m^2(\bm{r}) - 1 \big)
-	\Big( \mathcal{I} + \big( m^2(\bm{r}) - 1 \big) \mathcal{L}(\bm{r}) \Big)^{-1} \bigg(
+	\Big( \mathcal{I} + \big( m^2(\bm{r}) - 1 \big) \mathcal{L}(\bm{r}) \Big)^{-1} \cdot \bigg(
 	\delta(\bm{r} - \bm{r'}) \mathcal{I}
 	\cr
-	&+ \lim_{\delta \to 0} \int\_{V - V_{\delta}} \mathcal{G_e} (\bm{r}, \bm{r''}, k) \mathcal{T} (\bm{r''}, \bm{r'}, k) dV'' \bigg).
+	&+ \lim_{\delta \to 0} \int\_{V - V_{\delta}} \mathcal{G_e} (\bm{r}, \bm{r''}, k) \cdot \mathcal{T} (\bm{r''}, \bm{r'}, k) dV'' \bigg).
 \end{aligned}
 $$
 
@@ -3228,9 +3228,11 @@ We may expand the integrand using Equations 14.16 and 15.1:
 $$ \tag{15.3}
 \begin{aligned}
 	\bm{E_s}(\bm{r}, \bm{n_i}, \omega)
-	&= \int\_{V} \mathcal{G} \big( \bm{r}, \bm{r'}, k(\omega) \big) \int\_{V} \mathcal{T} (\bm{r'}, \bm{r''}, k(\omega), \omega) \cdot \bm{E_i}(\bm{r''}, \bm{n_i}, \omega) dV'' dV'
+	&= \int\_{V} \mathcal{G} \big( \bm{r}, \bm{r'}, k(\omega) \big) \cdot
+	\int\_{V} \mathcal{T} (\bm{r'}, \bm{r''}, k(\omega), \omega) \cdot \bm{E_i}(\bm{r''}, \bm{n_i}, \omega) dV'' dV'
 	\cr
-	&= \int\_{V} \mathcal{G} \big( \bm{r}, \bm{r'}, k(\omega) \big) \int\_{V} \mathcal{T} (\bm{r'}, \bm{r''}, k(\omega), \omega) \cdot \bm{E_0}(\bm{n_i}, \omega) e^{i k(\omega) (\bm{r''} \cdot \bm{n_i})} dV'' dV'.
+	&= \int\_{V} \mathcal{G} \big( \bm{r}, \bm{r'}, k(\omega) \big) \cdot
+	\int\_{V} \mathcal{T} (\bm{r'}, \bm{r''}, k(\omega), \omega) \cdot \bm{E_0}(\bm{n_i}, \omega) e^{i k(\omega) (\bm{r''} \cdot \bm{n_i})} dV'' dV'.
 \end{aligned}
 $$
 
@@ -3247,11 +3249,11 @@ $$ \tag{15.5}
 \begin{aligned}
 	& \bm{E_s}(\bm{r}, \omega) \simeq
 	\frac{e^{i k(\omega) r}}{4 \pi r}
-	\big( \mathcal{I} - \bm{n_s} \otimes \bm{n_s} \big)
+	\big( \mathcal{I} - \bm{n_s} \otimes \bm{n_s} \big) \cdot
 	\int\_{V} e^{-i k(\omega) (\bm{r'} \cdot \bm{n_s})} \int\_{V} \mathcal{T} \big( \bm{r'}, \bm{r''}, k(\omega), \omega \big) \cdot \bm{E_i}(\bm{r''}, \omega) dV'' dV', \cr
 	& \bm{B_s}(\bm{r}, \omega) \simeq
 	\frac{k(\omega)}{\omega} \frac{e^{i k(\omega) r}}{4 \pi r}
-	\big(\bm{n_s} \times \mathcal{I} \big)
+	\big(\bm{n_s} \times \mathcal{I} \big) \cdot
 	\int\_{V} e^{-i k(\omega) (\bm{r'} \cdot \bm{n_s})} \int\_{V} \mathcal{T} \big( \bm{r'}, \bm{r''}, k(\omega), \omega \big) \cdot \bm{E_i}(\bm{r''}, \omega) dV'' dV',
 \end{aligned}
 $$
@@ -3285,11 +3287,11 @@ $$ \tag{15.7}
 \begin{aligned}
 	& \mathcal{S_{ef}} (\bm{n_s}, \bm{n_i}, \omega) \simeq
 	\frac{k(\omega)}{4 \pi}
-	\big( \mathcal{I} - \bm{n_s} \otimes \bm{n_s} \big)
+	\big( \mathcal{I} - \bm{n_s} \otimes \bm{n_s} \big) \cdot
 	\iint\_{V} e^{-i k(\omega) (\bm{r'} \cdot \bm{n_s} - \bm{r''} \cdot \bm{n_i})} \mathcal{T} (\bm{r'}, \bm{r''}, k(\omega), \omega) dV'' dV', \cr
 	& \mathcal{S_{mf}} (\bm{n_s}, \bm{n_i}, \omega) \simeq
 	\frac{k^2(\omega)}{4 \pi \omega}
-	\big(\bm{n_s} \times \mathcal{I} \big)
+	\big(\bm{n_s} \times \mathcal{I} \big) \cdot
 	\iint\_{V} e^{-i k(\omega) (\bm{r'} \cdot \bm{n_s} - \bm{r''} \cdot \bm{n_i})} \mathcal{T} (\bm{r'}, \bm{r''}, k(\omega), \omega) dV'' dV'.
 \end{aligned}
 $$
@@ -3480,13 +3482,13 @@ The expression of the total field is the sum of the incident and the scattered f
 $$ \tag{15.20}
 \begin{aligned}
 	\mathcal{T} (\bm{r}, \bm{r'}, k)
-	&= k^2 \big( m^2(\bm{r}) - 1 \big) \bigg( \delta(\bm{r} - \bm{r'}) \mathcal{I} + \int_V \mathcal{G} (\bm{r}, \bm{r''}, k) \mathcal{T} (\bm{r''}, \bm{r'}, k) dV'' \bigg)
+	&= k^2 \big( m^2(\bm{r}) - 1 \big) \bigg( \delta(\bm{r} - \bm{r'}) \mathcal{I} + \int_V \mathcal{G} (\bm{r}, \bm{r''}, k) \cdot \mathcal{T} (\bm{r''}, \bm{r'}, k) dV'' \bigg)
 	\cr
 	&= k^2 \big( m^2(\bm{r}) - 1 \big) \bigg(
 	\delta(\bm{r} - \bm{r'}) \mathcal{I}
 	\cr
-	&+ \Big( \mathcal{I} + \frac{1}{k^2} \nabla \otimes \nabla \Big) \int\_{V}
-	g( \bm{r} - \bm{r''}, k) \mathcal{T} (\bm{r''}, \bm{r'}, k) dV'' \bigg).
+	&+ \Big( \mathcal{I} + \frac{1}{k^2} \nabla \otimes \nabla \Big) \cdot
+	\int\_{V} g( \bm{r} - \bm{r''}, k) \mathcal{T} (\bm{r''}, \bm{r'}, k) dV'' \bigg).
 \end{aligned}
 $$
 
@@ -3540,13 +3542,13 @@ $$ \tag{15.28}
 	\mathcal{T} (\bm{r}, \bm{r'}, k)
 	&= \big( \hat{m}^2(\bm{\hat{r}}) - 1 \big) \bigg(
 	k^5 \delta(\bm{\hat{r}} - \bm{\hat{r}'}) \mathcal{I}
-	+ \int\_{V} \mathcal{\hat{G}}(\bm{\hat{r}}, \bm{\hat{r}''}) \mathcal{T} (\bm{r''}, \bm{r'}, k) d \hat{V}'' \bigg)
+	+ \int\_{V} \mathcal{\hat{G}}(\bm{\hat{r}}, \bm{\hat{r}''}) \cdot \mathcal{T} (\bm{r''}, \bm{r'}, k) d \hat{V}'' \bigg)
 	\cr
 	&= \big( \hat{m}^2(\bm{\hat{r}}) - 1 \big) \bigg(
 	k^5 \delta(\bm{\hat{r}} - \bm{\hat{r}'}) \mathcal{I}
 	\cr
-	&+ \Big( \mathcal{I} + \hat{\nabla} \otimes \hat{\nabla} \Big) \int\_{V}
-	\hat{g}( \bm{\hat{r}} - \bm{\hat{r}''}) \mathcal{T} (\bm{r''}, \bm{r'}, k) d \hat{V}'' \bigg),
+	&+ \Big( \mathcal{I} + \hat{\nabla} \otimes \hat{\nabla} \Big) \cdot
+	\int\_{V} \hat{g}( \bm{\hat{r}} - \bm{\hat{r}''}) \mathcal{T} (\bm{r''}, \bm{r'}, k) d \hat{V}'' \bigg),
 \end{aligned}
 $$
 
@@ -3656,10 +3658,10 @@ We begin by constructing a virtual surface that is (for convenience, and without
 $$ \tag{16.10}
 \begin{aligned}
 	& \bm{E_s}(\bm{r}, t)
-	\simeq \mathcal{Re} \bigg\lbrace \frac{e^{i k r}}{k r} \mathcal{S_{ef}}(\bm{n_s}, \bm{n_i}) \bm{E_0} e^{-i \omega t} \bigg\rbrace
+	\simeq \mathcal{Re} \bigg\lbrace \frac{e^{i k r}}{k r} \mathcal{S_{ef}}(\bm{n_s}, \bm{n_i}) \cdot \bm{E_0} e^{-i \omega t} \bigg\rbrace
 	= \frac{1}{k r} \mathcal{Re} \bigg\lbrace \bm{E_1}(\bm{n_s}) e^{i k r - i \omega t} \bigg\rbrace, \cr
 	& \bm{B_s}(\bm{r}, t)
-	\simeq \mathcal{Re} \bigg\lbrace \frac{e^{i k r}}{k r} \mathcal{S_{mf}}(\bm{n_s}, \bm{n_i}) \bm{E_0} e^{-i \omega t} \bigg\rbrace
+	\simeq \mathcal{Re} \bigg\lbrace \frac{e^{i k r}}{k r} \mathcal{S_{mf}}(\bm{n_s}, \bm{n_i}) \cdot \bm{E_0} e^{-i \omega t} \bigg\rbrace
 	= \frac{1}{k r} \mathcal{Re} \bigg\lbrace \bm{B_1}(\bm{n_s}) e^{i k r - i \omega t} \bigg\rbrace,
 \end{aligned}
 $$
@@ -4003,7 +4005,7 @@ To show this, express \\(\bm{E_1}\\) in terms of the scattering dyadic \\(\mathc
 
 $$ \tag{16.40}
 	\Phi_e
-	= \frac{\mu\_0^{-1}}{2} \frac{\eta}{c} \frac{4 \pi}{k^2} \mathcal{Im} \big\lbrace \bm{E_0^{\*}} \cdot \mathcal{S_{ef}}(\bm{n_i}, \bm{n_i}) \bm{E_0} \big\rbrace.
+	= \frac{\mu\_0^{-1}}{2} \frac{\eta}{c} \frac{4 \pi}{k^2} \mathcal{Im} \big\lbrace \bm{E_0^{\*}} \cdot \mathcal{S_{ef}}(\bm{n_i}, \bm{n_i}) \cdot \bm{E_0} \big\rbrace.
 $$
 
 Once we choose a coordinate system, we can substitute the scattering matrix with \\(\theta=0\\):
@@ -6533,7 +6535,7 @@ Equation 15.? shows that the polarization phasor \\(\bm{E_0}\\) of the incident 
 
 $$ \tag{18.26}
 	\Iota_s(\bm{n_s}, \omega)
-	\simeq \frac{\mu\_0^{-1}}{2} \frac{\eta(\omega)}{c} \frac{1}{k^2(\omega)} \left| \mathcal{S_{ef}}(\bm{n_s}, \bm{n_i}, \omega) \bm{E_0}(\bm{n_i}, \omega) \right|^2.
+	\simeq \frac{\mu\_0^{-1}}{2} \frac{\eta(\omega)}{c} \frac{1}{k^2(\omega)} \left| \mathcal{S_{ef}}(\bm{n_s}, \bm{n_i}, \omega) \cdot \bm{E_0}(\bm{n_i}, \omega) \right|^2.
 $$
 
 Both \\(\mathcal{S_{ef}}\\) and \\(\bm{E_0}\\) are coordinate-independent entities. In practice, we shall utilize the convention established in Section 15, according to which both the incident and the scattered fields can be described using only two components each. After taking Equations 15.14-15.16 into account, Equation 18.26 takes the form
