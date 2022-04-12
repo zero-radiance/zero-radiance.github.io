@@ -183,7 +183,7 @@ $$ \tag{1.14}
 \end{aligned}
 $$
 
-As discussed in \[[5](#references) (vol. II, ch 32.2), [6](#references) (ch. 1.1.1)\], \\(\bm{E}\\) and \\(\bm{B}\\) are the *fundamental fields*, and \\(\bm{D}\\) and \\(\bm{H}\\) are the [auxiliary fields](https://en.wikipedia.org/wiki/Maxwell%27s_equations#Auxiliary_fields,_polarization_and_magnetization) that arise due to the influence of matter. We shall soon see that, in certain cases, these two groups are related in a simple way.
+As discussed in \[[5](#references) (vol. II, ch. 32.2), [6](#references) (ch. 1.1.1)\], \\(\bm{E}\\) and \\(\bm{B}\\) are the *fundamental fields*, and \\(\bm{D}\\) and \\(\bm{H}\\) are the [auxiliary fields](https://en.wikipedia.org/wiki/Maxwell%27s_equations#Auxiliary_fields,_polarization_and_magnetization) that arise due to the influence of matter. We shall soon see that, in certain cases, these two groups are related in a simple way.
 
 The Maxwell equations is coupled system of [partial differential equations](https://en.wikipedia.org/wiki/Partial_differential_equation). The left-hand side of each equation is composed of derivatives of the unknowns (the fields), and the right-hand side contains the sources (the currents and the charges). Since a derivative is a linear operator, these equations form a [linear system](https://en.wikipedia.org/wiki/Linear_system). As such, the Maxwell equations obey the [superposition principle](https://en.wikipedia.org/wiki/Superposition_principle) - if we determine the values of the fields for one source, and then, *separately*, for another, and assuming that these sources are not "disturbed" by the fields, then the solution for the configuration with *both* sources is precisely the sum of the fields found for each individual source:
 
@@ -214,7 +214,7 @@ In addition to the boundary conditions, the law of conservation of energy impose
 
 - the [Sommerfeld radiation condition](https://en.wikipedia.org/wiki/Sommerfeld_radiation_condition) prohibits the existence of sinks collecting (an infinite amount of) energy arriving from infinity - these "infinite" sinks must be "finite" sources instead.
 
-Finally, it is worth pointing out that the Maxwell equations (both 1.1 and 1.14) are not independent \[[17](#references) (ch 1.3)\]. For instance, take the divergence of Eqn. 1.14.1 and 1.14.3. Since the [divergence of curl](https://en.wikipedia.org/wiki/Vector_calculus_identities#Divergence_of_curl_is_zero) is zero, the resulting expression may be simplified to
+Finally, it is worth pointing out that the Maxwell equations (both 1.1 and 1.14) are not independent \[[17](#references) (ch. 1.3)\]. For instance, take the divergence of Eqn. 1.14.1 and 1.14.3. Since the [divergence of curl](https://en.wikipedia.org/wiki/Vector_calculus_identities#Divergence_of_curl_is_zero) is zero, the resulting expression may be simplified to
 
 $$ \tag{1.18}
 	\nabla \cdot \bigg( \frac{\partial}{\partial t} \bm{B}(\bm{r}, t) \bigg) = 0,
@@ -627,7 +627,7 @@ The expression is compact and simple, but not particularly useful, since the val
 
 We can obtain a more practical result at the cost of some generality. Specifically, we must assume that the electromagnetic field is a [periodic function](https://en.wikipedia.org/wiki/Periodic_function) of time, such that the *fundamental period* \\(\thinspace T\_1 = 2 \pi / \omega_1\\) of both[^3] the electric and the magnetic fields is the same \[[5](#references) (vol. I, ch. 50) [6](#references) (ch. 1.3.3, 1.4.3)\]. In most cases, the limitations imposed by this condition are not particularly severe: usually, for visible light, the fundamental period is very short, and the fields can often be virtually repeated outside the time interval of interest.
 
-[^3]: The fact that the electric and the magnetic fields cannot exist independently can be shown by a simple relativistic argument \[[13](#references) (ch 6.2)\].
+[^3]: The fact that the electric and the magnetic fields cannot exist independently can be shown by a simple relativistic argument \[[13](#references) (ch. 6.2)\].
 
 One particular feature of periodic functions is the existence of a [Fourier series](https://en.wikipedia.org/wiki/Fourier_series#Complex-valued_functions) representation:
 
@@ -1120,7 +1120,7 @@ It is convenient to use a parametrization that does not involve taking a square 
 $$ \tag{7.7}
 	\eta(\omega) + i \kappa(\omega) =
 	\sqrt{\varepsilon\_r(\omega) \mu\_r(\omega)} =
-	c \sqrt{\Big( \epsilon(\omega) + i \frac{\sigma(\omega)}{\omega} \Big) \mu(\omega)}.
+	c \sqrt{\left( \epsilon(\omega) + i \frac{\sigma(\omega)}{\omega} \right) \mu(\omega)}.
 $$
 
 For high frequencies, such as those encountered in optics, we may perform a [Laurent series](https://en.wikipedia.org/wiki/Laurent_series) [expansion](https://www.wolframalpha.com/input/?i=series+sqrt%28a-I%2Fw*b%29) at infinity:
@@ -1130,7 +1130,7 @@ $$ \tag{7.8}
 	c \bigg( \sqrt{\epsilon \mu} + i \frac{\sigma \mu}{2 \omega \sqrt{\epsilon \mu}} \bigg),
 $$
 
-which gives an approximate mapping between the optical and the physical parameters[^10].
+which gives an approximate mapping between the optical and the physical properties[^10].
 
 [^10]: Keep in mind that, in general, the permittivity, permeability, and conductivity are complex numbers.
 
@@ -4077,7 +4077,7 @@ Strictly speaking, Eqn. 18.27 is *not* valid for a single particle, since it com
 
 Given these assumptions, all particles are driven by the same incident field, and, if we consider the average particle, the interference effects 1) between different particles, and 2) between each individual particle and the incident field, are eliminated by the averaging process. Thus, the *average irradiance* (that is, the irradiance of the cloud divided by the number of particles) is given by Eqn. 18.27.
 
-\[[4](#references) (ch 4.22)\]
+\[[4](#references) (ch. 4.22)\]
 
 -->
 
@@ -4461,7 +4461,7 @@ $$
 
 where \\(p\\) and \\(q\\) are separation constants that ensure the solutions are finite and single-valued.
 
-Differential equations of this type are well known in the literature \[[17](#references) (ch 7.3)\]. If we make a particular choice of
+Differential equations of this type are well known in the literature \[[17](#references) (ch. 7.3)\]. If we make a particular choice of
 
 $$ \tag{17.42}
 	p^2 = n (n+1),
@@ -4493,7 +4493,7 @@ $$
 
 where \\(m\\) and \\(n\\) are integers \\((n \ge 0)\\), \\(c_{m,n}\\) is a complex constant, \\(N_{m,n}\\) is a certain normalization constant, \\(z_n\\) is a [spherical Bessel function](https://en.wikipedia.org/wiki/Bessel_function#Spherical_Bessel_functions:_jn,_yn) of order \\(n\\), and \\(P_n^m\\) is an [associated Legendre polynomial](https://en.wikipedia.org/wiki/Associated_Legendre_polynomials) of degree \\(n\\) and order \\(m\\). Note that, as expected, the solution depends on the distance \\(r\\) only through the phase difference \\(k r\\).
 
-Let us begin by examining the radial functions \\(z_n(k r)\\). They may be used to represent any of the three kinds of *spherical Bessel functions* \[[17](#references) (ch 7.4)\]:
+Let us begin by examining the radial functions \\(z_n(k r)\\). They may be used to represent any of the three kinds of *spherical Bessel functions* \[[17](#references) (ch. 7.4)\]:
 
 $$ \tag{17.48}
 \begin{aligned}
@@ -4513,7 +4513,7 @@ $$ \tag{17.49}
 	H_n^{(2)}(x) = J_n(x) - i Y_n(x).
 $$
 
-All spherical Bessel functions satisfy the [recurrence relations](https://dlmf.nist.gov/10.51) \[[17](#references) (ch 7.4)\]
+All spherical Bessel functions satisfy the [recurrence relations](https://dlmf.nist.gov/10.51) \[[17](#references) (ch. 7.4)\]
 
 $$ \tag{17.50}
 	\frac{z_n(x)}{x} = \frac{z_{n-1}(x) + z_{n+1}(x)}{2 n + 1},
@@ -4616,7 +4616,7 @@ We are now ready to interpret the entire Eqn. 17.53. Since that function has har
 
 {{< figure src="/img/assoc_legendre_3.png" caption="*Figure N: Tesseral harmonics of degree 3 and order \\(m=1\\) (left), \\(m=2\\) (center), \\(m=3\\) (right). Warm colors correspond to positive values of the function, and cold colors - to negative values.*" >}}
 
-Associated Legendre polynomials have a powerful property - they are [orthogonal](https://en.wikipedia.org/wiki/Associated_Legendre_polynomials#Reparameterization_in_terms_of_angles) \[[17](#references) (ch 7.3)\]:
+Associated Legendre polynomials have a powerful property - they are [orthogonal](https://en.wikipedia.org/wiki/Associated_Legendre_polynomials#Reparameterization_in_terms_of_angles) \[[17](#references) (ch. 7.3)\]:
 
 $$ \tag{17.56}
 	\int_{-1}^{1} P_l^m(x) P_n^m(x) dx
@@ -4640,7 +4640,7 @@ $$
 
 where \\(\delta_{m,n}\\) is the Kronecker delta function given by Eqn. 4.6.
 
-Remarkably, by means of double integration over \\(\theta\\) and \\(\phi\\), these two facts can be combined to show that the tesseral harmonics \\(P_n^m(\cos{\theta}) \cos(m \phi)\\) and \\(P_n^m(\cos{\theta}) \sin(m \phi)\\) form a *complete orthogonal system* of basis functions on the surface of a sphere \[[18](#references) (ch 7.5)\].
+Remarkably, by means of double integration over \\(\theta\\) and \\(\phi\\), these two facts can be combined to show that the tesseral harmonics \\(P_n^m(\cos{\theta}) \cos(m \phi)\\) and \\(P_n^m(\cos{\theta}) \sin(m \phi)\\) form a *complete orthogonal system* of basis functions on the surface of a sphere \[[18](#references) (ch. 7.5)\].
 
 Tesseral harmonics are [real-valued basis functions](https://en.wikipedia.org/wiki/Spherical_harmonics#Real_form), which is sufficient for most problems. However, the theory can be trivially extended to complex values by combining the tesseral harmonics according to Eqn. 17.53. This directly leads to the definition of [scalar spherical harmonics](https://en.wikipedia.org/wiki/Spherical_harmonics)
 
@@ -4931,7 +4931,7 @@ $$ \tag{17.72}
 \end{aligned}
 $$
 
-called [vector spherical harmonics](https://en.wikipedia.org/wiki/Vector_spherical_harmonics#Alternative_definition). They are an extension of the scalar spherical harmonics (Eqn. 17.58) to vectors fields on the surface of a sphere. Like the scalar spherical harmonics, they form a complete set of orthogonal basis functions \[[19](#references) (ch 13.3)\]. Unlike the vector spherical wave functions, they do not depend on the radial distance \\(r\\).
+called [vector spherical harmonics](https://en.wikipedia.org/wiki/Vector_spherical_harmonics#Alternative_definition). They are an extension of the scalar spherical harmonics (Eqn. 17.58) to vectors fields on the surface of a sphere. Like the scalar spherical harmonics, they form a complete set of orthogonal basis functions \[[19](#references) (ch. 13.3)\]. Unlike the vector spherical wave functions, they do not depend on the radial distance \\(r\\).
 
 Most properties of the vector spherical harmonics are a direct consequence of the fact that they are built on the scalar spherical harmonics combined with the radial basis vector \\(\bm{e_r}\\). For instance, the symmetry property of Eqn. 17.60 leads to
 
@@ -5441,7 +5441,7 @@ $$ \tag{17.120}
 \end{aligned}
 $$
 
-Eqn. 17.119 and 17.120, coupled with [Gegenbauer's representation](https://dlmf.nist.gov/10.54) of the spherical Bessel function of the first kind \[[Watson](#references) (ch 3.32)\]
+Eqn. 17.119 and 17.120, coupled with [Gegenbauer's representation](https://dlmf.nist.gov/10.54) of the spherical Bessel function of the first kind \[[Watson](#references) (ch. 3.32)\]
 
 $$ \tag{17.1??}
 	j_n(x) = \frac{i^{-n}}{2}
@@ -5744,7 +5744,7 @@ $$ \tag{17.137}
 \end{aligned}
 $$
 
-Eqn. 17.137 can be found in \[[17](#references) (ch 7.11)\]. The author does not show the entire derivation, and, unfortunately, arrives at the result with the opposite sign.
+Eqn. 17.137 can be found in \[[17](#references) (ch. 7.11)\]. The author does not show the entire derivation, and, unfortunately, arrives at the result with the opposite sign.
 
 Note that, since the vector tesseral wave functions are used to represent the \\(x\\) and \\(y\\) components of the fields, we can transform the odd functions into the even ones by performing a 90 degree rotation:
 
@@ -5859,7 +5859,7 @@ $$ \tag{17.146}
 	\bm{e_r} \times (\bm{H_2} - \bm{H_1}) = \bm{J_n},
 $$
 
-Assuming the conductivity of the sphere is not enormous, the surface current term \\(\bm{J_n}\\) can be neglected \[[17](#references) (ch 1.13)\], and we may combine Eqn. 3.12, 5.2.3 and 17.146 into
+Assuming the conductivity of the sphere is not enormous, the surface current term \\(\bm{J_n}\\) can be neglected \[[17](#references) (ch. 1.13)\], and we may combine Eqn. 3.12, 5.2.3 and 17.146 into
 
 $$ \tag{17.147}
 	\bm{e_r} \times \bigg( \frac{1}{\mu_2} \nabla \times \bm{E_2} - \frac{1}{\mu_1} \nabla \times \bm{E_1} \bigg) = 0.
@@ -5943,7 +5943,7 @@ $$ \tag{17.152}
 \end{aligned}
 $$
 
-We may observe that both the scattered and the internal fields are directly proportional to the incident field. Furthermore, the coefficients of proportionality are independent of \\(m\\). They may be written down neatly if we re-introduce the traditional notation that calls the radius of the spherical particle \\(a\\), the size parameter \\(x = k_1 a\\), the relative wavenumber \\(m = k_2 / k_1\\), and the reciprocal[^17] of the relative permeability \\(u = \mu_1 / \mu_2\\). The order-independent multiplicative factors of Eqn. 17.152 can then be expressed as \[[17](#references) (ch 9.25)\]
+We may observe that both the scattered and the internal fields are directly proportional to the incident field. Furthermore, the coefficients of proportionality are independent of \\(m\\). They may be written down neatly if we re-introduce the traditional notation that calls the radius of the spherical particle \\(a\\), the size parameter \\(x = k_1 a\\), the relative wavenumber \\(m = k_2 / k_1\\), and the reciprocal[^17] of the relative permeability \\(u = \mu_1 / \mu_2\\). The order-independent multiplicative factors of Eqn. 17.152 can then be expressed as \[[17](#references) (ch. 9.25)\]
 
 [^17]: Recall Eqn. 5.2.3 and the subsequent discussion.
 
@@ -5966,7 +5966,7 @@ $$ \tag{17.154}
 \end{aligned}
 $$
 
-Many authors \[[4](#references) (ch 9.22), [6](#references) (ch 14.5)\] prefer to give this formula in terms of the [Riccati-Bessel functions](https://en.wikipedia.org/wiki/Bessel_function#Riccati%E2%80%93Bessel_functions:_Sn,_Cn,_%CE%BEn,_%CE%B6n)
+Many authors \[[4](#references) (ch. 9.22), [6](#references) (ch. 14.5)\] prefer to give this formula in terms of the [Riccati-Bessel functions](https://en.wikipedia.org/wiki/Bessel_function#Riccati%E2%80%93Bessel_functions:_Sn,_Cn,_%CE%BEn,_%CE%B6n)
 
 $$ \tag{17.155}
 \begin{aligned}
@@ -6063,7 +6063,7 @@ The problem is exacerbated by the convergence properties of the series. It was s
 
 #### Partial Waves
 
-The most straightforward interpretation of Eqn. 17.158 and 17.159 treats the individual terms as *partial waves*. If we examine the definition of the vector tesseral harmonics given by Eqn. 17.136, we may note that \\(\bm{N\_{m,n}}\\) has a radial component, while \\(\bm{M\_{m,n}}\\) does not. Since an electric charge is a source of a radially-symmetric electric field, we may interpret the existence of the radial component of \\(\bm{N\_{m,n}}\\) as a sign of the fact that the sphere contains a distribution of electric charges; therefore, the partial waves prefixed with \\(b\_n\\) are said to be of the *electric type*. At the same time, in comparison with Eqn. 17.36 of the electric field, Eqn. 17.37 of the magnetic field has the coefficients \\(a\_n\\) and \\(b\_n\\) interchanged; similar logical steps lead to the conclusion that the partial waves prefixed with \\(a\_n\\) are of the *magnetic type* \[[17](#references) (ch 9.22)\].
+The most straightforward interpretation of Eqn. 17.158 and 17.159 treats the individual terms as *partial waves*. If we examine the definition of the vector tesseral harmonics given by Eqn. 17.136, we may note that \\(\bm{N\_{m,n}}\\) has a radial component, while \\(\bm{M\_{m,n}}\\) does not. Since an electric charge is a source of a radially-symmetric electric field, we may interpret the existence of the radial component of \\(\bm{N\_{m,n}}\\) as a sign of the fact that the sphere contains a distribution of electric charges; therefore, the partial waves prefixed with \\(b\_n\\) are said to be of the *electric type*. At the same time, in comparison with Eqn. 17.36 of the electric field, Eqn. 17.37 of the magnetic field has the coefficients \\(a\_n\\) and \\(b\_n\\) interchanged; similar logical steps lead to the conclusion that the partial waves prefixed with \\(a\_n\\) are of the *magnetic type* \[[17](#references) (ch. 9.22)\].
 
 We may also show that the field becomes transverse in the radiation zone (see Eqn. 13.14 for the case of a scattering object of an arbitrary shape). Using the asymptotic expressions of the spherical Bessel functions (for \\(\vert x \vert \gg 1\\) and \\(\vert x \vert \gg n\\)) given by Eqn. 17.52, the corresponding Riccati-Bessel functions (and their derivatives) take the form
 
@@ -6298,19 +6298,21 @@ Eqn. 18.11 shows that a *magnetic* partial wave is the electric field of a *magn
 
 #### Resonance
 
-Since a sphere is a body bounded by a closed surface, its interior can sustain a certain number of standing waves, also known as [normal modes](https://en.wikipedia.org/wiki/Normal_mode) \[[5](#references) (vol. I, ch. 49)\]. These waves oscillate at [natural frequencies](https://en.wikipedia.org/wiki/Natural_frequency) that depend on the size and the composition of the particle.
+Since a sphere is a body bounded by a closed surface, its interior can sustain a certain number of standing waves, also known as [normal modes](https://en.wikipedia.org/wiki/Normal_mode) \[[5](#references) (vol. I, ch. 49), [17](#references) (ch. 9.22)\]. These waves oscillate at [natural frequencies](https://en.wikipedia.org/wiki/Natural_frequency) that depend on the size and the composition of the particle.
 
-The natural frequencies \\(\omega\_n\\) of the magnetic modes can be determined by setting the denominator of Eqn. 17.156.1 (or Eqn. 17.156.2 for the electric modes) to zero and solving the resulting transcendental equation for \\(x\_n = x\\) \[[17](#references) (ch 9.22)\]; subsequently, the latter can be related to the former using Eqn. 7.6 and 7.7:
+The natural frequencies \\(\omega_n\\) can be determined by setting the denominators of Eqn. 17.157 of the internal field to zero, solving the resulting transcendental equations for \\(x_n = x\\), and substituting the roots into Eqn. 7.6 and 7.7:
 
 $$ \tag{18.12}
 \begin{aligned}
-	x_n^2 &= k^2(\omega) a^2 = \Big( \omega_n^2 \epsilon(\omega) + i \omega_n \sigma(\omega) \Big) \mu(\omega) a^2,
+	x_n^2 &= (k a)^2 = \Big( \omega_n^2 \epsilon + i \omega_n \sigma \Big) \mu a^2,
 	\cr
-	\omega_n &= \sqrt{\frac{x_n^2}{a^2 \epsilon(\omega) \mu(\omega)} - \frac{\sigma^2(\omega)}{4 \epsilon^2(\omega)}} - i \frac{\sigma(\omega)}{2 \epsilon(\omega)}.
+	\omega_n &= \sqrt{\frac{x_n^2}{ a^2 \epsilon \mu} - \left( \frac{\sigma}{2 \epsilon} \right)^2} - i \frac{\sigma}{2 \epsilon}.
 \end{aligned}
 $$
 
-The resulting natural frequencies are complex. This implies that, no matter what the frequency of the incident wave is, the amplitudes of the scattered and the internal fields remain finite. Nevertheless, certain frequencies in close proximity to the natural frequency may reduce the denominator to a very small value, producing a spike in the plot of the expansion coefficient; this phenomenon is called [resonance](https://en.wikipedia.org/wiki/Resonance) \[[5](#references) (vol. I, ch. 23)\].
+The natural sizes \\(x_n\\) are always complex, which (barring an extremely unlikely set of circumstances) makes the natural frequencies \\(\omega_n\\) complex as well. This implies that, no matter what the frequency of the incident wave is, the amplitudes of the scattered and the internal fields remain finite \[[17](#references) (ch. 9.25)\]. Nevertheless, a certain combination of the frequency and the physical properties of the material may reduce the magnitude of the denominator to a very small value, producing a spike in the plot of the expansion coefficient; this phenomenon is called [resonance](https://en.wikipedia.org/wiki/Resonance) \[[5](#references) (vol. I, ch. 23)\].
+
+In general, both \\(|x_n|\\) and \\(|\omega_n|\\) tend to increase with the index \\(n\\) of the expansion coefficient. In addition, in the optical region of the spectrum, the frequency of the incident radiation is very high; Eqn. 18.12 shows that strong optical resonance is typically observed for small \\((x \ll 1)\\) and highly conductive \\((\sigma \gg 1)\\) particles \[[4](#references) (ch. 10.5), [17](#references) (ch. 9.23)\].
 
 #### Limiting Cases
 
@@ -6395,7 +6397,7 @@ $$
 
 These expressions demonstrate that, if all arguments \\((u,m,x)\\) are real, then the magnitudes of the coefficients rapidly oscillate between 0 and 1.
 
-Next, let us turn our attention to particles on the opposite end of the size spectrum, with \\(\vert m x \vert \ll 1\\). If we assume that \\(\vert m \vert > 1\\), then it follows that \\(\vert x \vert \ll 1\\) as well. The Taylor series expansions of the Riccati-Bessel functions \[[17](#references) (ch 7.4)\] are
+Next, let us turn our attention to particles on the opposite end of the size spectrum, with \\(\vert m x \vert \ll 1\\). If we assume that \\(\vert m \vert > 1\\), then it follows that \\(\vert x \vert \ll 1\\) as well. The Taylor series expansions of the Riccati-Bessel functions \[[17](#references) (ch. 7.4)\] are
 
 $$ \tag{18.17}
 \begin{aligned}
