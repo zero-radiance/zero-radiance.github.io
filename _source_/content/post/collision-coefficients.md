@@ -1110,7 +1110,6 @@ the complex wavenumber can be redefined as
 
 $$ \tag{7.6}
 	k(\omega) =
-	\omega \sqrt{\varepsilon(\omega) \mu(\omega)} =
 	\omega \sqrt{\epsilon_0 \mu\_0} \sqrt{\varepsilon\_r(\omega) \mu\_r(\omega)} =
 	\frac{\omega}{c} \sqrt{\varepsilon\_r(\omega) \mu\_r(\omega)}.
 $$
@@ -6300,25 +6299,25 @@ Eqn. 18.11 shows that a *magnetic* partial wave is the electric field of a *magn
 
 Since a sphere is a body bounded by a closed surface, its interior can sustain a certain number of standing waves, also known as [normal modes](https://en.wikipedia.org/wiki/Normal_mode) \[[5](#references) (vol. I, ch. 49), [17](#references) (ch. 9.22)\]. These waves oscillate at [natural frequencies](https://en.wikipedia.org/wiki/Natural_frequency) that depend on the size and the composition of the particle.
 
-The natural frequencies \\(\omega_n\\) can be determined by setting the denominators of Eqn. 17.157 of the internal field to zero, solving the resulting transcendental equations for \\(x_n = x\\), and substituting the roots into Eqn. 7.6 and 7.7:
+The natural frequencies \\(\omega_n\\) can be determined by setting the denominators of Eqn. 17.157 of the internal field to zero, solving the resulting transcendental equations for \\(y_n = m x\\), and substituting the roots into Eqn. 7.6 and 7.7:
 
 $$ \tag{18.12}
 \begin{aligned}
-	x_n^2 &= (k a)^2 = \Big( \omega_n^2 \epsilon + i \omega_n \sigma \Big) \mu a^2,
+	y_n^2 &= \left( \frac{k_2}{k_1} k_1 a \right)^2 = \Big( \omega_n^2 \epsilon + i \omega_n \sigma \Big) \mu a^2,
 	\cr
-	\omega_n &= \sqrt{\frac{x_n^2}{ a^2 \epsilon \mu} - \left( \frac{\sigma}{2 \epsilon} \right)^2} - i \frac{\sigma}{2 \epsilon}.
+	\omega_n &= \sqrt{\frac{y_n^2}{ a^2 \epsilon \mu} - \left( \frac{\sigma}{2 \epsilon} \right)^2} - i \frac{\sigma}{2 \epsilon}.
 \end{aligned}
 $$
 
-The natural sizes \\(x_n\\) are always complex, which (barring an extremely unlikely set of circumstances) makes the natural frequencies \\(\omega_n\\) complex as well. This implies that, no matter what the frequency of the incident wave is, the amplitudes of the scattered and the internal fields remain finite \[[17](#references) (ch. 9.25)\]. Nevertheless, a certain combination of the frequency and the physical properties of the material may reduce the magnitude of the denominator to a very small value, producing a spike in the plot of the expansion coefficient; this phenomenon is called [resonance](https://en.wikipedia.org/wiki/Resonance) \[[5](#references) (vol. I, ch. 23)\].
+In practice, the natural sizes \\(y_n\\) are complex, which makes the natural frequencies \\(\omega_n\\) complex as well. This implies that, no matter what the frequency of the incident wave is, the amplitudes of the scattered and the internal fields remain finite \[[17](#references) (ch. 9.25)\]. Nevertheless, a certain combination of the frequency and the physical properties of the material may reduce the magnitude of the denominator to a very small value, producing a spike in the plot of the expansion coefficient; this phenomenon is called [resonance](https://en.wikipedia.org/wiki/Resonance) \[[5](#references) (vol. I, ch. 23)\].
 
-In general, both \\(|x_n|\\) and \\(|\omega_n|\\) tend to increase with the index \\(n\\) of the expansion coefficient. In addition, in the optical region of the spectrum, the frequency of the incident radiation is very high; Eqn. 18.12 shows that strong optical resonance is typically observed for small \\((x \ll 1)\\) and highly conductive \\((\sigma \gg 1)\\) particles \[[4](#references) (ch. 10.5), [17](#references) (ch. 9.23)\].
+In general, both \\(|y_n|\\) and \\(|\omega_n|\\) tend to increase with the index \\(n\\) of the expansion coefficient. In addition, in the optical region of the spectrum, the frequency of the incident radiation is very high; Eqn. 18.12 shows that strong optical resonance is typically observed for small and highly conductive particles \[[4](#references) (ch. 10.5), [17](#references) (ch. 9.23)\].
 
 #### Limiting Cases
 
 Let us take a closer look at the expressions of the expansion coefficients of the scattered field given by Eqn. 17.156.
 
-First, let us consider a very large spherical particle. If we ignore the possibility that it actually represents a cavity, then \\(\vert m \vert > 1\\), which, once combined with \\(\vert x \vert \gg 1\\), leads to \\(\vert m x \vert \gg 1\\). This allows us to evaluate the expansion coefficients of the first few orders using the asymptotic expressions given by Eqn. 18.2:
+First, let us consider a very large spherical particle. If we ignore the possibility that it actually represents a cavity (e.g. an air bubble), then \\(\vert m \vert > 1\\), which, once combined with \\(\vert x \vert \gg 1\\), leads to \\(\vert m x \vert \gg 1\\). This allows us to evaluate the expansion coefficients of the first few orders using the asymptotic expressions given by Eqn. 18.2:
 
 $$ \tag{18.13}
 \small
