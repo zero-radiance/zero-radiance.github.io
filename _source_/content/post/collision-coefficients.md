@@ -6394,7 +6394,11 @@ $$ \tag{18.16}
 \end{aligned}
 $$
 
-These expressions demonstrate that, if all arguments \\((u,m,x)\\) are real, then the magnitudes of the coefficients rapidly oscillate between 0 and 1.
+These expressions demonstrate that the magnitudes of the coefficients rapidly oscillate between 0 and 1.
+
+{{< figure src="/img/coef_a_n.svg" caption="*Figure N: The plots of the real (solid line) and the imaginary (dashed line) parts of the expansion coefficient \\(a_1/i\\) for \\(u = 1\\) and \\(m = 2\\). The horizontal axis represents the size parameter of the particle.*" >}}
+
+{{< figure src="/img/coef_b_n.svg" caption="*Figure N: The plots of the real (solid line) and the imaginary (dashed line) parts of the expansion coefficient \\(b_1/i\\) for \\(u = 1\\) and \\(m = 2\\). The horizontal axis represents the size parameter of the particle.*" >}}
 
 Next, let us turn our attention to particles on the opposite end of the size spectrum, with \\(\vert m x \vert \ll 1\\). If we assume that \\(\vert m \vert > 1\\), then it follows that \\(\vert x \vert \ll 1\\) as well. The Taylor series expansions of the Riccati-Bessel functions \[[17](#references) (ch. 7.4)\] are
 
