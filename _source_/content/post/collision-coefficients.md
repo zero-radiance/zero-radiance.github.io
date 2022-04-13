@@ -4548,7 +4548,7 @@ For small values of the argument, the behavior is both varied and relatively com
 
 {{< figure src="/img/spherical_hankel_1.svg" caption="*Figure N: Spherical Hankel functions of the first kind of order n=0 (blue), n=1 (orange), n=2 (green), n=3 (red). Solid lines correspond to the real part, while the imaginary part is drawn using dashed lines.*" >}}
 
-For large values of the argument, the spherical Bessel functions of the first and the second kinds differ in phase by a factor of \\(\pi\\). The latter is prominently featured in the [asymptotic forms](https://dlmf.nist.gov/10.52) (for \\(\vert x \vert \gg 1\\) and \\(\vert x \vert \gg n\\))
+For large values of the argument, the spherical Bessel functions of the first and the second kinds differ in phase by a factor of \\(\pi\\). The latter is prominently featured in the [asymptotic forms](https://dlmf.nist.gov/10.52) valid for \\(\vert x \vert \gg n^2/2\\):
 
 $$ \tag{17.52}
 \begin{aligned}
@@ -6064,7 +6064,7 @@ The problem is exacerbated by the convergence properties of the series. It was s
 
 The most straightforward interpretation of Eqn. 17.158 and 17.159 treats the individual terms as *partial waves*. If we examine the definition of the vector tesseral harmonics given by Eqn. 17.136, we may note that \\(\bm{N\_{m,n}}\\) has a radial component, while \\(\bm{M\_{m,n}}\\) does not. Since an electric charge is a source of a radially-symmetric electric field, we may interpret the existence of the radial component of \\(\bm{N\_{m,n}}\\) as a sign of the fact that the sphere contains a distribution of electric charges; therefore, the partial waves prefixed with \\(b\_n\\) are said to be of the *electric type*. At the same time, in comparison with Eqn. 17.36 of the electric field, Eqn. 17.37 of the magnetic field has the coefficients \\(a\_n\\) and \\(b\_n\\) interchanged; similar logical steps lead to the conclusion that the partial waves prefixed with \\(a\_n\\) are of the *magnetic type* \[[17](#references) (ch. 9.22)\].
 
-We may also show that the field becomes transverse in the radiation zone (see Eqn. 13.14 for the case of a scattering object of an arbitrary shape). Using the asymptotic expressions of the spherical Bessel functions (for \\(\vert x \vert \gg 1\\) and \\(\vert x \vert \gg n\\)) given by Eqn. 17.52, the corresponding Riccati-Bessel functions (and their derivatives) take the form
+We may also show that the field becomes transverse in the radiation zone (see Eqn. 13.14 for the case of a scattering object of an arbitrary shape). Using the asymptotic expressions of the spherical Bessel functions given by Eqn. 17.52, the corresponding Riccati-Bessel functions (and their derivatives) take the form
 
 $$ \tag{18.2}
 \begin{aligned}
@@ -6313,7 +6313,7 @@ $$ \tag{18.1?}
 	\omega_n = \frac{x_n}{ a \sqrt{\epsilon_1 \mu_0}}.
 $$
 
-The natural sizes \\(x_n\\) are always complex, which makes the natural frequencies \\(\omega_n\\) complex as well. This implies that, no matter what the frequency of the incident wave is, the amplitudes of the scattered and the internal fields remain finite \[[17](#references) (ch. 9.25)\]. Nevertheless, a certain combination of parameters that reduces the magnitude of the denominator to a small value may simultaneously make the numerator large, producing a spike in the plot of the expansion coefficient; this phenomenon is called [resonance](https://en.wikipedia.org/wiki/Resonance) \[[5](#references) (vol. I, ch. 23), cite-new-paper\].
+The natural sizes \\(x_n\\) are always complex, which makes the natural frequencies \\(\omega_n\\) complex as well. This implies that, no matter what the frequency of the incident wave is, the amplitudes of the scattered and the internal fields remain finite \[[17](#references) (ch. 9.25)\]. Nevertheless, a certain combination of parameters that reduces the magnitude of the denominator to a small value may simultaneously make the numerator large, producing a spike in the plot of the expansion coefficient; this phenomenon is called [resonance](https://en.wikipedia.org/wiki/Resonance) \[[5](#references) (vol. I, ch. 23)\].
 
 #### Limiting Cases
 
@@ -6342,9 +6342,9 @@ $$ \tag{18.13}
 \end{aligned}
 $$
 
-These expressions are only valid provided that both \\(\vert x \vert \gg n\\) and \\(\vert m x \vert \gg n\\). The asymptotic expressions valid for all orders \\(n\\) have been found by Debye (1909); they are considerably more complicated, and we shall not discuss them here.
+Strictly speaking, these expressions are only valid if both \\(\vert x \vert \gg n^2/2\\) and \\(\vert m x \vert \gg n^2/2\\); in practice, the approximation error remains acceptable if \\(\vert x \vert \sim n/2\\). The asymptotic expressions valid for all orders \\(n\\) have been found by Debye (1909); they are considerably more complicated, and we shall not discuss them here.
 
-We may observe that the resulting coefficients are highly cyclical: \\(a_{n+4} \simeq a\_n\\) and \\(a_{n+1} \simeq b\_n\\). Thus, for any given value of \\(x,\\) only 4 unique coefficients exist.
+We may observe that the resulting coefficients are highly cyclical: \\(a_{n+2} \simeq a\_n\\) and \\(a_{n+1} \simeq b\_n\\). Thus, for any given pair of \\(m\\) and \\(x\\), only 2 unique coefficients exist. In addition, their sum is independent of the order \\(n\\).
 
 These formulae can be simplified by introducing the exponential notation. Since
 
@@ -6401,6 +6401,16 @@ These expressions demonstrate that the magnitudes of the coefficients rapidly os
 {{< figure src="/img/coef_a_n.svg" caption="*Figure N: The plots of the real (solid line) and the imaginary (dashed line) parts of the expansion coefficient \\(a_1/i\\) for \\(m = 4/3\\). The horizontal axis represents the size parameter of the particle.*" >}}
 
 {{< figure src="/img/coef_b_n.svg" caption="*Figure N: The plots of the real (solid line) and the imaginary (dashed line) parts of the expansion coefficient \\(b_1/i\\) for \\(m = 4/3\\). The horizontal axis represents the size parameter of the particle.*" >}}
+
+In addition to the cyclicality, by transforming Eqn. 18.15 into a function of \\((m - 1) x\\), it can be shown that the expansion coefficients are periodic functions of \\(x\\), with the period
+
+$$ \tag{18.1??}
+\begin{aligned}
+	\Delta x = \frac{\pi}{m - 1},
+\end{aligned}
+$$
+
+provided that \\(0.5 < m < 2.5\\), and \\(x\\) is sufficiently large \[[25](#references)\].
 
 Next, let us turn our attention to particles on the opposite end of the size spectrum, with \\(\vert m x \vert \ll 1\\). If we assume that \\(\vert m \vert > 1\\), then it follows that \\(\vert x \vert \ll 1\\) as well. The Taylor series expansions of the Riccati-Bessel functions \[[17](#references) (ch. 7.4)\] are
 
@@ -6944,6 +6954,8 @@ Bohren & Huffman, Larry Travis, Pharr & Jakob, Jeppe Frisvad, Robin Green.
 21. Markel, V. A. [Extinction, Scattering and Absorption of Electromagnetic Waves in the Coupled-Dipole Approximation](https://doi.org/10.1016/j.jqsrt.2019.106611) (2019).
 22. Brillouin, L. [The Scattering Cross Section of Spheres for Electromagnetic Waves](https://doi.org/10.1063/1.1698280) (1949).
 23. Mitchell, D. L. [Parameterization of the Mie Extinction and Absorption Coefficients for Water Clouds](https://doi.org/10.1175/1520-0469(2000)057%3C1311:POTMEA%3E2.0.CO;2) (2000).
+24. Chýlek, P. [Partial-Wave Resonances and the Ripple Structure in the Mie Normalized Extinction Cross Section ](https://doi.org/10.1364/JOSA.66.000285) (1976).
+25. Chýlek, P., & Zhan, J. [Interference Structure of the Mie Extinction Cross Section](https://doi.org/10.1364/JOSAA.6.001846) (1989).
 99. Hansen, J. E., & Travis, L. D. [Light Scattering in Planetary Atmospheres](https://doi.org/10.1007/BF00168069) (1974).
 
 <!--
