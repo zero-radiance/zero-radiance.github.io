@@ -4044,7 +4044,7 @@ which matches the results found using the scalar wave theory \[[4](#references) 
 
 <!--
 
-Suppose the host medium is non-absorbing and non-magnetic. Then \\(\kappa = 0\\) and \\(\mu = \mu_0\\), and the intensity of the scattered light is given by Eqn. 16.15:
+Suppose the host medium is non-absorptive and non-magnetic. Then \\(\kappa = 0\\) and \\(\mu = \mu_0\\), and the intensity of the scattered light is given by Eqn. 16.15:
 
 $$ \tag{18.25}
 	\Iota_s
@@ -6012,7 +6012,7 @@ $$ \tag{17.157}
 \end{aligned}
 $$
 
-Note that the numerators of Eqn. 17.157.1 and 17.157.2 are the same. Thus, if their denominators vary slowly, \\(a_n^{\circ}\\) and \\(b_n^{\circ}\\) change roughly at the same rate. In addition, the denominators of Eqn. 17.156.1 and 17.156.2 match those of Eqn. 17.157.1 and 17.157.2, respectively. Therefore, we should expect the peaks of \\(a_n\\) and \\(a_n^{\circ}\\) (or \\(b_n\\) and \\(b_n^{\circ}\\)) to be co-located in the same region of the \\(m\text{-}x\\) domain.
+Note that the numerators of Eqn. 17.157.1 and 17.157.2 are the same. Thus, if their denominators vary slowly, \\(a_n^{\circ}\\) and \\(b_n^{\circ}\\) change roughly at the same rate. In addition, the denominators of Eqn. 17.156.1 and 17.156.2 match those of Eqn. 17.157.1 and 17.157.2, respectively. Therefore, we may expect some of the peaks of \\(a_n\\) and \\(a_n^{\circ}\\) (or \\(b_n\\) and \\(b_n^{\circ}\\)) to be co-located in the same region of the \\(m\text{-}x\\) domain.
 
 {{< figure src="/img/riccati_psi.svg" caption="*Figure N: Riccati-Bessel functions of the first kind of order n=1 (blue), n=2 (orange), n=3 (green).*" >}}
 
@@ -6299,19 +6299,21 @@ Eqn. 18.11 shows that a *magnetic* partial wave is the electric field of a *magn
 
 Since a sphere is a body bounded by a closed surface, its interior can sustain a certain number of standing waves, also known as [normal modes](https://en.wikipedia.org/wiki/Normal_mode) \[[5](#references) (vol. I, ch. 49), [17](#references) (ch. 9.22)\]. These waves oscillate at [natural frequencies](https://en.wikipedia.org/wiki/Natural_frequency) that depend on the size and the composition of the particle.
 
-The natural frequencies \\(\omega_n\\) can be determined by setting the denominators of Eqn. 17.157 of the internal field to zero, solving the resulting transcendental equations for \\(y_n = m x\\), and substituting the roots into Eqn. 7.6 and 7.7:
+The natural frequencies \\(\omega_n\\) can be determined by setting the denominators of Eqn. 17.157 of the internal field to zero, solving the resulting transcendental equations for \\(x_n = x\\), and substituting the roots into Eqn. 7.6 and 7.7:
 
 $$ \tag{18.12}
-\begin{aligned}
-	y_n^2 &= \left( \frac{k_2}{k_1} k_1 a \right)^2 = \Big( \omega_n^2 \epsilon + i \omega_n \sigma \Big) \mu a^2,
-	\cr
-	\omega_n &= \sqrt{\frac{y_n^2}{ a^2 \epsilon \mu} - \left( \frac{\sigma}{2 \epsilon} \right)^2} - i \frac{\sigma}{2 \epsilon}.
-\end{aligned}
+	x_n^2
+	= \left(k_1 a \right)^2
+	= \Big( \omega_n^2 \epsilon_1 + i \omega_n \sigma_1 \Big) \mu_1 a^2.
 $$
 
-In practice, the natural sizes \\(y_n\\) are complex, which makes the natural frequencies \\(\omega_n\\) complex as well. This implies that, no matter what the frequency of the incident wave is, the amplitudes of the scattered and the internal fields remain finite \[[17](#references) (ch. 9.25)\]. Nevertheless, a certain combination of the frequency and the physical properties of the material may reduce the magnitude of the denominator to a very small value, producing a spike in the plot of the expansion coefficient; this phenomenon is called [resonance](https://en.wikipedia.org/wiki/Resonance) \[[5](#references) (vol. I, ch. 23)\].
+Typically, the host medium is non-conductive and non-magnetic, which leads to
 
-In general, both \\(|y_n|\\) and \\(|\omega_n|\\) tend to increase with the index \\(n\\) of the expansion coefficient. In addition, in the optical region of the spectrum, the frequency of the incident radiation is very high; Eqn. 18.12 shows that strong optical resonance is typically observed for small and highly conductive particles \[[4](#references) (ch. 10.5), [17](#references) (ch. 9.23)\].
+$$ \tag{18.1?}
+	\omega_n = \frac{x_n}{ a \sqrt{\epsilon_1 \mu_0}}.
+$$
+
+The natural sizes \\(x_n\\) are always complex, which makes the natural frequencies \\(\omega_n\\) complex as well. This implies that, no matter what the frequency of the incident wave is, the amplitudes of the scattered and the internal fields remain finite \[[17](#references) (ch. 9.25)\]. Nevertheless, a certain combination of parameters that reduces the magnitude of the denominator to a small value may simultaneously make the numerator large, producing a spike in the plot of the expansion coefficient; this phenomenon is called [resonance](https://en.wikipedia.org/wiki/Resonance) \[[5](#references) (vol. I, ch. 23), cite-new-paper\].
 
 #### Limiting Cases
 
@@ -6396,9 +6398,9 @@ $$
 
 These expressions demonstrate that the magnitudes of the coefficients rapidly oscillate between 0 and 1.
 
-{{< figure src="/img/coef_a_n.svg" caption="*Figure N: The plots of the real (solid line) and the imaginary (dashed line) parts of the expansion coefficient \\(a_1/i\\) for \\(u = 1\\) and \\(m = 2\\). The horizontal axis represents the size parameter of the particle.*" >}}
+{{< figure src="/img/coef_a_n.svg" caption="*Figure N: The plots of the real (solid line) and the imaginary (dashed line) parts of the expansion coefficient \\(a_1/i\\) for \\(m = 4/3\\). The horizontal axis represents the size parameter of the particle.*" >}}
 
-{{< figure src="/img/coef_b_n.svg" caption="*Figure N: The plots of the real (solid line) and the imaginary (dashed line) parts of the expansion coefficient \\(b_1/i\\) for \\(u = 1\\) and \\(m = 2\\). The horizontal axis represents the size parameter of the particle.*" >}}
+{{< figure src="/img/coef_b_n.svg" caption="*Figure N: The plots of the real (solid line) and the imaginary (dashed line) parts of the expansion coefficient \\(b_1/i\\) for \\(m = 4/3\\). The horizontal axis represents the size parameter of the particle.*" >}}
 
 Next, let us turn our attention to particles on the opposite end of the size spectrum, with \\(\vert m x \vert \ll 1\\). If we assume that \\(\vert m \vert > 1\\), then it follows that \\(\vert x \vert \ll 1\\) as well. The Taylor series expansions of the Riccati-Bessel functions \[[17](#references) (ch. 7.4)\] are
 
@@ -6529,7 +6531,7 @@ vanish. Eqn. 18.24 is the basis of the famous law of [Rayleigh scattering](https
 
 Since the frequencies of the electromagnetic radiation associated with visible light are so high, it is practically impossible to measure the instantaneous values of the electromagnetic field \[[8](#references) (ch. 7)\]. For this reason, typical applications of light scattering are concerned with the rate of the flow of electromagnetic energy, which is connected to light intensity via the optical theorem.
 
-Suppose that the host medium is non-absorbing and non-magnetic. Then \\(\kappa = 0, \mu = \mu_0, k\\) is real, and the intensity of the scattered light is given by Eqn. 16.15:
+Suppose that the host medium is non-absorptive and non-magnetic. Then \\(\kappa = 0, \mu = \mu_0, k\\) is real, and the intensity of the scattered light is given by Eqn. 16.15:
 
 $$ \tag{18.25}
 	\Iota_s(\bm{n_s}, \omega)
