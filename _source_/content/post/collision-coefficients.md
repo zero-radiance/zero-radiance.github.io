@@ -6058,7 +6058,7 @@ $$
 
 These functions have radically different behavior, yet correctly guessing the function given the first few terms of its series expansion is a nontrivial task. And even if the function were known, the method of derivation still obscures the mechanism of the underlying physical process.
 
-The problem is exacerbated by the convergence properties of the series. It was shown by Debye (1909) that, for points in the radiation zone, the asymptotic expression (for large \\(x\\)) of the scattered field  requires on the order of \\(n \sim x\\) terms; this number can reach \\(x = 2 \pi (1 \text{ mm} / 380 \text{ nm}) = 16535 \\) for large [raindrops](https://glossary.ametsoc.org/wiki/Raindrop) illuminated by visible light, making computation impractical.
+The problem is exacerbated by the convergence properties of the series. It was shown by Debye (1909) that, for points in the radiation zone, the asymptotic expression (for large \\(x\\)) of the scattered field  requires on the order of \\(n \sim (x + 1/2)\\) terms; this number can reach \\(x = 2 \pi (1 \text{ mm} / 380 \text{ nm}) = 16535 \\) for large [raindrops](https://glossary.ametsoc.org/wiki/Raindrop) illuminated by visible light, making computation impractical.
 
 #### Partial Waves
 
@@ -6295,6 +6295,8 @@ $$
 
 Eqn. 18.11 shows that a *magnetic* partial wave is the electric field of a *magnetic* multipole. Since the curl of this electric field is the magnetic field of a magnetic multipole, the electric field must circulate. This is nicely illustrated by Mie in his original paper \[Mie 1908\].
 
+For large particles, the partial waves can be classified according to the *localization principle*, according to which the terms of the order \\(n\\) correspond to parallel rays of light traced along the direction of incidence at the distance \\((n-1/2)/x\\) from the center of the particle \[[4](#references) (ch. 12.31)\]. It implies that the rays of the order \\(n \le (x + 1/2)\\) intersect the sphere, while the higher order waves move around it. The localization principle can be also used to explain the \\(n \sim (x + 1/2)\\) terms rule often used for numerical computations.
+
 #### Resonance
 
 Since a sphere is a body bounded by a closed surface, its interior can sustain a certain number of standing waves, also known as [normal modes](https://en.wikipedia.org/wiki/Normal_mode) \[[5](#references) (vol. I, ch. 49), [17](#references) (ch. 9.22)\]. These waves oscillate at [natural frequencies](https://en.wikipedia.org/wiki/Natural_frequency) that depend on the size and the composition of the particle.
@@ -6380,7 +6382,7 @@ $$ \tag{18.15}
 \end{aligned}
 $$
 
-Further reduction can be achieved by rewriting the formulae in terms of \\(\tan(m x - \pi n / 2)\\):
+Further reduction can be achieved by rewriting Eqn. 18.15 in terms of \\(\tan(m x - \pi n / 2)\\):
 
 $$ \tag{18.16}
 \begin{aligned}
