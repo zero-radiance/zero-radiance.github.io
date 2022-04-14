@@ -6295,7 +6295,7 @@ $$
 
 Eqn. 18.11 shows that a *magnetic* partial wave is the electric field of a *magnetic* multipole. Since the curl of this electric field is the magnetic field of a magnetic multipole, the electric field must circulate. This is nicely illustrated by Mie in his original paper \[Mie 1908\].
 
-For large particles, the partial waves can be classified according to the *localization principle*, according to which the terms of the order \\(n\\) correspond to parallel rays of light traced along the direction of incidence at the distance \\((n-1/2)/x\\) from the center of the particle \[[4](#references) (ch. 12.31)\]. It implies that the rays of the order \\(n \le (x + 1/2)\\) intersect the sphere, while the higher order waves move around it. The localization principle can be also used to explain the \\(n \sim (x + 1/2)\\) terms rule often used for numerical computations.
+For large particles, the partial waves can be classified according to the *localization principle*, according to which the terms of the order \\(n\\) represent parallel rays of incident light traced at the distance \\((n-1/2)/x\\) from the center of the particle \[[4](#references) (ch. 12.31)\]. It implies that the rays of the order \\(n \le (x + 1/2)\\) intersect the sphere, while the higher order waves pass above its surface. The localization principle can be also used to explain the \\(n \sim (x + 1/2)\\) terms rule often used for numerical computations.
 
 #### Resonance
 
@@ -6412,7 +6412,7 @@ $$ \tag{18.1??}
 \end{aligned}
 $$
 
-provided that \\(0.5 < m < 2.5\\), and \\(x\\) is sufficiently large \[[25](#references)\].
+provided that \\(0.5 < m < 2.5\\), and \\(x\\) is sufficiently large \[[24](#references)\].
 
 Next, let us turn our attention to particles on the opposite end of the size spectrum, with \\(\vert m x \vert \ll 1\\). If we assume that \\(\vert m \vert > 1\\), then it follows that \\(\vert x \vert \ll 1\\) as well. The Taylor series expansions of the Riccati-Bessel functions \[[17](#references) (ch. 7.4)\] are
 
@@ -6597,7 +6597,7 @@ $$ \tag{18.29}
 	\right|^2.
 $$
 
-Note that the cosine factor in the formula of the latter (cf. Eqn. 16.4) has been omitted; that is permissible because a spherical particle is invariant under rotation of the direction of propagation of the incident wave.
+Note that the cosine factor in the formula of the latter (Eqn. 16.4) has been omitted; that is permissible because a spherical particle is invariant under rotation of the direction of propagation of the incident wave.
 
 Since the scattering matrix of a spherical particle (given by Eqn. 18.6) is diagonal, our task is reduced to determination of the squared magnitude of the complex vector
 
@@ -6695,9 +6695,9 @@ The smallest possible water droplet is a [single molecule](https://water.lsbu.ac
 
 {{< figure src="/img/water_molecule.svg" caption="*Figure N: Linear plot of the intensity of light scattered by a water droplet of size \\(x = 0.00144\\) (solid line). The vertical and the horizontal intensities are plotted using the dashed and the dotted lines, respectfully.*" >}}
 
-The resulting distribution of scattered light is symmetric with respect to the vertical plane containing the incident electric field vector; and it is, of course, also symmetric around the direction of propagation of the incident light (from left to right). At the same time, while the horizontal component is isotropic, the value of the vertical component is 0 at the angle of 90 degrees. Comparison with the plots of the polar functions (Fig. N and M) shows that only the functions of the first order are present, indicating that the intensity of molecular scattering is dominated by the contribution of first electric partial wave, with the molecule acting as an electric dipole.
+The resulting distribution of scattered light is symmetric with respect to the vertical plane containing the incident electric field vector; and it is, of course, also symmetric around the direction of propagation of the incident light (pointing from left to right). At the same time, while the horizontal component is isotropic, the value of the vertical component is 0 at the angle of 90 degrees. Comparison with the plots of the polar functions (Fig. N and M) shows that only the functions of the first order are present, indicating that the intensity of molecular scattering is dominated by the contribution of first electric partial wave, with the molecule acting as an electric dipole.
 
-Once the size of the droplet approaches the wavelength of the incident light (\\(x \to 1\\)), the Mie effect becomes apparent: both the horizontal and the vertical components begin to compress and shift towards the forward direction.
+Once the size of the droplet approaches the wavelength of the incident light \\((x \to 1)\\), the Mie effect becomes apparent: both the horizontal and the vertical components begin to compress and shift towards the forward direction.
 
 {{< figure src="/img/water_x1.svg" caption="*Figure N: Linear plot of the intensity of light scattered by a water droplet of size \\(x = 1\\) (solid line). The vertical and the horizontal intensities are plotted using the dashed and the dotted lines, respectfully.*" >}}
 
@@ -6705,11 +6705,11 @@ As the size of the particle increases, the two components continue to converge t
 
 {{< figure src="/img/water_x2.svg" caption="*Figure N: Linear plot of the intensity of light scattered by a water droplet of size \\(x = 2\\) (solid line). The vertical and the horizontal intensities are plotted using the dashed and the dotted lines, respectfully.*" >}}
 
-For particles much larger than the wavelength (\\(x \gg 1\\)), we can observe formation of the secondary interference structure around the forward direction. The shape and the complexity of this structure changes rapidly with both \\(m\\) and \\(x\\), leading to a colorful effect called *polychroism*.
+For particles much larger than the wavelength \\((x \gg 1)\\), we can observe formation of the off-center peak structure around the forward direction. The shape and the complexity of this structure rapidly changes with both \\(m\\) and \\(x\\), leading to a colorful [dispersive](https://en.wikipedia.org/wiki/Dispersion_(optics)) effect called *polychroism*.
 
 {{< figure src="/img/water_x10.svg" caption="*Figure N: Linear plot of the intensity of light scattered by a water droplet of size \\(x = 10\\).*" >}}
 
-If the refractive index of the particle is large \\(\left( |m| \gg 1 \right)\\), for small scattering angles, the distribution of peaks can be predicted using the [Huygens–Fresnel principle](https://en.wikipedia.org/wiki/Huygens%E2%80%93Fresnel_principle), according to which, given an opaque screen with a hole, the total field in the far zone is given by the integral of spherical wavelets formed in the plane of the aperture \[[4](#references) (ch 3.1), [5](#references) (vol. I, ch. 30), [6](#references) (ch 8.2, 14.5.2.c)\]. Connection with the present case of a spherical obstacle can be made by application of [Babinet's principle](https://en.wikipedia.org/wiki/Babinet%27s_principle), which states that, except for the overall intensity, the interference patterns of an aperture and an opaque body (a complementary screen) of the same size and shape are identical.
+If the refractive index of the particle is large \\((|m| \gg 1)\\), for small scattering angles, the distribution of peaks can be predicted using the [Huygens–Fresnel principle](https://en.wikipedia.org/wiki/Huygens%E2%80%93Fresnel_principle), according to which, given an opaque screen with a hole, the total field in the far zone is given by the integral of spherical wavelets formed in the plane of the aperture \[[4](#references) (ch. 3.1), [5](#references) (vol. I, ch. 30), [6](#references) (ch. 8.2, 14.5.2.c)\]. Connection with the present case of a spherical obstacle can be made by application of [Babinet's principle](https://en.wikipedia.org/wiki/Babinet%27s_principle), which states that, except for the overall intensity, the interference patterns of an aperture and an opaque body (a complementary screen) of the same size and shape are identical.
 
 [Insert picture here]
 
@@ -6719,7 +6719,7 @@ For a typical [cloud droplet](https://ntrs.nasa.gov/citations/20160014659) of ra
 
 {{< figure src="/img/water_cloud.svg" caption="*Figure N: Logarithmic plot of the intensity of light scattered by a water droplet of size \\(x = 104.7\\).*" >}}
 
-A logarithmic polar plot can hardly convey how large the forward peak is. A rectangular plot shows that there is a 5 order-of-magnitude difference between the highest peak and the lowest trough.
+A polar plot can hardly convey how large the forward peak is. A rectangular plot shows that there is a 5 order-of-magnitude difference between the highest peak and the lowest trough.
 
 {{< figure src="/img/water_cloud_intensity.svg" caption="*Figure N: Logarithmic plot of the intensity of light scattered by a water droplet of size \\(x = 104.7\\). The horizontal axis represents the polar angle of the direction of the sensor.*" >}}
 
@@ -6729,11 +6729,11 @@ How large is the contribution of the secondary components of the scattering func
 
 It is convenient to normalize the graph by the total amount of power scattered by the droplet. This makes it easy to see that, while around 50% of the scattered power is concentrated in the forward direction, the remaining 50% is channeled elsewhere.
 
-Asymmetry of the angular distribution of the scattered light can be characterized in several different ways. For instance, we could take the intensity of light scattered in the forward direction and divide it by the intensity in the backward direction.
+Asymmetry of the angular distribution of the scattered light can be characterized in several different ways. For instance, we could take the intensity of light scattered in the forward direction and divide it by the corresponding intensity in the backward direction.
 
 {{< figure src="/img/water_intensity_ratio.svg" caption="*Figure N: Logarithmic plot of the ratio of the intensities of light scattered by a water droplet in the forward versus the backward direction. The horizontal axis represents the size parameter of the particle.*" >}}
 
-As it turns out, the result is a strongly varying function of \\(x\\). This can be explained by the presence of the secondary interference structure for \\(x \gg 1\\), which causes the scattered intensity in the backward direction to rapidly oscillate.
+As it turns out, the result is a strongly varying function of \\(x\\). This can be explained by the presence of the off-center peak structure for \\(x \gg 1\\), which causes the scattered intensity in the backward direction to rapidly oscillate.
 
 There is a more robust parameter used to characterize the asymmetry of the angular distribution of the scattered light called the *mean cosine*. In order to compute it, we must first define the corresponding [probability density function](https://en.wikipedia.org/wiki/Probability_density_function)
 
@@ -6805,7 +6805,7 @@ $$ \tag{18.42}
 	\sum_{n=1}^{\infin} (2 n + 1) \left( |a_n|^2 + |b_n|^2 \right).
 $$
 
-If we return to Eqn. 18.37 and take Eqn. 18.32 into account, we will face another integral
+As we return to Eqn. 18.37 and take Eqn. 18.32 into account, we face another integral
 
 $$ \tag{18.43}
 \begin{aligned}
@@ -6813,13 +6813,11 @@ $$ \tag{18.43}
 	&= 2 \pi \int_{0}^{\pi} \frac{I_s(\theta, \phi, \omega)}{\Phi_s(\omega)} \cos{\theta} \sin{\theta} d\theta
 	= \frac{
 		\int_{0}^{\pi} \left( \left| s_1(\theta, \omega) \right|^2 + \left| s_2(\theta, \omega) \right|^2 \right) \cos{\theta} \sin{\theta} d\theta
-	}{
-		\int_{0}^{\pi} \left( \left| s_1(\theta, \omega) \right|^2 + \left| s_2(\theta, \omega) \right|^2 \right) \sin{\theta} d\theta
-	}.
+	}{\Phi_s(\omega)}.
 \end{aligned}
 $$
 
-We may once again substitute the double series of Eqn. 18.40; however, this time, the additional cosine term in the resulting integrals requires application of a different set of orthogonality properties, namely, Eqn. 17.6? and 17.7?, yielding
+We may substitute the double series of Eqn. 18.40 once again; however, this time, the additional cosine term in the resulting integrals requires application of a different set of orthogonality properties, namely, Eqn. 17.6? and 17.7?, yielding
 
 $$ \tag{18.44}
 \begin{aligned}
@@ -6831,7 +6829,7 @@ $$ \tag{18.44}
 \end{aligned}
 $$
 
-The combination of Eqn. 18.41-18.44 produces the analytic expression of the mean cosine of a spherical particle:
+The combination of Eqn. 18.41-18.44 produces the analytic expression of the mean cosine:
 
 $$ \tag{18.45}
 \begin{aligned}
@@ -6846,11 +6844,11 @@ Eqn. 18.45 allows us to plot the mean cosine of a water droplet as a function of
 
 {{< figure src="/img/water_mean_cos.svg" caption="*Figure N: Linear plot of the mean cosine of a water droplet. The horizontal axis represents the size parameter of the particle.*" >}}
 
-Up to \\(x \approx 5\\), the value of the mean cosine increases in line with the prediction based on the Mie effect. For larger particles, the size parameter \\(x \gg 1\\), and, as we have already seen, this condition leads to formation of a secondary interference structure around the forward direction. Initially, its magnitude is significant in comparison with the size of the forward peak, which explains the dip in the plot at \\(x \approx 10\\). For particles larger still, the intensity of light scattered in the forward direction grows exponentially, while most of the secondary components grow at a slower pace, which leads to the (asymptotically) rising value of the mean cosine.
+Up to \\(x \approx 5\\), the value of the mean cosine increases in line with the prediction based on the Mie effect. For larger particles, the size parameter \\(x \gg 1\\), and, as we have already seen, this condition leads to formation of the off-center peak structure around the forward direction. Initially, its magnitude is fairly significant in comparison with the size of the forward peak, which explains the dip in the plot at \\(x \approx 10\\). For particles larger still, the intensity of light scattered in the forward direction grows exponentially (see Fig. N), while most of the secondary components grow at a slower pace, which leads to the (asymptotically) rising value of the mean cosine.
 
 {{< figure src="/img/water_intensity.svg" caption="*Figure N: Logarithmic plot of the intensity of light scattered by a water droplet in the forward direction. The horizontal axis represents the size parameter of the particle.*" >}}
 
-The prominent wave pattern featured in the plot of Fig. N can be explained by the fact that the mean cosine \\(g\\) is inversely proportional to the scattered power \\(\Phi_s\\). The latter is best illustrated by plotting the dimensional scattering efficiency factor
+The prominent wave pattern featured in the plot of Fig. N can be explained by the fact that the mean cosine is inversely proportional to the scattered power. The latter is most intuitively visualized by plotting the dimensionless scattering efficiency factor
 
 $$ \tag{18.46}
 \begin{aligned}
@@ -6865,9 +6863,9 @@ defined in Eqn. 16.38.2.
 
 {{< figure src="/img/water_sca_eff.svg" caption="*Figure N: Linear plot of the scattering efficiency factor of a water droplet. The horizontal axis represents the size parameter of the particle.*" >}}
 
-We can observe that the scattering efficiency is an oscillating function of the particle size. In addition to the large undulations, the curve also exhibits a fine *ripple* structure, which is often attributed to the existence of the [surface waves](https://en.wikipedia.org/wiki/Surface_wave) \[[4](#references) (ch. 17.3), [23](#references)\]. Ripple is not present in the plots of absorbing spheres, since the amplitude of a surface wave is easily attenuated; moreover, ripple is usually almost entirely eliminated if one averages the electric field scattered by spheres of varying size.
+We can observe that the scattering efficiency is an oscillating function of the particle size. In addition to the large quasi-periodic *interference structure* that is generated by *refracted* light rays \\((n \ll x)\\), the curve also exhibits a fine *ripple structure* that is typically attributed to *resonating* [surface waves](https://en.wikipedia.org/wiki/Surface_wave) \\((n > x)\\) traveling along the sphere's boundary \[[4](#references) (ch. 17.3), [23](#references), [24](#references)\]. Ripple is not present in plots of absorptive particles, since the amplitude of a surface wave is easily attenuated, primarily because the length of its path (its *orbit*) can easily exceed the diameter of the sphere. The partial waves presently not accounted for \\((n \approx x)\\) are generated by rays hitting the edges of (or *tunneling* through) the sphere; they constitute diffracted light \[[16](#references) (ch. 8)\].
 
-If the particle is non-absorbing, then, from Eqn. 16.38.1, it follows that the scattering and the extinction efficiencies are identical:
+If the particle is non-absorptive, then, from Eqn. 16.38.1, it follows that the scattering and the extinction efficiencies are identical:
 
 $$ \tag{18.47}
 	Q_a = 0
@@ -6881,9 +6879,11 @@ The general expression of the latter is given by Eqn. 16.38.3 and, for the parti
 
 $$ \tag{18.48}
 \begin{aligned}
-	& Q_e(\omega)
+	Q_e(\omega)
 	= \frac{\Phi_a(\omega) + \Phi_s(\omega)}{\Phi_i(\omega)}
-	= -\frac{2}{x^2} \sum_{n=1}^{\infin} (2 n + 1) \mathcal{Re} \lbrace a_n + b_n \rbrace.
+	&= -\frac{2}{x^2} \sum_{n=1}^{\infin} (2 n + 1) \mathcal{Re} \lbrace a_n + b_n \rbrace
+	\cr
+	&= \frac{2}{x^2} \sum_{n=1}^{\infin} (2 n + 1) \mathcal{Im} \left\lbrace \frac{a_n}{i} + \frac{b_n}{i} \right\rbrace.
 \end{aligned}
 $$
 
@@ -6899,7 +6899,7 @@ It is reasonable to believe that the relative contribution of edge effects towar
 
 Now, suppose that \\(x\\) is very large, so that \\(\Phi_i\\) provides a reasonably accurate estimate. Since the paradox manifests itself regardless of the geometry and the optical properties of the particle, let us imagine the particle to be a flat mirror. It perfectly reflects the incident light, contributing a factor of \\(1\\) to \\(Q_s\\). As the mirror is large, it also casts a shadow, which indicates that the value of the electric field behind the mirror is \\(0\\). If we recall that the incident field is not modified by the addition of the scattering object in any way, this leads to the conclusion that the scattered field behind the mirror must have the same magnitude and the opposite phase in order to cancel the incident field by destructive interference. Thus, \\(Q_s = 2\\), which explains the paradox for a flat mirror \[[21](#references), [22](#references)\].
 
-Since, in general, a particle with \\(|m x| \to \infin\\) does not necessarily cast a well-defined shadow, we require an alternative explanation. Suppose that \\(|m| \to \infin\\), and \\(x\\) is not too small. This implies that the particle is either a *perfect dielectric reflector* \\((\epsilon, \eta \to \infin)\\) or a *perfect electric conductor* \\((\sigma, \kappa \to \infin)\\). According to Eqn. 17.157, a particle of the first kind is able to sustain a very strong internal field, while a particle of the second kind makes it vanish. In both cases, the particle appears mirror-like; in addition, the *extinction theorem* (see Sec. 10) requires the scattered field to continually extinguish the incident field inside the particle. Accounting for these two facts once again leads to \\(Q_s = 2\\) \[[20](#references), [21](#references)\].
+Since, in general, a particle with \\(|m x| \to \infin\\) does not necessarily cast a well-defined shadow, we require an alternative explanation. Suppose that \\(|m| \to \infin\\), and \\(x\\) is not too small. This implies that the particle is either a *perfect dielectric reflector* \\((\epsilon, \eta \to \infin)\\) or a *perfect electric conductor* \\((\sigma, \kappa \to \infin)\\). According to Eqn. 17.157, a particle of the first kind is able to sustain a fairly strong internal field, while a particle of the second kind makes it vanish. In both cases, the particle appears mirror-like; in addition, the *extinction theorem* (see Sec. 10) requires the scattered field to continually extinguish the incident field inside the particle. Accounting for these two facts once again leads to \\(Q_s = 2\\) \[[20](#references), [21](#references)\].
 
 Note that, unlike the scattered field, the total field has no apparent issues with energy conservation, since its power (change in the amount of energy over time) is zero in inaccessible areas. This underscores the importance of understanding the fact that only the total field is an actual physical entity, while the incident and the scattered fields are mathematical constructs.
 
@@ -6955,7 +6955,6 @@ Bohren & Huffman, Larry Travis, Pharr & Jakob, Jeppe Frisvad, Robin Green.
 20. Berg, M. J., Sorensen, C. M., & Chakrabarti, A. [A New Explanation of the Extinction Paradox](https://doi.org/10.1016/j.jqsrt.2010.08.024) (2011).
 21. Markel, V. A. [Extinction, Scattering and Absorption of Electromagnetic Waves in the Coupled-Dipole Approximation](https://doi.org/10.1016/j.jqsrt.2019.106611) (2019).
 22. Brillouin, L. [The Scattering Cross Section of Spheres for Electromagnetic Waves](https://doi.org/10.1063/1.1698280) (1949).
-23. Mitchell, D. L. [Parameterization of the Mie Extinction and Absorption Coefficients for Water Clouds](https://doi.org/10.1175/1520-0469(2000)057%3C1311:POTMEA%3E2.0.CO;2) (2000).
 24. Chýlek, P. [Partial-Wave Resonances and the Ripple Structure in the Mie Normalized Extinction Cross Section ](https://doi.org/10.1364/JOSA.66.000285) (1976).
 25. Chýlek, P., & Zhan, J. [Interference Structure of the Mie Extinction Cross Section](https://doi.org/10.1364/JOSAA.6.001846) (1989).
 99. Hansen, J. E., & Travis, L. D. [Light Scattering in Planetary Atmospheres](https://doi.org/10.1007/BF00168069) (1974).
