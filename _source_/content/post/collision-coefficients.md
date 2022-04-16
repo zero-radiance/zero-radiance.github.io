@@ -3881,7 +3881,7 @@ $$ \tag{16.29}
 \end{aligned}
 $$
 
-The two integrals found in Eqn. 16.29 have the same form. That allows us to apply Jones' lemma \[[6](#references) (ap. XII)\], which says that, for \\(k r \to \infin\\), the [asymptotic expansion](https://en.wikipedia.org/wiki/Asymptotic_expansion) of the surface integral over a sphere of radius \\(r\\) is
+The two integrals found in Eqn. 16.29 have the same form. That allows us to apply Jones' lemma \[[6](#references) (ap. XII), [8](#references) (ap. D)\\], which says that, for \\(k r \to \infin\\), the [asymptotic expansion](https://en.wikipedia.org/wiki/Asymptotic_expansion) of the surface integral over a sphere of radius \\(r\\) is
 
 $$ \tag{16.30}
 	\frac{1}{r} \oint\_{\mathbb{S}^2} f(\bm{n}) e^{-i k r (\bm{u} \cdot \bm{n})} dA
