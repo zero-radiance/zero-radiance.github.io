@@ -52,7 +52,7 @@ $$ \tag{6} dI\_n = dI\_i \cos{\theta} = L\_i \cos{\theta} d\sigma\_n, $$
 
 {{< figure src="/img/radiometry.png" caption="*Radiance vs irradiance.*" >}}
 
-Independence from the surface parametrization coupled with invariance along the ray makes radiance a very useful quantity for light transport applications.
+Independence from the surface parametrization coupled with [invariance along the ray](https://en.wikipedia.org/wiki/Etendue#Conservation_of_basic_radiance) makes (basic) radiance a very useful quantity for light transport applications.
 
 In practice, most authors write Equation 4 this way:
 
