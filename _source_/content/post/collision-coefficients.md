@@ -1610,14 +1610,14 @@ $$ \tag{9.3}
 	= \int\_{-\infin}^{\infin} -\xi(\bm{r}, \omega) e^{-i \omega t} d\omega.
 $$
 
-Assume that the Fourier transform is uniquely defined. This permits us to remove the integral sign:
+Since the Fourier transform is uniquely defined, we may remove the integral sign:
 
 $$ \tag{9.4}
-	\big( \nabla^2 + \omega^2 / c^2 \big) \psi(\bm{r}, \omega) e^{-i \omega t}
-	= -\xi(\bm{r}, \omega) e^{-i \omega t}.
+	\big( \nabla^2 + \omega^2 / c^2 \big) \psi(\bm{r}, \omega)
+	= -\xi(\bm{r}, \omega).
 $$
 
-Thus we are lead to consider an *inhomogeneous* [Helmholtz equation](https://en.wikipedia.org/wiki/Helmholtz_equation#Inhomogeneous_Helmholtz_equation)
+Thus we are lead to consider the *inhomogeneous* [Helmholtz equation](https://en.wikipedia.org/wiki/Helmholtz_equation#Inhomogeneous_Helmholtz_equation)
 
 $$ \tag{9.5}
 	\big( \nabla^2 + k_0^2 \big) \psi(\bm{r}) = -\xi(\bm{r}),
@@ -1625,7 +1625,7 @@ $$
 
 where \\(k_0 = \omega / c\\) is the *free-space* wavenumber.
 
-The Helmholtz operator \\(\big( \nabla^2 + k_0^2 \big)\\) is a linear operator \\(\mathcal{H}\\) in 3 dimensions. Therefore, Eqn. 9.5 represents a linear transformation
+The Helmholtz operator \\(\mathcal{H} = \nabla^2 + k_0^2\\) is a linear operator in 3 dimensions. Therefore, Eqn. 9.5 represents a linear transformation
 
 $$ \tag{9.6}
 	\mathcal{H} \big\lbrace \psi(\bm{r}) \big\rbrace = -\xi(\bm{r}).
@@ -1648,7 +1648,7 @@ $$ \tag{9.8}
 	= \int\_{\mathbb{R^3}} -\delta(\bm{r} - \bm{r'}) \xi(\bm{r'}) dV',
 $$
 
-does not appear to be simpler, as it turns out, we can easily solve the Helmholtz equation for a point source
+does not appear to be simpler, as it turns out, we can easily solve the Helmholtz equation for a *point source*
 
 $$ \tag{9.9}
 	  \big( \nabla^2 + k_0^2 \big) g_0(\bm{r} - \bm{r'})
@@ -1656,7 +1656,7 @@ $$ \tag{9.9}
 	= -\delta(\bm{r} - \bm{r'}).
 $$
 
-Its solution is the *scalar* [Green function](https://en.wikipedia.org/wiki/Green%27s_function) \\(g\\). It represents an [impulse response](https://en.wikipedia.org/wiki/Impulse_response) of the linear operator \\(\mathcal{H}\\).
+Its solution is the *scalar* [Green function](https://en.wikipedia.org/wiki/Green%27s_function) \\(g\\). It represents the [impulse response](https://en.wikipedia.org/wiki/Impulse_response) of the linear operator \\(\mathcal{H}\\).
 
 Eqn. 9.9 is an inhomogeneous linear differential equation. Consequently, its solution depends on the linear operator in question, its domain of validity, as well as the associated (initial or boundary) conditions. According to Eqn. 9.7, our domain is the whole real space, and the only applicable restriction is the Sommerfeld radiation condition. Thus, it can be shown that the *free-space* scalar Green function \\(g_0\\) takes the form[^9] of an diverging *scalar* [spherical wave](https://en.wikipedia.org/wiki/Wave_equation#Spherical_waves) \[[7](#references) (ch. 2.12), [8](#references) (ap. B), [14](#references)\]:
 
@@ -1743,6 +1743,15 @@ $$ \tag{9.18}
 	& \nabla \times \nabla \times \bm{E}(\bm{r}, \omega) - k_0^2(\omega) \bm{E}(\bm{r}, \omega)
 	= i \omega \frac{\bm{J}(\bm{r}, \omega)}{\mu\_0^{-1}}, \cr
 	& \bm{B}(\bm{r}, \omega) = \frac{1}{i \omega} \nabla \times \bm{E}(\bm{r}, \omega).
+\end{aligned}
+$$
+
+After taking the curl of curl identity (Eqn. 6.6) and the Maxwell equations (Eqn. 3.10.4) into account, it becomes clear that Eqn. 9.18.1 is a vector analog of the inhomogeneous Helmholtz equation (Eqn. 9.5):
+
+$$ \tag{9.1?}
+\begin{aligned}
+	& \left( \nabla^2 + k_0^2(\omega) \right) \bm{E}(\bm{r}, \omega)
+	= -i \omega \frac{\bm{J}(\bm{r}, \omega)}{\mu\_0^{-1}} + \frac{\nabla \rho(\bm{r}, \omega)}{\epsilon_0}.
 \end{aligned}
 $$
 
@@ -6113,7 +6122,7 @@ $$ \tag{18.3}
 \end{aligned}
 $$
 
-Furthermore, these vectors are mutually orthogonal to each other. Hence, in the radiation zone, partial waves of the electric type are sometimes called *transverse magnetic modes*, and those of the magnetic type are referred to as *transverse electric modes*.
+Furthermore, these vectors are mutually orthogonal to each other. Hence, partial waves of the electric type are sometimes called *transverse magnetic modes* (their magnetic field is always transverse, while the electric isn't), and those of the magnetic type are referred to as *transverse electric modes* (their electric field is always transverse, while the magnetic isn't).
 
 Substitution into Eqn. 17.158 produces a convenient asymptotic expansion of the scattered field:
 
