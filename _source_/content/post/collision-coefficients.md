@@ -1712,7 +1712,7 @@ $$ \tag{9.15}
 \end{aligned}
 $$
 
-Since Eqn. 9.14 integrates over all currents and charges, all sources of electromagnetic fields are already accounted for, and the homogeneous part of the solution is 0. However, it is often convenient to specify the primary sources separately. In order to do that, we must recall the current and charge decomposition given by Eqn. 1.9 and 5.4. After substitution, the solution may be alternatively written as
+Since Eqn. 9.14 integrates over all currents and charges, all sources of electromagnetic fields are already accounted for, and the homogeneous part of the solution is zero. However, it is often convenient to specify the primary sources separately. In order to do that, we must recall the current and charge decomposition given by Eqn. 1.9 and 5.4. After substitution, the solution may be alternatively written as
 
 $$ \tag{9.16}
 \begin{aligned}
@@ -3913,7 +3913,7 @@ $$ \tag{16.32}
 	= i \mathcal{Re} \Big\lbrace \bm{E_0} \cdot \bm{E_1^{\*}} e^{-2 i k r} \Big\rbrace
 $$
 
-is a purely imaginary number, so its real part is 0. Similarly,
+is a purely imaginary number, so its real part is zero. Similarly,
 
 $$ \tag{16.33}
 	\frac{i}{2} \big( \bm{E_0^{\*}} \cdot \bm{E_1} - \bm{E_0} \cdot \bm{E_1^{\*}} \big)
@@ -4975,7 +4975,7 @@ $$ \tag{17.75}
 \end{aligned}
 $$
 
-Analysis shows that the initial expression can be separated into a product of several terms. We may recognize from Eqn. 4.6 that the integral over \\(\phi\\) is nothing other than the rescaled Kronecker delta function \\(\delta_{m,s}\\). Thus, the value of the double integral is 0 unless \\(m = s\\). Similarly, according to Eqn. 17.56, the integral over \\(\theta\\) is proportional to another Kronecker delta function \\(\delta_{t,n}\\). A simple calculation shows that the various constants cancel out, and we are left with
+Analysis shows that the initial expression can be separated into a product of several terms. We may recognize from Eqn. 4.6 that the integral over \\(\phi\\) is nothing other than the rescaled Kronecker delta function \\(\delta_{m,s}\\). Thus, the value of the double integral is zero unless \\(m = s\\). Similarly, according to Eqn. 17.56, the integral over \\(\theta\\) is proportional to another Kronecker delta function \\(\delta_{t,n}\\). A simple calculation shows that the various constants cancel out, and we are left with
 
 $$ \tag{17.76}
 \begin{aligned}
@@ -6695,7 +6695,7 @@ The smallest possible water droplet is a [single molecule](https://water.lsbu.ac
 
 {{< figure src="/img/water_molecule.svg" caption="*Figure N: Linear plot of the intensity of light scattered by a water droplet of size \\(x = 0.00144\\) (solid line). The vertical and the horizontal intensities are plotted using the dashed and the dotted lines, respectfully.*" >}}
 
-The resulting distribution of scattered light is symmetric with respect to the vertical plane containing the incident electric field vector; and it is, of course, also symmetric around the direction of propagation of the incident light (pointing from left to right). At the same time, while the horizontal component is isotropic, the value of the vertical component is 0 at the angle of 90 degrees. Comparison with the plots of the polar functions (Fig. N and M) shows that only the functions of the first order are present, indicating that the intensity of molecular scattering is dominated by the contribution of first electric partial wave, with the molecule acting as an electric dipole.
+The resulting distribution of scattered light is symmetric with respect to the vertical plane containing the incident electric field vector; and it is, of course, also symmetric around the direction of propagation of the incident light (pointing from left to right). At the same time, while the horizontal component is isotropic, the value of the vertical component is zero at the angle of 90 degrees. Comparison with the plots of the polar functions (Fig. N and M) shows that only the functions of the first order are present, indicating that the intensity of molecular scattering is dominated by the contribution of first electric partial wave, with the molecule acting as an electric dipole.
 
 Once the size of the droplet approaches the wavelength of the incident light \\((x \to 1)\\), the Mie effect becomes apparent: both the horizontal and the vertical components begin to compress and shift towards the forward direction.
 
