@@ -19,8 +19,6 @@ While we may spend more time and energy fiddling with various combinations of pa
 
 <!--more-->
 
-<!--
-
 The method can be briefly outlined as follows:
 
 1. We describe the shape, the size, and the composition of an individual particle.
@@ -1877,8 +1875,6 @@ $$
 
 Therefore, our results are consistent with Eqn. 3.12.
 
--->
-
 ### Electric and Magnetic Polarization
 
 The physical meaning of the electromagnetic potential is more apparent in the time domain. With this goal in mind, perform the inverse Fourier transform of Eqn. 9.14.2:
@@ -2182,8 +2178,6 @@ In some sense, dipoles can be considered elementary sources of oscillating field
 [Insert pictures of field lines of electric and magnetic dipoles]
 
 Finally, we would like to emphasize certain properties of the solution of the Maxwell equations in terms of potentials. Perhaps the most obvious one is that the scattered field is expressed as a volume integral. While the geometry of the volume containing the charges plays an important role, it is now apparent that the interior of the volume is the actual source of what we consider to be surface reflection. Furthermore, Eqn. 10.3 says that *microscopic* electromagnetic fields always propagate at the speed of light. The reason for different (ordinarily, lower) phase velocity of *macroscopic* fields in matter is the remarkable fact that the dipole field interferes with the incident field in such a way that the latter is completely extinguished and replaced by the internal field that propagates in accordance with the index of refraction of the medium \[[5](#references) (vol. I, ch. 31)\]. Formally, this mechanism is described by the [extinction theorem](https://en.wikipedia.org/wiki/Ewald%E2%80%93Oseen_extinction_theorem) \[[6](#references) (ch. 2.4)\].
-
-<!--
 
 ## II. Electromagnetic Scattering
 
@@ -2701,8 +2695,6 @@ $$ \tag{12.20}
 	k^{-2} \mathcal{G_{mf}}
 	\varpropto (k R)^{-1}.
 $$
-
--->
 
 ### Spherical Waves
 
