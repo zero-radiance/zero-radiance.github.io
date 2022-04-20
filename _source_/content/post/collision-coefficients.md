@@ -210,7 +210,7 @@ In addition to the boundary conditions, the law of conservation of energy impose
 
 - the *edge condition* says that the amount of electromagnetic energy stored near an edge must be finite even if the magnitude of the field (the energy density) at the edge becomes infinite;
 
-- the [Sommerfeld radiation condition](https://en.wikipedia.org/wiki/Sommerfeld_radiation_condition) says that both \\(r^2 \bm{E}(r \bm{n}, t)\\) and \\(r^2 \bm{B}(r \bm{n}, t)\\) must be finite as \\(r \to \infin.\\) It prohibits the existence of sinks collecting (an infinite amount of) energy arriving from infinity -- these "infinite" sinks must be "finite" sources instead.
+- the [radiation condition](https://en.wikipedia.org/wiki/Sommerfeld_radiation_condition) prohibits the existence of sinks collecting (an infinite amount of) energy arriving from infinity -- these "infinite" sinks must be "finite" sources instead.
 
 Finally, it is worth pointing out that the Maxwell equations (both 1.1 and 1.14) are not independent \[[17](#references) (ch. 1.3)\]. For instance, take the divergence of Eqn. 1.14.1 and 1.14.3. Since the [divergence of curl](https://en.wikipedia.org/wiki/Vector_calculus_identities#Divergence_of_curl_is_zero) is zero, the resulting expression may be simplified to
 
