@@ -1424,7 +1424,7 @@ $$ \tag{7.40}
 	= 4 \pi \frac{\kappa(\omega)}{\lambda_0},
 $$
 
-where \\(\lambda_0 = 2 \pi c / \omega\\) is the *free-space* wavelength.
+where \\(\lambda_0 = 2 \pi c / \omega\\) is the vacuum wavelength.
 
 Furthermore, the original definition of the complex wavenumber given by Eqn. 7.4 suggests that
 
@@ -1626,7 +1626,7 @@ $$ \tag{9.5}
 	\big( \nabla^2 + k_0^2 \big) \psi(\bm{r}) = -\xi(\bm{r}),
 $$
 
-where \\(k_0 = \omega / c\\) is the *free-space* wavenumber.
+where \\(k_0 = \omega / c\\) is the vacuum wavenumber.
 
 The Helmholtz operator \\(\mathcal{H} = \nabla^2 + k_0^2\\) is a linear operator in 3 dimensions. Therefore, Eqn. 9.5 represents a linear transformation
 
@@ -1654,8 +1654,7 @@ $$
 does not appear to be simpler, as it turns out, we can easily solve the Helmholtz equation for a *point source*
 
 $$ \tag{9.9}
-	  \big( \nabla^2 + k_0^2 \big) g_0(\bm{r} - \bm{r'})
-	= \mathcal{H} \big\lbrace g_0(\bm{r} - \bm{r'}) \big\rbrace
+	  \big( \nabla^2 + k^2 \big) g(\bm{r} - \bm{r'}, k)
 	= -\delta(\bm{r} - \bm{r'}).
 $$
 
@@ -1749,15 +1748,6 @@ $$ \tag{9.18}
 \end{aligned}
 $$
 
-After taking the curl of curl identity (Eqn. 6.6) and the Maxwell equations (Eqn. 3.10.4) into account, it becomes clear that Eqn. 9.18.1 is a vector analog of the inhomogeneous Helmholtz equation (Eqn. 9.5):
-
-$$ \tag{9.1?}
-\begin{aligned}
-	& \left( \nabla^2 + k_0^2(\omega) \right) \bm{E}(\bm{r}, \omega)
-	= -i \omega \frac{\bm{J}(\bm{r}, \omega)}{\mu\_0^{-1}} + \frac{\nabla \rho(\bm{r}, \omega)}{\epsilon_0}.
-\end{aligned}
-$$
-
 The corresponding solution in terms of potentials is given by Eqn. 8.4. In the frequency domain, it takes the following form:
 
 $$ \tag{9.19}
@@ -1791,9 +1781,9 @@ $$ \tag{9.22}
 	= i \omega \Big( \mathcal{I} + \frac{c^2}{\omega^2} \nabla \nabla \cdot \Big) \bm{A}(\bm{r}, \omega),
 $$
 
-where \\(\mathcal{I}\\) is the *identity operator*.
+where \\(\mathcal{I}\\) is the *identity operator* that performs multiplication by 1.
 
-In the component representation of Eqn. 9.22, the gradient operator is a column vector, while the divergence operator is as a row vector. When combined in this particular order, they form a [dyadic (or tensor) product](https://en.wikipedia.org/wiki/Tensor_product) that can be represented by a 3x3 matrix:
+In the component representation of Eqn. 9.22, the gradient operator is a column vector, while the divergence operator is as a row vector. When combined in this particular order, they form a *dyadic product* (or [tensor product](https://en.wikipedia.org/wiki/Tensor_product)) that can be represented by a 3x3 matrix:
 
 $$ \tag{9.23}
 	\bm{E}(\bm{r}, \omega) =
@@ -1812,39 +1802,48 @@ Unfortunately, a complication arises when we try to move the new operator under 
 
 $$ \tag{9.25}
 	\bm{E}(\bm{r}, \omega)
-	= i \omega \bigg( \lim_{\delta \to 0} \int\_{V - V_{\delta}} \mathcal{G_{e}} \big( \bm{r}, \bm{r'}, k_0(\omega) \big) \cdot \frac{\bm{J}(\bm{r'}, \omega)}{\mu_0^{-1}} dV'
+	= i \omega \bigg( \lim_{\delta \to 0} \int\_{V - V_{\delta}} \mathcal{G_0}( \bm{r}, \bm{r'}) \cdot \frac{\bm{J}(\bm{r'}, \omega)}{\mu_0^{-1}} dV'
 	- \frac{\mathcal{L}(\bm{r})}{k_0^2(\omega)} \cdot \frac{\bm{J}(\bm{r}, \omega)}{\mu_0^{-1}} \bigg),
 $$
 
-where \\(\mathcal{L}\\) is the dimensionless *depolarization dyadic*[^12], the form of which depends on the shape (but not the size) of the cavity \[[7](#references) (ch. 3.9)\], and
+where
+
+$$ \tag{9.26}
+	\mathcal{G_0}(\bm{r}, \bm{r'}) =
+	\mathcal{G}(\bm{r}, \bm{r'}, k_0)
+	= \Big( \mathcal{I} + \frac{1}{k_0^2} \nabla \otimes \nabla \Big) g(\bm{r} - \bm{r'}, k_0)
+$$
+
+is the *free-space dyadic* Green function \[[7](#references) (ch. 7.9)\], and \\(\mathcal{L}\\) is the dimensionless *depolarization dyadic*[^12], the expression of which depends on the shape (but not the size) of the cavity \[[7](#references) (ch. 3.9)\].
 
 [^12]: A [dyadic](https://en.wikipedia.org/wiki/Dyadics) is a second rank tensor with a notation borrowed from linear algebra. A second rank [tensor](https://en.wikipedia.org/wiki/Tensor) is a scalar-valued [multilinear](multilinear) function with two slots that accept vector arguments; if only one argument is provided, it becomes a vector-valued linear function. For example, the dyadic expression \\(\bm{E} = \mathcal{L} \cdot \bm{J}\\) could be written in the standard tensor notation as \\(\bm{E} = \mathcal{L}(\\_,\bm{J})\\). We retain the dyadic notation due to its prevalence in the light scattering literarture. A brief introduction to the dyadic analysis is available in \[[7](#references) (ap. 4), [8](#references) (ap. A)\].
 
-$$ \tag{9.26}
-	\mathcal{G_{e}}(\bm{r}, \bm{r'}, k)
-	= \Big( \mathcal{I} + \frac{1}{k^2} \nabla \otimes \nabla \Big) g(\bm{r} - \bm{r'}, k)
-	= \Big( \mathcal{I} + \frac{1}{k^2} \nabla \otimes \nabla \Big) \frac{e^{i k |\bm{r} - \bm{r'}|}}{4 \pi |\bm{r} - \bm{r'}|}
-$$
-
-is the *electric dyadic* Green function \[[7](#references) (ch. 7.9)\]. As a special case, \\(\mathcal{G\_0}(\bm{r}, \bm{r'}) = \mathcal{G\_{e}}(\bm{r}, \bm{r'}, k\_0)\\) is called the *free-space dyadic* Green function.
-
-Eqn. 9.25 can be cast in a more compact form by using the [principal value](https://en.wikipedia.org/wiki/Cauchy_principal_value) of the electric dyadic. If we define the *total dyadic* Green function as
+Eqn. 9.25 can be cast in a more compact form by using the [principal value](https://en.wikipedia.org/wiki/Cauchy_principal_value) of the free-space dyadic. If we define the *electric dyadic* Green function as
 
 $$ \tag{9.27}
-	\mathcal{G}(\bm{r}, \bm{r'}, k)
-	= \mathcal{P.V.} \big\lbrace \mathcal{G_{e}}(\bm{r}, \bm{r'}, k) \big\rbrace - \delta(\bm{r} - \bm{r'}) \frac{\mathcal{L}(\bm{r})}{k^2},
+	\mathcal{G_e}(\bm{r}, \bm{r'}, k)
+	= \mathcal{P.V.} \lbrace \mathcal{G}(\bm{r}, \bm{r'}, k) \rbrace - \delta(\bm{r} - \bm{r'}) \frac{\mathcal{L}(\bm{r})}{k^2},
 $$
 
 the expression of the electric field is reduced to
 
 $$ \tag{9.28}
 	\bm{E}(\bm{r}, \omega)
-	= i \omega \int\_{V} \mathcal{G} \big( \bm{r}, \bm{r'}, k_0(\omega) \big) \cdot \frac{\bm{J}(\bm{r'}, \omega)}{\mu_0^{-1}} dV'.
+	= i \omega \int\_{V} \mathcal{G_e} \big( \bm{r}, \bm{r'}, k_0(\omega) \big) \cdot \frac{\bm{J}(\bm{r'}, \omega)}{\mu_0^{-1}} dV'.
 $$
+
+Comparison with Eqn. 9.18.1 shows that the electric dyadic is a solution of another differential equation for a point source:
+
+$$ \tag{9.29}
+	\left( \nabla \times \nabla \times \mathcal{I} - k^2 \right) \mathcal{G_e}(\bm{r}, \bm{r'}, k)
+	= \mathcal{I} \delta(\bm{r} - \bm{r'}).
+$$
+
+The free-space dyadic also satisfies Eqn. 9.29, provided that \\(\bm{r}\\) is located outside the region containing sources.
 
 To find the integral form of the magnetic field, we must expand Eqn. 9.21.2 using 9.14.1:
 
-$$ \tag{9.29}
+$$ \tag{9.30}
 	\bm{B}(\bm{r}, \omega)
 	= \nabla \times \int\_{V}
 	g \big( \bm{r} - \bm{r'}, k_0(\omega) \big) \frac{\bm{J}(\bm{r'}, \omega)}{\mu_0^{-1}} dV'.
@@ -1852,30 +1851,29 @@ $$
 
 Using the [curl identity](https://en.wikipedia.org/wiki/Vector_calculus_identities#Curl_2)
 
-$$ \tag{9.30}
+$$ \tag{9.31}
 	\nabla \times (g \bm{J}) = g (\nabla \times \bm{J}) + \nabla g \times \bm{J},
 $$
 
-and noting that \\(\bm{J}\\) does not depend on \\(\bm{r}\\), we obtain a convergent integral
+and noting that \\(\bm{J}\\) does not depend on \\(\bm{r}\\), we obtain a convergent integral (in the principal value sense)
 
-$$ \tag{9.31}
+$$ \tag{9.32}
 	\bm{B}(\bm{r}, \omega)
-	= \lim_{\delta \to 0} \int\_{V - V_{\delta}} \mathcal{G_{m}} \big( \bm{r}, \bm{r'}, k_0(\omega) \big)  \cdot\frac{\bm{J}(\bm{r'}, \omega)}{\mu_0^{-1}} dV',
+	= \int_{V} \mathcal{G_m} \big( \bm{r}, \bm{r'}, k_0(\omega) \big)  \cdot\frac{\bm{J}(\bm{r'}, \omega)}{\mu_0^{-1}} dV',
 $$
 
 that features the *magnetic dyadic* Green function \[[7](#references) (ch. 7.9)\]
 
-$$ \tag{9.32}
-	\mathcal{G_{m}}(\bm{r}, \bm{r'}, k)
-	= \nabla g(\bm{r} - \bm{r'}, k) \times \mathcal{I}
-	= \nabla \frac{e^{i k |\bm{r} - \bm{r'}|}}{4 \pi |\bm{r} - \bm{r'}|} \times \mathcal{I}
+$$ \tag{9.33}
+	\mathcal{G_m}(\bm{r}, \bm{r'}, k)
+	= \mathcal{P.V.} \lbrace \nabla g(\bm{r} - \bm{r'}, k) \times \mathcal{I} \rbrace
 $$
 
 that can be expressed using the [matrix form of the cross product](https://en.wikipedia.org/wiki/Cross_product#Conversion_to_matrix_multiplication). You may recognize that
 
-$$ \tag{9.33}
-	\mathcal{G_{m}}(\bm{r}, \bm{r'}, k)
-	= \frac{1}{i \omega} \nabla \times \mathcal{G_{e}}(\bm{r}, \bm{r'}, k).
+$$ \tag{9.34}
+	\mathcal{G_m}(\bm{r}, \bm{r'}, k)
+	= \frac{1}{i \omega} \nabla \times \mathcal{G_e}(\bm{r}, \bm{r'}, k).
 $$
 
 Therefore, our results are consistent with Eqn. 3.12.
@@ -2272,7 +2270,7 @@ $$ \tag{11.6}
 \end{aligned}
 $$
 
-We are now in a good position to state a single equation that unifies the two region. By introducing the term
+We are now in a good position to state a single equation that is valid across the entire space. By introducing the term
 
 $$ \tag{11.7}
 \bm{J'}(\bm{r}, \omega) =
@@ -2298,24 +2296,20 @@ $$ \tag{11.9}
 	= \bm{J'}(\bm{r}, \omega).
 $$
 
-We have already encountered a mathematically identical problem shown in Eqn. 9.18.1. After matching the constants \\( \big( \bm{J'} = i \omega \bm{J} / \mu_0^{-1} \big) \\), the solution is readily given by Eqn. 9.25:
+We have already encountered a mathematically identical problem shown in Eqn. 9.18.1. After matching the constants \\( \big( \bm{J'} = i \omega \bm{J} / \mu_0^{-1} \big) \\), the solution is readily given by Eqn. 9.28:
 
 $$ \tag{11.10}
 	\bm{E_s}(\bm{r}, \omega)
-	= \int\_{V} \mathcal{G_{e}} \big( \bm{r}, \bm{r'}, k_1(\omega) \big) \cdot \bm{J'}(\bm{r'}, \omega) dV'
-	\quad
-	\text{if } \bm{r} \notin V,
+	= \int\_{V} \mathcal{G_e} \big( \bm{r}, \bm{r'}, k_1(\omega) \big) \cdot \bm{J'}(\bm{r'}, \omega) dV'.
 $$
 
-where have neglected the singularity term by assuming that \\(\bm{r}\\) is located in the homogeneous region.
+where have neglected the singularity term by assuming that \\(\bm{r}\\) is located in the source-free region 1.
 
-Similarly, the magnetic field is given by Eqn. 9.31:
+Similarly, the magnetic field is given by Eqn. 9.32:
 
 $$ \tag{11.11}
 	\bm{B_s}(\bm{r}, \omega)
-	= \frac{1}{i \omega} \int\_{V} \mathcal{G_{m}} \big( \bm{r}, \bm{r'}, k_1(\omega) \big) \cdot \bm{J'}(\bm{r'}, \omega) dV'
-	\quad
-	\text{if } \bm{r} \notin V.
+	= \frac{1}{i \omega} \int\_{V} \mathcal{G_m} \big( \bm{r}, \bm{r'}, k_1(\omega) \big) \cdot \bm{J'}(\bm{r'}, \omega) dV'.
 $$
 
 Eqn. 11.10 is a special solution of the inhomogeneous Eqn. 11.9 (just like Eqn. 9.13 is a special solution of Eqn. 9.5). To obtain a general solution, we must combine Eqn. 11.10 with the solution of the homogeneous equation, which physically amounts to adding the primary sources. In our particular case, the homogeneous equation is mathematically equivalent to Eqn. 6.5, which allows us to directly use the solution given by Eqn. 6.16:
@@ -2325,7 +2319,7 @@ $$ \tag{11.12}
 	\bm{E}(\bm{r}, \omega)
 	&= \bm{E_i}(\bm{r}, \omega) + \bm{E_s}(\bm{r}, \omega) \cr
 	&= \oint\_{\mathbb{S}^2} \bm{E}(0, \bm{n}, \omega) e^{i k_1(\omega) (\bm{r} \cdot \bm{n})} d\Omega \cr
-	&+ \int\_{V} \mathcal{G_{e}} \big( \bm{r}, \bm{r'}, k_1(\omega) \big) \cdot \bm{J'}(\bm{r'}, \omega) dV'.
+	&+ \int\_{V} \mathcal{G_e} \big( \bm{r}, \bm{r'}, k_1(\omega) \big) \cdot \bm{J'}(\bm{r'}, \omega) dV'.
 \end{aligned}
 $$
 
@@ -2442,10 +2436,10 @@ $$ \tag{11.25}
 \begin{aligned}
 	& \bm{E_s}(\bm{r}, \omega)
 	= k^2(\omega) \int\_{V} \big( m^2(\bm{r'}, \omega) - 1 \big)
-	\mathcal{G_{e}} \big( \bm{r}, \bm{r'}, k(\omega) \big) \cdot \bm{E}(\bm{r'}, \omega) dV', \cr
+	\mathcal{G_e} \big( \bm{r}, \bm{r'}, k(\omega) \big) \cdot \bm{E}(\bm{r'}, \omega) dV', \cr
 	& \bm{B_s}(\bm{r}, \omega)
 	= \frac{k^2(\omega)}{i \omega} \int\_{V} \big( m^2(\bm{r'}, \omega) - 1 \big)
-	\mathcal{G_{m}} \big( \bm{r}, \bm{r'}, k(\omega) \big) \cdot \bm{E}(\bm{r'}, \omega) dV'.
+	\mathcal{G_m} \big( \bm{r}, \bm{r'}, k(\omega) \big) \cdot \bm{E}(\bm{r'}, \omega) dV'.
 \end{aligned}
 $$
 
@@ -2510,9 +2504,9 @@ Let us substitute Eqn. 12.4 into Eqn. 11.10-11.11:
 $$ \tag{12.5}
 \begin{aligned}
 	& \bm{E_s}(\bm{r}, \omega)
-	= k^2(\omega) \alpha_m(V, \omega) \mathcal{G_{e}} \big( \bm{r}, \bm{r_0}, k(\omega) \big) \cdot \bm{E_i}(\bm{r_0}, \omega), \cr
+	= k^2(\omega) \alpha_m(V, \omega) \mathcal{G_e} \big( \bm{r}, \bm{r_0}, k(\omega) \big) \cdot \bm{E_i}(\bm{r_0}, \omega), \cr
 	& \bm{B_s}(\bm{r}, \omega)
-	= \frac{k^2(\omega)}{i \omega} \alpha_m(V, \omega) \mathcal{G_{m}} \big( \bm{r}, \bm{r_0}, k(\omega) \big) \cdot \bm{E_i}(\bm{r_0}, \omega).
+	= \frac{k^2(\omega)}{i \omega} \alpha_m(V, \omega) \mathcal{G_m} \big( \bm{r}, \bm{r_0}, k(\omega) \big) \cdot \bm{E_i}(\bm{r_0}, \omega).
 \end{aligned}
 $$
 
@@ -2535,11 +2529,11 @@ $$
 
 and comparing the result with Eqn. 12.3.
 
-In order to compute the scattered fields according to Eqn. 12.5, we need to evaluate the dyadic Green functions. Let us first consider the electric dyadic defined by Eqn. 9.26. Its matrix representation in the Cartesian coordinate system is
+In order to compute the scattered fields according to Eqn. 12.5, we need to evaluate the dyadic Green functions. Let us first consider the electric dyadic defined by Eqn. 9.27. Its matrix representation in the Cartesian coordinate system is
 
 $$ \tag{12.8}
 \begin{aligned}
-	\mathcal{G_{e}}(\bm{r}, \bm{r'}, k)
+	\mathcal{G_e}(\bm{r}, \bm{r'}, k)
 	= \Big( \mathcal{I} + \frac{1}{k^2} \nabla \otimes \nabla \Big) g(\bm{r} - \bm{r'}, k)
 	= \mathcal{I} g + \frac{1}{k^2}
 	\begin{bmatrix}
@@ -2550,7 +2544,7 @@ $$ \tag{12.8}
 \end{aligned}
 $$
 
-where the scalar Green function \\(g\\) is given by Eqn. 9.10.
+where the scalar Green function \\(g\\) is given by Eqn. 9.10. Note that we have *suppressed the depolarization dyadic* by assuming that \\(\bm{r}\\) is located in a source-free region.
 
 Ignoring the multiplicative constant \\(1/(4 \pi k^2)\\), the matrix elements have the form
 
@@ -2560,7 +2554,7 @@ $$
 
 where we may substitute \\(x\\), \\(y\\), or \\(z\\) into the blanks.
 
-Under the previous assumption that \\(\bm{r} \neq \bm{r'}\\), the scalar Green function and its partial derivatives are continuous, which means the order of partial differentiation makes no difference. Consequently, the matrix of Eqn. 12.8 is [symmetric](https://en.wikipedia.org/wiki/Symmetric_matrix), such that \\(\mathcal{G_{e}} = \mathcal{G_{e}}^T\\).
+Under the previous assumption that \\(\bm{r} \neq \bm{r'}\\), the scalar Green function and its partial derivatives are continuous, which means the order of partial differentiation makes no difference. Consequently, the matrix of Eqn. 12.8 is [symmetric](https://en.wikipedia.org/wiki/Symmetric_matrix), such that \\(\mathcal{G_e} = \mathcal{G_e}^T\\).
 
 The process of differentiation is straightforward: we use the identity
 
@@ -2621,7 +2615,7 @@ Take a look at the individual factors in Eqn. 12.11-12.13: those outside the bra
 If we fix a value of \\(k\\), we may decompose the electric dyadic into the near-, transition-, and far-field terms:
 
 $$ \tag{12.14}
-	\mathcal{G_{e}}
+	\mathcal{G_e}
 	= \mathcal{G_{en}}
 	+ \mathcal{G_{et}}
 	+ \mathcal{G_{ef}},
@@ -2653,11 +2647,11 @@ $$ \tag{12.16}
 	\varpropto (k R)^{-1}.
 $$
 
-Let us analyze the magnetic dyadic in the same way. Write Eqn. 9.32 in the Cartesian coordinate system:
+Let us analyze the magnetic dyadic in the same way. Write Eqn. 9.33 in the Cartesian coordinate system:
 
 $$ \tag{12.17}
 \begin{aligned}
-	\mathcal{G_{m}}(\bm{r}, \bm{r'}, k)
+	\mathcal{G_m}(\bm{r}, \bm{r'}, k)
 	= \nabla g(\bm{r} - \bm{r'}, k) \times \mathcal{I}
 	= \begin{bmatrix}
 		\partial g / \partial x \cr
@@ -2672,29 +2666,29 @@ $$ \tag{12.17}
 \end{aligned}
 $$
 
-Clearly, the matrix is anti-symmetric: \\(\mathcal{G_{m}} = -\mathcal{G_{m}}^T\\).
+Clearly, the matrix is anti-symmetric: \\(\mathcal{G_m} = -\mathcal{G_m}^T\\).
 
 According to the expression of the first derivative given by Eqn. 12.11, the dyadic is composed of two terms:
 
 $$ \tag{12.18}
-	\mathcal{G_{m}} = \mathcal{G_{mt}} + \mathcal{G_{mf}},
+	\mathcal{G_m} = \mathcal{G_{mn}} + \mathcal{G_{mf}},
 $$
 
 such that
 
 $$ \tag{12.19}
 \begin{aligned}
-	& \mathcal{G_{mt}}(\bm{R}, k)
+	& \mathcal{G_{mn}}(\bm{R}, k)
 	= -\frac{g(\bm{R}, k)}{R} \bigg(\frac{\bm{R} \times \mathcal{I}}{R} \bigg), \cr
 	& \mathcal{G_{mf}}(\bm{R}, k)
 	= i k g(\bm{R}, k) \bigg(\frac{\bm{R} \times \mathcal{I}}{R} \bigg).
 \end{aligned}
 $$
 
-Note that, as expected from Eqn. 9.33, the constants of proportionality are different in comparison with the electric dyadic:
+Note that, as expected from Eqn. 9.34, the constants of proportionality are different in comparison with the electric dyadic:
 
 $$ \tag{12.20}
-	k^{-2} \mathcal{G_{mt}}
+	k^{-2} \mathcal{G_{mn}}
 	\varpropto (k R)^{-2},
 	\quad
 	k^{-2} \mathcal{G_{mf}}
@@ -2708,18 +2702,18 @@ Let us focus on the case when the observation point is far away from the source.
 The idea behind the far-field approximation is simple: we discard certain terms in Eqn. 12.14 and 12.18. In order to do that, we must consider their magnitudes relative to each other:
 
 $$ \tag{13.1}
-	\mathcal{G_{e}}
+	\mathcal{G_e}
 	= \bigg( 1 + \frac{\mathcal{G_{et}}}{\mathcal{G_{ef}}} + \frac{\mathcal{G_{en}}}{\mathcal{G_{ef}}} \bigg) \mathcal{G_{ef}}, \quad
-	\mathcal{G_{m}}
-	= \bigg( 1 + \frac{\mathcal{G_{mt}}}{\mathcal{G_{mf}}} \bigg) \mathcal{G_{mf}}.
+	\mathcal{G_m}
+	= \bigg( 1 + \frac{\mathcal{G_{mn}}}{\mathcal{G_{mf}}} \bigg) \mathcal{G_{mf}}.
 $$
 
 According to Eqn. 12.15, for any fixed direction, the relative difference between the three electric dyadics primarily arises from the leading scalar terms. Moreover, the two magnetic dyadics given by Eqn. 12.19 exhibit identical angular dependence. Following this logic, we use Eqn. 12.16 and 12.20 to approximate
 
 $$ \tag{13.2}
-	\mathcal{G_{e}}
+	\mathcal{G_e}
 	= \bigg( 1 + \mathrm{O} \Big( (k R)^{-1} \Big) + \mathrm{O} \Big( (k R)^{-2} \Big) \bigg) \mathcal{G_{ef}}, \quad
-	\mathcal{G_{m}}
+	\mathcal{G_m}
 	= \bigg( 1 + \mathrm{O} \Big( (k R)^{-1} \Big) \bigg)
 	\mathcal{G_{mf}}.
 $$
@@ -2985,12 +2979,12 @@ The volume integral equation can be reduced to a relatively simple expression by
 
 Let us recall the mechanics of scattering. In a dielectric, the incident field (primary wave) drives the dipoles, which in turn act as sources of scattered wavelets (secondary waves) interfering with the incident field according to the superposition principle. We may continue this line of thinking by considering the effect of a dipole as a secondary source on all other dipoles surrounding it, effectively treating the dipole field as the secondary incident field. Repeated application of this iterative approach leads to evaluation of successive orders of scattering one by one. This is the general idea behind the [Born series](https://en.wikipedia.org/wiki/Born_series) \[[6](#references) (ch. 13.1)\].
 
-We can formalize this approach in the following way \[[8](#references) (ch. 4.5)\]. We start with Eqn. 11.12, where we substitute the total dyadic (cf. Eqn. 9.27-9.28) to ensure that the integral remains valid even if the integration point is inside the volume \\(V\\):
+We can formalize this approach in the following way \[[8](#references) (ch. 4.5)\]. We start with Eqn. 11.12, where we must make sure to include the depolarization dyadic term (cf. Eqn. 9.27) in order for the integral to remain valid even if the integration point is inside the volume \\(V\\):
 
 $$ \tag{14.1}
 	\bm{E}(\bm{r}, \omega)
 	= \bm{E_i}(\bm{r}, \omega)
-	+ \int\_{V} \mathcal{G} \big( \bm{r}, \bm{r'}, k(\omega) \big) \cdot \bm{J'}(\bm{r'}, \omega) dV'.
+	+ \int\_{V} \mathcal{G_e} \big( \bm{r}, \bm{r'}, k(\omega) \big) \cdot \bm{J'}(\bm{r'}, \omega) dV'.
 $$
 
 Next, for we substitute the expression of the source term \\(\bm{J'}\\) given by Eqn. 11.7:
@@ -2998,7 +2992,7 @@ Next, for we substitute the expression of the source term \\(\bm{J'}\\) given by
 $$ \tag{14.2}
 	\bm{E}(\bm{r}, \omega)
 	= \bm{E_i}(\bm{r}, \omega)
-	+ \int\_{V} k^2(\omega) \big( m^2(\bm{r'}, \omega) - 1 \big) \mathcal{G} \big( \bm{r}, \bm{r'}, k(\omega) \big) \cdot \bm{E}(\bm{r'}, \omega) dV'.
+	+ \int\_{V} k^2(\omega) \big( m^2(\bm{r'}, \omega) - 1 \big) \mathcal{G_e} \big( \bm{r}, \bm{r'}, k(\omega) \big) \cdot \bm{E}(\bm{r'}, \omega) dV'.
 $$
 
 For convenience, we define the *potential function*
@@ -3016,17 +3010,17 @@ that allows us to write Eqn. 14.2 in a more compact form:
 $$ \tag{14.4}
 	\bm{E}(\bm{r}, \omega)
 	= \bm{E_i}(\bm{r}, \omega)
-	+ \int\_{V} u \big( \bm{r'}, k(\omega), \omega \big) \mathcal{G} \big( \bm{r}, \bm{r'}, k(\omega) \big) \cdot \bm{E}(\bm{r'}, \omega) dV'.
+	+ \int\_{V} u \big( \bm{r'}, k(\omega), \omega \big) \mathcal{G_e} \big( \bm{r}, \bm{r'}, k(\omega) \big) \cdot \bm{E}(\bm{r'}, \omega) dV'.
 $$
 
 The resulting equation is recursive. Substitution makes it fairly obvious that the total electric field can be expressed as volume integral of the transformed incident field. While this fact can be rigorously derived from the properties of the dyadic Green functions \[[12](#references) (ch. 5.1)\], for simplicity, let us assume that the solution exists:
 
 $$ \tag{14.5}
 	u \big( \bm{r'}, k(\omega), \omega \big) \bm{E}(\bm{r'}, \omega)
-	= \int\_{V} \mathcal{T} \big( \bm{r'}, \bm{r''}, k(\omega), \omega \big) \cdot \bm{E_i}(\bm{r''}, \omega) dV'',
+	= \int\_{V} \mathcal{T_e} \big( \bm{r'}, \bm{r''}, k(\omega), \omega \big) \cdot \bm{E_i}(\bm{r''}, \omega) dV'',
 $$
 
-where \\(\mathcal{T}\\) is the *transition dyadic*, the expression of which is yet to be determined.
+where \\(\mathcal{T_e}\\) is the *transition dyadic*, the expression of which is yet to be determined.
 
 Recursive equations written in the integral form quickly become unwieldy. Instead, we shall convert them into the operator form by using the [bra-ket notation](https://en.wikipedia.org/wiki/Bra%E2%80%93ket_notation). Additionally, any dependence on the frequency or the wavenumber shall be kept implicit.
 
@@ -3047,8 +3041,8 @@ $$
 Similarly, we define the *Green operator* \\(G\\) and the *transition operator* \\(T\\) as
 
 $$ \tag{14.8}
-	\braket{r \vert G \vert r'} = \mathcal{G}(\bm{r}, \bm{r'}), \quad
-	\braket{r \vert T \vert r'} = \mathcal{T}(\bm{r}, \bm{r'}).
+	\braket{r \vert G \vert r'} = \mathcal{G_e}(\bm{r}, \bm{r'}), \quad
+	\braket{r \vert T \vert r'} = \mathcal{T_e}(\bm{r}, \bm{r'}).
 $$
 
 Finally, we must define the *orthonormalization* relation
@@ -3110,7 +3104,7 @@ $$ \tag{14.16}
 	\bm{E}(\bm{r})
 	= \bm{E_i}(\bm{r}) + \bm{E_s}(\bm{r})
 	= \bm{E_i}(\bm{r})
-	+ \int\_{V} \mathcal{G} (\bm{r}, \bm{r'}) \cdot \int\_{V} \mathcal{T} (\bm{r'}, \bm{r''}) \cdot \bm{E_i}(\bm{r''}) dV'' dV'.
+	+ \int\_{V} \mathcal{G_e} (\bm{r}, \bm{r'}) \cdot \int\_{V} \mathcal{T_e} (\bm{r'}, \bm{r''}) \cdot \bm{E_i}(\bm{r''}) dV'' dV'.
 $$
 
 Note that Eqn. 14.16 is identical to the combination of Eqn. 14.4 and 14.5.
@@ -3165,36 +3159,36 @@ Translation of Eqn. 14.21 into the integral form yields the definition of the tr
 
 $$ \tag{14.22}
 \begin{aligned}
-	\mathcal{T} (\bm{r}, \bm{r'}, k)
-	&= u(\bm{r}, k) \bigg( \delta(\bm{r} - \bm{r'}) \mathcal{I} + \int_V \mathcal{G} (\bm{r}, \bm{r''}, k) \cdot \mathcal{T} (\bm{r''}, \bm{r'}, k) dV'' \bigg)
+	\mathcal{T_e} (\bm{r}, \bm{r'}, k)
+	&= u(\bm{r}, k) \bigg( \delta(\bm{r} - \bm{r'}) \mathcal{I} + \int_V \mathcal{G_e} (\bm{r}, \bm{r''}, k) \cdot \mathcal{T_e} (\bm{r''}, \bm{r'}, k) dV'' \bigg)
 	\cr
-	&= k^2 \big( m^2(\bm{r}) - 1 \big) \bigg( \delta(\bm{r} - \bm{r'}) \mathcal{I} + \int_V \mathcal{G} (\bm{r}, \bm{r''}, k) \cdot \mathcal{T} (\bm{r''}, \bm{r'}, k) dV'' \bigg).
+	&= k^2 \big( m^2(\bm{r}) - 1 \big) \bigg( \delta(\bm{r} - \bm{r'}) \mathcal{I} + \int_V \mathcal{G_e} (\bm{r}, \bm{r''}, k) \cdot \mathcal{T_e} (\bm{r''}, \bm{r'}, k) dV'' \bigg).
 \end{aligned}
 $$
 
-The total dyadic (defined in Eqn. 9.27) can be expanded in two different ways. One way is to write it as a product, and take the factor that contains derivatives the integral (thus avoiding the singularity), as was done in Eqn. 9.24:
+The expression of the electric dyadic (defined in Eqn. 9.27) can be expanded in two different ways. We can express it as a product, and move the derivatives outside the integral, as shown by Eqn. 9.24:
 
 $$ \tag{14.23}
 \begin{aligned}
-	\mathcal{T} (\bm{r}, \bm{r'}, k)
+	\mathcal{T_e} (\bm{r}, \bm{r'}, k)
 	&= k^2 \big( m^2(\bm{r}) - 1 \big) \bigg(
 	\delta(\bm{r} - \bm{r'}) \mathcal{I}
 	\cr
 	&+ \Big( \mathcal{I} + \frac{1}{k^2} \nabla \otimes \nabla \Big) \cdot \int\_{V}
-	g( \bm{r} - \bm{r''}, k) \mathcal{T} (\bm{r''}, \bm{r'}, k) dV'' \bigg).
+	g( \bm{r} - \bm{r''}, k) \mathcal{T_e} (\bm{r''}, \bm{r'}, k) dV'' \bigg).
 \end{aligned}
 $$
 
-The second way is to represent it by a sum of the electric dyadic \\(\mathcal{G_e}\\) and the depolarization dyadic \\(\mathcal{L}\\) as demonstrated by Eqn. 9.25:
+Alternatively, we can decompose it into a sum of the dyadic Green function \\(\mathcal{G}\\) and the depolarization dyadic \\(\mathcal{L}\\) as per by Eqn. 9.27:
 
 $$ \tag{14.24}
 \begin{aligned}
-	\mathcal{T} (\bm{r}, \bm{r'}, k)
+	\mathcal{T_e} (\bm{r}, \bm{r'}, k)
 	&= k^2 \big( m^2(\bm{r}) - 1 \big) \bigg(
 	\delta(\bm{r} - \bm{r'}) \mathcal{I}
 	\cr
-	&- \frac{1}{k^2} \mathcal{L}(\bm{r}) \cdot \mathcal{T} (\bm{r}, \bm{r'})
-	+ \lim_{\delta \to 0} \int\_{V - V_{\delta}} \mathcal{G_e} (\bm{r}, \bm{r''}) \cdot \mathcal{T} (\bm{r''}, \bm{r'}, k) dV'' \bigg).
+	&- \frac{1}{k^2} \mathcal{L}(\bm{r}) \cdot \mathcal{T_e} (\bm{r}, \bm{r'})
+	+ \lim_{\delta \to 0} \int\_{V - V_{\delta}} \mathcal{G} (\bm{r}, \bm{r''}) \cdot \mathcal{T_e} (\bm{r''}, \bm{r'}, k) dV'' \bigg).
 \end{aligned}
 $$
 
@@ -3202,12 +3196,13 @@ Notice that the \\(1/k^2\\) term in front of the depolarization dyadic cancels o
 
 $$ \tag{14.25}
 \begin{aligned}
-	\mathcal{T} (\bm{r}, \bm{r'}, k)
+	\mathcal{T_e} (\bm{r}, \bm{r'}, k)
 	&= k^2 \big( m^2(\bm{r}) - 1 \big)
-	\Big( \mathcal{I} + \big( m^2(\bm{r}) - 1 \big) \mathcal{L}(\bm{r}) \Big)^{-1} \cdot \bigg(
-	\delta(\bm{r} - \bm{r'}) \mathcal{I}
+	\Big( \mathcal{I} + \big( m^2(\bm{r}) - 1 \big) \mathcal{L}(\bm{r}) \Big)^{-1}
 	\cr
-	&+ \lim_{\delta \to 0} \int\_{V - V_{\delta}} \mathcal{G_e} (\bm{r}, \bm{r''}, k) \cdot \mathcal{T} (\bm{r''}, \bm{r'}, k) dV'' \bigg).
+	&\cdot
+	\bigg( \delta(\bm{r} - \bm{r'}) \mathcal{I}
+	+ \lim_{\delta \to 0} \int\_{V - V_{\delta}} \mathcal{G} (\bm{r}, \bm{r''}, k) \cdot \mathcal{T_e} (\bm{r''}, \bm{r'}, k) dV'' \bigg).
 \end{aligned}
 $$
 
@@ -3233,11 +3228,11 @@ We may expand the integrand using Eqn. 14.16 and 15.1:
 $$ \tag{15.3}
 \begin{aligned}
 	\bm{E_s}(\bm{r}, \bm{n_i}, \omega)
-	&= \int\_{V} \mathcal{G} \big( \bm{r}, \bm{r'}, k(\omega) \big) \cdot
-	\int\_{V} \mathcal{T} (\bm{r'}, \bm{r''}, k(\omega), \omega) \cdot \bm{E_i}(\bm{r''}, \bm{n_i}, \omega) dV'' dV'
+	&= \int\_{V} \mathcal{G_e} \big( \bm{r}, \bm{r'}, k(\omega) \big) \cdot
+	\int\_{V} \mathcal{T_e} (\bm{r'}, \bm{r''}, k(\omega), \omega) \cdot \bm{E_i}(\bm{r''}, \bm{n_i}, \omega) dV'' dV'
 	\cr
-	&= \int\_{V} \mathcal{G} \big( \bm{r}, \bm{r'}, k(\omega) \big) \cdot
-	\int\_{V} \mathcal{T} (\bm{r'}, \bm{r''}, k(\omega), \omega) \cdot \bm{E_0}(\bm{n_i}, \omega) e^{i k(\omega) (\bm{r''} \cdot \bm{n_i})} dV'' dV'.
+	&= \int\_{V} \mathcal{G_e} \big( \bm{r}, \bm{r'}, k(\omega) \big) \cdot
+	\int\_{V} \mathcal{T_e} (\bm{r'}, \bm{r''}, k(\omega), \omega) \cdot \bm{E_0}(\bm{n_i}, \omega) e^{i k(\omega) (\bm{r''} \cdot \bm{n_i})} dV'' dV'.
 \end{aligned}
 $$
 
@@ -3248,18 +3243,18 @@ $$ \tag{15.4}
 	= \frac{e^{i k(\omega) r}}{k(\omega) r} \mathcal{S_e} (\bm{r}, \bm{n_i}, \omega) \cdot \bm{E_0}(\bm{n_i}, \omega).
 $$
 
-In general, the scattering dyadic depends on the position of the observation point relative to the scatterer. However, if the observation point is very far away, we can utilize the far-field expression of the Green function, and combine Eqn. 13.12, 14.3, and 14.5 to write
+In general, the scattering dyadic depends on the position of the observation point relative to the scatterer. However, if the observation point is very far away, we can utilize the far-field expression of the electric dyadic, and combine Eqn. 13.12, 14.3, and 14.5 to write
 
 $$ \tag{15.5}
 \begin{aligned}
 	& \bm{E_s}(\bm{r}, \omega) \simeq
 	\frac{e^{i k(\omega) r}}{4 \pi r}
 	\big( \mathcal{I} - \bm{n_s} \otimes \bm{n_s} \big) \cdot
-	\int\_{V} e^{-i k(\omega) (\bm{r'} \cdot \bm{n_s})} \int\_{V} \mathcal{T} \big( \bm{r'}, \bm{r''}, k(\omega), \omega \big) \cdot \bm{E_i}(\bm{r''}, \omega) dV'' dV', \cr
+	\int\_{V} e^{-i k(\omega) (\bm{r'} \cdot \bm{n_s})} \int\_{V} \mathcal{T_e} \big( \bm{r'}, \bm{r''}, k(\omega), \omega \big) \cdot \bm{E_i}(\bm{r''}, \omega) dV'' dV', \cr
 	& \bm{B_s}(\bm{r}, \omega) \simeq
 	\frac{k(\omega)}{\omega} \frac{e^{i k(\omega) r}}{4 \pi r}
 	\big(\bm{n_s} \times \mathcal{I} \big) \cdot
-	\int\_{V} e^{-i k(\omega) (\bm{r'} \cdot \bm{n_s})} \int\_{V} \mathcal{T} \big( \bm{r'}, \bm{r''}, k(\omega), \omega \big) \cdot \bm{E_i}(\bm{r''}, \omega) dV'' dV',
+	\int\_{V} e^{-i k(\omega) (\bm{r'} \cdot \bm{n_s})} \int\_{V} \mathcal{T_e} \big( \bm{r'}, \bm{r''}, k(\omega), \omega \big) \cdot \bm{E_i}(\bm{r''}, \omega) dV'' dV',
 \end{aligned}
 $$
 
@@ -3293,15 +3288,15 @@ $$ \tag{15.7}
 	& \mathcal{S_{ef}} (\bm{n_s}, \bm{n_i}, \omega) \simeq
 	\frac{k(\omega)}{4 \pi}
 	\big( \mathcal{I} - \bm{n_s} \otimes \bm{n_s} \big) \cdot
-	\iint\_{V} e^{-i k(\omega) (\bm{r'} \cdot \bm{n_s} - \bm{r''} \cdot \bm{n_i})} \mathcal{T} (\bm{r'}, \bm{r''}, k(\omega), \omega) dV'' dV', \cr
+	\iint\_{V} e^{-i k(\omega) (\bm{r'} \cdot \bm{n_s} - \bm{r''} \cdot \bm{n_i})} \mathcal{T_e} (\bm{r'}, \bm{r''}, k(\omega), \omega) dV'' dV', \cr
 	& \mathcal{S_{mf}} (\bm{n_s}, \bm{n_i}, \omega) \simeq
 	\frac{k^2(\omega)}{4 \pi \omega}
 	\big(\bm{n_s} \times \mathcal{I} \big) \cdot
-	\iint\_{V} e^{-i k(\omega) (\bm{r'} \cdot \bm{n_s} - \bm{r''} \cdot \bm{n_i})} \mathcal{T} (\bm{r'}, \bm{r''}, k(\omega), \omega) dV'' dV'.
+	\iint\_{V} e^{-i k(\omega) (\bm{r'} \cdot \bm{n_s} - \bm{r''} \cdot \bm{n_i})} \mathcal{T_e} (\bm{r'}, \bm{r''}, k(\omega), \omega) dV'' dV'.
 \end{aligned}
 $$
 
-At the end of this section [Evgenii: reorder], we will demonstrate that \\(\mathcal{T} \sim k^5\\), which implies that both of these dyadics are dimensionless. In comparison, certain authors prefer to divide their dyadics by \\(k\\) \[[8](#references) (ch. 5.3)\].
+At the end of this section [Evgenii: reorder], we will demonstrate that \\(\mathcal{T_e} \sim k^5\\), which implies that both of these dyadics are dimensionless. In comparison, certain authors prefer to divide their dyadics by \\(k\\) \[[8](#references) (ch. 5.3)\].
 
 All the expressions given above are independent of the choice of a coordinate system. In practice, it is rather convenient to establish a certain coordinate convention.
 
@@ -3491,26 +3486,26 @@ $$ \tag{15.18}
 	\bm{\hat{r}} = k \bm{r}.
 $$
 
-As a simple example, consider the scalar Green function \\(g\\) introduced in Eqn. 9.10. If we divide it by \\(k\\), we obtain its dimensionless counterpart \\(\hat{g}\\):
+As a simple example, consider the scalar Green function \\(g\\) introduced in Eqn. 9.10. If we divide it by \\(k\\), we obtain its dimensionless counterpart \\(\hat{G_e}\\):
 
 $$ \tag{15.19}
 	\frac{1}{k} g(\bm{r}, k)
-	= \hat{g}(\bm{\hat{r}})
+	= \hat{G_e}(\bm{\hat{r}})
 	= \frac{e^{i |\bm{\hat{r}}|}}{4 \pi |\bm{\hat{r}}|}.
 $$
 
-The expression of the total field is the sum of the incident and the scattered fields. Eqn. 15.1 of the incident field can be transformed into the dimensionless form by a trivial substitution of Eqn. 15.18. On the other hand, Eqn. 15.3 of the scattered field is more complicated, as it contains the total electric and transition dyadics. According to Eqn. 14.22, the transition dyadic is itself defined in terms of the total dyadic. Thus, we only need to transform the expression of the former. For convenience, we elect to use the expanded definition given by Eqn. 14.23, which we restate below:
+The expression of the total field is the sum of the incident and the scattered fields. Eqn. 15.1 of the incident field can be transformed into the dimensionless form by a trivial substitution of Eqn. 15.18. On the other hand, Eqn. 15.3 of the scattered field is more complicated, as it contains the total electric and transition dyadics. According to Eqn. 14.22, the transition dyadic is itself defined in terms of the electric dyadic. Thus, we only need to transform the expression of the former. For convenience, we elect to use the expanded definition given by Eqn. 14.23, which we restate below:
 
 $$ \tag{15.20}
 \begin{aligned}
-	\mathcal{T} (\bm{r}, \bm{r'}, k)
-	&= k^2 \big( m^2(\bm{r}) - 1 \big) \bigg( \delta(\bm{r} - \bm{r'}) \mathcal{I} + \int_V \mathcal{G} (\bm{r}, \bm{r''}, k) \cdot \mathcal{T} (\bm{r''}, \bm{r'}, k) dV'' \bigg)
+	\mathcal{T_e} (\bm{r}, \bm{r'}, k)
+	&= k^2 \big( m^2(\bm{r}) - 1 \big) \bigg( \delta(\bm{r} - \bm{r'}) \mathcal{I} + \int_V \mathcal{G_e} (\bm{r}, \bm{r''}, k) \cdot \mathcal{T_e} (\bm{r''}, \bm{r'}, k) dV'' \bigg)
 	\cr
 	&= k^2 \big( m^2(\bm{r}) - 1 \big) \bigg(
 	\delta(\bm{r} - \bm{r'}) \mathcal{I}
 	\cr
 	&+ \Big( \mathcal{I} + \frac{1}{k^2} \nabla \otimes \nabla \Big) \cdot
-	\int\_{V} g( \bm{r} - \bm{r''}, k) \mathcal{T} (\bm{r''}, \bm{r'}, k) dV'' \bigg).
+	\int\_{V} g( \bm{r} - \bm{r''}, k) \mathcal{T_e} (\bm{r''}, \bm{r'}, k) dV'' \bigg).
 \end{aligned}
 $$
 
@@ -3530,7 +3525,7 @@ $$ \tag{15.22}
 	= k^3 \delta(\bm{\hat{r}})
 $$
 
-To handle the total dyadic, we introduce
+To handle the electric dyadic, we introduce
 
 $$ \tag{15.23}
 	\hat{\nabla} = k^{-1} \nabla,
@@ -3545,8 +3540,8 @@ $$
 which, coupled with Eqn. 15.19, directly leads to
 
 $$ \tag{15.26}
-	\mathcal{\hat{G}}(\bm{\hat{r}}, \bm{\hat{r}'})
-	= \frac{1}{k} \mathcal{G}(\bm{r}, \bm{r'}, k).
+	\mathcal{\hat{G_e}}(\bm{\hat{r}}, \bm{\hat{r}'})
+	= \frac{1}{k} \mathcal{G_e}(\bm{r}, \bm{r'}, k).
 $$
 
 The only expression left to transform is the relative wavenumber \\(m\\) given by Eqn. 11.8. It is already a dimensionless quantity; thus, if we rescale the coordinate frame by a factor of \\(1/k\\), we can define the function
@@ -3561,24 +3556,24 @@ Using the new definitions, Eqn. 15.20 becomes
 
 $$ \tag{15.28}
 \begin{aligned}
-	\mathcal{T} (\bm{r}, \bm{r'}, k)
+	\mathcal{T_e} (\bm{r}, \bm{r'}, k)
 	&= \big( \hat{m}^2(\bm{\hat{r}}) - 1 \big) \bigg(
 	k^5 \delta(\bm{\hat{r}} - \bm{\hat{r}'}) \mathcal{I}
-	+ \int\_{V} \mathcal{\hat{G}}(\bm{\hat{r}}, \bm{\hat{r}''}) \cdot \mathcal{T} (\bm{r''}, \bm{r'}, k) d \hat{V}'' \bigg)
+	+ \int\_{V} \mathcal{\hat{G_e}}(\bm{\hat{r}}, \bm{\hat{r}''}) \cdot \mathcal{T_e} (\bm{r''}, \bm{r'}, k) d \hat{V}'' \bigg)
 	\cr
 	&= \big( \hat{m}^2(\bm{\hat{r}}) - 1 \big) \bigg(
 	k^5 \delta(\bm{\hat{r}} - \bm{\hat{r}'}) \mathcal{I}
 	\cr
 	&+ \Big( \mathcal{I} + \hat{\nabla} \otimes \hat{\nabla} \Big) \cdot
-	\int\_{V} \hat{g}( \bm{\hat{r}} - \bm{\hat{r}''}) \mathcal{T} (\bm{r''}, \bm{r'}, k) d \hat{V}'' \bigg),
+	\int\_{V} \hat{G_e}( \bm{\hat{r}} - \bm{\hat{r}''}) \mathcal{T_e} (\bm{r''}, \bm{r'}, k) d \hat{V}'' \bigg),
 \end{aligned}
 $$
 
 from which it immediately follows that defining
 
 $$ \tag{15.29}
-	\mathcal{\hat{T}} (\bm{\hat{r}}, \bm{\hat{r}'}) = \frac{1}{k^5}
-	\mathcal{T} (\bm{r}, \bm{r'}, k)
+	\mathcal{\hat{T_e}} (\bm{\hat{r}}, \bm{\hat{r}'}) = \frac{1}{k^5}
+	\mathcal{T_e} (\bm{r}, \bm{r'}, k)
 $$
 
 makes Eqn. 15.28 fully dimensionless. Additionally, in the operator notation, Eqn. 15.20 and 15.28 are formally identical. As a result, both formulations can be written as the Born series of Eqn. 14.20, and thus produce the same fields.
@@ -4161,7 +4156,7 @@ $$ \tag{17.5}
 \end{aligned}
 $$
 
-Since the value of \\(\nabla \cdot \bm{A}\\) is arbitrary, we may take inspiration from the free-space Lorenz condition of Eqn. 9.20, and assume that
+Since the value of \\(\nabla \cdot \bm{A}\\) is arbitrary, we may take inspiration from the Lorenz condition of Eqn. 9.20, and assume that
 
 $$ \tag{17.6}
 	\nabla \cdot \bm{A}(\bm{r}, \omega) = i \omega \mu(\omega) \varepsilon(\omega) \phi(\bm{r}, \omega).
@@ -6710,7 +6705,7 @@ $$
 
 We may observe that the intensity directly depends on the wavenumber \\(k\\) in the host medium, and indirectly on the size parameter \\(x\\), the relative wavenumber \\(m\\), and the reciprocal of the relative permeability \\(u\\), through Eqn. 17.156 of the expansion coefficients \\(a_n\\) and \\(b_n\\). Not all of these parameters are independent; for instance, both \\(m\\) and \\(x\\) are proportional to \\(k\\). In order to make the analysis simple, we shall fix the values of \\(k\\), \\(m\\) and \\(u\\), and only vary the size of the particle \\(a\\), thereby determining the value of the size parameter \\(x\\).
 
-Consider a water droplet suspended in vacuum illuminated by orange light. Assuming the free-space wavelength \\(\lambda_0 = 600 \text{ nm}\\), the corresponding wavenumber is \\(k = k_0 = 2 \pi / \lambda_0 \approx 0.01 \text{ nm}^{-1}\\). The index of refraction of [water](https://refractiveindex.info/?shelf=main&book=H2O&page=Hale) under visible light is \\(\eta + i \kappa \approx 4/3\\), with \\(\mu \approx 1\\). And since the particle is assumed to be located in vacuum, \\(m \approx 4/3\\) and \\(u \approx 1\\).
+Consider a water droplet suspended in vacuum illuminated by orange light. Assuming the vacuum wavelength \\(\lambda_0 = 600 \text{ nm}\\), the corresponding wavenumber is \\(k = k_0 = 2 \pi / \lambda_0 \approx 0.01 \text{ nm}^{-1}\\). The index of refraction of [water](https://refractiveindex.info/?shelf=main&book=H2O&page=Hale) under visible light is \\(\eta + i \kappa \approx 4/3\\), with \\(\mu \approx 1\\). And since the particle is assumed to be located in vacuum, \\(m \approx 4/3\\) and \\(u \approx 1\\).
 
 The smallest possible water droplet is a [single molecule](https://water.lsbu.ac.uk/water/water_molecule.html) of radius \\(a \approx 0.1375 \text{ nm}\\), which corresponds to \\(x = k a \approx 0.00144\\). If we ignore the anisotropy of the molecule and imagine it to be a sphere, we can apply the Lorenz-Mie-Debye theory to determine the intensity of the scattered light.
 
