@@ -237,7 +237,7 @@ The first equation tells us that the divergence of the magnetic field is does no
 
 We take the Maxwell equations as axioms, and use them as the foundation on which we base the theory presented in the following sections.
 
-### Force and Energy
+### Lorentz force and Poynting Theorem
 
 Given a mathematical description of electromagnetic radiation in terms of vector fields, we would like to physically characterize it as an energy transfer process. In order to do that, we have to determine how much energy there is in a given volume element of space, and also the rate of energy flow \[[5](#references) (vol. II, ch. 27), [6](#references) (ch. 1.1.4), [7](#references) (ch. 2.11), [8](#references) (ch. 2.4)\].
 
@@ -1816,7 +1816,7 @@ $$
 
 is the *free-space dyadic* Green function \[[7](#references) (ch. 7.9)\], and \\(\mathcal{L}\\) is the dimensionless *depolarization dyadic*[^12], the expression of which depends on the shape (but not the size) of the cavity \[[7](#references) (ch. 3.9)\].
 
-[^12]: A [dyadic](https://en.wikipedia.org/wiki/Dyadics) is a second rank tensor with a notation borrowed from linear algebra. A second rank [tensor](https://en.wikipedia.org/wiki/Tensor) is a scalar-valued [multilinear](multilinear) function with two slots that accept vector arguments; if only one argument is provided, it becomes a vector-valued linear function. For example, the dyadic expression \\(\bm{E} = \mathcal{L} \cdot \bm{J}\\) could be written in the standard tensor notation as \\(\bm{E} = \mathcal{L}(\\_,\bm{J})\\). We retain the dyadic notation due to its prevalence in the light scattering literarture. A brief introduction to the dyadic analysis is available in \[[7](#references) (ap. 4), [8](#references) (ap. A)\].
+[^12]: A [dyadic](https://en.wikipedia.org/wiki/Dyadics) is a second rank tensor with a notation borrowed from linear algebra. A second rank [tensor](https://en.wikipedia.org/wiki/Tensor) is a scalar-valued [multilinear](multilinear) function with two slots that accept vector arguments; if only one argument is provided, it becomes a vector-valued linear function. For example, the dyadic expression \\(\bm{E} = \mathcal{L} \cdot \bm{J}\\) could be written in the standard tensor notation as \\(\bm{E} = \mathcal{L}(\text{\textunderscore},\bm{J})\\). We retain the dyadic notation due to its prevalence in the light scattering literarture. A brief introduction to the dyadic analysis is available in \[[7](#references) (ap. 4), [8](#references) (ap. A)\].
 
 Eqn. 9.25 can be cast in a more compact form by using the [principal value](https://en.wikipedia.org/wiki/Cauchy_principal_value) of the free-space dyadic. If we define the *electric dyadic* Green function as
 
@@ -1838,8 +1838,6 @@ $$ \tag{9.29}
 	\left( \nabla \times \nabla \times \mathcal{I} - k^2 \right) \mathcal{G_e}(\bm{r}, \bm{r'}, k)
 	= \mathcal{I} \delta(\bm{r} - \bm{r'}).
 $$
-
-The free-space dyadic also satisfies Eqn. 9.29, provided that \\(\bm{r}\\) is located outside the region containing sources.
 
 To find the integral form of the magnetic field, we must expand Eqn. 9.21.2 using 9.14.1:
 
@@ -2303,8 +2301,6 @@ $$ \tag{11.10}
 	= \int\_{V} \mathcal{G_e} \big( \bm{r}, \bm{r'}, k_1(\omega) \big) \cdot \bm{J'}(\bm{r'}, \omega) dV'.
 $$
 
-where have neglected the singularity term by assuming that \\(\bm{r}\\) is located in the source-free region 1.
-
 Similarly, the magnetic field is given by Eqn. 9.32:
 
 $$ \tag{11.11}
@@ -2445,7 +2441,91 @@ $$
 
 In the literature, Eqn. 11.25 is often called the *volume integral equation* \[[8](#references) (ch. 4)\]
 
-### Surface Integral Equation
+### Huygens Principle and Extinction Theorem
+
+The volume integral equation expresses the scattered field as the integral over the volume \\(V\\) of the scattering object. If its dimensions are large, and its material -- absorptive, then there is a high likelihood that a significant portion of its interior will make a negligible contribution to the field outside. In this case, it may be advantageous to convert the volume integral into an integral taken over the *bounding surface* \\(\delta V\\) of the particle group by applying the second *vector Green theorem* to the vector fields \\(\bm{V}\\) and \\(\bm{W}\\) \[[17](#references) (ch. 4.14)\]:
+
+$$ \tag{1x.1}
+\small
+	\int_V \left(
+		\bm{V} \cdot \nabla \times \nabla \times \bm{W} -
+		\bm{W} \cdot \nabla \times \nabla \times \bm{V}
+	\right) dV
+	= \oint_{\delta V} \left(
+		\bm{W} \times \nabla \times \bm{V} -
+		\bm{V} \times \nabla \times \bm{W}
+	\right) \cdot \bm{n} dA.
+$$
+
+The integrals must be convergent, so the integrands must be continuous. In addition, the volume \\(V\\) must represent a closed region of space. However, since every such region can be split in two (the contributions of the adjacent surfaces have the opposite sign and cancel out), we may likewise merge several closed regions into a single connected region bounded by multiple surfaces.
+
+As we cannot make any assumptions about the interior of the scattering object, we shall focus on the fields in the homogeneous region \\(V_2\\) surrounding it. Since that region is open, let us slightly modify the mathematical formulation to explicitly account for the source of the incident field by setting \\(\bm{J_f} = \bm{J_s}\\) in Eqn. 11.2. The source currents can then be bound using two surfaces: the bounding surface \\(\delta V\\) of the particle group with the outward-facing normal \\(\bm{n}\\) , and a very large sphere of effectively infinite radius \\(\delta V_2\\).
+
+A series of straightforward algebraic manipulations leads to the modified form of Eqn. 11.5:
+
+$$ \tag{1x.2}
+\begin{aligned}
+	& \nabla \times \nabla \times \bm{E}(\bm{r_1}, \omega) - k_1^2(\omega) \bm{E}(\bm{r_1}, \omega) = i \omega \mu(\omega) \bm{J_s}(\bm{r_1}, \omega), \cr
+	& \nabla \times \nabla \times \bm{E}(\bm{r_2}, \omega) - k_2^2(\bm{r_2}, \omega) \bm{E}(\bm{r_2}, \omega) = 0,
+\end{aligned}
+$$
+
+Let us return to Eqn. 1x.1. We shall assign the total electric field to \\(\bm{V} = \bm{E}\\), and pick an arbitrary constant vector \\(\bm{a}\\) for \\(\bm{W} = \mathcal{G_e}(\bm{r}, \bm{r'}, k) \cdot \bm{a}\\). We shall assume that
+
+USE PRIMED COORDS AND TRANSPOSED DYADIC
+
+$$ \tag{1x.3}
+\begin{aligned}
+	&\int_V \Big(
+		\bm{E} \cdot \left( \nabla \times \nabla \times \mathcal{G_e} \right) \cdot \bm{a}  -
+		\left( \mathcal{G_e} \cdot \bm{a} \right) \cdot \nabla \times \nabla \times \bm{E}
+	\Big) dV'
+	\cr
+	= &\oint_{\delta V} \Big(
+		\left( \mathcal{G_e} \cdot \bm{a} \right) \times \nabla \times \bm{E} -
+		\bm{E} \times \nabla \times \left( \mathcal{G_e} \cdot \bm{a} \right)
+	\Big) \cdot \bm{n} dA'.
+\end{aligned}
+$$
+
+$$ \tag{9.29}
+	\nabla \times \nabla \times \mathcal{G_e}
+	= \left( \mathcal{I} \delta + k^2 \mathcal{G_e} \right).
+$$
+
+$$ \tag{11.9}
+	\nabla \times \nabla \times \bm{E}(\bm{r}, \omega)
+	= \left( \bm{J'} + k^2 \bm{E} \right).
+$$
+
+$$ \tag{1x.4}
+\begin{aligned}
+	&\int_V \Big(
+		\bm{E} \cdot \left( \mathcal{I} \delta + k^2 \mathcal{G_e} \right) \cdot \bm{a} -
+		\left( \mathcal{G_e} \cdot \bm{a} \right) \cdot \left( \bm{J'} + k^2 \bm{E} \right)
+	\Big) dV'
+	\cr
+	= &\oint_{\delta V} \bm{n} \cdot \Big(
+		\left( \mathcal{G_e} \cdot \bm{a} \right) \times \nabla \times \bm{E} -
+		\bm{E} \times \nabla \times \left( \mathcal{G_e} \cdot \bm{a} \right)
+	\Big) dA'.
+\end{aligned}
+$$
+
+scalar triple product
+
+$$ \tag{1x.5}
+\begin{aligned}
+	\bm{a} &\cdot \int_V \mathcal{G_e}^T \cdot \bm{J'} dV'
+	\cr
+	= -\bm{a} &\cdot \oint_{\delta V} \Big(
+		\mathcal{G_e}^T \cdot \left( \bm{n} \times \nabla \times \bm{E} \right) +
+		\left( \nabla' \times \mathcal{G_e}^T \right) \cdot \left( \bm{n} \times \bm{E} \right)
+	\Big) dA'.
+\end{aligned}
+$$
+
+Mishchenko p. 46, Tsang-Kong-Ding p. 62
 
 ...
 
