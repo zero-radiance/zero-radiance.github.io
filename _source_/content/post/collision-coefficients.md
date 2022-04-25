@@ -1818,30 +1818,44 @@ is the *free-space dyadic* Green function \[[7](#references) (ch. 7.9)\], and \\
 
 [^12]: A [dyadic](https://en.wikipedia.org/wiki/Dyadics) is a second rank tensor with a notation borrowed from linear algebra. A second rank [tensor](https://en.wikipedia.org/wiki/Tensor) is a scalar-valued [multilinear](multilinear) function with two slots that accept vector arguments; if only one argument is provided, it becomes a vector-valued linear function. For example, the dyadic expression \\(\bm{E} = \mathcal{L} \cdot \bm{J}\\) could be written in the standard tensor notation as \\(\bm{E} = \mathcal{L}(\text{\textunderscore},\bm{J})\\). We retain the dyadic notation due to its prevalence in the light scattering literarture. A brief introduction to the dyadic analysis is available in \[[7](#references) (ap. 4), [8](#references) (ap. A)\].
 
-Eqn. 9.25 can be cast in a more compact form by using the [principal value](https://en.wikipedia.org/wiki/Cauchy_principal_value) of the free-space dyadic. If we define the *electric dyadic* Green function as
+Since the scalar Green functions only depends on the magnitude of its argument, and because the dyadic Green function only contains second-order derivatives (so any sign reversal is performed twice), it is symmetric under the exchange of \\(\bm{r}\\) and \\(\bm{r'}\\) \[[8](#references) (ap. B)\]:
 
 $$ \tag{9.27}
+\begin{aligned}
+	\mathcal{G}(\bm{r}, \bm{r'}, k)
+	&= \Big( \mathcal{I} + \frac{1}{k^2} \nabla \otimes \nabla \Big) g(\bm{r} - \bm{r'}, k)
+	\cr
+	&= \Big( \mathcal{I} + \frac{1}{k^2} \nabla \otimes \nabla \Big) g(\bm{r'} - \bm{r}, k)
+	\cr
+	&= \Big( \mathcal{I} + \frac{1}{k^2} \nabla' \otimes \nabla' \Big) g(\bm{r'} - \bm{r}, k)
+	= \mathcal{G}(\bm{r'}, \bm{r}, k) = [\mathcal{G}(\bm{r}, \bm{r'}, k)]^T.
+\end{aligned}
+$$
+
+Eqn. 9.25 can be cast in a more compact form by using the [principal value](https://en.wikipedia.org/wiki/Cauchy_principal_value) of the free-space dyadic. If we define the *electric dyadic* Green function as
+
+$$ \tag{9.28}
 	\mathcal{G}\_e(\bm{r}, \bm{r'}, k)
 	= \mathcal{P.V.} \lbrace \mathcal{G}(\bm{r}, \bm{r'}, k) \rbrace - \delta(\bm{r} - \bm{r'}) \frac{\mathcal{L}(\bm{r})}{k^2},
 $$
 
 the expression of the electric field is reduced to
 
-$$ \tag{9.28}
+$$ \tag{9.29}
 	\bm{E}(\bm{r}, \omega)
 	= i \omega \int\_{V} \mathcal{G}\_e \big( \bm{r}, \bm{r'}, k_0(\omega) \big) \cdot \frac{\bm{J}(\bm{r'}, \omega)}{\mu_0^{-1}} dV'.
 $$
 
 Comparison with Eqn. 9.18.1 shows that the electric dyadic is a solution of another differential equation for a point source:
 
-$$ \tag{9.29}
+$$ \tag{9.30}
 	\left( \nabla \times \nabla \times \mathcal{I} - k^2 \right) \mathcal{G}\_e(\bm{r}, \bm{r'}, k)
 	= \mathcal{I} \delta(\bm{r} - \bm{r'}).
 $$
 
 To find the integral form of the magnetic field, we must expand Eqn. 9.21.2 using 9.14.1:
 
-$$ \tag{9.30}
+$$ \tag{9.31}
 	\bm{B}(\bm{r}, \omega)
 	= \nabla \times \int\_{V}
 	g \big( \bm{r} - \bm{r'}, k_0(\omega) \big) \frac{\bm{J}(\bm{r'}, \omega)}{\mu_0^{-1}} dV'.
@@ -1849,27 +1863,27 @@ $$
 
 Using the [curl identity](https://en.wikipedia.org/wiki/Vector_calculus_identities#Curl_2)
 
-$$ \tag{9.31}
+$$ \tag{9.32}
 	\nabla \times (g \bm{J}) = g (\nabla \times \bm{J}) + \nabla g \times \bm{J},
 $$
 
 and noting that \\(\bm{J}\\) does not depend on \\(\bm{r}\\), we obtain a convergent integral (in the principal value sense)
 
-$$ \tag{9.32}
+$$ \tag{9.33}
 	\bm{B}(\bm{r}, \omega)
 	= \int_{V} \mathcal{G}\_m \big( \bm{r}, \bm{r'}, k_0(\omega) \big)  \cdot\frac{\bm{J}(\bm{r'}, \omega)}{\mu_0^{-1}} dV',
 $$
 
 that features the *magnetic dyadic* Green function \[[7](#references) (ch. 7.9)\]
 
-$$ \tag{9.33}
+$$ \tag{9.34}
 	\mathcal{G}\_m(\bm{r}, \bm{r'}, k)
 	= \mathcal{P.V.} \lbrace \nabla g(\bm{r} - \bm{r'}, k) \times \mathcal{I} \rbrace
 $$
 
 that can be expressed using the [matrix form of the cross product](https://en.wikipedia.org/wiki/Cross_product#Conversion_to_matrix_multiplication). You may recognize that
 
-$$ \tag{9.34}
+$$ \tag{9.35}
 	\mathcal{G}\_m(\bm{r}, \bm{r'}, k)
 	= \frac{1}{i \omega} \nabla \times \mathcal{G}\_e(\bm{r}, \bm{r'}, k).
 $$
@@ -2294,14 +2308,14 @@ $$ \tag{11.9}
 	= \bm{J'}(\bm{r}, \omega).
 $$
 
-We have already encountered a mathematically identical problem shown in Eqn. 9.18.1. After matching the constants \\( \big( \bm{J'} = i \omega \bm{J} / \mu_0^{-1} \big) \\), the solution is readily given by Eqn. 9.28:
+We have already encountered a mathematically identical problem shown in Eqn. 9.18.1. After matching the constants \\( \big( \bm{J'} = i \omega \bm{J} / \mu_0^{-1} \big) \\), the solution is readily given by Eqn. 9.29:
 
 $$ \tag{11.10}
 	\bm{E_s}(\bm{r}, \omega)
 	= \int\_{V} \mathcal{G}\_e \big( \bm{r}, \bm{r'}, k_1(\omega) \big) \cdot \bm{J'}(\bm{r'}, \omega) dV'.
 $$
 
-Similarly, the magnetic field is given by Eqn. 9.32:
+Similarly, the magnetic field is given by Eqn. 9.33:
 
 $$ \tag{11.11}
 	\bm{B_s}(\bm{r}, \omega)
@@ -2443,23 +2457,25 @@ In the literature, Eqn. 11.25 is often called the *volume integral equation* \[[
 
 ### Huygens Principle and Extinction Theorem
 
-The volume integral equation expresses the scattered field as the integral over the volume \\(V\\) of the scattering object. If its dimensions are large, and the material -- absorptive, then there is a high likelihood that a significant portion of its interior will make a negligible contribution to the field outside. In this case, it may be advantageous to convert the volume integral into an integral taken over the *bounding surface* \\(\delta V\\) (with the normal \\(\bm{n}\\) pointing outward) by applying the second *vector Green theorem* to the vector fields \\(\bm{V}\\) and \\(\bm{W}\\) \[[17](#references) (ch. 4.14)\]:
+The volume integral equation expresses the scattered field using the integral taken over the volume \\(V\\) of the scattering object. If its dimensions are large, and the material -- absorptive, then there is a high likelihood that a significant portion of its interior will make a negligible contribution to the field outside. Furthermore, determination of the internal field across the entire volume may prove to be challenging. In this case, it may be advantageous to convert the volume integral into an integral taken over the *bounding surface* \\(\delta V\\) (with the outward-pointing normal \\(\bm{n}\\)) by applying the second *vector Green theorem* to the vector fields \\(\bm{P}\\) and \\(\bm{Q}\\) \[[17](#references) (ch. 4.14)\]:
 
 $$ \tag{1x.1}
 \small
 	\int_V \left(
-		\bm{V} \cdot \nabla \times \nabla \times \bm{W} -
-		\bm{W} \cdot \nabla \times \nabla \times \bm{V}
+		\bm{P} \cdot \nabla \times \nabla \times \bm{Q} -
+		\bm{Q} \cdot \nabla \times \nabla \times \bm{P}
 	\right) dV
 	= \oint_{\delta V} \left(
-		\bm{W} \times \nabla \times \bm{V} -
-		\bm{V} \times \nabla \times \bm{W}
+		\bm{Q} \times \nabla \times \bm{P} -
+		\bm{P} \times \nabla \times \bm{Q}
 	\right) \cdot \bm{n} dA.
 $$
 
-In order for the integrals to converge, the surface must be smooth, and the integrands -- continuous. In addition, the volume \\(V\\) is supposed to represent a closed region of space. However, since every such region can be split in two (and the contributions of the adjacent surfaces cancel out), we may likewise merge several closed regions into a single connected region bounded by multiple surfaces.
+In order for the integrals to converge, the surface must be smooth, and the integrands -- continuous. In addition, the volume \\(V\\) is supposed to represent a closed region of space. However, since every such region can be split in two (and the contributions of the adjacent surfaces cancel out), we may also merge several closed regions into a single connected region bounded by multiple surfaces.
 
-We would like the left-hand side of Eqn. 1x.1 to resemble Eqn. 11.25.1. Therefore, we shall assign the total electric field to \\(\bm{V} = \bm{E}(\bm{r'}, \omega)\\), and pick an arbitrary constant vector \\(\bm{a}\\) for \\(\bm{W} = [\mathcal{G}\_e(\bm{r}, \bm{r'}, k(\omega))]^T \cdot \bm{a} = \mathcal{G}\_e(\bm{r'}, \bm{r}, k(\omega)) \cdot \bm{a}\\). This particular choice implies that the differential volume element is \\(dV'\\) rather than \\(dV\\). In addition, we must take derivatives with respect to \\(\bm{r'}\\); this can be achieved by replacing \\(\nabla\\) with \\(\nabla'\\).
+We would like the left-hand side of Eqn. 1x.1 to resemble Eqn. 11.25.1. Therefore, we shall assign the total electric field to \\(\bm{P} = \bm{E}(\bm{r'}, \omega)\\), and pick an arbitrary constant vector \\(\bm{a}\\) for \\(\bm{Q} = [\mathcal{G}\_e(\bm{r}, \bm{r'}, k(\omega))]^T \cdot \bm{a}.
+
+ This particular choice of coordinates (\\(\bm{r'}\\) takes the role of \\(\bm{r}\\)) implies that the differential volume element is \\(dV'\\) rather than \\(dV\\). In addition, we must take derivatives with respect to \\(\bm{r'}\\); this can be achieved by replacing \\(\nabla\\) with \\(\nabla'\\).
 
 Now, recall that the electric dyadic \\(\mathcal{G}\_e\\) has a singularity at \\(\bm{r} = \bm{r'}\\). Therefore, in order to be able to apply the vector Green theorem, we must consider two separate cases: 1) \\(\bm{r} \notin V, \bm{r'} \in V,\\) and 2) \\(\bm{r} \in V, \bm{r'} \notin V.\\)
 
@@ -2486,7 +2502,7 @@ $$ \tag{1x.3}
 	= k^2 \bm{E} + k^2 \left( m^2 - 1 \right) \bm{E}.
 $$
 
-And if we interchange the roles of \\(\bm{r}\\) and \\(\bm{r'}\\) in Eqn. 9.29, we obtain
+And if we interchange the roles of \\(\bm{r}\\) and \\(\bm{r'}\\) in Eqn. 9.30, we obtain
 
 $$ \tag{1x.4}
 	\nabla' \times \nabla' \times \mathcal{G}\_e^T
@@ -2551,7 +2567,7 @@ $$ \tag{1x.2}
 \end{aligned}
 $$
 
-Let us return to Eqn. 1x.1. We shall assign the total electric field to \\(\bm{V} = \bm{E}\\), and pick an arbitrary constant vector \\(\bm{a}\\) for \\(\bm{W} = \mathcal{G}\_e(\bm{r}, \bm{r'}, k) \cdot \bm{a}\\). We shall assume that
+Let us return to Eqn. 1x.1. We shall assign the total electric field to \\(\bm{P} = \bm{E}\\), and pick an arbitrary constant vector \\(\bm{a}\\) for \\(\bm{Q} = \mathcal{G}\_e(\bm{r}, \bm{r'}, k) \cdot \bm{a}\\). We shall assume that
 
 USE PRIMED COORDS AND TRANSPOSED DYADIC
 
@@ -2569,7 +2585,7 @@ $$ \tag{1x.3}
 \end{aligned}
 $$
 
-$$ \tag{9.29}
+$$ \tag{9.30}
 	\nabla \times \nabla \times \mathcal{G}\_e
 	= \left( \mathcal{I} \delta + k^2 \mathcal{G}\_e \right).
 $$
@@ -2690,7 +2706,7 @@ $$
 
 and comparing the result with Eqn. 12.3.
 
-In order to compute the scattered fields according to Eqn. 12.5, we need to evaluate the dyadic Green functions. Let us first consider the electric dyadic defined by Eqn. 9.27. Its matrix representation in the Cartesian coordinate system is
+In order to compute the scattered fields according to Eqn. 12.5, we need to evaluate the dyadic Green functions. Let us first consider the electric dyadic defined by Eqn. 9.28. Its matrix representation in the Cartesian coordinate system is
 
 $$ \tag{12.8}
 \begin{aligned}
@@ -2808,7 +2824,7 @@ $$ \tag{12.16}
 	\varpropto (k R)^{-1}.
 $$
 
-Let us analyze the magnetic dyadic in the same way. Write Eqn. 9.33 in the Cartesian coordinate system:
+Let us analyze the magnetic dyadic in the same way. Write Eqn. 9.34 in the Cartesian coordinate system:
 
 $$ \tag{12.17}
 \begin{aligned}
@@ -2846,7 +2862,7 @@ $$ \tag{12.19}
 \end{aligned}
 $$
 
-Note that, as expected from Eqn. 9.34, the constants of proportionality are different in comparison with the electric dyadic:
+Note that, as expected from Eqn. 9.35, the constants of proportionality are different in comparison with the electric dyadic:
 
 $$ \tag{12.20}
 	k^{-2} \mathcal{G_{mn}}
@@ -3140,7 +3156,7 @@ The volume integral equation can be reduced to a relatively simple expression by
 
 Let us recall the mechanics of scattering. In a dielectric, the incident field (primary wave) drives the dipoles, which in turn act as sources of scattered wavelets (secondary waves) interfering with the incident field according to the superposition principle. We may continue this line of thinking by considering the effect of a dipole as a secondary source on all other dipoles surrounding it, effectively treating the dipole field as the secondary incident field. Repeated application of this iterative approach leads to evaluation of successive orders of scattering one by one. This is the general idea behind the [Born series](https://en.wikipedia.org/wiki/Born_series) \[[6](#references) (ch. 13.1)\].
 
-We can formalize this approach in the following way \[[8](#references) (ch. 4.5)\]. We start with Eqn. 11.12, where we must make sure to include the depolarization dyadic term (cf. Eqn. 9.27) in order for the integral to remain valid even if the integration point is inside the volume \\(V\\):
+We can formalize this approach in the following way \[[8](#references) (ch. 4.5)\]. We start with Eqn. 11.12, where we must make sure to include the depolarization dyadic term (cf. Eqn. 9.28) in order for the integral to remain valid even if the integration point is inside the volume \\(V\\):
 
 $$ \tag{14.1}
 	\bm{E}(\bm{r}, \omega)
@@ -3327,7 +3343,7 @@ $$ \tag{14.22}
 \end{aligned}
 $$
 
-The expression of the electric dyadic (defined in Eqn. 9.27) can be expanded in two different ways. We can express it as a product, and move the derivatives outside the integral, as shown by Eqn. 9.24:
+The expression of the electric dyadic (defined in Eqn. 9.28) can be expanded in two different ways. We can express it as a product, and move the derivatives outside the integral, as shown by Eqn. 9.24:
 
 $$ \tag{14.23}
 \begin{aligned}
@@ -3340,7 +3356,7 @@ $$ \tag{14.23}
 \end{aligned}
 $$
 
-Alternatively, we can decompose it into a sum of the dyadic Green function \\(\mathcal{G}\\) and the depolarization dyadic \\(\mathcal{L}\\) as per by Eqn. 9.27:
+Alternatively, we can decompose it into a sum of the dyadic Green function \\(\mathcal{G}\\) and the depolarization dyadic \\(\mathcal{L}\\) as per by Eqn. 9.28:
 
 $$ \tag{14.24}
 \begin{aligned}
