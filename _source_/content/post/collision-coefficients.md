@@ -253,7 +253,7 @@ In Eqn. 2.1, \\(\mathcal{E}\\) refers to a single type of energy: kinetic, elect
 
 Given our focus on electromagnetic energy, we can partition the total amount of energy into the *field energy* and the *matter energy*. In this context, work done by the field on the matter refers to *absorption*, and has a positive sign. Similarly, *emission* is the work done by the matter on the field, and has a negative sign. We shall not consider emissive materials in the analysis presented below.
 
-Mathematically, the [rate of doing work](https://en.wikipedia.org/wiki/Work_(physics)#Mathematical_calculation) is the dot product of the force and the velocity:
+Mathematically, the [rate of doing work](https://en.wikipedia.org/wiki/Work_(physics)#Mathematical_calculation) is the inner product of the force and the velocity:
 
 $$ \tag{2.2}
 	\frac{\partial \mathcal{W}}{\partial t} = \bm{F} \cdot \bm{v}.
@@ -318,7 +318,7 @@ $$ \tag{2.10}
 	\epsilon_0 \bm{E} \cdot \frac{\partial \bm{E}}{\partial t}.
 $$
 
-Moving the dot products under the derivative sign and grouping the derivatives produces a simpler expression
+Moving the inner products under the derivative sign and grouping the derivatives produces a simpler expression
 
 $$ \tag{2.11}
 	\bm{E} \cdot \bm{J} =
@@ -1265,7 +1265,7 @@ $$ \tag{7.22}
 	\frac{k(\omega)}{\omega} \bm{n} \times \bm{E}(\bm{r}, \bm{n}, \omega) = \bm{B}(\bm{r}, \bm{n}, \omega).
 $$
 
-By taking the dot product of the resulting expression with \\(\bm{n}\\), we obtain an analog of Eqn. 7.18:
+By taking the inner product of the resulting expression with \\(\bm{n}\\), we obtain an analog of Eqn. 7.18:
 
 $$ \tag{7.23}
 	\frac{k(\omega)}{\omega} \bm{n} \cdot \big( \bm{n} \times \bm{E}(\bm{r}, \bm{n}, \omega) \big)
@@ -1783,7 +1783,7 @@ $$
 
 where \\(\mathcal{I}\\) is the *identity operator* that performs multiplication by 1.
 
-In the component representation of Eqn. 9.22, the gradient operator is a column vector, while the divergence operator is as a row vector. When combined in this particular order, they form a *dyadic product* (or [tensor product](https://en.wikipedia.org/wiki/Tensor_product)) that can be represented by a 3x3 matrix:
+In the component representation of Eqn. 9.22, the gradient operator is a column vector, while the divergence operator is as a row vector. When combined in this particular order, they form an [outer product](https://en.wikipedia.org/wiki/Outer_product) that can be represented by a 3x3 matrix:
 
 $$ \tag{9.23}
 	\bm{E}(\bm{r}, \omega) =
