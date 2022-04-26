@@ -1922,6 +1922,15 @@ $$ \tag{9.38}
 \end{aligned}
 $$
 
+In summary,
+
+$$ \tag{9.3x}
+	\left[ \mathcal{G}\_e(\bm{r}, \bm{r'}, k) \right]^T
+	= \mathcal{G}\_e(\bm{r}, \bm{r'}, k)
+	= \mathcal{G}\_e(\bm{r'}, \bm{r}, k)
+	= \left[ \mathcal{G}\_e(\bm{r'}, \bm{r}, k) \right]^T.
+$$
+
 Ignoring the multiplicative constant \\(1/(4 \pi k^2)\\), the matrix elements or Eqn. 9.36 have the form
 
 $$ \tag{9.39}
@@ -2653,11 +2662,11 @@ $$
 
 In order for the integrals to converge, the surface must be smooth, and the integrands -- continuous. In addition, the volume \\(V\\) is supposed to represent a closed region of space. However, since every such region can be split in two (and the contributions of the adjacent surfaces cancel out), we may also merge several closed regions into a single connected region bounded by multiple surfaces.
 
-We would like the left-hand side of Eqn. 1x.1 to resemble Eqn. 11.25.1. Therefore, we shall assign the total electric field to \\(\bm{P} = \bm{E}(\bm{r'}, \omega)\\), and pick an arbitrary constant vector \\(\bm{a}\\) for \\(\bm{Q} = [\mathcal{G}\_e(\bm{r}, \bm{r'}, k(\omega))]^T \cdot \bm{a}.
+We would like the left-hand side of Eqn. 1x.1 to resemble Eqn. 11.25.1; comparison reveals that the roles of \\(\bm{r}\\) and \\(\bm{r'}\\) are reversed. In particular, this implies that we must fix \\(\bm{r}\\) as the observation point, and evaluate the integral with the differential volume element \\(dV' = dV(\bm{r'})\\). In addition, we must take derivatives with respect to \\(\bm{r'}\\); this can be achieved by replacing \\(\nabla\\) with \\(\nabla'\\).
 
- This particular choice of coordinates (\\(\bm{r'}\\) takes the role of \\(\bm{r}\\)) implies that the differential volume element is \\(dV'\\) rather than \\(dV\\). In addition, we must take derivatives with respect to \\(\bm{r'}\\); this can be achieved by replacing \\(\nabla\\) with \\(\nabla'\\).
+The suitable choice of \\(\bm{P}\\) and \\(\bm{Q}\\) is not obvious. Motivated by Eqn. 9.29 and 11.9, we shall assign the total electric field to \\(\bm{P} = \bm{E}(\bm{r'}, \omega)\\), and pick an arbitrary constant vector \\(\bm{a}\\) for \\(\bm{Q} = \mathcal{G}\_e(\bm{r'}, \bm{r}, k(\omega)) \cdot \bm{a}\\). At this point, it is useful to recall Eqn. 9.3x that says that the electric dyadic is fully symmetric: it can be transposed, and its arguments -- interchanged, all without affecting its numerical value.
 
-Now, recall that the electric dyadic \\(\mathcal{G}\_e\\) has a singularity at \\(\bm{r} = \bm{r'}\\). Therefore, in order to be able to apply the vector Green theorem, we must consider two separate cases: 1) \\(\bm{r} \notin V, \bm{r'} \in V,\\) and 2) \\(\bm{r} \in V, \bm{r'} \notin V.\\)
+Another important feature of the electric dyadic \\(\mathcal{G}\_e\\) is its singularity at \\(\bm{r} = \bm{r'}\\). Therefore, in order to satisfy the requirements of the vector Green theorem, we must consider two separate cases: 1) \\(\bm{r} \notin V, \bm{r'} \in V,\\) and 2) \\(\bm{r} \in V, \bm{r'} \notin V.\\)
 
 Let us consider the first case, when the observation point \\(\bm{r}\\) is located outside the region occupied by the scattering object:
 
