@@ -1818,44 +1818,31 @@ is the *free-space dyadic* Green function \[[7](#references) (ch. 7.9)\], and \\
 
 [^12]: A [dyadic](https://en.wikipedia.org/wiki/Dyadics) is a second rank tensor with a notation borrowed from linear algebra. A second rank [tensor](https://en.wikipedia.org/wiki/Tensor) is a scalar-valued [multilinear](multilinear) function with two slots that accept vector arguments; if only one argument is provided, it becomes a vector-valued linear function. For example, the dyadic expression \\(\bm{E} = \mathcal{L} \cdot \bm{J}\\) could be written in the standard tensor notation as \\(\bm{E} = \mathcal{L}(\text{\textunderscore},\bm{J})\\). We retain the dyadic notation due to its prevalence in the light scattering literarture. A brief introduction to the dyadic analysis is available in \[[7](#references) (ap. 4), [8](#references) (ap. A)\].
 
-Since the scalar Green functions only depends on the magnitude of its argument, and because the dyadic Green function only contains second-order derivatives (so any sign reversal is performed twice), it is symmetric under the exchange of \\(\bm{r}\\) and \\(\bm{r'}\\) \[[8](#references) (ap. B)\]:
-
-$$ \tag{9.27}
-\begin{aligned}
-	\mathcal{G}(\bm{r}, \bm{r'}, k)
-	&= \Big( \mathcal{I} + \frac{1}{k^2} \nabla \otimes \nabla \Big) g(\bm{r} - \bm{r'}, k)
-	\cr
-	&= \Big( \mathcal{I} + \frac{1}{k^2} \nabla \otimes \nabla \Big) g(\bm{r'} - \bm{r}, k)
-	\cr
-	&= \Big( \mathcal{I} + \frac{1}{k^2} \nabla' \otimes \nabla' \Big) g(\bm{r'} - \bm{r}, k)
-	= \mathcal{G}(\bm{r'}, \bm{r}, k) = [\mathcal{G}(\bm{r}, \bm{r'}, k)]^T.
-\end{aligned}
-$$
-
 Eqn. 9.25 can be cast in a more compact form by using the [principal value](https://en.wikipedia.org/wiki/Cauchy_principal_value) of the free-space dyadic. If we define the *electric dyadic* Green function as
 
-$$ \tag{9.28}
+$$ \tag{9.27}
 	\mathcal{G}\_e(\bm{r}, \bm{r'}, k)
-	= \mathcal{P.V.} \lbrace \mathcal{G}(\bm{r}, \bm{r'}, k) \rbrace - \delta(\bm{r} - \bm{r'}) \frac{\mathcal{L}(\bm{r})}{k^2},
+	= \mathcal{P.V.} \lbrace \mathcal{G}(\bm{r}, \bm{r'}, k) \rbrace
+	- \frac{\delta(\bm{r} - \bm{r'})}{k^2} \mathcal{L}(\bm{r}),
 $$
 
 the expression of the electric field is reduced to
 
-$$ \tag{9.29}
+$$ \tag{9.28}
 	\bm{E}(\bm{r}, \omega)
 	= i \omega \int\_{V} \mathcal{G}\_e \big( \bm{r}, \bm{r'}, k_0(\omega) \big) \cdot \frac{\bm{J}(\bm{r'}, \omega)}{\mu_0^{-1}} dV'.
 $$
 
 Comparison with Eqn. 9.18.1 shows that the electric dyadic is a solution of another differential equation for a point source:
 
-$$ \tag{9.30}
+$$ \tag{9.29}
 	\left( \nabla \times \nabla \times \mathcal{I} - k^2 \right) \mathcal{G}\_e(\bm{r}, \bm{r'}, k)
 	= \mathcal{I} \delta(\bm{r} - \bm{r'}).
 $$
 
 To find the integral form of the magnetic field, we must expand Eqn. 9.21.2 using 9.14.1:
 
-$$ \tag{9.31}
+$$ \tag{9.30}
 	\bm{B}(\bm{r}, \omega)
 	= \nabla \times \int\_{V}
 	g \big( \bm{r} - \bm{r'}, k_0(\omega) \big) \frac{\bm{J}(\bm{r'}, \omega)}{\mu_0^{-1}} dV'.
@@ -1863,13 +1850,13 @@ $$
 
 Using the [curl identity](https://en.wikipedia.org/wiki/Vector_calculus_identities#Curl_2)
 
-$$ \tag{9.32}
+$$ \tag{9.31}
 	\nabla \times (g \bm{J}) = g (\nabla \times \bm{J}) + \nabla g \times \bm{J},
 $$
 
 and noting that \\(\bm{J}\\) does not depend on \\(\bm{r}\\), we obtain a convergent integral (in the principal value sense)
 
-$$ \tag{9.33}
+$$ \tag{9.32}
 	\bm{B}(\bm{r}, \omega)
 	= \int_{V} \mathcal{G}\_m \big( \bm{r}, \bm{r'}, k_0(\omega) \big)  \cdot\frac{\bm{J}(\bm{r'}, \omega)}{\mu_0^{-1}} dV',
 $$
@@ -1889,6 +1876,199 @@ $$ \tag{9.35}
 $$
 
 Therefore, our results are consistent with Eqn. 3.12.
+
+Green's dyadics take on a simple form when expressed in the Cartesian coordinate system. Let us first consider the electric dyadic defined by Eqn. 9.26-9.27:
+
+$$ \tag{9.36}
+\begin{aligned}
+	\mathcal{G}\_e(\bm{r}, \bm{r'}, k)
+	= \mathcal{I} g + \frac{1}{k^2}
+	\begin{bmatrix}
+		\frac{\partial^2 g}{\partial x^2} & \frac{\partial^2 g}{\partial x \partial y} & \frac{\partial^2 g}{\partial x \partial z} \cr
+		\frac{\partial^2 g}{\partial y \partial x} & \frac{\partial^2 g}{\partial y^2} & \frac{\partial^2 g}{\partial y \partial z} \cr
+		\frac{\partial^2 g}{\partial z \partial x} & \frac{\partial^2 g}{\partial z \partial y} & \frac{\partial^2 g}{\partial z^2} \cr
+	\end{bmatrix}
+	- \frac{\delta}{k^2} \mathcal{L},
+\end{aligned}
+$$
+
+where the scalar Green function \\(g\\) is given by Eqn. 9.10.
+
+Because the electric dyadic is always evaluated in the principal value sense, the scalar Green function and its partial derivatives are continuous, which means that the order of partial differentiation makes no difference. Furthermore, the depolarization dyadic is symmetric: \\(\mathcal{L} = \mathcal{L}^T\\) \[[7](#references) (ch. 3.9)\]. Consequently, the entire electric dyadic is symmetric as well: \\(\mathcal{G}\_e = \mathcal{G}\_e^T\\).
+
+Since the scalar Green function only depends on the magnitude of its argument, the function itself is even, and its first derivative is odd:
+
+$$ \tag{9.37}
+\begin{aligned}
+	g(\bm{r} - \bm{r'}, k) &= g(\bm{r'} - \bm{r}, k),
+	\cr
+	\nabla g(\bm{r} - \bm{r'}, k) &= -\nabla g(\bm{r'} - \bm{r}, k) = \nabla' g(\bm{r'} - \bm{r}, k),
+\end{aligned}
+$$
+
+where \\(\nabla'\\) denotes the gradient with respect to \\(\bm{r'}\\).
+
+The second-order derivatives of Eqn. 9.36 perform the sign exchange twice. If we also take into account the fact that the depolarization dyadic only contributes when \\(\bm{r} = \bm{r'}\\), we can see that the electric dyadic is invariant under the exchange of its arguments \[[8](#references) (ap. B)\]:
+
+$$ \tag{9.38}
+\begin{aligned}
+	\mathcal{G}\_e(\bm{r}, \bm{r'}, k)
+	&= \mathcal{P.V.} \Big\lbrace \Big( \mathcal{I} + \frac{1}{k^2} \nabla \otimes \nabla \Big) g(\bm{r} - \bm{r'}, k) \Big\rbrace - \delta(\bm{r} - \bm{r'}) \frac{\mathcal{L}(\bm{r})}{k^2}
+	\cr
+	&= \mathcal{P.V.} \Big\lbrace \Big( \mathcal{I} + \frac{1}{k^2} \nabla \otimes \nabla \Big) g(\bm{r'} - \bm{r}, k) \Big\rbrace - \delta(\bm{r'} - \bm{r}) \frac{\mathcal{L}(\bm{r'})}{k^2}
+	\cr
+	&= \mathcal{P.V.} \Big\lbrace \Big( \mathcal{I} + \frac{1}{k^2} \nabla' \otimes \nabla' \Big) g(\bm{r'} - \bm{r}, k) \Big\rbrace - \delta(\bm{r'} - \bm{r}) \frac{\mathcal{L}(\bm{r'})}{k^2}
+	= \mathcal{G}\_e(\bm{r'}, \bm{r}, k).
+\end{aligned}
+$$
+
+Ignoring the multiplicative constant \\(1/(4 \pi k^2)\\), the matrix elements or Eqn. 9.36 have the form
+
+$$ \tag{9.39}
+	\frac{\partial^2}{\partial \\_ \partial \\_ } \Bigg( \frac{e^{i k |\bm{r} - \bm{r'}|}}{|\bm{r} - \bm{r'}|} \Bigg),
+$$
+
+where we may substitute \\(x\\), \\(y\\), or \\(z\\) into the blanks.
+
+The process of differentiation is straightforward: we use the identity
+
+$$ \tag{9.40}
+	\frac{\partial}{\partial x} |\bm{r} - \bm{r'}|^{n}
+	= \frac{\partial}{\partial x} \big( (\bm{r} - \bm{r'}) \cdot (\bm{r} - \bm{r'}) \big)^{n/2}
+	= n \frac{\bm{r} - \bm{r'}}{|\bm{r} - \bm{r'}|^{2-n}} \cdot \frac{\partial}{\partial x} (\bm{r} - \bm{r'})
+$$
+
+and repeatedly apply the [product rule](https://en.wikipedia.org/wiki/Product_rule). Skipping the details of the calculation, and using the shorthand notation \\(\bm{R} = \bm{r} - \bm{r'}, R = |\bm{R}|\\), a typical first derivative is
+
+$$ \tag{9.41}
+\begin{aligned}
+	\frac{\partial}{\partial x} \Bigg( \frac{e^{i k |\bm{r} - \bm{r'}|}}{|\bm{r} - \bm{r'}|} \Bigg)
+	= -e^{i k R} \frac{R_x}{R}
+		\bigg(
+			  \frac{1}{R^2}
+			- \frac{i k}{R}
+		\bigg),
+\end{aligned}
+$$
+
+the off-diagonal elements of the matrix have the form
+
+$$ \tag{9.42}
+\begin{aligned}
+	\frac{\partial^2}{\partial y \partial x} \Bigg( \frac{e^{i k |\bm{r} - \bm{r'}|}}{|\bm{r} - \bm{r'}|} \Bigg)
+	= e^{i k R} \frac{R_x R_y}{R^2}
+		\bigg(
+			  \frac{3}{R^3}
+			- \frac{3 i k}{R^2}
+			- \frac{k^2}{R}
+		\bigg),
+\end{aligned}
+$$
+
+while the elements on the main diagonal are equivalent to
+
+$$ \tag{9.43}
+\begin{aligned}
+	\frac{\partial^2}{\partial x^2} \Bigg( \frac{e^{i k |\bm{r} - \bm{r'}|}}{|\bm{r} - \bm{r'}|} \Bigg)
+	= e^{i k R} \frac{R_x^2}{R^2}
+		\bigg(
+			  \frac{3}{R^3}
+			- \frac{3 i k}{R^2}
+			- \frac{k^2}{R}
+		\bigg)
+	- e^{i k R}
+		\bigg(
+			  \frac{1}{R^3}
+			- \frac{i k}{R^2}
+		\bigg).
+\end{aligned}
+$$
+
+Take a look at the individual factors in Eqn. 9.41-9.43: those outside the brackets oscillate between 0 and 1, while the terms  inside greatly depend on the distance between the observation point \\(\bm{r}\\) and the source \\(\bm{r'}\\). This suggests that we may divide the entire space into zones based on the proximity to the observation point. If we are interested in the value of the field located near the source (the so-called *near field*), we say that the observation point belongs to the [near zone](https://en.wikipedia.org/wiki/Near_and_far_field). Similarly, far-away points (and the *far field*) are said to be located in the [far zone](https://en.wikipedia.org/wiki/Near_and_far_field) (also known as the *radiation zone*). Between them is a region called the *transition zone*.
+
+If we fix a value of \\(k\\), we may decompose the electric dyadic into the near-, transition-, and far-field terms:
+
+$$ \tag{9.44}
+	\mathcal{G}\_e
+	= \mathcal{G_{en}}
+	+ \mathcal{G_{et}}
+	+ \mathcal{G_{ef}}
+	- \frac{\delta}{k^2} \mathcal{L},
+$$
+
+such that
+
+$$ \tag{9.45}
+\begin{aligned}
+	& \mathcal{G_{en}}(\bm{R}, k)
+	= -\frac{g(\bm{R}, k) }{k^2 R^2} \bigg(\mathcal{I} - 3 \frac{\bm{R} \otimes \bm{R}}{\bm{R} \cdot \bm{R}} \bigg), \cr
+	& \mathcal{G_{et}}(\bm{R}, k)
+	= i \frac{g(\bm{R}, k) }{k R} \bigg(\mathcal{I} - 3 \frac{\bm{R} \otimes \bm{R}}{\bm{R} \cdot \bm{R}} \bigg), \cr
+	& \mathcal{G_{ef}}(\bm{R}, k)
+	= g(\bm{R}, k) \bigg( \mathcal{I} - \frac{\bm{R} \otimes \bm{R}}{\bm{R} \cdot \bm{R}} \bigg),
+\end{aligned}
+$$
+
+with the scalar Green function containing an additional \\(R^{-1}\\) factor, so that
+
+$$ \tag{9.46}
+	k^{-1} \mathcal{G_{en}}
+	\varpropto (k R)^{-3},
+	\quad
+	k^{-1} \mathcal{G_{et}}
+	\varpropto (k R)^{-2},
+	\quad
+	k^{-1} \mathcal{G_{ef}}
+	\varpropto (k R)^{-1}.
+$$
+
+Let us analyze the magnetic dyadic in the same way. Write Eqn. 9.34 in the Cartesian coordinate system:
+
+$$ \tag{9.47}
+\begin{aligned}
+	\mathcal{G}\_m(\bm{r}, \bm{r'}, k)
+	= \nabla g(\bm{r} - \bm{r'}, k) \times \mathcal{I}
+	= \begin{bmatrix}
+		\partial g / \partial x \cr
+		\partial g / \partial y \cr
+		\partial g / \partial z \cr
+	\end{bmatrix} \times \mathcal{I}
+	= \begin{bmatrix}
+		0 & -\frac{\partial g}{\partial z} & \frac{\partial g}{\partial y} \cr
+		\frac{\partial g}{\partial z} & 0 & -\frac{\partial g}{\partial x} \cr
+		-\frac{\partial g}{\partial y} & \frac{\partial g}{\partial x} & 0 \cr
+	\end{bmatrix}.
+\end{aligned}
+$$
+
+Clearly, the matrix is anti-symmetric: \\(\mathcal{G}\_m = -\mathcal{G}\_m^T\\). Furthermore, because the derivatives are only first-order, exchange of the arguments leads to \\(\mathcal{G}\_m(\bm{r}, \bm{r'}, k) = -\mathcal{G}\_m(\bm{r'}, \bm{r}, k)\\).
+
+According to the expression of the first derivative given by Eqn. 9.41, the dyadic is composed of two terms:
+
+$$ \tag{9.48}
+	\mathcal{G}\_m = \mathcal{G_{mn}} + \mathcal{G_{mf}},
+$$
+
+such that
+
+$$ \tag{9.49}
+\begin{aligned}
+	& \mathcal{G_{mn}}(\bm{R}, k)
+	= -\frac{g(\bm{R}, k)}{R} \bigg(\frac{\bm{R} \times \mathcal{I}}{R} \bigg), \cr
+	& \mathcal{G_{mf}}(\bm{R}, k)
+	= i k g(\bm{R}, k) \bigg(\frac{\bm{R} \times \mathcal{I}}{R} \bigg).
+\end{aligned}
+$$
+
+Note that, as expected from Eqn. 9.35, the constants of proportionality are different in comparison with the electric dyadic:
+
+$$ \tag{9.50}
+	k^{-2} \mathcal{G_{mn}}
+	\varpropto (k R)^{-2},
+	\quad
+	k^{-2} \mathcal{G_{mf}}
+	\varpropto (k R)^{-1}.
+$$
 
 ### Electric and Magnetic Polarization
 
@@ -2308,14 +2488,14 @@ $$ \tag{11.9}
 	= \bm{J'}(\bm{r}, \omega).
 $$
 
-We have already encountered a mathematically identical problem shown in Eqn. 9.18.1. After matching the constants \\( \big( \bm{J'} = i \omega \bm{J} / \mu_0^{-1} \big) \\), the solution is readily given by Eqn. 9.29:
+We have already encountered a mathematically identical problem shown in Eqn. 9.18.1. After matching the constants \\( \big( \bm{J'} = i \omega \bm{J} / \mu_0^{-1} \big) \\), the solution is readily given by Eqn. 9.28:
 
 $$ \tag{11.10}
 	\bm{E_s}(\bm{r}, \omega)
 	= \int\_{V} \mathcal{G}\_e \big( \bm{r}, \bm{r'}, k_1(\omega) \big) \cdot \bm{J'}(\bm{r'}, \omega) dV'.
 $$
 
-Similarly, the magnetic field is given by Eqn. 9.33:
+Similarly, the magnetic field is given by Eqn. 9.32:
 
 $$ \tag{11.11}
 	\bm{B_s}(\bm{r}, \omega)
@@ -2502,7 +2682,7 @@ $$ \tag{1x.3}
 	= k^2 \bm{E} + k^2 \left( m^2 - 1 \right) \bm{E}.
 $$
 
-And if we interchange the roles of \\(\bm{r}\\) and \\(\bm{r'}\\) in Eqn. 9.30, we obtain
+And if we interchange the roles of \\(\bm{r}\\) and \\(\bm{r'}\\) in Eqn. 9.29, we obtain
 
 $$ \tag{1x.4}
 	\nabla' \times \nabla' \times \mathcal{G}\_e^T
@@ -2585,7 +2765,7 @@ $$ \tag{1x.3}
 \end{aligned}
 $$
 
-$$ \tag{9.30}
+$$ \tag{9.29}
 	\nabla \times \nabla \times \mathcal{G}\_e
 	= \left( \mathcal{I} \delta + k^2 \mathcal{G}\_e \right).
 $$
@@ -2706,177 +2886,11 @@ $$
 
 and comparing the result with Eqn. 12.3.
 
-In order to compute the scattered fields according to Eqn. 12.5, we need to evaluate the dyadic Green functions. Let us first consider the electric dyadic defined by Eqn. 9.28. Its matrix representation in the Cartesian coordinate system is
-
-$$ \tag{12.8}
-\begin{aligned}
-	\mathcal{G}\_e(\bm{r}, \bm{r'}, k)
-	= \Big( \mathcal{I} + \frac{1}{k^2} \nabla \otimes \nabla \Big) g(\bm{r} - \bm{r'}, k)
-	= \mathcal{I} g + \frac{1}{k^2}
-	\begin{bmatrix}
-		\frac{\partial^2 g}{\partial x^2} & \frac{\partial^2 g}{\partial x \partial y} & \frac{\partial^2 g}{\partial x \partial z} \cr
-		\frac{\partial^2 g}{\partial y \partial x} & \frac{\partial^2 g}{\partial y^2} & \frac{\partial^2 g}{\partial y \partial z} \cr
-		\frac{\partial^2 g}{\partial z \partial x} & \frac{\partial^2 g}{\partial z \partial y} & \frac{\partial^2 g}{\partial z^2} \cr
-	\end{bmatrix},
-\end{aligned}
-$$
-
-where the scalar Green function \\(g\\) is given by Eqn. 9.10. Note that we have *suppressed the depolarization dyadic* by assuming that \\(\bm{r}\\) is located in a source-free region.
-
-Ignoring the multiplicative constant \\(1/(4 \pi k^2)\\), the matrix elements have the form
-
-$$ \tag{12.9}
-	\frac{\partial^2}{\partial \\_ \partial \\_ } \Bigg( \frac{e^{i k |\bm{r} - \bm{r'}|}}{|\bm{r} - \bm{r'}|} \Bigg),
-$$
-
-where we may substitute \\(x\\), \\(y\\), or \\(z\\) into the blanks.
-
-Under the previous assumption that \\(\bm{r} \neq \bm{r'}\\), the scalar Green function and its partial derivatives are continuous, which means the order of partial differentiation makes no difference. Consequently, the matrix of Eqn. 12.8 is [symmetric](https://en.wikipedia.org/wiki/Symmetric_matrix), such that \\(\mathcal{G}\_e = \mathcal{G}\_e^T\\).
-
-The process of differentiation is straightforward: we use the identity
-
-$$ \tag{12.10}
-	\frac{\partial}{\partial x} |\bm{r} - \bm{r'}|^{n}
-	= \frac{\partial}{\partial x} \big( (\bm{r} - \bm{r'}) \cdot (\bm{r} - \bm{r'}) \big)^{n/2}
-	= n \frac{\bm{r} - \bm{r'}}{|\bm{r} - \bm{r'}|^{2-n}} \cdot \frac{\partial}{\partial x} (\bm{r} - \bm{r'})
-$$
-
-and repeatedly apply the [product rule](https://en.wikipedia.org/wiki/Product_rule). Skipping the details of the calculation, and using the shorthand notation \\(\bm{R} = \bm{r} - \bm{r'}, R = |\bm{R}|\\), a typical first derivative is
-
-$$ \tag{12.11}
-\begin{aligned}
-	\frac{\partial}{\partial x} \Bigg( \frac{e^{i k |\bm{r} - \bm{r'}|}}{|\bm{r} - \bm{r'}|} \Bigg)
-	= -e^{i k R} \frac{R_x}{R}
-		\bigg(
-			  \frac{1}{R^2}
-			- \frac{i k}{R}
-		\bigg),
-\end{aligned}
-$$
-
-the off-diagonal elements of the matrix have the form
-
-$$ \tag{12.12}
-\begin{aligned}
-	\frac{\partial^2}{\partial y \partial x} \Bigg( \frac{e^{i k |\bm{r} - \bm{r'}|}}{|\bm{r} - \bm{r'}|} \Bigg)
-	= e^{i k R} \frac{R_x R_y}{R^2}
-		\bigg(
-			  \frac{3}{R^3}
-			- \frac{3 i k}{R^2}
-			- \frac{k^2}{R}
-		\bigg),
-\end{aligned}
-$$
-
-while the elements on the main diagonal are equivalent to
-
-$$ \tag{12.13}
-\begin{aligned}
-	\frac{\partial^2}{\partial x^2} \Bigg( \frac{e^{i k |\bm{r} - \bm{r'}|}}{|\bm{r} - \bm{r'}|} \Bigg)
-	= e^{i k R} \frac{R_x^2}{R^2}
-		\bigg(
-			  \frac{3}{R^3}
-			- \frac{3 i k}{R^2}
-			- \frac{k^2}{R}
-		\bigg)
-	- e^{i k R}
-		\bigg(
-			  \frac{1}{R^3}
-			- \frac{i k}{R^2}
-		\bigg).
-\end{aligned}
-$$
-
-Take a look at the individual factors in Eqn. 12.11-12.13: those outside the brackets oscillate between 0 and 1, while the terms  inside greatly depend on the distance between the observation point \\(\bm{r}\\) and the source \\(\bm{r'}\\). This suggests that we may divide the entire space into zones based on the proximity to the observation point. If we are interested in the value of the field located near the source (the so-called *near field*), we say that the observation point belongs to the [near zone](https://en.wikipedia.org/wiki/Near_and_far_field). Similarly, far-away points (and the *far field*) are said to be located in the [far zone](https://en.wikipedia.org/wiki/Near_and_far_field) (also known as the *radiation zone*). Between them is a region called the *transition zone*.
-
-If we fix a value of \\(k\\), we may decompose the electric dyadic into the near-, transition-, and far-field terms:
-
-$$ \tag{12.14}
-	\mathcal{G}\_e
-	= \mathcal{G_{en}}
-	+ \mathcal{G_{et}}
-	+ \mathcal{G_{ef}},
-$$
-
-such that
-
-$$ \tag{12.15}
-\begin{aligned}
-	& \mathcal{G_{en}}(\bm{R}, k)
-	= -\frac{g(\bm{R}, k) }{k^2 R^2} \bigg(\mathcal{I} - 3 \frac{\bm{R} \otimes \bm{R}}{\bm{R} \cdot \bm{R}} \bigg), \cr
-	& \mathcal{G_{et}}(\bm{R}, k)
-	= i \frac{g(\bm{R}, k) }{k R} \bigg(\mathcal{I} - 3 \frac{\bm{R} \otimes \bm{R}}{\bm{R} \cdot \bm{R}} \bigg), \cr
-	& \mathcal{G_{ef}}(\bm{R}, k)
-	= g(\bm{R}, k) \bigg( \mathcal{I} - \frac{\bm{R} \otimes \bm{R}}{\bm{R} \cdot \bm{R}} \bigg),
-\end{aligned}
-$$
-
-with the scalar Green function containing an additional \\(R^{-1}\\) factor, so that
-
-$$ \tag{12.16}
-	k^{-1} \mathcal{G_{en}}
-	\varpropto (k R)^{-3},
-	\quad
-	k^{-1} \mathcal{G_{et}}
-	\varpropto (k R)^{-2},
-	\quad
-	k^{-1} \mathcal{G_{ef}}
-	\varpropto (k R)^{-1}.
-$$
-
-Let us analyze the magnetic dyadic in the same way. Write Eqn. 9.34 in the Cartesian coordinate system:
-
-$$ \tag{12.17}
-\begin{aligned}
-	\mathcal{G}\_m(\bm{r}, \bm{r'}, k)
-	= \nabla g(\bm{r} - \bm{r'}, k) \times \mathcal{I}
-	= \begin{bmatrix}
-		\partial g / \partial x \cr
-		\partial g / \partial y \cr
-		\partial g / \partial z \cr
-	\end{bmatrix} \times \mathcal{I}
-	= \begin{bmatrix}
-		0 & -\frac{\partial g}{\partial z} & \frac{\partial g}{\partial y} \cr
-		\frac{\partial g}{\partial z} & 0 & -\frac{\partial g}{\partial x} \cr
-		-\frac{\partial g}{\partial y} & \frac{\partial g}{\partial x} & 0 \cr
-	\end{bmatrix}.
-\end{aligned}
-$$
-
-Clearly, the matrix is anti-symmetric: \\(\mathcal{G}\_m = -\mathcal{G}\_m^T\\).
-
-According to the expression of the first derivative given by Eqn. 12.11, the dyadic is composed of two terms:
-
-$$ \tag{12.18}
-	\mathcal{G}\_m = \mathcal{G_{mn}} + \mathcal{G_{mf}},
-$$
-
-such that
-
-$$ \tag{12.19}
-\begin{aligned}
-	& \mathcal{G_{mn}}(\bm{R}, k)
-	= -\frac{g(\bm{R}, k)}{R} \bigg(\frac{\bm{R} \times \mathcal{I}}{R} \bigg), \cr
-	& \mathcal{G_{mf}}(\bm{R}, k)
-	= i k g(\bm{R}, k) \bigg(\frac{\bm{R} \times \mathcal{I}}{R} \bigg).
-\end{aligned}
-$$
-
-Note that, as expected from Eqn. 9.35, the constants of proportionality are different in comparison with the electric dyadic:
-
-$$ \tag{12.20}
-	k^{-2} \mathcal{G_{mn}}
-	\varpropto (k R)^{-2},
-	\quad
-	k^{-2} \mathcal{G_{mf}}
-	\varpropto (k R)^{-1}.
-$$
-
 ### Spherical Waves
 
 Let us focus on the case when the observation point is far away from the source. It is important for two reasons: first, if we are dealing with small particles, a typical observation falls into this category, and second, because this assumption greatly simplifies the behavior of the scattered wave, as we shall soon demonstrate.
 
-The idea behind the far-field approximation is simple: we discard certain terms in Eqn. 12.14 and 12.18. In order to do that, we must consider their magnitudes relative to each other:
+The idea behind the far-field approximation is simple: we discard certain terms in Eqn. 9.44 and 9.48. In order to do that, we must consider their magnitudes relative to each other:
 
 $$ \tag{13.1}
 	\mathcal{G}\_e
@@ -2885,7 +2899,7 @@ $$ \tag{13.1}
 	= \bigg( 1 + \frac{\mathcal{G_{mn}}}{\mathcal{G_{mf}}} \bigg) \mathcal{G_{mf}}.
 $$
 
-According to Eqn. 12.15, for any fixed direction, the relative difference between the three electric dyadics primarily arises from the leading scalar terms. Moreover, the two magnetic dyadics given by Eqn. 12.19 exhibit identical angular dependence. Following this logic, we use Eqn. 12.16 and 12.20 to approximate
+According to Eqn. 9.45, for any fixed direction, the relative difference between the three electric dyadics primarily arises from the leading scalar terms. Moreover, the two magnetic dyadics given by Eqn. 9.49 exhibit identical angular dependence. Following this logic, we use Eqn. 9.46 and 9.50 to approximate
 
 $$ \tag{13.2}
 	\mathcal{G}\_e
@@ -3156,7 +3170,7 @@ The volume integral equation can be reduced to a relatively simple expression by
 
 Let us recall the mechanics of scattering. In a dielectric, the incident field (primary wave) drives the dipoles, which in turn act as sources of scattered wavelets (secondary waves) interfering with the incident field according to the superposition principle. We may continue this line of thinking by considering the effect of a dipole as a secondary source on all other dipoles surrounding it, effectively treating the dipole field as the secondary incident field. Repeated application of this iterative approach leads to evaluation of successive orders of scattering one by one. This is the general idea behind the [Born series](https://en.wikipedia.org/wiki/Born_series) \[[6](#references) (ch. 13.1)\].
 
-We can formalize this approach in the following way \[[8](#references) (ch. 4.5)\]. We start with Eqn. 11.12, where we must make sure to include the depolarization dyadic term (cf. Eqn. 9.28) in order for the integral to remain valid even if the integration point is inside the volume \\(V\\):
+We can formalize this approach in the following way \[[8](#references) (ch. 4.5)\]. We start with Eqn. 11.12, where we must make sure to include the depolarization dyadic term (cf. Eqn. 9.27) in order for the integral to remain valid even if the integration point is inside the volume \\(V\\):
 
 $$ \tag{14.1}
 	\bm{E}(\bm{r}, \omega)
@@ -3343,7 +3357,7 @@ $$ \tag{14.22}
 \end{aligned}
 $$
 
-The expression of the electric dyadic (defined in Eqn. 9.28) can be expanded in two different ways. We can express it as a product, and move the derivatives outside the integral, as shown by Eqn. 9.24:
+The expression of the electric dyadic (defined in Eqn. 9.27) can be expanded in two different ways. We can express it as a product, and move the derivatives outside the integral, as shown by Eqn. 9.24:
 
 $$ \tag{14.23}
 \begin{aligned}
@@ -3356,7 +3370,7 @@ $$ \tag{14.23}
 \end{aligned}
 $$
 
-Alternatively, we can decompose it into a sum of the dyadic Green function \\(\mathcal{G}\\) and the depolarization dyadic \\(\mathcal{L}\\) as per by Eqn. 9.28:
+Alternatively, we can decompose it into a sum of the dyadic Green function \\(\mathcal{G}\\) and the depolarization dyadic \\(\mathcal{L}\\) as per by Eqn. 9.27:
 
 $$ \tag{14.24}
 \begin{aligned}
