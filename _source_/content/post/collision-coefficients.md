@@ -1865,7 +1865,7 @@ that features the *magnetic dyadic* Green function \[[7](#references) (ch. 7.9)\
 
 $$ \tag{9.34}
 	\mathcal{G}\_m(\bm{r}, \bm{r'}, k)
-	= \mathcal{P.V.} \lbrace \nabla g(\bm{r} - \bm{r'}, k) \times \mathcal{I} \rbrace
+	= \mathcal{P.V.} \lbrace \nabla g(\bm{r} - \bm{r'}, k) \rbrace \times \mathcal{I}
 $$
 
 that can be expressed using the [matrix form of the cross product](https://en.wikipedia.org/wiki/Cross_product#Conversion_to_matrix_multiplication). You may recognize that
@@ -1882,40 +1882,39 @@ Green's dyadics take on a simple form when expressed in the Cartesian coordinate
 $$ \tag{9.36}
 \begin{aligned}
 	\mathcal{G}\_e(\bm{r}, \bm{r'}, k)
-	= \mathcal{I} g + \frac{1}{k^2}
+	= \mathcal{P.V.} \left\lbrace \mathcal{I} g + \frac{1}{k^2}
 	\begin{bmatrix}
 		\frac{\partial^2 g}{\partial x^2} & \frac{\partial^2 g}{\partial x \partial y} & \frac{\partial^2 g}{\partial x \partial z} \cr
 		\frac{\partial^2 g}{\partial y \partial x} & \frac{\partial^2 g}{\partial y^2} & \frac{\partial^2 g}{\partial y \partial z} \cr
 		\frac{\partial^2 g}{\partial z \partial x} & \frac{\partial^2 g}{\partial z \partial y} & \frac{\partial^2 g}{\partial z^2} \cr
 	\end{bmatrix}
+	\right\rbrace
 	- \frac{\delta}{k^2} \mathcal{L},
 \end{aligned}
 $$
 
 where the scalar Green function \\(g\\) is given by Eqn. 9.10.
 
-Because the electric dyadic is always evaluated in the principal value sense, the scalar Green function and its partial derivatives are continuous, which means that the order of partial differentiation makes no difference. Furthermore, the depolarization dyadic is symmetric: \\(\mathcal{L} = \mathcal{L}^T\\) \[[7](#references) (ch. 3.9)\]. Consequently, the entire electric dyadic is symmetric as well: \\(\mathcal{G}\_e = \mathcal{G}\_e^T\\).
+Because the integrals involving the scalar Green function and its partial derivatives are always evaluated in the principal value sense, the singularity at \\(\bm{r} = \bm{r'}\\) is avoided, and the order of partial differentiation makes no difference. Furthermore, the depolarization dyadic is symmetric: \\(\mathcal{L} = \mathcal{L}^T\\) \[[7](#references) (ch. 3.9)\]. Consequently, the entire electric dyadic is symmetric as well: \\(\mathcal{G}\_e = \mathcal{G}\_e^T\\).
 
-Since the scalar Green function only depends on the magnitude of its argument, the function itself is even, and its first derivative is odd:
+Since the scalar Green function only depends on the magnitude of its argument, the function itself is symmetric in its arguments, while its first derivative is not:
 
 $$ \tag{9.37}
 \begin{aligned}
 	g(\bm{r} - \bm{r'}, k) &= g(\bm{r'} - \bm{r}, k),
 	\cr
-	\nabla g(\bm{r} - \bm{r'}, k) &= -\nabla g(\bm{r'} - \bm{r}, k) = \nabla' g(\bm{r'} - \bm{r}, k),
+	\nabla g(\bm{r} - \bm{r'}, k) &= -\nabla' g(\bm{r'} - \bm{r}, k),
 \end{aligned}
 $$
 
-where \\(\nabla'\\) denotes the gradient with respect to \\(\bm{r'}\\).
+where \\(\nabla'\\) denotes the gradient with respect to the coordinates of \\(\bm{r'}\\).
 
-The second-order derivatives of Eqn. 9.36 perform the sign exchange twice. If we also take into account the fact that the depolarization dyadic only contributes when \\(\bm{r} = \bm{r'}\\), we can see that the electric dyadic is invariant under the exchange of its arguments \[[8](#references) (ap. B)\]:
+The second-order derivatives of Eqn. 9.36 perform the sign exchange twice. If we also take into account the fact that the depolarization dyadic only contributes when \\(\bm{r} = \bm{r'}\\), it becomes clear that the electric dyadic is invariant under the exchange of its arguments \[[8](#references) (ap. B)\]:
 
 $$ \tag{9.38}
 \begin{aligned}
 	\mathcal{G}\_e(\bm{r}, \bm{r'}, k)
 	&= \mathcal{P.V.} \Big\lbrace \Big( \mathcal{I} + \frac{1}{k^2} \nabla \otimes \nabla \Big) g(\bm{r} - \bm{r'}, k) \Big\rbrace - \delta(\bm{r} - \bm{r'}) \frac{\mathcal{L}(\bm{r})}{k^2}
-	\cr
-	&= \mathcal{P.V.} \Big\lbrace \Big( \mathcal{I} + \frac{1}{k^2} \nabla \otimes \nabla \Big) g(\bm{r'} - \bm{r}, k) \Big\rbrace - \delta(\bm{r'} - \bm{r}) \frac{\mathcal{L}(\bm{r'})}{k^2}
 	\cr
 	&= \mathcal{P.V.} \Big\lbrace \Big( \mathcal{I} + \frac{1}{k^2} \nabla' \otimes \nabla' \Big) g(\bm{r'} - \bm{r}, k) \Big\rbrace - \delta(\bm{r'} - \bm{r}) \frac{\mathcal{L}(\bm{r'})}{k^2}
 	= \mathcal{G}\_e(\bm{r'}, \bm{r}, k).
@@ -1925,10 +1924,10 @@ $$
 In summary,
 
 $$ \tag{9.3x}
-	\left[ \mathcal{G}\_e(\bm{r}, \bm{r'}, k) \right]^T
-	= \mathcal{G}\_e(\bm{r}, \bm{r'}, k)
-	= \mathcal{G}\_e(\bm{r'}, \bm{r}, k)
-	= \left[ \mathcal{G}\_e(\bm{r'}, \bm{r}, k) \right]^T.
+	\mathcal{G}\_e(\bm{r}, \bm{r'}, k)
+	= \left[ \mathcal{G}\_e(\bm{r}, \bm{r'}, k) \right]^T
+	= \left[ \mathcal{G}\_e(\bm{r'}, \bm{r}, k) \right]^T
+	= \mathcal{G}\_e(\bm{r'}, \bm{r}, k).
 $$
 
 Ignoring the multiplicative constant \\(1/(4 \pi k^2)\\), the matrix elements or Eqn. 9.36 have the form
@@ -2036,13 +2035,12 @@ Let us analyze the magnetic dyadic in the same way. Write Eqn. 9.34 in the Carte
 $$ \tag{9.47}
 \begin{aligned}
 	\mathcal{G}\_m(\bm{r}, \bm{r'}, k)
-	= \nabla g(\bm{r} - \bm{r'}, k) \times \mathcal{I}
-	= \begin{bmatrix}
+	= \mathcal{P.V.} \begin{bmatrix}
 		\partial g / \partial x \cr
 		\partial g / \partial y \cr
 		\partial g / \partial z \cr
 	\end{bmatrix} \times \mathcal{I}
-	= \begin{bmatrix}
+	= \mathcal{P.V.} \begin{bmatrix}
 		0 & -\frac{\partial g}{\partial z} & \frac{\partial g}{\partial y} \cr
 		\frac{\partial g}{\partial z} & 0 & -\frac{\partial g}{\partial x} \cr
 		-\frac{\partial g}{\partial y} & \frac{\partial g}{\partial x} & 0 \cr
@@ -2050,17 +2048,33 @@ $$ \tag{9.47}
 \end{aligned}
 $$
 
-Clearly, the matrix is anti-symmetric: \\(\mathcal{G}\_m = -\mathcal{G}\_m^T\\). Furthermore, because the derivatives are only first-order, exchange of the arguments leads to \\(\mathcal{G}\_m(\bm{r}, \bm{r'}, k) = -\mathcal{G}\_m(\bm{r'}, \bm{r}, k)\\).
+Clearly, the matrix is anti-symmetric: \\(\mathcal{G}\_m = -\mathcal{G}\_m^T\\). Furthermore, because the derivatives are only of the first order, exchange of the arguments leads to
+
+$$ \tag{9.48}
+	\mathcal{G}\_m(\bm{r'}, \bm{r}, k)
+	= \frac{1}{i \omega} \nabla' \times \mathcal{G}\_e(\bm{r'}, \bm{r}, k)
+	= \mathcal{P.V.} \lbrace \nabla' g(\bm{r'} - \bm{r}, k) \rbrace \times \mathcal{I}
+	= -\mathcal{G}\_m(\bm{r}, \bm{r'}, k).
+$$
+
+In summary,
+
+$$ \tag{9.49}
+	\mathcal{G}\_m(\bm{r}, \bm{r'}, k)
+	= -\left[ \mathcal{G}\_m(\bm{r}, \bm{r'}, k) \right]^T
+	= \left[ \mathcal{G}\_m(\bm{r'}, \bm{r}, k) \right]^T
+	= -\mathcal{G}\_m(\bm{r'}, \bm{r}, k).
+$$
 
 According to the expression of the first derivative given by Eqn. 9.41, the dyadic is composed of two terms:
 
-$$ \tag{9.48}
+$$ \tag{9.50}
 	\mathcal{G}\_m = \mathcal{G_{mn}} + \mathcal{G_{mf}},
 $$
 
 such that
 
-$$ \tag{9.49}
+$$ \tag{9.51}
 \begin{aligned}
 	& \mathcal{G_{mn}}(\bm{R}, k)
 	= -\frac{g(\bm{R}, k)}{R} \bigg(\frac{\bm{R} \times \mathcal{I}}{R} \bigg), \cr
@@ -2071,7 +2085,7 @@ $$
 
 Note that, as expected from Eqn. 9.35, the constants of proportionality are different in comparison with the electric dyadic:
 
-$$ \tag{9.50}
+$$ \tag{9.52}
 	k^{-2} \mathcal{G_{mn}}
 	\varpropto (k R)^{-2},
 	\quad
