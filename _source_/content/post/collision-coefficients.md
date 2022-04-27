@@ -2660,7 +2660,7 @@ In the literature, Eqn. 11.25 is often called the *volume integral equation* \[[
 
 ### Huygens Principle and Extinction Theorem
 
-The volume integral equation expresses the scattered field using the integral taken over the volume \\(V\\) of the scattering object. If its dimensions are large, and the material -- absorptive, then there is a high likelihood that a significant portion of its interior will make a negligible contribution to the field outside. Furthermore, determination of the internal field across the entire volume may prove to be challenging. In this case, it may be advantageous to convert the volume integral into an integral taken over the *bounding surface* \\(\delta V\\) (with the outward-pointing normal \\(\bm{n}\\)) by applying the second *vector Green theorem* to the vector fields \\(\bm{P}\\) and \\(\bm{Q}\\) \[[17](#references) (ch. 4.14)\]:
+The volume integral equation expresses the scattered field using the integral taken over the volume \\(V\\) of the scattering object. If its dimensions are large, and the material -- absorptive, then there is a high likelihood that a significant portion of its interior will make a negligible contribution to the field outside. Furthermore, determination of the internal field across the entire volume may prove to be a challenging and arduous task. Thus, it may be advantageous to convert the volume integral into an integral taken over the *bounding surface* \\(\delta V\\) (with the outward-pointing normal \\(\bm{n}\\)) by applying the second *vector Green theorem* to the vector fields \\(\bm{P}\\) and \\(\bm{Q}\\) \[[17](#references) (ch. 4.14)\]:
 
 $$ \tag{1x.1}
 \small
@@ -2676,24 +2676,24 @@ $$
 
 In order for the integrals to converge, the surface must be smooth, and the integrands -- continuous. In addition, the volume \\(V\\) is supposed to represent a closed region of space. However, since every such region can be split in two (and the contributions of the adjacent surfaces cancel out), we may also merge several closed regions into a single connected region bounded by multiple surfaces.
 
-We would like the left-hand side of Eqn. 1x.1 to resemble Eqn. 11.25.1; comparison reveals that the roles of \\(\bm{r}\\) and \\(\bm{r'}\\) are reversed. In particular, this implies that we must fix \\(\bm{r}\\) as the observation point, and evaluate the integral with the differential volume element \\(dV' = dV(\bm{r'})\\). In addition, we must take derivatives with respect to \\(\bm{r'}\\); this can be achieved by replacing \\(\nabla\\) with \\(\nabla'\\).
+We would like the left-hand side of Eqn. 1x.1 to resemble Eqn. 11.25.1; comparison of these equations reveals that the roles of \\(\bm{r}\\) and \\(\bm{r'}\\) are reversed. In particular, this implies that we must keep  the observation point \\(\bm{r}\\) fixed, and evaluate the integral with the differential volume element \\(dV' = dV(\bm{r'})\\). In addition, we must take derivatives with respect to \\(\bm{r'}\\); this can be achieved by replacing \\(\nabla\\) with \\(\nabla'\\).
 
-The suitable choice of \\(\bm{P}\\) and \\(\bm{Q}\\) is not obvious. Motivated by Eqn. 9.29 and 11.9, we shall assign the total electric field to \\(\bm{P} = \bm{E}(\bm{r'}, \omega)\\), and pick an arbitrary constant vector \\(\bm{a}\\) for \\(\bm{Q} = \mathcal{G}\_e(\bm{r'}, \bm{r}, k(\omega)) \cdot \bm{a}\\). At this point, it is useful to recall Eqn. 9.3x that says that the electric dyadic is fully symmetric: it can be transposed, and its arguments -- interchanged, all without affecting its numerical value.
+A suitable choice of \\(\bm{P}\\) and \\(\bm{Q}\\) is not obvious. Motivated by Eqn. 9.29 and 11.9, we shall assign the total electric field to \\(\bm{P} = \bm{E}(\bm{r'}, \omega)\\), and pick an arbitrary constant vector \\(\bm{a}\\) for \\(\bm{Q} = \mathcal{G}\_e(\bm{r'}, \bm{r}, k(\omega)) \cdot \bm{a}\\).
 
-Another important feature of the electric dyadic \\(\mathcal{G}\_e\\) is its singularity at \\(\bm{r} = \bm{r'}\\). Therefore, in order to satisfy the requirements of the vector Green theorem, we must consider two separate cases: 1) \\(\bm{r} \notin V, \bm{r'} \in V,\\) and 2) \\(\bm{r} \in V, \bm{r'} \notin V.\\)
+Green functions are discontinuous at \\(\bm{r} = \bm{r'}\\). Therefore, in order to satisfy the requirements of the vector Green theorem, we must consider two separate cases: 1) \\(\bm{r} \notin V, \bm{r'} \in V,\\) and 2) \\(\bm{r} \in V, \bm{r'} \notin V.\\)
 
-Let us consider the first case, when the observation point \\(\bm{r}\\) is located outside the region occupied by the scattering object:
+Let us first consider the case when \\(\bm{r'}\\) is located inside the region occupied by the scattering object:
 
 $$ \tag{1x.2}
 \begin{aligned}
 	&\int_V \Big(
-		\bm{E} \cdot \left( \nabla' \times \nabla' \times \mathcal{G}\_e^T \right) \cdot \bm{a} -
-		\left( \mathcal{G}\_e^T \cdot \bm{a} \right) \cdot \left( \nabla' \times \nabla' \times \bm{E} \right)
+		\bm{E} \cdot \left( \nabla' \times \nabla' \times \mathcal{G}\_e \right) \cdot \bm{a} -
+		\left( \mathcal{G}\_e \cdot \bm{a} \right) \cdot \left( \nabla' \times \nabla' \times \bm{E} \right)
 	\Big) dV'
 	\cr
 	= &\oint_{\delta V} \Big(
-		\left( \mathcal{G}\_e^T \cdot \bm{a} \right) \times \left( \nabla' \times \bm{E} \right) -
-		\bm{E} \times \left( \nabla' \times \mathcal{G}\_e^T \right) \cdot \bm{a}
+		\left( \mathcal{G}\_e \cdot \bm{a} \right) \times \left( \nabla' \times \bm{E} \right) -
+		\bm{E} \times \left( \nabla' \times \mathcal{G}\_e \right) \cdot \bm{a}
 	\Big) \cdot \bm{n} dA'.
 \end{aligned}
 $$
@@ -2701,15 +2701,15 @@ $$
 According to Eqn. 11.7 and 11.9, in the interior region,
 
 $$ \tag{1x.3}
-	\nabla' \times \nabla' \times \bm{E}
-	= k^2 \bm{E} + k^2 \left( m^2 - 1 \right) \bm{E}.
+	\nabla' \times \nabla' \times \bm{E}(\bm{r'}, \omega)
+	= k^2(\omega) \bm{E}(\bm{r'}, \omega) + k^2(\omega) \left( m^2(\bm{r'}, \omega) - 1 \right) \bm{E}(\bm{r'}, \omega).
 $$
 
-And if we interchange the roles of \\(\bm{r}\\) and \\(\bm{r'}\\) in Eqn. 9.29, we obtain
+After interchanging the roles of \\(\bm{r}\\) and \\(\bm{r'}\\) in Eqn. 9.29, we obtain
 
 $$ \tag{1x.4}
-	\nabla' \times \nabla' \times \mathcal{G}\_e^T
-	= k^2 \mathcal{G}\_e^T + \mathcal{I} \delta.
+	\nabla' \times \nabla' \times \mathcal{G}\_e(\bm{r'}, \bm{r}, k)
+	= k^2 \mathcal{G}\_e(\bm{r'}, \bm{r}, k) + \mathcal{I} \delta(\bm{r'} - \bm{r}).
 $$
 
 Substitution into Eqn 1x.2 yields
@@ -2717,47 +2717,123 @@ Substitution into Eqn 1x.2 yields
 $$ \tag{1x.5}
 \begin{aligned}
 	&\int_V \Big(
-		\bm{E} \cdot \left( k^2 \mathcal{G}\_e^T + \mathcal{I} \delta \right) \cdot \bm{a} -
-		\left( \mathcal{G}\_e^T \cdot \bm{a} \right) \cdot \left( k^2 \bm{E} + k^2 \left( m^2 - 1 \right) \bm{E} \right)
+		\bm{E} \cdot \left( k^2 \mathcal{G}\_e + \mathcal{I} \delta \right) \cdot \bm{a} -
+		\left( \mathcal{G}\_e \cdot \bm{a} \right) \cdot \left( k^2 \bm{E} + k^2 \left( m^2 - 1 \right) \bm{E} \right)
 	\Big) dV'
 	\cr
 	= &\oint_{\delta V} \Big(
-		\left( \mathcal{G}\_e^T \cdot \bm{a} \right) \times \left( \nabla' \times \bm{E} \right) -
-		\bm{E} \times \left( \nabla' \times \mathcal{G}\_e^T \right) \cdot \bm{a}
+		\left( \mathcal{G}\_e \cdot \bm{a} \right) \times \left( \nabla' \times \bm{E} \right) -
+		\bm{E} \times \left( \nabla' \times \mathcal{G}\_e \right) \cdot \bm{a}
 	\Big) \cdot \bm{n} dA'.
 \end{aligned}
 $$
 
-Since \\(\bm{r} \neq \bm{r'}\\), the Dirac delta function contributes nothing to the integral, and can be thus neglected. Additionally, the inner product \\(k^2 \bm{E} \cdot \left( \mathcal{G}\_e^T \cdot \bm{a} \right)\\) of two vectors commutes, so it cancels out:
+Since \\(\bm{r} \neq \bm{r'}\\), the Dirac delta function does not contribute to the integral, and can therefore be neglected. Additionally, the inner product \\(k^2 \bm{E} \cdot \left( \mathcal{G}\_e \cdot \bm{a} \right)\\) of two vectors commutes, so it cancels out, leading to
 
 $$ \tag{1x.6}
 \begin{aligned}
 	-k^2 &\int_V
-		 \left( m^2 - 1 \right) \left( \mathcal{G}\_e^T \cdot \bm{a} \right) \cdot \bm{E}
+		 ( m^2 - 1 ) ( \mathcal{G}\_e \cdot \bm{a} ) \cdot \bm{E}
 	dV'
 	\cr
 	= &\oint_{\delta V} \Big(
-		\left( \mathcal{G}\_e^T \cdot \bm{a} \right) \times \left( \nabla' \times \bm{E} \right) -
-		\bm{E} \times \left( \nabla' \times \mathcal{G}\_e^T \right) \cdot \bm{a}
+		\left( \mathcal{G}\_e \cdot \bm{a} \right) \times \left( \nabla' \times \bm{E} \right) -
+		\bm{E} \times \left( \nabla' \times \mathcal{G}\_e \right) \cdot \bm{a}
 	\Big) \cdot \bm{n} dA'.
 \end{aligned}
 $$
 
-Next, we observe that \\(\left( \mathcal{G}\_e^T \cdot \bm{a} \right) \cdot \bm{E}\\) can be understood as a matrix-vector product yielding a column vector that is  transposed and then matrix-multiplied by another column vector. The nested transpose operation can be simplified, yielding a variant of the volume integral equation
+\\(\left( \mathcal{G} \cdot \bm{a} \right) \cdot \bm{E}\\) can be understood as a matrix-vector product (yielding a column vector) that is transposed and then matrix-multiplied by another column vector. Since the electric dyadic is symmetric, \\(\mathcal{G}\_e = \mathcal{G}\_e^T\\), and we can reorder the factors by transposing the matrix product:
 
-$$ \tag{1x.6}
+$$ \tag{1x.7}
+	\left( \mathcal{G}^T \cdot \bm{a} \right) \cdot \bm{E}
+	= \left( \mathcal{G}^T \cdot \bm{a} \right)^T \bm{E}
+	= \bm{a} \cdot \mathcal{G} \cdot \bm{E}.
+$$
+
+Substitution of Eqn. 1x.7 into 1x.6 yields a variant of the volume integral equation
+
+$$ \tag{1x.8}
 \begin{aligned}
 	-\bm{a} \cdot \bm{E_s}
 	&= -\bm{a} \cdot k^2 \int_V
-		 \left( m^2 - 1 \right) \mathcal{G}\_e \cdot \bm{E}
+		 (m^2 - 1) (\mathcal{G}\_e \cdot \bm{E})
 	dV'
 	\cr
 	&= \oint_{\delta V} \Big(
-		\left( \mathcal{G}\_e^T \cdot \bm{a} \right) \times \left( \nabla' \times \bm{E} \right) -
-		\bm{E} \times \left( \nabla' \times \mathcal{G}\_e^T \right) \cdot \bm{a}
+		\left( \mathcal{G}\_e \cdot \bm{a} \right) \times \left( \nabla' \times \bm{E} \right) -
+		\bm{E} \times \left( \nabla' \times \mathcal{G}\_e \right) \cdot \bm{a}
 	\Big) \cdot \bm{n} dA'.
 \end{aligned}
 $$
+
+The surface integral can be simplified further. According to Eqn. 3.12,
+
+$$ \tag{1x.9}
+	\nabla' \times \bm{E}(\bm{r'}, \omega) = i \omega \bm{B}(\bm{r'}, \omega).
+$$
+
+And, if we pay close attention to the order of the arguments, Eqn. 9.48 tells us that
+
+$$ \tag{1x.10}
+	\nabla' \times \mathcal{G}\_e(\bm{r'}, \bm{r}, k)
+	= -i \omega \mathcal{G}\_m(\bm{r}, \bm{r'}, k).
+$$
+
+The surface integral of Eqn. 1x.8 is thus reduced to
+
+$$ \tag{1x.11}
+\begin{aligned}
+	\bm{a} \cdot \bm{E_s}
+	&= \bm{a} \cdot k^2 \int_V
+		 (m^2 - 1) (\mathcal{G}\_e \cdot \bm{E})
+	dV'
+	\cr
+	&= i \omega \oint_{\delta V} \Big(
+		\bm{B} \times \left( \mathcal{G}\_e \cdot \bm{a} \right) -
+		\bm{E} \times \left( \mathcal{G}\_m \cdot \bm{a} \right)
+	\Big) \cdot \bm{n} dA'.
+\end{aligned}
+$$
+
+At this point, both dyadic Green functions list their arguments in the same (conventional) order \\((\bm{r}, \bm{r'}, k)\\): \\(\mathcal{G}\_e\\) due to its symmetry, and \\(\mathcal{G}\_m\\) because of Eqn. 1x.10.
+
+The last complication involves two [scalar triple products](https://en.wikipedia.org/wiki/Triple_product#Scalar_triple_product) of the form \\(\bm{n} \cdot (\bm{E} \times (\mathcal{G} \cdot \bm{a}))\\). We can use its cyclical property to our advantage:
+
+$$ \tag{1x.12}
+	\bm{n} \cdot (\bm{E} \times (\mathcal{G}^T \cdot \bm{a}))
+	= (\mathcal{G}^T \cdot \bm{a}) \cdot (\bm{n} \times \bm{E})
+	= \left( \mathcal{G}^T \cdot \bm{a} \right)^T (\bm{n} \times \bm{E})
+	= \bm{a} \cdot \mathcal{G} \cdot \left( \bm{n} \times \bm{E} \right).
+$$
+
+In order to apply Eqn. 1x.12, both Green dyadics must be transposed. In the case of the magnetic dyadic, this operation must be performed carefully, since the matrix is anti-symmetric: \\(\mathcal{G}\_m = -\mathcal{G}\_m^T\\). Application of these identities produces the following result:
+
+$$ \tag{1x.13}
+\begin{aligned}
+	\bm{a} \cdot \bm{E_s}
+	&= \bm{a} \cdot k^2 \int_V
+		 (m^2 - 1) (\mathcal{G}\_e \cdot \bm{E})
+	dV'
+	\cr
+	&= \bm{a} \cdot i \omega \oint_{\delta V} \Big(
+		\mathcal{G}\_e \cdot \left( \bm{n} \times \bm{B} \right) +
+		\mathcal{G}\_m \cdot \left( \bm{n} \times \bm{E} \right)
+	\Big) dA'.
+\end{aligned}
+$$
+
+Since \\(\bm{a}\\) is an arbitrary constant vector, it can be safely neglected. Thus, we have obtained the expression of the scattered field \\(\bm{E_s}\\) in the region outside the particle in terms of the *tangential surface fields* \\(\bm{n} \times \bm{E}\\) and \\(\bm{n} \times \bm{B}\\):
+
+$$ \tag{1x.14}
+	\bm{E_s}(\bm{r}, \omega)
+	= i \omega \oint_{\delta V} \Big(
+		\mathcal{G}\_e(\bm{r}, \bm{r'}, \omega) \cdot \big( \bm{n} \times \bm{B}(\bm{r'}, \omega) \big) +
+		\mathcal{G}\_m(\bm{r}, \bm{r'}, \omega) \cdot \big( \bm{n} \times \bm{E}(\bm{r'}, \omega) \big)
+	\Big) dA'.
+$$
+
+Eqn. 1x.14 is known as the *Huygens principle* \[[Tsang Vol 1.](#references) (ch. 2)\].
 
 If we do not want to make any assumptions about the interior of the scattering object, we should focus on the fields in the homogeneous region \\(V_2\\) surrounding it. Since that region is open, let us slightly modify the mathematical formulation to explicitly account for the source of the incident field by setting \\(\bm{J_f} = \bm{J_s}\\) in Eqn. 11.2. The source currents can then be bound using two surfaces: the bounding surface \\(\delta V\\) of the particle group with the outward-facing normal \\(\bm{n}\\) , and a very large sphere of effectively infinite radius \\(\delta V_2\\).
 
@@ -2913,7 +2989,7 @@ and comparing the result with Eqn. 12.3.
 
 Let us focus on the case when the observation point is far away from the source. It is important for two reasons: first, if we are dealing with small particles, a typical observation falls into this category, and second, because this assumption greatly simplifies the behavior of the scattered wave, as we shall soon demonstrate.
 
-The idea behind the far-field approximation is simple: we discard certain terms in Eqn. 9.44 and 9.48. In order to do that, we must consider their magnitudes relative to each other:
+The idea behind the far-field approximation is simple: we discard certain terms in Eqn. 9.44 and 9.50. In order to do that, we must consider their magnitudes relative to each other:
 
 $$ \tag{13.1}
 	\mathcal{G}\_e
@@ -2922,7 +2998,7 @@ $$ \tag{13.1}
 	= \bigg( 1 + \frac{\mathcal{G_{mn}}}{\mathcal{G_{mf}}} \bigg) \mathcal{G_{mf}}.
 $$
 
-According to Eqn. 9.45, for any fixed direction, the relative difference between the three electric dyadics primarily arises from the leading scalar terms. Moreover, the two magnetic dyadics given by Eqn. 9.49 exhibit identical angular dependence. Following this logic, we use Eqn. 9.46 and 9.50 to approximate
+According to Eqn. 9.45, for any fixed direction, the relative difference between the three electric dyadics primarily arises from the leading scalar terms. Moreover, the two magnetic dyadics given by Eqn. 9.51 exhibit identical angular dependence. Following this logic, we use Eqn. 9.46 and 9.52 to approximate
 
 $$ \tag{13.2}
 	\mathcal{G}\_e
