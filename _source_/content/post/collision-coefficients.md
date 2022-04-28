@@ -2660,7 +2660,7 @@ $$
 
 In the literature, Eqn. 11.25 is often called the *volume integral equation* \[[8](#references) (ch. 4)\]. It can be used to evaluate the electromagnetic field inside or outside the scattering object.
 
-### Huygens-Fresnel Principle and Extinction Theorem
+### Huygens-Fresnel Principle
 
 The volume integral equation expresses the scattered field using the integral taken over the volume \\(V\\) of the scattering object. If its dimensions are large, and the material -- absorptive, then it is likely that a significant portion of its interior will make a negligible contribution to the field outside. Furthermore, determination of the internal field across the entire volume may prove to be both arduous and challenging. Thus, it may be advantageous to convert the volume integral into an integral taken over the surface \\(\partial V\\) (with the outward-pointing normal \\(\bm{n}\\)) by applying the second *vector Green theorem* defined in terms of two vector fields \\(\bm{P}\\) and \\(\bm{Q}\\) \[[17](#references) (ch. 4.14)\]:
 
@@ -2682,9 +2682,7 @@ We would like the left-hand side of Eqn. 1x.1 to resemble Eqn. 11.25.1; comparis
 
 A suitable choice of \\(\bm{P}\\) and \\(\bm{Q}\\) is not obvious. Motivated by Eqn. 9.29 and 11.9, we shall assign the total electric field to \\(\bm{P} = \bm{E}(\bm{r'}, \omega)\\), and pick an arbitrary constant vector \\(\bm{a}\\) for \\(\bm{Q} = \mathcal{G}\_e(\bm{r'}, \bm{r}, k(\omega)) \cdot \bm{a}\\). Please note that we have swapped \\(\bm{r}\\) with \\(\bm{r'}\\).
 
-The continuity requirements of the vector Green theorem have certain practical implications. For instance, if the scattering object represents a particle group, with particle's hard boundaries creating discontinuities in the refractive index of the medium, then, in order to avoid the discontinuities of the electromagnetic field, we must take the integral over each particle separately. Moreover, the Green functions are discontinuous at \\(\bm{r} = \bm{r'}\\). Therefore, in order to make the vector Green theorem applicable, we must consider two separate cases: 1) \\(\bm{r} \notin V, \bm{r'} \in V,\\) and 2) \\(\bm{r} \in V, \bm{r'} \notin V.\\)
-
-Let us first consider the case when \\(\bm{r'}\\) is located inside the region occupied by the scattering object:
+The continuity requirements of the vector Green theorem have certain practical implications. For instance, if the scattering object represents a particle group, with particle's hard boundaries creating discontinuities in the refractive index of the medium, then, in order to avoid the discontinuities of the electromagnetic field, we must take the integral over each particle separately. Moreover, the Green functions are discontinuous at \\(\bm{r} = \bm{r'}\\). Therefore, in order to make the vector Green theorem applicable, we shall restrict the observation point \\(\bm{r}\\) to the exterior of the scattering object, with \\(\bm{r'}\\) located inside:
 
 $$ \tag{1x.2}
 \begin{aligned}
@@ -2838,109 +2836,6 @@ $$ \tag{1x.14}
 $$
 
 Eqn. 1x.14 gives the expression of the scattered field \\(\bm{E_s}\\) in the region outside the scattering object \\((\bm{r} \notin V)\\) in terms of the *tangential surface fields* \\(\bm{n} \times \bm{E}\\) and \\(\bm{n} \times \bm{B}\\). More generally speaking, the idea that a smooth (but not necessarily physical) surface can be seen as a source of spherical *wavelets* (secondary waves) interfering with each other is known as the [Huygens-Fresnel principle](https://en.wikipedia.org/wiki/Huygens%E2%80%93Fresnel_principle) \[[4](#references) (ch. 3.1), [Tsang Vol 1.](#references) (ch. 2)\].
-
-We can use the same technique to determine the value of the scattered field inside the scattered object. In order to do that, we shall consider the homogeneous region \\(V_2\\) surrounding it. That region is open, so we must add a very large sphere \\(\partial V_2\\) in order to bound it.
-
-$$ \tag{1x.15}
-\begin{aligned}
-	&\int_{V_2} \Big(
-		\bm{E} \cdot \left( \nabla' \times \nabla' \times \mathcal{G}\_e \right) \cdot \bm{a} -
-		\left( \mathcal{G}\_e \cdot \bm{a} \right) \cdot \left( \nabla' \times \nabla' \times \bm{E} \right)
-	\Big) dV'
-	\cr
-	&= \bm{a} \cdot i \omega \oint_{\partial V} \Big(
-		\mathcal{G}\_e \cdot \left( \bm{n} \times \bm{B} \right) +
-		\mathcal{G}\_m \cdot \left( \bm{n} \times \bm{E} \right)
-	\Big) dA'
-	\cr
-	&- \bm{a} \cdot i \omega \oint_{\partial V_2} \Big(
-		\mathcal{G}\_e \cdot \left( \bm{n} \times \bm{B} \right) +
-		\mathcal{G}\_m \cdot \left( \bm{n} \times \bm{E} \right)
-	\Big) dA'.
-\end{aligned}
-$$
-
-Let us also slightly modify the mathematical formulation to explicitly account for the sources of the incident field by setting \\(\bm{J_f} = \bm{J_s}\\) in Eqn. 11.2. The nature of these (primary or secondary) sources does not concern us; however, the source distribution must be continuous.
-
-A series of straightforward algebraic manipulations leads to the modified form of Eqn. 11.9:
-
-$$ \tag{1x.16}
-	\nabla' \times \nabla' \times \bm{E}(\bm{r'}, \omega) = k^2(\omega) \bm{E}(\bm{r'}, \omega) - i \omega \mu(\omega) \bm{J_s}(\bm{r'}, \omega)
-$$
-
-
-If we do not want to make any assumptions about the interior of the particle, we should focus on the fields in the homogeneous region \\(V_2\\) surrounding it. Since that region is open, let us slightly modify the mathematical formulation to explicitly account for the source of the incident field  The source currents can then be bound using two surfaces: the bounding surface \\(\partial V\\) of the particle group with the outward-facing normal \\(\bm{n}\\) , and a very large sphere of effectively infinite radius \\(\partial V_2\\).
-
-
-
-
-A series of straightforward algebraic manipulations leads to the modified form of Eqn. 11.5:
-
-$$ \tag{1x.2}
-\begin{aligned}
-	& \nabla \times \nabla \times \bm{E}(\bm{r_1}, \omega) - k_1^2(\omega) \bm{E}(\bm{r_1}, \omega) = i \omega \mu(\omega) \bm{J_s}(\bm{r_1}, \omega), \cr
-	& \nabla \times \nabla \times \bm{E}(\bm{r_2}, \omega) - k_2^2(\bm{r_2}, \omega) \bm{E}(\bm{r_2}, \omega) = 0,
-\end{aligned}
-$$
-
-Let us return to Eqn. 1x.1. We shall assign the total electric field to \\(\bm{P} = \bm{E}\\), and pick an arbitrary constant vector \\(\bm{a}\\) for \\(\bm{Q} = \mathcal{G}\_e(\bm{r}, \bm{r'}, k) \cdot \bm{a}\\). We shall assume that
-
-USE PRIMED COORDS AND TRANSPOSED DYADIC
-
-$$ \tag{1x.3}
-\begin{aligned}
-	&\int_V \Big(
-		\bm{E} \cdot \left( \nabla \times \nabla \times \mathcal{G}\_e \right) \cdot \bm{a}  -
-		\left( \mathcal{G}\_e \cdot \bm{a} \right) \cdot \nabla \times \nabla \times \bm{E}
-	\Big) dV'
-	\cr
-	= &\oint_{\partial V} \Big(
-		\left( \mathcal{G}\_e \cdot \bm{a} \right) \times \nabla \times \bm{E} -
-		\bm{E} \times \nabla \times \left( \mathcal{G}\_e \cdot \bm{a} \right)
-	\Big) \cdot \bm{n} dA'.
-\end{aligned}
-$$
-
-$$ \tag{9.29}
-	\nabla \times \nabla \times \mathcal{G}\_e
-	= \left( \mathcal{I} \delta + k^2 \mathcal{G}\_e \right).
-$$
-
-$$ \tag{11.9}
-	\nabla \times \nabla \times \bm{E}(\bm{r}, \omega)
-	= \left( \bm{J'} + k^2 \bm{E} \right).
-$$
-
-$$ \tag{1x.4}
-\begin{aligned}
-	&\int_V \Big(
-		\bm{E} \cdot \left( \mathcal{I} \delta + k^2 \mathcal{G}\_e \right) \cdot \bm{a} -
-		\left( \mathcal{G}\_e \cdot \bm{a} \right) \cdot \left( \bm{J'} + k^2 \bm{E} \right)
-	\Big) dV'
-	\cr
-	= &\oint_{\partial V} \bm{n} \cdot \Big(
-		\left( \mathcal{G}\_e \cdot \bm{a} \right) \times \nabla \times \bm{E} -
-		\bm{E} \times \nabla \times \left( \mathcal{G}\_e \cdot \bm{a} \right)
-	\Big) dA'.
-\end{aligned}
-$$
-
-scalar triple product
-
-$$ \tag{1x.5}
-\begin{aligned}
-	\bm{a} &\cdot \int_V \mathcal{G}\_e^T \cdot \bm{J'} dV'
-	\cr
-	= -\bm{a} &\cdot \oint_{\partial V} \Big(
-		\mathcal{G}\_e^T \cdot \left( \bm{n} \times \nabla \times \bm{E} \right) +
-		\left( \nabla' \times \mathcal{G}\_e^T \right) \cdot \left( \bm{n} \times \bm{E} \right)
-	\Big) dA'.
-\end{aligned}
-$$
-
-Mishchenko p. 46, Tsang-Kong-Ding p. 62
-
-...
 
 ### Dipole Radiation
 
