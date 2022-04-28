@@ -335,11 +335,11 @@ $$ \tag{2.12}
 	\frac{\partial}{\partial t} \int\_{V} \Big( \frac{\epsilon_0}{2} E^2 + \frac{\mu\_0^{-1}}{2} B^2 \Big) dV
 $$
 
-and use the [divergence theorem](https://en.wikipedia.org/wiki/Divergence_theorem) to replace the leftmost volume integral with an integral taken over the bounding surface \\(\delta V\\) of the volume \\(V\\):
+and use the [divergence theorem](https://en.wikipedia.org/wiki/Divergence_theorem) to replace the leftmost volume integral with an integral taken over the bounding surface \\(\partial V\\) of the volume \\(V\\):
 
 $$ \tag{2.13}
 	\frac{\partial \mathcal{W}}{\partial t}
-	= \oint\_{\delta V} \Big( \mu\_0^{-1} (\bm{E} \times \bm{B}) \cdot (-\bm{n}) \Big) dA -
+	= \oint\_{\partial V} \Big( \mu\_0^{-1} (\bm{E} \times \bm{B}) \cdot (-\bm{n}) \Big) dA -
 	\frac{\partial}{\partial t} \int\_{V} \Big( \frac{\epsilon_0}{2} E^2 + \frac{\mu\_0^{-1}}{2} B^2 \Big) dV,
 $$
 
@@ -349,7 +349,7 @@ According to Eqn. 2.1, the right-hand side of Eqn. 2.13 represents the differenc
 
 $$ \tag{2.14}
 	\frac{\partial}{\partial t} \mathcal{E\_{ext}}(V, t) =
-	\oint\_{\delta V} \Big( \mu\_0^{-1} \big( \bm{E}(\bm{r}, t) \times \bm{B}(\bm{r}, t) \big) \cdot (-\bm{n}) \Big) dA,
+	\oint\_{\partial V} \Big( \mu\_0^{-1} \big( \bm{E}(\bm{r}, t) \times \bm{B}(\bm{r}, t) \big) \cdot (-\bm{n}) \Big) dA,
 $$
 
 and the second term corresponds to the rate at which the amount of energy within the volume decreases:
@@ -2656,11 +2656,11 @@ $$ \tag{11.25}
 \end{aligned}
 $$
 
-In the literature, Eqn. 11.25 is often called the *volume integral equation* \[[8](#references) (ch. 4)\]
+In the literature, Eqn. 11.25 is often called the *volume integral equation* \[[8](#references) (ch. 4)\]. It can be used to evaluate the electromagnetic field inside or outside the scattering object.
 
-### Huygens Principle and Extinction Theorem
+### Huygens-Fresnel Principle and Extinction Theorem
 
-The volume integral equation expresses the scattered field using the integral taken over the volume \\(V\\) of the scattering object. If its dimensions are large, and the material -- absorptive, then there is a high likelihood that a significant portion of its interior will make a negligible contribution to the field outside. Furthermore, determination of the internal field across the entire volume may prove to be a challenging and arduous task. Thus, it may be advantageous to convert the volume integral into an integral taken over the *bounding surface* \\(\delta V\\) (with the outward-pointing normal \\(\bm{n}\\)) by applying the second *vector Green theorem* to the vector fields \\(\bm{P}\\) and \\(\bm{Q}\\) \[[17](#references) (ch. 4.14)\]:
+The volume integral equation expresses the scattered field using the integral taken over the volume \\(V\\) of the scattering object. If its dimensions are large, and the material -- absorptive, then it is likely that a significant portion of its interior will make a negligible contribution to the field outside. Furthermore, determination of the internal field across the entire volume may prove to be both arduous and challenging. Thus, it may be advantageous to convert the volume integral into an integral taken over the surface \\(\partial V\\) (with the outward-pointing normal \\(\bm{n}\\)) by applying the second *vector Green theorem* defined in terms of two vector fields \\(\bm{P}\\) and \\(\bm{Q}\\) \[[17](#references) (ch. 4.14)\]:
 
 $$ \tag{1x.1}
 \small
@@ -2668,19 +2668,19 @@ $$ \tag{1x.1}
 		\bm{P} \cdot \nabla \times \nabla \times \bm{Q} -
 		\bm{Q} \cdot \nabla \times \nabla \times \bm{P}
 	\right) dV
-	= \oint_{\delta V} \left(
+	= \oint_{\partial V} \left(
 		\bm{Q} \times \nabla \times \bm{P} -
 		\bm{P} \times \nabla \times \bm{Q}
 	\right) \cdot \bm{n} dA.
 $$
 
-In order for the integrals to converge, the surface must be smooth, and the integrands -- continuous. In addition, the volume \\(V\\) is supposed to represent a closed region of space. However, since every such region can be split in two (and the contributions of the adjacent surfaces cancel out), we may also merge several closed regions into a single connected region bounded by multiple surfaces.
+In order for the integrals to converge, the surface must be smooth ([regular](https://mathworld.wolfram.com/RegularSurface.html)), and the integrands -- continuous. In addition, the volume \\(V\\) is supposed to represent a closed region of space (a [compact manifold](https://mathworld.wolfram.com/CompactManifold.html)). However, since every such region can be split in two (and the contributions of the adjacent surfaces cancel out), we may also merge several closed regions into a single connected region bounded by multiple surfaces.
 
-We would like the left-hand side of Eqn. 1x.1 to resemble Eqn. 11.25.1; comparison of these equations reveals that the roles of \\(\bm{r}\\) and \\(\bm{r'}\\) are reversed. In particular, this implies that we must keep  the observation point \\(\bm{r}\\) fixed, and evaluate the integral with the differential volume element \\(dV' = dV(\bm{r'})\\). In addition, we must take derivatives with respect to \\(\bm{r'}\\); this can be achieved by replacing \\(\nabla\\) with \\(\nabla'\\).
+We would like the left-hand side of Eqn. 1x.1 to resemble Eqn. 11.25.1; comparison of these equations reveals that the roles of \\(\bm{r}\\) and \\(\bm{r'}\\) need to be reversed. In particular, this implies that we must keep the observation point \\(\bm{r}\\) fixed, and evaluate the integral with the differential volume element \\(dV' = dV(\bm{r'})\\). In addition, we must take derivatives with respect to \\(\bm{r'}\\); this can be achieved by replacing \\(\nabla\\) with \\(\nabla'\\).
 
-A suitable choice of \\(\bm{P}\\) and \\(\bm{Q}\\) is not obvious. Motivated by Eqn. 9.29 and 11.9, we shall assign the total electric field to \\(\bm{P} = \bm{E}(\bm{r'}, \omega)\\), and pick an arbitrary constant vector \\(\bm{a}\\) for \\(\bm{Q} = \mathcal{G}\_e(\bm{r'}, \bm{r}, k(\omega)) \cdot \bm{a}\\).
+A suitable choice of \\(\bm{P}\\) and \\(\bm{Q}\\) is not obvious. Motivated by Eqn. 9.29 and 11.9, we shall assign the total electric field to \\(\bm{P} = \bm{E}(\bm{r'}, \omega)\\), and pick an arbitrary constant vector \\(\bm{a}\\) for \\(\bm{Q} = \mathcal{G}\_e(\bm{r'}, \bm{r}, k(\omega)) \cdot \bm{a}\\). Please note that we have swapped \\(\bm{r}\\) with \\(\bm{r'}\\).
 
-Green functions are discontinuous at \\(\bm{r} = \bm{r'}\\). Therefore, in order to satisfy the requirements of the vector Green theorem, we must consider two separate cases: 1) \\(\bm{r} \notin V, \bm{r'} \in V,\\) and 2) \\(\bm{r} \in V, \bm{r'} \notin V.\\)
+The continuity requirements of the vector Green theorem have certain practical implications. For instance, if the scattering object represents a particle group, with particle's hard boundaries creating discontinuities in the refractive index of the medium, then, in order to avoid the discontinuities of the electromagnetic field, we must take the integral over each particle separately. Moreover, the Green functions are discontinuous at \\(\bm{r} = \bm{r'}\\). Therefore, in order to make the vector Green theorem applicable, we must consider two separate cases: 1) \\(\bm{r} \notin V, \bm{r'} \in V,\\) and 2) \\(\bm{r} \in V, \bm{r'} \notin V.\\)
 
 Let us first consider the case when \\(\bm{r'}\\) is located inside the region occupied by the scattering object:
 
@@ -2691,7 +2691,7 @@ $$ \tag{1x.2}
 		\left( \mathcal{G}\_e \cdot \bm{a} \right) \cdot \left( \nabla' \times \nabla' \times \bm{E} \right)
 	\Big) dV'
 	\cr
-	= &\oint_{\delta V} \Big(
+	= &\oint_{\partial V} \Big(
 		\left( \mathcal{G}\_e \cdot \bm{a} \right) \times \left( \nabla' \times \bm{E} \right) -
 		\bm{E} \times \left( \nabla' \times \mathcal{G}\_e \right) \cdot \bm{a}
 	\Big) \cdot \bm{n} dA'.
@@ -2705,7 +2705,7 @@ $$ \tag{1x.3}
 	= k^2(\omega) \bm{E}(\bm{r'}, \omega) + k^2(\omega) \left( m^2(\bm{r'}, \omega) - 1 \right) \bm{E}(\bm{r'}, \omega).
 $$
 
-After interchanging the roles of \\(\bm{r}\\) and \\(\bm{r'}\\) in Eqn. 9.29, we obtain
+Similarly, after interchanging the roles of \\(\bm{r}\\) and \\(\bm{r'}\\) in Eqn. 9.29, we obtain
 
 $$ \tag{1x.4}
 	\nabla' \times \nabla' \times \mathcal{G}\_e(\bm{r'}, \bm{r}, k)
@@ -2721,14 +2721,14 @@ $$ \tag{1x.5}
 		\left( \mathcal{G}\_e \cdot \bm{a} \right) \cdot \left( k^2 \bm{E} + k^2 \left( m^2 - 1 \right) \bm{E} \right)
 	\Big) dV'
 	\cr
-	= &\oint_{\delta V} \Big(
+	= &\oint_{\partial V} \Big(
 		\left( \mathcal{G}\_e \cdot \bm{a} \right) \times \left( \nabla' \times \bm{E} \right) -
 		\bm{E} \times \left( \nabla' \times \mathcal{G}\_e \right) \cdot \bm{a}
 	\Big) \cdot \bm{n} dA'.
 \end{aligned}
 $$
 
-Since \\(\bm{r} \neq \bm{r'}\\), the Dirac delta function does not contribute to the integral, and can therefore be neglected. Additionally, the inner product \\(k^2 \bm{E} \cdot \left( \mathcal{G}\_e \cdot \bm{a} \right)\\) of two vectors commutes, so it cancels out, leading to
+Since \\(\bm{r} \neq \bm{r'}\\), the Dirac delta function does not contribute to the integral, and can therefore be neglected. Additionally, the inner product of two vectors commutes, so \\(k^2 \bm{E} \cdot \left( \mathcal{G}\_e \cdot \bm{a} \right)\\) cancels out, leading to
 
 $$ \tag{1x.6}
 \begin{aligned}
@@ -2736,14 +2736,14 @@ $$ \tag{1x.6}
 		 ( m^2 - 1 ) ( \mathcal{G}\_e \cdot \bm{a} ) \cdot \bm{E}
 	dV'
 	\cr
-	= &\oint_{\delta V} \Big(
+	= &\oint_{\partial V} \Big(
 		\left( \mathcal{G}\_e \cdot \bm{a} \right) \times \left( \nabla' \times \bm{E} \right) -
 		\bm{E} \times \left( \nabla' \times \mathcal{G}\_e \right) \cdot \bm{a}
 	\Big) \cdot \bm{n} dA'.
 \end{aligned}
 $$
 
-\\(\left( \mathcal{G} \cdot \bm{a} \right) \cdot \bm{E}\\) can be understood as a matrix-vector product (yielding a column vector) that is transposed and then matrix-multiplied by another column vector. Since the electric dyadic is symmetric, \\(\mathcal{G}\_e = \mathcal{G}\_e^T\\), and we can reorder the factors by transposing the matrix product:
+\\(\left( \mathcal{G} \cdot \bm{a} \right) \cdot \bm{E}\\) can be understood as a matrix-vector product (yielding a column vector) that is transposed and then matrix-multiplied by another column vector. Since the electric dyadic is symmetric, \\(\mathcal{G}\_e = \mathcal{G}\_e^T\\), which allows us to transpose the matrix product and reorder the factors:
 
 $$ \tag{1x.7}
 	\left( \mathcal{G}^T \cdot \bm{a} \right) \cdot \bm{E}
@@ -2760,7 +2760,7 @@ $$ \tag{1x.8}
 		 (m^2 - 1) (\mathcal{G}\_e \cdot \bm{E})
 	dV'
 	\cr
-	&= \oint_{\delta V} \Big(
+	&= \oint_{\partial V} \Big(
 		\left( \mathcal{G}\_e \cdot \bm{a} \right) \times \left( \nabla' \times \bm{E} \right) -
 		\bm{E} \times \left( \nabla' \times \mathcal{G}\_e \right) \cdot \bm{a}
 	\Big) \cdot \bm{n} dA'.
@@ -2789,16 +2789,16 @@ $$ \tag{1x.11}
 		 (m^2 - 1) (\mathcal{G}\_e \cdot \bm{E})
 	dV'
 	\cr
-	&= i \omega \oint_{\delta V} \Big(
+	&= i \omega \oint_{\partial V} \Big(
 		\bm{B} \times \left( \mathcal{G}\_e \cdot \bm{a} \right) -
 		\bm{E} \times \left( \mathcal{G}\_m \cdot \bm{a} \right)
 	\Big) \cdot \bm{n} dA'.
 \end{aligned}
 $$
 
-At this point, both dyadic Green functions list their arguments in the same (conventional) order \\((\bm{r}, \bm{r'}, k)\\): \\(\mathcal{G}\_e\\) due to its symmetry, and \\(\mathcal{G}\_m\\) because of Eqn. 1x.10.
+At this point, the dyadic Green functions of Eqn. 1x.11 list their arguments in the same (conventional) order: \\(\mathcal{G}\_e(\bm{r}, \bm{r'}, k)\\) due to its symmetry, and \\(\mathcal{G}\_m(\bm{r}, \bm{r'}, k)\\) because of Eqn. 1x.10.
 
-The last complication involves two [scalar triple products](https://en.wikipedia.org/wiki/Triple_product#Scalar_triple_product) of the form \\(\bm{n} \cdot (\bm{E} \times (\mathcal{G} \cdot \bm{a}))\\). We can use its cyclical property to our advantage:
+The surface integral features two [scalar triple products](https://en.wikipedia.org/wiki/Triple_product#Scalar_triple_product) of the form \\(\bm{n} \cdot (\bm{E} \times (\mathcal{G} \cdot \bm{a}))\\). We can use its cyclical property to our advantage:
 
 $$ \tag{1x.12}
 	\bm{n} \cdot (\bm{E} \times (\mathcal{G}^T \cdot \bm{a}))
@@ -2807,7 +2807,9 @@ $$ \tag{1x.12}
 	= \bm{a} \cdot \mathcal{G} \cdot \left( \bm{n} \times \bm{E} \right).
 $$
 
-In order to apply Eqn. 1x.12, both Green dyadics must be transposed. In the case of the magnetic dyadic, this operation must be performed carefully, since the matrix is anti-symmetric: \\(\mathcal{G}\_m = -\mathcal{G}\_m^T\\). Application of these identities produces the following result:
+Before we can apply Eqn. 1x.12, both Green dyadics need to be transposed. This operation must be performed carefully; while the electric dyadic is symmetric, the magnetic dyadic is anti-symmetric, so its transpose alters the sign: \\(\mathcal{G}\_m = -\mathcal{G}\_m^T\\).
+
+Application of these identities allows us to move \\(\bm{a}\\) outside the integral:
 
 $$ \tag{1x.13}
 \begin{aligned}
@@ -2816,26 +2818,26 @@ $$ \tag{1x.13}
 		 (m^2 - 1) (\mathcal{G}\_e \cdot \bm{E})
 	dV'
 	\cr
-	&= \bm{a} \cdot i \omega \oint_{\delta V} \Big(
+	&= \bm{a} \cdot i \omega \oint_{\partial V} \Big(
 		\mathcal{G}\_e \cdot \left( \bm{n} \times \bm{B} \right) +
 		\mathcal{G}\_m \cdot \left( \bm{n} \times \bm{E} \right)
 	\Big) dA'.
 \end{aligned}
 $$
 
-Since \\(\bm{a}\\) is an arbitrary constant vector, it can be safely neglected. Thus, we have obtained the expression of the scattered field \\(\bm{E_s}\\) in the region outside the particle in terms of the *tangential surface fields* \\(\bm{n} \times \bm{E}\\) and \\(\bm{n} \times \bm{B}\\):
+Since \\(\bm{a}\\) is an arbitrary constant vector, it can be safely neglected. Therefore,
 
 $$ \tag{1x.14}
 	\bm{E_s}(\bm{r}, \omega)
-	= i \omega \oint_{\delta V} \Big(
+	= i \omega \oint_{\partial V} \Big(
 		\mathcal{G}\_e(\bm{r}, \bm{r'}, \omega) \cdot \big( \bm{n} \times \bm{B}(\bm{r'}, \omega) \big) +
 		\mathcal{G}\_m(\bm{r}, \bm{r'}, \omega) \cdot \big( \bm{n} \times \bm{E}(\bm{r'}, \omega) \big)
 	\Big) dA'.
 $$
 
-Eqn. 1x.14 is known as the *Huygens principle* \[[Tsang Vol 1.](#references) (ch. 2)\].
+Eqn. 1x.14 gives the expression of the scattered field \\(\bm{E_s}\\) in the region outside the scattering object \\((\bm{r} \notin V)\\) in terms of the *tangential surface fields* \\(\bm{n} \times \bm{E}\\) and \\(\bm{n} \times \bm{B}\\). More generally speaking, the idea that a smooth (but not necessarily physical) surface can be seen as a source of spherical *wavelets* (secondary waves) interfering with each other is known as the [Huygens-Fresnel principle](https://en.wikipedia.org/wiki/Huygens%E2%80%93Fresnel_principle) \[[4](#references) (ch. 3.1), [Tsang Vol 1.](#references) (ch. 2)\].
 
-If we do not want to make any assumptions about the interior of the scattering object, we should focus on the fields in the homogeneous region \\(V_2\\) surrounding it. Since that region is open, let us slightly modify the mathematical formulation to explicitly account for the source of the incident field by setting \\(\bm{J_f} = \bm{J_s}\\) in Eqn. 11.2. The source currents can then be bound using two surfaces: the bounding surface \\(\delta V\\) of the particle group with the outward-facing normal \\(\bm{n}\\) , and a very large sphere of effectively infinite radius \\(\delta V_2\\).
+If we do not want to make any assumptions about the interior of the particle, we should focus on the fields in the homogeneous region \\(V_2\\) surrounding it. Since that region is open, let us slightly modify the mathematical formulation to explicitly account for the source of the incident field by setting \\(\bm{J_f} = \bm{J_s}\\) in Eqn. 11.2. The source currents can then be bound using two surfaces: the bounding surface \\(\partial V\\) of the particle group with the outward-facing normal \\(\bm{n}\\) , and a very large sphere of effectively infinite radius \\(\partial V_2\\).
 
 A series of straightforward algebraic manipulations leads to the modified form of Eqn. 11.5:
 
@@ -2857,7 +2859,7 @@ $$ \tag{1x.3}
 		\left( \mathcal{G}\_e \cdot \bm{a} \right) \cdot \nabla \times \nabla \times \bm{E}
 	\Big) dV'
 	\cr
-	= &\oint_{\delta V} \Big(
+	= &\oint_{\partial V} \Big(
 		\left( \mathcal{G}\_e \cdot \bm{a} \right) \times \nabla \times \bm{E} -
 		\bm{E} \times \nabla \times \left( \mathcal{G}\_e \cdot \bm{a} \right)
 	\Big) \cdot \bm{n} dA'.
@@ -2881,7 +2883,7 @@ $$ \tag{1x.4}
 		\left( \mathcal{G}\_e \cdot \bm{a} \right) \cdot \left( \bm{J'} + k^2 \bm{E} \right)
 	\Big) dV'
 	\cr
-	= &\oint_{\delta V} \bm{n} \cdot \Big(
+	= &\oint_{\partial V} \bm{n} \cdot \Big(
 		\left( \mathcal{G}\_e \cdot \bm{a} \right) \times \nabla \times \bm{E} -
 		\bm{E} \times \nabla \times \left( \mathcal{G}\_e \cdot \bm{a} \right)
 	\Big) dA'.
@@ -2894,7 +2896,7 @@ $$ \tag{1x.5}
 \begin{aligned}
 	\bm{a} &\cdot \int_V \mathcal{G}\_e^T \cdot \bm{J'} dV'
 	\cr
-	= -\bm{a} &\cdot \oint_{\delta V} \Big(
+	= -\bm{a} &\cdot \oint_{\partial V} \Big(
 		\mathcal{G}\_e^T \cdot \left( \bm{n} \times \nabla \times \bm{E} \right) +
 		\left( \nabla' \times \mathcal{G}\_e^T \right) \cdot \left( \bm{n} \times \bm{E} \right)
 	\Big) dA'.
@@ -3265,9 +3267,9 @@ where the absorption coefficient \\(\alpha\\) is defined according to Eqn. 7.40.
 
 ### Transition Operator
 
-The volume integral equation can be reduced to a relatively simple expression by assuming that the observation point is located in the radiation zone of the scatterer. However, the value of the electric field in the interior remains unknown. For a single atom or a small molecule, we can reasonably assume that it doesn't drive itself, which makes the field driving the molecule the same as the incident field, with the resulting (simplified) expression of Eqn. 13.12 given by Eqn. 13.5. Yet, in general, this assumption does not hold. It is easy to convince ourselves by considering a highly reflective or absorptive particle - it seems fairly obvious that the total field deep inside the particle has (on average) a lower magnitude in comparison with the incident field at the same location if the particle wasn't there.
+The volume integral equation can be reduced to a relatively simple expression by assuming that the observation point is located in the radiation zone of the scattering object. However, the value of the electric field in the interior remains unknown. For a single atom or a small molecule, we can reasonably assume that it doesn't drive itself, which makes the field driving the molecule the same as the incident field, with the resulting (simplified) expression of Eqn. 13.12 given by Eqn. 13.5. Yet, in general, this assumption does not hold. It is easy to convince ourselves by considering a highly reflective or absorptive particle - it seems fairly obvious that the total field deep inside the particle has (on average) a lower magnitude in comparison with the incident field at the same location if the particle wasn't there.
 
-Let us recall the mechanics of scattering. In a dielectric, the incident field (primary wave) drives the dipoles, which in turn act as sources of scattered wavelets (secondary waves) interfering with the incident field according to the superposition principle. We may continue this line of thinking by considering the effect of a dipole as a secondary source on all other dipoles surrounding it, effectively treating the dipole field as the secondary incident field. Repeated application of this iterative approach leads to evaluation of successive orders of scattering one by one. This is the general idea behind the [Born series](https://en.wikipedia.org/wiki/Born_series) \[[6](#references) (ch. 13.1)\].
+Let us recall the mechanics of scattering. In a dielectric, the incident field (primary wave) drives the dipoles, which in turn act as sources of scattered wavelets interfering with the incident field according to the superposition principle. We may continue this line of thinking by considering the effect of a dipole as a secondary source on all other dipoles surrounding it, effectively treating the dipole field as the secondary incident field. Repeated application of this iterative approach leads to evaluation of successive orders of scattering one by one. This is the general idea behind the [Born series](https://en.wikipedia.org/wiki/Born_series) \[[6](#references) (ch. 13.1)\].
 
 We can formalize this approach in the following way \[[8](#references) (ch. 4.5)\]. We start with Eqn. 11.12, where we must make sure to include the depolarization dyadic term (cf. Eqn. 9.27) in order for the integral to remain valid even if the integration point is inside the volume \\(V\\):
 
@@ -3419,7 +3421,10 @@ $$ \tag{14.19}
 	T = U (I + G T)
 $$
 
-It does, however, depend on the geometry and the structure of scattering object.
+It does, however, depend on the geometry and the structure of scattering
+
+
+.
 
 Notice that, when we combine Eqn. 14.13 and 14.19, the potential operator cancels out, and we obtain a series expansion
 
