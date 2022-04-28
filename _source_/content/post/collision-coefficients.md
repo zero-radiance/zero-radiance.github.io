@@ -2767,7 +2767,7 @@ $$ \tag{1x.8}
 \end{aligned}
 $$
 
-The surface integral can be simplified further. According to Eqn. 3.12,
+The surface integral can also be simplified. According to Eqn. 3.12,
 
 $$ \tag{1x.9}
 	\nabla' \times \bm{E}(\bm{r'}, \omega) = i \omega \bm{B}(\bm{r'}, \omega).
@@ -2837,7 +2837,40 @@ $$
 
 Eqn. 1x.14 gives the expression of the scattered field \\(\bm{E_s}\\) in the region outside the scattering object \\((\bm{r} \notin V)\\) in terms of the *tangential surface fields* \\(\bm{n} \times \bm{E}\\) and \\(\bm{n} \times \bm{B}\\). More generally speaking, the idea that a smooth (but not necessarily physical) surface can be seen as a source of spherical *wavelets* (secondary waves) interfering with each other is known as the [Huygens-Fresnel principle](https://en.wikipedia.org/wiki/Huygens%E2%80%93Fresnel_principle) \[[4](#references) (ch. 3.1), [Tsang Vol 1.](#references) (ch. 2)\].
 
-If we do not want to make any assumptions about the interior of the particle, we should focus on the fields in the homogeneous region \\(V_2\\) surrounding it. Since that region is open, let us slightly modify the mathematical formulation to explicitly account for the source of the incident field by setting \\(\bm{J_f} = \bm{J_s}\\) in Eqn. 11.2. The source currents can then be bound using two surfaces: the bounding surface \\(\partial V\\) of the particle group with the outward-facing normal \\(\bm{n}\\) , and a very large sphere of effectively infinite radius \\(\partial V_2\\).
+We can use the same technique to determine the value of the scattered field inside the scattered object. In order to do that, we shall consider the homogeneous region \\(V_2\\) surrounding it. That region is open, so we must add a very large sphere \\(\partial V_2\\) in order to bound it.
+
+$$ \tag{1x.15}
+\begin{aligned}
+	&\int_{V_2} \Big(
+		\bm{E} \cdot \left( \nabla' \times \nabla' \times \mathcal{G}\_e \right) \cdot \bm{a} -
+		\left( \mathcal{G}\_e \cdot \bm{a} \right) \cdot \left( \nabla' \times \nabla' \times \bm{E} \right)
+	\Big) dV'
+	\cr
+	&= \bm{a} \cdot i \omega \oint_{\partial V} \Big(
+		\mathcal{G}\_e \cdot \left( \bm{n} \times \bm{B} \right) +
+		\mathcal{G}\_m \cdot \left( \bm{n} \times \bm{E} \right)
+	\Big) dA'
+	\cr
+	&- \bm{a} \cdot i \omega \oint_{\partial V_2} \Big(
+		\mathcal{G}\_e \cdot \left( \bm{n} \times \bm{B} \right) +
+		\mathcal{G}\_m \cdot \left( \bm{n} \times \bm{E} \right)
+	\Big) dA'.
+\end{aligned}
+$$
+
+Let us also slightly modify the mathematical formulation to explicitly account for the sources of the incident field by setting \\(\bm{J_f} = \bm{J_s}\\) in Eqn. 11.2. The nature of these (primary or secondary) sources does not concern us; however, the source distribution must be continuous.
+
+A series of straightforward algebraic manipulations leads to the modified form of Eqn. 11.9:
+
+$$ \tag{1x.16}
+	\nabla' \times \nabla' \times \bm{E}(\bm{r'}, \omega) = k^2(\omega) \bm{E}(\bm{r'}, \omega) - i \omega \mu(\omega) \bm{J_s}(\bm{r'}, \omega)
+$$
+
+
+If we do not want to make any assumptions about the interior of the particle, we should focus on the fields in the homogeneous region \\(V_2\\) surrounding it. Since that region is open, let us slightly modify the mathematical formulation to explicitly account for the source of the incident field  The source currents can then be bound using two surfaces: the bounding surface \\(\partial V\\) of the particle group with the outward-facing normal \\(\bm{n}\\) , and a very large sphere of effectively infinite radius \\(\partial V_2\\).
+
+
+
 
 A series of straightforward algebraic manipulations leads to the modified form of Eqn. 11.5:
 
@@ -4192,7 +4225,7 @@ $$ \tag{16.29}
 \end{aligned}
 $$
 
-The two integrals found in Eqn. 16.29 have the same form. That allows us to apply Jones' lemma \[[6](#references) (ap. XII), [8](#references) (ap. D)\\], which says that, for \\(k r \to \infin\\), the [asymptotic expansion](https://en.wikipedia.org/wiki/Asymptotic_expansion) of the surface integral over a sphere of radius \\(r\\) is
+The two integrals found in Eqn. 16.29 have the same form. That allows us to apply Jones' lemma \[[6](#references) (ap. XII), [8](#references) (ap. D)\], which says that, for \\(k r \to \infin\\), the [asymptotic expansion](https://en.wikipedia.org/wiki/Asymptotic_expansion) of the surface integral over a sphere of radius \\(r\\) is
 
 $$ \tag{16.30}
 	\frac{1}{r} \oint\_{\mathbb{S}^2} f(\bm{n}) e^{-i k r (\bm{u} \cdot \bm{n})} dA
