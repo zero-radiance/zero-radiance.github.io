@@ -1879,6 +1879,14 @@ $$
 
 Therefore, our results are consistent with Eqn. 3.12.
 
+Finally, note that, according to Eqn. 9.29,
+
+$$ \tag{9.3y}
+	i \omega \nabla \times \mathcal{G}\_m(\bm{r}, \bm{r'}, k)
+	= \nabla \times \nabla \times \mathcal{G}\_e(\bm{r}, \bm{r'}, k)
+	= k^2 \mathcal{G}\_e(\bm{r}, \bm{r'}, k) + \mathcal{I} \delta(\bm{r} - \bm{r'}).
+$$
+
 Green's dyadics take on a simple form when expressed in the Cartesian coordinate system. Let us first consider the electric dyadic defined by Eqn. 9.26-9.27:
 
 $$ \tag{9.36}
@@ -2662,7 +2670,7 @@ In the literature, Eqn. 11.25 is often called the *volume integral equation* \[[
 
 ### Huygens-Fresnel Principle
 
-The volume integral equation expresses the scattered field using the integral taken over the volume \\(V\\) of the scattering object. If its dimensions are large, and the material -- absorptive, then it is likely that a significant portion of its interior will make a negligible contribution to the field outside. Furthermore, determination of the internal field across the entire volume may prove to be both arduous and challenging. Thus, it may be advantageous to convert the volume integral into an integral taken over the surface \\(\partial V\\) (with the outward-pointing normal \\(\bm{n}\\)) by applying the second *vector Green theorem* defined in terms of two vector fields \\(\bm{P}\\) and \\(\bm{Q}\\) \[[17](#references) (ch. 4.14)\]:
+The volume integral equation expresses the scattered field using the integral taken over the volume \\(V\\) of the scattering object. If its dimensions are large, and the material -- absorptive, then it is likely that a significant portion of its interior will make a negligible contribution to the field outside. Furthermore, determination of the internal field across the entire volume may prove to be both arduous and challenging. Thus, it may be advantageous to convert the volume integral into an integral taken over the surface \\(\partial V\\) (with the outward-facing normal \\(\bm{n}\\)) by applying the second *vector Green theorem* defined in terms of two vector fields \\(\bm{P}\\) and \\(\bm{Q}\\) \[[17](#references) (ch. 4.14)\]:
 
 $$ \tag{1x.1}
 \small
@@ -2694,7 +2702,7 @@ $$ \tag{1x.2}
 	= &\oint_{\partial V} \Big(
 		\left( \mathcal{G}\_e \cdot \bm{a} \right) \times \left( \nabla' \times \bm{E} \right) -
 		\bm{E} \times \left( \nabla' \times \mathcal{G}\_e \right) \cdot \bm{a}
-	\Big) \cdot \bm{n} dA'.
+	\Big) \cdot \bm{n'} dA'.
 \end{aligned}
 $$
 
@@ -2724,7 +2732,7 @@ $$ \tag{1x.5}
 	= &\oint_{\partial V} \Big(
 		\left( \mathcal{G}\_e \cdot \bm{a} \right) \times \left( \nabla' \times \bm{E} \right) -
 		\bm{E} \times \left( \nabla' \times \mathcal{G}\_e \right) \cdot \bm{a}
-	\Big) \cdot \bm{n} dA'.
+	\Big) \cdot \bm{n'} dA'.
 \end{aligned}
 $$
 
@@ -2739,7 +2747,7 @@ $$ \tag{1x.6}
 	= &\oint_{\partial V} \Big(
 		\left( \mathcal{G}\_e \cdot \bm{a} \right) \times \left( \nabla' \times \bm{E} \right) -
 		\bm{E} \times \left( \nabla' \times \mathcal{G}\_e \right) \cdot \bm{a}
-	\Big) \cdot \bm{n} dA'.
+	\Big) \cdot \bm{n'} dA'.
 \end{aligned}
 $$
 
@@ -2763,7 +2771,7 @@ $$ \tag{1x.8}
 	&= \oint_{\partial V} \Big(
 		\left( \mathcal{G}\_e \cdot \bm{a} \right) \times \left( \nabla' \times \bm{E} \right) -
 		\bm{E} \times \left( \nabla' \times \mathcal{G}\_e \right) \cdot \bm{a}
-	\Big) \cdot \bm{n} dA'.
+	\Big) \cdot \bm{n'} dA'.
 \end{aligned}
 $$
 
@@ -2773,10 +2781,11 @@ $$ \tag{1x.9}
 	\nabla' \times \bm{E}(\bm{r'}, \omega) = i \omega \bm{B}(\bm{r'}, \omega).
 $$
 
-And, if we pay close attention to the order of the arguments, Eqn. 9.48 tells us that
+And, if we pay close attention to the order of the arguments, Eqn. 9.35 and 9.48 tell us that
 
 $$ \tag{1x.10}
 	\nabla' \times \mathcal{G}\_e(\bm{r'}, \bm{r}, k)
+	= i \omega \mathcal{G}\_m(\bm{r'}, \bm{r}, k)
 	= -i \omega \mathcal{G}\_m(\bm{r}, \bm{r'}, k).
 $$
 
@@ -2792,7 +2801,7 @@ $$ \tag{1x.11}
 	&= i \omega \oint_{\partial V} \Big(
 		\bm{B} \times \left( \mathcal{G}\_e \cdot \bm{a} \right) -
 		\bm{E} \times \left( \mathcal{G}\_m \cdot \bm{a} \right)
-	\Big) \cdot \bm{n} dA'.
+	\Big) \cdot \bm{n'} dA'.
 \end{aligned}
 $$
 
@@ -2801,10 +2810,10 @@ At this point, the dyadic Green functions of Eqn. 1x.11 list their arguments in 
 The surface integral features two [scalar triple products](https://en.wikipedia.org/wiki/Triple_product#Scalar_triple_product) of the form \\(\bm{n} \cdot (\bm{E} \times (\mathcal{G} \cdot \bm{a}))\\). We can use its cyclical property to our advantage:
 
 $$ \tag{1x.12}
-	\bm{n} \cdot (\bm{E} \times (\mathcal{G}^T \cdot \bm{a}))
-	= (\mathcal{G}^T \cdot \bm{a}) \cdot (\bm{n} \times \bm{E})
-	= \left( \mathcal{G}^T \cdot \bm{a} \right)^T (\bm{n} \times \bm{E})
-	= \bm{a} \cdot \mathcal{G} \cdot \left( \bm{n} \times \bm{E} \right).
+	\bm{n'} \cdot (\bm{E} \times (\mathcal{G}^T \cdot \bm{a}))
+	= (\mathcal{G}^T \cdot \bm{a}) \cdot (\bm{n'} \times \bm{E})
+	= \left( \mathcal{G}^T \cdot \bm{a} \right)^T (\bm{n'} \times \bm{E})
+	= \bm{a} \cdot \mathcal{G} \cdot \left( \bm{n'} \times \bm{E} \right).
 $$
 
 Before we can apply Eqn. 1x.12, both Green dyadics need to be transposed. This operation must be performed carefully; while the electric dyadic is symmetric, the magnetic dyadic is anti-symmetric, so its transpose alters the sign: \\(\mathcal{G}\_m = -\mathcal{G}\_m^T\\).
@@ -2819,8 +2828,8 @@ $$ \tag{1x.13}
 	dV'
 	\cr
 	&= \bm{a} \cdot i \omega \oint_{\partial V} \Big(
-		\mathcal{G}\_e \cdot \left( \bm{n} \times \bm{B} \right) +
-		\mathcal{G}\_m \cdot \left( \bm{n} \times \bm{E} \right)
+		\mathcal{G}\_e \cdot \left( \bm{n'} \times \bm{B} \right) +
+		\mathcal{G}\_m \cdot \left( \bm{n'} \times \bm{E} \right)
 	\Big) dA'.
 \end{aligned}
 $$
@@ -2828,14 +2837,26 @@ $$
 Since \\(\bm{a}\\) is an arbitrary constant vector, it can be safely neglected. Therefore,
 
 $$ \tag{1x.14}
+\small
 	\bm{E_s}(\bm{r}, \omega)
 	= i \omega \oint_{\partial V} \Big(
-		\mathcal{G}\_e(\bm{r}, \bm{r'}, \omega) \cdot \big( \bm{n} \times \bm{B}(\bm{r'}, \omega) \big) +
-		\mathcal{G}\_m(\bm{r}, \bm{r'}, \omega) \cdot \big( \bm{n} \times \bm{E}(\bm{r'}, \omega) \big)
+		\mathcal{G}\_e(\bm{r}, \bm{r'}, \omega) \cdot \big( \bm{n'} \times \bm{B}(\bm{r'}, \omega) \big) +
+		\mathcal{G}\_m(\bm{r}, \bm{r'}, \omega) \cdot \big( \bm{n'} \times \bm{E}(\bm{r'}, \omega) \big)
 	\Big) dA'.
 $$
 
-Eqn. 1x.14 gives the expression of the scattered field \\(\bm{E_s}\\) in the region outside the scattering object \\((\bm{r} \notin V)\\) in terms of the *tangential surface fields* \\(\bm{n} \times \bm{E}\\) and \\(\bm{n} \times \bm{B}\\). More generally speaking, the idea that a smooth (but not necessarily physical) surface can be seen as a source of spherical *wavelets* (secondary waves) interfering with each other is known as the [Huygens-Fresnel principle](https://en.wikipedia.org/wiki/Huygens%E2%80%93Fresnel_principle) \[[4](#references) (ch. 3.1), [Tsang Vol 1.](#references) (ch. 2)\].
+The expression of the magnetic field \\(\bm{B_s}\\) can be determined using Eqn. 3.12, 9.35, and 9.3y:
+
+$$ \tag{1x.15}
+\small
+	\bm{B_s}(\bm{r}, \omega)
+	= i \omega \oint_{\partial V} \Big(
+		\mathcal{G}\_m(\bm{r}, \bm{r'}, \omega) \cdot \big( \bm{n'} \times \bm{B}(\bm{r'}, \omega) \big) - \frac{k^2}{\omega^2}
+		\mathcal{G}\_e(\bm{r}, \bm{r'}, \omega) \cdot \big( \bm{n'} \times \bm{E}(\bm{r'}, \omega) \big)
+	\Big) dA'.
+$$
+
+Eqn. 1x.14-1x.15 give the expressions of the scattered field in the region outside the scattering object \\((\bm{r} \notin V)\\) in terms of the *tangential surface fields* \\(\bm{n'} \times \bm{E}\\) and \\(\bm{n'} \times \bm{B}\\). More generally speaking, the idea that a smooth (but not necessarily physical) surface can be seen as a source of spherical *wavelets* (secondary waves) interfering with each other is known as the [Huygens-Fresnel principle](https://en.wikipedia.org/wiki/Huygens%E2%80%93Fresnel_principle) \[[4](#references) (ch. 3.1), [Tsang Vol 1.](#references) (ch. 2)\].
 
 ### Dipole Radiation
 
@@ -3059,9 +3080,39 @@ $$ \tag{13.13}
 	kr \gg \frac{1}{2} (k a)^2.
 $$
 
-We would like to caution that these conditions are, strictly speaking, only valid for Eqn. 13.6. If one considers a derived quantity (such as the time-averaged Poynting vector), the results of the preceding error analysis are no longer accurate, and the final expression should be examined instead.
+The same analysis is directly applicable to the surface integrals given by Eqn. 1x.14-1x.15:
 
-Eqn. 13.5 and 13.12 show an example of *vector* spherical waves, since the global phase factor \\(\exp(i k r)\\) does not depend on the direction of observation. Note that surfaces of constant phase do not coincide with surfaces of constant amplitude, since the latter may depend on the direction of observation.
+$$ \tag{13.1y}
+\begin{aligned}
+	\bm{E_s}(\bm{r}, \omega)
+	&\simeq i \omega \frac{e^{i k(\omega) r}}{4 \pi r}
+	\big( \mathcal{I} - \bm{n} \otimes \bm{n} \big) \cdot
+	\oint_{\partial V} e^{-i k(\omega) (\bm{r'} \cdot \bm{n})}
+	\big( \bm{n'} \times \bm{B}(\bm{r'}, \omega) \big) dA'
+	\cr
+	&+ i \omega \frac{e^{i k(\omega) r}}{4 \pi r}
+	\big(\bm{n} \times \mathcal{I} \big) \cdot
+	\oint_{\partial V} e^{-i k(\omega) (\bm{r'} \cdot \bm{n})}
+	\big( \bm{n'} \times \bm{E}(\bm{r'}, \omega) \big) dA',
+	\cr
+	\bm{B_s}(\bm{r}, \omega)
+	&\simeq i \omega \frac{e^{i k(\omega) r}}{4 \pi r}
+	\big(\bm{n} \times \mathcal{I} \big) \cdot
+	\oint_{\partial V} e^{-i k(\omega) (\bm{r'} \cdot \bm{n})}
+	\big( \bm{n'} \times \bm{B}(\bm{r'}, \omega) \big) dA'
+	\cr
+	&+ \frac{k^2}{i \omega} \frac{e^{i k(\omega) r}}{4 \pi r}
+	\big( \mathcal{I} - \bm{n} \otimes \bm{n} \big) \cdot
+	\oint_{\partial V} e^{-i k(\omega) (\bm{r'} \cdot \bm{n})}
+	\big( \bm{n'} \times \bm{E}(\bm{r'}, \omega) \big) dA',
+\end{aligned}
+$$
+
+where \\(\bm{n'}\\) is the outward-facing surface normal associated with \\(dA' = dA(\bm{r'})\\), which does, in general, differ from \\(\bm{r'}/|\bm{r}|\\), unless the particle is spherical.
+
+We would like to caution that these conditions are, strictly speaking, only valid for the expressions of the fields. If one considers a derived quantity (such as the time-averaged Poynting vector), the results of the preceding error analysis are no longer accurate, and the final expression should be examined instead.
+
+Eqn. 13.5, 13.12, and 13.1y show an example of *vector* spherical waves, since the global phase factor \\(\exp(i k r)\\) does not depend on the direction of observation. Note that surfaces of constant phase do not coincide with surfaces of constant amplitude, since the latter may depend on the direction of observation.
 
 An important property of the far-field solution is the fact that the scattered field vectors are transverse with respect to the direction of observation:
 
