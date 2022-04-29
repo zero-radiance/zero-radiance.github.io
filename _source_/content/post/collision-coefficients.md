@@ -2856,7 +2856,7 @@ $$ \tag{1x.15}
 	\Big) dA'.
 $$
 
-Eqn. 1x.14-1x.15 give the expressions of the scattered field in the region outside the scattering object \\((\bm{r} \notin V)\\) in terms of the *tangential surface fields* \\(\bm{n'} \times \bm{E}\\) and \\(\bm{n'} \times \bm{B}\\). More generally speaking, the idea that a smooth (but not necessarily physical) surface can be seen as a source of spherical *wavelets* (secondary waves) interfering with each other is known as the [Huygens-Fresnel principle](https://en.wikipedia.org/wiki/Huygens%E2%80%93Fresnel_principle) \[[4](#references) (ch. 3.1), [Tsang Vol 1.](#references) (ch. 2)\].
+Eqn. 1x.14-1x.15 give the expressions of the scattered field in the region outside the scattering object \\((\bm{r} \notin V)\\) in terms of the *tangential surface fields* \\(\bm{n'} \times \bm{E}\\) and \\(\bm{n'} \times \bm{B}\\). More generally speaking, the idea that a smooth (but not necessarily physical) surface can be seen as a source of spherical *wavelets* (secondary waves) interfering with each other is known as the [Huygens-Fresnel principle](https://en.wikipedia.org/wiki/Huygens%E2%80%93Fresnel_principle) \[[4](#references) (ch. 3.1), [25](#references) (ch. 2)\].
 
 ### Dipole Radiation
 
@@ -6704,7 +6704,7 @@ $$ \tag{18.1??}
 \end{aligned}
 $$
 
-provided that \\(0.5 < m < 2.5\\), and \\(x\\) is sufficiently large \[[24](#references)\].
+provided that \\(0.5 < m < 2.5\\), and \\(x\\) is sufficiently large \[[23](#references)\].
 
 Next, let us turn our attention to particles on the opposite end of the size spectrum, with \\(\vert m x \vert \ll 1\\). If we assume that \\(\vert m \vert > 1\\), then it follows that \\(\vert x \vert \ll 1\\) as well. The Taylor series expansions of the Riccati-Bessel functions \[[17](#references) (ch. 7.4)\] are
 
@@ -7249,8 +7249,9 @@ Bohren & Huffman, Larry Travis, Pharr & Jakob, Jeppe Frisvad, Robin Green.
 20. Berg, M. J., Sorensen, C. M., & Chakrabarti, A. [A New Explanation of the Extinction Paradox](https://doi.org/10.1016/j.jqsrt.2010.08.024) (2011).
 21. Markel, V. A. [Extinction, Scattering and Absorption of Electromagnetic Waves in the Coupled-Dipole Approximation](https://doi.org/10.1016/j.jqsrt.2019.106611) (2019).
 22. Brillouin, L. [The Scattering Cross Section of Spheres for Electromagnetic Waves](https://doi.org/10.1063/1.1698280) (1949).
+23. Chýlek, P., & Zhan, J. [Interference Structure of the Mie Extinction Cross Section](https://doi.org/10.1364/JOSAA.6.001846) (1989).
 24. Chýlek, P. [Partial-Wave Resonances and the Ripple Structure in the Mie Normalized Extinction Cross Section ](https://doi.org/10.1364/JOSA.66.000285) (1976).
-25. Chýlek, P., & Zhan, J. [Interference Structure of the Mie Extinction Cross Section](https://doi.org/10.1364/JOSAA.6.001846) (1989).
+25. Tsang, L., Kong, J. A., & Ding, K. H. [Scattering of Electromagnetic Waves: Theories and Applications](10.1002/0471224286) (2000).
 99. Hansen, J. E., & Travis, L. D. [Light Scattering in Planetary Atmospheres](https://doi.org/10.1007/BF00168069) (1974).
 
 <!--
