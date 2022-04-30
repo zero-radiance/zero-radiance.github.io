@@ -4158,24 +4158,24 @@ $$ \tag{16.26}
 \begin{aligned}
 	\bm{n_s} \cdot \braket{\bm{E_i} \times \bm{B_s}}
 	&\simeq \frac{1}{2 k r} \mathcal{Re} \Big\lbrace
-	\bm{n_s} \cdot \big( \bm{E_0} \times \bm{B_1^{\*}} \big) e^{-i k r} e^{i k r (\bm{n_s} \cdot \bm{n_i})}
+	\bm{n_s} \cdot \big( \bm{E_0} \times \bm{B_1^{\*}} \big) e^{-i k r} e^{i k r (\bm{n_i} \cdot \bm{n_s})}
 	\Big\rbrace
 	\cr
 	&= \frac{1}{2 k r} \mathcal{Re} \Big\lbrace
-	\bm{E_0} \cdot \big( \bm{B_1^{\*}} \times \bm{n_s} \big) e^{-i k r} e^{i k r (\bm{n_s} \cdot \bm{n_i})}
+	\bm{E_0} \cdot \big( \bm{B_1^{\*}} \times \bm{n_s} \big) e^{-i k r} e^{i k r (\bm{n_i} \cdot \bm{n_s})}
 	\Big\rbrace
 	\cr
 	&= \frac{1}{2 k r} \frac{\eta}{c} \mathcal{Re} \Big\lbrace
-	\big( \bm{E_0} \cdot \bm{E_1^{\*}} \big) e^{-i k r} e^{i k r (\bm{n_s} \cdot \bm{n_i})}
+	\big( \bm{E_0} \cdot \bm{E_1^{\*}} \big) e^{-i k r} e^{i k r (\bm{n_i} \cdot \bm{n_s})}
 	\Big\rbrace,
 	\cr
-	\braket{\bm{E_i} \times \bm{B_s}}
+	\braket{\bm{E_s} \times \bm{B_i}}
 	&\simeq \frac{1}{2 k r} \mathcal{Re} \Big\lbrace
-	\big( \bm{E_1} \times \bm{B_0^{\*}} \big) e^{i k r} e^{-i k r (\bm{n_s} \cdot \bm{n_i})}
+	\big( \bm{E_1} \times \bm{B_0^{\*}} \big) e^{i k r} e^{-i k r (\bm{n_i} \cdot \bm{n_s})}
 	\Big\rbrace
 	\cr
 	&= \frac{1}{2 k r} \frac{\eta}{c} \mathcal{Re} \Big\lbrace
-	\big( \bm{E_1} \times \bm{n_i} \times \bm{E_0^{\*}} \big) e^{i k r} e^{-i k r (\bm{n_s} \cdot \bm{n_i})}
+	\big( \bm{E_1} \times \bm{n_i} \times \bm{E_0^{\*}} \big) e^{i k r} e^{-i k r (\bm{n_i} \cdot \bm{n_s})}
 	\Big\rbrace
 	\cr
 	&= \frac{1}{2 k r} \frac{\eta}{c} \mathcal{Re} \Big\lbrace
@@ -4183,7 +4183,7 @@ $$ \tag{16.26}
 	\bm{n_i} \big( \bm{E_0^{\*} \cdot \bm{E_1}} \big) -
 	\bm{E_0^{\*}} \big( \bm{n_i} \cdot \bm{E_1} \big)
 	\Big)
-	e^{i k r} e^{-i k r (\bm{n_s} \cdot \bm{n_i})}
+	e^{i k r} e^{-i k r (\bm{n_i} \cdot \bm{n_s})}
 	\Big\rbrace.
 \end{aligned}
 $$
@@ -4201,78 +4201,92 @@ $$ \tag{16.27}
 \end{aligned}
 $$
 
-Let us now integrate the normal component of \\(\braket{\bm{S_e}}\\) over a large sphere:
+In particular, due to orthogonality relations given by Eqn. 16.2,
 
 $$ \tag{16.28}
-	\Phi_e
-	= \oint_{\mathbb{S}^2} \braket{\bm{S_e}} \cdot \bm{n_s} \thinspace dA
-	= -\mu\_0^{-1} \oint_{\mathbb{S}^2} \braket{\bm{E_i} \times \bm{B_s} + \bm{E_s} \times \bm{B_i}} \cdot \bm{n_s} \thinspace dA.
+	f_2(\pm \bm{n_i})
+	= \pm \bm{E_0^{\*}} \cdot \bm{E_1}(\pm \bm{n_i}).
 $$
 
-If we express the integrand using Eqn. 16.23, and omit the leading constant, we obtain
+Use of notation introduced in Eqn. 16.27 results in a compact expression of the interference term given by Eqn. 16.20:
 
 $$ \tag{16.29}
-\begin{aligned}
-	\oint\_{\mathbb{S}^2} \braket{\bm{E_i} \times \bm{B_s}} \cdot \bm{n_s} \thinspace dA
-	&= \frac{1}{2} \frac{\eta}{c} \frac{1}{k} \mathcal{Re} \Big\lbrace e^{-i k r} \frac{1}{r}
-	\oint\_{\mathbb{S}^2} f_1(\bm{n_s}) e^{-i k r (-\bm{n_i} \cdot \bm{n_s})} dA
-	\Big\rbrace,
-	\cr
-	\oint\_{\mathbb{S}^2} \braket{\bm{E_i} \times \bm{B_s}} \cdot \bm{n_s} \thinspace dA
-	&= \frac{1}{2} \frac{\eta}{c} \frac{1}{k} \mathcal{Re} \Big\lbrace e^{i k r} \frac{1}{r}
-	\oint\_{\mathbb{S}^2} f_2(\bm{n_s}) e^{-i k r (\bm{n_i} \cdot \bm{n_s})} dA
-	\Big\rbrace.
-\end{aligned}
+	\braket{\bm{S_e}} \cdot \bm{n_s}
+	\simeq -\frac{\mu\_0^{-1}}{2} \frac{\eta}{c} \mathcal{Re} \left\lbrace
+		\frac{e^{-i k r}}{k r} f_1(\bm{n_s}) e^{i k r (\bm{n_i} \cdot \bm{n_s})} +
+		\frac{e^{i k r}}{k r} f_2(\bm{n_s}) e^{-i k r (\bm{n_i} \cdot \bm{n_s})}
+	\right\rbrace.
 $$
 
-The two integrals found in Eqn. 16.29 have the same form. That allows us to apply Jones' lemma \[[6](#references) (ap. XII), [8](#references) (ap. D)\], which says that, for \\(k r \to \infin\\), the [asymptotic expansion](https://en.wikipedia.org/wiki/Asymptotic_expansion) of the surface integral over a sphere of radius \\(r\\) is
+Note that we are using the asymptotic expression of a spherical wave (Eqn. 16.10). It is based on the fact that a small patch of the surface of a spherical wavefront at a great distance from the origin appears effectively flat. We can also use this idea in reverse, by reinterpreting a plane wave as a very large \\((k r \to \infin)\\) spherical wave that is either seen as diverging from the inside, or converging when observed from the outside:
 
 $$ \tag{16.30}
-	\frac{1}{r} \oint\_{\mathbb{S}^2} f(\bm{n}) e^{-i k r (\bm{u} \cdot \bm{n})} dA
-	\simeq \frac{2 \pi i}{k} \Big( f(\bm{u}) e^{-i k r} - f(-\bm{u}) e^{i k r} \Big),
+\begin{aligned}
+	e^{i k r (\bm{n_i} \cdot \bm{n_s})}
+	\simeq 2 \pi i \left(
+	\frac{e^{-i k r}}{k r} \delta(\bm{n_i} + \bm{n_s}) -
+	\frac{e^{i k r}}{k r} \delta(\bm{n_i} - \bm{n_s}) \right)
+\end{aligned},
 $$
 
-where \\(\bm{n}\\) is the outward facing normal vector, and \\(\bm{u}\\) is a constant real unit vector.
-
-Application of Eqn. 16.30 to 16.29 shows that
+where
 
 $$ \tag{16.31}
+	\delta(\bm{n_i} - \bm{n_s})
+	= \delta(\cos{\theta_i} - \cos{\theta_s}) \delta(\phi_i - \phi_s)
+$$
+
+is the Dirac delta function defined on the surface of a unit sphere \[[8](#references) (ch. 13, ap. D)\].
+
+The expression of the time-average of the mixed Poynting vector can be thus transformed into
+
+$$ \tag{16.32}
 \begin{aligned}
-	\oint\_{\mathbb{S}^2} \braket{\bm{E_i} \times \bm{B_s}} \cdot \bm{n_s} \thinspace dA
-	&\simeq \frac{\eta}{c} \frac{2 \pi}{k^2} \mathcal{Re} \bigg\lbrace \frac{i}{2}
-	\Big( \bm{E_0} \cdot \big[ \bm{E_1}(-\bm{n_i}) \big]^{\*} e^{-2 i k r} - \bm{E_0} \cdot \big[ \bm{E_1}(\bm{n_i}) \big]^{\*} \Big)
-	\bigg\rbrace,
+	\braket{\bm{S_e}} \cdot \bm{n_s}
+	&\simeq \frac{\mu\_0^{-1}}{2} \frac{\eta}{c} \frac{2 \pi}{k^2 r^2} \mathcal{Im} \left\lbrace
+	f_1(\bm{n_s}) \left(
+		\delta(\bm{n_i} + \bm{n_s}) e^{-2 i k r} -
+		\delta(\bm{n_i} - \bm{n_s})
+	\right) \right\rbrace
 	\cr
-	\oint\_{\mathbb{S}^2} \braket{\bm{E_i} \times \bm{B_s}} \cdot \bm{n_s} \thinspace dA
-	&\simeq \frac{\eta}{c} \frac{2 \pi}{k^2} \mathcal{Re} \bigg\lbrace \frac{i}{2}
-	\Big( \bm{E_0^{\*}} \cdot \bm{E_1}(\bm{n_i}) + \bm{E_0^{\*}} \cdot \bm{E_1}(-\bm{n_i}) e^{2 i k r} \Big)
-	\bigg\rbrace.
+	&- \frac{\mu\_0^{-1}}{2} \frac{\eta}{c} \frac{2 \pi}{k^2 r^2} \mathcal{Im} \left\lbrace
+	f_2(\bm{n_s}) \left(
+		\delta(\bm{n_i} + \bm{n_s}) e^{2 i k r} -
+		\delta(\bm{n_i} - \bm{n_s})
+	\right) \right\rbrace.
 \end{aligned}
 $$
 
-Notice that
-
-$$ \tag{16.32}
-	\frac{i}{2} \Big( \bm{E_0} \cdot \bm{E_1^{\*}} e^{-2 i k r} + \bm{E_0^{\*}} \cdot \bm{E_1} e^{2 i k r} \Big)
-	= i \mathcal{Re} \Big\lbrace \bm{E_0} \cdot \bm{E_1^{\*}} e^{-2 i k r} \Big\rbrace
-$$
-
-is a purely imaginary number, so its real part is zero. Similarly,
+Eqn. 16.32 indicates that we may detect observable interference between the incident and the scattered fields if the optical axis of the measurement device is directly facing the source \\((\bm{n_i} = \bm{n_s})\\). Evidently, the opposite orientation \\((\bm{n_i} = -\bm{n_s})\\) will cause the sensor to partially block the incident light. And even if it was not the case, the integral of the normal component of \\(\braket{\bm{S_e}}\\) over a small [spherical cap](https://mathworld.wolfram.com/SphericalCap.html) \\(C_i^{-}\\) centered at \\(-\bm{n_i}\\)
 
 $$ \tag{16.33}
-	\frac{i}{2} \big( \bm{E_0^{\*}} \cdot \bm{E_1} - \bm{E_0} \cdot \bm{E_1^{\*}} \big)
-	= -\mathcal{Im} \big\lbrace \bm{E_0^{\*}} \cdot \bm{E_1} \big\rbrace
+\begin{aligned}
+	\int_{C_i^{-}} \braket{\bm{S_e}} \cdot \bm{n_s} \thinspace dA
+	&\simeq \frac{\mu\_0^{-1}}{2} \frac{\eta}{c} \frac{2 \pi}{k^2} \mathcal{Im} \left\lbrace
+	f_1(-\bm{n_i}) e^{-2 i k r} - f_2(-\bm{n_i}) e^{2 i k r} \right\rbrace
+	\cr
+	&= \frac{\mu\_0^{-1}}{2} \frac{\eta}{c} \frac{2 \pi}{k^2} \mathcal{Im} \left\lbrace
+		\bm{E_0} \cdot \big[ \bm{E_1}(-\bm{n_i}) \big]^{\*} e^{-2 i k r} +
+		\bm{E_0^{\*}} \cdot \bm{E_1}(-\bm{n_i}) e^{2 i k r}
+	\right\rbrace = 0
+\end{aligned}
 $$
 
-is a real number. Thus, the total amount of power dissipated by the particle
+because the expression inside the curly braces is a real number (cf. Eqn. 3.5).
+
+Thus, assuming the observer is located in the radiation zone, *the incident and the scattered light only interfere in the forward direction*. The total amount of power participating in the interference phenomenon is
 
 $$ \tag{16.34}
 	\Phi_e
-	= -\mu\_0^{-1} \oint_{\mathbb{S}^2} \braket{\bm{E_i} \times \bm{B_s} + \bm{E_s} \times \bm{B_i}} \cdot \bm{n_s} \thinspace dA
-	= \frac{\mu\_0^{-1}}{2} \frac{\eta}{c} \frac{4 \pi}{k^2} \mathcal{Im} \big\lbrace \bm{E_0^{\*}} \cdot \bm{E_1}(\bm{n_i}) \big\rbrace
+	= \oint_{\mathbb{S}^2} \braket{\bm{S_e}} \cdot \bm{n_s} \thinspace dA
+	= \frac{\mu\_0^{-1}}{2} \frac{\eta}{c} \frac{4 \pi}{k^2} \mathcal{Im} \big\lbrace \bm{E_0^{\*}} \cdot \bm{E_1}(\bm{n_i}) \big\rbrace.
 $$
 
-depends on the scattering amplitude in the forward direction only. In general, the same is not true for the amount of power absorbed:
+By appealing to the law of conservation of energy, we can infer that this result is independent of the radius of the sphere.
+
+If the scattering process is separated from propagation of the parallel beam of incident light (as it is done in the framework of radiative transfer), then Eqn. 16.34 can be seen as the amount of power "removed" from the incident beam (cf. Eqn. 16.17). We shall later see that this interpretation is not correct, since 1) the incident field is not affected by the presence of the scattering object, and 2) the amount of scattered power is often overestimated. Thus, it is more appropriate to say that Eqn. 16.34 is a correction for the amount of power scattered in the forward direction.
+
+We can determine the amount of power absorbed by the particle using Eqn. 16.21:
 
 $$ \tag{16.35}
 	\Phi_a
@@ -6602,8 +6616,6 @@ we may use the polar plots of \\(-\tau\_{1,n}\\) and \\(-\pi\_{1,n}\\) on the in
 Care must be taken when interpreting these plots. Typically, if the value of a function is negative, it is plotted with a positive magnitude in the opposite direction. Such visualizations can be misleading. Instead, we utilize dashed lines for negative values and plot them in the original direction. Also, note the sign reversal at the horizontal axis. It does not imply a discontinuity of the field; rather, during the transition from \\(\phi = 0\\) to \\(\phi = \pi,\\) it is the direction of the spherical coordinate basis vectors that is reversed.
 
 Now, recall that Eqn. 18.5 contains a sum of the (negated) polar functions. Evidently, their plots show the largest amount of overlap along the horizontal axis. Yet, we must also account for the sign of the functions involved. In this sense, the forward direction is unique, because only then do the values of all functions share the same sign. Thus, as the particle size increases and we accumulate more terms, a larger percentage of total energy is scattered in the forward direction. This phenomenon is called the *Mie effect*.
-
-[Evgenii: remember to write about the diffraction interpretation later.]
 
 The explicit expressions of the polar functions (and their plots) also allow us to determine the *apparent* charge configurations responsible for the first few partial waves.
 
