@@ -4230,8 +4230,6 @@ $$ \tag{16.34}
 	= \frac{\mu\_0^{-1}}{2} \frac{\eta}{c} \frac{4 \pi}{k^2} \mathcal{Im} \big\lbrace \bm{E_0^{\*}} \cdot \bm{E_1}(\bm{n_i}) \big\rbrace.
 $$
 
-By appealing to the law of conservation of energy, we can infer that this result is independent of the radius of the sphere.
-
 If the scattering process is separated from propagation of the parallel beam of incident light (as it is done in the framework of radiative transfer), then Eqn. 16.34 can be seen as the amount of power "removed" from the incident beam (cf. Eqn. 16.17). We shall later see that this interpretation is not correct, since 1) the incident field is not affected by the presence of the scattering object, and 2) the amount of scattered power is often overestimated. Thus, it is more appropriate to say that Eqn. 16.34 is a correction for the amount of power scattered in the forward direction.
 
 We can determine the amount of power absorbed by the particle using Eqn. 16.21:
