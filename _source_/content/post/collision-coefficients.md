@@ -4053,7 +4053,7 @@ $$ \tag{16.21}
 	= \Phi_a + \Phi_s
 $$
 
-represents the total amount of power dissipated (absorbed or scattered) by the particle. We must caution against taking this interpretation literally: Eqn. 16.16 is just a convenient *mathematical decomposition*, and, in reality, the incident and the scattered fields cannot be completely *physically separated*. As a result, we can only measure the incident power \\(\Phi_i\\) (by removing the particle and installing a sensor) and the absorbed power \\(\Phi_a\\) (by comparing \\(\Phi_i\\) to the power measurement with the particle in place), while \\(\Phi_s\\) and \\(\Phi_e\\) are mathematical quantities that *are not measurable*, derived from the fields that *cannot individually exist*.
+represents the total amount of power dissipated (absorbed or scattered) by the particle. We must caution against taking this interpretation literally: Eqn. 16.17 is just a convenient *mathematical decomposition*, and, in reality, the incident and the scattered fields cannot be completely *physically separated*. In fact, we can only measure the incident power \\(\Phi_i\\) (if the particle is absent) and the total amount of power \\(\Phi = \Phi_i + \Phi_s - \Phi_e\\) (with the particle in place), while \\(\Phi_s\\) and \\(\Phi_e\\) are mathematical quantities that *are not directly measurable*, derived from the fields that *cannot individually exist*.
 
 Now, recall (cf. Eqn. 4.8, 4.15) that we have found, under quite general conditions, that the time average of the cross product of two vectors oscillating at exactly the same frequency is
 
@@ -4166,7 +4166,7 @@ $$ \tag{16.29}
 	\right\rbrace.
 $$
 
-Note that we are using the asymptotic expression of a spherical wave (Eqn. 16.10). It is based on the fact that a small patch of the surface of a spherical wavefront at a great distance from the origin appears effectively flat. We can also use this idea in reverse, by reinterpreting a plane wave as a very large \\((k r \to \infin)\\) spherical wave that is either seen as diverging from the inside, or converging when observed from the outside:
+Note that we are using the asymptotic expression of a spherical wave (Eqn. 16.10). It is based on the fact that a small surface patch of a very large spherical wavefront appears effectively flat. We can also use this idea in reverse, by reinterpreting a plane wave as a very large spherical wave \\((k r \to \infin)\\) that is either seen as diverging from the inside, or converging when observed from the outside:
 
 $$ \tag{16.30}
 \begin{aligned}
@@ -4205,7 +4205,7 @@ $$ \tag{16.32}
 \end{aligned}
 $$
 
-Eqn. 16.32 indicates that we may detect observable interference between the incident and the scattered fields if the optical axis of the measurement device is directly facing the source \\((\bm{n_i} = \bm{n_s})\\). Evidently, the opposite orientation \\((\bm{n_i} = -\bm{n_s})\\) will cause the sensor to partially block the incident light. And even if it was not the case, the integral of the normal component of \\(\braket{\bm{S_e}}\\) over a small [spherical cap](https://mathworld.wolfram.com/SphericalCap.html) \\(C_i^{-}\\) centered at \\(-\bm{n_i}\\)
+Eqn. 16.32 indicates that we may detect observable interference between the incident and the scattered fields if the optical axis of the measurement device is directly facing the source \\((\bm{n_i} = \bm{n_s})\\). Evidently, the opposite orientation \\((\bm{n_i} = -\bm{n_s})\\) will cause the sensor to partially block the incident light. And even if it were not the case, the integral of the normal component of \\(\braket{\bm{S_e}}\\) over a small [spherical cap](https://mathworld.wolfram.com/SphericalCap.html) \\(C_i^{-}\\) centered at \\(-\bm{n_i}\\)
 
 $$ \tag{16.33}
 \begin{aligned}
@@ -4229,6 +4229,24 @@ $$ \tag{16.34}
 	= \oint_{\mathbb{S}^2} \braket{\bm{S_e}} \cdot \bm{n_s} \thinspace dA
 	= \frac{\mu\_0^{-1}}{2} \frac{\eta}{c} \frac{4 \pi}{k^2} \mathcal{Im} \big\lbrace \bm{E_0^{\*}} \cdot \bm{E_1}(\bm{n_i}) \big\rbrace.
 $$
+
+According to Eqn. 16.14, 16.17, 16.21, and 16.34, if we place the particle between (and at a great distance from both) the source and the sensor of area \\(\delta A\\), and make sure the latter is perpendicular to the direction of incidence, the amount of power \\(\Phi_f\\) detected by the sensor
+
+$$ \tag{16.3x}
+\begin{aligned}
+	\Phi_f
+	&= \delta A \braket{\bm{S_i}} \cdot \bm{n_i}
+	 + \delta A \braket{\bm{S_s}} \cdot \bm{n_i} - \Phi_e
+	\cr
+	&= \delta A \braket{\bm{S_i}} \cdot \bm{n_i}
+	 + \delta A \braket{\bm{S_s}} \cdot \bm{n_i}
+	 - \oint_{A} \braket{\bm{S_s}} \cdot \bm{n_s} \thinspace dA - \Phi_a
+\end{aligned}
+$$
+
+will be smaller when compared to the amount of power \\(\delta A \braket{\bm{S_i}} \cdot \bm{n_i}\\) detected in the absence of the particle, since the amount of power scattered in the forward direction \\(\delta A \braket{\bm{S_s}} \cdot \bm{n_i}\\) is smaller than the total amount of power \\(\Phi_s = \oint_{A} \braket{\bm{S_s}} \cdot \bm{n_s} \thinspace dA\\) scattered in all directions. Thus, we can conclude that placing a particle in a parallel beam of light reduces its intensity.
+
+TODO...
 
 If the scattering process is separated from propagation of the parallel beam of incident light (as it is done in the framework of radiative transfer), then Eqn. 16.34 can be seen as the amount of power "removed" from the incident beam (cf. Eqn. 16.17). We shall later see that this interpretation is not correct, since 1) the incident field is not affected by the presence of the scattering object, and 2) the amount of scattered power is often overestimated. Thus, it is more appropriate to say that Eqn. 16.34 is a correction for the amount of power scattered in the forward direction.
 
