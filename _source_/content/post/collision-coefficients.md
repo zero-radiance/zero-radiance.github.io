@@ -3770,7 +3770,7 @@ $$ \tag{15.19}
 	= \frac{e^{i |\bm{\hat{r}}|}}{4 \pi |\bm{\hat{r}}|}.
 $$
 
-The expression of the total field is the sum of the incident and the scattered fields. Eqn. 15.1 of the incident field can be transformed into the dimensionless form by a trivial substitution of Eqn. 15.18. On the other hand, Eqn. 15.3 of the scattered field is more complicated, as it contains the total electric and transition dyadics. According to Eqn. 14.22, the transition dyadic is itself defined in terms of the electric dyadic. Thus, we only need to transform the expression of the former. For convenience, we elect to use the expanded definition given by Eqn. 14.23, which we restate below:
+The expression of the total field is the sum of the incident and the scattered fields. Eqn. 15.1 of the incident field can be transformed into the dimensionless form by a trivial substitution of Eqn. 15.18. On the other hand, Eqn. 15.3 of the scattered field is more complicated, as it contains the electric and transition dyadics. According to Eqn. 14.22, the transition dyadic is itself defined in terms of the electric dyadic. Thus, we only need to transform the expression of the former. For convenience, we elect to use the expanded definition given by Eqn. 14.23, which we restate below:
 
 $$ \tag{15.20}
 \begin{aligned}
@@ -4216,11 +4216,11 @@ $$ \tag{16.33}
 	&= \frac{\mu\_0^{-1}}{2} \frac{\eta}{c} \frac{2 \pi}{k^2} \mathcal{Im} \left\lbrace
 		\bm{E_0} \cdot \big[ \bm{E_1}(-\bm{n_i}) \big]^{\*} e^{-2 i k r} +
 		\bm{E_0^{\*}} \cdot \bm{E_1}(-\bm{n_i}) e^{2 i k r}
-	\right\rbrace = 0
+	\right\rbrace = 0,
 \end{aligned}
 $$
 
-because the expression inside the curly braces is a real number (cf. Eqn. 3.5).
+since the expression inside the curly braces is a real number (cf. Eqn. 3.5).
 
 Thus, assuming the observer is located in the radiation zone, *the incident and the scattered light only interfere in the forward direction*. The total amount of power participating in the interference phenomenon is
 
@@ -4230,7 +4230,7 @@ $$ \tag{16.34}
 	= \frac{\mu\_0^{-1}}{2} \frac{\eta}{c} \frac{4 \pi}{k^2} \mathcal{Im} \big\lbrace \bm{E_0^{\*}} \cdot \bm{E_1}(\bm{n_i}) \big\rbrace.
 $$
 
-According to Eqn. 16.14, 16.17, 16.21, and 16.34, if we place the particle between (and at a great distance from both) the source and the sensor of area \\(\delta A\\), and make sure the latter is perpendicular to the direction of incidence, the amount of power \\(\Phi_f\\) detected by the sensor
+Suppose that a measurement device (a sensor of area \\(\delta A\\)) is placed at a great distance from the source, and is made perpendicular to the direction of incidence. Then, according to Eqn. 16.14, 16.17, 16.21, and 16.34, if we place a particle near the center of the line segment connecting the source to the sensor, the resulting measurement
 
 $$ \tag{16.3x}
 \begin{aligned}
@@ -4244,13 +4244,11 @@ $$ \tag{16.3x}
 \end{aligned}
 $$
 
-will be smaller when compared to the amount of power \\(\delta A \braket{\bm{S_i}} \cdot \bm{n_i}\\) detected in the absence of the particle, since the amount of power scattered in the forward direction \\(\delta A \braket{\bm{S_s}} \cdot \bm{n_i}\\) is smaller than the total amount of power \\(\Phi_s = \oint_{A} \braket{\bm{S_s}} \cdot \bm{n_s} \thinspace dA\\) scattered in all directions. Thus, we can conclude that placing a particle in a parallel beam of light reduces its intensity.
+will be smaller in comparison to the amount of power \\(\delta A \braket{\bm{S_i}} \cdot \bm{n_i}\\) arriving at the sensor in the absence of the particle, since the scattered flux \\(\delta A \braket{\bm{S_s}} \cdot \bm{n_i}\\) corresponding to the direction of incidence is smaller than the total amount of power \\(\Phi_s = \oint_{A} \braket{\bm{S_s}} \cdot \bm{n_s} \thinspace dA\\) scattered in all directions. Thus, we can draw a conclusion that transmission of a parallel beam of light through a particle reduces its intensity.
 
-TODO...
+Eqn. 16.3x separates radiation transmitted in the forward direction into three components: the incident, the scattered, and the dissipated. Scattering often tends to be separated from propagation of light, leading to the idea that particles "remove" energy from the incident beam. While this approach is mathematically consistent, the  interpretation is not correct, since 1) the incident field is not affected by the presence of the scattering object, and (as we shall see) 2) the amount of scattered power is overestimated. This can lead to apparent paradoxes and violations of the law of conservation of energy. These issues can be avoided by focusing solely on the measurements pertaining to the total electromagnetic field.
 
-If the scattering process is separated from propagation of the parallel beam of incident light (as it is done in the framework of radiative transfer), then Eqn. 16.34 can be seen as the amount of power "removed" from the incident beam (cf. Eqn. 16.17). We shall later see that this interpretation is not correct, since 1) the incident field is not affected by the presence of the scattering object, and 2) the amount of scattered power is often overestimated. Thus, it is more appropriate to say that Eqn. 16.34 is a correction for the amount of power scattered in the forward direction.
-
-We can determine the amount of power absorbed by the particle using Eqn. 16.21:
+The amount of power absorbed by the particle can be determined using Eqn. 16.21:
 
 $$ \tag{16.35}
 	\Phi_a
@@ -7209,7 +7207,7 @@ $$ \tag{18.48}
 \end{aligned}
 $$
 
-If you are not very familiar with the subject, then comparison of Eqn. 18.46 with Fig. N may suggest that something is wrong, since the amount of power scattered by a particle may significantly exceed the amount of incident power. Since the scattered power is also featured in the expression of the extinction efficiency factor, the latter exhibits the same problem, telling us that the amount of power "removed" from the incident beam is larger than the amount of power geometrically intercepted by the particle. This surprising behavior is known as the [extinction paradox](https://en.wikipedia.org/wiki/Extinction_paradox).
+If you are not very familiar with the subject, then comparison of Eqn. 18.46 with Fig. N may suggest that something is wrong, since the amount of power scattered by a particle may significantly exceed the amount of incident power. Since the scattered power is also featured in the expression of the extinction efficiency factor, the latter exhibits the same problem, which indicates that the amount of power "removed" from the incident beam is larger than the amount of power geometrically intercepted by the particle. This surprising behavior is known as the [extinction paradox](https://en.wikipedia.org/wiki/Extinction_paradox).
 
 This phenomenon is not limited to a particular composition, or a certain shape of a particle. However, it does strongly depend on the size. Why is that the case?
 
@@ -7217,13 +7215,13 @@ First, let us examine the expression of the incident power \\(\Phi_i\\) given by
 
 While this definition of the incident power is intuitive, it assumes that the incident field not geometrically intercepted by the particle does not influence its scattered field in any way. Strictly speaking, that is not true; electromagnetic scattering is a global process, and the value of the electromagnetic field at any given point depends on all values of the electric and the magnetic fields everywhere else. "Cutting it too short" around the particle may reduce or eliminate certain edge effects, while at the same time introducing new unexpected behavior caused by the irregular shape of the wavefront.
 
-It is reasonable to believe that the relative contribution of edge effects towards the total amount of scattered power should diminish as the size of the particle increases (while the wavelength stays fixed), since the cross-sectional area grows faster than its circumference. Fig. N shows that, while that is true to some degree, \\(Q_s \to 2\\) as \\(|m x| \to \infin\\), so it does not provide a complete explanation.
+It is reasonable to believe that, for a fixed wavelength, the relative contribution of edge effects towards the total amount of scattered power should diminish as the size of the particle increases, since the cross-sectional area grows faster than the circumference. Fig. N shows that, while that is true to some degree, \\(Q_s \to 2\\) as \\(|m x| \to \infin\\), so it does not provide a complete explanation.
 
-Now, suppose that \\(x\\) is very large, so that \\(\Phi_i\\) provides a reasonably accurate estimate. Since the paradox manifests itself regardless of the geometry and the optical properties of the particle, let us imagine the particle to be a flat mirror. It perfectly reflects the incident light, contributing a factor of \\(1\\) to \\(Q_s\\). As the mirror is large, it also casts a shadow, which indicates that the value of the electric field behind the mirror is \\(0\\). If we recall that the incident field is not modified by the addition of the scattering object in any way, this leads to the conclusion that the scattered field behind the mirror must have the same magnitude and the opposite phase in order to cancel the incident field by destructive interference. Thus, \\(Q_s = 2\\), which explains the paradox for a flat mirror \[[21](#references), [22](#references)\].
+Now, suppose that \\(x\\) is very large, so that \\(\Phi_i\\) provides a reasonably accurate estimate. Since the paradox manifests itself regardless of the geometry and the optical properties of the particle, let us imagine the particle to be a flat mirror. It perfectly reflects the incident light, contributing a factor of \\(1\\) to \\(Q_s\\). As the mirror is large, it also casts a shadow, which indicates that the value of the electric field behind the mirror is \\(0\\). If we recall that the incident field is not modified by the addition of the scattering object in any way, this leads to the conclusion that the scattered field behind the mirror must have the same magnitude and the opposite phase in order to destructively interfere with and completely cancel the incident field. Thus, \\(Q_s = 2\\), which explains the paradox for a flat mirror \[[21](#references), [22](#references)\].
 
-Since, in general, a particle with \\(|m x| \to \infin\\) does not necessarily cast a well-defined shadow, we require an alternative explanation. Suppose that \\(|m| \to \infin\\), and \\(x\\) is not too small. This implies that the particle is either a *perfect dielectric reflector* \\((\epsilon, \eta \to \infin)\\) or a *perfect electric conductor* \\((\sigma, \kappa \to \infin)\\). According to Eqn. 17.157, a particle of the first kind is able to sustain a fairly strong internal field, while a particle of the second kind makes it vanish. In both cases, the particle appears mirror-like; in addition, the *extinction theorem* (see Sec. 10) requires the scattered field to continually extinguish the incident field inside the particle. Accounting for these two facts once again leads to \\(Q_s = 2\\) \[[20](#references), [21](#references)\].
+Since, in general, a particle with \\(|m x| \to \infin\\) does not necessarily cast a well-defined shadow, we require an alternative explanation. Suppose that \\(|m| \to \infin\\), and \\(x\\) is not too small. This implies that the particle is either a *perfect dielectric reflector* \\((\epsilon, \eta \to \infin)\\) or a *perfect electric conductor* \\((\sigma, \kappa \to \infin)\\). According to Eqn. 17.157, a particle of the first kind is able to sustain a fairly strong internal field, while a particle of the second kind makes it vanish. In both cases, the particle appears mirror-like, and, in order for the value of the internal field to be maintained, the *extinction theorem* (see Sec. 10) requires the scattered field to continually extinguish the incident field inside the particle. Accounting for these two facts once again leads to \\(Q_s = 2\\) \[[20](#references), [21](#references)\].
 
-Note that, unlike the scattered field, the total field has no apparent issues with energy conservation, since its power (change in the amount of energy over time) is zero in inaccessible areas. This underscores the importance of understanding the fact that only the total field is an actual physical entity, while the incident and the scattered fields are mathematical constructs.
+Note that, unlike the scattered field, the total field has no apparent issues with energy conservation, since its power (change in the amount of energy over time) is zero in inaccessible areas. This underscores the importance of understanding the fact that only the total field is an actual physical entity, while the incident and the scattered fields are just mathematical constructs.
 
 ---
 
