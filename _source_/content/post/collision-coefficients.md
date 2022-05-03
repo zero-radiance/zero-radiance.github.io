@@ -7243,6 +7243,8 @@ Should I call relative wavenumber \\(w\\) and relative permeability \\(m\\)?
 
 How to extract a plane wave inside the sphere? Use the internal coefficients? But the corresponding vector spherical wave functions are defined in terms of \\(k r\\) rather than \\(m k r\\)...
 
+Fix 4 issues mentioned in Ch. 1 of Wald's book!
+
 ---
 
 ## Acknowledgments
