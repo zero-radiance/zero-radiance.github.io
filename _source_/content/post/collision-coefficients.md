@@ -126,7 +126,7 @@ Application of this technique allows us to transform the *microscopic* Maxwell e
 
 Because Eqn. 1.1.1-1.1.2 are independent of the description of matter, and are also linear, a linear transformation (such as the one given by Eqn. 1.8) does not change their form, since we may change the order of operations (move the derivatives inside or outside the integral). On the other hand, Eqn. 1.1.3-1.1.4 are defined in terms of current and charge densities, and must be modified.
 
-First, we identify two types of charges - bound and free. As the name suggests, *free* charges are able to move effortlessly around the material, the classic example being the conduction current in a copper wire.
+First, we identify two types of charges - bound and free. As the name suggests, *free* charges are able to move around the material, the classic example being the conduction current in a copper wire.
 
 $$ \tag{1.9}
 	\bm{J} = \bm{J\_b} + \bm{J\_f}, \quad
@@ -219,9 +219,9 @@ Finally, it is worth pointing out that the Maxwell equations (both 1.1 and 1.14)
 $$ \tag{1.18}
 	\nabla \cdot \bigg( \frac{\partial}{\partial t} \bm{B}(\bm{r}, t) \bigg) = 0,
 	\quad
-	- \nabla \cdot \bigg( \frac{\partial}{\partial t} \bm{D}(\bm{r}, t) \bigg)
-	= \nabla \cdot \bm{J\_f}(\bm{r}, t)
-	= - \frac{\partial}{\partial t} \rho_f(\bm{r}, t),
+	\nabla \cdot \bigg( \frac{\partial}{\partial t} \bm{D}(\bm{r}, t) \bigg)
+	= -\nabla \cdot \bm{J\_f}(\bm{r}, t)
+	= \frac{\partial}{\partial t} \rho_f(\bm{r}, t),
 $$
 
 where the last equality is a consequence of the conservation of charge (Eqn. 1.7).
@@ -239,7 +239,7 @@ The first equation tells us that the divergence of the magnetic field is does no
 
 We take the Maxwell equations as axioms, and use them as the foundation on which we base the theory presented in the following sections.
 
-### Lorentz force and Poynting Theorem
+### Lorentz Force and Poynting Theorem
 
 Given a mathematical description of electromagnetic radiation in terms of vector fields, we would like to physically characterize it as an energy transfer process. In order to do that, we have to determine how much energy there is in a given volume element of space, and also the rate of energy flow \[[5](#references) (vol. II, ch. 27), [6](#references) (ch. 1.1.4), [7](#references) (ch. 2.11), [8](#references) (ch. 2.4)\].
 
@@ -334,7 +334,7 @@ We can observe that the rate of doing work is a balance of inflow of \\((\bm{E} 
 $$ \tag{2.12}
 	\frac{\partial \mathcal{W}}{\partial t}
 	= \int\_{V} \Big( {-\mu\_0^{-1}} \nabla \cdot (\bm{E} \times \bm{B}) \Big) dV -
-	\frac{\partial}{\partial t} \int\_{V} \Big( \frac{\epsilon_0}{2} E^2 + \frac{\mu\_0^{-1}}{2} B^2 \Big) dV
+	\frac{\partial}{\partial t} \int\_{V} \Big( \frac{\epsilon_0}{2} \left| \bm{E} \right|^2 + \frac{\mu\_0^{-1}}{2} \left| \bm{B} \right|^2 \Big) dV
 $$
 
 and use the [divergence theorem](https://en.wikipedia.org/wiki/Divergence_theorem) to replace the leftmost volume integral with an integral taken over the bounding surface \\(\partial V\\) of the volume \\(V\\):
@@ -342,7 +342,7 @@ and use the [divergence theorem](https://en.wikipedia.org/wiki/Divergence_theore
 $$ \tag{2.13}
 	\frac{\partial \mathcal{W}}{\partial t}
 	= \oint\_{\partial V} \Big( \mu\_0^{-1} (\bm{E} \times \bm{B}) \cdot (-\bm{n}) \Big) dA -
-	\frac{\partial}{\partial t} \int\_{V} \Big( \frac{\epsilon_0}{2} E^2 + \frac{\mu\_0^{-1}}{2} B^2 \Big) dV,
+	\frac{\partial}{\partial t} \int\_{V} \Big( \frac{\epsilon_0}{2} \left| \bm{E} \right|^2 + \frac{\mu\_0^{-1}}{2} \left| \bm{B} \right|^2 \Big) dV,
 $$
 
 where \\(\bm{n}\\) is the outward-facing surface normal.
@@ -358,14 +358,14 @@ and the second term corresponds to the rate at which the amount of energy within
 
 $$ \tag{2.15}
 	-\frac{\partial}{\partial t} \mathcal{E\_{int}}(V, t) =
-	-\frac{\partial}{\partial t} \int\_{V} \Big( \frac{\epsilon_0}{2} E^2(\bm{r}, t) + \frac{\mu\_0^{-1}}{2} B^2(\bm{r}, t) \Big) dV.
+	-\frac{\partial}{\partial t} \int\_{V} \Big( \frac{\epsilon_0}{2} \left| \bm{E}(\bm{r}, t) \right|^2 + \frac{\mu\_0^{-1}}{2} \left| \bm{B}(\bm{r}, t) \right|^2 \Big) dV.
 $$
 
 According to this interpretation, the *squared* magnitudes of the fields
 
 $$ \tag{2.16}
-	\frac{\partial}{\partial V} \mathcal{E\_e}(V, t) = \frac{\epsilon_0}{2} E^2(\bm{r}, t), \quad
-	\frac{\partial}{\partial V} \mathcal{E\_m}(V, t) = \frac{\mu\_0^{-1}}{2} B^2(\bm{r}, t), \quad
+	\frac{\partial}{\partial V} \mathcal{E\_e}(V, t) = \frac{\epsilon_0}{2} \left| \bm{E}(\bm{r}, t) \right|^2, \quad
+	\frac{\partial}{\partial V} \mathcal{E\_m}(V, t) = \frac{\mu\_0^{-1}}{2} \left| \bm{B}(\bm{r}, t) \right|^2, \quad
 $$
 
 are the electric and the magnetic energy densities, and
@@ -390,7 +390,7 @@ $$ \tag{2.19}
 	\bm{S'}(\bm{r}, t) = \bm{S}(\bm{r}, t) + \nabla \times \bm{X}(\bm{r}, t)
 $$
 
-without violating the Poynting theorem \[[5](#references) (vol. II, ch. 27.4)\]. However, in practice, it does not pose a problem, since it is not actually possible to measure the Poyinting vector (or the energy density) directly, and if one measures the amount (or the time rate) of electromagnetic energy, the spatial integration process resolves the ambiguity and makes the measurable quantities invariant with respect to this transformation. [\[8](#references) (ch. 2.4, 11)\]
+without violating the Poynting theorem \[[5](#references) (vol. II, ch. 27.4)\]. However, in practice, it does not pose a problem, since it is not actually possible to measure the the energy *density* (or its flow) directly, and if one measures the *amount* (or its time rate) of electromagnetic energy (using Eqn. 2.14-2.15), the spatial integration process eliminates the curl term and makes the measurable quantities invariant with respect to this transformation [\[8](#references) (ch. 2.4, 11)\]. Moreover, due to the [mass-energy equivalence](https://en.wikipedia.org/wiki/Mass%E2%80%93energy_equivalence) principle, modifications of the definition of the energy density alter the gravitational field, which has observable consequences; in particular, the expansion of the universe appears to be consistent with the definitions given by Eqn. 2.16-2.17 \[[28](#references) (ch. 1.2)\].
 
 A more pressing concern is whether our formulae, which were found using the microscopic formulation of the Maxwell equations, are valid at the microscopic scale. The answer is: almost always.
 
