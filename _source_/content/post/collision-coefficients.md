@@ -143,7 +143,7 @@ $$ \tag{1.10}
 \end{aligned}
 $$
 
-where \\(\bm{P}\\) is the [polarization](https://en.wikipedia.org/wiki/Polarization_density) (electric dipole moment per unit volume) and \\(\bm{M}\\) is the [magnetization](https://en.wikipedia.org/wiki/Magnetization) (magnetic dipole moment per unit volume). Note that, according to the [Gauss law](https://en.wikipedia.org/wiki/Gauss%27s_law_for_magnetism) given by Eqn. 1.1.2, no magnetic charges exist; thus, \\(\rho\_b\\) is often called the (electric) *polarization* charge density.
+where \\(\bm{P}\\) is the [polarization](https://en.wikipedia.org/wiki/Polarization_density) (electric dipole moment per unit volume) and \\(\bm{M}\\) is the [magnetization](https://en.wikipedia.org/wiki/Magnetization) (magnetic dipole moment per unit volume). We shall learn more about them in due course. Note that, according to the [Gauss law](https://en.wikipedia.org/wiki/Gauss%27s_law_for_magnetism) given by Eqn. 1.1.2, no magnetic charges exist; thus, \\(\rho\_b\\) is often called the (electric) *polarization* charge density.
 
 Substitution of Eqn. 1.9.1, 1.10.1 into 1.1.3 and Eqn. 1.9.2, 1.10.2 into 1.1.4 yields
 
@@ -181,7 +181,7 @@ $$ \tag{1.14}
 \end{aligned}
 $$
 
-As discussed in \[[5](#references) (vol. II, ch. 32.2), [6](#references) (ch. 1.1.1)\], \\(\bm{E}\\) and \\(\bm{B}\\) are the *fundamental fields*, and \\(\bm{D}\\) and \\(\bm{H}\\) are the [auxiliary fields](https://en.wikipedia.org/wiki/Maxwell%27s_equations#Auxiliary_fields,_polarization_and_magnetization) that arise due to the influence of matter. We shall soon see that, in certain cases, these two groups are related in a simple way.
+As discussed in \[[5](#references) (vol. II, ch. 32.2), [6](#references) (ch. 1.1.1)\], \\(\bm{E}\\) and \\(\bm{B}\\) are the basic fields, and \\(\bm{D}\\) and \\(\bm{H}\\) are the [auxiliary fields](https://en.wikipedia.org/wiki/Maxwell%27s_equations#Auxiliary_fields,_polarization_and_magnetization) that arise due to the influence of matter. The most fundamental description of the electromagnetic field is given by the potentials \\(\bm{A}\\) and \\(\phi\\) \[[28](#references) (ch. 1.1)\]; we shall defer their formal introduction to Sec. 8.
 
 The Maxwell equations is coupled system of [partial differential equations](https://en.wikipedia.org/wiki/Partial_differential_equation). The left-hand side of each equation is composed of derivatives of the unknowns (the fields), and the right-hand side contains the sources (the currents and the charges). Since a derivative is a linear operator, these equations form a [linear system](https://en.wikipedia.org/wiki/Linear_system). As such, the Maxwell equations obey the [superposition principle](https://en.wikipedia.org/wiki/Superposition_principle) - if we determine the values of the fields for one source, and then, *separately*, for another, and assuming that these sources are not "disturbed" by the fields, then the solution for the configuration with *both* sources is precisely the sum of the fields found for each individual source:
 
