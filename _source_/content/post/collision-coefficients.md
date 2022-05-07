@@ -426,7 +426,7 @@ $$ \tag{2.23}
 	+ \bm{B}(\bm{r}, t) \cdot \frac{\partial}{\partial t}\bm{H}(\bm{r}, t).
 $$
 
-Comparison of Eqn. 2.17 and 2.22 shows that both formulations of the Poynting vector are equivalent if the measurement is performed inside a *non-magnetic* material. That explains the \\(\mu\_0^{-1}\\) factor: according to the microscopic formulation of the Maxwell equations, an electron (or a proton) is simply a charged region of vacuum. In comparison, due to the spatially-varying optical properties, propagation of electromagnetic fields at the macroscopic scale can be considerably more complex.
+Comparison of Eqn. 2.17 and 2.22 shows that both formulations of the Poynting vector are equivalent if the measurement is performed inside a *non-magnetic* material. That explains the \\(\mu\_0^{-1}\\) factor: since classical electrodynamics does not explicitly model the intrinsic properties of the elementary particles responsible for magnetism, the microscopic formulation of the Maxwell equations assumes that the observer is located in a potentially charged, yet non-magnetic region of vacuum.
 
 Since electromagnetic fields oscillate so rapidly, one typically measures the *time-averaged* Poynting vector
 
@@ -7282,8 +7282,6 @@ Is a spherical cavity the right choice for the depolarization operator?
 Should I call relative wavenumber \\(w\\) and relative permeability \\(m\\)?
 
 How to extract a plane wave inside the sphere? Use the internal coefficients? But the corresponding vector spherical wave functions are defined in terms of \\(k r\\) rather than \\(m k r\\)...
-
-Fix 4 issues mentioned in Ch. 1 of Wald's book!
 
 ---
 
