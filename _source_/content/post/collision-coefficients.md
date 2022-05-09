@@ -88,7 +88,7 @@ $$ \tag{1.4}
 	c = \frac{1}{\sqrt{\epsilon_0 \mu\_0}}.
 $$
 
-Since the electromagnetic field only *interacts with* (not *produced by*!) charged particles \[[28](#references) (ch. 1.3)\], the matter is represented by a *continuous* distribution of the [charge density](https://en.wikipedia.org/wiki/Charge_density) \\(\rho\\) \[[28](#references) (ch. 1.4)\], such that the total amount of charge \\(Q\\) inside the volume \\(V\\) is
+Since the electromagnetic field *interacts* only with charged particles \[[28](#references) (ch. 1.3)\], the matter is represented by a *continuous* distribution of the [charge density](https://en.wikipedia.org/wiki/Charge_density) \\(\rho\\) \[[28](#references) (ch. 1.4)\], such that the total amount of charge \\(Q\\) inside the volume \\(V\\) is
 
 $$ \tag{1.5}
 	Q(V, t) = \int\_{V} \rho(\bm{r}, t) dV.
