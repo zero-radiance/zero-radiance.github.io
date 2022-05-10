@@ -2332,7 +2332,9 @@ $$ \tag{10.21}
 	\bm{p}(V, \omega) \approx \mathcal{\Alpha_m}(V, \omega) \cdot \epsilon_0 \bm{E_0},
 $$
 
-where \\(\bm{E_0} = \bm{E}(\bm{r_0}, \omega)\\) is the microscopic field acting on the molecule.
+where \\(\bm{E_0} = \bm{E}(\bm{r_0}, \omega)\\) is the phasor of the microscopic field acting on the molecule.
+
+The dyadic form of \\(\mathcal{\Alpha_m}\\) is necessary to model a molecule that lacks spherical symmetry; it acts by rotating and non-uniformly scaling the electric field phasor. If the molecule absorbs light, its polarizability is complex.
 
 If there are \\(N\\) identical electric dipoles per unit volume, we can define the electric polarization \\(\bm{P}\\) as
 
@@ -2342,7 +2344,7 @@ $$ \tag{10.22}
 	\approx N(\bm{r}) \mathcal{\Alpha_m}(V, \omega) \cdot \epsilon_0 \bm{E_0}
 $$
 
-In general, the microscopic field \\(\bm{E_0}\\) acting on a dipole is different from the macroscopic field \\(\bm{E}\\). This difference can be attributed to the influence of the molecules located in close proximity of the dipole \[[5](#references) (vol. II, ch. 11), [6](#references) (ch. 2.3-2.4)\]. If the molecules are randomly distributed, we can assume that (on average) the dipole is located within a microscopic spherical cavity of a uniformly polarized material. The electric field inside a uniformly polarized ball is
+In general, the microscopic field \\(\bm{E_0}\\) acting on a dipole is different from the macroscopic field \\(\bm{E}\\). This difference can be attributed to the influence of the molecules located in close proximity of the dipole \[[5](#references) (vol. II, ch. 11), [6](#references) (ch. 2.3-2.4)\]. If the molecules are randomly distributed, we can assume that (on average) the dipole is located within a (microscopic) spherical cavity of a uniformly (macroscopically) polarized material. The electric field inside a uniformly polarized ball is
 
 $$ \tag{10.2?}
 	\bm{E_b} = -\frac{1}{3 \epsilon_0} \bm{P},
@@ -2362,12 +2364,12 @@ By combining Eqn. 10.22 with 10.23, and assuming that the polarizability is isot
 
 $$ \tag{10.24}
 	\bm{P}(\bm{r}, \omega)
-	\approx \frac{N(\bm{r})\alpha_m(V, \omega)}{1 - \frac{1}{3} N(\bm{r})\alpha_m(V, \omega)} \epsilon_0 \bm{E}(\bm{r}, \omega),
+	\approx \frac{N(\bm{r}) \alpha_m(V, \omega)}{1 - \frac{1}{3} N(\bm{r}) \alpha_m(V, \omega)} \epsilon_0 \bm{E}(\bm{r}, \omega),
 $$
 
 we can incorporate the correction for the *microscopic* field into the *macroscopic* theory.
 
-In order to be able to use Eqn. 10.24, we need to determine both the density and the polarizability of the material. For an isotropic dielectric composed of a single type of small (compared to the wavelength) molecules, their product is given by the [Clausius–Mossotti relation](https://en.wikipedia.org/wiki/Clausius%E2%80%93Mossotti_relation):
+In order to be able to use Eqn. 10.24, we need to determine both the density and the polarizability of the material. For an isotropic dielectric composed of a single type of small molecules, their product is given by the [Clausius–Mossotti relation](https://en.wikipedia.org/wiki/Clausius%E2%80%93Mossotti_relation):
 
 $$ \tag{10.25}
 	\frac{\epsilon\_r(\bm{r}, \omega) - 1}{\epsilon\_r(\bm{r}, \omega) + 2} = \frac{1}{3} N(\bm{r}) \alpha\_m(V, \omega).
@@ -2880,25 +2882,26 @@ $$
 
 Eqn. 1x.14-1x.15 give the expressions of the scattered field in the region outside the scattering object \\((\bm{r} \notin V)\\) in terms of the *tangential surface fields* \\(\bm{n'} \times \bm{E}\\) and \\(\bm{n'} \times \bm{B}\\). More generally speaking, the idea that a smooth (but not necessarily physical) surface can be seen as a source of spherical *wavelets* (secondary waves) interfering with each other is known as the [Huygens-Fresnel principle](https://en.wikipedia.org/wiki/Huygens%E2%80%93Fresnel_principle) \[[4](#references) (ch. 3.1), [25](#references) (ch. 2)\].
 
+-->
+
 ### Dipole Radiation
 
 Typically, it is not possible to evaluate the integrals of Eqn. 11.25 in closed form, since the value of the electric field in the interior of the volume is not known. Thus, we must make certain assumptions and employ various approximations in order to make computations feasible. This leads to a number of special cases.
 
-One of the simplest problems that can be solved using our mathematical framework (of classical physics) is that of a single atom or a small molecule embedded in a homogeneous medium. This case corresponds to a tiny particle in vacuum, or an [impurity](https://en.wikipedia.org/wiki/Impurity) in an otherwise pure material. We represent it as an electric dipole - an oriented point source.
+One of the simplest problems that can be solved using our mathematical framework (of classical physics) is that of a single atom or a small molecule embedded in a homogeneous medium. This case corresponds to a tiny particle in vacuum, or an [impurity](https://en.wikipedia.org/wiki/Impurity) in an otherwise pure material. We represent it by an electric dipole -- an oriented point source.
 
 The necessary and sufficient condition is that the particle of radius \\(a\\) must be small compared to the wavelength \\(\lambda\\) computed both inside and outside the particle \[[4](#references) (ch. 6.4)\]. Since \\(k = 2 \pi / \lambda\\), we require that
 
 $$
-	ka \ll 1, \quad |m|ka \ll 1.
+	|x| = |k a| \ll 1, \quad |m x| \ll 1.
 $$
 
-This requirement leads to three simplifications:
+These assumptions radically simplify the scattering problem:
 
-1. we may neglect the effect of the fields generated by the particle on itself;
-
-2. the magnitude, the orientation, and the phase of the field driving the charges (equal to the incident field) is the same throughout the particle;
-
-3. the resulting source of radiation is sufficiently localized, which permits us to evaluate the fields at practically any distance from the particle.
+1. we may neglect the effect of the field generated by the particle on itself;
+2. as a result, the field acting on the particle is the same as the incident field;
+3. the value of this field is constant throughout the entire particle;
+4. the resulting source of radiation is perfectly localized at a single point.
 
 Assume that the particle is non-magnetic and non-conducting. Eqn. 11.18 can then be simplified to
 
@@ -2919,7 +2922,7 @@ $$ \tag{12.3}
 	\bm{p}(V, \omega) \approx \mathcal{\Alpha_m}(V, \omega) \cdot \varepsilon(\omega) \bm{E_i}(\bm{r_0}, \omega).
 $$
 
-where we replaced \\(\epsilon_0\\) with \\(\varepsilon\\) (to account for the properties of the surrounding medium) and \\(\bm{E_{\mu}}\\) with \\(\bm{E_i}\\) (according to the simplification discussed above).
+where we replaced \\(\epsilon_0\\) with \\(\varepsilon\\) (to account for the properties of the surrounding medium) and \\(\bm{E_0}\\) with \\(\bm{E_i}\\) (according to the simplification discussed above).
 
 The combination of Eqn. 12.1-12.3 results in
 
@@ -2928,37 +2931,28 @@ $$ \tag{12.4}
 	= k^2(\omega) \mathcal{\Alpha_m}(V, \omega) \cdot \bm{E_i}(\bm{r_0}, \omega) \delta(\bm{r} - \bm{r_0}).
 $$
 
-The dyadic form of \\(\mathcal{\Alpha_m}\\) is a convenient way to model polar molecules (or asymmetric particles); it acts by rotating and non-uniformly scaling the electric field phasor. To make the resulting formulae easier to interpret, we shall assume that the particle is isotropic, so that \\(\mathcal{\Alpha_m} = \alpha_m\\).
-
 Let us substitute Eqn. 12.4 into Eqn. 11.10-11.11:
 
 $$ \tag{12.5}
 \begin{aligned}
 	& \bm{E_s}(\bm{r}, \omega)
-	= k^2(\omega) \alpha_m(V, \omega) \mathcal{G}\_e \big( \bm{r}, \bm{r_0}, k(\omega) \big) \cdot \bm{E_i}(\bm{r_0}, \omega), \cr
+	= k^2(\omega) \mathcal{G}\_e \big( \bm{r}, \bm{r_0}, k(\omega) \big) \cdot \mathcal{\Alpha_m}(V, \omega) \cdot \bm{E_i}(\bm{r_0}, \omega), \cr
 	& \bm{B_s}(\bm{r}, \omega)
-	= \frac{k^2(\omega)}{i \omega} \alpha_m(V, \omega) \mathcal{G}\_m \big( \bm{r}, \bm{r_0}, k(\omega) \big) \cdot \bm{E_i}(\bm{r_0}, \omega).
+	= \frac{k^2(\omega)}{i \omega} \mathcal{G}\_m \big( \bm{r}, \bm{r_0}, k(\omega) \big) \cdot \mathcal{\Alpha_m}(V, \omega) \cdot \bm{E_i}(\bm{r_0}, \omega).
 \end{aligned}
 $$
 
-Comparison with Eqn. 11.25 shows that Eqn. 12.5 corresponds to the contribution of a volume element occupied by a single atom or a small molecule, with the internal field replaced by the incident field, and with the polarizability \\(\alpha_m\\) taking the role of the relative wavenumber \\(m\\).
+Comparison with Eqn. 11.25 shows that Eqn. 12.5 corresponds to the contribution of a volume element occupied by a single atom or a small molecule, with the internal field replaced by the incident field, and with the polarizability \\(\mathcal{\Alpha_m}\\) taking the role of the relative wavenumber \\(m\\).
 
-Note that the polarizability \\(\alpha_m\\) has units of volume \[[4](#references) (ch. 6.22)\]:
+Note that the polarizability \\(\mathcal{\Alpha_m}\\) has units of volume \[[4](#references) (ch. 6.22)\]. In particular, if the polarizability is isotropic,
 
 $$ \tag{12.6}
-	\alpha_m(V, \omega)
+	\mathcal{\Alpha_m}(V, \omega)
+	= \alpha_m(V, \omega)
 	= \int_V \big( m^2(\bm{r}, \omega) - 1 \big) dV.
 $$
 
-This can be shown by combining Eqn. 10.18.2 and 10.26
-
-$$ \tag{12.7}
-	\bm{p}(V, \omega)
-	= \int_V \bm{P}(\bm{r}, \omega) dV
-	= \int_V \big( m^2(\bm{r}, \omega) - 1 \big) \varepsilon(\omega) \bm{E}(\bm{r}, \omega) dV
-$$
-
-and comparing the result with Eqn. 12.3.
+This can be easily shown by combining Eqn. 10.18.2 and 10.26 and comparing the result with Eqn. 12.3.
 
 ### Spherical Waves
 
@@ -2988,9 +2982,11 @@ If \\(k R \gg 1\\), the values of the expressions in the brackets approach 1. Th
 $$ \tag{13.3}
 \begin{aligned}
 	& \bm{E_s}(\bm{r}, \omega)
-	\simeq k^2(\omega) \alpha_m(V, \omega) \frac{e^{i k(\omega) R}}{4 \pi R} \bigg( \mathcal{I} - \frac{\bm{R} \otimes \bm{R}}{\bm{R} \cdot \bm{R}} \bigg) \cdot \bm{E_i}(\bm{r'}, \omega), \cr
+	\simeq k^2(\omega) \frac{e^{i k(\omega) R}}{4 \pi R}
+	\bigg( \mathcal{I} - \frac{\bm{R} \otimes \bm{R}}{\bm{R} \cdot \bm{R}} \bigg) \cdot \mathcal{\Alpha_m}(V, \omega) \cdot \bm{E_i}(\bm{r'}, \omega), \cr
 	& \bm{B_s}(\bm{r}, \omega)
-	\simeq \frac{k^3(\omega)}{\omega} \alpha_m(V, \omega) \frac{e^{i k(\omega) R}}{4 \pi R} \bigg(\frac{\bm{R} \times \mathcal{I}}{R} \bigg) \cdot \bm{E_i}(\bm{r'}, \omega),
+	\simeq \frac{k^3(\omega)}{\omega} \frac{e^{i k(\omega) R}}{4 \pi R}
+	\bigg(\frac{\bm{R} \times \mathcal{I}}{R} \bigg) \cdot \mathcal{\Alpha_m}(V, \omega) \cdot \bm{E_i}(\bm{r'}, \omega),
 \end{aligned}
 $$
 
@@ -3009,11 +3005,15 @@ Eqn. 13.3 can be reduced to a simpler form by aligning the origin of the coordin
 $$ \tag{13.5}
 \begin{aligned}
 	& \bm{E_s}(\bm{r}, \omega)
-	\simeq k^2(\omega) \alpha_m(V, \omega) \frac{e^{i k(\omega) r}}{4 \pi r} \big( \mathcal{I} - \bm{n} \otimes \bm{n} \big) \cdot \bm{E_i}(0, \omega), \cr
+	\simeq k^2(\omega) \frac{e^{i k(\omega) r}}{4 \pi r}
+	\big( \mathcal{I} - \bm{n} \otimes \bm{n} \big) \cdot \mathcal{\Alpha_m}(V, \omega) \cdot \bm{E_i}(0, \omega), \cr
 	& \bm{B_s}(\bm{r}, \omega)
-	\simeq \frac{k^3(\omega)}{\omega} \alpha_m(V, \omega) \frac{e^{i k(\omega) r}}{4 \pi r} \big(\bm{n} \times \mathcal{I} \big) \cdot \bm{E_i}(0, \omega).
+	\simeq \frac{k^3(\omega)}{\omega} \frac{e^{i k(\omega) r}}{4 \pi r}
+	\big(\bm{n} \times \mathcal{I} \big) \cdot \mathcal{\Alpha_m}(V, \omega) \cdot \bm{E_i}(0, \omega).
 \end{aligned}
 $$
+
+<!--
 
 Let us return to the general case of a scattering object. Assume that the observation point is in the radiation zone with respect to each individual volume element, so that \\(k R \gg 1\\). Eqn. 11.25 then takes the form
 
