@@ -2270,11 +2270,15 @@ $$ \tag{10.14}
 \end{aligned}
 $$
 
+-->
+
 Eqn. 10.14.1-10.14.2 have the following interpretation in terms of the atomic theory of matter \[[6](#references) (ch. 2.2)\]. The [nucleus](https://en.wikipedia.org/wiki/Atomic_nucleus) of an atom contains [protons](https://en.wikipedia.org/wiki/Proton) with the charge \\(+q_e\\), and is surrounded by one or several [electrons](https://en.wikipedia.org/wiki/Electron) with the charge \\(-q_e\\). A molecule is an electrically neutral group of several atoms. Thus, an atom or a molecule is a system of several charges, half being negative, and the other half -- positive, separated (on average) by a certain distance \\(d\\). If this distance is not zero, it is said that the molecule is polarized. We can use this property to model an atom or a small molecule as a pair of point charges of opposite sign called a [dipole](https://en.wikipedia.org/wiki/Dipole) with an associated [electric dipole moment](https://en.wikipedia.org/wiki/Electric_dipole_moment)
 
 $$ \tag{10.15}
-	\bm{p} = q \bm{d}.
+	\bm{p} = q \bm{d},
 $$
+
+where \\(\bm{p}\\) points along the line from the negative to the positive charge.
 
 The moment of a dipole does not depend on its location, \\(\bm{r_0}\\). That is because it describes the displacement from the mean, which is relative by definition. That is easy to show by expressing the electric dipole moment in terms of the bound charge density:
 
@@ -2322,29 +2326,39 @@ $$ \tag{10.20}
 \end{aligned}
 $$
 
-A molecule can become polarized for a variety of reasons \[[5](#references) (vol. II, ch. 11)\]. If the separation of charges (such as the displacement of the electron cloud relative to the nucleus) occurs due the influence of an electric field, one speaks of *induced polarization*. If we assume that the effect is linear, the response is characterized by the [molecular polarizability](https://en.wikipedia.org/wiki/Electric_susceptibility#Molecular_polarizability) dyadic \\(\mathcal{\Alpha_m}\\):
+A molecule can become polarized for a variety of reasons \[[5](#references) (vol. II, ch. 11)\]. If the separation of charges (such as the displacement of the electron cloud relative to the positively charged nucleus) occurs under the influence of the external electromagnetic field, one speaks of *induced polarization*. If we assume that the effect is linear, the response is characterized by the [molecular polarizability](https://en.wikipedia.org/wiki/Electric_susceptibility#Molecular_polarizability) dyadic \\(\mathcal{\Alpha_m}\\):
 
 $$ \tag{10.21}
-	\bm{p}(V, \omega) \approx \mathcal{\Alpha_m}(V, \omega) \cdot \epsilon_0 \bm{E_{\mu}}(\bm{r_0}, \omega).
+	\bm{p}(V, \omega) \approx \mathcal{\Alpha_m}(V, \omega) \cdot \epsilon_0 \bm{E_0},
 $$
+
+where \\(\bm{E_0} = \bm{E}(\bm{r_0}, \omega)\\) is the microscopic field acting on the molecule.
 
 If there are \\(N\\) identical electric dipoles per unit volume, we can define the electric polarization \\(\bm{P}\\) as
 
 $$ \tag{10.22}
 	\bm{P}(\bm{r}, \omega)
 	= N(\bm{r}) \bm{p}(V, \omega)
-	\approx N(\bm{r}) \mathcal{\Alpha_m}(V, \omega) \cdot \epsilon_0 \bm{E_{\mu}}(\bm{r_0}, \omega).
+	\approx N(\bm{r}) \mathcal{\Alpha_m}(V, \omega) \cdot \epsilon_0 \bm{E_0}
 $$
 
-Note that, in general, the microscopic field \\(\bm{E_{\mu}}\\) acting on the dipole is different from the macroscopic field \\(\bm{E}\\). The reason is that the microscopic field varies very rapidly inside the matter - it is very strong next to the nucleus, and relatively weak in the gaps between the molecules. Thus, the density of matter plays an important role. If the dipoles are randomly distributed, we can assume that the dipole under consideration is located within a spherical cavity of a uniformly polarized material. For an isotropic material, it can be shown that the two fields are related by the equation
+In general, the microscopic field \\(\bm{E_0}\\) acting on a dipole is different from the macroscopic field \\(\bm{E}\\). This difference can be attributed to the influence of the molecules located in close proximity of the dipole \[[5](#references) (vol. II, ch. 11), [6](#references) (ch. 2.3-2.4)\]. If the molecules are randomly distributed, we can assume that (on average) the dipole is located within a microscopic spherical cavity of a uniformly polarized material. The electric field inside a uniformly polarized ball is
+
+$$ \tag{10.2?}
+	\bm{E_b} = -\frac{1}{3 \epsilon_0} \bm{P},
+$$
+
+where the minus sign is present because the electric field vector diverges from positive charges, which is the exact opposite of the convention used for polarization.
+
+The superposition principle allows us to excise the polarized ball that occupies the cavity, yielding
 
 $$ \tag{10.23}
-	\epsilon_0 \bm{E_{\mu}}(\bm{r_0}, \omega) = \epsilon_0 \bm{E}(\bm{r}, \omega) + \frac{1}{3} \bm{P}(\bm{r}, \omega),
+	\bm{E_0}
+	= \bm{E} - \bm{E_b}
+	= \bm{E} + \frac{1}{3 \epsilon_0} \bm{P}.
 $$
 
-where \\(\bm{P}\\) describes the electric polarization of matter surrounding the dipole \[[5](#references) (vol. II, ch. 11), [6](#references) (ch. 2.3-2.4)\].
-
-By combining Eqn. 10.22 and 10.23, and setting \\(\mathcal{\Alpha_m} = \alpha_m\\),
+By combining Eqn. 10.22 with 10.23, and assuming that the polarizability is isotropic, so that \\(\mathcal{\Alpha_m} = \alpha_m\\),
 
 $$ \tag{10.24}
 	\bm{P}(\bm{r}, \omega)
@@ -2412,6 +2426,8 @@ In some sense, dipoles can be considered elementary sources of oscillating field
 [Insert pictures of field lines of electric and magnetic dipoles]
 
 Finally, we would like to emphasize certain properties of the solution of the Maxwell equations in terms of potentials. Perhaps the most obvious one is that the scattered field is expressed as a volume integral. While the geometry of the volume containing the charges plays an important role, it is now apparent that the interior of the volume is the actual source of what we consider to be surface reflection. Furthermore, Eqn. 10.3 says that *microscopic* electromagnetic fields always propagate at the speed of light. The reason for different (ordinarily, lower) phase velocity of *macroscopic* fields in matter is the remarkable fact that the dipole field interferes with the incident field in such a way that the latter is completely extinguished and replaced by the internal field that propagates in accordance with the index of refraction of the medium \[[5](#references) (vol. I, ch. 31)\]. Formally, this mechanism is described by the [extinction theorem](https://en.wikipedia.org/wiki/Ewald%E2%80%93Oseen_extinction_theorem) \[[6](#references) (ch. 2.4)\].
+
+<!--
 
 ## II. Electromagnetic Scattering
 
