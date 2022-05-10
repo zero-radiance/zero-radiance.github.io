@@ -33,6 +33,8 @@ You may wonder why we have to use *wave optics*. One of the reasons is that *geo
 
 It is not expected that you understand the prior statement fully before reading the rest of the article. However, it should (hopefully) encourage you to learn a little bit about wave optics. A modest introduction is given below.
 
+<!--
+
 ## I. Classical Electrodynamics
 
 ### 1. Maxwell Equations in the Time Domain
@@ -4366,44 +4368,6 @@ which matches the results found using the scalar wave theory \[[4](#references) 
 
 ...
 
-<!--
-
-Suppose the host medium is non-absorptive and non-magnetic. Then \\(\kappa = 0\\) and \\(\mu = \mu_0\\), and the intensity of the scattered light is given by Eqn. 16.15:
-
-$$ \tag{18.25}
-	\Iota_s
-	= \frac{\mu\_0^{-1}}{2} \frac{\eta}{c} \big\vert \bm{E_1}(\bm{n_s}) \big\vert^2.
-$$
-
-This formula deserves several remarks. First, we must emphasize that it gives the intensity of the scattered field \\(\bm{E_s}\\) -- and *not* the total field \\(\bm{E} = \bm{E_i} + \bm{E_s}\\). Since we know the irradiance of the incident field
-
-$$ \tag{18.26}
-	\Epsilon_i
-	= \frac{\mu\_0^{-1}}{2} \frac{\eta}{c} |\bm{E_0}|^2 (\bm{n_i} \cdot \bm{n_s}),
-$$
-
-given by Eqn. 16.4, we could speak of the irradiance of the total field
-
-$$ \tag{18.27}
-	\Epsilon
-	= \Epsilon_i + \frac{\Iota_s}{r^2}
-	= \frac{\mu\_0^{-1}}{2} \frac{\eta}{c}
-		\left( |\bm{E_0}|^2 (\bm{n_i} \cdot \bm{n_s}) + \frac{\big\vert \bm{E_1}(\bm{n_s}) \big\vert^2}{r^2} \right).
-$$
-
-Strictly speaking, Eqn. 18.27 is *not* valid for a single particle, since it completely ignores the interference effects between the incident and the scattered fields. However, it is approximately valid for a cloud of particles if we make several assumptions:
-
-1. The particles are randomly distributed in space, so that the phase difference along the light paths (from the source, through the particle, to the detector) is uniformly distributed around the average.
-2. On average, the scattered fields of the particles do not noticeably influence the fields driving the other particles. This requirement makes the particles weakly scattering, and forces them to stay at large distances from one another, which corresponds to a cloud of low density. This is typically called the *independent scattering approximation*.
-3. The particles are sufficiently numerous in order for their properties to be representable by statistical distributions. However, their number can not be too great, as that would violate the second assumption.
-4. Ideally, the particles should be identical. Otherwise, we must speak of several non-interacting clouds of particles. Unfortunately, this makes the conflict between the second and the third points more severe, particularly if the dimensions of the volume containing the particles is small (and the latter directly influences the distance at which the far-field approximation is applicable).
-
-Given these assumptions, all particles are driven by the same incident field, and, if we consider the average particle, the interference effects 1) between different particles, and 2) between each individual particle and the incident field, are eliminated by the averaging process. Thus, the *average irradiance* (that is, the irradiance of the cloud divided by the number of particles) is given by Eqn. 18.27.
-
-\[[4](#references) (ch. 4.22)\]
-
--->
-
 ### Lorenz-Mie-Debye Theory
 
 The Lorenz-Mie-Debye theory presents a rigorous solution to the problem of [diffraction](https://en.wikipedia.org/wiki/Diffraction) by a conducting sphere, also known as [Mie scattering](https://en.wikipedia.org/wiki/Mie_scattering). The solution is exact in the sense that it does not employ any approximations, so it exhibits all classical and semi-classical (e.i. wave-mechanical) effects, and thus shows an excellent agreement with experimental data (see \[[16](#references) (ch. 5)\] for a list of references).
@@ -7227,20 +7191,22 @@ Since, in general, a particle with \\(|m x| \to \infin\\) does not necessarily c
 
 Note that, unlike the scattered field, the total field has no apparent issues with energy conservation, since its power (change in the amount of energy over time) is zero in inaccessible areas. This underscores the importance of understanding the fact that only the total field is an actual physical entity, while the incident and the scattered fields are just mathematical constructs.
 
+-->
+
 ## III. Approximate Methods for Practical Use
 
 ### Light Scattering by Gas Molecules
 
-All matter is made of [atoms](https://en.wikipedia.org/wiki/Atom). When certain types of atoms end up in close proximity to one another, [attractive electrical forces](https://en.wikipedia.org/wiki/Chemical_bond) cause them to aggregate into small clusters called [molecules](https://en.wikipedia.org/wiki/Molecule). Molecules are the smallest building blocks of a [chemical substance](https://en.wikipedia.org/wiki/Chemical_substance), which is a form of matter with a certain chemical composition and characteristic properties. If we know the state and the structure of matter in sufficient detail, molecular light scattering can be used to explain the appearance of almost everything we see in nature.
+All matter is made of [atoms](https://en.wikipedia.org/wiki/Atom). When certain types of atoms end up in close proximity to one another, [attractive electrical forces](https://en.wikipedia.org/wiki/Chemical_bond) cause them to aggregate into small clusters called [molecules](https://en.wikipedia.org/wiki/Molecule). Molecules are the smallest building blocks of a [chemical substance](https://en.wikipedia.org/wiki/Chemical_substance), which is a form of matter that has definite chemical composition and characteristic properties. Theoretically, molecular light scattering can be used to explain the appearance of almost everything we see in nature, provided  the state and the structure of matter is known in sufficient detail.
 
-We shall exclusively focus on a group of substances that allow the light scattering properties of a *single molecule* to be extrapolated to that of a *small volume element* of the substance. This imposes a number of requirements on its composition:
+We shall exclusively focus on a group of substances that allow the light scattering properties of a *single molecule* to be extrapolated to that of a small *volume element* of the substance. This imposes a number of requirements on its composition:
 
 1. The molecules must be small compared to the wavelength of light. [Macromolecules](https://en.wikipedia.org/wiki/Macromolecule) are excluded.
 2. The substance must be sparse, with the molecules located in the radiation zone of each other.
-3. The molecules must be weakly scattering, which makes the effect of the electromagnetic radiation scattered by the neighbors of the molecule negligible in comparison to that of the incident light. Often, points 1 and 2 imply 3.
+3. The molecules must be weakly scattering, which makes the influence of the electromagnetic radiation scattered by the neighbors of a molecule negligible in comparison to that of the incident light. Often, points 1 and 2 imply 3.
 4. The molecules must be randomly distributed. This is usually true due to [Brownian motion](https://en.wikipedia.org/wiki/Brownian_motion).
 
-The last point is extremely important, since it allows us to treat the light scattering events of the individual molecules as [statistically independent](https://en.wikipedia.org/wiki/Independence_(probability_theory)). This means that their electromagnetic radiation is [incoherent](https://en.wikipedia.org/wiki/Coherence_(physics)), and that (at a sufficiently large scale in space and time) no spatial or temporal interference effects between the scattered waves of the individual molecules can be observed. This property makes the *mean value* of the intensity of light scattered by a small volume element containing \\(N\\) molecules equal to \\(N\\) times the intensity of light scattered by the *average molecule*. \[EG: does this approach fail if the observer is not in the radiation zone of the entire volume element?\] Note that we do not require a large number of molecules to be located within the volume element, provided they are in constant random motion.
+The last point is extremely important, since it allows us to treat the light scattering events of the individual molecules as [statistically independent](https://en.wikipedia.org/wiki/Independence_(probability_theory)). This means that the electromagnetic radiation is [incoherent](https://en.wikipedia.org/wiki/Coherence_(physics)), and that (after averaging in space and time) no spatial or temporal interference effects between the scattered waves of the individual molecules can be observed. Furthermore, if the observer is located in the radiation zone of the *entire volume element*, the intensity of light scattered by \\(N\\) molecules  is equal to \\(N\\) times the intensity of light scattered by the *average molecule*. Note that we do not require a large number of molecules to be located within the volume element, provided they are in constant random motion.
 
 1. The particles are randomly distributed in space, so that the phase difference along the light paths (from the source, through the particle, to the detector) is uniformly distributed around the average.
 2. On average, the scattered fields of the particles do not noticeably influence the fields driving the other particles. This requirement makes the particles weakly scattering, and forces them to stay at large distances from one another, which corresponds to a cloud of low density. This is typically called the *independent scattering approximation*.
