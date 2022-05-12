@@ -4380,9 +4380,9 @@ $$
 
 which matches the results found using the scalar wave theory \[[4](#references) (ch. 4.42)\]. Intuitively, this makes sense, since the particle looks the same regardless of the choice of the plane of reference (assuming the latter contains the direction of incidence), and the sensor (that only measures power) is not sensitive to the orientation of incoming light.
 
-### Measurement Problem and Radiative Transfer
+### Statistically Independent Scattering
 
-...
+Take from Sec. 14 of Mishchchenko.
 
 ### Lorenz-Mie-Debye Theory
 
