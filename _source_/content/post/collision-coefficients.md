@@ -2990,7 +2990,7 @@ $$ \tag{13.3}
 \end{aligned}
 $$
 
-where we renamed \\(\bm{r_0}\\) to \\(\bm{r'}\\) in order to avoid introducing additional auxiliary variables.
+where we renamed \\(\bm{r_0}\\) to \\(\bm{r'}\\) in order to avoid introducing additional auxiliary variables. This allows us to reuse the previous definitions of \\(\bm{R} = \bm{r} - \bm{r'}, R = |\bm{R}|\\).
 
 Let us stop for a moment to consider what \\(k R\\) represents. According to Eqn. 13.3, it is the [dimensionless](https://en.wikipedia.org/wiki/Dimensionless_quantity) phase difference (measured in radians) between the observation point \\(\bm{r}\\) and the location of the dipole \\(\bm{r'}\\). We may confirm this by dimensional analysis of Eqn. 7.9:
 
@@ -3048,7 +3048,7 @@ We may expand the square root (and its reciprocal) in the Taylor series of \\(r'
 $$ \tag{13.8}
 \begin{aligned}
 	& k R
-	= k r \bigg( 1 - \big( \bm{n} \cdot \bm{n'} \big) (r'/r) + \frac{1}{2} \Big( 1 - \big( \bm{n} \cdot \bm{n'} \big)^2 \Big) (r'/r)^2 + \mathrm{O} \Big( (r'/r)^3 \Big) \bigg), \cr
+	= k r \bigg( 1 - \big( \bm{n} \cdot \bm{n'} \big) (r'/r) + \mathrm{O} \Big( (r'/r)^2 \Big) \bigg), \cr
 	& \frac{1}{R}
 	= \frac{1}{r} \bigg( 1 + \big( \bm{n} \cdot \bm{n'} \big) (r'/r) + \mathrm{O} \Big( (r'/r)^2 \Big) \bigg).
 \end{aligned}
