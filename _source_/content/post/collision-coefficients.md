@@ -2329,10 +2329,10 @@ $$
 A molecule can become polarized for a variety of reasons \[[5](#references) (vol. II, ch. 11)\]. If the separation of charges (such as the displacement of the electron cloud relative to the positively charged nucleus) occurs under the influence of the external electromagnetic field, one speaks of *induced polarization*. If we assume that the effect is linear, the response is characterized by the [molecular polarizability](https://en.wikipedia.org/wiki/Electric_susceptibility#Molecular_polarizability) dyadic \\(\mathcal{\Alpha_m}\\):
 
 $$ \tag{10.21}
-	\bm{p}(V, \omega) \approx \mathcal{\Alpha_m}(V, \omega) \cdot \epsilon_0 \bm{E_0},
+	\bm{p}(V, \omega) \approx \mathcal{\Alpha_m}(V, \omega) \cdot \epsilon_0 \bm{E_{\mu}}(\bm{r_0}, \omega),
 $$
 
-where \\(\bm{E_0} = \bm{E}(\bm{r_0}, \omega)\\) is the phasor of the microscopic field acting on the molecule.
+where \\(\bm{E_{\mu}}\\) is the phasor of the microscopic field acting on the molecule.
 
 The dyadic form of \\(\mathcal{\Alpha_m}\\) is necessary to model a molecule that lacks spherical symmetry; it acts by rotating and non-uniformly scaling the electric field phasor. If the molecule absorbs light, its polarizability is complex.
 
@@ -2341,7 +2341,7 @@ If there are \\(N\\) identical electric dipoles per unit volume, we can define t
 $$ \tag{10.22}
 	\bm{P}(\bm{r}, \omega)
 	= N(\bm{r}) \bm{p}(V, \omega)
-	\approx N(\bm{r}) \mathcal{\Alpha_m}(V, \omega) \cdot \epsilon_0 \bm{E_0}
+	\approx N(\bm{r}) \mathcal{\Alpha_m}(V, \omega) \cdot \epsilon_0 \bm{E_{\mu}}(\bm{r_0}, \omega)
 $$
 
 In general, the microscopic field \\(\bm{E_0}\\) acting on a dipole is different from the macroscopic field \\(\bm{E}\\). This difference can be attributed to the influence of the molecules located in close proximity of the dipole \[[5](#references) (vol. II, ch. 11), [6](#references) (ch. 2.3-2.4)\]. If the molecules are randomly distributed, we can assume that (on average) the dipole is located within a (microscopic) spherical cavity of a uniformly (macroscopically) polarized material. The electric field inside a uniformly polarized ball is
@@ -2355,7 +2355,7 @@ where the minus sign is present because the electric field vector diverges from 
 The superposition principle allows us to excise the polarized ball that occupies the cavity, yielding
 
 $$ \tag{10.23}
-	\bm{E_0}
+	\bm{E_{\mu}}
 	= \bm{E} - \bm{E_b}
 	= \bm{E} + \frac{1}{3 \epsilon_0} \bm{P}.
 $$
@@ -2922,7 +2922,7 @@ $$ \tag{12.3}
 	\bm{p}(V, \omega) \approx \mathcal{\Alpha_m}(V, \omega) \cdot \varepsilon(\omega) \bm{E_i}(\bm{r_0}, \omega).
 $$
 
-where we replaced \\(\epsilon_0\\) with \\(\varepsilon\\) (to account for the properties of the surrounding medium) and \\(\bm{E_0}\\) with \\(\bm{E_i}\\) (according to the simplification discussed above).
+where we replaced \\(\epsilon_0\\) with \\(\varepsilon\\) (to account for the properties of the surrounding medium) and \\(\bm{E_{\mu}}\\) with \\(\bm{E_i}\\) (according to the simplification discussed above).
 
 The combination of Eqn. 12.1-12.3 results in
 
@@ -7211,50 +7211,25 @@ Note that, unlike the scattered field, the total field has no apparent issues wi
 
 ## III. Approximate Methods for Practical Use
 
-### Light Scattering by Gas Molecules
+### Basics of Molecular Light Scattering
 
-All matter is made of [atoms](https://en.wikipedia.org/wiki/Atom). When certain types of atoms end up in close proximity to one another, [attractive electrical forces](https://en.wikipedia.org/wiki/Chemical_bond) cause them to aggregate into small clusters called [molecules](https://en.wikipedia.org/wiki/Molecule). Molecules are the smallest building blocks of a [chemical substance](https://en.wikipedia.org/wiki/Chemical_substance), which is a form of matter that has definite chemical composition and characteristic properties. Theoretically, molecular light scattering can be used to explain the appearance of almost everything we see in nature, provided  the state and the structure of matter is known in sufficient detail.
+All matter is made of [atoms](https://en.wikipedia.org/wiki/Atom). When certain types of atoms end up in close proximity to one another, [attractive electrical forces](https://en.wikipedia.org/wiki/Chemical_bond) cause them to aggregate into small clusters called [molecules](https://en.wikipedia.org/wiki/Molecule). Molecules are the smallest building blocks of a [chemical substance](https://en.wikipedia.org/wiki/Chemical_substance), which is a form of matter that has a definite chemical composition and characteristic properties. Theoretically, if the state and the structure of matter were known in sufficient detail, molecular light scattering could be used to explain the appearance of almost everything we see in nature.
 
-We shall exclusively focus on a group of substances that allow the light scattering properties of a *single molecule* to be extrapolated to that of a small *volume element* of the substance. This imposes a number of requirements on its composition:
-
-1. The molecules must be small compared to the wavelength of light. [Macromolecules](https://en.wikipedia.org/wiki/Macromolecule) are excluded.
-2. The substance must be sparse, with the molecules located in the radiation zone of each other.
-3. The molecules must be weakly scattering, which makes the influence of the electromagnetic radiation scattered by the neighbors of a molecule negligible in comparison to that of the incident light. Often, points 1 and 2 imply 3.
-4. The molecules must be randomly distributed. This is usually true due to [Brownian motion](https://en.wikipedia.org/wiki/Brownian_motion).
-
-The last point is extremely important, since it allows us to treat the light scattering events of the individual molecules as [statistically independent](https://en.wikipedia.org/wiki/Independence_(probability_theory)). This means that the electromagnetic radiation is [incoherent](https://en.wikipedia.org/wiki/Coherence_(physics)), and that (after averaging in space and time) no spatial or temporal interference effects between the scattered waves of the individual molecules can be observed. Furthermore, if the observer is located in the radiation zone of the *entire volume element*, the intensity of light scattered by \\(N\\) molecules  is equal to \\(N\\) times the intensity of light scattered by the *average molecule*. Note that we do not require a large number of molecules to be located within the volume element, provided they are in constant random motion.
-
-1. The particles are randomly distributed in space, so that the phase difference along the light paths (from the source, through the particle, to the detector) is uniformly distributed around the average.
-2. On average, the scattered fields of the particles do not noticeably influence the fields driving the other particles. This requirement makes the particles weakly scattering, and forces them to stay at large distances from one another, which corresponds to a cloud of low density. This is typically called the *independent scattering approximation*.
-3. The particles are sufficiently numerous in order for their properties to be representable by statistical distributions. However, their number can not be too great, as that would violate the second assumption.
-4. Ideally, the particles should be identical. Otherwise, we must speak of several non-interacting clouds of particles. Unfortunately, this makes the conflict between the second and the third points more severe, particularly if the dimensions of the volume containing the particles is small (and the latter directly influences the distance at which the far-field approximation is applicable).
-
- Naturally, the two cases coincide if the [number density](https://en.wikipedia.org/wiki/Number_density) is so low that there is only a handful of molecules per unit volume.
-
-1.
- In addition, we must impose another requirement -- the molecules must be randomly distributed. If that is not the case, the electromagnetic waves generated by individual molecules will combine in a [coherent](https://en.wikipedia.org/wiki/Coherence_(physics)) manner (that depends on the relative phase difference), forming a complicated non-linear relationship between the number of molecules and the intensity of scattered light.
-
-In particular, the group of substances just mentioned includes (but is not limited to) [fluids](https://en.wikipedia.org/wiki/Fluid): gasses and liquids. The former is simply gas molecules suspended in vacuum. The inclusion of the latter may seem surprising, since, at first glance, liquids appear to be incompatible with the low-density prerequisite. While it is true that molecules of a liquid are densely packed, this packing is not perfect; in fact, the density varies with the pressure (that forces the molecules to be close together) and the temperature (that causes the molecules to push each other apart) of the liquid. As a result, at the microscopic level, liquids are not perfectly homogeneous, and have occasional small gaps. According to the Maxwell equations, *these gaps, or cavities, can be interpreted as particles* with the reciprocal refractive index (see Eqn. 11.8). In addition, if the liquid is a [solution](https://en.wikipedia.org/wiki/Solution_(chemistry)), the added components (such as [salts](https://en.wikipedia.org/wiki/Salinity)) may act as microscopic impurities, and cause further absorption or scattering. This approach allows us to use the Maxwell theory in order to explain the colors of the sky \[[26](#references)\] and the sea \[[27](#references)\].
-
-All scattering can be broadly classified into two categories: [elastic](https://en.wikipedia.org/wiki/Elastic_scattering) and [inelastic](https://en.wikipedia.org/wiki/Inelastic_scattering). A typical example of *elastic scattering* is an idealized rubber ball that perfectly bounces off a hard surface; we say that, in the center-of-mass frame, the kinetic energy of the ball is conserved. The description of *elastic light scattering* is even simpler: since, as far as we know, [photons](https://en.wikipedia.org/wiki/Photon) are massless, the photon's energy \\(\mathcal{E_p}\\) must be conserved. If we associate the photon with a plane wave, then the [Planck-Einstein relation](https://en.wikipedia.org/wiki/Planck_relation)
+All scattering processes can be broadly classified in two categories: [elastic](https://en.wikipedia.org/wiki/Elastic_scattering) and [inelastic](https://en.wikipedia.org/wiki/Inelastic_scattering). A typical example of *elastic scattering* is an idealized rubber ball perfectly bouncing off a hard surface; we say that, in the center-of-mass frame, the kinetic energy of the ball is conserved. The description of *elastic light scattering* is even simpler: since, as far as we know, [photons](https://en.wikipedia.org/wiki/Photon) are massless, the photon's energy \\(\mathcal{E_p}\\) must be conserved. If we associate the photon with a plane wave, then the [Planck-Einstein relation](https://en.wikipedia.org/wiki/Planck_relation)
 
 $$ \tag{19.1}
-\begin{aligned}
 	\mathcal{E_p} = \hbar \omega
-\end{aligned}
 $$
 
 tells us that the angular frequency \\(\omega\\) must remain unchanged.
 
-This is not the case for *inelastic light scattering*, which allows the atom to absorb a photon \\(\mathcal{E_p}\\), only to emit a different photon \\(\mathcal{E_p'}\\) later. The law of conservation of energy requires the total amount of energy \\(\mathcal{E}\\) in the atom-photon system to be the same before and after the scattering event:
+That is not the case for *inelastic light scattering*, which allows an atom (or a molecule) to absorb a photon \\(\mathcal{E_p}\\), only to emit a different photon \\(\mathcal{E_p'}\\) at a later point in time. The law of conservation of energy requires the total amount of energy \\(\mathcal{E}\\) in the atom-photon system to be the same before and after the scattering event:
 
 $$ \tag{19.2}
-\begin{aligned}
 	\mathcal{E_a} + \mathcal{E_p} = \mathcal{E} = \mathcal{E_a'} + \mathcal{E_p'}.
-\end{aligned}
 $$
 
-Therefore, if scattering alters the energy of the atom, radiation undergoes a frequency shift
+Therefore, if scattering alters the energy of the atom \\((\mathcal{E_a} \neq \mathcal{E_a'})\\), the radiation undergoes a frequency shift
 
 $$ \tag{19.3}
 \begin{aligned}
@@ -7266,6 +7241,39 @@ $$
 
 that can be either positive or negative, depending on the initial and final states of the system.
 
+Classical electrodynamics represents matter by a charge distribution that behaves a certain way. In particular, if we consider an atom or a small molecule, to a good approximation, light-matter interaction is limited to the displacement of the electron cloud relative to the nuclei, which is characterized by the induced dipole moment
+
+$$ \tag{19.4}
+	\bm{p}(V, \omega) =
+	\mathcal{\Alpha_m}(V, \omega) \cdot \epsilon_0 \bm{E_{\mu}}(\bm{r_0}, \omega),
+$$
+
+where \\(\mathcal{\Alpha_m}\\) is the molecular polarizability dyadic.
+
+Let us slightly modify Eqn. 19.4 by adding a non-linear term \\(\mathcal{\Beta_m}\\), such that
+
+$$ \tag{19.5}
+	\mathcal{\Beta_m}(V, \omega)
+	= \mathcal{\Beta_0}(V, \omega) e^{i \Delta \omega t}.
+$$
+
+If the applied field is time-harmonic,
+
+$$ \tag{19.6}
+\begin{aligned}
+	\bm{p}(V, \omega) e^{i \omega t}
+	&= \big( \mathcal{\Alpha_m}(V, \omega) + \mathcal{\Beta_m}(V, \omega) \big)
+	\cdot \epsilon_0 \bm{E_{\mu}}(\bm{r_0}, \omega) e^{i \omega t}
+	\cr
+	&= \mathcal{\Alpha_m}(V, \omega) \cdot \epsilon_0 \bm{E_{\mu}}(\bm{r_0}, \omega) e^{i \omega t}
+	+ \mathcal{\Beta_0}(V, \omega)  \cdot \epsilon_0 \bm{E_{\mu}}(\bm{r_0}, \omega) e^{i (\omega + \Delta \omega) t}
+	\cdot
+\end{aligned}
+$$
+
+Eqn. 19.6 constitutes the classical description of molecular light scattering, where the first term corresponds to *elastic* [Rayleigh scattering](https://en.wikipedia.org/wiki/Rayleigh_scattering), and the second -- to *inelastic* [Raman scattering](https://en.wikipedia.org/wiki/Raman_scattering). Raman scattering is quantum-mechanical in nature, so its derivation is beyond the scope of this article. However, if the reader were to obtain the value of \\(\mathcal{\Beta_m}\\) elsewhere \[[29](#references)\], extending the theory presented below should be fairly straightforward.
+
+### Light Scattering by Gas Molecules
 ### Light Scattering by Liquid Molecules
 
 ### Light Scattering by Small Particles
@@ -7324,6 +7332,7 @@ Bohren & Huffman, Larry Travis, Pharr & Jakob, Jeppe Frisvad (Mie scattering), R
 26. Rayleigh, L. [On the Transmission of Light Through an Atmosphere Containing Small Particles in Suspension, and on the Origin of the Blue of the Sky](https://doi.org/10.1080/14786449908621276) (1899).
 27. Raman, C. V. [On the Molecular Scattering of Light in Water and the Colour of the Sea](https://doi.org/10.1098/rspa.1922.0025) (1922).
 28. Wald, R. [Advanced Classical Electromagnetism](https://press.princeton.edu/books/hardcover/9780691220390/advanced-classical-electromagnetism) (2022).
+29. Long, D. A. [The Raman Effect: A Unified Treatment of the Theory of Raman Scattering by Molecules](https://doi.org/10.1002/0470845767) (2002).
 99. Hansen, J. E., & Travis, L. D. [Light Scattering in Planetary Atmospheres](https://doi.org/10.1007/BF00168069) (1974).
 
 <!--
