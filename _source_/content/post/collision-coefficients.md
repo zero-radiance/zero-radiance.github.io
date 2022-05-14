@@ -7313,7 +7313,7 @@ $$
 
 Note, however, that we do *not* require the observation point to be located in the far zone with respect to the entire volume containing the molecules, as that would require \\(k R_j \gg (k L)^2\\) (see Eqn. 13.13).
 
-The requirement that \\(k R_j \gg k L\\) makes the volume containing the molecules appear point-like: if it is located at the origin, then, according to Eqn. 13.8-13.11, we may asymptotically approximate
+The requirement that \\(k R_j \gg k L\\) makes the volume containing the molecules appear point-like: if the group of molecules is centered at the origin, then, according to Eqn. 13.8-13.11, we may asymptotically approximate
 
 $$ \tag{20.2}
 	\frac{\bm{R_j}}{R_j} \simeq \bm{n} = \frac{\bm{r}}{r}, \quad
