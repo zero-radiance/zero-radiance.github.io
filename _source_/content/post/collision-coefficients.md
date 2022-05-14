@@ -2985,7 +2985,7 @@ $$ \tag{13.3}
 \begin{aligned}
 	& \bm{E_s}(\bm{r}, \omega)
 	\simeq k^2(\omega) \frac{e^{i k(\omega) R}}{4 \pi R}
-	\bigg( \mathcal{I} - \frac{\bm{R} \otimes \bm{R}}{\bm{R} \cdot \bm{R}} \bigg) \cdot \mathcal{\Alpha_m}(V, \omega) \cdot \bm{E_i}(\bm{r'}, \omega), \cr
+	\bigg( \mathcal{I} - \frac{\bm{R} \otimes \bm{R}}{R^2} \bigg) \cdot \mathcal{\Alpha_m}(V, \omega) \cdot \bm{E_i}(\bm{r'}, \omega), \cr
 	& \bm{B_s}(\bm{r}, \omega)
 	\simeq \frac{k^3(\omega)}{\omega} \frac{e^{i k(\omega) R}}{4 \pi R}
 	\bigg(\frac{\bm{R} \times \mathcal{I}}{R} \bigg) \cdot \mathcal{\Alpha_m}(V, \omega) \cdot \bm{E_i}(\bm{r'}, \omega),
@@ -3014,8 +3014,6 @@ $$ \tag{13.5}
 	\big(\bm{n} \times \mathcal{I} \big) \cdot \mathcal{\Alpha_m}(V, \omega) \cdot \bm{E_i}(0, \omega).
 \end{aligned}
 $$
-
-<!--
 
 Let us return to the general case of a scattering object. Assume that the observation point is in the radiation zone with respect to each individual volume element, so that \\(k R \gg 1\\). Eqn. 11.25 then takes the form
 
@@ -3056,7 +3054,7 @@ $$ \tag{13.8}
 \end{aligned}
 $$
 
-The second expression varies relatively slowly, so its expansion can be truncated by assuming that \\(r'/r \ll 1\\) for all \\(r'\\), which implies that \\(a/r \ll 1\\) (or, alternatively, \\(kr \gg ka\\)). The first expansion is utilized in a rapidly varying function \\(\exp(i k R)\\), so we should retain an extra term by assuming that \\(\frac{1}{2} k a (a/r) \ll 1\\), which is formally equivalent to \\(kr \gg \frac{1}{2} (ka)^2\\). Thus, we arrive at the approximation
+The second expression varies relatively slowly, so its expansion can be truncated by assuming that \\(r'/r \ll 1\\) for all \\(r'\\), which implies that \\(a/r \ll 1\\) (or, alternatively, \\(kr \gg ka\\)). The first expression is utilized in a rapidly varying function \\(\exp(i k R)\\), so we should retain an extra term by assuming that \\(k a (a/r) \ll 1\\), which is formally equivalent to \\(kr \gg (ka)^2\\). Thus, we arrive at the approximation
 
 $$ \tag{13.9}
 	k R \simeq k r - k (\bm{r'} \cdot \bm{n}), \quad
@@ -3101,7 +3099,7 @@ subject to the conditions \[[8](#references) (ch. 5)\]
 $$ \tag{13.13}
 	k r - k a \gg 1, \quad
 	kr \gg ka, \quad
-	kr \gg \frac{1}{2} (k a)^2.
+	kr \gg (k a)^2.
 $$
 
 The same analysis is directly applicable to the surface integrals given by Eqn. 1x.14-1x.15:
@@ -3269,6 +3267,8 @@ $$ \tag{13.25}
 $$
 
 where the absorption coefficient \\(\alpha\\) is defined according to Eqn. 7.40.
+
+<!--
 
 ### Transition Operator
 
@@ -3878,6 +3878,8 @@ $$
 
 makes Eqn. 15.28 fully dimensionless. Additionally, in the operator notation, Eqn. 15.20 and 15.28 are formally identical. As a result, both formulations can be written as the Born series of Eqn. 14.20, and thus produce the same fields.
 
+-->
+
 ### Optical Theorem
 
 For radiative transfer applications, we may introduce a simpler description of the scattering and absorption properties of a particle by describing the outcome of the scattering process in radometric (rather than optical) terms \[[6](#references) (ch. 13.6), [8](#references) (ch. 13.1, 13.4)\].
@@ -4087,7 +4089,7 @@ $$ \tag{16.22}
 		\times
 		\mathcal{Re} \big\lbrace \bm{W} e^{i \omega t} \big\rbrace
 	\Big\rangle
-	= \frac{1}{2} \mathcal{Re} \big\lbrace \bm{V} \times \bm{W}^{\*} \big\rbrace.
+	= \frac{1}{2} \mathcal{Re} \big\lbrace \bm{V} \times \bm{W^{\*}} \big\rbrace.
 $$
 
 Thus, the time average of the mixed Poynting vector can be written as
@@ -4381,6 +4383,8 @@ $$ \tag{16.43}
 $$
 
 which matches the results found using the scalar wave theory \[[4](#references) (ch. 4.42)\]. Intuitively, this makes sense, since the particle looks the same regardless of the choice of the plane of reference (assuming the latter contains the direction of incidence), and the sensor (that only measures power) is not sensitive to the orientation of incoming light.
+
+<!--
 
 ### Statistically Independent Scattering
 
@@ -7276,6 +7280,167 @@ $$
 Eqn. 19.6 constitutes the classical description of molecular light scattering, where the first term corresponds to *elastic* [Rayleigh scattering](https://en.wikipedia.org/wiki/Rayleigh_scattering), and the second -- to *inelastic* [Raman scattering](https://en.wikipedia.org/wiki/Raman_scattering). Raman scattering is quantum-mechanical in nature, so its derivation is beyond the scope of this article. However, if the reader were to obtain the value of \\(\mathcal{\Beta_m}\\) elsewhere \[[29](#references)\], extending the theory presented below should be fairly straightforward.
 
 ### Light Scattering by Gas Molecules
+
+We shall begin our investigation of light-matter interactions with the simplest state of matter -- [gas](https://en.wikipedia.org/wiki/Gas). Specifically, let us consider a *group of gas molecules* with the following (fairly typical) properties:
+
+1. The molecules are small compared to the wavelength of light. If \\(a\\) is the largest linear dimension of the molecule (e.g. its radius), and \\(k = k_0 = \omega / c\\) is the vacuum wavenumber, then we require \\(x = k a \ll 1\\).
+2. The molecules are weakly scattering. If \\(m\\) is the refractive index of the molecule (not to be confused with the refractive index of the gas itself), then we require \\(m x \ll 1\\).
+3. The average distance between the molecules is large.
+4. The number of molecules within the group is small.
+5. The volume containing the molecules is large compared to the wavelength of light. If \\(L\\) is the smallest linear dimension of the volume (e.g. its length), then we require \\(k L \gg 1\\).
+6. The molecules are randomly distributed. This is usually true due to [Brownian motion](https://en.wikipedia.org/wiki/Brownian_motion).
+
+The properties #1-2 suggest that we may represent the molecule by an electric dipole (cf. Sec. 12).
+
+The properties #2-4 imply that the combined field generated by the group of molecules is fairly weak. This makes the *single scattering approximation* applicable, which assumes that each dipole is driven exclusively by the incident field (in other words, the polarization \\(\bm{P}\\) vanishes outside the volume occupied by the dipole, cf. Sec. 10).
+
+We must also place an additional requirement on the location of observation point \\(\bm{r}\\). If \\(\bm{r_j}\\) is the location of the \\(j\\)-th molecule, then the distance \\(R_j = |\bm{r} - \bm{r_j}|\\) has to be much large than the smallest linear dimension \\(L\\) of the volume: we require \\(R_j \gg L\\). Combined with the property #5, it becomes \\(k R_j \gg k L \gg 1\\).
+
+\\(k R_j \gg 1\\) means that the observation point is located in the radiation zone of every dipole. In this case, the scattered electromagnetic field of a single molecule is given by a slightly modified version of Eqn. 13.3:
+
+$$ \tag{20.1}
+\begin{aligned}
+	& \bm{E_j}(\bm{r}, \omega)
+	\simeq k^2(\omega) \frac{e^{i k(\omega) R_j}}{4 \pi R_j}
+	\bigg( \mathcal{I} - \frac{\bm{R_j} \otimes \bm{R_j}}{R_j^2} \bigg)
+	\cdot \mathcal{\Alpha_j}(V_j, \omega) \cdot \bm{E_i}(\bm{r_j}, \omega), \cr
+	& \bm{B_j}(\bm{r}, \omega)
+	\simeq \frac{k^3(\omega)}{\omega} \frac{e^{i k(\omega) R_j}}{4 \pi R_j}
+	\bigg(\frac{\bm{R_j} \times \mathcal{I}}{R} \bigg)
+	\cdot \mathcal{\Alpha_j}(V_j, \omega) \cdot \bm{E_i}(\bm{r_j}, \omega).
+\end{aligned}
+$$
+
+Note, however, that we do *not* require the observation point to be located in the far zone with respect to the entire volume containing the molecules, as that would require \\(k R_j \gg (k L)^2\\) (see Eqn. 13.13).
+
+The requirement that \\(k R_j \gg k L\\) makes the volume containing the molecules appear point-like: if it is located at the origin, then, according to Eqn. 13.8-13.11, we may asymptotically approximate
+
+$$ \tag{20.2}
+	\frac{\bm{R_j}}{R_j} \simeq \bm{n} = \frac{\bm{r}}{r}, \quad
+	\frac{1}{R_j} \simeq \frac{1}{r}.
+$$
+
+Substitution into Eqn. 20.1 shows that each dipole radiates a spherical wave that appears to originate at the same location, but these waves may differ in magnitude and phase:
+
+$$ \tag{20.3}
+\begin{aligned}
+	& \bm{E_j}(\bm{r}, \omega)
+	\simeq k^2(\omega) \frac{e^{i k(\omega) R_j}}{4 \pi R}
+	\big( \mathcal{I} - \bm{n} \otimes \bm{n} \big)
+	\cdot \mathcal{\Alpha_j}(V_j, \omega) \cdot \bm{E_i}(\bm{r_j}, \omega), \cr
+	& \bm{B_j}(\bm{r}, \omega)
+	\simeq \frac{k^3(\omega)}{\omega} \frac{e^{i k(\omega) R_j}}{4 \pi R}
+	\big( \bm{n} \times \mathcal{I} \big)
+	\cdot \mathcal{\Alpha_j}(V_j, \omega) \cdot \bm{E_i}(\bm{r_j}, \omega).
+\end{aligned}
+$$
+
+Without loss of generality, let us express the incident field as a plane wave:
+
+$$ \tag{20.4}
+\begin{aligned}
+	& \bm{E_j}(\bm{r}, \omega)
+	\simeq k^2(\omega)
+	\frac{
+		e^{i k(\omega) (R_j + \bm{r_j} \cdot \bm{n_i})}
+	}{
+		4 \pi R
+	}
+	\big( \mathcal{I} - \bm{n} \otimes \bm{n} \big)
+	\cdot \mathcal{\Alpha_j}(V_j, \omega) \cdot \bm{E_0}(\bm{n_i}, \omega), \cr
+	& \bm{B_j}(\bm{r}, \omega)
+	\simeq \frac{k^3(\omega)}{\omega}
+	\frac{
+		e^{i k(\omega) (R_j + \bm{r_j} \cdot \bm{n_i})}
+	}{
+		4 \pi R
+	}
+	\big( \bm{n} \times \mathcal{I} \big)
+	\cdot \mathcal{\Alpha_j}(V_j, \omega) \cdot \bm{E_0}(\bm{n_i}, \omega),
+\end{aligned}
+$$
+
+In Sec. 16, we have proved that the incident and the scattered far-fields interfere only in the forward direction. We can use the same method to determine whether the scattered fields of two randomly distributed dipoles interfere. Therefore, let us repurpose Eqn. 16.20 and 16.22, and consider
+
+$$ \tag{20.5}
+	\Big\langle
+		\mathcal{Re} \big\lbrace \bm{E_j} e^{i \omega t} \big\rbrace
+		\times
+		\mathcal{Re} \big\lbrace \bm{B_k} e^{i \omega t} \big\rbrace
+	\Big\rangle
+	= \frac{1}{2} \mathcal{Re} \big\lbrace \bm{E_j} \times \bm{B_k^{\*}} \big\rbrace.
+$$
+
+Clearly,
+
+$$ \tag{20.4}
+	\bm{E_j} \times \bm{B_k^{\*}} \propto
+	\exp\negthinspace\big(
+	i k (\bm{r_j} - \bm{r_k}) \cdot \bm{n_i} + i k (R_j - R_k) + i \delta \big),
+$$
+
+where \\(\delta\\) is a constant factor independent of \\(\bm{r_j}\\) and \\(\bm{r_k}\\).
+
+$$ \tag{16.23}
+	\braket{\bm{S_e}} \simeq
+	-\frac{\mu_0^{-1}}{2 k r} \mathcal{Re} \bigg\lbrace
+	\Big( \bm{E_0} e^{i k (\bm{r} \cdot \bm{n_i})} \Big) \times \Big[ \bm{B_1} e^{i k r} \Big]^{\*} +
+	\Big( \bm{E_1} e^{i k r} \Big) \times \Big[ \bm{B_0} e^{i k (\bm{r} \cdot \bm{n_i})} \Big]^{\*}
+	\bigg\rbrace.
+$$
+
+---
+
+Note that the polarizability \\(\mathcal{\Alpha_m}\\) has units of volume \[[4](#references) (ch. 6.22)\]. In particular, if the polarizability is isotropic,
+
+$$ \tag{12.6}
+	\mathcal{\Alpha_m}(V, \omega)
+	= \alpha_m(V, \omega)
+	= \int_V \big( m^2(\bm{r}, \omega) - 1 \big) dV.
+$$
+
+This relation also follows from Eqn. 10.18.4, 10.21, and 10.26, where we must assume that the polarization \\(\bm{P}\\) vanishes outside the volume occupied by the dipole.
+
+This can be easily shown by combining Eqn. 10.18.2 and 10.26 and comparing the result with Eqn. 12.3.
+
+---
+
+The following conclusions immediately follow:
+
+7. The molecules occupy a small fraction \\(v\\) of the total volume \\(V\\): \\(v \ll V\\).
+8. None of the molecules are located within the near zone of each other, which reduces the strength of their electromagnetic interactions.
+9. Points 2, 7, and 8 reduce the impact of the electromagnetic radiation scattered by the neighbors of a molecule in comparison to that of the incident light. If we also take point 5 into account, we may neglect the set the scattered field \\(E_s\\) within the volume \\(V\\) to \\(0\\).
+
+
+$$ \tag{13.13}
+	k r - k a \gg 1, \quad
+	kr \gg ka, \quad
+	kr \gg \frac{1}{2} (k a)^2.
+$$
+
+A  arrangement of We shall exclusively focus on a group of substances that allow the light scattering properties of a *single molecule* to be extrapolated to that of a small *volume element* of the substance. This imposes a number of requirements on its composition:
+
+1. The molecules must be small compared to the wavelength of light. [Macromolecules](https://en.wikipedia.org/wiki/Macromolecule) are excluded.
+2. The substance must be sparse, with the molecules located in the radiation zone of each other.
+3. The molecules must be weakly scattering, which makes the influence of the electromagnetic radiation scattered by the neighbors of a molecule negligible in comparison to that of the incident light. Often, points 1 and 2 imply 3.
+4. The molecules must be randomly distributed. This is usually true due to [Brownian motion](https://en.wikipedia.org/wiki/Brownian_motion).
+
+The last point is extremely important, since it allows us to treat the light scattering events of the individual molecules as [statistically independent](https://en.wikipedia.org/wiki/Independence_(probability_theory)). This means that the electromagnetic radiation is [incoherent](https://en.wikipedia.org/wiki/Coherence_(physics)), and that (after averaging in space and time) no spatial or temporal interference effects between the scattered waves of the individual molecules can be observed. Furthermore, if the observer is located in the radiation zone of the *entire volume element*, the intensity of light scattered by \\(N\\) molecules  is equal to \\(N\\) times the intensity of light scattered by the *average molecule*. Note that we do not require a large number of molecules to be located within the volume element, provided they are in constant random motion.
+
+1. The particles are randomly distributed in space, so that the phase difference along the light paths (from the source, through the particle, to the detector) is uniformly distributed around the average.
+2. On average, the scattered fields of the particles do not noticeably influence the fields driving the other particles. This requirement makes the particles weakly scattering, and forces them to stay at large distances from one another, which corresponds to a cloud of low density. This is typically called the *independent scattering approximation*.
+3. The particles are sufficiently numerous in order for their properties to be representable by statistical distributions. However, their number can not be too great, as that would violate the second assumption.
+4. Ideally, the particles should be identical. Otherwise, we must speak of several non-interacting clouds of particles. Unfortunately, this makes the conflict between the second and the third points more severe, particularly if the dimensions of the volume containing the particles is small (and the latter directly influences the distance at which the far-field approximation is applicable).
+
+ Naturally, the two cases coincide if the [number density](https://en.wikipedia.org/wiki/Number_density) is so low that there is only a handful of molecules per unit volume.
+
+1.
+ In addition, we must impose another requirement -- the molecules must be randomly distributed. If that is not the case, the electromagnetic waves generated by individual molecules will combine in a [coherent](https://en.wikipedia.org/wiki/Coherence_(physics)) manner (that depends on the relative phase difference), forming a complicated non-linear relationship between the number of molecules and the intensity of scattered light.
+
+In particular, the group of substances just mentioned includes (but is not limited to) [fluids](https://en.wikipedia.org/wiki/Fluid): gasses and liquids. The former is simply gas molecules suspended in vacuum. The inclusion of the latter may seem surprising, since, at first glance, liquids appear to be incompatible with the low-density prerequisite. While it is true that molecules of a liquid are densely packed, this packing is not perfect; in fact, the density varies with the pressure (that forces the molecules to be close together) and the temperature (that causes the molecules to push each other apart) of the liquid. As a result, at the microscopic level, liquids are not perfectly homogeneous, and have occasional small gaps. According to the Maxwell equations, *these gaps, or cavities, can be interpreted as particles* with the reciprocal refractive index (see Eqn. 11.8). In addition, if the liquid is a [solution](https://en.wikipedia.org/wiki/Solution_(chemistry)), the added components (such as [salts](https://en.wikipedia.org/wiki/Salinity)) may act as microscopic impurities, and cause further absorption or scattering. This approach allows us to use the Maxwell theory in order to explain the colors of the sky \[[26](#references)\] and the sea \[[27](#references)\].
+
+
+
 ### Light Scattering by Liquid Molecules
 
 ### Light Scattering by Small Particles
