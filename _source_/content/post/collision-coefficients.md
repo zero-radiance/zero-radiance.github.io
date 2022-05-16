@@ -440,7 +440,7 @@ $$
 It becomes particularly useful once you consider a fixed direction \\(\bm{n}\\). Then, according to Eqn. 2.14,
 
 $$ \tag{2.25}
-	\Epsilon
+	\Epsilon(\bm{n})
 	= \braket{\bm{S}} \cdot \bm{n}
 	= \braket{\bm{S}} \cos{\theta}
 $$
@@ -802,7 +802,7 @@ $$
 It produces a more compact expression of irradiance
 
 $$ \tag{4.18}
-	\Epsilon
+	\Epsilon(\bm{n})
 	= \braket{\bm{S}} \cdot \bm{n}
 	= \frac{1}{2} \braket{\bm{S_0}} \cdot \bm{n}
 	+ \sum\_{p = 1}^{\infin} \mathcal{Re} \big\lbrace
@@ -813,7 +813,7 @@ $$
 that can be written in terms of [spectral irradiance](https://en.wikipedia.org/wiki/Irradiance#Spectral_irradiance)
 
 $$ \tag{4.19}
-	\mathrm{E_p}
+	\Epsilon_p(\bm{n})
 	= \mathcal{Re} \big\lbrace
 		\negthinspace \braket{\bm{S_p}} \negthinspace
 	  \big\rbrace \cdot \bm{n}
@@ -1355,7 +1355,7 @@ The average value of a squared cosine is \\(\frac{1}{2}\\), so the corresponding
 [^11]: Since the electromagnetic fields is monochromatic, the expressions of irradiance and spectral irradiance are identical.
 
 $$ \tag{7.32}
-	\Epsilon
+	\Epsilon(\bm{n'})
 	= \braket{\bm{S}} \cdot \bm{n'}
 	= \frac{\mu\_0^{-1}}{2} \frac{\eta}{c} |\bm{E_0}|^2 \big( \bm{n} \cdot \bm{n'} \big).
 $$
@@ -1370,7 +1370,7 @@ $$
 This implies that the amount of energy that goes through a unit area per unit time is the amount of energy per unit volume times the velocity at which the energy flows \[[5](#references) (vol. II, ch. 27)\]:
 
 $$ \tag{7.34}
-	\Epsilon
+	\Epsilon(\bm{n'})
 	= \frac{c}{\eta} \bigg\langle \frac{\partial \mathcal{E\_{em}}}{\partial V} \bigg\rangle \big( \bm{n} \cdot \bm{n'} \big).
 $$
 
@@ -3242,7 +3242,7 @@ $$
 and irradiance (cf. Eqn. 7.32)
 
 $$ \tag{13.23}
-	\Epsilon
+	\Epsilon(\bm{n'})
 	= \braket{\bm{S}} \cdot \bm{n'}
 	\simeq \frac{\mu\_0^{-1}}{2} \frac{\eta}{c} \frac{|\bm{E_1}|^2}{k^2 r^2} \big( \bm{n} \cdot \bm{n'} \big)
 $$
@@ -3920,7 +3920,7 @@ $$
 As a result, the amount of power per unit area (cf. Eqn. 7.32) flowing through an arbitrary virtual surface element is
 
 $$ \tag{16.4}
-	\Epsilon_i
+	\Epsilon_i(\bm{n})
 	= \braket{\bm{S_i}} \cdot \bm{n}
 	= \frac{\mu\_0^{-1}}{2} \frac{\eta}{c} |\bm{E_0}|^2 (\bm{n_i} \cdot \bm{n}),
 $$
@@ -4020,7 +4020,7 @@ It is easy to see why that is the case: even though Eqn. 16.14 is evaluated in t
 From the radiometric point of view, the squared magnitude of the scattered field corresponds to [intensity](https://en.wikipedia.org/wiki/Radiant_intensity)
 
 $$ \tag{16.15}
-	\Iota_s
+	\Iota_s(\bm{n_s}) = r^2 \braket{\bm{S_s}} \cdot \bm{n_s}
 	\simeq \frac{\mu\_0^{-1}}{2} \frac{\eta}{c} \frac{1}{k^2} \big\vert \bm{E_1}(\bm{n_s}) \big\vert^2.
 $$
 
@@ -4256,21 +4256,21 @@ $$ \tag{16.34}
 	= \frac{\mu\_0^{-1}}{2} \frac{\eta}{c} \frac{4 \pi}{k^2} \mathcal{Im} \big\lbrace \bm{E_0^{\*}} \cdot \bm{E_1}(\bm{n_i}) \big\rbrace.
 $$
 
-Suppose that a measurement device (a sensor of area \\(\delta A\\)) is placed at a great distance from the source, and is made perpendicular to the direction of incidence. Then, according to Eqn. 16.14, 16.17, 16.21, and 16.34, if we place a particle near the center of the line segment connecting the source to the sensor, the resulting measurement
+Suppose that a measurement device (with a sensor of area \\(C_d\\)) is placed at a great distance from the source, and is made perpendicular to the direction of incidence. Then, according to Eqn. 16.14, 16.17, 16.21, and 16.34, if we place a particle near the center of the line segment connecting the source to the sensor, the resulting measurement
 
 $$ \tag{16.3x}
 \begin{aligned}
 	\Phi_f
-	&= \delta A \braket{\bm{S_i}} \cdot \bm{n_i}
-	 + \delta A \braket{\bm{S_s}} \cdot \bm{n_i} - \Phi_e
+	&= C_d \braket{\bm{S_i}} \cdot \bm{n_i}
+	 + C_d \braket{\bm{S_s}} \cdot \bm{n_i} - \Phi_e
 	\cr
-	&= \delta A \braket{\bm{S_i}} \cdot \bm{n_i}
-	 + \delta A \braket{\bm{S_s}} \cdot \bm{n_i}
+	&= C_d \braket{\bm{S_i}} \cdot \bm{n_i}
+	 + C_d \braket{\bm{S_s}} \cdot \bm{n_i}
 	 - \oint_{A} \braket{\bm{S_s}} \cdot \bm{n_s} \thinspace dA - \Phi_a
 \end{aligned}
 $$
 
-will be smaller in comparison to the amount of power \\(\delta A \braket{\bm{S_i}} \cdot \bm{n_i}\\) arriving at the sensor in the absence of the particle, since the scattered flux \\(\delta A \braket{\bm{S_s}} \cdot \bm{n_i}\\) corresponding to the direction of incidence is smaller than the total amount of power \\(\Phi_s = \oint_{A} \braket{\bm{S_s}} \cdot \bm{n_s} \thinspace dA\\) scattered in all directions. Thus, we can draw a conclusion that transmission of a parallel beam of light through a particle reduces its intensity.
+will be smaller in comparison to the amount of power \\(C_d \braket{\bm{S_i}} \cdot \bm{n_i}\\) arriving at the sensor in the absence of the particle, since the scattered flux \\(C_d \braket{\bm{S_s}} \cdot \bm{n_i}\\) corresponding to the direction of incidence is smaller than the total amount of power \\(\Phi_s = \oint_{A} \braket{\bm{S_s}} \cdot \bm{n_s} \thinspace dA\\) scattered in all directions. Thus, we can draw a conclusion that transmission of a parallel beam of light through a particle reduces its intensity.
 
 Eqn. 16.3x separates radiation transmitted in the forward direction into three components: the incident, the scattered, and the dissipated. Scattering often tends to be separated from propagation of light, leading to the idea that particles "remove" energy from the incident beam. While this approach is mathematically consistent, the  interpretation is not correct, since 1) the incident field is not affected by the presence of the scattering object, and (as we shall see) 2) the amount of scattered power is overestimated. This can lead to apparent paradoxes and violations of the law of conservation of energy. These issues can be avoided by focusing solely on the measurements pertaining to the total electromagnetic field.
 
@@ -4342,11 +4342,18 @@ $$ \tag{16.39}
 \end{aligned}
 $$
 
-Eqn. 16.39.1-16.39.3 are known as the [optical theorem](https://en.wikipedia.org/wiki/Optical_theorem) for short.
+Eqn. 16.39.1-16.39.3 are known as the [optical theorem](https://en.wikipedia.org/wiki/Optical_theorem). They are often used to describe electromagnetic energy transfer in radiometric terms. For instance, Eqn. 16.3x that expresses the amount of energy transmitted in the forward direction can be succinctly written as
 
-Eqn. 16.38.3 and 16.39.3 can be simplified if the particle possesses axial symmetry with respect to the direction of incidence.
+$$ \tag{16.3y}
+\begin{aligned}
+	\Phi_f
+	&= (C_d - C_e) \Epsilon_i(\bm{n_i}) + \frac{C_d}{r^2} \Iota_s(\bm{n_i}),
+\end{aligned}
+$$
 
-To show this, express \\(\bm{E_1}\\) in terms of the scattering dyadic \\(\mathcal{S_{ef}}\\) according to Eqn. 15.?:
+where, as before, \\(C_d\\) is the area of the sensor, \\(C_e\\) is the extinction cross-section, \\(\Epsilon_i\\) is the incident irradiance, and \\(\Iota_s\\) is the scattered intensity. Since, physically, the amount of power cannot be negative, Eqn. 16.3y implies that the dimensions of the measurement device (the diameter of its entrance pupil and the area of its sensor) must be sufficiently large in order to fully capture the extinction effect \[[8](#references) (ch. 13.1)\].
+
+Eqn. 16.38.3 and 16.39.3 can be simplified if the particle possesses axial symmetry with respect to the direction of incidence. To show this, we can express \\(\bm{E_1}\\) in terms of the scattering dyadic \\(\mathcal{S_{ef}}\\) according to Eqn. 15.?:
 
 $$ \tag{16.40}
 	\Phi_e
