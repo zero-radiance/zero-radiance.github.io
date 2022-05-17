@@ -681,7 +681,15 @@ $$
 
 Intuitively, a harmonic produces an equivalent amount of vibration regardless of the sign of its frequency.
 
-Eqn. 4.8 highlights the primary disadvantage of the periodic assumption -- the inability of the complex amplitudes \\(\bm{E_p}(\bm{r})\\) of the harmonic components to vary in time. This restriction can be relaxed to a certain degree by assuming that these amplitudes change slowly in comparison with both the fundamental period \\(T\_1\\) and the time \\(T\\) it takes to perform a measurement. If that is the case, we can use the mean value of the complex amplitude
+Eqn. 4.8 highlights the primary disadvantage of the periodic assumption -- the inability of the complex amplitudes \\(\bm{E_p}(\bm{r})\\) of the harmonic components to vary in time. This restriction can be relaxed to a certain degree by assuming that these amplitudes change slowly (and not necessarily periodically) in comparison to both the fundamental period \\(T\_1\\) and the time \\(T\\) it takes to perform a measurement. Ideally, the time rate of change should be the same for all the frequency components:
+
+$$ \tag{4.?}
+	\bm{E_p}(\bm{r}, t) = \bm{E_p}(\bm{r}) V(\bm{r}, t),
+	\quad
+	\bm{B_q}(\bm{r}, t) = \bm{B_q}(\bm{r}) V(\bm{r}, t).
+$$
+
+If that is the case, we can use the mean value of the complex amplitude
 
 $$ \tag{4.??}
 	\braket{\bm{E_p}}
