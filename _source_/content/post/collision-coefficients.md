@@ -7342,13 +7342,13 @@ $$ \tag{20.3}
 \end{aligned}
 $$
 
-Without loss of generality, we shall assume that the incident field is a plane wave:
+Without loss of generality, let us assume that the incident field is a plane wave:
 
 $$ \tag{20.4}
 	\bm{E_i}(\bm{r_j}, \omega) = \bm{E_0}(\bm{n_i}, \omega) e^{i k(\omega) (\bm{r_j} \cdot \bm{n_i})}.
 $$
 
-In Sec. 16, we have proved that we can observe interference between the incident and the scattered far-fields only in the the forward direction. We can use the same method to determine whether the scattered fields of two randomly distributed dipoles \\(j\\) and \\(k\\) interfere. Therefore, let us repurpose Eqn. 16.20 and 16.22, and consider the expression of the time-averaged Poynting vector
+After defining the incident and the scattered fields, we can determine whether their interaction produces any observable interference effects. We can utilize the same method employed in Sec. 16; in particular, let us consider the scattered fields of two randomly distributed dipoles \\(j\\) and \\(k\\), and repurpose Eqn. 16.17 and 16.22 of the time-averaged Poynting vector
 
 $$ \tag{20.5}
 \begin{aligned}
@@ -7356,14 +7356,18 @@ $$ \tag{20.5}
 	&= \frac{\mu\_0^{-1}}{2} \mathcal{Re} \big\lbrace (\bm{E_i} + \bm{E_j} + \bm{E_k}) \times (\bm{B_i} + \bm{B_j} + \bm{B_k})^{\*} \big\rbrace
 	\cr
 	&= \braket{\bm{S_i}} + \braket{\bm{S_j}} + \braket{\bm{S_k}}
-	- \braket{\bm{S_{ij}}} - \braket{\bm{S_{ik}}} - \braket{\bm{S_{jk}}}
+	- \braket{\bm{S_{ij}}} - \braket{\bm{S_{ik}}} - \braket{\bm{S_{jk}}},
 \end{aligned}
 $$
 
-$$ \tag{16.20}
+where
+
+$$ \tag{20.6}
 	\braket{\bm{S_{mn}}}
 	= -\frac{\mu\_0^{-1}}{2} \mathcal{Re} \big\lbrace \bm{E_m} \times \bm{B_n^{\*}} + \bm{E_n} \times \bm{B_m^{\*}} \big\rbrace.
 $$
+
+is the interference term between the fields \\(m\\) and \\(n\\).
 
 $$ \tag{20.4}
 \begin{aligned}
