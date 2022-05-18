@@ -7384,13 +7384,46 @@ $$ \tag{20.6}
 	= -\frac{\mu\_0^{-1}}{2} \mathcal{Re} \big\lbrace \bm{E_j} \times \bm{B_k^{\*}} + \bm{E_k} \times \bm{B_j^{\*}} \big\rbrace.
 $$
 
-is the term that models the interaction between the waves \\(j\\) and \\(k\\). In particular, \\(\braket{\bm{S_{ij}}}\\) expresses interference between the incident and the scattered waves that leads to the extinction effect (see Eqn. 16.20, 16.23). As we have already shown in Eqn. 16.32-16.33, unless the direction of observation is perfectly aligned with the direction of incidence, the incident and the scattered fields do not interfere, and \\(\braket{\bm{S_{ij}}} \cdot \bm{n} = 0\\).
+is the term that models the interaction between the waves \\(j\\) and \\(k\\). In particular, \\(\braket{\bm{S_{ij}}}\\) expresses interference between the incident and the scattered waves that leads to the extinction effect (cf. Eqn. 16.20, 16.23). Furthermore, as we have already shown in Eqn. 16.32-16.33, unless the direction of observation is perfectly aligned with the direction of incidence, these fields do not interfere, and \\(\braket{\bm{S_{ij}}} \cdot \bm{n} = 0\\).
 
-Therefore, the only term we have not yet previously encountered is \\(\braket{\bm{S_{jk}}}\\), and it models the interaction between the scattered fields of two dipoles:
+Therefore, the only term we have not yet previously encountered is \\(\braket{\bm{S_{jk}}}\\) that models the interaction between the scattered fields of two dipoles. Referring to Eqn. 20.3, it is evident that both \\(\bm{E_j}\\) and \\(\bm{B_k^{\*}}\\) (as well as \\(\bm{E_k}\\) and \\(\bm{B_j^{\*}}\\)) are transverse; however, we have no reason to believe that the field vectors are mutually orthogonal (unless, of course, the polarizabilities are exactly the same). In addition, the waves are not in-phase, since the spatial location of the molecules is not the same.
 
----
+In order to address both of these problems, we must appeal to the dynamic nature of the microphysical system under consideration. The distribution of molecules is not static -- it evolves over time, since the molecules are in constant random motion. We can take advantage of this fact by assuming that the intensity of scattered light does not significantly depend on the point in time at which we choose to make our observation. This allows us to consider the mean value of intensity computed over the period of time that is sufficiently long for the system to evolve and explore all its degrees of freedom. We denote this (long-period) time average by
 
-Write the equation for all pairs
+$$ \tag{20.7}
+	\braket{\braket{\bm{S}}}
+	= \lim_{T \to \infin} \frac{1}{T} \int\_{-T/2}^{\thinspace T/2} \bm{S}(\bm{r}, t + t') dt'.
+$$
+
+To be clear, this does not mean that we literally have to take a measurement over a much longer period of time. We simply assume that, for any two points in time \\(t_1\\) and \\(t_2\\),
+
+$$ \tag{20.8}
+	\braket{\bm{S}} \negmedspace (\bm{r}, t_1) \approx \braket{\braket{\bm{S}}} \negmedspace (\bm{r}) \approx
+	\braket{\bm{S}} \negmedspace (\bm{r}, t_2).
+$$
+
+Thus, one approach would be to pick an initial state of the system, describe the way it evolves, and compute the time integral according to Eqn 20.7. However, it is much simpler to solve this problem probabilistically. Instead of taking a pair of molecules and watching them move and rotate over time, we can ascribe them a probability of being at a certain location or in a particular orientation at any point in time. In other words, we can define an [ensemble](https://en.wikipedia.org/wiki/Ensemble_(mathematical_physics)) -- a (potentially infinite) number of possible [microstates](https://en.wikipedia.org/wiki/Microstate_(statistical_mechanics)) (also known as [realizations](https://en.wikipedia.org/wiki/Realization_(probability))) of the microphysical system that correspond to a particular configuration of the system at a certain point in time -- and associate it with a [probability density function](https://en.wikipedia.org/wiki/Probability_density_function) \\(p(\psi_m)\\) that describes the likelihood of observing the system in each microstate \\(\psi_m\\). They can be used to compute the [ensemble average](https://en.wikipedia.org/wiki/Ensemble_average) -- the mean \\(\braket{f}\_e\\) of a quantity that is a function \\(f(\psi_m)\\) of the microstate of the system, taken over the entire state space \\(\Psi\\):
+
+$$ \tag{20.9}
+	\braket{f}\_e
+	= \int_{\Psi} p(\psi_m) f(\psi_m) d\psi_m.
+$$
+
+We are particularly interested in the ensemble average of the (short-period) time-averaged Poynting vector:
+
+$$ \tag{20.10}
+	\braket{\braket{\bm{S}}}\_e
+	= \int_{\Psi} p(\psi_m) \braket{\bm{S}} \negmedspace (\bm{r}, \psi_m) d\psi_m.
+$$
+
+In general, Eqn. 20.7 and 20.10 do not necessarily describe the same quantity. However, if the system is random, and, at every point in time, all states are equally likely, then it is plausible that
+
+$$ \tag{20.11}
+	\braket{\braket{\bm{S}}} \approx
+	\braket{\braket{\bm{S}}}\_e.
+$$
+
+The property of a system that leads to equivalence of the time and ensemble averages is called [ergodicity](https://en.wikipedia.org/wiki/Ergodicity) \[[8](#references) (ch. 10.4)\].
 
 ---
 
