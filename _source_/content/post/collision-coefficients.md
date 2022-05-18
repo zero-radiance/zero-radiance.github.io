@@ -7307,7 +7307,7 @@ We shall begin our investigation of light-matter interactions with the simplest 
 
 The properties #1-2 suggest that we may represent a gas molecule by an electric dipole (cf. Sec. 12).
 
-The properties #1-4 imply that an electromagnetic wave incident on the volume \\(V\\) is not significantly impeded by the presence of the group of molecules located within. We can quantify this effect by comparing the cross-sectional area \\(L^2\\) of the volume to the total extinction cross-section of all molecules:
+The properties #1-4 imply that an electromagnetic wave incident on the volume \\(V\\) is not significantly impeded (or altered) by the presence of the group of molecules located within. We can quantify this effect by comparing the cross-sectional area \\(L^2\\) of the volume to the total extinction cross-section of all molecules:
 
 $$ \tag{20.0}
 	\sum_{j=1}^{N} C_{e,j} \ll L^2.
@@ -7364,7 +7364,7 @@ $$ \tag{20.4}
 	\bm{E_i}(\bm{r}, \omega) = \bm{E_0}(\bm{n_i}, \omega) e^{i k(\omega) (\bm{r} \cdot \bm{n_i})}.
 $$
 
-Given the definitions of the incident and the scattered fields, we can determine whether their interaction produces any observable interference effects. We can utilize the same method employed in Sec. 16; in particular, let us consider the scattered fields of two randomly distributed dipoles \\(j\\) and \\(k\\), and repurpose Eqn. 16.17 and 16.22 of the time-averaged Poynting vector
+Given the definitions of the incident and the scattered fields, we can determine whether their interaction produces any observable interference effects. We can utilize the same method employed in Sec. 16; in particular, let us consider the scattered fields of two dipoles \\(j\\) and \\(k\\), and repurpose Eqn. 16.17 and 16.22 of the time-averaged Poynting vector
 
 $$ \tag{20.5}
 \begin{aligned}
@@ -7383,9 +7383,15 @@ $$ \tag{20.6}
 	= -\frac{\mu\_0^{-1}}{2} \mathcal{Re} \big\lbrace \bm{E_m} \times \bm{B_n^{\*}} + \bm{E_n} \times \bm{B_m^{\*}} \big\rbrace.
 $$
 
-is the interaction term between the fields \\(m\\) and \\(n\\). In particular, \\(\braket{\bm{S_{ij}}}\\) and \\(\braket{\bm{S_{ik}}}\\) represent interference between the incident and the scattered fields that leads to the extinction effect (cf. Eqn. 16.20). Thus, as we have already seen (in Eqn. 16.32-16.33), both of these terms are 0 unless the direction of observation is perfectly aligned with the direction of incidence: \\(\bm{n} = \bm{n_s} = \bm{n_i}\\).
+is the term that models the interaction between the fields \\(m\\) and \\(n\\). In particular, \\(\braket{\bm{S_{ij}}}\\) and \\(\braket{\bm{S_{ik}}}\\) embody interference between the incident and the scattered fields that leads to the extinction effect (cf. Eqn. 16.20). Thus, as we have already seen (in Eqn. 16.32-16.33), both of these terms are 0 unless the direction of observation is perfectly aligned with the direction of incidence: \\(\bm{n} = \bm{n_s} = \bm{n_i}\\).
 
-Therefore, the only term we have not yet explicitly considered is \\(\braket{\bm{S_{jk}}}\\) that models the interaction between the scattered fields of the two randomly distributed dipoles:
+Therefore, the only term we have not yet previously encountered is \\(\braket{\bm{S_{jk}}}\\), and it models the interaction between the scattered fields of two dipoles:
+
+---
+
+Write the equation for all pairs
+
+---
 
 $$ \tag{20.7}
 \begin{aligned}
@@ -7410,7 +7416,7 @@ $$ \tag{20.7}
 \end{aligned}
 $$
 
-According to Eqn. 13.14, both fields are transverse; however, we have no reason to believe that the field vectors are orthogonal (unless, of course, the polarizabilities are exactly the same). Note, however, that the dyadics \\(\mathcal{\Alpha_j}\\) act linearly on the electric field phasors, and are defined independently from the rest of the quantities in Eqn. 20.7. Thus, if we assume that the orientation and the type of the molecule are determined by statistically uniform, independent random processes, we can define a [probability density function](https://en.wikipedia.org/wiki/Probability_density_function) \\(p(\mathcal{\Alpha_j})\\) that can be used to determine the *mean molecular polarizability*
+According to Eqn. 13.14, both fields are transverse; however, we have no reason to believe that the field vectors are orthogonal (unless, of course, the polarizabilities are exactly the same). Fortunately, the dyadics \\(\mathcal{\Alpha_j}\\) act linearly on the electric field phasors, and are defined independently from the rest of the quantities in Eqn. 20.7. Thus, if we assume that the orientation and the type of each molecule are determined by statistically uniform, independent random processes, we can use the associated [probability density function](https://en.wikipedia.org/wiki/Probability_density_function) \\(p(\mathcal{\Alpha_j})\\) to define the *mean molecular polarizability*
 
 $$ \tag{20.8}
 	\mathcal{\Alpha_m}(V_m, \omega)
@@ -7418,7 +7424,9 @@ $$ \tag{20.8}
 	= \int p(\mathcal{\Alpha_j}) \mathcal{\Alpha_j}(V_j, \omega) d\mathcal{\Alpha_j}
 $$
 
-that corresponds to the average molecule in the average orientation. Performing the same averaging procedure on Eqn. 20.7 yields
+that corresponds to the average molecule in the average orientation. In general, an expression of the mean state of the system given in terms of the probability distribution of its micro-states is called the [ensemble average](https://en.wikipedia.org/wiki/Ensemble_average).
+
+ In general, any expression of the  Performing the same averaging procedure on Eqn. 20.7 yields
 
 $$ \tag{20.9}
 \begin{aligned}
