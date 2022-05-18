@@ -7364,26 +7364,27 @@ $$ \tag{20.4}
 	\bm{E_i}(\bm{r}, \omega) = \bm{E_0}(\bm{n_i}, \omega) e^{i k(\omega) (\bm{r} \cdot \bm{n_i})}.
 $$
 
-Given the definitions of the incident and the scattered fields, we can determine whether their interaction produces any observable interference effects. We can utilize the same method employed in Sec. 16; in particular, let us consider the scattered fields of two dipoles \\(j\\) and \\(k\\), and repurpose Eqn. 16.17 and 16.22 of the time-averaged Poynting vector
+Given the definitions of the incident and the scattered fields, we can determine whether their interaction produces any observable interference effects. We can utilize the same method employed in Sec. 16; in particular, let us repurpose Eqn. 16.17 and 16.22 of the time-averaged Poynting vector
 
 $$ \tag{20.5}
 \begin{aligned}
 	\braket{\bm{S}}
-	&= \frac{\mu\_0^{-1}}{2} \mathcal{Re} \big\lbrace (\bm{E_i} + \bm{E_j} + \bm{E_k}) \times (\bm{B_i} + \bm{B_j} + \bm{B_k})^{\*} \big\rbrace
+	&= \frac{\mu\_0^{-1}}{2} \mathcal{Re} \Big\lbrace
+	\Big( \bm{E_i} + \sum_j \bm{E_j} \Big) \times
+	\Big( \bm{B_i^{\*}} + \sum_j \bm{B_j^{\*}} \Big) \Big\rbrace
 	\cr
-	&= \braket{\bm{S_i}} + \braket{\bm{S_j}} + \braket{\bm{S_k}}
-	- \braket{\bm{S_{ij}}} - \braket{\bm{S_{ik}}} - \braket{\bm{S_{jk}}},
+	&= \braket{\bm{S_i}} + \sum_j \braket{\bm{S_j}} - \sum_j \braket{\bm{S_{ij}}} - \sum_{j < k} \braket{\bm{S_{jk}}},
 \end{aligned}
 $$
 
-where \\(\braket{\bm{S_i}}\\) is the Poynting vector of the incident wave (given by Eqn. 16.3), \\(\braket{\bm{S_j}}\\) and \\(\braket{\bm{S_k}}\\) are the Poynting vectors of the scattered waves of the two molecules (each given by Eqn. 16.12), and
+where \\(\braket{\bm{S_i}}\\) is the Poynting vector of the incident wave (given by Eqn. 16.3), \\(\braket{\bm{S_j}}\\) is the Poynting vector of the scattered wave of the \\(j\\)-th molecule (given by Eqn. 16.12), and
 
 $$ \tag{20.6}
-	\braket{\bm{S_{mn}}}
-	= -\frac{\mu\_0^{-1}}{2} \mathcal{Re} \big\lbrace \bm{E_m} \times \bm{B_n^{\*}} + \bm{E_n} \times \bm{B_m^{\*}} \big\rbrace.
+	\braket{\bm{S_{jk}}}
+	= -\frac{\mu\_0^{-1}}{2} \mathcal{Re} \big\lbrace \bm{E_j} \times \bm{B_k^{\*}} + \bm{E_k} \times \bm{B_j^{\*}} \big\rbrace.
 $$
 
-is the term that models the interaction between the fields \\(m\\) and \\(n\\). In particular, \\(\braket{\bm{S_{ij}}}\\) and \\(\braket{\bm{S_{ik}}}\\) embody interference between the incident and the scattered fields that leads to the extinction effect (cf. Eqn. 16.20). Thus, as we have already seen (in Eqn. 16.32-16.33), both of these terms are 0 unless the direction of observation is perfectly aligned with the direction of incidence: \\(\bm{n} = \bm{n_s} = \bm{n_i}\\).
+is the term that models the interaction between the waves \\(j\\) and \\(k\\). In particular, \\(\braket{\bm{S_{ij}}}\\) expresses interference between the incident and the scattered waves that leads to the extinction effect (see Eqn. 16.20, 16.23). As we have already shown in Eqn. 16.32-16.33, unless the direction of observation is perfectly aligned with the direction of incidence, the incident and the scattered fields do not interfere, and \\(\braket{\bm{S_{ij}}} \cdot \bm{n} = 0\\).
 
 Therefore, the only term we have not yet previously encountered is \\(\braket{\bm{S_{jk}}}\\), and it models the interaction between the scattered fields of two dipoles:
 
