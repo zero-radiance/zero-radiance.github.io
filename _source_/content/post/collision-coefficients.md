@@ -437,6 +437,8 @@ $$ \tag{2.24}
 	= \frac{1}{T} \int\_{-T/2}^{\thinspace T/2} \bm{S}(\bm{r}, t + t') dt'.
 $$
 
+where \\(T\\) is the duration of measurement, or the [exposure time](https://en.wikipedia.org/wiki/Shutter_speed).
+
 It becomes particularly useful once you consider a fixed direction \\(\bm{n}\\). Then, according to Eqn. 2.14,
 
 $$ \tag{2.25}
@@ -680,23 +682,6 @@ $$ \tag{4.8}
 $$
 
 Intuitively, a harmonic produces an equivalent amount of vibration regardless of the sign of its frequency.
-
-Eqn. 4.8 highlights the primary disadvantage of the periodic assumption -- the inability of the complex amplitudes \\(\bm{E_p}(\bm{r})\\) of the harmonic components to vary in time. This restriction can be relaxed to a certain degree by assuming that these amplitudes change slowly (and not necessarily periodically) in comparison to both the fundamental period \\(T\_1\\) and the time \\(T\\) it takes to perform a measurement. Ideally, the time rate of change should be the same for all the frequency components:
-
-$$ \tag{4.?}
-	\bm{E_p}(\bm{r}, t) = \bm{E_p}(\bm{r}) V(\bm{r}, t),
-	\quad
-	\bm{B_q}(\bm{r}, t) = \bm{B_q}(\bm{r}) V(\bm{r}, t).
-$$
-
-If that is the case, we can use the mean value of the complex amplitude
-
-$$ \tag{4.??}
-	\braket{\bm{E_p}}
-	= \frac{1}{T} \int\_{-T/2}^{\thinspace T/2} \bm{E_p}(\bm{r}, t + t') dt'
-$$
-
-taken over the duration of the measurement in place of the fixed value \\(\bm{E_p}(\bm{r})\\) \[[8](#references) (ch. 9.3)\].
 
 What happens when we Fourier transform a periodic function? Combining Eqn. 3.1 and 4.4,
 
@@ -7377,30 +7362,44 @@ $$ \tag{20.5}
 \end{aligned}
 $$
 
-where \\(\braket{\bm{S_i}}\\) is the Poynting vector of the incident wave (given by Eqn. 16.3), \\(\braket{\bm{S_j}}\\) is the Poynting vector of the scattered wave of the \\(j\\)-th molecule (given by Eqn. 16.12), and
+where \\(\braket{\bm{S_i}}\\) is the Poynting vector of the incident wave (given by Eqn. 16.3), \\(\braket{\bm{S_j}}\\) is the Poynting vector of the scattered wave (given by Eqn. 16.12) of the \\(j\\)-th molecule, and
 
 $$ \tag{20.6}
 	\braket{\bm{S_{jk}}}
 	= -\frac{\mu\_0^{-1}}{2} \mathcal{Re} \big\lbrace \bm{E_j} \times \bm{B_k^{\*}} + \bm{E_k} \times \bm{B_j^{\*}} \big\rbrace.
 $$
 
-is the term that models the interaction between the waves \\(j\\) and \\(k\\). In particular, \\(\braket{\bm{S_{ij}}}\\) expresses interference between the incident and the scattered waves that leads to the extinction effect (cf. Eqn. 16.20, 16.23). Furthermore, as we have already shown in Eqn. 16.32-16.33, unless the direction of observation is perfectly aligned with the direction of incidence, these fields do not interfere, and \\(\braket{\bm{S_{ij}}} \cdot \bm{n} = 0\\).
+is the term that models the interaction between the waves \\(j\\) and \\(k\\). In particular, \\(\braket{\bm{S_{ij}}}\\) expresses interference between the incident and the scattered waves that leads to the extinction effect (cf. Eqn. 16.20, 16.23).
 
-Therefore, the only term we have not yet previously encountered is \\(\braket{\bm{S_{jk}}}\\) that models the interaction between the scattered fields of two dipoles. Referring to Eqn. 20.3, it is evident that both \\(\bm{E_j}\\) and \\(\bm{B_k^{\*}}\\) (as well as \\(\bm{E_k}\\) and \\(\bm{B_j^{\*}}\\)) are transverse; however, we have no reason to believe that the field vectors are mutually orthogonal (unless, of course, the polarizabilities are exactly the same). In addition, the waves are not in-phase, since the spatial location of the molecules is not the same.
+Therefore, the only term we have not yet previously encountered, \\(\braket{\bm{S_{jk}}}\\), is the that models the interaction between the scattered fields of two dipoles. After examining Eqn. 20.3, it is evident that both \\(\bm{E_j}\\) and \\(\bm{B_k^{\*}}\\) (as well as \\(\bm{E_k}\\) and \\(\bm{B_j^{\*}}\\)) are transverse; however, we have no reason to believe that the field vectors are mutually orthogonal (unless, of course, the molecular polarizabilitie dyadics are exactly the same). In addition, the waves are not in-phase, since the spatial location of the molecules is not the same. As a result, it is not exactly clear whether the last term of Eqn. 20.5 converges to a simple expression that can be computed in a straightforward way.
 
-In order to address both of these problems, we must appeal to the dynamic nature of the microphysical system under consideration. The distribution of molecules is not static -- it evolves over time, since the molecules are in constant random motion. We can take advantage of this fact by assuming that the intensity of scattered light does not significantly depend on the point in time at which we choose to make our observation. This allows us to consider the mean value of intensity computed over the period of time that is sufficiently long for the system to evolve and explore all its degrees of freedom. We denote this (long-period) time average by
+In order to address both of these problems, we must appeal to the dynamic nature of the microphysical system under consideration. The distribution of molecules is not static -- it evolves over time, since the molecules are in constant random motion. In addition, while the system evolves fairly slowly in comparison to the period of an electromagnetic wave, it may undergo a significant change during the time it takes to perform a measurement. Let us take advantage of this fact by assuming that the duration of the measurement is sufficiently long for the system to explore all of its internal degrees of freedom, making the value of the measurement independent from the point in time at which we choose to make our observation.
+
+Stated more formally, if we consider the long-time-averaged Poyinting vector
 
 $$ \tag{20.7}
 	\braket{\braket{\bm{S}}}
-	= \lim_{T \to \infin} \frac{1}{T} \int\_{-T/2}^{\thinspace T/2} \bm{S}(\bm{r}, t + t') dt'.
+	= \lim_{T \to \infin} \frac{1}{T} \int\_{-T/2}^{\thinspace T/2} \bm{S}(\bm{r}, t + t') dt',
 $$
 
-To be clear, this does not mean that we literally have to take a measurement over a much longer period of time. We simply assume that, for any two points in time \\(t_1\\) and \\(t_2\\),
+then we assume that, for any two points in time \\(t_1\\) and \\(t_2\\),
 
 $$ \tag{20.8}
 	\braket{\bm{S}} \negmedspace (\bm{r}, t_1) \approx \braket{\braket{\bm{S}}} \negmedspace (\bm{r}) \approx
 	\braket{\bm{S}} \negmedspace (\bm{r}, t_2).
 $$
+
+This idea is both simple and sound: we pick an initial state of the system, describe the way it evolves, and compute the integral given by Eqn 20.7. Perhaps unsurprisingly, its execution can be fairly involved. First of all, since the positions, the orientations, and perhaps even the composition of the molecules become time-dependent, the phasors of the scattered field must become time-dependent as well. This implies that the components of the total field
+
+$$ \tag{20.9}
+\begin{aligned}
+	\bm{E}(\bm{r}, t)
+	& = \frac{1}{2} \bm{E_0}(\bm{r}, t)
+	+ \sum\_{p = 1}^{\infin} \thinspace \mathcal{Re} \big\lbrace \bm{E_p}(\bm{r}, t) e^{-i \omega_p t} \big\rbrace.
+\end{aligned}
+$$
+
+are no longer time-harmonic (cf. Eqn. 4.8), and thus no longer rigorously satisfy the Maxwell equations. Secondly, ...
 
 Thus, one approach would be to pick an initial state of the system, describe the way it evolves, and compute the time integral according to Eqn 20.7. However, it is much simpler to solve this problem probabilistically. Instead of taking a pair of molecules and watching them move and rotate over time, we can ascribe them a probability of being at a certain location or in a particular orientation at any point in time. In other words, we can define an [ensemble](https://en.wikipedia.org/wiki/Ensemble_(mathematical_physics)) -- a (potentially infinite) number of possible [microstates](https://en.wikipedia.org/wiki/Microstate_(statistical_mechanics)) (also known as [realizations](https://en.wikipedia.org/wiki/Realization_(probability))) of the microphysical system that correspond to a particular configuration of the system at a certain point in time -- and associate it with a [probability density function](https://en.wikipedia.org/wiki/Probability_density_function) \\(p(\psi_m)\\) that describes the likelihood of observing the system in each microstate \\(\psi_m\\). They can be used to compute the [ensemble average](https://en.wikipedia.org/wiki/Ensemble_average) -- the mean \\(\braket{f}\_e\\) of a quantity that is a function \\(f(\psi_m)\\) of the microstate of the system, taken over the entire state space \\(\Psi\\):
 
