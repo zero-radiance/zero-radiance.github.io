@@ -437,7 +437,7 @@ $$ \tag{2.24}
 	= \frac{1}{T} \int\_{-T/2}^{\thinspace T/2} \bm{S}(\bm{r}, t + t') dt'.
 $$
 
-where \\(T\\) is the duration of measurement, or the [exposure time](https://en.wikipedia.org/wiki/Shutter_speed).
+where \\(T\\) is the duration of the measurement, or the [exposure time](https://en.wikipedia.org/wiki/Shutter_speed).
 
 It becomes particularly useful once you consider a fixed direction \\(\bm{n}\\). Then, according to Eqn. 2.14,
 
@@ -605,6 +605,8 @@ $$ \tag{4.1}
 	= \mathcal{F^{-1}} \big\lbrace \bm{E}(\bm{r}, \omega) \big\rbrace
 	\times \mathcal{F^{-1}} \big\lbrace \bm{H}(\bm{r}, \omega) \big\rbrace \Big).
 $$
+
+-->
 
 The expression of the corresponding Poynting phasor is
 
@@ -776,7 +778,7 @@ $$
 
 which is a real vector, as expected.
 
-In the case when \\(T > T_1\\), the total value of \\(\braket{\bm{S}}\\) is a sum of the contribution from a number of whole periods (given by Eqn. 4.15) and the contribution from a fraction of the period. If the duration of the measurement is very large \\((T \gg T_1)\\), the *relative* contribution from a fraction of the period will be much smaller than the *relative* contribution from a large number of whole periods, so the formula of Eqn. 4.15 should serve as a good approximation.
+In the case when \\(T > T_1\\), the total value of \\(\braket{\bm{S}}\\) is a sum of the contribution from a number of whole periods (given by Eqn. 4.15) and the contribution from a fraction of the period. If the duration of a measurement is very large \\((T \gg T_1)\\), the *relative* contribution from a fraction of the period will be much smaller than the *relative* contribution from a large number of whole periods, so the formula of Eqn. 4.15 should serve as a good approximation.
 
 Eqn. 4.15 allows us to define the *time-averaged* Poynting phasor \[[8](#references) (ch. 2.4)\]
 
@@ -816,6 +818,9 @@ $$ \tag{4.19}
 $$
 
 Having defined both irradiance and spectral irradiance, we can easily compute all other [radiometric quantities](https://en.wikipedia.org/wiki/Radiometry) using integration and differentiation techniques as discussed in the previous article \[[3](#references)\].
+
+
+<!--
 
 ### Constitutive Relations
 
@@ -7362,7 +7367,7 @@ $$ \tag{20.5}
 \end{aligned}
 $$
 
-where \\(\braket{\bm{S_i}}\\) is the Poynting vector of the incident wave (given by Eqn. 16.3), \\(\braket{\bm{S_j}}\\) is the Poynting vector of the scattered wave (given by Eqn. 16.12) of the \\(j\\)-th molecule, and
+where \\(\braket{\bm{S_i}}\\) is the time-averaged Poynting vector of the incident wave (given by Eqn. 16.3), \\(\braket{\bm{S_j}}\\) is the time-averaged Poynting vector of the scattered wave (given by Eqn. 16.12) of the \\(j\\)-th molecule, and
 
 $$ \tag{20.6}
 	\braket{\bm{S_{jk}}}
@@ -7371,13 +7376,13 @@ $$
 
 is the term that models the interaction between the waves \\(j\\) and \\(k\\). In particular, \\(\braket{\bm{S_{ij}}}\\) expresses interference between the incident and the scattered waves that leads to the extinction effect (cf. Eqn. 16.20, 16.23).
 
-Therefore, the only term we have not yet previously encountered, \\(\braket{\bm{S_{jk}}}\\), is the that models the interaction between the scattered fields of two dipoles. After examining Eqn. 20.3, it is evident that both \\(\bm{E_j}\\) and \\(\bm{B_k^{\*}}\\) (as well as \\(\bm{E_k}\\) and \\(\bm{B_j^{\*}}\\)) are transverse; however, we have no reason to believe that the field vectors are mutually orthogonal (unless, of course, the molecular polarizability dyadics are exactly the same). In addition, the waves are not in-phase, since the spatial location of the molecules is not the same. As a result, it is not exactly clear whether the last term of Eqn. 20.5 converges to a simple analytical expression that can be computed in a straightforward way.
+Therefore, the only term we have not yet previously encountered, \\(\braket{\bm{S_{jk}}}\\), is the that models the interaction between the scattered fields of two dipoles. After examining Eqn. 20.3, it is evident that both \\(\bm{E_j}\\) and \\(\bm{B_k^{\*}}\\) (as well as \\(\bm{E_k}\\) and \\(\bm{B_j^{\*}}\\)) are transverse; however, we have no reason to believe that the field vectors are mutually orthogonal (unless, of course, the molecular polarizability dyadics are exactly the same). In addition, the waves are not in-phase, since the spatial location of the molecules is not the same. As a result, it is not yet clear whether the last term of Eqn. 20.5 converges to a simple analytical expression that can be computed in a straightforward way.
 
 #### Dynamic Light Scattering
 
-In order to address both of these problems, we can appeal to the dynamic nature of the microphysical system under consideration. The distribution of molecules is not static -- it evolves over time, since the molecules are in constant random motion. Furthermore, while the system evolves fairly slowly in comparison to the period of an electromagnetic wave, it may undergo a significant change during the time it takes to perform a measurement. We may take advantage of this fact by assuming that the duration of the measurement is sufficiently long for the system to fully explore all of its internal degrees of freedom, making the value of the measurement independent from the point in time at which we choose to make our observation \[[8](#references) (ch. 10.4)\].
+In order to address both of these challenges, we can appeal to the dynamic nature of the microphysical system under consideration. The distribution of molecules is not static -- it evolves over time, since the molecules are constantly in random motion. Thus, most relationships between the molecules are not persistent and, when averaged over time, not significant. Furthermore, while a system typically evolves fairly slowly in comparison to the period of an electromagnetic wave, it may undergo a significant change during the time it takes to perform a measurement. We can turn this complication into an advantage by assuming that the duration of the measurement is sufficiently long for the system to fully explore all of its internal degrees of freedom, making the value of the measurement independent from the point in time at which we choose to make our observation \[[8](#references) (ch. 10.4)\].
 
-Stated more formally, we assume that the process of evolution of the microphysical system is periodic, with the period \\(T_e\\). Then we must choose the duration of measurement to be sufficiently long \\((T \gg T_e)\\) for the value of the short-time-averaged Poyinting vector (cf. Eqn. 2.24)
+Stated more formally, we assume that evolution of the microphysical system is a periodic process with the period \\(T_e\\). This fact suggests that the duration of measurement should be sufficiently long \\((T \gg T_e)\\) for the value of the short-time-averaged Poyinting vector (cf. Eqn. 2.24)
 
 $$ \tag{20.7}
 	\braket{\bm{S}} \negmedspace (\bm{r}, t)
@@ -7394,28 +7399,71 @@ $$
 at any point in time \\(t\\):
 
 $$ \tag{20.9}
-	\braket{\bm{S}} \negmedspace (\bm{r}, t) \approx \braket{\braket{\bm{S}}}.
+	\braket{\bm{S}} \negmedspace (\bm{r}, t)
+	\approx \braket{\braket{\bm{S}}} \negmedspace (\bm{r}).
 $$
 
-We typically solve electromagnetic scattering problems in the frequency domain. This prompted us to require that \\(T \gg T_1\\), where \\(T_1\\) is the fundamental period of the electromagnetic field (see Sec. 4). For electromagnetic radiation in the visible range of the spectrum, and assuming the [temperature](https://en.wikipedia.org/wiki/Thermal_velocity) of the substance is not extremely high, \\(T \gg T_e \gg T_1\\), which permits us to perform the averaging process in two steps:
+Let us consider the implications of this approach. First of all, since the positions and the orientations of the molecules become time-dependent, the phasors of the scattered field must become time-dependent as well, which means that the components of the total field (cf. Eqn. 4.8)
 
 $$ \tag{20.10}
-	\braket{\braket{\bm{S}}} \negmedspace (\bm{r})
-	\approx \lim_{T \to \infin} \frac{1}{T} \int\_{0}^{T}
-	\left( \frac{1}{T_1} \int\_{-T_1/2}^{\thinspace T_1/2} \bm{S}(\bm{r}, t + t') dt' \right) dt.
-$$
-
-This idea of ... is both simple and sound: we pick the initial state of the system, describe the way the system evolves, and compute the integral given by Eqn 20.8. Perhaps unsurprisingly, its execution can be fairly involved. First of all, since the positions and the orientations of the molecules become time-dependent, the phasors of the scattered field must become time-dependent as well. This implies that the components of the total field
-
-$$ \tag{20.10}
-\begin{aligned}
 	\bm{E}(\bm{r}, t)
-	& = \frac{1}{2} \bm{E_0}(\bm{r}, t)
+	= \frac{1}{2} \bm{E_0}(\bm{r}, t)
 	+ \sum\_{p = 1}^{\infin} \thinspace \mathcal{Re} \big\lbrace \bm{E_p}(\bm{r}, t) e^{-i \omega_p t} \big\rbrace.
+$$
+
+are no longer time-harmonic. That complicates the theory, since Eqn 20.10 no longer rigorously satisfies the Maxwell equations.
+
+Furthermore, substitution of Eqn. 20.10 into 20.8 results in an integral (cf. Eqn. 4.14)
+
+$$ \tag{20.11}
+\begin{aligned}
+	\braket{\braket{\bm{S}}}
+	= \lim_{T \to \infin} \frac{1}{T} \int\_{0}^{T}
+	\frac{\mu_0^{-1}}{4} \sum\_{p = -\infin}^{\infin} \sum\_{q = -\infin}^{\infin}
+	\bm{E_p}(\bm{r}, t) \times \big[ \bm{B_q}(\bm{r}, t) \big]^{\*}
+	e^{i (\omega_q - \omega_p) t} dt.
 \end{aligned}
 $$
 
-are no longer time-harmonic (cf. Eqn. 4.8), and thus no longer rigorously satisfy the Maxwell equations. Secondly, the time-dependent expressions that replace Eqn. 20.3 can easily get complicated, making the task of evaluating the integral of Eqn. 20.8 more suitable for numerical rather than analytical evaluation.
+that, in general, cannot be simplified any further. However, if we consider only high-frequency electromagnetic radiation, and the [temperature](https://en.wikipedia.org/wiki/Thermal_velocity) of the substance is not too high, then the fundamental period \\(T_1\\) of the electromagnetic field is such that \\(T_e \gg T_1\\). This permits us to split the time-averaging process in two steps
+
+$$ \tag{20.12}
+\small
+\begin{aligned}
+	\braket{\braket{\bm{S}}}
+	&\approx \lim_{T \to \infin} \frac{1}{T} \int\_{0}^{T}
+	\frac{\mu_0^{-1}}{4} \sum\_{p = -\infin}^{\infin} \sum\_{q = -\infin}^{\infin}
+	\bm{E_p}(\bm{r}, t) \times \big[ \bm{B_q}(\bm{r}, t) \big]^{\*}
+	\left( \frac{1}{T_1} \int\_{-T_1/2}^{\thinspace T_1/2} e^{i (\omega_q - \omega_p) t'} dt' \right) dt
+	\cr
+	&= \lim_{T \to \infin} \frac{1}{T} \int\_{0}^{T} \bigg(
+	\frac{\mu_0^{-1}}{4} \big( \bm{E_0}(\bm{r}, t) \times \bm{B_0}(\bm{r}, t) \big)
+	  + \frac{\mu_0^{-1}}{2} \sum\_{p = 1}^{\infin}
+		\thinspace \mathcal{Re} \left\lbrace \bm{E_p}(\bm{r}, t) \times \big[ \bm{B_p}(\bm{r}, t) \big]^{\*} \right\rbrace
+	\bigg) dt
+\end{aligned}
+$$
+
+in such a way that, during the first step, the microphysical system is kept static.
+
+---
+
+Secondly, and perhaps more importantly, the time-dependent expressions that replace Eqn. 20.3 can easily get complicated, making the task of evaluating the integral of Eqn. 20.8 more suitable for numerical rather than analytical evaluation.
+
+As it turns out, it is much easier to solve this problem probabilistically. First, let us introduce the idea of a [microstate](https://en.wikipedia.org/wiki/Microstate_(statistical_mechanics)) (also known as a [realization](https://en.wikipedia.org/wiki/Realization_(probability))). It is a finite collection of parameters (that correspond to the internal degrees of freedom) of a microphysical system that can be used to describe its configuration at a certain point in time. Exposing the microstate \\(\psi_m\\) as a parameter of  Eqn. 20.10 yields:
+
+$$ \tag{20.12}
+\begin{aligned}
+	\braket{\braket{\bm{S}}} \negmedspace (\bm{r})
+	&\approx \lim_{T \to \infin} \frac{1}{T} \int\_{0}^{T}
+	\left( \frac{1}{T_1} \int\_{-T_1/2}^{\thinspace T_1/2} \bm{S}(\bm{r}, \psi_m(t), t + t') dt' \right) dt
+	\cr
+	&= \lim_{T \to \infin} \frac{1}{T} \int\_{0}^{T}
+	\bm{S_1} (\bm{r}, \psi_m(t)) dt.
+\end{aligned}
+$$
+
+Note that the integrand of Eqn. 20.12 no longer directly depends on the time \\(\psi_m\\)
 
 As it turns out, it is much easier to solve this problem probabilistically. Instead of taking a pair of molecules and watching them move and rotate over time, we can ascribe them a probability of being at a certain location or in a particular orientation at any point in time. In other words, we can define an [ensemble](https://en.wikipedia.org/wiki/Ensemble_(mathematical_physics)) -- a collection of possible [microstates](https://en.wikipedia.org/wiki/Microstate_(statistical_mechanics)) (also known as [realizations](https://en.wikipedia.org/wiki/Realization_(probability))) of the microphysical system, with each microstate corresponding to a particular configuration of an actual system at a certain point in time -- and associate it with a [probability density function](https://en.wikipedia.org/wiki/Probability_density_function) \\(p(\psi_m)\\) that describes the likelihood of observing the system in each microstate \\(\psi_m\\).
 
