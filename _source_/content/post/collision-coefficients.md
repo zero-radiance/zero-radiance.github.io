@@ -2443,7 +2443,7 @@ In practice, it is very difficult to solve the Maxwell equations exactly, except
 
 One of the most important considerations is the scale of the observation. Evidently, even something as large and complex as a star can be approximated by a point source if the observer is sufficiently far away. A similar line of reasoning justifies modeling an electron as a point charge at the microscopic scale.
 
-Stepping farther away, we can represent the average atom (or a molecule) as a dipole aligned with the driving field, thereby greatly restricting the expected behavior of microscopic charges and currents. In this approximation, constructive interference reinforces the fields produced by the charges moving in sync, while the effects of motion that differs from the average are suppressed by both destructive interference and the lower probability of occurrence.
+Stepping farther away, we can represent the average atom (or a molecule) as a dipole aligned with the applied field, thereby greatly restricting the expected behavior of microscopic charges and currents. In this approximation, constructive interference reinforces the fields produced by the charges moving in sync, while the effects of motion that differs from the average are suppressed by both destructive interference and the lower probability of occurrence.
 
 Mathematically, the field of a (macroscopic) piece of matter is the (vector) sum of the fields of its (microscopic) parts. Yet, at the macroscopic scale, the field of a single dipole often cannot be distinguished at all! The field of a tremendous number of identical dipoles acting together manifests itself by bending light rays (according to the refractive index) and reducing their intensity (proportionally to the attenuation index). In order for light scattering effects to appear, the medium must be inhomogeneous. Macroscopically, such a medium features spatially-varying *optical properties*; microscopically, this implies that the underlying distribution of dipoles is not the same throughout the medium. Clearly, a homogeneous medium is an idealization, yet it can serve as an effective approximation for tiny patches of uniformly dense matter (composed of scatterers smaller than the wavelength of light).
 
@@ -3266,13 +3266,11 @@ $$
 
 where the absorption coefficient \\(\alpha\\) is defined according to Eqn. 7.40.
 
-<!--
-
 ### Transition Operator
 
-The volume integral equation can be reduced to a relatively simple expression by assuming that the observation point is located in the radiation zone of the scattering object. However, the value of the electric field in the interior remains unknown. For a single atom or a small molecule, we can reasonably assume that it doesn't drive itself, which makes the field driving the molecule the same as the incident field, with the resulting (simplified) expression of Eqn. 13.12 given by Eqn. 13.5. Yet, in general, this assumption does not hold. It is easy to convince ourselves by considering a highly reflective or absorptive particle - it seems fairly obvious that the total field deep inside the particle has (on average) a lower magnitude in comparison with the incident field at the same location if the particle wasn't there.
+The volume integral equation can be reduced to a relatively simple expression by assuming that the observation point is located in the radiation zone of the scattering object. However, in order to use it, we must first determine the values of the electric field at all points of the interior region.
 
-Let us recall the mechanics of scattering. In a dielectric, the incident field (primary wave) drives the dipoles, which in turn act as sources of scattered wavelets interfering with the incident field according to the superposition principle. We may continue this line of thinking by considering the effect of a dipole as a secondary source on all other dipoles surrounding it, effectively treating the dipole field as the secondary incident field. Repeated application of this iterative approach leads to evaluation of successive orders of scattering one by one. This is the general idea behind the [Born series](https://en.wikipedia.org/wiki/Born_series) \[[6](#references) (ch. 13.1)\].
+Let us recall the mechanics of scattering. In a dielectric, the primary (incident) field acts on the dipoles, causing them to radiate scattered wavelets interfering with each other. As a result, each dipole turns into a secondary source, acting on all other dipoles surrounding it. Repeated application of this iterative approach leads to evaluation of successive orders of scattering one by one. This is the physical intuition behind the [Born series](https://en.wikipedia.org/wiki/Born_series) expansion \[[6](#references) (ch. 13.1)\].
 
 We can formalize this approach in the following way \[[8](#references) (ch. 4.5)\]. We start with Eqn. 11.12, where we must make sure to include the depolarization dyadic term (cf. Eqn. 9.27) in order for the integral to remain valid even if the integration point is inside the volume \\(V\\):
 
@@ -3876,8 +3874,6 @@ $$
 
 makes Eqn. 15.28 fully dimensionless. Additionally, in the operator notation, Eqn. 15.20 and 15.28 are formally identical. As a result, both formulations can be written as the Born series of Eqn. 14.20, and thus produce the same fields.
 
--->
-
 ### Optical Theorem
 
 For radiative transfer applications, we may introduce a simpler description of the scattering and absorption properties of a particle by describing the outcome of the scattering process in radometric (rather than optical) terms \[[6](#references) (ch. 13.6), [8](#references) (ch. 13.1, 13.4)\].
@@ -3906,7 +3902,7 @@ $$ \tag{16.2}
 	\bm{B_0} \times \bm{n_i} = \frac{\eta}{c} \bm{E_0}.
 $$
 
-With each plane wave, we may associate the Poynting vector \\(\bm{S_i}\\) (cf. Eqn. 7.28) pointing along the direction of propagation. If the medium is non-absorptive and non-magnetic, the expression of the time-averaged Poynting vector (cf. Eqn. 7.31-7.32) is particularly simple:
+With each plane wave, we may associate the Poynting vector \\(\bm{S_i}\\) (cf. Eqn. 7.28) pointing along the direction of propagation. If the host medium is non-absorptive and non-magnetic, the expression of the time-averaged Poynting vector (cf. Eqn. 7.31-7.32) is particularly simple:
 
 $$ \tag{16.3}
 	\braket{\bm{S_i}}
@@ -3954,7 +3950,7 @@ $$ \tag{16.7}
 	\Delta \Phi = 0
 $$
 
-does not hold. If the medium is absorptive,
+does not hold. If the host medium is absorptive,
 
 $$ \tag{16.8}
 	\Delta \Phi < 0.
@@ -4388,6 +4384,43 @@ $$ \tag{16.43}
 $$
 
 which matches the results found using the scalar wave theory \[[4](#references) (ch. 4.42)\]. Intuitively, this makes sense, since the particle looks the same regardless of the choice of the plane of reference (assuming the latter contains the direction of incidence), and the sensor (that only measures power) is not sensitive to the orientation of incoming light.
+
+### Dynamic Light Scattering by a Particle Group
+
+Consider a group of \\(N\\) particles of embedded in a linear, isotropic, homogeneous, source-free medium. Let \\(V\\) denote both the region of space that contains the particles and its volume. For convenience, assume that the center of \\(V\\) coincides with the origin of the coordinate system.
+
+Without loss of generality, imagine a plane wave originating outside \\(V\\) incident onto the particle group. If the host medium is non-absorptive and non-magnetic, the expressions of the incident field (Eqn. 16.1) and the associated time-averaged Poyinting vector (Eqn. 16.3) are identical to those shown in the previous section.
+
+The expression of the field
+
+The plane-wave expansion of the total field (which is the sum of the incident and the scattered fields) is given by Eqn. 6.16:
+
+$$ \tag{6.16}
+	\bm{E}(\bm{r}, \omega) =
+	\oint\_{\mathbb{S}^2} \bm{E_0}(\bm{n}, \omega) e^{i k(\omega) (\bm{r} \cdot \bm{n})} d\Omega.
+$$
+
+Let \\(\bm{r_j}\\) denote the location of the \\(j\\)-th particle, and \\(a\\) -- the radius of its bounding sphere. Suppose the observation point \\(\bm{r}\\) is located in the radiation zone of each particle. Then the scattered field of the \\(j\\)-th particle is given by Eqn. 15.6:
+
+$$ \tag{6.16}
+	\bm{E_j}(\bm{r}, \omega) \simeq
+	\frac{e^{i k(\omega) r_j}}{k(\omega) r_j} \oint\_{\mathbb{S}^2} \mathcal{S_{ef}} (\bm{n_j}, \bm{n}, \omega) \cdot \bm{E_0}(\bm{n}, \omega) d\Omega.
+$$
+
+
+$$ \tag{15.6}
+\begin{aligned}
+	& \bm{E_s}(r \bm{n_s}, \bm{n_i}, \omega)
+	\simeq \frac{e^{i k(\omega) r}}{k(\omega) r} \mathcal{S_{ef}} (\bm{n_s}, \bm{n_i}, \omega) \cdot \bm{E_0}(\bm{n_i}, \omega), \cr
+	& \bm{B_s}(r \bm{n_s}, \bm{n_i}, \omega)
+	\simeq \frac{e^{i k(\omega) r}}{k(\omega) r} \mathcal{S_{mf}} (\bm{n_s}, \bm{n_i}, \omega) \cdot \bm{E_0}(\bm{n_i}, \omega).
+\end{aligned}
+$$
+
+
+$$ \tag{20.4}
+	\bm{E_i}(\bm{r}, \omega) = \bm{E_0}(\bm{n_i}, \omega) e^{i k(\omega) (\bm{r} \cdot \bm{n_i})}.
+$$
 
 <!--
 
@@ -6051,7 +6084,7 @@ Eqn. 17.135 make it easy to show that the plane wave expansion of Eqn. 17.133 ca
 
 $$ \tag{17.137}
 \begin{aligned}
-	\bm{E_0}(\bm{e_z}, \omega) e^{i k(\omega) (\bm{r} \cdot \bm{e_z})}
+	\bm{E_i}(\bm{r}, \omega)
 	&= E_X(\omega) \sum_{n=1}^{\infin} i^n \frac{(2 n + 1)}{n (n + 1)} \big( {-\bm{M_{o,1,n}^{(1)}}}(\bm{r}, \omega) + i \bm{N_{e,1,n}^{(1)}}(\bm{r}, \omega) \big)
 	\cr
 	&+ E_Y(\omega) \sum_{n=1}^{\infin} i^n \frac{(2 n + 1)}{n (n + 1)} \big( {\bm{M_{e,1,n}^{(1)}}}(\bm{r}, \omega) + i \bm{N_{o,1,n}^{(1)}}(\bm{r}, \omega) \big).
@@ -6077,8 +6110,6 @@ For many purposes, the most useful expression of the incident field given by Eqn
 $$ \tag{17.138}
 \begin{aligned}
 	\bm{E_i}(\bm{r}, \omega)
-	&= \bm{E_0}(\bm{e_z}, \omega) e^{i k(\omega) (\bm{r} \cdot \bm{e_z})}
-	\cr
 	&= \sum_{m,n} c_{m,n}(\omega) j_n(k r) \bm{\Phi_{m,n}}(\theta, \phi)
 	\cr
 	&+ \sum_{m,n} d_{m,n}(\omega) \bigg( n (n + 1) \frac{j_n(k r)}{k r} \bm{\Upsilon_{m,n}}(\theta, \phi)
@@ -6089,7 +6120,7 @@ $$
 The expression of the scattered field remains unknown. Since it is a component of the total field
 
 $$ \tag{17.139}
-	\bm{E_1} = \bm{E_i} + \bm{E_s},
+	\bm{E_{ext}} = \bm{E_i} + \bm{E_s},
 $$
 
 we know that its vector and scalar potentials satisfy the Helmholtz equations; thus, by linearity, Eqn. 17.36 remains applicable. In addition, thanks to Eqn. 15.6, we know the asymptotic behavior of the scattered field as \\(k r \to \infin\\). As we compare it to Eqn. 17.52, it becomes clear that we must choose the spherical Bessel function of the third kind
@@ -6112,13 +6143,13 @@ $$ \tag{17.141}
 \end{aligned}
 $$
 
-In addition to the total field \\(\bm{E_1}\\) in the exterior region of the particle, we must also determine the expression of the internal field \\(\bm{E_2}\\) induced inside the sphere. We can deduce two of its features: first, in order for the solution to be physically plausible, the field must take on finite values at the origin, which means we must employ the spherical Bessel function of the first kind; and second, the wavenumber \\(k_2\\) inside the sphere depends on its permittivity and permeability (cf. Eqn. 11.8), and is thus necessarily different from the wavenumber \\(k = k_1\\) in the surrounding (host) medium.
+In addition to the total field \\(\bm{E_{ext}}\\) in the exterior region of the particle, we must also determine the expression of the internal field \\(\bm{E_{int}}\\) induced inside the sphere. We can deduce two of its features: first, in order for the solution to be physically plausible, the field must take on finite values at the origin, which means we must employ the spherical Bessel function of the first kind; and second, the wavenumber \\(k_2\\) inside the sphere depends on its permittivity and permeability (cf. Eqn. 11.8), and is thus necessarily different from the wavenumber \\(k = k_1\\) in the surrounding (host) medium.
 
 The combination of these two facts motivates the following series expansion of the internal field:
 
 $$ \tag{17.142}
 \begin{aligned}
-	\bm{E_2}(\bm{r}, \omega)
+	\bm{E_{int}}(\bm{r}, \omega)
 	&= \sum_{m,n} \big( a_{m,n}^{\circ}(\omega) \bm{M_{m,n}^{(1)}}(\bm{r}, \omega) + b_{m,n}^{\circ}(\omega) \bm{N_{m,n}^{(1)}}(\bm{r}, \omega) \big)
 	\cr
 	&= \sum_{m,n} a_{m,n}^{\circ}(\omega) j_n(k_2 r) \bm{\Phi_{m,n}}(\theta, \phi)
@@ -6131,7 +6162,7 @@ $$
 How are the internal and the external fields related? According to Eqn. 1.17, the tangential component of the electric field must be continuous at the optical interface, e.i. along the surface of the sphere:
 
 $$ \tag{17.143}
-	\bm{e_r} \times (\bm{E_2} - \bm{E_1}) = 0.
+	\bm{e_r} \times (\bm{E_{int}} - \bm{E_{ext}}) = 0.
 $$
 
 This is where the form of the vector spherical harmonics given by Eqn. 17.72 becomes particularly useful. From the definitions, it immediately follows that
@@ -6151,11 +6182,11 @@ Thus, in order to take the cross product, we must either eliminate, swap, or neg
 
 $$ \tag{17.145}
 \begin{aligned}
-	\bm{e_r} \times \bm{E_2}
+	\bm{e_r} \times \bm{E_{int}}
 	&= \sum_{m,n} \bigg( a_{m,n}^{\circ} j_n(k_2 r) \bm{\Psi_{m,n}}(\theta, \phi)
 	- b_{m,n}^{\circ} \frac{\big[ k_2 r j_n(k_2 r) \big]'}{k_2 r} \bm{\Phi_{m,n}}(\theta, \phi) \bigg),
 	\cr
-	\bm{e_r} \times \bm{E_1}
+	\bm{e_r} \times \bm{E_{ext}}
 	&= \sum_{m,n}
 		\big( c_{m,n} j_n(k_1 r) + a_{m,n} h_n^{(1)}(k_1 r) \big)
 	\bm{\Psi_{m,n}}(\theta, \phi)
@@ -6170,13 +6201,13 @@ $$
 Since the vector spherical harmonics are orthogonal, we may conceptually treat the sets of unknown coefficients \\(\lbrace a_{m,n} \rbrace, \lbrace b_{m,n} \rbrace, \lbrace a_{m,n}^{\circ} \rbrace, \lbrace b_{m,n}^{\circ} \rbrace\\) as vectors. Yet, even in this interpretation, the unknowns outnumber the equations 2-to-1. Therefore, we must also apply the second boundary condition of Eqn. 1.17:
 
 $$ \tag{17.146}
-	\bm{e_r} \times (\bm{H_2} - \bm{H_1}) = \bm{J_n},
+	\bm{e_r} \times (\bm{H_{int}} - \bm{H_{ext}}) = \bm{J_n},
 $$
 
 Assuming the conductivity of the sphere is not enormous, the surface current term \\(\bm{J_n}\\) can be neglected \[[17](#references) (ch. 1.13)\], and we may combine Eqn. 3.12, 5.2.3 and 17.146 into
 
 $$ \tag{17.147}
-	\bm{e_r} \times \bigg( \frac{1}{\mu_2} \nabla \times \bm{E_2} - \frac{1}{\mu_1} \nabla \times \bm{E_1} \bigg) = 0.
+	\bm{e_r} \times \bigg( \frac{1}{\mu_2} \nabla \times \bm{E_{int}} - \frac{1}{\mu_1} \nabla \times \bm{E_{ext}} \bigg) = 0.
 $$
 
 The simplest way to take the curl of the electric field is by utilizing its vector spherical wave function series representation. According to Eqn. 17.17, 17.19, and 17.34,
@@ -6193,11 +6224,11 @@ which, in our case, simply means that the corresponding series coefficients must
 
 $$ \tag{17.149}
 \begin{aligned}
-	\bm{e_r} \times \nabla \times \bm{E_2}
+	\bm{e_r} \times \nabla \times \bm{E_{int}}
 	&= \sum_{m,n} k_2 \bigg( b_{m,n}^{\circ} j_n(k_2 r) \bm{\Psi_{m,n}}(\theta, \phi)
 	- a_{m,n}^{\circ} \frac{\big[ k_2 r j_n(k_2 r) \big]'}{k_2 r} \bm{\Phi_{m,n}}(\theta, \phi) \bigg),
 	\cr
-	\bm{e_r} \times \nabla \times \bm{E_1}
+	\bm{e_r} \times \nabla \times \bm{E_{ext}}
 	&= \sum_{m,n}
 		k_1 \big( d_{m,n} j_n(k_1 r) + b_{m,n} h_n^{(1)}(k_1 r) \big)
 	\bm{\Psi_{m,n}}(\theta, \phi)
@@ -6348,7 +6379,7 @@ Similarly, the expression of the internal field can be written as
 
 $$ \tag{17.159}
 \begin{aligned}
-	\bm{E_2}(\bm{r}, \omega)
+	\bm{E_{int}}(\bm{r}, \omega)
 	&= E_X(\omega) \sum_{n=1}^{\infin} i^n \frac{(2 n + 1)}{n (n + 1)} \big( {-a_n^{\circ}(\omega) \bm{M_{o,1,n}^{(1)}}}(\bm{r}, \omega) + i b_n^{\circ}(\omega) \bm{N_{e,1,n}^{(1)}}(\bm{r}, \omega) \big)
 	\cr
 	&+ E_Y(\omega) \sum_{n=1}^{\infin} i^n \frac{(2 n + 1)}{n (n + 1)} \big( a_n^{\circ}(\omega) {\bm{M_{e,1,n}^{(1)}}}(\bm{r}, \omega) + i b_n^{\circ}(\omega) \bm{N_{o,1,n}^{(1)}}(\bm{r}, \omega) \big).
@@ -7303,7 +7334,7 @@ $$ \tag{20.0}
 	\sum_{j=1}^{N} C_{e,j} \ll L^2.
 $$
 
-This property of a gas as a macroscopic medium makes the *single scattering approximation* applicable, which assumes that each dipole is driven exclusively by the incident field (or, in other words, the polarization \\(\bm{P}\\) is vanishingly small outside the volume occupied by any given dipole, cf. Sec. 10).
+This property of a gas as a macroscopic medium makes the *single scattering approximation* applicable, which assumes that each dipole is acted on exclusively by the incident field (or, in other words, the polarization \\(\bm{P}\\) is vanishingly small outside the volume occupied by any given dipole, cf. Sec. 10).
 
 We must also require that the observation point \\(\bm{r}\\) is not located too close to the group of molecules. If \\(\bm{r_j}\\) is the location of the \\(j\\)-th molecule, then the distance \\(R_j = |\bm{r} - \bm{r_j}|\\) to the observation point has to be much larger than the smallest linear dimension \\(L\\) of the volume: that is, \\(R_j \gg L\\). Combined with the property #5, it becomes \\(k R_j \gg k L \gg 1\\).
 
