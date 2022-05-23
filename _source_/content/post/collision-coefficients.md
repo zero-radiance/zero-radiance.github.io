@@ -3268,19 +3268,11 @@ where the absorption coefficient \\(\alpha\\) is defined according to Eqn. 7.40.
 
 ### Transition Operator
 
-The volume integral equation can be reduced to a relatively simple expression by assuming that the observation point is located in the radiation zone of the scattering object. However, in order to use it, we must first determine the values of the electric field at all points of the interior region.
+The volume integral equation can be reduced to a relatively simple expression by assuming that the observation point is located in the radiation zone. However, in order to be able to compute the scattered field, we must first relate the internal field to the one acting on the scattering object, e.i. the external (incident) field in the absence of the object.
 
-Let us recall the mechanics of scattering. In a dielectric, the primary (incident) field acts (e.i. exerts force) on the dipoles, causing them to oscillate, and thus radiate scattered wavelets interfering with each other. As a result, each dipole turns into a secondary source, acting on all other dipoles surrounding it. Repeated application of this iterative approach leads to evaluation of successive orders of scattering one by one. This is the physical intuition behind the [Born series](https://en.wikipedia.org/wiki/Born_series) expansion \[[6](#references) (ch. 13.1)\].
+Let us recall the mechanics of scattering. In a dielectric, the incident field acts (exerts force) on the dipoles, causing them to oscillate, and therefore radiate scattered wavelets interfering with each other. As a result, each dipole becomes a secondary source, exerting force on all other dipoles surrounding it. Repeated application of this iterative approach leads to evaluation of successive orders of scattering one by one. This is the physical intuition behind the [Born series](https://en.wikipedia.org/wiki/Born_series) expansion \[[6](#references) (ch. 13.1)\].
 
-We can formalize this approach in the following way \[[8](#references) (ch. 4.5)\]. We start with Eqn. 11.12, where we must make sure to include the depolarization dyadic term (cf. Eqn. 9.27) in order for the integral to remain valid even if the integration point is inside the volume \\(V\\):
-
-$$ \tag{14.1}
-	\bm{E}(\bm{r}, \omega)
-	= \bm{E_i}(\bm{r}, \omega)
-	+ \int\_{V} \mathcal{G}\_e \big( \bm{r}, \bm{r'}, k(\omega) \big) \cdot \bm{J'}(\bm{r'}, \omega) dV'.
-$$
-
-Next, for we substitute the expression of the source term \\(\bm{J'}\\) given by Eqn. 11.7:
+We can formalize this approach in the following way \[[8](#references) (ch. 4.5)\]. We start with Eqn. 11.12, and substitute the expression of the source term \\(\bm{J'}\\) given by Eqn. 11.7:
 
 $$ \tag{14.2}
 	\bm{E}(\bm{r}, \omega)
