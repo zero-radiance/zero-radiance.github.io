@@ -3496,7 +3496,7 @@ $$
 
 ### Scattering Matrix
 
-An arbitrary stream of electromagnetic radiation can decomposed into a number of individual plane waves. Specifically, in a *linear, isotropic, homogeneous* medium, the expression of the incident field is given by Eqn. 6.16:
+An arbitrary stream of electromagnetic radiation can decomposed into a number of individual plane waves. Specifically, in a source-free region of a linear, isotropic, homogeneous medium, the expression of the incident field is given by Eqn. 6.16:
 
 $$ \tag{15.1}
 	\bm{E_i}(\bm{r}, \omega) =
@@ -4430,7 +4430,7 @@ The original theory was independently formulated by Lorenz (1890), Mie (1908), a
 
 The general idea behind the solution is fairly simple. We treat electromagnetic scattering as a boundary value problem. If we expand the expression of the electromagnetic field in series of vector spherical harmonics, the boundary conditions take a particularly simple form, which can be harnessed to find the (initially unknown) coefficients of the series expansion.
 
-Consider the Maxwell equations in a linear, isotropic, homogeneous region of space given by Eqn. 6.3. We have seen that, after a number of transformations, they are reduced to a *vector* Helmholtz equation
+Consider the Maxwell equations in a source-free region of a linear, isotropic, homogeneous medium given by Eqn. 6.3. We have seen that, after a number of transformations, they are reduced to a *vector* Helmholtz equation
 
 $$ \tag{17.1}
 	\big( \nabla^2 + k^2(\omega) \big) \bm{E}(\bm{r}, \omega) = 0.
