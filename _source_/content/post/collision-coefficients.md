@@ -3046,13 +3046,13 @@ We may expand the square root (and its reciprocal) in the Taylor series of \\(r'
 $$ \tag{13.8}
 \begin{aligned}
 	& k R
-	= k r \bigg( 1 - \big( \bm{n} \cdot \bm{n'} \big) (r'/r) + \frac{1}{2} \Big( 1 - \big( \bm{n} \cdot \bm{n'} \big)^2 \Big) (r'/r)^2 + \mathrm{O} \Big( (r'/r)^3 \Big) \bigg), \cr
+	= k r \bigg( 1 - \big( \bm{n} \cdot \bm{n'} \big) (r'/r) + \mathrm{O} \Big( (r'/r)^2 \Big) \bigg), \cr
 	& \frac{1}{R}
 	= \frac{1}{r} \bigg( 1 + \big( \bm{n} \cdot \bm{n'} \big) (r'/r) + \mathrm{O} \Big( (r'/r)^2 \Big) \bigg).
 \end{aligned}
 $$
 
-The second expression varies relatively slowly, so its expansion can be truncated by assuming that \\(r'/r \ll 1\\) for all \\(r'\\), which implies that \\(a/r \ll 1\\) (or, alternatively, \\(kr \gg ka\\)). The first expression is utilized in a rapidly varying function \\(\exp(i k R)\\), so we should retain an extra term by assuming that \\(k a (a/r) \ll 1\\), which is formally equivalent to \\(kr \gg (ka)^2\\). Thus, we arrive at the approximation
+The second expression varies relatively slowly, so its expansion can be truncated by assuming that \\(r'/r \ll 1\\) for all \\(r'\\), which implies that \\(a/r \ll 1\\) (or, alternatively, \\(kr \gg ka\\)). The first expression is utilized in a rapidly-varying exponential function that is sensitive to the absolute error, so we should retain an extra term by assuming that \\(k a (a/r) \ll 1\\), which is formally equivalent to \\(kr \gg (ka)^2\\). Thus, we arrive at the approximation
 
 $$ \tag{13.9}
 	k R \simeq k r - k (\bm{r'} \cdot \bm{n}), \quad
@@ -3550,9 +3550,9 @@ making the far-field scattering dyadics independent from the distance to the obs
 
 $$ \tag{15.6}
 \begin{aligned}
-	& \bm{E_s}(r \bm{n_s}, \bm{n_i}, \omega)
+	& \bm{E_s}(\bm{r}, \omega)
 	\simeq \frac{e^{i k(\omega) r}}{k(\omega) r} \mathcal{S_{ef}} (\bm{n_s}, \bm{n_i}, \omega) \cdot \bm{E_0}(\bm{n_i}, \omega), \cr
-	& \bm{B_s}(r \bm{n_s}, \bm{n_i}, \omega)
+	& \bm{B_s}(\bm{r}, \omega)
 	\simeq \frac{e^{i k(\omega) r}}{k(\omega) r} \mathcal{S_{mf}} (\bm{n_s}, \bm{n_i}, \omega) \cdot \bm{E_0}(\bm{n_i}, \omega).
 \end{aligned}
 $$
@@ -4379,42 +4379,86 @@ which matches the results found using the scalar wave theory \[[4](#references) 
 
 ### Dynamic Light Scattering by a Particle Group
 
-Consider a group of \\(N\\) particles of embedded in a linear, isotropic, homogeneous, source-free medium. Let \\(V\\) denote both the region of space that contains the particles and its volume. For convenience, assume that the center of \\(V\\) coincides with the origin of the coordinate system.
+Consider a group of \\(N\\) arbitrary particles of embedded in a source-free region of a linear, isotropic, homogeneous medium characterized by the wavenumber \\(k\\). Let \\(V\\) denote both the region of space that contains the particles and its volume. For convenience, assume that the center of \\(V\\) coincides with the origin of the coordinate system.
 
-Without loss of generality, imagine a plane wave originating outside \\(V\\) incident onto the particle group. If the host medium is non-absorptive and non-magnetic, the expressions of the incident field (Eqn. 16.1) and the associated time-averaged Poyinting vector (Eqn. 16.3) are identical to those shown in the previous section.
+The field acting on each particle is the sum of the incident field and the scattered fields produced by all the other particles \[[8](#references) (ch. 6.1)\]. The strength of this total field depends on the number of particles, the distances between them, as well as the shape, the orientation, and the composition of each particle. In most cases, estimation of the scattered field in the region containing the particles is a formidable task more suited for a numerical computation. However, it is possible to make the problem amenable to an analytical treatment at the cost of generality, by considering a small group of weakly scattering, widely spaced particles[^18]. This set of properties makes the *single-scattering approximation* applicable, which allows us to neglect the effect of the scattered field on the particles of the group \[[8](#references) (ch. 14.1)\].
 
-Field acting on the particle is not the same as total field at the particle's location (which is its internal field), but rather the value of the total field when the particle is absent (e.i. the external field).
+[^18]: The precise theoretical criteria for applicability of the single-scattering approximation are not well-established.
 
-The expression of the field
+As usual, we shall utilize the superposition principle to decompose the incident field into individual plane waves. If the host medium is non-absorptive and non-magnetic, then the expressions of the incident field (Eqn. 16.1) and the associated time-averaged Poyinting vector (Eqn. 16.3) are identical to those shown in the previous section.
 
-The plane-wave expansion of the total field (which is the sum of the incident and the scattered fields) is given by Eqn. 6.16:
+Let \\(\bm{r_j}\\) denote the location of the \\(j\\)-th particle, and \\(a_j\\) -- the radius of its bounding sphere. Suppose the observation point \\(\bm{r}\\) is located in the radiation zone of each particle, so that the distances \\(R_j = |\bm{R_j}| = |\bm{r} - \bm{r_j}|\\) satisfy the inequalities given by Eqn. 13.13:
 
-$$ \tag{6.16}
-	\bm{E}(\bm{r}, \omega) =
-	\oint\_{\mathbb{S}^2} \bm{E_0}(\bm{n}, \omega) e^{i k(\omega) (\bm{r} \cdot \bm{n})} d\Omega.
+$$ \tag{1p.1}
+	k R_j - k a_j \gg 1, \quad
+	k R_j \gg k a_j, \quad
+	k R_j \gg (k a_j)^2.
 $$
 
-Let \\(\bm{r_j}\\) denote the location of the \\(j\\)-th particle, and \\(a\\) -- the radius of its bounding sphere. Suppose the observation point \\(\bm{r}\\) is located in the radiation zone of each particle. Then the scattered field of the \\(j\\)-th particle is given by Eqn. 15.6:
+In this case, the scattered far-field \\(\bm{E_j}\\) of the \\(j\\)-th particle is given by Eqn. 15.6:
 
-$$ \tag{6.16}
-	\bm{E_j}(\bm{r}, \omega) \simeq
-	\frac{e^{i k(\omega) r_j}}{k(\omega) r_j} \oint\_{\mathbb{S}^2} \mathcal{S_{ef}} (\bm{n_j}, \bm{n}, \omega) \cdot \bm{E_0}(\bm{n}, \omega) d\Omega.
-$$
-
-
-$$ \tag{15.6}
+$$ \tag{1p.2}
 \begin{aligned}
-	& \bm{E_s}(r \bm{n_s}, \bm{n_i}, \omega)
-	\simeq \frac{e^{i k(\omega) r}}{k(\omega) r} \mathcal{S_{ef}} (\bm{n_s}, \bm{n_i}, \omega) \cdot \bm{E_0}(\bm{n_i}, \omega), \cr
-	& \bm{B_s}(r \bm{n_s}, \bm{n_i}, \omega)
-	\simeq \frac{e^{i k(\omega) r}}{k(\omega) r} \mathcal{S_{mf}} (\bm{n_s}, \bm{n_i}, \omega) \cdot \bm{E_0}(\bm{n_i}, \omega).
+	& \bm{E_j}(\bm{r}, \omega)
+	\simeq \frac{e^{i k(\omega) R_j}}{k(\omega) R_j} \mathcal{S_j} (\bm{R_j} / R_j, \bm{n_i}, \omega) \cdot \bm{E_0}(\bm{n_i}, \omega),
 \end{aligned}
 $$
 
+Let \\(L\_{min}\\) and \\(L\_{max}\\) denote the smallest and the largest linear dimensions of \\(V\\), respectively. Since a typical volume is large compared to the wavelength of light, then it follows that \\(k L\_{min} \gg 1\\). On the other hand, if it is sufficiently small compared to the distance between the particles and the observation point,
 
-$$ \tag{20.4}
-	\bm{E_i}(\bm{r}, \omega) = \bm{E_0}(\bm{n_i}, \omega) e^{i k(\omega) (\bm{r} \cdot \bm{n_i})}.
+$$ \tag{1p.3}
+	k R_j \gg k L_{max} \ge k L_{min} \gg 1.
 $$
+
+then we may use the series expansions of Eqn. 13.8 and 13.10 to asymptotically approximate
+
+$$ \tag{1p.4}
+	\frac{\bm{R_j}}{R_j} \simeq \bm{n_s} = \frac{\bm{r}}{r}, \quad
+	\frac{1}{R_j} \simeq \frac{1}{r}.
+$$
+
+It is important to note that Eqn. 1p.3 does not imply that the observation point is located in the radiation zone with respect to the entire volume \\(V\\), since the latter requires \\(k R_j \gg (k L\_{max})^2\\).
+
+Substitution of Eqn 1p.4 into 1p.2 yields an expression of a spherical wave diverging from the origin of the coordinate system:
+
+$$ \tag{1p.5}
+\begin{aligned}
+	& \bm{E_j}(\bm{r}, \omega)
+	\simeq \frac{e^{i k(\omega) R_j}}{k(\omega) r} \mathcal{S_j} (\bm{n_s}, \bm{n_i}, \omega) \cdot \bm{E_0}(\bm{n_i}, \omega).
+\end{aligned}
+$$
+
+The expressions of the electric and the magnetic field are related by Eqn. 16.11. In particular,
+
+$$ \tag{1p.6}
+	\bm{B_j}(\bm{r}, \omega)
+	\simeq \frac{\eta(\omega)}{c} \big( \bm{n_s} \times \bm{E_j}(\bm{r}, \omega) \big).
+$$
+
+Given the definitions of the incident and the scattered fields, we can determine whether their interaction produces any observable interference effects. We can utilize the same method employed in Sec. 16; more specifically, let us repurpose Eqn. 16.17 and 16.22 of the time-averaged Poynting vector
+
+$$ \tag{1p.7}
+\begin{aligned}
+	\braket{\bm{S}}
+	&= \frac{\mu\_0^{-1}}{2} \mathcal{Re} \Big\lbrace
+	\Big( \bm{E_i} + \sum_j \bm{E_j} \Big) \times
+	\Big( \bm{B_i^{\*}} + \sum_j \bm{B_j^{\*}} \Big) \Big\rbrace
+	\cr
+	&= \braket{\bm{S_i}} + \sum_j \braket{\bm{S_j}} - \sum_j \braket{\bm{S_{ij}}} - \sum_{j < k} \braket{\bm{S_{jk}}},
+\end{aligned}
+$$
+
+where \\(\braket{\bm{S_i}}\\) is the time-averaged Poynting vector of the incident wave (given by Eqn. 16.3), \\(\braket{\bm{S_j}}\\) is the time-averaged Poynting vector of the scattered wave (given by Eqn. 16.12) of the \\(j\\)-th particle, and
+
+$$ \tag{1p.8}
+	\braket{\bm{S_{jk}}}
+	= -\frac{\mu\_0^{-1}}{2} \mathcal{Re} \big\lbrace \bm{E_j} \times \bm{B_k^{\*}} + \bm{E_k} \times \bm{B_j^{\*}} \big\rbrace.
+$$
+
+is the term that models the interaction between the waves \\(j\\) and \\(k\\). In particular, \\(\braket{\bm{S_{ij}}}\\) expresses interference between the incident and the scattered waves that leads to the extinction effect (cf. Eqn. 16.20, 16.23).
+
+Therefore, the only term we have not yet previously encountered, \\(\braket{\bm{S_{jk}}}\\), is the that models the interaction between the scattered fields of two particles. Eqn. 16.11 demonstrates that both \\(\bm{E_j}\\) and \\(\bm{B_k^{\*}}\\) (as well as \\(\bm{E_k}\\) and \\(\bm{B_j^{\*}}\\)) are transverse; however, we have no reason to believe that the field vectors are mutually orthogonal. In addition, the waves are not in-phase, since the spatial locations of the particles are not the same. As a result, it is not yet clear whether the last term of Eqn. 1p.7 converges to a simple analytical expression that can be computed in a straightforward way.
+
 
 <!--
 
