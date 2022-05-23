@@ -3270,7 +3270,7 @@ where the absorption coefficient \\(\alpha\\) is defined according to Eqn. 7.40.
 
 The volume integral equation can be reduced to a relatively simple expression by assuming that the observation point is located in the radiation zone of the scattering object. However, in order to use it, we must first determine the values of the electric field at all points of the interior region.
 
-Let us recall the mechanics of scattering. In a dielectric, the primary (incident) field acts on the dipoles, causing them to radiate scattered wavelets interfering with each other. As a result, each dipole turns into a secondary source, acting on all other dipoles surrounding it. Repeated application of this iterative approach leads to evaluation of successive orders of scattering one by one. This is the physical intuition behind the [Born series](https://en.wikipedia.org/wiki/Born_series) expansion \[[6](#references) (ch. 13.1)\].
+Let us recall the mechanics of scattering. In a dielectric, the primary (incident) field acts (e.i. exerts force) on the dipoles, causing them to oscillate, and thus radiate scattered wavelets interfering with each other. As a result, each dipole turns into a secondary source, acting on all other dipoles surrounding it. Repeated application of this iterative approach leads to evaluation of successive orders of scattering one by one. This is the physical intuition behind the [Born series](https://en.wikipedia.org/wiki/Born_series) expansion \[[6](#references) (ch. 13.1)\].
 
 We can formalize this approach in the following way \[[8](#references) (ch. 4.5)\]. We start with Eqn. 11.12, where we must make sure to include the depolarization dyadic term (cf. Eqn. 9.27) in order for the integral to remain valid even if the integration point is inside the volume \\(V\\):
 
@@ -4390,6 +4390,8 @@ which matches the results found using the scalar wave theory \[[4](#references) 
 Consider a group of \\(N\\) particles of embedded in a linear, isotropic, homogeneous, source-free medium. Let \\(V\\) denote both the region of space that contains the particles and its volume. For convenience, assume that the center of \\(V\\) coincides with the origin of the coordinate system.
 
 Without loss of generality, imagine a plane wave originating outside \\(V\\) incident onto the particle group. If the host medium is non-absorptive and non-magnetic, the expressions of the incident field (Eqn. 16.1) and the associated time-averaged Poyinting vector (Eqn. 16.3) are identical to those shown in the previous section.
+
+Field acting on the particle is not the same as total field at the particle's location (which is its internal field), but rather the value of the total field when the particle is absent (e.i. the external field).
 
 The expression of the field
 
