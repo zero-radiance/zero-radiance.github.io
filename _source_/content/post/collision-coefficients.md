@@ -4461,11 +4461,6 @@ Therefore, the only term we have not yet previously encountered, \\(\braket{\bm{
 
 
 <!--
-
-### Statistically Independent Scattering
-
-Take from Sec. 14 of Mishchchenko.
-
 ### Lorenz-Mie-Debye Theory
 
 The Lorenz-Mie-Debye theory presents a rigorous solution to the problem of [diffraction](https://en.wikipedia.org/wiki/Diffraction) by a conducting sphere, also known as [Mie scattering](https://en.wikipedia.org/wiki/Mie_scattering). The solution is exact in the sense that it does not employ any approximations, so it exhibits all classical and semi-classical (e.i. wave-mechanical) effects, and thus shows an excellent agreement with experimental data (see \[[16](#references) (ch. 5)\] for a list of references).
@@ -4612,7 +4607,7 @@ $$ \tag{17.17}
 	\nabla \times \bm{L_{m,n}} = 0,
 $$
 
-where the \\(1/k\\) constant is chosen in order to make the resulting expression dimensionless [Tsang & Kong I].
+where the \\(1/k\\) constant is chosen in order to make the resulting expression dimensionless \[[25](#references) (ch. 4.3)\].
 
 Since divergence of curl is zero, Eqn. 17.14.2 and 17.15.1 suggests that both \\(\bm{M\_{m,n}}\\) and \\(\bm{N\_{m,n}}\\) should be the curl of something. In addition, both should depend on \\(\psi\_{m,n}\\). Since \\(\psi\_{m,n}\\) is a scalar, its curl is undefined; a simple way to fix that is to introduce a vector \\(\bm{a}\\):
 
@@ -4876,7 +4871,7 @@ $$ \tag{17.44}
 \end{aligned}
 $$
 
-where \\(m\\) and \\(n\\) are integers \\((n \ge 0)\\), \\(c_{m,n}\\) is a complex constant, \\(N_{m,n}\\) is a certain normalization constant, \\(z_n\\) is a [spherical Bessel function](https://en.wikipedia.org/wiki/Bessel_function#Spherical_Bessel_functions:_jn,_yn) of order \\(n\\), and \\(P_n^m\\) is an [associated Legendre polynomial](https://en.wikipedia.org/wiki/Associated_Legendre_polynomials) of degree \\(n\\) and order \\(m\\). Note that, as expected, the solution depends on the distance \\(r\\) only through the phase difference \\(k r\\).
+where \\(m\\) and \\(n\\) are integers \\((n \ge 0)\\), \\(c_{m,n}\\) is a complex expansion coefficient, \\(\gamma_{m,n}\\) is a certain normalization constant, \\(z_n\\) is a [spherical Bessel function](https://en.wikipedia.org/wiki/Bessel_function#Spherical_Bessel_functions:_jn,_yn) of order \\(n\\), and \\(P_n^m\\) is an [associated Legendre polynomial](https://en.wikipedia.org/wiki/Associated_Legendre_polynomials) of degree \\(n\\) and order \\(m\\). Note that, as expected, the solution depends on the distance \\(r\\) only through the phase difference \\(k r\\).
 
 Let us begin by examining the radial functions \\(z_n(k r)\\). They may be used to represent any of the three kinds of *spherical Bessel functions* \[[17](#references) (ch. 7.4)\]:
 
@@ -5025,7 +5020,7 @@ $$
 
 where \\(\delta_{m,n}\\) is the Kronecker delta function given by Eqn. 4.6.
 
-Remarkably, by means of double integration over \\(\theta\\) and \\(\phi\\), these two facts can be combined to show that the tesseral harmonics \\(P_n^m(\cos{\theta}) \cos(m \phi)\\) and \\(P_n^m(\cos{\theta}) \sin(m \phi)\\) form a *complete orthogonal system* of basis functions on the surface of a sphere \[[18](#references) (ch. 7.5)\].
+Remarkably, by means of double integration over \\(\theta\\) and \\(\phi\\), these two facts can be combined to show that the tesseral harmonics \\(P_n^m(\cos{\theta}) \cos(m \phi)\\) and \\(P_n^m(\cos{\theta}) \sin(m \phi)\\) form a *complete orthogonal system* of basis functions on the surface of a sphere \[[18](#references) (ch. 7.5), [28](#references) (ch. 2.4)\].
 
 Tesseral harmonics are [real-valued basis functions](https://en.wikipedia.org/wiki/Spherical_harmonics#Real_form), which is sufficient for most problems. However, the theory can be trivially extended to complex values by combining the tesseral harmonics according to Eqn. 17.53. This directly leads to the definition of [scalar spherical harmonics](https://en.wikipedia.org/wiki/Spherical_harmonics)
 
@@ -5084,12 +5079,19 @@ where \\(\lbrace \bm{e_r}, \bm{e_{\theta}}, \bm{e_{\phi}} \rbrace\\) is the set 
 
 Similarly, we can determine the expression of \\(\bm{M_{m,n}}\\) by expanding Eqn. 17.18.1 with \\(\bm{a} = \bm{r}\\):
 
+$$ \tag{17.6x}
+\begin{aligned}
+	\bm{M_{m,n}}(\bm{r})
+	&= \frac{1}{\sin{\theta}} \frac{\partial \psi_{m,n}}{\partial \phi} \bm{e_{\theta}}
+	- \frac{\partial \psi_{m,n}}{\partial \theta} \bm{e_{\phi}}.
+\end{aligned}
+$$
+
+Substitution of Eqn. 17.61 yields
+
 $$ \tag{17.63}
 \begin{aligned}
 	\frac{1}{\gamma_{m,n}} \bm{M_{m,n}}(\bm{r})
-	&= \frac{1}{\sin{\theta}} \frac{\partial \psi_{m,n}}{\partial \phi} \bm{e_{\theta}}
-	 - \frac{\partial \psi_{m,n}}{\partial \theta} \bm{e_{\phi}}
-	\cr
 	&= i m z_n(k r) \frac{P_n^m(\cos{\theta})}{\sin{\theta}} e^{i m \phi} \bm{e_{\theta}}
 	 - z_n(k r) \frac{\partial P_n^m(\cos{\theta})}{\partial \theta} e^{i m \phi} \bm{e_{\phi}}.
 \end{aligned}
@@ -5101,7 +5103,7 @@ Finally, we may find the representation of \\(\bm{N_{m,n}}\\) by substituting Eq
 
 $$ \tag{17.64}
 \begin{aligned}
-	\frac{1}{\gamma_{m,n}} \bm{N_{m,n}}(\bm{r})
+	\bm{N_{m,n}}(\bm{r})
 	&= \frac{-1}{kr} \bigg(
 	   \frac{\partial^2 \psi_{m,n}}{\partial \theta^2}
 	 + \frac{\cos{\theta}}{\sin{\theta}} \frac{\partial \psi_{m,n}}{\partial \theta}
@@ -5120,7 +5122,7 @@ $$
 Careful comparison of the expression of the radial component to Eqn. 17.39 yields
 
 $$ \tag{17.65}
-	\frac{1}{\gamma_{m,n}} (\bm{N_{m,n}})\_r
+	(\bm{N_{m,n}})\_r
 	= \frac{1}{kr} \bigg(
 	     r^2 \frac{\partial^2 \psi_{m,n}}{\partial r^2}
 	   + 2 r \frac{\partial \psi_{m,n}}{\partial r}
@@ -5130,7 +5132,7 @@ $$
 Since \\(\psi_{m,n}\\) is separable, it satisfies Bessel's differential Eqn. 17.41.1. Coupled with the definition of \\(p^2\\) given by Eqn. 17.42.1, we obtain a simplified expression
 
 $$ \tag{17.66}
-	\frac{1}{\gamma_{m,n}} (\bm{N_{m,n}})\_r
+	(\bm{N_{m,n}})\_r
 	= \frac{n (n + 1)}{kr} \psi_{m,n}.
 $$
 
@@ -5305,7 +5307,7 @@ $$ \tag{17.72}
 	= Y^m_n \bm{e_r} = \gamma_{m,n} e^{i m \phi} P_n^m(\cos{\theta}) \bm{e_r},
 	\cr
 	& \bm{\Phi_{m,n}}(\theta, \phi)
-	= \nabla \times \big( r Y^m_n \bm{e_r} \big)
+	= \nabla Y^m_n \times \bm{r}
 	= \gamma_{m,n} e^{i m \phi} \big( i \pi_{m,n}(\theta) \bm{e_{\theta}} - \tau_{m,n}(\theta) \bm{e_{\phi}} \big)
 	= \bm{\Psi_{m,n}} \times \bm{e_r},
 	\cr
@@ -5316,7 +5318,7 @@ $$ \tag{17.72}
 \end{aligned}
 $$
 
-called [vector spherical harmonics](https://en.wikipedia.org/wiki/Vector_spherical_harmonics#Alternative_definition). They are an extension of the scalar spherical harmonics (Eqn. 17.58) to vectors fields on the surface of a sphere. Like the scalar spherical harmonics, they form a complete set of orthogonal basis functions \[[19](#references) (ch. 13.3)\]. Unlike the vector spherical wave functions, they do not depend on the radial distance \\(r\\).
+called [vector spherical harmonics](https://en.wikipedia.org/wiki/Vector_spherical_harmonics#Alternative_definition). They are an extension of the scalar spherical harmonics (Eqn. 17.58) to vectors fields on the surface of a sphere. Like the scalar spherical harmonics, they form a complete set of orthogonal basis functions \[[19](#references) (ch. 13.3), [28](#references) (ch. 4.2)\]. Unlike the vector spherical wave functions, they do not depend on the radial distance \\(r\\).
 
 Most properties of the vector spherical harmonics are a direct consequence of the fact that they are built on the scalar spherical harmonics combined with the radial basis vector \\(\bm{e_r}\\). For instance, the symmetry property of Eqn. 17.60 leads to
 
@@ -5472,19 +5474,15 @@ $$
 The relationship between \\(\bm{L_{m,n}}\\) and \\(\bm{N_{m,n}}\\) is more complicated:
 
 $$ \tag{17.83}
+\small
 \begin{aligned}
 	\bm{L_{m,n}} \cdot \bm{N_{m,n}}
-	&= \gamma_{m,n}^2 e^{2 i m \phi}
-	n (n + 1) \frac{z_n(k r)}{k r} \frac{\partial z_n(k r)}{\partial (k r)} \big[ P_n^m(\cos{\theta}) \big]^2
-	\cr
-	&+ \gamma_{m,n}^2 e^{2 i m \phi}
-	   \frac{z_n(k r) \big[ k r z_n(k r) \big]'}{k^2 r^2}
-	   \Big( \tau_{m,n}^2(\theta) - \pi_{m,n}^2(\theta) \Big).
+	&= \frac{z_n(k r)}{k r} \bigg( n (n + 1) \frac{\partial z_n(k r)}{\partial (k r)} \big[ \bm{\Upsilon_{m,n}}(\theta, \phi) \big]^2
+	+ \frac{\big[ k r z_n(k r) \big]'}{k r} \big[ \bm{\Psi_{m,n}}(\theta, \phi) \big]^2 \bigg).
 \end{aligned}
 $$
 
-
-For \\(m = n = 0\\), the polynomals turn into constants, and it is easy to show that \\(\bm{L_{0,0}} \cdot \bm{N_{0,0}} = 0\\). For arbitrary \\(m\\) and \\(n\\), all that can be said is that \\(|\bm{L_{m,n}} \cdot \bm{N_{m,n}}|/(|\bm{L_{m,n}}||\bm{N_{m,n}}|) \leq 1\\), and the two vectors periodically become aligned for certain isolated values of \\(\theta\\).
+Since \\(\bm{\Psi_{0,0}} = 0\\), it trivially follows that \\(\bm{L_{0,0}} \cdot \bm{N_{0,0}} = 0\\). For arbitrary \\(m\\) and \\(n\\), all that can be said is that \\(|\bm{L_{m,n}} \cdot \bm{N_{m,n}}|/(|\bm{L_{m,n}}||\bm{N_{m,n}}|) \leq 1\\), and the two vectors periodically become aligned for certain isolated values of \\(\theta\\).
 
 {{< figure src="/img/l_dot_n.svg" caption="*Figure N: \\((\bm{L\_{0,n}^{(1)}} \cdot \bm{N\_{0,n}^{(1)}})/(|\bm{L\_{0,n}^{(1)}}| |\bm{N\_{0,n}^{(1)}}|)\\) of order \\(m=0\\) and degree \\(n=1\\) (blue), \\(n=2\\) (orange), \\(n=3\\) (green), defined in terms of the spherical Bessel function of the first kind, as a function of the polar angle \\(\theta\\), with fixed values of \\(k = r = 1, \thinspace \thinspace \phi = 0\\).*" >}}
 
@@ -5504,7 +5502,7 @@ $$ \tag{17.84}
 \end{aligned}
 $$
 
-Substitution of Eqn. 17.76 and 17.77 immediately yields
+Application of the orthogonality properties given by Eqn. 17.76 and 17.77 immediately yields
 
 $$ \tag{17.85}
 \begin{aligned}
