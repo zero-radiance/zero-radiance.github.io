@@ -3496,7 +3496,7 @@ $$
 
 ### Scattering Matrix
 
-An arbitrary stream of electromagnetic radiation can decomposed into a number of individual plane waves. Specifically, in a source-free region of a linear, isotropic, homogeneous medium, the expression of the incident field is given by Eqn. 6.16:
+An arbitrary stream of electromagnetic radiation can decomposed into a number of  plane waves. Specifically, in a source-free region of a linear, isotropic, homogeneous medium, the expression of the incident field is given by Eqn. 6.16:
 
 $$ \tag{15.1}
 	\bm{E_i}(\bm{r}, \omega) =
@@ -3870,7 +3870,7 @@ makes Eqn. 15.28 fully dimensionless. Additionally, in the operator notation, Eq
 
 For radiative transfer applications, we may introduce a simpler description of the scattering and absorption properties of a particle by describing the outcome of the scattering process in radometric (rather than optical) terms \[[6](#references) (ch. 13.6), [8](#references) (ch. 13.1, 13.4)\].
 
-Consider the incident time-harmonic[^15] electromagnetic field \\(\bm{E_i}\\) and \\(\bm{B_i}\\). In a linear, isotropic, homogeneous, source-free medium, the field can be decomposed into individual plane waves (cf. Eqn. 7.1-7.2) of the form
+Consider the incident time-harmonic[^15] electromagnetic field \\(\bm{E_i}\\) and \\(\bm{B_i}\\). In a linear, isotropic, homogeneous, source-free medium, the field can be decomposed into a number of plane waves (cf. Eqn. 7.1-7.2) of the form
 
 [^15]: We used the monochromatic forms of the fields given by Eqn. 4.11. Extension to a polychromatic field is trivial, and amounts to summing up the individual harmonic terms per Eqn. 4.8.
 
@@ -4381,11 +4381,11 @@ which matches the results found using the scalar wave theory \[[4](#references) 
 
 Consider a group of \\(N\\) arbitrary particles of embedded in a source-free region of a linear, isotropic, homogeneous medium characterized by the wavenumber \\(k\\). Let \\(V\\) denote both the region of space that contains the particles and its volume. For convenience, assume that the center of \\(V\\) coincides with the origin of the coordinate system.
 
-The field acting on each particle is the sum of the incident field and the scattered fields produced by all the other particles \[[8](#references) (ch. 6.1)\]. The strength of this total field depends on the number of particles, the distances between them, as well as the shape, the orientation, and the composition of each particle. In most cases, estimation of the scattered field in the region containing the particles is a formidable task more suited for a numerical computation. However, it is possible to make the problem amenable to an analytical treatment at the cost of generality, by considering a small group of weakly scattering, widely spaced particles[^18]. These properties make the *single-scattering approximation* applicable, which allows us to neglect the action of the scattered field on the particles of the group \[[8](#references) (ch. 14.1)\].
+The field acting on each particle is the sum of the incident field and the scattered fields produced by the other particles \[[8](#references) (ch. 6.1)\]. The strength of this field depends on the number of particles, the distances between them, as well as the shape, the orientation, and the composition of each particle. In most cases, estimation of the scattered field in the region containing the particles is a formidable task more suited for a numerical computation. However, it is possible to make the problem amenable to an analytical treatment at the cost of generality, by considering a small group of weakly scattering, widely spaced particles. These properties make the *single-scattering approximation* applicable[^18], which allows us to neglect the action of the scattered field on the particles in the group \[[8](#references) (ch. 14.1)\].
 
-[^18]: The precise theoretical criteria for applicability of the single-scattering approximation are not well-established.
+[^18]: The quantitative criteria for applicability of the single-scattering approximation are not well-established.
 
-As usual, we shall utilize the superposition principle to decompose the incident field into individual plane waves. If the host medium is non-absorptive and non-magnetic, then the expressions of the incident field (Eqn. 16.1) and the associated time-averaged Poyinting vector (Eqn. 16.3) are identical to those shown in the previous section.
+As usual, we shall utilize the superposition principle to decompose the incident field into a number of plane waves. If the host medium is non-absorptive and non-magnetic, then the expressions of the incident field (Eqn. 16.1) and the associated time-averaged Poyinting vector (Eqn. 16.3) are identical to those shown in the previous section.
 
 Let \\(\bm{r_j}\\) denote the location of the \\(j\\)-th particle, and \\(a_j\\) -- the radius of its bounding sphere. If the observation point \\(\bm{r}\\) is located in the radiation zone of each particle, then the distances \\(R_j = |\bm{R_j}| = |\bm{r} - \bm{r_j}|\\) satisfy the inequalities given by Eqn. 13.13:
 
@@ -4395,7 +4395,7 @@ $$ \tag{1p.1}
 	k R_j \gg (k a_j)^2.
 $$
 
-In this case, the scattered far-field \\(\bm{E_j}\\) of the \\(j\\)-th particle is given by Eqn. 15.6:
+As a result, the scattered far-field \\(\bm{E_j}\\) of the \\(j\\)-th particle is given by Eqn. 15.6:
 
 $$ \tag{1p.2}
 \begin{aligned}
@@ -4404,42 +4404,48 @@ $$ \tag{1p.2}
 \end{aligned}
 $$
 
-where we must remember to account for the fact that the particle is not, in general, located at the origin.
+where we must remember to account for the fact that, in general, the particle is not located at the origin.
 
-Let \\(L\_{min}\\) and \\(L\_{max}\\) denote the smallest and the largest linear dimensions of \\(V\\), respectively. Since a typical volume is large compared to the wavelength of light, then it follows that \\(k L\_{min} \gg 1\\). On the other hand, if the dimensions of \\(V\\) are sufficiently small compared to the distance between the particles and the observation point, such that
+Let \\(L\_{min}\\) and \\(L\_{max}\\) denote the smallest and the largest linear dimension of \\(V\\), respectively. Since a typical volume is large compared to the wavelength of light, then it follows that
 
 $$ \tag{1p.3}
-	k R_j \gg k L_{max} \ge k L_{min} \gg 1,
+	k L_{min} \gg 1.
+$$
+
+On the other hand, if the dimensions of \\(V\\) are sufficiently small compared to the distance between every particle and the observation point, such that
+
+$$ \tag{1p.4}
+	k R_j \gg k L_{max},
 $$
 
 then we may use the series expansions of Eqn. 13.8 and 13.10 to asymptotically approximate
 
-$$ \tag{1p.4}
+$$ \tag{1p.5}
 	\frac{\bm{R_j}}{R_j} \simeq \bm{n_s} = \frac{\bm{r}}{r}, \quad
 	\frac{1}{R_j} \simeq \frac{1}{r}.
 $$
 
-It is important to note that Eqn. 1p.3 does not imply that the observation point is located in the radiation zone with respect to the entire volume \\(V\\), since the latter requires \\(k R_j \gg (k L\_{max})^2\\).
+It is important to note that Eqn. 1p.4 does not imply that the observation point is located in the radiation zone with respect to the entire volume \\(V\\), since the latter requires \\(k R_j \gg (k L\_{max})^2\\).
 
-Substitution of Eqn 1p.4 into 1p.2 yields an expression of a spherical wave diverging from the origin of the coordinate system:
+Substitution of Eqn 1p.5 into 1p.2 yields an expression of a spherical wave diverging from the origin of the coordinate system:
 
-$$ \tag{1p.5}
+$$ \tag{1p.6}
 \begin{aligned}
 	& \bm{E_j}(\bm{r}, \omega)
 	\simeq \frac{e^{i k(\omega) (R_j + \bm{r_j} \cdot \bm{n_i})}}{k(\omega) r} \mathcal{S_j} (\bm{n_s}, \bm{n_i}, \omega) \cdot \bm{E_0}(\bm{n_i}, \omega).
 \end{aligned}
 $$
 
-The expressions of the electric and the magnetic field are related by Eqn. 16.11. In particular,
+The electric and the magnetic fields are related by Eqn. 16.11. In particular,
 
-$$ \tag{1p.6}
+$$ \tag{1p.7}
 	\bm{B_j}(\bm{r}, \omega)
 	\simeq \frac{\eta(\omega)}{c} \big( \bm{n_s} \times \bm{E_j}(\bm{r}, \omega) \big).
 $$
 
-After establishing the definitions of the incident and the scattered fields, we can determine whether their interaction produces any observable interference effects. We can utilize the same method employed in Sec. 16; more specifically, let us repurpose Eqn. 16.17 and 16.22 of the time-averaged Poynting vector
+Let us combine the expressions of the incident and the scattered fields, and determine whether their interaction produces any observable interference effects. We can utilize the same method employed in Sec. 16; more specifically, let us repurpose Eqn. 16.17 and 16.22 of the time-averaged Poynting vector
 
-$$ \tag{1p.7}
+$$ \tag{1p.8}
 \begin{aligned}
 	\braket{\bm{S}}
 	&= \frac{\mu\_0^{-1}}{2} \mathcal{Re} \Big\lbrace
@@ -4450,20 +4456,20 @@ $$ \tag{1p.7}
 \end{aligned}
 $$
 
-where \\(\braket{\bm{S_i}}\\) is the time-averaged Poynting vector of the incident wave (given by Eqn. 16.3), \\(\braket{\bm{S_j}}\\) is the time-averaged Poynting vector of the scattered wave (given by Eqn. 16.12) of the \\(j\\)-th particle, and
+where \\(\braket{\bm{S_i}}\\) is the time-averaged Poynting vector of the incident wave (given by Eqn. 16.3), \\(\braket{\bm{S_j}}\\) is the time-averaged Poynting vector of the scattered wave of the \\(j\\)-th particle (given by Eqn. 16.12), and
 
-$$ \tag{1p.8}
+$$ \tag{1p.9}
 	\braket{\bm{S_{jk}}}
 	= -\frac{\mu\_0^{-1}}{2} \mathcal{Re} \big\lbrace \bm{E_j} \times \bm{B_k^{\*}} + \bm{E_k} \times \bm{B_j^{\*}} \big\rbrace.
 $$
 
 is the term that models the interaction between the waves \\(j\\) and \\(k\\). In particular, \\(\braket{\bm{S_{ij}}}\\) expresses interference between the incident and the scattered waves that leads to the extinction effect (cf. Eqn. 16.20, 16.23).
 
-Therefore, the only term we have not yet previously encountered, \\(\braket{\bm{S_{jk}}}\\), is the one that models the interaction between the scattered fields of two particles. Eqn. 16.11 demonstrates that both \\(\bm{E_j}\\) and \\(\bm{B_k^{\*}}\\) (as well as \\(\bm{E_k}\\) and \\(\bm{B_j^{\*}}\\)) are transverse; however, we have no reason to believe that the field vectors are mutually orthogonal. In addition, the waves are not in-phase, since the spatial locations of the particles are not the same. As a result, it is not yet clear whether the last term of Eqn. 1p.7 converges to a simple analytical expression that can be computed in a straightforward way.
+Therefore, the only term we have not yet previously encountered, \\(\braket{\bm{S_{jk}}}\\), is the one that models the interaction between the scattered fields of two particles. Eqn. 16.11 shows that both \\(\bm{E_j}\\) and \\(\bm{B_k^{\*}}\\) (as well as \\(\bm{E_k}\\) and \\(\bm{B_j^{\*}}\\)) are transverse; however, we have no reason to believe that these field vectors are mutually orthogonal. In addition, the waves are not in-phase, since the spatial locations of the particles are not the same. As a result, it is not yet clear whether the last term of Eqn. 1p.8 converges to a simple and intuitive analytical expression.
 
-We can take on this challenge by appealing to the dynamic nature of the microphysical system under consideration. Typically, the distribution of particles is not static -- it evolves over time, governed by the processes such as [turbulence](https://en.wikipedia.org/wiki/Turbulence) or [Brownian motion](https://en.wikipedia.org/wiki/Brownian_motion). Thus, most relationships between the particles are not persistent and, when averaged over time -- not significant.
+In order to obtain the desired solution, it is necessary to appeal to the dynamic nature of the microphysical system under consideration. Typically, the distribution of particles is not static -- it evolves over time, governed by the processes such as [turbulence](https://en.wikipedia.org/wiki/Turbulence) or [Brownian motion](https://en.wikipedia.org/wiki/Brownian_motion). Thus, most relationships between the particles are not persistent and, when averaged over time -- not significant.
 
-Furthermore, while a system typically evolves fairly slowly in comparison to the period of an electromagnetic wave, it may undergo a significant change during the time \\(T\\) it takes to perform a measurement. We can take advantage of this fact by assuming that the duration of the measurement is sufficiently long for the system to fully explore all of its internal degrees of freedom (or, more conservatively, enter all the states that result in a unique value of the quantity we are trying to measure), making the value of the measurement independent from the point in time at which we choose to make our observation \[[8](#references) (ch. 10.4)\]. Stated more precisely, the duration of measurement should be sufficiently long for the value of the short-time-averaged Poyinting vector
+Furthermore, while a system typically evolves fairly slowly in comparison to the period of oscillation of an electromagnetic wave, it may undergo a significant change during the time \\(T\\) it takes to perform a measurement. We can take advantage of this fact by assuming that the duration of the measurement is sufficiently long for the system to fully explore all of its internal degrees of freedom (or, more conservatively, enter all the states that result in a unique value of the quantity we are trying to measure), making the value of the measurement independent from the point in time at which we choose to make our observation \[[8](#references) (ch. 10.4)\]. Stated more precisely, the measurement's duration should be sufficiently long for the value of the short-time-averaged Poyinting vector
 
 $$ \tag{1p.8}
 	\braket{\bm{S}} \negmedspace (\bm{r}, t)
@@ -4484,21 +4490,21 @@ $$ \tag{1p.10}
 	\approx \braket{\braket{\bm{S}}} \negmedspace (\bm{r}).
 $$
 
-...
+In principle, one could execute this idea by choosing the initial state of the system (by assigning each particle a certain position, orientation, shape, and composition), describing the way the system evolves, and evaluating the integral given by Eqn 1p.9. In practice, we shall utilize a different method; nevertheless, it is important to understand the conceptual model and its implications.
 
-Let us consider the implications of this approach. First of all, since the positions and the orientations of the molecules become time-dependent, the phasors of the scattered field must become time-dependent as well, which means that the components of the total field (cf. Eqn. 4.8)
+First of all, since the positions and the orientations of the particles become time-dependent, the phasors of the scattered field must become time-dependent as well. Therefore, the components of the total field
 
-$$ \tag{20.10}
+$$ \tag{1p.11}
 	\bm{E}(\bm{r}, t)
 	= \frac{1}{2} \bm{E_0}(\bm{r}, t)
 	+ \sum\_{p = 1}^{\infin} \thinspace \mathcal{Re} \big\lbrace \bm{E_p}(\bm{r}, t) e^{-i \omega_p t} \big\rbrace.
 $$
 
-are no longer time-harmonic. That complicates the theory, since Eqn 20.10 no longer rigorously satisfies the Maxwell equations.
+are no longer time-harmonic. That complicates the theory, since, unlike Eqn. 4.8, Eqn 1p.11 does not rigorously satisfy the Maxwell equations.
 
-Furthermore, substitution of Eqn. 20.10 into 20.8 results in an integral (cf. Eqn. 4.14)
+Furthermore, substitution of Eqn. 1p.11 into 1p.9 results in an integral
 
-$$ \tag{20.11}
+$$ \tag{1p.12}
 \begin{aligned}
 	\braket{\braket{\bm{S}}}
 	= \lim_{T \to \infin} \frac{1}{T} \int\_{0}^{T}
@@ -4508,9 +4514,15 @@ $$ \tag{20.11}
 \end{aligned}
 $$
 
-that, in general, cannot be simplified any further. However, if we consider only high-frequency electromagnetic radiation, and the [temperature](https://en.wikipedia.org/wiki/Thermal_velocity) of the substance is not too high, then the fundamental period \\(T_1\\) of the electromagnetic field is such that \\(T_e \gg T_1\\). This permits us to split the time-averaging process in two steps
+that, unlike Eqn 4.14, cannot be immediately simplified further. However, if we only consider high-frequency electromagnetic radiation, and if the [temperature](https://en.wikipedia.org/wiki/Thermal_velocity) of the substance is not too high, then we can assume that the fundamental period \\(T_1\\) of the electromagnetic field is much shorter than the amount of time \\(T_e\\) it takes the system to evolve to a significant degree:
 
-$$ \tag{20.12}
+$$ \tag{1p.13}
+	T_e \gg T_1.
+$$
+
+This permits us to split the time-averaging process in two steps
+
+$$ \tag{1p.14}
 \small
 \begin{aligned}
 	\braket{\braket{\bm{S}}}
@@ -4527,7 +4539,7 @@ $$ \tag{20.12}
 \end{aligned}
 $$
 
-in such a way that, during the first step, the microphysical system is kept static.
+in such a way that, during the first step, the microphysical system is effectively kept static.
 
 
 <!--
