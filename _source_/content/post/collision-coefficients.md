@@ -4400,9 +4400,11 @@ In this case, the scattered far-field \\(\bm{E_j}\\) of the \\(j\\)-th particle 
 $$ \tag{1p.2}
 \begin{aligned}
 	& \bm{E_j}(\bm{r}, \omega)
-	\simeq \frac{e^{i k(\omega) R_j}}{k(\omega) R_j} \mathcal{S_j} (\bm{R_j} / R_j, \bm{n_i}, \omega) \cdot \bm{E_0}(\bm{n_i}, \omega),
+	\simeq \frac{e^{i k(\omega) R_j}}{k(\omega) R_j} \mathcal{S_j} (\bm{R_j} / R_j, \bm{n_i}, \omega) \cdot \bm{E_0}(\bm{n_i}, \omega) e^{i k(\omega) (\bm{r_j} \cdot \bm{n_i})},
 \end{aligned}
 $$
+
+where we must remember to account for the fact that the particle is not, in general, located at the origin.
 
 Let \\(L\_{min}\\) and \\(L\_{max}\\) denote the smallest and the largest linear dimensions of \\(V\\), respectively. Since a typical volume is large compared to the wavelength of light, then it follows that \\(k L\_{min} \gg 1\\). On the other hand, if the dimensions of \\(V\\) are sufficiently small compared to the distance between the particles and the observation point, such that
 
@@ -4424,7 +4426,7 @@ Substitution of Eqn 1p.4 into 1p.2 yields an expression of a spherical wave dive
 $$ \tag{1p.5}
 \begin{aligned}
 	& \bm{E_j}(\bm{r}, \omega)
-	\simeq \frac{e^{i k(\omega) R_j}}{k(\omega) r} \mathcal{S_j} (\bm{n_s}, \bm{n_i}, \omega) \cdot \bm{E_0}(\bm{n_i}, \omega).
+	\simeq \frac{e^{i k(\omega) (R_j + \bm{r_j} \cdot \bm{n_i})}}{k(\omega) r} \mathcal{S_j} (\bm{n_s}, \bm{n_i}, \omega) \cdot \bm{E_0}(\bm{n_i}, \omega).
 \end{aligned}
 $$
 
