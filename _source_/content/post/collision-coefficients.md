@@ -4490,17 +4490,17 @@ $$ \tag{1p.10}
 	\approx \braket{\braket{\bm{S}}} \negmedspace (\bm{r}).
 $$
 
-In principle, one could execute this idea by choosing the initial state of the system (by assigning each particle a certain position, orientation, shape, and composition), describing the way the system evolves, and evaluating the integral given by Eqn 1p.9. In practice, we shall utilize a different method; nevertheless, it is important to understand the conceptual model and its implications.
+In principle, one could execute this idea by choosing the initial configuration of the system (by assigning each particle a certain position, orientation, shape, and composition), describing the way the system evolves, and evaluating the integral given by Eqn 1p.9. In practice, we shall utilize a different method; nevertheless, it is important to understand the conceptual model and its implications.
 
-First of all, since the positions and the orientations of the particles become time-dependent, the phasors of the scattered field must become time-dependent as well. Therefore, the components of the total field
+First of all, since the positions and the orientations of the particles become time-dependent, the phasors of the scattered field must become time-dependent as well. Thus, if we examine the expression of the total field
 
 $$ \tag{1p.11}
 	\bm{E}(\bm{r}, t)
 	= \frac{1}{2} \bm{E_0}(\bm{r}, t)
-	+ \sum\_{p = 1}^{\infin} \thinspace \mathcal{Re} \big\lbrace \bm{E_p}(\bm{r}, t) e^{-i \omega_p t} \big\rbrace.
+	+ \sum\_{p = 1}^{\infin} \mathcal{Re} \big\lbrace \bm{E_p}(\bm{r}, t) e^{-i \omega_p t} \big\rbrace,
 $$
 
-are no longer time-harmonic. That complicates the theory, since, unlike Eqn. 4.8, Eqn 1p.11 does not rigorously satisfy the Maxwell equations.
+we will notice that its components are no longer time-harmonic. That complicates the theory, since, unlike Eqn. 4.8, Eqn 1p.11 does not rigorously satisfy the Maxwell equations.
 
 Furthermore, substitution of Eqn. 1p.11 into 1p.9 results in an integral
 
@@ -4514,16 +4514,15 @@ $$ \tag{1p.12}
 \end{aligned}
 $$
 
-that, unlike Eqn 4.14, cannot be immediately simplified further. However, if we only consider high-frequency electromagnetic radiation, and if the [temperature](https://en.wikipedia.org/wiki/Thermal_velocity) of the substance is not too high, then we can assume that the fundamental period \\(T_1\\) of the electromagnetic field is much shorter than the amount of time \\(T_e\\) it takes the system to evolve to a significant degree:
+that, unlike Eqn 4.14, cannot be readily simplified any further. However, suppose that we only consider high-frequency electromagnetic radiation, and that the [temperature](https://en.wikipedia.org/wiki/Thermal_velocity) of the substance is not too high; this implies that the fundamental period \\(T_1\\) of the electromagnetic field is much shorter than the amount of time \\(T_e\\) it takes the system to evolve to a significant degree:
 
 $$ \tag{1p.13}
 	T_e \gg T_1.
 $$
 
-This permits us to split the time-averaging process in two steps
+This permits us to split the time-averaging process in two separate steps
 
 $$ \tag{1p.14}
-\small
 \begin{aligned}
 	\braket{\braket{\bm{S}}}
 	&\approx \lim_{T \to \infin} \frac{1}{T} \int\_{0}^{T}
@@ -4531,16 +4530,60 @@ $$ \tag{1p.14}
 	\bm{E_p}(\bm{r}, t) \times \big[ \bm{B_q}(\bm{r}, t) \big]^{\*}
 	\left( \frac{1}{T_1} \int\_{-T_1/2}^{\thinspace T_1/2} e^{i (\omega_q - \omega_p) t'} dt' \right) dt
 	\cr
-	&= \lim_{T \to \infin} \frac{1}{T} \int\_{0}^{T} \bigg(
-	\frac{\mu_0^{-1}}{4} \big( \bm{E_0}(\bm{r}, t) \times \bm{B_0}(\bm{r}, t) \big)
-	  + \frac{\mu_0^{-1}}{2} \sum\_{p = 1}^{\infin}
-		\thinspace \mathcal{Re} \left\lbrace \bm{E_p}(\bm{r}, t) \times \big[ \bm{B_p}(\bm{r}, t) \big]^{\*} \right\rbrace
-	\bigg) dt
+	&= \lim_{T \to \infin} \frac{1}{T} \int\_{0}^{T}
+		\frac{\mu_0^{-1}}{2} \sum\_{p = 1}^{\infin}
+		\mathcal{Re} \left\lbrace \bm{E_p}(\bm{r}, t) \times \big[ \bm{B_p}(\bm{r}, t) \big]^{\*} \right\rbrace dt
 \end{aligned}
 $$
 
-in such a way that, during the first step, the microphysical system is effectively kept static.
+in such a way that, during the first step, the microphysical system kept static. This separation process decouples time-dependence of the incident wave from that of the microphysical system.
 
+At this point, we may formally introduce the idea of a [microstate](https://en.wikipedia.org/wiki/Microstate_(statistical_mechanics)) (also known as a [realization](https://en.wikipedia.org/wiki/Realization_(probability))). It is a finite collection of parameters (that correspond to the internal degrees of freedom) of a microphysical system that can be used to describe its configuration at a certain point in time. Exposing the microstate \\(\psi\\) as a parameter of  Eqn. 1p.14 yields:
+
+$$ \tag{1p.15}
+\begin{aligned}
+	\braket{\braket{\bm{S}}}
+	&\approx \lim_{T \to \infin} \frac{1}{T} \int\_{0}^{T}
+		\frac{\mu_0^{-1}}{2} \sum\_{p = 1}^{\infin}
+		\mathcal{Re} \left\lbrace \bm{E_p} \big( \bm{r}, \psi(t) \big) \times \big[ \bm{B_p} \big( \bm{r}, \psi(t) \big) \big]^{\*} \right\rbrace dt.
+\end{aligned}
+$$
+
+Eqn. 1p.15 makes it apparent that the value of the time-averaged Poynting vector directly depends on the fraction of time \\(p(\psi)\\) the system spends in each microstate:
+
+$$ \tag{1p.16}
+\begin{aligned}
+	\braket{\braket{\bm{S}}}
+	\approx
+		\int\_{\Psi} \frac{\mu_0^{-1}}{2} \sum\_{p = 1}^{\infin}
+		\mathcal{Re} \left\lbrace \bm{E_p}(\bm{r}, \psi) \times \big[ \bm{B_p}(\bm{r}, \psi) \big]^{\*} \right\rbrace p(\psi) d\psi.
+\end{aligned}
+$$
+
+The new formulation replaces the dynamic process of [time evolution](https://en.wikipedia.org/wiki/Time_evolution) by a [stochastic one](https://en.wikipedia.org/wiki/Stochastic_process), where we only care about the set \\(\Psi\\) of the possible outcomes (i.e. microstates) called an [ensemble](https://en.wikipedia.org/wiki/Ensemble_(mathematical_physics)), and the associated [probability density function](https://en.wikipedia.org/wiki/Probability_density_function) \\(p(\psi)\\) that describes the likelihood of observing the system in each microstate.
+
+The integral of Eqn. 1p.16 represents a special kind of weighted average
+
+$$ \tag{1p.17}
+	\braket{f}\_{\psi}
+	= \int_{\Psi} f(\psi) p(\psi) d\psi,
+$$
+
+called an [ensemble average](https://en.wikipedia.org/wiki/Ensemble_average). It is the mean of a quantity that is a function of the microstate of the system, taken over the entire state space. If we also introduce the following short-hand notation
+
+$$ \tag{1p.19}
+	\braket{f}\_t
+	= \frac{1}{T_1} \int\_{-T_1/2}^{\thinspace T_1/2} f(\bm{r}, \psi(t), t + t') dt'
+$$
+
+for the time average over the fundamental period of the electromagnetic field, then our approximation can be summarized as
+
+$$ \tag{1p.20}
+	\braket{\braket{\bm{S}}}
+	\approx \braket{\braket{\bm{S}}\_t}\_{\psi}.
+$$
+
+The property of a system that leads to equivalence of the time and ensemble averages is called [ergodicity](https://en.wikipedia.org/wiki/Ergodicity) \[[8](#references) (ch. 10.4)\].
 
 <!--
 ### Lorenz-Mie-Debye Theory
@@ -7453,260 +7496,6 @@ $$ \tag{20.0}
 $$
 
 This property of a gas as a macroscopic medium makes the *single scattering approximation* applicable, which assumes that each dipole is acted on exclusively by the incident field (or, in other words, the polarization \\(\bm{P}\\) is vanishingly small outside the volume occupied by any given dipole, cf. Sec. 10).
-
-We must also require that the observation point \\(\bm{r}\\) is not located too close to the group of molecules. If \\(\bm{r_j}\\) is the location of the \\(j\\)-th molecule, then the distance \\(R_j = |\bm{r} - \bm{r_j}|\\) to the observation point has to be much larger than the smallest linear dimension \\(L\\) of the volume: that is, \\(R_j \gg L\\). Combined with the property #5, it becomes \\(k R_j \gg k L \gg 1\\).
-
-\\(k R_j \gg 1\\) means that the observation point is located in the radiation zone of every dipole. In this case, the scattered electromagnetic field of a single molecule is given by a slightly modified version of Eqn. 13.3:
-
-$$ \tag{20.1}
-\begin{aligned}
-	& \bm{E_j}(\bm{r}, \omega)
-	\simeq k^2(\omega) \frac{e^{i k(\omega) R_j}}{4 \pi R_j}
-	\bigg( \mathcal{I} - \frac{\bm{R_j} \otimes \bm{R_j}}{R_j^2} \bigg)
-	\cdot \mathcal{\Alpha_j}(V_j, \omega) \cdot \bm{E_i}(\bm{r_j}, \omega), \cr
-	& \bm{B_j}(\bm{r}, \omega)
-	\simeq \frac{k^3(\omega)}{\omega} \frac{e^{i k(\omega) R_j}}{4 \pi R_j}
-	\bigg(\frac{\bm{R_j} \times \mathcal{I}}{R} \bigg)
-	\cdot \mathcal{\Alpha_j}(V_j, \omega) \cdot \bm{E_i}(\bm{r_j}, \omega),
-\end{aligned}
-$$
-
-where \\(\mathcal{\Alpha_m}\\) is the molecular polarizability dyadic that encodes the response (rotation, absorption strength, scattering intensity, and phase shift) of the dipole to electric field that acting on it.
-
-It is important to note that we do not require the observation point to be located in the far zone with respect to the entire volume containing the molecules, as, according to see Eqn. 13.13, that would require \\(k R_j \gg (k L)^2\\).
-
-The assumption that \\(R_j \gg L\\) makes the volume containing the molecules appear point-like: if the group of molecules is centered at the origin, then, according to Eqn. 13.8-13.11, we may asymptotically approximate
-
-$$ \tag{20.2}
-	\frac{\bm{R_j}}{R_j} \simeq \bm{n} = \frac{\bm{r}}{r}, \quad
-	\frac{1}{R_j} \simeq \frac{1}{r}.
-$$
-
-Substitution into Eqn. 20.1 shows that each dipole radiates a spherical wave that appears to originate at the origin, but these waves may differ in magnitude and phase:
-
-$$ \tag{20.3}
-\begin{aligned}
-	& \bm{E_j}(\bm{r}, \omega)
-	\simeq k^2(\omega) \frac{e^{i k(\omega) R_j}}{4 \pi R}
-	\big( \mathcal{I} - \bm{n} \otimes \bm{n} \big)
-	\cdot \mathcal{\Alpha_j}(V_j, \omega) \cdot \bm{E_i}(\bm{r_j}, \omega), \cr
-	& \bm{B_j}(\bm{r}, \omega)
-	\simeq \frac{k^3(\omega)}{\omega} \frac{e^{i k(\omega) R_j}}{4 \pi R}
-	\big( \bm{n} \times \mathcal{I} \big)
-	\cdot \mathcal{\Alpha_j}(V_j, \omega) \cdot \bm{E_i}(\bm{r_j}, \omega).
-\end{aligned}
-$$
-
-Without loss of generality, let us further assume that the incident field is a plane wave:
-
-$$ \tag{20.4}
-	\bm{E_i}(\bm{r}, \omega) = \bm{E_0}(\bm{n_i}, \omega) e^{i k(\omega) (\bm{r} \cdot \bm{n_i})}.
-$$
-
-Given the definitions of the incident and the scattered fields, we can determine whether their interaction produces any observable interference effects. We can utilize the same method employed in Sec. 16; in particular, let us repurpose Eqn. 16.17 and 16.22 of the time-averaged Poynting vector
-
-$$ \tag{20.5}
-\begin{aligned}
-	\braket{\bm{S}}
-	&= \frac{\mu\_0^{-1}}{2} \mathcal{Re} \Big\lbrace
-	\Big( \bm{E_i} + \sum_j \bm{E_j} \Big) \times
-	\Big( \bm{B_i^{\*}} + \sum_j \bm{B_j^{\*}} \Big) \Big\rbrace
-	\cr
-	&= \braket{\bm{S_i}} + \sum_j \braket{\bm{S_j}} - \sum_j \braket{\bm{S_{ij}}} - \sum_{j < k} \braket{\bm{S_{jk}}},
-\end{aligned}
-$$
-
-where \\(\braket{\bm{S_i}}\\) is the time-averaged Poynting vector of the incident wave (given by Eqn. 16.3), \\(\braket{\bm{S_j}}\\) is the time-averaged Poynting vector of the scattered wave (given by Eqn. 16.12) of the \\(j\\)-th molecule, and
-
-$$ \tag{20.6}
-	\braket{\bm{S_{jk}}}
-	= -\frac{\mu\_0^{-1}}{2} \mathcal{Re} \big\lbrace \bm{E_j} \times \bm{B_k^{\*}} + \bm{E_k} \times \bm{B_j^{\*}} \big\rbrace.
-$$
-
-is the term that models the interaction between the waves \\(j\\) and \\(k\\). In particular, \\(\braket{\bm{S_{ij}}}\\) expresses interference between the incident and the scattered waves that leads to the extinction effect (cf. Eqn. 16.20, 16.23).
-
-Therefore, the only term we have not yet previously encountered, \\(\braket{\bm{S_{jk}}}\\), is the that models the interaction between the scattered fields of two dipoles. After examining Eqn. 20.3, it is evident that both \\(\bm{E_j}\\) and \\(\bm{B_k^{\*}}\\) (as well as \\(\bm{E_k}\\) and \\(\bm{B_j^{\*}}\\)) are transverse; however, we have no reason to believe that the field vectors are mutually orthogonal (unless, of course, the molecular polarizability dyadics are exactly the same). In addition, the waves are not in-phase, since the spatial location of the molecules is not the same. As a result, it is not yet clear whether the last term of Eqn. 20.5 converges to a simple analytical expression that can be computed in a straightforward way.
-
-#### Dynamic Light Scattering
-
-In order to address both of these challenges, we can appeal to the dynamic nature of the microphysical system under consideration. The distribution of molecules is not static -- it evolves over time, since the molecules are constantly in random motion. Thus, most relationships between the molecules are not persistent and, when averaged over time, not significant. Furthermore, while a system typically evolves fairly slowly in comparison to the period of an electromagnetic wave, it may undergo a significant change during the time it takes to perform a measurement. We can turn this complication into an advantage by assuming that the duration of the measurement is sufficiently long for the system to fully explore all of its internal degrees of freedom, making the value of the measurement independent from the point in time at which we choose to make our observation \[[8](#references) (ch. 10.4)\].
-
-Stated more formally, we assume that evolution of the microphysical system is a periodic process with the period \\(T_e\\). This fact suggests that the duration of measurement should be sufficiently long \\((T \gg T_e)\\) for the value of the short-time-averaged Poyinting vector (cf. Eqn. 2.24)
-
-$$ \tag{20.7}
-	\braket{\bm{S}} \negmedspace (\bm{r}, t)
-	= \frac{1}{T} \int\_{-T/2}^{\thinspace T/2} \bm{S}(\bm{r}, t + t') dt'
-$$
-
-to be equal to the value of its long-time-averaged counterpart
-
-$$ \tag{20.8}
-	\braket{\braket{\bm{S}}} \negmedspace (\bm{r})
-	= \lim_{T \to \infin} \frac{1}{T} \int\_{0}^{T} \bm{S}(\bm{r}, t) dt,
-$$
-
-at any point in time \\(t\\):
-
-$$ \tag{20.9}
-	\braket{\bm{S}} \negmedspace (\bm{r}, t)
-	\approx \braket{\braket{\bm{S}}} \negmedspace (\bm{r}).
-$$
-
-Let us consider the implications of this approach. First of all, since the positions and the orientations of the molecules become time-dependent, the phasors of the scattered field must become time-dependent as well, which means that the components of the total field (cf. Eqn. 4.8)
-
-$$ \tag{20.10}
-	\bm{E}(\bm{r}, t)
-	= \frac{1}{2} \bm{E_0}(\bm{r}, t)
-	+ \sum\_{p = 1}^{\infin} \thinspace \mathcal{Re} \big\lbrace \bm{E_p}(\bm{r}, t) e^{-i \omega_p t} \big\rbrace.
-$$
-
-are no longer time-harmonic. That complicates the theory, since Eqn 20.10 no longer rigorously satisfies the Maxwell equations.
-
-Furthermore, substitution of Eqn. 20.10 into 20.8 results in an integral (cf. Eqn. 4.14)
-
-$$ \tag{20.11}
-\begin{aligned}
-	\braket{\braket{\bm{S}}}
-	= \lim_{T \to \infin} \frac{1}{T} \int\_{0}^{T}
-	\frac{\mu_0^{-1}}{4} \sum\_{p = -\infin}^{\infin} \sum\_{q = -\infin}^{\infin}
-	\bm{E_p}(\bm{r}, t) \times \big[ \bm{B_q}(\bm{r}, t) \big]^{\*}
-	e^{i (\omega_q - \omega_p) t} dt.
-\end{aligned}
-$$
-
-that, in general, cannot be simplified any further. However, if we consider only high-frequency electromagnetic radiation, and the [temperature](https://en.wikipedia.org/wiki/Thermal_velocity) of the substance is not too high, then the fundamental period \\(T_1\\) of the electromagnetic field is such that \\(T_e \gg T_1\\). This permits us to split the time-averaging process in two steps
-
-$$ \tag{20.12}
-\small
-\begin{aligned}
-	\braket{\braket{\bm{S}}}
-	&\approx \lim_{T \to \infin} \frac{1}{T} \int\_{0}^{T}
-	\frac{\mu_0^{-1}}{4} \sum\_{p = -\infin}^{\infin} \sum\_{q = -\infin}^{\infin}
-	\bm{E_p}(\bm{r}, t) \times \big[ \bm{B_q}(\bm{r}, t) \big]^{\*}
-	\left( \frac{1}{T_1} \int\_{-T_1/2}^{\thinspace T_1/2} e^{i (\omega_q - \omega_p) t'} dt' \right) dt
-	\cr
-	&= \lim_{T \to \infin} \frac{1}{T} \int\_{0}^{T} \bigg(
-	\frac{\mu_0^{-1}}{4} \big( \bm{E_0}(\bm{r}, t) \times \bm{B_0}(\bm{r}, t) \big)
-	  + \frac{\mu_0^{-1}}{2} \sum\_{p = 1}^{\infin}
-		\thinspace \mathcal{Re} \left\lbrace \bm{E_p}(\bm{r}, t) \times \big[ \bm{B_p}(\bm{r}, t) \big]^{\*} \right\rbrace
-	\bigg) dt
-\end{aligned}
-$$
-
-in such a way that, during the first step, the microphysical system is kept static.
-
----
-
-Secondly, and perhaps more importantly, the time-dependent expressions that replace Eqn. 20.3 can easily get complicated, making the task of evaluating the integral of Eqn. 20.8 more suitable for numerical rather than analytical evaluation.
-
-As it turns out, it is much easier to solve this problem probabilistically. First, let us introduce the idea of a [microstate](https://en.wikipedia.org/wiki/Microstate_(statistical_mechanics)) (also known as a [realization](https://en.wikipedia.org/wiki/Realization_(probability))). It is a finite collection of parameters (that correspond to the internal degrees of freedom) of a microphysical system that can be used to describe its configuration at a certain point in time. Exposing the microstate \\(\psi_m\\) as a parameter of  Eqn. 20.10 yields:
-
-$$ \tag{20.12}
-\begin{aligned}
-	\braket{\braket{\bm{S}}} \negmedspace (\bm{r})
-	&\approx \lim_{T \to \infin} \frac{1}{T} \int\_{0}^{T}
-	\left( \frac{1}{T_1} \int\_{-T_1/2}^{\thinspace T_1/2} \bm{S}(\bm{r}, \psi_m(t), t + t') dt' \right) dt
-	\cr
-	&= \lim_{T \to \infin} \frac{1}{T} \int\_{0}^{T}
-	\bm{S_1} (\bm{r}, \psi_m(t)) dt.
-\end{aligned}
-$$
-
-Note that the integrand of Eqn. 20.12 no longer directly depends on the time \\(\psi_m\\)
-
-As it turns out, it is much easier to solve this problem probabilistically. Instead of taking a pair of molecules and watching them move and rotate over time, we can ascribe them a probability of being at a certain location or in a particular orientation at any point in time. In other words, we can define an [ensemble](https://en.wikipedia.org/wiki/Ensemble_(mathematical_physics)) -- a collection of possible [microstates](https://en.wikipedia.org/wiki/Microstate_(statistical_mechanics)) (also known as [realizations](https://en.wikipedia.org/wiki/Realization_(probability))) of the microphysical system, with each microstate corresponding to a particular configuration of an actual system at a certain point in time -- and associate it with a [probability density function](https://en.wikipedia.org/wiki/Probability_density_function) \\(p(\psi_m)\\) that describes the likelihood of observing the system in each microstate \\(\psi_m\\).
-
-The ensemble and its associated probability density can be used to compute the [ensemble average](https://en.wikipedia.org/wiki/Ensemble_average)
-
-$$ \tag{20.11}
-	\braket{f}\_e
-	= \int_{\Psi} f(\psi_m) p(\psi_m) d\psi_m,
-$$
-
-the mean of a quantity that is a function \\(f(\psi_m)\\) of the microstate of the system, taken over the entire state space \\(\Psi\\). Eqn. 20.11 can be seen as a weighted average, and, in general, produces a result that is different from the value of the function with its argument set to the average state:
-
- $$ \tag{20.12}
-	\braket{f}\_e
-	\neq f \negmedspace \left( \int_{\Psi} \psi_m p(\psi_m) d\psi_m \right).
-$$
-
-We have previously alluded to the fact that, if we observe a dynamic system over a sufficiently long period of time, we are likely to see its every possible state.
-
-We are particularly interested in the ensemble average of the (short-period) time-averaged Poynting vector:
-
-$$ \tag{20.10}
-	\braket{\braket{\bm{S}}}\_e
-	= \int_{\Psi} p(\psi_m) \braket{\bm{S}} \negmedspace (\bm{r}, \psi_m) d\psi_m.
-$$
-
-In general, Eqn. 20.7 and 20.10 do not necessarily describe the same quantity. However, if the system is random, and, at every point in time, all states are equally likely, then it is plausible that
-
-$$ \tag{20.11}
-	\braket{\braket{\bm{S}}} \approx
-	\braket{\braket{\bm{S}}}\_e.
-$$
-
-The property of a system that leads to equivalence of the time and ensemble averages is called [ergodicity](https://en.wikipedia.org/wiki/Ergodicity) \[[8](#references) (ch. 10.4)\].
-
----
-
-$$ \tag{20.7}
-\begin{aligned}
-	& \bm{E_j}(\bm{r}, \omega)
-	\simeq k^2(\omega)
-	\frac{
-		e^{i k(\omega) (R_j + \bm{r_j} \cdot \bm{n_i})}
-	}{
-		4 \pi R
-	}
-	\big( \mathcal{I} - \bm{n} \otimes \bm{n} \big)
-	\cdot \mathcal{\Alpha_j}(V_j, \omega) \cdot \bm{E_0}(\bm{n_i}, \omega), \cr
-	& \bm{B_k}(\bm{r}, \omega)
-	\simeq \frac{k^3(\omega)}{\omega}
-	\frac{
-		e^{i k(\omega) (R_k + \bm{r_k} \cdot \bm{n_i})}
-	}{
-		4 \pi R
-	}
-	\big( \bm{n} \times \mathcal{I} \big)
-	\cdot \mathcal{\Alpha_k}(V_k, \omega) \cdot \bm{E_0}(\bm{n_i}, \omega),
-\end{aligned}
-$$
-
-According to Eqn. 13.14, both fields are transverse; however, we have no reason to believe that the field vectors are orthogonal (unless, of course, the polarizabilities are exactly the same). Fortunately, the dyadics \\(\mathcal{\Alpha_j}\\) act linearly on the electric field phasors, and are defined independently from the rest of the quantities in Eqn. 20.7. Thus, if we assume that the orientation and the type of each molecule are determined by statistically uniform, independent random processes, we can use the associated [probability density function](https://en.wikipedia.org/wiki/Probability_density_function) \\(p(\mathcal{\Alpha_j})\\) to define the *mean molecular polarizability*
-
-$$ \tag{20.8}
-	\mathcal{\Alpha_m}(V_m, \omega)
-	= \braket{\mathcal{\Alpha_j}}\_{\alpha}
-	= \int p(\mathcal{\Alpha_j}) \mathcal{\Alpha_j}(V_j, \omega) d\mathcal{\Alpha_j}
-$$
-
-that corresponds to the average molecule in the average orientation. In general, an expression of the mean state of the system given in terms of the probability distribution of its micro-states is called the [ensemble average](https://en.wikipedia.org/wiki/Ensemble_average).
-
- In general, any expression of the  Performing the same averaging procedure on Eqn. 20.7 yields
-
-$$ \tag{20.9}
-\begin{aligned}
-	& \braket{\bm{E_j}}\_{\alpha}
-	\simeq k^2(\omega)
-	\frac{
-		e^{i k(\omega) (R_j + \bm{r_j} \cdot \bm{n_i})}
-	}{
-		4 \pi R
-	}
-	\big( \mathcal{I} - \bm{n} \otimes \bm{n} \big)
-	\cdot \mathcal{\Alpha_m}(V_m, \omega) \cdot \bm{E_0}(\bm{n_i}, \omega), \cr
-	& \braket{\bm{B_k}}\_{\alpha}
-	\simeq \frac{k^3(\omega)}{\omega}
-	\frac{
-		e^{i k(\omega) (R_k + \bm{r_k} \cdot \bm{n_i})}
-	}{
-		4 \pi R
-	}
-	\big( \bm{n} \times \mathcal{I} \big)
-	\cdot \mathcal{\Alpha_m}(V_m, \omega) \cdot \bm{E_0}(\bm{n_i}, \omega),
-\end{aligned}
-$$
 
 ### Light Scattering by Liquid Molecules
 
