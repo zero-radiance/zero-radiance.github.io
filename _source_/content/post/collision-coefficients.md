@@ -4385,7 +4385,7 @@ The field acting on each particle is the sum of the incident field and the scatt
 
 [^18]: The quantitative criteria for applicability of the single-scattering approximation are not well-established.
 
-As usual, we shall utilize the superposition principle to decompose the incident field into a number of plane waves. If the host medium is non-absorptive and non-magnetic, then the expressions of the incident field (Eqn. 16.1) and the associated time-averaged Poyinting vector (Eqn. 16.3) are identical to those shown in the previous section.
+As usual, we shall utilize the superposition principle to decompose the incident field into a number of plane waves. If the host medium is non-absorptive and non-magnetic, then the expressions of the incident field (Eqn. 16.1) and the associated time-averaged Poynting vector (Eqn. 16.3) are identical to those shown in the previous section.
 
 Let \\(\bm{r_j}\\) denote the location of the \\(j\\)-th particle, and \\(a_j\\) -- the radius of its bounding sphere. If the observation point \\(\bm{r}\\) is located in the radiation zone of each particle, then the distances \\(R_j = |\bm{R_j}| = |\bm{r} - \bm{r_j}|\\) satisfy the inequalities given by Eqn. 13.13:
 
@@ -4467,16 +4467,17 @@ is the term that models the interaction between the waves \\(j\\) and \\(k\\). I
 
 Therefore, the only term we have not yet previously encountered, \\(\braket{\bm{S_{jk}}}\\), is the one that models the interaction between the scattered fields of two particles. Eqn. 16.11 shows that both \\(\bm{E_j}\\) and \\(\bm{B_k^{\*}}\\) (as well as \\(\bm{E_k}\\) and \\(\bm{B_j^{\*}}\\)) are transverse; however, we have no reason to believe that these field vectors are mutually orthogonal. In addition, the waves are not in-phase, since the spatial locations of the particles are not the same. As a result, it is not yet clear whether the last term of Eqn. 1p.8 converges to a simple and intuitive analytical expression.
 
-In order to obtain the desired solution, it is necessary to appeal to the dynamic nature of the microphysical system under consideration. Typically, the distribution of particles is not static -- it evolves over time, governed by the processes such as [turbulence](https://en.wikipedia.org/wiki/Turbulence) or [Brownian motion](https://en.wikipedia.org/wiki/Brownian_motion). Thus, most relationships between the particles are not persistent and, when averaged over time -- not significant.
+In order to obtain the desired solution, it is necessary to appeal to the [dynamic nature](https://en.wikipedia.org/wiki/Dynamical_system) of the microphysical system under consideration. Typically, the distribution of particles is not static -- it [evolves over time](https://en.wikipedia.org/wiki/Time_evolution), governed by the processes such as [turbulence](https://en.wikipedia.org/wiki/Turbulence) or [Brownian motion](https://en.wikipedia.org/wiki/Brownian_motion). Thus, most relationships between the particles are not persistent and, when averaged over time -- not significant.
 
-Furthermore, while a system typically evolves fairly slowly in comparison to the period of oscillation of an electromagnetic wave, it may undergo a significant change during the time \\(T\\) it takes to perform a measurement. We can take advantage of this fact by assuming that the duration of the measurement is sufficiently long for the system to fully explore all of its internal degrees of freedom (or, more conservatively, enter all the states that result in a unique value of the quantity we are trying to measure), making the value of the measurement independent from the point in time at which we choose to make our observation \[[8](#references) (ch. 10.4)\]. Stated more precisely, the measurement's duration should be sufficiently long for the value of the short-time-averaged Poyinting vector
+Furthermore, while a system typically evolves fairly slowly in comparison to the period of oscillation of an electromagnetic wave, it may undergo a significant change during the time \\(T\\) it takes to perform a measurement. We can take advantage of this fact by assuming that dynamic light scattering is a [stationary process](https://en.wikipedia.org/wiki/Stationary_process), and
+that the duration of the measurement is sufficiently long for the time-averaged value of the Poynting vector
 
 $$ \tag{1p.8}
 	\braket{\bm{S}} \negmedspace (\bm{r}, t)
 	= \frac{1}{T} \int\_{-T/2}^{\thinspace T/2} \bm{S}(\bm{r}, t + t') dt'
 $$
 
-to be equal to the value of its long-time-averaged counterpart
+to be approximately equal to its mean value
 
 $$ \tag{1p.9}
 	\braket{\braket{\bm{S}}} \negmedspace (\bm{r})
@@ -4490,9 +4491,9 @@ $$ \tag{1p.10}
 	\approx \braket{\braket{\bm{S}}} \negmedspace (\bm{r}).
 $$
 
-In principle, one could execute this idea by choosing the initial configuration of the system (by assigning each particle a certain position, orientation, shape, and composition), describing the way the system evolves, and evaluating the integral given by Eqn 1p.9. In practice, we shall utilize a different method; nevertheless, it is important to understand the conceptual model and its implications.
+In principle, one could solve the dynamic light scattering problem by choosing the initial configuration of the system (i.e. by assigning each particle a certain position, orientation, shape, and composition), describing the way the system evolves, and evaluating the integral given by Eqn 1p.9. In practice, this (obvious, but arduous) solution is rarely used; nevertheless, it is important to understand the conceptual model and its implications.
 
-First of all, since the positions and the orientations of the particles become time-dependent, the phasors of the scattered field must become time-dependent as well. Thus, if we examine the expression of the total field
+First of all, since the positions and the orientations of the particles become time-dependent, the phasors of the scattered field must become time-dependent as well. Thus, upon examining the expression of the total field
 
 $$ \tag{1p.11}
 	\bm{E}(\bm{r}, t)
@@ -4500,7 +4501,7 @@ $$ \tag{1p.11}
 	+ \sum\_{p = 1}^{\infin} \mathcal{Re} \big\lbrace \bm{E_p}(\bm{r}, t) e^{-i \omega_p t} \big\rbrace,
 $$
 
-we will notice that its components are no longer time-harmonic. That complicates the theory, since, unlike Eqn. 4.8, Eqn 1p.11 does not rigorously satisfy the Maxwell equations.
+we may notice that its components are no longer time-harmonic. That complicates the theory, since, unlike Eqn. 4.8, Eqn 1p.11 does not rigorously satisfy the Maxwell equations.
 
 Furthermore, substitution of Eqn. 1p.11 into 1p.9 results in an integral
 
@@ -4514,13 +4515,13 @@ $$ \tag{1p.12}
 \end{aligned}
 $$
 
-that, unlike Eqn 4.14, cannot be readily simplified any further. However, suppose that we only consider high-frequency electromagnetic radiation, and that the [temperature](https://en.wikipedia.org/wiki/Thermal_velocity) of the substance is not too high; this implies that the fundamental period \\(T_1\\) of the electromagnetic field is much shorter than the amount of time \\(T_e\\) it takes the system to evolve to a significant degree:
+that, unlike Eqn 4.14, cannot be readily simplified any further. However, if we are only concerned with high-frequency electromagnetic radiation, and if the [temperature](https://en.wikipedia.org/wiki/Thermal_velocity) of the substance is not too high, then the fundamental period \\(T_1\\) of the electromagnetic field is much shorter than the amount of time \\(T_e\\) it takes the system to evolve to a significant degree:
 
 $$ \tag{1p.13}
 	T_e \gg T_1.
 $$
 
-This permits us to split the time-averaging process in two separate steps
+This permits us to split the time-averaging process in two steps
 
 $$ \tag{1p.14}
 \begin{aligned}
@@ -4536,7 +4537,7 @@ $$ \tag{1p.14}
 \end{aligned}
 $$
 
-in such a way that, during the first step, the microphysical system kept static. This separation process decouples time-dependence of the incident wave from that of the microphysical system.
+in such a way that, during the first step, while the time-harmonic factor of the incident field is being eliminated, the microphysical system kept static. This is a crucial simplification, since it decouples time-dependence of the incident field from that of the microphysical system.
 
 At this point, we may formally introduce the idea of a [microstate](https://en.wikipedia.org/wiki/Microstate_(statistical_mechanics)) (also known as a [realization](https://en.wikipedia.org/wiki/Realization_(probability))). It is a finite collection of parameters (that correspond to the internal degrees of freedom) of a microphysical system that can be used to describe its configuration at a certain point in time. Exposing the microstate \\(\psi\\) as a parameter of  Eqn. 1p.14 yields:
 
@@ -4549,7 +4550,7 @@ $$ \tag{1p.15}
 \end{aligned}
 $$
 
-Eqn. 1p.15 makes it apparent that the value of the time-averaged Poynting vector directly depends on the fraction of time \\(p(\psi)\\) the system spends in each microstate:
+Eqn. 1p.15 makes it apparent that the mean value of the Poynting vector directly depends on the fraction of time \\(p(\psi)\\) the system spends in each microstate:
 
 $$ \tag{1p.16}
 \begin{aligned}
@@ -4560,16 +4561,16 @@ $$ \tag{1p.16}
 \end{aligned}
 $$
 
-The new formulation replaces the dynamic process of [time evolution](https://en.wikipedia.org/wiki/Time_evolution) by a [stochastic one](https://en.wikipedia.org/wiki/Stochastic_process), where we only care about the set \\(\Psi\\) of the possible outcomes (i.e. microstates) called an [ensemble](https://en.wikipedia.org/wiki/Ensemble_(mathematical_physics)), and the associated [probability density function](https://en.wikipedia.org/wiki/Probability_density_function) \\(p(\psi)\\) that describes the likelihood of observing the system in each microstate.
+The new formulation reinterprets the dynamic model as a [stochastic process](https://en.wikipedia.org/wiki/Stochastic_process) characterized by the set \\(\Psi\\) of the possible outcomes (i.e. microstates) called an [ensemble](https://en.wikipedia.org/wiki/Ensemble_(mathematical_physics)), and the associated [probability density function](https://en.wikipedia.org/wiki/Probability_density_function) \\(p(\psi)\\) that describes the likelihood of observing the system in each microstate.
 
-The integral of Eqn. 1p.16 represents a special kind of weighted average
+The integral found in Eqn. 1p.16 represents a special kind of weighted average
 
 $$ \tag{1p.17}
 	\braket{f}\_{\psi}
 	= \int_{\Psi} f(\psi) p(\psi) d\psi,
 $$
 
-called an [ensemble average](https://en.wikipedia.org/wiki/Ensemble_average). It is the mean of a quantity that is a function of the microstate of the system, taken over the entire state space. If we also introduce the following short-hand notation
+called an [ensemble average](https://en.wikipedia.org/wiki/Ensemble_average). Formally, it is defined as the [expected value](https://en.wikipedia.org/wiki/Expected_value) of a quantity that is a function of the microstate of the system. If we also introduce a convenient short-hand notation
 
 $$ \tag{1p.19}
 	\braket{f}\_t
@@ -4579,11 +4580,11 @@ $$
 for the time average over the fundamental period of the electromagnetic field, then our approximation can be summarized as
 
 $$ \tag{1p.20}
-	\braket{\braket{\bm{S}}}
-	\approx \braket{\braket{\bm{S}}\_t}\_{\psi}.
+	\braket{\bm{S}} \negmedspace (\bm{r}, t)
+	\approx \braket{\braket{\bm{S}}\_t}\_{\psi} \negmedspace (\bm{r}).
 $$
 
-The property of a system that leads to equivalence of the time and ensemble averages is called [ergodicity](https://en.wikipedia.org/wiki/Ergodicity) \[[8](#references) (ch. 10.4)\].
+A dynamic process, such that its every sizable time sequence is statistically representative of the whole, is called [ergodic](https://en.wikipedia.org/wiki/Ergodicity) \[[8](#references) (ch. 10.4)\].
 
 <!--
 ### Lorenz-Mie-Debye Theory
@@ -7254,7 +7255,7 @@ $$ \tag{18.36}
 	= 4 \pi p_s(\theta, \phi, \omega).
 $$
 
-Given the probability density function, the [expected value](https://en.wikipedia.org/wiki/Expected_value) of \\(\cos{\theta}\\) can be calculated as
+Given the probability density function, the expected value of \\(\cos{\theta}\\) can be calculated as
 
 $$ \tag{18.37}
 	g(\omega)
