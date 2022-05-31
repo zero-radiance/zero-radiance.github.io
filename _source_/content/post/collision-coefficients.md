@@ -1121,6 +1121,8 @@ $$ \tag{7.7}
 	\sqrt{\varepsilon\_r(\omega) \mu\_r(\omega)}.
 $$
 
+This expression is sometimes called the *complex refractive index*.
+
 For high frequencies, such as those encountered in optics, we may perform a [Laurent series](https://en.wikipedia.org/wiki/Laurent_series) [expansion](https://www.wolframalpha.com/input/?i=series+sqrt%28a-I%2Fw*b%29) at infinity:
 
 $$ \tag{7.8}
@@ -2431,7 +2433,7 @@ In some sense, dipoles can be considered elementary sources of oscillating field
 
 [Insert pictures of field lines of electric and magnetic dipoles]
 
-Finally, we would like to emphasize certain properties of the solution of the Maxwell equations in terms of potentials. Perhaps the most obvious one is that the scattered field is expressed as a volume integral. While the geometry of the volume containing the charges plays an important role, it is now apparent that the interior of the volume is the actual source of what we consider to be surface reflection. Furthermore, Eqn. 10.3 says that *microscopic* electromagnetic fields always propagate at the speed of light. The reason for different (ordinarily, lower) phase velocity of *macroscopic* fields in matter is the remarkable fact that the dipole field interferes with the incident field in such a way that the latter is completely extinguished and replaced by the internal field that propagates in accordance with the index of refraction of the medium \[[5](#references) (vol. I, ch. 31)\]. Formally, this mechanism is described by the [extinction theorem](https://en.wikipedia.org/wiki/Ewald%E2%80%93Oseen_extinction_theorem) \[[6](#references) (ch. 2.4)\].
+Finally, we would like to emphasize certain properties of the solution of the Maxwell equations in terms of potentials. Perhaps the most obvious one is that the scattered field is expressed as a volume integral. While the geometry of the volume containing the charges plays an important role, it is now apparent that the interior of the volume is the actual source of what we consider to be surface reflection. Furthermore, Eqn. 10.3 says that *microscopic* electromagnetic fields always propagate at the speed of light. The reason for different (ordinarily, lower) phase velocity of *macroscopic* fields in matter is the remarkable fact that the dipole field interferes with the incident field in such a way that the latter is completely extinguished and replaced by the internal field that propagates in accordance with the refractive index of the medium \[[5](#references) (vol. I, ch. 31)\]. Formally, this mechanism is described by the [extinction theorem](https://en.wikipedia.org/wiki/Ewald%E2%80%93Oseen_extinction_theorem) \[[6](#references) (ch. 2.4)\].
 
 <!--
 
@@ -2533,7 +2535,7 @@ $$ \tag{11.7}
 \end{cases}
 $$
 
-such that the *relative wavenumber* (or the *relative refractive index*) is
+such that the *relative wavenumber* (or the *relative complex refractive index*) is
 
 $$ \tag{11.8}
 	m(\bm{r}, \omega)
@@ -3213,7 +3215,7 @@ $$ \tag{13.??}
 	= \frac{k^3(\omega)}{4 \pi} \big( \mathcal{I} - \bm{n} \otimes \bm{n} \big) \cdot \int\_{V} e^{-i k(\omega) (\bm{r'} \cdot \bm{n})} \big( m^2(\bm{r'}, \omega) - 1 \big)
 	\bm{E}(\bm{r'}, \omega) dV',
 	\cr
-	& \bm{B_1}(\bm{r}, \omega)
+	& \bm{B_1}(\bm{n}, \omega)
 	= \frac{k^4(\omega)}{4 \pi \omega} \big(\bm{n} \times \mathcal{I} \big) \cdot \int\_{V} e^{-i k(\omega) (\bm{r'} \cdot \bm{n})} \big( m^2(\bm{r'}, \omega) - 1 \big)
 	\bm{E}(\bm{r'}, \omega) dV',
 \end{aligned}
@@ -4436,7 +4438,7 @@ $$ \tag{1p.6}
 \end{aligned}
 $$
 
-The electric and the magnetic fields are related by Eqn. 16.11. In particular,
+The electric and the magnetic fields are related by Eqn. 16.11. In particular, it shows that they are orthogonal:
 
 $$ \tag{1p.7}
 	\bm{B_j}(\bm{r}, \omega)
@@ -4511,7 +4513,7 @@ Furthermore, substitution of Eqn. 1p.11 into 1p.9 results in an integral
 
 $$ \tag{1p.12}
 \begin{aligned}
-	\braket{\braket{\bm{S}}}
+	\braket{\braket{\bm{S}}} \negmedspace (\bm{r})
 	= \lim_{T \to \infin} \frac{1}{T} \int\_{0}^{T}
 	\frac{\mu_0^{-1}}{4} \sum\_{p = -\infin}^{\infin} \sum\_{q = -\infin}^{\infin}
 	\bm{E_p}(\bm{r}, t) \times \big[ \bm{B_q}(\bm{r}, t) \big]^{\*}
@@ -4529,7 +4531,7 @@ This permits us to split the time-averaging process in two steps
 
 $$ \tag{1p.14}
 \begin{aligned}
-	\braket{\braket{\bm{S}}}
+	\braket{\braket{\bm{S}}} \negmedspace (\bm{r})
 	&\approx \lim_{T \to \infin} \frac{1}{T} \int\_{0}^{T}
 	\frac{\mu_0^{-1}}{4} \sum\_{p = -\infin}^{\infin} \sum\_{q = -\infin}^{\infin}
 	\bm{E_p}(\bm{r}, t) \times \big[ \bm{B_q}(\bm{r}, t) \big]^{\*}
@@ -4547,7 +4549,7 @@ At this point, we may formally introduce the idea of a [microstate](https://en.w
 
 $$ \tag{1p.15}
 \begin{aligned}
-	\braket{\braket{\bm{S}}}
+	\braket{\braket{\bm{S}}} \negmedspace (\bm{r})
 	&\approx \lim_{T \to \infin} \frac{1}{T} \int\_{0}^{T}
 		\frac{\mu_0^{-1}}{2} \sum\_{p = 1}^{\infin}
 		\mathcal{Re} \left\lbrace \bm{E_p} \big( \bm{r}, \psi(t) \big) \times \big[ \bm{B_p} \big( \bm{r}, \psi(t) \big) \big]^{\*} \right\rbrace dt.
@@ -4558,7 +4560,7 @@ Eqn. 1p.15 makes it apparent that the mean value of the Poynting vector directly
 
 $$ \tag{1p.16}
 \begin{aligned}
-	\braket{\braket{\bm{S}}}
+	\braket{\braket{\bm{S}}} \negmedspace (\bm{r})
 	\approx
 		\int\_{\Psi} \frac{\mu_0^{-1}}{2} \sum\_{p = 1}^{\infin}
 		\mathcal{Re} \left\lbrace \bm{E_p}(\bm{r}, \psi) \times \big[ \bm{B_p}(\bm{r}, \psi) \big]^{\*} \right\rbrace p(\psi) d\psi.
@@ -4592,7 +4594,39 @@ $$ \tag{1p.19}
 	\approx \braket{\braket{\bm{S}}\_t}\_{\psi} \negmedspace (\bm{r}).
 $$
 
+Let us apply the ergodic assumption to Eqn. 1p.8, and consider its individual terms. First of all, since the expression of the incident field does not depend on the presence of the scattering object, no modifications to \\(\braket{\bm{S\_i}}\\) are necessary. The second term of Eqn. 1p.8 is formed by electromagnetic waves scattered by the particles. Since, according to Eqn. 1p.7, the scattered field vectors of a single particle are orthogonal, we may express the instantaneous Poynting vector using Eqn. 13.21:
 
+$$ \tag{1p.20}
+\begin{aligned}
+	\bm{S_j}(\bm{r}, \psi, t)
+	&\simeq \mu\_0^{-1} \frac{\eta(\omega)}{c} {\big\vert \mathcal{Re} \big\lbrace \bm{E_j}(\bm{r}, \omega) e^{-i \omega t} \big\rbrace \big\vert}^2 \bm{n_s}
+	\cr
+	&= \mu\_0^{-1} \frac{\eta(\omega)}{c} \frac{\big\vert \mathcal{Re} \big\lbrace \mathcal{S_j} (\bm{n_s}, \bm{n_i}, \omega) \cdot \bm{E_0}(\bm{n_i}, \omega) e^{i k(\omega) (R_j + \bm{r_j} \cdot \bm{n_i}) -i \omega t} \big\rbrace \big\vert^2}{k^2(\omega) r^2} \bm{n_s}
+\end{aligned}
+$$
+
+As shown by Eqn. 13.22-13.23, the time-averaging process replaces the phase factor (that depends on the position \\(\bm{r_j}\\) of the particle) with a factor of \\(1/2\\), yielding the standard expression of the time-averaged Poynting vector
+
+$$ \tag{1p.21}
+\begin{aligned}
+	\braket{\bm{S_j}}\_t \negmedspace (\bm{r}, \psi)
+	&\simeq \frac{\mu\_0^{-1}}{2} \frac{\eta(\omega)}{c} \frac{\left\vert
+	\mathcal{S_j} (\bm{n_s}, \bm{n_i}, \omega) \cdot \bm{E_0}(\bm{n_i}, \omega) \right\vert^2}{k^2(\omega) r^2} \bm{n_s}
+\end{aligned}
+$$
+
+The far-field scattering dyadic \\(\mathcal{S_j}\\) of a particle only depends on its composition and orientation. Let \\(\psi\_c\\) and \\(\psi\_o\\) denote the corresponding states; then, according to Eqn. 1p.16, the mean value of the Poynting vector is
+
+$$ \tag{1p.22}
+\begin{aligned}
+	\braket{\braket{\bm{S_j}}} \negmedspace (\bm{r})
+	\simeq \int\_{\Psi_c} \int\_{\Psi_o} \braket{\bm{S_j}}\_t(\bm{r}, \psi_c, \psi_o) p(\psi_c, \psi_o) d\psi_c d\psi_o.
+\end{aligned}
+$$
+
+If all the particles in the group are homogeneous, then \\(\psi\_c\\) simply represents the complex refractive index of the particle. The orientation of the particle can be conveniently described using the Euler angles.
+
+Substitution of Eqn. 1p.21 into 1p.22 shows that, in general, the average amount of light scattered per particle is not the same as the amount of light scattered by the average particle. BAM!
 
 <!--
 ### Lorenz-Mie-Debye Theory
@@ -7203,7 +7237,7 @@ $$
 
 We may observe that the intensity directly depends on the wavenumber \\(k\\) in the host medium, and indirectly on the size parameter \\(x\\), the relative wavenumber \\(m\\), and the reciprocal of the relative permeability \\(u\\), through Eqn. 17.156 of the expansion coefficients \\(a_n\\) and \\(b_n\\). Not all of these parameters are independent; for instance, both \\(m\\) and \\(x\\) are proportional to \\(k\\). In order to make the analysis simple, we shall fix the values of \\(k\\), \\(m\\) and \\(u\\), and only vary the size of the particle \\(a\\), thereby determining the value of the size parameter \\(x\\).
 
-Consider a water droplet suspended in vacuum illuminated by orange light. Assuming the vacuum wavelength \\(\lambda_0 = 600 \text{ nm}\\), the corresponding wavenumber is \\(k = k_0 = 2 \pi / \lambda_0 \approx 0.01 \text{ nm}^{-1}\\). The index of refraction of [water](https://refractiveindex.info/?shelf=main&book=H2O&page=Hale) under visible light is \\(\eta + i \kappa \approx 4/3\\), with \\(\mu \approx 1\\). And since the particle is assumed to be located in vacuum, \\(m \approx 4/3\\) and \\(u \approx 1\\).
+Consider a water droplet suspended in vacuum illuminated by orange light. Assuming the vacuum wavelength \\(\lambda_0 = 600 \text{ nm}\\), the corresponding wavenumber is \\(k = k_0 = 2 \pi / \lambda_0 \approx 0.01 \text{ nm}^{-1}\\). The refractive index of [water](https://refractiveindex.info/?shelf=main&book=H2O&page=Hale) under visible light is \\(\eta + i \kappa \approx 4/3\\), with \\(\mu \approx 1\\). And since the particle is assumed to be located in vacuum, \\(m \approx 4/3\\) and \\(u \approx 1\\).
 
 The smallest possible water droplet is a [single molecule](https://water.lsbu.ac.uk/water/water_molecule.html) of radius \\(a \approx 0.1375 \text{ nm}\\), which corresponds to \\(x = k a \approx 0.00144\\). If we ignore the anisotropy of the molecule and imagine it to be a sphere, we can apply the Lorenz-Mie-Debye theory to determine the intensity of the scattered light.
 
