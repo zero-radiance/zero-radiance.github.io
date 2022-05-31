@@ -4381,7 +4381,7 @@ which matches the results found using the scalar wave theory \[[4](#references) 
 
 Consider a group of \\(N\\) arbitrary particles of embedded in a source-free region of a linear, isotropic, homogeneous medium characterized by the wavenumber \\(k\\). Let \\(V\\) denote both the region of space that contains the particles and its volume. For convenience, assume that the center of \\(V\\) coincides with the origin of the coordinate system.
 
-The field acting on each particle is the sum of the incident field and the scattered fields produced by the other particles \[[8](#references) (ch. 6.1)\]. The strength of this field depends on the number of particles, the distances between them, as well as the shape, the orientation, and the composition of each particle. In most cases, estimation of the scattered field in the region containing the particles is a formidable task more suited for a numerical computation. However, it is possible to make the problem amenable to an analytical treatment at the cost of generality, by considering a small group of weakly scattering, widely spaced particles. These properties make the *single-scattering approximation* applicable[^18], which allows us to neglect the action of the scattered field on the particles in the group \[[8](#references) (ch. 14.1)\].
+The field acting on each particle is the sum of the incident field and the scattered fields produced by its neighbors \[[8](#references) (ch. 6.1)\]. The strength of this field depends on the number of particles, the distances between them, as well as the shape, the orientation, and the composition of each particle. In most cases, estimation of the scattered field in the region containing the particles is a challenging task more suited for a numerical computation. However, it is possible to make the problem amenable to an analytical treatment at the cost of generality, by considering a small group of weakly scattering, widely spaced particles. These properties make the *single-scattering approximation* applicable[^18], which allows us to neglect the influence of the scattered field on the particles in the group \[[8](#references) (ch. 14.1)\].
 
 [^18]: The quantitative criteria for applicability of the single-scattering approximation are not well-established.
 
@@ -4395,7 +4395,7 @@ $$ \tag{1p.1}
 	k R_j \gg (k a_j)^2.
 $$
 
-As a result, the scattered far-field \\(\bm{E_j}\\) of the \\(j\\)-th particle is given by Eqn. 15.6:
+The resulting scattered far-field \\(\bm{E_j}\\) of the \\(j\\)-th particle is given by Eqn. 15.6:
 
 $$ \tag{1p.2}
 \begin{aligned}
@@ -4440,10 +4440,12 @@ The electric and the magnetic fields are related by Eqn. 16.11. In particular,
 
 $$ \tag{1p.7}
 	\bm{B_j}(\bm{r}, \omega)
-	\simeq \frac{\eta(\omega)}{c} \big( \bm{n_s} \times \bm{E_j}(\bm{r}, \omega) \big).
+	\simeq \frac{\eta(\omega)}{c} \big( \bm{n_s} \times \bm{E_j}(\bm{r}, \omega) \big),
 $$
 
-Let us combine the expressions of the incident and the scattered fields, and determine whether their interaction produces any observable interference effects. We can utilize the same method employed in Sec. 16; more specifically, let us repurpose Eqn. 16.17 and 16.22 of the time-averaged Poynting vector
+where \\(\eta\\) is the refractive index of the host medium.
+
+Let us combine the expressions of the incident and the scattered fields, and determine whether their interaction produces any observable interference effects. We can utilize the same method employed in Sec. 16; specifically, let us repurpose Eqn. 16.17 and 16.22 of the time-averaged Poynting vector
 
 $$ \tag{1p.8}
 \begin{aligned}
@@ -4463,14 +4465,14 @@ $$ \tag{1p.9}
 	= -\frac{\mu\_0^{-1}}{2} \mathcal{Re} \big\lbrace \bm{E_j} \times \bm{B_k^{\*}} + \bm{E_k} \times \bm{B_j^{\*}} \big\rbrace.
 $$
 
-is the term that models the interaction between the waves \\(j\\) and \\(k\\). In particular, \\(\braket{\bm{S_{ij}}}\\) expresses interference between the incident and the scattered waves that leads to the extinction effect (cf. Eqn. 16.20, 16.23).
+is the term that models the interaction of the waves \\(j\\) and \\(k\\). In particular, \\(\braket{\bm{S_{ij}}}\\) expresses interference between the incident and the scattered waves that leads to the extinction effect (cf. Eqn. 16.20, 16.23).
 
-Therefore, the only term we have not yet previously encountered, \\(\braket{\bm{S_{jk}}}\\), is the one that models the interaction between the scattered fields of two particles. Eqn. 16.11 shows that both \\(\bm{E_j}\\) and \\(\bm{B_k^{\*}}\\) (as well as \\(\bm{E_k}\\) and \\(\bm{B_j^{\*}}\\)) are transverse; however, we have no reason to believe that these field vectors are mutually orthogonal. In addition, the waves are not in-phase, since the spatial locations of the particles are not the same. As a result, it is not yet clear whether the last term of Eqn. 1p.8 converges to a simple and intuitive analytical expression.
+Therefore, the only term we have not yet previously encountered, \\(\braket{\bm{S_{jk}}}\\), is the one that models the interaction of the scattered waves of two particles. Eqn. 16.11 shows that both \\(\bm{E_j}\\) and \\(\bm{B_k^{\*}}\\) (as well as \\(\bm{E_k}\\) and \\(\bm{B_j^{\*}}\\)) are transverse; however, we have no reason to believe that these field vectors are mutually orthogonal. In addition, the waves are not in-phase, since the spatial locations of the particles are not the same. As a result, it is not immediately clear whether the last term of Eqn. 1p.8 converges to a simple and intuitive analytical expression.
 
-In order to obtain the desired solution, it is necessary to appeal to the [dynamic nature](https://en.wikipedia.org/wiki/Dynamical_system) of the microphysical system under consideration. Typically, the distribution of particles is not static -- it [evolves over time](https://en.wikipedia.org/wiki/Time_evolution), governed by the processes such as [turbulence](https://en.wikipedia.org/wiki/Turbulence) or [Brownian motion](https://en.wikipedia.org/wiki/Brownian_motion). Thus, most relationships between the particles are not persistent and, when averaged over time -- not significant.
+In order to obtain the desired solution, it is necessary to appeal to the [dynamic nature](https://en.wikipedia.org/wiki/Dynamical_system) of the microphysical system under consideration. Typically, the distribution of particles is not static -- it [evolves over time](https://en.wikipedia.org/wiki/Time_evolution), governed by processes such as [turbulence](https://en.wikipedia.org/wiki/Turbulence) or [Brownian motion](https://en.wikipedia.org/wiki/Brownian_motion). Thus, most relationships between the particles are not persistent and, when averaged over time -- not significant.
 
-Furthermore, while a system typically evolves fairly slowly in comparison to the period of oscillation of an electromagnetic wave, it may undergo a significant change during the time \\(T\\) it takes to perform a measurement. We can take advantage of this fact by assuming that dynamic light scattering is a [stationary process](https://en.wikipedia.org/wiki/Stationary_process), and
-that the duration of the measurement is sufficiently long for the time-averaged value of the Poynting vector
+Furthermore, while a system typically evolves fairly slowly in comparison to the period of oscillation of an electromagnetic wave, it may undergo a significant change during the time it takes to perform a measurement. We can take advantage of this fact by assuming that dynamic light scattering is a [stationary process](https://en.wikipedia.org/wiki/Stationary_process), and
+that the duration \\(T\\) of the measurement is sufficiently long for the time-averaged value of the Poynting vector
 
 $$ \tag{1p.8}
 	\braket{\bm{S}} \negmedspace (\bm{r}, t)
@@ -4491,9 +4493,11 @@ $$ \tag{1p.10}
 	\approx \braket{\braket{\bm{S}}} \negmedspace (\bm{r}).
 $$
 
+A dynamic process, such that its every sizable time sequence is statistically representative of the whole, is called [ergodic](https://en.wikipedia.org/wiki/Ergodicity) \[[8](#references) (ch. 10.4)\].
+
 In principle, one could solve the dynamic light scattering problem by choosing the initial configuration of the system (i.e. by assigning each particle a certain position, orientation, shape, and composition), describing the way the system evolves, and evaluating the integral given by Eqn 1p.9. In practice, this (obvious, but arduous) solution is rarely used; nevertheless, it is important to understand the conceptual model and its implications.
 
-First of all, since the positions and the orientations of the particles become time-dependent, the phasors of the scattered field must become time-dependent as well. Thus, upon examining the expression of the total field
+First of all, since the positions and the orientations of the particles vary in time, the phasors of the scattered field must become time-dependent as well. Examination of the resulting expression of the total field
 
 $$ \tag{1p.11}
 	\bm{E}(\bm{r}, t)
@@ -4501,7 +4505,7 @@ $$ \tag{1p.11}
 	+ \sum\_{p = 1}^{\infin} \mathcal{Re} \big\lbrace \bm{E_p}(\bm{r}, t) e^{-i \omega_p t} \big\rbrace,
 $$
 
-we may notice that its components are no longer time-harmonic. That complicates the theory, since, unlike Eqn. 4.8, Eqn 1p.11 does not rigorously satisfy the Maxwell equations.
+reveals that its components are no longer time-harmonic. This complicates the theory, since, unlike Eqn. 4.8, Eqn 1p.11 does not rigorously satisfy the Maxwell equations.
 
 Furthermore, substitution of Eqn. 1p.11 into 1p.9 results in an integral
 
@@ -4515,7 +4519,7 @@ $$ \tag{1p.12}
 \end{aligned}
 $$
 
-that, unlike Eqn 4.14, cannot be readily simplified any further. However, if we are only concerned with high-frequency electromagnetic radiation, and if the [temperature](https://en.wikipedia.org/wiki/Thermal_velocity) of the substance is not too high, then the fundamental period \\(T_1\\) of the electromagnetic field is much shorter than the amount of time \\(T_e\\) it takes the system to evolve to a significant degree:
+that, unlike Eqn 4.14, cannot be readily simplified any further. However, if we are only concerned with high-frequency electromagnetic radiation, and if the [temperature](https://en.wikipedia.org/wiki/Thermal_velocity) of the substance is not too high, then we may assume that the fundamental period \\(T_1\\) of the electromagnetic field is much shorter than the amount of time \\(T_e\\) it takes the system to evolve to a significant degree:
 
 $$ \tag{1p.13}
 	T_e \gg T_1.
@@ -4537,7 +4541,7 @@ $$ \tag{1p.14}
 \end{aligned}
 $$
 
-in such a way that, during the first step, while the time-harmonic factor of the incident field is being eliminated, the microphysical system kept static. This is a crucial simplification, since it decouples time-dependence of the incident field from that of the microphysical system.
+in such a way that, while the time-harmonic factor of the incident field is being eliminated, the microphysical system kept static. This crucial simplification decouples time-dependence of the incident field from that of the microphysical system.
 
 At this point, we may formally introduce the idea of a [microstate](https://en.wikipedia.org/wiki/Microstate_(statistical_mechanics)) (also known as a [realization](https://en.wikipedia.org/wiki/Realization_(probability))). It is a finite collection of parameters (that correspond to the internal degrees of freedom) of a microphysical system that can be used to describe its configuration at a certain point in time. Exposing the microstate \\(\psi\\) as a parameter of  Eqn. 1p.14 yields:
 
@@ -4561,7 +4565,7 @@ $$ \tag{1p.16}
 \end{aligned}
 $$
 
-The new formulation reinterprets the dynamic model as a [stochastic process](https://en.wikipedia.org/wiki/Stochastic_process) characterized by the set \\(\Psi\\) of the possible outcomes (i.e. microstates) called an [ensemble](https://en.wikipedia.org/wiki/Ensemble_(mathematical_physics)), and the associated [probability density function](https://en.wikipedia.org/wiki/Probability_density_function) \\(p(\psi)\\) that describes the likelihood of observing the system in each microstate.
+The new formulation replaces the dynamic model with a [stochastic process](https://en.wikipedia.org/wiki/Stochastic_process) characterized by the set \\(\Psi\\) of possible outcomes (i.e. microstates) called an [ensemble](https://en.wikipedia.org/wiki/Ensemble_(mathematical_physics)), and the associated [probability density function](https://en.wikipedia.org/wiki/Probability_density_function) \\(p(\psi)\\) that describes the likelihood of observing the system in each microstate.
 
 The integral found in Eqn. 1p.16 represents a special kind of weighted average
 
@@ -4570,21 +4574,25 @@ $$ \tag{1p.17}
 	= \int_{\Psi} f(\psi) p(\psi) d\psi,
 $$
 
-called an [ensemble average](https://en.wikipedia.org/wiki/Ensemble_average). Formally, it is defined as the [expected value](https://en.wikipedia.org/wiki/Expected_value) of a quantity that is a function of the microstate of the system. If we also introduce a convenient short-hand notation
+called an [ensemble average](https://en.wikipedia.org/wiki/Ensemble_average). Formally, it is defined as the [expected value](https://en.wikipedia.org/wiki/Expected_value) of a quantity that depends on the microstate of the system.
 
-$$ \tag{1p.19}
+It is also convenient to introduce a short-hand notation
+
+$$ \tag{1p.18}
 	\braket{f}\_t
 	= \frac{1}{T_1} \int\_{-T_1/2}^{\thinspace T_1/2} f(\bm{r}, \psi(t), t + t') dt'
 $$
 
-for the time average over the fundamental period of the electromagnetic field, then our approximation can be summarized as
+for the average over the fundamental period of the electromagnetic field.
 
-$$ \tag{1p.20}
+By combining Eqn. 1p.10, 1p.14, 1p.17 and 1p.18, our approximation can be summarized as
+
+$$ \tag{1p.19}
 	\braket{\bm{S}} \negmedspace (\bm{r}, t)
 	\approx \braket{\braket{\bm{S}}\_t}\_{\psi} \negmedspace (\bm{r}).
 $$
 
-A dynamic process, such that its every sizable time sequence is statistically representative of the whole, is called [ergodic](https://en.wikipedia.org/wiki/Ergodicity) \[[8](#references) (ch. 10.4)\].
+
 
 <!--
 ### Lorenz-Mie-Debye Theory
