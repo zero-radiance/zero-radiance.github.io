@@ -4507,7 +4507,7 @@ $$ \tag{1p.11}
 	+ \sum\_{p = 1}^{\infin} \mathcal{Re} \big\lbrace \bm{E_p}(\bm{r}, t) e^{-i \omega_p t} \big\rbrace,
 $$
 
-reveals that its components are no longer time-harmonic. This complicates the theory, since, unlike Eqn. 4.8, Eqn 1p.11 does not rigorously satisfy the Maxwell equations.
+reveals that its components are no longer time-harmonic. This complicates the theory, since, unlike Eqn. 4.8, Eqn 1p.11 can not be obtained by solving the Maxwell equations in the frequency domain.
 
 Furthermore, substitution of Eqn. 1p.11 into 1p.9 results in an integral
 
@@ -4556,7 +4556,7 @@ $$ \tag{1p.15}
 \end{aligned}
 $$
 
-Eqn. 1p.15 makes it apparent that the mean value of the Poynting vector directly depends on the fraction of time \\(p(\psi)\\) the system spends in each microstate:
+The form of Eqn. 1p.15 makes it apparent that the mean value of the Poynting vector directly depends on the fraction of time \\(p(\psi)\\) the system spends in each microstate:
 
 $$ \tag{1p.16}
 \begin{aligned}
@@ -4567,30 +4567,27 @@ $$ \tag{1p.16}
 \end{aligned}
 $$
 
-The form of the integrand in Eqn. 1p.16 implies that the associated expression of the total field is periodic:
+The new formulation replaces the dynamic model of the microphysical system with a [stochastic process](https://en.wikipedia.org/wiki/Stochastic_process) characterized by the set \\(\Psi\\) of possible outcomes (i.e. microstates) called an [ensemble](https://en.wikipedia.org/wiki/Ensemble_(mathematical_physics)), and the associated [probability density function](https://en.wikipedia.org/wiki/Probability_density_function) \\(p(\psi)\\) that describes the likelihood of observing the system in each microstate. It also restores the periodic form of the expression of the total field:
 
 $$ \tag{1p.17}
-	\bm{E}(\bm{r}, t)
-	= \frac{1}{2} \bm{E_0}(\bm{r}, \psi)
-	+ \sum\_{p = 1}^{\infin} \mathcal{Re} \big\lbrace \bm{E_p}(\bm{r}, \psi) e^{-i \omega_p t} \big\rbrace.
+	\bm{E}(\bm{r}, \psi, t)
+	= \sum\_{p = 1}^{\infin} \mathcal{Re} \big\lbrace \bm{E_p}(\bm{r}, \psi) e^{-i \omega_p t} \big\rbrace.
 $$
 
-The new formulation replaces the dynamic model of the microphysical system with a [stochastic process](https://en.wikipedia.org/wiki/Stochastic_process) characterized by the set \\(\Psi\\) of possible outcomes (i.e. microstates) called an [ensemble](https://en.wikipedia.org/wiki/Ensemble_(mathematical_physics)), and the associated [probability density function](https://en.wikipedia.org/wiki/Probability_density_function) \\(p(\psi)\\) that describes the likelihood of observing the system in each microstate.
+The result is an extension (rather than a modification) of Eqn. 4.8. This key aspect allows all of the previously-established theory to remain valid.
 
 The integral found in Eqn. 1p.16 represents a special kind of weighted average
 
 $$ \tag{1p.18}
 	\braket{f}\_{\psi}
-	= \int_{\Psi} f(\psi) p(\psi) d\psi,
+	= \int_{\Psi} f(\bm{r}, \psi, t) p(\psi) d\psi,
 $$
 
-called an [ensemble average](https://en.wikipedia.org/wiki/Ensemble_average). Formally, it is defined as the [expected value](https://en.wikipedia.org/wiki/Expected_value) of a quantity that depends on the microstate of the system.
-
-It is also convenient to introduce a short-hand notation
+called an [ensemble average](https://en.wikipedia.org/wiki/Ensemble_average). Formally, it is defined as the [expected value](https://en.wikipedia.org/wiki/Expected_value) of a quantity that depends on the microstate of the system. Let us also introduce a convenient short-hand notation
 
 $$ \tag{1p.19}
 	\braket{f}\_t
-	= \frac{1}{T_1} \int\_{-T_1/2}^{\thinspace T_1/2} f(\bm{r}, \psi(t), t + t') dt'
+	= \frac{1}{T_1} \int\_{-T_1/2}^{\thinspace T_1/2} f(\bm{r}, \psi, t + t') dt'
 $$
 
 for the average over the fundamental period of the electromagnetic field.
@@ -4602,9 +4599,11 @@ $$ \tag{1p.20}
 	\approx \braket{\braket{\bm{S}}\_t}\_{\psi} \negmedspace (\bm{r}).
 $$
 
-Let us apply the ergodic assumption to Eqn. 1p.8, and consider its individual terms. First of all, since the expression of the incident field does not depend on the presence of the scattering object, no modifications to \\(\braket{\bm{S\_i}}\\) are necessary. The second term of Eqn. 1p.8 is formed by electromagnetic waves scattered by the particles. Since, according to Eqn. 1p.7, the scattered field vectors of a single particle are orthogonal, we may express the instantaneous Poynting vector using Eqn. 13.21:
+Let us apply the ergodic assumption to Eqn. 1p.8, and carefully consider its individual terms. First of all, since the expression of the incident field does not depend on the presence of the scattering object, no modifications to \\(\braket{\bm{S\_i}}\\) are necessary. The should expect the remaining terms
 
-$$ \tag{1p.20}
+The second term of Eqn. 1p.8 is formed by electromagnetic waves scattered by the particles. Since, according to Eqn. 1p.7, the scattered field vectors of any individual particle are orthogonal, we may express the instantaneous Poynting vector using Eqn. 13.21:
+
+$$ \tag{1p.21}
 \begin{aligned}
 	\bm{S_j}(\bm{r}, \psi, t)
 	&\simeq \mu\_0^{-1} \frac{\eta(\omega)}{c} {\big\vert \mathcal{Re} \big\lbrace \bm{E_j}(\bm{r}, \omega) e^{-i \omega t} \big\rbrace \big\vert}^2 \bm{n_s}
@@ -4613,9 +4612,9 @@ $$ \tag{1p.20}
 \end{aligned}
 $$
 
-As shown by Eqn. 13.22-13.23, the time-averaging process replaces the phase factor (that depends on the position \\(\bm{r_j}\\) of the particle) with a factor of \\(1/2\\), yielding the standard expression of the time-averaged Poynting vector
+As we have already shown in Eqn. 13.22-13.23, the time-averaging process replaces the phase factor with a factor of \\(1/2\\), yielding the standard expression of the time-averaged Poynting vector
 
-$$ \tag{1p.21}
+$$ \tag{1p.22}
 \begin{aligned}
 	\braket{\bm{S_j}}\_t \negmedspace (\bm{r}, \psi)
 	&\simeq \frac{\mu\_0^{-1}}{2} \frac{\eta(\omega)}{c} \frac{\left\vert
@@ -4623,18 +4622,32 @@ $$ \tag{1p.21}
 \end{aligned}
 $$
 
-The far-field scattering dyadic \\(\mathcal{S_j}\\) of a particle only depends on its composition and orientation. Let \\(\psi\_c\\) and \\(\psi\_o\\) denote the corresponding states; then, according to Eqn. 1p.16, the mean value of the Poynting vector is
+that does not depend on the position \\(\bm{r_j}\\) of the particle. It does, however, implicitly depend on its composition, shape, and orientation via the far-field scattering dyadic \\(\mathcal{S_j}\\). Let \\(\psi\_c\\), \\(\psi\_s\\), and \\(\psi\_o\\) denote the corresponding states; then, according to Eqn. 1p.16, the mean value of the Poynting vector is
 
-$$ \tag{1p.22}
+$$ \tag{1p.23}
 \begin{aligned}
-	\braket{\braket{\bm{S_j}}} \negmedspace (\bm{r})
-	\simeq \int\_{\Psi_c} \int\_{\Psi_o} \braket{\bm{S_j}}\_t(\bm{r}, \psi_c, \psi_o) p(\psi_c, \psi_o) d\psi_c d\psi_o.
+	\braket{\braket{\bm{S_s}}} \negmedspace (\bm{r})
+	\simeq \int\_{\Psi_c} \int\_{\Psi_s} \int\_{\Psi_o}
+	\braket{\bm{S_j}}\_t \negmedspace (\bm{r}, \psi_c, \psi_s, \psi_o)
+	p(\psi_c, \psi_s, \psi_o) d\psi_c d\psi_s d\psi_o.
 \end{aligned}
 $$
 
-If all the particles in the group are homogeneous, then \\(\psi\_c\\) simply represents the complex refractive index of the particle. The orientation of the particle can be conveniently described using the Euler angles.
+Substitution of Eqn. 1p.22 into 1p.23 shows that, in general, the amount of light scattered per particle is not the same as the amount of light scattered by the average particle. Furthermore, the form of the expression of the total amount of power scattered by all particles
 
-Substitution of Eqn. 1p.21 into 1p.22 shows that, in general, the average amount of light scattered per particle is not the same as the amount of light scattered by the average particle. BAM!
+$$ \tag{1p.24}
+	\braket{\Phi_s}
+	= \oint_{A} \sum_j \braket{\braket{\bm{S_j}}} \cdot \bm{n_s} \thinspace dA
+	= \sum_j \int_{\Psi} \left[ \oint_{A}
+	\left( \braket{\bm{S_j}}\_t \negmedspace (\bm{r}, \psi) \cdot \bm{n_s} \right)
+	dA \right] p(\psi) d\psi
+$$
+
+implies that the scattering cross-sections \\(C_s\\) (defined by Eqn. 16.39.1) of the individual particles can be summed to yield the *volume scattering coefficient*
+
+$$ \tag{1p.25}
+	\beta_s = \frac{N}{V} C_s.
+$$
 
 <!--
 ### Lorenz-Mie-Debye Theory
