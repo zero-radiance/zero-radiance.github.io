@@ -629,7 +629,7 @@ $$
 
 The expression is compact and simple, but not particularly useful, since the value of the Poynting phasor for a particular frequency depends on the entire electromagnetic spectrum.
 
-We can obtain a more practical result at the cost of some generality. Specifically, we must assume that the electromagnetic field is a [periodic function](https://en.wikipedia.org/wiki/Periodic_function) of time, such that the *fundamental period* \\(\thinspace T\_1 = 2 \pi / \omega_1\\) of both[^3] the electric and the magnetic fields is the same \[[5](#references) (vol. I, ch. 50) [6](#references) (ch. 1.3.3, 1.4.3)\]. In most cases, the limitations imposed by this condition are not particularly severe: usually, for visible light, the fundamental period is very short, and the fields can often be virtually repeated outside the time interval of interest.
+We can obtain a more practical result at the cost of some generality. Specifically, we must assume that the expression of the electromagnetic field is a [periodic function](https://en.wikipedia.org/wiki/Periodic_function) of time, such that the *fundamental period* \\(\thinspace T\_1 = 2 \pi / \omega_1\\) of both[^3] the electric and the magnetic fields is the same \[[5](#references) (vol. I, ch. 50) [6](#references) (ch. 1.3.3, 1.4.3)\]. In most cases, the limitations imposed by this condition are not particularly severe: usually, for visible light, the fundamental period is very short, and the fields can often be virtually repeated outside the time interval of interest.
 
 [^3]: The fact that the electric and the magnetic fields cannot exist independently can be shown by a simple relativistic argument \[[13](#references) (ch. 6.2)\].
 
@@ -4474,14 +4474,14 @@ Therefore, the only term we have not yet previously encountered, \\(\braket{\bm{
 In order to obtain the desired solution, it is necessary to appeal to the [dynamic nature](https://en.wikipedia.org/wiki/Dynamical_system) of the microphysical system under consideration. Typically, the distribution of particles is not static -- it [evolves over time](https://en.wikipedia.org/wiki/Time_evolution), governed by processes such as [turbulence](https://en.wikipedia.org/wiki/Turbulence) or [Brownian motion](https://en.wikipedia.org/wiki/Brownian_motion). Thus, most relationships between the particles are not persistent and, when averaged over time -- not significant.
 
 Furthermore, while a system typically evolves fairly slowly in comparison to the period of oscillation of an electromagnetic wave, it may undergo a significant change during the time it takes to perform a measurement. We can take advantage of this fact by assuming that dynamic light scattering is a [stationary process](https://en.wikipedia.org/wiki/Stationary_process), and
-that the duration \\(T\\) of the measurement is sufficiently long for the time-averaged value of the Poynting vector
+that the duration \\(T\\) of the measurement is sufficiently long for the *time-averaged value* of the Poynting vector
 
 $$ \tag{1p.8}
 	\braket{\bm{S}} \negmedspace (\bm{r}, t)
 	= \frac{1}{T} \int\_{-T/2}^{\thinspace T/2} \bm{S}(\bm{r}, t + t') dt'
 $$
 
-to be approximately equal to its mean value
+to be approximately equal to its *mean value*
 
 $$ \tag{1p.9}
 	\braket{\braket{\bm{S}}} \negmedspace (\bm{r})
@@ -4567,11 +4567,19 @@ $$ \tag{1p.16}
 \end{aligned}
 $$
 
-The new formulation replaces the dynamic model with a [stochastic process](https://en.wikipedia.org/wiki/Stochastic_process) characterized by the set \\(\Psi\\) of possible outcomes (i.e. microstates) called an [ensemble](https://en.wikipedia.org/wiki/Ensemble_(mathematical_physics)), and the associated [probability density function](https://en.wikipedia.org/wiki/Probability_density_function) \\(p(\psi)\\) that describes the likelihood of observing the system in each microstate.
+The form of the integrand in Eqn. 1p.16 implies that the associated expression of the total field is periodic:
+
+$$ \tag{1p.17}
+	\bm{E}(\bm{r}, t)
+	= \frac{1}{2} \bm{E_0}(\bm{r}, \psi)
+	+ \sum\_{p = 1}^{\infin} \mathcal{Re} \big\lbrace \bm{E_p}(\bm{r}, \psi) e^{-i \omega_p t} \big\rbrace.
+$$
+
+The new formulation replaces the dynamic model of the microphysical system with a [stochastic process](https://en.wikipedia.org/wiki/Stochastic_process) characterized by the set \\(\Psi\\) of possible outcomes (i.e. microstates) called an [ensemble](https://en.wikipedia.org/wiki/Ensemble_(mathematical_physics)), and the associated [probability density function](https://en.wikipedia.org/wiki/Probability_density_function) \\(p(\psi)\\) that describes the likelihood of observing the system in each microstate.
 
 The integral found in Eqn. 1p.16 represents a special kind of weighted average
 
-$$ \tag{1p.17}
+$$ \tag{1p.18}
 	\braket{f}\_{\psi}
 	= \int_{\Psi} f(\psi) p(\psi) d\psi,
 $$
@@ -4580,16 +4588,16 @@ called an [ensemble average](https://en.wikipedia.org/wiki/Ensemble_average). Fo
 
 It is also convenient to introduce a short-hand notation
 
-$$ \tag{1p.18}
+$$ \tag{1p.19}
 	\braket{f}\_t
 	= \frac{1}{T_1} \int\_{-T_1/2}^{\thinspace T_1/2} f(\bm{r}, \psi(t), t + t') dt'
 $$
 
 for the average over the fundamental period of the electromagnetic field.
 
-By combining Eqn. 1p.10, 1p.14, 1p.17 and 1p.18, our approximation can be summarized as
+By combining Eqn. 1p.10, 1p.14, 1p.18 and 1p.19, our approximation can be summarized as
 
-$$ \tag{1p.19}
+$$ \tag{1p.20}
 	\braket{\bm{S}} \negmedspace (\bm{r}, t)
 	\approx \braket{\braket{\bm{S}}\_t}\_{\psi} \negmedspace (\bm{r}).
 $$
