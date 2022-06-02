@@ -4383,7 +4383,7 @@ which matches the results found using the scalar wave theory \[[4](#references) 
 
 Consider a group of \\(N\\) arbitrary particles of embedded in a source-free region of a linear, isotropic, homogeneous medium characterized by the wavenumber \\(k\\). Let \\(V\\) denote both the region of space that contains the particles and its volume. For convenience, assume that the center of \\(V\\) coincides with the origin of the coordinate system.
 
-The field acting on each particle is the sum of the incident field and the scattered fields produced by its neighbors \[[8](#references) (ch. 6.1)\]. The strength of this field depends on the number of particles, the distances between them, as well as the shape, the orientation, and the composition of each particle. In most cases, estimation of the scattered field in the region containing the particles is a challenging task more suited for a numerical computation. However, it is possible to make the problem amenable to an analytical treatment at the cost of generality, by considering a small group of weakly scattering, widely spaced particles. These properties make the *single-scattering approximation* applicable[^18], which allows us to neglect the influence of the scattered field on the particles in the group \[[8](#references) (ch. 14.1)\].
+The field acting on each particle is the sum of the incident field and the scattered fields produced by its neighbors \[[8](#references) (ch. 6.1)\]. The strength of this field depends on the number of particles, the distances between them, as well as the shape, the orientation, shape, and composition of each particle. In most cases, estimation of the scattered field in the region containing the particles is a challenging task more suited for a numerical computation. However, it is possible to make the problem amenable to an analytical treatment at the cost of generality, by considering a small group of weakly scattering, widely spaced particles. These properties make the *single-scattering approximation* applicable[^18], which allows us to neglect the influence of the scattered field on the particles in the group \[[8](#references) (ch. 14.1)\].
 
 [^18]: The quantitative criteria for applicability of the single-scattering approximation are not well-established.
 
@@ -4596,22 +4596,35 @@ $$
 
 ---
 
-Let us apply the ergodic assumption to Eqn. 1p.9, and carefully consider its individual terms. First of all, since the expression of the incident field does not depend on the presence of the scattering object, no modifications to \\(\braket{\bm{S\_i}}\\) are necessary. The should expect the remaining terms
+$$ \tag{1p.8}
+\begin{aligned}
+	\braket{\bm{S}}
+	&= \frac{\mu\_0^{-1}}{2} \mathcal{Re} \Big\lbrace
+	\Big( \bm{E_i} + \sum_j \bm{E_j} \Big) \times
+	\Big( \bm{B_i^{\*}} + \sum_j \bm{B_j^{\*}} \Big) \Big\rbrace
+	\cr
+	&= \braket{\bm{S_i}} + \sum_j \braket{\bm{S_j}} - \sum_j \braket{\bm{S_{ij}}} - \sum_{j < k} \braket{\bm{S_{jk}}},
+\end{aligned}
+$$
 
-The second term of Eqn. 1p.9 is formed by electromagnetic waves scattered by the particles. Since, according to Eqn. 1p.7, the scattered field vectors of any individual particle are orthogonal, we may express the instantaneous Poynting vector using Eqn. 13.21:
+---
 
-$$ \tag{1p.21}
+Let us apply the ergodic assumption to Eqn. 1p.8, and carefully consider its individual terms. First of all, since the expression of the incident field does not depend on the presence of the scattering object, no modifications to \\(\braket{\bm{S\_i}}\\) are necessary. The remaining terms can benefit from ensemble averaging.
+
+Let us now turn our attention to the scattered field associated with the \\(j\\)-th particle. Since, according to Eqn. 1p.7, the field vectors are mutually orthogonal, we may express the instantaneous Poynting vector using Eqn. 13.21:
+
+$$ \tag{1p.23}
 \begin{aligned}
 	\bm{S_j}(\bm{r}, \psi, t)
-	&\simeq \mu\_0^{-1} \frac{\eta(\omega)}{c} {\big\vert \mathcal{Re} \big\lbrace \bm{E_j}(\bm{r}, \omega) e^{-i \omega t} \big\rbrace \big\vert}^2 \bm{n_s}
+	&\simeq \mu\_0^{-1} \frac{\eta(\omega)}{c} {\big\vert \mathcal{Re} \big\lbrace \bm{E_j}(\bm{r}, \psi, \omega) e^{-i \omega t} \big\rbrace \big\vert}^2 \bm{n_s}
 	\cr
 	&= \mu\_0^{-1} \frac{\eta(\omega)}{c} \frac{\big\vert \mathcal{Re} \big\lbrace \mathcal{S_j} (\bm{n_s}, \bm{n_i}, \omega) \cdot \bm{E_0}(\bm{n_i}, \omega) e^{i k(\omega) (R_j + \bm{r_j} \cdot \bm{n_i}) -i \omega t} \big\rbrace \big\vert^2}{k^2(\omega) r^2} \bm{n_s}
 \end{aligned}
 $$
 
-As we have already shown in Eqn. 13.22-13.23, the time-averaging process replaces the phase factor with a factor of \\(1/2\\), yielding the standard expression of the time-averaged Poynting vector
+As we have already shown in Eqn. 13.22-13.23, performing time-averaging allows us to replace the phase factor with a factor of \\(1/2\\), yielding the standard expression of the time-averaged Poynting vector
 
-$$ \tag{1p.22}
+$$ \tag{1p.24}
 \begin{aligned}
 	\braket{\bm{S_j}}\_t \negmedspace (\bm{r}, \psi)
 	&\simeq \frac{\mu\_0^{-1}}{2} \frac{\eta(\omega)}{c} \frac{\left\vert
@@ -4619,32 +4632,52 @@ $$ \tag{1p.22}
 \end{aligned}
 $$
 
-that does not depend on the position \\(\bm{r_j}\\) of the particle. It does, however, implicitly depend on its composition, shape, and orientation via the far-field scattering dyadic \\(\mathcal{S_j}\\). Let \\(\psi\_c\\), \\(\psi\_s\\), and \\(\psi\_o\\) denote the corresponding states; then, according to Eqn. 1p.16, the mean value of the Poynting vector is
+that does not reference the position \\(\bm{r_j}\\) of the particle. It does, however, implicitly depend on its orientation, shape, and composition via the far-field scattering dyadic \\(\mathcal{S_j}\\). Because the latter is located inside the squared norm operator, performing ensemble averaging of the Poynting vector associated with the scattered field
 
-$$ \tag{1p.23}
+$$ \tag{1p.25}
 \begin{aligned}
-	\braket{\braket{\bm{S_s}}} \negmedspace (\bm{r})
-	\simeq \int\_{\Psi_c} \int\_{\Psi_s} \int\_{\Psi_o}
-	\braket{\bm{S_j}}\_t \negmedspace (\bm{r}, \psi_c, \psi_s, \psi_o)
-	p(\psi_c, \psi_s, \psi_o) d\psi_c d\psi_s d\psi_o.
+	\braket{\braket{\bm{S_j}}} \negmedspace (\bm{r})
+	\simeq \int\_{\Psi}
+	\braket{\bm{S_j}}\_t \negmedspace (\bm{r}, \psi)
+	p(\psi) d\psi
 \end{aligned}
 $$
 
-Substitution of Eqn. 1p.22 into 1p.23 shows that, in general, the amount of light scattered per particle is not the same as the amount of light scattered by the average particle. Furthermore, the form of the expression of the total amount of power scattered by all particles
+is different from averaging the scattering dyadic.
 
-$$ \tag{1p.24}
-	\braket{\Phi_s}
+We may use Eqn. 1p.25 to form the expression of the total amount of power scattered by all particles:
+
+$$ \tag{1p.26}
+	\Phi_s^{tot}
 	= \oint_{A} \sum_j \braket{\braket{\bm{S_j}}} \cdot \bm{n_s} \thinspace dA
 	= \sum_j \int_{\Psi} \left[ \oint_{A}
 	\left( \braket{\bm{S_j}}\_t \negmedspace (\bm{r}, \psi) \cdot \bm{n_s} \right)
 	dA \right] p(\psi) d\psi
+	= \sum_j \braket{\Phi_s}.
 $$
 
-implies that the scattering cross-sections \\(C_s\\) (defined by Eqn. 16.39.1) of the individual particles can be summed to yield the *volume scattering coefficient*
+From it, two conclusions can be drawn:
 
-$$ \tag{1p.25}
-	\beta_s = \frac{N}{V} C_s.
+1. because of a non-linear transformation applied to the scattering dyadic, the amount of light scattered per particle is not the same as the amount of light scattered by the average particle;
+2. under the ergodic assumption, the scattered light intensities, powers, and, thus, the scattering cross-sections (defined by Eqn. 16.39.1) of non-interacting particles can be summed.
+
+We may go one step further and define the mean scattering cross-section \\(\braket{C_s}\\) as
+
+$$ \tag{1p.27}
+	\braket{C_s}
+	= \frac{\braket{\Phi_s}}{\Epsilon_i}
+	= \frac{1}{\Epsilon_i} \int_{\Psi} \left[ \oint_{A}
+	\left( \braket{\bm{S_j}}\_t \negmedspace (\bm{r}, \psi) \cdot \bm{n_s} \right)
+	dA \right] p(\psi) d\psi.
 $$
+
+After taking Eqn. 1p.26 into account, it allows us to define the *volume scattering coefficient*
+
+$$ \tag{1p.28}
+	\beta_s = \frac{N}{V} \braket{C_s}
+$$
+
+for a region of space containing \\(N/V\\) particles per unit volume. If we consider the space to be filled with non-overlapping groups of particles, then Eqn. 1p.28 offers a convenient, spatially-varying description of its scattering properties in radiometric terms.
 
 <!--
 ### Lorenz-Mie-Debye Theory
