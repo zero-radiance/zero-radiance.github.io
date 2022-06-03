@@ -21,7 +21,7 @@ While we may spend more time and energy fiddling with various combinations of pa
 
 The method can be briefly outlined as follows:
 
-1. We describe the shape, the size, and the composition of an individual particle.
+1. We describe the position, orientation, shape, size, and composition of an individual particle.
 2. We describe radiation incident on the particle using Maxwell's electromagnetic wave theory.
 3. The incident wave interacts with the particle, producing a scattered wave.
 4. Given the description of the incident and the scattered waves, we find the scattering and extinction efficiencies of the particle.
@@ -4383,7 +4383,7 @@ which matches the results found using the scalar wave theory \[[4](#references) 
 
 Consider a group of \\(N\\) arbitrary particles of embedded in a source-free region of a linear, isotropic, homogeneous medium characterized by the wavenumber \\(k\\). Let \\(V\\) denote both the region of space that contains the particles and its volume. For convenience, assume that the center of \\(V\\) coincides with the origin of the coordinate system.
 
-The field acting on each particle is the sum of the incident field and the scattered fields produced by its neighbors \[[8](#references) (ch. 6.1)\]. The strength of this field depends on the number of particles, the distances between them, as well as the shape, the orientation, shape, and composition of each particle. In most cases, estimation of the scattered field in the region containing the particles is a challenging task more suited for a numerical computation. However, it is possible to make the problem amenable to an analytical treatment at the cost of generality, by considering a small group of weakly scattering, widely spaced particles. These properties make the *single-scattering approximation* applicable[^18], which allows us to neglect the influence of the scattered field on the particles in the group \[[8](#references) (ch. 14.1)\].
+The field acting on each particle is the sum of the incident field and the scattered fields produced by its neighbors \[[8](#references) (ch. 6.1)\]. The strength of this field depends on the number of particles, the distances between them, as well as the orientation, shape, size, and composition of each particle. In most cases, estimation of the scattered field in the region containing the particles is a challenging task more suited for a numerical computation. However, it is possible to make the problem amenable to an analytical treatment at the cost of generality, by considering a small group of weakly scattering, widely spaced particles. These properties make the *single-scattering approximation* applicable[^18], which allows us to neglect the influence of the scattered field on the particles in the group \[[8](#references) (ch. 14.1)\].
 
 [^18]: The quantitative criteria for applicability of the single-scattering approximation are not well-established.
 
@@ -4495,7 +4495,7 @@ $$ \tag{1p.12}
 	\approx \braket{\braket{\bm{S}}} \negmedspace (\bm{r}).
 $$
 
-In principle, one could solve a dynamic light scattering problem by choosing the initial configuration of the system (i.e. by assigning each particle a certain position, orientation, shape, and composition), describing the way the system evolves, and evaluating the integral given by Eqn 1p.10. In practice, this (obvious, but arduous) solution is rarely used; nevertheless, it is important to understand the conceptual model and its implications.
+In principle, one could solve a dynamic light scattering problem by choosing the initial configuration of the system (i.e. by assigning each particle a certain position, orientation, shape, size, and composition), describing the way the system evolves, and evaluating the integral given by Eqn 1p.10. In practice, this (obvious, but arduous) solution is rarely used; nevertheless, it is important to understand the conceptual model and its implications.
 
 First of all, since the properties of the particles vary in time, the phasors of the scattered field must become time-dependent as well. Examination of the resulting expression of the total field
 
@@ -4632,7 +4632,7 @@ $$ \tag{1p.24}
 \end{aligned}
 $$
 
-that does not reference the position \\(\bm{r_j}\\) of the particle. It does, however, implicitly depend on its orientation, shape, and composition via the far-field scattering dyadic \\(\mathcal{S_j}\\). Because the latter is located inside the squared norm operator, performing ensemble averaging of the Poynting vector associated with the scattered field
+that does not reference the position \\(\bm{r_j}\\) of the particle. It does, however, implicitly depend on its orientation, shape, size, and composition via the far-field scattering dyadic \\(\mathcal{S_j}\\). Because the latter is located inside the squared norm operator, performing ensemble averaging of the Poynting vector associated with the scattered field
 
 $$ \tag{1p.25}
 \begin{aligned}
