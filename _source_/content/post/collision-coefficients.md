@@ -390,7 +390,7 @@ $$ \tag{2.19}
 	\bm{S'}(\bm{r}, t) = \bm{S}(\bm{r}, t) + \nabla \times \bm{X}(\bm{r}, t)
 $$
 
-without violating the Poynting theorem \[[5](#references) (vol. II, ch. 27.4)\]. However, in practice, it does not pose a problem, since it is not actually possible to measure the the energy *density* (or its flow) directly, and if one measures the *amount* (or its time rate) of electromagnetic energy (using Eqn. 2.14-2.15), the spatial integration process eliminates the curl term and makes the measurable quantities invariant with respect to this transformation [\[8](#references) (ch. 2.4, 11)\]. Moreover, due to the [mass-energy equivalence](https://en.wikipedia.org/wiki/Mass%E2%80%93energy_equivalence) principle, modifications of the definition of the energy density alter the gravitational field, which has observable consequences; in particular, the expansion of the universe appears to be consistent with the definitions given by Eqn. 2.16-2.17 \[[28](#references) (ch. 1.2)\].
+without violating the Poynting theorem \[[5](#references) (vol. II, ch. 27.4)\]. However, in practice, it does not pose a problem, since it is not actually possible to measure the energy *density* (or its flow) directly, and if one measures the *amount* (or its time rate) of electromagnetic energy (using Eqn. 2.14-2.15), the spatial integration process eliminates the curl term and makes the measurable quantities invariant with respect to this transformation [\[8](#references) (ch. 2.4, 11)\]. Moreover, due to the [mass-energy equivalence](https://en.wikipedia.org/wiki/Mass%E2%80%93energy_equivalence) principle, modifications of the definition of the energy density alter the gravitational field, which has observable consequences; in particular, the expansion of the universe appears to be consistent with the definitions given by Eqn. 2.16-2.17 \[[28](#references) (ch. 1.2)\].
 
 A more pressing concern is whether our formulae, which were found using the microscopic formulation of the Maxwell equations, are valid at the microscopic scale. The answer is: almost always.
 
@@ -4260,7 +4260,7 @@ $$
 
 will be smaller in comparison to the amount of power \\(C_d \braket{\bm{S_i}} \cdot \bm{n_i}\\) arriving at the sensor in the absence of the particle, since the scattered flux \\(C_d \braket{\bm{S_s}} \cdot \bm{n_i}\\) corresponding to the direction of incidence is smaller than the total amount of power \\(\Phi_s = \oint_{A} \braket{\bm{S_s}} \cdot \bm{n_s} \thinspace dA\\) scattered in all directions. Thus, we can draw a conclusion that transmission of a parallel beam of light through a particle reduces its intensity.
 
-Eqn. 16.3x separates radiation transmitted in the forward direction into three components: the incident, the scattered, and the dissipated. Scattering often tends to be separated from propagation of light, leading to the idea that particles "remove" energy from the incident beam. While this approach is mathematically consistent, the  interpretation is not correct, since 1) the incident field is not affected by the presence of the scattering object, and (as we shall see) 2) the amount of scattered power is overestimated. This can lead to apparent paradoxes and violations of the law of conservation of energy. These issues can be avoided by focusing solely on the measurements pertaining to the total electromagnetic field.
+Eqn. 16.3x separates radiation transmitted in the forward direction into three components: the incident, the scattered, and the dissipated. Scattering tends to be separated from propagation of light, leading to the idea that particles "remove" energy from the incident beam. While this approach is conceptually plausible, the interpretation is not correct, since 1) the incident wave is not affected by the presence of the scattering object, and, as we shall see, 2) the calculated amount of scattered power is typically overestimated. This can lead to apparent paradoxes and violations of the law of conservation of energy. These issues can be avoided by focusing solely on the total electromagnetic field, which, as Eqn. 16.3x shows, is crucial if the measurement device is facing the source.
 
 The amount of power absorbed by the particle can be determined using Eqn. 16.21:
 
@@ -4594,6 +4594,132 @@ $$ \tag{1p.22}
 	\approx \braket{\braket{\bm{S}}\_t}\_{\psi} \negmedspace (\bm{r}).
 $$
 
+Let us apply the ergodic assumption to Eqn. 1p.8, and carefully consider its individual terms. First of all, by definition, the incident field is not affected by the presence of the scattering object. Therefore, no modifications to \\(\braket{\bm{S\_i}}\\) are necessary. Next, we turn our attention to the Poynting vector \\(\bm{S\_j}\\) associated with the scattered field of the \\(j\\)-th particle. Since, according to Eqn. 1p.7, the scattered field vectors are mutually orthogonal, we may express \\(\bm{S\_j}\\) using Eqn. 13.21:
+
+$$ \tag{1p.23}
+\begin{aligned}
+	\bm{S_j}(\bm{r}, \psi, t)
+	&\simeq \mu\_0^{-1} \frac{\eta}{c} {\big\vert \mathcal{Re} \big\lbrace \bm{E_j}(\bm{r}, \psi) e^{-i \omega t} \big\rbrace \big\vert}^2 \bm{n_s}
+	\cr
+	&= \mu\_0^{-1} \frac{\eta}{c} \frac{\big\vert \mathcal{Re} \big\lbrace \mathcal{S_j} \cdot \bm{E_0} e^{i k (R_j + \bm{r_j} \cdot \bm{n_i}) -i \omega t} \big\rbrace \big\vert^2}{k^2 r^2} \bm{n_s}
+\end{aligned}
+$$
+
+As we have already shown in Eqn. 13.22-13.23, performing time-averaging allows us to replace the phase factor with a factor of \\(1/2\\), yielding the standard expression of the time-averaged Poynting vector
+
+$$ \tag{1p.24}
+	\braket{\bm{S_j}}\_t \negmedspace (\bm{r}, \psi)
+	\simeq \frac{\mu\_0^{-1}}{2} \frac{\eta}{c} \frac{\left\vert
+	\mathcal{S_j} \cdot \bm{E_0} \right\vert^2}{k^2 r^2} \bm{n_s}
+$$
+
+of a particle located at the origin. The value of \\(\braket{\bm{S_j}}\_t\\) explicitly depends on the phasor of the incident field, and, implicitly, on the orientation, shape, size, and composition of the particle via the far-field scattering dyadic \\(\mathcal{S_j}\\). Because the latter is located inside the squared norm operator, ensemble averaging the Poynting vector
+
+$$ \tag{1p.25}
+	\braket{\braket{\bm{S_j}}} \negmedspace (\bm{r})
+	\simeq \int\_{\Psi}
+	\braket{\bm{S_j}}\_t \negmedspace (\bm{r}, \psi)
+	p(\psi) d\psi
+$$
+
+is, in general, different from using the average scattering dyadic. This implies that the amount of light scattered per particle is not the same as the amount of light scattered by the average particle.
+
+The Poynting vector associated with the scattered field does not, by itself, completely determine the intensity of scattered light. In addition, we must account for interference between the incident and the scattered fields contained within the
+\\(\braket{\bm{S_{ij}}}\\) terms of Eqn 1p.8. Substitution of Eqn. 1p.6, 1p.7, and 16.1 into 1p.9 yields an expression
+
+$$ \tag{1p.26}
+\begin{aligned}
+	\braket{\bm{S_{ij}}}\_t \simeq
+	&-\frac{\mu_0^{-1}}{2 k r} \mathcal{Re} \bigg\lbrace
+	\Big( \bm{E_0} e^{i k (\bm{r} \cdot \bm{n_i})} \Big)
+	\times \left[ \big( \bm{n_s} \times (\mathcal{S_j} \cdot \bm{E_0}) e^{i k (R_j + \bm{r_j} \cdot \bm{n_i})} \right]^{\*} \bigg\rbrace
+	\cr
+	&-\frac{\mu_0^{-1}}{2 k r} \mathcal{Re} \bigg\lbrace
+	\left( (\mathcal{S_j} \cdot \bm{E_0}) e^{i k (R_j + \bm{r_j} \cdot \bm{n_i})} \right)
+	\times \Big[ \bm{n_i} \times \bm{E_0} e^{i k (\bm{r} \cdot \bm{n_i})} \Big]^{\*}
+	\bigg\rbrace.
+\end{aligned}
+$$
+
+that is broadly similar to Eqn. 16.23. Let us group the complex exponentials:
+
+$$ \tag{1p.27}
+\begin{aligned}
+	\braket{\bm{S_{ij}}}\_t \simeq
+	&-\frac{\mu_0^{-1}}{2 k r} \mathcal{Re} \bigg\lbrace
+	\Big( \bm{E_0} e^{i k (\bm{r} - \bm{r_j}) \cdot \bm{n_i}} e^{-i k |\bm{r} - \bm{r_j}|} \Big)
+	\times \left[ \big( \bm{n_s} \times (\mathcal{S_j} \cdot \bm{E_0}) \right]^{\*} \bigg\rbrace
+	\cr
+	&-\frac{\mu_0^{-1}}{2 k r} \mathcal{Re} \bigg\lbrace
+	\left( (\mathcal{S_j} \cdot \bm{E_0}) \right)
+	\times \Big[ \bm{n_i} \times \bm{E_0} e^{i k (\bm{r} - \bm{r_j}) \cdot \bm{n_i}} e^{-i k |\bm{r} - \bm{r_j}|} \Big]^{\*}
+	\bigg\rbrace.
+\end{aligned}
+$$
+
+$$ \tag{1p.6}
+\begin{aligned}
+	& \bm{E_j}(\bm{r}, \omega)
+	\simeq \frac{e^{i k(\omega) (R_j + \bm{r_j} \cdot \bm{n_i})}}{k(\omega) r} \mathcal{S_j} (\bm{n_s}, \bm{n_i}, \omega) \cdot \bm{E_0}(\bm{n_i}, \omega).
+\end{aligned}
+$$
+
+$$ \tag{1p.7}
+	\bm{B_j}(\bm{r}, \omega)
+	\simeq \frac{\eta(\omega)}{c} \big( \bm{n_s} \times \bm{E_j}(\bm{r}, \omega) \big),
+$$
+
+$$ \tag{16.1}
+\begin{aligned}
+	& \bm{E_i}(\bm{r}, t)
+	= \mathcal{Re} \big\lbrace \bm{E_0} e^{i k (\bm{r} \cdot \bm{n_i}) - i \omega t} \big\rbrace, \cr
+	& \bm{B_i}(\bm{r}, t)
+	= \mathcal{Re} \big\lbrace \bm{B_0} e^{i k (\bm{r} \cdot \bm{n_i}) - i \omega t} \big\rbrace,
+\end{aligned}
+$$
+
+---
+
+Eqn. 1p.25 can be used to determine the total amount of power scattered by the particle group:
+
+$$ \tag{1p.26}
+\begin{aligned}
+	\braket{\Phi_s^{tot}}
+	&= \oint_{A} \sum_j \braket{\braket{\bm{S_j}}} \cdot \bm{n_s} \thinspace dA
+	\cr
+	&= \oint\_{\mathbb{S}^2} \sum_j \left[ \int_{\Psi}
+	\Iota_j(\bm{n_s}, \psi) p(\psi) d\psi \right] d\Omega
+	\cr
+	&= \sum_j \oint\_{\mathbb{S}^2} \braket{\Iota_s} \negmedspace (\bm{n_s}) d\Omega
+	= \sum_j \braket{\Phi_s} = N \braket{\Phi_s}.
+\end{aligned}
+$$
+
+Eqn. 1p.26 demonstrates how the scattered light intensities, powers, and, thus, the scattering cross-sections (defined by Eqn. 16.39.2) can be summed[^19]. In particular, if the incident irradiance \\(\Epsilon_i\\) is uniform across the particle group, then the total scattering cross-section \\(\braket{C_s^{tot}}\\) is directly proportional to the mean scattering cross-section \\(\braket{C_s}\\):
+
+$$ \tag{1p.27}
+	\braket{C_s^{tot}}
+	= \frac{\braket{\Phi_s^{tot}}}{\Epsilon_i}
+	= \frac{N \braket{\Phi_s}}{\Epsilon_i}
+	= N \braket{C_s}.
+$$
+
+[^19]: Under the ergodic assumption, and provided the conditions imposed on the particle group and the observation point at the beginning of the section are satisfied.
+
+Often, one has to consider a large cloud of particles. Its interior may be conceptually subdivided into small, non-overlapping regions, each containing a particle group. In order to avoid keeping track of both the volume \\(V\\) and the number of particles \\(N\\) in each region, it is highly convenient to combine them into a single quantity called the [number density](https://en.wikipedia.org/wiki/Number_density)
+
+$$ \tag{1p.28}
+	n = \frac{N}{V}.
+$$
+
+If each region is sufficiently small (macroscopically infinitesimal), and the number of particles does not vary dramatically between the neighboring regions, then \\(n(\bm{r})\\) can be considered continuous. If, in addition, the distribution of particles \\((\\)governed by the probability density function \\(p(\psi))\\) is the same across the entire cloud, we can parametrize its interior using the spatially-varying *volume scattering coefficient*
+
+$$ \tag{1p.29}
+	\beta_s(\bm{r}) = n(\bm{r}) \braket{C_s}.
+$$
+
+
+
 ---
 
 $$ \tag{1p.8}
@@ -4608,76 +4734,6 @@ $$ \tag{1p.8}
 $$
 
 ---
-
-Let us apply the ergodic assumption to Eqn. 1p.8, and carefully consider its individual terms. First of all, since the expression of the incident field does not depend on the presence of the scattering object, no modifications to \\(\braket{\bm{S\_i}}\\) are necessary. The remaining terms can benefit from ensemble averaging.
-
-Let us now turn our attention to the scattered field associated with the \\(j\\)-th particle. Since, according to Eqn. 1p.7, the field vectors are mutually orthogonal, we may express the instantaneous Poynting vector using Eqn. 13.21:
-
-$$ \tag{1p.23}
-\begin{aligned}
-	\bm{S_j}(\bm{r}, \psi, t)
-	&\simeq \mu\_0^{-1} \frac{\eta(\omega)}{c} {\big\vert \mathcal{Re} \big\lbrace \bm{E_j}(\bm{r}, \psi, \omega) e^{-i \omega t} \big\rbrace \big\vert}^2 \bm{n_s}
-	\cr
-	&= \mu\_0^{-1} \frac{\eta(\omega)}{c} \frac{\big\vert \mathcal{Re} \big\lbrace \mathcal{S_j} (\bm{n_s}, \bm{n_i}, \omega) \cdot \bm{E_0}(\bm{n_i}, \omega) e^{i k(\omega) (R_j + \bm{r_j} \cdot \bm{n_i}) -i \omega t} \big\rbrace \big\vert^2}{k^2(\omega) r^2} \bm{n_s}
-\end{aligned}
-$$
-
-As we have already shown in Eqn. 13.22-13.23, performing time-averaging allows us to replace the phase factor with a factor of \\(1/2\\), yielding the standard expression of the time-averaged Poynting vector
-
-$$ \tag{1p.24}
-\begin{aligned}
-	\braket{\bm{S_j}}\_t \negmedspace (\bm{r}, \psi)
-	&\simeq \frac{\mu\_0^{-1}}{2} \frac{\eta(\omega)}{c} \frac{\left\vert
-	\mathcal{S_j} (\bm{n_s}, \bm{n_i}, \omega) \cdot \bm{E_0}(\bm{n_i}, \omega) \right\vert^2}{k^2(\omega) r^2} \bm{n_s}
-\end{aligned}
-$$
-
-that does not reference the position \\(\bm{r_j}\\) of the particle. It does, however, implicitly depend on its orientation, shape, size, and composition via the far-field scattering dyadic \\(\mathcal{S_j}\\). Because the latter is located inside the squared norm operator, performing ensemble averaging of the Poynting vector associated with the scattered field
-
-$$ \tag{1p.25}
-\begin{aligned}
-	\braket{\braket{\bm{S_j}}} \negmedspace (\bm{r})
-	\simeq \int\_{\Psi}
-	\braket{\bm{S_j}}\_t \negmedspace (\bm{r}, \psi)
-	p(\psi) d\psi
-\end{aligned}
-$$
-
-is different from averaging the scattering dyadic.
-
-We may use Eqn. 1p.25 to form the expression of the total amount of power scattered by all particles:
-
-$$ \tag{1p.26}
-	\Phi_s^{tot}
-	= \oint_{A} \sum_j \braket{\braket{\bm{S_j}}} \cdot \bm{n_s} \thinspace dA
-	= \sum_j \int_{\Psi} \left[ \oint_{A}
-	\left( \braket{\bm{S_j}}\_t \negmedspace (\bm{r}, \psi) \cdot \bm{n_s} \right)
-	dA \right] p(\psi) d\psi
-	= \sum_j \braket{\Phi_s}.
-$$
-
-From it, two conclusions can be drawn:
-
-1. because of a non-linear transformation applied to the scattering dyadic, the amount of light scattered per particle is not the same as the amount of light scattered by the average particle;
-2. under the ergodic assumption, the scattered light intensities, powers, and, thus, the scattering cross-sections (defined by Eqn. 16.39.1) of non-interacting particles can be summed.
-
-We may go one step further and define the mean scattering cross-section \\(\braket{C_s}\\) as
-
-$$ \tag{1p.27}
-	\braket{C_s}
-	= \frac{\braket{\Phi_s}}{\Epsilon_i}
-	= \frac{1}{\Epsilon_i} \int_{\Psi} \left[ \oint_{A}
-	\left( \braket{\bm{S_j}}\_t \negmedspace (\bm{r}, \psi) \cdot \bm{n_s} \right)
-	dA \right] p(\psi) d\psi.
-$$
-
-After taking Eqn. 1p.26 into account, it allows us to define the *volume scattering coefficient*
-
-$$ \tag{1p.28}
-	\beta_s = \frac{N}{V} \braket{C_s}
-$$
-
-for a region of space containing \\(N/V\\) particles per unit volume. If we consider the space to be filled with non-overlapping groups of particles, then Eqn. 1p.28 offers a convenient, spatially-varying description of its scattering properties in radiometric terms.
 
 <!--
 ### Lorenz-Mie-Debye Theory
