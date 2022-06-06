@@ -7568,7 +7568,7 @@ Note that, unlike the scattered field, the total field has no apparent issues wi
 
 All matter is made of [atoms](https://en.wikipedia.org/wiki/Atom). When certain types of atoms end up in close proximity to one another, [attractive electrical forces](https://en.wikipedia.org/wiki/Chemical_bond) cause them to aggregate into small clusters called [molecules](https://en.wikipedia.org/wiki/Molecule). Molecules are the smallest building blocks of a [chemical substance](https://en.wikipedia.org/wiki/Chemical_substance), which is a form of matter that has a definite chemical composition and characteristic properties. Theoretically, if the state and the structure of matter were known in sufficient detail, molecular light scattering could be used to explain the appearance of almost everything we see in nature.
 
-All scattering processes can be broadly classified in two categories: [elastic](https://en.wikipedia.org/wiki/Elastic_scattering) and [inelastic](https://en.wikipedia.org/wiki/Inelastic_scattering). A typical example of *elastic scattering* is an idealized rubber ball perfectly bouncing off a hard surface; we say that, in the center-of-mass frame, the kinetic energy of the ball is conserved. The description of *elastic light scattering* is even simpler: since, as far as we know, [photons](https://en.wikipedia.org/wiki/Photon) are massless, the photon's energy \\(\mathcal{E_p}\\) must be conserved. If we associate the photon with a plane wave, then the [Planck-Einstein relation](https://en.wikipedia.org/wiki/Planck_relation)
+All scattering processes can be broadly classified in two categories: [elastic](https://en.wikipedia.org/wiki/Elastic_scattering) and [inelastic](https://en.wikipedia.org/wiki/Inelastic_scattering). A typical example of *elastic scattering* is an idealized rubber ball perfectly bouncing off a hard surface; we say that, in the center-of-mass frame, the kinetic energy of the ball is conserved. The description of *elastic light scattering* is even simpler: since, as far as we know, [photons](https://en.wikipedia.org/wiki/Photon) are massless, the photon's energy \\(\mathcal{E_p}\\) must be conserved. If, using the [uncertainty principle](https://en.wikipedia.org/wiki/Uncertainty_principle), we associate the photon with a plane wave, then the [Planck-Einstein relation](https://en.wikipedia.org/wiki/Planck_relation)
 
 $$ \tag{19.1}
 	\mathcal{E_p} = \hbar \omega
@@ -7586,7 +7586,7 @@ Therefore, if scattering alters the energy of the atom \\((\mathcal{E_a} \neq \m
 
 $$ \tag{19.3}
 \begin{aligned}
-	\Delta \omega
+	\Omega
 	= \frac{\mathcal{E_p'} - \mathcal{E_p}}{\hbar}
 	= \frac{\mathcal{E_a} - \mathcal{E_a'}}{\hbar}
 \end{aligned}
@@ -7594,7 +7594,7 @@ $$
 
 that can be either positive or negative, depending on the initial and final states of the system.
 
-Classical electrodynamics represents matter by a charge distribution that behaves a certain way. In particular, if we consider an atom or a small molecule, to a good approximation, light-matter interaction is limited to the displacement of the electron cloud relative to the nuclei, which is characterized by the induced dipole moment
+Classical electrodynamics represents matter by a charge distribution that behaves a certain way. In particular, if we consider an atom or a small molecule, to a good approximation, light-matter interaction is limited to the displacement of the electron cloud relative to the center of mass of the molecule, which is characterized by the induced dipole moment
 
 $$ \tag{19.4}
 	\bm{p}(V, \omega) =
@@ -7603,28 +7603,31 @@ $$
 
 where \\(\mathcal{\Alpha_m}\\) is the molecular polarizability dyadic.
 
-Let us slightly modify Eqn. 19.4 by adding a non-linear term \\(\mathcal{\Beta_m}\\), such that
+In addition to forced motion of the electron cloud, a diatomic molecule may experience vibration of the nuclei relative to the center of mass of the molecule \[[30](#references), ch. \\(\mathrm{A\_V}\\)\]. Since the nuclei are much heavier than the electrons, they oscillate at a lower frequency, effectively [modulating the amplitude](https://en.wikipedia.org/wiki/Amplitude_modulation) of the oscillation of the dipole moment by a factor of
 
 $$ \tag{19.5}
-	\mathcal{\Beta_m}(V, \omega)
-	= \mathcal{\Beta_0}(V, \omega) e^{i \Delta \omega t}.
+	\cos(\Omega t)
+	= \frac{e^{i \Omega t} + e^{-i \Omega t}}{2}.
 $$
 
-If the applied field is time-harmonic,
+If the applied field \\(\bm{E_{\mu}}\\) is time-harmonic,
 
 $$ \tag{19.6}
 \begin{aligned}
 	\bm{p}(V, \omega) e^{i \omega t}
-	&= \big( \mathcal{\Alpha_m}(V, \omega) + \mathcal{\Beta_m}(V, \omega) \big)
-	\cdot \epsilon_0 \bm{E_{\mu}}(\bm{r_0}, \omega) e^{i \omega t}
+	&= \big( \mathcal{\Alpha_m}(V, \omega) + 2 \mathcal{\Beta_m}(V, \omega) \cos(\Omega t) \big)
+	\cdot \epsilon_0 \bm{E_0}(\bm{r_0}, \omega) e^{i \omega t}
 	\cr
-	&= \mathcal{\Alpha_m}(V, \omega) \cdot \epsilon_0 \bm{E_{\mu}}(\bm{r_0}, \omega) e^{i \omega t}
-	+ \mathcal{\Beta_0}(V, \omega)  \cdot \epsilon_0 \bm{E_{\mu}}(\bm{r_0}, \omega) e^{i (\omega + \Delta \omega) t}
+	&= \mathcal{\Alpha_m}(V, \omega) \cdot \epsilon_0 \bm{E_0}(\bm{r_0}, \omega) e^{i \omega t}
+	\cr
+	&+ \mathcal{\Beta_m}(V, \omega)  \cdot \epsilon_0 \bm{E_0}(\bm{r_0}, \omega) e^{i (\omega - \Omega) t}
+	\cr
+	&+ \mathcal{\Beta_m}(V, \omega)  \cdot \epsilon_0 \bm{E_0}(\bm{r_0}, \omega) e^{i (\omega + \Omega) t}
 	\cdot
 \end{aligned}
 $$
 
-Eqn. 19.6 constitutes the classical description of molecular light scattering, where the first term corresponds to *elastic* [Rayleigh scattering](https://en.wikipedia.org/wiki/Rayleigh_scattering), and the second -- to *inelastic* [Raman scattering](https://en.wikipedia.org/wiki/Raman_scattering). Raman scattering is quantum-mechanical in nature, so its derivation is beyond the scope of this article. However, if the reader were to obtain the value of \\(\mathcal{\Beta_m}\\) elsewhere \[[29](#references)\], extending the theory presented below should be fairly straightforward.
+Eqn. 19.6 constitutes the classical description of molecular light scattering, where the first term corresponds to *elastic* [Rayleigh scattering](https://en.wikipedia.org/wiki/Rayleigh_scattering), the second -- to *inelastic Stokes-Raman scattering*, and the third -- to *inelastic anti-Stokes-Raman scattering*. [Raman scattering](https://en.wikipedia.org/wiki/Raman_scattering) is quantum-mechanical in nature, so its derivation is beyond the scope of this article. However, if the reader were to obtain the values of \\(\mathcal{\Beta_m}\\) and \\(\Omega\\) elsewhere \[[29](#references)\], extending the theory presented below should be fairly straightforward.
 
 ### Light Scattering by Gas Molecules
 
@@ -7706,6 +7709,7 @@ Bohren & Huffman, Larry Travis, Pharr & Jakob, Jeppe Frisvad (Mie scattering), R
 27. Raman, C. V. [On the Molecular Scattering of Light in Water and the Colour of the Sea](https://doi.org/10.1098/rspa.1922.0025) (1922).
 28. Wald, R. [Advanced Classical Electromagnetism](https://press.princeton.edu/books/hardcover/9780691220390/advanced-classical-electromagnetism) (2022).
 29. Long, D. A. [The Raman Effect: A Unified Treatment of the Theory of Raman Scattering by Molecules](https://doi.org/10.1002/0470845767) (2002).
+30. Cohen-Tannoudji, C., Diu, B., & Laloe, F. [Quantum Mechanics, Volume 1](https://www.wiley.com/en-us/Quantum+Mechanics%2C+Volume+1%3A+Basic+Concepts%2C+Tools%2C+and+Applications%2C+2nd+Edition-p-9783527822713) (2nd ed., 2020).
 99. Hansen, J. E., & Travis, L. D. [Light Scattering in Planetary Atmospheres](https://doi.org/10.1007/BF00168069) (1974).
 
 <!--
