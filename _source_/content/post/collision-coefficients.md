@@ -3048,9 +3048,9 @@ We may expand the square root (and its reciprocal) in the Taylor series of \\(r'
 $$ \tag{13.8}
 \begin{aligned}
 	& k R
-	= k r \bigg( 1 - \big( \bm{n} \cdot \bm{n'} \big) (r'/r) + \mathrm{O} \Big( (r'/r)^2 \Big) \bigg), \cr
+	= k r \bigg( 1 - (\bm{n} \cdot \bm{n'}) (r'/r) + \frac{1}{2} \Big( 1 - ( \bm{n} \cdot \bm{n'})^2 \Big) (r'/r)^2 + \mathrm{O} \Big( (r'/r)^3 \Big) \bigg), \cr
 	& \frac{1}{R}
-	= \frac{1}{r} \bigg( 1 + \big( \bm{n} \cdot \bm{n'} \big) (r'/r) + \mathrm{O} \Big( (r'/r)^2 \Big) \bigg).
+	= \frac{1}{r} \bigg( 1 + (\bm{n} \cdot \bm{n'}) (r'/r) + \mathrm{O} \Big( (r'/r)^2 \Big) \bigg).
 \end{aligned}
 $$
 
@@ -4120,24 +4120,24 @@ $$ \tag{16.26}
 \begin{aligned}
 	\bm{n_s} \cdot \braket{\bm{E_i} \times \bm{B_s}}
 	&\simeq \frac{1}{2 k r} \mathcal{Re} \Big\lbrace
-	\bm{n_s} \cdot \big( \bm{E_0} \times \bm{B_1^{\*}} \big) e^{-i k r} e^{i k r (\bm{n_i} \cdot \bm{n_s})}
+	\bm{n_s} \cdot \big( \bm{E_0} \times \bm{B_1^{\*}} \big) e^{-i k r} e^{i k r (\bm{n_s} \cdot \bm{n_i})}
 	\Big\rbrace
 	\cr
 	&= \frac{1}{2 k r} \mathcal{Re} \Big\lbrace
-	\bm{E_0} \cdot \big( \bm{B_1^{\*}} \times \bm{n_s} \big) e^{-i k r} e^{i k r (\bm{n_i} \cdot \bm{n_s})}
+	\bm{E_0} \cdot \big( \bm{B_1^{\*}} \times \bm{n_s} \big) e^{-i k r} e^{i k r (\bm{n_s} \cdot \bm{n_i})}
 	\Big\rbrace
 	\cr
 	&= \frac{1}{2 k r} \frac{\eta}{c} \mathcal{Re} \Big\lbrace
-	\big( \bm{E_0} \cdot \bm{E_1^{\*}} \big) e^{-i k r} e^{i k r (\bm{n_i} \cdot \bm{n_s})}
+	\big( \bm{E_0} \cdot \bm{E_1^{\*}} \big) e^{-i k r} e^{i k r (\bm{n_s} \cdot \bm{n_i})}
 	\Big\rbrace,
 	\cr
 	\braket{\bm{E_s} \times \bm{B_i}}
 	&\simeq \frac{1}{2 k r} \mathcal{Re} \Big\lbrace
-	\big( \bm{E_1} \times \bm{B_0^{\*}} \big) e^{i k r} e^{-i k r (\bm{n_i} \cdot \bm{n_s})}
+	\big( \bm{E_1} \times \bm{B_0^{\*}} \big) e^{i k r} e^{-i k r (\bm{n_s} \cdot \bm{n_i})}
 	\Big\rbrace
 	\cr
 	&= \frac{1}{2 k r} \frac{\eta}{c} \mathcal{Re} \Big\lbrace
-	\big( \bm{E_1} \times \bm{n_i} \times \bm{E_0^{\*}} \big) e^{i k r} e^{-i k r (\bm{n_i} \cdot \bm{n_s})}
+	\big( \bm{E_1} \times \bm{n_i} \times \bm{E_0^{\*}} \big) e^{i k r} e^{-i k r (\bm{n_s} \cdot \bm{n_i})}
 	\Big\rbrace
 	\cr
 	&= \frac{1}{2 k r} \frac{\eta}{c} \mathcal{Re} \Big\lbrace
@@ -4145,7 +4145,7 @@ $$ \tag{16.26}
 	\bm{n_i} \big( \bm{E_0^{\*} \cdot \bm{E_1}} \big) -
 	\bm{E_0^{\*}} \big( \bm{n_i} \cdot \bm{E_1} \big)
 	\Big)
-	e^{i k r} e^{-i k r (\bm{n_i} \cdot \bm{n_s})}
+	e^{i k r} e^{-i k r (\bm{n_s} \cdot \bm{n_i})}
 	\Big\rbrace.
 \end{aligned}
 $$
@@ -4167,7 +4167,8 @@ In particular, due to orthogonality relations given by Eqn. 16.2,
 
 $$ \tag{16.28}
 	f_2(\pm \bm{n_i})
-	= \pm \bm{E_0^{\*}} \cdot \bm{E_1}(\pm \bm{n_i}).
+	= \pm \bm{E_0^{\*}} \cdot \bm{E_1}(\pm \bm{n_i})
+	= \pm \big[ f_1(\pm \bm{n_i}) \big]^{\*}.
 $$
 
 Use of notation introduced in Eqn. 16.27 results in a compact expression of the interference term given by Eqn. 16.20:
@@ -4175,8 +4176,8 @@ Use of notation introduced in Eqn. 16.27 results in a compact expression of the 
 $$ \tag{16.29}
 	\braket{\bm{S_e}} \cdot \bm{n_s}
 	\simeq -\frac{\mu\_0^{-1}}{2} \frac{\eta}{c} \mathcal{Re} \left\lbrace
-		\frac{e^{-i k r}}{k r} f_1(\bm{n_s}) e^{i k r (\bm{n_i} \cdot \bm{n_s})} +
-		\frac{e^{i k r}}{k r} f_2(\bm{n_s}) e^{-i k r (\bm{n_i} \cdot \bm{n_s})}
+		\frac{e^{-i k r}}{k r} f_1(\bm{n_s}) e^{i k r (\bm{n_s} \cdot \bm{n_i})} +
+		\frac{e^{i k r}}{k r} f_2(\bm{n_s}) e^{-i k r (\bm{n_s} \cdot \bm{n_i})}
 	\right\rbrace.
 $$
 
@@ -4184,7 +4185,7 @@ Note that we are using the asymptotic expression of a spherical wave (Eqn. 16.10
 
 $$ \tag{16.30}
 \begin{aligned}
-	e^{i k r (\bm{n_i} \cdot \bm{n_s})}
+	e^{i k r (\bm{n_s} \cdot \bm{n_i})}
 	\simeq 2 \pi i \left(
 	\frac{e^{-i k r}}{k r} \delta(\bm{n_i} + \bm{n_s}) -
 	\frac{e^{i k r}}{k r} \delta(\bm{n_i} - \bm{n_s}) \right)
@@ -4219,7 +4220,7 @@ $$ \tag{16.32}
 \end{aligned}
 $$
 
-Eqn. 16.32 indicates that we may detect observable interference between the incident and the scattered fields if the optical axis of the measurement device is directly facing the source \\((\bm{n_i} = \bm{n_s})\\). Evidently, the opposite orientation \\((\bm{n_i} = -\bm{n_s})\\) will cause the sensor to partially block the incident light. And even if it were not the case, the integral of the normal component of \\(\braket{\bm{S_e}}\\) over a small [spherical cap](https://mathworld.wolfram.com/SphericalCap.html) \\(C_i^{-}\\) centered at \\(-\bm{n_i}\\)
+Eqn. 16.32 indicates that we may detect observable interference between the incident and the scattered fields if the optical axis of the measurement device is directly facing the source \\((\bm{n_s} = \bm{n_i})\\). Evidently, the opposite orientation \\((\bm{n_s} = -\bm{n_i})\\) will cause the sensor to partially block the incident light. And even if it were not the case, the integral of the normal component of \\(\braket{\bm{S_e}}\\) over a small [spherical cap](https://mathworld.wolfram.com/SphericalCap.html) \\(C_i^{-}\\) centered at \\(-\bm{n_i}\\)
 
 $$ \tag{16.33}
 \begin{aligned}
@@ -4408,6 +4409,15 @@ $$
 
 where we must remember to account for the fact that, in general, the particle is not located at the origin.
 
+The electric and the magnetic fields are related by Eqn. 16.11. In particular, it shows that they are orthogonal:
+
+$$ \tag{1p.7}
+	\bm{B_j}(\bm{r}, \omega)
+	\simeq \frac{\eta(\omega)}{c} \big( (\bm{R_j} / R_j) \times \bm{E_j}(\bm{r}, \omega) \big),
+$$
+
+where \\(\eta\\) is the refractive index of the host medium.
+
 Let \\(L\_{min}\\) and \\(L\_{max}\\) denote the smallest and the largest linear dimension of \\(V\\), respectively. Since a typical volume is large compared to the wavelength of light, then it follows that
 
 $$ \tag{1p.3}
@@ -4423,9 +4433,16 @@ $$
 then we may use the series expansions of Eqn. 13.8 and 13.10 to asymptotically approximate
 
 $$ \tag{1p.5}
-	\frac{\bm{R_j}}{R_j} \simeq \bm{n_s} = \frac{\bm{r}}{r}, \quad
-	\frac{1}{R_j} \simeq \frac{1}{r}.
+	\frac{\bm{R_j}}{R_j} \simeq \bm{n_s} = \frac{\bm{r}}{r},
+	\quad
+	\frac{1}{R_j} \simeq \frac{1}{r},
+	\quad
+	k R_j
+	\simeq k r - k (\bm{n_s} \cdot \bm{r_j})
+	+ \frac{k r_j^2}{2 r} \left( 1 - (\bm{n_s} \cdot \bm{n_j})^2 \right),
 $$
+
+where \\(\bm{n_j} = \bm{r_j} / |\bm{r_j}| = \bm{r_j} / r_j\\).
 
 It is important to note that Eqn. 1p.4 does not imply that the observation point is located in the radiation zone with respect to the entire volume \\(V\\), since the latter requires \\(k R_j \gg (k L\_{max})^2\\).
 
@@ -4437,15 +4454,6 @@ $$ \tag{1p.6}
 	\simeq \frac{e^{i k(\omega) (R_j + \bm{r_j} \cdot \bm{n_i})}}{k(\omega) r} \mathcal{S_j} (\bm{n_s}, \bm{n_i}, \omega) \cdot \bm{E_0}(\bm{n_i}, \omega).
 \end{aligned}
 $$
-
-The electric and the magnetic fields are related by Eqn. 16.11. In particular, it shows that they are orthogonal:
-
-$$ \tag{1p.7}
-	\bm{B_j}(\bm{r}, \omega)
-	\simeq \frac{\eta(\omega)}{c} \big( \bm{n_s} \times \bm{E_j}(\bm{r}, \omega) \big),
-$$
-
-where \\(\eta\\) is the refractive index of the host medium.
 
 Let us combine the expressions of the incident and the scattered fields, and determine whether their interaction produces any observable interference effects. We can utilize the same method employed in Sec. 16; specifically, let us repurpose Eqn. 16.17 and 16.22 of the time-averaged Poynting vector
 
@@ -4594,18 +4602,33 @@ $$ \tag{1p.22}
 	\approx \braket{\braket{\bm{S}}\_t}\_{\psi} \negmedspace (\bm{r}).
 $$
 
-Let us apply the ergodic assumption to Eqn. 1p.8, and carefully consider its individual terms. First of all, by definition, the incident field is not affected by the presence of the scattering object. Therefore, no modifications to \\(\braket{\bm{S\_i}}\\) are necessary. Next, we turn our attention to the Poynting vector \\(\bm{S\_j}\\) associated with the scattered field of the \\(j\\)-th particle. Since, according to Eqn. 1p.7, the scattered field vectors are mutually orthogonal, we may express \\(\bm{S\_j}\\) using Eqn. 13.21:
+---
+
+$$ \tag{1p.8}
+\begin{aligned}
+	\braket{\bm{S}}
+	&= \frac{\mu\_0^{-1}}{2} \mathcal{Re} \Big\lbrace
+	\Big( \bm{E_i} + \sum_j \bm{E_j} \Big) \times
+	\Big( \bm{B_i^{\*}} + \sum_j \bm{B_j^{\*}} \Big) \Big\rbrace
+	\cr
+	&= \braket{\bm{S_i}} + \sum_j \braket{\bm{S_j}} - \sum_j \braket{\bm{S_{ij}}} - \sum_{j < k} \braket{\bm{S_{jk}}},
+\end{aligned}
+$$
+
+---
+
+Let us apply the ergodic assumption to Eqn. 1p.8, and carefully consider its individual terms. First of all, by definition, the incident field is not affected by the presence of the scattering object. Therefore, no modifications to \\(\braket{\bm{S\_i}}\\) are necessary. Next, we can turn our attention to the Poynting vector \\(\braket{\bm{S\_j}}\\) associated with the scattered field of the \\(j\\)-th particle. Since, according to Eqn. 1p.7, the scattered field vectors are mutually orthogonal, we may express \\(\bm{S\_j}\\) using Eqn. 13.21:
 
 $$ \tag{1p.23}
 \begin{aligned}
 	\bm{S_j}(\bm{r}, \psi, t)
 	&\simeq \mu\_0^{-1} \frac{\eta}{c} {\big\vert \mathcal{Re} \big\lbrace \bm{E_j}(\bm{r}, \psi) e^{-i \omega t} \big\rbrace \big\vert}^2 \bm{n_s}
 	\cr
-	&= \mu\_0^{-1} \frac{\eta}{c} \frac{\big\vert \mathcal{Re} \big\lbrace \mathcal{S_j} \cdot \bm{E_0} e^{i k (R_j + \bm{r_j} \cdot \bm{n_i}) -i \omega t} \big\rbrace \big\vert^2}{k^2 r^2} \bm{n_s}
+	&= \mu\_0^{-1} \frac{\eta}{c} \frac{\big\vert \mathcal{Re} \big\lbrace (\mathcal{S_j} \cdot \bm{E_0}) e^{i k (R_j + \bm{r_j} \cdot \bm{n_i}) -i \omega t} \big\rbrace \big\vert^2}{k^2 r^2} \bm{n_s}
 \end{aligned}
 $$
 
-As we have already shown in Eqn. 13.22-13.23, performing time-averaging allows us to replace the phase factor with a factor of \\(1/2\\), yielding the standard expression of the time-averaged Poynting vector
+As we have already shown in Eqn. 13.22-13.23, time-averaging is equivalent to replacing the phase factor with \\(1/2\\), yielding the standard expression of the time-averaged Poynting vector
 
 $$ \tag{1p.24}
 	\braket{\bm{S_j}}\_t \negmedspace (\bm{r}, \psi)
@@ -4613,7 +4636,7 @@ $$ \tag{1p.24}
 	\mathcal{S_j} \cdot \bm{E_0} \right\vert^2}{k^2 r^2} \bm{n_s}
 $$
 
-of a particle located at the origin. The value of \\(\braket{\bm{S_j}}\_t\\) explicitly depends on the phasor of the incident field, and, implicitly, on the orientation, shape, size, and composition of the particle via the far-field scattering dyadic \\(\mathcal{S_j}\\). Because the latter is located inside the squared norm operator, ensemble averaging the Poynting vector
+of a particle located at the origin. Note that the value of \\(\braket{\bm{S_j}}\\) explicitly depends on the phasor of the incident field, and, implicitly, on the orientation, shape, size, and composition of the particle via the far-field scattering dyadic \\(\mathcal{S_j}\\). Because the latter is located inside the squared norm operator, ensemble averaging the Poynting vector
 
 $$ \tag{1p.25}
 	\braket{\braket{\bm{S_j}}} \negmedspace (\bm{r})
@@ -4622,61 +4645,59 @@ $$ \tag{1p.25}
 	p(\psi) d\psi
 $$
 
-is, in general, different from using the average scattering dyadic. This implies that the amount of light scattered per particle is not the same as the amount of light scattered by the average particle.
+is, in general, different from replacing \\(\mathcal{S_j}\\) with the average scattering dyadic \\(\braket{\mathcal{S_j}}\\). This implies that the amount of light scattered per particle is not the same as the amount of light scattered by the average particle.
 
-The Poynting vector associated with the scattered field does not, by itself, completely determine the intensity of scattered light. In addition, we must account for interference between the incident and the scattered fields contained within the
-\\(\braket{\bm{S_{ij}}}\\) terms of Eqn 1p.8. Substitution of Eqn. 1p.6, 1p.7, and 16.1 into 1p.9 yields an expression
+The Poynting vector \\(\braket{\bm{S_j}}\\) associated with the scattered field does not, by itself, completely determine the intensity of scattered light. In addition, we must account for interference between the incident and the scattered fields contained within the \\(\braket{\bm{S_{ij}}}\\) terms of Eqn 1p.8. Substitution of Eqn. 16.1 into 1p.9 yields an expression
 
 $$ \tag{1p.26}
 \begin{aligned}
-	\braket{\bm{S_{ij}}}\_t \simeq
-	&-\frac{\mu_0^{-1}}{2 k r} \mathcal{Re} \bigg\lbrace
-	\Big( \bm{E_0} e^{i k (\bm{r} \cdot \bm{n_i})} \Big)
-	\times \left[ \big( \bm{n_s} \times (\mathcal{S_j} \cdot \bm{E_0}) e^{i k (R_j + \bm{r_j} \cdot \bm{n_i})} \right]^{\*} \bigg\rbrace
-	\cr
-	&-\frac{\mu_0^{-1}}{2 k r} \mathcal{Re} \bigg\lbrace
-	\left( (\mathcal{S_j} \cdot \bm{E_0}) e^{i k (R_j + \bm{r_j} \cdot \bm{n_i})} \right)
-	\times \Big[ \bm{n_i} \times \bm{E_0} e^{i k (\bm{r} \cdot \bm{n_i})} \Big]^{\*}
+	\braket{\bm{S_{ij}}}\_t \negmedspace (\bm{r}, \psi)
+	\simeq &-\frac{\mu_0^{-1}}{2} \mathcal{Re} \bigg\lbrace
+	\Big( \bm{E_0} e^{i k (\bm{r} \cdot \bm{n_i})} \Big) \times \bm{B_j^{\*}}
+	+ \bm{E_j} \times \Big[ \bm{B_0} e^{i k (\bm{r} \cdot \bm{n_i})} \Big]^{\*}
 	\bigg\rbrace.
 \end{aligned}
 $$
 
-that is broadly similar to Eqn. 16.23. Let us group the complex exponentials:
+that is broadly similar to Eqn. 16.23. This makes the method of Sec. 16 applicable. In particular, according to Eqn. 16.30, the complex exponential term \\(\exp(i k (\bm{r} \cdot \bm{n_i})) = \exp(i k r (\bm{n_s} \cdot \bm{n_i}))\\) indicates that interference only occurs if the optical axis of the measurement device is directly facing the source.
+
+Let us first expand the magnetic field in terms of the electic field using Eqn. 16.2 and 1p.7, and project the resulting vector onto the the direction of incidence \\(\bm{n_i}\\). Application of the identities given by Eqn. 16.25 yields:
 
 $$ \tag{1p.27}
 \begin{aligned}
-	\braket{\bm{S_{ij}}}\_t \simeq
-	&-\frac{\mu_0^{-1}}{2 k r} \mathcal{Re} \bigg\lbrace
-	\Big( \bm{E_0} e^{i k (\bm{r} - \bm{r_j}) \cdot \bm{n_i}} e^{-i k |\bm{r} - \bm{r_j}|} \Big)
-	\times \left[ \big( \bm{n_s} \times (\mathcal{S_j} \cdot \bm{E_0}) \right]^{\*} \bigg\rbrace
+	\bm{n_i} \cdot (\bm{E_i} \times \bm{B_j^{\*}})
+	&\simeq \frac{\eta}{c}
+	\big( \bm{E_0} \cdot \bm{E_j^{\*}} \big)
+	e^{i k r (\bm{n_s} \cdot \bm{n_i})},
 	\cr
-	&-\frac{\mu_0^{-1}}{2 k r} \mathcal{Re} \bigg\lbrace
-	\left( (\mathcal{S_j} \cdot \bm{E_0}) \right)
-	\times \Big[ \bm{n_i} \times \bm{E_0} e^{i k (\bm{r} - \bm{r_j}) \cdot \bm{n_i}} e^{-i k |\bm{r} - \bm{r_j}|} \Big]^{\*}
-	\bigg\rbrace.
+	\bm{n_i} \cdot (\bm{E_s} \times \bm{B_i})
+	&\simeq \frac{\eta}{c}
+	\big( \bm{E_0^{\*} \cdot \bm{E_j}} \big)
+	e^{-i k r (\bm{n_s} \cdot \bm{n_i})}.
 \end{aligned}
 $$
 
-$$ \tag{1p.6}
+At this point, we should substitute the expression of \\(\bm{E_j}\\) given by Eqn. 1p.6 into 1p.27. In addition, we should take the asymptotic expression of \\(k R_j\\) given by Eqn. 1p.5.3 into account. Since we already know that \\(\bm{n_s} = \bm{n_i}\\) is the only direction that makes a non-zero contribution, we only need to consider
+
+$$ \tag{1p.28}
 \begin{aligned}
-	& \bm{E_j}(\bm{r}, \omega)
-	\simeq \frac{e^{i k(\omega) (R_j + \bm{r_j} \cdot \bm{n_i})}}{k(\omega) r} \mathcal{S_j} (\bm{n_s}, \bm{n_i}, \omega) \cdot \bm{E_0}(\bm{n_i}, \omega).
+	& \bm{E_j}(r \bm{n_i}, \omega)
+	\simeq e^{i k(\omega) r_j^2 \left( 1 - (\bm{n_i} \cdot \bm{n_j})^2 \right) / (2 r)}
+	\frac{e^{i k(\omega) r}}{k(\omega) r} \mathcal{S_j} (\bm{n_i}, \bm{n_i}, \omega) \cdot \bm{E_0}(\bm{n_i}, \omega).
 \end{aligned}
 $$
 
-$$ \tag{1p.7}
-	\bm{B_j}(\bm{r}, \omega)
-	\simeq \frac{\eta(\omega)}{c} \big( \bm{n_s} \times \bm{E_j}(\bm{r}, \omega) \big),
+Note that we can't simply set the leading phase factor to 1, since, while \\(r_j / r \ll 1\\), in general, \\(r_j^2 / r\\) isn't.
+
+Following the steps detailed in the previous section, it is easy to show that the resulting extinction term is
+
+$$ \tag{1p.29}
+	\Phi_{ij}
+	= \oint_{\mathbb{S}^2} \braket{\bm{S_{ij}}}\_t \negmedspace (\bm{r}, \psi) \cdot \bm{n_s} \thinspace dA
+	= \frac{\mu\_0^{-1}}{2} \frac{\eta}{c} \frac{4 \pi}{k^2} \mathcal{Im} \left\lbrace \bm{E_0^{\*}} \cdot \bm{E_1}(\bm{n_i}) e^{i k r_j^2 \left( 1 - (\bm{n_i} \cdot \bm{n_j})^2 \right) / (2 r)} \right\rbrace.
 $$
 
-$$ \tag{16.1}
-\begin{aligned}
-	& \bm{E_i}(\bm{r}, t)
-	= \mathcal{Re} \big\lbrace \bm{E_0} e^{i k (\bm{r} \cdot \bm{n_i}) - i \omega t} \big\rbrace, \cr
-	& \bm{B_i}(\bm{r}, t)
-	= \mathcal{Re} \big\lbrace \bm{B_0} e^{i k (\bm{r} \cdot \bm{n_i}) - i \omega t} \big\rbrace,
-\end{aligned}
-$$
+16.34 ...
 
 ---
 
@@ -4720,20 +4741,7 @@ $$
 
 
 
----
 
-$$ \tag{1p.8}
-\begin{aligned}
-	\braket{\bm{S}}
-	&= \frac{\mu\_0^{-1}}{2} \mathcal{Re} \Big\lbrace
-	\Big( \bm{E_i} + \sum_j \bm{E_j} \Big) \times
-	\Big( \bm{B_i^{\*}} + \sum_j \bm{B_j^{\*}} \Big) \Big\rbrace
-	\cr
-	&= \braket{\bm{S_i}} + \sum_j \braket{\bm{S_j}} - \sum_j \braket{\bm{S_{ij}}} - \sum_{j < k} \braket{\bm{S_{jk}}},
-\end{aligned}
-$$
-
----
 
 <!--
 ### Lorenz-Mie-Debye Theory
