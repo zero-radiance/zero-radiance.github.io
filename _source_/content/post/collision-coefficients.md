@@ -3054,7 +3054,7 @@ $$ \tag{13.8}
 \end{aligned}
 $$
 
-The second expression varies relatively slowly, so its expansion can be truncated by assuming that \\(r'/r \ll 1\\) for all \\(r'\\), which implies that \\(a/r \ll 1\\) (or, alternatively, \\(kr \gg ka\\)). The first expression is utilized in a rapidly-varying exponential function that is sensitive to the absolute error, so we should retain an extra term by assuming that \\(k a (a/r) \ll 1\\), which is formally equivalent to \\(kr \gg (ka)^2\\). Thus, we arrive at the approximation
+The second expression varies relatively slowly, so its expansion can be truncated by assuming that \\(r'/r \ll 1\\) for all \\(r'\\), which implies that \\(a/r \ll 1\\). The first expression is utilized in a rapidly-varying exponential function that is sensitive to the absolute error, so we should retain an extra term by assuming that \\(k a^2 / r \ll 1\\). Thus, we arrive at the approximation
 
 $$ \tag{13.9}
 	k R \simeq k r - k (\bm{r'} \cdot \bm{n}), \quad
@@ -3099,7 +3099,7 @@ subject to the conditions \[[8](#references) (ch. 5)\]
 $$ \tag{13.13}
 	k r - k a \gg 1, \quad
 	kr \gg ka, \quad
-	kr \gg (k a)^2.
+	\frac{kr}{k a} \gg k a.
 $$
 
 The same analysis is directly applicable to the surface integrals given by Eqn. 1x.14-1x.15:
@@ -4615,16 +4615,19 @@ $$ \tag{1p.23}
 	\bm{S_j}(\bm{r}, \psi, t)
 	&\simeq \mu\_0^{-1} \frac{\eta}{c} {\big\vert \mathcal{Re} \big\lbrace \bm{E_j}(\bm{r}, \psi) e^{-i \omega t} \big\rbrace \big\vert}^2 \bm{n_s}
 	\cr
-	&= \mu\_0^{-1} \frac{\eta}{c} \frac{\big\vert \mathcal{Re} \big\lbrace (\mathcal{S_j} \cdot \bm{E_0}) e^{i k (R_j + \bm{r_j} \cdot \bm{n_i}) -i \omega t} \big\rbrace \big\vert^2}{k^2 r^2} \bm{n_s}
+	&= \mu\_0^{-1} \frac{\eta}{c} \frac{\big\vert \mathcal{Re} \big\lbrace
+	\mathcal{S_j}(\bm{n_s}, \psi) \cdot \bm{E_0}
+	e^{i k (R_j + \bm{r_j} \cdot \bm{n_i}) -i \omega t}
+	\big\rbrace \big\vert^2}{k^2 r^2} \bm{n_s}
 \end{aligned}
 $$
 
-As we have already shown in Eqn. 13.22-13.23, time-averaging is equivalent to replacing the phase factor with \\(1/2\\), yielding the standard expression of the time-averaged Poynting vector
+As we have already shown in Eqn. 13.22-13.23, in this case, time-averaging is equivalent to replacing the phase factor with \\(1/2\\), which yields the standard expression of the time-averaged Poynting vector
 
 $$ \tag{1p.24}
 	\braket{\bm{S_j}}\_t \negmedspace (\bm{r}, \psi)
 	\simeq \frac{\mu\_0^{-1}}{2} \frac{\eta}{c} \frac{\left\vert
-	\mathcal{S_j} \cdot \bm{E_0} \right\vert^2}{k^2 r^2} \bm{n_s}
+	\mathcal{S_j}(\bm{n_s}, \psi) \cdot \bm{E_0} \right\vert^2}{k^2 r^2} \bm{n_s}
 $$
 
 of a particle located at the origin. Note that the value of \\(\braket{\bm{S_j}}\\) explicitly depends on the phasor of the incident field, and, implicitly, on the orientation, shape, size, and composition of the particle via the far-field scattering dyadic \\(\mathcal{S_j}\\). Because the latter is located inside the squared norm operator, ensemble averaging the Poynting vector
@@ -4636,11 +4639,18 @@ $$ \tag{1p.25}
 	p(\psi) d\psi
 $$
 
-is, in general, different from replacing \\(\mathcal{S_j}\\) with the average scattering dyadic \\(\braket{\mathcal{S_j}}\\). This implies that the amount of light scattered per particle is not the same as the amount of light scattered by the average particle.
+is, in general, different from replacing \\(\mathcal{S_j}\\) with the average scattering dyadic \\(\braket{\mathcal{S_j}}\\). This implies that the amount of light scattered per particle is not the same as the amount of light scattered by the average particle (cf. Eqn. 16.15):
+
+$$ \tag{1p.26}
+	\braket{\Iota_s} \negmedspace (\bm{n_s})
+	\simeq \frac{\mu\_0^{-1}}{2} \frac{\eta}{c} \frac{1}{k^2} \int\_{\Psi}
+	\left\vert \mathcal{S_j}(\bm{n_s}, \psi) \cdot \bm{E_0} \right\vert^2
+	p(\psi) d\psi.
+$$
 
 The Poynting vector \\(\braket{\bm{S_j}}\\) associated with the scattered field does not, by itself, completely determine the intensity of scattered light. In addition, we must account for interference between the incident and the scattered fields contained within the \\(\braket{\bm{S_{ij}}}\\) terms of Eqn 1p.8. Substitution of Eqn. 16.1 into 1p.9 yields an expression
 
-$$ \tag{1p.26}
+$$ \tag{1p.27}
 \begin{aligned}
 	\braket{\bm{S_{ij}}}\_t \negmedspace (\bm{r}, \psi)
 	\simeq &-\frac{\mu_0^{-1}}{2} \mathcal{Re} \bigg\lbrace
@@ -4654,7 +4664,7 @@ that is broadly similar to Eqn. 16.23. In particular, note the the complex expon
 
 Let us retrace the steps taken in Sec. 16. First, we expand the magnetic field in terms of the electric field using Eqn. 16.2 and 16.11, and project the resulting vector onto the the direction of incidence \\(\bm{n_i}\\). Application of the identities given by Eqn. 16.25 yield the expressions
 
-$$ \tag{1p.27}
+$$ \tag{1p.28}
 \begin{aligned}
 	\bm{n_i} \cdot (\bm{E_i} \times \bm{B_j^{\*}})
 	&\simeq \frac{\eta}{c}
@@ -4670,58 +4680,61 @@ $$
 
 that are complex conjugates of each other.
 
-At this point, we should substitute the expression of \\(\bm{E_j}\\) given by Eqn. 1p.6 into 1p.27, taking the asymptotic expression of \\(k R_j\\) given by Eqn. 1p.5.3 into account. Since we already know that \\(\bm{n_s} = \bm{n_i}\\) is the only direction that makes a non-zero contribution, we only need to consider
+At this point, we should substitute the expression of \\(\bm{E_j}\\) given by Eqn. 1p.6 into 1p.28, taking the asymptotic expression of \\(k R_j\\) given by Eqn. 1p.5.3 into account. Since we already know that \\(\bm{n_s} = \bm{n_i}\\) is the only direction that makes a non-zero contribution, we only need to consider
 
-$$ \tag{1p.28}
+$$ \tag{1p.29}
 	\bm{E_j}(r \bm{n_i}, \omega)
 	\simeq
 	\frac{e^{i k(\omega) r}}{k(\omega) r} \mathcal{S_j} (\bm{n_i}, \bm{n_i}, \omega) \cdot \bm{E_0}(\bm{n_i}, \omega)
 	e^{i k(\omega) r_j^2 \left( 1 - (\bm{n_i} \cdot \bm{n_j})^2 \right) / (2 r)}.
 $$
 
-Note that we can't simply set the leading phase factor to 1, since, while \\(r_j / r \ll 1\\), in general, \\(r_j^2 / r\\) is not.
+By combining Eqn. 1p.27-1p.29 and following the steps detailed in the previous section, it is easy to show that the extinction term of the \\(j\\)-th particle in the state \\(\psi\\) is
 
-By combining Eqn. 1p.26-1p.28 and following the steps detailed in the previous section, it is easy to show that the extinction term of the \\(j\\)-th particle in the state \\(\psi\\) is
-
-$$ \tag{1p.29}
+$$ \tag{1p.30}
 	\Phi_{ij}
-	= \oint_{\mathbb{S}^2} \braket{\bm{S_{ij}}}\_t \negmedspace (\bm{r}, \psi) \cdot \bm{n_s} \thinspace dA
-	= \frac{\mu\_0^{-1}}{2} \frac{\eta}{c} \frac{4 \pi}{k^2} \mathcal{Im} \left\lbrace \bm{E_0^{\*}} \cdot \mathcal{S_j}(\bm{n_i}) \cdot \bm{E_0}
+	= \frac{\mu\_0^{-1}}{2} \frac{\eta}{c} \frac{4 \pi}{k^2} \mathcal{Im} \left\lbrace \bm{E_0^{\*}} \cdot \mathcal{S_j}(\bm{n_i}, \psi) \cdot \bm{E_0}
 	e^{i k r_j^2 \left( 1 - (\bm{n_i} \cdot \bm{n_j})^2 \right) / (2 r)} \right\rbrace.
 $$
 
-This expression can be simplified further by performing ensemble averaging. For simplicity, suppose that every position is equally likely, so that \\(p(\bm{r_j}) = 1/V\\). The integral
+This expression can be simplified further by performing ensemble averaging. For simplicity, suppose that every position is equally likely, so that \\(p(\bm{r_j}) = 1/V\\). Then, we can account for random motion of the particles by analytically evaluating the integral
 
-$$ \tag{1p.30}
+$$ \tag{1p.31}
 	\frac{1}{V} \int_V e^{i k r_j^2 \left( 1 - (\bm{n_i} \cdot \bm{n_j})^2 \right) / (2 r)} \thinspace dV_j
 $$
 
-can then be evaluated analytically. However, its value depends on the dimensions and the shape of the region containing the particles.
+Note that its value depends on the dimensions and the shape of the region containing the particle group.
 
-It is convenient to reparametrize Eqn. 1p.30 by assuming that \\(\bm{n_i}\\) is aligned with the \\(z\\)-axis of the coordinate system:
+It is convenient to reparametrize Eqn. 1p.31 by assuming that \\(\bm{n_i}\\) is aligned with the \\(z\\)-axis of the coordinate system:
 
-$$ \tag{1p.30}
+$$ \tag{1p.32}
 	r_j^2 \left( 1 - (\bm{n_i} \cdot \bm{n_j})^2 \right)
 	= (r_j \sin{\theta_j})^2
 	= x_j^2 + y_j^2.
 $$
 
-In addition, we may perform a change of variables by introducing the ratio between the dimensionless area of the cross-sectional area of the volume \\((k L)^2\\) and the dimensionless distance to the observation point \\(k r\\):
+Then, for an axis-aligned cube of volume \\(L^3\\),
 
-$$ \tag{1p.31}
-	\zeta = \frac{(k L)^2}{2 k r}.
-$$
-
-Then, for a cube with the edge length \\(L\\),
-
-$$ \tag{1p.31}
+$$ \tag{1p.33}
 \begin{aligned}
 	&\frac{1}{V} \int_V
 	\exp \negmedspace \left( i \frac{k}{2 r} \left( x_j^2 + y_j^2 \right) \right)
 	dx_j dy_j dz_j
-	\approx e^{i \zeta / 6}.
+	\approx e^{i \zeta / 6},
 \end{aligned}
 $$
+
+where
+
+$$ \tag{1p.34}
+	\zeta = \frac{1}{2} \frac{(k L)^2}{k r}
+$$
+
+is the ratio between the dimensionless area of the cross-sectional area of the volume \\((k L)^2\\) and the dimensionless distance to the observation point \\(k r\\). The approximation of Eqn. 1p.33 assumes that \\(\zeta < 1\\).
+
+{{< figure src="/img/vol_int.svg" caption="*Figure N: Plot of the value of the integral given by Eqn. 1p.33 as a function of \\(\zeta\\). The solid line represents the absolute value, and the dashed line represents the value of the argument (the phase).*" >}}
+
+---
 
 Similarly, for a sphere of volume L^3,
 
