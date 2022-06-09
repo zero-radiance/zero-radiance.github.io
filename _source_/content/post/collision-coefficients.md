@@ -4346,7 +4346,7 @@ Eqn. 16.38.3 and 16.39.3 can be simplified if the particle possesses axial symme
 
 $$ \tag{16.40}
 	\Phi_e
-	= \frac{\mu\_0^{-1}}{2} \frac{\eta}{c} \frac{4 \pi}{k^2} \mathcal{Im} \big\lbrace \bm{E_0^{\*}} \cdot \mathcal{S_{ef}}(\bm{n_i}, \bm{n_i}) \cdot \bm{E_0} \big\rbrace.
+	= \frac{\mu\_0^{-1}}{2} \frac{\eta}{c} \frac{4 \pi}{k^2} \mathcal{Im} \big\lbrace \bm{E_0^{\*}} \cdot \mathcal{S_{ef}}(\bm{n_i}) \cdot \bm{E_0} \big\rbrace.
 $$
 
 Once we choose a coordinate system, we can substitute the scattering matrix with \\(\theta=0\\):
@@ -4408,15 +4408,6 @@ $$ \tag{1p.2}
 $$
 
 where we must remember to account for the fact that, in general, the particle is not located at the origin.
-
-The electric and the magnetic fields are related by Eqn. 16.11. In particular, it shows that they are orthogonal:
-
-$$ \tag{1p.7}
-	\bm{B_j}(\bm{r}, \omega)
-	\simeq \frac{\eta(\omega)}{c} \big( (\bm{R_j} / R_j) \times \bm{E_j}(\bm{r}, \omega) \big),
-$$
-
-where \\(\eta\\) is the refractive index of the host medium.
 
 Let \\(L\_{min}\\) and \\(L\_{max}\\) denote the smallest and the largest linear dimension of \\(V\\), respectively. Since a typical volume is large compared to the wavelength of light, then it follows that
 
@@ -4617,7 +4608,7 @@ $$
 
 ---
 
-Let us apply the ergodic assumption to Eqn. 1p.8, and carefully consider its individual terms. First of all, by definition, the incident field is not affected by the presence of the scattering object. Therefore, no modifications to \\(\braket{\bm{S\_i}}\\) are necessary. Next, we can turn our attention to the Poynting vector \\(\braket{\bm{S\_j}}\\) associated with the scattered field of the \\(j\\)-th particle. Since, according to Eqn. 1p.7, the scattered field vectors are mutually orthogonal, we may express \\(\bm{S\_j}\\) using Eqn. 13.21:
+Let us apply the ergodic assumption to Eqn. 1p.8, and carefully consider its individual terms. First of all, by definition, the incident field is not affected by the presence of the scattering object. Therefore, no modifications to \\(\braket{\bm{S\_i}}\\) are necessary. Next, we can turn our attention to the Poynting vector \\(\braket{\bm{S\_j}}\\) associated with the scattered field of the \\(j\\)-th particle. Since, according to Eqn. 16.11, the scattered field vectors are mutually orthogonal, we may express \\(\bm{S\_j}\\) using Eqn. 13.21:
 
 $$ \tag{1p.23}
 \begin{aligned}
@@ -4659,9 +4650,9 @@ $$ \tag{1p.26}
 \end{aligned}
 $$
 
-that is broadly similar to Eqn. 16.23. This makes the method of Sec. 16 applicable. In particular, according to Eqn. 16.30, the complex exponential term \\(\exp(i k (\bm{r} \cdot \bm{n_i})) = \exp(i k r (\bm{n_s} \cdot \bm{n_i}))\\) indicates that interference only occurs if the optical axis of the measurement device is directly facing the source.
+that is broadly similar to Eqn. 16.23. In particular, note the the complex exponential term \\(\exp(i k (\bm{r} \cdot \bm{n_i})) = \exp(i k r (\bm{n_s} \cdot \bm{n_i}))\\) which, according to Eqn. 16.30, indicates that interference only occurs if the optical axis of the measurement device is directly facing the source.
 
-Let us first expand the magnetic field in terms of the electic field using Eqn. 16.2 and 1p.7, and project the resulting vector onto the the direction of incidence \\(\bm{n_i}\\). Application of the identities given by Eqn. 16.25 yields:
+Let us retrace the steps taken in Sec. 16. First, we expand the magnetic field in terms of the electric field using Eqn. 16.2 and 16.11, and project the resulting vector onto the the direction of incidence \\(\bm{n_i}\\). Application of the identities given by Eqn. 16.25 yield the expressions
 
 $$ \tag{1p.27}
 \begin{aligned}
@@ -4670,34 +4661,82 @@ $$ \tag{1p.27}
 	\big( \bm{E_0} \cdot \bm{E_j^{\*}} \big)
 	e^{i k r (\bm{n_s} \cdot \bm{n_i})},
 	\cr
-	\bm{n_i} \cdot (\bm{E_s} \times \bm{B_i})
+	\bm{n_i} \cdot (\bm{E_j} \times \bm{B_i^{\*}})
 	&\simeq \frac{\eta}{c}
 	\big( \bm{E_0^{\*} \cdot \bm{E_j}} \big)
 	e^{-i k r (\bm{n_s} \cdot \bm{n_i})}.
 \end{aligned}
 $$
 
-At this point, we should substitute the expression of \\(\bm{E_j}\\) given by Eqn. 1p.6 into 1p.27. In addition, we should take the asymptotic expression of \\(k R_j\\) given by Eqn. 1p.5.3 into account. Since we already know that \\(\bm{n_s} = \bm{n_i}\\) is the only direction that makes a non-zero contribution, we only need to consider
+that are complex conjugates of each other.
+
+At this point, we should substitute the expression of \\(\bm{E_j}\\) given by Eqn. 1p.6 into 1p.27, taking the asymptotic expression of \\(k R_j\\) given by Eqn. 1p.5.3 into account. Since we already know that \\(\bm{n_s} = \bm{n_i}\\) is the only direction that makes a non-zero contribution, we only need to consider
 
 $$ \tag{1p.28}
-\begin{aligned}
-	& \bm{E_j}(r \bm{n_i}, \omega)
-	\simeq e^{i k(\omega) r_j^2 \left( 1 - (\bm{n_i} \cdot \bm{n_j})^2 \right) / (2 r)}
-	\frac{e^{i k(\omega) r}}{k(\omega) r} \mathcal{S_j} (\bm{n_i}, \bm{n_i}, \omega) \cdot \bm{E_0}(\bm{n_i}, \omega).
-\end{aligned}
+	\bm{E_j}(r \bm{n_i}, \omega)
+	\simeq
+	\frac{e^{i k(\omega) r}}{k(\omega) r} \mathcal{S_j} (\bm{n_i}, \bm{n_i}, \omega) \cdot \bm{E_0}(\bm{n_i}, \omega)
+	e^{i k(\omega) r_j^2 \left( 1 - (\bm{n_i} \cdot \bm{n_j})^2 \right) / (2 r)}.
 $$
 
-Note that we can't simply set the leading phase factor to 1, since, while \\(r_j / r \ll 1\\), in general, \\(r_j^2 / r\\) isn't.
+Note that we can't simply set the leading phase factor to 1, since, while \\(r_j / r \ll 1\\), in general, \\(r_j^2 / r\\) is not.
 
-Following the steps detailed in the previous section, it is easy to show that the resulting extinction term is
+By combining Eqn. 1p.26-1p.28 and following the steps detailed in the previous section, it is easy to show that the extinction term of the \\(j\\)-th particle in the state \\(\psi\\) is
 
 $$ \tag{1p.29}
 	\Phi_{ij}
 	= \oint_{\mathbb{S}^2} \braket{\bm{S_{ij}}}\_t \negmedspace (\bm{r}, \psi) \cdot \bm{n_s} \thinspace dA
-	= \frac{\mu\_0^{-1}}{2} \frac{\eta}{c} \frac{4 \pi}{k^2} \mathcal{Im} \left\lbrace \bm{E_0^{\*}} \cdot \bm{E_1}(\bm{n_i}) e^{i k r_j^2 \left( 1 - (\bm{n_i} \cdot \bm{n_j})^2 \right) / (2 r)} \right\rbrace.
+	= \frac{\mu\_0^{-1}}{2} \frac{\eta}{c} \frac{4 \pi}{k^2} \mathcal{Im} \left\lbrace \bm{E_0^{\*}} \cdot \mathcal{S_j}(\bm{n_i}) \cdot \bm{E_0}
+	e^{i k r_j^2 \left( 1 - (\bm{n_i} \cdot \bm{n_j})^2 \right) / (2 r)} \right\rbrace.
 $$
 
-16.34 ...
+This expression can be simplified further by performing ensemble averaging. For simplicity, suppose that every position is equally likely, so that \\(p(\bm{r_j}) = 1/V\\). The integral
+
+$$ \tag{1p.30}
+	\frac{1}{V} \int_V e^{i k r_j^2 \left( 1 - (\bm{n_i} \cdot \bm{n_j})^2 \right) / (2 r)} \thinspace dV_j
+$$
+
+can then be evaluated analytically. However, its value depends on the dimensions and the shape of the region containing the particles.
+
+It is convenient to reparametrize Eqn. 1p.30 by assuming that \\(\bm{n_i}\\) is aligned with the \\(z\\)-axis of the coordinate system:
+
+$$ \tag{1p.30}
+	r_j^2 \left( 1 - (\bm{n_i} \cdot \bm{n_j})^2 \right)
+	= (r_j \sin{\theta_j})^2
+	= x_j^2 + y_j^2.
+$$
+
+In addition, we may perform a change of variables by introducing the ratio between the dimensionless area of the cross-sectional area of the volume \\((k L)^2\\) and the dimensionless distance to the observation point \\(k r\\):
+
+$$ \tag{1p.31}
+	\zeta = \frac{(k L)^2}{2 k r}.
+$$
+
+Then, for a cube with the edge length \\(L\\),
+
+$$ \tag{1p.31}
+\begin{aligned}
+	&\frac{1}{V} \int_V
+	\exp \negmedspace \left( i \frac{k}{2 r} \left( x_j^2 + y_j^2 \right) \right)
+	dx_j dy_j dz_j
+	\approx e^{i \zeta / 6}.
+\end{aligned}
+$$
+
+Similarly, for a sphere of volume L^3,
+
+$$ \tag{1p.31}
+\begin{aligned}
+	\frac{1}{V} \int_V
+	\exp \negmedspace \left( i \frac{k}{2 r} \left( r_j \sin{\theta_j} \right)^2 \right)
+	r_j^2 \sin{\theta_j} dr_j d\theta_j d\phi_j
+	\approx e^{i \zeta / 6.5}
+\end{aligned}
+$$
+
+For a cylinder ...
+
+Let us compute the average value of Eqn. 1p.29 over the position space of the particle, i.e. the volume \\(V\\).
 
 ---
 
