@@ -3963,10 +3963,10 @@ We begin by constructing a virtual surface that is (for convenience, and without
 $$ \tag{16.10}
 \begin{aligned}
 	& \bm{E_s}(\bm{r}, t)
-	\simeq \mathcal{Re} \bigg\lbrace \frac{e^{i k r}}{k r} \mathcal{S_{ef}}(\bm{n_s}, \bm{n_i}) \cdot \bm{E_0} e^{-i \omega t} \bigg\rbrace
+	\simeq \mathcal{Re} \bigg\lbrace \frac{e^{i k r}}{k r} \mathcal{S_{ef}}(\bm{n_s}) \cdot \bm{E_0} e^{-i \omega t} \bigg\rbrace
 	= \frac{1}{k r} \mathcal{Re} \bigg\lbrace \bm{E_1}(\bm{n_s}) e^{i k r - i \omega t} \bigg\rbrace, \cr
 	& \bm{B_s}(\bm{r}, t)
-	\simeq \mathcal{Re} \bigg\lbrace \frac{e^{i k r}}{k r} \mathcal{S_{mf}}(\bm{n_s}, \bm{n_i}) \cdot \bm{E_0} e^{-i \omega t} \bigg\rbrace
+	\simeq \mathcal{Re} \bigg\lbrace \frac{e^{i k r}}{k r} \mathcal{S_{mf}}(\bm{n_s}) \cdot \bm{E_0} e^{-i \omega t} \bigg\rbrace
 	= \frac{1}{k r} \mathcal{Re} \bigg\lbrace \bm{B_1}(\bm{n_s}) e^{i k r - i \omega t} \bigg\rbrace,
 \end{aligned}
 $$
@@ -4067,7 +4067,7 @@ $$ \tag{16.21}
 	= \Phi_a + \Phi_s
 $$
 
-represents the total amount of power dissipated (absorbed or scattered) by the particle. We must caution against taking this interpretation literally: Eqn. 16.17 is just a convenient *mathematical decomposition*, and, in reality, the incident and the scattered fields cannot be completely *physically separated*. In fact, we can only measure the incident power \\(\Phi_i\\) (if the particle is absent) and the total amount of power \\(\Phi = \Phi_i + \Phi_s - \Phi_e\\) (with the particle in place), while \\(\Phi_s\\) and \\(\Phi_e\\) are mathematical quantities that *are not directly measurable*, derived from the fields that *cannot individually exist*.
+represents the amount of power dissipated (absorbed or scattered) by the particle. We must caution against taking this interpretation literally: Eqn. 16.17 is just a convenient *mathematical decomposition*, and, in reality, the incident and the scattered fields cannot be completely *physically separated*. In fact, we can only measure the incident power \\(\Phi_i\\) (if the particle is absent) and the total amount of power \\(\Phi = \Phi_i + \Phi_s - \Phi_e\\) (with the particle in place), while \\(\Phi_s\\) and \\(\Phi_e\\) are mathematical quantities that *are not directly measurable*, derived from the fields that *cannot individually exist*.
 
 Now, recall (cf. Eqn. 4.8, 4.15) that we have found, under quite general conditions, that the time average of the cross product of two vectors oscillating at exactly the same frequency is
 
@@ -4237,7 +4237,7 @@ $$
 
 since the expression inside the curly braces is a real number (cf. Eqn. 3.5).
 
-Thus, assuming the observer is located in the radiation zone, *the incident and the scattered light only interfere in the forward direction*. The total amount of power participating in the interference phenomenon is
+Thus, assuming the observer is located in the radiation zone, *the incident and the scattered light only interfere in the forward direction*. The associated amount of power (dissipated by the particle) is
 
 $$ \tag{16.34}
 	\Phi_e
@@ -4353,7 +4353,7 @@ Once we choose a coordinate system, we can substitute the scattering matrix with
 
 $$ \tag{16.41}
 	\Phi_e
-	= \frac{\mu\_0^{-1}}{2} \frac{\eta}{c} \frac{4 \pi}{k^2} \mathcal{Im} \big\lbrace \bm{E_0^{\*}} \cdot S(0, \phi, \omega) \bm{E_0} \big\rbrace.
+	= \frac{\mu\_0^{-1}}{2} \frac{\eta}{c} \frac{4 \pi}{k^2} \mathcal{Im} \big\lbrace \bm{E_0^{\*}} \cdot S(0, \phi) \bm{E_0} \big\rbrace.
 $$
 
 Now, for a symmetric particle, we have previously demonstrated that
@@ -4403,7 +4403,7 @@ The resulting scattered far-field \\(\bm{E_j}\\) of the \\(j\\)-th particle is g
 $$ \tag{1p.2}
 \begin{aligned}
 	& \bm{E_j}(\bm{r}, \omega)
-	\simeq \frac{e^{i k(\omega) R_j}}{k(\omega) R_j} \mathcal{S_j} (\bm{R_j} / R_j, \bm{n_i}, \omega) \cdot \bm{E_0}(\bm{n_i}, \omega) e^{i k(\omega) (\bm{r_j} \cdot \bm{n_i})},
+	\simeq \frac{e^{i k R_j}}{k R_j} \mathcal{S_j} (\bm{R_j} / R_j) \cdot \bm{E_0} e^{i k (\bm{r_j} \cdot \bm{n_i})},
 \end{aligned}
 $$
 
@@ -4412,7 +4412,7 @@ where we must remember to account for the fact that, in general, the particle is
 Let \\(L\_{min}\\) and \\(L\_{max}\\) denote the smallest and the largest linear dimension of \\(V\\), respectively. Since a typical volume is large compared to the wavelength of light, then it follows that
 
 $$ \tag{1p.3}
-	k L_{min} \gg 1.
+	k L_{min} \ge 1.
 $$
 
 On the other hand, if the dimensions of \\(V\\) are sufficiently small compared to the distance between every particle and the observation point, such that
@@ -4442,7 +4442,7 @@ Substitution of Eqn 1p.5 into 1p.2 yields an expression of a spherical wave dive
 $$ \tag{1p.6}
 \begin{aligned}
 	& \bm{E_j}(\bm{r}, \omega)
-	\simeq \frac{e^{i k(\omega) (R_j + \bm{r_j} \cdot \bm{n_i})}}{k(\omega) r} \mathcal{S_j} (\bm{n_s}, \bm{n_i}, \omega) \cdot \bm{E_0}(\bm{n_i}, \omega).
+	\simeq \frac{e^{i k (R_j + \bm{r_j} \cdot \bm{n_i})}}{k r} \mathcal{S_j} (\bm{n_s}) \cdot \bm{E_0}.
 \end{aligned}
 $$
 
@@ -4494,7 +4494,7 @@ $$ \tag{1p.12}
 	\approx \braket{\braket{\bm{S}}} \negmedspace (\bm{r}).
 $$
 
-In principle, one could solve a dynamic light scattering problem by choosing the initial configuration of the system (i.e. by assigning each particle a certain position, orientation, shape, size, and composition), describing the way the system evolves, and evaluating the integral given by Eqn 1p.10. In practice, this (obvious, but arduous) solution is rarely used; nevertheless, it is important to understand the conceptual model and its implications.
+In principle, one could solve a dynamic light scattering problem by choosing the initial configuration of the system (i.e. by assigning each particle a certain position, orientation, shape, size, and composition), describing the way the system evolves, and evaluating the integral given by Eqn 1p.10. In practice, this (obvious, but arduous) solution is rarely used; nevertheless, it helps us build the mental model and understand its implications.
 
 First of all, since the properties of the particles vary in time, the phasors of the scattered field must become time-dependent as well. Examination of the resulting expression of the total field
 
@@ -4608,7 +4608,7 @@ $$
 
 ---
 
-Let us apply the ergodic assumption to Eqn. 1p.8, and carefully consider its individual terms. First of all, by definition, the incident field is not affected by the presence of the scattering object. Therefore, no modifications to \\(\braket{\bm{S\_i}}\\) are necessary. Next, we can turn our attention to the Poynting vector \\(\braket{\bm{S\_j}}\\) associated with the scattered field of the \\(j\\)-th particle. Since, according to Eqn. 16.11, the scattered field vectors are mutually orthogonal, we may express \\(\bm{S\_j}\\) using Eqn. 13.21:
+Let us apply the ergodic assumption to Eqn. 1p.8, and carefully consider its individual terms. First of all, by definition, the incident field is not affected by the presence of the scattering object. Therefore, no modifications to \\(\braket{\bm{S\_i}}\\) are necessary. Next, consider the Poynting vector \\(\braket{\bm{S\_j}}\\) associated with the scattered field of the \\(j\\)-th particle. Since, according to Eqn. 16.11, the scattered field vectors are mutually orthogonal, we may express \\(\bm{S\_j}\\) using Eqn. 13.21:
 
 $$ \tag{1p.23}
 \begin{aligned}
@@ -4622,7 +4622,7 @@ $$ \tag{1p.23}
 \end{aligned}
 $$
 
-As we have already shown in Eqn. 13.22-13.23, in this case, time-averaging is equivalent to replacing the phase factor with \\(1/2\\), which yields the standard expression of the time-averaged Poynting vector
+As we have already shown in Eqn. 13.22-13.23, time-averaging of Eqn. 1p.23 is equivalent to replacing the phase factor with \\(1/2\\), which yields the standard expression of the time-averaged Poynting vector
 
 $$ \tag{1p.24}
 	\braket{\bm{S_j}}\_t \negmedspace (\bm{r}, \psi)
@@ -4630,7 +4630,7 @@ $$ \tag{1p.24}
 	\mathcal{S_j}(\bm{n_s}, \psi) \cdot \bm{E_0} \right\vert^2}{k^2 r^2} \bm{n_s}
 $$
 
-of a particle located at the origin. Note that the value of \\(\braket{\bm{S_j}}\\) explicitly depends on the phasor of the incident field, and, implicitly, on the orientation, shape, size, and composition of the particle via the far-field scattering dyadic \\(\mathcal{S_j}\\). Because the latter is located inside the squared norm operator, ensemble averaging the Poynting vector
+of a particle located at the origin. Note that the value of \\(\braket{\bm{S_j}}\\) explicitly depends on the state of the incident field, and, implicitly, on the orientation, shape, size, and composition of the particle via the far-field scattering dyadic \\(\mathcal{S_j}\\). Because the latter is located inside the squared norm operator, ensemble averaging the Poynting vector
 
 $$ \tag{1p.25}
 	\braket{\braket{\bm{S_j}}} \negmedspace (\bm{r})
@@ -4639,7 +4639,7 @@ $$ \tag{1p.25}
 	p(\psi) d\psi
 $$
 
-is, in general, different from replacing \\(\mathcal{S_j}\\) with the average scattering dyadic \\(\braket{\mathcal{S_j}}\\). This implies that the amount of light scattered per particle is not the same as the amount of light scattered by the average particle (cf. Eqn. 16.15):
+is, in general, different from replacing \\(\mathcal{S_j}\\) with the average scattering dyadic \\(\braket{\mathcal{S_j}}\\). This implies that the mean intensity \\(\braket{\Iota_s}\\) of scattered light is not the same as the intensity of light scattered by the average particle (cf. Eqn. 16.15):
 
 $$ \tag{1p.26}
 	\braket{\Iota_s} \negmedspace (\bm{n_s})
@@ -4648,7 +4648,7 @@ $$ \tag{1p.26}
 	p(\psi) d\psi.
 $$
 
-The Poynting vector \\(\braket{\bm{S_j}}\\) associated with the scattered field does not, by itself, completely determine the intensity of scattered light. In addition, we must account for interference between the incident and the scattered fields contained within the \\(\braket{\bm{S_{ij}}}\\) terms of Eqn 1p.8. Substitution of Eqn. 16.1 into 1p.9 yields an expression
+The Poynting vector \\(\braket{\bm{S_j}}\\) associated with the scattered field does not, by itself, completely determine the intensity of scattered light. In addition, we must account for interference between the incident and the scattered waves contained within the \\(\braket{\bm{S_{ij}}}\\) terms of Eqn 1p.8. Substitution of Eqn. 16.1 into 1p.9 yields an expression
 
 $$ \tag{1p.27}
 \begin{aligned}
@@ -4660,9 +4660,9 @@ $$ \tag{1p.27}
 \end{aligned}
 $$
 
-that is broadly similar to Eqn. 16.23. In particular, note the the complex exponential term \\(\exp(i k (\bm{r} \cdot \bm{n_i})) = \exp(i k r (\bm{n_s} \cdot \bm{n_i}))\\) which, according to Eqn. 16.30, indicates that interference only occurs if the optical axis of the measurement device is directly facing the source.
+that is broadly similar to Eqn. 16.23. In particular, according to Eqn. 16.30, the complex exponential term \\(\exp(i k (\bm{r} \cdot \bm{n_i})) = \exp(i k r (\bm{n_s} \cdot \bm{n_i}))\\) indicates that interference only occurs if the optical axis of the measurement device is directly facing the source.
 
-Let us retrace the steps taken in Sec. 16. First, we expand the magnetic field in terms of the electric field using Eqn. 16.2 and 16.11, and project the resulting vector onto the the direction of incidence \\(\bm{n_i}\\). Application of the identities given by Eqn. 16.25 yield the expressions
+Let us retrace the steps taken in Sec. 16. First, we expand the magnetic field in terms of the electric field using Eqn. 16.2 and 16.11, and project the resulting vector onto the direction of incidence \\(\bm{n_i}\\). Application of the identities given by Eqn. 16.25 yield the expressions
 
 $$ \tag{1p.28}
 \begin{aligned}
@@ -4683,31 +4683,40 @@ that are complex conjugates of each other.
 At this point, we should substitute the expression of \\(\bm{E_j}\\) given by Eqn. 1p.6 into 1p.28, taking the asymptotic expression of \\(k R_j\\) given by Eqn. 1p.5.3 into account. Since we already know that \\(\bm{n_s} = \bm{n_i}\\) is the only direction that makes a non-zero contribution, we only need to consider
 
 $$ \tag{1p.29}
-	\bm{E_j}(r \bm{n_i}, \omega)
+	\bm{E_j}(r \bm{n_i}, \psi)
 	\simeq
-	\frac{e^{i k(\omega) r}}{k(\omega) r} \mathcal{S_j} (\bm{n_i}, \bm{n_i}, \omega) \cdot \bm{E_0}(\bm{n_i}, \omega)
-	e^{i k(\omega) r_j^2 \left( 1 - (\bm{n_i} \cdot \bm{n_j})^2 \right) / (2 r)}.
+	\frac{e^{i k r}}{k r} \mathcal{S_j} (\bm{n_i}, \psi) \cdot \bm{E_0}
+	e^{i k r_j^2 \left( 1 - (\bm{n_i} \cdot \bm{n_j})^2 \right) / (2 r)}.
 $$
 
-By combining Eqn. 1p.27-1p.29 and following the steps detailed in the previous section, it is easy to show that the extinction term of the \\(j\\)-th particle in the state \\(\psi\\) is
+By combining Eqn. 1p.27-1p.29, and following the steps detailed in the previous section, it is easy to show that the amount of power dissipated by the \\(j\\)-th particle in the state \\(\psi\\) is
 
 $$ \tag{1p.30}
-	\Phi_{ij}
+	\Phi_{ij}(\psi)
 	= \frac{\mu\_0^{-1}}{2} \frac{\eta}{c} \frac{4 \pi}{k^2} \mathcal{Im} \left\lbrace \bm{E_0^{\*}} \cdot \mathcal{S_j}(\bm{n_i}, \psi) \cdot \bm{E_0}
 	e^{i k r_j^2 \left( 1 - (\bm{n_i} \cdot \bm{n_j})^2 \right) / (2 r)} \right\rbrace.
 $$
 
-This expression can be simplified further by performing ensemble averaging. For simplicity, suppose that every position is equally likely, so that \\(p(\bm{r_j}) = 1/V\\). Then, we can account for random motion of the particles by analytically evaluating the integral
+This expression can be further simplified by performing ensemble averaging. Suppose that every position is equally likely, so that \\(p(\bm{r_j}) = 1/V\\); then we can account for random motion of the particles by analytically evaluating the integral
 
 $$ \tag{1p.31}
-	\frac{1}{V} \int_V e^{i k r_j^2 \left( 1 - (\bm{n_i} \cdot \bm{n_j})^2 \right) / (2 r)} \thinspace dV_j
+	v(\zeta) = \frac{1}{V} \int_V
+	\exp \negmedspace \left(
+	\frac{i}{2} \frac{k^2}{k r} r_j^2 \left( 1 - (\bm{n_i} \cdot \bm{n_j})^2 \right)
+	\right) dV_j,
 $$
 
-Note that its value depends on the dimensions and the shape of the region containing the particle group.
-
-It is convenient to reparametrize Eqn. 1p.31 by assuming that \\(\bm{n_i}\\) is aligned with the \\(z\\)-axis of the coordinate system:
+where
 
 $$ \tag{1p.32}
+	\zeta = \frac{1}{2} \frac{(k L)^2}{k r}
+$$
+
+is the ratio between the dimensionless area of the cross-section \\((k L)^2\\) and the dimensionless distance to the observation point \\(k r\\).
+
+It is convenient to reparametrize Eqn. 1p.31 by aligning \\(\bm{n_i}\\) with an axis of the coordinate system:
+
+$$ \tag{1p.33}
 	r_j^2 \left( 1 - (\bm{n_i} \cdot \bm{n_j})^2 \right)
 	= (r_j \sin{\theta_j})^2
 	= x_j^2 + y_j^2.
@@ -4715,41 +4724,57 @@ $$
 
 Then, for an axis-aligned cube of volume \\(L^3\\),
 
-$$ \tag{1p.33}
-\begin{aligned}
-	&\frac{1}{V} \int_V
-	\exp \negmedspace \left( i \frac{k}{2 r} \left( x_j^2 + y_j^2 \right) \right)
-	dx_j dy_j dz_j
-	\approx e^{i \zeta / 6},
-\end{aligned}
-$$
-
-where
-
 $$ \tag{1p.34}
-	\zeta = \frac{1}{2} \frac{(k L)^2}{k r}
+	v(\zeta) = \frac{1}{V} \int_V
+	\exp \negmedspace \left(
+	\frac{i}{2} \frac{k^2}{k r} \left( x_j^2 + y_j^2 \right)
+	\right) dx_j dy_j dz_j
+	\approx e^{i \zeta / 6}.
 $$
 
-is the ratio between the dimensionless area of the cross-sectional area of the volume \\((k L)^2\\) and the dimensionless distance to the observation point \\(k r\\). The approximation of Eqn. 1p.33 assumes that \\(\zeta < 1\\).
+Similarly, for an axis-aligned cylinder of the same volume and cross-sectional area,
 
-{{< figure src="/img/vol_int.svg" caption="*Figure N: Plot of the value of the integral given by Eqn. 1p.33 as a function of \\(\zeta\\). The solid line represents the absolute value, and the dashed line represents the value of the argument (the phase).*" >}}
-
----
-
-Similarly, for a sphere of volume L^3,
-
-$$ \tag{1p.31}
+$$ \tag{1p.35}
 \begin{aligned}
-	\frac{1}{V} \int_V
-	\exp \negmedspace \left( i \frac{k}{2 r} \left( r_j \sin{\theta_j} \right)^2 \right)
-	r_j^2 \sin{\theta_j} dr_j d\theta_j d\phi_j
-	\approx e^{i \zeta / 6.5}
+	v(\zeta) = \frac{1}{V} \int_V
+	\exp \negmedspace \left(
+	\frac{i}{2} \frac{k^2}{k r} \left( r_j \sin{\theta_j} \right)^2
+	\right) r_j dr_j d\theta_j dz_j
+	\approx e^{i \zeta / 12.58}.
 \end{aligned}
 $$
 
-For a cylinder ...
+Finally, for a sphere of the same volume (and a slightly larger cross-sectional area),
 
-Let us compute the average value of Eqn. 1p.29 over the position space of the particle, i.e. the volume \\(V\\).
+$$ \tag{1p.36}
+\begin{aligned}
+	v(\zeta) = \frac{1}{V} \int_V
+	\exp \negmedspace \left(
+	\frac{i}{2} \frac{k^2}{k r} \left( r_j \sin{\theta_j} \right)^2
+	\right) r_j^2 \sin{\theta_j} dr_j d\theta_j d\phi_j
+	\approx e^{i \zeta / 6.5}.
+\end{aligned}
+$$
+
+{{< figure src="/img/vol_int.svg" caption="*Figure N: Plot of \\(v(\zeta)\\) defined by Eqn. 1p.34. The solid line represents the absolute value, and the dashed line represents the value of the argument (the phase).*" >}}
+
+These approximations are valid provided \\(\zeta \leq 1\\). In general, \\(v(\zeta) \\) is a pretty complicated function that tends to \\(1\\) as \\(\zeta \to 0\\). The latter indicates that the observer approaches the radiation zone of the entire particle group. Another important case of interest is when both \\(k L \gg 1\\) and \\(k r \gg 1\\) in such a way that \\(\zeta \gg 1\\). That causes the approximations of Eqn. 1p.34-1p.36 to break down. One may encounter this situation in practice while considering the force exerted by the scattered field of one particle group onto a particle in an adjacent group. Fortunately, for a "typical" convex volume, \\(|v| \to 0\\) as \\(\zeta \to \infin\\).
+
+In conclusion, *if the observer is located in the the radiation zone of the entire particle group*, the mean amount of power \\(\braket{\Phi_e}\\) dissipated per particle is the same as that of the average particle (cf. Eqn. 16.40):
+
+$$ \tag{1p.37}
+	\braket{\Phi_e}
+	\approx \frac{\mu\_0^{-1}}{2} \frac{\eta}{c} \frac{4 \pi}{k^2}
+	\mathcal{Im} \left\lbrace
+	\bm{E_0^{\*}} \cdot \braket{\mathcal{S_j}}\_{\psi} \negmedspace (\bm{n_i}) \cdot \bm{E_0}
+	\right\rbrace.
+$$
+
+On the other hand, *if the observer is located in an area directly adjacent to an extensive particle group*, extinction can be neglected \[[8](#references) (ch. 14.2)\]:
+
+$$ \tag{1p.38}
+	\braket{\Phi_e} \approx 0.
+$$
 
 ---
 
