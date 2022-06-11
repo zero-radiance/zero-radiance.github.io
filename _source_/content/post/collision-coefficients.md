@@ -4155,7 +4155,7 @@ Based on Eqn. 16.26, it is convenient to define two functions independent of \\(
 $$ \tag{16.27}
 \begin{aligned}
 	f_1(\bm{n})
-	&= \bm{E_0} \cdot \big[ \bm{E_1}(\bm{n}) \big]^{\*},
+	&= \bm{E_0} \cdot \bm{E_1^{\*}}(\bm{n}),
 	\cr
 	f_2(\bm{n})
 	&= \big( \bm{n} \cdot \bm{n_i} \big) \big( \bm{E_0^{\*}} \cdot \bm{E_1}(\bm{n}) \big)
@@ -4229,7 +4229,7 @@ $$ \tag{16.33}
 	f_1(-\bm{n_i}) e^{-2 i k r} - f_2(-\bm{n_i}) e^{2 i k r} \right\rbrace
 	\cr
 	&= \frac{\mu\_0^{-1}}{2} \frac{\eta}{c} \frac{2 \pi}{k^2} \mathcal{Im} \left\lbrace
-		\bm{E_0} \cdot \big[ \bm{E_1}(-\bm{n_i}) \big]^{\*} e^{-2 i k r} +
+		\bm{E_0} \cdot \bm{E_1^{\*}}(-\bm{n_i}) e^{-2 i k r} +
 		\bm{E_0^{\*}} \cdot \bm{E_1}(-\bm{n_i}) e^{2 i k r}
 	\right\rbrace = 0,
 \end{aligned}
@@ -4666,15 +4666,15 @@ Let us retrace the steps taken in Sec. 16. First, we expand the magnetic field i
 
 $$ \tag{1p.28}
 \begin{aligned}
-	\bm{n_i} \cdot (\bm{E_i} \times \bm{B_j^{\*}})
+	\bm{n_i} \cdot \big( \bm{E_i} \times \bm{B_j^{\*}}(\bm{n_i}, \psi) \big)
 	&\simeq \frac{\eta}{c}
-	\big( \bm{E_0} \cdot \bm{E_j^{\*}} \big)
-	e^{i k r (\bm{n_s} \cdot \bm{n_i})},
+	\big( \bm{E_0} \cdot \bm{E_j^{\*}}(\bm{n_i}, \psi) \big)
+	e^{i k r},
 	\cr
-	\bm{n_i} \cdot (\bm{E_j} \times \bm{B_i^{\*}})
+	\bm{n_i} \cdot \big( \bm{E_j}(\bm{n_i}, \psi) \times \bm{B_i^{\*}} \big)
 	&\simeq \frac{\eta}{c}
-	\big( \bm{E_0^{\*} \cdot \bm{E_j}} \big)
-	e^{-i k r (\bm{n_s} \cdot \bm{n_i})}.
+	\big( \bm{E_0^{\*} \cdot \bm{E_j}}(\bm{n_i}, \psi) \big)
+	e^{-i k r}.
 \end{aligned}
 $$
 
@@ -4770,11 +4770,48 @@ $$ \tag{1p.37}
 	\right\rbrace.
 $$
 
-On the other hand, *if the observer is located in an area directly adjacent to an extensive particle group*, extinction can be neglected \[[8](#references) (ch. 14.2)\]:
+On the other hand, *if the observer is located in an area directly adjacent to an extensive particle group*, the extinction effect can be neglected \[[8](#references) (ch. 14.2)\]:
 
 $$ \tag{1p.38}
 	\braket{\Phi_e} \approx 0.
 $$
+
+Let us now consider the final term \\(\braket{\bm{S_{jk}}}\\) that accounts for interference between the scattered fields of two different particles. Since the observation point \\(\bm{r}\\) is located in the radiation zone of each particle, we may substitute Eqn. 1p.6 (twice) into 1p.9. Note that the resulting expression is highly symmetrical.
+
+Utilizing the identities of Eqn. 16.11 and 16.25, we obtain
+
+$$ \tag{1p.39}
+\begin{aligned}
+	\bm{n_s} \cdot \big( \bm{E_j} \times \bm{B_k^{\*}} \big)
+	&\simeq \frac{\eta}{c}
+	\big( \bm{E_j} \cdot \bm{E_k^{\*}} \big),
+\end{aligned}
+$$
+
+which directly leads to
+
+$$ \tag{1p.40}
+	\bm{n_s} \cdot \braket{\bm{S_{jk}}}\_t \negmedspace (\bm{r}, \psi)
+	= -\frac{\mu\_0^{-1}}{2} \frac{\eta}{c} \big( \bm{E_j} \cdot \bm{E_k^{\*}} + \bm{E_k} \cdot \bm{E_j^{\*}} \big)
+	= -\mu\_0^{-1} \frac{\eta}{c} \mathcal{Re} \big\lbrace \bm{E_j^{\*}} \cdot \bm{E_k} \big\rbrace.
+$$
+
+Expanding ...
+
+$$ \tag{1p.41}
+\begin{aligned}
+	\bm{n_s} \cdot \braket{\bm{S_{jk}}}\_t \negmedspace (\bm{r}, \psi)
+	= -\mu\_0^{-1} \frac{\eta}{c} \frac{1}{k^2 r^2}
+	\mathcal{Re} \left\lbrace
+	\big[ \bm{E_0} \cdot \mathcal{S}\_j^T \big]^{\*} \cdot
+	\big( \mathcal{S_k} \cdot \bm{E_0} \big)
+	e^{i k (R_k - R_j)}
+	e^{i k (\bm{r_k} - \bm{r_j}) \cdot \bm{n_i}}
+	\right\rbrace.
+\end{aligned}
+$$
+
+Consider the exponential in more detail ... Expand using 1p.5.3...
 
 ---
 
