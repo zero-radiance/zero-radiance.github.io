@@ -4776,6 +4776,18 @@ $$ \tag{1p.38}
 	\braket{\Phi_e} \approx 0.
 $$
 
+The reason behind this discrepancy can be understood geometrically. If \\(\zeta \ll 1\\) and \\(k L \ge 1\\), then \\(r / L \gg 1\\), which means that, for the observation point \\(\bm{r} = r \bm{n_i}\\) located along the forward direction, the wave vectors of the incident and the scattered waves are more or less permanently aligned:
+
+$$ \tag{1p.39}
+	k (r \bm{n_i} - \bm{r_j}) \approx k r \bm{n_i},
+$$
+
+making the strength of the interference effect similar to that for a particle fixed at the origin.
+
+On the other hand, if \\(\zeta \ll 1\\), the wave vectors are almost never aligned, making the contribution to \\(\braket{\Phi_e}\\) (which, by definition, describes wave interference in the forward direction) vanishingly small.
+
+---
+
 Let us now consider the final term \\(\braket{\bm{S_{jk}}}\\) that accounts for interference between the scattered fields of two different particles. Since the observation point \\(\bm{r}\\) is located in the radiation zone of each particle, we may substitute Eqn. 1p.6 (twice) into 1p.9. Note that the resulting expression is highly symmetrical.
 
 Utilizing the identities of Eqn. 16.11 and 16.25, we obtain
