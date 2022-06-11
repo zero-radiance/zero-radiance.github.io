@@ -4758,7 +4758,9 @@ $$
 
 {{< figure src="/img/vol_int.svg" caption="*Figure N: Plot of \\(v(\zeta)\\) defined by Eqn. 1p.34. The solid line represents the absolute value, and the dashed line represents the value of the argument (the phase).*" >}}
 
-These approximations are valid provided \\(\zeta \leq 1\\). In general, \\(v(\zeta) \\) is a pretty complicated function that tends to \\(1\\) as \\(\zeta \to 0\\). The latter indicates that the observer approaches the radiation zone of the entire particle group. Another important case of interest is when both \\(k L \gg 1\\) and \\(k r \gg 1\\) in such a way that \\(\zeta \gg 1\\). That causes the approximations of Eqn. 1p.34-1p.36 to break down. One may encounter this situation in practice while considering the force exerted by the scattered field of one particle group onto a particle in an adjacent group. Fortunately, for a "typical" convex volume, \\(|v| \to 0\\) as \\(\zeta \to \infin\\).
+These approximations are valid provided \\(\zeta \leq 1\\). In general, \\(v(\zeta) \\) is a pretty complicated function that tends to \\(1\\) as \\(\zeta \to 0\\). The latter indicates that the observer approaches the radiation zone of the entire particle group, which makes the trailing complex exponential of Eqn. 1p.30 vanish.
+
+Another important case of interest is when both \\(k L \gg 1\\) and \\(k r \gg 1\\) in such a way that \\(\zeta \gg 1\\). That causes the approximations of Eqn. 1p.34-1p.36 to break down. One may encounter this situation in practice while considering the force exerted by the scattered field of one particle group onto a particle in an adjacent group. Fortunately, by taking the limit of Eqn. 1p.31, one can show that \\(|v| \to 0\\) as \\(\zeta \to \infin\\).
 
 In conclusion, *if the observer is located in the the radiation zone of the entire particle group*, the mean amount of power \\(\braket{\Phi_e}\\) dissipated per particle is the same as that of the average particle (cf. Eqn. 16.40):
 
