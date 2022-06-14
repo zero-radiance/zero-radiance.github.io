@@ -4772,6 +4772,8 @@ $$ \tag{1p.37}
 	\right\rbrace.
 $$
 
+Mind the sensor size: Eqn. 16.3y.
+
 On the other hand, *if the observer is located in an area directly adjacent to an extensive particle group*, the extinction effect can be neglected \[[8](#references) (ch. 14.2)\]:
 
 $$ \tag{1p.38}
