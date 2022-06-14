@@ -4794,7 +4794,7 @@ Let us now consider the final term \\(\braket{\bm{S_{jk}}}\\) that accounts for 
 
 Utilizing the identities of Eqn. 16.11 and 16.25, we obtain
 
-$$ \tag{1p.39}
+$$ \tag{1p.40}
 \begin{aligned}
 	\bm{n_s} \cdot \big( \bm{E_j} \times \bm{B_k^{\*}} \big)
 	&\simeq \frac{\eta}{c}
@@ -4804,7 +4804,7 @@ $$
 
 which directly leads to
 
-$$ \tag{1p.40}
+$$ \tag{1p.41}
 	\bm{n_s} \cdot \braket{\bm{S_{jk}}}\_t \negmedspace (\bm{r}, \psi)
 	= -\frac{\mu\_0^{-1}}{2} \frac{\eta}{c} \big( \bm{E_j} \cdot \bm{E_k^{\*}} + \bm{E_k} \cdot \bm{E_j^{\*}} \big)
 	= -\mu\_0^{-1} \frac{\eta}{c} \mathcal{Re} \big\lbrace \bm{E_j^{\*}} \cdot \bm{E_k} \big\rbrace.
@@ -4812,7 +4812,7 @@ $$
 
 Expanding ...
 
-$$ \tag{1p.41}
+$$ \tag{1p.42}
 \begin{aligned}
 	\bm{n_s} \cdot \braket{\bm{S_{jk}}}\_t \negmedspace (\bm{r}, \psi)
 	= -\mu\_0^{-1} \frac{\eta}{c} \frac{1}{k^2 r^2}
@@ -4826,6 +4826,44 @@ $$ \tag{1p.41}
 $$
 
 Consider the exponential in more detail ... Expand using 1p.5.3...
+
+$$ \tag{1p.5}
+	k R_k
+	\simeq k r - k (\bm{n_s} \cdot \bm{r_k})
+	+ \frac{k r_k^2}{2 r} \left( 1 - (\bm{n_s} \cdot \bm{n_k})^2 \right),
+$$
+
+$$ \tag{1p.5}
+	-k R_j
+	\simeq -k r + k (\bm{n_s} \cdot \bm{r_j})
+	- \frac{k r_j^2}{2 r} \left( 1 - (\bm{n_s} \cdot \bm{n_j})^2 \right),
+$$
+
+$$ \tag{1p.5}
+	k (R_k - R_j)
+	\simeq - k (\bm{r_k} - \bm{r_j}) \cdot \bm{n_s}
+	+ \frac{k r_k^2}{2 r} \left( 1 - (\bm{n_s} \cdot \bm{n_k})^2 \right)
+	- \frac{k r_j^2}{2 r} \left( 1 - (\bm{n_s} \cdot \bm{n_j})^2 \right),
+$$
+
+$$ \tag{1p.5}
+	e^{i k (R_k - R_j)}
+	e^{i k (\bm{r_k} - \bm{r_j}) \cdot \bm{n_i}} =
+	e^{i k (\bm{r_k} - \bm{r_j}) \cdot (\bm{n_i} - \bm{n_s})}
+	e^{i k r_k^2 \left( 1 - (\bm{n_s} \cdot \bm{n_k})^2 \right) / (2 r)}
+	e^{-i k r_j^2 \left( 1 - (\bm{n_s} \cdot \bm{n_j})^2 \right) / (2 r)}
+$$
+
+ni=ns; double volume int; complex conj; |v|^2;
+
+$$ \tag{16.30}
+\begin{aligned}
+	e^{i k r (\bm{n_s} \cdot \bm{n_i})}
+	\simeq 2 \pi i \left(
+	\frac{e^{-i k r}}{k r} \delta(\bm{n_i} + \bm{n_s}) -
+	\frac{e^{i k r}}{k r} \delta(\bm{n_i} - \bm{n_s}) \right)
+\end{aligned},
+$$
 
 ---
 
