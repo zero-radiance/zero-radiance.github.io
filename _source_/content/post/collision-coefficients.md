@@ -4650,7 +4650,7 @@ $$ \tag{1p.28}
 	\bm{E_j}(r \bm{n_i}, \psi)
 	\simeq
 	\frac{e^{i k r}}{k r} \mathcal{S_j} (\bm{n_i}, \psi) \cdot \bm{E_0}
-	e^{i k r_j^2 \left( 1 - (\bm{n_i} \cdot \bm{n_j})^2 \right) / (2 r)}.
+	e^{i k r_j^2 \left( 1 - (\bm{n_j} \cdot \bm{n_i})^2 \right) / (2 r)}.
 $$
 
 Let us retrace the steps taken in Sec. 16. First, we express the magnetic field in terms of the electric field using Eqn. 16.2 and 16.11, and project the resulting vector onto the direction of incidence \\(\bm{n_i}\\). Application of the identities given by Eqn. 16.25 yield the expressions
@@ -4677,7 +4677,7 @@ By combining Eqn. 1p.27-1p.29, and following the steps detailed in the previous 
 $$ \tag{1p.30}
 	\Phi_{ij}(\psi)
 	= \frac{\mu\_0^{-1}}{2} \frac{\eta}{c} \frac{4 \pi}{k^2} \mathcal{Im} \left\lbrace \bm{E_0^{\*}} \cdot \mathcal{S_j}(\bm{n_i}, \psi) \cdot \bm{E_0}
-	e^{i k r_j^2 \left( 1 - (\bm{n_i} \cdot \bm{n_j})^2 \right) / (2 r)} \right\rbrace.
+	e^{i k r_j^2 \left( 1 - (\bm{n_j} \cdot \bm{n_i})^2 \right) / (2 r)} \right\rbrace.
 $$
 
 This expression can be further simplified by performing ensemble averaging. Suppose that every position is equally likely, so that \\(p(\bm{r_j}) = 1/V\\); then we can account for random motion of particles by analytically evaluating the integral
@@ -4685,7 +4685,7 @@ This expression can be further simplified by performing ensemble averaging. Supp
 $$ \tag{1p.31}
 	v(\zeta) = \frac{1}{V} \int_V
 	\exp \negmedspace \left(
-	\frac{i}{2} \frac{k^2}{k r} r_j^2 \left( 1 - (\bm{n_i} \cdot \bm{n_j})^2 \right)
+	\frac{i}{2} \frac{k^2}{k r} r_j^2 \left( 1 - (\bm{n_j} \cdot \bm{n_i})^2 \right)
 	\right) dV_j,
 $$
 
@@ -4700,7 +4700,7 @@ of the dimensionless area of the cross-section \\((k L)^2\\) to the dimensionles
 It is convenient to reparametrize Eqn. 1p.31 by aligning \\(\bm{n_i}\\) with an axis of the coordinate system:
 
 $$ \tag{1p.33}
-	r_j^2 \left( 1 - (\bm{n_i} \cdot \bm{n_j})^2 \right)
+	r_j^2 \left( 1 - (\bm{n_j} \cdot \bm{n_i})^2 \right)
 	= (r_j \sin{\theta_j})^2
 	= x_j^2 + y_j^2.
 $$
@@ -4735,7 +4735,7 @@ Another important case of interest is when both \\(k L \gg 1\\) and \\(k r \gg 1
 
 In conclusion, *if the observer is located in the the radiation zone of the entire particle group*, the mean amount of power \\(\braket{\Phi_e}\\) dissipated per particle is the same as that of the average particle (cf. Eqn. 16.40):
 
-$$ \tag{1p.37}
+$$ \tag{1p.36}
 	\braket{\Phi_e}
 	\approx \frac{\mu\_0^{-1}}{2} \frac{\eta}{c} \frac{4 \pi}{k^2}
 	\mathcal{Im} \left\lbrace
@@ -4745,13 +4745,13 @@ $$
 
 On the other hand, *if the observer is located in an area directly adjacent to an extensive particle group*, the extinction effect can be neglected \[[8](#references) (ch. 14.2)\]:
 
-$$ \tag{1p.38}
+$$ \tag{1p.37}
 	\braket{\Phi_e} \approx 0.
 $$
 
 The reason behind this discrepancy can be understood geometrically. If \\(\zeta \ll 1\\) and \\(k L \ge 1\\), then \\(r / L \gg 1\\), which means that, at the observation point \\(\bm{r} = r \bm{n_i}\\) located along the direction of incidence, the wave vectors of the incident and the scattered waves are more or less permanently aligned:
 
-$$ \tag{1p.39}
+$$ \tag{1p.38}
 	k (r \bm{n_i} - \bm{r_j}) \approx k r \bm{n_i},
 $$
 
@@ -4774,11 +4774,11 @@ $$
 
 ---
 
-Let us now consider the final term \\(\braket{\bm{S_{jk}}}\\) that accounts for interference between the scattered fields of two particles. Since the observation point \\(\bm{r}\\) is located in the radiation zone of each particle, we may substitute Eqn. 1p.6 (twice) into 1p.9.
+Let us now consider the final term of Eqn. 1p.8 that accounts for interference of the scattered fields of two particles. Since the observation point \\(\bm{r}\\) is located in the radiation zone of each particle, we can obtain the equation of \\(\braket{\bm{S_{jk}}}\\) by substituting Eqn. 1p.6 (twice, with the indices \\(j\\) and \\(k\\)) into 1p.9.
 
-The resulting expression is highly symmetrical. From the identities of Eqn. 16.11 and 16.25, it follows that
+The resulting expression is highly symmetrical. It can be readily simplified by taking advantage of the identities given by Eqn. 16.11 and 16.25, according to which,
 
-$$ \tag{1p.40}
+$$ \tag{1p.39}
 \begin{aligned}
 	\bm{n_s} \cdot \big( \bm{E_j} \times \bm{B_k^{\*}} \big)
 	&\simeq \frac{\eta}{c}
@@ -4786,49 +4786,56 @@ $$ \tag{1p.40}
 \end{aligned}
 $$
 
-As a result, the expression of the time-averaged Poynting vector takes a simple form:
+Application of Eqn. 1p.39 to 1p.9 yields
 
-$$ \tag{1p.41}
+$$ \tag{1p.40}
 	\bm{n_s} \cdot \braket{\bm{S_{jk}}}\_t \negmedspace (\bm{r}, \psi)
 	\simeq -\frac{\mu\_0^{-1}}{2} \frac{\eta}{c} \big( \bm{E_j} \cdot \bm{E_k^{\*}} + \bm{E_k} \cdot \bm{E_j^{\*}} \big)
 	= -\mu\_0^{-1} \frac{\eta}{c} \mathcal{Re} \big\lbrace \bm{E_j^{\*}} \cdot \bm{E_k} \big\rbrace.
 $$
 
-If we ignore interaction between the individual particles (but not their fields), then \\(\bm{E_j}\\) and \\(\bm{E_k}\\) can be considered outcomes of two independent random processes. That allows us to perform ensemble averaging of the scattered fields separately:
+If we ignore interaction between the individual particles (except for their fields), then \\(\bm{E_j}\\) and \\(\bm{E_k}\\) can be considered outcomes of two independent random processes. This assumption allows us to perform ensemble averaging of the two scattered fields separately:
 
-$$ \tag{1p.42}
+$$ \tag{1p.41}
 \begin{aligned}
 	\bm{n_s} \cdot \braket{\braket{\bm{S_{jk}}}} \negmedspace (\bm{r})
-	&\simeq -\mu\_0^{-1} \frac{\eta}{c} \mathcal{Re} \big\lbrace \braket{\bm{E_j^{\*}}}\_{\psi} \cdot \braket{\bm{E_k}}\_{\psi} \big\rbrace
+	&\simeq -\mu\_0^{-1} \frac{\eta}{c} \mathcal{Re} \big\lbrace \negmedspace
+	\braket{\bm{E_j^{\*}}}\_{\psi} \cdot \braket{\bm{E_k}}\_{\psi}
+	\negmedspace \big\rbrace
 	\cr
-	&= -\mu\_0^{-1} \frac{\eta}{c} \mathcal{Re} \big\lbrace \braket{\bm{E_j}}\_{\psi}^{\*} \cdot \braket{\bm{E_j}}\_{\psi} \big\rbrace
-	= -\mu\_0^{-1} \frac{\eta}{c} \big| \braket{\bm{E_j}}\_{\psi} \big|^2.
+	&= -\mu\_0^{-1} \frac{\eta}{c} \mathcal{Re} \big\lbrace \negmedspace
+	\braket{\bm{E_j}}\_{\psi}^{\*} \cdot \braket{\bm{E_j}}\_{\psi}
+	\negmedspace \big\rbrace
+	= -\mu\_0^{-1} \frac{\eta}{c} \big| \negmedspace
+	\braket{\bm{E_j}}\_{\psi} \negmedspace \big|^2.
 \end{aligned}
 $$
 
-Unlike Eqn. 1p.26, Eqn. 1p.42 represents the intensity of light scattered by the average particle with a certain likelihood to be located somewhere within the region bounded by the volume \\(V\\).
+Unlike Eqn. 1p.26, Eqn. 1p.41 represents (double) the intensity of light scattered by the average particle (cf. Eqn. 16.15) with a certain likelihood to be located somewhere within \\(V\\).
 
-Suppose that every position is equally likely, so that \\(p(\bm{r_j}) = 1/V\\); then, calculation of the ensemble average of the electric field (given by Eqn. 1p.6) requires evaluation of the integral
+Suppose that every position is equally likely, so that \\(p(\bm{r_j}) = 1/V\\); then calculation of the ensemble average of the electric field \\(\bm{E_j}\\) (given by Eqn. 1p.6) requires evaluation of the integral
 
-$$ \tag{1p.43}
-	w(\zeta, h) = \frac{1}{V} \int_V \exp \negmedspace \left(
+$$ \tag{1p.42}
+	v(\zeta, w) = \frac{1}{V} \int_V \exp \negmedspace \left(
 	i k \bm{r_j} \cdot (\bm{n_i} - \bm{n_s}) +
-	i k r_j^2 \left( 1 - (\bm{n_j} \cdot \bm{n_s})^2 \right)/(2 r)
+	\frac{i}{2} \frac{k^2}{k r} r_j^2 \left( 1 - (\bm{n_j} \cdot \bm{n_s})^2 \right)
 	\right) dV_j,
 $$
 
-which is an expanded version of Eqn. 1p.31 that takes an extra parameter
+that generalizes Eqn. 1p.31: the new expression can no longer assume that the direction of observation is aligned with the direction of incidence. Note that we have introduced an additional parameter
 
-$$ \tag{1p.44}
-	h = k L |\bm{n_i} - \bm{n_s}|.
+$$ \tag{1p.43}
+	w = k L |\bm{n_i} - \bm{n_s}|
 $$
 
-Note that, unlike in the case of Eqn. 1p.31, we only care about the squared magnitude of the value of the integral, and not its phase.
+that depends on the dimensions of the particle group and the degree of alignment of the wave vectors.
 
-As we have done previously, it is convenient to consider a few special cases. First, suppose the observer is located in the radiation zone of the entire particle group. Then \\(\zeta = 0\\), and
+---
 
-$$ \tag{1p.45}
-	w(0, h) = \frac{1}{V} \int_V \exp \negmedspace \left(
+As we have done previously, it is convenient to consider a few special cases. First, suppose the observer is located in the radiation zone of the entire particle group. Then \\(\zeta \to 0\\), and
+
+$$ \tag{1p.44}
+	v(0, w) = \frac{1}{V} \int_V \exp \negmedspace \left(
 	i k \bm{r_j} \cdot (\bm{n_i} - \bm{n_s})
 	\right) dV_j.
 $$
@@ -4862,6 +4869,9 @@ $$ \tag{1p.35}
 	\approx \frac{\sin(h/2.1)}{h/2.1}.
 \end{aligned}
 $$
+
+
+Note that, unlike in the case of Eqn. 1p.31, we only care about the squared magnitude of the value of the integral, and not its phase.
 
 ---
 
