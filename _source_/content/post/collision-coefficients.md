@@ -639,7 +639,7 @@ $$ \tag{4.4}
 	\bm{E}(\bm{r}, t)
 	= \frac{1}{2} \sum\_{p = -\infin}^{\infin} \bm{E_p}(\bm{r}) e^{-i p \omega_1 t}
 	= \frac{1}{2} \sum\_{p = -\infin}^{\infin} \bm{E_p}(\bm{r}) e^{-i \omega_p t}
-	= \frac{1}{2} \sum\_{p = -\infin}^{\infin} \ket{u_p} \braket{u_p \vert \bm{E}}.
+	= \frac{1}{2} \sum\_{p = -\infin}^{\infin} \ket{u_p} \braket{u_p | \bm{E}}.
 $$
 
 where we defined \\(\omega_p = p \thinspace \omega_1\\), with the *Fourier coefficients* \\(\bm{E_p}\\) given by the integral[^8]
@@ -649,13 +649,13 @@ where we defined \\(\omega_p = p \thinspace \omega_1\\), with the *Fourier coeff
 $$ \tag{4.5}
 	\bm{E_p}(\bm{r})
 	= \frac{2}{T_1} \int\_{-T_1/2}^{\thinspace T_1/2} \bm{E}(\bm{r}, t) e^{i \omega_p t} dt
-	= 2 \braket{u_p \vert \bm{E}}.
+	= 2 \braket{u_p | \bm{E}}.
 $$
 
 Eqn. 4.5 can be interpreted as the [projection](https://en.wikipedia.org/wiki/Hilbert_space#Fourier_analysis) onto the discrete [Fourier basis](https://en.wikipedia.org/wiki/Fourier_series#Hilbert_space_interpretation), with Eqn. 4.4 showing the reconstruction. The individual elements of Eqn. 4.4 (called *harmonics*) possess a key property encapsulated in the *orthonormalization relation*
 
 $$ \tag{4.6}
-	\braket{u_p \vert u_q}
+	\braket{u_p | u_q}
 	= \frac{1}{T_1} \int\_{-T_1/2}^{\thinspace T_1/2} e^{i (\omega_p - \omega_q) t} dt
 	= \delta_{p,q}
 $$
@@ -1302,8 +1302,8 @@ $$
 shows us that the electric and the magnetic field vectors of a plane wave are orthogonal only if \\(\kappa = 0\\). If that is the case, \\(\lbrace \bm{E}, \bm{B}, \bm{n} \rbrace\\) is an orthogonal triad of vectors that defines the geometric configuration of a plane wave in a non-absorptive, linear, isotropic, homogeneous, source-free medium:
 
 $$ \tag{7.27}
-	\bm{n} \times \frac{\mathcal{Re} \big\lbrace \bm{E}(\bm{r}, \bm{n}, \omega) e^{-i \omega t} \big\rbrace}{\big\vert \mathcal{Re} \big\lbrace \bm{E}(\bm{r}, \bm{n}, \omega) e^{-i \omega t} \big\rbrace \big\vert}
-	= \frac{\mathcal{Re} \big\lbrace \bm{B}(\bm{r}, \bm{n}, \omega) e^{-i \omega t} \big\rbrace}{\big\vert \mathcal{Re} \big\lbrace \bm{B}(\bm{r}, \bm{n}, \omega) e^{-i \omega t} \big\rbrace \big\vert}.
+	\bm{n} \times \frac{\mathcal{Re} \big\lbrace \bm{E}(\bm{r}, \bm{n}, \omega) e^{-i \omega t} \big\rbrace}{\big| \mathcal{Re} \big\lbrace \bm{E}(\bm{r}, \bm{n}, \omega) e^{-i \omega t} \big\rbrace \big|}
+	= \frac{\mathcal{Re} \big\lbrace \bm{B}(\bm{r}, \bm{n}, \omega) e^{-i \omega t} \big\rbrace}{\big| \mathcal{Re} \big\lbrace \bm{B}(\bm{r}, \bm{n}, \omega) e^{-i \omega t} \big\rbrace \big|}.
 $$
 
 [Insert Picture Here]
@@ -1321,7 +1321,7 @@ is the expression of the Poynting vector of a plane wave.
 If the field vectors are mutually orthogonal, Eqn. 7.26-7.27 define the ratio of wave amplitudes:
 
 $$ \tag{7.29}
-	\frac{\big\vert \mathcal{Re} \big\lbrace \bm{B}(\bm{r}, \bm{n}, \omega) e^{-i \omega t} \big\rbrace \big\vert}{\big\vert \mathcal{Re} \big\lbrace \bm{E}(\bm{r}, \bm{n}, \omega) e^{-i \omega t} \big\rbrace \big\vert}
+	\frac{\big| \mathcal{Re} \big\lbrace \bm{B}(\bm{r}, \bm{n}, \omega) e^{-i \omega t} \big\rbrace \big|}{\big| \mathcal{Re} \big\lbrace \bm{E}(\bm{r}, \bm{n}, \omega) e^{-i \omega t} \big\rbrace \big|}
 	= \frac{\eta(\omega)}{c}.
 $$
 
@@ -1343,7 +1343,7 @@ Secondly, it means we can compute the Poynting vector without explicit considera
 $$ \tag{7.31}
 \begin{aligned}
 	\bm{S}(\bm{r}, t)
-	&= \mu\_0^{-1} \frac{\eta(\omega)}{c} {\big\vert \mathcal{Re} \big\lbrace \bm{E}(\bm{r}, \bm{n}, \omega) e^{-i \omega t} \big\rbrace \big\vert}^2 \bm{n} \cr
+	&= \mu\_0^{-1} \frac{\eta(\omega)}{c} {\big| \mathcal{Re} \big\lbrace \bm{E}(\bm{r}, \bm{n}, \omega) e^{-i \omega t} \big\rbrace \big|}^2 \bm{n} \cr
 	&= \mu\_0^{-1} \frac{\eta}{c} \Big( |E_{0,x}|^2 \cos^2{\theta_x} + |E_{0,y}|^2 \cos^2{\theta_y} \Big) \bm{n},
 \end{aligned}
 $$
@@ -2156,8 +2156,8 @@ This definition couples the space and time variables. For instance, consider the
 
 $$ \tag{10.5}
 	\frac{\partial}{\partial x} f \big(\bm{r}, t'(\bm{r}) \big)
-	= \frac{\partial f(\bm{r}, t)}{\partial x} \Big\vert_{t=t'}
-	+ \frac{\partial f(\bm{r}, t)}{\partial t} \Big\vert_{t=t'} \frac{\partial t'(\bm{r})}{\partial x},
+	= \frac{\partial f(\bm{r}, t)}{\partial x} \Big|_{t=t'}
+	+ \frac{\partial f(\bm{r}, t)}{\partial t} \Big|_{t=t'} \frac{\partial t'(\bm{r})}{\partial x},
 $$
 
 where
@@ -3191,7 +3191,7 @@ $$
 We encounter a situation similar to vector plane waves, where the absorptive character of the homogeneous medium poses a complication. If we assume that \\(\kappa = 0\\), the field vectors become orthogonal, and we obtain a counterpart of Eqn. 7.29:
 
 $$ \tag{13.19}
-	\frac{\big\vert \mathcal{Re} \big\lbrace \bm{B_s}(\bm{r}, \omega) e^{-i \omega t} \big\rbrace \big\vert}{\big\vert \mathcal{Re} \big\lbrace \bm{E_s}(\bm{r}, \omega) e^{-i \omega t} \big\rbrace \big\vert}
+	\frac{\big| \mathcal{Re} \big\lbrace \bm{B_s}(\bm{r}, \omega) e^{-i \omega t} \big\rbrace \big|}{\big| \mathcal{Re} \big\lbrace \bm{E_s}(\bm{r}, \omega) e^{-i \omega t} \big\rbrace \big|}
 	\simeq \frac{\eta(\omega)}{c}.
 $$
 
@@ -3229,7 +3229,7 @@ If the field vectors are orthogonal, and the ratio of their magnitudes is known,
 
 $$ \tag{13.21}
 	\bm{S}(\bm{r}, t)
-	\simeq \mu\_0^{-1} \frac{\eta(\omega)}{c} {\big\vert \mathcal{Re} \big\lbrace \bm{E_s}(\bm{r}, \omega) e^{-i \omega t} \big\rbrace \big\vert}^2 \bm{n}.
+	\simeq \mu\_0^{-1} \frac{\eta(\omega)}{c} {\big| \mathcal{Re} \big\lbrace \bm{E_s}(\bm{r}, \omega) e^{-i \omega t} \big\rbrace \big|}^2 \bm{n}.
 $$
 
 Similarly to the case of plane waves, we may form a Cartesian coordinate frame using the set of vectors \\(\lbrace \bm{E_1}, \bm{B_1}, \bm{n} \rbrace\\), we obtain the expressions of the Poynting vector (cf. Eqn. 7.31)
@@ -3314,7 +3314,7 @@ Recursive equations written in the integral form quickly become unwieldy. Instea
 Our building blocks are state vectors (or *kets*), such as \\(\ket{E}\\), and linear functionals (or *bras*), such as \\(\bra{r}\\). Put together, they represent the projection (the [inner product](https://en.wikipedia.org/wiki/Inner_product)) of the two vectors:
 
 $$ \tag{14.6}
-	  \braket{r \vert E}
+	  \braket{r | E}
 	= \big( \ket{r}, \ket{E} \big)
 	= \bm{E}(\bm{r}).
 $$
@@ -3328,14 +3328,14 @@ $$
 Similarly, we define the *Green operator* \\(G\\) and the *transition operator* \\(T\\) as
 
 $$ \tag{14.8}
-	\braket{r \vert G \vert r'} = \mathcal{G}\_e(\bm{r}, \bm{r'}), \quad
-	\braket{r \vert T \vert r'} = \mathcal{T_e}(\bm{r}, \bm{r'}).
+	\braket{r | G | r'} = \mathcal{G}\_e(\bm{r}, \bm{r'}), \quad
+	\braket{r | T | r'} = \mathcal{T_e}(\bm{r}, \bm{r'}).
 $$
 
 Finally, we must define the *orthonormalization* relation
 
 $$ \tag{14.9}
-	  \braket{r \vert r'} = \delta(\bm{r} - \bm{r'})
+	  \braket{r | r'} = \delta(\bm{r} - \bm{r'})
 $$
 
 and the *closure* relation
@@ -3349,9 +3349,9 @@ which, when taken together, say that the set of \\(\ket{r}\\) vectors constitute
 In the new notation, Eqn. 14.4 can be written as
 
 $$ \tag{14.11}
-	\braket{r \vert E}
-	= \braket{r \vert E_i}
-	+ \int dV' \braket{r \vert G \vert r'} \braket{r' \vert U \vert E},
+	\braket{r | E}
+	= \braket{r | E_i}
+	+ \int dV' \braket{r | G | r'} \braket{r' | U | E},
 $$
 
 or, in the representation-independent form,
@@ -3379,10 +3379,10 @@ $$
 In the position representation,
 
 $$ \tag{14.15}
-	\braket{r \vert E}
-	= \braket{r \vert E_i}
-	+ \int dV' \int dV'' \braket{r \vert G \vert r'}
-	\braket{r' \vert T \vert r''} \braket{r'' \vert E},
+	\braket{r | E}
+	= \braket{r | E_i}
+	+ \int dV' \int dV'' \braket{r | G | r'}
+	\braket{r' | T | r''} \braket{r'' | E},
 $$
 
 and the corresponding dyadic expression is
@@ -3438,10 +3438,10 @@ Let us now complete the derivation by writing Eqn. 14.19 in the position represe
 
 $$ \tag{14.21}
 \begin{aligned}
-	\braket{r \vert T \vert r'}
-	&= \braket{r \vert U (I + G T) \vert r'} \cr
-	&= u(\bm{r}) \braket{r \vert I + G T \vert r'} \cr
-	&= u(\bm{r}) \bigg( \negmedspace \braket{r \vert r'} + \int dV \braket{r \vert G \vert r''} \braket{r'' \vert T \vert r'} \negmedspace \bigg).
+	\braket{r | T | r'}
+	&= \braket{r | U (I + G T) | r'} \cr
+	&= u(\bm{r}) \braket{r | I + G T | r'} \cr
+	&= u(\bm{r}) \bigg( \negmedspace \braket{r | r'} + \int dV \braket{r | G | r''} \braket{r'' | T | r'} \negmedspace \bigg).
 \end{aligned}
 $$
 
@@ -3600,7 +3600,7 @@ We must also choose the *plane of reference* that fixes the orientation of the c
 
 $$ \tag{15.8}
 	\bm{e_z} = \bm{n_i}, \quad
-	\bm{e_y} = \frac{\bm{n_i} \times \bm{n_s}}{\vert \bm{n_i} \times \bm{n_s} \vert}, \quad
+	\bm{e_y} = \frac{\bm{n_i} \times \bm{n_s}}{| \bm{n_i} \times \bm{n_s} |}, \quad
 	\bm{e_x} = \bm{e_y} \times \bm{e_z}.
 $$
 
@@ -3986,7 +3986,7 @@ The Poynting vector of the scattered far field points radially outward. If the h
 
 $$ \tag{16.12}
 	\braket{\bm{S_s}}
-	\simeq \frac{\mu\_0^{-1}}{2} \frac{\eta}{c} \frac{\big\vert \bm{E_1}(\bm{n_s}) \big\vert^2}{k^2 r^2} \bm{n_s}.
+	\simeq \frac{\mu\_0^{-1}}{2} \frac{\eta}{c} \frac{\big| \bm{E_1}(\bm{n_s}) \big|^2}{k^2 r^2} \bm{n_s}.
 $$
 
 In order to calculate the amount of power scattered by the particle, it is convenient to use a spherical surface \\(\mathbb{S}^2\\). Since the differential solid angle is
@@ -4000,7 +4000,7 @@ setting \\(\bm{n} = \bm{r}/r = \bm{n_s}\\) results in an integral that is formal
 $$ \tag{16.14}
 	\Phi_s
 	= \oint_{A} \braket{\bm{S_s}} \cdot \bm{n_s} \thinspace dA
-	= \frac{\mu\_0^{-1}}{2} \frac{\eta}{c} \frac{1}{k^2} \oint\_{\mathbb{S}^2} \big\vert \bm{E_1}(\bm{n_s}) \big\vert^2 d\Omega.
+	= \frac{\mu\_0^{-1}}{2} \frac{\eta}{c} \frac{1}{k^2} \oint\_{\mathbb{S}^2} \big| \bm{E_1}(\bm{n_s}) \big|^2 d\Omega.
 $$
 
 It is easy to see why that is the case: even though Eqn. 16.14 is evaluated in the radiation zone, the scattered energy has no other choice but to pass through the surrounding virtual surface, no matter the size.
@@ -4009,7 +4009,7 @@ From the radiometric point of view, the squared magnitude of the scattered field
 
 $$ \tag{16.15}
 	\Iota_s(\bm{n_s}) = r^2 \braket{\bm{S_s}} \cdot \bm{n_s}
-	\simeq \frac{\mu\_0^{-1}}{2} \frac{\eta}{c} \frac{1}{k^2} \big\vert \bm{E_1}(\bm{n_s}) \big\vert^2.
+	\simeq \frac{\mu\_0^{-1}}{2} \frac{\eta}{c} \frac{1}{k^2} \big| \bm{E_1}(\bm{n_s}) \big|^2.
 $$
 
 The scattered field cannot exist in isolation. Since it is generated by the incident field, the total field is formed by the superposition of the two waves (cf. Eqn. 11.12):
@@ -4271,7 +4271,7 @@ $$ \tag{16.35}
 	= \frac{\mu\_0^{-1}}{2} \frac{\eta}{c} \frac{1}{k^2}
 	\left(
 		4 \pi \thinspace \mathcal{Im} \big\lbrace \bm{E_0^{\*}} \cdot \bm{E_1}(\bm{n_i}) \big\rbrace -
-		\oint\_{\mathbb{S}^2} \big\vert \bm{E_1}(\bm{n_s}) \big\vert^2 d\Omega
+		\oint\_{\mathbb{S}^2} \big| \bm{E_1}(\bm{n_s}) \big|^2 d\Omega
 	\right).
 $$
 
@@ -4288,7 +4288,7 @@ $$ \tag{16.37}
 	\Phi_i
 	= \frac{\mu\_0^{-1}}{2} \frac{\eta}{c} |\bm{E_0}|^2
 	  \oint_{A} \mathrm{max}(0, -\bm{n} \cdot \bm{n_i}) dA
-	= \vert \negthinspace \braket{\bm{S_i}} \negthinspace \vert C_g
+	= | \negthinspace \braket{\bm{S_i}} \negthinspace | C_g
 	= \Epsilon_i(\bm{n_i}) C_g.
 $$
 
@@ -4317,7 +4317,7 @@ $$ \tag{16.39}
 	& C_a
 	= \frac{\Phi_a}{\Epsilon_i}
 	= Q_a C_g
-	= \frac{\Phi_e - \Phi_s}{\vert \negthinspace \braket{\bm{S_i}} \negthinspace \vert},
+	= \frac{\Phi_e - \Phi_s}{| \negthinspace \braket{\bm{S_i}} \negthinspace |},
 	\cr
 	& C_s
 	= \frac{\Phi_s}{\Epsilon_i}
@@ -4597,12 +4597,12 @@ Let us apply the ergodic assumption to Eqn. 1p.8, and carefully consider its ind
 $$ \tag{1p.23}
 \begin{aligned}
 	\bm{S_j}(\bm{r}, \psi, t)
-	&\simeq \mu\_0^{-1} \frac{\eta}{c} {\big\vert \mathcal{Re} \big\lbrace \bm{E_j}(\bm{r}, \psi) e^{-i \omega t} \big\rbrace \big\vert}^2 \bm{n_s}
+	&\simeq \mu\_0^{-1} \frac{\eta}{c} {\big| \mathcal{Re} \big\lbrace \bm{E_j}(\bm{r}, \psi) e^{-i \omega t} \big\rbrace \big|}^2 \bm{n_s}
 	\cr
-	&= \mu\_0^{-1} \frac{\eta}{c} \frac{\big\vert \mathcal{Re} \big\lbrace
+	&= \mu\_0^{-1} \frac{\eta}{c} \frac{\big| \mathcal{Re} \big\lbrace
 	\mathcal{S_j}(\bm{n_s}, \psi) \cdot \bm{E_0}
 	e^{i k (R_j + \bm{r_j} \cdot \bm{n_i}) -i \omega t}
-	\big\rbrace \big\vert^2}{k^2 r^2} \bm{n_s}
+	\big\rbrace \big|^2}{k^2 r^2} \bm{n_s}
 \end{aligned}
 $$
 
@@ -4610,8 +4610,8 @@ As demonstrated by Eqn. 13.22-13.23, time-averaging of Eqn. 1p.23 is equivalent 
 
 $$ \tag{1p.24}
 	\braket{\bm{S_j}}\_t \negmedspace (\bm{r}, \psi)
-	\simeq \frac{\mu\_0^{-1}}{2} \frac{\eta}{c} \frac{\left\vert
-	\mathcal{S_j}(\bm{n_s}, \psi) \cdot \bm{E_0} \right\vert^2}{k^2 r^2} \bm{n_s}
+	\simeq \frac{\mu\_0^{-1}}{2} \frac{\eta}{c} \frac{\left|
+	\mathcal{S_j}(\bm{n_s}, \psi) \cdot \bm{E_0} \right|^2}{k^2 r^2} \bm{n_s}
 $$
 
 of a particle located at the origin. Note that the value of \\(\braket{\bm{S_j}}\\) explicitly depends on the state of the incident field, and, implicitly, on the orientation, shape, size, and composition of the particle via the far-field scattering dyadic \\(\mathcal{S_j}\\). Because the latter is located inside the squared norm operator, ensemble averaging the Poynting vector
@@ -4628,7 +4628,7 @@ is, in general, different from replacing \\(\mathcal{S_j}\\) with the average sc
 $$ \tag{1p.26}
 	\braket{\Iota_s} \negmedspace (\bm{n_s})
 	\simeq \frac{\mu\_0^{-1}}{2} \frac{\eta}{c} \frac{1}{k^2} \int\_{\Psi}
-	\left\vert \mathcal{S_j}(\bm{n_s}, \psi) \cdot \bm{E_0} \right\vert^2
+	\left| \mathcal{S_j}(\bm{n_s}, \psi) \cdot \bm{E_0} \right|^2
 	p(\psi) d\psi.
 $$
 
@@ -4683,7 +4683,7 @@ $$
 This expression can be further simplified by performing ensemble averaging. Suppose that every position is equally likely, so that \\(p(\bm{r_j}) = 1/V\\); then we can account for random motion of particles by analytically evaluating the integral
 
 $$ \tag{1p.31}
-	v(\zeta) = \frac{1}{V} \int_V
+	v(F) = \frac{1}{V} \int_V
 	\exp \negmedspace \left(
 	\frac{i}{2} \frac{k^2}{k r} r_j^2 \left( 1 - (\bm{n_j} \cdot \bm{n_i})^2 \right)
 	\right) dV_j,
@@ -4692,7 +4692,7 @@ $$
 that can be expressed in terms of the ratio
 
 $$ \tag{1p.32}
-	\zeta = \frac{1}{2} \frac{(k L)^2}{k r}
+	F = \frac{1}{2} \frac{(k L)^2}{k r}
 $$
 
 of the dimensionless area of the cross-section \\((k L)^2\\) to the dimensionless distance to the observation point \\(k r\\).
@@ -4708,30 +4708,32 @@ $$
 Then, for an axis-aligned cube of volume \\(L^3\\),
 
 $$ \tag{1p.34}
-	v(\zeta) = \frac{1}{V} \int_V
+	v(F) = \frac{1}{V} \int_V
 	\exp \negmedspace \left(
 	\frac{i}{2} \frac{k^2}{k r} \left( x_j^2 + y_j^2 \right)
 	\right) dx_j dy_j dz_j
-	\approx e^{i \zeta / 6}.
+	\approx e^{i F / 6}.
 $$
 
 Similarly, for a sphere of the same volume (with a slightly larger cross-sectional area),
 
 $$ \tag{1p.35}
 \begin{aligned}
-	v(\zeta) = \frac{1}{V} \int_V
+	v(F) = \frac{1}{V} \int_V
 	\exp \negmedspace \left(
 	\frac{i}{2} \frac{k^2}{k r} \left( r_j \sin{\theta_j} \right)^2
 	\right) r_j^2 \sin{\theta_j} dr_j d\theta_j d\phi_j
-	\approx e^{i \zeta / 6.5}.
+	\approx e^{i F / 6.5}.
 \end{aligned}
 $$
 
-{{< figure src="/img/vol_int.svg" caption="*Figure N: Plot of \\(v(\zeta)\\) defined by Eqn. 1p.35 (the plot of Eqn. 1p.34 is very similar). The solid line represents the absolute value, and the dashed line represents the value of the argument (the phase).*" >}}
+These approximations are valid provided \\(F \leq 1\\).
 
-These approximations are valid provided \\(\zeta \leq 1\\). In general, \\(v(\zeta) \\) is a pretty complicated function that tends to \\(1\\) as \\(\zeta \to 0\\). The latter indicates that the observer approaches the radiation zone of the entire particle group, which makes the trailing complex exponential of Eqn. 1p.30 vanish.
+{{< figure src="/img/vol_int_1.svg" caption="*Figure N: Plot of \\(v(F)\\) defined by Eqn. 1p.35. The solid line represents the absolute value, and the dashed line represents the value of the argument (the phase).*" >}}
 
-Another important case of interest is when both \\(k L \gg 1\\) and \\(k r \gg 1\\) in such a way that \\(\zeta \gg 1\\). That causes the approximations of Eqn. 1p.34-1p.35 to break down. One may encounter this situation in practice while considering the force exerted by the electromagnetic field of one particle group onto a particle in an adjacent group. Fortunately, by taking the limit of Eqn. 1p.31, one can show that \\(|v| \to 0\\) as \\(\zeta \to \infin\\).
+In general, \\(v(F) \\) is a pretty complicated function that tends to \\(1\\) as \\(F \to 0\\). The latter indicates that the observer approaches the radiation zone of the entire particle group, which makes the trailing complex exponential of Eqn. 1p.30 vanish.
+
+Another important case of interest is when both \\(k L \gg 1\\) and \\(k r \gg 1\\) in such a way that \\(F \gg 1\\). That causes the approximations of Eqn. 1p.34-1p.35 to break down. One may encounter this situation in practice while considering the force exerted by the electromagnetic field of one particle group onto a particle in an adjacent group. Fortunately, by taking the limit of Eqn. 1p.31, one can show that \\(|v| \to 0\\) as \\(F \to \infin\\).
 
 In conclusion, *if the observer is located in the the radiation zone of the entire particle group*, the mean amount of power \\(\braket{\Phi_e}\\) dissipated per particle is the same as that of the average particle (cf. Eqn. 16.40):
 
@@ -4749,7 +4751,7 @@ $$ \tag{1p.37}
 	\braket{\Phi_e} \approx 0.
 $$
 
-The reason behind this discrepancy can be understood geometrically. If \\(\zeta \ll 1\\) and \\(k L \ge 1\\), then \\(r / L \gg 1\\), which means that, at the observation point \\(\bm{r} = r \bm{n_i}\\) located along the direction of incidence, the wave vectors of the incident and the scattered waves are more or less permanently aligned:
+The reason behind this discrepancy can be understood geometrically. If \\(F \ll 1\\) and \\(k L \ge 1\\), then \\(r / L \gg 1\\), which means that, at the observation point \\(\bm{r} = r \bm{n_i}\\) located along the direction of incidence, the wave vectors of the incident and the scattered waves are more or less permanently aligned:
 
 $$ \tag{1p.38}
 	k (r \bm{n_i} - \bm{r_j}) \approx k r \bm{n_i},
@@ -4757,7 +4759,7 @@ $$
 
 making the strength of the interference effect similar to that of a particle fixed at the origin. Naturally, the area of the entrance pupil \\(C_d\\) of the measurement device must be sufficiently large \\((C_d \gg L^2)\\) in order to intercept all these parallel rays of light (see the discussion around Eqn. 16.3y).
 
-On the other hand, if \\(\zeta \ll 1\\), the wave vectors are almost never aligned, making the contribution to \\(\braket{\Phi_e}\\) vanishingly small.
+On the other hand, if \\(F \ll 1\\), the wave vectors are almost never aligned, making the contribution to \\(\braket{\Phi_e}\\) vanishingly small.
 
 ---
 
@@ -4774,7 +4776,7 @@ $$
 
 ---
 
-Let us now consider the final term of Eqn. 1p.8 that accounts for interference of the scattered fields of two particles. Since the observation point \\(\bm{r}\\) is located in the radiation zone of each particle, we can obtain the equation of \\(\braket{\bm{S_{jk}}}\\) by substituting Eqn. 1p.6 (twice, with the indices \\(j\\) and \\(k\\)) into 1p.9.
+Let us now consider the final term of Eqn. 1p.8 that accounts for interference of the scattered fields of two particles. Since the observation point \\(\bm{r}\\) is located in the radiation zone of each particle, we can obtain the equation of \\(\braket{\bm{S_{jk}}}\\) by substituting Eqn. 1p.6 twice into 1p.9.
 
 The resulting expression is highly symmetrical. It can be readily simplified by taking advantage of the identities given by Eqn. 16.11 and 16.25, according to which,
 
@@ -4786,7 +4788,7 @@ $$ \tag{1p.39}
 \end{aligned}
 $$
 
-Application of Eqn. 1p.39 to 1p.9 yields
+Substitution of Eqn. 1p.39 into 1p.9 yields
 
 $$ \tag{1p.40}
 	\bm{n_s} \cdot \braket{\bm{S_{jk}}}\_t \negmedspace (\bm{r}, \psi)
@@ -4794,7 +4796,7 @@ $$ \tag{1p.40}
 	= -\mu\_0^{-1} \frac{\eta}{c} \mathcal{Re} \big\lbrace \bm{E_j^{\*}} \cdot \bm{E_k} \big\rbrace.
 $$
 
-If we ignore interaction between the individual particles (except for their fields), then \\(\bm{E_j}\\) and \\(\bm{E_k}\\) can be considered outcomes of two independent random processes. This assumption allows us to perform ensemble averaging of the two scattered fields separately:
+If we ignore all interactions between the particles (except through their fields), then \\(\bm{E_j}\\) and \\(\bm{E_k}\\) can be considered outcomes of two independent random processes. This assumption allows us to perform ensemble averaging of the  scattered fields separately:
 
 $$ \tag{1p.41}
 \begin{aligned}
@@ -4811,38 +4813,40 @@ $$ \tag{1p.41}
 \end{aligned}
 $$
 
-Unlike Eqn. 1p.26, Eqn. 1p.41 represents (double) the intensity of light scattered by the average particle (cf. Eqn. 16.15) with a certain likelihood to be located somewhere within \\(V\\).
+Unlike Eqn. 1p.26, Eqn. 1p.41 corresponds to (double) the intensity of light scattered by the average particle (cf. Eqn. 16.15) with a certain likelihood to be located somewhere within the region occupied by the particle group.
 
-Suppose that every position is equally likely, so that \\(p(\bm{r_j}) = 1/V\\); then calculation of the ensemble average of the electric field \\(\bm{E_j}\\) (given by Eqn. 1p.6) requires evaluation of the integral
+Suppose that every position is equally likely, so that \\(p(\bm{r_j}) = 1/V\\). Then calculation of the ensemble average of the electric field \\(\bm{E_j}\\) (defined by Eqn. 1p.6) involves evaluation of the integral
 
 $$ \tag{1p.42}
-	v(\zeta, w) = \frac{1}{V} \int_V \exp \negmedspace \left(
+	v(F, \varDelta) = \frac{1}{V} \int_V \exp \negmedspace \left(
 	i k \bm{r_j} \cdot (\bm{n_i} - \bm{n_s}) +
 	\frac{i}{2} \frac{k^2}{k r} r_j^2 \left( 1 - (\bm{n_j} \cdot \bm{n_s})^2 \right)
 	\right) dV_j,
 $$
 
-that generalizes Eqn. 1p.31: the new expression can no longer assume that the direction of observation is aligned with the direction of incidence. Note that we have introduced an additional parameter
+that generalizes Eqn. 1p.31: the difference arises from the fact that we can no longer assume that the direction of observation is aligned with the direction of incidence. This is captured by an additional parameter
 
 $$ \tag{1p.43}
-	w = k L |\bm{n_i} - \bm{n_s}|
+	\varDelta = k L |\bm{n_i} - \bm{n_s}| = \sqrt{2} k L \sqrt{1 - (\bm{n_i} \cdot \bm{n_s})}
 $$
 
 that depends on the dimensions of the particle group and the degree of alignment of the wave vectors.
 
 ---
 
-As we have done previously, it is convenient to consider a few special cases. First, suppose the observer is located in the radiation zone of the entire particle group. Then \\(\zeta \to 0\\), and
+Eqn. 1p.42 is fairly complicated, so we shall only consider a few special cases. First, suppose the observer is located in the radiation zone of the entire particle group. Then \\(F \to 0\\), and
 
 $$ \tag{1p.44}
-	v(0, w) = \frac{1}{V} \int_V \exp \negmedspace \left(
+	v(0, \varDelta) = \frac{1}{V} \int_V \exp \negmedspace \left(
 	i k \bm{r_j} \cdot (\bm{n_i} - \bm{n_s})
 	\right) dV_j.
 $$
 
-It is convenient to reparametrize Eqn. 1p.45 by aligning \\(\bm{n_i} - \bm{n_s}\\) with an axis of the coordinate system:
+It is convenient to reparametrize[^20] Eqn. 1p.44 by aligning \\(\bm{n_i} - \bm{n_s}\\) with an axis of the coordinate system:
 
-$$ \tag{1p.33}
+[^20]: This parameterization is different from the one used in Eqn. 1p.33. Thus, the orientation of the cube is not the same.
+
+$$ \tag{1p.45}
 	\bm{r_j} \cdot \frac{\bm{n_i} - \bm{n_s}}{|\bm{n_i} - \bm{n_s}|}
 	= r_j \cos{\theta_j}
 	= z_j
@@ -4850,28 +4854,49 @@ $$
 
 Then, for an axis-aligned cube of volume \\(L^3\\),
 
-$$ \tag{1p.34}
-	v(\zeta) = \frac{1}{V} \int_V
+$$ \tag{1p.46}
+	v(0, \varDelta)
+	= \frac{1}{V} \int_V
 	\exp \negmedspace \left(
 	i k |\bm{n_i} - \bm{n_s}| z_j
 	\right) dx_j dy_j dz_j
-	= \frac{\sin(h/2)}{h/2}.
+	= \frac{\sin(\varDelta/2)}{\varDelta/2}.
 $$
 
-Similarly, for a sphere of the same volume (and a slightly larger cross-sectional area),
+Similarly, for a sphere of the same volume (with a slightly larger cross-sectional area),
 
-$$ \tag{1p.35}
+$$ \tag{1p.47}
 \begin{aligned}
-	v(\\zeta) = \frac{1}{V} \int_V
+	\big| v(0, \varDelta) \big|
+	= \left| \frac{1}{V} \int_V
 	\exp \negmedspace \left(
 	i k |\bm{n_i} - \bm{n_s}| r_j \cos{\theta_j}
-	\right) r_j^2 \sin{\theta_j} dr_j d\theta_j d\phi_j
-	\approx \frac{\sin(h/2.1)}{h/2.1}.
+	\right) r_j^2 \sin{\theta_j} dr_j d\theta_j d\phi_j \right|
+	\approx \frac{\sin(\varDelta / 2.1)}{\varDelta / 2.1}.
 \end{aligned}
 $$
 
+The approximation of Eqn. 1p.47 is valid provided \\(\varDelta \leq 4\\). Furthermore, note that Eqn. 1p.41 only features \\(|v|^2\\), so the phase of \\(v\\) is not important.
 
-Note that, unlike in the case of Eqn. 1p.31, we only care about the squared magnitude of the value of the integral, and not its phase.
+{{< figure src="/img/vol_int_2.svg" caption="*Figure N: Plot of \\(|v(0, \varDelta)|^2\\) defined by Eqn. 1p.47.*" >}}
+
+---
+
+Full interference in the forward direction...
+
+---
+
+Eqn. 1p.34, 1p.46, and 1p.47 indicate that the scattered fields of two particles interfere for a range of scattering angles \\(\theta = \arccos(\bm{n_i} \cdot \bm{n_s})\\). As the dimensions of the particle group \\(kL \to \infin\\), \\(\varDelta \to \infin\\), and the area of the graph of Figure N is horizontally compressed around the \\(\theta = 0\\) angle while maintaining the peak value of \\(1\\). This implies that
+
+$$ \tag{16.14}
+	\lim_{kL \to \infin} \oint\_{\mathbb{S}^2} \left| v \left(0, \sqrt{2} k L \sqrt{1 - (\bm{n_i} \cdot \bm{n_s})} \right) \right|^2 d\Omega = 0.
+$$
+
+Therefore, *if the observer is located in the the radiation zone of an extensive particle group*, the scattered fields of two particles do not interfere:
+
+$$ \tag{1p.37}
+	\braket{\Phi_{jk}} \approx 0.
+$$
 
 ---
 
@@ -4892,7 +4917,7 @@ $$ \tag{1p.26}
 \end{aligned}
 $$
 
-Eqn. 1p.26 demonstrates how the scattered light intensities, powers, and, thus, the scattering cross-sections (defined by Eqn. 16.39.2) can be summed[^19]. In particular, if the incident irradiance \\(\Epsilon_i\\) is uniform across the particle group, then the total scattering cross-section \\(\braket{C_s^{tot}}\\) is directly proportional to the mean scattering cross-section \\(\braket{C_s}\\):
+Eqn. 1p.26 demonstrates how the scattered light intensities, powers, and, thus, the scattering cross-sections (defined by Eqn. 16.39.2) can be summed[^20]. In particular, if the incident irradiance \\(\Epsilon_i\\) is uniform across the particle group, then the total scattering cross-section \\(\braket{C_s^{tot}}\\) is directly proportional to the mean scattering cross-section \\(\braket{C_s}\\):
 
 $$ \tag{1p.27}
 	\braket{C_s^{tot}}
@@ -4901,7 +4926,7 @@ $$ \tag{1p.27}
 	= N \braket{C_s}.
 $$
 
-[^19]: Under the ergodic assumption, and provided the conditions imposed on the particle group and the observation point at the beginning of the section are satisfied.
+[^20]: Under the ergodic assumption, and provided the conditions imposed on the particle group and the observation point at the beginning of the section are satisfied.
 
 Often, one has to consider a large cloud of particles. Its interior may be conceptually subdivided into small, non-overlapping regions, each containing a particle group. In order to avoid keeping track of both the volume \\(V\\) and the number of particles \\(N\\) in each region, it is highly convenient to combine them into a single quantity called the [number density](https://en.wikipedia.org/wiki/Number_density)
 
@@ -5388,7 +5413,7 @@ For small values of the argument, the behavior is both varied and relatively com
 
 {{< figure src="/img/spherical_hankel_1.svg" caption="*Figure N: Spherical Hankel functions of the first kind of order n=0 (blue), n=1 (orange), n=2 (green), n=3 (red). Solid lines correspond to the real part, while the imaginary part is drawn using dashed lines.*" >}}
 
-For large values of the argument, the spherical Bessel functions of the first and the second kinds differ in phase by a factor of \\(\pi\\). The latter is prominently featured in the [asymptotic forms](https://dlmf.nist.gov/10.52) valid for \\(\vert x \vert \gg n^2/2\\):
+For large values of the argument, the spherical Bessel functions of the first and the second kinds differ in phase by a factor of \\(\pi\\). The latter is prominently featured in the [asymptotic forms](https://dlmf.nist.gov/10.52) valid for \\(| x | \gg n^2/2\\):
 
 $$ \tag{17.52}
 \begin{aligned}
@@ -6114,13 +6139,13 @@ $$ \tag{17.98}
 \begin{aligned}
 	c_{m,n}
 	&= \frac{ \int_{0}^{2 \pi} \int_{0}^{\pi} \big[ \bm{M_{m,n}^{(1)}}(\bm{r}) \big]^{\*} \cdot \bm{E_i}(\bm{r}) \sin{\theta} \thinspace d\theta d\phi }
-	{ \int_{0}^{2 \pi} \int_{0}^{\pi} \big\vert \bm{M_{m,n}^{(1)}}(\bm{r}) \big\vert^2 \sin{\theta} \thinspace d\theta d\phi }
+	{ \int_{0}^{2 \pi} \int_{0}^{\pi} \big| \bm{M_{m,n}^{(1)}}(\bm{r}) \big|^2 \sin{\theta} \thinspace d\theta d\phi }
 	= \frac{ \int_{0}^{2 \pi} \int_{0}^{\pi} \big[ \bm{M_{m,n}^{(1)}}(\bm{r}) \big]^{\*} \cdot \bm{E_i}(\bm{r}) \sin{\theta} \thinspace d\theta d\phi }
 	{ n (n+1) \big| j_n(k r) \big|^2 },
 	\cr
 	d_{m,n}
 	&= \frac{ \int_{0}^{2 \pi} \int_{0}^{\pi} \big[ \bm{N_{m,n}^{(1)}}(\bm{r}) \big]^{\*} \cdot \bm{E_i}(\bm{r}) \sin{\theta} \thinspace d\theta d\phi }
-	{ \int_{0}^{2 \pi} \int_{0}^{\pi} \big\vert \bm{N_{m,n}^{(1)}}(\bm{r}) \big\vert^2 \sin{\theta} \thinspace d\theta d\phi }
+	{ \int_{0}^{2 \pi} \int_{0}^{\pi} \big| \bm{N_{m,n}^{(1)}}(\bm{r}) \big|^2 \sin{\theta} \thinspace d\theta d\phi }
 	= \frac{ \int_{0}^{2 \pi} \int_{0}^{\pi} \big[ \bm{N_{m,n}^{(1)}}(\bm{r}) \big]^{\*} \cdot \bm{E_i}(\bm{r}) \sin{\theta} \thinspace d\theta d\phi }
 	{ n (n+1) \Big(
 		\big| [k r j_n(k r)]' / (k r) \big|^2
@@ -6317,7 +6342,7 @@ $$ \tag{17.123}
 \begin{aligned}
 	& \int_{0}^{2 \pi} \int_{0}^{\pi} \big[ \bm{M_{m,n}^{(1)}}(\bm{r}) \big]^{\*} \cdot \bm{E_i}(\bm{r}) \sin{\theta} \thinspace d\theta d\phi
 	\cr
-	&= \delta_{m,\pm 1} (i E_X + m E_Y) 2 \pi i^n \gamma_{1,n} n (n+1) \big\vert j_n(k r) \big\vert^2.
+	&= \delta_{m,\pm 1} (i E_X + m E_Y) 2 \pi i^n \gamma_{1,n} n (n+1) \big| j_n(k r) \big|^2.
 \end{aligned}
 $$
 
@@ -6447,7 +6472,7 @@ $$ \tag{17.131}
 	& \int_{0}^{2 \pi} \int_{0}^{\pi} \big[ \bm{N_{m,n}^{(1)}}(\bm{r}) \big]^{\*} \cdot \bm{E_i}(\bm{r}) \sin{\theta} \thinspace d\theta d\phi
 	\cr
 	&= \delta_{m,\pm 1} (i m E_X + E_Y) 2 \pi i^n \gamma_{1,n} n (n+1)
-	\Bigg( \Bigg\vert \frac{\big[ k r j_n(k r) \big]'}{k r} \Bigg\vert^2 + n (n + 1) \bigg\vert \frac{j_n(k r)}{k r} \bigg\vert^2
+	\Bigg( \Bigg| \frac{\big[ k r j_n(k r) \big]'}{k r} \Bigg|^2 + n (n + 1) \bigg| \frac{j_n(k r)}{k r} \bigg|^2
 	\Bigg).
 \end{aligned}
 $$
@@ -7160,7 +7185,7 @@ The natural sizes \\(x_n\\) are always complex, which makes the natural frequenc
 
 Let us take a closer look at the expressions of the expansion coefficients of the scattered field given by Eqn. 17.156.
 
-First, let us consider a very large spherical particle. If we ignore the possibility that it actually represents a cavity (e.g. an air bubble), then \\(\vert m \vert > 1\\), which, once combined with \\(\vert x \vert \gg 1\\), leads to \\(\vert m x \vert \gg 1\\). This allows us to evaluate the expansion coefficients of the first few orders using the asymptotic expressions given by Eqn. 18.2:
+First, let us consider a very large spherical particle. If we ignore the possibility that it actually represents a cavity (e.g. an air bubble), then \\(| m | > 1\\), which, once combined with \\(| x | \gg 1\\), leads to \\(| m x | \gg 1\\). This allows us to evaluate the expansion coefficients of the first few orders using the asymptotic expressions given by Eqn. 18.2:
 
 $$ \tag{18.13}
 \small
@@ -7183,7 +7208,7 @@ $$ \tag{18.13}
 \end{aligned}
 $$
 
-Strictly speaking, these expressions are only valid if both \\(\vert x \vert \gg n^2/2\\) and \\(\vert m x \vert \gg n^2/2\\); in practice, the approximation error remains acceptable if \\(\vert x \vert \sim n/2\\). The asymptotic expressions valid for all orders \\(n\\) have been found by Debye (1909); they are considerably more complicated, and we shall not discuss them here.
+Strictly speaking, these expressions are only valid if both \\(| x | \gg n^2/2\\) and \\(| m x | \gg n^2/2\\); in practice, the approximation error remains acceptable if \\(| x | \sim n/2\\). The asymptotic expressions valid for all orders \\(n\\) have been found by Debye (1909); they are considerably more complicated, and we shall not discuss them here.
 
 We may observe that the resulting coefficients are highly cyclical: \\(a_{n+2} \simeq a\_n\\) and \\(a_{n+1} \simeq b\_n\\). Thus, for any given pair of \\(m\\) and \\(x\\), only 2 unique coefficients exist. In addition, their sum is independent of the order \\(n\\).
 
@@ -7253,7 +7278,7 @@ $$
 
 provided that \\(0.5 < m < 2.5\\), and \\(x\\) is sufficiently large \[[23](#references)\].
 
-Next, let us turn our attention to particles on the opposite end of the size spectrum, with \\(\vert m x \vert \ll 1\\). If we assume that \\(\vert m \vert > 1\\), then it follows that \\(\vert x \vert \ll 1\\) as well. The Taylor series expansions of the Riccati-Bessel functions \[[17](#references) (ch. 7.4)\] are
+Next, let us turn our attention to particles on the opposite end of the size spectrum, with \\(| m x | \ll 1\\). If we assume that \\(| m | > 1\\), then it follows that \\(| x | \ll 1\\) as well. The Taylor series expansions of the Riccati-Bessel functions \[[17](#references) (ch. 7.4)\] are
 
 $$ \tag{18.17}
 \begin{aligned}
@@ -7303,7 +7328,7 @@ $$
 
 is a rapidly growing function of \\(n\\), with \\(N(1)=3/2.\\)
 
-In this crude approximation, the magnetic coefficients \\(a_n\\) vanish for non-magnetic materials with \\(u=1\\). In addition, the magnetic coefficients do not depend on the relative wavenumber \\(m\\) at all. However, this approximation serves it purpose, since it clearly demonstrates that the magnitudes of both coefficients are roughly proportional \\(N^{-1} x^{2 n + 1}\\). Since, for \\(\vert x \vert \ll 1\\), the latter plummets with increasing \\(n\\), we may restrict ourselves to just the fist couple of terms.
+In this crude approximation, the magnetic coefficients \\(a_n\\) vanish for non-magnetic materials with \\(u=1\\). In addition, the magnetic coefficients do not depend on the relative wavenumber \\(m\\) at all. However, this approximation serves it purpose, since it clearly demonstrates that the magnitudes of both coefficients are roughly proportional \\(N^{-1} x^{2 n + 1}\\). Since, for \\(| x | \ll 1\\), the latter plummets with increasing \\(n\\), we may restrict ourselves to just the fist couple of terms.
 
 In general, for arbitrary argument values, the expansion coefficients of the first couple of orders can be easily evaluated *exactly* using the explicit formulae of the Riccati-Bessel functions derived from Eqn. 17.51 and 17.155:
 
@@ -7319,7 +7344,7 @@ $$ \tag{18.21}
 \end{aligned}
 $$
 
-However, for very small particles with \\(\vert m x \vert \ll 1\\), it is slightly more efficient to use a Taylor series expansion. Restricting ourselves to polynomials of degree 6, we obtain
+However, for very small particles with \\(| m x | \ll 1\\), it is slightly more efficient to use a Taylor series expansion. Restricting ourselves to polynomials of degree 6, we obtain
 
 $$ \tag{18.22}
 \begin{aligned}
