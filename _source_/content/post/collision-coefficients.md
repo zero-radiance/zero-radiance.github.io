@@ -3885,7 +3885,7 @@ $$ \tag{16.1}
 \end{aligned}
 $$
 
-where \\(\bm{E_0}\\) and \\(\bm{B_0}\\) are the polarization phasors at the origin, and \\(\bm{n_i}\\) is the direction of propagation.
+where \\(\bm{E_0}\\) and \\(\bm{B_0}\\) are the polarization phasors at the origin, and \\(\bm{n_i}\\) is the direction of incidence.
 
 According to Eqn. 7.18, 7.23 and 7.25, if the medium is non-absorptive, they satisfy the relations
 
@@ -3896,7 +3896,7 @@ $$ \tag{16.2}
 	\bm{B_0} \times \bm{n_i} = \frac{\eta}{c} \bm{E_0}.
 $$
 
-With each plane wave, we may associate the Poynting vector \\(\bm{S_i}\\) (cf. Eqn. 7.28) pointing along the direction of propagation. If the host medium is non-absorptive and non-magnetic, the expression of the time-averaged Poynting vector (cf. Eqn. 7.31-7.32) is particularly simple:
+With each plane wave, we may associate the Poynting vector \\(\bm{S_i}\\) (cf. Eqn. 7.28) pointing along its direction of propagation. If the host medium is non-absorptive and non-magnetic, the expression of the time-averaged Poynting vector (cf. Eqn. 7.31-7.32) is particularly simple:
 
 $$ \tag{16.3}
 	\braket{\bm{S_i}}
@@ -4220,7 +4220,7 @@ $$ \tag{16.32}
 \end{aligned}
 $$
 
-Eqn. 16.32 indicates that we may detect observable interference between the incident and the scattered fields if the optical axis of the measurement device is directly facing the source \\((\bm{n_s} = \bm{n_i})\\). Evidently, the opposite orientation \\((\bm{n_s} = -\bm{n_i})\\) will cause the sensor to partially block the incident light. And even if it were not the case, the integral of the normal component of \\(\braket{\bm{S_e}}\\) over a small [spherical cap](https://mathworld.wolfram.com/SphericalCap.html) \\(C_i^{-}\\) centered at \\(-\bm{n_i}\\)
+Eqn. 16.32 indicates that we may detect observable interference between the incident and the scattered fields if the optical axis of the measurement device is directly facing the source \\((\bm{n_s} = \bm{n_i})\\). Evidently, the opposite orientation \\((\bm{n_s} = -\bm{n_i})\\) will cause the light sensor to partially block the incident light. And even if it were not the case, the integral of the normal component of \\(\braket{\bm{S_e}}\\) over a small [spherical cap](https://mathworld.wolfram.com/SphericalCap.html) \\(C_i^{-}\\) centered at \\(-\bm{n_i}\\)
 
 $$ \tag{16.33}
 \begin{aligned}
@@ -4237,7 +4237,7 @@ $$
 
 since the expression inside the curly braces is a real number (cf. Eqn. 3.5).
 
-Thus, assuming the observer is located in the radiation zone, *the incident and the scattered light only interfere in the forward direction*. The associated amount of power (dissipated by the particle) is
+Thus, assuming the observer is located in the radiation zone, *the incident and the scattered light only interfere in the direction of incidence*. The associated amount of power (dissipated by the particle) is
 
 $$ \tag{16.34}
 	\Phi_e
@@ -4245,7 +4245,7 @@ $$ \tag{16.34}
 	= \frac{\mu\_0^{-1}}{2} \frac{\eta}{c} \frac{4 \pi}{k^2} \mathcal{Im} \big\lbrace \bm{E_0^{\*}} \cdot \bm{E_1}(\bm{n_i}) \big\rbrace.
 $$
 
-Suppose that a measurement device (with a sensor of area \\(C_d\\)) is placed at a great distance from the source, and is made perpendicular to the direction of incidence. Then, according to Eqn. 16.14, 16.17, 16.21, and 16.34, if we place a particle near the center of the line segment connecting the source to the sensor, the resulting measurement
+Suppose that a measurement device (a light sensor) with the entrance pupil of area \\(C_d\\) is placed in the direction of incidence at a great distance from the source. Then, according to Eqn. 16.14, 16.17, 16.21, and 16.34, if there is a particle near the center of the line segment connecting the source to the sensor, the resulting measurement
 
 $$ \tag{16.3x}
 \begin{aligned}
@@ -4261,7 +4261,7 @@ $$
 
 will be smaller in comparison to the amount of power \\(C_d \braket{\bm{S_i}} \cdot \bm{n_i}\\) arriving at the sensor in the absence of the particle, since the scattered flux \\(C_d \braket{\bm{S_s}} \cdot \bm{n_i}\\) corresponding to the direction of incidence is smaller than the total amount of power \\(\Phi_s = \oint_{A} \braket{\bm{S_s}} \cdot \bm{n_s} \thinspace dA\\) scattered in all directions. Thus, we can draw a conclusion that transmission of a parallel beam of light through a particle reduces its intensity.
 
-Eqn. 16.3x separates radiation transmitted in the forward direction into three components: the incident, the scattered, and the dissipated. Scattering tends to be separated from propagation of light, leading to the idea that particles "remove" energy from the incident beam. While this approach is conceptually plausible, the interpretation is not correct, since 1) the incident wave is not affected by the presence of the scattering object, and, as we shall see, 2) the calculated amount of scattered power is typically overestimated. This can lead to apparent paradoxes and violations of the law of conservation of energy. These issues can be avoided by focusing solely on the total electromagnetic field, which, as Eqn. 16.3x shows, is crucial if the measurement device is facing the source.
+Eqn. 16.3x separates radiation transmitted in the direction of incidence into three components: the incident, the scattered, and the dissipated. Scattering tends to be separated from propagation of light, leading to the idea that particles "remove" energy from the incident beam. While this approach is conceptually plausible, the interpretation is not correct, since 1) the incident wave is not affected by the presence of the scattering object, and, as we shall see, 2) the calculated amount of scattered power is typically overestimated. This can lead to apparent paradoxes and violations of the law of conservation of energy. These issues can be avoided by focusing solely on the total electromagnetic field, which, as Eqn. 16.3x shows, is crucial if the measurement device is facing the source.
 
 The amount of power absorbed by the particle can be determined using Eqn. 16.21:
 
@@ -4331,7 +4331,7 @@ $$ \tag{16.39}
 \end{aligned}
 $$
 
-Eqn. 16.39.1-16.39.3 are known as the [optical theorem](https://en.wikipedia.org/wiki/Optical_theorem). They are often used to describe electromagnetic energy transfer in radiometric terms. For instance, Eqn. 16.3x that expresses the amount of energy transmitted in the forward direction can be succinctly written as
+Eqn. 16.39.1-16.39.3 are known as the [optical theorem](https://en.wikipedia.org/wiki/Optical_theorem). They are often used to describe electromagnetic energy transfer in radiometric terms. For instance, Eqn. 16.3x that expresses the amount of energy transmitted in the direction of incidence can be succinctly written as
 
 $$ \tag{16.3y}
 \begin{aligned}
@@ -4340,7 +4340,7 @@ $$ \tag{16.3y}
 \end{aligned}
 $$
 
-where, as before, \\(C_d\\) is the area of the sensor, \\(C_e\\) is the extinction cross-section, \\(\Epsilon_i\\) is the incident irradiance, and \\(\Iota_s\\) is the scattered intensity. Since, physically, the amount of power cannot be negative, Eqn. 16.3y implies that the dimensions of the measurement device (the diameter of its entrance pupil and the area of its sensor) must be sufficiently large in order to fully capture the extinction effect \[[8](#references) (ch. 13.1)\].
+where, as before, \\(C_d\\) is the area of the entrance pupil of the measurement device, \\(C_e\\) is the extinction cross-section, \\(\Epsilon_i\\) is the incident irradiance, and \\(\Iota_s\\) is the scattered intensity. Since, physically, the amount of power cannot be negative, Eqn. 16.3y implies that \\(C_d\\) must be sufficiently large \\((C_d \gg C_g)\\) in order to fully capture the extinction effect \[[8](#references) (ch. 13.1)\].
 
 Eqn. 16.38.3 and 16.39.3 can be simplified if the particle possesses axial symmetry with respect to the direction of incidence. To show this, we can express \\(\bm{E_1}\\) in terms of the scattering dyadic \\(\mathcal{S_{ef}}\\) according to Eqn. 15.?:
 
@@ -4378,7 +4378,7 @@ $$ \tag{16.43}
 \end{aligned}
 $$
 
-which matches the results found using the scalar wave theory \[[4](#references) (ch. 4.42)\]. Intuitively, this makes sense, since the particle looks the same regardless of the choice of the plane of reference (assuming the latter contains the direction of incidence), and the sensor (that only measures power) is not sensitive to the orientation of incoming light.
+that match the results found using the scalar wave theory \[[4](#references) (ch. 4.42)\]. Intuitively, this makes sense, since the particle looks the same regardless of the choice of the plane of reference (assuming the latter contains the direction of incidence), and the sensor (that only measures power) is not sensitive to the orientation of incoming light.
 
 ### Dynamic Light Scattering by a Particle Group
 
@@ -4429,8 +4429,8 @@ $$ \tag{1p.5}
 	\frac{1}{R_j} \simeq \frac{1}{r},
 	\quad
 	k R_j
-	\simeq k r - k (\bm{n_s} \cdot \bm{r_j})
-	+ \frac{k r_j^2}{2 r} \left( 1 - (\bm{n_s} \cdot \bm{n_j})^2 \right),
+	\simeq k r - k (\bm{r_j} \cdot \bm{n_s})
+	+ \frac{k r_j^2}{2 r} \left( 1 - (\bm{n_j} \cdot \bm{n_s})^2 \right),
 $$
 
 where \\(\bm{n_j} = \bm{r_j} / |\bm{r_j}| = \bm{r_j} / r_j\\).
@@ -4440,10 +4440,9 @@ It is important to note that Eqn. 1p.4 does not imply that the observation point
 Substitution of Eqn 1p.5 into 1p.2 yields an expression of a spherical wave diverging from the origin of the coordinate system:
 
 $$ \tag{1p.6}
-\begin{aligned}
-	& \bm{E_j}(\bm{r}, \omega)
-	\simeq \frac{e^{i k (R_j + \bm{r_j} \cdot \bm{n_i})}}{k r} \mathcal{S_j} (\bm{n_s}) \cdot \bm{E_0}.
-\end{aligned}
+	\bm{E_j}(\bm{r}, \omega)
+	\simeq \frac{e^{i k (R_j + \bm{r_j} \cdot \bm{n_i})}}{k r} \mathcal{S_j} (\bm{n_s}) \cdot \bm{E_0}
+	\simeq \frac{e^{i k r}}{k r} \mathcal{S_j} (\bm{n_s}) \cdot \bm{E_0} e^{i k \bm{r_j} \cdot (\bm{n_i} - \bm{n_s}) + i k r_j^2 \left( 1 - (\bm{n_j} \cdot \bm{n_s})^2 \right)/(2 r)}.
 $$
 
 Let us combine the expressions of the incident and the scattered fields, and determine whether their interaction produces any observable interference effects. We can utilize the same method employed in Sec. 16; specifically, let us repurpose Eqn. 16.17 and 16.22 of the time-averaged Poynting vector
@@ -4593,21 +4592,6 @@ $$ \tag{1p.22}
 	\approx \braket{\braket{\bm{S}}\_t}\_{\psi} \negmedspace (\bm{r}).
 $$
 
----
-
-$$ \tag{1p.8}
-\begin{aligned}
-	\braket{\bm{S}}
-	&= \frac{\mu\_0^{-1}}{2} \mathcal{Re} \Big\lbrace
-	\Big( \bm{E_i} + \sum_j \bm{E_j} \Big) \times
-	\Big( \bm{B_i^{\*}} + \sum_j \bm{B_j^{\*}} \Big) \Big\rbrace
-	\cr
-	&= \braket{\bm{S_i}} + \sum_j \braket{\bm{S_j}} - \sum_j \braket{\bm{S_{ij}}} - \sum_{j < k} \braket{\bm{S_{jk}}},
-\end{aligned}
-$$
-
----
-
 Let us apply the ergodic assumption to Eqn. 1p.8, and carefully consider its individual terms. First of all, by definition, the incident field is not affected by the presence of the scattering object. Therefore, no modifications to \\(\braket{\bm{S\_i}}\\) are necessary. Next, consider the Poynting vector \\(\braket{\bm{S\_j}}\\) associated with the scattered field of the \\(j\\)-th particle. Since, according to Eqn. 16.11, the scattered field vectors are mutually orthogonal, we may express \\(\bm{S\_j}\\) using Eqn. 13.21:
 
 $$ \tag{1p.23}
@@ -4622,7 +4606,7 @@ $$ \tag{1p.23}
 \end{aligned}
 $$
 
-As we have already shown in Eqn. 13.22-13.23, time-averaging of Eqn. 1p.23 is equivalent to replacing the phase factor with \\(1/2\\), which yields the standard expression of the time-averaged Poynting vector
+As demonstrated by Eqn. 13.22-13.23, time-averaging of Eqn. 1p.23 is equivalent to replacing the phase factor with \\(1/2\\), which yields the standard expression of the time-averaged Poynting vector
 
 $$ \tag{1p.24}
 	\braket{\bm{S_j}}\_t \negmedspace (\bm{r}, \psi)
@@ -4660,34 +4644,33 @@ $$ \tag{1p.27}
 \end{aligned}
 $$
 
-that is broadly similar to Eqn. 16.23. In particular, according to Eqn. 16.30, the complex exponential term \\(\exp(i k (\bm{r} \cdot \bm{n_i})) = \exp(i k r (\bm{n_s} \cdot \bm{n_i}))\\) indicates that interference only occurs if the optical axis of the measurement device is directly facing the source.
-
-Let us retrace the steps taken in Sec. 16. First, we expand the magnetic field in terms of the electric field using Eqn. 16.2 and 16.11, and project the resulting vector onto the direction of incidence \\(\bm{n_i}\\). Application of the identities given by Eqn. 16.25 yield the expressions
+that is broadly similar to Eqn. 16.23. In particular, according to Eqn. 16.30, the complex exponential term \\(\exp(i k (\bm{r} \cdot \bm{n_i})) = \exp(i k r (\bm{n_s} \cdot \bm{n_i}))\\) indicates that interference only occurs if the optical axis of the measurement device is directly facing the source. Therefore, we only need to consider the expression of the scattered field (cf. Eqn. 1p.6) along the direction of incidence:
 
 $$ \tag{1p.28}
+	\bm{E_j}(r \bm{n_i}, \psi)
+	\simeq
+	\frac{e^{i k r}}{k r} \mathcal{S_j} (\bm{n_i}, \psi) \cdot \bm{E_0}
+	e^{i k r_j^2 \left( 1 - (\bm{n_i} \cdot \bm{n_j})^2 \right) / (2 r)}.
+$$
+
+Let us retrace the steps taken in Sec. 16. First, we express the magnetic field in terms of the electric field using Eqn. 16.2 and 16.11, and project the resulting vector onto the direction of incidence \\(\bm{n_i}\\). Application of the identities given by Eqn. 16.25 yield the expressions
+
+$$ \tag{1p.29}
 \begin{aligned}
-	\bm{n_i} \cdot \big( \bm{E_i} \times \bm{B_j^{\*}}(\bm{n_i}, \psi) \big)
+	\bm{n_i} \cdot \big( \bm{E_i} \times \bm{B_j^{\*}}(r \bm{n_i}, \psi) \big)
 	&\simeq \frac{\eta}{c}
-	\big( \bm{E_0} \cdot \bm{E_j^{\*}}(\bm{n_i}, \psi) \big)
+	\big( \bm{E_0} \cdot \bm{E_j^{\*}}(r \bm{n_i}, \psi) \big)
 	e^{i k r},
 	\cr
-	\bm{n_i} \cdot \big( \bm{E_j}(\bm{n_i}, \psi) \times \bm{B_i^{\*}} \big)
+	\bm{n_i} \cdot \big( \bm{E_j}(r \bm{n_i}, \psi) \times \bm{B_i^{\*}} \big)
 	&\simeq \frac{\eta}{c}
-	\big( \bm{E_0^{\*} \cdot \bm{E_j}}(\bm{n_i}, \psi) \big)
+	\big( \bm{E_0^{\*} \cdot \bm{E_j}}(r \bm{n_i}, \psi) \big)
 	e^{-i k r}.
 \end{aligned}
 $$
 
 that are complex conjugates of each other.
 
-At this point, we should substitute the expression of \\(\bm{E_j}\\) given by Eqn. 1p.6 into 1p.28, taking the asymptotic expression of \\(k R_j\\) given by Eqn. 1p.5.3 into account. Since we already know that \\(\bm{n_s} = \bm{n_i}\\) is the only direction that makes a non-zero contribution, we only need to consider
-
-$$ \tag{1p.29}
-	\bm{E_j}(r \bm{n_i}, \psi)
-	\simeq
-	\frac{e^{i k r}}{k r} \mathcal{S_j} (\bm{n_i}, \psi) \cdot \bm{E_0}
-	e^{i k r_j^2 \left( 1 - (\bm{n_i} \cdot \bm{n_j})^2 \right) / (2 r)}.
-$$
 
 By combining Eqn. 1p.27-1p.29, and following the steps detailed in the previous section, it is easy to show that the amount of power dissipated by the \\(j\\)-th particle in the state \\(\psi\\) is
 
@@ -4697,7 +4680,7 @@ $$ \tag{1p.30}
 	e^{i k r_j^2 \left( 1 - (\bm{n_i} \cdot \bm{n_j})^2 \right) / (2 r)} \right\rbrace.
 $$
 
-This expression can be further simplified by performing ensemble averaging. Suppose that every position is equally likely, so that \\(p(\bm{r_j}) = 1/V\\); then we can account for random motion of the particles by analytically evaluating the integral
+This expression can be further simplified by performing ensemble averaging. Suppose that every position is equally likely, so that \\(p(\bm{r_j}) = 1/V\\); then we can account for random motion of particles by analytically evaluating the integral
 
 $$ \tag{1p.31}
 	v(\zeta) = \frac{1}{V} \int_V
@@ -4706,13 +4689,13 @@ $$ \tag{1p.31}
 	\right) dV_j,
 $$
 
-where
+that can be expressed in terms of the ratio
 
 $$ \tag{1p.32}
 	\zeta = \frac{1}{2} \frac{(k L)^2}{k r}
 $$
 
-is the ratio between the dimensionless area of the cross-section \\((k L)^2\\) and the dimensionless distance to the observation point \\(k r\\).
+of the dimensionless area of the cross-section \\((k L)^2\\) to the dimensionless distance to the observation point \\(k r\\).
 
 It is convenient to reparametrize Eqn. 1p.31 by aligning \\(\bm{n_i}\\) with an axis of the coordinate system:
 
@@ -4732,21 +4715,9 @@ $$ \tag{1p.34}
 	\approx e^{i \zeta / 6}.
 $$
 
-Similarly, for an axis-aligned cylinder of the same volume and cross-sectional area,
+Similarly, for a sphere of the same volume (with a slightly larger cross-sectional area),
 
 $$ \tag{1p.35}
-\begin{aligned}
-	v(\zeta) = \frac{1}{V} \int_V
-	\exp \negmedspace \left(
-	\frac{i}{2} \frac{k^2}{k r} \left( r_j \sin{\theta_j} \right)^2
-	\right) r_j dr_j d\theta_j dz_j
-	\approx e^{i \zeta / 12.58}.
-\end{aligned}
-$$
-
-Finally, for a sphere of the same volume (and a slightly larger cross-sectional area),
-
-$$ \tag{1p.36}
 \begin{aligned}
 	v(\zeta) = \frac{1}{V} \int_V
 	\exp \negmedspace \left(
@@ -4756,11 +4727,11 @@ $$ \tag{1p.36}
 \end{aligned}
 $$
 
-{{< figure src="/img/vol_int.svg" caption="*Figure N: Plot of \\(v(\zeta)\\) defined by Eqn. 1p.34. The solid line represents the absolute value, and the dashed line represents the value of the argument (the phase).*" >}}
+{{< figure src="/img/vol_int.svg" caption="*Figure N: Plot of \\(v(\zeta)\\) defined by Eqn. 1p.35 (the plot of Eqn. 1p.34 is very similar). The solid line represents the absolute value, and the dashed line represents the value of the argument (the phase).*" >}}
 
 These approximations are valid provided \\(\zeta \leq 1\\). In general, \\(v(\zeta) \\) is a pretty complicated function that tends to \\(1\\) as \\(\zeta \to 0\\). The latter indicates that the observer approaches the radiation zone of the entire particle group, which makes the trailing complex exponential of Eqn. 1p.30 vanish.
 
-Another important case of interest is when both \\(k L \gg 1\\) and \\(k r \gg 1\\) in such a way that \\(\zeta \gg 1\\). That causes the approximations of Eqn. 1p.34-1p.36 to break down. One may encounter this situation in practice while considering the force exerted by the scattered field of one particle group onto a particle in an adjacent group. Fortunately, by taking the limit of Eqn. 1p.31, one can show that \\(|v| \to 0\\) as \\(\zeta \to \infin\\).
+Another important case of interest is when both \\(k L \gg 1\\) and \\(k r \gg 1\\) in such a way that \\(\zeta \gg 1\\). That causes the approximations of Eqn. 1p.34-1p.35 to break down. One may encounter this situation in practice while considering the force exerted by the electromagnetic field of one particle group onto a particle in an adjacent group. Fortunately, by taking the limit of Eqn. 1p.31, one can show that \\(|v| \to 0\\) as \\(\zeta \to \infin\\).
 
 In conclusion, *if the observer is located in the the radiation zone of the entire particle group*, the mean amount of power \\(\braket{\Phi_e}\\) dissipated per particle is the same as that of the average particle (cf. Eqn. 16.40):
 
@@ -4772,102 +4743,129 @@ $$ \tag{1p.37}
 	\right\rbrace.
 $$
 
-Mind the sensor size: Eqn. 16.3y.
-
 On the other hand, *if the observer is located in an area directly adjacent to an extensive particle group*, the extinction effect can be neglected \[[8](#references) (ch. 14.2)\]:
 
 $$ \tag{1p.38}
 	\braket{\Phi_e} \approx 0.
 $$
 
-The reason behind this discrepancy can be understood geometrically. If \\(\zeta \ll 1\\) and \\(k L \ge 1\\), then \\(r / L \gg 1\\), which means that, for the observation point \\(\bm{r} = r \bm{n_i}\\) located along the forward direction, the wave vectors of the incident and the scattered waves are more or less permanently aligned:
+The reason behind this discrepancy can be understood geometrically. If \\(\zeta \ll 1\\) and \\(k L \ge 1\\), then \\(r / L \gg 1\\), which means that, at the observation point \\(\bm{r} = r \bm{n_i}\\) located along the direction of incidence, the wave vectors of the incident and the scattered waves are more or less permanently aligned:
 
 $$ \tag{1p.39}
 	k (r \bm{n_i} - \bm{r_j}) \approx k r \bm{n_i},
 $$
 
-making the strength of the interference effect similar to that for a particle fixed at the origin.
+making the strength of the interference effect similar to that of a particle fixed at the origin. Naturally, the area of the entrance pupil \\(C_d\\) of the measurement device must be sufficiently large \\((C_d \gg L^2)\\) in order to intercept all these parallel rays of light (see the discussion around Eqn. 16.3y).
 
-On the other hand, if \\(\zeta \ll 1\\), the wave vectors are almost never aligned, making the contribution to \\(\braket{\Phi_e}\\) (which, by definition, describes wave interference in the forward direction) vanishingly small.
+On the other hand, if \\(\zeta \ll 1\\), the wave vectors are almost never aligned, making the contribution to \\(\braket{\Phi_e}\\) vanishingly small.
 
 ---
 
-Let us now consider the final term \\(\braket{\bm{S_{jk}}}\\) that accounts for interference between the scattered fields of two different particles. Since the observation point \\(\bm{r}\\) is located in the radiation zone of each particle, we may substitute Eqn. 1p.6 (twice) into 1p.9. Note that the resulting expression is highly symmetrical.
+$$ \tag{1p.8}
+\begin{aligned}
+	\braket{\bm{S}}
+	&= \frac{\mu\_0^{-1}}{2} \mathcal{Re} \Big\lbrace
+	\Big( \bm{E_i} + \sum_j \bm{E_j} \Big) \times
+	\Big( \bm{B_i^{\*}} + \sum_j \bm{B_j^{\*}} \Big) \Big\rbrace
+	\cr
+	&= \braket{\bm{S_i}} + \sum_j \braket{\bm{S_j}} - \sum_j \braket{\bm{S_{ij}}} - \sum_{j < k} \braket{\bm{S_{jk}}},
+\end{aligned}
+$$
 
-Utilizing the identities of Eqn. 16.11 and 16.25, we obtain
+---
+
+Let us now consider the final term \\(\braket{\bm{S_{jk}}}\\) that accounts for interference between the scattered fields of two particles. Since the observation point \\(\bm{r}\\) is located in the radiation zone of each particle, we may substitute Eqn. 1p.6 (twice) into 1p.9.
+
+The resulting expression is highly symmetrical. From the identities of Eqn. 16.11 and 16.25, it follows that
 
 $$ \tag{1p.40}
 \begin{aligned}
 	\bm{n_s} \cdot \big( \bm{E_j} \times \bm{B_k^{\*}} \big)
 	&\simeq \frac{\eta}{c}
-	\big( \bm{E_j} \cdot \bm{E_k^{\*}} \big),
+	\big( \bm{E_j} \cdot \bm{E_k^{\*}} \big).
 \end{aligned}
 $$
 
-which directly leads to
+As a result, the expression of the time-averaged Poynting vector takes a simple form:
 
 $$ \tag{1p.41}
 	\bm{n_s} \cdot \braket{\bm{S_{jk}}}\_t \negmedspace (\bm{r}, \psi)
-	= -\frac{\mu\_0^{-1}}{2} \frac{\eta}{c} \big( \bm{E_j} \cdot \bm{E_k^{\*}} + \bm{E_k} \cdot \bm{E_j^{\*}} \big)
+	\simeq -\frac{\mu\_0^{-1}}{2} \frac{\eta}{c} \big( \bm{E_j} \cdot \bm{E_k^{\*}} + \bm{E_k} \cdot \bm{E_j^{\*}} \big)
 	= -\mu\_0^{-1} \frac{\eta}{c} \mathcal{Re} \big\lbrace \bm{E_j^{\*}} \cdot \bm{E_k} \big\rbrace.
 $$
 
-Expanding ...
+If we ignore interaction between the individual particles (but not their fields), then \\(\bm{E_j}\\) and \\(\bm{E_k}\\) can be considered outcomes of two independent random processes. That allows us to perform ensemble averaging of the scattered fields separately:
 
 $$ \tag{1p.42}
 \begin{aligned}
-	\bm{n_s} \cdot \braket{\bm{S_{jk}}}\_t \negmedspace (\bm{r}, \psi)
-	= -\mu\_0^{-1} \frac{\eta}{c} \frac{1}{k^2 r^2}
-	\mathcal{Re} \left\lbrace
-	\big[ \bm{E_0} \cdot \mathcal{S}\_j^T \big]^{\*} \cdot
-	\big( \mathcal{S_k} \cdot \bm{E_0} \big)
-	e^{i k (R_k - R_j)}
-	e^{i k (\bm{r_k} - \bm{r_j}) \cdot \bm{n_i}}
-	\right\rbrace.
+	\bm{n_s} \cdot \braket{\braket{\bm{S_{jk}}}} \negmedspace (\bm{r})
+	&\simeq -\mu\_0^{-1} \frac{\eta}{c} \mathcal{Re} \big\lbrace \braket{\bm{E_j^{\*}}}\_{\psi} \cdot \braket{\bm{E_k}}\_{\psi} \big\rbrace
+	\cr
+	&= -\mu\_0^{-1} \frac{\eta}{c} \mathcal{Re} \big\lbrace \braket{\bm{E_j}}\_{\psi}^{\*} \cdot \braket{\bm{E_j}}\_{\psi} \big\rbrace
+	= -\mu\_0^{-1} \frac{\eta}{c} \big| \braket{\bm{E_j}}\_{\psi} \big|^2.
 \end{aligned}
 $$
 
-Consider the exponential in more detail ... Expand using 1p.5.3...
+Unlike Eqn. 1p.26, Eqn. 1p.42 represents the intensity of light scattered by the average particle with a certain likelihood to be located somewhere within the region bounded by the volume \\(V\\).
 
-$$ \tag{1p.5}
-	k R_k
-	\simeq k r - k (\bm{n_s} \cdot \bm{r_k})
-	+ \frac{k r_k^2}{2 r} \left( 1 - (\bm{n_s} \cdot \bm{n_k})^2 \right),
+Suppose that every position is equally likely, so that \\(p(\bm{r_j}) = 1/V\\); then, calculation of the ensemble average of the electric field (given by Eqn. 1p.6) requires evaluation of the integral
+
+$$ \tag{1p.43}
+	w(\zeta, h) = \frac{1}{V} \int_V \exp \negmedspace \left(
+	i k \bm{r_j} \cdot (\bm{n_i} - \bm{n_s}) +
+	i k r_j^2 \left( 1 - (\bm{n_j} \cdot \bm{n_s})^2 \right)/(2 r)
+	\right) dV_j,
 $$
 
-$$ \tag{1p.5}
-	-k R_j
-	\simeq -k r + k (\bm{n_s} \cdot \bm{r_j})
-	- \frac{k r_j^2}{2 r} \left( 1 - (\bm{n_s} \cdot \bm{n_j})^2 \right),
+which is an expanded version of Eqn. 1p.31 that takes an extra parameter
+
+$$ \tag{1p.44}
+	h = k L |\bm{n_i} - \bm{n_s}|.
 $$
 
-$$ \tag{1p.5}
-	k (R_k - R_j)
-	\simeq - k (\bm{r_k} - \bm{r_j}) \cdot \bm{n_s}
-	+ \frac{k r_k^2}{2 r} \left( 1 - (\bm{n_s} \cdot \bm{n_k})^2 \right)
-	- \frac{k r_j^2}{2 r} \left( 1 - (\bm{n_s} \cdot \bm{n_j})^2 \right),
+Note that, unlike in the case of Eqn. 1p.31, we only care about the squared magnitude of the value of the integral, and not its phase.
+
+As we have done previously, it is convenient to consider a few special cases. First, suppose the observer is located in the radiation zone of the entire particle group. Then \\(\zeta = 0\\), and
+
+$$ \tag{1p.45}
+	w(0, h) = \frac{1}{V} \int_V \exp \negmedspace \left(
+	i k \bm{r_j} \cdot (\bm{n_i} - \bm{n_s})
+	\right) dV_j.
 $$
 
-$$ \tag{1p.5}
-	e^{i k (R_k - R_j)}
-	e^{i k (\bm{r_k} - \bm{r_j}) \cdot \bm{n_i}} =
-	e^{i k (\bm{r_k} - \bm{r_j}) \cdot (\bm{n_i} - \bm{n_s})}
-	e^{i k r_k^2 \left( 1 - (\bm{n_s} \cdot \bm{n_k})^2 \right) / (2 r)}
-	e^{-i k r_j^2 \left( 1 - (\bm{n_s} \cdot \bm{n_j})^2 \right) / (2 r)}
+It is convenient to reparametrize Eqn. 1p.45 by aligning \\(\bm{n_i} - \bm{n_s}\\) with an axis of the coordinate system:
+
+$$ \tag{1p.33}
+	\bm{r_j} \cdot \frac{\bm{n_i} - \bm{n_s}}{|\bm{n_i} - \bm{n_s}|}
+	= r_j \cos{\theta_j}
+	= z_j
 $$
 
-ni=ns; double volume int; complex conj; |v|^2;
+Then, for an axis-aligned cube of volume \\(L^3\\),
 
-$$ \tag{16.30}
+$$ \tag{1p.34}
+	v(\zeta) = \frac{1}{V} \int_V
+	\exp \negmedspace \left(
+	i k |\bm{n_i} - \bm{n_s}| z_j
+	\right) dx_j dy_j dz_j
+	= \frac{\sin(h/2)}{h/2}.
+$$
+
+Similarly, for a sphere of the same volume (and a slightly larger cross-sectional area),
+
+$$ \tag{1p.35}
 \begin{aligned}
-	e^{i k r (\bm{n_s} \cdot \bm{n_i})}
-	\simeq 2 \pi i \left(
-	\frac{e^{-i k r}}{k r} \delta(\bm{n_i} + \bm{n_s}) -
-	\frac{e^{i k r}}{k r} \delta(\bm{n_i} - \bm{n_s}) \right)
-\end{aligned},
+	v(\\zeta) = \frac{1}{V} \int_V
+	\exp \negmedspace \left(
+	i k |\bm{n_i} - \bm{n_s}| r_j \cos{\theta_j}
+	\right) r_j^2 \sin{\theta_j} dr_j d\theta_j d\phi_j
+	\approx \frac{\sin(h/2.1)}{h/2.1}.
+\end{aligned}
 $$
 
 ---
+
+Extinction: mind the sensor size: Eqn. 16.3y.
 
 Eqn. 1p.25 can be used to determine the total amount of power scattered by the particle group:
 
