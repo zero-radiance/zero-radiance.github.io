@@ -4832,8 +4832,6 @@ $$
 
 that depends on the dimensions of the particle group and the degree of alignment of the wave vectors.
 
----
-
 Eqn. 1p.42 is fairly complicated, so we shall only consider a few special cases. First, suppose the observer is located in the radiation zone of the entire particle group. Then \\(F \to 0\\), and
 
 $$ \tag{1p.44}
@@ -4844,7 +4842,7 @@ $$
 
 It is convenient to reparametrize[^20] Eqn. 1p.44 by aligning \\(\bm{n_i} - \bm{n_s}\\) with an axis of the coordinate system:
 
-[^20]: This parameterization is different from the one used in Eqn. 1p.33. Thus, the orientation of the cube is not the same.
+[^20]: This parameterization is different from the one used in Eqn. 1p.33. As a result, the orientation of the cubical volume is not the same.
 
 $$ \tag{1p.45}
 	\bm{r_j} \cdot \frac{\bm{n_i} - \bm{n_s}}{|\bm{n_i} - \bm{n_s}|}
@@ -4880,22 +4878,19 @@ The approximation of Eqn. 1p.47 is valid provided \\(\varDelta \leq 4\\). Furthe
 
 {{< figure src="/img/vol_int_2.svg" caption="*Figure N: Plot of \\(|v(0, \varDelta)|^2\\) defined by Eqn. 1p.47.*" >}}
 
----
+Figure N demonstrates that the scattered waves always interfere in the direction of incidence \\((\varDelta = 0)\\). If, in addition, the dimensions of the particle group are small in comparison to the wavelength of light \\((k L \ll 1)\\), then the scattered waves strongly interfere in every direction. That is not surprising, since the particles simply do not have the opportunity to move out-of-phase.
 
-Full interference in the forward direction...
+In general, the strength of the interference effect wanes as the the scattering angle \\(\theta = \arccos(\bm{n_i} \cdot \bm{n_s})\\) increases. For spatially large particle groups, \\(kL \to \infin\\), \\(\varDelta \to \infin\\), and the graph of Figure N is horizontally compressed around \\(\varDelta = 0\\) while maintaining the peak value of \\(1\\). As a result, the value of its integral
 
----
-
-Eqn. 1p.34, 1p.46, and 1p.47 indicate that the scattered fields of two particles interfere for a range of scattering angles \\(\theta = \arccos(\bm{n_i} \cdot \bm{n_s})\\). As the dimensions of the particle group \\(kL \to \infin\\), \\(\varDelta \to \infin\\), and the area of the graph of Figure N is horizontally compressed around the \\(\theta = 0\\) angle while maintaining the peak value of \\(1\\). This implies that
-
-$$ \tag{16.14}
-	\lim_{kL \to \infin} \oint\_{\mathbb{S}^2} \left| v \left(0, \sqrt{2} k L \sqrt{1 - (\bm{n_i} \cdot \bm{n_s})} \right) \right|^2 d\Omega = 0.
+$$ \tag{1p.48}
+	\lim_{kL \to \infin} \int_{-\pi}^{\pi} \int_{0}^{\pi} \left| v \left(0, \sqrt{2} k L \sqrt{1 - \cos{\theta}} \right) \right|^2 \sin{\theta} d\theta d\psi = 0.
 $$
 
-Therefore, *if the observer is located in the the radiation zone of an extensive particle group*, the scattered fields of two particles do not interfere:
+Therefore, *if the observer is located in the the radiation zone of an extensive particle group*, the scattered fields of two particles do not cause significant interference:
 
-$$ \tag{1p.37}
-	\braket{\Phi_{jk}} \approx 0.
+$$ \tag{1p.49}
+	\braket{\Phi_{jk}}
+	= \oint\_{\mathbb{S}^2} r^2 \braket{\braket{\bm{S_{jk}}}} \cdot \bm{n_s} d\Omega \approx 0.
 $$
 
 ---
