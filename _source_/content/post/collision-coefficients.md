@@ -4786,7 +4786,7 @@ $$
 
 ---
 
-Let us now consider the final term of Eqn. 1p.8 that accounts for interference of the scattered fields of two particles. Since the observation point \\(\bm{r}\\) is located in the radiation zone of each particle, we can obtain the equation of \\(\braket{\bm{S_{jk}}}\\) by substituting Eqn. 1p.6 twice into 1p.9.
+Let us now consider the final term of Eqn. 1p.8 that accounts for interference of the scattered fields of two particles. Since the observation point \\(\bm{r}\\) is located in the radiation zone of each particle, we can obtain the formula of \\(\braket{\bm{S_{jk}}}\\) by substituting Eqn. 1p.6 twice into 1p.9.
 
 The resulting expression is highly symmetrical. It can be readily simplified by taking advantage of the identities given by Eqn. 16.11 and 16.25, according to which,
 
@@ -4825,7 +4825,7 @@ $$
 
 Unlike Eqn. 1p.26, Eqn. 1p.41 corresponds to (double) the intensity of light scattered by the average particle (cf. Eqn. 16.15) with a certain likelihood to be located somewhere within the region occupied by the particle group.
 
-Suppose that every position is equally likely, so that \\(p(\bm{r_j}) = 1/V\\). Then calculation of the ensemble average of the electric field \\(\bm{E_j}\\) (defined by Eqn. 1p.6) involves evaluation of the integral
+Suppose that every position is equally likely, so that the probability density function \\(p(\bm{r_j}) = 1/V\\). Then calculation of the ensemble average of the electric field \\(\bm{E_j}\\) (defined by Eqn. 1p.6) involves evaluation of the integral
 
 $$ \tag{1p.42}
 	v(F, \varDelta) = \frac{1}{V} \int_V \exp \negmedspace \left(
@@ -4834,7 +4834,7 @@ $$ \tag{1p.42}
 	\right) dV_j,
 $$
 
-that generalizes Eqn. 1p.31: the difference arises from the fact that we can no longer assume that the direction of observation is aligned with the direction of incidence. This is captured by an additional parameter
+that generalizes Eqn. 1p.31: the difference arises from the fact that we can no longer assume that the direction of observation is aligned with the direction of incidence. This property is captured by an additional parameter
 
 $$ \tag{1p.43}
 	\varDelta = k L |\bm{n_i} - \bm{n_s}| = \sqrt{2} k L \sqrt{1 - (\bm{n_i} \cdot \bm{n_s})}
@@ -4888,13 +4888,13 @@ $$ \tag{1p.47}
 \end{aligned}
 $$
 
-The approximation of Eqn. 1p.47 is valid provided \\(\varDelta \leq 4\\). Furthermore, note that Eqn. 1p.41 only features \\(|v|^2\\), so the phase of \\(v\\) is not important.
+The approximation of Eqn. 1p.47 is valid provided \\(\varDelta \leq 4\\). Note that, since Eqn. 1p.41 only features \\(|v|^2\\), the phase of \\(v\\) is irrelevant.
 
 {{< figure src="/img/vol_int_2.svg" caption="*Figure N: Plot of \\(|v(0, \varDelta)|^2\\) defined by Eqn. 1p.47.*" >}}
 
-Figure N demonstrates that the scattered waves always interfere in the direction of incidence \\((\varDelta = 0)\\). If, in addition, the dimensions of the particle group are small in comparison to the wavelength of light \\((k L \ll 1)\\), then the scattered waves strongly interfere in every direction. That is not surprising, since the particles simply do not have the opportunity to move out-of-phase.
+Figure N demonstrates that the scattered waves always interfere in the direction of incidence \\((\varDelta = 0)\\). If, in addition, the dimensions of the particle group are small in comparison to the wavelength of light \\((\varDelta \leq k L \ll 1)\\), then the scattered waves strongly interfere in every direction. That is not surprising, since the particles simply do not have the opportunity to move out-of-phase.
 
-In general, the strength of the interference effect wanes as the the scattering angle \\(\theta = \arccos(\bm{n_i} \cdot \bm{n_s})\\) increases. For spatially large particle groups, \\(kL \to \infin\\), \\(\varDelta \to \infin\\), and the graph of Figure N is horizontally compressed around \\(\varDelta = 0\\) while maintaining the peak value of \\(1\\). As a result, the value of its integral
+In general, the strength of the interference effect wanes as the the scattering angle \\(\theta = \arccos(\bm{n_i} \cdot \bm{n_s})\\) increases. For spatially large particle groups, \\(kL \gg 1\\), \\(\varDelta \gg 1\\), and the graph of Figure N is horizontally compressed around \\(\varDelta = 0\\) while maintaining the peak value of \\(1\\). As a result, its area decreases, and the value of the integral
 
 $$ \tag{1p.48}
 	\lim_{kL \to \infin} \int_{-\pi}^{\pi} \int_{0}^{\pi} \left| v \left(0, \sqrt{2} k L \sqrt{1 - \cos{\theta}} \right) \right|^2 \sin{\theta} d\theta d\psi = 0.
@@ -4905,6 +4905,27 @@ Therefore, *if the observer is located in the the radiation zone of an extensive
 $$ \tag{1p.49}
 	\braket{\Phi_{jk}}
 	= \oint\_{\mathbb{S}^2} r^2 \braket{\braket{\bm{S_{jk}}}} \cdot \bm{n_s} d\Omega \approx 0.
+$$
+
+In order to determine what happens when the observer is located in an area adjacent to an extensive particle group, we must compute the limit of Eqn. 1p.42 as \\(F \to \infin\\). The resulting expression depends on the geometry and the orientation of the bounding volume of the particle group. We can develop our intuition of its asymptotic behavior by considering the special case of a spherical volume. By performing a change of variables \\(u = r_j / L\\), \\(U = V / L^3 = 1\\), we obtain
+
+$$ \tag{1p.50}
+\begin{aligned}
+	v(F, \varDelta)
+	= \int_U
+	\exp \negmedspace \left(
+	i k L u (\cos{\gamma_j} - \cos{\theta_j})
+	+ i F \left( u \sin{\theta_j} \right)^2
+	\right) u^2 \sin{\theta_j} du d\theta_j d\phi_j
+\end{aligned}
+$$
+
+The first thing to note is that the norm of the integrand never exceeds \\(1/4\\). Second of all, because of the second term \\(i F (u \sin{\theta_j})^2\\), the complex exponential rapidly oscillates around \\(0\\) regardless of any "special" configuration afforded by the first term \\(i k L u (\cos{\gamma_j} - \cos{\theta_j})\\). Thus, we once again find that \\(|v| \to 0\\) as \\(F \to \infin\\).
+
+We can combine this observation with the preceding statement and state that no interference between the scattered fields of two particles is observed *provided the dimensions of the particle group are sufficiently large*:
+
+$$ \tag{1p.51}
+	\braket{\Phi_{jk}} \approx 0.
 $$
 
 ---
