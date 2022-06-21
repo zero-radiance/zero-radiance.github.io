@@ -4523,7 +4523,7 @@ $$ \tag{1p.15}
 	T_e \gg T_1.
 $$
 
-This permits us to split the time-averaging process in two steps
+This permits us to split the time averaging process in two steps
 
 $$ \tag{1p.16}
 \begin{aligned}
@@ -4550,7 +4550,7 @@ $$ \tag{1p.17}
 		\mathcal{Re} \left\lbrace \bm{E_p} \big( \bm{r}, \psi(t) \big) \times \big[ \bm{B_p} \big( \bm{r}, \psi(t) \big) \big]^{\*} \right\rbrace dt.
 $$
 
-The form of Eqn. 1p.17 makes it apparent that the mean value of the Poynting vector directly depends on the fraction of time the system spends in each microstate. In general, the latter is sensitive to the initial conditions. In fact, none of the requirements we have imposed so far prohibit the system from remaining in the same microstate indefinitely, which obviously defeats the purpose of time-averaging in the first place! Therefore, let us impose a stronger condition, by requiring dynamic light scattering to be an [ergodic process](https://en.wikipedia.org/wiki/Ergodic_process), such that, at any point in time, computing the average in the time domain is equivalent to averaging over the space \\(\Psi\\) containing every possible microstate (ranging across all experiments and initial conditions) \[[8](#references) (ch. 10.4)\]:
+The form of Eqn. 1p.17 makes it apparent that the mean value of the Poynting vector directly depends on the fraction of time the system spends in each microstate. In general, the latter is sensitive to the initial conditions. In fact, none of the requirements we have imposed so far prohibit the system from remaining in the same microstate indefinitely, which obviously defeats the purpose of time averaging in the first place! Therefore, let us impose a stronger condition, by requiring dynamic light scattering to be an [ergodic process](https://en.wikipedia.org/wiki/Ergodic_process), such that, at any point in time, computing the average in the time domain is equivalent to averaging over the space \\(\Psi\\) containing every possible microstate (ranging across all experiments and initial conditions) \[[8](#references) (ch. 10.4)\]:
 
 $$ \tag{1p.18}
 	\braket{\braket{\bm{S}}} \negmedspace (\bm{r})
@@ -4606,7 +4606,7 @@ $$ \tag{1p.23}
 \end{aligned}
 $$
 
-As demonstrated by Eqn. 13.22-13.23, time-averaging of Eqn. 1p.23 is equivalent to replacing the phase factor with \\(1/2\\), which yields the standard expression of the time-averaged Poynting vector
+As demonstrated by Eqn. 13.22-13.23, time averaging Eqn. 1p.23 is equivalent to replacing the phase factor with \\(1/2\\), which yields the standard expression of the time-averaged Poynting vector
 
 $$ \tag{1p.24}
 	\braket{\bm{S_j}}\_t \negmedspace (\bm{r}, \psi)
@@ -4632,7 +4632,9 @@ $$ \tag{1p.26}
 	p(\psi) d\psi.
 $$
 
-The Poynting vector \\(\braket{\bm{S_j}}\\) associated with the scattered field does not, by itself, completely determine the intensity of scattered light. In addition, we must account for interference between the incident and the scattered waves contained within the \\(\braket{\bm{S_{ij}}}\\) terms of Eqn 1p.8. Substitution of Eqn. 16.1 into 1p.9 yields an expression
+The Poynting vector \\(\braket{\bm{S_j}}\\) associated with the scattered field does not, by itself, completely determine the intensity of scattered light. In addition, we must account for interference between the incident and the scattered waves contained within the \\(\braket{\bm{S_{ij}}}\\) terms of Eqn 1p.8.
+
+Substitution of Eqn. 16.1 into 1p.9 yields an expression
 
 $$ \tag{1p.27}
 \begin{aligned}
@@ -4653,7 +4655,7 @@ $$ \tag{1p.28}
 	e^{i k r_j^2 \left( 1 - (\bm{n_j} \cdot \bm{n_i})^2 \right) / (2 r)}.
 $$
 
-Let us retrace the steps taken in Sec. 16. First, we express the magnetic field in terms of the electric field using Eqn. 16.2 and 16.11, and project the resulting vector onto the direction of incidence \\(\bm{n_i}\\). Application of the identities given by Eqn. 16.25 yield the expressions
+Let us retrace the steps taken in Sec. 16. First, we shall express the magnetic field in terms of the electric field using Eqn. 16.2 and 16.11, and then project the resulting vector onto the direction of incidence \\(\bm{n_i}\\). Application of the identities given by Eqn. 16.25 yield the expressions
 
 $$ \tag{1p.29}
 \begin{aligned}
@@ -4680,7 +4682,7 @@ $$ \tag{1p.30}
 	e^{i k r_j^2 \left( 1 - (\bm{n_j} \cdot \bm{n_i})^2 \right) / (2 r)} \right\rbrace.
 $$
 
-This expression can be further simplified by performing ensemble averaging. Suppose that every position is equally likely, so that \\(p(\bm{r_j}) = 1/V\\); then we can account for random motion of particles by analytically evaluating the integral
+This expression can be further simplified by performing ensemble averaging. Suppose that every position is equally likely, so that the probability density function \\(p(\bm{r_j}) = 1/V\\); then we can account for random motion of particles by analytically evaluating the integral
 
 $$ \tag{1p.31}
 	v(F) = \frac{1}{V} \int_V
@@ -4712,6 +4714,10 @@ $$ \tag{1p.34}
 	\exp \negmedspace \left(
 	\frac{i}{2} \frac{k^2}{k r} \left( x_j^2 + y_j^2 \right)
 	\right) dx_j dy_j dz_j
+	= \left( \int_{-1/2}^{1/2}
+	\exp \negmedspace \left(
+	i F u^2
+	\right) du \right)^2
 	\approx e^{i F / 6}.
 $$
 
@@ -4731,9 +4737,13 @@ These approximations are valid provided \\(F \leq 1\\).
 
 {{< figure src="/img/vol_int_1.svg" caption="*Figure N: Plot of \\(v(F)\\) defined by Eqn. 1p.35. The solid line represents the absolute value, and the dashed line represents the value of the argument (the phase).*" >}}
 
-In general, \\(v(F) \\) is a pretty complicated function that tends to \\(1\\) as \\(F \to 0\\). The latter indicates that the observer approaches the radiation zone of the entire particle group, which makes the trailing complex exponential of Eqn. 1p.30 vanish.
+In general, \\(v(F) \\) is a fairly complicated function that tends[^21] to \\(1\\) as \\(F \to 0\\). The latter indicates that the observer approaches the radiation zone of the entire particle group, which makes the trailing complex exponential of Eqn. 1p.30 vanish.
 
-Another important case of interest is when both \\(k L \gg 1\\) and \\(k r \gg 1\\) in such a way that \\(F \gg 1\\). That causes the approximations of Eqn. 1p.34-1p.35 to break down. One may encounter this situation in practice while considering the force exerted by the electromagnetic field of one particle group onto a particle in an adjacent group. Fortunately, by taking the limit of Eqn. 1p.31, one can show that \\(|v| \to 0\\) as \\(F \to \infin\\).
+[^21]: Since \\(\exp(i F u^2) \to 1\\) as \\(F \to 0\\), the same applies to its integral taken over a unit interval.
+
+Another important case of interest is when both \\(k L \gg 1\\) and \\(k r \gg 1\\) in such a way that \\(F \gg 1\\). That causes the approximations of Eqn. 1p.34-1p.35 to break down. One may encounter this situation in practice while considering the force exerted by the electromagnetic field of one particle group onto a particle in an adjacent group. Fortunately, by taking the limit of Eqn. 1p.31, one can show[^22]  that \\(|v| \to 0\\) as \\(F \to \infin\\).
+
+[^22]: If \\(F \to \infin\\), then \\(\exp(i F u^2)\\) rapidly oscillates around \\(0\\). These oscillations can be eliminated by averaging the function over a finite interval. This makes the absolute value of the integral tend to \\(0\\).
 
 In conclusion, *if the observer is located in the the radiation zone of the entire particle group*, the mean amount of power \\(\braket{\Phi_e}\\) dissipated per particle is the same as that of the average particle (cf. Eqn. 16.40):
 
@@ -4745,19 +4755,19 @@ $$ \tag{1p.36}
 	\right\rbrace.
 $$
 
-On the other hand, *if the observer is located in an area directly adjacent to an extensive particle group*, the extinction effect can be neglected \[[8](#references) (ch. 14.2)\]:
+On the other hand, *if the observer is located in an area adjacent to an extensive particle group*, the extinction effect can be neglected \[[8](#references) (ch. 14.2)\]:
 
 $$ \tag{1p.37}
 	\braket{\Phi_e} \approx 0.
 $$
 
-The reason behind this discrepancy can be understood geometrically. If \\(F \ll 1\\) and \\(k L \ge 1\\), then \\(r / L \gg 1\\), which means that, at the observation point \\(\bm{r} = r \bm{n_i}\\) located along the direction of incidence, the wave vectors of the incident and the scattered waves are more or less permanently aligned:
+The reason behind this discrepancy can be understood geometrically. If both \\(F \ll 1\\) and \\(k L \ge 1\\), then \\(r / L \gg 1\\), which means that, for the observation point \\(\bm{r} = r \bm{n_i}\\) located along the direction of incidence, the wave vectors of the incident and the scattered waves are more or less permanently aligned:
 
 $$ \tag{1p.38}
 	k (r \bm{n_i} - \bm{r_j}) \approx k r \bm{n_i},
 $$
 
-making the strength of the interference effect similar to that of a particle fixed at the origin. Naturally, the area of the entrance pupil \\(C_d\\) of the measurement device must be sufficiently large \\((C_d \gg L^2)\\) in order to intercept all these parallel rays of light (see the discussion around Eqn. 16.3y).
+making the strength of the interference effect similar to that of a particle fixed at the origin. Naturally, the area of the entrance pupil \\(C_d\\) of the measurement device must be sufficiently large \\((C_d \gg L^2)\\) in order to intercept all of these parallel rays of light (see the discussion of Eqn. 16.3y).
 
 On the other hand, if \\(F \ll 1\\), the wave vectors are almost never aligned, making the contribution to \\(\braket{\Phi_e}\\) vanishingly small.
 
@@ -4858,6 +4868,10 @@ $$ \tag{1p.46}
 	\exp \negmedspace \left(
 	i k |\bm{n_i} - \bm{n_s}| z_j
 	\right) dx_j dy_j dz_j
+	= \int_{-1/2}^{1/2}
+	\exp \negmedspace \left(
+	i \varDelta u
+	\right) du
 	= \frac{\sin(\varDelta/2)}{\varDelta/2}.
 $$
 
