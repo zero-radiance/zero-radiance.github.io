@@ -4741,9 +4741,9 @@ In general, \\(v(f) \\) is a fairly complicated function that tends[^21] to \\(1
 
 [^21]: Since \\(\exp(i f u^2) \to 1\\) as \\(f \to 0\\), the same applies to its integral taken over a unit interval.
 
-Another important case of interest is when both \\(k L \gg 1\\) and \\(k r \gg 1\\) in such a way that \\(f \gg 1\\). That causes the approximations of Eqn. 1p.34-1p.35 to break down. One may encounter this situation in practice while considering the force exerted by the electromagnetic field of one particle group onto a particle in an adjacent group. Fortunately, by taking the limit of Eqn. 1p.31, one can show[^22]  that \\(|v| \to 0\\) as \\(f \to \infin\\).
+{{< figure src="/img/vol_int_3.svg" caption="*Figure N: Plot of \\(f |v(f)|\\) defined by Eqn. 1p.35. We can observe that the running average of \\(|v(f)|\\) decreases linearly with \\(f\\), and thus, with \\((k L)^2\\).*" >}}
 
-{{< figure src="/img/vol_int_3.svg" caption="*Figure N: Plot of \\(f |v(f)|\\) defined by Eqn. 1p.35. We can observe that the running average of \\(|v(f)|\\) linearly decreases with \\(f\\).*" >}}
+Another important case of interest is when both \\(k L \gg 1\\) and \\(k r \gg 1\\) in such a way that \\(f \gg 1\\). That causes the approximations of Eqn. 1p.34-1p.35 to break down. One may encounter this situation in practice while considering the force exerted by the electromagnetic field of one particle group onto a particle in an adjacent group. Fortunately, by taking the limit of Eqn. 1p.31, one can show[^22]  that \\(|v| \to 0\\) as \\(f \to \infin\\).
 
 [^22]: As the pseudo-frequency \\(f \to \infin\\), the value of \\(\exp(i f u^2)\\)  rapidly oscillates around \\(0\\). These oscillations can be dampened by averaging the function over a finite interval. The absolute value of the resulting integral tends to \\(0\\).
 
@@ -4895,6 +4895,8 @@ The approximation of Eqn. 1p.47 is valid provided \\(g \leq 4\\). Note that, sin
 {{< figure src="/img/vol_int_2.svg" caption="*Figure N: Plot of \\(|v(0, g)|^2\\) defined by Eqn. 1p.47.*" >}}
 
 Figure N demonstrates that the scattered waves always interfere in the direction of incidence \\((g = 0)\\). If, in addition, the dimensions of the particle group are small in comparison to the wavelength of light \\((g \leq k L \ll 1)\\), then the scattered waves strongly interfere in every direction. That is not surprising, since the particles simply do not have the opportunity to move out-of-phase.
+
+{{< figure src="/img/vol_int_4.svg" caption="*Figure N: Plot of \\(g^2 |v(0, g)|\\) defined by Eqn. 1p.47. We can observe that the running average of \\(|v(0, g)|\\) decreases linearly with \\(g^2\\), and thus, with \\((k L)^2\\).*" >}}
 
 In general, the strength of the interference effect wanes as the the scattering angle \\(\theta = \arccos(\bm{n_i} \cdot \bm{n_s})\\) increases. For spatially large particle groups, \\(kL \gg 1\\), \\(g \gg 1\\), and the graph of Figure N is horizontally compressed around \\(g = 0\\) while maintaining the peak value of \\(1\\). As a result, its area decreases, and the value of the integral
 
