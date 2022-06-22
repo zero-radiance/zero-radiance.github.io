@@ -4627,6 +4627,7 @@ is, in general, different from replacing \\(\mathcal{S_j}\\) with the average sc
 
 $$ \tag{1p.26}
 	\braket{\Iota_s} \negmedspace (\bm{n_s})
+	= r^2 \braket{\braket{\bm{S_j}}} \cdot \bm{n_s}
 	\simeq \frac{\mu\_0^{-1}}{2} \frac{\eta}{c} \frac{1}{k^2} \int\_{\Psi}
 	\left| \mathcal{S_j}(\bm{n_s}, \psi) \cdot \bm{E_0} \right|^2
 	p(\psi) d\psi.
@@ -4646,7 +4647,7 @@ $$ \tag{1p.27}
 \end{aligned}
 $$
 
-that is broadly similar to Eqn. 16.23. In particular, according to Eqn. 16.30, the complex exponential term \\(\exp(i k (\bm{r} \cdot \bm{n_i})) = \exp(i k r (\bm{n_s} \cdot \bm{n_i}))\\) indicates that interference only occurs if the optical axis of the measurement device is directly facing the source. Therefore, we only need to consider the expression of the scattered field (cf. Eqn. 1p.6) along the direction of incidence:
+that is broadly similar to Eqn. 16.23. In particular, according to Eqn. 16.30, the complex exponential term \\(\exp(i k (\bm{r} \cdot \bm{n_i})) = \exp(i k r (\bm{n_s} \cdot \bm{n_i}))\\) indicates that interference only occurs if the optical axis of the measurement device is directly facing the source. Therefore, we only need to consider the expression of the scattered field (given by Eqn. 1p.6) along the direction of incidence:
 
 $$ \tag{1p.28}
 	\bm{E_j}(r \bm{n_i}, \psi)
@@ -4655,24 +4656,23 @@ $$ \tag{1p.28}
 	e^{i k r_j^2 \left( 1 - (\bm{n_j} \cdot \bm{n_i})^2 \right) / (2 r)}.
 $$
 
-Let us retrace the steps taken in Sec. 16. First, we shall express the magnetic field in terms of the electric field using Eqn. 16.2 and 16.11, and then project the resulting vector onto the direction of incidence \\(\bm{n_i}\\). Application of the identities given by Eqn. 16.25 yield the expressions
+Let us retrace the steps taken in Sec. 16. First, we express the magnetic field in terms of the electric field using Eqn. 16.2 and 16.11; then we substitute \\(\bm{r} = r \bm{n_i}\\) in Eqn. 1p.27, and project the resulting expression onto the direction of incidence \\(\bm{n_i}\\). Application of the identities given by Eqn. 16.25 yields the expressions
 
 $$ \tag{1p.29}
 \begin{aligned}
-	\bm{n_i} \cdot \big( \bm{E_i} \times \bm{B_j^{\*}}(r \bm{n_i}, \psi) \big)
+	\bm{n_i} \cdot \big( \bm{E_i} \times \bm{B_j^{\*}} \big)
 	&\simeq \frac{\eta}{c}
-	\big( \bm{E_0} \cdot \bm{E_j^{\*}}(r \bm{n_i}, \psi) \big)
+	\big( \bm{E_0} \cdot \bm{E_j^{\*}} \big)
 	e^{i k r},
 	\cr
-	\bm{n_i} \cdot \big( \bm{E_j}(r \bm{n_i}, \psi) \times \bm{B_i^{\*}} \big)
+	\bm{n_i} \cdot \big( \bm{E_j} \times \bm{B_i^{\*}} \big)
 	&\simeq \frac{\eta}{c}
-	\big( \bm{E_0^{\*} \cdot \bm{E_j}}(r \bm{n_i}, \psi) \big)
+	\big( \bm{E_0^{\*} \cdot \bm{E_j}} \big)
 	e^{-i k r}.
 \end{aligned}
 $$
 
 that are complex conjugates of each other.
-
 
 By combining Eqn. 1p.27-1p.29, and following the steps detailed in the previous section, it is easy to show that the amount of power dissipated by the \\(j\\)-th particle in the state \\(\psi\\) is
 
@@ -4685,16 +4685,16 @@ $$
 This expression can be further simplified by performing ensemble averaging. Suppose that every position is equally likely, so that the probability density function \\(p(\bm{r_j}) = 1/V\\); then we can account for random motion of particles by analytically evaluating the integral
 
 $$ \tag{1p.31}
-	v(F) = \frac{1}{V} \int_V
+	v(f) = \frac{1}{V} \int_V
 	\exp \negmedspace \left(
 	\frac{i}{2} \frac{k^2}{k r} r_j^2 \left( 1 - (\bm{n_j} \cdot \bm{n_i})^2 \right)
-	\right) dV_j,
+	\right) dV_j.
 $$
 
-that can be expressed in terms of the ratio
+Its value can be expressed in terms of the ratio
 
 $$ \tag{1p.32}
-	F = \frac{1}{2} \frac{(k L)^2}{k r}
+	f = \frac{1}{2} \frac{(k L)^2}{k r}
 $$
 
 of the dimensionless area of the cross-section \\((k L)^2\\) to the dimensionless distance to the observation point \\(k r\\).
@@ -4710,40 +4710,42 @@ $$
 Then, for an axis-aligned cube of volume \\(L^3\\),
 
 $$ \tag{1p.34}
-	v(F) = \frac{1}{V} \int_V
+	v(f) = \frac{1}{V} \int_V
 	\exp \negmedspace \left(
 	\frac{i}{2} \frac{k^2}{k r} \left( x_j^2 + y_j^2 \right)
 	\right) dx_j dy_j dz_j
 	= \left( \int_{-1/2}^{1/2}
 	\exp \negmedspace \left(
-	i F u^2
+	i f u^2
 	\right) du \right)^2
-	\approx e^{i F / 6}.
+	\approx e^{i f / 6}.
 $$
 
 Similarly, for a sphere of the same volume (with a slightly larger cross-sectional area),
 
 $$ \tag{1p.35}
 \begin{aligned}
-	v(F) = \frac{1}{V} \int_V
+	v(f) = \frac{1}{V} \int_V
 	\exp \negmedspace \left(
 	\frac{i}{2} \frac{k^2}{k r} \left( r_j \sin{\theta_j} \right)^2
 	\right) r_j^2 \sin{\theta_j} dr_j d\theta_j d\phi_j
-	\approx e^{i F / 6.5}.
+	\approx e^{i f / 6.5}.
 \end{aligned}
 $$
 
-These approximations are valid provided \\(F \leq 1\\).
+These approximations are valid provided \\(f \leq 1\\).
 
-{{< figure src="/img/vol_int_1.svg" caption="*Figure N: Plot of \\(v(F)\\) defined by Eqn. 1p.35. The solid line represents the absolute value, and the dashed line represents the value of the argument (the phase).*" >}}
+{{< figure src="/img/vol_int_1.svg" caption="*Figure N: Plot of \\(v(f)\\) defined by Eqn. 1p.35. The solid line represents the absolute value, and the dashed line represents the value of the argument (the phase).*" >}}
 
-In general, \\(v(F) \\) is a fairly complicated function that tends[^21] to \\(1\\) as \\(F \to 0\\). The latter indicates that the observer approaches the radiation zone of the entire particle group, which makes the trailing complex exponential of Eqn. 1p.30 vanish.
+In general, \\(v(f) \\) is a fairly complicated function that tends[^21] to \\(1\\) as \\(f \to 0\\). The latter indicates that the observer approaches the radiation zone of the entire particle group, which makes the trailing complex exponential of Eqn. 1p.30 vanish.
 
-[^21]: Since \\(\exp(i F u^2) \to 1\\) as \\(F \to 0\\), the same applies to its integral taken over a unit interval.
+[^21]: Since \\(\exp(i f u^2) \to 1\\) as \\(f \to 0\\), the same applies to its integral taken over a unit interval.
 
-Another important case of interest is when both \\(k L \gg 1\\) and \\(k r \gg 1\\) in such a way that \\(F \gg 1\\). That causes the approximations of Eqn. 1p.34-1p.35 to break down. One may encounter this situation in practice while considering the force exerted by the electromagnetic field of one particle group onto a particle in an adjacent group. Fortunately, by taking the limit of Eqn. 1p.31, one can show[^22]  that \\(|v| \to 0\\) as \\(F \to \infin\\).
+Another important case of interest is when both \\(k L \gg 1\\) and \\(k r \gg 1\\) in such a way that \\(f \gg 1\\). That causes the approximations of Eqn. 1p.34-1p.35 to break down. One may encounter this situation in practice while considering the force exerted by the electromagnetic field of one particle group onto a particle in an adjacent group. Fortunately, by taking the limit of Eqn. 1p.31, one can show[^22]  that \\(|v| \to 0\\) as \\(f \to \infin\\).
 
-[^22]: If \\(F \to \infin\\), then \\(\exp(i F u^2)\\) rapidly oscillates around \\(0\\). These oscillations can be eliminated by averaging the function over a finite interval. This makes the absolute value of the integral tend to \\(0\\).
+{{< figure src="/img/vol_int_3.svg" caption="*Figure N: Plot of \\(f |v(f)|\\) defined by Eqn. 1p.35. We can observe that the running average of \\(|v(f)|\\) linearly decreases with \\(f\\).*" >}}
+
+[^22]: As the pseudo-frequency \\(f \to \infin\\), the value of \\(\exp(i f u^2)\\)  rapidly oscillates around \\(0\\). These oscillations can be dampened by averaging the function over a finite interval. The absolute value of the resulting integral tends to \\(0\\).
 
 In conclusion, *if the observer is located in the the radiation zone of the entire particle group*, the mean amount of power \\(\braket{\Phi_e}\\) dissipated per particle is the same as that of the average particle (cf. Eqn. 16.40):
 
@@ -4761,7 +4763,7 @@ $$ \tag{1p.37}
 	\braket{\Phi_e} \approx 0.
 $$
 
-The reason behind this discrepancy can be understood geometrically. If both \\(F \ll 1\\) and \\(k L \ge 1\\), then \\(r / L \gg 1\\), which means that, for the observation point \\(\bm{r} = r \bm{n_i}\\) located along the direction of incidence, the wave vectors of the incident and the scattered waves are more or less permanently aligned:
+The reason behind this discrepancy can be understood geometrically. If both \\(f \ll 1\\) and \\(k L \ge 1\\), then \\(r / L \gg 1\\), which means that, for the observation point \\(\bm{r} = r \bm{n_i}\\) located along the direction of incidence, the wave vectors of the incident and the scattered waves are more or less permanently aligned:
 
 $$ \tag{1p.38}
 	k (r \bm{n_i} - \bm{r_j}) \approx k r \bm{n_i},
@@ -4769,7 +4771,7 @@ $$
 
 making the strength of the interference effect similar to that of a particle fixed at the origin. Naturally, the area of the entrance pupil \\(C_d\\) of the measurement device must be sufficiently large \\((C_d \gg L^2)\\) in order to intercept all of these parallel rays of light (see the discussion of Eqn. 16.3y).
 
-On the other hand, if \\(F \ll 1\\), the wave vectors are almost never aligned, making the contribution to \\(\braket{\Phi_e}\\) vanishingly small.
+On the other hand, if \\(f \ll 1\\), the wave vectors are almost never aligned, making the contribution to \\(\braket{\Phi_e}\\) vanishingly small.
 
 ---
 
@@ -4828,7 +4830,7 @@ Unlike Eqn. 1p.26, Eqn. 1p.41 corresponds to (double) the intensity of light sca
 Suppose that every position is equally likely, so that the probability density function \\(p(\bm{r_j}) = 1/V\\). Then calculation of the ensemble average of the electric field \\(\bm{E_j}\\) (defined by Eqn. 1p.6) involves evaluation of the integral
 
 $$ \tag{1p.42}
-	v(F, \varDelta) = \frac{1}{V} \int_V \exp \negmedspace \left(
+	v(f, g) = \frac{1}{V} \int_V \exp \negmedspace \left(
 	i k \bm{r_j} \cdot (\bm{n_i} - \bm{n_s}) +
 	\frac{i}{2} \frac{k^2}{k r} r_j^2 \left( 1 - (\bm{n_j} \cdot \bm{n_s})^2 \right)
 	\right) dV_j,
@@ -4837,15 +4839,15 @@ $$
 that generalizes Eqn. 1p.31: the difference arises from the fact that we can no longer assume that the direction of observation is aligned with the direction of incidence. This property is captured by an additional parameter
 
 $$ \tag{1p.43}
-	\varDelta = k L |\bm{n_i} - \bm{n_s}| = \sqrt{2} k L \sqrt{1 - (\bm{n_i} \cdot \bm{n_s})}
+	g = k L |\bm{n_i} - \bm{n_s}| = \sqrt{2} k L \sqrt{1 - (\bm{n_i} \cdot \bm{n_s})}
 $$
 
 that depends on the dimensions of the particle group and the degree of alignment of the wave vectors.
 
-Eqn. 1p.42 is fairly complicated, so we shall only consider a few special cases. First, suppose the observer is located in the radiation zone of the entire particle group. Then \\(F \to 0\\), and
+Eqn. 1p.42 is fairly complicated, so we shall only consider a few special cases. First, suppose the observer is located in the radiation zone of the entire particle group. Then \\(f \to 0\\), and
 
 $$ \tag{1p.44}
-	v(0, \varDelta) = \frac{1}{V} \int_V \exp \negmedspace \left(
+	v(0, g) = \frac{1}{V} \int_V \exp \negmedspace \left(
 	i k \bm{r_j} \cdot (\bm{n_i} - \bm{n_s})
 	\right) dV_j.
 $$
@@ -4863,38 +4865,38 @@ $$
 Then, for an axis-aligned cube of volume \\(L^3\\),
 
 $$ \tag{1p.46}
-	v(0, \varDelta)
+	v(0, g)
 	= \frac{1}{V} \int_V
 	\exp \negmedspace \left(
 	i k |\bm{n_i} - \bm{n_s}| z_j
 	\right) dx_j dy_j dz_j
 	= \int_{-1/2}^{1/2}
 	\exp \negmedspace \left(
-	i \varDelta u
+	i g u
 	\right) du
-	= \frac{\sin(\varDelta/2)}{\varDelta/2}.
+	= \frac{\sin(g/2)}{g/2}.
 $$
 
 Similarly, for a sphere of the same volume (with a slightly larger cross-sectional area),
 
 $$ \tag{1p.47}
 \begin{aligned}
-	\big| v(0, \varDelta) \big|
+	\big| v(0, g) \big|
 	= \left| \frac{1}{V} \int_V
 	\exp \negmedspace \left(
 	i k |\bm{n_i} - \bm{n_s}| r_j \cos{\theta_j}
 	\right) r_j^2 \sin{\theta_j} dr_j d\theta_j d\phi_j \right|
-	\approx \frac{\sin(\varDelta / 2.1)}{\varDelta / 2.1}.
+	\approx \frac{\sin(g / 2.1)}{g / 2.1}.
 \end{aligned}
 $$
 
-The approximation of Eqn. 1p.47 is valid provided \\(\varDelta \leq 4\\). Note that, since Eqn. 1p.41 only features \\(|v|^2\\), the phase of \\(v\\) is irrelevant.
+The approximation of Eqn. 1p.47 is valid provided \\(g \leq 4\\). Note that, since Eqn. 1p.41 only features \\(|v|^2\\), the phase of \\(v\\) is irrelevant.
 
-{{< figure src="/img/vol_int_2.svg" caption="*Figure N: Plot of \\(|v(0, \varDelta)|^2\\) defined by Eqn. 1p.47.*" >}}
+{{< figure src="/img/vol_int_2.svg" caption="*Figure N: Plot of \\(|v(0, g)|^2\\) defined by Eqn. 1p.47.*" >}}
 
-Figure N demonstrates that the scattered waves always interfere in the direction of incidence \\((\varDelta = 0)\\). If, in addition, the dimensions of the particle group are small in comparison to the wavelength of light \\((\varDelta \leq k L \ll 1)\\), then the scattered waves strongly interfere in every direction. That is not surprising, since the particles simply do not have the opportunity to move out-of-phase.
+Figure N demonstrates that the scattered waves always interfere in the direction of incidence \\((g = 0)\\). If, in addition, the dimensions of the particle group are small in comparison to the wavelength of light \\((g \leq k L \ll 1)\\), then the scattered waves strongly interfere in every direction. That is not surprising, since the particles simply do not have the opportunity to move out-of-phase.
 
-In general, the strength of the interference effect wanes as the the scattering angle \\(\theta = \arccos(\bm{n_i} \cdot \bm{n_s})\\) increases. For spatially large particle groups, \\(kL \gg 1\\), \\(\varDelta \gg 1\\), and the graph of Figure N is horizontally compressed around \\(\varDelta = 0\\) while maintaining the peak value of \\(1\\). As a result, its area decreases, and the value of the integral
+In general, the strength of the interference effect wanes as the the scattering angle \\(\theta = \arccos(\bm{n_i} \cdot \bm{n_s})\\) increases. For spatially large particle groups, \\(kL \gg 1\\), \\(g \gg 1\\), and the graph of Figure N is horizontally compressed around \\(g = 0\\) while maintaining the peak value of \\(1\\). As a result, its area decreases, and the value of the integral
 
 $$ \tag{1p.48}
 	\lim_{kL \to \infin} \int_{-\pi}^{\pi} \int_{0}^{\pi} \left| v \left(0, \sqrt{2} k L \sqrt{1 - \cos{\theta}} \right) \right|^2 \sin{\theta} d\theta d\psi = 0.
@@ -4907,20 +4909,20 @@ $$ \tag{1p.49}
 	= \oint\_{\mathbb{S}^2} r^2 \braket{\braket{\bm{S_{jk}}}} \cdot \bm{n_s} d\Omega \approx 0.
 $$
 
-In order to determine what happens when the observer is located in an area adjacent to an extensive particle group, we must compute the limit of Eqn. 1p.42 as \\(F \to \infin\\). The resulting expression depends on the geometry and the orientation of the bounding volume of the particle group. We can develop our intuition of its asymptotic behavior by considering the special case of a spherical volume. By performing a change of variables \\(u = r_j / L\\), \\(U = V / L^3 = 1\\), we obtain
+In order to determine what happens when the observer is located in an area adjacent to an extensive particle group, we must compute the limit of Eqn. 1p.42 as \\(f \to \infin\\). The resulting expression depends on the geometry and the orientation of the bounding volume of the particle group. We can develop our intuition of its asymptotic behavior by considering the special case of a spherical volume. By performing a change of variables \\(u = r_j / L\\), \\(U = V / L^3 = 1\\), we obtain
 
 $$ \tag{1p.50}
 \begin{aligned}
-	v(F, \varDelta)
+	v(f, g)
 	= \int_U
 	\exp \negmedspace \left(
 	i k L u (\cos{\gamma_j} - \cos{\theta_j})
-	+ i F \left( u \sin{\theta_j} \right)^2
+	+ i f \left( u \sin{\theta_j} \right)^2
 	\right) u^2 \sin{\theta_j} du d\theta_j d\phi_j
 \end{aligned}
 $$
 
-The first thing to note is that the norm of the integrand never exceeds \\(1/4\\). Second of all, because of the second term \\(i F (u \sin{\theta_j})^2\\), the complex exponential rapidly oscillates around \\(0\\) regardless of any "special" configuration afforded by the first term \\(i k L u (\cos{\gamma_j} - \cos{\theta_j})\\). Thus, we once again find that \\(|v| \to 0\\) as \\(F \to \infin\\).
+The first thing to note is that the norm of the integrand never exceeds \\(1/4\\). Second of all, because of the second term \\(i f (u \sin{\theta_j})^2\\), the complex exponential rapidly oscillates around \\(0\\) regardless of any "special" configuration afforded by the first term \\(i k L u (\cos{\gamma_j} - \cos{\theta_j})\\). Thus, we once again find that \\(|v| \to 0\\) as \\(f \to \infin\\).
 
 We can combine this observation with the preceding statement and state that no interference between the scattered fields of two particles is observed *provided the dimensions of the particle group are sufficiently large*:
 
