@@ -4682,7 +4682,7 @@ $$ \tag{1p.30}
 	e^{i k r_j^2 \left( 1 - (\bm{n_j} \cdot \bm{n_i})^2 \right) / (2 r)} \right\rbrace.
 $$
 
-This expression can be further simplified by performing ensemble averaging. Suppose that every position is equally likely, so that the probability density function \\(p(\bm{r_j}) = 1/V\\); then we can account for random motion of particles by analytically evaluating the integral
+This expression can be further simplified by performing ensemble averaging. Suppose that every position is equally likely, with the corresponding probability density \\(p(\bm{r_j}) = 1/V\\); then we can account for random motion of particles by analytically evaluating the integral
 
 $$ \tag{1p.31}
 	v(f) = \frac{1}{V} \int_V
@@ -4744,7 +4744,7 @@ In general, \\(v(f) \\) is a fairly complicated function that tends[^21] to \\(1
 
 [^21]: Since \\(\exp(i f u^2) \to 1\\) as \\(f \to 0\\), the same applies to its integral taken over a unit interval.
 
-{{< figure src="/img/vol_int_3.svg" caption="*Figure N: Plot of \\(f |v(f)|\\) defined by Eqn. 1p.35. We can observe that the running average of \\(|v(f)|\\) decreases linearly with \\(f\\), and thus, with \\((k L)^2\\).*" >}}
+{{< figure src="/img/vol_int_3.svg" caption="*Figure N: Plot of \\(f |v(f)|\\) defined by Eqn. 1p.35. We can observe that the running average of \\(|v(f)|\\) is inversely proportional to \\(f\\), and thus, \\((k L)^2\\).*" >}}
 
 Another important case of interest is when both \\(k L \gg 1\\) and \\(k r \gg 1\\) in such a way that \\(f \gg 1\\). That causes the approximations of Eqn. 1p.34-1p.35 to break down. One may encounter this situation in practice while considering the force exerted by the electromagnetic field of one particle group onto a particle in an adjacent group. Fortunately, by taking the limit of Eqn. 1p.31, one can show[^22]  that \\(|v| \to 0\\) as \\(f \to \infin\\).
 
@@ -4811,7 +4811,7 @@ $$ \tag{1p.40}
 	= -\mu\_0^{-1} \frac{\eta}{c} \mathcal{Re} \big\lbrace \bm{E_j^{\*}} \cdot \bm{E_k} \big\rbrace.
 $$
 
-If we ignore all interactions between the particles (except through their fields), then \\(\bm{E_j}\\) and \\(\bm{E_k}\\) can be considered outcomes of two independent random processes. This assumption allows us to perform ensemble averaging of the  scattered fields separately:
+If we ignore all interactions between the particles (except through their fields), then \\(\bm{E_j}\\) and \\(\bm{E_k}\\) can be considered the outcomes of two independent random processes. This assumption allows us to perform ensemble averaging of the scattered fields separately:
 
 $$ \tag{1p.41}
 \begin{aligned}
@@ -4830,7 +4830,7 @@ $$
 
 Unlike Eqn. 1p.26, Eqn. 1p.41 corresponds to (double) the intensity of light scattered by the average particle (cf. Eqn. 16.15) with a certain likelihood to be located somewhere within the region occupied by the particle group.
 
-Suppose that every position is equally likely, so that the probability density function \\(p(\bm{r_j}) = 1/V\\). Then calculation of the ensemble average of the electric field \\(\bm{E_j}\\) (defined by Eqn. 1p.6) involves evaluation of the integral
+Suppose that every position is equally likely, with the corresponding probability density \\(p(\bm{r_j}) = 1/V\\). Then calculation of the ensemble average of the electric field \\(\bm{E_j}\\) (defined by Eqn. 1p.6) involves evaluation of the integral
 
 $$ \tag{1p.42}
 	v(f, g) = \frac{1}{V} \int_V \exp \negmedspace \left(
@@ -4839,7 +4839,7 @@ $$ \tag{1p.42}
 	\right) dV_j,
 $$
 
-that generalizes Eqn. 1p.31: the difference arises from the fact that we can no longer assume that the direction of observation is aligned with the direction of incidence. This property is captured by an additional parameter
+that generalizes Eqn. 1p.31: the difference arises from the fact that we can no longer assume that the direction of observation is aligned with the direction of incidence. This property is captured by the additional parameter
 
 $$ \tag{1p.43}
 	g = k L |\bm{n_i} - \bm{n_s}| = \sqrt{2} k L \sqrt{1 - (\bm{n_i} \cdot \bm{n_s})}
@@ -4893,15 +4893,15 @@ $$ \tag{1p.47}
 \end{aligned}
 $$
 
-The approximation of Eqn. 1p.47 is reasonably accurate provided \\(g \leq 4\\). Note that, since Eqn. 1p.41 only features \\(|v|^2\\), the phase of \\(v\\) is irrelevant.
+The approximation of Eqn. 1p.47 is reasonably accurate provided \\(g \leq 4\\). Note that the phase of \\(v\\) is irrelevant, since Eqn. 1p.41 only features \\(|v|^2\\).
 
 {{< figure src="/img/vol_int_2.svg" caption="*Figure N: Plot of \\(|v(0, g)|^2\\) defined by Eqn. 1p.47.*" >}}
 
-Figure N demonstrates that the scattered waves always interfere in the direction of incidence \\((g = 0)\\). If, in addition, the dimensions of the particle group are small in comparison to the wavelength of light \\((g \leq k L \ll 1)\\), then the scattered waves strongly interfere in every direction. That is not surprising, since the particles simply do not have the opportunity to move out-of-phase.
+Figure N demonstrates that the scattered waves always interfere in the direction of incidence \\((g = 0)\\). If, in addition, the dimensions of the particle group are small in comparison to the wavelength of light \\((g/2 \leq k L \ll 1)\\), then the scattered waves strongly interfere in every direction. That is not surprising, since the particles simply do not have the opportunity to move out-of-phase.
 
-{{< figure src="/img/vol_int_4.svg" caption="*Figure N: Plot of \\(g^2 |v(0, g)|\\) defined by Eqn. 1p.47. We can observe that the running average of \\(|v(0, g)|\\) decreases linearly with \\(g^2\\), and thus, with \\((k L)^2\\).*" >}}
+{{< figure src="/img/vol_int_4.svg" caption="*Figure N: Plot of \\(g^2 |v(0, g)|\\) defined by Eqn. 1p.47. We can observe that the running average of \\(|v(0, g)|\\) is inversely proportional to \\(g^2\\), and thus, \\((k L)^2\\).*" >}}
 
-In general, the strength of the interference effect wanes as the the scattering angle \\(\theta = \arccos(\bm{n_i} \cdot \bm{n_s})\\) increases. For spatially large particle groups, \\(kL \gg 1\\), \\(g \gg 1\\), and the graph of Figure N is horizontally compressed around \\(g = 0\\) while maintaining the peak value of \\(1\\). As a result, its area decreases, and the value of the integral
+In general, the strength of the interference effect wanes as the the scattering angle \\(\theta = \arccos(\bm{n_i} \cdot \bm{n_s})\\) or the linear dimension \\(kL\\) increase. For spatially large particle groups, \\(kL \gg 1\\), \\(g \gg 1\\) for all non-zero angles, and the graph of Figure N is horizontally compressed around \\(g = 0\\) while maintaining the peak value of \\(1\\). As a result, its area decreases, and the value of its integral taken over all directions is
 
 $$ \tag{1p.48}
 	\lim_{kL \to \infin} \int_{-\pi}^{\pi} \int_{0}^{\pi} \left| v \left(0, \sqrt{2} k L \sqrt{1 - \cos{\theta}} \right) \right|^2 \sin{\theta} d\theta d\psi = 0.
@@ -4914,7 +4914,7 @@ $$ \tag{1p.49}
 	= \oint\_{\mathbb{S}^2} r^2 \braket{\braket{\bm{S_{jk}}}} \cdot \bm{n_s} d\Omega \approx 0.
 $$
 
-In order to determine what happens when the observer is located in an area adjacent to an extensive particle group, we must compute the limit of Eqn. 1p.42 as \\(f \to \infin\\). The resulting expression depends on the geometry and the orientation of the bounding volume of the particle group. We can develop our intuition of its asymptotic behavior by considering the special case of a spherical volume. By performing a change of variables \\(u = r_j / L\\), \\(U = V / L^3 = 1\\), we obtain
+In order to determine what happens when the observer is located in an area adjacent to an extensive particle group, we must compute the limit of Eqn. 1p.42 as \\(f \to \infin\\). The resulting expression depends on the geometry and the orientation of the bounding volume of the particle group. We can develop our intuition of the asymptotic behavior of the integral by considering the special case of a spherical volume. By performing a change of variables \\(u = r_j / L\\), \\(U = V / L^3 = 1\\), we obtain
 
 $$ \tag{1p.50}
 \begin{aligned}
