@@ -4914,24 +4914,11 @@ $$ \tag{1p.49}
 	= \oint\_{\mathbb{S}^2} r^2 \braket{\braket{\bm{S_{jk}}}} \cdot \bm{n_s} d\Omega \approx 0.
 $$
 
-In order to determine what happens when the observer is located in an area adjacent to an extensive particle group, we must compute the limit of Eqn. 1p.42 as \\(f \to \infin\\). The resulting expression depends on the geometry and the orientation of the bounding volume of the particle group. We can develop our intuition of the asymptotic behavior of the integral by considering the special case of a spherical volume. By performing a change of variables \\(u = r_j / L\\), \\(U = V / L^3 = 1\\), we obtain
+Finally, let us show that Eqn. 1p.49 is true at any distance (subject to the conditions imposed by Eqn. 1p.1 and 1p.4). It is fairly difficult to prove this formally, so we will have to resort to an intuitive argument. Return to Eqn. 1p.42 and 1p.44, and perform a change of variables \\(u = r_j / L\\). Comparison of the integrands reveals that the second complex exponential with \\((k L u)^2\\) performs amplitude modulation of the first one that contains \\(k L u\\). These expressions guarantee that oscillation happens at different rates. The combined exponential reaches it peak (unit) amplitude at \\(u\\) = 0, and, as the value of \\(u\\) increase, the integrand begins to rapidly oscillate owing to the fact that \\(k L \gg 1\\). Same as for Eqn. 1p.44, the primary contribution to the value of the integral given by Eqn. 1p.42 comes from the central peak, the width of which is inversely proportional to \\(k L\\). As it shrinks, the amount of power it contains decreases.
+
+Thus, *if the observer is located outside an extensive particle group*, interference of the scattered fields can be neglected:
 
 $$ \tag{1p.50}
-\begin{aligned}
-	v(f, g)
-	= \int_U
-	\exp \negmedspace \left(
-	i k L u (\cos{\gamma_j} - \cos{\theta_j})
-	+ i f \left( u \sin{\theta_j} \right)^2
-	\right) u^2 \sin{\theta_j} du d\theta_j d\phi_j
-\end{aligned}
-$$
-
-The first thing to note is that the norm of the integrand never exceeds \\(1/4\\). Second of all, because of the second term \\(i f (u \sin{\theta_j})^2\\), the complex exponential rapidly oscillates around \\(0\\) regardless of any "special" configuration afforded by the first term \\(i k L u (\cos{\gamma_j} - \cos{\theta_j})\\). Thus, we once again find that \\(|v| \to 0\\) as \\(f \to \infin\\).
-
-We can combine this observation with the preceding statement and state that no interference between the scattered fields of two particles is observed *provided the dimensions of the particle group are sufficiently large*:
-
-$$ \tag{1p.51}
 	\braket{\Phi_{jk}} \approx 0.
 $$
 
