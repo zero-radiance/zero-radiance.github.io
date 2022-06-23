@@ -4710,15 +4710,18 @@ $$
 Then, for an axis-aligned cube of volume \\(L^3\\),
 
 $$ \tag{1p.34}
-	v(f) = \frac{1}{V} \int_V
+\begin{aligned}
+	v(f) &= \frac{1}{V} \int_V
 	\exp \negmedspace \left(
 	\frac{i}{2} \frac{k^2}{k r} \left( x_j^2 + y_j^2 \right)
 	\right) dx_j dy_j dz_j
-	= \left( \int_{-1/2}^{1/2}
+	\cr
+	&= \left( \int_{-1/2}^{1/2}
 	\exp \negmedspace \left(
 	i f u^2
 	\right) du \right)^2
-	\approx e^{i f / 6}.
+	\approx \frac{\sin(f/5.5)}{f/5.5} e^{i f / 6}.
+\end{aligned}
 $$
 
 Similarly, for a sphere of the same volume (with a slightly larger cross-sectional area),
@@ -4729,11 +4732,11 @@ $$ \tag{1p.35}
 	\exp \negmedspace \left(
 	\frac{i}{2} \frac{k^2}{k r} \left( r_j \sin{\theta_j} \right)^2
 	\right) r_j^2 \sin{\theta_j} dr_j d\theta_j d\phi_j
-	\approx e^{i f / 6.5}.
+	\approx \frac{\sin(f/5.8)}{f/5.8}  e^{i f / 6.5}.
 \end{aligned}
 $$
 
-These approximations are valid provided \\(f \leq 1\\).
+These approximations are reasonably accurate provided \\(f \leq 4\\).
 
 {{< figure src="/img/vol_int_1.svg" caption="*Figure N: Plot of \\(v(f)\\) defined by Eqn. 1p.35. The solid line represents the absolute value, and the dashed line represents the value of the argument (the phase).*" >}}
 
@@ -4890,7 +4893,7 @@ $$ \tag{1p.47}
 \end{aligned}
 $$
 
-The approximation of Eqn. 1p.47 is valid provided \\(g \leq 4\\). Note that, since Eqn. 1p.41 only features \\(|v|^2\\), the phase of \\(v\\) is irrelevant.
+The approximation of Eqn. 1p.47 is reasonably accurate provided \\(g \leq 4\\). Note that, since Eqn. 1p.41 only features \\(|v|^2\\), the phase of \\(v\\) is irrelevant.
 
 {{< figure src="/img/vol_int_2.svg" caption="*Figure N: Plot of \\(|v(0, g)|^2\\) defined by Eqn. 1p.47.*" >}}
 
