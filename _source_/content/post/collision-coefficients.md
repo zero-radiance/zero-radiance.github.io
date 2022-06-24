@@ -1043,7 +1043,7 @@ $$
 
 is a valid solution for a certain value of \\(\bm{n}\\). To avoid clutter, we shall adhere to the modern space convention with the positive sign (the opposite of our time convention); the negative solution can be obtained by reversing the direction of \\(\bm{n}\\).
 
-How should we choose the direction of \\(\bm{n}\\)? It depends on the location of sources. Unless they are explicitly specified, we can use *any* value of \\(\bm{n}\\). And because the Helmholtz equation is both linear and homogeneous, we can actually use *every* value of \\(\bm{n}\\) by invoking the superposition principle. Thus, the general solution is an integral taken over the surface of the unit sphere \\(\mathbb{S^2}\\) [measured](https://en.wikipedia.org/wiki/Lebesgue_integration#Construction) by the [solid angle](https://en.wikipedia.org/wiki/Solid_angle) \\(d\Omega\\):
+How should we choose the direction of \\(\bm{n}\\)? It depends on the location of sources. Unless they are explicitly specified, we can use *any* value of \\(\bm{n}\\). And because the Helmholtz equation is both linear and homogeneous, we can actually use *every* value of \\(\bm{n}\\) by invoking the superposition principle. Thus, the general solution is an integral taken over the surface of the unit sphere \\(\mathbb{S}^2\\) [measured](https://en.wikipedia.org/wiki/Lebesgue_integration#Construction) by the [solid angle](https://en.wikipedia.org/wiki/Solid_angle) \\(d\Omega\\):
 
 $$ \tag{6.15}
 	\psi(\bm{r}) =
@@ -4628,9 +4628,9 @@ is, in general, different from replacing \\(\mathcal{S_j}\\) with the average sc
 $$ \tag{1p.26}
 	\braket{\Iota_s} \negmedspace (\bm{n_s})
 	= r^2 \braket{\braket{\bm{S_j}}} \cdot \bm{n_s}
-	\simeq \frac{\mu\_0^{-1}}{2} \frac{\eta}{c} \frac{1}{k^2} \int\_{\Psi}
+	\simeq \frac{\mu\_0^{-1}}{2} \frac{\eta}{c} \frac{1}{k^2} \left\langle
 	\left| \mathcal{S_j}(\bm{n_s}, \psi) \cdot \bm{E_0} \right|^2
-	p(\psi) d\psi.
+	\right\rangle \_{\psi}.
 $$
 
 The Poynting vector \\(\braket{\bm{S_j}}\\) associated with the scattered field does not, by itself, completely determine the intensity of scattered light. In addition, we must account for interference between the incident and the scattered waves contained within the \\(\braket{\bm{S_{ij}}}\\) terms of Eqn 1p.8.
@@ -4694,7 +4694,7 @@ $$
 Its value can be expressed in terms of the ratio
 
 $$ \tag{1p.32}
-	f = \frac{1}{2} \frac{(k L)^2}{k r}
+	f = \frac{(k L)^2}{k r}
 $$
 
 of the dimensionless area of the cross-section \\((k L)^2\\) to the dimensionless distance to the observation point \\(k r\\).
@@ -4718,9 +4718,9 @@ $$ \tag{1p.34}
 	\cr
 	&= \left( \int_{-1/2}^{1/2}
 	\exp \negmedspace \left(
-	i f u^2
+	i f u^2 / 2
 	\right) du \right)^2
-	\approx \frac{\sin(f/5.5)}{f/5.5} e^{i f / 6}.
+	\approx \frac{\sin(f/11)}{f/11} e^{i f / 12}.
 \end{aligned}
 $$
 
@@ -4732,7 +4732,7 @@ $$ \tag{1p.35}
 	\exp \negmedspace \left(
 	\frac{i}{2} \frac{k^2}{k r} \left( r_j \sin{\theta_j} \right)^2
 	\right) r_j^2 \sin{\theta_j} dr_j d\theta_j d\phi_j
-	\approx \frac{\sin(f/5.8)}{f/5.8}  e^{i f / 6.5}.
+	\approx \frac{\sin(f/11.6)}{f/11.6}  e^{i f / 13}.
 \end{aligned}
 $$
 
@@ -4760,7 +4760,7 @@ $$ \tag{1p.36}
 	\right\rbrace.
 $$
 
-On the other hand, *if the observer is located in an area adjacent to an extensive particle group*, the extinction effect can be neglected \[[8](#references) (ch. 14.2)\]:
+On the other hand, *if the observer is located outside an extensive particle group*, the extinction effect can be neglected \[[8](#references) (ch. 14.2)\]:
 
 $$ \tag{1p.37}
 	\braket{\Phi_e} \approx 0.
@@ -4775,21 +4775,6 @@ $$
 making the strength of the interference effect similar to that of a particle fixed at the origin. Naturally, the area of the entrance pupil \\(C_d\\) of the measurement device must be sufficiently large \\((C_d \gg L^2)\\) in order to intercept all of these parallel rays of light (see the discussion of Eqn. 16.3y).
 
 On the other hand, if \\(f \ll 1\\), the wave vectors are almost never aligned, making the contribution to \\(\braket{\Phi_e}\\) vanishingly small.
-
----
-
-$$ \tag{1p.8}
-\begin{aligned}
-	\braket{\bm{S}}
-	&= \frac{\mu\_0^{-1}}{2} \mathcal{Re} \Big\lbrace
-	\Big( \bm{E_i} + \sum_j \bm{E_j} \Big) \times
-	\Big( \bm{B_i^{\*}} + \sum_j \bm{B_j^{\*}} \Big) \Big\rbrace
-	\cr
-	&= \braket{\bm{S_i}} + \sum_j \braket{\bm{S_j}} - \sum_j \braket{\bm{S_{ij}}} - \sum_{j < k} \braket{\bm{S_{jk}}},
-\end{aligned}
-$$
-
----
 
 Let us now consider the final term of Eqn. 1p.8 that accounts for interference of the scattered fields of two particles. Since the observation point \\(\bm{r}\\) is located in the radiation zone of each particle, we can obtain the formula of \\(\braket{\bm{S_{jk}}}\\) by substituting Eqn. 1p.6 twice into 1p.9.
 
@@ -4914,7 +4899,7 @@ $$ \tag{1p.49}
 	= \oint\_{\mathbb{S}^2} r^2 \braket{\braket{\bm{S_{jk}}}} \cdot \bm{n_s} d\Omega \approx 0.
 $$
 
-Finally, let us show that Eqn. 1p.49 is true at any distance (subject to the conditions imposed by Eqn. 1p.1 and 1p.4). It is fairly difficult to prove this formally, so we will have to resort to an intuitive argument. Return to Eqn. 1p.42 and 1p.44, and perform a change of variables \\(u = r_j / L\\). Comparison of the integrands reveals that the second complex exponential with \\((k L u)^2\\) performs amplitude modulation of the first one that contains \\(k L u\\). These expressions guarantee that oscillation happens at different rates. The combined exponential reaches it peak (unit) amplitude at \\(u\\) = 0, and, as the value of \\(u\\) increase, the integrand begins to rapidly oscillate owing to the fact that \\(k L \gg 1\\). Same as for Eqn. 1p.44, the primary contribution to the value of the integral given by Eqn. 1p.42 comes from the central peak, the width of which is inversely proportional to \\(k L\\). As it shrinks, the amount of power it contains decreases.
+Finally, let us show that Eqn. 1p.49 is true at any distance (subject to the conditions imposed by Eqn. 1p.1 and 1p.4). It is fairly difficult to prove this formally, so we will have to resort to an intuitive argument. Return to Eqn. 1p.42 and 1p.44, and perform a change of variables \\(u = r_j / L\\). Comparison of the integrands reveals that the second complex exponential with \\((k L u)^2\\) performs amplitude modulation of the first one containing \\(k L u\\). These expressions guarantee that oscillation happens at different rates. The combined exponential reaches it peak (unit) amplitude at \\(u\\) = 0, and then (as the value of \\(u\\) increases) begins to rapidly oscillate, owing to the fact that \\(k L \gg 1\\). Similarly to Eqn. 1p.44, the primary contribution to the value of the integral given by Eqn. 1p.42 comes from the central peak, the width of which is inversely proportional to \\((k L)^2\\). As it shrinks, the amount of power in the \\(\braket{\Phi_{jk}}\\) decreases accordingly.
 
 Thus, *if the observer is located outside an extensive particle group*, interference of the scattered fields can be neglected:
 
@@ -4922,51 +4907,107 @@ $$ \tag{1p.50}
 	\braket{\Phi_{jk}} \approx 0.
 $$
 
----
+Let us summarize the results of this section. If the ergodic assumption and the single scattering approximation are applicable, and the conditions imposed by Eqn. 1p.1, 1p.3, and 1p.4 hold, then the mean value of the Poynting vector (cf. Eqn. 1p.8) in the presence a group of \\(N\\) particles is
 
-Extinction: mind the sensor size: Eqn. 16.3y.
-
-Eqn. 1p.25 can be used to determine the total amount of power scattered by the particle group:
-
-$$ \tag{1p.26}
+$$ \tag{1p.51}
 \begin{aligned}
-	\braket{\Phi_s^{tot}}
-	&= \oint_{A} \sum_j \braket{\braket{\bm{S_j}}} \cdot \bm{n_s} \thinspace dA
+	\braket{\braket{\bm{S}}}
+	= \braket{\bm{S_i}}
+	&+ N \left(\frac{\mu\_0^{-1}}{2} \frac{\eta}{c} \frac{1}{k^2 r^2}
+	\left\langle \left| \mathcal{S_j} \cdot \bm{E_0} \right|^2 \right\rangle\_{\psi}
+	\right) \bm{n_s}
 	\cr
-	&= \oint\_{\mathbb{S}^2} \sum_j \left[ \int_{\Psi}
-	\Iota_j(\bm{n_s}, \psi) p(\psi) d\psi \right] d\Omega
+	&- N \left( \frac{\mu\_0^{-1}}{2} \frac{\eta}{c} \frac{4 \pi}{k^2 r^2}
+	\mathcal{Im} \left\lbrace v(f,0) \thinspace
+	\bm{E_0^{\*}} \cdot \braket{\mathcal{S_j}}\_{\psi} \cdot \bm{E_0}
+	\right\rbrace \right) \bm{n_s} \delta(\bm{n_i} - \bm{n_s})
 	\cr
-	&= \sum_j \oint\_{\mathbb{S}^2} \braket{\Iota_s} \negmedspace (\bm{n_s}) d\Omega
-	= \sum_j \braket{\Phi_s} = N \braket{\Phi_s}.
+	&+ N (N - 1) \left(\frac{\mu\_0^{-1}}{2} \frac{\eta}{c} \frac{1}{k^2 r^2}
+	\left| v(f,g) \braket{\mathcal{S_j}}\_{\psi} \cdot \bm{E_0} \right|^2
+	\right) \bm{n_s}.
 \end{aligned}
 $$
 
-Eqn. 1p.26 demonstrates how the scattered light intensities, powers, and, thus, the scattering cross-sections (defined by Eqn. 16.39.2) can be summed[^20]. In particular, if the incident irradiance \\(\Epsilon_i\\) is uniform across the particle group, then the total scattering cross-section \\(\braket{C_s^{tot}}\\) is directly proportional to the mean scattering cross-section \\(\braket{C_s}\\):
+The third term is in full effect if the observation point is in the radiation zone of the entire particle group:
 
-$$ \tag{1p.27}
-	\braket{C_s^{tot}}
-	= \frac{\braket{\Phi_s^{tot}}}{\Epsilon_i}
-	= \frac{N \braket{\Phi_s}}{\Epsilon_i}
-	= N \braket{C_s}.
+$$ \tag{1p.52}
+	\left| v(f, 0) \right| \to 1
+	\quad \iff \quad
+	f = \frac{(k L)^2}{k r} \to 0.
 $$
 
-[^20]: Under the ergodic assumption, and provided the conditions imposed on the particle group and the observation point at the beginning of the section are satisfied.
+The opposite situation occurs if we observe a large particle group at a relatively short distance:
 
-Often, one has to consider a large cloud of particles. Its interior may be conceptually subdivided into small, non-overlapping regions, each containing a particle group. In order to avoid keeping track of both the volume \\(V\\) and the number of particles \\(N\\) in each region, it is highly convenient to combine them into a single quantity called the [number density](https://en.wikipedia.org/wiki/Number_density)
-
-$$ \tag{1p.28}
-	n = \frac{N}{V}.
+$$ \tag{1p.53}
+	\left| v(f, 0) \right| \ll 1
+	\quad \iff \quad
+	f = \frac{(k L)^2}{k r} \gg 1.
 $$
 
-If each region is sufficiently small (macroscopically infinitesimal), and the number of particles does not vary dramatically between the neighboring regions, then \\(n(\bm{r})\\) can be considered continuous. If, in addition, the distribution of particles \\((\\)governed by the probability density function \\(p(\psi))\\) is the same across the entire cloud, we can parametrize its interior using the spatially-varying *volume scattering coefficient*
+Finally, the impact of the last term is insignificant if
 
-$$ \tag{1p.29}
-	\beta_s(\bm{r}) = n(\bm{r}) \braket{C_s}.
+$$ \tag{1p.54}
+	(N - 1) \oint\_{\mathbb{S}^2} \left| v(f,g) \right|^2 d\Omega \ll 1
+	\quad \iff \quad
+	\frac{(k L)^4}{N} \gg 1.
 $$
 
+Eqn. 1p.54 shows that, if the [number density](https://en.wikipedia.org/wiki/Number_density) of particles
 
+$$ \tag{1p.55}
+	n = \frac{N}{V} = \frac{N}{L^3}
+$$
 
+is kept constant, then, as the size of the particle group increases, the relative amount of power attributed to interference between the scattered waves of individual particles decreases. Naturally, both the density and the total number of particles must be sufficiently low in order for the single-scattering approximation to remain applicable.
 
+Elimination of the last term of Eqn. 1p.51 allows light intensities of the individual particles to be summed into the total amount of light scattered (or dissipated) by the particle group:
+
+$$ \tag{1p.56}
+\begin{aligned}
+	\braket{\Iota_s^{tot}}
+	&= \sum_j r^2 \braket{\braket{\bm{S_j}}} \cdot \bm{n_s}
+	= \int_{\Psi} N p(\psi) \left(\frac{\mu\_0^{-1}}{2} \frac{\eta}{c} \frac{1}{k^2}
+	\left| \mathcal{S_j}(\bm{n_s}, \psi) \cdot \bm{E_0} \right|^2
+	\right) d\psi,
+	\cr
+	\braket{\Phi_s^{tot}}
+	&= \oint\_{\mathbb{S}^2} \braket{\Iota_s^{tot}} \negmedspace (\bm{n_s}) d\Omega
+	= \int_{\Psi} N p(\psi) \oint\_{\mathbb{S}^2} \left(\frac{\mu\_0^{-1}}{2} \frac{\eta}{c} \frac{1}{k^2}
+	\left| \mathcal{S_j}(\bm{n_s}, \psi) \cdot \bm{E_0} \right|^2
+	\right) d\Omega d\psi
+	\cr
+	\braket{\Phi_e^{tot}}
+	&= \sum_j \oint\_{\mathbb{S}^2}
+	\left[ r^2 \braket{\braket{\bm{S_{ij}}}} \cdot \bm{n_s} \right] d\Omega
+	= \int_{\Psi} N p(\psi) \left( \frac{\mu\_0^{-1}}{2} \frac{\eta}{c} \frac{4 \pi}{k^2}
+	\mathcal{Im} \left\lbrace v(f,0) \thinspace
+	\bm{E_0^{\*}} \cdot \mathcal{S_j}(\bm{n_i}, \psi) \cdot \bm{E_0}
+	\right\rbrace \right) d\psi.
+\end{aligned}
+$$
+
+Furthermore, if the incident irradiance \\(\Epsilon_i\\) is uniform across the particle group, then the total optical cross-sections (defined by Eqn. 16.39) of the particle group are directly proportional to the mean optical cross-section of the same type:
+
+$$ \tag{1p.57}
+	\braket{C_x^{tot}}
+	= \frac{\braket{\Phi_x^{tot}}}{\Epsilon_i}
+	= \frac{N \braket{\Phi_x}}{\Epsilon_i}
+	= N \braket{C_x}
+$$
+
+where \\(x\\) can stand for absorption \\((a)\\), scattering \\((s)\\), or extinction \\((e)\\).
+
+Often, one has to consider a large cloud of particles. Its interior may be conceptually subdivided into small, non-overlapping regions, each containing a particle group. In order to avoid keeping track of both the volume \\(V\\) and the number of particles \\(N\\) in each region, it is highly convenient to combine them into the spatially-varying number density \\(n(\bm{r})\\) (defined by Eqn. 1p.55). If, in addition, the distribution of particles \\((\\)governed by the probability density function \\(p(\psi))\\) is the same across the entire cloud, we can parametrize its interior using the spatially-varying *radiative transfer coefficients*
+
+$$ \tag{1p.58}
+	\beta_a(\bm{r}) = n(\bm{r}) \braket{C_a},
+	\quad
+	\beta_s(\bm{r}) = n(\bm{r}) \braket{C_s},
+	\quad
+	\beta_e(\bm{r}) = n(\bm{r}) \braket{C_e}.
+$$
+
+They are simply the weighted averages of the optical cross-sections of the individual particles.
 
 <!--
 ### Lorenz-Mie-Debye Theory
