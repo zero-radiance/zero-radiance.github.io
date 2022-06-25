@@ -4960,7 +4960,7 @@ $$
 
 is kept constant, then, as the size of the particle group increases, the relative amount of power attributed to interference between the scattered waves of individual particles decreases. Naturally, both the density and the total number of particles must be sufficiently low in order for the single-scattering approximation to remain applicable.
 
-Elimination of the last term of Eqn. 17.51 allows light intensities of the individual particles to be summed into the total amount of light scattered (or dissipated) by the particle group:
+Elimination of the last term of Eqn. 17.51 allows *light intensities of the individual particles to be summed* into the total amount of light scattered (or dissipated) by the particle group \[[4](#references) (ch. 4.22)\]:
 
 $$ \tag{17.56}
 \begin{aligned}
