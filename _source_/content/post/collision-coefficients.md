@@ -4392,7 +4392,7 @@ As usual, we shall utilize the superposition principle to decompose the incident
 
 Let \\(\bm{r_j}\\) denote the location of the \\(j\\)-th particle, and \\(a_j\\) -- the radius of its bounding sphere. If the observation point \\(\bm{r}\\) is located in the radiation zone of each particle, then the distances \\(R_j = |\bm{R_j}| = |\bm{r} - \bm{r_j}|\\) satisfy the inequalities given by Eqn. 13.13:
 
-$$ \tag{1p.1}
+$$ \tag{17.1}
 	k R_j - k a_j \gg 1, \quad
 	k R_j \gg k a_j, \quad
 	k R_j \gg (k a_j)^2.
@@ -4400,7 +4400,7 @@ $$
 
 The resulting scattered far-field \\(\bm{E_j}\\) of the \\(j\\)-th particle is given by Eqn. 15.6:
 
-$$ \tag{1p.2}
+$$ \tag{17.2}
 \begin{aligned}
 	& \bm{E_j}(\bm{r}, \omega)
 	\simeq \frac{e^{i k R_j}}{k R_j} \mathcal{S_j} (\bm{R_j} / R_j) \cdot \bm{E_0} e^{i k (\bm{r_j} \cdot \bm{n_i})},
@@ -4411,19 +4411,19 @@ where we must remember to account for the fact that, in general, the particle is
 
 Let \\(L\_{min}\\) and \\(L\_{max}\\) denote the smallest and the largest linear dimension of \\(V\\), respectively. Since a typical volume is large compared to the wavelength of light, then it follows that
 
-$$ \tag{1p.3}
+$$ \tag{17.3}
 	k L_{min} \ge 1.
 $$
 
 On the other hand, if the dimensions of \\(V\\) are sufficiently small compared to the distance between every particle and the observation point, such that
 
-$$ \tag{1p.4}
+$$ \tag{17.4}
 	k R_j \gg k L_{max},
 $$
 
 then we may use the series expansions of Eqn. 13.8 and 13.10 to asymptotically approximate
 
-$$ \tag{1p.5}
+$$ \tag{17.5}
 	\frac{\bm{R_j}}{R_j} \simeq \bm{n_s} = \frac{\bm{r}}{r},
 	\quad
 	\frac{1}{R_j} \simeq \frac{1}{r},
@@ -4435,11 +4435,11 @@ $$
 
 where \\(\bm{n_j} = \bm{r_j} / |\bm{r_j}| = \bm{r_j} / r_j\\).
 
-It is important to note that Eqn. 1p.4 does not imply that the observation point is located in the radiation zone with respect to the entire volume \\(V\\), since the latter requires \\(k R_j \gg (k L\_{max})^2\\).
+It is important to note that Eqn. 17.4 does not imply that the observation point is located in the radiation zone with respect to the entire volume \\(V\\), since the latter requires \\(k R_j \gg (k L\_{max})^2\\).
 
-Substitution of Eqn 1p.5 into 1p.2 yields an expression of a spherical wave diverging from the origin of the coordinate system:
+Substitution of Eqn 17.5 into 17.2 yields an expression of a spherical wave diverging from the origin of the coordinate system:
 
-$$ \tag{1p.6}
+$$ \tag{17.6}
 	\bm{E_j}(\bm{r}, \omega)
 	\simeq \frac{e^{i k (R_j + \bm{r_j} \cdot \bm{n_i})}}{k r} \mathcal{S_j} (\bm{n_s}) \cdot \bm{E_0}
 	\simeq \frac{e^{i k r}}{k r} \mathcal{S_j} (\bm{n_s}) \cdot \bm{E_0} e^{i k \bm{r_j} \cdot (\bm{n_i} - \bm{n_s}) + i k r_j^2 \left( 1 - (\bm{n_j} \cdot \bm{n_s})^2 \right)/(2 r)}.
@@ -4447,7 +4447,7 @@ $$
 
 Let us combine the expressions of the incident and the scattered fields, and determine whether their interaction produces any observable interference effects. We can utilize the same method employed in Sec. 16; specifically, let us repurpose Eqn. 16.17 and 16.22 of the time-averaged Poynting vector
 
-$$ \tag{1p.8}
+$$ \tag{17.8}
 \begin{aligned}
 	\braket{\bm{S}}
 	&= \frac{\mu\_0^{-1}}{2} \mathcal{Re} \Big\lbrace
@@ -4460,54 +4460,54 @@ $$
 
 where \\(\braket{\bm{S_i}}\\) is the time-averaged Poynting vector of the incident wave (given by Eqn. 16.3), \\(\braket{\bm{S_j}}\\) is the time-averaged Poynting vector of the scattered wave of the \\(j\\)-th particle (given by Eqn. 16.12), and
 
-$$ \tag{1p.9}
+$$ \tag{17.9}
 	\braket{\bm{S_{jk}}}
 	= -\frac{\mu\_0^{-1}}{2} \mathcal{Re} \big\lbrace \bm{E_j} \times \bm{B_k^{\*}} + \bm{E_k} \times \bm{B_j^{\*}} \big\rbrace.
 $$
 
 is the term that models the interaction of the waves \\(j\\) and \\(k\\). In particular, \\(\braket{\bm{S_{ij}}}\\) expresses interference between the incident and the scattered waves that leads to the extinction effect (cf. Eqn. 16.20, 16.23).
 
-Therefore, the only term we have not yet previously encountered, \\(\braket{\bm{S_{jk}}}\\), is the one that models the interaction of the scattered waves of two particles. Eqn. 16.11 shows that both \\(\bm{E_j}\\) and \\(\bm{B_k^{\*}}\\) (as well as \\(\bm{E_k}\\) and \\(\bm{B_j^{\*}}\\)) are transverse; however, we have no reason to believe that these field vectors are mutually orthogonal. In addition, the waves are not in-phase, since the spatial locations of the particles are not the same. As a result, it is not immediately clear whether the last term of Eqn. 1p.9 converges to a simple and intuitive analytical expression.
+Therefore, the only term we have not yet previously encountered, \\(\braket{\bm{S_{jk}}}\\), is the one that models the interaction of the scattered waves of two particles. Eqn. 16.11 shows that both \\(\bm{E_j}\\) and \\(\bm{B_k^{\*}}\\) (as well as \\(\bm{E_k}\\) and \\(\bm{B_j^{\*}}\\)) are transverse; however, we have no reason to believe that these field vectors are mutually orthogonal. In addition, the waves are not in-phase, since the spatial locations of the particles are not the same. As a result, it is not immediately clear whether the last term of Eqn. 17.9 converges to a simple and intuitive analytical expression.
 
 In order to obtain the desired solution, it is necessary to appeal to the [dynamic nature](https://en.wikipedia.org/wiki/Dynamical_system) of the microphysical system under consideration. Typically, the distribution of particles is not static -- it [evolves over time](https://en.wikipedia.org/wiki/Time_evolution), governed by processes such as [turbulence](https://en.wikipedia.org/wiki/Turbulence) or [Brownian motion](https://en.wikipedia.org/wiki/Brownian_motion). Thus, most relationships between the particles are not persistent and, when averaged over time -- not significant.
 
 Furthermore, while a system typically evolves fairly slowly in comparison to the period of oscillation of an electromagnetic wave, it may undergo a significant change during the time it takes to perform a measurement. We can take advantage of this fact by assuming that 1) dynamic light scattering is a [stationary process](https://en.wikipedia.org/wiki/Stationary_process),
 such that the *mean value* of the Poynting vector
 
-$$ \tag{1p.10}
+$$ \tag{17.10}
 	\braket{\braket{\bm{S}}} \negmedspace (\bm{r})
 	= \lim_{T \to \infin} \frac{1}{T} \int\_{0}^{T} \bm{S}(\bm{r}, t_0 + t) dt,
 $$
 
 is invariant with respect to the initial time \\(t_0\\), and that 2) the duration \\(T\\) of the measurement is sufficiently long for the *time-averaged value* of the Poynting vector
 
-$$ \tag{1p.11}
+$$ \tag{17.11}
 	\braket{\bm{S}} \negmedspace (\bm{r}, t)
 	= \frac{1}{T} \int\_{-T/2}^{\thinspace T/2} \bm{S}(\bm{r}, t + t') dt'
 $$
 
 to be representative of its mean value at any point in time \\(t\\):
 
-$$ \tag{1p.12}
+$$ \tag{17.12}
 	\braket{\bm{S}} \negmedspace (\bm{r}, t)
 	\approx \braket{\braket{\bm{S}}} \negmedspace (\bm{r}).
 $$
 
-In principle, one could solve a dynamic light scattering problem by choosing the initial configuration of the system (i.e. by assigning each particle a certain position, orientation, shape, size, and composition), describing the way the system evolves, and evaluating the integral given by Eqn 1p.10. In practice, this (obvious, but arduous) solution is rarely used; nevertheless, it helps us build the mental model and understand its implications.
+In principle, one could solve a dynamic light scattering problem by choosing the initial configuration of the system (i.e. by assigning each particle a certain position, orientation, shape, size, and composition), describing the way the system evolves, and evaluating the integral given by Eqn 17.10. In practice, this (obvious, but arduous) solution is rarely used; nevertheless, it helps us build the mental model and understand its implications.
 
 First of all, since the properties of the particles vary in time, the phasors of the scattered field must become time-dependent as well. Examination of the resulting expression of the total field
 
-$$ \tag{1p.13}
+$$ \tag{17.13}
 	\bm{E}(\bm{r}, t)
 	= \frac{1}{2} \bm{E_0}(\bm{r}, t)
 	+ \sum\_{p = 1}^{\infin} \mathcal{Re} \big\lbrace \bm{E_p}(\bm{r}, t) e^{-i \omega_p t} \big\rbrace,
 $$
 
-reveals that its components are no longer time-harmonic. This complicates the theory, since, unlike Eqn. 4.8, Eqn 1p.13 can not be obtained by solving the Maxwell equations in the frequency domain.
+reveals that its components are no longer time-harmonic. This complicates the theory, since, unlike Eqn. 4.8, Eqn 17.13 can not be obtained by solving the Maxwell equations in the frequency domain.
 
-Furthermore, substitution of Eqn. 1p.13 into 1p.10 results in an integral
+Furthermore, substitution of Eqn. 17.13 into 17.10 results in an integral
 
-$$ \tag{1p.14}
+$$ \tag{17.14}
 \begin{aligned}
 	\braket{\braket{\bm{S}}} \negmedspace (\bm{r})
 	= \lim_{T \to \infin} \frac{1}{T} \int\_{0}^{T}
@@ -4519,13 +4519,13 @@ $$
 
 that, unlike Eqn 4.14, cannot be readily simplified any further. However, if we are only concerned with high-frequency electromagnetic radiation, and if the [temperature](https://en.wikipedia.org/wiki/Thermal_velocity) of the substance is not too high, then we may assume that the fundamental period \\(T_1\\) of the electromagnetic field is much shorter than the amount of time \\(T_e\\) it takes the system to evolve to a significant degree:
 
-$$ \tag{1p.15}
+$$ \tag{17.15}
 	T_e \gg T_1.
 $$
 
 This permits us to split the time averaging process in two steps
 
-$$ \tag{1p.16}
+$$ \tag{17.16}
 \begin{aligned}
 	\braket{\braket{\bm{S}}} \negmedspace (\bm{r})
 	&=\lim_{T \to \infin} \frac{1}{T} \int\_{0}^{T}
@@ -4541,18 +4541,18 @@ $$
 
 in such a way that, as the time-harmonic factor of the incident field is being eliminated, the microphysical system is kept static. This crucial simplification decouples time-dependence of the electromagnetic field from that of the microphysical system.
 
-At this point, we may formally introduce the idea of a [microstate](https://en.wikipedia.org/wiki/Microstate_(statistical_mechanics)). It is a finite collection of parameters (that correspond to the internal degrees of freedom) of a microphysical system that can be used to describe its configuration at a certain point in time. Exposing the microstate \\(\psi\\) as a parameter of Eqn. 1p.16 yields:
+At this point, we may formally introduce the idea of a [microstate](https://en.wikipedia.org/wiki/Microstate_(statistical_mechanics)). It is a finite collection of parameters (that correspond to the internal degrees of freedom) of a microphysical system that can be used to describe its configuration at a certain point in time. Exposing the microstate \\(\psi\\) as a parameter of Eqn. 17.16 yields:
 
-$$ \tag{1p.17}
+$$ \tag{17.17}
 	\braket{\braket{\bm{S}}} \negmedspace (\bm{r})
 	= \lim_{T \to \infin} \frac{1}{T} \int\_{0}^{T}
 		\frac{\mu_0^{-1}}{2} \sum\_{p = 1}^{\infin}
 		\mathcal{Re} \left\lbrace \bm{E_p} \big( \bm{r}, \psi(t) \big) \times \big[ \bm{B_p} \big( \bm{r}, \psi(t) \big) \big]^{\*} \right\rbrace dt.
 $$
 
-The form of Eqn. 1p.17 makes it apparent that the mean value of the Poynting vector directly depends on the fraction of time the system spends in each microstate. In general, the latter is sensitive to the initial conditions. In fact, none of the requirements we have imposed so far prohibit the system from remaining in the same microstate indefinitely, which obviously defeats the purpose of time averaging in the first place! Therefore, let us impose a stronger condition, by requiring dynamic light scattering to be an [ergodic process](https://en.wikipedia.org/wiki/Ergodic_process), such that, at any point in time, computing the average in the time domain is equivalent to averaging over the space \\(\Psi\\) containing every possible microstate (ranging across all experiments and initial conditions) \[[8](#references) (ch. 10.4)\]:
+The form of Eqn. 17.17 makes it apparent that the mean value of the Poynting vector directly depends on the fraction of time the system spends in each microstate. In general, the latter is sensitive to the initial conditions. In fact, none of the requirements we have imposed so far prohibit the system from remaining in the same microstate indefinitely, which obviously defeats the purpose of time averaging in the first place! Therefore, let us impose a stronger condition, by requiring dynamic light scattering to be an [ergodic process](https://en.wikipedia.org/wiki/Ergodic_process), such that, at any point in time, computing the average in the time domain is equivalent to averaging over the space \\(\Psi\\) containing every possible microstate (ranging across all experiments and initial conditions) \[[8](#references) (ch. 10.4)\]:
 
-$$ \tag{1p.18}
+$$ \tag{17.18}
 	\braket{\braket{\bm{S}}} \negmedspace (\bm{r})
 	= \int\_{\Psi} \frac{\mu_0^{-1}}{2} \sum\_{p = 1}^{\infin}
 		\mathcal{Re} \left\lbrace \bm{E_p}(\bm{r}, \psi) \times \big[ \bm{B_p}(\bm{r}, \psi) \big]^{\*} \right\rbrace p(\psi) d\psi.
@@ -4562,39 +4562,39 @@ Effectively, it implies that every sizable time sequence is statistically repres
 
 The new formulation replaces the dynamic model of the microphysical system with a [stochastic process](https://en.wikipedia.org/wiki/Stochastic_process) characterized by the set of possible outcomes (i.e. microstates) called an [ensemble](https://en.wikipedia.org/wiki/Ensemble_(mathematical_physics)), and the associated [probability density function](https://en.wikipedia.org/wiki/Probability_density_function) \\(p(\psi)\\) that describes the likelihood of observing the system in each microstate. Furthermore, it restores the periodic form of the expression of the total field:
 
-$$ \tag{1p.19}
+$$ \tag{17.19}
 	\bm{E}(\bm{r}, \psi, t)
 	= \sum\_{p = 1}^{\infin} \mathcal{Re} \big\lbrace \bm{E_p}(\bm{r}, \psi) e^{-i \omega_p t} \big\rbrace.
 $$
 
 This key aspect allows the previously-established theoretical methods to remain valid.
 
-The integral found in Eqn. 1p.18 represents a special kind of weighted average
+The integral found in Eqn. 17.18 represents a special kind of weighted average
 
-$$ \tag{1p.20}
+$$ \tag{17.20}
 	\braket{f}\_{\psi}
 	= \int_{\Psi} f(\bm{r}, \psi, t) p(\psi) d\psi,
 $$
 
 called an [ensemble average](https://en.wikipedia.org/wiki/Ensemble_average). Formally, it is defined as the [expected value](https://en.wikipedia.org/wiki/Expected_value) of a quantity that depends on the microstate of the system. Let us also introduce a convenient short-hand notation
 
-$$ \tag{1p.21}
+$$ \tag{17.21}
 	\braket{f}\_t
 	= \frac{1}{T_1} \int\_{-T_1/2}^{\thinspace T_1/2} f(\bm{r}, \psi, t + t') dt'
 $$
 
 for the average over the fundamental period of the electromagnetic field.
 
-By combining Eqn. 1p.12, 1p.16, 1p.20 and 1p.21, our approximation can be summarized as
+By combining Eqn. 17.12, 17.16, 17.20 and 17.21, our approximation can be summarized as
 
-$$ \tag{1p.22}
+$$ \tag{17.22}
 	\braket{\bm{S}} \negmedspace (\bm{r}, t)
 	\approx \braket{\braket{\bm{S}}\_t}\_{\psi} \negmedspace (\bm{r}).
 $$
 
-Let us apply the ergodic assumption to Eqn. 1p.8, and carefully consider its individual terms. First of all, by definition, the incident field is not affected by the presence of the scattering object. Therefore, no modifications to \\(\braket{\bm{S\_i}}\\) are necessary. Next, consider the Poynting vector \\(\braket{\bm{S\_j}}\\) associated with the scattered field of the \\(j\\)-th particle. Since, according to Eqn. 16.11, the scattered field vectors are mutually orthogonal, we may express \\(\bm{S\_j}\\) using Eqn. 13.21:
+Let us apply the ergodic assumption to Eqn. 17.8, and carefully consider its individual terms. First of all, by definition, the incident field is not affected by the presence of the scattering object. Therefore, no modifications to \\(\braket{\bm{S\_i}}\\) are necessary. Next, consider the Poynting vector \\(\braket{\bm{S\_j}}\\) associated with the scattered field of the \\(j\\)-th particle. Since, according to Eqn. 16.11, the scattered field vectors are mutually orthogonal, we may express \\(\bm{S\_j}\\) using Eqn. 13.21:
 
-$$ \tag{1p.23}
+$$ \tag{17.23}
 \begin{aligned}
 	\bm{S_j}(\bm{r}, \psi, t)
 	&\simeq \mu\_0^{-1} \frac{\eta}{c} {\big| \mathcal{Re} \big\lbrace \bm{E_j}(\bm{r}, \psi) e^{-i \omega t} \big\rbrace \big|}^2 \bm{n_s}
@@ -4606,9 +4606,9 @@ $$ \tag{1p.23}
 \end{aligned}
 $$
 
-As demonstrated by Eqn. 13.22-13.23, time averaging Eqn. 1p.23 is equivalent to replacing the phase factor with \\(1/2\\), which yields the standard expression of the time-averaged Poynting vector
+As demonstrated by Eqn. 13.22-13.23, time averaging Eqn. 17.23 is equivalent to replacing the phase factor with \\(1/2\\), which yields the standard expression of the time-averaged Poynting vector
 
-$$ \tag{1p.24}
+$$ \tag{17.24}
 	\braket{\bm{S_j}}\_t \negmedspace (\bm{r}, \psi)
 	\simeq \frac{\mu\_0^{-1}}{2} \frac{\eta}{c} \frac{\left|
 	\mathcal{S_j}(\bm{n_s}, \psi) \cdot \bm{E_0} \right|^2}{k^2 r^2} \bm{n_s}
@@ -4616,7 +4616,7 @@ $$
 
 of a particle located at the origin. Note that the value of \\(\braket{\bm{S_j}}\\) explicitly depends on the state of the incident field, and, implicitly, on the orientation, shape, size, and composition of the particle via the far-field scattering dyadic \\(\mathcal{S_j}\\). Because the latter is located inside the squared norm operator, ensemble averaging the Poynting vector
 
-$$ \tag{1p.25}
+$$ \tag{17.25}
 	\braket{\braket{\bm{S_j}}} \negmedspace (\bm{r})
 	\simeq \int\_{\Psi}
 	\braket{\bm{S_j}}\_t \negmedspace (\bm{r}, \psi)
@@ -4625,7 +4625,7 @@ $$
 
 is, in general, different from replacing \\(\mathcal{S_j}\\) with the average scattering dyadic \\(\braket{\mathcal{S_j}}\\). This implies that the mean intensity \\(\braket{\Iota_s}\\) of scattered light is not the same as the intensity of light scattered by the average particle (cf. Eqn. 16.15):
 
-$$ \tag{1p.26}
+$$ \tag{17.26}
 	\braket{\Iota_s} \negmedspace (\bm{n_s})
 	= r^2 \braket{\braket{\bm{S_j}}} \cdot \bm{n_s}
 	\simeq \frac{\mu\_0^{-1}}{2} \frac{\eta}{c} \frac{1}{k^2} \left\langle
@@ -4633,11 +4633,11 @@ $$ \tag{1p.26}
 	\right\rangle \_{\psi}.
 $$
 
-The Poynting vector \\(\braket{\bm{S_j}}\\) associated with the scattered field does not, by itself, completely determine the intensity of scattered light. In addition, we must account for interference between the incident and the scattered waves contained within the \\(\braket{\bm{S_{ij}}}\\) terms of Eqn 1p.8.
+The Poynting vector \\(\braket{\bm{S_j}}\\) associated with the scattered field does not, by itself, completely determine the intensity of scattered light. In addition, we must account for interference between the incident and the scattered waves contained within the \\(\braket{\bm{S_{ij}}}\\) terms of Eqn 17.8.
 
-Substitution of Eqn. 16.1 into 1p.9 yields an expression
+Substitution of Eqn. 16.1 into 17.9 yields an expression
 
-$$ \tag{1p.27}
+$$ \tag{17.27}
 \begin{aligned}
 	\braket{\bm{S_{ij}}}\_t \negmedspace (\bm{r}, \psi)
 	\simeq &-\frac{\mu_0^{-1}}{2} \mathcal{Re} \bigg\lbrace
@@ -4647,18 +4647,18 @@ $$ \tag{1p.27}
 \end{aligned}
 $$
 
-that is broadly similar to Eqn. 16.23. In particular, according to Eqn. 16.30, the complex exponential term \\(\exp(i k (\bm{r} \cdot \bm{n_i})) = \exp(i k r (\bm{n_s} \cdot \bm{n_i}))\\) indicates that interference only occurs if the optical axis of the measurement device is directly facing the source. Therefore, we only need to consider the expression of the scattered field (given by Eqn. 1p.6) along the direction of incidence:
+that is broadly similar to Eqn. 16.23. In particular, according to Eqn. 16.30, the complex exponential term \\(\exp(i k (\bm{r} \cdot \bm{n_i})) = \exp(i k r (\bm{n_s} \cdot \bm{n_i}))\\) indicates that interference only occurs if the optical axis of the measurement device is directly facing the source. Therefore, we only need to consider the expression of the scattered field (given by Eqn. 17.6) along the direction of incidence:
 
-$$ \tag{1p.28}
+$$ \tag{17.28}
 	\bm{E_j}(r \bm{n_i}, \psi)
 	\simeq
 	\frac{e^{i k r}}{k r} \mathcal{S_j} (\bm{n_i}, \psi) \cdot \bm{E_0}
 	e^{i k r_j^2 \left( 1 - (\bm{n_j} \cdot \bm{n_i})^2 \right) / (2 r)}.
 $$
 
-Let us retrace the steps taken in Sec. 16. First, we express the magnetic field in terms of the electric field using Eqn. 16.2 and 16.11; then we substitute \\(\bm{r} = r \bm{n_i}\\) in Eqn. 1p.27, and project the resulting expression onto the direction of incidence \\(\bm{n_i}\\). Application of the identities given by Eqn. 16.25 yields the expressions
+Let us retrace the steps taken in Sec. 16. First, we express the magnetic field in terms of the electric field using Eqn. 16.2 and 16.11; then we substitute \\(\bm{r} = r \bm{n_i}\\) in Eqn. 17.27, and project the resulting expression onto the direction of incidence \\(\bm{n_i}\\). Application of the identities given by Eqn. 16.25 yields the expressions
 
-$$ \tag{1p.29}
+$$ \tag{17.29}
 \begin{aligned}
 	\bm{n_i} \cdot \big( \bm{E_i} \times \bm{B_j^{\*}} \big)
 	&\simeq \frac{\eta}{c}
@@ -4674,9 +4674,9 @@ $$
 
 that are complex conjugates of each other.
 
-By combining Eqn. 1p.27-1p.29, and following the steps detailed in the previous section, it is easy to show that the amount of power dissipated by the \\(j\\)-th particle in the state \\(\psi\\) is
+By combining Eqn. 17.27-17.29, and following the steps detailed in the previous section, it is easy to show that the amount of power dissipated by the \\(j\\)-th particle in the state \\(\psi\\) is
 
-$$ \tag{1p.30}
+$$ \tag{17.30}
 	\Phi_{ij}(\psi)
 	= \frac{\mu\_0^{-1}}{2} \frac{\eta}{c} \frac{4 \pi}{k^2} \mathcal{Im} \left\lbrace \bm{E_0^{\*}} \cdot \mathcal{S_j}(\bm{n_i}, \psi) \cdot \bm{E_0}
 	e^{i k r_j^2 \left( 1 - (\bm{n_j} \cdot \bm{n_i})^2 \right) / (2 r)} \right\rbrace.
@@ -4684,7 +4684,7 @@ $$
 
 This expression can be further simplified by performing ensemble averaging. Suppose that every position is equally likely, with the corresponding probability density \\(p(\bm{r_j}) = 1/V\\); then we can account for random motion of particles by analytically evaluating the integral
 
-$$ \tag{1p.31}
+$$ \tag{17.31}
 	v(f) = \frac{1}{V} \int_V
 	\exp \negmedspace \left(
 	\frac{i}{2} \frac{k^2}{k r} r_j^2 \left( 1 - (\bm{n_j} \cdot \bm{n_i})^2 \right)
@@ -4693,15 +4693,15 @@ $$
 
 Its value can be expressed in terms of the ratio
 
-$$ \tag{1p.32}
+$$ \tag{17.32}
 	f = \frac{(k L)^2}{k r}
 $$
 
 of the dimensionless area of the cross-section \\((k L)^2\\) to the dimensionless distance to the observation point \\(k r\\).
 
-It is convenient to reparametrize Eqn. 1p.31 by aligning \\(\bm{n_i}\\) with an axis of the coordinate system:
+It is convenient to reparametrize Eqn. 17.31 by aligning \\(\bm{n_i}\\) with an axis of the coordinate system:
 
-$$ \tag{1p.33}
+$$ \tag{17.33}
 	r_j^2 \left( 1 - (\bm{n_j} \cdot \bm{n_i})^2 \right)
 	= (r_j \sin{\theta_j})^2
 	= x_j^2 + y_j^2.
@@ -4709,7 +4709,7 @@ $$
 
 Then, for an axis-aligned cube of volume \\(L^3\\),
 
-$$ \tag{1p.34}
+$$ \tag{17.34}
 \begin{aligned}
 	v(f) &= \frac{1}{V} \int_V
 	\exp \negmedspace \left(
@@ -4726,7 +4726,7 @@ $$
 
 Similarly, for a sphere of the same volume (with a slightly larger cross-sectional area),
 
-$$ \tag{1p.35}
+$$ \tag{17.35}
 \begin{aligned}
 	v(f) = \frac{1}{V} \int_V
 	\exp \negmedspace \left(
@@ -4738,21 +4738,21 @@ $$
 
 These approximations are reasonably accurate provided \\(f \leq 4\\).
 
-{{< figure src="/img/vol_int_1.svg" caption="*Figure N: Plot of \\(v(f)\\) defined by Eqn. 1p.35. The solid line represents the absolute value, and the dashed line represents the value of the argument (the phase).*" >}}
+{{< figure src="/img/vol_int_1.svg" caption="*Figure N: Plot of \\(v(f)\\) defined by Eqn. 17.35. The solid line represents the absolute value, and the dashed line represents the value of the argument (the phase).*" >}}
 
-In general, \\(v(f) \\) is a fairly complicated function that tends[^21] to \\(1\\) as \\(f \to 0\\). The latter indicates that the observer approaches the radiation zone of the entire particle group, which makes the trailing complex exponential of Eqn. 1p.30 vanish.
+In general, \\(v(f) \\) is a fairly complicated function that tends[^21] to \\(1\\) as \\(f \to 0\\). The latter indicates that the observer approaches the radiation zone of the entire particle group, which makes the trailing complex exponential of Eqn. 17.30 vanish.
 
 [^21]: Since \\(\exp(i f u^2) \to 1\\) as \\(f \to 0\\), the same applies to its integral taken over a unit interval.
 
-{{< figure src="/img/vol_int_3.svg" caption="*Figure N: Plot of \\(f |v(f)|\\) defined by Eqn. 1p.35. We can observe that the running average of \\(|v(f)|\\) is inversely proportional to \\(f\\), and thus, \\((k L)^2\\).*" >}}
+{{< figure src="/img/vol_int_3.svg" caption="*Figure N: Plot of \\(f |v(f)|\\) defined by Eqn. 17.35. We can observe that the running average of \\(|v(f)|\\) is inversely proportional to \\(f\\), and thus, \\((k L)^2\\).*" >}}
 
-Another important case of interest is when both \\(k L \gg 1\\) and \\(k r \gg 1\\) in such a way that \\(f \gg 1\\). That causes the approximations of Eqn. 1p.34-1p.35 to break down. One may encounter this situation in practice while considering the force exerted by the electromagnetic field of one particle group onto a particle in an adjacent group. Fortunately, by taking the limit of Eqn. 1p.31, one can show[^22]  that \\(|v| \to 0\\) as \\(f \to \infin\\).
+Another important case of interest is when both \\(k L \gg 1\\) and \\(k r \gg 1\\) in such a way that \\(f \gg 1\\). That causes the approximations of Eqn. 17.34-17.35 to break down. One may encounter this situation in practice while considering the force exerted by the electromagnetic field of one particle group onto a particle in an adjacent group. Fortunately, by taking the limit of Eqn. 17.31, one can show[^22]  that \\(|v| \to 0\\) as \\(f \to \infin\\).
 
 [^22]: As the pseudo-frequency \\(f \to \infin\\), the value of \\(\exp(i f u^2)\\)  rapidly oscillates around \\(0\\). These oscillations can be dampened by averaging the function over a finite interval. The absolute value of the resulting integral tends to \\(0\\).
 
 In conclusion, *if the observer is located in the the radiation zone of the entire particle group*, the mean amount of power \\(\braket{\Phi_e}\\) dissipated per particle is the same as that of the average particle (cf. Eqn. 16.40):
 
-$$ \tag{1p.36}
+$$ \tag{17.36}
 	\braket{\Phi_e}
 	\approx \frac{\mu\_0^{-1}}{2} \frac{\eta}{c} \frac{4 \pi}{k^2}
 	\mathcal{Im} \left\lbrace
@@ -4762,13 +4762,13 @@ $$
 
 On the other hand, *if the observer is located outside an extensive particle group*, the extinction effect can be neglected \[[8](#references) (ch. 14.2)\]:
 
-$$ \tag{1p.37}
+$$ \tag{17.37}
 	\braket{\Phi_e} \approx 0.
 $$
 
 The reason behind this discrepancy can be understood geometrically. If both \\(f \ll 1\\) and \\(k L \ge 1\\), then \\(r / L \gg 1\\), which means that, for the observation point \\(\bm{r} = r \bm{n_i}\\) located along the direction of incidence, the wave vectors of the incident and the scattered waves are more or less permanently aligned:
 
-$$ \tag{1p.38}
+$$ \tag{17.38}
 	k (r \bm{n_i} - \bm{r_j}) \approx k r \bm{n_i},
 $$
 
@@ -4776,11 +4776,11 @@ making the strength of the interference effect similar to that of a particle fix
 
 On the other hand, if \\(f \ll 1\\), the wave vectors are almost never aligned, making the contribution to \\(\braket{\Phi_e}\\) vanishingly small.
 
-Let us now consider the final term of Eqn. 1p.8 that accounts for interference of the scattered fields of two particles. Since the observation point \\(\bm{r}\\) is located in the radiation zone of each particle, we can obtain the formula of \\(\braket{\bm{S_{jk}}}\\) by substituting Eqn. 1p.6 twice into 1p.9.
+Let us now consider the final term of Eqn. 17.8 that accounts for interference of the scattered fields of two particles. Since the observation point \\(\bm{r}\\) is located in the radiation zone of each particle, we can obtain the formula of \\(\braket{\bm{S_{jk}}}\\) by substituting Eqn. 17.6 twice into 17.9.
 
 The resulting expression is highly symmetrical. It can be readily simplified by taking advantage of the identities given by Eqn. 16.11 and 16.25, according to which,
 
-$$ \tag{1p.39}
+$$ \tag{17.39}
 \begin{aligned}
 	\bm{n_s} \cdot \big( \bm{E_j} \times \bm{B_k^{\*}} \big)
 	&\simeq \frac{\eta}{c}
@@ -4788,9 +4788,9 @@ $$ \tag{1p.39}
 \end{aligned}
 $$
 
-Substitution of Eqn. 1p.39 into 1p.9 yields
+Substitution of Eqn. 17.39 into 17.9 yields
 
-$$ \tag{1p.40}
+$$ \tag{17.40}
 	\bm{n_s} \cdot \braket{\bm{S_{jk}}}\_t \negmedspace (\bm{r}, \psi)
 	\simeq -\frac{\mu\_0^{-1}}{2} \frac{\eta}{c} \big( \bm{E_j} \cdot \bm{E_k^{\*}} + \bm{E_k} \cdot \bm{E_j^{\*}} \big)
 	= -\mu\_0^{-1} \frac{\eta}{c} \mathcal{Re} \big\lbrace \bm{E_j^{\*}} \cdot \bm{E_k} \big\rbrace.
@@ -4798,7 +4798,7 @@ $$
 
 If we ignore all interactions between the particles (except through their fields), then \\(\bm{E_j}\\) and \\(\bm{E_k}\\) can be considered the outcomes of two independent random processes. This assumption allows us to perform ensemble averaging of the scattered fields separately:
 
-$$ \tag{1p.41}
+$$ \tag{17.41}
 \begin{aligned}
 	\bm{n_s} \cdot \braket{\braket{\bm{S_{jk}}}} \negmedspace (\bm{r})
 	&\simeq -\mu\_0^{-1} \frac{\eta}{c} \mathcal{Re} \big\lbrace \negmedspace
@@ -4813,38 +4813,38 @@ $$ \tag{1p.41}
 \end{aligned}
 $$
 
-Unlike Eqn. 1p.26, Eqn. 1p.41 corresponds to (double) the intensity of light scattered by the average particle (cf. Eqn. 16.15) with a certain likelihood to be located somewhere within the region occupied by the particle group.
+Unlike Eqn. 17.26, Eqn. 17.41 corresponds to (double) the intensity of light scattered by the average particle (cf. Eqn. 16.15) with a certain likelihood to be located somewhere within the region occupied by the particle group.
 
-Suppose that every position is equally likely, with the corresponding probability density \\(p(\bm{r_j}) = 1/V\\). Then calculation of the ensemble average of the electric field \\(\bm{E_j}\\) (defined by Eqn. 1p.6) involves evaluation of the integral
+Suppose that every position is equally likely, with the corresponding probability density \\(p(\bm{r_j}) = 1/V\\). Then calculation of the ensemble average of the electric field \\(\bm{E_j}\\) (defined by Eqn. 17.6) involves evaluation of the integral
 
-$$ \tag{1p.42}
+$$ \tag{17.42}
 	v(f, g) = \frac{1}{V} \int_V \exp \negmedspace \left(
 	i k \bm{r_j} \cdot (\bm{n_i} - \bm{n_s}) +
 	\frac{i}{2} \frac{k^2}{k r} r_j^2 \left( 1 - (\bm{n_j} \cdot \bm{n_s})^2 \right)
 	\right) dV_j,
 $$
 
-that generalizes Eqn. 1p.31: the difference arises from the fact that we can no longer assume that the direction of observation is aligned with the direction of incidence. This property is captured by the additional parameter
+that generalizes Eqn. 17.31: the difference arises from the fact that we can no longer assume that the direction of observation is aligned with the direction of incidence. This property is captured by the additional parameter
 
-$$ \tag{1p.43}
+$$ \tag{17.43}
 	g = k L |\bm{n_i} - \bm{n_s}| = \sqrt{2} k L \sqrt{1 - (\bm{n_i} \cdot \bm{n_s})}
 $$
 
 that depends on the dimensions of the particle group and the degree of alignment of the wave vectors.
 
-Eqn. 1p.42 is fairly complicated, so we shall only consider a few special cases. First, suppose the observer is located in the radiation zone of the entire particle group. Then \\(f \to 0\\), and
+Eqn. 17.42 is fairly complicated, so we shall only consider a few special cases. First, suppose the observer is located in the radiation zone of the entire particle group. Then \\(f \to 0\\), and
 
-$$ \tag{1p.44}
+$$ \tag{17.44}
 	v(0, g) = \frac{1}{V} \int_V \exp \negmedspace \left(
 	i k \bm{r_j} \cdot (\bm{n_i} - \bm{n_s})
 	\right) dV_j.
 $$
 
-It is convenient to reparametrize[^20] Eqn. 1p.44 by aligning \\(\bm{n_i} - \bm{n_s}\\) with an axis of the coordinate system:
+It is convenient to reparametrize[^20] Eqn. 17.44 by aligning \\(\bm{n_i} - \bm{n_s}\\) with an axis of the coordinate system:
 
-[^20]: This parameterization is different from the one used in Eqn. 1p.33. As a result, the orientation of the cubical volume is not the same.
+[^20]: This parameterization is different from the one used in Eqn. 17.33. As a result, the orientation of the cubical volume is not the same.
 
-$$ \tag{1p.45}
+$$ \tag{17.45}
 	\bm{r_j} \cdot \frac{\bm{n_i} - \bm{n_s}}{|\bm{n_i} - \bm{n_s}|}
 	= r_j \cos{\theta_j}
 	= z_j
@@ -4852,7 +4852,7 @@ $$
 
 Then, for an axis-aligned cube of volume \\(L^3\\),
 
-$$ \tag{1p.46}
+$$ \tag{17.46}
 	v(0, g)
 	= \frac{1}{V} \int_V
 	\exp \negmedspace \left(
@@ -4867,7 +4867,7 @@ $$
 
 Similarly, for a sphere of the same volume (with a slightly larger cross-sectional area),
 
-$$ \tag{1p.47}
+$$ \tag{17.47}
 \begin{aligned}
 	\big| v(0, g) \big|
 	= \left| \frac{1}{V} \int_V
@@ -4878,38 +4878,38 @@ $$ \tag{1p.47}
 \end{aligned}
 $$
 
-The approximation of Eqn. 1p.47 is reasonably accurate provided \\(g \leq 4\\). Note that the phase of \\(v\\) is irrelevant, since Eqn. 1p.41 only features \\(|v|^2\\).
+The approximation of Eqn. 17.47 is reasonably accurate provided \\(g \leq 4\\). Note that the phase of \\(v\\) is irrelevant, since Eqn. 17.41 only features \\(|v|^2\\).
 
-{{< figure src="/img/vol_int_2.svg" caption="*Figure N: Plot of \\(|v(0, g)|^2\\) defined by Eqn. 1p.47.*" >}}
+{{< figure src="/img/vol_int_2.svg" caption="*Figure N: Plot of \\(|v(0, g)|^2\\) defined by Eqn. 17.47.*" >}}
 
 Figure N demonstrates that the scattered waves always interfere in the direction of incidence \\((g = 0)\\). If, in addition, the dimensions of the particle group are small in comparison to the wavelength of light \\((g/2 \leq k L \ll 1)\\), then the scattered waves strongly interfere in every direction. That is not surprising, since the particles simply do not have the opportunity to move out-of-phase.
 
-{{< figure src="/img/vol_int_4.svg" caption="*Figure N: Plot of \\(g^2 |v(0, g)|\\) defined by Eqn. 1p.47. We can observe that the running average of \\(|v(0, g)|\\) is inversely proportional to \\(g^2\\), and thus, \\((k L)^2\\).*" >}}
+{{< figure src="/img/vol_int_4.svg" caption="*Figure N: Plot of \\(g^2 |v(0, g)|\\) defined by Eqn. 17.47. We can observe that the running average of \\(|v(0, g)|\\) is inversely proportional to \\(g^2\\), and thus, \\((k L)^2\\).*" >}}
 
 In general, the strength of the interference effect wanes as the the scattering angle \\(\theta = \arccos(\bm{n_i} \cdot \bm{n_s})\\) or the linear dimension \\(kL\\) increase. For spatially large particle groups, \\(kL \gg 1\\), \\(g \gg 1\\) for all non-zero angles, and the graph of Figure N is horizontally compressed around \\(g = 0\\) while maintaining the peak value of \\(1\\). As a result, its area decreases, and the value of its integral taken over all directions is
 
-$$ \tag{1p.48}
+$$ \tag{17.48}
 	\lim_{kL \to \infin} \int_{-\pi}^{\pi} \int_{0}^{\pi} \left| v \left(0, \sqrt{2} k L \sqrt{1 - \cos{\theta}} \right) \right|^2 \sin{\theta} d\theta d\psi = 0.
 $$
 
 Therefore, *if the observer is located in the the radiation zone of an extensive particle group*, the scattered fields of two particles do not cause significant interference:
 
-$$ \tag{1p.49}
+$$ \tag{17.49}
 	\braket{\Phi_{jk}}
 	= \oint\_{\mathbb{S}^2} r^2 \braket{\braket{\bm{S_{jk}}}} \cdot \bm{n_s} d\Omega \approx 0.
 $$
 
-Finally, let us show that Eqn. 1p.49 is true at any distance (subject to the conditions imposed by Eqn. 1p.1 and 1p.4). It is fairly difficult to prove this formally, so we will have to resort to an intuitive argument. Return to Eqn. 1p.42 and 1p.44, and perform a change of variables \\(u = r_j / L\\). Comparison of the integrands reveals that the second complex exponential with \\((k L u)^2\\) performs amplitude modulation of the first one containing \\(k L u\\). These expressions guarantee that oscillation happens at different rates. The combined exponential reaches it peak (unit) amplitude at \\(u\\) = 0, and then (as the value of \\(u\\) increases) begins to rapidly oscillate, owing to the fact that \\(k L \gg 1\\). Similarly to Eqn. 1p.44, the primary contribution to the value of the integral given by Eqn. 1p.42 comes from the central peak, the width of which is inversely proportional to \\((k L)^2\\). As it shrinks, the amount of power in the \\(\braket{\Phi_{jk}}\\) decreases accordingly.
+Finally, let us show that Eqn. 17.49 is true at any distance (subject to the conditions imposed by Eqn. 17.1 and 17.4). It is fairly difficult to prove this formally, so we will have to resort to an intuitive argument. Return to Eqn. 17.42 and 17.44, and perform a change of variables \\(u = r_j / L\\). Comparison of the integrands reveals that the second complex exponential with \\((k L u)^2\\) performs amplitude modulation of the first one containing \\(k L u\\). These expressions guarantee that oscillation happens at different rates. The combined exponential reaches it peak (unit) amplitude at \\(u\\) = 0, and then (as the value of \\(u\\) increases) begins to rapidly oscillate, owing to the fact that \\(k L \gg 1\\). Similarly to Eqn. 17.44, the primary contribution to the value of the integral given by Eqn. 17.42 comes from the central peak, the width of which is inversely proportional to \\((k L)^2\\). As it shrinks, the amount of power in the \\(\braket{\Phi_{jk}}\\) decreases accordingly.
 
 Thus, *if the observer is located outside an extensive particle group*, interference of the scattered fields can be neglected:
 
-$$ \tag{1p.50}
+$$ \tag{17.50}
 	\braket{\Phi_{jk}} \approx 0.
 $$
 
-Let us summarize the results of this section. If the ergodic assumption and the single scattering approximation are applicable, and the conditions imposed by Eqn. 1p.1, 1p.3, and 1p.4 hold, then the mean value of the Poynting vector (cf. Eqn. 1p.8) in the presence a group of \\(N\\) particles is
+Let us summarize the results of this section. If the ergodic assumption and the single scattering approximation are applicable, and the conditions imposed by Eqn. 17.1, 17.3, and 17.4 hold, then the mean value of the Poynting vector (cf. Eqn. 17.8) in the presence a group of \\(N\\) particles is
 
-$$ \tag{1p.51}
+$$ \tag{17.51}
 \begin{aligned}
 	\braket{\braket{\bm{S}}}
 	= \braket{\bm{S_i}}
@@ -4930,7 +4930,7 @@ $$
 
 The third term is in full effect if the observation point is in the radiation zone of the entire particle group:
 
-$$ \tag{1p.52}
+$$ \tag{17.52}
 	\left| v(f, 0) \right| \to 1
 	\quad \iff \quad
 	f = \frac{(k L)^2}{k r} \to 0.
@@ -4938,7 +4938,7 @@ $$
 
 The opposite situation occurs if we observe a large particle group at a relatively short distance:
 
-$$ \tag{1p.53}
+$$ \tag{17.53}
 	\left| v(f, 0) \right| \ll 1
 	\quad \iff \quad
 	f = \frac{(k L)^2}{k r} \gg 1.
@@ -4946,23 +4946,23 @@ $$
 
 Finally, the impact of the last term is insignificant if
 
-$$ \tag{1p.54}
+$$ \tag{17.54}
 	(N - 1) \oint\_{\mathbb{S}^2} \left| v(f,g) \right|^2 d\Omega \ll 1
 	\quad \iff \quad
 	\frac{(k L)^4}{N} \gg 1.
 $$
 
-Eqn. 1p.54 shows that, if the [number density](https://en.wikipedia.org/wiki/Number_density) of particles
+Eqn. 17.54 shows that, if the [number density](https://en.wikipedia.org/wiki/Number_density) of particles
 
-$$ \tag{1p.55}
+$$ \tag{17.55}
 	n = \frac{N}{V} = \frac{N}{L^3}
 $$
 
 is kept constant, then, as the size of the particle group increases, the relative amount of power attributed to interference between the scattered waves of individual particles decreases. Naturally, both the density and the total number of particles must be sufficiently low in order for the single-scattering approximation to remain applicable.
 
-Elimination of the last term of Eqn. 1p.51 allows light intensities of the individual particles to be summed into the total amount of light scattered (or dissipated) by the particle group:
+Elimination of the last term of Eqn. 17.51 allows light intensities of the individual particles to be summed into the total amount of light scattered (or dissipated) by the particle group:
 
-$$ \tag{1p.56}
+$$ \tag{17.56}
 \begin{aligned}
 	\braket{\Iota_s^{tot}}
 	&= \sum_j r^2 \braket{\braket{\bm{S_j}}} \cdot \bm{n_s}
@@ -4988,7 +4988,7 @@ $$
 
 Furthermore, if the incident irradiance \\(\Epsilon_i\\) is uniform across the particle group, then the total optical cross-sections (defined by Eqn. 16.39) of the particle group are directly proportional to the mean optical cross-section of the same type:
 
-$$ \tag{1p.57}
+$$ \tag{17.57}
 	\braket{C_x^{tot}}
 	= \frac{\braket{\Phi_x^{tot}}}{\Epsilon_i}
 	= \frac{N \braket{\Phi_x}}{\Epsilon_i}
@@ -4997,9 +4997,9 @@ $$
 
 where \\(x\\) can stand for absorption \\((a)\\), scattering \\((s)\\), or extinction \\((e)\\).
 
-Often, one has to consider a large cloud of particles. Its interior may be conceptually subdivided into small, non-overlapping regions, each containing a particle group. In order to avoid keeping track of both the volume \\(V\\) and the number of particles \\(N\\) in each region, it is highly convenient to combine them into the spatially-varying number density \\(n(\bm{r})\\) (defined by Eqn. 1p.55). If, in addition, the distribution of particles \\((\\)governed by the probability density function \\(p(\psi))\\) is the same across the entire cloud, we can parametrize its interior using the spatially-varying *radiative transfer coefficients*
+Often, one has to consider a large cloud of particles. Its interior may be conceptually subdivided into small, non-overlapping regions, each containing a particle group. In order to avoid keeping track of both the volume \\(V\\) and the number of particles \\(N\\) in each region, it is highly convenient to combine them into the spatially-varying number density \\(n(\bm{r})\\) (defined by Eqn. 17.55). If, in addition, the distribution of particles \\((\\)governed by the probability density function \\(p(\psi))\\) is the same across the entire cloud, we can parametrize its interior using the spatially-varying *radiative transfer coefficients*
 
-$$ \tag{1p.58}
+$$ \tag{17.58}
 	\beta_a(\bm{r}) = n(\bm{r}) \braket{C_a},
 	\quad
 	\beta_s(\bm{r}) = n(\bm{r}) \braket{C_s},
@@ -5020,15 +5020,15 @@ The general idea behind the solution is fairly simple. We treat electromagnetic 
 
 Consider the Maxwell equations in a source-free region of a linear, isotropic, homogeneous medium given by Eqn. 6.3. We have seen that, after a number of transformations, they are reduced to a *vector* Helmholtz equation
 
-$$ \tag{17.1}
+$$ \tag{18.1}
 	\big( \nabla^2 + k^2(\omega) \big) \bm{E}(\bm{r}, \omega) = 0.
 $$
 
 We have previously solved this equation by expanding it in Cartesian coordinates. That allowed us to separate a single vector equation into three scalar equations, which could then be solved individually. While this leads to a convenient (plane wave) representation of the incident field, it is a poor fit for the scattered field, since the latter takes the form of a spherical wave in the radiation zone. In addition, the geometry of the scatterer suggests that we should exploit the spherical symmetry of the problem in some way.
 
-Eqn. 17.1 can be written in yet another way. Recall (cf. Eqn. 9.19) that we can express the electric field \\(\bm{E}\\) in terms of the vector potential \\(\bm{A}\\) and the scalar potential \\(\phi\\)
+Eqn. 18.1 can be written in yet another way. Recall (cf. Eqn. 9.19) that we can express the electric field \\(\bm{E}\\) in terms of the vector potential \\(\bm{A}\\) and the scalar potential \\(\phi\\)
 
-$$ \tag{17.2}
+$$ \tag{18.2}
 \begin{aligned}
 	&\bm{E}(\bm{r}, \omega) = i \omega \bm{A}(\bm{r}, \omega) - \nabla \phi(\bm{r}, \omega), &
 	&\bm{B}(\bm{r}, \omega) = \nabla \times \bm{A}(\bm{r}, \omega).
@@ -5037,9 +5037,9 @@ $$
 
 Note that we are free to choose the value of \\(\nabla \cdot \bm{A}\\) to suit our particular problem.
 
-Let us find the formulation in terms of the electromagnetic potential by substituting Eqn. 17.2 and 5.2.3 into the Maxwell equations 6.2.3-6.2.4:
+Let us find the formulation in terms of the electromagnetic potential by substituting Eqn. 18.2 and 5.2.3 into the Maxwell equations 6.2.3-6.2.4:
 
-$$ \tag{17.3}
+$$ \tag{18.3}
 \begin{aligned}
 	& \nabla \times \nabla \times \bm{A}(\bm{r}, \omega)
 	+ i \omega \mu(\omega) \varepsilon(\omega) \big( i \omega \bm{A}(\bm{r}, \omega) - \nabla \phi(\bm{r}, \omega) \big) = 0,
@@ -5050,7 +5050,7 @@ $$
 
 After using the definition of the Laplace operator and applying the curl of curl identity given by Eqn. 6.6, we obtain the following expressions:
 
-$$ \tag{17.4}
+$$ \tag{18.4}
 \begin{aligned}
 	& \nabla \big( \nabla \cdot \bm{A}(\bm{r}, \omega) \big) - \nabla^2 \bm{A}(\bm{r}, \omega)
 	+ i \omega \mu(\omega) \varepsilon(\omega) \big( i \omega \bm{A}(\bm{r}, \omega) - \nabla \phi(\bm{r}, \omega) \big) = 0,
@@ -5061,7 +5061,7 @@ $$
 
 These two equations may be combined, and the Laplace operator and the gradient -- [interchanged](https://en.wikipedia.org/wiki/Vector_calculus_identities#Third_derivatives):
 
-$$ \tag{17.5}
+$$ \tag{18.5}
 \begin{aligned}
 	& \nabla^2 \big( i \omega \bm{A}(\bm{r}, \omega) - \nabla \phi(\bm{r}, \omega) \big)
 	+ \omega^2 \mu(\omega) \varepsilon(\omega) \big( i \omega \bm{A}(\bm{r}, \omega) - \nabla \phi(\bm{r}, \omega) \big) = 0,
@@ -5072,50 +5072,50 @@ $$
 
 Since the value of \\(\nabla \cdot \bm{A}\\) is arbitrary, we may take inspiration from the Lorenz condition of Eqn. 9.20, and assume that
 
-$$ \tag{17.6}
+$$ \tag{18.6}
 	\nabla \cdot \bm{A}(\bm{r}, \omega) = i \omega \mu(\omega) \varepsilon(\omega) \phi(\bm{r}, \omega).
 $$
 
 From Eqn. 9.21, it immediately follows that
 
-$$ \tag{17.7}
+$$ \tag{18.7}
 	\frac{1}{i \omega} \nabla^2 \phi(\bm{r}, \omega)
 	= i \omega \mu(\omega) \varepsilon(\omega) \phi(\bm{r}, \omega),
 $$
 
 which implies that \\(\phi\\) satisfies the scalar Helmholtz equation
 
-$$ \tag{17.8}
+$$ \tag{18.8}
 	\big( \nabla^2 + k^2(\omega) \big) \phi(\bm{r}, \omega) = 0,
 $$
 
 where \\(k\\) is the complex wavenumber:
 
-$$ \tag{17.9}
+$$ \tag{18.9}
 	k(\omega) = \omega \sqrt{\varepsilon(\omega) \mu(\omega)}.
 $$
 
-Similarly, substitution into Eqn. 17.5.1 shows that \\(\bm{A}\\) satisfies the vector Helmholtz equation
+Similarly, substitution into Eqn. 18.5.1 shows that \\(\bm{A}\\) satisfies the vector Helmholtz equation
 
-$$ \tag{17.10}
+$$ \tag{18.10}
 	\big( \nabla^2 + k^2(\omega) \big) \bm{A}(\bm{r}, \omega) = 0.
 $$
 
 Since the Helmholtz equation is both homogeneous and linear, it has multiple special solutions that can be combined into a single general solution according to the superposition principle:
 
-$$ \tag{17.11}
+$$ \tag{18.11}
 	\phi(\bm{r}, \omega) = \sum_{m,n} c_{m,n}(\omega) \psi_{m,n}(\bm{r}, \omega),
 $$
 
 with each special solution \\(\psi_{m,n}\\) satisfying the same equation
 
-$$ \tag{17.12}
+$$ \tag{18.12}
 	\big( \nabla^2 + k^2(\omega) \big) \psi_{m,n}(\bm{r}, \omega) = 0.
 $$
 
 Similarly, in 3-dimensional space, the vector potential \\(\bm{A_{m,n}}\\) can be represented by a sum of 3 linearly independent vectors \\(\bm{L_{m,n}}, \bm{M_{m,n}}, \bm{N_{m,n}}\\):
 
-$$ \tag{17.13}
+$$ \tag{18.13}
 \begin{aligned}
 	\bm{A}(\bm{r}, \omega)
 	&= \frac{1}{i \omega} \sum_{m,n} \bm{A_{m,n}}(\bm{r}, \omega)
@@ -5126,7 +5126,7 @@ $$
 
 How should we define these 3 vectors? According to the [Helmholtz decomposition](https://en.wikipedia.org/wiki/Helmholtz_decomposition) (Eqn. 8.8), any sufficiently smooth vector field \\(\bm{A}\\) can be represented by a sum
 
-$$ \tag{17.14}
+$$ \tag{18.14}
 \begin{aligned}
 	&\bm{A} = \bm{A'} + \bm{A''}, &
 	&\nabla \cdot  \bm{A' } = 0, &
@@ -5136,21 +5136,21 @@ $$
 
 Let us choose \\(\bm{L_{m,n}}\\) as [irrotational](https://en.wikipedia.org/wiki/Conservative_vector_field#Irrotational_vector_fields), and \\(\bm{M_{m,n}}\\) and \\(\bm{N_{m,n}}\\) as [solenoidal](https://en.wikipedia.org/wiki/Solenoidal_vector_field):
 
-$$ \tag{17.15}
+$$ \tag{18.15}
 	\bm{A_{m,n}'} = a_{m,n} \bm{M_{m,n}} + b_{m,n} \bm{N_{m,n}},
 	\quad
 	\bm{A_{m,n}''} = c_{m,n} \bm{L_{m,n}}.
 $$
 
-From Eqn. 17.5.2 and 17.11, and 17.13, it follows that
+From Eqn. 18.5.2 and 18.11, and 18.13, it follows that
 
-$$ \tag{17.16}
+$$ \tag{18.16}
 	\nabla \cdot \bm{A_{m,n}} = \nabla \cdot (c_{m,n} \nabla \psi_{m,n}).
 $$
 
-In other words, Eqn. 17.13 and 17.16 suggest that we may define
+In other words, Eqn. 18.13 and 18.16 suggest that we may define
 
-$$ \tag{17.17}
+$$ \tag{18.17}
 	\bm{L_{m,n}} = \frac{1}{k} \nabla \psi_{m,n},
 	\quad
 	\nabla \times \bm{L_{m,n}} = 0,
@@ -5158,9 +5158,9 @@ $$
 
 where the \\(1/k\\) constant is chosen in order to make the resulting expression dimensionless \[[25](#references) (ch. 4.3)\].
 
-Since divergence of curl is zero, Eqn. 17.14.2 and 17.15.1 suggests that both \\(\bm{M\_{m,n}}\\) and \\(\bm{N\_{m,n}}\\) should be the curl of something. In addition, both should depend on \\(\psi\_{m,n}\\). Since \\(\psi\_{m,n}\\) is a scalar, its curl is undefined; a simple way to fix that is to introduce a vector \\(\bm{a}\\):
+Since divergence of curl is zero, Eqn. 18.14.2 and 18.15.1 suggests that both \\(\bm{M\_{m,n}}\\) and \\(\bm{N\_{m,n}}\\) should be the curl of something. In addition, both should depend on \\(\psi\_{m,n}\\). Since \\(\psi\_{m,n}\\) is a scalar, its curl is undefined; a simple way to fix that is to introduce a vector \\(\bm{a}\\):
 
-$$ \tag{17.18}
+$$ \tag{18.18}
 	\bm{M_{m,n}} = \nabla \times (\psi_{m,n} \bm{a}),
 	\quad
 	\nabla \cdot \bm{M_{m,n}} = 0.
@@ -5168,7 +5168,7 @@ $$
 
 Finally, the curl generates a linearly independent vector field. Thus, we may choose
 
-$$ \tag{17.19}
+$$ \tag{18.19}
 	\bm{N_{m,n}} = \frac{1}{k} \nabla \times \bm{M_{m,n}},
 	\quad
 	\nabla \cdot \bm{N_{m,n}} = 0.
@@ -5178,19 +5178,19 @@ The set of vectors \\(\lbrace \bm{L\_{m,n}}, \bm{M\_{m,n}}, \bm{N\_{m,n}} \rbrac
 
 It is convenient to assume that the guiding vector belongs to an [irrotational](https://en.wikipedia.org/wiki/Conservative_vector_field#Irrotational_vector_fields) vector field, such that
 
-$$ \tag{17.20}
+$$ \tag{18.20}
 	\nabla \times \bm{a} = 0.
 $$
 
-Coupled with the [product rule](https://en.wikipedia.org/wiki/Vector_calculus_identities#Product_rule_for_multiplication_by_a_scalar), Eqn. 17.20 leads to a simpler definition of \\(\bm{M_{m,n}}\\):
+Coupled with the [product rule](https://en.wikipedia.org/wiki/Vector_calculus_identities#Product_rule_for_multiplication_by_a_scalar), Eqn. 18.20 leads to a simpler definition of \\(\bm{M_{m,n}}\\):
 
-$$ \tag{17.21}
+$$ \tag{18.21}
 	\bm{M_{m,n}} = \psi (\nabla \times \bm{a}) + (\nabla \psi_{m,n}) \times \bm{a} = \bm{L_{m,n}} \times (k \bm{a}).
 $$
 
 If \\(\bm{a}\\) is a real vector, the new expression has a simple geometrical interpretation in terms of orthogonal vectors:
 
-$$ \tag{17.22}
+$$ \tag{18.22}
 	\bm{M_{m,n}} \cdot \bm{a} = 0,
 	\quad \text{or} \quad
 	\bm{L_{m,n}} \cdot \bm{M_{m,n}} = 0.
@@ -5198,7 +5198,7 @@ $$
 
 Each of the three vectors, \\(\bm{L_{m,n}}\\), \\(\bm{M_{m,n}}\\), and \\(\bm{N_{m,n}}\\), can be used to form (and solve) a vector Helmholtz equation. That is trivial to show this for \\(\bm{L_{m,n}}\\):
 
-$$ \tag{17.23}
+$$ \tag{18.23}
 	\big( \nabla^2 + k^2 \big) \bm{L_{m,n}}
 	= \frac{1}{k} \big( \nabla^2 + k^2 \big) \nabla \psi_{m,n}
 	= \frac{1}{k} \nabla \big( \nabla^2 + k^2 \big) \psi_{m,n} = 0.
@@ -5206,31 +5206,31 @@ $$
 
 For \\(\bm{M_{m,n}}\\), the corresponding expression is
 
-$$ \tag{17.24}
+$$ \tag{18.24}
 	\big( \nabla^2 + k^2 \big) \bm{M_{m,n}}
 	= \big( \nabla^2 + k^2 \big) \big( \nabla \times (\psi_{m,n} \bm{a}) \big)
 	= \nabla \times \Big( \big( \nabla^2 + k^2 \big) \big( \psi_{m,n} \bm{a} \big) \Big).
 $$
 
-If \\(\bm{a}\\) is a *constant* vector, from Eqn. 17.12, it immediately follows that
+If \\(\bm{a}\\) is a *constant* vector, from Eqn. 18.12, it immediately follows that
 
-$$ \tag{17.25}
+$$ \tag{18.25}
 	\big( \nabla^2 + k^2 \big) \bm{M_{m,n}}
 	= \nabla \times \Big( \bm{a} \big( \nabla^2 + k^2 \big) \psi_{m,n} \Big) = 0.
 $$
 
 In general, for an arbitrary \\(\bm{a}\\), that is not the case. We may use the identity
 
-$$ \tag{17.26}
+$$ \tag{18.26}
 	\nabla^2 (\psi_{m,n} \bm{a})
 	= \bm{a} \nabla^2 \psi_{m,n}
 	+ 2 (\nabla \psi_{m,n} \cdot \nabla) \bm{a}
 	+ \psi_{m,n} \nabla^2 \bm{a}
 $$
 
-to expand Eqn. 17.24:
+to expand Eqn. 18.24:
 
-$$ \tag{17.27}
+$$ \tag{18.27}
 	\big( \nabla^2 + k^2 \big) \bm{M_{m,n}}
 	= \nabla \times \big( \bm{a} \big( \nabla^2 + k^2 \big) \psi_{m,n}
 	+ 2 (\nabla \psi_{m,n} \cdot \nabla) \bm{a}
@@ -5239,13 +5239,13 @@ $$
 
 Thus, \\(\bm{M_{m,n}}\\) satisfies a vector Helmholtz equation if
 
-$$ \tag{17.28}
+$$ \tag{18.28}
 	\nabla \times \big(2 (\nabla \psi_{m,n} \cdot \nabla) \bm{a} + \psi_{m,n} \nabla^2 \bm{a} \big) = 0.
 $$
 
 If we make a simple, but non-obvious choice of \\(\bm{a} = \bm{r}\\), it is easy to show that
 
-$$ \tag{17.29}
+$$ \tag{18.29}
 	(\nabla \psi_{m,n} \cdot \nabla) \bm{r}
 	= \nabla \psi_{m,n},
 	\quad
@@ -5254,7 +5254,7 @@ $$
 
 which confirms that
 
-$$ \tag{17.30}
+$$ \tag{18.30}
 	\big( \nabla^2 + k^2 \big) \bm{M_{m,n}}
 	= \nabla \times \big( \bm{r} \big( \nabla^2 + k^2 \big) \psi_{m,n}
 	+ 2 \nabla \psi_{m,n} \big) = 0.
@@ -5262,36 +5262,36 @@ $$
 
 Since \\(\bm{N_{m,n}}\\) is defined in terms of \\(\bm{M_{m,n}}\\), it directly follows that
 
-$$ \tag{17.31}
+$$ \tag{18.31}
 	\big( \nabla^2 + k^2 \big) \bm{N_{m,n}}
 	= \frac{1}{k} \nabla \times \Big( \big( \nabla^2 + k^2 \big) \bm{M_{m,n}} \Big) = 0.
 $$
 
 Now, consider what happens when we take the curl of \\(\bm{N_{m,n}}\\):
 
-$$ \tag{17.32}
+$$ \tag{18.32}
 	\frac{1}{k} \nabla \times \bm{N_{m,n}}
 	= \frac{1}{k^2} \nabla \times \nabla \times \nabla \times (\psi_{m,n} \bm{a})
 	= -\frac{1}{k^2} \nabla \times \big( \nabla^2(\psi_{m,n} \bm{a}) \big).
 $$
 
-Since, according to Eqn. 17.12,
+Since, according to Eqn. 18.12,
 
-$$ \tag{17.33}
+$$ \tag{18.33}
 	\nabla^2 \psi_{m,n} = -k^2 \psi_{m,n},
 $$
 
-for *constant* \\(\bm{a}\\), Eqn. 17.32 leads to yet another definition of \\(\bm{M_{m,n}}\\):
+for *constant* \\(\bm{a}\\), Eqn. 18.32 leads to yet another definition of \\(\bm{M_{m,n}}\\):
 
-$$ \tag{17.34}
+$$ \tag{18.34}
 	\bm{M_{m,n}}
 	= \nabla \times (\psi_{m,n} \bm{a})
 	= \frac{1}{k} \nabla \times \bm{N_{m,n}}.
 $$
 
-In order to show that it is also the case for \\(\bm{a} = \bm{r}\\), we must substitute Eqn. 17.26, 17.28, and 17.33 into 17.32:
+In order to show that it is also the case for \\(\bm{a} = \bm{r}\\), we must substitute Eqn. 18.26, 18.28, and 18.33 into 18.32:
 
-$$ \tag{17.35}
+$$ \tag{18.35}
 \begin{aligned}
 	\frac{1}{k} \nabla \times \bm{N_{m,n}}
 	&= -\frac{1}{k^2} \nabla \times \big( \nabla^2(\psi_{m,n} \bm{a}) \big)
@@ -5309,11 +5309,11 @@ $$
 
 Going forward, we shall focus on the set of vectors \\(\lbrace \bm{L\_{m,n}}, \bm{M\_{m,n}}, \bm{N\_{m,n}} \rbrace\\) produced with the choice of \\(\bm{a} = \bm{r}\\). We have just demonstrated some of their basic properties, and we now can begin to apply them to simple problems.
 
-Suppose that we have obtained the coefficients of the series expansion of the electromagnetic potential given by Eqn. 17.13. How can we find the associated electric and magnetic fields?
+Suppose that we have obtained the coefficients of the series expansion of the electromagnetic potential given by Eqn. 18.13. How can we find the associated electric and magnetic fields?
 
-According to Eqn. 17.2.1, 17.11, 17.13, and 17.17,
+According to Eqn. 18.2.1, 18.11, 18.13, and 18.17,
 
-$$ \tag{17.36}
+$$ \tag{18.36}
 \begin{aligned}
 	\bm{E}(\bm{r}, \omega)
 	&= i \omega \bm{A}(\bm{r}, \omega) - \nabla \phi(\bm{r}, \omega)
@@ -5326,9 +5326,9 @@ $$
 
 The result is a solenoidal phasor field, which is consistent with the Maxwell equations in linear, isotropic, homogeneous, source-free media.
 
-Similarly, the magnetic field can be determined using Eqn. 17.2.2, 17.13, 17.17, 17.19, and 17.35:
+Similarly, the magnetic field can be determined using Eqn. 18.2.2, 18.13, 18.17, 18.19, and 18.35:
 
-$$ \tag{17.37}
+$$ \tag{18.37}
 \begin{aligned}
 	\bm{B}(\bm{r}, \omega)
 	&= \nabla \times \bm{A}(\bm{r}, \omega)
@@ -5339,7 +5339,7 @@ $$ \tag{17.37}
 \end{aligned}
 $$
 
-The resulting field is irrotational. Note that the relative order of the vectors in Eqn. 17.36 and 17.37 is reversed.
+The resulting field is irrotational. Note that the relative order of the vectors in Eqn. 18.36 and 18.37 is reversed.
 
 Expressions given above are valid for arbitrary electromagnetic fields. They have also been painstakingly crafted in a coordinate-independent manner. In practice, to obtain numerical results, once must choose a certain coordinate system. As it was hinted at the beginning of this section, the symmetry of the problem suggests that it is advantageous to approach the problem in a spherical coordinate system.
 
@@ -5347,7 +5347,7 @@ Consider again the scalar Helmholtz equation (17.8). In [spherical coordinates](
 
 [^16]: We use \\(f\\) in place of \\(\phi\\), since the letter used for the scalar potential clashes with the notation used for spherical coordinates.
 
-$$ \tag{17.38}
+$$ \tag{18.38}
 	\frac{1}{r^2} \frac{\partial}{\partial r} \bigg( r^2 \frac{\partial f}{\partial r} \bigg)
 	+ \frac{1}{r^2 \sin{\theta}} \frac{\partial}{\partial \theta} \bigg( \sin{\theta} \frac{\partial f}{\partial \theta} \bigg)
 	+ \frac{1}{r^2 \sin^2{\theta}} \frac{\partial^2 f}{\partial \phi^2}
@@ -5356,7 +5356,7 @@ $$
 
 or, in its fully expanded form, as
 
-$$ \tag{17.39}
+$$ \tag{18.39}
 	\frac{1}{r^2} \bigg(
 	  \frac{\partial^2 f}{\partial \theta^2}
 	+ \frac{\cos{\theta}}{\sin{\theta}} \frac{\partial f}{\partial \theta}
@@ -5368,13 +5368,13 @@ $$
 
 If we look for a solution of the form
 
-$$ \tag{17.40}
+$$ \tag{18.40}
 	f(\bm{r}) = f_r(r) f_{\theta}(\theta) f_{\phi}(\phi),
 $$
 
 substitution results in three separate ordinary differential equations:
 
-$$ \tag{17.41}
+$$ \tag{18.41}
 \begin{aligned}
 	& r^2 \frac{d^2 f_r}{d r^2}
 	+ 2 r \frac{d f_r}{d r}
@@ -5392,15 +5392,15 @@ where \\(p\\) and \\(q\\) are separation constants that ensure the solutions are
 
 Differential equations of this type are well known in the literature \[[17](#references) (ch. 7.3)\]. If we make a particular choice of
 
-$$ \tag{17.42}
+$$ \tag{18.42}
 	p^2 = n (n+1),
 	\quad
 	q = m,
 $$
 
-without proof, the particular solutions of Eqn. 17.41.1-17.41.3 are
+without proof, the particular solutions of Eqn. 18.41.1-18.41.3 are
 
-$$ \tag{17.43}
+$$ \tag{18.43}
 	f_r(r) = z_n(k r),
 	\quad
 	f_{\theta}(\theta) = P_n^m(\cos{\theta}),
@@ -5408,9 +5408,9 @@ $$ \tag{17.43}
 	f_{\phi}(\phi) = e^{i m \phi}.
 $$
 
-Since the solutions of the Helmholtz equation that are continuous (within a certain domain), finite, and single-valued, form a *discrete set*, the general solution of Eqn. 17.38 is
+Since the solutions of the Helmholtz equation that are continuous (within a certain domain), finite, and single-valued, form a *discrete set*, the general solution of Eqn. 18.38 is
 
-$$ \tag{17.44}
+$$ \tag{18.44}
 \begin{aligned}
 	& f(\bm{r})
 	= \sum_{m,n} c_{m,n} \psi_{m,n}(\bm{r}),
@@ -5424,7 +5424,7 @@ where \\(m\\) and \\(n\\) are integers \\((n \ge 0)\\), \\(c_{m,n}\\) is a compl
 
 Let us begin by examining the radial functions \\(z_n(k r)\\). They may be used to represent any of the three kinds of *spherical Bessel functions* \[[17](#references) (ch. 7.4)\]:
 
-$$ \tag{17.48}
+$$ \tag{18.48}
 \begin{aligned}
 	& j_n(x) = \sqrt{\frac{\pi}{2 x}} J_{n+1/2}(x),
 	&
@@ -5436,7 +5436,7 @@ $$
 
 where \\(J_n\\), \\(Y_n\\), and \\(H_n^{(k)}\\) are the [Bessel functions](https://en.wikipedia.org/wiki/Bessel_function) of the first, the second, and the third kind, respectively. More specifically, \\(H_n^{(1)}\\) and \\(H_n^{(2)}\\) are called the [Hankel functions](https://en.wikipedia.org/wiki/Bessel_function#Hankel_functions:_H(1)%CE%B1,\_H(2)%CE%B1) of the first and the second kind, and they are related to the ordinary Bessel functions in a very simple manner:
 
-$$ \tag{17.49}
+$$ \tag{18.49}
 	H_n^{(1)}(x) = J_n(x) + i Y_n(x),
 	\quad
 	H_n^{(2)}(x) = J_n(x) - i Y_n(x).
@@ -5444,7 +5444,7 @@ $$
 
 All spherical Bessel functions satisfy the [recurrence relations](https://dlmf.nist.gov/10.51) \[[17](#references) (ch. 7.4)\]
 
-$$ \tag{17.50}
+$$ \tag{18.50}
 	\frac{z_n(x)}{x} = \frac{z_{n-1}(x) + z_{n+1}(x)}{2 n + 1},
 	\quad
 	\frac{\partial z_n(x)}{\partial x} = \frac{n z_{n-1}(x) - (n + 1) z_{n+1}(x)}{2 n + 1}.
@@ -5452,7 +5452,7 @@ $$
 
 This implies that we can compute the value of the spherical Bessel function (or its derivative) of any order \\(n\\) if we utilize the [closed-form expressions](https://dlmf.nist.gov/10.49) of the functions of the orders 0 and 1:
 
-$$ \tag{17.51}
+$$ \tag{18.51}
 \begin{aligned}
 	& j_0(x) = \frac{\sin{x}}{x},
 	&
@@ -5480,7 +5480,7 @@ For small values of the argument, the behavior is both varied and relatively com
 
 For large values of the argument, the spherical Bessel functions of the first and the second kinds differ in phase by a factor of \\(\pi\\). The latter is prominently featured in the [asymptotic forms](https://dlmf.nist.gov/10.52) valid for \\(| x | \gg n^2/2\\):
 
-$$ \tag{17.52}
+$$ \tag{18.52}
 \begin{aligned}
 	& j_n(x) = \frac{1}{x} \sin\Big( x - \frac{\pi n}{2} \Big)
 	+ \mathrm{O}\big( x^{-2} \big),
@@ -5498,7 +5498,7 @@ $$
 
 Let us now turn our attention to the angular component of the solution
 
-$$ \tag{17.53}
+$$ \tag{18.53}
 	P_n^m(\cos{\theta}) e^{i m \phi}
 	= P_n^m(\cos{\theta}) \cos(m \phi)
 	+ i P_n^m(\cos{\theta}) \sin(m \phi).
@@ -5506,7 +5506,7 @@ $$
 
 If we set \\(m=0\\), the dependence on the azimuthal angle \\(\phi\\) disappears, and we are left with the [Legendre polynomial](https://en.wikipedia.org/wiki/Legendre_polynomials) \\(P_n\\)
 
-$$ \tag{17.54}
+$$ \tag{18.54}
 	P_n(x)
 	= \frac{1}{2^n n!} \frac{\partial^n}{\partial x^n} (x^2 - 1)^n
 $$
@@ -5519,21 +5519,21 @@ The degree of a polynomial is also the number of zeros of the function. Coupled 
 
 If \\(0 < m \leq n\\), we can define the associated Legendre polynomials in terms of the unassociated ones:
 
-$$ \tag{17.55}
+$$ \tag{18.55}
 	P_n^m(x)
 	= (-1)^m (1 - x^2)^{m/2} \frac{\partial^m}{\partial x^m} P_n(x).
 $$
 
 The polynomials of negative orders differ from their positive counterparts by a [constant](https://en.wikipedia.org/wiki/Associated_Legendre_polynomials#Negative_m_and/or_negative_%E2%84%93):
 
-$$ \tag{17.47}
+$$ \tag{18.47}
 	P_n^{-m}
 	= (-1)^m \frac{(n - m)!}{(n + m)!} P_n^m.
 $$
 
-Additionally, by careful manipulating the derivatives of Eqn. 17.54 and 17.55, one may show that the associated Legendre polynomials satisfy the [recurrence relation](https://en.wikipedia.org/wiki/Associated_Legendre_polynomials#Recurrence_formula)
+Additionally, by careful manipulating the derivatives of Eqn. 18.54 and 18.55, one may show that the associated Legendre polynomials satisfy the [recurrence relation](https://en.wikipedia.org/wiki/Associated_Legendre_polynomials#Recurrence_formula)
 
-$$ \tag{17.5?}
+$$ \tag{18.5?}
 	x P_n^m(x) = \frac{n - m + 1}{2 n + 1} P_{n+1}^m(x) + \frac{n + m}{2 n + 1} P_{n-1}^m(x).
 $$
 
@@ -5541,20 +5541,20 @@ As can be seen from the graph below, the value of the associated Legendre polyno
 
 {{< figure src="/img/assoc_legendre.svg" caption="*Figure N: Associated Legendere polynomials of degree 3 and order \\(m=1\\) (blue), \\(m=2\\) (orange), \\(m=3\\) (green).*" >}}
 
-We are now ready to interpret the entire Eqn. 17.53. Since that function has harmonic dependence on \\(\phi\\), if we plot one of its parts (either real or imaginary), we can observe that it divides the surface of a sphere into \\(2 m \times (n - m + 1)\\) rectangular domains, or tesserae. Thus, \\(P_n^m(\cos{\theta}) \cos(m \phi)\\) and \\(P_n^m(\cos{\theta}) \sin(m \phi)\\) are called the even and odd *tesseral harmonics* (and, occasionally, *sectorial harmonics* if \\(m = n\\)).
+We are now ready to interpret the entire Eqn. 18.53. Since that function has harmonic dependence on \\(\phi\\), if we plot one of its parts (either real or imaginary), we can observe that it divides the surface of a sphere into \\(2 m \times (n - m + 1)\\) rectangular domains, or tesserae. Thus, \\(P_n^m(\cos{\theta}) \cos(m \phi)\\) and \\(P_n^m(\cos{\theta}) \sin(m \phi)\\) are called the even and odd *tesseral harmonics* (and, occasionally, *sectorial harmonics* if \\(m = n\\)).
 
 {{< figure src="/img/assoc_legendre_3.png" caption="*Figure N: Tesseral harmonics of degree 3 and order \\(m=1\\) (left), \\(m=2\\) (center), \\(m=3\\) (right). Warm colors correspond to positive values of the function, and cold colors - to negative values.*" >}}
 
 Associated Legendre polynomials have a powerful property - they are [orthogonal](https://en.wikipedia.org/wiki/Associated_Legendre_polynomials#Reparameterization_in_terms_of_angles) \[[17](#references) (ch. 7.3)\]:
 
-$$ \tag{17.56}
+$$ \tag{18.56}
 	\int_{-1}^{1} P_l^m(x) P_n^m(x) dx
 	= \frac{2}{2n + 1} \frac{(n+m)!}{(n-m)!} \delta_{l,n}.
 $$
 
 In addition, we know that any sufficiently smooth univariate function can be expanded into a [Fourier series](https://en.wikipedia.org/wiki/Fourier_series), since
 
-$$ \tag{17.57}
+$$ \tag{18.57}
 \begin{aligned}
 	& \int_{0}^{2 \pi} \sin(m x) \cos(n x) dx = 0,
 	& (m \neq 0 \text{ or } n \neq 0),
@@ -5571,9 +5571,9 @@ where \\(\delta_{m,n}\\) is the Kronecker delta function given by Eqn. 4.6.
 
 Remarkably, by means of double integration over \\(\theta\\) and \\(\phi\\), these two facts can be combined to show that the tesseral harmonics \\(P_n^m(\cos{\theta}) \cos(m \phi)\\) and \\(P_n^m(\cos{\theta}) \sin(m \phi)\\) form a *complete orthogonal system* of basis functions on the surface of a sphere \[[18](#references) (ch. 7.5), [28](#references) (ch. 2.4)\].
 
-Tesseral harmonics are [real-valued basis functions](https://en.wikipedia.org/wiki/Spherical_harmonics#Real_form), which is sufficient for most problems. However, the theory can be trivially extended to complex values by combining the tesseral harmonics according to Eqn. 17.53. This directly leads to the definition of [scalar spherical harmonics](https://en.wikipedia.org/wiki/Spherical_harmonics)
+Tesseral harmonics are [real-valued basis functions](https://en.wikipedia.org/wiki/Spherical_harmonics#Real_form), which is sufficient for most problems. However, the theory can be trivially extended to complex values by combining the tesseral harmonics according to Eqn. 18.53. This directly leads to the definition of [scalar spherical harmonics](https://en.wikipedia.org/wiki/Spherical_harmonics)
 
-$$ \tag{17.58}
+$$ \tag{18.58}
 	Y_n^m(\theta, \phi)
 	= \gamma_{m,n} P_n^m(\cos{\theta}) e^{i m \phi}
 	= \sqrt{\frac{(2 n + 1)}{4 \pi} \frac{(n - m)!}{(n + m)!}} P_n^m(\cos{\theta}) e^{i m \phi},
@@ -5581,7 +5581,7 @@ $$
 
 where \\(\gamma_{m,n}\\) is the normalization constant chosen in order to satisfy the normalization and the completeness relations
 
-$$ \tag{17.59}
+$$ \tag{18.59}
 \begin{aligned}
 	& \int_{0}^{2 \pi} \int_{-1}^{1} \big[ Y_t^s(\theta, \phi) \big]^{\*} Y_n^m(\theta, \phi) \thinspace d(\cos{\theta}) d\phi = \delta_{s,m} \delta_{t,n},
 	\cr
@@ -5590,16 +5590,16 @@ $$ \tag{17.59}
 \end{aligned}
 $$
 
-In addition, Eqn. 17.47 shows that normalization leads to a simple relation
+In addition, Eqn. 18.47 shows that normalization leads to a simple relation
 
-$$ \tag{17.60}
+$$ \tag{18.60}
 	Y_n^{-m}
 	= (-1)^m \big[ Y_n^m \big]^{\*}.
 $$
 
-Thus, the spherical wave solution of Eqn. 17.38 (given by Eqn. 17.44) can be more compactly written as
+Thus, the spherical wave solution of Eqn. 18.38 (given by Eqn. 18.44) can be more compactly written as
 
-$$ \tag{17.61}
+$$ \tag{18.61}
 \begin{aligned}
 	& f(\bm{r})
 	= \sum_{n=0}^{\infin} \sum_{m=-n}^{n} c_{m,n} \psi_{m,n}(\bm{r}),
@@ -5609,11 +5609,11 @@ $$ \tag{17.61}
 \end{aligned}
 $$
 
-We may now substitute Eqn. 17.61 in place of Eqn. 17.11, and carry out the subsequent derivation to find the explicit form of the solution of the Helmholtz equation of the *vector* potential (in terms of the vector spherical wave functions) that complements the solution of the Helmholtz equation of the *scalar* potential (in terms of the scalar spherical wave functions).
+We may now substitute Eqn. 18.61 in place of Eqn. 18.11, and carry out the subsequent derivation to find the explicit form of the solution of the Helmholtz equation of the *vector* potential (in terms of the vector spherical wave functions) that complements the solution of the Helmholtz equation of the *scalar* potential (in terms of the scalar spherical wave functions).
 
-The expression of the first vector \\(\bm{L_{m,n}}\\) is given by Eqn. 17.17.1:
+The expression of the first vector \\(\bm{L_{m,n}}\\) is given by Eqn. 18.17.1:
 
-$$ \tag{17.62}
+$$ \tag{18.62}
 \begin{aligned}
 	\frac{1}{\gamma_{m,n}} \bm{L_{m,n}}(\bm{r})
 	&= \frac{\partial z_n(k r)}{\partial (k r)} P_n^m(\cos{\theta}) e^{i m \phi} \bm{e_r}
@@ -5626,9 +5626,9 @@ $$
 
 where \\(\lbrace \bm{e_r}, \bm{e_{\theta}}, \bm{e_{\phi}} \rbrace\\) is the set of unit vectors pointing along the spherical coordinate axes.
 
-Similarly, we can determine the expression of \\(\bm{M_{m,n}}\\) by expanding Eqn. 17.18.1 with \\(\bm{a} = \bm{r}\\):
+Similarly, we can determine the expression of \\(\bm{M_{m,n}}\\) by expanding Eqn. 18.18.1 with \\(\bm{a} = \bm{r}\\):
 
-$$ \tag{17.6x}
+$$ \tag{18.6x}
 \begin{aligned}
 	\bm{M_{m,n}}(\bm{r})
 	&= \frac{1}{\sin{\theta}} \frac{\partial \psi_{m,n}}{\partial \phi} \bm{e_{\theta}}
@@ -5636,9 +5636,9 @@ $$ \tag{17.6x}
 \end{aligned}
 $$
 
-Substitution of Eqn. 17.61 yields
+Substitution of Eqn. 18.61 yields
 
-$$ \tag{17.63}
+$$ \tag{18.63}
 \begin{aligned}
 	\frac{1}{\gamma_{m,n}} \bm{M_{m,n}}(\bm{r})
 	&= i m z_n(k r) \frac{P_n^m(\cos{\theta})}{\sin{\theta}} e^{i m \phi} \bm{e_{\theta}}
@@ -5646,11 +5646,11 @@ $$ \tag{17.63}
 \end{aligned}
 $$
 
-Note that the radial component is zero, as expected from Eqn. 17.21 that contains a cross product with \\(\bm{r}\\).
+Note that the radial component is zero, as expected from Eqn. 18.21 that contains a cross product with \\(\bm{r}\\).
 
-Finally, we may find the representation of \\(\bm{N_{m,n}}\\) by substituting Eqn. 17.63 into 17.19.1:
+Finally, we may find the representation of \\(\bm{N_{m,n}}\\) by substituting Eqn. 18.63 into 18.19.1:
 
-$$ \tag{17.64}
+$$ \tag{18.64}
 \begin{aligned}
 	\bm{N_{m,n}}(\bm{r})
 	&= \frac{-1}{kr} \bigg(
@@ -5668,9 +5668,9 @@ $$ \tag{17.64}
 \end{aligned}
 $$
 
-Careful comparison of the expression of the radial component to Eqn. 17.39 yields
+Careful comparison of the expression of the radial component to Eqn. 18.39 yields
 
-$$ \tag{17.65}
+$$ \tag{18.65}
 	(\bm{N_{m,n}})\_r
 	= \frac{1}{kr} \bigg(
 	     r^2 \frac{\partial^2 \psi_{m,n}}{\partial r^2}
@@ -5678,16 +5678,16 @@ $$ \tag{17.65}
 	   + k^2 r^2 \psi_{m,n} \bigg).
 $$
 
-Since \\(\psi_{m,n}\\) is separable, it satisfies Bessel's differential Eqn. 17.41.1. Coupled with the definition of \\(p^2\\) given by Eqn. 17.42.1, we obtain a simplified expression
+Since \\(\psi_{m,n}\\) is separable, it satisfies Bessel's differential Eqn. 18.41.1. Coupled with the definition of \\(p^2\\) given by Eqn. 18.42.1, we obtain a simplified expression
 
-$$ \tag{17.66}
+$$ \tag{18.66}
 	(\bm{N_{m,n}})\_r
 	= \frac{n (n + 1)}{kr} \psi_{m,n}.
 $$
 
-The explicit form of the components can be obtained by substitution of Eqn. 17.44:
+The explicit form of the components can be obtained by substitution of Eqn. 18.44:
 
-$$ \tag{17.67}
+$$ \tag{18.67}
 \begin{aligned}
 	\frac{1}{\gamma_{m,n}} \bm{N_{m,n}}(\bm{r})
 	&= n (n + 1) \frac{z_n(k r)}{k r} P_n^m(\cos{\theta}) e^{i m \phi} \bm{e_r}
@@ -5702,7 +5702,7 @@ $$
 
 The expressions given above may be shortened by defining two new polar functions
 
-$$ \tag{17.68}
+$$ \tag{18.68}
 	\pi_{m,n}(\theta)
 	= m \frac{P_n^m(\cos{\theta})}{\sin{\theta}},
 	\quad
@@ -5711,9 +5711,9 @@ $$ \tag{17.68}
 	= -\sin{\theta} \frac{\partial P_n^m(\cos{\theta})}{\partial (\cos{\theta})},
 $$
 
-that satisfy the modified Legendre's differential equation (cf. Eqn. 17.41.2 and 17.42)
+that satisfy the modified Legendre's differential equation (cf. Eqn. 18.41.2 and 18.42)
 
-$$ \tag{17.??}
+$$ \tag{18.??}
 	m \pi_{m,n}(\theta)
 	= \frac{\partial \big[ \tau_{m,n}(\theta) \sin{\theta} \big] }{\partial \theta}
 	+ n ( n + 1) P_n^m(\cos{\theta}) \sin{\theta},
@@ -5721,7 +5721,7 @@ $$
 
 and possess the following orthogonality properties:
 
-$$ \tag{17.69}
+$$ \tag{18.69}
 \begin{aligned}
 	& \int_{0}^{\pi} \big( \pi_{m,n}(\theta) \tau_{m,l}(\theta)
 	+ \tau_{m,n}(\theta) \pi_{m,l}(\theta) \big) \sin{\theta} \thinspace d\theta
@@ -5733,7 +5733,7 @@ $$
 
 plus
 
-$$ \tag{17.6?}
+$$ \tag{18.6?}
 \begin{aligned}
 	& \int_{0}^{\pi} \big( \pi_{m,n}(\theta) \tau_{m,l}(\theta)
 	+ \tau_{m,n}(\theta) \pi_{m,l}(\theta) \big) \cos{\theta} \sin{\theta} \thinspace d\theta
@@ -5746,7 +5746,7 @@ $$
 
 as well as
 
-$$ \tag{17.70}
+$$ \tag{18.70}
 \begin{aligned}
 	& \int_{0}^{\pi} \big( \pi_{m,n}(\theta) \pi_{m,l}(\theta)
 	+ \tau_{m,n}(\theta) \tau_{m,l}(\theta) \big) \sin{\theta} \thinspace d\theta
@@ -5762,7 +5762,7 @@ $$
 
 and, finally,
 
-$$ \tag{17.7?}
+$$ \tag{18.7?}
 \begin{aligned}
 	& \int_{0}^{\pi} \big( \pi_{m,n}(\theta) \pi_{m,l}(\theta)
 	+ \tau_{m,n}(\theta) \tau_{m,l}(\theta) \big) \cos{\theta} \sin{\theta} \thinspace d\theta
@@ -5815,11 +5815,11 @@ $$ \tag{17.7?}
 \end{aligned}
 $$
 
-where, in the addition to Legendre's differential equation (Eqn. 17.??), we utilized the orthogonality property of Legendre's polynomials (Eqn. 17.56), the recurrence relation (Eqn. 17.5?), and the fact that the value of the associated Legendre polynomials is zero for \\(\cos{\theta} = \pm 1\\) unless \\(m = 0\\).
+where, in the addition to Legendre's differential equation (Eqn. 18.??), we utilized the orthogonality property of Legendre's polynomials (Eqn. 18.56), the recurrence relation (Eqn. 18.5?), and the fact that the value of the associated Legendre polynomials is zero for \\(\cos{\theta} = \pm 1\\) unless \\(m = 0\\).
 
 To save some space, let us introduce a compact notation for the product derivative of the spherical Bessel function:
 
-$$ \tag{17.??}
+$$ \tag{18.??}
 \begin{aligned}
 	  \frac{z_n(x)}{x} + \frac{\partial z_n(x)}{\partial x}
 	= \frac{1}{x} \frac{\partial \big[ x z_n(x) \big]}{\partial x}
@@ -5827,9 +5827,9 @@ $$ \tag{17.??}
 \end{aligned}
 $$
 
-After substitution into Eqn. 17.62, 17.63, and 17.67, we immediately obtain the reduced expressions of the vector spherical wave functions:
+After substitution into Eqn. 18.62, 18.63, and 18.67, we immediately obtain the reduced expressions of the vector spherical wave functions:
 
-$$ \tag{17.71}
+$$ \tag{18.71}
 \begin{aligned}
 	\bm{L_{m,n}}(\bm{r})
 	&= \gamma_{m,n} e^{i m \phi} \bigg( \frac{\partial z_n(k r)}{\partial (k r)} P_n^m(\cos{\theta}) \bm{e_r}
@@ -5850,7 +5850,7 @@ $$
 
 You may notice that the expressions given above exhibit a certain pattern. That is not a coincidence. Indeed, the vector spherical wave functions are directly related to the set of vectors
 
-$$ \tag{17.72}
+$$ \tag{18.72}
 \begin{aligned}
 	& \bm{\Upsilon_{m,n}}(\theta, \phi)
 	= Y^m_n \bm{e_r} = \gamma_{m,n} e^{i m \phi} P_n^m(\cos{\theta}) \bm{e_r},
@@ -5867,11 +5867,11 @@ $$ \tag{17.72}
 \end{aligned}
 $$
 
-called [vector spherical harmonics](https://en.wikipedia.org/wiki/Vector_spherical_harmonics#Alternative_definition). They are an extension of the scalar spherical harmonics (Eqn. 17.58) to vectors fields on the surface of a sphere. Like the scalar spherical harmonics, they form a complete set of orthogonal basis functions \[[19](#references) (ch. 13.3), [28](#references) (ch. 4.2)\]. Unlike the vector spherical wave functions, they do not depend on the radial distance \\(r\\).
+called [vector spherical harmonics](https://en.wikipedia.org/wiki/Vector_spherical_harmonics#Alternative_definition). They are an extension of the scalar spherical harmonics (Eqn. 18.58) to vectors fields on the surface of a sphere. Like the scalar spherical harmonics, they form a complete set of orthogonal basis functions \[[19](#references) (ch. 13.3), [28](#references) (ch. 4.2)\]. Unlike the vector spherical wave functions, they do not depend on the radial distance \\(r\\).
 
-Most properties of the vector spherical harmonics are a direct consequence of the fact that they are built on the scalar spherical harmonics combined with the radial basis vector \\(\bm{e_r}\\). For instance, the symmetry property of Eqn. 17.60 leads to
+Most properties of the vector spherical harmonics are a direct consequence of the fact that they are built on the scalar spherical harmonics combined with the radial basis vector \\(\bm{e_r}\\). For instance, the symmetry property of Eqn. 18.60 leads to
 
-$$ \tag{17.73}
+$$ \tag{18.73}
 	\bm{\Upsilon_{-m,n}}
 	= (-1)^m \bm{\Upsilon_{m,n}^{\*}},
 	\quad
@@ -5884,7 +5884,7 @@ $$
 
 The particular manner of dependence on a single vector \\(\bm{e_r}\\) leads to orthogonality in the 3-dimensional space
 
-$$ \tag{17.74}
+$$ \tag{18.74}
 \begin{aligned}
 	\bm{\Upsilon_{s,t}} 	 \cdot \bm{\Phi_{m,n}} =
 	\bm{\Upsilon_{s,t}^{\*}} \cdot \bm{\Phi_{m,n}} = 0,
@@ -5902,7 +5902,7 @@ Furthermore, let us demonstrate that the vector spherical harmonics are also ort
 
 Let us begin by considering the double integral
 
-$$ \tag{17.75}
+$$ \tag{18.75}
 \begin{aligned}
 	&\int_{0}^{2 \pi} \int_{0}^{\pi} \big[ \bm{\Upsilon_{s,t}}(\theta, \phi) \big]^{\*} \cdot \bm{\Upsilon_{m,n}}(\theta, \phi) \sin{\theta} \thinspace d\theta d\phi
 	\cr
@@ -5912,18 +5912,18 @@ $$ \tag{17.75}
 \end{aligned}
 $$
 
-Analysis shows that the initial expression can be separated into a product of several terms. We may recognize from Eqn. 4.6 that the integral over \\(\phi\\) is nothing other than the rescaled Kronecker delta function \\(\delta_{m,s}\\). Thus, the value of the double integral is zero unless \\(m = s\\). Similarly, according to Eqn. 17.56, the integral over \\(\theta\\) is proportional to another Kronecker delta function \\(\delta_{t,n}\\). A simple calculation shows that the various constants cancel out, and we are left with
+Analysis shows that the initial expression can be separated into a product of several terms. We may recognize from Eqn. 4.6 that the integral over \\(\phi\\) is nothing other than the rescaled Kronecker delta function \\(\delta_{m,s}\\). Thus, the value of the double integral is zero unless \\(m = s\\). Similarly, according to Eqn. 18.56, the integral over \\(\theta\\) is proportional to another Kronecker delta function \\(\delta_{t,n}\\). A simple calculation shows that the various constants cancel out, and we are left with
 
-$$ \tag{17.76}
+$$ \tag{18.76}
 \begin{aligned}
 	\int_{0}^{2 \pi} \int_{0}^{\pi} \big[ \bm{\Upsilon_{s,t}}(\theta, \phi) \big]^{\*} \cdot \bm{\Upsilon_{m,n}}(\theta, \phi) \sin{\theta} \thinspace d\theta d\phi
 	= \delta_{m,s} \delta_{t,n}.
 \end{aligned}
 $$
 
-Similarly, from Eqn. 4.6 and 17.70, it follows that
+Similarly, from Eqn. 4.6 and 18.70, it follows that
 
-$$ \tag{17.77}
+$$ \tag{18.77}
 \begin{aligned}
 	& \int_{0}^{2 \pi} \int_{0}^{\pi} \big[ \bm{\Phi_{s,t}}(\theta, \phi) \big]^{\*} \cdot \bm{\Phi_{m,n}}(\theta, \phi) \sin{\theta} \thinspace d\theta d\phi
 	\cr
@@ -5938,9 +5938,9 @@ $$ \tag{17.77}
 \end{aligned}
 $$
 
-We can also show that the all mixed products are zero. According to Eqn. 17.74,
+We can also show that the all mixed products are zero. According to Eqn. 18.74,
 
-$$ \tag{17.78}
+$$ \tag{18.78}
 \begin{aligned}
 	& \int_{0}^{2 \pi} \int_{0}^{\pi} \big[ \bm{\Upsilon_{s,t}}(\theta, \phi) \big]^{\*} \cdot \bm{\Phi_{m,n}}(\theta, \phi) \sin{\theta} \thinspace d\theta d\phi
 	\cr
@@ -5949,9 +5949,9 @@ $$ \tag{17.78}
 \end{aligned}
 $$
 
-For the last pair of vectors, the proof involves Eqn. 17.69 instead:
+For the last pair of vectors, the proof involves Eqn. 18.69 instead:
 
-$$ \tag{17.79}
+$$ \tag{18.79}
 \begin{aligned}
 	& \int_{0}^{2 \pi} \int_{0}^{\pi} \big[ \bm{\Phi_{s,t}}(\theta, \phi) \big]^{\*} \cdot \bm{\Psi_{m,n}}(\theta, \phi) \sin{\theta} \thinspace d\theta d\phi
 	\cr
@@ -5963,9 +5963,9 @@ $$ \tag{17.79}
 \end{aligned}
 $$
 
-Let us now return to the expression of the vector spherical wave functions given in Eqn. 17.71. They can be expressed as a weighted combination of the vector spherical harmonics, effectively extending them to the entire 3-dimensional space:
+Let us now return to the expression of the vector spherical wave functions given in Eqn. 18.71. They can be expressed as a weighted combination of the vector spherical harmonics, effectively extending them to the entire 3-dimensional space:
 
-$$ \tag{17.80}
+$$ \tag{18.80}
 \begin{aligned}
 	\bm{L_{m,n}}(\bm{r})
 	&= \frac{\partial z_n(k r)}{\partial (k r)} \bm{\Upsilon_{m,n}}(\theta, \phi)
@@ -5980,11 +5980,11 @@ $$ \tag{17.80}
 \end{aligned}
 $$
 
-By simplifying Eqn. 17.72, we may show that, in general, \\(\bm{\Upsilon_{0,0}} \neq 0\\), while \\(\bm{\Phi_{0,0}} = \bm{\Psi_{0,0}} = 0\\). Substitution into Eqn. 17.80 leads to \\(\bm{L_{0,0}} \neq 0\\) and \\(\bm{M_{0,0}} = \bm{N_{0,0}} = 0\\). Consequently, the series expansions that exclude the \\(\bm{L_{m,n}}\\) vectors may begin at \\(n = 1\\).
+By simplifying Eqn. 18.72, we may show that, in general, \\(\bm{\Upsilon_{0,0}} \neq 0\\), while \\(\bm{\Phi_{0,0}} = \bm{\Psi_{0,0}} = 0\\). Substitution into Eqn. 18.80 leads to \\(\bm{L_{0,0}} \neq 0\\) and \\(\bm{M_{0,0}} = \bm{N_{0,0}} = 0\\). Consequently, the series expansions that exclude the \\(\bm{L_{m,n}}\\) vectors may begin at \\(n = 1\\).
 
-Most properties of the vector spherical harmonics are, to some degree, shared by the vector spherical wave functions. For instance, they exhibit the symmetry property that follows from Eqn. 17.73:
+Most properties of the vector spherical harmonics are, to some degree, shared by the vector spherical wave functions. For instance, they exhibit the symmetry property that follows from Eqn. 18.73:
 
-$$ \tag{17.81}
+$$ \tag{18.81}
 \begin{aligned}
 	\bm{L_{-m,n}}(\bm{r})
 	&= (-1)^m \bigg( \frac{\partial z_n(k r)}{\partial (k r)} \big[ \bm{\Upsilon_{m,n}}(\theta, \phi) \big]^{\*}
@@ -6001,7 +6001,7 @@ $$
 
 For real values of \\(k\\), and if the spherical Bessel function is real (which excludes the Hankel functions), the expressions given above can be simplified to
 
-$$ \tag{17.8x}
+$$ \tag{18.8x}
 	\bm{L_{-m,n}}
 	= (-1)^m \bm{L_{m,n}^{\*}},
 	\enspace
@@ -6014,15 +6014,15 @@ $$ \tag{17.8x}
 	(z_n \in \mathcal{R})
 $$
 
-According to Eqn. 17.22, \\(\bm{L_{m,n}}\\) and \\(\bm{M_{m,n}}\\) are mutually orthogonal in the  3-dimensional space. Eqn. 17.80 allows us to determine the state of affairs for the remaining two pairs of vectors. Since, according to Eqn. 17.74, the spherical harmonic vectors are orthogonal,
+According to Eqn. 18.22, \\(\bm{L_{m,n}}\\) and \\(\bm{M_{m,n}}\\) are mutually orthogonal in the  3-dimensional space. Eqn. 18.80 allows us to determine the state of affairs for the remaining two pairs of vectors. Since, according to Eqn. 18.74, the spherical harmonic vectors are orthogonal,
 
-$$ \tag{17.82}
+$$ \tag{18.82}
 	\bm{M_{m,n}} \cdot \bm{N_{m,n}} = 0.
 $$
 
 The relationship between \\(\bm{L_{m,n}}\\) and \\(\bm{N_{m,n}}\\) is more complicated:
 
-$$ \tag{17.83}
+$$ \tag{18.83}
 \small
 \begin{aligned}
 	\bm{L_{m,n}} \cdot \bm{N_{m,n}}
@@ -6035,11 +6035,11 @@ Since \\(\bm{\Psi_{0,0}} = 0\\), it trivially follows that \\(\bm{L_{0,0}} \cdot
 
 {{< figure src="/img/l_dot_n.svg" caption="*Figure N: \\((\bm{L\_{0,n}^{(1)}} \cdot \bm{N\_{0,n}^{(1)}})/(|\bm{L\_{0,n}^{(1)}}| |\bm{N\_{0,n}^{(1)}}|)\\) of order \\(m=0\\) and degree \\(n=1\\) (blue), \\(n=2\\) (orange), \\(n=3\\) (green), defined in terms of the spherical Bessel function of the first kind, as a function of the polar angle \\(\theta\\), with fixed values of \\(k = r = 1, \thinspace \thinspace \phi = 0\\).*" >}}
 
-In addition to partial orthogonality in the real 3-dimensional space, we can show that the vector spherical wave functions are also partially orthogonal in the Hilbert space. In order to do that, we shall utilize the definition given by Eqn. 17.80 and the orthogonality relations of Eqn. 17.74:
+In addition to partial orthogonality in the real 3-dimensional space, we can show that the vector spherical wave functions are also partially orthogonal in the Hilbert space. In order to do that, we shall utilize the definition given by Eqn. 18.80 and the orthogonality relations of Eqn. 18.74:
 
-Noting that, according to Eqn. 17.74, Let us evaluate the integral taken over the surface of a sphere.
+Noting that, according to Eqn. 18.74, Let us evaluate the integral taken over the surface of a sphere.
 
-$$ \tag{17.84}
+$$ \tag{18.84}
 \begin{aligned}
 	&\int_{0}^{2 \pi} \int_{0}^{\pi} \big[ \bm{L_{s,t}}(\bm{r}) \big]^{\*} \cdot \bm{L_{m,n}}(\bm{r}) \sin{\theta} \thinspace d\theta d\phi
 	\cr
@@ -6051,9 +6051,9 @@ $$ \tag{17.84}
 \end{aligned}
 $$
 
-Application of the orthogonality properties given by Eqn. 17.76 and 17.77 immediately yields
+Application of the orthogonality properties given by Eqn. 18.76 and 18.77 immediately yields
 
-$$ \tag{17.85}
+$$ \tag{18.85}
 \begin{aligned}
 	&\int_{0}^{2 \pi} \int_{0}^{\pi} \big[ \bm{L_{s,t}}(\bm{r}) \big]^{\*} \cdot \bm{L_{m,n}}(\bm{r}) \sin{\theta} \thinspace d\theta d\phi
 	\cr
@@ -6062,9 +6062,9 @@ $$ \tag{17.85}
 \end{aligned}
 $$
 
-The derivative can be eliminated by considering the recurrence relations of Eqn. 17.50:
+The derivative can be eliminated by considering the recurrence relations of Eqn. 18.50:
 
-$$ \tag{17.86}
+$$ \tag{18.86}
 \begin{aligned}
 	&\int_{0}^{2 \pi} \int_{0}^{\pi} \big[ \bm{L_{s,t}}(\bm{r}) \big]^{\*} \cdot \bm{L_{m,n}}(\bm{r}) \sin{\theta} \thinspace d\theta d\phi
 	\cr
@@ -6077,7 +6077,7 @@ $$
 
 Further simplification can be only achieved by assuming that no complex numbers are involved \\((z_n \in \mathcal{R})\\):
 
-$$ \tag{17.87}
+$$ \tag{18.87}
 \begin{aligned}
 	&\int_{0}^{2 \pi} \int_{0}^{\pi} \big[ \bm{L_{s,t}}(\bm{r}) \big]^{\*} \cdot \bm{L_{m,n}}(\bm{r}) \sin{\theta} \thinspace d\theta d\phi
 	\cr
@@ -6087,14 +6087,14 @@ $$
 
 The same formulae lead to
 
-$$ \tag{17.88}
+$$ \tag{18.88}
 	\int_{0}^{2 \pi} \int_{0}^{\pi} \big[ \bm{M_{s,t}}(\bm{r}) \big]^{\*} \cdot \bm{M_{m,n}}(\bm{r}) \sin{\theta} \thinspace d\theta d\phi
 	= n (n+1) \big| z_n(k r) \big|^2 \delta_{m,s} \delta_{t,n}
 $$
 
 and
 
-$$ \tag{17.89}
+$$ \tag{18.89}
 \begin{aligned}
 	&\int_{0}^{2 \pi} \int_{0}^{\pi} \big[ \bm{N_{s,t}}(\bm{r}) \big]^{\*} \cdot \bm{N_{m,n}}(\bm{r}) \sin{\theta} \thinspace d\theta d\phi
 	\cr
@@ -6112,7 +6112,7 @@ $$
 
 which, for real numbers \\((z_n \in \mathcal{R})\\), can be reduced to
 
-$$ \tag{17.90}
+$$ \tag{18.90}
 \begin{aligned}
 	&\int_{0}^{2 \pi} \int_{0}^{\pi} \big[ \bm{N_{s,t}}(\bm{r}) \big]^{\*} \cdot \bm{N_{m,n}}(\bm{r}) \sin{\theta} \thinspace d\theta d\phi
 	\cr
@@ -6126,7 +6126,7 @@ We have just shown that the vectors of the same type (but of different orders) a
 
 We begin by considering the pairs of \\(\bm{L_{m,n}}\\) and \\(\bm{M_{m,n}}\\):
 
-$$ \tag{17.91}
+$$ \tag{18.91}
 \begin{aligned}
 	&\int_{0}^{2 \pi} \int_{0}^{\pi} \big[ \bm{L_{s,t}}(\bm{r}) \big]^{\*} \cdot \bm{M_{m,n}}(\bm{r}) \sin{\theta} \thinspace d\theta d\phi
 	\cr
@@ -6136,17 +6136,17 @@ $$ \tag{17.91}
 \end{aligned}
 $$
 
-which directly follows from orthogonality of the vector spherical harmonics demonstrated by Eqn. 17.78 and 17.79.
+which directly follows from orthogonality of the vector spherical harmonics demonstrated by Eqn. 18.78 and 18.79.
 
 An identical calculation leads to
 
-$$ \tag{17.92}
+$$ \tag{18.92}
 	\int_{0}^{2 \pi} \int_{0}^{\pi} \big[ \bm{M_{s,t}}(\bm{r}) \big]^{\*} \cdot \bm{N_{m,n}}(\bm{r}) \sin{\theta} \thinspace d\theta d\phi = 0.
 $$
 
-Since, according to Eqn. 17.83, \\(\bm{L_{m,n}}\\) and \\(\bm{N_{m,n}}\\) are not fully orthogonal in the 3-dimensional space, we should also expect some complications in the Hilbert space. From Eqn. 17.74, 17.76 and 17.77 it follows that
+Since, according to Eqn. 18.83, \\(\bm{L_{m,n}}\\) and \\(\bm{N_{m,n}}\\) are not fully orthogonal in the 3-dimensional space, we should also expect some complications in the Hilbert space. From Eqn. 18.74, 18.76 and 18.77 it follows that
 
-$$ \tag{17.93}
+$$ \tag{18.93}
 \begin{aligned}
 	&\int_{0}^{2 \pi} \int_{0}^{\pi} \big[ \bm{L_{s,t}}(\bm{r}) \big]^{\*} \cdot \bm{N_{m,n}}(\bm{r}) \sin{\theta} \thinspace d\theta d\phi
 	\cr
@@ -6155,9 +6155,9 @@ $$ \tag{17.93}
 \end{aligned}
 $$
 
-In the absence of complex numbers \\((z_n \in \mathcal{R})\\), Eqn. 17.93 has a simpler expression
+In the absence of complex numbers \\((z_n \in \mathcal{R})\\), Eqn. 18.93 has a simpler expression
 
-$$ \tag{17.94}
+$$ \tag{18.94}
 \begin{aligned}
 	&\int_{0}^{2 \pi} \int_{0}^{\pi} \big[ \bm{L_{s,t}}(\bm{r}) \big]^{\*} \cdot \bm{N_{m,n}}(\bm{r}) \sin{\theta} \thinspace d\theta d\phi
 	\cr
@@ -6169,37 +6169,37 @@ $$ \tag{17.94}
 \end{aligned}
 $$
 
-where we once again utilized the identities of Eqn. 17.50.
+where we once again utilized the identities of Eqn. 18.50.
 
-Given the asymptotic behavior of the spherical Bessel functions given by Eqn. 17.52, it follows that
+Given the asymptotic behavior of the spherical Bessel functions given by Eqn. 18.52, it follows that
 
-$$ \tag{17.95}
+$$ \tag{18.95}
 	\int_{0}^{2 \pi} \int_{0}^{\pi} \big[ \bm{L_{s,t}}(\bm{r}) \big]^{\*} \cdot \bm{N_{m,n}}(\bm{r}) \sin{\theta} \thinspace d\theta d\phi
 	\simeq 0.
 $$
 
-For our application, the partial orthogonality between \\(\bm{L_{m,n}}\\) and \\(\bm{N_{m,n}}\\) is not a real concern. According to Eqn. 17.36 and 17.37, the electric and the magnetic fields can be expressed solely in terms of \\(\bm{M_{m,n}}\\) and \\(\bm{N_{m,n}}\\), which are mutually orthogonal, as has been shown by Eqn. 17.82 and 17.92.
+For our application, the partial orthogonality between \\(\bm{L_{m,n}}\\) and \\(\bm{N_{m,n}}\\) is not a real concern. According to Eqn. 18.36 and 18.37, the electric and the magnetic fields can be expressed solely in terms of \\(\bm{M_{m,n}}\\) and \\(\bm{N_{m,n}}\\), which are mutually orthogonal, as has been shown by Eqn. 18.82 and 18.92.
 
-Now, let us return to the scattering problem. In general, we may arrive at the solution by determining the values of the set of coefficients of the vector spherical wave series expansion given by Eqn. 17.36. In order to obtain these coefficients, we must consider three distinct types of electromagnetic fields: the incident field produced by an external source, the scattered field in the radiation zone of the particle, and the total internal field induced inside the sphere. The reason for this kind of decomposition will become apparent shortly.
+Now, let us return to the scattering problem. In general, we may arrive at the solution by determining the values of the set of coefficients of the vector spherical wave series expansion given by Eqn. 18.36. In order to obtain these coefficients, we must consider three distinct types of electromagnetic fields: the incident field produced by an external source, the scattered field in the radiation zone of the particle, and the total internal field induced inside the sphere. The reason for this kind of decomposition will become apparent shortly.
 
 Let us begin by considering the expansion of the incident field:
 
-$$ \tag{17.96}
+$$ \tag{18.96}
 	\bm{E_i}(\bm{r}, \omega)
 	= \sum_{n=1}^{\infin} \sum_{m=-n}^{n} \big( c_{m,n}(\omega) \bm{M_{m,n}^{(1)}}(\bm{r}, \omega) + d_{m,n}(\omega) \bm{N_{m,n}^{(1)}}(\bm{r}, \omega) \big).
 $$
 
 The superscript \\((1)\\) indicates that we have made the choice of a spherical Bessel function of the first kind
 
-$$ \tag{17.97}
+$$ \tag{18.97}
 	z_n^{(1)}(k r) = j_n(k r)
 $$
 
 motivated by its non-singular behavior at the origin (cf. Fig. N). This property makes it suitable for expressing a smooth, finite-valued electromagnetic field.
 
-Evidently, the analytic expression of the incident field must be known a priori. This fact permits us to determine the values of the coefficients \\(c_{m,n}\\) and \\(d_{m,n}\\) by combining Eqn. 17.96 with 17.88 and 17.89, respectively:
+Evidently, the analytic expression of the incident field must be known a priori. This fact permits us to determine the values of the coefficients \\(c_{m,n}\\) and \\(d_{m,n}\\) by combining Eqn. 18.96 with 18.88 and 18.89, respectively:
 
-$$ \tag{17.98}
+$$ \tag{18.98}
 \small
 \begin{aligned}
 	c_{m,n}
@@ -6219,31 +6219,31 @@ $$ \tag{17.98}
 \end{aligned}
 $$
 
-Eqn. 17.96 and 17.98 have a simple geometric interpretation. If we define the *Hilbert space norm*
+Eqn. 18.96 and 18.98 have a simple geometric interpretation. If we define the *Hilbert space norm*
 
-$$ \tag{17.99}
+$$ \tag{18.99}
 	\mathcal{N_h}(\bm{V})
 	= \sqrt{\mathcal{P_h}(\bm{V}, \bm{V})},
 $$
 
 in terms of the *Hilbert space projection operator*
 
-$$ \tag{17.100}
+$$ \tag{18.100}
 	\mathcal{P_h}(\bm{V}, \bm{W})
 	= \int_{0}^{2 \pi} \int_{0}^{\pi} \big[ \bm{W}(\bm{r}) \big]^{\*} \cdot \bm{V}(\bm{r}) \sin{\theta} \thinspace d\theta d\phi,
 $$
 
-then Eqn. 17.98 can be interpreted the projection into the Hilbert space,
+then Eqn. 18.98 can be interpreted the projection into the Hilbert space,
 
-$$ \tag{17.101}
+$$ \tag{18.101}
 	c_{m,n} = \frac{ \mathcal{P_h} \big( \bm{E_i}, \bm{M_{m,n}^{(1)}} \big) }{ \mathcal{N_h}^2 \big( \bm{M_{m,n}^{(1)}} \big) },
 	\quad
 	d_{m,n} = \frac{ \mathcal{P_h} \big( \bm{E_i}, \bm{N_{m,n}^{(1)}} \big) }{ \mathcal{N_h}^2 \big( \bm{N_{m,n}^{(1)}} \big) },
 $$
 
-with Eqn. 17.96 performing the reconstruction:
+with Eqn. 18.96 performing the reconstruction:
 
-$$ \tag{17.102}
+$$ \tag{18.102}
 \small
 \bm{E_i}
 = \sum_{n=1}^{\infin} \sum_{m=-n}^{n} \Bigg(
@@ -6255,33 +6255,33 @@ Let us further assume that the incident field can be represented by a plane wave
 
 If the region of space is filled with a linear, isotropic, homogeneous, source-free medium, the expression of the incident vector plane wave is given by Eqn. 7.2:
 
-$$ \tag{17.103}
+$$ \tag{18.103}
 	\bm{E_i}(\bm{r}, \omega) e^{- i \omega t}
 	= \bm{E_0}(\bm{n_i}, \omega) e^{i k(\omega) (\bm{r} \cdot \bm{n_i}) - i \omega t}.
 $$
 
 In spherical coordinates, the explicit representation of \\(\bm{r}\\) is
 
-$$ \tag{17.104}
+$$ \tag{18.104}
 	\bm{r} = \lbrace r, \theta, \phi \rbrace.
 $$
 
 We may take advantage of the symmetry of the problem by aligning \\(\bm{n_i}\\) with the \\(z\\)-axis (cf. Fig. N). Then,
 
-$$ \tag{17.105}
+$$ \tag{18.105}
 	\bm{r} \cdot \bm{e_z} = r \cos{\theta}.
 $$
 
 Further simplification can be achieved by recalling that an electromagnetic plane wave is transverse with respect to its direction of propagation (as shown by Eqn. 7.18 and 7.23). Therefore, in Cartesian coordinates, the polarization phasor \\(\bm{E_0}\\) of a plane wave can be completely described by two complex numbers \\(E_X\\) and \\(E_Y\\):
 
-$$ \tag{17.106}
+$$ \tag{18.106}
 	\bm{E_0}(\bm{e_z}, \omega)
 	= E_X(\omega) \bm{e_x} + E_Y(\omega) \bm{e_y}.
 $$
 
-Eqn. 17.106 does not explicitly depend on the point of reference \\(\bm{r}\\). However, the spherical coordinate basis vectors [vary in space](https://en.wikipedia.org/wiki/Vector_fields_in_cylindrical_and_spherical_coordinates#Spherical_coordinate_system):
+Eqn. 18.106 does not explicitly depend on the point of reference \\(\bm{r}\\). However, the spherical coordinate basis vectors [vary in space](https://en.wikipedia.org/wiki/Vector_fields_in_cylindrical_and_spherical_coordinates#Spherical_coordinate_system):
 
-$$ \tag{17.107}
+$$ \tag{18.107}
 \begin{aligned}
 	\bm{e_x} &= \sin{\theta} \cos{\phi} \thinspace \bm{e_{r}}
 			  + \cos{\theta} \cos{\phi} \thinspace \bm{e_{\theta}}
@@ -6297,17 +6297,17 @@ $$ \tag{17.107}
 \end{aligned}
 $$
 
-Eqn. 17.103-17.107 give a complete description of an electromagnetic plane wave in the spherical coordinates. We may now determine the values of the series coefficients (using Eqn. 17.98) by projecting the vector plane wave onto the vector spherical wave functions.
+Eqn. 18.103-18.107 give a complete description of an electromagnetic plane wave in the spherical coordinates. We may now determine the values of the series coefficients (using Eqn. 18.98) by projecting the vector plane wave onto the vector spherical wave functions.
 
 Let us first evaluate
 
-$$ \tag{17.114}
+$$ \tag{18.114}
 	\int_{0}^{2 \pi} \int_{0}^{\pi} \big[ \bm{M_{m,n}^{(1)}}(\bm{r}) \big]^{\*} \cdot \bm{E_i}(\bm{r}) \sin{\theta} \thinspace d\theta d\phi.
 $$
 
-Since, according to Eqn. 17.107, the expression of the incident wave only contains first-order harmonic functions of \\(\phi\\), orthogonality of the Fourier basis makes the integral of Eqn. 17.114 vanish unless \\(m = \pm 1\\). Furthermore, the definition of \\(\bm{M_{m,n}}\\) (given by Eqn. 17.63) omits the radial basis vector, so the latter does not require further consideration. Therefore,
+Since, according to Eqn. 18.107, the expression of the incident wave only contains first-order harmonic functions of \\(\phi\\), orthogonality of the Fourier basis makes the integral of Eqn. 18.114 vanish unless \\(m = \pm 1\\). Furthermore, the definition of \\(\bm{M_{m,n}}\\) (given by Eqn. 18.63) omits the radial basis vector, so the latter does not require further consideration. Therefore,
 
-$$ \tag{17.115}
+$$ \tag{18.115}
 \begin{aligned}
 	& \frac{-1}{ \gamma_{m,n} \big[ j_n(k r) \big]^{\*} }\int_{0}^{2 \pi} \int_{0}^{\pi} \big[ \bm{M_{m,n}^{(1)}}(\bm{r}) \big]^{\*} \cdot \bm{E_i}(\bm{r}) \sin{\theta} \thinspace d\theta d\phi
 	\cr
@@ -6325,15 +6325,15 @@ $$
 
 Each term of the sum given above can be factored into a product of the \\(r\\), \\(\theta\\), \\(\phi\\) components. Using the identities
 
-$$ \tag{17.116}
+$$ \tag{18.116}
 	\int_{0}^{2 \pi} \sin{\phi} \thinspace e^{\pm i \phi} \thinspace d\phi = \pm i \pi,
 	\quad
 	\int_{0}^{2 \pi} \cos{\phi} \thinspace e^{\pm i \phi} \thinspace d\phi = \pi,
 $$
 
-the integrals taken over the \\(\phi\\) angle can be evaluated analytically. Eqn. 17.115 is thus reduced to
+the integrals taken over the \\(\phi\\) angle can be evaluated analytically. Eqn. 18.115 is thus reduced to
 
-$$ \tag{17.117}
+$$ \tag{18.117}
 \begin{aligned}
 	& \frac{-1}{ \gamma_{m,n} \big[ j_n(k r) \big]^{\*} }\int_{0}^{2 \pi} \int_{0}^{\pi} \big[ \bm{M_{m,n}^{(1)}}(\bm{r}) \big]^{\*} \cdot \bm{E_i}(\bm{r}) \sin{\theta} \thinspace d\theta d\phi
 	\cr
@@ -6344,17 +6344,17 @@ $$ \tag{17.117}
 \end{aligned}
 $$
 
-If \\(m = \pm 1\\), then, according to Eqn. 17.47 and 17.55, the associated Legendre polynomials are related to the unassociated ones in a very simple manner:
+If \\(m = \pm 1\\), then, according to Eqn. 18.47 and 18.55, the associated Legendre polynomials are related to the unassociated ones in a very simple manner:
 
-$$ \tag{17.118}
+$$ \tag{18.118}
 	P_n^{1}(\cos{\theta}) = \frac{\partial}{\partial \theta} P_n(\cos{\theta}),
 	\quad
 	P_n^{-1}(\cos{\theta}) = \frac{-1}{n (n + 1)} \frac{\partial}{\partial \theta} P_n(\cos{\theta}).
 $$
 
-Once we transform the expression found in Eqn. 17.117,
+Once we transform the expression found in Eqn. 18.117,
 
-$$ \tag{17.119}
+$$ \tag{18.119}
 \begin{aligned}
 	  \bigg( \frac{P_n^1(\cos{\theta})}{\sin{\theta}} \cos{\theta}
 	+ \frac{\partial P_n^1(\cos{\theta})}{\partial \theta} \bigg) \sin{\theta}
@@ -6363,9 +6363,9 @@ $$ \tag{17.119}
 \end{aligned}
 $$
 
-we discover that it directly maps onto Legendre's differential Eqn. 17.41.2 (with the constants given by Eqn. 17.42):
+we discover that it directly maps onto Legendre's differential Eqn. 18.41.2 (with the constants given by Eqn. 18.42):
 
-$$ \tag{17.120}
+$$ \tag{18.120}
 \begin{aligned}
 	  \bigg( \cos{\theta} \frac{\partial}{\partial \theta}
 	+ \sin{\theta} \frac{\partial^2}{\partial \theta^2} \bigg) P_n(\cos{\theta})
@@ -6373,16 +6373,16 @@ $$ \tag{17.120}
 \end{aligned}
 $$
 
-Eqn. 17.119 and 17.120, coupled with [Gegenbauer's representation](https://dlmf.nist.gov/10.54) of the spherical Bessel function of the first kind \[[Watson](#references) (ch. 3.32)\]
+Eqn. 18.119 and 18.120, coupled with [Gegenbauer's representation](https://dlmf.nist.gov/10.54) of the spherical Bessel function of the first kind \[[Watson](#references) (ch. 3.32)\]
 
-$$ \tag{17.1??}
+$$ \tag{18.1??}
 	j_n(x) = \frac{i^{-n}}{2}
 	\int_{0}^{\pi} e^{i x \cos{\theta}} P_n(\cos{\theta}) \sin{\theta} \thinspace d\theta,
 $$
 
-allow us to analytically evaluate the integral found in Eqn. 17.117:
+allow us to analytically evaluate the integral found in Eqn. 18.117:
 
-$$ \tag{17.121}
+$$ \tag{18.121}
 \begin{aligned}
 	& \int_{0}^{\pi} e^{i k r \cos{\theta}} \bigg(
 		  \frac{P_n^1(\cos{\theta})}{\sin{\theta}} \cos{\theta}
@@ -6393,17 +6393,17 @@ $$ \tag{17.121}
 \end{aligned}
 $$
 
-We may extend our result to the \\(m = -1\\) case by examining Eqn. 17.58 and 17.118.2 and noting that
+We may extend our result to the \\(m = -1\\) case by examining Eqn. 18.58 and 18.118.2 and noting that
 
-$$ \tag{17.122}
+$$ \tag{18.122}
 \begin{aligned}
 	\gamma_{1,n} = \frac{\gamma_{-1,n}}{n (n + 1)}.
 \end{aligned}
 $$
 
-Furthermore, the minus sign found in Eqn. 17.118.2 can be dealt with by multiplying both the positive and the negative solutions by \\(m\\). Thus, with the help of Eqn. 17.121-17.122, the unified value of Eqn. 17.117 is
+Furthermore, the minus sign found in Eqn. 18.118.2 can be dealt with by multiplying both the positive and the negative solutions by \\(m\\). Thus, with the help of Eqn. 18.121-18.122, the unified value of Eqn. 18.117 is
 
-$$ \tag{17.123}
+$$ \tag{18.123}
 \begin{aligned}
 	& \int_{0}^{2 \pi} \int_{0}^{\pi} \big[ \bm{M_{m,n}^{(1)}}(\bm{r}) \big]^{\*} \cdot \bm{E_i}(\bm{r}) \sin{\theta} \thinspace d\theta d\phi
 	\cr
@@ -6411,16 +6411,16 @@ $$ \tag{17.123}
 \end{aligned}
 $$
 
-Comparison with Eqn. 17.98.1 yields the value of the first expansion coefficient
+Comparison with Eqn. 18.98.1 yields the value of the first expansion coefficient
 
-$$ \tag{17.124}
+$$ \tag{18.124}
 	c_{m,n}
 	= \delta_{m,\pm 1} (i E_X + m E_Y) 2 \pi i^n \gamma_{1,n}.
 $$
 
-The value of the second coefficient can be obtained in a similar manner (except, this time, the radial component can no longer be ignored). Substitution of Eqn. 17.67 and 17.103-17.107 into 17.98.2 produces the following expression:
+The value of the second coefficient can be obtained in a similar manner (except, this time, the radial component can no longer be ignored). Substitution of Eqn. 18.67 and 18.103-18.107 into 18.98.2 produces the following expression:
 
-$$ \tag{17.125}
+$$ \tag{18.125}
 \small
 \begin{aligned}
 	& \frac{1}{\gamma_{m,n}} \int_{0}^{2 \pi} \int_{0}^{\pi} \big[ \bm{N_{m,n}^{(1)}}(\bm{r}) \big]^{\*} \cdot \bm{E_i}(\bm{r}) \sin{\theta} \thinspace d\theta d\phi
@@ -6448,9 +6448,9 @@ $$ \tag{17.125}
 \end{aligned}
 $$
 
-Since, once again, \\(m = \pm 1\\), we may utilize Eqn. 17.116 to perform integration over the \\(\phi\\) angle:
+Since, once again, \\(m = \pm 1\\), we may utilize Eqn. 18.116 to perform integration over the \\(\phi\\) angle:
 
-$$ \tag{17.126}
+$$ \tag{18.126}
 \small
 \begin{aligned}
 	& \frac{1}{\gamma_{m,n}} \int_{0}^{2 \pi} \int_{0}^{\pi} \big[ \bm{N_{m,n}^{(1)}}(\bm{r}) \big]^{\*} \cdot \bm{E_i}(\bm{r}) \sin{\theta} \thinspace d\theta d\phi
@@ -6470,9 +6470,9 @@ $$ \tag{17.126}
 \end{aligned}
 $$
 
-The first term can be [integrated by parts](https://en.wikipedia.org/wiki/Integration_by_parts). If we use Eqn. 17.118 and 17.120 to define
+The first term can be [integrated by parts](https://en.wikipedia.org/wiki/Integration_by_parts). If we use Eqn. 18.118 and 18.120 to define
 
-$$ \tag{17.127}
+$$ \tag{18.127}
 \begin{aligned}
 	u(n, \theta) &= P_n^{1}(\cos{\theta}) \sin{\theta} = \sin{\theta} \frac{\partial}{\partial \theta} P_n(\cos{\theta}),
 	\cr
@@ -6486,9 +6486,9 @@ $$ \tag{17.127}
 \end{aligned}
 $$
 
-and apply Eqn. 17.1??, we readily obtain
+and apply Eqn. 18.1??, we readily obtain
 
-$$ \tag{17.128}
+$$ \tag{18.128}
 \begin{aligned}
 	&\int_{0}^{\pi} e^{i k r \cos{\theta}}
 		P_n^1(\cos{\theta}) \sin^2{\theta}
@@ -6501,17 +6501,17 @@ $$ \tag{17.128}
 \end{aligned}
 $$
 
-The second integral of Eqn. 17.126 must not be confused with the one in Eqn. 17.121. Here, we use a different approach: if we differentiate Eqn. 17.1??,
+The second integral of Eqn. 18.126 must not be confused with the one in Eqn. 18.121. Here, we use a different approach: if we differentiate Eqn. 18.1??,
 
-$$ \tag{17.129}
+$$ \tag{18.129}
 	\frac{\partial j_n(x)}{\partial x}
 	= \frac{i^{-n + 1}}{2}
 	\int_{0}^{\pi} e^{i x \cos{\theta}} P_n(\cos{\theta}) \sin{\theta} \cos{\theta} \thinspace d\theta,
 $$
 
-and utilize Eqn. 17.118, 17.120, and 17.128 once more, we may show that
+and utilize Eqn. 18.118, 18.120, and 18.128 once more, we may show that
 
-$$ \tag{17.130}
+$$ \tag{18.130}
 \begin{aligned}
 	& \int_{0}^{\pi} e^{i k r \cos{\theta}} \bigg(
 		\frac{\partial P_n^1(\cos{\theta})}{\partial \theta} \cos{\theta}
@@ -6530,9 +6530,9 @@ $$ \tag{17.130}
 \end{aligned}
 $$
 
-Substitution of Eqn. 17.128 and 17.130 finally allows us to evaluate Eqn. 17.126:
+Substitution of Eqn. 18.128 and 18.130 finally allows us to evaluate Eqn. 18.126:
 
-$$ \tag{17.131}
+$$ \tag{18.131}
 \begin{aligned}
 	& \int_{0}^{2 \pi} \int_{0}^{\pi} \big[ \bm{N_{m,n}^{(1)}}(\bm{r}) \big]^{\*} \cdot \bm{E_i}(\bm{r}) \sin{\theta} \thinspace d\theta d\phi
 	\cr
@@ -6544,17 +6544,17 @@ $$
 
 As before, we have unified the expressions of both orders by multiplying each term by \\(m\\).
 
-Once we substitute the value of the integral into Eqn. 17.98.2, the factor containing the Bessel function cancels out, making the expression of the second coefficient is particularly simple:
+Once we substitute the value of the integral into Eqn. 18.98.2, the factor containing the Bessel function cancels out, making the expression of the second coefficient is particularly simple:
 
-$$ \tag{17.132}
+$$ \tag{18.132}
 \begin{aligned}
 	d_{m,n} &= \delta_{m,\pm 1} (i m E_X + E_Y) 2 \pi i^n \gamma_{1,n}.
 \end{aligned}
 $$
 
-Derivation of the coefficients given by Eqn. 17.124 and 17.132 completes the vector spherical wave series expansion of an electromagnetic plane wave:
+Derivation of the coefficients given by Eqn. 18.124 and 18.132 completes the vector spherical wave series expansion of an electromagnetic plane wave:
 
-$$ \tag{17.133}
+$$ \tag{18.133}
 \begin{aligned}
 	\bm{E_0}(\bm{e_z}, \omega) e^{i k(\omega) (\bm{r} \cdot \bm{e_z})}
 	&= \sum_{n=1}^{\infin} \sum_{m=-n}^{n} \big( c_{m,n}(\omega) \bm{M_{m,n}^{(1)}}(\bm{r}, \omega) + d_{m,n}(\omega) \bm{N_{m,n}^{(1)}}(\bm{r}, \omega) \big)
@@ -6567,7 +6567,7 @@ $$
 
 The \\(i\\) factor preceding \\(E_X\\) should not come as a surprise. Since, according to [Euler's identity](https://en.wikipedia.org/wiki/Euler%27s_identity),
 
-$$ \tag{17.134}
+$$ \tag{18.134}
 	e^{\pm i \pi/2} = \pm i,
 $$
 
@@ -6575,7 +6575,7 @@ it simply expresses the fact that the angle between the \\(x\\) and \\(y\\) axes
 
 Another way to show this is by introducing the even and odd vector tesseral wave functions
 
-$$ \tag{17.135}
+$$ \tag{18.135}
 \begin{aligned}
 	\bm{L_{^e_o,m,n}}(\bm{r})
 	&= \negthickspace \begin{array}{cc}
@@ -6608,11 +6608,11 @@ $$
 	\sin(m \phi) = \frac{1}{2 i} \Big( e^{i m \phi} - e^{-i m \phi} \Big),
 $$
 
-and accounting for the symmetry property of the vector spherical harmonics given by Eqn. 17.73.
+and accounting for the symmetry property of the vector spherical harmonics given by Eqn. 18.73.
 
-Using the definitions of the vector spherical harmonics (Eqn. 17.72-17.73) and the vector spherical wave functions (Eqn. 17.80-17.81), it may be shown that the functions of Eqn. 17.135 are weighted combinations of the (real) vector tesseral harmonics \\(\bm{\Upsilon_{^e_o,m,n}}, \bm{\Phi_{^e_o,m,n}}, \bm{\Psi_{^e_o,m,n}}\\). In order to save some space, we shall simply state the resulting expressions below:
+Using the definitions of the vector spherical harmonics (Eqn. 18.72-18.73) and the vector spherical wave functions (Eqn. 18.80-18.81), it may be shown that the functions of Eqn. 18.135 are weighted combinations of the (real) vector tesseral harmonics \\(\bm{\Upsilon_{^e_o,m,n}}, \bm{\Phi_{^e_o,m,n}}, \bm{\Psi_{^e_o,m,n}}\\). In order to save some space, we shall simply state the resulting expressions below:
 
-$$ \tag{17.136}
+$$ \tag{18.136}
 \begin{aligned}
 	\bm{L_{^e_o,m,n}}(\bm{r})
 	&= \frac{\partial z_n(k r)}{\partial (k r)} P_n^m(\cos{\theta})
@@ -6665,9 +6665,9 @@ $$ \tag{17.136}
 \end{aligned}
 $$
 
-Eqn. 17.135 make it easy to show that the plane wave expansion of Eqn. 17.133 can be reduced to
+Eqn. 18.135 make it easy to show that the plane wave expansion of Eqn. 18.133 can be reduced to
 
-$$ \tag{17.137}
+$$ \tag{18.137}
 \begin{aligned}
 	\bm{E_i}(\bm{r}, \omega)
 	&= E_X(\omega) \sum_{n=1}^{\infin} i^n \frac{(2 n + 1)}{n (n + 1)} \big( {-\bm{M_{o,1,n}^{(1)}}}(\bm{r}, \omega) + i \bm{N_{e,1,n}^{(1)}}(\bm{r}, \omega) \big)
@@ -6676,11 +6676,11 @@ $$ \tag{17.137}
 \end{aligned}
 $$
 
-Eqn. 17.137 can be found in \[[17](#references) (ch. 7.11)\]. The author does not show the entire derivation, and, unfortunately, arrives at the result with the opposite sign.
+Eqn. 18.137 can be found in \[[17](#references) (ch. 7.11)\]. The author does not show the entire derivation, and, unfortunately, arrives at the result with the opposite sign.
 
 Note that, since the vector tesseral wave functions are used to represent the \\(x\\) and \\(y\\) components of the fields, we can transform the odd functions into the even ones by performing a 90 degree rotation:
 
-$$ \tag{17.???}
+$$ \tag{18.???}
 \begin{aligned}
 	\bm{L_{e,m,n}}(r, \theta, \phi) &= \bm{L_{o,m,n}} \bigg( r, \theta, \phi + \frac{\pi}{2 m} \bigg),
 	\cr
@@ -6690,9 +6690,9 @@ $$ \tag{17.???}
 \end{aligned}
 $$
 
-For many purposes, the most useful expression of the incident field given by Eqn. 17.133 is in terms of the vector spherical harmonics (as shown by Eqn. 17.80-17.81):
+For many purposes, the most useful expression of the incident field given by Eqn. 18.133 is in terms of the vector spherical harmonics (as shown by Eqn. 18.80-18.81):
 
-$$ \tag{17.138}
+$$ \tag{18.138}
 \begin{aligned}
 	\bm{E_i}(\bm{r}, \omega)
 	&= \sum_{m,n} c_{m,n}(\omega) j_n(k r) \bm{\Phi_{m,n}}(\theta, \phi)
@@ -6704,19 +6704,19 @@ $$
 
 The expression of the scattered field remains unknown. Since it is a component of the total field
 
-$$ \tag{17.139}
+$$ \tag{18.139}
 	\bm{E_{ext}} = \bm{E_i} + \bm{E_s},
 $$
 
-we know that its vector and scalar potentials satisfy the Helmholtz equations; thus, by linearity, Eqn. 17.36 remains applicable. In addition, thanks to Eqn. 15.6, we know the asymptotic behavior of the scattered field as \\(k r \to \infin\\). As we compare it to Eqn. 17.52, it becomes clear that we must choose the spherical Bessel function of the third kind
+we know that its vector and scalar potentials satisfy the Helmholtz equations; thus, by linearity, Eqn. 18.36 remains applicable. In addition, thanks to Eqn. 15.6, we know the asymptotic behavior of the scattered field as \\(k r \to \infin\\). As we compare it to Eqn. 18.52, it becomes clear that we must choose the spherical Bessel function of the third kind
 
-$$ \tag{17.140}
+$$ \tag{18.140}
 	z_n^{(3)}(k r) = h_n^{(1)}(k r)
 $$
 
 for the vector spherical wave function series expansion
 
-$$ \tag{17.141}
+$$ \tag{18.141}
 \begin{aligned}
 	\bm{E_s}(\bm{r}, \omega)
 	&= \sum_{m,n} \big( a_{m,n}(\omega) \bm{M_{m,n}^{(3)}}(\bm{r}, \omega) + b_{m,n}(\omega) \bm{N_{m,n}^{(3)}}(\bm{r}, \omega) \big)
@@ -6732,7 +6732,7 @@ In addition to the total field \\(\bm{E_{ext}}\\) in the exterior region of the 
 
 The combination of these two facts motivates the following series expansion of the internal field:
 
-$$ \tag{17.142}
+$$ \tag{18.142}
 \begin{aligned}
 	\bm{E_{int}}(\bm{r}, \omega)
 	&= \sum_{m,n} \big( a_{m,n}^{\circ}(\omega) \bm{M_{m,n}^{(1)}}(\bm{r}, \omega) + b_{m,n}^{\circ}(\omega) \bm{N_{m,n}^{(1)}}(\bm{r}, \omega) \big)
@@ -6746,13 +6746,13 @@ $$
 
 How are the internal and the external fields related? According to Eqn. 1.17, the tangential component of the electric field must be continuous at the optical interface, i.e. along the surface of the sphere:
 
-$$ \tag{17.143}
+$$ \tag{18.143}
 	\bm{e_r} \times (\bm{E_{int}} - \bm{E_{ext}}) = 0.
 $$
 
-This is where the form of the vector spherical harmonics given by Eqn. 17.72 becomes particularly useful. From the definitions, it immediately follows that
+This is where the form of the vector spherical harmonics given by Eqn. 18.72 becomes particularly useful. From the definitions, it immediately follows that
 
-$$ \tag{17.144}
+$$ \tag{18.144}
 	\bm{e_r} \times \bm{\Upsilon_{m,n}}
 	= 0,
 	\quad
@@ -6765,7 +6765,7 @@ $$
 
 Thus, in order to take the cross product, we must either eliminate, swap, or negate and swap the spherical harmonic vectors:
 
-$$ \tag{17.145}
+$$ \tag{18.145}
 \begin{aligned}
 	\bm{e_r} \times \bm{E_{int}}
 	&= \sum_{m,n} \bigg( a_{m,n}^{\circ} j_n(k_2 r) \bm{\Psi_{m,n}}(\theta, \phi)
@@ -6785,19 +6785,19 @@ $$
 
 Since the vector spherical harmonics are orthogonal, we may conceptually treat the sets of unknown coefficients \\(\lbrace a_{m,n} \rbrace, \lbrace b_{m,n} \rbrace, \lbrace a_{m,n}^{\circ} \rbrace, \lbrace b_{m,n}^{\circ} \rbrace\\) as vectors. Yet, even in this interpretation, the unknowns outnumber the equations 2-to-1. Therefore, we must also apply the second boundary condition of Eqn. 1.17:
 
-$$ \tag{17.146}
+$$ \tag{18.146}
 	\bm{e_r} \times (\bm{H_{int}} - \bm{H_{ext}}) = \bm{J_n},
 $$
 
-Assuming the conductivity of the sphere is not enormous, the surface current term \\(\bm{J_n}\\) can be neglected \[[17](#references) (ch. 1.13)\], and we may combine Eqn. 3.12, 5.2.3 and 17.146 into
+Assuming the conductivity of the sphere is not enormous, the surface current term \\(\bm{J_n}\\) can be neglected \[[17](#references) (ch. 1.13)\], and we may combine Eqn. 3.12, 5.2.3 and 18.146 into
 
-$$ \tag{17.147}
+$$ \tag{18.147}
 	\bm{e_r} \times \bigg( \frac{1}{\mu_2} \nabla \times \bm{E_{int}} - \frac{1}{\mu_1} \nabla \times \bm{E_{ext}} \bigg) = 0.
 $$
 
-The simplest way to take the curl of the electric field is by utilizing its vector spherical wave function series representation. According to Eqn. 17.17, 17.19, and 17.34,
+The simplest way to take the curl of the electric field is by utilizing its vector spherical wave function series representation. According to Eqn. 18.17, 18.19, and 18.34,
 
-$$ \tag{17.148}
+$$ \tag{18.148}
 	\nabla \times \bm{L_{m,n}} = 0,
 	\quad
 	\nabla \times \bm{M_{m,n}} = k \bm{N_{m,n}},
@@ -6807,7 +6807,7 @@ $$
 
 which, in our case, simply means that the corresponding series coefficients must be rescaled and interchanged:
 
-$$ \tag{17.149}
+$$ \tag{18.149}
 \begin{aligned}
 	\bm{e_r} \times \nabla \times \bm{E_{int}}
 	&= \sum_{m,n} k_2 \bigg( b_{m,n}^{\circ} j_n(k_2 r) \bm{\Psi_{m,n}}(\theta, \phi)
@@ -6825,9 +6825,9 @@ $$ \tag{17.149}
 \end{aligned}
 $$
 
-Let us first consider Eqn. 17.143. It tells us that the expressions given by Eqn. 17.145.1 and 17.145.2 are equal. If perform Hilbert space projection onto \\(\Psi_{s,t}\\) or \\(\Phi_{s,t}\\) using Eqn. 17.77 and 17.79, we obtain the relations that connect the expansion coefficients of the external field to those of the internal field:
+Let us first consider Eqn. 18.143. It tells us that the expressions given by Eqn. 18.145.1 and 18.145.2 are equal. If perform Hilbert space projection onto \\(\Psi_{s,t}\\) or \\(\Phi_{s,t}\\) using Eqn. 18.77 and 18.79, we obtain the relations that connect the expansion coefficients of the external field to those of the internal field:
 
-$$ \tag{17.150}
+$$ \tag{18.150}
 \begin{aligned}
 	a_{m,n}^{\circ}
 	&= \frac{ c_{m,n} j_n(k_1 r) + a_{m,n} h_n^{(1)}(k_1 r) }{ j_n(k_2 r) },
@@ -6839,9 +6839,9 @@ $$ \tag{17.150}
 \end{aligned}
 $$
 
-Performing the same steps for Eqn. 17.147 and 17.149 leads to
+Performing the same steps for Eqn. 18.147 and 18.149 leads to
 
-$$ \tag{17.151}
+$$ \tag{18.151}
 \begin{aligned}
 	a_{m,n}^{\circ}
 	&= \frac{ c_{m,n} \big[ k_1 r j_n(k_1 r) \big]' + a_{m,n} \big[ k_1 r h_n^{(1)}(k_1 r) \big]'
@@ -6852,9 +6852,9 @@ $$ \tag{17.151}
 \end{aligned}
 $$
 
-The value of the coefficients \\(c_{m,n}\\) and \\(d_{m,n}\\) of the incident field is known. By combining Eqn. 17.150 and 17.151, we can finally evaluate the coefficients of the scattered field \[[15](#references)\]:
+The value of the coefficients \\(c_{m,n}\\) and \\(d_{m,n}\\) of the incident field is known. By combining Eqn. 18.150 and 18.151, we can finally evaluate the coefficients of the scattered field \[[15](#references)\]:
 
-$$ \tag{17.152}
+$$ \tag{18.152}
 \begin{aligned}
   	a_{m,n}
 	&= -c_{m,n} \frac{
@@ -6873,11 +6873,11 @@ $$ \tag{17.152}
 \end{aligned}
 $$
 
-We may observe that both the scattered and the internal fields are directly proportional to the incident field. Furthermore, the coefficients of proportionality are independent of \\(m\\). They may be written down neatly if we re-introduce the traditional notation that calls the radius of the spherical particle \\(a\\), the size parameter \\(x = k_1 a\\), the relative wavenumber \\(m = k_2 / k_1\\), and the reciprocal[^17] of the relative permeability \\(u = \mu_1 / \mu_2\\). The order-independent multiplicative factors of Eqn. 17.152 can then be expressed as \[[17](#references) (ch. 9.25)\]
+We may observe that both the scattered and the internal fields are directly proportional to the incident field. Furthermore, the coefficients of proportionality are independent of \\(m\\). They may be written down neatly if we re-introduce the traditional notation that calls the radius of the spherical particle \\(a\\), the size parameter \\(x = k_1 a\\), the relative wavenumber \\(m = k_2 / k_1\\), and the reciprocal[^17] of the relative permeability \\(u = \mu_1 / \mu_2\\). The order-independent multiplicative factors of Eqn. 18.152 can then be expressed as \[[17](#references) (ch. 9.25)\]
 
 [^17]: Recall Eqn. 5.2.3 and the subsequent discussion.
 
-$$ \tag{17.154}
+$$ \tag{18.154}
 \begin{aligned}
   	a_n
   	&= -\frac{
@@ -6898,7 +6898,7 @@ $$
 
 Many authors \[[4](#references) (ch. 9.22), [6](#references) (ch. 14.5)\] prefer to give this formula in terms of the [Riccati-Bessel functions](https://en.wikipedia.org/wiki/Bessel_function#Riccati%E2%80%93Bessel_functions:_Sn,_Cn,_%CE%BEn,_%CE%B6n)
 
-$$ \tag{17.155}
+$$ \tag{18.155}
 \begin{aligned}
 	\psi_n(x) = x j_{n}(x),
 	\quad
@@ -6910,7 +6910,7 @@ $$
 
 instead:
 
-$$ \tag{17.156}
+$$ \tag{18.156}
 \begin{aligned}
   	a_n
   	&= -\frac{
@@ -6929,9 +6929,9 @@ $$ \tag{17.156}
 \end{aligned}
 $$
 
-The coefficients of proportionality of the internal field can be taken from Eqn. 17.151.1 and 17.150.2:
+The coefficients of proportionality of the internal field can be taken from Eqn. 18.151.1 and 18.150.2:
 
-$$ \tag{17.157}
+$$ \tag{18.157}
 \begin{aligned}
 	a_n^{\circ}
 	&= \frac{1}{u} \frac{ \psi_n'(x) + a_n \xi_n'(x) }{ \psi_n'(m x) }
@@ -6943,15 +6943,15 @@ $$ \tag{17.157}
 \end{aligned}
 $$
 
-Note that the numerators of Eqn. 17.157.1 and 17.157.2 are the same. Thus, if their denominators vary slowly, \\(a_n^{\circ}\\) and \\(b_n^{\circ}\\) change roughly at the same rate. In addition, the denominators of Eqn. 17.156.1 and 17.156.2 match those of Eqn. 17.157.1 and 17.157.2, respectively. Therefore, we may expect some of the peaks of \\(a_n\\) and \\(a_n^{\circ}\\) (or \\(b_n\\) and \\(b_n^{\circ}\\)) to be co-located in the same region of the \\(m\text{-}x\\) domain.
+Note that the numerators of Eqn. 18.157.1 and 18.157.2 are the same. Thus, if their denominators vary slowly, \\(a_n^{\circ}\\) and \\(b_n^{\circ}\\) change roughly at the same rate. In addition, the denominators of Eqn. 18.156.1 and 18.156.2 match those of Eqn. 18.157.1 and 18.157.2, respectively. Therefore, we may expect some of the peaks of \\(a_n\\) and \\(a_n^{\circ}\\) (or \\(b_n\\) and \\(b_n^{\circ}\\)) to be co-located in the same region of the \\(m\text{-}x\\) domain.
 
 {{< figure src="/img/riccati_psi.svg" caption="*Figure N: Riccati-Bessel functions of the first kind of order n=1 (blue), n=2 (orange), n=3 (green).*" >}}
 
 {{< figure src="/img/riccati_chi.svg" caption="*Figure N: Riccati-Bessel functions of the second kind of order n=1 (blue), n=2 (orange), n=3 (green).*" >}}
 
-Now, recall the transformation of the expression of the incident field (Eqn. 17.133-17.137), where we introduced the vector tesseral wave functions. Since the expansion coefficients of the scattered and the internal fields differ from those of the incident field only by a multiplicative factor, it is easy to see that the overall structure of the expression remains the same; novel expressions, such as that of the scattered field, can be obtained by attaching the corresponding factors to the tesseral vectors:
+Now, recall the transformation of the expression of the incident field (Eqn. 18.133-18.137), where we introduced the vector tesseral wave functions. Since the expansion coefficients of the scattered and the internal fields differ from those of the incident field only by a multiplicative factor, it is easy to see that the overall structure of the expression remains the same; novel expressions, such as that of the scattered field, can be obtained by attaching the corresponding factors to the tesseral vectors:
 
-$$ \tag{17.158}
+$$ \tag{18.158}
 \begin{aligned}
 	\bm{E_s}(\bm{r}, \omega)
 	&= E_X(\omega) \sum_{n=1}^{\infin} i^n \frac{(2 n + 1)}{n (n + 1)} \big( {-a_n(\omega) \bm{M_{o,1,n}^{(3)}}}(\bm{r}, \omega) + i b_n(\omega) \bm{N_{e,1,n}^{(3)}}(\bm{r}, \omega) \big)
@@ -6962,7 +6962,7 @@ $$
 
 Similarly, the expression of the internal field can be written as
 
-$$ \tag{17.159}
+$$ \tag{18.159}
 \begin{aligned}
 	\bm{E_{int}}(\bm{r}, \omega)
 	&= E_X(\omega) \sum_{n=1}^{\infin} i^n \frac{(2 n + 1)}{n (n + 1)} \big( {-a_n^{\circ}(\omega) \bm{M_{o,1,n}^{(1)}}}(\bm{r}, \omega) + i b_n^{\circ}(\omega) \bm{N_{e,1,n}^{(1)}}(\bm{r}, \omega) \big)
@@ -6971,7 +6971,7 @@ $$ \tag{17.159}
 \end{aligned}
 $$
 
-Eqn. 17.137, 17.158 and 17.159 allow us to determine the value of the electromagnetic field at any point in space, both inside and outside the spherical particle. Thus, the scattering problem is solved. This completes the derivation of the Lorenz-Mie-Debye formula.
+Eqn. 18.137, 18.158 and 18.159 allow us to determine the value of the electromagnetic field at any point in space, both inside and outside the spherical particle. Thus, the scattering problem is solved. This completes the derivation of the Lorenz-Mie-Debye formula.
 
 ### Analysis and Interpretation of the Lorenz-Mie-Debye Formulae
 
@@ -6979,7 +6979,7 @@ The solution of the Lorenz-Mie-Debye theory is rigorous and exact (to the extent
 
 One of the biggest issues is the difficulty of finding a physical interpretation of the results. To see why that is the case, consider the Taylor series expansions of two elementary functions:
 
-$$ \tag{18.1}
+$$ \tag{19.1}
 \begin{aligned}
 	\cos{x} - \sin{x} &= 1-x-\frac{x^2}{2}+\frac{x^3}{6}+\frac{x^4}{24}+O\left(x^5\right),
 	\cr
@@ -6993,11 +6993,11 @@ The problem is exacerbated by the convergence properties of the series. It was s
 
 #### Partial Waves
 
-The most straightforward interpretation of Eqn. 17.158 and 17.159 treats the individual terms as *partial waves*. If we examine the definition of the vector tesseral harmonics given by Eqn. 17.136, we may note that \\(\bm{N\_{m,n}}\\) has a radial component, while \\(\bm{M\_{m,n}}\\) does not. Since an electric charge is a source of a radially-symmetric electric field, we may interpret the existence of the radial component of \\(\bm{N\_{m,n}}\\) as a sign of the fact that the sphere contains a distribution of electric charges; therefore, the partial waves prefixed with \\(b\_n\\) are said to be of the *electric type*. At the same time, in comparison with Eqn. 17.36 of the electric field, Eqn. 17.37 of the magnetic field has the coefficients \\(a\_n\\) and \\(b\_n\\) interchanged; similar logical steps lead to the conclusion that the partial waves prefixed with \\(a\_n\\) are of the *magnetic type* \[[17](#references) (ch. 9.22)\].
+The most straightforward interpretation of Eqn. 18.158 and 18.159 treats the individual terms as *partial waves*. If we examine the definition of the vector tesseral harmonics given by Eqn. 18.136, we may note that \\(\bm{N\_{m,n}}\\) has a radial component, while \\(\bm{M\_{m,n}}\\) does not. Since an electric charge is a source of a radially-symmetric electric field, we may interpret the existence of the radial component of \\(\bm{N\_{m,n}}\\) as a sign of the fact that the sphere contains a distribution of electric charges; therefore, the partial waves prefixed with \\(b\_n\\) are said to be of the *electric type*. At the same time, in comparison with Eqn. 18.36 of the electric field, Eqn. 18.37 of the magnetic field has the coefficients \\(a\_n\\) and \\(b\_n\\) interchanged; similar logical steps lead to the conclusion that the partial waves prefixed with \\(a\_n\\) are of the *magnetic type* \[[17](#references) (ch. 9.22)\].
 
-We may also show that the field becomes transverse in the radiation zone (see Eqn. 13.14 for the case of a scattering object of an arbitrary shape). Using the asymptotic expressions of the spherical Bessel functions given by Eqn. 17.52, the corresponding Riccati-Bessel functions (and their derivatives) take the form
+We may also show that the field becomes transverse in the radiation zone (see Eqn. 13.14 for the case of a scattering object of an arbitrary shape). Using the asymptotic expressions of the spherical Bessel functions given by Eqn. 18.52, the corresponding Riccati-Bessel functions (and their derivatives) take the form
 
-$$ \tag{18.2}
+$$ \tag{19.2}
 \begin{aligned}
 	& \psi_n(x) = \sin\negmedspace\Big( x - \frac{\pi n}{2} \Big)
 	+ \mathrm{O}\big( x^{-1} \big),
@@ -7013,9 +7013,9 @@ $$ \tag{18.2}
 \end{aligned}
 $$
 
-If we substitute Eqn. 18.2 into 17.136 and neglect the inverse square term, we can observe that neither vector has a radial component:
+If we substitute Eqn. 19.2 into 18.136 and neglect the inverse square term, we can observe that neither vector has a radial component:
 
-$$ \tag{18.3}
+$$ \tag{19.3}
 \begin{aligned}
 	\bm{M_{^e_o,1,n}^{(3)}}(\bm{r})
 	&\simeq i^{-n-1} \frac{e^{i k r}}{k r}
@@ -7046,9 +7046,9 @@ $$
 
 Furthermore, these vectors are mutually orthogonal to each other. Hence, partial waves of the electric type are sometimes called *transverse magnetic modes* (their magnetic field is always transverse, while the electric isn't), and those of the magnetic type are referred to as *transverse electric modes* (their electric field is always transverse, while the magnetic isn't).
 
-Substitution into Eqn. 17.158 produces a convenient asymptotic expansion of the scattered field:
+Substitution into Eqn. 18.158 produces a convenient asymptotic expansion of the scattered field:
 
-$$ \tag{18.4}
+$$ \tag{19.4}
 \begin{aligned}
 	\bm{E_s}(\bm{r}, \omega)
 	&\simeq \frac{e^{i k r}}{k r} \sum_{n=1}^{\infin} \frac{(2 n + 1)}{n (n + 1)}
@@ -7061,9 +7061,9 @@ $$ \tag{18.4}
 \end{aligned}
 $$
 
-As we shall soon see, the standard definitions of \\(a\_n\\) and \\(b\_n\\) often produce imaginary coefficients, while the expressions of \\(\pi\_{1,n}\\) and \\(\tau\_{1,n}\\) composed of elementary functions are negative. Therefore, for clarity, it makes sense to structure Eqn. 18.4 in the following way:
+As we shall soon see, the standard definitions of \\(a\_n\\) and \\(b\_n\\) often produce imaginary coefficients, while the expressions of \\(\pi\_{1,n}\\) and \\(\tau\_{1,n}\\) composed of elementary functions are negative. Therefore, for clarity, it makes sense to structure Eqn. 19.4 in the following way:
 
-$$ \tag{18.5}
+$$ \tag{19.5}
 \begin{aligned}
 	\begin{bmatrix}
 		E_{s,\theta}(\bm{r}, \omega) \cr
@@ -7107,9 +7107,9 @@ $$
 
 In addition to the benefits described above, it allows us identify a rotation of the incident electric field \\([E_X, E_Y]^T\\) around the \\(z\\)-axis. If we refer to Eqn. 15.11 and Fig. N, we may recognize the components of the phasor \\([E\_x(\phi), E\_y(\phi)]^T\\) defined relative to the plane of observation.
 
-If we specify the incident field at a certain coordinate \\(z < 0\\) and substitute the resulting phasor into Eqn. 18.5, the resulting expression is a perfect match for the template of Eqn. 15.16. This allows us to isolate the expression of the scattering matrix
+If we specify the incident field at a certain coordinate \\(z < 0\\) and substitute the resulting phasor into Eqn. 19.5, the resulting expression is a perfect match for the template of Eqn. 15.16. This allows us to isolate the expression of the scattering matrix
 
-$$ \tag{18.6}
+$$ \tag{19.6}
 	S(\theta, \omega)
 	= \sum_{n=1}^{\infin} \frac{(2 n + 1)}{n (n + 1)} i
 	\begin{bmatrix}
@@ -7120,9 +7120,9 @@ $$
 
 It is both diagonal and independent of the azimuthal angle \\(\phi\\). This is consistent with the predictions of the general scattering theory of spherical particles of Sec. 15.
 
-We can study the angular dependence of the scattering matrix by analyzing the polar functions \\(\pi\_{1,n}\\) and \\(\tau\_{1,n}\\) given by Eqn. 17.68. If we substitute the recurrence relation of the associated Legendre polynomials (Eqn. 17.5?) into the formulae of the polar functions, it is straightforward to show that the latter satisfy the recurrence relations
+We can study the angular dependence of the scattering matrix by analyzing the polar functions \\(\pi\_{1,n}\\) and \\(\tau\_{1,n}\\) given by Eqn. 18.68. If we substitute the recurrence relation of the associated Legendre polynomials (Eqn. 18.5?) into the formulae of the polar functions, it is straightforward to show that the latter satisfy the recurrence relations
 
-$$ \tag{18.7}
+$$ \tag{19.7}
 \begin{aligned}
 	-\pi_{1,0}(\theta) &= 0,
 	&
@@ -7136,11 +7136,11 @@ $$ \tag{18.7}
 \end{aligned}
 $$
 
-Coupled with the recurrence relations of the spherical Bessel functions given by Eqn. 17.51, it gives rise to a powerful [memoization](https://en.wikipedia.org/wiki/Memoization)-based method of computation, which is the key to rapid evaluation of the scattering matrix.
+Coupled with the recurrence relations of the spherical Bessel functions given by Eqn. 18.51, it gives rise to a powerful [memoization](https://en.wikipedia.org/wiki/Memoization)-based method of computation, which is the key to rapid evaluation of the scattering matrix.
 
 On the \\([0, \pi]\\) interval, the polar functions can be expressed in terms of \\(\cos{\theta}\\). In this particular case, the explicit formulae for the first couple of orders are
 
-$$ \tag{18.8}
+$$ \tag{19.8}
 \begin{aligned}
 	-\tau_{1,1}(\theta) &= \cos(\theta), &
 	-\pi_{1,1}(\theta)  &= 1,
@@ -7152,7 +7152,7 @@ $$
 
 The values of these functions at the endpoints of the \\([0, \pi]\\) interval must be determined by a careful limiting process. The final result is always an integer:
 
-$$ \tag{18.?}
+$$ \tag{19.?}
 \begin{aligned}
 	-\tau_{1,n}(0) &= -\pi_{1,n}(0) = \frac{n (n+1)}{2},
 	\cr
@@ -7160,11 +7160,11 @@ $$ \tag{18.?}
 \end{aligned}
 $$
 
-Since \\(\phi \in [0, 2 \pi)\\) in a spherical coordinate system, the values of the argument of the polar functions are formally limited to the range of \\(\theta \in [0, \pi]\\), which corresponds to the upper half of a circle. Nevertheless, we are interested in the angular behavior of the scattered field for all possible directions of observation which, when taken together, form the surface of a unit sphere. We could approach this problem by plotting the 2-dimensional spherical distributions found in Eqn. 18.5; however, the resulting plots are fairly complicated, and it is much simpler to consider a slice of a unit sphere formed by two semicircles with \\(\phi = 0\\) and \\(\phi = \pi\\) instead.
+Since \\(\phi \in [0, 2 \pi)\\) in a spherical coordinate system, the values of the argument of the polar functions are formally limited to the range of \\(\theta \in [0, \pi]\\), which corresponds to the upper half of a circle. Nevertheless, we are interested in the angular behavior of the scattered field for all possible directions of observation which, when taken together, form the surface of a unit sphere. We could approach this problem by plotting the 2-dimensional spherical distributions found in Eqn. 19.5; however, the resulting plots are fairly complicated, and it is much simpler to consider a slice of a unit sphere formed by two semicircles with \\(\phi = 0\\) and \\(\phi = \pi\\) instead.
 
-In general, Eqn. 18.7 shows that \\(\pi\_{1,n}\\) and \\(\tau\_{1,n}\\) are odd functions of \\(\theta\\):
+In general, Eqn. 19.7 shows that \\(\pi\_{1,n}\\) and \\(\tau\_{1,n}\\) are odd functions of \\(\theta\\):
 
-$$ \tag{18.9}
+$$ \tag{19.9}
 	\pi_{1,n}(-\theta) = -\pi_{1,n}(\theta),
 	\quad
 	\tau_{1,n}(-\theta) = -\tau_{1,n}(\theta).
@@ -7172,7 +7172,7 @@ $$
 
 And because the scattered electric field is also an odd function of \\(\theta\\),
 
-$$ \tag{18.10}
+$$ \tag{19.10}
 \begin{aligned}
 	\bm{E_s}(r, \theta, \phi + \pi, \omega)
 	= -\bm{E_s}(r, \theta, \phi, \omega)
@@ -7180,7 +7180,7 @@ $$ \tag{18.10}
 \end{aligned}
 $$
 
-we may use the polar plots of \\(-\tau\_{1,n}\\) and \\(-\pi\_{1,n}\\) on the interval \\(\theta \in [-\pi, \pi]\\) to illustrate the angular behavior of Eqn. 18.5.
+we may use the polar plots of \\(-\tau\_{1,n}\\) and \\(-\pi\_{1,n}\\) on the interval \\(\theta \in [-\pi, \pi]\\) to illustrate the angular behavior of Eqn. 19.5.
 
 {{< figure src="/img/polar_tau.svg" caption="*Figure N: Polar functions \\(-\tau\_{1,n}\\) of order n=1 (blue), n=2 (orange), n=3 (green). Dashed lines indicate negative values.*" >}}
 
@@ -7188,13 +7188,13 @@ we may use the polar plots of \\(-\tau\_{1,n}\\) and \\(-\pi\_{1,n}\\) on the in
 
 Care must be taken when interpreting these plots. Typically, if the value of a function is negative, it is plotted with a positive magnitude in the opposite direction. Such visualizations can be misleading. Instead, we utilize dashed lines for negative values and plot them in the original direction. Also, note the sign reversal at the horizontal axis. It does not imply a discontinuity of the field; rather, during the transition from \\(\phi = 0\\) to \\(\phi = \pi,\\) it is the direction of the spherical coordinate basis vectors that is reversed.
 
-Now, recall that Eqn. 18.5 contains a sum of the (negated) polar functions. Evidently, their plots show the largest amount of overlap along the horizontal axis. Yet, we must also account for the sign of the functions involved. In this sense, the forward direction is unique, because only then do the values of all functions share the same sign. Thus, as the particle size increases and we accumulate more terms, a larger percentage of total energy is scattered in the forward direction. This phenomenon is called the *Mie effect*.
+Now, recall that Eqn. 19.5 contains a sum of the (negated) polar functions. Evidently, their plots show the largest amount of overlap along the horizontal axis. Yet, we must also account for the sign of the functions involved. In this sense, the forward direction is unique, because only then do the values of all functions share the same sign. Thus, as the particle size increases and we accumulate more terms, a larger percentage of total energy is scattered in the forward direction. This phenomenon is called the *Mie effect*.
 
 The explicit expressions of the polar functions (and their plots) also allow us to determine the *apparent* charge configurations responsible for the first few partial waves.
 
-First, let us consider the *electric* partial waves by setting \\(a\_n = 0\\) in Eqn. 18.5. Then, according to Eqn. 15.13, the scattering matrix of the first electric partial wave (given by the first line of Eqn. 18.8) performs a *rotation* of the coordinate axes -- one that corresponds to *reinterpretation* of the components of the incident electric phasor \\([E\_x(\phi), E\_y(\phi), 0]^T\\) in spherical coordinates -- followed by a *projection* onto the tangent plane of a sphere; this results in the radial component of the phasor being discarded.
+First, let us consider the *electric* partial waves by setting \\(a\_n = 0\\) in Eqn. 19.5. Then, according to Eqn. 15.13, the scattering matrix of the first electric partial wave (given by the first line of Eqn. 19.8) performs a *rotation* of the coordinate axes -- one that corresponds to *reinterpretation* of the components of the incident electric phasor \\([E\_x(\phi), E\_y(\phi), 0]^T\\) in spherical coordinates -- followed by a *projection* onto the tangent plane of a sphere; this results in the radial component of the phasor being discarded.
 
-Another way of saying this is that the *tangential component* of the incident electric field is parallel to the electric field of the first electric partial wave. Furthermore, Eqn. 18.5 indicates that the components of the scattered field propagate as spherical waves. These are key features of the far field of an *electric dipole*, a concept we have previously encountered in Sec. 10 and 13.
+Another way of saying this is that the *tangential component* of the incident electric field is parallel to the electric field of the first electric partial wave. Furthermore, Eqn. 19.5 indicates that the components of the scattered field propagate as spherical waves. These are key features of the far field of an *electric dipole*, a concept we have previously encountered in Sec. 10 and 13.
 
 Once the size of the particle begins to approach the wavelength of light (as measured in the interior of the sphere), the atoms in its interior no longer oscillate in-phase because they are too far apart \[[5](#references) (vol. I, ch. 32.4)\]. This renders the dipole approximation insufficient, and therefore requires a more general description of the scatterer. One approach, something that we have already explored in Eqn. 13.12, consists of taking an integral over the volume of the particle filled with dipoles. However, that is not how the Lorenz-Mie-Debye formula works; we may interpret it as a [multipole expansion](https://en.wikipedia.org/wiki/Multipole_expansion) instead.
 
@@ -7210,11 +7210,11 @@ We can continue the subdivision process by using three pairs of charges of oppos
 
 {{< figure src="/img/partial_waves.png" caption="*Figure N: Partial waves. Top row: electric type, bottom row: magnetic type. Columns, left to right: dipole, quadrupole, sextupole. (Mie, 1908)*" >}}
 
-So far, we have specifically focused on *electric* partial waves of the form \\( \sum\_{m} b\_{m,n} \bm{N\_{m,n}^{(3)}} \\) that are generated by oscillating *electric* charges. However, examination of Eqn. 17.37 shows that \\( \sum\_{m} a\_{m,n} \bm{N\_{m,n}^{(3)}} \\) is a *magnetic* field that exhibits a pattern similar to the corresponding electric partial wave (up to rotation and scale). Thus, we may propose a similar explanation in terms of *magnetic* charges of opposite polarity (or, equivalently, loops of circulating current). This makes \\( \sum\_{m} a\_{m,n} \bm{N\_{m,n}^{(3)}} \\) the magnetic field of a *magnetic* multipole.
+So far, we have specifically focused on *electric* partial waves of the form \\( \sum\_{m} b\_{m,n} \bm{N\_{m,n}^{(3)}} \\) that are generated by oscillating *electric* charges. However, examination of Eqn. 18.37 shows that \\( \sum\_{m} a\_{m,n} \bm{N\_{m,n}^{(3)}} \\) is a *magnetic* field that exhibits a pattern similar to the corresponding electric partial wave (up to rotation and scale). Thus, we may propose a similar explanation in terms of *magnetic* charges of opposite polarity (or, equivalently, loops of circulating current). This makes \\( \sum\_{m} a\_{m,n} \bm{N\_{m,n}^{(3)}} \\) the magnetic field of a *magnetic* multipole.
 
-In order to show its connection to the *magnetic* partial wave \\( \sum\_{m} a\_{m,n} \bm{M\_{m,n}^{(3)}} \\), return to Eqn. 17.36, set \\(b\_n' = 0\\), then take its curl (as shown by Eqn. 3.12) and examine the result:
+In order to show its connection to the *magnetic* partial wave \\( \sum\_{m} a\_{m,n} \bm{M\_{m,n}^{(3)}} \\), return to Eqn. 18.36, set \\(b\_n' = 0\\), then take its curl (as shown by Eqn. 3.12) and examine the result:
 
-$$ \tag{18.11}
+$$ \tag{19.11}
 \begin{aligned}
 	\frac{1}{i \omega} \nabla \times \bm{E'}
 	= \frac{1}{i \omega} \nabla \times \sum\_{m} a_{m,n} \bm{M_{m,n}^{(3)}} = \frac{k}{i \omega} \sum\_{m} a_{m,n} \bm{N_{m,n}^{(3)}}
@@ -7222,7 +7222,7 @@ $$ \tag{18.11}
 \end{aligned}
 $$
 
-Eqn. 18.11 shows that a *magnetic* partial wave is the electric field of a *magnetic* multipole. Since the curl of this electric field is the magnetic field of a magnetic multipole, the electric field must circulate. This is nicely illustrated by Mie in his original paper \[Mie 1908\].
+Eqn. 19.11 shows that a *magnetic* partial wave is the electric field of a *magnetic* multipole. Since the curl of this electric field is the magnetic field of a magnetic multipole, the electric field must circulate. This is nicely illustrated by Mie in his original paper \[Mie 1908\].
 
 For large particles, the partial waves can be classified according to the *localization principle*, according to which the terms of the order \\(n\\) represent parallel rays of incident light traced at the distance \\((n-1/2)/x\\) from the center of the particle \[[4](#references) (ch. 12.31)\]. It implies that the rays of the order \\(n \le (x + 1/2)\\) intersect the sphere, while the higher order waves pass above its surface. The localization principle can be also used to explain the \\(n \sim (x + 1/2)\\) terms rule often used for numerical computations.
 
@@ -7230,9 +7230,9 @@ For large particles, the partial waves can be classified according to the *local
 
 Since a sphere is a body bounded by a closed surface, its interior can sustain a certain number of standing waves, also known as [normal modes](https://en.wikipedia.org/wiki/Normal_mode) \[[5](#references) (vol. I, ch. 49), [17](#references) (ch. 9.22)\]. These waves oscillate at [natural frequencies](https://en.wikipedia.org/wiki/Natural_frequency) that depend on the size and the composition of the particle.
 
-The natural frequencies \\(\omega_n\\) can be determined by setting the denominators of Eqn. 17.157 of the internal field to zero, solving the resulting transcendental equations for \\(x_n = x\\), and substituting the roots into Eqn. 7.4:
+The natural frequencies \\(\omega_n\\) can be determined by setting the denominators of Eqn. 18.157 of the internal field to zero, solving the resulting transcendental equations for \\(x_n = x\\), and substituting the roots into Eqn. 7.4:
 
-$$ \tag{18.12}
+$$ \tag{19.12}
 	x_n^2
 	= \left(k_1 a \right)^2
 	= \Big( \omega_n^2 \epsilon_1 + i \omega_n \sigma_1 \Big) \mu_1 a^2.
@@ -7240,7 +7240,7 @@ $$
 
 Typically, the host medium is non-conductive and non-magnetic, which leads to
 
-$$ \tag{18.1?}
+$$ \tag{19.1?}
 	\omega_n = \frac{x_n}{ a \sqrt{\epsilon_1 \mu_0}}.
 $$
 
@@ -7248,11 +7248,11 @@ The natural sizes \\(x_n\\) are always complex, which makes the natural frequenc
 
 #### Limiting Cases
 
-Let us take a closer look at the expressions of the expansion coefficients of the scattered field given by Eqn. 17.156.
+Let us take a closer look at the expressions of the expansion coefficients of the scattered field given by Eqn. 18.156.
 
-First, let us consider a very large spherical particle. If we ignore the possibility that it actually represents a cavity (e.g. an air bubble), then \\(| m | > 1\\), which, once combined with \\(| x | \gg 1\\), leads to \\(| m x | \gg 1\\). This allows us to evaluate the expansion coefficients of the first few orders using the asymptotic expressions given by Eqn. 18.2:
+First, let us consider a very large spherical particle. If we ignore the possibility that it actually represents a cavity (e.g. an air bubble), then \\(| m | > 1\\), which, once combined with \\(| x | \gg 1\\), leads to \\(| m x | \gg 1\\). This allows us to evaluate the expansion coefficients of the first few orders using the asymptotic expressions given by Eqn. 19.2:
 
-$$ \tag{18.13}
+$$ \tag{19.13}
 \small
 \begin{aligned}
   	a_n
@@ -7279,7 +7279,7 @@ We may observe that the resulting coefficients are highly cyclical: \\(a_{n+2} \
 
 These formulae can be simplified by introducing the exponential notation. Since
 
-$$ \tag{18.14}
+$$ \tag{19.14}
 \begin{aligned}
   	-i^{n+1} \sin\negmedspace\Big( x - \frac{\pi n}{2} \Big) e^{-i x}
   	&= \frac{1}{2} \left( (-1)^n e^{-i 2 x} - 1 \right),
@@ -7289,9 +7289,9 @@ $$ \tag{18.14}
 \end{aligned}
 $$
 
-Eqn. 18.13 can be equivalently expressed as
+Eqn. 19.13 can be equivalently expressed as
 
-$$ \tag{18.15}
+$$ \tag{19.15}
 \begin{aligned}
   	a_n
   	&\simeq \frac{1}{2} \left( (-1)^n \frac
@@ -7311,9 +7311,9 @@ $$ \tag{18.15}
 \end{aligned}
 $$
 
-Further reduction can be achieved by rewriting Eqn. 18.15 in terms of \\(\tan(m x - \pi n / 2)\\):
+Further reduction can be achieved by rewriting Eqn. 19.15 in terms of \\(\tan(m x - \pi n / 2)\\):
 
-$$ \tag{18.16}
+$$ \tag{19.16}
 \begin{aligned}
   	a_n
   	&\simeq (-1)^n
@@ -7333,9 +7333,9 @@ These expressions demonstrate that the magnitudes of the coefficients rapidly os
 
 {{< figure src="/img/coef_b_n.svg" caption="*Figure N: The plots of the real (solid line) and the imaginary (dashed line) parts of the expansion coefficient \\(b_1/i\\) for \\(m = 4/3\\). The horizontal axis represents the size parameter of the particle.*" >}}
 
-In addition to the cyclicality, by transforming Eqn. 18.15 into a function of \\((m - 1) x\\), it can be shown that the expansion coefficients are periodic functions of \\(x\\), with the period
+In addition to the cyclicality, by transforming Eqn. 19.15 into a function of \\((m - 1) x\\), it can be shown that the expansion coefficients are periodic functions of \\(x\\), with the period
 
-$$ \tag{18.1??}
+$$ \tag{19.1??}
 \begin{aligned}
 	\Delta x = \frac{\pi}{m - 1},
 \end{aligned}
@@ -7345,7 +7345,7 @@ provided that \\(0.5 < m < 2.5\\), and \\(x\\) is sufficiently large \[[23](#ref
 
 Next, let us turn our attention to particles on the opposite end of the size spectrum, with \\(| m x | \ll 1\\). If we assume that \\(| m | > 1\\), then it follows that \\(| x | \ll 1\\) as well. The Taylor series expansions of the Riccati-Bessel functions \[[17](#references) (ch. 7.4)\] are
 
-$$ \tag{18.17}
+$$ \tag{19.17}
 \begin{aligned}
 	\psi_n(x)
 	&= 2^n x^{n+1} \sum_{k=0}^{\infin} \frac{(-1)^k (n + k)!}{k! (2 n + 2 k + 1)!} x^{2 k},
@@ -7357,23 +7357,23 @@ $$
 
 where
 
-$$ \tag{18.18}
+$$ \tag{19.18}
 \begin{aligned}
 	\Gamma(n + 1) = n! \qquad (n \in \mathcal{Z}, n>0)
 \end{aligned}
 $$
 
-is the [Gamma function](https://en.wikipedia.org/wiki/Gamma_function). The Taylor series expansion of \\(\xi_n(x)\\) can be obtained by combining the expressions listed above according to Eqn. 17.155.3.
+is the [Gamma function](https://en.wikipedia.org/wiki/Gamma_function). The Taylor series expansion of \\(\xi_n(x)\\) can be obtained by combining the expressions listed above according to Eqn. 18.155.3.
 
-The two functions of Eqn. 18.17 exhibit the opposite behavior near the origin. On the one hand, the function of the first kind is positive, and quickly approaches 0 as \\(n\\) increases. On the other hand, the function of the second kind is negative, and rapidly diverges from 0. Both power series are dominated by the leading \\(k=0\\) term: this is clearly demonstrated by the almost perfectly straight [log-log plots](https://en.wikipedia.org/wiki/Log%E2%80%93log_plot) shown below.
+The two functions of Eqn. 19.17 exhibit the opposite behavior near the origin. On the one hand, the function of the first kind is positive, and quickly approaches 0 as \\(n\\) increases. On the other hand, the function of the second kind is negative, and rapidly diverges from 0. Both power series are dominated by the leading \\(k=0\\) term: this is clearly demonstrated by the almost perfectly straight [log-log plots](https://en.wikipedia.org/wiki/Log%E2%80%93log_plot) shown below.
 
 {{< figure src="/img/small_psi.svg" caption="*Figure N: Riccati-Bessel functions of the first kind of order n=1 (blue), n=2 (orange), n=3 (green).*" >}}
 
 {{< figure src="/img/small_chi.svg" caption="*Figure N: Negated Riccati-Bessel functions of the second kind of order n=1 (blue), n=2 (orange), n=3 (green).*" >}}
 
-Thus, we can estimate the asymptotic behavior of the expansion coefficients of the scattered field by taking a single term from each of Eqn. 18.17.1 and 18.17.2:
+Thus, we can estimate the asymptotic behavior of the expansion coefficients of the scattered field by taking a single term from each of Eqn. 19.17.1 and 19.17.2:
 
-$$ \tag{18.19}
+$$ \tag{19.19}
 \begin{aligned}
   	\frac{a_n}{i}
   	&\simeq \frac{ 1 - u }
@@ -7387,7 +7387,7 @@ $$
 
 where
 
-$$ \tag{18.20}
+$$ \tag{19.20}
 	N(n) = \frac{ (2 n)! (2 n+1)! }{ 4^n (n!)^2 (n+1) }
 $$
 
@@ -7395,9 +7395,9 @@ is a rapidly growing function of \\(n\\), with \\(N(1)=3/2.\\)
 
 In this crude approximation, the magnetic coefficients \\(a_n\\) vanish for non-magnetic materials with \\(u=1\\). In addition, the magnetic coefficients do not depend on the relative wavenumber \\(m\\) at all. However, this approximation serves it purpose, since it clearly demonstrates that the magnitudes of both coefficients are roughly proportional \\(N^{-1} x^{2 n + 1}\\). Since, for \\(| x | \ll 1\\), the latter plummets with increasing \\(n\\), we may restrict ourselves to just the fist couple of terms.
 
-In general, for arbitrary argument values, the expansion coefficients of the first couple of orders can be easily evaluated *exactly* using the explicit formulae of the Riccati-Bessel functions derived from Eqn. 17.51 and 17.155:
+In general, for arbitrary argument values, the expansion coefficients of the first couple of orders can be easily evaluated *exactly* using the explicit formulae of the Riccati-Bessel functions derived from Eqn. 18.51 and 18.155:
 
-$$ \tag{18.21}
+$$ \tag{19.21}
 \begin{aligned}
 	& \psi_1(x) = \frac{\sin{x}}{x}-\cos{x},
 	&
@@ -7411,7 +7411,7 @@ $$
 
 However, for very small particles with \\(| m x | \ll 1\\), it is slightly more efficient to use a Taylor series expansion. Restricting ourselves to polynomials of degree 6, we obtain
 
-$$ \tag{18.22}
+$$ \tag{19.22}
 \begin{aligned}
   	\frac{a_{1}}{i}
   	&= \frac{2}{3} \frac{1-u}{1 + 2 u} x^3
@@ -7437,7 +7437,7 @@ $$
 
 If the material is non-magnetic, we may set \\(u=1\\):
 
-$$ \tag{18.23}
+$$ \tag{19.23}
 \begin{aligned}
   	\frac{a_{1}}{i}
   	&= \frac{1}{45} \left(m^2-1\right) x^5
@@ -7462,11 +7462,11 @@ Unexpectedly, for very small particles, the relationship between the electric an
 
 For small molecules, even the \\(x^5\\) term is often neglected. In this case, all coefficients except for
 
-$$ \tag{18.24}
+$$ \tag{19.24}
 	\frac{b_{1}}{i} \approx \frac{2}{3} \frac{m^2-1}{m^2+2} x^3
 $$
 
-vanish. Eqn. 18.24 is the basis of the famous law of [Rayleigh scattering](https://en.wikipedia.org/wiki/Rayleigh_scattering) that explains the color of the sky: when molecules of the atmosphere scatter sunlight, the intensity of blue light, which has a shorter wavelength, is much greater than of the rest of the [visible spectrum](https://en.wikipedia.org/wiki/Visible_spectrum), since the size parameter \\(x\\) is inversely proportional to the wavelength \\(\lambda\\).
+vanish. Eqn. 19.24 is the basis of the famous law of [Rayleigh scattering](https://en.wikipedia.org/wiki/Rayleigh_scattering) that explains the color of the sky: when molecules of the atmosphere scatter sunlight, the intensity of blue light, which has a shorter wavelength, is much greater than of the rest of the [visible spectrum](https://en.wikipedia.org/wiki/Visible_spectrum), since the size parameter \\(x\\) is inversely proportional to the wavelength \\(\lambda\\).
 
 #### Light Intensity and Efficiency Factors
 
@@ -7474,21 +7474,21 @@ Since the frequencies of the electromagnetic radiation associated with visible l
 
 Suppose that the host medium is non-absorptive and non-magnetic. Then \\(\kappa = 0, \mu = \mu_0, k\\) is real, and the intensity of the scattered light is given by Eqn. 16.15:
 
-$$ \tag{18.25}
+$$ \tag{19.25}
 	\Iota_s(\bm{n_s}, \omega)
 	\simeq \frac{\mu\_0^{-1}}{2} \frac{\eta(\omega)}{c} \frac{1}{k^2(\omega)} \left| \bm{E_1}(\bm{n_s}, \omega) \right|^2.
 $$
 
 Eqn. 15.? allows us to replace the polarization phasor \\(\bm{E_1}\\) of the scattered field with the product the of the electric far-field scattering dyadic \\(\mathcal{S_{ef}}\\) and the polarization phasor \\(\bm{E_0}\\) of the incident field:
 
-$$ \tag{18.26}
+$$ \tag{19.26}
 	\Iota_s(\bm{n_s}, \omega)
 	\simeq \frac{\mu\_0^{-1}}{2} \frac{\eta(\omega)}{c} \frac{1}{k^2(\omega)} \left| \mathcal{S_{ef}}(\bm{n_s}, \bm{n_i}, \omega) \cdot \bm{E_0}(\bm{n_i}, \omega) \right|^2.
 $$
 
-Both \\(\mathcal{S_{ef}}\\) and \\(\bm{E_0}\\) are coordinate-independent entities. In practice, we shall utilize the convention established in Sec. 15, according to which both the incident and the scattered fields can be described using only two components each. After taking Eqn. 15.14-15.16 into account, Eqn. 18.26 takes the form
+Both \\(\mathcal{S_{ef}}\\) and \\(\bm{E_0}\\) are coordinate-independent entities. In practice, we shall utilize the convention established in Sec. 15, according to which both the incident and the scattered fields can be described using only two components each. After taking Eqn. 15.14-15.16 into account, Eqn. 19.26 takes the form
 
-$$ \tag{18.27}
+$$ \tag{19.27}
 	\Iota_s(\theta, \phi, \omega)
 	\simeq \frac{\mu\_0^{-1}}{2} \frac{\eta(\omega)}{c} \frac{1}{k^2(\omega)} \left| S(\theta, \phi, \omega)
 	\begin{bmatrix}
@@ -7502,7 +7502,7 @@ where \\(S\\) is the scattering matrix.
 
 Presently, it is desirable to write the expression of the incident field phasor using the exponential notation:
 
-$$ \tag{18.28}
+$$ \tag{19.28}
 	\begin{bmatrix}
 		E_{x}(\phi, \omega) \cr
 		E_{y}(\phi, \omega) \cr
@@ -7516,7 +7516,7 @@ $$
 
 It allows us to directly relate the scattered intensity \\(\Iota_s\\) to the incident irradiance \\(\Epsilon_i\\):
 
-$$ \tag{18.29}
+$$ \tag{19.29}
 	\Iota_s(\theta, \phi, \omega)
 	\simeq \frac{\Epsilon_i(\omega)}{k^2(\omega)} \left| \frac{S(\theta, \phi, \omega)}{ \sqrt{2} }
 	\begin{bmatrix}
@@ -7528,9 +7528,9 @@ $$
 
 Note that the cosine factor in the formula of the latter (Eqn. 16.4) has been omitted; that is permissible because a spherical particle is invariant under rotation of the direction of propagation of the incident wave.
 
-Since the scattering matrix of a spherical particle (given by Eqn. 18.6) is diagonal, our task is reduced to determination of the squared magnitude of the complex vector
+Since the scattering matrix of a spherical particle (given by Eqn. 19.6) is diagonal, our task is reduced to determination of the squared magnitude of the complex vector
 
-$$ \tag{18.30}
+$$ \tag{19.30}
 	\begin{bmatrix}
 		E_{\theta} \cr
 		E_{\phi} \cr
@@ -7548,7 +7548,7 @@ $$
 
 As it turns out, this magnitude is independent of the state of the incident wave:
 
-$$ \tag{18.31}
+$$ \tag{19.31}
 \begin{aligned}
 	\begin{vmatrix}
 		E_{\theta} \cr
@@ -7577,7 +7577,7 @@ $$
 
 Thus, we arrive at the important result that relates the scattered intensity to the incident irradiance:
 
-$$ \tag{18.32}
+$$ \tag{19.32}
 	\Iota_s(\theta, \phi, \omega)
 	\simeq \frac{\Epsilon_i(\omega)}{k^2(\omega)}
 	\frac{ \left| s_1(\theta, \omega) \right|^2 + \left| s_2(\theta, \omega) \right|^2 }{2},
@@ -7585,7 +7585,7 @@ $$
 
 where the non-zero elements of the scattering matrix are
 
-$$ \tag{18.33}
+$$ \tag{19.33}
 \begin{aligned}
 	s_1(\theta, \omega)
 	&= \sum_{n=1}^{\infin} \frac{(2 n + 1)}{n (n + 1)} i
@@ -7597,11 +7597,11 @@ $$ \tag{18.33}
 \end{aligned}
 $$
 
-Eqn. 18.32 deserves a few remarks. First, the right-hand side is independent of the azimuthal angle \\(\phi\\), which should not come as a surprise, since the particle is spherical. What is surprising is the fact that the formula manages to almost entirely conceal the wave nature of light, since the incident irradiance is directly transformed into the scattered intensity, with all the wave-optical calculations confined within the expression of the scattering matrix.
+Eqn. 19.32 deserves a few remarks. First, the right-hand side is independent of the azimuthal angle \\(\phi\\), which should not come as a surprise, since the particle is spherical. What is surprising is the fact that the formula manages to almost entirely conceal the wave nature of light, since the incident irradiance is directly transformed into the scattered intensity, with all the wave-optical calculations confined within the expression of the scattering matrix.
 
 For illustrative purposes, we may split the intensity into the average of the vertical (or parallel) component \\(\Iota_{\parallel}\\) that corresponds to the electric field oriented along the \\(\theta\\)-axis, and the horizontal (or perpendicular) component \\(\Iota_{\perp}\\) derived from the electric field oriented along the \\(\phi\\)-axis:
 
-$$ \tag{18.34}
+$$ \tag{19.34}
 \begin{aligned}
 	\Iota_{\perp}(\theta, \phi, \omega)
 	&\simeq \frac{\Epsilon_i(\omega)}{k^2(\omega)}
@@ -7616,7 +7616,7 @@ $$ \tag{18.34}
 \end{aligned}
 $$
 
-We may observe that the intensity directly depends on the wavenumber \\(k\\) in the host medium, and indirectly on the size parameter \\(x\\), the relative wavenumber \\(m\\), and the reciprocal of the relative permeability \\(u\\), through Eqn. 17.156 of the expansion coefficients \\(a_n\\) and \\(b_n\\). Not all of these parameters are independent; for instance, both \\(m\\) and \\(x\\) are proportional to \\(k\\). In order to make the analysis simple, we shall fix the values of \\(k\\), \\(m\\) and \\(u\\), and only vary the size of the particle \\(a\\), thereby determining the value of the size parameter \\(x\\).
+We may observe that the intensity directly depends on the wavenumber \\(k\\) in the host medium, and indirectly on the size parameter \\(x\\), the relative wavenumber \\(m\\), and the reciprocal of the relative permeability \\(u\\), through Eqn. 18.156 of the expansion coefficients \\(a_n\\) and \\(b_n\\). Not all of these parameters are independent; for instance, both \\(m\\) and \\(x\\) are proportional to \\(k\\). In order to make the analysis simple, we shall fix the values of \\(k\\), \\(m\\) and \\(u\\), and only vary the size of the particle \\(a\\), thereby determining the value of the size parameter \\(x\\).
 
 Consider a water droplet suspended in vacuum illuminated by orange light. Assuming the vacuum wavelength \\(\lambda_0 = 600 \text{ nm}\\), the corresponding wavenumber is \\(k = k_0 = 2 \pi / \lambda_0 \approx 0.01 \text{ nm}^{-1}\\). The refractive index of [water](https://refractiveindex.info/?shelf=main&book=H2O&page=Hale) under visible light is \\(\eta + i \kappa \approx 4/3\\), with \\(\mu \approx 1\\). And since the particle is assumed to be located in vacuum, \\(m \approx 4/3\\) and \\(u \approx 1\\).
 
@@ -7666,21 +7666,21 @@ As it turns out, the result is a strongly varying function of \\(x\\). This can 
 
 There is a more robust parameter used to characterize the asymmetry of the angular distribution of the scattered light called the *mean cosine*. In order to compute it, we must first define the corresponding [probability density function](https://en.wikipedia.org/wiki/Probability_density_function)
 
-$$ \tag{18.35}
+$$ \tag{19.35}
 	p_s(\theta, \phi, \omega)
 	= \frac{\Iota_s(\theta, \phi, \omega)}{\Phi_s(\omega)}
 $$
 
 on the surface of a unit sphere. The former is directly related to the [phase function](https://glossary.ametsoc.org/wiki/Phase_function)
 
-$$ \tag{18.36}
+$$ \tag{19.36}
 	f_p(\theta, \phi, \omega)
 	= 4 \pi p_s(\theta, \phi, \omega).
 $$
 
 Given the probability density function, the expected value of \\(\cos{\theta}\\) can be calculated as
 
-$$ \tag{18.37}
+$$ \tag{19.37}
 	g(\omega)
 	= \braket{\cos{\theta}}
 	= \int_{0}^{2 \pi} \int_{0}^{\pi} p_s(\theta, \phi, \omega) \cos{\theta} \sin{\theta} d\theta d\phi.
@@ -7688,16 +7688,16 @@ $$
 
 If the angular distribution is *isotropic* (that is, invariant with respect to direction), then \\(f_p = 1\\) and \\(g = 0\\). For spherical particles, due to the Mie effect, we should expect \\(g \to 1\\) as \\(x \to \infty\\).
 
-In order to compute the probability density function, we need to evaluate both the scattered intensity and the scattered power. The former is given by Eqn. 18.32; the latter can be obtained by combining Eqn. 16.14 and 16.15:
+In order to compute the probability density function, we need to evaluate both the scattered intensity and the scattered power. The former is given by Eqn. 19.32; the latter can be obtained by combining Eqn. 16.14 and 16.15:
 
-$$ \tag{18.38}
+$$ \tag{19.38}
 	\Phi_s(\omega)
 	= \int_{0}^{2 \pi} \int_{0}^{\pi} \Iota_s(\theta, \phi, \omega) \sin{\theta} d\theta d\phi.
 $$
 
-In the particular case of spherical particles, we may utilize Eqn. 18.32 and 18.33 once more:
+In the particular case of spherical particles, we may utilize Eqn. 19.32 and 19.33 once more:
 
-$$ \tag{18.39}
+$$ \tag{19.39}
 \begin{aligned}
 	\Phi_s(\omega)
 	= \frac{2 \pi}{k^2(\omega)} \Epsilon_i(\omega)
@@ -7707,7 +7707,7 @@ $$
 
 where we choose to express the squared magnitudes of the elements of the scattering matrix by a double series:
 
-$$ \tag{18.40}
+$$ \tag{19.40}
 \begin{aligned}
 	\left| s_1(\theta, \omega) \right|^2
 	&= \sum_{l=1}^{\infin} \sum_{n=1}^{\infin} \frac{(2 l + 1)}{l (l + 1)} \frac{(2 n + 1)}{n (n + 1)}
@@ -7719,24 +7719,24 @@ $$ \tag{18.40}
 \end{aligned}
 $$
 
-Normally, it is simpler to evaluate a single series and then compute the magnitude of the resulting complex number. However, the somewhat complicated expression given above allows us to efficiently eliminate the outer integral by considering the identities given by Eqn. 17.69 and 17.70, yielding
+Normally, it is simpler to evaluate a single series and then compute the magnitude of the resulting complex number. However, the somewhat complicated expression given above allows us to efficiently eliminate the outer integral by considering the identities given by Eqn. 18.69 and 18.70, yielding
 
-$$ \tag{18.41}
+$$ \tag{19.41}
 	\int_{0}^{\pi} \frac{ \left| s_1(\theta, \omega) \right|^2 + \left| s_2(\theta, \omega) \right|^2 }{2} \sin{\theta} d\theta
 	= \sum_{n=1}^{\infin} (2 n + 1) \left( |a_n|^2 + |b_n|^2 \right).
 $$
 
 Thus, the amount of power scattered by a spherical particle is
 
-$$ \tag{18.42}
+$$ \tag{19.42}
 	\Phi_s(\omega)
 	= \frac{2 \pi}{k^2(\omega)} \Epsilon_i(\omega)
 	\sum_{n=1}^{\infin} (2 n + 1) \left( |a_n|^2 + |b_n|^2 \right).
 $$
 
-As we return to Eqn. 18.37 and take Eqn. 18.32 into account, we face another integral
+As we return to Eqn. 19.37 and take Eqn. 19.32 into account, we face another integral
 
-$$ \tag{18.43}
+$$ \tag{19.43}
 \begin{aligned}
 	g(\omega)
 	&= 2 \pi \int_{0}^{\pi} \frac{I_s(\theta, \phi, \omega)}{\Phi_s(\omega)} \cos{\theta} \sin{\theta} d\theta
@@ -7746,9 +7746,9 @@ $$ \tag{18.43}
 \end{aligned}
 $$
 
-We may substitute the double series of Eqn. 18.40 once again; however, this time, the additional cosine term in the resulting integrals requires application of a different set of orthogonality properties, namely, Eqn. 17.6? and 17.7?, yielding
+We may substitute the double series of Eqn. 19.40 once again; however, this time, the additional cosine term in the resulting integrals requires application of a different set of orthogonality properties, namely, Eqn. 18.6? and 18.7?, yielding
 
-$$ \tag{18.44}
+$$ \tag{19.44}
 \begin{aligned}
 	& \int_{0}^{\pi} \frac{ \left| s_1(\theta, \omega) \right|^2 + \left| s_2(\theta, \omega) \right|^2 }{2} \cos{\theta} \sin{\theta} d\theta
 	\cr
@@ -7758,9 +7758,9 @@ $$ \tag{18.44}
 \end{aligned}
 $$
 
-The combination of Eqn. 18.41-18.44 produces the analytic expression of the mean cosine:
+The combination of Eqn. 19.41-19.44 produces the analytic expression of the mean cosine:
 
-$$ \tag{18.45}
+$$ \tag{19.45}
 \begin{aligned}
 	g(\omega)
 	&= \frac{\sum_{n=1}^{\infin} \frac{2 (2 n + 1)}{n (n + 1)} \mathcal{Re} \lbrace a_n b_n^{\*} \rbrace
@@ -7769,7 +7769,7 @@ $$ \tag{18.45}
 \end{aligned}
 $$
 
-Eqn. 18.45 allows us to plot the mean cosine of a water droplet as a function of its size.
+Eqn. 19.45 allows us to plot the mean cosine of a water droplet as a function of its size.
 
 {{< figure src="/img/water_mean_cos.svg" caption="*Figure N: Linear plot of the mean cosine of a water droplet. The horizontal axis represents the size parameter of the particle.*" >}}
 
@@ -7779,7 +7779,7 @@ Up to \\(x \approx 5\\), the value of the mean cosine increases in line with the
 
 The prominent wave pattern featured in the plot of Fig. N can be explained by the fact that the mean cosine is inversely proportional to the scattered power. The latter is most intuitively visualized by plotting the dimensionless scattering efficiency factor
 
-$$ \tag{18.46}
+$$ \tag{19.46}
 \begin{aligned}
 	& Q_s(\omega)
 	= \frac{\Phi_s(\omega)}{\Phi_i(\omega)}
@@ -7798,7 +7798,7 @@ Now, suppose that we hold the radius \\(a\\) of the particle and its refractive 
 
 If the particle is non-absorptive, then, from Eqn. 16.38.1, it follows that the scattering and the extinction efficiencies are identical:
 
-$$ \tag{18.47}
+$$ \tag{19.47}
 	Q_a = 0
 	\quad
 	\iff
@@ -7806,9 +7806,9 @@ $$ \tag{18.47}
 	Q_e = Q_s.
 $$
 
-The general expression of the latter is given by Eqn. 16.38.3 and, for the particular case of a spherical particle, by the combination of Eqn. 16.43.1, 18.?.1, and 18.33:
+The general expression of the latter is given by Eqn. 16.38.3 and, for the particular case of a spherical particle, by the combination of Eqn. 16.43.1, 19.?.1, and 19.33:
 
-$$ \tag{18.48}
+$$ \tag{19.48}
 \begin{aligned}
 	Q_e(\omega)
 	= \frac{\Phi_a(\omega) + \Phi_s(\omega)}{\Phi_i(\omega)}
@@ -7818,7 +7818,7 @@ $$ \tag{18.48}
 \end{aligned}
 $$
 
-If you are not very familiar with the subject, then comparison of Eqn. 18.46 with Fig. N may suggest that something is wrong, since the amount of power scattered by a particle may significantly exceed the amount of incident power. Since the scattered power is also featured in the expression of the extinction efficiency factor, the latter exhibits the same problem, which indicates that the amount of power "removed" from the incident beam is larger than the amount of power geometrically intercepted by the particle. This surprising behavior is known as the [extinction paradox](https://en.wikipedia.org/wiki/Extinction_paradox).
+If you are not very familiar with the subject, then comparison of Eqn. 19.46 with Fig. N may suggest that something is wrong, since the amount of power scattered by a particle may significantly exceed the amount of incident power. Since the scattered power is also featured in the expression of the extinction efficiency factor, the latter exhibits the same problem, which indicates that the amount of power "removed" from the incident beam is larger than the amount of power geometrically intercepted by the particle. This surprising behavior is known as the [extinction paradox](https://en.wikipedia.org/wiki/Extinction_paradox).
 
 This phenomenon is not limited to a particular composition, or a certain shape of a particle. However, it does strongly depend on the size. Why is that the case?
 
@@ -7830,7 +7830,7 @@ It is reasonable to believe that, for a fixed wavelength, the relative contribut
 
 Now, suppose that \\(x\\) is very large, so that \\(\Phi_i\\) provides a reasonably accurate estimate. Since the paradox manifests itself regardless of the geometry and the optical properties of the particle, let us imagine the particle to be a flat mirror. It perfectly reflects the incident light, contributing a factor of \\(1\\) to \\(Q_s\\). As the mirror is large, it also casts a shadow, which indicates that the value of the electric field behind the mirror is \\(0\\). If we recall that the incident field is not modified by the addition of the scattering object in any way, this leads to the conclusion that the scattered field behind the mirror must have the same magnitude and the opposite phase in order to destructively interfere with and completely cancel the incident field. Thus, \\(Q_s = 2\\), which explains the paradox for a flat mirror \[[21](#references), [22](#references)\].
 
-Since, in general, a particle with \\(|m x| \to \infin\\) does not necessarily cast a well-defined shadow, we require an alternative explanation. Suppose that \\(|m| \to \infin\\), and \\(x\\) is not too small. This implies that the particle is either a *perfect dielectric reflector* \\((\epsilon, \eta \to \infin)\\) or a *perfect electric conductor* \\((\sigma, \kappa \to \infin)\\). According to Eqn. 17.157, a particle of the first kind is able to sustain a fairly strong internal field, while a particle of the second kind makes it vanish. In both cases, the particle appears mirror-like, and, in order for the value of the internal field to be maintained, the *extinction theorem* (see Sec. 10) requires the scattered field to continually extinguish the incident field inside the particle. Accounting for these two facts once again leads to \\(Q_s = 2\\) \[[20](#references), [21](#references)\].
+Since, in general, a particle with \\(|m x| \to \infin\\) does not necessarily cast a well-defined shadow, we require an alternative explanation. Suppose that \\(|m| \to \infin\\), and \\(x\\) is not too small. This implies that the particle is either a *perfect dielectric reflector* \\((\epsilon, \eta \to \infin)\\) or a *perfect electric conductor* \\((\sigma, \kappa \to \infin)\\). According to Eqn. 18.157, a particle of the first kind is able to sustain a fairly strong internal field, while a particle of the second kind makes it vanish. In both cases, the particle appears mirror-like, and, in order for the value of the internal field to be maintained, the *extinction theorem* (see Sec. 10) requires the scattered field to continually extinguish the incident field inside the particle. Accounting for these two facts once again leads to \\(Q_s = 2\\) \[[20](#references), [21](#references)\].
 
 Note that, unlike the scattered field, the total field has no apparent issues with energy conservation, since its power (change in the amount of energy over time) is zero in inaccessible areas. This underscores the importance of understanding the fact that only the total field is an actual physical entity, while the incident and the scattered fields are just mathematical constructs.
 
@@ -7844,7 +7844,7 @@ All matter is made of [atoms](https://en.wikipedia.org/wiki/Atom). When certain 
 
 All scattering processes can be broadly classified in two categories: [elastic](https://en.wikipedia.org/wiki/Elastic_scattering) and [inelastic](https://en.wikipedia.org/wiki/Inelastic_scattering). A typical example of *elastic scattering* is an idealized rubber ball perfectly bouncing off a hard surface; we say that, in the center-of-mass frame, the kinetic energy of the ball is conserved. The description of *elastic light scattering* is even simpler: since, as far as we know, [photons](https://en.wikipedia.org/wiki/Photon) are massless, the photon's energy \\(\mathcal{E_p}\\) must be conserved. If, using the [uncertainty principle](https://en.wikipedia.org/wiki/Uncertainty_principle), we associate the photon with a plane wave, then the [Planck-Einstein relation](https://en.wikipedia.org/wiki/Planck_relation)
 
-$$ \tag{19.1}
+$$ \tag{20.1}
 	\mathcal{E_p} = \hbar \omega
 $$
 
@@ -7852,13 +7852,13 @@ tells us that the angular frequency \\(\omega\\) must remain unchanged.
 
 That is not the case for *inelastic light scattering*, which allows an atom (or a molecule) to absorb a photon \\(\mathcal{E_p}\\), only to emit a different photon \\(\mathcal{E_p'}\\) at a later point in time. The law of conservation of energy requires the total amount of energy \\(\mathcal{E}\\) in the atom-photon system to be the same before and after the scattering event:
 
-$$ \tag{19.2}
+$$ \tag{20.2}
 	\mathcal{E_a} + \mathcal{E_p} = \mathcal{E} = \mathcal{E_a'} + \mathcal{E_p'}.
 $$
 
 Therefore, if scattering alters the energy of the atom \\((\mathcal{E_a} \neq \mathcal{E_a'})\\), the radiation undergoes a frequency shift
 
-$$ \tag{19.3}
+$$ \tag{20.3}
 \begin{aligned}
 	\Omega
 	= \frac{\mathcal{E_p'} - \mathcal{E_p}}{\hbar}
@@ -7870,7 +7870,7 @@ that can be either positive or negative, depending on the initial and final stat
 
 Classical electrodynamics represents matter by a charge distribution that behaves a certain way. In particular, if we consider an atom or a small molecule, to a good approximation, light-matter interaction is limited to the displacement of the electron cloud relative to the center of mass of the molecule, which is characterized by the induced dipole moment
 
-$$ \tag{19.4}
+$$ \tag{20.4}
 	\bm{p}(V, \omega) =
 	\mathcal{\Alpha_m}(V, \omega) \cdot \epsilon_0 \bm{E_{\mu}}(\bm{r_0}, \omega),
 $$
@@ -7879,14 +7879,14 @@ where \\(\mathcal{\Alpha_m}\\) is the molecular polarizability dyadic.
 
 In addition to forced motion of the electron cloud, a diatomic molecule may experience vibration of the nuclei relative to the center of mass of the molecule \[[30](#references), ch. \\(\mathrm{A\_V}\\)\]. Since the nuclei are much heavier than the electrons, they oscillate at a lower frequency, effectively [modulating the amplitude](https://en.wikipedia.org/wiki/Amplitude_modulation) of the oscillation of the dipole moment by a factor of
 
-$$ \tag{19.5}
+$$ \tag{20.5}
 	\cos(\Omega t)
 	= \frac{e^{i \Omega t} + e^{-i \Omega t}}{2}.
 $$
 
 If the applied field \\(\bm{E_{\mu}}\\) is time-harmonic,
 
-$$ \tag{19.6}
+$$ \tag{20.6}
 \begin{aligned}
 	\bm{p}(V, \omega) e^{i \omega t}
 	&= \big( \mathcal{\Alpha_m}(V, \omega) + 2 \mathcal{\Beta_m}(V, \omega) \cos(\Omega t) \big)
@@ -7901,7 +7901,7 @@ $$ \tag{19.6}
 \end{aligned}
 $$
 
-Eqn. 19.6 constitutes the classical description of molecular light scattering, where the first term corresponds to *elastic* [Rayleigh scattering](https://en.wikipedia.org/wiki/Rayleigh_scattering), the second -- to *inelastic Stokes-Raman scattering*, and the third -- to *inelastic anti-Stokes-Raman scattering*. [Raman scattering](https://en.wikipedia.org/wiki/Raman_scattering) is quantum-mechanical in nature, so its derivation is beyond the scope of this article. However, if the reader were to obtain the values of \\(\mathcal{\Beta_m}\\) and \\(\Omega\\) elsewhere \[[29](#references)\], extending the theory presented below should be fairly straightforward.
+Eqn. 20.6 constitutes the classical description of molecular light scattering, where the first term corresponds to *elastic* [Rayleigh scattering](https://en.wikipedia.org/wiki/Rayleigh_scattering), the second -- to *inelastic Stokes-Raman scattering*, and the third -- to *inelastic anti-Stokes-Raman scattering*. [Raman scattering](https://en.wikipedia.org/wiki/Raman_scattering) is quantum-mechanical in nature, so its derivation is beyond the scope of this article. However, if the reader were to obtain the values of \\(\mathcal{\Beta_m}\\) and \\(\Omega\\) elsewhere \[[29](#references)\], extending the theory presented below should be fairly straightforward.
 
 ### Light Scattering by Gas Molecules
 
@@ -7918,7 +7918,7 @@ The properties #1-2 suggest that we may represent a gas molecule by an electric 
 
 The properties #1-4 imply that an electromagnetic wave incident on the volume \\(V\\) is not significantly impeded (or altered) by the presence of the group of molecules located within. We can quantify this effect by comparing the cross-sectional area \\(L^2\\) of the volume to the total extinction cross-section of all molecules:
 
-$$ \tag{20.0}
+$$ \tag{21.0}
 	\sum_{j=1}^{N} C_{e,j} \ll L^2.
 $$
 
