@@ -2131,7 +2131,7 @@ $$
 
 Notice that we have identified another inverse Fourier transform - the one that corresponds to an *earlier point in time*. The lag is precisely the amount of time it takes to traverse the distance from the source to the observation point at the speed of light.
 
-For this reason, \\(\bm{A}\\) and \\(\phi\\) are called the [retarded potentials](https://en.wikipedia.org/wiki/Retarded_potential) \[[5](#references) (vol. II, ch. 21), [6](#references) (ch. 2.1)\]:
+For this reason, \\(\bm{A}\\) and \\(\phi\\) are called the [retarded potentials](https://en.wikipedia.org/wiki/Retarded_potential) \[[5](#references) (vol. II, ch. 21), [6](#references) (ch. 2.1), [28](#references) (ch. 5.2)\]:
 
 $$ \tag{10.3}
 \begin{aligned}
@@ -2156,8 +2156,8 @@ This definition couples the space and time variables. For instance, consider the
 
 $$ \tag{10.5}
 	\frac{\partial}{\partial x} f \big(\bm{r}, t'(\bm{r}) \big)
-	= \frac{\partial f(\bm{r}, t)}{\partial x} \Big|_{t=t'}
-	+ \frac{\partial f(\bm{r}, t)}{\partial t} \Big|_{t=t'} \frac{\partial t'(\bm{r})}{\partial x},
+	= \frac{\partial f(\bm{r}, t)}{\partial x} \Big|\_{t=t'}
+	+ \frac{\partial f(\bm{r}, t)}{\partial t} \Big|\_{t=t'} \frac{\partial t'(\bm{r})}{\partial x},
 $$
 
 where
@@ -2260,8 +2260,8 @@ $$ \tag{10.14}
 \begin{aligned}
 	&\bm{A_s}(\bm{r}, t)
 	= \frac{1}{4 \pi \mu_0^{-1}} \int\_{V}
-		  \lfloor \bm{M} \rfloor \times \nabla' \frac{1}{R}
-		+ \frac{\lfloor \partial \bm{P} / \partial t \rfloor}{R}
+		  \frac{\lfloor \partial \bm{P} / \partial t \rfloor}{R}
+		+ \lfloor \bm{M} \rfloor \times \nabla' \frac{1}{R}
 		- \frac{\bm{R} \times \lfloor \partial \bm{M} / \partial t \rfloor}{c R^2} dV', \cr
 	&\phi_s(\bm{r}, t)
 	= \frac{1}{4 \pi \epsilon_0} \int\_{V}
@@ -2272,7 +2272,7 @@ $$
 
 -->
 
-Eqn. 10.14.1-10.14.2 have the following interpretation in terms of the atomic theory of matter \[[6](#references) (ch. 2.2)\]. The [nucleus](https://en.wikipedia.org/wiki/Atomic_nucleus) of an atom contains [protons](https://en.wikipedia.org/wiki/Proton) with the charge \\(+q_e\\), and is surrounded by one or several [electrons](https://en.wikipedia.org/wiki/Electron) with the charge \\(-q_e\\). A molecule is an electrically neutral group of several atoms. Thus, an atom or a molecule is a system of several charges, half being negative, and the other half -- positive, separated (on average) by a certain distance \\(d\\). If this distance is not zero, it is said that the molecule is polarized. We can use this property to model an atom or a small molecule as a pair of point charges of opposite sign called a [dipole](https://en.wikipedia.org/wiki/Dipole) with an associated [electric dipole moment](https://en.wikipedia.org/wiki/Electric_dipole_moment)
+Eqn. 10.14.1-10.14.2 can be interpreted in terms of the atomic theory of matter \[[6](#references) (ch. 2.2)\]. The [nucleus](https://en.wikipedia.org/wiki/Atomic_nucleus) of an atom contains [protons](https://en.wikipedia.org/wiki/Proton) with the charge \\(+q_e\\), and is surrounded by one or several [electrons](https://en.wikipedia.org/wiki/Electron) with the charge \\(-q_e\\). A molecule is an electrically neutral group of several atoms. Thus, an atom or a molecule is a system of several charges, half being negative, and the other half -- positive, separated (on average) by a certain distance \\(d\\). If this distance is not zero, it is said that the molecule is polarized. We can use this property to model an atom or a small molecule as a pair of point charges of opposite sign called a [dipole](https://en.wikipedia.org/wiki/Dipole) with an associated [electric dipole moment](https://en.wikipedia.org/wiki/Electric_dipole_moment)
 
 $$ \tag{10.15}
 	\bm{p} = q \bm{d},
@@ -2280,7 +2280,7 @@ $$
 
 where \\(\bm{p}\\) points along the line from the negative to the positive charge.
 
-The moment of a dipole does not depend on its location, \\(\bm{r_0}\\). That is because it describes the displacement from the mean, which is relative by definition. That is easy to show by expressing the electric dipole moment in terms of the bound charge density:
+The moment of a dipole does not depend on its location, \\(\bm{r_0}\\). That is because it describes the displacement from the mean, which is relative by definition. That is easy to show by expressing the electric dipole moment in terms of the bound (or, equivalently, polarization) charge density:
 
 $$ \tag{10.16}
 	\bm{p}(V, t)
@@ -2310,7 +2310,7 @@ $$ \tag{10.18}
 \end{aligned}
 $$
 
-This expression is useful, since we can directly relate it to the definition of the polarization current density \\(\bm{J_p}\\) given by Eqn. 1.9.1:
+This expression is useful, since we can directly relate it to the definition of the polarization current density \\(\bm{J_p}\\) given by Eqn. 1.10.1:
 
 $$ \tag{10.19}
 	\frac{\partial}{\partial t} \bm{p}(V, t) = \int\_{V} \bm{J_p}(\bm{r}, t) dV,
@@ -2397,13 +2397,13 @@ $$ \tag{10.27}
 	\bm{m} = I \bm{s},
 $$
 
-where \\(I\\) is the current, and \\(\bm{s}\\) is the [oriented area](https://en.wikipedia.org/wiki/Vector_area) of the loop. The Maxwell equations show that the effect of this *electric* loop is equivalent to a pair of oscillating *magnetic* charges, which is the reason why this configuration is also considered a dipole.
+where \\(I\\) is the electric current, and \\(\bm{s}\\) is the [oriented area](https://en.wikipedia.org/wiki/Vector_area) of the loop. The Maxwell equations show that the effect of this *electric loop* is equivalent to a *pair of vibrating magnetic charges*, which is the reason why this configuration is also considered a dipole.
 
-Formally, the magnetic dipole moment can be expressed in terms of the magnetization current by the integral
+Formally, the magnetic dipole moment can be expressed in terms of the electric current density \\(\bm{j}\\) by the integral
 
 $$ \tag{10.28}
 	\bm{m}(t)
-	= \frac{1}{2} \int\_{V} \bm{r} \times \bm{J_m}(\bm{r}, t) dV,
+	= \frac{1}{2} \int\_{V} \bm{r} \times \bm{j}(\bm{r}, t) dV,
 $$
 
 or, in terms of the magnetic polarization per unit volume \\(\bm{M}\\),
@@ -2412,6 +2412,8 @@ $$ \tag{10.29}
 	\bm{m}(t)
 	= \int\_{V} \bm{M}(\bm{r}, t) dV.
 $$
+
+The curl of the latter is related to the magnetization current density \\(\bm{J_m}\\) by Eqn 1.10.1.
 
 Like in the case of polarization, magnetism comes in different forms \[[5](#references) (vol. II, ch. 34)\]. Unfortunately, none of them appear to have a satisfactory explanation in terms of classical physics. In particular, to the best of the author's knowledge, there is no simple analog of Eqn. 10.21 for induced magnetization.
 
@@ -2426,6 +2428,8 @@ $$
 but for [ferromagnets](https://en.wikipedia.org/wiki/Ferromagnet), this expression is invalid due to the [magnetic hysteresis](https://en.wikipedia.org/wiki/Magnetic_hysteresis) effect \[[5](#references) (vol. II, ch. 36)\].
 
 Fortunately, for optical applications, the situation is rather simple. Paramagnetism and diamagnetism are both very weak in general; the same is true for ferromagnetism at optical frequencies in particular. This leads to \\(\mu\_r \approx 1\\) \[[10](#references) (vol. I, ch. 27)\].
+
+In summary, it can be shown (but we won't prove it here) that Eqn. 10.14.2 is the scalar potential of a distribution of a electric dipoles of moment \\(\bm{P}\\) per unit volume, and that the first term of Eqn. 10.14.1 is the corresponding vector potential. Similarly, the last two terms of Eqn. 10.14.1 can be attributed to a distribution of magnetic dipoles of moment \\(\bm{M}\\) per unit volume \[[6](#references) (ch. 2.2), [28](#references) (ch. 5.3)\].
 
 In some sense, dipoles can be considered elementary sources of oscillating fields of the same type[^14]. They can be used to describe any (bound) current and charge distributions, which makes them particularly useful for solving electromagnetic radiation and scattering problems.
 
