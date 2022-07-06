@@ -394,7 +394,7 @@ without violating the Poynting theorem \[[5](#references) (vol. II, ch. 27.4)\].
 
 A more pressing concern is whether our formulae, which were found using the microscopic formulation of the Maxwell equations, are valid at the microscopic scale. The answer is: almost always.
 
-A typical derivation[^5] replaces \\(\bm{J}\\) with \\(\bm{J_f}\\) in Eqn. 2.6, which, after substitution of Eqn. 1.14.3, leads to the macroscopic counterpart of Eqn. 2.7 \[[6](#references) (ch. 1.1.4), [8](#references) (ch. 2.4)\]:
+A typical derivation[^5] replaces \\(\bm{J}\\) with \\(\bm{J_f}\\) in Eqn. 2.6, which, after substitution of Eqn. 1.14.3, leads to the macroscopic counterpart of Eqn. 2.7 \[[6](#references) (ch. 1.1.4), [8](#references) (ch. 2.4), [28](#references) (ch. 6.1)\]:
 
 [^5]: Work done on the bound current is implicit, since the latter is used to define \\(\bm{D}\\) and \\(\bm{H}\\).
 
@@ -407,9 +407,10 @@ After performing the same transformations as in Eqn. 2.8-2.11, we arrive at the 
 
 $$ \tag{2.21}
 	\bm{E} \cdot \bm{J_f} =
-	-\nabla \cdot (\bm{E} \times \bm{H}) - \bigg(
-	\bm{E} \cdot \frac{\partial \bm{D}}{\partial t} +
-	\bm{B} \cdot \frac{\partial \bm{H}}{\partial t} \bigg)
+	-\nabla \cdot (\bm{E} \times \bm{H}) -
+	\frac{\partial}{\partial t} \bigg(
+	\frac{1}{2} \bm{E} \cdot \bm{D} +
+	\frac{1}{2} \bm{B} \cdot \bm{H} \bigg)
 $$
 
 that matches the form required by the Poynting theorem.
@@ -420,12 +421,11 @@ $$ \tag{2.22}
 	\bm{S}(\bm{r}, t) = \bm{E}(\bm{r}, t) \times \bm{H}(\bm{r}, t)
 $$
 
-with the corresponding rate of change of the electromagnetic energy density
+with the corresponding electromagnetic energy density
 
 $$ \tag{2.23}
-	\frac{\partial^2}{\partial V \partial t}\mathcal{E\_{em}}(V, t)
-	= \bm{E}(\bm{r}, t) \cdot \frac{\partial}{\partial t}\bm{D}(\bm{r}, t)
-	+ \bm{B}(\bm{r}, t) \cdot \frac{\partial}{\partial t}\bm{H}(\bm{r}, t).
+	\frac{\partial}{\partial V} \mathcal{E\_e}(V, t) = \frac{1}{2} \bm{E}(\bm{r}, t) \cdot \bm{D}(\bm{r}, t), \quad
+	\frac{\partial}{\partial V} \mathcal{E\_m}(V, t) = \frac{1}{2} \bm{B}(\bm{r}, t) \cdot \bm{H}(\bm{r}, t), \quad
 $$
 
 Comparison of Eqn. 2.17 and 2.22 shows that both formulations of the Poynting vector are equivalent if the measurement is performed inside a *non-magnetic* material. That explains the \\(\mu\_0^{-1}\\) factor: since classical electrodynamics does not explicitly model the intrinsic properties of the elementary particles responsible for magnetism, the microscopic formulation of the Maxwell equations assumes that the observer is located in a potentially charged, yet non-magnetic region of vacuum.
