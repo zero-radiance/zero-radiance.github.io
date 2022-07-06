@@ -861,7 +861,13 @@ $$
 
 where \\(\sigma\\) is the [specific conductivity](https://en.wikipedia.org/wiki/Electrical_resistivity_and_conductivity), \\(\epsilon\\) is the [electric permittivity](https://en.wikipedia.org/wiki/Permittivity), and \\(\mu\\) is the [magnetic permeability](https://en.wikipedia.org/wiki/Permeability_(electromagnetism)) \[[6](#references) (ch. 1.1.2), [7](#references) (ch. 2.3), [8](#references) (ch. 2.1)\]. Note that the reciprocal of the permeability is used -- it is a historical accident caused by the confusion over whether \\(\bm{H}\\) or \\(\bm{B}\\) is the fundamental magnetic field.
 
-Care must taken when transforming Eqn. 5.2.1-5.2.3 to the time domain, since a multiplication in the frequency domain leads to a convolution in the time domain.
+Care must taken when transforming Eqn. 5.2.1-5.2.3 to the time domain, since a multiplication in the frequency domain leads to a convolution in the time domain. There, Eqn. 5.2.1-5.2.3 take the form
+
+$$ \tag{5.?}
+	\bm{D}(\bm{r}, t) = \frac{1}{\sqrt{2 \pi}} \int_{-\infin}^{\infin} \epsilon(\bm{r}, t - t') \bm{E}(\bm{r}, t') dt',
+$$
+
+which indicates that these materials exhibit a *delayed response* \[[28](#references) (ch. 6.2)\].
 
 Conservation of charge implies that
 
