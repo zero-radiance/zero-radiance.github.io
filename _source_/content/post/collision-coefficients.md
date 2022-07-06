@@ -606,8 +606,6 @@ $$ \tag{4.1}
 	\times \mathcal{F^{-1}} \big\lbrace \bm{H}(\bm{r}, \omega) \big\rbrace \Big).
 $$
 
--->
-
 The expression of the corresponding Poynting phasor is
 
 $$ \tag{4.2}
@@ -818,9 +816,6 @@ $$ \tag{4.19}
 $$
 
 Having defined both irradiance and spectral irradiance, we can easily compute all other [radiometric quantities](https://en.wikipedia.org/wiki/Radiometry) using integration and differentiation techniques as discussed in the previous article \[[3](#references)\].
-
-
-<!--
 
 ### Constitutive Relations
 
@@ -2278,8 +2273,6 @@ $$ \tag{10.14}
 \end{aligned}
 $$
 
--->
-
 Eqn. 10.14.1-10.14.2 can be interpreted in terms of the atomic theory of matter \[[6](#references) (ch. 2.2)\]. The [nucleus](https://en.wikipedia.org/wiki/Atomic_nucleus) of an atom contains [protons](https://en.wikipedia.org/wiki/Proton) with the charge \\(+q_e\\), and is surrounded by one or several [electrons](https://en.wikipedia.org/wiki/Electron) with the charge \\(-q_e\\). A molecule is an electrically neutral group of several atoms. Thus, an atom or a molecule is a system of several charges, half being negative, and the other half -- positive, separated (on average) by a certain distance \\(d\\). If this distance is not zero, it is said that the molecule is polarized. We can use this property to model an atom or a small molecule as a pair of point charges of opposite sign called a [dipole](https://en.wikipedia.org/wiki/Dipole) with an associated [electric dipole moment](https://en.wikipedia.org/wiki/Electric_dipole_moment)
 
 $$ \tag{10.15}
@@ -2446,8 +2439,6 @@ In some sense, dipoles can be considered elementary sources of oscillating field
 [Insert pictures of field lines of electric and magnetic dipoles]
 
 Finally, we would like to emphasize certain properties of the solution of the Maxwell equations in terms of potentials. Perhaps the most obvious one is that the scattered field is expressed as a volume integral. While the geometry of the volume containing the charges plays an important role, it is now apparent that the interior of the volume is the actual source of what we consider to be surface reflection. Furthermore, Eqn. 10.3 says that *microscopic* electromagnetic fields always propagate at the speed of light. The reason for different (ordinarily, lower) phase velocity of *macroscopic* fields in matter is the remarkable fact that the dipole field interferes with the incident field in such a way that the latter is completely extinguished and replaced by the internal field that propagates in accordance with the refractive index of the medium \[[5](#references) (vol. I, ch. 31)\]. Formally, this mechanism is described by the [extinction theorem](https://en.wikipedia.org/wiki/Ewald%E2%80%93Oseen_extinction_theorem) \[[6](#references) (ch. 2.4)\].
-
-<!--
 
 ## II. Electromagnetic Scattering
 
@@ -2899,8 +2890,6 @@ $$ \tag{1x.15}
 $$
 
 Eqn. 1x.14-1x.15 give the expressions of the scattered field in the region outside the scattering object \\((\bm{r} \notin V)\\) in terms of the *tangential surface fields* \\(\bm{n'} \times \bm{E}\\) and \\(\bm{n'} \times \bm{B}\\). More generally speaking, the idea that a smooth (but not necessarily physical) surface can be seen as a source of spherical *wavelets* (secondary waves) interfering with each other is known as the [Huygens-Fresnel principle](https://en.wikipedia.org/wiki/Huygens%E2%80%93Fresnel_principle) \[[4](#references) (ch. 3.1), [25](#references) (ch. 2)\].
-
--->
 
 ### Dipole Radiation
 
@@ -3507,6 +3496,7 @@ $$ \tag{14.25}
 	+ \lim_{\delta \to 0} \int\_{V - V_{\delta}} \mathcal{G} (\bm{r}, \bm{r''}, k) \cdot \mathcal{T_e} (\bm{r''}, \bm{r'}, k) dV'' \bigg).
 \end{aligned}
 $$
+-->
 
 ### Scattering Matrix
 
