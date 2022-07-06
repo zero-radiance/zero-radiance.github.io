@@ -875,7 +875,9 @@ $$ \tag{5.3}
 	\rho_i(\bm{r}, \omega) = \frac{1}{i \omega} \nabla \cdot \bm{J_i}(\bm{r}, \omega).
 $$
 
-Eqn. 5.2.1 and 5.3 assume that the *free* charges and currents may be decomposed into the *source* and the *induced* parts:
+Eqn. 5.2.1 and 5.3 assume that the *free* charges and currents may be decomposed into the *source* and the *induced* parts[^23]:
+
+[^23]: Sometimes, induced charges are called unbound, and source charges are called free. For a detailed discussion, see \[[28](#references) (ch. 6)\].
 
 $$ \tag{5.4}
 	\bm{J\_f} = \bm{J\_s} + \bm{J\_i}, \quad
