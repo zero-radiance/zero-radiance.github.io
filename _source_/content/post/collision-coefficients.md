@@ -7916,21 +7916,15 @@ Eqn. 20.6 constitutes the classical description of molecular light scattering, w
 We shall begin our investigation of light-matter interactions with the simplest state of matter -- [gas](https://en.wikipedia.org/wiki/Gas). Specifically, let us consider a *group of gas molecules* with the following (fairly typical) properties:
 
 1. The molecules are small compared to the wavelength of light. If \\(a\\) is the largest linear dimension of the molecule (e.g. its radius), and \\(k = k_0 = \omega / c\\) is the vacuum wavenumber, then \\(x = k a \ll 1\\).
-2. The molecules are weakly absorbing and weakly scattering. If \\(m\\) is the refractive index of the molecule (not to be confused with the refractive index of the gas itself), then \\(|m x| \ll 1\\).
+2. The molecules are weakly absorbing and weakly scattering. If \\(m\\) is the refractive index of the molecule (not to be confused with the refractive index of the gas as a medium), then \\(|m x| \ll 1\\).
 3. The average distance between the molecules is large.
-4. The number \\(N\\) of molecules within the group is small.
+4. The number \\(N\\) of molecules within the group is relatively small.
 5. The volume \\(V\\) containing the group of molecules is large compared to the wavelength of light. If \\(L\\) is the smallest linear dimension of the volume (e.g. its length), then \\(k L \gg 1\\).
 6. The molecules are randomly distributed. This is usually true due to [Brownian motion](https://en.wikipedia.org/wiki/Brownian_motion).
 
 The properties #1-2 suggest that we may represent a gas molecule by an electric dipole (cf. Sec. 12).
 
-The properties #1-4 imply that an electromagnetic wave incident on the volume \\(V\\) is not significantly impeded (or altered) by the presence of the group of molecules located within. We can quantify this effect by comparing the cross-sectional area \\(L^2\\) of the volume to the total extinction cross-section of all molecules:
-
-$$ \tag{21.0}
-	\sum_{j=1}^{N} C_{e,j} \ll L^2.
-$$
-
-This property of a gas as a macroscopic medium makes the *single scattering approximation* applicable, which assumes that each dipole is acted on exclusively by the incident field (or, in other words, the polarization \\(\bm{P}\\) is vanishingly small outside the volume occupied by any given dipole, cf. Sec. 10).
+The properties #1-4, taken together, imply that an electromagnetic wave incident on the volume \\(V\\) is not significantly impeded (or otherwise altered) by the presence of the group of molecules located within. This makes makes the single scattering approximation (cf. Eqn. 17.0) applicable, which assumes that each dipole driven exclusively by the incident field (or, in other words, the polarization \\(\bm{P}\\) is vanishingly small outside the volume occupied by any given dipole, cf. Sec. 10).
 
 ### Light Scattering by Liquid Molecules
 
