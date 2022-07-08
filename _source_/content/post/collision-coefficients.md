@@ -2891,6 +2891,8 @@ $$
 
 Eqn. 1x.14-1x.15 give the expressions of the scattered field in the region outside the scattering object \\((\bm{r} \notin V)\\) in terms of the *tangential surface fields* \\(\bm{n'} \times \bm{E}\\) and \\(\bm{n'} \times \bm{B}\\). More generally speaking, the idea that a smooth (but not necessarily physical) surface can be seen as a source of spherical *wavelets* (secondary waves) interfering with each other is known as the [Huygens-Fresnel principle](https://en.wikipedia.org/wiki/Huygens%E2%80%93Fresnel_principle) \[[4](#references) (ch. 3.1), [25](#references) (ch. 2)\].
 
+-->
+
 ### Dipole Radiation
 
 Typically, it is not possible to evaluate the integrals of Eqn. 11.25 in closed form, since the value of the electric field in the interior of the volume is not known. Thus, we must make certain assumptions and employ various approximations in order to make computations feasible. This leads to a number of special cases.
@@ -3496,7 +3498,6 @@ $$ \tag{14.25}
 	+ \lim_{\delta \to 0} \int\_{V - V_{\delta}} \mathcal{G} (\bm{r}, \bm{r''}, k) \cdot \mathcal{T_e} (\bm{r''}, \bm{r'}, k) dV'' \bigg).
 \end{aligned}
 $$
--->
 
 ### Scattering Matrix
 
@@ -4974,20 +4975,20 @@ $$ \tag{17.56}
 \begin{aligned}
 	\braket{\Iota_s^{tot}}
 	&= \sum_j r^2 \braket{\braket{\bm{S_j}}} \cdot \bm{n_s}
-	= \int_{\Psi} N p(\psi) \left(\frac{\mu\_0^{-1}}{2} \frac{\eta}{c} \frac{1}{k^2}
+	= N \int_{\Psi} p(\psi) \left(\frac{\mu\_0^{-1}}{2} \frac{\eta}{c} \frac{1}{k^2}
 	\left| \mathcal{S_j}(\bm{n_s}, \psi) \cdot \bm{E_0} \right|^2
 	\right) d\psi,
 	\cr
 	\braket{\Phi_s^{tot}}
 	&= \oint\_{\mathbb{S}^2} \braket{\Iota_s^{tot}} \negmedspace (\bm{n_s}) d\Omega
-	= \int_{\Psi} N p(\psi) \oint\_{\mathbb{S}^2} \left(\frac{\mu\_0^{-1}}{2} \frac{\eta}{c} \frac{1}{k^2}
+	= N \int_{\Psi} p(\psi) \oint\_{\mathbb{S}^2} \left(\frac{\mu\_0^{-1}}{2} \frac{\eta}{c} \frac{1}{k^2}
 	\left| \mathcal{S_j}(\bm{n_s}, \psi) \cdot \bm{E_0} \right|^2
 	\right) d\Omega d\psi
 	\cr
 	\braket{\Phi_e^{tot}}
 	&= \sum_j \oint\_{\mathbb{S}^2}
 	\left[ r^2 \braket{\braket{\bm{S_{ij}}}} \cdot \bm{n_s} \right] d\Omega
-	= \int_{\Psi} N p(\psi) \left( \frac{\mu\_0^{-1}}{2} \frac{\eta}{c} \frac{4 \pi}{k^2}
+	= N \int_{\Psi} p(\psi) \left( \frac{\mu\_0^{-1}}{2} \frac{\eta}{c} \frac{4 \pi}{k^2}
 	\mathcal{Im} \left\lbrace v(f,0) \thinspace
 	\bm{E_0^{\*}} \cdot \mathcal{S_j}(\bm{n_i}, \psi) \cdot \bm{E_0}
 	\right\rbrace \right) d\psi.
@@ -7918,13 +7919,50 @@ We shall begin our investigation of light-matter interactions with the simplest 
 1. The molecules are small compared to the wavelength of light. If \\(a\\) is the largest linear dimension of the molecule (e.g. its radius), and \\(k = k_0 = \omega / c\\) is the vacuum wavenumber, then \\(x = k a \ll 1\\).
 2. The molecules are weakly absorbing and weakly scattering. If \\(m\\) is the refractive index of the molecule (not to be confused with the refractive index of the gas as a medium), then \\(|m x| \ll 1\\).
 3. The average distance between the molecules is large.
-4. The number \\(N\\) of molecules within the group is relatively small.
+4. The number \\(N\\) of molecules within the group is not too great.
 5. The volume \\(V\\) containing the group of molecules is large compared to the wavelength of light. If \\(L\\) is the smallest linear dimension of the volume (e.g. its length), then \\(k L \gg 1\\).
 6. The molecules are randomly distributed. This is usually true due to [Brownian motion](https://en.wikipedia.org/wiki/Brownian_motion).
 
-The properties #1-2 suggest that we may represent a gas molecule by an electric dipole (cf. Sec. 12).
+The properties #1 and #2 suggest that we may represent a gas molecule by an electric dipole (cf. Sec. 12).
 
-The properties #1-4, taken together, imply that an electromagnetic wave incident on the volume \\(V\\) is not significantly impeded (or otherwise altered) by the presence of the group of molecules located within. This makes makes the single scattering approximation (cf. Eqn. 17.0) applicable, which assumes that each dipole driven exclusively by the incident field (or, in other words, the polarization \\(\bm{P}\\) is vanishingly small outside the volume occupied by any given dipole, cf. Sec. 10).
+The properties #2-4, taken together, imply that an electromagnetic wave incident on the volume \\(V\\) is not significantly impeded (or otherwise altered) by the presence of the group of molecules located within. This makes makes the single scattering approximation (cf. Eqn. 17.0) applicable, which allows us to assume that each dipole is driven exclusively by the incident field (or, in other words, the polarization \\(\bm{P}\\) is vanishingly small outside the volume occupied by any given dipole, cf. Sec. 10).
+
+The property #6 allows us to apply the ergodic assumption, making the results of Sec. 17 applicable. Once we also take the property #5 into account, the amount of light scattered or absorbed by the particle group (as well as the associated radiative transfer coefficients) can be determined by computing simple weighted averages according to Eqn. 17.56.
+
+In order to apply the results of Sec. 17, we must tailor them to our particular use case. The scattered far-field of an arbitrary particle is given by Eqn. 15.6:
+
+$$ \tag{21.1}
+	\bm{E_s}(\bm{r}, \omega)
+	\simeq \frac{e^{i k(\omega) r}}{k(\omega) r} \mathcal{S_{ef}} (\bm{n_s}, \bm{n_i}, \omega) \cdot \bm{E_0}(\bm{n_i}, \omega).
+$$
+
+The corresponding expression of a dipole is found in Eqn. 13.5:
+
+$$ \tag{21.2}
+	\bm{E_s}(\bm{r}, \omega)
+	\simeq \frac{e^{i k(\omega) r}}{k(\omega) r} \frac{k^3(\omega)}{4 \pi}
+	\big( \mathcal{I} - \bm{n_s} \otimes \bm{n_s} \big) \cdot \mathcal{\Alpha_m}(V, \omega)
+	\cdot \bm{E_0}(\bm{n_i}, \omega).
+$$
+
+Thus, the scattering dyadic \\(\mathcal{S\_{ef}}\\) and the molecular polarizability dyadic \\(\mathcal{\Alpha\_m}\\) are related by
+
+$$ \tag{21.3}
+	\mathcal{S_{ef}} (\bm{n_s}, \bm{n_i}, \omega)
+	\simeq \frac{k^3(\omega)}{4 \pi}
+	\big( \mathcal{I} - \bm{n_s} \otimes \bm{n_s} \big) \cdot \mathcal{\Alpha_m}(V, \omega).
+$$
+
+The first term is the power law of Rayleigh scattering, the second term ensures that the electromagnetic field is transverse, and the last term encodes the orientation and the "responsiveness" of the molecule to the applied electromagnetic field.
+
+---
+
+Internal field is uniform inside the particle (check dipole section!)...
+Use volume integral Eqn. with constant internal field
+Ellipsoid...
+Eigendecomposition of the polarizability tensor
+
+Tsai 2.3, van de Hulst 6.32, Stratton 3.25, maybe Chandra
 
 ### Light Scattering by Liquid Molecules
 
