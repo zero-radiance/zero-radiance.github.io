@@ -2106,6 +2106,8 @@ $$ \tag{9.52}
 	\varpropto (k R)^{-1}.
 $$
 
+-->
+
 ### Electric and Magnetic Polarization
 
 The physical meaning of the electromagnetic potential is more apparent in the time domain. With this goal in mind, perform the inverse Fourier transform of Eqn. 9.14.2:
@@ -2336,22 +2338,22 @@ $$
 A molecule can become polarized for a variety of reasons \[[5](#references) (vol. II, ch. 11)\]. If the separation of charges (such as the displacement of the electron cloud relative to the positively charged nucleus) occurs under the influence of the external electromagnetic field, one speaks of *induced polarization*. If we assume that the effect is linear, the response is characterized by the [molecular polarizability](https://en.wikipedia.org/wiki/Electric_susceptibility#Molecular_polarizability) dyadic \\(\mathcal{\Alpha_m}\\):
 
 $$ \tag{10.21}
-	\bm{p}(V, \omega) \approx \mathcal{\Alpha_m}(V, \omega) \cdot \epsilon_0 \bm{E_{\mu}}(\bm{r_0}, \omega),
+	\bm{p}(V, \omega) \approx \mathcal{\Alpha_m}(V, \omega) \cdot \epsilon_0 \bm{E_m}(\bm{r_0}, \omega),
 $$
 
-where \\(\bm{E_{\mu}}\\) is the phasor of the microscopic field acting on the molecule.
+where \\(\bm{E_m}\\) is the phasor of the microscopic field acting on the molecule.
 
-The dyadic form of \\(\mathcal{\Alpha_m}\\) is necessary to model a molecule that lacks spherical symmetry; it acts by rotating and non-uniformly scaling the electric field phasor. If the molecule absorbs light, its polarizability is complex.
+The dyadic form of \\(\mathcal{\Alpha_m}\\) is necessary to model a molecule that lacks spherical symmetry; it acts by rotating and non-uniformly scaling the electric field phasor. If the molecule absorbs light, its polarizability is complex \[[4](#references) (ch. 6.13)\].
 
 If there are \\(N\\) identical electric dipoles per unit volume, we can define the electric polarization \\(\bm{P}\\) as
 
 $$ \tag{10.22}
 	\bm{P}(\bm{r}, \omega)
 	= N(\bm{r}) \bm{p}(V, \omega)
-	\approx N(\bm{r}) \mathcal{\Alpha_m}(V, \omega) \cdot \epsilon_0 \bm{E_{\mu}}(\bm{r_0}, \omega)
+	\approx N(\bm{r}) \mathcal{\Alpha_m}(V, \omega) \cdot \epsilon_0 \bm{E_m}(\bm{r_0}, \omega)
 $$
 
-In general, the microscopic field \\(\bm{E_0}\\) acting on a dipole is different from the macroscopic field \\(\bm{E}\\). This difference can be attributed to the influence of the molecules located in close proximity of the dipole \[[5](#references) (vol. II, ch. 11), [6](#references) (ch. 2.3-2.4)\]. If the molecules are randomly distributed, we can assume that (on average) the dipole is located within a (microscopic) spherical cavity of a uniformly (macroscopically) polarized medium. The electric field inside a uniformly polarized ball is
+In general, the microscopic field \\(\bm{E_m}\\) acting on a dipole is different from the macroscopic field \\(\bm{E}\\). This difference can be attributed to the influence of the molecules located in close proximity of the dipole \[[5](#references) (vol. II, ch. 11), [6](#references) (ch. 2.3-2.4)\]. If the molecules are randomly distributed, we can assume that (on average) the dipole is located within a (microscopic) spherical cavity of a uniformly (macroscopically) polarized medium. The electric field inside a uniformly polarized ball is
 
 $$ \tag{10.2?}
 	\bm{E_b} = -\frac{1}{3 \epsilon_0} \bm{P},
@@ -2362,7 +2364,7 @@ where the minus sign is present because the electric field vector diverges from 
 The superposition principle allows us to excise the polarized ball that occupies the cavity, yielding
 
 $$ \tag{10.23}
-	\bm{E_{\mu}}
+	\bm{E_m}
 	= \bm{E} - \bm{E_b}
 	= \bm{E} + \frac{1}{3 \epsilon_0} \bm{P}.
 $$
@@ -2701,6 +2703,8 @@ $$
 
 In the literature, Eqn. 11.25 is often called the *volume integral equation* \[[8](#references) (ch. 4)\]. It can be used to evaluate the electromagnetic field inside or outside the scattering object.
 
+<!--
+
 ### Huygens-Fresnel Principle
 
 The volume integral equation expresses the scattered field using the integral taken over the volume \\(V\\) of the scattering object. If its dimensions are large, and the material -- absorptive, then it is likely that a significant portion of its interior will make a negligible contribution to the field outside. Furthermore, determination of the internal field across the entire volume may prove to be both arduous and challenging. Thus, it may be advantageous to convert the volume integral into an integral taken over the surface \\(\partial V\\) (with the outward-facing normal \\(\bm{n}\\)) by applying the second *vector Green theorem* defined in terms of two vector fields \\(\bm{P}\\) and \\(\bm{Q}\\) \[[17](#references) (ch. 4.14)\]:
@@ -2927,16 +2931,16 @@ $$
 with the dipole moment defined by Eqn. 10.21:
 
 $$ \tag{12.3}
-	\bm{p}(V, \omega) \approx \mathcal{\Alpha_m}(V, \omega) \cdot \varepsilon(\omega) \bm{E_i}(\bm{r_0}, \omega).
+	\bm{p}(V, \omega) \approx \mathcal{\Alpha_m}(V, \omega) \cdot \varepsilon(\omega) \bm{E}(\bm{r_0}, \omega),
 $$
 
-where we replaced \\(\epsilon_0\\) with \\(\varepsilon\\) (to account for the properties of the surrounding medium) and \\(\bm{E_{\mu}}\\) with \\(\bm{E_i}\\) (according to the simplification discussed above).
+where we replaced \\(\epsilon_0\\) with \\(\varepsilon\\) (to account for the properties of the surrounding medium) and \\(\bm{E_m}\\) with \\(\bm{E}\\) (to be consistent with the naming convention of the internal field of a particle).
 
 The combination of Eqn. 12.1-12.3 results in
 
 $$ \tag{12.4}
 	\bm{J'}(\bm{r}, \omega)
-	= k^2(\omega) \mathcal{\Alpha_m}(V, \omega) \cdot \bm{E_i}(\bm{r_0}, \omega) \delta(\bm{r} - \bm{r_0}).
+	= k^2(\omega) \mathcal{\Alpha_m}(V, \omega) \cdot \bm{E}(\bm{r_0}, \omega) \delta(\bm{r} - \bm{r_0}).
 $$
 
 Let us substitute Eqn. 12.4 into Eqn. 11.10-11.11:
@@ -2944,13 +2948,13 @@ Let us substitute Eqn. 12.4 into Eqn. 11.10-11.11:
 $$ \tag{12.5}
 \begin{aligned}
 	& \bm{E_s}(\bm{r}, \omega)
-	= k^2(\omega) \mathcal{G}\_e \big( \bm{r}, \bm{r_0}, k(\omega) \big) \cdot \mathcal{\Alpha_m}(V, \omega) \cdot \bm{E_i}(\bm{r_0}, \omega), \cr
+	= k^2(\omega) \mathcal{G}\_e \big( \bm{r}, \bm{r_0}, k(\omega) \big) \cdot \mathcal{\Alpha_m}(V, \omega) \cdot \bm{E}(\bm{r_0}, \omega), \cr
 	& \bm{B_s}(\bm{r}, \omega)
-	= \frac{k^2(\omega)}{i \omega} \mathcal{G}\_m \big( \bm{r}, \bm{r_0}, k(\omega) \big) \cdot \mathcal{\Alpha_m}(V, \omega) \cdot \bm{E_i}(\bm{r_0}, \omega).
+	= \frac{k^2(\omega)}{i \omega} \mathcal{G}\_m \big( \bm{r}, \bm{r_0}, k(\omega) \big) \cdot \mathcal{\Alpha_m}(V, \omega) \cdot \bm{E}(\bm{r_0}, \omega).
 \end{aligned}
 $$
 
-Comparison with Eqn. 11.25 shows that Eqn. 12.5 corresponds to the contribution of a volume element occupied by a single atom or a small molecule, with the internal field replaced by the incident field, and with the polarizability \\(\mathcal{\Alpha_m}\\) taking the role of the volume integral of the relative wavenumber \\(m\\). In particular, if the polarizability is isotropic, so that \\(\mathcal{\Alpha_m} = \alpha_m\\),
+Comparison with Eqn. 11.25 shows that Eqn. 12.5 corresponds to the contribution of a volume element occupied by a single atom or a small molecule, and with the polarizability \\(\mathcal{\Alpha_m}\\) taking the role of the volume integral of the relative wavenumber \\(m\\). In particular, if the polarizability is isotropic, so that \\(\mathcal{\Alpha_m} = \alpha_m\\),
 
 $$ \tag{12.6}
 	\alpha_m(V, \omega)
@@ -2988,10 +2992,10 @@ $$ \tag{13.3}
 \begin{aligned}
 	& \bm{E_s}(\bm{r}, \omega)
 	\simeq k^2(\omega) \frac{e^{i k(\omega) R}}{4 \pi R}
-	\bigg( \mathcal{I} - \frac{\bm{R} \otimes \bm{R}}{R^2} \bigg) \cdot \mathcal{\Alpha_m}(V, \omega) \cdot \bm{E_i}(\bm{r'}, \omega), \cr
+	\bigg( \mathcal{I} - \frac{\bm{R} \otimes \bm{R}}{R^2} \bigg) \cdot \mathcal{\Alpha_m}(V, \omega) \cdot \bm{E}(\bm{r'}, \omega), \cr
 	& \bm{B_s}(\bm{r}, \omega)
 	\simeq \frac{k^3(\omega)}{\omega} \frac{e^{i k(\omega) R}}{4 \pi R}
-	\bigg(\frac{\bm{R} \times \mathcal{I}}{R} \bigg) \cdot \mathcal{\Alpha_m}(V, \omega) \cdot \bm{E_i}(\bm{r'}, \omega),
+	\bigg(\frac{\bm{R} \times \mathcal{I}}{R} \bigg) \cdot \mathcal{\Alpha_m}(V, \omega) \cdot \bm{E}(\bm{r'}, \omega),
 \end{aligned}
 $$
 
@@ -3011,10 +3015,10 @@ $$ \tag{13.5}
 \begin{aligned}
 	& \bm{E_s}(\bm{r}, \omega)
 	\simeq k^2(\omega) \frac{e^{i k(\omega) r}}{4 \pi r}
-	\big( \mathcal{I} - \bm{n} \otimes \bm{n} \big) \cdot \mathcal{\Alpha_m}(V, \omega) \cdot \bm{E_i}(0, \omega), \cr
+	\big( \mathcal{I} - \bm{n} \otimes \bm{n} \big) \cdot \mathcal{\Alpha_m}(V, \omega) \cdot \bm{E}(0, \omega), \cr
 	& \bm{B_s}(\bm{r}, \omega)
 	\simeq \frac{k^3(\omega)}{\omega} \frac{e^{i k(\omega) r}}{4 \pi r}
-	\big(\bm{n} \times \mathcal{I} \big) \cdot \mathcal{\Alpha_m}(V, \omega) \cdot \bm{E_i}(0, \omega).
+	\big(\bm{n} \times \mathcal{I} \big) \cdot \mathcal{\Alpha_m}(V, \omega) \cdot \bm{E}(0, \omega).
 \end{aligned}
 $$
 
@@ -7873,7 +7877,7 @@ $$ \tag{20.3}
 	= \frac{\mathcal{E_p'} - \mathcal{E_p}}{\hbar}
 	= \frac{\mathcal{E_a} - \mathcal{E_a'}}{\hbar}
 \end{aligned}
-$$
+
 
 that can be either positive or negative, depending on the initial and final states of the system.
 
@@ -7881,7 +7885,7 @@ Classical electrodynamics represents matter by a charge distribution that behave
 
 $$ \tag{20.4}
 	\bm{p}(V, \omega) =
-	\mathcal{\Alpha_m}(V, \omega) \cdot \epsilon_0 \bm{E_{\mu}}(\bm{r_0}, \omega),
+	\mathcal{\Alpha_m}(V, \omega) \cdot \epsilon_0 \bm{E_m}(\bm{r_0}, \omega),
 $$
 
 where \\(\mathcal{\Alpha_m}\\) is the molecular polarizability dyadic.
@@ -7893,7 +7897,7 @@ $$ \tag{20.5}
 	= \frac{e^{i \Omega t} + e^{-i \Omega t}}{2}.
 $$
 
-If the applied field \\(\bm{E_{\mu}}\\) is time-harmonic,
+If the applied field \\(\bm{E_m}\\) is time-harmonic,
 
 $$ \tag{20.6}
 \begin{aligned}
@@ -7945,7 +7949,7 @@ $$ \tag{21.2}
 	\cdot \bm{E_0}(\bm{n_i}, \omega).
 $$
 
-Thus, the scattering dyadic \\(\mathcal{S\_{ef}}\\) and the molecular polarizability dyadic \\(\mathcal{\Alpha\_m}\\) are related by
+After comparing the two equations, it is clear that the scattering dyadic \\(\mathcal{S\_{ef}}\\) and the molecular polarizability dyadic \\(\mathcal{\Alpha\_m}\\) are related by
 
 $$ \tag{21.3}
 	\mathcal{S_{ef}} (\bm{n_s}, \bm{n_i}, \omega)
@@ -7953,7 +7957,16 @@ $$ \tag{21.3}
 	\big( \mathcal{I} - \bm{n_s} \otimes \bm{n_s} \big) \cdot \mathcal{\Alpha_m}(V, \omega).
 $$
 
-The first term is the power law of Rayleigh scattering, the second term ensures that the electromagnetic field is transverse, and the last term encodes the orientation and the "responsiveness" of the molecule to the applied electromagnetic field.
+The first term is the power law of Rayleigh scattering, the second term ensures that the electromagnetic field is transverse, and the last term encodes the orientation and the "responsiveness" of the molecule to the applied electromagnetic field. Since a typical molecule is aspherical, \\(\mathcal{\Alpha\_m}\\) is a dyadic rather than a scalar. In a Cartesian coordinate system, it can be represented by a matrix
+
+$$ \tag{21.4}
+	\mathcal{\Alpha_m}(V, \omega) =
+	\begin{bmatrix}
+		\mathcal{\alpha_{11}} & \mathcal{\alpha_{12}} & \mathcal{\alpha_{13}} \cr
+		\mathcal{\alpha_{21}} & \mathcal{\alpha_{22}} & \mathcal{\alpha_{23}} \cr
+		\mathcal{\alpha_{31}} & \mathcal{\alpha_{32}} & \mathcal{\alpha_{33}} \cr
+	\end{bmatrix}
+$$
 
 ---
 
