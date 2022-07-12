@@ -4282,6 +4282,15 @@ $$ \tag{16.35}
 	\right).
 $$
 
+Alternatively, [Ohm's law](https://en.wikipedia.org/wiki/Ohm%27s_law) may be used instead \[[25](#references) (ch. 1.1)\]:
+
+$$ \tag{16.3x}
+	\Phi_a
+	= \frac{1}{2} \omega \int\_{V} \kappa(\bm{r'}) \big| \bm{E}(\bm{r'}) \big|^2 dV',
+$$
+
+with the integral taken over the interior of the particle. As before, \\(\kappa\\) is the attenuation index (see Eqn. 7.7).
+
 It is convenient to be able to relate the amount of power absorbed by the particle to the amount of incident power the particle *geometrically* intercepts. The latter can be characterized with the help of the projected area of the particle - its *geometric cross-section* \\(C_g\\). For a convex particle, it is given by the integral
 
 $$ \tag{16.36}
