@@ -2338,7 +2338,7 @@ $$
 A molecule can become polarized for a variety of reasons \[[5](#references) (vol. II, ch. 11)\]. If the separation of charges (such as the displacement of the electron cloud relative to the positively charged nucleus) occurs under the influence of the external electromagnetic field, one speaks of *induced polarization*. If we assume that the effect is linear, the response is characterized by the [molecular polarizability](https://en.wikipedia.org/wiki/Electric_susceptibility#Molecular_polarizability) dyadic \\(\mathcal{\Alpha_m}\\):
 
 $$ \tag{10.21}
-	\bm{p}(V, \omega) \approx \mathcal{\Alpha_m}(V, \omega) \cdot \epsilon_0 \bm{E_m}(\bm{r_0}, \omega),
+	\bm{p}(V_m, \omega) \approx \mathcal{\Alpha_m}(V_m, \omega) \cdot \epsilon_0 \bm{E_m}(\bm{r_0}, \omega),
 $$
 
 where \\(\bm{E_m}\\) is the phasor of the microscopic field acting on the molecule.
@@ -2349,8 +2349,8 @@ If there are \\(N\\) identical electric dipoles per unit volume, we can define t
 
 $$ \tag{10.22}
 	\bm{P}(\bm{r}, \omega)
-	= N(\bm{r}) \bm{p}(V, \omega)
-	\approx N(\bm{r}) \mathcal{\Alpha_m}(V, \omega) \cdot \epsilon_0 \bm{E_m}(\bm{r_0}, \omega)
+	= N(\bm{r}) \bm{p}(V_m, \omega)
+	\approx N(\bm{r}) \mathcal{\Alpha_m}(V_m, \omega) \cdot \epsilon_0 \bm{E_m}(\bm{r_0}, \omega)
 $$
 
 In general, the microscopic field \\(\bm{E_m}\\) acting on a dipole is different from the macroscopic field \\(\bm{E}\\). This difference can be attributed to the influence of the molecules located in close proximity of the dipole \[[5](#references) (vol. II, ch. 11), [6](#references) (ch. 2.3-2.4)\]. If the molecules are randomly distributed, we can assume that (on average) the dipole is located within a (microscopic) spherical cavity of a uniformly (macroscopically) polarized medium. The electric field inside a uniformly polarized ball is
@@ -2373,7 +2373,7 @@ By combining Eqn. 10.22 with 10.23, and assuming that the polarizability is isot
 
 $$ \tag{10.24}
 	\bm{P}(\bm{r}, \omega)
-	\approx \frac{N(\bm{r}) \alpha_m(V, \omega)}{1 - \frac{1}{3} N(\bm{r}) \alpha_m(V, \omega)} \epsilon_0 \bm{E}(\bm{r}, \omega),
+	\approx \frac{N(\bm{r}) \alpha_m(V_m, \omega)}{1 - \frac{1}{3} N(\bm{r}) \alpha_m(V_m, \omega)} \epsilon_0 \bm{E}(\bm{r}, \omega),
 $$
 
 we can incorporate the correction for the *microscopic* field into the *macroscopic* theory.
@@ -2381,7 +2381,7 @@ we can incorporate the correction for the *microscopic* field into the *macrosco
 In order to be able to use Eqn. 10.24, we need to determine both the density and the polarizability of the material. For an isotropic dielectric composed of a single type of small molecules, their product is given by the [Clausius–Mossotti relation](https://en.wikipedia.org/wiki/Clausius%E2%80%93Mossotti_relation):
 
 $$ \tag{10.25}
-	\frac{\epsilon\_r(\bm{r}, \omega) - 1}{\epsilon\_r(\bm{r}, \omega) + 2} = \frac{1}{3} N(\bm{r}) \alpha\_m(V, \omega).
+	\frac{\epsilon\_r(\bm{r}, \omega) - 1}{\epsilon\_r(\bm{r}, \omega) + 2} = \frac{1}{3} N(\bm{r}) \alpha\_m(V_m, \omega).
 $$
 
 Thus, Eqn. 10.24 can be expressed very simply in terms of the [relative permittivity](https://en.wikipedia.org/wiki/Relative_permittivity) (dielectric constant) \\(\epsilon_r\\):
@@ -2903,7 +2903,7 @@ Typically, it is not possible to evaluate the integrals of Eqn. 11.25 in closed 
 
 One of the simplest problems that can be solved using our mathematical framework (of classical physics) is that of a single atom or a small molecule embedded in a homogeneous medium. This case corresponds to a tiny particle in vacuum, or an [impurity](https://en.wikipedia.org/wiki/Impurity) in an otherwise pure material. We represent it by an electric dipole -- an oriented point source.
 
-The necessary and sufficient condition is that the particle of radius \\(a\\) must be small compared to the wavelength \\(\lambda\\) computed both inside and outside the particle \[[4](#references) (ch. 6.4)\]. Since \\(k = 2 \pi / \lambda\\), we require that
+The necessary and sufficient condition for electric dipole radiation is that the radius \\(a\\) of the bounding sphere of the particle must be small compared to the wavelength \\(\lambda\\) computed both inside and outside the particle \[[4](#references) (ch. 6.4)\]. Since \\(k = 2 \pi / \lambda\\), we require that
 
 $$
 	|x| = |k a| \ll 1, \quad |m x| \ll 1.
@@ -2911,7 +2911,7 @@ $$
 
 These assumptions radically simplify the scattering problem:
 
-1. the internal field is practically identical in magnitude and phase to the external (incident) field;
+1. the magnitude and the phase of the internal field are similar to those of the external (incident) field;
 2. the value of the internal field is uniform across the interior of the particle;
 3. the resulting source of radiation is perfectly localized at a single point.
 
@@ -2925,13 +2925,13 @@ $$
 According to Eqn. 10.20.2, polarization current may be attributed to an oscillating dipole:
 
 $$ \tag{12.2}
-	\bm{J_p}(\bm{r}, \omega) = -i \omega \bm{p}(V, \omega) \delta(\bm{r} - \bm{r_0}),
+	\bm{J_p}(\bm{r}, \omega) = -i \omega \bm{p}(V_m, \omega) \delta(\bm{r} - \bm{r_0}),
 $$
 
 with the dipole moment defined by Eqn. 10.21:
 
 $$ \tag{12.3}
-	\bm{p}(V, \omega) \approx \mathcal{\Alpha_m}(V, \omega) \cdot \varepsilon(\omega) \bm{E}(\bm{r_0}, \omega),
+	\bm{p}(V_m, \omega) = \mathcal{\Alpha_m}(V_m, \omega) \cdot \varepsilon(\omega) \bm{E}(\bm{r_0}, \omega),
 $$
 
 where we replaced \\(\epsilon_0\\) with \\(\varepsilon\\) (to account for the properties of the surrounding medium) and \\(\bm{E_m}\\) with \\(\bm{E}\\) (to be consistent with the naming convention of the internal field of a particle).
@@ -2940,7 +2940,7 @@ The combination of Eqn. 12.1-12.3 results in
 
 $$ \tag{12.4}
 	\bm{J'}(\bm{r}, \omega)
-	= k^2(\omega) \mathcal{\Alpha_m}(V, \omega) \cdot \bm{E}(\bm{r_0}, \omega) \delta(\bm{r} - \bm{r_0}).
+	= k^2(\omega) \mathcal{\Alpha_m}(V_m, \omega) \cdot \bm{E}(\bm{r_0}, \omega) \delta(\bm{r} - \bm{r_0}).
 $$
 
 Let us substitute Eqn. 12.4 into Eqn. 11.10-11.11:
@@ -2948,17 +2948,17 @@ Let us substitute Eqn. 12.4 into Eqn. 11.10-11.11:
 $$ \tag{12.5}
 \begin{aligned}
 	& \bm{E_s}(\bm{r}, \omega)
-	= k^2(\omega) \mathcal{G}\_e \big( \bm{r}, \bm{r_0}, k(\omega) \big) \cdot \mathcal{\Alpha_m}(V, \omega) \cdot \bm{E}(\bm{r_0}, \omega), \cr
+	= k^2(\omega) \mathcal{G}\_e \big( \bm{r}, \bm{r_0}, k(\omega) \big) \cdot \mathcal{\Alpha_m}(V_m, \omega) \cdot \bm{E}(\bm{r_0}, \omega), \cr
 	& \bm{B_s}(\bm{r}, \omega)
-	= \frac{k^2(\omega)}{i \omega} \mathcal{G}\_m \big( \bm{r}, \bm{r_0}, k(\omega) \big) \cdot \mathcal{\Alpha_m}(V, \omega) \cdot \bm{E}(\bm{r_0}, \omega).
+	= \frac{k^2(\omega)}{i \omega} \mathcal{G}\_m \big( \bm{r}, \bm{r_0}, k(\omega) \big) \cdot \mathcal{\Alpha_m}(V_m, \omega) \cdot \bm{E}(\bm{r_0}, \omega).
 \end{aligned}
 $$
 
 Comparison with Eqn. 11.25 shows that Eqn. 12.5 corresponds to the contribution of a volume element occupied by a single atom or a small molecule, and with the polarizability \\(\mathcal{\Alpha_m}\\) taking the role of the volume integral of the relative wavenumber \\(m\\). In particular, if the polarizability is isotropic, so that \\(\mathcal{\Alpha_m} = \alpha_m\\),
 
 $$ \tag{12.6}
-	\alpha_m(V, \omega)
-	= \int_V \big( m^2(\bm{r}, \omega) - 1 \big) dV.
+	\alpha_m(V_m, \omega)
+	= \int_{V_m} \big( m^2(\bm{r}, \omega) - 1 \big) dV_m.
 $$
 
 This relation also follows from Eqn. 10.18.4, 10.21, and 10.26, under the assumption that the polarization \\(\bm{P}\\) vanishes outside the volume occupied by the dipole. Finally, note that, since \\(m\\) is dimensionless, Eqn. 12.6 implies that the polarizability has units of volume \[[4](#references) (ch. 6.22)\].
@@ -2992,10 +2992,10 @@ $$ \tag{13.3}
 \begin{aligned}
 	& \bm{E_s}(\bm{r}, \omega)
 	\simeq k^2(\omega) \frac{e^{i k(\omega) R}}{4 \pi R}
-	\bigg( \mathcal{I} - \frac{\bm{R} \otimes \bm{R}}{R^2} \bigg) \cdot \mathcal{\Alpha_m}(V, \omega) \cdot \bm{E}(\bm{r'}, \omega), \cr
+	\bigg( \mathcal{I} - \frac{\bm{R} \otimes \bm{R}}{R^2} \bigg) \cdot \mathcal{\Alpha_m}(V_m, \omega) \cdot \bm{E}(\bm{r'}, \omega), \cr
 	& \bm{B_s}(\bm{r}, \omega)
 	\simeq \frac{k^3(\omega)}{\omega} \frac{e^{i k(\omega) R}}{4 \pi R}
-	\bigg(\frac{\bm{R} \times \mathcal{I}}{R} \bigg) \cdot \mathcal{\Alpha_m}(V, \omega) \cdot \bm{E}(\bm{r'}, \omega),
+	\bigg(\frac{\bm{R} \times \mathcal{I}}{R} \bigg) \cdot \mathcal{\Alpha_m}(V_m, \omega) \cdot \bm{E}(\bm{r'}, \omega),
 \end{aligned}
 $$
 
@@ -3015,10 +3015,10 @@ $$ \tag{13.5}
 \begin{aligned}
 	& \bm{E_s}(\bm{r}, \omega)
 	\simeq k^2(\omega) \frac{e^{i k(\omega) r}}{4 \pi r}
-	\big( \mathcal{I} - \bm{n} \otimes \bm{n} \big) \cdot \mathcal{\Alpha_m}(V, \omega) \cdot \bm{E}(0, \omega), \cr
+	\big( \mathcal{I} - \bm{n} \otimes \bm{n} \big) \cdot \mathcal{\Alpha_m}(V_m, \omega) \cdot \bm{E}(0, \omega), \cr
 	& \bm{B_s}(\bm{r}, \omega)
 	\simeq \frac{k^3(\omega)}{\omega} \frac{e^{i k(\omega) r}}{4 \pi r}
-	\big(\bm{n} \times \mathcal{I} \big) \cdot \mathcal{\Alpha_m}(V, \omega) \cdot \bm{E}(0, \omega).
+	\big(\bm{n} \times \mathcal{I} \big) \cdot \mathcal{\Alpha_m}(V_m, \omega) \cdot \bm{E}(0, \omega).
 \end{aligned}
 $$
 
@@ -3311,10 +3311,10 @@ The resulting equation is recursive. Substitution makes it fairly obvious that t
 
 $$ \tag{14.5}
 	u \big( \bm{r'}, k(\omega), \omega \big) \bm{E}(\bm{r'}, \omega)
-	= \int\_{V} \mathcal{T_e} \big( \bm{r'}, \bm{r''}, k(\omega), \omega \big) \cdot \bm{E_i}(\bm{r''}, \omega) dV'',
+	= \int\_{V} \mathcal{T} \big( \bm{r'}, \bm{r''}, k(\omega), \omega \big) \cdot \bm{E_i}(\bm{r''}, \omega) dV'',
 $$
 
-where \\(\mathcal{T_e}\\) is the *transition dyadic*, the expression of which is yet to be determined.
+where \\(\mathcal{T}\\) is the *transition dyadic*, the expression of which is yet to be determined.
 
 Recursive equations written in the integral form quickly become unwieldy. Instead, we shall convert them into the operator form by using the [bra-ket notation](https://en.wikipedia.org/wiki/Bra%E2%80%93ket_notation). Additionally, any dependence on the frequency or the wavenumber shall be kept implicit.
 
@@ -3336,7 +3336,7 @@ Similarly, we define the *Green operator* \\(G\\) and the *transition operator* 
 
 $$ \tag{14.8}
 	\braket{r | G | r'} = \mathcal{G}\_e(\bm{r}, \bm{r'}), \quad
-	\braket{r | T | r'} = \mathcal{T_e}(\bm{r}, \bm{r'}).
+	\braket{r | T | r'} = \mathcal{T}(\bm{r}, \bm{r'}).
 $$
 
 Finally, we must define the *orthonormalization* relation
@@ -3398,7 +3398,7 @@ $$ \tag{14.16}
 	\bm{E}(\bm{r})
 	= \bm{E_i}(\bm{r}) + \bm{E_s}(\bm{r})
 	= \bm{E_i}(\bm{r})
-	+ \int\_{V} \mathcal{G}\_e (\bm{r}, \bm{r'}) \cdot \int\_{V} \mathcal{T_e} (\bm{r'}, \bm{r''}) \cdot \bm{E_i}(\bm{r''}) dV'' dV'.
+	+ \int\_{V} \mathcal{G}\_e (\bm{r}, \bm{r'}) \cdot \int\_{V} \mathcal{T} (\bm{r'}, \bm{r''}) \cdot \bm{E_i}(\bm{r''}) dV'' dV'.
 $$
 
 Note that Eqn. 14.16 is identical to the combination of Eqn. 14.4 and 14.5.
@@ -3456,10 +3456,10 @@ Translation of Eqn. 14.21 into the integral form yields the definition of the tr
 
 $$ \tag{14.22}
 \begin{aligned}
-	\mathcal{T_e} (\bm{r}, \bm{r'}, k)
-	&= u(\bm{r}, k) \bigg( \delta(\bm{r} - \bm{r'}) \mathcal{I} + \int_V \mathcal{G}\_e (\bm{r}, \bm{r''}, k) \cdot \mathcal{T_e} (\bm{r''}, \bm{r'}, k) dV'' \bigg)
+	\mathcal{T} (\bm{r}, \bm{r'}, k)
+	&= u(\bm{r}, k) \bigg( \delta(\bm{r} - \bm{r'}) \mathcal{I} + \int_V \mathcal{G}\_e (\bm{r}, \bm{r''}, k) \cdot \mathcal{T} (\bm{r''}, \bm{r'}, k) dV'' \bigg)
 	\cr
-	&= k^2 \big( m^2(\bm{r}) - 1 \big) \bigg( \delta(\bm{r} - \bm{r'}) \mathcal{I} + \int_V \mathcal{G}\_e (\bm{r}, \bm{r''}, k) \cdot \mathcal{T_e} (\bm{r''}, \bm{r'}, k) dV'' \bigg).
+	&= k^2 \big( m^2(\bm{r}) - 1 \big) \bigg( \delta(\bm{r} - \bm{r'}) \mathcal{I} + \int_V \mathcal{G}\_e (\bm{r}, \bm{r''}, k) \cdot \mathcal{T} (\bm{r''}, \bm{r'}, k) dV'' \bigg).
 \end{aligned}
 $$
 
@@ -3467,12 +3467,12 @@ The expression of the electric dyadic (defined in Eqn. 9.27) can be expanded in 
 
 $$ \tag{14.23}
 \begin{aligned}
-	\mathcal{T_e} (\bm{r}, \bm{r'}, k)
+	\mathcal{T} (\bm{r}, \bm{r'}, k)
 	&= k^2 \big( m^2(\bm{r}) - 1 \big) \bigg(
 	\delta(\bm{r} - \bm{r'}) \mathcal{I}
 	\cr
 	&+ \Big( \mathcal{I} + \frac{1}{k^2} \nabla \otimes \nabla \Big) \cdot \int\_{V}
-	g( \bm{r} - \bm{r''}, k) \mathcal{T_e} (\bm{r''}, \bm{r'}, k) dV'' \bigg).
+	g( \bm{r} - \bm{r''}, k) \mathcal{T} (\bm{r''}, \bm{r'}, k) dV'' \bigg).
 \end{aligned}
 $$
 
@@ -3480,12 +3480,12 @@ Alternatively, we can decompose it into a sum of the dyadic Green function \\(\m
 
 $$ \tag{14.24}
 \begin{aligned}
-	\mathcal{T_e} (\bm{r}, \bm{r'}, k)
+	\mathcal{T} (\bm{r}, \bm{r'}, k)
 	&= k^2 \big( m^2(\bm{r}) - 1 \big) \bigg(
 	\delta(\bm{r} - \bm{r'}) \mathcal{I}
 	\cr
-	&- \frac{1}{k^2} \mathcal{L}(\bm{r}) \cdot \mathcal{T_e} (\bm{r}, \bm{r'})
-	+ \lim_{\delta \to 0} \int\_{V - V_{\delta}} \mathcal{G} (\bm{r}, \bm{r''}) \cdot \mathcal{T_e} (\bm{r''}, \bm{r'}, k) dV'' \bigg).
+	&- \frac{1}{k^2} \mathcal{L}(\bm{r}) \cdot \mathcal{T} (\bm{r}, \bm{r'})
+	+ \lim_{\delta \to 0} \int\_{V - V_{\delta}} \mathcal{G} (\bm{r}, \bm{r''}) \cdot \mathcal{T} (\bm{r''}, \bm{r'}, k) dV'' \bigg).
 \end{aligned}
 $$
 
@@ -3493,13 +3493,13 @@ Notice that the \\(1/k^2\\) term in front of the depolarization dyadic cancels o
 
 $$ \tag{14.25}
 \begin{aligned}
-	\mathcal{T_e} (\bm{r}, \bm{r'}, k)
+	\mathcal{T} (\bm{r}, \bm{r'}, k)
 	&= k^2 \big( m^2(\bm{r}) - 1 \big)
 	\Big( \mathcal{I} + \big( m^2(\bm{r}) - 1 \big) \mathcal{L}(\bm{r}) \Big)^{-1}
 	\cr
 	&\cdot
 	\bigg( \delta(\bm{r} - \bm{r'}) \mathcal{I}
-	+ \lim_{\delta \to 0} \int\_{V - V_{\delta}} \mathcal{G} (\bm{r}, \bm{r''}, k) \cdot \mathcal{T_e} (\bm{r''}, \bm{r'}, k) dV'' \bigg).
+	+ \lim_{\delta \to 0} \int\_{V - V_{\delta}} \mathcal{G} (\bm{r}, \bm{r''}, k) \cdot \mathcal{T} (\bm{r''}, \bm{r'}, k) dV'' \bigg).
 \end{aligned}
 $$
 
@@ -3526,10 +3526,10 @@ $$ \tag{15.3}
 \begin{aligned}
 	\bm{E_s}(\bm{r}, \bm{n_i}, \omega)
 	&= \int\_{V} \mathcal{G}\_e \big( \bm{r}, \bm{r'}, k(\omega) \big) \cdot
-	\int\_{V} \mathcal{T_e} (\bm{r'}, \bm{r''}, k(\omega), \omega) \cdot \bm{E_i}(\bm{r''}, \bm{n_i}, \omega) dV'' dV'
+	\int\_{V} \mathcal{T} (\bm{r'}, \bm{r''}, k(\omega), \omega) \cdot \bm{E_i}(\bm{r''}, \bm{n_i}, \omega) dV'' dV'
 	\cr
 	&= \int\_{V} \mathcal{G}\_e \big( \bm{r}, \bm{r'}, k(\omega) \big) \cdot
-	\int\_{V} \mathcal{T_e} (\bm{r'}, \bm{r''}, k(\omega), \omega) \cdot \bm{E_0}(\bm{n_i}, \omega) e^{i k(\omega) (\bm{r''} \cdot \bm{n_i})} dV'' dV'.
+	\int\_{V} \mathcal{T} (\bm{r'}, \bm{r''}, k(\omega), \omega) \cdot \bm{E_0}(\bm{n_i}, \omega) e^{i k(\omega) (\bm{r''} \cdot \bm{n_i})} dV'' dV'.
 \end{aligned}
 $$
 
@@ -3547,11 +3547,11 @@ $$ \tag{15.5}
 	& \bm{E_s}(\bm{r}, \omega) \simeq
 	\frac{e^{i k(\omega) r}}{4 \pi r}
 	\big( \mathcal{I} - \bm{n_s} \otimes \bm{n_s} \big) \cdot
-	\int\_{V} e^{-i k(\omega) (\bm{r'} \cdot \bm{n_s})} \int\_{V} \mathcal{T_e} \big( \bm{r'}, \bm{r''}, k(\omega), \omega \big) \cdot \bm{E_i}(\bm{r''}, \omega) dV'' dV', \cr
+	\int\_{V} e^{-i k(\omega) (\bm{r'} \cdot \bm{n_s})} \int\_{V} \mathcal{T} \big( \bm{r'}, \bm{r''}, k(\omega), \omega \big) \cdot \bm{E_i}(\bm{r''}, \omega) dV'' dV', \cr
 	& \bm{B_s}(\bm{r}, \omega) \simeq
 	\frac{k(\omega)}{\omega} \frac{e^{i k(\omega) r}}{4 \pi r}
 	\big(\bm{n_s} \times \mathcal{I} \big) \cdot
-	\int\_{V} e^{-i k(\omega) (\bm{r'} \cdot \bm{n_s})} \int\_{V} \mathcal{T_e} \big( \bm{r'}, \bm{r''}, k(\omega), \omega \big) \cdot \bm{E_i}(\bm{r''}, \omega) dV'' dV',
+	\int\_{V} e^{-i k(\omega) (\bm{r'} \cdot \bm{n_s})} \int\_{V} \mathcal{T} \big( \bm{r'}, \bm{r''}, k(\omega), \omega \big) \cdot \bm{E_i}(\bm{r''}, \omega) dV'' dV',
 \end{aligned}
 $$
 
@@ -3585,15 +3585,15 @@ $$ \tag{15.7}
 	& \mathcal{S_{ef}} (\bm{n_s}, \bm{n_i}, \omega) \simeq
 	\frac{k(\omega)}{4 \pi}
 	\big( \mathcal{I} - \bm{n_s} \otimes \bm{n_s} \big) \cdot
-	\iint\_{V} e^{-i k(\omega) (\bm{r'} \cdot \bm{n_s} - \bm{r''} \cdot \bm{n_i})} \mathcal{T_e} (\bm{r'}, \bm{r''}, k(\omega), \omega) dV'' dV', \cr
+	\iint\_{V} e^{-i k(\omega) (\bm{r'} \cdot \bm{n_s} - \bm{r''} \cdot \bm{n_i})} \mathcal{T} (\bm{r'}, \bm{r''}, k(\omega), \omega) dV'' dV', \cr
 	& \mathcal{S_{mf}} (\bm{n_s}, \bm{n_i}, \omega) \simeq
 	\frac{k^2(\omega)}{4 \pi \omega}
 	\big(\bm{n_s} \times \mathcal{I} \big) \cdot
-	\iint\_{V} e^{-i k(\omega) (\bm{r'} \cdot \bm{n_s} - \bm{r''} \cdot \bm{n_i})} \mathcal{T_e} (\bm{r'}, \bm{r''}, k(\omega), \omega) dV'' dV'.
+	\iint\_{V} e^{-i k(\omega) (\bm{r'} \cdot \bm{n_s} - \bm{r''} \cdot \bm{n_i})} \mathcal{T} (\bm{r'}, \bm{r''}, k(\omega), \omega) dV'' dV'.
 \end{aligned}
 $$
 
-At the end of this section [EG: reorder], we will demonstrate that \\(\mathcal{T_e} \sim k^5\\), which implies that both of these dyadics are dimensionless. In comparison, certain authors prefer to divide their dyadics by \\(k\\) \[[8](#references) (ch. 5.3)\].
+At the end of this section [EG: reorder], we will demonstrate that \\(\mathcal{T} \sim k^5\\), which implies that both of these dyadics are dimensionless. In comparison, certain authors prefer to divide their dyadics by \\(k\\) \[[8](#references) (ch. 5.3)\].
 
 All the expressions given above are independent of the choice of a coordinate system. In practice, it is rather convenient to establish a certain coordinate convention.
 
@@ -3795,14 +3795,14 @@ The expression of the total field is the sum of the incident and the scattered f
 
 $$ \tag{15.20}
 \begin{aligned}
-	\mathcal{T_e} (\bm{r}, \bm{r'}, k)
-	&= k^2 \big( m^2(\bm{r}) - 1 \big) \bigg( \delta(\bm{r} - \bm{r'}) \mathcal{I} + \int_V \mathcal{G}\_e (\bm{r}, \bm{r''}, k) \cdot \mathcal{T_e} (\bm{r''}, \bm{r'}, k) dV'' \bigg)
+	\mathcal{T} (\bm{r}, \bm{r'}, k)
+	&= k^2 \big( m^2(\bm{r}) - 1 \big) \bigg( \delta(\bm{r} - \bm{r'}) \mathcal{I} + \int_V \mathcal{G}\_e (\bm{r}, \bm{r''}, k) \cdot \mathcal{T} (\bm{r''}, \bm{r'}, k) dV'' \bigg)
 	\cr
 	&= k^2 \big( m^2(\bm{r}) - 1 \big) \bigg(
 	\delta(\bm{r} - \bm{r'}) \mathcal{I}
 	\cr
 	&+ \Big( \mathcal{I} + \frac{1}{k^2} \nabla \otimes \nabla \Big) \cdot
-	\int\_{V} g( \bm{r} - \bm{r''}, k) \mathcal{T_e} (\bm{r''}, \bm{r'}, k) dV'' \bigg).
+	\int\_{V} g( \bm{r} - \bm{r''}, k) \mathcal{T} (\bm{r''}, \bm{r'}, k) dV'' \bigg).
 \end{aligned}
 $$
 
@@ -3853,16 +3853,16 @@ Using the new definitions, Eqn. 15.20 becomes
 
 $$ \tag{15.28}
 \begin{aligned}
-	\mathcal{T_e} (\bm{r}, \bm{r'}, k)
+	\mathcal{T} (\bm{r}, \bm{r'}, k)
 	&= \big( \hat{m}^2(\bm{\hat{r}}) - 1 \big) \bigg(
 	k^5 \delta(\bm{\hat{r}} - \bm{\hat{r}'}) \mathcal{I}
-	+ \int\_{V} \mathcal{\hat{G_e}}(\bm{\hat{r}}, \bm{\hat{r}''}) \cdot \mathcal{T_e} (\bm{r''}, \bm{r'}, k) d \hat{V}'' \bigg)
+	+ \int\_{V} \mathcal{\hat{G_e}}(\bm{\hat{r}}, \bm{\hat{r}''}) \cdot \mathcal{T} (\bm{r''}, \bm{r'}, k) d \hat{V}'' \bigg)
 	\cr
 	&= \big( \hat{m}^2(\bm{\hat{r}}) - 1 \big) \bigg(
 	k^5 \delta(\bm{\hat{r}} - \bm{\hat{r}'}) \mathcal{I}
 	\cr
 	&+ \Big( \mathcal{I} + \hat{\nabla} \otimes \hat{\nabla} \Big) \cdot
-	\int\_{V} \hat{G_e}( \bm{\hat{r}} - \bm{\hat{r}''}) \mathcal{T_e} (\bm{r''}, \bm{r'}, k) d \hat{V}'' \bigg),
+	\int\_{V} \hat{G_e}( \bm{\hat{r}} - \bm{\hat{r}''}) \mathcal{T} (\bm{r''}, \bm{r'}, k) d \hat{V}'' \bigg),
 \end{aligned}
 $$
 
@@ -3870,7 +3870,7 @@ from which it immediately follows that defining
 
 $$ \tag{15.29}
 	\mathcal{\hat{T_e}} (\bm{\hat{r}}, \bm{\hat{r}'}) = \frac{1}{k^5}
-	\mathcal{T_e} (\bm{r}, \bm{r'}, k)
+	\mathcal{T} (\bm{r}, \bm{r'}, k)
 $$
 
 makes Eqn. 15.28 fully dimensionless. Additionally, in the operator notation, Eqn. 15.20 and 15.28 are formally identical. As a result, both formulations can be written as the Born series of Eqn. 14.20, and thus produce the same fields.
@@ -7886,7 +7886,7 @@ $$ \tag{20.3}
 	= \frac{\mathcal{E_p'} - \mathcal{E_p}}{\hbar}
 	= \frac{\mathcal{E_a} - \mathcal{E_a'}}{\hbar}
 \end{aligned}
-
+$$
 
 that can be either positive or negative, depending on the initial and final states of the system.
 
@@ -7894,7 +7894,7 @@ Classical electrodynamics represents matter by a charge distribution that behave
 
 $$ \tag{20.4}
 	\bm{p}(V, \omega) =
-	\mathcal{\Alpha_m}(V, \omega) \cdot \epsilon_0 \bm{E_m}(\bm{r_0}, \omega),
+	\mathcal{\Alpha_m}(V_m, \omega) \cdot \epsilon_0 \bm{E_m}(\bm{r_0}, \omega),
 $$
 
 where \\(\mathcal{\Alpha_m}\\) is the molecular polarizability dyadic.
@@ -7910,15 +7910,15 @@ If the applied field \\(\bm{E_m}\\) is time-harmonic,
 
 $$ \tag{20.6}
 \begin{aligned}
-	\bm{p}(V, \omega) e^{i \omega t}
-	&= \big( \mathcal{\Alpha_m}(V, \omega) + 2 \mathcal{\Beta_m}(V, \omega) \cos(\Omega t) \big)
+	\bm{p}(V_m, \omega) e^{i \omega t}
+	&= \big( \mathcal{\Alpha_m}(V_m, \omega) + 2 \mathcal{\Beta_m}(V_m, \omega) \cos(\Omega t) \big)
 	\cdot \epsilon_0 \bm{E_0}(\bm{r_0}, \omega) e^{i \omega t}
 	\cr
-	&= \mathcal{\Alpha_m}(V, \omega) \cdot \epsilon_0 \bm{E_0}(\bm{r_0}, \omega) e^{i \omega t}
+	&= \mathcal{\Alpha_m}(V_m, \omega) \cdot \epsilon_0 \bm{E_0}(\bm{r_0}, \omega) e^{i \omega t}
 	\cr
-	&+ \mathcal{\Beta_m}(V, \omega)  \cdot \epsilon_0 \bm{E_0}(\bm{r_0}, \omega) e^{i (\omega - \Omega) t}
+	&+ \mathcal{\Beta_m}(V_m, \omega)  \cdot \epsilon_0 \bm{E_0}(\bm{r_0}, \omega) e^{i (\omega - \Omega) t}
 	\cr
-	&+ \mathcal{\Beta_m}(V, \omega)  \cdot \epsilon_0 \bm{E_0}(\bm{r_0}, \omega) e^{i (\omega + \Omega) t}
+	&+ \mathcal{\Beta_m}(V_m, \omega)  \cdot \epsilon_0 \bm{E_0}(\bm{r_0}, \omega) e^{i (\omega + \Omega) t}
 	\cdot
 \end{aligned}
 $$
@@ -7949,33 +7949,111 @@ $$ \tag{21.1}
 	\simeq \frac{e^{i k(\omega) r}}{k(\omega) r} \mathcal{S_{ef}} (\bm{n_s}, \bm{n_i}, \omega) \cdot \bm{E_0}(\bm{n_i}, \omega).
 $$
 
-The corresponding expression of a dipole is found in Eqn. 13.5:
+The corresponding expression for a dipole is found in Eqn. 13.5:
 
 $$ \tag{21.2}
 	\bm{E_s}(\bm{r}, \omega)
 	\simeq \frac{e^{i k(\omega) r}}{k(\omega) r} \frac{k^3(\omega)}{4 \pi}
-	\big( \mathcal{I} - \bm{n_s} \otimes \bm{n_s} \big) \cdot \mathcal{\Alpha_m}(V, \omega)
-	\cdot \bm{E_0}(\bm{n_i}, \omega).
+	\big( \mathcal{I} - \bm{n_s} \otimes \bm{n_s} \big) \cdot \mathcal{\Alpha_m}(V_m, \omega)
+	\cdot \bm{E}(0, \omega).
 $$
 
-After comparing the two equations, it is clear that the scattering dyadic \\(\mathcal{S\_{ef}}\\) and the molecular polarizability dyadic \\(\mathcal{\Alpha\_m}\\) are related by
+Comparison of two equations is complicated by the fact that the value of the internal field \\(\bm{E}\\) depends on the polarization \\(\bm{P}\\) of the particle \[[4](#references) (ch. 6.22)\]. Thus, in general, the values of the internal and the incident fields are not exactly the same:
 
 $$ \tag{21.3}
-	\mathcal{S_{ef}} (\bm{n_s}, \bm{n_i}, \omega)
-	\simeq \frac{k^3(\omega)}{4 \pi}
-	\big( \mathcal{I} - \bm{n_s} \otimes \bm{n_s} \big) \cdot \mathcal{\Alpha_m}(V, \omega).
+	\bm{E}(0, \omega) \neq \bm{E_0}(\bm{n_i}, \omega).
 $$
 
-The first term is the power law of Rayleigh scattering, the second term ensures that the electromagnetic field is transverse, and the last term encodes the orientation and the "responsiveness" of the molecule to the applied electromagnetic field. Since a typical molecule is aspherical, \\(\mathcal{\Alpha\_m}\\) is a dyadic rather than a scalar. In a Cartesian coordinate system, it can be represented by a matrix
+According to Eqn. 14.5, the fields are related by the transition dyadic \\(\mathcal{T}\\):
 
 $$ \tag{21.4}
-	\mathcal{\Alpha_m}(V, \omega) =
-	\begin{bmatrix}
-		\mathcal{\alpha_{11}} & \mathcal{\alpha_{12}} & \mathcal{\alpha_{13}} \cr
-		\mathcal{\alpha_{21}} & \mathcal{\alpha_{22}} & \mathcal{\alpha_{23}} \cr
-		\mathcal{\alpha_{31}} & \mathcal{\alpha_{32}} & \mathcal{\alpha_{33}} \cr
-	\end{bmatrix}
+	k^2(\omega) \big( m^2(\bm{r'}, \omega) - 1 \big) \bm{E}(\bm{r'}, \omega)
+	= \int\_{V} \mathcal{T} \big( \bm{r'}, \bm{r''}, k(\omega), \omega \big) \cdot \bm{E_i}(\bm{r''}, \omega) dV''.
 $$
+
+In the Rayleigh scattering approximation, the value of the internal field is uniform across the interior of the particle \[[25](#references) (ch. 2.1)\]. Then, if we group all the constants together, Eqn. 21.3 can be simply written as
+
+$$ \tag{21.5}
+	\bm{E}(0, \omega) = \mathcal{T_m}(V_m, \omega) \cdot \bm{E_0}(\bm{n_i}, \omega).
+$$
+
+Therefore, the scattering dyadic \\(\mathcal{S\_{ef}}\\) can be expressed as a product
+
+$$ \tag{21.6}
+	\mathcal{S_{ef}} (\bm{n_s}, \bm{n_i}, \omega)
+	\simeq \frac{k^3(\omega)}{4 \pi}
+	\big( \mathcal{I} - \bm{n_s} \otimes \bm{n_s} \big) \cdot
+	\big[ \mathcal{\Alpha_m}(V_m, \omega) \cdot \mathcal{T_m}(V_m, \omega) \big].
+$$
+
+The first term is the power law of Rayleigh scattering; the second term ensures that the electromagnetic field is transverse; and the last term encodes the orientation and the "responsiveness" of the molecule with respect to the applied electromagnetic field. Since a typical molecule is aspherical, \\(\mathcal{\Alpha\_m} \cdot \mathcal{T_m}\\) is a dyadic rather than a scalar.
+
+In a Cartesian coordinate system, the polarizability dyadic can be represented by a matrix
+
+$$ \tag{21.7}
+	\mathcal{\Alpha_m}(V_m, \omega) =
+	\begin{bmatrix}
+		\alpha_{11} & \alpha_{12} & \alpha_{13} \cr
+		\alpha_{21} & \alpha_{22} & \alpha_{23} \cr
+		\alpha_{31} & \alpha_{32} & \alpha_{33} \cr
+	\end{bmatrix}.
+$$
+
+Let us assume that the matrix is (at least approximately) [diagonalizable](https://en.wikipedia.org/wiki/Diagonalizable_matrix), so that it can be written in the form
+
+$$ \tag{21.8}
+	\mathcal{\Alpha_m}(V_m, \omega) =
+	X \Lambda X^{-1}
+	=
+	\begin{bmatrix}
+		\bm{v_1} & \bm{v_2} & \bm{v_3} \cr
+	\end{bmatrix}
+	\begin{bmatrix}
+		\alpha_1 & 0 		  & 0 		  \cr
+		0 		  & \alpha_2 & 0 		  \cr
+		0 		  & 0 		  & \alpha_3 \cr
+	\end{bmatrix}
+	\begin{bmatrix}
+		\bm{v_1} & \bm{v_2} & \bm{v_3} \cr
+	\end{bmatrix}^{-1},
+$$
+
+where \\(\bm{v_1}, \bm{v_2}, \bm{v_3}\\) are its eigenvectors and \\(\alpha_1, \alpha_2, \alpha_3\\) are its eigenvalues.
+
+Let us further assume that the eigenvectors are real and orthogonal (the eigenvalues remain complex). Then
+
+$$ \tag{21.9}
+	\mathcal{\Alpha_m}(V_m, \omega) =
+	X \Lambda X^{T}
+	=
+	\begin{bmatrix}
+		\bm{v_1} & \bm{v_2} & \bm{v_3} \cr
+	\end{bmatrix}
+	\begin{bmatrix}
+		\alpha_1 & 0 		  & 0 		  \cr
+		0 		  & \alpha_2 & 0 		  \cr
+		0 		  & 0 		  & \alpha_3 \cr
+	\end{bmatrix}
+	\begin{bmatrix}
+		\bm{v_1} \cr \bm{v_2} \cr \bm{v_3} \cr
+	\end{bmatrix}.
+$$
+
+This geometric arrangement[^24] corresponds to an [ellipsoid](https://en.wikipedia.org/wiki/Ellipsoid) of length \\(2 \alpha_1\\), height \\(2 \alpha_2\\), width \\(2 \alpha_3\\).
+
+[^24]: In general, a single molecule is neither spherical nor ellipsoidal. However, if we consider a measurement of light scattered by a large group of randomly oriented molecules, due to the inherent averaging process described in Sec. 17, it is fairly reasonable to assume that the same measurement can be reproduced using an appropriately chosen distribution of randomly oriented ellipsoids.
+
+According to Eqn. 10.21, if the electric field vector \\(\bm{E}\\) points along one the principal axes of the molecule, the induced dipole moment is
+
+$$ \tag{21.10}
+	\bm{p_1} = \alpha_1 \epsilon_0 E_1 \bm{v_1},
+	\quad
+	\bm{p_2} = \alpha_2 \epsilon_0 E_2 \bm{v_2},
+	\quad
+	\bm{p_3} = \alpha_3 \epsilon_0 E_3 \bm{v_3}.
+$$
+
+This anisotropic dipole model was introduced by Rayleigh, Cabannes, and King to explain the experimental results of light scattered by gases and liquids \[[2](#references) (ch. 18), [4](#references) (ch. 6.32)\].
 
 ---
 
