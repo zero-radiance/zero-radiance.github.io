@@ -2318,7 +2318,7 @@ This expression is useful, since we can directly relate it to the definition of 
 $$ \tag{10.19}
 	\frac{\partial}{\partial t} \bm{p}(V, t) = \int\_{V} \bm{J_p}(\bm{r}, t) dV,
 	\quad
-	-i \omega \frac{\partial}{\partial t} \bm{p}(V, \omega) = \int\_{V} \bm{J_p}(\bm{r}, \omega) dV.
+	-i \omega \bm{p}(V, \omega) = \int\_{V} \bm{J_p}(\bm{r}, \omega) dV.
 $$
 
 Eqn. 10.19 implies that we can represent an arbitrary polarization current density by oscillating electric dipole moments:
@@ -2934,7 +2934,7 @@ $$ \tag{12.3}
 	\bm{p}(V_m, \omega) = \mathcal{\Alpha_m}(V_m, \omega) \cdot \varepsilon(\omega) \bm{E}(\bm{r_0}, \omega),
 $$
 
-where we replaced \\(\epsilon_0\\) with \\(\varepsilon\\) (to account for the properties of the surrounding medium) and \\(\bm{E_m}\\) with \\(\bm{E}\\) (to be consistent with the naming convention of the internal field of a particle).
+where we replaced \\(\epsilon_0\\) with \\(\varepsilon\\) (to account for the properties of the surrounding medium) and \\(\bm{E_m}\\) with \\(\bm{E}\\) (which is only permissible assuming the dipole is alone).
 
 The combination of Eqn. 12.1-12.3 results in
 
@@ -2961,7 +2961,9 @@ $$ \tag{12.6}
 	= \int_{V_m} \big( m^2(\bm{r}, \omega) - 1 \big) dV_m.
 $$
 
-This relation also follows from Eqn. 10.18.4, 10.21, and 10.26, under the assumption that the polarization \\(\bm{P}\\) vanishes outside the volume occupied by the dipole. Finally, note that, since \\(m\\) is dimensionless, Eqn. 12.6 implies that the polarizability has units of volume \[[4](#references) (ch. 6.22)\].
+This relation also follows from Eqn. 10.18.4, 10.21, and 10.26, under the assumption that the polarization \\(\bm{P}\\) vanishes outside the volume occupied by the dipole.
+
+Finally, note that, since \\(m\\) is dimensionless, Eqn. 12.6 implies that the polarizability has units of volume \[[4](#references) (ch. 6.22)\].
 
 ### Spherical Waves
 
@@ -3015,10 +3017,12 @@ $$ \tag{13.5}
 \begin{aligned}
 	& \bm{E_s}(\bm{r}, \omega)
 	\simeq k^2(\omega) \frac{e^{i k(\omega) r}}{4 \pi r}
-	\big( \mathcal{I} - \bm{n} \otimes \bm{n} \big) \cdot \mathcal{\Alpha_m}(V_m, \omega) \cdot \bm{E}(0, \omega), \cr
+	\big( \mathcal{I} - \bm{n} \otimes \bm{n} \big) \cdot \mathcal{\Alpha_m}(V_m, \omega)
+	\cdot \bm{E_0}(\bm{n_i}, \omega), \cr
 	& \bm{B_s}(\bm{r}, \omega)
 	\simeq \frac{k^3(\omega)}{\omega} \frac{e^{i k(\omega) r}}{4 \pi r}
-	\big(\bm{n} \times \mathcal{I} \big) \cdot \mathcal{\Alpha_m}(V_m, \omega) \cdot \bm{E}(0, \omega).
+	\big(\bm{n} \times \mathcal{I} \big) \cdot \mathcal{\Alpha_m}(V_m, \omega)
+	\cdot \bm{E_0}(\bm{n_i}, \omega)
 \end{aligned}
 $$
 
@@ -7893,11 +7897,11 @@ that can be either positive or negative, depending on the initial and final stat
 Classical electrodynamics represents matter by a charge distribution that behaves a certain way. In particular, if we consider an atom or a small molecule, to a good approximation, light-matter interaction is limited to the displacement of the electron cloud relative to the center of mass of the molecule, which is characterized by the induced dipole moment
 
 $$ \tag{20.4}
-	\bm{p}(V, \omega) =
+	\bm{p}(V_m, \omega) =
 	\mathcal{\Alpha_m}(V_m, \omega) \cdot \epsilon_0 \bm{E_m}(\bm{r_0}, \omega),
 $$
 
-where \\(\mathcal{\Alpha_m}\\) is the molecular polarizability dyadic.
+where \\(\mathcal{\Alpha_m}\\) is the molecular polarizability dyadic (see Eqn. 10.21).
 
 In addition to forced motion of the electron cloud, a diatomic molecule may experience vibration of the nuclei relative to the center of mass of the molecule \[[30](#references), ch. \\(\mathrm{A\_V}\\)\]. Since the nuclei are much heavier than the electrons, they oscillate at a lower frequency, effectively [modulating the amplitude](https://en.wikipedia.org/wiki/Amplitude_modulation) of the oscillation of the dipole moment by a factor of
 
@@ -7912,13 +7916,13 @@ $$ \tag{20.6}
 \begin{aligned}
 	\bm{p}(V_m, \omega) e^{i \omega t}
 	&= \big( \mathcal{\Alpha_m}(V_m, \omega) + 2 \mathcal{\Beta_m}(V_m, \omega) \cos(\Omega t) \big)
-	\cdot \epsilon_0 \bm{E_0}(\bm{r_0}, \omega) e^{i \omega t}
+	\cdot \epsilon_0 \bm{E_m}(\bm{r_0}, \omega) e^{i \omega t}
 	\cr
-	&= \mathcal{\Alpha_m}(V_m, \omega) \cdot \epsilon_0 \bm{E_0}(\bm{r_0}, \omega) e^{i \omega t}
+	&= \mathcal{\Alpha_m}(V_m, \omega) \cdot \epsilon_0 \bm{E_m}(\bm{r_0}, \omega) e^{i \omega t}
 	\cr
-	&+ \mathcal{\Beta_m}(V_m, \omega)  \cdot \epsilon_0 \bm{E_0}(\bm{r_0}, \omega) e^{i (\omega - \Omega) t}
+	&+ \mathcal{\Beta_m}(V_m, \omega)  \cdot \epsilon_0 \bm{E_m}(\bm{r_0}, \omega) e^{i (\omega - \Omega) t}
 	\cr
-	&+ \mathcal{\Beta_m}(V_m, \omega)  \cdot \epsilon_0 \bm{E_0}(\bm{r_0}, \omega) e^{i (\omega + \Omega) t}
+	&+ \mathcal{\Beta_m}(V_m, \omega)  \cdot \epsilon_0 \bm{E_m}(\bm{r_0}, \omega) e^{i (\omega + \Omega) t}
 	\cdot
 \end{aligned}
 $$
@@ -7938,59 +7942,43 @@ We shall begin our investigation of light-matter interactions with the simplest 
 
 The properties #1 and #2 suggest that we may represent a gas molecule by an electric dipole (cf. Sec. 12).
 
-The properties #2-4, taken together, imply that an electromagnetic wave incident on the volume \\(V\\) is not significantly impeded (or otherwise altered) by the presence of the group of molecules located within. This makes makes the single scattering approximation (cf. Eqn. 17.0) applicable, which allows us to assume that each dipole is driven exclusively by the incident field (or, in other words, the polarization \\(\bm{P}\\) is vanishingly small outside the volume occupied by any given dipole, cf. Sec. 10).
+The properties #2-4, taken together, imply that an electromagnetic wave incident on the volume \\(V\\) is not significantly impeded (or otherwise altered) by the presence of the group of molecules located within. This makes makes the single scattering approximation (cf. Eqn. 17.0) applicable, which allows us to assume that each dipole is driven exclusively by the incident field (or, in other words, the polarization \\(\bm{P}\\) is vanishingly small outside the volume occupied by any given dipole, cf. Sec. 10). That also allows us to replace the microscopic field \\(\bm{E_m}\\) acting on the molecule in Eqn 10.21 with the incident field \\(\bm{E_0}\\) \[[4](#references) (ch. 6.22)\]:
 
-The property #6 allows us to apply the ergodic assumption, making the results of Sec. 17 applicable. Once we also take the property #5 into account, the amount of light scattered or absorbed by the particle group (as well as the associated radiative transfer coefficients) can be determined by computing simple weighted averages according to Eqn. 17.56.
+$$ \tag{21.1}
+	\bm{p}(V_m, \omega) \approx \mathcal{\Alpha_m}(V_m, \omega) \cdot \epsilon_0 \bm{E_0}(\bm{n_i}, \omega).
+$$
+
+The property #6 allows us to invoke the ergodic assumption, making the results of Sec. 17 applicable. Once we also take the property #5 into account, the amount of light scattered or absorbed by the particle group (as well as the associated radiative transfer coefficients) can be determined by computing simple weighted averages according to Eqn. 17.56.
 
 In order to apply the results of Sec. 17, we must tailor them to our particular use case. The scattered far-field of an arbitrary particle is given by Eqn. 15.6:
 
-$$ \tag{21.1}
+$$ \tag{21.2}
 	\bm{E_s}(\bm{r}, \omega)
 	\simeq \frac{e^{i k(\omega) r}}{k(\omega) r} \mathcal{S_{ef}} (\bm{n_s}, \bm{n_i}, \omega) \cdot \bm{E_0}(\bm{n_i}, \omega).
 $$
 
 The corresponding expression for a dipole is found in Eqn. 13.5:
 
-$$ \tag{21.2}
+$$ \tag{21.3}
 	\bm{E_s}(\bm{r}, \omega)
 	\simeq \frac{e^{i k(\omega) r}}{k(\omega) r} \frac{k^3(\omega)}{4 \pi}
 	\big( \mathcal{I} - \bm{n_s} \otimes \bm{n_s} \big) \cdot \mathcal{\Alpha_m}(V_m, \omega)
-	\cdot \bm{E}(0, \omega).
+	\cdot \bm{E_0}(\bm{n_i}, \omega).
 $$
 
-Comparison of two equations is complicated by the fact that the value of the internal field \\(\bm{E}\\) depends on the polarization \\(\bm{P}\\) of the particle \[[4](#references) (ch. 6.22)\]. Thus, in general, the values of the internal and the incident fields are not exactly the same:
-
-$$ \tag{21.3}
-	\bm{E}(0, \omega) \neq \bm{E_0}(\bm{n_i}, \omega).
-$$
-
-According to Eqn. 14.5, the fields are related by the transition dyadic \\(\mathcal{T}\\):
+Thus, the scattering dyadic \\(\mathcal{S\_{ef}}\\) and the molecular polarizability dyadic \\(\mathcal{\Alpha\_m}\\) are related by
 
 $$ \tag{21.4}
-	k^2(\omega) \big( m^2(\bm{r'}, \omega) - 1 \big) \bm{E}(\bm{r'}, \omega)
-	= \int\_{V} \mathcal{T} \big( \bm{r'}, \bm{r''}, k(\omega), \omega \big) \cdot \bm{E_i}(\bm{r''}, \omega) dV''.
-$$
-
-In the Rayleigh scattering approximation, the value of the internal field is uniform across the interior of the particle \[[25](#references) (ch. 2.1)\]. Then, if we group all the constants together, Eqn. 21.3 can be simply written as
-
-$$ \tag{21.5}
-	\bm{E}(0, \omega) = \mathcal{T_m}(V_m, \omega) \cdot \bm{E_0}(\bm{n_i}, \omega).
-$$
-
-Therefore, the scattering dyadic \\(\mathcal{S\_{ef}}\\) can be expressed as a product
-
-$$ \tag{21.6}
 	\mathcal{S_{ef}} (\bm{n_s}, \bm{n_i}, \omega)
 	\simeq \frac{k^3(\omega)}{4 \pi}
-	\big( \mathcal{I} - \bm{n_s} \otimes \bm{n_s} \big) \cdot
-	\big[ \mathcal{\Alpha_m}(V_m, \omega) \cdot \mathcal{T_m}(V_m, \omega) \big].
+	\big( \mathcal{I} - \bm{n_s} \otimes \bm{n_s} \big) \cdot \mathcal{\Alpha_m}(V_m, \omega).
 $$
 
-The first term is the power law of Rayleigh scattering; the second term ensures that the electromagnetic field is transverse; and the last term encodes the orientation and the "responsiveness" of the molecule with respect to the applied electromagnetic field. Since a typical molecule is aspherical, \\(\mathcal{\Alpha\_m} \cdot \mathcal{T_m}\\) is a dyadic rather than a scalar.
+The first term is the power law of Rayleigh scattering; the second term ensures that the electromagnetic field is transverse; the last term encodes the orientation and the "responsiveness" of the molecule with respect to the applied electromagnetic field.
 
-In a Cartesian coordinate system, the polarizability dyadic can be represented by a matrix
+Since a typical molecule is aspherical, \\(\mathcal{\Alpha\_m}\\) is a dyadic rather than a scalar. In a Cartesian coordinate system, the polarizability dyadic can be represented by a matrix
 
-$$ \tag{21.7}
+$$ \tag{21.5}
 	\mathcal{\Alpha_m}(V_m, \omega) =
 	\begin{bmatrix}
 		\alpha_{11} & \alpha_{12} & \alpha_{13} \cr
@@ -8001,7 +7989,7 @@ $$
 
 Let us assume that the matrix is (at least approximately) [diagonalizable](https://en.wikipedia.org/wiki/Diagonalizable_matrix), so that it can be written in the form
 
-$$ \tag{21.8}
+$$ \tag{21.6}
 	\mathcal{\Alpha_m}(V_m, \omega) =
 	X \Lambda X^{-1}
 	=
@@ -8018,11 +8006,11 @@ $$ \tag{21.8}
 	\end{bmatrix}^{-1},
 $$
 
-where \\(\bm{v_1}, \bm{v_2}, \bm{v_3}\\) are its eigenvectors and \\(\alpha_1, \alpha_2, \alpha_3\\) are its eigenvalues.
+where \\(\bm{v_1}, \bm{v_2}, \bm{v_3}\\) are the eigenvectors, and \\(\alpha_1, \alpha_2, \alpha_3\\) are the corresponding eigenvalues.
 
 Let us further assume that the eigenvectors are real and orthogonal (the eigenvalues remain complex). Then
 
-$$ \tag{21.9}
+$$ \tag{21.7}
 	\mathcal{\Alpha_m}(V_m, \omega) =
 	X \Lambda X^{T}
 	=
@@ -8039,28 +8027,28 @@ $$ \tag{21.9}
 	\end{bmatrix}.
 $$
 
-This geometric arrangement[^24] corresponds to an [ellipsoid](https://en.wikipedia.org/wiki/Ellipsoid) of length \\(2 \alpha_1\\), height \\(2 \alpha_2\\), width \\(2 \alpha_3\\).
+This geometric configuration[^24] corresponds to an [ellipsoid](https://en.wikipedia.org/wiki/Ellipsoid) of length \\(2 \alpha_1\\), height \\(2 \alpha_2\\), and width \\(2 \alpha_3\\).
 
-[^24]: In general, a single molecule is neither spherical nor ellipsoidal. However, if we consider a measurement of light scattered by a large group of randomly oriented molecules, due to the inherent averaging process described in Sec. 17, it is fairly reasonable to assume that the same measurement can be reproduced using an appropriately chosen distribution of randomly oriented ellipsoids.
+[^24]: In general, a single molecule is neither spherical nor ellipsoidal. However, if we consider a measurement of light scattered by a large group of randomly oriented molecules, due to the  averaging process described in Sec. 17, it is fairly reasonable to assume that the same measurement can be reproduced fairly well by an appropriately chosen distribution of randomly oriented ellipsoids.
 
-According to Eqn. 10.21, if the electric field vector \\(\bm{E}\\) points along one the principal axes of the molecule, the induced dipole moment is
+According to Eqn. 21.1, whenever the electric field vector \\(\bm{E_0}\\) points along one the principal axes \\(\bm{v_n}\\) of the molecule \\((n=1,2,3)\\), then so does the induced dipole moment \\(\bm{p_n}\\):
 
-$$ \tag{21.10}
-	\bm{p_1} = \alpha_1 \epsilon_0 E_1 \bm{v_1},
-	\quad
-	\bm{p_2} = \alpha_2 \epsilon_0 E_2 \bm{v_2},
-	\quad
-	\bm{p_3} = \alpha_3 \epsilon_0 E_3 \bm{v_3}.
+$$ \tag{21.8}
+	\bm{p_n}
+	= \alpha_n (\epsilon_0 \bm{E_0} \cdot \bm{v_n}) \bm{v_n}.
 $$
 
-This anisotropic dipole model was introduced by Rayleigh, Cabannes, and King to explain the experimental results of light scattered by gases and liquids \[[2](#references) (ch. 18), [4](#references) (ch. 6.32)\].
+In general, the resulting dipole moment \\(\bm{p}\\) is a linear combination of the three expressions given above, so it will not be parallel to the electric field vector \\(\bm{E_0}\\) unless \\(\alpha_1 = \alpha_2 = \alpha_3\\):
+
+$$ \tag{21.9}
+	\bm{p}
+	= \sum_n \bm{p_n}
+	= \sum_n \alpha_n (\epsilon_0 \bm{E_0} \cdot \bm{v_n}) \bm{v_n}.
+$$
+
+This *anisotropic* dipole model was introduced by Rayleigh, Cabannes, and King to explain the experimental observations of light scattered by gases and liquids \[[2](#references) (ch. 18), [4](#references) (ch. 6.32)\].
 
 ---
-
-Internal field is uniform inside the particle (check dipole section!)...
-Use volume integral Eqn. with constant internal field
-Ellipsoid...
-Eigendecomposition of the polarizability tensor
 
 Tsai 2.3, van de Hulst 6.32, Stratton 3.25, maybe Chandra
 
