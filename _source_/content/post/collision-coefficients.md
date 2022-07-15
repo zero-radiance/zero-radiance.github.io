@@ -2345,7 +2345,7 @@ where \\(\bm{E_m}\\) is the phasor of the microscopic field acting on the molecu
 
 The dyadic form of \\(\mathcal{\Alpha_m}\\) is necessary to model a molecule that lacks spherical symmetry; it acts by rotating and non-uniformly scaling the electric field phasor. If the molecule absorbs light, its polarizability is complex \[[4](#references) (ch. 6.13)\].
 
-If there are \\(N\\) identical electric dipoles per unit volume, we can define the electric polarization \\(\bm{P}\\) as
+If there are \\(N\\) identical electric dipoles per unit volume, we can define polarization \\(\bm{P}\\) as
 
 $$ \tag{10.22}
 	\bm{P}(\bm{r}, \omega)
@@ -8038,15 +8038,108 @@ $$ \tag{21.8}
 	= \alpha_n (\epsilon_0 \bm{E_0} \cdot \bm{v_n}) \bm{v_n}.
 $$
 
-In general, the resulting dipole moment \\(\bm{p}\\) is a linear combination of the three expressions given above, so it will not be parallel to the electric field vector \\(\bm{E_0}\\) unless \\(\alpha_1 = \alpha_2 = \alpha_3\\):
+In general, the dipole moment \\(\bm{p}\\) is not be parallel to the electric field vector \\(\bm{E_0}\\) unless \\(\alpha_1 = \alpha_2 = \alpha_3\\):
 
 $$ \tag{21.9}
-	\bm{p}
+	\bm{p}(V_m, \omega)
 	= \sum_n \bm{p_n}
 	= \sum_n \alpha_n (\epsilon_0 \bm{E_0} \cdot \bm{v_n}) \bm{v_n}.
 $$
 
-This *anisotropic* dipole model was introduced by Rayleigh, Cabannes, and King to explain the experimental observations of light scattered by gases and liquids \[[2](#references) (ch. 18), [4](#references) (ch. 6.32)\].
+This *anisotropic* dipole model was introduced by Rayleigh, Cabannes, and King to explain the experimental observations of light scattered by gases and liquids \[[2](#references) (ch. 18), [4](#references) (ch. 6.32)\]. In order to use it, we must specify three polarizability parameters \\(\alpha_1, \alpha_2, \alpha_3\\). Their values can be obtained in three different ways:
+
+1. the polarizability can be determined experimentally, by measuring ... \[TODO: add ref\];
+2. an atom or a small molecule[^25] can be modeled quantum-mechanically \[TODO: add ref\];
+3. the classical model of a dielectric ellipsoid characterized by its dimensions and permittivity can be used instead \[[17](#references) (ch. 3.27)\].
+
+[^25]: This may prove to be too challenging for large molecules, but, at the same time, an accurate description of light-matter interaction may also require accounting for contribution of additional multipole terms.
+
+Let us discuss the third method in more detail. According to Eqn. 10.18, the dipole moment \\(\bm{P}\\) is a volume integral of polarization \\(\bm{P}\\):
+
+$$ \tag{21.10}
+	\bm{p}(V_m, \omega) = \int\_{V_m} \bm{P}(\bm{r}, \omega) dV_m.
+$$
+
+The latter is defined in terms of the dielectric constant \\(\epsilon_r = m^2\\) by Eqn. 10.26:
+
+$$ \tag{21.11}
+	\bm{P}(\bm{r}, \omega)
+	= \big( m^2(\bm{r}, \omega) - 1 \big) \epsilon_0 \bm{E}(\bm{r}, \omega).
+$$
+
+Since \\(x \ll 1\\), the ellipsoid is effectively located in a uniform field \\(\bm{E_0}\\). Since, in addition, \\(|m x| \ll 1\\), the value of the field \\(\bm{E}\\) inside the ellipsoid is also uniform. This makes the electrostatic field approximation applicable:
+
+$$ \tag{21.12}
+	\bm{p}(V_m, \omega)
+	= \epsilon_0 \bm{E} \int\_{V_m} \big( m^2 - 1 \big) dV_m
+	= V_m \big( \braket{m^2} - 1 \big) \epsilon_0 \bm{E},
+$$
+
+where the volume of the ellipsoid \\(V_m\\) of length \\(2 a_1\\), height \\(2 a_2\\), and width \\(2 a_3\\) is given by the formula
+
+$$ \tag{21.13}
+	V_m = \frac{4}{3} \pi a_1 a_2 a_3.
+$$
+
+We can simplify the notation by writing \\(m^2\\) in place of \\(\braket{m^2}\\) going forward.
+
+Eqn. 21.9 and 21.12 describe the same physical quantity. Thus, we can calculate the values of the three polarizability parameters \\(\alpha_1, \alpha_2, \alpha_3\\) once we obtain the value of the internal field \\(\bm{E}\\). The latter can be determined by solving the boundary value problem for a dielectric ellipsoid in a uniform electric field. The process is fairly complicated, and the general solution is expressed in terms of ellipsoidal harmonics. A detailed discussion of the  mathematical method in question is outside of the scope of this article, so we shall simply quote the results \[[17](#references) (ch. 3.27)\].
+
+Let us define the radial function
+
+$$ \tag{21.14}
+	R(s) = \sqrt{(s + a_1^2) (s + a_2^2) (s + a_3^2)}
+$$
+
+and the elliptic integrals
+
+$$ \tag{21.15}
+	A_n = \int_{0}^{\infin} \frac{ds}{(s + a_n^2) R(s)},
+$$
+
+where \\(n=1,2,3\\), that satisfy
+
+$$ \tag{21.16}
+	\sum_n A_n = \frac{2}{a_1 a_2 a_3}.
+$$
+
+The value of the component of the internal electric field pointing along one the principal axes of the molecule is
+
+$$ \tag{21.17}
+	E_n
+	= \bm{E} \cdot \bm{v_n}
+	= \frac{\bm{E_0} \cdot \bm{v_n}}{1 + \left( m^2 - 1 \right) \frac{A_n}{\sum_n A_n} }.
+$$
+
+In case the ellipsoid is just a regular sphere,
+
+$$ \tag{21.18}
+	\frac{A_n}{\sum_n A_n} = \frac{1}{3}.
+$$
+
+Otherwise, as the sphere is stretched into an ellipsoid, the internal field tends to align with the major axis.
+
+[TODO: insert plot of E_n here]
+
+It is convenient to express the value of the internal field in terms of the so-called *depolarization factors* \\(L_n\\), such that
+
+$$ \tag{21.19}
+	E_n = \left( \bm{E_0} - L_n \bm{P} \right) \cdot \bm{v_n}.
+$$
+
+By combining Eqn. 21.11, 21.17, and 21.19, we obtain their values
+
+$$ \tag{21.20}
+	L_n = \frac{1}{\epsilon_0} \frac{A_n}{\sum_n A_n}.
+$$
+
+For any ellipsoid,
+
+$$ \tag{21.21}
+	\sum_n L_n = \frac{1}{\epsilon_0}.
+$$
+
+When Gaussian units are used, the depolarization factors sum up to \\(1\\) \[[4](#references) (ch. 6.32)\].
 
 ---
 
