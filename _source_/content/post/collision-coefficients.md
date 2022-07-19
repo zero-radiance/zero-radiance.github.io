@@ -3745,7 +3745,7 @@ $$ \tag{15.16}
 	E\_{s,\theta}(\bm{r}, \omega) \cr
 	E\_{s,\phi}(\bm{r}, \omega) \cr
 \end{bmatrix} \simeq
-\frac{e^{i k(\omega) r - i k(\omega) z}}{i k(\omega) r} S(\theta, \phi, \omega)
+\frac{e^{i k(\omega) r - i k(\omega) z}}{k(\omega) r} S(\theta, \phi, \omega)
 \begin{bmatrix}
 	E\_{i,x}(z, 0, \phi, \omega) \cr
 	E\_{i,y}(z, 0, \phi, \omega) \cr
