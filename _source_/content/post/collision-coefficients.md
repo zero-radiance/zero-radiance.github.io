@@ -3627,7 +3627,7 @@ $$
 
 where \\(\bm{n_p}\\) is the principal axis of the particle.
 
-The latter could, for instance, represent the coordinate frame of the scatterer. We can now rotate \\(xyz\\) and define its orientation relative to \\(XYZ\\) in terms of the [Euler angles](https://en.wikipedia.org/wiki/Euler_angles). We are particularly interested in rotating the plane of observation \\(xz\\) about the \\(Z\\)-axis, as that allows the set of possible direction of observation to cover the entire the unit sphere. If the azimuthal (plane rotation) angle is \\(\phi\\) and the polar angle is \\(\theta\\), the spherical coordinates of \\(\bm{n_s}\\) with respect to the \\(XYZ\\) frame are
+The latter could, for instance, represent the coordinate frame of the scatterer. We can now rotate \\(xyz\\) and define its orientation relative to \\(XYZ\\) in terms of the [Euler angles](https://en.wikipedia.org/wiki/Euler_angles). We are particularly interested in rotating the plane of observation about the \\(Z\\)-axis, as that allows the set of possible direction of observation to cover the entire the unit sphere. If the azimuthal (plane rotation) angle is \\(\phi\\) and the polar angle is \\(\theta\\), the spherical coordinates of \\(\bm{n_s}\\) with respect to the \\(XYZ\\) frame are
 
 $$ \tag{15.10}
 \bm{n_s} =
@@ -3690,9 +3690,9 @@ Eqn. 15.12 represents a rotation of the \\(\theta r\\)-plane about the \\(\phi\\
 
 $$ \tag{15.13}
 \begin{bmatrix}
-	E\_{r}(\theta, \phi) \cr
 	E\_{\theta}(\theta, \phi) \cr
 	E\_{\phi}(\theta, \phi) \cr
+	E\_{r}(\theta, \phi) \cr
 \end{bmatrix} =
 R_y(-\theta)
 \begin{bmatrix}
@@ -3711,6 +3711,8 @@ R_y(-\theta)
 	E\_{z}(\phi) \cr
 \end{bmatrix}.
 $$
+
+The combination of Eqn. 15.11 and 15.13 is the inverse of the standard transformation matrix from [spherical to Cartesian](https://en.wikipedia.org/wiki/List_of_common_coordinate_transformations#From_spherical_coordinates) coordinates.
 
 Suppose that the amplitude and the phase of the incident field is known at the plane with a certain \\(z\\)-coordinate (where \\(z\\) is a negative number). Then the value of the field at the origin is
 
