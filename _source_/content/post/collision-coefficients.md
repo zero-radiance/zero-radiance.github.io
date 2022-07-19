@@ -8172,9 +8172,11 @@ $$ \tag{21.24}
 	\end{bmatrix},
 $$
 
-where the \\(Z\\)-component is \\(0\\) because the field is transverse. In the scattering coordinate system \\(xyz\\), Eqn. 15.11 is applicable,
+where the \\(Z\\)-component is \\(0\\) because the field is transverse.
 
-$$ \tag{15.14}
+In the scattering coordinate system \\(xyz\\), Eqn. 15.11 is applicable:
+
+$$ \tag{21.25}
 	\bm{E_0} = R_z(-\phi)
 	\begin{bmatrix}
 		E\_{X} \cr
@@ -8196,17 +8198,22 @@ $$
 
 where \\(\phi\\) denotes both the azimuthal angle of the direction of observation and the corresponding rotation angle of the plane of reference around the \\(Z\\)-axis.
 
-Similarly, \\(( \mathcal{I} - \bm{n_s} \otimes \bm{n_s})\\) projects a vector onto the tangent plane of a unit sphere.
+Similarly, \\((\mathcal{I} - \bm{n_s} \otimes \bm{n_s})\\) is an operator given by Eqn. 15.13 that projects a vector onto the tangent plane of a unit sphere:
 
-
-$$ \tag{21.3}
-	\bm{E_s}(\bm{r}, \omega)
-	\simeq \frac{e^{i k(\omega) r}}{k(\omega) r} \frac{k^3(\omega)}{4 \pi}
-	\big( \mathcal{I} - \bm{n_s} \otimes \bm{n_s} \big) \cdot \mathcal{\Alpha_m}(V_m, \omega)
-	\cdot \bm{E_0}(\bm{n_i}, \omega).
+$$ \tag{21.26}
+	\mathcal{I} - \bm{n_s} \otimes \bm{n_s}
+	= R_y(-\theta)
+	=
+	\begin{bmatrix}
+		\cos{\theta} & 0 & -\sin{\theta} \cr
+		0            & 1 & 0             \cr
+		\sin{\theta} & 0 & \phantom{-}\cos{\theta} \cr
+	\end{bmatrix}.
 $$
 
-We must also determine the expression of the
+Let us now consider the expression of the polarizability dyadic \\(\mathcal{\Alpha_m}\\).
+
+---
 
 It's interesting to compare the resulting scattering matrix for a spherical particle to the expression obtained using the Lorenz-Mie-Debye.
 
