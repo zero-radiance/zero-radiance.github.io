@@ -8213,6 +8213,8 @@ $$
 
 Let us now consider the expression of the polarizability dyadic \\(\mathcal{\Alpha_m}\\).
 
+Is phi rotation in the wrong order? Use lab coordinates?
+
 ---
 
 It's interesting to compare the resulting scattering matrix for a spherical particle to the expression obtained using the Lorenz-Mie-Debye.
