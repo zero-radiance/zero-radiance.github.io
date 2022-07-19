@@ -3599,7 +3599,7 @@ $$
 
 At the end of this section [EG: reorder], we will demonstrate that \\(\mathcal{T} \sim k^5\\), which implies that both of these dyadics are dimensionless. In comparison, certain authors prefer to divide their dyadics by \\(k\\) \[[8](#references) (ch. 5.3)\].
 
-All the expressions given above are independent of the choice of a coordinate system. In practice, it is rather convenient to establish a certain coordinate convention.
+All the expressions given above are independent of the choice of a coordinate system. In practice, in order to perform computations, it is necessary to use a specific reference frame.
 
 {{< figure src="/img/scat_coord.svg" caption="*Figure N: the scattering coordinate system.*" >}}
 
@@ -3617,7 +3617,7 @@ $$
 
 We may also reinterpret this convention in spherical coordinates: if \\(\theta = \phi = 0\\), then \\(\bm{e_x} = \bm{e_{\theta}}\\) and \\(\bm{e_y} = \bm{e_{\phi}}.\\)
 
-Imagine that the *scattering coordinate system* \\(xyz\\) is initially aligned with the *global coordinate system* \\(XYZ\\), so that
+Imagine that the *scattering coordinate system* \\(xyz\\) is initially aligned with the *laboratory reference frame* \\(XYZ\\), so that
 
 $$ \tag{15.9}
 	\bm{e_Z} = \bm{n_i}, \quad
@@ -3686,7 +3686,7 @@ $$
 
 As Eqn. 13.14 shows, the scattered field vectors (and phasors) are orthogonal to \\(\bm{n_s}\\). Thus, in the spherical coordinate system, only the tangential (\\(\theta\\) and \\(\phi\\)) components of \\(\bm{E_s}\\) and \\(\bm{B_s}\\) are non-zero.
 
-Eqn. 15.12 represents a rotation of the \\(\theta \phi\\)-plane about the \\(\phi\\)-axis:
+Eqn. 15.12 represents a rotation of the \\(\theta r\\)-plane about the \\(\phi\\)-axis:
 
 $$ \tag{15.13}
 \begin{bmatrix}
@@ -4649,7 +4649,7 @@ $$ \tag{17.25}
 	p(\psi) d\psi
 $$
 
-is, in general, different from replacing \\(\mathcal{S_j}\\) with the average scattering dyadic \\(\braket{\mathcal{S_j}}\\). This implies that the mean intensity \\(\braket{\Iota_s}\\) of scattered light is not the same as the intensity of light scattered by the average particle (cf. Eqn. 16.15):
+is, in general, different from replacing \\(\mathcal{S_j}\\) with the average scattering dyadic \\(\braket{\mathcal{S_j}}\\). This implies that the mean intensity \\(\braket{\Iota_s}\\) of scattered light is not the same as the intensity of light scattered by the average particle (cf. Eqn. 16.15) \[[8](#references) (ch. 14.4)\]:
 
 $$ \tag{17.26}
 	\braket{\Iota_s} \negmedspace (\bm{n_s})
@@ -4776,7 +4776,7 @@ Another important case of interest is when both \\(k L \gg 1\\) and \\(k r \gg 1
 
 [^22]: As the pseudo-frequency \\(f \to \infin\\), the value of \\(\exp(i f u^2)\\)  rapidly oscillates around \\(0\\). These oscillations can be dampened by averaging the function over a finite interval. The absolute value of the resulting integral tends to \\(0\\).
 
-In conclusion, *if the observer is located in the the radiation zone of the entire particle group*, the mean amount of power \\(\braket{\Phi_e}\\) dissipated per particle is the same as that of the average particle (cf. Eqn. 16.40):
+In conclusion, *if the observer is located in the the radiation zone of the entire particle group*, the mean amount of power \\(\braket{\Phi_e}\\) dissipated per particle is the same as that of the average particle (cf. Eqn. 16.40) \[[8](#references) (ch. 14.6)\]:
 
 $$ \tag{17.36}
 	\braket{\Phi_e}
@@ -4786,7 +4786,7 @@ $$ \tag{17.36}
 	\right\rbrace.
 $$
 
-On the other hand, *if the observer is located outside an extensive particle group*, the extinction effect can be neglected \[[8](#references) (ch. 14.2)\]:
+On the other hand, *if the observer is located outside an extensive particle group*, the extinction effect can be neglected \[[8](#references) (ch. 14.4)\]:
 
 $$ \tag{17.37}
 	\braket{\Phi_e} \approx 0.
@@ -7017,6 +7017,8 @@ These functions have radically different behavior, yet correctly guessing the fu
 
 The problem is exacerbated by the convergence properties of the series. It was shown by Debye (1909) that, for points in the radiation zone, the asymptotic expression (for large \\(x\\)) of the scattered field  requires on the order of \\(n \sim (x + 1/2)\\) terms; this number can reach \\(x = 2 \pi (1 \text{ mm} / 380 \text{ nm}) = 16535 \\) for large [raindrops](https://glossary.ametsoc.org/wiki/Raindrop) illuminated by visible light, making computation impractical.
 
+-->
+
 #### Partial Waves
 
 The most straightforward interpretation of Eqn. 18.158 and 18.159 treats the individual terms as *partial waves*. If we examine the definition of the vector tesseral harmonics given by Eqn. 18.136, we may note that \\(\bm{N\_{m,n}}\\) has a radial component, while \\(\bm{M\_{m,n}}\\) does not. Since an electric charge is a source of a radially-symmetric electric field, we may interpret the existence of the radial component of \\(\bm{N\_{m,n}}\\) as a sign of the fact that the sphere contains a distribution of electric charges; therefore, the partial waves prefixed with \\(b\_n\\) are said to be of the *electric type*. At the same time, in comparison with Eqn. 18.36 of the electric field, Eqn. 18.37 of the magnetic field has the coefficients \\(a\_n\\) and \\(b\_n\\) interchanged; similar logical steps lead to the conclusion that the partial waves prefixed with \\(a\_n\\) are of the *magnetic type* \[[17](#references) (ch. 9.22)\].
@@ -7494,6 +7496,8 @@ $$
 
 vanish. Eqn. 19.24 is the basis of the famous law of [Rayleigh scattering](https://en.wikipedia.org/wiki/Rayleigh_scattering) that explains the color of the sky: when molecules of the atmosphere scatter sunlight, the intensity of blue light, which has a shorter wavelength, is much greater than of the rest of the [visible spectrum](https://en.wikipedia.org/wiki/Visible_spectrum), since the size parameter \\(x\\) is inversely proportional to the wavelength \\(\lambda\\).
 
+<!--
+
 #### Light Intensity and Efficiency Factors
 
 Since the frequencies of the electromagnetic radiation associated with visible light are so high, it is practically impossible to measure the instantaneous values of the electromagnetic field \[[8](#references) (ch. 7)\]. For this reason, typical applications of light scattering are concerned with the rate of the flow of electromagnetic energy, which is connected to light intensity via the optical theorem.
@@ -7950,7 +7954,7 @@ $$
 
 The property #6 allows us to invoke the ergodic assumption, making the results of Sec. 17 applicable. Once we also take the property #5 into account, the amount of light scattered or absorbed by the particle group (as well as the associated radiative transfer coefficients) can be determined by computing simple weighted averages according to Eqn. 17.56.
 
-In order to apply the results of Sec. 17, we must tailor them to our particular use case. The scattered far-field of an arbitrary particle is given by Eqn. 15.6:
+In order to apply the results of Sec. 17, we must tailor them to our particular use case. The scattered far-field of an arbitrary particle is given by Eqn. 15.6.1:
 
 $$ \tag{21.2}
 	\bm{E_s}(\bm{r}, \omega)
@@ -7966,7 +7970,7 @@ $$ \tag{21.3}
 	\cdot \bm{E_0}(\bm{n_i}, \omega).
 $$
 
-Thus, the scattering dyadic \\(\mathcal{S\_{ef}}\\) and the molecular polarizability dyadic \\(\mathcal{\Alpha\_m}\\) are related by
+Thus, the scattering dyadic \\(\mathcal{S\_{ef}}\\) and the molecular polarizability dyadic \\(\mathcal{\Alpha\_m}\\) are related as follows:
 
 $$ \tag{21.4}
 	\mathcal{S_{ef}} (\bm{n_s}, \bm{n_i}, \omega)
@@ -8029,7 +8033,7 @@ $$
 
 This geometric configuration[^24] corresponds to an [ellipsoid](https://en.wikipedia.org/wiki/Ellipsoid) of length \\(2 \alpha_1\\), height \\(2 \alpha_2\\), and width \\(2 \alpha_3\\).
 
-[^24]: In general, a single molecule is neither spherical nor ellipsoidal. However, if we consider a measurement of light scattered by a large group of randomly oriented molecules, due to the  averaging process described in Sec. 17, it is fairly reasonable to assume that the same measurement can be reproduced fairly well by an appropriately chosen distribution of randomly oriented ellipsoids.
+[^24]: In general, a single molecule is neither spherical nor ellipsoidal. However, if we consider a measurement of light scattered by a large group of randomly oriented molecules, due to the  averaging process described in Sec. 17, it is fairly reasonable to assume that the same measurement can be reproduced by an appropriately chosen distribution of randomly oriented ellipsoids.
 
 According to Eqn. 21.1, whenever the electric field vector \\(\bm{E_0}\\) points along one the principal axes \\(\bm{v_n}\\) of the molecule \\((n=1,2,3)\\), then so does the induced dipole moment \\(\bm{p_n}\\):
 
@@ -8038,7 +8042,7 @@ $$ \tag{21.8}
 	= \alpha_n (\epsilon_0 \bm{E_0} \cdot \bm{v_n}) \bm{v_n}.
 $$
 
-In general, the dipole moment \\(\bm{p}\\) is not be parallel to the electric field vector \\(\bm{E_0}\\) unless \\(\alpha_1 = \alpha_2 = \alpha_3\\):
+However, in general, the dipole moment \\(\bm{p}\\) is not be parallel to the electric field unless \\(\alpha_1 = \alpha_2 = \alpha_3\\):
 
 $$ \tag{21.9}
 	\bm{p}(V_m, \omega)
@@ -8046,11 +8050,11 @@ $$ \tag{21.9}
 	= \sum_n \alpha_n (\epsilon_0 \bm{E_0} \cdot \bm{v_n}) \bm{v_n}.
 $$
 
-This *anisotropic* dipole model was introduced by Rayleigh, Cabannes, and King to explain the experimental observations of light scattered by gases and liquids \[[2](#references) (ch. 18), [4](#references) (ch. 6.32)\]. In order to use it, we must specify three polarizability parameters \\(\alpha_1, \alpha_2, \alpha_3\\). Their values can be obtained in three different ways:
+This *anisotropic* dipole model was introduced by Rayleigh, Cabannes, and King to explain the experimental observations of light scattered by gases and liquids \[[2](#references) (ch. 18), [4](#references) (ch. 6.32)\]. In order to use it, we must specify three polarizability parameters \\(\alpha_1, \alpha_2, \alpha_3\\). Their values can be obtained in several different ways:
 
-1. the polarizability can be determined experimentally, by measuring ... \[TODO: add ref\];
+1. molecular polarizability can be determined experimentally, by measuring ... \[TODO: add ref\];
 2. an atom or a small molecule[^25] can be modeled quantum-mechanically \[TODO: add ref\];
-3. the classical model of a dielectric ellipsoid characterized by its dimensions and permittivity can be used instead \[[17](#references) (ch. 3.27)\].
+3. one can use the classical model of a dielectric ellipsoid characterized by its dimensions and permittivity \[[17](#references) (ch. 3.27)\].
 
 [^25]: This may prove to be too challenging for large molecules, but, at the same time, an accurate description of light-matter interaction may also require accounting for contribution of additional multipole terms.
 
@@ -8067,7 +8071,7 @@ $$ \tag{21.11}
 	= \big( m^2(\bm{r}, \omega) - 1 \big) \epsilon_0 \bm{E}(\bm{r}, \omega).
 $$
 
-Since \\(x \ll 1\\), the ellipsoid is effectively located in a uniform field \\(\bm{E_0}\\). Since, in addition, \\(|m x| \ll 1\\), the value of the field \\(\bm{E}\\) inside the ellipsoid is also uniform. This makes the electrostatic field approximation applicable:
+Since \\(x \ll 1\\), the ellipsoid is effectively located in a uniform field \\(\bm{E_0}\\). In addition, \\(|m x| \ll 1\\) implies that the internal field \\(\bm{E}\\) is also uniform. This makes the electrostatic field approximation applicable:
 
 $$ \tag{21.12}
 	\bm{p}(V_m, \omega)
@@ -8081,11 +8085,11 @@ $$ \tag{21.13}
 	V_m = \frac{4}{3} \pi a_1 a_2 a_3.
 $$
 
-We can simplify the notation by writing \\(m^2\\) in place of \\(\braket{m^2}\\) going forward.
+We shall simplify the notation by writing \\(m^2\\) in place of \\(\braket{m^2}\\) going forward.
 
-Eqn. 21.9 and 21.12 describe the same physical quantity. Thus, we can calculate the values of the three polarizability parameters \\(\alpha_1, \alpha_2, \alpha_3\\) once we obtain the value of the internal field \\(\bm{E}\\). The latter can be determined by solving the boundary value problem for a dielectric ellipsoid in a uniform electric field. The process is fairly complicated, and the general solution is expressed in terms of ellipsoidal harmonics. A detailed discussion of the  mathematical method in question is outside of the scope of this article, so we shall simply quote the results \[[17](#references) (ch. 3.27)\].
+Eqn. 21.9 and 21.12 describe the same physical quantity. Thus, we can calculate the values of the polarizability parameters \\(\alpha_1, \alpha_2, \alpha_3\\) once we obtain the value of the internal field \\(\bm{E}\\). The latter can be determined by solving the electrostatic boundary value problem for a dielectric ellipsoid in a uniform electric field (which is somewhat simpler than the electrodynamic boundary value problem of the Lorenz-Mie-Debye theory). The process is fairly complicated, and the general solution is expressed in terms of ellipsoidal harmonics. A detailed discussion of the  mathematical method in question is outside of the scope of this article, so we shall simply quote the results \[[17](#references) (ch. 3.27)\].
 
-Let us define the radial function
+The solution is given in terms of the radial function
 
 $$ \tag{21.14}
 	R(s) = \sqrt{(s + a_1^2) (s + a_2^2) (s + a_3^2)}
@@ -8111,7 +8115,7 @@ $$ \tag{21.17}
 	= \frac{\bm{E_0} \cdot \bm{v_n}}{1 + \left( m^2 - 1 \right) \frac{A_n}{\sum_n A_n} }.
 $$
 
-In case the ellipsoid is just a regular sphere,
+In case the ellipsoid is just a regular sphere, \\(a_1 = a_2 = a_3 = a\\), and
 
 $$ \tag{21.18}
 	\frac{A_n}{\sum_n A_n} = \frac{1}{3}.
@@ -8121,7 +8125,7 @@ Otherwise, as the sphere is stretched into an ellipsoid, the internal field tend
 
 [TODO: insert plot of E_n here]
 
-It is convenient to express the value of the internal field in terms of the so-called *depolarization factors* \\(L_n\\), such that
+It is convenient to express the value of the internal field using the so-called *depolarization factors* \\(L_n\\), such that
 
 $$ \tag{21.19}
 	E_n = \left( \bm{E_0} - L_n \bm{P} \right) \cdot \bm{v_n}.
@@ -8133,13 +8137,76 @@ $$ \tag{21.20}
 	L_n = \frac{1}{\epsilon_0} \frac{A_n}{\sum_n A_n}.
 $$
 
-For any ellipsoid,
+Evidently, for any ellipsoid,
 
 $$ \tag{21.21}
 	\sum_n L_n = \frac{1}{\epsilon_0}.
 $$
 
 When Gaussian units are used, the depolarization factors sum up to \\(1\\) \[[4](#references) (ch. 6.32)\].
+
+In order to obtain the values of the polarizability parameters \\(\alpha_1, \alpha_2, \alpha_3\\), we must project Eqn. 21.12 onto the principal axes of the molecule \\(\bm{v_n}\\), substitute Eqn. 21.17, and compare the resulting expression to Eqn. 21.8:
+
+$$ \tag{21.22}
+	\alpha_n = V_m \frac{m^2 - 1}{1 + \left( m^2 - 1 \right) \frac{A_n}{\sum_n A_n} }.
+$$
+
+In terms of the depolarization factors given by Eqn. 21.20,
+
+$$ \tag{21.23}
+	\alpha_n = V_m \frac{m^2 - 1}{1 + \left( m^2 - 1 \right) \epsilon_0 L_n}.
+$$
+
+Thus, we see that polarizability of a small particle is linearly proportional to its volume \\(V_m\\).
+
+In order to perform light scattering calculations, it is more convenient to use the reference frame fixed with respect to the light source rather than the particle. In this so-called laboratory reference frame \\(XYZ\\) (described in Sec. 15), the expression of the electric field phasor at the origin is simply
+
+$$ \tag{21.24}
+	\bm{E_0} =
+	\begin{bmatrix}
+		E\_{X} \cr
+		E\_{Y} \cr
+		0 \cr
+	\end{bmatrix},
+$$
+
+where the \\(Z\\)-component is \\(0\\) because the field is transverse. In the scattering coordinate system \\(xyz\\), Eqn. 15.11 is applicable,
+
+$$ \tag{15.14}
+	\bm{E_0} = R_z(-\phi)
+	\begin{bmatrix}
+		E\_{X} \cr
+		E\_{Y} \cr
+		0 \cr
+	\end{bmatrix}
+	=
+	\begin{bmatrix}
+		\phantom{-}\cos{\phi} & \sin{\phi} & 0 \cr
+		-\sin{\phi}           & \cos{\phi} & 0 \cr
+		0                     & 0          & 1 \cr
+	\end{bmatrix}
+	\begin{bmatrix}
+		E\_{X} \cr
+		E\_{Y} \cr
+		0
+	\end{bmatrix},
+$$
+
+where \\(\phi\\) denotes both the azimuthal angle of the direction of observation and the corresponding rotation angle of the plane of reference around the \\(Z\\)-axis.
+
+Similarly, \\(( \mathcal{I} - \bm{n_s} \otimes \bm{n_s})\\) projects a vector onto the tangent plane of a unit sphere.
+
+
+$$ \tag{21.3}
+	\bm{E_s}(\bm{r}, \omega)
+	\simeq \frac{e^{i k(\omega) r}}{k(\omega) r} \frac{k^3(\omega)}{4 \pi}
+	\big( \mathcal{I} - \bm{n_s} \otimes \bm{n_s} \big) \cdot \mathcal{\Alpha_m}(V_m, \omega)
+	\cdot \bm{E_0}(\bm{n_i}, \omega).
+$$
+
+We must also determine the expression of the
+
+It's interesting to compare the resulting scattering matrix for a spherical particle to the expression obtained using the Lorenz-Mie-Debye.
 
 ---
 
