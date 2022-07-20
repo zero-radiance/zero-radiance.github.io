@@ -3648,7 +3648,7 @@ Note that we must use the [atan2](https://en.wikipedia.org/wiki/Atan2) function 
 
 It can be seen that \\(\theta = 0\\) corresponds to *forward scattering*, and \\(\theta = \pi\\) -- to *back-scattering*.
 
-Unfortunately, the rotation of the coordinate frame causes the values of the components of the incident electric field to change \[[4](#references) (ch. 5.31)\]. If the angle of rotation of the plane is \\(\phi\\), the field vectors (and phasors) are [passively](https://en.wikipedia.org/wiki/Active_and_passive_transformation#Passive_transformation) rotated by \\(-\phi\\) radians:
+Unfortunately, the rotation of the coordinate frame causes the values of the components of the incident electric field to change \[[4](#references) (ch. 5.31)\]. If the angle of rotation of the plane is \\(\phi\\), the field vectors (and phasors) are [passively](https://en.wikipedia.org/wiki/Active_and_passive_transformation#Passive_transformation) [rotated](https://en.wikipedia.org/wiki/Rotation_matrix#Basic_rotations) by \\(-\phi\\) radians:
 
 $$ \tag{15.11}
 \begin{bmatrix}
@@ -3686,7 +3686,7 @@ $$
 
 As Eqn. 13.14 shows, the scattered field vectors (and phasors) are orthogonal to \\(\bm{n_s}\\). Thus, in the spherical coordinate system, only the tangential (\\(\theta\\) and \\(\phi\\)) components of \\(\bm{E_s}\\) and \\(\bm{B_s}\\) are non-zero.
 
-Eqn. 15.12 represents a rotation of the \\(\theta r\\)-plane about the \\(\phi\\)-axis:
+Eqn. 15.12 represents a [rotation](https://en.wikipedia.org/wiki/Rotation_matrix#Basic_rotations) of the \\(\theta r\\)-plane about the \\(\phi\\)-axis:
 
 $$ \tag{15.13}
 \begin{bmatrix}
@@ -8161,7 +8161,7 @@ $$
 
 Thus, we see that polarizability of a small particle is linearly proportional to its volume \\(V_m\\).
 
-In order to perform light scattering calculations, it is more convenient to use a reference frame that is fixed with respect to the light source rather than the particle. In this so-called laboratory reference frame (described in Sec. 15), the Cartesian coordinates of the electric field phasor (of the wave propagating along the \\(Z\\)-axis) are
+In order to perform light scattering calculations, it is more convenient to use a reference frame that is fixed with respect to the light source rather than the particle. In the so-called laboratory reference frame (described in Sec. 15), the Cartesian coordinates of the electric field phasor \\(\bm{E_0}\\) of the incident wave propagating along the \\(Z\\)-axis are
 
 $$ \tag{21.24}
 	\bm{E_0} =
@@ -8196,7 +8196,77 @@ $$
 
 where \\(\phi\\) denotes both the azimuthal angle of the direction of observation.
 
-Next, let us consider the expression of the polarizability dyadic \\(\mathcal{\Alpha_m}\\) given by Eqn. 21.7. \\([\bm{v_1} \thinspace \bm{v_2} \thinspace \bm{v_3}]^{T}\\) is a rotation matrix that transforms the vector it acts on from the scattering coordinate system to the coordinate system of the particle.
+Next, let us consider the expression of the polarizability dyadic \\(\mathcal{\Alpha_m}\\) given by Eqn. 21.7. Since \\([\bm{v_1} \thinspace \bm{v_2} \thinspace \bm{v_3}]^{T}\\) is composed of 3 orthogonal unit vectors, it can be represented by a 3x3 rotation matrix that performs a transformation from the scattering coordinate system to the coordinate system of the particle. Even though the matrix contains 9 elements, there are only 3 degrees of freedom called the [Tait-Bryan angles](https://en.wikipedia.org/wiki/Euler_angles#Tait%E2%80%93Bryan_angles): the spherical coordinates \\(\alpha, \beta\\) of the primary axis (e.g. \\(\bm{v_1}\\)) of the particle, and the rotation angle \\(\gamma\\) of the particle around this axis.
+
+It is easier to picture the inverse, \\([\bm{v_1} \thinspace \bm{v_2} \thinspace \bm{v_3}]\\). This transformation can be [decomposed](https://en.wikipedia.org/wiki/Rotation_matrix#Basic_rotations) into three [extrinsic rotations](https://en.wikipedia.org/wiki/Euler_angles#Conventions_by_extrinsic_rotations) about the axes of the scattering coordinate system:
+
+$$ \tag{21.26}
+\begin{aligned}
+	X &=
+	\begin{bmatrix}
+		\bm{v_1} & \bm{v_2} & \bm{v_3} \cr
+	\end{bmatrix} =
+	R_z(\alpha) R_y(\beta - \pi/2) R_x(\gamma)
+	\cr
+	&= \begin{bmatrix}
+		\phantom{-}\cos{\alpha} & \sin{\alpha} & 0 \cr
+		-\sin{\alpha}           & \cos{\alpha} & 0 \cr
+		0                       & 0            & 1 \cr
+	\end{bmatrix}
+	\begin{bmatrix}
+		\sin{\beta} & 0 & -\cos{\beta}  		 \cr
+		0           & 1 & 0             		 \cr
+		\cos{\beta} & 0 & \phantom{-}\sin{\beta} \cr
+	\end{bmatrix}
+	\begin{bmatrix}
+		1 & 0 			 & 0         		   	   \cr
+		0 & \cos{\gamma} & -\sin{\gamma} 		   \cr
+		0 & \sin{\gamma} & \phantom{-}\cos{\gamma} \cr
+	\end{bmatrix},
+\end{aligned}
+$$
+
+where we first *roll* the ellipsoid about its principal axis (initially aligned with the \\(x\\)-axis), then elevate, or *pitch* it by rotating it around the \\(y\\)-axis, and finally set its *yaw*, or azimuthal angle by swinging it around the \\(z\\)-axis.
+
+[Insert an illustration of the sequence of three rotations here]
+
+From this description, it is evident that
+
+$$ \tag{21.27}
+	\alpha \in [-\pi, \pi),
+	\quad
+	\beta \in [0, \pi],
+	\quad
+	\gamma \in [-\pi, \pi).
+$$
+
+The inverse of Eqn. 21.26 is given by reversing the sequence of rotations and the signs of the angles:
+
+$$ \tag{21.28}
+\begin{aligned}
+	X^{-1} &=
+	X^T =
+	R_x(-\gamma) R_y(-\beta + \pi/2) R_z(-\alpha)
+	\cr
+	&= \begin{bmatrix}
+		1 & 0 						& 0            \cr
+		0 & \phantom{-}\cos{\gamma} & \sin{\gamma} \cr
+		0 & -\sin{\gamma} 			& \cos{\gamma} \cr
+	\end{bmatrix}
+	\begin{bmatrix}
+		\phantom{-}\sin{\beta} & 0 & \cos{\beta} \cr
+		0           		   & 1 & 0           \cr
+		-\cos{\beta}           & 0 & \sin{\beta} \cr
+	\end{bmatrix}
+	\begin{bmatrix}
+		\cos{\alpha} & -\sin{\alpha} 		   & 0 \cr
+		\sin{\alpha} & \phantom{-}\cos{\alpha} & 0 \cr
+		0            & 0          			   & 1 \cr
+	\end{bmatrix}
+\end{aligned}.
+$$
+
+---
 
 Similarly, \\((\mathcal{I} - \bm{n_s} \otimes \bm{n_s})\\) is an operator given by Eqn. 15.13 that projects a vector onto the tangent plane of a unit sphere:
 
@@ -8213,7 +8283,7 @@ $$
 
 Let us now consider the expression of the polarizability dyadic \\(\mathcal{\Alpha_m}\\).
 
-Is phi rotation in the wrong order? Use lab coordinates?
+https://en.wikipedia.org/wiki/Rotation_matrix#Axis_and_angle
 
 ---
 
