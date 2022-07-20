@@ -8161,7 +8161,7 @@ $$
 
 Thus, we see that polarizability of a small particle is linearly proportional to its volume \\(V_m\\).
 
-In order to perform light scattering calculations, it is more convenient to use the reference frame fixed with respect to the light source rather than the particle. In this so-called laboratory reference frame \\(XYZ\\) (described in Sec. 15), the expression of the electric field phasor at the origin is simply
+In order to perform light scattering calculations, it is more convenient to use a reference frame that is fixed with respect to the light source rather than the particle. In this so-called laboratory reference frame (described in Sec. 15), the Cartesian coordinates of the electric field phasor (of the wave propagating along the \\(Z\\)-axis) are
 
 $$ \tag{21.24}
 	\bm{E_0} =
@@ -8169,12 +8169,10 @@ $$ \tag{21.24}
 		E\_{X} \cr
 		E\_{Y} \cr
 		0 \cr
-	\end{bmatrix},
+	\end{bmatrix}.
 $$
 
-where the \\(Z\\)-component is \\(0\\) because the field is transverse.
-
-In the scattering coordinate system \\(xyz\\), Eqn. 15.11 is applicable:
+Conventionally, the scattering coordinate system is rotated relative to the laboratory reference frame. According to Eqn. 15.11,
 
 $$ \tag{21.25}
 	\bm{E_0} = R_z(-\phi)
@@ -8196,7 +8194,9 @@ $$ \tag{21.25}
 	\end{bmatrix},
 $$
 
-where \\(\phi\\) denotes both the azimuthal angle of the direction of observation and the corresponding rotation angle of the plane of reference around the \\(Z\\)-axis.
+where \\(\phi\\) denotes both the azimuthal angle of the direction of observation.
+
+Next, let us consider the expression of the polarizability dyadic \\(\mathcal{\Alpha_m}\\) given by Eqn. 21.7. \\([\bm{v_1} \thinspace \bm{v_2} \thinspace \bm{v_3}]^{T}\\) is a rotation matrix that transforms the vector it acts on from the scattering coordinate system to the coordinate system of the particle.
 
 Similarly, \\((\mathcal{I} - \bm{n_s} \otimes \bm{n_s})\\) is an operator given by Eqn. 15.13 that projects a vector onto the tangent plane of a unit sphere:
 
