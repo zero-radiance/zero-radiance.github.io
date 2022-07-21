@@ -8161,7 +8161,7 @@ $$
 
 Thus, we see that polarizability of a small particle is linearly proportional to its volume \\(V_m\\).
 
-In order to perform light scattering calculations, it is more convenient to use a reference frame that is fixed with respect to the light source rather than the particle. In the so-called laboratory reference frame (described in Sec. 15), the Cartesian coordinates of the electric field phasor \\(\bm{E_0}\\) of the incident wave propagating along the \\(Z\\)-axis are
+In order to perform light scattering calculations, it is more convenient to use a reference frame that is fixed with respect to the light source rather than the particle. In the so-called laboratory reference frame (described in Sec. 15), the Cartesian components of the electric field phasor \\(\bm{E_0}\\) of the incident wave propagating along the \\(Z\\)-axis are
 
 $$ \tag{21.24}
 	\bm{E_0} =
@@ -8172,7 +8172,7 @@ $$ \tag{21.24}
 	\end{bmatrix}.
 $$
 
-Conventionally, the scattering coordinate system is rotated relative to the laboratory reference frame. According to Eqn. 15.11,
+Conventionally, the scattering coordinate system is rotated relative to the laboratory reference frame. The vector components are transformed according to Eqn. 15.11:
 
 $$ \tag{21.25}
 	\bm{E_0} = R_z(-\phi)
@@ -8198,20 +8198,20 @@ where \\(\phi\\) denotes both the azimuthal angle of the direction of observatio
 
 Next, let us consider the expression of the polarizability dyadic \\(\mathcal{\Alpha_m}\\) given by Eqn. 21.7. Since \\([\bm{v_1} \thinspace \bm{v_2} \thinspace \bm{v_3}]^{T}\\) is composed of 3 orthogonal unit vectors, it can be represented by a 3x3 rotation matrix that performs a transformation from the scattering coordinate system to the coordinate system of the particle. Even though the matrix contains 9 elements, there are only 3 degrees of freedom called the [Tait-Bryan angles](https://en.wikipedia.org/wiki/Euler_angles#Tait%E2%80%93Bryan_angles): the spherical coordinates \\(\alpha, \beta\\) of the primary axis (e.g. \\(\bm{v_1}\\)) of the particle, and the rotation angle \\(\gamma\\) of the particle around this axis.
 
-It is easier to picture the inverse, \\([\bm{v_1} \thinspace \bm{v_2} \thinspace \bm{v_3}]\\). This transformation can be [decomposed](https://en.wikipedia.org/wiki/Rotation_matrix#Basic_rotations) into three [extrinsic rotations](https://en.wikipedia.org/wiki/Euler_angles#Conventions_by_extrinsic_rotations) about the axes of the scattering coordinate system:
+It is easier to picture the inverse, \\([\bm{v_1} \thinspace \bm{v_2} \thinspace \bm{v_3}]\\). This transformation can be decomposed into three [elementary](https://en.wikipedia.org/wiki/Rotation_matrix#Basic_rotations) [extrinsic rotations](https://en.wikipedia.org/wiki/Euler_angles#Conventions_by_extrinsic_rotations) about the axes of the scattering coordinate system:
 
 $$ \tag{21.26}
 \begin{aligned}
-	X &=
+	X(\alpha, \beta, \gamma) &=
 	\begin{bmatrix}
 		\bm{v_1} & \bm{v_2} & \bm{v_3} \cr
 	\end{bmatrix} =
 	R_z(\alpha) R_y(\beta - \pi/2) R_x(\gamma)
 	\cr
 	&= \begin{bmatrix}
-		\phantom{-}\cos{\alpha} & \sin{\alpha} & 0 \cr
-		-\sin{\alpha}           & \cos{\alpha} & 0 \cr
-		0                       & 0            & 1 \cr
+		\cos{\alpha} & -\sin{\alpha} 		   & 0 \cr
+		\sin{\alpha} & \phantom{-}\cos{\alpha} & 0 \cr
+		0            & 			  0            & 1 \cr
 	\end{bmatrix}
 	\begin{bmatrix}
 		\sin{\beta} & 0 & -\cos{\beta}  		 \cr
@@ -8240,11 +8240,13 @@ $$ \tag{21.27}
 	\gamma \in [-\pi, \pi).
 $$
 
-The inverse of Eqn. 21.26 is given by reversing the sequence of rotations and the signs of the angles:
+Note that, because we defined the orientation of the ellipsoid in the scattering coordinate system, the axes of which are rotated relative to the laboratory reference frame, \\(\alpha, \beta, \gamma\\) are functions of \\(\phi\\).
+
+The inverse of Eqn. 21.26 can be found by reversing both the sequence of rotations and the signs of the angles:
 
 $$ \tag{21.28}
 \begin{aligned}
-	X^{-1} &=
+	X^{-1}(\alpha, \beta, \gamma) &=
 	X^T =
 	R_x(-\gamma) R_y(-\beta + \pi/2) R_z(-\alpha)
 	\cr
@@ -8259,31 +8261,50 @@ $$ \tag{21.28}
 		-\cos{\beta}           & 0 & \sin{\beta} \cr
 	\end{bmatrix}
 	\begin{bmatrix}
-		\cos{\alpha} & -\sin{\alpha} 		   & 0 \cr
-		\sin{\alpha} & \phantom{-}\cos{\alpha} & 0 \cr
-		0            & 0          			   & 1 \cr
+		\phantom{-}\cos{\alpha} & \sin{\alpha} & 0 \cr
+		-\sin{\alpha} 			& \cos{\alpha} & 0 \cr
+		0            			& 0            & 1 \cr
 	\end{bmatrix}
 \end{aligned}.
 $$
 
----
+The final component of the scattering matrix is the operator \\((\mathcal{I} - \bm{n_s} \otimes \bm{n_s})\\) that projects a vector onto the tangent plane of a unit sphere. Since, according to Eqn. 15.12, the \\(y\\)- and the \\(\phi\\)-axes are aligned, this transformation is given by Eqn. 15.13,
 
-Similarly, \\((\mathcal{I} - \bm{n_s} \otimes \bm{n_s})\\) is an operator given by Eqn. 15.13 that projects a vector onto the tangent plane of a unit sphere:
-
-$$ \tag{21.26}
+$$ \tag{21.29}
 	\mathcal{I} - \bm{n_s} \otimes \bm{n_s}
-	= R_y(-\theta)
-	=
+	= P_3
+	R_y(-\theta) =
 	\begin{bmatrix}
-		\cos{\theta} & 0 & -\sin{\theta} \cr
-		0            & 1 & 0             \cr
-		\sin{\theta} & 0 & \phantom{-}\cos{\theta} \cr
-	\end{bmatrix}.
+		1 & 0 & 0 \cr
+		0 & 1 & 0 \cr
+		0 & 0 & 0 \cr
+	\end{bmatrix}
+	\begin{bmatrix}
+	\cos{\theta} & 0 & -\sin{\theta} \cr
+	0            & 1 & 0             \cr
+	\sin{\theta} & 0 & \phantom{-}\cos{\theta} \cr
+\end{bmatrix},
 $$
 
-Let us now consider the expression of the polarizability dyadic \\(\mathcal{\Alpha_m}\\).
+with the bottom row of the resulting matrix set to 0 in order to discard the radial component of the field.
 
-https://en.wikipedia.org/wiki/Rotation_matrix#Axis_and_angle
+Putting it all together, the form of the scattering matrix \\(S\\) that corresponds to the scattering dyadic of an ellipsoidal particle (given by Eqn. 21.4) is
+
+$$ \tag{21.30}
+	S(\theta, \phi, \omega)
+	\simeq \frac{k^3(\omega)}{4 \pi}
+	P_3 R_y(-\theta)
+	X(\alpha, \beta, \gamma)
+	\begin{bmatrix}
+		\alpha_1 & 0 		  & 0 		  \cr
+		0 		  & \alpha_2 & 0 		  \cr
+		0 		  & 0 		  & \alpha_3 \cr
+	\end{bmatrix}
+	X^{T}(\alpha, \beta, \gamma)
+	P_3,
+$$
+
+where the projection matrix \\(P_3\\) ensures that the scattering matrix is 2x2, since both the input and the output vectors have the third component set to 0.
 
 ---
 
