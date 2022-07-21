@@ -3615,9 +3615,7 @@ $$ \tag{15.8}
 	\bm{e_x} = \bm{e_y} \times \bm{e_z}.
 $$
 
-We may also reinterpret this convention in spherical coordinates: if \\(\theta = \phi = 0\\), then \\(\bm{e_x} = \bm{e_{\theta}}\\) and \\(\bm{e_y} = \bm{e_{\phi}}.\\)
-
-Imagine that the *scattering coordinate system* \\(xyz\\) is initially aligned with the *laboratory reference frame* \\(XYZ\\), so that
+Imagine that the *scattering coordinate system* \\(xyz\\) is initially aligned with the *laboratory reference frame* \\(XYZ\\), such that
 
 $$ \tag{15.9}
 	\bm{e_Z} = \bm{n_i}, \quad
@@ -3754,7 +3752,9 @@ $$
 
 Eqn. 15.16 matches the one given in the book by van de Hulst, except for the sign of the complex exponential and the missing \\(i\\) factor in the denominator \[[4](#references) (ch. 4.41)\]. The author claims that this factor makes the formulae more convenient \[[4](#references) (ch. 4.1)\]. While that is indeed the case, the convention is prone to sign errors, and also introduces seemingly imaginary coefficients that are, in fact, real.
 
-In general, the elements of the scattering matrix depend on the azimuthal angle \\(\phi\\), since, as we rotate the plane of observation (\\(x z\\) or \\(r \theta\\)) around the \\(z\\)-axis, the scattering object appears to rotate in the opposite direction. However, if the object is symmetric (both geometrically and structurally) with respect to the \\(z\\)-axis, which is the case for spherical and an axis-aligned [spheroidal](https://en.wikipedia.org/wiki/Spheroid) particles, the matrix only depends on the polar angle \\(\theta\\). This causes the scattering matrix to become diagonal, with \\(s_3 = s_4 = 0\\) \[[4](#references) (ch. 4.42)\].
+In general, the elements of the scattering matrix depend on the azimuthal angle \\(\phi\\), since, as we rotate the plane of observation (\\(x z\\) or \\(r \theta\\)) around the \\(z\\)-axis, the scattering object appears to rotate in the opposite direction. However, if the object is symmetric (both geometrically and structurally) with respect to the \\(z\\)-axis, which is the case for spherical and an axis-aligned [spheroidal](https://en.wikipedia.org/wiki/Spheroid) particles, the matrix only depends on the polar angle \\(\theta\\)[^26]. This causes the scattering matrix to become diagonal, with \\(s_3 = s_4 = 0\\) \[[4](#references) (ch. 4.42)\].
+
+[^26]: That is also the case for groups of statistically isotropic and mirror-symmetric random particles \[[4](#references) (ch. 5.2), [8](#references) (ch. 15)\].
 
 It's easy to see why that is the case. Consider changing the handedness of the Cartesian coordinate frame, so that the basis vector of the \\(x\\)-axis (or the \\(y\\)-axis) becomes \\(-\bm{e_x}\\) (or \\(-\bm{e_y}\\)), and vice versa. In the reflected coordinate system, both \\(E\_{i,x}\\) and \\(E\_{s,\theta}\\) (or \\(E\_{i,y}\\) and \\(E\_{s,\phi}\\)) change the sign, but, since the particle possesses reflection symmetry, the scattering matrix remains unchanged. In order for the magnitudes of the scattered field components to remain unchanged, the off-diagonal elements \\(s_3\\) and \\(s_4\\) must be equal to \\(0\\). This decouples the \\(x\\) and \\(y\\) components of the field, which allows us to represent the vector scattering process in terms of two independent scalar waves.
 
