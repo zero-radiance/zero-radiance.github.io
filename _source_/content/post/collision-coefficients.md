@@ -7019,8 +7019,6 @@ These functions have radically different behavior, yet correctly guessing the fu
 
 The problem is exacerbated by the convergence properties of the series. It was shown by Debye (1909) that, for points in the radiation zone, the asymptotic expression (for large \\(x\\)) of the scattered field  requires on the order of \\(n \sim (x + 1/2)\\) terms; this number can reach \\(x = 2 \pi (1 \text{ mm} / 380 \text{ nm}) = 16535 \\) for large [raindrops](https://glossary.ametsoc.org/wiki/Raindrop) illuminated by visible light, making computation impractical.
 
--->
-
 #### Partial Waves
 
 The most straightforward interpretation of Eqn. 18.158 and 18.159 treats the individual terms as *partial waves*. If we examine the definition of the vector tesseral harmonics given by Eqn. 18.136, we may note that \\(\bm{N\_{m,n}}\\) has a radial component, while \\(\bm{M\_{m,n}}\\) does not. Since an electric charge is a source of a radially-symmetric electric field, we may interpret the existence of the radial component of \\(\bm{N\_{m,n}}\\) as a sign of the fact that the sphere contains a distribution of electric charges; therefore, the partial waves prefixed with \\(b\_n\\) are said to be of the *electric type*. At the same time, in comparison with Eqn. 18.36 of the electric field, Eqn. 18.37 of the magnetic field has the coefficients \\(a\_n\\) and \\(b\_n\\) interchanged; similar logical steps lead to the conclusion that the partial waves prefixed with \\(a\_n\\) are of the *magnetic type* \[[17](#references) (ch. 9.22)\].
@@ -7497,8 +7495,6 @@ $$ \tag{19.24}
 $$
 
 vanish. Eqn. 19.24 is the basis of the famous law of [Rayleigh scattering](https://en.wikipedia.org/wiki/Rayleigh_scattering) that explains the color of the sky: when molecules of the atmosphere scatter sunlight, the intensity of blue light, which has a shorter wavelength, is much greater than of the rest of the [visible spectrum](https://en.wikipedia.org/wiki/Visible_spectrum), since the size parameter \\(x\\) is inversely proportional to the wavelength \\(\lambda\\).
-
-<!--
 
 #### Light Intensity and Efficiency Factors
 
@@ -8161,6 +8157,8 @@ $$
 
 Thus, we see that polarizability of a small particle is linearly proportional to its volume \\(V_m\\).
 
+#### Scattering Matrix
+
 In order to perform light scattering calculations, it is more convenient to use a reference frame that is fixed with respect to the light source rather than the particle. In the so-called laboratory reference frame (described in Sec. 15), the Cartesian components of the electric field phasor \\(\bm{E_0}\\) of the incident wave propagating along the \\(Z\\)-axis are
 
 $$ \tag{21.24}
@@ -8292,7 +8290,7 @@ Putting it all together, the form of the scattering matrix \\(S\\) that correspo
 
 $$ \tag{21.30}
 	S(\theta, \phi, \omega)
-	\simeq \frac{k^3(\omega)}{4 \pi}
+	= \frac{k^3(\omega)}{4 \pi}
 	P_3 R_y(-\theta)
 	X(\alpha, \beta, \gamma)
 	\begin{bmatrix}
@@ -8306,11 +8304,11 @@ $$
 
 where the projection matrix \\(P_3\\) ensures that the scattering matrix is 2x2, since both the input and the output vectors have the third component set to 0.
 
-The expanded form of Eqn. 21.30 is very large, so we shall not explicitly write it down. However, the expression for a spherical particle, with \\(\mathcal{\Alpha_m} = \alpha_1 = \alpha_2 = \alpha_3 = \alpha_m\\), is fairly simple:
+The expanded form of Eqn. 21.30 is very large, so we shall not attempt to explicitly write it down. However, the expression for a spherical particle, with \\(\mathcal{\Alpha_m} = \alpha_1 = \alpha_2 = \alpha_3 = \alpha_m\\), is very simple \[[4](#references) (ch. 6.12)\]:
 
 $$ \tag{21.31}
 	S(\theta, \phi, \omega)
-	\simeq \frac{k^3(\omega)}{4 \pi}
+	= \frac{k^3(\omega)}{4 \pi}
 	\alpha_m
 	\begin{bmatrix}
 		\cos{\theta} & 0 \cr
@@ -8325,9 +8323,24 @@ $$
 
 It's instructive to compare the resulting scattering matrix with the expression obtained using the Lorenz-Mie-Debye theory. Substitution of Eqn. 19.8 and 19.24 into 19.6 yields an identical expression, confirming both the accuracy of the dipole approximation and the conditions of its validity.
 
----
+#### Measurable Quantities
 
-Tsai 2.3, van de Hulst 6.32, Stratton 3.25, maybe Chandra
+Let us calculate the measurable quantities that are typically used to characterize light scattering by a group of gas molecules. For simplicity, we shall assume that we are dealing with a single type of molecule; that way, averaging over shapes, sizes, and compositions of different kinds of molecules can be avoided. Thus, all that is left is to evaluate the contribution of molecules in various orientations. And, unless the entire group is placed into a uniform and parallel electromagnetic field, the orientations of the individual molecules are likely to follow a uniform distribution \[[8](#references) (ch. 15)\]
+
+$$ \tag{21.32}
+	p(\alpha, \beta, \gamma)
+	= p(\alpha) p(\beta) p(\gamma)
+	= \frac{1}{2 \pi} \frac{1}{2} \frac{1}{2 \pi}
+	= \frac{1}{8 \pi^2},
+$$
+
+such that
+
+$$ \tag{21.33}
+	\int_{-\pi}^{\pi} d\alpha
+	\int_{0}^{\pi} \sin{\beta} d\beta
+	\int_{-\pi}^{\pi} d\gamma \thinspace p(\alpha, \beta, \gamma) = 1.
+$$
 
 ### Light Scattering by Liquid Molecules
 
