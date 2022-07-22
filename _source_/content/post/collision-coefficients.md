@@ -4115,11 +4115,11 @@ This task can be carried out most efficiently with the help of the following [tr
 
 $$ \tag{16.25}
 \begin{aligned}
-&	\bm{a} \cdot (\bm{b} \times \bm{c}) =
+&   \bm{a} \cdot (\bm{b} \times \bm{c}) =
 	\bm{b} \cdot (\bm{c} \times \bm{a}) =
 	\bm{c} \cdot (\bm{a} \times \bm{b}),
 	\cr
-&	\bm{a} \times (\bm{b} \times \bm{c}) =
+&   \bm{a} \times (\bm{b} \times \bm{c}) =
 	\bm{b} (\bm{a} \cdot \bm{c}) -
 	\bm{c} (\bm{a} \cdot \bm{b}),
 \end{aligned}
@@ -5701,7 +5701,7 @@ Careful comparison of the expression of the radial component to Eqn. 18.39 yield
 $$ \tag{18.65}
 	(\bm{N_{m,n}})\_r
 	= \frac{1}{kr} \bigg(
-	     r^2 \frac{\partial^2 \psi_{m,n}}{\partial r^2}
+		 r^2 \frac{\partial^2 \psi_{m,n}}{\partial r^2}
 	   + 2 r \frac{\partial \psi_{m,n}}{\partial r}
 	   + k^2 r^2 \psi_{m,n} \bigg).
 $$
@@ -5914,10 +5914,10 @@ The particular manner of dependence on a single vector \\(\bm{e_r}\\) leads to o
 
 $$ \tag{18.74}
 \begin{aligned}
-	\bm{\Upsilon_{s,t}} 	 \cdot \bm{\Phi_{m,n}} =
+	\bm{\Upsilon_{s,t}}      \cdot \bm{\Phi_{m,n}} =
 	\bm{\Upsilon_{s,t}^{\*}} \cdot \bm{\Phi_{m,n}} = 0,
 	\cr
-	\bm{\Upsilon_{s,t}} 	 \cdot \bm{\Psi_{m,n}} =
+	\bm{\Upsilon_{s,t}}      \cdot \bm{\Psi_{m,n}} =
 	\bm{\Upsilon_{s,t}^{\*}} \cdot \bm{\Psi_{m,n}} = 0,
 	\cr
 	\bm{\Phi_{m,n}} \cdot \bm{\Psi_{m,n}} = 0,
@@ -6074,7 +6074,7 @@ $$ \tag{18.84}
 	&=  \bigg[ \frac{\partial z_t(k r)}{\partial (k r)} \bigg]^{\*} \frac{\partial z_n(k r)}{\partial (k r)}
 		\int_{0}^{2 \pi} \int_{0}^{\pi} \big[ \bm{\Upsilon_{s,t}}(\theta, \phi) \big]^{\*} \cdot \bm{\Upsilon_{m,n}}(\theta, \phi) \sin{\theta} \thinspace d\theta d\phi
 	\cr
-	&+ 	\frac{\big[ z_t(k r) \big]^{\*} z_n(k r)}{|k r|^2}
+	&+  \frac{\big[ z_t(k r) \big]^{\*} z_n(k r)}{|k r|^2}
 		\int_{0}^{2 \pi} \int_{0}^{\pi} \big[ \bm{\Psi_{s,t}}(\theta, \phi) \big]^{\*} \cdot \bm{\Psi_{m,n}}(\theta, \phi) \sin{\theta} \thinspace d\theta d\phi.
 \end{aligned}
 $$
@@ -6086,7 +6086,7 @@ $$ \tag{18.85}
 	&\int_{0}^{2 \pi} \int_{0}^{\pi} \big[ \bm{L_{s,t}}(\bm{r}) \big]^{\*} \cdot \bm{L_{m,n}}(\bm{r}) \sin{\theta} \thinspace d\theta d\phi
 	\cr
 	&= \Bigg( \bigg| \frac{\partial z_n(k r)}{\partial (k r)} \bigg|^2
-	   	+ n (n+1) \bigg| \frac{z_n(k r)}{k r} \bigg|^2 \Bigg) \delta_{m,s} \delta_{t,n}.
+		+ n (n+1) \bigg| \frac{z_n(k r)}{k r} \bigg|^2 \Bigg) \delta_{m,s} \delta_{t,n}.
 \end{aligned}
 $$
 
@@ -6098,7 +6098,7 @@ $$ \tag{18.86}
 	\cr
 	&= \frac{1}{(2 n + 1)^2} \Big(
 		\big| n z_{n-1}(k r) - (n + 1) z_{n+1}(k r) \big|^2
-	 	+ n (n+1) \big| z_{n-1}(k r) + z_{n+1}(k r) \big|^2
+		+ n (n+1) \big| z_{n-1}(k r) + z_{n+1}(k r) \big|^2
 	\Big) \delta_{m,s} \delta_{t,n}.
 \end{aligned}
 $$
@@ -6469,7 +6469,7 @@ $$ \tag{18.125}
 		P_n^m(\cos{\theta}) \sin^2{\theta} \sin{\phi}
 	\thinspace d\theta d\phi
 	\cr
-	&+ E_Y \Bigg[ \frac{\big[ k r j_n(k r) \big]'}{k r} \Bigg]^{\*} 	  \int_{0}^{2 \pi} \int_{0}^{\pi} e^{-i m \phi + i k r \cos{\theta}} \bigg(
+	&+ E_Y \Bigg[ \frac{\big[ k r j_n(k r) \big]'}{k r} \Bigg]^{\*}       \int_{0}^{2 \pi} \int_{0}^{\pi} e^{-i m \phi + i k r \cos{\theta}} \bigg(
 		\frac{\partial P_n^m(\cos{\theta})}{\partial \theta} \cos{\theta} \sin{\phi}
 		- i m \frac{P_n^m(\cos{\theta})}{\sin{\theta}} \cos{\phi}
 	\bigg)  \sin{\theta} \thinspace d\theta d\phi.
@@ -6649,7 +6649,7 @@ $$ \tag{18.136}
 	   \sin
 	\end{array} \negthickspace (m \phi) \thinspace \bm{e_r}
 	\cr
-	&+ \frac{z_n(k r)}{k r}	\Big( \tau_{m,n}(\theta)
+	&+ \frac{z_n(k r)}{k r} \Big( \tau_{m,n}(\theta)
 	\negthickspace \begin{array}{cc}
 	   \cos \cr
 	   \sin
@@ -6884,7 +6884,7 @@ The value of the coefficients \\(c_{m,n}\\) and \\(d_{m,n}\\) of the incident fi
 
 $$ \tag{18.152}
 \begin{aligned}
-  	a_{m,n}
+	a_{m,n}
 	&= -c_{m,n} \frac{
 		j_n(k_2 r) \big[ k_1 r j_n(k_1 r) \big]' - \frac{\mu_1}{\mu_2} j_n(k_1 r) \big[ k_2 r j_n(k_2 r) \big]'
 	}{
@@ -6907,8 +6907,8 @@ We may observe that both the scattered and the internal fields are directly prop
 
 $$ \tag{18.154}
 \begin{aligned}
-  	a_n
-  	&= -\frac{
+	a_n
+	&= -\frac{
 		j_n(m x) \big[ x j_n(x) \big]' - u j_n(x) \big[ m x j_n(m x) \big]'
 	}{
 		j_n(m x) \big[ x h_n^{(1)}(x) \big]' - u h_n^{(1)}(x) \big[ m x j_n(m x) \big]'
@@ -6940,8 +6940,8 @@ instead:
 
 $$ \tag{18.156}
 \begin{aligned}
-  	a_n
-  	&= -\frac{
+	a_n
+	&= -\frac{
 		\psi_n(m x) \psi_n'(x) - u m  \psi_n(x) \psi_n'(m x)
 	}{
 		\psi_n(m x) \xi_n'(x) - u m \xi_n(x) \psi_n'(m x)
@@ -7285,9 +7285,9 @@ First, let us consider a very large spherical particle. If we ignore the possibi
 $$ \tag{19.13}
 \small
 \begin{aligned}
-  	a_n
-  	&\simeq -i^n e^{-i x} \frac
-  	{
+	a_n
+	&\simeq -i^n e^{-i x} \frac
+	{
 		\sin(m x - \pi n / 2) \cos(x - \pi n / 2) - u m \cos(m x - \pi n / 2) \sin(x - \pi n / 2)
 	}{
 		\sin(m x - \pi n / 2) + i u m \cos(m x - \pi n / 2)
@@ -7311,8 +7311,8 @@ These formulae can be simplified by introducing the exponential notation. Since
 
 $$ \tag{19.14}
 \begin{aligned}
-  	-i^{n+1} \sin\negmedspace\Big( x - \frac{\pi n}{2} \Big) e^{-i x}
-  	&= \frac{1}{2} \left( (-1)^n e^{-i 2 x} - 1 \right),
+	-i^{n+1} \sin\negmedspace\Big( x - \frac{\pi n}{2} \Big) e^{-i x}
+	&= \frac{1}{2} \left( (-1)^n e^{-i 2 x} - 1 \right),
 	\cr
 	-i^n \cos\negmedspace\Big( x - \frac{\pi n}{2} \Big) e^{-i x}
 	&= \frac{1}{2} \left( (-1)^{n+1} e^{-i 2 x} - 1 \right),
@@ -7323,9 +7323,9 @@ Eqn. 19.13 can be equivalently expressed as
 
 $$ \tag{19.15}
 \begin{aligned}
-  	a_n
-  	&\simeq \frac{1}{2} \left( (-1)^n \frac
-  	{
+	a_n
+	&\simeq \frac{1}{2} \left( (-1)^n \frac
+	{
 		-\sin(m x - \pi n / 2) + i u m \cos(m x - \pi n / 2)
 	}{
 		\sin(m x - \pi n / 2) + i u m \cos(m x - \pi n / 2)
@@ -7345,9 +7345,9 @@ Further reduction can be achieved by rewriting Eqn. 19.15 in terms of \\(\tan(m 
 
 $$ \tag{19.16}
 \begin{aligned}
-  	a_n
-  	&\simeq (-1)^n
-  	\left( \frac{1}{1 - i (u m)^{-1} \tan(m x - \pi n / 2)} - \frac{1}{2} \right)
+	a_n
+	&\simeq (-1)^n
+	\left( \frac{1}{1 - i (u m)^{-1} \tan(m x - \pi n / 2)} - \frac{1}{2} \right)
 	e^{-i 2 x} - \frac{1}{2},
 	\cr
 	b_n
@@ -7379,7 +7379,7 @@ $$ \tag{19.17}
 \begin{aligned}
 	\psi_n(x)
 	&= 2^n x^{n+1} \sum_{k=0}^{\infin} \frac{(-1)^k (n + k)!}{k! (2 n + 2 k + 1)!} x^{2 k},
- 	\cr
+	\cr
 	\chi_n(x)
 	&= -\frac{1}{2^n x^n} \sum_{k=0}^{\infin} \frac{\Gamma(2 n - 2 k + 1)}{k! \Gamma(n - k + 1)} x^{2 k},
 \end{aligned}
@@ -7405,9 +7405,9 @@ Thus, we can estimate the asymptotic behavior of the expansion coefficients of t
 
 $$ \tag{19.19}
 \begin{aligned}
-  	\frac{a_n}{i}
-  	&\simeq \frac{ 1 - u }
-  	{ N x^{-2 n-1} (n (u + 1) + u) - i (1 - u) },
+	\frac{a_n}{i}
+	&\simeq \frac{ 1 - u }
+	{ N x^{-2 n-1} (n (u + 1) + u) - i (1 - u) },
 	\cr
 	\frac{b_n}{i}
 	&\simeq \frac{u m^2 - 1}
@@ -7443,11 +7443,11 @@ However, for very small particles with \\(| m x | \ll 1\\), it is slightly more 
 
 $$ \tag{19.22}
 \begin{aligned}
-  	\frac{a_{1}}{i}
-  	&= \frac{2}{3} \frac{1-u}{1 + 2 u} x^3
-  	+ \frac{1}{5} \frac{u m^2+4 u^2-6 u+1}{(1 + 2 u)^2} x^5
-  	- i \frac{4}{9} \frac{(1-u)^2}{(1 + 2 u)^2} x^6
-  	+ \mathrm{O}\big( x^7 \big),
+	\frac{a_{1}}{i}
+	&= \frac{2}{3} \frac{1-u}{1 + 2 u} x^3
+	+ \frac{1}{5} \frac{u m^2+4 u^2-6 u+1}{(1 + 2 u)^2} x^5
+	- i \frac{4}{9} \frac{(1-u)^2}{(1 + 2 u)^2} x^6
+	+ \mathrm{O}\big( x^7 \big),
 	\cr
 	\frac{b_{1}}{i}
 	&= \frac{2}{3} \frac{u m^2-1}{u m^2+2} x^3
@@ -7455,9 +7455,9 @@ $$ \tag{19.22}
 	- i \frac{4}{9} \frac{(u m^2 -1)^2}{(u m^2 +2)^2} x^6
 	+ \mathrm{O}\big( x^7 \big),
 	\cr
-  	\frac{a_{2}}{i}
-  	&= \frac{1}{15} \frac{1-u}{2 + 3 u} x^5
-  	+ \mathrm{O}\big( x^7 \big),
+	\frac{a_{2}}{i}
+	&= \frac{1}{15} \frac{1-u}{2 + 3 u} x^5
+	+ \mathrm{O}\big( x^7 \big),
 	\cr
 	\frac{b_{2}}{i}
 	&= \frac{1}{15} \frac{u m^2-1}{2 u m^2+3} x^5
@@ -7469,9 +7469,9 @@ If the material is non-magnetic, we may set \\(u=1\\):
 
 $$ \tag{19.23}
 \begin{aligned}
-  	\frac{a_{1}}{i}
-  	&= \frac{1}{45} \left(m^2-1\right) x^5
-  	+ \mathrm{O}\big( x^7 \big),
+	\frac{a_{1}}{i}
+	&= \frac{1}{45} \left(m^2-1\right) x^5
+	+ \mathrm{O}\big( x^7 \big),
 	\cr
 	\frac{b_{1}}{i}
 	&= \frac{2}{3} \frac{m^2-1}{m^2+2} x^3
@@ -7479,8 +7479,8 @@ $$ \tag{19.23}
 	- i \frac{4}{9} \frac{(m^2 -1)^2}{(m^2 +2)^2} x^6
 	+ \mathrm{O}\big( x^7 \big),
 	\cr
-  	\frac{a_{2}}{i}
-  	&= \mathrm{O}\big( x^7 \big),
+	\frac{a_{2}}{i}
+	&= \mathrm{O}\big( x^7 \big),
 	\cr
 	\frac{b_{2}}{i}
 	&= \frac{1}{15} \frac{m^2-1}{2 m^2+3} x^5
@@ -8003,9 +8003,9 @@ $$ \tag{21.6}
 		\bm{v_1} & \bm{v_2} & \bm{v_3} \cr
 	\end{bmatrix}
 	\begin{bmatrix}
-		\alpha_1 & 0 		  & 0 		  \cr
-		0 		  & \alpha_2 & 0 		  \cr
-		0 		  & 0 		  & \alpha_3 \cr
+		\alpha_1 & 0          & 0         \cr
+		0         & \alpha_2 & 0          \cr
+		0         & 0         & \alpha_3 \cr
 	\end{bmatrix}
 	\begin{bmatrix}
 		\bm{v_1} & \bm{v_2} & \bm{v_3} \cr
@@ -8024,9 +8024,9 @@ $$ \tag{21.7}
 		\bm{v_1} & \bm{v_2} & \bm{v_3} \cr
 	\end{bmatrix}
 	\begin{bmatrix}
-		\alpha_1 & 0 		  & 0 		  \cr
-		0 		  & \alpha_2 & 0 		  \cr
-		0 		  & 0 		  & \alpha_3 \cr
+		\alpha_1 & 0          & 0         \cr
+		0         & \alpha_2 & 0          \cr
+		0         & 0         & \alpha_3 \cr
 	\end{bmatrix}
 	\begin{bmatrix}
 		\bm{v_1} \cr \bm{v_2} \cr \bm{v_3} \cr
@@ -8209,18 +8209,18 @@ $$ \tag{21.26}
 	R_z(\alpha) R_y(\beta - \pi/2) R_x(\gamma)
 	\cr
 	&= \begin{bmatrix}
-		\cos{\alpha} & -\sin{\alpha} 		   & 0 \cr
+		\cos{\alpha} & -\sin{\alpha}           & 0 \cr
 		\sin{\alpha} & \phantom{-}\cos{\alpha} & 0 \cr
-		0            & 			  0            & 1 \cr
+		0            &            0            & 1 \cr
 	\end{bmatrix}
 	\begin{bmatrix}
-		\sin{\beta} & 0 & -\cos{\beta}  		 \cr
-		0           & 1 & 0             		 \cr
+		\sin{\beta} & 0 & -\cos{\beta}           \cr
+		0           & 1 & 0                      \cr
 		\cos{\beta} & 0 & \phantom{-}\sin{\beta} \cr
 	\end{bmatrix}
 	\begin{bmatrix}
-		1 & 0 			 & 0         		   	   \cr
-		0 & \cos{\gamma} & -\sin{\gamma} 		   \cr
+		1 & 0            & 0                       \cr
+		0 & \cos{\gamma} & -\sin{\gamma}           \cr
 		0 & \sin{\gamma} & \phantom{-}\cos{\gamma} \cr
 	\end{bmatrix},
 \end{aligned}
@@ -8251,19 +8251,19 @@ $$ \tag{21.28}
 	R_x(-\gamma) R_y(-\beta + \pi/2) R_z(-\alpha)
 	\cr
 	&= \begin{bmatrix}
-		1 & 0 						& 0            \cr
+		1 & 0                       & 0            \cr
 		0 & \phantom{-}\cos{\gamma} & \sin{\gamma} \cr
-		0 & -\sin{\gamma} 			& \cos{\gamma} \cr
+		0 & -\sin{\gamma}           & \cos{\gamma} \cr
 	\end{bmatrix}
 	\begin{bmatrix}
 		\phantom{-}\sin{\beta} & 0 & \cos{\beta} \cr
-		0           		   & 1 & 0           \cr
+		0                      & 1 & 0           \cr
 		-\cos{\beta}           & 0 & \sin{\beta} \cr
 	\end{bmatrix}
 	\begin{bmatrix}
 		\phantom{-}\cos{\alpha} & \sin{\alpha} & 0 \cr
-		-\sin{\alpha} 			& \cos{\alpha} & 0 \cr
-		0            			& 0            & 1 \cr
+		-\sin{\alpha}           & \cos{\alpha} & 0 \cr
+		0                       & 0            & 1 \cr
 	\end{bmatrix}
 \end{aligned}.
 $$
@@ -8280,10 +8280,10 @@ $$ \tag{21.29}
 		0 & 0 & 0 \cr
 	\end{bmatrix}
 	\begin{bmatrix}
-	\cos{\theta} & 0 & -\sin{\theta} \cr
-	0            & 1 & 0             \cr
-	\sin{\theta} & 0 & \phantom{-}\cos{\theta} \cr
-\end{bmatrix},
+		\cos{\theta} & 0 & -\sin{\theta} \cr
+		0            & 1 & 0             \cr
+		\sin{\theta} & 0 & \phantom{-}\cos{\theta} \cr
+	\end{bmatrix},
 $$
 
 with the bottom row of the resulting matrix set to 0 in order to discard the radial component of the field.
@@ -8296,9 +8296,9 @@ $$ \tag{21.30}
 	P_3 R_y(-\theta)
 	X(\alpha, \beta, \gamma)
 	\begin{bmatrix}
-		\alpha_1 & 0 		  & 0 		  \cr
-		0 		  & \alpha_2 & 0 		  \cr
-		0 		  & 0 		  & \alpha_3 \cr
+		\alpha_1 & 0          & 0         \cr
+		0         & \alpha_2 & 0          \cr
+		0         & 0         & \alpha_3 \cr
 	\end{bmatrix}
 	X^{T}(\alpha, \beta, \gamma)
 	P_3,
@@ -8306,9 +8306,24 @@ $$
 
 where the projection matrix \\(P_3\\) ensures that the scattering matrix is 2x2, since both the input and the output vectors have the third component set to 0.
 
----
+The expanded form of Eqn. 21.30 is very large, so we shall not explicitly write it down. However, the expression for a spherical particle, with \\(\mathcal{\Alpha_m} = \alpha_1 = \alpha_2 = \alpha_3 = \alpha_m\\), is fairly simple:
 
-It's interesting to compare the resulting scattering matrix for a spherical particle to the expression obtained using the Lorenz-Mie-Debye.
+$$ \tag{21.31}
+	S(\theta, \phi, \omega)
+	\simeq \frac{k^3(\omega)}{4 \pi}
+	\alpha_m
+	\begin{bmatrix}
+		\cos{\theta} & 0 \cr
+		0            & 1 \cr
+	\end{bmatrix}
+	= \frac{m^2 - 1}{m^2 + 2} x^3
+	\begin{bmatrix}
+		\cos{\theta} & 0 \cr
+		0            & 1 \cr
+	\end{bmatrix}.
+$$
+
+It's instructive to compare the resulting scattering matrix with the expression obtained using the Lorenz-Mie-Debye theory. Substitution of Eqn. 19.8 and 19.24 into 19.6 yields an identical expression, confirming both the accuracy of the dipole approximation and the conditions of its validity.
 
 ---
 
