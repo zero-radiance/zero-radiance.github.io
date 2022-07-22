@@ -5025,7 +5025,9 @@ $$
 
 where \\(x\\) can stand for absorption \\((a)\\), scattering \\((s)\\), or extinction \\((e)\\).
 
-Often, one has to consider a large cloud of particles. Its interior may be conceptually subdivided into small, non-overlapping regions, each containing a particle group. In order to avoid keeping track of both the volume \\(V\\) and the number of particles \\(N\\) in each region, it is highly convenient to combine them into the spatially-varying number density \\(n(\bm{r})\\) (defined by Eqn. 17.55). If, in addition, the distribution of particles \\((\\)governed by the probability density function \\(p(\psi))\\) is the same across the entire cloud, we can parametrize its interior using the spatially-varying *radiative transfer coefficients*
+Often, one has to consider a large cloud of particles. Its interior may be conceptually subdivided into small, non-overlapping regions, each containing a particle group. In order to avoid keeping track of both the volume \\(V\\) and the number of particles \\(N\\) in each region, it is highly convenient to combine them into the spatially-varying number density \\(n(\bm{r})\\) (defined by Eqn. 17.55). If, in addition, the distribution of particles \\((\\)governed by the probability density function \\(p(\psi))\\) is the same across the entire cloud, we can parametrize its interior using the spatially-varying *volume[^27] collision coefficients*
+
+[^27]: Sometimes, mass density is used instead of the number density of particles, which leads to the definition of mass collision coefficients \[[2](#references) (ch. 3)\].
 
 $$ \tag{17.58}
 	\beta_a(\bm{r}) = n(\bm{r}) \braket{C_a},
