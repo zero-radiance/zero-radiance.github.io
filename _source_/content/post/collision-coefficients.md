@@ -4994,23 +4994,27 @@ $$ \tag{17.56}
 \begin{aligned}
 	\braket{\Iota_s^{tot}}
 	&= \sum_j r^2 \braket{\braket{\bm{S_j}}} \cdot \bm{n_s}
-	= N \int_{\Psi} p(\psi) \left(\frac{\mu\_0^{-1}}{2} \frac{\eta}{c} \frac{1}{k^2}
+	= N \frac{\mu\_0^{-1}}{2} \frac{\eta}{c} \frac{1}{k^2}
+	\int_{\Psi} p(\psi)
 	\left| \mathcal{S_j}(\bm{n_s}, \psi) \cdot \bm{E_0} \right|^2
-	\right) d\psi,
+	d\psi,
 	\cr
 	\braket{\Phi_s^{tot}}
 	&= \oint\_{\mathbb{S}^2} \braket{\Iota_s^{tot}} \negmedspace (\bm{n_s}) d\Omega
-	= N \int_{\Psi} p(\psi) \oint\_{\mathbb{S}^2} \left(\frac{\mu\_0^{-1}}{2} \frac{\eta}{c} \frac{1}{k^2}
+	= N \frac{\mu\_0^{-1}}{2} \frac{\eta}{c} \frac{1}{k^2}
+	\int_{\Psi} p(\psi) \oint\_{\mathbb{S}^2}
 	\left| \mathcal{S_j}(\bm{n_s}, \psi) \cdot \bm{E_0} \right|^2
-	\right) d\Omega d\psi
+	d\Omega d\psi
 	\cr
 	\braket{\Phi_e^{tot}}
 	&= \sum_j \oint\_{\mathbb{S}^2}
 	\left[ r^2 \braket{\braket{\bm{S_{ij}}}} \cdot \bm{n_s} \right] d\Omega
-	= N \int_{\Psi} p(\psi) \left( \frac{\mu\_0^{-1}}{2} \frac{\eta}{c} \frac{4 \pi}{k^2}
+	= N \frac{\mu\_0^{-1}}{2} \frac{\eta}{c} \frac{4 \pi}{k^2}
+	\int_{\Psi} p(\psi)
 	\mathcal{Im} \left\lbrace v(f,0) \thinspace
 	\bm{E_0^{\*}} \cdot \mathcal{S_j}(\bm{n_i}, \psi) \cdot \bm{E_0}
-	\right\rbrace \right) d\psi.
+	\right\rbrace
+	d\psi.
 \end{aligned}
 $$
 
@@ -7498,6 +7502,8 @@ $$
 
 vanish. Eqn. 19.24 is the basis of the famous law of [Rayleigh scattering](https://en.wikipedia.org/wiki/Rayleigh_scattering) that explains the color of the sky: when molecules of the atmosphere scatter sunlight, the intensity of blue light, which has a shorter wavelength, is much greater than of the rest of the [visible spectrum](https://en.wikipedia.org/wiki/Visible_spectrum), since the size parameter \\(x\\) is inversely proportional to the wavelength \\(\lambda\\).
 
+-->
+
 #### Light Intensity and Efficiency Factors
 
 Since the frequencies of the electromagnetic radiation associated with visible light are so high, it is practically impossible to measure the instantaneous values of the electromagnetic field \[[8](#references) (ch. 7)\]. For this reason, typical applications of light scattering are concerned with the rate of the flow of electromagnetic energy, which is connected to light intensity via the optical theorem.
@@ -7863,8 +7869,6 @@ Now, suppose that \\(x\\) is very large, so that \\(\Phi_i\\) provides a reasona
 Since, in general, a particle with \\(|m x| \to \infin\\) does not necessarily cast a well-defined shadow, we require an alternative explanation. Suppose that \\(|m| \to \infin\\), and \\(x\\) is not too small. This implies that the particle is either a *perfect dielectric reflector* \\((\epsilon, \eta \to \infin)\\) or a *perfect electric conductor* \\((\sigma, \kappa \to \infin)\\). According to Eqn. 18.157, a particle of the first kind is able to sustain a fairly strong internal field, while a particle of the second kind makes it vanish. In both cases, the particle appears mirror-like, and, in order for the value of the internal field to be maintained, the *extinction theorem* (see Sec. 10) requires the scattered field to continually extinguish the incident field inside the particle. Accounting for these two facts once again leads to \\(Q_s = 2\\) \[[20](#references), [21](#references)\].
 
 Note that, unlike the scattered field, the total field has no apparent issues with energy conservation, since its power (change in the amount of energy over time) is zero in inaccessible areas. This underscores the importance of understanding the fact that only the total field is an actual physical entity, while the incident and the scattered fields are just mathematical constructs.
-
--->
 
 ## III. Approximate Methods for Practical Use
 
@@ -8268,7 +8272,7 @@ $$ \tag{21.28}
 \end{aligned}.
 $$
 
-The final component of the scattering matrix is the operator \\((\mathcal{I} - \bm{n_s} \otimes \bm{n_s})\\) that projects a vector onto the tangent plane of a unit sphere. Since, according to Eqn. 15.12, the \\(y\\)- and the \\(\phi\\)-axes are aligned, this transformation is given by Eqn. 15.13,
+The final component of the scattering matrix is the operator \\((\mathcal{I} - \bm{n_s} \otimes \bm{n_s})\\) that projects a vector onto the tangent plane of a unit sphere. Since, according to Eqn. 15.12, the \\(y\\)- and the \\(\phi\\)-axes are aligned, this transformation is given by Eqn. 15.13:
 
 $$ \tag{21.29}
 	\mathcal{I} - \bm{n_s} \otimes \bm{n_s}
@@ -8288,7 +8292,7 @@ $$
 
 with the bottom row of the resulting matrix set to 0 in order to discard the radial component of the field.
 
-Putting it all together, the form of the scattering matrix \\(S\\) that corresponds to the scattering dyadic of an ellipsoidal particle (given by Eqn. 21.4) is
+Putting it all together, the form of the scattering matrix \\(S\\) that corresponds to the scattering dyadic \\(\mathcal{S\_{ef}}\\) of an ellipsoidal particle (defined by Eqn. 21.4) is
 
 $$ \tag{21.30}
 	S(\theta, \phi, \omega)
@@ -8306,7 +8310,7 @@ $$
 
 where the projection matrix \\(P_3\\) ensures that the scattering matrix is 2x2, since both the input and the output vectors have the third component set to 0.
 
-The expanded form of Eqn. 21.30 is very large, so we shall not attempt to explicitly write it down. However, the expression for a spherical particle, with \\(\mathcal{\Alpha_m} = \alpha_1 = \alpha_2 = \alpha_3 = \alpha_m\\), is very simple \[[4](#references) (ch. 6.12)\]:
+The expanded form of Eqn. 21.30 is very large, so we shall not attempt to explicitly write it down. However, the expression for a spherical particle, with \\(\mathcal{\Alpha_m} = \alpha_m\\), is very simple \[[4](#references) (ch. 6.12)\]:
 
 $$ \tag{21.31}
 	S(\theta, \phi, \omega)
@@ -8325,9 +8329,11 @@ $$
 
 It's instructive to compare the resulting scattering matrix with the expression obtained using the Lorenz-Mie-Debye theory. Substitution of Eqn. 19.8 and 19.24 into 19.6 yields an identical expression, confirming both the accuracy of the dipole approximation and the conditions of its validity.
 
-#### Measurable Quantities
+#### Light Intensity and Collision Coefficients
 
-Let us calculate the measurable quantities that are typically used to characterize light scattering by a group of gas molecules. For simplicity, we shall assume that we are dealing with a single type of molecule; that way, averaging over shapes, sizes, and compositions of different kinds of molecules can be avoided. Thus, all that is left is to evaluate the contribution of molecules in various orientations. And, unless the entire group is placed into a uniform and parallel electromagnetic field, the orientations of the individual molecules are likely to follow a uniform distribution \[[8](#references) (ch. 15)\]
+Let us calculate the quantities typically used to characterize light scattering by a group of gas molecules. For simplicity, we shall assume that we are dealing with a single type of molecule; that way, averaging over shapes, sizes, and compositions of different kinds of molecules can be avoided. Thus, all that is left is to evaluate the contribution of molecules in various orientations.
+
+Unless the entire group is placed into a uniform and parallel electromagnetic field, the orientations of the individual molecules are likely to follow a uniform distribution \[[8](#references) (ch. 15)\]
 
 $$ \tag{21.32}
 	p(\alpha, \beta, \gamma)
@@ -8342,6 +8348,32 @@ $$ \tag{21.33}
 	\int_{-\pi}^{\pi} d\alpha
 	\int_{0}^{\pi} \sin{\beta} d\beta
 	\int_{-\pi}^{\pi} d\gamma \thinspace p(\alpha, \beta, \gamma) = 1.
+$$
+
+Then, the mean scattered light intensity of a group of \\(N\\) molecules per unit volume (given by Eqn. 17.56.1) is
+
+$$ \tag{17.56}
+\begin{aligned}
+	\braket{\Iota_s^{tot}}
+	&= \sum_j r^2 \braket{\braket{\bm{S_j}}} \cdot \bm{n_s}
+	= N \int_{\Psi} p(\psi) \left(\frac{\mu\_0^{-1}}{2} \frac{\eta}{c} \frac{1}{k^2}
+	\left| \mathcal{S_j}(\bm{n_s}, \psi) \cdot \bm{E_0} \right|^2
+	\right) d\psi,
+	\cr
+	\braket{\Phi_s^{tot}}
+	&= \oint\_{\mathbb{S}^2} \braket{\Iota_s^{tot}} \negmedspace (\bm{n_s}) d\Omega
+	= N \int_{\Psi} p(\psi) \oint\_{\mathbb{S}^2} \left(\frac{\mu\_0^{-1}}{2} \frac{\eta}{c} \frac{1}{k^2}
+	\left| \mathcal{S_j}(\bm{n_s}, \psi) \cdot \bm{E_0} \right|^2
+	\right) d\Omega d\psi
+	\cr
+	\braket{\Phi_e^{tot}}
+	&= \sum_j \oint\_{\mathbb{S}^2}
+	\left[ r^2 \braket{\braket{\bm{S_{ij}}}} \cdot \bm{n_s} \right] d\Omega
+	= N \int_{\Psi} p(\psi) \left( \frac{\mu\_0^{-1}}{2} \frac{\eta}{c} \frac{4 \pi}{k^2}
+	\mathcal{Im} \left\lbrace v(f,0) \thinspace
+	\bm{E_0^{\*}} \cdot \mathcal{S_j}(\bm{n_i}, \psi) \cdot \bm{E_0}
+	\right\rbrace \right) d\psi.
+\end{aligned}
 $$
 
 ### Light Scattering by Liquid Molecules
