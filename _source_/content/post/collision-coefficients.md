@@ -7536,37 +7536,9 @@ $$
 
 where \\(S\\) is the scattering matrix.
 
-Presently, it is desirable to write the expression of the incident field phasor using the exponential notation:
-
-$$ \tag{19.28}
-	\begin{bmatrix}
-		E_{x}(\phi, \omega) \cr
-		E_{y}(\phi, \omega) \cr
-	\end{bmatrix}
-	= \frac{ \big| \bm{E_0}(\bm{n_i}, \omega) \big| }{ \sqrt{2} }
-	\begin{bmatrix}
-		e^{i \delta_x(\phi, \omega)} \cr
-		e^{i \delta_y(\phi, \omega)} \cr
-	\end{bmatrix}.
-$$
-
-It allows us to directly relate the scattered intensity \\(\Iota_s\\) to the incident irradiance \\(\Epsilon_i\\):
-
-$$ \tag{19.29}
-	\Iota_s(\theta, \phi, \omega)
-	\simeq \frac{\Epsilon_i(\omega)}{k^2(\omega)} \left| \frac{S(\theta, \phi, \omega)}{ \sqrt{2} }
-	\begin{bmatrix}
-		e^{i \delta_x(\phi, \omega)} \cr
-		e^{i \delta_y(\phi, \omega)} \cr
-	\end{bmatrix}
-	\right|^2.
-$$
-
-Note that the cosine factor in the formula of the latter (Eqn. 16.4) has been omitted; that is permissible because a spherical particle is invariant under rotation of the direction of propagation of the incident wave.
-
 Since the scattering matrix of a spherical particle (given by Eqn. 19.6) is diagonal, our task is reduced to determination of the squared magnitude of the complex vector
 
-$$ \tag{19.30}
+$$ \tag{19.28}
 	\begin{bmatrix}
 		E_{\theta} \cr
 		E_{\phi} \cr
@@ -7577,14 +7549,14 @@ $$ \tag{19.30}
 		0 & s_1 \cr
 	\end{bmatrix}
 	\begin{bmatrix}
-		e^{i \delta_x} \cr
-		e^{i \delta_y} \cr
+		E_x \cr
+		E_y \cr
 	\end{bmatrix}.
 $$
 
-As it turns out, this magnitude is independent of the state of the incident wave:
+As it turns out, the resulting magnitude depends on the state of the incident wave:
 
-$$ \tag{19.31}
+$$ \tag{19.29}
 \begin{aligned}
 	\begin{vmatrix}
 		E_{\theta} \cr
@@ -7592,8 +7564,8 @@ $$ \tag{19.31}
 	\end{vmatrix}^2
 	&=
 	\begin{bmatrix}
-		e^{-i \delta_x} &
-		e^{-i \delta_y} \cr
+		E_x^{\*} &
+		E_y^{\*} \cr
 	\end{bmatrix}
 	\begin{bmatrix}
 		s_2^{\*} & 0 \cr
@@ -7604,14 +7576,52 @@ $$ \tag{19.31}
 		0 & s_1 \cr
 	\end{bmatrix}
 	\begin{bmatrix}
-		e^{i \delta_x} \cr
-		e^{i \delta_y} \cr
+		E_x \cr
+		E_y \cr
 	\end{bmatrix}
-	= |s_1|^2 + |s_2|^2.
+	= |E_x|^2 |s_2|^2 + |E_y|^2 |s_1|^2,
 \end{aligned}
 $$
 
-Thus, we arrive at the important result that relates the scattered intensity to the incident irradiance:
+where the components of the phasor of the incident wave transformed from the laboratory reference frame to the scattering coordinate system are given by Eqn. 15.11:
+
+$$ \tag{19.30}
+	\begin{bmatrix}
+		E_{x}(\phi, \omega) \cr
+		E_{y}(\phi, \omega) \cr
+		0 \cr
+	\end{bmatrix} = R_z(-\phi)
+	\begin{bmatrix}
+		E\_{X} \cr
+		E\_{Y} \cr
+		0
+	\end{bmatrix}
+	=
+	\begin{bmatrix}
+		\phantom{-}\cos{\phi} & \sin{\phi} & 0 \cr
+		-\sin{\phi}           & \cos{\phi} & 0 \cr
+		0                     & 0          & 1 \cr
+	\end{bmatrix}
+	\begin{bmatrix}
+		a\_{X} e^{i \delta_X} \cr
+		a\_{Y} e^{i \delta_Y} \cr
+		0 \cr
+	\end{bmatrix}.
+$$
+
+Let us consider the special case of *natural light* that has neither a preferred orientation \\((\text{so } a\_{X} = a\_{Y} = |\bm{E_0}|)\\) nor a well-defined phase relationship (so \\(\delta\_{X}\\) and \\(\delta\_{Y}\\) are essentially random) \[[6](#references) (ch. 10.9)\]. Then, a straightforward calculation yields
+
+$$ \tag{19.31}
+\begin{aligned}
+	\frac{1}{4 \pi^2} \int_{-\pi}^{\pi} \int_{-\pi}^{\pi}
+	|E_x|^2 d\delta_X d\delta_Y =
+	\frac{1}{4 \pi^2} \int_{-\pi}^{\pi} \int_{-\pi}^{\pi}
+	|E_y|^2 d\delta_X d\delta_Y =
+	|\bm{E_0}|^2.
+\end{aligned}
+$$
+
+This assumption allows us to directly relate the scattered intensity \\(\Iota_s\\) to the incident irradiance \\(\Epsilon_i\\) (the latter is given by Eqn 16.4):
 
 $$ \tag{19.32}
 	\Iota_s(\theta, \phi, \omega)
@@ -7632,8 +7642,6 @@ $$ \tag{19.33}
 	\big( a_n(\omega) \pi_{1,n}(\theta) + b_n(\omega) \tau_{1,n}(\theta) \big).
 \end{aligned}
 $$
-
-Eqn. 19.32 deserves a few remarks. First, the right-hand side is independent of the azimuthal angle \\(\phi\\), which should not come as a surprise, since the particle is spherical. What is surprising is the fact that the formula manages to almost entirely conceal the wave nature of light, since the incident irradiance is directly transformed into the scattered intensity, with all the wave-optical calculations confined within the expression of the scattering matrix.
 
 For illustrative purposes, we may split the intensity into the average of the vertical (or parallel) component \\(\Iota_{\parallel}\\) that corresponds to the electric field oriented along the \\(\theta\\)-axis, and the horizontal (or perpendicular) component \\(\Iota_{\perp}\\) derived from the electric field oriented along the \\(\phi\\)-axis:
 
