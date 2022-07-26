@@ -7616,7 +7616,7 @@ $$ \tag{19.3x}
 	\pi |\bm{E_0}|^2.
 $$
 
-Thus, any expression that depends on the components of the incident field only by means of Eqn. 19.3x is valid for an *arbitrary state of the incident light*.
+Thus, any expression that depends on the components of the incident field only by means of the integrals of Eqn. 19.3x is valid for an *arbitrary state of the incident light*.
 
 Let us consider the special case of *natural light* that has neither a preferred orientation \\((\text{so } a\_{X} = a\_{Y} = |\bm{E_0}|)\\) nor a well-defined phase relationship (so \\(\delta\_{X}\\) and \\(\delta\_{Y}\\) are essentially random) \[[6](#references) (ch. 10.9)\]. Then, a straightforward calculation yields
 
@@ -8195,31 +8195,31 @@ In order to perform light scattering calculations, it is more convenient to use 
 $$ \tag{21.24}
 	\bm{E_0} =
 	\begin{bmatrix}
-		E\_{X} \cr
-		E\_{Y} \cr
-		0 \cr
+		E_X \cr
+		E_Y \cr
+	\end{bmatrix} =
+	\begin{bmatrix}
+		a\_{X} e^{i \delta_X} \cr
+		a\_{Y} e^{i \delta_Y} \cr
 	\end{bmatrix}.
 $$
 
 Conventionally, the scattering coordinate system is rotated relative to the laboratory reference frame. The vector components are transformed according to Eqn. 15.11:
 
 $$ \tag{21.25}
-	\bm{E_0} = R_z(-\phi)
+	\bm{E_0} = R(-\phi)
 	\begin{bmatrix}
 		E\_{X} \cr
 		E\_{Y} \cr
-		0 \cr
 	\end{bmatrix}
 	=
 	\begin{bmatrix}
-		\phantom{-}\cos{\phi} & \sin{\phi} & 0 \cr
-		-\sin{\phi}           & \cos{\phi} & 0 \cr
-		0                     & 0          & 1 \cr
+		\phantom{-}\cos{\phi} & \sin{\phi} \cr
+		-\sin{\phi}           & \cos{\phi} \cr
 	\end{bmatrix}
 	\begin{bmatrix}
 		E\_{X} \cr
 		E\_{Y} \cr
-		0
 	\end{bmatrix},
 $$
 
@@ -8306,7 +8306,6 @@ $$ \tag{21.29}
 	\begin{bmatrix}
 		1 & 0 & 0 \cr
 		0 & 1 & 0 \cr
-		0 & 0 & 0 \cr
 	\end{bmatrix}
 	\begin{bmatrix}
 		\cos{\theta} & 0 & -\sin{\theta} \cr
@@ -8318,22 +8317,19 @@ $$
 with the bottom row of the resulting matrix set to 0 in order to discard the radial component of the field.
 
 Putting it all together, the form of the scattering matrix \\(S\\) that corresponds to the scattering dyadic \\(\mathcal{S\_{ef}}\\) of an ellipsoidal particle (defined by Eqn. 21.4) is
+Putting it all together, the form of the scattering matrix \\(S\\) that corresponds to the scattering dyadic \\(\mathcal{S\_{ef}}\\) of an ellipsoidal particle (defined by Eqn. 21.4) is
 
 $$ \tag{21.30}
 	S(\theta, \phi, \omega)
 	= \frac{k^3(\omega)}{4 \pi}
 	P_3 R_y(-\theta)
 	X(\alpha, \beta, \gamma)
-	\begin{bmatrix}
-		\alpha_1 & 0          & 0         \cr
-		0         & \alpha_2 & 0          \cr
-		0         & 0         & \alpha_3 \cr
-	\end{bmatrix}
+	D(\alpha_1, \alpha_2, \alpha_3)
 	X^{T}(\alpha, \beta, \gamma)
-	P_3,
+	P_3^{T},
 $$
 
-where the projection matrix \\(P_3\\) ensures that the scattering matrix is 2x2, since both the input and the output vectors have the third component set to 0.
+where \\(D\\) is a diagonal matrix, and the projection matrix \\(P_3\\) ensures that the scattering matrix is 2x2, since both the input and the output vectors have the third component set to 0.
 
 The expanded form of Eqn. 21.30 is very large, so we shall not attempt to explicitly write it down. However, the expression for a spherical particle, with \\(\mathcal{\Alpha_m} = \alpha_m\\), is very simple \[[4](#references) (ch. 6.12)\]:
 
@@ -8358,46 +8354,77 @@ It's instructive to compare the resulting scattering matrix with the expression 
 
 Let us calculate the quantities typically used to characterize light scattering by a group of gas molecules. For simplicity, we shall assume that we are dealing with a single type of molecule; that way, averaging over shapes, sizes, and compositions of different kinds of molecules can be avoided. Thus, all that is left is to evaluate the contribution of molecules in various orientations.
 
-Unless the entire group is placed into a uniform and parallel electromagnetic field, the orientations of the individual molecules are likely to follow a uniform distribution \[[8](#references) (ch. 15)\]
+Unless the entire group is placed into a uniform and parallel electromagnetic field, the orientations of the individual molecules are likely to follow a uniform distribution described by the probability density function
 
 $$ \tag{21.32}
-	p(\alpha, \beta, \gamma)
+	p(\psi)
+	= p(\alpha, \beta, \gamma)
 	= p(\alpha) p(\beta) p(\gamma)
 	= \frac{1}{2 \pi} \frac{1}{2} \frac{1}{2 \pi}
 	= \frac{1}{8 \pi^2},
 $$
 
-such that
+such that \[[8](#references) (ch. 15)\]
 
 $$ \tag{21.33}
+	\int_{\Psi} p(\psi) d\psi =
 	\int_{-\pi}^{\pi} d\alpha
 	\int_{0}^{\pi} \sin{\beta} d\beta
 	\int_{-\pi}^{\pi} d\gamma \thinspace p(\alpha, \beta, \gamma) = 1.
 $$
 
-Then, the mean scattered light intensity of a group of \\(N\\) molecules per unit volume (given by Eqn. 17.56.1) is
+Then, according to Eqn. 17.56.1, the mean intensity light scattered by  a group of molecules is directly proportional to
 
-$$ \tag{17.56}
+$$ \tag{21.34}
 \begin{aligned}
 	\braket{\Iota_s^{tot}}
-	&= \sum_j r^2 \braket{\braket{\bm{S_j}}} \cdot \bm{n_s}
-	= N \int_{\Psi} p(\psi) \left(\frac{\mu\_0^{-1}}{2} \frac{\eta}{c} \frac{1}{k^2}
-	\left| \mathcal{S_j}(\bm{n_s}, \psi) \cdot \bm{E_0} \right|^2
-	\right) d\psi,
+	&\propto \int_{\Psi} p(\psi)
+	\left| S(\theta, \phi, \psi) R(-\phi) \bm{E_0} \right|^2
+	d\psi
 	\cr
-	\braket{\Phi_s^{tot}}
-	&= \oint\_{\mathbb{S}^2} \braket{\Iota_s^{tot}} \negmedspace (\bm{n_s}) d\Omega
-	= N \int_{\Psi} p(\psi) \oint\_{\mathbb{S}^2} \left(\frac{\mu\_0^{-1}}{2} \frac{\eta}{c} \frac{1}{k^2}
-	\left| \mathcal{S_j}(\bm{n_s}, \psi) \cdot \bm{E_0} \right|^2
-	\right) d\Omega d\psi
+	&= \int_{-\pi}^{\pi} \int_{0}^{\pi} \int_{-\pi}^{\pi}
+	p(\alpha, \beta, \gamma)
+	\left| S(\theta, \phi, \alpha, \beta, \gamma) R(-\phi) \bm{E_0} \right|^2
+	\sin{\beta} d\alpha d\beta d\gamma
 	\cr
-	\braket{\Phi_e^{tot}}
-	&= \sum_j \oint\_{\mathbb{S}^2}
-	\left[ r^2 \braket{\braket{\bm{S_{ij}}}} \cdot \bm{n_s} \right] d\Omega
-	= N \int_{\Psi} p(\psi) \left( \frac{\mu\_0^{-1}}{2} \frac{\eta}{c} \frac{4 \pi}{k^2}
-	\mathcal{Im} \left\lbrace v(f,0) \thinspace
-	\bm{E_0^{\*}} \cdot \mathcal{S_j}(\bm{n_i}, \psi) \cdot \bm{E_0}
-	\right\rbrace \right) d\psi.
+	&= \frac{1}{8 \pi^2}
+	\bm{E_0^{\dagger}} R(\phi)
+	\left(
+	\int_{-\pi}^{\pi} \int_{0}^{\pi} \int_{-\pi}^{\pi}
+	S^{\dagger}(\theta, \phi, \alpha, \beta, \gamma) S(\theta, \phi, \alpha, \beta, \gamma)
+	\sin{\beta} d\alpha d\beta d\gamma
+	\right)
+	R(-\phi) \bm{E_0},
+\end{aligned}
+$$
+
+where the dagger symbol denotes complex conjugation URL.
+
+The resulting integral is considerably simplified by the use of [integrals of trigonometric functions](https://en.wikipedia.org/wiki/List_of_integrals_of_trigonometric_functions). Let us define the cross and the diagonal terms
+
+$$ \tag{21.35}
+\begin{aligned}
+	c &= \mathcal{Re} \lbrace (\alpha_1 \mathcal{Re} \lbrace \alpha_2 \rbrace + \alpha_1+\alpha_2) \mathcal{Re} \lbrace \alpha_3 \rbrace\rbrace +
+	\mathcal{Im} \lbrace \alpha_1 \mathcal{Im} \lbrace \alpha_2 \rbrace + (\alpha_1+\alpha_2) \mathcal{Im} \lbrace \alpha_3 \rbrace \rbrace
+\cr
+	d &= |\alpha_1|^2+|\alpha_2|^2+|\alpha_3|^2
+\end{aligned}
+$$
+
+Then ...
+
+$$ \tag{21.36}
+\begin{aligned}
+	\int_{-\pi}^{\pi} \int_{0}^{\pi} \int_{-\pi}^{\pi}
+	S^{\dagger} S
+	\sin{\beta} d\alpha d\beta d\gamma
+	= \frac{k^6}{120} \left(
+	(6 d - c) \sin^2{\theta} + (8 d + 2 c) \cos^2{\theta}
+	\right)
+	\begin{bmatrix}
+		-1 & \phantom{-}1 \cr
+		\phantom{-}1 & -1 \cr
+	\end{bmatrix}
 \end{aligned}
 $$
 
