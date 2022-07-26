@@ -4642,7 +4642,7 @@ $$ \tag{17.24}
 	\mathcal{S_j}(\bm{n_s}, \psi) \cdot \bm{E_0} \right|^2}{k^2 r^2} \bm{n_s}
 $$
 
-of a particle located at the origin. Note that the value of \\(\braket{\bm{S_j}}\\) explicitly depends on the state of the incident field, and, implicitly, on the orientation, shape, size, and composition of the particle via the far-field scattering dyadic \\(\mathcal{S_j}\\). Because the latter is located inside the squared norm operator, ensemble averaging the Poynting vector
+of a particle located at the origin. Note that the value of \\(\braket{\bm{S_j}}\\) explicitly depends on the state of the incident light, and, implicitly, on the orientation, shape, size, and composition of the particle via the far-field scattering dyadic \\(\mathcal{S_j}\\). Because the latter is located inside the squared norm operator, ensemble averaging the Poynting vector
 
 $$ \tag{17.25}
 	\braket{\braket{\bm{S_j}}} \negmedspace (\bm{r})
@@ -5590,13 +5590,13 @@ In addition, we know that any sufficiently smooth univariate function can be exp
 
 $$ \tag{18.57}
 \begin{aligned}
-	& \int_{0}^{2 \pi} \sin(m x) \cos(n x) dx = 0,
+	& \int_{-\pi}^{\pi} \sin(m x) \cos(n x) dx = 0,
 	& (m \neq 0 \text{ or } n \neq 0),
 	\cr
-	& \int_{0}^{2 \pi} \sin(m x) \sin(n x) dx = \pi \delta_{m,n}
+	& \int_{-\pi}^{\pi} \sin(m x) \sin(n x) dx = \pi \delta_{m,n}
 	& (m \neq 0 \text{ or } n \neq 0),
 	\cr
-	& \int_{0}^{2 \pi} \cos(m x) \cos(n x) dx = \pi \delta_{m,n}
+	& \int_{-\pi}^{\pi} \cos(m x) \cos(n x) dx = \pi \delta_{m,n}
 	& (m \neq 0 \text{ or } n \neq 0),
 \end{aligned}
 $$
@@ -5617,7 +5617,7 @@ where \\(\gamma_{m,n}\\) is the normalization constant chosen in order to satisf
 
 $$ \tag{18.59}
 \begin{aligned}
-	& \int_{0}^{2 \pi} \int_{-1}^{1} \big[ Y_t^s(\theta, \phi) \big]^{\*} Y_n^m(\theta, \phi) \thinspace d(\cos{\theta}) d\phi = \delta_{s,m} \delta_{t,n},
+	& \int_{-\pi}^{\pi} \int_{-1}^{1} \big[ Y_t^s(\theta, \phi) \big]^{\*} Y_n^m(\theta, \phi) \thinspace d(\cos{\theta}) d\phi = \delta_{s,m} \delta_{t,n},
 	\cr
 	& \sum_{n=0}^{\infin} \sum_{m=-n}^{n} \big[ Y_n^m(\theta', \phi') \big]^{\*} Y_n^m(\theta, \phi)
 	= \delta(\cos{\theta} - \cos{\theta'}) \delta(\phi - \phi').
@@ -5938,11 +5938,11 @@ Let us begin by considering the double integral
 
 $$ \tag{18.75}
 \begin{aligned}
-	&\int_{0}^{2 \pi} \int_{0}^{\pi} \big[ \bm{\Upsilon_{s,t}}(\theta, \phi) \big]^{\*} \cdot \bm{\Upsilon_{m,n}}(\theta, \phi) \sin{\theta} \thinspace d\theta d\phi
+	&\int_{-\pi}^{\pi} \int_{0}^{\pi} \big[ \bm{\Upsilon_{s,t}}(\theta, \phi) \big]^{\*} \cdot \bm{\Upsilon_{m,n}}(\theta, \phi) \sin{\theta} \thinspace d\theta d\phi
 	\cr
 	&= \gamma_{s,t} \gamma_{m,n}
 		\int_{0}^{\pi} P_t^s(\cos{\theta}) P_n^m(\cos{\theta}) \sin{\theta} \thinspace d\theta
-		\int_{0}^{2 \pi} e^{i (m - s) \phi} \thinspace d\phi.
+		\int_{-\pi}^{\pi} e^{i (m - s) \phi} \thinspace d\phi.
 \end{aligned}
 $$
 
@@ -5950,7 +5950,7 @@ Analysis shows that the initial expression can be separated into a product of se
 
 $$ \tag{18.76}
 \begin{aligned}
-	\int_{0}^{2 \pi} \int_{0}^{\pi} \big[ \bm{\Upsilon_{s,t}}(\theta, \phi) \big]^{\*} \cdot \bm{\Upsilon_{m,n}}(\theta, \phi) \sin{\theta} \thinspace d\theta d\phi
+	\int_{-\pi}^{\pi} \int_{0}^{\pi} \big[ \bm{\Upsilon_{s,t}}(\theta, \phi) \big]^{\*} \cdot \bm{\Upsilon_{m,n}}(\theta, \phi) \sin{\theta} \thinspace d\theta d\phi
 	= \delta_{m,s} \delta_{t,n}.
 \end{aligned}
 $$
@@ -5959,14 +5959,14 @@ Similarly, from Eqn. 4.6 and 18.70, it follows that
 
 $$ \tag{18.77}
 \begin{aligned}
-	& \int_{0}^{2 \pi} \int_{0}^{\pi} \big[ \bm{\Phi_{s,t}}(\theta, \phi) \big]^{\*} \cdot \bm{\Phi_{m,n}}(\theta, \phi) \sin{\theta} \thinspace d\theta d\phi
+	& \int_{-\pi}^{\pi} \int_{0}^{\pi} \big[ \bm{\Phi_{s,t}}(\theta, \phi) \big]^{\*} \cdot \bm{\Phi_{m,n}}(\theta, \phi) \sin{\theta} \thinspace d\theta d\phi
 	\cr
-	&= \int_{0}^{2 \pi} \int_{0}^{\pi} \big[ \bm{\Psi_{s,t}}(\theta, \phi) \big]^{\*} \cdot \bm{\Psi_{m,n}}(\theta, \phi) \sin{\theta} \thinspace d\theta d\phi
+	&= \int_{-\pi}^{\pi} \int_{0}^{\pi} \big[ \bm{\Psi_{s,t}}(\theta, \phi) \big]^{\*} \cdot \bm{\Psi_{m,n}}(\theta, \phi) \sin{\theta} \thinspace d\theta d\phi
 	\cr
 	&= \gamma_{s,t} \gamma_{m,n}
 		\int_{0}^{\pi}
 		\big( \pi_{s,t}(\theta) \pi_{m,n}(\theta) + \tau_{s,t}(\theta) \tau_{m,n}(\theta) \big) \sin{\theta} \thinspace d\theta
-		\int_{0}^{2 \pi} e^{i (m - s) \phi} \thinspace d\phi
+		\int_{-\pi}^{\pi} e^{i (m - s) \phi} \thinspace d\phi
 	\cr
 	&= n (n + 1) \delta_{m,s} \delta_{t,n}.
 \end{aligned}
@@ -5976,9 +5976,9 @@ We can also show that the all mixed products are zero. According to Eqn. 18.74,
 
 $$ \tag{18.78}
 \begin{aligned}
-	& \int_{0}^{2 \pi} \int_{0}^{\pi} \big[ \bm{\Upsilon_{s,t}}(\theta, \phi) \big]^{\*} \cdot \bm{\Phi_{m,n}}(\theta, \phi) \sin{\theta} \thinspace d\theta d\phi
+	& \int_{-\pi}^{\pi} \int_{0}^{\pi} \big[ \bm{\Upsilon_{s,t}}(\theta, \phi) \big]^{\*} \cdot \bm{\Phi_{m,n}}(\theta, \phi) \sin{\theta} \thinspace d\theta d\phi
 	\cr
-	&= \int_{0}^{2 \pi} \int_{0}^{\pi} \big[ \bm{\Upsilon_{s,t}}(\theta, \phi) \big]^{\*} \cdot \bm{\Psi_{m,n}}(\theta, \phi) \sin{\theta} \thinspace d\theta d\phi
+	&= \int_{-\pi}^{\pi} \int_{0}^{\pi} \big[ \bm{\Upsilon_{s,t}}(\theta, \phi) \big]^{\*} \cdot \bm{\Psi_{m,n}}(\theta, \phi) \sin{\theta} \thinspace d\theta d\phi
 	= 0.
 \end{aligned}
 $$
@@ -5987,12 +5987,12 @@ For the last pair of vectors, the proof involves Eqn. 18.69 instead:
 
 $$ \tag{18.79}
 \begin{aligned}
-	& \int_{0}^{2 \pi} \int_{0}^{\pi} \big[ \bm{\Phi_{s,t}}(\theta, \phi) \big]^{\*} \cdot \bm{\Psi_{m,n}}(\theta, \phi) \sin{\theta} \thinspace d\theta d\phi
+	& \int_{-\pi}^{\pi} \int_{0}^{\pi} \big[ \bm{\Phi_{s,t}}(\theta, \phi) \big]^{\*} \cdot \bm{\Psi_{m,n}}(\theta, \phi) \sin{\theta} \thinspace d\theta d\phi
 	\cr
 	&= -i \gamma_{s,t} \gamma_{m,n}
 		\int_{0}^{\pi}
 		\big( \pi_{s,t}(\theta) \tau_{m,n}(\theta) + \tau_{s,t}(\theta) \pi_{m,n}(\theta) \big) \sin{\theta} \thinspace d\theta
-		\int_{0}^{2 \pi} e^{i (m - s) \phi} \thinspace d\phi
+		\int_{-\pi}^{\pi} e^{i (m - s) \phi} \thinspace d\phi
 	= 0.
 \end{aligned}
 $$
@@ -6075,13 +6075,13 @@ Noting that, according to Eqn. 18.74, Let us evaluate the integral taken over th
 
 $$ \tag{18.84}
 \begin{aligned}
-	&\int_{0}^{2 \pi} \int_{0}^{\pi} \big[ \bm{L_{s,t}}(\bm{r}) \big]^{\*} \cdot \bm{L_{m,n}}(\bm{r}) \sin{\theta} \thinspace d\theta d\phi
+	&\int_{-\pi}^{\pi} \int_{0}^{\pi} \big[ \bm{L_{s,t}}(\bm{r}) \big]^{\*} \cdot \bm{L_{m,n}}(\bm{r}) \sin{\theta} \thinspace d\theta d\phi
 	\cr
 	&=  \bigg[ \frac{\partial z_t(k r)}{\partial (k r)} \bigg]^{\*} \frac{\partial z_n(k r)}{\partial (k r)}
-		\int_{0}^{2 \pi} \int_{0}^{\pi} \big[ \bm{\Upsilon_{s,t}}(\theta, \phi) \big]^{\*} \cdot \bm{\Upsilon_{m,n}}(\theta, \phi) \sin{\theta} \thinspace d\theta d\phi
+		\int_{-\pi}^{\pi} \int_{0}^{\pi} \big[ \bm{\Upsilon_{s,t}}(\theta, \phi) \big]^{\*} \cdot \bm{\Upsilon_{m,n}}(\theta, \phi) \sin{\theta} \thinspace d\theta d\phi
 	\cr
 	&+  \frac{\big[ z_t(k r) \big]^{\*} z_n(k r)}{|k r|^2}
-		\int_{0}^{2 \pi} \int_{0}^{\pi} \big[ \bm{\Psi_{s,t}}(\theta, \phi) \big]^{\*} \cdot \bm{\Psi_{m,n}}(\theta, \phi) \sin{\theta} \thinspace d\theta d\phi.
+		\int_{-\pi}^{\pi} \int_{0}^{\pi} \big[ \bm{\Psi_{s,t}}(\theta, \phi) \big]^{\*} \cdot \bm{\Psi_{m,n}}(\theta, \phi) \sin{\theta} \thinspace d\theta d\phi.
 \end{aligned}
 $$
 
@@ -6089,7 +6089,7 @@ Application of the orthogonality properties given by Eqn. 18.76 and 18.77 immedi
 
 $$ \tag{18.85}
 \begin{aligned}
-	&\int_{0}^{2 \pi} \int_{0}^{\pi} \big[ \bm{L_{s,t}}(\bm{r}) \big]^{\*} \cdot \bm{L_{m,n}}(\bm{r}) \sin{\theta} \thinspace d\theta d\phi
+	&\int_{-\pi}^{\pi} \int_{0}^{\pi} \big[ \bm{L_{s,t}}(\bm{r}) \big]^{\*} \cdot \bm{L_{m,n}}(\bm{r}) \sin{\theta} \thinspace d\theta d\phi
 	\cr
 	&= \Bigg( \bigg| \frac{\partial z_n(k r)}{\partial (k r)} \bigg|^2
 		+ n (n+1) \bigg| \frac{z_n(k r)}{k r} \bigg|^2 \Bigg) \delta_{m,s} \delta_{t,n}.
@@ -6100,7 +6100,7 @@ The derivative can be eliminated by considering the recurrence relations of Eqn.
 
 $$ \tag{18.86}
 \begin{aligned}
-	&\int_{0}^{2 \pi} \int_{0}^{\pi} \big[ \bm{L_{s,t}}(\bm{r}) \big]^{\*} \cdot \bm{L_{m,n}}(\bm{r}) \sin{\theta} \thinspace d\theta d\phi
+	&\int_{-\pi}^{\pi} \int_{0}^{\pi} \big[ \bm{L_{s,t}}(\bm{r}) \big]^{\*} \cdot \bm{L_{m,n}}(\bm{r}) \sin{\theta} \thinspace d\theta d\phi
 	\cr
 	&= \frac{1}{(2 n + 1)^2} \Big(
 		\big| n z_{n-1}(k r) - (n + 1) z_{n+1}(k r) \big|^2
@@ -6113,7 +6113,7 @@ Further simplification can be only achieved by assuming that no complex numbers 
 
 $$ \tag{18.87}
 \begin{aligned}
-	&\int_{0}^{2 \pi} \int_{0}^{\pi} \big[ \bm{L_{s,t}}(\bm{r}) \big]^{\*} \cdot \bm{L_{m,n}}(\bm{r}) \sin{\theta} \thinspace d\theta d\phi
+	&\int_{-\pi}^{\pi} \int_{0}^{\pi} \big[ \bm{L_{s,t}}(\bm{r}) \big]^{\*} \cdot \bm{L_{m,n}}(\bm{r}) \sin{\theta} \thinspace d\theta d\phi
 	\cr
 	&= \frac{1}{2 n + 1} \Big( n \big[ z_{n-1}(k r) \big]^2 + (n + 1) \big[ z_{n+1}(k r) \big]^2 \Big) \delta_{m,s} \delta_{t,n}.
 \end{aligned}
@@ -6122,7 +6122,7 @@ $$
 The same formulae lead to
 
 $$ \tag{18.88}
-	\int_{0}^{2 \pi} \int_{0}^{\pi} \big[ \bm{M_{s,t}}(\bm{r}) \big]^{\*} \cdot \bm{M_{m,n}}(\bm{r}) \sin{\theta} \thinspace d\theta d\phi
+	\int_{-\pi}^{\pi} \int_{0}^{\pi} \big[ \bm{M_{s,t}}(\bm{r}) \big]^{\*} \cdot \bm{M_{m,n}}(\bm{r}) \sin{\theta} \thinspace d\theta d\phi
 	= n (n+1) \big| z_n(k r) \big|^2 \delta_{m,s} \delta_{t,n}
 $$
 
@@ -6130,7 +6130,7 @@ and
 
 $$ \tag{18.89}
 \begin{aligned}
-	&\int_{0}^{2 \pi} \int_{0}^{\pi} \big[ \bm{N_{s,t}}(\bm{r}) \big]^{\*} \cdot \bm{N_{m,n}}(\bm{r}) \sin{\theta} \thinspace d\theta d\phi
+	&\int_{-\pi}^{\pi} \int_{0}^{\pi} \big[ \bm{N_{s,t}}(\bm{r}) \big]^{\*} \cdot \bm{N_{m,n}}(\bm{r}) \sin{\theta} \thinspace d\theta d\phi
 	\cr
 	&= n (n+1) \Bigg(
 		\Bigg| \frac{\big[ k r z_n(k r) \big]'}{k r} \Bigg|^2
@@ -6148,7 +6148,7 @@ which, for real numbers \\((z_n \in \mathcal{R})\\), can be reduced to
 
 $$ \tag{18.90}
 \begin{aligned}
-	&\int_{0}^{2 \pi} \int_{0}^{\pi} \big[ \bm{N_{s,t}}(\bm{r}) \big]^{\*} \cdot \bm{N_{m,n}}(\bm{r}) \sin{\theta} \thinspace d\theta d\phi
+	&\int_{-\pi}^{\pi} \int_{0}^{\pi} \big[ \bm{N_{s,t}}(\bm{r}) \big]^{\*} \cdot \bm{N_{m,n}}(\bm{r}) \sin{\theta} \thinspace d\theta d\phi
 	\cr
 	&= \frac{n (n+1)}{(2 n + 1)} \Big(
 		(n + 1) \big[ z_{n-1}(k r) \big]^2 + n \big[ z_{n+1}(k r) \big]^2
@@ -6162,11 +6162,11 @@ We begin by considering the pairs of \\(\bm{L_{m,n}}\\) and \\(\bm{M_{m,n}}\\):
 
 $$ \tag{18.91}
 \begin{aligned}
-	&\int_{0}^{2 \pi} \int_{0}^{\pi} \big[ \bm{L_{s,t}}(\bm{r}) \big]^{\*} \cdot \bm{M_{m,n}}(\bm{r}) \sin{\theta} \thinspace d\theta d\phi
+	&\int_{-\pi}^{\pi} \int_{0}^{\pi} \big[ \bm{L_{s,t}}(\bm{r}) \big]^{\*} \cdot \bm{M_{m,n}}(\bm{r}) \sin{\theta} \thinspace d\theta d\phi
 	\cr
-	&= \bigg[ \frac{\partial z_t(k r)}{\partial (k r)} \bigg]^{\*} z_n(k r) \int_{0}^{2 \pi} \int_{0}^{\pi} \big[ \bm{\Upsilon_{s,t}}(\theta, \phi) \big]^{\*} \cdot \bm{\Phi_{m,n}}(\theta, \phi) \sin{\theta} \thinspace d\theta d\phi
+	&= \bigg[ \frac{\partial z_t(k r)}{\partial (k r)} \bigg]^{\*} z_n(k r) \int_{-\pi}^{\pi} \int_{0}^{\pi} \big[ \bm{\Upsilon_{s,t}}(\theta, \phi) \big]^{\*} \cdot \bm{\Phi_{m,n}}(\theta, \phi) \sin{\theta} \thinspace d\theta d\phi
 	\cr
-	&+ \bigg[ \frac{z_t(k r)}{k r} \bigg]^{\*} z_n(k r) \int_{0}^{2 \pi} \int_{0}^{\pi} \big[ \bm{\Psi_{s,t}}(\theta, \phi) \big]^{\*} \cdot \bm{\Phi_{m,n}}(\theta, \phi) \sin{\theta} \thinspace d\theta d\phi = 0,
+	&+ \bigg[ \frac{z_t(k r)}{k r} \bigg]^{\*} z_n(k r) \int_{-\pi}^{\pi} \int_{0}^{\pi} \big[ \bm{\Psi_{s,t}}(\theta, \phi) \big]^{\*} \cdot \bm{\Phi_{m,n}}(\theta, \phi) \sin{\theta} \thinspace d\theta d\phi = 0,
 \end{aligned}
 $$
 
@@ -6175,14 +6175,14 @@ which directly follows from orthogonality of the vector spherical harmonics demo
 An identical calculation leads to
 
 $$ \tag{18.92}
-	\int_{0}^{2 \pi} \int_{0}^{\pi} \big[ \bm{M_{s,t}}(\bm{r}) \big]^{\*} \cdot \bm{N_{m,n}}(\bm{r}) \sin{\theta} \thinspace d\theta d\phi = 0.
+	\int_{-\pi}^{\pi} \int_{0}^{\pi} \big[ \bm{M_{s,t}}(\bm{r}) \big]^{\*} \cdot \bm{N_{m,n}}(\bm{r}) \sin{\theta} \thinspace d\theta d\phi = 0.
 $$
 
 Since, according to Eqn. 18.83, \\(\bm{L_{m,n}}\\) and \\(\bm{N_{m,n}}\\) are not fully orthogonal in the 3-dimensional space, we should also expect some complications in the Hilbert space. From Eqn. 18.74, 18.76 and 18.77 it follows that
 
 $$ \tag{18.93}
 \begin{aligned}
-	&\int_{0}^{2 \pi} \int_{0}^{\pi} \big[ \bm{L_{s,t}}(\bm{r}) \big]^{\*} \cdot \bm{N_{m,n}}(\bm{r}) \sin{\theta} \thinspace d\theta d\phi
+	&\int_{-\pi}^{\pi} \int_{0}^{\pi} \big[ \bm{L_{s,t}}(\bm{r}) \big]^{\*} \cdot \bm{N_{m,n}}(\bm{r}) \sin{\theta} \thinspace d\theta d\phi
 	\cr
 	&= n (n + 1) \Bigg( \bigg[ \frac{\partial z_n(k r)}{\partial (k r)} \bigg]^{\*} \frac{z_n(k r)}{k r}
 	+ \bigg[ \frac{z_n(k r)}{k r} \bigg]^{\*} \frac{\big[ k r z_n(k r) \big]'}{k r} \Bigg) \delta_{m,s} \delta_{t,n}.
@@ -6193,7 +6193,7 @@ In the absence of complex numbers \\((z_n \in \mathcal{R})\\), Eqn. 18.93 has a 
 
 $$ \tag{18.94}
 \begin{aligned}
-	&\int_{0}^{2 \pi} \int_{0}^{\pi} \big[ \bm{L_{s,t}}(\bm{r}) \big]^{\*} \cdot \bm{N_{m,n}}(\bm{r}) \sin{\theta} \thinspace d\theta d\phi
+	&\int_{-\pi}^{\pi} \int_{0}^{\pi} \big[ \bm{L_{s,t}}(\bm{r}) \big]^{\*} \cdot \bm{N_{m,n}}(\bm{r}) \sin{\theta} \thinspace d\theta d\phi
 	\cr
 	&= n (n + 1) \frac{z_n(k r)}{k r}
 	\bigg( \frac{z_n(k r)}{k r} + 2 \frac{\partial z_n(k r)}{\partial (k r)} \bigg) \delta_{m,s} \delta_{t,n}
@@ -6208,7 +6208,7 @@ where we once again utilized the identities of Eqn. 18.50.
 Given the asymptotic behavior of the spherical Bessel functions given by Eqn. 18.52, it follows that
 
 $$ \tag{18.95}
-	\int_{0}^{2 \pi} \int_{0}^{\pi} \big[ \bm{L_{s,t}}(\bm{r}) \big]^{\*} \cdot \bm{N_{m,n}}(\bm{r}) \sin{\theta} \thinspace d\theta d\phi
+	\int_{-\pi}^{\pi} \int_{0}^{\pi} \big[ \bm{L_{s,t}}(\bm{r}) \big]^{\*} \cdot \bm{N_{m,n}}(\bm{r}) \sin{\theta} \thinspace d\theta d\phi
 	\simeq 0.
 $$
 
@@ -6237,15 +6237,15 @@ $$ \tag{18.98}
 \small
 \begin{aligned}
 	c_{m,n}
-	&= \frac{ \int_{0}^{2 \pi} \int_{0}^{\pi} \big[ \bm{M_{m,n}^{(1)}}(\bm{r}) \big]^{\*} \cdot \bm{E_i}(\bm{r}) \sin{\theta} \thinspace d\theta d\phi }
-	{ \int_{0}^{2 \pi} \int_{0}^{\pi} \big| \bm{M_{m,n}^{(1)}}(\bm{r}) \big|^2 \sin{\theta} \thinspace d\theta d\phi }
-	= \frac{ \int_{0}^{2 \pi} \int_{0}^{\pi} \big[ \bm{M_{m,n}^{(1)}}(\bm{r}) \big]^{\*} \cdot \bm{E_i}(\bm{r}) \sin{\theta} \thinspace d\theta d\phi }
+	&= \frac{ \int_{-\pi}^{\pi} \int_{0}^{\pi} \big[ \bm{M_{m,n}^{(1)}}(\bm{r}) \big]^{\*} \cdot \bm{E_i}(\bm{r}) \sin{\theta} \thinspace d\theta d\phi }
+	{ \int_{-\pi}^{\pi} \int_{0}^{\pi} \big| \bm{M_{m,n}^{(1)}}(\bm{r}) \big|^2 \sin{\theta} \thinspace d\theta d\phi }
+	= \frac{ \int_{-\pi}^{\pi} \int_{0}^{\pi} \big[ \bm{M_{m,n}^{(1)}}(\bm{r}) \big]^{\*} \cdot \bm{E_i}(\bm{r}) \sin{\theta} \thinspace d\theta d\phi }
 	{ n (n+1) \big| j_n(k r) \big|^2 },
 	\cr
 	d_{m,n}
-	&= \frac{ \int_{0}^{2 \pi} \int_{0}^{\pi} \big[ \bm{N_{m,n}^{(1)}}(\bm{r}) \big]^{\*} \cdot \bm{E_i}(\bm{r}) \sin{\theta} \thinspace d\theta d\phi }
-	{ \int_{0}^{2 \pi} \int_{0}^{\pi} \big| \bm{N_{m,n}^{(1)}}(\bm{r}) \big|^2 \sin{\theta} \thinspace d\theta d\phi }
-	= \frac{ \int_{0}^{2 \pi} \int_{0}^{\pi} \big[ \bm{N_{m,n}^{(1)}}(\bm{r}) \big]^{\*} \cdot \bm{E_i}(\bm{r}) \sin{\theta} \thinspace d\theta d\phi }
+	&= \frac{ \int_{-\pi}^{\pi} \int_{0}^{\pi} \big[ \bm{N_{m,n}^{(1)}}(\bm{r}) \big]^{\*} \cdot \bm{E_i}(\bm{r}) \sin{\theta} \thinspace d\theta d\phi }
+	{ \int_{-\pi}^{\pi} \int_{0}^{\pi} \big| \bm{N_{m,n}^{(1)}}(\bm{r}) \big|^2 \sin{\theta} \thinspace d\theta d\phi }
+	= \frac{ \int_{-\pi}^{\pi} \int_{0}^{\pi} \big[ \bm{N_{m,n}^{(1)}}(\bm{r}) \big]^{\*} \cdot \bm{E_i}(\bm{r}) \sin{\theta} \thinspace d\theta d\phi }
 	{ n (n+1) \Big(
 		\big| [k r j_n(k r)]' / (k r) \big|^2
 		+ n (n+1) \big| j_n(k r) / (k r) \big|^2
@@ -6264,7 +6264,7 @@ in terms of the *Hilbert space projection operator*
 
 $$ \tag{18.100}
 	\mathcal{P_h}(\bm{V}, \bm{W})
-	= \int_{0}^{2 \pi} \int_{0}^{\pi} \big[ \bm{W}(\bm{r}) \big]^{\*} \cdot \bm{V}(\bm{r}) \sin{\theta} \thinspace d\theta d\phi,
+	= \int_{-\pi}^{\pi} \int_{0}^{\pi} \big[ \bm{W}(\bm{r}) \big]^{\*} \cdot \bm{V}(\bm{r}) \sin{\theta} \thinspace d\theta d\phi,
 $$
 
 then Eqn. 18.98 can be interpreted the projection into the Hilbert space,
@@ -6336,21 +6336,21 @@ Eqn. 18.103-18.107 give a complete description of an electromagnetic plane wave 
 Let us first evaluate
 
 $$ \tag{18.114}
-	\int_{0}^{2 \pi} \int_{0}^{\pi} \big[ \bm{M_{m,n}^{(1)}}(\bm{r}) \big]^{\*} \cdot \bm{E_i}(\bm{r}) \sin{\theta} \thinspace d\theta d\phi.
+	\int_{-\pi}^{\pi} \int_{0}^{\pi} \big[ \bm{M_{m,n}^{(1)}}(\bm{r}) \big]^{\*} \cdot \bm{E_i}(\bm{r}) \sin{\theta} \thinspace d\theta d\phi.
 $$
 
 Since, according to Eqn. 18.107, the expression of the incident wave only contains first-order harmonic functions of \\(\phi\\), orthogonality of the Fourier basis makes the integral of Eqn. 18.114 vanish unless \\(m = \pm 1\\). Furthermore, the definition of \\(\bm{M_{m,n}}\\) (given by Eqn. 18.63) omits the radial basis vector, so the latter does not require further consideration. Therefore,
 
 $$ \tag{18.115}
 \begin{aligned}
-	& \frac{-1}{ \gamma_{m,n} \big[ j_n(k r) \big]^{\*} }\int_{0}^{2 \pi} \int_{0}^{\pi} \big[ \bm{M_{m,n}^{(1)}}(\bm{r}) \big]^{\*} \cdot \bm{E_i}(\bm{r}) \sin{\theta} \thinspace d\theta d\phi
+	& \frac{-1}{ \gamma_{m,n} \big[ j_n(k r) \big]^{\*} }\int_{-\pi}^{\pi} \int_{0}^{\pi} \big[ \bm{M_{m,n}^{(1)}}(\bm{r}) \big]^{\*} \cdot \bm{E_i}(\bm{r}) \sin{\theta} \thinspace d\theta d\phi
 	\cr
-	&= E_X \int_{0}^{2 \pi} \int_{0}^{\pi} e^{-i m \phi + i k r \cos{\theta}} \bigg(
+	&= E_X \int_{-\pi}^{\pi} \int_{0}^{\pi} e^{-i m \phi + i k r \cos{\theta}} \bigg(
 		i m \frac{P_n^m(\cos{\theta})}{\sin{\theta}} \cos{\theta} \cos{\phi}
 		- \frac{\partial P_n^m(\cos{\theta})}{\partial \theta} \sin{\phi}
 	\bigg) \sin{\theta} \thinspace d\theta d\phi
 	\cr
-	&+ E_Y \int_{0}^{2 \pi} \int_{0}^{\pi} e^{-i m \phi + i k r \cos{\theta}} \bigg(
+	&+ E_Y \int_{-\pi}^{\pi} \int_{0}^{\pi} e^{-i m \phi + i k r \cos{\theta}} \bigg(
 		i m \frac{P_n^m(\cos{\theta})}{\sin{\theta}} \cos{\theta} \sin{\phi}
 		+ \frac{\partial P_n^m(\cos{\theta})}{\partial \theta} \cos{\phi}
 	\bigg) \sin{\theta} \thinspace d\theta d\phi.
@@ -6360,16 +6360,16 @@ $$
 Each term of the sum given above can be factored into a product of the \\(r\\), \\(\theta\\), \\(\phi\\) components. Using the identities
 
 $$ \tag{18.116}
-	\int_{0}^{2 \pi} \sin{\phi} \thinspace e^{\pm i \phi} \thinspace d\phi = \pm i \pi,
+	\int_{-\pi}^{\pi} \sin{\phi} \thinspace e^{\pm i \phi} \thinspace d\phi = \pm i \pi,
 	\quad
-	\int_{0}^{2 \pi} \cos{\phi} \thinspace e^{\pm i \phi} \thinspace d\phi = \pi,
+	\int_{-\pi}^{\pi} \cos{\phi} \thinspace e^{\pm i \phi} \thinspace d\phi = \pi,
 $$
 
 the integrals taken over the \\(\phi\\) angle can be evaluated analytically. Eqn. 18.115 is thus reduced to
 
 $$ \tag{18.117}
 \begin{aligned}
-	& \frac{-1}{ \gamma_{m,n} \big[ j_n(k r) \big]^{\*} }\int_{0}^{2 \pi} \int_{0}^{\pi} \big[ \bm{M_{m,n}^{(1)}}(\bm{r}) \big]^{\*} \cdot \bm{E_i}(\bm{r}) \sin{\theta} \thinspace d\theta d\phi
+	& \frac{-1}{ \gamma_{m,n} \big[ j_n(k r) \big]^{\*} }\int_{-\pi}^{\pi} \int_{0}^{\pi} \big[ \bm{M_{m,n}^{(1)}}(\bm{r}) \big]^{\*} \cdot \bm{E_i}(\bm{r}) \sin{\theta} \thinspace d\theta d\phi
 	\cr
 	&= \delta_{m,\pm 1} (i m E_X + E_Y) \pi \int_{0}^{\pi} e^{i k r \cos{\theta}} \bigg(
 		  \frac{P_n^m(\cos{\theta})}{\sin{\theta}} \cos{\theta}
@@ -6439,7 +6439,7 @@ Furthermore, the minus sign found in Eqn. 18.118.2 can be dealt with by multiply
 
 $$ \tag{18.123}
 \begin{aligned}
-	& \int_{0}^{2 \pi} \int_{0}^{\pi} \big[ \bm{M_{m,n}^{(1)}}(\bm{r}) \big]^{\*} \cdot \bm{E_i}(\bm{r}) \sin{\theta} \thinspace d\theta d\phi
+	& \int_{-\pi}^{\pi} \int_{0}^{\pi} \big[ \bm{M_{m,n}^{(1)}}(\bm{r}) \big]^{\*} \cdot \bm{E_i}(\bm{r}) \sin{\theta} \thinspace d\theta d\phi
 	\cr
 	&= \delta_{m,\pm 1} (i E_X + m E_Y) 2 \pi i^n \gamma_{1,n} n (n+1) \big| j_n(k r) \big|^2.
 \end{aligned}
@@ -6457,25 +6457,25 @@ The value of the second coefficient can be obtained in a similar manner (except,
 $$ \tag{18.125}
 \small
 \begin{aligned}
-	& \frac{1}{\gamma_{m,n}} \int_{0}^{2 \pi} \int_{0}^{\pi} \big[ \bm{N_{m,n}^{(1)}}(\bm{r}) \big]^{\*} \cdot \bm{E_i}(\bm{r}) \sin{\theta} \thinspace d\theta d\phi
+	& \frac{1}{\gamma_{m,n}} \int_{-\pi}^{\pi} \int_{0}^{\pi} \big[ \bm{N_{m,n}^{(1)}}(\bm{r}) \big]^{\*} \cdot \bm{E_i}(\bm{r}) \sin{\theta} \thinspace d\theta d\phi
 	\cr
 	&= E_X \Bigg[ \frac{\big[ k r j_n(k r) \big]'}{k r} \Bigg]^{\*}
-		\int_{0}^{2 \pi} \int_{0}^{\pi} e^{-i m \phi + i k r \cos{\theta}} \bigg(
+		\int_{-\pi}^{\pi} \int_{0}^{\pi} e^{-i m \phi + i k r \cos{\theta}} \bigg(
 		\frac{\partial P_n^m(\cos{\theta})}{\partial \theta} \cos{\theta} \cos{\phi}
 		+ i m \frac{P_n^m(\cos{\theta})}{\sin{\theta}} \sin{\phi}
 	\bigg) \sin{\theta} \thinspace d\theta d\phi
 	\cr
 	&+ E_X \bigg[ \frac{j_n(k r)}{k r} \bigg]^{\*} n (n + 1)
-		\int_{0}^{2 \pi} \int_{0}^{\pi} e^{-i m \phi + i k r \cos{\theta}}
+		\int_{-\pi}^{\pi} \int_{0}^{\pi} e^{-i m \phi + i k r \cos{\theta}}
 		P_n^m(\cos{\theta}) \sin^2{\theta} \cos{\phi}
 	\thinspace d\theta d\phi
 	\cr
 	&+ E_Y \bigg[ \frac{j_n(k r)}{k r} \bigg]^{\*} n (n + 1)
-		\int_{0}^{2 \pi} \int_{0}^{\pi} e^{-i m \phi + i k r \cos{\theta}}
+		\int_{-\pi}^{\pi} \int_{0}^{\pi} e^{-i m \phi + i k r \cos{\theta}}
 		P_n^m(\cos{\theta}) \sin^2{\theta} \sin{\phi}
 	\thinspace d\theta d\phi
 	\cr
-	&+ E_Y \Bigg[ \frac{\big[ k r j_n(k r) \big]'}{k r} \Bigg]^{\*}       \int_{0}^{2 \pi} \int_{0}^{\pi} e^{-i m \phi + i k r \cos{\theta}} \bigg(
+	&+ E_Y \Bigg[ \frac{\big[ k r j_n(k r) \big]'}{k r} \Bigg]^{\*}       \int_{-\pi}^{\pi} \int_{0}^{\pi} e^{-i m \phi + i k r \cos{\theta}} \bigg(
 		\frac{\partial P_n^m(\cos{\theta})}{\partial \theta} \cos{\theta} \sin{\phi}
 		- i m \frac{P_n^m(\cos{\theta})}{\sin{\theta}} \cos{\phi}
 	\bigg)  \sin{\theta} \thinspace d\theta d\phi.
@@ -6487,7 +6487,7 @@ Since, once again, \\(m = \pm 1\\), we may utilize Eqn. 18.116 to perform integr
 $$ \tag{18.126}
 \small
 \begin{aligned}
-	& \frac{1}{\gamma_{m,n}} \int_{0}^{2 \pi} \int_{0}^{\pi} \big[ \bm{N_{m,n}^{(1)}}(\bm{r}) \big]^{\*} \cdot \bm{E_i}(\bm{r}) \sin{\theta} \thinspace d\theta d\phi
+	& \frac{1}{\gamma_{m,n}} \int_{-\pi}^{\pi} \int_{0}^{\pi} \big[ \bm{N_{m,n}^{(1)}}(\bm{r}) \big]^{\*} \cdot \bm{E_i}(\bm{r}) \sin{\theta} \thinspace d\theta d\phi
 	\cr
 	&= \delta_{m,\pm 1} (E_X - i m E_Y)
 	\bigg[ \frac{j_n(k r)}{k r} \bigg]^{\*}
@@ -6568,7 +6568,7 @@ Substitution of Eqn. 18.128 and 18.130 finally allows us to evaluate Eqn. 18.126
 
 $$ \tag{18.131}
 \begin{aligned}
-	& \int_{0}^{2 \pi} \int_{0}^{\pi} \big[ \bm{N_{m,n}^{(1)}}(\bm{r}) \big]^{\*} \cdot \bm{E_i}(\bm{r}) \sin{\theta} \thinspace d\theta d\phi
+	& \int_{-\pi}^{\pi} \int_{0}^{\pi} \big[ \bm{N_{m,n}^{(1)}}(\bm{r}) \big]^{\*} \cdot \bm{E_i}(\bm{r}) \sin{\theta} \thinspace d\theta d\phi
 	\cr
 	&= \delta_{m,\pm 1} (i m E_X + E_Y) 2 \pi i^n \gamma_{1,n} n (n+1)
 	\Bigg( \Bigg| \frac{\big[ k r j_n(k r) \big]'}{k r} \Bigg|^2 + n (n + 1) \bigg| \frac{j_n(k r)}{k r} \bigg|^2
@@ -7554,7 +7554,7 @@ $$ \tag{19.28}
 	\end{bmatrix}.
 $$
 
-As it turns out, the resulting magnitude depends on the state of the incident wave:
+As it turns out, the resulting magnitude *depends on the state of the incident light*:
 
 $$ \tag{19.29}
 \begin{aligned}
@@ -7609,19 +7609,30 @@ $$ \tag{19.30}
 	\end{bmatrix}.
 $$
 
+After we substitute Eqn. 19.30 into 19.29, it is easy to show that
+
+$$ \tag{19.3x}
+	\int_{-\pi}^{\pi}
+	|E_x|^2 d\phi =
+	\int_{-\pi}^{\pi}
+	|E_y|^2 d\phi =
+	\pi \left( a\_{X}^2 + a\_{Y}^2 \right) =
+	\pi |\bm{E_0}|^2.
+$$
+
+Thus, any expression that depends on the components of the incident field only by means of Eqn. 19.3x is valid for an *arbitrary state of the incident light*.
+
 Let us consider the special case of *natural light* that has neither a preferred orientation \\((\text{so } a\_{X} = a\_{Y} = |\bm{E_0}|)\\) nor a well-defined phase relationship (so \\(\delta\_{X}\\) and \\(\delta\_{Y}\\) are essentially random) \[[6](#references) (ch. 10.9)\]. Then, a straightforward calculation yields
 
 $$ \tag{19.31}
-\begin{aligned}
 	\frac{1}{4 \pi^2} \int_{-\pi}^{\pi} \int_{-\pi}^{\pi}
 	|E_x|^2 d\delta_X d\delta_Y =
 	\frac{1}{4 \pi^2} \int_{-\pi}^{\pi} \int_{-\pi}^{\pi}
 	|E_y|^2 d\delta_X d\delta_Y =
 	|\bm{E_0}|^2.
-\end{aligned}
 $$
 
-This assumption allows us to directly relate the scattered intensity \\(\Iota_s\\) to the incident irradiance \\(\Epsilon_i\\) (the latter is given by Eqn 16.4):
+This assumption allows us to directly relate the scattered intensity \\(\Iota_s\\) to the incident irradiance \\(\Epsilon_i\\) (the latter is given by Eqn 16.4) by averaging Eqn. 19.27:
 
 $$ \tag{19.32}
 	\Iota_s(\theta, \phi, \omega)
@@ -7727,24 +7738,34 @@ Given the probability density function, the expected value of \\(\cos{\theta}\\)
 $$ \tag{19.37}
 	g(\omega)
 	= \braket{\cos{\theta}}
-	= \int_{0}^{2 \pi} \int_{0}^{\pi} p_s(\theta, \phi, \omega) \cos{\theta} \sin{\theta} d\theta d\phi.
+	= \int_{-\pi}^{\pi} \int_{0}^{\pi} p_s(\theta, \phi, \omega) \cos{\theta} \sin{\theta} d\theta d\phi.
 $$
 
 If the angular distribution is *isotropic* (that is, invariant with respect to direction), then \\(f_p = 1\\) and \\(g = 0\\). For spherical particles, due to the Mie effect, we should expect \\(g \to 1\\) as \\(x \to \infty\\).
 
-In order to compute the probability density function, we need to evaluate both the scattered intensity and the scattered power. The former is given by Eqn. 19.32; the latter can be obtained by combining Eqn. 16.14 and 16.15:
+In order to compute the probability density function, we need to evaluate both the scattered intensity and the scattered power. The latter can be obtained by combining Eqn. 16.14 and 16.15:
 
 $$ \tag{19.38}
 	\Phi_s(\omega)
-	= \int_{0}^{2 \pi} \int_{0}^{\pi} \Iota_s(\theta, \phi, \omega) \sin{\theta} d\theta d\phi.
+	= \int_{-\pi}^{\pi} \int_{0}^{\pi} \Iota_s(\theta, \phi, \omega) \sin{\theta} d\theta d\phi.
 $$
 
-In the particular case of spherical particles, we may utilize Eqn. 19.32 and 19.33 once more:
+In the particular case of spherical particles, we may utilize Eqn. 19.27-19.3x to obtain
 
 $$ \tag{19.39}
 \begin{aligned}
 	\Phi_s(\omega)
-	= \frac{2 \pi}{k^2(\omega)} \Epsilon_i(\omega)
+	&= \frac{\mu\_0^{-1}}{2} \frac{\eta(\omega)}{c} \frac{1}{k^2(\omega)}
+	\int_{-\pi}^{\pi} \int_{0}^{\pi}
+	\left(
+	\big| s_1(\theta, \omega) \big|^2 \big| E_y(\phi, \omega) \big|^2 + \big| s_2(\theta, \omega) \big|^2 \big| E_x(\phi, \omega) \big|^2
+	\right)
+	\sin{\theta} d\theta d\phi
+	\cr
+	&= \frac{\mu\_0^{-1}}{2} \frac{\eta(\omega)}{c} \frac{2 \pi}{k^2(\omega)} \big| \bm{E_0}(\omega) \big|^2
+	\int_{0}^{\pi} \frac{ \left| s_1(\theta, \omega) \right|^2 + \left| s_2(\theta, \omega) \right|^2 }{2} \sin{\theta} d\theta
+	\cr
+	&= \frac{2 \pi}{k^2(\omega)} \Epsilon_i(\omega)
 	\int_{0}^{\pi} \frac{ \left| s_1(\theta, \omega) \right|^2 + \left| s_2(\theta, \omega) \right|^2 }{2} \sin{\theta} d\theta,
 \end{aligned}
 $$
@@ -7778,15 +7799,15 @@ $$ \tag{19.42}
 	\sum_{n=1}^{\infin} (2 n + 1) \left( |a_n|^2 + |b_n|^2 \right).
 $$
 
-As we return to Eqn. 19.37 and take Eqn. 19.32 into account, we face another integral
+As we return to Eqn. 19.37, we face a slightly different integral with an additional \\(\cos{\theta}\\) factor:
 
 $$ \tag{19.43}
 \begin{aligned}
 	g(\omega)
-	&= 2 \pi \int_{0}^{\pi} \frac{I_s(\theta, \phi, \omega)}{\Phi_s(\omega)} \cos{\theta} \sin{\theta} d\theta
-	= \frac{
-		\int_{0}^{\pi} \left( \left| s_1(\theta, \omega) \right|^2 + \left| s_2(\theta, \omega) \right|^2 \right) \cos{\theta} \sin{\theta} d\theta
-	}{\Phi_s(\omega)}.
+	&= \int_{-\pi}^{\pi} \int_{0}^{\pi} \frac{I_s(\theta, \phi, \omega)}{\Phi_s(\omega)} \cos{\theta} \sin{\theta} d\theta d\phi
+	\cr
+	&= \frac{2}{\Phi_s(\omega)}
+		\int_{0}^{\pi} \frac{ \left| s_1(\theta, \omega) \right|^2 + \left| s_2(\theta, \omega) \right|^2 }{2} \cos{\theta} \sin{\theta} d\theta.
 \end{aligned}
 $$
 
