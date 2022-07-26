@@ -7536,7 +7536,7 @@ $$
 
 where \\(S\\) is the scattering matrix.
 
-Since the scattering matrix of a spherical particle (given by Eqn. 19.6) is diagonal, our task is reduced to determination of the squared magnitude of the complex vector
+Since the scattering matrix of a spherical particle (given by Eqn. 19.6) is diagonal, our task is reduced to determination of the squared magnitude of the tangent vector
 
 $$ \tag{19.28}
 	\begin{bmatrix}
@@ -7551,12 +7551,34 @@ $$ \tag{19.28}
 	\begin{bmatrix}
 		E_x \cr
 		E_y \cr
+	\end{bmatrix},
+$$
+
+with the transformation of the components of the phasor of the incident wave from the laboratory reference frame to the scattering coordinate system given by Eqn. 15.11:
+
+$$ \tag{19.29}
+	\begin{bmatrix}
+		E_{x} \cr
+		E_{y} \cr
+	\end{bmatrix} = R(-\phi)
+	\begin{bmatrix}
+		E\_{X} \cr
+		E\_{Y} \cr
+	\end{bmatrix}
+	=
+	\begin{bmatrix}
+		\phantom{-}\cos{\phi} & \sin{\phi} \cr
+		-\sin{\phi}           & \cos{\phi} \cr
+	\end{bmatrix}
+	\begin{bmatrix}
+		a\_{X} e^{i \delta_X} \cr
+		a\_{Y} e^{i \delta_Y} \cr
 	\end{bmatrix}.
 $$
 
-As it turns out, the resulting magnitude *depends on the state of the incident light*:
+As a consequence, the squared magnitude of the tangent vector *depends on the state of the incident light*:
 
-$$ \tag{19.29}
+$$ \tag{19.30}
 \begin{aligned}
 	\begin{vmatrix}
 		E_{\theta} \cr
@@ -7579,37 +7601,11 @@ $$ \tag{19.29}
 		E_x \cr
 		E_y \cr
 	\end{bmatrix}
-	= |E_x|^2 |s_2|^2 + |E_y|^2 |s_1|^2,
+	= |E_x|^2 |s_2|^2 + |E_y|^2 |s_1|^2.
 \end{aligned}
 $$
 
-where the components of the phasor of the incident wave transformed from the laboratory reference frame to the scattering coordinate system are given by Eqn. 15.11:
-
-$$ \tag{19.30}
-	\begin{bmatrix}
-		E_{x}(\phi, \omega) \cr
-		E_{y}(\phi, \omega) \cr
-		0 \cr
-	\end{bmatrix} = R_z(-\phi)
-	\begin{bmatrix}
-		E\_{X} \cr
-		E\_{Y} \cr
-		0
-	\end{bmatrix}
-	=
-	\begin{bmatrix}
-		\phantom{-}\cos{\phi} & \sin{\phi} & 0 \cr
-		-\sin{\phi}           & \cos{\phi} & 0 \cr
-		0                     & 0          & 1 \cr
-	\end{bmatrix}
-	\begin{bmatrix}
-		a\_{X} e^{i \delta_X} \cr
-		a\_{Y} e^{i \delta_Y} \cr
-		0 \cr
-	\end{bmatrix}.
-$$
-
-After we substitute Eqn. 19.30 into 19.29, it is easy to show that
+On the other hand, using Eqn. 19.29, it is easy to show that
 
 $$ \tag{19.3x}
 	\int_{-\pi}^{\pi}
