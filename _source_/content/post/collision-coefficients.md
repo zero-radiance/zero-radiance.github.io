@@ -8188,6 +8188,13 @@ $$
 
 Thus, we see that polarizability of a small particle is linearly proportional to its volume \\(V_m\\).
 
+For a spherical particle,
+
+$$ \tag{21.2x}
+	\mathcal{\Alpha_m} = \alpha_m =
+	4 \pi a^3 \frac{m^2 - 1}{m^2 + 2}.
+$$
+
 #### Scattering Matrix
 
 In order to perform light scattering calculations, it is more convenient to use a reference frame that is fixed with respect to the light source rather than the particle. In the so-called laboratory reference frame (described in Sec. 15), the Cartesian components of the electric field phasor \\(\bm{E_0}\\) of the incident wave propagating along the \\(Z\\)-axis are
@@ -8387,44 +8394,59 @@ $$ \tag{21.34}
 	\left| S(\theta, \phi, \alpha, \beta, \gamma) R(-\phi) \bm{E_0} \right|^2
 	\sin{\beta} d\alpha d\beta d\gamma
 	\cr
-	&= \frac{1}{8 \pi^2}
-	\bm{E_0^{\dagger}} R(\phi)
-	\left(
+	&= \bm{E_0^H} R(\phi)
+	\left( \frac{1}{8 \pi^2}
 	\int_{-\pi}^{\pi} \int_{0}^{\pi} \int_{-\pi}^{\pi}
-	S^{\dagger}(\theta, \phi, \alpha, \beta, \gamma) S(\theta, \phi, \alpha, \beta, \gamma)
+	S^H S
 	\sin{\beta} d\alpha d\beta d\gamma
 	\right)
 	R(-\phi) \bm{E_0},
 \end{aligned}
 $$
 
-where the dagger symbol denotes complex conjugation URL.
+where the \\(S^H\\) denotes the [conjugate transpose](https://en.wikipedia.org/wiki/Conjugate_transpose) of the scattering matrix.
 
-The resulting integral is considerably simplified by the use of [integrals of trigonometric functions](https://en.wikipedia.org/wiki/List_of_integrals_of_trigonometric_functions). Let us define the cross and the diagonal terms
+The resulting integral is considerably simplified by the use of [integrals of trigonometric functions](https://en.wikipedia.org/wiki/List_of_integrals_of_trigonometric_functions). If we define the shorthand notation for the cross and the diagonal terms
 
 $$ \tag{21.35}
 \begin{aligned}
-	c &= \mathcal{Re} \lbrace (\alpha_1 \mathcal{Re} \lbrace \alpha_2 \rbrace + \alpha_1+\alpha_2) \mathcal{Re} \lbrace \alpha_3 \rbrace\rbrace +
-	\mathcal{Im} \lbrace \alpha_1 \mathcal{Im} \lbrace \alpha_2 \rbrace + (\alpha_1+\alpha_2) \mathcal{Im} \lbrace \alpha_3 \rbrace \rbrace
-\cr
-	d &= |\alpha_1|^2+|\alpha_2|^2+|\alpha_3|^2
+	c &= \mathcal{Re} \lbrace \alpha_1 \mathcal{Re} \lbrace \alpha_2 \rbrace + (\alpha_1+\alpha_2) \mathcal{Re} \lbrace \alpha_3 \rbrace\rbrace +
+	\mathcal{Im} \lbrace \alpha_1 \mathcal{Im} \lbrace \alpha_2 \rbrace + (\alpha_1+\alpha_2) \mathcal{Im} \lbrace \alpha_3 \rbrace \rbrace,
+	\cr
+	d &= |\alpha_1|^2+|\alpha_2|^2+|\alpha_3|^2,
 \end{aligned}
 $$
 
-Then ...
+then the value of the integral of Eqn. 21.34 can be expressed as
 
 $$ \tag{21.36}
 \begin{aligned}
-	\int_{-\pi}^{\pi} \int_{0}^{\pi} \int_{-\pi}^{\pi}
-	S^{\dagger} S
+	\frac{1}{8 \pi^2} \int_{-\pi}^{\pi} \int_{0}^{\pi} \int_{-\pi}^{\pi}
+	S^H S
 	\sin{\beta} d\alpha d\beta d\gamma
-	= \frac{k^6}{120} \left(
-	(6 d - c) \sin^2{\theta} + (8 d + 2 c) \cos^2{\theta}
-	\right)
+	= \frac{k^6}{16 \pi^2} \frac{4 d + c}{15}
 	\begin{bmatrix}
-		-1 & \phantom{-}1 \cr
-		\phantom{-}1 & -1 \cr
+		\cos^2{\theta} + \frac{2 d - 2 c}{4 d + c} \sin^2{\theta} & 0 \cr
+		0 & 1 \cr
+	\end{bmatrix}.
+\end{aligned}
+$$
+
+The expression for a spherical particle, with \\(\mathcal{\Alpha_m} = \alpha_m\\), is even simpler:
+
+$$ \tag{21.37}
+\begin{aligned}
+	S^H S
+	= \frac{k^6}{16 \pi^2} |\alpha_m|^2
+	\begin{bmatrix}
+		\cos^2{\theta} & 0 \cr
+		0 & 1 \cr
 	\end{bmatrix}
+	= \left| \frac{m^2-1}{m^2+2} \right|^2 x^6
+	\begin{bmatrix}
+		\cos^2{\theta} & 0 \cr
+		0 & 1 \cr
+	\end{bmatrix}.
 \end{aligned}
 $$
 
