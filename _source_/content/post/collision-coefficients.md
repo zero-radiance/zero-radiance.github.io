@@ -7280,6 +7280,8 @@ $$
 
 The natural sizes \\(x_n\\) are always complex, which makes the natural frequencies \\(\omega_n\\) complex as well. This implies that, no matter what the frequency of the incident wave is, the amplitudes of the scattered and the internal fields remain finite \[[17](#references) (ch. 9.25)\]. Nevertheless, a certain combination of parameters that reduces the magnitude of the denominator to a small value may simultaneously make the numerator large, producing a spike in the plot of the expansion coefficient; this phenomenon is called [resonance](https://en.wikipedia.org/wiki/Resonance) \[[5](#references) (vol. I, ch. 23)\].
 
+-->
+
 #### Limiting Cases
 
 Let us take a closer look at the expressions of the expansion coefficients of the scattered field given by Eqn. 18.156.
@@ -7502,8 +7504,6 @@ $$
 
 vanish. Eqn. 19.24 is the basis of the famous law of [Rayleigh scattering](https://en.wikipedia.org/wiki/Rayleigh_scattering) that explains the color of the sky: when molecules of the atmosphere scatter sunlight, the intensity of blue light, which has a shorter wavelength, is much greater than of the rest of the [visible spectrum](https://en.wikipedia.org/wiki/Visible_spectrum), since the size parameter \\(x\\) is inversely proportional to the wavelength \\(\lambda\\).
 
--->
-
 #### Light Intensity and Efficiency Factors
 
 Since the frequencies of the electromagnetic radiation associated with visible light are so high, it is practically impossible to measure the instantaneous values of the electromagnetic field \[[8](#references) (ch. 7)\]. For this reason, typical applications of light scattering are concerned with the rate of the flow of electromagnetic energy, which is connected to light intensity via the optical theorem.
@@ -7558,8 +7558,8 @@ with the transformation of the components of the phasor of the incident wave fro
 
 $$ \tag{19.29}
 	\begin{bmatrix}
-		E_{x} \cr
-		E_{y} \cr
+		E_x(\phi) \cr
+		E_y(\phi) \cr
 	\end{bmatrix} = R(-\phi)
 	\begin{bmatrix}
 		E\_{X} \cr
@@ -7605,30 +7605,18 @@ $$ \tag{19.30}
 \end{aligned}
 $$
 
-On the other hand, using Eqn. 19.29, it is easy to show that
-
-$$ \tag{19.3x}
-	\int_{-\pi}^{\pi}
-	|E_x|^2 d\phi =
-	\int_{-\pi}^{\pi}
-	|E_y|^2 d\phi =
-	\pi \left( a\_{X}^2 + a\_{Y}^2 \right) =
-	\pi |\bm{E_0}|^2.
-$$
-
-Thus, any expression that depends on the components of the incident field only by means of the integrals of Eqn. 19.3x is valid for an *arbitrary state of the incident light*.
-
-Let us consider the special case of *natural light* that has neither a preferred orientation \\((\text{so } a\_{X} = a\_{Y} = |\bm{E_0}|)\\) nor a well-defined phase relationship (so \\(\delta\_{X}\\) and \\(\delta\_{Y}\\) are essentially random) \[[6](#references) (ch. 10.9)\]. Then, a straightforward calculation yields
+Let us consider the special case of *natural light* that has neither a preferred orientation nor a well-defined phase relationship \[[6](#references) (ch. 10.9)\]. Since the elements of the scattering matrix of a spherical particle are independent of the azimuthal angle \\(\phi\\), we may express this assumption by averaging Eqn. 19.29 over all possible orientations of the plane of reference. A straightforward calculation yields
 
 $$ \tag{19.31}
-	\frac{1}{4 \pi^2} \int_{-\pi}^{\pi} \int_{-\pi}^{\pi}
-	|E_x|^2 d\delta_X d\delta_Y =
-	\frac{1}{4 \pi^2} \int_{-\pi}^{\pi} \int_{-\pi}^{\pi}
-	|E_y|^2 d\delta_X d\delta_Y =
-	|\bm{E_0}|^2.
+	\frac{1}{2 \pi} \int_{-\pi}^{\pi} \big| E_x(\phi) \big|^2 d\phi =
+	\frac{1}{2 \pi} \int_{-\pi}^{\pi} \big| E_y(\phi) \big|^2 d\phi =
+	\frac{1}{2} \left( a\_{X}^2 + a\_{Y}^2 \right) =
+	\frac{1}{2} |\bm{E_0}|^2.
 $$
 
-This assumption allows us to directly relate the scattered intensity \\(\Iota_s\\) to the incident irradiance \\(\Epsilon_i\\) (the latter is given by Eqn 16.4) by averaging Eqn. 19.27:
+As a corollary, any expression that depends on the components of the incident field only by means of the integrals of Eqn. 19.31 is valid for an *arbitrary state of the incident light*.
+
+The natural light assumption allows us to directly relate the scattered intensity \\(\Iota_s\\) to the incident irradiance \\(\Epsilon_i\\) (the latter is given by Eqn 16.4) by averaging Eqn. 19.27:
 
 $$ \tag{19.32}
 	\Iota_s(\theta, \phi, \omega)
@@ -7746,7 +7734,7 @@ $$ \tag{19.38}
 	= \int_{-\pi}^{\pi} \int_{0}^{\pi} \Iota_s(\theta, \phi, \omega) \sin{\theta} d\theta d\phi.
 $$
 
-In the particular case of spherical particles, we may utilize Eqn. 19.27-19.3x to obtain
+In the particular case of spherical particles, we may utilize Eqn. 19.27-19.31 to obtain
 
 $$ \tag{19.39}
 \begin{aligned}
@@ -7987,14 +7975,14 @@ In order to apply the results of Sec. 17, we must tailor them to our particular 
 
 $$ \tag{21.2}
 	\bm{E_s}(\bm{r}, \omega)
-	\simeq \frac{e^{i k(\omega) r}}{k(\omega) r} \mathcal{S_{ef}} (\bm{n_s}, \bm{n_i}, \omega) \cdot \bm{E_0}(\bm{n_i}, \omega).
+	\simeq \frac{e^{i k_0(\omega) r}}{k_0(\omega) r} \mathcal{S_{ef}} (\bm{n_s}, \bm{n_i}, \omega) \cdot \bm{E_0}(\bm{n_i}, \omega).
 $$
 
 The corresponding expression for a dipole is found in Eqn. 13.5:
 
 $$ \tag{21.3}
 	\bm{E_s}(\bm{r}, \omega)
-	\simeq \frac{e^{i k(\omega) r}}{k(\omega) r} \frac{k^3(\omega)}{4 \pi}
+	\simeq \frac{e^{i k_0(\omega) r}}{k_0(\omega) r} \frac{k_0^3(\omega)}{4 \pi}
 	\big( \mathcal{I} - \bm{n_s} \otimes \bm{n_s} \big) \cdot \mathcal{\Alpha_m}(V_m, \omega)
 	\cdot \bm{E_0}(\bm{n_i}, \omega).
 $$
@@ -8003,7 +7991,7 @@ Thus, the scattering dyadic \\(\mathcal{S\_{ef}}\\) and the molecular polarizabi
 
 $$ \tag{21.4}
 	\mathcal{S_{ef}} (\bm{n_s}, \bm{n_i}, \omega)
-	\simeq \frac{k^3(\omega)}{4 \pi}
+	\simeq \frac{k_0^3(\omega)}{4 \pi}
 	\big( \mathcal{I} - \bm{n_s} \otimes \bm{n_s} \big) \cdot \mathcal{\Alpha_m}(V_m, \omega).
 $$
 
@@ -8172,7 +8160,7 @@ $$ \tag{21.21}
 	\sum_n L_n = \frac{1}{\epsilon_0}.
 $$
 
-When Gaussian units are used, the depolarization factors sum up to \\(1\\) \[[4](#references) (ch. 6.32)\].
+When [Gaussian units](https://en.wikipedia.org/wiki/Gaussian_units) are used, the depolarization factors sum up to \\(1\\) \[[4](#references) (ch. 6.32)\].
 
 In order to obtain the values of the polarizability parameters \\(\alpha_1, \alpha_2, \alpha_3\\), we must project Eqn. 21.12 onto the principal axes of the molecule \\(\bm{v_n}\\), substitute Eqn. 21.17, and compare the resulting expression to Eqn. 21.8:
 
@@ -8195,6 +8183,8 @@ $$ \tag{21.2x}
 	4 \pi a^3 \frac{m^2 - 1}{m^2 + 2}.
 $$
 
+In Gaussian units, the values of polarizability are smaller by a factor of \\(4 \pi\\) \[[4](#references) (ch. 6.31)\].
+
 #### Scattering Matrix
 
 In order to perform light scattering calculations, it is more convenient to use a reference frame that is fixed with respect to the light source rather than the particle. In the so-called laboratory reference frame (described in Sec. 15), the Cartesian components of the electric field phasor \\(\bm{E_0}\\) of the incident wave propagating along the \\(Z\\)-axis are
@@ -8214,7 +8204,12 @@ $$
 Conventionally, the scattering coordinate system is rotated relative to the laboratory reference frame. The vector components are transformed according to Eqn. 15.11:
 
 $$ \tag{21.25}
-	\bm{E_0} = R(-\phi)
+	\bm{E_0} =
+	\begin{bmatrix}
+		E_x(\phi) \cr
+		E_y(\phi) \cr
+	\end{bmatrix} =
+	R(-\phi)
 	\begin{bmatrix}
 		E\_{X} \cr
 		E\_{Y} \cr
@@ -8328,7 +8323,7 @@ Putting it all together, the form of the scattering matrix \\(S\\) that correspo
 
 $$ \tag{21.30}
 	S(\theta, \phi, \omega)
-	= \frac{k^3(\omega)}{4 \pi}
+	= \frac{k_0^3(\omega)}{4 \pi}
 	P_3 R_y(-\theta)
 	X(\alpha, \beta, \gamma)
 	D(\alpha_1, \alpha_2, \alpha_3)
@@ -8338,11 +8333,11 @@ $$
 
 where \\(D\\) is a diagonal matrix, and the projection matrix \\(P_3\\) ensures that the scattering matrix is 2x2, since both the input and the output vectors have the third component set to 0.
 
-The expanded form of Eqn. 21.30 is very large, so we shall not attempt to explicitly write it down. However, the expression for a spherical particle, with \\(\mathcal{\Alpha_m} = \alpha_m\\), is very simple \[[4](#references) (ch. 6.12)\]:
+The expanded form of Eqn. 21.30 is very large, so we shall not attempt to explicitly write it down. However, the expression for a spherical particle, with \\(\mathcal{\Alpha_m} = \alpha_m\\), is very simple:
 
 $$ \tag{21.31}
 	S(\theta, \phi, \omega)
-	= \frac{k^3(\omega)}{4 \pi}
+	= \frac{k_0^3(\omega)}{4 \pi}
 	\alpha_m
 	\begin{bmatrix}
 		\cos{\theta} & 0 \cr
@@ -8354,6 +8349,8 @@ $$ \tag{21.31}
 		0            & 1 \cr
 	\end{bmatrix}.
 $$
+
+Due to the definition of polarizability, in Gaussian units, the elements of the scattering matrix are larger by a factor of \\(4 \pi\\) \[[4](#references) (ch. 6.12)\].
 
 It's instructive to compare the resulting scattering matrix with the expression obtained using the Lorenz-Mie-Debye theory. Substitution of Eqn. 19.8 and 19.24 into 19.6 yields an identical expression, confirming both the accuracy of the dipole approximation and the conditions of its validity.
 
@@ -8386,34 +8383,34 @@ $$ \tag{21.34}
 \begin{aligned}
 	\braket{\Iota_s^{tot}}
 	&\propto \int_{\Psi} p(\psi)
-	\left| S(\theta, \phi, \psi) R(-\phi) \bm{E_0} \right|^2
+	\left| S(\theta, \phi, \psi) \bm{E_0} \right|^2
 	d\psi
 	\cr
 	&= \int_{-\pi}^{\pi} \int_{0}^{\pi} \int_{-\pi}^{\pi}
 	p(\alpha, \beta, \gamma)
-	\left| S(\theta, \phi, \alpha, \beta, \gamma) R(-\phi) \bm{E_0} \right|^2
+	\left| S(\theta, \phi, \alpha, \beta, \gamma) \bm{E_0} \right|^2
 	\sin{\beta} d\alpha d\beta d\gamma
 	\cr
-	&= \bm{E_0^H} R(\phi)
+	&= \bm{E_0^H}
 	\left( \frac{1}{8 \pi^2}
 	\int_{-\pi}^{\pi} \int_{0}^{\pi} \int_{-\pi}^{\pi}
 	S^H S
 	\sin{\beta} d\alpha d\beta d\gamma
 	\right)
-	R(-\phi) \bm{E_0},
+	\bm{E_0},
 \end{aligned}
 $$
 
 where the \\(S^H\\) denotes the [conjugate transpose](https://en.wikipedia.org/wiki/Conjugate_transpose) of the scattering matrix.
 
-The resulting integral is considerably simplified by the use of [integrals of trigonometric functions](https://en.wikipedia.org/wiki/List_of_integrals_of_trigonometric_functions). If we define the shorthand notation for the cross and the diagonal terms
+The resulting integral is considerably simplified by the use of [integrals of trigonometric functions](https://en.wikipedia.org/wiki/List_of_integrals_of_trigonometric_functions). If we define the shorthand notation for the diagonal and the off-diagonal terms
 
 $$ \tag{21.35}
 \begin{aligned}
-	c &= \mathcal{Re} \lbrace \alpha_1 \mathcal{Re} \lbrace \alpha_2 \rbrace + (\alpha_1+\alpha_2) \mathcal{Re} \lbrace \alpha_3 \rbrace\rbrace +
-	\mathcal{Im} \lbrace \alpha_1 \mathcal{Im} \lbrace \alpha_2 \rbrace + (\alpha_1+\alpha_2) \mathcal{Im} \lbrace \alpha_3 \rbrace \rbrace,
-	\cr
 	d &= |\alpha_1|^2+|\alpha_2|^2+|\alpha_3|^2,
+	\cr
+	o &= \mathcal{Re} \lbrace \alpha_1 \mathcal{Re} \lbrace \alpha_2 \rbrace + (\alpha_1+\alpha_2) \mathcal{Re} \lbrace \alpha_3 \rbrace\rbrace +
+	\mathcal{Im} \lbrace \alpha_1 \mathcal{Im} \lbrace \alpha_2 \rbrace + (\alpha_1+\alpha_2) \mathcal{Im} \lbrace \alpha_3 \rbrace \rbrace,
 \end{aligned}
 $$
 
@@ -8424,20 +8421,20 @@ $$ \tag{21.36}
 	\frac{1}{8 \pi^2} \int_{-\pi}^{\pi} \int_{0}^{\pi} \int_{-\pi}^{\pi}
 	S^H S
 	\sin{\beta} d\alpha d\beta d\gamma
-	= \frac{k^6}{16 \pi^2} \frac{4 d + c}{15}
+	= \frac{k_0^6}{16 \pi^2} \frac{4 d + o}{15}
 	\begin{bmatrix}
-		\cos^2{\theta} + \frac{2 d - 2 c}{4 d + c} \sin^2{\theta} & 0 \cr
+		\cos^2{\theta} + \frac{2 d - 2 o}{4 d + o} \sin^2{\theta} & 0 \cr
 		0 & 1 \cr
 	\end{bmatrix}.
 \end{aligned}
 $$
 
-The expression for a spherical particle, with \\(\mathcal{\Alpha_m} = \alpha_m\\), is even simpler:
+The expression for a spherical particle, with \\(\mathcal{\Alpha_m} = \alpha_m\\), the formula is even simpler:
 
 $$ \tag{21.37}
 \begin{aligned}
 	S^H S
-	= \frac{k^6}{16 \pi^2} |\alpha_m|^2
+	= \frac{k_0^6}{16 \pi^2} |\alpha_m|^2
 	\begin{bmatrix}
 		\cos^2{\theta} & 0 \cr
 		0 & 1 \cr
@@ -8449,6 +8446,42 @@ $$ \tag{21.37}
 	\end{bmatrix}.
 \end{aligned}
 $$
+
+After substitution of Eqn. 21.36 into 17.56.1, it is clear that the intensity of light scattered by a group of \\(N\\) molecules depends on the state of the incident light:
+
+$$ \tag{21.38}
+	\braket{\Iota_s^{tot}}
+	= \frac{N}{k_0^2} \frac{\mu\_0^{-1}}{2} \frac{1}{c}
+	 \frac{k_0^6}{16 \pi^2} \frac{4 d + o}{15}
+	\left(
+		\big| E_x(\phi) \big|^2
+		\left( \cos^2{\theta} + \frac{2 d - 2 o}{4 d + o} \sin^2{\theta} \right) +
+		\big| E_y(\phi) \big|^2
+	\right).
+$$
+
+In the special case of natural light that has neither a preferred orientation nor a well-defined phase relationship, we may average Eqn. 21.38 over all possible orientations of the plane of reference according to Eqn. 19.31. This allows us to directly relate the scattered intensity \\(\Iota_s\\) to the incident irradiance \\(\Epsilon_i\\) (the latter is given by Eqn 16.4):
+
+$$ \tag{21.39}
+	\braket{\Iota_s^{tot}}
+	= \frac{N}{k_0^2} \frac{k_0^6}{16 \pi^2}
+	\frac{8 d + 2 o}{30}
+	\left(
+		\cos^2{\theta} + \frac{6 d - o}{8 d + 2 o} \sin^2{\theta}
+	\right) \Epsilon_i.
+$$
+
+For spherical particles, the corresponding expression is
+
+$$ \tag{21.40}
+	\braket{\Iota_s^{tot}}
+	= \frac{N}{k_0^2} \frac{k_0^6}{16 \pi^2} |\alpha_m|^2
+	\frac{ \left( \cos^2{\theta} + 1 \right) }{2} \Epsilon_i
+	= \frac{N}{k_0^2} \left| \frac{m^2 - 1}{m^2 + 2} \right|^2
+	x^6 \frac{ \left( \cos^2{\theta} + 1 \right) }{2} \Epsilon_i.
+$$
+
+Due to the definition of polarizability, in Gaussian units, the intensity is greater by a factor of \\(16 \pi^2\\) \[[4](#references) (ch. 6.12)\].
 
 ### Light Scattering by Liquid Molecules
 
