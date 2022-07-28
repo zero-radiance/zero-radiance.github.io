@@ -5034,11 +5034,11 @@ Often, one has to consider a large cloud of particles. Its interior may be conce
 [^27]: Sometimes, mass density is used instead of the number density of particles, which leads to the definition of mass collision coefficients \[[2](#references) (ch. 3)\].
 
 $$ \tag{17.58}
-	\beta_a(\bm{r}) = n(\bm{r}) \braket{C_a},
+	\varSigma_a(\bm{r}) = n(\bm{r}) \braket{C_a},
 	\quad
-	\beta_s(\bm{r}) = n(\bm{r}) \braket{C_s},
+	\varSigma_s(\bm{r}) = n(\bm{r}) \braket{C_s},
 	\quad
-	\beta_e(\bm{r}) = n(\bm{r}) \braket{C_e}.
+	\varSigma_e(\bm{r}) = n(\bm{r}) \braket{C_e}.
 $$
 
 They are simply the weighted averages of the optical cross-sections of the individual particles.
@@ -8333,7 +8333,7 @@ $$
 
 where \\(D\\) is a diagonal matrix, and the projection matrix \\(P_3\\) ensures that the scattering matrix is 2x2, since both the input and the output vectors have the third component set to 0.
 
-The expanded form of Eqn. 21.30 is very large, so we shall not attempt to explicitly write it down. However, the expression for a spherical particle, with \\(\mathcal{\Alpha_m} = \alpha_m\\), is very simple:
+The expanded form of Eqn. 21.30 is very large, so we shall not attempt to explicitly write it down. However, the expression for a spherical particle is very simple:
 
 $$ \tag{21.31}
 	S(\theta, \phi, \omega)
@@ -8429,7 +8429,7 @@ $$ \tag{21.36}
 \end{aligned}
 $$
 
-The expression for a spherical particle, with \\(\mathcal{\Alpha_m} = \alpha_m\\), the formula is even simpler:
+For a spherical particle, Eqn. 21.36 takes a simple form:
 
 $$ \tag{21.37}
 \begin{aligned}
@@ -8483,7 +8483,34 @@ $$
 
 Due to the definition of polarizability, in Gaussian units, the intensity is greater by a factor of \\(16 \pi^2\\) \[[4](#references) (ch. 6.12)\].
 
-Find scat coef, with it find gamma...
+The total amount of scattered power can be computed by integrating Eqn. 21.38 over the surface of a unit sphere (cf. Eqn. 17.56.2):
+
+$$ \tag{21.41}
+	\braket{\Phi_s^{tot}}
+	= \int_{-\pi}^{\pi} \int_{0}^{\pi} \braket{\Iota_s^{tot}} \sin{\theta} d\theta d\phi
+	= \frac{N}{k_0^2} \frac{k_0^6}{16 \pi^2} \frac{8 \pi d}{9}
+	\Epsilon_i.
+$$
+
+The expression of the scattering coefficient \\(\varSigma_s\\) can be obtained by dividing Eqn. 21.41 by \\(\Epsilon_i\\) and replacing \\(N\\) with \\(n(\bm{r})\\), as shown by Eqn. 17.57-17.58:
+
+$$ \tag{21.42}
+	\varSigma_s(\bm{r})
+	= n(\bm{r}) \braket{C_s}
+	= n(\bm{r}) \frac{k_0^4}{16 \pi^2} \frac{8 \pi d}{9}.
+$$
+
+For spherical particles, \\(d = 3 |\alpha_m|^2\\), which directly leads to
+
+$$ \tag{21.43}
+	\varSigma_s(\bm{r})
+	= n(\bm{r}) \frac{k_0^4}{16 \pi^2} \frac{8 \pi}{3} |\alpha_m|^2
+	= n(\bm{r}) \frac{8 \pi}{3}
+	\left| \frac{m^2 - 1}{m^2 + 2} \right|^2
+	\frac{x^6}{k_0^2}.
+$$
+
+Due to the definition of polarizability, in Gaussian units, the value of the scattering coefficient is greater by a factor of \\(16 \pi^2\\) \[[4](#references) (ch. 6.31)\].
 
 ### Light Scattering by Liquid Molecules
 
