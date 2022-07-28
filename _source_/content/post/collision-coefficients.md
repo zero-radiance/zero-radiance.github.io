@@ -7605,7 +7605,7 @@ $$ \tag{19.30}
 \end{aligned}
 $$
 
-Let us consider the special case of *natural light* that has neither a preferred orientation nor a well-defined phase relationship \[[6](#references) (ch. 10.9)\]. Since the latter allows the interference effects to be neglected, and because the elements of the scattering matrix of a spherical particle are independent of the azimuthal angle \\(\phi\\), we may express this assumption by averaging the light intensity over all possible orientations of the plane of reference. A straightforward calculation yields
+Let us consider the special case of *natural light* that has neither a preferred orientation nor a well-defined phase relationship \[[6](#references) (ch. 10.9)\]. The latter assumption makes adding the intensities equivalent to summing up the fields. And, because the elements of the scattering matrix of a spherical particle are independent of the azimuthal angle \\(\phi\\), we can express the random orientation of the electric field vector by averaging the light intensities over all possible orientations of the plane of reference. A straightforward calculation yields
 
 $$ \tag{19.31}
 	\frac{1}{2 \pi} \int_{-\pi}^{\pi} \big| E_x(\phi) \big|^2 d\phi =
