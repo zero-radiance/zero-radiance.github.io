@@ -7605,7 +7605,7 @@ $$ \tag{19.30}
 \end{aligned}
 $$
 
-Let us consider the special case of *natural light* that has neither a preferred orientation nor a well-defined phase relationship \[[6](#references) (ch. 10.9)\]. Since the elements of the scattering matrix of a spherical particle are independent of the azimuthal angle \\(\phi\\), we may express this assumption by averaging Eqn. 19.29 over all possible orientations of the plane of reference. A straightforward calculation yields
+Let us consider the special case of *natural light* that has neither a preferred orientation nor a well-defined phase relationship \[[6](#references) (ch. 10.9)\]. Since the latter allows the interference effects to be neglected, and because the elements of the scattering matrix of a spherical particle are independent of the azimuthal angle \\(\phi\\), we may express this assumption by averaging the light intensity over all possible orientations of the plane of reference. A straightforward calculation yields
 
 $$ \tag{19.31}
 	\frac{1}{2 \pi} \int_{-\pi}^{\pi} \big| E_x(\phi) \big|^2 d\phi =
@@ -8460,7 +8460,7 @@ $$ \tag{21.38}
 	\right).
 $$
 
-In the special case of natural light that has neither a preferred orientation nor a well-defined phase relationship, we may average Eqn. 21.38 over all possible orientations of the plane of reference according to Eqn. 19.31. This allows us to directly relate the scattered intensity \\(\Iota_s\\) to the incident irradiance \\(\Epsilon_i\\) (the latter is given by Eqn 16.4):
+In the special case of natural light, we may average Eqn. 21.38 over all possible orientations of the plane of reference according to Eqn. 19.31. This allows us to directly relate the scattered intensity \\(\Iota_s\\) to the incident irradiance \\(\Epsilon_i\\) (the latter is given by Eqn 16.4):
 
 $$ \tag{21.39}
 	\braket{\Iota_s^{tot}}
@@ -8482,6 +8482,8 @@ $$ \tag{21.40}
 $$
 
 Due to the definition of polarizability, in Gaussian units, the intensity is greater by a factor of \\(16 \pi^2\\) \[[4](#references) (ch. 6.12)\].
+
+Find scat coef, with it find gamma...
 
 ### Light Scattering by Liquid Molecules
 
