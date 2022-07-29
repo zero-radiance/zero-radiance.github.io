@@ -2934,7 +2934,7 @@ $$ \tag{12.3}
 	\bm{p}(V_m, \omega) = \mathcal{\Alpha_m}(V_m, \omega) \cdot \varepsilon(\omega) \bm{E}(\bm{r_0}, \omega),
 $$
 
-where we replaced \\(\epsilon_0\\) with \\(\varepsilon\\) (to account for the properties of the surrounding medium) and \\(\bm{E_m}\\) with \\(\bm{E}\\) (which is only permissible assuming the dipole is alone).
+where we replaced \\(\epsilon_0\\) with \\(\varepsilon\\) (to account for the properties of the surrounding medium) and \\(\bm{E_m}\\) with \\(\bm{E}\\) (which is only permissible assuming the dipole is sufficiently isolated from the rest of the matter).
 
 The combination of Eqn. 12.1-12.3 results in
 
@@ -8407,10 +8407,12 @@ The resulting integral is considerably simplified by the use of [integrals of tr
 
 $$ \tag{21.35}
 \begin{aligned}
-	d = 15 A &= |\alpha_1|^2+|\alpha_2|^2+|\alpha_3|^2,
+	15 A &= |\alpha_1|^2+|\alpha_2|^2+|\alpha_3|^2,
 	\cr
-	o = 15 B &= \frac{1}{2} \left(\alpha_1 \alpha_2^{\*} + \alpha_2 \alpha_1^{\*} + \alpha_1 \alpha_3^{\*} +
- \alpha_3 \alpha_1^{\*} + \alpha_2 a3^{\*} + \alpha_3 \alpha_2^{\*} \right),
+	15 B &= \mathcal{Re} \lbrace
+	\alpha_1 \alpha_2^{\*} +
+	\alpha_1 \alpha_3^{\*} +
+	\alpha_2 a_3^{\*} \rbrace,
 \end{aligned}
 $$
 
@@ -8429,7 +8431,7 @@ $$ \tag{21.36}
 \end{aligned}
 $$
 
-where \\(\Delta = (2 A - 2 B)/(4 A + B)\\) is another *depolarization factor (for natural light)* that is entirely unrelated to \\(L_n\\) \[[4](#references) (ch. 6.52)\].
+where \\(\Delta = (2 A - 2 B)/(4 A + B)\\) is another *depolarization factor* unrelated to \\(L_n\\) \[[4](#references) (ch. 6.52)\].
 
 For a spherical particle, \\(\Delta = 0\\), and Eqn. 21.36 takes a simple form:
 
