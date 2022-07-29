@@ -8356,7 +8356,7 @@ It's instructive to compare the resulting scattering matrix with the expression 
 
 #### Light Intensity and Collision Coefficients
 
-Let us calculate the quantities typically used to characterize light scattering by a group of gas molecules. For simplicity, we shall assume that we are dealing with a single type of molecule; that way, averaging over shapes, sizes, and compositions of different kinds of molecules can be avoided. Thus, all that is left is to evaluate the contribution of molecules in various orientations.
+Let us calculate the quantities typically used to characterize light scattering by a group of gas molecules. For simplicity, we shall assume that we are dealing with a single type of molecule; that way, averaging over shapes, sizes, and compositions of different kinds of molecules can be avoided. Thus, all that is left is to evaluate the contribution of molecules in various orientations \[[2](#references) (ch. 18), [4](#references) (ch. 6.5)\].
 
 Unless the entire group is placed into a uniform and parallel electromagnetic field, the orientations of the individual molecules are likely to follow a uniform distribution described by the probability density function
 
@@ -8403,14 +8403,14 @@ $$
 
 where the \\(S^H\\) denotes the [conjugate transpose](https://en.wikipedia.org/wiki/Conjugate_transpose) of the scattering matrix.
 
-The resulting integral is considerably simplified by the use of [integrals of trigonometric functions](https://en.wikipedia.org/wiki/List_of_integrals_of_trigonometric_functions). If we define the shorthand notation for the diagonal and the off-diagonal terms
+The resulting integral is considerably simplified by the use of [integrals of trigonometric functions](https://en.wikipedia.org/wiki/List_of_integrals_of_trigonometric_functions). If we define the shorthand notation for the diagonal and the off-diagonal terms \[[4](#references) (ch. 6.52)\]
 
 $$ \tag{21.35}
 \begin{aligned}
-	d &= |\alpha_1|^2+|\alpha_2|^2+|\alpha_3|^2,
+	d = 15 A &= |\alpha_1|^2+|\alpha_2|^2+|\alpha_3|^2,
 	\cr
-	o &= \mathcal{Re} \lbrace \alpha_1 \mathcal{Re} \lbrace \alpha_2 \rbrace + (\alpha_1+\alpha_2) \mathcal{Re} \lbrace \alpha_3 \rbrace\rbrace +
-	\mathcal{Im} \lbrace \alpha_1 \mathcal{Im} \lbrace \alpha_2 \rbrace + (\alpha_1+\alpha_2) \mathcal{Im} \lbrace \alpha_3 \rbrace \rbrace,
+	o = 15 B &= \frac{1}{2} \left(\alpha_1 \alpha_2^{\*} + \alpha_2 \alpha_1^{\*} + \alpha_1 \alpha_3^{\*} +
+ \alpha_3 \alpha_1^{\*} + \alpha_2 a3^{\*} + \alpha_3 \alpha_2^{\*} \right),
 \end{aligned}
 $$
 
@@ -8421,15 +8421,17 @@ $$ \tag{21.36}
 	\frac{1}{8 \pi^2} \int_{-\pi}^{\pi} \int_{0}^{\pi} \int_{-\pi}^{\pi}
 	S^H S
 	\sin{\beta} d\alpha d\beta d\gamma
-	= \frac{k_0^6}{16 \pi^2} \frac{4 d + o}{15}
+	= \frac{k_0^6}{16 \pi^2} (4 A + B)
 	\begin{bmatrix}
-		\cos^2{\theta} + \frac{2 d - 2 o}{4 d + o} \sin^2{\theta} & 0 \cr
+		\cos^2{\theta} + \Delta \sin^2{\theta} & 0 \cr
 		0 & 1 \cr
-	\end{bmatrix}.
+	\end{bmatrix},
 \end{aligned}
 $$
 
-For a spherical particle, Eqn. 21.36 takes a simple form:
+where \\(\Delta = (2 A - 2 B)/(4 A + B)\\) is another *depolarization factor (for natural light)* that is entirely unrelated to \\(L_n\\) \[[4](#references) (ch. 6.52)\].
+
+For a spherical particle, \\(\Delta = 0\\), and Eqn. 21.36 takes a simple form:
 
 $$ \tag{21.37}
 \begin{aligned}
@@ -8452,10 +8454,10 @@ After substitution of Eqn. 21.36 into 17.56.1, it is clear that the intensity of
 $$ \tag{21.38}
 	\braket{\Iota_s^{tot}}
 	= \frac{N}{k_0^2} \frac{\mu\_0^{-1}}{2} \frac{1}{c}
-	 \frac{k_0^6}{16 \pi^2} \frac{4 d + o}{15}
+	 \frac{k_0^6}{16 \pi^2} (4 A + B)
 	\left(
 		\big| E_x(\phi) \big|^2
-		\left( \cos^2{\theta} + \frac{2 d - 2 o}{4 d + o} \sin^2{\theta} \right) +
+		\left( \cos^2{\theta} + \Delta \sin^2{\theta} \right) +
 		\big| E_y(\phi) \big|^2
 	\right).
 $$
@@ -8465,9 +8467,9 @@ In the special case of natural light, we may average Eqn. 21.38 over all possibl
 $$ \tag{21.39}
 	\braket{\Iota_s^{tot}}
 	= \frac{N}{k_0^2} \frac{k_0^6}{16 \pi^2}
-	\frac{8 d + 2 o}{30}
+	(4 A + B)
 	\left(
-		\cos^2{\theta} + \frac{6 d - o}{8 d + 2 o} \sin^2{\theta}
+		\cos^2{\theta} + \frac{\Delta + 1}{2} \sin^2{\theta}
 	\right) \Epsilon_i.
 $$
 
@@ -8476,19 +8478,19 @@ For spherical particles, the corresponding expression is
 $$ \tag{21.40}
 	\braket{\Iota_s^{tot}}
 	= \frac{N}{k_0^2} \frac{k_0^6}{16 \pi^2} |\alpha_m|^2
-	\frac{ \left( \cos^2{\theta} + 1 \right) }{2} \Epsilon_i
+	\frac{ \cos^2{\theta} + 1 }{2} \Epsilon_i
 	= \frac{N}{k_0^2} \left| \frac{m^2 - 1}{m^2 + 2} \right|^2
-	x^6 \frac{ \left( \cos^2{\theta} + 1 \right) }{2} \Epsilon_i.
+	x^6 \frac{ \cos^2{\theta} + 1 }{2} \Epsilon_i.
 $$
 
-Due to the definition of polarizability, in Gaussian units, the intensity is greater by a factor of \\(16 \pi^2\\) \[[4](#references) (ch. 6.12)\].
+Due to the definition of polarizability, in Gaussian units, the intensity is greater by a factor of \\(16 \pi^2\\) \[[4](#references) (ch. 6.12, 6.52)\].
 
 The total amount of scattered power can be computed by integrating Eqn. 21.38 over the surface of a unit sphere (cf. Eqn. 17.56.2):
 
 $$ \tag{21.41}
 	\braket{\Phi_s^{tot}}
 	= \int_{-\pi}^{\pi} \int_{0}^{\pi} \braket{\Iota_s^{tot}} \sin{\theta} d\theta d\phi
-	= \frac{N}{k_0^2} \frac{k_0^6}{16 \pi^2} \frac{8 \pi d}{9}
+	= N \frac{k_0^4}{16 \pi^2} \frac{8 \pi}{3} 5 A
 	\Epsilon_i.
 $$
 
@@ -8497,10 +8499,10 @@ The expression of the scattering coefficient \\(\varSigma_s\\) can be obtained b
 $$ \tag{21.42}
 	\varSigma_s(\bm{r})
 	= n(\bm{r}) \braket{C_s}
-	= n(\bm{r}) \frac{k_0^4}{16 \pi^2} \frac{8 \pi d}{9}.
+	= n(\bm{r}) \frac{k_0^4}{16 \pi^2} \frac{8 \pi}{3} 5 A.
 $$
 
-For spherical particles, \\(d = 3 |\alpha_m|^2\\), which directly leads to
+For spherical particles, \\(5 A = |\alpha_m|^2\\), which directly leads to
 
 $$ \tag{21.43}
 	\varSigma_s(\bm{r})
@@ -8510,7 +8512,7 @@ $$ \tag{21.43}
 	\frac{x^6}{k_0^2}.
 $$
 
-Due to the definition of polarizability, in Gaussian units, the value of the scattering coefficient is greater by a factor of \\(16 \pi^2\\) \[[4](#references) (ch. 6.31)\].
+Due to the definition of polarizability, in Gaussian units, the value of the scattering coefficient is greater by a factor of \\(16 \pi^2\\) \[[4](#references) (ch. 6.31, 6.53)\].
 
 ### Light Scattering by Liquid Molecules
 
