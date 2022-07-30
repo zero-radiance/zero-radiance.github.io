@@ -4288,14 +4288,15 @@ $$ \tag{16.35}
 	\right).
 $$
 
-Alternatively, [Ohm's law](https://en.wikipedia.org/wiki/Ohm%27s_law) may be used instead \[[25](#references) (ch. 1.1)\]:
+Alternatively, [Ohm's law](https://en.wikipedia.org/wiki/Ohm%27s_law) may be used instead:
 
-$$ \tag{16.3x}
+$$ \tag{16.3y}
 	\Phi_a
-	= \frac{1}{2} \omega \int\_{V} \kappa(\bm{r'}) \big| \bm{E}(\bm{r'}) \big|^2 dV',
+	= \frac{\mu\_0^{-1}}{2} \frac{\eta}{c} k \int\_{V}
+	\mathcal{Im} \big\lbrace m^2(\bm{r'}) \big\rbrace \big| \bm{E}(\bm{r'}) \big|^2 dV',
 $$
 
-with the integral taken over the interior of the particle. As before, \\(\kappa\\) is the attenuation index (see Eqn. 7.7).
+with the the integral taken over the interior of the particle \[[25](#references) (ch. 1.1)\]. As before, \\(m\\) is the relative wavenumber given by Eqn. 11.8.
 
 It is convenient to be able to relate the amount of power absorbed by the particle to the amount of incident power the particle *geometrically* intercepts. The latter can be characterized with the help of the projected area of the particle - its *geometric cross-section* \\(C_g\\). For a convex particle, it is given by the integral
 
@@ -4946,7 +4947,7 @@ $$ \tag{17.51}
 	\right) \bm{n_s}
 	\cr
 	&- N \left( \frac{\mu\_0^{-1}}{2} \frac{\eta}{c} \frac{4 \pi}{k^2 r^2}
-	\mathcal{Im} \left\lbrace v(f,0) \thinspace
+	\mathcal{Im} \left\lbrace v(f,0)
 	\bm{E_0^{\*}} \cdot \braket{\mathcal{S_j}}\_{\psi} \cdot \bm{E_0}
 	\right\rbrace \right) \bm{n_s} \delta(\bm{n_i} - \bm{n_s})
 	\cr
@@ -5004,14 +5005,14 @@ $$ \tag{17.56}
 	= N \frac{\mu\_0^{-1}}{2} \frac{\eta}{c} \frac{1}{k^2}
 	\int_{\Psi} p(\psi) \oint\_{\mathbb{S}^2}
 	\left| \mathcal{S_j}(\bm{n_s}, \psi) \cdot \bm{E_0} \right|^2
-	d\Omega d\psi
+	d\Omega d\psi,
 	\cr
 	\braket{\Phi_e^{tot}}
 	&= \sum_j \oint\_{\mathbb{S}^2}
 	\left[ r^2 \braket{\braket{\bm{S_{ij}}}} \cdot \bm{n_s} \right] d\Omega
 	= N \frac{\mu\_0^{-1}}{2} \frac{\eta}{c} \frac{4 \pi}{k^2}
 	\int_{\Psi} p(\psi)
-	\mathcal{Im} \left\lbrace v(f,0) \thinspace
+	\mathcal{Im} \left\lbrace v\negmedspace\left( \frac{(k L)^2}{k r}, 0 \right)
 	\bm{E_0^{\*}} \cdot \mathcal{S_j}(\bm{n_i}, \psi) \cdot \bm{E_0}
 	\right\rbrace
 	d\psi.
@@ -8352,7 +8353,7 @@ $$
 
 Due to the definition of polarizability, in Gaussian units, the elements of the scattering matrix are larger by a factor of \\(4 \pi\\) \[[4](#references) (ch. 6.12)\].
 
-It's instructive to compare the resulting scattering matrix with the expression obtained using the Lorenz-Mie-Debye theory. Substitution of Eqn. 19.8 and 19.24 into 19.6 yields an identical expression, confirming both the accuracy of the dipole approximation and the conditions of its validity.
+It's instructive to compare the resulting scattering matrix with the expression obtained using the Lorenz-Mie-Debye theory. Substitution of Eqn. 19.8 and 19.24 into 19.6 yields an expression that is identical to Eqn. 21.31, confirming both the accuracy of the *electrostatic dipole* approximation and the conditions of its validity. In contrast, the expression of the magnitude of an *electrodynamic dipole* (given by Eqn. 19.23.2) has several additional terms; while most are negligible in practice, it is worth pointing out an additional imaginary term that models the effect of the *radiation reaction* (or the [self-force](](https://en.wikipedia.org/wiki/Abraham%E2%80%93Lorentz_force))) that is entirely absent from the electrostatic approximation \[[4](#references) (ch. 6.13)\].
 
 #### Light Intensity and Collision Coefficients
 
@@ -8377,7 +8378,7 @@ $$ \tag{21.33}
 	\int_{-\pi}^{\pi} d\gamma \thinspace p(\alpha, \beta, \gamma) = 1.
 $$
 
-Then, according to Eqn. 17.56.1, the mean intensity light scattered by  a group of molecules is directly proportional to
+Then, according to Eqn. 17.56.1, the mean intensity light scattered by  a group of molecules is proportional to
 
 $$ \tag{21.34}
 \begin{aligned}
@@ -8403,7 +8404,7 @@ $$
 
 where the \\(S^H\\) denotes the [conjugate transpose](https://en.wikipedia.org/wiki/Conjugate_transpose) of the scattering matrix.
 
-The resulting integral is considerably simplified by the use of [integrals of trigonometric functions](https://en.wikipedia.org/wiki/List_of_integrals_of_trigonometric_functions). If we define the shorthand notation for the diagonal and the off-diagonal terms \[[4](#references) (ch. 6.52)\]
+The resulting integral is considerably simplified by the use of [integrals of trigonometric functions](https://en.wikipedia.org/wiki/List_of_integrals_of_trigonometric_functions). If we define the shorthand notation for the self and the cross terms \[[4](#references) (ch. 6.52)\]
 
 $$ \tag{21.35}
 \begin{aligned}
@@ -8431,7 +8432,7 @@ $$ \tag{21.36}
 \end{aligned}
 $$
 
-where \\(\Delta = (2 A - 2 B)/(4 A + B)\\) is another *depolarization factor* unrelated to \\(L_n\\) \[[4](#references) (ch. 6.52)\].
+where \\(\Delta = (2 A - 2 B)/(4 A + B)\\) is another *depolarization factor* unrelated to \\(L_n\\) \[[4](#references) (ch. 6.52)\]. For atmospheric air, its measured value is \\(\Delta \approx 0.031\\) \[[4](#references) (ch. 6.53)\]. Unfortunately, the frequency of light used during the experiment is not specified.
 
 For a spherical particle, \\(\Delta = 0\\), and Eqn. 21.36 takes a simple form:
 
@@ -8451,7 +8452,7 @@ $$ \tag{21.37}
 \end{aligned}
 $$
 
-After substitution of Eqn. 21.36 into 17.56.1, it is clear that the intensity of light scattered by a group of \\(N\\) molecules depends on the state of the incident light:
+After substitution of Eqn. 21.36 into 17.56.1, it becomes clear that the intensity of light scattered by a group of \\(N\\) molecules depends on the state of the incident light:
 
 $$ \tag{21.38}
 	\braket{\Iota_s^{tot}}
@@ -8515,6 +8516,129 @@ $$ \tag{21.43}
 $$
 
 Due to the definition of polarizability, in Gaussian units, the value of the scattering coefficient is greater by a factor of \\(16 \pi^2\\) \[[4](#references) (ch. 6.31, 6.53)\].
+
+We must remember to account for the extinction effect by reducing the intensity of light in the forward direction. According to Eqn. 17.56.3, this involves computing the average of the scattering matrix:
+
+$$ \tag{21.44}
+\begin{aligned}
+	\braket{\Phi_e^{tot}}
+	&\propto \int_{\Psi} p(\psi)
+	\mathcal{Im} \left\lbrace v\negmedspace\left( \frac{(k L)^2}{k r}, 0 \right)
+	\bm{E_0^H} S(0, \phi, \psi) \bm{E_0}
+	\right\rbrace
+	d\psi
+	\cr
+	&= \int_{-\pi}^{\pi} \int_{0}^{\pi} \int_{-\pi}^{\pi}
+	p(\alpha, \beta, \gamma)
+	\mathcal{Im} \left\lbrace v\negmedspace\left( \frac{(k L)^2}{k r}, 0 \right)
+	\bm{E_0^H} S(0, \phi, \alpha, \beta, \gamma) \bm{E_0}
+	\right\rbrace
+	\sin{\beta} d\alpha d\beta d\gamma
+	\cr
+	&= \mathcal{Im} \left\lbrace v\negmedspace\left( \frac{(k L)^2}{k r}, 0 \right) \bm{E_0^H}
+	\left( \frac{1}{8 \pi^2}
+	\int_{-\pi}^{\pi} \int_{0}^{\pi} \int_{-\pi}^{\pi}
+	S \sin{\beta} d\alpha d\beta d\gamma
+	\right)
+	\bm{E_0} \right\rbrace.
+\end{aligned}
+$$
+
+A straightforward calculation produces a scattering matrix of a spherical particle
+
+$$ \tag{21.45}
+\begin{aligned}
+	\frac{1}{8 \pi^2} \int_{-\pi}^{\pi} \int_{0}^{\pi} \int_{-\pi}^{\pi}
+	S
+	\sin{\beta} d\alpha d\beta d\gamma
+	= \frac{k_0^3}{4 \pi} \alpha_m
+	\begin{bmatrix}
+		\cos^2{\theta} & 0 \cr
+		0 & 1 \cr
+	\end{bmatrix}
+\end{aligned}
+$$
+
+with the average polarizability
+
+$$ \tag{21.46}
+	\alpha_m = \frac{\alpha_1 + \alpha_2 + \alpha_3}{3}.
+$$
+
+After setting \\(\theta = 0\\) in Eqn. 21.45, substituting the result into Eqn. 17.56.3, and taking Eqn. 16.4 into account, we obtain
+
+$$ \tag{21.47}
+\begin{aligned}
+	\braket{\Phi_e^{tot}}
+	= N k_0
+	\mathcal{Im} \left\lbrace \alpha_m
+	v\negmedspace\left( \frac{(k L)^2}{k r}, 0 \right)
+	\right\rbrace \Epsilon_i.
+\end{aligned}
+$$
+
+If the polarizability is real, and the observer is located in the radiation zone with respect to the entire particle group, then the value of Eqn. 21.47 approaches \\(0\\), which means that this expression is *incorrect*.
+
+$$ \tag{21.17}
+	E_n
+	= \bm{E} \cdot \bm{v_n}
+	= \frac{\bm{E_0} \cdot \bm{v_n}}{1 + \left( m^2 - 1 \right) \frac{A_n}{\sum_n A_n} }
+	= \frac{\alpha_n \bm{E_0} \cdot \bm{v_n}}{V_m \left( m^2 - 1 \right)}.
+$$
+
+$$ \tag{21.22}
+	\alpha_n = V_m \frac{m^2 - 1}{1 + \left( m^2 - 1 \right) \frac{A_n}{\sum_n A_n} }.
+$$
+
+$$ \tag{16.3y}
+	\Phi_a
+	= \frac{\mu\_0^{-1}}{2} \frac{\eta}{c} k \int\_{V}
+	\mathcal{Im} \big\lbrace m^2(\bm{r'}) \big\rbrace \big| \bm{E}(\bm{r'}) \big|^2 dV'
+	= \frac{\mu\_0^{-1}}{2} \frac{\eta}{c} k V_m
+	\mathcal{Im} \big\lbrace m^2 \big\rbrace
+	\sum_n \left| \frac{\alpha_n \bm{E_0} \cdot \bm{v_n}}{V_m \left( m^2 - 1 \right)} \right|^2
+$$
+
+$$ \tag{16.3y}
+	\Phi_a
+	= \frac{1}{2} \omega \int\_{V} \kappa(\bm{r'}) \big| \bm{E}(\bm{r'}) \big|^2 dV'
+	= \frac{1}{2} \omega \kappa V_m \sum_n \left| \frac{\alpha_n \bm{E_0} \cdot \bm{v_n}}{V_m \left( m^2 - 1 \right)} \right|^2,
+$$
+
+The reason for this discrepancy is the missing radiation reaction term.
+
+Granted, the effect is pretty small if absorption is present.
+
+The corresponding expression of the extinction coefficient \\(\varSigma_e\\) is
+
+$$ \tag{21.48}
+	\varSigma_e(\bm{r})
+	= n(\bm{r}) \braket{C_e}
+	= n(\bm{r}) k_0
+	\mathcal{Im} \left\lbrace \alpha_m
+	v\negmedspace\left( \frac{(k L)^2}{k r}, 0 \right)
+	\right\rbrace.
+$$
+
+Due to the definition of polarizability, in Gaussian units, the value of the extinction coefficient is greater by a factor of \\(4 \pi\\) \[[4](#references) (6.53)\].
+
+For spherical particles, it naturally reduces to
+
+$$ \tag{21.49}
+	\varSigma_e(\bm{r})
+	= n(\bm{r}) k_0 4 \pi a^3
+	\mathcal{Im} \left\lbrace \frac{m^2 - 1}{m^2 + 2}
+	v\negmedspace\left( \frac{(k L)^2}{k r}, 0 \right)
+	\right\rbrace.
+$$
+
+$$ \tag{16.4}
+	\Epsilon_i(\bm{n})
+	= \braket{\bm{S_i}} \cdot \bm{n}
+	= \frac{\mu\_0^{-1}}{2} \frac{\eta}{c} |\bm{E_0}|^2 (\bm{n_i} \cdot \bm{n}),
+$$
+
+\[[4](#references) (ch. 6.53)\]
 
 ### Light Scattering by Liquid Molecules
 
