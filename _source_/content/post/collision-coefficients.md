@@ -4290,7 +4290,7 @@ $$
 
 Alternatively, [Ohm's law](https://en.wikipedia.org/wiki/Ohm%27s_law) may be used instead:
 
-$$ \tag{16.3y}
+$$ \tag{16.3z}
 	\Phi_a
 	= \frac{\mu\_0^{-1}}{2} \frac{\eta}{c} k \int\_{V}
 	\mathcal{Im} \big\lbrace m^2(\bm{r'}) \big\rbrace \big| \bm{E}(\bm{r'}) \big|^2 dV',
@@ -8113,17 +8113,19 @@ $$ \tag{21.14}
 	R(s) = \sqrt{(s + a_1^2) (s + a_2^2) (s + a_3^2)}
 $$
 
-and the elliptic integrals
+and the [elliptic integrals](https://en.wikipedia.org/wiki/Elliptic_integral)
 
 $$ \tag{21.15}
 	A_n = \int_{0}^{\infin} \frac{ds}{(s + a_n^2) R(s)},
 $$
 
-where \\(n=1,2,3\\), that satisfy
+with \\(n=1,2,3\\), that satisfy
 
 $$ \tag{21.16}
 	\sum_n A_n = \frac{2}{a_1 a_2 a_3}.
 $$
+
+{{< figure src="/img/elliptic_int.svg" caption="*Figure 21.1: Plot of \\(A_1\\) defined by Eqn. 21.15 as a function of \\(a_1\\) for \\(a_2 = a_3 = 1\\).*" >}}
 
 The value of the component of the internal electric field pointing along one the principal axes of the molecule is
 
@@ -8139,9 +8141,7 @@ $$ \tag{21.18}
 	\frac{A_n}{\sum_n A_n} = \frac{1}{3}.
 $$
 
-Otherwise, as the sphere is stretched into an ellipsoid, the internal field tends to align with the major axis.
-
-[TODO: insert plot of E_n here]
+{{< figure src="/img/int_field.svg" caption="*Figure 21.2: Plot of \\(E_1\\) defined by Eqn. 21.17 as a function of \\(a_1\\) for \\(a_2 = a_3 = 1\\) and \\(m = 4/3\\).*" >}}
 
 It is convenient to express the value of the internal field using the so-called *depolarization factors* \\(L_n\\), such that
 
@@ -8163,7 +8163,7 @@ $$
 
 When [Gaussian units](https://en.wikipedia.org/wiki/Gaussian_units) are used, the depolarization factors sum up to \\(1\\) \[[4](#references) (ch. 6.32)\].
 
-In order to obtain the values of the polarizability parameters \\(\alpha_1, \alpha_2, \alpha_3\\), we must project Eqn. 21.12 onto the principal axes of the molecule \\(\bm{v_n}\\), substitute Eqn. 21.17, and compare the resulting expression to Eqn. 21.8:
+In order to obtain the polarizability values \\(\alpha_1, \alpha_2, \alpha_3\\), we must project Eqn. 21.12 onto the principal axes of the molecule \\(\bm{v_n}\\), substitute Eqn. 21.17, and compare the resulting expression to Eqn. 21.8:
 
 $$ \tag{21.22}
 	\alpha_n = V_m \frac{m^2 - 1}{1 + \left( m^2 - 1 \right) \frac{A_n}{\sum_n A_n} }.
@@ -8175,16 +8175,28 @@ $$ \tag{21.23}
 	\alpha_n = V_m \frac{m^2 - 1}{1 + \left( m^2 - 1 \right) \epsilon_0 L_n}.
 $$
 
-Thus, we see that polarizability of a small particle is linearly proportional to its volume \\(V_m\\).
+Thus, we see that the polarizability of a small particle is linearly proportional to its volume \\(V_m\\).
 
 For a spherical particle,
 
 $$ \tag{21.2x}
-	\mathcal{\Alpha_m} = \alpha_m =
-	4 \pi a^3 \frac{m^2 - 1}{m^2 + 2}.
+	\mathcal{\Alpha_m} = \alpha_m
+	= V_m \frac{m^2 - 1}{m^2 + 2}
+	= 4 \pi a^3 \frac{m^2 - 1}{m^2 + 2}.
 $$
 
-In Gaussian units, the values of polarizability are smaller by a factor of \\(4 \pi\\) \[[4](#references) (ch. 6.31)\].
+In Gaussian units, the polarizability values are smaller by a factor of \\(4 \pi\\) \[[4](#references) (ch. 6.31)\].
+
+{{< figure src="/img/polarizability.svg" caption="*Figure 21.3: Plot of \\(\alpha_1\\) defined by Eqn. 21.22 as a function of \\(a_1\\) for \\(a_2 = a_3 = 1\\) and \\(m = 4/3\\).*" >}}
+
+Substitution of Eqn. 21.22 into 21.17 allows us to quickly determine the components of the internal field:
+
+$$ \tag{21.2y}
+	E_n
+	= \frac{\alpha_n}{V_m} \frac{\bm{E_0} \cdot \bm{v_n}}{\left( m^2 - 1 \right)}.
+$$
+
+As shown on Fig. 21.1, the value of \\(A_n\\) monotonically decreases as the particle is stretched out along \\(\bm{v_n}\\). This causes the magnitude of \\(\alpha_n\\) to grow (see Fig. 21.3), making the internal electric field vector more closely aligned with the principal axis of the molecule (see Fig. 21.2).
 
 #### Scattering Matrix
 
@@ -8353,7 +8365,7 @@ $$
 
 Due to the definition of polarizability, in Gaussian units, the elements of the scattering matrix are larger by a factor of \\(4 \pi\\) \[[4](#references) (ch. 6.12)\].
 
-It's instructive to compare the resulting scattering matrix with the expression obtained using the Lorenz-Mie-Debye theory. Substitution of Eqn. 19.8 and 19.24 into 19.6 yields an expression that is identical to Eqn. 21.31, confirming both the accuracy of the *electrostatic dipole* approximation and the conditions of its validity. In contrast, the expression of the magnitude of an *electrodynamic dipole* (given by Eqn. 19.23.2) has several additional terms; while most are negligible in practice, it is worth pointing out an additional imaginary term that models the effect of the *radiation reaction* (or the [self-force](](https://en.wikipedia.org/wiki/Abraham%E2%80%93Lorentz_force))) that is entirely absent from the electrostatic approximation \[[4](#references) (ch. 6.13)\].
+It's instructive to compare the resulting scattering matrix with the expression obtained using the Lorenz-Mie-Debye theory. Substitution of Eqn. 19.8 and 19.24 into 19.6 yields an expression that is identical to Eqn. 21.31, confirming both the accuracy of the *electrostatic dipole* approximation and the conditions of its validity. In contrast, the expression of the magnitude of an *electrodynamic dipole* (given by Eqn. 19.23.2) has several additional terms; while most are negligible in practice, it is worth pointing out an additional imaginary term (that models *radiation damping* caused by the [self-force](https://en.wikipedia.org/wiki/Abraham%E2%80%93Lorentz_force)) that is entirely absent from the electrostatic approximation \[[4](#references) (ch. 6.13)\].
 
 #### Light Intensity and Collision Coefficients
 
@@ -8579,6 +8591,10 @@ $$
 
 If the polarizability is real, and the observer is located in the radiation zone with respect to the entire particle group, then the value of Eqn. 21.47 approaches \\(0\\), which means that this expression is *incorrect*.
 
+$$ \tag{21.22}
+	\alpha_n = V_m \frac{m^2 - 1}{1 + \left( m^2 - 1 \right) \frac{A_n}{\sum_n A_n} }.
+$$
+
 $$ \tag{21.17}
 	E_n
 	= \bm{E} \cdot \bm{v_n}
@@ -8586,23 +8602,20 @@ $$ \tag{21.17}
 	= \frac{\alpha_n \bm{E_0} \cdot \bm{v_n}}{V_m \left( m^2 - 1 \right)}.
 $$
 
-$$ \tag{21.22}
-	\alpha_n = V_m \frac{m^2 - 1}{1 + \left( m^2 - 1 \right) \frac{A_n}{\sum_n A_n} }.
-$$
-
-$$ \tag{16.3y}
+$$ \tag{16.3z}
+\begin{aligned}
 	\Phi_a
-	= \frac{\mu\_0^{-1}}{2} \frac{\eta}{c} k \int\_{V}
+	&= \frac{\mu\_0^{-1}}{2} \frac{\eta}{c} k \int\_{V}
 	\mathcal{Im} \big\lbrace m^2(\bm{r'}) \big\rbrace \big| \bm{E}(\bm{r'}) \big|^2 dV'
-	= \frac{\mu\_0^{-1}}{2} \frac{\eta}{c} k V_m
+	\cr
+	&= \frac{\mu\_0^{-1}}{2} \frac{\eta}{c} k V_m
 	\mathcal{Im} \big\lbrace m^2 \big\rbrace
 	\sum_n \left| \frac{\alpha_n \bm{E_0} \cdot \bm{v_n}}{V_m \left( m^2 - 1 \right)} \right|^2
-$$
-
-$$ \tag{16.3y}
-	\Phi_a
-	= \frac{1}{2} \omega \int\_{V} \kappa(\bm{r'}) \big| \bm{E}(\bm{r'}) \big|^2 dV'
-	= \frac{1}{2} \omega \kappa V_m \sum_n \left| \frac{\alpha_n \bm{E_0} \cdot \bm{v_n}}{V_m \left( m^2 - 1 \right)} \right|^2,
+	\cr
+	&= \frac{\mu\_0^{-1}}{2} \frac{\eta}{c} k
+	\frac{\mathcal{Im} \big\lbrace m^2 \big\rbrace}{V_m | m^2 - 1|^2}
+	\sum_n \left| \alpha_n \bm{E_0} \cdot \bm{v_n} \right|^2
+\end{aligned}
 $$
 
 The reason for this discrepancy is the missing radiation reaction term.
