@@ -2540,7 +2540,9 @@ $$ \tag{11.7}
 \end{cases}
 $$
 
-such that the *relative wavenumber* (or the *relative complex refractive index*) is
+such that the *relative wavenumber* (sometimes called the *relative refractive index*[^28]) is
+
+[^28]: The complex refractive index (given by Eqn. 7.7) is defined relative to the optical properties of the free space (vacuum). The relative wavenumber depends on the properties of the surrounding medium, which may have a refractive index that is different from \\(1\\).
 
 $$ \tag{11.8}
 	m(\bm{r}, \omega)
@@ -6215,7 +6217,7 @@ $$
 
 For our application, the partial orthogonality between \\(\bm{L_{m,n}}\\) and \\(\bm{N_{m,n}}\\) is not a real concern. According to Eqn. 18.36 and 18.37, the electric and the magnetic fields can be expressed solely in terms of \\(\bm{M_{m,n}}\\) and \\(\bm{N_{m,n}}\\), which are mutually orthogonal, as has been shown by Eqn. 18.82 and 18.92.
 
-Now, let us return to the scattering problem. In general, we may arrive at the solution by determining the values of the set of coefficients of the vector spherical wave series expansion given by Eqn. 18.36. In order to obtain these coefficients, we must consider three distinct types of electromagnetic fields: the incident field produced by an external source, the scattered field in the radiation zone of the particle, and the total internal field induced inside the sphere. The reason for this kind of decomposition will become apparent shortly.
+Now, let us return to the scattering problem. In general, we may arrive at the solution by determining the values of the set of coefficients of the vector spherical wave series expansion given by Eqn. 18.36. In order to obtain these coefficients, we must consider three distinct types of electromagnetic fields: the incident field produced by an external source, the scattered field in the radiation zone of the particle, and the total field induced inside the sphere. The reason for this kind of decomposition will become apparent shortly.
 
 Let us begin by considering the expansion of the incident field:
 
