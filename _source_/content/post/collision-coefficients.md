@@ -8589,7 +8589,7 @@ After setting \\(\theta = 0\\) in Eqn. 21.45, followed by a substitution into Eq
 
 $$ \tag{21.47}
 	\braket{\Phi_e^{tot}}
-	= N k_0
+	\stackrel{!}{=} N k_0
 	\mathcal{Im} \left\lbrace \alpha_m
 	v\negmedspace\left( \frac{(k L)^2}{k r}, 0 \right)
 	\right\rbrace \Epsilon_i.
@@ -8699,10 +8699,10 @@ which means that the amount of power absorbed by the particle group is
 $$ \tag{21.56}
 	\braket{\Phi_a^{tot}}
 	= N k_0
-	\mathcal{Im} \left\lbrace \alpha_m \right\rbrace \Epsilon_i,
+	\mathcal{Im} \left\lbrace \alpha_m \right\rbrace \Epsilon_i.
 $$
 
-and the corresponding expression of the absorbed coefficient \\(\varSigma_a\\) is
+The corresponding expression of the absorbed coefficient \\(\varSigma_a\\) is
 
 $$ \tag{21.57}
 	\varSigma_a(\bm{r})
@@ -8726,7 +8726,7 @@ $$
 
 Due to the definition of polarizability, in Gaussian units, the value of the absorption coefficient is greater by a factor of \\(4 \pi\\) \[[4](#references) (6.31, 6.53)\].
 
-Thus, we see that Eqn. 21.47 correctly models absorption, but the effect of scattering (radiation damping) has not yet been taken into account. For spherical particles, this can be verified by replacing the electrostatic expression of the scattering matrix (Eqn. 21.31) with a series expansion found using the Lorenz-Mie-Debye theory (by taking Eqn. 19.6, 19.8, and 19.23.2) and retaining both the real and the imaginary leading terms.
+Thus, we see that Eqn. 21.47 correctly models absorption, but the effect of scattering (radiation damping) has not yet been taken into account. As discussed previously, this can be accomplished by combining Eqn. 21.41 and 21.48. For spherical particles, verification can be performed by replacing the electrostatic expression of the scattering matrix (Eqn. 21.31) with a series expansion found using the Lorenz-Mie-Debye theory and retaining both the real and the imaginary leading terms.
 
 ### Light Scattering by Liquid Molecules
 
