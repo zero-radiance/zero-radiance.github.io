@@ -7484,7 +7484,7 @@ $$ \tag{19.23}
 	\cr
 	\frac{b_{1}}{i}
 	&= \frac{2}{3} \frac{m^2-1}{m^2+2} x^3
-	+\frac{2}{5} \frac{(m^2 - 1)(m^2 - 2)}{\left(m^2+2\right)^2} x^5
+	+ \frac{2}{5} \frac{(m^2 - 1)(m^2 - 2)}{\left(m^2+2\right)^2} x^5
 	- i \left( \frac{2}{3} \frac{m^2-1}{m^2+2} x^3 \right)^2
 	+ \mathrm{O}\big( x^7 \big),
 	\cr
@@ -7506,6 +7506,22 @@ $$ \tag{19.24}
 $$
 
 vanish. Eqn. 19.24 is the basis of the famous law of [Rayleigh scattering](https://en.wikipedia.org/wiki/Rayleigh_scattering) that explains the color of the sky: when molecules of the atmosphere scatter sunlight, the intensity of blue light, which has a shorter wavelength, is much greater than of the rest of the [visible spectrum](https://en.wikipedia.org/wiki/Visible_spectrum), since the size parameter \\(x\\) is inversely proportional to the wavelength \\(\lambda\\).
+
+Occasionally, additional terms of the series expansion given by Eqn. 19.23.2 are retained. The second term
+
+$$ \tag{19.2x}
+	\frac{2}{5} \frac{(m^2 - 1)(m^2 - 2)}{\left(m^2+2\right)^2} x^5,
+$$
+
+was called "residual blue" by Tyndall. It corresponds to a much deeper blue color, since light of longer wavelengths is attenuated even more rapidly than in the case of Rayleigh scattering \[[4](#references) (ch. 10.3)\].
+
+The third term
+
+$$ \tag{19.2y}
+	-i \left( \frac{2}{3} \frac{m^2-1}{m^2+2} x^3 \right)^2
+$$
+
+is both negative and imaginary. We shall later see that it models *radiation reaction* (or *radiation damping*) -- the effect of the "recoil" force (implied by the [conservation of momentum](https://en.wikipedia.org/wiki/Momentum#Conservation)) experienced by the particle when it "shoots" a scattered photon [[4](#references) (ch. 6.13)\].
 
 #### Light Intensity and Efficiency Factors
 
@@ -8367,7 +8383,7 @@ $$
 
 Due to the definition of polarizability, in Gaussian units, the elements of the scattering matrix are larger by a factor of \\(4 \pi\\) \[[4](#references) (ch. 6.12)\].
 
-It's instructive to compare the resulting scattering matrix with the expression obtained using the Lorenz-Mie-Debye theory. Substitution of Eqn. 19.8 and 19.24 into 19.6 yields an expression that is identical to Eqn. 21.31, confirming both the accuracy of the *electrostatic dipole* approximation and the conditions of its validity. In contrast, the expression of the magnitude of an *electrodynamic dipole* (given by Eqn. 19.23.2) has several additional terms; while most are negligible in practice, it is worth pointing out an additional imaginary term (that models *radiation damping* caused by the [self-force](https://en.wikipedia.org/wiki/Abraham%E2%80%93Lorentz_force)) that is entirely absent from the electrostatic approximation \[[4](#references) (ch. 6.13)\].
+It's instructive to compare the resulting scattering matrix with the expression obtained using the Lorenz-Mie-Debye theory. Substitution of Eqn. 19.8 and 19.24 into 19.6 yields an expression that is identical to Eqn. 21.31, confirming both the accuracy of the *electrostatic dipole* approximation and the conditions of its validity. In contrast, the expression of the magnitude of an *electrodynamic dipole* (given by Eqn. 19.23.2) has several additional terms; while most are negligible in practice, it is worth pointing out an additional imaginary term highlighted by Eqn. 19.2y (that models *radiation damping* caused by the [self-force](https://en.wikipedia.org/wiki/Abraham%E2%80%93Lorentz_force)) that is entirely absent from the electrostatic approximation \[[4](#references) (ch. 6.13)\].
 
 #### Light Intensity and Collision Coefficients
 
