@@ -3973,7 +3973,7 @@ $$
 
 Our goal is to find a similar expression for the case when the volume contains particles.
 
-We begin by constructing a virtual surface that is (for convenience, and without loss of generality) both centered at the particle and is sufficiently large to be located in its radiation zone. The scattered fields are then given by Eqn. 15.6-15.?:
+We begin by constructing a virtual surface that is (for convenience, and without loss of generality) both centered at the particle and is sufficiently large to be located in its radiation zone. The scattered fields on the surface are then given by Eqn. 15.6-15.?:
 
 $$ \tag{16.10}
 \begin{aligned}
@@ -3986,7 +3986,7 @@ $$ \tag{16.10}
 \end{aligned}
 $$
 
-where \\(\bm{E_1}\\) and \\(\bm{B_1}\\) are the polarization phasors at the unit distance from the origin, and \\(\bm{n_s} = \bm{r}/r\\) is the direction of observation.
+where \\(\bm{E_1}\\) and \\(\bm{B_1}\\) are the polarization phasors of the spherical wave, and \\(\bm{n_s} = \bm{r}/r\\) is the direction of observation.
 
 According to Eqn. 13.14-13.17 and 13.20-13.??, if the host medium is non-absorptive, the following relations exist:
 
@@ -4004,7 +4004,7 @@ $$ \tag{16.12}
 	\simeq \frac{\mu\_0^{-1}}{2} \frac{\eta}{c} \frac{\big| \bm{E_1}(\bm{n_s}) \big|^2}{k^2 r^2} \bm{n_s}.
 $$
 
-In order to calculate the amount of power scattered by the particle, it is convenient to use a spherical surface \\(\mathbb{S}^2\\). Since the differential solid angle is
+In order to calculate the amount of power scattered by the particle, it is convenient to use a spherical surface \\(\mathbb{S}^2\\). Since the expression of the differential solid angle is
 
 $$ \tag{16.13}
 	d\Omega = \frac{\bm{n} \cdot \bm{n_s}}{r^2} dA
@@ -4361,7 +4361,8 @@ Eqn. 16.39.1-16.39.3 are known as the [optical theorem](https://en.wikipedia.org
 $$ \tag{16.3y}
 \begin{aligned}
 	\Phi_f
-	&= (C_d - C_e) \Epsilon_i(\bm{n_i}) + \frac{C_d}{r^2} \Iota_s(\bm{n_i}),
+	&= (C_d - C_e) \Epsilon_i(\bm{n_i})
+	+ C_d \frac{\Iota_s(\bm{n_i})}{r^2},
 \end{aligned}
 $$
 
@@ -4432,13 +4433,20 @@ $$
 The resulting scattered far-field \\(\bm{E_j}\\) of the \\(j\\)-th particle is given by Eqn. 15.6:
 
 $$ \tag{17.2}
-\begin{aligned}
-	& \bm{E_j}(\bm{r}, \omega)
+	\bm{E_j}(\bm{r}, \omega)
 	\simeq \frac{e^{i k R_j}}{k R_j} \mathcal{S_j} (\bm{R_j} / R_j) \cdot \bm{E_0} e^{i k (\bm{r_j} \cdot \bm{n_i})},
-\end{aligned}
 $$
 
 where we must remember to account for the fact that, in general, the particle is not located at the origin.
+
+The value of the total field \\(\bm{E}\\) is simply
+
+$$ \tag{17.x}
+	\bm{E}(\bm{r}, \omega)
+	= \bm{E_i}(\bm{r}, \omega) + \bm{E_s}(\bm{r}, \omega)
+	= \bm{E_i}(\bm{r}, \omega)
+	+ \sum_{j=1}^{N} \bm{E_j}(\bm{r}, \omega).
+$$
 
 Let \\(L\_{min}\\) and \\(L\_{max}\\) denote the smallest and the largest linear dimension of \\(V\\), respectively. Since a typical volume is large compared to the wavelength of light, then it follows that
 
@@ -4482,10 +4490,10 @@ $$ \tag{17.8}
 \begin{aligned}
 	\braket{\bm{S}}
 	&= \frac{\mu\_0^{-1}}{2} \mathcal{Re} \Big\lbrace
-	\Big( \bm{E_i} + \sum_j \bm{E_j} \Big) \times
-	\Big( \bm{B_i^{\*}} + \sum_j \bm{B_j^{\*}} \Big) \Big\rbrace
+	\Big( \bm{E_i} + \sum_{j=1}^{N} \bm{E_j} \Big) \times
+	\Big( \bm{B_i^{\*}} + \sum_{j=1}^{N} \bm{B_j^{\*}} \Big) \Big\rbrace
 	\cr
-	&= \braket{\bm{S_i}} + \sum_j \braket{\bm{S_j}} - \sum_j \braket{\bm{S_{ij}}} - \sum_{j < k} \braket{\bm{S_{jk}}},
+	&= \braket{\bm{S_i}} + \sum_{j=1}^{N} \braket{\bm{S_j}} - \sum_{j=1}^{N} \braket{\bm{S_{ij}}} - \sum_{j=1}^{N-1} \sum_{k=j+1}^{N}  \braket{\bm{S_{jk}}},
 \end{aligned}
 $$
 
@@ -4678,7 +4686,17 @@ $$ \tag{17.27}
 \end{aligned}
 $$
 
-that is broadly similar to Eqn. 16.23. In particular, according to Eqn. 16.30, the complex exponential term \\(\exp(i k (\bm{r} \cdot \bm{n_i})) = \exp(i k r (\bm{n_s} \cdot \bm{n_i}))\\) indicates that interference only occurs if the optical axis of the measurement device is directly facing the source. Therefore, we only need to consider the expression of the scattered field (given by Eqn. 17.6) along the direction of incidence:
+that is broadly similar to Eqn. 16.23. In particular, according to Eqn. 16.30, the complex exponential term \\(\exp(i k (\bm{r} \cdot \bm{n_i})) = \exp(i k r (\bm{n_s} \cdot \bm{n_i}))\\) indicates that interference only occurs if the optical axis of the measurement device is directly facing the source. This statement must be interpreted carefully. In the previous section, we have determined that, if we formally exclude the scattered light, then extinction effectively amounts to attenuation of the incident parallel beam of light (the plane wave) across the area that is on the order of magnitude of the geometric cross-section \\(C_g\\) (but is not, in general, equal to the extinction cross-section \\(C_e\\)). And, if we consider a virtual sphere (the surface of which contains the observation point) *centered at the particle*, then, as we increase the size of this sphere, the area of the attenuated cross-section of the beam corresponds to a vanishing solid angle centered at the forward direction defined in this manner (see Eqn. 16.30-16.3x).
+
+In the present case, the origin of the coordinate system coincides with the center of the particle group, which may or may not coincide with the center of any of its particles. Furthermore, while the observation point is located
+
+detector of area C_d...
+
+integral over parallel rays...
+
+!!!
+
+Therefore, we only need to consider the expression of the scattered field (given by Eqn. 17.6) along the direction of incidence:
 
 $$ \tag{17.28}
 	\bm{E_j}(r \bm{n_i}, \psi)
@@ -4686,6 +4704,16 @@ $$ \tag{17.28}
 	\frac{e^{i k r}}{k r} \mathcal{S_j} (\bm{n_i}, \psi) \cdot \bm{E_0}
 	e^{i k r_j^2 \left( 1 - (\bm{n_j} \cdot \bm{n_i})^2 \right) / (2 r)}.
 $$
+
+---
+
+$$ \tag{17.6}
+	\bm{E_j}(\bm{r}, \omega)
+	\simeq \frac{e^{i k (R_j + \bm{r_j} \cdot \bm{n_i})}}{k r} \mathcal{S_j} (\bm{n_s}) \cdot \bm{E_0}
+	\simeq \frac{e^{i k r}}{k r} \mathcal{S_j} (\bm{n_s}) \cdot \bm{E_0} e^{i k \bm{r_j} \cdot (\bm{n_i} - \bm{n_s}) + i k r_j^2 \left( 1 - (\bm{n_j} \cdot \bm{n_s})^2 \right)/(2 r)}.
+$$
+
+---
 
 Let us retrace the steps taken in Sec. 16. First, we express the magnetic field in terms of the electric field using Eqn. 16.2 and 16.11; then we substitute \\(\bm{r} = r \bm{n_i}\\) in Eqn. 17.27, and project the resulting expression onto the direction of incidence \\(\bm{n_i}\\). Application of the identities given by Eqn. 16.25 yields the expressions
 
@@ -4806,6 +4834,29 @@ $$
 making the strength of the interference effect similar to that of a particle fixed at the origin. Naturally, the area of the entrance pupil \\(C_d\\) of the measurement device must be sufficiently large \\((C_d \gg L^2)\\) in order to intercept all of these parallel rays of light (see the discussion of Eqn. 16.3y).
 
 On the other hand, if \\(f \ll 1\\), the wave vectors are almost never aligned, making the contribution to \\(\braket{\Phi_e}\\) vanishingly small.
+
+---
+
+???
+
+$$ \tag{14.16}
+	\bm{E_s}(\bm{r})
+	= \int\_{V} \int\_{V} \mathcal{G}\_e (\bm{r}, \bm{r'}) \cdot \mathcal{T} (\bm{r'}, \bm{r''}) \cdot \bm{E_i}(\bm{r''}) dV'' dV'.
+$$
+
+$$ \tag{14.16}
+\begin{aligned}
+	| \bm{E} |^2
+	= | \bm{E_i} + \bm{E_s} |^2
+	= | \bm{E_i} |^2 + | \bm{E_s} |^2
+	+ \bm{E_i^{\*}} \cdot \bm{E_s}
+	+ \bm{E_s^{\*}} \cdot \bm{E_i}
+\end{aligned}
+$$
+
+where the \\(S^H\\) denotes the [conjugate transpose](https://en.wikipedia.org/wiki/Conjugate_transpose) of the scattering matrix
+
+---
 
 Let us now consider the final term of Eqn. 17.8 that accounts for interference of the scattered fields of two particles. Since the observation point \\(\bm{r}\\) is located in the radiation zone of each particle, we can obtain the formula of \\(\braket{\bm{S_{jk}}}\\) by substituting Eqn. 17.6 twice into 17.9.
 
