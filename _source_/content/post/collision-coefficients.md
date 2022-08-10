@@ -3147,7 +3147,7 @@ where \\(\bm{n'}\\) is the outward-facing surface normal associated with \\(dA' 
 
 We would like to caution that these conditions are, strictly speaking, only valid for the expressions of the fields. If one considers a derived quantity (such as the time-averaged Poynting vector), the results of the preceding error analysis are no longer accurate, and the final expression should be examined instead.
 
-Eqn. 13.5, 13.12, and 13.1y show an example of *vector* spherical waves, since the global phase factor \\(\exp(i k r)\\) does not depend on the direction of observation. Note that surfaces of constant phase do not coincide with surfaces of constant amplitude, since the latter may depend on the direction of observation.
+Eqn. 13.5, 13.12, and 13.1y show an example of *vector* spherical waves, since the global phase factor \\(\exp(i k r)\\) does not depend on the direction of observation, so the initial phase value propagates in all directions at the same (phase) velocity. Note that surfaces of constant phase do not coincide with surfaces of constant amplitude, since the latter typically depends on the direction of observation.
 
 An important property of the far-field solution is the fact that the scattered field vectors are transverse with respect to the direction of observation:
 
@@ -3568,7 +3568,7 @@ $$ \tag{15.6}
 	& \bm{E_s}(\bm{r}, \omega)
 	\simeq \frac{e^{i k(\omega) r}}{k(\omega) r} \mathcal{S_{ef}} (\bm{n_s}, \bm{n_i}, \omega) \cdot \bm{E_0}(\bm{n_i}, \omega), \cr
 	& \bm{B_s}(\bm{r}, \omega)
-	\simeq \frac{e^{i k(\omega) r}}{k(\omega) r} \mathcal{S_{mf}} (\bm{n_s}, \bm{n_i}, \omega) \cdot \bm{E_0}(\bm{n_i}, \omega).
+	\simeq \frac{e^{i k(\omega) r}}{\omega r} \bm{n_s} \times \mathcal{S_{ef}} (\bm{n_s}, \bm{n_i}, \omega) \cdot \bm{E_0}(\bm{n_i}, \omega).
 \end{aligned}
 $$
 
@@ -3580,21 +3580,17 @@ $$ \tag{15.?}
 	= \mathcal{S_{ef}} (\bm{n_s}, \bm{n_i}, \omega) \cdot \bm{E_0}(\bm{n_i}, \omega),
 	\cr
 	& \bm{B_1}(\bm{n_s}, \omega)
-	= \mathcal{S_{mf}} (\bm{n_s}, \bm{n_i}, \omega) \cdot \bm{E_0}(\bm{n_i}, \omega).
+	= \frac{k(\omega)}{\omega} \bm{n_s} \times \mathcal{S_{ef}} (\bm{n_s}, \bm{n_i}, \omega) \cdot \bm{E_0}(\bm{n_i}, \omega).
 \end{aligned}
 $$
 
-For completeness, the formulae of the electric and the magnetic far-field scattering dyadics are given below:
+For completeness, the formula of the electric far-field scattering dyadic is given below:
 
 $$ \tag{15.7}
 \begin{aligned}
 	& \mathcal{S_{ef}} (\bm{n_s}, \bm{n_i}, \omega) \simeq
 	\frac{k(\omega)}{4 \pi}
 	\big( \mathcal{I} - \bm{n_s} \otimes \bm{n_s} \big) \cdot
-	\iint\_{V} e^{-i k(\omega) (\bm{r'} \cdot \bm{n_s} - \bm{r''} \cdot \bm{n_i})} \mathcal{T} (\bm{r'}, \bm{r''}, k(\omega), \omega) dV'' dV', \cr
-	& \mathcal{S_{mf}} (\bm{n_s}, \bm{n_i}, \omega) \simeq
-	\frac{k^2(\omega)}{4 \pi \omega}
-	\big(\bm{n_s} \times \mathcal{I} \big) \cdot
 	\iint\_{V} e^{-i k(\omega) (\bm{r'} \cdot \bm{n_s} - \bm{r''} \cdot \bm{n_i})} \mathcal{T} (\bm{r'}, \bm{r''}, k(\omega), \omega) dV'' dV'.
 \end{aligned}
 $$
@@ -3981,7 +3977,7 @@ $$ \tag{16.10}
 	\simeq \mathcal{Re} \bigg\lbrace \frac{e^{i k r}}{k r} \mathcal{S_{ef}}(\bm{n_s}) \cdot \bm{E_0} e^{-i \omega t} \bigg\rbrace
 	= \frac{1}{k r} \mathcal{Re} \bigg\lbrace \bm{E_1}(\bm{n_s}) e^{i k r - i \omega t} \bigg\rbrace, \cr
 	& \bm{B_s}(\bm{r}, t)
-	\simeq \mathcal{Re} \bigg\lbrace \frac{e^{i k r}}{k r} \mathcal{S_{mf}}(\bm{n_s}) \cdot \bm{E_0} e^{-i \omega t} \bigg\rbrace
+	\simeq \mathcal{Re} \bigg\lbrace \frac{e^{i k r}}{\omega r} \bm{n_s} \times \mathcal{S_{ef}}(\bm{n_s}) \cdot \bm{E_0} e^{-i \omega t} \bigg\rbrace
 	= \frac{1}{k r} \mathcal{Re} \bigg\lbrace \bm{B_1}(\bm{n_s}) e^{i k r - i \omega t} \bigg\rbrace,
 \end{aligned}
 $$
@@ -4430,11 +4426,16 @@ $$ \tag{17.1}
 	k R_j \gg (k a_j)^2.
 $$
 
-The resulting scattered far-field \\(\bm{E_j}\\) of the \\(j\\)-th particle is given by Eqn. 15.6:
+The resulting scattered far-field of the \\(j\\)-th particle is given by Eqn. 15.6:
 
 $$ \tag{17.2}
-	\bm{E_j}(\bm{r}, \omega)
+\begin{aligned}
+	& \bm{E_j}(\bm{r}, \omega)
 	\simeq \frac{e^{i k R_j}}{k R_j} \mathcal{S_j} (\bm{R_j} / R_j) \cdot \bm{E_0} e^{i k (\bm{r_j} \cdot \bm{n_i})},
+	\cr
+	& \bm{B_j}(\bm{r}, \omega)
+	\simeq \frac{e^{i k R_j}}{\omega R_j} (\bm{R_j} / R_j) \times \mathcal{S_j} (\bm{R_j} / R_j) \cdot \bm{E_0} e^{i k (\bm{r_j} \cdot \bm{n_i})}.
+\end{aligned}
 $$
 
 where we must remember to account for the fact that, in general, the particle is not located at the origin.
@@ -4476,12 +4477,18 @@ where \\(\bm{n_j} = \bm{r_j} / |\bm{r_j}| = \bm{r_j} / r_j\\).
 
 It is important to note that Eqn. 17.4 does not imply that the observation point is located in the radiation zone with respect to the entire volume \\(V\\), since the latter requires \\(k R_j \gg (k L\_{max})^2\\).
 
-Substitution of Eqn 17.5 into 17.2 yields an expression of a spherical wave diverging from the origin of the coordinate system:
+Substitution of Eqn 17.5 into 17.2 yields an expression of a nearly-spherical wave diverging from the origin of the coordinate system:
 
 $$ \tag{17.6}
-	\bm{E_j}(\bm{r}, \omega)
+\begin{aligned}
+	& \bm{E_j}(\bm{r}, \omega)
 	\simeq \frac{e^{i k (R_j + \bm{r_j} \cdot \bm{n_i})}}{k r} \mathcal{S_j} (\bm{n_s}) \cdot \bm{E_0}
-	\simeq \frac{e^{i k r}}{k r} \mathcal{S_j} (\bm{n_s}) \cdot \bm{E_0} e^{i k \bm{r_j} \cdot (\bm{n_i} - \bm{n_s}) + i k r_j^2 \left( 1 - (\bm{n_j} \cdot \bm{n_s})^2 \right)/(2 r)}.
+	\approx \frac{e^{i k r}}{k r} \mathcal{S_j} (\bm{n_s}) \cdot \bm{E_0} e^{i k \bm{r_j} \cdot (\bm{n_i} - \bm{n_s}) + i k r_j^2 \left( 1 - (\bm{n_j} \cdot \bm{n_s})^2 \right)/(2 r)},
+	\cr
+	& \bm{B_j}(\bm{r}, \omega)
+	\simeq \frac{e^{i k (R_j + \bm{r_j} \cdot \bm{n_i})}}{\omega r} \bm{n_s} \times \mathcal{S_j} (\bm{n_s}) \cdot \bm{E_0}
+	\approx \frac{e^{i k r}}{\omega r} \bm{n_s} \times \mathcal{S_j} (\bm{n_s}) \cdot \bm{E_0} e^{i k \bm{r_j} \cdot (\bm{n_i} - \bm{n_s}) + i k r_j^2 \left( 1 - (\bm{n_j} \cdot \bm{n_s})^2 \right)/(2 r)}.
+\end{aligned}
 $$
 
 Let us combine the expressions of the incident and the scattered fields, and determine whether their interaction produces any observable interference effects. We can utilize the same method employed in Sec. 16; specifically, let us repurpose Eqn. 16.17 and 16.22 of the time-averaged Poynting vector
@@ -4686,7 +4693,23 @@ $$ \tag{17.27}
 \end{aligned}
 $$
 
-that is broadly similar to Eqn. 16.23. In particular, according to Eqn. 16.30, the complex exponential term \\(\exp(i k (\bm{r} \cdot \bm{n_i})) = \exp(i k r (\bm{n_s} \cdot \bm{n_i}))\\) indicates that interference only occurs if the optical axis of the measurement device is directly facing the source. This statement must be interpreted carefully. In the previous section, we have determined that, if we formally exclude the scattered light, then extinction effectively amounts to attenuation of the incident parallel beam of light (the plane wave) across the area that is on the order of magnitude of the geometric cross-section \\(C_g\\) (but is not, in general, equal to the extinction cross-section \\(C_e\\)). And, if we consider a virtual sphere (the surface of which contains the observation point) *centered at the particle*, then, as we increase the size of this sphere, the area of the attenuated cross-section of the beam corresponds to a vanishing solid angle centered at the forward direction defined in this manner (see Eqn. 16.30-16.3x).
+that is broadly similar to Eqn. 16.23. In particular, according to Eqn. 16.30, the complex exponential term \\(\exp(i k (\bm{r} \cdot \bm{n_i})) = \exp(i k r (\bm{n_s} \cdot \bm{n_i}))\\) indicates that interference only occurs if the optical axis of the measurement device is directly facing the source. While that is indeed the case, we must be mindful of the additional phase factors featured in the expressions of \\(\bm{E_j}\\) and \\(\bm{B_j^{\*}}\\) given by Eqn. 17.2.
+
+$$ \tag{17.2}
+\begin{aligned}
+	& \bm{E_j}(\bm{r}, \omega)
+	\simeq \frac{e^{i k R_j}}{k R_j} \mathcal{S_j} (\bm{R_j} / R_j) \cdot \bm{E_0} e^{i k (\bm{r_j} \cdot \bm{n_i})},
+	\cr
+	& \bm{B_j}(\bm{r}, \omega)
+	\simeq \frac{e^{i k R_j}}{\omega R_j} (\bm{R_j} / R_j) \times \mathcal{S_j} (\bm{R_j} / R_j) \cdot \bm{E_0} e^{i k (\bm{r_j} \cdot \bm{n_i})}.
+\end{aligned}
+$$
+
+set (\bm{R_j} / R_j) = n_i...
+
+---
+
+The primary difference from the  This statement must be interpreted carefully. In the previous section, we have determined that, if we formally exclude the scattered light, then extinction effectively amounts to attenuation of the incident parallel beam of light (the plane wave) across the area that is on the order of magnitude of the geometric cross-section \\(C_g\\) (but is not, in general, equal to the extinction cross-section \\(C_e\\)). And, if we consider a virtual sphere (the surface of which contains the observation point) *centered at the particle*, then, as we increase the size of this sphere, the area of the attenuated cross-section of the beam corresponds to a vanishing solid angle centered at the forward direction defined in this manner (see Eqn. 16.30-16.3x).
 
 In the present case, the origin of the coordinate system coincides with the center of the particle group, which may or may not coincide with the center of any of its particles. Furthermore, while the observation point is located
 
