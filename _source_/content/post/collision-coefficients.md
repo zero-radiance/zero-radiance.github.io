@@ -3568,7 +3568,7 @@ $$ \tag{15.6}
 	& \bm{E_s}(\bm{r}, \omega)
 	\simeq \frac{e^{i k(\omega) r}}{k(\omega) r} \mathcal{S_{ef}} (\bm{n_s}, \bm{n_i}, \omega) \cdot \bm{E_0}(\bm{n_i}, \omega), \cr
 	& \bm{B_s}(\bm{r}, \omega)
-	\simeq \frac{e^{i k(\omega) r}}{\omega r} \bm{n_s} \times \mathcal{S_{ef}} (\bm{n_s}, \bm{n_i}, \omega) \cdot \bm{E_0}(\bm{n_i}, \omega).
+	\simeq \frac{k(\omega)}{\omega} \bm{n_s} \times \bm{E_s}(\bm{r}, \omega).
 \end{aligned}
 $$
 
@@ -3579,8 +3579,8 @@ $$ \tag{15.?}
 	& \bm{E_1}(\bm{n_s}, \omega)
 	= \mathcal{S_{ef}} (\bm{n_s}, \bm{n_i}, \omega) \cdot \bm{E_0}(\bm{n_i}, \omega),
 	\cr
-	& \bm{B_1}(\bm{n_s}, \omega)
-	= \frac{k(\omega)}{\omega} \bm{n_s} \times \mathcal{S_{ef}} (\bm{n_s}, \bm{n_i}, \omega) \cdot \bm{E_0}(\bm{n_i}, \omega).
+	& \bm{B_1}(\bm{r}, \omega)
+	= \frac{k(\omega)}{\omega} \bm{n_s} \times \bm{E_1}(\bm{r}, \omega).
 \end{aligned}
 $$
 
@@ -3764,7 +3764,7 @@ Finally, we would like to highlight the *scale invariance* property of electroma
 
 Note that, unlike \\(x\\), \\(m\\) is not scale-invariant. Recall its definition given by Eqn. 11.8:
 
-$$ \tag{15.?}
+$$ \tag{15.17}
 	m(\bm{r}, \omega)
 	= \frac{k_2(\bm{r}, \omega)}{k_1(\omega)}
 	= \sqrt{ \frac{\varepsilon_2(\bm{r}, \omega) \mu_2(\omega)}{\varepsilon_1(\omega) \mu_1(\omega)} }.
@@ -3975,10 +3975,10 @@ $$ \tag{16.10}
 \begin{aligned}
 	& \bm{E_s}(\bm{r}, t)
 	\simeq \mathcal{Re} \bigg\lbrace \frac{e^{i k r}}{k r} \mathcal{S_{ef}}(\bm{n_s}) \cdot \bm{E_0} e^{-i \omega t} \bigg\rbrace
-	= \frac{1}{k r} \mathcal{Re} \bigg\lbrace \bm{E_1}(\bm{n_s}) e^{i k r - i \omega t} \bigg\rbrace, \cr
+	= \mathcal{Re} \bigg\lbrace \frac{1}{k r} \bm{E_1}(\bm{n_s}) e^{i k r - i \omega t} \bigg\rbrace, \cr
 	& \bm{B_s}(\bm{r}, t)
 	\simeq \mathcal{Re} \bigg\lbrace \frac{e^{i k r}}{\omega r} \bm{n_s} \times \mathcal{S_{ef}}(\bm{n_s}) \cdot \bm{E_0} e^{-i \omega t} \bigg\rbrace
-	= \frac{1}{k r} \mathcal{Re} \bigg\lbrace \bm{B_1}(\bm{n_s}) e^{i k r - i \omega t} \bigg\rbrace,
+	= \mathcal{Re} \bigg\lbrace \frac{1}{k r} \bm{B_1}(\bm{n_s}) e^{i k r - i \omega t} \bigg\rbrace,
 \end{aligned}
 $$
 
@@ -4434,7 +4434,7 @@ $$ \tag{17.2}
 	\simeq \frac{e^{i k R_j}}{k R_j} \mathcal{S_j} (\bm{R_j} / R_j) \cdot \bm{E_0} e^{i k (\bm{r_j} \cdot \bm{n_i})},
 	\cr
 	& \bm{B_j}(\bm{r}, \omega)
-	\simeq \frac{e^{i k R_j}}{\omega R_j} (\bm{R_j} / R_j) \times \mathcal{S_j} (\bm{R_j} / R_j) \cdot \bm{E_0} e^{i k (\bm{r_j} \cdot \bm{n_i})}.
+	\simeq \frac{\eta}{c} (\bm{R_j} / R_j) \times \bm{E_j}(\bm{r}, \omega).
 \end{aligned}
 $$
 
@@ -4477,18 +4477,12 @@ where \\(\bm{n_j} = \bm{r_j} / |\bm{r_j}| = \bm{r_j} / r_j\\).
 
 It is important to note that Eqn. 17.4 does not imply that the observation point is located in the radiation zone with respect to the entire volume \\(V\\), since the latter requires \\(k R_j \gg (k L\_{max})^2\\).
 
-Substitution of Eqn 17.5 into 17.2 yields an expression of a nearly-spherical wave diverging from the origin of the coordinate system:
+Substitution of Eqn 17.5 into 17.2.1 yields an expression of a nearly-spherical wave diverging from the origin of the coordinate system:
 
 $$ \tag{17.6}
-\begin{aligned}
-	& \bm{E_j}(\bm{r}, \omega)
+	\bm{E_j}(\bm{r}, \omega)
 	\simeq \frac{e^{i k (R_j + \bm{r_j} \cdot \bm{n_i})}}{k r} \mathcal{S_j} (\bm{n_s}) \cdot \bm{E_0}
-	\approx \frac{e^{i k r}}{k r} \mathcal{S_j} (\bm{n_s}) \cdot \bm{E_0} e^{i k \bm{r_j} \cdot (\bm{n_i} - \bm{n_s}) + i k r_j^2 \left( 1 - (\bm{n_j} \cdot \bm{n_s})^2 \right)/(2 r)},
-	\cr
-	& \bm{B_j}(\bm{r}, \omega)
-	\simeq \frac{e^{i k (R_j + \bm{r_j} \cdot \bm{n_i})}}{\omega r} \bm{n_s} \times \mathcal{S_j} (\bm{n_s}) \cdot \bm{E_0}
-	\approx \frac{e^{i k r}}{\omega r} \bm{n_s} \times \mathcal{S_j} (\bm{n_s}) \cdot \bm{E_0} e^{i k \bm{r_j} \cdot (\bm{n_i} - \bm{n_s}) + i k r_j^2 \left( 1 - (\bm{n_j} \cdot \bm{n_s})^2 \right)/(2 r)}.
-\end{aligned}
+	\approx \frac{e^{i k r}}{k r} \mathcal{S_j} (\bm{n_s}) \cdot \bm{E_0} e^{i k \bm{r_j} \cdot (\bm{n_i} - \bm{n_s}) + i k r_j^2 \left( 1 - (\bm{n_j} \cdot \bm{n_s})^2 \right)/(2 r)}.
 $$
 
 Let us combine the expressions of the incident and the scattered fields, and determine whether their interaction produces any observable interference effects. We can utilize the same method employed in Sec. 16; specifically, let us repurpose Eqn. 16.17 and 16.22 of the time-averaged Poynting vector
@@ -4693,19 +4687,67 @@ $$ \tag{17.27}
 \end{aligned}
 $$
 
-that is broadly similar to Eqn. 16.23. In particular, according to Eqn. 16.30, the complex exponential term \\(\exp(i k (\bm{r} \cdot \bm{n_i})) = \exp(i k r (\bm{n_s} \cdot \bm{n_i}))\\) indicates that interference only occurs if the optical axis of the measurement device is directly facing the source. While that is indeed the case, we must be mindful of the additional phase factors featured in the expressions of \\(\bm{E_j}\\) and \\(\bm{B_j^{\*}}\\) given by Eqn. 17.2.
+that is broadly similar to Eqn. 16.23. In particular, according to Eqn. 16.30, the complex exponential term \\(\exp(i k (\bm{r} \cdot \bm{n_i})) = \exp(i k r (\bm{n_s} \cdot \bm{n_i}))\\) indicates that interference only occurs when the optical axis of the measurement device is directly facing the source. While that is indeed the case, we must carefully account for the additional phase factors featured in the expressions of \\(\bm{E_j}\\) and \\(\bm{B_j^{\*}}\\) given by Eqn. 17.2:
 
-$$ \tag{17.2}
+$$ \tag{17.28}
 \begin{aligned}
-	& \bm{E_j}(\bm{r}, \omega)
-	\simeq \frac{e^{i k R_j}}{k R_j} \mathcal{S_j} (\bm{R_j} / R_j) \cdot \bm{E_0} e^{i k (\bm{r_j} \cdot \bm{n_i})},
+	\braket{\bm{S_{ij}}}\_t \negmedspace (\bm{r}, \psi)
+	\simeq &-\frac{\mu_0^{-1}}{2 k R_j} \mathcal{Re} \bigg\lbrace
+	\left( \bm{E_0} e^{i k \bm{R_j} \cdot \bm{n_i}} \right) \times
+	\frac{\eta}{c} (\bm{R_j} / R_j) \times
+	\left[ \mathcal{S_j} (\bm{R_j} / R_j) \cdot \bm{E_0} e^{i k R_j} \right]^{\*}
+	\bigg\rbrace
 	\cr
-	& \bm{B_j}(\bm{r}, \omega)
-	\simeq \frac{e^{i k R_j}}{\omega R_j} (\bm{R_j} / R_j) \times \mathcal{S_j} (\bm{R_j} / R_j) \cdot \bm{E_0} e^{i k (\bm{r_j} \cdot \bm{n_i})}.
+	&-\frac{\mu_0^{-1}}{2 k R_j} \mathcal{Re} \bigg\lbrace
+	\left( \mathcal{S_j} (\bm{R_j} / R_j) \cdot \bm{E_0} e^{i k R_j} \right) \times
+	\left[ \bm{B_0} e^{i k \bm{R_j} \cdot \bm{n_i}} \right]^{\*}
+	\bigg\rbrace.
 \end{aligned}
 $$
 
-set (\bm{R_j} / R_j) = n_i...
+$$ \tag{16.23}
+	\braket{\bm{S_e}} \simeq
+	-\frac{\mu_0^{-1}}{2 k r} \mathcal{Re} \bigg\lbrace
+	\Big( \bm{E_0} e^{i k (\bm{r} \cdot \bm{n_i})} \Big) \times \Big[ \bm{B_1} e^{i k r} \Big]^{\*} +
+	\Big( \bm{E_1} e^{i k r} \Big) \times \Big[ \bm{B_0} e^{i k (\bm{r} \cdot \bm{n_i})} \Big]^{\*}
+	\bigg\rbrace.
+$$
+
+In comparison with Eqn. 16.23, the essential difference is the fact that the particle is no longer fixed at the origin of the coordinate system, so interference is observed within a small beam-shaped region centered at \\(\bm{r_j}\\) and oriented along \\(\bm{R_j} = (\bm{r} - \bm{r_j})\\), with the cross-sectional area on the order of the numerical value of \\(C_g\\). Naturally, if \\(\bm{r}\\) is not located within the beam, interference is not observed.
+
+[Maybe add an illustration?]
+
+Assuming the measurement device is placed in the radiation zone of the particle, is oriented perpendicular to the direction of observation \\(\bm{n_i}\\), and the area \\(C_d\\) and the placement of the the entrance pupil of the detector allow the beam to be fully captured,
+
+Since, according to Eqn. 17.1, the observation point \\(\bm{r}\\) is located in the radiation zone of each particle, Eqn. 16.30 remains applicable:
+
+$$ \tag{17.29}
+\begin{aligned}
+	e^{i k R_j (\bm{n} \cdot \bm{n_i})}
+	\simeq 2 \pi i \left(
+	\frac{e^{-i k R_j}}{k R_j} \delta(\bm{n_i} + \bm{n}) -
+	\frac{e^{i k R_j}}{k R_j} \delta(\bm{n_i} - \bm{n}) \right)
+\end{aligned}.
+$$
+
+
+
+$$ \tag{16.34}
+	\Phi_e
+	= \oint_{\mathbb{S}^2} \braket{\bm{S_e}} \cdot \bm{n_s} \thinspace dA
+	= \frac{\mu\_0^{-1}}{2} \frac{\eta}{c} \frac{4 \pi}{k^2} \mathcal{Im} \big\lbrace \bm{E_0^{\*}} \cdot \bm{E_1}(\bm{n_i}) \big\rbrace.
+$$
+
+$$ \tag{17.30}
+	\Phi_{ij}(\psi)
+	= \frac{\mu\_0^{-1}}{2} \frac{\eta}{c} \frac{4 \pi}{k^2} \mathcal{Im} \left\lbrace \bm{E_0^{\*}} \cdot \mathcal{S_j}(\bm{n_i}, \psi) \cdot \bm{E_0}
+	e^{i k r_j^2 \left( 1 - (\bm{n_j} \cdot \bm{n_i})^2 \right) / (2 r)} \right\rbrace.
+$$
+
+where, as before, \\(C_d\\) is the area of the entrance pupil of the measurement device, \\(C_e\\) is the extinction cross-section, \\(\Epsilon_i\\) is the incident irradiance, and \\(\Iota_s\\) is the scattered intensity. Since, physically, the amount of power cannot be negative, Eqn. 16.3y implies that \\(C_d\\) must be sufficiently large \\((C_d \gg C_g)\\) in order to fully capture the extinction effect \[[8](#references) (ch. 13.1)\].
+
+
+!!!
 
 ---
 
@@ -4716,8 +4758,6 @@ In the present case, the origin of the coordinate system coincides with the cent
 detector of area C_d...
 
 integral over parallel rays...
-
-!!!
 
 Therefore, we only need to consider the expression of the scattered field (given by Eqn. 17.6) along the direction of incidence:
 
