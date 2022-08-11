@@ -4693,116 +4693,43 @@ $$ \tag{17.28}
 \begin{aligned}
 	\braket{\bm{S_{ij}}}\_t \negmedspace (\bm{r}, \psi)
 	\simeq &-\frac{\mu_0^{-1}}{2 k R_j} \mathcal{Re} \bigg\lbrace
-	\left( \bm{E_0} e^{i k \bm{R_j} \cdot \bm{n_i}} \right) \times
+	\left( \bm{E_0} e^{i k (\bm{R_j} \cdot \bm{n_i})} \right) \times
 	\frac{\eta}{c} (\bm{R_j} / R_j) \times
 	\left[ \mathcal{S_j} (\bm{R_j} / R_j) \cdot \bm{E_0} e^{i k R_j} \right]^{\*}
 	\bigg\rbrace
 	\cr
 	&-\frac{\mu_0^{-1}}{2 k R_j} \mathcal{Re} \bigg\lbrace
 	\left( \mathcal{S_j} (\bm{R_j} / R_j) \cdot \bm{E_0} e^{i k R_j} \right) \times
-	\left[ \bm{B_0} e^{i k \bm{R_j} \cdot \bm{n_i}} \right]^{\*}
+	\left[ \bm{B_0} e^{i k (\bm{R_j} \cdot \bm{n_i})} \right]^{\*}
 	\bigg\rbrace.
 \end{aligned}
 $$
 
-$$ \tag{16.23}
-	\braket{\bm{S_e}} \simeq
-	-\frac{\mu_0^{-1}}{2 k r} \mathcal{Re} \bigg\lbrace
-	\Big( \bm{E_0} e^{i k (\bm{r} \cdot \bm{n_i})} \Big) \times \Big[ \bm{B_1} e^{i k r} \Big]^{\*} +
-	\Big( \bm{E_1} e^{i k r} \Big) \times \Big[ \bm{B_0} e^{i k (\bm{r} \cdot \bm{n_i})} \Big]^{\*}
-	\bigg\rbrace.
-$$
-
-In comparison with Eqn. 16.23, the essential difference is the fact that the particle is no longer fixed at the origin of the coordinate system, so interference is observed within a small beam-shaped region centered at \\(\bm{r_j}\\) and oriented along \\(\bm{R_j} = (\bm{r} - \bm{r_j})\\), with the cross-sectional area on the order of the numerical value of \\(C_g\\). Naturally, if \\(\bm{r}\\) is not located within the beam, interference is not observed.
+In comparison with Eqn. 16.23, the essential difference is the fact that the particle is no longer fixed at the origin of the coordinate system, so interference is observed within a small beam-shaped region centered at \\(\bm{r_j}\\) and oriented along \\(\bm{R_j} = (\bm{r} - \bm{r_j})\\), with the cross-sectional area on the order of the numerical value of \\(C_g\\). Naturally, if \\(\bm{r}\\) is not located within this beam, interference is not observed.
 
 [Maybe add an illustration?]
 
-Assuming the measurement device is placed in the radiation zone of the particle, is oriented perpendicular to the direction of observation \\(\bm{n_i}\\), and the area \\(C_d\\) and the placement of the the entrance pupil of the detector allow the beam to be fully captured,
-
-Since, according to Eqn. 17.1, the observation point \\(\bm{r}\\) is located in the radiation zone of each particle, Eqn. 16.30 remains applicable:
+Assuming the measurement device is placed in the radiation zone of the particle, is oriented perpendicular to the direction of observation \\(\bm{n_i}\\), and the area \\(C_d\\) of the entrance pupil of the detector is sufficiently large \\((C_d \gg C_g)\\) to fully capture the "extinction beam", a couple of trivial substitutions allow us to directly reuse the results from the previous section. In particular, substitution of Eqn. 16.30, and integration of Eqn. 17.28 over a large sphere, a tiny region of which (centered at \\(\bm{r} = \bm{r_j} + R_j \bm{n_i}\\)) overlaps with the entrance pupil of the detector, we obtain a direct analog of Eqn. 16.34:
 
 $$ \tag{17.29}
-\begin{aligned}
-	e^{i k R_j (\bm{n} \cdot \bm{n_i})}
-	\simeq 2 \pi i \left(
-	\frac{e^{-i k R_j}}{k R_j} \delta(\bm{n_i} + \bm{n}) -
-	\frac{e^{i k R_j}}{k R_j} \delta(\bm{n_i} - \bm{n}) \right)
-\end{aligned}.
+	\Phi_{ij}(\psi)
+	= \oint_{\mathbb{S}^2} \braket{\bm{S_{ij}}}\_t \negmedspace  \cdot \bm{n} \thinspace dA
+	= \frac{\mu\_0^{-1}}{2} \frac{\eta}{c} \frac{4 \pi}{k^2} \mathcal{Im} \left\lbrace \bm{E_0^{\*}} \cdot \mathcal{S_j}(\bm{n_i}, \psi) \cdot \bm{E_0} \right\rbrace.
 $$
 
-
-
-$$ \tag{16.34}
-	\Phi_e
-	= \oint_{\mathbb{S}^2} \braket{\bm{S_e}} \cdot \bm{n_s} \thinspace dA
-	= \frac{\mu\_0^{-1}}{2} \frac{\eta}{c} \frac{4 \pi}{k^2} \mathcal{Im} \big\lbrace \bm{E_0^{\*}} \cdot \bm{E_1}(\bm{n_i}) \big\rbrace.
-$$
+The result is formally independent of the distance from the particle to the detector (provided that it is large), but it does depend on its lateral position, since moving the particle results in translation of its beam. Assuming the entrance pupil of the measurement device is sufficiently large \\((C_d \gg L^2)\\) to image the entire particle group at once, performing ensemble averaging over the positions of the particles has no effect:
 
 $$ \tag{17.30}
-	\Phi_{ij}(\psi)
-	= \frac{\mu\_0^{-1}}{2} \frac{\eta}{c} \frac{4 \pi}{k^2} \mathcal{Im} \left\lbrace \bm{E_0^{\*}} \cdot \mathcal{S_j}(\bm{n_i}, \psi) \cdot \bm{E_0}
-	e^{i k r_j^2 \left( 1 - (\bm{n_j} \cdot \bm{n_i})^2 \right) / (2 r)} \right\rbrace.
+	\braket{\Phi_e}
+	= \frac{\mu\_0^{-1}}{2} \frac{\eta}{c} \frac{4 \pi}{k^2}
+	\mathcal{Im} \left\lbrace
+	\bm{E_0^{\*}} \cdot \braket{\mathcal{S_j}}\_{\psi} \negmedspace (\bm{n_i}) \cdot \bm{E_0}
+	\right\rbrace.
 $$
 
-where, as before, \\(C_d\\) is the area of the entrance pupil of the measurement device, \\(C_e\\) is the extinction cross-section, \\(\Epsilon_i\\) is the incident irradiance, and \\(\Iota_s\\) is the scattered intensity. Since, physically, the amount of power cannot be negative, Eqn. 16.3y implies that \\(C_d\\) must be sufficiently large \\((C_d \gg C_g)\\) in order to fully capture the extinction effect \[[8](#references) (ch. 13.1)\].
-
-
-!!!
+Intuitively, if the number density of the particles is small, their beams [do not cross](https://ghostbusters.fandom.com/wiki/Cross_the_Streams).
 
 ---
-
-The primary difference from the  This statement must be interpreted carefully. In the previous section, we have determined that, if we formally exclude the scattered light, then extinction effectively amounts to attenuation of the incident parallel beam of light (the plane wave) across the area that is on the order of magnitude of the geometric cross-section \\(C_g\\) (but is not, in general, equal to the extinction cross-section \\(C_e\\)). And, if we consider a virtual sphere (the surface of which contains the observation point) *centered at the particle*, then, as we increase the size of this sphere, the area of the attenuated cross-section of the beam corresponds to a vanishing solid angle centered at the forward direction defined in this manner (see Eqn. 16.30-16.3x).
-
-In the present case, the origin of the coordinate system coincides with the center of the particle group, which may or may not coincide with the center of any of its particles. Furthermore, while the observation point is located
-
-detector of area C_d...
-
-integral over parallel rays...
-
-Therefore, we only need to consider the expression of the scattered field (given by Eqn. 17.6) along the direction of incidence:
-
-$$ \tag{17.28}
-	\bm{E_j}(r \bm{n_i}, \psi)
-	\simeq
-	\frac{e^{i k r}}{k r} \mathcal{S_j} (\bm{n_i}, \psi) \cdot \bm{E_0}
-	e^{i k r_j^2 \left( 1 - (\bm{n_j} \cdot \bm{n_i})^2 \right) / (2 r)}.
-$$
-
----
-
-$$ \tag{17.6}
-	\bm{E_j}(\bm{r}, \omega)
-	\simeq \frac{e^{i k (R_j + \bm{r_j} \cdot \bm{n_i})}}{k r} \mathcal{S_j} (\bm{n_s}) \cdot \bm{E_0}
-	\simeq \frac{e^{i k r}}{k r} \mathcal{S_j} (\bm{n_s}) \cdot \bm{E_0} e^{i k \bm{r_j} \cdot (\bm{n_i} - \bm{n_s}) + i k r_j^2 \left( 1 - (\bm{n_j} \cdot \bm{n_s})^2 \right)/(2 r)}.
-$$
-
----
-
-Let us retrace the steps taken in Sec. 16. First, we express the magnetic field in terms of the electric field using Eqn. 16.2 and 16.11; then we substitute \\(\bm{r} = r \bm{n_i}\\) in Eqn. 17.27, and project the resulting expression onto the direction of incidence \\(\bm{n_i}\\). Application of the identities given by Eqn. 16.25 yields the expressions
-
-$$ \tag{17.29}
-\begin{aligned}
-	\bm{n_i} \cdot \big( \bm{E_i} \times \bm{B_j^{\*}} \big)
-	&\simeq \frac{\eta}{c}
-	\big( \bm{E_0} \cdot \bm{E_j^{\*}} \big)
-	e^{i k r},
-	\cr
-	\bm{n_i} \cdot \big( \bm{E_j} \times \bm{B_i^{\*}} \big)
-	&\simeq \frac{\eta}{c}
-	\big( \bm{E_0^{\*} \cdot \bm{E_j}} \big)
-	e^{-i k r}.
-\end{aligned}
-$$
-
-that are complex conjugates of each other.
-
-By combining Eqn. 17.27-17.29, and following the steps detailed in the previous section, it is easy to show that the amount of power dissipated by the \\(j\\)-th particle in the state \\(\psi\\) is
-
-$$ \tag{17.30}
-	\Phi_{ij}(\psi)
-	= \frac{\mu\_0^{-1}}{2} \frac{\eta}{c} \frac{4 \pi}{k^2} \mathcal{Im} \left\lbrace \bm{E_0^{\*}} \cdot \mathcal{S_j}(\bm{n_i}, \psi) \cdot \bm{E_0}
-	e^{i k r_j^2 \left( 1 - (\bm{n_j} \cdot \bm{n_i})^2 \right) / (2 r)} \right\rbrace.
-$$
 
 This expression can be further simplified by performing ensemble averaging. Suppose that every position is equally likely, with the corresponding probability density \\(p(\bm{r_j}) = 1/V\\); then we can account for random motion of particles by analytically evaluating the integral
 
