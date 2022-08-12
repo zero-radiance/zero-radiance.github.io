@@ -4673,7 +4673,7 @@ $$ \tag{17.26}
 	\right\rangle \_{\psi}.
 $$
 
-The Poynting vector \\(\braket{\bm{S_j}}\\) associated with the scattered field does not, by itself, completely determine the intensity of scattered light. In addition, we must account for interference between the incident and the scattered waves contained within the \\(\braket{\bm{S_{ij}}}\\) terms of Eqn 17.8.
+The Poynting vector \\(\braket{\bm{S_j}}\\) associated with the scattered field does not, by itself, completely determine the intensity of light. In addition, we must account for interference between the incident and the scattered waves contained within the \\(\braket{\bm{S_{ij}}}\\) terms of Eqn 17.8.
 
 Substitution of Eqn. 16.1 into 17.9 yields an expression
 
@@ -4705,11 +4705,11 @@ $$ \tag{17.28}
 \end{aligned}
 $$
 
-In comparison with Eqn. 16.23, the essential difference is the fact that the particle is no longer fixed at the origin of the coordinate system, so interference is observed within a small beam-shaped region centered at \\(\bm{r_j}\\) and oriented along \\(\bm{R_j} = (\bm{r} - \bm{r_j})\\), with the cross-sectional area on the order of the numerical value of \\(C_g\\). Naturally, if \\(\bm{r}\\) is not located within this beam, interference is not observed.
+The essential difference between Eqn. 16.23 and 17.28 arises from the fact that the particle is no longer fixed at the origin of the coordinate system, so interference is observed within a small beam-shaped region centered at \\(\bm{r_j}\\) and oriented along \\(\bm{R_j} = (\bm{r} - \bm{r_j})\\), with the cross-sectional area on the order of the numerical value of \\(C_g\\). Naturally, if \\(\bm{r}\\) is not located within the beam, interference is not observed.
 
 [Maybe add an illustration?]
 
-Assuming the measurement device is placed in the radiation zone of the particle, is oriented perpendicular to the direction of observation \\(\bm{n_i}\\), and the area \\(C_d\\) of the entrance pupil of the detector is sufficiently large \\((C_d \gg C_g)\\) to fully capture the "extinction beam", a couple of trivial substitutions allow us to directly reuse the results from the previous section. In particular, substitution of Eqn. 16.30, and integration of Eqn. 17.28 over a large sphere, a tiny region of which (centered at \\(\bm{r} = \bm{r_j} + R_j \bm{n_i}\\)) overlaps with the entrance pupil of the detector, we obtain a direct analog of Eqn. 16.34:
+Assuming the measurement device is placed in the radiation zone of the particle, is oriented perpendicular to the direction of observation \\(\bm{n_i}\\), and the area \\(C_d\\) of its entrance pupil is sufficiently large \\((C_d \gg C_g)\\) to fully capture the "extinction beam", then, after a couple of trivial substitutions, we may directly reuse the results from the previous section. In particular, substitution of Eqn. 16.30 into 17.28, followed by integration over a large sphere, a tiny region of which (centered at \\(\bm{r} = \bm{r_j} + R_j \bm{n_i}\\)) overlaps the entrance pupil of the detector, produces a direct analog of Eqn. 16.34:
 
 $$ \tag{17.29}
 	\Phi_{ij}(\psi)
@@ -4717,7 +4717,7 @@ $$ \tag{17.29}
 	= \frac{\mu\_0^{-1}}{2} \frac{\eta}{c} \frac{4 \pi}{k^2} \mathcal{Im} \left\lbrace \bm{E_0^{\*}} \cdot \mathcal{S_j}(\bm{n_i}, \psi) \cdot \bm{E_0} \right\rbrace.
 $$
 
-The result is formally independent of the distance from the particle to the detector (provided that it is large), but it does depend on its lateral position, since moving the particle results in translation of its beam. Assuming the entrance pupil of the measurement device is sufficiently large \\((C_d \gg L^2)\\) to image the entire particle group at once, performing ensemble averaging over the positions of the particles has no effect:
+The result is formally independent of the distance from the particle to the detector, but it does depend on the lateral position, since a movement of the particle results in translation of its beam. Assuming the entrance pupil of the measurement device is sufficiently large \\((C_d \gg L^2)\\) to image the entire particle group at once, performing ensemble averaging over the particle positions has no effect:
 
 $$ \tag{17.30}
 	\braket{\Phi_e}
@@ -4727,12 +4727,15 @@ $$ \tag{17.30}
 	\right\rbrace.
 $$
 
-Intuitively, if the number density of the particles is small, their beams [do not cross](https://ghostbusters.fandom.com/wiki/Cross_the_Streams).
+Thus, the mean amount of power \\(\braket{\Phi_e}\\) dissipated per particle is the same as that of the average particle \[[8](#references) (ch. 14.6)\]. Intuitively, if the number density of the particles is small, their "extinction beams" [do not cross](https://ghostbusters.fandom.com/wiki/Cross_the_Streams).
 
-How much of the force associated with \\(\braket{\Phi_e}\\) is felt by a single particle in another particle group? The probability of two uniformly-distributed particles lining up is on the order of \\(1/L^2\\). If particles are widely spaced (occupy a small fraction of the total volume), then the effect of extinction (by a sparse particle group) onto another small particle is practically negligible \[[8](#references) (ch. 14.2)\]:
+
+It is also interesting to consider the impact of extinction on a small particle (as opposed to a large detector). The probability of lining up a uniformly-distributed particle with a fixed target is on the order of \\(1/L^2\\). If the particle group is sparse (with particles occupying a small fraction of the total volume), and the particles themselves are weakly absorbing and weakly scattering (cf. Eqn. 17.0), then interference between the incident light and the light scattered by the particle group has practically no effect as far as another small particle is concerned \[[8](#references) (ch. 14.2)\]:
 
 $$ \tag{17.31}
-	\frac{\sum_{j=1}^{N} C_{e,j}}{L^2} \ll 1.
+	\frac{\sum_{j=1}^{N} C_{e,j}}{L^2}
+	= \frac{\sum_{j=1}^{N} \Phi_{ij} / \Epsilon_i}{L^2}
+	= \frac{4 \pi \sum_{j=1}^{N}  \thinspace \mathcal{Im} \big\lbrace \bm{E_0^{\*}} \cdot \mathcal{S_j}(\bm{n_i}, \psi) \cdot \bm{E_0} \big\rbrace}{(k L)^2 |\bm{E_0}|^2} \ll 1.
 $$
 
 ---
@@ -4830,27 +4833,6 @@ $$
 making the strength of the interference effect similar to that of a particle fixed at the origin. Naturally, the area of the entrance pupil \\(C_d\\) of the measurement device must be sufficiently large \\((C_d \gg L^2)\\) in order to intercept all of these parallel rays of light (see the discussion of Eqn. 16.3y).
 
 On the other hand, if \\(f \ll 1\\), the wave vectors are almost never aligned, making the contribution to \\(\braket{\Phi_e}\\) vanishingly small.
-
----
-
-???
-
-$$ \tag{14.16}
-	\bm{E_s}(\bm{r})
-	= \int\_{V} \int\_{V} \mathcal{G}\_e (\bm{r}, \bm{r'}) \cdot \mathcal{T} (\bm{r'}, \bm{r''}) \cdot \bm{E_i}(\bm{r''}) dV'' dV'.
-$$
-
-$$ \tag{14.16}
-\begin{aligned}
-	| \bm{E} |^2
-	= | \bm{E_i} + \bm{E_s} |^2
-	= | \bm{E_i} |^2 + | \bm{E_s} |^2
-	+ \bm{E_i^{\*}} \cdot \bm{E_s}
-	+ \bm{E_s^{\*}} \cdot \bm{E_i}
-\end{aligned}
-$$
-
-where the \\(S^H\\) denotes the [conjugate transpose](https://en.wikipedia.org/wiki/Conjugate_transpose) of the scattering matrix
 
 ---
 
