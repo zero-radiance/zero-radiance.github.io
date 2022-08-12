@@ -4740,6 +4740,10 @@ $$
 
 ---
 
+Remove kL_min, kL_max...
+
+---
+
 This expression can be further simplified by performing ensemble averaging. Suppose that every position is equally likely, with the corresponding probability density \\(p(\bm{r_j}) = 1/V\\); then we can account for random motion of particles by analytically evaluating the integral
 
 $$ \tag{17.31}
