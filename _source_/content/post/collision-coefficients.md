@@ -4790,7 +4790,7 @@ $$ \tag{17.42}
 	\right) dV_j.
 $$
 
-We can gain the intuition about the behavior of this integral by analyzing each of the two terms in isolation. First, consider
+We can gain some intuition about the behavior of this integral by analyzing its terms in isolation. First, consider
 
 $$ \tag{17.31}
 	v(f, 0) = \frac{1}{V} \int_V
@@ -4854,13 +4854,29 @@ In general, \\(v(f, 0) \\) is a fairly complicated function that tends[^21] to \
 
 [^21]: Since \\(\exp(i f u^2) \to 1\\) as \\(f \to 0\\), the same applies to its integral taken over a unit interval.
 
-{{< figure src="/img/vol_int_3.svg" caption="*Figure N: Plot of \\(f |v(f)|\\) defined by Eqn. 17.35. We can observe that the running average of \\(|v(f)|\\) is inversely proportional to \\(f\\), and thus, \\((k L)^2\\).*" >}}
+{{< figure src="/img/vol_int_3.svg" caption="*Figure N: Plot of \\(f |v(f)|\\) defined by Eqn. 17.35. We can observe that the moving average of \\(|v(f)|\\) is inversely proportional to \\(f\\), and thus, \\((k L)^2\\).*" >}}
 
 Another important case of interest is when both \\(k L \gg 1\\) and \\(k r \gg 1\\) in such a way that \\(f \gg 1\\). That causes the approximations of Eqn. 17.34-17.35 to break down. One may encounter this situation in practice while considering the force exerted by the electromagnetic field of one particle group onto a particle in an adjacent group. Fortunately, by taking the limit of Eqn. 17.31, one can show[^22] that \\(|v| \to 0\\) as \\(f \to \infin\\).
 
 [^22]: As the pseudo-frequency \\(f \to \infin\\), the value of \\(\exp(i f u^2)\\) rapidly oscillates around its mean, \\(0\\).
 
 ---
+
+Now, let us return to Eqn. 17.42, and assume that the observer is located in the radiation zone of the entire particle group. Then \\(f \to 0\\), and
+
+$$ \tag{17.44}
+	v(0, g) = \frac{1}{V} \int_V \exp \negmedspace \left(
+	i k \bm{r_j} \cdot (\bm{n_i} - \bm{n_s})
+	\right) dV_j,
+$$
+
+where the new parameter
+
+$$ \tag{17.43}
+	g = k L |\bm{n_i} - \bm{n_s}| = \sqrt{2} k L \sqrt{1 - (\bm{n_i} \cdot \bm{n_s})}
+$$
+
+depends on both the dimensions of the particle group and the degree of alignment of the wave vectors.
 
 Suppose that every position is equally likely, with the corresponding probability density \\(p(\bm{r_j}) = 1/V\\). Then calculation of the ensemble average of the electric field \\(\bm{E_j}\\) (defined by Eqn. 17.6) involves evaluation of the integral
 
@@ -4931,7 +4947,7 @@ The approximation of Eqn. 17.47 is reasonably accurate provided \\(g \leq 4\\). 
 
 Figure N demonstrates that the scattered waves always interfere in the direction of incidence \\((g = 0)\\). If, in addition, the dimensions of the particle group are small in comparison to the wavelength of light \\((g/2 \leq k L \ll 1)\\), then the scattered waves strongly interfere in every direction. That is not surprising, since the particles simply do not have the opportunity to move out-of-phase.
 
-{{< figure src="/img/vol_int_4.svg" caption="*Figure N: Plot of \\(g^2 |v(0, g)|\\) defined by Eqn. 17.47. We can observe that the running average of \\(|v(0, g)|\\) is inversely proportional to \\(g^2\\), and thus, \\((k L)^2\\).*" >}}
+{{< figure src="/img/vol_int_4.svg" caption="*Figure N: Plot of \\(g^2 |v(0, g)|\\) defined by Eqn. 17.47. We can observe that the moving average of \\(|v(0, g)|\\) is inversely proportional to \\(g^2\\), and thus, \\((k L)^2\\).*" >}}
 
 In general, the strength of the interference effect wanes as the the scattering angle \\(\theta = \arccos(\bm{n_i} \cdot \bm{n_s})\\) or the linear dimension \\(kL\\) increase. For spatially large particle groups, \\(kL \gg 1\\), \\(g \gg 1\\) for all non-zero angles, and the graph of Figure N is horizontally compressed around \\(g = 0\\) while maintaining the peak value of \\(1\\). As a result, its area decreases, and the value of its integral taken over all directions is
 
