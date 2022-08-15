@@ -4449,16 +4449,16 @@ $$ \tag{17.x}
 	+ \sum_{j=1}^{N} \bm{E_j}(\bm{r}, \omega).
 $$
 
-Let \\(L\_{min}\\) and \\(L\_{max}\\) denote the smallest and the largest linear dimension of \\(V\\), respectively. Since a typical volume is large compared to the wavelength of light, then it follows that
+Let \\(L\\) and \\(L\\) denote the linear dimension of \\(V\\) (for simplicity, we shall assume that \\(V\\) is suitably symmetric). Since a typical volume is large compared to the wavelength of light, then it follows that
 
 $$ \tag{17.3}
-	k L_{min} \ge 1.
+	k L \ge 1.
 $$
 
 On the other hand, if the dimensions of \\(V\\) are sufficiently small compared to the distance between every particle and the observation point, such that
 
 $$ \tag{17.4}
-	k R_j \gg k L_{max},
+	k R_j \gg k L,
 $$
 
 then we may use the series expansions of Eqn. 13.8 and 13.10 to asymptotically approximate
@@ -4475,7 +4475,7 @@ $$
 
 where \\(\bm{n_j} = \bm{r_j} / |\bm{r_j}| = \bm{r_j} / r_j\\).
 
-It is important to note that Eqn. 17.4 does not imply that the observation point is located in the radiation zone with respect to the entire volume \\(V\\), since the latter requires \\(k R_j \gg (k L\_{max})^2\\).
+It is important to note that Eqn. 17.4 does not imply that the observation point is located in the radiation zone with respect to the entire volume \\(V\\), since the latter requires \\(k R_j \gg (k L)^2\\).
 
 Substitution of Eqn 17.5 into 17.2.1 yields an expression of a nearly-spherical wave diverging from the origin of the coordinate system:
 
@@ -4632,7 +4632,7 @@ $$ \tag{17.22}
 	\approx \braket{\braket{\bm{S}}\_t}\_{\psi} \negmedspace (\bm{r}).
 $$
 
-Let us apply the ergodic assumption to Eqn. 17.8, and carefully consider its individual terms. First of all, by definition, the incident field is not affected by the presence of the scattering object. Therefore, no modifications to \\(\braket{\bm{S\_i}}\\) are necessary. Next, consider the Poynting vector \\(\braket{\bm{S\_j}}\\) associated with the scattered field of the \\(j\\)-th particle. Since, according to Eqn. 16.11, the scattered field vectors are mutually orthogonal, we may express \\(\bm{S\_j}\\) using Eqn. 13.21:
+Let us apply the ergodic assumption to Eqn. 17.8, and carefully consider its individual terms. First of all, by definition, the incident field is not affected by the presence of the scattering object. Therefore, no modifications to \\(\braket{\bm{S\_i}}\\) are necessary. Next, consider the Poynting vector \\(\braket{\bm{S\_j}}\\) associated with the scattered field of the \\(j\\)-th particle. Since, according to Eqn. 16.11, the scattered field vectors \\(\bm{E\_j}\\) and \\(\bm{B\_j}\\) are mutually orthogonal, we may express \\(\bm{S\_j}\\) using Eqn. 13.21:
 
 $$ \tag{17.23}
 \begin{aligned}
@@ -4642,19 +4642,19 @@ $$ \tag{17.23}
 	&= \mu\_0^{-1} \frac{\eta}{c} \frac{\big| \mathcal{Re} \big\lbrace
 	\mathcal{S_j}(\bm{n_s}, \psi) \cdot \bm{E_0}
 	e^{i k (R_j + \bm{r_j} \cdot \bm{n_i}) -i \omega t}
-	\big\rbrace \big|^2}{k^2 r^2} \bm{n_s}
+	\big\rbrace \big|^2}{k^2 r^2} \bm{n_s}.
 \end{aligned}
 $$
 
-As demonstrated by Eqn. 13.22-13.23, time averaging Eqn. 17.23 is equivalent to replacing the phase factor with \\(1/2\\), which yields the standard expression of the time-averaged Poynting vector
+Eqn. 13.22-13.23 demonstrate that time averaging Eqn. 17.23 is equivalent to replacing the phase factor with \\(1/2\\), which yields the standard expression of the time-averaged Poynting vector
 
 $$ \tag{17.24}
 	\braket{\bm{S_j}}\_t \negmedspace (\bm{r}, \psi)
 	\simeq \frac{\mu\_0^{-1}}{2} \frac{\eta}{c} \frac{\left|
-	\mathcal{S_j}(\bm{n_s}, \psi) \cdot \bm{E_0} \right|^2}{k^2 r^2} \bm{n_s}
+	\mathcal{S_j}(\bm{n_s}, \psi) \cdot \bm{E_0} \right|^2}{k^2 r^2} \bm{n_s},
 $$
 
-of a particle located at the origin. Note that the value of \\(\braket{\bm{S_j}}\\) explicitly depends on the state of the incident light, and, implicitly, on the orientation, shape, size, and composition of the particle via the far-field scattering dyadic \\(\mathcal{S_j}\\). Because the latter is located inside the squared norm operator, ensemble averaging the Poynting vector
+as if the particle were located at the origin. Note that the value of \\(\braket{\bm{S_j}}\\) explicitly depends on the state of the incident light, and, implicitly, on the orientation, shape, size, and composition of the particle via the far-field scattering dyadic \\(\mathcal{S_j}\\). Because the latter is located inside the squared norm operator, ensemble averaging the Poynting vector
 
 $$ \tag{17.25}
 	\braket{\braket{\bm{S_j}}} \negmedspace (\bm{r})
@@ -4673,7 +4673,7 @@ $$ \tag{17.26}
 	\right\rangle \_{\psi}.
 $$
 
-The Poynting vector \\(\braket{\bm{S_j}}\\) associated with the scattered field does not, by itself, completely determine the intensity of light. In addition, we must account for interference between the incident and the scattered waves contained within the \\(\braket{\bm{S_{ij}}}\\) terms of Eqn 17.8.
+The Poynting vector \\(\braket{\bm{S_j}}\\) associated with the scattered field does not, by itself, completely determine the intensity of light. In addition, we must account for interference between the incident and the scattered waves contained within the \\(\braket{\bm{S_{ij}}}\\) terms found in Eqn 17.8.
 
 Substitution of Eqn. 16.1 into 17.9 yields an expression
 
@@ -4705,11 +4705,11 @@ $$ \tag{17.28}
 \end{aligned}
 $$
 
-The essential difference between Eqn. 16.23 and 17.28 arises from the fact that the particle is no longer fixed at the origin of the coordinate system, so interference is observed within a small beam-shaped region centered at \\(\bm{r_j}\\) and oriented along \\(\bm{R_j} = (\bm{r} - \bm{r_j})\\), with the cross-sectional area on the order of the numerical value of \\(C_g\\). Naturally, if \\(\bm{r}\\) is not located within the beam, interference is not observed.
+The essential difference between Eqn. 16.23 and 17.28 stems from the fact that the particle is no longer fixed at the origin of the coordinate system, so interference is observed within a small beam-shaped region centered at \\(\bm{r_j}\\) and oriented along \\(\bm{R_j} = \bm{r} - \bm{r_j}\\), with the cross-sectional area on the order of the numerical value of \\(C_g\\). Naturally, if \\(\bm{r}\\) is not located within the beam, interference is not observed.
 
 [Maybe add an illustration?]
 
-Assuming the measurement device is placed in the radiation zone of the particle, is oriented perpendicular to the direction of observation \\(\bm{n_i}\\), and the area \\(C_d\\) of its entrance pupil is sufficiently large \\((C_d \gg C_g)\\) to fully capture the "extinction beam", then, after a couple of trivial substitutions, we may directly reuse the results from the previous section. In particular, substitution of Eqn. 16.30 into 17.28, followed by integration over a large sphere, a tiny region of which (centered at \\(\bm{r} = \bm{r_j} + R_j \bm{n_i}\\)) overlaps the entrance pupil of the detector, produces a direct analog of Eqn. 16.34:
+If we place a measurement device in the radiation zone of the particle, orient it perpendicularly to the direction of observation \\(\bm{n_i}\\), and make sure that the area \\(C_d\\) of the entrance pupil is sufficiently large \\((C_d \gg C_g)\\) to fully capture the "extinction beam", then, after a couple of trivial substitutions, we may directly reuse the results from the previous section. In particular, substitution of Eqn. 16.30 into 17.28, followed by integration over a large sphere, a tiny region of which (centered at \\(\bm{r} = \bm{r_j} + R_j \bm{n_i}\\)) overlaps the entrance pupil of the detector, produces a direct analog of Eqn. 16.34:
 
 $$ \tag{17.29}
 	\Phi_{ij}(\psi)
@@ -4717,7 +4717,7 @@ $$ \tag{17.29}
 	= \frac{\mu\_0^{-1}}{2} \frac{\eta}{c} \frac{4 \pi}{k^2} \mathcal{Im} \left\lbrace \bm{E_0^{\*}} \cdot \mathcal{S_j}(\bm{n_i}, \psi) \cdot \bm{E_0} \right\rbrace.
 $$
 
-The result is formally independent of the distance from the particle to the detector, but it does depend on the lateral position, since a movement of the particle results in translation of its beam. Assuming the entrance pupil of the measurement device is sufficiently large \\((C_d \gg L^2)\\) to image the entire particle group at once, performing ensemble averaging over the particle positions has no effect:
+Eqn. 17.29 gives the amount of power dissipated by the particle. The result is formally independent of the distance from the particle to the detector, but it does depend on its lateral position, since a movement of the particle results in translation of its beam. Assuming the entrance pupil of the measurement device is sufficiently large \\((C_d \gg L^2)\\) to image the entire particle group at once, performing ensemble averaging over the particle positions has no effect:
 
 $$ \tag{17.30}
 	\braket{\Phi_e}
@@ -4727,20 +4727,16 @@ $$ \tag{17.30}
 	\right\rbrace.
 $$
 
-Thus, the mean amount of power \\(\braket{\Phi_e}\\) dissipated per particle is the same as that of the average particle \[[8](#references) (ch. 14.6)\]. Intuitively, if the number density of the particles is small, their "extinction beams" [do not cross](https://ghostbusters.fandom.com/wiki/Cross_the_Streams).
+Thus, the mean amount of power \\(\braket{\Phi_e}\\) dissipated per particle is the same as that of the average particle \[[8](#references) (ch. 14.6)\]. Intuitively, if the number density of the particles is small, their "extinction beams" [do not overlap](https://ghostbusters.fandom.com/wiki/Cross_the_Streams).
 
 
-It is also interesting to consider the impact of extinction on a small particle (as opposed to a large detector). The probability of lining up a uniformly-distributed particle with a fixed target is on the order of \\(1/L^2\\). If the particle group is sparse (with particles occupying a small fraction of the total volume), and the particles themselves are weakly absorbing and weakly scattering (cf. Eqn. 17.0), then interference between the incident light and the light scattered by the particle group has practically no effect as far as another small particle is concerned \[[8](#references) (ch. 14.2)\]:
+It is also interesting to consider the impact of extinction on a small particle (as opposed to a large detector). The probability of lining up a uniformly-distributed particle with a fixed target is on the order of \\(1/L^2\\). If the particle group is sparse (with particles occupying a small fraction of the total volume), and the particles themselves are weakly absorbing and weakly scattering, then interference between the incident light and the light scattered by the particle group has practically no effect as far as another small particle is concerned (cf. Eqn. 17.0) \[[8](#references) (ch. 14.2)\]:
 
 $$ \tag{17.31}
 	\frac{\sum_{j=1}^{N} C_{e,j}}{L^2}
 	= \frac{\sum_{j=1}^{N} \Phi_{ij} / \Epsilon_i}{L^2}
 	= \frac{4 \pi \sum_{j=1}^{N}  \thinspace \mathcal{Im} \big\lbrace \bm{E_0^{\*}} \cdot \mathcal{S_j}(\bm{n_i}, \psi) \cdot \bm{E_0} \big\rbrace}{(k L)^2 |\bm{E_0}|^2} \ll 1.
 $$
-
----
-
-Remove kL_min, kL_max...
 
 ---
 
