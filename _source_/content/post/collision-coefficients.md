@@ -4740,102 +4740,6 @@ $$
 
 ---
 
-This expression can be further simplified by performing ensemble averaging. Suppose that every position is equally likely, with the corresponding probability density \\(p(\bm{r_j}) = 1/V\\); then we can account for random motion of particles by analytically evaluating the integral
-
-$$ \tag{17.31}
-	v(f) = \frac{1}{V} \int_V
-	\exp \negmedspace \left(
-	\frac{i}{2} \frac{k^2}{k r} r_j^2 \left( 1 - (\bm{n_j} \cdot \bm{n_i})^2 \right)
-	\right) dV_j.
-$$
-
-Its value can be expressed in terms of the ratio
-
-$$ \tag{17.32}
-	f = \frac{(k L)^2}{k r}
-$$
-
-of the dimensionless area of the cross-section \\((k L)^2\\) to the dimensionless distance to the observation point \\(k r\\).
-
-It is convenient to reparametrize Eqn. 17.31 by aligning \\(\bm{n_i}\\) with an axis of the coordinate system:
-
-$$ \tag{17.33}
-	r_j^2 \left( 1 - (\bm{n_j} \cdot \bm{n_i})^2 \right)
-	= (r_j \sin{\theta_j})^2
-	= x_j^2 + y_j^2.
-$$
-
-Then, for an axis-aligned cube of volume \\(L^3\\),
-
-$$ \tag{17.34}
-\begin{aligned}
-	v(f) &= \frac{1}{V} \int_V
-	\exp \negmedspace \left(
-	\frac{i}{2} \frac{k^2}{k r} \left( x_j^2 + y_j^2 \right)
-	\right) dx_j dy_j dz_j
-	\cr
-	&= \left( \int_{-1/2}^{1/2}
-	\exp \negmedspace \left(
-	i f u^2 / 2
-	\right) du \right)^2
-	\approx \frac{\sin(f/11)}{f/11} e^{i f / 12}.
-\end{aligned}
-$$
-
-Similarly, for a sphere of the same volume (with a slightly larger cross-sectional area),
-
-$$ \tag{17.35}
-\begin{aligned}
-	v(f) = \frac{1}{V} \int_V
-	\exp \negmedspace \left(
-	\frac{i}{2} \frac{k^2}{k r} \left( r_j \sin{\theta_j} \right)^2
-	\right) r_j^2 \sin{\theta_j} dr_j d\theta_j d\phi_j
-	\approx \frac{\sin(f/11.6)}{f/11.6}  e^{i f / 13}.
-\end{aligned}
-$$
-
-These approximations are reasonably accurate provided \\(f \leq 4\\).
-
-{{< figure src="/img/vol_int_1.svg" caption="*Figure N: Plot of \\(v(f)\\) defined by Eqn. 17.35. The solid line represents the absolute value, and the dashed line represents the value of the argument (the phase).*" >}}
-
-In general, \\(v(f) \\) is a fairly complicated function that tends[^21] to \\(1\\) as \\(f \to 0\\). The latter indicates that the observer approaches the radiation zone of the entire particle group, which makes the trailing complex exponential of Eqn. 17.30 vanish.
-
-[^21]: Since \\(\exp(i f u^2) \to 1\\) as \\(f \to 0\\), the same applies to its integral taken over a unit interval.
-
-{{< figure src="/img/vol_int_3.svg" caption="*Figure N: Plot of \\(f |v(f)|\\) defined by Eqn. 17.35. We can observe that the running average of \\(|v(f)|\\) is inversely proportional to \\(f\\), and thus, \\((k L)^2\\).*" >}}
-
-Another important case of interest is when both \\(k L \gg 1\\) and \\(k r \gg 1\\) in such a way that \\(f \gg 1\\). That causes the approximations of Eqn. 17.34-17.35 to break down. One may encounter this situation in practice while considering the force exerted by the electromagnetic field of one particle group onto a particle in an adjacent group. Fortunately, by taking the limit of Eqn. 17.31, one can show[^22]  that \\(|v| \to 0\\) as \\(f \to \infin\\).
-
-[^22]: As the pseudo-frequency \\(f \to \infin\\), the value of \\(\exp(i f u^2)\\)  rapidly oscillates around \\(0\\). These oscillations can be dampened by averaging the function over a finite interval. The absolute value of the resulting integral tends to \\(0\\).
-
-In conclusion, *if the observer is located in the the radiation zone of the entire particle group*, the mean amount of power \\(\braket{\Phi_e}\\) dissipated per particle is the same as that of the average particle (cf. Eqn. 16.40) \[[8](#references) (ch. 14.6)\]:
-
-$$ \tag{17.36}
-	\braket{\Phi_e}
-	\approx \frac{\mu\_0^{-1}}{2} \frac{\eta}{c} \frac{4 \pi}{k^2}
-	\mathcal{Im} \left\lbrace
-	\bm{E_0^{\*}} \cdot \braket{\mathcal{S_j}}\_{\psi} \negmedspace (\bm{n_i}) \cdot \bm{E_0}
-	\right\rbrace.
-$$
-
-On the other hand, *if the observer is located outside an extensive particle group*, the extinction effect can be neglected \[[8](#references) (ch. 14.4)\]:
-
-$$ \tag{17.37}
-	\braket{\Phi_e} \approx 0.
-$$
-
-The reason behind this discrepancy can be understood geometrically. If both \\(f \ll 1\\) and \\(k L \ge 1\\), then \\(r / L \gg 1\\), which means that, for the observation point \\(\bm{r} = r \bm{n_i}\\) located along the direction of incidence, the wave vectors of the incident and the scattered waves are more or less permanently aligned:
-
-$$ \tag{17.38}
-	k (r \bm{n_i} - \bm{r_j}) \approx k r \bm{n_i},
-$$
-
-making the strength of the interference effect similar to that of a particle fixed at the origin. Naturally, the area of the entrance pupil \\(C_d\\) of the measurement device must be sufficiently large \\((C_d \gg L^2)\\) in order to intercept all of these parallel rays of light (see the discussion of Eqn. 16.3y).
-
-On the other hand, if \\(f \ll 1\\), the wave vectors are almost never aligned, making the contribution to \\(\braket{\Phi_e}\\) vanishingly small.
-
----
-
 Let us now consider the final term of Eqn. 17.8 that accounts for interference of the scattered fields of two particles. Since the observation point \\(\bm{r}\\) is located in the radiation zone of each particle, we can obtain the formula of \\(\braket{\bm{S_{jk}}}\\) by substituting Eqn. 17.6 twice into 17.9.
 
 The resulting expression is highly symmetrical. It can be readily simplified by taking advantage of the identities given by Eqn. 16.11 and 16.25, according to which,
@@ -4848,7 +4752,7 @@ $$ \tag{17.39}
 \end{aligned}
 $$
 
-Substitution of Eqn. 17.39 into 17.9 yields
+Substitution of Eqn. 17.39 into 17.9 yields a compact expression
 
 $$ \tag{17.40}
 	\bm{n_s} \cdot \braket{\bm{S_{jk}}}\_t \negmedspace (\bm{r}, \psi)
@@ -4873,7 +4777,90 @@ $$ \tag{17.41}
 \end{aligned}
 $$
 
-Unlike Eqn. 17.26, Eqn. 17.41 corresponds to (double) the intensity of light scattered by the average particle (cf. Eqn. 16.15) with a certain likelihood to be located somewhere within the region occupied by the particle group.
+Unlike Eqn. 17.26, Eqn. 17.41 corresponds to (double) the intensity of light scattered by the average particle (cf. Eqn. 16.15).
+
+---
+
+This expression can be further simplified by performing ensemble averaging. Suppose that every position is equally likely, with the corresponding probability density \\(p(\bm{r_j}) = 1/V\\). Then we can account for random motion of particles by analytically evaluating the integral
+
+$$ \tag{17.42}
+	v(f, g) = \frac{1}{V} \int_V \exp \negmedspace \left(
+	i k \bm{r_j} \cdot (\bm{n_i} - \bm{n_s}) +
+	\frac{i}{2} \frac{k^2}{k r} r_j^2 \left( 1 - (\bm{n_j} \cdot \bm{n_s})^2 \right)
+	\right) dV_j.
+$$
+
+We can gain the intuition about the behavior of this integral by analyzing each of the two terms in isolation. First, consider
+
+$$ \tag{17.31}
+	v(f, 0) = \frac{1}{V} \int_V
+	\exp \negmedspace \left(
+	\frac{i}{2} \frac{k^2}{k r} r_j^2 \left( 1 - (\bm{n_j} \cdot \bm{n_i})^2 \right)
+	\right) dV_j,
+$$
+
+which is a special case of Eqn. 17.42 with \\(\bm{n_i} = \bm{n_s}\\).
+
+For a suitably symmetric region, the value of Eqn. 17.31 can be expressed in terms of the ratio
+
+$$ \tag{17.32}
+	f = \frac{(k L)^2}{k r}
+$$
+
+of the dimensionless area of the cross-section \\((k L)^2\\) to the dimensionless distance to the observation point \\(k r\\).
+
+It is convenient to reparametrize Eqn. 17.31 by aligning \\(\bm{n_i}\\) with an axis of the coordinate system:
+
+$$ \tag{17.33}
+	r_j^2 \left( 1 - (\bm{n_j} \cdot \bm{n_i})^2 \right)
+	= (r_j \sin{\theta_j})^2
+	= x_j^2 + y_j^2.
+$$
+
+Then, for an axis-aligned cube of volume \\(L^3\\),
+
+$$ \tag{17.34}
+\begin{aligned}
+	v(f, 0) &= \frac{1}{V} \int_V
+	\exp \negmedspace \left(
+	\frac{i}{2} \frac{k^2}{k r} \left( x_j^2 + y_j^2 \right)
+	\right) dx_j dy_j dz_j
+	\cr
+	&= \left( \int_{-1/2}^{1/2}
+	\exp \negmedspace \left(
+	i f u^2 / 2
+	\right) du \right)^2
+	\approx \frac{\sin(f/11)}{f/11} e^{i f / 12}.
+\end{aligned}
+$$
+
+Similarly, for a sphere of the same volume (with a slightly larger cross-sectional area),
+
+$$ \tag{17.35}
+\begin{aligned}
+	v(f, 0) = \frac{1}{V} \int_V
+	\exp \negmedspace \left(
+	\frac{i}{2} \frac{k^2}{k r} \left( r_j \sin{\theta_j} \right)^2
+	\right) r_j^2 \sin{\theta_j} dr_j d\theta_j d\phi_j
+	\approx \frac{\sin(f/11.6)}{f/11.6}  e^{i f / 13}.
+\end{aligned}
+$$
+
+These approximations are reasonably accurate provided \\(f \leq 4\\).
+
+{{< figure src="/img/vol_int_1.svg" caption="*Figure N: Plot of \\(v(f)\\) defined by Eqn. 17.35. The solid line represents the absolute value, and the dashed line represents the value of the argument (the phase).*" >}}
+
+In general, \\(v(f, 0) \\) is a fairly complicated function that tends[^21] to \\(1\\) as \\(f \to 0\\). The latter indicates that the observer approaches the radiation zone of the entire particle group, which makes the trailing complex exponential of Eqn. 17.30 vanish.
+
+[^21]: Since \\(\exp(i f u^2) \to 1\\) as \\(f \to 0\\), the same applies to its integral taken over a unit interval.
+
+{{< figure src="/img/vol_int_3.svg" caption="*Figure N: Plot of \\(f |v(f)|\\) defined by Eqn. 17.35. We can observe that the running average of \\(|v(f)|\\) is inversely proportional to \\(f\\), and thus, \\((k L)^2\\).*" >}}
+
+Another important case of interest is when both \\(k L \gg 1\\) and \\(k r \gg 1\\) in such a way that \\(f \gg 1\\). That causes the approximations of Eqn. 17.34-17.35 to break down. One may encounter this situation in practice while considering the force exerted by the electromagnetic field of one particle group onto a particle in an adjacent group. Fortunately, by taking the limit of Eqn. 17.31, one can show[^22] that \\(|v| \to 0\\) as \\(f \to \infin\\).
+
+[^22]: As the pseudo-frequency \\(f \to \infin\\), the value of \\(\exp(i f u^2)\\) rapidly oscillates around its mean, \\(0\\).
+
+---
 
 Suppose that every position is equally likely, with the corresponding probability density \\(p(\bm{r_j}) = 1/V\\). Then calculation of the ensemble average of the electric field \\(\bm{E_j}\\) (defined by Eqn. 17.6) involves evaluation of the integral
 
