@@ -8552,19 +8552,19 @@ $$ \tag{21.44}
 \begin{aligned}
 	\braket{\Phi_e^{tot}}
 	&\propto \int_{\Psi} p(\psi)
-	\mathcal{Im} \left\lbrace v\negmedspace\left( \frac{(k L)^2}{k r}, 0 \right)
+	\mathcal{Im} \left\lbrace
 	\bm{E_0^H} S(0, \phi, \psi) \bm{E_0}
 	\right\rbrace
 	d\psi
 	\cr
 	&= \int_{-\pi}^{\pi} \int_{0}^{\pi} \int_{-\pi}^{\pi}
 	p(\alpha, \beta, \gamma)
-	\mathcal{Im} \left\lbrace v\negmedspace\left( \frac{(k L)^2}{k r}, 0 \right)
+	\mathcal{Im} \left\lbrace
 	\bm{E_0^H} S(0, \phi, \alpha, \beta, \gamma) \bm{E_0}
 	\right\rbrace
 	\sin{\beta} d\alpha d\beta d\gamma
 	\cr
-	&= \mathcal{Im} \left\lbrace v\negmedspace\left( \frac{(k L)^2}{k r}, 0 \right) \bm{E_0^H}
+	&= \mathcal{Im} \left\lbrace \bm{E_0^H}
 	\left( \frac{1}{8 \pi^2}
 	\int_{-\pi}^{\pi} \int_{0}^{\pi} \int_{-\pi}^{\pi}
 	S \sin{\beta} d\alpha d\beta d\gamma
@@ -8600,7 +8600,6 @@ $$ \tag{21.47}
 	\braket{\Phi_e^{tot}}
 	\stackrel{!}{=} N k_0
 	\mathcal{Im} \left\lbrace \alpha_m
-	v\negmedspace\left( \frac{(k L)^2}{k r}, 0 \right)
 	\right\rbrace \Epsilon_i.
 $$
 
