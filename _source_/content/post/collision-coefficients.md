@@ -4955,39 +4955,25 @@ $$ \tag{17.51}
 	\left\langle \left| \mathcal{S_j} \cdot \bm{E_0} \right|^2 \right\rangle\_{\psi}
 	\right) \bm{n_s}
 	\cr
-	&- N \left( \frac{\mu\_0^{-1}}{2} \frac{\eta}{c} \frac{4 \pi}{k^2 r^2}
-	\mathcal{Im} \left\lbrace v(f,0)
+	&- \frac{N}{L^2} \left( \frac{\mu\_0^{-1}}{2} \frac{\eta}{c} \frac{4 \pi}{k^2 r^2}
+	\mathcal{Im} \left\lbrace
 	\bm{E_0^{\*}} \cdot \braket{\mathcal{S_j}}\_{\psi} \cdot \bm{E_0}
-	\right\rbrace \right) \bm{n_s} \delta(\bm{n_i} - \bm{n_s})
+	\right\rbrace \right) \delta(\bm{n_i} - \bm{n_s}) \bm{n_s}
 	\cr
-	&+ N (N - 1) \left(\frac{\mu\_0^{-1}}{2} \frac{\eta}{c} \frac{1}{k^2 r^2}
+	&+ (N - 1)^2 \left(\frac{\mu\_0^{-1}}{2} \frac{\eta}{c} \frac{1}{k^2 r^2}
 	\left| v(f,g) \braket{\mathcal{S_j}}\_{\psi} \cdot \bm{E_0} \right|^2
 	\right) \bm{n_s}.
 \end{aligned}
 $$
 
-The third term is in full effect if the observation point is in the radiation zone of the entire particle group:
+The third term may be neglected if we are concerned with the force exerted on a small particle, but must be taken into account if we perform a light measurement by a large detector.
 
-$$ \tag{17.52}
-	\left| v(f, 0) \right| \to 1
-	\quad \iff \quad
-	f = \frac{(k L)^2}{k r} \to 0.
-$$
-
-The opposite situation occurs if we observe a large particle group at a relatively short distance:
-
-$$ \tag{17.53}
-	\left| v(f, 0) \right| \ll 1
-	\quad \iff \quad
-	f = \frac{(k L)^2}{k r} \gg 1.
-$$
-
-Finally, the impact of the last term is insignificant if
+Finally, the impact of the last term is insignificant (relative to the first two) if
 
 $$ \tag{17.54}
-	(N - 1) \oint\_{\mathbb{S}^2} \left| v(f,g) \right|^2 d\Omega \ll 1
+	\frac{(N - 1)^2}{N} \left| v(f,g) \right|^2 \ll 1
 	\quad \iff \quad
-	\frac{(k L)^4}{N} \gg 1.
+	\frac{N}{(k L)^4} \ll 1.
 $$
 
 Eqn. 17.54 shows that, if the [number density](https://en.wikipedia.org/wiki/Number_density) of particles
@@ -4996,13 +4982,13 @@ $$ \tag{17.55}
 	n = \frac{N}{V} = \frac{N}{L^3}
 $$
 
-is kept constant, then, as the size of the particle group increases, the relative amount of power attributed to interference between the scattered waves of individual particles decreases. Naturally, both the density and the total number of particles must be sufficiently low in order for the single-scattering approximation to remain applicable.
+is kept constant, then, as the size of the particle group increases, the fraction of power attributed to interference between the scattered waves of individual particles proportionally decreases. This process is limited by the requirement on the total number of particles \\(N\\) that must remain sufficiently low in order for the single-scattering approximation to remain applicable.
 
-Elimination of the last term of Eqn. 17.51 allows *light intensities of the individual particles to be summed* into the total amount of light scattered (or dissipated) by the particle group \[[4](#references) (ch. 4.22)\]:
+Elimination of the last term of Eqn. 17.51 allows the *light intensities of the individual particles to be summed* into the total amount of light scattered (or dissipated) by the particle group \[[4](#references) (ch. 4.22)\]:
 
 $$ \tag{17.56}
 \begin{aligned}
-	\braket{\Iota_s^{tot}}
+	\braket{\Iota_s^{tot}} \negmedspace (\bm{n_s})
 	&= \sum_j r^2 \braket{\braket{\bm{S_j}}} \cdot \bm{n_s}
 	= N \frac{\mu\_0^{-1}}{2} \frac{\eta}{c} \frac{1}{k^2}
 	\int_{\Psi} p(\psi)
@@ -5017,18 +5003,18 @@ $$ \tag{17.56}
 	d\Omega d\psi,
 	\cr
 	\braket{\Phi_e^{tot}}
-	&= \sum_j \oint\_{\mathbb{S}^2}
-	\left[ r^2 \braket{\braket{\bm{S_{ij}}}} \cdot \bm{n_s} \right] d\Omega
+	&= \sum_j \int_{C_d} \oint\_{\mathbb{S}^2}
+	\left[ r^2 \braket{\braket{\bm{S_{ij}}}} \cdot \bm{n_s} \right] d\Omega dA
 	= N \frac{\mu\_0^{-1}}{2} \frac{\eta}{c} \frac{4 \pi}{k^2}
 	\int_{\Psi} p(\psi)
-	\mathcal{Im} \left\lbrace v\negmedspace\left( \frac{(k L)^2}{k r}, 0 \right)
+	\mathcal{Im} \left\lbrace
 	\bm{E_0^{\*}} \cdot \mathcal{S_j}(\bm{n_i}, \psi) \cdot \bm{E_0}
 	\right\rbrace
 	d\psi.
 \end{aligned}
 $$
 
-Furthermore, if the incident irradiance \\(\Epsilon_i\\) is uniform across the particle group, then the total optical cross-sections (defined by Eqn. 16.39) of the particle group are directly proportional to the mean optical cross-section of the same type:
+Furthermore, if the incident irradiance \\(\Epsilon_i\\) is uniform across the particle group, then the optical cross-sections of the particle group are directly proportional to the mean optical cross-sections of a single particle:
 
 $$ \tag{17.57}
 	\braket{C_x^{tot}}
@@ -5037,11 +5023,11 @@ $$ \tag{17.57}
 	= N \braket{C_x}
 $$
 
-where \\(x\\) can stand for absorption \\((a)\\), scattering \\((s)\\), or extinction \\((e)\\).
+where \\(x\\) can stand for absorption \\((a)\\), scattering \\((s)\\), or extinction \\((e)\\). Thus, we find that the *optical cross-sections of the individual particles can be summed* as well.
 
-Often, one has to consider a large cloud of particles. Its interior may be conceptually subdivided into small, non-overlapping regions, each containing a particle group. In order to avoid keeping track of both the volume \\(V\\) and the number of particles \\(N\\) in each region, it is highly convenient to combine them into the spatially-varying number density \\(n(\bm{r})\\) (defined by Eqn. 17.55). If, in addition, the distribution of particles \\((\\)governed by the probability density function \\(p(\psi))\\) is the same across the entire cloud, we can parametrize its interior using the spatially-varying *volume[^27] collision coefficients*
+Often, one has to consider a large cloud of particles. Its interior may be conceptually subdivided into small, non-overlapping regions, each containing a particle group. In order to avoid keeping track of both the volume \\(V\\) and the number of particles \\(N\\) in each region, it is highly convenient to combine them into the spatially-varying number density \\(n(\bm{r})\\) defined by Eqn. 17.55. If, in addition, the distribution of particles \\((\\)governed by the probability density function \\(p(\psi))\\) is the same across the entire cloud, we can parametrize its interior using the spatially-varying *volume[^27] collision coefficients*
 
-[^27]: Sometimes, mass density is used instead of the number density of particles, which leads to the definition of mass collision coefficients \[[2](#references) (ch. 3)\].
+[^27]: Sometimes, it is more convenient to specify the mass density instead of the number density of particles, which leads to the definition of the mass collision coefficients \[[2](#references) (ch. 3)\].
 
 $$ \tag{17.58}
 	\varSigma_a(\bm{r}) = n(\bm{r}) \braket{C_a},
@@ -5051,7 +5037,7 @@ $$ \tag{17.58}
 	\varSigma_e(\bm{r}) = n(\bm{r}) \braket{C_e}.
 $$
 
-They are simply the weighted averages of the optical cross-sections of the individual particles.
+These are simply the weighted averages of the optical cross-sections of the individual particles.
 
 <!--
 ### Lorenz-Mie-Debye Theory
