@@ -4781,13 +4781,17 @@ Unlike Eqn. 17.26, Eqn. 17.41 corresponds to (double) the intensity of light sca
 
 ---
 
-This expression can be further simplified by performing ensemble averaging. Suppose that every position is equally likely, with the corresponding probability density \\(p(\bm{r_j}) = 1/V\\). Then we can account for random motion of particles by analytically evaluating the integral
+Let us expand this expression by explicitly performing ensemble averaging. Suppose that every position is equally likely, with the corresponding probability density \\(p(\bm{r_j}) = 1/V\\). Then we can account for random motion of particles by evaluating the integral
 
 $$ \tag{17.42}
-	v(f, g) = \frac{1}{V} \int_V \exp \negmedspace \left(
-	i k \bm{r_j} \cdot (\bm{n_i} - \bm{n_s}) +
+	v(f, g) = \frac{1}{V} \int_V
+	\exp \negmedspace \left(
 	\frac{i}{2} \frac{k^2}{k r} r_j^2 \left( 1 - (\bm{n_j} \cdot \bm{n_s})^2 \right)
-	\right) dV_j.
+	\right)
+	\exp \negmedspace \big(
+	i k \bm{r_j} \cdot (\bm{n_i} - \bm{n_s})
+	\big)
+	dV_j.
 $$
 
 Note that Eqn. 17.41 only features the squared magnitude of \\(v(f, g)\\), so its phase is irrelevant.
@@ -4803,7 +4807,7 @@ $$
 
 which is a special case of Eqn. 17.42 with \\(\bm{n_i} = \bm{n_s}\\).
 
-For a suitably symmetric region, the value of Eqn. 17.31 can be expressed in terms of the ratio
+For a suitably symmetric region \\(V\\), the value of Eqn. 17.31 can be expressed in terms of the ratio
 
 $$ \tag{17.32}
 	f = \frac{(k L)^2}{k r}
@@ -4852,7 +4856,7 @@ The approximations of Eqn. 17.34 and 17.35 are reasonably accurate provided \\(f
 
 {{< figure src="/img/vol_int_1.svg" caption="*Figure N: Plot of \\(|v(f, 0)|^2\\) defined by Eqn. 17.35.*" >}}
 
-In general, \\(v(f, 0)\\) is a fairly complicated function that tends[^21] to \\(1\\) as \\(f \to 0\\). The latter indicates that the observer approaches the radiation zone of the entire particle group, which makes the trailing complex exponential of Eqn. 17.30 vanish.
+In general, \\(v(f, 0)\\) is a fairly complicated function that tends[^21] to \\(1\\) as \\(f \to 0\\). The latter indicates that the observer approaches the radiation zone of the entire particle group.
 
 [^21]: Since \\(\exp(i f u^2) \to 1\\) as \\(f \to 0\\), the same holds for the value of \\(\int \exp(i f u^2) du\\) taken over a sufficiently small interval.
 
@@ -4862,23 +4866,21 @@ Another important case of interest is when both \\(k L \gg 1\\) and \\(k r \gg 1
 
 [^22]: Both the real and the imaginary parts of \\(\exp(i f u^2)\\) rapidly oscillate around \\(0\\), except for the central region where \\(f u^2 \approx 0\\). As \\(f \to \infin\\), the contribution of the central region to the value of \\(\int \exp(i f u^2) du\\) decreases, and thus \\(v \to 0\\).
 
----
-
-Suppose the observer is located in the radiation zone of the entire particle group. Then \\(f \to 0\\), which permits us to reduce Eqn. 17.42 to
+Now, suppose that the observer is located in the radiation zone of the entire particle group. Then \\(f \to 0\\), which reduces Eqn. 17.42 to
 
 $$ \tag{17.44}
 	v(0, g) = \frac{1}{V} \int_V \exp \negmedspace \left(
 	i k \bm{r_j} \cdot (\bm{n_i} - \bm{n_s})
-	\right) dV_j,
+	\right) dV_j.
 $$
 
-where
+For a suitably symmetric region \\(V\\), Eqn. 17.44 can be reparametrized in terms of the real number
 
 $$ \tag{17.43}
 	g = k L |\bm{n_i} - \bm{n_s}| = \sqrt{2} k L \sqrt{1 - (\bm{n_i} \cdot \bm{n_s})}
 $$
 
-depends on both the dimensions of the particle group and the degree of alignment of the wave vectors.
+that depends on both the dimensions of the particle group and the degree of alignment of the wave vectors.
 
 It is convenient to reparametrize[^20] Eqn. 17.44 by aligning \\(\bm{n_i} - \bm{n_s}\\) with an axis of the coordinate system:
 
@@ -4926,7 +4928,7 @@ Figure N demonstrates that the scattered waves always interfere in the direction
 
 {{< figure src="/img/vol_int_4.svg" caption="*Figure N: Plot of \\(g^4 |v(0, g)|^2\\) defined by Eqn. 17.47. We can observe that the moving average of \\(|v(0, g)|^2\\) is inversely proportional to \\(g^4\\), and thus, \\((k L)^4\\).*" >}}
 
-In general, the strength of the interference effect wanes as the the scattering angle \\(\theta = \arccos(\bm{n_i} \cdot \bm{n_s})\\) or the linear dimension \\(kL\\) increase. As \\(kL \to \infin\\), the graph of Figure N (parameterized by the scattering angle \\(\theta\\) in this case) is horizontally compressed while maintaining the peak value of \\(1\\). As a result, its area decreases, and the limit of the integral taken over all scattering directions is
+In general, the strength of the interference effect wanes as the the scattering angle \\(\theta = \arccos(\bm{n_i} \cdot \bm{n_s})\\) or the linear dimension \\(kL\\) increase. As \\(kL \to \infin\\), the graph of Figure N (parameterized by \\(\theta\\) in this case) is horizontally compressed while maintaining the peak value of \\(1\\). As a result, its area decreases, and the limit of the integral taken over all scattering directions is
 
 $$ \tag{17.48}
 	\lim_{kL \to \infin} \int_{-\pi}^{\pi} \int_{0}^{\pi} \left| v \left(0, \sqrt{2} k L \sqrt{1 - \cos{\theta}} \right) \right|^2 \sin{\theta} d\theta d\phi = 0.
@@ -4939,15 +4941,9 @@ $$ \tag{17.49}
 	= \oint\_{\mathbb{S}^2} r^2 \braket{\braket{\bm{S_{jk}}}} \cdot \bm{n_s} d\Omega \approx 0.
 $$
 
+Finally, let us show that Eqn. 17.49 is true at any distance (subject to the conditions imposed by Eqn. 17.1, 17.3 and 17.4). It is fairly difficult to prove this formally, so we will have to resort to an intuitive argument. Return to Eqn. 17.42 and 17.44, and perform a change of variables \\(u = r_j / L\\). Comparison of the integrands reveals that the first complex exponential with \\((k L u)^2\\) performs amplitude modulation of the second one containing \\(k L u\\). These expressions guarantee that oscillation happens at different rates. The combined exponential reaches it peak (unit) amplitude at \\(u = \theta = 0\\) , and then (as the value of \\(u\\) increases) begins to rapidly oscillate, owing to the fact that \\(k L \gg 1\\). Similarly to Eqn. 17.44, the primary contribution to the absolute value of \\(v(f,g)\\) comes from the central peak, the width of which is inversely proportional to \\((k L)^2\\). As it shrinks, the amount of power in the \\(\braket{\Phi_{jk}}\\) decreases accordingly.
+
 ---
-
-Finally, let us show that Eqn. 17.49 is true at any distance (subject to the conditions imposed by Eqn. 17.1, 17.3 and 17.4). It is fairly difficult to prove this formally, so we will have to resort to an intuitive argument. Return to Eqn. 17.42 and 17.44, and perform a change of variables \\(u = r_j / L\\). Comparison of the integrands reveals that the second complex exponential with \\((k L u)^2\\) performs amplitude modulation of the first one containing \\(k L u\\). These expressions guarantee that oscillation happens at different rates. The combined exponential reaches it peak (unit) amplitude at \\(u\\) = 0, and then (as the value of \\(u\\) increases) begins to rapidly oscillate, owing to the fact that \\(k L \gg 1\\). Similarly to Eqn. 17.44, the primary contribution to the value of the integral given by Eqn. 17.42 comes from the central peak, the width of which is inversely proportional to \\((k L)^2\\). As it shrinks, the amount of power in the \\(\braket{\Phi_{jk}}\\) decreases accordingly.
-
-Thus, if the observer is located outside an extensive particle group, interference of the scattered fields can be neglected:
-
-$$ \tag{17.50}
-	\braket{\Phi_{jk}} \approx 0.
-$$
 
 Let us summarize the results of this section. If the ergodic assumption and the single scattering approximation are applicable, and the conditions imposed by Eqn. 17.1, 17.3, and 17.4 hold, then the mean value of the Poynting vector (cf. Eqn. 17.8) in the presence a group of \\(N\\) particles is
 
