@@ -4852,13 +4852,13 @@ These approximations are reasonably accurate provided \\(f \leq 4\\).
 
 In general, \\(v(f, 0) \\) is a fairly complicated function that tends[^21] to \\(1\\) as \\(f \to 0\\). The latter indicates that the observer approaches the radiation zone of the entire particle group, which makes the trailing complex exponential of Eqn. 17.30 vanish.
 
-[^21]: Since \\(\exp(i f u^2) \to 1\\) as \\(f \to 0\\), the same applies to its integral taken over a unit interval.
+[^21]: Since \\(\exp(i f u^2) \to 1\\) as \\(f \to 0\\), the same holds for the value of \\(\int \exp(i f u^2) du\\) taken over a sufficiently small interval.
 
 {{< figure src="/img/vol_int_3.svg" caption="*Figure N: Plot of \\(f |v(f)|\\) defined by Eqn. 17.35. We can observe that the moving average of \\(|v(f)|\\) is inversely proportional to \\(f\\), and thus, \\((k L)^2\\).*" >}}
 
-Another important case of interest is when both \\(k L \gg 1\\) and \\(k r \gg 1\\) in such a way that \\(f \gg 1\\). That causes the approximations of Eqn. 17.34-17.35 to break down. One may encounter this situation in practice while considering the force exerted by the electromagnetic field of one particle group onto a particle in an adjacent group. Fortunately, by taking the limit of Eqn. 17.31, one can show[^22] that \\(|v| \to 0\\) as \\(f \to \infin\\).
+Another important case of interest is when both \\(k L \gg 1\\) and \\(k r \gg 1\\) in such a way that \\(f \gg 1\\). That causes the approximations of Eqn. 17.34-17.35 to break down. One may encounter this situation in practice while considering the force exerted by the electromagnetic field of one particle group onto a particle in an adjacent group. Fortunately, by taking the limit of Eqn. 17.31, one can easily show[^22] that \\(|v| \to 0\\) as \\(f \to \infin\\).
 
-[^22]: As the pseudo-frequency \\(f \to \infin\\), the value of \\(\exp(i f u^2)\\) rapidly oscillates around its mean, \\(0\\).
+[^22]: Both the real and the imaginary parts of \\(\exp(i f u^2)\\) rapidly oscillate around \\(0\\), except for the central region where \\(f u^2 \approx 0\\). As \\(f \to \infin\\), the contribution of the central region to the value of \\(\int \exp(i f u^2) du\\) decreases, and thus \\(|v| \to 0\\).
 
 ---
 
