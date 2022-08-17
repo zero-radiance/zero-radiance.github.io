@@ -4790,6 +4790,8 @@ $$ \tag{17.42}
 	\right) dV_j.
 $$
 
+Note that Eqn. 17.41 only features the squared magnitude of \\(v(f, g)\\), so its phase is irrelevant.
+
 We can gain some intuition about the behavior of this integral by analyzing its terms in isolation. First, consider
 
 $$ \tag{17.31}
@@ -4821,16 +4823,16 @@ Then, for an axis-aligned cube of volume \\(L^3\\),
 
 $$ \tag{17.34}
 \begin{aligned}
-	v(f, 0) &= \frac{1}{V} \int_V
+	\big| v(f, 0) \big| &= \left| \frac{1}{V} \int_V
 	\exp \negmedspace \left(
 	\frac{i}{2} \frac{k^2}{k r} \left( x_j^2 + y_j^2 \right)
-	\right) dx_j dy_j dz_j
+	\right) dx_j dy_j dz_j \right|
 	\cr
-	&= \left( \int_{-1/2}^{1/2}
+	&= \left| \left( \int_{-1/2}^{1/2}
 	\exp \negmedspace \left(
 	i f u^2 / 2
-	\right) du \right)^2
-	\approx \frac{\sin(f/11)}{f/11} e^{i f / 12}.
+	\right) du \right)^2 \right|
+	\approx \frac{\sin(f/11)}{f/11}.
 \end{aligned}
 $$
 
@@ -4838,31 +4840,31 @@ Similarly, for a sphere of the same volume (with a slightly larger cross-section
 
 $$ \tag{17.35}
 \begin{aligned}
-	v(f, 0) = \frac{1}{V} \int_V
+	\big| v(f, 0) \big| = \left| \frac{1}{V} \int_V
 	\exp \negmedspace \left(
 	\frac{i}{2} \frac{k^2}{k r} \left( r_j \sin{\theta_j} \right)^2
-	\right) r_j^2 \sin{\theta_j} dr_j d\theta_j d\phi_j
-	\approx \frac{\sin(f/11.6)}{f/11.6}  e^{i f / 13}.
+	\right) r_j^2 \sin{\theta_j} dr_j d\theta_j d\phi_j \right|
+	\approx \frac{\sin(f/11.6)}{f/11.6}.
 \end{aligned}
 $$
 
-These approximations are reasonably accurate provided \\(f \leq 4\\).
+The approximations of Eqn. 17.34 and 17.35 are reasonably accurate provided \\(f \leq 4\\).
 
-{{< figure src="/img/vol_int_1.svg" caption="*Figure N: Plot of \\(v(f)\\) defined by Eqn. 17.35. The solid line represents the absolute value, and the dashed line represents the value of the argument (the phase).*" >}}
+{{< figure src="/img/vol_int_1.svg" caption="*Figure N: Plot of \\(|v(f, 0)|^2\\) defined by Eqn. 17.35.*" >}}
 
-In general, \\(v(f, 0) \\) is a fairly complicated function that tends[^21] to \\(1\\) as \\(f \to 0\\). The latter indicates that the observer approaches the radiation zone of the entire particle group, which makes the trailing complex exponential of Eqn. 17.30 vanish.
+In general, \\(v(f, 0)\\) is a fairly complicated function that tends[^21] to \\(1\\) as \\(f \to 0\\). The latter indicates that the observer approaches the radiation zone of the entire particle group, which makes the trailing complex exponential of Eqn. 17.30 vanish.
 
 [^21]: Since \\(\exp(i f u^2) \to 1\\) as \\(f \to 0\\), the same holds for the value of \\(\int \exp(i f u^2) du\\) taken over a sufficiently small interval.
 
-{{< figure src="/img/vol_int_3.svg" caption="*Figure N: Plot of \\(f |v(f)|\\) defined by Eqn. 17.35. We can observe that the moving average of \\(|v(f)|\\) is inversely proportional to \\(f\\), and thus, \\((k L)^2\\).*" >}}
+{{< figure src="/img/vol_int_2.svg" caption="*Figure N: Plot of \\(f^2 |v(f, 0)|^2\\) defined by Eqn. 17.35. We can observe that the moving average of \\(|v(f, 0)|^2\\) is inversely proportional to \\(f^2\\), and thus, \\((k L)^4\\).*" >}}
 
-Another important case of interest is when both \\(k L \gg 1\\) and \\(k r \gg 1\\) in such a way that \\(f \gg 1\\). That causes the approximations of Eqn. 17.34-17.35 to break down. One may encounter this situation in practice while considering the force exerted by the electromagnetic field of one particle group onto a particle in an adjacent group. Fortunately, by taking the limit of Eqn. 17.31, one can easily show[^22] that \\(|v| \to 0\\) as \\(f \to \infin\\).
+Another important case of interest is when both \\(k L \gg 1\\) and \\(k r \gg 1\\) in such a way that \\(f \gg 1\\). That causes the approximations of Eqn. 17.34-17.35 to break down. One may encounter this situation in practice while considering the force exerted by the electromagnetic field of one particle group onto a particle in an adjacent group. Fortunately, by taking the limit of Eqn. 17.31, one can show[^22] that \\(v \to 0\\) as \\(f \to \infin\\).
 
-[^22]: Both the real and the imaginary parts of \\(\exp(i f u^2)\\) rapidly oscillate around \\(0\\), except for the central region where \\(f u^2 \approx 0\\). As \\(f \to \infin\\), the contribution of the central region to the value of \\(\int \exp(i f u^2) du\\) decreases, and thus \\(|v| \to 0\\).
+[^22]: Both the real and the imaginary parts of \\(\exp(i f u^2)\\) rapidly oscillate around \\(0\\), except for the central region where \\(f u^2 \approx 0\\). As \\(f \to \infin\\), the contribution of the central region to the value of \\(\int \exp(i f u^2) du\\) decreases, and thus \\(v \to 0\\).
 
 ---
 
-Now, let us return to Eqn. 17.42, and assume that the observer is located in the radiation zone of the entire particle group. Then \\(f \to 0\\), and
+Suppose the observer is located in the radiation zone of the entire particle group. Then \\(f \to 0\\), which permits us to reduce Eqn. 17.42 to
 
 $$ \tag{17.44}
 	v(0, g) = \frac{1}{V} \int_V \exp \negmedspace \left(
@@ -4870,7 +4872,7 @@ $$ \tag{17.44}
 	\right) dV_j,
 $$
 
-where the new parameter
+where
 
 $$ \tag{17.43}
 	g = k L |\bm{n_i} - \bm{n_s}| = \sqrt{2} k L \sqrt{1 - (\bm{n_i} \cdot \bm{n_s})}
@@ -4878,34 +4880,9 @@ $$
 
 depends on both the dimensions of the particle group and the degree of alignment of the wave vectors.
 
-Suppose that every position is equally likely, with the corresponding probability density \\(p(\bm{r_j}) = 1/V\\). Then calculation of the ensemble average of the electric field \\(\bm{E_j}\\) (defined by Eqn. 17.6) involves evaluation of the integral
-
-$$ \tag{17.42}
-	v(f, g) = \frac{1}{V} \int_V \exp \negmedspace \left(
-	i k \bm{r_j} \cdot (\bm{n_i} - \bm{n_s}) +
-	\frac{i}{2} \frac{k^2}{k r} r_j^2 \left( 1 - (\bm{n_j} \cdot \bm{n_s})^2 \right)
-	\right) dV_j,
-$$
-
-that generalizes Eqn. 17.31: the difference arises from the fact that we can no longer assume that the direction of observation is aligned with the direction of incidence. This property is captured by the additional parameter
-
-$$ \tag{17.43}
-	g = k L |\bm{n_i} - \bm{n_s}| = \sqrt{2} k L \sqrt{1 - (\bm{n_i} \cdot \bm{n_s})}
-$$
-
-that depends on the dimensions of the particle group and the degree of alignment of the wave vectors.
-
-Eqn. 17.42 is fairly complicated, so we shall only consider a few special cases. First, suppose the observer is located in the radiation zone of the entire particle group. Then \\(f \to 0\\), and
-
-$$ \tag{17.44}
-	v(0, g) = \frac{1}{V} \int_V \exp \negmedspace \left(
-	i k \bm{r_j} \cdot (\bm{n_i} - \bm{n_s})
-	\right) dV_j.
-$$
-
 It is convenient to reparametrize[^20] Eqn. 17.44 by aligning \\(\bm{n_i} - \bm{n_s}\\) with an axis of the coordinate system:
 
-[^20]: This parameterization is different from the one used in Eqn. 17.33. As a result, the orientation of the cubical volume is not the same.
+[^20]: This parameterization differs from the one used in Eqn. 17.33. As a result, the orientation of the cubical volume is not the same.
 
 $$ \tag{17.45}
 	\bm{r_j} \cdot \frac{\bm{n_i} - \bm{n_s}}{|\bm{n_i} - \bm{n_s}|}
@@ -4941,30 +4918,32 @@ $$ \tag{17.47}
 \end{aligned}
 $$
 
-The approximation of Eqn. 17.47 is reasonably accurate provided \\(g \leq 4\\). Note that the phase of \\(v\\) is irrelevant, since Eqn. 17.41 only features \\(|v|^2\\).
+The approximation of Eqn. 17.47 is reasonably accurate provided \\(g \leq 4\\).
 
-{{< figure src="/img/vol_int_2.svg" caption="*Figure N: Plot of \\(|v(0, g)|^2\\) defined by Eqn. 17.47.*" >}}
+{{< figure src="/img/vol_int_3.svg" caption="*Figure N: Plot of \\(|v(0, g)|^2\\) defined by Eqn. 17.47.*" >}}
 
-Figure N demonstrates that the scattered waves always interfere in the direction of incidence \\((g = 0)\\). If, in addition, the dimensions of the particle group are small in comparison to the wavelength of light \\((g/2 \leq k L \ll 1)\\), then the scattered waves strongly interfere in every direction. That is not surprising, since the particles simply do not have the opportunity to move out-of-phase.
+Figure N demonstrates that the scattered waves always interfere in the direction of incidence \\((g = 0)\\). If, in addition, the dimensions of the particle group are small in comparison to the wavelength of light \\((g \leq k L \ll 1)\\), then the scattered waves strongly interfere in every direction. That is not surprising, since the particles simply do not have the opportunity to move out-of-phase.
 
-{{< figure src="/img/vol_int_4.svg" caption="*Figure N: Plot of \\(g^2 |v(0, g)|\\) defined by Eqn. 17.47. We can observe that the moving average of \\(|v(0, g)|\\) is inversely proportional to \\(g^2\\), and thus, \\((k L)^2\\).*" >}}
+{{< figure src="/img/vol_int_4.svg" caption="*Figure N: Plot of \\(g^4 |v(0, g)|^2\\) defined by Eqn. 17.47. We can observe that the moving average of \\(|v(0, g)|^2\\) is inversely proportional to \\(g^4\\), and thus, \\((k L)^4\\).*" >}}
 
-In general, the strength of the interference effect wanes as the the scattering angle \\(\theta = \arccos(\bm{n_i} \cdot \bm{n_s})\\) or the linear dimension \\(kL\\) increase. For spatially large particle groups, \\(kL \gg 1\\), \\(g \gg 1\\) for all non-zero angles, and the graph of Figure N is horizontally compressed around \\(g = 0\\) while maintaining the peak value of \\(1\\). As a result, its area decreases, and the value of its integral taken over all directions is
+In general, the strength of the interference effect wanes as the the scattering angle \\(\theta = \arccos(\bm{n_i} \cdot \bm{n_s})\\) or the linear dimension \\(kL\\) increase. As \\(kL \to \infin\\), the graph of Figure N (parameterized by the scattering angle \\(\theta\\) in this case) is horizontally compressed while maintaining the peak value of \\(1\\). As a result, its area decreases, and the limit of the integral taken over all scattering directions is
 
 $$ \tag{17.48}
-	\lim_{kL \to \infin} \int_{-\pi}^{\pi} \int_{0}^{\pi} \left| v \left(0, \sqrt{2} k L \sqrt{1 - \cos{\theta}} \right) \right|^2 \sin{\theta} d\theta d\psi = 0.
+	\lim_{kL \to \infin} \int_{-\pi}^{\pi} \int_{0}^{\pi} \left| v \left(0, \sqrt{2} k L \sqrt{1 - \cos{\theta}} \right) \right|^2 \sin{\theta} d\theta d\phi = 0.
 $$
 
-Therefore, *if the observer is located in the the radiation zone of an extensive particle group*, the scattered fields of two particles do not cause significant interference:
+Therefore, if the observer is located in the the radiation zone of an extensive particle group, the scattered fields of two particles do not cause significant interference:
 
 $$ \tag{17.49}
 	\braket{\Phi_{jk}}
 	= \oint\_{\mathbb{S}^2} r^2 \braket{\braket{\bm{S_{jk}}}} \cdot \bm{n_s} d\Omega \approx 0.
 $$
 
-Finally, let us show that Eqn. 17.49 is true at any distance (subject to the conditions imposed by Eqn. 17.1 and 17.4). It is fairly difficult to prove this formally, so we will have to resort to an intuitive argument. Return to Eqn. 17.42 and 17.44, and perform a change of variables \\(u = r_j / L\\). Comparison of the integrands reveals that the second complex exponential with \\((k L u)^2\\) performs amplitude modulation of the first one containing \\(k L u\\). These expressions guarantee that oscillation happens at different rates. The combined exponential reaches it peak (unit) amplitude at \\(u\\) = 0, and then (as the value of \\(u\\) increases) begins to rapidly oscillate, owing to the fact that \\(k L \gg 1\\). Similarly to Eqn. 17.44, the primary contribution to the value of the integral given by Eqn. 17.42 comes from the central peak, the width of which is inversely proportional to \\((k L)^2\\). As it shrinks, the amount of power in the \\(\braket{\Phi_{jk}}\\) decreases accordingly.
+---
 
-Thus, *if the observer is located outside an extensive particle group*, interference of the scattered fields can be neglected:
+Finally, let us show that Eqn. 17.49 is true at any distance (subject to the conditions imposed by Eqn. 17.1, 17.3 and 17.4). It is fairly difficult to prove this formally, so we will have to resort to an intuitive argument. Return to Eqn. 17.42 and 17.44, and perform a change of variables \\(u = r_j / L\\). Comparison of the integrands reveals that the second complex exponential with \\((k L u)^2\\) performs amplitude modulation of the first one containing \\(k L u\\). These expressions guarantee that oscillation happens at different rates. The combined exponential reaches it peak (unit) amplitude at \\(u\\) = 0, and then (as the value of \\(u\\) increases) begins to rapidly oscillate, owing to the fact that \\(k L \gg 1\\). Similarly to Eqn. 17.44, the primary contribution to the value of the integral given by Eqn. 17.42 comes from the central peak, the width of which is inversely proportional to \\((k L)^2\\). As it shrinks, the amount of power in the \\(\braket{\Phi_{jk}}\\) decreases accordingly.
+
+Thus, if the observer is located outside an extensive particle group, interference of the scattered fields can be neglected:
 
 $$ \tag{17.50}
 	\braket{\Phi_{jk}} \approx 0.
