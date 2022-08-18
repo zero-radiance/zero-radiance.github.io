@@ -4408,13 +4408,15 @@ Consider a group of \\(N\\) arbitrary particles of embedded in a source-free reg
 
 The field acting on each particle is the sum of the incident field and the scattered fields produced by its neighbors \[[8](#references) (ch. 6.1)\]. The strength of this field depends on the number of particles, the distances between them, as well as the orientation, shape, size, and composition of each particle. In most cases, estimation of the scattered field in the region containing the particles is a challenging task more suited for a numerical computation. However, it is possible to make the problem amenable to an analytical treatment at the cost of generality, by considering a group composed of a small number of weakly absorbing and weakly scattering, widely spaced particles. These properties make the *single-scattering approximation* applicable, which allows us to neglect the influence of the scattered field on the particles in the group \[[8](#references) (ch. 14.1)\].
 
-The quantitative criteria for applicability of the single-scattering approximation are not well-established. Intuitively, the approximation fails when the electromagnetic field acting on the the particles is significantly different from the incident field. Since this is caused by other particles scattering or absorbing incident photons, this extinction process is directly linked to the extinction cross-section of a single particle. The latter is typically on the order of the geometrical cross-section of a single particle (or can be significantly smaller). As we shall see, the total extinction cross-section of a particle group is (in certain cases) proportional to the sum of the extinction cross-sections \\(C_{e}\\) of individual particles. For large particles, the laws of geometrical optics are applicable; thus, if we separate the incident illumination into parallel rays of light, then single scattering simply means that every ray intercepts a single particle. Evidently, that is equivalent to projecting the volume containing the particles onto a plane facing the light source and checking for overlaps. Therefore, if the extinction density per unit area is sufficiently low,
+The quantitative criteria for applicability of the single-scattering approximation are not well-established. Intuitively, the approximation fails when the electromagnetic field acting on the the particles is significantly different from the incident field. Since this is caused by other particles scattering or absorbing incident photons, this extinction process is directly linked to the extinction cross-section of a single particle. The latter is typically on the order of the geometrical cross-section of a single particle (or, for the tiniest of particles, significantly smaller). As we shall see, the total extinction cross-section of a particle group is (under certain conditions) proportional to the sum of the extinction cross-sections \\(C_{e}\\) of individual particles. For large particles, the laws of geometrical optics are applicable; thus, if we separate the incident illumination into parallel rays of light, then single scattering simply means that every ray intercepts a single particle (with each particle assumed to be weakly absorbing and weakly scattering). Obviously, that can only be the case if the total number of particles \\(N\\) is not too great, regardless of their density.
+
+Alternatively, we may project the particles onto a plane facing the light source, and check for overlaps. We can also approximately account for the absorption and scattering characteristics of the particles by replacing their geometric cross-sections with the extinction cross-sections. If the extinction density per unit area is sufficiently low,
 
 $$ \tag{17.0}
 	\frac{\sum_{j=1}^{N} C_{e,j}}{L^2} \ll 1,
 $$
 
-then neglecting multiple scattering should result in a reasonable approximation. Note that the total extinction cross-section of a particle group is proportional to \\(V = L^3\\), so it grows much quicker than its geometrical cross-section \\(L^2\\), which makes Eqn. 17.0 a quite demanding criterion for groups of small particles, compensating for formal failure of the laws of geometrical optics.
+then neglecting multiple scattering should result in a reasonable approximation. Note that the total number of particles \\(N\\) is proportional to \\(V = L^3\\), so it grows much quicker than the geometrical cross-section \\(L^2\\), which makes Eqn. 17.0 a quite demanding criterion for groups of small particles, compensating for the formal failure of the laws of geometrical optics.
 
 As usual, we shall utilize the superposition principle to decompose the incident field into a number of plane waves. If the host medium is non-absorptive and non-magnetic, then the expressions of the incident field (Eqn. 16.1) and the associated time-averaged Poynting vector (Eqn. 16.3) are identical to those shown in the previous section.
 
@@ -5003,8 +5005,8 @@ $$ \tag{17.56}
 	d\Omega d\psi,
 	\cr
 	\braket{\Phi_e^{tot}}
-	&= \sum_j \int_{C_d} \oint\_{\mathbb{S}^2}
-	\left[ r^2 \braket{\braket{\bm{S_{ij}}}} \cdot \bm{n_s} \right] d\Omega dA
+	&= L^2 \sum_j \oint\_{\mathbb{S}^2}
+	\left[ r^2 \braket{\braket{\bm{S_{ij}}}} \cdot \bm{n_s} \right] d\Omega
 	= N \frac{\mu\_0^{-1}}{2} \frac{\eta}{c} \frac{4 \pi}{k^2}
 	\int_{\Psi} p(\psi)
 	\mathcal{Im} \left\lbrace
