@@ -3429,10 +3429,7 @@ $$ \tag{14.19}
 	T = U (I + G T)
 $$
 
-It does, however, depend on the geometry and the structure of scattering
-
-
-.
+It does, however, depend on the geometry and the structure of the scattering object.
 
 Notice that, when we combine Eqn. 14.13 and 14.19, the potential operator cancels out, and we obtain a series expansion
 
