@@ -8739,9 +8739,13 @@ Thus, we see that Eqn. 21.47 correctly models absorption, but the effect of scat
 
 ### Light Scattering by Small Particles
 
-In this section, we shall develop a theory of light scattering by particles of an arbitrary size. Unlike the Lorenz-Mie-Debye theory of light scattering by spherical particles, this theory is not restricted to specific shapes. This requirement makes us abandon the treatment of electromagnetic scattering as a boundary value problem, and with it, the computationally intensive solution that takes the form of a multipole series expansion. Instead of attacking the *differential* form of the Maxwell equations (Eqn. 1.1), we shall express them in terms of the electromagnetic potential (Eqn. 8.16), which leads to an *integral* form of the Maxwell equations (Eqn. 9.16).
+In this section, we shall develop a theory of electromagnetic scattering by particles of an arbitrary size. Unlike the Lorenz-Mie-Debye theory for spherical particles, this theory is not restricted to specific shapes. This requirement forces us to abandon the treatment of electromagnetic scattering as a boundary value problem, and with it, the computationally intensive solution that takes the form of a multipole series expansion. Instead of attacking the *differential* form of the Maxwell equations (Eqn. 1.1) directly, we shall express them in terms of the electromagnetic potential (Eqn. 8.16), which leads to an *integral* solution of the Maxwell equations (Eqn. 9.16).
+
+In order to solve the particular problem of light scattering by a single particle of the relative wavenumber \\(m\\), we shall employ the volume integral equation (Eqn. 11.25.1) and the surface integral equation (Eqn. 1x.14). Evaluation of these integrals poses a challenge not just because the expressions themselves are complicated, but also because they require the values of the internal field (not known apriori) to be specified either in the interior or on the surface of the scattering object. Formally, this leads to a recursive integral equation (Eqn. 14.22) of the transition operator, and the solution generates a Born series expansion (Eqn. 14.22) of the electric field. In practice, under certain conditions, one can make an educated guess about the approximate form of the internal field, which allows one to bypass the recursive integral equation and jump straight into the volume or the surface integral equation. We shall take this approach, and examine its clever techniques in more detail.
 
 ---
+
+RGB not mutually interacting dipoles
 
 TODO
 
@@ -8756,6 +8760,8 @@ Is a spherical cavity the right choice for the depolarization operator?
 Should I call relative wavenumber \\(w\\) and relative permeability \\(m\\)?
 
 How to extract a plane wave inside the sphere? Use the internal coefficients? But the corresponding vector spherical wave functions are defined in terms of \\(k r\\) rather than \\(m k r\\)...
+
+Find the transition operator... Try both surface and volume IE!
 
 ---
 
