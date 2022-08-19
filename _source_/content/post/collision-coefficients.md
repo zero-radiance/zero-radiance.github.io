@@ -2703,9 +2703,7 @@ $$ \tag{11.25}
 \end{aligned}
 $$
 
-In the literature, Eqn. 11.25 is often called the *volume integral equation* \[[8](#references) (ch. 4)\]. It can be used to evaluate the electromagnetic field inside or outside the scattering object.
-
-<!--
+In the literature, Eqn. 11.25.1 and Eqn. 11.25.2 are often called the *volume integral equations* \[[8](#references) (ch. 4)\]. They can be used to evaluate the electromagnetic field inside or outside the scattering object.
 
 ### Huygens-Fresnel Principle
 
@@ -2895,9 +2893,9 @@ $$ \tag{1x.15}
 	\Big) dA'.
 $$
 
-Eqn. 1x.14-1x.15 give the expressions of the scattered field in the region outside the scattering object \\((\bm{r} \notin V)\\) in terms of the *tangential surface fields* \\(\bm{n'} \times \bm{E}\\) and \\(\bm{n'} \times \bm{B}\\). More generally speaking, the idea that a smooth (but not necessarily physical) surface can be seen as a source of spherical *wavelets* (secondary waves) interfering with each other is known as the [Huygens-Fresnel principle](https://en.wikipedia.org/wiki/Huygens%E2%80%93Fresnel_principle) \[[4](#references) (ch. 3.1), [25](#references) (ch. 2)\].
+Eqn. 1x.14 and 1x.15 are called the *surface integral equations*. They give the expressions of the scattered field in the region outside the scattering object \\((\bm{r} \notin V)\\) in terms of the *tangential surface fields* \\(\bm{n'} \times \bm{E}\\) and \\(\bm{n'} \times \bm{H} = \mu^{-1}(\bm{n'} \times \bm{B})\\). According to Eqn. 1.17, the latter are continuous across the optical interface, provided the conductivity is not enormous \[[17](#references) (ch. 1.13)\]. More generally speaking, the idea that a smooth (but not necessarily physical) surface can be seen as a source of spherical *wavelets* (secondary waves) interfering with each other is known as the [Huygens-Fresnel principle](https://en.wikipedia.org/wiki/Huygens%E2%80%93Fresnel_principle) \[[4](#references) (ch. 3.1), [25](#references) (ch. 2)\].
 
--->
+<!--
 
 ### Dipole Radiation
 
@@ -3505,6 +3503,8 @@ $$ \tag{14.25}
 	+ \lim_{\delta \to 0} \int\_{V - V_{\delta}} \mathcal{G} (\bm{r}, \bm{r''}, k) \cdot \mathcal{T} (\bm{r''}, \bm{r'}, k) dV'' \bigg).
 \end{aligned}
 $$
+
+-->
 
 ### Scattering Matrix
 
@@ -8738,6 +8738,8 @@ Thus, we see that Eqn. 21.47 correctly models absorption, but the effect of scat
 ### Light Scattering by Liquid Molecules
 
 ### Light Scattering by Small Particles
+
+In this section, we shall develop a theory of light scattering by particles of an arbitrary size. Unlike the Lorenz-Mie-Debye theory of light scattering by spherical particles, this theory is not restricted to specific shapes. This requirement makes us abandon the treatment of electromagnetic scattering as a boundary value problem, and with it, the computationally intensive solution that takes the form of a multipole series expansion. Instead of attacking the *differential* form of the Maxwell equations (Eqn. 1.1), we shall express them in terms of the electromagnetic potential (Eqn. 8.16), which leads to an *integral* form of the Maxwell equations (Eqn. 9.16).
 
 ---
 
