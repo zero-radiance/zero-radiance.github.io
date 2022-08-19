@@ -8673,7 +8673,7 @@ where
 
 $$ \tag{21.53}
 	\frac{\mathcal{Im} \big\lbrace m^2 \big\rbrace |\alpha_n|^2}{V_m \left| m^2 - 1 \right|^2}
-	= V_m \frac{\mathcal{Im} \big\lbrace m^2 \big\rbrace}{\left| 1 + \left( m^2 - 1 \right) \frac{A_n}{\sum_n A_n} \right|^2}.
+	= V_m \frac{\mathcal{Im} \big\lbrace m^2 \big\rbrace}{\left| 1 + \left( m^2 - 1 \right) \epsilon_0 L_n \right|^2}.
 $$
 
 In order to simplify Eqn. 21.53 further, we must rewrite Eqn. 21.22 so that is has a real denominator:
@@ -8684,15 +8684,15 @@ $$ \tag{21.54}
 	&= V_m \frac{
 		\left( m^2 - 1 \right)
 		\left( 1 + \left( \big[ m^2 \big]^{\*} - 1 \right)
-		\frac{A_n}{\sum_n A_n} \right)
+		\epsilon_0 L_n \right)
 	}{
-		\left| 1 + \left( m^2 - 1 \right) \frac{A_n}{\sum_n A_n} \right|^2
+		\left| 1 + \left( m^2 - 1 \right) \epsilon_0 L_n \right|^2
 	}
 	\cr
 	&= V_m \frac{
-		m^2 + \left( |m|^4 - 2 \mathcal{Re} \big\lbrace m^2 \big\rbrace + 1 \right) \frac{A_n}{\sum_n A_n} - 1
+		m^2 + \left( |m|^4 - 2 \mathcal{Re} \big\lbrace m^2 \big\rbrace + 1 \right) \epsilon_0 L_n - 1
 	}{
-		\left| 1 + \left( m^2 - 1 \right) \frac{A_n}{\sum_n A_n} \right|^2
+		\left| 1 + \left( m^2 - 1 \right) \epsilon_0 L_n \right|^2
 	}.
 \end{aligned}
 $$
