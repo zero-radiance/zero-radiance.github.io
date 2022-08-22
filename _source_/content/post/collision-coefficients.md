@@ -2901,7 +2901,7 @@ Eqn. 1x.14 and 1x.15 are called the *surface integral equations*. They give the 
 
 Typically, it is not possible to evaluate the integrals of Eqn. 11.25 in closed form, since the value of the electric field in the interior of the volume is not known. Thus, we must make certain assumptions and employ various approximations in order to make computations feasible. This leads to a number of special cases.
 
-One of the simplest problems that can be solved using our mathematical framework (of classical physics) is that of a single atom or a small molecule embedded in a homogeneous medium. This case corresponds to a tiny particle in vacuum, or an [impurity](https://en.wikipedia.org/wiki/Impurity) in an otherwise pure material. We represent it by an electric dipole -- an oriented point source.
+One of the simplest problems that can be solved using our mathematical framework (of classical physics) is that of a single non-magnetic atom or a small molecule embedded in a homogeneous medium. This case corresponds to a tiny particle in vacuum, or an [impurity](https://en.wikipedia.org/wiki/Impurity) in an otherwise pure material. We represent it by an electric dipole -- an oriented point source.
 
 The necessary and sufficient condition for electric dipole radiation is that the radius \\(a\\) of the bounding sphere of the particle must be small compared to the wavelength \\(\lambda\\) computed both inside and outside the particle \[[4](#references) (ch. 6.4)\]. Since \\(k = 2 \pi / \lambda\\), we require that
 
