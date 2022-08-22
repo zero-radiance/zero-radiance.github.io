@@ -4283,15 +4283,17 @@ $$ \tag{16.35}
 	\right).
 $$
 
-Alternatively, [Ohm's law](https://en.wikipedia.org/wiki/Ohm%27s_law) may be used instead:
+Alternatively, [Ohm's law](https://en.wikipedia.org/wiki/Ohm%27s_law) may be used instead \[[25](#references) (ch. 1.1)\]:
 
 $$ \tag{16.3z}
 	\Phi_a
+	= \frac{1}{2} \omega \int\_{V}
+	\mathcal{Im} \big\lbrace \varepsilon_2(\bm{r'}) \big\rbrace \big| \bm{E}(\bm{r'}) \big|^2 dV'
 	= \frac{\mu\_0^{-1}}{2} \frac{\eta}{c} k \int\_{V}
-	\mathcal{Im} \big\lbrace m^2(\bm{r'}) \big\rbrace \big| \bm{E}(\bm{r'}) \big|^2 dV',
+	\mathcal{Im} \left\lbrace \frac{m^2(\bm{r'})}{\mu\_r(\bm{r'})} \right\rbrace \big| \bm{E}(\bm{r'}) \big|^2 dV',
 $$
 
-with the the integral taken over the interior of the particle \[[25](#references) (ch. 1.1)\]. As before, \\(m\\) is the relative wavenumber given by Eqn. 11.8.
+with the the integral taken over the interior of the particle \[[25](#references) (ch. 1.1)\]. As before, \\(\varepsilon_2\\) is the complex permittivity of the particle, \\(\mu\_r\\) is its relative permeability, and \\(m\\) is the relative wavenumber given by Eqn. 11.8.
 
 It is convenient to be able to relate the amount of power absorbed by the particle to the amount of incident power the particle *geometrically* intercepts. The latter can be characterized with the help of the projected area of the particle - its *geometric cross-section* \\(C_g\\). For a convex particle, it is given by the integral
 
@@ -7966,7 +7968,7 @@ Eqn. 20.6 constitutes the classical description of molecular light scattering, w
 We shall begin our investigation of light-matter interactions with the simplest state of matter -- [gas](https://en.wikipedia.org/wiki/Gas). Specifically, let us consider a *group of gas molecules* with the following (fairly typical) properties:
 
 1. The molecules are small compared to the wavelength of light. If \\(a\\) is the largest linear dimension of the molecule (e.g. its radius), and \\(k = k_0 = \omega / c\\) is the vacuum wavenumber, then \\(x = k a \ll 1\\).
-2. The molecules are weakly absorbing and weakly scattering. If \\(m\\) is the refractive index of the molecule (not to be confused with the refractive index of the gas as a medium), then \\(|m x| \ll 1\\).
+2. The molecules are non-magnetic, weakly absorbing and weakly scattering. If \\(m\\) is the refractive index of the molecule (not to be confused with the refractive index of the gas as a medium), then \\(|m x| \ll 1\\).
 3. The average distance between the molecules is large.
 4. The number \\(N\\) of molecules within the group is not too great.
 5. The volume \\(V\\) containing the group of molecules is large compared to the wavelength of light. If \\(L\\) is the smallest linear dimension of the volume (e.g. its length), then \\(k L \gg 1\\).
