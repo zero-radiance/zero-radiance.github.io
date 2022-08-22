@@ -8737,11 +8737,15 @@ Thus, we see that Eqn. 21.47 correctly models absorption, but the effect of scat
 
 ### Light Scattering by Liquid Molecules
 
-### Light Scattering by Small Particles
+### Light Scattering by Particles of Arbitrary Size
 
-In this section, we shall develop a theory of electromagnetic scattering by particles of an arbitrary size. Unlike the Lorenz-Mie-Debye theory for spherical particles, this theory is not restricted to specific shapes. This requirement forces us to abandon the treatment of electromagnetic scattering as a boundary value problem, and with it, the computationally intensive solution that takes the form of a multipole series expansion. Instead of attacking the *differential* form of the Maxwell equations (Eqn. 1.1) directly, we shall express them in terms of the electromagnetic potential (Eqn. 8.16), which leads to an *integral* solution of the Maxwell equations (Eqn. 9.16).
+In this section, we shall develop a theory of electromagnetic scattering by particles of an arbitrary size. We can do this by extending the theory of Rayleigh (dipole) scattering for small particles. This can be accomplished in two different ways. The first way involves performing the full multipole expansion of the electromagnetic potential (using Eqn. 18.11 and 18.13), and treating electromagnetic scattering as a boundary value problem; this leads to the Lorenz-Mie-Debye solution of the *differential* form of the Maxwell equations. The second method is to interpret the scattering object as a collection of dipoles (as per Eqn. 10.14); this leads to the surface (Eqn. 1x.14) and the the volume *integral* equations (Eqn. 11.25.1).
 
-In order to solve the particular problem of light scattering by a single particle of the relative wavenumber \\(m\\), we shall employ the volume integral equation (Eqn. 11.25.1) and the surface integral equation (Eqn. 1x.14). Evaluation of these integrals poses a challenge not just because the expressions themselves are complicated, but also because they require the values of the internal field (not known apriori) to be specified either in the interior or on the surface of the scattering object. Formally, this leads to a recursive integral equation (Eqn. 14.22) of the transition operator, and the solution generates a Born series expansion (Eqn. 14.22) of the electric field. In practice, under certain conditions, one can make an educated guess about the approximate form of the internal field, which allows one to bypass the recursive integral equation and jump straight into the volume or the surface integral equation. We shall take this approach, and examine its clever techniques in more detail.
+Unfortunately, evaluation of these integrals poses a challenge: not just because the expressions themselves are complicated, but also because they require the values of the internal field (not known apriori) to be specified either in the interior or on the surface of the scattering object. Formally, this leads to a recursive integral equation (Eqn. 14.22) of the transition operator, and the solution generates a Born series expansion (Eqn. 14.22) of the electric field. In practice, under certain conditions, one can make an educated guess about the approximate form of the internal field, which allows one to bypass the recursive integral equation and jump straight into the surface or the volume integral equation. We shall examine these mathematical techniques in more detail.
+
+#### Rayleigh-Gans-Born Approximation
+
+...
 
 ---
 
