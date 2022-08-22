@@ -8737,6 +8737,17 @@ Due to the definition of polarizability, in Gaussian units, the value of the abs
 
 Thus, we see that Eqn. 21.47 correctly models absorption, but the effect of scattering (radiation damping) has not yet been taken into account. As discussed previously, this can be accomplished by combining Eqn. 21.41 and 21.48. For spherical particles, verification can be performed by replacing the electrostatic expression of the scattering matrix (Eqn. 21.31) with a series expansion found using the Lorenz-Mie-Debye theory and retaining both the real and the imaginary leading terms.
 
+It is interesting to compare the contribution of \\(\varSigma_a\\) and \\(\varSigma_s\\) to \\(\varSigma_e\\). Since the former is proportional to \\(k_0 |\alpha_m|\\), and the latter -- to \\(k_0^4 |\alpha_m|^2\\), and because \\(\alpha_m \propto V_m\\),
+
+$$ \tag{21.59}
+	\frac{\varSigma_a}{\varSigma_s}
+	\propto \frac{1}{k_0^3 |\alpha_m| }
+	\propto \frac{1}{k_0^3 V_m}
+	\propto \frac{1}{x^3}.
+$$
+
+As the molecules are small compared to the wavelength of light, \\(x \ll 1\\). Therefore, even a relatively small imaginary component of polarizability can make absorption the dominant effect \[[4](#references) (ch. 6.13)\].
+
 ### Light Scattering by Liquid Molecules
 
 ### Light Scattering by Particles of Arbitrary Size
