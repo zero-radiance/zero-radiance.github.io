@@ -3400,7 +3400,6 @@ and the corresponding dyadic expression is
 
 $$ \tag{14.16}
 	\bm{E}(\bm{r})
-	= \bm{E_i}(\bm{r}) + \bm{E_s}(\bm{r})
 	= \bm{E_i}(\bm{r})
 	+ \int\_{V} \mathcal{G}\_e (\bm{r}, \bm{r'}) \cdot \int\_{V} \mathcal{T} (\bm{r'}, \bm{r''}) \cdot \bm{E_i}(\bm{r''}) dV'' dV'.
 $$
@@ -8780,7 +8779,7 @@ $$
 
 where, as usual, \\(x = k a\\) is the size parameter, and \\(a\\) is the radius of the bounding sphere of the particle.
 
-Eqn. 22.3 can be interpreted in the following way. Imagine a particle with \\(x \gg 1\\), such that the laws of geometric optics are applicable. We isolate the central ray that passes through the particle along the diameter of the bounding sphere. According to Eqn. 22.1, this ray does not experience a significant amount of reflection either inside or outside the particle. However, inside, the electromagnetic wave experiences a change in phase velocity and, potentially, a degree of absorption. If we model the internal field as a plane wave, then
+Eqn. 22.3 can be interpreted in the following way. Imagine a particle with \\(x \gg 1\\), such that the laws of geometric optics are applicable. We isolate the central ray that passes through the particle along the diameter of the bounding sphere. According to Eqn. 22.1, this ray does not experience a significant amount of reflection either inside or outside the particle. However, inside, the electromagnetic wave experiences a change in phase velocity and, potentially, a degree of absorption. If we model the internal field as a plane wave, then the expression of the electric field at the back of the particle is
 
 $$ \tag{22.4}
 \begin{aligned}
@@ -8793,9 +8792,41 @@ $$
 
 Evidently, the internal field can be approximated by the incident field if Eqn. 22.1 and 22.3 are both satisfied. Also, the relative wavenumber \\(m\\) can be spatially-varying and frequency-dependent if both conditions hold for all \\(\bm{r}\\) and \\(\omega\\).
 
-Formally, the Rayleigh-Gans-Born approximation corresponds to the first term of the Born series (while Rayleigh's approximation is the first term of the multipole series) expansion of the electric field.
+Formally, the Rayleigh-Gans-Born approximation corresponds to the first term of the Born series (while Rayleigh's approximation is the first term of the multipole series) expansion of the electric field. According to Eqn. 14.3 and 14.5, the expression of the transition dyadic \\(\mathcal{T}\\) is
 
-[^29]:
+$$ \tag{22.5}
+	\mathcal{T} \big( \bm{r'}, \bm{r''}, k(\omega), \omega \big) =
+	k^2 \big( m^2(\bm{r'}, \omega) - 1 \big) \delta(\bm{r'} - \bm{r''}).
+$$
+
+After making the substitutions (cf. Eqn. 7.22)
+
+$$ \tag{22.6}
+	\bm{E}(\bm{r}, \omega) \to \bm{E_i}(\bm{r}, \omega),
+	\quad
+	\bm{B}(\bm{r}, \omega) \to \frac{k(\omega)}{\omega} \bm{n_i} \times \bm{E_i}(\bm{r}, \omega),
+$$
+
+the expressions of both the volume integral equation (cf. Eqn. 11.25)
+
+$$ \tag{22.7}
+	\bm{E_s}(\bm{r}, \omega)
+	= k^2(\omega) \int\_{V} \big( m^2(\bm{r'}, \omega) - 1 \big)
+	\mathcal{G}\_e \big( \bm{r}, \bm{r'}, k(\omega) \big) \cdot \bm{E_i}(\bm{r'}, \omega) dV',
+$$
+
+and the surface integral equation (cf. Eqn. 1x.14)
+
+$$ \tag{22.8}
+\small
+	\bm{E_s}(\bm{r}, \omega)
+	= i \omega \oint_{\partial V} \left(
+		\frac{k(\omega)}{\omega} \mathcal{G}\_e(\bm{r}, \bm{r'}, \omega) \cdot \big( \bm{n'} \times \bm{n_i} \times \bm{E_i}(\bm{r}, \omega) \big) +
+		\mathcal{G}\_m(\bm{r}, \bm{r'}, \omega) \cdot \big( \bm{n'} \times \bm{E_i}(\bm{r'}, \omega) \big)
+	\right) dA',
+$$
+
+are considerably simplified.
 
 ---
 
