@@ -3088,6 +3088,12 @@ $$ \tag{13.11}
 	\frac{\bm{R}}{R} \simeq \bm{n}.
 $$
 
+---
+
+TODO: explicitly write down the forms of the G_ef, G_mf, and double-check both the SIE and the VIE!
+
+---
+
 Substitution of Eqn. 13.9 and 13.11 into Eqn. 13.6 produces the *far-field approximation* of the volume integral equation:
 
 $$ \tag{13.12}
@@ -8763,7 +8769,7 @@ $$ \tag{22.1}
 	\left| m^2 - 1 \right| \ll 1.
 $$
 
-Under these conditions, according to Eqn. 21.17, the field inside tiny particles is practically the same as the incident field:
+Under these conditions, according to Eqn. 21.17, the field inside a tiny particle is practically the same as the incident field:
 
 $$ \tag{22.2}
 	\bm{E}(\bm{r}, \omega) \approx
@@ -8807,26 +8813,34 @@ $$ \tag{22.6}
 	\bm{B}(\bm{r}, \omega) \to \frac{k(\omega)}{\omega} \bm{n_i} \times \bm{E_i}(\bm{r}, \omega),
 $$
 
-the expressions of both the volume integral equation (cf. Eqn. 11.25)
+the far-field expressions of both the volume integral equation (cf. Eqn. 13.12)
 
 $$ \tag{22.7}
-	\bm{E_s}(\bm{r}, \omega)
-	= k^2(\omega) \int\_{V} \big( m^2(\bm{r'}, \omega) - 1 \big)
-	\mathcal{G}\_e \big( \bm{r}, \bm{r'}, k(\omega) \big) \cdot \bm{E_i}(\bm{r'}, \omega) dV',
+	\bm{E_s}(\bm{r}, \omega) \simeq k^2(\omega)
+	\frac{e^{i k(\omega) r}}{4 \pi r}
+	\big( \mathcal{I} - \bm{n} \otimes \bm{n} \big) \cdot
+	\int\_{V} e^{-i k(\omega) (\bm{r'} \cdot \bm{n})} \big( m^2(\bm{r'}, \omega) - 1 \big)
+	\bm{E_i}(\bm{r'}, \omega) dV'
 $$
 
-and the surface integral equation (cf. Eqn. 1x.14)
+and the surface integral equation (cf. Eqn. 13.1y)
 
 $$ \tag{22.8}
-\small
+\begin{aligned}
 	\bm{E_s}(\bm{r}, \omega)
-	= i \omega \oint_{\partial V} \left(
-		\frac{k(\omega)}{\omega} \mathcal{G}\_e(\bm{r}, \bm{r'}, \omega) \cdot \big( \bm{n'} \times \bm{n_i} \times \bm{E_i}(\bm{r}, \omega) \big) +
-		\mathcal{G}\_m(\bm{r}, \bm{r'}, \omega) \cdot \big( \bm{n'} \times \bm{E_i}(\bm{r'}, \omega) \big)
-	\right) dA',
+	&\simeq i \omega \frac{e^{i k(\omega) r}}{4 \pi r}
+	\big( \mathcal{I} - \bm{n} \otimes \bm{n} \big) \cdot
+	\oint_{\partial V} e^{-i k(\omega) (\bm{r'} \cdot \bm{n})}
+	\big( \bm{n'} \times \bm{B_i}(\bm{r'}, \omega) \big) dA'
+	\cr
+	&+ i \omega \frac{e^{i k(\omega) r}}{4 \pi r}
+	\big(\bm{n} \times \mathcal{I} \big) \cdot
+	\oint_{\partial V} e^{-i k(\omega) (\bm{r'} \cdot \bm{n})}
+	\big( \bm{n'} \times \bm{E_i}(\bm{r'}, \omega) \big) dA'
+\end{aligned}
 $$
 
-are considerably simplified.
+are significantly simplified.
 
 ---
 
