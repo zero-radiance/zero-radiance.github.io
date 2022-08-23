@@ -3429,7 +3429,7 @@ $$
 
 It does, however, depend on the geometry and the structure of the scattering object.
 
-Notice that, when we combine Eqn. 14.13 and 14.19, the potential operator cancels out, and we obtain a series expansion
+Notice that, when we combine Eqn. 14.13 and 14.19, the potential operator cancels out, and we obtain the Born series expansion
 
 $$ \tag{14.20}
 \begin{aligned}
@@ -3874,7 +3874,7 @@ $$ \tag{15.29}
 	\mathcal{T} (\bm{r}, \bm{r'}, k)
 $$
 
-makes Eqn. 15.28 fully dimensionless. Additionally, in the operator notation, Eqn. 15.20 and 15.28 are formally identical. As a result, both formulations can be written as the Born series of Eqn. 14.20, and thus produce the same fields.
+makes Eqn. 15.28 fully dimensionless. Additionally, in the operator notation, Eqn. 15.20 and 15.28 are formally identical. As a result, both formulations can be expressed in terms of the Born series given by Eqn. 14.20, and thus produce the same fields.
 
 ### Optical Theorem
 
@@ -7227,13 +7227,13 @@ First, let us consider the *electric* partial waves by setting \\(a\_n = 0\\) in
 
 Another way of saying this is that the *tangential component* of the incident electric field is parallel to the electric field of the first electric partial wave. Furthermore, Eqn. 19.5 indicates that the components of the scattered field propagate as spherical waves. These are key features of the far field of an *electric dipole*, a concept we have previously encountered in Sec. 10 and 13.
 
-Once the size of the particle begins to approach the wavelength of light (as measured in the interior of the sphere), the atoms in its interior no longer oscillate in-phase because they are too far apart \[[5](#references) (vol. I, ch. 32.4)\]. This renders the dipole approximation insufficient, and therefore requires a more general description of the scatterer. One approach, something that we have already explored in Eqn. 13.12, consists of taking an integral over the volume of the particle filled with dipoles. However, that is not how the Lorenz-Mie-Debye formula works; we may interpret it as a [multipole expansion](https://en.wikipedia.org/wiki/Multipole_expansion) instead.
+Once the size of the particle begins to approach the wavelength of light (as measured in the interior of the sphere), the atoms in its interior no longer oscillate in-phase because they are too far apart \[[5](#references) (vol. I, ch. 32.4)\]. This renders the dipole approximation insufficient, and therefore requires a more general description of the scatterer. One approach, something that we have already explored in Eqn. 13.12, consists of taking an integral over the volume of the particle filled with dipoles. However, that is not how the Lorenz-Mie-Debye formula works; we may interpret it as a [multipole series](https://en.wikipedia.org/wiki/Multipole_expansion) expansion instead.
 
 Let us see how it works. Imagine a particle in the radiation zone. Since the particle is so small (or so far away), it appears point-like to us. However, a single point charge (a monopole), due to its symmetry, is not able to produce radiation that is transverse. Thus, we should reimagine the small particle in question as a tiny disk instead.
 
 How should we orient this disk with respect to the incident wave? Since the axis of a dipole is aligned with the vector of the incident field, the disk must contain the latter. Then, by symmetry, we have two remaining options for the orientation: either across or along the direction of propagation of the incident wave. While the first option allows us to rotate the dipole around the axis of the incident beam, this action can also be accomplished by using a complex coefficient in front of the dipole term. The second option is much more versatile, since it allows us to imagine sources of scattered radiation at arbitrary (polar) angles with respect to the direction of incidence.
 
-The multipole expansion process consists of splitting the perimeter of the disk into segments terminated by equidistant pairs of charges of opposite sign. A single pair rotated by \\(\pi/2\\) radians represents the dipole term. The \\(\theta\\)-component of its far field is split into two lobes separated by the plane oriented transversely with respect to the direction of incidence. In this plane, due to the projection angle, the \\(\theta\\)-component of the far field vanishes. This can be clearly seen as two vertical dips in the blue graph of Fig. N.
+The multipole series expansion process consists of splitting the perimeter of the disk into segments terminated by equidistant pairs of charges of opposite sign. A single pair rotated by \\(\pi/2\\) radians represents the dipole term. The \\(\theta\\)-component of its far field is split into two lobes separated by the plane oriented transversely with respect to the direction of incidence. In this plane, due to the projection angle, the \\(\theta\\)-component of the far field vanishes. This can be clearly seen as two vertical dips in the blue graph of Fig. N.
 
 For a larger particle, we may require a greater number of electric charges to model its scattering behavior. Thus, we may add the second partial wave -- the [quadrupole](https://en.wikipedia.org/wiki/Quadrupole) term -- by subdividing the perimeter of the disk into four segments. In the standard orientation, the pattern formed by the charges resembles the vertices of an axis-aligned square; this explains why the orange graph of Fig. 4 is rotated by \\(\pi/4\\) radians.
 
@@ -8737,7 +8737,7 @@ Due to the definition of polarizability, in Gaussian units, the value of the abs
 
 Thus, we see that Eqn. 21.47 correctly models absorption, but the effect of scattering (radiation damping) has not yet been taken into account. As discussed previously, this can be accomplished by combining Eqn. 21.41 and 21.48. For spherical particles, verification can be performed by replacing the electrostatic expression of the scattering matrix (Eqn. 21.31) with a series expansion found using the Lorenz-Mie-Debye theory and retaining both the real and the imaginary leading terms.
 
-It is interesting to compare the contribution of \\(\varSigma_a\\) and \\(\varSigma_s\\) to \\(\varSigma_e\\). Since the former is proportional to \\(k_0 |\alpha_m|\\), and the latter -- to \\(k_0^4 |\alpha_m|^2\\), and because \\(\alpha_m \propto V_m\\),
+It is interesting to compare the contribution of absorption and scattering to extinction. Since the former is proportional to \\(k_0 |\alpha_m|\\), and the latter -- to \\(k_0^4 |\alpha_m|^2\\), and because \\(\alpha_m \propto V_m\\),
 
 $$ \tag{21.59}
 	\frac{\varSigma_a}{\varSigma_s}
@@ -8752,13 +8752,50 @@ As the molecules are small compared to the wavelength of light, \\(x \ll 1\\). T
 
 ### Light Scattering by Particles of Arbitrary Size
 
-In this section, we shall develop a theory of electromagnetic scattering by particles of an arbitrary size. We can do this by extending the theory of Rayleigh (dipole) scattering for small particles. This can be accomplished in two different ways. The first way involves performing the full multipole expansion of the electromagnetic potential (using Eqn. 18.11 and 18.13), and treating electromagnetic scattering as a boundary value problem; this leads to the Lorenz-Mie-Debye solution of the *differential* form of the Maxwell equations. The second method is to interpret the scattering object as a collection of dipoles (as per Eqn. 10.14); this leads to the surface (Eqn. 1x.14) and the the volume *integral* equations (Eqn. 11.25.1).
+In this section, we shall develop a theory of electromagnetic scattering by particles of an arbitrary size. We can do this by extending the theory of Rayleigh (dipole) scattering for small particles. This can be accomplished in two different ways. The first way involves performing the full multipole series expansion of the electromagnetic potential (using Eqn. 18.11 and 18.13), and treating electromagnetic scattering as a boundary value problem; this leads to the Lorenz-Mie-Debye solution of the *differential* form of the Maxwell equations. The second method is to interpret the scattering object as a collection of dipoles (as per Eqn. 10.14); this leads to the surface (Eqn. 1x.14) and the the volume *integral* equations (Eqn. 11.25.1).
 
-Unfortunately, evaluation of these integrals poses a challenge: not just because the expressions themselves are complicated, but also because they require the values of the internal field (not known apriori) to be specified either in the interior or on the surface of the scattering object. Formally, this leads to a recursive integral equation (Eqn. 14.22) of the transition operator, and the solution generates a Born series expansion (Eqn. 14.22) of the electric field. In practice, under certain conditions, one can make an educated guess about the approximate form of the internal field, which allows one to bypass the recursive integral equation and jump straight into the volume (or the surface) integral equation. Below, we shall examine these mathematical techniques in more detail.
+Unfortunately, evaluation of these integrals poses a challenge: not just because the expressions themselves are complicated, but also because they require the values of the internal field (not known apriori) to be specified either in the interior or on the surface of the scattering object. Formally, this leads to a recursive integral equation (Eqn. 14.22) of the transition operator, and the solution generates a Born series expansion (Eqn. 14.20) of the electric field. In practice, under certain conditions, one can make an educated guess about the approximate form of the internal field, which allows one to bypass the recursive integral equation and jump straight into the volume (or the surface) integral equation. Below, we shall examine these mathematical techniques in more detail.
 
 #### Rayleigh-Gans-Born Approximation
 
-Imagine a group of particles illuminated by [X-rays](https://en.wikipedia.org/wiki/X-ray). Their frequencies (and their momenta \\(p = \hbar \omega / c\\)) are so high that the particles are unable to stop the photons, acting as if they are practically transparent \[[4](#references) (ch. 7.5)\].
+Imagine a group of particles illuminated by [X-rays](https://en.wikipedia.org/wiki/X-ray). The frequencies (and the momenta \\(p = \hbar \omega / c\\)) of the photons are so high that the particles are unable to stop them, acting as if they are nearly transparent \[[4](#references) (ch. 7.5)\]. Thus, the squared magnitude of the relative wavenumber is very small:
+
+$$ \tag{22.1}
+	\left| m^2 - 1 \right| \ll 1.
+$$
+
+Under these conditions, according to Eqn. 21.17, the field inside tiny particles is practically the same as the incident field:
+
+$$ \tag{22.2}
+	\bm{E}(\bm{r}, \omega) \approx
+	\bm{E_i}(\bm{r}, \omega) =
+	\bm{E_0}(\bm{n_i}, \omega) e^{i k(\omega) (\bm{r} \cdot \bm{n_i})}.
+$$
+
+Eqn. 22.1 is sufficient to apply for the approximation given by Eqn. 22.2 to the Rayleigh scattering. However, for large particles, we must impose another condition:
+
+$$ \tag{22.3}
+	2 \left| m - 1 \right| x \ll 1,
+$$
+
+where, as usual, \\(x = k a\\) is the size parameter, and \\(a\\) is the radius of the bounding sphere of the particle.
+
+Eqn. 22.3 can be interpreted in the following way. Imagine a particle with \\(x \gg 1\\), such that the laws of geometric optics are applicable. We isolate the central ray that passes through the particle along the diameter of the bounding sphere. According to Eqn. 22.1, this ray does not experience a significant amount of reflection either inside or outside the particle. However, inside, the electromagnetic wave experiences a change in phase velocity and, potentially, a degree of absorption. If we model the internal field as a plane wave, then
+
+$$ \tag{22.4}
+\begin{aligned}
+	\bm{E}(\bm{r} + a \bm{n_i}, \omega)
+	&= \bm{E_i}(\bm{r} - a \bm{n_i}, \omega) e^{-2 \mathcal{Im}\lbrace m(\omega) \rbrace x(\omega)} e^{i 2 \mathcal{Re}\lbrace m(\omega) \rbrace x(\omega)}
+	\cr
+	&= \bm{E_i}(\bm{r} + a \bm{n_i}, \omega) e^{-i 2x(\omega)} e^{-2 \mathcal{Im}\lbrace m(\omega) \rbrace x(\omega)} e^{i 2 \mathcal{Re}\lbrace m(\omega) \rbrace x(\omega)}.
+\end{aligned}
+$$
+
+Evidently, the internal field can be approximated by the incident field if Eqn. 22.1 and 22.3 are both satisfied. Also, the relative wavenumber \\(m\\) can be spatially-varying and frequency-dependent if both conditions hold for all \\(\bm{r}\\) and \\(\omega\\).
+
+Formally, the Rayleigh-Gans-Born approximation corresponds to the first term of the Born series (while Rayleigh's approximation is the first term of the multipole series) expansion of the electric field.
+
+[^29]:
 
 ---
 
