@@ -2895,8 +2895,6 @@ $$
 
 Eqn. 1x.14 and 1x.15 are called the *surface integral equations*. They give the expressions of the scattered field in the region outside the scattering object \\((\bm{r} \notin V)\\) in terms of the *tangential surface fields* \\(\bm{n'} \times \bm{E}\\) and \\(\bm{n'} \times \bm{H} = \mu^{-1}(\bm{n'} \times \bm{B})\\). According to Eqn. 1.17, the latter are continuous across the optical interface, provided the conductivity is not enormous \[[17](#references) (ch. 1.13)\]. More generally speaking, the idea that a smooth (but not necessarily physical) surface can be seen as a source of spherical *wavelets* (secondary waves) interfering with each other is known as the [Huygens-Fresnel principle](https://en.wikipedia.org/wiki/Huygens%E2%80%93Fresnel_principle) \[[4](#references) (ch. 3.1), [25](#references) (ch. 2)\].
 
-<!--
-
 ### Dipole Radiation
 
 Typically, it is not possible to evaluate the integrals of Eqn. 11.25 in closed form, since the value of the electric field in the interior of the volume is not known. Thus, we must make certain assumptions and employ various approximations in order to make computations feasible. This leads to a number of special cases.
@@ -3088,13 +3086,27 @@ $$ \tag{13.11}
 	\frac{\bm{R}}{R} \simeq \bm{n}.
 $$
 
----
+Substitution of Eqn. 13.9 and 13.11 into Eqn. 9.45.3 and 9.51.2 results in the following approximate expressions of the far-field Green dyadics:
 
-TODO: explicitly write down the forms of the G_ef, G_mf, and double-check both the SIE and the VIE!
+$$ \tag{13.1x}
+\begin{aligned}
+	\mathcal{G_{ef}}(\bm{R}, k)
+	& \simeq \frac{e^{i k r - i k (\bm{r'} \cdot \bm{n})}}{4 \pi r} \big( \mathcal{I} - \bm{n} \otimes \bm{n} \big),
+	\cr
+	\mathcal{G_{mf}}(\bm{R}, k)
+	& \simeq i k \frac{e^{i k r - i k (\bm{r'} \cdot \bm{n})}}{4 \pi r} \big(\bm{n} \times \mathcal{I} \big),
+\end{aligned}
+$$
 
----
+subject to the conditions \[[8](#references) (ch. 5)\]
 
-Substitution of Eqn. 13.9 and 13.11 into Eqn. 13.6 produces the *far-field approximation* of the volume integral equation:
+$$ \tag{13.13}
+	k r - k a \gg 1, \quad
+	kr \gg ka, \quad
+	\frac{kr}{k a} \gg k a.
+$$
+
+Eqn. 13.1x can be used to define the *far-field approximation* of the volume integral equation (cf. Eqn. 11.25):
 
 $$ \tag{13.12}
 \begin{aligned}
@@ -3111,15 +3123,7 @@ $$ \tag{13.12}
 \end{aligned}
 $$
 
-subject to the conditions \[[8](#references) (ch. 5)\]
-
-$$ \tag{13.13}
-	k r - k a \gg 1, \quad
-	kr \gg ka, \quad
-	\frac{kr}{k a} \gg k a.
-$$
-
-The same analysis is directly applicable to the surface integrals given by Eqn. 1x.14-1x.15:
+The *far-field approximation* of the surface integral equation (cf. Eqn. 1x.14-1x.15) can be obtained the same way:
 
 $$ \tag{13.1y}
 \begin{aligned}
@@ -3129,21 +3133,21 @@ $$ \tag{13.1y}
 	\oint_{\partial V} e^{-i k(\omega) (\bm{r'} \cdot \bm{n})}
 	\big( \bm{n'} \times \bm{B}(\bm{r'}, \omega) \big) dA'
 	\cr
-	&+ i \omega \frac{e^{i k(\omega) r}}{4 \pi r}
+	&- \omega k \frac{e^{i k(\omega) r}}{4 \pi r}
 	\big(\bm{n} \times \mathcal{I} \big) \cdot
 	\oint_{\partial V} e^{-i k(\omega) (\bm{r'} \cdot \bm{n})}
 	\big( \bm{n'} \times \bm{E}(\bm{r'}, \omega) \big) dA',
 	\cr
 	\bm{B_s}(\bm{r}, \omega)
-	&\simeq i \omega \frac{e^{i k(\omega) r}}{4 \pi r}
-	\big(\bm{n} \times \mathcal{I} \big) \cdot
-	\oint_{\partial V} e^{-i k(\omega) (\bm{r'} \cdot \bm{n})}
-	\big( \bm{n'} \times \bm{B}(\bm{r'}, \omega) \big) dA'
-	\cr
-	&+ \frac{k^2}{i \omega} \frac{e^{i k(\omega) r}}{4 \pi r}
+	&\simeq \frac{k^2}{i \omega} \frac{e^{i k(\omega) r}}{4 \pi r}
 	\big( \mathcal{I} - \bm{n} \otimes \bm{n} \big) \cdot
 	\oint_{\partial V} e^{-i k(\omega) (\bm{r'} \cdot \bm{n})}
-	\big( \bm{n'} \times \bm{E}(\bm{r'}, \omega) \big) dA',
+	\big( \bm{n'} \times \bm{E}(\bm{r'}, \omega) \big) dA'
+	\cr
+	& -\omega k \frac{e^{i k(\omega) r}}{4 \pi r}
+	\big(\bm{n} \times \mathcal{I} \big) \cdot
+	\oint_{\partial V} e^{-i k(\omega) (\bm{r'} \cdot \bm{n})}
+	\big( \bm{n'} \times \bm{B}(\bm{r'}, \omega) \big) dA',
 \end{aligned}
 $$
 
@@ -3508,8 +3512,6 @@ $$ \tag{14.25}
 	+ \lim_{\delta \to 0} \int\_{V - V_{\delta}} \mathcal{G} (\bm{r}, \bm{r''}, k) \cdot \mathcal{T} (\bm{r''}, \bm{r'}, k) dV'' \bigg).
 \end{aligned}
 $$
-
--->
 
 ### Scattering Matrix
 
