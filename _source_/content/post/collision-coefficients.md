@@ -3617,6 +3617,8 @@ $$ \tag{15.8}
 	\bm{e_x} = \bm{e_y} \times \bm{e_z}.
 $$
 
+If \\(\bm{n_i}\\) and \\(\bm{n_s}\\) are collinear, a supporting vector must take the role of \\(\bm{n_s}\\) in order to fix the orientation of the coordinate frame.
+
 Imagine that the *scattering coordinate system* \\(xyz\\) is initially aligned with the *laboratory reference frame* \\(XYZ\\), such that
 
 $$ \tag{15.9}
@@ -3625,7 +3627,7 @@ $$ \tag{15.9}
 	\bm{e_X} = \bm{n_p},
 $$
 
-where \\(\bm{n_p}\\) is the principal axis of the particle.
+where \\(\bm{n_p}\\) is the principal axis of the particle (specifically chosen not to be collinear with \\(\bm{n_i}\\)).
 
 The latter could, for instance, represent the coordinate frame of the scatterer. We can now rotate \\(xyz\\) and define its orientation relative to \\(XYZ\\) in terms of the [Euler angles](https://en.wikipedia.org/wiki/Euler_angles). We are particularly interested in rotating the plane of observation about the \\(Z\\)-axis, as that allows the set of possible direction of observation to cover the entire the unit sphere. If the azimuthal (plane rotation) angle is \\(\phi\\) and the polar angle is \\(\theta\\), the spherical coordinates of \\(\bm{n_s}\\) with respect to the \\(XYZ\\) frame are
 
@@ -3642,7 +3644,8 @@ $$ \tag{15.10}
 \begin{bmatrix}
 	\mathrm{atan2}(\bm{n_s} \cdot \bm{n_p}, \bm{n_s} \cdot \bm{n_i}) \cr
 	\mathrm{atan2}(\bm{n_s} \cdot (\bm{n_i} \times \bm{n_p}), \bm{n_s} \cdot \bm{n_p}) \cr
-\end{bmatrix}. $$
+\end{bmatrix}.
+$$
 
 Note that we must use the [atan2](https://en.wikipedia.org/wiki/Atan2) function in order to realize the full range of values of \\(\theta\\) and \\(\phi\\).
 
@@ -8200,7 +8203,7 @@ For a spherical particle,
 
 $$ \tag{21.2x}
 	\mathcal{\Alpha_m} = \alpha_m
-	= V_m \frac{m^2 - 1}{m^2 + 2}
+	= 3 V_m \frac{m^2 - 1}{m^2 + 2}
 	= 4 \pi a^3 \frac{m^2 - 1}{m^2 + 2}.
 $$
 
