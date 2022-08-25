@@ -4749,8 +4749,6 @@ $$ \tag{17.31}
 	= \frac{4 \pi \sum_{j=1}^{N}  \thinspace \mathcal{Im} \big\lbrace \bm{E_0^{\*}} \cdot \mathcal{S_j}(\bm{n_i}, \psi) \cdot \bm{E_0} \big\rbrace}{(k L)^2 |\bm{E_0}|^2} \ll 1.
 $$
 
----
-
 Let us now consider the final term of Eqn. 17.8 that accounts for interference of the scattered fields of two particles. Since the observation point \\(\bm{r}\\) is located in the radiation zone of each particle, we can obtain the formula of \\(\braket{\bm{S_{jk}}}\\) by substituting Eqn. 17.6 twice into 17.9.
 
 The resulting expression is highly symmetrical. It can be readily simplified by taking advantage of the identities given by Eqn. 16.11 and 16.25, according to which,
@@ -4789,8 +4787,6 @@ $$ \tag{17.41}
 $$
 
 Unlike Eqn. 17.26, Eqn. 17.41 corresponds to (double) the intensity of light scattered by the average particle (cf. Eqn. 16.15).
-
----
 
 Let us expand this expression by explicitly performing ensemble averaging. Suppose that every position is equally likely, with the corresponding probability density \\(p(\bm{r_j}) = 1/V\\). Then we can account for random motion of particles by evaluating the integral
 
@@ -4885,10 +4881,13 @@ $$ \tag{17.44}
 	\right) dV_j.
 $$
 
-For a suitably symmetric region \\(V\\), Eqn. 17.44 can be reparametrized in terms of the real number
+For a suitably symmetric region \\(V\\), Eqn. 17.44 can be [reparametrized](https://en.wikipedia.org/wiki/List_of_trigonometric_identities#Half-angle_formulae) in terms of the real number
 
 $$ \tag{17.43}
-	g = k L |\bm{n_i} - \bm{n_s}| = \sqrt{2} k L \sqrt{1 - (\bm{n_i} \cdot \bm{n_s})}
+	g
+	= k L |\bm{n_i} - \bm{n_s}|
+	= 2 k L \sqrt{\frac{1 - \bm{n_i} \cdot \bm{n_s}}{2}}
+	= 2 k L \sin(\theta/2)
 $$
 
 that depends on both the dimensions of the particle group and the degree of alignment of the wave vectors.
@@ -4942,7 +4941,7 @@ Figure N demonstrates that the scattered waves always interfere in the direction
 In general, the strength of the interference effect wanes as the the scattering angle \\(\theta = \arccos(\bm{n_i} \cdot \bm{n_s})\\) or the linear dimension \\(kL\\) increase. As \\(kL \to \infin\\), the graph of Figure N (parameterized by \\(\theta\\) in this case) is horizontally compressed while maintaining the peak value of \\(1\\). As a result, its area decreases, and the limit of the integral taken over all scattering directions is
 
 $$ \tag{17.48}
-	\lim_{kL \to \infin} \int_{-\pi}^{\pi} \int_{0}^{\pi} \left| v \left(0, \sqrt{2} k L \sqrt{1 - \cos{\theta}} \right) \right|^2 \sin{\theta} d\theta d\phi = 0.
+	\lim_{kL \to \infin} \int_{-\pi}^{\pi} \int_{0}^{\pi} \big| v \big(0, 2 k L \sin(\theta/2) \big) \big|^2 \sin{\theta} d\theta d\phi = 0.
 $$
 
 Therefore, if the observer is located in the the radiation zone of an extensive particle group, the scattered fields of two particles do not cause significant interference:
@@ -4999,7 +4998,7 @@ Elimination of the last term of Eqn. 17.51 allows the *light intensities of the 
 
 $$ \tag{17.56}
 \begin{aligned}
-	\braket{\Iota_s^{tot}} \negmedspace (\bm{n_s})
+	\braket{\Iota_s^{tot}}
 	&= \sum_j r^2 \braket{\braket{\bm{S_j}}} \cdot \bm{n_s}
 	= N \frac{\mu\_0^{-1}}{2} \frac{\eta}{c} \frac{1}{k^2}
 	\int_{\Psi} p(\psi)
