@@ -3133,18 +3133,18 @@ $$ \tag{13.1y}
 	\oint_{\partial V} e^{-i k(\omega) (\bm{r'} \cdot \bm{n})}
 	\big( \bm{n'} \times \bm{B}(\bm{r'}, \omega) \big) dA'
 	\cr
-	&- \omega k \frac{e^{i k(\omega) r}}{4 \pi r}
+	&- \omega k(\omega) \frac{e^{i k(\omega) r}}{4 \pi r}
 	\big(\bm{n} \times \mathcal{I} \big) \cdot
 	\oint_{\partial V} e^{-i k(\omega) (\bm{r'} \cdot \bm{n})}
 	\big( \bm{n'} \times \bm{E}(\bm{r'}, \omega) \big) dA',
 	\cr
 	\bm{B_s}(\bm{r}, \omega)
-	&\simeq \frac{k^2}{i \omega} \frac{e^{i k(\omega) r}}{4 \pi r}
+	&\simeq \frac{k^2(\omega)}{i \omega} \frac{e^{i k(\omega) r}}{4 \pi r}
 	\big( \mathcal{I} - \bm{n} \otimes \bm{n} \big) \cdot
 	\oint_{\partial V} e^{-i k(\omega) (\bm{r'} \cdot \bm{n})}
 	\big( \bm{n'} \times \bm{E}(\bm{r'}, \omega) \big) dA'
 	\cr
-	& -\omega k \frac{e^{i k(\omega) r}}{4 \pi r}
+	& -\omega k(\omega) \frac{e^{i k(\omega) r}}{4 \pi r}
 	\big(\bm{n} \times \mathcal{I} \big) \cdot
 	\oint_{\partial V} e^{-i k(\omega) (\bm{r'} \cdot \bm{n})}
 	\big( \bm{n'} \times \bm{B}(\bm{r'}, \omega) \big) dA',
@@ -8807,22 +8807,29 @@ $$ \tag{22.5}
 	k^2 \big( m^2(\bm{r'}, \omega) - 1 \big) \delta(\bm{r'} - \bm{r''}).
 $$
 
-After making the substitutions (cf. Eqn. 7.22)
+After making the substitutions
 
 $$ \tag{22.6}
-	\bm{E}(\bm{r}, \omega) \to \bm{E_i}(\bm{r}, \omega),
-	\quad
-	\bm{B}(\bm{r}, \omega) \to \frac{k(\omega)}{\omega} \bm{n_i} \times \bm{E_i}(\bm{r}, \omega),
+\begin{aligned}
+	\bm{E}(\bm{r'}, \omega)
+	& \to \bm{E_i}(\bm{r'}, \omega)
+	= \bm{E_0}(\bm{n_i}, \omega) e^{i k(\omega) (\bm{r'} \cdot \bm{n_i})},
+	\cr
+	\bm{n'} \times \bm{B}(\bm{r'}, \omega)
+	& \to \frac{k(\omega)}{\omega} \bm{n'} \times \big( \bm{n_i} \times \bm{E_i}(\bm{r'}, \omega) \big)
+	= \frac{k(\omega)}{\omega} \big( (\bm{E_i} \cdot \bm{n'}) \bm{n_i}
+	- (\bm{n_i} \cdot \bm{n'}) \bm{E_i} \big)
+\end{aligned}
 $$
 
-the far-field expressions of both the volume integral equation (cf. Eqn. 13.12)
+that utilize the transverse nature of plane waves (cf. Eqn. 7.22) and the vector triple product identity (cf. Eqn. 7.37), the far-field expressions of both the volume integral equation (cf. Eqn. 13.12)
 
 $$ \tag{22.7}
 	\bm{E_s}(\bm{r}, \omega) \simeq k^2(\omega)
 	\frac{e^{i k(\omega) r}}{4 \pi r}
-	\big( \mathcal{I} - \bm{n} \otimes \bm{n} \big) \cdot
-	\int\_{V} e^{-i k(\omega) (\bm{r'} \cdot \bm{n})} \big( m^2(\bm{r'}, \omega) - 1 \big)
-	\bm{E_i}(\bm{r'}, \omega) dV'
+	\big( \mathcal{I} - \bm{n_s} \otimes \bm{n_s} \big) \cdot
+	\int\_{V} e^{i k(\omega) \bm{r'} \cdot (\bm{n_i} - \bm{n_s})} \big( m^2(\bm{r'}, \omega) - 1 \big)
+	\bm{E_0}(\bm{n_i}, \omega) dV'
 $$
 
 and the surface integral equation (cf. Eqn. 13.1y)
@@ -8830,19 +8837,26 @@ and the surface integral equation (cf. Eqn. 13.1y)
 $$ \tag{22.8}
 \begin{aligned}
 	\bm{E_s}(\bm{r}, \omega)
-	&\simeq i \omega \frac{e^{i k(\omega) r}}{4 \pi r}
-	\big( \mathcal{I} - \bm{n} \otimes \bm{n} \big) \cdot
-	\oint_{\partial V} e^{-i k(\omega) (\bm{r'} \cdot \bm{n})}
-	\big( \bm{n'} \times \bm{B_i}(\bm{r'}, \omega) \big) dA'
+	&\simeq i k(\omega) \frac{e^{i k(\omega) r}}{4 \pi r}
+	\big( \mathcal{I} - \bm{n_s} \otimes \bm{n_s} \big) \cdot
+	\oint_{\partial V} e^{i k(\omega) \bm{r'} \cdot (\bm{n_i} - \bm{n_s})}
+	\big( \bm{E_0}(\bm{n_i}, \omega) \cdot \bm{n'} \big) \bm{n_i} dA'
 	\cr
-	&+ i \omega \frac{e^{i k(\omega) r}}{4 \pi r}
-	\big(\bm{n} \times \mathcal{I} \big) \cdot
-	\oint_{\partial V} e^{-i k(\omega) (\bm{r'} \cdot \bm{n})}
-	\big( \bm{n'} \times \bm{E_i}(\bm{r'}, \omega) \big) dA'
+	&- i k(\omega) \frac{e^{i k(\omega) r}}{4 \pi r}
+	\big( \mathcal{I} - \bm{n_s} \otimes \bm{n_s} \big) \cdot
+	\oint_{\partial V} e^{i k(\omega) \bm{r'} \cdot (\bm{n_i} - \bm{n_s})}
+	\big( \bm{n_i} \cdot \bm{n'} \big) \bm{E_0}(\bm{n_i}, \omega) dA'
+	\cr
+	&- \omega k(\omega) \frac{e^{i k(\omega) r}}{4 \pi r}
+	\big(\bm{n_s} \times \mathcal{I} \big) \cdot
+	\oint_{\partial V} e^{i k(\omega) \bm{r'} \cdot (\bm{n_i} - \bm{n_s})}
+	\big( \bm{n'} \times \bm{E_0}(\bm{n_i}, \omega) \big) dA'
 \end{aligned}
 $$
 
 are significantly simplified.
+
+[Q: skip SRE? At least for now...]
 
 ---
 
