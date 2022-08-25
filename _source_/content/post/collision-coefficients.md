@@ -8800,7 +8800,7 @@ $$ \tag{22.4}
 \end{aligned}
 $$
 
-Evidently, the internal field can be approximated by the incident field if Eqn. 22.1 and 22.3 are both satisfied. Also, the relative wavenumber \\(m\\) can be spatially-varying and frequency-dependent if both conditions hold for all \\(\bm{r}\\) and \\(\omega\\).
+Evidently, the internal field can be approximated by the incident field if both Eqn. 22.1 and 22.3 are satisfied. Also, the relative wavenumber \\(m\\) can be spatially-varying and frequency-dependent if both conditions hold for all \\(\bm{r}\\) and \\(\omega\\).
 
 Formally, the Rayleigh-Gans-Born approximation corresponds to the first term of the Born series (while Rayleigh's approximation is the first term of the multipole series) expansion of the electric field. According to Eqn. 14.3 and 14.5, the expression of the transition dyadic \\(\mathcal{T}\\) is
 
@@ -8809,56 +8809,103 @@ $$ \tag{22.5}
 	k^2 \big( m^2(\bm{r'}, \omega) - 1 \big) \delta(\bm{r'} - \bm{r''}).
 $$
 
-After making the substitutions
+After making the substitution
 
 $$ \tag{22.6}
-\begin{aligned}
 	\bm{E}(\bm{r'}, \omega)
-	& \to \bm{E_i}(\bm{r'}, \omega)
+	\approx \bm{E_i}(\bm{r'}, \omega)
 	= \bm{E_0}(\bm{n_i}, \omega) e^{i k(\omega) (\bm{r'} \cdot \bm{n_i})},
-	\cr
-	\bm{n'} \times \bm{B}(\bm{r'}, \omega)
-	& \to \frac{k(\omega)}{\omega} \bm{n'} \times \big( \bm{n_i} \times \bm{E_i}(\bm{r'}, \omega) \big)
-	= \frac{k(\omega)}{\omega} \big( (\bm{E_i} \cdot \bm{n'}) \bm{n_i}
-	- (\bm{n_i} \cdot \bm{n'}) \bm{E_i} \big)
-\end{aligned}
 $$
 
-that utilize the transverse nature of plane waves (cf. Eqn. 7.22) and the vector triple product identity (cf. Eqn. 7.37), the far-field expressions of both the volume integral equation (cf. Eqn. 13.12)
+the far-field expression of the volume integral equation (cf. Eqn. 13.12)
 
 $$ \tag{22.7}
-	\bm{E_s}(\bm{r}, \omega) \simeq k^2(\omega)
-	\frac{e^{i k(\omega) r}}{4 \pi r}
+	\bm{E_s}(\bm{r}, \omega)
+	\approx k^2(\omega) \frac{e^{i k(\omega) r}}{4 \pi r}
 	\big( \mathcal{I} - \bm{n_s} \otimes \bm{n_s} \big) \cdot
 	\int\_{V} e^{i k(\omega) \bm{r'} \cdot (\bm{n_i} - \bm{n_s})} \big( m^2(\bm{r'}, \omega) - 1 \big)
 	\bm{E_0}(\bm{n_i}, \omega) dV'
 $$
 
-and the surface integral equation (cf. Eqn. 13.1y)
+is significantly simplified. We shall further assume that the particle is homogeneous, so that \\(m\\) is independent of \\(\bm{r'}\\).
+
+The connection to the scattering angle \\(\theta = \arccos(\bm{n_i} \cdot \bm{n_s})\\) is revealed by transforming
 
 $$ \tag{22.8}
+	\frac{|\bm{n_i} - \bm{n_s}|}{2}
+	= \sqrt{\frac{1 - \bm{n_i} \cdot \bm{n_s}}{2}}
+	= \sin(\theta/2).
+$$
+
+It suggests that evaluation of the integral
+
+$$ \tag{22.9}
+	I_{RGB}(\theta, \phi)
+	= \frac{1}{V} \int\_{V} e^{i k \bm{r'} \cdot (\bm{n_i} - \bm{n_s})} dV'
+$$
+
+found in Eqn. 22.7 can be performed most efficiently using an aligned Cartesian frame. Let us define
+
+$$ \tag{22.10}
+	\bm{w} = \frac{\bm{n_i} - \bm{n_s}}{|\bm{n_i} - \bm{n_s}|},
+	\quad
+	\bm{v} = \frac{\bm{n_i} \times \bm{n_s}}{| \bm{n_i} \times \bm{n_s} |},
+	\quad
+	\bm{u} = \bm{v} \times \bm{w},
+$$
+
+If \\(\bm{n_i}\\) and \\(\bm{n_s}\\) are collinear, a supporting vector must take the role of \\(\bm{n_s}\\) in order to fix the orientation of the coordinate frame.
+
+Using this convention, the \\(\bm{r'}\\) in the interior of the particle has the following set of coordinates:
+
+$$ \tag{22.11}
+\bm{r'} =
+\begin{bmatrix}
+	r\_{u}' \cr
+	r\_{v}' \cr
+	r\_{w}' \cr
+\end{bmatrix},
+\quad
+	|\bm{r'}| = \sqrt{(r\_{u}')^2 + (r\_{v}')^2 + (r\_{w}')^2}.
+$$
+
+For spherical or ellipsoidal particles, it is highly convenient to parametrize the \\(uv\\) plane (or *slice*) using the [polar coordinates](https://en.wikipedia.org/wiki/Polar_coordinate_system#Converting_between_polar_and_Cartesian_coordinates) \[[4](#references) (ch. 7.11)\]:
+
+$$ \tag{22.12}
+\bm{r'} =
+\begin{bmatrix}
+	\sqrt{(r\_{u}')^2 + (r\_{v}')^2} \cos{\chi} \cr
+	\sqrt{(r\_{u}')^2 + (r\_{v}')^2} \sin{\chi} \cr
+	r\_{w}' \cr
+\end{bmatrix} =
+\begin{bmatrix}
+	c \cos{\chi} \cr
+	c \sin{\chi} \cr
+	b \cr
+\end{bmatrix}.
+$$
+
+\[Add an illustration here\]
+
+In particular, for a spherical particle of radius \\(a\\) (which is symmetric with respect to the azimuthal angle \\(\phi\\)),
+
+$$ \tag{22.13}
 \begin{aligned}
-	\bm{E_s}(\bm{r}, \omega)
-	&\simeq i k(\omega) \frac{e^{i k(\omega) r}}{4 \pi r}
-	\big( \mathcal{I} - \bm{n_s} \otimes \bm{n_s} \big) \cdot
-	\oint_{\partial V} e^{i k(\omega) \bm{r'} \cdot (\bm{n_i} - \bm{n_s})}
-	\big( \bm{E_0}(\bm{n_i}, \omega) \cdot \bm{n'} \big) \bm{n_i} dA'
+	I_{RGB}(\theta)
+	&= \frac{3}{4 \pi a^3} \int_{-a}^{a}
+	\int_{-\pi}^{\pi} \int_{0}^{\sqrt{a^2 - b^2}}
+	c \thinspace dc \thinspace d\chi \thinspace
+	e^{2 i k b \sin(\theta/2)} db
 	\cr
-	&- i k(\omega) \frac{e^{i k(\omega) r}}{4 \pi r}
-	\big( \mathcal{I} - \bm{n_s} \otimes \bm{n_s} \big) \cdot
-	\oint_{\partial V} e^{i k(\omega) \bm{r'} \cdot (\bm{n_i} - \bm{n_s})}
-	\big( \bm{n_i} \cdot \bm{n'} \big) \bm{E_0}(\bm{n_i}, \omega) dA'
+	&= \frac{3}{4 a^3} \int_{-a}^{a}
+	\left( a^2 - b^2 \right)
+	e^{2 i k b \sin(\theta/2)} db
 	\cr
-	&- \omega k(\omega) \frac{e^{i k(\omega) r}}{4 \pi r}
-	\big(\bm{n_s} \times \mathcal{I} \big) \cdot
-	\oint_{\partial V} e^{i k(\omega) \bm{r'} \cdot (\bm{n_i} - \bm{n_s})}
-	\big( \bm{n'} \times \bm{E_0}(\bm{n_i}, \omega) \big) dA'
 \end{aligned}
 $$
 
-are significantly simplified.
+What the fuck... See VDH 7.2...
 
-[Q: skip SRE? At least for now...]
 
 ---
 
