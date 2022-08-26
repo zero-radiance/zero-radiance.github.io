@@ -4303,7 +4303,7 @@ $$ \tag{16.3z}
 	\mathcal{Im} \left\lbrace \frac{m^2(\bm{r'})}{\mu\_r(\bm{r'})} \right\rbrace \big| \bm{E}(\bm{r'}) \big|^2 dV',
 $$
 
-with the the integral taken over the interior of the particle \[[25](#references) (ch. 1.1)\]. As before, \\(\varepsilon_2\\) is the complex permittivity of the particle, \\(\mu\_r\\) is its relative permeability, and \\(m\\) is the relative wavenumber given by Eqn. 11.8.
+with the integral taken over the interior of the particle \[[25](#references) (ch. 1.1)\]. As before, \\(\varepsilon_2\\) is the complex permittivity of the particle, \\(\mu\_r\\) is its relative permeability, and \\(m\\) is the relative wavenumber given by Eqn. 11.8.
 
 It is convenient to be able to relate the amount of power absorbed by the particle to the amount of incident power the particle *geometrically* intercepts. The latter can be characterized with the help of the projected area of the particle - its *geometric cross-section* \\(C_g\\). For a convex particle, it is given by the integral
 
@@ -4417,7 +4417,7 @@ Consider a group of \\(N\\) arbitrary particles of embedded in a source-free reg
 
 The field acting on each particle is the sum of the incident field and the scattered fields produced by its neighbors \[[8](#references) (ch. 6.1)\]. The strength of this field depends on the number of particles, the distances between them, as well as the orientation, shape, size, and composition of each particle. In most cases, estimation of the scattered field in the region containing the particles is a challenging task more suited for a numerical computation. However, it is possible to make the problem amenable to an analytical treatment at the cost of generality, by considering a group composed of a small number of weakly absorbing and weakly scattering, widely spaced particles. These properties make the *single-scattering approximation* applicable, which allows us to neglect the influence of the scattered field on the particles in the group \[[8](#references) (ch. 14.1)\].
 
-The quantitative criteria for applicability of the single-scattering approximation are not well-established. Intuitively, the approximation fails when the electromagnetic field acting on the the particles is significantly different from the incident field. Since this is caused by other particles scattering or absorbing incident photons, this extinction process is directly linked to the extinction cross-section of a single particle. The latter is typically on the order of the geometrical cross-section of a single particle (or, for the tiniest of particles, significantly smaller). As we shall see, the total extinction cross-section of a particle group is (under certain conditions) proportional to the sum of the extinction cross-sections \\(C_{e}\\) of individual particles. For large particles, the laws of geometrical optics are applicable; thus, if we separate the incident illumination into parallel rays of light, then single scattering simply means that every ray intercepts a single particle (with each particle assumed to be weakly absorbing and weakly scattering). Obviously, that can only be the case if the total number of particles \\(N\\) is not too great, regardless of their density.
+The quantitative criteria for applicability of the single-scattering approximation are not well-established. Intuitively, the approximation fails when the electromagnetic field acting on the particles is significantly different from the incident field. Since this is caused by other particles scattering or absorbing incident photons, this extinction process is directly linked to the extinction cross-section of a single particle. The latter is typically on the order of the geometrical cross-section of a single particle (or, for the tiniest of particles, significantly smaller). As we shall see, the total extinction cross-section of a particle group is (under certain conditions) proportional to the sum of the extinction cross-sections \\(C_{e}\\) of individual particles. For large particles, the laws of geometrical optics are applicable; thus, if we separate the incident illumination into parallel rays of light, then single scattering simply means that every ray intercepts a single particle (with each particle assumed to be weakly absorbing and weakly scattering). Obviously, that can only be the case if the total number of particles \\(N\\) is not too great, regardless of their density.
 
 Alternatively, we may project the particles onto a plane facing the light source, and check for overlaps. We can also approximately account for the absorption and scattering characteristics of the particles by replacing their geometric cross-sections with the extinction cross-sections. If the extinction density per unit area is sufficiently low,
 
@@ -4938,13 +4938,13 @@ Figure N demonstrates that the scattered waves always interfere in the direction
 
 {{< figure src="/img/vol_int_4.svg" caption="*Figure N: Plot of \\(g^4 |v(0, g)|^2\\) defined by Eqn. 17.47. We can observe that the moving average of \\(|v(0, g)|^2\\) is inversely proportional to \\(g^4\\), and thus, \\((k L)^4\\).*" >}}
 
-In general, the strength of the interference effect wanes as the the scattering angle \\(\theta = \arccos(\bm{n_i} \cdot \bm{n_s})\\) or the linear dimension \\(kL\\) increase. As \\(kL \to \infin\\), the graph of Figure N (parameterized by \\(\theta\\) in this case) is horizontally compressed while maintaining the peak value of \\(1\\). As a result, its area decreases, and the limit of the integral taken over all scattering directions is
+In general, the strength of the interference effect wanes as the scattering angle \\(\theta = \arccos(\bm{n_i} \cdot \bm{n_s})\\) or the linear dimension \\(kL\\) increase. As \\(kL \to \infin\\), the graph of Figure N (parameterized by \\(\theta\\) in this case) is horizontally compressed while maintaining the peak value of \\(1\\). As a result, its area decreases, and the limit of the integral taken over all scattering directions is
 
 $$ \tag{17.48}
 	\lim_{kL \to \infin} \int_{-\pi}^{\pi} \int_{0}^{\pi} \big| v \big(0, 2 k L \sin(\theta/2) \big) \big|^2 \sin{\theta} d\theta d\phi = 0.
 $$
 
-Therefore, if the observer is located in the the radiation zone of an extensive particle group, the scattered fields of two particles do not cause significant interference:
+Therefore, if the observer is located in the radiation zone of an extensive particle group, the scattered fields of two particles do not cause significant interference:
 
 $$ \tag{17.49}
 	\braket{\Phi_{jk}}
@@ -8761,13 +8761,13 @@ As the molecules are small compared to the wavelength of light, \\(x \ll 1\\). T
 
 ### Light Scattering by Particles of Arbitrary Size
 
-In this section, we shall develop a theory of electromagnetic scattering by particles of an arbitrary size. We can do this by extending the theory of Rayleigh (dipole) scattering for small particles. This can be accomplished in two different ways. The first way involves performing the full multipole series expansion of the electromagnetic potential (using Eqn. 18.11 and 18.13), and treating electromagnetic scattering as a boundary value problem; this leads to the Lorenz-Mie-Debye solution of the *differential* form of the Maxwell equations. The second method is to interpret the scattering object as a collection of dipoles (as per Eqn. 10.14); this leads to the surface (Eqn. 1x.14) and the the volume *integral* equations (Eqn. 11.25.1).
+In this section, we shall develop a theory of electromagnetic scattering by particles of an arbitrary size. We can do this by extending the theory of Rayleigh (dipole) scattering for small particles. This can be accomplished in two different ways. The first way involves performing the full multipole series expansion of the electromagnetic potential (using Eqn. 18.11 and 18.13), and treating electromagnetic scattering as a boundary value problem; this leads to the Lorenz-Mie-Debye solution of the *differential* form of the Maxwell equations. The second method is to interpret the scattering object as a collection of dipoles (as per Eqn. 10.14); this leads to the surface (Eqn. 1x.14) and the volume *integral* equations (Eqn. 11.25.1).
 
 Unfortunately, evaluation of these integrals poses a challenge: not just because the expressions themselves are complicated, but also because they require the values of the internal field (not known apriori) to be specified either in the interior or on the surface of the scattering object. Formally, this leads to a recursive integral equation (Eqn. 14.22) of the transition operator, and the solution generates a Born series expansion (Eqn. 14.20) of the electric field. In practice, under certain conditions, one can make an educated guess about the approximate form of the internal field, which allows one to bypass the recursive integral equation and jump straight into the volume (or the surface) integral equation. Below, we shall examine these mathematical techniques in more detail.
 
 #### Rayleigh-Gans-Born Approximation
 
-Imagine a group of particles illuminated by [X-rays](https://en.wikipedia.org/wiki/X-ray). The frequencies (and the momenta \\(p = \hbar \omega / c\\)) of the photons are so high that the particles are unable to stop them, acting as if they are nearly transparent \[[4](#references) (ch. 7.5)\]. Thus, the squared magnitude of the relative wavenumber is very small:
+Imagine a group of particles illuminated by [X-rays](https://en.wikipedia.org/wiki/X-ray). The frequencies (and the momenta \\(p = \hbar \omega / c\\)) of the photons are so high that the particles are unable to impede their path, acting as if they are nearly transparent \[[4](#references) (ch. 7.5)\]. Thus, the squared magnitude of the relative wavenumber is very small:
 
 $$ \tag{22.1}
 	\left| m^2 - 1 \right| \ll 1.
@@ -8781,7 +8781,7 @@ $$ \tag{22.2}
 	\bm{E_0}(\bm{n_i}, \omega) e^{i k(\omega) (\bm{r} \cdot \bm{n_i})}.
 $$
 
-Eqn. 22.1 is sufficient to apply for the approximation given by Eqn. 22.2 to the Rayleigh scattering. However, for large particles, we must impose another condition:
+Eqn. 22.1 is a sufficient and necessary condition to apply the approximation given by Eqn. 22.2 to the Rayleigh scattering by small particles. However, for large particles, we must impose another requirement:
 
 $$ \tag{22.3}
 	2 \left| m - 1 \right| x \ll 1,
@@ -8789,37 +8789,29 @@ $$
 
 where, as usual, \\(x = k a\\) is the size parameter, and \\(a\\) is the radius of the bounding sphere of the particle.
 
-Eqn. 22.3 can be interpreted in the following way. Imagine a particle with \\(x \gg 1\\), such that the laws of geometric optics are applicable. We isolate the central ray that passes through the particle along the diameter of the bounding sphere. According to Eqn. 22.1, this ray does not experience a significant amount of reflection either inside or outside the particle. However, inside, the electromagnetic wave experiences a change in phase velocity and, potentially, a degree of absorption. If we model the internal field as a plane wave, then the expression of the electric field at the back of the particle is
+Eqn. 22.3 can be interpreted in the following way. Imagine a particle with \\(x \gg 1\\), such that the laws of geometric optics are applicable. We isolate a central ray that passes through the particle along the diameter of the bounding sphere. According to Eqn. 22.1, this ray does not experience a significant amount of reflection or refraction either inside or outside the particle. On the other hand, inside, the associated electromagnetic wave experiences a change of phase velocity and, potentially, a degree of absorption. If we model the internal field in the vicinity of the ray as a plane wave, then the expression of the electric field at the back of the particle is
 
 $$ \tag{22.4}
 \begin{aligned}
 	\bm{E}(\bm{r} + a \bm{n_i}, \omega)
 	&= \bm{E_i}(\bm{r} - a \bm{n_i}, \omega) e^{-2 \mathcal{Im}\lbrace m(\omega) \rbrace x(\omega)} e^{i 2 \mathcal{Re}\lbrace m(\omega) \rbrace x(\omega)}
 	\cr
-	&= \bm{E_i}(\bm{r} + a \bm{n_i}, \omega) e^{-i 2x(\omega)} e^{-2 \mathcal{Im}\lbrace m(\omega) \rbrace x(\omega)} e^{i 2 \mathcal{Re}\lbrace m(\omega) \rbrace x(\omega)}.
+	&= \bm{E_i}(\bm{r} + a \bm{n_i}, \omega) e^{-2 \mathcal{Im}\lbrace m(\omega) \rbrace x(\omega)} e^{i 2 \mathcal{Re}\lbrace m(\omega) \rbrace x(\omega)} e^{-i 2x(\omega)}.
 \end{aligned}
 $$
 
-Evidently, the internal field can be approximated by the incident field if both Eqn. 22.1 and 22.3 are satisfied. Also, the relative wavenumber \\(m\\) can be spatially-varying and frequency-dependent if both conditions hold for all \\(\bm{r}\\) and \\(\omega\\).
+Evidently, the value of the internal field is approximately equal to that of the incident field if both Eqn. 22.1 and 22.3 are satisfied. Note that the relative wavenumber \\(m\\) can be spatially-varying and frequency-dependent if both conditions hold for all \\(\bm{r}\\) and \\(\omega\\).
 
-Formally, the Rayleigh-Gans-Born approximation corresponds to the first term of the Born series (while Rayleigh's approximation is the first term of the multipole series) expansion of the electric field. According to Eqn. 14.3 and 14.5, the expression of the transition dyadic \\(\mathcal{T}\\) is
+Formally, the Rayleigh-Gans-Born approximation corresponds to the first term of the Born series \[while Rayleigh's approximation is the first term of the multipole series\] expansion of the electric field. According to Eqn. 14.3 and 14.5, the expression of the transition dyadic \\(\mathcal{T}\\) is
 
 $$ \tag{22.5}
 	\mathcal{T} \big( \bm{r'}, \bm{r''}, k(\omega), \omega \big) =
 	k^2 \big( m^2(\bm{r'}, \omega) - 1 \big) \delta(\bm{r'} - \bm{r''}).
 $$
 
-After making the substitution
+After substituting Eqn. 22.2 into 13.12, the far-field expression of the volume integral equation
 
 $$ \tag{22.6}
-	\bm{E}(\bm{r'}, \omega)
-	\approx \bm{E_i}(\bm{r'}, \omega)
-	= \bm{E_0}(\bm{n_i}, \omega) e^{i k(\omega) (\bm{r'} \cdot \bm{n_i})},
-$$
-
-the far-field expression of the volume integral equation (cf. Eqn. 13.12)
-
-$$ \tag{22.7}
 	\bm{E_s}(\bm{r}, \omega)
 	\approx k^2(\omega) \frac{e^{i k(\omega) r}}{4 \pi r}
 	\big( \mathcal{I} - \bm{n_s} \otimes \bm{n_s} \big) \cdot
@@ -8827,26 +8819,28 @@ $$ \tag{22.7}
 	\bm{E_0}(\bm{n_i}, \omega) dV'
 $$
 
-is significantly simplified. We shall further assume that the particle is homogeneous, so that \\(m\\) is independent of \\(\bm{r'}\\).
+is significantly simplified. Going forward, we shall also assume that the particle is homogeneous, with \\(m\\) independent of \\(\bm{r'}\\).
 
-The connection to the scattering angle \\(\theta = \arccos(\bm{n_i} \cdot \bm{n_s})\\) is revealed by transforming
+The scattering angle \\(\theta = \arccos(\bm{n_i} \cdot \bm{n_s})\\) can be defined in two different ways:
 
-$$ \tag{22.8}
+$$ \tag{22.7}
+	\bm{n_i} \cdot \bm{n_s} = \cos(\theta),
+	\quad
 	\frac{|\bm{n_i} - \bm{n_s}|}{2}
 	= \sqrt{\frac{1 - \bm{n_i} \cdot \bm{n_s}}{2}}
 	= \sin(\theta/2).
 $$
 
-It suggests that evaluation of the integral
+This suggests that evaluation of the integral
 
-$$ \tag{22.9}
-	I_{RGB}(\theta, \phi)
+$$ \tag{22.8}
+	I_{rgb}(\theta, \phi)
 	= \frac{1}{V} \int\_{V} e^{i k \bm{r'} \cdot (\bm{n_i} - \bm{n_s})} dV'
 $$
 
-found in Eqn. 22.7 can be performed most efficiently using an aligned Cartesian frame. Let us define
+can be performed most efficiently in an aligned coordinate system. Let us define
 
-$$ \tag{22.10}
+$$ \tag{22.9}
 	\bm{w} = \frac{\bm{n_i} - \bm{n_s}}{|\bm{n_i} - \bm{n_s}|},
 	\quad
 	\bm{v} = \frac{\bm{n_i} \times \bm{n_s}}{| \bm{n_i} \times \bm{n_s} |},
@@ -8856,9 +8850,9 @@ $$
 
 If \\(\bm{n_i}\\) and \\(\bm{n_s}\\) are collinear, a supporting vector must take the role of \\(\bm{n_s}\\) in order to fix the orientation of the coordinate frame.
 
-Using this convention, the \\(\bm{r'}\\) in the interior of the particle has the following set of coordinates:
+Using this convention, the point \\(\bm{r'}\\) in the interior of the particle has the following set of Cartesian coordinates:
 
-$$ \tag{22.11}
+$$ \tag{22.10}
 \bm{r'} =
 \begin{bmatrix}
 	r\_{u}' \cr
@@ -8869,9 +8863,9 @@ $$ \tag{22.11}
 	|\bm{r'}| = \sqrt{(r\_{u}')^2 + (r\_{v}')^2 + (r\_{w}')^2}.
 $$
 
-For spherical or ellipsoidal particles, it is highly convenient to parametrize the \\(uv\\) plane (or *slice*) using the [polar coordinates](https://en.wikipedia.org/wiki/Polar_coordinate_system#Converting_between_polar_and_Cartesian_coordinates) \[[4](#references) (ch. 7.11)\]:
+For spherical or ellipsoidal particles, it is highly convenient to utilize [cylindrical coordinates](https://en.wikipedia.org/wiki/Cylindrical_coordinate_system) \[[4](#references) (ch. 7.11)\]:
 
-$$ \tag{22.12}
+$$ \tag{22.11}
 \bm{r'} =
 \begin{bmatrix}
 	\sqrt{(r\_{u}')^2 + (r\_{v}')^2} \cos{\chi} \cr
@@ -8881,31 +8875,42 @@ $$ \tag{22.12}
 \begin{bmatrix}
 	c \cos{\chi} \cr
 	c \sin{\chi} \cr
-	b \cr
+	ab \cr
 \end{bmatrix}.
 $$
 
 \[Add an illustration here\]
 
-In particular, for a spherical particle of radius \\(a\\) (which is symmetric with respect to the azimuthal angle \\(\phi\\)),
+In particular, for a spherical particle (symmetric with respect to the azimuthal angle \\(\phi\\)), we may set
+
+$$ \tag{22.12}
+	y(\theta) = 2 x \sin(\theta/2),
+$$
+
+and easily calculate \[[4](#references) (ch. 7.21)\]
 
 $$ \tag{22.13}
 \begin{aligned}
-	I_{RGB}(\theta)
-	&= \frac{3}{4 \pi a^3} \int_{-a}^{a}
-	\int_{-\pi}^{\pi} \int_{0}^{\sqrt{a^2 - b^2}}
+	I_{rgb}(\theta)
+	&= \frac{3}{4 \pi a^3} \int_{-1}^{1}
+	\int_{-\pi}^{\pi} \int_{0}^{a \sqrt{1 - b^2}}
 	c \thinspace dc \thinspace d\chi \thinspace
-	e^{2 i k b \sin(\theta/2)} db
+	e^{i y b} a \thinspace db
 	\cr
-	&= \frac{3}{4 a^3} \int_{-a}^{a}
-	\left( a^2 - b^2 \right)
-	e^{2 i k b \sin(\theta/2)} db
+	&= \frac{3}{4} \int_{-1}^{1}
+	\left( 1 - b^2 \right)
+	e^{i y b} db
+	= \frac{3}{2} \int_{0}^{1}
+	\left( 1 - b^2 \right)
+	\cos(y b) db
 	\cr
+	&= \frac{3 \sin(y) - 3 y \cos(y)}{y^3}
+	 = \sqrt{\frac{9 \pi}{2 y^3}} J_{3/2}(y)
+	 = \frac{3}{y} j_1(y),
 \end{aligned}
 $$
 
-What the fuck... See VDH 7.2...
-
+where \\(J_n\\) and \\(j_n\\) are the ordinary and the spherical Bessel functions of the first kind, respectively (cf. Eqn. 18.48).
 
 ---
 
