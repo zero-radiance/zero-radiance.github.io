@@ -8912,6 +8912,19 @@ $$
 
 where \\(J_n\\) and \\(j_n\\) are the ordinary and the spherical Bessel functions of the first kind, respectively (cf. Eqn. 18.48).
 
+Thus, for a homogeneous spherical particle, Eqn. 22.6 can be written as
+
+$$ \tag{22.14}
+	\bm{E_s}(\bm{r}, \omega)
+	\approx \frac{e^{i k r}}{k r}
+	x^2 \frac{j_1\negthinspace\big( 2 x \sin(\theta/2) \big)}{2 \sin(\theta/2)}
+	\big( m^2(\omega) - 1 \big)
+	\big( \mathcal{I} - \bm{n_s} \otimes \bm{n_s} \big) \cdot
+	\bm{E_0}.
+$$
+
+Scattering matrix... Compare to Rayleigh...
+
 ---
 
 RGB not mutually interacting dipoles
