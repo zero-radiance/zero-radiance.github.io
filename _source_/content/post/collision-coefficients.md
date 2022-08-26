@@ -7993,14 +7993,14 @@ $$
 
 The property #6 allows us to invoke the ergodic assumption, making the results of Sec. 17 applicable. Once we also take the property #5 into account, the amount of light scattered or absorbed by the particle group (as well as the associated radiative transfer coefficients) can be determined by computing simple weighted averages according to Eqn. 17.56.
 
-In order to apply the results of Sec. 17, we must tailor them to our particular use case. The scattered far-field of an arbitrary particle is given by Eqn. 15.6.1:
+In order to apply the results of Sec. 17, we must tailor them to our particular use case. The expression of the scattered far-field of an arbitrary particle is given by Eqn. 15.6.1:
 
 $$ \tag{21.2}
 	\bm{E_s}(\bm{r}, \omega)
 	\simeq \frac{e^{i k_0(\omega) r}}{k_0(\omega) r} \mathcal{S_{ef}} (\bm{n_s}, \bm{n_i}, \omega) \cdot \bm{E_0}(\bm{n_i}, \omega).
 $$
 
-The corresponding expression for a dipole is found in Eqn. 13.5:
+The corresponding formula for a dipole is found in Eqn. 13.5:
 
 $$ \tag{21.3}
 	\bm{E_s}(\bm{r}, \omega)
@@ -8333,7 +8333,7 @@ $$ \tag{21.28}
 \end{aligned}.
 $$
 
-The final component of the scattering matrix is the operator \\((\mathcal{I} - \bm{n_s} \otimes \bm{n_s})\\) that projects a vector onto the tangent plane of a unit sphere. Since, according to Eqn. 15.12, the \\(y\\)- and the \\(\phi\\)-axes are aligned, this transformation is given by Eqn. 15.13:
+The final component of the scattering matrix is the dyadic \\((\mathcal{I} - \bm{n_s} \otimes \bm{n_s})\\) that projects a vector onto the tangent plane of a unit sphere. Since, according to Eqn. 15.12, the \\(y\\)- and the \\(\phi\\)-axes are aligned, this transformation is given by Eqn. 15.13:
 
 $$ \tag{21.29}
 	\mathcal{I} - \bm{n_s} \otimes \bm{n_s}
@@ -8350,7 +8350,7 @@ $$ \tag{21.29}
 	\end{bmatrix},
 $$
 
-with the bottom row of the resulting matrix set to 0 in order to discard the radial component of the field.
+with the bottom row of the resulting matrix set to 0 by the projection matrix \\(P_3\\) in order to discard the radial component of the field.
 
 Putting it all together, the form of the scattering matrix \\(S\\) that corresponds to the scattering dyadic \\(\mathcal{S\_{ef}}\\) of an ellipsoidal particle (defined by Eqn. 21.4) is
 Putting it all together, the form of the scattering matrix \\(S\\) that corresponds to the scattering dyadic \\(\mathcal{S\_{ef}}\\) of an ellipsoidal particle (defined by Eqn. 21.4) is
@@ -8884,7 +8884,7 @@ $$
 In particular, for a spherical particle (symmetric with respect to the azimuthal angle \\(\phi\\)), we may set
 
 $$ \tag{22.12}
-	y(\theta) = 2 x \sin(\theta/2),
+	y(\theta) = 2 \sin(\theta/2) x,
 $$
 
 and easily calculate \[[4](#references) (ch. 7.21)\]
@@ -8916,14 +8916,70 @@ Thus, for a homogeneous spherical particle, Eqn. 22.6 can be written as
 
 $$ \tag{22.14}
 	\bm{E_s}(\bm{r}, \omega)
-	\approx \frac{e^{i k r}}{k r}
-	x^2 \frac{j_1\negthinspace\big( 2 x \sin(\theta/2) \big)}{2 \sin(\theta/2)}
-	\big( m^2(\omega) - 1 \big)
+	\approx \frac{e^{i k(\omega) r}}{k(\omega) r}
+	\big( m^2(\omega) - 1 \big) x^2(\omega)
+	\frac{j_1\negthinspace\big( |\bm{n_i} - \bm{n_s}| x(\omega) \big)}{|\bm{n_i} - \bm{n_s}|}
 	\big( \mathcal{I} - \bm{n_s} \otimes \bm{n_s} \big) \cdot
 	\bm{E_0}.
 $$
 
-Scattering matrix... Compare to Rayleigh...
+By comparing it with the expression of the scattered far-field of an arbitrary particle given by Eqn. 15.6.1,
+
+$$ \tag{22.15}
+	\bm{E_s}(\bm{r}, \omega)
+	\simeq \frac{e^{i k(\omega) r}}{k(\omega) r} \mathcal{S_{ef}} (\bm{n_s}, \bm{n_i}, \omega) \cdot \bm{E_0}(\bm{n_i}, \omega),
+$$
+
+the formula of the far-field scattering dyadic \\(\mathcal{S\_{ef}}\\) of a homogeneous spherical particle is
+
+$$ \tag{22.16}
+	\mathcal{S_{ef}} (\bm{n_s}, \bm{n_i}, \omega)
+	\approx \big( m^2(\omega) - 1 \big) x^2(\omega)
+	\frac{j_1\negthinspace\big( |\bm{n_i} - \bm{n_s}| x(\omega) \big)}{|\bm{n_i} - \bm{n_s}|}
+	\big( \mathcal{I} - \bm{n_s} \otimes \bm{n_s} \big).
+$$
+
+#### Scattering Matrix
+
+The far-field scattering dyadic \\(\mathcal{S\_{ef}}\\) is composed of a number of scalar factors and the dyadic \\((\mathcal{I} - \bm{n_s} \otimes \bm{n_s})\\) that projects a vector onto the tangent plane of a unit sphere. Since, according to Eqn. 15.12, the \\(y\\)- and the \\(\phi\\)-axes are aligned, this transformation is given by Eqn. 15.13:
+
+$$ \tag{22.17}
+	\mathcal{I} - \bm{n_s} \otimes \bm{n_s}
+	= P_3
+	R_y(-\theta) =
+	\begin{bmatrix}
+		1 & 0 & 0 \cr
+		0 & 1 & 0 \cr
+	\end{bmatrix}
+	\begin{bmatrix}
+		\cos{\theta} & 0 & -\sin{\theta} \cr
+		0            & 1 & 0             \cr
+		\sin{\theta} & 0 & \phantom{-}\cos{\theta} \cr
+	\end{bmatrix},
+$$
+
+with the bottom row of the resulting matrix set to 0 by the projection matrix \\(P_3\\) in order to discard the radial component of the field.
+
+---
+
+22.7, 22.17 into 22.16...
+
+Putting it all together, the form of the scattering matrix \\(S\\) that corresponds to the scattering dyadic \\(\mathcal{S\_{ef}}\\) of an ellipsoidal particle (defined by Eqn. 21.4) is
+Putting it all together, the form of the scattering matrix \\(S\\) that corresponds to the scattering dyadic \\(\mathcal{S\_{ef}}\\) of an ellipsoidal particle (defined by Eqn. 21.4) is
+
+$$ \tag{21.30}
+	S(\theta, \phi, \omega)
+	= \frac{k_0^3(\omega)}{4 \pi}
+	P_3 R_y(-\theta)
+	X(\alpha, \beta, \gamma)
+	D(\alpha_1, \alpha_2, \alpha_3)
+	X^{T}(\alpha, \beta, \gamma)
+	P_3^{T},
+$$
+
+where \\(D\\) is a diagonal matrix, and the projection matrix \\(P_3\\) ensures that the scattering matrix is 2x2, since both the input and the output vectors have the third component set to 0.
+
+Compare to Rayleigh...
 
 ---
 
