@@ -9002,6 +9002,8 @@ $$
 
 Thus, the formulas match if the particles are small and the condition imposed by Eqn. 22.1 is satisfied.
 
+For larger particles, RGB has a more interesting angular behavior... Angular depends on the size of the particle...
+
 ---
 
 RGB not mutually interacting dipoles
