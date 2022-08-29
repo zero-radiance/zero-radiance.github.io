@@ -7451,7 +7451,19 @@ $$ \tag{19.21}
 \end{aligned}
 $$
 
-However, for very small particles with \\(| m x | \ll 1\\), it is slightly more efficient to use a Taylor series expansion. Restricting ourselves to polynomials of degree 6, we obtain
+However, for very small particles with \\(| m x | \ll 1\\), it is slightly more efficient to use Taylor series expansions:
+
+$$ \tag{19.2z}
+\begin{aligned}
+	& \sin{x} = x - \frac{x^3}{6} + \frac{x^5}{120} + \mathrm{O}\big( x^7 \big),
+	\cr
+	& \cos{x} = 1 - \frac{x^2}{2} + \frac{x^4}{24} - \frac{x^6}{720} + \mathrm{O}\big( x^7 \big),
+	\cr
+	& e^{i x} = 1 + i x - \frac{x^2}{2} - i \frac{x^3}{6} + \frac{x^4}{24} + i \frac{x^5}{120} - \frac{x^6}{720} + \mathrm{O}\big( x^7 \big).
+\end{aligned}
+$$
+
+Restricting ourselves to polynomials of degree 6, we obtain
 
 $$ \tag{19.22}
 \begin{aligned}
@@ -8350,7 +8362,7 @@ $$ \tag{21.29}
 	\end{bmatrix},
 $$
 
-with the bottom row of the resulting matrix set to 0 by the projection matrix \\(P_3\\) in order to discard the radial component of the field.
+with the projection matrix \\(P_3\\) used to discard the radial component of the field.
 
 Putting it all together, the form of the scattering matrix \\(S\\) that corresponds to the scattering dyadic \\(\mathcal{S\_{ef}}\\) of an ellipsoidal particle (defined by Eqn. 21.4) is
 Putting it all together, the form of the scattering matrix \\(S\\) that corresponds to the scattering dyadic \\(\mathcal{S\_{ef}}\\) of an ellipsoidal particle (defined by Eqn. 21.4) is
@@ -8370,7 +8382,7 @@ where \\(D\\) is a diagonal matrix, and the projection matrix \\(P_3\\) ensures 
 The expanded form of Eqn. 21.30 is very large, so we shall not attempt to explicitly write it down. However, the expression for a spherical particle is very simple:
 
 $$ \tag{21.31}
-	S(\theta, \phi, \omega)
+	S(\theta, \omega)
 	= \frac{k_0^3(\omega)}{4 \pi}
 	\alpha_m
 	\begin{bmatrix}
@@ -8767,7 +8779,7 @@ Unfortunately, evaluation of these integrals poses a challenge: not just because
 
 #### Rayleigh-Gans-Born Approximation
 
-Imagine a group of particles illuminated by [X-rays](https://en.wikipedia.org/wiki/X-ray). The frequencies (and the momenta \\(p = \hbar \omega / c\\)) of the photons are so high that the particles are unable to impede their path, acting as if they are nearly transparent \[[4](#references) (ch. 7.5)\]. Thus, the squared magnitude of the relative wavenumber is very small:
+Imagine a particle illuminated by [X-rays](https://en.wikipedia.org/wiki/X-ray). The frequencies (and the momenta \\(p = \hbar \omega / c\\)) of the photons are so high that it renders the particle nearly transparent \[[4](#references) (ch. 7.5)\]. Thus, the squared magnitude of the relative wavenumber is very small:
 
 $$ \tag{22.1}
 	\left| m^2 - 1 \right| \ll 1.
@@ -8781,7 +8793,7 @@ $$ \tag{22.2}
 	\bm{E_0}(\bm{n_i}, \omega) e^{i k(\omega) (\bm{r} \cdot \bm{n_i})}.
 $$
 
-Eqn. 22.1 is a sufficient and necessary condition to apply the approximation given by Eqn. 22.2 to the Rayleigh scattering by small particles. However, for large particles, we must impose another requirement:
+Eqn. 22.1 is a sufficient and necessary condition to apply the approximation of Eqn. 22.2 to the Rayleigh scattering. However, for large particles, we must impose another requirement:
 
 $$ \tag{22.3}
 	2 \left| m - 1 \right| x \ll 1,
@@ -8789,7 +8801,7 @@ $$
 
 where, as usual, \\(x = k a\\) is the size parameter, and \\(a\\) is the radius of the bounding sphere of the particle.
 
-Eqn. 22.3 can be interpreted in the following way. Imagine a particle with \\(x \gg 1\\), such that the laws of geometric optics are applicable. We isolate a central ray that passes through the particle along the diameter of the bounding sphere. According to Eqn. 22.1, this ray does not experience a significant amount of reflection or refraction either inside or outside the particle. On the other hand, inside, the associated electromagnetic wave experiences a change of phase velocity and, potentially, a degree of absorption. If we model the internal field in the vicinity of the ray as a plane wave, then the expression of the electric field at the back of the particle is
+Eqn. 22.3 can be interpreted as follows. Imagine a particle with \\(x \gg 1\\), such that the laws of geometric optics are applicable. We isolate a central ray that passes through the particle along the diameter of the bounding sphere. According to Eqn. 22.1, this ray experiences a significant amount of reflection and refraction neither inside nor outside the particle. On the other hand, inside, the associated electromagnetic wave undergoes a change of phase velocity and, potentially, a degree of absorption. If we model the internal field in the vicinity of the ray as a plane wave, then the expression of the electric field at the back of the particle is
 
 $$ \tag{22.4}
 \begin{aligned}
@@ -8800,9 +8812,9 @@ $$ \tag{22.4}
 \end{aligned}
 $$
 
-Evidently, the value of the internal field is approximately equal to that of the incident field if both Eqn. 22.1 and 22.3 are satisfied. Note that the relative wavenumber \\(m\\) can be spatially-varying and frequency-dependent if both conditions hold for all \\(\bm{r}\\) and \\(\omega\\).
+Evidently, the internal field is approximately the same as the incident field if both Eqn. 22.1 and 22.3 are satisfied. Note that the relative wavenumber \\(m\\) can be spatially-varying and frequency-dependent if both conditions hold for all \\(\bm{r}\\) and \\(\omega\\).
 
-Formally, the Rayleigh-Gans-Born approximation corresponds to the first term of the Born series \[while Rayleigh's approximation is the first term of the multipole series\] expansion of the electric field. According to Eqn. 14.3 and 14.5, the expression of the transition dyadic \\(\mathcal{T}\\) is
+Formally, the Rayleigh-Gans-Born approximation corresponds to the first term of the Born series \[while Rayleigh's approximation is the first term of the multipole series\] expansion of the electric field. According to Eqn. 14.3 and 14.5, the associated expression of the transition dyadic \\(\mathcal{T}\\) is simply
 
 $$ \tag{22.5}
 	\mathcal{T} \big( \bm{r'}, \bm{r''}, k(\omega), \omega \big) =
@@ -8815,13 +8827,13 @@ $$ \tag{22.6}
 	\bm{E_s}(\bm{r}, \omega)
 	\approx k^2(\omega) \frac{e^{i k(\omega) r}}{4 \pi r}
 	\big( \mathcal{I} - \bm{n_s} \otimes \bm{n_s} \big) \cdot
-	\int\_{V} e^{i k(\omega) \bm{r'} \cdot (\bm{n_i} - \bm{n_s})} \big( m^2(\bm{r'}, \omega) - 1 \big)
+	\int\_{V_p} e^{i k(\omega) \bm{r'} \cdot (\bm{n_i} - \bm{n_s})} \big( m^2(\bm{r'}, \omega) - 1 \big)
 	\bm{E_0}(\bm{n_i}, \omega) dV'
 $$
 
-is significantly simplified. Going forward, we shall also assume that the particle is homogeneous, with \\(m\\) independent of \\(\bm{r'}\\).
+is considerably simplified. Going forward, we shall also assume that the particle is homogeneous, with \\(m\\) independent of \\(\bm{r'}\\).
 
-The scattering angle \\(\theta = \arccos(\bm{n_i} \cdot \bm{n_s})\\) can be defined in two different ways:
+Recall that the scattering angle \\(\theta = \arccos(\bm{n_i} \cdot \bm{n_s})\\) can be defined in two different ways:
 
 $$ \tag{22.7}
 	\bm{n_i} \cdot \bm{n_s} = \cos(\theta),
@@ -8835,7 +8847,7 @@ This suggests that evaluation of the integral
 
 $$ \tag{22.8}
 	I_{rgb}(\theta, \phi)
-	= \frac{1}{V} \int\_{V} e^{i k \bm{r'} \cdot (\bm{n_i} - \bm{n_s})} dV'
+	= \frac{1}{V_p} \int\_{V_p} e^{i k \bm{r'} \cdot (\bm{n_i} - \bm{n_s})} dV'
 $$
 
 can be performed most efficiently in an aligned coordinate system. Let us define
@@ -8906,7 +8918,7 @@ $$ \tag{22.13}
 	\cr
 	&= \frac{3 \sin(y) - 3 y \cos(y)}{y^3}
 	 = \sqrt{\frac{9 \pi}{2 y^3}} J_{3/2}(y)
-	 = \frac{3}{y} j_1(y),
+	 = \frac{3 j_1(y)}{y},
 \end{aligned}
 $$
 
@@ -8917,25 +8929,25 @@ Thus, for a homogeneous spherical particle, Eqn. 22.6 can be written as
 $$ \tag{22.14}
 	\bm{E_s}(\bm{r}, \omega)
 	\approx \frac{e^{i k(\omega) r}}{k(\omega) r}
-	\big( m^2(\omega) - 1 \big) x^2(\omega)
-	\frac{j_1\negthinspace\big( |\bm{n_i} - \bm{n_s}| x(\omega) \big)}{|\bm{n_i} - \bm{n_s}|}
+	\big( m^2(\omega) - 1 \big) x^3(\omega)
+	\frac{j_1\negthinspace\big( |\bm{n_i} - \bm{n_s}| x(\omega) \big)}{|\bm{n_i} - \bm{n_s}| x(\omega)}
 	\big( \mathcal{I} - \bm{n_s} \otimes \bm{n_s} \big) \cdot
 	\bm{E_0}.
 $$
 
-By comparing it with the expression of the scattered far-field of an arbitrary particle given by Eqn. 15.6.1,
+Comparison with the expression of the scattered far-field of an arbitrary particle given by Eqn. 15.6.1,
 
 $$ \tag{22.15}
 	\bm{E_s}(\bm{r}, \omega)
 	\simeq \frac{e^{i k(\omega) r}}{k(\omega) r} \mathcal{S_{ef}} (\bm{n_s}, \bm{n_i}, \omega) \cdot \bm{E_0}(\bm{n_i}, \omega),
 $$
 
-the formula of the far-field scattering dyadic \\(\mathcal{S\_{ef}}\\) of a homogeneous spherical particle is
+reveals the formula of the far-field scattering dyadic \\(\mathcal{S\_{ef}}\\) of a homogeneous spherical particle:
 
 $$ \tag{22.16}
 	\mathcal{S_{ef}} (\bm{n_s}, \bm{n_i}, \omega)
-	\approx \big( m^2(\omega) - 1 \big) x^2(\omega)
-	\frac{j_1\negthinspace\big( |\bm{n_i} - \bm{n_s}| x(\omega) \big)}{|\bm{n_i} - \bm{n_s}|}
+	\approx \big( m^2(\omega) - 1 \big) x^3(\omega)
+	\frac{j_1\negthinspace\big( |\bm{n_i} - \bm{n_s}| x(\omega) \big)}{|\bm{n_i} - \bm{n_s}| x(\omega)}
 	\big( \mathcal{I} - \bm{n_s} \otimes \bm{n_s} \big).
 $$
 
@@ -8958,28 +8970,37 @@ $$ \tag{22.17}
 	\end{bmatrix},
 $$
 
-with the bottom row of the resulting matrix set to 0 by the projection matrix \\(P_3\\) in order to discard the radial component of the field.
+with the projection matrix \\(P_3\\) used to discard the radial component of the field.
 
----
+By combining Eqn. 22.7, 22.16, and 22.17, the expression of the scattering matrix \\(S\\) of a homogeneous spherical particle is
 
-22.7, 22.17 into 22.16...
-
-Putting it all together, the form of the scattering matrix \\(S\\) that corresponds to the scattering dyadic \\(\mathcal{S\_{ef}}\\) of an ellipsoidal particle (defined by Eqn. 21.4) is
-Putting it all together, the form of the scattering matrix \\(S\\) that corresponds to the scattering dyadic \\(\mathcal{S\_{ef}}\\) of an ellipsoidal particle (defined by Eqn. 21.4) is
-
-$$ \tag{21.30}
-	S(\theta, \phi, \omega)
-	= \frac{k_0^3(\omega)}{4 \pi}
-	P_3 R_y(-\theta)
-	X(\alpha, \beta, \gamma)
-	D(\alpha_1, \alpha_2, \alpha_3)
-	X^{T}(\alpha, \beta, \gamma)
-	P_3^{T},
+$$ \tag{22.18}
+	S(\theta, \omega)
+	= \big( m^2(\omega) - 1 \big) x^3(\omega)
+	\frac{j_1\negthinspace\big( 2 \sin(\theta/2) x(\omega) \big)}{2 \sin(\theta/2) x(\omega)}
+	\begin{bmatrix}
+		\cos{\theta} & 0 \cr
+		0            & 1 \cr
+	\end{bmatrix}.
 $$
 
-where \\(D\\) is a diagonal matrix, and the projection matrix \\(P_3\\) ensures that the scattering matrix is 2x2, since both the input and the output vectors have the third component set to 0.
+It is instructive to compare the result to the Rayleigh scattering matrix for spherical particles (cf. Eqn. 21.31). Expansion of the spherical Bessel function \\(j_1(y)\\) (given by Eqn. 22.13) in the Taylor series (given by Eqn. 19.2z) around \\(0\\) yields
 
-Compare to Rayleigh...
+$$ \tag{22.19}
+	\frac{j_1(y)}{y}
+	= \frac{\sin(y) - y \cos(y)}{y^3}
+	= \frac{1 - y^2/6 - 1 + y^2/2 + \mathrm{O}\big( y^4 \big)}{y^2}
+	= \frac{1}{3} + \mathrm{O}\big( y^2 \big).
+$$
+
+While, at the same time, if the value of \\(|m^2 - 1|\\) is small,
+
+$$ \tag{22.20}
+	\frac{m^2 - 1}{m^2 + 2}
+	\approx \frac{m^2 - 1}{3}.
+$$
+
+Thus, the formulas match if the particles are small and the condition imposed by Eqn. 22.1 is satisfied.
 
 ---
 
