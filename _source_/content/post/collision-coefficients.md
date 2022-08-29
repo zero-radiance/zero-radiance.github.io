@@ -7451,19 +7451,13 @@ $$ \tag{19.21}
 \end{aligned}
 $$
 
-However, for very small particles with \\(| m x | \ll 1\\), it is slightly more efficient to use Taylor series expansions:
+However, for very small particles with \\(| m x | \ll 1\\), it is somewhat more efficient to utilize Taylor series expansions. Using the expression of the complex exponential
 
 $$ \tag{19.2z}
-\begin{aligned}
-	& \sin{x} = x - \frac{x^3}{6} + \frac{x^5}{120} + \mathrm{O}\big( x^7 \big),
-	\cr
-	& \cos{x} = 1 - \frac{x^2}{2} + \frac{x^4}{24} - \frac{x^6}{720} + \mathrm{O}\big( x^7 \big),
-	\cr
-	& e^{i x} = 1 + i x - \frac{x^2}{2} - i \frac{x^3}{6} + \frac{x^4}{24} + i \frac{x^5}{120} - \frac{x^6}{720} + \mathrm{O}\big( x^7 \big).
-\end{aligned}
+	e^{i x} = 1 + i x - \frac{x^2}{2} - i \frac{x^3}{6} + \frac{x^4}{24} + i \frac{x^5}{120} - \frac{x^6}{720} + \mathrm{O}\big( x^7 \big),
 $$
 
-Restricting ourselves to polynomials of degree 6, we obtain
+we may expand Eqn. 19.21, and then substitute the resulting series into Eqn. 18.156. Restricting ourselves to polynomials of degree 6, we obtain
 
 $$ \tag{19.22}
 \begin{aligned}
