@@ -8356,7 +8356,7 @@ $$ \tag{21.29}
 	\end{bmatrix},
 $$
 
-with the projection matrix \\(P_3\\) used to discard the radial component of the field.
+where the projection matrix \\(P_3\\) is used to discard the radial component of the field.
 
 Putting it all together, the form of the scattering matrix \\(S\\) that corresponds to the scattering dyadic \\(\mathcal{S\_{ef}}\\) of an ellipsoidal particle (defined by Eqn. 21.4) is
 Putting it all together, the form of the scattering matrix \\(S\\) that corresponds to the scattering dyadic \\(\mathcal{S\_{ef}}\\) of an ellipsoidal particle (defined by Eqn. 21.4) is
@@ -8489,15 +8489,15 @@ $$ \tag{21.37}
 	\end{bmatrix}.
 $$
 
-After substitution of Eqn. 21.36 into 17.56.1, it becomes clear that the intensity of light scattered by a group of \\(N\\) molecules depends on the state of the incident light:
+After substitution of Eqn. 21.25 and 21.36 into 17.56.1, it becomes clear that the intensity of light scattered by a group of \\(N\\) molecules depends on the state of the incident light:
 
 $$ \tag{21.38}
 	\braket{\Iota_s^{tot}}
 	= \frac{N}{k_0^2} \frac{\mu\_0^{-1}}{2} \frac{1}{c}
 	 \frac{k_0^6}{16 \pi^2} (4 A + B)
 	\left(
-		\big| E_x(\phi) \big|^2
-		\left( \cos^2{\theta} + \Delta \sin^2{\theta} \right) +
+		\left( \cos^2{\theta} + \Delta \sin^2{\theta} \right)
+		\big| E_x(\phi) \big|^2 +
 		\big| E_y(\phi) \big|^2
 	\right).
 $$
@@ -8945,7 +8945,7 @@ $$ \tag{22.16}
 	\big( \mathcal{I} - \bm{n_s} \otimes \bm{n_s} \big).
 $$
 
-#### Scattering Matrix
+##### Scattering Matrix
 
 The far-field scattering dyadic \\(\mathcal{S\_{ef}}\\) is composed of a number of scalar factors and the dyadic \\((\mathcal{I} - \bm{n_s} \otimes \bm{n_s})\\) that projects a vector onto the tangent plane of a unit sphere. Since, according to Eqn. 15.12, the \\(y\\)- and the \\(\phi\\)-axes are aligned, this transformation is given by Eqn. 15.13:
 
@@ -8964,7 +8964,7 @@ $$ \tag{22.17}
 	\end{bmatrix},
 $$
 
-with the projection matrix \\(P_3\\) used to discard the radial component of the field.
+where the projection matrix \\(P_3\\) is used to discard the radial component of the field.
 
 By combining Eqn. 22.7, 22.16, and 22.17, the expression of the scattering matrix \\(S\\) of a homogeneous spherical particle is
 
@@ -8978,7 +8978,7 @@ $$ \tag{22.18}
 	\end{bmatrix}.
 $$
 
-It is instructive to compare the result to the Rayleigh scattering matrix for spherical particles (cf. Eqn. 21.31). Expansion of the spherical Bessel function \\(j_1(y)\\) (given by Eqn. 22.13) in the Taylor series (given by Eqn. 19.2z) around \\(0\\) yields
+It is instructive to compare the result to the Rayleigh scattering matrix for spherical particles (cf. Eqn. 21.31). Expansion of the spherical Bessel function \\(j_1\\) (given by Eqn. 22.13) in the Taylor series (given by Eqn. 19.2z) around \\(0\\) yields
 
 $$ \tag{22.19}
 	\frac{j_1(y)}{y}
@@ -8987,14 +8987,134 @@ $$ \tag{22.19}
 	= \frac{1}{3} + \mathrm{O}\big( y^2 \big).
 $$
 
-While, at the same time, if the value of \\(|m^2 - 1|\\) is small,
+At the same time, if the value of \\(|m^2 - 1|\\) is small,
 
 $$ \tag{22.20}
 	\frac{m^2 - 1}{m^2 + 2}
 	\approx \frac{m^2 - 1}{3}.
 $$
 
-Thus, the formulas match if the particles are small and the condition imposed by Eqn. 22.1 is satisfied.
+Thus, Eqn. 21.31 and 22.18 match if the particles are small and the condition imposed by Eqn. 22.1 is satisfied.
+
+##### Light Intensity and Collision Coefficients
+
+Given the expression of the scattering matrix \\(S\\) and the probability distribution \\(p(\psi)\\) of particles, computation of the the mean intensity of scattered light amounts to evaluation of Eqn. 17.56.1:
+
+$$ \tag{22.21}
+\begin{aligned}
+	\braket{\Iota_s^{tot}}
+	&\propto \int_{\Psi} p(\psi)
+	\left| S(\theta, \phi, \psi) \bm{E_0} \right|^2
+	d\psi
+	\cr
+	&= \int_{M} \int_{X} p(m, x)
+	\left| S(\theta, m, x) \bm{E_0} \right|^2
+	\thinspace dm \thinspace dx,
+\end{aligned}
+$$
+
+where
+
+$$ \tag{22.22}
+	\int_{M} \int_{X} p(m, x)
+	\thinspace dm \thinspace dx = 1.
+$$
+
+The specific expression of \\(p(m, x)\\) depends on the application. The range of values of the relative wavenumber \\(m\\) depends on the types (and the composition) of the particles. For a fixed value of \\(m\\), the graph of the [conditional distribution](https://en.wikipedia.org/wiki/Conditional_probability_distribution) of sizes of particles \\(p(x | m) = p(m, x)/p(m)\\) often takes the shape of a [bell curve](https://en.wikipedia.org/wiki/Normal_distribution).
+
+For illustrative purposes, we shall consider an artificial distribution of identical particles, placed randomly, such that the density within the region \\(V\\) is approximately uniform.
+
+Substitution of Eqn. 21.25 and 22.18 into 17.56.1 yields an expression
+
+$$ \tag{22.23}
+\begin{aligned}
+	\braket{\Iota_s^{tot}}
+	&= \frac{N}{k^2} \frac{\mu\_0^{-1}}{2} \frac{\eta}{c}
+	\left| \big( m^2 - 1 \big) x^3
+	\frac{j_1\negthinspace\big( 2 \sin(\theta/2) x \big)}{2 \sin(\theta/2) x}
+	\begin{bmatrix}
+		\cos{\theta} & 0 \cr
+		0            & 1 \cr
+	\end{bmatrix}
+	\begin{bmatrix}
+		E_x(\phi) \cr
+		E_y(\phi) \cr
+	\end{bmatrix} \right|^2
+	\cr
+	&= \frac{N}{k^2} \frac{\mu\_0^{-1}}{2} \frac{\eta}{c}
+	\left| m^2 - 1 \right|^2 x^6
+	\frac{j_1^2\negthinspace\big( 2 \sin(\theta/2) x \big)}{4 \sin^2(\theta/2) x^2}
+	\left(
+		\cos^2(\theta)
+		\big| E_x(\phi) \big|^2 +
+		\big| E_y(\phi) \big|^2
+	\right)
+\end{aligned}
+$$
+
+that depends on the state of the incident light.
+
+In the special case of natural light, we may average Eqn. 22.24 over all possible orientations of the plane of reference according to Eqn. 19.31. This allows us to directly relate the scattered intensity \\(\Iota_s\\) to the incident irradiance \\(\Epsilon_i\\) (the latter is given by Eqn 16.4):
+
+$$ \tag{22.24}
+\begin{aligned}
+	\braket{\Iota_s^{tot}}
+	&= \frac{N}{k^2}
+	\left| m^2 - 1 \right|^2 x^6
+	\frac{j_1^2\negthinspace\big( 2 \sin(\theta/2) x \big)}{4 \sin^2(\theta/2) x^2}
+	\frac{\cos^2(\theta) + 1}{2} \Epsilon_i.
+\end{aligned}
+$$
+
+In comparison to Eqn. 21.40 of the Rayleigh scattering, the angular distribution of scattered light of Eqn. 22.24 can take different forms, depending on the size parameter \\(x\\) of the particle.
+
+In order to consider a wide range of particle sizes, the conditions imposed by Eqn. 22.1 and 22.3 require that \\(|m|\\) is small; below, we shall consider the case of \\(m = 1.001\\). It is interesting to compare the resulting intensity diagrams to those of a water droplet \\((m = 4/3)\\) computed using the Lorenz-Mie-Debye formulae in Sec. 19.
+
+{{< figure src="/img/rgb_x01.svg" caption="*Figure 22.1: Linear plot of the intensity of light scattered by a homogeneous sphere of size \\(x = 0.01\\).*" >}}
+
+For \\(x \lessapprox 0.1\\), the distribution of scattered light is practically identical to that of Rayleigh scattering (cf. Fig. 19.N).
+
+{{< figure src="/img/rgb_x1.svg" caption="*Figure 22.2: Linear plot of the intensity of light scattered by a homogeneous sphere of size \\(x = 1\\).*" >}}
+
+As \\(x \to 1\\), the pear shape is faithfully reproduced (cf. Fig. 19.N).
+
+{{< figure src="/img/rgb_x2.svg" caption="*Figure 22.3: Linear plot of the intensity of light scattered by a homogeneous sphere of size \\(x = 2\\).*" >}}
+
+For \\(x = 2\\), the Mie effect is very apparent. The forward (diffraction) lobe has roughly the same shape as for a water droplet (cf. Fig. 19.N); however, in the backward direction, the intensity is not the same, owing to (the lack of) reflection and refraction.
+
+{{< figure src="/img/rgb_x10.svg" caption="*Figure 22.4: Linear plot of the intensity of light scattered by a homogeneous sphere of size \\(x = 10\\).*" >}}
+
+The same applies to larger particles. In particular, for \\(x = 10\\), the side lobes are completely absent (cf. Fig. 19.N).
+
+---
+
+$$ \tag{17.56}
+\begin{aligned}
+	\braket{\Iota_s^{tot}}
+	&= \sum_j r^2 \braket{\braket{\bm{S_j}}} \cdot \bm{n_s}
+	= N \frac{\mu\_0^{-1}}{2} \frac{\eta}{c} \frac{1}{k^2}
+	\int_{\Psi} p(\psi)
+	\left| \mathcal{S_j}(\bm{n_s}, \psi) \cdot \bm{E_0} \right|^2
+	d\psi,
+	\cr
+	\braket{\Phi_s^{tot}}
+	&= \oint\_{\mathbb{S}^2} \braket{\Iota_s^{tot}} \negmedspace (\bm{n_s}) d\Omega
+	= N \frac{\mu\_0^{-1}}{2} \frac{\eta}{c} \frac{1}{k^2}
+	\int_{\Psi} p(\psi) \oint\_{\mathbb{S}^2}
+	\left| \mathcal{S_j}(\bm{n_s}, \psi) \cdot \bm{E_0} \right|^2
+	d\Omega d\psi,
+	\cr
+	\braket{\Phi_e^{tot}}
+	&= L^2 \sum_j \oint\_{\mathbb{S}^2}
+	\left[ r^2 \braket{\braket{\bm{S_{ij}}}} \cdot \bm{n_s} \right] d\Omega
+	= N \frac{\mu\_0^{-1}}{2} \frac{\eta}{c} \frac{4 \pi}{k^2}
+	\int_{\Psi} p(\psi)
+	\mathcal{Im} \left\lbrace
+	\bm{E_0^{\*}} \cdot \mathcal{S_j}(\bm{n_i}, \psi) \cdot \bm{E_0}
+	\right\rbrace
+	d\psi.
+\end{aligned}
+$$
 
 For larger particles, RGB has a more interesting angular behavior... Angular depends on the size of the particle...
 
