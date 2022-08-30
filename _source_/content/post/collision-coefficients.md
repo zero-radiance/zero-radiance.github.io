@@ -3629,7 +3629,7 @@ $$
 
 where \\(\bm{n_p}\\) is the principal axis of the particle (specifically chosen not to be collinear with \\(\bm{n_i}\\)).
 
-The latter could, for instance, represent the coordinate frame of the scatterer. We can now rotate \\(xyz\\) and define its orientation relative to \\(XYZ\\) in terms of the [Euler angles](https://en.wikipedia.org/wiki/Euler_angles). We are particularly interested in rotating the plane of observation about the \\(Z\\)-axis, as that allows the set of possible direction of observation to cover the entire the unit sphere. If the azimuthal (plane rotation) angle is \\(\phi\\) and the polar angle is \\(\theta\\), the spherical coordinates of \\(\bm{n_s}\\) with respect to the \\(XYZ\\) frame are
+The latter could, for instance, represent the coordinate frame of the scatterer. We can now rotate \\(xyz\\) and define its orientation relative to \\(XYZ\\) in terms of the [Euler angles](https://en.wikipedia.org/wiki/Euler_angles). We are particularly interested in rotating the plane of observation about the \\(Z\\)-axis, as that allows the set of possible direction of observation to cover the entire the unit sphere. If the azimuthal (plane rotation) angle is \\(\phi\\) and the zenith angle is \\(\theta\\), the spherical coordinates of \\(\bm{n_s}\\) with respect to the \\(XYZ\\) frame are
 
 $$ \tag{15.10}
 \bm{n_s} =
@@ -3757,7 +3757,7 @@ $$
 
 Eqn. 15.16 matches the one given in the book by van de Hulst, except for the sign of the complex exponential and the missing \\(i\\) factor in the denominator \[[4](#references) (ch. 4.41)\]. The author claims that this factor makes the formulae more convenient \[[4](#references) (ch. 4.1)\]. While that is indeed the case, the convention is prone to sign errors, and also introduces seemingly imaginary coefficients that are, in fact, real.
 
-In general, the elements of the scattering matrix depend on the azimuthal angle \\(\phi\\), since, as we rotate the plane of observation (\\(x z\\) or \\(r \theta\\)) around the \\(z\\)-axis, the scattering object appears to rotate in the opposite direction. However, if the object is symmetric (both geometrically and structurally) with respect to the \\(z\\)-axis, which is the case for spherical and an axis-aligned [spheroidal](https://en.wikipedia.org/wiki/Spheroid) particles, the matrix only depends on the polar angle \\(\theta\\)[^26]. This causes the scattering matrix to become diagonal, with \\(s_3 = s_4 = 0\\) \[[4](#references) (ch. 4.42)\].
+In general, the elements of the scattering matrix depend on the azimuthal angle \\(\phi\\), since, as we rotate the plane of observation (\\(x z\\) or \\(r \theta\\)) around the \\(z\\)-axis, the scattering object appears to rotate in the opposite direction. However, if the object is symmetric (both geometrically and structurally) with respect to the \\(z\\)-axis, which is the case for spherical and an axis-aligned [spheroidal](https://en.wikipedia.org/wiki/Spheroid) particles, the matrix only depends on the zenith angle \\(\theta\\)[^26]. This causes the scattering matrix to become diagonal, with \\(s_3 = s_4 = 0\\) \[[4](#references) (ch. 4.42)\].
 
 [^26]: That is also the case for groups of statistically isotropic and mirror-symmetric random particles \[[4](#references) (ch. 5.2), [8](#references) (ch. 15)\].
 
@@ -6073,7 +6073,7 @@ $$
 
 Since \\(\bm{\Psi_{0,0}} = 0\\), it trivially follows that \\(\bm{L_{0,0}} \cdot \bm{N_{0,0}} = 0\\). For arbitrary \\(m\\) and \\(n\\), all that can be said is that \\(|\bm{L_{m,n}} \cdot \bm{N_{m,n}}|/(|\bm{L_{m,n}}||\bm{N_{m,n}}|) \leq 1\\), and the two vectors periodically become aligned for certain isolated values of \\(\theta\\).
 
-{{< figure src="/img/l_dot_n.svg" caption="*Figure N: \\((\bm{L\_{0,n}^{(1)}} \cdot \bm{N\_{0,n}^{(1)}})/(|\bm{L\_{0,n}^{(1)}}| |\bm{N\_{0,n}^{(1)}}|)\\) of order \\(m=0\\) and degree \\(n=1\\) (blue), \\(n=2\\) (orange), \\(n=3\\) (green), defined in terms of the spherical Bessel function of the first kind, as a function of the polar angle \\(\theta\\), with fixed values of \\(k = r = 1, \thinspace \thinspace \phi = 0\\).*" >}}
+{{< figure src="/img/l_dot_n.svg" caption="*Figure N: \\((\bm{L\_{0,n}^{(1)}} \cdot \bm{N\_{0,n}^{(1)}})/(|\bm{L\_{0,n}^{(1)}}| |\bm{N\_{0,n}^{(1)}}|)\\) of order \\(m=0\\) and degree \\(n=1\\) (blue), \\(n=2\\) (orange), \\(n=3\\) (green), defined in terms of the spherical Bessel function of the first kind, as a function of the zenith angle \\(\theta\\), with fixed values of \\(k = r = 1, \thinspace \thinspace \phi = 0\\).*" >}}
 
 In addition to partial orthogonality in the real 3-dimensional space, we can show that the vector spherical wave functions are also partially orthogonal in the Hilbert space. In order to do that, we shall utilize the definition given by Eqn. 18.80 and the orthogonality relations of Eqn. 18.74:
 
@@ -7371,9 +7371,9 @@ $$
 
 These expressions demonstrate that the magnitudes of the coefficients rapidly oscillate between 0 and 1.
 
-{{< figure src="/img/coef_a_n.svg" caption="*Figure N: The plots of the real (solid line) and the imaginary (dashed line) parts of the expansion coefficient \\(a_1/i\\) for \\(m = 4/3\\). The horizontal axis represents the size parameter of the particle.*" >}}
+{{< figure src="/img/coef_a_n.svg" caption="*Figure N: The plots of the real (solid line) and the imaginary (dashed line) parts of the expansion coefficient \\(a_1/i\\) for \\(m = 4/3\\). The horizontal axis represents the size parameter \\(x\\) of the particle.*" >}}
 
-{{< figure src="/img/coef_b_n.svg" caption="*Figure N: The plots of the real (solid line) and the imaginary (dashed line) parts of the expansion coefficient \\(b_1/i\\) for \\(m = 4/3\\). The horizontal axis represents the size parameter of the particle.*" >}}
+{{< figure src="/img/coef_b_n.svg" caption="*Figure N: The plots of the real (solid line) and the imaginary (dashed line) parts of the expansion coefficient \\(b_1/i\\) for \\(m = 4/3\\). The horizontal axis represents the size parameter \\(x\\) of the particle.*" >}}
 
 In addition to the cyclicality, by transforming Eqn. 19.15 into a function of \\((m - 1) x\\), it can be shown that the expansion coefficients are periodic functions of \\(x\\), with the period
 
@@ -7717,7 +7717,7 @@ For a typical [cloud droplet](https://ntrs.nasa.gov/citations/20160014659) of ra
 
 A polar plot can hardly convey how large the forward peak is. A rectangular plot shows that there is a 5 order-of-magnitude difference between the highest peak and the lowest trough.
 
-{{< figure src="/img/water_cloud_intensity.svg" caption="*Figure N: Logarithmic plot of the intensity of light scattered by a water droplet of size \\(x = 104.7\\). The horizontal axis represents the polar angle of the direction of the sensor.*" >}}
+{{< figure src="/img/water_cloud_intensity.svg" caption="*Figure N: Logarithmic plot of the intensity of light scattered by a water droplet of size \\(x = 104.7\\). The horizontal axis represents the zenith angle of the direction of the sensor.*" >}}
 
 How large is the contribution of the secondary components of the scattering function? We can answer this question by plotting the total amount of power scattered by the particle as a function of the solid angle, where a small solid angle corresponds to a tiny sensor located directly in front of the droplet, and \\(4 \pi\\) represents a hypothetical spherical sensor that completely surrounds the particle.
 
@@ -7727,7 +7727,7 @@ It is convenient to normalize the graph by the total amount of power scattered b
 
 Asymmetry of the angular distribution of the scattered light can be characterized in several different ways. For instance, we could take the intensity of light scattered in the forward direction and divide it by the corresponding intensity in the backward direction.
 
-{{< figure src="/img/water_intensity_ratio.svg" caption="*Figure N: Logarithmic plot of the ratio of the intensities of light scattered by a water droplet in the forward versus the backward direction. The horizontal axis represents the size parameter of the particle.*" >}}
+{{< figure src="/img/water_intensity_ratio.svg" caption="*Figure N: Logarithmic plot of the ratio of the intensities of light scattered by a water droplet in the forward versus the backward direction. The horizontal axis represents the size parameter \\(x\\) of the particle.*" >}}
 
 As it turns out, the result is a strongly varying function of \\(x\\). This can be explained by the presence of the off-center peak structure for \\(x \gg 1\\), which causes the scattered intensity in the backward direction to rapidly oscillate.
 
@@ -7848,11 +7848,11 @@ $$
 
 Eqn. 19.45 allows us to plot the mean cosine of a water droplet as a function of its size.
 
-{{< figure src="/img/water_mean_cos.svg" caption="*Figure N: Linear plot of the mean cosine of a water droplet. The horizontal axis represents the size parameter of the particle.*" >}}
+{{< figure src="/img/water_mean_cos.svg" caption="*Figure N: Linear plot of the mean cosine of a water droplet. The horizontal axis represents the size parameter \\(x\\) of the particle.*" >}}
 
 Up to \\(x \approx 5\\), the value of the mean cosine increases in line with the prediction based on the Mie effect. For larger particles, the size parameter \\(x \gg 1\\), and, as we have already seen, this condition leads to formation of the off-center peak structure around the forward direction. Initially, its magnitude is fairly significant in comparison with the size of the forward peak, which explains the dip in the plot at \\(x \approx 10\\). For particles larger still, the intensity of light scattered in the forward direction grows exponentially (see Fig. N), while most of the secondary components grow at a slower pace, which leads to the (asymptotically) rising value of the mean cosine.
 
-{{< figure src="/img/water_intensity.svg" caption="*Figure N: Logarithmic plot of the intensity of light scattered by a water droplet in the forward direction. The horizontal axis represents the size parameter of the particle.*" >}}
+{{< figure src="/img/water_intensity.svg" caption="*Figure N: Logarithmic plot of the intensity of light scattered by a water droplet in the forward direction. The horizontal axis represents the size parameter \\(x\\) of the particle.*" >}}
 
 The prominent wave pattern featured in the plot of Fig. N can be explained by the fact that the mean cosine is inversely proportional to the scattered power. The latter is most intuitively visualized by plotting the dimensionless scattering efficiency factor
 
@@ -7867,7 +7867,7 @@ $$
 
 defined in Eqn. 16.38.2.
 
-{{< figure src="/img/water_sca_eff.svg" caption="*Figure N: Linear plot of the scattering efficiency factor of a water droplet. The horizontal axis represents the size parameter of the particle.*" >}}
+{{< figure src="/img/water_sca_eff.svg" caption="*Figure N: Linear plot of the scattering efficiency factor of a water droplet. The horizontal axis represents the size parameter \\(x\\) of the particle.*" >}}
 
 We can observe that the scattering efficiency is an oscillating function of the particle size. In addition to the large quasi-periodic *interference structure* that is generated by *refracted* light rays \\((n < x)\\), the curve exhibits a fine *ripple structure* that is typically attributed to *resonating* [surface waves](https://en.wikipedia.org/wiki/Surface_wave) \\((n > x)\\) traveling along the sphere's boundary \[[4](#references) (ch. 17.3), [23](#references), [24](#references)\]. Ripple is not present in plots of absorptive particles, since the amplitude of a surface wave is easily attenuated, primarily because the length of its path (its *orbit*) can easily exceed the diameter of the sphere. The partial waves presently not accounted for \\((n \approx x)\\) are generated by rays hitting the edges of (or *tunneling* through) the sphere; they constitute diffracted light \[[16](#references) (ch. 8)\].
 
@@ -7983,7 +7983,7 @@ Eqn. 20.6 constitutes the classical description of molecular light scattering, w
 We shall begin our investigation of light-matter interactions with the simplest state of matter -- [gas](https://en.wikipedia.org/wiki/Gas). Specifically, let us consider a *group of gas molecules* with the following (fairly typical) properties:
 
 1. The molecules are small compared to the wavelength of light. If \\(a\\) is the largest linear dimension of the molecule (e.g. its radius), and \\(k = k_0 = \omega / c\\) is the vacuum wavenumber, then \\(x = k a \ll 1\\).
-2. The molecules are non-magnetic, weakly absorbing and weakly scattering. If \\(m\\) is the refractive index of the molecule (not to be confused with the refractive index of the gas as a medium), then \\(|m x| \ll 1\\).
+2. The molecules are non-magnetic, and not too strongly absorbing or scattering. If \\(m\\) is the refractive index of the molecule (not to be confused with the refractive index of the gas as a medium), then \\(|m x| \ll 1\\).
 3. The average distance between the molecules is large.
 4. The number \\(N\\) of molecules within the group is not too great.
 5. The volume \\(V\\) containing the group of molecules is large compared to the wavelength of light. If \\(L\\) is the smallest linear dimension of the volume (e.g. its length), then \\(k L \gg 1\\).
@@ -8542,7 +8542,7 @@ $$ \tag{21.41}
 	\Epsilon_i.
 $$
 
-The expression of the scattering coefficient \\(\varSigma_s\\)is found by dividing Eqn. 21.41 by \\(\Epsilon_i\\) and replacing \\(N\\) with \\(n(\bm{r})\\), as shown by Eqn. 17.57-17.58:
+The expression of the scattering coefficient \\(\varSigma_s\\) is found by dividing Eqn. 21.41 by \\(\Epsilon_i\\) and replacing \\(N\\) with \\(n(\bm{r})\\), as shown by Eqn. 17.57-17.58:
 
 $$ \tag{21.42}
 	\varSigma_s(\bm{r})
@@ -9072,21 +9072,103 @@ In comparison with Eqn. 21.40 of the Rayleigh scattering, the angular distributi
 
 In order to consider a wide range of particle sizes, the conditions imposed by Eqn. 22.1 and 22.3 require that \\(|m|\\) is small; below, we shall consider the case of \\(m = 1.001\\). It is interesting to compare the resulting intensity diagrams to those of a water droplet \\((m = 4/3)\\) computed using the Lorenz-Mie-Debye formulae of Sec. 19.
 
-{{< figure src="/img/rgb_x01.svg" caption="*Figure 22.1: Linear plot of the intensity of light scattered by a homogeneous sphere of size \\(x = 0.01\\).*" >}}
+{{< figure src="/img/rgb_x01.svg" caption="*Figure 22.1: Linear plot of the intensity of light scattered by a homogeneous sphere characterized by the parameters \\(m = 1.001, x = 0.01\\).*" >}}
 
 For \\(x \le 0.1\\), the distribution of scattered light is practically identical to that of Rayleigh scattering (cf. Fig. 19.N).
 
-{{< figure src="/img/rgb_x1.svg" caption="*Figure 22.2: Linear plot of the intensity of light scattered by a homogeneous sphere of size \\(x = 1\\).*" >}}
+{{< figure src="/img/rgb_x1.svg" caption="*Figure 22.2: Linear plot of the intensity of light scattered by a homogeneous sphere characterized by the parameters \\(m = 1.001, x = 1\\).*" >}}
 
 As \\(x \to 1\\), the pear shape is faithfully reproduced (cf. Fig. 19.N).
 
-{{< figure src="/img/rgb_x2.svg" caption="*Figure 22.3: Linear plot of the intensity of light scattered by a homogeneous sphere of size \\(x = 2\\).*" >}}
+{{< figure src="/img/rgb_x2.svg" caption="*Figure 22.3: Linear plot of the intensity of light scattered by a homogeneous sphere characterized by the parameters \\(m = 1.001, x = 2\\).*" >}}
 
 At \\(x = 2\\), the Mie effect becomes apparent. The forward (diffraction) lobe has roughly the same shape as for a water droplet (cf. Fig. 19.N); however, in the backward direction, the intensity is not quite the same, owing to the lack of reflection and refraction.
 
-{{< figure src="/img/rgb_x10.svg" caption="*Figure 22.4: Linear plot of the intensity of light scattered by a homogeneous sphere of size \\(x = 10\\).*" >}}
+{{< figure src="/img/rgb_x10.svg" caption="*Figure 22.4: Linear plot of the intensity of light scattered by a homogeneous sphere characterized by the parameters \\(m = 1.001, x = 10\\).*" >}}
 
 The same applies to larger particles. In particular, for \\(x = 10\\), the side lobes are completely absent (cf. Fig. 19.N).
+
+The total amount of scattered power is given by the integral of Eqn. 22.23 over a unit sphere (cf. Eqn. 17.56.2). Integration over the azimuthal angle \\(\phi\\) can be easily performed with the help of Eqn. 19.31, which leaves us with the integral of Eqn. 22.24 times \\(2 \pi \sin{\theta}\\) over the range spanned by zenith angle \\(\theta\\):
+
+$$ \tag{22.25}
+\begin{aligned}
+	\braket{\Phi_s^{tot}}
+	&= \frac{N}{k^2}
+	2 \pi \left| m^2 - 1 \right|^2
+	x^6 \int_{0}^{\pi}
+	\frac{j_1^2\negthinspace\big( 2 \sin(\theta/2) x \big)}{4 \sin^2(\theta/2) x^2}
+	\frac{\cos^2(\theta) + 1}{2}
+	\sin(\theta) \thinspace d\theta \thinspace \Epsilon_i
+	\cr
+	&= \frac{N}{k^2}
+	2 \pi \left| m^2 - 1 \right|^2
+	J_{rgb}(x) \Epsilon_i.
+\end{aligned}
+$$
+
+After making a change of variables
+
+$$ \tag{22.26}
+	u = 2 \sin(\theta/2),
+	\quad
+	du = \cos(\theta/2) \thinspace d\theta,
+	\quad
+	v = 4 x,
+$$
+
+and substituting Eqn. 22.13, integration by parts yields
+
+$$ \tag{22.27}
+\begin{aligned}
+	J_{rgb}(x)
+	&= \frac{x^6}{8} \int_{0}^{2}
+	\left( \frac{\sin ^2(u x)}{u^6 x^6}+\frac{\cos ^2(u x)}{u^4 x^4}-\frac{2 \sin (u x) \cos (u x)}{u^5 x^5} \right)
+	\left( u^4-4 u^2+8 \right)
+	u \thinspace du
+	\cr
+	&= \frac{16 \left(v^2-4\right) (\mathrm{Ci}(v)-\log (v)-\gamma )+v^4+20 v^2-8 v \sin (v)+56 (\cos (v)-1)}{1024},
+\end{aligned}
+$$
+
+where \\(\gamma \approx 0.57721\\) is the [Euler-Mascheroni constant](https://en.wikipedia.org/wiki/Euler%27s_constant), and
+
+$$ \tag{22.28}
+	\mathrm{Ci}(x) = -\int_{x}^{\infin} \frac{\cos{t}}{t} dt
+$$
+
+is the [cosine integral](https://mathworld.wolfram.com/CosineIntegral.html) \[[4](#references) (ch. 7.22)\].
+
+{{< figure src="/img/cos_int.svg" caption="*Figure N: plot of the cosine integral \\(\mathrm{Ci}(x)\\).*" >}}
+
+The expression of the scattering coefficient \\(\varSigma_s\\) is found by dividing Eqn. 22.25 by \\(\Epsilon_i\\) and replacing \\(N\\) with \\(n(\bm{r})\\), as shown by Eqn. 17.57-17.58:
+
+$$ \tag{22.29}
+	\varSigma_s(\bm{r})
+	= n(\bm{r}) \braket{C_s}
+	= n(\bm{r}) 2 \pi \left| m^2 - 1 \right|^2
+	\frac{J_{rgb}(x)}{k^2}.
+$$
+
+For small particles,
+
+$$ \tag{22.30}
+	J_{rgb}(x) = \frac{4 x^6}{27} + \mathrm{O}\negmedspace\left( x^8 \right),
+$$
+
+which means that Eqn. 22.29 agrees with the results of the Rayleigh scattering (cf. Eqn. 21.43, 22.20).
+
+It is interesting to visualize the mean scattering efficiency factor
+
+$$ \tag{22.31}
+	\braket{Q_s}
+	= \frac{\braket{C_s}}{2 \pi a^2}
+	= \left| m^2 - 1 \right|^2
+	\frac{J_{rgb}(x)}{x^2}.
+$$
+
+{{< figure src="/img/qs_rgb.svg" caption="*Figure N: Plot of the mean scattering efficiency factor of a homogeneous sphere of the relative wavenumber \\(m = 1.001\\). The horizontal axis represents the size parameter \\(x\\) of the particle.*" >}}
+
+Describe!..
 
 ---
 
@@ -9118,11 +9200,7 @@ $$ \tag{17.56}
 \end{aligned}
 $$
 
-For larger particles, RGB has a more interesting angular behavior... Angular depends on the size of the particle...
-
 ---
-
-RGB not mutually interacting dipoles
 
 TODO
 
