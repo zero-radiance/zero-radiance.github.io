@@ -4277,7 +4277,7 @@ $$ \tag{16.3x}
 \end{aligned}
 $$
 
-will be smaller in comparison to the amount of power \\(C_d \braket{\bm{S_i}} \cdot \bm{n_i}\\) arriving at the sensor in the absence of the particle, since the scattered power \\(C_d \braket{\bm{S_s}} \cdot \bm{n_i}\\) corresponding to the direction of incidence is smaller than the total amount of power \\(\Phi_s = \oint_{A} \braket{\bm{S_s}} \cdot \bm{n_s} \thinspace dA\\) scattered in all directions. Thus, we can draw a conclusion that transmission of a parallel beam of light through a particle reduces its intensity.
+will be smaller in comparison with the amount of power \\(C_d \braket{\bm{S_i}} \cdot \bm{n_i}\\) arriving at the sensor in the absence of the particle, since the scattered power \\(C_d \braket{\bm{S_s}} \cdot \bm{n_i}\\) corresponding to the direction of incidence is smaller than the total amount of power \\(\Phi_s = \oint_{A} \braket{\bm{S_s}} \cdot \bm{n_s} \thinspace dA\\) scattered in all directions. Thus, we can draw a conclusion that transmission of a parallel beam of light through a particle reduces its intensity.
 
 Eqn. 16.3x separates radiation transmitted in the direction of incidence into three components: the incident, the scattered, and the dissipated. Scattering tends to be separated from propagation of light, leading to the idea that particles "remove" energy from the incident beam. While this approach is conceptually plausible, the interpretation is not correct, since 1) the incident wave is not affected by the presence of the scattering object, and, as we shall see, 2) the calculated amount of scattered power is typically overestimated. This can lead to apparent paradoxes and violations of the law of conservation of energy. These issues can be avoided by focusing solely on the total electromagnetic field, which, as Eqn. 16.3x shows, is crucial if the measurement device is facing the source.
 
@@ -4522,7 +4522,7 @@ Therefore, the only term we have not yet previously encountered, \\(\braket{\bm{
 
 In order to obtain the desired solution, it is necessary to appeal to the [dynamic nature](https://en.wikipedia.org/wiki/Dynamical_system) of the microphysical system under consideration. Typically, the distribution of particles is not static -- it [evolves over time](https://en.wikipedia.org/wiki/Time_evolution), governed by processes such as [turbulence](https://en.wikipedia.org/wiki/Turbulence) or [Brownian motion](https://en.wikipedia.org/wiki/Brownian_motion). Thus, most relationships between the particles are not persistent and, when averaged over time -- not significant.
 
-Furthermore, while a system typically evolves fairly slowly in comparison to the period of oscillation of an electromagnetic wave, it may undergo a significant change during the time it takes to perform a measurement. We can take advantage of this fact by assuming that 1) dynamic light scattering is a [stationary process](https://en.wikipedia.org/wiki/Stationary_process),
+Furthermore, while a system typically evolves fairly slowly in comparison with the period of oscillation of an electromagnetic wave, it may undergo a significant change during the time it takes to perform a measurement. We can take advantage of this fact by assuming that 1) dynamic light scattering is a [stationary process](https://en.wikipedia.org/wiki/Stationary_process),
 such that the *mean value* of the Poynting vector
 
 $$ \tag{17.10}
@@ -4934,7 +4934,7 @@ The approximation of Eqn. 17.47 is reasonably accurate provided \\(g \leq 4\\).
 
 {{< figure src="/img/vol_int_3.svg" caption="*Figure N: Plot of \\(|v(0, g)|^2\\) defined by Eqn. 17.47.*" >}}
 
-Figure N demonstrates that the scattered waves always interfere in the direction of incidence \\((g = 0)\\). If, in addition, the dimensions of the particle group are small in comparison to the wavelength of light \\((g \leq k L \ll 1)\\), then the scattered waves strongly interfere in every direction. That is not surprising, since the particles simply do not have the opportunity to move out-of-phase.
+Figure N demonstrates that the scattered waves always interfere in the direction of incidence \\((g = 0)\\). If, in addition, the dimensions of the particle group are small in comparison with the wavelength of light \\((g \leq k L \ll 1)\\), then the scattered waves strongly interfere in every direction. That is not surprising, since the particles simply do not have the opportunity to move out-of-phase.
 
 {{< figure src="/img/vol_int_4.svg" caption="*Figure N: Plot of \\(g^4 |v(0, g)|^2\\) defined by Eqn. 17.47. We can observe that the moving average of \\(|v(0, g)|^2\\) is inversely proportional to \\(g^4\\), and thus, \\((k L)^4\\).*" >}}
 
@@ -9066,13 +9066,13 @@ $$ \tag{22.24}
 \end{aligned}
 $$
 
-In comparison to Eqn. 21.40 of the Rayleigh scattering, the angular distribution of scattered light of Eqn. 22.24 can take different forms, depending on the size parameter \\(x\\) of the particle.
+In comparison with Eqn. 21.40 of the Rayleigh scattering, the angular distribution of scattered light of Eqn. 22.24 can take on different forms, depending on the size parameter \\(x\\) of the particle.
 
-In order to consider a wide range of particle sizes, the conditions imposed by Eqn. 22.1 and 22.3 require that \\(|m|\\) is small; below, we shall consider the case of \\(m = 1.001\\). It is interesting to compare the resulting intensity diagrams to those of a water droplet \\((m = 4/3)\\) computed using the Lorenz-Mie-Debye formulae in Sec. 19.
+In order to consider a wide range of particle sizes, the conditions imposed by Eqn. 22.1 and 22.3 require that \\(|m|\\) is small; below, we shall consider the case of \\(m = 1.001\\). It is interesting to compare the resulting intensity diagrams to those of a water droplet \\((m = 4/3)\\) computed using the Lorenz-Mie-Debye formulae of Sec. 19.
 
 {{< figure src="/img/rgb_x01.svg" caption="*Figure 22.1: Linear plot of the intensity of light scattered by a homogeneous sphere of size \\(x = 0.01\\).*" >}}
 
-For \\(x \lessapprox 0.1\\), the distribution of scattered light is practically identical to that of Rayleigh scattering (cf. Fig. 19.N).
+For \\(x \le 0.1\\), the distribution of scattered light is practically identical to that of Rayleigh scattering (cf. Fig. 19.N).
 
 {{< figure src="/img/rgb_x1.svg" caption="*Figure 22.2: Linear plot of the intensity of light scattered by a homogeneous sphere of size \\(x = 1\\).*" >}}
 
@@ -9080,7 +9080,7 @@ As \\(x \to 1\\), the pear shape is faithfully reproduced (cf. Fig. 19.N).
 
 {{< figure src="/img/rgb_x2.svg" caption="*Figure 22.3: Linear plot of the intensity of light scattered by a homogeneous sphere of size \\(x = 2\\).*" >}}
 
-For \\(x = 2\\), the Mie effect is very apparent. The forward (diffraction) lobe has roughly the same shape as for a water droplet (cf. Fig. 19.N); however, in the backward direction, the intensity is not the same, owing to (the lack of) reflection and refraction.
+At \\(x = 2\\), the Mie effect becomes apparent. The forward (diffraction) lobe has roughly the same shape as for a water droplet (cf. Fig. 19.N); however, in the backward direction, the intensity is not quite the same, owing to the lack of reflection and refraction.
 
 {{< figure src="/img/rgb_x10.svg" caption="*Figure 22.4: Linear plot of the intensity of light scattered by a homogeneous sphere of size \\(x = 10\\).*" >}}
 
