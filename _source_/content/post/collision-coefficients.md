@@ -8776,7 +8776,9 @@ Unfortunately, evaluation of these integrals poses a challenge: not just because
 Imagine a particle illuminated by [X-rays](https://en.wikipedia.org/wiki/X-ray). The frequencies (and the momenta \\(p = \hbar \omega / c\\)) of the photons are so high that it renders the particle nearly transparent \[[4](#references) (ch. 7.5)\]. Thus, the squared magnitude of the relative wavenumber is very small:
 
 $$ \tag{22.1}
-	\left| m^2 - 1 \right| \ll 1.
+	\left| m^2 - 1 \right|
+	\approx
+	2 \left| m - 1 \right| \ll 1.
 $$
 
 Under these conditions, according to Eqn. 21.17, the field inside a tiny particle is practically the same as the incident field:
@@ -8966,7 +8968,7 @@ $$
 
 where the projection matrix \\(P_3\\) is used to discard the radial component of the field.
 
-By combining Eqn. 22.7, 22.16, and 22.17, the expression of the scattering matrix \\(S\\) of a homogeneous spherical particle is
+By combining Eqn. 22.7, 22.16, and 22.17, the expression of the scattering matrix \\(S\\) of a homogeneous spherical particle \[[4](#references) (ch. 7.21)\] is
 
 $$ \tag{22.18}
 	S(\theta, \omega)
@@ -8987,7 +8989,7 @@ $$ \tag{22.19}
 	= \frac{1}{3} + \mathrm{O}\big( y^2 \big).
 $$
 
-At the same time, if the value of \\(|m^2 - 1|\\) is small,
+At the same time, if \\(\left| m^2 - 1 \right| \ll 1\\),
 
 $$ \tag{22.20}
 	\frac{m^2 - 1}{m^2 + 2}
