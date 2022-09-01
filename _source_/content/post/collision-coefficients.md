@@ -4740,7 +4740,6 @@ $$
 
 Thus, the mean amount of power \\(\braket{\Phi_e}\\) dissipated per particle is the same as that of the average particle \[[8](#references) (ch. 14.6)\]. Intuitively, if the number density of the particles is small, their "extinction beams" [do not overlap](https://ghostbusters.fandom.com/wiki/Cross_the_Streams).
 
-
 It is also interesting to consider the impact of extinction on a small particle (as opposed to a large detector). The probability of lining up a uniformly-distributed particle with a fixed target is on the order of \\(1/L^2\\). If the particle group is sparse (with particles occupying a small fraction of the total volume), and the particles themselves are weakly absorbing and weakly scattering, then interference between the incident light and the light scattered by the particle group has practically no effect as far as another small particle is concerned (cf. Eqn. 17.0) \[[8](#references) (ch. 14.2)\]:
 
 $$ \tag{17.31}
@@ -5000,14 +4999,14 @@ $$ \tag{17.56}
 \begin{aligned}
 	\braket{\Iota_s^{tot}}
 	&= \sum_j r^2 \braket{\braket{\bm{S_j}}} \cdot \bm{n_s}
-	= N \frac{\mu\_0^{-1}}{2} \frac{\eta}{c} \frac{1}{k^2}
+	= \frac{N}{k^2} \frac{\mu\_0^{-1}}{2} \frac{\eta}{c}
 	\int_{\Psi} p(\psi)
 	\left| \mathcal{S_j}(\bm{n_s}, \psi) \cdot \bm{E_0} \right|^2
 	d\psi,
 	\cr
 	\braket{\Phi_s^{tot}}
 	&= \oint\_{\mathbb{S}^2} \braket{\Iota_s^{tot}} \negmedspace (\bm{n_s}) d\Omega
-	= N \frac{\mu\_0^{-1}}{2} \frac{\eta}{c} \frac{1}{k^2}
+	= \frac{N}{k^2} \frac{\mu\_0^{-1}}{2} \frac{\eta}{c}
 	\int_{\Psi} p(\psi) \oint\_{\mathbb{S}^2}
 	\left| \mathcal{S_j}(\bm{n_s}, \psi) \cdot \bm{E_0} \right|^2
 	d\Omega d\psi,
@@ -5015,7 +5014,7 @@ $$ \tag{17.56}
 	\braket{\Phi_e^{tot}}
 	&= L^2 \sum_j \oint\_{\mathbb{S}^2}
 	\left[ r^2 \braket{\braket{\bm{S_{ij}}}} \cdot \bm{n_s} \right] d\Omega
-	= N \frac{\mu\_0^{-1}}{2} \frac{\eta}{c} \frac{4 \pi}{k^2}
+	= \frac{N}{k^2} \frac{\mu\_0^{-1}}{2} \frac{\eta}{c} 4 \pi
 	\int_{\Psi} p(\psi)
 	\mathcal{Im} \left\lbrace
 	\bm{E_0^{\*}} \cdot \mathcal{S_j}(\bm{n_i}, \psi) \cdot \bm{E_0}
@@ -7451,13 +7450,13 @@ $$ \tag{19.21}
 \end{aligned}
 $$
 
-However, for very small particles with \\(| m x | \ll 1\\), it is somewhat more efficient to utilize Taylor series expansions. Using the expression of the complex exponential
+However, for very small particles with \\(| m x | \ll 1\\), it is somewhat more efficient to utilize Taylor series expansions. We may expand Eqn. 19.21 using the following expression of the complex exponential
 
 $$ \tag{19.2z}
 	e^{i x} = 1 + i x - \frac{x^2}{2} - i \frac{x^3}{6} + \frac{x^4}{24} + i \frac{x^5}{120} - \frac{x^6}{720} + \mathrm{O}\big( x^7 \big),
 $$
 
-we may expand Eqn. 19.21, and then substitute the resulting series into Eqn. 18.156. Restricting ourselves to polynomials of degree 6, we obtain
+and then substitute the resulting series into Eqn. 18.156. Restricting ourselves to polynomials of degree 6, we obtain
 
 $$ \tag{19.22}
 \begin{aligned}
@@ -7508,10 +7507,10 @@ $$
 
 Unexpectedly, for very small particles, the relationship between the electric and the magnetic coefficients is reversed: \\(a\_n \sim b_{n+1}\\) as opposed to \\(a_{n+1} \sim b\_n\\) when particles are very large.
 
-For small molecules, even the \\(x^5\\) term is often neglected. In this case, all coefficients except for
+For small molecules, even the \\(x^5\\) term is often neglected. In this case, all coefficients of \\(b_1/i\\) except for
 
 $$ \tag{19.24}
-	\frac{b_{1}}{i} \approx \frac{2}{3} \frac{m^2-1}{m^2+2} x^3
+	\frac{2}{3} \frac{m^2-1}{m^2+2} x^3
 $$
 
 vanish. Eqn. 19.24 is the basis of the famous law of [Rayleigh scattering](https://en.wikipedia.org/wiki/Rayleigh_scattering) that explains the color of the sky: when molecules of the atmosphere scatter sunlight, the intensity of blue light, which has a shorter wavelength, is much greater than of the rest of the [visible spectrum](https://en.wikipedia.org/wiki/Visible_spectrum), since the size parameter \\(x\\) is inversely proportional to the wavelength \\(\lambda\\).
@@ -7717,17 +7716,17 @@ For a typical [cloud droplet](https://ntrs.nasa.gov/citations/20160014659) of ra
 
 A polar plot can hardly convey how large the forward peak is. A rectangular plot shows that there is a 5 order-of-magnitude difference between the highest peak and the lowest trough.
 
-{{< figure src="/img/water_cloud_intensity.svg" caption="*Figure N: Logarithmic plot of the intensity of light scattered by a water droplet of size \\(x = 104.7\\). The horizontal axis represents the zenith angle of the direction of the sensor.*" >}}
+{{< figure src="/img/water_cloud_intensity.svg" caption="*Figure N: Plot of the intensity of light scattered by a water droplet of size \\(x = 104.7\\). The horizontal axis represents the zenith angle of the direction of the sensor.*" >}}
 
 How large is the contribution of the secondary components of the scattering function? We can answer this question by plotting the total amount of power scattered by the particle as a function of the solid angle, where a small solid angle corresponds to a tiny sensor located directly in front of the droplet, and \\(4 \pi\\) represents a hypothetical spherical sensor that completely surrounds the particle.
 
-{{< figure src="/img/water_cloud_power.svg" caption="*Figure N: Linear plot of the fraction of the scattered power for a water droplet of size \\(x = 104.7\\). The horizontal axis represents the solid angle subtended by the sensor.*" >}}
+{{< figure src="/img/water_cloud_power.svg" caption="*Figure N: Plot of the fraction of the scattered power for a water droplet of size \\(x = 104.7\\). The horizontal axis represents the solid angle subtended by the sensor.*" >}}
 
 It is convenient to normalize the graph by the total amount of power scattered by the droplet. This makes it easy to see that, while around 50% of the scattered power is concentrated in the forward direction, the remaining 50% is channeled elsewhere.
 
 Asymmetry of the angular distribution of the scattered light can be characterized in several different ways. For instance, we could take the intensity of light scattered in the forward direction and divide it by the corresponding intensity in the backward direction.
 
-{{< figure src="/img/water_intensity_ratio.svg" caption="*Figure N: Logarithmic plot of the ratio of the intensities of light scattered by a water droplet in the forward versus the backward direction. The horizontal axis represents the size parameter \\(x\\) of the particle.*" >}}
+{{< figure src="/img/water_intensity_ratio.svg" caption="*Figure N: Plot of the ratio of the intensities of light scattered by a water droplet in the forward versus the backward direction. The horizontal axis represents the size parameter \\(x\\) of the particle.*" >}}
 
 As it turns out, the result is a strongly varying function of \\(x\\). This can be explained by the presence of the off-center peak structure for \\(x \gg 1\\), which causes the scattered intensity in the backward direction to rapidly oscillate.
 
@@ -7848,11 +7847,11 @@ $$
 
 Eqn. 19.45 allows us to plot the mean cosine of a water droplet as a function of its size.
 
-{{< figure src="/img/water_mean_cos.svg" caption="*Figure N: Linear plot of the mean cosine of a water droplet. The horizontal axis represents the size parameter \\(x\\) of the particle.*" >}}
+{{< figure src="/img/water_mean_cos.svg" caption="*Figure N: Plot of the mean cosine of a water droplet. The horizontal axis represents the size parameter \\(x\\) of the particle.*" >}}
 
 Up to \\(x \approx 5\\), the value of the mean cosine increases in line with the prediction based on the Mie effect. For larger particles, the size parameter \\(x \gg 1\\), and, as we have already seen, this condition leads to formation of the off-center peak structure around the forward direction. Initially, its magnitude is fairly significant in comparison with the size of the forward peak, which explains the dip in the plot at \\(x \approx 10\\). For particles larger still, the intensity of light scattered in the forward direction grows exponentially (see Fig. N), while most of the secondary components grow at a slower pace, which leads to the (asymptotically) rising value of the mean cosine.
 
-{{< figure src="/img/water_intensity.svg" caption="*Figure N: Logarithmic plot of the intensity of light scattered by a water droplet in the forward direction. The horizontal axis represents the size parameter \\(x\\) of the particle.*" >}}
+{{< figure src="/img/water_intensity.svg" caption="*Figure N: Plot of the intensity of light scattered by a water droplet in the forward direction. The horizontal axis represents the size parameter \\(x\\) of the particle.*" >}}
 
 The prominent wave pattern featured in the plot of Fig. N can be explained by the fact that the mean cosine is inversely proportional to the scattered power. The latter is most intuitively visualized by plotting the dimensionless scattering efficiency factor
 
@@ -7867,7 +7866,7 @@ $$
 
 defined in Eqn. 16.38.2.
 
-{{< figure src="/img/water_sca_eff.svg" caption="*Figure N: Linear plot of the scattering efficiency factor of a water droplet. The horizontal axis represents the size parameter \\(x\\) of the particle.*" >}}
+{{< figure src="/img/water_sca_eff.svg" caption="*Figure N: Plot of the scattering efficiency factor of a water droplet. The horizontal axis represents the size parameter \\(x\\) of the particle.*" >}}
 
 We can observe that the scattering efficiency is an oscillating function of the particle size. In addition to the large quasi-periodic *interference structure* that is generated by *refracted* light rays \\((n < x)\\), the curve exhibits a fine *ripple structure* that is typically attributed to *resonating* [surface waves](https://en.wikipedia.org/wiki/Surface_wave) \\((n > x)\\) traveling along the sphere's boundary \[[4](#references) (ch. 17.3), [23](#references), [24](#references)\]. Ripple is not present in plots of absorptive particles, since the amplitude of a surface wave is easily attenuated, primarily because the length of its path (its *orbit*) can easily exceed the diameter of the sphere. The partial waves presently not accounted for \\((n \approx x)\\) are generated by rays hitting the edges of (or *tunneling* through) the sphere; they constitute diffracted light \[[16](#references) (ch. 8)\].
 
@@ -8394,7 +8393,7 @@ Due to the definition of polarizability, in Gaussian units, the elements of the 
 
 It's instructive to compare the resulting scattering matrix with the expression obtained using the Lorenz-Mie-Debye theory. Substitution of Eqn. 19.8 and 19.24 into 19.6 yields an expression that is identical to Eqn. 21.31, confirming both the accuracy of the *electrostatic dipole* approximation and the conditions of its validity. In contrast, the expression of the magnitude of an *electrodynamic dipole* (given by Eqn. 19.23.2) has several additional terms; while most are negligible in practice, it is worth pointing out an additional imaginary term highlighted by Eqn. 19.2y (that models *radiation damping* caused by the [self-force](https://en.wikipedia.org/wiki/Abraham%E2%80%93Lorentz_force)) that is entirely absent from the electrostatic approximation \[[4](#references) (ch. 6.13)\].
 
-#### Light Intensity and Collision Coefficients
+#### Light Intensity
 
 Let us calculate the quantities typically used to characterize light scattering by a group of gas molecules. For simplicity, we shall assume that we are dealing with a single type of molecule; that way, averaging over shapes, sizes, and compositions of different kinds of molecules can be avoided. Thus, all that is left is to evaluate the contribution of molecules in various orientations \[[2](#references) (ch. 18), [4](#references) (ch. 6.5)\].
 
@@ -8493,8 +8492,8 @@ After substitution of Eqn. 21.25 and 21.36 into 17.56.1, it becomes clear that t
 
 $$ \tag{21.38}
 	\braket{\Iota_s^{tot}}
-	= \frac{N}{k_0^2} \frac{\mu\_0^{-1}}{2} \frac{1}{c}
-	 \frac{k_0^6}{16 \pi^2} (4 A + B)
+	= N \frac{\mu\_0^{-1}}{2} \frac{1}{c}
+	 \frac{k_0^4}{16 \pi^2} (4 A + B)
 	\left(
 		\left( \cos^2{\theta} + \Delta \sin^2{\theta} \right)
 		\big| E_x(\phi) \big|^2 +
@@ -8507,13 +8506,13 @@ In the special case of natural light, we may average Eqn. 21.38 over all possibl
 $$ \tag{21.39}
 \begin{aligned}
 	\braket{\Iota_s^{tot}}
-	&= \frac{N}{k_0^2} \frac{k_0^6}{16 \pi^2}
+	&= N \frac{k_0^4}{16 \pi^2}
 	(4 A + B)
 	\left(
 		\cos^2{\theta} + \frac{\Delta + 1}{2} \sin^2{\theta}
 	\right) \Epsilon_i
 	\cr
-	&= \frac{N}{k_0^2} \frac{k_0^6}{16 \pi^2}
+	&= N \frac{k_0^4}{16 \pi^2}
 	(4 A + B)
 	\left(
 		\cos^2{\theta} \left( 1 - \frac{\Delta + 1}{2} \right) + \frac{\Delta + 1}{2}
@@ -8525,10 +8524,10 @@ For spherical particles, the corresponding expression is found by setting \\(\De
 
 $$ \tag{21.40}
 	\braket{\Iota_s^{tot}}
-	= \frac{N}{k_0^2} \frac{k_0^6}{16 \pi^2} |\alpha_m|^2
+	= N \frac{k_0^4}{16 \pi^2} |\alpha_m|^2
 	\frac{ \cos^2{\theta} + 1 }{2} \Epsilon_i
-	= \frac{N}{k_0^2} \left| \frac{m^2 - 1}{m^2 + 2} \right|^2
-	x^6 \frac{ \cos^2{\theta} + 1 }{2} \Epsilon_i.
+	= N \left| \frac{m^2 - 1}{m^2 + 2} \right|^2
+	\frac{x^6}{k_0^2} \frac{ \cos^2{\theta} + 1 }{2} \Epsilon_i.
 $$
 
 Due to the definition of polarizability, in Gaussian units, the intensity is greater by a factor of \\(16 \pi^2\\) \[[4](#references) (ch. 6.12, 6.52)\].
@@ -8542,7 +8541,25 @@ $$ \tag{21.41}
 	\Epsilon_i.
 $$
 
-The expression of the scattering coefficient \\(\varSigma_s\\) is found by dividing Eqn. 21.41 by \\(\Epsilon_i\\) and replacing \\(N\\) with \\(n(\bm{r})\\), as shown by Eqn. 17.57-17.58:
+Since the distribution of scattered light is mirror-symmetrical with respect to the transverse plane of the direction of propagation, the value of the mean cosine \\(\braket{g}\\) (defined by Eqn. 19.35-19.37) is
+
+$$ \tag{21.4x}
+\begin{aligned}
+	\braket{g}(\omega)
+	&= \braket{\cos{\theta}}
+	= \int_{-\pi}^{\pi} \int_{0}^{\pi} \frac{\braket{\Iota_s^{tot}}(\theta, \phi, \omega)}{\braket{\Phi_s^{tot}}(\omega)} \cos{\theta} \sin{\theta} d\theta d\phi
+	\cr
+	&= \int_{0}^{\pi}
+	\left(
+		\cos^2{\theta} \left( 1 - \frac{\Delta + 1}{2} \right) + \frac{\Delta + 1}{2}
+	\right)
+	\cos{\theta} \sin{\theta} d\theta = 0.
+\end{aligned}
+$$
+
+#### Collision Coefficients
+
+The formula of the scattering coefficient \\(\varSigma_s\\) is found by dividing Eqn. 21.41 by \\(\Epsilon_i\\) and replacing \\(N\\) with \\(n(\bm{r})\\), as shown by Eqn. 17.57-17.58:
 
 $$ \tag{21.42}
 	\varSigma_s(\bm{r})
@@ -8726,7 +8743,7 @@ $$ \tag{21.56}
 	\mathcal{Im} \left\lbrace \alpha_m \right\rbrace \Epsilon_i.
 $$
 
-The corresponding expression of the absorbed coefficient \\(\varSigma_a\\) is
+The corresponding expression of the absorption coefficient \\(\varSigma_a\\) is
 
 $$ \tag{21.57}
 	\varSigma_a(\bm{r})
@@ -8998,7 +9015,7 @@ $$
 
 Thus, Eqn. 21.31 and 22.18 match if the particles are small and the condition imposed by Eqn. 22.1 is satisfied.
 
-##### Light Intensity and Collision Coefficients
+##### Light Intensity
 
 Given the expression of the scattering matrix \\(S\\) and the probability distribution \\(p(\psi)\\) of particles, computation of the the mean intensity of scattered light amounts to evaluation of Eqn. 17.56.1:
 
@@ -9043,8 +9060,8 @@ $$ \tag{22.23}
 		E_y(\phi) \cr
 	\end{bmatrix} \right|^2
 	\cr
-	&= \frac{N}{k^2} \frac{\mu\_0^{-1}}{2} \frac{\eta}{c}
-	\left| m^2 - 1 \right|^2 x^6
+	&= N \frac{\mu\_0^{-1}}{2} \frac{\eta}{c}
+	\left| m^2 - 1 \right|^2 \frac{x^6}{k^2}
 	\frac{j_1^2\negthinspace\big( 2 \sin(\theta/2) x \big)}{4 \sin^2(\theta/2) x^2}
 	\left(
 		\cos^2(\theta)
@@ -9061,8 +9078,8 @@ In the special case of natural light, we may average Eqn. 22.24 over all possibl
 $$ \tag{22.24}
 \begin{aligned}
 	\braket{\Iota_s^{tot}}
-	&= \frac{N}{k^2}
-	\left| m^2 - 1 \right|^2 x^6
+	&= N
+	\left| m^2 - 1 \right|^2 \frac{x^6}{k^2}
 	\frac{j_1^2\negthinspace\big( 2 \sin(\theta/2) x \big)}{4 \sin^2(\theta/2) x^2}
 	\frac{\cos^2(\theta) + 1}{2} \Epsilon_i.
 \end{aligned}
@@ -9070,11 +9087,11 @@ $$
 
 In comparison with Eqn. 21.40 of the Rayleigh scattering, the angular distribution of scattered light of Eqn. 22.24 can take on different forms, depending on the size parameter \\(x\\) of the particle.
 
-In order to consider a wide range of particle sizes, the conditions imposed by Eqn. 22.1 and 22.3 require that \\(|m|\\) is small; below, we shall consider the case of \\(m = 1.001\\). It is interesting to compare the resulting intensity diagrams to those of a water droplet \\((m = 4/3)\\) computed using the Lorenz-Mie-Debye formulae of Sec. 19.
+Eqn. 22.1 and 22.3 require that \\(|m - 1|\\) is small; in order to allow for a wide range of particle sizes, we shall consider the case of \\(m = 1.001\\). It is interesting to compare the resulting intensity diagrams to those of a water droplet \\((m = 4/3)\\) computed using the Lorenz-Mie-Debye formulae of Sec. 19.
 
 {{< figure src="/img/rgb_x01.svg" caption="*Figure 22.1: Linear plot of the intensity of light scattered by a homogeneous sphere characterized by the parameters \\(m = 1.001, x = 0.01\\).*" >}}
 
-For \\(x \le 0.1\\), the distribution of scattered light is practically identical to that of Rayleigh scattering (cf. Fig. 19.N).
+For \\(x \le 0.1\\), the angular distribution of scattered light is practically identical to that of Rayleigh scattering (cf. Fig. 19.N).
 
 {{< figure src="/img/rgb_x1.svg" caption="*Figure 22.2: Linear plot of the intensity of light scattered by a homogeneous sphere characterized by the parameters \\(m = 1.001, x = 1\\).*" >}}
 
@@ -9082,27 +9099,26 @@ As \\(x \to 1\\), the pear shape is faithfully reproduced (cf. Fig. 19.N).
 
 {{< figure src="/img/rgb_x2.svg" caption="*Figure 22.3: Linear plot of the intensity of light scattered by a homogeneous sphere characterized by the parameters \\(m = 1.001, x = 2\\).*" >}}
 
-At \\(x = 2\\), the Mie effect becomes apparent. The forward (diffraction) lobe has roughly the same shape as for a water droplet (cf. Fig. 19.N); however, in the backward direction, the intensity is not quite the same, owing to the lack of reflection and refraction.
+At \\(x = 2\\), the Mie effect is very apparent. The forward (diffraction) lobe has roughly the same shape as that of a water droplet (cf. Fig. 19.N); however, in the backward direction, the intensity is not quite the same, owing to the lack of reflection and refraction.
 
 {{< figure src="/img/rgb_x10.svg" caption="*Figure 22.4: Linear plot of the intensity of light scattered by a homogeneous sphere characterized by the parameters \\(m = 1.001, x = 10\\).*" >}}
 
-The same applies to larger particles. In particular, for \\(x = 10\\), the side lobes are completely absent (cf. Fig. 19.N).
+The same applies to larger particles. Note that, for \\(x = 10\\), the side lobes are completely absent (cf. Fig. 19.N).
 
-The total amount of scattered power is given by the integral of Eqn. 22.23 over a unit sphere (cf. Eqn. 17.56.2). Integration over the azimuthal angle \\(\phi\\) can be easily performed with the help of Eqn. 19.31, which leaves us with the integral of Eqn. 22.24 times \\(2 \pi \sin{\theta}\\) over the range spanned by zenith angle \\(\theta\\):
+The total amount of scattered power is given by the integral of Eqn. 22.23 over a unit sphere (cf. Eqn. 17.56.2). Integration over the azimuthal angle \\(\phi\\) can be easily performed with the help of Eqn. 19.31; this leaves us with the integral of Eqn. 22.24 times \\(2 \pi \sin{\theta}\\) over the range spanned by zenith angle \\(\theta\\):
 
 $$ \tag{22.25}
 \begin{aligned}
 	\braket{\Phi_s^{tot}}
-	&= \frac{N}{k^2}
+	&= N
 	2 \pi \left| m^2 - 1 \right|^2
-	x^6 \int_{0}^{\pi}
+	\frac{x^6}{k^2} \int_{0}^{\pi}
 	\frac{j_1^2\negthinspace\big( 2 \sin(\theta/2) x \big)}{4 \sin^2(\theta/2) x^2}
 	\frac{\cos^2(\theta) + 1}{2}
 	\sin(\theta) \thinspace d\theta \thinspace \Epsilon_i
 	\cr
-	&= \frac{N}{k^2}
-	2 \pi \left| m^2 - 1 \right|^2
-	J_{rgb}(x) \Epsilon_i.
+	&= N 2 \pi \left| m^2 - 1 \right|^2
+	\frac{J_{rgb}(x)}{k^2} \Epsilon_i.
 \end{aligned}
 $$
 
@@ -9138,67 +9154,102 @@ $$
 
 is the [cosine integral](https://mathworld.wolfram.com/CosineIntegral.html) \[[4](#references) (ch. 7.22)\].
 
-{{< figure src="/img/cos_int.svg" caption="*Figure N: plot of the cosine integral \\(\mathrm{Ci}(x)\\).*" >}}
+{{< figure src="/img/cos_int.svg" caption="*Figure N: Plot of the cosine integral \\(\mathrm{Ci}(x)\\).*" >}}
 
-The expression of the scattering coefficient \\(\varSigma_s\\) is found by dividing Eqn. 22.25 by \\(\Epsilon_i\\) and replacing \\(N\\) with \\(n(\bm{r})\\), as shown by Eqn. 17.57-17.58:
+Given the wide range of shapes of the scattering diagrams, it is interesting to plot the mean cosine \\(\braket{g}\\) (defined by Eqn. 19.35-19.37)
 
 $$ \tag{22.29}
+\begin{aligned}
+	\braket{g}\negmedspace(x)
+	&= \braket{\cos{\theta}}
+	= \int_{-\pi}^{\pi} \int_{0}^{\pi} \frac{\braket{\Iota_s^{tot}}(\theta, \phi, \omega)}{\braket{\Phi_s^{tot}}(\omega)} \cos{\theta} \sin{\theta} d\theta d\phi
+	\cr
+	&= \frac{x^6}{J_{rgb}(x)} \int_{0}^{\pi}
+	\left(
+	\frac{j_1^2\negthinspace\big( 2 \sin(\theta/2) x \big)}{4 \sin^2(\theta/2) x^2}
+	\frac{\cos^2(\theta) + 1}{2}
+	\right)
+	\cos{\theta} \sin{\theta} d\theta
+	= \frac{K_{rgb}(x)}{J_{rgb}(x)}
+\end{aligned}
+$$
+
+as a function of the particle size \\(x\\), where
+
+$$ \tag{22.30}
+\small
+\begin{aligned}
+	K_{rgb}(x)
+	&= \frac{x^6}{16} \int_{0}^{2}
+	\left( \frac{\sin ^2(u x)}{u^6 x^6}+\frac{\cos ^2(u x)}{u^4 x^4}-\frac{2 \sin (u x) \cos (u x)}{u^5 x^5} \right)
+	\left(u^4-4 u^2+8\right) \left(2 - u^2\right)
+	u \thinspace du
+	\cr
+	&= \frac{32 v^2 \left(v^2-6\right) \left(\text{Ci}(v)-\log (v)+3/2-\gamma \right)+v^6-4 v^4+8 \left(72-5 v^2\right) (v \sin (v)+\cos (v)-1)}{1024 v^2}.
+\end{aligned}
+$$
+
+{{< figure src="/img/rgb_asymmetry.svg" caption="*Figure N: Plot of the mean cosine \\(\braket{g}\\) of a homogeneous sphere. The horizontal axis represents the size parameter \\(x\\) of the particle. The solid line corresponds to \\(m=1.001\\), while the dashed -- to \\(m=4/3\\).*" >}}
+
+Comparison of the resulting plot to that of a water droplet (cf. Fig. N) shows that the approximation is reasonably accurate for \\(x \le 1\\). However, for small particles, it is far more efficient to use the Taylor series expansions instead:
+
+$$ \tag{22.31}
+\begin{aligned}
+	J_{rgb}(x) &= \frac{4 x^6}{27} + \mathrm{O}\negmedspace\left( x^8 \right),
+	\cr
+	K_{rgb}(x) &= \frac{16 x^8}{675} + \mathrm{O}\negmedspace\left( x^{10} \right),
+	\cr
+	\braket{g}\negmedspace(x) &= \frac{4 x^2}{25} + \mathrm{O}\negmedspace\left( x^4 \right).
+\end{aligned}
+$$
+
+##### Collision Coefficients
+
+The formula of the scattering coefficient \\(\varSigma_s\\) is found by dividing Eqn. 22.25 by \\(\Epsilon_i\\) and replacing \\(N\\) with \\(n(\bm{r}),\\) as shown by Eqn. 17.57-17.58:
+
+$$ \tag{22.32}
 	\varSigma_s(\bm{r})
 	= n(\bm{r}) \braket{C_s}
 	= n(\bm{r}) 2 \pi \left| m^2 - 1 \right|^2
 	\frac{J_{rgb}(x)}{k^2}.
 $$
 
-For small particles,
-
-$$ \tag{22.30}
-	J_{rgb}(x) = \frac{4 x^6}{27} + \mathrm{O}\negmedspace\left( x^8 \right),
-$$
-
-which means that Eqn. 22.29 agrees with the results of the Rayleigh scattering (cf. Eqn. 21.43, 22.20).
-
 It is interesting to visualize the mean scattering efficiency factor
 
-$$ \tag{22.31}
+$$ \tag{22.33}
 	\braket{Q_s}
 	= \frac{\braket{C_s}}{2 \pi a^2}
 	= \left| m^2 - 1 \right|^2
-	\frac{J_{rgb}(x)}{x^2}.
+	\frac{J_{rgb}(x)}{x^2}
 $$
 
-{{< figure src="/img/qs_rgb.svg" caption="*Figure N: Plot of the mean scattering efficiency factor of a homogeneous sphere of the relative wavenumber \\(m = 1.001\\). The horizontal axis represents the size parameter \\(x\\) of the particle.*" >}}
+and compare its plot to that of a water droplet (cf. Fig. N).
 
-Describe!..
+{{< figure src="/img/qs_rgb.svg" caption="*Figure N: Plot of the mean scattering efficiency factor of a homogeneous sphere of \\(m = 1.001\\). The horizontal axis represents the size parameter \\(x\\) of the particle.*" >}}
 
----
+Unsurprisingly, the small value of the relative wavenumber \\(m\\) results in low scattering efficiency.
 
-$$ \tag{17.56}
-\begin{aligned}
-	\braket{\Iota_s^{tot}}
-	&= \sum_j r^2 \braket{\braket{\bm{S_j}}} \cdot \bm{n_s}
-	= N \frac{\mu\_0^{-1}}{2} \frac{\eta}{c} \frac{1}{k^2}
-	\int_{\Psi} p(\psi)
-	\left| \mathcal{S_j}(\bm{n_s}, \psi) \cdot \bm{E_0} \right|^2
-	d\psi,
-	\cr
-	\braket{\Phi_s^{tot}}
-	&= \oint\_{\mathbb{S}^2} \braket{\Iota_s^{tot}} \negmedspace (\bm{n_s}) d\Omega
-	= N \frac{\mu\_0^{-1}}{2} \frac{\eta}{c} \frac{1}{k^2}
-	\int_{\Psi} p(\psi) \oint\_{\mathbb{S}^2}
-	\left| \mathcal{S_j}(\bm{n_s}, \psi) \cdot \bm{E_0} \right|^2
-	d\Omega d\psi,
-	\cr
-	\braket{\Phi_e^{tot}}
-	&= L^2 \sum_j \oint\_{\mathbb{S}^2}
-	\left[ r^2 \braket{\braket{\bm{S_{ij}}}} \cdot \bm{n_s} \right] d\Omega
-	= N \frac{\mu\_0^{-1}}{2} \frac{\eta}{c} \frac{4 \pi}{k^2}
-	\int_{\Psi} p(\psi)
-	\mathcal{Im} \left\lbrace
-	\bm{E_0^{\*}} \cdot \mathcal{S_j}(\bm{n_i}, \psi) \cdot \bm{E_0}
-	\right\rbrace
-	d\psi.
-\end{aligned}
+Also, unless \\(m\\) is complex, the scattering matrix is both diagonal and real-valued. Just as for the Rayleigh scattering (cf. Eqn. 21.47), the optical theorem (cf. Eqn. 16.41) fails to register any extinction. Thus, once again, we have to resort to applying Ohm's law given by Eqn. 16.3z:
+
+$$ \tag{22.34}
+	\braket{\Phi_a^{tot}}
+	= N \frac{\mu\_0^{-1}}{2} \frac{\eta}{c} k
+	\mathcal{Im} \left\lbrace \frac{m^2}{\mu\_r} \right\rbrace
+	\int\_{V} \big| \bm{E}(\bm{r'}) \big|^2 dV'
+	= N 4 \pi \mathcal{Im} \left\lbrace \frac{m^2}{3 \mu\_r} \right\rbrace
+	\frac{x^3}{k^2}.
 $$
+
+The corresponding expression of the absorption coefficient \\(\varSigma_a\\) is
+
+$$ \tag{22.35}
+	\varSigma_a(\bm{r})
+	= n(\bm{r}) 4 \pi
+	\mathcal{Im} \left\lbrace \frac{m^2}{3 \mu\_r} \right\rbrace
+	\frac{x^3}{k^2}.
+$$
+
+It matches the Rayleigh scattering counterpart (cf. Eqn. 21.58) when \\(|m - 1|\\) is small. Thus, for small particles, absorption tend to dominate scattering (cf. Eqn. 21.59), even if the imaginary part of \\(m\\) is fairly small.
 
 ---
 
