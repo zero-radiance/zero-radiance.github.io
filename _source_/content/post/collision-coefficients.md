@@ -3306,11 +3306,11 @@ $$
 For convenience, we define the *potential function*
 
 $$ \tag{14.3}
-u(\bm{r}, k, \omega) =
-\begin{cases}
-   k^2 \big( m^2(\bm{r}, \omega) - 1 \big) &\text{if } \bm{r} \in V, \cr
-   0 &\text{otherwise},
-\end{cases}
+	u(\bm{r}, k, \omega) =
+	\begin{cases}
+	   k^2 \big( m^2(\bm{r}, \omega) - 1 \big) &\text{if } \bm{r} \in V, \cr
+	   0 &\text{otherwise},
+	\end{cases}
 $$
 
 that allows us to write Eqn. 14.2 in a more compact form:
@@ -8829,11 +8829,12 @@ Evidently, the internal field is approximately the same as the incident field if
 
 It is important to understand the difference between the Rayleigh and the Rayleigh-Gans-Born approximations. The former assumes that \\(x \ll 1\\), while \\(|m|\\) can not be too great. The latter requires \\(|m - 1| \ll 1\\), while \\(x\\) must not be too large. They have a case in common: namely, \\(x \ll 1,|m - 1| \ll 1\\).
 
-Formally, the Rayleigh-Gans-Born approximation corresponds to the first term of the Born series \[while Rayleigh's approximation is the first term of the multipole series\] expansion of the electric field, which makes it the *first-order Born approximation*. According to Eqn. 14.3 and 14.5, the associated expression of the transition dyadic \\(\mathcal{T}\\) is simply
+Formally, the Rayleigh-Gans-Born approximation corresponds to the first term of the Born series \[while Rayleigh's approximation is the first term of the multipole series\] expansion of the electric field, which makes it the *first-order Born approximation*. According to Eqn. 14.22, the associated expression of the transition dyadic \\(\mathcal{T}\\) is simply
 
 $$ \tag{22.5}
-	\mathcal{T} \big( \bm{r'}, \bm{r''}, k(\omega), \omega \big) =
-	k^2 \big( m^2(\bm{r'}, \omega) - 1 \big) \delta(\bm{r'} - \bm{r''}).
+	\mathcal{T} \big( \bm{r}, \bm{r'}, k(\omega), \omega \big)
+	\approx k^2(\omega) \big( m^2(\bm{r}, \omega) - 1 \big)
+	\delta(\bm{r} - \bm{r'}) \mathcal{I}.
 $$
 
 After substituting Eqn. 22.2 into 13.12, the far-field expression of the volume integral equation
@@ -9258,12 +9259,34 @@ It matches the Rayleigh scattering counterpart (cf. Eqn. 21.58) when \\(|m - 1|\
 
 #### Anomalous Diffraction Approximation
 
-The biggest drawback of the Rayleigh-Gans-Born approximation stems from the assumption that the value of the internal field is exactly the same as that of the incident field. While that drastically simplifies the resulting expressions, it severely limits their range of applicability, since the the relative wavenumber \\(m\\) is not allowed to appreciably deviate from unity. Physically, it implies that the particle is composed of dipoles that do not interact with each other. Formally, this interaction can be expressed using a Born series expansion ()
+The biggest drawback of the Rayleigh-Gans-Born approximation stems from the assumption that the internal field is virtually indistinguishable from the incident field. While that drastically simplifies the resulting expressions, it severely limits their range of applicability, since the the relative wavenumber \\(m\\) may not appreciably deviate from unity. Physically, it implies that the particle is composed of dipoles that do not interact with each other. Formally, this interaction is captured by the Born series expansion (cf. Eqn. 14.3, 14.4, 14.20)
 
-$$ \tag{14.4}
+$$ \tag{23.1}
+\small
+\begin{aligned}
 	\bm{E}(\bm{r}, \omega)
-	= \bm{E_i}(\bm{r}, \omega)
-	+ \int\_{V} u \big( \bm{r'}, k(\omega), \omega \big) \mathcal{G}\_e \big( \bm{r}, \bm{r'}, k(\omega) \big) \cdot \bm{E}(\bm{r'}, \omega) dV'.
+	&= \bm{E_i}(\bm{r}, \omega)
+	\cr
+	&+ k^2(\omega) \int\_{V} \big( m^2(\bm{r'}, \omega) - 1 \big)
+	\mathcal{G}\_e \big( \bm{r}, \bm{r'}, k(\omega) \big) \cdot
+	\bm{E_i}(\bm{r'}, \omega) dV'
+	\cr
+	&+ k^4(\omega) \int\_{V} \big( m^2(\bm{r'}, \omega) - 1 \big)
+	\mathcal{G}\_e \big( \bm{r}, \bm{r'}, k(\omega) \big) \cdot
+	\int\_{V} \big( m^2(\bm{r''}, \omega) - 1 \big)
+	\mathcal{G}\_e \big( \bm{r'}, \bm{r''}, k(\omega) \big) \cdot
+	\bm{E_i}(\bm{r''}, \omega) dV'' dV'
+	\cr
+	&+ ...
+\end{aligned}
+$$
+
+The first two lines of Eqn. 23.1 represent the first-order Born (or the Rayleigh-Gans-Born) approximation, which we covered in the previous section. Let us extend our analysis to the last term that completes the second-order Born approximation. According to Eqn. 14.22, the associated expression of the transition dyadic \\(\mathcal{T}\\) is
+
+$$ \tag{23.2}
+\small
+	\mathcal{T} \big( \bm{r}, \bm{r'}, k(\omega), \omega \big)
+	\approx k^2(\omega) \big( m^2(\bm{r}, \omega) - 1 \big) \big( \delta(\bm{r} - \bm{r'}) \mathcal{I} + k^2(\omega) \big( m^2(\bm{r'}, \omega) - 1 \big) \mathcal{G}\_e (\bm{r}, \bm{r'}, k) \big).
 $$
 
 ---
