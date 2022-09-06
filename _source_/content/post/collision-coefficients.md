@@ -9238,20 +9238,33 @@ $$ \tag{22.34}
 	= N \frac{\mu\_0^{-1}}{2} \frac{\eta}{c} k
 	\mathcal{Im} \left\lbrace \frac{m^2}{\mu\_r} \right\rbrace
 	\int\_{V} \big| \bm{E}(\bm{r'}) \big|^2 dV'
-	= N 4 \pi \mathcal{Im} \left\lbrace \frac{m^2}{3 \mu\_r} \right\rbrace
-	\frac{x^3}{k^2}.
+	= N 4 \pi \mathcal{Im} \left\lbrace \frac{m^2}{3} \right\rbrace
+	\frac{x^3}{k^2} \Epsilon_i.
 $$
+
+The same expression can be obtained by setting \\(\theta = 0\\) in Eqn. 22.18, and substituting it (along with Eqn. 16.4) into Eqn. 17.56.3.
 
 The corresponding expression of the absorption coefficient \\(\varSigma_a\\) is
 
 $$ \tag{22.35}
 	\varSigma_a(\bm{r})
 	= n(\bm{r}) 4 \pi
-	\mathcal{Im} \left\lbrace \frac{m^2}{3 \mu\_r} \right\rbrace
+	\mathcal{Im} \left\lbrace \frac{m^2}{3} \right\rbrace
 	\frac{x^3}{k^2}.
 $$
 
+
 It matches the Rayleigh scattering counterpart (cf. Eqn. 21.58) when \\(|m - 1|\\) is small. Thus, for small particles, absorption tend to dominate scattering (cf. Eqn. 21.59), even if the imaginary part of \\(m\\) is fairly small.
+
+#### Anomalous Diffraction Approximation
+
+The biggest drawback of the Rayleigh-Gans-Born approximation stems from the assumption that the value of the internal field is exactly the same as that of the incident field. While that drastically simplifies the resulting expressions, it severely limits their range of applicability, since the the relative wavenumber \\(m\\) is not allowed to appreciably deviate from unity. Physically, it implies that the particle is composed of dipoles that do not interact with each other. Formally, this interaction can be expressed using a Born series expansion ()
+
+$$ \tag{14.4}
+	\bm{E}(\bm{r}, \omega)
+	= \bm{E_i}(\bm{r}, \omega)
+	+ \int\_{V} u \big( \bm{r'}, k(\omega), \omega \big) \mathcal{G}\_e \big( \bm{r}, \bm{r'}, k(\omega) \big) \cdot \bm{E}(\bm{r'}, \omega) dV'.
+$$
 
 ---
 
