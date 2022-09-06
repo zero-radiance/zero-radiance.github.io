@@ -8786,7 +8786,7 @@ As the molecules are small compared to the wavelength of light, \\(x \ll 1\\). T
 
 In this section, we shall develop a theory of electromagnetic scattering by particles of an arbitrary size. It serves as the extension of the theory of Rayleigh (dipole) scattering for small particles. This can be accomplished in two different ways. The first way is to perform a multipole series expansion of the electromagnetic potential (using Eqn. 18.11 and 18.13), and treat electromagnetic scattering as a boundary value problem; this leads to the Lorenz-Mie-Debye solution of the *differential* form of the Maxwell equations. The second method takes advantage of the *integral* expression of the electromagnetic potential (Eqn. 9.14), with the interpretation of the scattering object as a collection of dipoles (as per Eqn. 10.14); this leads to the surface (Eqn. 1x.14) and the volume integral equations (Eqn. 11.25.1).
 
-Unfortunately, evaluation of these integrals poses a challenge: not just because the expressions themselves are complicated, but also because they require the values of the internal field (not known apriori) to be specified either in the interior or on the surface of the scattering object. Formally, this leads to a recursive integral equation (Eqn. 14.22) of the transition operator, and the solution generates a Born series expansion (Eqn. 14.20) of the electric field. In practice, under certain conditions, one can make an educated guess about the approximate form of the internal field, which allows one to bypass the recursive integral equation and jump straight into the volume (or the surface) integral equation. Below, we shall examine these mathematical techniques in more detail.
+Unfortunately, evaluation of these integrals poses a challenge: not just because the expressions themselves are complicated, but also because they require the values of the internal field (not known apriori) to be specified either across the entire interior or on the surface of the scattering object. Formally, this leads to a recursive integral equation (Eqn. 14.22) of the transition operator, and the solution generates a Born series expansion (Eqn. 14.20) of the electric field. In practice, under certain conditions, one can make an educated guess about the approximate form of the internal field, which allows one to bypass the recursive integral equation and jump straight into the volume (or the surface) integral equation. Below, we shall examine these mathematical techniques in more detail.
 
 #### Rayleigh-Gans-Born Approximation
 
@@ -8827,7 +8827,9 @@ $$
 
 Evidently, the internal field is approximately the same as the incident field if both Eqn. 22.1 and 22.3 are satisfied. Note that the relative wavenumber \\(m\\) can be spatially-varying and frequency-dependent if both conditions hold for all \\(\bm{r}\\) and \\(\omega\\).
 
-Formally, the Rayleigh-Gans-Born approximation corresponds to the first term of the Born series \[while Rayleigh's approximation is the first term of the multipole series\] expansion of the electric field. According to Eqn. 14.3 and 14.5, the associated expression of the transition dyadic \\(\mathcal{T}\\) is simply
+It is important to understand the difference between the Rayleigh and the Rayleigh-Gans-Born approximations. The former assumes that \\(x \ll 1\\), while \\(|m|\\) can not be too great. The latter requires \\(|m - 1| \ll 1\\), while \\(x\\) must not be too large. They have a case in common: namely, \\(x \ll 1,|m - 1| \ll 1\\).
+
+Formally, the Rayleigh-Gans-Born approximation corresponds to the first term of the Born series \[while Rayleigh's approximation is the first term of the multipole series\] expansion of the electric field, which makes it the *first-order Born approximation*. According to Eqn. 14.3 and 14.5, the associated expression of the transition dyadic \\(\mathcal{T}\\) is simply
 
 $$ \tag{22.5}
 	\mathcal{T} \big( \bm{r'}, \bm{r''}, k(\omega), \omega \big) =
