@@ -9311,7 +9311,7 @@ Find the transition operator... Try both surface and volume IE!
 
 ## Acknowledgments
 
-Bohren & Huffman, Larry Travis, Pharr & Jakob, Jeppe Frisvad (Mie scattering), Robin Green (spherical harmonics), Naty Hoffman (Rayleigh scattering).
+Bohren & Huffman, Larry Travis, Pharr & Jakob, Jeppe Frisvad (Mie scattering), Robin Green (spherical harmonics), Naty Hoffman (Rayleigh scattering), Eugene d'Eon and Andrea Weidlich.
 
 ## References
 
