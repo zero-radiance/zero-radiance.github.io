@@ -8809,7 +8809,7 @@ $$
 Eqn. 22.1 is a sufficient and necessary condition to apply the approximation of Eqn. 22.2 to the Rayleigh scattering. However, for large particles, we must impose another requirement:
 
 $$ \tag{22.3}
-	2 \left| m - 1 \right| x \ll 1,
+	\rho = 2 \left| m - 1 \right| x \ll 1,
 $$
 
 where, as usual, \\(x = k a\\) is the size parameter, and \\(a\\) is the radius of the bounding sphere of the particle.
@@ -9194,7 +9194,7 @@ $$
 
 {{< figure src="/img/rgb_asymmetry.svg" caption="*Figure N: Plot of the mean cosine \\(\braket{g}\\) of a homogeneous sphere. The horizontal axis represents the size parameter \\(x\\) of the particle. The solid line corresponds to \\(m=1.001\\), while the dashed -- to \\(m=4/3\\).*" >}}
 
-Comparison of the resulting plot to that of a water droplet (cf. Fig. N) shows that the approximation is reasonably accurate for \\(x \le 1\\). However, for small particles, it is far more efficient to use the Taylor series expansions instead:
+Comparison of the resulting plot to that of a water droplet (cf. Fig. N) shows that the approximation is reasonably accurate for \\(x \le 1\\). However, for small particles of \\(x \ll 1\\), it is far more efficient to use the Taylor series expansions instead:
 
 $$ \tag{22.31}
 \begin{aligned}
@@ -9205,6 +9205,14 @@ $$ \tag{22.31}
 	\braket{g}\negmedspace(x) &= \frac{4 x^2}{25} + \mathrm{O}\negmedspace\left( x^4 \right).
 \end{aligned}
 $$
+
+On the opposite end of the spectrum, for \\(x \ll 1\\), we have
+
+$$ \tag{22.3x}
+	\lim_{x \to \infin} \frac{J_{rgb}(x)}{x^4} =
+	\lim_{x \to \infin} \frac{K_{rgb}(x)}{x^4} = \frac{1}{4}.
+$$
+
 
 ##### Collision Coefficients
 
