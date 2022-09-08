@@ -9206,13 +9206,12 @@ $$ \tag{22.31}
 \end{aligned}
 $$
 
-On the opposite end of the spectrum, for \\(x \ll 1\\), we have
+On the opposite end of the spectrum, for \\(x \gg 1\\), we have
 
 $$ \tag{22.3x}
 	\lim_{x \to \infin} \frac{J_{rgb}(x)}{x^4} =
 	\lim_{x \to \infin} \frac{K_{rgb}(x)}{x^4} = \frac{1}{4}.
 $$
-
 
 ##### Collision Coefficients
 
@@ -9229,8 +9228,8 @@ It is interesting to visualize the mean scattering efficiency factor
 
 $$ \tag{22.33}
 	\braket{Q_s}
-	= \frac{\braket{C_s}}{2 \pi a^2}
-	= \left| m^2 - 1 \right|^2
+	= \frac{\braket{C_s}}{\pi a^2}
+	= 2 \left| m^2 - 1 \right|^2
 	\frac{J_{rgb}(x)}{x^2}
 $$
 
@@ -9257,13 +9256,14 @@ The corresponding expression of the absorption coefficient \\(\varSigma_a\\) is
 
 $$ \tag{22.35}
 	\varSigma_a(\bm{r})
+	= n(\bm{r}) \braket{C_a}
 	= n(\bm{r}) 4 \pi
 	\mathcal{Im} \left\lbrace \frac{m^2}{3} \right\rbrace
 	\frac{x^3}{k^2}.
 $$
 
 
-It matches the Rayleigh scattering counterpart (cf. Eqn. 21.58) when \\(|m - 1|\\) is small. Thus, for small particles, absorption tend to dominate scattering (cf. Eqn. 21.59), even if the imaginary part of \\(m\\) is fairly small.
+It matches the Rayleigh scattering counterpart (cf. Eqn. 21.58) when \\(|m^2 - 1|\\) is small. Thus, for small particles, absorption tend to dominate scattering (cf. Eqn. 21.59), even if the imaginary part of \\(m\\) is fairly small.
 
 #### Anomalous Diffraction Approximation
 
