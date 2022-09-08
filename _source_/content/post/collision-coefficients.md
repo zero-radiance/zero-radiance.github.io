@@ -9261,8 +9261,7 @@ It matches the Rayleigh scattering counterpart (cf. Eqn. 21.58) when \\(|m - 1|\
 
 The biggest drawback of the Rayleigh-Gans-Born approximation stems from the assumption that the internal field is virtually indistinguishable from the incident field. While that drastically simplifies the resulting expressions, it severely limits their range of applicability, since the the relative wavenumber \\(m\\) may not appreciably deviate from unity. Physically, it implies that the particle is composed of dipoles that do not interact with each other. Formally, this interaction is captured by the Born series expansion (cf. Eqn. 14.3, 14.4, 14.20)
 
-$$ \tag{23.1}
-\small
+$$ \tag{23.1} \small
 \begin{aligned}
 	\bm{E}(\bm{r}, \omega)
 	&= \bm{E_i}(\bm{r}, \omega)
@@ -9281,12 +9280,66 @@ $$ \tag{23.1}
 \end{aligned}
 $$
 
-The first two lines of Eqn. 23.1 represent the first-order Born (or the Rayleigh-Gans-Born) approximation, which we covered in the previous section. Let us extend our analysis to the last term that completes the second-order Born approximation. According to Eqn. 14.22, the associated expression of the transition dyadic \\(\mathcal{T}\\) is
+The first two lines of Eqn. 23.1 represent the first-order Born (also known as the Rayleigh-Gans-Born) approximation, which we covered in the previous section. If we add the term from the third line of Eqn. 23.1, we obtain the second-order Born approximation. According to Eqn. 14.22, the associated expression of the transition dyadic \\(\mathcal{T}\\) is
 
-$$ \tag{23.2}
-\small
+$$ \tag{23.2} \small
 	\mathcal{T} \big( \bm{r}, \bm{r'}, k(\omega), \omega \big)
 	\approx k^2(\omega) \big( m^2(\bm{r}, \omega) - 1 \big) \big( \delta(\bm{r} - \bm{r'}) \mathcal{I} + k^2(\omega) \big( m^2(\bm{r'}, \omega) - 1 \big) \mathcal{G}\_e (\bm{r}, \bm{r'}, k) \big).
+$$
+
+Inspection of Eqn. 23.1 may lead to a (false) conclusion that we can directly substitute the expression of
+
+$$ \tag{23.3}
+	I_{ada}(\bm{r'}, \omega) = k^2(\omega) \int\_{V} \big( m^2(\bm{r''}, \omega) - 1 \big)
+	\mathcal{G}\_e \big( \bm{r'}, \bm{r''}, k(\omega) \big) \cdot
+	\bm{E_i}(\bm{r''}, \omega) dV''
+$$
+
+obtained using the the Rayleigh-Gans-Born approximation into the volume integral equation. Unfortunately, that is not the case because, this time, we can no longer use the far-field expression of the electric dyadic \\(\mathcal{G}\_e\\).
+
+Let us begin by expanding the expression of the electric phasor using Eqn. 7.2:
+
+$$ \tag{23.4}
+	I_{ada}(\bm{r}, \omega) = k^2(\omega) \int\_{V} \big( m^2(\bm{r'}, \omega) - 1 \big)
+	\mathcal{G}\_e \big( \bm{r}, \bm{r'}, k(\omega) \big) \cdot
+	\bm{E_0}(\bm{n_i}, \omega) e^{i k(\omega) (\bm{r'} \cdot \bm{n_i})} dV'.
+$$
+
+As for the electric dyadic \\(\mathcal{G}\_e\\), in order to avoid dealing with the singularity (by introducing the depolarization dyadic), it is convenient to move the derivatives outside the integral, as shown by Eqn. 9.24:
+
+$$ \tag{23.5} \small
+	I_{ada}(\bm{r}, \omega)
+	= \left( k^2(\omega) \mathcal{I} + \nabla \otimes \nabla \right) \cdot
+	\int\_{V} \big( m^2(\bm{r'}, \omega) - 1 \big)
+	g(\bm{r} - \bm{r'}, k(\omega))
+	\bm{E_0}(\bm{n_i}, \omega) e^{i k(\omega) (\bm{r'} \cdot \bm{n_i})} dV'.
+$$
+
+This naturally leads us to consider a simpler integral
+
+$$ \tag{23.6}
+\begin{aligned}
+	J_{ada}(\bm{r}, \omega)
+	&= \int\_{V} \big( m^2(\bm{r'}, \omega) - 1 \big)
+	g(\bm{r} - \bm{r'}, k(\omega))
+	e^{i k(\omega) (\bm{r'} \cdot \bm{n_i})} dV'
+	\cr
+	&= \int\_{V} \big( m^2(\bm{r'}, \omega) - 1 \big)
+	\frac{e^{i k(\omega) |\bm{r} - \bm{r'}|}}{4 \pi |\bm{r} - \bm{r'}|}
+	e^{i k(\omega) (\bm{r'} \cdot \bm{n_i})} dV'.
+\end{aligned}
+$$
+
+Above, Eqn. 9.10 of the scalar Green function was used.
+
+For simplicity, we shall only consider the simplest case of a homogeneous spherical particle of radius \\(a\\). Eqn. 23.6 can then be simplified to
+
+$$ \tag{23.7}
+\begin{aligned}
+	J_{ada}(\bm{r}, \omega)
+	&= \frac{k(\omega) \big( m^2(\omega) - 1 \big)}{4 \pi} \int\_{V}
+	\frac{e^{i k(\omega) |\bm{r} - \bm{r'}|} e^{i k(\omega) (\bm{r'} \cdot \bm{n_i})}}{k(\omega) |\bm{r} - \bm{r'}|} dV'.
+\end{aligned}
 $$
 
 ---
