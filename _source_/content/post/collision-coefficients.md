@@ -8809,7 +8809,7 @@ $$
 Eqn. 22.1 is a sufficient and necessary condition to apply the approximation of Eqn. 22.2 to the Rayleigh scattering. However, for large particles, we must impose another requirement:
 
 $$ \tag{22.3}
-	\rho = 2 \left| m - 1 \right| x \ll 1,
+	| \rho | = 2 \left| m - 1 \right| x \ll 1,
 $$
 
 where, as usual, \\(x = k a\\) is the size parameter, and \\(a\\) is the radius of the bounding sphere of the particle.
@@ -9228,6 +9228,7 @@ It is interesting to visualize the mean scattering efficiency factor
 
 $$ \tag{22.33}
 	\braket{Q_s}
+	= \frac{\braket{C_s}}{C_g}
 	= \frac{\braket{C_s}}{\pi a^2}
 	= 2 \left| m^2 - 1 \right|^2
 	\frac{J_{rgb}(x)}{x^2}
