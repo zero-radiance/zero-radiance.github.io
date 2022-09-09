@@ -8809,12 +8809,14 @@ $$
 Eqn. 22.1 is a sufficient and necessary condition to apply the approximation of Eqn. 22.2 to the Rayleigh scattering. However, for large particles, we must impose another requirement:
 
 $$ \tag{22.3}
-	| \rho | = 2 \left| m - 1 \right| x \ll 1,
+	\rho = 2 (m - 1) x,
+	\quad
+	| \rho | \ll 1,
 $$
 
 where, as usual, \\(x = k a\\) is the size parameter, and \\(a\\) is the radius of the bounding sphere of the particle.
 
-Eqn. 22.3 can be interpreted as follows. Imagine a particle with \\(x \gg 1\\), such that the laws of geometric optics are applicable. We isolate a central ray that passes through the particle along the diameter of the bounding sphere. According to Eqn. 22.1, this ray experiences a significant amount of reflection and refraction neither inside nor outside the particle. On the other hand, inside, the associated electromagnetic wave undergoes a change of phase velocity and, potentially, a degree of absorption. If we model the internal field in the vicinity of the ray as a plane wave, then the expression of the electric field at the back of the particle is
+Eqn. 22.3 can be interpreted as follows. Imagine a particle with \\(x \gg 1\\), such that the laws of geometric optics are applicable. We isolate a central ray that passes through the particle along the diameter of the bounding sphere. According to Eqn. 22.1, this ray experiences a significant amount of reflection and refraction neither inside nor outside the particle. On the other hand, inside, the associated electromagnetic wave undergoes a change of phase velocity and, potentially, a degree of absorption. If we model the internal field in the vicinity of the ray as a plane wave proportional to \\(\exp(i m k z)\\), then the expression of the electric field at the back of the particle is
 
 $$ \tag{22.4}
 \begin{aligned}
@@ -8825,7 +8827,7 @@ $$ \tag{22.4}
 \end{aligned}
 $$
 
-Evidently, the internal field is approximately the same as the incident field if both Eqn. 22.1 and 22.3 are satisfied. Note that the relative wavenumber \\(m\\) can be spatially-varying and frequency-dependent if both conditions hold for all \\(\bm{r}\\) and \\(\omega\\).
+Both the phase delay and the absorption are eliminated if Eqn. 22.3 is satisfied. Note that the relative wavenumber \\(m\\) can be spatially-varying and frequency-dependent if both conditions hold for all \\(\bm{r}\\) and \\(\omega\\).
 
 It is important to understand the difference between the Rayleigh and the Rayleigh-Gans-Born approximations. The former assumes that \\(x \ll 1\\), while \\(|m|\\) can not be too great. The latter requires \\(|m - 1| \ll 1\\), while \\(x\\) must not be too large. They have a case in common: namely, \\(x \ll 1,|m - 1| \ll 1\\).
 
