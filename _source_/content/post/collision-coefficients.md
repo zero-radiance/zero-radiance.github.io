@@ -8816,7 +8816,7 @@ $$
 
 where, as usual, \\(x = k a\\) is the size parameter, and \\(a\\) is the radius of the bounding sphere of the particle.
 
-Eqn. 22.3 can be interpreted as follows. Imagine a particle with \\(x \gg 1\\), such that the laws of geometric optics are applicable. We isolate a central ray that passes through the particle along the diameter of the bounding sphere. According to Eqn. 22.1, this ray experiences a significant amount of reflection and refraction neither inside nor outside the particle. On the other hand, inside, the associated electromagnetic wave undergoes a change of phase velocity and, potentially, a degree of absorption. If we model the internal field in the vicinity of the ray as a plane wave proportional to \\(\exp(i m k z)\\), then the expression of the electric field at the back of the particle is
+Eqn. 22.3 can be interpreted as follows. Imagine a particle with \\(x \gg 1\\), such that the laws of geometric optics are applicable. We isolate a central ray that passes through the particle along the diameter of the bounding sphere. According to Eqn. 22.1, this ray experiences a significant amount of reflection neither inside nor outside the particle. On the other hand, inside, the associated electromagnetic wave undergoes a change of phase velocity and, potentially, a degree of absorption. If we model the internal field in the vicinity of the ray as a plane wave with the wavenumber \\(m k\\), then the expression of the electric field at the back of the particle is
 
 $$ \tag{22.4}
 \begin{aligned}
@@ -9104,7 +9104,7 @@ As \\(x \to 1\\), the pear shape is faithfully reproduced (cf. Fig. 19.N).
 
 {{< figure src="/img/rgb_x2.svg" caption="*Figure 22.3: Linear plot of the intensity of light scattered by a homogeneous sphere characterized by the parameters \\(m = 1.001, x = 2\\).*" >}}
 
-At \\(x = 2\\), the Mie effect is very apparent. The forward (diffraction) lobe has roughly the same shape as that of a water droplet (cf. Fig. 19.N); however, in the backward direction, the intensity is not quite the same, owing to the lack of reflection and refraction.
+At \\(x = 2\\), the Mie effect is very apparent. The forward (diffraction) lobe has roughly the same shape as that of a water droplet (cf. Fig. 19.N); however, in the backward direction, the intensity is not quite the same, owing to the lack of reflection.
 
 {{< figure src="/img/rgb_x10.svg" caption="*Figure 22.4: Linear plot of the intensity of light scattered by a homogeneous sphere characterized by the parameters \\(m = 1.001, x = 10\\).*" >}}
 
@@ -9276,9 +9276,33 @@ It matches the Rayleigh scattering counterpart (cf. Eqn. 21.58) when \\(|m^2 - 1
 
 #### Anomalous Diffraction Approximation
 
+The Rayleigh-Gans-Born approximation admits a straightforward extension. As before, we assume that the particle nearly transparent:
+
+$$ \tag{23.1}
+	\left| m^2 - 1 \right|
+	\approx
+	2 \left| m - 1 \right| \ll 1.
+$$
+
+For a large particle, this implies that the surface reflection is almost completely absent, except for grazing angles.
+
+However, we no longer assume that the total phase delay and the absorption experienced by the ray as it passes though the particle is negligible, e.i. \\(\rho = 2 (m - 1) x\\) is arbitrary \[[4](#references) (ch. 11.1)\]. Thus, while the wavenumber of the plane wave outside the particle is \\(k\\), inside it abruptly transitions to \\(m k\\).
+
+Fixme...
+
+$$ \tag{23.2}
+	\bm{E}(\bm{r}, \omega) \approx
+	\bm{E_i}(\bm{r}, \omega) =
+	\bm{E_0}(\bm{n_i}, \omega) e^{i k(\omega) (\bm{r} \cdot \bm{n_i})}.
+$$
+
+---
+
+#### Improved Anomalous Diffraction Approximation
+
 The biggest drawback of the Rayleigh-Gans-Born approximation stems from the assumption that the internal field is virtually indistinguishable from the incident field. While that drastically simplifies the resulting expressions, it severely limits their range of applicability, since the the relative wavenumber \\(m\\) may not appreciably deviate from unity. Physically, it implies that the particle is composed of dipoles that do not interact with each other. Formally, this interaction is captured by the Born series expansion (cf. Eqn. 14.3, 14.4, 14.20)
 
-$$ \tag{23.1} \small
+$$ \tag{24.1} \small
 \begin{aligned}
 	\bm{E}(\bm{r}, \omega)
 	&= \bm{E_i}(\bm{r}, \omega)
@@ -9297,16 +9321,16 @@ $$ \tag{23.1} \small
 \end{aligned}
 $$
 
-The first two lines of Eqn. 23.1 represent the first-order Born (also known as the Rayleigh-Gans-Born) approximation, which we covered in the previous section. If we add the term from the third line of Eqn. 23.1, we obtain the second-order Born approximation. According to Eqn. 14.22, the associated expression of the transition dyadic \\(\mathcal{T}\\) is
+The first two lines of Eqn. 24.1 represent the first-order Born (also known as the Rayleigh-Gans-Born) approximation, which we covered in the previous section. If we add the term from the third line of Eqn. 24.1, we obtain the second-order Born approximation. According to Eqn. 14.22, the associated expression of the transition dyadic \\(\mathcal{T}\\) is
 
-$$ \tag{23.2} \small
+$$ \tag{24.2} \small
 	\mathcal{T} \big( \bm{r}, \bm{r'}, k(\omega), \omega \big)
 	\approx k^2(\omega) \big( m^2(\bm{r}, \omega) - 1 \big) \big( \delta(\bm{r} - \bm{r'}) \mathcal{I} + k^2(\omega) \big( m^2(\bm{r'}, \omega) - 1 \big) \mathcal{G}\_e (\bm{r}, \bm{r'}, k) \big).
 $$
 
-Inspection of Eqn. 23.1 may lead to a (false) conclusion that we can directly substitute the expression of
+Inspection of Eqn. 24.1 may lead to a (false) conclusion that we can directly substitute the expression of
 
-$$ \tag{23.3}
+$$ \tag{24.3}
 	I_{ada}(\bm{r'}, \omega) = k^2(\omega) \int\_{V} \big( m^2(\bm{r''}, \omega) - 1 \big)
 	\mathcal{G}\_e \big( \bm{r'}, \bm{r''}, k(\omega) \big) \cdot
 	\bm{E_i}(\bm{r''}, \omega) dV''
@@ -9316,7 +9340,7 @@ obtained using the the Rayleigh-Gans-Born approximation into the volume integral
 
 Let us begin by expanding the expression of the electric phasor using Eqn. 7.2:
 
-$$ \tag{23.4}
+$$ \tag{24.4}
 	I_{ada}(\bm{r}, \omega) = k^2(\omega) \int\_{V} \big( m^2(\bm{r'}, \omega) - 1 \big)
 	\mathcal{G}\_e \big( \bm{r}, \bm{r'}, k(\omega) \big) \cdot
 	\bm{E_0}(\bm{n_i}, \omega) e^{i k(\omega) (\bm{r'} \cdot \bm{n_i})} dV'.
@@ -9324,7 +9348,7 @@ $$
 
 As for the electric dyadic \\(\mathcal{G}\_e\\), in order to avoid dealing with the singularity (by introducing the depolarization dyadic), it is convenient to move the derivatives outside the integral, as shown by Eqn. 9.24:
 
-$$ \tag{23.5} \small
+$$ \tag{24.5} \small
 	I_{ada}(\bm{r}, \omega)
 	= \left( k^2(\omega) \mathcal{I} + \nabla \otimes \nabla \right) \cdot
 	\int\_{V} \big( m^2(\bm{r'}, \omega) - 1 \big)
@@ -9334,7 +9358,7 @@ $$
 
 This naturally leads us to consider a simpler integral
 
-$$ \tag{23.6}
+$$ \tag{24.6}
 \begin{aligned}
 	J_{ada}(\bm{r}, \omega)
 	&= \int\_{V} \big( m^2(\bm{r'}, \omega) - 1 \big)
@@ -9349,9 +9373,9 @@ $$
 
 Above, Eqn. 9.10 of the scalar Green function was used.
 
-For simplicity, we shall only consider the simplest case of a homogeneous spherical particle of radius \\(a\\). Eqn. 23.6 can then be simplified to
+For simplicity, we shall only consider the simplest case of a homogeneous spherical particle of radius \\(a\\). Eqn. 24.6 can then be simplified to
 
-$$ \tag{23.7}
+$$ \tag{24.7}
 \begin{aligned}
 	J_{ada}(\bm{r}, \omega)
 	&= \frac{k(\omega) \big( m^2(\omega) - 1 \big)}{4 \pi} \int\_{V}
