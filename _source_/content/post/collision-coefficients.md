@@ -8809,7 +8809,7 @@ $$
 Eqn. 22.1 is a sufficient and necessary condition to apply the approximation of Eqn. 22.2 to the Rayleigh scattering. However, for large particles, we must impose another requirement:
 
 $$ \tag{22.3}
-	\rho = 2 (m - 1) x,
+	\rho = 2 (m - 1) x \approx \left( m^2 - 1 \right) x,
 	\quad
 	| \rho | \ll 1,
 $$
@@ -9223,7 +9223,9 @@ $$ \tag{22.32}
 	\varSigma_s(\bm{r})
 	= n(\bm{r}) \braket{C_s}
 	= n(\bm{r}) 2 \pi \left| m^2 - 1 \right|^2
-	\frac{J_{rgb}(x)}{k^2}.
+	\frac{J_{rgb}(x)}{k^2}
+	= n(\bm{r}) 2 \pi \left| \rho \right|^2
+	\frac{J_{rgb}(x)}{k^2 x^2}.
 $$
 
 It is interesting to visualize the mean scattering efficiency factor
@@ -9234,6 +9236,8 @@ $$ \tag{22.33}
 	= \frac{\braket{C_s}}{\pi a^2}
 	= 2 \left| m^2 - 1 \right|^2
 	\frac{J_{rgb}(x)}{x^2}
+	= 2 \left| \rho \right|^2
+	\frac{J_{rgb}(x)}{x^4}
 $$
 
 and compare its plot to that of a water droplet (cf. Fig. N).
@@ -9262,9 +9266,11 @@ $$ \tag{22.35}
 	= n(\bm{r}) \braket{C_a}
 	= n(\bm{r}) 4 \pi
 	\mathcal{Im} \left\lbrace \frac{m^2}{3} \right\rbrace
-	\frac{x^3}{k^2}.
+	\frac{x^3}{k^2}
+	= n(\bm{r}) 4 \pi
+	\mathcal{Im} \left\lbrace \frac{\rho}{3} \right\rbrace
+	\frac{x}{k^2}.
 $$
-
 
 It matches the Rayleigh scattering counterpart (cf. Eqn. 21.58) when \\(|m^2 - 1|\\) is small. Thus, for small particles, absorption tend to dominate scattering (cf. Eqn. 21.59), even if the imaginary part of \\(m\\) is fairly small.
 
