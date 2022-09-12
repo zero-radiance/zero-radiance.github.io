@@ -3627,7 +3627,7 @@ $$ \tag{15.9}
 	\bm{e_X} = \bm{n_p},
 $$
 
-where \\(\bm{n_p}\\) is the principal axis of the particle (specifically chosen not to be collinear with \\(\bm{n_i}\\)).
+where \\(\bm{n_p}\\) is the principal axis of the particle (specifically chosen to be orthogonal to \\(\bm{n_i}\\)).
 
 The latter could, for instance, represent the coordinate frame of the scatterer. We can now rotate \\(xyz\\) and define its orientation relative to \\(XYZ\\) in terms of the [Euler angles](https://en.wikipedia.org/wiki/Euler_angles). We are particularly interested in rotating the plane of observation about the \\(Z\\)-axis, as that allows the set of possible direction of observation to cover the entire the unit sphere. If the azimuthal (plane rotation) angle is \\(\phi\\) and the zenith angle is \\(\theta\\), the spherical coordinates of \\(\bm{n_s}\\) with respect to the \\(XYZ\\) frame are
 
@@ -9276,7 +9276,7 @@ It matches the Rayleigh scattering counterpart (cf. Eqn. 21.58) when \\(|m^2 - 1
 
 #### Anomalous Diffraction Approximation
 
-The Rayleigh-Gans-Born approximation admits a straightforward extension. As before, we assume that the particle nearly transparent:
+The Rayleigh-Gans-Born approximation admits a straightforward extension. As before, we assume that the particle is nearly transparent:
 
 $$ \tag{23.1}
 	\left| m^2 - 1 \right|
@@ -9284,21 +9284,82 @@ $$ \tag{23.1}
 	2 \left| m - 1 \right| \ll 1.
 $$
 
-For a large particle, this implies that the surface reflection is almost completely absent, except for grazing angles.
+For large particles, this implies that surface reflection is almost completely absent, except for grazing angles.
 
-However, we no longer assume that the total phase delay and the absorption experienced by the ray as it passes though the particle is negligible, e.i. \\(\rho = 2 (m - 1) x\\) is arbitrary \[[4](#references) (ch. 11.1)\]. Thus, while the wavenumber of the plane wave outside the particle is \\(k\\), inside it abruptly transitions to \\(m k\\).
+However, unlike in the Rayleigh-Gans-Born approximation, we no longer assume that the phase delay and the absorption experienced by a ray of light as it passes though a (large) particle is negligible, which means that \\(\rho = 2 (m - 1) x\\) can take on arbitrary values \[[4](#references) (ch. 11.1)\].
 
-Fixme...
+This idea is most clearly illustrated by the example of a homogeneous particle (cf. Fig 23.1).
+
+[Add an illustration here]
+
+Consider the point \\(\bm{r}\\) located inside the particle. We trace a line along \\(\bm{n_i}\\) that passes through \\(\bm{r}\\); by doing so, we determine the entry and the exit points \\(\bm{r_i}\\) and \\(\bm{r_o}\\), respectively.
+
+The wavenumber of the plane wave outside the particle is \\(k\\); at \\(\bm{r_i}\\), it abruptly transitions to \\(m k\\), and maintains this value up until \\(\bm{r_o}\\). The expression of the internal field \\(\bm{E}\\) takes the form
 
 $$ \tag{23.2}
-	\bm{E}(\bm{r}, \omega) \approx
-	\bm{E_i}(\bm{r}, \omega) =
-	\bm{E_0}(\bm{n_i}, \omega) e^{i k(\omega) (\bm{r} \cdot \bm{n_i})}.
+\begin{aligned}
+	\bm{E}(\bm{r}, \omega)
+	&\approx \bm{E_0}(\bm{n_i}, \omega)
+	e^{i k(\omega) (\bm{r_i} \cdot \bm{n_i})}
+	e^{i m(\omega) k(\omega) (\bm{r} - \bm{r_i}) \cdot \bm{n_i}}
+	\cr
+	&= \bm{E_i}(\bm{r}, \omega)
+	e^{i (m(\omega) - 1) k(\omega) (\bm{r} - \bm{r_i}) \cdot \bm{n_i}}.
+\end{aligned}
 $$
+
+Thus, the far-field expression of the volume integral equation can be obtained by adding a single complex exponential factor to the integrand of Eqn. 22.6:
+
+$$ \tag{23.3} \small
+\begin{aligned}
+	\bm{E_s}(\bm{r}, \omega)
+	&\simeq k^2(\omega)
+	\frac{e^{i k(\omega) r}}{4 \pi r}
+	\big( \mathcal{I} - \bm{n_s} \otimes \bm{n_s} \big) \cdot
+	\int\_{V_p}
+	e^{i k(\omega) \bm{r'} \cdot (\bm{n_i} - \bm{n_s})}
+	e^{i (m(\omega) - 1) k(\omega) (\bm{r'} - \bm{r_i}) \cdot \bm{n_i}}
+	\big( m^2(\omega) - 1 \big) \bm{E_0}(\bm{n_i}, \omega) dV'.
+\end{aligned}
+$$
+
+Keep in mind that \\(\bm{r_i}\\) is spatially-varying across the surface of the particle, since it depends on both \\(\bm{r'}\\) and \\(\bm{n_i}\\) (these parameters have been omitted for brevity). It also suggests that we may replace the volume integral with the corresponding surface integral.
+
+#### Scattering Matrix
+
+The geometric formulation of the problem creates a strong dependence on the shape of the particle.
+
+$$ \tag{15.8}
+	\bm{e_z} = \bm{n_i}, \quad
+	\bm{e_y} = \frac{\bm{n_i} \times \bm{n_s}}{| \bm{n_i} \times \bm{n_s} |}, \quad
+	\bm{e_x} = \bm{e_y} \times \bm{e_z}.
+$$
+
+If \\(\bm{n_i}\\) and \\(\bm{n_s}\\) are collinear, a supporting vector must take the role of \\(\bm{n_s}\\) in order to fix the orientation of the coordinate frame.
+
+Imagine that the *scattering coordinate system* \\(xyz\\)
+
+Imagine that the *scattering coordinate system* \\(xyz\\) is initially aligned with the *laboratory reference frame* \\(XYZ\\), such that
+
+$$ \tag{15.9}
+	\bm{e_Z} = \bm{n_i}, \quad
+	\bm{e_Y} = \bm{n_i} \times \bm{n_p}, \quad
+	\bm{e_X} = \bm{n_p},
+$$
+
+where \\(\bm{n_p}\\) is the principal axis of the particle (specifically chosen to be orthogonal to \\(\bm{n_i}\\)).
+
+In the case of a spherical particle, its surface can be parametrized using spherical coordinates.
+
+Substitution of Eqn. 23.2 into the volume integral equation yields
+
+13.12, the far-field expression of the volume integral equation
+
+
 
 ---
 
-#### Improved Anomalous Diffraction Approximation
+#### Second-Order Born Approximation
 
 The biggest drawback of the Rayleigh-Gans-Born approximation stems from the assumption that the internal field is virtually indistinguishable from the incident field. While that drastically simplifies the resulting expressions, it severely limits their range of applicability, since the the relative wavenumber \\(m\\) may not appreciably deviate from unity. Physically, it implies that the particle is composed of dipoles that do not interact with each other. Formally, this interaction is captured by the Born series expansion (cf. Eqn. 14.3, 14.4, 14.20)
 
