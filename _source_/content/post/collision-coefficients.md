@@ -8844,9 +8844,9 @@ After substituting Eqn. 22.2 into 13.12, the far-field expression of the volume 
 $$ \tag{22.6}
 	\bm{E_s}(\bm{r}, \omega)
 	\approx k^2(\omega) \frac{e^{i k(\omega) r}}{4 \pi r}
-	\big( \mathcal{I} - \bm{n_s} \otimes \bm{n_s} \big) \cdot
-	\int\_{V_p} e^{i k(\omega) \bm{r'} \cdot (\bm{n_i} - \bm{n_s})} \big( m^2(\bm{r'}, \omega) - 1 \big)
-	\bm{E_0}(\bm{n_i}, \omega) dV'
+	\big( \mathcal{I} - \bm{n_s} \otimes \bm{n_s} \big) \cdot \bm{E_0}(\bm{n_i}, \omega)
+	\int\_{V_p} \big( m^2(\bm{r'}, \omega) - 1 \big)
+	e^{i k(\omega) \bm{r'} \cdot (\bm{n_i} - \bm{n_s})} dV'
 $$
 
 is considerably simplified. Going forward, we shall also assume that the particle is homogeneous, with \\(m\\) independent of \\(\bm{r'}\\).
@@ -9315,15 +9315,142 @@ $$ \tag{23.3} \small
 	\bm{E_s}(\bm{r}, \omega)
 	&\simeq k^2(\omega)
 	\frac{e^{i k(\omega) r}}{4 \pi r}
-	\big( \mathcal{I} - \bm{n_s} \otimes \bm{n_s} \big) \cdot
-	\int\_{V_p}
+	\big( \mathcal{I} - \bm{n_s} \otimes \bm{n_s} \big) \cdot \bm{E_0}(\bm{n_i}, \omega)
+	\int\_{V_p} \big( m^2(\omega) - 1 \big)
 	e^{i k(\omega) \bm{r'} \cdot (\bm{n_i} - \bm{n_s})}
-	e^{i (m(\omega) - 1) k(\omega) (\bm{r'} - \bm{r_i}) \cdot \bm{n_i}}
-	\big( m^2(\omega) - 1 \big) \bm{E_0}(\bm{n_i}, \omega) dV'.
+	e^{i (m(\omega) - 1) k(\omega) (\bm{r'} - \bm{r_i}) \cdot \bm{n_i}} dV'.
 \end{aligned}
 $$
 
-Keep in mind that \\(\bm{r_i}\\) is spatially-varying across the surface of the particle, since it depends on both \\(\bm{r'}\\) and \\(\bm{n_i}\\) (these parameters have been omitted for brevity). It also suggests that we may replace the volume integral with the corresponding surface integral.
+Keep in mind that \\(\bm{r_i}\\) is spatially-varying across the surface of the particle, since it depends on both \\(\bm{r'}\\) and \\(\bm{n_i}\\) (these parameters have been omitted for brevity). It also suggests that we may replace the volume integral
+
+$$ \tag{23.4}
+	I_{ada}(\theta, \phi)
+	= \frac{1}{V_p} \int\_{V_p}
+	e^{i k \bm{r'} \cdot (\bm{n_i} - \bm{n_s})}
+	e^{i (m - 1) k (\bm{r'} - \bm{r_i}) \cdot \bm{n_i}} dV'
+$$
+
+with the corresponding surface integral (cf. Eqn. 1x.14).
+
+Let us first attempt to evaluate Eqn. 23.4 directly. As before, we shall consider the case of a homogeneous spherical particle. Eqn. 22.7, 22.9-22.12 remain applicable; however, Eqn. 22.13 takes a more complicated form due to the additional complex exponential factor
+
+$$ \tag{23.4}
+	e^{i (m - 1) k (\bm{r'} - \bm{r_i}) \cdot \bm{n_i}}
+	= e^{i (m - 1) k (\bm{r'} - \bm{r_i}) \cdot \bm{n_i}}
+$$
+
+---
+
+Recall that the scattering angle \\(\theta = \arccos(\bm{n_i} \cdot \bm{n_s})\\) can be defined in two different ways:
+
+$$ \tag{22.7}
+	\bm{n_i} \cdot \bm{n_s} = \cos(\theta),
+	\quad
+	\frac{|\bm{n_i} - \bm{n_s}|}{2}
+	= \sqrt{\frac{1 - \bm{n_i} \cdot \bm{n_s}}{2}}
+	= \sin(\theta/2).
+$$
+
+This suggests that evaluation of the integral
+
+$$ \tag{22.8}
+	I_{rgb}(\theta, \phi)
+	= \frac{1}{V_p} \int\_{V_p} e^{i k \bm{r'} \cdot (\bm{n_i} - \bm{n_s})} dV'
+$$
+
+can be performed most efficiently in an aligned coordinate system. Let us define
+
+$$ \tag{22.9}
+	\bm{w} = \frac{\bm{n_i} - \bm{n_s}}{|\bm{n_i} - \bm{n_s}|},
+	\quad
+	\bm{v} = \frac{\bm{n_i} \times \bm{n_s}}{| \bm{n_i} \times \bm{n_s} |},
+	\quad
+	\bm{u} = \bm{v} \times \bm{w},
+$$
+
+If \\(\bm{n_i}\\) and \\(\bm{n_s}\\) are collinear, a supporting vector must take the role of \\(\bm{n_s}\\) in order to fix the orientation of the coordinate frame.
+
+
+$$ \tag{15.9}
+	\bm{e_Z} = \bm{n_i}, \quad
+	\bm{e_Y} = \bm{n_i} \times \bm{n_p}, \quad
+	\bm{e_X} = \bm{n_p},
+$$
+
+Using this convention, the point \\(\bm{r'}\\) in the interior of the particle has the following set of Cartesian coordinates:
+
+$$ \tag{22.10}
+\bm{r'} =
+\begin{bmatrix}
+	r\_{u}' \cr
+	r\_{v}' \cr
+	r\_{w}' \cr
+\end{bmatrix},
+\quad
+	|\bm{r'}| = \sqrt{(r\_{u}')^2 + (r\_{v}')^2 + (r\_{w}')^2}.
+$$
+
+For spherical or ellipsoidal particles, it is highly convenient to utilize [cylindrical coordinates](https://en.wikipedia.org/wiki/Cylindrical_coordinate_system) \[[4](#references) (ch. 7.11)\]:
+
+$$ \tag{22.11}
+\bm{r'} =
+\begin{bmatrix}
+	\sqrt{(r\_{u}')^2 + (r\_{v}')^2} \cos{\chi} \cr
+	\sqrt{(r\_{u}')^2 + (r\_{v}')^2} \sin{\chi} \cr
+	r\_{w}' \cr
+\end{bmatrix} =
+\begin{bmatrix}
+	c \cos{\chi} \cr
+	c \sin{\chi} \cr
+	ab \cr
+\end{bmatrix}.
+$$
+
+\[Add an illustration here\]
+
+In particular, for a spherical particle (symmetric with respect to the azimuthal angle \\(\phi\\)), we may set
+
+$$ \tag{22.12}
+	y(\theta) = 2 \sin(\theta/2) x,
+$$
+
+and easily calculate \[[4](#references) (ch. 7.21)\]
+
+$$ \tag{22.13}
+\begin{aligned}
+	I_{rgb}(\theta)
+	&= \frac{3}{4 \pi a^3} \int_{-1}^{1}
+	\int_{-\pi}^{\pi} \int_{0}^{a \sqrt{1 - b^2}}
+	c \thinspace dc \thinspace d\chi \thinspace
+	e^{i y b} a \thinspace db
+	\cr
+	&= \frac{3}{4} \int_{-1}^{1}
+	\left( 1 - b^2 \right)
+	e^{i y b} db
+	= \frac{3}{2} \int_{0}^{1}
+	\left( 1 - b^2 \right)
+	\cos(y b) db
+	\cr
+	&= \frac{3 \sin(y) - 3 y \cos(y)}{y^3}
+	 = \sqrt{\frac{9 \pi}{2 y^3}} J_{3/2}(y)
+	 = \frac{3 j_1(y)}{y},
+\end{aligned}
+$$
+
+where \\(J_n\\) and \\(j_n\\) are the ordinary and the spherical Bessel functions of the first kind, respectively (cf. Eqn. 18.48).
+
+Thus, for a homogeneous spherical particle, Eqn. 22.6 can be written as
+
+$$ \tag{22.14}
+	\bm{E_s}(\bm{r}, \omega)
+	\approx \frac{e^{i k(\omega) r}}{k(\omega) r}
+	\big( m^2(\omega) - 1 \big) x^3(\omega)
+	\frac{j_1\negthinspace\big( |\bm{n_i} - \bm{n_s}| x(\omega) \big)}{|\bm{n_i} - \bm{n_s}| x(\omega)}
+	\big( \mathcal{I} - \bm{n_s} \otimes \bm{n_s} \big) \cdot
+	\bm{E_0}.
+$$
+
 
 #### Scattering Matrix
 
