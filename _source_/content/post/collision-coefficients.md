@@ -8851,10 +8851,12 @@ $$
 
 is considerably simplified. Going forward, we shall also assume that the particle is homogeneous, with \\(m\\) independent of \\(\bm{r'}\\).
 
-Recall that the scattering angle \\(\theta = \arccos(\bm{n_i} \cdot \bm{n_s})\\) can be defined in two different ways:
+Recall that the scattering angle \\(\theta = \arccos(\bm{n_i} \cdot \bm{n_s})\\) can be defined in at least three different ways:
 
 $$ \tag{22.7}
 	\bm{n_i} \cdot \bm{n_s} = \cos(\theta),
+	\quad
+	| \bm{n_i} \times \bm{n_s} | = \sin(\theta),
 	\quad
 	\frac{|\bm{n_i} - \bm{n_s}|}{2}
 	= \sqrt{\frac{1 - \bm{n_i} \cdot \bm{n_s}}{2}}
@@ -8898,14 +8900,14 @@ For spherical or ellipsoidal particles, it is highly convenient to utilize [cyli
 $$ \tag{22.11}
 \bm{r'} =
 \begin{bmatrix}
-	\sqrt{(r\_{u}')^2 + (r\_{v}')^2} \cos{\chi} \cr
-	\sqrt{(r\_{u}')^2 + (r\_{v}')^2} \sin{\chi} \cr
+	\sqrt{(r\_{u}')^2 + (r\_{v}')^2} \cos(\chi) \cr
+	\sqrt{(r\_{u}')^2 + (r\_{v}')^2} \sin(\chi) \cr
 	r\_{w}' \cr
-\end{bmatrix} =
+\end{bmatrix} = a
 \begin{bmatrix}
-	c \cos{\chi} \cr
-	c \sin{\chi} \cr
-	ab \cr
+	c \cos(\chi) \cr
+	c \sin(\chi) \cr
+	b \cr
 \end{bmatrix}.
 $$
 
@@ -8923,8 +8925,8 @@ $$ \tag{22.13}
 \begin{aligned}
 	I_{rgb}(\theta)
 	&= \frac{3}{4 \pi a^3} \int_{-1}^{1}
-	\int_{-\pi}^{\pi} \int_{0}^{a \sqrt{1 - b^2}}
-	c \thinspace dc \thinspace d\chi \thinspace
+	\int_{-\pi}^{\pi} \int_{0}^{\sqrt{1 - b^2}}
+	a^2 c \thinspace dc \thinspace d\chi \thinspace
 	e^{i y b} a \thinspace db
 	\cr
 	&= \frac{3}{4} \int_{-1}^{1}
