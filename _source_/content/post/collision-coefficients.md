@@ -9337,7 +9337,7 @@ with the corresponding surface integral (cf. Eqn. 1x.14).
 
 Let us first attempt to evaluate Eqn. 23.4 directly. As before, we shall consider the case of a homogeneous spherical particle. Eqn. 22.7, 22.9-22.12 remain applicable; however, Eqn. 22.13 takes a more complicated form due to the additional complex exponential factor
 
-$$ \tag{23.4}
+$$ \tag{23.5}
 	e^{i (m - 1) k (\bm{r'} - \bm{r_i}) \cdot \bm{n_i}}
 	= e^{i (m - 1) k (\bm{r'} - \bm{r_i}) \cdot \bm{n_i}}
 $$
@@ -9348,6 +9348,8 @@ Recall that the scattering angle \\(\theta = \arccos(\bm{n_i} \cdot \bm{n_s})\\)
 
 $$ \tag{22.7}
 	\bm{n_i} \cdot \bm{n_s} = \cos(\theta),
+	\quad
+	| \bm{n_i} \times \bm{n_s} | = \sin(\theta),
 	\quad
 	\frac{|\bm{n_i} - \bm{n_s}|}{2}
 	= \sqrt{\frac{1 - \bm{n_i} \cdot \bm{n_s}}{2}}
@@ -9373,11 +9375,10 @@ $$
 
 If \\(\bm{n_i}\\) and \\(\bm{n_s}\\) are collinear, a supporting vector must take the role of \\(\bm{n_s}\\) in order to fix the orientation of the coordinate frame.
 
-
 $$ \tag{15.9}
-	\bm{e_Z} = \bm{n_i}, \quad
-	\bm{e_Y} = \bm{n_i} \times \bm{n_p}, \quad
-	\bm{e_X} = \bm{n_p},
+	\bm{W} = \bm{n_i}, \quad
+	\bm{V} = \frac{\bm{n_i} \times \bm{n_s}}{| \bm{n_i} \times \bm{n_s} |}, \quad
+	\bm{U} = \bm{V} \times \bm{W},
 $$
 
 Using this convention, the point \\(\bm{r'}\\) in the interior of the particle has the following set of Cartesian coordinates:
@@ -9398,16 +9399,93 @@ For spherical or ellipsoidal particles, it is highly convenient to utilize [cyli
 $$ \tag{22.11}
 \bm{r'} =
 \begin{bmatrix}
-	\sqrt{(r\_{u}')^2 + (r\_{v}')^2} \cos{\chi} \cr
-	\sqrt{(r\_{u}')^2 + (r\_{v}')^2} \sin{\chi} \cr
+	\sqrt{(r\_{u}')^2 + (r\_{v}')^2} \cos(\chi) \cr
+	\sqrt{(r\_{u}')^2 + (r\_{v}')^2} \sin(\chi) \cr
+	r\_{w}' \cr
+\end{bmatrix} = a
+\begin{bmatrix}
+	c \cos(\chi) \cr
+	c \sin(\chi) \cr
+	b \cr
+\end{bmatrix}.
+$$
+
+$$ \tag{15.9}
+	\bm{W} = \bm{n_i}, \quad
+	\bm{V} = \bm{v} = \frac{\bm{n_i} \times \bm{n_s}}{| \bm{n_i} \times \bm{n_s} |}, \quad
+	\bm{U} = \bm{V} \times \bm{W},
+$$
+
+UVW coords are obtained from uvw by a rotation
+
+$$ \tag{15.9}
+	\xi = \arccos(\bm{w} \cdot \bm{W}),
+$$
+
+where
+
+$$ \tag{15.9}
+	\bm{w} \cdot \bm{W}
+	= \frac{\bm{n_i} \cdot (\bm{n_i} - \bm{n_s})}{|\bm{n_i} - \bm{n_s}|}
+	= \frac{1 - \cos(\theta)}{2 \sin(\theta/2)}
+	= \sin(\theta/2),
+$$
+
+around the v axis:
+
+$$ \tag{22.10}
+\bm{r'} =
+\begin{bmatrix}
+	r\_{U}' \cr
+	r\_{V}' \cr
+	r\_{W}' \cr
+\end{bmatrix}
+= R_v(\xi)
+\begin{bmatrix}
+	r\_{u}' \cr
+	r\_{v}' \cr
 	r\_{w}' \cr
 \end{bmatrix} =
 \begin{bmatrix}
-	c \cos{\chi} \cr
-	c \sin{\chi} \cr
-	ab \cr
+	\phantom{-}\cos(\theta/2) & 0 & \sin(\theta/2) \cr
+	0            & 1 & 0             \cr
+	-\sin(\theta/2) & 0 & \cos(\theta/2) \cr
+\end{bmatrix}
+\begin{bmatrix}
+	r\_{u}' \cr
+	r\_{v}' \cr
+	r\_{w}' \cr
 \end{bmatrix}.
 $$
+
+\[Add an illustration here\]
+
+Furthermore,
+
+$$ \tag{23.4}
+\begin{aligned}
+	\bm{r'} \cdot \bm{n_i}
+	&= -r\_{u}' \sin(\theta/2) + r\_{w}' \cos(\theta/2)
+	 = a (b \cos(\theta/2) - c \cos(\chi) \sin(\theta/2)),
+	\cr
+	-\bm{r_i} \cdot \bm{n_i}
+	&= \sqrt{a^2 - \big( r\_{U}' \big)^2 - \big( r\_{V}' \big)^2}
+	= \sqrt{a^2 - \big( r\_{u}' \cos(\theta/2) + r\_{w}' \sin(\theta/2) \big)^2 - \big( r\_{v}' \big)^2}
+	\cr
+	&= a \sqrt{1 - \big( c \cos(\chi) \cos(\theta/2) + b \sin(\theta/2) \big)^2 - \big( c \sin(\chi) \big)^2}
+\end{aligned}
+$$
+
+Combined with 22.11,
+
+$$ \tag{23.xx}
+	e^{i (m - 1) k (\bm{r'} - \bm{r_i}) \cdot \bm{n_i}}
+	= e^{i \rho \left(
+		b \cos(\theta/2) - c \cos(\chi) \sin(\theta/2) +
+		\sqrt{1 - ( c \cos(\theta/2) \cos(\chi) + b \sin(\theta/2) )^2 - ( c \sin(\chi) )^2}
+	\right) / 2}
+$$
+
 
 \[Add an illustration here\]
 
@@ -9423,8 +9501,8 @@ $$ \tag{22.13}
 \begin{aligned}
 	I_{rgb}(\theta)
 	&= \frac{3}{4 \pi a^3} \int_{-1}^{1}
-	\int_{-\pi}^{\pi} \int_{0}^{a \sqrt{1 - b^2}}
-	c \thinspace dc \thinspace d\chi \thinspace
+	\int_{-\pi}^{\pi} \int_{0}^{\sqrt{1 - b^2}}
+	a^2 c \thinspace dc \thinspace d\chi \thinspace
 	e^{i y b} a \thinspace db
 	\cr
 	&= \frac{3}{4} \int_{-1}^{1}
@@ -9438,6 +9516,17 @@ $$ \tag{22.13}
 	 = \sqrt{\frac{9 \pi}{2 y^3}} J_{3/2}(y)
 	 = \frac{3 j_1(y)}{y},
 \end{aligned}
+$$
+
+e^{i (m - 1) k (\bm{r'} - \bm{r_i}) \cdot \bm{n_i}}
+
+$$ \tag{23.4}
+	I_{ada}(\theta, \phi)
+	= \frac{3}{4 \pi a^3} \int_{-1}^{1}
+	\int_{-\pi}^{\pi} \int_{0}^{a \sqrt{1 - b^2}}
+	e^{i (m - 1) k (\bm{r'} - \bm{r_i}) \cdot \bm{n_i}}
+	c \thinspace dc \thinspace d\chi \thinspace
+	e^{i y b} a \thinspace db
 $$
 
 where \\(J_n\\) and \\(j_n\\) are the ordinary and the spherical Bessel functions of the first kind, respectively (cf. Eqn. 18.48).
