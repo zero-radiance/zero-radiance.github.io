@@ -5554,7 +5554,7 @@ plotted below:
 
 {{< figure src="/img/legendre.svg" caption="*Figure N: Legendere polynomials of degree \\(n=0\\) (blue), \\(n=1\\) (orange), \\(n=2\\) (green), \\(n=3\\) (red).*" >}}
 
-The degree of a polynomial is also the number of zeros of the function. Coupled with the fact that \\(P_n(\cos{\theta})\\) is independent of \\(\phi\\), we can observe that the Legendre polynomial of degree \\(n\\) divides the surface of a sphere into \\(n + 1\\) zones of alternating sign. For this reason, the family of functions \\(P_n(\cos{\theta})\\) is sometimes referred to as *zonal harmonics*.
+The degree of a polynomial is also the number of zeros of the function. Coupled with the fact that \\(P_n(\cos{\theta})\\) is independent of \\(\phi\\), we can observe that the Legendre polynomial of degree \\(n\\) divides the surface of a sphere into \\(n + 1\\) zones of alternating sign. For this reason, the family of functions \\(P_n(\cos{\theta})\\) is sometimes referred to as [zonal harmonics](https://mathworld.wolfram.com/ZonalHarmonic.html).
 
 If \\(0 < m \leq n\\), we can define the associated Legendre polynomials in terms of the unassociated ones:
 
@@ -5580,7 +5580,7 @@ As can be seen from the graph below, the value of the associated Legendre polyno
 
 {{< figure src="/img/assoc_legendre.svg" caption="*Figure N: Associated Legendere polynomials of degree 3 and order \\(m=1\\) (blue), \\(m=2\\) (orange), \\(m=3\\) (green).*" >}}
 
-We are now ready to interpret the entire Eqn. 18.53. Since that function has harmonic dependence on \\(\phi\\), if we plot one of its parts (either real or imaginary), we can observe that it divides the surface of a sphere into \\(2 m \times (n - m + 1)\\) rectangular domains, or tesserae. Thus, \\(P_n^m(\cos{\theta}) \cos(m \phi)\\) and \\(P_n^m(\cos{\theta}) \sin(m \phi)\\) are called the even and odd *tesseral harmonics* (and, occasionally, *sectorial harmonics* if \\(m = n\\)).
+We are now ready to interpret the entire Eqn. 18.53. Since that function has harmonic dependence on \\(\phi\\), if we plot one of its parts (either real or imaginary), we can observe that it divides the surface of a sphere into \\(2 m \times (n - m + 1)\\) rectangular domains, or tesserae. Thus, \\(P_n^m(\cos{\theta}) \cos(m \phi)\\) and \\(P_n^m(\cos{\theta}) \sin(m \phi)\\) are called the even and odd [tesseral harmonics](https://mathworld.wolfram.com/TesseralHarmonic.html) (or [sectorial harmonics](https://mathworld.wolfram.com/SectorialHarmonic.html) if \\(m = n\\)).
 
 {{< figure src="/img/assoc_legendre_3.png" caption="*Figure N: Tesseral harmonics of degree 3 and order \\(m=1\\) (left), \\(m=2\\) (center), \\(m=3\\) (right). Warm colors correspond to positive values of the function, and cold colors - to negative values.*" >}}
 
@@ -5610,7 +5610,7 @@ where \\(\delta_{m,n}\\) is the Kronecker delta function given by Eqn. 4.6.
 
 Remarkably, by means of double integration over \\(\theta\\) and \\(\phi\\), these two facts can be combined to show that the tesseral harmonics \\(P_n^m(\cos{\theta}) \cos(m \phi)\\) and \\(P_n^m(\cos{\theta}) \sin(m \phi)\\) form a *complete orthogonal system* of basis functions on the surface of a sphere \[[18](#references) (ch. 7.5), [28](#references) (ch. 2.4)\].
 
-Tesseral harmonics are [real-valued basis functions](https://en.wikipedia.org/wiki/Spherical_harmonics#Real_form), which is sufficient for most problems. However, the theory can be trivially extended to complex values by combining the tesseral harmonics according to Eqn. 18.53. This directly leads to the definition of [scalar spherical harmonics](https://en.wikipedia.org/wiki/Spherical_harmonics)
+Tesseral harmonics are [real-valued basis functions](https://en.wikipedia.org/wiki/Spherical_harmonics#Real_form), which is sufficient for most problems. However, the theory can be trivially extended to complex values by combining the tesseral harmonics according to Eqn. 18.53. This directly leads to the definition of [scalar spherical harmonics](https://mathworld.wolfram.com/SphericalHarmonic.html)
 
 $$ \tag{18.58}
 	Y_n^m(\theta, \phi)
