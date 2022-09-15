@@ -9329,7 +9329,9 @@ $$ \tag{23.3} \small
 \end{aligned}
 $$
 
-Keep in mind that \\(\bm{r_i}\\) is spatially-varying across the surface of the particle, since it depends on both \\(\bm{r'}\\) and \\(\bm{n_i}\\) (these parameters have been omitted for brevity). It also suggests that we may replace the volume integral
+Keep in mind that \\(\bm{r_i}\\) is spatially-varying across the surface of the particle, since it depends on both \\(\bm{r'}\\) and \\(\bm{n_i}\\) (these parameters have been omitted for brevity). TODO: so use UVW...
+
+It also suggests that we may replace the volume integral
 
 $$ \tag{23.4}
 	I_{ada}(\theta, \phi)
