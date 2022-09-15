@@ -8900,6 +8900,11 @@ For spherical or ellipsoidal particles, it is highly convenient to utilize [cyli
 $$ \tag{22.11}
 \bm{r'} =
 \begin{bmatrix}
+	r\_{u}' \cr
+	r\_{v}' \cr
+	r\_{w}' \cr
+\end{bmatrix} =
+\begin{bmatrix}
 	\sqrt{(r\_{u}')^2 + (r\_{v}')^2} \cos(\chi) \cr
 	\sqrt{(r\_{u}')^2 + (r\_{v}')^2} \sin(\chi) \cr
 	r\_{w}' \cr
@@ -9356,15 +9361,6 @@ $$ \tag{22.7}
 	= \sin(\theta/2).
 $$
 
-This suggests that evaluation of the integral
-
-$$ \tag{22.8}
-	I_{rgb}(\theta, \phi)
-	= \frac{1}{V_p} \int\_{V_p} e^{i k \bm{r'} \cdot (\bm{n_i} - \bm{n_s})} dV'
-$$
-
-can be performed most efficiently in an aligned coordinate system. Let us define
-
 $$ \tag{22.9}
 	\bm{w} = \frac{\bm{n_i} - \bm{n_s}}{|\bm{n_i} - \bm{n_s}|},
 	\quad
@@ -9377,7 +9373,7 @@ If \\(\bm{n_i}\\) and \\(\bm{n_s}\\) are collinear, a supporting vector must tak
 
 $$ \tag{15.9}
 	\bm{W} = \bm{n_i}, \quad
-	\bm{V} = \frac{\bm{n_i} \times \bm{n_s}}{| \bm{n_i} \times \bm{n_s} |}, \quad
+	\bm{V} = \bm{v} = \frac{\bm{n_i} \times \bm{n_s}}{| \bm{n_i} \times \bm{n_s} |}, \quad
 	\bm{U} = \bm{V} \times \bm{W},
 $$
 
@@ -9399,6 +9395,11 @@ For spherical or ellipsoidal particles, it is highly convenient to utilize [cyli
 $$ \tag{22.11}
 \bm{r'} =
 \begin{bmatrix}
+	r\_{u}' \cr
+	r\_{v}' \cr
+	r\_{w}' \cr
+\end{bmatrix} =
+\begin{bmatrix}
 	\sqrt{(r\_{u}')^2 + (r\_{v}')^2} \cos(\chi) \cr
 	\sqrt{(r\_{u}')^2 + (r\_{v}')^2} \sin(\chi) \cr
 	r\_{w}' \cr
@@ -9409,13 +9410,6 @@ $$ \tag{22.11}
 	b \cr
 \end{bmatrix}.
 $$
-
-$$ \tag{15.9}
-	\bm{W} = \bm{n_i}, \quad
-	\bm{V} = \bm{v} = \frac{\bm{n_i} \times \bm{n_s}}{| \bm{n_i} \times \bm{n_s} |}, \quad
-	\bm{U} = \bm{V} \times \bm{W},
-$$
-
 UVW coords are obtained from uvw by a rotation
 
 $$ \tag{15.9}
@@ -9440,7 +9434,7 @@ $$ \tag{22.10}
 	r\_{V}' \cr
 	r\_{W}' \cr
 \end{bmatrix}
-= R_v(\xi)
+= R_v(\theta/2)
 \begin{bmatrix}
 	r\_{u}' \cr
 	r\_{v}' \cr
@@ -9480,10 +9474,10 @@ Combined with 22.11,
 
 $$ \tag{23.xx}
 	e^{i (m - 1) k (\bm{r'} - \bm{r_i}) \cdot \bm{n_i}}
-	= e^{i \rho \left(
+	= e^{i \frac{\rho}{2} \left(
 		b \cos(\theta/2) - c \cos(\chi) \sin(\theta/2) +
-		\sqrt{1 - ( c \cos(\theta/2) \cos(\chi) + b \sin(\theta/2) )^2 - ( c \sin(\chi) )^2}
-	\right) / 2}
+		\sqrt{1 - ( c \cos(\chi) \cos(\theta/2) + b \sin(\theta/2) )^2 - ( c \sin(\chi) )^2}
+	\right)}
 $$
 
 
@@ -9518,16 +9512,28 @@ $$ \tag{22.13}
 \end{aligned}
 $$
 
-e^{i (m - 1) k (\bm{r'} - \bm{r_i}) \cdot \bm{n_i}}
-
-$$ \tag{23.4}
+$$ \tag{23.4} \small
+\begin{aligned}
 	I_{ada}(\theta, \phi)
-	= \frac{3}{4 \pi a^3} \int_{-1}^{1}
-	\int_{-\pi}^{\pi} \int_{0}^{a \sqrt{1 - b^2}}
+	&= \frac{3}{4 \pi a^3} \int_{-1}^{1}
+	\int_{-\pi}^{\pi} \int_{0}^{\sqrt{1 - b^2}}
 	e^{i (m - 1) k (\bm{r'} - \bm{r_i}) \cdot \bm{n_i}}
-	c \thinspace dc \thinspace d\chi \thinspace
+	a^2 c \thinspace dc \thinspace d\chi \thinspace
 	e^{i y b} a \thinspace db
+	\cr
+	&= \frac{3}{4 \pi a^3} \int_{-1}^{1}
+	\int_{-\pi}^{\pi} \int_{0}^{\sqrt{1 - b^2}}
+	e^{i \frac{\rho}{2} \left(
+		b \cos(\theta/2) - c \cos(\chi) \sin(\theta/2) +
+		\sqrt{1 - ( c \cos(\chi) \cos(\theta/2) + b \sin(\theta/2) )^2 - ( c \sin(\chi) )^2}
+	\right)}
+	a^2 c \thinspace dc \thinspace d\chi \thinspace
+	e^{i y b} a \thinspace db
+	\cr
+\end{aligned}
 $$
+
+TLDR: Just integrate in UVW coords.
 
 where \\(J_n\\) and \\(j_n\\) are the ordinary and the spherical Bessel functions of the first kind, respectively (cf. Eqn. 18.48).
 
