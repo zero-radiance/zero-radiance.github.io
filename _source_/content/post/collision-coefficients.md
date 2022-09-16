@@ -8913,7 +8913,14 @@ $$ \tag{22.11}
 	c \cos(\chi) \cr
 	c \sin(\chi) \cr
 	b \cr
-\end{bmatrix}.
+\end{bmatrix},
+$$
+
+such that
+
+$$ \tag{22.??}
+	\bm{r'} \cdot (\bm{n_i} - \bm{n_s})
+	= r\_{w}' |\bm{n_i} - \bm{n_s}| = 2 \sin(\theta/2) a b.
 $$
 
 \[Add an illustration here\]
@@ -9329,9 +9336,97 @@ $$ \tag{23.3} \small
 \end{aligned}
 $$
 
-Keep in mind that \\(\bm{r_i}\\) is spatially-varying across the surface of the particle, since it depends on both \\(\bm{r'}\\) and \\(\bm{n_i}\\) (these parameters have been omitted for brevity). TODO: so use UVW...
+Keep in mind that \\(\bm{r_i}\\) is spatially-varying across the surface of the particle, since it depends on both \\(\bm{r'}\\) and \\(\bm{n_i}\\) (these parameters have been omitted for brevity). This undermines the effectiveness of the parameterization introduced in Eqn. 22.9-22.11.
 
-It also suggests that we may replace the volume integral
+Let us replace the the \\(uvw\\) coordinate frame with the following set of basis vectors:
+
+$$ \tag{23.4}
+	\bm{W} = \bm{n_i}, \quad
+	\bm{V} = \bm{v} = \frac{\bm{n_i} \times \bm{n_s}}{| \bm{n_i} \times \bm{n_s} |}, \quad
+	\bm{U} = \bm{V} \times \bm{W}.
+$$
+
+If \\(\bm{n_i}\\) and \\(\bm{n_s}\\) are collinear, a supporting vector must take the role of \\(\bm{n_s}\\) in order to fix the orientation of the coordinate frame.
+
+Since, according to Eqn. 22.7, 22.9 and 23.4,
+
+$$ \tag{23.5}
+	\bm{w} \cdot \bm{W}
+	= \frac{\bm{n_i} \cdot (\bm{n_i} - \bm{n_s})}{|\bm{n_i} - \bm{n_s}|}
+	= \frac{1 - \cos(\theta)}{2 \sin(\theta/2)}
+	= \sin(\theta/2),
+$$
+
+the \\(UVW\\) coordinate frame can be obtained by rotating the \\(uvw\\) basis vectors by \\((\pi-\theta)/2\\) radians around the \\(\bm{v}\\)-axis.
+
+\[Add an illustration here\]
+
+The coordinates rotate in the opposite direction:
+
+$$ \tag{23.6}
+\bm{r'} =
+\begin{bmatrix}
+	r\_{U}' \cr
+	r\_{V}' \cr
+	r\_{W}' \cr
+\end{bmatrix}
+= R_v(\theta/2 - \pi/2)
+\begin{bmatrix}
+	r\_{u}' \cr
+	r\_{v}' \cr
+	r\_{w}' \cr
+\end{bmatrix} =
+\begin{bmatrix}
+	\sin(\theta/2) & 0 & 		   -\cos(\theta/2) \cr
+	             0 & 1 &                         0 \cr
+	\cos(\theta/2) & 0 & \phantom{-}\sin(\theta/2) \cr
+\end{bmatrix}
+\begin{bmatrix}
+	r\_{u}' \cr
+	r\_{v}' \cr
+	r\_{w}' \cr
+\end{bmatrix}.
+$$
+
+Let us consider a spherical particle of radius \\(a\\). Then, once again, it is convenient to utilize cylindrical coordinates:
+
+$$ \tag{23.7}
+\bm{r'} =
+\begin{bmatrix}
+	r\_{U}' \cr
+	r\_{V}' \cr
+	r\_{W}' \cr
+\end{bmatrix} =
+\begin{bmatrix}
+	\sqrt{(r\_{U}')^2 + (r\_{V}')^2} \cos(\chi) \cr
+	\sqrt{(r\_{U}')^2 + (r\_{V}')^2} \sin(\chi) \cr
+	r\_{W}' \cr
+\end{bmatrix} = a
+\begin{bmatrix}
+	c \cos(\chi) \cr
+	c \sin(\chi) \cr
+	b \cr
+\end{bmatrix}.
+$$
+
+From the geometry, it is evident that
+
+$$ \tag{23.8}
+	\bm{r'} \cdot \bm{n_i}
+	= a b,
+	\quad
+	-\bm{r_i} \cdot \bm{n_i}
+	= \sqrt{a^2 - \big( r\_{U}' \big)^2 - \big( r\_{V}' \big)^2}
+	= a \sqrt{1 - c^2}.
+$$
+
+Furthermore, according to Eqn. ??? and ,
+
+$$ \tag{23.4}
+	\bm{r'} \cdot (\bm{n_i} - \bm{n_s}) = ...
+$$
+
+Something-something...
 
 $$ \tag{23.4}
 	I_{ada}(\theta, \phi)
@@ -9344,10 +9439,6 @@ with the corresponding surface integral (cf. Eqn. 1x.14).
 
 Let us first attempt to evaluate Eqn. 23.4 directly. As before, we shall consider the case of a homogeneous spherical particle. Eqn. 22.7, 22.9-22.12 remain applicable; however, Eqn. 22.13 takes a more complicated form due to the additional complex exponential factor
 
-$$ \tag{23.5}
-	e^{i (m - 1) k (\bm{r'} - \bm{r_i}) \cdot \bm{n_i}}
-	= e^{i (m - 1) k (\bm{r'} - \bm{r_i}) \cdot \bm{n_i}}
-$$
 
 ---
 
@@ -9371,13 +9462,7 @@ $$ \tag{22.9}
 	\bm{u} = \bm{v} \times \bm{w},
 $$
 
-If \\(\bm{n_i}\\) and \\(\bm{n_s}\\) are collinear, a supporting vector must take the role of \\(\bm{n_s}\\) in order to fix the orientation of the coordinate frame.
 
-$$ \tag{15.9}
-	\bm{W} = \bm{n_i}, \quad
-	\bm{V} = \bm{v} = \frac{\bm{n_i} \times \bm{n_s}}{| \bm{n_i} \times \bm{n_s} |}, \quad
-	\bm{U} = \bm{V} \times \bm{W},
-$$
 
 Using this convention, the point \\(\bm{r'}\\) in the interior of the particle has the following set of Cartesian coordinates:
 
@@ -9414,63 +9499,12 @@ $$ \tag{22.11}
 $$
 UVW coords are obtained from uvw by a rotation
 
-$$ \tag{15.9}
-	\xi = \arccos(\bm{w} \cdot \bm{W}),
-$$
 
-where
 
-$$ \tag{15.9}
-	\bm{w} \cdot \bm{W}
-	= \frac{\bm{n_i} \cdot (\bm{n_i} - \bm{n_s})}{|\bm{n_i} - \bm{n_s}|}
-	= \frac{1 - \cos(\theta)}{2 \sin(\theta/2)}
-	= \sin(\theta/2),
-$$
-
-around the v axis:
-
-$$ \tag{22.10}
-\bm{r'} =
-\begin{bmatrix}
-	r\_{U}' \cr
-	r\_{V}' \cr
-	r\_{W}' \cr
-\end{bmatrix}
-= R_v(\theta/2)
-\begin{bmatrix}
-	r\_{u}' \cr
-	r\_{v}' \cr
-	r\_{w}' \cr
-\end{bmatrix} =
-\begin{bmatrix}
-	\phantom{-}\cos(\theta/2) & 0 & \sin(\theta/2) \cr
-	0            & 1 & 0             \cr
-	-\sin(\theta/2) & 0 & \cos(\theta/2) \cr
-\end{bmatrix}
-\begin{bmatrix}
-	r\_{u}' \cr
-	r\_{v}' \cr
-	r\_{w}' \cr
-\end{bmatrix}.
-$$
-
-\[Add an illustration here\]
 
 Furthermore,
 
-$$ \tag{23.4}
-\begin{aligned}
-	\bm{r'} \cdot \bm{n_i}
-	&= -r\_{u}' \sin(\theta/2) + r\_{w}' \cos(\theta/2)
-	 = a (b \cos(\theta/2) - c \cos(\chi) \sin(\theta/2)),
-	\cr
-	-\bm{r_i} \cdot \bm{n_i}
-	&= \sqrt{a^2 - \big( r\_{U}' \big)^2 - \big( r\_{V}' \big)^2}
-	= \sqrt{a^2 - \big( r\_{u}' \cos(\theta/2) + r\_{w}' \sin(\theta/2) \big)^2 - \big( r\_{v}' \big)^2}
-	\cr
-	&= a \sqrt{1 - \big( c \cos(\chi) \cos(\theta/2) + b \sin(\theta/2) \big)^2 - \big( c \sin(\chi) \big)^2}
-\end{aligned}
-$$
+
 
 Combined with 22.11,
 
