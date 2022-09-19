@@ -8854,9 +8854,9 @@ is considerably simplified. Going forward, we shall also assume that the particl
 Recall that the scattering angle \\(\theta = \arccos(\bm{n_i} \cdot \bm{n_s})\\) can be defined in at least three different ways:
 
 $$ \tag{22.7}
-	\bm{n_i} \cdot \bm{n_s} = \cos(\theta),
+	\bm{n_i} \cdot \bm{n_s} = \cos{\theta},
 	\quad
-	| \bm{n_i} \times \bm{n_s} | = \sin(\theta),
+	| \bm{n_i} \times \bm{n_s} | = \sin{\theta},
 	\quad
 	\frac{|\bm{n_i} - \bm{n_s}|}{2}
 	= \sqrt{\frac{1 - \bm{n_i} \cdot \bm{n_s}}{2}}
@@ -8905,13 +8905,13 @@ $$ \tag{22.11}
 	r\_{w}' \cr
 \end{bmatrix} =
 \begin{bmatrix}
-	\sqrt{(r\_{u}')^2 + (r\_{v}')^2} \cos(\chi) \cr
-	\sqrt{(r\_{u}')^2 + (r\_{v}')^2} \sin(\chi) \cr
+	\sqrt{(r\_{u}')^2 + (r\_{v}')^2} \cos{\chi} \cr
+	\sqrt{(r\_{u}')^2 + (r\_{v}')^2} \sin{\chi} \cr
 	r\_{w}' \cr
 \end{bmatrix} = a
 \begin{bmatrix}
-	c \cos(\chi) \cr
-	c \sin(\chi) \cr
+	c \cos{\chi} \cr
+	c \sin{\chi} \cr
 	b \cr
 \end{bmatrix},
 $$
@@ -8920,7 +8920,9 @@ such that
 
 $$ \tag{22.??}
 	\bm{r'} \cdot (\bm{n_i} - \bm{n_s})
-	= r\_{w}' |\bm{n_i} - \bm{n_s}| = 2 \sin(\theta/2) a b.
+	= |\bm{n_i} - \bm{n_s}| r\_{w}'
+	= 2 \sin(\theta/2) r\_{w}'
+	= 2 \sin(\theta/2) a b.
 $$
 
 \[Add an illustration here\]
@@ -9134,7 +9136,7 @@ $$ \tag{22.25}
 	\frac{x^6}{k^2} \int_{0}^{\pi}
 	\frac{j_1^2\negthinspace\big( 2 \sin(\theta/2) x \big)}{4 \sin^2(\theta/2) x^2}
 	\frac{\cos^2(\theta) + 1}{2}
-	\sin(\theta) \thinspace d\theta \thinspace \Epsilon_i
+	\sin{\theta} \thinspace d\theta \thinspace \Epsilon_i
 	\cr
 	&= N 2 \pi \left| m^2 - 1 \right|^2
 	\frac{J_{rgb}(x)}{k^2} \Epsilon_i.
@@ -9302,23 +9304,21 @@ For large particles, this implies that surface reflection is almost completely a
 
 However, unlike in the Rayleigh-Gans-Born approximation, we no longer assume that the phase delay and the absorption experienced by a ray of light as it passes though a (large) particle is negligible, which means that \\(\rho = 2 (m - 1) x\\) can take on arbitrary values \[[4](#references) (ch. 11.1)\].
 
-This idea is most clearly illustrated by the example of a homogeneous particle (cf. Fig 23.1).
+Consider the point \\(\bm{r'}\\) located inside the particle (cf. Fig 23.1). We trace a line along \\(\bm{n_i}\\) that passes through \\(\bm{r'}\\); by doing so, we determine the entry and the exit points \\(\bm{r_i}\\) and \\(\bm{r_o}\\), respectively.
 
 [Add an illustration here]
 
-Consider the point \\(\bm{r}\\) located inside the particle. We trace a line along \\(\bm{n_i}\\) that passes through \\(\bm{r}\\); by doing so, we determine the entry and the exit points \\(\bm{r_i}\\) and \\(\bm{r_o}\\), respectively.
-
-The wavenumber of the plane wave outside the particle is \\(k\\); at \\(\bm{r_i}\\), it abruptly transitions to \\(m k\\), and maintains this value up until \\(\bm{r_o}\\). The expression of the internal field \\(\bm{E}\\) takes the form
+The wavenumber of the plane wave outside the particle is \\(k\\); at \\(\bm{r_i}\\), it abruptly transitions to \\(m k\\). The expression of the internal field \\(\bm{E}\\) takes the form
 
 $$ \tag{23.2}
 \begin{aligned}
-	\bm{E}(\bm{r}, \omega)
+	\bm{E}(\bm{r'}, \omega)
 	&\approx \bm{E_0}(\bm{n_i}, \omega)
 	e^{i k(\omega) (\bm{r_i} \cdot \bm{n_i})}
-	e^{i m(\omega) k(\omega) (\bm{r} - \bm{r_i}) \cdot \bm{n_i}}
+	e^{i m(\bm{r'}, \omega) k(\omega) (\bm{r'} - \bm{r_i}) \cdot \bm{n_i}}
 	\cr
-	&= \bm{E_i}(\bm{r}, \omega)
-	e^{i (m(\omega) - 1) k(\omega) (\bm{r} - \bm{r_i}) \cdot \bm{n_i}}.
+	&= \bm{E_i}(\bm{r'}, \omega)
+	e^{i (m(\bm{r'}, \omega) - 1) k(\omega) (\bm{r'} - \bm{r_i}) \cdot \bm{n_i}}.
 \end{aligned}
 $$
 
@@ -9330,13 +9330,13 @@ $$ \tag{23.3} \small
 	&\simeq k^2(\omega)
 	\frac{e^{i k(\omega) r}}{4 \pi r}
 	\big( \mathcal{I} - \bm{n_s} \otimes \bm{n_s} \big) \cdot \bm{E_0}(\bm{n_i}, \omega)
-	\int\_{V_p} \big( m^2(\omega) - 1 \big)
+	\int\_{V_p} \big( m^2(\bm{r'}, \omega) - 1 \big)
 	e^{i k(\omega) \bm{r'} \cdot (\bm{n_i} - \bm{n_s})}
-	e^{i (m(\omega) - 1) k(\omega) (\bm{r'} - \bm{r_i}) \cdot \bm{n_i}} dV'.
+	e^{i (m(\bm{r'}, \omega) - 1) k(\omega) (\bm{r'} - \bm{r_i}) \cdot \bm{n_i}} dV'.
 \end{aligned}
 $$
 
-Keep in mind that \\(\bm{r_i}\\) is spatially-varying across the surface of the particle, since it depends on both \\(\bm{r'}\\) and \\(\bm{n_i}\\) (these parameters have been omitted for brevity). This undermines the effectiveness of the parameterization introduced in Eqn. 22.9-22.11.
+Keep in mind that \\(\bm{r_i}\\) is spatially-varying across the surface of the particle, since it depends on both \\(\bm{r'}\\) and \\(\bm{n_i}\\) (in Eqn. 23.2-23.3, these parameters have been omitted for brevity). This undermines the effectiveness of the parameterization introduced in Eqn. 22.9-22.11.
 
 Let us replace the the \\(uvw\\) coordinate frame with the following set of basis vectors:
 
@@ -9353,11 +9353,12 @@ Since, according to Eqn. 22.7, 22.9 and 23.4,
 $$ \tag{23.5}
 	\bm{w} \cdot \bm{W}
 	= \frac{\bm{n_i} \cdot (\bm{n_i} - \bm{n_s})}{|\bm{n_i} - \bm{n_s}|}
-	= \frac{1 - \cos(\theta)}{2 \sin(\theta/2)}
-	= \sin(\theta/2),
+	= \frac{1 - \cos{\theta}}{2 \sin(\theta/2)}
+	= \sin(\theta/2)
+	= \cos(\pi/2 - \theta/2),
 $$
 
-the \\(UVW\\) coordinate frame can be obtained by rotating the \\(uvw\\) basis vectors by \\((\pi-\theta)/2\\) radians around the \\(\bm{v}\\)-axis.
+the \\(UVW\\) coordinate frame is obtained by rotation of the \\(uvw\\) basis vectors by \\((\pi-\theta)/2\\) radians around the \\(\bm{v}\\)-axis.
 
 \[Add an illustration here\]
 
@@ -9388,7 +9389,7 @@ $$ \tag{23.6}
 \end{bmatrix}.
 $$
 
-Let us consider a spherical particle of radius \\(a\\). Then, once again, it is convenient to utilize cylindrical coordinates:
+Let us consider the special case of a homogeneous spherical particle. Once again, it is convenient to utilize cylindrical coordinates:
 
 $$ \tag{23.7}
 \bm{r'} =
@@ -9398,13 +9399,13 @@ $$ \tag{23.7}
 	r\_{W}' \cr
 \end{bmatrix} =
 \begin{bmatrix}
-	\sqrt{(r\_{U}')^2 + (r\_{V}')^2} \cos(\chi) \cr
-	\sqrt{(r\_{U}')^2 + (r\_{V}')^2} \sin(\chi) \cr
+	\sqrt{(r\_{U}')^2 + (r\_{V}')^2} \cos{\chi} \cr
+	\sqrt{(r\_{U}')^2 + (r\_{V}')^2} \sin{\chi} \cr
 	r\_{W}' \cr
 \end{bmatrix} = a
 \begin{bmatrix}
-	c \cos(\chi) \cr
-	c \sin(\chi) \cr
+	c \cos{\chi} \cr
+	c \sin{\chi} \cr
 	b \cr
 \end{bmatrix}.
 $$
@@ -9420,202 +9421,56 @@ $$ \tag{23.8}
 	= a \sqrt{1 - c^2}.
 $$
 
-Furthermore, according to Eqn. ??? and ,
+Furthermore, according to Eqn. 22.?? and 23.6,
 
-$$ \tag{23.4}
-	\bm{r'} \cdot (\bm{n_i} - \bm{n_s}) = ...
+$$ \tag{23.9}
+\begin{aligned}
+	\bm{r'} \cdot (\bm{n_i} - \bm{n_s})
+	&= 2 \sin(\theta/2) r\_{w}'
+	\cr
+	&= 2 \sin(\theta/2)
+	\left( -\cos(\theta/2) r\_{U}' + \sin(\theta/2) r\_{W}' \right)
+	\cr
+	&= a b (1 - \cos{\theta}) - a c \cos{\chi} \sin{\theta}.
+\end{aligned}
 $$
 
-Something-something...
+Thus, our goal is to evaluate
 
-$$ \tag{23.4}
+$$ \tag{23.10}
+\begin{aligned}
 	I_{ada}(\theta, \phi)
-	= \frac{1}{V_p} \int\_{V_p}
+	&= \frac{1}{V_p} \int\_{V_p}
 	e^{i k \bm{r'} \cdot (\bm{n_i} - \bm{n_s})}
 	e^{i (m - 1) k (\bm{r'} - \bm{r_i}) \cdot \bm{n_i}} dV'
-$$
-
-with the corresponding surface integral (cf. Eqn. 1x.14).
-
-Let us first attempt to evaluate Eqn. 23.4 directly. As before, we shall consider the case of a homogeneous spherical particle. Eqn. 22.7, 22.9-22.12 remain applicable; however, Eqn. 22.13 takes a more complicated form due to the additional complex exponential factor
-
-
----
-
-Recall that the scattering angle \\(\theta = \arccos(\bm{n_i} \cdot \bm{n_s})\\) can be defined in two different ways:
-
-$$ \tag{22.7}
-	\bm{n_i} \cdot \bm{n_s} = \cos(\theta),
-	\quad
-	| \bm{n_i} \times \bm{n_s} | = \sin(\theta),
-	\quad
-	\frac{|\bm{n_i} - \bm{n_s}|}{2}
-	= \sqrt{\frac{1 - \bm{n_i} \cdot \bm{n_s}}{2}}
-	= \sin(\theta/2).
-$$
-
-$$ \tag{22.9}
-	\bm{w} = \frac{\bm{n_i} - \bm{n_s}}{|\bm{n_i} - \bm{n_s}|},
-	\quad
-	\bm{v} = \frac{\bm{n_i} \times \bm{n_s}}{| \bm{n_i} \times \bm{n_s} |},
-	\quad
-	\bm{u} = \bm{v} \times \bm{w},
-$$
-
-
-
-Using this convention, the point \\(\bm{r'}\\) in the interior of the particle has the following set of Cartesian coordinates:
-
-$$ \tag{22.10}
-\bm{r'} =
-\begin{bmatrix}
-	r\_{u}' \cr
-	r\_{v}' \cr
-	r\_{w}' \cr
-\end{bmatrix},
-\quad
-	|\bm{r'}| = \sqrt{(r\_{u}')^2 + (r\_{v}')^2 + (r\_{w}')^2}.
-$$
-
-For spherical or ellipsoidal particles, it is highly convenient to utilize [cylindrical coordinates](https://en.wikipedia.org/wiki/Cylindrical_coordinate_system) \[[4](#references) (ch. 7.11)\]:
-
-$$ \tag{22.11}
-\bm{r'} =
-\begin{bmatrix}
-	r\_{u}' \cr
-	r\_{v}' \cr
-	r\_{w}' \cr
-\end{bmatrix} =
-\begin{bmatrix}
-	\sqrt{(r\_{u}')^2 + (r\_{v}')^2} \cos(\chi) \cr
-	\sqrt{(r\_{u}')^2 + (r\_{v}')^2} \sin(\chi) \cr
-	r\_{w}' \cr
-\end{bmatrix} = a
-\begin{bmatrix}
-	c \cos(\chi) \cr
-	c \sin(\chi) \cr
-	b \cr
-\end{bmatrix}.
-$$
-UVW coords are obtained from uvw by a rotation
-
-
-
-
-Furthermore,
-
-
-
-Combined with 22.11,
-
-$$ \tag{23.xx}
-	e^{i (m - 1) k (\bm{r'} - \bm{r_i}) \cdot \bm{n_i}}
-	= e^{i \frac{\rho}{2} \left(
-		b \cos(\theta/2) - c \cos(\chi) \sin(\theta/2) +
-		\sqrt{1 - ( c \cos(\chi) \cos(\theta/2) + b \sin(\theta/2) )^2 - ( c \sin(\chi) )^2}
-	\right)}
-$$
-
-
-\[Add an illustration here\]
-
-In particular, for a spherical particle (symmetric with respect to the azimuthal angle \\(\phi\\)), we may set
-
-$$ \tag{22.12}
-	y(\theta) = 2 \sin(\theta/2) x,
-$$
-
-and easily calculate \[[4](#references) (ch. 7.21)\]
-
-$$ \tag{22.13}
-\begin{aligned}
-	I_{rgb}(\theta)
-	&= \frac{3}{4 \pi a^3} \int_{-1}^{1}
-	\int_{-\pi}^{\pi} \int_{0}^{\sqrt{1 - b^2}}
-	a^2 c \thinspace dc \thinspace d\chi \thinspace
-	e^{i y b} a \thinspace db
 	\cr
-	&= \frac{3}{4} \int_{-1}^{1}
-	\left( 1 - b^2 \right)
-	e^{i y b} db
-	= \frac{3}{2} \int_{0}^{1}
-	\left( 1 - b^2 \right)
-	\cos(y b) db
-	\cr
-	&= \frac{3 \sin(y) - 3 y \cos(y)}{y^3}
-	 = \sqrt{\frac{9 \pi}{2 y^3}} J_{3/2}(y)
-	 = \frac{3 j_1(y)}{y},
-\end{aligned}
-$$
-
-$$ \tag{23.4} \small
-\begin{aligned}
-	I_{ada}(\theta, \phi)
-	&= \frac{3}{4 \pi a^3} \int_{-1}^{1}
-	\int_{-\pi}^{\pi} \int_{0}^{\sqrt{1 - b^2}}
-	e^{i (m - 1) k (\bm{r'} - \bm{r_i}) \cdot \bm{n_i}}
+	&= \frac{3}{4 \pi a^3} \int_{-1}^{1} \int_{-\pi}^{\pi}
+	\int_{0}^{\sqrt{1 - b^2}}
+	e^{i x b (1 - \cos{\theta}) - i c x \sin{\theta} \cos{\chi}}
+	e^{i (m - 1) x \left(b - \sqrt{1 - c^2} \right)}
 	a^2 c \thinspace dc \thinspace d\chi \thinspace
-	e^{i y b} a \thinspace db
+	a \thinspace db
 	\cr
-	&= \frac{3}{4 \pi a^3} \int_{-1}^{1}
-	\int_{-\pi}^{\pi} \int_{0}^{\sqrt{1 - b^2}}
-	e^{i \frac{\rho}{2} \left(
-		b \cos(\theta/2) - c \cos(\chi) \sin(\theta/2) +
-		\sqrt{1 - ( c \cos(\chi) \cos(\theta/2) + b \sin(\theta/2) )^2 - ( c \sin(\chi) )^2}
-	\right)}
-	a^2 c \thinspace dc \thinspace d\chi \thinspace
-	e^{i y b} a \thinspace db
+	&= \frac{3}{4 \pi} \int_{-1}^{1}
+	\int_{0}^{\sqrt{1 - b^2}}
+	\int_{-\pi}^{\pi}
+	e^{-i c x \sin{\theta} \cos{\chi}}
+	\thinspace d\chi \thinspace
+	e^{-i (m - 1) x \sqrt{1 - c^2}}
+	c \thinspace dc \thinspace
+	e^{i x b (m - \cos{\theta})}
+	\thinspace db \thinspace
+	\cr
+	&= \frac{3}{2} \int_{-1}^{1}
+	\int_{0}^{\sqrt{1 - b^2}}
+	J_0(c x \sin{\theta})
+	e^{-i (m - 1) x \sqrt{1 - c^2}}
+	c \thinspace dc \thinspace
+	e^{i x b (m - \cos{\theta})}
+	\thinspace db \thinspace
 	\cr
 \end{aligned}
 $$
-
-TLDR: Just integrate in UVW coords.
-
-where \\(J_n\\) and \\(j_n\\) are the ordinary and the spherical Bessel functions of the first kind, respectively (cf. Eqn. 18.48).
-
-Thus, for a homogeneous spherical particle, Eqn. 22.6 can be written as
-
-$$ \tag{22.14}
-	\bm{E_s}(\bm{r}, \omega)
-	\approx \frac{e^{i k(\omega) r}}{k(\omega) r}
-	\big( m^2(\omega) - 1 \big) x^3(\omega)
-	\frac{j_1\negthinspace\big( |\bm{n_i} - \bm{n_s}| x(\omega) \big)}{|\bm{n_i} - \bm{n_s}| x(\omega)}
-	\big( \mathcal{I} - \bm{n_s} \otimes \bm{n_s} \big) \cdot
-	\bm{E_0}.
-$$
-
-
-#### Scattering Matrix
-
-The geometric formulation of the problem creates a strong dependence on the shape of the particle.
-
-$$ \tag{15.8}
-	\bm{e_z} = \bm{n_i}, \quad
-	\bm{e_y} = \frac{\bm{n_i} \times \bm{n_s}}{| \bm{n_i} \times \bm{n_s} |}, \quad
-	\bm{e_x} = \bm{e_y} \times \bm{e_z}.
-$$
-
-If \\(\bm{n_i}\\) and \\(\bm{n_s}\\) are collinear, a supporting vector must take the role of \\(\bm{n_s}\\) in order to fix the orientation of the coordinate frame.
-
-Imagine that the *scattering coordinate system* \\(xyz\\)
-
-Imagine that the *scattering coordinate system* \\(xyz\\) is initially aligned with the *laboratory reference frame* \\(XYZ\\), such that
-
-$$ \tag{15.9}
-	\bm{e_Z} = \bm{n_i}, \quad
-	\bm{e_Y} = \bm{n_i} \times \bm{n_p}, \quad
-	\bm{e_X} = \bm{n_p},
-$$
-
-where \\(\bm{n_p}\\) is the principal axis of the particle (specifically chosen to be orthogonal to \\(\bm{n_i}\\)).
-
-In the case of a spherical particle, its surface can be parametrized using spherical coordinates.
-
-Substitution of Eqn. 23.2 into the volume integral equation yields
-
-13.12, the far-field expression of the volume integral equation
-
-
 
 ---
 
