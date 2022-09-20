@@ -9516,6 +9516,74 @@ $$
 
 ---
 
+$$ \tag{23.8}
+\begin{aligned}
+	\bm{r'} \cdot \bm{n_i}
+	&= r\_{W}'
+	= r\_{u}' \cos(\theta/2) +  r\_{w}'\sin(\theta/2)
+	= a c \cos{\chi} \cos(\theta/2) + a b \sin(\theta/2),
+	\cr
+	-\bm{r_i} \cdot \bm{n_i}
+	&= \sqrt{a^2 - \big( r\_{U}' \big)^2 - \big( r\_{V}' \big)^2}
+	= \sqrt{a^2 - \big( r\_{u}' \sin(\theta/2) - r\_{w}' \cos(\theta/2) \big)^2 - \big( r\_{v}' \big)^2}
+	\cr
+	&= a \sqrt{1 - \big( c \cos{\chi} \sin(\theta/2) - b \cos(\theta/2) \big)^2 - \big( c \sin{\chi} \big)^2}.
+\end{aligned}
+$$
+
+$$ \tag{23.xx}
+	e^{i (m - 1) k (\bm{r'} - \bm{r_i}) \cdot \bm{n_i}}
+	= e^{i \frac{\rho}{2} \left(
+		c \cos{\chi} \cos(\theta/2) + b \sin(\theta/2) +
+		\sqrt{1 - \left( c \cos{\chi} \sin(\theta/2) - b \cos(\theta/2) \right)^2 - ( c \sin{\chi} )^2}
+	\right)}
+	= e^{i \rho t}
+$$
+
+Motivated by the fact that M is small, so Rho is not too large, we expand \\(\exp(i \rho t)\\) in a power series of Rho. In order to connect our results to the Rayleigh-Gans-Born approximation (for which Rho = 0), we perform expansion around the origin:
+
+$$
+	e^{i \rho t}
+	= 1 + i \rho t - \frac{\rho ^2 t^2}{2} - i \frac{\rho ^3 t^3}{6} + \frac{\rho ^4 t^4}{24} + \mathrm{O}\negmedspace\left( \rho^5 \right)
+$$
+
+However, expansions around an arbitrary point Rho = Rho_0 are also not particularly complicated.
+
+$$ \tag{22.13}
+\begin{aligned}
+	I_{rgb}(\theta)
+	&= \frac{3}{4 \pi a^3} \int_{-1}^{1}
+	\int_{0}^{\sqrt{1 - b^2}}
+	\int_{-\pi}^{\pi}
+	e^{i \rho t(b,c,\chi)}
+	\thinspace d\chi \thinspace
+	a^2 c \thinspace dc \thinspace
+	e^{i y b} a \thinspace db \thinspace
+	\cr
+	&= \frac{3}{4 \pi} \int_{-1}^{1}
+	\int_{0}^{\sqrt{1 - b^2}}
+	\int_{-\pi}^{\pi}
+	e^{i \rho t(b,c,\chi)}
+	\thinspace d\chi \thinspace
+	c \thinspace dc \thinspace
+	e^{i y b} \thinspace db \thinspace
+	\cr
+	&= \frac{3}{4} \int_{-1}^{1}
+	\left( 1 - b^2 \right)
+	e^{i y b} db
+	= \frac{3}{2} \int_{0}^{1}
+	\left( 1 - b^2 \right)
+	\cos(y b) db
+	\cr
+	&= \frac{3 \sin(y) - 3 y \cos(y)}{y^3}
+	 = \sqrt{\frac{9 \pi}{2 y^3}} J_{3/2}(y)
+	 = \frac{3 j_1(y)}{y},
+\end{aligned}
+$$
+
+
+---
+
 #### Second-Order Born Approximation
 
 The biggest drawback of the Rayleigh-Gans-Born approximation stems from the assumption that the internal field is virtually indistinguishable from the incident field. While that drastically simplifies the resulting expressions, it severely limits their range of applicability, since the the relative wavenumber \\(m\\) may not appreciably deviate from unity. Physically, it implies that the particle is composed of dipoles that do not interact with each other. Formally, this interaction is captured by the Born series expansion (cf. Eqn. 14.3, 14.4, 14.20)
