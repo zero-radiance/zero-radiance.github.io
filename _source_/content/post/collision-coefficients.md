@@ -9362,7 +9362,7 @@ the \\(UVW\\) coordinate frame is obtained by rotation of the \\(uvw\\) basis ve
 
 \[Add an illustration here\]
 
-The coordinates rotate in the opposite direction:
+The coordinates of \\(\bm{r'}\\) rotate in the opposite direction:
 
 $$ \tag{23.6}
 \bm{r'} =
@@ -9435,7 +9435,7 @@ $$ \tag{23.9}
 \end{aligned}
 $$
 
-Thus, our goal is to evaluate
+Thus, our goal is to evaluate the integral
 
 $$ \tag{23.10}
 \begin{aligned}
@@ -9446,8 +9446,8 @@ $$ \tag{23.10}
 	\cr
 	&= \frac{3}{4 \pi a^3} \int_{-1}^{1} \int_{-\pi}^{\pi}
 	\int_{0}^{\sqrt{1 - b^2}}
-	e^{i x b (1 - \cos{\theta}) - i c x \sin{\theta} \cos{\chi}}
-	e^{i (m - 1) x \left(b - \sqrt{1 - c^2} \right)}
+	e^{i b x (1 - \cos{\theta}) - i c x \sin{\theta} \cos{\chi}}
+	e^{i (m - 1) x \left(b + \sqrt{1 - c^2} \right)}
 	a^2 c \thinspace dc \thinspace d\chi \thinspace
 	a \thinspace db
 	\cr
@@ -9456,20 +9456,62 @@ $$ \tag{23.10}
 	\int_{-\pi}^{\pi}
 	e^{-i c x \sin{\theta} \cos{\chi}}
 	\thinspace d\chi \thinspace
-	e^{-i (m - 1) x \sqrt{1 - c^2}}
+	e^{i (m - 1) x \sqrt{1 - c^2}}
 	c \thinspace dc \thinspace
-	e^{i x b (m - \cos{\theta})}
+	e^{i b x (m - \cos{\theta})}
 	\thinspace db \thinspace
 	\cr
 	&= \frac{3}{2} \int_{-1}^{1}
 	\int_{0}^{\sqrt{1 - b^2}}
 	J_0(c x \sin{\theta})
-	e^{-i (m - 1) x \sqrt{1 - c^2}}
+	e^{i (m - 1) x \sqrt{1 - c^2}}
 	c \thinspace dc \thinspace
-	e^{i x b (m - \cos{\theta})}
-	\thinspace db \thinspace
-	\cr
+	e^{i b x (m - \cos{\theta})}
+	\thinspace db,
 \end{aligned}
+$$
+
+where we recognize the definition of the [Bessel function of the first kind](https://mathworld.wolfram.com/BesselFunctionoftheFirstKind.html)
+
+$$ \tag{23.11}
+	J_0(z) = \frac{1}{\pi} \int_{0}^{\pi}
+	e^{i z \cos{\chi}} \thinspace d\chi.
+$$
+
+Change
+
+$$ \tag{23.12}
+	c = \sqrt{1-b^2} \sin{\gamma},
+	\quad
+	dc = \sqrt{1-b^2} \cos{\gamma} \thinspace d\gamma
+$$
+
+c dc = (1-b^2) \sin{\gamma} \cos{\gamma} \thinspace d\gamma
+
+$$ \tag{23.13} \small
+\begin{aligned}
+	I_{ada}(\theta, \phi)
+	&= \frac{3}{2} \int_{-1}^{1}
+	\int_{0}^{\sqrt{1 - b^2}}
+	J_0(c x \sin{\theta})
+	e^{i (m - 1) x \sqrt{1 - c^2}}
+	c \thinspace dc \thinspace
+	e^{i b x (m - \cos{\theta})}
+	\thinspace db
+	\cr
+	&= \frac{3}{2} \int_{-1}^{1}
+	\int_{0}^{\pi/2}
+	J_0(\sqrt{1-b^2} \sin{\gamma} x \sin{\theta})
+	e^{i (m - 1) x \sqrt{1 - (1-b^2) \sin^2{\gamma}}}
+	(1-b^2) \sin{\gamma} \cos{\gamma} \thinspace d\gamma \thinspace
+	e^{i b x (m - \cos{\theta})}
+	\thinspace db
+\end{aligned}
+$$
+
+$$ \tag{23.12}
+	i (m - 1) x \sqrt{1 - c^2}
+	= i (\rho/2) \cos(\gamma/2),
 $$
 
 ---
