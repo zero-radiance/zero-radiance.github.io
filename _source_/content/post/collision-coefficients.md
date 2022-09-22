@@ -8873,11 +8873,11 @@ $$
 can be performed most efficiently in an aligned coordinate system. Let us define
 
 $$ \tag{22.9}
-	\bm{w} = \frac{\bm{n_i} - \bm{n_s}}{|\bm{n_i} - \bm{n_s}|},
+	\bm{e_w} = \frac{\bm{n_i} - \bm{n_s}}{|\bm{n_i} - \bm{n_s}|},
 	\quad
-	\bm{v} = \frac{\bm{n_i} \times \bm{n_s}}{| \bm{n_i} \times \bm{n_s} |},
+	\bm{e_v} = \frac{\bm{n_i} \times \bm{n_s}}{| \bm{n_i} \times \bm{n_s} |},
 	\quad
-	\bm{u} = \bm{v} \times \bm{w},
+	\bm{e_u} = \bm{e_v} \times \bm{e_w},
 $$
 
 If \\(\bm{n_i}\\) and \\(\bm{n_s}\\) are collinear, a supporting vector must take the role of \\(\bm{n_s}\\) in order to fix the orientation of the coordinate frame.
@@ -8941,7 +8941,7 @@ $$ \tag{22.13}
 	&= \frac{3}{4 \pi a^3} \int_{-1}^{1}
 	\int_{-\pi}^{\pi} \int_{0}^{\sqrt{1 - b^2}}
 	a^2 c \thinspace dc \thinspace d\chi \thinspace
-	e^{i y b} a \thinspace db
+	e^{i y(\theta) b} a \thinspace db
 	\cr
 	&= \frac{3}{4} \int_{-1}^{1}
 	\left( 1 - b^2 \right)
@@ -9300,7 +9300,7 @@ $$ \tag{23.1}
 	2 \left| m - 1 \right| \ll 1.
 $$
 
-For large particles, this implies that surface reflection is almost completely absent, except for grazing angles.
+For large particles, this implies that surface reflection is almost entirely absent, except for grazing angles. Furthermore, the degree of deviation of light rays (due to refraction) from the initial direction is insignificant, so they virtually propagate in straight lines.
 
 However, unlike in the Rayleigh-Gans-Born approximation, we no longer assume that the phase delay and the absorption experienced by a ray of light as it passes though a (large) particle is negligible, which means that \\(\rho = 2 (m - 1) x\\) can take on arbitrary values \[[4](#references) (ch. 11.1)\].
 
@@ -9336,14 +9336,12 @@ $$ \tag{23.3} \small
 \end{aligned}
 $$
 
-Keep in mind that \\(\bm{r_i}\\) is spatially-varying across the surface of the particle, since it depends on both \\(\bm{r'}\\) and \\(\bm{n_i}\\) (in Eqn. 23.2-23.3, these parameters have been omitted for brevity). This undermines the effectiveness of the parameterization introduced in Eqn. 22.9-22.11.
-
-Let us replace the the \\(uvw\\) coordinate frame with the following set of basis vectors:
+Keep in mind that \\(\bm{r_i}\\) is spatially-varying across the surface of the particle, since it depends on both \\(\bm{r'}\\) and \\(\bm{n_i}\\) (in Eqn. 23.2-23.3, these parameters have been omitted for brevity). This makes it necessary to introduce an auxiliary coordinate frame (cf. Eqn. 15.8)
 
 $$ \tag{23.4}
-	\bm{W} = \bm{n_i}, \quad
-	\bm{V} = \bm{v} = \frac{\bm{n_i} \times \bm{n_s}}{| \bm{n_i} \times \bm{n_s} |}, \quad
-	\bm{U} = \bm{V} \times \bm{W}.
+	\bm{e_z} = \bm{n_i}, \quad
+	\bm{e_y} = \frac{\bm{n_i} \times \bm{n_s}}{| \bm{n_i} \times \bm{n_s} |} = \bm{e_v}, \quad
+	\bm{e_x} = \bm{e_y} \times \bm{e_z}.
 $$
 
 If \\(\bm{n_i}\\) and \\(\bm{n_s}\\) are collinear, a supporting vector must take the role of \\(\bm{n_s}\\) in order to fix the orientation of the coordinate frame.
@@ -9351,14 +9349,14 @@ If \\(\bm{n_i}\\) and \\(\bm{n_s}\\) are collinear, a supporting vector must tak
 Since, according to Eqn. 22.7, 22.9 and 23.4,
 
 $$ \tag{23.5}
-	\bm{w} \cdot \bm{W}
+	\bm{e_w} \cdot \bm{e_z}
 	= \frac{\bm{n_i} \cdot (\bm{n_i} - \bm{n_s})}{|\bm{n_i} - \bm{n_s}|}
 	= \frac{1 - \cos{\theta}}{2 \sin(\theta/2)}
 	= \sin(\theta/2)
 	= \cos(\pi/2 - \theta/2),
 $$
 
-the \\(UVW\\) coordinate frame is obtained by rotation of the \\(uvw\\) basis vectors by \\((\pi-\theta)/2\\) radians around the \\(\bm{v}\\)-axis.
+the \\(xyz\\) frame is obtained by rotation of the \\(uvw\\) basis vectors by \\((\pi-\theta)/2\\) radians around the \\(v\\)-axis.
 
 \[Add an illustration here\]
 
@@ -9367,9 +9365,9 @@ The coordinates of \\(\bm{r'}\\) rotate in the opposite direction:
 $$ \tag{23.6}
 \bm{r'} =
 \begin{bmatrix}
-	r\_{U}' \cr
-	r\_{V}' \cr
-	r\_{W}' \cr
+	r\_{x}' \cr
+	r\_{y}' \cr
+	r\_{z}' \cr
 \end{bmatrix}
 = R_v(\theta/2 - \pi/2)
 \begin{bmatrix}
@@ -9389,155 +9387,77 @@ $$ \tag{23.6}
 \end{bmatrix}.
 $$
 
-Let us consider the special case of a homogeneous spherical particle. Once again, it is convenient to utilize cylindrical coordinates:
-
-$$ \tag{23.7}
-\bm{r'} =
-\begin{bmatrix}
-	r\_{U}' \cr
-	r\_{V}' \cr
-	r\_{W}' \cr
-\end{bmatrix} =
-\begin{bmatrix}
-	\sqrt{(r\_{U}')^2 + (r\_{V}')^2} \cos{\chi} \cr
-	\sqrt{(r\_{U}')^2 + (r\_{V}')^2} \sin{\chi} \cr
-	r\_{W}' \cr
-\end{bmatrix} = a
-\begin{bmatrix}
-	c \cos{\chi} \cr
-	c \sin{\chi} \cr
-	b \cr
-\end{bmatrix}.
-$$
-
-From the geometry, it is evident that
+Let us consider the special case of a homogeneous spherical particle. From the geometry, it is evident that
 
 $$ \tag{23.8}
-	\bm{r'} \cdot \bm{n_i}
-	= a b,
-	\quad
-	-\bm{r_i} \cdot \bm{n_i}
-	= \sqrt{a^2 - \big( r\_{U}' \big)^2 - \big( r\_{V}' \big)^2}
-	= a \sqrt{1 - c^2}.
-$$
-
-Furthermore, according to Eqn. 22.?? and 23.6,
-
-$$ \tag{23.9}
 \begin{aligned}
-	\bm{r'} \cdot (\bm{n_i} - \bm{n_s})
-	&= 2 \sin(\theta/2) r\_{w}'
+	\bm{r'} \cdot \bm{n_i}
+	&= r\_{z}'
+	= r\_{u}' \cos(\theta/2) +  r\_{w}'\sin(\theta/2)
 	\cr
-	&= 2 \sin(\theta/2)
-	\left( -\cos(\theta/2) r\_{U}' + \sin(\theta/2) r\_{W}' \right)
-	\cr
-	&= a b (1 - \cos{\theta}) - a c \cos{\chi} \sin{\theta}.
+	-\bm{r_i} \cdot \bm{n_i}
+	&= \sqrt{a^2 - \big( r\_{x}' \big)^2 - \big( r\_{y}' \big)^2}
+	= \sqrt{a^2 - \big( r\_{u}' \sin(\theta/2) - r\_{w}' \cos(\theta/2) \big)^2 - \big( r\_{v}' \big)^2}.
 \end{aligned}
 $$
 
-Thus, our goal is to evaluate the integral
+In terms of the cylindrical parameterization introduced in Eqn. 22.11,
+
+$$ \tag{23.9}
+\begin{aligned}
+	\bm{r'} \cdot \bm{n_i}
+	&= a \big(c \cos{\chi} \cos(\theta/2) + b \sin(\theta/2) \big),
+	\cr
+	-\bm{r_i} \cdot \bm{n_i}
+	&= a \sqrt{1 - \big( c \cos{\chi} \sin(\theta/2) - b \cos(\theta/2) \big)^2 - \big( c \sin{\chi} \big)^2}.
+\end{aligned}
+$$
+
+Putting it all together,
 
 $$ \tag{23.10}
+\begin{aligned}
+	e^{i (m - 1) k (\bm{r'} - \bm{r_i}) \cdot \bm{n_i}}
+	&= e^{i \rho t(\theta,\chi,b,c)}
+	\cr
+	&= e^{i \frac{\rho}{2} \left(
+		c \cos{\chi} \cos(\theta/2) + b \sin(\theta/2) +
+		\sqrt{1 - \left( c \cos{\chi} \sin(\theta/2) - b \cos(\theta/2) \right)^2 - ( c \sin{\chi} )^2}
+	\right)}.
+\end{aligned}
+$$
+
+In order to use Eqn. 23.3, it is necessary to evaluate the integral
+
+$$ \tag{23.11}
 \begin{aligned}
 	I_{ada}(\theta, \phi)
 	&= \frac{1}{V_p} \int\_{V_p}
 	e^{i k \bm{r'} \cdot (\bm{n_i} - \bm{n_s})}
 	e^{i (m - 1) k (\bm{r'} - \bm{r_i}) \cdot \bm{n_i}} dV'
 	\cr
-	&= \frac{3}{4 \pi a^3} \int_{-1}^{1} \int_{-\pi}^{\pi}
+	&= \frac{3}{4 \pi a^3} \int_{-1}^{1}
 	\int_{0}^{\sqrt{1 - b^2}}
-	e^{i b x (1 - \cos{\theta}) - i c x \sin{\theta} \cos{\chi}}
-	e^{i (m - 1) x \left(b + \sqrt{1 - c^2} \right)}
-	a^2 c \thinspace dc \thinspace d\chi \thinspace
-	a \thinspace db
+	\int_{-\pi}^{\pi}
+	e^{i \rho t(\theta,\chi,b,c)}
+	\thinspace d\chi \thinspace
+	a^2 c \thinspace dc \thinspace
+	e^{i y(\theta) b} a \thinspace db \thinspace
 	\cr
 	&= \frac{3}{4 \pi} \int_{-1}^{1}
 	\int_{0}^{\sqrt{1 - b^2}}
 	\int_{-\pi}^{\pi}
-	e^{-i c x \sin{\theta} \cos{\chi}}
+	e^{i \rho t(\theta,\chi,b,c)}
 	\thinspace d\chi \thinspace
-	e^{i (m - 1) x \sqrt{1 - c^2}}
 	c \thinspace dc \thinspace
-	e^{i b x (m - \cos{\theta})}
-	\thinspace db \thinspace
-	\cr
-	&= \frac{3}{2} \int_{-1}^{1}
-	\int_{0}^{\sqrt{1 - b^2}}
-	J_0(c x \sin{\theta})
-	e^{i (m - 1) x \sqrt{1 - c^2}}
-	c \thinspace dc \thinspace
-	e^{i b x (m - \cos{\theta})}
-	\thinspace db,
-\end{aligned}
+	e^{i y(\theta) b} \thinspace db \thinspace
+\end{aligned},
 $$
 
-where we recognize the definition of the [Bessel function of the first kind](https://mathworld.wolfram.com/BesselFunctionoftheFirstKind.html)
-
-$$ \tag{23.11}
-	J_0(z) = \frac{1}{\pi} \int_{0}^{\pi}
-	e^{i z \cos{\chi}} \thinspace d\chi.
-$$
-
-Change
+where, once again (cf. Eqn. 22.12),
 
 $$ \tag{23.12}
-	c = \sqrt{1-b^2} \sin{\gamma},
-	\quad
-	dc = \sqrt{1-b^2} \cos{\gamma} \thinspace d\gamma
-$$
-
-c dc = (1-b^2) \sin{\gamma} \cos{\gamma} \thinspace d\gamma
-
-$$ \tag{23.13} \small
-\begin{aligned}
-	I_{ada}(\theta, \phi)
-	&= \frac{3}{2} \int_{-1}^{1}
-	\int_{0}^{\sqrt{1 - b^2}}
-	J_0(c x \sin{\theta})
-	e^{i (m - 1) x \sqrt{1 - c^2}}
-	c \thinspace dc \thinspace
-	e^{i b x (m - \cos{\theta})}
-	\thinspace db
-	\cr
-	&= \frac{3}{2} \int_{-1}^{1}
-	\int_{0}^{\pi/2}
-	J_0(\sqrt{1-b^2} \sin{\gamma} x \sin{\theta})
-	e^{i (m - 1) x \sqrt{1 - (1-b^2) \sin^2{\gamma}}}
-	(1-b^2) \sin{\gamma} \cos{\gamma} \thinspace d\gamma \thinspace
-	e^{i b x (m - \cos{\theta})}
-	\thinspace db
-\end{aligned}
-$$
-
-$$ \tag{23.12}
-	i (m - 1) x \sqrt{1 - c^2}
-	= i (\rho/2) \cos(\gamma/2),
-$$
-
----
-
-$$ \tag{23.8}
-\begin{aligned}
-	\bm{r'} \cdot \bm{n_i}
-	&= r\_{W}'
-	= r\_{u}' \cos(\theta/2) +  r\_{w}'\sin(\theta/2)
-	= a c \cos{\chi} \cos(\theta/2) + a b \sin(\theta/2),
-	\cr
-	-\bm{r_i} \cdot \bm{n_i}
-	&= \sqrt{a^2 - \big( r\_{U}' \big)^2 - \big( r\_{V}' \big)^2}
-	= \sqrt{a^2 - \big( r\_{u}' \sin(\theta/2) - r\_{w}' \cos(\theta/2) \big)^2 - \big( r\_{v}' \big)^2}
-	\cr
-	&= a \sqrt{1 - \big( c \cos{\chi} \sin(\theta/2) - b \cos(\theta/2) \big)^2 - \big( c \sin{\chi} \big)^2}.
-\end{aligned}
-$$
-
-$$ \tag{23.xx}
-	e^{i (m - 1) k (\bm{r'} - \bm{r_i}) \cdot \bm{n_i}}
-	= e^{i \frac{\rho}{2} \left(
-		c \cos{\chi} \cos(\theta/2) + b \sin(\theta/2) +
-		\sqrt{1 - \left( c \cos{\chi} \sin(\theta/2) - b \cos(\theta/2) \right)^2 - ( c \sin{\chi} )^2}
-	\right)}
-	= e^{i \rho t}
+	y(\theta) = 2 \sin(\theta/2) x.
 $$
 
 Motivated by the fact that M is small, so Rho is not too large, we expand \\(\exp(i \rho t)\\) in a power series of Rho. In order to connect our results to the Rayleigh-Gans-Born approximation (for which Rho = 0), we perform expansion around the origin:
@@ -9549,37 +9469,6 @@ $$
 
 However, expansions around an arbitrary point Rho = Rho_0 are also not particularly complicated.
 
-$$ \tag{22.13}
-\begin{aligned}
-	I_{rgb}(\theta)
-	&= \frac{3}{4 \pi a^3} \int_{-1}^{1}
-	\int_{0}^{\sqrt{1 - b^2}}
-	\int_{-\pi}^{\pi}
-	e^{i \rho t(b,c,\chi)}
-	\thinspace d\chi \thinspace
-	a^2 c \thinspace dc \thinspace
-	e^{i y b} a \thinspace db \thinspace
-	\cr
-	&= \frac{3}{4 \pi} \int_{-1}^{1}
-	\int_{0}^{\sqrt{1 - b^2}}
-	\int_{-\pi}^{\pi}
-	e^{i \rho t(b,c,\chi)}
-	\thinspace d\chi \thinspace
-	c \thinspace dc \thinspace
-	e^{i y b} \thinspace db \thinspace
-	\cr
-	&= \frac{3}{4} \int_{-1}^{1}
-	\left( 1 - b^2 \right)
-	e^{i y b} db
-	= \frac{3}{2} \int_{0}^{1}
-	\left( 1 - b^2 \right)
-	\cos(y b) db
-	\cr
-	&= \frac{3 \sin(y) - 3 y \cos(y)}{y^3}
-	 = \sqrt{\frac{9 \pi}{2 y^3}} J_{3/2}(y)
-	 = \frac{3 j_1(y)}{y},
-\end{aligned}
-$$
 
 Try SIE...
 
