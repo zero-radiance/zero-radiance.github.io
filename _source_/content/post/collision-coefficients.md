@@ -1278,7 +1278,7 @@ $$ \tag{7.23}
 	= 0,
 $$
 
-where the last equality follows from the property of the [triple product](https://en.wikipedia.org/wiki/Triple_product) \\(\bm{n} \cdot (\bm{n} \times \bm{E}) = \bm{E} \cdot (\bm{n} \times \bm{n})\\).
+where the last equality follows from the property of the [scalar triple product](https://en.wikipedia.org/wiki/Triple_product#Scalar_triple_product) \\(\bm{n} \cdot (\bm{n} \times \bm{E}) = \bm{E} \cdot (\bm{n} \times \bm{n})\\).
 
 Thus, the magnetic field vector is always orthogonal to the plane normal:
 
@@ -2844,7 +2844,7 @@ $$
 
 At this point, the dyadic Green functions of Eqn. 1x.11 list their arguments in the same (conventional) order: \\(\mathcal{G}\_e(\bm{r}, \bm{r'}, k)\\) due to its symmetry, and \\(\mathcal{G}\_m(\bm{r}, \bm{r'}, k)\\) because of Eqn. 1x.10.
 
-The surface integral features two [scalar triple products](https://en.wikipedia.org/wiki/Triple_product#Scalar_triple_product) of the form \\(\bm{n} \cdot (\bm{E} \times (\mathcal{G} \cdot \bm{a}))\\). We can use its cyclical property to our advantage:
+The surface integral features two scalar triple products of the form \\(\bm{n} \cdot (\bm{E} \times (\mathcal{G} \cdot \bm{a}))\\). We can use its [cyclic property](https://en.wikipedia.org/wiki/Triple_product#Properties) to our advantage:
 
 $$ \tag{1x.12}
 	\bm{n'} \cdot (\bm{E} \times (\mathcal{G}^T \cdot \bm{a}))
@@ -8851,16 +8851,22 @@ $$
 
 is considerably simplified. Going forward, we shall also assume that the particle is homogeneous, with \\(m\\) independent of \\(\bm{r'}\\).
 
-Recall that the scattering angle \\(\theta = \arccos(\bm{n_i} \cdot \bm{n_s})\\) can be defined in at least three different ways:
+Recall that the scattering angle \\(\theta = \arccos(\bm{n_i} \cdot \bm{n_s})\\) can be defined in at least four different ways:
 
 $$ \tag{22.7}
-	\bm{n_i} \cdot \bm{n_s} = \cos{\theta},
-	\quad
-	| \bm{n_i} \times \bm{n_s} | = \sin{\theta},
-	\quad
+\begin{aligned}
+	| \bm{n_i} \times \bm{n_s} | &= \sin{\theta},
+	&
 	\frac{|\bm{n_i} - \bm{n_s}|}{2}
-	= \sqrt{\frac{1 - \bm{n_i} \cdot \bm{n_s}}{2}}
-	= \sin(\theta/2).
+	&= \sqrt{\frac{1 - (\bm{n_i} \cdot \bm{n_s})}{2}}
+	= \sin(\theta/2),
+	\cr
+	\bm{n_i} \cdot \bm{n_s} &= \cos{\theta},
+	&
+	\frac{|\bm{n_i} + \bm{n_s}|}{2}
+	&= \sqrt{\frac{1 + (\bm{n_i} \cdot \bm{n_s})}{2}}
+	= \cos(\theta/2).
+\end{aligned}
 $$
 
 This suggests that evaluation of the integral
@@ -8873,14 +8879,33 @@ $$
 can be performed most efficiently in an aligned coordinate system. Let us define
 
 $$ \tag{22.9}
-	\bm{e_w} = \frac{\bm{n_i} - \bm{n_s}}{|\bm{n_i} - \bm{n_s}|},
+	\bm{e_w} = \frac{\bm{n_i} + \bm{n_s}}{|\bm{n_i} + \bm{n_s}|},
 	\quad
 	\bm{e_v} = \frac{\bm{n_i} \times \bm{n_s}}{| \bm{n_i} \times \bm{n_s} |},
 	\quad
-	\bm{e_u} = \bm{e_v} \times \bm{e_w},
+	\bm{e_u} = \bm{e_v} \times \bm{e_w} = -\frac{\bm{n_i} - \bm{n_s}}{|\bm{n_i} - \bm{n_s}|}.
 $$
 
 If \\(\bm{n_i}\\) and \\(\bm{n_s}\\) are collinear, a supporting vector must take the role of \\(\bm{n_s}\\) in order to fix the orientation of the coordinate frame.
+
+We may prove Eqn. 22.9.3 by expanding the expression of \\(\bm{e_u}\\) using Eqn. 7.37 and 22.7:
+
+$$ \tag{22.?}
+\begin{aligned}
+	\bm{e_u} \cdot \frac{\bm{n_i} - \bm{n_s}}{|\bm{n_i} - \bm{n_s}|} &=
+	\left( \frac{\bm{n_i} \times \bm{n_s}}{| \bm{n_i} \times \bm{n_s} |} \times
+	\frac{\bm{n_i} + \bm{n_s}}{|\bm{n_i} + \bm{n_s}|} \right) \cdot
+	\frac{\bm{n_i} - \bm{n_s}}{|\bm{n_i} - \bm{n_s}|} \cr &=
+	\frac{\big( \bm{n_s} (\bm{n_i} \cdot \bm{n_i}) -
+	\bm{n_i} (\bm{n_i} \cdot \bm{n_s}) +
+	\bm{n_s} (\bm{n_s} \cdot \bm{n_i}) -
+	\bm{n_i} (\bm{n_s} \cdot \bm{n_s}) \big) \cdot
+	(\bm{n_i} - \bm{n_s})}{\sin{\theta} \cos(\theta/2) \sin(\theta/2)} \cr &=
+	\frac{\big( (1 + \cos{\theta}) (\bm{n_s} - \bm{n_i}) \big) \cdot
+	(\bm{n_i} - \bm{n_s})}{2 \sin^2(\theta/2) \cos^2(\theta/2)} =
+	-\frac{4 \sin^2(\theta/2) (1 + \cos{\theta}) }{2 \sin^2(\theta/2) \cos^2(\theta/2)} = -1.
+\end{aligned}
+$$
 
 Using this convention, the point \\(\bm{r'}\\) in the interior of the particle has the following set of Cartesian coordinates:
 
@@ -8905,14 +8930,14 @@ $$ \tag{22.11}
 	r\_{w}' \cr
 \end{bmatrix} =
 \begin{bmatrix}
-	\sqrt{(r\_{u}')^2 + (r\_{v}')^2} \cos{\chi} \cr
-	\sqrt{(r\_{u}')^2 + (r\_{v}')^2} \sin{\chi} \cr
-	r\_{w}' \cr
+	r\_{u}' \cr
+	\sqrt{(r\_{v}')^2 + (r\_{w}')^2} \cos{\chi} \cr
+	\sqrt{(r\_{v}')^2 + (r\_{w}')^2} \sin{\chi} \cr
 \end{bmatrix} = a
 \begin{bmatrix}
+	b \cr
 	c \cos{\chi} \cr
 	c \sin{\chi} \cr
-	b \cr
 \end{bmatrix},
 $$
 
@@ -8920,9 +8945,8 @@ such that
 
 $$ \tag{22.??}
 	\bm{r'} \cdot (\bm{n_i} - \bm{n_s})
-	= |\bm{n_i} - \bm{n_s}| r\_{w}'
-	= 2 \sin(\theta/2) r\_{w}'
-	= 2 \sin(\theta/2) a b.
+	= -r\_{u}' |\bm{n_i} - \bm{n_s}|
+	= -2 \sin(\theta/2) a b.
 $$
 
 \[Add an illustration here\]
@@ -8941,11 +8965,11 @@ $$ \tag{22.13}
 	&= \frac{3}{4 \pi a^3} \int_{-1}^{1}
 	\int_{-\pi}^{\pi} \int_{0}^{\sqrt{1 - b^2}}
 	a^2 c \thinspace dc \thinspace d\chi \thinspace
-	e^{i y(\theta) b} a \thinspace db
+	e^{-i y(\theta) b} a \thinspace db
 	\cr
 	&= \frac{3}{4} \int_{-1}^{1}
 	\left( 1 - b^2 \right)
-	e^{i y b} db
+	e^{-i y b} db
 	= \frac{3}{2} \int_{0}^{1}
 	\left( 1 - b^2 \right)
 	\cos(y b) db
@@ -9346,19 +9370,20 @@ $$
 
 If \\(\bm{n_i}\\) and \\(\bm{n_s}\\) are collinear, a supporting vector must take the role of \\(\bm{n_s}\\) in order to fix the orientation of the coordinate frame.
 
-Since, according to Eqn. 22.7, 22.9 and 23.4,
+Since, according to Eqn. 22.7, 22.9 and 23.4, the \\(uvw\\) frame is obtained by rotation of the \\(xyz\\) basis vectors by \\(\theta/2\\) radians around the \\(y\\)-axis:
 
 $$ \tag{23.5}
 	\bm{e_w} \cdot \bm{e_z}
-	= \frac{\bm{n_i} \cdot (\bm{n_i} - \bm{n_s})}{|\bm{n_i} - \bm{n_s}|}
-	= \frac{1 - \cos{\theta}}{2 \sin(\theta/2)}
-	= \sin(\theta/2)
-	= \cos(\pi/2 - \theta/2),
+	= \frac{\bm{n_i} \cdot (\bm{n_i} + \bm{n_s})}{|\bm{n_i} + \bm{n_s}|}
+	= \frac{1 + \cos{\theta}}{2 \cos(\theta/2)}
+	= \cos(\theta/2).
 $$
 
-the \\(xyz\\) frame is obtained by rotation of the \\(uvw\\) basis vectors by \\((\pi-\theta)/2\\) radians around the \\(v\\)-axis.
-
 \[Add an illustration here\]
+
+---
+
+Continue here...
 
 The coordinates of \\(\bm{r'}\\) rotate in the opposite direction:
 
@@ -9431,7 +9456,7 @@ In order to use Eqn. 23.3, it is necessary to evaluate the integral
 
 $$ \tag{23.11}
 \begin{aligned}
-	I_{ada}(\theta, \phi)
+	I_{ada}(\theta)
 	&= \frac{1}{V_p} \int\_{V_p}
 	e^{i k \bm{r'} \cdot (\bm{n_i} - \bm{n_s})}
 	e^{i (m - 1) k (\bm{r'} - \bm{r_i}) \cdot \bm{n_i}} dV'
@@ -9454,10 +9479,85 @@ $$ \tag{23.11}
 \end{aligned},
 $$
 
-where, once again (cf. Eqn. 22.12),
+where, once again (cf. Eqn. 22.??, 22.12),
 
 $$ \tag{23.12}
 	y(\theta) = 2 \sin(\theta/2) x.
+$$
+
+It does not appear to be possible to express Eqn. 23.11 in terms of well-known functions \[[4](#references) (ch. 11.32)\]. Thus, we shall limit our investigation to a number of special cases.
+
+In the forward direction, \\(y = 0\\), which makes \\(xyz\\) coordinates preferable.
+
+$$ \tag{23.11}
+\begin{aligned}
+	I_{ada}(\theta)
+	&= \frac{3}{4 \pi} \int_{-1}^{1}
+	\int_{0}^{\sqrt{1 - b^2}}
+	\int_{-\pi}^{\pi}
+	e^{i \rho t(\theta,\chi,b,c)}
+	\thinspace d\chi \thinspace
+	c \thinspace dc \thinspace
+	e^{i y(\theta) b} \thinspace db \thinspace
+\end{aligned},
+$$
+
+$$ \tag{22.??}
+	\bm{r'} \cdot (\bm{n_i} - \bm{n_s})
+	= |\bm{n_i} - \bm{n_s}| r\_{w}'
+	= 2 \sin(\theta/2) r\_{w}'
+	= 2 \sin(\theta/2) a b.
+$$
+
+$$ \tag{23.8}
+\begin{aligned}
+	\bm{r'} \cdot \bm{n_i}
+	&= r\_{z}'
+	= r\_{u}' \cos(\theta/2) +  r\_{w}'\sin(\theta/2)
+	\cr
+	-\bm{r_i} \cdot \bm{n_i}
+	&= \sqrt{a^2 - \big( r\_{x}' \big)^2 - \big( r\_{y}' \big)^2}
+	= \sqrt{a^2 - \big( r\_{u}' \sin(\theta/2) - r\_{w}' \cos(\theta/2) \big)^2 - \big( r\_{v}' \big)^2}.
+\end{aligned}
+$$
+
+$$ \tag{23.6}
+\bm{r'} =
+\begin{bmatrix}
+	r\_{x}' \cr
+	r\_{y}' \cr
+	r\_{z}' \cr
+\end{bmatrix} =
+\begin{bmatrix}
+	0 & 0 & 		   -1 \cr
+	             0 & 1 &                         0 \cr
+	1 & 0 & 0 \cr
+\end{bmatrix}
+a
+\begin{bmatrix}
+	c \cos{\chi} \cr
+	c \sin{\chi} \cr
+	b \cr
+\end{bmatrix}.
+$$
+
+$$ \tag{22.11}
+\bm{r'} =
+\begin{bmatrix}
+	r\_{u}' \cr
+	r\_{v}' \cr
+	r\_{w}' \cr
+\end{bmatrix} =
+\begin{bmatrix}
+	\sqrt{(r\_{u}')^2 + (r\_{v}')^2} \cos{\chi} \cr
+	\sqrt{(r\_{u}')^2 + (r\_{v}')^2} \sin{\chi} \cr
+	r\_{w}' \cr
+\end{bmatrix} = a
+\begin{bmatrix}
+	c \cos{\chi} \cr
+	c \sin{\chi} \cr
+	b \cr
+\end{bmatrix},
 $$
 
 Motivated by the fact that M is small, so Rho is not too large, we expand \\(\exp(i \rho t)\\) in a power series of Rho. In order to connect our results to the Rayleigh-Gans-Born approximation (for which Rho = 0), we perform expansion around the origin:
