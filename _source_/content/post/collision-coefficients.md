@@ -8931,13 +8931,13 @@ $$ \tag{22.11}
 \end{bmatrix} =
 \begin{bmatrix}
 	r\_{u}' \cr
-	\sqrt{(r\_{v}')^2 + (r\_{w}')^2} \cos{\chi} \cr
 	\sqrt{(r\_{v}')^2 + (r\_{w}')^2} \sin{\chi} \cr
+	\sqrt{(r\_{v}')^2 + (r\_{w}')^2} \cos{\chi} \cr
 \end{bmatrix} = a
 \begin{bmatrix}
 	b \cr
-	c \cos{\chi} \cr
 	c \sin{\chi} \cr
+	c \cos{\chi} \cr
 \end{bmatrix},
 $$
 
@@ -8954,7 +8954,7 @@ $$
 In particular, for a spherical particle (symmetric with respect to the azimuthal angle \\(\phi\\)), we may set
 
 $$ \tag{22.12}
-	y(\theta) = 2 \sin(\theta/2) x,
+	\tau(\theta) = 2 \sin(\theta/2) x,
 $$
 
 and easily calculate \[[4](#references) (ch. 7.21)\]
@@ -8965,18 +8965,18 @@ $$ \tag{22.13}
 	&= \frac{3}{4 \pi a^3} \int_{-1}^{1}
 	\int_{-\pi}^{\pi} \int_{0}^{\sqrt{1 - b^2}}
 	a^2 c \thinspace dc \thinspace d\chi \thinspace
-	e^{-i y(\theta) b} a \thinspace db
+	e^{-i \tau(\theta) b} a \thinspace db
 	\cr
 	&= \frac{3}{4} \int_{-1}^{1}
 	\left( 1 - b^2 \right)
-	e^{-i y b} db
+	e^{-i \tau b} db
 	= \frac{3}{2} \int_{0}^{1}
 	\left( 1 - b^2 \right)
-	\cos(y b) db
+	\cos(\tau b) db
 	\cr
-	&= \frac{3 \sin(y) - 3 y \cos(y)}{y^3}
-	 = \sqrt{\frac{9 \pi}{2 y^3}} J_{3/2}(y)
-	 = \frac{3 j_1(y)}{y},
+	&= \frac{3 \sin(\tau) - 3 \tau \cos(\tau)}{\tau^3}
+	 = \sqrt{\frac{9 \pi}{2 \tau^3}} J_{3/2}(\tau)
+	 = \frac{3 j_1(\tau)}{\tau},
 \end{aligned}
 $$
 
@@ -9381,10 +9381,6 @@ $$
 
 \[Add an illustration here\]
 
----
-
-Continue here...
-
 The coordinates of \\(\bm{r'}\\) rotate in the opposite direction:
 
 $$ \tag{23.6}
@@ -9394,16 +9390,16 @@ $$ \tag{23.6}
 	r\_{y}' \cr
 	r\_{z}' \cr
 \end{bmatrix}
-= R_v(\theta/2 - \pi/2)
+= R_y(\theta/2)
 \begin{bmatrix}
 	r\_{u}' \cr
 	r\_{v}' \cr
 	r\_{w}' \cr
 \end{bmatrix} =
 \begin{bmatrix}
-	\sin(\theta/2) & 0 & 		   -\cos(\theta/2) \cr
-	             0 & 1 &                         0 \cr
-	\cos(\theta/2) & 0 & \phantom{-}\sin(\theta/2) \cr
+	\phantom{-}\cos(\theta/2) & 0 & \sin(\theta/2) \cr
+	                        0 & 1 &              0 \cr
+	          -\sin(\theta/2) & 0 & \cos(\theta/2) \cr
 \end{bmatrix}
 \begin{bmatrix}
 	r\_{u}' \cr
@@ -9418,11 +9414,11 @@ $$ \tag{23.8}
 \begin{aligned}
 	\bm{r'} \cdot \bm{n_i}
 	&= r\_{z}'
-	= r\_{u}' \cos(\theta/2) +  r\_{w}'\sin(\theta/2)
+	= r\_{w}' \cos(\theta/2) - r\_{u}' \sin(\theta/2),
 	\cr
 	-\bm{r_i} \cdot \bm{n_i}
 	&= \sqrt{a^2 - \big( r\_{x}' \big)^2 - \big( r\_{y}' \big)^2}
-	= \sqrt{a^2 - \big( r\_{u}' \sin(\theta/2) - r\_{w}' \cos(\theta/2) \big)^2 - \big( r\_{v}' \big)^2}.
+	= \sqrt{a^2 - \big( r\_{u}' \cos(\theta/2) + r\_{w}' \sin(\theta/2) \big)^2 - \big( r\_{v}' \big)^2}.
 \end{aligned}
 $$
 
@@ -9431,10 +9427,10 @@ In terms of the cylindrical parameterization introduced in Eqn. 22.11,
 $$ \tag{23.9}
 \begin{aligned}
 	\bm{r'} \cdot \bm{n_i}
-	&= a \big(c \cos{\chi} \cos(\theta/2) + b \sin(\theta/2) \big),
+	&= a \big( c \cos{\chi} \cos(\theta/2) - b \sin(\theta/2) \big),
 	\cr
 	-\bm{r_i} \cdot \bm{n_i}
-	&= a \sqrt{1 - \big( c \cos{\chi} \sin(\theta/2) - b \cos(\theta/2) \big)^2 - \big( c \sin{\chi} \big)^2}.
+	&= a \sqrt{1 - \big( b \cos(\theta/2) + c \cos{\chi} \sin(\theta/2) \big)^2 - ( c \sin{\chi} )^2}.
 \end{aligned}
 $$
 
@@ -9446,8 +9442,8 @@ $$ \tag{23.10}
 	&= e^{i \rho t(\theta,\chi,b,c)}
 	\cr
 	&= e^{i \frac{\rho}{2} \left(
-		c \cos{\chi} \cos(\theta/2) + b \sin(\theta/2) +
-		\sqrt{1 - \left( c \cos{\chi} \sin(\theta/2) - b \cos(\theta/2) \right)^2 - ( c \sin{\chi} )^2}
+		c \cos{\chi} \cos(\theta/2) - b \sin(\theta/2) +
+		\sqrt{1 - ( b \cos(\theta/2) + c \cos{\chi} \sin(\theta/2) )^2 - ( c \sin{\chi} )^2}
 	\right)}.
 \end{aligned}
 $$
@@ -9467,7 +9463,7 @@ $$ \tag{23.11}
 	e^{i \rho t(\theta,\chi,b,c)}
 	\thinspace d\chi \thinspace
 	a^2 c \thinspace dc \thinspace
-	e^{i y(\theta) b} a \thinspace db \thinspace
+	e^{-i \tau(\theta) b} a \thinspace db \thinspace
 	\cr
 	&= \frac{3}{4 \pi} \int_{-1}^{1}
 	\int_{0}^{\sqrt{1 - b^2}}
@@ -9475,17 +9471,43 @@ $$ \tag{23.11}
 	e^{i \rho t(\theta,\chi,b,c)}
 	\thinspace d\chi \thinspace
 	c \thinspace dc \thinspace
-	e^{i y(\theta) b} \thinspace db \thinspace
+	e^{-i \tau(\theta) b} \thinspace db \thinspace
 \end{aligned},
 $$
 
 where, once again (cf. Eqn. 22.??, 22.12),
 
 $$ \tag{23.12}
-	y(\theta) = 2 \sin(\theta/2) x.
+	\tau(\theta) = 2 \sin(\theta/2) x.
 $$
 
 It does not appear to be possible to express Eqn. 23.11 in terms of well-known functions \[[4](#references) (ch. 11.32)\]. Thus, we shall limit our investigation to a number of special cases.
+
+First, let us establish the connection with the Rayleigh-Gans-Born approximation by assuming that \\(\rho \ll 1\\). This permits us to expand \\(\exp(i \rho t)\\) in a power series of \\(\rho\\):
+
+$$ \tag{23.13}
+	e^{i \rho t}
+	= 1 + i \rho t - \frac{\rho ^2 t^2}{2} - i \frac{\rho ^3 t^3}{6} + \mathrm{O}\negmedspace\left( \rho^4 \right).
+$$
+
+Without proof, we shall make use of the identities
+
+$$ \tag{23.10}
+\begin{aligned}
+	&\int_{0}^{2 \pi}
+	\sqrt{1 - \big( b \cos(\theta/2) + c \cos{\chi} \sin(\theta/2) \big)^2 - (c \sin{\chi})^2} \thinspace d\chi = 0
+	\cr
+	&\int_{0}^{2 \pi}
+	\cos{\chi} \sqrt{1 - \big( b \cos(\theta/2) + c \cos{\chi} \sin(\theta/2) \big)^2 - (c \sin{\chi})^2} \thinspace d\chi = 0
+	\cr
+\end{aligned}
+$$
+
+
+
+
+
+---
 
 In the forward direction, \\(y = 0\\), which makes \\(xyz\\) coordinates preferable.
 
