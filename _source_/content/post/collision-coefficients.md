@@ -6412,11 +6412,11 @@ $$ \tag{18.120}
 \end{aligned}
 $$
 
-Eqn. 18.119 and 18.120, coupled with [Gegenbauer's representation](https://dlmf.nist.gov/10.54) of the spherical Bessel function of the first kind \[[Watson](#references) (ch. 3.32)\]
+Eqn. 18.119 and 18.120, coupled with [Gegenbauer's integral](https://dlmf.nist.gov/10.54.E2) representation of the spherical Bessel function of the first kind \[[Watson](#references) (ch. 3.32)\]
 
 $$ \tag{18.1??}
-	j_n(x) = \frac{i^{-n}}{2}
-	\int_{0}^{\pi} e^{i x \cos{\theta}} P_n(\cos{\theta}) \sin{\theta} \thinspace d\theta,
+	j_n(z) = \frac{1}{2 i^n}
+	\int_{0}^{\pi} e^{i z \cos{\theta}} P_n(\cos{\theta}) \sin{\theta} \thinspace d\theta,
 $$
 
 allow us to analytically evaluate the integral found in Eqn. 18.117:
@@ -9471,8 +9471,8 @@ $$ \tag{23.11}
 	e^{i \rho t(\theta,\chi,b,c)}
 	\thinspace d\chi \thinspace
 	c \thinspace dc \thinspace
-	e^{-i \tau(\theta) b} \thinspace db \thinspace
-\end{aligned},
+	e^{-i \tau(\theta) b} \thinspace db,
+\end{aligned}
 $$
 
 where, once again (cf. Eqn. 22.??, 22.12),
@@ -9483,113 +9483,122 @@ $$
 
 It does not appear to be possible to express Eqn. 23.11 in terms of well-known functions \[[4](#references) (ch. 11.32)\]. Thus, we shall limit our investigation to a number of special cases.
 
-First, let us establish the connection with the Rayleigh-Gans-Born approximation by assuming that \\(\rho \ll 1\\). This permits us to expand \\(\exp(i \rho t)\\) in a power series of \\(\rho\\):
+Let us establish the connection with the Rayleigh-Gans-Born approximation by assuming that \\(\rho \ll 1\\). This permits us to expand \\(\exp(i \rho t)\\) in a power series of \\(\rho\\):
 
 $$ \tag{23.13}
-	e^{i \rho t}
-	= 1 + i \rho t - \frac{\rho ^2 t^2}{2} - i \frac{\rho ^3 t^3}{6} + \mathrm{O}\negmedspace\left( \rho^4 \right).
+	e^{i z}
+	= 1 + i z - \frac{z^2}{2} - i \frac{z^3}{6} + \mathrm{O}\negmedspace\left( z^4 \right).
 $$
 
-Without proof, we shall make use of the identities
+Let us substitute Eqn. 23.13 into 23.11, and integrate the resulting expression term-by-term. In order to do so, we must prove a small number of useful properties.
 
-$$ \tag{23.10}
+First, note that
+
+$$ \tag{23.14}
+	\zeta(\theta, b, n) =
+	\int_{0}^{\sqrt{1 - b^2}}
+	\int_{-\pi}^{\pi}
+	\left( 1 - ( b \cos(\theta/2) + c \cos{\chi} \sin(\theta/2) )^2 - ( c \sin{\chi} )^2 \right)^n
+	\thinspace d\chi \thinspace
+	c \thinspace dc \thinspace
+$$
+
+is an even function of \\(b\\). This can be shown by substituting \\(b \to -b\\) and \\(\chi \to \chi + \pi\\). The resulting value of the integral taken over the area of the disk is the same. This directly implies that
+
+$$ \tag{23.15}
+ 	\int_{-1}^{1}
+	\mathrm{even}(b) \mathrm{odd}(b)
+	\thinspace db = 0,
+$$
+
+since, for an odd function, the value of an integral taken over a symmetric interval is zero.
+
+Next, we consider the following integral
+
+$$ \tag{23.16}
+	j_2(z) =
+	\frac{z}{2}
+	\int_{0}^{1}
+	\sin(z b) b \left( 1 - b^2 \right) \thinspace db
+$$
+
+of an even function of \\(b\\) (so the interval can be changed to \\(\[-1,0\]\\) without affecting the value of the integral).
+
+After performing a change of variables
+
+$$ \tag{23.17}
+	b = \sin{\theta},
+	\quad
+	db = \cos{\theta} \thinspace d\theta,
+$$
+
+Eqn. 23.16 is transformed into
+
+$$ \tag{23.18}
+	\frac{z}{2}
+	\int_{0}^{\pi/2}
+	\sin(z \sin{\theta}) \sin{\theta} (\cos{\theta})^3 \thinspace d\theta
+$$
+
+[Sonine's integral](https://dlmf.nist.gov/10.22.E19) \[[Watson](#references) (ch. 12.11)\]
+
+$$ \tag{23.??}
+	J_{m+n+1}(z) = \frac{z^{n+1}}{2^n \Gamma(n+1)}
+	\int_{0}^{\pi/2} J_{m}(z \sin{\theta}) (\sin{\theta})^{m+1} (\cos{\theta})^{2 n+1} d\theta
+$$
+
+$$ \tag{18.48}
 \begin{aligned}
-	&\int_{0}^{2 \pi}
-	\sqrt{1 - \big( b \cos(\theta/2) + c \cos{\chi} \sin(\theta/2) \big)^2 - (c \sin{\chi})^2} \thinspace d\chi = 0
-	\cr
-	&\int_{0}^{2 \pi}
-	\cos{\chi} \sqrt{1 - \big( b \cos(\theta/2) + c \cos{\chi} \sin(\theta/2) \big)^2 - (c \sin{\chi})^2} \thinspace d\chi = 0
-	\cr
+	& j_n(x) = \sqrt{\frac{\pi}{2 x}} J_{n+1/2}(x),
+	&
+	& y_n(x) = \sqrt{\frac{\pi}{2 x}} Y_{n+1/2}(x),
+	&
+	& h_n^{(k)}(x) = \sqrt{\frac{\pi}{2 x}} H_{n+1/2}^{(k)}(x),
 \end{aligned}
 $$
 
+$$ \tag{18.51}
+\begin{aligned}
+	& j_0(x) = \frac{\sin{x}}{x} = \sqrt{\frac{\pi}{2 x}} J_{0+1/2}(x)
+\end{aligned}
+$$
 
+set n = 1, m = 1/2...
 
+$$ \tag{23.??}
+	J_{1/2+1+1}(z) = \frac{z^{1+1}}{2^1 \Gamma(1+1)}
+	\int_{0}^{\pi/2} J_{1/2}(z \sin{\theta}) (\sin{\theta})^{1/2+1} (\cos{\theta})^{2+1} d\theta
+$$
 
+$$ \tag{23.??}
+	j_{2}(z) = \frac{z^{1+1}}{2^1 \Gamma(1+1)}
+	\int_{0}^{\pi/2} j_{0}(z \sin{\theta}) (\sin{\theta}) (\cos{\theta})^{2+1} d\theta
+$$
+
+Now keep n, set m = 1/2...
+
+$$ \tag{23.??}
+	J_{m+n+1}(z) = \frac{z^{n+1}}{2^n \Gamma(n+1)}
+	\int_{0}^{\pi/2} J_{m}(z \sin{\theta}) (\sin{\theta})^{m+1} (\cos{\theta})^{2 n+1} d\theta
+$$
+
+Find 23.18... Then 23.16...
 
 ---
 
-In the forward direction, \\(y = 0\\), which makes \\(xyz\\) coordinates preferable.
+[Gegenbauer's integral](https://dlmf.nist.gov/10.54.E2) representation of the spherical Bessel function of the first kind \[[Watson](#references) (ch. 3.32)\]
 
-$$ \tag{23.11}
-\begin{aligned}
-	I_{ada}(\theta)
-	&= \frac{3}{4 \pi} \int_{-1}^{1}
-	\int_{0}^{\sqrt{1 - b^2}}
-	\int_{-\pi}^{\pi}
-	e^{i \rho t(\theta,\chi,b,c)}
-	\thinspace d\chi \thinspace
-	c \thinspace dc \thinspace
-	e^{i y(\theta) b} \thinspace db \thinspace
-\end{aligned},
+$$ \tag{18.1??}
+	j_n(z) = \frac{1}{2 i^n}
+	\int_{0}^{\pi} e^{i z \cos{\theta}} P_n(\cos{\theta}) \sin{\theta} \thinspace d\theta,
 $$
 
-$$ \tag{22.??}
-	\bm{r'} \cdot (\bm{n_i} - \bm{n_s})
-	= |\bm{n_i} - \bm{n_s}| r\_{w}'
-	= 2 \sin(\theta/2) r\_{w}'
-	= 2 \sin(\theta/2) a b.
-$$
+[Sonine's integral](https://dlmf.nist.gov/10.22.E19) \[[Watson](#references) (ch. 12.11)\]
 
-$$ \tag{23.8}
-\begin{aligned}
-	\bm{r'} \cdot \bm{n_i}
-	&= r\_{z}'
-	= r\_{u}' \cos(\theta/2) +  r\_{w}'\sin(\theta/2)
-	\cr
-	-\bm{r_i} \cdot \bm{n_i}
-	&= \sqrt{a^2 - \big( r\_{x}' \big)^2 - \big( r\_{y}' \big)^2}
-	= \sqrt{a^2 - \big( r\_{u}' \sin(\theta/2) - r\_{w}' \cos(\theta/2) \big)^2 - \big( r\_{v}' \big)^2}.
-\end{aligned}
+$$ \tag{18.1??}
+	J_{m+n+1}(z) = \frac{z^{n+1}}{2^n \Gamma(n+1)}
+	\int_{0}^{\pi/2} J_{m}(z \sin{\theta}) (\sin{\theta})^{m+1} (\cos{\theta})^{2 n+1} d\theta
 $$
-
-$$ \tag{23.6}
-\bm{r'} =
-\begin{bmatrix}
-	r\_{x}' \cr
-	r\_{y}' \cr
-	r\_{z}' \cr
-\end{bmatrix} =
-\begin{bmatrix}
-	0 & 0 & 		   -1 \cr
-	             0 & 1 &                         0 \cr
-	1 & 0 & 0 \cr
-\end{bmatrix}
-a
-\begin{bmatrix}
-	c \cos{\chi} \cr
-	c \sin{\chi} \cr
-	b \cr
-\end{bmatrix}.
-$$
-
-$$ \tag{22.11}
-\bm{r'} =
-\begin{bmatrix}
-	r\_{u}' \cr
-	r\_{v}' \cr
-	r\_{w}' \cr
-\end{bmatrix} =
-\begin{bmatrix}
-	\sqrt{(r\_{u}')^2 + (r\_{v}')^2} \cos{\chi} \cr
-	\sqrt{(r\_{u}')^2 + (r\_{v}')^2} \sin{\chi} \cr
-	r\_{w}' \cr
-\end{bmatrix} = a
-\begin{bmatrix}
-	c \cos{\chi} \cr
-	c \sin{\chi} \cr
-	b \cr
-\end{bmatrix},
-$$
-
-Motivated by the fact that M is small, so Rho is not too large, we expand \\(\exp(i \rho t)\\) in a power series of Rho. In order to connect our results to the Rayleigh-Gans-Born approximation (for which Rho = 0), we perform expansion around the origin:
-
-$$
-	e^{i \rho t}
-	= 1 + i \rho t - \frac{\rho ^2 t^2}{2} - i \frac{\rho ^3 t^3}{6} + \frac{\rho ^4 t^4}{24} + \mathrm{O}\negmedspace\left( \rho^5 \right)
-$$
-
-However, expansions around an arbitrary point Rho = Rho_0 are also not particularly complicated.
 
 
 Try SIE...
