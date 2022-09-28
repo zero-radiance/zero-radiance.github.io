@@ -9490,12 +9490,11 @@ $$ \tag{23.13}
 	= 1 + i z - \frac{z^2}{2} - i \frac{z^3}{6} + \mathrm{O}\negmedspace\left( z^4 \right).
 $$
 
-Let us substitute Eqn. 23.13 into 23.11, and integrate the resulting expression term-by-term. In order to do so, we must prove a small number of useful properties.
+Let us substitute Eqn. 23.13 into 23.11, and integrate the resulting expression term-by-term. In order to do so, we must prove a small number of useful facts.
 
 First, note that
 
 $$ \tag{23.14}
-	\zeta(\theta, b, n) =
 	\int_{0}^{\sqrt{1 - b^2}}
 	\int_{-\pi}^{\pi}
 	\left( 1 - ( b \cos(\theta/2) + c \cos{\chi} \sin(\theta/2) )^2 - ( c \sin{\chi} )^2 \right)^n
@@ -9503,42 +9502,13 @@ $$ \tag{23.14}
 	c \thinspace dc \thinspace
 $$
 
-is an even function of \\(b\\). This can be shown by substituting \\(b \to -b\\) and \\(\chi \to \chi + \pi\\). The resulting value of the integral taken over the area of the disk is the same. This directly implies that
+is an even function of \\(b\\). This can be shown by substituting \\(b \to -b\\) and \\(\chi \to \chi + \pi\\), which produces an identical integral taken over the area of an equivalent disk. This is useful, since the value of an integral of an odd function (which can be expressed as a product of an even function \\(f_e\\) and an odd function \\(f_o\\)) taken over a symmetric interval is zero:
 
 $$ \tag{23.15}
- 	\int_{-1}^{1}
-	\mathrm{even}(b) \mathrm{odd}(b)
-	\thinspace db = 0,
+ 	\int_{-l}^{l} f_e(b) f_o(b) \thinspace db = 0.
 $$
 
 since, for an odd function, the value of an integral taken over a symmetric interval is zero.
-
-Next, we consider the following integral
-
-$$ \tag{23.16}
-	j_2(z) =
-	\frac{z}{2}
-	\int_{0}^{1}
-	\sin(z b) b \left( 1 - b^2 \right) \thinspace db
-$$
-
-of an even function of \\(b\\) (so the interval can be changed to \\(\[-1,0\]\\) without affecting the value of the integral).
-
-After performing a change of variables
-
-$$ \tag{23.17}
-	b = \sin{\theta},
-	\quad
-	db = \cos{\theta} \thinspace d\theta,
-$$
-
-Eqn. 23.16 is transformed into
-
-$$ \tag{23.18}
-	\frac{z}{2}
-	\int_{0}^{\pi/2}
-	\sin(z \sin{\theta}) \sin{\theta} (\cos{\theta})^3 \thinspace d\theta
-$$
 
 [Sonine's integral](https://dlmf.nist.gov/10.22.E19) \[[Watson](#references) (ch. 12.11)\]
 
@@ -9583,6 +9553,35 @@ $$ \tag{23.??}
 $$
 
 Find 23.18... Then 23.16...
+
+Next, we consider the following integral
+
+$$ \tag{23.16}
+	j_2(z) =
+	\frac{z}{2}
+	\int_{0}^{1}
+	\sin(z b) b \left( 1 - b^2 \right) \thinspace db
+$$
+
+of an even function of \\(b\\) (so the interval can be changed to \\(\[-1,0\]\\) without affecting the value of the integral).
+
+After performing a change of variables
+
+$$ \tag{23.17}
+	b = \sin{\theta},
+	\quad
+	db = \cos{\theta} \thinspace d\theta,
+$$
+
+Eqn. 23.16 is transformed into
+
+$$ \tag{23.18}
+	\frac{z}{2}
+	\int_{0}^{\pi/2}
+	\sin(z \sin{\theta}) \sin{\theta} (\cos{\theta})^3 \thinspace d\theta
+$$
+
+
 
 ---
 
