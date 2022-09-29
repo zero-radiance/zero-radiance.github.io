@@ -1201,7 +1201,7 @@ $$
 
 where \\(|E|\\) is the spatially-varying *peak amplitude*.
 
-If the attenuation index \\(\kappa = 0\\), the amplitude velocity \\(v_a = \infin\\), and Eqn. 7.14 represents a regular sine wave.
+If the attenuation index \\(\kappa = 0\\), the amplitude velocity \\(v_a = \infin\\), and Eqn. 7.14 represents an ordinary sine wave.
 
 [Insert Picture Here]
 
@@ -8161,7 +8161,7 @@ $$ \tag{21.17}
 	= \frac{\bm{E_0} \cdot \bm{v_n}}{1 + \left( m^2 - 1 \right) \frac{A_n}{\sum_n A_n} }.
 $$
 
-In case the ellipsoid is just a regular sphere, \\(a_1 = a_2 = a_3 = a\\), and
+In case the ellipsoid is just an ordinary sphere, \\(a_1 = a_2 = a_3 = a\\), and
 
 $$ \tag{21.18}
 	\frac{A_n}{\sum_n A_n} = \frac{1}{3}.
@@ -9483,11 +9483,11 @@ $$
 
 It does not appear to be possible to express Eqn. 23.11 in terms of well-known functions \[[4](#references) (ch. 11.32)\]. Thus, we shall limit our investigation to a number of special cases.
 
-Let us establish the connection with the Rayleigh-Gans-Born approximation by assuming that \\(\rho \ll 1\\). This permits us to expand \\(\exp(i \rho t)\\) in a power series of \\(\rho\\):
+We can establish the connection with the Rayleigh-Gans-Born approximation by expanding \\(\exp(i \rho t)\\) in a power series:
 
 $$ \tag{23.13}
-	e^{i z}
-	= 1 + i z - \frac{z^2}{2} - i \frac{z^3}{6} + \mathrm{O}\negmedspace\left( z^4 \right).
+	e^{z}
+	= \sum_{n=0}^{\infin} \frac{z^n}{n!}.
 $$
 
 Let us substitute Eqn. 23.13 into 23.11, and integrate the resulting expression term-by-term. In order to do so, we must prove a small number of useful facts.
@@ -9502,7 +9502,9 @@ $$ \tag{23.14}
 	c \thinspace dc \thinspace
 $$
 
-is an even function of \\(b\\). This can be shown by substituting \\(b \to -b\\) and \\(\chi \to \chi + \pi\\), which produces an identical integral taken over the area of an equivalent disk. This is useful, since the value of an integral of an odd function (which can be expressed as a product of an even function \\(f_e\\) and an odd function \\(f_o\\)) taken over a symmetric interval is zero:
+is an even function of \\(b\\). This can be shown by substituting \\(b \to -b\\) and \\(\chi \to \chi + \pi\\), which results in an identical integral taken over the area of the same disk.
+
+The knowledge of the [parity](https://en.wikipedia.org/wiki/Parity_(mathematics)) of a function allows us to simplify certain integrals. For instance, the value of an integral of an odd function (which can be expressed as a product of an even function \\(f_e\\) and an odd function \\(f_o\\)) taken over a symmetric interval is zero:
 
 $$ \tag{23.15}
  	\int_{-l}^{l} f_e(b) f_o(b) \thinspace db = 0.
@@ -9510,95 +9512,39 @@ $$
 
 since, for an odd function, the value of an integral taken over a symmetric interval is zero.
 
-[Sonine's integral](https://dlmf.nist.gov/10.22.E19) \[[Watson](#references) (ch. 12.11)\]
-
-$$ \tag{23.??}
-	J_{m+n+1}(z) = \frac{z^{n+1}}{2^n \Gamma(n+1)}
-	\int_{0}^{\pi/2} J_{m}(z \sin{\theta}) (\sin{\theta})^{m+1} (\cos{\theta})^{2 n+1} d\theta
-$$
-
-$$ \tag{18.48}
-\begin{aligned}
-	& j_n(x) = \sqrt{\frac{\pi}{2 x}} J_{n+1/2}(x),
-	&
-	& y_n(x) = \sqrt{\frac{\pi}{2 x}} Y_{n+1/2}(x),
-	&
-	& h_n^{(k)}(x) = \sqrt{\frac{\pi}{2 x}} H_{n+1/2}^{(k)}(x),
-\end{aligned}
-$$
-
-$$ \tag{18.51}
-\begin{aligned}
-	& j_0(x) = \frac{\sin{x}}{x} = \sqrt{\frac{\pi}{2 x}} J_{0+1/2}(x)
-\end{aligned}
-$$
-
-set n = 1, m = 1/2...
-
-$$ \tag{23.??}
-	J_{1/2+1+1}(z) = \frac{z^{1+1}}{2^1 \Gamma(1+1)}
-	\int_{0}^{\pi/2} J_{1/2}(z \sin{\theta}) (\sin{\theta})^{1/2+1} (\cos{\theta})^{2+1} d\theta
-$$
-
-$$ \tag{23.??}
-	j_{2}(z) = \frac{z^{1+1}}{2^1 \Gamma(1+1)}
-	\int_{0}^{\pi/2} j_{0}(z \sin{\theta}) (\sin{\theta}) (\cos{\theta})^{2+1} d\theta
-$$
-
-Now keep n, set m = 1/2...
-
-$$ \tag{23.??}
-	J_{m+n+1}(z) = \frac{z^{n+1}}{2^n \Gamma(n+1)}
-	\int_{0}^{\pi/2} J_{m}(z \sin{\theta}) (\sin{\theta})^{m+1} (\cos{\theta})^{2 n+1} d\theta
-$$
-
-Find 23.18... Then 23.16...
-
-Next, we consider the following integral
+Naturally, for even functions,
 
 $$ \tag{23.16}
-	j_2(z) =
-	\frac{z}{2}
-	\int_{0}^{1}
-	\sin(z b) b \left( 1 - b^2 \right) \thinspace db
+ 	\int_{-l}^{l} f_e(b) \thinspace db =
+ 	2 \int_{0}^{l} f_e(b) \thinspace db.
 $$
 
-of an even function of \\(b\\) (so the interval can be changed to \\(\[-1,0\]\\) without affecting the value of the integral).
-
-After performing a change of variables
+Some of the integrals that do not vanish can be reduced to [Sonine's integral](https://dlmf.nist.gov/10.22.E19) \[[Watson](#references) (ch. 12.11)\]:
 
 $$ \tag{23.17}
-	b = \sin{\theta},
-	\quad
-	db = \cos{\theta} \thinspace d\theta,
+	J_{m+n+1}(z) = \frac{z^{n+1}}{2^n \Gamma(n+1)}
+	\int_{0}^{\pi/2} J_{m}(z \sin{\theta}) (\sin{\theta})^{m+1} (\cos{\theta})^{2 n+1} \thinspace d\theta,
 $$
 
-Eqn. 23.16 is transformed into
+where \\(J_n\\) is the (ordinary) Bessel function of the first kind.
+
+We shall utilize its trigonometric form that can be obtained by setting \\(t = \sin{\theta}\\):
 
 $$ \tag{23.18}
-	\frac{z}{2}
-	\int_{0}^{\pi/2}
-	\sin(z \sin{\theta}) \sin{\theta} (\cos{\theta})^3 \thinspace d\theta
+	J_{m+n+1}(z) = \frac{z^{n+1}}{2^n \Gamma(n+1)}
+	\int_{0}^{1} J_{m}(z t) t^{m+1} \left( 1 - t^2 \right)^{n} \thinspace dt.
 $$
 
+For half-integral values of \\(m\\), substitution of Eqn. 18.48.1 produces the corresponding integral equation
 
+$$ \tag{23.19}
+	j_{m+n+1}(z) = \frac{z^{n+1}}{2^n \Gamma(n+1)}
+	\int_{0}^{1} j_m(z t) t^{m+2} \left( 1 - t^2 \right)^{n} \thinspace dt.
+$$
+
+of the spherical Bessel function of the first kind \\(j_n\\).
 
 ---
-
-[Gegenbauer's integral](https://dlmf.nist.gov/10.54.E2) representation of the spherical Bessel function of the first kind \[[Watson](#references) (ch. 3.32)\]
-
-$$ \tag{18.1??}
-	j_n(z) = \frac{1}{2 i^n}
-	\int_{0}^{\pi} e^{i z \cos{\theta}} P_n(\cos{\theta}) \sin{\theta} \thinspace d\theta,
-$$
-
-[Sonine's integral](https://dlmf.nist.gov/10.22.E19) \[[Watson](#references) (ch. 12.11)\]
-
-$$ \tag{18.1??}
-	J_{m+n+1}(z) = \frac{z^{n+1}}{2^n \Gamma(n+1)}
-	\int_{0}^{\pi/2} J_{m}(z \sin{\theta}) (\sin{\theta})^{m+1} (\cos{\theta})^{2 n+1} d\theta
-$$
-
 
 Try SIE...
 
