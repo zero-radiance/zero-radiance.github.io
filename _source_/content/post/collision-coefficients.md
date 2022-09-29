@@ -8954,7 +8954,7 @@ $$
 In particular, for a spherical particle (symmetric with respect to the azimuthal angle \\(\phi\\)), we may set
 
 $$ \tag{22.12}
-	\tau(\theta) = 2 \sin(\theta/2) x,
+	\tau = 2 \sin(\theta/2) x,
 $$
 
 and easily calculate \[[4](#references) (ch. 7.21)\]
@@ -8965,7 +8965,7 @@ $$ \tag{22.13}
 	&= \frac{3}{4 \pi a^3} \int_{-1}^{1}
 	\int_{-\pi}^{\pi} \int_{0}^{\sqrt{1 - b^2}}
 	a^2 c \thinspace dc \thinspace d\chi \thinspace
-	e^{-i \tau(\theta) b} a \thinspace db
+	e^{-i \tau b} a \thinspace db
 	\cr
 	&= \frac{3}{4} \int_{-1}^{1}
 	\left( 1 - b^2 \right)
@@ -9408,6 +9408,77 @@ $$ \tag{23.6}
 \end{bmatrix}.
 $$
 
+---
+
+Modify 22.11
+
+$$ \tag{23.7}
+\bm{r'} =
+\begin{bmatrix}
+	r\_{x}' \cr
+	r\_{y}' \cr
+	r\_{z}' \cr
+\end{bmatrix} =
+\begin{bmatrix}
+	\sqrt{(r\_{x}')^2 + (r\_{y}')^2} \cos{\chi} \cr
+	\sqrt{(r\_{x}')^2 + (r\_{y}')^2} \sin{\chi} \cr
+	r\_{z}' \cr
+\end{bmatrix} = a
+\begin{bmatrix}
+	c \cos{\chi} \cr
+	c \sin{\chi} \cr
+	b \cr
+\end{bmatrix}
+$$
+
+23.6 + 23.7, 22.?? becomes
+
+$$ \tag{23.8}
+\begin{aligned}
+	\bm{r'} \cdot (\bm{n_i} - \bm{n_s})
+	&= -r\_{u}' |\bm{n_i} - \bm{n_s}|
+     = -2 \sin(\theta/2) (\cos(\theta/2) r\_{x}' - \sin(\theta/2) r\_{z}')
+	\cr
+	&= 2 a \sin(\theta/2) \big( b \sin(\theta/2) - c \cos{\chi} \cos(\theta/2) \big).
+\end{aligned}
+$$
+
+Let us consider the special case of a homogeneous spherical particle. From the geometry, it is evident that
+
+$$ \tag{23.9}
+\begin{aligned}
+	\bm{r'} \cdot \bm{n_i}
+	&= r\_{z}'
+	= a b,
+	\cr
+	-\bm{r_i} \cdot \bm{n_i}
+	&= \sqrt{a^2 - \big( r\_{x}' \big)^2 - \big( r\_{y}' \big)^2}
+	= a \sqrt{1 - c^2}.
+\end{aligned}
+$$
+
+Putting it all together, 23.3 ...
+
+$$ \tag{23.10}
+	e^{i k \bm{r'} \cdot (\bm{n_i} - \bm{n_s})}
+	e^{i (m - 1) k (\bm{r'} - \bm{r_i}) \cdot \bm{n_i}}
+	=
+	e^{i \tau \big( b \sin(\theta/2) - c \cos{\chi} \cos(\theta/2) \big)}
+	e^{i \frac{\rho}{2} \big(b + \sqrt{1 - c^2} \big)}.
+$$
+
+where, as before (cf. Eqn. 22.3, 22.12),
+
+$$ \tag{23.11}
+	\rho = 2 (m - 1) x,
+	\quad
+	\tau = 2 \sin(\theta/2) x.
+$$
+
+TBC...
+
+---
+
 Let us consider the special case of a homogeneous spherical particle. From the geometry, it is evident that
 
 $$ \tag{23.8}
@@ -9478,7 +9549,7 @@ $$
 where, once again (cf. Eqn. 22.??, 22.12),
 
 $$ \tag{23.12}
-	\tau(\theta) = 2 \sin(\theta/2) x.
+	\tau = 2 \sin(\theta/2) x.
 $$
 
 It does not appear to be possible to express Eqn. 23.11 in terms of well-known functions \[[4](#references) (ch. 11.32)\]. Thus, we shall limit our investigation to a number of special cases.
