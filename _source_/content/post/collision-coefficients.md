@@ -9533,6 +9533,8 @@ $$ \tag{23.15}
 	\thinspace db.
 $$
 
+TEST: What happens to the integral from Sqrt[1-b^2] to 1? Does it vanish when integrated over b?
+
 We can establish the connection with the Rayleigh-Gans-Born approximation by expanding \\(\exp(i (\rho/2) \sqrt{1 - c^2})\\) in a power series:
 
 $$ \tag{23.16}
@@ -9545,12 +9547,7 @@ Thus, we are led to consider the integral of the form
 $$ \tag{23.17}
 	\frac{i^n \rho^n}{2^n n!} \int_{0}^{\sqrt{1 - b^2}}
 	J_0 (\tau_x c)
-	c \left( 1 - c^2 \right)^{n/2}
-	\thinspace dc =
-	\frac{i^n \rho^n}{2^n n!} \int_{0}^{\sqrt{1 - b^2}}
-	J_0 (\tau_x c)
-	c \left( 1 - c^2 \right)^{n/2}
-	\thinspace dc.
+	c \left( 1 - c^2 \right)^{n/2}.
 $$
 
 Some of the integrals that do not vanish can be reduced to [Sonine's integral](https://dlmf.nist.gov/10.22.E19) \[[Watson](#references) (ch. 12.11)\]:
