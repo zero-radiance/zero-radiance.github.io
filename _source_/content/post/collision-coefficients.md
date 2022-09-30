@@ -9457,7 +9457,7 @@ $$ \tag{23.9}
 \end{aligned}
 $$
 
-Putting it all together, 23.3 ...
+Putting it all together,
 
 $$ \tag{23.10}
 	e^{i k \bm{r'} \cdot (\bm{n_i} - \bm{n_s})}
@@ -9475,7 +9475,35 @@ $$ \tag{23.11}
 	\tau = 2 \sin(\theta/2) x.
 $$
 
-TBC...
+Using Eqn. 23.7 and 23.10, the integral found in Eqn. 23.3 can be calculated in the following way:
+
+$$ \tag{23.12}
+\begin{aligned}
+	I_{ada}(\theta)
+	&= \frac{1}{V_p} \int\_{V_p}
+	e^{i k \bm{r'} \cdot (\bm{n_i} - \bm{n_s})}
+	e^{i (m - 1) k (\bm{r'} - \bm{r_i}) \cdot \bm{n_i}} dV'
+	\cr
+	&= \frac{3}{4 \pi a^3} \int_{-1}^{1}
+	\int_{0}^{\sqrt{1 - b^2}}
+	\int_{-\pi}^{\pi}
+	e^{i \tau \big( b \sin(\theta/2) - c \cos{\chi} \cos(\theta/2) \big)}
+	e^{i \frac{\rho}{2} \big(b + \sqrt{1 - c^2} \big)}
+	\thinspace d\chi \thinspace
+	a^2 c \thinspace dc \thinspace
+	a \thinspace db \thinspace
+	\cr
+	&= \frac{3}{4 \pi} \int_{-1}^{1}
+	\int_{0}^{\sqrt{1 - b^2}}
+	\int_{-\pi}^{\pi}
+	e^{-i c \tau \cos(\theta/2) \cos{\chi}}
+	\thinspace d\chi \thinspace
+	e^{i \frac{\rho}{2} \sqrt{1 - c^2}}
+	c \thinspace dc \thinspace
+	e^{i b \left( \tau \sin(\theta/2) + \frac{\rho}{2} \right)}
+	\thinspace db \thinspace
+\end{aligned}
+$$
 
 ---
 
