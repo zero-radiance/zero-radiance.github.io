@@ -9493,16 +9493,80 @@ $$ \tag{23.12}
 	a^2 c \thinspace dc \thinspace
 	a \thinspace db \thinspace
 	\cr
-	&= \frac{3}{4 \pi} \int_{-1}^{1}
+	&= \frac{3}{2 \pi} \int_{-1}^{1}
 	\int_{0}^{\sqrt{1 - b^2}}
-	\int_{-\pi}^{\pi}
-	e^{-i c \tau \cos(\theta/2) \cos{\chi}}
+	\int_{0}^{\pi}
+	e^{-i \tau \cos(\theta/2) c \cos{\chi}}
 	\thinspace d\chi \thinspace
 	e^{i \frac{\rho}{2} \sqrt{1 - c^2}}
 	c \thinspace dc \thinspace
-	e^{i b \left( \tau \sin(\theta/2) + \frac{\rho}{2} \right)}
-	\thinspace db \thinspace
+	e^{i \left( \tau \sin(\theta/2) + \frac{\rho}{2} \right) b}
+	\thinspace db.
 \end{aligned}
+$$
+
+While inspecting the integral, we recognize the definition of the [Bessel function of the first kind](https://mathworld.wolfram.com/BesselFunctionoftheFirstKind.html)
+
+$$ \tag{23.13}
+	J_0(z) = \frac{1}{\pi} \int_{0}^{\pi}
+	e^{\pm i z \cos{\chi}} \thinspace d\chi.
+$$
+
+If, in addition, we introduce a compact notation
+
+$$ \tag{23.14}
+	\tau_x = \tau \cos(\theta/2),
+	\quad
+	\tau_y = \tau \sin(\theta/2),
+$$
+
+then we can reduce Eqn. 23.12 to
+
+$$ \tag{23.15}
+	I_{ada}(\theta)
+	= \frac{3}{2} \int_{-1}^{1}
+	\int_{0}^{\sqrt{1 - b^2}}
+	J_0 (\tau_x c)
+	e^{i \frac{\rho}{2} \sqrt{1 - c^2}}
+	c \thinspace dc \thinspace
+	e^{i \left( \tau_y + \frac{\rho}{2} \right) b}
+	\thinspace db.
+$$
+
+We can establish the connection with the Rayleigh-Gans-Born approximation by expanding \\(\exp(i (\rho/2) \sqrt{1 - c^2})\\) in a power series:
+
+$$ \tag{23.16}
+	e^{z}
+	= \sum_{n=0}^{\infin} \frac{z^n}{n!}.
+$$
+
+Thus, we are led to consider the integral of the form
+
+$$ \tag{23.17}
+	\frac{i^n \rho^n}{2^n n!} \int_{0}^{\sqrt{1 - b^2}}
+	J_0 (\tau_x c)
+	c \left( 1 - c^2 \right)^{n/2}
+	\thinspace dc =
+	\frac{i^n \rho^n}{2^n n!} \int_{0}^{\sqrt{1 - b^2}}
+	J_0 (\tau_x c)
+	c \left( 1 - c^2 \right)^{n/2}
+	\thinspace dc.
+$$
+
+Some of the integrals that do not vanish can be reduced to [Sonine's integral](https://dlmf.nist.gov/10.22.E19) \[[Watson](#references) (ch. 12.11)\]:
+
+$$ \tag{23.17}
+	J_{m+n+1}(z) = \frac{z^{n+1}}{2^n \Gamma(n+1)}
+	\int_{0}^{\pi/2} J_{m}(z \sin{\theta}) (\sin{\theta})^{m+1} (\cos{\theta})^{2 n+1} \thinspace d\theta,
+$$
+
+where \\(J_n\\) is the (ordinary) Bessel function of the first kind.
+
+We shall utilize its trigonometric form that can be obtained by setting \\(t = \sin{\theta}\\):
+
+$$ \tag{23.18}
+	J_{m+n+1}(z) = \frac{z^{n+1}}{2^n \Gamma(n+1)}
+	\int_{0}^{1} J_{m}(z t) t^{m+1} \left( 1 - t^2 \right)^{n} \thinspace dt.
 $$
 
 ---
