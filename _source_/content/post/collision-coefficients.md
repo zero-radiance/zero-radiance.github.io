@@ -3332,7 +3332,7 @@ where \\(\mathcal{T}\\) is the *transition dyadic*, the expression of which is y
 
 Recursive equations written in the integral form quickly become unwieldy. Instead, we shall convert them into the operator form by using the [bra-ket notation](https://en.wikipedia.org/wiki/Bra%E2%80%93ket_notation) \[[30](#references), ch. II-B, [31](#references)\]. Additionally, any dependence on the frequency or the wavenumber shall be kept implicit.
 
-Our building blocks are state vectors (or *kets*), such as \\(\ket{E}\\), and linear functionals (or *bras*), such as \\(\bra{r}\\). Put together, they represent the projection (the [inner product](https://en.wikipedia.org/wiki/Inner_product)) of the two vectors:
+Our building blocks are state vectors (or *kets*), such as \\(\ket{E}\\), and linear functionals (or *bras*), such as \\(\bra{r}\\). We can picture a bra and a ket as a row and a column vector, respectively. Put together, they represent the projection (the [inner product](https://en.wikipedia.org/wiki/Inner_product)) of the two vectors:
 
 $$ \tag{14.6}
 	  \braket{r | E}
@@ -3340,10 +3340,12 @@ $$ \tag{14.6}
 	= \bm{E}(\bm{r}).
 $$
 
-In addition, we can define the *potential operator* \\(U\\), such that, in the position representation,
+In addition, we can define the scalar *potential operator* \\(U\\), such that, in the position representation,
 
 $$ \tag{14.7}
-	\bra{r} U = u(\bm{r}) \bra{r}.
+	\bra{r} U = u(\bm{r}) \bra{r}
+	\quad \text{or} \quad
+	\braket{r | U | r'} = u(\bm{r}) \delta(r - r').
 $$
 
 Similarly, we define the *Green operator* \\(G\\) and the *transition operator* \\(T\\) as
