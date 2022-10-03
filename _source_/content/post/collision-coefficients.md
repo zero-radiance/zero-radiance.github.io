@@ -3330,7 +3330,7 @@ $$
 
 where \\(\mathcal{T}\\) is the *transition dyadic*, the expression of which is yet to be determined.
 
-Recursive equations written in the integral form quickly become unwieldy. Instead, we shall convert them into the operator form by using the [bra-ket notation](https://en.wikipedia.org/wiki/Bra%E2%80%93ket_notation). Additionally, any dependence on the frequency or the wavenumber shall be kept implicit.
+Recursive equations written in the integral form quickly become unwieldy. Instead, we shall convert them into the operator form by using the [bra-ket notation](https://en.wikipedia.org/wiki/Bra%E2%80%93ket_notation) \[[30](#references), ch. II-B, [31](#references)\]. Additionally, any dependence on the frequency or the wavenumber shall be kept implicit.
 
 Our building blocks are state vectors (or *kets*), such as \\(\ket{E}\\), and linear functionals (or *bras*), such as \\(\bra{r}\\). Put together, they represent the projection (the [inner product](https://en.wikipedia.org/wiki/Inner_product)) of the two vectors:
 
@@ -7951,7 +7951,7 @@ $$
 
 where \\(\mathcal{\Alpha_m}\\) is the molecular polarizability dyadic (see Eqn. 10.21).
 
-In addition to forced motion of the electron cloud, a diatomic molecule may experience vibration of the nuclei relative to the center of mass of the molecule \[[30](#references), ch. \\(\mathrm{A\_V}\\)\]. Since the nuclei are much heavier than the electrons, they oscillate at a lower frequency, effectively [modulating the amplitude](https://en.wikipedia.org/wiki/Amplitude_modulation) of the oscillation of the dipole moment by a factor of
+In addition to forced motion of the electron cloud, a diatomic molecule may experience vibration of the nuclei relative to the center of mass of the molecule \[[30](#references), ch. A-V\\)\]. Since the nuclei are much heavier than the electrons, they oscillate at a lower frequency, effectively [modulating the amplitude](https://en.wikipedia.org/wiki/Amplitude_modulation) of the oscillation of the dipole moment by a factor of
 
 $$ \tag{20.5}
 	\cos(\Omega t)
@@ -9853,6 +9853,7 @@ Bohren & Huffman, Larry Travis, Pharr & Jakob, Jeppe Frisvad (Mie scattering), R
 28. Wald, R. [Advanced Classical Electromagnetism](https://press.princeton.edu/books/hardcover/9780691220390/advanced-classical-electromagnetism) (2022).
 29. Long, D. A. [The Raman Effect: A Unified Treatment of the Theory of Raman Scattering by Molecules](https://doi.org/10.1002/0470845767) (2002).
 30. Cohen-Tannoudji, C., Diu, B., & Laloe, F. [Quantum Mechanics, Volume 1](https://www.wiley.com/en-us/Quantum+Mechanics%2C+Volume+1%3A+Basic+Concepts%2C+Tools%2C+and+Applications%2C+2nd+Edition-p-9783527822713) (2nd ed., 2020).
+31. Schueler, J. [Green’s Functions and Their Applications to Quantum Mechanics](https://sites.math.washington.edu/~morrow/336_11/papers/jeff.pdf) (2011).
 99. Hansen, J. E., & Travis, L. D. [Light Scattering in Planetary Atmospheres](https://doi.org/10.1007/BF00168069) (1974).
 
 <!--
