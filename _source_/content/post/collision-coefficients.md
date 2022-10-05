@@ -9535,6 +9535,40 @@ $$ \tag{23.15}
 	\thinspace db.
 $$
 
+---
+
+$$
+	I_{ada}(\theta)
+	= \frac{3}{2} \int_{-1}^{1}
+	\left( \int_{0}^{1}
+	J_0 (\tau_x c \sqrt{1 - b^2})
+	e^{i \frac{\rho}{2} \sqrt{(1 - c^2) + b^2 c^2}}
+	c \thinspace dc \right)
+	e^{i \left( \tau_y + \frac{\rho}{2} \right) b}
+	(1-b^2) \thinspace db.
+$$
+
+!!! Asymptotic expansion (upper limit)
+!!! Surface Integral Equation
+
+
+---
+
+$$
+	x = b = r \cos{\phi} = r \sqrt{1 - \sin^2{\phi}}
+	\quad
+	y = c = r \sin{\phi},
+$$
+
+$$
+	I_{ada}(\theta)
+	= \frac{3}{2} \int_{0}^{1} \int_{0}^{\pi}
+	J_0 (\tau_x r \sin{\phi})
+	e^{i \frac{\rho}{2} \sqrt{1 - (r \sin{\phi})^2}}
+	e^{i \left( \tau_y + \frac{\rho}{2} \right) r \sqrt{1 - \sin^2{\phi}}}
+	r^2 \sin{\phi} \thinspace dr \thinspace d\phi.
+$$
+
 TEST: What happens to the integral from Sqrt[1-b^2] to 1? Does it vanish when integrated over b?
 
 We can establish the connection with the Rayleigh-Gans-Born approximation by expanding \\(\exp(i (\rho/2) \sqrt{1 - c^2})\\) in a power series:
@@ -9608,6 +9642,12 @@ $$ \tag{23.10}
 		\sqrt{1 - ( b \cos(\theta/2) + c \cos{\chi} \sin(\theta/2) )^2 - ( c \sin{\chi} )^2}
 	\right)}.
 \end{aligned}
+$$
+
+$$
+	x = c \cos{\chi},
+	\quad
+	y = c \sin{\chi},
 $$
 
 In order to use Eqn. 23.3, it is necessary to evaluate the integral
