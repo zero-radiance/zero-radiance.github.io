@@ -9502,7 +9502,7 @@ $$ \tag{23.12}
 	\thinspace d\chi \thinspace
 	e^{i \frac{\rho}{2} \sqrt{1 - c^2}}
 	c \thinspace dc \thinspace
-	e^{i \left( \tau \sin(\theta/2) + \frac{\rho}{2} \right) b}
+	e^{i (\tau \sin(\theta/2) + \rho/2) b}
 	\thinspace db.
 \end{aligned}
 $$
@@ -9517,9 +9517,9 @@ $$
 If, in addition, we introduce a compact notation
 
 $$ \tag{23.14}
-	\tau_x = \tau \cos(\theta/2),
+	\tau_x = \tau \cos(\theta/2) = x \sin{\theta},
 	\quad
-	\tau_y = \tau \sin(\theta/2),
+	\tau_y = \tau \sin(\theta/2) = x (1 -\cos{\theta}),
 $$
 
 then we can reduce Eqn. 23.12 to
@@ -9531,7 +9531,28 @@ $$ \tag{23.15}
 	J_0 (\tau_x c)
 	e^{i \frac{\rho}{2} \sqrt{1 - c^2}}
 	c \thinspace dc \thinspace
-	e^{i \left( \tau_y + \frac{\rho}{2} \right) b}
+	e^{i (\tau_y + \rho/2) b}
+	\thinspace db.
+$$
+
+We may split the outer integral in two using the Euler's formula:
+
+$$ \tag{23.16}
+	e^{i (\tau_y + \rho/2) b}
+	= \cos\negthinspace\big((\tau_y + \rho/2) b \big)
+	+ i \sin\negthinspace\big((\tau_y + \rho/2) b \big).
+$$
+
+The first of the resulting integrands is an even function of \\(b\\), and the second is odd. Since the integration interval is symmetric, the second integral vanishes, and the interval of the first one can be halved after scaling the result by a factor of two:
+
+$$ \tag{23.17}
+	I_{ada}(\theta)
+	= 3 \int_{0}^{1}
+	\int_{0}^{\sqrt{1 - b^2}}
+	J_0 (\tau_x c)
+	e^{i \frac{\rho}{2} \sqrt{1 - c^2}}
+	c \thinspace dc \thinspace
+	\cos\negthinspace\big((\tau_y + \rho/2) b \big)
 	\thinspace db.
 $$
 
