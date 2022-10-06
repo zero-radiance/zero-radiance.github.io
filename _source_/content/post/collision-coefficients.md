@@ -6643,7 +6643,7 @@ $$
 
 by mirroring [Euler's formulae](https://en.wikipedia.org/wiki/Euler%27s_formula#Relationship_to_trigonometry)
 
-$$
+$$ \tag{18.13?}
 	\cos(m \phi) = \frac{1}{2} \Big( e^{i m \phi} + e^{-i m \phi} \Big),
 	\quad
 	\sin(m \phi) = \frac{1}{2 i} \Big( e^{i m \phi} - e^{-i m \phi} \Big),
@@ -9538,17 +9538,16 @@ $$
 We may split the outer integral in two using the Euler's formula:
 
 $$ \tag{23.16}
-	e^{i (\tau_y + \rho/2) b}
-	= \cos\negthinspace\big((\tau_y + \rho/2) b \big)
-	+ i \sin\negthinspace\big((\tau_y + \rho/2) b \big).
+	e^{i \phi}
+	= \cos{\phi}
+	+ i \sin{\phi}.
 $$
 
 The first of the resulting integrands is an even function of \\(b\\), and the second is odd. Since the integration interval is symmetric, the second integral vanishes, and the interval of the first one can be halved after scaling the result by a factor of two:
 
 $$ \tag{23.17}
 	I_{ada}(\theta)
-	= 3 \int_{0}^{1}
-	\int_{0}^{\sqrt{1 - b^2}}
+	= 3 \int_{0}^{1} \int_{0}^{\sqrt{1 - b^2}}
 	J_0 (\tau_x c)
 	e^{i \frac{\rho}{2} \sqrt{1 - c^2}}
 	c \thinspace dc \thinspace
@@ -9556,17 +9555,52 @@ $$ \tag{23.17}
 	\thinspace db.
 $$
 
----
+At this point, the region of integration -- the first quadrant of a unit disk -- is symmetric in \\(b\\) and \\(c\\). This allows us to interchange the order in which integration is performed:
 
-$$
+$$ \tag{23.18}
+\begin{aligned}
 	I_{ada}(\theta)
-	= \frac{3}{2} \int_{-1}^{1}
-	\left( \int_{0}^{1}
-	J_0 (\tau_x c \sqrt{1 - b^2})
-	e^{i \frac{\rho}{2} \sqrt{(1 - c^2) + b^2 c^2}}
-	c \thinspace dc \right)
-	e^{i \left( \tau_y + \frac{\rho}{2} \right) b}
-	(1-b^2) \thinspace db.
+	&= 3 \int_{0}^{1} \int_{0}^{\sqrt{1 - c^2}}
+	\cos\negthinspace\big((\tau_y + \rho/2) b \big)
+	\thinspace db \thinspace
+	J_0 (\tau_x c)
+	e^{i \frac{\rho}{2} \sqrt{1 - c^2}}
+	c \thinspace dc
+	\cr
+	&= \frac{3}{\tau_y + \rho/2} \int_{0}^{1}
+	J_0 (\tau_x c)
+	e^{i \frac{\rho}{2} \sqrt{1 - c^2}}
+	\sin\negthinspace\big((\tau_y + \rho/2) \sqrt{1 - c^2} \big)
+	c \thinspace dc.
+\end{aligned}
+$$
+
+Another application of Euler's formulae given by Eqn. 18.13? splits the integral in two again:
+
+$$ \tag{23.19}
+	I_{ada}(\theta)
+	= \frac{3 i^{-1}}{2 \tau_y + \rho} \int_{0}^{1}
+	J_0 (\tau_x c)
+	\left( e^{i (\tau_y + \rho) \sqrt{1 - c^2}} -
+	e^{-i \tau_y \sqrt{1 - c^2}} \right)
+	c \thinspace dc.
+$$
+
+We can establish the connection with the Rayleigh-Gans-Born approximation by expanding \\(\exp(i \rho \sqrt{1 - c^2})\\) in a power series:
+
+$$ \tag{23.20}
+	e^{z}
+	= \sum_{n=0}^{\infin} \frac{z^n}{n!}.
+$$
+
+Substitution of Eqn. 23.20 yields
+
+$$ \tag{23.19}
+	I_{ada}(\theta)
+	= \frac{3}{2 \tau_y + \rho} \sum_{n=0}^{\infin} \frac{i^{n-1} \rho^n}{n!} \int_{0}^{1}
+	J_0 (\tau_x c)
+	\left( (1 - c^2)^{n/2} e^{i \tau_y \sqrt{1 - c^2}} - e^{-i \tau_y \sqrt{1 - c^2}} \right)
+	c \thinspace dc.
 $$
 
 !!! Asymptotic expansion (upper limit)
@@ -9592,12 +9626,7 @@ $$
 
 TEST: What happens to the integral from Sqrt[1-b^2] to 1? Does it vanish when integrated over b?
 
-We can establish the connection with the Rayleigh-Gans-Born approximation by expanding \\(\exp(i (\rho/2) \sqrt{1 - c^2})\\) in a power series:
 
-$$ \tag{23.16}
-	e^{z}
-	= \sum_{n=0}^{\infin} \frac{z^n}{n!}.
-$$
 
 Thus, we are led to consider the integral of the form
 
