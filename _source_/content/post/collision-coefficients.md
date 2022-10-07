@@ -9574,9 +9574,7 @@ $$ \tag{23.18}
 \end{aligned}
 $$
 
----
-
-Another application of Euler's formulae given by Eqn. 18.13? splits the integral in two again:
+After inverting the Euler's formula (cf. Eqn. 18.13?), we may split the integral in two again:
 
 $$ \tag{23.19}
 	I_{ada}(\theta)
@@ -9586,6 +9584,48 @@ $$ \tag{23.19}
 	e^{-i \tau_e \sqrt{1 - c^2}} \right)
 	c \thinspace dc.
 $$
+
+Unfortunately, this integral does not have a closed-form expression for arbitrary values of \\(x, \rho, \theta\\). In particular, for \\(\theta = 0\\), the parameters introduced in Eqn. 23.14
+
+$$ \tag{23.20}
+	\tau_o = \tau_e = 0,
+$$
+
+and thus
+
+$$ \tag{23.21}
+	I_{ada}(0)
+	= \frac{6}{\rho} \int_{0}^{1}
+	\left( e^{i \rho \sqrt{1 - c^2}} -
+	1 \right)
+	c \thinspace dc
+	= \frac{6}{\rho} \int_{0}^{1}
+	e^{i \rho s} s \thinspace ds -\frac{3}{\rho}.
+$$
+
+The remaining expression can be integrated by parts. We decompose the integrand as follows:
+
+$$ \tag{23.22}
+\begin{aligned}
+	u &= s, & dv &= e^{i \rho s} \thinspace ds,
+	\cr
+	du &= ds, & v &= \frac{e^{i \rho s}}{i \rho}.
+\end{aligned}
+$$
+
+Eqn. 23.21 can then be readily integrated, which yields
+
+$$ \tag{23.21}
+\begin{aligned}
+	I_{ada}(0)
+	&= -\frac{3}{\rho} - \frac{6 i e^{i \rho}}{\rho^2} - \frac{6}{\rho} \int_{0}^{1} \frac{e^{i \rho s}}{i \rho} \thinspace ds
+	\cr
+	&= -\frac{3}{\rho} - \frac{6 i e^{i \rho}}{\rho^2} + \frac{6 \left(e^{i \rho} - 1\right)}{\rho^3}
+	= \frac{3}{\rho^3} \left( 2 e^{i \rho} (1 - i \rho) -\rho^2 - 2 \right).
+\end{aligned}
+$$
+
+---
 
 We can establish the connection with the Rayleigh-Gans-Born approximation by expanding \\(\exp(i \rho \sqrt{1 - c^2})\\) in a power series:
 
