@@ -9515,9 +9515,9 @@ $$
 If we introduce a shorthand notation
 
 $$ \tag{23.14}
-	\tau_o = \tau \cos(\theta/2) = x \sin{\theta},
+	\tau_o(x, \theta) = \tau \cos(\theta/2) = x \sin{\theta},
 	\quad
-	\tau_e = \tau \sin(\theta/2) = x (1 -\cos{\theta}),
+	\tau_e(x, \theta) = \tau \sin(\theta/2) = x (1 -\cos{\theta}),
 $$
 
 we can reduce Eqn. 23.12 to
@@ -9585,10 +9585,10 @@ $$ \tag{23.19}
 	c \thinspace dc.
 $$
 
-Unfortunately, this integral does not have a closed-form expression for arbitrary values of \\(x, \rho, \theta\\). In particular, for \\(\theta = 0\\), the parameters introduced in Eqn. 23.14
+Unfortunately, this integral does not have a closed-form expression for arbitrary values of \\(x, \rho, \theta\\). In the forward direction, the parameters introduced in Eqn. 23.14
 
 $$ \tag{23.20}
-	\tau_o = \tau_e = 0,
+	\tau_o(x, 0) = \tau_e(x, \theta) = 0,
 $$
 
 and thus
@@ -9615,7 +9615,7 @@ $$
 
 Eqn. 23.21 can then be readily integrated, which yields
 
-$$ \tag{23.21}
+$$ \tag{23.23}
 \begin{aligned}
 	I_{ada}(0)
 	&= -\frac{3}{\rho} - \frac{6 i e^{i \rho}}{\rho^2} - \frac{6}{\rho} \int_{0}^{1} \frac{e^{i \rho s}}{i \rho} \thinspace ds
@@ -9623,6 +9623,33 @@ $$ \tag{23.21}
 	&= -\frac{3}{\rho} - \frac{6 i e^{i \rho}}{\rho^2} + \frac{6 \left(e^{i \rho} - 1\right)}{\rho^3}
 	= \frac{3}{\rho^3} \left( 2 e^{i \rho} (1 - i \rho) -\rho^2 - 2 \right).
 \end{aligned}
+$$
+
+Similarly, in the backward direction, Eqn. 23.14 tells us that
+
+$$ \tag{23.24}
+	\tau_o(x, \pi) = 0,
+	\quad
+	\tau_e(x, \pi) = 2 x,
+$$
+
+and thus
+
+$$ \tag{23.25}
+	I_{ada}(\pi)
+	= \frac{3 i^{-1}}{4 x + \rho} \int_{0}^{1}
+	\left( e^{i (2 x + \rho) \sqrt{1 - c^2}} -
+	e^{-2 i x \sqrt{1 - c^2}} \right)
+	c \thinspace dc.
+$$
+
+This integral can be easily evaluated by following the steps taken in Eqn. 23.21-23.23. The result is
+
+$$ \tag{23.26} \small
+	I_{ada}(\pi)
+	= - \frac{
+		4 x^2 e^{i (2 x + \rho)} (2 x + \rho + i)
+		+ e^{-2 i x} (2 x + \rho)^2 (2 x-i) + i \rho (4 x + \rho) }{4/3 x^2 (2 x + \rho)^2 (4 x + \rho)}.
 $$
 
 ---
@@ -9644,42 +9671,12 @@ $$ \tag{23.19}
 	c \thinspace dc.
 $$
 
-!!! Asymptotic expansion (upper limit)
-!!! Surface Integral Equation
-
 
 ---
 
-$$
-	x = b = r \cos{\phi} = r \sqrt{1 - \sin^2{\phi}}
-	\quad
-	y = c = r \sin{\phi},
-$$
-
-$$
-	I_{ada}(\theta)
-	= \frac{3}{2} \int_{0}^{1} \int_{0}^{\pi}
-	J_0 (\tau_o r \sin{\phi})
-	e^{i \frac{\rho}{2} \sqrt{1 - (r \sin{\phi})^2}}
-	e^{i \left( \tau_e + \frac{\rho}{2} \right) r \sqrt{1 - \sin^2{\phi}}}
-	r^2 \sin{\phi} \thinspace dr \thinspace d\phi.
-$$
-
-TEST: What happens to the integral from Sqrt[1-b^2] to 1? Does it vanish when integrated over b?
-
-
-
-Thus, we are led to consider the integral of the form
-
-$$ \tag{23.17}
-	\frac{i^n \rho^n}{2^n n!} \int_{0}^{\sqrt{1 - b^2}}
-	J_0 (\tau_o c)
-	c \left( 1 - c^2 \right)^{n/2}.
-$$
-
 Some of the integrals that do not vanish can be reduced to [Sonine's integral](https://dlmf.nist.gov/10.22.E19) \[[Watson](#references) (ch. 12.11)\]:
 
-$$ \tag{23.17}
+$$
 	J_{m+n+1}(z) = \frac{z^{n+1}}{2^n \Gamma(n+1)}
 	\int_{0}^{\pi/2} J_{m}(z \sin{\theta}) (\sin{\theta})^{m+1} (\cos{\theta})^{2 n+1} \thinspace d\theta,
 $$
@@ -9688,158 +9685,10 @@ where \\(J_n\\) is the (ordinary) Bessel function of the first kind.
 
 We shall utilize its trigonometric form that can be obtained by setting \\(t = \sin{\theta}\\):
 
-$$ \tag{23.18}
+$$
 	J_{m+n+1}(z) = \frac{z^{n+1}}{2^n \Gamma(n+1)}
 	\int_{0}^{1} J_{m}(z t) t^{m+1} \left( 1 - t^2 \right)^{n} \thinspace dt.
 $$
-
----
-
-Let us consider the special case of a homogeneous spherical particle. From the geometry, it is evident that
-
-$$ \tag{23.8}
-\begin{aligned}
-	\bm{r'} \cdot \bm{n_i}
-	&= r\_{z}'
-	= r\_{w}' \cos(\theta/2) - r\_{u}' \sin(\theta/2),
-	\cr
-	-\bm{r_i} \cdot \bm{n_i}
-	&= \sqrt{a^2 - \big( r\_{x}' \big)^2 - \big( r\_{y}' \big)^2}
-	= \sqrt{a^2 - \big( r\_{u}' \cos(\theta/2) + r\_{w}' \sin(\theta/2) \big)^2 - \big( r\_{v}' \big)^2}.
-\end{aligned}
-$$
-
-In terms of the cylindrical parameterization introduced in Eqn. 22.11,
-
-$$ \tag{23.9}
-\begin{aligned}
-	\bm{r'} \cdot \bm{n_i}
-	&= a \big( c \cos{\chi} \cos(\theta/2) - b \sin(\theta/2) \big),
-	\cr
-	-\bm{r_i} \cdot \bm{n_i}
-	&= a \sqrt{1 - \big( b \cos(\theta/2) + c \cos{\chi} \sin(\theta/2) \big)^2 - ( c \sin{\chi} )^2}.
-\end{aligned}
-$$
-
-Putting it all together,
-
-$$ \tag{23.10}
-\begin{aligned}
-	e^{i (m - 1) k (\bm{r'} - \bm{r_i}) \cdot \bm{n_i}}
-	&= e^{i \rho t(\theta,\chi,b,c)}
-	\cr
-	&= e^{i \frac{\rho}{2} \left(
-		c \cos{\chi} \cos(\theta/2) - b \sin(\theta/2) +
-		\sqrt{1 - ( b \cos(\theta/2) + c \cos{\chi} \sin(\theta/2) )^2 - ( c \sin{\chi} )^2}
-	\right)}.
-\end{aligned}
-$$
-
-$$
-	x = c \cos{\chi},
-	\quad
-	y = c \sin{\chi},
-$$
-
-In order to use Eqn. 23.3, it is necessary to evaluate the integral
-
-$$ \tag{23.11}
-\begin{aligned}
-	I_{ada}(\theta)
-	&= \frac{1}{V_p} \int\_{V_p}
-	e^{i k \bm{r'} \cdot (\bm{n_i} - \bm{n_s})}
-	e^{i (m - 1) k (\bm{r'} - \bm{r_i}) \cdot \bm{n_i}} dV'
-	\cr
-	&= \frac{3}{4 \pi a^3} \int_{-1}^{1}
-	\int_{0}^{\sqrt{1 - b^2}}
-	\int_{-\pi}^{\pi}
-	e^{i \rho t(\theta,\chi,b,c)}
-	\thinspace d\chi \thinspace
-	a^2 c \thinspace dc \thinspace
-	e^{-i \tau(\theta) b} a \thinspace db \thinspace
-	\cr
-	&= \frac{3}{4 \pi} \int_{-1}^{1}
-	\int_{0}^{\sqrt{1 - b^2}}
-	\int_{-\pi}^{\pi}
-	e^{i \rho t(\theta,\chi,b,c)}
-	\thinspace d\chi \thinspace
-	c \thinspace dc \thinspace
-	e^{-i \tau(\theta) b} \thinspace db,
-\end{aligned}
-$$
-
-where, once again (cf. Eqn. 22.??, 22.12),
-
-$$ \tag{23.12}
-	\tau = 2 \sin(\theta/2) x.
-$$
-
-It does not appear to be possible to express Eqn. 23.11 in terms of well-known functions \[[4](#references) (ch. 11.32)\]. Thus, we shall limit our investigation to a number of special cases.
-
-We can establish the connection with the Rayleigh-Gans-Born approximation by expanding \\(\exp(i \rho t)\\) in a power series:
-
-$$ \tag{23.13}
-	e^{z}
-	= \sum_{n=0}^{\infin} \frac{z^n}{n!}.
-$$
-
-Let us substitute Eqn. 23.13 into 23.11, and integrate the resulting expression term-by-term. In order to do so, we must prove a small number of useful facts.
-
-First, note that
-
-$$ \tag{23.14}
-	\int_{0}^{\sqrt{1 - b^2}}
-	\int_{-\pi}^{\pi}
-	\left( 1 - ( b \cos(\theta/2) + c \cos{\chi} \sin(\theta/2) )^2 - ( c \sin{\chi} )^2 \right)^n
-	\thinspace d\chi \thinspace
-	c \thinspace dc \thinspace
-$$
-
-is an even function of \\(b\\). This can be shown by substituting \\(b \to -b\\) and \\(\chi \to \chi + \pi\\), which results in an identical integral taken over the area of the same disk.
-
-The knowledge of the [parity](https://en.wikipedia.org/wiki/Parity_(mathematics)) of a function allows us to simplify certain integrals. For instance, the value of an integral of an odd function (which can be expressed as a product of an even function \\(f_e\\) and an odd function \\(f_o\\)) taken over a symmetric interval is zero:
-
-$$ \tag{23.15}
- 	\int_{-l}^{l} f_e(b) f_o(b) \thinspace db = 0.
-$$
-
-since, for an odd function, the value of an integral taken over a symmetric interval is zero.
-
-Naturally, for even functions,
-
-$$ \tag{23.16}
- 	\int_{-l}^{l} f_e(b) \thinspace db =
- 	2 \int_{0}^{l} f_e(b) \thinspace db.
-$$
-
-Some of the integrals that do not vanish can be reduced to [Sonine's integral](https://dlmf.nist.gov/10.22.E19) \[[Watson](#references) (ch. 12.11)\]:
-
-$$ \tag{23.17}
-	J_{m+n+1}(z) = \frac{z^{n+1}}{2^n \Gamma(n+1)}
-	\int_{0}^{\pi/2} J_{m}(z \sin{\theta}) (\sin{\theta})^{m+1} (\cos{\theta})^{2 n+1} \thinspace d\theta,
-$$
-
-where \\(J_n\\) is the (ordinary) Bessel function of the first kind.
-
-We shall utilize its trigonometric form that can be obtained by setting \\(t = \sin{\theta}\\):
-
-$$ \tag{23.18}
-	J_{m+n+1}(z) = \frac{z^{n+1}}{2^n \Gamma(n+1)}
-	\int_{0}^{1} J_{m}(z t) t^{m+1} \left( 1 - t^2 \right)^{n} \thinspace dt.
-$$
-
-For half-integral values of \\(m\\), substitution of Eqn. 18.48.1 produces the corresponding integral equation
-
-$$ \tag{23.19}
-	j_{m+n+1}(z) = \frac{z^{n+1}}{2^n \Gamma(n+1)}
-	\int_{0}^{1} j_m(z t) t^{m+2} \left( 1 - t^2 \right)^{n} \thinspace dt.
-$$
-
-of the spherical Bessel function of the first kind \\(j_n\\).
-
----
-
-Try SIE...
 
 ---
 
