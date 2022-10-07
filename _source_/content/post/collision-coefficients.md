@@ -9410,9 +9410,7 @@ $$ \tag{23.6}
 \end{bmatrix}.
 $$
 
----
-
-Modify 22.11
+Let us apply the cylindrical parameterization introduced in Eqn. 22.11 to the \\(xyz\\) coordinates:
 
 $$ \tag{23.7}
 \bm{r'} =
@@ -9433,7 +9431,7 @@ $$ \tag{23.7}
 \end{bmatrix}
 $$
 
-23.6 + 23.7, 22.?? becomes
+By combining Eqn. 23.6 and 23.7, we can reparametrize Eqn. 22.?? as follows:
 
 $$ \tag{23.8}
 \begin{aligned}
@@ -9445,7 +9443,7 @@ $$ \tag{23.8}
 \end{aligned}
 $$
 
-Let us consider the special case of a homogeneous spherical particle. From the geometry, it is evident that
+Let us consider the special case of a homogeneous spherical particle. From the geometry (see Fig. above), it is evident that
 
 $$ \tag{23.9}
 \begin{aligned}
@@ -9477,7 +9475,7 @@ $$ \tag{23.11}
 	\tau = 2 \sin(\theta/2) x.
 $$
 
-Using Eqn. 23.7 and 23.10, the integral found in Eqn. 23.3 can be calculated in the following way:
+Taking Eqn. 23.7, 23.8 and 23.10 into account allows us to evaluate the integral found in Eqn. 23.3:
 
 $$ \tag{23.12}
 \begin{aligned}
@@ -9507,35 +9505,35 @@ $$ \tag{23.12}
 \end{aligned}
 $$
 
-While inspecting the integral, we recognize the definition of the [Bessel function of the first kind](https://mathworld.wolfram.com/BesselFunctionoftheFirstKind.html)
+As we inspect the integral, we recognize the definition of the [Bessel function of the first kind](https://mathworld.wolfram.com/BesselFunctionoftheFirstKind.html)
 
 $$ \tag{23.13}
 	J_0(z) = \frac{1}{\pi} \int_{0}^{\pi}
 	e^{\pm i z \cos{\chi}} \thinspace d\chi.
 $$
 
-If, in addition, we introduce a compact notation
+If we introduce a shorthand notation
 
 $$ \tag{23.14}
-	\tau_x = \tau \cos(\theta/2) = x \sin{\theta},
+	\tau_o = \tau \cos(\theta/2) = x \sin{\theta},
 	\quad
-	\tau_y = \tau \sin(\theta/2) = x (1 -\cos{\theta}),
+	\tau_e = \tau \sin(\theta/2) = x (1 -\cos{\theta}),
 $$
 
-then we can reduce Eqn. 23.12 to
+we can reduce Eqn. 23.12 to
 
 $$ \tag{23.15}
 	I_{ada}(\theta)
 	= \frac{3}{2} \int_{-1}^{1}
 	\int_{0}^{\sqrt{1 - b^2}}
-	J_0 (\tau_x c)
+	J_0 (\tau_o c)
 	e^{i \frac{\rho}{2} \sqrt{1 - c^2}}
 	c \thinspace dc \thinspace
-	e^{i (\tau_y + \rho/2) b}
+	e^{i (\tau_e + \rho/2) b}
 	\thinspace db.
 $$
 
-We may split the outer integral in two using the Euler's formula:
+The outer integral may be split in two using the Euler's formula:
 
 $$ \tag{23.16}
 	e^{i \phi}
@@ -9543,46 +9541,49 @@ $$ \tag{23.16}
 	+ i \sin{\phi}.
 $$
 
-The first of the resulting integrands is an even function of \\(b\\), and the second is odd. Since the integration interval is symmetric, the second integral vanishes, and the interval of the first one can be halved after scaling the result by a factor of two:
+The first of the resulting integrands is an even function of \\(b\\), while the second is odd. Since the integration interval is symmetric, the second integral vanishes, and we may halve the interval of the first after scaling the integrand by a factor of two:
 
 $$ \tag{23.17}
 	I_{ada}(\theta)
 	= 3 \int_{0}^{1} \int_{0}^{\sqrt{1 - b^2}}
-	J_0 (\tau_x c)
+	J_0 (\tau_o c)
 	e^{i \frac{\rho}{2} \sqrt{1 - c^2}}
 	c \thinspace dc \thinspace
-	\cos\negthinspace\big((\tau_y + \rho/2) b \big)
+	\cos\negthinspace\big((\tau_e + \rho/2) b \big)
 	\thinspace db.
 $$
 
-At this point, the region of integration -- the first quadrant of a unit disk -- is symmetric in \\(b\\) and \\(c\\). This allows us to interchange the order in which integration is performed:
+At this point, the region of integration -- the first quadrant of a unit disk -- is symmetric in \\(b\\) and \\(c\\). This allows us to reverse the order in which the integrals are taken:
 
 $$ \tag{23.18}
 \begin{aligned}
 	I_{ada}(\theta)
-	&= 3 \int_{0}^{1} \int_{0}^{\sqrt{1 - c^2}}
-	\cos\negthinspace\big((\tau_y + \rho/2) b \big)
+	&= 3 \int_{0}^{1}
+	\int_{0}^{\sqrt{1 - c^2}}
+	\cos\negthinspace\big((\tau_e + \rho/2) b \big)
 	\thinspace db \thinspace
-	J_0 (\tau_x c)
+	J_0 (\tau_o c)
 	e^{i \frac{\rho}{2} \sqrt{1 - c^2}}
 	c \thinspace dc
 	\cr
-	&= \frac{3}{\tau_y + \rho/2} \int_{0}^{1}
-	J_0 (\tau_x c)
+	&= \frac{3}{\tau_e + \rho/2} \int_{0}^{1}
+	J_0 (\tau_o c)
 	e^{i \frac{\rho}{2} \sqrt{1 - c^2}}
-	\sin\negthinspace\big((\tau_y + \rho/2) \sqrt{1 - c^2} \big)
+	\sin\negthinspace\big((\tau_e + \rho/2) \sqrt{1 - c^2} \big)
 	c \thinspace dc.
 \end{aligned}
 $$
+
+---
 
 Another application of Euler's formulae given by Eqn. 18.13? splits the integral in two again:
 
 $$ \tag{23.19}
 	I_{ada}(\theta)
-	= \frac{3 i^{-1}}{2 \tau_y + \rho} \int_{0}^{1}
-	J_0 (\tau_x c)
-	\left( e^{i (\tau_y + \rho) \sqrt{1 - c^2}} -
-	e^{-i \tau_y \sqrt{1 - c^2}} \right)
+	= \frac{3 i^{-1}}{2 \tau_e + \rho} \int_{0}^{1}
+	J_0 (\tau_o c)
+	\left( e^{i (\tau_e + \rho) \sqrt{1 - c^2}} -
+	e^{-i \tau_e \sqrt{1 - c^2}} \right)
 	c \thinspace dc.
 $$
 
@@ -9597,9 +9598,9 @@ Substitution of Eqn. 23.20 yields
 
 $$ \tag{23.19}
 	I_{ada}(\theta)
-	= \frac{3}{2 \tau_y + \rho} \sum_{n=0}^{\infin} \frac{i^{n-1} \rho^n}{n!} \int_{0}^{1}
-	J_0 (\tau_x c)
-	\left( (1 - c^2)^{n/2} e^{i \tau_y \sqrt{1 - c^2}} - e^{-i \tau_y \sqrt{1 - c^2}} \right)
+	= \frac{3}{2 \tau_e + \rho} \sum_{n=0}^{\infin} \frac{i^{n-1} \rho^n}{n!} \int_{0}^{1}
+	J_0 (\tau_o c)
+	\left( (1 - c^2)^{n/2} e^{i \tau_e \sqrt{1 - c^2}} - e^{-i \tau_e \sqrt{1 - c^2}} \right)
 	c \thinspace dc.
 $$
 
@@ -9618,9 +9619,9 @@ $$
 $$
 	I_{ada}(\theta)
 	= \frac{3}{2} \int_{0}^{1} \int_{0}^{\pi}
-	J_0 (\tau_x r \sin{\phi})
+	J_0 (\tau_o r \sin{\phi})
 	e^{i \frac{\rho}{2} \sqrt{1 - (r \sin{\phi})^2}}
-	e^{i \left( \tau_y + \frac{\rho}{2} \right) r \sqrt{1 - \sin^2{\phi}}}
+	e^{i \left( \tau_e + \frac{\rho}{2} \right) r \sqrt{1 - \sin^2{\phi}}}
 	r^2 \sin{\phi} \thinspace dr \thinspace d\phi.
 $$
 
@@ -9632,7 +9633,7 @@ Thus, we are led to consider the integral of the form
 
 $$ \tag{23.17}
 	\frac{i^n \rho^n}{2^n n!} \int_{0}^{\sqrt{1 - b^2}}
-	J_0 (\tau_x c)
+	J_0 (\tau_o c)
 	c \left( 1 - c^2 \right)^{n/2}.
 $$
 
