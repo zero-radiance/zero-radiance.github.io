@@ -9569,7 +9569,7 @@ $$ \tag{23.18}
 	&= \frac{3}{\tau_e + \rho/2} \int_{0}^{1}
 	J_0 (\tau_o c)
 	e^{i \frac{\rho}{2} \sqrt{1 - c^2}}
-	\sin\negthinspace\big((\tau_e + \rho/2) \sqrt{1 - c^2} \big)
+	\sin\negthinspace\left((\tau_e + \rho/2) \sqrt{1 - c^2} \right)
 	c \thinspace dc.
 \end{aligned}
 $$
@@ -9578,10 +9578,10 @@ After inverting the Euler's formula (cf. Eqn. 18.13?), we may split the integral
 
 $$ \tag{23.19}
 	I_{ada}(\theta)
-	= \frac{3 i^{-1}}{2 \tau_e + \rho} \int_{0}^{1}
+	= \frac{3}{\tau_e + \rho/2} \int_{0}^{1}
 	J_0 (\tau_o c)
-	\left( e^{i (\tau_e + \rho) \sqrt{1 - c^2}} -
-	e^{-i \tau_e \sqrt{1 - c^2}} \right)
+	\frac{ e^{i (\rho + \tau_e) \sqrt{1 - c^2}} -
+	e^{-i \tau_e \sqrt{1 - c^2}} }{2 i}
 	c \thinspace dc.
 $$
 
@@ -9652,25 +9652,187 @@ $$ \tag{23.26} \small
 		+ e^{-2 i x} (2 x + \rho)^2 (2 x-i) + i \rho (4 x + \rho) }{4/3 x^2 (2 x + \rho)^2 (4 x + \rho)}.
 $$
 
----
 
-We can establish the connection with the Rayleigh-Gans-Born approximation by expanding \\(\exp(i \rho \sqrt{1 - c^2})\\) in a power series:
+\rho = 0
 
-$$ \tag{23.20}
-	e^{z}
-	= \sum_{n=0}^{\infin} \frac{z^n}{n!}.
-$$
-
-Substitution of Eqn. 23.20 yields
-
-$$ \tag{23.19}
-	I_{ada}(\theta)
-	= \frac{3}{2 \tau_e + \rho} \sum_{n=0}^{\infin} \frac{i^{n-1} \rho^n}{n!} \int_{0}^{1}
-	J_0 (\tau_o c)
-	\left( (1 - c^2)^{n/2} e^{i \tau_e \sqrt{1 - c^2}} - e^{-i \tau_e \sqrt{1 - c^2}} \right)
+$$ \tag{23.27}
+	j_1(2 x \sin(\theta/2))
+	=  \int_{0}^{1} J_0 (c x \sin{\theta})
+	\frac{\sin\negthinspace\left( x (1-\cos{\theta}) \sqrt{1 - c^2} \right)}{\sin(\theta/2)}
 	c \thinspace dc.
 $$
 
+$$ \tag{23.27}
+	j_1(2 x \sin(\theta/2))
+	=  \int_{0}^{1} J_0 (c 2 x \sin(\theta/2) \cos(\theta/2))
+	\frac{\sin\negthinspace\left( 2 x \sin^2(\theta/2) \sqrt{1 - c^2} \right)}{\sin(\theta/2)}
+	c \thinspace dc.
+$$
+$$ \tag{23.27}
+	j_1(z)
+	= \frac{1}{2 \pi} \int_{0}^{1} \int_{-\pi}^{\pi}
+	e^{\pm i c 2 x \sin(\theta/2) \cos(\theta/2) \cos{\chi}} \thinspace d\chi
+	\frac{\sin\negthinspace\left( 2 x \sin(\theta/2) \sin(\theta/2) \sqrt{1 - c^2} \right)}{\sin(\theta/2)}
+	c \thinspace dc.
+$$
+
+---
+
+$$ \tag{23.qq}
+	I_{ada}(\theta)
+	= \frac{3}{\tau_e + \rho/2} \frac{1}{\pi}
+	\int_{0}^{1} \int_{0}^{\pi}
+	\frac{ e^{\pm i \tau_o c \cos{\chi} + i (\rho + \tau_e) \sqrt{1 - c^2}} -
+	e^{\pm i \tau_o c \cos{\chi} - i \tau_e \sqrt{1 - c^2}} }{2 i}
+	\thinspace d\chi \thinspace
+	c \thinspace dc
+$$
+
+$$ \tag{23.14}
+	\tau_o(x, \theta) = \tau \cos(\theta/2) = x \sin{\theta},
+	\quad
+	\tau_e(x, \theta) = \tau \sin(\theta/2) = x (1 -\cos{\theta}),
+$$
+
+$$ \tag{23.qq} \small
+	I_{ada}(\theta)
+	= \frac{3}{\tau \sin(\theta/2) + \rho/2} \frac{1}{\pi}
+	\int_{0}^{1} \int_{0}^{\pi}
+	\frac{ e^{\pm i \tau \cos(\theta/2) c \cos{\chi} + i (\rho + \tau \sin(\theta/2)) \sqrt{1 - c^2}} -
+	e^{\pm i \tau \cos(\theta/2) c \cos{\chi} - i \tau \sin(\theta/2) \sqrt{1 - c^2}} }{2 i}
+	\thinspace d\chi \thinspace
+	c \thinspace dc
+$$
+
+$$ \tag{23.qq} \small
+	I_{ada}(\theta)
+	= \frac{3}{\tau \sin(\theta/2) + \rho/2} \frac{1}{\pi}
+	\int_{0}^{1} \int_{0}^{\pi}
+	\frac{ e^{i \tau \left(\pm c \cos(\theta/2) \cos{\chi} + \sqrt{1 - c^2} \sin(\theta/2) \right) + i \rho \sqrt{1 - c^2}} -
+	e^{i \tau \left(\pm c \cos(\theta/2) \cos{\chi} - \sqrt{1 - c^2} \sin(\theta/2) \right) }}{2 i}
+	\thinspace d\chi \thinspace
+	c \thinspace dc
+$$
+
+---
+
+$$ \tag{23.5}
+	\bm{e_w} \cdot \bm{e_z}
+	= \frac{\bm{n_i} \cdot (\bm{n_i} + \bm{n_s})}{|\bm{n_i} + \bm{n_s}|}
+	= \frac{1 + \cos{\theta}}{2 \cos(\theta/2)}
+	= \cos(\theta/2).
+$$
+
+\[Add an illustration here\]
+
+The coordinates of \\(\bm{r'}\\) rotate in the opposite direction:
+
+$$ \tag{23.6}
+\bm{r'} =
+\begin{bmatrix}
+	r\_{x}' \cr
+	r\_{y}' \cr
+	r\_{z}' \cr
+\end{bmatrix}
+= R_y(\theta/2)
+\begin{bmatrix}
+	r\_{u}' \cr
+	r\_{v}' \cr
+	r\_{w}' \cr
+\end{bmatrix} =
+\begin{bmatrix}
+	\phantom{-}\cos(\theta/2) & 0 & \sin(\theta/2) \cr
+	                        0 & 1 &              0 \cr
+	          -\sin(\theta/2) & 0 & \cos(\theta/2) \cr
+\end{bmatrix}
+\begin{bmatrix}
+	r\_{u}' \cr
+	r\_{v}' \cr
+	r\_{w}' \cr
+\end{bmatrix}.
+$$
+
+Let us apply the cylindrical parameterization introduced in Eqn. 22.11 to the \\(xyz\\) coordinates:
+
+$$ \tag{23.7}
+\bm{r'} =
+\begin{bmatrix}
+	r\_{x}' \cr
+	r\_{y}' \cr
+	r\_{z}' \cr
+\end{bmatrix} =
+\begin{bmatrix}
+	\sqrt{(r\_{x}')^2 + (r\_{y}')^2} \cos{\chi} \cr
+	\sqrt{(r\_{x}')^2 + (r\_{y}')^2} \sin{\chi} \cr
+	r\_{z}' \cr
+\end{bmatrix} = a
+\begin{bmatrix}
+	c \cos{\chi} \cr
+	c \sin{\chi} \cr
+	b \cr
+\end{bmatrix}
+$$
+
+By combining Eqn. 23.6 and 23.7, we can reparametrize Eqn. 22.?? as follows:
+
+$$ \tag{23.8}
+\begin{aligned}
+	\bm{r'} \cdot (\bm{n_i} - \bm{n_s})
+	&= -r\_{u}' |\bm{n_i} - \bm{n_s}|
+     = -2 \sin(\theta/2) (\cos(\theta/2) r\_{x}' - \sin(\theta/2) r\_{z}')
+	\cr
+	&= 2 a \sin(\theta/2) \big( b \sin(\theta/2) - c \cos{\chi} \cos(\theta/2) \big).
+\end{aligned}
+$$
+
+Let us consider the special case of a homogeneous spherical particle. From the geometry (see Fig. above), it is evident that
+
+$$ \tag{23.9}
+\begin{aligned}
+	\bm{r'} \cdot \bm{n_i}
+	&= r\_{z}'
+	= a b,
+	\cr
+	-\bm{r_i} \cdot \bm{n_i}
+	&= \sqrt{a^2 - \big( r\_{x}' \big)^2 - \big( r\_{y}' \big)^2}
+	= a \sqrt{1 - c^2}.
+\end{aligned}
+$$
+
+Putting it all together,
+
+$$ \tag{23.10}
+	e^{i k \bm{r'} \cdot (\bm{n_i} - \bm{n_s})}
+	e^{i (m - 1) k (\bm{r'} - \bm{r_i}) \cdot \bm{n_i}}
+	=
+	e^{i \tau \big( b \sin(\theta/2) - c \cos{\chi} \cos(\theta/2) \big)}
+	e^{i \frac{\rho}{2} \big(b + \sqrt{1 - c^2} \big)}.
+$$
+
+where, as before (cf. Eqn. 22.3, 22.12),
+
+$$ \tag{23.11}
+	\rho = 2 (m - 1) x,
+	\quad
+	\tau = 2 \sin(\theta/2) x.
+$$
+
+---
+
+[Gegenbauer's integral](https://dlmf.nist.gov/10.54.E2) representation of the spherical Bessel function of the first kind \[[Watson](#references) (ch. 3.32)\]
+
+$$ \tag{18.1??}
+	j_n(z) = \frac{1}{2 i^n}
+	\int_{0}^{\pi} e^{i z \cos{\theta}} P_n(\cos{\theta}) \sin{\theta} \thinspace d\theta,
+$$
+
+We shall utilize its trigonometric form that can be obtained by setting \\(t = \sin{\theta}\\):
+
+$$ \tag{18.1??}
+	j_1(z)
+	= \int_{0}^{1} \frac{e^{i z \sqrt{1-t^2}} - e^{-i z \sqrt{1-t^2}}}{2 i} t \thinspace dt
+	= \int_{0}^{1} \sin\negthinspace\left( z \sqrt{1-t^2} \right) t \thinspace dt,
+$$
 
 ---
 
@@ -9688,6 +9850,33 @@ We shall utilize its trigonometric form that can be obtained by setting \\(t = \
 $$
 	J_{m+n+1}(z) = \frac{z^{n+1}}{2^n \Gamma(n+1)}
 	\int_{0}^{1} J_{m}(z t) t^{m+1} \left( 1 - t^2 \right)^{n} \thinspace dt.
+$$
+
+Suppose n = l-1/2 is half-integral while l and m are integral. Then
+
+$$
+	J_{m+l+1/2}(z) = \frac{z^{l+1/2}}{2^{l-1/2} \Gamma(l+1/2)}
+	\int_{0}^{1} J_{m}(z t) t^{m+1} \left( 1 - t^2 \right)^{l-1/2} \thinspace dt.
+$$
+
+https://en.wikipedia.org/wiki/Particular_values_of_the_gamma_function
+
+$$
+	\Gamma(l+1/2) = \sqrt{\pi} \frac{(2 l - 1)!!}{2^l}
+$$
+
+According to Eqn. 18.48, spherical bessel
+
+$$
+	j_{m+l}(z) = \frac{z^l}{(2 l - 1)!!}
+	\int_{0}^{1} J_{m}(z t) t^{m+1} \left( 1 - t^2 \right)^{l-1/2} \thinspace dt.
+$$
+
+m = 0, l = 1
+
+$$
+	j_{1}(z) = z
+	\int_{0}^{1} J_{0}(z t) t \sqrt{1 - t^2} \thinspace dt.
 $$
 
 ---
