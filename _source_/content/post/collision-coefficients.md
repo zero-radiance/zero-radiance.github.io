@@ -2893,7 +2893,9 @@ $$ \tag{1x.15}
 	\Big) dA'.
 $$
 
-Eqn. 1x.14 and 1x.15 are called the *surface integral equations*. They give the expressions of the scattered field in the region outside the scattering object \\((\bm{r} \notin V)\\) in terms of the *tangential surface fields* \\(\bm{n'} \times \bm{E}\\) and \\(\bm{n'} \times \bm{H} = \mu^{-1}(\bm{n'} \times \bm{B})\\). According to Eqn. 1.17, the latter are continuous across the optical interface, provided the conductivity is not enormous \[[17](#references) (ch. 1.13)\]. More generally speaking, the idea that a smooth (but not necessarily physical) surface can be seen as a source of spherical *wavelets* (secondary waves) interfering with each other is known as the [Huygens-Fresnel principle](https://en.wikipedia.org/wiki/Huygens%E2%80%93Fresnel_principle) \[[4](#references) (ch. 3.1), [25](#references) (ch. 2)\].
+Eqn. 1x.14 and 1x.15 are called the *surface integral equations*. They give the expressions of the scattered field in the region outside the scattering object \\((\bm{r} \notin V)\\) in terms of the *tangential surface fields* \\(\bm{n'} \times \bm{E}\\) and \\(\bm{n'} \times \bm{H} = \mu^{-1}(\bm{n'} \times \bm{B})\\). According to Eqn. 1.17, the latter are continuous across the optical interface, provided the conductivity is finite \[[17](#references) (ch. 1.13)\]. More generally speaking, the idea that a smooth (but not necessarily physical) surface can be seen as a source of spherical *wavelets* (secondary waves) interfering with each other is known as the [Huygens-Fresnel principle](https://en.wikipedia.org/wiki/Huygens%E2%80%93Fresnel_principle) \[[4](#references) (ch. 3.1), [25](#references) (ch. 2)\].
+
+The same principle can be used to express the scattered field at an interior point in terms of the values of the fields at the enclosing surface \[[17](#references) (ch. 8.14)\].
 
 ### Dipole Radiation
 
@@ -6830,7 +6832,7 @@ $$ \tag{18.146}
 	\bm{e_r} \times (\bm{H_{int}} - \bm{H_{ext}}) = \bm{J_n},
 $$
 
-Assuming the conductivity of the sphere is not enormous, the surface current term \\(\bm{J_n}\\) can be neglected \[[17](#references) (ch. 1.13)\], and we may combine Eqn. 3.12, 5.2.3 and 18.146 into
+Assuming the conductivity of the sphere is finite, the surface current term \\(\bm{J_n}\\) can be neglected \[[17](#references) (ch. 1.13)\], and we may combine Eqn. 3.12, 5.2.3 and 18.146 into
 
 $$ \tag{18.147}
 	\bm{e_r} \times \bigg( \frac{1}{\mu_2} \nabla \times \bm{E_{int}} - \frac{1}{\mu_1} \nabla \times \bm{E_{ext}} \bigg) = 0.
