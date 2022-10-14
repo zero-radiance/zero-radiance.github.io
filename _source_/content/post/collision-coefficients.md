@@ -9465,16 +9465,18 @@ $$ \tag{23.10}
 	e^{i k \bm{r'} \cdot (\bm{n_i} - \bm{n_s})}
 	e^{i (m - 1) k (\bm{r'} - \bm{r_i}) \cdot \bm{n_i}}
 	=
-	e^{i \tau \big( b \sin(\theta/2) - c \cos{\chi} \cos(\theta/2) \big)}
-	e^{i \frac{\rho}{2} \big(b + \sqrt{1 - c^2} \big)}.
+	e^{i \left( \tau_e b - \tau_o c \cos{\chi} \right)}
+	e^{i \frac{\rho}{2} \left(b + \sqrt{1 - c^2} \right)}.
 $$
 
-where, as before (cf. Eqn. 22.3, 22.12),
+where
 
 $$ \tag{23.11}
 	\rho = 2 (m - 1) x,
 	\quad
-	\tau = 2 \sin(\theta/2) x.
+	\tau_e(\theta) = x (1 -\cos{\theta}),
+	\quad
+	\tau_o(\theta) = x \sin{\theta}.
 $$
 
 Taking Eqn. 23.7, 23.8 and 23.10 into account allows us to evaluate the integral found in Eqn. 23.3:
@@ -9486,24 +9488,130 @@ $$ \tag{23.12}
 	e^{i k \bm{r'} \cdot (\bm{n_i} - \bm{n_s})}
 	e^{i (m - 1) k (\bm{r'} - \bm{r_i}) \cdot \bm{n_i}} dV'
 	\cr
-	&= \frac{3}{4 \pi a^3} \int_{-1}^{1}
-	\int_{0}^{\sqrt{1 - b^2}}
+	&= \frac{3}{4 \pi a^3}
+	\int_{0}^{1}
 	\int_{-\pi}^{\pi}
-	e^{i \tau \big( b \sin(\theta/2) - c \cos{\chi} \cos(\theta/2) \big)}
-	e^{i \frac{\rho}{2} \big(b + \sqrt{1 - c^2} \big)}
+	\int_{-\sqrt{1 - c^2}}^{\sqrt{1 - c^2}}
+	e^{i \left( \tau_e b - \tau_o c \cos{\chi} \right)}
+	e^{i \frac{\rho}{2} \left(b + \sqrt{1 - c^2} \right)}
+	a \thinspace db \thinspace
 	\thinspace d\chi \thinspace
 	a^2 c \thinspace dc \thinspace
-	a \thinspace db \thinspace
 	\cr
-	&= \frac{3}{2 \pi} \int_{-1}^{1}
-	\int_{0}^{\sqrt{1 - b^2}}
-	\int_{0}^{\pi}
-	e^{-i \tau \cos(\theta/2) c \cos{\chi}}
+	&= \frac{3}{4 \pi}
+	\int_{0}^{1}
+	\int_{-\pi}^{\pi}
+	\int_{-\sqrt{1 - c^2}}^{\sqrt{1 - c^2}}
+	e^{i (\rho/2 + \tau_e) b}
+	\thinspace db \thinspace
+	e^{i \left( \frac{\rho}{2} \sqrt{1 - c^2} - \tau_o c \cos{\chi} \right)}
 	\thinspace d\chi \thinspace
-	e^{i \frac{\rho}{2} \sqrt{1 - c^2}}
-	c \thinspace dc \thinspace
-	e^{i (\tau \sin(\theta/2) + \rho/2) b}
-	\thinspace db.
+	c \thinspace dc \thinspace.
+\end{aligned}
+$$
+
+The innermost integral can be easily evaluated, which yields
+
+$$ \tag{23.13}
+\begin{aligned}
+	I_{ada}(\theta)
+	&= \frac{3}{2 \pi}
+	\int_{0}^{1}
+	\int_{-\pi}^{\pi}
+	\frac{\sin\negthinspace\left( (\rho/2 + \tau_e) \sqrt{1 - c^2} \right)}{\rho/2 + \tau_e}
+	e^{i \left( \frac{\rho}{2} \sqrt{1 - c^2} - \tau_o c \cos{\chi} \right)}
+	\thinspace d\chi \thinspace
+	c \thinspace dc \thinspace.
+\end{aligned}
+$$
+
+Geometrically, it corresponds to an integral taken over the disk lying in the \\(xy\\) plane, where \\(r\_{z}' = 0\\).
+
+---
+
+!!!
+
+$$
+	\rho = 0
+$$
+
+$$
+\begin{aligned}
+	I_{ada}(\theta)
+	&= \frac{3}{\pi}
+	\int_{0}^{1}
+	\int_{0}^{\pi}
+	\frac{\sin\negthinspace\left( \tau_e \sqrt{1 - c^2} \right)}{\tau_e}
+	e^{-i \tau_o c \cos{\chi}}
+	\thinspace d\chi \thinspace
+	c \thinspace dc
+	\cr
+	&= \frac{3}{\pi}
+	\int_{-1}^{1}
+	\int_{0}^{\sqrt{1-y^2}}
+	\frac{\sin\negthinspace\left( \tau_e \sqrt{1-x^2-y^2} \right)}{\tau_e}
+	e^{-i \tau_o x}
+	\thinspace dx \thinspace dy
+	\cr
+	&= 3
+	\int_{0}^{1}
+	\frac{\sin\negthinspace\left( \tau_e \sqrt{1 - c^2} \right)}{\tau_e}
+	J_0(\tau_o c)
+	c \thinspace dc
+	\cr
+	&= 3
+	\int_{0}^{1}
+	\frac{\sin\negthinspace\left( \tau_e s \right)}{\tau_e}
+	J_0(\tau_o \sqrt{1 - s^2})
+	s \thinspace ds
+\end{aligned}
+$$
+
+$$
+\begin{aligned}
+	\tau_e(\theta) &= x (1 - \cos{\theta}) = 2 x \sin^2(\theta/2) = \frac{\tau^2}{2 x} = \tau \sin(\theta/2),
+	\cr
+	\tau_o(\theta) &= x \sin{\theta} = \tau \cos(\theta/2).
+\end{aligned}
+$$
+
+$$
+\begin{aligned}
+	I_{ada}(\theta)
+	&= \frac{3}{\pi}
+	\int_{0}^{1}
+	\int_{\theta/2}^{\pi + \theta/2}
+	\frac{\sin\negthinspace\left( \tau_e \sqrt{1 - c^2} \right)}{\tau_e}
+	e^{-i \tau_o c \cos(\chi - \theta/2)}
+	\thinspace d\chi \thinspace
+	c \thinspace dc
+	\cr
+	&= \frac{3}{\pi}
+	\int_{0}^{1}
+	\int_{\theta/2}^{\pi + \theta/2}
+	\frac{\sin\negthinspace\left( \tau_e \sqrt{1 - c^2} \right)}{\tau_e}
+	e^{-i \tau_o c \cos(\chi - \theta/2)}
+	\thinspace d\chi \thinspace
+	c \thinspace dc
+\end{aligned}
+$$
+
+https://math.stackexchange.com/questions/3728586/integrate-a-weighted-bessel-function-over-the-unit-disk
+
+!!!
+
+---
+
+$$ \tag{23.13}
+\begin{aligned}
+	I_{ada}(\theta)
+	&= \frac{3}{2 \pi}
+	\int_{0}^{1}
+	\int_{-\pi}^{\pi}
+	\frac{\sin\negthinspace\left( (\tau_e + \rho/2) \sqrt{1 - c^2} \right)}{\tau_e + \rho/2}
+	e^{i \left( \frac{\rho}{2} \sqrt{1 - c^2} - \tau_o c \cos{\chi} \right)}
+	\thinspace d\chi \thinspace
+	c \thinspace dc \thinspace.
 \end{aligned}
 $$
 
@@ -9694,26 +9802,38 @@ $$ \tag{23.14}
 	\tau_o(x, \theta) = \tau \cos(\theta/2) = x \sin{\theta},
 	\quad
 	\tau_e(x, \theta) = \tau \sin(\theta/2) = x (1 -\cos{\theta}),
+	\quad
+	\rho = 2 (m - 1) x,
 $$
 
-$$ \tag{23.qq} \small
+$$ \tag{23.pp} \small
 	I_{ada}(\theta)
-	= \frac{3}{\tau \sin(\theta/2) + \rho/2} \frac{1}{\pi}
-	\int_{0}^{1} \int_{0}^{\pi}
-	\frac{ e^{\pm i \tau \cos(\theta/2) c \cos{\chi} + i (\rho + \tau \sin(\theta/2)) \sqrt{1 - c^2}} -
-	e^{\pm i \tau \cos(\theta/2) c \cos{\chi} - i \tau \sin(\theta/2) \sqrt{1 - c^2}} }{2 i}
+	= \frac{3}{2 \tau_e + \rho} \frac{1}{\pi}
+	\int_{0}^{1} \int_{-\pi}^{\pi}
+	\frac{ e^{\pm i x \sin{\theta} c \cos{\chi} + i (\rho + x (1 -\cos{\theta})) \sqrt{1 - c^2}} -
+	e^{\pm i x \sin{\theta} c \cos{\chi} - i x (1 -\cos{\theta}) \sqrt{1 - c^2}} }{2 i}
 	\thinspace d\chi \thinspace
 	c \thinspace dc
 $$
 
-$$ \tag{23.qq} \small
+Geometrically, it is an integral taken over the disk lying in the xy plane \\((r\_{z}' = 0)\\)
+
+$$ \tag{23.pp}
 	I_{ada}(\theta)
-	= \frac{3}{\tau \sin(\theta/2) + \rho/2} \frac{1}{\pi}
-	\int_{0}^{1} \int_{0}^{\pi}
-	\frac{ e^{i \tau \left(\pm c \cos(\theta/2) \cos{\chi} + \sqrt{1 - c^2} \sin(\theta/2) \right) + i \rho \sqrt{1 - c^2}} -
-	e^{i \tau \left(\pm c \cos(\theta/2) \cos{\chi} - \sqrt{1 - c^2} \sin(\theta/2) \right) }}{2 i}
-	\thinspace d\chi \thinspace
-	c \thinspace dc
+	= \frac{3}{2 \tau_e + \rho} \frac{1}{A}
+	\int_{A}
+	\frac{ e^{i k \bm{r'} \cdot (\bm{n_i} - \bm{n_s}) + i (\rho - k \bm{n_i} \cdot (\bm{n_i} - \bm{n_s})) (\bm{r_i} \cdot \bm{n_i})} -
+	e^{i k \bm{r'} \cdot (\bm{n_i} - \bm{n_s}) + i k \bm{n_i} \cdot (\bm{n_i} - \bm{n_s}) (\bm{r_i} \cdot \bm{n_i})} }{2 i}
+	\thinspace dA
+$$
+
+$$ \tag{23.pp}
+	I_{ada}(\theta)
+	= \frac{3}{2 \tau_e + \rho} \frac{1}{A}
+	\int_{A}
+	\frac{ e^{i k \bm{r'} \cdot (\bm{n_i} - \bm{n_s}) + i (\rho - k \bm{n_i} \cdot (\bm{n_i} - \bm{n_s})) (\bm{r_i} \cdot \bm{n_i})} -
+	e^{i k \bm{r'} \cdot (\bm{n_i} - \bm{n_s}) + i k \bm{n_i} \cdot (\bm{n_i} - \bm{n_s}) (\bm{r_i} \cdot \bm{n_i})} }{2 i}
+	\thinspace dA
 $$
 
 ---
@@ -9751,6 +9871,25 @@ $$ \tag{23.6}
 	r\_{u}' \cr
 	r\_{v}' \cr
 	r\_{w}' \cr
+\end{bmatrix}.
+$$
+
+$$ \tag{23.6}
+\bm{r'} =
+\begin{bmatrix}
+	r\_{u}' \cr
+	r\_{v}' \cr
+	r\_{w}' \cr
+\end{bmatrix}
+= \begin{bmatrix}
+	\cos(\theta/2) & 0 & -\sin(\theta/2) \cr
+	                        0 & 1 &              0 \cr
+	\sin(\theta/2) & 0 & \phantom{-}\cos(\theta/2) \cr
+\end{bmatrix}
+\begin{bmatrix}
+	r\_{x}' \cr
+	r\_{y}' \cr
+	r\_{z}' \cr
 \end{bmatrix}.
 $$
 
@@ -9816,7 +9955,9 @@ where, as before (cf. Eqn. 22.3, 22.12),
 $$ \tag{23.11}
 	\rho = 2 (m - 1) x,
 	\quad
-	\tau = 2 \sin(\theta/2) x.
+	\tau_o(\theta) = \tau \cos(\theta/2) = x \sin{\theta},
+	\quad
+	\tau_e(\theta) = \tau \sin(\theta/2) = x (1 -\cos{\theta}),
 $$
 
 ---
