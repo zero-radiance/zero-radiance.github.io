@@ -181,7 +181,7 @@ $$ \tag{1.14}
 \end{aligned}
 $$
 
-As discussed in \[[5](#references) (vol. II, ch. 32.2), [6](#references) (ch. 1.1.1)\], \\(\bm{E}\\) and \\(\bm{B}\\) are the basic fields, and \\(\bm{D}\\) and \\(\bm{H}\\) are the [auxiliary fields](https://en.wikipedia.org/wiki/Maxwell%27s_equations#Auxiliary_fields,_polarization_and_magnetization) that arise due to the influence of matter. The most fundamental description of the electromagnetic field is given by the potentials \\(\bm{A}\\) and \\(\phi\\) \[[28](#references) (ch. 1.1)\]; we shall defer their formal introduction to Sec. 8.
+We shall soon see that \\(\bm{E}\\) and \\(\bm{B}\\) are responsible for the electromagnetic force, while \\(\bm{D}\\) and \\(\bm{H}\\) are the [auxiliary fields](https://en.wikipedia.org/wiki/Maxwell%27s_equations#Auxiliary_fields,_polarization_and_magnetization) that arise due to the influence of matter \[[5](#references) (vol. II, ch. 32.2), [6](#references) (ch. 1.1.1), [17](#references) (ch. 1.7)\]. The most fundamental description of the electromagnetic field is given by the potentials \\(\bm{A}\\) and \\(\phi\\) \[[28](#references) (ch. 1.1)\]; we shall defer their formal introduction to Sec. 8.
 
 The Maxwell equations is coupled system of [partial differential equations](https://en.wikipedia.org/wiki/Partial_differential_equation). The left-hand side of each equation is composed of derivatives of the unknowns (the fields), and the right-hand side contains the sources (the currents and the charges). Since a derivative is a linear operator, these equations form a [linear system](https://en.wikipedia.org/wiki/Linear_system). As such, the Maxwell equations obey the [superposition principle](https://en.wikipedia.org/wiki/Superposition_principle) - if we determine the values of the fields for one source, and then, *separately*, for another, and assuming that these sources are not "disturbed" by the fields, then the solution for the configuration with *both* sources is precisely the sum of the fields found for each individual source:
 
@@ -1157,8 +1157,8 @@ $$ \tag{7.10}
 \begin{aligned}
 	E(\bm{r}, \bm{n}, \omega)
 	&= E\_0 e^{i k (\bm{r} \cdot \bm{n})} \cr
-	&= |E\_0| e^{i \delta} e^{i \omega (1/v_p + i/v_a) (\bm{r} \cdot \bm{n})} \cr
-	&= |E\_0| e^{-\omega (\bm{r} \cdot \bm{n}) / v_a} e^{i \delta + i \omega (\bm{r} \cdot \bm{n}) / v_p}.
+	&= |E\_0| e^{i \theta_0} e^{i \omega (1/v_p + i/v_a) (\bm{r} \cdot \bm{n})} \cr
+	&= |E\_0| e^{-\omega (\bm{r} \cdot \bm{n}) / v_a} e^{i \theta_0 + i \omega (\bm{r} \cdot \bm{n}) / v_p}.
 \end{aligned}
 $$
 
@@ -1167,7 +1167,7 @@ Multiplication by the temporal component \\(\exp(-i \omega t)\\) yields the full
 $$ \tag{7.11}
 \begin{aligned}
 	E(\bm{r}, \bm{n}, \omega) e^{-i \omega t}
-	&= |E\_0| e^{-\omega (\bm{r} \cdot \bm{n}) / v_a} e^{i \delta + i \omega (\bm{r} \cdot \bm{n}) / v_p} e^{-i \omega t}.
+	&= |E\_0| e^{-\omega (\bm{r} \cdot \bm{n}) / v_a} e^{i \theta_0 + i \omega (\bm{r} \cdot \bm{n}) / v_p} e^{-i \omega t}.
 \end{aligned}
 $$
 
@@ -1180,7 +1180,7 @@ First, notice that \\((\bm{r} \cdot \bm{n}) / v\\) has units of time. Then, take
 $$ \tag{7.12}
 	\theta(\bm{r}, t)
 	= \mathcal{Arg} \big\lbrace E(\bm{r}, \bm{n}, \omega) e^{-i \omega t} \big\rbrace
-	= \delta + \omega \big(\bm{r} \cdot \bm{n} - v_p t \big) / v_p.
+	= \theta_0 + \omega \big(\bm{r} \cdot \bm{n} - v_p t \big) / v_p.
 $$
 
 Notice that, for any \\(\Delta t\\),
@@ -1334,7 +1334,7 @@ $$ \tag{7.30}
 \begin{aligned}
 	\mathcal{Arg} \big\lbrace E_x(0, \bm{n}, \omega) \big\rbrace &=
 	\mathcal{Arg} \big\lbrace B_y(0, \bm{n}, \omega) \big\rbrace =
-	\delta, \cr
+	\theta_0, \cr
 	\mathcal{Arg} \big\lbrace E_y(0, \bm{n}, \omega) \big\rbrace &=
 	\mathcal{Arg} \big\lbrace B_x(0, \bm{n}, \omega) \big\rbrace =
 	\pm \frac{\pi}{2} \pm \pi n.
