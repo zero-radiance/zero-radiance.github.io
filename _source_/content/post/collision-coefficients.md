@@ -1445,8 +1445,10 @@ $$ \tag{7.41}
 	\bigg\rbrace
 	= \mathcal{Re} \bigg\lbrace
 		\sqrt{ \frac{\varepsilon}{\mu} }
-	\bigg\rbrace.
+	\bigg\rbrace,
 $$
+
+where \\(Z = \sqrt{\mu / \varepsilon} = \omega \mu / k\\) is called the [wave impedance](https://en.wikipedia.org/wiki/Wave_impedance) \[[17](#references) (ch. 5.6)\].
 
 Finally, according to Eqn. 7.18, \\(\bm{E} \cdot \bm{n} = 0\\). Thus, if we combine Eqn. 7.38-7.41, we obtain the general expression of the time-averaged Poynting vector that accounts for absorption and magnetization:
 
