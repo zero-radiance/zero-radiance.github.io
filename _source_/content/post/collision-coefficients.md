@@ -9764,78 +9764,74 @@ $$ \tag{23.26} \small
 		+ e^{-2 i x} (2 x + \rho)^2 (2 x-i) + i \rho (4 x + \rho) }{4/3 x^2 (2 x + \rho)^2 (4 x + \rho)}.
 $$
 
-
-\rho = 0
-
-$$ \tag{23.27}
-	j_1(2 x \sin(\theta/2))
-	=  \int_{0}^{1} J_0 (c x \sin{\theta})
-	\frac{\sin\negthinspace\left( x (1-\cos{\theta}) \sqrt{1 - c^2} \right)}{\sin(\theta/2)}
-	c \thinspace dc.
-$$
-
-$$ \tag{23.27}
-	j_1(2 x \sin(\theta/2))
-	=  \int_{0}^{1} J_0 (c 2 x \sin(\theta/2) \cos(\theta/2))
-	\frac{\sin\negthinspace\left( 2 x \sin^2(\theta/2) \sqrt{1 - c^2} \right)}{\sin(\theta/2)}
-	c \thinspace dc.
-$$
-$$ \tag{23.27}
-	j_1(z)
-	= \frac{1}{2 \pi} \int_{0}^{1} \int_{-\pi}^{\pi}
-	e^{\pm i c 2 x \sin(\theta/2) \cos(\theta/2) \cos{\chi}} \thinspace d\chi
-	\frac{\sin\negthinspace\left( 2 x \sin(\theta/2) \sin(\theta/2) \sqrt{1 - c^2} \right)}{\sin(\theta/2)}
-	c \thinspace dc.
-$$
-
 ---
 
-$$ \tag{23.qq}
+$$ \tag{23.18}
+\begin{aligned}
 	I_{ada}(\theta)
-	= \frac{3}{\tau_e + \rho/2} \frac{1}{\pi}
-	\int_{0}^{1} \int_{0}^{\pi}
-	\frac{ e^{\pm i \tau_o c \cos{\chi} + i (\rho + \tau_e) \sqrt{1 - c^2}} -
-	e^{\pm i \tau_o c \cos{\chi} - i \tau_e \sqrt{1 - c^2}} }{2 i}
-	\thinspace d\chi \thinspace
-	c \thinspace dc
+	&= \frac{3}{\tau_e + \rho/2} \int_{0}^{1}
+	J_0 (\tau_o c)
+	e^{i \frac{\rho}{2} \sqrt{1 - c^2}}
+	\sin\negthinspace\left((\tau_e + \rho/2) \sqrt{1 - c^2} \right)
+	c \thinspace dc.
+\end{aligned}
 $$
 
-$$ \tag{23.14}
+$$
 	\tau_o(x, \theta) = \tau \cos(\theta/2) = x \sin{\theta},
 	\quad
 	\tau_e(x, \theta) = \tau \sin(\theta/2) = x (1 -\cos{\theta}),
 	\quad
-	\rho = 2 (m - 1) x,
+	\rho = 0,
 $$
 
-$$ \tag{23.pp} \small
-	I_{ada}(\theta)
-	= \frac{3}{2 \tau_e + \rho} \frac{1}{\pi}
-	\int_{0}^{1} \int_{-\pi}^{\pi}
-	\frac{ e^{\pm i x \sin{\theta} c \cos{\chi} + i (\rho + x (1 -\cos{\theta})) \sqrt{1 - c^2}} -
-	e^{\pm i x \sin{\theta} c \cos{\chi} - i x (1 -\cos{\theta}) \sqrt{1 - c^2}} }{2 i}
-	\thinspace d\chi \thinspace
-	c \thinspace dc
+$$
+	\sqrt{\tau_e^2 + \tau_o^2} = 2 x \sin(\theta/2),
 $$
 
-Geometrically, it is an integral taken over the disk lying in the xy plane \\((r\_{z}' = 0)\\)
-
-$$ \tag{23.pp}
+$$
+\begin{aligned}
 	I_{ada}(\theta)
-	= \frac{3}{2 \tau_e + \rho} \frac{1}{A}
-	\int_{A}
-	\frac{ e^{i k \bm{r'} \cdot (\bm{n_i} - \bm{n_s}) + i (\rho - k \bm{n_i} \cdot (\bm{n_i} - \bm{n_s})) (\bm{r_i} \cdot \bm{n_i})} -
-	e^{i k \bm{r'} \cdot (\bm{n_i} - \bm{n_s}) + i k \bm{n_i} \cdot (\bm{n_i} - \bm{n_s}) (\bm{r_i} \cdot \bm{n_i})} }{2 i}
-	\thinspace dA
+	&= \frac{3}{\tau_e + \rho/2} \int_{0}^{1}
+	J_0 (\tau_o c)
+	e^{i \frac{\rho}{2} \sqrt{1 - c^2}}
+	\sin\negthinspace\left((\tau_e + \rho/2) \sqrt{1 - c^2} \right)
+	c \thinspace dc.
+\end{aligned}
 $$
 
-$$ \tag{23.pp}
-	I_{ada}(\theta)
-	= \frac{3}{2 \tau_e + \rho} \frac{1}{A}
-	\int_{A}
-	\frac{ e^{i k \bm{r'} \cdot (\bm{n_i} - \bm{n_s}) + i (\rho - k \bm{n_i} \cdot (\bm{n_i} - \bm{n_s})) (\bm{r_i} \cdot \bm{n_i})} -
-	e^{i k \bm{r'} \cdot (\bm{n_i} - \bm{n_s}) + i k \bm{n_i} \cdot (\bm{n_i} - \bm{n_s}) (\bm{r_i} \cdot \bm{n_i})} }{2 i}
-	\thinspace dA
+$$
+\begin{aligned}
+	j_1\negthinspace\left( \sqrt{\tau_e^2 + \tau_o^2} \right)
+	&= \frac{1}{\tau_e} \int_{0}^{1}
+	J_0 (\tau_o c)
+	\sin\negthinspace\left(\tau_e \sqrt{1 - c^2} \right)
+	c \thinspace dc.
+\end{aligned}
+$$
+
+$$
+	c = \sin{\phi},
+	\quad
+	\sqrt{1 - c^2} = \cos{\phi},
+$$
+
+$$
+	\frac{j_1\negthinspace\left( \sqrt{\tau_e^2 + \tau_o^2} \right)}
+	{\sqrt{\tau_e^2 + \tau_o^2}}
+	= \frac{1}{\tau_e} \int_{0}^{\pi/2}
+	J_0 (\tau_o \sin{\phi})
+	\sin(\tau_e \cos{\phi})
+	\sin{\phi} \cos{\phi} \thinspace d\phi.
+$$
+
+$$ \tag{23.zz}
+	\frac{j_1\negthinspace\left( \sqrt{a^2 + b^2} \right)}
+	{\sqrt{a^2 + b^2}}
+	= \frac{1}{a} \int_{0}^{\pi/2}
+	J_0 (b \sin{\phi})
+	\sin(a \cos{\phi})
+	\sin{\phi} \cos{\phi} \thinspace d\phi.
 $$
 
 ---
