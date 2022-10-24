@@ -9834,170 +9834,47 @@ $$ \tag{23.zz}
 	\sin{\phi} \cos{\phi} \thinspace d\phi.
 $$
 
----
+https://math.stackexchange.com/questions/3728586/integrate-a-weighted-bessel-function-over-the-unit-disk
 
-$$ \tag{23.5}
-	\bm{e_w} \cdot \bm{e_z}
-	= \frac{\bm{n_i} \cdot (\bm{n_i} + \bm{n_s})}{|\bm{n_i} + \bm{n_s}|}
-	= \frac{1 + \cos{\theta}}{2 \cos(\theta/2)}
-	= \cos(\theta/2).
 $$
-
-\[Add an illustration here\]
-
-The coordinates of \\(\bm{r'}\\) rotate in the opposite direction:
-
-$$ \tag{23.6}
-\bm{r'} =
-\begin{bmatrix}
-	r\_{x}' \cr
-	r\_{y}' \cr
-	r\_{z}' \cr
-\end{bmatrix}
-= R_y(\theta/2)
-\begin{bmatrix}
-	r\_{u}' \cr
-	r\_{v}' \cr
-	r\_{w}' \cr
-\end{bmatrix} =
-\begin{bmatrix}
-	\phantom{-}\cos(\theta/2) & 0 & \sin(\theta/2) \cr
-	                        0 & 1 &              0 \cr
-	          -\sin(\theta/2) & 0 & \cos(\theta/2) \cr
-\end{bmatrix}
-\begin{bmatrix}
-	r\_{u}' \cr
-	r\_{v}' \cr
-	r\_{w}' \cr
-\end{bmatrix}.
-$$
-
-$$ \tag{23.6}
-\bm{r'} =
-\begin{bmatrix}
-	r\_{u}' \cr
-	r\_{v}' \cr
-	r\_{w}' \cr
-\end{bmatrix}
-= \begin{bmatrix}
-	\cos(\theta/2) & 0 & -\sin(\theta/2) \cr
-	                        0 & 1 &              0 \cr
-	\sin(\theta/2) & 0 & \phantom{-}\cos(\theta/2) \cr
-\end{bmatrix}
-\begin{bmatrix}
-	r\_{x}' \cr
-	r\_{y}' \cr
-	r\_{z}' \cr
-\end{bmatrix}.
-$$
-
-Let us apply the cylindrical parameterization introduced in Eqn. 22.11 to the \\(xyz\\) coordinates:
-
-$$ \tag{23.7}
-\bm{r'} =
-\begin{bmatrix}
-	r\_{x}' \cr
-	r\_{y}' \cr
-	r\_{z}' \cr
-\end{bmatrix} =
-\begin{bmatrix}
-	\sqrt{(r\_{x}')^2 + (r\_{y}')^2} \cos{\chi} \cr
-	\sqrt{(r\_{x}')^2 + (r\_{y}')^2} \sin{\chi} \cr
-	r\_{z}' \cr
-\end{bmatrix} = a
-\begin{bmatrix}
-	c \cos{\chi} \cr
-	c \sin{\chi} \cr
-	b \cr
-\end{bmatrix}
-$$
-
-By combining Eqn. 23.6 and 23.7, we can reparametrize Eqn. 22.?? as follows:
-
-$$ \tag{23.8}
-\begin{aligned}
-	\bm{r'} \cdot (\bm{n_i} - \bm{n_s})
-	&= -r\_{u}' |\bm{n_i} - \bm{n_s}|
-     = -2 \sin(\theta/2) (\cos(\theta/2) r\_{x}' - \sin(\theta/2) r\_{z}')
-	\cr
-	&= 2 a \sin(\theta/2) \big( b \sin(\theta/2) - c \cos{\chi} \cos(\theta/2) \big).
-\end{aligned}
-$$
-
-Let us consider the special case of a homogeneous spherical particle. From the geometry (see Fig. above), it is evident that
-
-$$ \tag{23.9}
-\begin{aligned}
-	\bm{r'} \cdot \bm{n_i}
-	&= r\_{z}'
-	= a b,
-	\cr
-	-\bm{r_i} \cdot \bm{n_i}
-	&= \sqrt{a^2 - \big( r\_{x}' \big)^2 - \big( r\_{y}' \big)^2}
-	= a \sqrt{1 - c^2}.
-\end{aligned}
-$$
-
-Putting it all together,
-
-$$ \tag{23.10}
-	e^{i k \bm{r'} \cdot (\bm{n_i} - \bm{n_s})}
-	e^{i (m - 1) k (\bm{r'} - \bm{r_i}) \cdot \bm{n_i}}
-	=
-	e^{i \tau \big( b \sin(\theta/2) - c \cos{\chi} \cos(\theta/2) \big)}
-	e^{i \frac{\rho}{2} \big(b + \sqrt{1 - c^2} \big)}.
-$$
-
-where, as before (cf. Eqn. 22.3, 22.12),
-
-$$ \tag{23.11}
-	\rho = 2 (m - 1) x,
-	\quad
-	\tau_o(\theta) = \tau \cos(\theta/2) = x \sin{\theta},
-	\quad
-	\tau_e(\theta) = \tau \sin(\theta/2) = x (1 -\cos{\theta}),
+	\sin{x} = \sum_{n=0}^{\infin} \frac{(-1)^n x^{2 n + 1}}{(2 n + 1)!}
 $$
 
 ---
 
-[Gegenbauer's integral](https://dlmf.nist.gov/10.54.E2) representation of the spherical Bessel function of the first kind \[[Watson](#references) (ch. 3.32)\]
-
-$$ \tag{18.1??}
-	j_n(z) = \frac{1}{2 i^n}
-	\int_{0}^{\pi} e^{i z \cos{\theta}} P_n(\cos{\theta}) \sin{\theta} \thinspace d\theta,
+$$
+	\sin{x} = 2 \sum_{n=0}^{\infin} (-1)^n J_{2 n + 1}(x)
 $$
 
-We shall utilize its trigonometric form that can be obtained by setting \\(t = \sin{\theta}\\):
+$$
+	\cos{x} = J_{0}(x) +  2 \sum_{n=1}^{\infin} (-1)^n J_{2 n}(x)
+$$
 
-$$ \tag{18.1??}
-	j_1(z)
-	= \int_{0}^{1} \frac{e^{i z \sqrt{1-t^2}} - e^{-i z \sqrt{1-t^2}}}{2 i} t \thinspace dt
-	= \int_{0}^{1} \sin\negthinspace\left( z \sqrt{1-t^2} \right) t \thinspace dt,
+$$ \tag{23.zz}
+	\frac{j_1\negthinspace\left( \sqrt{a^2 + b^2} \right)}
+	{\sqrt{a^2 + b^2}}
+	= \sum_{n=0}^{\infin} \frac{(-1)^n}{a} \int_{0}^{\pi/2}
+	J_0 (b \sin{\phi})
+	J_{2 n + 1}(a \cos{\phi})
+	\sin{\phi} \cos{\phi} \thinspace d\phi.
 $$
 
 ---
 
-Some of the integrals that do not vanish can be reduced to [Sonine's integral](https://dlmf.nist.gov/10.22.E19) \[[Watson](#references) (ch. 12.11)\]:
+[Sonine's integral](https://dlmf.nist.gov/10.22.E19) \[[Watson](#references) (ch. 12.11)\]:
 
 $$
 	J_{m+n+1}(z) = \frac{z^{n+1}}{2^n \Gamma(n+1)}
-	\int_{0}^{\pi/2} J_{m}(z \sin{\theta}) (\sin{\theta})^{m+1} (\cos{\theta})^{2 n+1} \thinspace d\theta,
+	\int_{0}^{\pi/2} J_{m}(z \sin{\phi}) (\sin{\phi})^{m+1} (\cos{\phi})^{2 n+1} \thinspace d\phi,
 $$
 
 where \\(J_n\\) is the (ordinary) Bessel function of the first kind.
 
-We shall utilize its trigonometric form that can be obtained by setting \\(t = \sin{\theta}\\):
-
-$$
-	J_{m+n+1}(z) = \frac{z^{n+1}}{2^n \Gamma(n+1)}
-	\int_{0}^{1} J_{m}(z t) t^{m+1} \left( 1 - t^2 \right)^{n} \thinspace dt.
-$$
-
-Suppose n = l-1/2 is half-integral while l and m are integral. Then
+Suppose n = l-1/2 is half-integral, while l and m are integral. Then
 
 $$
 	J_{m+l+1/2}(z) = \frac{z^{l+1/2}}{2^{l-1/2} \Gamma(l+1/2)}
-	\int_{0}^{1} J_{m}(z t) t^{m+1} \left( 1 - t^2 \right)^{l-1/2} \thinspace dt.
+	\int_{0}^{\pi/2} J_{m}(z \sin{\phi}) (\sin{\phi})^{m+1} (\cos{\phi})^{2 l} \thinspace d\phi.
 $$
 
 https://en.wikipedia.org/wiki/Particular_values_of_the_gamma_function
@@ -10010,14 +9887,7 @@ According to Eqn. 18.48, spherical bessel
 
 $$
 	j_{m+l}(z) = \frac{z^l}{(2 l - 1)!!}
-	\int_{0}^{1} J_{m}(z t) t^{m+1} \left( 1 - t^2 \right)^{l-1/2} \thinspace dt.
-$$
-
-m = 0, l = 1
-
-$$
-	j_{1}(z) = z
-	\int_{0}^{1} J_{0}(z t) t \sqrt{1 - t^2} \thinspace dt.
+	\int_{0}^{\pi/2} J_{m}(z \sin{\phi}) (\sin{\phi})^{m+1} (\cos{\phi})^{2 l} \thinspace d\phi.
 $$
 
 ---
