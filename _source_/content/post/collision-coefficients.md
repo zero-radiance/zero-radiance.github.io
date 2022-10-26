@@ -9825,32 +9825,93 @@ $$
 	\sin{\phi} \cos{\phi} \thinspace d\phi.
 $$
 
-$$ \tag{23.zz}
-	\frac{j_1\negthinspace\left( \sqrt{a^2 + b^2} \right)}
-	{\sqrt{a^2 + b^2}}
-	= \frac{1}{a} \int_{0}^{\pi/2}
-	J_0 (b \sin{\phi})
-	\sin(a \cos{\phi})
+https://math.stackexchange.com/questions/3728586/integrate-a-weighted-bessel-function-over-the-unit-disk
+
+Small \\(x\\) (Taylor series):
+
+$$
+\begin{aligned}
+	\sin{x} &= \sum_{n=0}^{\infin} \frac{(-1)^n}{(2 n + 1)!} x^{2 n + 1},
+	\cr
+	\cos{x} &= \sum_{n=0}^{\infin} \frac{(-1)^n}{(2 n)!} x^{2 n},
+\end{aligned}
+$$
+
+$$
+	\frac{j_1\negthinspace\left( \sqrt{\tau_e^2 + \tau_o^2} \right)}
+	{\sqrt{\tau_e^2 + \tau_o^2}}
+	= \frac{1}{\tau_e}
+	\sum_{n=0}^{\infin} \frac{(-1)^n}{(2 n + 1)!}
+	\int_{0}^{\pi/2}
+	J_0 (\tau_o \sin{\phi})
+	(\tau_e \cos{\phi})^{2 n + 1}
 	\sin{\phi} \cos{\phi} \thinspace d\phi.
 $$
 
-https://math.stackexchange.com/questions/3728586/integrate-a-weighted-bessel-function-over-the-unit-disk
+Well-known [Sonine's integral](https://dlmf.nist.gov/10.22.E19) \[[Watson](#references) (ch. 12.11)\]:
 
 $$
-	\sin{x} = \sum_{n=0}^{\infin} \frac{(-1)^n x^{2 n + 1}}{(2 n + 1)!}
+	J_{m+l+1}(z) = \frac{z^{l+1}}{2^l \Gamma(l+1)}
+	\int_{0}^{\pi/2} J_{m}(z \sin{\phi}) (\sin{\phi})^{m+1} (\cos{\phi})^{2 l+1} \thinspace d\phi,
 $$
+
+where \\(J_n\\) is the (ordinary) Bessel function of the first kind.
+
+Suppose l = n-1/2 is half-integral, while n and m are integral. Then
+
+$$
+	J_{m+n+1/2}(z) = \frac{z^{n+1/2}}{2^{n-1/2} \Gamma(n+1/2)}
+	\int_{0}^{\pi/2} J_{m}(z \sin{\phi}) (\sin{\phi})^{m+1} (\cos{\phi})^{2 n} \thinspace d\phi.
+$$
+
+https://en.wikipedia.org/wiki/Particular_values_of_the_gamma_function
+
+$$
+	\Gamma(n+1/2) = \sqrt{\pi} \frac{(2 n - 1)!!}{2^n}
+$$
+
+According to Eqn. 18.48, spherical bessel
+
+$$
+	j_{m+n}(z) = \frac{z^n}{(2 n - 1)!!}
+	\int_{0}^{\pi/2} J_{m}(z \sin{\phi}) (\sin{\phi})^{m+1} (\cos{\phi})^{2 n} \thinspace d\phi.
+$$
+
+Substitution yields
+
+$$ \tag{23.zz}
+	\frac{j_1\negthinspace\left( \sqrt{\tau_e^2 + \tau_o^2} \right)}
+	{\sqrt{\tau_e^2 + \tau_o^2}}
+	= \frac{1}{\tau_o} \sum_{n=0}^{\infin}
+	\frac{(-1)^n}{(2 n)!!}
+	\frac{\tau_e^{2 n}}{\tau_o^{n}}
+	j_{n+1}(\tau_o)
+$$
+
+where we have reduced the [factorial](https://en.wikipedia.org/wiki/Double_factorial#Relation_to_the_factorial) ratio to
+
+$$
+	\frac{(2 n + 1)!!}{(2 n + 1)!} =
+	\frac{1}{(2 n)!!}
+$$
+
+Taylor series
+
+https://math.stackexchange.com/questions/3575788/how-to-prove-that-mathcallj-0-sqrt-t22t-frac-e-sqrt-s21/3575900#3575900
 
 ---
 
+Large \\(x\\):
+
 $$
-	\sin{x} = 2 \sum_{n=0}^{\infin} (-1)^n J_{2 n + 1}(x)
+\begin{aligned}
+	\sin{x} &= 2 \sum_{n=0}^{\infin} (-1)^n J_{2 n + 1}(x),
+	\cr
+	\cos{x} &= J_{0}(x) +  2 \sum_{n=1}^{\infin} (-1)^n J_{2 n}(x),
+\end{aligned}
 $$
 
 $$
-	\cos{x} = J_{0}(x) +  2 \sum_{n=1}^{\infin} (-1)^n J_{2 n}(x)
-$$
-
-$$ \tag{23.zz}
 	\frac{j_1\negthinspace\left( \sqrt{a^2 + b^2} \right)}
 	{\sqrt{a^2 + b^2}}
 	= \sum_{n=0}^{\infin} \frac{(-1)^n}{a} \int_{0}^{\pi/2}
@@ -9860,35 +9921,6 @@ $$ \tag{23.zz}
 $$
 
 ---
-
-[Sonine's integral](https://dlmf.nist.gov/10.22.E19) \[[Watson](#references) (ch. 12.11)\]:
-
-$$
-	J_{m+n+1}(z) = \frac{z^{n+1}}{2^n \Gamma(n+1)}
-	\int_{0}^{\pi/2} J_{m}(z \sin{\phi}) (\sin{\phi})^{m+1} (\cos{\phi})^{2 n+1} \thinspace d\phi,
-$$
-
-where \\(J_n\\) is the (ordinary) Bessel function of the first kind.
-
-Suppose n = l-1/2 is half-integral, while l and m are integral. Then
-
-$$
-	J_{m+l+1/2}(z) = \frac{z^{l+1/2}}{2^{l-1/2} \Gamma(l+1/2)}
-	\int_{0}^{\pi/2} J_{m}(z \sin{\phi}) (\sin{\phi})^{m+1} (\cos{\phi})^{2 l} \thinspace d\phi.
-$$
-
-https://en.wikipedia.org/wiki/Particular_values_of_the_gamma_function
-
-$$
-	\Gamma(l+1/2) = \sqrt{\pi} \frac{(2 l - 1)!!}{2^l}
-$$
-
-According to Eqn. 18.48, spherical bessel
-
-$$
-	j_{m+l}(z) = \frac{z^l}{(2 l - 1)!!}
-	\int_{0}^{\pi/2} J_{m}(z \sin{\phi}) (\sin{\phi})^{m+1} (\cos{\phi})^{2 l} \thinspace d\phi.
-$$
 
 ---
 
