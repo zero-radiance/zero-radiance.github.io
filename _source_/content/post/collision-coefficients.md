@@ -9782,22 +9782,11 @@ $$
 	\quad
 	\tau_e(x, \theta) = \tau \sin(\theta/2) = x (1 -\cos{\theta}),
 	\quad
-	\rho = 0,
-$$
-
-$$
 	\sqrt{\tau_e^2 + \tau_o^2} = 2 x \sin(\theta/2),
 $$
 
 $$
-\begin{aligned}
-	I_{ada}(\theta)
-	&= \frac{3}{\tau_e + \rho/2} \int_{0}^{1}
-	J_0 (\tau_o c)
-	e^{i \frac{\rho}{2} \sqrt{1 - c^2}}
-	\sin\negthinspace\left((\tau_e + \rho/2) \sqrt{1 - c^2} \right)
-	c \thinspace dc.
-\end{aligned}
+	\rho = 0,
 $$
 
 $$
@@ -9830,22 +9819,29 @@ https://math.stackexchange.com/questions/3728586/integrate-a-weighted-bessel-fun
 Small \\(x\\) (Taylor series):
 
 $$
-\begin{aligned}
-	\sin{x} &= \sum_{n=0}^{\infin} \frac{(-1)^n}{(2 n + 1)!} x^{2 n + 1},
-	\cr
-	\cos{x} &= \sum_{n=0}^{\infin} \frac{(-1)^n}{(2 n)!} x^{2 n},
-\end{aligned}
+	\sin{x} = \sum_{n=0}^{\infin} \frac{(-1)^n}{(2 n + 1)!} x^{2 n + 1},
+	\quad
+	\cos{x} = \sum_{n=0}^{\infin} \frac{(-1)^n}{(2 n)!} x^{2 n},
 $$
 
 $$
+\begin{aligned}
 	\frac{j_1\negthinspace\left( \sqrt{\tau_e^2 + \tau_o^2} \right)}
 	{\sqrt{\tau_e^2 + \tau_o^2}}
-	= \frac{1}{\tau_e}
+	&= \frac{1}{\tau_e}
 	\sum_{n=0}^{\infin} \frac{(-1)^n}{(2 n + 1)!}
 	\int_{0}^{\pi/2}
 	J_0 (\tau_o \sin{\phi})
 	(\tau_e \cos{\phi})^{2 n + 1}
-	\sin{\phi} \cos{\phi} \thinspace d\phi.
+	\sin{\phi} \cos{\phi} \thinspace d\phi
+	\cr
+	&= \sum_{n=0}^{\infin}
+	\frac{(-1)^n \tau_e^{2 n}}{(2 n + 1)!}
+	\int_{0}^{\pi/2}
+	J_0 (\tau_o \sin{\phi})
+	\sin{\phi} (\cos{\phi})^{2 (n + 1)}
+	\thinspace d\phi
+\end{aligned}
 $$
 
 Well-known [Sonine's integral](https://dlmf.nist.gov/10.22.E19) \[[Watson](#references) (ch. 12.11)\]:
@@ -9857,42 +9853,49 @@ $$
 
 where \\(J_n\\) is the (ordinary) Bessel function of the first kind.
 
-Suppose l = n-1/2 is half-integral, while n and m are integral. Then
+Suppose l = n+1/2 is half-integral, while n and m are integral. Then
 
 $$
-	J_{m+n+1/2}(z) = \frac{z^{n+1/2}}{2^{n-1/2} \Gamma(n+1/2)}
-	\int_{0}^{\pi/2} J_{m}(z \sin{\phi}) (\sin{\phi})^{m+1} (\cos{\phi})^{2 n} \thinspace d\phi.
+\begin{aligned}
+	J_{m+n+3/2}(z)
+	&= \frac{z^{n+3/2}}{2^{n+1/2} \Gamma(n+3/2)}
+	\int_{0}^{\pi/2} J_{m}(z \sin{\phi}) (\sin{\phi})^{m+1} (\cos{\phi})^{2 (n + 1)} \thinspace d\phi
+	\cr
+	&= \sqrt{\frac{2 z}{\pi}} \frac{2 (n+1)!}{(2 (n + 1))!} z^{n+1}
+	\int_{0}^{\pi/2} J_{m}(z \sin{\phi}) (\sin{\phi})^{m+1} (\cos{\phi})^{2 (n + 1)} \thinspace d\phi
+	\cr
+\end{aligned}
 $$
 
 https://en.wikipedia.org/wiki/Particular_values_of_the_gamma_function
 
 $$
-	\Gamma(n+1/2) = \sqrt{\pi} \frac{(2 n - 1)!!}{2^n}
+	\Gamma(n+3/2) = \sqrt{\pi} \frac{(2 (n + 1))!}{2^{2 n + 2} (n+1)!}
 $$
 
-According to Eqn. 18.48, spherical bessel
+According to Eqn. 18.48, the spherical Bessel function
 
 $$
-	j_{m+n}(z) = \frac{z^n}{(2 n - 1)!!}
-	\int_{0}^{\pi/2} J_{m}(z \sin{\phi}) (\sin{\phi})^{m+1} (\cos{\phi})^{2 n} \thinspace d\phi.
+	j_{m+n+1}(z) = \frac{2 (n+1)!}{(2 (n + 1))!} z^{n+1}
+	\int_{0}^{\pi/2} J_{m}(z \sin{\phi}) (\sin{\phi})^{m+1} (\cos{\phi})^{2 (n + 1)} \thinspace d\phi.
+$$
+
+$$
+	\frac{(2 (n + 1))!}{2 (n+1)! z^{n+1}} j_{m+n+1}(z) =
+	\int_{0}^{\pi/2} J_{m}(z \sin{\phi}) (\sin{\phi})^{m+1} (\cos{\phi})^{2 (n + 1)} \thinspace d\phi.
 $$
 
 Substitution yields
 
-$$ \tag{23.zz}
+$$ \tag{ww}
+\begin{aligned}
 	\frac{j_1\negthinspace\left( \sqrt{\tau_e^2 + \tau_o^2} \right)}
 	{\sqrt{\tau_e^2 + \tau_o^2}}
-	= \frac{1}{\tau_o} \sum_{n=0}^{\infin}
-	\frac{(-1)^n}{(2 n)!!}
-	\frac{\tau_e^{2 n}}{\tau_o^{n}}
+	&= \sum_{n=0}^{\infin}
+	\frac{(-1)^n}{n!}
+	\frac{\tau_e^{2 n}}{\tau_o^{n+1}}
 	j_{n+1}(\tau_o)
-$$
-
-where we have reduced the [factorial](https://en.wikipedia.org/wiki/Double_factorial#Relation_to_the_factorial) ratio to
-
-$$
-	\frac{(2 n + 1)!!}{(2 n + 1)!} =
-	\frac{1}{(2 n)!!}
+\end{aligned}
 $$
 
 Taylor series
