@@ -9869,8 +9869,10 @@ $$
 
 https://en.wikipedia.org/wiki/Particular_values_of_the_gamma_function
 
+Non-negative integer n
+
 $$
-	\Gamma(n+3/2) = \sqrt{\pi} \frac{(2 (n + 1))!}{2^{2 n + 2} (n+1)!}
+	\Gamma(1/2 \pm n) = \sqrt{\pi} \left( \frac{(2 n)!}{(\pm 4)^{n} n!} \right)^{\pm 1}
 $$
 
 According to Eqn. 18.48, the spherical Bessel function
@@ -9880,14 +9882,9 @@ $$
 	\int_{0}^{\pi/2} J_{m}(z \sin{\phi}) (\sin{\phi})^{m+1} (\cos{\phi})^{2 (n + 1)} \thinspace d\phi.
 $$
 
-$$
-	\frac{(2 (n + 1))!}{2 (n+1)! z^{n+1}} j_{m+n+1}(z) =
-	\int_{0}^{\pi/2} J_{m}(z \sin{\phi}) (\sin{\phi})^{m+1} (\cos{\phi})^{2 (n + 1)} \thinspace d\phi.
-$$
-
 Substitution yields
 
-$$ \tag{ww}
+$$
 \begin{aligned}
 	\frac{j_1\negthinspace\left( \sqrt{\tau_e^2 + \tau_o^2} \right)}
 	{\sqrt{\tau_e^2 + \tau_o^2}}
@@ -9898,9 +9895,47 @@ $$ \tag{ww}
 \end{aligned}
 $$
 
-Taylor series
-
 https://math.stackexchange.com/questions/3575788/how-to-prove-that-mathcallj-0-sqrt-t22t-frac-e-sqrt-s21/3575900#3575900
+
+Expand in a Taylor series as a function of w (z is a parameter) around 0
+
+$$
+	\frac{j_1\negthinspace\left( \sqrt{z + w} \right)}{\sqrt{z + w}}
+	= \sum_{n=0}^{\infin}
+	\frac{w^n}{n!}
+	\frac{\partial^n}{\partial z^n}
+	\frac{j_1\negthinspace\left( \sqrt{z} \right)}{\sqrt{z}}
+$$
+
+Substitution of the [identity](https://dlmf.nist.gov/10.51#E3)
+
+$$
+	\left( \frac{1}{z} \frac{\partial}{\partial z} \right)^n
+	\frac{j_m(z)}{z^m} = \frac{(-1)^n j_{n+m}(z)}{z^{n+m}}
+$$
+
+and application of the chain and the product rules yield
+
+$$
+	\frac{\partial}{\partial z}
+	\frac{j_m\negthinspace\left( \sqrt{z} \right)}{z^{m/2}}
+	= \frac{\partial y}{\partial z}
+	\left(
+	\frac{\partial}{\partial y}
+	\frac{j_m\negthinspace\left( y \right)}{y^m}
+	\right)\_{y=\sqrt{z}}
+	= -\frac{1}{2}
+	\frac{j_{m+1}(\sqrt{z})}{z^{(m+1)/2}}
+$$
+
+By induction, repeated differentiation results in
+
+$$ \tag{ww}
+	\left( \frac{\partial}{\partial z} \right)^n
+	\frac{j_m\negthinspace\left( \sqrt{z} \right)}{z^{m/2}}
+	= \frac{(-1)^n}{2^n}
+	\frac{j_{m+n}(\sqrt{z})}{z^{(m+n)/2}}
+$$
 
 ---
 
