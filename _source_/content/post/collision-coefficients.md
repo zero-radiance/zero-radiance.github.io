@@ -9529,81 +9529,6 @@ $$
 
 Geometrically, it corresponds to an integral taken over the disk lying in the \\(xy\\) plane, where \\(r\_{z}' = 0\\).
 
----
-
-!!!
-
-$$
-	\rho = 0
-$$
-
-$$
-\begin{aligned}
-	I_{ada}(\theta)
-	&= \frac{3}{\pi}
-	\int_{0}^{1}
-	\int_{0}^{\pi}
-	\frac{\sin\negthinspace\left( \tau_e \sqrt{1 - c^2} \right)}{\tau_e}
-	e^{-i \tau_o c \cos{\chi}}
-	\thinspace d\chi \thinspace
-	c \thinspace dc
-	\cr
-	&= \frac{3}{\pi}
-	\int_{-1}^{1}
-	\int_{0}^{\sqrt{1-y^2}}
-	\frac{\sin\negthinspace\left( \tau_e \sqrt{1-x^2-y^2} \right)}{\tau_e}
-	e^{-i \tau_o x}
-	\thinspace dx \thinspace dy
-	\cr
-	&= 3
-	\int_{0}^{1}
-	\frac{\sin\negthinspace\left( \tau_e \sqrt{1 - c^2} \right)}{\tau_e}
-	J_0(\tau_o c)
-	c \thinspace dc
-	\cr
-	&= 3
-	\int_{0}^{1}
-	\frac{\sin\negthinspace\left( \tau_e s \right)}{\tau_e}
-	J_0(\tau_o \sqrt{1 - s^2})
-	s \thinspace ds
-\end{aligned}
-$$
-
-$$
-\begin{aligned}
-	\tau_e(\theta) &= x (1 - \cos{\theta}) = 2 x \sin^2(\theta/2) = \frac{\tau^2}{2 x} = \tau \sin(\theta/2),
-	\cr
-	\tau_o(\theta) &= x \sin{\theta} = \tau \cos(\theta/2).
-\end{aligned}
-$$
-
-$$
-\begin{aligned}
-	I_{ada}(\theta)
-	&= \frac{3}{\pi}
-	\int_{0}^{1}
-	\int_{\theta/2}^{\pi + \theta/2}
-	\frac{\sin\negthinspace\left( \tau_e \sqrt{1 - c^2} \right)}{\tau_e}
-	e^{-i \tau_o c \cos(\chi - \theta/2)}
-	\thinspace d\chi \thinspace
-	c \thinspace dc
-	\cr
-	&= \frac{3}{\pi}
-	\int_{0}^{1}
-	\int_{\theta/2}^{\pi + \theta/2}
-	\frac{\sin\negthinspace\left( \tau_e \sqrt{1 - c^2} \right)}{\tau_e}
-	e^{-i \tau_o c \cos(\chi - \theta/2)}
-	\thinspace d\chi \thinspace
-	c \thinspace dc
-\end{aligned}
-$$
-
-https://math.stackexchange.com/questions/3728586/integrate-a-weighted-bessel-function-over-the-unit-disk
-
-!!!
-
----
-
 $$ \tag{23.13}
 \begin{aligned}
 	I_{ada}(\theta)
@@ -9814,8 +9739,6 @@ $$
 	\sin{\phi} \cos{\phi} \thinspace d\phi.
 $$
 
-https://math.stackexchange.com/questions/3728586/integrate-a-weighted-bessel-function-over-the-unit-disk
-
 Small \\(x\\) (Taylor series):
 
 $$
@@ -9947,7 +9870,7 @@ $$
 
 and setting \\(w = \tau_e^2\\), \\(z = \tau_o^2\\) results in
 
-$$ \tag{ww}
+$$
 	\frac{j_1\negthinspace\left( \sqrt{\tau_e^2 + \tau_o^2} \right)}{\sqrt{\tau_e^2 + \tau_o^2}}
 	= \sum_{n=0}^{\infin}
 	\frac{(-1)^n}{2^n n!}
@@ -9957,7 +9880,17 @@ $$
 
 which completes the proof.
 
-TODO: now consider the cosine integral...
+---
+
+https://math.stackexchange.com/questions/3728586/integrate-a-weighted-bessel-function-over-the-unit-disk
+
+$$ \tag{ww}
+	I_c
+	= \frac{1}{\tau_e} \int_{0}^{\pi/2}
+	J_0 (\tau_o \sin{\phi})
+	\cos(\tau_e \cos{\phi})
+	\sin{\phi} \cos{\phi} \thinspace d\phi.
+$$
 
 ---
 
