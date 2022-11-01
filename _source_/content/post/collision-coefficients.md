@@ -9715,13 +9715,12 @@ $$
 $$
 
 $$
-\begin{aligned}
-	j_1\negthinspace\left( \sqrt{\tau_e^2 + \tau_o^2} \right)
-	&= \frac{1}{\tau_e} \int_{0}^{1}
+	\frac{j_1\negthinspace\left( \sqrt{\tau_e^2 + \tau_o^2} \right)}
+	{\sqrt{\tau_e^2 + \tau_o^2}}
+	= \frac{1}{\tau_e} \int_{0}^{1}
 	J_0 (\tau_o c)
 	\sin\negthinspace\left(\tau_e \sqrt{1 - c^2} \right)
 	c \thinspace dc.
-\end{aligned}
 $$
 
 $$
@@ -9885,11 +9884,44 @@ which completes the proof.
 https://math.stackexchange.com/questions/3728586/integrate-a-weighted-bessel-function-over-the-unit-disk
 
 $$ \tag{ww}
-	I_c
+	I_c(x, \theta)
+	= \frac{1}{\tau_e} \int_{0}^{1}
+	J_0 (\tau_o c)
+	\cos\negthinspace\left(\tau_e \sqrt{1 - c^2} \right)
+	c \thinspace dc
+	= \frac{1}{a} \int_{0}^{1}
+	\cos(a x)
+	J_0\negthinspace\left( b \sqrt{1 - x^2} \right)
+	x \thinspace dx.
+$$
+
+$$
+	c = \sin{\phi},
+	\quad
+	\sqrt{1 - c^2} = \cos{\phi},
+$$
+
+$$
+	I_c(x, \theta)
 	= \frac{1}{\tau_e} \int_{0}^{\pi/2}
 	J_0 (\tau_o \sin{\phi})
 	\cos(\tau_e \cos{\phi})
 	\sin{\phi} \cos{\phi} \thinspace d\phi.
+$$
+
+$$
+	I_c(x, 0)
+	= \frac{1}{2 \tau_e}
+	= \frac{1}{2 \tau \sin(\theta/2)}
+	= \frac{1}{2 x (1 -\cos{\theta})}
+$$
+
+For large x and theta
+
+$$
+	I_c(x, \theta)
+	\simeq \frac{\sin\negthinspace\left( \sqrt{\tau_e^2 + \tau_o^2} \right)}{\tau_e^2 + \tau_o^2}
+	= \frac{\sin\negthinspace\left( 2 x \sin(\theta/2) \right)}{\big( 2 x \sin(\theta/2) \big)^2}.
 $$
 
 ---
