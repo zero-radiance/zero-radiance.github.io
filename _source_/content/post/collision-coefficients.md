@@ -9529,80 +9529,26 @@ $$
 
 Geometrically, it corresponds to an integral taken over the disk lying in the \\(xy\\) plane, where \\(r\_{z}' = 0\\).
 
-$$ \tag{23.13}
-\begin{aligned}
-	I_{ada}(\theta)
-	&= \frac{3}{2 \pi}
-	\int_{0}^{1}
-	\int_{-\pi}^{\pi}
-	\frac{\sin\negthinspace\left( (\tau_e + \rho/2) \sqrt{1 - c^2} \right)}{\tau_e + \rho/2}
-	e^{i \left( \frac{\rho}{2} \sqrt{1 - c^2} - \tau_o c \cos{\chi} \right)}
-	\thinspace d\chi \thinspace
-	c \thinspace dc \thinspace.
-\end{aligned}
-$$
-
 As we inspect the integral, we recognize the definition of the [Bessel function of the first kind](https://mathworld.wolfram.com/BesselFunctionoftheFirstKind.html)
 
-$$ \tag{23.13}
+$$ \tag{23.14}
 	J_0(z) = \frac{1}{\pi} \int_{0}^{\pi}
 	e^{\pm i z \cos{\chi}} \thinspace d\chi.
 $$
 
-If we introduce a shorthand notation
+If we also introduce the shorthand notation
 
-$$ \tag{23.14}
+$$ \tag{23.15}
 	\tau_o(x, \theta) = \tau \cos(\theta/2) = x \sin{\theta},
 	\quad
 	\tau_e(x, \theta) = \tau \sin(\theta/2) = x (1 -\cos{\theta}),
 $$
 
-we can reduce Eqn. 23.12 to
-
-$$ \tag{23.15}
-	I_{ada}(\theta)
-	= \frac{3}{2} \int_{-1}^{1}
-	\int_{0}^{\sqrt{1 - b^2}}
-	J_0 (\tau_o c)
-	e^{i \frac{\rho}{2} \sqrt{1 - c^2}}
-	c \thinspace dc \thinspace
-	e^{i (\tau_e + \rho/2) b}
-	\thinspace db.
-$$
-
-The outer integral may be split in two using the Euler's formula:
-
-$$ \tag{23.16}
-	e^{i \phi}
-	= \cos{\phi}
-	+ i \sin{\phi}.
-$$
-
-The first of the resulting integrands is an even function of \\(b\\), while the second is odd. Since the integration interval is symmetric, the second integral vanishes, and we may halve the interval of the first after scaling the integrand by a factor of two:
-
-$$ \tag{23.17}
-	I_{ada}(\theta)
-	= 3 \int_{0}^{1} \int_{0}^{\sqrt{1 - b^2}}
-	J_0 (\tau_o c)
-	e^{i \frac{\rho}{2} \sqrt{1 - c^2}}
-	c \thinspace dc \thinspace
-	\cos\negthinspace\big((\tau_e + \rho/2) b \big)
-	\thinspace db.
-$$
-
-At this point, the region of integration -- the first quadrant of a unit disk -- is symmetric in \\(b\\) and \\(c\\). This allows us to reverse the order in which the integrals are taken:
+we can reduce Eqn. 23.13 to
 
 $$ \tag{23.18}
 \begin{aligned}
 	I_{ada}(\theta)
-	&= 3 \int_{0}^{1}
-	\int_{0}^{\sqrt{1 - c^2}}
-	\cos\negthinspace\big((\tau_e + \rho/2) b \big)
-	\thinspace db \thinspace
-	J_0 (\tau_o c)
-	e^{i \frac{\rho}{2} \sqrt{1 - c^2}}
-	c \thinspace dc
-	\cr
 	&= \frac{3}{\tau_e + \rho/2} \int_{0}^{1}
 	J_0 (\tau_o c)
 	e^{i \frac{\rho}{2} \sqrt{1 - c^2}}
@@ -9611,7 +9557,7 @@ $$ \tag{23.18}
 \end{aligned}
 $$
 
-After inverting the Euler's formula (cf. Eqn. 18.13?), we may split the integral in two again:
+Inversion of the Euler's formula (cf. Eqn. 18.13?) allows us to split the integral in several parts:
 
 $$ \tag{23.19}
 	I_{ada}(\theta)
@@ -9921,7 +9867,9 @@ For large x and theta
 $$
 	I_c(x, \theta)
 	\simeq \frac{\sin\negthinspace\left( \sqrt{\tau_e^2 + \tau_o^2} \right)}{\tau_e^2 + \tau_o^2}
-	= \frac{\sin\negthinspace\left( 2 x \sin(\theta/2) \right)}{\big( 2 x \sin(\theta/2) \big)^2}.
+	= \frac{\sin\negthinspace\left( 2 x \sin(\theta/2) \right)}{\big( 2 x \sin(\theta/2) \big)^2}
+	= \frac{j_0\negthinspace\left( 2 x \sin(\theta/2) \right)}{2 x \sin(\theta/2)}.
+$$
 $$
 
 ---
