@@ -9529,16 +9529,38 @@ $$
 
 Geometrically, it corresponds to an integral taken over the disk lying in the \\(xy\\) plane, where \\(r\_{z}' = 0\\).
 
-As we inspect the integral, we recognize the definition of the [Bessel function of the first kind](https://mathworld.wolfram.com/BesselFunctionoftheFirstKind.html)
+Now, let us consider the integral
 
 $$ \tag{23.14}
+	\frac{1}{2 \pi}
+	\int_{-\pi}^{\pi}
+	e^{- i \tau_o c \cos{\chi}}
+	\thinspace d\chi.
+$$
+
+The integrand is an even function of \\(\chi\\). Therefore,
+
+$$ \tag{23.15}
+	\frac{1}{2 \pi}
+	\int_{-\pi}^{\pi}
+	e^{- i \tau_o c \cos{\chi}}
+	\thinspace d\chi =
+	\frac{1}{\pi}
+	\int_{0}^{\pi}
+	e^{- i \tau_o c \cos{\chi}}
+	\thinspace d\chi.
+$$
+
+We may recognize the definition of the [Bessel function of the first kind](https://mathworld.wolfram.com/BesselFunctionoftheFirstKind.html)
+
+$$ \tag{23.16}
 	J_0(z) = \frac{1}{\pi} \int_{0}^{\pi}
 	e^{\pm i z \cos{\chi}} \thinspace d\chi.
 $$
 
 If we also introduce the shorthand notation
 
-$$ \tag{23.15}
+$$ \tag{23.17}
 	\tau_o(x, \theta) = \tau \cos(\theta/2) = x \sin{\theta},
 	\quad
 	\tau_e(x, \theta) = \tau \sin(\theta/2) = x (1 -\cos{\theta}),
