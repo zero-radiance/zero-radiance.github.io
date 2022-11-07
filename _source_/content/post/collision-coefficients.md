@@ -9512,7 +9512,7 @@ $$ \tag{23.12}
 \end{aligned}
 $$
 
-The innermost integral can be easily evaluated, which yields
+The innermost integral can be easily evaluated, yielding
 
 $$ \tag{23.13}
 \begin{aligned}
@@ -9703,7 +9703,7 @@ $$
 	= \frac{1}{\tau_e} \int_{0}^{\pi/2}
 	J_0 (\tau_o \sin{\phi})
 	\sin(\tau_e \cos{\phi})
-	\sin{\phi} \cos{\phi} \thinspace d\phi.
+	\cos{\phi} \sin{\phi} \thinspace d\phi.
 $$
 
 Small \\(x\\) (Taylor series):
@@ -9723,13 +9723,13 @@ $$
 	\int_{0}^{\pi/2}
 	J_0 (\tau_o \sin{\phi})
 	(\tau_e \cos{\phi})^{2 n + 1}
-	\sin{\phi} \cos{\phi} \thinspace d\phi
+	\cos{\phi} \sin{\phi} \thinspace d\phi
 	\cr
 	&= \sum_{n=0}^{\infin}
 	\frac{(-1)^n \tau_e^{2 n}}{(2 n + 1)!}
 	\int_{0}^{\pi/2}
 	J_0 (\tau_o \sin{\phi})
-	\sin{\phi} (\cos{\phi})^{2 (n + 1)}
+	(\cos{\phi})^{2 (n + 1)} \sin{\phi}
 	\thinspace d\phi
 \end{aligned}
 $$
@@ -9769,7 +9769,7 @@ According to Eqn. 18.48, the spherical Bessel function
 
 $$
 	\frac{(2 (n+1))!}{2^{n+1} z^{n+1} (n+1)!} j_{n+1}(z) =
-	\int_{0}^{\pi/2} J_{0}(z \sin{\phi}) (\sin{\phi})^{1} (\cos{\phi})^{2 (n+1)} \thinspace d\phi.
+	\int_{0}^{\pi/2} J_{0}(z \sin{\phi}) (\cos{\phi})^{2 (n+1)} \sin{\phi} \thinspace d\phi.
 $$
 
 Substitution followed by simplification yields
@@ -9874,8 +9874,46 @@ $$
 	= \frac{1}{\tau_e} \int_{0}^{\pi/2}
 	J_0 (\tau_o \sin{\phi})
 	\cos(\tau_e \cos{\phi})
-	\sin{\phi} \cos{\phi} \thinspace d\phi.
+	\cos{\phi} \sin{\phi} \thinspace d\phi.
 $$
+
+Small \\(x\\) (Taylor series):
+
+$$
+	\sin{x} = \sum_{n=0}^{\infin} \frac{(-1)^n}{(2 n + 1)!} x^{2 n + 1},
+	\quad
+	\cos{x} = \sum_{n=0}^{\infin} \frac{(-1)^n}{(2 n)!} x^{2 n},
+$$
+
+$$
+	I_c(x, \theta)
+	= \frac{1}{\tau_e}
+	\sum_{n=0}^{\infin} \frac{(-1)^n \tau_e^{2 n}}{(2 n)!}
+	\int_{0}^{\pi/2}
+	J_0 (\tau_o \sin{\phi})
+	(\cos{\phi})^{2 n + 1}
+	\sin{\phi} \thinspace d\phi.
+$$
+
+Sonine (23.??) and Gamma (19.18)
+
+$$
+	J_{n+1}(z) = \frac{z^{n+1}}{2^n n!}
+	\int_{0}^{\pi/2} J_{0}(z \sin{\phi}) (\cos{\phi})^{2 n+1} \sin{\phi} \thinspace d\phi,
+$$
+
+$$
+	\frac{2^n n!}{\tau_o^{n+1}} J_{n+1}(\tau_o) =
+	\int_{0}^{\pi/2} J_{0}(\tau_o \sin{\phi}) (\cos{\phi})^{2 n+1} \sin{\phi} \thinspace d\phi,
+$$
+
+$$
+	I_c(x, \theta)
+	= \sum_{n=0}^{\infin} \frac{(-1)^n 2^n n!}{(2 n)!}
+	\frac{\tau_e^{2 n - 1}}{\tau_o^{n+1}} J_{n+1}(\tau_o)
+$$
+
+---
 
 $$
 	I_c(x, 0)
@@ -9892,7 +9930,96 @@ $$
 	= \frac{\sin\negthinspace\left( 2 x \sin(\theta/2) \right)}{\big( 2 x \sin(\theta/2) \big)^2}
 	= \frac{j_0\negthinspace\left( 2 x \sin(\theta/2) \right)}{2 x \sin(\theta/2)}.
 $$
+
 $$
+	I_c(x, 0)
+	= \frac{1}{2 \tau_e}
+	= \frac{1}{2 \tau \sin(\theta/2)}
+	= \frac{1}{2 x (1 -\cos{\theta})}
+$$
+
+---
+
+$$
+	I_c(x, \theta)
+	= \frac{1}{\tau_e} \int_{0}^{1}
+	J_0 (\tau_o c)
+	\cos\negthinspace\left(\tau_e \sqrt{1 - c^2} \right)
+	c \thinspace dc
+$$
+
+$$
+	J_0(z) = \frac{1}{\pi} \int_{0}^{\pi}
+	e^{\pm i z \cos{\chi}} \thinspace d\chi.
+$$
+
+$$
+	I_c(x, \theta)
+	= \frac{1}{2 \pi} \frac{1}{\tau_e}
+	\int_{0}^{1} \int_{-\pi}^{\pi}
+	e^{\pm i \tau_o c \cos{\chi}} \thinspace d\chi
+	\cos\negthinspace\left(\tau_e \sqrt{1 - c^2} \right)
+	c \thinspace dc
+$$
+
+$$
+	\int_{0}^{\sqrt{1 - c^2}} \sin(\tau_e b) db = -\frac{\cos(\tau_e \sqrt{1 - c^2})}{\tau_e} + \frac{1}{\tau_e}
+$$
+
+$$
+	\frac{\cos(\tau_e \sqrt{1 - c^2})}{\tau_e} =
+	\left( \frac{1}{\tau_e} - \int_{0}^{\sqrt{1 - c^2}} \sin(\tau_e b) db \right)
+$$
+
+$$
+	I_c(x, \theta)
+	= \frac{1}{2 \pi}
+	\int_{0}^{1} \int_{-\pi}^{\pi}
+	e^{\pm i \tau_o c \cos{\chi}} \thinspace d\chi
+	\left( \frac{1}{\tau_e} - \int_{0}^{\sqrt{1 - c^2}} \sin(\tau_e b) db \right)
+	c \thinspace dc
+$$
+
+Half-sphere?
+
+$$ \tag{22.11}
+\bm{r'} =
+\begin{bmatrix}
+	r\_{u}' \cr
+	r\_{v}' \cr
+	r\_{w}' \cr
+\end{bmatrix} =
+\begin{bmatrix}
+	r\_{u}' \cr
+	\sqrt{(r\_{v}')^2 + (r\_{w}')^2} \sin{\chi} \cr
+	\sqrt{(r\_{v}')^2 + (r\_{w}')^2} \cos{\chi} \cr
+\end{bmatrix} = a
+\begin{bmatrix}
+	b \cr
+	c \sin{\chi} \cr
+	c \cos{\chi} \cr
+\end{bmatrix},
+$$
+
+such that
+
+$$ \tag{22.??}
+	\bm{r'} \cdot (\bm{n_i} - \bm{n_s})
+	= -r\_{u}' |\bm{n_i} - \bm{n_s}|
+	= -2 \sin(\theta/2) a b.
+$$
+
+\[Add an illustration here\]
+
+In particular, for a spherical particle (symmetric with respect to the azimuthal angle \\(\phi\\)), we may set
+
+$$ \tag{22.12}
+	\tau = 2 \sin(\theta/2) x,
+$$
+
+---
+
+Just do the series thing?..
 
 ---
 
