@@ -9847,8 +9847,6 @@ $$
 
 which completes the proof.
 
----
-
 https://math.stackexchange.com/questions/3728586/integrate-a-weighted-bessel-function-over-the-unit-disk
 
 $$ \tag{ww}
@@ -9922,7 +9920,7 @@ $$
 	= \frac{1}{2 x (1 -\cos{\theta})}
 $$
 
-For large x and theta
+For large \\(x, \theta\\):
 
 $$
 	I_c(x, \theta)
@@ -9930,98 +9928,6 @@ $$
 	= \frac{\sin\negthinspace\left( 2 x \sin(\theta/2) \right)}{\big( 2 x \sin(\theta/2) \big)^2}
 	= \frac{j_0\negthinspace\left( 2 x \sin(\theta/2) \right)}{2 x \sin(\theta/2)}.
 $$
-
-$$
-	I_c(x, 0)
-	= \frac{1}{2 \tau_e}
-	= \frac{1}{2 \tau \sin(\theta/2)}
-	= \frac{1}{2 x (1 -\cos{\theta})}
-$$
-
----
-
-$$
-	I_c(x, \theta)
-	= \frac{1}{\tau_e} \int_{0}^{1}
-	J_0 (\tau_o c)
-	\cos\negthinspace\left(\tau_e \sqrt{1 - c^2} \right)
-	c \thinspace dc
-$$
-
-$$
-	J_0(z) = \frac{1}{\pi} \int_{0}^{\pi}
-	e^{\pm i z \cos{\chi}} \thinspace d\chi.
-$$
-
-$$
-	I_c(x, \theta)
-	= \frac{1}{2 \pi} \frac{1}{\tau_e}
-	\int_{0}^{1} \int_{-\pi}^{\pi}
-	e^{\pm i \tau_o c \cos{\chi}} \thinspace d\chi
-	\cos\negthinspace\left(\tau_e \sqrt{1 - c^2} \right)
-	c \thinspace dc
-$$
-
-$$
-	\int_{0}^{\sqrt{1 - c^2}} \sin(\tau_e b) db = -\frac{\cos(\tau_e \sqrt{1 - c^2})}{\tau_e} + \frac{1}{\tau_e}
-$$
-
-$$
-	\frac{\cos(\tau_e \sqrt{1 - c^2})}{\tau_e} =
-	\left( \frac{1}{\tau_e} - \int_{0}^{\sqrt{1 - c^2}} \sin(\tau_e b) db \right)
-$$
-
-$$
-	I_c(x, \theta)
-	= \frac{1}{2 \pi}
-	\int_{0}^{1} \int_{-\pi}^{\pi}
-	e^{\pm i \tau_o c \cos{\chi}} \thinspace d\chi
-	\left( \frac{1}{\tau_e} - \int_{0}^{\sqrt{1 - c^2}} \sin(\tau_e b) db \right)
-	c \thinspace dc
-$$
-
-Half-sphere?
-
-$$ \tag{22.11}
-\bm{r'} =
-\begin{bmatrix}
-	r\_{u}' \cr
-	r\_{v}' \cr
-	r\_{w}' \cr
-\end{bmatrix} =
-\begin{bmatrix}
-	r\_{u}' \cr
-	\sqrt{(r\_{v}')^2 + (r\_{w}')^2} \sin{\chi} \cr
-	\sqrt{(r\_{v}')^2 + (r\_{w}')^2} \cos{\chi} \cr
-\end{bmatrix} = a
-\begin{bmatrix}
-	b \cr
-	c \sin{\chi} \cr
-	c \cos{\chi} \cr
-\end{bmatrix},
-$$
-
-such that
-
-$$ \tag{22.??}
-	\bm{r'} \cdot (\bm{n_i} - \bm{n_s})
-	= -r\_{u}' |\bm{n_i} - \bm{n_s}|
-	= -2 \sin(\theta/2) a b.
-$$
-
-\[Add an illustration here\]
-
-In particular, for a spherical particle (symmetric with respect to the azimuthal angle \\(\phi\\)), we may set
-
-$$ \tag{22.12}
-	\tau = 2 \sin(\theta/2) x,
-$$
-
----
-
-Just do the series thing?..
-
----
 
 Large \\(x\\):
 
@@ -10032,17 +9938,6 @@ $$
 	\cos{x} &= J_{0}(x) +  2 \sum_{n=1}^{\infin} (-1)^n J_{2 n}(x),
 \end{aligned}
 $$
-
-$$
-	\frac{j_1\negthinspace\left( \sqrt{a^2 + b^2} \right)}
-	{\sqrt{a^2 + b^2}}
-	= \sum_{n=0}^{\infin} \frac{(-1)^n}{a} \int_{0}^{\pi/2}
-	J_0 (b \sin{\phi})
-	J_{2 n + 1}(a \cos{\phi})
-	\sin{\phi} \cos{\phi} \thinspace d\phi.
-$$
-
----
 
 ---
 
