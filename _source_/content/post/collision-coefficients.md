@@ -9920,16 +9920,7 @@ $$
 	= \frac{1}{2 x (1 -\cos{\theta})}
 $$
 
-For large \\(x, \theta\\):
-
-$$
-	I_c(x, \theta)
-	\simeq \frac{\sin\negthinspace\left( \sqrt{\tau_e^2 + \tau_o^2} \right)}{\tau_e^2 + \tau_o^2}
-	= \frac{\sin\negthinspace\left( 2 x \sin(\theta/2) \right)}{\big( 2 x \sin(\theta/2) \big)^2}
-	= \frac{j_0\negthinspace\left( 2 x \sin(\theta/2) \right)}{2 x \sin(\theta/2)}.
-$$
-
-Large \\(x\\):
+Bessel series:
 
 $$
 \begin{aligned}
@@ -9938,6 +9929,58 @@ $$
 	\cos{x} &= J_{0}(x) +  2 \sum_{n=1}^{\infin} (-1)^n J_{2 n}(x),
 \end{aligned}
 $$
+
+$$
+\begin{aligned}
+	I_c(x, \theta)
+	&= \frac{1}{\tau_e} \int_{0}^{\pi/2}
+	J_0 (\tau_o \sin{\phi}) J_0(\tau_e \cos{\phi})
+	\cos{\phi} \sin{\phi} \thinspace d\phi
+	\cr
+	&+ \frac{2}{\tau_e} \sum_{n=1}^{\infin} (-1)^n \int_{0}^{\pi/2}
+	J_0 (\tau_o \sin{\phi}) J_{2 n}(\tau_e \cos{\phi})
+	\cos{\phi} \sin{\phi} \thinspace d\phi.
+\end{aligned}
+$$
+
+The first integral has a closed form expression (https://dlmf.nist.gov/10.22#E26):
+
+$$
+\begin{aligned}
+	\int_{0}^{\pi/2}
+	J_m (z \sin{\phi}) (\sin{\phi})^{m+1}
+	J_n(w \cos{\phi}) (\cos{\phi})^{n+1} \thinspace d\phi
+	= \frac{z^m w^n J_{m+n+1}\negthinspace\left( \sqrt{z^2 + w^2} \right)}{\left( z^2 + w^2 \right)^{(m+n+1)/2}}
+\end{aligned}
+$$
+
+so
+
+$$
+\begin{aligned}
+	I_c(x, \theta)
+	= \frac{1}{\tau_e}
+	\frac{J_{1}\negthinspace\left( \sqrt{\tau_o^2 + \tau_e^2} \right)}{\sqrt{\tau_o^2 + \tau_e^2}}
+	+ \frac{2}{\tau_e} \sum_{n=1}^{\infin} (-1)^n \int_{0}^{\pi/2}
+	J_0 (\tau_o \sin{\phi}) J_{2 n}(\tau_e \cos{\phi})
+	\cos{\phi} \sin{\phi} \thinspace d\phi.
+\end{aligned}
+$$
+
+For large \\(x\\), small \\(\theta\\) (in terms of \\(\theta_o, \theta_e\\)???), the first term dominates.
+
+---
+
+For large \\(x\\), large \\(\theta\\) (in terms of \\(\theta_o, \theta_e\\)???):
+
+$$
+	I_c(x, \theta)
+	\simeq \frac{\sin\negthinspace\left( \sqrt{\tau_e^2 + \tau_o^2} \right)}{\tau_e^2 + \tau_o^2}
+	= \frac{\sin\negthinspace\left( 2 x \sin(\theta/2) \right)}{\big( 2 x \sin(\theta/2) \big)^2}
+	= \frac{j_0\negthinspace\left( 2 x \sin(\theta/2) \right)}{2 x \sin(\theta/2)}.
+$$
+
+Why???
 
 ---
 
