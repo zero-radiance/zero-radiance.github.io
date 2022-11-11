@@ -9967,11 +9967,9 @@ $$
 \end{aligned}
 $$
 
-For large \\(x\\), small \\(\theta\\) (in terms of \\(\theta_o, \theta_e\\)???), the first term dominates.
+For \\(\tau_o = x \sin{\theta} \ll 1\\), the first term dominates (show why!).
 
----
-
-For large \\(x\\), large \\(\theta\\) (in terms of \\(\theta_o, \theta_e\\)???):
+For \\(\tau_o \gg 1\\), we use [Hankel's asymptotic expansion](https://dlmf.nist.gov/10.17#E3) of J_0:
 
 $$
 	I_c(x, \theta)
