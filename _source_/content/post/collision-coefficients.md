@@ -9969,7 +9969,34 @@ $$
 
 For \\(\tau_o = x \sin{\theta} \ll 1\\), the first term dominates (show why!).
 
-For \\(\tau_o \gg 1\\), we use [Hankel's asymptotic expansion](https://dlmf.nist.gov/10.17#E3) of J_0:
+---
+
+If \\(\tau_o \gg 1\\), then \\(\sqrt{\tau_o^2 + \tau_e^2} \gg 1\\), and we use [Hankel's asymptotic expansion](https://dlmf.nist.gov/10.17#E3)
+
+$$
+	J_v(z) \simeq \sqrt{ \frac{2}{\pi z} } \left(
+	\cos(z - \pi v/2 - \pi/4) \sum_{n=0}^{\infin} (-1)^n \frac{a_{2 n}(v)}{z^{2 n}} -
+	\sin(z - \pi v/2 - \pi/4) \sum_{n=0}^{\infin} (-1)^n \frac{a_{2 n + 1}(v)}{z^{2 n + 1}}
+	\right),
+$$
+
+with the coefficient \\(a_n\\) defined as follows:
+
+$$
+	a_n(v) = \frac{(1/2 - v)_n (1/2 + v)_n}{(-2)^n n!},
+$$
+
+where
+
+$$
+	(b)_n = \frac{\Gamma(a+n)}{\Gamma(a)}
+$$
+
+is the so-called [Pochhammer's symbol](https://dlmf.nist.gov/5.2#E4).
+
+For \\(v = 1/2\\), the expressions given above are simplified to
+
+...
 
 $$
 	I_c(x, \theta)
