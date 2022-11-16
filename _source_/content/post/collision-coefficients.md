@@ -9573,11 +9573,16 @@ $$ \tag{23.17}
 \end{aligned}
 $$
 
----
-
-Inversion of the Euler's formula (cf. Eqn. 18.13?) allows us to split the integral in several parts:
+Eqn. 23.17 can be further simplified by converting the product of trigonometric functions into a sum, which can be achieved by inverting the Euler's formula (cf. Eqn. 18.13?):
 
 $$ \tag{23.18}
+	e^{i \phi} \sin(\theta + \phi) =
+	\frac{e^{i (\theta + 2 \phi )} - e^{-i \theta}}{2 i}.
+$$
+
+This allows us to split the integral in two parts:
+
+$$ \tag{23.19}
 	I_{ada}(\theta)
 	= \frac{3}{\tau_e + \rho/2} \int_{0}^{1}
 	J_0 (\tau_o c)
@@ -9585,6 +9590,8 @@ $$ \tag{23.18}
 	e^{-i \tau_e \sqrt{1 - c^2}} }{2 i}
 	c \thinspace dc.
 $$
+
+---
 
 Unfortunately, this integral does not have a closed-form expression for arbitrary values of \\(x, \rho, \theta\\). In the forward direction, the parameters introduced in Eqn. 23.14
 
