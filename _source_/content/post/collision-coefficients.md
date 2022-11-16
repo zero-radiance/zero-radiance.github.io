@@ -8796,7 +8796,7 @@ Unfortunately, evaluation of these integrals poses a challenge: not just because
 
 #### Rayleigh-Gans-Born Approximation
 
-Imagine a particle illuminated by [X-rays](https://en.wikipedia.org/wiki/X-ray). The frequencies (and the momenta \\(p = \hbar \omega / c\\)) of the photons are so high that it renders the particle nearly transparent \[[4](#references) (ch. 7.5)\]. Thus, the squared magnitude of the relative wavenumber is very small:
+Imagine a particle illuminated by [X-rays](https://en.wikipedia.org/wiki/X-ray). The frequencies (and the momenta \\(p = \hbar \omega / c\\)) of the photons are so high that the particle appears nearly transparent \[[4](#references) (ch. 7.5)\]. Thus, the squared magnitude of the relative wavenumber is very small:
 
 $$ \tag{22.1}
 	\left| m^2 - 1 \right|
@@ -9352,7 +9352,7 @@ $$ \tag{23.2}
 \end{aligned}
 $$
 
-Thus, the far-field expression of the volume integral equation can be obtained by adding a single complex exponential factor to the integrand of Eqn. 22.6:
+Thus, the far-field expression of the volume integral equation can be obtained by simply adding a complex exponential factor to the integrand of Eqn. 22.6:
 
 $$ \tag{23.3} \small
 \begin{aligned}
@@ -9376,7 +9376,7 @@ $$
 
 If \\(\bm{n_i}\\) and \\(\bm{n_s}\\) are collinear, a supporting vector must take the role of \\(\bm{n_s}\\) in order to fix the orientation of the coordinate frame.
 
-Since, according to Eqn. 22.7, 22.9 and 23.4, the \\(uvw\\) frame is obtained by rotation of the \\(xyz\\) basis vectors by \\(\theta/2\\) radians around the \\(y\\)-axis:
+According to Eqn. 22.7, 22.9 and 23.4, the \\(uvw\\) frame (used by the Rayleigh-Gans-Born approximation) is obtained by rotation of the \\(xyz\\) basis vectors by \\(\theta/2\\) radians around the \\(y\\)-axis:
 
 $$ \tag{23.5}
 	\bm{e_w} \cdot \bm{e_z}
@@ -9414,7 +9414,7 @@ $$ \tag{23.6}
 \end{bmatrix}.
 $$
 
-Let us apply the cylindrical parameterization introduced in Eqn. 22.11 to the \\(xyz\\) coordinates:
+Let us apply the cylindrical parameterization introduced in Eqn. 22.11 to the \\(xyz\\) coordinate system:
 
 $$ \tag{23.7}
 \bm{r'} =
@@ -9443,11 +9443,13 @@ $$ \tag{23.8}
 	&= -r\_{u}' |\bm{n_i} - \bm{n_s}|
      = -2 \sin(\theta/2) (\cos(\theta/2) r\_{x}' - \sin(\theta/2) r\_{z}')
 	\cr
-	&= 2 a \sin(\theta/2) \big( b \sin(\theta/2) - c \cos{\chi} \cos(\theta/2) \big).
+	&= 2 a \sin(\theta/2) \big( b \sin(\theta/2) - c \cos{\chi} \cos(\theta/2) \big)
+	\cr
+	&= a b (1 -\cos{\theta}) - a c \cos{\chi} \sin{\theta}.
 \end{aligned}
 $$
 
-Let us consider the special case of a homogeneous spherical particle. From the geometry (see Fig. above), it is evident that
+Let us consider the special case of a homogeneous spherical particle. From the geometry (see Fig. 23.1), it is evident that
 
 $$ \tag{23.9}
 \begin{aligned}
@@ -9471,7 +9473,7 @@ $$ \tag{23.10}
 	e^{i \frac{\rho}{2} \left(b + \sqrt{1 - c^2} \right)}.
 $$
 
-where
+where we have introduced the shorthand notation
 
 $$ \tag{23.11}
 	\rho = 2 (m - 1) x,
@@ -9527,7 +9529,7 @@ $$ \tag{23.13}
 \end{aligned}
 $$
 
-Geometrically, it corresponds to an integral taken over the disk lying in the \\(xy\\) plane, where \\(r\_{z}' = 0\\).
+Geometrically, the result corresponds to an integral taken over the disk lying in the \\(xy\\) plane.
 
 Now, let us consider the integral
 
@@ -9558,17 +9560,9 @@ $$ \tag{23.16}
 	e^{\pm i z \cos{\chi}} \thinspace d\chi.
 $$
 
-If we also introduce the shorthand notation
+Thus, Eqn. 23.13 takes the form
 
 $$ \tag{23.17}
-	\tau_o(x, \theta) = \tau \cos(\theta/2) = x \sin{\theta},
-	\quad
-	\tau_e(x, \theta) = \tau \sin(\theta/2) = x (1 -\cos{\theta}),
-$$
-
-we can reduce Eqn. 23.13 to
-
-$$ \tag{23.18}
 \begin{aligned}
 	I_{ada}(\theta)
 	&= \frac{3}{\tau_e + \rho/2} \int_{0}^{1}
@@ -9579,9 +9573,11 @@ $$ \tag{23.18}
 \end{aligned}
 $$
 
+---
+
 Inversion of the Euler's formula (cf. Eqn. 18.13?) allows us to split the integral in several parts:
 
-$$ \tag{23.19}
+$$ \tag{23.18}
 	I_{ada}(\theta)
 	= \frac{3}{\tau_e + \rho/2} \int_{0}^{1}
 	J_0 (\tau_o c)
