@@ -9573,23 +9573,64 @@ $$ \tag{23.17}
 \end{aligned}
 $$
 
-Eqn. 23.17 can be further simplified by converting the product of trigonometric functions into a sum, which can be achieved by inverting the Euler's formula (cf. Eqn. 18.13?):
+Eqn. 23.17 can be further simplified by converting the product of trigonometric functions into a sum. This can be achieved by inverting the Euler's formula (cf. Eqn. 18.13?), which yields
 
 $$ \tag{23.18}
 	e^{i \phi} \sin(\theta + \phi) =
 	\frac{e^{i (\theta + 2 \phi )} - e^{-i \theta}}{2 i}.
 $$
 
-This allows us to split the integral in two parts:
+As a result, the integral may be split in two parts:
 
 $$ \tag{23.19}
 	I_{ada}(\theta)
 	= \frac{3}{\tau_e + \rho/2} \int_{0}^{1}
 	J_0 (\tau_o c)
-	\frac{ e^{i (\rho + \tau_e) \sqrt{1 - c^2}} -
+	\frac{ e^{i (\tau_e + \rho) \sqrt{1 - c^2}} -
 	e^{-i \tau_e \sqrt{1 - c^2}} }{2 i}
 	c \thinspace dc.
 $$
+
+Both are quite similar; the \\(\exp(\rho \sqrt{1 - c^2})\\) factor makes the first integral significantly more complex.
+
+Let us start with evaluation of
+
+$$ \tag{23.20}
+\begin{aligned}
+	I_{ada}(\theta)
+	&= \frac{3}{\tau_e} \int_{0}^{1}
+	J_0 (\tau_o c)
+	e^{-i \tau_e \sqrt{1 - c^2}}
+	c \thinspace dc
+	\cr
+	&= \frac{3}{\tau_e} \int_{0}^{1}
+	J_0 (\tau_o c)
+	\bigg( \cos\negthinspace\left(\tau_e \sqrt{1 - c^2} \right)
+	- i \sin\negthinspace\left(\tau_e \sqrt{1 - c^2} \right) \bigg)
+	c \thinspace dc.
+\end{aligned}
+$$
+
+The integral containing the sine can be alternatively obtained by setting \\(\rho = 0\\) in Eqn. 23.17. Since that reduces the anomalous diffraction approximation to the Rayleigh-Gans-Born approximation, we already know the answer (cf. Eqn. 22.13):
+
+$$ \tag{23.21}
+\begin{aligned}
+	I_{ada}(\theta)
+	&= \frac{3}{\tau_e} \int_{0}^{1}
+	J_0 (\tau_o c)
+	\sin\negthinspace\left(\tau_e \sqrt{1 - c^2} \right)
+	c \thinspace dc
+	= \frac{3 j_1(\tau)}{\tau},
+\end{aligned}
+$$
+
+where, according to Eqn. 22.12 and 23.11,
+
+$$ \tag{23.22}
+	\tau = \sqrt{\tau_e^2 + \tau_o^2} = 2 x \sin(\theta/2).
+$$
+
+Due to the coordinate convention used in this chapter, this result may come as a surprise. We can prove the correctness of Eqn. 23.21 as follows.
 
 ---
 
