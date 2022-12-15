@@ -9330,11 +9330,11 @@ $$ \tag{23.1}
 	2 \left| m - 1 \right| \ll 1.
 $$
 
-For large particles, this implies that surface reflection is almost entirely absent, except for grazing angles. Furthermore, the degree of deviation of light rays (due to refraction) from the initial direction is insignificant, so they virtually propagate in straight lines.
+For large particles, this implies that surface reflection is almost entirely absent, except for grazing angles. Furthermore, the degree of deviation of light rays (due to refraction) from the initial direction is insignificant, so they propagate along virtually straight lines.
 
 However, unlike in the Rayleigh-Gans-Born approximation, we no longer assume that the phase delay and the absorption experienced by a ray of light as it passes though a (large) particle is negligible, which means that \\(\rho = 2 (m - 1) x\\) can take on arbitrary values \[[4](#references) (ch. 11.1)\].
 
-Consider the point \\(\bm{r'}\\) located inside the particle (cf. Fig 23.1). We trace a line along \\(\bm{n_i}\\) that passes through \\(\bm{r'}\\); by doing so, we determine the entry and the exit points \\(\bm{r_i}\\) and \\(\bm{r_o}\\), respectively.
+Consider the point \\(\bm{r'}\\) located inside the particle (cf. Fig 23.1). Let us trace a straight line along \\(\bm{n_i}\\) that passes through \\(\bm{r'}\\); by doing so, we can determine the entry and the exit points \\(\bm{r_i}\\) and \\(\bm{r_o}\\), respectively.
 
 [Add an illustration here]
 
@@ -9366,7 +9366,7 @@ $$ \tag{23.3} \small
 \end{aligned}
 $$
 
-Keep in mind that \\(\bm{r_i}\\) is spatially-varying across the surface of the particle, since it depends on both \\(\bm{r'}\\) and \\(\bm{n_i}\\) (in Eqn. 23.2-23.3, these parameters have been omitted for brevity). This makes it necessary to introduce an auxiliary coordinate frame (cf. Eqn. 15.8)
+Note that \\(\bm{r_i}\\) is spatially-varying across the surface of the particle, since it depends on both \\(\bm{r'}\\) and \\(\bm{n_i}\\) (in Eqn. 23.2-23.3, these parameters have been omitted for brevity). This makes it necessary to introduce an auxiliary coordinate frame (cf. Eqn. 15.8)
 
 $$ \tag{23.4}
 	\bm{e_z} = \bm{n_i}, \quad
@@ -9379,10 +9379,17 @@ If \\(\bm{n_i}\\) and \\(\bm{n_s}\\) are collinear, a supporting vector must tak
 According to Eqn. 22.7, 22.9 and 23.4, the \\(uvw\\) frame (used by the Rayleigh-Gans-Born approximation) is obtained by rotation of the \\(xyz\\) basis vectors by \\(\theta/2\\) radians around the \\(y\\)-axis:
 
 $$ \tag{23.5}
-	\bm{e_w} \cdot \bm{e_z}
+\begin{aligned}
+	&\bm{e_w} \cdot \bm{e_z}
 	= \frac{\bm{n_i} \cdot (\bm{n_i} + \bm{n_s})}{|\bm{n_i} + \bm{n_s}|}
 	= \frac{1 + \cos{\theta}}{2 \cos(\theta/2)}
-	= \cos(\theta/2).
+	= \cos(\theta/2),
+	\cr
+	&\bm{e_w} \times \bm{e_z}
+	= \left| \frac{\bm{n_i} \times \bm{n_s}}{\bm{n_i} + \bm{n_s}} \right| \bm{e_y}
+	= \frac{\sin(\theta)}{2 \cos(\theta/2)} \bm{e_y}
+	= \sin(\theta/2) \bm{e_y}.
+\end{aligned}
 $$
 
 \[Add an illustration here\]
@@ -9483,7 +9490,7 @@ $$ \tag{23.11}
 	\tau_o(\theta) = x \sin{\theta}.
 $$
 
-Taking Eqn. 23.7, 23.8 and 23.10 into account allows us to evaluate the integral found in Eqn. 23.3:
+Taking Eqn. 23.7, 23.8 and 23.10 into account allows us to parametrize Eqn. 23.3:
 
 $$ \tag{23.12}
 \begin{aligned}
@@ -9529,7 +9536,7 @@ $$ \tag{23.13}
 \end{aligned}
 $$
 
-Geometrically, the result corresponds to an integral taken over the disk lying in the \\(xy\\) plane.
+Geometrically, the resulting expression corresponds to an integral taken over the disk lying in the \\(xy\\) plane.
 
 Now, let us consider the integral
 
@@ -9591,31 +9598,13 @@ $$ \tag{23.19}
 	c \thinspace dc.
 $$
 
-Both are quite similar; the \\(\exp(\rho \sqrt{1 - c^2})\\) factor makes the first integral significantly more complex.
+Both are quite similar; the \\(\exp(\rho \sqrt{1 - c^2})\\) factor makes the first integral relatively complicated.
 
-Let us start with evaluation of
-
-$$ \tag{23.20}
-\begin{aligned}
-	I_{ada}(\theta)
-	&= \frac{3}{\tau_e} \int_{0}^{1}
-	J_0 (\tau_o c)
-	e^{-i \tau_e \sqrt{1 - c^2}}
-	c \thinspace dc
-	\cr
-	&= \frac{3}{\tau_e} \int_{0}^{1}
-	J_0 (\tau_o c)
-	\bigg( \cos\negthinspace\left(\tau_e \sqrt{1 - c^2} \right)
-	- i \sin\negthinspace\left(\tau_e \sqrt{1 - c^2} \right) \bigg)
-	c \thinspace dc.
-\end{aligned}
-$$
-
-The integral containing the sine can be alternatively obtained by setting \\(\rho = 0\\) in Eqn. 23.17. Since that reduces the anomalous diffraction approximation to the Rayleigh-Gans-Born approximation, we already know the answer (cf. Eqn. 22.13):
+The integrals can be evaluated using the method of series expansion. Let us first consider the base case by setting \\(\rho = 0\\) in Eqn. 23.17. Since that reduces the anomalous diffraction approximation to the Rayleigh-Gans-Born approximation, we already know the answer (cf. Eqn. 22.13):
 
 $$ \tag{23.21}
 \begin{aligned}
-	I_{ada}(\theta)
+	I_{rgb}(\theta)
 	&= \frac{3}{\tau_e} \int_{0}^{1}
 	J_0 (\tau_o c)
 	\sin\negthinspace\left(\tau_e \sqrt{1 - c^2} \right)
