@@ -8967,7 +8967,7 @@ and easily calculate \[[4](#references) (ch. 7.21)\]
 
 $$ \tag{22.13}
 \begin{aligned}
-	I_{rgb}(\theta)
+	I_{rgb}(x, \theta)
 	&= \frac{3}{4 \pi a^3} \int_{-1}^{1}
 	\int_{-\pi}^{\pi} \int_{0}^{\sqrt{1 - b^2}}
 	a^2 c \thinspace dc \thinspace d\chi \thinspace
@@ -9494,7 +9494,7 @@ Taking Eqn. 23.7, 23.8 and 23.10 into account allows us to parametrize Eqn. 23.3
 
 $$ \tag{23.12}
 \begin{aligned}
-	I_{ada}(\theta)
+	I_{ada}(x, \theta)
 	&= \frac{1}{V_p} \int\_{V_p}
 	e^{i k \bm{r'} \cdot (\bm{n_i} - \bm{n_s})}
 	e^{i (m - 1) k (\bm{r'} - \bm{r_i}) \cdot \bm{n_i}} dV'
@@ -9525,7 +9525,7 @@ The innermost integral can be easily evaluated, yielding
 
 $$ \tag{23.13}
 \begin{aligned}
-	I_{ada}(\theta)
+	I_{ada}(x, \theta)
 	&= \frac{3}{2 \pi}
 	\int_{0}^{1}
 	\int_{-\pi}^{\pi}
@@ -9571,7 +9571,7 @@ Thus, Eqn. 23.13 takes the form
 
 $$ \tag{23.17}
 \begin{aligned}
-	I_{ada}(\theta)
+	I_{ada}(x, \theta)
 	&= \frac{3}{\tau_e + \rho/2} \int_{0}^{1}
 	J_0 (\tau_o c)
 	e^{i \frac{\rho}{2} \sqrt{1 - c^2}}
@@ -9590,7 +9590,7 @@ $$
 As a result, the integral may be split in two parts:
 
 $$ \tag{23.19}
-	I_{ada}(\theta)
+	I_{ada}(x, \theta)
 	= \frac{3}{\tau_e + \rho/2} \int_{0}^{1}
 	J_0 (\tau_o c)
 	\frac{ e^{i (\tau_e + \rho) \sqrt{1 - c^2}} -
@@ -9602,9 +9602,9 @@ Both are quite similar; the \\(\exp(\rho \sqrt{1 - c^2})\\) factor makes the fir
 
 Each of these integral can be evaluated using the method of series expansion. Let us first consider the base case by setting \\(\rho = 0\\) in Eqn. 23.17. Since that reduces the anomalous diffraction approximation to the Rayleigh-Gans-Born approximation, we already know the answer (cf. Eqn. 22.13):
 
-$$ \tag{23.21}
+$$ \tag{23.20}
 \begin{aligned}
-	I_{rgb}(\theta)
+	I_{rgb}(x, \theta)
 	&= \frac{3}{\tau_e} \int_{0}^{1}
 	J_0 (\tau_o c)
 	\sin\negthinspace\left(\tau_e \sqrt{1 - c^2} \right)
@@ -9615,15 +9615,15 @@ $$
 
 where, according to Eqn. 22.12 and 23.11,
 
-$$ \tag{23.22}
+$$ \tag{23.21}
 	\tau = \sqrt{\tau_e^2 + \tau_o^2} = 2 x \sin(\theta/2).
 $$
 
-Due to the coordinate convention used in this chapter, this result may come as a surprise. There is an alternative proof of Eqn. 23.21; the same method is directly applicable to the rest of the terms found in Eqn. 23.19.
+Due to the coordinate convention used in this chapter, this result may come as a surprise. There is an alternative proof of Eqn. 23.20; the same method is directly applicable to the rest of the terms found in Eqn. 23.19.
 
 According to the parameterization introduced in Eqn. 23.7, \\(c \in \[0,1\]\\). Thus, we may perform a change of variables
 
-$$ \tag{23.23}
+$$ \tag{23.22}
 	c = \sin{\phi},
 	\quad
 	\sqrt{1 - c^2} = \cos{\phi},
@@ -9631,8 +9631,8 @@ $$
 
 which yields
 
-$$ \tag{23.24}
-	I_{rgb}(\theta)
+$$ \tag{23.23}
+	I_{rgb}(x, \theta)
 	= \frac{3}{\tau_e} \int_{0}^{\pi/2}
 	J_0 (\tau_o \sin{\phi})
 	\sin(\tau_e \cos{\phi})
@@ -9641,17 +9641,17 @@ $$
 
 Next, we shall substitute the Taylor series expansion of \\(\sin(\tau_e \cos{\phi})\\)
 
-$$ \tag{23.25}
+$$ \tag{23.24}
 	\sin{x} = \sum_{n=0}^{\infin} \frac{(-1)^n}{(2 n + 1)!} x^{2 n + 1},
 	\quad
 	\cos{x} = \sum_{n=0}^{\infin} \frac{(-1)^n}{(2 n)!} x^{2 n},
 $$
 
-into Eqn. 23.24:
+into Eqn. 23.23:
 
-$$ \tag{23.26}
+$$ \tag{23.25}
 \begin{aligned}
-	I_{rgb}(\theta)
+	I_{rgb}(x, \theta)
 	&= \frac{3}{\tau_e}
 	\sum_{n=0}^{\infin} \frac{(-1)^n}{(2 n + 1)!}
 	\int_{0}^{\pi/2}
@@ -9670,7 +9670,7 @@ $$
 
 In the expression given above, we may recognize [Sonine's integral](https://dlmf.nist.gov/10.22.E19) \[[Watson](#references) (ch. 12.11)\]:
 
-$$ \tag{23.27}
+$$ \tag{23.26}
 	J_{m+l+1}(z) = \frac{z^{l+1}}{2^l \Gamma(l+1)}
 	\int_{0}^{\pi/2} J_{m}(z \sin{\phi}) (\sin{\phi})^{m+1} (\cos{\phi})^{2 l+1} \thinspace d\phi,
 $$
@@ -9679,7 +9679,7 @@ where \\(J_n\\) is the (ordinary) Bessel function of the first kind.
 
 Suppose \\(n\\) and \\(m\\) are integral. Then \\(l = n-1/2\\) is half-integral, and
 
-$$ \tag{23.28}
+$$ \tag{23.27}
 \begin{aligned}
 	J_{m+n+1/2}(z)
 	&= \frac{z^{n+1/2}}{2^{n-1/2} \Gamma(n+1/2)}
@@ -9693,31 +9693,31 @@ $$
 
 where we have expanded the [expression of the gamma function](https://en.wikipedia.org/wiki/Particular_values_of_the_gamma_function) valid for a non-negative integer \\(n\\):
 
-$$ \tag{23.29}
+$$ \tag{23.28}
 	\Gamma(1/2 \pm n) =
 	\sqrt{\pi} \left( \frac{(2 n)!}{(\pm 4)^{n} n!} \right)^{\pm 1}.
 $$
 
 By taking Eqn. 18.48 into account, we obtain an integral representation of the spherical Bessel function of the first kind:
 
-$$ \tag{23.30}
+$$ \tag{23.29}
 	\frac{(2 (n+1))!}{2^{n+1} z^{n+1} (n+1)!} j_{n+1}(z) =
 	\int_{0}^{\pi/2} J_{0}(z \sin{\phi}) (\cos{\phi})^{2 (n+1)} \sin{\phi} \thinspace d\phi.
 $$
 
-Substitution of Eqn. 23.30 into 23.26 yields
+Substitution of Eqn. 23.29 into 23.25 yields
 
-$$ \tag{23.31}
-	I_{rgb}(\theta)
+$$ \tag{23.30}
+	I_{rgb}(x, \theta)
 	= 3 \sum_{n=0}^{\infin}
 	\frac{(-1)^n}{2^{n} n!}
 	\frac{\tau_e^{2 n}}{\tau_o^{n+1}}
 	j_{n+1}(\tau_o).
 $$
 
-In order to connect this infinite series to the result given by Eqn. 23.21, we must expand the latter. Let us consider the following a Taylor series as a function of \\(w\\) around 0, with \\(z\\) treated as a constant parameter:
+In order to connect this infinite series to the result given by Eqn. 23.20, we must expand the latter. Let us consider the following a Taylor series as a function of \\(w\\) around 0, with \\(z\\) treated as a constant parameter:
 
-$$ \tag{23.32}
+$$ \tag{23.31}
 	\frac{j_1\negthinspace\left( \sqrt{w + z} \right)}{\sqrt{w + z}}
 	= \sum_{n=0}^{\infin}
 	\frac{w^n}{n!}
@@ -9727,14 +9727,14 @@ $$
 
 Substitution of the [recurrence relation](https://dlmf.nist.gov/10.51#E3)
 
-$$ \tag{23.33}
+$$ \tag{23.32}
 	\left( \frac{1}{z} \frac{\partial}{\partial z} \right)^n
 	\frac{j_m(z)}{z^m} = \frac{(-1)^n j_{n+m}(z)}{z^{n+m}}
 $$
 
 and application of the chain rule yields
 
-$$ \tag{23.34}
+$$ \tag{23.33}
 	\frac{\partial}{\partial z}
 	\frac{j_m\negthinspace\left( \sqrt{z} \right)}{z^{m/2}}
 	= \left( \frac{\partial y}{\partial z}
@@ -9747,16 +9747,16 @@ $$
 
 By induction, repeated differentiation results in
 
-$$ \tag{23.35}
+$$ \tag{23.34}
 	\frac{\partial^n}{\partial z^n}
 	\frac{j_m\negthinspace\left( \sqrt{z} \right)}{z^{m/2}}
 	= \frac{(-1)^n}{2^n}
 	\frac{j_{m+n}(\sqrt{z})}{z^{(m+n)/2}}
 $$
 
-Thus, the Taylor series in Eqn. 23.32 can thus be expressed as
+Thus, the Taylor series in Eqn. 23.31 can thus be expressed as
 
-$$
+$$ \tag{23.35}
 	\frac{j_1\negthinspace\left( \sqrt{w + z} \right)}{\sqrt{w + z}}
 	= \sum_{n=0}^{\infin}
 	\frac{(-1)^n}{2^n n!}
@@ -9764,9 +9764,9 @@ $$
 	j_{n+1}(\sqrt{z}).
 $$
 
-Setting \\(w = \tau_e^2\\), \\(z = \tau_o^2\\), and taking Eqn. 23.22 into account produces the desired result
+Setting \\(w = \tau_e^2\\), \\(z = \tau_o^2\\), and taking Eqn. 23.21 into account produces the desired result
 
-$$
+$$ \tag{23.36}
 	\frac{j_1\negthinspace\left( \sqrt{\tau_e^2 + \tau_o^2} \right)}{\sqrt{\tau_e^2 + \tau_o^2}}
 	= \sum_{n=0}^{\infin}
 	\frac{(-1)^n}{2^n n!}
@@ -9774,117 +9774,34 @@ $$
 	j_{n+1}(\tau_o),
 $$
 
-which, after comparison with Eqn. 23.31, completes the alternative proof of Eqn. 23.21.
+which, after comparison with Eqn. 23.30, completes the alternative proof of Eqn. 23.20.
 
 ---
 
-Unfortunately, this integral does not have a closed-form expression for arbitrary values of \\(x, \rho, \theta\\). In the forward direction, the parameters introduced in Eqn. 23.14
+The second integral found in Eqn. 23.19 features a cosine rather than a sine, which makes it more complicated (in comparison to Eqn. 23.20):
 
-$$ \tag{23.20}
-	\tau_o(x, 0) = \tau_e(x, \theta) = 0,
-$$
-
-and thus
-
-$$ \tag{23.21}
-	I_{ada}(0)
-	= \frac{6}{\rho} \int_{0}^{1}
-	\left( e^{i \rho \sqrt{1 - c^2}} -
-	1 \right)
-	c \thinspace dc
-	= \frac{6}{\rho} \int_{0}^{1}
-	e^{i \rho s} s \thinspace ds -\frac{3}{\rho}.
-$$
-
-The remaining expression can be integrated by parts. We decompose the integrand as follows:
-
-$$ \tag{23.22}
-\begin{aligned}
-	u &= s, & dv &= e^{i \rho s} \thinspace ds,
-	\cr
-	du &= ds, & v &= \frac{e^{i \rho s}}{i \rho}.
-\end{aligned}
-$$
-
-Eqn. 23.21 can then be readily integrated, which yields
-
-$$ \tag{23.23}
-\begin{aligned}
-	I_{ada}(0)
-	&= -\frac{3}{\rho} - \frac{6 i e^{i \rho}}{\rho^2} - \frac{6}{\rho} \int_{0}^{1} \frac{e^{i \rho s}}{i \rho} \thinspace ds
-	\cr
-	&= -\frac{3}{\rho} - \frac{6 i e^{i \rho}}{\rho^2} + \frac{6 \left(e^{i \rho} - 1\right)}{\rho^3}
-	= \frac{3}{\rho^3} \left( 2 e^{i \rho} (1 - i \rho) -\rho^2 - 2 \right).
-\end{aligned}
-$$
-
-Similarly, in the backward direction, Eqn. 23.14 tells us that
-
-$$ \tag{23.24}
-	\tau_o(x, \pi) = 0,
-	\quad
-	\tau_e(x, \pi) = 2 x,
-$$
-
-and thus
-
-$$ \tag{23.25}
-	I_{ada}(\pi)
-	= \frac{3 i^{-1}}{4 x + \rho} \int_{0}^{1}
-	\left( e^{i (2 x + \rho) \sqrt{1 - c^2}} -
-	e^{-2 i x \sqrt{1 - c^2}} \right)
-	c \thinspace dc.
-$$
-
-This integral can be easily evaluated by following the steps taken in Eqn. 23.21-23.23. The result is
-
-$$ \tag{23.26} \small
-	I_{ada}(\pi)
-	= - \frac{
-		4 x^2 e^{i (2 x + \rho)} (2 x + \rho + i)
-		+ e^{-2 i x} (2 x + \rho)^2 (2 x-i) + i \rho (4 x + \rho) }{4/3 x^2 (2 x + \rho)^2 (4 x + \rho)}.
-$$
-
----
-
-https://math.stackexchange.com/questions/3728586/integrate-a-weighted-bessel-function-over-the-unit-disk
-
-$$ \tag{ww}
-	I_c(x, \theta)
+$$ \tag{23.37}
+	I_{cos}(x, \theta)
 	= \frac{1}{\tau_e} \int_{0}^{1}
 	J_0 (\tau_o c)
 	\cos\negthinspace\left(\tau_e \sqrt{1 - c^2} \right)
-	c \thinspace dc
-	= \frac{1}{a} \int_{0}^{1}
-	\cos(a x)
-	J_0\negthinspace\left( b \sqrt{1 - x^2} \right)
-	x \thinspace dx.
+	c \thinspace dc.
 $$
 
-$$
-	c = \sin{\phi},
-	\quad
-	\sqrt{1 - c^2} = \cos{\phi},
-$$
+After performing the same change of variables introduced in Eqn. 23.22, we readily obtain
 
-$$
-	I_c(x, \theta)
+$$ \tag{23.38}
+	I_{cos}(x, \theta)
 	= \frac{1}{\tau_e} \int_{0}^{\pi/2}
 	J_0 (\tau_o \sin{\phi})
 	\cos(\tau_e \cos{\phi})
 	\cos{\phi} \sin{\phi} \thinspace d\phi.
 $$
 
-Small \\(x\\) (Taylor series):
+Utilizing the Taylor series expansion of cosine given by 23.24 yields
 
-$$
-	\sin{x} = \sum_{n=0}^{\infin} \frac{(-1)^n}{(2 n + 1)!} x^{2 n + 1},
-	\quad
-	\cos{x} = \sum_{n=0}^{\infin} \frac{(-1)^n}{(2 n)!} x^{2 n},
-$$
-
-$$
-	I_c(x, \theta)
+$$ \tag{23.39}
+	I_{cos}(x, \theta)
 	= \frac{1}{\tau_e}
 	\sum_{n=0}^{\infin} \frac{(-1)^n \tau_e^{2 n}}{(2 n)!}
 	\int_{0}^{\pi/2}
@@ -9893,22 +9810,19 @@ $$
 	\sin{\phi} \thinspace d\phi.
 $$
 
-Sonine (23.??) and Gamma (19.18)
+Now, according to Sonine's integral (Eqn. 23.26) and the definition of the gamma function for an integral argument (Eqn. 19.18),
 
-$$
+$$ \tag{23.40}
 	J_{n+1}(z) = \frac{z^{n+1}}{2^n n!}
-	\int_{0}^{\pi/2} J_{0}(z \sin{\phi}) (\cos{\phi})^{2 n+1} \sin{\phi} \thinspace d\phi,
+	\int_{0}^{\pi/2} J_{0}(z \sin{\phi}) \sin{\phi} (\cos{\phi})^{2 n+1} \thinspace d\phi.
 $$
 
-$$
-	\frac{2^n n!}{\tau_o^{n+1}} J_{n+1}(\tau_o) =
-	\int_{0}^{\pi/2} J_{0}(\tau_o \sin{\phi}) (\cos{\phi})^{2 n+1} \sin{\phi} \thinspace d\phi,
-$$
+By setting \\(z = \tau_o\\), we arrive at the following result:
 
-$$
-	I_c(x, \theta)
+$$ \tag{23.41}
+	I_{cos}(x, \theta)
 	= \sum_{n=0}^{\infin} \frac{(-1)^n 2^n n!}{(2 n)!}
-	\frac{\tau_e^{2 n - 1}}{\tau_o^{n+1}} J_{n+1}(\tau_o)
+	\frac{\tau_e^{2 n - 1}}{\tau_o^{n+1}} J_{n+1}(\tau_o).
 $$
 
 ---
@@ -10006,6 +9920,75 @@ $$
 $$
 
 Why???
+
+---
+
+Unfortunately, this integral does not have a closed-form expression for arbitrary values of \\(x, \rho, \theta\\). In the forward direction, the parameters introduced in Eqn. 23.14
+
+$$ \tag{23.20}
+	\tau_o(x, 0) = \tau_e(x, \theta) = 0,
+$$
+
+and thus
+
+$$ \tag{23.21}
+	I_{ada}(0)
+	= \frac{6}{\rho} \int_{0}^{1}
+	\left( e^{i \rho \sqrt{1 - c^2}} -
+	1 \right)
+	c \thinspace dc
+	= \frac{6}{\rho} \int_{0}^{1}
+	e^{i \rho s} s \thinspace ds -\frac{3}{\rho}.
+$$
+
+The remaining expression can be integrated by parts. We decompose the integrand as follows:
+
+$$ \tag{23.22}
+\begin{aligned}
+	u &= s, & dv &= e^{i \rho s} \thinspace ds,
+	\cr
+	du &= ds, & v &= \frac{e^{i \rho s}}{i \rho}.
+\end{aligned}
+$$
+
+Eqn. 23.21 can then be readily integrated, which yields
+
+$$ \tag{23.23}
+\begin{aligned}
+	I_{ada}(0)
+	&= -\frac{3}{\rho} - \frac{6 i e^{i \rho}}{\rho^2} - \frac{6}{\rho} \int_{0}^{1} \frac{e^{i \rho s}}{i \rho} \thinspace ds
+	\cr
+	&= -\frac{3}{\rho} - \frac{6 i e^{i \rho}}{\rho^2} + \frac{6 \left(e^{i \rho} - 1\right)}{\rho^3}
+	= \frac{3}{\rho^3} \left( 2 e^{i \rho} (1 - i \rho) -\rho^2 - 2 \right).
+\end{aligned}
+$$
+
+Similarly, in the backward direction, Eqn. 23.14 tells us that
+
+$$ \tag{23.24}
+	\tau_o(x, \pi) = 0,
+	\quad
+	\tau_e(x, \pi) = 2 x,
+$$
+
+and thus
+
+$$ \tag{23.25}
+	I_{ada}(\pi)
+	= \frac{3 i^{-1}}{4 x + \rho} \int_{0}^{1}
+	\left( e^{i (2 x + \rho) \sqrt{1 - c^2}} -
+	e^{-2 i x \sqrt{1 - c^2}} \right)
+	c \thinspace dc.
+$$
+
+This integral can be easily evaluated by following the steps taken in Eqn. 23.21-23.23. The result is
+
+$$ \tag{23.26} \small
+	I_{ada}(\pi)
+	= - \frac{
+		4 x^2 e^{i (2 x + \rho)} (2 x + \rho + i)
+		+ e^{-2 i x} (2 x + \rho)^2 (2 x-i) + i \rho (4 x + \rho) }{4/3 x^2 (2 x + \rho)^2 (4 x + \rho)}.
+$$
 
 ---
 
