@@ -9598,9 +9598,9 @@ $$ \tag{23.19}
 	c \thinspace dc.
 $$
 
-Both are quite similar; the \\(\exp(\rho \sqrt{1 - c^2})\\) factor makes the first integral relatively complicated.
+Both are quite similar; the \\(\exp(\rho \sqrt{1 - c^2})\\) factor makes the first integral relatively complicated. Of course, we can use Euler's formula to further decompose each complex exponential into a sum of a real cosine and an imaginary sine.
 
-The integrals can be evaluated using the method of series expansion. Let us first consider the base case by setting \\(\rho = 0\\) in Eqn. 23.17. Since that reduces the anomalous diffraction approximation to the Rayleigh-Gans-Born approximation, we already know the answer (cf. Eqn. 22.13):
+Each of these integral can be evaluated using the method of series expansion. Let us first consider the base case by setting \\(\rho = 0\\) in Eqn. 23.17. Since that reduces the anomalous diffraction approximation to the Rayleigh-Gans-Born approximation, we already know the answer (cf. Eqn. 22.13):
 
 $$ \tag{23.21}
 \begin{aligned}
@@ -9619,7 +9619,162 @@ $$ \tag{23.22}
 	\tau = \sqrt{\tau_e^2 + \tau_o^2} = 2 x \sin(\theta/2).
 $$
 
-Due to the coordinate convention used in this chapter, this result may come as a surprise. We can prove the correctness of Eqn. 23.21 as follows.
+Due to the coordinate convention used in this chapter, this result may come as a surprise. There is an alternative proof of Eqn. 23.21; the same method is directly applicable to the rest of the terms found in Eqn. 23.19.
+
+According to the parameterization introduced in Eqn. 23.7, \\(c \in \[0,1\]\\). Thus, we may perform a change of variables
+
+$$ \tag{23.23}
+	c = \sin{\phi},
+	\quad
+	\sqrt{1 - c^2} = \cos{\phi},
+$$
+
+which yields
+
+$$ \tag{23.24}
+	I_{rgb}(\theta)
+	= \frac{3}{\tau_e} \int_{0}^{\pi/2}
+	J_0 (\tau_o \sin{\phi})
+	\sin(\tau_e \cos{\phi})
+	\cos{\phi} \sin{\phi} \thinspace d\phi.
+$$
+
+Next, we shall substitute the Taylor series expansion of \\(\sin(\tau_e \cos{\phi})\\)
+
+$$ \tag{23.25}
+	\sin{x} = \sum_{n=0}^{\infin} \frac{(-1)^n}{(2 n + 1)!} x^{2 n + 1},
+	\quad
+	\cos{x} = \sum_{n=0}^{\infin} \frac{(-1)^n}{(2 n)!} x^{2 n},
+$$
+
+into Eqn. 23.24:
+
+$$ \tag{23.26}
+\begin{aligned}
+	I_{rgb}(\theta)
+	&= \frac{3}{\tau_e}
+	\sum_{n=0}^{\infin} \frac{(-1)^n}{(2 n + 1)!}
+	\int_{0}^{\pi/2}
+	J_0 (\tau_o \sin{\phi})
+	(\tau_e \cos{\phi})^{2 n + 1}
+	\cos{\phi} \sin{\phi} \thinspace d\phi
+	\cr
+	&= 3 \sum_{n=0}^{\infin}
+	\frac{(-1)^n \tau_e^{2 n}}{(2 n + 1)!}
+	\int_{0}^{\pi/2}
+	J_0 (\tau_o \sin{\phi})
+	\sin{\phi} (\cos{\phi})^{2 (n + 1)}
+	\thinspace d\phi.
+\end{aligned}
+$$
+
+In the expression given above, we may recognize [Sonine's integral](https://dlmf.nist.gov/10.22.E19) \[[Watson](#references) (ch. 12.11)\]:
+
+$$ \tag{23.27}
+	J_{m+l+1}(z) = \frac{z^{l+1}}{2^l \Gamma(l+1)}
+	\int_{0}^{\pi/2} J_{m}(z \sin{\phi}) (\sin{\phi})^{m+1} (\cos{\phi})^{2 l+1} \thinspace d\phi,
+$$
+
+where \\(J_n\\) is the (ordinary) Bessel function of the first kind.
+
+Suppose \\(n\\) and \\(m\\) are integral. Then \\(l = n-1/2\\) is half-integral, and
+
+$$ \tag{23.28}
+\begin{aligned}
+	J_{m+n+1/2}(z)
+	&= \frac{z^{n+1/2}}{2^{n-1/2} \Gamma(n+1/2)}
+	\int_{0}^{\pi/2} J_{m}(z \sin{\phi}) (\sin{\phi})^{m+1} (\cos{\phi})^{2 n} \thinspace d\phi
+	\cr
+	&= \sqrt{\frac{2 z}{\pi}} \frac{2^n z^{n} n!}{(2 n)!}
+	\int_{0}^{\pi/2} J_{m}(z \sin{\phi}) (\sin{\phi})^{m+1} (\cos{\phi})^{2 n} \thinspace d\phi
+	\cr
+\end{aligned}
+$$
+
+where we have expanded the [expression of the gamma function](https://en.wikipedia.org/wiki/Particular_values_of_the_gamma_function) valid for a non-negative integer \\(n\\):
+
+$$ \tag{23.29}
+	\Gamma(1/2 \pm n) =
+	\sqrt{\pi} \left( \frac{(2 n)!}{(\pm 4)^{n} n!} \right)^{\pm 1}.
+$$
+
+By taking Eqn. 18.48 into account, we obtain an integral representation of the spherical Bessel function of the first kind:
+
+$$ \tag{23.30}
+	\frac{(2 (n+1))!}{2^{n+1} z^{n+1} (n+1)!} j_{n+1}(z) =
+	\int_{0}^{\pi/2} J_{0}(z \sin{\phi}) (\cos{\phi})^{2 (n+1)} \sin{\phi} \thinspace d\phi.
+$$
+
+Substitution of Eqn. 23.30 into 23.26 yields
+
+$$ \tag{23.31}
+	I_{rgb}(\theta)
+	= 3 \sum_{n=0}^{\infin}
+	\frac{(-1)^n}{2^{n} n!}
+	\frac{\tau_e^{2 n}}{\tau_o^{n+1}}
+	j_{n+1}(\tau_o).
+$$
+
+In order to connect this infinite series to the result given by Eqn. 23.21, we must expand the latter. Let us consider the following a Taylor series as a function of \\(w\\) around 0, with \\(z\\) treated as a constant parameter:
+
+$$ \tag{23.32}
+	\frac{j_1\negthinspace\left( \sqrt{w + z} \right)}{\sqrt{w + z}}
+	= \sum_{n=0}^{\infin}
+	\frac{w^n}{n!}
+	\frac{\partial^n}{\partial z^n}
+	\frac{j_1\negthinspace\left( \sqrt{z} \right)}{\sqrt{z}}.
+$$
+
+Substitution of the [recurrence relation](https://dlmf.nist.gov/10.51#E3)
+
+$$ \tag{23.33}
+	\left( \frac{1}{z} \frac{\partial}{\partial z} \right)^n
+	\frac{j_m(z)}{z^m} = \frac{(-1)^n j_{n+m}(z)}{z^{n+m}}
+$$
+
+and application of the chain rule yields
+
+$$ \tag{23.34}
+	\frac{\partial}{\partial z}
+	\frac{j_m\negthinspace\left( \sqrt{z} \right)}{z^{m/2}}
+	= \left( \frac{\partial y}{\partial z}
+	\frac{\partial}{\partial y}
+	\frac{j_m\negthinspace\left( y \right)}{y^m}
+	\right)\_{y=\sqrt{z}}
+	= -\frac{1}{2}
+	\frac{j_{m+1}(\sqrt{z})}{z^{(m+1)/2}}.
+$$
+
+By induction, repeated differentiation results in
+
+$$ \tag{23.35}
+	\frac{\partial^n}{\partial z^n}
+	\frac{j_m\negthinspace\left( \sqrt{z} \right)}{z^{m/2}}
+	= \frac{(-1)^n}{2^n}
+	\frac{j_{m+n}(\sqrt{z})}{z^{(m+n)/2}}
+$$
+
+Thus, the Taylor series in Eqn. 23.32 can thus be expressed as
+
+$$
+	\frac{j_1\negthinspace\left( \sqrt{w + z} \right)}{\sqrt{w + z}}
+	= \sum_{n=0}^{\infin}
+	\frac{(-1)^n}{2^n n!}
+	\frac{w^n}{z^{(n+1)/2}}
+	j_{n+1}(\sqrt{z}).
+$$
+
+Setting \\(w = \tau_e^2\\), \\(z = \tau_o^2\\), and taking Eqn. 23.22 into account produces the desired result
+
+$$
+	\frac{j_1\negthinspace\left( \sqrt{\tau_e^2 + \tau_o^2} \right)}{\sqrt{\tau_e^2 + \tau_o^2}}
+	= \sum_{n=0}^{\infin}
+	\frac{(-1)^n}{2^n n!}
+	\frac{\tau_e^{2 n}}{\tau_o^{n+1}}
+	j_{n+1}(\tau_o),
+$$
+
+which, after comparison with Eqn. 23.31, completes the alternative proof of Eqn. 23.21.
 
 ---
 
@@ -9691,194 +9846,6 @@ $$ \tag{23.26} \small
 $$
 
 ---
-
-$$ \tag{23.18}
-\begin{aligned}
-	I_{ada}(\theta)
-	&= \frac{3}{\tau_e + \rho/2} \int_{0}^{1}
-	J_0 (\tau_o c)
-	e^{i \frac{\rho}{2} \sqrt{1 - c^2}}
-	\sin\negthinspace\left((\tau_e + \rho/2) \sqrt{1 - c^2} \right)
-	c \thinspace dc.
-\end{aligned}
-$$
-
-$$
-	\tau_o(x, \theta) = \tau \cos(\theta/2) = x \sin{\theta},
-	\quad
-	\tau_e(x, \theta) = \tau \sin(\theta/2) = x (1 -\cos{\theta}),
-	\quad
-	\sqrt{\tau_e^2 + \tau_o^2} = 2 x \sin(\theta/2),
-$$
-
-$$
-	\rho = 0,
-$$
-
-$$
-	\frac{j_1\negthinspace\left( \sqrt{\tau_e^2 + \tau_o^2} \right)}
-	{\sqrt{\tau_e^2 + \tau_o^2}}
-	= \frac{1}{\tau_e} \int_{0}^{1}
-	J_0 (\tau_o c)
-	\sin\negthinspace\left(\tau_e \sqrt{1 - c^2} \right)
-	c \thinspace dc.
-$$
-
-$$
-	c = \sin{\phi},
-	\quad
-	\sqrt{1 - c^2} = \cos{\phi},
-$$
-
-$$
-	\frac{j_1\negthinspace\left( \sqrt{\tau_e^2 + \tau_o^2} \right)}
-	{\sqrt{\tau_e^2 + \tau_o^2}}
-	= \frac{1}{\tau_e} \int_{0}^{\pi/2}
-	J_0 (\tau_o \sin{\phi})
-	\sin(\tau_e \cos{\phi})
-	\cos{\phi} \sin{\phi} \thinspace d\phi.
-$$
-
-Small \\(x\\) (Taylor series):
-
-$$
-	\sin{x} = \sum_{n=0}^{\infin} \frac{(-1)^n}{(2 n + 1)!} x^{2 n + 1},
-	\quad
-	\cos{x} = \sum_{n=0}^{\infin} \frac{(-1)^n}{(2 n)!} x^{2 n},
-$$
-
-$$
-\begin{aligned}
-	\frac{j_1\negthinspace\left( \sqrt{\tau_e^2 + \tau_o^2} \right)}
-	{\sqrt{\tau_e^2 + \tau_o^2}}
-	&= \frac{1}{\tau_e}
-	\sum_{n=0}^{\infin} \frac{(-1)^n}{(2 n + 1)!}
-	\int_{0}^{\pi/2}
-	J_0 (\tau_o \sin{\phi})
-	(\tau_e \cos{\phi})^{2 n + 1}
-	\cos{\phi} \sin{\phi} \thinspace d\phi
-	\cr
-	&= \sum_{n=0}^{\infin}
-	\frac{(-1)^n \tau_e^{2 n}}{(2 n + 1)!}
-	\int_{0}^{\pi/2}
-	J_0 (\tau_o \sin{\phi})
-	(\cos{\phi})^{2 (n + 1)} \sin{\phi}
-	\thinspace d\phi
-\end{aligned}
-$$
-
-Well-known [Sonine's integral](https://dlmf.nist.gov/10.22.E19) \[[Watson](#references) (ch. 12.11)\]:
-
-$$
-	J_{m+l+1}(z) = \frac{z^{l+1}}{2^l \Gamma(l+1)}
-	\int_{0}^{\pi/2} J_{m}(z \sin{\phi}) (\sin{\phi})^{m+1} (\cos{\phi})^{2 l+1} \thinspace d\phi,
-$$
-
-where \\(J_n\\) is the (ordinary) Bessel function of the first kind.
-
-Suppose l = n-1/2 is half-integral, while n and m are integral. Then
-
-$$
-\begin{aligned}
-	J_{m+n+1/2}(z)
-	&= \frac{z^{n+1/2}}{2^{n-1/2} \Gamma(n+1/2)}
-	\int_{0}^{\pi/2} J_{m}(z \sin{\phi}) (\sin{\phi})^{m+1} (\cos{\phi})^{2 n} \thinspace d\phi
-	\cr
-	&= \sqrt{\frac{2 z}{\pi}} \frac{2^n z^{n} n!}{(2 n)!}
-	\int_{0}^{\pi/2} J_{m}(z \sin{\phi}) (\sin{\phi})^{m+1} (\cos{\phi})^{2 n} \thinspace d\phi
-	\cr
-\end{aligned}
-$$
-
-https://en.wikipedia.org/wiki/Particular_values_of_the_gamma_function
-
-Non-negative integer n
-
-$$
-	\Gamma(1/2 \pm n) = \sqrt{\pi} \left( \frac{(2 n)!}{(\pm 4)^{n} n!} \right)^{\pm 1}
-$$
-
-According to Eqn. 18.48, the spherical Bessel function
-
-$$
-	\frac{(2 (n+1))!}{2^{n+1} z^{n+1} (n+1)!} j_{n+1}(z) =
-	\int_{0}^{\pi/2} J_{0}(z \sin{\phi}) (\cos{\phi})^{2 (n+1)} \sin{\phi} \thinspace d\phi.
-$$
-
-Substitution followed by simplification yields
-
-$$
-\begin{aligned}
-	\frac{j_1\negthinspace\left( \sqrt{\tau_e^2 + \tau_o^2} \right)}
-	{\sqrt{\tau_e^2 + \tau_o^2}}
-	&= \sum_{n=0}^{\infin}
-	\frac{(-1)^n}{2^{n} n!}
-	\frac{\tau_e^{2 n}}{\tau_o^{n+1}}
-	j_{n+1}(\tau_o)
-\end{aligned}
-$$
-
-Rayleigh-Gans: consider & expand in a Taylor series as a function of w (z is a parameter) around 0
-
-$$
-	\frac{j_1\negthinspace\left( \sqrt{w + z} \right)}{\sqrt{w + z}}
-	= \sum_{n=0}^{\infin}
-	\frac{w^n}{n!}
-	\frac{\partial^n}{\partial z^n}
-	\frac{j_1\negthinspace\left( \sqrt{z} \right)}{\sqrt{z}}
-$$
-
-Substitution of the [identity](https://dlmf.nist.gov/10.51#E3)
-
-$$
-	\left( \frac{1}{z} \frac{\partial}{\partial z} \right)^n
-	\frac{j_m(z)}{z^m} = \frac{(-1)^n j_{n+m}(z)}{z^{n+m}}
-$$
-
-and application of the chain and the product rules yield
-
-$$
-	\frac{\partial}{\partial z}
-	\frac{j_m\negthinspace\left( \sqrt{z} \right)}{z^{m/2}}
-	= \frac{\partial y}{\partial z}
-	\left(
-	\frac{\partial}{\partial y}
-	\frac{j_m\negthinspace\left( y \right)}{y^m}
-	\right)\_{y=\sqrt{z}}
-	= -\frac{1}{2}
-	\frac{j_{m+1}(\sqrt{z})}{z^{(m+1)/2}}
-$$
-
-By induction, repeated differentiation produces
-
-$$
-	\frac{\partial^n}{\partial z^n}
-	\frac{j_m\negthinspace\left( \sqrt{z} \right)}{z^{m/2}}
-	= \frac{(-1)^n}{2^n}
-	\frac{j_{m+n}(\sqrt{z})}{z^{(m+n)/2}}
-$$
-
-The Taylor series in Eqn. can thus be expressed as
-
-$$
-	\frac{j_1\negthinspace\left( \sqrt{w + z} \right)}{\sqrt{w + z}}
-	= \sum_{n=0}^{\infin}
-	\frac{(-1)^n}{2^n n!}
-	\frac{w^n}{z^{(n+1)/2}}
-	j_{n+1}(\sqrt{z})
-$$
-
-and setting \\(w = \tau_e^2\\), \\(z = \tau_o^2\\) results in
-
-$$
-	\frac{j_1\negthinspace\left( \sqrt{\tau_e^2 + \tau_o^2} \right)}{\sqrt{\tau_e^2 + \tau_o^2}}
-	= \sum_{n=0}^{\infin}
-	\frac{(-1)^n}{2^n n!}
-	\frac{\tau_e^{2 n}}{\tau_o^{n+1}}
-	j_{n+1}(\tau_o)
-$$
-
-which completes the proof.
 
 https://math.stackexchange.com/questions/3728586/integrate-a-weighted-bessel-function-over-the-unit-disk
 
