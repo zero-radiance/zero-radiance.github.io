@@ -9322,7 +9322,7 @@ It matches the Rayleigh scattering counterpart (cf. Eqn. 21.58) when \\(|m^2 - 1
 
 #### Anomalous Diffraction Approximation
 
-The Rayleigh-Gans-Born approximation admits a straightforward extension. As before, we assume that the particle is nearly transparent:
+The Rayleigh-Gans-Born approximation admits a straightforward extension. As before, we assume that, at the given frequency, the particle is nearly transparent:
 
 $$ \tag{23.1}
 	\left| m^2 - 1 \right|
@@ -9330,9 +9330,9 @@ $$ \tag{23.1}
 	2 \left| m - 1 \right| \ll 1.
 $$
 
-For large particles, this implies that surface reflection is almost entirely absent, except for grazing angles. Furthermore, the degree of deviation of light rays (due to refraction) from the initial direction is insignificant, so they propagate along virtually straight lines.
+For large particles, this implies that surface reflection is almost entirely absent, except for grazing angles. Furthermore, the degree of deviation of light rays (due to refraction) from the initial direction is insignificant, so they propagate virtually undisturbed.
 
-However, unlike in the Rayleigh-Gans-Born approximation, we no longer assume that the phase delay and the absorption experienced by a ray of light as it passes though a (large) particle is negligible, which means that \\(\rho = 2 (m - 1) x\\) can take on arbitrary values \[[4](#references) (ch. 11.1)\].
+However, unlike in the Rayleigh-Gans-Born approximation, we no longer assume that the phase delay and the absorption experienced by a ray of light as it passes though the particle is negligible, which means that \\(\rho = 2 (m - 1) x\\) can take on arbitrary values \[[4](#references) (ch. 11.1)\].
 
 Consider the point \\(\bm{r'}\\) located inside the particle (cf. Fig 23.1). Let us trace a straight line along \\(\bm{n_i}\\) that passes through \\(\bm{r'}\\); by doing so, we can determine the entry and the exit points \\(\bm{r_i}\\) and \\(\bm{r_o}\\), respectively.
 
@@ -9354,19 +9354,20 @@ $$
 
 Thus, the far-field expression of the volume integral equation can be obtained by simply adding a complex exponential factor to the integrand of Eqn. 22.6:
 
-$$ \tag{23.3} \small
+$$ \tag{23.3}
 \begin{aligned}
 	\bm{E_s}(\bm{r}, \omega)
 	&\simeq k^2(\omega)
 	\frac{e^{i k(\omega) r}}{4 \pi r}
-	\big( \mathcal{I} - \bm{n_s} \otimes \bm{n_s} \big) \cdot \bm{E_0}(\bm{n_i}, \omega)
+	\big( \mathcal{I} - \bm{n_s} \otimes \bm{n_s} \big) \cdot \bm{E_0}(\bm{n_i}, \omega) \cr
+	&\times
 	\int\_{V_p} \big( m^2(\bm{r'}, \omega) - 1 \big)
 	e^{i k(\omega) \bm{r'} \cdot (\bm{n_i} - \bm{n_s})}
 	e^{i (m(\bm{r'}, \omega) - 1) k(\omega) (\bm{r'} - \bm{r_i}) \cdot \bm{n_i}} dV'.
 \end{aligned}
 $$
 
-Note that \\(\bm{r_i}\\) is spatially-varying across the surface of the particle, since it depends on both \\(\bm{r'}\\) and \\(\bm{n_i}\\) (in Eqn. 23.2-23.3, these parameters have been omitted for brevity). This makes it necessary to introduce an auxiliary coordinate frame (cf. Eqn. 15.8)
+Note that \\(\bm{r_i}\\) is spatially-varying across the surface of the particle, since it depends on both \\(\bm{r'}\\) and \\(\bm{n_i}\\) (in Eqn. 23.2-23.3, these parameters have been omitted for brevity). This suggests the following choice of the basis vectors (cf. Eqn. 15.8):
 
 $$ \tag{23.4}
 	\bm{e_z} = \bm{n_i}, \quad
@@ -9448,7 +9449,8 @@ $$ \tag{23.8}
 \begin{aligned}
 	\bm{r'} \cdot (\bm{n_i} - \bm{n_s})
 	&= -r\_{u}' |\bm{n_i} - \bm{n_s}|
-     = -2 \sin(\theta/2) (\cos(\theta/2) r\_{x}' - \sin(\theta/2) r\_{z}')
+	\cr
+    &= -2 \sin(\theta/2) (\cos(\theta/2) r\_{x}' - \sin(\theta/2) r\_{z}')
 	\cr
 	&= 2 a \sin(\theta/2) \big( b \sin(\theta/2) - c \cos{\chi} \cos(\theta/2) \big)
 	\cr
@@ -9470,7 +9472,7 @@ $$ \tag{23.9}
 \end{aligned}
 $$
 
-Putting it all together,
+Putting it all together, the exponential factor found in Eqn. 23.3 takes the form
 
 $$ \tag{23.10}
 	e^{i k \bm{r'} \cdot (\bm{n_i} - \bm{n_s})}
@@ -9490,7 +9492,7 @@ $$ \tag{23.11}
 	\tau_o(\theta) = x \sin{\theta}.
 $$
 
-Taking Eqn. 23.7, 23.8 and 23.10 into account allows us to parametrize Eqn. 23.3:
+Taking Eqn. 23.7 and 23.10 into account allows us to parametrize Eqn. 23.3 as follows:
 
 $$ \tag{23.12}
 \begin{aligned}
@@ -9512,11 +9514,11 @@ $$ \tag{23.12}
 	&= \frac{3}{4 \pi}
 	\int_{0}^{1}
 	\int_{-\pi}^{\pi}
+	e^{-i \tau_o c \cos{\chi}} \thinspace d\chi \thinspace
 	\int_{-\sqrt{1 - c^2}}^{\sqrt{1 - c^2}}
 	e^{i (\rho/2 + \tau_e) b}
 	\thinspace db \thinspace
-	e^{i \left( \frac{\rho}{2} \sqrt{1 - c^2} - \tau_o c \cos{\chi} \right)}
-	\thinspace d\chi \thinspace
+	e^{i \frac{\rho}{2} \sqrt{1 - c^2}}
 	c \thinspace dc \thinspace.
 \end{aligned}
 $$
@@ -9524,26 +9526,18 @@ $$
 The innermost integral can be easily evaluated, yielding
 
 $$ \tag{23.13}
-\begin{aligned}
-	I_{ada}(x, \theta)
-	&= \frac{3}{2 \pi}
-	\int_{0}^{1}
-	\int_{-\pi}^{\pi}
-	\frac{\sin\negthinspace\left( (\rho/2 + \tau_e) \sqrt{1 - c^2} \right)}{\rho/2 + \tau_e}
-	e^{i \left( \frac{\rho}{2} \sqrt{1 - c^2} - \tau_o c \cos{\chi} \right)}
-	\thinspace d\chi \thinspace
-	c \thinspace dc \thinspace.
-\end{aligned}
+	\int_{-\sqrt{1 - c^2}}^{\sqrt{1 - c^2}}
+	e^{i (\rho/2 + \tau_e) b}
+	\thinspace db \thinspace
+	= \frac{\sin\negthinspace\left( (\rho/2 + \tau_e) \sqrt{1 - c^2} \right)}{\rho/2 + \tau_e}.
 $$
 
-Geometrically, the resulting expression corresponds to an integral taken over the disk lying in the \\(xy\\) plane.
-
-Now, let us consider the integral
+Now, consider the integral
 
 $$ \tag{23.14}
 	\frac{1}{2 \pi}
 	\int_{-\pi}^{\pi}
-	e^{- i \tau_o c \cos{\chi}}
+	e^{-i \tau_o c \cos{\chi}}
 	\thinspace d\chi.
 $$
 
@@ -9567,7 +9561,7 @@ $$ \tag{23.16}
 	e^{\pm i z \cos{\chi}} \thinspace d\chi.
 $$
 
-Thus, Eqn. 23.13 takes the form
+Thus, Eqn. 23.12 takes the form
 
 $$ \tag{23.17}
 \begin{aligned}
@@ -9580,7 +9574,7 @@ $$ \tag{23.17}
 \end{aligned}
 $$
 
-Eqn. 23.17 can be further simplified by converting the product of trigonometric functions into a sum. This can be achieved by inverting the Euler's formula (cf. Eqn. 18.13?), which yields
+Its expression can be further simplified by converting the product of trigonometric functions into a sum. This can be achieved by inverting the Euler's formula (cf. Eqn. 18.13?), which yields
 
 $$ \tag{23.18}
 	e^{i \phi} \sin(\theta + \phi) =
@@ -9598,7 +9592,9 @@ $$ \tag{23.19}
 	c \thinspace dc.
 $$
 
-Both are quite similar; the \\(\exp(\rho \sqrt{1 - c^2})\\) factor makes the first integral relatively complicated. Of course, we can use Euler's formula to further decompose each complex exponential into a sum of a real cosine and an imaginary sine.
+Both are fairly similar; the \\(\exp(\rho \sqrt{1 - c^2})\\) factor makes the first integral relatively complicated. Of course, we can use Euler's formula to further decompose each complex exponential into a sum of a real cosine and an imaginary sine.
+
+---
 
 Each of these integral can be evaluated using the method of series expansion. Let us first consider the base case by setting \\(\rho = 0\\) in Eqn. 23.17. Since that reduces the anomalous diffraction approximation to the Rayleigh-Gans-Born approximation, we already know the answer (cf. Eqn. 22.13):
 
