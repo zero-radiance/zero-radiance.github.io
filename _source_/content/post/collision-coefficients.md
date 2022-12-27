@@ -9780,6 +9780,10 @@ $$ \tag{23.37}
 	c \thinspace dc.
 $$
 
+Unlike in Eqn. 23.20 and 23.36, this integral is not symmetric under exchange of \\(\tau_e\\) and \\(\tau_o\\), which can be easily verified by inspecting the plot of the function.
+
+{{< figure src="/img/even_odd.svg" caption="*Figure N: Two plots of \\(\tau\_e I\_{cos}\\): the solid plot treats \\(\tau\_e\\) as a variable while setting the value of \\(\tau\_o\\) to a small constant, and the dashed plot does the opposite.*" >}}
+
 The change of variables introduced in Eqn. 23.22 remains applicable:
 
 $$ \tag{23.38}
@@ -9813,8 +9817,24 @@ By setting \\(z = \tau_o\\), we arrive at the following result:
 
 $$ \tag{23.41}
 	I_{cos}(x, \theta)
+	= \frac{1}{\tau_e} \sum_{n=0}^{\infin} \frac{(-1)^n 2^n n!}{(2 n)!}
+	\frac{\tau_e^{2 n}}{\tau_o^{n+1}} J_{n+1}(\tau_o).
+$$
+
+---
+
+$$ \tag{23.}
+	I_{cos}(x, \theta)
 	= \sum_{n=0}^{\infin} \frac{(-1)^n 2^n n!}{(2 n)!}
 	\frac{\tau_e^{2 n - 1}}{\tau_o^{n+1}} J_{n+1}(\tau_o).
+$$
+
+$$ \tag{23.}
+	\frac{J_1\negthinspace\left( \sqrt{\tau_e^2 + \tau_o^2} \right)}{\sqrt{\tau_e^2 + \tau_o^2}}
+	= \sum_{n=0}^{\infin}
+	\frac{(-1)^n}{2^n n!}
+	\frac{\tau_e^{2 n}}{\tau_o^{n+1}}
+	J_{n+1}(\tau_o),
 $$
 
 ---
