@@ -9770,9 +9770,7 @@ $$
 
 which, after comparison with Eqn. 23.30, completes the alternative proof of Eqn. 23.20.
 
----
-
-The second integral found in Eqn. 23.19 features a cosine rather than a sine, which makes it more complicated (in comparison to Eqn. 23.20):
+In order to evaluate Eqn. 23.19, we must also consider a variation of Eqn. 23.20 that features a cosine rather than a sine:
 
 $$ \tag{23.37}
 	I_{cos}(x, \theta)
@@ -9782,7 +9780,7 @@ $$ \tag{23.37}
 	c \thinspace dc.
 $$
 
-After performing the same change of variables introduced in Eqn. 23.22, we readily obtain
+The change of variables introduced in Eqn. 23.22 remains applicable:
 
 $$ \tag{23.38}
 	I_{cos}(x, \theta)
@@ -9792,7 +9790,7 @@ $$ \tag{23.38}
 	\cos{\phi} \sin{\phi} \thinspace d\phi.
 $$
 
-Utilizing the Taylor series expansion of cosine given by 23.24 yields
+Substitution of the Taylor series expansion of cosine given by Eqn. 23.24 yields
 
 $$ \tag{23.39}
 	I_{cos}(x, \theta)
