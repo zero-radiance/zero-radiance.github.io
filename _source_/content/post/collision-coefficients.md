@@ -4958,8 +4958,6 @@ $$
 
 Finally, let us show that Eqn. 17.49 is true at any distance (subject to the conditions imposed by Eqn. 17.1, 17.3 and 17.4). It is fairly difficult to prove this formally, so we will have to resort to an intuitive argument. Return to Eqn. 17.42 and 17.44, and perform a change of variables \\(u = r_j / L\\). Comparison of the integrands reveals that the first complex exponential with \\((k L u)^2\\) performs amplitude modulation of the second one containing \\(k L u\\). These expressions guarantee that oscillation happens at different rates. The combined exponential reaches it peak (unit) amplitude at \\(u = \theta = 0\\) , and then (as the value of \\(u\\) increases) begins to rapidly oscillate, owing to the fact that \\(k L \gg 1\\). Similarly to Eqn. 17.44, the primary contribution to the absolute value of \\(v(f,g)\\) comes from the central peak, the width of which is inversely proportional to \\((k L)^2\\). As it shrinks, the amount of power in the \\(\braket{\Phi_{jk}}\\) decreases accordingly.
 
----
-
 Let us summarize the results of this section. If the ergodic assumption and the single scattering approximation are applicable, and the conditions imposed by Eqn. 17.1, 17.3, and 17.4 hold, then the mean value of the Poynting vector (cf. Eqn. 17.8) in the presence a group of \\(N\\) particles is
 
 $$ \tag{17.51}
@@ -9581,7 +9579,7 @@ $$ \tag{23.18}
 	\frac{e^{i (\theta + 2 \phi )} - e^{-i \theta}}{2 i}.
 $$
 
-As a result, the integral may be split in two parts:
+As a result, the integral may be split in two:
 
 $$ \tag{23.19}
 	I_{ada}(x, \theta)
@@ -9592,11 +9590,9 @@ $$ \tag{23.19}
 	c \thinspace dc.
 $$
 
-Both are fairly similar; the \\(\exp(\rho \sqrt{1 - c^2})\\) factor makes the first integral relatively complicated. Of course, we can use Euler's formula to further decompose each complex exponential into a sum of a real cosine and an imaginary sine.
+The \\(\exp(\rho \sqrt{1 - c^2})\\) factor makes the first integral relatively complicated. Of course, we can use Euler's formula to further decompose each complex exponential into a sum of a real cosine and an imaginary sine.
 
----
-
-Each of these integral can be evaluated using the method of series expansion. Let us first consider the base case by setting \\(\rho = 0\\) in Eqn. 23.17. Since that reduces the anomalous diffraction approximation to the Rayleigh-Gans-Born approximation, we already know the answer (cf. Eqn. 22.13):
+These integrals can be evaluated using the method of series expansion. In order to illustrate it, let us begin the discussion by considering the simplest case when \\(\rho = 0\\). This reduces Eqn. 23.17 to the Rayleigh-Gans-Born approximation, and its closed-form expression is already known (cf. Eqn. 22.13):
 
 $$ \tag{23.20}
 \begin{aligned}
@@ -9615,7 +9611,7 @@ $$ \tag{23.21}
 	\tau = \sqrt{\tau_e^2 + \tau_o^2} = 2 x \sin(\theta/2).
 $$
 
-Due to the coordinate convention used in this chapter, this result may come as a surprise. There is an alternative proof of Eqn. 23.20; the same method is directly applicable to the rest of the terms found in Eqn. 23.19.
+Due to the coordinate convention used in this chapter, this result may come as a surprise. There is an alternative proof of Eqn. 23.20; the same method is directly applicable to the other terms found in Eqn. 23.19.
 
 According to the parameterization introduced in Eqn. 23.7, \\(c \in \[0,1\]\\). Thus, we may perform a change of variables
 
@@ -9635,7 +9631,7 @@ $$ \tag{23.23}
 	\cos{\phi} \sin{\phi} \thinspace d\phi.
 $$
 
-Next, we shall substitute the Taylor series expansion of \\(\sin(\tau_e \cos{\phi})\\)
+Next, let us substitute the Taylor series expansion of \\(\sin(\tau_e \cos{\phi})\\)
 
 $$ \tag{23.24}
 	\sin{x} = \sum_{n=0}^{\infin} \frac{(-1)^n}{(2 n + 1)!} x^{2 n + 1},
@@ -9690,15 +9686,15 @@ $$
 where we have expanded the [expression of the gamma function](https://en.wikipedia.org/wiki/Particular_values_of_the_gamma_function) valid for a non-negative integer \\(n\\):
 
 $$ \tag{23.28}
-	\Gamma(1/2 \pm n) =
+	\Gamma(n \pm 1/2) =
 	\sqrt{\pi} \left( \frac{(2 n)!}{(\pm 4)^{n} n!} \right)^{\pm 1}.
 $$
 
-By taking Eqn. 18.48 into account, we obtain an integral representation of the spherical Bessel function of the first kind:
+After taking Eqn. 18.48 into account, we obtain the following integral representation of the spherical Bessel function of the first kind:
 
 $$ \tag{23.29}
-	\frac{(2 (n+1))!}{2^{n+1} z^{n+1} (n+1)!} j_{n+1}(z) =
-	\int_{0}^{\pi/2} J_{0}(z \sin{\phi}) (\cos{\phi})^{2 (n+1)} \sin{\phi} \thinspace d\phi.
+	j_{n}(z) = \frac{2^{n} z^{n} n!}{(2 n)!}
+	\int_{0}^{\pi/2} J_{0}(z \sin{\phi}) (\cos{\phi})^{2 n} \sin{\phi} \thinspace d\phi.
 $$
 
 Substitution of Eqn. 23.29 into 23.25 yields
@@ -9711,37 +9707,39 @@ $$ \tag{23.30}
 	j_{n+1}(\tau_o).
 $$
 
-In order to connect this infinite series to the result given by Eqn. 23.20, we must expand the latter. Let us consider the following a Taylor series as a function of \\(w\\) around 0, with \\(z\\) treated as a constant parameter:
+In order to connect this infinite series to the expression found in Eqn. 23.20, the latter must also be expanded in a similar manner. Consider the following Taylor series
 
 $$ \tag{23.31}
 	\frac{j_1\negthinspace\left( \sqrt{w + z} \right)}{\sqrt{w + z}}
 	= \sum_{n=0}^{\infin}
 	\frac{w^n}{n!}
 	\frac{\partial^n}{\partial z^n}
-	\frac{j_1\negthinspace\left( \sqrt{z} \right)}{\sqrt{z}}.
+	\frac{j_1\negthinspace\left( \sqrt{z} \right)}{\sqrt{z}}
 $$
 
-Substitution of the [recurrence relation](https://dlmf.nist.gov/10.51#E3)
+as a function of \\(w\\), with \\(z\\) treated as a constant parameter.
+
+Application of the [recurrence relation](https://dlmf.nist.gov/10.51#E3)
 
 $$ \tag{23.32}
-	\left( \frac{1}{z} \frac{\partial}{\partial z} \right)^n
-	\frac{j_m(z)}{z^m} = \frac{(-1)^n j_{n+m}(z)}{z^{n+m}}
+	\left( \frac{1}{y} \frac{\partial}{\partial y} \right)^n
+	\frac{j_m(y)}{y^m} = (-1)^n \frac{j_{n+m}(y)}{y^{n+m}}
 $$
 
-and application of the chain rule yields
+combined with the chain rule yields
 
 $$ \tag{23.33}
 	\frac{\partial}{\partial z}
 	\frac{j_m\negthinspace\left( \sqrt{z} \right)}{z^{m/2}}
-	= \left( \frac{\partial y}{\partial z}
-	\frac{\partial}{\partial y}
-	\frac{j_m\negthinspace\left( y \right)}{y^m}
+	= \frac{\partial y}{\partial z}
+	\left( \frac{\partial}{\partial y}
+	\left( \frac{j_m\negthinspace\left( y \right)}{y^m} \right)
 	\right)\_{y=\sqrt{z}}
 	= -\frac{1}{2}
 	\frac{j_{m+1}(\sqrt{z})}{z^{(m+1)/2}}.
 $$
 
-By induction, repeated differentiation results in
+Repeated differentiation results in
 
 $$ \tag{23.34}
 	\frac{\partial^n}{\partial z^n}
@@ -9750,7 +9748,7 @@ $$ \tag{23.34}
 	\frac{j_{m+n}(\sqrt{z})}{z^{(m+n)/2}}
 $$
 
-Thus, the Taylor series in Eqn. 23.31 can thus be expressed as
+Thus, the Taylor series in Eqn. 23.31 takes the form
 
 $$ \tag{23.35}
 	\frac{j_1\negthinspace\left( \sqrt{w + z} \right)}{\sqrt{w + z}}
