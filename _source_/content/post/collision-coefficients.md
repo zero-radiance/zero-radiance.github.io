@@ -9823,21 +9823,7 @@ $$
 
 ---
 
-$$ \tag{23.}
-	I_{cos}(x, \theta)
-	= \sum_{n=0}^{\infin} \frac{(-1)^n 2^n n!}{(2 n)!}
-	\frac{\tau_e^{2 n - 1}}{\tau_o^{n+1}} J_{n+1}(\tau_o).
-$$
-
-$$ \tag{23.}
-	\frac{J_1\negthinspace\left( \sqrt{\tau_e^2 + \tau_o^2} \right)}{\sqrt{\tau_e^2 + \tau_o^2}}
-	= \sum_{n=0}^{\infin}
-	\frac{(-1)^n}{2^n n!}
-	\frac{\tau_e^{2 n}}{\tau_o^{n+1}}
-	J_{n+1}(\tau_o),
-$$
-
----
+While Eqn. 23.41 is valid for arbitrary values of \\(x\\) and \\(\theta\\), it is ill-suited for numerical computation, since the Bessel functions of the first kind do not have simple (closed-form) expressions, and (if \\(\tau_e \gg 1\\)) a large number of terms may be required in order for the series to converge.
 
 $$
 	I_c(x, 0)
