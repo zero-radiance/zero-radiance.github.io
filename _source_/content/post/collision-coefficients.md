@@ -9823,86 +9823,80 @@ $$
 
 While Eqn. 23.41 is valid for arbitrary values of \\(x\\) and \\(\theta\\), it is ill-suited for numerical computation, since the (ordinary) Bessel functions of the first kind do not have simple (closed-form) expressions, and a large number of terms may be required in order for the series to converge.
 
-$$
-	I_c(x, 0)
-	= \frac{1}{2 \tau_e}
-	= \frac{1}{2 \tau \sin(\theta/2)}
-	= \frac{1}{2 x (1 -\cos{\theta})}
+Instead of Eqn. 23.38, let us consider the following series expansion:
+
+$$ \tag{23.42}
+	\cos{z} = J_{0}(z) +  2 \sum_{n=1}^{\infin} (-1)^n J_{2 n}(z).
 $$
 
-Bessel series:
+After substitution into Eqn. 23.37, we obtain
 
-$$
+$$ \tag{23.43}
 \begin{aligned}
-	\sin{x} &= 2 \sum_{n=0}^{\infin} (-1)^n J_{2 n + 1}(x),
-	\cr
-	\cos{x} &= J_{0}(x) +  2 \sum_{n=1}^{\infin} (-1)^n J_{2 n}(x),
-\end{aligned}
-$$
-
-$$
-\begin{aligned}
-	I_c(x, \theta)
+	I_{cos}(x, \theta)
 	&= \frac{1}{\tau_e} \int_{0}^{\pi/2}
-	J_0 (\tau_o \sin{\phi}) J_0(\tau_e \cos{\phi})
-	\cos{\phi} \sin{\phi} \thinspace d\phi
+	J_0 (\tau_o \sin{\phi}) \sin{\phi} J_0(\tau_e \cos{\phi})
+	\cos{\phi} \thinspace d\phi
 	\cr
 	&+ \frac{2}{\tau_e} \sum_{n=1}^{\infin} (-1)^n \int_{0}^{\pi/2}
-	J_0 (\tau_o \sin{\phi}) J_{2 n}(\tau_e \cos{\phi})
-	\cos{\phi} \sin{\phi} \thinspace d\phi.
+	J_0 (\tau_o \sin{\phi}) \sin{\phi} J_{2 n}(\tau_e \cos{\phi})
+	\cos{\phi} \thinspace d\phi.
 \end{aligned}
 $$
 
-The first integral has a closed form expression (https://dlmf.nist.gov/10.22#E26):
+The first integral can be evaluated analytically using the [identity](https://dlmf.nist.gov/10.22#E26)
 
-$$
-\begin{aligned}
+$$ \tag{23.44}
 	\int_{0}^{\pi/2}
 	J_m (z \sin{\phi}) (\sin{\phi})^{m+1}
 	J_n(w \cos{\phi}) (\cos{\phi})^{n+1} \thinspace d\phi
-	= \frac{z^m w^n J_{m+n+1}\negthinspace\left( \sqrt{z^2 + w^2} \right)}{\left( z^2 + w^2 \right)^{(m+n+1)/2}}
-\end{aligned}
+	= \frac{z^m w^n J_{m+n+1}\negthinspace\left( \sqrt{z^2 + w^2} \right)}{\left( z^2 + w^2 \right)^{(m+n+1)/2}},
 $$
 
-so
+where we set \\(m=n=0\\):
 
-$$
+$$ \tag{23.45}
 \begin{aligned}
-	I_c(x, \theta)
-	= \frac{1}{\tau_e}
+	I_{cos}(x, \theta)
+	&= \frac{1}{\tau_e}
 	\frac{J_{1}\negthinspace\left( \sqrt{\tau_o^2 + \tau_e^2} \right)}{\sqrt{\tau_o^2 + \tau_e^2}}
-	+ \frac{2}{\tau_e} \sum_{n=1}^{\infin} (-1)^n \int_{0}^{\pi/2}
-	J_0 (\tau_o \sin{\phi}) J_{2 n}(\tau_e \cos{\phi})
-	\cos{\phi} \sin{\phi} \thinspace d\phi.
+	\cr
+	&+ \frac{2}{\tau_e} \sum_{n=1}^{\infin} (-1)^n \int_{0}^{\pi/2}
+	J_0 (\tau_o \sin{\phi}) \sin{\phi} J_{2 n}(\tau_e \cos{\phi})
+	\cos{\phi} \thinspace d\phi.
 \end{aligned}
 $$
 
-For \\(\tau_o = x \sin{\theta} \ll 1\\), the first term dominates (show why!).
+If \\(\tau_o = x \sin{\theta} \ll 1\\), we may retain the first term of Eqn. 23.42 and neglect the rest, yielding the approximation
+
+$$ \tag{23.46}
+	I_{cos}(x, \theta)
+	\approx \frac{1}{\tau_e}
+	\frac{J_{1}\negthinspace\left( \sqrt{\tau_o^2 + \tau_e^2} \right)}{\sqrt{\tau_o^2 + \tau_e^2}}.
+$$
 
 ---
 
-If \\(\tau_o \gg 1\\), then \\(\sqrt{\tau_o^2 + \tau_e^2} \gg 1\\), and we use [Hankel's asymptotic expansion](https://dlmf.nist.gov/10.17#E3)
+On the other hand, if \\(\tau_o \gg 1\\), then \\(\sqrt{\tau_o^2 + \tau_e^2} \gg 1\\), and we can utilize [Hankel's asymptotic expansion](https://dlmf.nist.gov/10.17#E3)
 
-$$
+$$ \tag{23.47} \small
 	J_v(z) \simeq \sqrt{ \frac{2}{\pi z} } \left(
-	\cos(z - \pi v/2 - \pi/4) \sum_{n=0}^{\infin} (-1)^n \frac{a_{2 n}(v)}{z^{2 n}} -
-	\sin(z - \pi v/2 - \pi/4) \sum_{n=0}^{\infin} (-1)^n \frac{a_{2 n + 1}(v)}{z^{2 n + 1}}
+	\cos\negthinspace\left( z - \frac{\pi}{2} v - \frac{\pi}{4} \right) \sum_{k=0}^{\infin} (-1)^k \frac{a_{2 k}(v)}{z^{2 k}} -
+	\sin\negthinspace\left( z - \frac{\pi}{2} v - \frac{\pi}{4} \right)  \sum_{k=0}^{\infin} (-1)^k \frac{a_{2 k + 1}(v)}{z^{2 k + 1}}
 	\right),
 $$
 
-with the coefficient \\(a_n\\) defined as follows:
+with the coefficients
 
-$$
-	a_n(v) = \frac{(1/2 - v)_n (1/2 + v)_n}{(-2)^n n!},
-$$
-
-where
-
-$$
-	(b)_n = \frac{\Gamma(a+n)}{\Gamma(a)}
+$$ \tag{23.48}
+	a_k(v) = \frac{(1/2 - v)_k (1/2 + v)_k}{(-2)^k k!},
 $$
 
-is the so-called [Pochhammer's symbol](https://dlmf.nist.gov/5.2#E4).
+defined in terms of the so-called [Pochhammer's symbol](https://dlmf.nist.gov/5.2#E4)
+
+$$ \tag{23.49}
+	(b)_k = b (b+1) (b+2) ... (b+k-1).
+$$
 
 For \\(v = 1/2\\), the expressions given above are simplified to
 
