@@ -9592,7 +9592,9 @@ $$
 
 The \\(\exp(\rho \sqrt{1 - c^2})\\) factor makes the first integral relatively complicated. Of course, we can use Euler's formula to further decompose each complex exponential into a sum of a real cosine and an imaginary sine.
 
-These integrals can be evaluated using the method of series expansion. In order to illustrate it, let us begin the discussion by considering the simplest case when \\(\rho = 0\\). This reduces Eqn. 23.17 to the Rayleigh-Gans-Born approximation, and its closed-form expression is already known (cf. Eqn. 22.13):
+---
+
+These integrals can be evaluated using the method of series expansion. In order to illustrate it, let us consider the base case of \\(\rho = 0\\). This reduces Eqn. 23.17 to the Rayleigh-Gans-Born approximation, so its closed-form expression is already known (cf. Eqn. 22.13):
 
 $$ \tag{23.20}
 \begin{aligned}
@@ -9611,7 +9613,7 @@ $$ \tag{23.21}
 	\tau = \sqrt{\tau_e^2 + \tau_o^2} = 2 x \sin(\theta/2).
 $$
 
-Due to the coordinate convention used in this chapter, this result may come as a surprise. There is an alternative proof of Eqn. 23.20; the same method is directly applicable to the other terms found in Eqn. 23.19.
+Due to the coordinate convention used in this chapter, this result may come as a surprise. There is an alternative proof of Eqn. 23.20; the same method is also directly applicable to the other terms of Eqn. 23.19.
 
 According to the parameterization introduced in Eqn. 23.7, \\(c \in \[0,1\]\\). Thus, we may perform a change of variables
 
@@ -9621,37 +9623,35 @@ $$ \tag{23.22}
 	\sqrt{1 - c^2} = \cos{\phi},
 $$
 
-which yields
+which, after substitution into Eqn. 23.20 and elimination of the factor of 3, yields
 
 $$ \tag{23.23}
-	I_{rgb}(x, \theta)
-	= \frac{3}{\tau_e} \int_{0}^{\pi/2}
+	I_{sin}(x, \theta)
+	= \frac{1}{\tau_e} \int_{0}^{\pi/2}
 	J_0 (\tau_o \sin{\phi})
 	\sin(\tau_e \cos{\phi})
 	\cos{\phi} \sin{\phi} \thinspace d\phi.
 $$
 
-Next, let us substitute the Taylor series expansion of \\(\sin(\tau_e \cos{\phi})\\)
+Next, let us substitute the Taylor series expansion
 
 $$ \tag{23.24}
-	\sin{x} = \sum_{n=0}^{\infin} \frac{(-1)^n}{(2 n + 1)!} x^{2 n + 1},
-	\quad
-	\cos{x} = \sum_{n=0}^{\infin} \frac{(-1)^n}{(2 n)!} x^{2 n},
+	\sin{z} = \sum_{n=0}^{\infin} \frac{(-1)^n}{(2 n + 1)!} z^{2 n + 1}
 $$
 
-into Eqn. 23.23:
+with \\(z = \tau_e \cos{\phi}\\):
 
 $$ \tag{23.25}
 \begin{aligned}
-	I_{rgb}(x, \theta)
-	&= \frac{3}{\tau_e}
+	I_{sin}(x, \theta)
+	&= \frac{1}{\tau_e}
 	\sum_{n=0}^{\infin} \frac{(-1)^n}{(2 n + 1)!}
 	\int_{0}^{\pi/2}
 	J_0 (\tau_o \sin{\phi})
 	(\tau_e \cos{\phi})^{2 n + 1}
 	\cos{\phi} \sin{\phi} \thinspace d\phi
 	\cr
-	&= 3 \sum_{n=0}^{\infin}
+	&= \sum_{n=0}^{\infin}
 	\frac{(-1)^n \tau_e^{2 n}}{(2 n + 1)!}
 	\int_{0}^{\pi/2}
 	J_0 (\tau_o \sin{\phi})
@@ -9700,14 +9700,14 @@ $$
 Substitution of Eqn. 23.29 into 23.25 yields
 
 $$ \tag{23.30}
-	I_{rgb}(x, \theta)
-	= 3 \sum_{n=0}^{\infin}
+	I_{sin}(x, \theta)
+	= \sum_{n=0}^{\infin}
 	\frac{(-1)^n}{2^{n} n!}
 	\frac{\tau_e^{2 n}}{\tau_o^{n+1}}
 	j_{n+1}(\tau_o).
 $$
 
-In order to connect this infinite series to the expression found in Eqn. 23.20, the latter must also be expanded in a similar manner. Consider the following Taylor series
+In order to connect this infinite series to the result of Eqn. 23.20, the latter must also be expanded in a similar manner. Consider the following Taylor series
 
 $$ \tag{23.31}
 	\frac{j_1\negthinspace\left( \sqrt{w + z} \right)}{\sqrt{w + z}}
@@ -9726,7 +9726,7 @@ $$ \tag{23.32}
 	\frac{j_m(y)}{y^m} = (-1)^n \frac{j_{n+m}(y)}{y^{n+m}}
 $$
 
-combined with the chain rule yields
+combined with the chain rule results in
 
 $$ \tag{23.33}
 	\frac{\partial}{\partial z}
@@ -9739,7 +9739,7 @@ $$ \tag{23.33}
 	\frac{j_{m+1}(\sqrt{z})}{z^{(m+1)/2}}.
 $$
 
-Repeated differentiation results in
+Repeated differentiation yields
 
 $$ \tag{23.34}
 	\frac{\partial^n}{\partial z^n}
@@ -9748,7 +9748,7 @@ $$ \tag{23.34}
 	\frac{j_{m+n}(\sqrt{z})}{z^{(m+n)/2}}
 $$
 
-Thus, the Taylor series in Eqn. 23.31 takes the form
+Thus, the Taylor series of Eqn. 23.31 takes the form
 
 $$ \tag{23.35}
 	\frac{j_1\negthinspace\left( \sqrt{w + z} \right)}{\sqrt{w + z}}
@@ -9770,23 +9770,11 @@ $$
 
 which, after comparison with Eqn. 23.30, completes the alternative proof of Eqn. 23.20.
 
-In order to evaluate Eqn. 23.19, we must also consider a variation of Eqn. 23.20 that features a cosine rather than a sine:
+---
+
+In order to evaluate Eqn. 23.19, we must also consider a variation of Eqn. 23.23 that features a cosine rather than a sine:
 
 $$ \tag{23.37}
-	I_{cos}(x, \theta)
-	= \frac{1}{\tau_e} \int_{0}^{1}
-	J_0 (\tau_o c)
-	\cos\negthinspace\left(\tau_e \sqrt{1 - c^2} \right)
-	c \thinspace dc.
-$$
-
-Unlike in Eqn. 23.20 and 23.36, this integral is not symmetric under exchange of \\(\tau_e\\) and \\(\tau_o\\), which can be easily verified by inspecting the plot of the function.
-
-{{< figure src="/img/even_odd.svg" caption="*Figure N: Two plots of \\(\tau\_e I\_{cos}\\): the solid plot treats \\(\tau\_e\\) as a variable while setting the value of \\(\tau\_o\\) to a small constant, and the dashed plot does the opposite.*" >}}
-
-The change of variables introduced in Eqn. 23.22 remains applicable:
-
-$$ \tag{23.38}
 	I_{cos}(x, \theta)
 	= \frac{1}{\tau_e} \int_{0}^{\pi/2}
 	J_0 (\tau_o \sin{\phi})
@@ -9794,7 +9782,17 @@ $$ \tag{23.38}
 	\cos{\phi} \sin{\phi} \thinspace d\phi.
 $$
 
-Substitution of the Taylor series expansion of cosine given by Eqn. 23.24 yields
+This integral is not symmetric under exchange of \\(\tau_e\\) and \\(\tau_o\\), which can be easily verified by inspecting the plot of the function.
+
+{{< figure src="/img/even_odd.svg" caption="*Figure N: Two plots of \\(\tau\_e I\_{cos}\\): the solid plot treats \\(\tau\_e\\) as a variable while setting the value of \\(\tau\_o\\) to a small constant, and the dashed plot does the opposite.*" >}}
+
+Substitution of the Taylor series expansion
+
+$$ \tag{23.38}
+	\cos{z} = \sum_{n=0}^{\infin} \frac{(-1)^n}{(2 n)!} z^{2 n},
+$$
+
+with \\(z = \tau_e \cos{\phi}\\) yields
 
 $$ \tag{23.39}
 	I_{cos}(x, \theta)
@@ -9823,7 +9821,7 @@ $$
 
 ---
 
-While Eqn. 23.41 is valid for arbitrary values of \\(x\\) and \\(\theta\\), it is ill-suited for numerical computation, since the Bessel functions of the first kind do not have simple (closed-form) expressions, and (if \\(\tau_e \gg 1\\)) a large number of terms may be required in order for the series to converge.
+While Eqn. 23.41 is valid for arbitrary values of \\(x\\) and \\(\theta\\), it is ill-suited for numerical computation, since the (ordinary) Bessel functions of the first kind do not have simple (closed-form) expressions, and a large number of terms may be required in order for the series to converge.
 
 $$
 	I_c(x, 0)
