@@ -8958,7 +8958,7 @@ $$
 In particular, for a spherical particle (symmetric with respect to the azimuthal angle \\(\phi\\)), we may set
 
 $$ \tag{22.12}
-	\tau = 2 \sin(\theta/2) x,
+	\tau(x, \theta) = 2 \sin(\theta/2) x,
 $$
 
 and easily calculate \[[4](#references) (ch. 7.21)\]
@@ -9483,11 +9483,11 @@ $$
 where we have introduced the shorthand notation
 
 $$ \tag{23.11}
-	\rho = 2 (m - 1) x,
+	\rho(x) = 2 (m - 1) x,
 	\quad
-	\tau_e(\theta) = x (1 -\cos{\theta}),
+	\tau_e(x, \theta) = x (1 - \cos{\theta}),
 	\quad
-	\tau_o(\theta) = x \sin{\theta}.
+	\tau_o(x, \theta) = x \sin{\theta}.
 $$
 
 Taking Eqn. 23.7 and 23.10 into account allows us to parametrize Eqn. 23.3 as follows:
@@ -9610,7 +9610,7 @@ $$
 where, according to Eqn. 22.12 and 23.11,
 
 $$ \tag{23.21}
-	\tau = \sqrt{\tau_e^2 + \tau_o^2} = 2 x \sin(\theta/2).
+	\tau(x, \theta) = \sqrt{\tau_e^2 + \tau_o^2} = 2 x \sin(\theta/2).
 $$
 
 Due to the coordinate convention used in this chapter, this result may come as a surprise. There is an alternative proof of Eqn. 23.20; the same method is also directly applicable to the other terms of Eqn. 23.19.
@@ -9877,28 +9877,45 @@ $$
 
 ---
 
-On the other hand, if \\(\tau_o \gg 1\\), then \\(\sqrt{\tau_o^2 + \tau_e^2} \gg 1\\), and we can utilize [Hankel's asymptotic expansion](https://dlmf.nist.gov/10.17#E3)
+Alternatively, we can utilize [Hankel's asymptotic expansion](https://dlmf.nist.gov/10.17#E3)
 
-$$ \tag{23.47} \small
+$$ \tag{23.47}
 	J_v(z) \simeq \sqrt{ \frac{2}{\pi z} } \left(
-	\cos\negthinspace\left( z - \frac{\pi}{2} v - \frac{\pi}{4} \right) \sum_{k=0}^{\infin} (-1)^k \frac{a_{2 k}(v)}{z^{2 k}} -
-	\sin\negthinspace\left( z - \frac{\pi}{2} v - \frac{\pi}{4} \right)  \sum_{k=0}^{\infin} (-1)^k \frac{a_{2 k + 1}(v)}{z^{2 k + 1}}
+	\cos{\gamma_v(z)} \sum_{k=0}^{\infin} (-1)^k \frac{a_{2 k}(v)}{z^{2 k}} -
+	\sin{\gamma_v(z)}  \sum_{k=0}^{\infin} (-1)^k \frac{a_{2 k + 1}(v)}{z^{2 k + 1}}
 	\right),
 $$
 
-with the coefficients
+where the angle
 
 $$ \tag{23.48}
-	a_k(v) = \frac{(1/2 - v)_k (1/2 + v)_k}{(-2)^k k!},
+	\gamma_v(z) = z - \frac{\pi}{2} v - \frac{\pi}{4},
 $$
 
-defined in terms of the so-called [Pochhammer's symbol](https://dlmf.nist.gov/5.2#E4)
+and the coefficients
 
 $$ \tag{23.49}
-	(b)_k = b (b+1) (b+2) ... (b+k-1).
+	a_n(v) = \frac{(1/2 - v)_n (1/2 + v)_n}{(-2)^n n!}
 $$
 
-For \\(v = 1/2\\), the expressions given above are simplified to
+are defined in terms of the so-called [Pochhammer's symbol](https://dlmf.nist.gov/5.2#E4)
+
+$$ \tag{23.50}
+	(b)_0 = 1,
+	\quad
+	(b)_n = b (b+1) (b+2) ... (b+n-1).
+$$
+
+---
+
+For \\(v = 1/2\\), the expressions given above take the form
+
+$$ \tag{23.47}
+	J_{1/2}(z) \simeq \sqrt{ \frac{2}{\pi z} } \left(
+	\cos{\gamma_v(z)} \sum_{k=0}^{\infin} (-1)^k \frac{a_{2 k}(v)}{z^{2 k}} -
+	\sin{\gamma_v(z)}  \sum_{k=0}^{\infin} (-1)^k \frac{a_{2 k + 1}(v)}{z^{2 k + 1}}
+	\right),
+$$
 
 ...
 
@@ -9908,6 +9925,8 @@ $$
 	= \frac{\sin\negthinspace\left( 2 x \sin(\theta/2) \right)}{\big( 2 x \sin(\theta/2) \big)^2}
 	= \frac{j_0\negthinspace\left( 2 x \sin(\theta/2) \right)}{2 x \sin(\theta/2)}.
 $$
+
+On the other hand, if \\(\tau_o \gg 1\\), then \\(\sqrt{\tau_o^2 + \tau_e^2} \gg 1\\),
 
 Why???
 
