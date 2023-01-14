@@ -9758,10 +9758,10 @@ $$ \tag{23.35}
 	j_{n+1}(\sqrt{z}).
 $$
 
-Setting \\(w = \tau_e^2\\), \\(z = \tau_o^2\\), and taking Eqn. 23.21 into account produces the desired result
+Setting \\(w = \tau_e^2\\), \\(z = \tau_o^2\\) and taking Eqn. 23.21 into account produces the desired result
 
 $$ \tag{23.36}
-	\frac{j_1\negthinspace\left( \sqrt{\tau_e^2 + \tau_o^2} \right)}{\sqrt{\tau_e^2 + \tau_o^2}}
+	\frac{j_1(\tau)}{\tau}
 	= \sum_{n=0}^{\infin}
 	\frac{(-1)^n}{2^n n!}
 	\frac{\tau_e^{2 n}}{\tau_o^{n+1}}
@@ -9823,10 +9823,10 @@ $$
 
 While Eqn. 23.41 is valid for arbitrary values of \\(x\\) and \\(\theta\\), it is ill-suited for numerical computation, since the (ordinary) Bessel functions of the first kind do not have simple (closed-form) expressions, and a large number of terms may be required in order for the series to converge.
 
-Instead of Eqn. 23.38, let us consider the following series expansion:
+Instead of Eqn. 23.38, let us consider the [generating function](https://dlmf.nist.gov/10.12#E3)
 
 $$ \tag{23.42}
-	\cos{z} = J_{0}(z) +  2 \sum_{n=1}^{\infin} (-1)^n J_{2 n}(z).
+	\cos(z \cos{\phi}) = J_{0}(z) +  2 \sum_{n=1}^{\infin} (-1)^n J_{2 n}(z) \cos(2 n \phi).
 $$
 
 After substitution into Eqn. 23.37, we obtain
@@ -9838,9 +9838,9 @@ $$ \tag{23.43}
 	J_0 (\tau_o \sin{\phi}) \sin{\phi} J_0(\tau_e \cos{\phi})
 	\cos{\phi} \thinspace d\phi
 	\cr
-	&+ \frac{2}{\tau_e} \sum_{n=1}^{\infin} (-1)^n \int_{0}^{\pi/2}
-	J_0 (\tau_o \sin{\phi}) \sin{\phi} J_{2 n}(\tau_e \cos{\phi})
-	\cos{\phi} \thinspace d\phi.
+	&+ \frac{2}{\tau_e} \sum_{n=1}^{\infin} (-1)^n J_{2 n}(\tau_e)
+	\int_{0}^{\pi/2} J_0 (\tau_o \sin{\phi})
+	\sin{\phi} \cos(2 n \phi) \cos{\phi} \thinspace d\phi.
 \end{aligned}
 $$
 
@@ -9850,10 +9850,10 @@ $$ \tag{23.44}
 	\int_{0}^{\pi/2}
 	J_m (z \sin{\phi}) (\sin{\phi})^{m+1}
 	J_n(w \cos{\phi}) (\cos{\phi})^{n+1} \thinspace d\phi
-	= \frac{z^m w^n J_{m+n+1}\negthinspace\left( \sqrt{z^2 + w^2} \right)}{\left( z^2 + w^2 \right)^{(m+n+1)/2}},
+	= \frac{z^m w^n J_{m+n+1}\negthinspace\left( \sqrt{z^2 + w^2} \right)}{\left( z^2 + w^2 \right)^{(m+n+1)/2}}.
 $$
 
-where we set \\(m=n=0\\):
+After setting \\(m=n=0\\), the identity gives
 
 $$ \tag{23.45}
 \begin{aligned}
@@ -9861,18 +9861,17 @@ $$ \tag{23.45}
 	&= \frac{1}{\tau_e}
 	\frac{J_{1}\negthinspace\left( \sqrt{\tau_o^2 + \tau_e^2} \right)}{\sqrt{\tau_o^2 + \tau_e^2}}
 	\cr
-	&+ \frac{2}{\tau_e} \sum_{n=1}^{\infin} (-1)^n \int_{0}^{\pi/2}
-	J_0 (\tau_o \sin{\phi}) \sin{\phi} J_{2 n}(\tau_e \cos{\phi})
-	\cos{\phi} \thinspace d\phi.
+	&+ \frac{2}{\tau_e} \sum_{n=1}^{\infin} (-1)^n J_{2 n}(\tau_e)
+	\int_{0}^{\pi/2} J_0 (\tau_o \sin{\phi})
+	\sin{\phi} \cos(2 n \phi) \cos{\phi} \thinspace d\phi.
 \end{aligned}
 $$
 
-If \\(\tau_o = x \sin{\theta} \ll 1\\), we may retain the first term of Eqn. 23.42 and neglect the rest, yielding the approximation
+Provided the value of \\(\tau = \sqrt{\tau_o^2 + \tau_e^2}\\) is not too large, we may retain the first term of the expansion and neglect the rest, yielding the approximation
 
 $$ \tag{23.46}
 	I_{cos}(x, \theta)
-	\approx \frac{1}{\tau_e}
-	\frac{J_{1}\negthinspace\left( \sqrt{\tau_o^2 + \tau_e^2} \right)}{\sqrt{\tau_o^2 + \tau_e^2}}.
+	\approx \frac{1}{\tau_e} \frac{J_{1}(\tau)}{\tau}.
 $$
 
 ---
@@ -9921,9 +9920,9 @@ $$
 
 $$
 	I_c(x, \theta)
-	\simeq \frac{\sin\negthinspace\left( \sqrt{\tau_e^2 + \tau_o^2} \right)}{\tau_e^2 + \tau_o^2}
-	= \frac{\sin\negthinspace\left( 2 x \sin(\theta/2) \right)}{\big( 2 x \sin(\theta/2) \big)^2}
-	= \frac{j_0\negthinspace\left( 2 x \sin(\theta/2) \right)}{2 x \sin(\theta/2)}.
+	\simeq \frac{j_0(\tau)}{\tau}
+	= \frac{\sin{\tau}}{\tau^2}
+	= \frac{\sin\negthinspace\big( 2 x \sin(\theta/2) \big)}{\big( 2 x \sin(\theta/2) \big)^2}.
 $$
 
 On the other hand, if \\(\tau_o \gg 1\\), then \\(\sqrt{\tau_o^2 + \tau_e^2} \gg 1\\),
