@@ -9867,11 +9867,72 @@ $$ \tag{23.45}
 \end{aligned}
 $$
 
-Provided the value of \\(\tau = \sqrt{\tau_o^2 + \tau_e^2}\\) is not too large, we may retain the first term of the expansion and neglect the rest, yielding the approximation
+Provided \\(\tau_e \le 1\\), we may retain only the first term of the expansion and neglect the rest, yielding the approximation
 
 $$ \tag{23.46}
 	I_{cos}(x, \theta)
 	\approx \frac{1}{\tau_e} \frac{J_{1}(\tau)}{\tau}.
+$$
+
+---
+
+$$ \tag{23.37}
+	I_{cos}(x, \theta)
+	= \frac{1}{\tau_e} \int_{0}^{\pi/2}
+	J_0 (\tau_o \sin{\phi})
+	\cos(\tau_e \cos{\phi})
+	\cos{\phi} \sin{\phi} \thinspace d\phi.
+$$
+
+https://dlmf.nist.gov/10.60#E10
+
+$$ \tag{23.47}
+	J_0 (z \sin{\phi})
+	= \sum_{n=0}^{\infin} (4 n + 1) \frac{(2 n)!}{2^{2 n} (n!)^2} j_{2 n}(z) P_{2 n}(\cos{\phi})
+$$
+
+$$ \tag{23.47}
+	I_{cos}(x, \theta)
+	= \frac{1}{\tau_e}
+	\sum_{n=0}^{\infin} (4 n + 1) \frac{(2 n)!}{2^{2 n} (n!)^2} j_{2 n}(\tau_o)
+	\int_{0}^{\pi/2} P_{2 n}(\cos{\phi}) \cos(\tau_e \cos{\phi})
+	\cos{\phi} \sin{\phi} \thinspace d\phi
+$$
+
+Each of these integrals can be evaluated analytically. Due to the presence of the Legendre polynomial term, the resulting expression is of the form
+
+$$ \tag{23.47}
+	\int_{0}^{\pi/2} P_{2 n}(\cos{\phi}) \cos(z \cos{\phi})
+	\cos{\phi} \sin{\phi} \thinspace d\phi
+	= \frac{R_{2 n}(z) + S_{2 n}(z) \cos{z} + T_{2 n + 1}(z) \sin{z}}{z^{2 (n + 1)}}
+$$
+
+where the coefficient of the leading term of T is always 1.
+
+If \\(z \gg 1\\),
+
+$$ \tag{23.47}
+	\int_{0}^{\pi/2} P_{2 n}(\cos{\phi}) \cos(z \cos{\phi})
+	\cos{\phi} \sin{\phi} \thinspace d\phi
+	\simeq \frac{\sin{z}}{z}
+$$
+
+Thus
+
+$$ \tag{23.47}
+	I_{cos}(x, \theta)
+	\simeq \frac{\sin{\tau_e}}{\tau_e^2}
+	\sum_{n=0}^{\infin} (4 n + 1) \frac{(2 n)!}{2^{2 n} (n!)^2} j_{2 n}(\tau_o)
+$$
+
+Consider the following Taylor series
+
+$$ \tag{23.48}
+	\frac{j_0\negthinspace\left( \sqrt{w + z} \right)}{\sqrt{w + z}}
+	= \sum_{n=0}^{\infin}
+	\frac{w^n}{n!}
+	\frac{\partial^n}{\partial z^n}
+	\frac{j_0\negthinspace\left( \sqrt{z} \right)}{\sqrt{z}}
 $$
 
 ---
@@ -9927,7 +9988,7 @@ $$
 
 On the other hand, if \\(\tau_o \gg 1\\), then \\(\sqrt{\tau_o^2 + \tau_e^2} \gg 1\\),
 
-Why???
+Why??? Taylor series (like 23.31) of the equation above???
 
 ---
 
