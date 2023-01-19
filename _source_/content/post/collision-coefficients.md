@@ -9935,6 +9935,8 @@ $$ \tag{23.48}
 	\frac{j_0\negthinspace\left( \sqrt{z} \right)}{\sqrt{z}}
 $$
 
+...???
+
 ---
 
 Alternatively, we can utilize [Hankel's asymptotic expansion](https://dlmf.nist.gov/10.17#E3)
@@ -9965,6 +9967,74 @@ $$ \tag{23.50}
 	\quad
 	(b)_n = b (b+1) (b+2) ... (b+n-1).
 $$
+
+---
+
+Since we can easily evaluate \\(I\_{sin}\\), instead of \\(I\_{cos}\\) alone, we may consider their linear combination
+
+$$
+\begin{aligned}
+	I_{exp}(x, \theta)
+	&= \frac{1}{\tau_e} \int_{0}^{\pi/2}
+	J_0 (\tau_o \sin{\phi})
+	\exp(i \tau_e \cos{\phi})
+	\cos{\phi} \sin{\phi} \thinspace d\phi
+	\cr
+	&= \frac{1}{\pi \tau_e} \int_{0}^{\pi/2} \int_{0}^{\pi}
+	\exp(\pm i \tau_o \sin{\phi} \cos{\chi} + i \tau_e \cos{\phi})
+	\cos{\phi} \sin{\phi} \thinspace d\chi \thinspace d\phi,
+\end{aligned}
+$$
+
+where Eqn. 23.16 was used.
+
+Since \\(I\_{cos}\\) is real-valued,
+
+$$
+\begin{aligned}
+	I_{cos}(x, \theta)
+	&= \mathcal{Re} \big\lbrace I_{exp}(x, \theta) \big\rbrace
+	\cr
+	&= \frac{1}{\pi \tau_e} \int_{0}^{\pi/2} \int_{0}^{\pi}
+	\cos(\pm \tau_o \sin{\phi} \cos{\chi} + \tau_e \cos{\phi})
+	\cos{\phi} \sin{\phi} \thinspace d\chi \thinspace d\phi
+	\cr
+	&= \frac{1}{\pi \tau_e} \int_{0}^{1} \int_{0}^{\pi}
+	\cos(\pm \tau_o c \cos{\chi} + \tau_e \sqrt{1-c^2})
+	c \thinspace d\chi \thinspace dc
+	\cr
+	&= \frac{1}{\pi x (1 - \cos{\theta})} \int_{0}^{1} \int_{0}^{\pi}
+	\cos(\pm x \sin{\theta} c \cos{\chi} + x (1 - \cos{\theta}) \sqrt{1-c^2})
+	c \thinspace d\chi \thinspace dc.
+\end{aligned}
+$$
+
+Now
+
+$$
+	\sin{\theta} = 2 \sin(\theta/2) \cos(\theta/2),
+	\quad
+	(1 - \cos{\theta}) = 2 \sin^2(\theta/2).
+$$
+
+So
+
+$$
+\begin{aligned}
+	I_{cos}(x, \theta)
+	&= \frac{1}{\pi x 2 \sin^2(\theta/2)} \int_{0}^{1} \int_{0}^{\pi}
+	\cos(\pm x 2 \sin(\theta/2) \cos(\theta/2) c \cos{\chi} + x 2 \sin^2(\theta/2) \sqrt{1-c^2})
+	c \thinspace d\chi \thinspace dc
+	\cr
+	&= \frac{1}{\pi \tau \sin(\theta/2)} \int_{0}^{1} \int_{0}^{\pi}
+	\cos(\pm \tau \cos(\theta/2) c \cos{\chi} + \tau \sin(\theta/2) \sqrt{1-c^2})
+	c \thinspace d\chi \thinspace dc.
+\end{aligned}
+$$
+
+using 23.21
+
+Jacobian...
 
 ---
 
