@@ -9686,7 +9686,7 @@ $$
 where we have expanded the [expression of the gamma function](https://en.wikipedia.org/wiki/Particular_values_of_the_gamma_function) valid for a non-negative integer \\(n\\):
 
 $$ \tag{23.28}
-	\Gamma(n \pm 1/2) =
+	\Gamma(1/2 \pm n) =
 	\sqrt{\pi} \left( \frac{(2 n)!}{(\pm 4)^{n} n!} \right)^{\pm 1}.
 $$
 
@@ -9876,58 +9876,116 @@ $$
 
 ---
 
-$$ \tag{23.37}
-	I_{cos}(x, \theta)
-	= \frac{1}{\tau_e} \int_{0}^{\pi/2}
-	J_0 (\tau_o \sin{\phi})
-	\cos(\tau_e \cos{\phi})
-	\cos{\phi} \sin{\phi} \thinspace d\phi.
-$$
-
-https://dlmf.nist.gov/10.60#E10
+Yet another alternative is to leave the \\(\cos(z \cos{\phi})\\) term alone, and instead perform the [expansion](https://dlmf.nist.gov/10.60#E10) of
 
 $$ \tag{23.47}
 	J_0 (z \sin{\phi})
-	= \sum_{n=0}^{\infin} (4 n + 1) \frac{(2 n)!}{2^{2 n} (n!)^2} j_{2 n}(z) P_{2 n}(\cos{\phi})
+	= \sum_{n=0}^{\infin} (4 n + 1) \frac{(2 n)!}{4^{n} (n!)^2} j_{2 n}(z) P_{2 n}(\cos{\phi}).
 $$
 
-$$ \tag{23.47}
+Eqn. 23.37 is thus transformed into
+
+$$ \tag{23.48}
+\begin{aligned}
 	I_{cos}(x, \theta)
-	= \frac{1}{\tau_e}
-	\sum_{n=0}^{\infin} (4 n + 1) \frac{(2 n)!}{2^{2 n} (n!)^2} j_{2 n}(\tau_o)
+	&= \frac{1}{\tau_e}
+	\sum_{n=0}^{\infin} (4 n + 1) \frac{(2 n)!}{4^{n} (n!)^2} j_{2 n}(\tau_o)
 	\int_{0}^{\pi/2} P_{2 n}(\cos{\phi}) \cos(\tau_e \cos{\phi})
 	\cos{\phi} \sin{\phi} \thinspace d\phi
+	\cr
+	&= \frac{1}{\tau_e}
+	\sum_{n=0}^{\infin} (4 n + 1) \frac{(2 n)!}{4^{n} (n!)^2} j_{2 n}(\tau_o)
+	\int_{0}^{1} P_{2 n}(t) \cos(\tau_e t) t \thinspace dt.
+\end{aligned}
 $$
 
-Each of these integrals can be evaluated analytically. Due to the presence of the Legendre polynomial term, the resulting expression is of the form
+According to ET II 314(8), this integral can be expression in terms of the [hypergeometric function](https://en.wikipedia.org/wiki/Generalized_hypergeometric_function) \\(\_2F\_3\\):
 
-$$ \tag{23.47}
-	\int_{0}^{\pi/2} P_{2 n}(\cos{\phi}) \cos(z \cos{\phi})
-	\cos{\phi} \sin{\phi} \thinspace d\phi
-	= \frac{R_{2 n}(z) + S_{2 n}(z) \cos{z} + T_{2 n + 1}(z) \sin{z}}{z^{2 (n + 1)}}
+$$ \tag{23.49}
+\begin{aligned}
+	\int_{0}^{1} P_{\nu}^{\mu}(t) \cos(a t)
+	t^{\lambda-1} \left( 1-t^2\right)^{-\mu/2} \thinspace dt
+	&= \frac{\sqrt{\pi} 2^{\mu-\lambda} \Gamma(\lambda)}
+	{\Gamma\left( \frac{1+\lambda-\mu-\nu}{2} \right) \Gamma\left( 1+\frac{\lambda-\mu+\nu}{2} \right)}
+	\cr
+	&\times ~_2F_3 \left(
+	\frac{\lambda}{2}, \frac{\lambda+1}{2};
+	\frac{1}{2}, \frac{1+\lambda-\mu-\nu}{2}, 1+\frac{\lambda-\mu+\nu}{2};
+	-\frac{a^2}{4} \right),
+\end{aligned}
 $$
 
-where the coefficient of the leading term of T is always 1.
+where \\(\mathcal{Re} \lbrace \lambda \rbrace > 0\\) and \\(\mathcal{Re} \lbrace \mu \rbrace < 1\\).
 
-If \\(z \gg 1\\),
+Substitution of \\(a=\tau_e,\lambda=2, \mu=0, \nu=2n\\) results in
 
-$$ \tag{23.47}
-	\int_{0}^{\pi/2} P_{2 n}(\cos{\phi}) \cos(z \cos{\phi})
-	\cos{\phi} \sin{\phi} \thinspace d\phi
-	\simeq \frac{\sin{z}}{z}
+$$ \tag{23.50}
+	\int_{0}^{1} P_{2n}(t) \cos(\tau_e t) t \thinspace dt
+	= \frac{(-1)^{n+1} (2 n)!}
+	{4^n (n!)^2 (4n-2) (n+1)}
+	~_2F_3 \left(
+	1, \frac{3}{2};
+	\frac{1}{2}, \frac{3}{2}-n, 2+n;
+	-\frac{\tau_e^2}{4} \right)
 $$
+
+19.18 and 23.28 and [recurrence](https://dlmf.nist.gov/5.5#E1)
+
+$$ \tag{23.51}
+	\Gamma(z + 1) =	z \Gamma(z)
+$$
+
+were used.
 
 Thus
 
-$$ \tag{23.47}
+$$ \tag{23.52}
+	I_{cos}(x, \theta)
+	= \frac{1}{\tau_e}
+	\sum_{n=0}^{\infin} \frac{(-1)^{n+1} (4 n + 1)}{(4n-2) (n+1)}
+	\left( \frac{(2 n)!}{4^n (n!)^2} \right)^2 j_{2 n}(\tau_o)
+	~_2F_3 \left(
+	1, \frac{3}{2};
+	\frac{1}{2}, \frac{3}{2}-n, 2+n;
+	-\frac{\tau_e^2}{4} \right),
+$$
+
+where
+
+$$ \tag{23.53}
+	\frac{(4 n + 1)}{(4n-2) (n+1)}
+	\left( \frac{(2 n)!}{4^n (n!)^2} \right)^2
+	\approx
+	\frac{n^{-2}}{\pi}
+	\quad (n \ge 1).
+$$
+
+Using the properties of the Legendre polynomial, it can be shown that the integral has an expression of the form
+
+$$ \tag{23.54}
+	\int_{0}^{1} P_{2 n}(t) \cos(z t) t \thinspace dt
+	= \frac{R_{2 n}(z) + S_{2 n}(z) \cos{z} + T_{2 n + 1}(z) \sin{z}}{z^{2 (n + 1)}},
+$$
+
+where R S T are polynomials and the coefficient of \\(z^{2 n + 1}\\) is always \\(1\\). Thus, if \\(z \gg 1\\),
+
+$$ \tag{23.55}
+	\int_{0}^{\pi/2} P_{2 n}(\cos{\phi}) \cos(z \cos{\phi})
+	\cos{\phi} \sin{\phi} \thinspace d\phi
+	\simeq \frac{\sin{z}}{z},
+$$
+
+and
+
+$$ \tag{23.56}
 	I_{cos}(x, \theta)
 	\simeq \frac{\sin{\tau_e}}{\tau_e^2}
 	\sum_{n=0}^{\infin} (4 n + 1) \frac{(2 n)!}{2^{2 n} (n!)^2} j_{2 n}(\tau_o)
 $$
 
-Consider the following Taylor series
+Now, consider the following Taylor series
 
-$$ \tag{23.48}
+$$ \tag{23.57}
 	\frac{j_0\negthinspace\left( \sqrt{w + z} \right)}{\sqrt{w + z}}
 	= \sum_{n=0}^{\infin}
 	\frac{w^n}{n!}
