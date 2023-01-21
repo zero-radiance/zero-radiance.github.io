@@ -9876,12 +9876,53 @@ $$
 
 ---
 
-Yet another alternative is to leave the \\(\cos(z \cos{\phi})\\) term alone, and instead perform the [expansion](https://dlmf.nist.gov/10.60#E10) of
+The remaining terms can be evaluated using the [series expansion](https://dlmf.nist.gov/10.60#E10) of
 
 $$ \tag{23.47}
 	J_0 (z \sin{\phi})
-	= \sum_{n=0}^{\infin} (4 n + 1) \frac{(2 n)!}{4^{n} (n!)^2} j_{2 n}(z) P_{2 n}(\cos{\phi}).
+	= \sum_{l=0}^{\infin} (4 l + 1) \frac{(2 l)!}{4^{l} (l!)^2} j_{2 l}(z) P_{2 l}(\cos{\phi}).
 $$
+
+Substitution into Eqn. 23.45 yields
+
+$$ \tag{23.48}
+\begin{aligned}
+	I_{cos}(x, \theta)
+	&= \frac{1}{\tau_e}
+	\frac{J_{1}\negthinspace\left( \sqrt{\tau_o^2 + \tau_e^2} \right)}{\sqrt{\tau_o^2 + \tau_e^2}}
+	\cr
+	&+ \frac{2}{\tau_e} \sum_{n=1}^{\infin} (-1)^n J_{2 n}(\tau_e)
+	\sum_{l=0}^{\infin} j_{2 l}(\tau_o) (4 l + 1) \frac{(2 l)!}{4^{l} (l!)^2}
+	\int_{0}^{\pi/2} P_{2 l}(\cos{\phi})
+	\sin{\phi} \cos(2 n \phi) \cos{\phi} \thinspace d\phi.
+\end{aligned}
+$$
+
+Add https://en.wikipedia.org/wiki/List_of_trigonometric_identities#Multiple-angle_and_half-angle_formulae
+
+If we evaluate the integral
+
+$$ \tag{23.49}
+	I_{l,n} = (4 l + 1) \frac{(2 l)!}{4^{l} (l!)^2}
+	\int_{0}^{\pi/2} P_{2 l}(\cos{\phi})
+	\sin{\phi} \cos(2 n \phi) \cos{\phi} \thinspace d\phi.
+$$
+
+for a range of values of \\(l\\) and \\(n\\),
+
+$$
+\begin{array}{cc}
+	\space & n=1 & n=2 & n=3 & n=4 & n=5 \cr
+	l=1 & 0 & -\frac{1}{6} & 0 & -\frac{1}{30} & 0 \cr
+	l=2 & \frac{5}{16} & -\frac{5}{48} & -\frac{3}{16} & -\frac{1}{48} & -\frac{5}{112} \cr
+	l=3 & \frac{45}{256} & \frac{45}{128} & -\frac{27}{256} & -\frac{117}{640} & -\frac{45}{1792} \cr
+	l=4 & -\frac{91}{2048} & \frac{1027}{6144} & \frac{741}{2048} & -\frac{637}{6144} & -\frac{1105}{6144} \cr
+\end{array}
+$$
+
+we can see that that the series of \\(n\\) terms converges poorly, and presents little advantage over Eqn. 23.41 for numerical calculations.
+
+---
 
 Eqn. 23.37 is thus transformed into
 
@@ -9922,7 +9963,7 @@ Substitution of \\(a=\tau_e,\lambda=2, \mu=0, \nu=2n\\) results in
 $$ \tag{23.50}
 	\int_{0}^{1} P_{2n}(t) \cos(\tau_e t) t \thinspace dt
 	= \frac{(-1)^{n+1} (2 n)!}
-	{4^n (n!)^2 (4n-2) (n+1)}
+	{4^n (n!)^2 (n+1) (4n-2)}
 	~_2F_3 \left(
 	1, \frac{3}{2};
 	\frac{1}{2}, \frac{3}{2}-n, 2+n;
@@ -9942,7 +9983,7 @@ Thus
 $$ \tag{23.52}
 	I_{cos}(x, \theta)
 	= \frac{1}{\tau_e}
-	\sum_{n=0}^{\infin} \frac{(-1)^{n+1} (4 n + 1)}{(4n-2) (n+1)}
+	\sum_{n=0}^{\infin} \frac{(-1)^{n+1} (4 n + 1)}{(n+1) (4n-2)}
 	\left( \frac{(2 n)!}{4^n (n!)^2} \right)^2 j_{2 n}(\tau_o)
 	~_2F_3 \left(
 	1, \frac{3}{2};
