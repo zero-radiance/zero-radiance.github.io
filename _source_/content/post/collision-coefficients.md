@@ -9590,7 +9590,7 @@ $$ \tag{23.19}
 	c \thinspace dc.
 $$
 
-The \\(\exp(\rho \sqrt{1 - c^2})\\) factor makes the first integral relatively complicated. Of course, we can use Euler's formula to further decompose each complex exponential into a sum of a real cosine and an imaginary sine.
+The \\(\exp(\rho \sqrt{1 - c^2})\\) factor makes the first integral more complicated. Of course, we can use Euler's formula to further decompose each complex exponential into a sum of a real cosine and an imaginary sine.
 
 ---
 
@@ -9613,7 +9613,8 @@ $$ \tag{23.21}
 	\tau(x, \theta) = \sqrt{\tau_e^2 + \tau_o^2} = 2 x \sin(\theta/2).
 $$
 
-Due to the coordinate convention used in this chapter, this result may come as a surprise. There is an alternative proof of Eqn. 23.20; the same method is also directly applicable to the other terms of Eqn. 23.19.
+Due to the coordinate convention used in this chapter, this result may come as a surprise. There is an alternative proof of Eqn. 23.20; the same method is also applicable to the other terms of Eqn. 23.19.
+Due to the coordinate convention used in this chapter, this result may come as a surprise. There is an alternative proof of Eqn. 23.20; the same method can be applied the other terms of Eqn. 23.19.
 
 According to the parameterization introduced in Eqn. 23.7, \\(c \in \[0,1\]\\). Thus, we may perform a change of variables
 
@@ -9772,7 +9773,18 @@ which, after comparison with Eqn. 23.30, completes the alternative proof of Eqn.
 
 ---
 
-In order to evaluate Eqn. 23.19, we must also consider a variation of Eqn. 23.23 that features a cosine rather than a sine:
+In order to evaluate
+
+$$ \tag{23.3x}
+	I_{exp}(x, \theta)
+	= \frac{1}{\tau_e} \int_{0}^{\pi/2}
+	J_0 (\tau_o \sin{\phi})
+	\exp(i \tau_e \cos{\phi})
+	\cos{\phi} \sin{\phi} \thinspace d\phi
+$$
+
+
+found in Eqn. 23.19, we must also consider a variation of Eqn. 23.23 that features a cosine rather than a sine:
 
 $$ \tag{23.37}
 	I_{cos}(x, \theta)
@@ -9821,7 +9833,7 @@ $$
 
 ---
 
-While Eqn. 23.41 is valid for arbitrary values of \\(x\\) and \\(\theta\\), it is ill-suited for numerical computation, since the (ordinary) Bessel functions of the first kind do not have simple (closed-form) expressions, and a large number of terms may be required in order for the series to converge.
+While Eqn. 23.41 is valid for arbitrary values of \\(x\\) and \\(\theta\\), it is ill-suited for numerical computation, since the (ordinary) Bessel functions of the first kind do not have simple (closed-form) expressions, and a large number of terms may be required in order to reach the desired accuracy goal.
 
 Instead of Eqn. 23.38, let us consider the [generating function](https://dlmf.nist.gov/10.12#E3)
 
@@ -9874,53 +9886,7 @@ $$ \tag{23.46}
 	\approx \frac{1}{\tau_e} \frac{J_{1}(\tau)}{\tau}.
 $$
 
----
-
-The remaining terms can be evaluated using the [series expansion](https://dlmf.nist.gov/10.60#E10) of
-
-$$ \tag{23.47}
-	J_0 (z \sin{\phi})
-	= \sum_{l=0}^{\infin} (4 l + 1) \frac{(2 l)!}{4^{l} (l!)^2} j_{2 l}(z) P_{2 l}(\cos{\phi}).
-$$
-
-Substitution into Eqn. 23.45 yields
-
-$$ \tag{23.48}
-\begin{aligned}
-	I_{cos}(x, \theta)
-	&= \frac{1}{\tau_e}
-	\frac{J_{1}\negthinspace\left( \sqrt{\tau_o^2 + \tau_e^2} \right)}{\sqrt{\tau_o^2 + \tau_e^2}}
-	\cr
-	&+ \frac{2}{\tau_e} \sum_{n=1}^{\infin} (-1)^n J_{2 n}(\tau_e)
-	\sum_{l=0}^{\infin} j_{2 l}(\tau_o) (4 l + 1) \frac{(2 l)!}{4^{l} (l!)^2}
-	\int_{0}^{\pi/2} P_{2 l}(\cos{\phi})
-	\sin{\phi} \cos(2 n \phi) \cos{\phi} \thinspace d\phi.
-\end{aligned}
-$$
-
-Add https://en.wikipedia.org/wiki/List_of_trigonometric_identities#Multiple-angle_and_half-angle_formulae
-
-If we evaluate the integral
-
-$$ \tag{23.49}
-	I_{l,n} = (4 l + 1) \frac{(2 l)!}{4^{l} (l!)^2}
-	\int_{0}^{\pi/2} P_{2 l}(\cos{\phi})
-	\sin{\phi} \cos(2 n \phi) \cos{\phi} \thinspace d\phi.
-$$
-
-for a range of values of \\(l\\) and \\(n\\),
-
-$$
-\begin{array}{cc}
-	\space & n=1 & n=2 & n=3 & n=4 & n=5 \cr
-	l=1 & 0 & -\frac{1}{6} & 0 & -\frac{1}{30} & 0 \cr
-	l=2 & \frac{5}{16} & -\frac{5}{48} & -\frac{3}{16} & -\frac{1}{48} & -\frac{5}{112} \cr
-	l=3 & \frac{45}{256} & \frac{45}{128} & -\frac{27}{256} & -\frac{117}{640} & -\frac{45}{1792} \cr
-	l=4 & -\frac{91}{2048} & \frac{1027}{6144} & \frac{741}{2048} & -\frac{637}{6144} & -\frac{1105}{6144} \cr
-\end{array}
-$$
-
-we can see that that the series of \\(n\\) terms converges poorly, and presents little advantage over Eqn. 23.41 for numerical calculations.
+Eqn. 23.46 is more slightly more useful than the first term of Eqn. 23.41. Numerical evaluation of the remaining terms is fairly impractical for the same reasons as discussed above.
 
 ---
 
