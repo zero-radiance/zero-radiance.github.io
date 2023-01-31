@@ -9627,7 +9627,7 @@ $$
 which, after substitution into Eqn. 23.20 and elimination of the factor of 3, yields
 
 $$ \tag{23.23}
-	I_{sin}(x, \theta)
+	I_{sin}(\tau_e, \tau_o)
 	= \frac{1}{\tau_e} \int_{0}^{\pi/2}
 	J_0 (\tau_o \sin{\phi})
 	\sin(\tau_e \cos{\phi})
@@ -9644,7 +9644,7 @@ with \\(z = \tau_e \cos{\phi}\\):
 
 $$ \tag{23.25}
 \begin{aligned}
-	I_{sin}(x, \theta)
+	I_{sin}(\tau_e, \tau_o)
 	&= \frac{1}{\tau_e}
 	\sum_{n=0}^{\infin} \frac{(-1)^n}{(2 n + 1)!}
 	\int_{0}^{\pi/2}
@@ -9701,7 +9701,7 @@ $$
 Substitution of Eqn. 23.29 into 23.25 yields
 
 $$ \tag{23.30}
-	I_{sin}(x, \theta)
+	I_{sin}(\tau_e, \tau_o)
 	= \sum_{n=0}^{\infin}
 	\frac{(-1)^n}{2^{n} n!}
 	\frac{\tau_e^{2 n}}{\tau_o^{n+1}}
@@ -9776,7 +9776,7 @@ which, after comparison with Eqn. 23.30, completes the alternative proof of Eqn.
 In order to evaluate
 
 $$ \tag{23.3x}
-	I_{exp}(x, \theta)
+	I_{exp}(\tau_e, \tau_o)
 	= \frac{1}{\tau_e} \int_{0}^{\pi/2}
 	J_0 (\tau_o \sin{\phi})
 	\exp(i \tau_e \cos{\phi})
@@ -9787,14 +9787,14 @@ $$
 found in Eqn. 23.19, we must also consider a variation of Eqn. 23.23 that features a cosine rather than a sine:
 
 $$ \tag{23.37}
-	I_{cos}(x, \theta)
+	I_{cos}(\tau_e, \tau_o)
 	= \frac{1}{\tau_e} \int_{0}^{\pi/2}
 	J_0 (\tau_o \sin{\phi})
 	\cos(\tau_e \cos{\phi})
 	\cos{\phi} \sin{\phi} \thinspace d\phi.
 $$
 
-This integral is not symmetric under exchange of \\(\tau_e\\) and \\(\tau_o\\), which can be easily verified by inspecting the plot of the function.
+In general, this integral is not symmetric under exchange of \\(\tau_e\\) and \\(\tau_o\\), which can be easily verified by inspecting the plot of the function.
 
 {{< figure src="/img/even_odd.svg" caption="*Figure N: Two plots of \\(\tau\_e I\_{cos}\\): the solid plot treats \\(\tau\_e\\) as a variable while setting the value of \\(\tau\_o\\) to a small constant, and the dashed plot does the opposite.*" >}}
 
@@ -9807,7 +9807,7 @@ $$
 with \\(z = \tau_e \cos{\phi}\\) yields
 
 $$ \tag{23.39}
-	I_{cos}(x, \theta)
+	I_{cos}(\tau_e, \tau_o)
 	= \frac{1}{\tau_e}
 	\sum_{n=0}^{\infin} \frac{(-1)^n \tau_e^{2 n}}{(2 n)!}
 	\int_{0}^{\pi/2}
@@ -9826,16 +9826,16 @@ $$
 By setting \\(z = \tau_o\\), we arrive at the following result:
 
 $$ \tag{23.41}
-	I_{cos}(x, \theta)
+	I_{cos}(\tau_e, \tau_o)
 	= \frac{1}{\tau_e} \sum_{n=0}^{\infin} \frac{(-1)^n 2^n n!}{(2 n)!}
 	\frac{\tau_e^{2 n}}{\tau_o^{n+1}} J_{n+1}(\tau_o).
 $$
 
 ---
 
-While Eqn. 23.41 is valid for arbitrary values of \\(x\\) and \\(\theta\\), it is ill-suited for numerical computation, since the (ordinary) Bessel functions of the first kind do not have simple (closed-form) expressions, and a large number of terms may be required in order to reach the desired accuracy goal.
+Inspection of Fig. N suggests the existence of a symmetric expression of \\(\tau\_e I\_{cos}\\) for small values of \\(\tau_e\\).
 
-Instead of Eqn. 23.38, let us consider the [generating function](https://dlmf.nist.gov/10.12#E3)
+In order to find it, instead of Eqn. 23.38, consider the [generating function](https://dlmf.nist.gov/10.12#E3)
 
 $$ \tag{23.42}
 	\cos(z \cos{\phi}) = J_{0}(z) +  2 \sum_{n=1}^{\infin} (-1)^n J_{2 n}(z) \cos(2 n \phi).
@@ -9845,7 +9845,7 @@ After substitution into Eqn. 23.37, we obtain
 
 $$ \tag{23.43}
 \begin{aligned}
-	I_{cos}(x, \theta)
+	I_{cos}(\tau_e, \tau_o)
 	&= \frac{1}{\tau_e} \int_{0}^{\pi/2}
 	J_0 (\tau_o \sin{\phi}) \sin{\phi} J_0(\tau_e \cos{\phi})
 	\cos{\phi} \thinspace d\phi
@@ -9869,7 +9869,7 @@ After setting \\(m=n=0\\), the identity gives
 
 $$ \tag{23.45}
 \begin{aligned}
-	I_{cos}(x, \theta)
+	I_{cos}(\tau_e, \tau_o)
 	&= \frac{1}{\tau_e}
 	\frac{J_{1}\negthinspace\left( \sqrt{\tau_o^2 + \tau_e^2} \right)}{\sqrt{\tau_o^2 + \tau_e^2}}
 	\cr
@@ -9879,22 +9879,45 @@ $$ \tag{23.45}
 \end{aligned}
 $$
 
-Provided \\(\tau_e \le 1\\), we may retain only the first term of the expansion and neglect the rest, yielding the approximation
+Provided \\(\tau_e \ll 1\\), for arbitrary values of \\(\tau_o\\), we may retain only the first term of the expansion and neglect the rest, yielding
 
 $$ \tag{23.46}
-	I_{cos}(x, \theta)
-	\approx \frac{1}{\tau_e} \frac{J_{1}(\tau)}{\tau}.
+	\tau_e I_{cos}(\tau_e, \tau_o)
+	\approx \frac{J_{1}(\tau)}{\tau}.
 $$
 
-Eqn. 23.46 is more slightly more useful than the first term of Eqn. 23.41. Numerical evaluation of the remaining terms is fairly impractical for the same reasons as discussed above.
+---
+
+\\(\tau_e \gg 1\\)...
+
+Now, consider the following Taylor series
+
+$$ \tag{23.57}
+	\frac{j_0\negthinspace\left( \sqrt{w + z} \right)}{\sqrt{w + z}}
+	= \sum_{n=0}^{\infin}
+	\frac{w^n}{n!}
+	\frac{\partial^n}{\partial z^n}
+	\frac{j_0\negthinspace\left( \sqrt{z} \right)}{\sqrt{z}}
+$$
+
+...???
 
 ---
+
+While Eqn. 23.41 is valid for arbitrary values of \\(x\\) and \\(\theta\\), it is ill-suited for numerical computation, since the (ordinary) Bessel functions of the first kind do not have simple (closed-form) expressions, and a large number of terms may be required in order to reach the desired accuracy goal.
+
+The remaining terms can be evaluated using the [series expansion](https://dlmf.nist.gov/10.60#E10) of
+
+$$ \tag{23.47}
+	J_0 (z \sin{\phi})
+	= \sum_{l=0}^{\infin} (4 l + 1) \frac{(2 l)!}{4^{l} (l!)^2} j_{2 l}(z) P_{2 l}(\cos{\phi}).
+$$
 
 Eqn. 23.37 is thus transformed into
 
 $$ \tag{23.48}
 \begin{aligned}
-	I_{cos}(x, \theta)
+	I_{cos}(\tau_e, \tau_o)
 	&= \frac{1}{\tau_e}
 	\sum_{n=0}^{\infin} (4 n + 1) \frac{(2 n)!}{4^{n} (n!)^2} j_{2 n}(\tau_o)
 	\int_{0}^{\pi/2} P_{2 n}(\cos{\phi}) \cos(\tau_e \cos{\phi})
@@ -9947,7 +9970,7 @@ were used.
 Thus
 
 $$ \tag{23.52}
-	I_{cos}(x, \theta)
+	I_{cos}(\tau_e, \tau_o)
 	= \frac{1}{\tau_e}
 	\sum_{n=0}^{\infin} \frac{(-1)^{n+1} (4 n + 1)}{(n+1) (4n-2)}
 	\left( \frac{(2 n)!}{4^n (n!)^2} \right)^2 j_{2 n}(\tau_o)
@@ -9985,22 +10008,10 @@ $$
 and
 
 $$ \tag{23.56}
-	I_{cos}(x, \theta)
+	I_{cos}(\tau_e, \tau_o)
 	\simeq \frac{\sin{\tau_e}}{\tau_e^2}
 	\sum_{n=0}^{\infin} (4 n + 1) \frac{(2 n)!}{2^{2 n} (n!)^2} j_{2 n}(\tau_o)
 $$
-
-Now, consider the following Taylor series
-
-$$ \tag{23.57}
-	\frac{j_0\negthinspace\left( \sqrt{w + z} \right)}{\sqrt{w + z}}
-	= \sum_{n=0}^{\infin}
-	\frac{w^n}{n!}
-	\frac{\partial^n}{\partial z^n}
-	\frac{j_0\negthinspace\left( \sqrt{z} \right)}{\sqrt{z}}
-$$
-
-...???
 
 ---
 
@@ -10057,7 +10068,7 @@ Since \\(I\_{cos}\\) is real-valued,
 
 $$
 \begin{aligned}
-	I_{cos}(x, \theta)
+	I_{cos}(\tau_e, \tau_o)
 	&= \mathcal{Re} \big\lbrace I_{exp}(x, \theta) \big\rbrace
 	\cr
 	&= \frac{1}{\pi \tau_e} \int_{0}^{\pi/2} \int_{0}^{\pi}
@@ -10086,7 +10097,7 @@ So
 
 $$
 \begin{aligned}
-	I_{cos}(x, \theta)
+	I_{cos}(\tau_e, \tau_o)
 	&= \frac{1}{\pi x 2 \sin^2(\theta/2)} \int_{0}^{1} \int_{0}^{\pi}
 	\cos(\pm x 2 \sin(\theta/2) \cos(\theta/2) c \cos{\chi} + x 2 \sin^2(\theta/2) \sqrt{1-c^2})
 	c \thinspace d\chi \thinspace dc
