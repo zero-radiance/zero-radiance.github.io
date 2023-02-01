@@ -9892,7 +9892,7 @@ $$
 
 Now, consider the following Taylor series
 
-$$ \tag{23.57}
+$$ \tag{23.47}
 	\frac{j_0\negthinspace\left( \sqrt{w + z} \right)}{\sqrt{w + z}}
 	= \sum_{n=0}^{\infin}
 	\frac{w^n}{n!}
@@ -9900,7 +9900,30 @@ $$ \tag{23.57}
 	\frac{j_0\negthinspace\left( \sqrt{z} \right)}{\sqrt{z}}
 $$
 
+According to (https://dlmf.nist.gov/10.51)
+
+$$ \tag{23.48}
+	\frac{\partial j_m(z)}{\partial z}
+	= \frac{m j_m(z) - z j_{m+1}(z)}{z}.
+$$
+
+Thus, by chain rule (show it),
+
+$$ \tag{23.49}
+	\frac{\partial}{\partial z} \left( \frac{j_m(z)}{z^n} \right)
+	= (m-n) \frac{ j_m(z)}{z^{n+1}} - \frac{j_{m+1}(z)}{z^{n}}  ,
+$$
+
+Thus, when we take a derivative, we get two terms back: one with a larger n, and one with a larger m.
+
 ...???
+
+$$
+	I_c(x, \theta)
+	\simeq \frac{j_0(\tau)}{\tau}
+	= \frac{\sin{\tau}}{\tau^2}
+	= \frac{\sin\negthinspace\big( 2 x \sin(\theta/2) \big)}{\big( 2 x \sin(\theta/2) \big)^2}.
+$$
 
 ---
 
@@ -10122,19 +10145,6 @@ $$ \tag{23.47}
 	\sin{\gamma_v(z)}  \sum_{k=0}^{\infin} (-1)^k \frac{a_{2 k + 1}(v)}{z^{2 k + 1}}
 	\right),
 $$
-
-...
-
-$$
-	I_c(x, \theta)
-	\simeq \frac{j_0(\tau)}{\tau}
-	= \frac{\sin{\tau}}{\tau^2}
-	= \frac{\sin\negthinspace\big( 2 x \sin(\theta/2) \big)}{\big( 2 x \sin(\theta/2) \big)^2}.
-$$
-
-On the other hand, if \\(\tau_o \gg 1\\), then \\(\sqrt{\tau_o^2 + \tau_e^2} \gg 1\\),
-
-Why??? Taylor series (like 23.31) of the equation above???
 
 ---
 
