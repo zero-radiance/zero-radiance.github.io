@@ -9879,18 +9879,53 @@ $$ \tag{23.45}
 \end{aligned}
 $$
 
-Provided \\(\tau_e \ll 1\\), for arbitrary values of \\(\tau_o\\), we may retain only the first term of the expansion and neglect the rest, yielding
+Provided \\(\tau_e \ll \tau_o\\) (why?), we may retain only the first term of the expansion and neglect the rest, yielding the approximation
 
 $$ \tag{23.46}
 	\tau_e I_{cos}(\tau_e, \tau_o)
 	\approx \frac{J_{1}(\tau)}{\tau}.
 $$
 
+for arbitrary values of \\(\tau\\).
+
+---
+
+In the particular case of \\(\tau \gg 1\\), we can utilize [Hankel's asymptotic expansion](https://dlmf.nist.gov/10.17#E3)
+
+$$ \tag{23.47}
+	J_v(z) \simeq \sqrt{ \frac{2}{\pi z} } \left(
+	\cos{\gamma_v(z)} \sum_{k=0}^{\infin} (-1)^k \frac{a_{2 k}(v)}{z^{2 k}} -
+	\sin{\gamma_v(z)}  \sum_{k=0}^{\infin} (-1)^k \frac{a_{2 k + 1}(v)}{z^{2 k + 1}}
+	\right),
+$$
+
+where the angle
+
+$$ \tag{23.48}
+	\gamma_v(z) = z - \frac{\pi}{2} v - \frac{\pi}{4},
+$$
+
+and the coefficients
+
+$$ \tag{23.49}
+	a_n(v) = \frac{(1/2 - v)_n (1/2 + v)_n}{(-2)^n n!}
+$$
+
+are defined in terms of the so-called [Pochhammer's symbol](https://dlmf.nist.gov/5.2#E4)
+
+$$ \tag{23.50}
+	(b)_0 = 1,
+	\quad
+	(b)_n = b (b+1) (b+2) ... (b+n-1).
+$$
+
+Setting \\(v=1\\) in Eqn. 23.50 gives...
+
 ---
 
 \\(\tau_e \gg 1\\)...
 
-Now, consider the following Taylor series
+Now, consider the following Taylor series: w = e, z = o
 
 $$ \tag{23.47}
 	\frac{j_0\negthinspace\left( \sqrt{w + z} \right)}{\sqrt{w + z}}
@@ -9900,21 +9935,23 @@ $$ \tag{23.47}
 	\frac{j_0\negthinspace\left( \sqrt{z} \right)}{\sqrt{z}}
 $$
 
-According to (https://dlmf.nist.gov/10.51)
+According to the [differentiation rule](https://dlmf.nist.gov/10.51),
 
 $$ \tag{23.48}
 	\frac{\partial j_m(z)}{\partial z}
 	= \frac{m j_m(z) - z j_{m+1}(z)}{z}.
 $$
 
-Thus, by chain rule (show it),
+Thus, if we apply the chain rule to the expression
 
 $$ \tag{23.49}
 	\frac{\partial}{\partial z} \left( \frac{j_m(z)}{z^n} \right)
-	= (m-n) \frac{ j_m(z)}{z^{n+1}} - \frac{j_{m+1}(z)}{z^{n}}  ,
+	= \frac{\partial}{\partial z} \left( \frac{1}{z^n} \right) j_m(z)
+	+ \frac{1}{z^n} \frac{\partial}{\partial z} \big( j_m(z) \big)
+	= (m-n) \frac{ j_m(z)}{z^{n+1}} - \frac{j_{m+1}(z)}{z^{n}},
 $$
 
-Thus, when we take a derivative, we get two terms back: one with a larger n, and one with a larger m.
+we get a sum of two terms of the same form: one with a larger value of \\(n\\), and one with a larger value of \\(m\\).
 
 ...???
 
