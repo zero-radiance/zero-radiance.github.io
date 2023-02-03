@@ -9798,7 +9798,7 @@ In general, this integral is not symmetric under exchange of \\(\tau_e\\) and \\
 
 {{< figure src="/img/even_odd.svg" caption="*Figure N: Two plots of \\(\tau\_e I\_{cos}\\): the solid plot treats \\(\tau\_e\\) as a variable while setting the value of \\(\tau\_o\\) to a small constant, and the dashed plot does the opposite.*" >}}
 
-Substitution of the Taylor series expansion
+Substitution of the [Maclaurin series](https://en.wikipedia.org/wiki/Taylor_series#Trigonometric_functions) expansion
 
 $$ \tag{23.38}
 	\cos{z} = \sum_{n=0}^{\infin} \frac{(-1)^n}{(2 n)!} z^{2 n},
@@ -9830,6 +9830,28 @@ $$ \tag{23.41}
 	= \frac{1}{\tau_e} \sum_{n=0}^{\infin} \frac{(-1)^n 2^n n!}{(2 n)!}
 	\frac{\tau_e^{2 n}}{\tau_o^{n+1}} J_{n+1}(\tau_o).
 $$
+
+Since Eqn. 23.38 is a series expansion around \\(0\\), it comes as no surprise that numerical evaluation of of Eqn. 23.41 using small number of terms yields an accurate result only if \\(\tau_e \ll 1\\). If, in addition, \\(\tau_o \ll 1\\), we may also perform a [power series](https://dlmf.nist.gov/10.2#E2) expansion of the Bessel function
+
+$$ \tag{23.42}
+	J_{\nu}(z) = \sum_{k = 0}^{\infin}
+	\frac{(-1)^k (z/2)^{2 k + \nu}}{k! \Gamma(k + \nu + 1)},
+$$
+
+which, coupled with Eqn. 19.18, yields the following expression
+
+$$ \tag{23.43}
+\begin{aligned}
+	I_{cos}(\tau_e, \tau_o)
+	&= \frac{1}{\tau_e} \sum_{n=0}^{\infin} \frac{(-1)^n n! \tau_e^{2 n}}{(2 n)!}
+	\sum_{k = 0}^{\infin}
+	\frac{(-1)^k \tau_o^{2 k}}{2^{2 k + 1} k! (k + n + 1)!}
+	\cr
+	&= \frac{1}{\tau_e} \left( \frac{1}{2} - \frac{\tau_e^2}{8} - \frac{\tau_o^2}{16} + \frac{\tau_e^2 \tau_o^2}{96} + \mathellipsis \right)
+\end{aligned}
+$$
+
+that is particularly useful for small values of \\(\tau\\).
 
 ---
 
