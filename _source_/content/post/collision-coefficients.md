@@ -9784,7 +9784,7 @@ $$ \tag{23.3x}
 $$
 
 
-found in Eqn. 23.19, we must also consider a variation of Eqn. 23.23 that features a cosine rather than a sine:
+found in Eqn. 23.19, we must also consider a variant of Eqn. 23.23 that features a cosine rather than a sine:
 
 $$ \tag{23.37}
 	I_{cos}(\tau_e, \tau_o)
@@ -9794,7 +9794,7 @@ $$ \tag{23.37}
 	\cos{\phi} \sin{\phi} \thinspace d\phi.
 $$
 
-In general, this integral is not symmetric under exchange of \\(\tau_e\\) and \\(\tau_o\\), which can be easily verified by inspecting the plot of the function.
+In general, this integral is not symmetric under exchange of \\(\tau_e\\) and \\(\tau_o\\), which can be easily verified by means of a visual inspection of the plot of the function.
 
 {{< figure src="/img/even_odd.svg" caption="*Figure N: Two plots of \\(\tau\_e I\_{cos}\\): the solid plot treats \\(\tau\_e\\) as a variable while setting the value of \\(\tau\_o\\) to a small constant, and the dashed plot does the opposite.*" >}}
 
@@ -9811,9 +9811,9 @@ $$ \tag{23.39}
 	= \frac{1}{\tau_e}
 	\sum_{n=0}^{\infin} \frac{(-1)^n \tau_e^{2 n}}{(2 n)!}
 	\int_{0}^{\pi/2}
-	J_0 (\tau_o \sin{\phi})
+	J_0 (\tau_o \sin{\phi}) \sin{\phi}
 	(\cos{\phi})^{2 n + 1}
-	\sin{\phi} \thinspace d\phi.
+	\thinspace d\phi.
 $$
 
 Now, according to Sonine's integral (Eqn. 23.26) and the definition of the gamma function for an integral argument (Eqn. 19.18),
@@ -9831,14 +9831,14 @@ $$ \tag{23.41}
 	\frac{\tau_e^{2 n}}{\tau_o^{n+1}} J_{n+1}(\tau_o).
 $$
 
-Since Eqn. 23.38 is a series expansion around \\(0\\), it comes as no surprise that numerical evaluation of of Eqn. 23.41 using small number of terms yields an accurate result only if \\(\tau_e \ll 1\\). If, in addition, \\(\tau_o \ll 1\\), we may also perform a [power series](https://dlmf.nist.gov/10.2#E2) expansion of the Bessel function
+Since Eqn. 23.38 is a series expansion around \\(0\\), numerical evaluation of of Eqn. 23.41 using small number of terms yields an accurate result only for \\(\tau_e \ll 1\\). If, in addition, \\(\tau_o \ll 1\\), we may perform a [power series](https://dlmf.nist.gov/10.2#E2) expansion of the Bessel function
 
 $$ \tag{23.42}
 	J_{\nu}(z) = \sum_{k = 0}^{\infin}
 	\frac{(-1)^k (z/2)^{2 k + \nu}}{k! \Gamma(k + \nu + 1)},
 $$
 
-which, coupled with Eqn. 19.18, yields the following expression
+which, coupled with Eqn. 19.18 of the gamma function, yields the formula
 
 $$ \tag{23.43}
 \begin{aligned}
@@ -9855,17 +9855,17 @@ that is particularly useful for small values of \\(\tau\\).
 
 ---
 
-Inspection of Fig. N suggests the existence of a symmetric expression of \\(\tau\_e I\_{cos}\\) for small values of \\(\tau_e\\).
+Close examination of Fig. N suggests the existence of a symmetric expression of \\(\tau\_e I\_{cos}\\) for small values of \\(\tau_e\\).
 
 In order to find it, instead of Eqn. 23.38, consider the [generating function](https://dlmf.nist.gov/10.12#E3)
 
-$$ \tag{23.42}
+$$ \tag{23.44}
 	\cos(z \cos{\phi}) = J_{0}(z) +  2 \sum_{n=1}^{\infin} (-1)^n J_{2 n}(z) \cos(2 n \phi).
 $$
 
 After substitution into Eqn. 23.37, we obtain
 
-$$ \tag{23.43}
+$$ \tag{23.45}
 \begin{aligned}
 	I_{cos}(\tau_e, \tau_o)
 	&= \frac{1}{\tau_e} \int_{0}^{\pi/2}
@@ -9880,7 +9880,7 @@ $$
 
 The first integral can be evaluated analytically using the [identity](https://dlmf.nist.gov/10.22#E26)
 
-$$ \tag{23.44}
+$$ \tag{23.46}
 	\int_{0}^{\pi/2}
 	J_m (z \sin{\phi}) (\sin{\phi})^{m+1}
 	J_n(w \cos{\phi}) (\cos{\phi})^{n+1} \thinspace d\phi
@@ -9889,7 +9889,7 @@ $$
 
 After setting \\(m=n=0\\), the identity gives
 
-$$ \tag{23.45}
+$$ \tag{23.47}
 \begin{aligned}
 	I_{cos}(\tau_e, \tau_o)
 	&= \frac{1}{\tau_e}
@@ -9901,9 +9901,9 @@ $$ \tag{23.45}
 \end{aligned}
 $$
 
-Provided \\(\tau_e \ll \tau_o\\) (why?), we may retain only the first term of the expansion and neglect the rest, yielding the approximation
+As long as \\(\tau_e \ll \tau_o\\) (why is that? can you be more specific?), we may retain only the first term of the expansion and neglect the rest, yielding the approximation
 
-$$ \tag{23.46}
+$$ \tag{23.48}
 	\tau_e I_{cos}(\tau_e, \tau_o)
 	\approx \frac{J_{1}(\tau)}{\tau}.
 $$
@@ -9912,87 +9912,64 @@ for arbitrary values of \\(\tau\\).
 
 ---
 
-In the particular case of \\(\tau \gg 1\\), we can utilize [Hankel's asymptotic expansion](https://dlmf.nist.gov/10.17#E3)
+In the particular case of \\(\tau \gg 1\\), we may utilize [Hankel's asymptotic expansion](https://dlmf.nist.gov/10.17#E3)
 
-$$ \tag{23.47}
-	J_v(z) \simeq \sqrt{ \frac{2}{\pi z} } \left(
-	\cos{\gamma_v(z)} \sum_{k=0}^{\infin} (-1)^k \frac{a_{2 k}(v)}{z^{2 k}} -
-	\sin{\gamma_v(z)}  \sum_{k=0}^{\infin} (-1)^k \frac{a_{2 k + 1}(v)}{z^{2 k + 1}}
+$$ \tag{23.49}
+	J_{\nu}(z) \simeq \sqrt{ \frac{2}{\pi z} } \left(
+	\cos{\omega_{\nu}(z)} \sum_{k=0}^{\infin} (-1)^k \frac{a_{2 k}(\nu)}{z^{2 k}} -
+	\sin{\omega_{\nu}(z)}  \sum_{k=0}^{\infin} (-1)^k \frac{a_{2 k + 1}(\nu)}{z^{2 k + 1}}
 	\right),
 $$
 
-where the angle
+given in terms of the angles
 
-$$ \tag{23.48}
-	\gamma_v(z) = z - \frac{\pi}{2} v - \frac{\pi}{4},
+$$ \tag{23.50}
+	\omega_{\nu}(z) = z - \frac{\pi}{2} \nu - \frac{\pi}{4},
 $$
 
 and the coefficients
 
-$$ \tag{23.49}
-	a_n(v) = \frac{(1/2 - v)_n (1/2 + v)_n}{(-2)^n n!}
+$$ \tag{23.51}
+	a_n(\nu) = \frac{(1/2 - \nu)_n (1/2 + \nu)_n}{(-2)^n n!}.
 $$
 
-are defined in terms of the so-called [Pochhammer's symbol](https://dlmf.nist.gov/5.2#E4)
+The latter are defined in terms of the so-called [Pochhammer's symbol](https://dlmf.nist.gov/5.2#E4)
 
-$$ \tag{23.50}
+$$ \tag{23.52}
 	(b)_0 = 1,
 	\quad
 	(b)_n = b (b+1) (b+2) ... (b+n-1).
 $$
 
-Setting \\(v=1\\) in Eqn. 23.50 gives...
+In our particular case, setting \\(\nu=1\\) in Eqn. 23.51 results in
+
+$$ \tag{23.53}
+	a_n(1)
+	= \frac{(-1/2)_n (3/2)_n}{(-2)^n n!}
+	= \frac{\Gamma(-1/2 + n) \Gamma(3/2 + n)}{\Gamma(-1/2) \Gamma(3/2) (-2)^n n!}.
+$$
+
+Gamma function with a half-integral argument can be easily evaluated using Eqn. 23.28.
+
+Using just the first couple of terms of Eqn. 23.49
+
+$$ \tag{23.54}
+	J_1(z) \simeq \sqrt{ \frac{2}{\pi z} } \left(
+	\sin\negthinspace\left(z-\frac{\pi}{4} \right) +
+	\cos\negthinspace\left(z-\frac{\pi}{4} \right) \frac{3}{8 z}
+	+ \mathellipsis
+	\right),
+$$
+
+is sufficient to form an excellent asymptotic approximation to Eqn. 23.48.
 
 ---
-
-\\(\tau_e \gg 1\\)...
-
-Now, consider the following Taylor series: w = e, z = o
-
-$$ \tag{23.47}
-	\frac{j_0\negthinspace\left( \sqrt{w + z} \right)}{\sqrt{w + z}}
-	= \sum_{n=0}^{\infin}
-	\frac{w^n}{n!}
-	\frac{\partial^n}{\partial z^n}
-	\frac{j_0\negthinspace\left( \sqrt{z} \right)}{\sqrt{z}}
-$$
-
-According to the [differentiation rule](https://dlmf.nist.gov/10.51),
-
-$$ \tag{23.48}
-	\frac{\partial j_m(z)}{\partial z}
-	= \frac{m j_m(z) - z j_{m+1}(z)}{z}.
-$$
-
-Thus, if we apply the chain rule to the expression
-
-$$ \tag{23.49}
-	\frac{\partial}{\partial z} \left( \frac{j_m(z)}{z^n} \right)
-	= \frac{\partial}{\partial z} \left( \frac{1}{z^n} \right) j_m(z)
-	+ \frac{1}{z^n} \frac{\partial}{\partial z} \big( j_m(z) \big)
-	= (m-n) \frac{ j_m(z)}{z^{n+1}} - \frac{j_{m+1}(z)}{z^{n}},
-$$
-
-we get a sum of two terms of the same form: one with a larger value of \\(n\\), and one with a larger value of \\(m\\).
-
-...???
-
-$$
-	I_c(x, \theta)
-	\simeq \frac{j_0(\tau)}{\tau}
-	= \frac{\sin{\tau}}{\tau^2}
-	= \frac{\sin\negthinspace\big( 2 x \sin(\theta/2) \big)}{\big( 2 x \sin(\theta/2) \big)^2}.
-$$
-
----
-
-While Eqn. 23.41 is valid for arbitrary values of \\(x\\) and \\(\theta\\), it is ill-suited for numerical computation, since the (ordinary) Bessel functions of the first kind do not have simple (closed-form) expressions, and a large number of terms may be required in order to reach the desired accuracy goal.
 
 The remaining terms can be evaluated using the [series expansion](https://dlmf.nist.gov/10.60#E10) of
 
 $$ \tag{23.47}
 	J_0 (z \sin{\phi})
-	= \sum_{l=0}^{\infin} (4 l + 1) \frac{(2 l)!}{4^{l} (l!)^2} j_{2 l}(z) P_{2 l}(\cos{\phi}).
+	= \sum_{n=0}^{\infin} (4 n + 1) \frac{(2 n)!}{4^{n} (n!)^2} j_{2 n}(z) P_{2 n}(\cos{\phi}).
 $$
 
 Eqn. 23.37 is thus transformed into
