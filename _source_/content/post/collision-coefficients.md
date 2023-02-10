@@ -9884,10 +9884,10 @@ $$ \tag{23.46}
 	\int_{0}^{\pi/2}
 	J_m (z \sin{\phi}) (\sin{\phi})^{m+1}
 	J_n(w \cos{\phi}) (\cos{\phi})^{n+1} \thinspace d\phi
-	= \frac{z^m w^n J_{m+n+1}\negthinspace\left( \sqrt{z^2 + w^2} \right)}{\left( z^2 + w^2 \right)^{(m+n+1)/2}}.
+	= \frac{z^m w^n J_{m+n+1}\negthinspace\left( \sqrt{z^2 + w^2} \right)}{\left( z^2 + w^2 \right)^{(m+n+1)/2}},
 $$
 
-After setting \\(m=n=0\\), the identity gives
+where we must set \\(m=n=0\\). This yields
 
 $$ \tag{23.47}
 \begin{aligned}
@@ -9901,7 +9901,7 @@ $$ \tag{23.47}
 \end{aligned}
 $$
 
-As long as \\(\tau_e \ll \tau_o\\) (why is that? can you be more specific?), we may retain only the first term of the expansion and neglect the rest, yielding the approximation
+As long as \\(\tau_e \ll \tau_o\\) (why is that? can you make the criteria more specific?), we may retain the first term of the expansion and neglect the rest, yielding the compact approximation
 
 $$ \tag{23.48}
 	\tau_e I_{cos}(\tau_e, \tau_o)
@@ -9933,7 +9933,7 @@ $$ \tag{23.51}
 	a_n(\nu) = \frac{(1/2 - \nu)_n (1/2 + \nu)_n}{(-2)^n n!}.
 $$
 
-The latter are defined in terms of the so-called [Pochhammer's symbol](https://dlmf.nist.gov/5.2#E4)
+The latter are defined using the so-called [Pochhammer's symbol](https://dlmf.nist.gov/5.2#iii)
 
 $$ \tag{23.52}
 	(b)_0 = 1,
@@ -9941,9 +9941,15 @@ $$ \tag{23.52}
 	(b)_n = b (b+1) (b+2) ... (b+n-1).
 $$
 
-In our particular case, setting \\(\nu=1\\) in Eqn. 23.51 results in
+If \\(b\\) is neither zero nor a negative integer,
 
 $$ \tag{23.53}
+	(b)_n = \frac{\Gamma(b + n)}{\Gamma(b)}.
+$$
+
+In order to evaluate Eqn. 23.48, we must set \\(\nu=1\\) in Eqn. 23.51, which yields
+
+$$ \tag{23.54}
 	a_n(1)
 	= \frac{(-1/2)_n (3/2)_n}{(-2)^n n!}
 	= \frac{\Gamma(-1/2 + n) \Gamma(3/2 + n)}{\Gamma(-1/2) \Gamma(3/2) (-2)^n n!}.
@@ -9951,9 +9957,9 @@ $$
 
 Gamma function with a half-integral argument can be easily evaluated using Eqn. 23.28.
 
-Using just the first couple of terms of Eqn. 23.49
+Retaining the first two terms of Eqn. 23.49
 
-$$ \tag{23.54}
+$$ \tag{23.55}
 	J_1(z) \simeq \sqrt{ \frac{2}{\pi z} } \left(
 	\sin\negthinspace\left(z-\frac{\pi}{4} \right) +
 	\cos\negthinspace\left(z-\frac{\pi}{4} \right) \frac{3}{8 z}
@@ -9965,16 +9971,18 @@ is sufficient to form an excellent asymptotic approximation to Eqn. 23.48.
 
 ---
 
-The remaining terms can be evaluated using the [series expansion](https://dlmf.nist.gov/10.60#E10) of
+A more general solution can be obtained by [expanding](https://dlmf.nist.gov/10.60#E10)
 
-$$ \tag{23.47}
+$$ \tag{23.56}
 	J_0 (z \sin{\phi})
 	= \sum_{n=0}^{\infin} (4 n + 1) \frac{(2 n)!}{4^{n} (n!)^2} j_{2 n}(z) P_{2 n}(\cos{\phi}).
 $$
 
-Eqn. 23.37 is thus transformed into
+in terms of polynomial (Legendre), rational and trigonometric (spherical Bessel) functions.
 
-$$ \tag{23.48}
+Substitution into Eqn. 23.37 results in fairly simple integrals
+
+$$ \tag{23.57}
 \begin{aligned}
 	I_{cos}(\tau_e, \tau_o)
 	&= \frac{1}{\tau_e}
@@ -9988,9 +9996,9 @@ $$ \tag{23.48}
 \end{aligned}
 $$
 
-According to ET II 314(8), this integral can be expression in terms of the [hypergeometric function](https://en.wikipedia.org/wiki/Generalized_hypergeometric_function) \\(\_2F\_3\\):
+According to ET II 314(8), the integral of this type
 
-$$ \tag{23.49}
+$$ \tag{23.58}
 \begin{aligned}
 	\int_{0}^{1} P_{\nu}^{\mu}(t) \cos(a t)
 	t^{\lambda-1} \left( 1-t^2\right)^{-\mu/2} \thinspace dt
@@ -10004,183 +10012,55 @@ $$ \tag{23.49}
 \end{aligned}
 $$
 
-where \\(\mathcal{Re} \lbrace \lambda \rbrace > 0\\) and \\(\mathcal{Re} \lbrace \mu \rbrace < 1\\).
+can be expressed in terms of the [hypergeometric function](https://en.wikipedia.org/wiki/Generalized_hypergeometric_function) \\(\_2F\_3\\), provided \\(\mathcal{Re} \lbrace \lambda \rbrace > 0\\) and \\(\mathcal{Re} \lbrace \mu \rbrace < 1\\).
 
-Substitution of \\(a=\tau_e,\lambda=2, \mu=0, \nu=2n\\) results in
+Setting \\(\lambda=2, \mu=0, \nu=2n\\) in Eqn. 23.58 yields
 
-$$ \tag{23.50}
-	\int_{0}^{1} P_{2n}(t) \cos(\tau_e t) t \thinspace dt
+$$ \tag{23.59}
+	\int_{0}^{1} P_{2n}(t) \cos(a t) t \thinspace dt
+	= \frac{\sqrt{\pi} \Gamma(2)}
+	{4 \Gamma(3/2-n) \Gamma(2+n)}
+	~_2F_3 \left(
+	1, \frac{3}{2};
+	\frac{1}{2}, \frac{3}{2}-n, 2+n;
+	-\frac{a^2}{4} \right).
+$$
+
+Expressions involving the gamma function can be simplified
+
+$$ \tag{23.60}
+	\int_{0}^{1} P_{2n}(t) \cos(a t) t \thinspace dt
 	= \frac{(-1)^{n+1} (2 n)!}
-	{4^n (n!)^2 (n+1) (4n-2)}
+	{2^{2 n + 1} (n!)^2 (n+1) (2n-1)}
 	~_2F_3 \left(
 	1, \frac{3}{2};
 	\frac{1}{2}, \frac{3}{2}-n, 2+n;
-	-\frac{\tau_e^2}{4} \right)
+	-\frac{a^2}{4} \right)
 $$
 
-19.18 and 23.28 and [recurrence](https://dlmf.nist.gov/5.5#E1)
+by applying Eqn. 19.18, 23.28, and the [recurrence relation](https://dlmf.nist.gov/5.5#E1)
 
-$$ \tag{23.51}
-	\Gamma(z + 1) =	z \Gamma(z)
+$$ \tag{23.61}
+	\Gamma(z + 1) =	z \Gamma(z).
 $$
 
-were used.
+The hypergeometric function has a rational expression
 
-Thus
+$$ \tag{23.62}
+	\int_{0}^{1} P_{2 n}(t) \cos(a t) t \thinspace dt
+	= \frac{R_{2 n}(a) + S_{2 n}(a) \cos{a} + a T_{2 n}(a) \sin{a}}{a^{2 (n + 1)}},
+$$
 
-$$ \tag{23.52}
+where \\(R_{2 n}, S_{2 n}, T_{2 n}\\) are polynomials of degree \\(2 n\\).
+
+It is of some practical interest to consider the leading term of Eqn. 23.57:
+
+$$ \tag{23.63}
 	I_{cos}(\tau_e, \tau_o)
-	= \frac{1}{\tau_e}
-	\sum_{n=0}^{\infin} \frac{(-1)^{n+1} (4 n + 1)}{(n+1) (4n-2)}
-	\left( \frac{(2 n)!}{4^n (n!)^2} \right)^2 j_{2 n}(\tau_o)
-	~_2F_3 \left(
-	1, \frac{3}{2};
-	\frac{1}{2}, \frac{3}{2}-n, 2+n;
-	-\frac{\tau_e^2}{4} \right),
+	\approx \frac{\sin (\tau_o) (\tau_e \sin (\tau_e)+\cos (\tau_e)-1)}{\tau_e^3 \tau_o}.
 $$
 
-where
-
-$$ \tag{23.53}
-	\frac{(4 n + 1)}{(4n-2) (n+1)}
-	\left( \frac{(2 n)!}{4^n (n!)^2} \right)^2
-	\approx
-	\frac{n^{-2}}{\pi}
-	\quad (n \ge 1).
-$$
-
-Using the properties of the Legendre polynomial, it can be shown that the integral has an expression of the form
-
-$$ \tag{23.54}
-	\int_{0}^{1} P_{2 n}(t) \cos(z t) t \thinspace dt
-	= \frac{R_{2 n}(z) + S_{2 n}(z) \cos{z} + T_{2 n + 1}(z) \sin{z}}{z^{2 (n + 1)}},
-$$
-
-where R S T are polynomials and the coefficient of \\(z^{2 n + 1}\\) is always \\(1\\). Thus, if \\(z \gg 1\\),
-
-$$ \tag{23.55}
-	\int_{0}^{\pi/2} P_{2 n}(\cos{\phi}) \cos(z \cos{\phi})
-	\cos{\phi} \sin{\phi} \thinspace d\phi
-	\simeq \frac{\sin{z}}{z},
-$$
-
-and
-
-$$ \tag{23.56}
-	I_{cos}(\tau_e, \tau_o)
-	\simeq \frac{\sin{\tau_e}}{\tau_e^2}
-	\sum_{n=0}^{\infin} (4 n + 1) \frac{(2 n)!}{2^{2 n} (n!)^2} j_{2 n}(\tau_o)
-$$
-
----
-
-Alternatively, we can utilize [Hankel's asymptotic expansion](https://dlmf.nist.gov/10.17#E3)
-
-$$ \tag{23.47}
-	J_v(z) \simeq \sqrt{ \frac{2}{\pi z} } \left(
-	\cos{\gamma_v(z)} \sum_{k=0}^{\infin} (-1)^k \frac{a_{2 k}(v)}{z^{2 k}} -
-	\sin{\gamma_v(z)}  \sum_{k=0}^{\infin} (-1)^k \frac{a_{2 k + 1}(v)}{z^{2 k + 1}}
-	\right),
-$$
-
-where the angle
-
-$$ \tag{23.48}
-	\gamma_v(z) = z - \frac{\pi}{2} v - \frac{\pi}{4},
-$$
-
-and the coefficients
-
-$$ \tag{23.49}
-	a_n(v) = \frac{(1/2 - v)_n (1/2 + v)_n}{(-2)^n n!}
-$$
-
-are defined in terms of the so-called [Pochhammer's symbol](https://dlmf.nist.gov/5.2#E4)
-
-$$ \tag{23.50}
-	(b)_0 = 1,
-	\quad
-	(b)_n = b (b+1) (b+2) ... (b+n-1).
-$$
-
----
-
-Since we can easily evaluate \\(I\_{sin}\\), instead of \\(I\_{cos}\\) alone, we may consider their linear combination
-
-$$
-\begin{aligned}
-	I_{exp}(x, \theta)
-	&= \frac{1}{\tau_e} \int_{0}^{\pi/2}
-	J_0 (\tau_o \sin{\phi})
-	\exp(i \tau_e \cos{\phi})
-	\cos{\phi} \sin{\phi} \thinspace d\phi
-	\cr
-	&= \frac{1}{\pi \tau_e} \int_{0}^{\pi/2} \int_{0}^{\pi}
-	\exp(\pm i \tau_o \sin{\phi} \cos{\chi} + i \tau_e \cos{\phi})
-	\cos{\phi} \sin{\phi} \thinspace d\chi \thinspace d\phi,
-\end{aligned}
-$$
-
-where Eqn. 23.16 was used.
-
-Since \\(I\_{cos}\\) is real-valued,
-
-$$
-\begin{aligned}
-	I_{cos}(\tau_e, \tau_o)
-	&= \mathcal{Re} \big\lbrace I_{exp}(x, \theta) \big\rbrace
-	\cr
-	&= \frac{1}{\pi \tau_e} \int_{0}^{\pi/2} \int_{0}^{\pi}
-	\cos(\pm \tau_o \sin{\phi} \cos{\chi} + \tau_e \cos{\phi})
-	\cos{\phi} \sin{\phi} \thinspace d\chi \thinspace d\phi
-	\cr
-	&= \frac{1}{\pi \tau_e} \int_{0}^{1} \int_{0}^{\pi}
-	\cos(\pm \tau_o c \cos{\chi} + \tau_e \sqrt{1-c^2})
-	c \thinspace d\chi \thinspace dc
-	\cr
-	&= \frac{1}{\pi x (1 - \cos{\theta})} \int_{0}^{1} \int_{0}^{\pi}
-	\cos(\pm x \sin{\theta} c \cos{\chi} + x (1 - \cos{\theta}) \sqrt{1-c^2})
-	c \thinspace d\chi \thinspace dc.
-\end{aligned}
-$$
-
-Now
-
-$$
-	\sin{\theta} = 2 \sin(\theta/2) \cos(\theta/2),
-	\quad
-	(1 - \cos{\theta}) = 2 \sin^2(\theta/2).
-$$
-
-So
-
-$$
-\begin{aligned}
-	I_{cos}(\tau_e, \tau_o)
-	&= \frac{1}{\pi x 2 \sin^2(\theta/2)} \int_{0}^{1} \int_{0}^{\pi}
-	\cos(\pm x 2 \sin(\theta/2) \cos(\theta/2) c \cos{\chi} + x 2 \sin^2(\theta/2) \sqrt{1-c^2})
-	c \thinspace d\chi \thinspace dc
-	\cr
-	&= \frac{1}{\pi \tau \sin(\theta/2)} \int_{0}^{1} \int_{0}^{\pi}
-	\cos(\pm \tau \cos(\theta/2) c \cos{\chi} + \tau \sin(\theta/2) \sqrt{1-c^2})
-	c \thinspace d\chi \thinspace dc.
-\end{aligned}
-$$
-
-using 23.21
-
-Jacobian...
-
----
-
-For \\(v = 1/2\\), the expressions given above take the form
-
-$$ \tag{23.47}
-	J_{1/2}(z) \simeq \sqrt{ \frac{2}{\pi z} } \left(
-	\cos{\gamma_v(z)} \sum_{k=0}^{\infin} (-1)^k \frac{a_{2 k}(v)}{z^{2 k}} -
-	\sin{\gamma_v(z)}  \sum_{k=0}^{\infin} (-1)^k \frac{a_{2 k + 1}(v)}{z^{2 k + 1}}
-	\right),
-$$
+It offers an excellent approximation for arbitrary values of \\(\tau\\) provided \\(\tau_o \ll 1\\).
 
 ---
 
