@@ -9521,13 +9521,13 @@ $$ \tag{23.12}
 \end{aligned}
 $$
 
-The innermost integral can be easily evaluated, yielding
+The innermost integral can be easily evaluated, since
 
 $$ \tag{23.13}
-	\int_{-\sqrt{1 - c^2}}^{\sqrt{1 - c^2}}
-	e^{i (\rho/2 + \tau_e) b}
+	\int_{-\beta}^{\beta}
+	e^{i \alpha b}
 	\thinspace db \thinspace
-	= \frac{\sin\negthinspace\left( (\rho/2 + \tau_e) \sqrt{1 - c^2} \right)}{\rho/2 + \tau_e}.
+	= \frac{2 \sin (\alpha  \beta )}{\alpha }.
 $$
 
 Now, consider the integral
@@ -9535,7 +9535,7 @@ Now, consider the integral
 $$ \tag{23.14}
 	\frac{1}{2 \pi}
 	\int_{-\pi}^{\pi}
-	e^{-i \tau_o c \cos{\chi}}
+	e^{-i z \cos{\chi}}
 	\thinspace d\chi.
 $$
 
@@ -9544,11 +9544,11 @@ The integrand is an even function of \\(\chi\\). Therefore,
 $$ \tag{23.15}
 	\frac{1}{2 \pi}
 	\int_{-\pi}^{\pi}
-	e^{- i \tau_o c \cos{\chi}}
+	e^{- i z \cos{\chi}}
 	\thinspace d\chi =
 	\frac{1}{\pi}
 	\int_{0}^{\pi}
-	e^{- i \tau_o c \cos{\chi}}
+	e^{- i z \cos{\chi}}
 	\thinspace d\chi.
 $$
 
@@ -9583,12 +9583,25 @@ As a result, the integral may be split in two:
 
 $$ \tag{23.19}
 	I_{ada}(x, \theta)
-	= \frac{3}{\tau_e + \rho/2} \int_{0}^{1}
+	= \frac{3 i}{\tau_e + (\tau_e + \rho)} \int_{0}^{1}
 	J_0 (\tau_o c)
-	\frac{ e^{i (\tau_e + \rho) \sqrt{1 - c^2}} -
-	e^{-i \tau_e \sqrt{1 - c^2}} }{2 i}
+	\left( e^{-i \tau_e \sqrt{1 - c^2}} - e^{i (\tau_e + \rho) \sqrt{1 - c^2}} \right)
 	c \thinspace dc.
 $$
+
+Notice that we effectively have 3 independent variables: \\(\tau_o\\), \\(\tau_e\\), and \\(\tau_e + \rho\\). The former two are always real, and the latter is potentially complex.
+
+Thus, the problem can be reduced to evaluation of the integral
+
+$$ \tag{23.20}
+	I_{exp}(\tau_c, \tau_o)
+	= \int_{0}^{1}
+	J_0 (\tau_o c)
+	\exp\negthinspace\left(\tau_c \sqrt{1 - c^2} \right)
+	c \thinspace dc,
+$$
+
+where \\(\tau_c\\) stands for either \\(-\tau_e\\) or \\(\tau_e + \rho\\).
 
 The \\(\exp(\rho \sqrt{1 - c^2})\\) factor makes the first integral more complicated. Of course, we can use Euler's formula to further decompose each complex exponential into a sum of a real cosine and an imaginary sine.
 
