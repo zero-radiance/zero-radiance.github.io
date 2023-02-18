@@ -6223,6 +6223,8 @@ $$
 
 For our application, the partial orthogonality between \\(\bm{L_{m,n}}\\) and \\(\bm{N_{m,n}}\\) is not a real concern. According to Eqn. 18.36 and 18.37, the electric and the magnetic fields can be expressed solely in terms of \\(\bm{M_{m,n}}\\) and \\(\bm{N_{m,n}}\\), which are mutually orthogonal, as has been shown by Eqn. 18.82 and 18.92.
 
+-->
+
 Now, let us return to the scattering problem. In general, we may arrive at the solution by determining the values of the set of coefficients of the vector spherical wave series expansion given by Eqn. 18.36. In order to obtain these coefficients, we must consider three distinct types of electromagnetic fields: the incident field produced by an external source, the scattered field in the radiation zone of the particle, and the total field induced inside the sphere. The reason for this kind of decomposition will become apparent shortly.
 
 Let us begin by considering the expansion of the incident field:
@@ -7289,8 +7291,6 @@ $$
 
 The natural sizes \\(x_n\\) are always complex, which makes the natural frequencies \\(\omega_n\\) complex as well. This implies that, no matter what the frequency of the incident wave is, the amplitudes of the scattered and the internal fields remain finite \[[17](#references) (ch. 9.25)\]. Nevertheless, a certain combination of parameters that reduces the magnitude of the denominator to a small value may simultaneously make the numerator large, producing a spike in the plot of the expansion coefficient; this phenomenon is called [resonance](https://en.wikipedia.org/wiki/Resonance) \[[5](#references) (vol. I, ch. 23)\].
 
--->
-
 #### Limiting Cases
 
 Let us take a closer look at the expressions of the expansion coefficients of the scattered field given by Eqn. 18.156.
@@ -7318,7 +7318,7 @@ $$ \tag{19.13}
 \end{aligned}
 $$
 
-Strictly speaking, these expressions are only valid if both \\(| x | \gg n^2/2\\) and \\(| m x | \gg n^2/2\\); in practice, the approximation error remains acceptable if \\(| x | \sim n/2\\). The asymptotic expressions valid for all orders \\(n\\) have been found by Debye (1909); they are considerably more complicated, and we shall not discuss them here.
+Strictly speaking, these expressions are only valid if both \\(| x | \gg n^2/2\\) and \\(| m x | \gg n^2/2\\); in practice, the approximation error remains acceptable if \\(| x | \gtrsim n/2\\). The asymptotic expressions valid for all orders \\(n\\) have been found by Debye (1909); they are considerably more complicated, and we shall not discuss them here.
 
 We may observe that the resulting coefficients are highly cyclical: \\(a_{n+2} \simeq a\_n\\) and \\(a_{n+1} \simeq b\_n\\). Thus, for any given pair of \\(m\\) and \\(x\\), only 2 unique coefficients exist. In addition, their sum is independent of the order \\(n\\).
 
@@ -7377,6 +7377,10 @@ These expressions demonstrate that the magnitudes of the coefficients rapidly os
 {{< figure src="/img/coef_a_n.svg" caption="*Figure N: The plots of the real (solid line) and the imaginary (dashed line) parts of the expansion coefficient \\(a_1/i\\) for \\(m = 4/3\\). The horizontal axis represents the size parameter \\(x\\) of the particle.*" >}}
 
 {{< figure src="/img/coef_b_n.svg" caption="*Figure N: The plots of the real (solid line) and the imaginary (dashed line) parts of the expansion coefficient \\(b_1/i\\) for \\(m = 4/3\\). The horizontal axis represents the size parameter \\(x\\) of the particle.*" >}}
+
+{{< figure src="/img/coef_a_b_abs.svg" caption="*Figure N: The plots of the absolute value of the expansion coefficients \\(a_1/i\\) (solid line) and \\(b_1/i\\) (dashed line) for \\(m = 4/3\\). The horizontal axis represents the size parameter \\(x\\) of the particle.*" >}}
+
+{{< figure src="/img/coef_a_b_arg.svg" caption="*Figure N: The plots of the argument of the expansion coefficients \\(a_1/i\\) (solid line) and \\(b_1/i\\) (dashed line) for \\(m = 4/3\\). The horizontal axis represents the size parameter \\(x\\) of the particle.*" >}}
 
 In addition to the cyclicality, by transforming Eqn. 19.15 into a function of \\((m - 1) x\\), it can be shown that the expansion coefficients are periodic functions of \\(x\\), with the period
 
