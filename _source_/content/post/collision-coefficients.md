@@ -1092,7 +1092,7 @@ $$ \tag{7.3}
 	= E_0(\bm{n}, \omega) e^{i k(\omega) (\bm{r} \cdot \bm{n}) - i \omega t},
 $$
 
-with the optical properies of the medium encapsulated in the [complex wavenumber](https://en.wikipedia.org/wiki/Wavenumber#Complex)
+with the optical properies of the medium encapsulated in the (complex) [angular wavenumber](https://en.wikipedia.org/wiki/Wavenumber#Complex)
 
 $$ \tag{7.4}
 	k(\omega)
@@ -1109,7 +1109,7 @@ $$ \tag{7.5}
 	\mu\_r(\omega) = \frac{\mu(\omega)}{\mu\_0},
 $$
 
-the complex wavenumber can be redefined as
+the angular wavenumber can be redefined as
 
 $$ \tag{7.6}
 	k(\omega) =
@@ -1431,7 +1431,7 @@ $$
 
 where \\(\lambda_0 = 2 \pi c / \omega\\) is the vacuum wavelength.
 
-Furthermore, the original definition of the complex wavenumber given by Eqn. 7.4 suggests that
+Furthermore, the original definition of the angular wavenumber given by Eqn. 7.4 suggests that
 
 $$ \tag{7.41}
 	\mathcal{Re} \bigg\lbrace
@@ -1593,6 +1593,8 @@ $$ \tag{8.16}
 	&\bm{E}(\bm{r}, t) = -\frac{\partial}{\partial t} \bm{A}(\bm{r}, t) - \nabla \phi(\bm{r}, t).
 \end{aligned}
 $$
+
+-->
 
 ### Green Functions
 
@@ -2108,8 +2110,6 @@ $$ \tag{9.52}
 	\varpropto (k R)^{-1}.
 $$
 
--->
-
 ### Electric and Magnetic Polarization
 
 The physical meaning of the electromagnetic potential is more apparent in the time domain. With this goal in mind, perform the inverse Fourier transform of Eqn. 9.14.2:
@@ -2525,7 +2525,7 @@ $$ \tag{11.5}
 \end{aligned}
 $$
 
-with the constants grouped according to the definition of the complex wavenumber \\(k\\) given by Eqn. 7.4.
+with the constants grouped according to the definition of the angular wavenumber \\(k\\) given by Eqn. 7.4.
 
 To make these two equations more alike, we can subtract \\(k_1^2 \bm{E}\\) from both sides of Eqn. 11.5.2:
 
@@ -3209,7 +3209,7 @@ $$
 
 Furthermore, notice the resemblance of Eqn. 13.17 to 7.22.
 
-Next, multiply Eqn. 13.17 by \\(\exp(-i \omega t)\\), expand the expression of the complex wavenumber as per Eqn. 7.9, and take the real part of both sides of the equation:
+Next, multiply Eqn. 13.17 by \\(\exp(-i \omega t)\\), expand the expression of the angular wavenumber as per Eqn. 7.9, and take the real part of both sides of the equation:
 
 $$ \tag{13.18}
 	\bm{n} \times \bigg(
@@ -5136,7 +5136,7 @@ $$ \tag{18.8}
 	\big( \nabla^2 + k^2(\omega) \big) \phi(\bm{r}, \omega) = 0,
 $$
 
-where \\(k\\) is the complex wavenumber:
+where \\(k\\) is the angular wavenumber:
 
 $$ \tag{18.9}
 	k(\omega) = \omega \sqrt{\varepsilon(\omega) \mu(\omega)}.
