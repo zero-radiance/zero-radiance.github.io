@@ -2474,6 +2474,12 @@ In order to rigorously solve the scattering problem, we must specify not only th
 
 In the simplest case of a single particle, we can partition the space in two regions: outside the particle, and inside the particle, the latter typically defined in a relatively simple manner. At the large scale, we can subdivide the medium into pieces, each filled with small particles, analogously to the way a region of the macroscopic medium is formed by a large number of dipoles. Extending the analogy further, just as the combined action of dipoles leads to the definition of optical properties, the *radiative properties* are determined by solving the Maxwell equations for the distribution of particles within each piece. Finally, we use the *radiative transfer equation* to sum the contributions of all pieces, which is a process that is conceptually similar to combining the fields of all charges using the Maxwell equations.
 
+### Geometrized Units
+
+So far, we have not paid close attention to units of measurement (except for the specific choice to adapt the modern SI unit convention); instead, we focused on learning the the foundational concepts and building the physical intuition. This approach is fairly common among introductory-level textbooks, which allowed us to insert multiple references (that contain equations of the same form) for those who wish to learn more (or are simply looking for an alternative explanation).
+
+The choice of units used to describe electromagnetism is a contentious topic. Historically, the Gaussian units were dominant in the 20th century, and some fairly recent books (such as Born & Wolf and the 2nd part of Jackson) still utilize them today. The SI units represent the modern standard, but are sometimes criticized for being unnatural [citation needed]. Ultimately, both systems get the job done, even if neither is perfect. Furthermore, both systems suffer from the large number of wavenumber factors scattered across equations in a seemingly random pattern (which is particularly evident in Sec. 9).
+
 ### Volume Integral Equation
 
 Participating media can be broadly divided into two categories - homogeneous and inhomogeneous. This suggests that we may split any medium into two regions: 1) infinite homogeneous, and 2) the remaining space of finite volume \\(V\\). The latter can be interpreted as a single particle or a particle group, or, more generally, as a scattering object (or a *scatterer* for short).
