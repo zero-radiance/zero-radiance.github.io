@@ -2448,34 +2448,31 @@ Finally, we would like to emphasize certain properties of the solution of the Ma
 
 ### Scattering Problem
 
-This chapter describes light-matter interaction in the language of classical electrodynamics, wave optics, and  radiative transfer. In the course of this interaction, the properties of light waves are often profoundly modified, and it is then said that light is being scattered. This process can be very accurately (and succinctly) formulated using the Maxwell equations.
+In this chapter, we describe a light-matter interaction in the language of classical electrodynamics, wave optics, and  radiative transfer. In the course of this interaction, the properties of light waves (in particular, their angular distribution) are often profoundly modified, and it is then said that light is being scattered. This process can be very accurately (and succinctly) formulated using the Maxwell equations.
 
-In practice, it is very difficult to solve the Maxwell equations exactly, except under certain (idealized) conditions. Thus, one usually employs various approximations that minimize the complexity of the computation, occasionally at the cost of accuracy.
+In practice, it is very difficult to solve the Maxwell equations exactly, except under certain (idealized) conditions. Thus, one usually employs various approximations that minimize the complexity of the computation, sometimes at the cost of accuracy.
 
-One of the most important considerations is the scale of the observation. Evidently, even something as large and complex as a star can be approximated by a point source if the observer is sufficiently far away (and the sensitivity of the measurement instrument is limited). A similar line of reasoning justifies modeling an electron as a point charge (or an atom as a dipole) at the microscopic scale.
+One of the most important considerations is the scale of the observation. Evidently, even something as large and complex as a star can be approximated by a point source if the observer is sufficiently far away (and the sensitivity of the measurement instrument is suitably limited). A similar line of reasoning justifies modeling an electron as a point charge (or an atom as a dipole) at the microscopic scale.
 
-----
+Mathematically, the field of a (macroscopic) piece of matter is the (vector) sum of the fields of its (microscopic) parts. Yet, at the macroscopic scale, the field of a single dipole practically cannot be registered at all! This consideration permits us to utilize the concept of a *medium* composed of a tremendous number of identical dipoles.
 
-Mathematically, the field of a (macroscopic) piece of matter is the (vector) sum of the fields of its (microscopic) parts. Yet, at the macroscopic scale, the field of a single dipole practically cannot be distinguished at all! Thus, we may resort to the concept of a *medium* composed of a tremendous number of identical dipoles.
+In order for light scattering effects to appear, the medium must be *inhomogeneous*. Microscopically, this implies that the underlying distribution of dipoles is *non-uniform*; macroscopically, such a medium is characterized by spatially-varying *optical properties*.
 
-In order for light scattering effects to appear, the medium must be *inhomogeneous*. Macroscopically, it is characterized by spatially-varying *optical properties*; microscopically, this implies that the underlying distribution of dipoles is *non-uniform*.
-
-The two most important optical properties of a medium are the refractive index (the variation of which alters trajectories of light rays) and the absorption index (which causes light rays to lose energy in the course of propagation).
+The two most important optical properties of a medium are the refractive index (the variation of which alters the trajectories of light rays) and the absorption index (which causes light rays to lose energy in the course of propagation).
 
 [Insert picture here?]
 
-TODO-DO-DO
+The distribution of optical properties can (at least in theory) be completely arbitrary. In this chapter, we shall consider the particular case of a sparse group of inhomogeneous particles embedded in a homogeneous medium. Notable examples of such *composite media* include [gases](https://en.wikipedia.org/wiki/Gas) and [colloids](https://en.wikipedia.org/wiki/Colloid).
 
-The distribution of optical properties can (at least in theory) be completely arbitrary. In order to arrive at a concrete (and practical) solution, we shall consider the special case of sparse group of inhomogeneous particles embedded in a homogeneous medium. Notable examples of such *composite media* include [gases](https://en.wikipedia.org/wiki/Gas) and [colloids](https://en.wikipedia.org/wiki/Colloid).
+[Insert picture here?]
 
-[Insert picture here]
+Given a source illuminating the medium, our goal is to determine the *total field* that arises after propagation and scattering of electromagnetic waves. Clearly, if there are no particles, the medium is homogeneous everywhere, and the magnitude of the field at the destination is the same as its magnitude at the source (before accounting for attenuation with distance). We shall call it the *incident field*. The *algebraic difference* between the total field (with particles) and the incident field (without particles) constitutes the *scattered field*. The task of determining the scattered field is at the core of the *scattering problem*.
 
-Given a source illuminating the medium, we can determine the *total field* that arises after propagation and scattering of electromagnetic waves. Clearly, if there are no particles, the medium is homogeneous everywhere, and the magnitude of the field at the destination is the same as its magnitude at the source (before accounting for attenuation with distance). We shall refer to it as the *incident field*. The *algebraic difference* between the total field (with particles) and the incident field (without particles) constitutes the *scattered field*. The task of determining the scattered field is at the core of the *scattering problem*.
+[Insert picture here?]
 
-[Insert picture here]
+In order to rigorously solve the scattering problem, we must specify not only the incident field, but also the medium *at each and every point in space and time*, since, according to the Maxwell equations, the value of the electromagnetic field at a certain point is the sum of the fields produced by all charges, everywhere. Clearly, this is impractical, but also often unnecessary.
 
-In order to rigorously solve the scattering problem, we must specify not only the incident field, but also the composite medium *in its entirety*, since, according to the Maxwell equations, the value of the electromagnetic field at a certain point is the sum of the fields produced by all charges, everywhere. Clearly, this is highly inconvenient and, often, unnecessary. Thus, we make a compromise: we "chop" the composite medium into little pieces (that effectively shrink to a point), each filled with small particles, analogously to a region of the macroscopic medium formed by a distribution of microscopic dipoles. Extending the analogy further, just as the combined action of dipoles leads to the definition of optical properties,
-the *radiative properties* of the large-scale medium are determined by solving the Maxwell equations for the distribution of particles within each little piece. Finally, we use the *radiative transfer equation* to integrate the contribution of all little pieces, which is a process that is conceptually similar to combining the fields of all charges according to the Maxwell equations.
+In the simplest case of a single particle, we can partition the space in two regions: outside the particle, and inside the particle, the latter typically defined in a relatively simple manner. At the large scale, we can subdivide the medium into pieces, each filled with small particles, analogously to the way a region of the macroscopic medium is formed by a large number of dipoles. Extending the analogy further, just as the combined action of dipoles leads to the definition of optical properties, the *radiative properties* are determined by solving the Maxwell equations for the distribution of particles within each piece. Finally, we use the *radiative transfer equation* to sum the contributions of all pieces, which is a process that is conceptually similar to combining the fields of all charges using the Maxwell equations.
 
 ### Volume Integral Equation
 
