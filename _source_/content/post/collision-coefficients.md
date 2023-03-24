@@ -2476,9 +2476,30 @@ At the scale of a single particle, we can partition the space in two regions -- 
 
 ### Geometrized Units
 
-So far, we have not paid close attention to units of measurement (except for the specific choice to adapt the modern SI unit convention); instead, we focused on learning the the foundational concepts and building the physical intuition. This approach is fairly common among introductory-level textbooks, which allowed us to insert multiple references (that contain equations of the same form) for those who wish to learn more (or are simply looking for an alternative explanation).
+So far, we have not paid much attention to the units of measurement (except for making the specific choice to adopt the modern SI unit convention); instead, we focused on learning the foundational concepts and building the physical intuition. Since this approach is common among introductory-level textbooks, this allowed us to insert multiple references (that contain equations of the same form) for those readers who wish to learn more, or are simply looking for an alternative explanation.
 
-The choice of units used to describe electromagnetism is a contentious topic. Historically, the Gaussian units were dominant in the 20th century, and some fairly recent books (such as Born & Wolf and the 2nd part of Jackson) still utilize them today. The SI units represent the modern standard, but are sometimes criticized for being unnatural [citation needed]. Ultimately, both systems get the job done, even if neither is perfect. Furthermore, both systems suffer from the large number of wavenumber factors scattered across equations in a seemingly random pattern (which is particularly evident in Sec. 9).
+The choice of units used to describe electromagnetism is a contentious topic. Historically, the Gaussian units were dominant during the 20th century; some fairly recent books (such as [Born & Wolf], [Jackson]) still utilize them today. The SI units serve as the modern replacement, but they are sometimes criticized for being unnatural [citation needed]. Ultimately, using either system gets the job done, even if neither is perfect. In particular, these systems share a flaw: the angular wavenumber factor \\(k\\) appears in practically every equation, often several times, and its purpose is not always obvious. This tends to obscure the geometrical nature of the electromagnetic field [Thorne 2.11].
+
+The books devoted to the subject of relativity have historically suffered from a similar problem caused by frequent occurrences of the speed of light factor \\(c\\) [citation needed]. In this case, the solution is surprisingly simple: one simply sets
+
+$$ \tag{1x.1}
+	c = 1.
+$$
+
+Since the SI unit value of the speed of light is \\(c = 299792458 \text{ m/s}\\), Eqn. 1x.1 implies that
+
+$$ \tag{1x.2}
+	1 \text{ s} = 299792458 \text{ m}.
+$$
+
+Note that the product
+
+$$ \tag{1x.3}
+	c t = 299792458 t \text{ m}.
+$$
+
+is invariant with respect to this transformation. Therefore, the value of the spacetime coordinate \\(\left(c t, x, y, z \right)\\) also remains unchanged. By omitting the \\(c\\) factor and measuring the time \\(t\\) in meters, we emphasize the equivalence of roles played by space and time. Due to the geometric nature of the transformation, this convention bears the name of *geometrized units* [Thorne 1.10].
+
 
 ### Volume Integral Equation
 
