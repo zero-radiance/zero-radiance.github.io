@@ -2474,11 +2474,11 @@ In order to rigorously solve the scattering problem, we must specify not only th
 
 At the scale of a single particle, we can partition the space in two regions -- the interior and the exterior -- the latter typically defined in a relatively simple manner. At the large scale, we can subdivide the medium into pieces filled with particles, analogously to the way a small region of a macroscopic medium is formed by a large number of dipoles. Extending the analogy further, just as the combined action of dipoles leads to the definition of optical properties, we can compute *radiative properties* by solving the Maxwell equations for the distribution of particles within each individual piece. Finally, we use the *radiative transfer equation* to sum the contributions of all pieces, which is a process that is conceptually similar to that of combining the fields produced by the individual charges using the Maxwell equations.
 
-### Geometrized Units
+### Natural Units
 
-So far, we have not paid much attention to the units of measurement (except for making the specific choice to adopt the modern SI unit convention); instead, we focused on learning the foundational concepts and building the physical intuition. Since this approach is common among introductory-level textbooks, this allowed us to insert multiple references (that contain equations of the same form) for those readers who wish to learn more, or are simply looking for an alternative explanation.
+So far, we have not paid much attention to the units of measurement (except for making the specific choice to adopt the modern SI unit convention); instead, we focused on learning the foundational concepts and building the physical intuition. Since this approach is common among introductory-level textbooks, this allowed us to insert multiple references (with equations of the same form) for those readers who wish to learn more, or are simply looking for an alternative explanation.
 
-The choice of units used to describe electromagnetism is a contentious topic. Historically, the Gaussian units were dominant during the 20th century; some fairly recent books (such as [Born & Wolf], [Jackson]) still utilize them today. The SI units serve as the modern replacement, but they are sometimes criticized for being unnatural [citation needed]. Ultimately, using either system gets the job done, even if neither is perfect. In particular, these systems share a flaw: the angular wavenumber factor \\(k\\) appears in practically every equation, often several times, and its purpose is not always obvious. This tends to obscure the geometrical nature of the electromagnetic field [Thorne 2.11].
+The choice of units used to describe electromagnetism is a contentious topic. Historically, the Gaussian units were dominant during the 20th century; some fairly recent books (such as [Born & Wolf], [Jackson]) still utilize them today. The SI units serve as the modern replacement, but they are sometimes criticized for being unnatural (?) [citation needed]. Ultimately, using either system gets the job done, even if neither is perfect. In fact, these systems share a flaw: the angular wavenumber factor \\(k\\) appears in practically every equation, often several times, and its meaning and purpose are not always obvious. This tends to obscure the geometrical nature of the electromagnetic field \[[25](#references) (ch. 2.11)\].
 
 The books devoted to the subject of relativity have historically suffered from a similar problem caused by frequent occurrences of the speed of light factor \\(c\\) [citation needed]. In this case, the solution is surprisingly simple: one simply sets
 
@@ -2927,7 +2927,7 @@ $$ \tag{1x.15}
 	\Big) dA'.
 $$
 
-Eqn. 1x.14 and 1x.15 are called the *surface integral equations*. They give the expressions of the scattered field in the region outside the scattering object \\((\bm{r} \notin V)\\) in terms of the *tangential surface fields* \\(\bm{n'} \times \bm{E}\\) and \\(\bm{n'} \times \bm{H} = \mu^{-1}(\bm{n'} \times \bm{B})\\). According to Eqn. 1.17, the latter are continuous across the optical interface, provided the conductivity is finite \[[17](#references) (ch. 1.13)\]. More generally speaking, the idea that a smooth (but not necessarily physical) surface can be seen as a source of spherical *wavelets* (secondary waves) interfering with each other is known as the [Huygens-Fresnel principle](https://en.wikipedia.org/wiki/Huygens%E2%80%93Fresnel_principle) \[[4](#references) (ch. 3.1), [25](#references) (ch. 2)\].
+Eqn. 1x.14 and 1x.15 are called the *surface integral equations*. They give the expressions of the scattered field in the region outside the scattering object \\((\bm{r} \notin V)\\) in terms of the *tangential surface fields* \\(\bm{n'} \times \bm{E}\\) and \\(\bm{n'} \times \bm{H} = \mu^{-1}(\bm{n'} \times \bm{B})\\). According to Eqn. 1.17, the latter are continuous across the optical interface, provided the conductivity is finite \[[17](#references) (ch. 1.13)\]. More generally speaking, the idea that a smooth (but not necessarily physical) surface can be seen as a source of spherical *wavelets* (secondary waves) interfering with each other is known as the [Huygens-Fresnel principle](https://en.wikipedia.org/wiki/Huygens%E2%80%93Fresnel_principle) \[[4](#references) (ch. 3.1), [12](#references) (ch. 2)\].
 
 The same principle can be used to express the scattered field at an interior point in terms of the values of the fields at the enclosing surface \[[17](#references) (ch. 8.14)\].
 
@@ -3357,7 +3357,7 @@ $$ \tag{14.4}
 	+ \int\_{V} u \big( \bm{r'}, k(\omega), \omega \big) \mathcal{G}\_e \big( \bm{r}, \bm{r'}, k(\omega) \big) \cdot \bm{E}(\bm{r'}, \omega) dV'.
 $$
 
-The resulting equation is recursive. Substitution makes it fairly obvious that the total electric field can be expressed as volume integral of the transformed incident field. While this fact can be rigorously derived from the properties of the dyadic Green functions \[[12](#references) (ch. 5.1)\], for simplicity, let us assume that the solution exists:
+The resulting equation is recursive. Substitution makes it fairly obvious that the total electric field can be expressed as volume integral of the transformed incident field. While this fact can be rigorously derived from the properties of the dyadic Green functions \[[13](#references) (ch. 5.1)\], for simplicity, let us assume that the solution exists:
 
 $$ \tag{14.5}
 	u \big( \bm{r'}, k(\omega), \omega \big) \bm{E}(\bm{r'}, \omega)
@@ -4331,7 +4331,7 @@ $$ \tag{16.35}
 	\right).
 $$
 
-Alternatively, [Ohm's law](https://en.wikipedia.org/wiki/Ohm%27s_law) may be used instead \[[25](#references) (ch. 1.1)\]:
+Alternatively, [Ohm's law](https://en.wikipedia.org/wiki/Ohm%27s_law) may be used instead \[[12](#references) (ch. 1.1)\]:
 
 $$ \tag{16.3z}
 	\Phi_a
@@ -4341,7 +4341,7 @@ $$ \tag{16.3z}
 	\mathcal{Im} \left\lbrace \frac{m^2(\bm{r'})}{\mu\_r(\bm{r'})} \right\rbrace \big| \bm{E}(\bm{r'}) \big|^2 dV',
 $$
 
-with the integral taken over the interior of the particle \[[25](#references) (ch. 1.1)\]. As before, \\(\varepsilon_2\\) is the complex permittivity of the particle, \\(\mu\_r\\) is its relative permeability, and \\(m\\) is the relative wavenumber given by Eqn. 11.8.
+with the integral taken over the interior of the particle \[[12](#references) (ch. 1.1)\]. As before, \\(\varepsilon_2\\) is the complex permittivity of the particle, \\(\mu\_r\\) is its relative permeability, and \\(m\\) is the relative wavenumber given by Eqn. 11.8.
 
 It is convenient to be able to relate the amount of power absorbed by the particle to the amount of incident power the particle *geometrically* intercepts. The latter can be characterized with the help of the projected area of the particle - its *geometric cross-section* \\(C_g\\). For a convex particle, it is given by the integral
 
@@ -5230,7 +5230,7 @@ $$ \tag{18.17}
 	\nabla \times \bm{L_{m,n}} = 0,
 $$
 
-where the \\(1/k\\) constant is chosen in order to make the resulting expression dimensionless \[[25](#references) (ch. 4.3)\].
+where the \\(1/k\\) constant is chosen in order to make the resulting expression dimensionless \[[12](#references) (ch. 4.3)\].
 
 Since divergence of curl is zero, Eqn. 18.14.2 and 18.15.1 suggests that both \\(\bm{M\_{m,n}}\\) and \\(\bm{N\_{m,n}}\\) should be the curl of something. In addition, both should depend on \\(\psi\_{m,n}\\). Since \\(\psi\_{m,n}\\) is a scalar, its curl is undefined; a simple way to fix that is to introduce a vector \\(\bm{a}\\):
 
@@ -10264,66 +10264,6 @@ $$ \tag{24.7}
 \end{aligned}
 $$
 
----
-
-TODO
-
-[Rayleigh](https://en.wikipedia.org/wiki/Rayleigh_scattering) - [Tyndall](https://en.wikipedia.org/wiki/Tyndall_effect) - [Mie](https://en.wikipedia.org/wiki/Mie_scattering)
-
-Inelastic [Raman scattering](https://en.wikipedia.org/wiki/Raman_scattering)
-
-Field Magnitude <-> Wave Amplitude
-
-Is a spherical cavity the right choice for the depolarization operator?
-
-Should I call relative wavenumber \\(w\\) and relative permeability \\(m\\)?
-
-How to extract a plane wave inside the sphere? Use the internal coefficients? But the corresponding vector spherical wave functions are defined in terms of \\(k r\\) rather than \\(m k r\\)...
-
-Find the transition operator... Try both surface and volume IE!
-
----
-
-## Acknowledgments
-
-Bohren & Huffman, Larry Travis, Pharr & Jakob, Jeppe Frisvad (Mie scattering), Robin Green (spherical harmonics), Naty Hoffman (Rayleigh scattering), Eugene d'Eon and Andrea Weidlich.
-
-## References
-
-<!-- Modified APA style -->
-
-1. Golubev, E. [Sampling Analytic Participating Media](/post/analytic-media/) (2020).
-2. Chandrasekhar, S. [Radiative Transfer](https://doi.org/10.1002/qj.49707633016) (1950).
-3. Golubev, E. [From Particle to Volume Scattering of Light](/post/particle-volume/) (2020).
-4. van de Hulst, H. C. [Light Scattering by Small Particles](https://doi.org/10.1002/qj.49708436025) (1957).
-5. Feynman, R. P., Leighton, R. B., & Sands, M. [The Feynman Lectures on Physics](https://www.feynmanlectures.caltech.edu/) (1965).
-6. Born, M., & Wolf, E. [Principles of Optics](https://doi.org/10.1017/CBO9781139644181) (7th ed., 1999).
-7. Van Bladel, J. G. [Electromagnetic Fields](https://doi.org/10.1002/047012458X) (2nd ed., 2007).
-8. Mishchenko, M. I. [Electromagnetic Scattering by Particles and Particle Groups](https://doi.org/10.1017/CBO9781139019064) (2014).
-9. Mishchenko, M. I., Travis, L. D., & Lacis, A. A. [Multiple Scattering of Light by Particles](https://www.cambridge.org/us/academic/subjects/earth-and-environmental-science/atmospheric-science-and-meteorology/multiple-scattering-light-particles-radiative-transfer-and-coherent-backscattering?format=HB&isbn=9780521834902) (2006).
-10. Pauli, W. [Pauli Lectures on Physics](https://www.worldcat.org/title/pauli-lectures-on-physics-vol-1-electrodynamics/oclc/439349741) (1973).
-11. Kong, J. A. [Electromagnetic Wave Theory](https://www.worldcat.org/title/electromagnetic-wave-theory/oclc/248547001) (2008).
-12. Tsang, L., & Kong, J. A. [Scattering of Electromagnetic Waves: Advanced Topics](https://doi.org/10.1002/0471224278) (2001).
-14. Talalai, G. [Derivation of the Free-Space Green’s Function](https://www.researchgate.net/publication/324729639_Derivation_of_the_Free-Space_Green's_Function_and_Radiation_from_a_Hertzian_Dipole) (2016).
-15. Frezza, F., Mangini, F., & Tedeschi, N. [Introduction to Electromagnetic Scattering: Tutorial](https://doi.org/10.1364/JOSAA.35.000163) (2018).
-16. Nussenzveig, H. M. [Diffraction Effects in Semiclassical Scattering](https://www.cambridge.org/us/academic/subjects/physics/theoretical-physics-and-mathematical-physics/diffraction-effects-semiclassical-scattering?format=PB) (1992).
-17. Stratton, J. A. [Electromagnetic Theory](https://doi.org/10.1002/9781119134640) (1941).
-18. Courant, R., & Hilbert, D. [Methods of Mathematical Physics](https://doi.org/10.1002/9783527617210) (1953).
-19. Morse, P. M., & Feshbach, H. [Methods of Theoretical Physics](https://www.worldcat.org/title/methods-of-theoretical-physics/oclc/468127798) (1953).
-20. Berg, M. J., Sorensen, C. M., & Chakrabarti, A. [A New Explanation of the Extinction Paradox](https://doi.org/10.1016/j.jqsrt.2010.08.024) (2011).
-21. Markel, V. A. [Extinction, Scattering and Absorption of Electromagnetic Waves in the Coupled-Dipole Approximation](https://doi.org/10.1016/j.jqsrt.2019.106611) (2019).
-22. Brillouin, L. [The Scattering Cross Section of Spheres for Electromagnetic Waves](https://doi.org/10.1063/1.1698280) (1949).
-23. Chýlek, P., & Zhan, J. [Interference Structure of the Mie Extinction Cross Section](https://doi.org/10.1364/JOSAA.6.001846) (1989).
-24. Chýlek, P. [Partial-Wave Resonances and the Ripple Structure in the Mie Normalized Extinction Cross Section ](https://doi.org/10.1364/JOSA.66.000285) (1976).
-25. Tsang, L., Kong, J. A., & Ding, K. H. [Scattering of Electromagnetic Waves: Theories and Applications](10.1002/0471224286) (2000).
-26. Rayleigh, L. [On the Transmission of Light Through an Atmosphere Containing Small Particles in Suspension, and on the Origin of the Blue of the Sky](https://doi.org/10.1080/14786449908621276) (1899).
-27. Raman, C. V. [On the Molecular Scattering of Light in Water and the Colour of the Sea](https://doi.org/10.1098/rspa.1922.0025) (1922).
-28. Wald, R. [Advanced Classical Electromagnetism](https://press.princeton.edu/books/hardcover/9780691220390/advanced-classical-electromagnetism) (2022).
-29. Long, D. A. [The Raman Effect: A Unified Treatment of the Theory of Raman Scattering by Molecules](https://doi.org/10.1002/0470845767) (2002).
-30. Cohen-Tannoudji, C., Diu, B., & Laloe, F. [Quantum Mechanics, Volume 1](https://www.wiley.com/en-us/Quantum+Mechanics%2C+Volume+1%3A+Basic+Concepts%2C+Tools%2C+and+Applications%2C+2nd+Edition-p-9783527822713) (2nd ed., 2020).
-31. Schueler, J. [Green’s Functions and Their Applications to Quantum Mechanics](https://sites.math.washington.edu/~morrow/336_11/papers/jeff.pdf) (2011).
-99. Hansen, J. E., & Travis, L. D. [Light Scattering in Planetary Atmospheres](https://doi.org/10.1007/BF00168069) (1974).
-
 <!--
 ### Polarization of Light
 
@@ -10473,3 +10413,64 @@ Auxiliary angle ...
 Non-paraxial polarization ???
 
 -->
+
+---
+
+TODO
+
+[Rayleigh](https://en.wikipedia.org/wiki/Rayleigh_scattering) - [Tyndall](https://en.wikipedia.org/wiki/Tyndall_effect) - [Mie](https://en.wikipedia.org/wiki/Mie_scattering)
+
+Inelastic [Raman scattering](https://en.wikipedia.org/wiki/Raman_scattering)
+
+Field Magnitude <-> Wave Amplitude
+
+Is a spherical cavity the right choice for the depolarization operator?
+
+Should I call relative wavenumber \\(w\\) and relative permeability \\(m\\)?
+
+How to extract a plane wave inside the sphere? Use the internal coefficients? But the corresponding vector spherical wave functions are defined in terms of \\(k r\\) rather than \\(m k r\\)...
+
+Find the transition operator... Try both surface and volume IE!
+
+---
+
+## Acknowledgments
+
+Bohren & Huffman, Larry Travis, Pharr & Jakob, Jeppe Frisvad (Mie scattering), Robin Green (spherical harmonics), Naty Hoffman (Rayleigh scattering), Eugene d'Eon and Andrea Weidlich.
+
+## References
+
+<!-- Modified APA style -->
+
+1. Golubev, E. [Sampling Analytic Participating Media](/post/analytic-media/) (2020).
+2. Chandrasekhar, S. [Radiative Transfer](https://doi.org/10.1002/qj.49707633016) (1950).
+3. Golubev, E. [From Particle to Volume Scattering of Light](/post/particle-volume/) (2020).
+4. van de Hulst, H. C. [Light Scattering by Small Particles](https://doi.org/10.1002/qj.49708436025) (1957).
+5. Feynman, R. P., Leighton, R. B., & Sands, M. [The Feynman Lectures on Physics](https://www.feynmanlectures.caltech.edu/) (1965).
+6. Born, M., & Wolf, E. [Principles of Optics](https://doi.org/10.1017/CBO9781139644181) (7th ed., 1999).
+7. Van Bladel, J. G. [Electromagnetic Fields](https://doi.org/10.1002/047012458X) (2nd ed., 2007).
+8. Mishchenko, M. I. [Electromagnetic Scattering by Particles and Particle Groups](https://doi.org/10.1017/CBO9781139019064) (2014).
+9. Mishchenko, M. I., Travis, L. D., & Lacis, A. A. [Multiple Scattering of Light by Particles](https://www.cambridge.org/us/academic/subjects/earth-and-environmental-science/atmospheric-science-and-meteorology/multiple-scattering-light-particles-radiative-transfer-and-coherent-backscattering?format=HB&isbn=9780521834902) (2006).
+10. Pauli, W. [Pauli Lectures on Physics](https://www.worldcat.org/title/pauli-lectures-on-physics-vol-1-electrodynamics/oclc/439349741) (1973).
+11. Kong, J. A. [Electromagnetic Wave Theory](https://www.worldcat.org/title/electromagnetic-wave-theory/oclc/248547001) (2008).
+12. Tsang, L., Kong, J. A., & Ding, K. H. [Scattering of Electromagnetic Waves: Theories and Applications](10.1002/0471224286) (2000).
+13. Tsang, L., & Kong, J. A. [Scattering of Electromagnetic Waves: Advanced Topics](https://doi.org/10.1002/0471224278) (2001).
+14. Talalai, G. [Derivation of the Free-Space Green’s Function](https://www.researchgate.net/publication/324729639_Derivation_of_the_Free-Space_Green's_Function_and_Radiation_from_a_Hertzian_Dipole) (2016).
+15. Frezza, F., Mangini, F., & Tedeschi, N. [Introduction to Electromagnetic Scattering: Tutorial](https://doi.org/10.1364/JOSAA.35.000163) (2018).
+16. Nussenzveig, H. M. [Diffraction Effects in Semiclassical Scattering](https://www.cambridge.org/us/academic/subjects/physics/theoretical-physics-and-mathematical-physics/diffraction-effects-semiclassical-scattering?format=PB) (1992).
+17. Stratton, J. A. [Electromagnetic Theory](https://doi.org/10.1002/9781119134640) (1941).
+18. Courant, R., & Hilbert, D. [Methods of Mathematical Physics](https://doi.org/10.1002/9783527617210) (1953).
+19. Morse, P. M., & Feshbach, H. [Methods of Theoretical Physics](https://www.worldcat.org/title/methods-of-theoretical-physics/oclc/468127798) (1953).
+20. Berg, M. J., Sorensen, C. M., & Chakrabarti, A. [A New Explanation of the Extinction Paradox](https://doi.org/10.1016/j.jqsrt.2010.08.024) (2011).
+21. Markel, V. A. [Extinction, Scattering and Absorption of Electromagnetic Waves in the Coupled-Dipole Approximation](https://doi.org/10.1016/j.jqsrt.2019.106611) (2019).
+22. Brillouin, L. [The Scattering Cross Section of Spheres for Electromagnetic Waves](https://doi.org/10.1063/1.1698280) (1949).
+23. Chýlek, P., & Zhan, J. [Interference Structure of the Mie Extinction Cross Section](https://doi.org/10.1364/JOSAA.6.001846) (1989).
+24. Chýlek, P. [Partial-Wave Resonances and the Ripple Structure in the Mie Normalized Extinction Cross Section ](https://doi.org/10.1364/JOSA.66.000285) (1976).
+25. Thorne, K. S., & Blandford, R. D. [Modern Classical Physics](https://press.princeton.edu/books/hardcover/9780691159027/modern-classical-physics) (2017)
+26. Rayleigh, L. [On the Transmission of Light Through an Atmosphere Containing Small Particles in Suspension, and on the Origin of the Blue of the Sky](https://doi.org/10.1080/14786449908621276) (1899).
+27. Raman, C. V. [On the Molecular Scattering of Light in Water and the Colour of the Sea](https://doi.org/10.1098/rspa.1922.0025) (1922).
+28. Wald, R. [Advanced Classical Electromagnetism](https://press.princeton.edu/books/hardcover/9780691220390/advanced-classical-electromagnetism) (2022).
+29. Long, D. A. [The Raman Effect: A Unified Treatment of the Theory of Raman Scattering by Molecules](https://doi.org/10.1002/0470845767) (2002).
+30. Cohen-Tannoudji, C., Diu, B., & Laloe, F. [Quantum Mechanics, Volume 1](https://www.wiley.com/en-us/Quantum+Mechanics%2C+Volume+1%3A+Basic+Concepts%2C+Tools%2C+and+Applications%2C+2nd+Edition-p-9783527822713) (2nd ed., 2020).
+31. Schueler, J. [Green’s Functions and Their Applications to Quantum Mechanics](https://sites.math.washington.edu/~morrow/336_11/papers/jeff.pdf) (2011).
+99. Hansen, J. E., & Travis, L. D. [Light Scattering in Planetary Atmospheres](https://doi.org/10.1007/BF00168069) (1974).
