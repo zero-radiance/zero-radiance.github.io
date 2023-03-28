@@ -463,7 +463,7 @@ $$ \tag{3.1}
 	= \frac{1}{\sqrt{2 \pi}} \int\_{-\infin}^{\infin} \bm{E}(\bm{r}, t) e^{i \omega t} dt,
 $$
 
-where \\(\omega\\) is the *angular frequency*. \\(\bm{E}(\bm{r}, \omega)\\) is the *complex* electric vector[^2].
+where \\(\omega\\) is the [angular frequency](https://en.wikipedia.org/wiki/Angular_frequency). \\(\bm{E}(\bm{r}, \omega)\\) is the *complex* electric vector[^2].
 
 [^2]: Operations and identities of real vector algebra can be applied to any complex vector \\(\bm{c} = \bm{a} + i \bm{b}\\) by expressing it as a combination of two real vectors \\(\bm{a}\\) and \\(\bm{b}\\). The magnitude of the complex vector \\(|\bm{c}| = \bm{c} \cdot \bm{c^{\*}} = \sqrt{\sum{|c_n|^2}}\\) can be computed most efficiently by writing each component in its polar form \\(c_n = r_n \exp(i \theta_n)\\).
 
@@ -2458,7 +2458,7 @@ Mathematically, the field of a (macroscopic) piece of matter is the (vector) sum
 
 In order for light scattering effects to appear, the medium must be *inhomogeneous*. Microscopically, this implies that the underlying distribution of dipoles is *non-uniform*; macroscopically, such a medium is characterized by spatially-varying *optical properties*.
 
-The two most important optical properties of a medium are the refractive index (which defines the trajectories of light rays) and the absorption index (which causes light rays to lose energy in the course of propagation).
+The two most important optical properties of a medium are the refractive index (which defines the trajectories of light rays) and the attenuation index (which causes light rays to lose energy in the course of propagation).
 
 [Insert picture here?]
 
@@ -2498,7 +2498,131 @@ $$ \tag{1x.3}
 	c t = 299792458 t \text{ m}.
 $$
 
-is invariant with respect to this transformation. Therefore, the value of the spacetime coordinate \\(\left(c t, x, y, z \right)\\) also remains unchanged. By omitting the \\(c\\) factor and measuring the time \\(t\\) in meters, we emphasize the equivalence of roles played by space and time. Due to the geometric nature of the transformation, this convention bears the name of *geometrized units* [Thorne 1.10].
+is invariant with respect to this transformation. Therefore, both the units and the value of the [spacetime coordinate](https://en.wikipedia.org/wiki/Minkowski_space) \\(\left(c t, \bm{r} \right)\\) also remain unchanged. By omitting the \\(c\\) factor and measuring the time \\(t\\) in meters, we emphasize the equivalence of roles played by space and time. Due to the geometric nature of the transformation, this convention bears the name of *geometrized units* [Thorne 1.10].
+
+For a particle with rest mass \\(m\\) and velocity \\(\bm{v}\\), the expression of relativistic energy \\(\mathcal{E}\\) is
+
+$$ \tag{1x.4}
+	\mathcal{E} = \frac{m c^2}{\sqrt{1-v^2/c^2}} = \frac{m}{\sqrt{1-v^2}}.
+$$
+
+This is the formulation of [mass-energy equivalence](https://en.wikipedia.org/wiki/Mass%E2%80%93energy_equivalence) (where both energy and mass are relativistic). Eqn. 1x.4 makes it clear that, if the geometrized unit convention is used, energy has units of mass.
+
+For non-relativistic applications, there are other ways of unifying the roles of space and time. For instance, when building a mathematical model of wave phenomena (not necessarily electromagnetic), one typically uses an expression of the form
+
+$$ \tag{1x.5}
+	e^{i k(\bm{r}, \omega) x - i \omega t},
+$$
+
+where \\(k\\) is the angular wavenumber and \\(\omega\\) is the angular frequency. Alternatively, Eqn. 1x.5 can be expressed in terms of the (ordinary) frequency \\(\nu\\):
+
+$$ \tag{1x.6}
+	e^{i k(\bm{r}, 2 \pi \nu) x - 2 \pi i \nu t}.
+$$
+
+Notice that the product \\(\nu t\\) is a [dimensionless quantity](https://en.wikipedia.org/wiki/Dimensionless_quantity) measured in cycles (the number of oscillations), regardless of our choice of the units of measurement.
+
+If one uses the Fourier transform (as we have done in Sec. 3) to solve a system of equations (e.g. the Maxwell equations), the problem (and the spectrum) is decomposed into independent (frequency) components that can be worked out one at a time. Because we consider a single (known) value of \\(\nu\\), we may set
+
+$$ \tag{1x.7}
+	\nu = 1,
+	\quad \text{or} \quad
+	\omega = 2 \pi.
+$$
+
+Unfortunately, the value of the angular wavenumber is not fixed by our decision to utilize the Fourier transform, since \\(k\\) also depends on the properties of the medium. In optics, the latter is usually characterized by the refractive index \\(\eta\\) and the attenuation index \\(\kappa\\), both of which are dimensionless (cf. Eqn. 7.6-7.7):
+
+$$ \tag{1x.8}
+	k(\bm{r}, \omega) =
+	\frac{\omega}{c} \Big( \eta(\bm{r}, \omega) + i \kappa(\bm{r}, \omega) \Big).
+$$
+
+In vacuum, \\(\eta = 1, \kappa = 0\\), and the angular wavenumber \\(k\\) is inversely proportional to the wavelength \\(\lambda\\):
+
+$$ \tag{1x.9}
+	k_0(\omega) =
+	\frac{\omega}{c} = \frac{2 \pi \nu}{c} = \frac{2 \pi}{\lambda_0(\nu)}.
+$$
+
+Since the radio \\(\bm{r} / \lambda\\) is also dimensionless, we could set
+
+$$ \tag{1x.10}
+	\frac{c}{\nu} = \lambda_0(\nu) = 1,
+	\quad \text{or} \quad
+	k_0(\omega) = 2 \pi.
+$$
+
+Eqn. 1x.7 and 1x.10 show that one could make the spacetime dimensionless by simply rescaling it:
+
+$$ \tag{1x.11}
+	\frac{\nu}{c} \Big( c t, \bm{r} \Big)
+	= \nu (t, \bm{r} / c)
+	= (\nu t, \bm{r} / \lambda_0)
+	= (t, \bm{r}).
+$$
+
+This is a fine choice for someone working with the microscopic formulation of the Maxwell equations (in the vacuum). For electrodynamics in bulk matter, it is more convenient to choose a different reference value -- one that typically corresponds to the location \\(\bm{r_1}\\) of either the source or the detector:
+
+$$ \tag{1x.12}
+	k_1(\omega) =
+	k_0(\omega) \big( \eta(\bm{r_1}, \omega) + i \kappa(\bm{r_1}, \omega) \big) = 2 \pi.
+$$
+
+Typically, \\(\bm{r_1}\\) corresponds to point located in the air or in the vacuum, which makes Eqn. 1x.10 and 1x.12 equivalent for all practical purposes[^29]. Note that the reference location \\(\bm{r_1}\\) must be chosen such that
+
+$$ \tag{1x.13}
+	\kappa(\bm{r_1}, \omega) = 0,
+$$
+
+which indicates that the associated medium is non-absorptive; otherwise \\(k_1 \bm{r} = 2 \pi \bm{r}\\) becomes complex, which can be rather confusing.
+
+---
+
+Finally, we would like to highlight the *scale invariance* property of electromagnetic scattering, also known as the principle of *electrodynamic similitude* \[[8](#references) (ch. 5.5), [9](#references) (ch. 3.5), [17](#references) (ch. 9.3)\]. The gist of it is that, while the (dimensionless) scattering and absorption characteristics of a scattering object depend on its linear dimension \\(a\\) and the wavenumbers \\(k_2 \text{ and } k_1\\) in the interior and the exterior regions, respectively, its properties can be alternatively described using the *relative wavenumber* \\(m = k_2 / k_1\\) and the so-called *size parameter* \\(x = k_1 a = 2 \pi a / \lambda\\), both of which are dimensionless. Thus, provided that the value of \\(m\\) stays fixed, increasing both the linear dimension of the object and the wavelength by the same factor \\(f\\) leaves the formula unchanged: \\(x' = 2 \pi (a f) / (f \lambda) = x \\). This [reduces the dimensionality](https://en.wikipedia.org/wiki/Dimensionality_reduction) of the problem, since three parameters can be replaced with just two.
+
+Note that, unlike \\(x\\), \\(m\\) is not scale-invariant. Recall its definition given by Eqn. 11.8:
+
+$$ \tag{15.17}
+	m(\bm{r}, \omega)
+	= \frac{k_2(\bm{r}, \omega)}{k_1(\omega)}
+	= \sqrt{ \frac{\varepsilon_2(\bm{r}, \omega) \mu_2(\omega)}{\varepsilon_1(\omega) \mu_1(\omega)} }.
+$$
+
+Suppose that the scattering object is located in vacuum. Then the denominator \\(\varepsilon_1 \mu_1=\epsilon_0 \mu_0\\) does not depend on the frequency of the incident radiation. However, the numerator does, since no material has a flat response across the entire frequency range. In particular, if the scattering object is conductive \\((\sigma_2 \neq 0)\\), then, according to Eqn. 5.6, its complex permittivity
+
+$$ \tag{15.??}
+	\varepsilon_2(\bm{r}, \omega)
+	= \epsilon_2(\bm{r}, \omega) + i \frac{\sigma_2(\bm{r}, \omega)}{\omega}
+$$
+
+directly depends on the frequency \\(\omega\\). Thus, in order for the scale invariance property to hold, if the linear dimension of the object and the wavelength are both increased by the same factor, conductivity must be correspondingly reduced.
+
+[Insert picture here]
+
+The principal advantage of Eqn. 1x.12 over 1x.10 stems from stems from stems
+
+Setting \\(c / \eta = 1\\) rather than \\(c = 1\\) ...
+
+[^29]: At optical frequencies, under normal atmospheric conditions.
+
+In the vast majority of cases,
+
+Furthermore, since the vast majority of applications ... \\(\kappa(\bm{r_1}, \omega) = 0\\)
+
+In order to make the Eqn. 1x.6 symmetric, we must also set
+
+$$ \tag{1x.8}
+	\lambda(\nu) = 1,
+	\quad \text{or} \quad
+	k(\omega) = 2 \pi,
+$$
+
+Measuring space and time relative to the wavelength of light is highly convenient,
+
+which ensures that the space coordinate \\(x\\) and the product \\(x / \lambda\\) the same units of measurement (e.i. cycles).
+
+
+
 
 
 ### Volume Integral Equation
