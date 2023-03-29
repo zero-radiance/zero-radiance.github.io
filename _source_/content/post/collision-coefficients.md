@@ -854,7 +854,7 @@ $$ \tag{5.2}
 \end{aligned}
 $$
 
-where \\(\sigma\\) is the [specific conductivity](https://en.wikipedia.org/wiki/Electrical_resistivity_and_conductivity), \\(\epsilon\\) is the [electric permittivity](https://en.wikipedia.org/wiki/Permittivity), and \\(\mu\\) is the [magnetic permeability](https://en.wikipedia.org/wiki/Permeability_(electromagnetism)) \[[6](#references) (ch. 1.1.2), [7](#references) (ch. 2.3), [8](#references) (ch. 2.1)\]. Note that the reciprocal of the permeability is used -- it is a historical accident caused by the confusion over whether \\(\bm{H}\\) or \\(\bm{B}\\) is the fundamental magnetic field.
+where \\(\sigma\\) is the [specific conductivity](https://en.wikipedia.org/wiki/Electrical_resistivity_and_conductivity), \\(\epsilon\\) is the [electric permittivity](https://en.wikipedia.org/wiki/Permittivity), and \\(\mu\\) is the [magnetic permeability](https://en.wikipedia.org/wiki/Permeability_(electromagnetism)) \[[6](#references) (ch. 1.1.2), [7](#references) (ch. 2.3), [8](#references) (ch. 2.1)\]. Note that the reciprocal of the permeability is used -- it is a historical accident caused by the confusion over whether \\(\bm{H}\\) or \\(\bm{B}\\) is the fundamental magnetic field \[[5](#references) (ch. 36), [17](#references) (ch. 4.9)\].
 
 Care must taken when transforming Eqn. 5.2.1-5.2.3 to the time domain, since a multiplication in the frequency domain leads to a convolution in the time domain. There, Eqn. 5.2.1-5.2.3 take the form
 
