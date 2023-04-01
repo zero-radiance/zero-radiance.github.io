@@ -578,7 +578,7 @@ $$ \tag{3.11}
 	\rho(\bm{r}, \omega) = \frac{1}{i \omega} \nabla \cdot \bm{J}(\bm{r}, \omega).
 $$
 
-Finally, observe that we only need to find the expression of the electric field. From Eqn. 3.9.1 and 3.10.1, it follows that
+Finally, observe that we only need to find the expression of the electric field. From Eqn. 3.9.1 or 3.10.1, it follows that
 
 $$ \tag{3.12}
 	\bm{B}(\bm{r}, \omega) = \frac{1}{i \omega} \nabla \times \bm{E}(\bm{r}, \omega).
@@ -1672,7 +1672,7 @@ Its solution is the *scalar* [Green function](https://en.wikipedia.org/wiki/Gree
 Eqn. 9.9 is an inhomogeneous linear differential equation. Consequently, its solution depends on the linear operator in question, its domain of validity, as well as the associated (initial or boundary) conditions. According to Eqn. 9.7, our domain is the whole real space, and the only applicable restriction is the Sommerfeld radiation condition. Thus, it can be shown that the *free-space* scalar Green function \\(g_0\\) takes the form[^9] of an diverging *scalar* [spherical wave](https://en.wikipedia.org/wiki/Wave_equation#Spherical_waves) \[[7](#references) (ch. 2.12), [8](#references) (ap. B), [14](#references)\]:
 
 $$ \tag{9.10}
-	g_0(\bm{r}) = g(\bm{r}, k_0) = \frac{e^{i k_0 |\bm{r}|}}{4 \pi |\bm{r}|}.
+	g_0(\bm{R}) = g(\bm{R}, k_0) = \frac{e^{i k_0 |\bm{R}|}}{4 \pi |\bm{R}|}.
 $$
 
 [^9]: Mathematicians often move the minus sign from Eqn. 9.9 to 9.10. This introduces a significant amount of bookkeeping and is, ultimately, undesirable.
@@ -1877,11 +1877,11 @@ $$ \tag{9.34}
 	= \mathcal{P.V.} \lbrace \nabla g(\bm{r} - \bm{r'}, k) \rbrace \times \mathcal{I}
 $$
 
-that can be expressed using the [matrix form of the cross product](https://en.wikipedia.org/wiki/Cross_product#Conversion_to_matrix_multiplication). You may recognize that
+that can be expressed using the [matrix form of the cross product](https://en.wikipedia.org/wiki/Cross_product#Conversion_to_matrix_multiplication). As the curl of gradient is zero, we can immediately recognize that
 
 $$ \tag{9.35}
 	\mathcal{G}\_m(\bm{r}, \bm{r'}, k)
-	= \frac{1}{i \omega} \nabla \times \mathcal{G}\_e(\bm{r}, \bm{r'}, k).
+	= \nabla \times \mathcal{G}\_e(\bm{r}, \bm{r'}, k).
 $$
 
 Therefore, our results are consistent with Eqn. 3.12.
