@@ -2478,17 +2478,17 @@ At the scale of a single particle, we can partition the space in two regions -- 
 
 So far, we have not paid much attention to the units of measurement, except for making the specific choice to adopt the modern SI unit convention; instead, we focused on learning the foundational concepts and building the physical intuition. Since this approach is common among introductory-level textbooks, it allowed us to insert multiple references (with equations of the same form) for those readers who wish to learn more, or are simply looking for an alternative explanation.
 
-The choice of units used to describe electromagnetism is a contentious topic. Historically, the Gaussian units were dominant during the first half of the 20th century; some fairly recent books (such as [Born & Wolf], [Jackson]) still utilize them today. The SI units serve as the modern replacement, but they are sometimes criticized for being unnatural [citation needed]. Ultimately, using either system gets the job done, even if neither is perfect. In fact, both of these systems exhibit a flaw: the angular wavenumber factor \\(k\\) appears in practically every equation, often several times, and its meaning and purpose are not always obvious. This tends to obscure the geometrical nature of the electromagnetic field \[[25](#references) (ch. 2.11)\].
+The choice of units used to describe electromagnetism is a contentious topic. Historically, the Gaussian units were dominant during the first half of the 20th century; some fairly recent books (such as [Born & Wolf], [Jackson]) still utilize them today. The SI units serve as the modern replacement, but they are sometimes criticized for being unnatural [citation needed]. Ultimately, using either system gets the job done, even if neither is perfect. In fact, both of these systems exhibit a flaw: the angular wavenumber factor \\(k\\) appears in practically every equation, often several times, and its meaning and purpose are not always obvious (e.g. see Sec. 9). This tends to obscure the geometrical nature of the electromagnetic field \[[25](#references) (ch. 2.11)\].
 
 The books devoted to the subject of relativity have historically suffered from a similar problem caused by frequent occurrences of the speed of light factor \\(c\\) [citation needed]. In this case, the solution is surprisingly simple: one just sets
 
-$$ \tag{1x.1}
+$$ \tag{1w.1}
 	c = 1.
 $$
 
-Since the SI value of the speed of light is exactly 299,792,458 m/s, Eqn. 1x.1 implies that
+Since the SI value of the speed of light is exactly 299,792,458 m/s, Eqn. 1w.1 implies that
 
-$$ \tag{1x.2}
+$$ \tag{1w.2}
 	1 \text{ s} = 299792458 \text{ m}.
 $$
 
@@ -2496,87 +2496,89 @@ Because the product \\(ct\\) is invariant with respect to this transformation, b
 
 For a particle with rest mass \\(m\\) and velocity \\(\bm{v}\\), the expression of relativistic energy \\(\mathcal{E}\\) is
 
-$$ \tag{1x.3}
+$$ \tag{1w.3}
 	\mathcal{E}(m) = \frac{m c^2}{\sqrt{1-v^2/c^2}} = \frac{m}{\sqrt{1-v^2}}.
 $$
 
-This is the formulation of [mass-energy equivalence](https://en.wikipedia.org/wiki/Mass%E2%80%93energy_equivalence) (where both energy and mass are relativistic). Eqn. 1x.4 makes it clear that, if the geometrized unit convention is used, energy has units of mass.
+This is the formulation of [mass-energy equivalence](https://en.wikipedia.org/wiki/Mass%E2%80%93energy_equivalence) (where both energy and mass are relativistic). Eqn. 1w.4 makes it clear that, if the geometrized unit convention is used, energy has units of mass.
 
 For non-relativistic applications, there are other ways of unifying the roles of space and time. For instance, when building a mathematical model of wave phenomena (not necessarily electromagnetic), one typically uses an expression of the form
 
-$$ \tag{1x.4}
+$$ \tag{1w.4}
 	e^{i k(\bm{r}, \omega) x - i \omega t},
 $$
 
-where \\(k\\) is the angular wavenumber and \\(\omega\\) is the angular frequency. Alternatively, Eqn. 1x.5 can be expressed in terms of the (ordinary) frequency \\(\nu\\):
+where \\(k\\) is the angular wavenumber and \\(\omega\\) is the angular frequency. Alternatively, Eqn. 1w.5 can be expressed in terms of the (ordinary) frequency \\(\nu\\):
 
-$$ \tag{1x.5}
+$$ \tag{1w.5}
 	e^{i k(\bm{r}, 2 \pi \nu) x - 2 \pi i \nu t}.
 $$
 
 Notice that the product \\(\nu t\\) is a [dimensionless quantity](https://en.wikipedia.org/wiki/Dimensionless_quantity) measured in cycles (the *number of oscillations*), regardless of our choice of the units of measurement.
 
-If one uses the Fourier transform (as we have done in Sec. 3) to solve a system of equations (such as the Maxwell equations), the problem (and the spectrum) is decomposed into independent (frequency) components that can be worked out one at a time. Because we consider a single (known) value of \\(\nu\\), we may set
+If one uses the Fourier transform (as we have done in Sec. 3) to solve a system of equations (such as the Maxwell equations), the problem (and the spectrum) is decomposed into independent (frequency) components that can be worked out one at a time. As we consider a single known value of \\(\nu\\), we may set
 
-$$ \tag{1x.6}
-	\nu = 1 \text{ s}^{\text{-1}},
+$$ \tag{1w.6}
+	\nu = 1,
 	\quad \text{or} \quad
-	\omega = 2 \pi \text{ rad/s}.
+	\omega = 2 \pi \text{ rad}.
 $$
 
 Unfortunately, the value of the angular wavenumber is not fixed by our decision to utilize the Fourier transform, since \\(k\\) also depends on the properties of the medium. In optics, the latter is usually characterized by the refractive index \\(\eta\\) and the attenuation index \\(\kappa\\), both of which are dimensionless (cf. Eqn. 7.6-7.7):
 
-$$ \tag{1x.7}
+$$ \tag{1w.7}
 	k(\bm{r}, \omega) =
 	\frac{\omega}{c} \Big( \eta(\bm{r}, \omega) + i \kappa(\bm{r}, \omega) \Big).
 $$
 
 In vacuum, \\(\eta = 1, \kappa = 0\\), and the angular wavenumber \\(k\\) is inversely proportional to the wavelength \\(\lambda\\):
 
-$$ \tag{1x.8}
+$$ \tag{1w.8}
 	k_0(\omega) =
 	\frac{\omega}{c} = \frac{2 \pi \nu}{c} = \frac{2 \pi}{\lambda_0(\nu)}.
 $$
 
 Since the ratio \\(\bm{r} / \lambda\\) (measured in cycles, or the *number of wavelengths*) is also dimensionless, we could set
 
-$$ \tag{1x.9}
-	\lambda_0(\nu) = \frac{c}{\nu} = 1 \text{ m},
+$$ \tag{1w.9}
+	\lambda_0(\nu) = \frac{c}{\nu} = 1,
 	\quad \text{or} \quad
-	k_0(\omega) = 2 \pi \text{ rad/m}.
+	k_0(\omega) = 2 \pi \text{ rad}.
 $$
 
-Eqn. 1x.7 and 1x.10 show that one could make the spacetime dimensionless simply by rescaling it:
+Eqn. 1w.7 and 1w.9 show that one could make the spacetime dimensionless simply by rescaling it:
 
-$$ \tag{1x.10}
+$$ \tag{1w.10}
 	\frac{\nu}{c} \Big( c t, \bm{r} \Big)
 	= \nu (t, \bm{r} / c)
 	= (\nu t, \bm{r} / \lambda_0)
 	= (t, \bm{r}).
 $$
 
-This is a fine choice for someone working with the microscopic formulation of the Maxwell equations (in the vacuum). For electrodynamics in bulk matter, it is more convenient to choose a different reference value -- the one measured at the location \\(\bm{r_1}\\) of either the source or the detector:
+This is a fine choice for someone working with the microscopic formulation of the Maxwell equations (in the vacuum). For electrodynamics in bulk matter, it is more convenient to choose a different reference value -- the one measured at the location \\(\bm{r_1}\\) of either the source or the detector -- such that
 
-$$ \tag{1x.11}
+$$ \tag{1w.11}
 	\lambda_1(\nu)
-	= \frac{\lambda_0(\nu)}{\eta(\bm{r_1}, 2 \pi \nu)} = 1 \text{ m},
+	= \frac{\lambda_0(\nu)}{\eta(\bm{r_1}, 2 \pi \nu)} = 1,
 	\quad \text{or} \quad
 	k_1(\omega)
-	= k_0(\omega) \eta(\bm{r_1}, \omega) = 2 \pi \text{ rad/m}.
+	= k_0(\omega) \eta(\bm{r_1}, \omega) = 2 \pi \text{ rad}.
 $$
 
 The expression of the spacetime coordinate must be modified correspondingly:
 
-$$ \tag{1x.12}
+$$ \tag{1w.12}
 	\frac{\nu}{c} \Big( c t, \bm{r} \eta_1 \Big)
 	= \nu (t, \bm{r} \eta_1 / c)
 	= (\nu t, \bm{r} / \lambda_1)
 	= (t, \bm{r}).
 $$
 
-Typically, \\(\bm{r_1}\\) corresponds to point located in the air or in the vacuum, which makes Eqn. 1x.9 and 1x.11 equivalent for all practical purposes[^29]. Notice that the reference location \\(\bm{r_1}\\) must be chosen such that
+Typically, \\(\bm{r_1}\\) corresponds to point located in the air or in the vacuum, which makes Eqn. 1w.9 and 1w.11 equivalent for all practical purposes[^29]. Notice that the reference location \\(\bm{r_1}\\) must be chosen such that
 
-$$ \tag{1x.13}
+[^29]: At optical frequencies, under normal atmospheric conditions.
+
+$$ \tag{1w.13}
 	\kappa(\bm{r_1}, \omega) = 0;
 $$
 
@@ -2584,6 +2586,11 @@ otherwise \\(k_1 \bm{r} = 2 \pi \bm{r}\\) becomes complex, which breaks the symm
 
 ---
 
+$$
+	k_1 = \omega \frac{\eta_1}{c};
+	\quad
+	\omega = k_1 \frac{c}{\eta_1};
+$$
 
 ---
 
@@ -2607,32 +2614,6 @@ $$
 directly depends on the frequency \\(\omega\\). Thus, in order for the scale invariance property to hold, if the linear dimension of the object and the wavelength are both increased by the same factor, conductivity must be correspondingly reduced.
 
 [Insert picture here]
-
-The principal advantage of Eqn. 1x.12 over 1x.10 stems from stems from stems
-
-Setting \\(c / \eta = 1\\) rather than \\(c = 1\\) ...
-
-[^29]: At optical frequencies, under normal atmospheric conditions.
-
-In the vast majority of cases,
-
-Furthermore, since the vast majority of applications ... \\(\kappa(\bm{r_1}, \omega) = 0\\)
-
-In order to make the Eqn. 1x.6 symmetric, we must also set
-
-$$ \tag{1x.8}
-	\lambda(\nu) = 1,
-	\quad \text{or} \quad
-	k(\omega) = 2 \pi,
-$$
-
-Measuring space and time relative to the wavelength of light is highly convenient,
-
-which ensures that the space coordinate \\(x\\) and the product \\(x / \lambda\\) the same units of measurement (e.i. cycles).
-
-
-
-
 
 ### Volume Integral Equation
 
