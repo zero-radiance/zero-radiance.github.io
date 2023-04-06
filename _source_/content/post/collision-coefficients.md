@@ -925,7 +925,7 @@ Writing the Maxwell equations this way allows us to compare the macroscopic Eqn.
 
 Consider a region of space without any source charges or currents. Physically, this means that the region is *source-free*; but that does not mean it contains no energy. To find an expression of the internal field, we shall explore all general solutions of the Maxwell equations (we can find a special solution once we specify the boundary conditions), and determine how these solutions evolve over time.
 
-Setting \\(\bm{J\_s} = \rho\_s = 0\\) in Eqn. 5.7.3-5.7.4, we obtain a coupled system of linear homogeneous equations:
+Setting \\(\bm{J\_s} = \rho\_s = 0\\) in Eqn. 5.7.3-5.7.4, we obtain a coupled system of linear equations:
 
 $$ \tag{6.1}
 \begin{aligned}
@@ -2476,96 +2476,71 @@ At the scale of a single particle, we can partition the space in two regions -- 
 
 ### Volume Integral Equation
 
-Participating media can be broadly divided into two categories - homogeneous and inhomogeneous. This suggests that we may split any medium into two regions: 1) infinite homogeneous, and 2) the remaining space of finite volume \\(V\\). The latter can be interpreted as a single particle or a particle group, or, more generally, as a scattering object (or a *scatterer* for short).
+In Sec. 7, we found a solution of the Maxwell equations in a linear, isotropic, homogeneous, source-free medium; we represented that solution as a superposition of plane waves. Later, in Sec. 9, we found a solution of the the Maxwell equations in the vacuum; that solution was expressed as a volume integral taken over all charges and currents. In this section, we shall extend both of these approaches in order to solve the Maxwell equations in a linear, isotropic, *inhomogeneous*, source-free medium.
 
-[Picture?]
-
-According to the Maxwell equations in the frequency domain (Eqn. 3.9.1), the following relation holds in both regions:
+We start by recalling the first of the Maxwell equations in the frequency domain (Eqn. 3.9.1):
 
 $$ \tag{11.1}
 	\nabla \times \bm{E}(\bm{r}, \omega) - i \omega \bm{B}(\bm{r}, \omega) = 0.
 $$
 
-On the other hand, the second Maxwell equation (3.9.3) depends on the region under consideration:
+It is independent of the properties of the medium. That is not the case for Eqn. 3.9.3:
 
 $$ \tag{11.2}
 	\nabla \times \bm{H}(\bm{r}, \omega) + i \omega \bm{D}(\bm{r}, \omega) = \bm{J_f}(\bm{r}, \omega).
 $$
 
-Assuming that the media are linear, isotropic, and source-free, Eqn. 11.2 can be replaced by Eqn. 6.1.3:
+Assuming that the medium is linear, isotropic, and source-free, Eqn. 11.2 can be replaced by Eqn. 6.1.3:
 
 $$ \tag{11.3}
-\begin{aligned}
-	& \nabla \times \big( \mu_1^{-1}(\omega) \bm{B}(\bm{r_1}, \omega) \big)
-	= -i \omega \varepsilon_1(\omega)  \bm{E}(\bm{r_1}, \omega), \cr
-	& \nabla \times \big( \mu_2^{-1}(\bm{r_2}, \omega) \bm{B}(\bm{r_2}, \omega) \big)
-	= -i \omega \varepsilon_2(\bm{r_2}, \omega) \bm{E}(\bm{r_2}, \omega),
-\end{aligned}
+	\nabla \times \big( \mu^{-1}(\bm{r}, \omega) \bm{B}(\bm{r}, \omega) \big)
+	= -i \omega \varepsilon(\bm{r}, \omega) \bm{E}(\bm{r}, \omega).
 $$
 
-where the first equation only holds in the (homogeneous) region 1, and the second - in the (inhomogeneous) region 2.
-
-Further, assume that the magnetic permeability is constant within the region 2. This implies that
+Further, assume that the magnetic permeability is *piecewise-constant*. This allows us to move \\(\mu\\) outside of the curl:
 
 $$ \tag{11.4}
-\begin{aligned}
-	& \nabla \times \bm{B}(\bm{r_1}, \omega)
-	= -i \omega \mu_1(\omega) \varepsilon_1(\omega) \bm{E}(\bm{r_1}, \omega), \cr
-	& \nabla \times \bm{B}(\bm{r_2}, \omega)
-	= -i \omega \mu_2(\omega) \varepsilon_2(\bm{r_2}, \omega) \bm{E}(\bm{r_2}, \omega),
-\end{aligned}
+	\nabla \times \bm{B}(\bm{r}, \omega)
+	= -i \omega \varepsilon(\bm{r}, \omega) \mu(\bm{r}, \omega) \bm{E}(\bm{r}, \omega).
 $$
 
-These equations are ready for substitution into the curl of Eqn. 11.1. The result is
+This equation now is ready for substitution into the curl of Eqn. 11.1. The result is
 
 $$ \tag{11.5}
-\begin{aligned}
-	& \nabla \times \nabla \times \bm{E}(\bm{r_1}, \omega) - k_1^2(\omega) \bm{E}(\bm{r_1}, \omega) = 0, \cr
-	& \nabla \times \nabla \times \bm{E}(\bm{r_2}, \omega) - k_2^2(\bm{r_2}, \omega) \bm{E}(\bm{r_2}, \omega) = 0,
-\end{aligned}
+	\nabla \times \nabla \times \bm{E}(\bm{r}, \omega) - k^2(\bm{r}, \omega) \bm{E}(\bm{r}, \omega) = 0,
 $$
 
-with the constants grouped according to the definition of the angular wavenumber \\(k\\) given by Eqn. 7.4.
+where we grouped the physical properties grouped according to the definition of the angular wavenumber \\(k\\) given by Eqn. 7.4.
 
-To make these two equations more alike, we can subtract \\(k_1^2 \bm{E}\\) from both sides of Eqn. 11.5.2:
+Let us now define the *relative wavenumber* (sometimes called the *relative complex refractive index*[^28]) as follows:
 
-$$ \tag{11.6}
-\begin{aligned}
-	& \nabla \times \nabla \times \bm{E}(\bm{r_1}, \omega) - k_1^2(\omega) \bm{E}(\bm{r_1}, \omega) = 0, \cr
-	& \nabla \times \nabla \times \bm{E}(\bm{r_2}, \omega) - k_1^2(\omega) \bm{E}(\bm{r_2}, \omega)
-	= \big( k_2^2(\bm{r_2}, \omega) - k_1^2(\omega) \big) \bm{E}(\bm{r_2}, \omega).
-\end{aligned}
-$$
-
-We are now in a good position to state a single equation that is valid across the entire space. By introducing the term
-
-$$ \tag{11.7}
-\bm{J'}(\bm{r}, \omega) =
-\begin{cases}
-   k_1^2(\omega) \big( m^2(\bm{r}, \omega) - 1 \big) \bm{E}(\bm{r}, \omega) &\text{if } \bm{r} \in V, \cr
-   0 &\text{otherwise},
-\end{cases}
-$$
-
-such that the *relative wavenumber* (sometimes called the *relative refractive index*[^28]) is
-
-[^28]: The complex refractive index (given by Eqn. 7.7) is defined relative to the optical properties of the free space (vacuum). The relative wavenumber depends on the properties of the surrounding medium, which may have a refractive index that is different from \\(1\\).
+[^28]: The complex refractive index (given by Eqn. 7.7) is defined relative to the properties of the free space (the vacuum). The relative wavenumber depends on the properties of the surrounding medium, which may have a refractive index that is different from \\(1\\).
 
 $$ \tag{11.8}
 	m(\bm{r}, \omega)
-	= \frac{k_2(\bm{r}, \omega)}{k_1(\omega)}
-	= \sqrt{ \frac{\varepsilon_2(\bm{r}, \omega) \mu_2(\omega)}{\varepsilon_1(\omega) \mu_1(\omega)} }
-	= \frac{\eta_2(\bm{r}, \omega) + i \kappa_2(\bm{r}, \omega)}{\eta_1(\omega) + i \kappa_1(\omega)},
+	= \frac{k(\bm{r}, \omega)}{k(\bm{r_1}, \omega)}
+	= \frac{k(\bm{r}, \omega)}{k_1(\omega)},
 $$
 
-we can replace Eqn. 11.6.1 and 11.6.2 by a single equation
+where \\(\bm{r_1}\\) is the reference location that can be, a priori, chosen arbitrarily.
+
+
+By subtracting \\(k_1^2 \bm{E}\\) from both sides of Eqn. 11.5, we can transform it into
 
 $$ \tag{11.9}
 	\nabla \times \nabla \times \bm{E}(\bm{r}, \omega) - k_1^2(\omega) \bm{E}(\bm{r}, \omega)
-	= \bm{J'}(\bm{r}, \omega).
+	= \bm{J'}(\bm{r}, \omega),
 $$
 
-We have already encountered a mathematically identical problem shown in Eqn. 9.18.1. After matching the constants \\( \big( \bm{J'} = i \omega \bm{J} / \mu_0^{-1} \big) \\), the solution is readily given by Eqn. 9.28:
+with the secondary source term \\(\bm{J'}\\) defined as
+
+$$ \tag{11.7}
+\bm{J'}(\bm{r}, \omega) = k^2(\bm{r_1}, \omega) \big( m^2(\bm{r}, \omega) - 1 \big) \bm{E}(\bm{r}, \omega).
+$$
+
+Notice that \\(\bm{J'}\\) vanishes in a region of space where \\(m = 1\\). This suggests that it is advantageous to choose the reference location \\(\bm{r_1}\\) in such a way as to minimize the amount of space occupied by matter with \\(k \neq k_1\\).
+
+Eqn. 11.9 presents a mathematical problem that is formally equivalent to the one we have encountered earlier (cf. Eqn. 9.18.1). After matching the constants \\( \big( \bm{J'} = i \omega \bm{J} / \mu_0^{-1} \big) \\), the solution is readily given by Eqn. 9.28:
 
 $$ \tag{11.10}
 	\bm{E_s}(\bm{r}, \omega)
@@ -2613,26 +2588,26 @@ $$
 Using Eqn. 10.26 that relates polarization to the macroscopic optical properties, we may write
 
 $$ \tag{11.15}
-	\bm{J\_p}(\bm{r}, \omega) = -i \omega \big( \epsilon_2(\bm{r}, \omega) - \epsilon_0 \big)  \bm{E}(\bm{r}, \omega).
+	\bm{J\_p}(\bm{r}, \omega) = -i \omega \big( \epsilon(\bm{r}, \omega) - \epsilon_0 \big)  \bm{E}(\bm{r}, \omega).
 $$
 
-Similarly, for magnetization, we may adopt Eqn. 10.30:
+Similarly, for magnetization, we may adopt Eqn. 10.30, provided the magnetic permeability is piecewise-constant:
 
 $$ \tag{11.16}
 \begin{aligned}
 	\bm{J\_m}(\bm{r}, \omega)
 	&= \mu\_0^{-1} \nabla \times \bm{B}(\bm{r}, \omega) - \nabla \times \bm{H}(\bm{r}, \omega) \cr
-	&= \big( \mu\_2(\omega) / \mu\_0 - 1 \big) \nabla \times \bm{H}(\bm{r}, \omega) \cr
-	&= \big( \mu\_2(\omega) / \mu\_0 - 1 \big) \big( \sigma_2(\bm{r}, \omega) - i \omega \epsilon_2(\bm{r}, \omega) \big) \bm{E}(\bm{r}, \omega),
+	&= \big( \mu(\bm{r}, \omega) / \mu\_0 - 1 \big) \nabla \times \bm{H}(\bm{r}, \omega) \cr
+	&= \big( \mu(\bm{r}, \omega) / \mu\_0 - 1 \big) \big( \sigma(\bm{r}, \omega) - i \omega \epsilon(\bm{r}, \omega) \big) \bm{E}(\bm{r}, \omega),
 \end{aligned}
 $$
 
-where we additionally utilized Eqn. 5.2.3 and 5.5.3 to expand the expression of the curl.
+where Eqn. 5.2.3 and 5.5.3 we used to expand the expression of the curl.
 
-If the object is conductive, Eqn. 5.2.1 says that
+If the object is conductive, Eqn. 5.2.1 tells us that
 
 $$ \tag{11.17}
-	\bm{J\_i}(\bm{r}, \omega) = \sigma_2(\bm{r}, \omega) \bm{E}(\bm{r}, \omega).
+	\bm{J\_i}(\bm{r}, \omega) = \sigma(\bm{r}, \omega) \bm{E}(\bm{r}, \omega).
 $$
 
 Let us now introduce
@@ -2640,7 +2615,7 @@ Let us now introduce
 $$ \tag{11.18}
 	\bm{J'}(\bm{r}, \omega)
 	= i \omega \frac{\bm{J_b}(\bm{r}, \omega) + \bm{J_i}(\bm{r}, \omega)}{\mu_0^{-1}}
-	= \omega^2 \big( \varepsilon_2(\bm{r}, \omega) \mu_2(\omega) - \epsilon_0 \mu_0 \big) \bm{E}(\bm{r}, \omega).
+	= \omega^2 \big( \varepsilon(\bm{r}, \omega) \mu(\bm{r}, \omega) - \epsilon_0 \mu_0 \big) \bm{E}(\bm{r}, \omega).
 $$
 
 We may write it in terms of wave velocities using Eqn. 1.4, 7.4, and 7.9:
@@ -2660,13 +2635,13 @@ $$ \tag{11.20}
 \end{aligned}
 $$
 
-If the volume integral vanishes, we are left with the incident wave propagating at the speed of light \\(c\\). If we wish to replace vacuum with another homogeneous medium, we must reduce the wave velocities in the exterior region by a factor of \\((\eta_1 + i \kappa_1)^{-1}\\). Specifically, in our case, this means we must substitute \\(\varepsilon_1 \mu_1\\) for \\(\epsilon_0 \mu_0\\) and, as a consequence, \\((\varepsilon_1 \mu_1)^{-1/2}\\) for \\(c\\). These modifications do not affect the wave velocities in the interior region. The result is
+If the volume integral vanishes, we are left with the incident wave propagating at the speed of light \\(c\\). If we wish to replace vacuum with another homogeneous medium, we must reduce the wave velocities in the exterior region by a factor of \\(\eta_1 + i \kappa_1\\). Specifically, in our case, this means we must substitute \\(\varepsilon_1 \mu_1\\) for \\(\epsilon_0 \mu_0 = c^{-2}\\). These modifications do not affect the wave velocities in the interior region. The result is
 
 $$ \tag{11.21}
 \begin{aligned}
 	\bm{A}(\bm{r}, \omega)
 	&= \oint\_{\mathbb{S}^2} \bm{A}(0, \bm{n}, \omega) e^{i \omega \sqrt{\varepsilon_1(\omega) \mu_1(\omega)} (\bm{r} \cdot \bm{n})} d\Omega \cr
-	&- i \omega \int\_{V} \frac{e^{i \omega \sqrt{\varepsilon_1(\omega) \mu_1(\omega)} |\bm{r} - \bm{r'}|}}{4 \pi |\bm{r} - \bm{r'}|} \big( \varepsilon_2(\bm{r'}, \omega) \mu\_2(\omega) - \varepsilon_1(\omega) \mu_1(\omega) \big) \bm{E}(\bm{r'}, \omega) dV',
+	&- i \omega \int\_{V} \frac{e^{i \omega \sqrt{\varepsilon_1(\omega) \mu_1(\omega)} |\bm{r} - \bm{r'}|}}{4 \pi |\bm{r} - \bm{r'}|} \big( \varepsilon(\bm{r'}, \omega) \mu(\bm{r'}, \omega) - \varepsilon_1(\omega) \mu_1(\omega) \big) \bm{E}(\bm{r'}, \omega) dV',
 \end{aligned}
 $$
 
@@ -2676,7 +2651,7 @@ $$ \tag{11.22}
 \begin{aligned}
 	\bm{A}(\bm{r}, \omega)
 	&= \oint\_{\mathbb{S}^2} \bm{A}(0, \bm{n}, \omega) e^{i k_1(\omega) (\bm{r} \cdot \bm{n})} d\Omega \cr
-	&+ \frac{1}{i \omega} \int\_{V} \frac{e^{i k_1(\omega) |\bm{r} - \bm{r'}|}}{4 \pi |\bm{r} - \bm{r'}|} \big( k_2^2(\bm{r'}, \omega) - k_1^2(\omega) \big) \bm{E}(\bm{r'}, \omega) dV'.
+	&+ \frac{1}{i \omega} \int\_{V} \frac{e^{i k_1(\omega) |\bm{r} - \bm{r'}|}}{4 \pi |\bm{r} - \bm{r'}|} \big( k^2(\bm{r'}, \omega) - k_1^2(\omega) \big) \bm{E}(\bm{r'}, \omega) dV'.
 \end{aligned}
 $$
 
@@ -2687,34 +2662,21 @@ $$ \tag{11.23}
 	i \omega \Big( \mathcal{I} + \frac{1}{k_1^2(\omega)} \nabla \otimes \nabla \Big) \cdot \bm{A}(\bm{r}, \omega).
 $$
 
-After performing the substitution of Eqn. 11.22, recalling the definition of \\(m\\) given by Eqn. 11.8, and assuming that \\(\bm{r}\\) lies outside the inhomogeneous region, we obtain an expanded version of Eqn. 11.12:
+After performing the substitution of Eqn. 11.22 and recalling the definition of \\(m\\) given by Eqn. 11.8, we obtain an expanded version of Eqn. 11.12:
 
 $$ \tag{11.24}
 \begin{aligned}
 	\bm{E}(\bm{r}, \omega)
 	&= \oint\_{\mathbb{S}^2} \bm{E}(0, \bm{n}, \omega) e^{i k_1(\omega) (\bm{r} \cdot \bm{n})} d\Omega \cr
-	&+ k_1^2(\omega) \int\_{V} \big( m^2(\bm{r'}, \omega) - 1 \big) \Big( \mathcal{I} + \frac{1}{k_1^2(\omega)} \nabla \otimes \nabla \Big) \frac{e^{i k_1(\omega) |\bm{r} - \bm{r'}|}}{4 \pi |\bm{r} - \bm{r'}|} \cdot \bm{E}(\bm{r'}, \omega) dV'.
+	&+ k_1^2(\omega) \Big( \mathcal{I} + \frac{1}{k_1^2(\omega)} \nabla \otimes \nabla \Big) \int\_{V} \big( m^2(\bm{r'}, \omega) - 1 \big) \frac{e^{i k_1(\omega) |\bm{r} - \bm{r'}|}}{4 \pi |\bm{r} - \bm{r'}|} \cdot \bm{E}(\bm{r'}, \omega) dV'.
 \end{aligned}
 $$
 
-In the future, when no ambiguity arises, we may drop redundant indexing by writing \\(k = k_1\\) and \\(\varepsilon = \varepsilon_1\\):
-
-$$ \tag{11.25}
-\begin{aligned}
-	& \bm{E_s}(\bm{r}, \omega)
-	= k^2(\omega) \int\_{V} \big( m^2(\bm{r'}, \omega) - 1 \big)
-	\mathcal{G}\_e \big( \bm{r}, \bm{r'}, k(\omega) \big) \cdot \bm{E}(\bm{r'}, \omega) dV', \cr
-	& \bm{B_s}(\bm{r}, \omega)
-	= \frac{k^2(\omega)}{i \omega} \int\_{V} \big( m^2(\bm{r'}, \omega) - 1 \big)
-	\mathcal{G}\_m \big( \bm{r}, \bm{r'}, k(\omega) \big) \cdot \bm{E}(\bm{r'}, \omega) dV'.
-\end{aligned}
-$$
-
-In the literature, Eqn. 11.25.1 and Eqn. 11.25.2 are often called the *volume integral equations* \[[8](#references) (ch. 4)\]. They can be used to evaluate the electromagnetic field inside or outside the scattering object.
+In the electromagnetic scattering literature, Eqn. 11.10 and 11.11 are often called the *volume integral equations* \[[8](#references) (ch. 4)\]. They can be used to evaluate the electromagnetic field inside or outside the scattering object.
 
 ### Huygens-Fresnel Principle
 
-The volume integral equation expresses the scattered field using the integral taken over the volume \\(V\\) of the scattering object. If its dimensions are large, and the material -- absorptive, then it is likely that a significant portion of its interior will make a negligible contribution to the field outside. Furthermore, determination of the internal field across the entire volume may prove to be both arduous and challenging. Thus, it may be advantageous to convert the volume integral into an integral taken over the surface \\(\partial V\\) (with the outward-facing normal \\(\bm{n}\\)) by applying the second *vector Green theorem* defined in terms of two vector fields \\(\bm{P}\\) and \\(\bm{Q}\\) \[[17](#references) (ch. 4.14)\]:
+The volume integral equation expresses the scattered field using the integral taken over the volume \\(V\\) of the scattering object. If its dimensions are large, and the material -- absorptive, then it is likely that a significant portion of its interior will make a negligible contribution to the field outside. Furthermore, determination of the internal field across the entire volume may prove to be both arduous and challenging. Thus, it is sometimes advantageous to convert the volume integral into an integral taken over the surface \\(\partial V\\) (with the outward-facing normal \\(\bm{n}\\)) by applying the second *vector Green theorem* defined in terms of two vector fields \\(\bm{P}\\) and \\(\bm{Q}\\) \[[17](#references) (ch. 4.14)\]:
 
 $$ \tag{1x.1}
 \small
@@ -2728,9 +2690,9 @@ $$ \tag{1x.1}
 	\right) \cdot \bm{n} dA.
 $$
 
-In order for the integrals to converge, the surface must be smooth ([regular](https://mathworld.wolfram.com/RegularSurface.html)), and the integrands -- continuous. In addition, the volume \\(V\\) is supposed to represent a closed region of space (a [compact manifold](https://mathworld.wolfram.com/CompactManifold.html)). However, since every such region can be split in two (and the contributions of the adjacent surfaces cancel out), we may also merge several closed regions into a single connected region bounded by multiple surfaces.
+In order for the integrals to converge, the surface must be smooth ([regular](https://mathworld.wolfram.com/RegularSurface.html)), and the integrands -- continuous. In addition, the volume \\(V\\) is supposed to represent a closed region of space (a [compact manifold with a boundary](https://mathworld.wolfram.com/CompactManifold.html)). However, since every such region can be split in two (and the contributions of the adjacent surfaces cancel out), we may also merge several closed regions into a single connected region bounded by multiple surfaces.
 
-We would like the left-hand side of Eqn. 1x.1 to resemble Eqn. 11.25.1; comparison of these equations reveals that the roles of \\(\bm{r}\\) and \\(\bm{r'}\\) need to be reversed. In particular, this implies that we must keep the observation point \\(\bm{r}\\) fixed, and evaluate the integral with the differential volume element \\(dV' = dV(\bm{r'})\\). In addition, we must take derivatives with respect to \\(\bm{r'}\\); this can be achieved by replacing \\(\nabla\\) with \\(\nabla'\\).
+We would like the left-hand side of Eqn. 1x.1 to resemble Eqn. 11.10; comparison of these equations reveals that the roles of \\(\bm{r}\\) and \\(\bm{r'}\\) need to be reversed. In particular, this implies that we must keep the observation point \\(\bm{r}\\) fixed, and evaluate the integral with the differential volume element \\(dV' = dV(\bm{r'})\\). In addition, we must take derivatives with respect to \\(\bm{r'}\\); this can be achieved by replacing \\(\nabla\\) with \\(\nabla'\\).
 
 A suitable choice of \\(\bm{P}\\) and \\(\bm{Q}\\) is not obvious. Motivated by Eqn. 9.29 and 11.9, we shall assign the total electric field to \\(\bm{P} = \bm{E}(\bm{r'}, \omega)\\), and pick an arbitrary constant vector \\(\bm{a}\\) for \\(\bm{Q} = \mathcal{G}\_e(\bm{r'}, \bm{r}, k(\omega)) \cdot \bm{a}\\). Please note that we have swapped \\(\bm{r}\\) with \\(\bm{r'}\\).
 
@@ -2754,14 +2716,14 @@ According to Eqn. 11.7 and 11.9, in the interior region,
 
 $$ \tag{1x.3}
 	\nabla' \times \nabla' \times \bm{E}(\bm{r'}, \omega)
-	= k^2(\omega) \bm{E}(\bm{r'}, \omega) + k^2(\omega) \left( m^2(\bm{r'}, \omega) - 1 \right) \bm{E}(\bm{r'}, \omega).
+	= k_1^2(\omega) \bm{E}(\bm{r'}, \omega) + k_1^2(\omega) \left( m^2(\bm{r'}, \omega) - 1 \right) \bm{E}(\bm{r'}, \omega).
 $$
 
 Similarly, after interchanging the roles of \\(\bm{r}\\) and \\(\bm{r'}\\) in Eqn. 9.29, we obtain
 
 $$ \tag{1x.4}
-	\nabla' \times \nabla' \times \mathcal{G}\_e(\bm{r'}, \bm{r}, k)
-	= k^2 \mathcal{G}\_e(\bm{r'}, \bm{r}, k) + \mathcal{I} \delta(\bm{r'} - \bm{r}).
+	\nabla' \times \nabla' \times \mathcal{G}\_e(\bm{r'}, \bm{r}, k_1)
+	= k_1^2 \mathcal{G}\_e(\bm{r'}, \bm{r}, k_1) + \mathcal{I} \delta(\bm{r'} - \bm{r}).
 $$
 
 Substitution into Eqn 1x.2 yields
@@ -2769,8 +2731,8 @@ Substitution into Eqn 1x.2 yields
 $$ \tag{1x.5}
 \begin{aligned}
 	&\int_V \Big(
-		\bm{E} \cdot \left( k^2 \mathcal{G}\_e + \mathcal{I} \delta \right) \cdot \bm{a} -
-		\left( \mathcal{G}\_e \cdot \bm{a} \right) \cdot \left( k^2 \bm{E} + k^2 \left( m^2 - 1 \right) \bm{E} \right)
+		\bm{E} \cdot \left( k_1^2 \mathcal{G}\_e + \mathcal{I} \delta \right) \cdot \bm{a} -
+		\left( \mathcal{G}\_e \cdot \bm{a} \right) \cdot \left( k_1^2 \bm{E} + k_1^2 \left( m^2 - 1 \right) \bm{E} \right)
 	\Big) dV'
 	\cr
 	= &\oint_{\partial V} \Big(
@@ -2780,11 +2742,11 @@ $$ \tag{1x.5}
 \end{aligned}
 $$
 
-Since \\(\bm{r} \neq \bm{r'}\\), the Dirac delta function does not contribute to the integral, and can therefore be neglected. Additionally, the inner product of two vectors commutes, so \\(k^2 \bm{E} \cdot \left( \mathcal{G}\_e \cdot \bm{a} \right)\\) cancels out, leading to
+Since \\(\bm{r} \neq \bm{r'}\\), the Dirac delta function does not contribute to the integral, and can therefore be neglected. Additionally, the inner product of two vectors commutes, so \\(k_1^2 \bm{E} \cdot \left( \mathcal{G}\_e \cdot \bm{a} \right)\\) cancels out, leading to
 
 $$ \tag{1x.6}
 \begin{aligned}
-	-k^2 &\int_V
+	-k_1^2 &\int_V
 		 ( m^2 - 1 ) ( \mathcal{G}\_e \cdot \bm{a} ) \cdot \bm{E}
 	dV'
 	\cr
@@ -2808,7 +2770,7 @@ Substitution of Eqn. 1x.7 into 1x.6 yields a variant of the volume integral equa
 $$ \tag{1x.8}
 \begin{aligned}
 	-\bm{a} \cdot \bm{E_s}
-	&= -\bm{a} \cdot k^2 \int_V
+	&= -\bm{a} \cdot k_1^2 \int_V
 		 (m^2 - 1) (\mathcal{G}\_e \cdot \bm{E})
 	dV'
 	\cr
@@ -2828,9 +2790,9 @@ $$
 And, if we pay close attention to the order of the arguments, Eqn. 9.35 and 9.48 tell us that
 
 $$ \tag{1x.10}
-	\nabla' \times \mathcal{G}\_e(\bm{r'}, \bm{r}, k)
-	= i \omega \mathcal{G}\_m(\bm{r'}, \bm{r}, k)
-	= -i \omega \mathcal{G}\_m(\bm{r}, \bm{r'}, k).
+	\nabla' \times \mathcal{G}\_e(\bm{r'}, \bm{r}, k_1)
+	= i \omega \mathcal{G}\_m(\bm{r'}, \bm{r}, k_1)
+	= -i \omega \mathcal{G}\_m(\bm{r}, \bm{r'}, k_1).
 $$
 
 The surface integral of Eqn. 1x.8 is thus reduced to
@@ -2838,7 +2800,7 @@ The surface integral of Eqn. 1x.8 is thus reduced to
 $$ \tag{1x.11}
 \begin{aligned}
 	\bm{a} \cdot \bm{E_s}
-	&= \bm{a} \cdot k^2 \int_V
+	&= \bm{a} \cdot k_1^2 \int_V
 		 (m^2 - 1) (\mathcal{G}\_e \cdot \bm{E})
 	dV'
 	\cr
@@ -2849,7 +2811,7 @@ $$ \tag{1x.11}
 \end{aligned}
 $$
 
-At this point, the dyadic Green functions of Eqn. 1x.11 list their arguments in the same (conventional) order: \\(\mathcal{G}\_e(\bm{r}, \bm{r'}, k)\\) due to its symmetry, and \\(\mathcal{G}\_m(\bm{r}, \bm{r'}, k)\\) because of Eqn. 1x.10.
+At this point, the dyadic Green functions of Eqn. 1x.11 list their arguments in the same (conventional) order: \\(\mathcal{G}\_e(\bm{r}, \bm{r'}, k_1)\\) due to its symmetry, and \\(\mathcal{G}\_m(\bm{r}, \bm{r'}, k_1)\\) because of Eqn. 1x.10.
 
 The surface integral features two scalar triple products of the form \\(\bm{n} \cdot (\bm{E} \times (\mathcal{G} \cdot \bm{a}))\\). We can use its [cyclic property](https://en.wikipedia.org/wiki/Triple_product#Properties) to our advantage:
 
@@ -2867,7 +2829,7 @@ Application of these identities allows us to move \\(\bm{a}\\) outside the integ
 $$ \tag{1x.13}
 \begin{aligned}
 	\bm{a} \cdot \bm{E_s}
-	&= \bm{a} \cdot k^2 \int_V
+	&= \bm{a} \cdot k_1^2 \int_V
 		 (m^2 - 1) (\mathcal{G}\_e \cdot \bm{E})
 	dV'
 	\cr
@@ -2881,30 +2843,34 @@ $$
 Since \\(\bm{a}\\) is an arbitrary constant vector, it can be safely neglected. Therefore,
 
 $$ \tag{1x.14}
-\small
+\begin{aligned}
 	\bm{E_s}(\bm{r}, \omega)
-	= i \omega \oint_{\partial V} \Big(
-		\mathcal{G}\_e(\bm{r}, \bm{r'}, \omega) \cdot \big( \bm{n'} \times \bm{B}(\bm{r'}, \omega) \big) +
-		\mathcal{G}\_m(\bm{r}, \bm{r'}, \omega) \cdot \big( \bm{n'} \times \bm{E}(\bm{r'}, \omega) \big)
+	&= i \omega \oint_{\partial V} \Big(
+		\mathcal{G}\_e \big( \bm{r}, \bm{r'}, k_1(\omega) \big) \cdot \big( \bm{n'} \times \bm{B}(\bm{r'}, \omega) \big)
+		\Big) dA' \cr
+	&+ i \omega \oint_{\partial V} \Big(
+		\mathcal{G}\_m \big( \bm{r}, \bm{r'}, k_1(\omega) \big) \cdot \big( \bm{n'} \times \bm{E}(\bm{r'}, \omega) \big)
 	\Big) dA'.
+\end{aligned}
 $$
 
 The expression of the magnetic field \\(\bm{B_s}\\) can be determined using Eqn. 3.12, 9.35, and 9.3y:
 
 $$ \tag{1x.15}
-\small
+\begin{aligned}
 	\bm{B_s}(\bm{r}, \omega)
-	= i \omega \oint_{\partial V} \Big(
-		\mathcal{G}\_m(\bm{r}, \bm{r'}, \omega) \cdot \big( \bm{n'} \times \bm{B}(\bm{r'}, \omega) \big) - \frac{k^2}{\omega^2}
-		\mathcal{G}\_e(\bm{r}, \bm{r'}, \omega) \cdot \big( \bm{n'} \times \bm{E}(\bm{r'}, \omega) \big)
+	&= i \omega \oint_{\partial V} \Big(
+		\mathcal{G}\_m \big( \bm{r}, \bm{r'}, k_1(\omega) \big) \cdot \big( \bm{n'} \times \bm{B}(\bm{r'}, \omega) \big)
+	\Big) dA' \cr
+	&- i \omega \oint_{\partial V} \frac{k_1^2}{\omega^2} \Big(
+		\mathcal{G}\_e \big( \bm{r}, \bm{r'}, k_1(\omega) \big) \cdot \big( \bm{n'} \times \bm{E}(\bm{r'}, \omega) \big)
 	\Big) dA'.
+\end{aligned}
 $$
 
 Eqn. 1x.14 and 1x.15 are called the *surface integral equations*. They give the expressions of the scattered field in the region outside the scattering object \\((\bm{r} \notin V)\\) in terms of the *tangential surface fields* \\(\bm{n'} \times \bm{E}\\) and \\(\bm{n'} \times \bm{H} = \mu^{-1}(\bm{n'} \times \bm{B})\\). According to Eqn. 1.17, the latter are continuous across the optical interface, provided the conductivity is finite \[[17](#references) (ch. 1.13)\]. More generally speaking, the idea that a smooth (but not necessarily physical) surface can be seen as a source of spherical *wavelets* (secondary waves) interfering with each other is known as the [Huygens-Fresnel principle](https://en.wikipedia.org/wiki/Huygens%E2%80%93Fresnel_principle) \[[4](#references) (ch. 3.1), [12](#references) (ch. 2)\].
 
-The same principle can be used to express the scattered field at an interior point in terms of the values of the fields at the enclosing surface \[[17](#references) (ch. 8.14)\].
-
-TODO? Or skip it?
+The same principle can be used to express the scattered field at an interior point in terms of the values of the fields at the enclosing surface \[[17](#references) (ch. 8.14)\]. TODO? Or skip it?
 
 ### Natural Units
 
@@ -3059,7 +3025,7 @@ Participating media can be broadly divided into two categories - homogeneous and
 
 ### Dipole Radiation
 
-Typically, it is not possible to evaluate the integrals of Eqn. 11.25 in closed form, since the value of the electric field in the interior of the volume is not known. Thus, we must make certain assumptions and employ various approximations in order to make computations feasible. This leads to a number of special cases.
+Typically, it is not possible to evaluate the integrals of Eqn. 11.10 and 11.11 in closed form, since the value of the electric field in the interior of the volume is not known. Thus, we must make certain assumptions and employ various approximations in order to make computations feasible. This leads to a number of special cases.
 
 One of the simplest problems that can be solved using our mathematical framework (of classical physics) is that of a single non-magnetic atom or a small molecule embedded in a homogeneous medium. This case corresponds to a tiny particle in vacuum, or an [impurity](https://en.wikipedia.org/wiki/Impurity) in an otherwise pure material. We represent it by an electric dipole -- an oriented point source.
 
@@ -3114,7 +3080,7 @@ $$ \tag{12.5}
 \end{aligned}
 $$
 
-Comparison with Eqn. 11.25 shows that Eqn. 12.5 corresponds to the contribution of a volume element occupied by a single atom or a small molecule, and with the polarizability \\(\mathcal{\Alpha_m}\\) taking the role of the volume integral of the relative wavenumber \\(m\\). In particular, if the polarizability is isotropic, so that \\(\mathcal{\Alpha_m} = \alpha_m\\),
+Comparison with Eqn. 11.10 and 11.11 shows that Eqn. 12.5 corresponds to the contribution of a volume element occupied by a single atom or a small molecule, and with the polarizability \\(\mathcal{\Alpha_m}\\) taking the role of the volume integral of the relative wavenumber \\(m\\). In particular, if the polarizability is isotropic, so that \\(\mathcal{\Alpha_m} = \alpha_m\\),
 
 $$ \tag{12.6}
 	\alpha_m(V_m, \omega)
@@ -3186,7 +3152,7 @@ $$ \tag{13.5}
 \end{aligned}
 $$
 
-Let us return to the general case of a scattering object. Assume that the observation point is in the radiation zone with respect to each individual volume element, so that \\(k R \gg 1\\). Eqn. 11.25 then takes the form
+Let us return to the general case of a scattering object. Assume that the observation point is in the radiation zone with respect to each individual volume element, so that \\(k R \gg 1\\). Eqn. 11.10 and 11.11 then takes the form
 
 $$ \tag{13.6}
 \begin{aligned}
@@ -3268,7 +3234,7 @@ $$ \tag{13.13}
 	\frac{kr}{k a} \gg k a.
 $$
 
-Eqn. 13.1x can be used to define the *far-field approximation* of the volume integral equation (cf. Eqn. 11.25):
+Eqn. 13.1x can be used to define the *far-field approximation* of the volume integral equation (cf. Eqn. 11.10 and 11.11):
 
 $$ \tag{13.12}
 \begin{aligned}
@@ -8947,7 +8913,7 @@ As the molecules are small compared to the wavelength of light, \\(x \ll 1\\). T
 
 ### Light Scattering by Particles of Arbitrary Size
 
-In this section, we shall develop a theory of electromagnetic scattering by particles of an arbitrary size. It serves as the extension of the theory of Rayleigh (dipole) scattering for small particles. This can be accomplished in two different ways. The first way is to perform a multipole series expansion of the electromagnetic potential (using Eqn. 18.11 and 18.13), and treat electromagnetic scattering as a boundary value problem; this leads to the Lorenz-Mie-Debye solution of the *differential* form of the Maxwell equations. The second method takes advantage of the *integral* expression of the electromagnetic potential (Eqn. 9.14), with the interpretation of the scattering object as a collection of dipoles (as per Eqn. 10.14); this leads to the surface (Eqn. 1x.14) and the volume integral equations (Eqn. 11.25.1).
+In this section, we shall develop a theory of electromagnetic scattering by particles of an arbitrary size. It serves as the extension of the theory of Rayleigh (dipole) scattering for small particles. This can be accomplished in two different ways. The first way is to perform a multipole series expansion of the electromagnetic potential (using Eqn. 18.11 and 18.13), and treat electromagnetic scattering as a boundary value problem; this leads to the Lorenz-Mie-Debye solution of the *differential* form of the Maxwell equations. The second method takes advantage of the *integral* expression of the electromagnetic potential (Eqn. 9.14), with the interpretation of the scattering object as a collection of dipoles (as per Eqn. 10.14); this leads to the surface (Eqn. 1x.14) and the volume integral equations (Eqn. 11.10).
 
 Unfortunately, evaluation of these integrals poses a challenge: not just because the expressions themselves are complicated, but also because they require the values of the internal field (not known apriori) to be specified either across the entire interior or on the surface of the scattering object. Formally, this leads to a recursive integral equation (Eqn. 14.22) of the transition operator, and the solution generates a Born series expansion (Eqn. 14.20) of the electric field. In practice, under certain conditions, one can make an educated guess about the approximate form of the internal field, which allows one to bypass the recursive integral equation and jump straight into the volume (or the surface) integral equation. Below, we shall examine these mathematical techniques in more detail.
 
