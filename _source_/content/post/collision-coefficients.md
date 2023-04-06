@@ -2474,147 +2474,6 @@ In order to rigorously solve the scattering problem, we must specify not only th
 
 At the scale of a single particle, we can partition the space in two regions -- the interior and the exterior -- the latter typically defined in a relatively simple manner. At the large scale, we can subdivide the medium into pieces filled with particles, analogously to the way a small region of a macroscopic medium is formed by a large number of dipoles. Extending the analogy further, just as the combined action of dipoles leads to the definition of optical properties, we can compute *radiative properties* by solving the Maxwell equations for the distribution of particles within each individual piece. Finally, we use the *radiative transfer equation* to sum the contributions of all pieces, which is a process that is conceptually similar to that of combining the fields produced by the individual charges using the Maxwell equations.
 
-### Natural Units
-
-So far, we have not paid much attention to the units of measurement, except for making the specific choice to adopt the modern SI unit convention; instead, we focused on learning the foundational concepts and building the physical intuition. Since this approach is common among introductory-level textbooks, it allowed us to insert multiple references (with equations of the same form) for those readers who wish to learn more, or are simply looking for an alternative explanation.
-
-The choice of units used to describe electromagnetism is a contentious topic. Historically, the Gaussian units were dominant during the first half of the 20th century; some fairly recent books (such as [Born & Wolf], [Jackson]) still utilize them today. The SI units serve as the modern replacement, but they are sometimes criticized for being unnatural [citation needed]. Ultimately, using either system gets the job done, even if neither is perfect. In fact, both of these systems exhibit a flaw: the angular wavenumber factor \\(k\\) appears in practically every equation, often several times, and its meaning and purpose are not always obvious (e.g. see Sec. 9). This tends to obscure the geometrical nature of the electromagnetic field \[[25](#references) (ch. 2.11)\].
-
-The books devoted to the subject of relativity have historically suffered from a similar problem caused by frequent occurrences of the speed of light factor \\(c\\) [citation needed]. In this case, the solution is surprisingly simple: one just sets
-
-$$ \tag{1w.1}
-	c = 1.
-$$
-
-Since the SI value of the speed of light is exactly 299,792,458 m/s, Eqn. 1w.1 implies that
-
-$$ \tag{1w.2}
-	1 \text{ s} = 299792458 \text{ m}.
-$$
-
-Because the product \\(ct\\) is invariant with respect to this transformation, both the units and the value of the [spacetime coordinate](https://en.wikipedia.org/wiki/Minkowski_space) \\(\left(c t, \bm{r} \right)\\) remain unchanged. By omitting the \\(c\\) factor and measuring the time \\(t\\) in units of length, we emphasize the equivalence of roles played by space and time. This convention bears the name of [geometrized units](https://en.wikipedia.org/wiki/Geometrized_unit_system) [Thorne 1.10].
-
-For a particle with rest mass \\(m\\) and velocity \\(\bm{v}\\), the expression of relativistic energy \\(\mathcal{E}\\) is
-
-$$ \tag{1w.3}
-	\mathcal{E}(m) = \frac{m c^2}{\sqrt{1-v^2/c^2}} = \frac{m}{\sqrt{1-v^2}}.
-$$
-
-This is the formulation of [mass-energy equivalence](https://en.wikipedia.org/wiki/Mass%E2%80%93energy_equivalence) (where both energy and mass are relativistic). Eqn. 1w.4 makes it clear that, if the geometrized unit convention is used, energy has units of mass.
-
-For non-relativistic applications, there are other ways of unifying the roles of space and time. For instance, when building a mathematical model of wave phenomena (not necessarily electromagnetic), one typically uses an expression of the form
-
-$$ \tag{1w.4}
-	e^{i k(\bm{r}, \omega) x - i \omega t},
-$$
-
-where \\(k\\) is the angular wavenumber and \\(\omega\\) is the angular frequency. Alternatively, Eqn. 1w.5 can be expressed in terms of the (ordinary) frequency \\(\nu\\):
-
-$$ \tag{1w.5}
-	e^{i k(\bm{r}, 2 \pi \nu) x - 2 \pi i \nu t}.
-$$
-
-Notice that the product \\(\nu t\\) is a [dimensionless quantity](https://en.wikipedia.org/wiki/Dimensionless_quantity) measured in cycles (the *number of oscillations*), regardless of our choice of the units of measurement.
-
-If one uses the Fourier transform (as we have done in Sec. 3) to solve a system of equations (such as the Maxwell equations), the problem (and the spectrum) is decomposed into independent (frequency) components that can be worked out one at a time. As we consider a single known value of \\(\nu\\), we may set
-
-$$ \tag{1w.6}
-	\nu = 1,
-	\quad \text{or} \quad
-	\omega = 2 \pi \text{ rad}.
-$$
-
-Unfortunately, the value of the angular wavenumber is not fixed by our decision to utilize the Fourier transform, since \\(k\\) also depends on the properties of the medium. In optics, the latter is usually characterized by the refractive index \\(\eta\\) and the attenuation index \\(\kappa\\), both of which are dimensionless (cf. Eqn. 7.6-7.7):
-
-$$ \tag{1w.7}
-	k(\bm{r}, \omega) =
-	\frac{\omega}{c} \Big( \eta(\bm{r}, \omega) + i \kappa(\bm{r}, \omega) \Big).
-$$
-
-In vacuum, \\(\eta = 1, \kappa = 0\\), and the angular wavenumber \\(k\\) is inversely proportional to the wavelength \\(\lambda\\):
-
-$$ \tag{1w.8}
-	k_0(\omega) =
-	\frac{\omega}{c} = \frac{2 \pi \nu}{c} = \frac{2 \pi}{\lambda_0(\nu)}.
-$$
-
-Since the ratio \\(\bm{r} / \lambda\\) (measured in cycles, or the *number of wavelengths*) is also dimensionless, we could set
-
-$$ \tag{1w.9}
-	\lambda_0(\nu) = \frac{c}{\nu} = 1,
-	\quad \text{or} \quad
-	k_0(\omega) = 2 \pi \text{ rad}.
-$$
-
-Eqn. 1w.7 and 1w.9 show that one could make the spacetime dimensionless simply by rescaling it:
-
-$$ \tag{1w.10}
-	\frac{\nu}{c} \Big( c t, \bm{r} \Big)
-	= \nu (t, \bm{r} / c)
-	= (\nu t, \bm{r} / \lambda_0)
-	= (t, \bm{r}).
-$$
-
-This is a fine choice for someone working with the microscopic formulation of the Maxwell equations (in the vacuum). For electrodynamics in bulk matter, it is more convenient to choose a different reference value -- the one measured at the location \\(\bm{r_1}\\) of either the source or the detector -- such that
-
-$$ \tag{1w.11}
-	\lambda_1(\nu)
-	= \frac{\lambda_0(\nu)}{\eta(\bm{r_1}, 2 \pi \nu)} = 1,
-	\quad \text{or} \quad
-	k_1(\omega)
-	= k_0(\omega) \eta(\bm{r_1}, \omega) = 2 \pi \text{ rad}.
-$$
-
-The expression of the spacetime coordinate must be modified correspondingly:
-
-$$ \tag{1w.12}
-	\frac{\nu}{c} \Big( c t, \bm{r} \eta_1 \Big)
-	= \nu (t, \bm{r} \eta_1 / c)
-	= (\nu t, \bm{r} / \lambda_1)
-	= (t, \bm{r}).
-$$
-
-Typically, \\(\bm{r_1}\\) corresponds to point located in the air or in the vacuum, which makes Eqn. 1w.9 and 1w.11 equivalent for all practical purposes[^29]. Notice that the reference location \\(\bm{r_1}\\) must be chosen such that
-
-[^29]: At optical frequencies, under normal atmospheric conditions.
-
-$$ \tag{1w.13}
-	\kappa(\bm{r_1}, \omega) = 0;
-$$
-
-otherwise \\(k_1 \bm{r} = 2 \pi \bm{r}\\) becomes complex, which breaks the symmetry between space and time.
-
----
-
-$$
-	k_1 = \omega \frac{\eta_1}{c};
-	\quad
-	\omega = k_1 \frac{c}{\eta_1};
-$$
-
----
-
-Finally, we would like to highlight the *scale invariance* property of electromagnetic scattering, also known as the principle of *electrodynamic similitude* \[[8](#references) (ch. 5.5), [9](#references) (ch. 3.5), [17](#references) (ch. 9.3)\]. The gist of it is that, while the (dimensionless) scattering and absorption characteristics of a scattering object depend on its linear dimension \\(a\\) and the wavenumbers \\(k_2 \text{ and } k_1\\) in the interior and the exterior regions, respectively, its properties can be alternatively described using the *relative wavenumber* \\(m = k_2 / k_1\\) and the so-called *size parameter* \\(x = k_1 a = 2 \pi a / \lambda\\), both of which are dimensionless. Thus, provided that the value of \\(m\\) stays fixed, increasing both the linear dimension of the object and the wavelength by the same factor \\(f\\) leaves the formula unchanged: \\(x' = 2 \pi (a f) / (f \lambda) = x \\). This [reduces the dimensionality](https://en.wikipedia.org/wiki/Dimensionality_reduction) of the problem, since three parameters can be replaced with just two.
-
-Note that, unlike \\(x\\), \\(m\\) is not scale-invariant. Recall its definition given by Eqn. 11.8:
-
-$$ \tag{15.17}
-	m(\bm{r}, \omega)
-	= \frac{k_2(\bm{r}, \omega)}{k_1(\omega)}
-	= \sqrt{ \frac{\varepsilon_2(\bm{r}, \omega) \mu_2(\omega)}{\varepsilon_1(\omega) \mu_1(\omega)} }.
-$$
-
-Suppose that the scattering object is located in vacuum. Then the denominator \\(\varepsilon_1 \mu_1=\epsilon_0 \mu_0\\) does not depend on the frequency of the incident radiation. However, the numerator does, since no material has a flat response across the entire frequency range. In particular, if the scattering object is conductive \\((\sigma_2 \neq 0)\\), then, according to Eqn. 5.6, its complex permittivity
-
-$$ \tag{15.??}
-	\varepsilon_2(\bm{r}, \omega)
-	= \epsilon_2(\bm{r}, \omega) + i \frac{\sigma_2(\bm{r}, \omega)}{\omega}
-$$
-
-directly depends on the frequency \\(\omega\\). Thus, in order for the scale invariance property to hold, if the linear dimension of the object and the wavelength are both increased by the same factor, conductivity must be correspondingly reduced.
-
-[Insert picture here]
-
 ### Volume Integral Equation
 
 Participating media can be broadly divided into two categories - homogeneous and inhomogeneous. This suggests that we may split any medium into two regions: 1) infinite homogeneous, and 2) the remaining space of finite volume \\(V\\). The latter can be interpreted as a single particle or a particle group, or, more generally, as a scattering object (or a *scatterer* for short).
@@ -3044,6 +2903,159 @@ $$
 Eqn. 1x.14 and 1x.15 are called the *surface integral equations*. They give the expressions of the scattered field in the region outside the scattering object \\((\bm{r} \notin V)\\) in terms of the *tangential surface fields* \\(\bm{n'} \times \bm{E}\\) and \\(\bm{n'} \times \bm{H} = \mu^{-1}(\bm{n'} \times \bm{B})\\). According to Eqn. 1.17, the latter are continuous across the optical interface, provided the conductivity is finite \[[17](#references) (ch. 1.13)\]. More generally speaking, the idea that a smooth (but not necessarily physical) surface can be seen as a source of spherical *wavelets* (secondary waves) interfering with each other is known as the [Huygens-Fresnel principle](https://en.wikipedia.org/wiki/Huygens%E2%80%93Fresnel_principle) \[[4](#references) (ch. 3.1), [12](#references) (ch. 2)\].
 
 The same principle can be used to express the scattered field at an interior point in terms of the values of the fields at the enclosing surface \[[17](#references) (ch. 8.14)\].
+
+TODO? Or skip it?
+
+### Natural Units
+
+So far, we have not paid much attention to the units of measurement, except for making the specific choice to adopt the modern SI unit convention; instead, we focused on learning the foundational concepts and building the physical intuition. Since this approach is common among introductory-level textbooks, it allowed us to insert multiple references (with equations of the same form) for those readers who wish to learn more, or are simply looking for an alternative explanation.
+
+The choice of units used to describe electromagnetism is a contentious topic. Historically, the Gaussian units were dominant during the first half of the 20th century; some fairly recent books (such as [Born & Wolf], [Jackson]) still utilize them today. The SI units serve as the modern replacement, but they are sometimes criticized for being unnatural [citation needed]. Ultimately, using either system gets the job done, even if neither is perfect. In fact, both of these systems exhibit a flaw: the angular wavenumber factor \\(k\\) appears in practically every equation, often several times, and its meaning and purpose are not always obvious (e.g. see Sec. 9). This tends to obscure the geometrical nature of the electromagnetic field \[[25](#references) (ch. 2.11)\].
+
+The books devoted to the subject of relativity have historically suffered from a similar problem caused by frequent occurrences of the speed of light factor \\(c\\) [citation needed]. In this case, the solution is surprisingly simple: one just sets
+
+$$ \tag{1y.1}
+	c = 1.
+$$
+
+Since the SI value of the speed of light is exactly 299,792,458 m/s, Eqn. 1y.1 implies that
+
+$$ \tag{1y.2}
+	1 \text{ s} = 299792458 \text{ m}.
+$$
+
+Because the product \\(ct\\) is invariant with respect to this transformation, both the units and the value of the [spacetime coordinate](https://en.wikipedia.org/wiki/Minkowski_space) \\(\left(c t, \bm{r} \right)\\) remain unchanged. By omitting the \\(c\\) factor and measuring the time \\(t\\) in units of length, we emphasize the equivalence of roles played by space and time. This convention bears the name of [geometrized units](https://en.wikipedia.org/wiki/Geometrized_unit_system) [Thorne 1.10].
+
+For a particle with rest mass \\(m\\) and velocity \\(\bm{v}\\), the expression of relativistic energy \\(\mathcal{E}\\) is
+
+$$ \tag{1y.3}
+	\mathcal{E}(m) = \frac{m c^2}{\sqrt{1-v^2/c^2}} = \frac{m}{\sqrt{1-v^2}}.
+$$
+
+This is the formulation of [mass-energy equivalence](https://en.wikipedia.org/wiki/Mass%E2%80%93energy_equivalence) (where both energy and mass are relativistic). Eqn. 1y.4 makes it clear that, if the geometrized unit convention is used, energy has units of mass.
+
+For non-relativistic applications, there are other ways of unifying the roles of space and time. For instance, when building a mathematical model of wave phenomena (not necessarily electromagnetic), one typically uses an expression of the form
+
+$$ \tag{1y.4}
+	e^{i k(\bm{r}, \omega) x - i \omega t},
+$$
+
+where \\(k\\) is the angular wavenumber and \\(\omega\\) is the angular frequency. Alternatively, Eqn. 1y.5 can be expressed in terms of the (ordinary) frequency \\(\nu\\):
+
+$$ \tag{1y.5}
+	e^{i k(\bm{r}, 2 \pi \nu) x - 2 \pi i \nu t}.
+$$
+
+Notice that the product \\(\nu t\\) is a [dimensionless quantity](https://en.wikipedia.org/wiki/Dimensionless_quantity) measured in cycles (the *number of oscillations*), regardless of our choice of the units of measurement.
+
+If one uses the Fourier transform (as we have done in Sec. 3) to solve a system of equations (such as the Maxwell equations), the problem (and the spectrum) is decomposed into independent (frequency) components that can be worked out one at a time. As we consider a single known value of \\(\nu\\), we may set
+
+$$ \tag{1y.6}
+	\nu = 1,
+	\quad \text{or} \quad
+	\omega = 2 \pi \text{ rad}.
+$$
+
+Unfortunately, the value of the angular wavenumber is not fixed by our decision to utilize the Fourier transform, since \\(k\\) also depends on the properties of the medium. In optics, the latter is usually characterized by the refractive index \\(\eta\\) and the attenuation index \\(\kappa\\), both of which are dimensionless (cf. Eqn. 7.6-7.7):
+
+$$ \tag{1y.7}
+	k(\bm{r}, \omega) =
+	\frac{\omega}{c} \Big( \eta(\bm{r}, \omega) + i \kappa(\bm{r}, \omega) \Big).
+$$
+
+In vacuum, \\(\eta = 1, \kappa = 0\\), and the angular wavenumber \\(k\\) is inversely proportional to the wavelength \\(\lambda\\):
+
+$$ \tag{1y.8}
+	k_0(\omega) =
+	\frac{\omega}{c} = \frac{2 \pi \nu}{c} = \frac{2 \pi}{\lambda_0(\nu)}.
+$$
+
+Since the ratio \\(\bm{r} / \lambda\\) (measured in cycles, or the *number of wavelengths*) is also dimensionless, we could set
+
+$$ \tag{1y.9}
+	\lambda_0(\nu) = \frac{c}{\nu} = 1,
+	\quad \text{or} \quad
+	k_0(\omega) = 2 \pi \text{ rad}.
+$$
+
+Eqn. 1y.7 and 1y.9 show that one could make the spacetime dimensionless simply by rescaling it:
+
+$$ \tag{1y.10}
+	\frac{\nu}{c} \Big( c t, \bm{r} \Big)
+	= \nu (t, \bm{r} / c)
+	= (\nu t, \bm{r} / \lambda_0)
+	= (t, \bm{r}).
+$$
+
+This is a fine choice for someone working with the microscopic formulation of the Maxwell equations (in the vacuum). For electrodynamics in bulk matter, it is more convenient to choose a different reference value (see Eqn. 11.8!!!) -- the one measured at the location \\(\bm{r_1}\\) of either the source or the detector -- such that
+
+$$ \tag{1y.11}
+	\lambda_1(\nu)
+	= \frac{\lambda_0(\nu)}{\eta(\bm{r_1}, 2 \pi \nu)} = 1,
+	\quad \text{or} \quad
+	k_1(\omega)
+	= k_0(\omega) \eta(\bm{r_1}, \omega) = 2 \pi \text{ rad}.
+$$
+
+The expression of the spacetime coordinate must be modified correspondingly:
+
+$$ \tag{1y.12}
+	\frac{\nu}{c} \Big( c t, \bm{r} \eta_1 \Big)
+	= \nu (t, \bm{r} \eta_1 / c)
+	= (\nu t, \bm{r} / \lambda_1)
+	= (t, \bm{r}).
+$$
+
+Typically, \\(\bm{r_1}\\) corresponds to point located in the air or in the vacuum, which makes Eqn. 1y.9 and 1y.11 equivalent for all practical purposes[^29]. Notice that the reference location \\(\bm{r_1}\\) must be chosen such that
+
+[^29]: At optical frequencies, under normal atmospheric conditions.
+
+$$ \tag{1y.13}
+	\kappa(\bm{r_1}, \omega) = 0;
+$$
+
+otherwise \\(k_1 \bm{r} = 2 \pi \bm{r}\\) becomes complex, which breaks the symmetry between space and time.
+
+
+
+---
+
+$$
+	k_1 = \omega \frac{\eta_1}{c};
+	\quad
+	\omega = k_1 \frac{c}{\eta_1};
+$$
+
+---
+
+Finally, we would like to highlight the *scale invariance* property of electromagnetic scattering, also known as the principle of *electrodynamic similitude* \[[8](#references) (ch. 5.5), [9](#references) (ch. 3.5), [17](#references) (ch. 9.3)\]. The gist of it is that, while the (dimensionless) scattering and absorption characteristics of a scattering object depend on its linear dimension \\(a\\) and the wavenumbers \\(k_2 \text{ and } k_1\\) in the interior and the exterior regions, respectively, its properties can be alternatively described using the *relative wavenumber* \\(m = k_2 / k_1\\) and the so-called *size parameter* \\(x = k_1 a = 2 \pi a / \lambda\\), both of which are dimensionless. Thus, provided that the value of \\(m\\) stays fixed, increasing both the linear dimension of the object and the wavelength by the same factor \\(f\\) leaves the formula unchanged: \\(x' = 2 \pi (a f) / (f \lambda) = x \\). This [reduces the dimensionality](https://en.wikipedia.org/wiki/Dimensionality_reduction) of the problem, since three parameters can be replaced with just two.
+
+Note that, unlike \\(x\\), \\(m\\) is not scale-invariant. Recall its definition given by Eqn. 11.8:
+
+$$ \tag{15.17}
+	m(\bm{r}, \omega)
+	= \frac{k_2(\bm{r}, \omega)}{k_1(\omega)}
+	= \sqrt{ \frac{\varepsilon_2(\bm{r}, \omega) \mu_2(\omega)}{\varepsilon_1(\omega) \mu_1(\omega)} }.
+$$
+
+Suppose that the scattering object is located in vacuum. Then the denominator \\(\varepsilon_1 \mu_1=\epsilon_0 \mu_0\\) does not depend on the frequency of the incident radiation. However, the numerator does, since no material has a flat response across the entire frequency range. In particular, if the scattering object is conductive \\((\sigma_2 \neq 0)\\), then, according to Eqn. 5.6, its complex permittivity
+
+$$ \tag{15.??}
+	\varepsilon_2(\bm{r}, \omega)
+	= \epsilon_2(\bm{r}, \omega) + i \frac{\sigma_2(\bm{r}, \omega)}{\omega}
+$$
+
+directly depends on the frequency \\(\omega\\). Thus, in order for the scale invariance property to hold, if the linear dimension of the object and the wavelength are both increased by the same factor, conductivity must be correspondingly reduced.
+
+[Insert picture here]
+
+---
+
+Participating media can be broadly divided into two categories - homogeneous and inhomogeneous. This suggests that we may split any medium into two regions: 1) infinite homogeneous, and 2) the remaining space of finite volume \\(V\\). The latter can be interpreted as a single particle or a particle group, or, more generally, as a scattering object (or a *scatterer* for short).
+
+[Picture?]
+
+---
 
 ### Dipole Radiation
 
