@@ -2512,7 +2512,7 @@ $$
 
 where we grouped the physical properties grouped according to the definition of the angular wavenumber \\(k\\) given by Eqn. 7.4.
 
-Let us now define the *relative wavenumber* (sometimes called the *relative complex refractive index*[^28]) as follows:
+Let us now define the *relative wavenumber* (sometimes called the *relative complex refractive index*[^28]) \\(m\\) as follows:
 
 [^28]: The complex refractive index (given by Eqn. 7.7) is defined relative to the properties of the free space (the vacuum). The relative wavenumber depends on the properties of the surrounding medium, which may have a refractive index that is different from \\(1\\).
 
@@ -2874,9 +2874,9 @@ The same principle can be used to express the scattered field at an interior poi
 
 ### Natural Units
 
-So far, we have not paid much attention to the units of measurement, except for making the specific choice to adopt the modern SI unit convention; instead, we focused on learning the foundational concepts and building the physical intuition. Since this approach is common among introductory-level textbooks, it allowed us to insert multiple references (with equations of the same form) for those readers who wish to learn more, or are simply looking for an alternative explanation.
+So far, we have not paid much attention to the units of measurement, except for making the specific choice to adopt the SI unit convention; instead, we focused on learning the foundational concepts and building the physical intuition. Since this approach is common among introductory-level textbooks, it allowed us to insert multiple references (with equations of the same form) for those readers who wish to learn more, or are simply looking for an alternative explanation.
 
-The choice of units used to describe electromagnetism is a contentious topic. Historically, the Gaussian units were dominant during the first half of the 20th century; some fairly recent books (such as [Born & Wolf], [Jackson]) still utilize them today. The SI units serve as the modern replacement, but they are sometimes criticized for being unnatural [citation needed]. Ultimately, using either system gets the job done, even if neither is perfect. In fact, both of these systems exhibit a flaw: the angular wavenumber factor \\(k\\) appears in practically every equation, often several times, and its meaning and purpose are not always obvious (e.g. see Sec. 9). This tends to obscure the geometrical nature of the electromagnetic field \[[25](#references) (ch. 2.11)\].
+The choice of units used to describe electromagnetism is a contentious topic. Historically, the Gaussian units were dominant during the first half of the 20th century; some fairly recent books (such as [Born & Wolf], [Jackson]) still utilize them today. The SI units serve as the modern replacement, but they are sometimes criticized for being unnatural [citation needed]. Ultimately, using either system gets the job done, even if neither is perfect. In particular, both of these systems exhibit a flaw: the angular frequency \\(\omega\\) and the angular wavenumber factor \\(k\\) appear in practically every equation, often several times, and their meaning and purpose are not always obvious. This tends to obscure the geometrical nature of the electromagnetic field \[[25](#references) (ch. 2.11)\].
 
 The books devoted to the subject of relativity have historically suffered from a similar problem caused by frequent occurrences of the speed of light factor \\(c\\) [citation needed]. In this case, the solution is surprisingly simple: one just sets
 
@@ -2898,7 +2898,7 @@ $$ \tag{1y.3}
 	\mathcal{E}(m) = \frac{m c^2}{\sqrt{1-v^2/c^2}} = \frac{m}{\sqrt{1-v^2}}.
 $$
 
-This is the formulation of [mass-energy equivalence](https://en.wikipedia.org/wiki/Mass%E2%80%93energy_equivalence) (where both energy and mass are relativistic). Eqn. 1y.4 makes it clear that, if the geometrized unit convention is used, energy has units of mass.
+This is the formulation of [mass-energy equivalence](https://en.wikipedia.org/wiki/Mass%E2%80%93energy_equivalence) (where both energy and mass are relativistic). Eqn. 1y.4 makes it clear that the geometrized energy has units of mass.
 
 For non-relativistic applications, there are other ways of unifying the roles of space and time. For instance, when building a mathematical model of wave phenomena (not necessarily electromagnetic), one typically uses an expression of the form
 
@@ -2914,7 +2914,7 @@ $$
 
 Notice that the product \\(\nu t\\) is a [dimensionless quantity](https://en.wikipedia.org/wiki/Dimensionless_quantity) measured in cycles (the *number of oscillations*), regardless of our choice of the units of measurement.
 
-If one uses the Fourier transform (as we have done in Sec. 3) to solve a system of equations (such as the Maxwell equations), the problem (and the spectrum) is decomposed into independent (frequency) components that can be worked out one at a time. As we consider a single known value of \\(\nu\\), we may set
+If we use the Fourier transform (as we have done in Sec. 3) to solve a system of linear equations (such as the Maxwell equations), our problem (and the spectrum) is decomposed into independent (frequency) components that can be worked out one at a time. As we consider a single known value of \\(\nu\\), we may set
 
 $$ \tag{1y.6}
 	\nu = 1,
@@ -2922,7 +2922,7 @@ $$ \tag{1y.6}
 	\omega = 2 \pi \text{ rad}.
 $$
 
-Unfortunately, the value of the angular wavenumber is not fixed by our decision to utilize the Fourier transform, since \\(k\\) also depends on the properties of the medium. In optics, the latter is usually characterized by the refractive index \\(\eta\\) and the attenuation index \\(\kappa\\), both of which are dimensionless (cf. Eqn. 7.6-7.7):
+Unfortunately, the value of the angular wavenumber is not fixed by our decision to utilize the Fourier transform, since \\(k\\) also depends on the properties of the medium. In optics, the latter is usually characterized by the refractive index \\(\eta\\) and the attenuation index \\(\kappa\\), both of which are dimensionless quantities (cf. Eqn. 7.6-7.7):
 
 $$ \tag{1y.7}
 	k(\bm{r}, \omega) =
@@ -2939,12 +2939,12 @@ $$
 Since the ratio \\(\bm{r} / \lambda\\) (measured in cycles, or the *number of wavelengths*) is also dimensionless, we could set
 
 $$ \tag{1y.9}
-	\lambda_0(\nu) = \frac{c}{\nu} = 1,
+	\lambda_0(\nu) = \frac{c}{\nu} = c = 1,
 	\quad \text{or} \quad
 	k_0(\omega) = 2 \pi \text{ rad}.
 $$
 
-Eqn. 1y.7 and 1y.9 show that one could make the spacetime dimensionless simply by rescaling it:
+Eqn. 1y.7 and 1y.9 show that one could make the spacetime dimensionless simply by rescaling it by a factor of \\(\nu/c\\):
 
 $$ \tag{1y.10}
 	\frac{\nu}{c} \Big( c t, \bm{r} \Big)
@@ -2953,11 +2953,11 @@ $$ \tag{1y.10}
 	= (t, \bm{r}).
 $$
 
-This is a fine choice for someone working with the microscopic formulation of the Maxwell equations (in the vacuum). For electrodynamics in bulk matter, it is more convenient to choose a different reference value (see Eqn. 11.8!!!) -- the one measured at the location \\(\bm{r_1}\\) of either the source or the detector -- such that
+This is a fine choice for someone working with the microscopic formulation of the Maxwell equations (in the vacuum). For electrodynamics in bulk matter, it is more convenient to choose a different reference value (see Eqn. 11.8) -- the one measured at the location \\(\bm{r_1}\\) -- such that
 
 $$ \tag{1y.11}
 	\lambda_1(\nu)
-	= \frac{\lambda_0(\nu)}{\eta(\bm{r_1}, 2 \pi \nu)} = 1,
+	= \frac{\lambda_0(\nu)}{\eta(\bm{r_1}, 2 \pi \nu)} = \frac{c}{\eta_1 \nu} = \frac{c}{\eta_1} = 1,
 	\quad \text{or} \quad
 	k_1(\omega)
 	= k_0(\omega) \eta(\bm{r_1}, \omega) = 2 \pi \text{ rad}.
@@ -2981,6 +2981,22 @@ $$ \tag{1y.13}
 $$
 
 otherwise \\(k_1 \bm{r} = 2 \pi \bm{r}\\) becomes complex, which breaks the symmetry between space and time.
+
+Our [natural unit](https://en.wikipedia.org/wiki/Natural_units) convention can be summarized as follows:
+
+$$ \tag{1y.14}
+\begin{aligned}
+	1 \text{ s} &= |\nu| \text{ cycles}, &
+	1 \text{ m} &= |\lambda_1|^{-1} \text{ cycles},
+	\cr
+	\omega t   &\leftrightarrows 2 \pi t, &
+	k_1 \bm{r} &\leftrightarrows 2 \pi \bm{r}.
+\end{aligned}
+$$
+
+Evidently, conversion *into* the natural units is trivial: one simply sets \\(k_1 = \omega = 2 \pi\\)[^30]. However, one must also be able to perform the conversion *from* the natural units (into the SI units, for instance) at the end of the calculation. The feasibility of the inverse transformation is non-obvious, which makes it the subject of the next section.
+
+[^30]: Some authors [van de Hulst] prefer to set \\(k_1 = \omega = 1\\). While that shortens certain formulae even more, from the practical standpoint, measuring space and time in radians is rather awkward.
 
 
 
