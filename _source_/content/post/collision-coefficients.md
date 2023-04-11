@@ -2674,6 +2674,445 @@ $$
 
 In the electromagnetic scattering literature, Eqn. 11.10 and 11.11 are often called the *volume integral equations* \[[8](#references) (ch. 4)\]. They can be used to evaluate the electromagnetic field inside or outside the scattering object.
 
+### Natural Units
+
+So far, we have not paid much attention to the units of measurement, except for making the specific choice to adopt the SI unit convention; instead, we focused on learning the foundational concepts and building the physical intuition. Since this approach is common among introductory-level textbooks, it allowed us to insert multiple references (with equations of the same form) for those readers who wish to learn more, or are simply looking for an alternative explanation.
+
+The choice of units used to describe electromagnetism is a contentious topic. Historically, the Gaussian units were dominant during the first half of the 20th century; some fairly recent books (such as [Born & Wolf], [Jackson]) still utilize them today. The SI units serve as the modern replacement, but they are sometimes criticized for being unnatural [citation needed]. Ultimately, using either system gets the job done, even if neither is perfect. In particular, both of these systems exhibit a flaw: the angular frequency \\(\omega\\) and the angular wavenumber factor \\(k\\) appear in practically every equation, often several times, and their meaning and purpose are not always obvious. This tends to obscure the geometrical nature of the electromagnetic field \[[25](#references) (ch. 2.11)\].
+
+The books devoted to the subject of relativity have historically suffered from a similar problem caused by frequent occurrences of the speed of light factor \\(c\\) [citation needed]. In this case, the solution is surprisingly simple: one just sets
+
+$$ \tag{1y.1}
+	c = 1.
+$$
+
+Since the SI value of the speed of light is exactly 299,792,458 m/s, Eqn. 1y.1 implies that
+
+$$ \tag{1y.2}
+	1 \text{ s} = 299792458 \text{ m}.
+$$
+
+Because the product \\(ct\\) is invariant with respect to this transformation, both the units and the value of the [spacetime coordinate](https://en.wikipedia.org/wiki/Minkowski_space) \\(\left(c t, \bm{r} \right)\\) remain unchanged. By omitting the \\(c\\) factor and measuring the time \\(t\\) in units of length, we emphasize the equivalence of roles played by space and time. This convention bears the name of [geometrized units](https://en.wikipedia.org/wiki/Geometrized_unit_system) [Thorne 1.10].
+
+For a particle with rest mass \\(m\\) and velocity \\(\bm{v}\\), the expression of relativistic energy \\(\mathcal{E}\\) is
+
+$$ \tag{1y.3}
+	\mathcal{E}(m) = \frac{m c^2}{\sqrt{1-v^2/c^2}} = \frac{m}{\sqrt{1-v^2}}.
+$$
+
+This is the formulation of [mass-energy equivalence](https://en.wikipedia.org/wiki/Mass%E2%80%93energy_equivalence) (where both energy and mass are relativistic). Eqn. 1y.3 makes it clear that the geometrized energy has units of mass.
+
+For non-relativistic applications, there are other ways of unifying the roles of space and time. For instance, when building a mathematical model of wave phenomena (not necessarily electromagnetic), one typically uses an expression of the form
+
+$$ \tag{1y.4}
+	e^{i (k \bm{r} \cdot \bm{n} - \omega t)},
+$$
+
+where \\(k\\) is the angular wavenumber and \\(\omega\\) is the angular frequency.
+
+Notice that the product \\(\omega t\\) is a [dimensionless quantity](https://en.wikipedia.org/wiki/Dimensionless_quantity) measured in radians (or \\(2 \pi\\) times the *number of oscillations*), regardless of our choice of the units of measurement. If we use the Fourier transform (as we have done in Sec. 3) to solve a system of linear equations (such as the Maxwell equations), our problem (and the spectrum) is decomposed into independent (frequency) components that can be worked out one at a time. Since we consider a single known value of \\(\omega\\), we may set
+
+$$ \tag{1y.5}
+	\omega = 1,
+	\quad \text{or} \quad
+	\nu = \frac{1}{2 \pi}.
+$$
+
+Unfortunately, the value of the angular wavenumber is not fixed by our decision to utilize the Fourier transform, since \\(k\\) also depends on the properties of the medium. In optics, the latter is usually characterized by the refractive index \\(\eta\\) and the attenuation index \\(\kappa\\), both of which are dimensionless quantities (cf. Eqn. 7.6-7.7):
+
+$$ \tag{1y.6}
+	k(\bm{r}, \omega) =
+	\frac{\omega}{c} \Big( \eta(\bm{r}, \omega) + i \kappa(\bm{r}, \omega) \Big).
+$$
+
+In vacuum, \\(\eta = 1, \kappa = 0\\), and the angular wavenumber \\(k\\) is inversely proportional to the wavelength \\(\lambda\\):
+
+$$ \tag{1y.7}
+	k_0(\omega) =
+	\frac{\omega}{c} = \frac{2 \pi \nu}{c} = \frac{2 \pi}{\lambda_0(\nu)}.
+$$
+
+Since the product \\(k_0 \bm{r}\\) (measured in radians, or \\(2 \pi\\) times the *number of wavelengths*) is also dimensionless, we could set
+
+$$ \tag{1y.8}
+	k_0(\omega) = 1,
+	\quad \text{or} \quad
+	\lambda_0(\nu) = \frac{c}{\nu} = 2 \pi.
+$$
+
+Eqn. 1y.5 and 1y.8 show that one could make the spacetime dimensionless simply by rescaling it by a factor[^29] of \\(\omega/c\\):
+
+[^29]: Arguably, it would be more natural to measure space and time in cycles by setting \\(\nu = \lambda = 1\\). Unfortunately, this requires setting \\(\omega = k = 2 \pi\\), which pollutes the resulting equations with a multitude of \\(\pi\\)-factors that do not cancel out. Thus, simplicity comes at the cost of naturalness, and requires some mental adjustment. Some authors arrived at the same conclusion [van de Hulst, Mishchenko].
+
+$$ \tag{1y.9}
+	\frac{\omega}{c} \Big( c t, \bm{r} \Big)
+	= \omega \Big(t, \frac{\bm{r}}{c} \Big)
+	= \Big(\omega t, \frac{2 \pi}{\lambda_0} \bm{r} \Big)
+	= (t, \bm{r}).
+$$
+
+This is a fine choice for someone working with the microscopic formulation of the Maxwell equations (in the vacuum). For electrodynamics in bulk matter, it is more convenient to choose a different reference value (see Eqn. 11.8) -- the one measured at the location \\(\bm{r_1}\\) -- such that
+
+$$ \tag{1y.10}
+	k_1(\omega)
+	= k_0(\omega) \eta(\bm{r_1}, \omega) = 1,
+	\quad \text{or} \quad
+	\lambda_1(\nu)
+	= \frac{\lambda_0(\nu)}{\eta(\bm{r_1}, 2 \pi \nu)}
+	= \frac{c}{\eta(\bm{r_1}, 2 \pi \nu) \nu} = 2 \pi.
+$$
+
+The expression of the spacetime coordinate must be modified correspondingly:
+
+$$ \tag{1y.11}
+	\frac{\omega}{c} \Big( c t, \eta_1 \bm{r} \Big)
+	= \omega \Big(t, \frac{\eta_1 \bm{r}}{c} \Big)
+	= \Big(\omega t, \frac{2 \pi}{\lambda_1} \bm{r} \Big)
+	= (t, \bm{r}).
+$$
+
+Typically, \\(\bm{r_1}\\) corresponds to point located in the air or in the vacuum, which makes Eqn. 1y.8 and 1y.10 equivalent for all practical purposes[^30]. Notice that the reference location \\(\bm{r_1}\\) must be chosen such that
+
+[^30]: At optical frequencies, under normal atmospheric conditions.
+
+$$ \tag{1y.12}
+	\kappa(\bm{r_1}, \omega) = 0;
+$$
+
+otherwise \\(k_1 \bm{r} = \bm{r}\\) becomes complex, which breaks the symmetry between space and time.
+
+[What about energy??]
+
+Our [natural unit](https://en.wikipedia.org/wiki/Natural_units) convention can be summarized as follows:
+
+$$ \tag{1y.13}
+\begin{aligned}
+	1 \text{ s} &= |2 \pi \nu| \text{ cycles} = |\omega| \text{ rad}, &
+	\omega t   &\leftrightarrows t,
+	\cr
+	1 \text{ m} &= |2 \pi / \lambda_1| \text{ cycles} = |k_1| \text{ rad}, &
+	k_1 \bm{r} &\leftrightarrows \bm{r}.
+\end{aligned}
+$$
+
+Evidently, conversion *into* the natural units is trivial: one simply sets \\(k_1 = \omega = 1\\). However, one must also be able to perform the conversion *from* the natural units (into the SI units, for instance) at the end of the calculation. The feasibility of the inverse transformation is non-obvious, which makes it the subject of the next section.
+
+### Electrodynamic Similitude
+
+The unit conversion process can be conceptually divided into two steps: during the first step, we identify dimensionless quantities (independent of the unit convention), and during the second step, we group and transform the remaining (dimensional) quantities. We have already encountered an example of the former (see Eqn. 1y.4); we must now analyze the terms comprising Eqn. 11.10 and 11.11 in a similar manner.
+
+We may begin by examining the electric dyadic Green function \\(\mathcal{G_e}\\). It can be expanded in two different ways. If we express it as a product, and move the derivatives outside the integral (as shown by Eqn. 9.24), Eqn. 11.10 takes the form
+
+$$ \tag{1z.1}
+	\bm{E_s}(\bm{r}, \omega)
+	= \Big( \mathcal{I} + \frac{1}{k_1^2(\omega)} \nabla \otimes \nabla \Big) \cdot \int\_{V}
+	g\big( \bm{r} - \bm{r'}, k_1(\omega) \big) \bm{J'}(\bm{r'}, \omega) dV'.
+$$
+
+Now, let us perform a change of variables
+
+$$ \tag{1z.2}
+	\bm{\rho} = k_1 \bm{r}.
+$$
+
+As a result, the rates of change are reduced:
+
+$$ \tag{1z.3}
+	\nabla_{\rho}
+	= \begin{bmatrix}
+		\partial / \partial (k_1 x) \cr
+		\partial / \partial (k_1 y) \cr
+		\partial / \partial (k_1 z)
+	\end{bmatrix}
+	= k_1^{-1} \nabla.
+$$
+
+The volume element grows proportionally:
+
+$$ \tag{1z.4}
+	d V_{\rho} = d(kx) \thinspace d(ky) \thinspace d(kz) = k^3 dV,
+$$
+
+which forces the magnitude of the Dirac delta function to compensate:
+
+$$ \tag{1z.5}
+	\delta(\bm{\rho})
+	= k_1^{-3} \delta(\bm{r}).
+$$
+
+As for the scalar Green function \\(g\\) given by Eqn. 9.10, its dimensionless counterpart is easily identified:
+
+$$ \tag{1z.6}
+	g(\bm{\rho})
+	= \frac{e^{i |\bm{\rho}|}}{4 \pi |\bm{\rho}|}
+	= \frac{e^{i |k_1 \bm{r}|}}{4 \pi |k_1 \bm{r}|}
+	= k_1^{-1} g(\bm{r}, k_1).
+$$
+
+Substitution of Eqn. 11.7 and 1z.2-1z.6 into 1z.1 yields
+
+$$ \tag{1z.7}
+	\bm{E_s}(\bm{r}, \omega)
+	= \Big( \mathcal{I} + \nabla_{\rho} \otimes \nabla_{\rho} \Big) \cdot \int\_{V}
+	g\big( \bm{\rho} - \bm{\rho'} \big) \big( m^2(\bm{r'}, \omega) - 1 \big) \bm{E}(\bm{r'}, \omega) dV_{\rho}'.
+$$
+
+At this point, \\(\bm{r}\\) is only used to designate a point in space. If the latter is measured in radians, we may replace \\(\bm{\rho}\\) with \\(\bm{r}\\) in Eqn. 1z.7 (or, alternatively, set \\(k_1 = 1\\) in Eqn. 1z.1) and omit \\(\omega\\) to obtain
+
+$$ \tag{1z.8}
+	\bm{E_s}(\bm{r})
+	= \Big( \mathcal{I} + \nabla \otimes \nabla \Big) \cdot \int\_{V}
+	g\big( \bm{r} - \bm{r'} \big) \big( m^2(\bm{r'}) - 1 \big) \bm{E}(\bm{r'}) dV'.
+$$
+
+Note that, in Eqn. 1z.8, *every quantity is dimensionless*, except for the electric field \\(\bm{E}\\). According to the [SI unit convention](https://en.wikipedia.org/wiki/Electric_field) \[[17](#references) (ch. 1.8)\],
+
+$$ \tag{1z.9}
+	\lbrack \bm{E} \rbrack_{si}
+	= \text{kg⋅m⋅s}^{\text{-3}}\text{⋅A}^{\text{-1}}
+	= \text{kg⋅m⋅s}^{\text{-2}}\text{C}^{\text{-1}}.
+$$
+
+In the natural units,
+
+$$ \tag{1z.10}
+	\lbrack \bm{E} \rbrack_{na}
+	= \text{kg⋅C}^{\text{-1}}.
+$$
+
+In principle, we could make Eqn. 1z.8 *fully dimensionless* by dividing the electric field \\(\bm{E}\\) (on both sides) by the mass of 1 kg and multiplying it by the charge of 1 coulomb. However, in practice, there is little benefit from doing so.
+
+---
+
+Translation of Eqn. 14.21 into the integral form yields the definition of the transition dyadic:
+
+$$ \tag{14.22}
+\begin{aligned}
+	\mathcal{T} (\bm{r}, \bm{r'}, k)
+	&= u(\bm{r}, k) \bigg( \delta(\bm{r} - \bm{r'}) \mathcal{I} + \int_V \mathcal{G}\_e (\bm{r}, \bm{r''}, k) \cdot \mathcal{T} (\bm{r''}, \bm{r'}, k) dV'' \bigg)
+	\cr
+	&= k^2 \big( m^2(\bm{r}) - 1 \big) \bigg( \delta(\bm{r} - \bm{r'}) \mathcal{I} + \int_V \mathcal{G}\_e (\bm{r}, \bm{r''}, k) \cdot \mathcal{T} (\bm{r''}, \bm{r'}, k) dV'' \bigg).
+\end{aligned}
+$$
+
+The expression of the electric dyadic (defined in Eqn. 9.27) can be expanded in two different ways. We can express it as a product, and move the derivatives outside the integral, as shown by Eqn. 9.24:
+
+$$ \tag{14.23}
+\begin{aligned}
+	\mathcal{T} (\bm{r}, \bm{r'}, k)
+	&= k^2 \big( m^2(\bm{r}) - 1 \big) \bigg(
+	\delta(\bm{r} - \bm{r'}) \mathcal{I}
+	\cr
+	&+ \Big( \mathcal{I} + \frac{1}{k^2} \nabla \otimes \nabla \Big) \cdot \int\_{V}
+	g( \bm{r} - \bm{r''}, k) \mathcal{T} (\bm{r''}, \bm{r'}, k) dV'' \bigg).
+\end{aligned}
+$$
+
+Alternatively, we can decompose it into a sum of the dyadic Green function \\(\mathcal{G}\\) and the depolarization dyadic \\(\mathcal{L}\\) as per by Eqn. 9.27:
+
+$$ \tag{14.24}
+\begin{aligned}
+	\mathcal{T} (\bm{r}, \bm{r'}, k)
+	&= k^2 \big( m^2(\bm{r}) - 1 \big) \bigg(
+	\delta(\bm{r} - \bm{r'}) \mathcal{I}
+	\cr
+	&- \frac{1}{k^2} \mathcal{L}(\bm{r}) \cdot \mathcal{T} (\bm{r}, \bm{r'})
+	+ \lim_{\delta \to 0} \int\_{V - V_{\delta}} \mathcal{G} (\bm{r}, \bm{r''}) \cdot \mathcal{T} (\bm{r''}, \bm{r'}, k) dV'' \bigg).
+\end{aligned}
+$$
+
+[Insert picture here]
+
+In order to prove the principle of electrodynamic similitude, we must show that the expressions used to calculate the electromagnetic fields can be written in terms of the dimensionless quantity (which we indicate by the hat symbol)
+
+$$ \tag{15.18}
+	\bm{\hat{r}} = k \bm{r}.
+$$
+
+As a simple example, consider the scalar Green function \\(g\\) introduced in Eqn. 9.10. If we divide it by \\(k\\), we obtain its dimensionless counterpart \\(\hat{G_e}\\):
+
+$$ \tag{15.19}
+	\frac{1}{k} g(\bm{r}, k)
+	= \hat{G_e}(\bm{\hat{r}})
+	= \frac{e^{i |\bm{\hat{r}}|}}{4 \pi |\bm{\hat{r}}|}.
+$$
+
+The expression of the total field is the sum of the incident and the scattered fields. Eqn. 15.1 of the incident field can be transformed into the dimensionless form by a trivial substitution of Eqn. 15.18. On the other hand, Eqn. 15.3 of the scattered field is more complicated, as it contains the electric and transition dyadics. According to Eqn. 14.22, the transition dyadic is itself defined in terms of the electric dyadic. Thus, we only need to transform the expression of the former. For convenience, we elect to use the expanded definition given by Eqn. 14.23, which we restate below:
+
+$$ \tag{15.20}
+\begin{aligned}
+	\mathcal{T} (\bm{r}, \bm{r'}, k)
+	&= k^2 \big( m^2(\bm{r}) - 1 \big) \bigg( \delta(\bm{r} - \bm{r'}) \mathcal{I} + \int_V \mathcal{G}\_e (\bm{r}, \bm{r''}, k) \cdot \mathcal{T} (\bm{r''}, \bm{r'}, k) dV'' \bigg)
+	\cr
+	&= k^2 \big( m^2(\bm{r}) - 1 \big) \bigg(
+	\delta(\bm{r} - \bm{r'}) \mathcal{I}
+	\cr
+	&+ \Big( \mathcal{I} + \frac{1}{k^2} \nabla \otimes \nabla \Big) \cdot
+	\int\_{V} g( \bm{r} - \bm{r''}, k) \mathcal{T} (\bm{r''}, \bm{r'}, k) dV'' \bigg).
+\end{aligned}
+$$
+
+In order to replace \\(\bm{r}\\) with \\(\bm{\hat{r}}\\) inside the integral, we must perform a change of variables
+
+$$ \tag{15.21}
+	dV = dx \thinspace dy \thinspace dz
+	\quad \to \quad
+	d \hat{V} = d(kx) \thinspace d(ky) \thinspace d(kz) = k^3 dV.
+$$
+
+Furthermore, the [scaling property](https://en.wikipedia.org/wiki/Dirac_delta_function#Scaling_and_symmetry) of the delta function tells us that
+
+$$ \tag{15.22}
+	\delta(\bm{r})
+	= \delta \bigg(\frac{\bm{\hat{r}}}{k} \bigg)
+	= k^3 \delta(\bm{\hat{r}})
+$$
+
+To handle the electric dyadic, we introduce
+
+$$ \tag{15.23}
+	\hat{\nabla} = k^{-1} \nabla,
+$$
+
+such that
+
+$$ \tag{15.25}
+	\hat{\nabla} \bm{\hat{r}} = \nabla \bm{r},
+$$
+
+which, coupled with Eqn. 15.19, directly leads to
+
+$$ \tag{15.26}
+	\mathcal{\hat{G_e}}(\bm{\hat{r}}, \bm{\hat{r}'})
+	= \frac{1}{k} \mathcal{G}\_e(\bm{r}, \bm{r'}, k).
+$$
+
+The only expression left to transform is the relative wavenumber \\(m\\) given by Eqn. 11.8. It is already a dimensionless quantity; thus, if we rescale the coordinate frame by a factor of \\(1/k\\), we can define the function
+
+$$ \tag{15.27}
+	\hat{m}(\bm{\hat{r}}) = m(\bm{r})
+$$
+
+that operates in dimensionless coordinates.
+
+Using the new definitions, Eqn. 15.20 becomes
+
+$$ \tag{15.28}
+\begin{aligned}
+	\mathcal{T} (\bm{r}, \bm{r'}, k)
+	&= \big( \hat{m}^2(\bm{\hat{r}}) - 1 \big) \bigg(
+	k^5 \delta(\bm{\hat{r}} - \bm{\hat{r}'}) \mathcal{I}
+	+ \int\_{V} \mathcal{\hat{G_e}}(\bm{\hat{r}}, \bm{\hat{r}''}) \cdot \mathcal{T} (\bm{r''}, \bm{r'}, k) d \hat{V}'' \bigg)
+	\cr
+	&= \big( \hat{m}^2(\bm{\hat{r}}) - 1 \big) \bigg(
+	k^5 \delta(\bm{\hat{r}} - \bm{\hat{r}'}) \mathcal{I}
+	\cr
+	&+ \Big( \mathcal{I} + \hat{\nabla} \otimes \hat{\nabla} \Big) \cdot
+	\int\_{V} \hat{G_e}( \bm{\hat{r}} - \bm{\hat{r}''}) \mathcal{T} (\bm{r''}, \bm{r'}, k) d \hat{V}'' \bigg),
+\end{aligned}
+$$
+
+from which it immediately follows that defining
+
+$$ \tag{15.29}
+	\mathcal{\hat{T_e}} (\bm{\hat{r}}, \bm{\hat{r}'}) = \frac{1}{k^5}
+	\mathcal{T} (\bm{r}, \bm{r'}, k)
+$$
+
+makes Eqn. 15.28 fully dimensionless. Additionally, in the operator notation, Eqn. 15.20 and 15.28 are formally identical. As a result, both formulations can be expressed in terms of the Born series given by Eqn. 14.20, and thus produce the same fields.
+
+---
+
+Unit conversion can be conceptually divided into two steps: during the first step, we identify dimensionless quantities (independent of the unit convention), and during the second step, we group and transform the remaining (dimensional) quantities. We have already encountered an example of the former (Eqn. 1y.4); we must now simply examine the remaining terms comprising Eqn. 11.10, 11.11, 1x.14 and 1x.15.
+
+Naturally, we should begin with the dyadic Green functions \\(\mathcal{G}\\) given by Eqn. 9.27 and 9.34. Both are defined in terms of the scalar Green function \\(g\\) given by Eqn. 9.10. Its dimensionless counterpart is easily identified:
+
+$$ \tag{1z.1}
+	\frac{g(\bm{R}, k_1)}{k_1}  = \frac{e^{i |k_1 \bm{R}|}}{4 \pi |k_1 \bm{R}|}
+	\quad \leftrightarrows \quad
+	g(k_1 \bm{R}) = \frac{e^{i |k_1 \bm{R}|}}{4 \pi |k_1 \bm{R}|}.
+$$
+
+In the natural unit convention, the expression of the dimensionless scalar Green function becomes
+
+$$ \tag{1z.2}
+	g(\bm{r})  = \frac{e^{i |\bm{r}|}}{4 \pi |\bm{r}|}.
+$$
+
+Next, it is convenient to decompose the electric dyadic according to Eqn. 9.44-9.46. After taking Eqn. 1z.1 into account, the corresponding dimensionless expressions become evident:
+
+$$ \tag{1z.3}
+\begin{aligned}
+	& \mathcal{G_{en}}(k_1 \bm{R})
+	= \frac{\mathcal{G_{en}}(\bm{R}, k_1)}{k_1}
+	= -\frac{e^{i |k_1 \bm{R}|}}{4 \pi |k_1 \bm{R}|^3} \bigg(\mathcal{I} - 3 \frac{(k_1 \bm{R}) \otimes (k_1 \bm{R})}{(k_1 \bm{R}) \cdot (k_1 \bm{R})} \bigg),
+	\cr
+	& \mathcal{G_{et}}(k_1 \bm{R})
+	= \frac{\mathcal{G_{et}}(\bm{R}, k_1)}{k_1}
+	= i \frac{e^{i |k_1 \bm{R}|}}{4 \pi |k_1 \bm{R}|^2} \bigg(\mathcal{I} - 3 \frac{(k_1 \bm{R}) \otimes (k_1 \bm{R})}{(k_1 \bm{R}) \cdot (k_1 \bm{R})} \bigg),
+	\cr
+	& \mathcal{G_{ef}}(k_1 \bm{R})
+	= \frac{\mathcal{G_{ef}}(\bm{R}, k_1)}{k_1}
+	= \frac{e^{i |k_1 \bm{R}|}}{4 \pi |k_1 \bm{R}|} \bigg( \mathcal{I} - \frac{(k_1 \bm{R}) \otimes (k_1 \bm{R})}{(k_1 \bm{R}) \cdot (k_1 \bm{R})} \bigg).
+\end{aligned}
+$$
+
+Elimination of the \\(k_1\\) factor produces the following simple expression:
+
+$$ \tag{1z.4}
+\begin{aligned}
+	& \mathcal{G_{en}}(\bm{r})
+	= -\frac{g(\bm{r})}{|\bm{r}|^2} \bigg(\mathcal{I} - 3 \frac{\bm{r} \otimes \bm{r}}{\bm{r} \cdot \bm{r}} \bigg),
+	\cr
+	& \mathcal{G_{et}}(\bm{r})
+	= i \frac{g(\bm{r})}{|\bm{r}|} \bigg(\mathcal{I} - 3 \frac{\bm{r} \otimes \bm{r}}{\bm{r} \cdot \bm{r}} \bigg),
+	\cr
+	& \mathcal{G_{ef}}(\bm{r})
+	= g(\bm{r}) \bigg( \mathcal{I} - \frac{\bm{r} \otimes \bm{r}}{\bm{r} \cdot \bm{r}} \bigg).
+\end{aligned}
+$$
+
+
+
+---
+
+$$
+	k_1 = \omega \frac{\eta_1}{c};
+	\quad
+	\omega = k_1 \frac{c}{\eta_1};
+$$
+
+---
+
+Finally, we would like to highlight the *scale invariance* property of electromagnetic scattering, also known as the principle of *electrodynamic similitude* \[[8](#references) (ch. 5.5), [9](#references) (ch. 3.5), [17](#references) (ch. 9.3)\]. The gist of it is that, while the (dimensionless) scattering and absorption characteristics of a scattering object depend on its linear dimension \\(a\\) and the wavenumbers \\(k_2 \text{ and } k_1\\) in the interior and the exterior regions, respectively, its properties can be alternatively described using the *relative wavenumber* \\(m = k_2 / k_1\\) and the so-called *size parameter* \\(x = k_1 a = 2 \pi a / \lambda\\), both of which are dimensionless. Thus, provided that the value of \\(m\\) stays fixed, increasing both the linear dimension of the object and the wavelength by the same factor \\(f\\) leaves the formula unchanged: \\(x' = 2 \pi (a f) / (f \lambda) = x \\). This [reduces the dimensionality](https://en.wikipedia.org/wiki/Dimensionality_reduction) of the problem, since three parameters can be replaced with just two.
+
+Note that, unlike \\(x\\), \\(m\\) is not scale-invariant. Recall its definition given by Eqn. 11.8:
+
+$$ \tag{15.17}
+	m(\bm{r}, \omega)
+	= \frac{k_2(\bm{r}, \omega)}{k_1(\omega)}
+	= \sqrt{ \frac{\varepsilon_2(\bm{r}, \omega) \mu_2(\omega)}{\varepsilon_1(\omega) \mu_1(\omega)} }.
+$$
+
+Suppose that the scattering object is located in vacuum. Then the denominator \\(\varepsilon_1 \mu_1=\epsilon_0 \mu_0\\) does not depend on the frequency of the incident radiation. However, the numerator does, since no material has a flat response across the entire frequency range. In particular, if the scattering object is conductive \\((\sigma_2 \neq 0)\\), then, according to Eqn. 5.6, its complex permittivity
+
+$$ \tag{15.??}
+	\varepsilon_2(\bm{r}, \omega)
+	= \epsilon_2(\bm{r}, \omega) + i \frac{\sigma_2(\bm{r}, \omega)}{\omega}
+$$
+
+directly depends on the frequency \\(\omega\\). Thus, in order for the scale invariance property to hold, if the linear dimension of the object and the wavelength are both increased by the same factor, conductivity must be correspondingly reduced.
+
+[Insert picture here]
+
+---
+
+Participating media can be broadly divided into two categories - homogeneous and inhomogeneous. This suggests that we may split any medium into two regions: 1) infinite homogeneous, and 2) the remaining space of finite volume \\(V\\). The latter can be interpreted as a single particle or a particle group, or, more generally, as a scattering object (or a *scatterer* for short).
+
+[Picture?]
+
+---
+
 ### Huygens-Fresnel Principle
 
 The volume integral equation expresses the scattered field using the integral taken over the volume \\(V\\) of the scattering object. If its dimensions are large, and the material -- absorptive, then it is likely that a significant portion of its interior will make a negligible contribution to the field outside. Furthermore, determination of the internal field across the entire volume may prove to be both arduous and challenging. Thus, it is sometimes advantageous to convert the volume integral into an integral taken over the surface \\(\partial V\\) (with the outward-facing normal \\(\bm{n}\\)) by applying the second *vector Green theorem* defined in terms of two vector fields \\(\bm{P}\\) and \\(\bm{Q}\\) \[[17](#references) (ch. 4.14)\]:
@@ -2872,172 +3311,6 @@ Eqn. 1x.14 and 1x.15 are called the *surface integral equations*. They give the 
 
 The same principle can be used to express the scattered field at an interior point in terms of the values of the fields at the enclosing surface \[[17](#references) (ch. 8.14)\]. TODO? Or skip it?
 
-### Natural Units
-
-So far, we have not paid much attention to the units of measurement, except for making the specific choice to adopt the SI unit convention; instead, we focused on learning the foundational concepts and building the physical intuition. Since this approach is common among introductory-level textbooks, it allowed us to insert multiple references (with equations of the same form) for those readers who wish to learn more, or are simply looking for an alternative explanation.
-
-The choice of units used to describe electromagnetism is a contentious topic. Historically, the Gaussian units were dominant during the first half of the 20th century; some fairly recent books (such as [Born & Wolf], [Jackson]) still utilize them today. The SI units serve as the modern replacement, but they are sometimes criticized for being unnatural [citation needed]. Ultimately, using either system gets the job done, even if neither is perfect. In particular, both of these systems exhibit a flaw: the angular frequency \\(\omega\\) and the angular wavenumber factor \\(k\\) appear in practically every equation, often several times, and their meaning and purpose are not always obvious. This tends to obscure the geometrical nature of the electromagnetic field \[[25](#references) (ch. 2.11)\].
-
-The books devoted to the subject of relativity have historically suffered from a similar problem caused by frequent occurrences of the speed of light factor \\(c\\) [citation needed]. In this case, the solution is surprisingly simple: one just sets
-
-$$ \tag{1y.1}
-	c = 1.
-$$
-
-Since the SI value of the speed of light is exactly 299,792,458 m/s, Eqn. 1y.1 implies that
-
-$$ \tag{1y.2}
-	1 \text{ s} = 299792458 \text{ m}.
-$$
-
-Because the product \\(ct\\) is invariant with respect to this transformation, both the units and the value of the [spacetime coordinate](https://en.wikipedia.org/wiki/Minkowski_space) \\(\left(c t, \bm{r} \right)\\) remain unchanged. By omitting the \\(c\\) factor and measuring the time \\(t\\) in units of length, we emphasize the equivalence of roles played by space and time. This convention bears the name of [geometrized units](https://en.wikipedia.org/wiki/Geometrized_unit_system) [Thorne 1.10].
-
-For a particle with rest mass \\(m\\) and velocity \\(\bm{v}\\), the expression of relativistic energy \\(\mathcal{E}\\) is
-
-$$ \tag{1y.3}
-	\mathcal{E}(m) = \frac{m c^2}{\sqrt{1-v^2/c^2}} = \frac{m}{\sqrt{1-v^2}}.
-$$
-
-This is the formulation of [mass-energy equivalence](https://en.wikipedia.org/wiki/Mass%E2%80%93energy_equivalence) (where both energy and mass are relativistic). Eqn. 1y.4 makes it clear that the geometrized energy has units of mass.
-
-For non-relativistic applications, there are other ways of unifying the roles of space and time. For instance, when building a mathematical model of wave phenomena (not necessarily electromagnetic), one typically uses an expression of the form
-
-$$ \tag{1y.4}
-	e^{i k(\bm{r}, \omega) x - i \omega t},
-$$
-
-where \\(k\\) is the angular wavenumber and \\(\omega\\) is the angular frequency. Alternatively, Eqn. 1y.5 can be expressed in terms of the (ordinary) frequency \\(\nu\\):
-
-$$ \tag{1y.5}
-	e^{i k(\bm{r}, 2 \pi \nu) x - 2 \pi i \nu t}.
-$$
-
-Notice that the product \\(\nu t\\) is a [dimensionless quantity](https://en.wikipedia.org/wiki/Dimensionless_quantity) measured in cycles (the *number of oscillations*), regardless of our choice of the units of measurement.
-
-If we use the Fourier transform (as we have done in Sec. 3) to solve a system of linear equations (such as the Maxwell equations), our problem (and the spectrum) is decomposed into independent (frequency) components that can be worked out one at a time. As we consider a single known value of \\(\nu\\), we may set
-
-$$ \tag{1y.6}
-	\nu = 1,
-	\quad \text{or} \quad
-	\omega = 2 \pi \text{ rad}.
-$$
-
-Unfortunately, the value of the angular wavenumber is not fixed by our decision to utilize the Fourier transform, since \\(k\\) also depends on the properties of the medium. In optics, the latter is usually characterized by the refractive index \\(\eta\\) and the attenuation index \\(\kappa\\), both of which are dimensionless quantities (cf. Eqn. 7.6-7.7):
-
-$$ \tag{1y.7}
-	k(\bm{r}, \omega) =
-	\frac{\omega}{c} \Big( \eta(\bm{r}, \omega) + i \kappa(\bm{r}, \omega) \Big).
-$$
-
-In vacuum, \\(\eta = 1, \kappa = 0\\), and the angular wavenumber \\(k\\) is inversely proportional to the wavelength \\(\lambda\\):
-
-$$ \tag{1y.8}
-	k_0(\omega) =
-	\frac{\omega}{c} = \frac{2 \pi \nu}{c} = \frac{2 \pi}{\lambda_0(\nu)}.
-$$
-
-Since the ratio \\(\bm{r} / \lambda\\) (measured in cycles, or the *number of wavelengths*) is also dimensionless, we could set
-
-$$ \tag{1y.9}
-	\lambda_0(\nu) = \frac{c}{\nu} = c = 1,
-	\quad \text{or} \quad
-	k_0(\omega) = 2 \pi \text{ rad}.
-$$
-
-Eqn. 1y.7 and 1y.9 show that one could make the spacetime dimensionless simply by rescaling it by a factor of \\(\nu/c\\):
-
-$$ \tag{1y.10}
-	\frac{\nu}{c} \Big( c t, \bm{r} \Big)
-	= \nu (t, \bm{r} / c)
-	= (\nu t, \bm{r} / \lambda_0)
-	= (t, \bm{r}).
-$$
-
-This is a fine choice for someone working with the microscopic formulation of the Maxwell equations (in the vacuum). For electrodynamics in bulk matter, it is more convenient to choose a different reference value (see Eqn. 11.8) -- the one measured at the location \\(\bm{r_1}\\) -- such that
-
-$$ \tag{1y.11}
-	\lambda_1(\nu)
-	= \frac{\lambda_0(\nu)}{\eta(\bm{r_1}, 2 \pi \nu)} = \frac{c}{\eta_1 \nu} = \frac{c}{\eta_1} = 1,
-	\quad \text{or} \quad
-	k_1(\omega)
-	= k_0(\omega) \eta(\bm{r_1}, \omega) = 2 \pi \text{ rad}.
-$$
-
-The expression of the spacetime coordinate must be modified correspondingly:
-
-$$ \tag{1y.12}
-	\frac{\nu}{c} \Big( c t, \bm{r} \eta_1 \Big)
-	= \nu (t, \bm{r} \eta_1 / c)
-	= (\nu t, \bm{r} / \lambda_1)
-	= (t, \bm{r}).
-$$
-
-Typically, \\(\bm{r_1}\\) corresponds to point located in the air or in the vacuum, which makes Eqn. 1y.9 and 1y.11 equivalent for all practical purposes[^29]. Notice that the reference location \\(\bm{r_1}\\) must be chosen such that
-
-[^29]: At optical frequencies, under normal atmospheric conditions.
-
-$$ \tag{1y.13}
-	\kappa(\bm{r_1}, \omega) = 0;
-$$
-
-otherwise \\(k_1 \bm{r} = 2 \pi \bm{r}\\) becomes complex, which breaks the symmetry between space and time.
-
-Our [natural unit](https://en.wikipedia.org/wiki/Natural_units) convention can be summarized as follows:
-
-$$ \tag{1y.14}
-\begin{aligned}
-	1 \text{ s} &= |\nu| \text{ cycles}, &
-	1 \text{ m} &= |\lambda_1|^{-1} \text{ cycles},
-	\cr
-	\omega t   &\leftrightarrows 2 \pi t, &
-	k_1 \bm{r} &\leftrightarrows 2 \pi \bm{r}.
-\end{aligned}
-$$
-
-Evidently, conversion *into* the natural units is trivial: one simply sets \\(k_1 = \omega = 2 \pi\\)[^30]. However, one must also be able to perform the conversion *from* the natural units (into the SI units, for instance) at the end of the calculation. The feasibility of the inverse transformation is non-obvious, which makes it the subject of the next section.
-
-[^30]: Some authors [van de Hulst] prefer to set \\(k_1 = \omega = 1\\). While that shortens certain formulae even more, from the practical standpoint, measuring space and time in radians is rather awkward.
-
-
-
----
-
-$$
-	k_1 = \omega \frac{\eta_1}{c};
-	\quad
-	\omega = k_1 \frac{c}{\eta_1};
-$$
-
----
-
-Finally, we would like to highlight the *scale invariance* property of electromagnetic scattering, also known as the principle of *electrodynamic similitude* \[[8](#references) (ch. 5.5), [9](#references) (ch. 3.5), [17](#references) (ch. 9.3)\]. The gist of it is that, while the (dimensionless) scattering and absorption characteristics of a scattering object depend on its linear dimension \\(a\\) and the wavenumbers \\(k_2 \text{ and } k_1\\) in the interior and the exterior regions, respectively, its properties can be alternatively described using the *relative wavenumber* \\(m = k_2 / k_1\\) and the so-called *size parameter* \\(x = k_1 a = 2 \pi a / \lambda\\), both of which are dimensionless. Thus, provided that the value of \\(m\\) stays fixed, increasing both the linear dimension of the object and the wavelength by the same factor \\(f\\) leaves the formula unchanged: \\(x' = 2 \pi (a f) / (f \lambda) = x \\). This [reduces the dimensionality](https://en.wikipedia.org/wiki/Dimensionality_reduction) of the problem, since three parameters can be replaced with just two.
-
-Note that, unlike \\(x\\), \\(m\\) is not scale-invariant. Recall its definition given by Eqn. 11.8:
-
-$$ \tag{15.17}
-	m(\bm{r}, \omega)
-	= \frac{k_2(\bm{r}, \omega)}{k_1(\omega)}
-	= \sqrt{ \frac{\varepsilon_2(\bm{r}, \omega) \mu_2(\omega)}{\varepsilon_1(\omega) \mu_1(\omega)} }.
-$$
-
-Suppose that the scattering object is located in vacuum. Then the denominator \\(\varepsilon_1 \mu_1=\epsilon_0 \mu_0\\) does not depend on the frequency of the incident radiation. However, the numerator does, since no material has a flat response across the entire frequency range. In particular, if the scattering object is conductive \\((\sigma_2 \neq 0)\\), then, according to Eqn. 5.6, its complex permittivity
-
-$$ \tag{15.??}
-	\varepsilon_2(\bm{r}, \omega)
-	= \epsilon_2(\bm{r}, \omega) + i \frac{\sigma_2(\bm{r}, \omega)}{\omega}
-$$
-
-directly depends on the frequency \\(\omega\\). Thus, in order for the scale invariance property to hold, if the linear dimension of the object and the wavelength are both increased by the same factor, conductivity must be correspondingly reduced.
-
-[Insert picture here]
-
----
-
-Participating media can be broadly divided into two categories - homogeneous and inhomogeneous. This suggests that we may split any medium into two regions: 1) infinite homogeneous, and 2) the remaining space of finite volume \\(V\\). The latter can be interpreted as a single particle or a particle group, or, more generally, as a scattering object (or a *scatterer* for short).
-
-[Picture?]
-
----
 
 ### Dipole Radiation
 
@@ -10372,7 +10645,7 @@ $$ \tag{24.7}
 \end{aligned}
 $$
 
-<!--
+
 ### Polarization of Light
 
 We have just seen that transverse waves are composed of two independent scalar components. Can we separate them? The answer is yes.
@@ -10520,7 +10793,7 @@ Auxiliary angle ...
 
 Non-paraxial polarization ???
 
--->
+
 
 ---
 
@@ -10548,7 +10821,7 @@ Bohren & Huffman, Larry Travis, Pharr & Jakob, Jeppe Frisvad (Mie scattering), R
 
 ## References
 
-<!-- Modified APA style -->
+ Modified APA style
 
 1. Golubev, E. [Sampling Analytic Participating Media](/post/analytic-media/) (2020).
 2. Chandrasekhar, S. [Radiative Transfer](https://doi.org/10.1002/qj.49707633016) (1950).
