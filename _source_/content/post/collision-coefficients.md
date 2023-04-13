@@ -1910,7 +1910,7 @@ $$ \tag{9.36}
 \end{aligned}
 $$
 
-where the scalar Green function \\(g\\) is given by Eqn. 9.10.
+where the scalar Green function \\(g(\bm{r} - \bm{r'})\\) is given by Eqn. 9.10.
 
 Because the integrals involving the scalar Green function and its partial derivatives are always evaluated in the principal value sense, the singularity at \\(\bm{r} = \bm{r'}\\) is avoided, and the order of partial differentiation makes no difference. Furthermore, the depolarization dyadic is symmetric: \\(\mathcal{L} = \mathcal{L}^T\\) \[[7](#references) (ch. 3.9)\]. Consequently, the entire electric dyadic is symmetric as well: \\(\mathcal{G}\_e = \mathcal{G}\_e^T\\).
 
@@ -2009,16 +2009,15 @@ $$ \tag{9.43}
 \end{aligned}
 $$
 
-Take a look at the individual factors in Eqn. 9.41-9.43: those outside the brackets oscillate between 0 and 1, while the terms  inside greatly depend on the distance between the observation point \\(\bm{r}\\) and the source \\(\bm{r'}\\). This suggests that we may divide the entire space into zones based on the proximity to the observation point. If we are interested in the value of the field located near the source (the so-called *near field*), we say that the observation point belongs to the [near zone](https://en.wikipedia.org/wiki/Near_and_far_field). Similarly, far-away points (and the *far field*) are said to be located in the [far zone](https://en.wikipedia.org/wiki/Near_and_far_field) (also known as the *radiation zone*). Between them is a region called the *transition zone*.
+Take a look at the individual factors in Eqn. 9.41-9.43: those outside the brackets oscillate between 0 and 1, while the terms  inside greatly depend on the distance between the observation point \\(\bm{r}\\) and the source \\(\bm{r'}\\). This suggests that we may divide the entire space into zones based on the proximity to the observation point. If we are interested in the value of the field located near the source (the so-called *near field*), we say that the observation point belongs to the [near zone](https://en.wikipedia.org/wiki/Near_and_far_field). Similarly, far-away points (and the *far field*) are said to be located in the [far zone](https://en.wikipedia.org/wiki/Near_and_far_field) (also known as the *radiation zone*).
 
-If we fix a value of \\(k\\), we may decompose the electric dyadic into the near-, transition-, and far-field terms:
+If we fix a value of \\(k\\), we may decompose the electric dyadic into the near-, and far-field terms:
 
 $$ \tag{9.44}
-	\mathcal{G}\_e
-	= \mathcal{G_{en}}
-	+ \mathcal{G_{et}}
-	+ \mathcal{G_{ef}}
-	- \frac{\delta}{k^2} \mathcal{L},
+	\mathcal{G}\_e(\bm{r}, \bm{r'}, k)
+	= \mathcal{G_{en}}(\bm{r} - \bm{r'}, k)
+	+ \mathcal{G_{ef}}(\bm{r} - \bm{r'}, k)
+	- \frac{\delta(\bm{r}, \bm{r'})}{k^2} \mathcal{L},
 $$
 
 such that
@@ -2026,9 +2025,7 @@ such that
 $$ \tag{9.45}
 \begin{aligned}
 	& \mathcal{G_{en}}(\bm{R}, k)
-	= -\frac{g(\bm{R}, k) }{k^2 R^2} \bigg(\mathcal{I} - 3 \frac{\bm{R} \otimes \bm{R}}{\bm{R} \cdot \bm{R}} \bigg), \cr
-	& \mathcal{G_{et}}(\bm{R}, k)
-	= i \frac{g(\bm{R}, k) }{k R} \bigg(\mathcal{I} - 3 \frac{\bm{R} \otimes \bm{R}}{\bm{R} \cdot \bm{R}} \bigg), \cr
+	= \frac{g(\bm{R}, k) }{k R} \bigg( i - \frac{1}{k R} \bigg) \bigg(\mathcal{I} - 3 \frac{\bm{R} \otimes \bm{R}}{\bm{R} \cdot \bm{R}} \bigg), \cr
 	& \mathcal{G_{ef}}(\bm{R}, k)
 	= g(\bm{R}, k) \bigg( \mathcal{I} - \frac{\bm{R} \otimes \bm{R}}{\bm{R} \cdot \bm{R}} \bigg),
 \end{aligned}
@@ -2038,9 +2035,6 @@ with the scalar Green function containing an additional \\(R^{-1}\\) factor, so 
 
 $$ \tag{9.46}
 	k^{-1} \mathcal{G_{en}}
-	\varpropto (k R)^{-3},
-	\quad
-	k^{-1} \mathcal{G_{et}}
 	\varpropto (k R)^{-2},
 	\quad
 	k^{-1} \mathcal{G_{ef}}
@@ -2086,7 +2080,7 @@ $$
 According to the expression of the first derivative given by Eqn. 9.41, the dyadic is composed of two terms:
 
 $$ \tag{9.50}
-	\mathcal{G}\_m = \mathcal{G_{mn}} + \mathcal{G_{mf}},
+	\mathcal{G}\_m(\bm{r}, \bm{r'}, k) = \mathcal{G_{mn}}(\bm{r} - \bm{r'}, k) + \mathcal{G_{mf}}(\bm{r} - \bm{r'}, k),
 $$
 
 such that
@@ -2535,23 +2529,34 @@ $$
 with the secondary source term \\(\bm{J'}\\) defined as
 
 $$ \tag{11.7}
-\bm{J'}(\bm{r}, \omega) = k^2(\bm{r_1}, \omega) \big( m^2(\bm{r}, \omega) - 1 \big) \bm{E}(\bm{r}, \omega).
+	\bm{J'}(\bm{r}, \omega)
+	= k^2(\bm{r_1}, \omega) \big( m^2(\bm{r}, \omega) - 1 \big) \bm{E}(\bm{r}, \omega).
 $$
 
 Notice that \\(\bm{J'}\\) vanishes in a region of space where \\(m = 1\\). This suggests that it is advantageous to choose the reference location \\(\bm{r_1}\\) in such a way as to minimize the amount of space occupied by matter with \\(k \neq k_1\\).
 
-Eqn. 11.9 presents a mathematical problem that is formally equivalent to the one we have encountered earlier (cf. Eqn. 9.18.1). After matching the constants \\( \big( \bm{J'} = i \omega \bm{J} / \mu_0^{-1} \big) \\), the solution is readily given by Eqn. 9.28:
+Eqn. 11.9 presents a mathematical problem that is formally equivalent to the one we have encountered earlier (cf. Eqn. 9.18.1). After matching the constants \\( \big( \bm{J'} = i \omega \bm{J} / \mu_0^{-1} \big) \\), the solution is readily given by Eqn. 9.24 and 9.28:
 
 $$ \tag{11.10}
+\begin{aligned}
 	\bm{E_s}(\bm{r}, \omega)
-	= \int\_{V} \mathcal{G}\_e \big( \bm{r}, \bm{r'}, k_1(\omega) \big) \cdot \bm{J'}(\bm{r'}, \omega) dV'.
+	&= \left( \mathcal{I} + \frac{1}{k_1^2(\omega)} \nabla \otimes \nabla \right) \cdot \int\_{V}
+	g \big( \bm{r} - \bm{r'}, k_1(\omega) \big) \bm{J'}(\bm{r'}, \omega) dV'
+	\cr
+	&= \int\_{V} \mathcal{G}\_e \big( \bm{r}, \bm{r'}, k_1(\omega) \big) \cdot \bm{J'}(\bm{r'}, \omega) dV'.
+\end{aligned}
 $$
 
-Similarly, the magnetic field is given by Eqn. 9.32:
+Similarly, the magnetic field is given by Eqn. 9.30 and 9.32:
 
 $$ \tag{11.11}
+\begin{aligned}
 	\bm{B_s}(\bm{r}, \omega)
-	= \frac{1}{i \omega} \int\_{V} \mathcal{G}\_m \big( \bm{r}, \bm{r'}, k_1(\omega) \big) \cdot \bm{J'}(\bm{r'}, \omega) dV'.
+	&= \frac{1}{i \omega} \nabla \times \int\_{V}
+	g \big( \bm{r} - \bm{r'}, k_1(\omega) \big) \bm{J'}(\bm{r'}, \omega) dV'
+	\cr
+	&= \frac{1}{i \omega} \int\_{V} \mathcal{G}\_m \big( \bm{r}, \bm{r'}, k_1(\omega) \big) \cdot \bm{J'}(\bm{r'}, \omega) dV'.
+\end{aligned}
 $$
 
 Eqn. 11.10 is a special solution of the inhomogeneous Eqn. 11.9 (just like Eqn. 9.13 is a special solution of Eqn. 9.5). To obtain a general solution, we must combine Eqn. 11.10 with the solution of the homogeneous equation, which physically amounts to adding the primary sources. In our particular case, the homogeneous equation is mathematically equivalent to Eqn. 6.5, which allows us to directly use the solution given by Eqn. 6.16:
@@ -2678,7 +2683,7 @@ In the electromagnetic scattering literature, Eqn. 11.10 and 11.11 are often cal
 
 So far, we have not paid much attention to the units of measurement, except for making the specific choice to adopt the SI unit convention; instead, we focused on learning the foundational concepts and building the physical intuition. Since this approach is common among introductory-level textbooks, it allowed us to insert multiple references (with equations of the same form) for those readers who wish to learn more, or are simply looking for an alternative explanation.
 
-The choice of units used to describe electromagnetism is a contentious topic. Historically, the Gaussian units were dominant during the first half of the 20th century; some fairly recent books (such as [Born & Wolf], [Jackson]) still utilize them today. The SI units serve as the modern replacement, but they are sometimes criticized for being unnatural [citation needed]. Ultimately, using either system gets the job done, even if neither is perfect. In particular, both of these systems exhibit a flaw: the angular frequency \\(\omega\\) and the angular wavenumber factor \\(k\\) appear in practically every equation, often several times, and their meaning and purpose are not always obvious. This tends to obscure the geometrical nature of the electromagnetic field \[[25](#references) (ch. 2.11)\].
+The choice of units used to describe electromagnetism is a contentious topic. Historically, the Gaussian units were dominant during the first half of the 20th century; some fairly recent books (such as [Born & Wolf], [Jackson]) still utilize them today. The SI units serve as the modern replacement, but they are sometimes criticized for being unnatural [citation needed]. Ultimately, using either system gets the job done, even if neither is perfect. In particular, both of these systems exhibit a flaw: the angular frequency \\(\omega\\) and the angular wavenumber \\(k\\) appear in practically every equation, often several times, and their meaning and purpose are not always obvious. This tends to obscure the geometrical nature of the electromagnetic field \[[25](#references) (ch. 2.11)\].
 
 The books devoted to the subject of relativity have historically suffered from a similar problem caused by frequent occurrences of the speed of light factor \\(c\\) [citation needed]. In this case, the solution is surprisingly simple: one just sets
 
@@ -2700,7 +2705,7 @@ $$ \tag{1y.3}
 	\mathcal{E}(m) = \frac{m c^2}{\sqrt{1-v^2/c^2}} = \frac{m}{\sqrt{1-v^2}}.
 $$
 
-This is the formulation of [mass-energy equivalence](https://en.wikipedia.org/wiki/Mass%E2%80%93energy_equivalence) (where both energy and mass are relativistic). Eqn. 1y.3 makes it clear that the geometrized energy has units of mass.
+This is the formulation of [mass-energy equivalence](https://en.wikipedia.org/wiki/Mass%E2%80%93energy_equivalence) (where both energy and mass are relativistic). Eqn. 1y.3 makes it clear that geometrized energy has units of mass.
 
 For non-relativistic applications, there are other ways of unifying the roles of space and time. For instance, when building a mathematical model of wave phenomena (not necessarily electromagnetic), one typically uses an expression of the form
 
@@ -2710,7 +2715,7 @@ $$
 
 where \\(k\\) is the angular wavenumber and \\(\omega\\) is the angular frequency.
 
-Notice that the product \\(\omega t\\) is a [dimensionless quantity](https://en.wikipedia.org/wiki/Dimensionless_quantity) measured in radians (or \\(2 \pi\\) times the *number of oscillations*), regardless of our choice of the units of measurement. If we use the Fourier transform (as we have done in Sec. 3) to solve a system of linear equations (such as the Maxwell equations), our problem (and the spectrum) is decomposed into independent (frequency) components that can be worked out one at a time. Since we consider a single known value of \\(\omega\\), we may set
+Notice that the product \\(\omega t\\) is a [dimensionless quantity](https://en.wikipedia.org/wiki/Dimensionless_quantity) measured in radians (or \\(2 \pi\\) times the *number of cycles* of oscillation), regardless of our choice of the units of measurement. If we use the Fourier transform (as we have done in Sec. 3) to solve a system of linear equations (such as the Maxwell equations), our problem (and the spectrum) is decomposed into independent (frequency) components that can be worked out one at a time. Since we consider a single known value of \\(\omega\\), we may set
 
 $$ \tag{1y.5}
 	\omega = 1,
@@ -2737,17 +2742,16 @@ Since the product \\(k_0 \bm{r}\\) (measured in radians, or \\(2 \pi\\) times th
 $$ \tag{1y.8}
 	k_0(\omega) = 1,
 	\quad \text{or} \quad
-	\lambda_0(\nu) = \frac{c}{\nu} = 2 \pi.
+	\lambda_0(\nu) = 2 \pi.
 $$
 
-Eqn. 1y.5 and 1y.8 show that one could make the spacetime dimensionless simply by rescaling it by a factor[^29] of \\(\omega/c\\):
-
-[^29]: Arguably, it would be more natural to measure space and time in cycles by setting \\(\nu = \lambda = 1\\). Unfortunately, this requires setting \\(\omega = k = 2 \pi\\), which pollutes the resulting equations with a multitude of \\(\pi\\)-factors that do not cancel out. Thus, simplicity comes at the cost of naturalness, and requires some mental adjustment. Some authors arrived at the same conclusion [van de Hulst, Mishchenko].
+Eqn. 1y.5 and 1y.8 show that one could make the spacetime dimensionless simply by rescaling it by a factor of \\(\omega/c\\):
 
 $$ \tag{1y.9}
 	\frac{\omega}{c} \Big( c t, \bm{r} \Big)
 	= \omega \Big(t, \frac{\bm{r}}{c} \Big)
 	= \Big(\omega t, \frac{2 \pi}{\lambda_0} \bm{r} \Big)
+	= (\omega t, k_0 \bm{r})
 	= (t, \bm{r}).
 $$
 
@@ -2758,8 +2762,7 @@ $$ \tag{1y.10}
 	= k_0(\omega) \eta(\bm{r_1}, \omega) = 1,
 	\quad \text{or} \quad
 	\lambda_1(\nu)
-	= \frac{\lambda_0(\nu)}{\eta(\bm{r_1}, 2 \pi \nu)}
-	= \frac{c}{\eta(\bm{r_1}, 2 \pi \nu) \nu} = 2 \pi.
+	= \frac{\lambda_0(\nu)}{\eta(\bm{r_1}, 2 \pi \nu)} = 2 \pi.
 $$
 
 The expression of the spacetime coordinate must be modified correspondingly:
@@ -2768,12 +2771,13 @@ $$ \tag{1y.11}
 	\frac{\omega}{c} \Big( c t, \eta_1 \bm{r} \Big)
 	= \omega \Big(t, \frac{\eta_1 \bm{r}}{c} \Big)
 	= \Big(\omega t, \frac{2 \pi}{\lambda_1} \bm{r} \Big)
+	= (\omega t, k_1 \bm{r})
 	= (t, \bm{r}).
 $$
 
-Typically, \\(\bm{r_1}\\) corresponds to point located in the air or in the vacuum, which makes Eqn. 1y.8 and 1y.10 equivalent for all practical purposes[^30]. Notice that the reference location \\(\bm{r_1}\\) must be chosen such that
+Typically, \\(\bm{r_1}\\) corresponds to point located in the air or in the vacuum, which makes Eqn. 1y.8 and 1y.10 equivalent for all practical purposes[^29]. Notice that the reference location \\(\bm{r_1}\\) must be chosen such that
 
-[^30]: At optical frequencies, under normal atmospheric conditions.
+[^29]: At optical frequencies, under normal atmospheric conditions.
 
 $$ \tag{1y.12}
 	\kappa(\bm{r_1}, \omega) = 0;
@@ -2781,38 +2785,30 @@ $$
 
 otherwise \\(k_1 \bm{r} = \bm{r}\\) becomes complex, which breaks the symmetry between space and time.
 
-[What about energy??]
+Our [natural unit](https://en.wikipedia.org/wiki/Natural_units) convention[^30] can be summarized as follows:
 
-Our [natural unit](https://en.wikipedia.org/wiki/Natural_units) convention can be summarized as follows:
+[^30]: Arguably, it would be more natural to measure space and time in cycles by setting \\(\nu = \lambda = 1\\). Unfortunately, this requires setting \\(\omega = k = 2 \pi\\), which pollutes the resulting equations with a multitude of \\(\pi\\)-factors that do not cancel out. Thus, simplicity comes at the cost of naturalness, and requires a minor mental adjustment. Some authors arrived at the same conclusion [van de Hulst, Mishchenko].
 
 $$ \tag{1y.13}
 \begin{aligned}
-	1 \text{ s} &= |2 \pi \nu| \text{ cycles} = |\omega| \text{ rad}, &
-	\omega t   &\leftrightarrows t,
+	1 \text{ s} &= |2 \pi \nu| \text{ cycles} = |\omega| \text{ rad},
 	\cr
-	1 \text{ m} &= |2 \pi / \lambda_1| \text{ cycles} = |k_1| \text{ rad}, &
-	k_1 \bm{r} &\leftrightarrows \bm{r}.
+	1 \text{ m} &= |2 \pi / \lambda_1| \text{ cycles} = |k_1| \text{ rad}.
 \end{aligned}
 $$
 
-Evidently, conversion *into* the natural units is trivial: one simply sets \\(k_1 = \omega = 1\\). However, one must also be able to perform the conversion *from* the natural units (into the SI units, for instance) at the end of the calculation. The feasibility of the inverse transformation is non-obvious, which makes it the subject of the next section.
+[What about energy? Discuss units of E and B here?]
+
+Evidently, conversion *into* the natural units is trivial: one simply sets \\(\omega = k_1 = c / \eta_1 = 1\\). However, one must be also able to perform conversion *from* the natural units (into the SI units, for instance) at the end of the calculation. The feasibility of the inverse transformation is non-obvious, which makes it the subject of the next section.
 
 ### Electrodynamic Similitude
 
 The unit conversion process can be conceptually divided into two steps: during the first step, we identify dimensionless quantities (independent of the unit convention), and during the second step, we group and transform the remaining (dimensional) quantities. We have already encountered an example of the former (see Eqn. 1y.4); we must now analyze the terms comprising Eqn. 11.10 and 11.11 in a similar manner.
 
-We may begin by examining the electric dyadic Green function \\(\mathcal{G_e}\\). It can be expanded in two different ways. If we express it as a product, and move the derivatives outside the integral (as shown by Eqn. 9.24), Eqn. 11.10 takes the form
-
-$$ \tag{1z.1}
-	\bm{E_s}(\bm{r}, \omega)
-	= \Big( \mathcal{I} + \frac{1}{k_1^2(\omega)} \nabla \otimes \nabla \Big) \cdot \int\_{V}
-	g\big( \bm{r} - \bm{r'}, k_1(\omega) \big) \bm{J'}(\bm{r'}, \omega) dV'.
-$$
-
-Now, let us perform a change of variables
+Let us perform a change of variables
 
 $$ \tag{1z.2}
-	\bm{\rho} = k_1 \bm{r}.
+	\bm{\rho}(\omega) = k_1(\omega) \bm{r}.
 $$
 
 As a result, the rates of change are reduced:
@@ -2836,36 +2832,38 @@ $$
 which forces the magnitude of the Dirac delta function to compensate:
 
 $$ \tag{1z.5}
-	\delta(\bm{\rho})
-	= k_1^{-3} \delta(\bm{r}).
+	\delta(\bm{\Rho})
+	= k_1^{-3} \delta(\bm{R}).
 $$
 
 As for the scalar Green function \\(g\\) given by Eqn. 9.10, its dimensionless counterpart is easily identified:
 
 $$ \tag{1z.6}
-	g(\bm{\rho})
-	= \frac{e^{i |\bm{\rho}|}}{4 \pi |\bm{\rho}|}
-	= \frac{e^{i |k_1 \bm{r}|}}{4 \pi |k_1 \bm{r}|}
-	= k_1^{-1} g(\bm{r}, k_1).
+	g(\bm{\Rho})
+	= \frac{e^{i |\bm{\Rho}|}}{4 \pi |\bm{\Rho}|}
+	= \frac{e^{i |k_1 \bm{R}|}}{4 \pi |k_1 \bm{R}|}
+	= k_1^{-1} g(\bm{R}, k_1).
 $$
 
-Substitution of Eqn. 11.7 and 1z.2-1z.6 into 1z.1 yields
+Substitution of Eqn. 11.7 and 1z.2-1z.6 into Eqn. 11.10 of the electric field yields
 
 $$ \tag{1z.7}
 	\bm{E_s}(\bm{r}, \omega)
-	= \Big( \mathcal{I} + \nabla_{\rho} \otimes \nabla_{\rho} \Big) \cdot \int\_{V}
-	g\big( \bm{\rho} - \bm{\rho'} \big) \big( m^2(\bm{r'}, \omega) - 1 \big) \bm{E}(\bm{r'}, \omega) dV_{\rho}'.
+	= \Big( \mathcal{I} + \nabla_{\rho} \otimes \nabla_{\rho} \Big) \cdot \int\_{V_{\rho}}
+	g( \bm{\rho} - \bm{\rho'} \big) \big( m^2(\bm{r'}, \omega) - 1 \big) \bm{E}(\bm{r'}, \omega) dV_{\rho}'.
 $$
 
-At this point, \\(\bm{r}\\) is only used to designate a point in space. If the latter is measured in radians, we may replace \\(\bm{\rho}\\) with \\(\bm{r}\\) in Eqn. 1z.7 (or, alternatively, set \\(k_1 = 1\\) in Eqn. 1z.1) and omit \\(\omega\\) to obtain
+At this point, \\(\bm{r}\\) is only used to designate a point in space. If the latter is measured in radians, we may replace \\(\bm{\rho}\\) with \\(\bm{r}\\) in Eqn. 1z.7 (or, alternatively, set \\(k_1 = 1\\) in Eqn. 11.10) and omit \\(\omega\\) to obtain
 
 $$ \tag{1z.8}
 	\bm{E_s}(\bm{r})
 	= \Big( \mathcal{I} + \nabla \otimes \nabla \Big) \cdot \int\_{V}
-	g\big( \bm{r} - \bm{r'} \big) \big( m^2(\bm{r'}) - 1 \big) \bm{E}(\bm{r'}) dV'.
+	g(\bm{r} - \bm{r'}) \big( m^2(\bm{r'}) - 1 \big) \bm{E}(\bm{r'}) dV'.
 $$
 
-Note that, in Eqn. 1z.8, *every quantity is dimensionless*, except for the electric field \\(\bm{E}\\). According to the [SI unit convention](https://en.wikipedia.org/wiki/Electric_field) \[[17](#references) (ch. 1.8)\],
+---
+
+Note that, in Eqn. 1z.8, *every quantity is dimensionless*, except for the electric field \\(\bm{E}\\). In the [SI unit convention](https://en.wikipedia.org/wiki/Electric_field) \[[17](#references) (ch. 1.8)\],
 
 $$ \tag{1z.9}
 	\lbrack \bm{E} \rbrack_{si}
@@ -2873,7 +2871,7 @@ $$ \tag{1z.9}
 	= \text{kg⋅m⋅s}^{\text{-2}}\text{C}^{\text{-1}}.
 $$
 
-In the natural units,
+Expressed in the natural units,
 
 $$ \tag{1z.10}
 	\lbrack \bm{E} \rbrack_{na}
@@ -2881,6 +2879,111 @@ $$ \tag{1z.10}
 $$
 
 In principle, we could make Eqn. 1z.8 *fully dimensionless* by dividing the electric field \\(\bm{E}\\) (on both sides) by the mass of 1 kg and multiplying it by the charge of 1 coulomb. However, in practice, there is little benefit from doing so.
+
+---
+
+It is often advantageous to express Eqn. 1z.8 in terms of the electric dyadic \\(\mathcal{G_e}\\) given by Eqn. 9.27 and 9.44. According to Eqn. 9.45 and 9.46, it can be trivially made dimensionless by using Eqn. 1z.5 and 1z.6:
+
+$$ \tag{1z.11}
+	\mathcal{G_e}(\bm{\rho}, \bm{\rho'})
+	= \mathcal{G_{en}}(\bm{\rho} - \bm{\rho'})
+	+ \mathcal{G_{ef}}(\bm{\rho} - \bm{\rho'})
+	- \delta(\bm{\rho} - \bm{\rho'}) \mathcal{L}
+	= k_1^{-1} \mathcal{G_e}(\bm{r}, \bm{r'}, k_1),
+$$
+
+with the individual components defined as follows:
+
+$$ \tag{1z.12}
+\begin{aligned}
+	& \mathcal{G_{en}}(\bm{\Rho})
+	= \frac{g(\bm{\Rho})}{|\bm{\Rho}|} \bigg(i - \frac{1}{|\bm{\Rho}|} \bigg) \bigg(\mathcal{I} - 3 \frac{\bm{\Rho} \otimes \bm{\Rho}}{\bm{\Rho} \cdot \bm{\Rho}} \bigg), \cr
+	& \mathcal{G_{ef}}(\bm{\Rho})
+	= g(\bm{\Rho}) \bigg( \mathcal{I} - \frac{\bm{\Rho} \otimes \bm{\Rho}}{\bm{\Rho} \cdot \bm{\Rho}} \bigg).
+\end{aligned}
+$$
+
+Note that the depolarization dyadic \\(\mathcal{L}\\) is already dimensionless, and thus requires no further adjustment.
+
+Eqn. 1z.11 allows us to express Eqn. 1z.8 in a compact way:
+
+$$ \tag{1z.13}
+	\bm{E_s}(\bm{r})
+	= \int\_{V} \big( m^2(\bm{r'}) - 1 \big) \mathcal{G_e}(\bm{r}, \bm{r'}) \cdot \bm{E}(\bm{r'}) dV'.
+$$
+
+Let us now perform the same analysis of Eqn. 11.11 of the magnetic field. After substitution of Eqn. 11.7 and 1z.2-1z.6, it is transformed into
+
+$$ \tag{1z.14}
+	\bm{B_s}(\bm{r}, \omega)
+	= \frac{k_1(\omega)}{i \omega} \nabla_{\rho} \times \int\_{V_{\rho}}
+	g \big( \bm{\rho} - \bm{\rho'} \big) \big( m^2(\bm{r'}, \omega) - 1 \big) \bm{E}(\bm{r'}, \omega) dV_{\rho}'
+$$
+
+According to Eqn. 1y.7 and 1y.10,
+
+$$ \tag{1z.15}
+	\frac{k_1(\omega)}{\omega} = \frac{\eta_1(\omega)}{c},
+$$
+
+which is a dimensionless quantity equal to 1 in the natural unit convention. In this case, Eqn. 1z.14 can be simply written as
+
+$$ \tag{1z.16}
+	\bm{B_s}(\bm{r})
+	= -i \nabla \times \int\_{V}
+	g (\bm{r} - \bm{r'}) \big( m^2(\bm{r'}) - 1 \big) \bm{E}(\bm{r'}) dV'.
+$$
+
+It is convenient to fold the \\(-i\\) factor into the definition of the dimensionless version of the magnetic dyadic \\(\mathcal{G_m}\\). Upon substitution of Eqn. 1z.2-1z.6 into 9.34, and after taking Eqn. 9.50 into account, we arrive at the expression
+
+$$ \tag{1z.17}
+	\mathcal{G_m}(\bm{\rho}, \bm{\rho'})
+	= \mathcal{G_{mn}}(\bm{\rho} - \bm{\rho'})
+	+ \mathcal{G_{mf}}(\bm{\rho} - \bm{\rho'})
+	= -i k_1^{-2} \mathcal{G_m}(\bm{r}, k_1),
+$$
+
+which is consistent with the findings listed in Eqn. 9.52. In more detail (cf. Eqn. 9.51),
+
+$$ \tag{1z.18}
+\begin{aligned}
+	& \mathcal{G_{mn}}(\bm{\Rho})
+	= i \frac{g(\bm{\Rho})}{|\bm{\Rho}|} \bigg(\frac{\bm{\Rho} \times \mathcal{I}}{|\bm{\Rho}|} \bigg), \cr
+	& \mathcal{G_{mf}}(\bm{\Rho})
+	= g(\bm{\Rho}) \bigg(\frac{\bm{\Rho} \times \mathcal{I}}{|\bm{\Rho}|} \bigg).
+\end{aligned}
+$$
+
+Therefore, the magnetic counterpart of Eqn. 1z.13 is
+
+$$ \tag{1z.19}
+	\bm{B_s}(\bm{r})
+	= \int\_{V} \big( m^2(\bm{r'}) - 1 \big) \mathcal{G_m}(\bm{r}, \bm{r'}) \cdot \bm{E}(\bm{r'}) dV'.
+$$
+
+As always, the expression of the time-harmonic field is given by Eqn. 4.11:
+
+$$ \tag{1z.20}
+\begin{aligned}
+	\bm{E}(\bm{r}, t)
+	&= \mathcal{Re} \big\lbrace \bm{E}(\bm{r}) e^{-i \omega t} \big\rbrace
+	= \mathcal{Re} \big\lbrace \bm{E}(\bm{r}) e^{-i t} \big\rbrace,
+	\cr
+	\bm{B}(\bm{r}, t)
+	&= \mathcal{Re} \big\lbrace \bm{B}(\bm{r}) e^{-i \omega t} \big\rbrace
+	= \mathcal{Re} \big\lbrace \bm{B}(\bm{r}) e^{-i t} \big\rbrace.
+\end{aligned}
+$$
+
+The preceding analysis suggests that we can perform the conversion between the SI and the natural units by means of the following substitution:
+
+$$ \tag{1z.21}
+	\omega t \leftrightarrows t,
+	\quad
+	k_1 \bm{r} \leftrightarrows \bm{r},
+	\quad
+	\frac{c}{\eta_1} \bm{B} \leftrightarrows \bm{B}.
+$$
 
 ---
 
