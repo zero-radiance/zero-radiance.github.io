@@ -2797,9 +2797,42 @@ $$ \tag{1y.13}
 \end{aligned}
 $$
 
-[What about energy? Discuss units of E and B here?]
+Eqn. 1y.13 does not make the electromagnetic field quantities dimensionless. In the [SI unit convention](https://en.wikipedia.org/wiki/Electric_field) \[[17](#references) (ch. 1.8)\], the time-domain vectors are measured as follows:
 
-Evidently, conversion *into* the natural units is trivial: one simply sets \\(\omega = k_1 = c / \eta_1 = 1\\). However, one must be also able to perform conversion *from* the natural units (into the SI units, for instance) at the end of the calculation. The feasibility of the inverse transformation is non-obvious, which makes it the subject of the next section.
+$$ \tag{1y.14}
+\begin{aligned}
+	\lbrack \bm{E} \rbrack_{si}
+	&= \text{V⋅m}^{\text{-1}}
+	= \text{J⋅C}^{\text{-1}}\text{⋅m}^{\text{-1}}
+	= \text{kg⋅C}^{\text{-1}}\text{⋅m⋅s}^{\text{-2}}
+	= \text{kg⋅A}^{\text{-1}}\text{⋅m⋅s}^{\text{-3}},
+	\cr
+	\lbrack \bm{B} \rbrack_{si}
+	&= \text{V⋅m}^{\text{-2}}\text{⋅s}
+	= \text{J⋅C}^{\text{-1}}\text{⋅m}^{\text{-2}}\text{⋅s}
+	= \text{kg⋅C}^{\text{-1}}\text{⋅s}^{\text{-1}}
+	= \text{kg⋅A}^{\text{-1}}\text{⋅s}^{\text{-2}}.
+\end{aligned}
+$$
+
+This implies that
+
+$$ \tag{1y.15}
+	\lbrack \bm{E} \rbrack_{si}
+	= \lbrack (c/\eta_1) \bm{B} \rbrack_{si}.
+$$
+
+Expressed in the natural units,
+
+$$ \tag{1y.16}
+	\lbrack \bm{E} \rbrack_{na}
+	= \lbrack (c/\eta_1) \bm{B} \rbrack_{na}
+	= \text{kg⋅C}^{\text{-1}}.
+$$
+
+In principle, we could make the field vectors dimensionless by dividing them by the mass of 1 kg and multiplying them by the charge of 1 coulomb. However, in practice, there is little benefit of doing so.
+
+Evidently, conversion *into* the natural units is trivial: one simply sets \\(\omega = c / \eta_1 = k_1 = 1\\). However, one must be also able to perform conversion *from* the natural units (into the SI units, for instance) at the end of the calculation. The feasibility of the inverse transformation is non-obvious, which makes it the subject of the next section.
 
 ### Electrodynamic Similitude
 
@@ -2860,27 +2893,6 @@ $$ \tag{1z.8}
 	= \Big( \mathcal{I} + \nabla \otimes \nabla \Big) \cdot \int\_{V}
 	g(\bm{r} - \bm{r'}) \big( m^2(\bm{r'}) - 1 \big) \bm{E}(\bm{r'}) dV'.
 $$
-
----
-
-Note that, in Eqn. 1z.8, *every quantity is dimensionless*, except for the electric field \\(\bm{E}\\). In the [SI unit convention](https://en.wikipedia.org/wiki/Electric_field) \[[17](#references) (ch. 1.8)\],
-
-$$ \tag{1z.9}
-	\lbrack \bm{E} \rbrack_{si}
-	= \text{kg⋅m⋅s}^{\text{-3}}\text{⋅A}^{\text{-1}}
-	= \text{kg⋅m⋅s}^{\text{-2}}\text{C}^{\text{-1}}.
-$$
-
-Expressed in the natural units,
-
-$$ \tag{1z.10}
-	\lbrack \bm{E} \rbrack_{na}
-	= \text{kg⋅C}^{\text{-1}}.
-$$
-
-In principle, we could make Eqn. 1z.8 *fully dimensionless* by dividing the electric field \\(\bm{E}\\) (on both sides) by the mass of 1 kg and multiplying it by the charge of 1 coulomb. However, in practice, there is little benefit from doing so.
-
----
 
 It is often advantageous to express Eqn. 1z.8 in terms of the electric dyadic \\(\mathcal{G_e}\\) given by Eqn. 9.27 and 9.44. According to Eqn. 9.45 and 9.46, it can be trivially made dimensionless by using Eqn. 1z.5 and 1z.6:
 
