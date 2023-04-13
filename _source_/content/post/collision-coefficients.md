@@ -2841,7 +2841,9 @@ The unit conversion process can be conceptually divided into two steps: during t
 Let us perform a change of variables
 
 $$ \tag{1z.2}
-	\bm{\rho}(\omega) = k_1(\omega) \bm{r}.
+	\bm{\rho}(\omega) = k_1(\omega) \bm{r},
+	\quad
+	\tau(\omega) = \omega t.
 $$
 
 As a result, the rates of change are reduced:
@@ -2979,11 +2981,11 @@ $$ \tag{1z.20}
 \begin{aligned}
 	\bm{E}(\bm{r}, t)
 	&= \mathcal{Re} \big\lbrace \bm{E}(\bm{r}) e^{-i \omega t} \big\rbrace
-	= \mathcal{Re} \big\lbrace \bm{E}(\bm{r}) e^{-i t} \big\rbrace,
+	= \mathcal{Re} \big\lbrace \bm{E}(\bm{r}) e^{-i \tau(\omega)} \big\rbrace,
 	\cr
 	\bm{B}(\bm{r}, t)
 	&= \mathcal{Re} \big\lbrace \bm{B}(\bm{r}) e^{-i \omega t} \big\rbrace
-	= \mathcal{Re} \big\lbrace \bm{B}(\bm{r}) e^{-i t} \big\rbrace.
+	= \mathcal{Re} \big\lbrace \bm{B}(\bm{r}) e^{-i \tau(\omega)} \big\rbrace.
 \end{aligned}
 $$
 
