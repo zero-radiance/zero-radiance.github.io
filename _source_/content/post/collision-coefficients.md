@@ -2797,7 +2797,7 @@ $$ \tag{1y.13}
 \end{aligned}
 $$
 
-Eqn. 1y.13 does not make the electromagnetic field quantities dimensionless. In the [SI unit convention](https://en.wikipedia.org/wiki/Electric_field) \[[17](#references) (ch. 1.8)\], the time-domain vectors are measured as follows:
+Eqn. 1y.13 does not make the electromagnetic field quantities dimensionless. Using the SI unit convention \[[17](#references) (ch. 1.8)\], the time-domain vectors are measured as follows:
 
 $$ \tag{1y.14}
 \begin{aligned}
@@ -2811,11 +2811,11 @@ $$ \tag{1y.14}
 	&= \text{V⋅m}^{\text{-2}}\text{⋅s}
 	= \text{J⋅C}^{\text{-1}}\text{⋅m}^{\text{-2}}\text{⋅s}
 	= \text{kg⋅C}^{\text{-1}}\text{⋅s}^{\text{-1}}
-	= \text{kg⋅A}^{\text{-1}}\text{⋅s}^{\text{-2}}.
+	= \text{kg⋅A}^{\text{-1}}\text{⋅s}^{\text{-2}},
 \end{aligned}
 $$
 
-This implies that
+which can be readily deduced by combining Newton's second law \\( (F = m a) \\) with the expression of the Lorentz force (given by Eqn. 2.3). In general,
 
 $$ \tag{1y.15}
 	\lbrack \bm{E} \rbrack_{si}
