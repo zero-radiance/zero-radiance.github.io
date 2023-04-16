@@ -2697,7 +2697,7 @@ $$ \tag{1y.2}
 	1 \text{ s} = 299792458 \text{ m}.
 $$
 
-Because the product \\(ct\\) is invariant with respect to this transformation, both the units and the value of the [spacetime coordinate](https://en.wikipedia.org/wiki/Minkowski_space) \\(\left(c t, \bm{r} \right)\\) remain unchanged. By omitting the \\(c\\) factor and measuring the time \\(t\\) in units of length, we emphasize the equivalence of roles played by space and time. This convention bears the name of [geometrized units](https://en.wikipedia.org/wiki/Geometrized_unit_system) [Thorne 1.10].
+Because the product \\(ct\\) is invariant with respect to this transformation, both the dimensions and the value of the [spacetime coordinate](https://en.wikipedia.org/wiki/Minkowski_space) \\(\left(c t, \bm{r} \right)\\) remain unchanged. By omitting the \\(c\\) factor and measuring the time \\(t\\) in units of length, we emphasize the equivalence of roles played by space and time. This convention bears the name of [geometrized units](https://en.wikipedia.org/wiki/Geometrized_unit_system) [Thorne 1.10].
 
 For a particle with rest mass \\(m\\) and velocity \\(\bm{v}\\), the expression of relativistic energy \\(\mathcal{E}\\) is
 
@@ -2705,7 +2705,7 @@ $$ \tag{1y.3}
 	\mathcal{E}(m) = \frac{m c^2}{\sqrt{1-v^2/c^2}} = \frac{m}{\sqrt{1-v^2}}.
 $$
 
-This is the formulation of [mass-energy equivalence](https://en.wikipedia.org/wiki/Mass%E2%80%93energy_equivalence) (where both energy and mass are relativistic). Eqn. 1y.3 makes it clear that geometrized energy has units of mass.
+This is the formulation of [mass-energy equivalence](https://en.wikipedia.org/wiki/Mass%E2%80%93energy_equivalence) (where both energy and mass are relativistic). Eqn. 1y.3 makes it clear that geometrized energy has the dimensions of mass.
 
 For non-relativistic applications, there are other ways of unifying the roles of space and time. For instance, when building a mathematical model of wave phenomena (not necessarily electromagnetic), one typically uses an expression of the form
 
@@ -2797,40 +2797,30 @@ $$ \tag{1y.13}
 \end{aligned}
 $$
 
-Eqn. 1y.13 does not make the electromagnetic field quantities dimensionless. Using the SI unit convention \[[17](#references) (ch. 1.8)\], the time-domain vectors are measured as follows:
+It is necessary to consider the implications of the natural unit conventions on the dimensions of the electromagnetic field. By combining Newton's second law \\( (F = m a) \\) with the expression of the Lorentz force (given by Eqn. 2.3), one can show that, in general, the dimensions of the electric and the magnetic vectors obey the relation
 
 $$ \tag{1y.14}
-\begin{aligned}
-	\lbrack \bm{E} \rbrack_{si}
-	&= \text{V⋅m}^{\text{-1}}
-	= \text{J⋅C}^{\text{-1}}\text{⋅m}^{\text{-1}}
-	= \text{kg⋅C}^{\text{-1}}\text{⋅m⋅s}^{\text{-2}}
-	= \text{kg⋅A}^{\text{-1}}\text{⋅m⋅s}^{\text{-3}},
-	\cr
-	\lbrack \bm{B} \rbrack_{si}
-	&= \text{V⋅m}^{\text{-2}}\text{⋅s}
-	= \text{J⋅C}^{\text{-1}}\text{⋅m}^{\text{-2}}\text{⋅s}
-	= \text{kg⋅C}^{\text{-1}}\text{⋅s}^{\text{-1}}
-	= \text{kg⋅A}^{\text{-1}}\text{⋅s}^{\text{-2}},
-\end{aligned}
+	\lbrack \bm{E} \rbrack
+	= \lbrack (c/\eta_1) \bm{B} \rbrack.
 $$
 
-which can be readily deduced by combining Newton's second law \\( (F = m a) \\) with the expression of the Lorentz force (given by Eqn. 2.3). In general,
+More specifically, in the SI unit convention, the time-domain electric field is measured as follows \[[17](#references) (ch. 1.8)\]:
 
 $$ \tag{1y.15}
 	\lbrack \bm{E} \rbrack_{si}
-	= \lbrack (c/\eta_1) \bm{B} \rbrack_{si}.
+	= \text{V⋅m}^{\text{-1}}
+	= \text{J⋅C}^{\text{-1}}\text{⋅m}^{\text{-1}}
+	= \text{kg⋅C}^{\text{-1}}\text{⋅m⋅s}^{\text{-2}}
+	= \text{kg⋅A}^{\text{-1}}\text{⋅m⋅s}^{\text{-3}}.
 $$
 
 Expressed in the natural units,
 
 $$ \tag{1y.16}
 	\lbrack \bm{E} \rbrack_{na}
-	= \lbrack (c/\eta_1) \bm{B} \rbrack_{na}
+	= \lbrack \bm{B} \rbrack_{na}
 	= \text{kg⋅C}^{\text{-1}}.
 $$
-
-In principle, we could make the field vectors dimensionless by dividing them by the mass of 1 kg and multiplying them by the charge of 1 coulomb. However, in practice, there is little benefit of doing so.
 
 Evidently, conversion *into* the natural units is trivial: one simply sets \\(\omega = c / \eta_1 = k_1 = 1\\). However, one must be also able to perform conversion *from* the natural units (into the SI units, for instance) at the end of the calculation. The feasibility of the inverse transformation is non-obvious, which makes it the subject of the next section.
 
