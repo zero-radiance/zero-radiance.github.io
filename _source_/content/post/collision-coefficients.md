@@ -2885,7 +2885,7 @@ Now, \\(\bm{r}\\) is only used to designate the coordinates of a point in space.
 $$ \tag{1z.8}
 	\bm{E_s}(\bm{r})
 	= \Big( \mathcal{I} + \nabla \otimes \nabla \Big) \cdot \int\_{V}
-	g(\bm{r} - \bm{r'}) \big( m^2(\bm{r'}, \omega)- 1 \big) \bm{E}(\bm{r'}) dV'.
+	g(\bm{r} - \bm{r'}) \big( m^2(\bm{r'})- 1 \big) \bm{E}(\bm{r'}) dV'.
 $$
 
 It is often advantageous to express Eqn. 1z.8 in terms of the electric dyadic \\(\mathcal{G_e}\\) given by Eqn. 9.27 and 9.44. According to Eqn. 9.45 and 9.46, it can be trivially made dimensionless by using Eqn. 1z.5 and 1z.6:
@@ -2915,7 +2915,7 @@ Eqn. 1z.11 allows us to express Eqn. 1z.8 in a compact way:
 
 $$ \tag{1z.13}
 	\bm{E_s}(\bm{r})
-	= \int\_{V} \big( m^2(\bm{r'}, \omega)- 1 \big) \mathcal{G_e}(\bm{r}, \bm{r'}) \cdot \bm{E}(\bm{r'}) dV'.
+	= \int\_{V} \big( m^2(\bm{r'})- 1 \big) \mathcal{G_e}(\bm{r}, \bm{r'}) \cdot \bm{E}(\bm{r'}) dV'.
 $$
 
 Let us analyze the expression of the magnetic field the same way. After substitution of Eqn. 11.7 and 1z.2-1z.6,  Eqn. 11.11 is transformed into
@@ -2937,7 +2937,7 @@ which is a dimensionless quantity equal to 1 in the natural unit convention. In 
 $$ \tag{1z.16}
 	\bm{B_s}(\bm{r})
 	= -i \nabla \times \int\_{V}
-	g (\bm{r} - \bm{r'}) \big( m^2(\bm{r'}, \omega)- 1 \big) \bm{E}(\bm{r'}) dV'.
+	g (\bm{r} - \bm{r'}) \big( m^2(\bm{r'})- 1 \big) \bm{E}(\bm{r'}) dV'.
 $$
 
 It is convenient to include the \\(-i\\) factor into the definition of the dimensionless version of the magnetic dyadic \\(\mathcal{G_m}\\). Upon substitution of Eqn. 1z.2-1z.6 into 9.34, and after taking Eqn. 9.50 into account, we obtain the expression
@@ -2964,7 +2964,7 @@ Therefore, the magnetic counterpart of Eqn. 1z.13 is
 
 $$ \tag{1z.19}
 	\bm{B_s}(\bm{r})
-	= \int\_{V} \big( m^2(\bm{r'}, \omega)- 1 \big) \mathcal{G_m}(\bm{r}, \bm{r'}) \cdot \bm{E}(\bm{r'}) dV'.
+	= \int\_{V} \big( m^2(\bm{r'})- 1 \big) \mathcal{G_m}(\bm{r}, \bm{r'}) \cdot \bm{E}(\bm{r'}) dV'.
 $$
 
 As always, the expression of the time-harmonic field is given by Eqn. 4.11:
