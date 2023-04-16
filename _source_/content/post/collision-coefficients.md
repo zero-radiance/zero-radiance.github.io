@@ -2845,7 +2845,9 @@ $$ \tag{1z.3}
 		\partial / \partial (k_1 y) \cr
 		\partial / \partial (k_1 z)
 	\end{bmatrix}
-	= k_1^{-1} \nabla.
+	= k_1^{-1} \nabla,
+	\quad
+	\frac{\partial}{\partial \tau} = \omega^{-1} \frac{\partial}{\partial t}.
 $$
 
 The volume element grows proportionally:
@@ -2878,12 +2880,12 @@ $$ \tag{1z.7}
 	g( \bm{\rho} - \bm{\rho'} \big) \big( m^2(\bm{r'}, \omega) - 1 \big) \bm{E}(\bm{r'}, \omega) dV_{\rho}'.
 $$
 
-At this point, \\(\bm{r}\\) is only used to designate a point in space. If the latter is measured in radians, we may replace \\(\bm{\rho}\\) with \\(\bm{r}\\) in Eqn. 1z.7 (or, alternatively, set \\(k_1 = 1\\) in Eqn. 11.10) and omit \\(\omega\\) to obtain
+Now, \\(\bm{r}\\) is only used to designate the coordinates of a point in space. If the latter is measured in radians, we may replace \\(\bm{\rho}\\) with \\(\bm{r}\\) in Eqn. 1z.7 (or, alternatively, set \\(k_1 = 1\\) in Eqn. 11.10) and omit \\(\omega\\) to obtain
 
 $$ \tag{1z.8}
 	\bm{E_s}(\bm{r})
 	= \Big( \mathcal{I} + \nabla \otimes \nabla \Big) \cdot \int\_{V}
-	g(\bm{r} - \bm{r'}) \big( m^2(\bm{r'}) - 1 \big) \bm{E}(\bm{r'}) dV'.
+	g(\bm{r} - \bm{r'}) \big( m^2(\bm{r'}, \omega)- 1 \big) \bm{E}(\bm{r'}) dV'.
 $$
 
 It is often advantageous to express Eqn. 1z.8 in terms of the electric dyadic \\(\mathcal{G_e}\\) given by Eqn. 9.27 and 9.44. According to Eqn. 9.45 and 9.46, it can be trivially made dimensionless by using Eqn. 1z.5 and 1z.6:
@@ -2907,16 +2909,16 @@ $$ \tag{1z.12}
 \end{aligned}
 $$
 
-Note that the depolarization dyadic \\(\mathcal{L}\\) is already dimensionless, and thus requires no further adjustment.
+Note that the depolarization dyadic \\(\mathcal{L}\\) is already dimensionless, and thus requires no further modifications.
 
 Eqn. 1z.11 allows us to express Eqn. 1z.8 in a compact way:
 
 $$ \tag{1z.13}
 	\bm{E_s}(\bm{r})
-	= \int\_{V} \big( m^2(\bm{r'}) - 1 \big) \mathcal{G_e}(\bm{r}, \bm{r'}) \cdot \bm{E}(\bm{r'}) dV'.
+	= \int\_{V} \big( m^2(\bm{r'}, \omega)- 1 \big) \mathcal{G_e}(\bm{r}, \bm{r'}) \cdot \bm{E}(\bm{r'}) dV'.
 $$
 
-Let us now perform the same analysis of Eqn. 11.11 of the magnetic field. After substitution of Eqn. 11.7 and 1z.2-1z.6, it is transformed into
+Let us analyze the expression of the magnetic field the same way. After substitution of Eqn. 11.7 and 1z.2-1z.6,  Eqn. 11.11 is transformed into
 
 $$ \tag{1z.14}
 	\bm{B_s}(\bm{r}, \omega)
@@ -2935,10 +2937,10 @@ which is a dimensionless quantity equal to 1 in the natural unit convention. In 
 $$ \tag{1z.16}
 	\bm{B_s}(\bm{r})
 	= -i \nabla \times \int\_{V}
-	g (\bm{r} - \bm{r'}) \big( m^2(\bm{r'}) - 1 \big) \bm{E}(\bm{r'}) dV'.
+	g (\bm{r} - \bm{r'}) \big( m^2(\bm{r'}, \omega)- 1 \big) \bm{E}(\bm{r'}) dV'.
 $$
 
-It is convenient to fold the \\(-i\\) factor into the definition of the dimensionless version of the magnetic dyadic \\(\mathcal{G_m}\\). Upon substitution of Eqn. 1z.2-1z.6 into 9.34, and after taking Eqn. 9.50 into account, we arrive at the expression
+It is convenient to include the \\(-i\\) factor into the definition of the dimensionless version of the magnetic dyadic \\(\mathcal{G_m}\\). Upon substitution of Eqn. 1z.2-1z.6 into 9.34, and after taking Eqn. 9.50 into account, we obtain the expression
 
 $$ \tag{1z.17}
 	\mathcal{G_m}(\bm{\rho}, \bm{\rho'})
@@ -2962,7 +2964,7 @@ Therefore, the magnetic counterpart of Eqn. 1z.13 is
 
 $$ \tag{1z.19}
 	\bm{B_s}(\bm{r})
-	= \int\_{V} \big( m^2(\bm{r'}) - 1 \big) \mathcal{G_m}(\bm{r}, \bm{r'}) \cdot \bm{E}(\bm{r'}) dV'.
+	= \int\_{V} \big( m^2(\bm{r'}, \omega)- 1 \big) \mathcal{G_m}(\bm{r}, \bm{r'}) \cdot \bm{E}(\bm{r'}) dV'.
 $$
 
 As always, the expression of the time-harmonic field is given by Eqn. 4.11:
@@ -2988,6 +2990,22 @@ $$ \tag{1z.21}
 	\quad
 	\frac{c}{\eta_1} \bm{B} \leftrightarrows \bm{B}.
 $$
+
+Being able to omit these constant factors makes the equations of the electric and the magnetic field particularly simple. Thus, the use of natural units can be seen as a form of [dimensionality reduction](https://en.wikipedia.org/wiki/Dimensionality_reduction). In addition, it captures an important property of the electromagnetic field known as the principle of *electrodynamic similitude* \[[8](#references) (ch. 5.5), [9](#references) (ch. 3.5), [17](#references) (ch. 9.3)\]. It can be understood as follows.
+
+Recall that \\(\bm{r_1}\\) and, effectively, \\(k_1\\) can be chosen pretty much arbitrarily. Imagine that we have chosen a certain *convenient value* of \\(k_1\\) (which determines the value of \\(m = k/k_1\\)) and have obtained a solution of the dimensionless Eqn. 1z.13 or 1z.19. Now, suppose we want to use a *different value* of \\(k_1' = s k_1\\), perhaps the one that corresponds to the angular frequency \\(\omega' = s \omega\\) (or the actual wavelength \\(\lambda_1' = s / \lambda_1\\)) of the light source. Then, according to Eqn. 1z.2 and 11.8, if also we proportionally increase the linear dimension of the scattering object (which could be its length \\(l' = s l\\) or its radius \\(a' = s a\\)) while keeping the value of the relative wavenumber \\(m' = m\\) constant, the solution of the dimensionless equations *remains the same*.
+
+[Insert picture here]
+
+This method is particularly powerful if the value of the relative wavenumber
+
+$$ \tag{1z.22}
+	m(\bm{r}, \omega)
+	= \frac{k(\bm{r}, \omega)}{k_1(\omega)}
+	= \frac{\eta(\bm{r}, \omega) + i \kappa(\bm{r}, \omega)}{\eta_1(\omega)}.
+$$
+
+happens to be independent of the angular frequency. We must stress that, in general, this is not the case.
 
 ---
 
