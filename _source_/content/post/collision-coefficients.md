@@ -2833,6 +2833,8 @@ Let us perform a change of variables
 $$ \tag{1z.2}
 	\bm{\rho}(\omega) = k_1(\omega) \bm{r},
 	\quad
+	\bm{\Rho}(\omega) = k_1(\omega) \bm{R},
+	\quad
 	\tau(\omega) = \omega t.
 $$
 
@@ -2880,7 +2882,7 @@ $$ \tag{1z.7}
 	g( \bm{\rho} - \bm{\rho'} \big) \big( m^2(\bm{r'}, \omega) - 1 \big) \bm{E}(\bm{r'}, \omega) dV_{\rho}'.
 $$
 
-Now, \\(\bm{r}\\) is only used to designate the coordinates of a point in space. If the latter is measured in radians, we may replace \\(\bm{\rho}\\) with \\(\bm{r}\\) in Eqn. 1z.7 (or, alternatively, set \\(k_1 = 1\\) in Eqn. 11.10) to obtain
+At this step, \\(\bm{r}\\) is only used to designate the coordinates of a point in space. If the latter is measured in radians, we may replace \\(\bm{\rho}\\) with \\(\bm{r}\\) in Eqn. 1z.7 (or, alternatively, set \\(k_1 = 1\\) in Eqn. 11.10) to obtain
 
 $$ \tag{1z.8}
 	\bm{E_s}(\bm{r}, \omega)
@@ -2888,7 +2890,7 @@ $$ \tag{1z.8}
 	g(\bm{r} - \bm{r'}) \big( m^2(\bm{r'}, \omega) - 1 \big) \bm{E}(\bm{r'}, \omega) dV'.
 $$
 
-It is often advantageous to express Eqn. 1z.8 in terms of the electric dyadic \\(\mathcal{G_e}\\) given by Eqn. 9.27 and 9.44. According to Eqn. 9.45 and 9.46, it can be trivially made dimensionless by using Eqn. 1z.5 and 1z.6:
+It is often advantageous to express Eqn. 1z.8 in terms of the electric dyadic \\(\mathcal{G_e}\\) given by Eqn. 9.27 and 9.44. According to Eqn. 9.45 and 9.46, it can be trivially made dimensionless by taking Eqn. 1z.5 and 1z.6 into account:
 
 $$ \tag{1z.11}
 	\mathcal{G_e}(\bm{\rho}, \bm{\rho'})
@@ -2921,15 +2923,15 @@ $$
 Let us analyze the expression of the magnetic field the same way. After substitution of Eqn. 11.7 and 1z.2-1z.6,  Eqn. 11.11 is transformed into
 
 $$ \tag{1z.14}
-	\bm{B_s}(\bm{r}, \omega)
-	= \frac{k_1(\omega)}{i \omega} \nabla_{\rho} \times \int\_{V_{\rho}}
+	\frac{\omega}{k_1(\omega)} \bm{B_s}(\bm{r}, \omega)
+	= -i \nabla_{\rho} \times \int\_{V_{\rho}}
 	g \big( \bm{\rho} - \bm{\rho'} \big) \big( m^2(\bm{r'}, \omega) - 1 \big) \bm{E}(\bm{r'}, \omega) dV_{\rho}'
 $$
 
 According to Eqn. 1y.7 and 1y.10,
 
 $$ \tag{1z.15}
-	\frac{k_1(\omega)}{\omega} = \frac{\eta_1(\omega)}{c},
+	\frac{\omega}{k_1(\omega)} = \frac{c}{\eta_1(\omega)},
 $$
 
 which is a dimensionless quantity equal to 1 in the natural unit convention. In this case, Eqn. 1z.14 can be simply written as
@@ -2972,12 +2974,12 @@ As always, the expression of the time-harmonic field is given by Eqn. 4.11:
 $$ \tag{1z.20}
 \begin{aligned}
 	\bm{E}(\bm{r}, t)
-	&= \mathcal{Re} \big\lbrace \bm{E}(\bm{r}, \omega) e^{-i \omega t} \big\rbrace
-	= \mathcal{Re} \big\lbrace \bm{E}(\bm{r}, \omega) e^{-i \tau(\omega)} \big\rbrace,
+	&= \mathcal{Re} \left\lbrace \bm{E}(\bm{r}, \omega) e^{-i \omega t} \right\rbrace
+	= \mathcal{Re} \left\lbrace \bm{E}(\bm{r}, \omega) e^{-i \tau(\omega)} \right\rbrace,
 	\cr
 	\bm{B}(\bm{r}, t)
-	&= \mathcal{Re} \big\lbrace \bm{B}(\bm{r}, \omega) e^{-i \omega t} \big\rbrace
-	= \mathcal{Re} \big\lbrace \bm{B}(\bm{r}, \omega) e^{-i \tau(\omega)} \big\rbrace.
+	&= \mathcal{Re} \left\lbrace \bm{B}(\bm{r}, \omega) e^{-i \omega t} \right\rbrace
+	= \mathcal{Re} \left\lbrace \bm{B}(\bm{r}, \omega) e^{-i \tau(\omega)} \right\rbrace.
 \end{aligned}
 $$
 
@@ -2991,9 +2993,9 @@ $$ \tag{1z.21}
 	\frac{c}{\eta_1} \bm{B} \leftrightarrows \bm{B}.
 $$
 
-Being able to omit these constant factors makes the equations of the electric and the magnetic field particularly simple. Thus, the use of natural units can be seen as a form of [dimensionality reduction](https://en.wikipedia.org/wiki/Dimensionality_reduction). In addition, it captures an important property of the electromagnetic field known as the principle of *electrodynamic similitude* \[[8](#references) (ch. 5.5), [9](#references) (ch. 3.5), [17](#references) (ch. 9.3)\]. It can be understood as follows.
+Being able to omit these constant factors makes the equations of the electric and the magnetic field particularly simple. Thus, the use of natural units can be seen as a form of [dimensionality reduction](https://en.wikipedia.org/wiki/Dimensionality_reduction). In addition, it captures an important property of the electromagnetic field known as the principle of [electrodynamic similitude](https://en.wikipedia.org/wiki/Similitude) \[[8](#references) (ch. 5.5), [9](#references) (ch. 3.5), [17](#references) (ch. 9.3)\].
 
-Recall that \\(\bm{r_1}\\) and, effectively, \\(k_1\\) can be chosen pretty much arbitrarily. Imagine that we have chosen a certain *convenient value* of \\(k_1\\) (which determines the value of \\(m = k/k_1\\)) and have obtained a solution of the dimensionless Eqn. 1z.13 or 1z.19. Now, suppose we want to use a *different value* of \\(k_1' = s k_1\\), perhaps the one that corresponds to the angular frequency \\(\omega' = s \omega\\) (or the actual wavelength \\(\lambda_1' = s / \lambda_1\\)) of the light source. Then, according to Eqn. 1z.2 and 11.8, if also we proportionally increase the linear dimension of the scattering object (which could be its length \\(l' = s l\\) or its radius \\(a' = s a\\)) while keeping the value of the relative wavenumber \\(m' = m\\) constant, the solution of the dimensionless equations *remains the same*.
+Let us discuss this concept in more detail. Recall that \\(\bm{r_1}\\) and, effectively, \\(k_1\\) can be chosen pretty much arbitrarily. Imagine that we have chosen a certain *convenient value* of \\(k_1\\) (which determines the value of \\(m = k/k_1\\)) and have obtained a solution of the dimensionless Eqn. 1z.13 or 1z.19. Now, suppose we want to use a *different value* of \\(k_1' = s k_1\\), perhaps the one that corresponds to the angular frequency \\(\omega' = s \omega\\) (or the actual wavelength \\(\lambda_1' = s / \lambda_1\\)) of the light source. Then, according to Eqn. 1z.2 and 11.8, if also we proportionally increase the linear dimensions of the scattering object (such as its length \\(l' = s l\\) or its radius \\(a' = s a\\)) while keeping the value of the relative wavenumber \\(m' = m\\) constant, the solution of the dimensionless equations *remains the same*.
 
 [Insert picture here]
 
@@ -3006,237 +3008,6 @@ $$ \tag{1z.22}
 $$
 
 happens to be independent of the angular frequency. We must stress that, in general, this is not the case.
-
----
-
-Translation of Eqn. 14.21 into the integral form yields the definition of the transition dyadic:
-
-$$ \tag{14.22}
-\begin{aligned}
-	\mathcal{T} (\bm{r}, \bm{r'}, k)
-	&= u(\bm{r}, k) \bigg( \delta(\bm{r} - \bm{r'}) \mathcal{I} + \int_V \mathcal{G}\_e (\bm{r}, \bm{r''}, k) \cdot \mathcal{T} (\bm{r''}, \bm{r'}, k) dV'' \bigg)
-	\cr
-	&= k^2 \big( m^2(\bm{r}) - 1 \big) \bigg( \delta(\bm{r} - \bm{r'}) \mathcal{I} + \int_V \mathcal{G}\_e (\bm{r}, \bm{r''}, k) \cdot \mathcal{T} (\bm{r''}, \bm{r'}, k) dV'' \bigg).
-\end{aligned}
-$$
-
-The expression of the electric dyadic (defined in Eqn. 9.27) can be expanded in two different ways. We can express it as a product, and move the derivatives outside the integral, as shown by Eqn. 9.24:
-
-$$ \tag{14.23}
-\begin{aligned}
-	\mathcal{T} (\bm{r}, \bm{r'}, k)
-	&= k^2 \big( m^2(\bm{r}) - 1 \big) \bigg(
-	\delta(\bm{r} - \bm{r'}) \mathcal{I}
-	\cr
-	&+ \Big( \mathcal{I} + \frac{1}{k^2} \nabla \otimes \nabla \Big) \cdot \int\_{V}
-	g( \bm{r} - \bm{r''}, k) \mathcal{T} (\bm{r''}, \bm{r'}, k) dV'' \bigg).
-\end{aligned}
-$$
-
-Alternatively, we can decompose it into a sum of the dyadic Green function \\(\mathcal{G}\\) and the depolarization dyadic \\(\mathcal{L}\\) as per by Eqn. 9.27:
-
-$$ \tag{14.24}
-\begin{aligned}
-	\mathcal{T} (\bm{r}, \bm{r'}, k)
-	&= k^2 \big( m^2(\bm{r}) - 1 \big) \bigg(
-	\delta(\bm{r} - \bm{r'}) \mathcal{I}
-	\cr
-	&- \frac{1}{k^2} \mathcal{L}(\bm{r}) \cdot \mathcal{T} (\bm{r}, \bm{r'})
-	+ \lim_{\delta \to 0} \int\_{V - V_{\delta}} \mathcal{G} (\bm{r}, \bm{r''}) \cdot \mathcal{T} (\bm{r''}, \bm{r'}, k) dV'' \bigg).
-\end{aligned}
-$$
-
-[Insert picture here]
-
-In order to prove the principle of electrodynamic similitude, we must show that the expressions used to calculate the electromagnetic fields can be written in terms of the dimensionless quantity (which we indicate by the hat symbol)
-
-$$ \tag{15.18}
-	\bm{\hat{r}} = k \bm{r}.
-$$
-
-As a simple example, consider the scalar Green function \\(g\\) introduced in Eqn. 9.10. If we divide it by \\(k\\), we obtain its dimensionless counterpart \\(\hat{G_e}\\):
-
-$$ \tag{15.19}
-	\frac{1}{k} g(\bm{r}, k)
-	= \hat{G_e}(\bm{\hat{r}})
-	= \frac{e^{i |\bm{\hat{r}}|}}{4 \pi |\bm{\hat{r}}|}.
-$$
-
-The expression of the total field is the sum of the incident and the scattered fields. Eqn. 15.1 of the incident field can be transformed into the dimensionless form by a trivial substitution of Eqn. 15.18. On the other hand, Eqn. 15.3 of the scattered field is more complicated, as it contains the electric and transition dyadics. According to Eqn. 14.22, the transition dyadic is itself defined in terms of the electric dyadic. Thus, we only need to transform the expression of the former. For convenience, we elect to use the expanded definition given by Eqn. 14.23, which we restate below:
-
-$$ \tag{15.20}
-\begin{aligned}
-	\mathcal{T} (\bm{r}, \bm{r'}, k)
-	&= k^2 \big( m^2(\bm{r}) - 1 \big) \bigg( \delta(\bm{r} - \bm{r'}) \mathcal{I} + \int_V \mathcal{G}\_e (\bm{r}, \bm{r''}, k) \cdot \mathcal{T} (\bm{r''}, \bm{r'}, k) dV'' \bigg)
-	\cr
-	&= k^2 \big( m^2(\bm{r}) - 1 \big) \bigg(
-	\delta(\bm{r} - \bm{r'}) \mathcal{I}
-	\cr
-	&+ \Big( \mathcal{I} + \frac{1}{k^2} \nabla \otimes \nabla \Big) \cdot
-	\int\_{V} g( \bm{r} - \bm{r''}, k) \mathcal{T} (\bm{r''}, \bm{r'}, k) dV'' \bigg).
-\end{aligned}
-$$
-
-In order to replace \\(\bm{r}\\) with \\(\bm{\hat{r}}\\) inside the integral, we must perform a change of variables
-
-$$ \tag{15.21}
-	dV = dx \thinspace dy \thinspace dz
-	\quad \to \quad
-	d \hat{V} = d(kx) \thinspace d(ky) \thinspace d(kz) = k^3 dV.
-$$
-
-Furthermore, the [scaling property](https://en.wikipedia.org/wiki/Dirac_delta_function#Scaling_and_symmetry) of the delta function tells us that
-
-$$ \tag{15.22}
-	\delta(\bm{r})
-	= \delta \bigg(\frac{\bm{\hat{r}}}{k} \bigg)
-	= k^3 \delta(\bm{\hat{r}})
-$$
-
-To handle the electric dyadic, we introduce
-
-$$ \tag{15.23}
-	\hat{\nabla} = k^{-1} \nabla,
-$$
-
-such that
-
-$$ \tag{15.25}
-	\hat{\nabla} \bm{\hat{r}} = \nabla \bm{r},
-$$
-
-which, coupled with Eqn. 15.19, directly leads to
-
-$$ \tag{15.26}
-	\mathcal{\hat{G_e}}(\bm{\hat{r}}, \bm{\hat{r}'})
-	= \frac{1}{k} \mathcal{G}\_e(\bm{r}, \bm{r'}, k).
-$$
-
-The only expression left to transform is the relative wavenumber \\(m\\) given by Eqn. 11.8. It is already a dimensionless quantity; thus, if we rescale the coordinate frame by a factor of \\(1/k\\), we can define the function
-
-$$ \tag{15.27}
-	\hat{m}(\bm{\hat{r}}) = m(\bm{r})
-$$
-
-that operates in dimensionless coordinates.
-
-Using the new definitions, Eqn. 15.20 becomes
-
-$$ \tag{15.28}
-\begin{aligned}
-	\mathcal{T} (\bm{r}, \bm{r'}, k)
-	&= \big( \hat{m}^2(\bm{\hat{r}}) - 1 \big) \bigg(
-	k^5 \delta(\bm{\hat{r}} - \bm{\hat{r}'}) \mathcal{I}
-	+ \int\_{V} \mathcal{\hat{G_e}}(\bm{\hat{r}}, \bm{\hat{r}''}) \cdot \mathcal{T} (\bm{r''}, \bm{r'}, k) d \hat{V}'' \bigg)
-	\cr
-	&= \big( \hat{m}^2(\bm{\hat{r}}) - 1 \big) \bigg(
-	k^5 \delta(\bm{\hat{r}} - \bm{\hat{r}'}) \mathcal{I}
-	\cr
-	&+ \Big( \mathcal{I} + \hat{\nabla} \otimes \hat{\nabla} \Big) \cdot
-	\int\_{V} \hat{G_e}( \bm{\hat{r}} - \bm{\hat{r}''}) \mathcal{T} (\bm{r''}, \bm{r'}, k) d \hat{V}'' \bigg),
-\end{aligned}
-$$
-
-from which it immediately follows that defining
-
-$$ \tag{15.29}
-	\mathcal{\hat{T_e}} (\bm{\hat{r}}, \bm{\hat{r}'}) = \frac{1}{k^5}
-	\mathcal{T} (\bm{r}, \bm{r'}, k)
-$$
-
-makes Eqn. 15.28 fully dimensionless. Additionally, in the operator notation, Eqn. 15.20 and 15.28 are formally identical. As a result, both formulations can be expressed in terms of the Born series given by Eqn. 14.20, and thus produce the same fields.
-
----
-
-Unit conversion can be conceptually divided into two steps: during the first step, we identify dimensionless quantities (independent of the unit convention), and during the second step, we group and transform the remaining (dimensional) quantities. We have already encountered an example of the former (Eqn. 1y.4); we must now simply examine the remaining terms comprising Eqn. 11.10, 11.11, 1x.14 and 1x.15.
-
-Naturally, we should begin with the dyadic Green functions \\(\mathcal{G}\\) given by Eqn. 9.27 and 9.34. Both are defined in terms of the scalar Green function \\(g\\) given by Eqn. 9.10. Its dimensionless counterpart is easily identified:
-
-$$ \tag{1z.1}
-	\frac{g(\bm{R}, k_1)}{k_1}  = \frac{e^{i |k_1 \bm{R}|}}{4 \pi |k_1 \bm{R}|}
-	\quad \leftrightarrows \quad
-	g(k_1 \bm{R}) = \frac{e^{i |k_1 \bm{R}|}}{4 \pi |k_1 \bm{R}|}.
-$$
-
-In the natural unit convention, the expression of the dimensionless scalar Green function becomes
-
-$$ \tag{1z.2}
-	g(\bm{r})  = \frac{e^{i |\bm{r}|}}{4 \pi |\bm{r}|}.
-$$
-
-Next, it is convenient to decompose the electric dyadic according to Eqn. 9.44-9.46. After taking Eqn. 1z.1 into account, the corresponding dimensionless expressions become evident:
-
-$$ \tag{1z.3}
-\begin{aligned}
-	& \mathcal{G_{en}}(k_1 \bm{R})
-	= \frac{\mathcal{G_{en}}(\bm{R}, k_1)}{k_1}
-	= -\frac{e^{i |k_1 \bm{R}|}}{4 \pi |k_1 \bm{R}|^3} \bigg(\mathcal{I} - 3 \frac{(k_1 \bm{R}) \otimes (k_1 \bm{R})}{(k_1 \bm{R}) \cdot (k_1 \bm{R})} \bigg),
-	\cr
-	& \mathcal{G_{et}}(k_1 \bm{R})
-	= \frac{\mathcal{G_{et}}(\bm{R}, k_1)}{k_1}
-	= i \frac{e^{i |k_1 \bm{R}|}}{4 \pi |k_1 \bm{R}|^2} \bigg(\mathcal{I} - 3 \frac{(k_1 \bm{R}) \otimes (k_1 \bm{R})}{(k_1 \bm{R}) \cdot (k_1 \bm{R})} \bigg),
-	\cr
-	& \mathcal{G_{ef}}(k_1 \bm{R})
-	= \frac{\mathcal{G_{ef}}(\bm{R}, k_1)}{k_1}
-	= \frac{e^{i |k_1 \bm{R}|}}{4 \pi |k_1 \bm{R}|} \bigg( \mathcal{I} - \frac{(k_1 \bm{R}) \otimes (k_1 \bm{R})}{(k_1 \bm{R}) \cdot (k_1 \bm{R})} \bigg).
-\end{aligned}
-$$
-
-Elimination of the \\(k_1\\) factor produces the following simple expression:
-
-$$ \tag{1z.4}
-\begin{aligned}
-	& \mathcal{G_{en}}(\bm{r})
-	= -\frac{g(\bm{r})}{|\bm{r}|^2} \bigg(\mathcal{I} - 3 \frac{\bm{r} \otimes \bm{r}}{\bm{r} \cdot \bm{r}} \bigg),
-	\cr
-	& \mathcal{G_{et}}(\bm{r})
-	= i \frac{g(\bm{r})}{|\bm{r}|} \bigg(\mathcal{I} - 3 \frac{\bm{r} \otimes \bm{r}}{\bm{r} \cdot \bm{r}} \bigg),
-	\cr
-	& \mathcal{G_{ef}}(\bm{r})
-	= g(\bm{r}) \bigg( \mathcal{I} - \frac{\bm{r} \otimes \bm{r}}{\bm{r} \cdot \bm{r}} \bigg).
-\end{aligned}
-$$
-
-
-
----
-
-$$
-	k_1 = \omega \frac{\eta_1}{c};
-	\quad
-	\omega = k_1 \frac{c}{\eta_1};
-$$
-
----
-
-Finally, we would like to highlight the *scale invariance* property of electromagnetic scattering, also known as the principle of *electrodynamic similitude* \[[8](#references) (ch. 5.5), [9](#references) (ch. 3.5), [17](#references) (ch. 9.3)\]. The gist of it is that, while the (dimensionless) scattering and absorption characteristics of a scattering object depend on its linear dimension \\(a\\) and the wavenumbers \\(k_2 \text{ and } k_1\\) in the interior and the exterior regions, respectively, its properties can be alternatively described using the *relative wavenumber* \\(m = k_2 / k_1\\) and the so-called *size parameter* \\(x = k_1 a = 2 \pi a / \lambda\\), both of which are dimensionless. Thus, provided that the value of \\(m\\) stays fixed, increasing both the linear dimension of the object and the wavelength by the same factor \\(f\\) leaves the formula unchanged: \\(x' = 2 \pi (a f) / (f \lambda) = x \\). This [reduces the dimensionality](https://en.wikipedia.org/wiki/Dimensionality_reduction) of the problem, since three parameters can be replaced with just two.
-
-Note that, unlike \\(x\\), \\(m\\) is not scale-invariant. Recall its definition given by Eqn. 11.8:
-
-$$ \tag{15.17}
-	m(\bm{r}, \omega)
-	= \frac{k_2(\bm{r}, \omega)}{k_1(\omega)}
-	= \sqrt{ \frac{\varepsilon_2(\bm{r}, \omega) \mu_2(\omega)}{\varepsilon_1(\omega) \mu_1(\omega)} }.
-$$
-
-Suppose that the scattering object is located in vacuum. Then the denominator \\(\varepsilon_1 \mu_1=\epsilon_0 \mu_0\\) does not depend on the frequency of the incident radiation. However, the numerator does, since no material has a flat response across the entire frequency range. In particular, if the scattering object is conductive \\((\sigma_2 \neq 0)\\), then, according to Eqn. 5.6, its complex permittivity
-
-$$ \tag{15.??}
-	\varepsilon_2(\bm{r}, \omega)
-	= \epsilon_2(\bm{r}, \omega) + i \frac{\sigma_2(\bm{r}, \omega)}{\omega}
-$$
-
-directly depends on the frequency \\(\omega\\). Thus, in order for the scale invariance property to hold, if the linear dimension of the object and the wavelength are both increased by the same factor, conductivity must be correspondingly reduced.
-
-[Insert picture here]
-
----
-
-Participating media can be broadly divided into two categories - homogeneous and inhomogeneous. This suggests that we may split any medium into two regions: 1) infinite homogeneous, and 2) the remaining space of finite volume \\(V\\). The latter can be interpreted as a single particle or a particle group, or, more generally, as a scattering object (or a *scatterer* for short).
-
-[Picture?]
-
----
 
 ### Huygens-Fresnel Principle
 
