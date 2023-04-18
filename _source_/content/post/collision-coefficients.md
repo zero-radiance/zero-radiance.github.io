@@ -1832,7 +1832,7 @@ Eqn. 9.25 can be cast in a more compact form by using the [principal value](http
 $$ \tag{9.27}
 	\mathcal{G}\_e(\bm{r}, \bm{r'}, k)
 	= \mathcal{P.V.} \lbrace \mathcal{G}(\bm{r}, \bm{r'}, k) \rbrace
-	- \frac{\delta(\bm{r} - \bm{r'})}{k^2} \mathcal{L}(\bm{r}),
+	- \frac{\delta(\bm{r} - \bm{r'})}{k^2} \mathcal{L},
 $$
 
 the expression of the electric field is reduced to
@@ -1845,8 +1845,8 @@ $$
 Comparison with Eqn. 9.18.1 shows that the electric dyadic is a solution of another differential equation for a point source:
 
 $$ \tag{9.29}
-	\left( \nabla \times \nabla \times \mathcal{I} - k^2 \right) \mathcal{G}\_e(\bm{r}, \bm{r'}, k)
-	= \mathcal{I} \delta(\bm{r} - \bm{r'}).
+	\left( \nabla \times \nabla \times \mathcal{I} - k^2 \mathcal{I} \right) \cdot \mathcal{G}\_e(\bm{r}, \bm{r'}, k)
+	= \delta(\bm{r} - \bm{r'}) \mathcal{I}.
 $$
 
 To find the integral form of the magnetic field, we must expand Eqn. 9.21.2 using 9.14.1:
@@ -1867,7 +1867,7 @@ and noting that \\(\bm{J}\\) does not depend on \\(\bm{r}\\), we obtain a conver
 
 $$ \tag{9.32}
 	\bm{B}(\bm{r}, \omega)
-	= \int_{V} \mathcal{G}\_m \big( \bm{r}, \bm{r'}, k_0(\omega) \big)  \cdot\frac{\bm{J}(\bm{r'}, \omega)}{\mu_0^{-1}} dV',
+	= \int_{V} \mathcal{G}\_m \big( \bm{r}, \bm{r'}, k_0(\omega) \big) \cdot\frac{\bm{J}(\bm{r'}, \omega)}{\mu_0^{-1}} dV',
 $$
 
 that features the *magnetic dyadic* Green function \[[7](#references) (ch. 7.9)\]
@@ -1886,10 +1886,10 @@ $$
 
 Therefore, our results are consistent with Eqn. 3.12.
 
-Finally, note that, according to Eqn. 9.29,
+Finally, note that, according to Eqn. 9.29 and 9.35,
 
 $$ \tag{9.3y}
-	i \omega \nabla \times \mathcal{G}\_m(\bm{r}, \bm{r'}, k)
+	\nabla \times \mathcal{G}\_m(\bm{r}, \bm{r'}, k)
 	= \nabla \times \nabla \times \mathcal{G}\_e(\bm{r}, \bm{r'}, k)
 	= k^2 \mathcal{G}\_e(\bm{r}, \bm{r'}, k) + \mathcal{I} \delta(\bm{r} - \bm{r'}).
 $$
@@ -2923,8 +2923,8 @@ $$
 Let us analyze the expression of the magnetic field the same way. After substitution of Eqn. 11.7 and 1z.2-1z.6,  Eqn. 11.11 is transformed into
 
 $$ \tag{1z.14}
-	\frac{\omega}{k_1(\omega)} \bm{B_s}(\bm{r}, \omega)
-	= -i \nabla_{\rho} \times \int\_{V_{\rho}}
+	\frac{i \omega}{k_1(\omega)} \bm{B_s}(\bm{r}, \omega)
+	= \nabla_{\rho} \times \int\_{V_{\rho}}
 	g \big( \bm{\rho} - \bm{\rho'} \big) \big( m^2(\bm{r'}, \omega) - 1 \big) \bm{E}(\bm{r'}, \omega) dV_{\rho}'
 $$
 
@@ -2937,18 +2937,18 @@ $$
 which is a dimensionless quantity equal to 1 in the natural unit convention. In this case, Eqn. 1z.14 can be simply written as
 
 $$ \tag{1z.16}
-	\bm{B_s}(\bm{r}, \omega)
-	= -i \nabla \times \int\_{V}
+	i \bm{B_s}(\bm{r}, \omega)
+	= \nabla \times \int\_{V}
 	g (\bm{r} - \bm{r'}) \big( m^2(\bm{r'}, \omega) - 1 \big) \bm{E}(\bm{r'}, \omega) dV'.
 $$
 
-It is convenient to include the \\(-i\\) factor into the definition of the dimensionless version of the magnetic dyadic \\(\mathcal{G_m}\\). Upon substitution of Eqn. 1z.2-1z.6 into 9.34, and after taking Eqn. 9.50 into account, we obtain the expression
+Upon substitution of Eqn. 1z.2-1z.6 into 9.34, and after taking Eqn. 9.50 into account, we obtain the expression
 
 $$ \tag{1z.17}
 	\mathcal{G_m}(\bm{\rho}, \bm{\rho'})
 	= \mathcal{G_{mn}}(\bm{\rho} - \bm{\rho'})
 	+ \mathcal{G_{mf}}(\bm{\rho} - \bm{\rho'})
-	= -i k_1^{-2} \mathcal{G_m}(\bm{r}, k_1),
+	= k_1^{-2} \mathcal{G_m}(\bm{r}, k_1),
 $$
 
 which is consistent with the findings listed in Eqn. 9.52. In more detail (cf. Eqn. 9.51),
@@ -2956,16 +2956,16 @@ which is consistent with the findings listed in Eqn. 9.52. In more detail (cf. E
 $$ \tag{1z.18}
 \begin{aligned}
 	& \mathcal{G_{mn}}(\bm{\Rho})
-	= i \frac{g(\bm{\Rho})}{|\bm{\Rho}|} \bigg(\frac{\bm{\Rho} \times \mathcal{I}}{|\bm{\Rho}|} \bigg), \cr
+	= -\frac{g(\bm{\Rho})}{|\bm{\Rho}|} \bigg(\frac{\bm{\Rho} \times \mathcal{I}}{|\bm{\Rho}|} \bigg), \cr
 	& \mathcal{G_{mf}}(\bm{\Rho})
-	= g(\bm{\Rho}) \bigg(\frac{\bm{\Rho} \times \mathcal{I}}{|\bm{\Rho}|} \bigg).
+	= i g(\bm{\Rho}) \bigg(\frac{\bm{\Rho} \times \mathcal{I}}{|\bm{\Rho}|} \bigg).
 \end{aligned}
 $$
 
 Therefore, the magnetic counterpart of Eqn. 1z.13 is
 
 $$ \tag{1z.19}
-	\bm{B_s}(\bm{r}, \omega)
+	i \bm{B_s}(\bm{r}, \omega)
 	= \int\_{V} \big( m^2(\bm{r'}, \omega) - 1 \big) \mathcal{G_m}(\bm{r}, \bm{r'}) \cdot \bm{E}(\bm{r'}, \omega) dV'.
 $$
 
@@ -2993,6 +2993,13 @@ $$ \tag{1z.21}
 	\frac{c}{\eta_1} \bm{B} \leftrightarrows \bm{B}.
 $$
 
+In particular, the latter transforms Eqn. 3.12 into
+
+$$ \tag{1z.22}
+	i \bm{B}(\bm{r}, \omega) = \nabla \times \bm{E}(\bm{r}, \omega).
+$$
+
+
 Being able to omit these constant factors makes the equations of the electric and the magnetic field particularly simple. Thus, the use of natural units can be seen as a form of [dimensionality reduction](https://en.wikipedia.org/wiki/Dimensionality_reduction). In addition, it captures an important property of the electromagnetic field known as the principle of [electrodynamic similitude](https://en.wikipedia.org/wiki/Similitude) \[[8](#references) (ch. 5.5), [9](#references) (ch. 3.5), [17](#references) (ch. 9.3)\].
 
 Let us discuss this concept in more detail. Recall that \\(\bm{r_1}\\) and, effectively, \\(k_1\\) can be chosen pretty much arbitrarily. Imagine that we have chosen a certain *convenient value* of \\(k_1\\) (which determines the value of \\(m = k/k_1\\)) and have obtained a solution of the dimensionless Eqn. 1z.13 or 1z.19. Now, suppose we want to use a *different value* of \\(k_1' = s k_1\\), perhaps the one that corresponds to the angular frequency \\(\omega' = s \omega\\) (or the actual wavelength \\(\lambda_1' = s / \lambda_1\\)) of the light source. Then, according to Eqn. 1z.2 and 11.8, if also we proportionally increase the linear dimensions of the scattering object (such as its length \\(l' = s l\\) or its radius \\(a' = s a\\)) while keeping the value of the relative wavenumber \\(m' = m\\) constant, the solution of the dimensionless equations *remains the same*.
@@ -3001,7 +3008,7 @@ Let us discuss this concept in more detail. Recall that \\(\bm{r_1}\\) and, effe
 
 This method is particularly powerful if the value of the relative wavenumber
 
-$$ \tag{1z.22}
+$$ \tag{1z.23}
 	m(\bm{r}, \omega)
 	= \frac{k(\bm{r}, \omega)}{k_1(\omega)}
 	= \frac{\eta(\bm{r}, \omega) + i \kappa(\bm{r}, \omega)}{\eta_1(\omega)}.
