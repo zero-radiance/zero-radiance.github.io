@@ -2993,12 +2993,17 @@ $$ \tag{1z.21}
 	\frac{c}{\eta_1} \bm{B} \leftrightarrows \bm{B}.
 $$
 
-In particular, the latter transforms Eqn. 3.12 into
+If we also wish to perform conversion of the formulas (and not just the quantities), the associated derivatives, volume elements and Dirac delta functions also must be transformed according to Eqn. 1z.2-1z.5. In practice, the following "unofficial" shortcut is often used:
 
 $$ \tag{1z.22}
-	i \bm{B}(\bm{r}, \omega) = \nabla \times \bm{E}(\bm{r}, \omega).
+	\omega \bm{B} \leftrightarrows \bm{B}.
 $$
 
+It is obtained by inspection of the transformed version of Eqn. 3.12:
+
+$$ \tag{1z.23}
+	i \bm{B}(\bm{r}, \omega) = \nabla \times \bm{E}(\bm{r}, \omega).
+$$
 
 Being able to omit these constant factors makes the equations of the electric and the magnetic field particularly simple. Thus, the use of natural units can be seen as a form of [dimensionality reduction](https://en.wikipedia.org/wiki/Dimensionality_reduction). In addition, it captures an important property of the electromagnetic field known as the principle of [electrodynamic similitude](https://en.wikipedia.org/wiki/Similitude) \[[8](#references) (ch. 5.5), [9](#references) (ch. 3.5), [17](#references) (ch. 9.3)\].
 
@@ -3008,7 +3013,7 @@ Let us discuss this concept in more detail. Recall that \\(\bm{r_1}\\) and, effe
 
 This method is particularly powerful if the value of the relative wavenumber
 
-$$ \tag{1z.23}
+$$ \tag{1z.24}
 	m(\bm{r}, \omega)
 	= \frac{k(\bm{r}, \omega)}{k_1(\omega)}
 	= \frac{\eta(\bm{r}, \omega) + i \kappa(\bm{r}, \omega)}{\eta_1(\omega)}.
