@@ -2745,7 +2745,9 @@ $$ \tag{1y.8}
 	\lambda_0(\nu) = 2 \pi.
 $$
 
-Eqn. 1y.5 and 1y.8 show that one could make the spacetime dimensionless simply by rescaling it by a factor of \\(\omega/c\\):
+With Eqn. 1y.7 linking Eqn. 1y.5 and 1y.8, we can see that Eqn. 1y.1 also holds true. Thus, any pair of these equations implies the remaining (third) one.
+
+These equations show that one could make spacetime dimensionless simply by rescaling it by a factor of \\(\omega/c\\):
 
 $$ \tag{1y.9}
 	\frac{\omega}{c} \Big( c t, \bm{r} \Big)
@@ -2763,6 +2765,12 @@ $$ \tag{1y.10}
 	\quad \text{or} \quad
 	\lambda_1(\nu)
 	= \frac{\lambda_0(\nu)}{\eta(\bm{r_1}, 2 \pi \nu)} = 2 \pi.
+$$
+
+This convention implies that
+
+$$ \tag{1y.1a}
+	\frac{\omega}{k_1(\omega)} = \frac{c}{\eta_1(\omega)} = 1.
 $$
 
 The expression of the spacetime coordinate must be modified correspondingly:
@@ -2797,7 +2805,7 @@ $$ \tag{1y.13}
 \end{aligned}
 $$
 
-It is necessary to consider the implications of the natural unit conventions on the dimensions of the electromagnetic field. By combining Newton's second law \\( (F = m a) \\) with the expression of the Lorentz force (given by Eqn. 2.3), one can show that, in general, the dimensions of the electric and the magnetic vectors obey the relation
+It is necessary to consider the implications of the natural unit conventions on the dimensions of the electromagnetic field. By combining Newton's second law \\( (F = m a) \\) with the expression of the Lorentz force (given by Eqn. 2.3), it is easy to see that, in general, the dimensions of the electric and the magnetic vectors obey the relation
 
 $$ \tag{1y.14}
 	\lbrack \bm{E} \rbrack
@@ -2920,21 +2928,15 @@ $$ \tag{1z.13}
 	= \int\_{V} \big( m^2(\bm{r'}, \omega) - 1 \big) \mathcal{G_e}(\bm{r}, \bm{r'}) \cdot \bm{E}(\bm{r'}, \omega) dV'.
 $$
 
-Let us analyze the expression of the magnetic field the same way. After substitution of Eqn. 11.7 and 1z.2-1z.6,  Eqn. 11.11 is transformed into
+Let us analyze the expression of the magnetic field in the same manner. After substitution of Eqn. 11.7, 1y.1a, and 1z.2-1z.6, Eqn. 11.11 is transformed into
 
 $$ \tag{1z.14}
-	\frac{i \omega}{k_1(\omega)} \bm{B_s}(\bm{r}, \omega)
+	\frac{i c}{\eta_1(\omega)} \bm{B_s}(\bm{r}, \omega)
 	= \nabla_{\rho} \times \int\_{V_{\rho}}
 	g \big( \bm{\rho} - \bm{\rho'} \big) \big( m^2(\bm{r'}, \omega) - 1 \big) \bm{E}(\bm{r'}, \omega) dV_{\rho}'
 $$
 
-According to Eqn. 1y.7 and 1y.10,
-
-$$ \tag{1z.15}
-	\frac{\omega}{k_1(\omega)} = \frac{c}{\eta_1(\omega)},
-$$
-
-which is a dimensionless quantity equal to 1 in the natural unit convention. In this case, Eqn. 1z.14 can be simply written as
+Similarly to Eqn. 1z.8, using the natural unit convention, Eqn. 1z.14 can be simply written as
 
 $$ \tag{1z.16}
 	i \bm{B_s}(\bm{r}, \omega)
@@ -2993,13 +2995,13 @@ $$ \tag{1z.21}
 	\frac{c}{\eta_1} \bm{B} \leftrightarrows \bm{B}.
 $$
 
-If we also wish to perform conversion of the formulas (and not just the quantities), the associated derivatives, volume elements and Dirac delta functions also must be transformed according to Eqn. 1z.2-1z.5. In practice, the following "unofficial" shortcut is often used:
+If we also wish to perform conversion of the formulas (and not just the quantities), the operators, volume elements and Dirac delta functions also must be transformed according to Eqn. 1z.2-1z.5. In practice, the following "unofficial" shortcut is often used:
 
 $$ \tag{1z.22}
 	\omega \bm{B} \leftrightarrows \bm{B}.
 $$
 
-It is obtained by inspection of the transformed version of Eqn. 3.12:
+It is obtained by inspection of the "natural" version of Eqn. 3.12:
 
 $$ \tag{1z.23}
 	i \bm{B}(\bm{r}, \omega) = \nabla \times \bm{E}(\bm{r}, \omega).
