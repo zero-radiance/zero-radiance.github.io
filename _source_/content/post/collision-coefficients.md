@@ -1787,23 +1787,23 @@ As we group the terms, we encounter a curious operator acting on \\(\bm{A}\\):
 
 $$ \tag{9.22}
 	\bm{E}(\bm{r}, \omega)
-	= i \omega \Big( \mathcal{I} + \frac{c^2}{\omega^2} \nabla \nabla \cdot \Big) \bm{A}(\bm{r}, \omega),
+	= i \omega \left( 1 + \frac{c^2}{\omega^2} \nabla \nabla \cdot \right) \bm{A}(\bm{r}, \omega).
 $$
-
-where \\(\mathcal{I}\\) is the *identity operator* that performs multiplication by 1.
 
 In the component representation of Eqn. 9.22, the gradient operator is a column vector, while the divergence operator is as a row vector. When combined in this particular order, they form an [outer product](https://en.wikipedia.org/wiki/Outer_product) that can be represented by a 3x3 matrix:
 
 $$ \tag{9.23}
 	\bm{E}(\bm{r}, \omega) =
-	i \omega \Big( \mathcal{I} + \frac{c^2}{\omega^2} \nabla \otimes \nabla \Big) \cdot \bm{A}(\bm{r}, \omega).
+	i \omega \left( \mathcal{I} + \frac{c^2}{\omega^2} \nabla \otimes \nabla \right) \cdot \bm{A}(\bm{r}, \omega),
 $$
+
+where \\(\mathcal{I}\\) is the *identity operator* that performs multiplication by 1.
 
 Let us now substitute the definition of \\(\bm{A}\\) given by Eqn. 9.14.1:
 
 $$ \tag{9.24}
 	\bm{E}(\bm{r}, \omega)
-	= i \omega \Big( \mathcal{I} + \frac{1}{k_0^2(\omega)} \nabla \otimes \nabla \Big) \cdot \int\_{V}
+	= i \omega \left( \mathcal{I} + \frac{1}{k_0^2(\omega)} \nabla \otimes \nabla \right) \cdot \int\_{V}
 	g \big( \bm{r} - \bm{r'}, k_0(\omega) \big) \frac{\bm{J}(\bm{r'}, \omega)}{\mu_0^{-1}} dV'.
 $$
 
