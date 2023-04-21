@@ -2533,7 +2533,7 @@ $$ \tag{11.7}
 	= k_1^2(\omega) \big( m^2(\bm{r}, \omega) - 1 \big) \bm{E}(\bm{r}, \omega).
 $$
 
-Notice that \\(\bm{J'}\\) vanishes in a region of space where \\(m = 1\\). This suggests that it is advantageous to choose the reference location \\(\bm{r_1}\\) in such a way as to minimize the amount of space occupied by matter with \\(k \neq k_1\\).
+Notice that \\(\bm{J'}\\) vanishes in a region of space where \\(m = 1\\). This suggests that it is advantageous to choose the reference location \\(\bm{r_1}\\) in such a way as to minimize the amount of space occupied by matter with \\(k \neq k_1\\). In order to make the statement of the problem concrete, we shall assume that \\(\bm{r_1}\\) corresponds to a location outside the region \\(V\\) occupied by the *scattering object*.
 
 Eqn. 11.9 presents a mathematical problem that is formally equivalent to the one we have encountered earlier (cf. Eqn. 9.18.1). After matching the constants \\( \big( \bm{J'} = i \omega \bm{J} / \mu_0^{-1} \big) \\), the solution is readily given by Eqn. 9.24 and 9.28:
 
@@ -3218,12 +3218,12 @@ The same principle can be used to express the scattered field at an interior poi
 
 Typically, it is not possible to evaluate the integrals of Eqn. 11.10 and 11.11 in closed form, since the value of the electric field in the interior of the volume is not known. Thus, we must make certain assumptions and employ various approximations in order to make computations feasible. This leads to a number of special cases.
 
-One of the simplest problems that can be solved using our mathematical framework (of classical physics) is that of a single non-magnetic atom or a small molecule embedded in a homogeneous medium. This case corresponds to a tiny particle in vacuum, or an [impurity](https://en.wikipedia.org/wiki/Impurity) in an otherwise pure material. We represent it by an electric dipole -- an oriented point source.
+One of the simplest problems that can be solved using our mathematical framework (of classical physics) is that of a single non-magnetic atom or a small molecule embedded in a homogeneous medium. This case corresponds to a tiny particle in vacuum, or an [impurity](https://en.wikipedia.org/wiki/Impurity) in an otherwise pure material. We represent it by an electric dipole -- an oriented (secondary) point source.
 
-The necessary and sufficient condition for electric dipole radiation is that the radius \\(a\\) of the bounding sphere of the particle must be small compared to the wavelength \\(\lambda\\) computed both inside and outside the particle \[[4](#references) (ch. 6.4)\]. Since \\(k = 2 \pi / \lambda\\), we require that
+The necessary and sufficient condition for electric dipole radiation is that the radius \\(a\\) (of the bounding sphere) of the particle must be small compared to the wavelength \\(\lambda\\) computed both inside and outside the particle \[[4](#references) (ch. 6.4)\]. Using the natural unit convention, this requirement can be expressed as
 
 $$
-	|x| = |k a| \ll 1, \quad |m x| \ll 1.
+	a \ll 1, \quad m a \ll 1.
 $$
 
 These assumptions radically simplify the scattering problem:
@@ -3280,7 +3280,16 @@ $$
 
 This relation also follows from Eqn. 10.18.4, 10.21, and 10.26, under the assumption that the polarization \\(\bm{P}\\) vanishes outside the volume occupied by the dipole.
 
-Finally, note that, since \\(m\\) is dimensionless, Eqn. 12.6 implies that the polarizability has units of volume \[[4](#references) (ch. 6.22)\].
+Finally, note that, since \\(m\\) is dimensionless, Eqn. 12.6 implies that the polarizability has units of volume \[[4](#references) (ch. 6.22)\]. There are two ways to make \\(\mathcal{\Alpha_m}\\) dimensionless. The first is to make it relative to the volume of of the particle by dividing \\(\mathcal{\Alpha_m}\\) by \\(V_m\\). The second is to make the volume itself dimensionless by adopting the natural unit convention. The latter method yields (cf. Eqn. 1z.13 and 1z.19)
+
+$$ \tag{12.7}
+\begin{aligned}
+	\bm{E_s}(\bm{r}, \omega)
+	&= \mathcal{G}\_e(\bm{r}, \bm{r_0}) \cdot \mathcal{\Alpha_m}(V_m, \omega) \cdot \bm{E}(\bm{r_0}, \omega), \cr
+	i \bm{B_s}(\bm{r}, \omega)
+	&= \mathcal{G}\_m (\bm{r}, \bm{r_0}) \cdot \mathcal{\Alpha_m}(V_m, \omega) \cdot \bm{E}(\bm{r_0}, \omega).
+\end{aligned}
+$$
 
 ### Spherical Waves
 
