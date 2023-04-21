@@ -1459,6 +1459,10 @@ $$ \tag{7.42}
 	\bigg\rbrace |\bm{E_0}|^2 e^{-\alpha (\bm{r} \cdot \bm{n})} \bm{n}.
 $$
 
+### Fresnel Equations
+
+TODO
+
 ### Electromagnetic Potential
 
 The solutions of the Maxwell equations we have found so far have a limited range of validity. The medium must be isotropic and either homogeneous (which prohibits scattering) or divided into several bounded homogeneous regions (which permits scattering only at the boundaries), and the material's response to the incident electromagnetic field may only be purely linear. Moreover, while the method of solving a system of differential equations augmented with boundary conditions (the so-called [boundary value problem](https://en.wikipedia.org/wiki/Boundary_value_problem)) is suitable for many simple cases (such as reflection and transmission of a plane wave at a planar interface, which leads to the [Fresnel equations](https://en.wikipedia.org/wiki/Fresnel_equations)), it quickly becomes unwieldy for more complex problems. Another approach tends to become more viable, where one reformulates the field in terms of the [electromagnetic potential](https://en.wikipedia.org/wiki/Electromagnetic_four-potential), as this leads to an integral (rather than a differential) solution of the Maxwell equations.
@@ -2912,10 +2916,10 @@ with the individual components defined as follows:
 
 $$ \tag{1z.12}
 \begin{aligned}
-	& \mathcal{G_{en}}(\bm{\Rho})
-	= \frac{g(\bm{\Rho})}{|\bm{\Rho}|} \bigg(i - \frac{1}{|\bm{\Rho}|} \bigg) \bigg(\mathcal{I} - 3 \frac{\bm{\Rho} \otimes \bm{\Rho}}{\bm{\Rho} \cdot \bm{\Rho}} \bigg), \cr
-	& \mathcal{G_{ef}}(\bm{\Rho})
-	= g(\bm{\Rho}) \bigg( \mathcal{I} - \frac{\bm{\Rho} \otimes \bm{\Rho}}{\bm{\Rho} \cdot \bm{\Rho}} \bigg).
+	& \mathcal{G_{en}}(\bm{R})
+	= \frac{g(\bm{R})}{|\bm{R}|} \bigg(i - \frac{1}{R} \bigg) \bigg(\mathcal{I} - 3 \frac{\bm{R} \otimes \bm{R}}{\bm{R} \cdot \bm{R}} \bigg), \cr
+	& \mathcal{G_{ef}}(\bm{R})
+	= g(\bm{R}) \bigg( \mathcal{I} - \frac{\bm{R} \otimes \bm{R}}{\bm{R} \cdot \bm{R}} \bigg).
 \end{aligned}
 $$
 
@@ -2957,10 +2961,10 @@ which is consistent with the findings listed in Eqn. 9.52. In more detail (cf. E
 
 $$ \tag{1z.18}
 \begin{aligned}
-	& \mathcal{G_{mn}}(\bm{\Rho})
-	= -\frac{g(\bm{\Rho})}{|\bm{\Rho}|} \bigg(\frac{\bm{\Rho} \times \mathcal{I}}{|\bm{\Rho}|} \bigg), \cr
-	& \mathcal{G_{mf}}(\bm{\Rho})
-	= i g(\bm{\Rho}) \bigg(\frac{\bm{\Rho} \times \mathcal{I}}{|\bm{\Rho}|} \bigg).
+	& \mathcal{G_{mn}}(\bm{R})
+	= -\frac{g(\bm{R})}{R} \bigg(\frac{\bm{R} \times \mathcal{I}}{R} \bigg), \cr
+	& \mathcal{G_{mf}}(\bm{R})
+	= i g(\bm{R}) \bigg(\frac{\bm{R} \times \mathcal{I}}{R} \bigg).
 \end{aligned}
 $$
 
@@ -2969,6 +2973,18 @@ Therefore, the magnetic counterpart of Eqn. 1z.13 is
 $$ \tag{1z.19}
 	i \bm{B_s}(\bm{r}, \omega)
 	= \int\_{V} \big( m^2(\bm{r'}, \omega) - 1 \big) \mathcal{G_m}(\bm{r}, \bm{r'}) \cdot \bm{E}(\bm{r'}, \omega) dV'.
+$$
+
+According to Eqn. 9.46 and 9.52, the components of the dimensionless dyadics exhibit the same dependence on the distance \\(R\\):
+
+$$ \tag{1z.1a}
+\begin{aligned}
+	\mathcal{G_{en}} &\varpropto R^{-2}, &
+	\mathcal{G_{ef}} &\varpropto R^{-1},
+	\cr
+	\mathcal{G_{mn}} &\varpropto R^{-2}, &
+	\mathcal{G_{mf}} &\varpropto R^{-1}.
+\end{aligned}
 $$
 
 As always, the expression of the time-harmonic field is given by Eqn. 4.11:
@@ -3223,7 +3239,7 @@ One of the simplest problems that can be solved using our mathematical framework
 The necessary and sufficient condition for electric dipole radiation is that the radius \\(a\\) (of the bounding sphere) of the particle must be small compared to the wavelength \\(\lambda\\) computed both inside and outside the particle \[[4](#references) (ch. 6.4)\]. Using the natural unit convention, this requirement can be expressed as
 
 $$
-	a \ll 1, \quad m a \ll 1.
+	a \ll 1, \quad |m a| \ll 1.
 $$
 
 These assumptions radically simplify the scattering problem:
@@ -3251,7 +3267,7 @@ $$ \tag{12.3}
 	\bm{p}(V_m, \omega) = \mathcal{\Alpha_m}(V_m, \omega) \cdot \varepsilon(\omega) \bm{E}(\bm{r_0}, \omega),
 $$
 
-where we replaced \\(\epsilon_0\\) with \\(\varepsilon\\) (to account for the properties of the surrounding medium) and \\(\bm{E_m}\\) with \\(\bm{E}\\) (which is only permissible assuming the dipole is sufficiently isolated from the rest of the matter).
+where we replaced \\(\epsilon_0\\) with \\(\varepsilon\\) (to account for the properties of the surrounding medium) and \\(\bm{E_m}\\) with \\(\bm{E}\\) (which is only permissible assuming the dipole is sufficiently isolated from the other particles).
 
 The combination of Eqn. 12.1-12.3 results in
 
@@ -3271,7 +3287,7 @@ $$ \tag{12.5}
 \end{aligned}
 $$
 
-Comparison with Eqn. 11.10 and 11.11 shows that Eqn. 12.5 corresponds to the contribution of a volume element occupied by a single atom or a small molecule, and with the polarizability \\(\mathcal{\Alpha_m}\\) taking the role of the volume integral of the relative wavenumber \\(m\\). In particular, if the polarizability is isotropic, so that \\(\mathcal{\Alpha_m} = \alpha_m\\),
+Comparison shows that Eqn. 12.5 corresponds to the contribution of a volume element occupied by a single atom or a small molecule, and with the polarizability \\(\mathcal{\Alpha_m}\\) taking the role of the volume integral of the relative wavenumber \\(m\\). In particular, if the polarizability is isotropic, so that \\(\mathcal{\Alpha_m} = \alpha_m\\),
 
 $$ \tag{12.6}
 	\alpha_m(V_m, \omega)
@@ -3280,7 +3296,7 @@ $$
 
 This relation also follows from Eqn. 10.18.4, 10.21, and 10.26, under the assumption that the polarization \\(\bm{P}\\) vanishes outside the volume occupied by the dipole.
 
-Finally, note that, since \\(m\\) is dimensionless, Eqn. 12.6 implies that the polarizability has units of volume \[[4](#references) (ch. 6.22)\]. There are two ways to make \\(\mathcal{\Alpha_m}\\) dimensionless. The first is to make it relative to the volume of of the particle by dividing \\(\mathcal{\Alpha_m}\\) by \\(V_m\\). The second is to make the volume itself dimensionless by adopting the natural unit convention. The latter method yields (cf. Eqn. 1z.13 and 1z.19)
+Finally, note that, since \\(m\\) is dimensionless, Eqn. 12.6 implies that the polarizability has dimensions of volume \[[4](#references) (ch. 6.22)\]. There are two ways to make \\(\mathcal{\Alpha_m}\\) dimensionless: the first is to obtain its density by dividing \\(\mathcal{\Alpha_m}\\) by \\(V_m\\), and the second is to make the volume itself dimensionless by adopting the natural unit convention. The latter method yields (cf. Eqn. 1z.13 and 1z.19)
 
 $$ \tag{12.7}
 \begin{aligned}
