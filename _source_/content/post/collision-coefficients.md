@@ -428,13 +428,13 @@ $$ \tag{2.23}
 	\frac{\partial}{\partial V} \mathcal{E\_m}(V, t) = \frac{1}{2} \bm{B}(\bm{r}, t) \cdot \bm{H}(\bm{r}, t), \quad
 $$
 
-Comparison of Eqn. 2.17 and 2.22 shows that both formulations of the Poynting vector are equivalent if the measurement is performed inside a *non-magnetic* material. That explains the \\(\mu\_0^{-1}\\) factor: since classical electrodynamics does not explicitly model the intrinsic properties of the elementary particles responsible for magnetism, the microscopic formulation of the Maxwell equations assumes that the observer is located in a potentially charged, yet non-magnetic region of vacuum.
+Comparison of Eqn. 2.17 and 2.22 shows that both formulations of the Poynting vector are equivalent if the measurement is performed inside a *non-magnetic* material. That explains the \\(\mu\_0^{-1}\\) factor: since classical electrodynamics considers elementary particles to be point-like, the microscopic observer is always located in the vacuum.
 
 Since electromagnetic fields oscillate so rapidly, one typically measures the *time-averaged* Poynting vector
 
 $$ \tag{2.24}
 	\braket{\bm{S}}
-	= \frac{1}{T} \int\_{-T/2}^{\thinspace T/2} \bm{S}(\bm{r}, t + t') dt'.
+	= \frac{1}{T} \int\_{0}^{T/2} \bm{S}(\bm{r}, t + t') dt'.
 $$
 
 where \\(T\\) is the duration of the measurement, or the [exposure time](https://en.wikipedia.org/wiki/Shutter_speed).
@@ -453,7 +453,7 @@ is the amount of energy per second per unit area that flows through a surface wi
 
 The Maxwell equations can be simplified by transforming the fields from the time to the frequency domain.
 
-Define[^1] the [Fourier transform](https://en.wikipedia.org/wiki/Fourier_transform) of the electric *vector* field \\(\bm{E}(\bm{r}, t)\\) as
+The [Fourier transform](https://en.wikipedia.org/wiki/Fourier_transform) of the electric *vector* field \\(\bm{E}(\bm{r}, t)\\) is defined[^1] as
 
 [^1]: The choice of the sign of the complex exponential is arbitrary; we use the modern convention. It directly determines the sign of the imaginary components of both the complex permittivity and the complex refractive index. The symmetric [choice of constants](https://en.wikipedia.org/wiki/Fourier_transform#Other_conventions) ensures that the transformation is [unitary](https://en.wikipedia.org/wiki/Unitary_transformation).
 
@@ -612,7 +612,7 @@ $$ \tag{4.2}
 	\bm{S}(\bm{r}, \omega)
 	= \mathcal{F} \big\lbrace \bm{S}(\bm{r}, t) \big\rbrace
 	= \mathcal{F} \Big\lbrace
-		\mathcal{F^{-1}} \big\lbrace \bm{E}(\bm{r}, \omega)
+		\mathcal{F^{-1}} \big\lbrace \bm{E}(\bm{r}, \omega) \big\rbrace
 		\times \mathcal{F^{-1}} \big\lbrace \bm{H}(\bm{r}, \omega) \big\rbrace
 	\Big\rbrace.
 $$
@@ -621,7 +621,7 @@ But that is just a [convolution](https://en.wikipedia.org/wiki/Convolution_theor
 
 $$ \tag{4.3}
 	\bm{S}(\bm{r}, \omega)
-	= \int\_{-\infin}^{\infin}
+	= \frac{1}{\sqrt{2 \pi}} \int\_{-\infin}^{\infin}
 	\bm{E}(\bm{r}, \omega') \times \bm{H}(\bm{r}, \omega - \omega') d\omega'.
 $$
 
@@ -634,27 +634,27 @@ We can obtain a more practical result at the cost of some generality. Specifical
 One particular feature of periodic functions is the existence of a [Fourier series](https://en.wikipedia.org/wiki/Fourier_series#Complex-valued_functions) representation:
 
 $$ \tag{4.4}
-	\bm{E}(\bm{r}, t)
-	= \frac{1}{2} \sum\_{p = -\infin}^{\infin} \bm{E_p}(\bm{r}) e^{-i p \omega_1 t}
-	= \frac{1}{2} \sum\_{p = -\infin}^{\infin} \bm{E_p}(\bm{r}) e^{-i \omega_p t}
-	= \frac{1}{2} \sum\_{p = -\infin}^{\infin} \ket{u_p} \braket{u_p | \bm{E}}.
+	2 \bm{E}(\bm{r}, t)
+	= \sum\_{p = -\infin}^{\infin} \bm{E_p}(\bm{r}) e^{-i p \omega_1 t}
+	= \sum\_{p = -\infin}^{\infin} \bm{E_p}(\bm{r}) e^{-i \omega_p t}
+	= \sum\_{p = -\infin}^{\infin} \ket{u_p} \braket{u_p | \bm{E}}.
 $$
 
 where we defined \\(\omega_p = p \thinspace \omega_1\\), with the *Fourier coefficients* \\(\bm{E_p}\\) given by the integral[^8]
 
-[^8]: In order to obtain the same results found in the physics literature, we had to multiply the series by 1/2, and the coefficients by 2.
+[^8]: The factor of 2 was added in order to obtain the same results found in the physics literature.
 
 $$ \tag{4.5}
-	\bm{E_p}(\bm{r})
-	= \frac{2}{T_1} \int\_{-T_1/2}^{\thinspace T_1/2} \bm{E}(\bm{r}, t) e^{i \omega_p t} dt
-	= 2 \braket{u_p | \bm{E}}.
+	\frac{1}{2} \bm{E_p}(\bm{r})
+	= \frac{1}{T_1} \int\_{0}^{T_1} \bm{E}(\bm{r}, t) e^{i \omega_p t} dt
+	= \braket{u_p | \bm{E}}.
 $$
 
 Eqn. 4.5 can be interpreted as the [projection](https://en.wikipedia.org/wiki/Hilbert_space#Fourier_analysis) onto the discrete [Fourier basis](https://en.wikipedia.org/wiki/Fourier_series#Hilbert_space_interpretation), with Eqn. 4.4 showing the reconstruction. The individual elements of Eqn. 4.4 (called *harmonics*) possess a key property encapsulated in the *orthonormalization relation*
 
 $$ \tag{4.6}
 	\braket{u_p | u_q}
-	= \frac{1}{T_1} \int\_{-T_1/2}^{\thinspace T_1/2} e^{i (\omega_p - \omega_q) t} dt
+	= \frac{1}{T_1} \int\_{0}^{T_1} e^{i (\omega_p - \omega_q) t} dt
 	= \delta_{p,q}
 $$
 
@@ -719,7 +719,7 @@ $$ \tag{4.12}
 	= \sqrt{\frac{\pi}{2}} \bigg( \bm{E_p}(\bm{r}) \delta(\omega - \omega_p) + \big[ \bm{E_p}(\bm{r}) \big]^{\*} \delta(\omega + \omega_p) \bigg).
 $$
 
-In practice, it is not necessary to solve the Maxwell equations for the complex conjugate. We simply take \\(\bm{E_p}(\bm{r}) \delta(\omega - \omega_p)\\) and substitute it in place of \\(\bm{E}(\bm{r}, \omega)\\) into Eqn. 3.7. As a result, we obtain a system formally equivalent to Eqn. 3.9, with \\(\bm{E}(\bm{r}, \omega)\\) replaced by \\(\bm{E_p}(\bm{r})\\), and \\(\omega\\) by \\(\omega_p\\). After solving for \\(\bm{E_p}(\bm{r})\\), we use Eqn. 4.11 to obtain the expression of the real electric vector \\(\bm{E}(\bm{r}, t)\\).
+In practice, it is not necessary to solve the Maxwell equations for the complex conjugate. We simply take \\(\bm{E_p}(\bm{r}) \delta(\omega - \omega_p)\\) and substitute it in place of \\(\bm{E}(\bm{r}, \omega)\\) into Eqn. 3.7. As a result, we obtain a system formally equivalent to Eqn. 3.9, with \\(\bm{E}(\bm{r}, \omega)\\) replaced by \\(\bm{E_p}(\bm{r})\\), and \\(\omega\\) by \\(\omega_p\\). After solving for \\(\bm{E_p}(\bm{r})\\), we use Eqn. 4.8 (or 4.11) to obtain the expression of the real electric vector \\(\bm{E}(\bm{r}, t)\\).
 
 Let us put the math to work. Assuming that the electromagnetic field is time-harmonic, Eqn. 2.22 of the Poynting vector can be written as
 
@@ -745,7 +745,7 @@ $$ \tag{4.14}
 	= \frac{1}{4} \sum\_{p = -\infin}^{\infin} \sum\_{q = -\infin}^{\infin}
 	\bm{E_p}(\bm{r}) \times \big[ \bm{H_q}(\bm{r}) \big]^{\*}
 	\Bigg(
-		\frac{1}{T} \int\_{-T/2}^{\thinspace T/2} e^{i (\omega_q - \omega_p) t'} dt'
+		\frac{1}{T} \int\_{0}^{T} e^{i (\omega_q - \omega_p) t'} dt'
 	\Bigg).
 \end{aligned}
 $$
@@ -2021,7 +2021,7 @@ $$ \tag{9.44}
 	\mathcal{G}\_e(\bm{r}, \bm{r'}, k)
 	= \mathcal{G_{en}}(\bm{r} - \bm{r'}, k)
 	+ \mathcal{G_{ef}}(\bm{r} - \bm{r'}, k)
-	- \frac{\delta(\bm{r}, \bm{r'})}{k^2} \mathcal{L},
+	- \frac{\delta(\bm{r} - \bm{r'})}{k^2} \mathcal{L},
 $$
 
 such that
@@ -2067,7 +2067,7 @@ Clearly, the matrix is anti-symmetric: \\(\mathcal{G}\_m = -\mathcal{G}\_m^T\\).
 
 $$ \tag{9.48}
 	\mathcal{G}\_m(\bm{r'}, \bm{r}, k)
-	= \frac{1}{i \omega} \nabla' \times \mathcal{G}\_e(\bm{r'}, \bm{r}, k)
+	= \nabla' \times \mathcal{G}\_e(\bm{r'}, \bm{r}, k)
 	= \mathcal{P.V.} \lbrace \nabla' g(\bm{r'} - \bm{r}, k) \rbrace \times \mathcal{I}
 	= -\mathcal{G}\_m(\bm{r}, \bm{r'}, k).
 $$
@@ -3212,11 +3212,11 @@ $$ \tag{1x.14}
 \end{aligned}
 $$
 
-The expression of the magnetic field \\(\bm{B_s}\\) can be determined by taking the curl (using Eqn. 1z.23, 9.35, and 9.3y):
+The expression of the magnetic field \\(\bm{B_s}\\) can be determined by taking the curl of Eqn. 1x.14 and using Eqn. 1z.23, 9.35, and 9.3y:
 
 $$ \tag{1x.15}
 \begin{aligned}
-	\bm{B_s}(\bm{r}, \omega)
+	i \bm{B_s}(\bm{r}, \omega)
 	&= \oint_{\partial V}
 		\mathcal{G}\_m(\bm{r}, \bm{r'}) \cdot \big( \bm{n}(\bm{r'}) \times i \bm{B}(\bm{r'}, \omega) \big) dA'
 	\cr
@@ -4880,7 +4880,7 @@ is invariant with respect to the initial time \\(t_0\\), and that 2) the duratio
 
 $$ \tag{17.11}
 	\braket{\bm{S}} \negmedspace (\bm{r}, t)
-	= \frac{1}{T} \int\_{-T/2}^{\thinspace T/2} \bm{S}(\bm{r}, t + t') dt'
+	= \frac{1}{T} \int\_{0}^{T} \bm{S}(\bm{r}, t + t') dt'
 $$
 
 to be representative of its mean value at any point in time \\(t\\):
@@ -4928,7 +4928,7 @@ $$ \tag{17.16}
 	&=\lim_{T \to \infin} \frac{1}{T} \int\_{0}^{T}
 	\frac{\mu_0^{-1}}{4} \sum\_{p = -\infin}^{\infin} \sum\_{q = -\infin}^{\infin}
 	\bm{E_p}(\bm{r}, t) \times \big[ \bm{B_q}(\bm{r}, t) \big]^{\*}
-	\left( \frac{1}{T_1} \int\_{-T_1/2}^{\thinspace T_1/2} e^{i (\omega_q - \omega_p) t'} dt' \right) dt
+	\left( \frac{1}{T_1} \int\_{0}^{T_1} e^{i (\omega_q - \omega_p) t'} dt' \right) dt
 	\cr
 	&= \lim_{T \to \infin} \frac{1}{T} \int\_{0}^{T}
 		\frac{\mu_0^{-1}}{2} \sum\_{p = 1}^{\infin}
@@ -4977,7 +4977,7 @@ called an [ensemble average](https://en.wikipedia.org/wiki/Ensemble_average). Fo
 
 $$ \tag{17.21}
 	\braket{f}\_t
-	= \frac{1}{T_1} \int\_{-T_1/2}^{\thinspace T_1/2} f(\bm{r}, \psi, t + t') dt'
+	= \frac{1}{T_1} \int\_{0}^{T_1} f(\bm{r}, \psi, t + t') dt'
 $$
 
 for the average over the fundamental period of the electromagnetic field.
