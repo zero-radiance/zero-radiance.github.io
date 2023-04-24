@@ -3586,9 +3586,13 @@ $$ \tag{13.??}
 \end{aligned}
 $$
 
-are the *polarization vectors* of the spherical wave. Note that we must divide by \\(k r\\) (rather than just \\(r\\)) in order for \\(\bm{E_1}\\) and \\(\bm{B_1}\\) to have the same units as the electric and the magnetic field, respectively. This may fail to match the convention used by other authors \[[6](#references) (ch. 13.6), [8](#references) (ch. 5.1)\].
+are the *polarization vectors* of the spherical wave \[[6](#references) (ch. 13.6), [8](#references) (ch. 5.1)\].
 
-[Picture]
+---
+
+TODO: Is magnetism really a problem for a monochromatic field? Remove non-magnetic everywhere??
+
+---
 
 If the field vectors are orthogonal, and the ratio of their magnitudes is known, the (monochromatic) Poynting vector has the form
 
