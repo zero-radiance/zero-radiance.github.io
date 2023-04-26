@@ -3226,6 +3226,219 @@ Eqn. 1x.14 and 1x.15 are called the *surface integral equations*. They give the 
 
 The same principle can be used to express the scattered field at an interior point in terms of the values of the fields at the enclosing surface \[[17](#references) (ch. 8.14)\]. TODO? Or skip it?
 
+### Transition Operator
+
+In order to to evaluate the scattered field using the volume (or the surface) integral equation, we must first determine the expression of the internal field using the description of the scattering object and the expression of the incident field, e.i. the external field in the absence of the scattering object.
+
+Let us recall the mechanics of scattering. In a dielectric, the incident field acts (exerts force) on the dipoles, causing them to oscillate, and therefore radiate scattered wavelets interfering with each other. As a result, each dipole becomes a secondary source, exerting force on all other dipoles surrounding it. Repeated application of this iterative approach leads to evaluation of successive orders of scattering one by one. This is the physical intuition behind the [Born series](https://en.wikipedia.org/wiki/Born_series) expansion \[[6](#references) (ch. 13.1)\].
+
+We can formalize this approach using the method borrowed from the quantum theory of scattering \[[8](#references) (ch. 4.5)\]. Let us define the *potential function*
+
+$$ \tag{14.1}
+	u(\bm{r}, \omega) =
+	\begin{cases}
+	   m^2(\bm{r}, \omega) - 1 &\text{if } \bm{r} \in V, \cr
+	   0 &\text{otherwise},
+	\end{cases}
+$$
+
+Eqn. 1z.13 can then be expressed as
+
+$$ \tag{14.2}
+	\bm{E}(\bm{r}, \omega) = \bm{E_i}(\bm{r}, \omega) +
+	\int\_{V} u(\bm{r'}, \omega) \mathcal{G_e}(\bm{r}, \bm{r'}) \cdot \bm{E}(\bm{r'}, \omega) dV'.
+$$
+
+The resulting equation is recursive. Substitution makes it fairly obvious that the total electric field can be expressed as multiple integral of the transformed incident field. While this fact can be rigorously derived from the properties of the dyadic Green functions \[[13](#references) (ch. 5.1)\], for simplicity, let us assume that the solution exists:
+
+$$ \tag{14.3}
+	u \big( \bm{r}, \omega \big) \bm{E}(\bm{r}, \omega)
+	= \int\_{V} \mathcal{T} \big( \bm{r}, \bm{r'}, \omega \big) \cdot \bm{E_i}(\bm{r'}, \omega) dV',
+$$
+
+where \\(\mathcal{T}\\) is the *transition dyadic*, the expression of which is yet to be determined.
+
+Recursive equations written in the integral form quickly become unwieldy. Instead, we shall convert them into the operator form by using the [bra-ket notation](https://en.wikipedia.org/wiki/Bra%E2%80%93ket_notation) \[[30](#references), ch. II-B, [31](#references)\]. Additionally, any dependence on the frequency or the wavenumber shall be kept implicit.
+
+Our building blocks are state vectors (or *kets*), such as \\(\ket{E}\\), and linear functionals (or *bras*), such as \\(\bra{r}\\). We can picture a bra and a ket as a row and a column vector, respectively. Put together, they represent the projection (the [inner product](https://en.wikipedia.org/wiki/Inner_product)) of the two vectors:
+
+$$ \tag{14.4}
+	  \braket{r | E}
+	= \big( \ket{r}, \ket{E} \big)
+	= \bm{E}(\bm{r}).
+$$
+
+In addition, we can define the scalar *potential operator* \\(U\\), such that, in the position representation,
+
+$$ \tag{14.5}
+	\bra{r} U = u(\bm{r}) \bra{r}
+	\quad \text{or} \quad
+	\braket{r | U | r'} = u(\bm{r}) \delta(r - r').
+$$
+
+Similarly, we define the *Green operator* \\(G\\) and the *transition operator* \\(T\\) as
+
+$$ \tag{14.6}
+	\braket{r | G | r'} = \mathcal{G}\_e(\bm{r}, \bm{r'}), \quad
+	\braket{r | T | r'} = \mathcal{T}(\bm{r}, \bm{r'}).
+$$
+
+Finally, we must define the *orthonormalization* relation
+
+$$ \tag{14.7}
+	  \braket{r | r'} = \delta(\bm{r} - \bm{r'})
+$$
+
+and the *closure* relation
+
+$$ \tag{14.8}
+	\int dV \ket{r} \bra{r} = \mathcal{I},
+$$
+
+which, when taken together, say that the set of \\(\ket{r}\\) vectors constitutes a basis.
+
+In the new notation, Eqn. 14.2 can be written as
+
+$$ \tag{14.9}
+	\braket{r | E}
+	= \braket{r | E_i}
+	+ \int dV' \braket{r | G | r'} \braket{r' | U | E},
+$$
+
+or, in the representation-independent form,
+
+$$ \tag{14.10}
+	\ket{E} = \ket{E_i} + G U \ket{E}.
+$$
+
+Eqn. 14.10 is formally identical to the [Lippmann–Schwinger equation](https://en.wikipedia.org/wiki/Lippmann%E2%80%93Schwinger_equation).
+
+Similarly, Eqn. 14.3 can be transformed into
+
+$$ \tag{14.11}
+	U \ket{E} = T \ket{E_i},
+$$
+
+which shows a transition from the state \\(\ket{E_i}\\) to the state \\(\ket{E}\\).
+
+Substitution of Eqn. 14.11 into 14.10 produces an alternative expression of the total field
+
+$$ \tag{14.12}
+	\ket{E} = \ket{E_i} + G T \ket{E_i}.
+$$
+
+In the position representation,
+
+$$ \tag{14.13}
+	\braket{r | E}
+	= \braket{r | E_i}
+	+ \int dV' \int dV'' \braket{r | G | r'}
+	\braket{r' | T | r''} \braket{r'' | E},
+$$
+
+and the corresponding dyadic expression is
+
+$$ \tag{14.14}
+	\bm{E}(\bm{r})
+	= \bm{E_i}(\bm{r})
+	+ \int\_{V} \mathcal{G}\_e (\bm{r}, \bm{r'}) \cdot \int\_{V} \mathcal{T} (\bm{r'}, \bm{r''}) \cdot \bm{E_i}(\bm{r''}) dV'' dV'.
+$$
+
+As expected, Eqn. 14.14 is identical to the combination of Eqn. 14.2 and 14.3.
+
+Now, let us multiply both sides of Eqn. 14.12 by \\(U\\):
+
+$$ \tag{14.15}
+	U \ket{E}
+	= U \ket{E_i} + U G T \ket{E_i}
+	= U (I + G T) \ket{E_i},
+$$
+
+and substitute Eqn. 14.11 once more:
+
+$$ \tag{14.16}
+	T \ket{E_i} = U (I + G T) \ket{E_i}.
+$$
+
+Since the ket \\(\ket{E_i}\\) is arbitrary, it means the transition operator does not depend on the incident field:
+
+$$ \tag{14.17}
+	T = U (I + G T)
+$$
+
+It does, however, depend on the geometry and the structure of the scattering object.
+
+Notice that, when we combine Eqn. 14.11 and 14.17, the potential operator on both sides of the resulting equation can be omitted, and we obtain a Born series expansion
+
+$$ \tag{14.18}
+\begin{aligned}
+	\ket{E}
+	&= (I + G T) \ket{E_i} \cr
+	&= \big( I + G U (I + G T) \big) \ket{E_i} \cr
+	&= \ket{E_i} + G U \ket{E_i} + (G U)^2 \ket{E_i} + \dots
+\end{aligned}
+$$
+
+that corresponds to the recursive substitution of Eqn. 14.2.
+
+Let us now complete the derivation by expanding Eqn. 14.17 in the position representation:
+
+$$ \tag{14.19}
+\begin{aligned}
+	\braket{r | T | r'}
+	&= \braket{r | U (I + G T) | r'} \cr
+	&= u(\bm{r}) \braket{r | I + G T | r'} \cr
+	&= u(\bm{r}) \bigg( \negmedspace \braket{r | r'} + \int dV \braket{r | G | r''} \braket{r'' | T | r'} \negmedspace \bigg).
+\end{aligned}
+$$
+
+Translation of Eqn. 14.19 into the integral form yields the definition of the transition dyadic:
+
+$$ \tag{14.20}
+\begin{aligned}
+	\mathcal{T} (\bm{r}, \bm{r'}, \omega)
+	&= u(\bm{r}, \omega) \bigg( \delta(\bm{r} - \bm{r'}) \mathcal{I} + \int_V \mathcal{G}\_e (\bm{r}, \bm{r''}) \cdot \mathcal{T} (\bm{r''}, \bm{r'}, \omega) dV'' \bigg).
+\end{aligned}
+$$
+
+The expression of the electric dyadic (defined in Eqn. 9.27) can be expanded in two different ways. We can express it as a product, and move the derivatives outside the integral, as shown by Eqn. 1z.8:
+
+$$ \tag{14.21}
+\begin{aligned}
+	\mathcal{T} (\bm{r}, \bm{r'}, \omega)
+	&= u(\bm{r}, \omega) \bigg(
+	\delta(\bm{r} - \bm{r'}) \mathcal{I}
+	\cr
+	&+ \Big( \mathcal{I} + \nabla \otimes \nabla \Big) \cdot \int\_{V}
+	g( \bm{r} - \bm{r''}) \mathcal{T} (\bm{r''}, \bm{r'}, \omega) dV'' \bigg).
+\end{aligned}
+$$
+
+Alternatively, we can decompose it into the individual components as per by Eqn. 1z.11:
+
+$$ \tag{14.22}
+\begin{aligned}
+	\mathcal{T} (\bm{r}, \bm{r'}, \omega)
+	&= u(\bm{r}, \omega) \bigg(
+	\delta(\bm{r} - \bm{r'}) \mathcal{I}
+	- \mathcal{L} \cdot \mathcal{T} (\bm{r}, \bm{r'}, \omega)
+	\cr
+	&+ \lim_{\delta \to 0} \int\_{V - V_{\delta}} \big( \mathcal{G_{en}}(\bm{r} - \bm{r''}) + \mathcal{G_{ef}}(\bm{r} - \bm{r''}) \big) \cdot \mathcal{T} (\bm{r''}, \bm{r'}, \omega) dV'' \bigg).
+\end{aligned}
+$$
+
+Notice that the transition dyadic from the left-hand side is also present on right-hand side. After grouping the terms, we obtain the following expression of the transition dyadic:
+
+$$ \tag{14.23}
+\begin{aligned}
+	\mathcal{T} (\bm{r}, \bm{r'}, \omega)
+	&= u(\bm{r}, \omega)
+	\Big( \mathcal{I} + u(\bm{r}, \omega) \mathcal{L} \Big)^{-1} \cdot
+	\bigg( \delta(\bm{r} - \bm{r'}) \mathcal{I}
+	\cr
+	&+ \lim_{\delta \to 0} \int\_{V - V_{\delta}} \big( \mathcal{G_{en}}(\bm{r} - \bm{r''}) + \mathcal{G_{ef}}(\bm{r} - \bm{r''}) \big) \cdot \mathcal{T} (\bm{r''}, \bm{r'}, \omega) dV'' \bigg).
+\end{aligned}
+$$
 
 ### Dipole Radiation
 
@@ -3604,232 +3817,6 @@ $$ \tag{13.23}
 $$
 
 that follows the [inverse-square law](https://en.wikipedia.org/wiki/Inverse-square_law).
-
-### Transition Operator
-
-The volume integral equation can be reduced to a relatively simple expression by assuming that the observation point is located in the radiation zone. However, in order to be able to compute the scattered field, we must first relate the internal field to the one acting on the scattering object, i.e. the external (incident) field in the absence of the object.
-
-Let us recall the mechanics of scattering. In a dielectric, the incident field acts (exerts force) on the dipoles, causing them to oscillate, and therefore radiate scattered wavelets interfering with each other. As a result, each dipole becomes a secondary source, exerting force on all other dipoles surrounding it. Repeated application of this iterative approach leads to evaluation of successive orders of scattering one by one. This is the physical intuition behind the [Born series](https://en.wikipedia.org/wiki/Born_series) expansion \[[6](#references) (ch. 13.1)\].
-
-We can formalize this approach in the following way \[[8](#references) (ch. 4.5)\]. We start with Eqn. 11.12, and substitute the expression of the source term \\(\bm{J'}\\) given by Eqn. 11.7:
-
-$$ \tag{14.2}
-	\bm{E}(\bm{r}, \omega)
-	= \bm{E_i}(\bm{r}, \omega)
-	+ \int\_{V} k^2(\omega) \big( m^2(\bm{r'}, \omega) - 1 \big) \mathcal{G}\_e \big( \bm{r}, \bm{r'}, k(\omega) \big) \cdot \bm{E}(\bm{r'}, \omega) dV'.
-$$
-
-For convenience, we define the *potential function*
-
-$$ \tag{14.3}
-	u(\bm{r}, k, \omega) =
-	\begin{cases}
-	   k^2 \big( m^2(\bm{r}, \omega) - 1 \big) &\text{if } \bm{r} \in V, \cr
-	   0 &\text{otherwise},
-	\end{cases}
-$$
-
-that allows us to write Eqn. 14.2 in a more compact form:
-
-$$ \tag{14.4}
-	\bm{E}(\bm{r}, \omega)
-	= \bm{E_i}(\bm{r}, \omega)
-	+ \int\_{V} u \big( \bm{r'}, k(\omega), \omega \big) \mathcal{G}\_e \big( \bm{r}, \bm{r'}, k(\omega) \big) \cdot \bm{E}(\bm{r'}, \omega) dV'.
-$$
-
-The resulting equation is recursive. Substitution makes it fairly obvious that the total electric field can be expressed as volume integral of the transformed incident field. While this fact can be rigorously derived from the properties of the dyadic Green functions \[[13](#references) (ch. 5.1)\], for simplicity, let us assume that the solution exists:
-
-$$ \tag{14.5}
-	u \big( \bm{r'}, k(\omega), \omega \big) \bm{E}(\bm{r'}, \omega)
-	= \int\_{V} \mathcal{T} \big( \bm{r'}, \bm{r''}, k(\omega), \omega \big) \cdot \bm{E_i}(\bm{r''}, \omega) dV'',
-$$
-
-where \\(\mathcal{T}\\) is the *transition dyadic*, the expression of which is yet to be determined.
-
-Recursive equations written in the integral form quickly become unwieldy. Instead, we shall convert them into the operator form by using the [bra-ket notation](https://en.wikipedia.org/wiki/Bra%E2%80%93ket_notation) \[[30](#references), ch. II-B, [31](#references)\]. Additionally, any dependence on the frequency or the wavenumber shall be kept implicit.
-
-Our building blocks are state vectors (or *kets*), such as \\(\ket{E}\\), and linear functionals (or *bras*), such as \\(\bra{r}\\). We can picture a bra and a ket as a row and a column vector, respectively. Put together, they represent the projection (the [inner product](https://en.wikipedia.org/wiki/Inner_product)) of the two vectors:
-
-$$ \tag{14.6}
-	  \braket{r | E}
-	= \big( \ket{r}, \ket{E} \big)
-	= \bm{E}(\bm{r}).
-$$
-
-In addition, we can define the scalar *potential operator* \\(U\\), such that, in the position representation,
-
-$$ \tag{14.7}
-	\bra{r} U = u(\bm{r}) \bra{r}
-	\quad \text{or} \quad
-	\braket{r | U | r'} = u(\bm{r}) \delta(r - r').
-$$
-
-Similarly, we define the *Green operator* \\(G\\) and the *transition operator* \\(T\\) as
-
-$$ \tag{14.8}
-	\braket{r | G | r'} = \mathcal{G}\_e(\bm{r}, \bm{r'}), \quad
-	\braket{r | T | r'} = \mathcal{T}(\bm{r}, \bm{r'}).
-$$
-
-Finally, we must define the *orthonormalization* relation
-
-$$ \tag{14.9}
-	  \braket{r | r'} = \delta(\bm{r} - \bm{r'})
-$$
-
-and the *closure* relation
-
-$$ \tag{14.10}
-	\int dV \ket{r} \bra{r} = \mathcal{I},
-$$
-
-which, when taken together, say that the set of \\(\ket{r}\\) vectors constitutes a basis.
-
-In the new notation, Eqn. 14.4 can be written as
-
-$$ \tag{14.11}
-	\braket{r | E}
-	= \braket{r | E_i}
-	+ \int dV' \braket{r | G | r'} \braket{r' | U | E},
-$$
-
-or, in the representation-independent form,
-
-$$ \tag{14.12}
-	\ket{E} = \ket{E_i} + G U \ket{E}.
-$$
-
-Eqn. 14.12 is formally identical to the [Lippmann–Schwinger equation](https://en.wikipedia.org/wiki/Lippmann%E2%80%93Schwinger_equation).
-
-Similarly, Eqn. 14.5 can be transformed into
-
-$$ \tag{14.13}
-	U \ket{E} = T \ket{E_i},
-$$
-
-which shows a transition from the state \\(\ket{E_i}\\) to \\(\ket{E}\\).
-
-Substitution of Eqn. 14.13 into 14.12 produces an alternative expression of the total field
-
-$$ \tag{14.14}
-	\ket{E} = \ket{E_i} + G T \ket{E_i}.
-$$
-
-In the position representation,
-
-$$ \tag{14.15}
-	\braket{r | E}
-	= \braket{r | E_i}
-	+ \int dV' \int dV'' \braket{r | G | r'}
-	\braket{r' | T | r''} \braket{r'' | E},
-$$
-
-and the corresponding dyadic expression is
-
-$$ \tag{14.16}
-	\bm{E}(\bm{r})
-	= \bm{E_i}(\bm{r})
-	+ \int\_{V} \mathcal{G}\_e (\bm{r}, \bm{r'}) \cdot \int\_{V} \mathcal{T} (\bm{r'}, \bm{r''}) \cdot \bm{E_i}(\bm{r''}) dV'' dV'.
-$$
-
-Note that Eqn. 14.16 is identical to the combination of Eqn. 14.4 and 14.5.
-
-Now, let us multiply both sides of Eqn. 14.14 by \\(U\\):
-
-$$ \tag{14.17}
-	U \ket{E}
-	= U \ket{E_i} + U G T \ket{E_i}
-	= U (I + G T) \ket{E_i},
-$$
-
-and substitute Eqn. 14.13 once more:
-
-$$ \tag{14.18}
-	T \ket{E_i} = U (I + G T) \ket{E_i}.
-$$
-
-Since the ket \\(\ket{E_i}\\) is arbitrary, it means the transition operator does not depend on the incident field:
-
-$$ \tag{14.19}
-	T = U (I + G T)
-$$
-
-It does, however, depend on the geometry and the structure of the scattering object.
-
-Notice that, when we combine Eqn. 14.13 and 14.19, the potential operator cancels out, and we obtain the Born series expansion
-
-$$ \tag{14.20}
-\begin{aligned}
-	\ket{E}
-	&= (I + G T) \ket{E_i} \cr
-	&= \big( I + G U (I + G T) \big) \ket{E_i} \cr
-	&= \ket{E_i} + G U \ket{E_i} + (G U)^2 \ket{E_i} + \dots
-\end{aligned}
-$$
-
-that corresponds to the recursive substitution of Eqn. 14.4.
-
-Let us now complete the derivation by writing Eqn. 14.19 in the position representation:
-
-$$ \tag{14.21}
-\begin{aligned}
-	\braket{r | T | r'}
-	&= \braket{r | U (I + G T) | r'} \cr
-	&= u(\bm{r}) \braket{r | I + G T | r'} \cr
-	&= u(\bm{r}) \bigg( \negmedspace \braket{r | r'} + \int dV \braket{r | G | r''} \braket{r'' | T | r'} \negmedspace \bigg).
-\end{aligned}
-$$
-
-Translation of Eqn. 14.21 into the integral form yields the definition of the transition dyadic:
-
-$$ \tag{14.22}
-\begin{aligned}
-	\mathcal{T} (\bm{r}, \bm{r'}, k)
-	&= u(\bm{r}, k) \bigg( \delta(\bm{r} - \bm{r'}) \mathcal{I} + \int_V \mathcal{G}\_e (\bm{r}, \bm{r''}, k) \cdot \mathcal{T} (\bm{r''}, \bm{r'}, k) dV'' \bigg)
-	\cr
-	&= k^2 \big( m^2(\bm{r}) - 1 \big) \bigg( \delta(\bm{r} - \bm{r'}) \mathcal{I} + \int_V \mathcal{G}\_e (\bm{r}, \bm{r''}, k) \cdot \mathcal{T} (\bm{r''}, \bm{r'}, k) dV'' \bigg).
-\end{aligned}
-$$
-
-The expression of the electric dyadic (defined in Eqn. 9.27) can be expanded in two different ways. We can express it as a product, and move the derivatives outside the integral, as shown by Eqn. 9.24:
-
-$$ \tag{14.23}
-\begin{aligned}
-	\mathcal{T} (\bm{r}, \bm{r'}, k)
-	&= k^2 \big( m^2(\bm{r}) - 1 \big) \bigg(
-	\delta(\bm{r} - \bm{r'}) \mathcal{I}
-	\cr
-	&+ \Big( \mathcal{I} + \frac{1}{k^2} \nabla \otimes \nabla \Big) \cdot \int\_{V}
-	g( \bm{r} - \bm{r''}, k) \mathcal{T} (\bm{r''}, \bm{r'}, k) dV'' \bigg).
-\end{aligned}
-$$
-
-Alternatively, we can decompose it into a sum of the dyadic Green function \\(\mathcal{G}\\) and the depolarization dyadic \\(\mathcal{L}\\) as per by Eqn. 9.27:
-
-$$ \tag{14.24}
-\begin{aligned}
-	\mathcal{T} (\bm{r}, \bm{r'}, k)
-	&= k^2 \big( m^2(\bm{r}) - 1 \big) \bigg(
-	\delta(\bm{r} - \bm{r'}) \mathcal{I}
-	\cr
-	&- \frac{1}{k^2} \mathcal{L}(\bm{r}) \cdot \mathcal{T} (\bm{r}, \bm{r'})
-	+ \lim_{\delta \to 0} \int\_{V - V_{\delta}} \mathcal{G} (\bm{r}, \bm{r''}) \cdot \mathcal{T} (\bm{r''}, \bm{r'}, k) dV'' \bigg).
-\end{aligned}
-$$
-
-Notice that the \\(1/k^2\\) term in front of the depolarization dyadic cancels out. If we move it to the left-hand side of the equation and rearrange the terms, we obtain the full definition of the transition dyadic:
-
-$$ \tag{14.25}
-\begin{aligned}
-	\mathcal{T} (\bm{r}, \bm{r'}, k)
-	&= k^2 \big( m^2(\bm{r}) - 1 \big)
-	\Big( \mathcal{I} + \big( m^2(\bm{r}) - 1 \big) \mathcal{L}(\bm{r}) \Big)^{-1}
-	\cr
-	&\cdot
-	\bigg( \delta(\bm{r} - \bm{r'}) \mathcal{I}
-	+ \lim_{\delta \to 0} \int\_{V - V_{\delta}} \mathcal{G} (\bm{r}, \bm{r''}, k) \cdot \mathcal{T} (\bm{r''}, \bm{r'}, k) dV'' \bigg).
-\end{aligned}
-$$
 
 ### Scattering Matrix
 
