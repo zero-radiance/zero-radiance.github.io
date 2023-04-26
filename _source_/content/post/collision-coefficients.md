@@ -2682,9 +2682,9 @@ In the electromagnetic scattering literature, Eqn. 11.10 and 11.11 are often cal
 
 ### Natural Units
 
-So far, we have not paid much attention to the units of measurement, except for making the specific choice to adopt the SI unit convention; instead, we focused on learning the foundational concepts and building the physical intuition. Since this approach is common among introductory-level textbooks, it allowed us to insert multiple references (with equations of the same form) for those readers who wish to learn more, or are simply looking for an alternative explanation.
+So far, we have not paid much attention to the units of measurement, except for making the specific choice to adopt the [International System of Units](https://en.wikipedia.org/wiki/International_System_of_Units) (the SI system); instead, we focused on learning the foundational concepts and building the physical intuition. Since this approach is common among introductory-level textbooks, it allowed us to insert multiple references (with equations of the same form) for those readers who wish to learn more, or are simply looking for an alternative explanation.
 
-The choice of units used to describe electromagnetism is a contentious topic. Historically, the Gaussian units were dominant during the first half of the 20th century; some fairly recent books (such as [Born & Wolf], [Jackson]) still utilize them today. The SI units serve as the modern replacement, but they are sometimes criticized for being unnatural [citation needed]. Ultimately, using either system gets the job done, even if neither is perfect. In particular, both of these systems exhibit a flaw: the angular frequency \\(\omega\\) and the angular wavenumber \\(k\\) appear in practically every equation, often several times, and their meaning and purpose are not always obvious. This tends to obscure the geometrical nature of the electromagnetic field \[[25](#references) (ch. 2.11)\].
+The choice of units used to describe electromagnetism is a contentious topic. Historically, the Gaussian system of units was dominant during the first half of the 20th century; some fairly recent books (such as [Born & Wolf], [Jackson]) still utilize them today. The SI system serves as the modern replacement, but they are sometimes criticized for being unnatural [citation needed]. Ultimately, using either system gets the job done, even if neither is perfect. In particular, both of these systems exhibit a flaw: the angular frequency \\(\omega\\) and the angular wavenumber \\(k\\) appear in practically every equation, often several times, and their meaning and purpose are not always obvious. This tends to obscure the geometrical nature of the electromagnetic field \[[25](#references) (ch. 2.11)\].
 
 The books devoted to the subject of relativity have historically suffered from a similar problem caused by frequent occurrences of the speed of light factor \\(c\\) [citation needed]. In this case, the solution is surprisingly simple: one just sets
 
@@ -2698,7 +2698,7 @@ $$ \tag{1y.2}
 	1 \text{ s} = 299792458 \text{ m}.
 $$
 
-Because the product \\(ct\\) is invariant with respect to this transformation, both the dimensions and the value of the [spacetime coordinate](https://en.wikipedia.org/wiki/Minkowski_space) \\(\left(c t, \bm{r} \right)\\) remain unchanged. By omitting the \\(c\\) factor and measuring the time \\(t\\) in units of length, we emphasize the equivalence of roles played by space and time. This convention bears the name of [geometrized units](https://en.wikipedia.org/wiki/Geometrized_unit_system) [Thorne 1.10].
+Because the product \\(ct\\) is invariant with respect to this transformation, both the dimensions and the value of the [spacetime coordinate](https://en.wikipedia.org/wiki/Minkowski_space) \\(\left(c t, \bm{r} \right)\\) remain unchanged. By omitting the \\(c\\) factor and measuring the time \\(t\\) in units of length, we emphasize the equivalence of roles played by space and time. This idea serves as the foundation of the system of [geometrized units](https://en.wikipedia.org/wiki/Geometrized_unit_system) [Thorne 1.10].
 
 For a particle with rest mass \\(m\\) and velocity \\(\bm{v}\\), the expression of relativistic energy \\(\mathcal{E}\\) is
 
@@ -2768,7 +2768,7 @@ $$ \tag{1y.10}
 	= \frac{\lambda_0(\nu)}{\eta_1(2 \pi \nu)} = 2 \pi.
 $$
 
-In order for our convention to make sense, the reference medium must be non-absorptive:
+In order for the units to make sense, the reference medium must be non-absorptive:
 
 $$ \tag{1y.1a}
 	\frac{\omega}{k_1(\omega)} = \frac{c}{\eta_1(\omega)} = 1,
@@ -2792,7 +2792,7 @@ Typically, the reference wavenumber corresponds to the air or the vacuum, which 
 
 [^29]: At optical frequencies, under normal atmospheric conditions.
 
-Our [natural unit](https://en.wikipedia.org/wiki/Natural_units) convention[^30] can be summarized as follows:
+Our system of [natural units](https://en.wikipedia.org/wiki/Natural_units) can be summarized as follows[^30]:
 
 [^30]: Arguably, it would be more natural to measure space and time in cycles by setting \\(\nu = \lambda = 1\\). Unfortunately, this requires setting \\(\omega = k = 2 \pi\\), which pollutes the resulting equations with a multitude of \\(\pi\\)-factors that do not cancel out. Thus, simplicity comes at the cost of naturalness, and requires a minor mental adjustment. Some authors arrived at the same conclusion [van de Hulst, Mishchenko].
 
@@ -2804,14 +2804,14 @@ $$ \tag{1y.13}
 \end{aligned}
 $$
 
-It is necessary to consider the implications of the natural unit conventions on the dimensions of the electromagnetic field. By combining Newton's second law \\( (F = m a) \\) with the expression of the Lorentz force (given by Eqn. 2.3), it is easy to see that, in general, the dimensions of the electric and the magnetic vectors obey the relation
+It is necessary to consider the implications of the system of natural units on the dimensions of the electromagnetic field. By combining Newton's second law \\( (F = m a) \\) with the expression of the Lorentz force (given by Eqn. 2.3), it is easy to see that, in general, the dimensions of the electric and the magnetic vectors obey the relation
 
 $$ \tag{1y.14}
 	\lbrack \bm{E} \rbrack
 	= \lbrack (c/\eta_1) \bm{B} \rbrack.
 $$
 
-More specifically, in the SI unit convention, the time-domain electric field is measured as follows \[[17](#references) (ch. 1.8)\]:
+More specifically, in the system of SI units, the time-domain electric field is measured as follows \[[17](#references) (ch. 1.8)\]:
 
 $$ \tag{1y.15}
 	\lbrack \bm{E} \rbrack_{si}
@@ -2833,7 +2833,7 @@ Evidently, conversion *into* the natural units is trivial: one simply sets \\(\o
 
 ### Electrodynamic Similitude
 
-The unit conversion process can be conceptually divided into two steps: during the first step, we identify dimensionless quantities (independent of the unit convention), and during the second step, we group and transform the remaining (dimensional) quantities. We have already encountered an example of the former (see Eqn. 1y.4); we must now analyze the terms comprising Eqn. 11.10 and 11.11 in a similar manner.
+The unit conversion process can be conceptually divided into two steps: during the first step, we identify dimensionless quantities (independent of the system of units), and during the second step, we group and transform the remaining (dimensional) quantities. We have already encountered an example of the former (see Eqn. 1y.4); we must now analyze the terms comprising Eqn. 11.10 and 11.11 in a similar manner.
 
 Let us perform a change of variables
 
@@ -2935,7 +2935,7 @@ $$ \tag{1z.14}
 	g \big( \bm{\rho} - \bm{\rho'} \big) \big( m^2(\bm{r'}, \omega) - 1 \big) \bm{E}(\bm{r'}, \omega) dV_{\rho}'
 $$
 
-Similarly to Eqn. 1z.8, using the natural unit convention, Eqn. 1z.14 can be simply written as
+Similarly to Eqn. 1z.8, using the system of natural units, Eqn. 1z.14 can be simply written as
 
 $$ \tag{1z.16}
 	i \bm{B_s}(\bm{r}, \omega)
@@ -3018,7 +3018,7 @@ $$ \tag{1z.23}
 	i \bm{B}(\bm{r}, \omega) = \nabla \times \bm{E}(\bm{r}, \omega).
 $$
 
-Being able to omit these constant factors makes the equations of the electric and the magnetic field particularly simple. Thus, the use of natural units can be seen as a form of [dimensionality reduction](https://en.wikipedia.org/wiki/Dimensionality_reduction). In addition, it captures an important property of the electromagnetic field known as the principle of [electrodynamic similitude](https://en.wikipedia.org/wiki/Similitude) \[[8](#references) (ch. 5.5), [9](#references) (ch. 3.5), [17](#references) (ch. 9.3)\].
+Being able to omit these constant factors makes the equations of the electric and the magnetic field particularly simple. Thus, the use of the natural units can be seen as a form of [dimensionality reduction](https://en.wikipedia.org/wiki/Dimensionality_reduction). In addition, it captures an important property of the electromagnetic field known as the principle of [electrodynamic similitude](https://en.wikipedia.org/wiki/Similitude) \[[8](#references) (ch. 5.5), [9](#references) (ch. 3.5), [17](#references) (ch. 9.3)\].
 
 Let us discuss this concept in more detail. Recall that \\(\bm{r_1}\\) and, effectively, \\(k_1\\) can be chosen pretty much arbitrarily. Imagine that we have chosen a certain *convenient value* of \\(k_1\\) (which determines the value of \\(m = k/k_1\\)) and have obtained a solution of the dimensionless Eqn. 1z.13 or 1z.19. Now, suppose we want to use a *different value* of \\(k_1' = s k_1\\), perhaps the one that corresponds to the angular frequency \\(\omega' = s \omega\\) (or the actual wavelength \\(\lambda_1' = s / \lambda_1\\)) of the light source. Then, according to Eqn. 1z.2 and 11.8, if also we proportionally increase the linear dimensions of the scattering object (such as its length \\(l' = s l\\) or its radius \\(a' = s a\\)) while keeping the value of the relative wavenumber \\(m' = m\\) constant, the solution of the dimensionless equations *remains the same*.
 
@@ -3072,7 +3072,7 @@ $$ \tag{1x.2}
 \end{aligned}
 $$
 
-According to Eqn. 11.7 and 11.9, using the natural unit convention,
+According to Eqn. 11.7 and 11.9, using the system of natural units,
 
 $$ \tag{1x.3}
 	\nabla' \times \nabla' \times \bm{E}(\bm{r'}, \omega)
@@ -3440,13 +3440,20 @@ $$ \tag{14.23}
 \end{aligned}
 $$
 
+Finally, let us briefly consider the question of units. Analysis of Eqn. 14.3 makes it apparent that the transition dyadic is a dimensionless quantity in the system of natural units. If we wish to convert our equations into the SI system, then, according to Eqn. 14.14 and the rules we established in Sec. 1z, we may do so by simply adding a scale factor:
+
+$$ \tag{14.24}
+	\mathcal{T}(\bm{\rho}, \bm{\rho'}, \omega) = k^{-5}
+	\mathcal{T} (\bm{r}, \bm{r'}, k, \omega).
+$$
+
 ### Dipole Radiation
 
 Typically, it is not possible to evaluate the integrals of Eqn. 11.10 and 11.11 in closed form, since the value of the electric field in the interior of the volume is not known. Thus, we must make certain assumptions and employ various approximations in order to make computations feasible. This leads to a number of special cases.
 
 One of the simplest problems that can be solved using our mathematical framework (of classical physics) is that of a single non-magnetic atom or a small molecule embedded in a homogeneous medium. This case corresponds to a tiny particle in vacuum, or an [impurity](https://en.wikipedia.org/wiki/Impurity) in an otherwise pure material. We represent it by an electric dipole -- an oriented point source.
 
-The necessary and sufficient condition for electric dipole radiation is that the radius \\(a\\) (of the bounding sphere) of the particle must be small compared to the wavelength \\(\lambda\\) computed both inside and outside the particle \[[4](#references) (ch. 6.4)\]. Using the natural unit convention, this requirement can be expressed as
+The necessary and sufficient condition for electric dipole radiation is that the radius \\(a\\) (of the bounding sphere) of the particle must be small compared to the wavelength \\(\lambda\\) computed both inside and outside the particle \[[4](#references) (ch. 6.4)\]. Using the system of natural units, this requirement can be expressed as
 
 $$
 	a \ll 1, \quad |m a| \ll 1.
@@ -3506,7 +3513,7 @@ $$
 
 This relation also follows from Eqn. 10.18.4, 10.21, and 10.26, under the assumption that the polarization \\(\bm{P}\\) vanishes outside the volume occupied by the dipole.
 
-Finally, note that, since \\(m\\) is dimensionless, Eqn. 12.6 implies that the polarizability has dimensions of volume \[[4](#references) (ch. 6.22)\]. There are two ways to make \\(\mathcal{\Alpha_m}\\) dimensionless: the first is to obtain its density by dividing \\(\mathcal{\Alpha_m}\\) by \\(V_m\\), and the second is to make the volume itself dimensionless by adopting the natural unit convention. The latter method yields (cf. Eqn. 1z.13 and 1z.19)
+Finally, note that, since \\(m\\) is dimensionless, Eqn. 12.6 implies that the polarizability has dimensions of volume \[[4](#references) (ch. 6.22)\]. There are two ways to make \\(\mathcal{\Alpha_m}\\) dimensionless: the first is to obtain its density by dividing \\(\mathcal{\Alpha_m}\\) by \\(V_m\\), and the second is to make the volume itself dimensionless by adopting the system of natural units. The latter method yields (cf. Eqn. 1z.13 and 1z.19)
 
 $$ \tag{12.7}
 \begin{aligned}
@@ -3743,7 +3750,7 @@ $$
 
 Thus, we find that the field vectors are orthogonal, and that their magnitudes are the same[^31].
 
-[^31]: This is only true if one adheres to the natural unit convention. In general (for an absorptive medium), neither property holds: cf. Eqn. 7.22, 7.25-7.27.
+[^31]: This is only true if one adheres to the system of natural units. In general (for an absorptive medium), neither property holds: cf. Eqn. 7.22, 7.25-7.27.
 
 [Picture]
 
@@ -3903,8 +3910,6 @@ $$ \tag{15.7}
 	\iint\_{V} e^{-i k(\omega) (\bm{r'} \cdot \bm{n_s} - \bm{r''} \cdot \bm{n_i})} \mathcal{T} (\bm{r'}, \bm{r''}, k(\omega), \omega) dV'' dV'.
 \end{aligned}
 $$
-
-At the end of this section [EG: reorder], we will demonstrate that \\(\mathcal{T} \sim k^5\\), which implies that both of these dyadics are dimensionless. In comparison, certain authors prefer to divide their dyadics by \\(k\\) \[[8](#references) (ch. 5.3)\].
 
 All the expressions given above are independent of the choice of a coordinate system. In practice, in order to perform computations, it is necessary to use a specific reference frame.
 
@@ -4069,127 +4074,6 @@ In general, the elements of the scattering matrix depend on the azimuthal angle 
 It's easy to see why that is the case. Consider changing the handedness of the Cartesian coordinate frame, so that the basis vector of the \\(x\\)-axis (or the \\(y\\)-axis) becomes \\(-\bm{e_x}\\) (or \\(-\bm{e_y}\\)), and vice versa. In the reflected coordinate system, both \\(E\_{i,x}\\) and \\(E\_{s,\theta}\\) (or \\(E\_{i,y}\\) and \\(E\_{s,\phi}\\)) change the sign, but, since the particle possesses reflection symmetry, the scattering matrix remains unchanged. In order for the magnitudes of the scattered field components to remain unchanged, the off-diagonal elements \\(s_3\\) and \\(s_4\\) must be equal to \\(0\\). This decouples the \\(x\\) and \\(y\\) components of the field, which allows us to represent the vector scattering process in terms of two independent scalar waves.
 
 In addition, a very similar proof shows that axial symmetry with respect to the direction of incidence leads to another important property of forward scattering: \\(s_1(0, \phi) = s_2(0, \phi) = s_0\\).
-
-[EG: this piece should come before Sec. 15]
-
-Finally, we would like to highlight the *scale invariance* property of electromagnetic scattering, also known as the principle of *electrodynamic similitude* \[[8](#references) (ch. 5.5), [9](#references) (ch. 3.5), [17](#references) (ch. 9.3)\]. The gist of it is that, while the (dimensionless) scattering and absorption characteristics of a scattering object depend on its linear dimension \\(a\\) and the wavenumbers \\(k_2 \text{ and } k_1\\) in the interior and the exterior regions, respectively, its properties can be alternatively described using the *relative wavenumber* \\(m = k_2 / k_1\\) and the so-called *size parameter* \\(x = k_1 a = 2 \pi a / \lambda\\), both of which are dimensionless. Thus, provided that the value of \\(m\\) stays fixed, increasing both the linear dimension of the object and the wavelength by the same factor \\(f\\) leaves the formula unchanged: \\(x' = 2 \pi (a f) / (f \lambda) = x \\). This [reduces the dimensionality](https://en.wikipedia.org/wiki/Dimensionality_reduction) of the problem, since three parameters can be replaced with just two.
-
-Note that, unlike \\(x\\), \\(m\\) is not scale-invariant. Recall its definition given by Eqn. 11.8:
-
-$$ \tag{15.17}
-	m(\bm{r}, \omega)
-	= \frac{k_2(\bm{r}, \omega)}{k_1(\omega)}
-	= \sqrt{ \frac{\varepsilon_2(\bm{r}, \omega) \mu_2(\omega)}{\varepsilon_1(\omega) \mu_1(\omega)} }.
-$$
-
-Suppose that the scattering object is located in vacuum. Then the denominator \\(\varepsilon_1 \mu_1=\epsilon_0 \mu_0\\) does not depend on the frequency of the incident radiation. However, the numerator does, since no material has a flat response across the entire frequency range. In particular, if the scattering object is conductive \\((\sigma_2 \neq 0)\\), then, according to Eqn. 5.6, its complex permittivity
-
-$$ \tag{15.??}
-	\varepsilon_2(\bm{r}, \omega)
-	= \epsilon_2(\bm{r}, \omega) + i \frac{\sigma_2(\bm{r}, \omega)}{\omega}
-$$
-
-directly depends on the frequency \\(\omega\\). Thus, in order for the scale invariance property to hold, if the linear dimension of the object and the wavelength are both increased by the same factor, conductivity must be correspondingly reduced.
-
-[Insert picture here]
-
-In order to prove the principle of electrodynamic similitude, we must show that the expressions used to calculate the electromagnetic fields can be written in terms of the dimensionless quantity (which we indicate by the hat symbol)
-
-$$ \tag{15.18}
-	\bm{\hat{r}} = k \bm{r}.
-$$
-
-As a simple example, consider the scalar Green function \\(g\\) introduced in Eqn. 9.10. If we divide it by \\(k\\), we obtain its dimensionless counterpart \\(\hat{G_e}\\):
-
-$$ \tag{15.19}
-	\frac{1}{k} g(\bm{r}, k)
-	= \hat{G_e}(\bm{\hat{r}})
-	= \frac{e^{i |\bm{\hat{r}}|}}{4 \pi |\bm{\hat{r}}|}.
-$$
-
-The expression of the total field is the sum of the incident and the scattered fields. Eqn. 15.1 of the incident field can be transformed into the dimensionless form by a trivial substitution of Eqn. 15.18. On the other hand, Eqn. 15.3 of the scattered field is more complicated, as it contains the electric and transition dyadics. According to Eqn. 14.22, the transition dyadic is itself defined in terms of the electric dyadic. Thus, we only need to transform the expression of the former. For convenience, we elect to use the expanded definition given by Eqn. 14.23, which we restate below:
-
-$$ \tag{15.20}
-\begin{aligned}
-	\mathcal{T} (\bm{r}, \bm{r'}, k)
-	&= k^2 \big( m^2(\bm{r}) - 1 \big) \bigg( \delta(\bm{r} - \bm{r'}) \mathcal{I} + \int_V \mathcal{G}\_e (\bm{r}, \bm{r''}, k) \cdot \mathcal{T} (\bm{r''}, \bm{r'}, k) dV'' \bigg)
-	\cr
-	&= k^2 \big( m^2(\bm{r}) - 1 \big) \bigg(
-	\delta(\bm{r} - \bm{r'}) \mathcal{I}
-	\cr
-	&+ \Big( \mathcal{I} + \frac{1}{k^2} \nabla \otimes \nabla \Big) \cdot
-	\int\_{V} g( \bm{r} - \bm{r''}, k) \mathcal{T} (\bm{r''}, \bm{r'}, k) dV'' \bigg).
-\end{aligned}
-$$
-
-In order to replace \\(\bm{r}\\) with \\(\bm{\hat{r}}\\) inside the integral, we must perform a change of variables
-
-$$ \tag{15.21}
-	dV = dx \thinspace dy \thinspace dz
-	\quad \to \quad
-	d \hat{V} = d(kx) \thinspace d(ky) \thinspace d(kz) = k^3 dV.
-$$
-
-Furthermore, the [scaling property](https://en.wikipedia.org/wiki/Dirac_delta_function#Scaling_and_symmetry) of the delta function tells us that
-
-$$ \tag{15.22}
-	\delta(\bm{r})
-	= \delta \bigg(\frac{\bm{\hat{r}}}{k} \bigg)
-	= k^3 \delta(\bm{\hat{r}})
-$$
-
-To handle the electric dyadic, we introduce
-
-$$ \tag{15.23}
-	\hat{\nabla} = k^{-1} \nabla,
-$$
-
-such that
-
-$$ \tag{15.25}
-	\hat{\nabla} \bm{\hat{r}} = \nabla \bm{r},
-$$
-
-which, coupled with Eqn. 15.19, directly leads to
-
-$$ \tag{15.26}
-	\mathcal{\hat{G_e}}(\bm{\hat{r}}, \bm{\hat{r}'})
-	= \frac{1}{k} \mathcal{G}\_e(\bm{r}, \bm{r'}, k).
-$$
-
-The only expression left to transform is the relative wavenumber \\(m\\) given by Eqn. 11.8. It is already a dimensionless quantity; thus, if we rescale the coordinate frame by a factor of \\(1/k\\), we can define the function
-
-$$ \tag{15.27}
-	\hat{m}(\bm{\hat{r}}) = m(\bm{r})
-$$
-
-that operates in dimensionless coordinates.
-
-Using the new definitions, Eqn. 15.20 becomes
-
-$$ \tag{15.28}
-\begin{aligned}
-	\mathcal{T} (\bm{r}, \bm{r'}, k)
-	&= \big( \hat{m}^2(\bm{\hat{r}}) - 1 \big) \bigg(
-	k^5 \delta(\bm{\hat{r}} - \bm{\hat{r}'}) \mathcal{I}
-	+ \int\_{V} \mathcal{\hat{G_e}}(\bm{\hat{r}}, \bm{\hat{r}''}) \cdot \mathcal{T} (\bm{r''}, \bm{r'}, k) d \hat{V}'' \bigg)
-	\cr
-	&= \big( \hat{m}^2(\bm{\hat{r}}) - 1 \big) \bigg(
-	k^5 \delta(\bm{\hat{r}} - \bm{\hat{r}'}) \mathcal{I}
-	\cr
-	&+ \Big( \mathcal{I} + \hat{\nabla} \otimes \hat{\nabla} \Big) \cdot
-	\int\_{V} \hat{G_e}( \bm{\hat{r}} - \bm{\hat{r}''}) \mathcal{T} (\bm{r''}, \bm{r'}, k) d \hat{V}'' \bigg),
-\end{aligned}
-$$
-
-from which it immediately follows that defining
-
-$$ \tag{15.29}
-	\mathcal{\hat{T_e}} (\bm{\hat{r}}, \bm{\hat{r}'}) = \frac{1}{k^5}
-	\mathcal{T} (\bm{r}, \bm{r'}, k)
-$$
-
-makes Eqn. 15.28 fully dimensionless. Additionally, in the operator notation, Eqn. 15.20 and 15.28 are formally identical. As a result, both formulations can be expressed in terms of the Born series given by Eqn. 14.20, and thus produce the same fields.
 
 ### Optical Theorem
 
