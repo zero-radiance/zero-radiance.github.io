@@ -2028,9 +2028,9 @@ such that
 $$ \tag{9.45}
 \begin{aligned}
 	& \mathcal{G_{en}}(\bm{R}, k)
-	= \frac{g(\bm{R}, k) }{k R} \bigg( i - \frac{1}{k R} \bigg) \bigg(\mathcal{I} - 3 \frac{\bm{R} \otimes \bm{R}}{\bm{R} \cdot \bm{R}} \bigg), \cr
+	= \frac{g(\bm{R}, k) }{k R} \bigg( i - \frac{1}{k R} \bigg) \bigg(\mathcal{I} - 3 \frac{\bm{R} \otimes \bm{R}}{R^2} \bigg), \cr
 	& \mathcal{G_{ef}}(\bm{R}, k)
-	= g(\bm{R}, k) \bigg( \mathcal{I} - \frac{\bm{R} \otimes \bm{R}}{\bm{R} \cdot \bm{R}} \bigg),
+	= g(\bm{R}, k) \bigg( \mathcal{I} - \frac{\bm{R} \otimes \bm{R}}{R^2} \bigg),
 \end{aligned}
 $$
 
@@ -2912,9 +2912,9 @@ with the individual components defined as follows:
 $$ \tag{1z.12}
 \begin{aligned}
 	& \mathcal{G_{en}}(\bm{R})
-	= \frac{g(\bm{R})}{|\bm{R}|} \bigg(i - \frac{1}{R} \bigg) \bigg(\mathcal{I} - 3 \frac{\bm{R} \otimes \bm{R}}{\bm{R} \cdot \bm{R}} \bigg), \cr
+	= \frac{g(\bm{R})}{R} \bigg(i - \frac{1}{R} \bigg) \bigg(\mathcal{I} - 3 \frac{\bm{R} \otimes \bm{R}}{R^2} \bigg), \cr
 	& \mathcal{G_{ef}}(\bm{R})
-	= g(\bm{R}) \bigg( \mathcal{I} - \frac{\bm{R} \otimes \bm{R}}{\bm{R} \cdot \bm{R}} \bigg).
+	= g(\bm{R}) \bigg( \mathcal{I} - \frac{\bm{R} \otimes \bm{R}}{R^2} \bigg).
 \end{aligned}
 $$
 
@@ -3550,11 +3550,11 @@ If \\(R \gg 1\\), the values of the expressions in the brackets approach 1. Ther
 
 $$ \tag{13.3}
 \begin{aligned}
-	& \bm{E_s}(\bm{r}, \omega)
-	\simeq \frac{e^{i R}}{4 \pi R}
+	\bm{E_s}(\bm{r}, \omega)
+	&\simeq g(\bm{R})
 	\bigg( \mathcal{I} - \frac{\bm{R} \otimes \bm{R}}{R^2} \bigg) \cdot \mathcal{\Alpha_m}(V_m, \omega) \cdot \bm{E}(\bm{r'}, \omega), \cr
-	& i \bm{B_s}(\bm{r}, \omega)
-	\simeq \frac{e^{i R}}{4 \pi R}
+	i \bm{B_s}(\bm{r}, \omega)
+	&\simeq g(\bm{R})
 	\bigg(\frac{\bm{R} \times \mathcal{I}}{R} \bigg) \cdot \mathcal{\Alpha_m}(V_m, \omega) \cdot \bm{E}(\bm{r'}, \omega),
 \end{aligned}
 $$
@@ -3565,13 +3565,13 @@ Eqn. 13.3 can be simplified even further by aligning the origin of the coordinat
 
 $$ \tag{13.5}
 \begin{aligned}
-	& \bm{E_s}(\bm{r}, \omega)
-	\simeq \frac{e^{i r}}{4 \pi r}
-	\big( \mathcal{I} - \bm{n} \otimes \bm{n} \big) \cdot \mathcal{\Alpha_m}(V_m, \omega)
+	\bm{E_s}(\bm{r}, \omega)
+	& \simeq g(\bm{r})
+	(\mathcal{I} - \bm{n} \otimes \bm{n}) \cdot \mathcal{\Alpha_m}(V_m, \omega)
 	\cdot \bm{E}(\bm{0}, \omega), \cr
-	& i \bm{B_s}(\bm{r}, \omega)
-	\simeq \frac{e^{i r}}{4 \pi r}
-	\big(\bm{n} \times \mathcal{I} \big) \cdot \mathcal{\Alpha_m}(V_m, \omega)
+	i \bm{B_s}(\bm{r}, \omega)
+	& \simeq g(\bm{r})
+	(\bm{n} \times \mathcal{I}) \cdot \mathcal{\Alpha_m}(V_m, \omega)
 	\cdot \bm{E}(\bm{0}, \omega)
 \end{aligned}
 $$
@@ -3582,10 +3582,10 @@ $$ \tag{13.6}
 \begin{aligned}
 	& \bm{E_s}(\bm{r}, \omega)
 	\simeq \int\_{V}
-	\big( m^2(\bm{r'}, \omega) - 1 \big) \frac{e^{i R}}{4 \pi R} \bigg( \mathcal{I} - \frac{\bm{R} \otimes \bm{R}}{\bm{R} \cdot \bm{R}} \bigg) \cdot \bm{E}(\bm{r'}, \omega) dV', \cr
+	\big( m^2(\bm{r'}, \omega) - 1 \big) g(\bm{R}) \bigg( \mathcal{I} - \frac{\bm{R} \otimes \bm{R}}{R^2} \bigg) \cdot \bm{E}(\bm{r'}, \omega) dV', \cr
 	& i \bm{B_s}(\bm{r}, \omega)
 	\simeq \int\_{V}
-	\big( m^2(\bm{r'}, \omega) - 1 \big) \frac{e^{i R}}{4 \pi R} \bigg(\frac{\bm{R} \times \mathcal{I}}{R} \bigg) \cdot \bm{E}(\bm{r'}, \omega) dV'.
+	\big( m^2(\bm{r'}, \omega) - 1 \big) g(\bm{R}) \bigg(\frac{\bm{R} \times \mathcal{I}}{R} \bigg) \cdot \bm{E}(\bm{r'}, \omega) dV'.
 \end{aligned}
 $$
 
@@ -3643,10 +3643,12 @@ Substitution of Eqn. 13.9 and 13.11 into Eqn. 1z.12.2 and 1z.18.2 results in the
 $$ \tag{13.1x}
 \begin{aligned}
 	\mathcal{G_{e}}(\bm{r}, \bm{r'})
-	& \simeq \frac{e^{i r - i (\bm{r'} \cdot \bm{n})}}{4 \pi r} \big( \mathcal{I} - \bm{n} \otimes \bm{n} \big),
+	&\simeq g(\bm{r}) (\mathcal{I} - \bm{n} \otimes \bm{n}) e^{-i (\bm{r'} \cdot \bm{n})}
+	= \frac{e^{i r - i (\bm{r'} \cdot \bm{n})}}{4 \pi r} (\mathcal{I} - \bm{n} \otimes \bm{n}),
 	\cr
 	\mathcal{G_{m}}(\bm{r}, \bm{r'})
-	& \simeq i \frac{e^{i r - i (\bm{r'} \cdot \bm{n})}}{4 \pi r} \big(\bm{n} \times \mathcal{I} \big),
+	&\simeq i g(\bm{r}) (\bm{n} \times \mathcal{I}) e^{-i (\bm{r'} \cdot \bm{n})}
+	= i \frac{e^{i r - i (\bm{r'} \cdot \bm{n})}}{4 \pi r} (\bm{n} \times \mathcal{I}),
 \end{aligned}
 $$
 
@@ -3662,14 +3664,13 @@ Eqn. 13.1x is used to define the so-called *far-field approximation* of the volu
 
 $$ \tag{13.12}
 \begin{aligned}
-	& \bm{E_s}(\bm{r}, \omega) \simeq
-	\frac{e^{i r}}{4 \pi r}
-	\big( \mathcal{I} - \bm{n} \otimes \bm{n} \big) \cdot
+	\bm{E_s}(\bm{r}, \omega)
+	&\simeq g(\bm{r}) (\mathcal{I} - \bm{n} \otimes \bm{n}) \cdot
 	\int\_{V} e^{-i (\bm{r'} \cdot \bm{n})} \big( m^2(\bm{r'}, \omega) - 1 \big)
-	\bm{E}(\bm{r'}, \omega) dV', \cr
-	& \bm{B_s}(\bm{r}, \omega) \simeq
-	\frac{e^{i r}}{4 \pi r}
-	\big(\bm{n} \times \mathcal{I} \big) \cdot
+	\bm{E}(\bm{r'}, \omega) dV',
+	\cr
+	\bm{B_s}(\bm{r}, \omega)
+	&\simeq g(\bm{r}) (\bm{n} \times \mathcal{I}) \cdot
 	\int\_{V} e^{-i (\bm{r'} \cdot \bm{n})} \big( m^2(\bm{r'}, \omega) - 1 \big)
 	\bm{E}(\bm{r'}, \omega) dV', \cr
 \end{aligned}
@@ -3680,24 +3681,20 @@ The far-field approximation of the surface integral equation (cf. Eqn. 1x.14-1x.
 $$ \tag{13.1y}
 \begin{aligned}
 	\bm{E_s}(\bm{r}, \omega)
-	&= i \frac{e^{i r}}{4 \pi r}
-		\big( \mathcal{I} - \bm{n} \otimes \bm{n} \big) \cdot
+	&= i g(\bm{r}) (\mathcal{I} - \bm{n} \otimes \bm{n}) \cdot
 		\oint_{\partial V} e^{-i (\bm{r'} \cdot \bm{n})}
 		\bm{B'}(\bm{r'}, \omega) dA'
 	\cr
-	&+ i \frac{e^{i r}}{4 \pi r}
-		\big(\bm{n} \times \mathcal{I} \big) \cdot
+	&+ i g(\bm{r}) (\bm{n} \times \mathcal{I}) \cdot
 		\oint_{\partial V} e^{-i (\bm{r'} \cdot \bm{n})}
 		\bm{E'}(\bm{r'}, \omega) dA',
 	\cr
 	\bm{B_s}(\bm{r}, \omega)
-	&= i \frac{e^{i r}}{4 \pi r}
-		\big(\bm{n} \times \mathcal{I} \big) \cdot
+	&= i g(\bm{r}) (\bm{n} \times \mathcal{I}) \cdot
 		\oint_{\partial V} e^{-i (\bm{r'} \cdot \bm{n})}
 		\bm{B'}(\bm{r'}, \omega) dA'
 	\cr
-	&- i \frac{e^{i r}}{4 \pi r}
-		\big( \mathcal{I} - \bm{n} \otimes \bm{n} \big) \cdot
+	&- i g(\bm{r}) (\mathcal{I} - \bm{n} \otimes \bm{n}) \cdot
 		\oint_{\partial V} e^{-i (\bm{r'} \cdot \bm{n})}
 		\bm{E'}(\bm{r'}, \omega) dA'.
 \end{aligned}
@@ -3711,11 +3708,11 @@ An important property of the far-field solution is the fact that the scattered f
 
 $$ \tag{13.14}
 \begin{aligned}
-	& \bm{n} \cdot \big( \mathcal{I} - \bm{n} \otimes \bm{n} \big)
+	& \bm{n} \cdot (\mathcal{I} - \bm{n} \otimes \bm{n})
 	= \bm{n} - (\bm{n} \cdot \bm{n}) \bm{n}
 	= 0, \cr
-	& \bm{n} \cdot \big( \bm{n} \times \mathcal{I} \big)
-	= -\bm{n} \cdot \big( \mathcal{I} \times \bm{n} \big)
+	& \bm{n} \cdot (\bm{n} \times \mathcal{I})
+	= -\bm{n} \cdot (\mathcal{I} \times \bm{n})
 	= -\bm{n} \times \bm{n}
 	= 0.
 \end{aligned}
@@ -3725,7 +3722,7 @@ We can also show that, under certain conditions, the electric and the magnetic f
 
 $$ \tag{13.15}
 	\bm{K}(\bm{r}, \omega)
-	= \frac{e^{i r}}{4 \pi r} \int\_{V} e^{-i (\bm{r'} \cdot \bm{n})} \big( m^2(\bm{r'}, \omega) - 1 \big)
+	= g(\bm{r}) \int\_{V} e^{-i (\bm{r'} \cdot \bm{n})} \big( m^2(\bm{r'}, \omega) - 1 \big)
 	\bm{E}(\bm{r'}, \omega) dV',
 $$
 
@@ -3734,10 +3731,10 @@ which simplifies Eqn. 13.12 to
 $$ \tag{13.16}
 \begin{aligned}
 	& \bm{E_s}(\bm{r}, \omega)
-	\simeq \big( \mathcal{I} - \bm{n} \otimes \bm{n} \big) \cdot \bm{K}(\bm{r}, \omega),
+	\simeq (\mathcal{I} - \bm{n} \otimes \bm{n}) \cdot \bm{K}(\bm{r}, \omega),
 	\cr
 	& \bm{B_s}(\bm{r}, \omega)
-	\simeq \big(\bm{n} \times \mathcal{I} \big) \cdot \bm{K}(\bm{r}, \omega).
+	\simeq (\bm{n} \times \mathcal{I}) \cdot \bm{K}(\bm{r}, \omega).
 \end{aligned}
 $$
 
@@ -3759,10 +3756,12 @@ We come to the conclusion that, at a large distance, for a fixed direction of ob
 $$ \tag{13.20}
 \begin{aligned}
 	& \bm{E_s}(\bm{r}, \omega) e^{-i t}
-	\simeq \frac{1}{r} \bm{E_1}(\bm{n}, \omega) e^{i (r - t)},
+	\simeq 4 \pi g(\bm{r}) \bm{E_1}(\bm{n}, \omega) e^{-i t}
+	= \frac{1}{r} \bm{E_1}(\bm{n}, \omega) e^{i (r - t)},
 	\cr
 	& \bm{B_s}(\bm{r}, \omega) e^{-i t}
-	\simeq \frac{1}{r} \bm{B_1}(\bm{n}, \omega) e^{i (r - t)},
+	\simeq 4 \pi g(\bm{r}) \bm{B_1}(\bm{n}, \omega) e^{-i t}
+	= \frac{1}{r} \bm{B_1}(\bm{n}, \omega) e^{i (r - t)},
 \end{aligned}
 $$
 
@@ -3771,14 +3770,16 @@ where the polarization vectors are defined as follows \[[6](#references) (ch. 13
 $$ \tag{13.??}
 \begin{aligned}
 	& \bm{E_1}(\bm{n}, \omega)
-	= \frac{1}{4 \pi} \big( \mathcal{I} - \bm{n} \otimes \bm{n} \big) \cdot \int\_{V} e^{-i (\bm{r'} \cdot \bm{n})} \big( m^2(\bm{r'}, \omega) - 1 \big)
+	= \frac{1}{4 \pi} (\mathcal{I} - \bm{n} \otimes \bm{n}) \cdot \int\_{V} e^{-i (\bm{r'} \cdot \bm{n})} \big( m^2(\bm{r'}, \omega) - 1 \big)
 	\bm{E}(\bm{r'}, \omega) dV',
 	\cr
 	& \bm{B_1}(\bm{n}, \omega)
-	= \frac{1}{4 \pi} \big(\bm{n} \times \mathcal{I} \big) \cdot \int\_{V} e^{-i (\bm{r'} \cdot \bm{n})} \big( m^2(\bm{r'}, \omega) - 1 \big)
+	= \frac{1}{4 \pi} (\bm{n} \times \mathcal{I}) \cdot \int\_{V} e^{-i (\bm{r'} \cdot \bm{n})} \big( m^2(\bm{r'}, \omega) - 1 \big)
 	\bm{E}(\bm{r'}, \omega) dV'.
 \end{aligned}
 $$
+
+The distribution of the \\(4 \pi\\) factors is motivated by the expression of the volume of a sphere \\(V = 4/3 \pi a^3\\). As a result of this arrangement, the \\(4 \pi\\) factor is often eliminated from both Eqn. 13.20 and 13.??.
 
 A Poyinting vector may be associated with a spherical wave. According to Eqn. 2.17, if the we perform the observation in a non-magnetic medium (e.i. if \\(\mu\_1 = \mu\_0\\)), then
 
