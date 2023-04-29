@@ -920,7 +920,7 @@ $$ \tag{5.8}
 \end{aligned}
 $$
 
-Writing the Maxwell equations this way allows us to compare the macroscopic Eqn. 5.8 with the microscopic Eqn. 3.10. Observe that, when \\(\varepsilon\\) and \\(\mu\\) are independent from \\(\bm{r}\\) (or if the spatially-varying component is attributed to the current term on the right-hand side), their solutions are formally the same.
+Writing the Maxwell equations this way allows us to compare the macroscopic Eqn. 5.8 with the microscopic Eqn. 3.10. Observe that, when \\(\varepsilon\\) and \\(\mu\\) are independent of \\(\bm{r}\\) (or if the spatially-varying component is attributed to the current term on the right-hand side), their solutions are formally the same.
 
 ### Helmholtz Equation
 
@@ -3446,6 +3446,8 @@ $$ \tag{14.24}
 	\mathcal{T}(\bm{\rho}, \bm{\rho'}, \omega) = k^{-5}
 	\mathcal{T} (\bm{r}, \bm{r'}, k, \omega).
 $$
+
+TODO: surface transition?..
 
 ### Dipole Radiation
 
