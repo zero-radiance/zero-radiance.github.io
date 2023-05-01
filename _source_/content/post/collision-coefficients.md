@@ -1833,7 +1833,7 @@ is the *free-space dyadic* Green function \[[7](#references) (ch. 7.9)\], and \\
 Eqn. 9.25 can be cast in a more compact form by using the [principal value](https://en.wikipedia.org/wiki/Cauchy_principal_value) of the free-space dyadic. If we define the *electric dyadic* Green function as
 
 $$ \tag{9.27}
-	\mathcal{G}\_e(\bm{r}, \bm{r'}, k)
+	\mathcal{G_e}(\bm{r}, \bm{r'}, k)
 	= \mathcal{P.V.} \lbrace \mathcal{G}(\bm{r}, \bm{r'}, k) \rbrace
 	- \frac{\delta(\bm{r} - \bm{r'})}{k^2} \mathcal{L},
 $$
@@ -1842,13 +1842,13 @@ the expression of the electric field is reduced to
 
 $$ \tag{9.28}
 	\bm{E}(\bm{r}, \omega)
-	= i \omega \int\_{V} \mathcal{G}\_e \big( \bm{r}, \bm{r'}, k_0(\omega) \big) \cdot \frac{\bm{J}(\bm{r'}, \omega)}{\mu_0^{-1}} dV'.
+	= i \omega \int\_{V} \mathcal{G_e} \big( \bm{r}, \bm{r'}, k_0(\omega) \big) \cdot \frac{\bm{J}(\bm{r'}, \omega)}{\mu_0^{-1}} dV'.
 $$
 
 Comparison with Eqn. 9.18.1 shows that the electric dyadic is a solution of another differential equation for a point source:
 
 $$ \tag{9.29}
-	\left( \nabla \times \nabla \times \mathcal{I} - k^2 \mathcal{I} \right) \cdot \mathcal{G}\_e(\bm{r}, \bm{r'}, k)
+	\left( \nabla \times \nabla \times \mathcal{I} - k^2 \mathcal{I} \right) \cdot \mathcal{G_e}(\bm{r}, \bm{r'}, k)
 	= \delta(\bm{r} - \bm{r'}) \mathcal{I}.
 $$
 
@@ -1870,21 +1870,21 @@ and noting that \\(\bm{J}\\) does not depend on \\(\bm{r}\\), we obtain a conver
 
 $$ \tag{9.32}
 	\bm{B}(\bm{r}, \omega)
-	= \int_{V} \mathcal{G}\_m \big( \bm{r}, \bm{r'}, k_0(\omega) \big) \cdot\frac{\bm{J}(\bm{r'}, \omega)}{\mu_0^{-1}} dV',
+	= \int_{V} \mathcal{G_m} \big( \bm{r}, \bm{r'}, k_0(\omega) \big) \cdot\frac{\bm{J}(\bm{r'}, \omega)}{\mu_0^{-1}} dV',
 $$
 
 that features the *magnetic dyadic* Green function \[[7](#references) (ch. 7.9)\]
 
 $$ \tag{9.34}
-	\mathcal{G}\_m(\bm{r}, \bm{r'}, k)
+	\mathcal{G_m}(\bm{r}, \bm{r'}, k)
 	= \mathcal{P.V.} \lbrace \nabla g(\bm{r} - \bm{r'}, k) \rbrace \times \mathcal{I}
 $$
 
 that can be expressed using the [matrix form of the cross product](https://en.wikipedia.org/wiki/Cross_product#Conversion_to_matrix_multiplication). As the curl of gradient is zero, we can immediately recognize that
 
 $$ \tag{9.35}
-	\mathcal{G}\_m(\bm{r}, \bm{r'}, k)
-	= \nabla \times \mathcal{G}\_e(\bm{r}, \bm{r'}, k).
+	\mathcal{G_m}(\bm{r}, \bm{r'}, k)
+	= \nabla \times \mathcal{G_e}(\bm{r}, \bm{r'}, k).
 $$
 
 Therefore, our results are consistent with Eqn. 3.12.
@@ -1892,16 +1892,16 @@ Therefore, our results are consistent with Eqn. 3.12.
 Finally, note that, according to Eqn. 9.29 and 9.35,
 
 $$ \tag{9.3y}
-	\nabla \times \mathcal{G}\_m(\bm{r}, \bm{r'}, k)
-	= \nabla \times \nabla \times \mathcal{G}\_e(\bm{r}, \bm{r'}, k)
-	= k^2 \mathcal{G}\_e(\bm{r}, \bm{r'}, k) + \mathcal{I} \delta(\bm{r} - \bm{r'}).
+	\nabla \times \mathcal{G_m}(\bm{r}, \bm{r'}, k)
+	= \nabla \times \nabla \times \mathcal{G_e}(\bm{r}, \bm{r'}, k)
+	= k^2 \mathcal{G_e}(\bm{r}, \bm{r'}, k) + \mathcal{I} \delta(\bm{r} - \bm{r'}).
 $$
 
 Green's dyadics take on a simple form when expressed in the Cartesian coordinate system. Let us first consider the electric dyadic defined by Eqn. 9.26-9.27:
 
 $$ \tag{9.36}
 \begin{aligned}
-	\mathcal{G}\_e(\bm{r}, \bm{r'}, k)
+	\mathcal{G_e}(\bm{r}, \bm{r'}, k)
 	= \mathcal{P.V.} \left\lbrace \mathcal{I} g + \frac{1}{k^2}
 	\begin{bmatrix}
 		\frac{\partial^2 g}{\partial x^2} & \frac{\partial^2 g}{\partial x \partial y} & \frac{\partial^2 g}{\partial x \partial z} \cr
@@ -1915,7 +1915,7 @@ $$
 
 where the scalar Green function \\(g(\bm{r} - \bm{r'})\\) is given by Eqn. 9.10.
 
-Because the integrals involving the scalar Green function and its partial derivatives are always evaluated in the principal value sense, the singularity at \\(\bm{r} = \bm{r'}\\) is avoided, and the order of partial differentiation makes no difference. Furthermore, the depolarization dyadic is symmetric: \\(\mathcal{L} = \mathcal{L}^T\\) \[[7](#references) (ch. 3.9)\]. Consequently, the entire electric dyadic is symmetric as well: \\(\mathcal{G}\_e = \mathcal{G}\_e^T\\).
+Because the integrals involving the scalar Green function and its partial derivatives are always evaluated in the principal value sense, the singularity at \\(\bm{r} = \bm{r'}\\) is avoided, and the order of partial differentiation makes no difference. Furthermore, the depolarization dyadic is symmetric: \\(\mathcal{L} = \mathcal{L}^T\\) \[[7](#references) (ch. 3.9)\]. Consequently, the entire electric dyadic is symmetric as well: \\(\mathcal{G_e} = \mathcal{G_e}^T\\).
 
 Since the scalar Green function only depends on the magnitude of its argument, the function itself is symmetric in its arguments, while its first derivative is not:
 
@@ -1933,21 +1933,21 @@ The second-order derivatives of Eqn. 9.36 perform the sign exchange twice. If we
 
 $$ \tag{9.38}
 \begin{aligned}
-	\mathcal{G}\_e(\bm{r}, \bm{r'}, k)
+	\mathcal{G_e}(\bm{r}, \bm{r'}, k)
 	&= \mathcal{P.V.} \Big\lbrace \Big( \mathcal{I} + \frac{1}{k^2} \nabla \otimes \nabla \Big) g(\bm{r} - \bm{r'}, k) \Big\rbrace - \delta(\bm{r} - \bm{r'}) \frac{\mathcal{L}(\bm{r})}{k^2}
 	\cr
 	&= \mathcal{P.V.} \Big\lbrace \Big( \mathcal{I} + \frac{1}{k^2} \nabla' \otimes \nabla' \Big) g(\bm{r'} - \bm{r}, k) \Big\rbrace - \delta(\bm{r'} - \bm{r}) \frac{\mathcal{L}(\bm{r'})}{k^2}
-	= \mathcal{G}\_e(\bm{r'}, \bm{r}, k).
+	= \mathcal{G_e}(\bm{r'}, \bm{r}, k).
 \end{aligned}
 $$
 
 In summary,
 
 $$ \tag{9.3x}
-	\mathcal{G}\_e(\bm{r}, \bm{r'}, k)
-	= \left[ \mathcal{G}\_e(\bm{r}, \bm{r'}, k) \right]^T
-	= \left[ \mathcal{G}\_e(\bm{r'}, \bm{r}, k) \right]^T
-	= \mathcal{G}\_e(\bm{r'}, \bm{r}, k).
+	\mathcal{G_e}(\bm{r}, \bm{r'}, k)
+	= \left[ \mathcal{G_e}(\bm{r}, \bm{r'}, k) \right]^T
+	= \left[ \mathcal{G_e}(\bm{r'}, \bm{r}, k) \right]^T
+	= \mathcal{G_e}(\bm{r'}, \bm{r}, k).
 $$
 
 Ignoring the multiplicative constant \\(1/(4 \pi k^2)\\), the matrix elements or Eqn. 9.36 have the form
@@ -2017,7 +2017,7 @@ Take a look at the individual factors in Eqn. 9.41-9.43: those outside the brack
 If we fix a value of \\(k\\), we may decompose the electric dyadic into the near-, and far-field terms:
 
 $$ \tag{9.44}
-	\mathcal{G}\_e(\bm{r}, \bm{r'}, k)
+	\mathcal{G_e}(\bm{r}, \bm{r'}, k)
 	= \mathcal{G_{en}}(\bm{r} - \bm{r'}, k)
 	+ \mathcal{G_{ef}}(\bm{r} - \bm{r'}, k)
 	- \frac{\delta(\bm{r} - \bm{r'})}{k^2} \mathcal{L},
@@ -2048,7 +2048,7 @@ Let us analyze the magnetic dyadic in the same way. Write Eqn. 9.34 in the Carte
 
 $$ \tag{9.47}
 \begin{aligned}
-	\mathcal{G}\_m(\bm{r}, \bm{r'}, k)
+	\mathcal{G_m}(\bm{r}, \bm{r'}, k)
 	= \mathcal{P.V.} \begin{bmatrix}
 		\partial g / \partial x \cr
 		\partial g / \partial y \cr
@@ -2062,28 +2062,28 @@ $$ \tag{9.47}
 \end{aligned}
 $$
 
-Clearly, the matrix is anti-symmetric: \\(\mathcal{G}\_m = -\mathcal{G}\_m^T\\). Furthermore, because the derivatives are only of the first order, exchange of the arguments leads to
+Clearly, the matrix is anti-symmetric: \\(\mathcal{G_m} = -\mathcal{G_m}^T\\). Furthermore, because the derivatives are only of the first order, exchange of the arguments leads to
 
 $$ \tag{9.48}
-	\mathcal{G}\_m(\bm{r'}, \bm{r}, k)
-	= \nabla' \times \mathcal{G}\_e(\bm{r'}, \bm{r}, k)
+	\mathcal{G_m}(\bm{r'}, \bm{r}, k)
+	= \nabla' \times \mathcal{G_e}(\bm{r'}, \bm{r}, k)
 	= \mathcal{P.V.} \lbrace \nabla' g(\bm{r'} - \bm{r}, k) \rbrace \times \mathcal{I}
-	= -\mathcal{G}\_m(\bm{r}, \bm{r'}, k).
+	= -\mathcal{G_m}(\bm{r}, \bm{r'}, k).
 $$
 
 In summary,
 
 $$ \tag{9.49}
-	\mathcal{G}\_m(\bm{r}, \bm{r'}, k)
-	= -\left[ \mathcal{G}\_m(\bm{r}, \bm{r'}, k) \right]^T
-	= \left[ \mathcal{G}\_m(\bm{r'}, \bm{r}, k) \right]^T
-	= -\mathcal{G}\_m(\bm{r'}, \bm{r}, k).
+	\mathcal{G_m}(\bm{r}, \bm{r'}, k)
+	= -\left[ \mathcal{G_m}(\bm{r}, \bm{r'}, k) \right]^T
+	= \left[ \mathcal{G_m}(\bm{r'}, \bm{r}, k) \right]^T
+	= -\mathcal{G_m}(\bm{r'}, \bm{r}, k).
 $$
 
 According to the expression of the first derivative given by Eqn. 9.41, the dyadic is composed of two terms:
 
 $$ \tag{9.50}
-	\mathcal{G}\_m(\bm{r}, \bm{r'}, k) = \mathcal{G_{mn}}(\bm{r} - \bm{r'}, k) + \mathcal{G_{mf}}(\bm{r} - \bm{r'}, k),
+	\mathcal{G_m}(\bm{r}, \bm{r'}, k) = \mathcal{G_{mn}}(\bm{r} - \bm{r'}, k) + \mathcal{G_{mf}}(\bm{r} - \bm{r'}, k),
 $$
 
 such that
@@ -2544,7 +2544,7 @@ $$ \tag{11.10}
 	&= \left( \mathcal{I} + \frac{1}{k_1^2(\omega)} \nabla \otimes \nabla \right) \cdot \int\_{V}
 	g \big( \bm{r} - \bm{r'}, k_1(\omega) \big) \bm{J'}(\bm{r'}, \omega) dV'
 	\cr
-	&= \int\_{V} \mathcal{G}\_e \big( \bm{r}, \bm{r'}, k_1(\omega) \big) \cdot \bm{J'}(\bm{r'}, \omega) dV'.
+	&= \int\_{V} \mathcal{G_e} \big( \bm{r}, \bm{r'}, k_1(\omega) \big) \cdot \bm{J'}(\bm{r'}, \omega) dV'.
 \end{aligned}
 $$
 
@@ -2556,7 +2556,7 @@ $$ \tag{11.11}
 	&= \frac{1}{i \omega} \nabla \times \int\_{V}
 	g \big( \bm{r} - \bm{r'}, k_1(\omega) \big) \bm{J'}(\bm{r'}, \omega) dV'
 	\cr
-	&= \frac{1}{i \omega} \int\_{V} \mathcal{G}\_m \big( \bm{r}, \bm{r'}, k_1(\omega) \big) \cdot \bm{J'}(\bm{r'}, \omega) dV'.
+	&= \frac{1}{i \omega} \int\_{V} \mathcal{G_m} \big( \bm{r}, \bm{r'}, k_1(\omega) \big) \cdot \bm{J'}(\bm{r'}, \omega) dV'.
 \end{aligned}
 $$
 
@@ -2567,7 +2567,7 @@ $$ \tag{11.12}
 	\bm{E}(\bm{r}, \omega)
 	&= \bm{E_i}(\bm{r}, \omega) + \bm{E_s}(\bm{r}, \omega) \cr
 	&= \oint\_{\mathbb{S}^2} \bm{E}(0, \bm{n}, \omega) e^{i k_1(\omega) (\bm{r} \cdot \bm{n})} d\Omega \cr
-	&+ \int\_{V} \mathcal{G}\_e \big( \bm{r}, \bm{r'}, k_1(\omega) \big) \cdot \bm{J'}(\bm{r'}, \omega) dV'.
+	&+ \int\_{V} \mathcal{G_e} \big( \bm{r}, \bm{r'}, k_1(\omega) \big) \cdot \bm{J'}(\bm{r'}, \omega) dV'.
 \end{aligned}
 $$
 
@@ -3054,20 +3054,20 @@ In order for the integrals to converge, the surface must be smooth ([regular](ht
 
 We would like the left-hand side of Eqn. 1x.1 to resemble Eqn. 1z.8; comparison of these equations reveals that the roles of \\(\bm{r}\\) and \\(\bm{r'}\\) need to be reversed. In particular, this implies that we must keep the observation point \\(\bm{r}\\) fixed, and evaluate the integral with the differential volume element \\(dV' = dV(\bm{r'})\\). In addition, we must take derivatives with respect to \\(\bm{r'}\\); this can be achieved by replacing \\(\nabla\\) with \\(\nabla'\\).
 
-A suitable choice of \\(\bm{P}\\) and \\(\bm{Q}\\) is not obvious. Motivated by Eqn. 9.29 and 11.9, we shall assign the total electric field to \\(\bm{P} = \bm{E}(\bm{r'}, \omega)\\), and use an arbitrary constant vector \\(\bm{a}\\) for \\(\bm{Q} = \mathcal{G}\_e(\bm{r'}, \bm{r}) \cdot \bm{a}\\). Please note that we have swapped \\(\bm{r}\\) with \\(\bm{r'}\\).
+A suitable choice of \\(\bm{P}\\) and \\(\bm{Q}\\) is not obvious. Motivated by Eqn. 9.29 and 11.9, we shall assign the total electric field to \\(\bm{P} = \bm{E}(\bm{r'}, \omega)\\), and use an arbitrary constant vector \\(\bm{a}\\) for \\(\bm{Q} = \mathcal{G_e}(\bm{r'}, \bm{r}) \cdot \bm{a}\\). Please note that we have swapped \\(\bm{r}\\) with \\(\bm{r'}\\).
 
 The continuity requirements of the vector Green theorem have certain practical implications. For instance, if the scattering object represents a particle group, with particle's hard boundaries creating discontinuities in the refractive index of the medium, then, in order to avoid the discontinuities of the electromagnetic field, we must take the integral over each particle separately. Moreover, the Green functions are discontinuous at \\(\bm{r} = \bm{r'}\\). Therefore, in order to make the vector Green theorem applicable, we shall restrict the observation point \\(\bm{r}\\) to the exterior of the scattering object, with \\(\bm{r'}\\) located inside:
 
 $$ \tag{1x.2}
 \begin{aligned}
 	&\int_V \Big(
-		\bm{E} \cdot \left( \nabla' \times \nabla' \times \mathcal{G}\_e \right) \cdot \bm{a} -
-		\left( \mathcal{G}\_e \cdot \bm{a} \right) \cdot \left( \nabla' \times \nabla' \times \bm{E} \right)
+		\bm{E} \cdot \left( \nabla' \times \nabla' \times \mathcal{G_e} \right) \cdot \bm{a} -
+		\left( \mathcal{G_e} \cdot \bm{a} \right) \cdot \left( \nabla' \times \nabla' \times \bm{E} \right)
 	\Big) dV'
 	\cr
 	= &\oint_{\partial V} \Big(
-		\left( \mathcal{G}\_e \cdot \bm{a} \right) \times \left( \nabla' \times \bm{E} \right) -
-		\bm{E} \times \left( \nabla' \times \mathcal{G}\_e \right) \cdot \bm{a}
+		\left( \mathcal{G_e} \cdot \bm{a} \right) \times \left( \nabla' \times \bm{E} \right) -
+		\bm{E} \times \left( \nabla' \times \mathcal{G_e} \right) \cdot \bm{a}
 	\Big) \cdot \bm{n'} dA'.
 \end{aligned}
 $$
@@ -3082,8 +3082,8 @@ $$
 Similarly, after interchanging the roles of \\(\bm{r}\\) and \\(\bm{r'}\\) in Eqn. 9.29, we obtain
 
 $$ \tag{1x.4}
-	\nabla' \times \nabla' \times \mathcal{G}\_e(\bm{r'}, \bm{r})
-	= \mathcal{G}\_e(\bm{r'}, \bm{r}) + \mathcal{I} \delta(\bm{r'} - \bm{r}).
+	\nabla' \times \nabla' \times \mathcal{G_e}(\bm{r'}, \bm{r})
+	= \mathcal{G_e}(\bm{r'}, \bm{r}) + \mathcal{I} \delta(\bm{r'} - \bm{r}).
 $$
 
 Substitution into Eqn 1x.2 yields
@@ -3091,13 +3091,13 @@ Substitution into Eqn 1x.2 yields
 $$ \tag{1x.5}
 \begin{aligned}
 	&\int_V \Big(
-		\bm{E} \cdot \left( \mathcal{G}\_e + \mathcal{I} \delta \right) \cdot \bm{a} -
-		\left( \mathcal{G}\_e \cdot \bm{a} \right) \cdot \left( m^2 \bm{E} \right)
+		\bm{E} \cdot \left( \mathcal{G_e} + \mathcal{I} \delta \right) \cdot \bm{a} -
+		\left( \mathcal{G_e} \cdot \bm{a} \right) \cdot \left( m^2 \bm{E} \right)
 	\Big) dV'
 	\cr
 	= &\oint_{\partial V} \Big(
-		\left( \mathcal{G}\_e \cdot \bm{a} \right) \times \left( \nabla' \times \bm{E} \right) -
-		\bm{E} \times \left( \nabla' \times \mathcal{G}\_e \right) \cdot \bm{a}
+		\left( \mathcal{G_e} \cdot \bm{a} \right) \times \left( \nabla' \times \bm{E} \right) -
+		\bm{E} \times \left( \nabla' \times \mathcal{G_e} \right) \cdot \bm{a}
 	\Big) \cdot \bm{n'} dA'.
 \end{aligned}
 $$
@@ -3107,12 +3107,12 @@ Since \\(\bm{r} \neq \bm{r'}\\), the Dirac delta function does not contribute to
 $$ \tag{1x.6}
 \begin{aligned}
 	-&\int_V
-		 ( m^2 - 1 ) ( \mathcal{G}\_e \cdot \bm{a} ) \cdot \bm{E}
+		 ( m^2 - 1 ) ( \mathcal{G_e} \cdot \bm{a} ) \cdot \bm{E}
 	dV'
 	\cr
 	= &\oint_{\partial V} \Big(
-		\left( \mathcal{G}\_e \cdot \bm{a} \right) \times \left( \nabla' \times \bm{E} \right) -
-		\bm{E} \times \left( \nabla' \times \mathcal{G}\_e \right) \cdot \bm{a}
+		\left( \mathcal{G_e} \cdot \bm{a} \right) \times \left( \nabla' \times \bm{E} \right) -
+		\bm{E} \times \left( \nabla' \times \mathcal{G_e} \right) \cdot \bm{a}
 	\Big) \cdot \bm{n'} dA'.
 \end{aligned}
 $$
@@ -3131,12 +3131,12 @@ $$ \tag{1x.8}
 \begin{aligned}
 	-\bm{a} \cdot \bm{E_s}
 	&= -\bm{a} \cdot \int_V
-		 (m^2 - 1) (\mathcal{G}\_e \cdot \bm{E})
+		 (m^2 - 1) (\mathcal{G_e} \cdot \bm{E})
 	dV'
 	\cr
 	&= \oint_{\partial V} \Big(
-		\left( \mathcal{G}\_e \cdot \bm{a} \right) \times \left( \nabla' \times \bm{E} \right) -
-		\bm{E} \times \left( \nabla' \times \mathcal{G}\_e \right) \cdot \bm{a}
+		\left( \mathcal{G_e} \cdot \bm{a} \right) \times \left( \nabla' \times \bm{E} \right) -
+		\bm{E} \times \left( \nabla' \times \mathcal{G_e} \right) \cdot \bm{a}
 	\Big) \cdot \bm{n'} dA'.
 \end{aligned}
 $$
@@ -3144,9 +3144,9 @@ $$
 The surface integral can be simplified. We may substitute Eqn. 1z.23 into the first term; as for the second term, if we pay close attention to the order of the arguments, Eqn. 9.35 and 9.48 tell us that
 
 $$ \tag{1x.10}
-	\nabla' \times \mathcal{G}\_e(\bm{r'}, \bm{r})
-	= \mathcal{G}\_m(\bm{r'}, \bm{r})
-	= - \mathcal{G}\_m(\bm{r}, \bm{r'}).
+	\nabla' \times \mathcal{G_e}(\bm{r'}, \bm{r})
+	= \mathcal{G_m}(\bm{r'}, \bm{r})
+	= - \mathcal{G_m}(\bm{r}, \bm{r'}).
 $$
 
 The surface integral of Eqn. 1x.8 is thus reduced to
@@ -3155,17 +3155,17 @@ $$ \tag{1x.11}
 \begin{aligned}
 	\bm{a} \cdot \bm{E_s}
 	&= \bm{a} \cdot \int_V
-		 (m^2 - 1) (\mathcal{G}\_e \cdot \bm{E})
+		 (m^2 - 1) (\mathcal{G_e} \cdot \bm{E})
 	dV'
 	\cr
 	&= \oint_{\partial V} \Big(
-		i \bm{B} \times \left( \mathcal{G}\_e \cdot \bm{a} \right) -
-		\bm{E} \times \left( \mathcal{G}\_m \cdot \bm{a} \right)
+		i \bm{B} \times \left( \mathcal{G_e} \cdot \bm{a} \right) -
+		\bm{E} \times \left( \mathcal{G_m} \cdot \bm{a} \right)
 	\Big) \cdot \bm{n'} dA'.
 \end{aligned}
 $$
 
-At this point, the dyadic Green functions of Eqn. 1x.11 list their arguments in the same (conventional) order: \\(\mathcal{G}\_e(\bm{r}, \bm{r'})\\) due to its symmetry, and \\(\mathcal{G}\_m(\bm{r}, \bm{r'})\\) because of Eqn. 1x.10.
+At this point, the dyadic Green functions of Eqn. 1x.11 list their arguments in the same (conventional) order: \\(\mathcal{G_e}(\bm{r}, \bm{r'})\\) due to its symmetry, and \\(\mathcal{G_m}(\bm{r}, \bm{r'})\\) because of Eqn. 1x.10.
 
 The surface integral features two scalar triple products of the form \\(\bm{n} \cdot (\bm{E} \times (\mathcal{G} \cdot \bm{a}))\\). We can use its [cyclic property](https://en.wikipedia.org/wiki/Triple_product#Properties) to our advantage:
 
@@ -3176,7 +3176,7 @@ $$ \tag{1x.12}
 	= \bm{a} \cdot \mathcal{G} \cdot \left( \bm{n'} \times \bm{E} \right).
 $$
 
-Before we can apply Eqn. 1x.12, both Green dyadics need to be transposed. This operation must be performed carefully; while the electric dyadic is symmetric, the magnetic dyadic is anti-symmetric, so its transpose alters the sign: \\(\mathcal{G}\_m = -\mathcal{G}\_m^T\\).
+Before we can apply Eqn. 1x.12, both Green dyadics need to be transposed. This operation must be performed carefully; while the electric dyadic is symmetric, the magnetic dyadic is anti-symmetric, so its transpose alters the sign: \\(\mathcal{G_m} = -\mathcal{G_m}^T\\).
 
 Application of these identities allows us to move \\(\bm{a}\\) outside the integral:
 
@@ -3184,12 +3184,12 @@ $$ \tag{1x.13}
 \begin{aligned}
 	\bm{a} \cdot \bm{E_s}
 	&= \bm{a} \cdot \int_V
-		 (m^2 - 1) (\mathcal{G}\_e \cdot \bm{E})
+		 (m^2 - 1) (\mathcal{G_e} \cdot \bm{E})
 	dV'
 	\cr
 	&= \bm{a} \cdot \oint_{\partial V} \Big(
-		\mathcal{G}\_e \cdot \left( \bm{n'} \times i \bm{B} \right) +
-		\mathcal{G}\_m \cdot \left( \bm{n'} \times \bm{E} \right)
+		\mathcal{G_e} \cdot \left( \bm{n'} \times i \bm{B} \right) +
+		\mathcal{G_m} \cdot \left( \bm{n'} \times \bm{E} \right)
 	\Big) dA'.
 \end{aligned}
 $$
@@ -3197,9 +3197,9 @@ $$
 Since \\(\bm{a}\\) is an arbitrary constant vector, it can be safely neglected. If we introduce the shorthand notation
 
 $$ \tag{1x.1x}
-	\bm{E'}(\bm{r'}, \omega) = \bm{n'}(\bm{r'}) \times \bm{E}(\bm{r'}, \omega),
+	\bm{E^{\shortparallel}}(\bm{r}, \omega) = \bm{n}(\bm{r}) \times \bm{E}(\bm{r}, \omega),
 	\quad
-	\bm{B'}(\bm{r'}, \omega) = \bm{n'}(\bm{r'}) \times \bm{B}(\bm{r'}, \omega),
+	\bm{B^{\shortparallel}}(\bm{r}, \omega) = \bm{n}(\bm{r}) \times \bm{B}(\bm{r}, \omega),
 $$
 
 then Eqn. 1x.13 can be written as
@@ -3207,8 +3207,8 @@ then Eqn. 1x.13 can be written as
 $$ \tag{1x.14}
 	\bm{E_s}(\bm{r}, \omega)
 	= \oint_{\partial V} \big(
-		\mathcal{G}\_e( \bm{r}, \bm{r'}) \cdot i \bm{B'}(\bm{r'}, \omega) +
-		\mathcal{G}\_m( \bm{r}, \bm{r'}) \cdot \bm{E'}(\bm{r'}, \omega)
+		\mathcal{G_e}( \bm{r}, \bm{r'}) \cdot i \bm{B^{\shortparallel}}(\bm{r'}, \omega) +
+		\mathcal{G_m}( \bm{r}, \bm{r'}) \cdot \bm{E^{\shortparallel}}(\bm{r'}, \omega)
 	\big) dA'.
 $$
 
@@ -3217,12 +3217,12 @@ The expression of the magnetic field \\(\bm{B_s}\\) can be determined by taking 
 $$ \tag{1x.15}
 	i \bm{B_s}(\bm{r}, \omega)
 	= \oint_{\partial V} \big(
-		\mathcal{G}\_m(\bm{r}, \bm{r'}) \cdot i \bm{B'}(\bm{r'}, \omega) +
-		\mathcal{G}\_e(\bm{r}, \bm{r'}) \cdot \bm{E'}(\bm{r'}, \omega)
+		\mathcal{G_m}(\bm{r}, \bm{r'}) \cdot i \bm{B^{\shortparallel}}(\bm{r'}, \omega) +
+		\mathcal{G_e}(\bm{r}, \bm{r'}) \cdot \bm{E^{\shortparallel}}(\bm{r'}, \omega)
 	\big) dA'.
 $$
 
-Eqn. 1x.14 and 1x.15 are called the *surface integral equations*. They give the expressions of the scattered field in the region outside the scattering object \\((\bm{r} \notin V)\\) in terms of the *tangential surface fields* \\(\bm{E'}\\) and \\(\bm{H'} = \mu^{-1} \bm{B'}\\). According to Eqn. 1.17, the latter are continuous across the optical interface, provided the conductivity is finite \[[17](#references) (ch. 1.13)\]. More generally speaking, the idea that a smooth (but not necessarily physical) surface can be seen as a source of spherical *wavelets* (secondary waves) interfering with each other is known as the [Huygens-Fresnel principle](https://en.wikipedia.org/wiki/Huygens%E2%80%93Fresnel_principle) \[[4](#references) (ch. 3.1), [12](#references) (ch. 2)\].
+Eqn. 1x.14 and 1x.15 are called the *surface integral equations*. They give the expressions of the scattered field in the region outside the scattering object \\((\bm{r} \notin V)\\) in terms of the *tangential surface fields* \\(\bm{E^{\shortparallel}}\\) and \\(\bm{H^{\shortparallel}} = \mu^{-1} \bm{B^{\shortparallel}}\\). According to Eqn. 1.17, the latter are continuous across the optical interface, provided the conductivity is finite \[[17](#references) (ch. 1.13)\]. More generally speaking, the idea that a smooth (but not necessarily physical) surface can be seen as a source of spherical *wavelets* (secondary waves) interfering with each other is known as the [Huygens-Fresnel principle](https://en.wikipedia.org/wiki/Huygens%E2%80%93Fresnel_principle) \[[4](#references) (ch. 3.1), [12](#references) (ch. 2)\].
 
 The same principle can be used to express the scattered field at an interior point in terms of the values of the fields at the enclosing surface \[[17](#references) (ch. 8.14)\]. TODO? Or skip it?
 
@@ -3279,7 +3279,7 @@ $$
 Similarly, we define the *Green operator* \\(G\\) and the *transition operator* \\(T\\) as
 
 $$ \tag{14.6}
-	\braket{r | G | r'} = \mathcal{G}\_e(\bm{r}, \bm{r'}), \quad
+	\braket{r | G | r'} = \mathcal{G_e}(\bm{r}, \bm{r'}), \quad
 	\braket{r | T | r'} = \mathcal{T}(\bm{r}, \bm{r'}).
 $$
 
@@ -3341,7 +3341,7 @@ and the corresponding dyadic expression is
 $$ \tag{14.14}
 	\bm{E}(\bm{r})
 	= \bm{E_i}(\bm{r})
-	+ \int\_{V} \mathcal{G}\_e (\bm{r}, \bm{r'}) \cdot \int\_{V} \mathcal{T} (\bm{r'}, \bm{r''}) \cdot \bm{E_i}(\bm{r''}) dV'' dV'.
+	+ \int\_{V} \mathcal{G_e} (\bm{r}, \bm{r'}) \cdot \int\_{V} \mathcal{T} (\bm{r'}, \bm{r''}) \cdot \bm{E_i}(\bm{r''}) dV'' dV'.
 $$
 
 As expected, Eqn. 14.14 is identical to the combination of Eqn. 14.2 and 14.3.
@@ -3397,7 +3397,7 @@ Translation of Eqn. 14.19 into the integral form yields the definition of the tr
 $$ \tag{14.20}
 \begin{aligned}
 	\mathcal{T} (\bm{r}, \bm{r'}, \omega)
-	&= u(\bm{r}, \omega) \bigg( \delta(\bm{r} - \bm{r'}) \mathcal{I} + \int_V \mathcal{G}\_e (\bm{r}, \bm{r''}) \cdot \mathcal{T} (\bm{r''}, \bm{r'}, \omega) dV'' \bigg).
+	&= u(\bm{r}, \omega) \bigg( \delta(\bm{r} - \bm{r'}) \mathcal{I} + \int_V \mathcal{G_e} (\bm{r}, \bm{r''}) \cdot \mathcal{T} (\bm{r''}, \bm{r'}, \omega) dV'' \bigg).
 \end{aligned}
 $$
 
@@ -3447,7 +3447,7 @@ $$ \tag{14.24}
 	\mathcal{T} (\bm{r}, \bm{r'}, k, \omega).
 $$
 
-TODO: surface transition?..
+TODO: surface integral transition?..
 
 ### Dipole Radiation
 
@@ -3500,9 +3500,9 @@ Let us substitute Eqn. 12.4 into Eqn. 11.10-11.11:
 $$ \tag{12.5}
 \begin{aligned}
 	& \bm{E_s}(\bm{r}, \omega)
-	= k^2(\omega) \mathcal{G}\_e \big( \bm{r}, \bm{r_0}, k(\omega) \big) \cdot \mathcal{\Alpha_m}(V_m, \omega) \cdot \bm{E}(\bm{r_0}, \omega), \cr
+	= k^2(\omega) \mathcal{G_e} \big( \bm{r}, \bm{r_0}, k(\omega) \big) \cdot \mathcal{\Alpha_m}(V_m, \omega) \cdot \bm{E}(\bm{r_0}, \omega), \cr
 	& \bm{B_s}(\bm{r}, \omega)
-	= \frac{k^2(\omega)}{i \omega} \mathcal{G}\_m \big( \bm{r}, \bm{r_0}, k(\omega) \big) \cdot \mathcal{\Alpha_m}(V_m, \omega) \cdot \bm{E}(\bm{r_0}, \omega).
+	= \frac{k^2(\omega)}{i \omega} \mathcal{G_m} \big( \bm{r}, \bm{r_0}, k(\omega) \big) \cdot \mathcal{\Alpha_m}(V_m, \omega) \cdot \bm{E}(\bm{r_0}, \omega).
 \end{aligned}
 $$
 
@@ -3520,9 +3520,9 @@ Finally, note that, since \\(m\\) is dimensionless, Eqn. 12.6 implies that the p
 $$ \tag{12.7}
 \begin{aligned}
 	\bm{E_s}(\bm{r}, \omega)
-	&= \mathcal{G}\_e(\bm{r}, \bm{r_0}) \cdot \mathcal{\Alpha_m}(V_m, \omega) \cdot \bm{E}(\bm{r_0}, \omega), \cr
+	&= \mathcal{G_e}(\bm{r}, \bm{r_0}) \cdot \mathcal{\Alpha_m}(V_m, \omega) \cdot \bm{E}(\bm{r_0}, \omega), \cr
 	i \bm{B_s}(\bm{r}, \omega)
-	&= \mathcal{G}\_m (\bm{r}, \bm{r_0}) \cdot \mathcal{\Alpha_m}(V_m, \omega) \cdot \bm{E}(\bm{r_0}, \omega).
+	&= \mathcal{G_m} (\bm{r}, \bm{r_0}) \cdot \mathcal{\Alpha_m}(V_m, \omega) \cdot \bm{E}(\bm{r_0}, \omega).
 \end{aligned}
 $$
 
@@ -3533,18 +3533,18 @@ Let us consider the special case when the observation point is far away from the
 The idea behind the far-field approximation is simple: we discard a number of terms in Eqn. 1z.11 and 1z.17. In order to do that, we must consider their magnitudes relative to each other:
 
 $$ \tag{13.1}
-	\mathcal{G}\_e
+	\mathcal{G_e}
 	= \bigg( 1 + \frac{\mathcal{G_{en}}}{\mathcal{G_{ef}}} \bigg) \mathcal{G_{ef}}, \quad
-	\mathcal{G}\_m
+	\mathcal{G_m}
 	= \bigg( 1 + \frac{\mathcal{G_{mn}}}{\mathcal{G_{mf}}} \bigg) \mathcal{G_{mf}}.
 $$
 
 According to Eqn. 1z.12, for any fixed direction, the relative difference between the components of the  electric dyadic primarily arises from the leading scalar terms. In the case of the magnetic dyadic given by Eqn. 1z.18, both of its components exhibit identical angular dependence. Following this logic, we can use Eqn. 1z.1a to rewrite Eqn. 13.1 using the [Big O notation](https://en.wikipedia.org/wiki/Big_O_notation):
 
 $$ \tag{13.2}
-	\mathcal{G}\_e
+	\mathcal{G_e}
 	= \bigg( 1 + \mathrm{O} \Big( R^{-1} \Big) \bigg) \mathcal{G_{ef}}, \quad
-	\mathcal{G}\_m
+	\mathcal{G_m}
 	= \bigg( 1 + \mathrm{O} \Big( R^{-1} \Big) \bigg) \mathcal{G_{mf}}.
 $$
 
@@ -3563,17 +3563,17 @@ $$
 
 where we renamed \\(\bm{r_0}\\) to \\(\bm{r'}\\) in order to avoid introducing additional auxiliary variables. This allows us to reuse the previous definitions of \\(\bm{R} = \bm{r} - \bm{r'}, R = |\bm{R}|\\).
 
-Eqn. 13.3 can be simplified even further by aligning the origin of the coordinate system with the location of the dipole (so that \\(\bm{r'} = \bm{0}\\) and \\(\bm{R} = \bm{r}\\)) and introducing the direction of observation \\(\bm{n} = \bm{r}/|\bm{r}| = \bm{r} / r\\):
+Eqn. 13.3 can be simplified even further by aligning the origin of the coordinate system with the location of the dipole (so that \\(\bm{r'} = \bm{0}\\) and \\(\bm{R} = \bm{r}\\)) and introducing the *direction of observation* \\(\bm{n_s} = \bm{r}/|\bm{r}| = \bm{r} / r\\):
 
 $$ \tag{13.5}
 \begin{aligned}
 	\bm{E_s}(\bm{r}, \omega)
 	& \simeq g(\bm{r})
-	(\mathcal{I} - \bm{n} \otimes \bm{n}) \cdot \mathcal{\Alpha_m}(V_m, \omega)
+	(\mathcal{I} - \bm{n_s} \otimes \bm{n_s}) \cdot \mathcal{\Alpha_m}(V_m, \omega)
 	\cdot \bm{E}(\bm{0}, \omega), \cr
 	i \bm{B_s}(\bm{r}, \omega)
 	& \simeq g(\bm{r})
-	(\bm{n} \times \mathcal{I}) \cdot \mathcal{\Alpha_m}(V_m, \omega)
+	(\bm{n_s} \times \mathcal{I}) \cdot \mathcal{\Alpha_m}(V_m, \omega)
 	\cdot \bm{E}(\bm{0}, \omega)
 \end{aligned}
 $$
@@ -3602,7 +3602,7 @@ $$ \tag{13.7}
 	R
 	&= \sqrt{(\bm{r} - \bm{r'}) \cdot (\bm{r} - \bm{r'})} \cr
 	&= \sqrt{|\bm{r}|^2 - 2 (\bm{r} \cdot \bm{r'}) + |\bm{r'}|^2} \cr
-	&= r \sqrt{1 - 2 (\bm{n} \cdot \bm{n'}) (r'/r) + (r'/r)^2}.
+	&= r \sqrt{1 - 2 (\bm{n_s} \cdot \bm{n_s'}) (r'/r) + (r'/r)^2}.
 \end{aligned}
 $$
 
@@ -3611,16 +3611,16 @@ We may expand the square root (and its reciprocal) in the Taylor series of \\(r'
 $$ \tag{13.8}
 \begin{aligned}
 	& R
-	= r \bigg( 1 - (\bm{n} \cdot \bm{n'}) (r'/r) + \frac{1}{2} \Big( 1 - ( \bm{n} \cdot \bm{n'})^2 \Big) (r'/r)^2 + \mathrm{O} \Big( (r'/r)^3 \Big) \bigg), \cr
+	= r \bigg( 1 - (\bm{n_s} \cdot \bm{n_s'}) (r'/r) + \frac{1}{2} \Big( 1 - ( \bm{n_s} \cdot \bm{n_s'})^2 \Big) (r'/r)^2 + \mathrm{O} \Big( (r'/r)^3 \Big) \bigg), \cr
 	& \frac{1}{R}
-	= \frac{1}{r} \bigg( 1 + (\bm{n} \cdot \bm{n'}) (r'/r) + \mathrm{O} \Big( (r'/r)^2 \Big) \bigg).
+	= \frac{1}{r} \bigg( 1 + (\bm{n_s} \cdot \bm{n_s'}) (r'/r) + \mathrm{O} \Big( (r'/r)^2 \Big) \bigg).
 \end{aligned}
 $$
 
 The second expression varies relatively slowly, so its expansion can be truncated if we assume that \\(r'/r \le a/r \ll 1\\). The first expression is utilized in a rapidly-varying exponential function that is sensitive to the absolute (rather than the relative) error, so we must retain an extra term, which implies that \\(a^2 / r \ll 1\\). This way, we arrive at the approximation
 
 $$ \tag{13.9}
-	i R \simeq i r - i (\bm{r'} \cdot \bm{n}), \quad
+	i R \simeq i r - i (\bm{r'} \cdot \bm{n_s}), \quad
 	\frac{1}{R} \simeq \frac{1}{r}.
 $$
 
@@ -3629,15 +3629,15 @@ Next, let us examine the expression of the directions of observation of individu
 $$ \tag{13.10}
 \begin{aligned}
 	\frac{\bm{R}}{R}
-	&= \frac{\bm{r} - \bm{r'}}{r \sqrt{1 - 2 \big( \bm{n} \cdot \bm{n'} \big) (r'/r) + (r'/r)^2}} \cr
-	&= \bigg( \bm{n} - (r'/r) \bm{n'} \bigg) \bigg( 1 + \big( \bm{n} \cdot \bm{n'} \big) (r'/r) + \mathrm{O} \Big( (r'/r)^2 \Big) \bigg).
+	&= \frac{\bm{r} - \bm{r'}}{r \sqrt{1 - 2 \big( \bm{n_s} \cdot \bm{n_s'} \big) (r'/r) + (r'/r)^2}} \cr
+	&= \bigg( \bm{n_s} - (r'/r) \bm{n_s'} \bigg) \bigg( 1 + \big( \bm{n_s} \cdot \bm{n_s'} \big) (r'/r) + \mathrm{O} \Big( (r'/r)^2 \Big) \bigg).
 \end{aligned}
 $$
 
 If we assume that the sphere covers a small solid angle when viewed from the observation point, this implies that \\(a/r \ll 1\\) . As the bounding surface shrinks to a point, the directions of observation corresponding to individual volume elements align, and we may write
 
 $$ \tag{13.11}
-	\frac{\bm{R}}{R} \simeq \bm{n}.
+	\frac{\bm{R}}{R} \simeq \bm{n_s}.
 $$
 
 Substitution of Eqn. 13.9 and 13.11 into Eqn. 1z.12.2 and 1z.18.2 results in the following asymptotic expressions of the far-field Green dyadics:
@@ -3645,12 +3645,12 @@ Substitution of Eqn. 13.9 and 13.11 into Eqn. 1z.12.2 and 1z.18.2 results in the
 $$ \tag{13.1x}
 \begin{aligned}
 	\mathcal{G_{e}}(\bm{r}, \bm{r'})
-	&\simeq g(\bm{r}) (\mathcal{I} - \bm{n} \otimes \bm{n}) e^{-i (\bm{r'} \cdot \bm{n})}
-	= \frac{e^{i r - i (\bm{r'} \cdot \bm{n})}}{4 \pi r} (\mathcal{I} - \bm{n} \otimes \bm{n}),
+	&\simeq g(\bm{r}) (\mathcal{I} - \bm{n_s} \otimes \bm{n_s}) e^{-i (\bm{r'} \cdot \bm{n_s})}
+	= \frac{e^{i r - i (\bm{r'} \cdot \bm{n_s})}}{4 \pi r} (\mathcal{I} - \bm{n_s} \otimes \bm{n_s}),
 	\cr
 	\mathcal{G_{m}}(\bm{r}, \bm{r'})
-	&\simeq i g(\bm{r}) (\bm{n} \times \mathcal{I}) e^{-i (\bm{r'} \cdot \bm{n})}
-	= i \frac{e^{i r - i (\bm{r'} \cdot \bm{n})}}{4 \pi r} (\bm{n} \times \mathcal{I}),
+	&\simeq i g(\bm{r}) (\bm{n_s} \times \mathcal{I}) e^{-i (\bm{r'} \cdot \bm{n_s})}
+	= i \frac{e^{i r - i (\bm{r'} \cdot \bm{n_s})}}{4 \pi r} (\bm{n_s} \times \mathcal{I}),
 \end{aligned}
 $$
 
@@ -3667,13 +3667,13 @@ Eqn. 13.1x is used to define the so-called *far-field approximation* of the volu
 $$ \tag{13.12}
 \begin{aligned}
 	\bm{E_s}(\bm{r}, \omega)
-	&\simeq g(\bm{r}) (\mathcal{I} - \bm{n} \otimes \bm{n}) \cdot
-	\int\_{V} e^{-i (\bm{r'} \cdot \bm{n})} \big( m^2(\bm{r'}, \omega) - 1 \big)
+	&\simeq g(\bm{r}) (\mathcal{I} - \bm{n_s} \otimes \bm{n_s}) \cdot
+	\int\_{V} e^{-i (\bm{r'} \cdot \bm{n_s})} \big( m^2(\bm{r'}, \omega) - 1 \big)
 	\bm{E}(\bm{r'}, \omega) dV',
 	\cr
 	\bm{B_s}(\bm{r}, \omega)
-	&\simeq g(\bm{r}) (\bm{n} \times \mathcal{I}) \cdot
-	\int\_{V} e^{-i (\bm{r'} \cdot \bm{n})} \big( m^2(\bm{r'}, \omega) - 1 \big)
+	&\simeq g(\bm{r}) (\bm{n_s} \times \mathcal{I}) \cdot
+	\int\_{V} e^{-i (\bm{r'} \cdot \bm{n_s})} \big( m^2(\bm{r'}, \omega) - 1 \big)
 	\bm{E}(\bm{r'}, \omega) dV', \cr
 \end{aligned}
 $$
@@ -3683,22 +3683,22 @@ The far-field approximation of the surface integral equation (cf. Eqn. 1x.14-1x.
 $$ \tag{13.1y}
 \begin{aligned}
 	\bm{E_s}(\bm{r}, \omega)
-	&= i g(\bm{r}) (\mathcal{I} - \bm{n} \otimes \bm{n}) \cdot
-		\oint_{\partial V} e^{-i (\bm{r'} \cdot \bm{n})}
-		\bm{B'}(\bm{r'}, \omega) dA'
+	&= i g(\bm{r}) (\mathcal{I} - \bm{n_s} \otimes \bm{n_s}) \cdot
+		\oint_{\partial V} e^{-i (\bm{r'} \cdot \bm{n_s})}
+		\bm{B^{\shortparallel}}(\bm{r'}, \omega) dA'
 	\cr
-	&+ i g(\bm{r}) (\bm{n} \times \mathcal{I}) \cdot
-		\oint_{\partial V} e^{-i (\bm{r'} \cdot \bm{n})}
-		\bm{E'}(\bm{r'}, \omega) dA',
+	&+ i g(\bm{r}) (\bm{n_s} \times \mathcal{I}) \cdot
+		\oint_{\partial V} e^{-i (\bm{r'} \cdot \bm{n_s})}
+		\bm{E^{\shortparallel}}(\bm{r'}, \omega) dA',
 	\cr
 	\bm{B_s}(\bm{r}, \omega)
-	&= i g(\bm{r}) (\bm{n} \times \mathcal{I}) \cdot
-		\oint_{\partial V} e^{-i (\bm{r'} \cdot \bm{n})}
-		\bm{B'}(\bm{r'}, \omega) dA'
+	&= i g(\bm{r}) (\bm{n_s} \times \mathcal{I}) \cdot
+		\oint_{\partial V} e^{-i (\bm{r'} \cdot \bm{n_s})}
+		\bm{B^{\shortparallel}}(\bm{r'}, \omega) dA'
 	\cr
-	&- i g(\bm{r}) (\mathcal{I} - \bm{n} \otimes \bm{n}) \cdot
-		\oint_{\partial V} e^{-i (\bm{r'} \cdot \bm{n})}
-		\bm{E'}(\bm{r'}, \omega) dA'.
+	&- i g(\bm{r}) (\mathcal{I} - \bm{n_s} \otimes \bm{n_s}) \cdot
+		\oint_{\partial V} e^{-i (\bm{r'} \cdot \bm{n_s})}
+		\bm{E^{\shortparallel}}(\bm{r'}, \omega) dA'.
 \end{aligned}
 $$
 
@@ -3710,12 +3710,12 @@ An important property of the far-field solution is the fact that the scattered f
 
 $$ \tag{13.14}
 \begin{aligned}
-	& \bm{n} \cdot (\mathcal{I} - \bm{n} \otimes \bm{n})
-	= \bm{n} - (\bm{n} \cdot \bm{n}) \bm{n}
+	& \bm{n_s} \cdot (\mathcal{I} - \bm{n_s} \otimes \bm{n_s})
+	= \bm{n_s} - (\bm{n_s} \cdot \bm{n_s}) \bm{n_s}
 	= 0, \cr
-	& \bm{n} \cdot (\bm{n} \times \mathcal{I})
-	= -\bm{n} \cdot (\mathcal{I} \times \bm{n})
-	= -\bm{n} \times \bm{n}
+	& \bm{n_s} \cdot (\bm{n_s} \times \mathcal{I})
+	= -\bm{n_s} \cdot (\mathcal{I} \times \bm{n_s})
+	= -\bm{n_s} \times \bm{n_s}
 	= 0.
 \end{aligned}
 $$
@@ -3724,7 +3724,7 @@ We can also show that, under certain conditions, the electric and the magnetic f
 
 $$ \tag{13.15}
 	\bm{K}(\bm{r}, \omega)
-	= g(\bm{r}) \int\_{V} e^{-i (\bm{r'} \cdot \bm{n})} \big( m^2(\bm{r'}, \omega) - 1 \big)
+	= g(\bm{r}) \int\_{V} e^{-i (\bm{r'} \cdot \bm{n_s})} \big( m^2(\bm{r'}, \omega) - 1 \big)
 	\bm{E}(\bm{r'}, \omega) dV',
 $$
 
@@ -3733,17 +3733,17 @@ which simplifies Eqn. 13.12 to
 $$ \tag{13.16}
 \begin{aligned}
 	& \bm{E_s}(\bm{r}, \omega)
-	\simeq (\mathcal{I} - \bm{n} \otimes \bm{n}) \cdot \bm{K}(\bm{r}, \omega),
+	\simeq (\mathcal{I} - \bm{n_s} \otimes \bm{n_s}) \cdot \bm{K}(\bm{r}, \omega),
 	\cr
 	& \bm{B_s}(\bm{r}, \omega)
-	\simeq (\bm{n} \times \mathcal{I}) \cdot \bm{K}(\bm{r}, \omega).
+	\simeq (\bm{n_s} \times \mathcal{I}) \cdot \bm{K}(\bm{r}, \omega).
 \end{aligned}
 $$
 
 Now, take the cross product of the direction of observation with Eqn. 13.16.1, and compare the result to Eqn. 13.16.2. The expressions are clearly identical:
 
 $$ \tag{13.17}
-	\bm{n} \times \bm{E_s}(\bm{r}, \omega)
+	\bm{n_s} \times \bm{E_s}(\bm{r}, \omega)
 	\simeq \bm{B_s}(\bm{r}, \omega)
 $$
 
@@ -3753,17 +3753,17 @@ Thus, we find that the field vectors are orthogonal, and that their magnitudes a
 
 [Picture]
 
-We come to the conclusion that, at a large distance, for a fixed direction of observation, a spherical wave is an analog of a plane wave (cf. Eqn. 7.2) with the amplitude decreasing proportionally to the distance \\(r = \bm{r} \cdot \bm{n}\\):
+We come to the conclusion that, at a large distance, for a fixed direction of observation, a spherical wave is an analog of a plane wave (cf. Eqn. 7.2) with the amplitude decreasing proportionally to the distance \\(r = \bm{r} \cdot \bm{n_s}\\):
 
 $$ \tag{13.20}
 \begin{aligned}
 	& \bm{E_s}(\bm{r}, \omega) e^{-i t}
-	\simeq 4 \pi g(\bm{r}) \bm{E_1}(\bm{n}, \omega) e^{-i t}
-	= \frac{1}{r} \bm{E_1}(\bm{n}, \omega) e^{i (r - t)},
+	\simeq 4 \pi g(\bm{r}) \bm{E_1}(\bm{n_s}, \omega) e^{-i t}
+	= \frac{1}{r} \bm{E_1}(\bm{n_s}, \omega) e^{i (r - t)},
 	\cr
 	& \bm{B_s}(\bm{r}, \omega) e^{-i t}
-	\simeq 4 \pi g(\bm{r}) \bm{B_1}(\bm{n}, \omega) e^{-i t}
-	= \frac{1}{r} \bm{B_1}(\bm{n}, \omega) e^{i (r - t)},
+	\simeq 4 \pi g(\bm{r}) \bm{B_1}(\bm{n_s}, \omega) e^{-i t}
+	= \frac{1}{r} \bm{B_1}(\bm{n_s}, \omega) e^{i (r - t)},
 \end{aligned}
 $$
 
@@ -3771,17 +3771,17 @@ where the polarization vectors are defined as follows \[[6](#references) (ch. 13
 
 $$ \tag{13.??}
 \begin{aligned}
-	& \bm{E_1}(\bm{n}, \omega)
-	= \frac{1}{4 \pi} (\mathcal{I} - \bm{n} \otimes \bm{n}) \cdot \int\_{V} e^{-i (\bm{r'} \cdot \bm{n})} \big( m^2(\bm{r'}, \omega) - 1 \big)
+	& \bm{E_1}(\bm{n_s}, \omega)
+	= \frac{1}{4 \pi} (\mathcal{I} - \bm{n_s} \otimes \bm{n_s}) \cdot \int\_{V} e^{-i (\bm{r'} \cdot \bm{n_s})} \big( m^2(\bm{r'}, \omega) - 1 \big)
 	\bm{E}(\bm{r'}, \omega) dV',
 	\cr
-	& \bm{B_1}(\bm{n}, \omega)
-	= \frac{1}{4 \pi} (\bm{n} \times \mathcal{I}) \cdot \int\_{V} e^{-i (\bm{r'} \cdot \bm{n})} \big( m^2(\bm{r'}, \omega) - 1 \big)
+	& \bm{B_1}(\bm{n_s}, \omega)
+	= \frac{1}{4 \pi} (\bm{n_s} \times \mathcal{I}) \cdot \int\_{V} e^{-i (\bm{r'} \cdot \bm{n_s})} \big( m^2(\bm{r'}, \omega) - 1 \big)
 	\bm{E}(\bm{r'}, \omega) dV'.
 \end{aligned}
 $$
 
-The distribution of the \\(4 \pi\\) factors is motivated by the expression of the volume of a sphere \\(V = 4/3 \pi a^3\\). As a result of this arrangement, the \\(4 \pi\\) factor is often eliminated from both Eqn. 13.20 and 13.??.
+The distribution of the \\(4 \pi\\) factors is motivated by the expression of the volume of a sphere \\(V = 4 \pi a^3/3\\). As a result of this arrangement, the \\(4 \pi\\) factor is often eliminated from both Eqn. 13.20 and 13.??.
 
 A Poyinting vector may be associated with a spherical wave. According to Eqn. 2.17, if the we perform the observation in a non-magnetic medium (e.i. if \\(\mu\_1 = \mu\_0\\)), then
 
@@ -3795,9 +3795,9 @@ $$ \tag{13.?!}
 	\right)
 	\cr
 	&\simeq \frac{\mu\_0^{-1}}{r^2} \left(
-	\mathcal{Re} \big\lbrace \bm{E_1}(\bm{n}, \omega) e^{-i t} \big\rbrace
+	\mathcal{Re} \big\lbrace \bm{E_1}(\bm{n_s}, \omega) e^{-i t} \big\rbrace
 	\times
-	\mathcal{Re} \big\lbrace \bm{B_1}(\bm{n}, \omega) e^{-i t} \big\rbrace
+	\mathcal{Re} \big\lbrace \bm{B_1}(\bm{n_s}, \omega) e^{-i t} \big\rbrace
 	\right).
 \end{aligned}
 $$
@@ -3807,15 +3807,15 @@ Making use of the properties demonstrated by Eqn. 13.16-13.17 yields a simplifie
 $$ \tag{13.21}
 	\bm{S_s}(\bm{r}, t)
 	\simeq \frac{\mu\_0^{-1}}{r^2} \left|
-	\mathcal{Re} \big\lbrace \bm{E_1}(\bm{n}, \omega) e^{-i t} \big\rbrace
-	\right|^2 \bm{n}.
+	\mathcal{Re} \big\lbrace \bm{E_1}(\bm{n_s}, \omega) e^{-i t} \big\rbrace
+	\right|^2 \bm{n_s}.
 $$
 
-It can be expanded by aligning \\(\bm{n}\\) with the \\(z\\)-axis of the Cartesian coordinate system (cf. Eqn. 7.31):
+It can be expanded by aligning \\(\bm{n_s}\\) with the \\(z\\)-axis of the Cartesian coordinate system (cf. Eqn. 7.31):
 
 $$ \tag{13.22}
 	\bm{S_s}(\bm{r}, t)
-	\simeq \mu\_0^{-1} \left( \frac{|E_{1,x}|^2}{r^2} \cos^2{\theta_x} + \frac{|E_{1,y}|^2}{r^2} \cos^2{\theta_y} \right) \bm{n}
+	\simeq \mu\_0^{-1} \left( \frac{|E_{1,x}|^2}{r^2} \cos^2{\theta_x} + \frac{|E_{1,y}|^2}{r^2} \cos^2{\theta_y} \right) \bm{n_s}
 $$
 
 After performing time-averaging, we readily obtain the expression of irradiance (cf. Eqn. 7.32)
@@ -3823,106 +3823,94 @@ After performing time-averaging, we readily obtain the expression of irradiance 
 $$ \tag{13.23}
 	\Epsilon_s(\bm{n'})
 	= \braket{\bm{S_s}} \cdot \bm{n'}
-	\simeq \frac{\mu\_0^{-1}}{2} \frac{|\bm{E_1}|^2}{r^2} \big( \bm{n} \cdot \bm{n'} \big)
+	\simeq \frac{\mu\_0^{-1}}{2} \frac{|\bm{E_1}|^2}{r^2} \big( \bm{n_s} \cdot \bm{n'} \big)
 $$
 
 that follows the [inverse-square law](https://en.wikipedia.org/wiki/Inverse-square_law).
 
 ### Scattering Matrix
 
-An arbitrary stream of electromagnetic radiation can decomposed into a number of  plane waves. Specifically, in a source-free region of a linear, isotropic, homogeneous medium, the expression of the incident field is given by Eqn. 6.16:
+In a region of free space, electromagnetic radiation can be represented by a number of plane waves. Stated more precisely, in a source-free region of a linear, isotropic, homogeneous medium, the expression of the incident field (cf. Eqn. 6.16) is
 
 $$ \tag{15.1}
 	\bm{E_i}(\bm{r}, \omega) =
 	\oint\_{\mathbb{S}^2} \bm{E_i}(\bm{r}, \bm{n_i}, \omega) d\Omega_i =
-	\oint\_{\mathbb{S}^2} \bm{E_0}(\bm{n_i}, \omega) e^{i k(\omega) (\bm{r} \cdot \bm{n_i})} d\Omega_i.
+	\oint\_{\mathbb{S}^2} \bm{E_0}(\bm{n_i}, \omega) e^{i (\bm{r} \cdot \bm{n_i})} d\Omega_i.
 $$
 
-We have also learned that the scattered field is a linear function of the incident field. This allows us to utilize the superposition principle, according to which, the scattered field is a superposition of scattered waves generated by individual incident plane waves. Stated mathematically,
+Later on, in Sec. 14, we have learned that the scattered field is a linear function of the incident field (cf. Eqn. 14.14):
 
 $$ \tag{15.2}
-	\bm{E_s}(\bm{r}, \omega) =
-	\oint\_{\mathbb{S}^2} \bm{E_s}(\bm{r}, \bm{n_i}, \omega) d\Omega_i.
+	\bm{E_s}(\bm{r}, \omega)
+	= \int\_{V} \mathcal{G_e}(\bm{r}, \bm{r'}, \omega) \cdot
+	\int\_{V} \mathcal{T} (\bm{r'}, \bm{r''}, \omega) \cdot \bm{E_i}(\bm{r''}, \omega) dV'' dV'.
 $$
 
-We may expand the integrand using Eqn. 14.16 and 15.1:
+Both Eqn. 15.1 and 15.2 are examples of the superposition principle. In this particular case, it tells us that we can build a solution of the scattering problem for an arbitrary source from the solution for a single plane wave of fixed frequency and orientation:
 
 $$ \tag{15.3}
-\begin{aligned}
-	\bm{E_s}(\bm{r}, \bm{n_i}, \omega)
-	&= \int\_{V} \mathcal{G}\_e \big( \bm{r}, \bm{r'}, k(\omega) \big) \cdot
-	\int\_{V} \mathcal{T} (\bm{r'}, \bm{r''}, k(\omega), \omega) \cdot \bm{E_i}(\bm{r''}, \bm{n_i}, \omega) dV'' dV'
-	\cr
-	&= \int\_{V} \mathcal{G}\_e \big( \bm{r}, \bm{r'}, k(\omega) \big) \cdot
-	\int\_{V} \mathcal{T} (\bm{r'}, \bm{r''}, k(\omega), \omega) \cdot \bm{E_0}(\bm{n_i}, \omega) e^{i k(\omega) (\bm{r''} \cdot \bm{n_i})} dV'' dV'.
-\end{aligned}
+	\bm{E_s}(\bm{r}, \omega)
+	= \int\_{V} \mathcal{G_e}(\bm{r}, \bm{r'}, \omega) \cdot
+	\int\_{V} e^{i (\bm{r''} \cdot \bm{n_i})} \mathcal{T} (\bm{r'}, \bm{r''}, \omega) dV'' dV' \cdot \bm{E_0}(\bm{n_i}, \omega).
 $$
 
-If we take the polarization vector \\(\bm{E_0}\\) outside the integral, it becomes apparent that the scattered field may be related to the incident field by the *scattering dyadic* \\(\mathcal{S}\\) \[[8](#references) (ch. 5.3)\]:
+Let us examine the reduced problem just mentioned more closely. Since the polarization vector \\(\bm{E_0}\\) of a plane wave does not depend on the position, the former can be taken outside the volume integral. This leads to the following definition of the *scattering dyadic* \\(\mathcal{S}\\) \[[8](#references) (ch. 5.3)\]:
 
 $$ \tag{15.4}
-	\bm{E_s}(\bm{r}, \bm{n_i}, \omega)
-	= \frac{e^{i k(\omega) r}}{k(\omega) r} \mathcal{S_e} (\bm{r}, \bm{n_i}, \omega) \cdot \bm{E_0}(\bm{n_i}, \omega).
+	\mathcal{S} (\bm{r}, \bm{n_i}, \omega)
+	= \frac{1}{4 \pi g(\bm{r})} \int\_{V} \mathcal{G_e}(\bm{r}, \bm{r'}, \omega) \cdot
+	\int\_{V} e^{i (\bm{r''} \cdot \bm{n_i})} \mathcal{T} (\bm{r'}, \bm{r''}, \omega) dV'' dV',
 $$
 
-In general, the scattering dyadic depends on the position of the observation point relative to the scatterer. However, if the observation point is very far away, we can utilize the far-field expression of the electric dyadic, and combine Eqn. 13.12, 14.3, and 14.5 to write
+such that
 
 $$ \tag{15.5}
-\begin{aligned}
-	& \bm{E_s}(\bm{r}, \omega) \simeq
-	\frac{e^{i k(\omega) r}}{4 \pi r}
-	\big( \mathcal{I} - \bm{n_s} \otimes \bm{n_s} \big) \cdot
-	\int\_{V} e^{-i k(\omega) (\bm{r'} \cdot \bm{n_s})} \int\_{V} \mathcal{T} \big( \bm{r'}, \bm{r''}, k(\omega), \omega \big) \cdot \bm{E_i}(\bm{r''}, \omega) dV'' dV', \cr
-	& \bm{B_s}(\bm{r}, \omega) \simeq
-	\frac{k(\omega)}{\omega} \frac{e^{i k(\omega) r}}{4 \pi r}
-	\big(\bm{n_s} \times \mathcal{I} \big) \cdot
-	\int\_{V} e^{-i k(\omega) (\bm{r'} \cdot \bm{n_s})} \int\_{V} \mathcal{T} \big( \bm{r'}, \bm{r''}, k(\omega), \omega \big) \cdot \bm{E_i}(\bm{r''}, \omega) dV'' dV',
-\end{aligned}
+	\bm{E_s}(\bm{r}, \omega)
+	= 4 \pi g(\bm{r}) \mathcal{S} (\bm{r}, \bm{n_i}, \omega) \cdot \bm{E_0}(\bm{n_i}, \omega)
+	= \frac{e^{i r}}{r} \mathcal{S} (\bm{r}, \bm{n_i}, \omega) \cdot \bm{E_0}(\bm{n_i}, \omega).
 $$
 
-making the far-field scattering dyadics independent from the distance to the observation point:
+In general, \\(\mathcal{S}\\) depends on the position of the observer relative to the scattering object. However, if the observation point \\(\bm{r}\\) is very far away, we can combine Eqn. 13.12 with 14.1-14.3 to show that the scattering dyadic is distance-independent in the radiation zone:
 
 $$ \tag{15.6}
-\begin{aligned}
-	& \bm{E_s}(\bm{r}, \omega)
-	\simeq \frac{e^{i k(\omega) r}}{k(\omega) r} \mathcal{S_{ef}} (\bm{n_s}, \bm{n_i}, \omega) \cdot \bm{E_0}(\bm{n_i}, \omega), \cr
-	& \bm{B_s}(\bm{r}, \omega)
-	\simeq \frac{k(\omega)}{\omega} \bm{n_s} \times \bm{E_s}(\bm{r}, \omega).
-\end{aligned}
+\mathcal{S_f}(\bm{n_s}, \bm{n_i}, \omega) \simeq
+	\frac{1}{4 \pi} (\mathcal{I} - \bm{n_s} \otimes \bm{n_s}) \cdot
+	\iint\_{V} e^{i (\bm{r''} \cdot \bm{n_i} - \bm{r'} \cdot \bm{n_s})} \mathcal{T} (\bm{r'}, \bm{r''}, \omega) dV' dV''.
 $$
 
-Comparison with Eqn. 13.20 directly leads to
-
-$$ \tag{15.?}
-\begin{aligned}
-	& \bm{E_1}(\bm{n_s}, \omega)
-	= \mathcal{S_{ef}} (\bm{n_s}, \bm{n_i}, \omega) \cdot \bm{E_0}(\bm{n_i}, \omega),
-	\cr
-	& \bm{B_1}(\bm{r}, \omega)
-	= \frac{k(\omega)}{\omega} \bm{n_s} \times \bm{E_1}(\bm{r}, \omega).
-\end{aligned}
-$$
-
-For completeness, the formula of the electric far-field scattering dyadic is given below:
+Correspondingly, Eqn. 13.12 takes the form:
 
 $$ \tag{15.7}
 \begin{aligned}
-	& \mathcal{S_{ef}} (\bm{n_s}, \bm{n_i}, \omega) \simeq
-	\frac{k(\omega)}{4 \pi}
-	\big( \mathcal{I} - \bm{n_s} \otimes \bm{n_s} \big) \cdot
-	\iint\_{V} e^{-i k(\omega) (\bm{r'} \cdot \bm{n_s} - \bm{r''} \cdot \bm{n_i})} \mathcal{T} (\bm{r'}, \bm{r''}, k(\omega), \omega) dV'' dV'.
+	\bm{E_s}(\bm{r}, \omega)
+	&\simeq \frac{e^{i r}}{r} \mathcal{S_f} (\bm{n_s}, \bm{n_i}, \omega) \cdot \bm{E_0}(\bm{n_i}, \omega),
+	\cr
+	\bm{B_s}(\bm{r}, \omega)
+	&\simeq \frac{e^{i r}}{r} \bm{n_s} \times \mathcal{S_f} (\bm{n_s}, \bm{n_i}, \omega) \cdot \bm{E_0}(\bm{n_i}, \omega),
 \end{aligned}
 $$
 
-All the expressions given above are independent of the choice of a coordinate system. In practice, in order to perform computations, it is necessary to use a specific reference frame.
+Comparison with Eqn. 13.?? reveals the connection between the polarization vectors:
+
+$$ \tag{15.8}
+\begin{aligned}
+	\bm{E_1}(\bm{n_s}, \omega)
+	&= \mathcal{S_f} (\bm{n_s}, \bm{n_i}, \omega) \cdot \bm{E_0}(\bm{n_i}, \omega),
+	\cr
+	\bm{B_1}(\bm{n_s}, \omega)
+	&= \bm{n_s} \times \mathcal{S_f} (\bm{n_s}, \bm{n_i}, \omega) \cdot \bm{E_0}(\bm{n_i}, \omega).
+\end{aligned}
+$$
+
+All the expressions given above are (for the most part) independent of the choice of a coordinate system. In practice, in order to perform numerical calculations, it is necessary to use a specific reference frame.
 
 {{< figure src="/img/scat_coord.svg" caption="*Figure N: the scattering coordinate system.*" >}}
 
-First, recall that \\(r\\) in Eqn. 15.6 stands for the distance from the center of the scattering object to the observation point. This makes the center of the scatterer a suitable choice for the origin of the coordinate system.
+First, recall that the far-field expressions derived in Sec. 13 require the scattering object to be located in the vicinity of the origin of the coordinate system (see Eqn. 13.13). Ideally, their centers should coincide.
 
-Next, assume that the direction of incidence \\(\bm{n_i}\\) is fixed; conventionally, it is aligned with the \\(z\\)-axis. That is convenient, because it allows us to describe the incident electric field vector using only two Cartesian components, \\(x\\) and \\(y\\), since, according to Eqn. 7.18-7.19, the component along \\(\bm{n_i}\\) is zero.
+Next, assume that the *direction of incidence* \\(\bm{n_i}\\) is fixed; conventionally, it is aligned with the \\(z\\)-axis. That is convenient, because it allows us to describe the incident electric field vector using only two orthogonal components, since, according to Eqn. 7.18, the component of \\(\bm{E_i}\\) along \\(\bm{n_i}\\) is zero.
 
-We must also choose the *plane of reference* that fixes the orientation of the coordinate frame \[[4](#references) (ch. 5.11)\]. The decision is somewhat arbitrary (except for the fact that the plane should contain \\(\bm{n_i}\\) for the reason outlined above). A simple choice that reduces the number of degrees of freedom is to use the *plane of observation* spanned by \\(\bm{n_i}\\) and \\(\bm{n_s}\\) \[[4](#references) (ch. 5.22)\]. In summary, the coordinate convention for the incident field is
+We must also choose the *plane of reference* that fixes the orientation of the coordinate frame \[[4](#references) (ch. 5.11)\]. The decision is somewhat arbitrary (except for the fact that the plane should contain \\(\bm{n_i}\\) for the reason outlined above). A simple choice that minimizes the degrees of freedom is to use the *scattering plane* spanned by \\(\bm{n_i}\\) and \\(\bm{n_s}\\) \[[4](#references) (ch. 5.22)\]. In summary, the coordinate convention for the incident field is
 
 $$ \tag{15.8}
 	\bm{e_z} = \bm{n_i}, \quad
@@ -3940,9 +3928,9 @@ $$ \tag{15.9}
 	\bm{e_X} = \bm{n_p},
 $$
 
-where \\(\bm{n_p}\\) is the principal axis of the particle (specifically chosen to be orthogonal to \\(\bm{n_i}\\)).
+where \\(\bm{n_p}\\) is the *principal axis* orthogonal to \\(\bm{n_i}\\).
 
-The latter could, for instance, represent the coordinate frame of the scatterer. We can now rotate \\(xyz\\) and define its orientation relative to \\(XYZ\\) in terms of the [Euler angles](https://en.wikipedia.org/wiki/Euler_angles). We are particularly interested in rotating the plane of observation about the \\(Z\\)-axis, as that allows the set of possible direction of observation to cover the entire the unit sphere. If the azimuthal (plane rotation) angle is \\(\phi\\) and the zenith angle is \\(\theta\\), the spherical coordinates of \\(\bm{n_s}\\) with respect to the \\(XYZ\\) frame are
+We can perform a rotation of the \\(xyz\\) frame and define its orientation relative to \\(XYZ\\) in terms of the [Euler angles](https://en.wikipedia.org/wiki/Euler_angles). We are particularly interested in rotating the scattering plane about the \\(Z\\)-axis, as that allows the set of possible directions of observation to cover the entire unit sphere. If the azimuthal (plane rotation) angle is \\(\phi\\) and the zenith angle is \\(\theta\\), the spherical coordinates of \\(\bm{n_s}\\) with respect to the \\(XYZ\\) frame are
 
 $$ \tag{15.10}
 \bm{n_s} =
@@ -3960,9 +3948,7 @@ $$ \tag{15.10}
 \end{bmatrix}.
 $$
 
-Note that we must use the [atan2](https://en.wikipedia.org/wiki/Atan2) function in order to realize the full range of values of \\(\theta\\) and \\(\phi\\).
-
-It can be seen that \\(\theta = 0\\) corresponds to *forward scattering*, and \\(\theta = \pi\\) -- to *back-scattering*.
+In this coordinate convention, \\(\theta = 0\\) corresponds to *forward scattering*, and \\(\theta = \pi\\) -- to *back-scattering*. Note that we must use the [atan2](https://en.wikipedia.org/wiki/Atan2) function in order to realize the full range of values of \\(\theta\\) and \\(\phi\\).
 
 Unfortunately, the rotation of the coordinate frame causes the values of the components of the incident electric field to change \[[4](#references) (ch. 5.31)\]. If the angle of rotation of the plane is \\(\phi\\), the field vectors are [passively](https://en.wikipedia.org/wiki/Active_and_passive_transformation#Passive_transformation) [rotated](https://en.wikipedia.org/wiki/Rotation_matrix#Basic_rotations) by \\(-\phi\\) radians:
 
@@ -4000,9 +3986,7 @@ $$ \tag{15.12}
 	\bm{e_{\phi}} = \bm{e_y}.
 $$
 
-As Eqn. 13.14 shows, the scattered field vectors are orthogonal to \\(\bm{n_s}\\). Thus, in the spherical coordinate system, only the tangential (\\(\theta\\) and \\(\phi\\)) components of \\(\bm{E_s}\\) and \\(\bm{B_s}\\) are non-zero.
-
-Eqn. 15.12 represents a [rotation](https://en.wikipedia.org/wiki/Rotation_matrix#Basic_rotations) of the \\(\theta r\\)-plane about the \\(\phi\\)-axis:
+Eqn. 15.12 represents a rotation of the scattering plane about the \\(\phi\\)-axis:
 
 $$ \tag{15.13}
 \begin{bmatrix}
@@ -4030,21 +4014,23 @@ $$
 
 The combination of Eqn. 15.11 and 15.13 is the inverse of the standard transformation matrix from [spherical to Cartesian](https://en.wikipedia.org/wiki/List_of_common_coordinate_transformations#From_spherical_coordinates) coordinates.
 
-Suppose that the amplitude and the phase of the incident field is known at the plane with a certain \\(z\\)-coordinate (where \\(z\\) is a negative number). Then the value of the field at the origin is
+According to Eqn. 13.14, in the radiation zone, the scattered field vectors are orthogonal to \\(\bm{n_s}\\). Thus, in the spherical coordinate system, only the tangential (\\(\theta\\) and \\(\phi\\)) components of \\(\bm{E_s}\\) and \\(\bm{B_s}\\) are non-zero. In addition, as mentioned earlier, \\(E\_{z} = E\_{Z} = 0\\).
+
+Suppose that the amplitude and the phase of the incident field is known on the plane with a certain \\(z\\)-coordinate. Then the value of the field at the origin is
 
 $$ \tag{15.14}
 \begin{bmatrix}
 	E\_{i,x}(0, 0, \phi, \omega) \cr
 	E\_{i,y}(0, 0, \phi, \omega) \cr
 \end{bmatrix} =
-e^{-i k(\omega) z}
+e^{-i z}
 \begin{bmatrix}
 	E\_{i,x}(z, 0, \phi, \omega) \cr
 	E\_{i,y}(z, 0, \phi, \omega) \cr
 \end{bmatrix}.
 $$
 
-Since we can represent both the incident and the scattering fields using only two components (each), Eqn. 15.6.1 can be expressed in terms of the complex *scattering matrix*, or the [S-matrix](https://en.wikipedia.org/wiki/S-matrix) for short.
+Since we can represent both the incident and the scattering fields using only two components (each), Eqn. 15.6 can be expressed in terms of the complex *scattering matrix*, or the [S-matrix](https://en.wikipedia.org/wiki/S-matrix) for short:
 
 $$ \tag{15.15}
 S(\theta, \phi, \omega) =
@@ -4061,22 +4047,22 @@ $$ \tag{15.16}
 	E\_{s,\theta}(\bm{r}, \omega) \cr
 	E\_{s,\phi}(\bm{r}, \omega) \cr
 \end{bmatrix} \simeq
-\frac{e^{i k(\omega) r - i k(\omega) z}}{k(\omega) r} S(\theta, \phi, \omega)
+\frac{e^{i (r - z)}}{r} S(\theta, \phi, \omega)
 \begin{bmatrix}
 	E\_{i,x}(z, 0, \phi, \omega) \cr
 	E\_{i,y}(z, 0, \phi, \omega) \cr
 \end{bmatrix}.
 $$
 
-Eqn. 15.16 matches the one given in the book by van de Hulst, except for the sign of the complex exponential and the missing \\(i\\) factor in the denominator \[[4](#references) (ch. 4.41)\]. The author claims that this factor makes the formulae more convenient \[[4](#references) (ch. 4.1)\]. While that is indeed the case, the convention is prone to sign errors, and also introduces seemingly imaginary coefficients that are, in fact, real.
+Eqn. 15.16 matches the one given in the book by van de Hulst, except for the sign of the complex exponential and the missing \\(i\\) factor in the denominator \[[4](#references) (ch. 4.41)\]. The author claims that this factor makes the formulae more convenient \[[4](#references) (ch. 4.1)\]. While that is sometimes the case, the convention is prone to sign errors, and also makes certain real coefficients imaginary.
 
-In general, the elements of the scattering matrix depend on the azimuthal angle \\(\phi\\), since, as we rotate the plane of observation (\\(x z\\) or \\(r \theta\\)) around the \\(z\\)-axis, the scattering object appears to rotate in the opposite direction. However, if the object is symmetric (both geometrically and structurally) with respect to the \\(z\\)-axis, which is the case for spherical and an axis-aligned [spheroidal](https://en.wikipedia.org/wiki/Spheroid) particles, the matrix only depends on the zenith angle \\(\theta\\)[^26]. This causes the scattering matrix to become diagonal, with \\(s_3 = s_4 = 0\\) \[[4](#references) (ch. 4.42)\].
+In general, the elements of the scattering matrix depend on the azimuthal angle \\(\phi\\), since, as we rotate the scattering plane (\\(x z\\) or \\(r \theta\\)) around the \\(z\\)-axis, the scattering object appears to rotate in the opposite direction. However, if the scatterer exhibits the rotational symmetry (both geometrically and structurally) with respect to the \\(z\\)-axis (which is the case for spherical and axis-aligned [spheroidal](https://en.wikipedia.org/wiki/Spheroid) particles[^26]), the matrix depends only on the zenith angle \\(\theta\\). This causes the scattering matrix to become diagonal, with \\(s_3 = s_4 = 0\\) \[[4](#references) (ch. 4.42)\].
 
 [^26]: That is also the case for groups of statistically isotropic and mirror-symmetric random particles \[[4](#references) (ch. 5.2), [8](#references) (ch. 15)\].
 
-It's easy to see why that is the case. Consider changing the handedness of the Cartesian coordinate frame, so that the basis vector of the \\(x\\)-axis (or the \\(y\\)-axis) becomes \\(-\bm{e_x}\\) (or \\(-\bm{e_y}\\)), and vice versa. In the reflected coordinate system, both \\(E\_{i,x}\\) and \\(E\_{s,\theta}\\) (or \\(E\_{i,y}\\) and \\(E\_{s,\phi}\\)) change the sign, but, since the particle possesses reflection symmetry, the scattering matrix remains unchanged. In order for the magnitudes of the scattered field components to remain unchanged, the off-diagonal elements \\(s_3\\) and \\(s_4\\) must be equal to \\(0\\). This decouples the \\(x\\) and \\(y\\) components of the field, which allows us to represent the vector scattering process in terms of two independent scalar waves.
+It's easy to see why that is the case. Consider changing the handedness of the Cartesian coordinate frame, so that the basis vector of the \\(x\\)-axis (or the \\(y\\)-axis) becomes \\(-\bm{e_x}\\) (or \\(-\bm{e_y}\\)), and vice versa. In the reflected coordinate system, both \\(E\_{i,x}\\) and \\(E\_{s,\theta}\\) (or \\(E\_{i,y}\\) and \\(E\_{s,\phi}\\)) change the sign, but, since the particle possesses reflection symmetry, the scattering matrix remains unchanged. In order for the magnitudes of the scattered field components to remain the same, the off-diagonal elements \\(s_3\\) and \\(s_4\\) must be equal to \\(0\\). This decouples the \\(x\\) and \\(y\\) components of the field, which allows us to represent the vector scattering process in terms of two independent scalar waves.
 
-In addition, a very similar proof shows that axial symmetry with respect to the direction of incidence leads to another important property of forward scattering: \\(s_1(0, \phi) = s_2(0, \phi) = s_0\\).
+In addition, a very similar proof shows that the rotational symmetry leads to an important property of forward scattering: \\(s_1(0, \phi) = s_2(0, \phi) = s_0\\).
 
 ### Optical Theorem
 
@@ -4168,15 +4154,15 @@ $$
 
 Our goal is to find a similar expression for the case when the volume contains particles.
 
-We begin by constructing a virtual surface that is (for convenience, and without loss of generality) both centered at the particle and is sufficiently large to be located in its radiation zone. The scattered fields on the surface are then given by Eqn. 15.6-15.?:
+We begin by constructing a virtual surface that is (for convenience, and without loss of generality) both centered at the particle and is sufficiently large to be located in its radiation zone. The scattered fields on the surface are then given by Eqn. 15.6-15.7:
 
 $$ \tag{16.10}
 \begin{aligned}
 	& \bm{E_s}(\bm{r}, t)
-	\simeq \mathcal{Re} \bigg\lbrace \frac{e^{i k r}}{k r} \mathcal{S_{ef}}(\bm{n_s}) \cdot \bm{E_0} e^{-i \omega t} \bigg\rbrace
+	\simeq \mathcal{Re} \bigg\lbrace \frac{e^{i k r}}{k r} \mathcal{S_f}(\bm{n_s}) \cdot \bm{E_0} e^{-i \omega t} \bigg\rbrace
 	= \mathcal{Re} \bigg\lbrace \frac{1}{k r} \bm{E_1}(\bm{n_s}) e^{i k r - i \omega t} \bigg\rbrace, \cr
 	& \bm{B_s}(\bm{r}, t)
-	\simeq \mathcal{Re} \bigg\lbrace \frac{e^{i k r}}{\omega r} \bm{n_s} \times \mathcal{S_{ef}}(\bm{n_s}) \cdot \bm{E_0} e^{-i \omega t} \bigg\rbrace
+	\simeq \mathcal{Re} \bigg\lbrace \frac{e^{i k r}}{\omega r} \bm{n_s} \times \mathcal{S_f}(\bm{n_s}) \cdot \bm{E_0} e^{-i \omega t} \bigg\rbrace
 	= \mathcal{Re} \bigg\lbrace \frac{1}{k r} \bm{B_1}(\bm{n_s}) e^{i k r - i \omega t} \bigg\rbrace,
 \end{aligned}
 $$
@@ -4565,11 +4551,11 @@ $$
 
 where, as before, \\(C_d\\) is the area of the entrance pupil of the measurement device, \\(C_e\\) is the extinction cross-section, \\(\Epsilon_i\\) is the incident irradiance, and \\(\Iota_s\\) is the scattered intensity. Since, physically, the amount of power cannot be negative, Eqn. 16.3y implies that \\(C_d\\) must be sufficiently large \\((C_d \gg C_g)\\) in order to fully capture the extinction effect \[[8](#references) (ch. 13.1)\].
 
-Eqn. 16.38.3 and 16.39.3 can be simplified if the particle possesses axial symmetry with respect to the direction of incidence. To show this, we can express \\(\bm{E_1}\\) in terms of the scattering dyadic \\(\mathcal{S_{ef}}\\) according to Eqn. 15.?:
+Eqn. 16.38.3 and 16.39.3 can be simplified if the particle possesses axial symmetry with respect to the direction of incidence. To show this, we can express \\(\bm{E_1}\\) in terms of the scattering dyadic \\(\mathcal{S_f}\\) according to Eqn. 15.7:
 
 $$ \tag{16.40}
 	\Phi_e
-	= \frac{\mu\_0^{-1}}{2} \frac{\eta}{c} \frac{4 \pi}{k^2} \mathcal{Im} \big\lbrace \bm{E_0^{\*}} \cdot \mathcal{S_{ef}}(\bm{n_i}) \cdot \bm{E_0} \big\rbrace.
+	= \frac{\mu\_0^{-1}}{2} \frac{\eta}{c} \frac{4 \pi}{k^2} \mathcal{Im} \big\lbrace \bm{E_0^{\*}} \cdot \mathcal{S_f}(\bm{n_i}) \cdot \bm{E_0} \big\rbrace.
 $$
 
 Once we choose a coordinate system, we can substitute the scattering matrix with \\(\theta=0\\):
@@ -7333,7 +7319,7 @@ $$ \tag{19.5}
 \end{aligned}
 $$
 
-In addition to the benefits described above, it allows us identify a rotation of the incident electric field \\([E_X, E_Y]^T\\) around the \\(z\\)-axis. If we refer to Eqn. 15.11 and Fig. N, we may recognize the components of the complex vector \\([E\_x(\phi), E\_y(\phi)]^T\\) defined relative to the plane of observation.
+In addition to the benefits described above, it allows us identify a rotation of the incident electric field \\([E_X, E_Y]^T\\) around the \\(z\\)-axis. If we refer to Eqn. 15.11 and Fig. N, we may recognize the components of the complex vector \\([E\_x(\phi), E\_y(\phi)]^T\\) defined relative to the scattering plane.
 
 If we specify the incident field at a certain coordinate \\(z < 0\\) and substitute the resulting vector into Eqn. 19.5, the resulting expression is a perfect match for the template of Eqn. 15.16. This allows us to isolate the expression of the scattering matrix
 
@@ -7733,14 +7719,14 @@ $$ \tag{19.25}
 	\simeq \frac{\mu\_0^{-1}}{2} \frac{\eta(\omega)}{c} \frac{1}{k^2(\omega)} \left| \bm{E_1}(\bm{n_s}, \omega) \right|^2.
 $$
 
-Eqn. 15.? allows us to replace the polarization vector \\(\bm{E_1}\\) of the scattered field with the product the of the electric far-field scattering dyadic \\(\mathcal{S_{ef}}\\) and the polarization vector \\(\bm{E_0}\\) of the incident field:
+Eqn. 15.7 allows us to replace the polarization vector \\(\bm{E_1}\\) of the scattered field with the product the of the electric far-field scattering dyadic \\(\mathcal{S_f}\\) and the polarization vector \\(\bm{E_0}\\) of the incident field:
 
 $$ \tag{19.26}
 	\Iota_s(\bm{n_s}, \omega)
-	\simeq \frac{\mu\_0^{-1}}{2} \frac{\eta(\omega)}{c} \frac{1}{k^2(\omega)} \left| \mathcal{S_{ef}}(\bm{n_s}, \bm{n_i}, \omega) \cdot \bm{E_0}(\bm{n_i}, \omega) \right|^2.
+	\simeq \frac{\mu\_0^{-1}}{2} \frac{\eta(\omega)}{c} \frac{1}{k^2(\omega)} \left| \mathcal{S_f}(\bm{n_s}, \bm{n_i}, \omega) \cdot \bm{E_0}(\bm{n_i}, \omega) \right|^2.
 $$
 
-Both \\(\mathcal{S_{ef}}\\) and \\(\bm{E_0}\\) are coordinate-independent entities. In practice, we shall utilize the convention established in Sec. 15, according to which both the incident and the scattered fields can be described using only two components each. After taking Eqn. 15.14-15.16 into account, Eqn. 19.26 takes the form
+Both \\(\mathcal{S_f}\\) and \\(\bm{E_0}\\) are coordinate-independent entities. In practice, we shall utilize the convention established in Sec. 15, according to which both the incident and the scattered fields can be described using only two components each. After taking Eqn. 15.14-15.16 into account, Eqn. 19.26 takes the form
 
 $$ \tag{19.27}
 	\Iota_s(\theta, \phi, \omega)
@@ -8193,7 +8179,7 @@ In order to apply the results of Sec. 17, we must tailor them to our particular 
 
 $$ \tag{21.2}
 	\bm{E_s}(\bm{r}, \omega)
-	\simeq \frac{e^{i k_0(\omega) r}}{k_0(\omega) r} \mathcal{S_{ef}} (\bm{n_s}, \bm{n_i}, \omega) \cdot \bm{E_0}(\bm{n_i}, \omega).
+	\simeq \frac{e^{i k_0(\omega) r}}{k_0(\omega) r} \mathcal{S_f} (\bm{n_s}, \bm{n_i}, \omega) \cdot \bm{E_0}(\bm{n_i}, \omega).
 $$
 
 The corresponding formula for a dipole is found in Eqn. 13.5:
@@ -8201,16 +8187,16 @@ The corresponding formula for a dipole is found in Eqn. 13.5:
 $$ \tag{21.3}
 	\bm{E_s}(\bm{r}, \omega)
 	\simeq \frac{e^{i k_0(\omega) r}}{k_0(\omega) r} \frac{k_0^3(\omega)}{4 \pi}
-	\big( \mathcal{I} - \bm{n_s} \otimes \bm{n_s} \big) \cdot \mathcal{\Alpha_m}(V_m, \omega)
+	(\mathcal{I} - \bm{n_s} \otimes \bm{n_s}) \cdot \mathcal{\Alpha_m}(V_m, \omega)
 	\cdot \bm{E_0}(\bm{n_i}, \omega).
 $$
 
 Thus, the scattering dyadic \\(\mathcal{S\_{ef}}\\) and the molecular polarizability dyadic \\(\mathcal{\Alpha\_m}\\) are related as follows:
 
 $$ \tag{21.4}
-	\mathcal{S_{ef}} (\bm{n_s}, \bm{n_i}, \omega)
+	\mathcal{S_f} (\bm{n_s}, \bm{n_i}, \omega)
 	\simeq \frac{k_0^3(\omega)}{4 \pi}
-	\big( \mathcal{I} - \bm{n_s} \otimes \bm{n_s} \big) \cdot \mathcal{\Alpha_m}(V_m, \omega).
+	(\mathcal{I} - \bm{n_s} \otimes \bm{n_s}) \cdot \mathcal{\Alpha_m}(V_m, \omega).
 $$
 
 The first term is the power law of Rayleigh scattering; the second term ensures that the electromagnetic field is transverse; the last term encodes the orientation and the "responsiveness" of the molecule with respect to the applied electromagnetic field.
@@ -9035,7 +9021,7 @@ After substituting Eqn. 22.2 into 13.12, the far-field expression of the volume 
 $$ \tag{22.6}
 	\bm{E_s}(\bm{r}, \omega)
 	\approx k^2(\omega) \frac{e^{i k(\omega) r}}{4 \pi r}
-	\big( \mathcal{I} - \bm{n_s} \otimes \bm{n_s} \big) \cdot \bm{E_0}(\bm{n_i}, \omega)
+	(\mathcal{I} - \bm{n_s} \otimes \bm{n_s}) \cdot \bm{E_0}(\bm{n_i}, \omega)
 	\int\_{V_p} \big( m^2(\bm{r'}, \omega) - 1 \big)
 	e^{i k(\omega) \bm{r'} \cdot (\bm{n_i} - \bm{n_s})} dV'
 $$
@@ -9180,7 +9166,7 @@ $$ \tag{22.14}
 	\approx \frac{e^{i k(\omega) r}}{k(\omega) r}
 	\big( m^2(\omega) - 1 \big) x^3(\omega)
 	\frac{j_1\negthinspace\big( |\bm{n_i} - \bm{n_s}| x(\omega) \big)}{|\bm{n_i} - \bm{n_s}| x(\omega)}
-	\big( \mathcal{I} - \bm{n_s} \otimes \bm{n_s} \big) \cdot
+	(\mathcal{I} - \bm{n_s} \otimes \bm{n_s}) \cdot
 	\bm{E_0}.
 $$
 
@@ -9188,16 +9174,16 @@ Comparison with the expression of the scattered far-field of an arbitrary partic
 
 $$ \tag{22.15}
 	\bm{E_s}(\bm{r}, \omega)
-	\simeq \frac{e^{i k(\omega) r}}{k(\omega) r} \mathcal{S_{ef}} (\bm{n_s}, \bm{n_i}, \omega) \cdot \bm{E_0}(\bm{n_i}, \omega),
+	\simeq \frac{e^{i k(\omega) r}}{k(\omega) r} \mathcal{S_f} (\bm{n_s}, \bm{n_i}, \omega) \cdot \bm{E_0}(\bm{n_i}, \omega),
 $$
 
 reveals the formula of the far-field scattering dyadic \\(\mathcal{S\_{ef}}\\) of a homogeneous spherical particle:
 
 $$ \tag{22.16}
-	\mathcal{S_{ef}} (\bm{n_s}, \bm{n_i}, \omega)
+	\mathcal{S_f} (\bm{n_s}, \bm{n_i}, \omega)
 	\approx \big( m^2(\omega) - 1 \big) x^3(\omega)
 	\frac{j_1\negthinspace\big( |\bm{n_i} - \bm{n_s}| x(\omega) \big)}{|\bm{n_i} - \bm{n_s}| x(\omega)}
-	\big( \mathcal{I} - \bm{n_s} \otimes \bm{n_s} \big).
+	(\mathcal{I} - \bm{n_s} \otimes \bm{n_s}).
 $$
 
 ##### Scattering Matrix
@@ -9544,7 +9530,7 @@ $$ \tag{23.3}
 	\bm{E_s}(\bm{r}, \omega)
 	&\simeq k^2(\omega)
 	\frac{e^{i k(\omega) r}}{4 \pi r}
-	\big( \mathcal{I} - \bm{n_s} \otimes \bm{n_s} \big) \cdot \bm{E_0}(\bm{n_i}, \omega) \cr
+	(\mathcal{I} - \bm{n_s} \otimes \bm{n_s}) \cdot \bm{E_0}(\bm{n_i}, \omega) \cr
 	&\times
 	\int\_{V_p} \big( m^2(\bm{r'}, \omega) - 1 \big)
 	e^{i k(\omega) \bm{r'} \cdot (\bm{n_i} - \bm{n_s})}
@@ -10343,13 +10329,13 @@ $$ \tag{24.1} \small
 	&= \bm{E_i}(\bm{r}, \omega)
 	\cr
 	&+ k^2(\omega) \int\_{V} \big( m^2(\bm{r'}, \omega) - 1 \big)
-	\mathcal{G}\_e \big( \bm{r}, \bm{r'}, k(\omega) \big) \cdot
+	\mathcal{G_e} \big( \bm{r}, \bm{r'}, k(\omega) \big) \cdot
 	\bm{E_i}(\bm{r'}, \omega) dV'
 	\cr
 	&+ k^4(\omega) \int\_{V} \big( m^2(\bm{r'}, \omega) - 1 \big)
-	\mathcal{G}\_e \big( \bm{r}, \bm{r'}, k(\omega) \big) \cdot
+	\mathcal{G_e} \big( \bm{r}, \bm{r'}, k(\omega) \big) \cdot
 	\int\_{V} \big( m^2(\bm{r''}, \omega) - 1 \big)
-	\mathcal{G}\_e \big( \bm{r'}, \bm{r''}, k(\omega) \big) \cdot
+	\mathcal{G_e} \big( \bm{r'}, \bm{r''}, k(\omega) \big) \cdot
 	\bm{E_i}(\bm{r''}, \omega) dV'' dV'
 	\cr
 	&+ ...
@@ -10360,28 +10346,28 @@ The first two lines of Eqn. 24.1 represent the first-order Born (also known as t
 
 $$ \tag{24.2} \small
 	\mathcal{T} \big( \bm{r}, \bm{r'}, k(\omega), \omega \big)
-	\approx k^2(\omega) \big( m^2(\bm{r}, \omega) - 1 \big) \big( \delta(\bm{r} - \bm{r'}) \mathcal{I} + k^2(\omega) \big( m^2(\bm{r'}, \omega) - 1 \big) \mathcal{G}\_e (\bm{r}, \bm{r'}, k) \big).
+	\approx k^2(\omega) \big( m^2(\bm{r}, \omega) - 1 \big) \big( \delta(\bm{r} - \bm{r'}) \mathcal{I} + k^2(\omega) \big( m^2(\bm{r'}, \omega) - 1 \big) \mathcal{G_e} (\bm{r}, \bm{r'}, k) \big).
 $$
 
 Inspection of Eqn. 24.1 may lead to a (false) conclusion that we can directly substitute the expression of
 
 $$ \tag{24.3}
 	I_{ada}(\bm{r'}, \omega) = k^2(\omega) \int\_{V} \big( m^2(\bm{r''}, \omega) - 1 \big)
-	\mathcal{G}\_e \big( \bm{r'}, \bm{r''}, k(\omega) \big) \cdot
+	\mathcal{G_e} \big( \bm{r'}, \bm{r''}, k(\omega) \big) \cdot
 	\bm{E_i}(\bm{r''}, \omega) dV''
 $$
 
-obtained using the the Rayleigh-Gans-Born approximation into the volume integral equation. Unfortunately, that is not the case because, this time, we can no longer use the far-field expression of the electric dyadic \\(\mathcal{G}\_e\\).
+obtained using the the Rayleigh-Gans-Born approximation into the volume integral equation. Unfortunately, that is not the case because, this time, we can no longer use the far-field expression of the electric dyadic \\(\mathcal{G_e}\\).
 
 Let us begin by expanding the expression of the complex electric vector using Eqn. 7.2:
 
 $$ \tag{24.4}
 	I_{ada}(\bm{r}, \omega) = k^2(\omega) \int\_{V} \big( m^2(\bm{r'}, \omega) - 1 \big)
-	\mathcal{G}\_e \big( \bm{r}, \bm{r'}, k(\omega) \big) \cdot
+	\mathcal{G_e} \big( \bm{r}, \bm{r'}, k(\omega) \big) \cdot
 	\bm{E_0}(\bm{n_i}, \omega) e^{i k(\omega) (\bm{r'} \cdot \bm{n_i})} dV'.
 $$
 
-As for the electric dyadic \\(\mathcal{G}\_e\\), in order to avoid dealing with the singularity (by introducing the depolarization dyadic), it is convenient to move the derivatives outside the integral, as shown by Eqn. 9.24:
+As for the electric dyadic \\(\mathcal{G_e}\\), in order to avoid dealing with the singularity (by introducing the depolarization dyadic), it is convenient to move the derivatives outside the integral, as shown by Eqn. 9.24:
 
 $$ \tag{24.5} \small
 	I_{ada}(\bm{r}, \omega)
