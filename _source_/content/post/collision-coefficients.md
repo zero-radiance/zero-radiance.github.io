@@ -2988,11 +2988,13 @@ $$ \tag{1z.20}
 \begin{aligned}
 	\bm{E}(\bm{r}, t)
 	&= \mathcal{Re}\negthinspace\left\lbrace \bm{E}(\bm{r}, \omega) e^{-i \omega t} \right\rbrace
-	= \mathcal{Re}\negthinspace\left\lbrace \bm{E}(\bm{r}, \omega) e^{-i \tau(\omega)} \right\rbrace,
+	= \mathcal{Re}\negthinspace\left\lbrace \bm{E}(\bm{r}, \omega) e^{-i \tau(\omega)} \right\rbrace
+	= \mathcal{Re}\negthinspace\left\lbrace \bm{E}(\bm{r}, \omega) e^{-i t} \right\rbrace,
 	\cr
 	\bm{B}(\bm{r}, t)
 	&= \mathcal{Re}\negthinspace\left\lbrace \bm{B}(\bm{r}, \omega) e^{-i \omega t} \right\rbrace
-	= \mathcal{Re}\negthinspace\left\lbrace \bm{B}(\bm{r}, \omega) e^{-i \tau(\omega)} \right\rbrace.
+	= \mathcal{Re}\negthinspace\left\lbrace \bm{B}(\bm{r}, \omega) e^{-i \tau(\omega)} \right\rbrace
+	= \mathcal{Re}\negthinspace\left\lbrace \bm{B}(\bm{r}, \omega) e^{-i t} \right\rbrace.
 \end{aligned}
 $$
 
@@ -3006,7 +3008,17 @@ $$ \tag{1z.21}
 	\frac{c}{\eta_1} \bm{B} \leftrightarrows \bm{B}.
 $$
 
-If we also wish to perform conversion of the formulas (and not just the quantities), the operators, volume elements and Dirac delta functions also must be transformed according to Eqn. 1z.2-1z.5. In practice, the following "unofficial" shortcut is often used:
+The last rule directly leads to
+
+$$ \tag{1z.2?}
+	\frac{c}{\eta_1} \bm{H} \leftrightarrows \bm{H},
+	\quad
+	\frac{c}{\eta_1} \bm{S} \leftrightarrows \bm{S},
+$$
+
+since both the magnetic intensity \\(\bm{H}\\) (Eqn. 5.2.3) and the Poynting vector \\(\bm{S}\\) (Eqn. 2.17, 2.22) are linear functions of the magnetic field \\(\bm{B}\\).
+
+If we also wish to perform conversion of the formulas (and not just the quantities), then operators, volume elements and Dirac delta functions also must be transformed according to Eqn. 1z.2-1z.5. In practice, the following "unofficial" shortcut is often used:
 
 $$ \tag{1z.22}
 	\omega \bm{B} \leftrightarrows \bm{B}.
