@@ -376,6 +376,15 @@ $$
 
 is the *instantaneous* [Poynting vector](https://en.wikipedia.org/wiki/Poynting_vector) that characterizes the direction, the density, and the rate of energy flow.
 
+It should be noted that, historically, the primary purpose of the inverse vacuum permeability factor
+
+$$ \tag{2.??}
+	\mu\_0^{-1}
+	= \frac{10^7}{4 \pi \times 1.00000000055(15)}\text{ N}^{\text{-1}}\text{⋅A}^{\text{2}}
+$$
+
+was to bring the numerical values into the "practical" range \[[17](#references) (ch. 1.8)\].
+
 Definitions given in Eqn. 2.16-2.17 transform Eqn. 2.11 into a statement of the [Poynting theorem](https://en.wikipedia.org/wiki/Poynting%27s_theorem):
 
 $$ \tag{2.18}
