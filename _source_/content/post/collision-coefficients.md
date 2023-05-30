@@ -2868,13 +2868,15 @@ $$ \tag{1z.3}
 	\frac{\partial}{\partial \tau} = \omega^{-1} \frac{\partial}{\partial t}.
 $$
 
-The volume element grows proportionally:
+The surface and volume elements grow proportionally:
 
 $$ \tag{1z.4}
-	d V_{\rho} = d(kx) \thinspace d(ky) \thinspace d(kz) = k^3 dV,
+	d A_{\rho} = d(kx) \thinspace d(ky) = k^2 dA,
+	\quad
+	d V_{\rho} = d(kx) \thinspace d(ky) \thinspace d(kz) = k^3 dV.
 $$
 
-which forces the magnitude of the Dirac delta function to compensate:
+The latter forces the magnitude of the Dirac delta function to compensate:
 
 $$ \tag{1z.5}
 	\delta(\bm{\Rho})
@@ -4087,60 +4089,58 @@ In addition, a very similar proof shows that the rotational symmetry leads to an
 
 ### Optical Theorem
 
-For radiative transfer applications, we may introduce a simpler description of the scattering and absorption properties of a particle by describing the outcome of the scattering process in radometric (rather than optical) terms \[[6](#references) (ch. 13.6), [8](#references) (ch. 13.1, 13.4)\].
+In practice, one often employs a simplified description of the scattering and absorption properties of a particle that quantifies the scattering process in radometric (rather than optical) terms \[[6](#references) (ch. 13.6), [8](#references) (ch. 13.1, 13.4)\].
 
-Consider the incident time-harmonic[^15] electromagnetic field \\(\bm{E_i}\\) and \\(\bm{B_i}\\). In a linear, isotropic, homogeneous, source-free medium, the field can be decomposed into a number of plane waves (cf. Eqn. 7.1-7.2) of the form
+Consider the incident time-harmonic[^15] electromagnetic field \\(\bm{E_i}\\) and \\(\bm{B_i}\\). In a source-free region of a linear, isotropic, homogeneous medium, the field can be decomposed into a number of plane waves of the form (cf. Eqn. 7.1-7.2)
 
 [^15]: We used the monochromatic forms of the fields given by Eqn. 4.11. Extension to a polychromatic field is trivial, and amounts to summing up the individual harmonic terms per Eqn. 4.8.
 
 $$ \tag{16.1}
 \begin{aligned}
 	& \bm{E_i}(\bm{r}, t)
-	= \mathcal{Re} \big\lbrace \bm{E_0} e^{i k (\bm{r} \cdot \bm{n_i}) - i \omega t} \big\rbrace, \cr
+	= \mathcal{Re} \big\lbrace \bm{E_0} e^{i (\bm{r} \cdot \bm{n_i} - t)} \big\rbrace, \cr
 	& \bm{B_i}(\bm{r}, t)
-	= \mathcal{Re} \big\lbrace \bm{B_0} e^{i k (\bm{r} \cdot \bm{n_i}) - i \omega t} \big\rbrace,
+	= \mathcal{Re} \big\lbrace \bm{B_0} e^{i (\bm{r} \cdot \bm{n_i} - t)} \big\rbrace,
 \end{aligned}
 $$
 
 where \\(\bm{E_0}\\) and \\(\bm{B_0}\\) are the polarization vectors at the origin, and \\(\bm{n_i}\\) is the direction of incidence.
 
-According to Eqn. 7.18, 7.23 and 7.25, if the medium is non-absorptive, they satisfy the relations
+According to Eqn. 7.18, 7.23 and 7.25, if the medium is non-absorptive, these vectors satisfy the relations
 
 $$ \tag{16.2}
 	\bm{n_i} \cdot  \bm{E_0} = 0, \quad
 	\bm{n_i} \cdot  \bm{B_0} = 0, \quad
-	\bm{n_i} \times \bm{E_0} = \frac{c}{\eta} \bm{B_0}, \quad
-	\bm{B_0} \times \bm{n_i} = \frac{\eta}{c} \bm{E_0}.
+	\bm{n_i} \times \bm{E_0} = \bm{B_0}.
 $$
 
-With each plane wave, we may associate the Poynting vector \\(\bm{S_i}\\) (cf. Eqn. 7.28) pointing along its direction of propagation. If the host medium is non-absorptive and non-magnetic, the expression of the time-averaged Poynting vector (cf. Eqn. 7.31-7.32) is particularly simple:
+With a plane wave, we may associate the Poynting vector \\(\bm{S_i}\\) (cf. Eqn. 7.28) pointing along its direction of propagation. If the host medium is non-absorptive and non-magnetic, the expression of the time-averaged Poynting vector (see Eqn. 7.28-7.32) is particularly simple:
 
 $$ \tag{16.3}
 	\braket{\bm{S_i}}
 	= \frac{\mu\_0^{-1}}{2} \mathcal{Re}
 	\big\lbrace \bm{E_0} \times \bm{B_0^{\*}} \big\rbrace
-	= \frac{\mu\_0^{-1}}{2} \frac{\eta}{c} |\bm{E_0}|^2 \bm{n_i}.
+	= \frac{\mu\_0^{-1}}{2} |\bm{E_0}|^2 \bm{n_i}.
 $$
 
-As a result, the amount of power per unit area (cf. Eqn. 7.32) flowing through an arbitrary virtual surface element is
+As a result, the amount of power per unit area (cf. Eqn. 7.32) flowing through an arbitrary virtual surface element with the normal \\(\bm{n}\\) is
 
 $$ \tag{16.4}
 	\Epsilon_i(\bm{n})
 	= \braket{\bm{S_i}} \cdot \bm{n}
-	= \frac{\mu\_0^{-1}}{2} \frac{\eta}{c} |\bm{E_0}|^2 (\bm{n_i} \cdot \bm{n}),
+	= \frac{\mu\_0^{-1}}{2} |\bm{E_0}|^2 (\bm{n_i} \cdot \bm{n}).
 $$
-
-where \\(\bm{n}\\) is the surface normal.
 
 The total amount of power flowing through the entire virtual surface is then
 
 $$ \tag{16.5}
 	\Delta \Phi
+	= \int_{A} \Epsilon_i(\bm{n}) \thinspace dA
 	= \int_{A} \braket{\bm{S_i}} \cdot \bm{n} \thinspace dA
-	= \frac{\mu\_0^{-1}}{2} \frac{\eta}{c} |\bm{E_0}|^2 \int_{A} \bm{n_i} \cdot \bm{n} \thinspace dA.
+	= \frac{\mu\_0^{-1}}{2} |\bm{E_0}|^2 \int_{A} \bm{n_i} \cdot \bm{n} \thinspace dA.
 $$
 
-The integral given above simply computes the signed projected area of the surface onto the plane of the incident wave. For a closed surface, the value of the integral is zero.
+The integral shown above simply gives the (dimensionless) signed area of the surface projected onto the plane of the incident wave. For a closed surface, the value of the integral is zero.
 
 [Insert picture here]
 
@@ -4148,20 +4148,19 @@ Eqn. 16.5 expresses the energy conservation law:
 
 $$ \tag{16.6}
 	\Delta \Phi
-	= \frac{\mu\_0^{-1}}{2} \frac{\eta}{c} |\bm{E_0}|^2 \bigg(
+	= \frac{\mu\_0^{-1}}{2} |\bm{E_0}|^2 \bigg(
 	  \oint_{A} \mathrm{max}(0, -\bm{n} \cdot \bm{n_i}) dA
 	- \oint_{A} \mathrm{max}(0,  \bm{n} \cdot \bm{n_i}) dA \bigg) = 0.
 $$
 
 It shows that the rate at which energy enters the volume (bounded by the virtual surface) is perfectly balanced by the rate of energy leaving the volume.
 
-Clearly, under more general conditions, the equality
-
+Clearly, under more general conditions,
 $$ \tag{16.7}
-	\Delta \Phi = 0
+	\Delta \Phi \neq 0.
 $$
 
-does not hold. If the host medium is absorptive,
+If the medium is absorptive,
 
 $$ \tag{16.8}
 	\Delta \Phi < 0.
@@ -4175,58 +4174,66 @@ $$
 
 Our goal is to find a similar expression for the case when the volume contains particles.
 
-We begin by constructing a virtual surface that is (for convenience, and without loss of generality) both centered at the particle and is sufficiently large to be located in its radiation zone. The scattered fields on the surface are then given by Eqn. 15.6-15.7:
+We begin by constructing a virtual surface that is (for convenience, and without loss of generality) both centered at the particle and is sufficiently large to be located in its radiation zone. The expression of the scattered field on the surface is given by Eqn. 15.7:
 
 $$ \tag{16.10}
 \begin{aligned}
 	& \bm{E_s}(\bm{r}, t)
-	\simeq \mathcal{Re} \bigg\lbrace \frac{e^{i k r}}{k r} \mathcal{S_f}(\bm{n_s}) \cdot \bm{E_0} e^{-i \omega t} \bigg\rbrace
-	= \mathcal{Re} \bigg\lbrace \frac{1}{k r} \bm{E_1}(\bm{n_s}) e^{i k r - i \omega t} \bigg\rbrace, \cr
+	\simeq \mathcal{Re} \bigg\lbrace \frac{e^{i r}}{r} \mathcal{S_f}(\bm{n_s}) \cdot \bm{E_0} e^{-i t} \bigg\rbrace
+	= \frac{1}{r} \mathcal{Re} \left\lbrace \bm{E_1}(\bm{n_s}) e^{i (r - t)} \right\rbrace, \cr
 	& \bm{B_s}(\bm{r}, t)
-	\simeq \mathcal{Re} \bigg\lbrace \frac{e^{i k r}}{\omega r} \bm{n_s} \times \mathcal{S_f}(\bm{n_s}) \cdot \bm{E_0} e^{-i \omega t} \bigg\rbrace
-	= \mathcal{Re} \bigg\lbrace \frac{1}{k r} \bm{B_1}(\bm{n_s}) e^{i k r - i \omega t} \bigg\rbrace,
+	\simeq \mathcal{Re} \bigg\lbrace \frac{e^{i r}}{r} \bm{n_s} \times \mathcal{S_f}(\bm{n_s}) \cdot \bm{E_0} e^{-i t} \bigg\rbrace
+	= \frac{1}{r} \mathcal{Re} \left\lbrace \bm{B_1}(\bm{n_s}) e^{i (r - t)} \right\rbrace,
 \end{aligned}
 $$
 
 where \\(\bm{E_1}\\) and \\(\bm{B_1}\\) are the polarization vectors of the spherical wave, and \\(\bm{n_s} = \bm{r}/r\\) is the direction of observation.
 
-According to Eqn. 13.14-13.17 and 13.20-13.??, if the host medium is non-absorptive, the following relations exist:
+According to Eqn. 13.14 and 13.??, if the host medium is non-absorptive, the following relations (formally identical to Eqn. 16.2) hold:
 
 $$ \tag{16.11}
 	\bm{n_s} \cdot  \bm{E_1} = 0, \quad
 	\bm{n_s} \cdot  \bm{B_1} = 0, \quad
-	\bm{n_s} \times \bm{E_1} = \frac{c}{\eta} \bm{B_1}, \quad
-	\bm{B_1} \times \bm{n_s} = \frac{\eta}{c} \bm{E_1}.
+	\bm{n_s} \times \bm{E_1} = \bm{B_1}.
 $$
 
-The Poynting vector of the scattered far field points radially outward. If the host medium is is non-absorptive and non-magnetic, the corresponding time-averaged Poynting vector (see Eqn. 13.23) is
+The Poynting vector of the scattered far field points radially outward. If the host medium is is non-absorptive and non-magnetic, the corresponding expression of the time-averaged Poynting vector (see Eqn. 13.22-13.23) is
 
 $$ \tag{16.12}
 	\braket{\bm{S_s}}
-	\simeq \frac{\mu\_0^{-1}}{2} \frac{\eta}{c} \frac{\big| \bm{E_1}(\bm{n_s}) \big|^2}{k^2 r^2} \bm{n_s}.
+	\simeq \frac{\mu\_0^{-1}}{2} \frac{\big| \bm{E_1}(\bm{n_s}) \big|^2}{r^2} \bm{n_s}.
 $$
 
-In order to calculate the amount of power scattered by the particle, it is convenient to use a spherical surface \\(\mathbb{S}^2\\). Since the expression of the differential solid angle is
+Since the expression of the differential solid angle that corresponds to the oriented area \\(\bm{n} dA\\) is
 
 $$ \tag{16.13}
-	d\Omega = \frac{\bm{n} \cdot \bm{n_s}}{r^2} dA
+	d\Omega = \frac{\bm{n_s} \cdot \bm{n}}{r^2} dA,
 $$
 
-setting \\(\bm{n} = \bm{r}/r = \bm{n_s}\\) results in an integral that is formally independent of the radius of the sphere:
+it is convenient to use a spherical surface \\(\mathbb{S}^2\\). Setting
+
+$$ \tag{16.24}
+	\bm{n} = \bm{n_s},
+	\quad
+	\bm{r} = r \bm{n_s}.
+$$
+
+results in an integral that is formally independent of the radius of the sphere:
 
 $$ \tag{16.14}
 	\Phi_s
-	= \oint_{A} \braket{\bm{S_s}} \cdot \bm{n_s} \thinspace dA
-	= \frac{\mu\_0^{-1}}{2} \frac{\eta}{c} \frac{1}{k^2} \oint\_{\mathbb{S}^2} \big| \bm{E_1}(\bm{n_s}) \big|^2 d\Omega.
+	= \oint_{A} \Epsilon_s(\bm{n}) \thinspace dA
+	= \oint_{A} \braket{\bm{S_s}} \cdot \bm{n} \thinspace dA
+	= \frac{\mu\_0^{-1}}{2} \oint\_{\mathbb{S}^2} \big| \bm{E_1}(\bm{n_s}) \big|^2 d\Omega.
 $$
 
-It is easy to see why that is the case: even though Eqn. 16.14 is evaluated in the radiation zone, the scattered energy has no other choice but to pass through the surrounding virtual surface, no matter the size.
+It is easy to see why that is the case: even though Eqn. 16.14 is evaluated in the radiation zone, in order to prevent accumulation over time, the scattered energy has no other choice but to pass through the surrounding virtual surface, no matter the size.
 
-From the radiometric point of view, the squared magnitude of the scattered field corresponds to [intensity](https://en.wikipedia.org/wiki/Radiant_intensity)
+From the radiometric point of view, the squared magnitude of the scattered field corresponds to the [intensity](https://en.wikipedia.org/wiki/Radiant_intensity)
 
 $$ \tag{16.15}
 	\Iota_s(\bm{n_s}) = r^2 \braket{\bm{S_s}} \cdot \bm{n_s}
-	\simeq \frac{\mu\_0^{-1}}{2} \frac{\eta}{c} \frac{1}{k^2} \big| \bm{E_1}(\bm{n_s}) \big|^2.
+	\simeq \frac{\mu\_0^{-1}}{2} \big| \bm{E_1}(\bm{n_s}) \big|^2.
 $$
 
 The scattered field cannot exist in isolation. Since it is generated by the incident field, the total field is formed by the superposition of the two waves (cf. Eqn. 11.12):
@@ -4242,7 +4249,7 @@ $$ \tag{16.16}
 \end{aligned}
 $$
 
-The Poynting vector of the combined wave is then given by the cross product (cf. Eqn. 2.17)
+The Poynting vector of the combined wave is then given by the cross product of these vectors (cf. Eqn. 2.17):
 
 $$ \tag{16.17}
 \begin{aligned}
@@ -4253,7 +4260,7 @@ $$ \tag{16.17}
 \end{aligned}
 $$
 
-The \\(\bm{S_e}\\) term shows that *the incident and the scattered waves interfere*. In order to determine the extent it influences the flow of energy, we must once again integrate the time-averaged Poynting vector over a closed surface:
+The \\(\bm{S_e}\\) term shows that *the incident and the scattered waves interfere*. In order to determine to what extent that influences the flow of energy, we must integrate the time-averaged Poynting vector of the total field over a closed surface:
 
 $$ \tag{16.18}
 	\Delta \Phi
@@ -4264,8 +4271,8 @@ $$
 Since the formula is the same, the conclusions of Eqn. 16.7-16.9 remain valid. In addition, Eqn. 16.5-16.6 show that \\(\oint \braket{\bm{S_i}} \cdot \bm{n} \thinspace dA = 0\\). Thus, in the absence of primary sources within the region, Eqn. 16.8 and 16.18 tell us that
 
 $$ \tag{16.19}
-	-\Delta \Phi
-	= \Phi_a
+	\Phi_a
+	= -\Delta \Phi
 	= \oint_{A} \big( \negthinspace \braket{\bm{S_e}} - \braket{\bm{S_s}} \negthinspace \big) \cdot \bm{n} \thinspace dA
 	= \Phi_e - \Phi_s
 $$
@@ -4286,13 +4293,13 @@ $$
 
 represents the amount of power dissipated (absorbed or scattered) by the particle. We must caution against taking this interpretation literally: Eqn. 16.17 is just a convenient *mathematical decomposition*, and, in reality, the incident and the scattered fields cannot be completely *physically separated*. In fact, we can only measure the incident power \\(\Phi_i\\) (if the particle is absent) and the total amount of power \\(\Phi = \Phi_i + \Phi_s - \Phi_e\\) (with the particle in place), while \\(\Phi_s\\) and \\(\Phi_e\\) are mathematical quantities that *are not directly measurable*, derived from the fields that *cannot individually exist*.
 
-Now, recall (cf. Eqn. 4.8, 4.15) that we have found, under quite general conditions, that the time average of the cross product of two vectors oscillating at exactly the same frequency is
+Now, recall (cf. Eqn. 4.8, 4.15) that we have found, under quite general conditions, that the time average of the cross product of two vectors oscillating at the same frequency is
 
 $$ \tag{16.22}
 	\Big\langle
-		\mathcal{Re} \big\lbrace \bm{V} e^{i \omega t} \big\rbrace
+		\mathcal{Re} \big\lbrace \bm{V} e^{i t} \big\rbrace
 		\times
-		\mathcal{Re} \big\lbrace \bm{W} e^{i \omega t} \big\rbrace
+		\mathcal{Re} \big\lbrace \bm{W} e^{i t} \big\rbrace
 	\Big\rangle
 	= \frac{1}{2} \mathcal{Re} \big\lbrace \bm{V} \times \bm{W^{\*}} \big\rbrace.
 $$
@@ -4301,21 +4308,13 @@ Thus, the time average of the mixed Poynting vector can be written as
 
 $$ \tag{16.23}
 	\braket{\bm{S_e}} \simeq
-	-\frac{\mu_0^{-1}}{2 k r} \mathcal{Re} \bigg\lbrace
-	\Big( \bm{E_0} e^{i k (\bm{r} \cdot \bm{n_i})} \Big) \times \Big[ \bm{B_1} e^{i k r} \Big]^{\*} +
-	\Big( \bm{E_1} e^{i k r} \Big) \times \Big[ \bm{B_0} e^{i k (\bm{r} \cdot \bm{n_i})} \Big]^{\*}
+	-\frac{\mu_0^{-1}}{2 r} \mathcal{Re} \bigg\lbrace
+	\Big( \bm{E_0} e^{i (\bm{r} \cdot \bm{n_i})} \Big) \times \Big[ \bm{B_1} e^{i r} \Big]^{\*} +
+	\Big( \bm{E_1} e^{i r} \Big) \times \Big[ \bm{B_0} e^{i (\bm{r} \cdot \bm{n_i})} \Big]^{\*}
 	\bigg\rbrace.
 $$
 
-The next step is to project \\(\braket{\bm{S_e}}\\) onto the normal of the virtual sphere. The statement of the problem leads to two relations:
-
-$$ \tag{16.24}
-	\bm{n} = \bm{n_s},
-	\quad
-	\bm{r} = r \bm{n_s}.
-$$
-
-This task can be carried out most efficiently with the help of the following [triple product](https://en.wikipedia.org/wiki/Triple_product) identities:
+The next step is to project \\(\braket{\bm{S_e}}\\) onto the normal of the virtual sphere. This task can be carried out most efficiently with the help of the following [triple product](https://en.wikipedia.org/wiki/Triple_product) identities:
 
 $$ \tag{16.25}
 \begin{aligned}
@@ -4336,38 +4335,38 @@ By combining Eqn. 16.2, 16.11, 16.24 and 16.25, the magnetic vector can be compl
 $$ \tag{16.26}
 \begin{aligned}
 	\bm{n_s} \cdot \braket{\bm{E_i} \times \bm{B_s}}
-	&\simeq \frac{1}{2 k r} \mathcal{Re} \Big\lbrace
-	\bm{n_s} \cdot \big( \bm{E_0} \times \bm{B_1^{\*}} \big) e^{-i k r} e^{i k r (\bm{n_s} \cdot \bm{n_i})}
+	&\simeq \frac{1}{2 r} \mathcal{Re} \Big\lbrace
+	\bm{n_s} \cdot \big( \bm{E_0} \times \bm{B_1^{\*}} \big) e^{-i r} e^{i r (\bm{n_s} \cdot \bm{n_i})}
 	\Big\rbrace
 	\cr
-	&= \frac{1}{2 k r} \mathcal{Re} \Big\lbrace
-	\bm{E_0} \cdot \big( \bm{B_1^{\*}} \times \bm{n_s} \big) e^{-i k r} e^{i k r (\bm{n_s} \cdot \bm{n_i})}
+	&= \frac{1}{2 r} \mathcal{Re} \Big\lbrace
+	\bm{E_0} \cdot \big( \bm{B_1^{\*}} \times \bm{n_s} \big) e^{-i r} e^{i r (\bm{n_s} \cdot \bm{n_i})}
 	\Big\rbrace
 	\cr
-	&= \frac{1}{2 k r} \frac{\eta}{c} \mathcal{Re} \Big\lbrace
-	\big( \bm{E_0} \cdot \bm{E_1^{\*}} \big) e^{-i k r} e^{i k r (\bm{n_s} \cdot \bm{n_i})}
+	&= \frac{1}{2 r} \mathcal{Re} \Big\lbrace
+	\big( \bm{E_0} \cdot \bm{E_1^{\*}} \big) e^{-i r} e^{i r (\bm{n_s} \cdot \bm{n_i})}
 	\Big\rbrace,
 	\cr
 	\braket{\bm{E_s} \times \bm{B_i}}
-	&\simeq \frac{1}{2 k r} \mathcal{Re} \Big\lbrace
-	\big( \bm{E_1} \times \bm{B_0^{\*}} \big) e^{i k r} e^{-i k r (\bm{n_s} \cdot \bm{n_i})}
+	&\simeq \frac{1}{2 r} \mathcal{Re} \Big\lbrace
+	\big( \bm{E_1} \times \bm{B_0^{\*}} \big) e^{i r} e^{-i r (\bm{n_s} \cdot \bm{n_i})}
 	\Big\rbrace
 	\cr
-	&= \frac{1}{2 k r} \frac{\eta}{c} \mathcal{Re} \Big\lbrace
-	\big( \bm{E_1} \times \bm{n_i} \times \bm{E_0^{\*}} \big) e^{i k r} e^{-i k r (\bm{n_s} \cdot \bm{n_i})}
+	&= \frac{1}{2 r} \mathcal{Re} \Big\lbrace
+	\big( \bm{E_1} \times \bm{n_i} \times \bm{E_0^{\*}} \big) e^{i r} e^{-i r (\bm{n_s} \cdot \bm{n_i})}
 	\Big\rbrace
 	\cr
-	&= \frac{1}{2 k r} \frac{\eta}{c} \mathcal{Re} \Big\lbrace
+	&= \frac{1}{2 r} \mathcal{Re} \Big\lbrace
 	\Big(
 	\bm{n_i} \big( \bm{E_0^{\*} \cdot \bm{E_1}} \big) -
 	\bm{E_0^{\*}} \big( \bm{n_i} \cdot \bm{E_1} \big)
 	\Big)
-	e^{i k r} e^{-i k r (\bm{n_s} \cdot \bm{n_i})}
+	e^{i r} e^{-i r (\bm{n_s} \cdot \bm{n_i})}
 	\Big\rbrace.
 \end{aligned}
 $$
 
-Based on Eqn. 16.26, it is convenient to define two functions independent of \\(k\\) and \\(r\\):
+Based on Eqn. 16.26, it is convenient to define two functions independent of the distance \\(r\\):
 
 $$ \tag{16.27}
 \begin{aligned}
@@ -4380,7 +4379,7 @@ $$ \tag{16.27}
 \end{aligned}
 $$
 
-In particular, due to orthogonality relations given by Eqn. 16.2,
+Due to the orthogonality relations given by Eqn. 16.2,
 
 $$ \tag{16.28}
 	f_2(\pm \bm{n_i})
@@ -4392,20 +4391,20 @@ Use of notation introduced in Eqn. 16.27 results in a compact expression of the 
 
 $$ \tag{16.29}
 	\braket{\bm{S_e}} \cdot \bm{n_s}
-	\simeq -\frac{\mu\_0^{-1}}{2} \frac{\eta}{c} \mathcal{Re} \left\lbrace
-		\frac{e^{-i k r}}{k r} f_1(\bm{n_s}) e^{i k r (\bm{n_s} \cdot \bm{n_i})} +
-		\frac{e^{i k r}}{k r} f_2(\bm{n_s}) e^{-i k r (\bm{n_s} \cdot \bm{n_i})}
+	\simeq -\frac{\mu\_0^{-1}}{2} \mathcal{Re} \left\lbrace
+		\frac{e^{-i r}}{r} f_1(\bm{n_s}) e^{i r (\bm{n_s} \cdot \bm{n_i})} +
+		\frac{e^{i r}}{r} f_2(\bm{n_s}) e^{-i r (\bm{n_s} \cdot \bm{n_i})}
 	\right\rbrace.
 $$
 
-Note that we are using the asymptotic expression of a spherical wave (Eqn. 16.10). It is based on the fact that a small surface patch of a very large spherical wavefront appears effectively flat. We can also use this idea in reverse, by reinterpreting a plane wave as a very large spherical wave \\((k r \to \infin)\\) that is either seen as diverging from the inside, or converging when observed from the outside:
+Recall that we are using the asymptotic expression of a spherical wave (Eqn. 16.10). It is based on the fact that a small surface patch of a very large spherical wavefront is effectively flat. We can also take the opposite point of view by reinterpreting a plane wave as a very large spherical wave \\((r \to \infin)\\) that is either seen as diverging in the front, or converging when observed from the back:
 
 $$ \tag{16.30}
 \begin{aligned}
-	e^{i k r (\bm{n_s} \cdot \bm{n_i})}
+	e^{i r (\bm{n_s} \cdot \bm{n_i})}
 	\simeq 2 \pi i \left(
-	\frac{e^{-i k r}}{k r} \delta(\bm{n_i} + \bm{n_s}) -
-	\frac{e^{i k r}}{k r} \delta(\bm{n_i} - \bm{n_s}) \right)
+	\frac{e^{-i r}}{r} \delta(\bm{n_i} + \bm{n_s}) -
+	\frac{e^{i r}}{r} \delta(\bm{n_i} - \bm{n_s}) \right)
 \end{aligned},
 $$
 
@@ -4423,15 +4422,15 @@ The expression of the time-average of the mixed Poynting vector can be thus tran
 $$ \tag{16.32}
 \begin{aligned}
 	\braket{\bm{S_e}} \cdot \bm{n_s}
-	&\simeq \frac{\mu\_0^{-1}}{2} \frac{\eta}{c} \frac{2 \pi}{k^2 r^2} \mathcal{Im} \left\lbrace
+	&\simeq \frac{\mu\_0^{-1}}{2} \frac{2 \pi}{r^2} \mathcal{Im} \left\lbrace
 	f_1(\bm{n_s}) \left(
-		\delta(\bm{n_i} + \bm{n_s}) e^{-2 i k r} -
+		\delta(\bm{n_i} + \bm{n_s}) e^{-2 i r} -
 		\delta(\bm{n_i} - \bm{n_s})
 	\right) \right\rbrace
 	\cr
-	&- \frac{\mu\_0^{-1}}{2} \frac{\eta}{c} \frac{2 \pi}{k^2 r^2} \mathcal{Im} \left\lbrace
+	&- \frac{\mu\_0^{-1}}{2} \frac{2 \pi}{r^2} \mathcal{Im} \left\lbrace
 	f_2(\bm{n_s}) \left(
-		\delta(\bm{n_i} + \bm{n_s}) e^{2 i k r} -
+		\delta(\bm{n_i} + \bm{n_s}) e^{2 i r} -
 		\delta(\bm{n_i} - \bm{n_s})
 	\right) \right\rbrace.
 \end{aligned}
@@ -4442,27 +4441,31 @@ Eqn. 16.32 indicates that we may detect observable interference between the inci
 $$ \tag{16.33}
 \begin{aligned}
 	\int_{C_i^{-}} \braket{\bm{S_e}} \cdot \bm{n_s} \thinspace dA
-	&\simeq \frac{\mu\_0^{-1}}{2} \frac{\eta}{c} \frac{2 \pi}{k^2} \mathcal{Im} \left\lbrace
-	f_1(-\bm{n_i}) e^{-2 i k r} - f_2(-\bm{n_i}) e^{2 i k r} \right\rbrace
+	&\simeq \frac{\mu\_0^{-1}}{2} 2 \pi \thinspace \mathcal{Im} \left\lbrace
+	f_1(-\bm{n_i}) e^{-2 i r} - f_2(-\bm{n_i}) e^{2 i r} \right\rbrace
 	\cr
-	&= \frac{\mu\_0^{-1}}{2} \frac{\eta}{c} \frac{2 \pi}{k^2} \mathcal{Im} \left\lbrace
-		\bm{E_0} \cdot \bm{E_1^{\*}}(-\bm{n_i}) e^{-2 i k r} +
-		\bm{E_0^{\*}} \cdot \bm{E_1}(-\bm{n_i}) e^{2 i k r}
+	&= \frac{\mu\_0^{-1}}{2} 2 \pi \thinspace \mathcal{Im} \left\lbrace
+		\bm{E_0} \cdot \bm{E_1^{\*}}(-\bm{n_i}) e^{-2 i r} +
+		\bm{E_0^{\*}} \cdot \bm{E_1}(-\bm{n_i}) e^{2 i r}
 	\right\rbrace = 0,
 \end{aligned}
 $$
 
-since the expression inside the curly braces is a real number (cf. Eqn. 3.5).
+vanishes, since the expression inside the curly braces is a real number (cf. Eqn. 3.5).
 
-Thus, assuming the observer is located in the radiation zone, *the incident and the scattered light only interfere in the direction of incidence*. The associated amount of power (dissipated by the particle) is
+Thus, assuming the observer is located in the radiation zone, *the incident and the scattered light only interfere in the direction of incidence*. The associated amount of power (that can be interpreted as being dissipated by the particle) is
 
 $$ \tag{16.34}
 	\Phi_e
-	= \oint_{\mathbb{S}^2} \braket{\bm{S_e}} \cdot \bm{n_s} \thinspace dA
-	= \frac{\mu\_0^{-1}}{2} \frac{\eta}{c} \frac{4 \pi}{k^2} \mathcal{Im} \big\lbrace \bm{E_0^{\*}} \cdot \bm{E_1}(\bm{n_i}) \big\rbrace.
+	= \oint_{\mathbb{S}^2} \braket{\bm{S_e}} \cdot \bm{n} \thinspace dA
+	= \frac{\mu\_0^{-1}}{2} 4 \pi \thinspace \mathcal{Im} \big\lbrace \bm{E_0^{\*}} \cdot \bm{E_1}(\bm{n_i}) \big\rbrace.
 $$
 
-Suppose that a measurement device (a light sensor) with the entrance pupil of area \\(C_d\\) is placed in the direction of incidence at a great distance from the source. Then, according to Eqn. 16.14, 16.17, 16.21, and 16.34, if there is a particle near the center of the line segment connecting the source to the sensor, the resulting measurement
+Now, suppose that a measurement device (e.g. a light sensor) with the entrance pupil of area \\(C_d\\) is placed in the direction of incidence at a great distance from the source.
+
+[Insert picture here]
+
+Then, according to Eqn. 16.14, 16.17, 16.21, and 16.34, if there is a particle in the vicinity of the center of the line segment connecting the source to the sensor, the resulting measurement
 
 $$ \tag{16.3x}
 \begin{aligned}
@@ -4472,20 +4475,20 @@ $$ \tag{16.3x}
 	\cr
 	&= C_d \braket{\bm{S_i}} \cdot \bm{n_i}
 	 + C_d \braket{\bm{S_s}} \cdot \bm{n_i}
-	 - \oint_{A} \braket{\bm{S_s}} \cdot \bm{n_s} \thinspace dA - \Phi_a
+	 - \oint_{A} \braket{\bm{S_s}} \cdot \bm{n} \thinspace dA - \Phi_a
 \end{aligned}
 $$
 
-will be smaller in comparison with the amount of power \\(C_d \braket{\bm{S_i}} \cdot \bm{n_i}\\) arriving at the sensor in the absence of the particle, since the scattered power \\(C_d \braket{\bm{S_s}} \cdot \bm{n_i}\\) corresponding to the direction of incidence is smaller than the total amount of power \\(\Phi_s = \oint_{A} \braket{\bm{S_s}} \cdot \bm{n_s} \thinspace dA\\) scattered in all directions. Thus, we can draw a conclusion that transmission of a parallel beam of light through a particle reduces its intensity.
+will be smaller in comparison with the amount of power \\(C\_d \braket{\bm{S\_i}} \cdot \bm{n\_i}\\) captured by the sensor in the absence of the particle, since the scattered power \\(C\_d \braket{\bm{S\_s}} \cdot \bm{n\_i}\\) that corresponds to the direction of incidence is smaller than the total amount of power \\(\Phi\_s = \oint\_{A} \braket{\bm{S\_s}} \cdot \bm{n} \thinspace dA\\) scattered in all directions. Thus, we come to a conclusion that *transmission of a parallel beam of light through a particle reduces its intensity*.
 
-Eqn. 16.3x separates radiation transmitted in the direction of incidence into three components: the incident, the scattered, and the dissipated. Scattering tends to be separated from propagation of light, leading to the idea that particles "remove" energy from the incident beam. While this approach is conceptually plausible, the interpretation is not correct, since 1) the incident wave is not affected by the presence of the scattering object, and, as we shall see, 2) the calculated amount of scattered power is typically overestimated. This can lead to apparent paradoxes and violations of the law of conservation of energy. These issues can be avoided by focusing solely on the total electromagnetic field, which, as Eqn. 16.3x shows, is crucial if the measurement device is facing the source.
+Eqn. 16.3x separates radiation transmitted in the direction of incidence into three components: the incident, the scattered, and the dissipated. Scattering tends to be conceptually separated from propagation of light, leading to the idea that particles "remove" energy from the incident beam. While this approach is plausible, the interpretation is not correct, since, by definition, *the incident wave is not affected by the presence of the scattering object*, and, as we shall see, *the calculated amount of scattered power is not physically plausible*. This can lead to apparent paradoxes and violations of the law of conservation of energy \[[4](#references) (ch. 8.22)\]. These issues can be avoided by focusing solely on the total electromagnetic field; as Eqn. 16.3x shows, doing so is crucial if the measurement device is facing the source.
 
-The amount of power absorbed by the particle can be determined using Eqn. 16.21:
+The amount of power absorbed by the particle can be determined using Eqn. 16.21 and 16.34:
 
 $$ \tag{16.35}
 	\Phi_a
 	= \Phi_e - \Phi_s
-	= \frac{\mu\_0^{-1}}{2} \frac{\eta}{c} \frac{1}{k^2}
+	= \frac{\mu\_0^{-1}}{2}
 	\left(
 		4 \pi \thinspace \mathcal{Im} \big\lbrace \bm{E_0^{\*}} \cdot \bm{E_1}(\bm{n_i}) \big\rbrace -
 		\oint\_{\mathbb{S}^2} \big| \bm{E_1}(\bm{n_s}) \big|^2 d\Omega
@@ -4497,14 +4500,67 @@ Alternatively, [Ohm's law](https://en.wikipedia.org/wiki/Ohm%27s_law) may be use
 $$ \tag{16.3z}
 	\Phi_a
 	= \frac{1}{2} \omega \int\_{V}
-	\mathcal{Im} \big\lbrace \varepsilon_2(\bm{r'}) \big\rbrace \big| \bm{E}(\bm{r'}) \big|^2 dV'
-	= \frac{\mu\_0^{-1}}{2} \frac{\eta}{c} k \int\_{V}
-	\mathcal{Im} \left\lbrace \frac{m^2(\bm{r'})}{\mu\_r(\bm{r'})} \right\rbrace \big| \bm{E}(\bm{r'}) \big|^2 dV',
+	\mathcal{Im} \big\lbrace \epsilon(\bm{r'}) \big\rbrace \big| \bm{E}(\bm{r'}) \big|^2 dV'
+	= \frac{\mu\_0^{-1}}{2} \frac{\eta_1}{c} \frac{1}{k_1^2} \int\_{V}
+	\mathcal{Im} \left\lbrace \frac{m^2(\bm{r'})}{\mu_r(\bm{r'})} \right\rbrace \big| \bm{E}(\bm{r'}) \big|^2 k_1^3 dV',
 $$
 
-with the integral taken over the interior of the particle \[[12](#references) (ch. 1.1)\]. As before, \\(\varepsilon_2\\) is the complex permittivity of the particle, \\(\mu\_r\\) is its relative permeability, and \\(m\\) is the relative wavenumber given by Eqn. 11.8.
+---
 
-It is convenient to be able to relate the amount of power absorbed by the particle to the amount of incident power the particle *geometrically* intercepts. The latter can be characterized with the help of the projected area of the particle - its *geometric cross-section* \\(C_g\\). For a convex particle, it is given by the integral
+$$ \tag{7.4}
+	k(\bm{r}, \omega)
+	= \omega \sqrt{\epsilon(\bm{r}, \omega) \mu(\bm{r}, \omega)}
+$$
+
+$$ \tag{7.5}
+	\mu\_r(\omega) = \frac{\mu(\omega)}{\mu\_0}
+$$
+
+$$ \tag{11.8}
+	m(\bm{r}, \omega)
+	= \frac{k(\bm{r}, \omega)}{k_1(\omega)}
+$$
+
+$$ \tag{1y.1a}
+	\frac{\omega}{k_1(\omega)} = \frac{c}{\eta_1(\omega)}
+$$
+
+$$
+	\epsilon = \frac{k^2}{\omega^2 \mu}
+$$
+
+$$
+	k^2 = k_1^2 m^2
+$$
+
+$$
+	\epsilon = \frac{k_1^2 m^2}{\omega^2 \mu}
+$$
+
+$$
+\begin{aligned}
+	\Phi_a
+	&= \frac{1}{2} \omega \int\_{V}
+	\mathcal{Im} \big\lbrace \epsilon(\bm{r'}) \big\rbrace \big| \bm{E}(\bm{r'}) \big|^2 dV'
+	\cr
+	&= \frac{1}{2} \frac{k_1^2}{\omega} \int\_{V}
+	\mathcal{Im} \left\lbrace \frac{m^2(\bm{r'})}{\mu(\bm{r'})} \right\rbrace \big| \bm{E}(\bm{r'}) \big|^2 dV'
+	\cr
+	&= \frac{1}{2} \frac{\eta_1}{c} k_1 \int\_{V}
+	\mathcal{Im} \left\lbrace \frac{m^2(\bm{r'})}{\mu(\bm{r'})} \right\rbrace \big| \bm{E}(\bm{r'}) \big|^2 dV'
+	\cr
+	&= \frac{\mu\_0^{-1}}{2} \frac{\eta_1}{c} \frac{1}{k_1^2} \int\_{V}
+	\mathcal{Im} \left\lbrace \frac{m^2(\bm{r'})}{\mu_r(\bm{r'})} \right\rbrace \big| \bm{E}(\bm{r'}) \big|^2 k_1^3 dV'
+\end{aligned}
+$$
+
+This expression utilizes the SI units. Verify using the LMD theory (should \\(\mu_r = 1\\)?).
+
+---
+
+with the integral taken over the interior of the particle. As before, \\(\epsilon\\) is the complex permittivity, \\(\mu\_r\\) is the relative permeability, and \\(m\\) is the relative wavenumber given by Eqn. 11.8.
+
+It is convenient to be able to relate the amount of power absorbed by the particle to the amount of incident power the particle *geometrically* intercepts. The latter can be characterized with the help of the projected area of the particle - its *geometric cross-section* \\(C_g\\) that has dimensions of area. For a convex particle, it is given by the integral
 
 $$ \tag{16.36}
 	C_g
@@ -4515,7 +4571,7 @@ The amount of incident power is then (cf. Eqn. 16.3-16.5)
 
 $$ \tag{16.37}
 	\Phi_i
-	= \frac{\mu\_0^{-1}}{2} \frac{\eta}{c} |\bm{E_0}|^2
+	= \frac{\mu\_0^{-1}}{2} |\bm{E_0}|^2
 	  \oint_{A} \mathrm{max}(0, -\bm{n} \cdot \bm{n_i}) dA
 	= | \negthinspace \braket{\bm{S_i}} \negthinspace | C_g
 	= \Epsilon_i(\bm{n_i}) C_g.
@@ -4531,11 +4587,11 @@ $$ \tag{16.38}
 	\cr
 	& Q_s
 	= \frac{\Phi_s}{\Phi_i}
-	= \frac{\oint |\bm{E_1}(\bm{n_s})|^2 d\Omega}{k^2 C_g |\bm{E_0}|^2},
+	= \frac{\oint |\bm{E_1}(\bm{n_s})|^2 d\Omega}{C_g |\bm{E_0}|^2},
 	\cr
 	& Q_e
 	= \frac{\Phi_e}{\Phi_i}
-	= \frac{4 \pi \thinspace \mathcal{Im} \big\lbrace \bm{E_0^{\*}} \cdot \bm{E_1}(\bm{n_i}) \big\rbrace}{k^2 C_g |\bm{E_0}|^2}.
+	= \frac{4 \pi \thinspace \mathcal{Im} \big\lbrace \bm{E_0^{\*}} \cdot \bm{E_1}(\bm{n_i}) \big\rbrace}{C_g |\bm{E_0}|^2}.
 \end{aligned}
 $$
 
@@ -4544,23 +4600,23 @@ If normalization with respect to the projected area is not required, we may util
 $$ \tag{16.39}
 \begin{aligned}
 	& C_a
-	= \frac{\Phi_a}{\Epsilon_i}
 	= Q_a C_g
+	= \frac{\Phi_a}{\Epsilon_i}
 	= \frac{\Phi_e - \Phi_s}{| \negthinspace \braket{\bm{S_i}} \negthinspace |},
 	\cr
 	& C_s
-	= \frac{\Phi_s}{\Epsilon_i}
 	= Q_s C_g
-	= \frac{\oint |\bm{E_1}(\bm{n_s})|^2 d\Omega}{k^2 |\bm{E_0}|^2},
+	= \frac{\Phi_s}{\Epsilon_i}
+	= \frac{\oint |\bm{E_1}(\bm{n_s})|^2 d\Omega}{|\bm{E_0}|^2},
 	\cr
 	& C_e
-	= \frac{\Phi_e}{\Epsilon_i}
 	= Q_e C_g
-	= \frac{4 \pi \thinspace \mathcal{Im} \big\lbrace \bm{E_0^{\*}} \cdot \bm{E_1}(\bm{n_i}) \big\rbrace}{k^2 |\bm{E_0}|^2}.
+	= \frac{\Phi_e}{\Epsilon_i}
+	= \frac{4 \pi \thinspace \mathcal{Im} \big\lbrace \bm{E_0^{\*}} \cdot \bm{E_1}(\bm{n_i}) \big\rbrace}{|\bm{E_0}|^2}.
 \end{aligned}
 $$
 
-Eqn. 16.39.1-16.39.3 are known as the [optical theorem](https://en.wikipedia.org/wiki/Optical_theorem). They are often used to describe electromagnetic energy transfer in radiometric terms. For instance, Eqn. 16.3x that expresses the amount of energy transmitted in the direction of incidence can be succinctly written as
+Eqn. 16.39.1-16.39.3 are known as the [optical theorem](https://en.wikipedia.org/wiki/Optical_theorem). They can be used to describe electromagnetic energy transfer in radiometric terms. For instance, Eqn. 16.3x that expresses the amount of energy transmitted in the direction of incidence can be succinctly written as
 
 $$ \tag{16.3y}
 \begin{aligned}
@@ -4570,20 +4626,20 @@ $$ \tag{16.3y}
 \end{aligned}
 $$
 
-where, as before, \\(C_d\\) is the area of the entrance pupil of the measurement device, \\(C_e\\) is the extinction cross-section, \\(\Epsilon_i\\) is the incident irradiance, and \\(\Iota_s\\) is the scattered intensity. Since, physically, the amount of power cannot be negative, Eqn. 16.3y implies that \\(C_d\\) must be sufficiently large \\((C_d \gg C_g)\\) in order to fully capture the extinction effect \[[8](#references) (ch. 13.1)\].
+where, as before, \\(C_d\\) is the area of the entrance pupil of the measurement device, \\(C_e\\) is the extinction cross-section, \\(\Epsilon_i\\) is the incident irradiance, and \\(\Iota_s\\) is the scattered intensity. Since, physically, the amount of power cannot be negative, Eqn. 16.3y implies that \\(C_d\\) must be sufficiently large \\((\text{e.i. }C_d \gg C_g)\\) in order to fully capture the extinction effect \[[8](#references) (ch. 13.1)\].
 
-Eqn. 16.38.3 and 16.39.3 can be simplified if the particle possesses axial symmetry with respect to the direction of incidence. To show this, we can express \\(\bm{E_1}\\) in terms of the scattering dyadic \\(\mathcal{S_f}\\) according to Eqn. 15.7:
+Eqn. 16.38.3 and 16.39.3 can be simplified if the particle possesses axial symmetry with respect to the direction of incidence. In order to show this, we must express \\(\bm{E_1}\\) in terms of the scattering dyadic \\(\mathcal{S_f}\\) using Eqn. 15.8:
 
 $$ \tag{16.40}
 	\Phi_e
-	= \frac{\mu\_0^{-1}}{2} \frac{\eta}{c} \frac{4 \pi}{k^2} \mathcal{Im} \big\lbrace \bm{E_0^{\*}} \cdot \mathcal{S_f}(\bm{n_i}) \cdot \bm{E_0} \big\rbrace.
+	= \frac{\mu\_0^{-1}}{2} 4 \pi \thinspace \mathcal{Im} \big\lbrace \bm{E_0^{\*}} \cdot \mathcal{S_f}(\bm{n_i}) \cdot \bm{E_0} \big\rbrace.
 $$
 
 Once we choose a coordinate system, we can substitute the scattering matrix with \\(\theta=0\\):
 
 $$ \tag{16.41}
 	\Phi_e
-	= \frac{\mu\_0^{-1}}{2} \frac{\eta}{c} \frac{4 \pi}{k^2} \mathcal{Im} \big\lbrace \bm{E_0^{\*}} \cdot S(0, \phi) \bm{E_0} \big\rbrace.
+	= \frac{\mu\_0^{-1}}{2} 4 \pi \thinspace \mathcal{Im} \big\lbrace \bm{E_0^{\*}} \cdot S(0, \phi) \bm{E_0} \big\rbrace.
 $$
 
 Now, for a symmetric particle, we have previously demonstrated that
@@ -4599,16 +4655,36 @@ Thus, we obtain the expressions
 $$ \tag{16.43}
 \begin{aligned}
 	& Q_e
-	= \frac{4 \pi \thinspace \mathcal{Im} \big\lbrace s_0 \bm{E_0^{\*}} \cdot \bm{E_0} \big\rbrace}{k^2 C_g |\bm{E_0}|^2}
-	= \frac{4 \pi \thinspace \mathcal{Im} \lbrace s_0 \rbrace}{k^2 C_g},
+	= \frac{4 \pi \thinspace \mathcal{Im} \big\lbrace s_0 \bm{E_0^{\*}} \cdot \bm{E_0} \big\rbrace}{C_g |\bm{E_0}|^2}
+	= \frac{4 \pi \thinspace \mathcal{Im} \lbrace s_0 \rbrace}{C_g},
 	\cr
 	& C_e
 	= Q_e C_g
-	= 4 \pi k^{-2} \mathcal{Im} \lbrace s_0 \rbrace,
+	= 4 \pi \thinspace \mathcal{Im} \lbrace s_0 \rbrace,
 \end{aligned}
 $$
 
 that match the results found using the scalar wave theory \[[4](#references) (ch. 4.42)\]. Intuitively, this makes sense, since the particle looks the same regardless of the choice of the plane of reference (assuming the latter contains the direction of incidence), and the sensor (that only measures power) is not sensitive to the orientation of incoming light.
+
+Finally, since radiometric quantities are often used in practical applications, a few words must be said about conversion between the natural and the SI units. Because the irradiance \\(\Epsilon\\) corresponds to the magnitude of the time-averaged Poyinting vector \\(\braket{\bm{S}}\\) (see Eqn. 2.25), from the substitution rule given by Eqn. 1z.2?, it follows that
+
+$$ \tag{16.44}
+	\frac{c}{\eta_1} \Epsilon \leftrightarrows \Epsilon.
+$$
+
+The cross-section \\(C\\) has units of area. Since the latter is dimensionless in the natural units (see Eqn. 1z.4),
+
+$$ \tag{16.45}
+	k_1^2 C \leftrightarrows C.
+$$
+
+The power \\(\Phi\\) is defined as the product of the irradiance and the area. Therefore,
+
+$$ \tag{16.46}
+	\frac{c}{\eta_1} k_1^2 \Phi \leftrightarrows \Phi.
+$$
+
+The efficiency factor \\(Q\\) is already dimensionless, so no further modifications are necessary.
 
 ### Dynamic Light Scattering by a Particle Group
 
@@ -9491,7 +9567,7 @@ $$ \tag{22.34}
 	= N \frac{\mu\_0^{-1}}{2} \frac{\eta}{c} k
 	\mathcal{Im} \left\lbrace \frac{m^2}{\mu\_r} \right\rbrace
 	\int\_{V} \big| \bm{E}(\bm{r'}) \big|^2 dV'
-	= N 4 \pi \mathcal{Im} \left\lbrace \frac{m^2}{3} \right\rbrace
+	= N 4 \pi \thinspace \mathcal{Im} \left\lbrace \frac{m^2}{3} \right\rbrace
 	\frac{x^3}{k^2} \Epsilon_i.
 $$
 
