@@ -251,7 +251,7 @@ $$ \tag{2.1}
 	\frac{\partial}{\partial t} \mathcal{W}(V, t).
 $$
 
-In Eqn. 2.1, \\(\mathcal{E}\\) refers to a single type of energy: kinetic, electromagnetic, etc. Work transforms a portion of \\(\mathcal{E\_{ext}}\\) into a different type of energy: kinetic into potential, electromagnetic into thermal, and so on. If we account for all types of energy, the total amount of energy is conserved.
+In Eqn. 2.1, \\(\mathcal{E}\\) refers to a single type of energy: kinetic, electromagnetic, etc. Work transforms a portion of \\(\mathcal{E\_{ext}}\\) into a different type of energy: kinetic into potential, electromagnetic into thermal, and so on. If we account for all types of energy, the total amount of energy is conserved. Otherwise, the value of the expression on either side can be interpreted as the amount of power lost within (or absorbed by) the volume \\(V\\).
 
 Given our focus on electromagnetic energy, we can partition the total amount of energy into the *field energy* and the *matter energy*. In this context, work done by the field on the matter refers to *absorption*, and has a positive sign. Similarly, *emission* is the work done by the matter on the field, and has a negative sign. We shall not consider emissive materials in the analysis presented below.
 
@@ -4291,7 +4291,7 @@ $$ \tag{16.21}
 	= \Phi_a + \Phi_s
 $$
 
-represents the amount of power dissipated (absorbed or scattered) by the particle. We must caution against taking this interpretation literally: Eqn. 16.17 is just a convenient *mathematical decomposition*, and, in reality, the incident and the scattered fields cannot be completely *physically separated*. In fact, we can only measure the incident power \\(\Phi_i\\) (if the particle is absent) and the total amount of power \\(\Phi = \Phi_i + \Phi_s - \Phi_e\\) (with the particle in place), while \\(\Phi_s\\) and \\(\Phi_e\\) are mathematical quantities that *are not directly measurable*, derived from the fields that *cannot individually exist*.
+represents the amount of power dissipated (absorbed or scattered) by the particle. We must caution against taking this interpretation literally: Eqn. 16.17 is just a convenient *mathematical decomposition*, and, in reality, the incident and the scattered fields cannot be *physically separated*. In fact, we can only measure the incident power \\(\Phi_i\\) (if the particle is absent) and the total amount of power \\(\Phi = \Phi_i - \Phi_a\\) (with the particle in place), while \\(\Phi_s\\) and \\(\Phi_e\\) are mathematical quantities that *are not directly measurable*, derived from the field that *cannot exist independently*.
 
 Now, recall (cf. Eqn. 4.8, 4.15) that we have found, under quite general conditions, that the time average of the cross product of two vectors oscillating at the same frequency is
 
@@ -4495,70 +4495,118 @@ $$ \tag{16.35}
 	\right).
 $$
 
-Alternatively, [Ohm's law](https://en.wikipedia.org/wiki/Ohm%27s_law) may be used instead \[[12](#references) (ch. 1.1)\]:
+Alternatively, we can use the energy conservation law given by Eqn. 2.1, 2.6 and 2.20:
 
-$$ \tag{16.3z}
-	\Phi_a
-	= \frac{1}{2} \omega \int\_{V}
-	\mathcal{Im} \big\lbrace \epsilon(\bm{r'}) \big\rbrace \big| \bm{E}(\bm{r'}) \big|^2 dV'
-	= \frac{\mu\_0^{-1}}{2} \frac{\eta_1}{c} \frac{1}{k_1^2} \int\_{V}
-	\mathcal{Im} \left\lbrace \frac{m^2(\bm{r'})}{\mu_r(\bm{r'})} \right\rbrace \big| \bm{E}(\bm{r'}) \big|^2 k_1^3 dV',
+$$ \tag{16.3a}
+	\frac{\partial}{\partial t} \mathcal{W}(V, t) =
+	\int\_{V} \bm{E}(\bm{r'}, t) \cdot \bm{J_f}(\bm{r'}, t) dV',
 $$
 
----
+with the integral taken over the interior of the particle.
 
-$$ \tag{7.4}
-	k(\bm{r}, \omega)
-	= \omega \sqrt{\epsilon(\bm{r}, \omega) \mu(\bm{r}, \omega)}
-$$
+If the fields are time-harmonic, we may substitute the SI form of Eqn. 4.11:
 
-$$ \tag{7.5}
-	\mu\_r(\omega) = \frac{\mu(\omega)}{\mu\_0}
+$$ \tag{16.3b}
+	\frac{\partial}{\partial t} \mathcal{W}(V, t) =
+	\int\_{V} \mathcal{Re} \big\lbrace \bm{E}(\bm{r'}) e^{-i \omega t} \big\rbrace \cdot \mathcal{Re} \big\lbrace \bm{J_f}(\bm{r'}) e^{-i \omega t} \big\rbrace dV'.
 $$
 
-$$ \tag{11.8}
-	m(\bm{r}, \omega)
-	= \frac{k(\bm{r}, \omega)}{k_1(\omega)}
+Expansion of the real part yields
+
+$$ \tag{16.3c}
+	\frac{\partial}{\partial t} \mathcal{W}(V, t) =
+	\frac{1}{4} \int\_{V} \big(
+	\bm{E} \cdot \bm{J_f^{\*}} +
+	\bm{E^{\*}} \cdot \bm{J_f} +
+	\bm{E} \cdot \bm{J_f} e^{-i 2 \omega t} +
+	\bm{E^{\*}} \cdot \bm{J_f^{\*}} e^{i 2 \omega t}
+	\big) dV'.
 $$
 
-$$ \tag{1y.1a}
-	\frac{\omega}{k_1(\omega)} = \frac{c}{\eta_1(\omega)}
+Similarly to the way the irradiance is defined in terms of the time-averaged Poynting vector, we may associate the *time-averaged rate of doing work* with the amount of power absorbed by the particle:
+
+$$ \tag{16.3d}
+	\Phi_a =
+	\left\langle \frac{\partial \mathcal{W}}{\partial t} \right\rangle.
 $$
 
-$$
-	\epsilon = \frac{k^2}{\omega^2 \mu}
+As explained in the paragraphs that follow Eqn. 4.14, for high frequencies, the time-averaging process effectively eliminates the last two terms of Eqn. 16.3c. Thus, we end up with a time-invariant expression
+
+$$ \tag{16.3e}
+	\Phi_a =
+	\frac{1}{4} \int\_{V} \big(
+	\bm{E} \cdot \bm{J_f^{\*}} +
+	\bm{E^{\*}} \cdot \bm{J_f}
+	\big) dV' =
+	\frac{1}{2} \int\_{V}
+	\mathcal{Re} \big\lbrace
+	\bm{E^{\*}} \cdot \bm{J_f}
+	\big\rbrace dV'.
 $$
 
-$$
-	k^2 = k_1^2 m^2
+Next, let us separate the induced charges from the sources according to Eqn. 5.4, and assume that the latter are not present. Subsequent application of [Ohm's law](https://en.wikipedia.org/wiki/Ohm%27s_law) given by Eqn. 5.2.1 yields the formula
+
+$$ \tag{16.3f}
+	\Phi_a =
+	\frac{1}{2} \int\_{V}
+	\mathcal{Re} \big\lbrace
+	\bm{J_i}(\bm{r'}) \cdot \bm{E^{\*}}(\bm{r'})
+	\big\rbrace dV' \approx
+	\frac{1}{2} \int\_{V}
+	\mathcal{Re} \big\lbrace \sigma(\bm{r'}) \big\rbrace
+	\big\vert \bm{E}(\bm{r'}) \big\vert^2 dV'.
 $$
 
-$$
-	\epsilon = \frac{k_1^2 m^2}{\omega^2 \mu}
+We can reformulate this equation in terms of the complex permittivity \\(\epsilon\\) using Eqn. 5.6:
+
+$$ \tag{16.3g}
+	\Phi_a \approx
+	\frac{1}{2} \omega \int\_{V}
+	\mathcal{Im} \big\lbrace \epsilon(\bm{r'}) - \varepsilon(\bm{r'}) \big\rbrace
+	\big\vert \bm{E}(\bm{r'}) \big\vert^2 dV'.
 $$
 
+If the imaginary part of the electric permittivity \\(\varepsilon\\) is sufficiently small, it may be neglected, resulting in the following approximation \[[12](#references) (ch. 1.1)\]:
+
+$$ \tag{16.3h}
+	\Phi_a \approx
+	\frac{1}{2} \omega \int\_{V}
+	\mathcal{Im} \big\lbrace \epsilon(\bm{r'}) \big\rbrace
+	\big\vert \bm{E}(\bm{r'}) \big\vert^2 dV'.
 $$
+
+In order to convert this equation into the natural units, we must replace the absolute quantities with the relative ones. According to Eqn. 7.4, 7.5 and 11.8,
+
+$$ \tag{16.3i}
+	\epsilon(\bm{r}, \omega)
+	= \frac{k^2(\bm{r}, \omega)}{\omega^2 \mu(\bm{r}, \omega)}
+	= \frac{k^2(\bm{r}, \omega)}{\omega^2 \mu\_0 \mu_r(\bm{r}, \omega)}
+	= \frac{k_1^2(\omega) m^2(\bm{r}, \omega)}{\omega^2 \mu\_0 \mu_r(\bm{r}, \omega)}.
+$$
+
+Substitution of Eqn. 1y.1a and 16.3i into 16.3h yields:
+
+$$ \tag{16.3k}
 \begin{aligned}
 	\Phi_a
-	&= \frac{1}{2} \omega \int\_{V}
-	\mathcal{Im} \big\lbrace \epsilon(\bm{r'}) \big\rbrace \big| \bm{E}(\bm{r'}) \big|^2 dV'
-	\cr
-	&= \frac{1}{2} \frac{k_1^2}{\omega} \int\_{V}
-	\mathcal{Im} \left\lbrace \frac{m^2(\bm{r'})}{\mu(\bm{r'})} \right\rbrace \big| \bm{E}(\bm{r'}) \big|^2 dV'
-	\cr
-	&= \frac{1}{2} \frac{\eta_1}{c} k_1 \int\_{V}
-	\mathcal{Im} \left\lbrace \frac{m^2(\bm{r'})}{\mu(\bm{r'})} \right\rbrace \big| \bm{E}(\bm{r'}) \big|^2 dV'
+	&\approx
+	\frac{\mu\_0^{-1}}{2} \frac{\eta_1}{c} k_1 \int\_{V}
+	\mathcal{Im} \left\lbrace \frac{m^2(\bm{r'})}{\mu_r(\bm{r'})} \right\rbrace \big| \bm{E}(\bm{r'}) \big|^2 dV'
 	\cr
 	&= \frac{\mu\_0^{-1}}{2} \frac{\eta_1}{c} \frac{1}{k_1^2} \int\_{V}
-	\mathcal{Im} \left\lbrace \frac{m^2(\bm{r'})}{\mu_r(\bm{r'})} \right\rbrace \big| \bm{E}(\bm{r'}) \big|^2 k_1^3 dV'
+	\mathcal{Im} \left\lbrace \frac{m^2(\bm{r'})}{\mu_r(\bm{r'})} \right\rbrace \big| \bm{E}(\bm{r'}) \big|^2 k_1^3 dV'.
 \end{aligned}
 $$
 
-This expression utilizes the SI units. Verify using the LMD theory (should \\(\mu_r = 1\\)?).
+Application of the rules given in Sec. 1z reduces Eqn. 16.3k to
 
----
+$$ \tag{16.3z}
+	\Phi_a
+	\approx \frac{\mu\_0^{-1}}{2} \int\_{V}
+	\mathcal{Im} \left\lbrace \frac{m^2(\bm{r'})}{\mu_r(\bm{r'})} \right\rbrace \big| \bm{E}(\bm{r'}) \big|^2 dV'.
+$$
 
-with the integral taken over the interior of the particle. As before, \\(\epsilon\\) is the complex permittivity, \\(\mu\_r\\) is the relative permeability, and \\(m\\) is the relative wavenumber given by Eqn. 11.8.
+**TODO**: verify (analytically!) using the LMD theory by computing \\(\Phi_a\\) in two different ways.
 
 It is convenient to be able to relate the amount of power absorbed by the particle to the amount of incident power the particle *geometrically* intercepts. The latter can be characterized with the help of the projected area of the particle - its *geometric cross-section* \\(C_g\\) that has dimensions of area. For a convex particle, it is given by the integral
 
@@ -4583,15 +4631,16 @@ $$ \tag{16.38}
 \begin{aligned}
 	& Q_a
 	= \frac{\Phi_a}{\Phi_i}
-	= \frac{\Phi_e - \Phi_s}{\Phi_i},
+	\approx \frac{\int\_{V}
+	\mathcal{Im} \left\lbrace m^2(\bm{r'}) / \mu_r(\bm{r'}) \right\rbrace \big| \bm{E}(\bm{r'}) \big|^2 dV'}{|\bm{E_0}|^2 C_g},
 	\cr
 	& Q_s
 	= \frac{\Phi_s}{\Phi_i}
-	= \frac{\oint |\bm{E_1}(\bm{n_s})|^2 d\Omega}{C_g |\bm{E_0}|^2},
+	= \frac{\oint |\bm{E_1}(\bm{n_s})|^2 d\Omega}{|\bm{E_0}|^2 C_g},
 	\cr
 	& Q_e
 	= \frac{\Phi_e}{\Phi_i}
-	= \frac{4 \pi \thinspace \mathcal{Im} \big\lbrace \bm{E_0^{\*}} \cdot \bm{E_1}(\bm{n_i}) \big\rbrace}{C_g |\bm{E_0}|^2}.
+	= \frac{4 \pi \thinspace \mathcal{Im} \big\lbrace \bm{E_0^{\*}} \cdot \bm{E_1}(\bm{n_i}) \big\rbrace}{|\bm{E_0}|^2 C_g}.
 \end{aligned}
 $$
 
@@ -4602,7 +4651,8 @@ $$ \tag{16.39}
 	& C_a
 	= Q_a C_g
 	= \frac{\Phi_a}{\Epsilon_i}
-	= \frac{\Phi_e - \Phi_s}{| \negthinspace \braket{\bm{S_i}} \negthinspace |},
+	\approx \frac{\int\_{V}
+	\mathcal{Im} \left\lbrace m^2(\bm{r'}) / \mu_r(\bm{r'}) \right\rbrace \big| \bm{E}(\bm{r'}) \big|^2 dV'}{|\bm{E_0}|^2},
 	\cr
 	& C_s
 	= Q_s C_g
@@ -4655,7 +4705,7 @@ Thus, we obtain the expressions
 $$ \tag{16.43}
 \begin{aligned}
 	& Q_e
-	= \frac{4 \pi \thinspace \mathcal{Im} \big\lbrace s_0 \bm{E_0^{\*}} \cdot \bm{E_0} \big\rbrace}{C_g |\bm{E_0}|^2}
+	= \frac{4 \pi \thinspace \mathcal{Im} \big\lbrace s_0 \bm{E_0^{\*}} \cdot \bm{E_0} \big\rbrace}{|\bm{E_0}|^2 C_g}
 	= \frac{4 \pi \thinspace \mathcal{Im} \lbrace s_0 \rbrace}{C_g},
 	\cr
 	& C_e
@@ -4666,7 +4716,7 @@ $$
 
 that match the results found using the scalar wave theory \[[4](#references) (ch. 4.42)\]. Intuitively, this makes sense, since the particle looks the same regardless of the choice of the plane of reference (assuming the latter contains the direction of incidence), and the sensor (that only measures power) is not sensitive to the orientation of incoming light.
 
-Finally, since radiometric quantities are often used in practical applications, a few words must be said about conversion between the natural and the SI units. Because the irradiance \\(\Epsilon\\) corresponds to the magnitude of the time-averaged Poyinting vector \\(\braket{\bm{S}}\\) (see Eqn. 2.25), from the substitution rule given by Eqn. 1z.2?, it follows that
+Finally, since radiometric quantities are often used in practical applications, a few words must be said about conversion between the natural and the SI units. Because the irradiance \\(\Epsilon\\) corresponds to the magnitude of the time-averaged Poynting vector \\(\braket{\bm{S}}\\) (see Eqn. 2.25), from the substitution rule given by Eqn. 1z.2?, it follows that
 
 $$ \tag{16.44}
 	\frac{c}{\eta_1} \Epsilon \leftrightarrows \Epsilon.
