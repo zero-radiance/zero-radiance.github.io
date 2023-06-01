@@ -4499,7 +4499,7 @@ Alternatively, we can use the energy conservation law given by Eqn. 2.1, 2.6 and
 
 $$ \tag{16.3a}
 	\frac{\partial}{\partial t} \mathcal{W}(V, t) =
-	\int\_{V} \bm{E}(\bm{r'}, t) \cdot \bm{J_f}(\bm{r'}, t) dV',
+	\int\_{V} \bm{E}(\bm{r}, t) \cdot \bm{J_f}(\bm{r}, t) dV,
 $$
 
 with the integral taken over the interior of the particle.
@@ -4508,7 +4508,7 @@ If the fields are time-harmonic, we may substitute the SI form of Eqn. 4.11:
 
 $$ \tag{16.3b}
 	\frac{\partial}{\partial t} \mathcal{W}(V, t) =
-	\int\_{V} \mathcal{Re} \big\lbrace \bm{E}(\bm{r'}) e^{-i \omega t} \big\rbrace \cdot \mathcal{Re} \big\lbrace \bm{J_f}(\bm{r'}) e^{-i \omega t} \big\rbrace dV'.
+	\int\_{V} \mathcal{Re} \big\lbrace \bm{E}(\bm{r}) e^{-i \omega t} \big\rbrace \cdot \mathcal{Re} \big\lbrace \bm{J_f}(\bm{r}) e^{-i \omega t} \big\rbrace dV.
 $$
 
 Expansion of the real part yields
@@ -4520,7 +4520,7 @@ $$ \tag{16.3c}
 	\bm{E^{\*}} \cdot \bm{J_f} +
 	\bm{E} \cdot \bm{J_f} e^{-i 2 \omega t} +
 	\bm{E^{\*}} \cdot \bm{J_f^{\*}} e^{i 2 \omega t}
-	\big) dV'.
+	\big) dV.
 $$
 
 Similarly to the way the irradiance is defined in terms of the time-averaged Poynting vector, we may associate the *time-averaged rate of doing work* with the amount of power absorbed by the particle:
@@ -4537,11 +4537,11 @@ $$ \tag{16.3e}
 	\frac{1}{4} \int\_{V} \big(
 	\bm{E} \cdot \bm{J_f^{\*}} +
 	\bm{E^{\*}} \cdot \bm{J_f}
-	\big) dV' =
+	\big) dV =
 	\frac{1}{2} \int\_{V}
 	\mathcal{Re} \big\lbrace
 	\bm{E^{\*}} \cdot \bm{J_f}
-	\big\rbrace dV'.
+	\big\rbrace dV.
 $$
 
 Next, let us separate the induced charges from the sources according to Eqn. 5.4, and assume that the latter are not present. Subsequent application of [Ohm's law](https://en.wikipedia.org/wiki/Ohm%27s_law) given by Eqn. 5.2.1 yields the formula
@@ -4550,11 +4550,11 @@ $$ \tag{16.3f}
 	\Phi_a =
 	\frac{1}{2} \int\_{V}
 	\mathcal{Re} \big\lbrace
-	\bm{J_i}(\bm{r'}) \cdot \bm{E^{\*}}(\bm{r'})
-	\big\rbrace dV' \approx
+	\bm{J_i}(\bm{r}) \cdot \bm{E^{\*}}(\bm{r})
+	\big\rbrace dV \approx
 	\frac{1}{2} \int\_{V}
-	\mathcal{Re} \big\lbrace \sigma(\bm{r'}) \big\rbrace
-	\big\vert \bm{E}(\bm{r'}) \big\vert^2 dV'.
+	\mathcal{Re} \big\lbrace \sigma(\bm{r}) \big\rbrace
+	\big\vert \bm{E}(\bm{r}) \big\vert^2 dV.
 $$
 
 We can reformulate this equation in terms of the complex permittivity \\(\epsilon\\) using Eqn. 5.6:
@@ -4562,8 +4562,8 @@ We can reformulate this equation in terms of the complex permittivity \\(\epsilo
 $$ \tag{16.3g}
 	\Phi_a \approx
 	\frac{1}{2} \omega \int\_{V}
-	\mathcal{Im} \big\lbrace \epsilon(\bm{r'}) - \varepsilon(\bm{r'}) \big\rbrace
-	\big\vert \bm{E}(\bm{r'}) \big\vert^2 dV'.
+	\mathcal{Im} \big\lbrace \epsilon(\bm{r}) - \varepsilon(\bm{r}) \big\rbrace
+	\big\vert \bm{E}(\bm{r}) \big\vert^2 dV.
 $$
 
 If the imaginary part of the electric permittivity \\(\varepsilon\\) is sufficiently small, it may be neglected, resulting in the following approximation \[[12](#references) (ch. 1.1)\]:
@@ -4571,8 +4571,8 @@ If the imaginary part of the electric permittivity \\(\varepsilon\\) is sufficie
 $$ \tag{16.3h}
 	\Phi_a \approx
 	\frac{1}{2} \omega \int\_{V}
-	\mathcal{Im} \big\lbrace \epsilon(\bm{r'}) \big\rbrace
-	\big\vert \bm{E}(\bm{r'}) \big\vert^2 dV'.
+	\mathcal{Im} \big\lbrace \epsilon(\bm{r}) \big\rbrace
+	\big\vert \bm{E}(\bm{r}) \big\vert^2 dV.
 $$
 
 In order to convert this equation into the natural units, we must replace the absolute quantities with the relative ones. According to Eqn. 7.4, 7.5 and 11.8,
@@ -4591,10 +4591,10 @@ $$ \tag{16.3k}
 	\Phi_a
 	&\approx
 	\frac{\mu\_0^{-1}}{2} \frac{\eta_1}{c} k_1 \int\_{V}
-	\mathcal{Im} \left\lbrace \frac{m^2(\bm{r'})}{\mu_r(\bm{r'})} \right\rbrace \big| \bm{E}(\bm{r'}) \big|^2 dV'
+	\mathcal{Im} \left\lbrace \frac{m^2(\bm{r})}{\mu_r(\bm{r})} \right\rbrace \big| \bm{E}(\bm{r}) \big|^2 dV
 	\cr
 	&= \frac{\mu\_0^{-1}}{2} \frac{\eta_1}{c} \frac{1}{k_1^2} \int\_{V}
-	\mathcal{Im} \left\lbrace \frac{m^2(\bm{r'})}{\mu_r(\bm{r'})} \right\rbrace \big| \bm{E}(\bm{r'}) \big|^2 k_1^3 dV'.
+	\mathcal{Im} \left\lbrace \frac{m^2(\bm{r})}{\mu_r(\bm{r})} \right\rbrace \big| \bm{E}(\bm{r}) \big|^2 k_1^3 dV.
 \end{aligned}
 $$
 
@@ -4603,7 +4603,7 @@ Application of the rules given in Sec. 1z reduces Eqn. 16.3k to
 $$ \tag{16.3z}
 	\Phi_a
 	\approx \frac{\mu\_0^{-1}}{2} \int\_{V}
-	\mathcal{Im} \left\lbrace \frac{m^2(\bm{r'})}{\mu_r(\bm{r'})} \right\rbrace \big| \bm{E}(\bm{r'}) \big|^2 dV'.
+	\mathcal{Im} \left\lbrace \frac{m^2(\bm{r})}{\mu_r(\bm{r})} \right\rbrace \big| \bm{E}(\bm{r}) \big|^2 dV.
 $$
 
 **TODO**: verify (analytically!) using the LMD theory by computing \\(\Phi_a\\) in two different ways.
@@ -4632,7 +4632,7 @@ $$ \tag{16.38}
 	& Q_a
 	= \frac{\Phi_a}{\Phi_i}
 	\approx \frac{\int\_{V}
-	\mathcal{Im} \left\lbrace m^2(\bm{r'}) / \mu_r(\bm{r'}) \right\rbrace \big| \bm{E}(\bm{r'}) \big|^2 dV'}{|\bm{E_0}|^2 C_g},
+	\mathcal{Im} \lbrace m^2(\bm{r}) / \mu_r(\bm{r}) \rbrace | \bm{E}(\bm{r}) |^2 dV}{|\bm{E_0}|^2 C_g},
 	\cr
 	& Q_s
 	= \frac{\Phi_s}{\Phi_i}
@@ -4649,19 +4649,19 @@ If normalization with respect to the projected area is not required, we may util
 $$ \tag{16.39}
 \begin{aligned}
 	& C_a
-	= Q_a C_g
 	= \frac{\Phi_a}{\Epsilon_i}
+	= Q_a C_g
 	\approx \frac{\int\_{V}
-	\mathcal{Im} \left\lbrace m^2(\bm{r'}) / \mu_r(\bm{r'}) \right\rbrace \big| \bm{E}(\bm{r'}) \big|^2 dV'}{|\bm{E_0}|^2},
+	\mathcal{Im} \lbrace m^2(\bm{r}) / \mu_r(\bm{r}) \rbrace | \bm{E}(\bm{r}) |^2 dV}{|\bm{E_0}|^2},
 	\cr
 	& C_s
-	= Q_s C_g
 	= \frac{\Phi_s}{\Epsilon_i}
+	= Q_s C_g
 	= \frac{\oint |\bm{E_1}(\bm{n_s})|^2 d\Omega}{|\bm{E_0}|^2},
 	\cr
 	& C_e
-	= Q_e C_g
 	= \frac{\Phi_e}{\Epsilon_i}
+	= Q_e C_g
 	= \frac{4 \pi \thinspace \mathcal{Im} \big\lbrace \bm{E_0^{\*}} \cdot \bm{E_1}(\bm{n_i}) \big\rbrace}{|\bm{E_0}|^2}.
 \end{aligned}
 $$
