@@ -4606,6 +4606,8 @@ $$ \tag{16.3z}
 	\mathcal{Im} \left\lbrace \frac{m^2(\bm{r})}{\mu_r(\bm{r})} \right\rbrace \big| \bm{E}(\bm{r}) \big|^2 dV.
 $$
 
+It is worth noting that the derivation of Eqn. 16.3z does not assume that the host medium is non-magnetic.
+
 **TODO**: verify (analytically!) using the LMD theory by computing \\(\Phi_a\\) in two different ways.
 
 It is convenient to be able to relate the amount of power absorbed by the particle to the amount of incident power the particle *geometrically* intercepts. The latter can be characterized with the help of the projected area of the particle - its *geometric cross-section* \\(C_g\\) that has dimensions of area. For a convex particle, it is given by the integral
