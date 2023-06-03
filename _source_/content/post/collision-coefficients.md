@@ -3893,7 +3893,7 @@ $$ \tag{15.5}
 	= \frac{e^{i r}}{r} \mathcal{S} (\bm{r}, \bm{n_i}, \omega) \cdot \bm{E_0}(\bm{n_i}, \omega).
 $$
 
-In general, \\(\mathcal{S}\\) depends on the position of the observer relative to the scattering object. However, if the observation point \\(\bm{r}\\) is very far away, we can combine Eqn. 13.12 with 14.1-14.3 to show that the scattering dyadic is distance-independent in the radiation zone:
+In general, \\(\mathcal{S}\\) depends on the position of the observer relative to the scattering object. However, if the observation point \\(\bm{r}\\) is very far away, we can combine Eqn. 13.12 with 14.1, 14.3 and 15.5 to show that the scattering dyadic is distance-independent in the radiation zone:
 
 $$ \tag{15.6}
 \mathcal{S_f}(\bm{n_s}, \bm{n_i}, \omega) \simeq
@@ -3901,7 +3901,7 @@ $$ \tag{15.6}
 	\iint\_{V} e^{i (\bm{r''} \cdot \bm{n_i} - \bm{r'} \cdot \bm{n_s})} \mathcal{T} (\bm{r'}, \bm{r''}, \omega) dV' dV''.
 $$
 
-Correspondingly, Eqn. 13.12 takes the form:
+The first argument of the scattering dyadic in Eqn. 15.5 is modified accordingly:
 
 $$ \tag{15.7}
 \begin{aligned}
@@ -3913,7 +3913,7 @@ $$ \tag{15.7}
 \end{aligned}
 $$
 
-Comparison with Eqn. 13.?? reveals the connection between the polarization vectors:
+Comparison with Eqn. 13.?? reveals the connection to the polarization vectors:
 
 $$ \tag{15.8}
 \begin{aligned}
