@@ -3594,21 +3594,21 @@ $$ \tag{13.5}
 	& \simeq g(\bm{r})
 	(\mathcal{I} - \bm{n_s} \otimes \bm{n_s}) \cdot \mathcal{\Alpha_m}(V_m, \omega)
 	\cdot \bm{E}(\bm{0}, \omega), \cr
-	i \bm{B_s}(\bm{r}, \omega)
+	\bm{B_s}(\bm{r}, \omega)
 	& \simeq g(\bm{r})
 	(\bm{n_s} \times \mathcal{I}) \cdot \mathcal{\Alpha_m}(V_m, \omega)
 	\cdot \bm{E}(\bm{0}, \omega)
 \end{aligned}
 $$
 
-Let us return to the general case of an arbitrary scattering object. Assume that the observation point is located in the radiation zone with respect to each individual volume element, so that \\(R \gg 1\\). Eqn. 1z.13 and 1z.19 then takes the form
+Let us return to the general case of an arbitrary scattering object. Assume that the observation point is located in the radiation zone with respect to each individual volume element, so that \\(R \gg 1\\). Eqn. 1z.13 and 1z.19 then take the form
 
 $$ \tag{13.6}
 \begin{aligned}
 	& \bm{E_s}(\bm{r}, \omega)
 	\simeq \int\_{V}
 	\big( m^2(\bm{r'}, \omega) - 1 \big) g(\bm{R}) \bigg( \mathcal{I} - \frac{\bm{R} \otimes \bm{R}}{R^2} \bigg) \cdot \bm{E}(\bm{r'}, \omega) dV', \cr
-	& i \bm{B_s}(\bm{r}, \omega)
+	& \bm{B_s}(\bm{r}, \omega)
 	\simeq \int\_{V}
 	\big( m^2(\bm{r'}, \omega) - 1 \big) g(\bm{R}) \bigg(\frac{\bm{R} \times \mathcal{I}}{R} \bigg) \cdot \bm{E}(\bm{r'}, \omega) dV'.
 \end{aligned}
@@ -10733,7 +10733,7 @@ Continuous refractive index of the atmosphere in terms of the particle density a
 
 ## Acknowledgments
 
-Bohren & Huffman, Larry Travis, Pharr & Jakob, Jeppe Frisvad (Mie scattering), Robin Green (spherical harmonics), Naty Hoffman (Rayleigh scattering), Eugene d'Eon and Andrea Weidlich, Bruce Draine (https://www.astro.princeton.edu/~draine/scattering.html).
+Bohren & Huffman, Larry Travis, Pharr & Jakob, Jeppe Frisvad (Mie scattering), Robin Green (spherical harmonics), Naty Hoffman (Rayleigh scattering), Eugene d'Eon and Andrea Weidlich, Bruce T. Draine (https://www.astro.princeton.edu/~draine/scattering.html).
 
 ## References
 
