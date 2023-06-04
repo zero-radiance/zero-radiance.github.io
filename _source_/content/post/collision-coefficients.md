@@ -3562,7 +3562,7 @@ $$ \tag{13.1}
 	= \bigg( 1 + \frac{\mathcal{G_{mn}}}{\mathcal{G_{mf}}} \bigg) \mathcal{G_{mf}}.
 $$
 
-According to Eqn. 1z.12, for any fixed direction, the relative difference between the components of the  electric dyadic primarily arises from the leading scalar terms. In the case of the magnetic dyadic given by Eqn. 1z.18, both of its components exhibit identical angular dependence. Following this logic, we can use Eqn. 1z.1a to rewrite Eqn. 13.1 using the [Big O notation](https://en.wikipedia.org/wiki/Big_O_notation):
+According to Eqn. 1z.12.2, for any fixed direction, the relative difference between the components of the  electric dyadic primarily arises from the leading scalar terms. In the case of the magnetic dyadic given by Eqn. 1z.18.2, both of its components exhibit identical angular dependence. Following this logic, we can use Eqn. 1z.1a to rewrite Eqn. 13.1 using the [Big O notation](https://en.wikipedia.org/wiki/Big_O_notation):
 
 $$ \tag{13.2}
 	\mathcal{G_e}
@@ -3578,7 +3578,7 @@ $$ \tag{13.3}
 	\bm{E_s}(\bm{r}, \omega)
 	&\simeq g(\bm{R})
 	\bigg( \mathcal{I} - \frac{\bm{R} \otimes \bm{R}}{R^2} \bigg) \cdot \mathcal{\Alpha_m}(V_m, \omega) \cdot \bm{E}(\bm{r'}, \omega), \cr
-	i \bm{B_s}(\bm{r}, \omega)
+	\bm{B_s}(\bm{r}, \omega)
 	&\simeq g(\bm{R})
 	\bigg(\frac{\bm{R} \times \mathcal{I}}{R} \bigg) \cdot \mathcal{\Alpha_m}(V_m, \omega) \cdot \bm{E}(\bm{r'}, \omega),
 \end{aligned}
@@ -3909,7 +3909,7 @@ $$ \tag{15.7}
 	&\simeq \frac{e^{i r}}{r} \mathcal{S_f} (\bm{n_s}, \bm{n_i}, \omega) \cdot \bm{E_0}(\bm{n_i}, \omega),
 	\cr
 	\bm{B_s}(\bm{r}, \omega)
-	&\simeq \frac{e^{i r}}{r} \bm{n_s} \times \mathcal{S_f} (\bm{n_s}, \bm{n_i}, \omega) \cdot \bm{E_0}(\bm{n_i}, \omega),
+	&\simeq \frac{e^{i r}}{r} \bm{n_s} \times \mathcal{S_f} (\bm{n_s}, \bm{n_i}, \omega) \cdot \bm{E_0}(\bm{n_i}, \omega).
 \end{aligned}
 $$
 
@@ -4750,6 +4750,8 @@ The quantitative criteria for applicability of the single-scattering approximati
 
 For large particles, the laws of geometrical optics are applicable; thus, if we separate the incident illumination into parallel rays of light, then single scattering simply means that every incident ray intercepts at most one particle, with each particle assumed to be weakly scattering. Obviously, that can only be the case if the total number of particles \\(N\\) is not too great, regardless of their density. Furthermore, if a ray intercepts multiple particles, they are required to be weakly absorbing as well.
 
+[Figure]
+
 Alternatively, we may project the particles onto a plane facing the light source, and check for overlaps. We can also approximately account for the absorption and scattering characteristics of the particles by replacing their geometric cross-sections with the extinction cross-sections. If the extinction density per unit area is sufficiently low,
 
 $$ \tag{17.0}
@@ -4765,24 +4767,26 @@ As usual, we shall utilize the superposition principle to decompose the incident
 Let \\(\bm{r_j}\\) denote the location of the \\(j\\)-th particle, and \\(a_j\\) -- the radius of its bounding sphere. If the observation point \\(\bm{r}\\) is located in the radiation zone of each particle, then the distances \\(R_j = |\bm{R_j}| = |\bm{r} - \bm{r_j}|\\) satisfy the inequalities given by Eqn. 13.13:
 
 $$ \tag{17.1}
-	k R_j - k a_j \gg 1, \quad
-	k R_j \gg k a_j, \quad
-	k R_j \gg (k a_j)^2.
+	(R_j - a_j) \gg 1,
+	\quad
+	R_j \gg a_j,
+	\quad
+	R_j \gg a_j^2.
 $$
 
-The resulting scattered far-field of the \\(j\\)-th particle is given by Eqn. 15.6:
+The resulting scattered far-field of the \\(j\\)-th particle is given by Eqn. 15.7:
 
 $$ \tag{17.2}
 \begin{aligned}
 	& \bm{E_j}(\bm{r}, \omega)
-	\simeq \frac{e^{i k R_j}}{k R_j} \mathcal{S_j} (\bm{R_j} / R_j) \cdot \bm{E_0} e^{i k (\bm{r_j} \cdot \bm{n_i})},
+	\simeq \frac{e^{i R_j}}{R_j} \mathcal{S_j} (\bm{R_j} / R_j) \cdot \bm{E_0} e^{i (\bm{r_j} \cdot \bm{n_i})},
 	\cr
 	& \bm{B_j}(\bm{r}, \omega)
-	\simeq \frac{\eta}{c} (\bm{R_j} / R_j) \times \bm{E_j}(\bm{r}, \omega).
+	\simeq (\bm{R_j} / R_j) \times \bm{E_j}(\bm{r}, \omega).
 \end{aligned}
 $$
 
-where we must remember to account for the fact that, in general, the particle is not located at the origin.
+which must corrected to account for the fact that the particle is not located at the origin.
 
 The value of the total field \\(\bm{E}\\) is simply
 
@@ -4793,41 +4797,41 @@ $$ \tag{17.x}
 	+ \sum_{j=1}^{N} \bm{E_j}(\bm{r}, \omega).
 $$
 
-Let \\(L\\) and \\(L\\) denote the linear dimension of \\(V\\) (for simplicity, we shall assume that \\(V\\) is suitably symmetric). Since a typical volume is large compared to the wavelength of light, then it follows that
+Let \\(L\\) denote the linear dimension of \\(V\\) (for simplicity, we shall assume that \\(V\\) is suitably symmetric). Since a typical volume is large compared to the wavelength of light, then it follows that
 
 $$ \tag{17.3}
-	k L \ge 1.
+	L \ge 1.
 $$
 
 On the other hand, if the dimensions of \\(V\\) are sufficiently small compared to the distance between every particle and the observation point, such that
 
 $$ \tag{17.4}
-	k R_j \gg k L,
+	r \gg L,
 $$
 
 then we may use the series expansions of Eqn. 13.8 and 13.10 to asymptotically approximate
 
 $$ \tag{17.5}
-	\frac{\bm{R_j}}{R_j} \simeq \bm{n_s} = \frac{\bm{r}}{r},
+	\frac{\bm{R_j}}{R_j} \simeq \frac{\bm{r}}{r} = \bm{n_s},
 	\quad
 	\frac{1}{R_j} \simeq \frac{1}{r},
 	\quad
-	k R_j
-	\simeq k r - k (\bm{r_j} \cdot \bm{n_s})
-	+ \frac{k r_j^2}{2 r} \left( 1 - (\bm{n_j} \cdot \bm{n_s})^2 \right),
+	R_j
+	\simeq r - (\bm{r_j} \cdot \bm{n_s})
+	+ \frac{r_j^2 - (\bm{r_j} \cdot \bm{n_s})^2}{2 r}.
 $$
 
-where \\(\bm{n_j} = \bm{r_j} / |\bm{r_j}| = \bm{r_j} / r_j\\).
-
-It is important to note that Eqn. 17.4 does not imply that the observation point is located in the radiation zone with respect to the entire volume \\(V\\), since the latter requires \\(k R_j \gg (k L)^2\\).
+It is important to note that Eqn. 17.4 does not imply that the observation point is located in the radiation zone with respect to the entire volume \\(V\\), since the latter requires \\(r \gg L^2\\).
 
 Substitution of Eqn 17.5 into 17.2.1 yields an expression of a nearly-spherical wave diverging from the origin of the coordinate system:
 
 $$ \tag{17.6}
 	\bm{E_j}(\bm{r}, \omega)
-	\simeq \frac{e^{i k (R_j + \bm{r_j} \cdot \bm{n_i})}}{k r} \mathcal{S_j} (\bm{n_s}) \cdot \bm{E_0}
-	\approx \frac{e^{i k r}}{k r} \mathcal{S_j} (\bm{n_s}) \cdot \bm{E_0} e^{i k \bm{r_j} \cdot (\bm{n_i} - \bm{n_s}) + i k r_j^2 \left( 1 - (\bm{n_j} \cdot \bm{n_s})^2 \right)/(2 r)}.
+	\simeq \frac{e^{i (R_j + \bm{r_j} \cdot \bm{n_i})}}{r} \mathcal{S_j} (\bm{n_s}) \cdot \bm{E_0}
+	\approx \frac{e^{i r}}{r} \mathcal{S_j} (\bm{n_s}) \cdot \bm{E_0} e^{i \bm{r_j} \cdot (\bm{n_i} - \bm{n_s}) + \frac{i}{2 r} \left( r_j^2 - (\bm{r_j} \cdot \bm{n_s})^2 \right)}.
 $$
+
+---
 
 Let us combine the expressions of the incident and the scattered fields, and determine whether their interaction produces any observable interference effects. We can utilize the same method employed in Sec. 16; specifically, let us repurpose Eqn. 16.17 and 16.22 of the time-averaged Poynting vector
 
