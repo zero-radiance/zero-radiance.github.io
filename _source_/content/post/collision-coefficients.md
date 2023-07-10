@@ -1495,7 +1495,7 @@ $$ \tag{8.3}
 	\bm{E}(\bm{r}, t) + \frac{\partial}{\partial t} \bm{A}(\bm{r}, t) = -\nabla \phi(\bm{r}, t).
 $$
 
-Thus both the electric and the magnetic fields are uniquely defined by the vector and the scalar potentials:
+Thus both the electric and the magnetic fields are uniquely defined by the vector and the scalar potentials[^32]:
 
 $$ \tag{8.4}
 \begin{aligned}
@@ -1503,6 +1503,8 @@ $$ \tag{8.4}
 	&\bm{B}(\bm{r}, t) = \nabla \times \bm{A}(\bm{r}, t).
 \end{aligned}
 $$
+
+[^32]: Eqn. 8.4 also indicates that while E and A are *polar vectors*, the cross product makes B an [axial vector](https://en.wikipedia.org/wiki/Pseudovector).
 
 The converse is not true. Since the [curl of gradient](https://en.wikipedia.org/wiki/Vector_calculus_identities#Curl_of_gradient_is_zero) is zero, the vector potential
 
