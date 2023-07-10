@@ -1528,7 +1528,9 @@ Since the electric and the magnetic field are independent of a particular choice
 
 What is a good choice of \\(\chi\\)? That depends on the mathematical formulation of a particular problem. Usually, we want \\(\bm{A}\\) to have a certain desirable property that simplifies some equation.
 
-In general, a smooth vector field \\(\bm{A}\\) can be [decomposed](https://en.wikipedia.org/wiki/Helmholtz_decomposition) into a sum of a divergence-free ([solenoidal](https://en.wikipedia.org/wiki/Solenoidal_vector_field)) component \\(\bm{A'}\\) and a curl-free ([irrotational](https://en.wikipedia.org/wiki/Conservative_vector_field#Irrotational_vector_fields)) component \\(\bm{A''}\\):
+In general[^33], a sufficiently smooth and rapidly decaying vector field \\(\bm{A}\\) can be [decomposed](https://en.wikipedia.org/wiki/Helmholtz_decomposition) into a sum of a divergence-free ([solenoidal](https://en.wikipedia.org/wiki/Solenoidal_vector_field)) component \\(\bm{A'}\\) and a curl-free ([irrotational](https://en.wikipedia.org/wiki/Conservative_vector_field#Irrotational_vector_fields)) component \\(\bm{A''}\\):
+
+[^33]: And in particular, every square-integrable vector field has the [following](https://en.wikipedia.org/wiki/Helmholtz_decomposition#Weak_formulation) orthogonal decomposition: \\(\bm{A} = \nabla \times \bm{V} + \nabla s\\).
 
 $$ \tag{8.8}
 \begin{aligned}
