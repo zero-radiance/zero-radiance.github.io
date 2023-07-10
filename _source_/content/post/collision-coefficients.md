@@ -1371,7 +1371,7 @@ $$ \tag{7.32}
 	= \frac{\mu\_0^{-1}}{2} \frac{\eta}{c} |\bm{E_0}|^2 \big( \bm{n} \cdot \bm{n'} \big).
 $$
 
-Without proof, we shall state an interesting fact. The time-averaged energy density (cf. Eqn. 2.23-2.24) of the field of a plane wave is
+Without proof, we shall state an interesting fact. The time-averaged energy density (cf. Eqn. 2.23-2.24) of the field of a plane wave in a non-absorptive, non-magnetic medium is
 
 $$ \tag{7.33}
 	\bigg\langle \frac{\partial \mathcal{E\_{em}}}{\partial V} \bigg\rangle
