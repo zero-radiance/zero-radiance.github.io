@@ -1575,7 +1575,7 @@ $$ \tag{8.12}
 \end{aligned}
 $$
 
-We can immediately use the Lorenz condition to eliminate \\(\bm{A}\\) from Eqn. 8.12.2. The result is an inhomogeneous scalar *wave equation*
+We can immediately use the Lorenz condition to eliminate \\(\bm{A}\\) from Eqn. 8.12.2. The result is an inhomogeneous scalar [wave equation](https://en.wikipedia.org/wiki/Wave_equation)
 
 $$ \tag{8.13}
 	\nabla^2 \phi(\bm{r}, t) - \frac{1}{c^2} \frac{\partial^2}{\partial t^2} \phi(\bm{r}, t)
@@ -1590,7 +1590,7 @@ $$ \tag{8.14}
 	= \frac{\bm{J}(\bm{r}, t)}{\mu_0^{-1}}.
 $$
 
-Once again, we use the Lorenz condition, but this time, we do it in order to eliminate \\(\phi\\). We obtain an inhomogeneous vector *wave equation*
+Once again, we use the Lorenz condition, but this time, we do it in order to eliminate \\(\phi\\). We obtain an inhomogeneous vector wave equation
 
 $$ \tag{8.15}
 	\nabla^2 \bm{A}(\bm{r}, t) - \frac{1}{c^2} \frac{\partial^2}{\partial t^2} \bm{A}(\bm{r}, t)
@@ -8606,7 +8606,43 @@ $$
 
 where \\(\phi\\) denotes both the azimuthal angle of the direction of observation.
 
-Next, let us consider the expression of the polarizability dyadic \\(\mathcal{\Alpha_m}\\) given by Eqn. 21.7. Since \\([\bm{v_1} \thinspace \bm{v_2} \thinspace \bm{v_3}]^{T}\\) is composed of 3 orthogonal unit vectors, it can be represented by a 3x3 rotation matrix that performs a transformation from the scattering coordinate system to the coordinate system of the particle. Even though the matrix contains 9 elements, there are only 3 degrees of freedom called the [Tait-Bryan angles](https://en.wikipedia.org/wiki/Euler_angles#Tait%E2%80%93Bryan_angles): the spherical coordinates \\(\alpha, \beta\\) of the primary axis (e.g. \\(\bm{v_1}\\)) of the particle, and the rotation angle \\(\gamma\\) of the particle around this axis.
+Next, let us consider the expression of the polarizability dyadic \\(\mathcal{\Alpha_m}\\) given by Eqn. 21.7. Since \\([\bm{v_1} \thinspace \bm{v_2} \thinspace \bm{v_3}]^{T}\\) is composed of 3 orthogonal unit vectors, it can be represented by a 3x3 rotation matrix that performs a transformation from the scattering coordinate system to the coordinate system of the particle.
+
+!!! CORRECTED HERE !!!
+
+Even though the matrix contains 9 elements, there are only 3 degrees of freedom called the [Tait-Bryan angles](https://en.wikipedia.org/wiki/Euler_angles#Tait%E2%80%93Bryan_angles): the spherical coordinates \\(\lbrace \theta_1, \phi_1 \rbrace = \lbrace \pi/2 - \beta, \gamma \rbrace\\) of the primary axis (e.g. \\(\bm{v_1}\\)) of the particle, and the rotation angle \\(\alpha\\) of the particle around this axis.
+
+It is easier to picture the inverse, \\([\bm{v_1} \thinspace \bm{v_2} \thinspace \bm{v_3}]\\). This transformation can be decomposed into three [elementary](https://en.wikipedia.org/wiki/Rotation_matrix#Basic_rotations) [extrinsic rotations](https://en.wikipedia.org/wiki/Euler_angles#Conventions_by_extrinsic_rotations) about the axes of the scattering coordinate system:
+
+$$ \tag{21.26}
+\begin{aligned}
+	X(\alpha, \beta, \gamma) &=
+	\begin{bmatrix}
+		\bm{v_1} & \bm{v_2} & \bm{v_3} \cr
+	\end{bmatrix} =
+	R_z(\gamma) R_y(\beta) R_x(\alpha)
+	\cr
+	&= ...,
+\end{aligned}
+$$
+
+where we first *roll* the ellipsoid about its principal axis (initially aligned with the \\(x\\)-axis), then elevate, or *pitch* it by rotating it around the \\(y\\)-axis, and finally set its *yaw*, or azimuthal angle by swinging it around the \\(z\\)-axis.
+
+[Insert an illustration of the sequence of three rotations here]
+
+From this description, it is evident that
+
+$$ \tag{21.27}
+	\alpha \in [-\pi, \pi),
+	\quad
+	\beta \in [-\pi/2, \pi/2],
+	\quad
+	\gamma \in [-\pi, \pi).
+$$
+
+!!! ERROR BELOW !!!
+
+Even though the matrix contains 9 elements, there are only 3 degrees of freedom called the [Tait-Bryan angles](https://en.wikipedia.org/wiki/Euler_angles#Tait%E2%80%93Bryan_angles): the spherical coordinates \\(\alpha, \beta\\) of the primary axis (e.g. \\(\bm{v_1}\\)) of the particle, and the rotation angle \\(\gamma\\) of the particle around this axis.
 
 It is easier to picture the inverse, \\([\bm{v_1} \thinspace \bm{v_2} \thinspace \bm{v_3}]\\). This transformation can be decomposed into three [elementary](https://en.wikipedia.org/wiki/Rotation_matrix#Basic_rotations) [extrinsic rotations](https://en.wikipedia.org/wiki/Euler_angles#Conventions_by_extrinsic_rotations) about the axes of the scattering coordinate system:
 
