@@ -9,7 +9,7 @@ tags: [
 draft: true
 ---
 
-**Motivation. Outdated.**
+**Motivation is outdated.**
 
 We have previously discussed the [radiative transfer equation](/post/analytic-media/) \[[1](#references), [2](#references)\] and its connection to [scattering by small particles](/post/particle-volume/) \[[3](#references), [4](#references)\] in some detail. The short version is that the radiative transfer equation is formulated using the scattering and absorption characteristics of a volume element (on a large scale); and while these characteristics may be rather complex, they can be understood in a more simple way by considering the corpuscular nature of matter (on a small scale). If the distribution of particles contained within the volume element is known, we can compute the volume collision coefficients and the aggregate phase function that determine the outcome of the radiative transfer process. However, so far, little has been said about the nature and the origin of these coefficients.
 
@@ -43,7 +43,7 @@ It is not expected that you understand the prior statement fully before reading 
 
 What is a field? A *field* is a [mathematical](https://en.wikipedia.org/wiki/Field_(mathematics)) construct; it is a function defined for all points in space \\(\bm{r}\\) and time \\(t\\). In [physics](https://en.wikipedia.org/wiki/Field_(physics)), a typical field has a source, contains energy, and exerts a force.
 
-The electromagnetic field can be viewed as a combination of two real vector fields: the [electric field](https://en.wikipedia.org/wiki/Electric_field) \\(\bm{E}\\) and the [magnetic field](https://en.wikipedia.org/wiki/Magnetic_field#The_B-field) \\(\bm{B}\\). They satisfy the differential form of the [Maxwell equations](https://en.wikipedia.org/wiki/Maxwell%27s_equations#Formulation_in_SI_units_convention) \[[5](#references) (vol. II, ch. 18), [6](#references) (ch. 2.1)\]:
+The electromagnetic field can be viewed as a combination of two *real* vector fields: the [electric field](https://en.wikipedia.org/wiki/Electric_field) \\(\bm{E}\\) and the [magnetic field](https://en.wikipedia.org/wiki/Magnetic_field#The_B-field) \\(\bm{B}\\). They satisfy the differential form of the [Maxwell equations](https://en.wikipedia.org/wiki/Maxwell%27s_equations#Formulation_in_SI_units_convention) \[[5](#references) (vol. II, ch. 18), [6](#references) (ch. 2.1)\]:
 
 $$ \tag{1.1}
 \begin{aligned}
@@ -90,13 +90,13 @@ $$ \tag{1.4}
 	c = \frac{1}{\sqrt{\varepsilon_0 \mu\_0}}.
 $$
 
-Since the electromagnetic field *interacts* only with charged particles \[[28](#references) (ch. 1.3)\], the matter is represented by a [distribution](https://en.wikipedia.org/wiki/Distribution_(mathematics)) of the [charge density](https://en.wikipedia.org/wiki/Charge_density) \\(\rho\\) \[[28](#references) (ch. 1.4)\], such that the total amount of charge \\(Q\\) inside the volume \\(V\\) is
+Since the electromagnetic field *interacts* only with charged particles \[[28](#references) (ch. 1.3)\], the matter is represented by a *continuous* [distribution](https://en.wikipedia.org/wiki/Distribution_(mathematics)) of the [charge density](https://en.wikipedia.org/wiki/Charge_density) \\(\rho\\) \[[28](#references) (ch. 1.4)\], such that the total amount of charge \\(Q\\) inside the volume \\(V\\) is
 
 $$ \tag{1.5}
 	Q(V, t) = \int\_{V} \rho(\bm{r}, t) dV.
 $$
 
-Moving charges constitute a current. If their velocity is \\(\bm{v}\\), the *volume* [current density](https://en.wikipedia.org/wiki/Current_density) \\(\bm{J}\\) is simply
+Moving charges constitute a current. If their velocity is \\(\bm{v}\\), the [current density](https://en.wikipedia.org/wiki/Current_density) \\(\bm{J}\\) is simply
 
 $$ \tag{1.6}
 	\bm{J}(\bm{r}, t) = \rho(\bm{r}, t) \bm{v}(\bm{r}, t).
@@ -104,20 +104,20 @@ $$
 
 Eqn. 1.1.4 (bottom right) is known as [Gauss's law for electricity](https://en.wikipedia.org/wiki/Gauss%27s_law). It tells us that *positive* charges act as sources of the electric field that terminates at *negative* charges, essentially coupling them. Eqn. 1.1.2 (top right) expresses [Gauss's law for magnetism](https://en.wikipedia.org/wiki/Gauss%27s_law_for_magnetism). It implies that [magnetic monopoles](https://en.wikipedia.org/wiki/Magnetic_monopole) do not exist.
 
-Eqn. 1.1.1 (top left) is known the [Maxwell-Faraday equation](https://en.wikipedia.org/wiki/Faraday%27s_law_of_induction). It says that a time-varying magnetic field always accompanies a circulating electric field. And finally, Eqn. 1.1.3 (bottom left) represents [Ampère-Maxwell law](https://en.wikipedia.org/wiki/Amp%C3%A8re%27s_circuital_law). It is somewhat more difficult to understand; essentially, it relates the circulation of a magnetic field around a closed loop to the electric current passing through the loop. Just like in Eqn. 1.1.1, the electric and the magnetic fields are not independent; however, in this case, their roles are reversed.
+Eqn. 1.1.1 (top left) is called the [Maxwell-Faraday equation](https://en.wikipedia.org/wiki/Faraday%27s_law_of_induction). It says that a time-varying magnetic field always accompanies a circulating electric field. The final Eqn. 1.1.3 (bottom left) represents [Ampère-Maxwell law](https://en.wikipedia.org/wiki/Amp%C3%A8re%27s_circuital_law). It is somewhat more difficult to understand; essentially, it relates the circulation of a magnetic field around a closed loop to the electric current passing through the loop. Just like in Eqn. 1.1.1, the electric and the magnetic fields are not independent; however, in this case, their roles are reversed.
 
 The Maxwell equations is coupled system of [partial differential equations](https://en.wikipedia.org/wiki/Partial_differential_equation). The left-hand side of each equation is composed of derivatives of the unknowns (the fields), and the right-hand side contains the sources (the currents and the charges). Since a derivative is a linear operator, these equations form a [linear system](https://en.wikipedia.org/wiki/Linear_system). As such, the Maxwell equations obey the [superposition principle](https://en.wikipedia.org/wiki/Superposition_principle) - if we determine the values of the fields for one source, and then, *separately*, for another, and assuming that these sources are not "disturbed" by the fields, then the solution for the configuration with *both* sources is precisely the sum of the fields found for each individual source:
 
 $$ \tag{1.15}
-	\lbrace \bm{J_1} + \bm{J_2}, \rho_1 + \rho_2 \rbrace \implies
-	\lbrace \bm{E_1} + \bm{E_2}, \bm{B_1} + \bm{B_2} \rbrace.
+	\bm{J} = \bm{J_1} + \bm{J_2}, \space \rho = \rho_1 + \rho_2 \implies
+	\bm{E} = \bm{E_1} + \bm{E_2}, \space \bm{B} = \bm{B_1} + \bm{B_2}.
 $$
 
-Sometimes, Eqn. 1.1.1-1.1.4 are referred to as the Maxwell equations *in vacuum*. This name highlights the fact that these equations are based on the atomic theory of matter as a collection of elementary particles (electrons, protons, neutrons, etc.) in the empty space. It also explains the presence of the "vacuum factors" \\(\varepsilon_0\\) and \\(\mu\_0\\).
+Sometimes, Eqn. 1.1 are referred to as the Maxwell equations *in vacuum*. This name highlights the fact that these equations are based on the representation of matter as a collection of subatomic particles (electrons, protons, neutrons). It also explains the presence of the "vacuum factors" \\(\varepsilon_0\\) and \\(\mu\_0\\).
 
-The fields generated by such *microscopic* objects have extremely high spatial frequency. In addition, individually, they are sufficiently weak to be imperceptible at the [macroscopic scale](https://en.wikipedia.org/wiki/Macroscopic_scale). Effectively, due to the sheer number of charges in bulk matter, you sometimes cannot see the forest for the trees.
+The fields generated by such *microscopic* objects have extremely high spatial frequency. Furthermore, individually, they are sufficiently weak to be imperceptible at the [macroscopic scale](https://en.wikipedia.org/wiki/Macroscopic_scale). Effectively, due to the sheer number of charges in bulk matter, you sometimes cannot see the forest for the trees.
 
-This leads us to the idea of *Lorentz averaging* \[[28](#references) (ch. 3.1)\]: we first determine the values of the microscopic fields using Eqn. 1.1.1-1.1.4, and then compute their spatial average
+This leads us to the idea of *Lorentz averaging* \[[28](#references) (ch. 3.1)\]: we first determine the values of the microscopic fields using Eqn. 1.1, and then compute their spatial average
 
 $$ \tag{1.8}
 	\bm{E}(\bm{r}, t) = \frac{1}{V} \int\_{V} \bm{E\_{\mu}}(\bm{r} + \bm{r'}, t) dV'
@@ -125,18 +125,20 @@ $$
 
 over a region that is sufficiently large to contain a great number of atoms.
 
-Application of this technique allows us to transform the *microscopic* Maxwell equations in vacuum into the *macroscopic* Maxwell equations in bulk matter, and *discrete groups* of charges and currents -- into *continuous media*. The former set of equations is often used in theoretical physics, while the latter is dominant in applied branches, such as [wave optics](https://en.wikipedia.org/wiki/Physical_optics).
+Application of this technique allows us to transform the *microscopic* Maxwell equations in vacuum into the *macroscopic* Maxwell equations in bulk matter, and groups of discrete charges and currents -- into *continuous media*. The former set of equations is often used in theoretical physics, while the latter is prevalent in applied branches, such as [wave optics](https://en.wikipedia.org/wiki/Physical_optics).
 
-Because Eqn. 1.1.1-1.1.2 are linear differential equations that are independent of the description of matter, a linear transformation (such as the one given by Eqn. 1.8) does not alter their form, provided that we are allowed to change the order of operations (move the derivatives inside or outside the integral). On the other hand, Eqn. 1.1.3-1.1.4 are defined in terms of current and charge densities, and must be modified.
+Because Eqn. 1.1.1-1.1.2 are linear differential equations that are independent of the description of matter, a linear transformation (such as the one given by Eqn. 1.8) does not alter their form, provided that we are allowed to change the order of operations (move the derivatives inside or outside the integral). On the other hand, Eqn. 1.1.3-1.1.4 are defined in terms of current and charge densities, so they must be modified.
 
-First, we identify two types of charges - bound and free. As the name suggests, [free charges](https://en.wikipedia.org/wiki/Charge_carrier) are able to move around the material, the classic example being the conduction current in a copper wire.
+First, we identify two types of charges - bound and free:
 
 $$ \tag{1.9}
 	\bm{J} = \bm{J\_b} + \bm{J\_f}, \quad
 	\rho   = \rho\_b + \rho\_f.
 $$
 
- The *bound* [current](https://en.wikipedia.org/wiki/Current_density#Polarization_and_magnetization_currents) and [charge densities](https://en.wikipedia.org/wiki/Charge_density#Bound_charge), \\(\bm{J\_b}\\) and \\(\rho\_b\\), are determined by the properties of matter at atomic and molecular scales (described by [quantum mechanics](https://en.wikipedia.org/wiki/Quantum_mechanics)), making them more difficult to reason about. A short (but unsatisfactory) explanation characterizes them in terms of [polarization of matter](https://en.wikipedia.org/wiki/Maxwell%27s_equations#Auxiliary_fields,_polarization_and_magnetization): oscillating charges constitute (electric) *polarization* currents \\(\bm{J\_p}\\), while spinning and orbiting charges charges are attributed to *magnetization* (or magnetic polarization) currents \\(\bm{J\_m}\\). Since, according to Eqn. 1.1.2, no magnetic monopoles exist, \\(\rho\_b\\) is sometimes called the (electric) *polarization* charge density. Stated mathematically,
+As the name suggests, [free charges](https://en.wikipedia.org/wiki/Charge_carrier) are able to move around the material, the classic example being the conduction current in a copper wire.
+
+ The *bound* [current](https://en.wikipedia.org/wiki/Current_density#Polarization_and_magnetization_currents) and [charge densities](https://en.wikipedia.org/wiki/Charge_density#Bound_charge), \\(\bm{J\_b}\\) and \\(\rho\_b\\), are determined by the properties of matter at the atomic level (described by [quantum mechanics](https://en.wikipedia.org/wiki/Quantum_mechanics)), making them more difficult to reason about. A short (but unsatisfactory) explanation characterizes them in terms of [polarization of matter](https://en.wikipedia.org/wiki/Maxwell%27s_equations#Auxiliary_fields,_polarization_and_magnetization): oscillating charges constitute (electric) *polarization* currents \\(\bm{J\_p}\\), while spinning and orbiting charges charges are attributed to *magnetization* (or magnetic polarization) currents \\(\bm{J\_m}\\). Since, according to Eqn. 1.1.2, no magnetic monopoles exist, \\(\rho\_b\\) is sometimes called the (electric) polarization charge density. Stated mathematically,
 
 $$ \tag{1.10}
 \begin{aligned}
@@ -148,7 +150,7 @@ $$
 
 where \\(\bm{P}\\) is the [polarization](https://en.wikipedia.org/wiki/Polarization_density) (electric dipole moment per unit volume) and \\(\bm{M}\\) is the [magnetization](https://en.wikipedia.org/wiki/Magnetization) (magnetic dipole moment per unit volume). We shall learn more about them in due course.
 
-Substitution of Eqn. 1.9.1, 1.10.1 into 1.1.3 and Eqn. 1.9.2, 1.10.2 into 1.1.4 yields
+Substitution of Eqn. 1.9.1, 1.10.1 into 1.1.3, and Eqn. 1.9.2, 1.10.2 into 1.1.4 yields
 
 $$ \tag{1.11}
 \begin{aligned}
@@ -173,7 +175,7 @@ $$ \tag{1.13}
 	\bm{H} = \mu\_0^{-1} \bm{B} - \bm{M},
 $$
 
-substitute them into Eqn. 1.12.1-1.12.2, and group the resulting expressions with Eqn. 1.1.1-1.1.2, we obtain the [macroscopic formulation](https://en.wikipedia.org/wiki/Maxwell%27s_equations#Macroscopic_formulation) of the Maxwell equations \[[6](#references) (ch. 1.1.1), [7](#references) (ch. 2.1), [8](#references) (ch. 2.1)\]:
+substitute them into Eqn. 1.12, and group the resulting expressions with Eqn. 1.1.1-1.1.2, we obtain the [macroscopic formulation](https://en.wikipedia.org/wiki/Maxwell%27s_equations#Macroscopic_formulation) of the Maxwell equations \[[6](#references) (ch. 1.1.1), [7](#references) (ch. 2.1), [8](#references) (ch. 2.1)\]:
 
 $$ \tag{1.14}
 \begin{aligned}
@@ -186,9 +188,38 @@ $$
 
 We shall soon see that \\(\bm{E}\\) and \\(\bm{B}\\) are responsible for the electromagnetic force, while \\(\bm{D}\\) and \\(\bm{H}\\) are the [auxiliary fields](https://en.wikipedia.org/wiki/Maxwell%27s_equations#Auxiliary_fields,_polarization_and_magnetization) that arise due to the influence of matter \[[5](#references) (vol. II, ch. 32.2), [6](#references) (ch. 1.1.1), [17](#references) (ch. 1.7)\]. The most fundamental description of the electromagnetic field is given by the potentials \\(\bm{A}\\) and \\(\phi\\) \[[28](#references) (ch. 1.1)\]; we shall defer their formal introduction to Sec. 8.
 
----
+It is worth pointing out that the Maxwell equations (both Eqn. 1.1 and 1.14) are not independent \[[17](#references) (ch. 1.3)\]. First of all, since the [divergence of curl](https://en.wikipedia.org/wiki/Vector_calculus_identities#Divergence_of_curl_is_zero) is zero, the algebraic difference of the divergence of Eqn. 1.14.3 and the time derivative of Eqn. 1.14.4 expresses [conservation of charge](https://en.wikipedia.org/wiki/Charge_conservation):
 
-Since the microscopic properties of matter are continuous, this leads to continuous fields. But, sometimes, it is convenient to introduce a macroscopic discontinuity to approximate a very rapid (yet continuous) variation of material properties. At the *optical interface*, the fields must satisfy the [boundary conditions](https://en.wikipedia.org/wiki/Interface_conditions_for_electromagnetic_fields) \[[6](#references) (ch. 1.1.3), [7](#references) (ch. 2.10), [8](#references) (ch. 2.2)\]. If \\(\bm{n\_{12}}\\) is a unit normal vector pointing from region 1 to region 2, the normal components of the fields must be such that
+$$ \tag{1.7}
+	\nabla \cdot \bm{J_f}(\bm{r}, t) = - \frac{\partial}{\partial t} \rho_f(\bm{r}, t).
+$$
+
+Eqn. 1.7 is a [continuity equation](https://en.wikipedia.org/wiki/Continuity_equation) that tells us that a reduction of the charge density is observed if the charges are carried away by a current.
+
+Now, take the divergence of Eqn. 1.14.1 and 1.14.3, and substitute Eqn. 1.7:
+
+$$ \tag{1.18}
+\begin{aligned}
+	\nabla \cdot \bigg( \frac{\partial}{\partial t} \bm{B}(\bm{r}, t) \bigg) &= 0,
+	\cr
+	\nabla \cdot \bigg( \frac{\partial}{\partial t} \bm{D}(\bm{r}, t) \bigg)
+	&= -\nabla \cdot \bm{J\_f}(\bm{r}, t)
+	= \frac{\partial}{\partial t} \rho_f(\bm{r}, t).
+\end{aligned}
+$$
+
+At all ordinary points, all fields and their first derivatives are continuous. That allows us to interchange the order of differentiation to obtain
+
+$$ \tag{1.19}
+	\frac{\partial}{\partial t} \bigg( \nabla \cdot \bm{B}(\bm{r}, t) \bigg) = 0,
+	\quad
+	\frac{\partial}{\partial t} \bigg( \nabla \cdot \bm{D}(\bm{r}, t) \bigg)
+	= \frac{\partial}{\partial t} \rho_f(\bm{r}, t).
+$$
+
+The first equation tells us that the divergence of the magnetic field is does not change over time. Assuming that the sources of the field have existed for a finite amount of time, the constant of integration is zero, which is consistent with Eqn. 1.14.2. Eqn. 1.19.2 can be reduced to 1.14.4 in the same manner.
+
+At the microscopic scale, all matter is continuous \[[28](#references) (ch. 1.4), [30](#references) (ch. I-D)\]. However, it is often convenient to introduce a macroscopic discontinuity to approximate a very rapid (yet continuous) variation of material properties. At the *optical interface*, the fields must satisfy the [boundary conditions](https://en.wikipedia.org/wiki/Interface_conditions_for_electromagnetic_fields) \[[6](#references) (ch. 1.1.3), [7](#references) (ch. 2.10), [8](#references) (ch. 2.2)\]. If \\(\bm{n\_{12}}\\) is a unit normal vector pointing from region 1 to region 2, the normal components of the fields must be such that
 
 $$ \tag{1.16}
 	\bm{n\_{12}} \cdot  (\bm{B\_2} - \bm{B\_1}) = 0, \quad
@@ -208,46 +239,11 @@ In addition to the boundary conditions, the law of conservation of energy impose
 
 - the *edge condition* says that the amount of electromagnetic energy stored near an edge must be finite even if the magnitude of the field (the energy density) at the edge becomes infinite;
 
-- the *regularity condition* bounds the values of \\(r \bm{E}\\) and \\(r \bm{B}\\) as the distance from the sources \\(r \to \infin\\);
+- the [radiation condition](https://en.wikipedia.org/wiki/Sommerfeld_radiation_condition) prohibits the existence of sinks collecting (an infinite amount of) energy arriving from infinity -- these "infinite" sinks must be "finite" sources instead;
 
-- the [radiation condition](https://en.wikipedia.org/wiki/Sommerfeld_radiation_condition) prohibits the existence of sinks collecting (an infinite amount of) energy arriving from infinity -- these "infinite" sinks must be "finite" sources instead.
-
-Finally, it is worth pointing out that the Maxwell equations (both 1.1 and 1.14) are not independent \[[17](#references) (ch. 1.3)\]. First of all, since the [divergence of curl](https://en.wikipedia.org/wiki/Vector_calculus_identities#Divergence_of_curl_is_zero) is zero, the difference of the divergence of Eqn. 1.1.3 (or 1.14.3) and the time derivative of Eqn. 1.1.4 (or 1.14.4) expresses [conservation of charge](https://en.wikipedia.org/wiki/Charge_conservation):
-
-$$ \tag{1.7}
-	\nabla \cdot \bm{J}(\bm{r}, t) = - \frac{\partial}{\partial t} \rho(\bm{r}, t).
-$$
-
-Eqn. 1.7 is a [continuity equation](https://en.wikipedia.org/wiki/Continuity_equation) that tells us that a reduction of the charge density is observed if the charges are carried away by a current.
-
-
-
-For instance, take the divergence of Eqn. 1.14.1 and 1.14.3. Since the [divergence of curl](https://en.wikipedia.org/wiki/Vector_calculus_identities#Divergence_of_curl_is_zero) is zero, the resulting expression may be simplified to
-
-$$ \tag{1.18}
-	\nabla \cdot \bigg( \frac{\partial}{\partial t} \bm{B}(\bm{r}, t) \bigg) = 0,
-	\quad
-	\nabla \cdot \bigg( \frac{\partial}{\partial t} \bm{D}(\bm{r}, t) \bigg)
-	= -\nabla \cdot \bm{J\_f}(\bm{r}, t)
-	= \frac{\partial}{\partial t} \rho_f(\bm{r}, t),
-$$
-
-where the last equality is a consequence of the conservation of charge (Eqn. 1.7).
-
-At all ordinary points, all fields and their first derivatives are assumed to be continuous. That allows us to interchange the order of the space and the time derivatives to obtain
-
-$$ \tag{1.19}
-	\frac{\partial}{\partial t} \bigg( \nabla \cdot \bm{B}(\bm{r}, t) \bigg) = 0,
-	\quad
-	\frac{\partial}{\partial t} \bigg( \nabla \cdot \bm{D}(\bm{r}, t) \bigg)
-	= \frac{\partial}{\partial t} \rho_f(\bm{r}, t).
-$$
-
-The first equation tells us that the divergence of the magnetic field is does not change over time. Assuming that the sources of the field have existed for a finite amount of time, this constant is zero, which is consistent with Eqn. 1.14.2. Using similar logic, the constant of integration of Eqn. 1.19 is also zero, thus reproducing Eqn. 1.14.4.
+- the *regularity condition* bounds the values of \\(r \bm{E}\\) and \\(r \bm{B}\\) as the distance from the sources \\(r \to \infin\\).
 
 We take the Maxwell equations as axioms, and use them as the foundation on which we base the theory presented in the following sections.
-
-<!--
 
 ### Lorentz Force and Poynting Theorem
 
@@ -468,6 +464,8 @@ $$
 
 is the amount of energy per second per unit area that flows through a surface with the normal \\(\bm{n}\\). That is the definition of [irradiance](https://en.wikipedia.org/wiki/Irradiance) \\(\Epsilon\\).
 
+<!--
+
 ### Maxwell Equations in the Frequency Domain
 
 The Maxwell equations can be simplified by transforming the fields from the time to the frequency domain.
@@ -522,7 +520,7 @@ $$ \tag{3.5}
 	= r \cos{ \theta}.
 $$
 
-We can define the integral forms of the fields by replacing \\(\bm{E}\\) by \\(\bm{B}\\), \\(\bm{D}\\), \\(\bm{H}\\), \\(\bm{J\_f}\\) or \\(\rho\_f\\) in Eqn. 3.4. If we substitute these integrals into Eqn. 1.14.1-1.14.4, the result is a system of integro-differential equations
+We can define the integral forms of the fields by replacing \\(\bm{E}\\) by \\(\bm{B}\\), \\(\bm{D}\\), \\(\bm{H}\\), \\(\bm{J\_f}\\) or \\(\rho\_f\\) in Eqn. 3.4. If we substitute these integrals into Eqn. 1.14, the result is a system of integro-differential equations
 
 $$ \tag{3.6}
 \begin{aligned}
