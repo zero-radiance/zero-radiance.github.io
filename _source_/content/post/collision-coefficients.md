@@ -249,7 +249,7 @@ We take the Maxwell equations as axioms, and use them as the foundation on which
 
 Given a mathematical description of electromagnetic radiation in terms of vector fields, we would like to physically characterize it as an energy transfer process. In order to do that, we have to determine how much energy there is in a given volume element of space, and also the rate of energy flow \[[5](#references) (vol. II, ch. 27), [6](#references) (ch. 1.1.4), [7](#references) (ch. 2.11), [8](#references) (ch. 2.4)\].
 
-[Conservation of energy](https://en.wikipedia.org/wiki/Conservation_of_energy) is one of the most important principles of physics. Here is one way to state it: the difference between the amount of external energy \\(\mathcal{E\_{ext}}\\) flowing into the volume \\(V\\) and the amount of internal energy \\(\mathcal{E\_{int}}\\) flowing out equals the amount of work \\(\mathcal{W}\\) done inside.
+[Conservation of energy](https://en.wikipedia.org/wiki/Conservation_of_energy) is one of the most important principles of physics. Here is one way of stating it: the algebraic difference between the amount of external energy \\(\mathcal{E\_{ext}}\\) flowing into the volume \\(V\\) and the amount of internal energy \\(\mathcal{E\_{int}}\\) flowing out equals the amount of work \\(\mathcal{W}\\) done inside.
 
 $$ \tag{2.1}
 	\frac{\partial}{\partial t} \mathcal{E\_{ext}}(V, t) -
@@ -257,9 +257,9 @@ $$ \tag{2.1}
 	\frac{\partial}{\partial t} \mathcal{W}(V, t).
 $$
 
-In Eqn. 2.1, \\(\mathcal{E}\\) refers to a single type of energy: kinetic, electromagnetic, etc. Work transforms a portion of \\(\mathcal{E\_{ext}}\\) into a different type of energy: kinetic into potential, electromagnetic into thermal, and so on. If we account for all types of energy, the total amount of energy is conserved. Otherwise, the value of the expression on either side can be interpreted as the amount of power lost within (or absorbed by) the volume \\(V\\).
+In Eqn. 2.1, \\(\mathcal{E}\\) refers to a single type of energy: kinetic, electromagnetic, etc. Work transforms a portion of \\(\mathcal{E\_{ext}}\\) into a different type of energy: kinetic into potential, electromagnetic into thermal, and so on. If we account for all types of energy, the total amount of energy is conserved. Otherwise, the value of the expression on either side can be interpreted as the amount of power "lost" (in accounting) within the volume \\(V\\).
 
-Given our focus on electromagnetic energy, we can partition the total amount of energy into the *field energy* and the *matter energy*. In this context, work done by the field on the matter refers to *absorption*, and has a positive sign. Similarly, *emission* is the work done by the matter on the field, and has a negative sign. We shall not consider emissive materials in the analysis presented below.
+Given our focus on the electromagnetic theory, we can partition the total amount of energy into the *field energy* and the *matter energy*. In this context, work done by the field on the matter refers to *absorption*, and has a positive sign. Similarly, *emission* is the work done by the matter on the field, and has a negative sign. We shall not consider emissive materials in the analysis presented below.
 
 Mathematically, the [rate of doing work](https://en.wikipedia.org/wiki/Work_(physics)#Mathematical_calculation) is the inner product of the force and the velocity:
 
@@ -267,7 +267,7 @@ $$ \tag{2.2}
 	\frac{\partial \mathcal{W}}{\partial t} = \bm{F} \cdot \bm{v}.
 $$
 
-Thus, to compute it, we must recall the definition of electromagnetic force.
+Thus, to compute it, we must give the definition of electromagnetic force.
 
 If a particle with the charge \\(q\\) moving at the velocity \\(\bm{v}\\) is placed in an electromagnetic field, it experiences the [Lorentz force](https://en.wikipedia.org/wiki/Lorentz_force)
 
@@ -285,7 +285,7 @@ Therefore, the amount of work done per unit time by the field on the matter insi
 
 $$ \tag{2.5}
 	\frac{\partial}{\partial t} \mathcal{W}(V, t) =
-	\int\_{V} \bm{v}(\bm{r}, t) \cdot d\bm{F}(\bm{r}, t) =
+	\int\_{V} \bm{v}(\bm{r}, t) \cdot d\bm{F} =
 	\int\_{V} \bm{E}(\bm{r}, t) \cdot \rho(\bm{r}, t) \bm{v}(\bm{r}, t) dV.
 $$
 
@@ -296,7 +296,7 @@ $$ \tag{2.6}
 	\int\_{V} \bm{E}(\bm{r}, t) \cdot \bm{J}(\bm{r}, t) dV.
 $$
 
-The Maxwell equations allow us to relate a current to the generated fields. Substitution of Eqn. 1.1.3 yields
+We can use the Maxwell equations to relate the current to the electromagnetic field. Substitution of Eqn. 1.1.3 yields
 
 $$ \tag{2.7}
 	\int\_{V} \bm{E} \cdot \bm{J} dV =
@@ -304,7 +304,7 @@ $$ \tag{2.7}
 	\frac{\partial}{\partial t} \big( \varepsilon_0 \bm{E} \big) \Big) dV.
 $$
 
-Since [the divergence of the cross product](https://en.wikipedia.org/wiki/Vector_calculus_identities#Cross_product_rule) is
+Since [the divergence of the cross product](https://en.wikipedia.org/wiki/Vector_calculus_identities#Cross_product_rule)
 
 $$ \tag{2.8}
 	\nabla \cdot (\bm{E} \times \bm{B}) = (\nabla \times \bm{E}) \cdot \bm{B} - \bm{E} \cdot (\nabla \times \bm{B}),
@@ -318,7 +318,7 @@ $$ \tag{2.9}
 	\varepsilon_0 \bm{E} \cdot \frac{\partial \bm{E}}{\partial t}.
 $$
 
-The curl of \\(\bm{E}\\) is also given by the Maxwell equations (see Eqn. 1.1.1). Then it follows that
+The curl of \\(\bm{E}\\) is also given by the Maxwell equations (see Eqn. 1.1.1):
 
 $$ \tag{2.10}
 	\bm{E} \cdot \bm{J} =
@@ -335,7 +335,7 @@ $$ \tag{2.11}
 	\frac{\mu\_0^{-1}}{2} (\bm{B} \cdot \bm{B}) \Big).
 $$
 
-We can observe that the rate of doing work is a balance of inflow of \\((\bm{E} \times \bm{B})\\) and the rate of change of the squared magnitudes of the fields. The physical significance of this expression becomes more apparent if we return to the integral form
+We can observe that the rate of doing work is a balance of the inflow of the cross product and the rate of change of the squared magnitudes of the fields. The physical significance of this expression becomes more apparent if we convert it back to the integral form
 
 $$ \tag{2.12}
 	\frac{\partial \mathcal{W}}{\partial t}
@@ -353,7 +353,7 @@ $$
 
 where \\(\bm{n}\\) is the outward-facing surface normal.
 
-According to Eqn. 2.1, the right-hand side of Eqn. 2.13 represents the difference between the rates of inflow and outflow of energy. Thus, the first term gives the amount of external energy (per unit time) flowing through the bounding surface into the volume,
+According to Eqn. 2.1, the right-hand side of Eqn. 2.13 represents the algebraic difference between the rates of inflow and outflow of energy. Thus, the first term gives the amount of external energy (per unit time) flowing through the bounding surface into the volume,
 
 $$ \tag{2.14}
 	\frac{\partial}{\partial t} \mathcal{E\_{ext}}(V, t) =
@@ -382,7 +382,7 @@ $$
 
 is the *instantaneous* [Poynting vector](https://en.wikipedia.org/wiki/Poynting_vector) that characterizes the direction, the density, and the rate of energy flow.
 
-It should be noted that, historically, the primary purpose of the inverse vacuum permeability factor
+It should be noted that, historically, the purpose of the inverse vacuum permeability factor
 
 $$ \tag{2.??}
 	\mu\_0^{-1}
@@ -405,9 +405,9 @@ $$ \tag{2.19}
 	\bm{S'}(\bm{r}, t) = \bm{S}(\bm{r}, t) + \nabla \times \bm{X}(\bm{r}, t)
 $$
 
-without violating the Poynting theorem \[[5](#references) (vol. II, ch. 27.4)\]. However, in practice, it does not pose a problem, since it is not actually possible to measure the energy *density* (or its flow) directly, and if one measures the *amount* (or its time rate) of electromagnetic energy (using Eqn. 2.14-2.15), the spatial integration process eliminates the curl term and makes the measurable quantities invariant with respect to this transformation [\[8](#references) (ch. 2.4, 11)\]. Moreover, due to the [mass-energy equivalence](https://en.wikipedia.org/wiki/Mass%E2%80%93energy_equivalence) principle, modifications of the definition of the energy density alter the gravitational field, which has observable consequences; in particular, the expansion of the universe appears to be consistent with the definitions given by Eqn. 2.16-2.17 \[[28](#references) (ch. 1.2)\].
+without violating the Poynting theorem \[[5](#references) (vol. II, ch. 27.4)\]. However, in practice, it does not pose a problem, since it is not actually possible to measure the energy *density* (or its flow) directly, and if one measures the *amount* (or its time rate) of electromagnetic energy (using Eqn. 2.14-2.15), the spatial integration process eliminates the curl term and makes the measurable quantities invariant with respect to this transformation [\[8](#references) (ch. 2.4, 11)\]. Moreover, due to the [mass-energy equivalence](https://en.wikipedia.org/wiki/Mass%E2%80%93energy_equivalence) principle, alteration of the definition of the energy density affects the gravitational field, which has observable consequences; in particular, the expansion of the universe appears to be consistent with the definitions given by Eqn. 2.16-2.17 \[[28](#references) (ch. 1.2)\].
 
-A more pressing concern is whether our formulae, which were found using the microscopic formulation of the Maxwell equations, are valid at the microscopic scale. The answer is: almost always.
+A more pressing concern is whether our formulae, which were found using the microscopic formulation of the Maxwell equations, are valid at the microscopic scale. In most practical scenarios, the answer is yes.
 
 A typical derivation[^5] replaces \\(\bm{J}\\) with \\(\bm{J_f}\\) in Eqn. 2.6, which, after substitution of Eqn. 1.14.3, leads to the macroscopic counterpart of Eqn. 2.7 \[[6](#references) (ch. 1.1.4), [8](#references) (ch. 2.4), [28](#references) (ch. 6.1)\]:
 
@@ -443,13 +443,13 @@ $$ \tag{2.23}
 	\frac{\partial}{\partial V} \mathcal{E\_m}(V, t) = \frac{1}{2} \bm{B}(\bm{r}, t) \cdot \bm{H}(\bm{r}, t), \quad
 $$
 
-Comparison of Eqn. 2.17 and 2.22 shows that both formulations of the Poynting vector are equivalent if the measurement is performed inside a *non-magnetic* material. That explains the \\(\mu\_0^{-1}\\) factor: the microscopic observer is always located in the vacuum because classical electrodynamics considers elementary particles to be point-like.
+Comparison of Eqn. 2.17 and 2.22 shows that both formulations of the Poynting vector are equivalent if the measurement is performed inside a *non-magnetic* material. That explains the \\(\mu\_0^{-1}\\) factor: the microscopic observer is always located in the vacuum because classical electrodynamics considers subatomic particles to be point-like.
 
 Since electromagnetic fields oscillate so rapidly, one typically measures the *time-averaged* Poynting vector
 
 $$ \tag{2.24}
 	\braket{\bm{S}}
-	= \frac{1}{T} \int\_{0}^{T/2} \bm{S}(\bm{r}, t + t') dt'.
+	= \frac{1}{T} \int\_{0}^{T} \bm{S}(\bm{r}, t + t') dt'.
 $$
 
 where \\(T\\) is the duration of the measurement, or the [exposure time](https://en.wikipedia.org/wiki/Shutter_speed).
@@ -463,8 +463,6 @@ $$ \tag{2.25}
 $$
 
 is the amount of energy per second per unit area that flows through a surface with the normal \\(\bm{n}\\). That is the definition of [irradiance](https://en.wikipedia.org/wiki/Irradiance) \\(\Epsilon\\).
-
-<!--
 
 ### Maxwell Equations in the Frequency Domain
 
@@ -611,6 +609,8 @@ $$ \tag{3.13}
 	&= \frac{1}{i \omega} \Big( \bm{J}(\bm{r}, \omega) - \nabla \times \big( \mu\_0^{-1} \bm{B}(\bm{r}, \omega) \big) \Big).
 \end{aligned}
 $$
+
+<!--
 
 ### Time-Harmonic Fields
 
