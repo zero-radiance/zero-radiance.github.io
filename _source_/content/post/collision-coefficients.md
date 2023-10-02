@@ -478,7 +478,7 @@ $$ \tag{3.1}
 	= \frac{1}{\sqrt{2 \pi}} \int\_{-\infin}^{\infin} \bm{E}(\bm{r}, t) e^{i \omega t} dt,
 $$
 
-where $\omega$ is the [angular frequency](https://en.wikipedia.org/wiki/Angular_frequency). $\bm{E}(\bm{r}, \omega)$ is the *complex* electric vector[^2].
+where $\omega$ is the [angular frequency](https://en.wikipedia.org/wiki/Angular_frequency). $\bm{E}(\bm{r}, \omega)$ is called the *complex* electric vector[^2].
 
 [^2]: Operations and identities of real vector algebra can be applied to any complex vector $\bm{c} = \bm{a} + i \bm{b}$ by expressing it as a combination of two real vectors $\bm{a}$ and $\bm{b}$. The magnitude of the complex vector $|\bm{c}| = \bm{c} \cdot \bm{c^{\*}} = \sqrt{\sum{|c_n|^2}}$ can be computed most efficiently by writing each component in its polar form $c_n = r_n \exp(i \theta_n)$.
 
@@ -496,7 +496,7 @@ $$
 
 [Insert picture of a FT of a real function here]
 
-We can go back to the time domain by using the inverse Fourier transform:
+We can return to the time domain by performing the inverse Fourier transform:
 
 $$ \tag{3.4}
 \begin{aligned}
@@ -518,7 +518,7 @@ $$ \tag{3.5}
 	= r \cos{ \theta}.
 $$
 
-We can define the integral forms of the fields by replacing $\bm{E}$ by $\bm{B}$, $\bm{D}$, $\bm{H}$, $\bm{J\_f}$ or $\rho\_f$ in Eqn. 3.4. If we substitute these integrals into Eqn. 1.14, the result is a system of integro-differential equations
+We can define the integral forms of the fields by replacing $\bm{E}$ with $\bm{B}$, $\bm{D}$, $\bm{H}$, $\bm{J\_f}$ or $\rho\_f$ in Eqn. 3.4. This transforms Eqn. 1.14 into a system of integro-differential equations
 
 $$ \tag{3.6}
 \begin{aligned}
@@ -576,7 +576,7 @@ $$
 
 These are the *macroscopic* Maxwell equations for electromagnetic fields with *arbitrary* time dependence.
 
-For future reference, we must also mention the frequency-domain representation of the *microscopic* Maxwell equations. The first two equations are the same, so their Fourier transforms remain unchanged; the third and the fourth equations can be quickly obtained by replacing $\bm{J_f}$ with $\bm{J}$, $\bm{D}$ with $\varepsilon_0 \bm{E}$, and $\bm{H}$ with $\mu\_0^{-1} \bm{B}$:
+For future reference, we must also mention the frequency-domain representation of the *microscopic* Maxwell equations. The first two equations are the same, so their Fourier transforms remain unchanged; the remaining equations (in either domain) can be quickly obtained by replacing $\bm{J_f}$ with $\bm{J}$, $\bm{D}$ with $\varepsilon_0 \bm{E}$, and $\bm{H}$ with $\mu\_0^{-1} \bm{B}$:
 
 $$ \tag{3.10}
 \begin{aligned}
@@ -587,10 +587,10 @@ $$ \tag{3.10}
 \end{aligned}
 $$
 
-Recall that the Maxwell equations are not independent. Since the divergence of curl is zero, taking the divergence of the two equations on the left produces the equations on the right. Of course, if we reduce the total number of equations from four to two, we must also add the expression of conservation of charge, which, in the frequency domain, is
+Recall that the Maxwell equations are not independent. Since the divergence of curl is zero, taking the divergence of the two equations on the left produces the equations on the right. Of course, if we reduce the total number of equations from four to two, we must also add the expression of conservation of charge (found in Eqn. 1.7), which, in the frequency domain, can be written as
 
 $$ \tag{3.11}
-	\rho(\bm{r}, \omega) = \frac{1}{i \omega} \nabla \cdot \bm{J}(\bm{r}, \omega).
+	\rho_f(\bm{r}, \omega) = \frac{1}{i \omega} \nabla \cdot \bm{J_f}(\bm{r}, \omega).
 $$
 
 Finally, observe that we only need to find the expression of the electric field. From Eqn. 3.9.1 or 3.10.1, it follows that
@@ -599,18 +599,12 @@ $$ \tag{3.12}
 	\bm{B}(\bm{r}, \omega) = \frac{1}{i \omega} \nabla \times \bm{E}(\bm{r}, \omega).
 $$
 
-In certain situations, it may be advantageous to do it the other way around: find the expression of the magnetic field first, and then use Eqn. 3.9.3 or 3.10.3 to calculate
+In certain situations, it may be advantageous to do it the other way around: find the expression of the magnetic field first, and then use Eqn. 3.9.3 to calculate
 
 $$ \tag{3.13}
-\begin{aligned}
 	\bm{D}(\bm{r}, \omega)
-	&= \frac{1}{i \omega} \Big( \bm{J_f}(\bm{r}, \omega) - \nabla \times \bm{H}(\bm{r}, \omega) \Big), \cr
-	\varepsilon_0 \bm{E}(\bm{r}, \omega)
-	&= \frac{1}{i \omega} \Big( \bm{J}(\bm{r}, \omega) - \nabla \times \big( \mu\_0^{-1} \bm{B}(\bm{r}, \omega) \big) \Big).
-\end{aligned}
+	= \frac{1}{i \omega} \Big( \bm{J_f}(\bm{r}, \omega) - \nabla \times \bm{H}(\bm{r}, \omega) \Big).
 $$
-
-<!--
 
 ### Time-Harmonic Fields
 
@@ -833,6 +827,8 @@ $$ \tag{4.19}
 $$
 
 Having defined both irradiance and spectral irradiance, we can easily compute all other [radiometric quantities](https://en.wikipedia.org/wiki/Radiometry) using integration and differentiation techniques as discussed in the previous article \[[3](#references)\].
+
+<!--
 
 ### Constitutive Relations
 
