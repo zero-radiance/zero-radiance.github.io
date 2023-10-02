@@ -614,7 +614,7 @@ $$ \tag{4.1}
 	\bm{S}(\bm{r}, t)
 	= \bm{E}(\bm{r}, t) \times \bm{H}(\bm{r}, t)
 	= \mathcal{F^{-1}} \big\lbrace \bm{E}(\bm{r}, \omega) \big\rbrace
-	\times \mathcal{F^{-1}} \big\lbrace \bm{H}(\bm{r}, \omega) \big\rbrace \Big).
+	\times \mathcal{F^{-1}} \big\lbrace \bm{H}(\bm{r}, \omega) \big\rbrace.
 $$
 
 The expression of the corresponding *complex* Poynting vector is
@@ -640,15 +640,14 @@ The expression is compact and simple, but not particularly useful, since the val
 
 We can obtain a more practical result at the cost of some generality. Specifically, we must assume that the expression of the electromagnetic field is a [periodic function](https://en.wikipedia.org/wiki/Periodic_function) of time, such that the *fundamental period* $\thinspace T\_1 = 2 \pi / \omega_1$ of both[^3] the electric and the magnetic fields is the same \[[5](#references) (vol. I, ch. 50) [6](#references) (ch. 1.3.3, 1.4.3)\]. In most cases, the limitations imposed by this condition are not particularly severe: usually, for visible light, the fundamental period is very short, and the fields can often be virtually repeated outside the time interval of interest.
 
-[^3]: The fact that the electric and the magnetic fields cannot exist independently can be shown using the theory of relativity \[[17](#references) (ch. 1.23)\].
+[^3]: The fact that the electric and the magnetic fields are two sides of the same coin is apparent in the relativity theory \[[17](#references) (ch. 1.23)\].
 
 One particular feature of periodic functions is the existence of a [Fourier series](https://en.wikipedia.org/wiki/Fourier_series#Complex-valued_functions) representation:
 
 $$ \tag{4.4}
 	2 \bm{E}(\bm{r}, t)
 	= \sum\_{p = -\infin}^{\infin} \bm{E_p}(\bm{r}) e^{-i p \omega_1 t}
-	= \sum\_{p = -\infin}^{\infin} \bm{E_p}(\bm{r}) e^{-i \omega_p t}
-	= \sum\_{p = -\infin}^{\infin} \ket{u_p} \braket{u_p | \bm{E}}.
+	= \sum\_{p = -\infin}^{\infin} \bm{E_p}(\bm{r}) e^{-i \omega_p t}.
 $$
 
 where we defined $\omega_p = p \thinspace \omega_1$, with the *Fourier coefficients* $\bm{E_p}$ given by the integral[^8]
@@ -657,15 +656,13 @@ where we defined $\omega_p = p \thinspace \omega_1$, with the *Fourier coefficie
 
 $$ \tag{4.5}
 	\frac{1}{2} \bm{E_p}(\bm{r})
-	= \frac{1}{T_1} \int\_{0}^{T_1} \bm{E}(\bm{r}, t) e^{i \omega_p t} dt
-	= \braket{u_p | \bm{E}}.
+	= \frac{1}{T_1} \int\_{0}^{T_1} \bm{E}(\bm{r}, t) e^{i \omega_p t} dt.
 $$
 
-Eqn. 4.5 can be interpreted as the [projection](https://en.wikipedia.org/wiki/Hilbert_space#Fourier_analysis) onto the discrete [Fourier basis](https://en.wikipedia.org/wiki/Fourier_series#Hilbert_space_interpretation), with Eqn. 4.4 showing the reconstruction. The individual elements of Eqn. 4.4 (called *harmonics*) possess a key property encapsulated in the *orthonormalization relation*
+Eqn. 4.5 can be interpreted as the [projection](https://en.wikipedia.org/wiki/Hilbert_space#Fourier_analysis) onto the discrete [Fourier basis](https://en.wikipedia.org/wiki/Fourier_series#Hilbert_space_interpretation), with Eqn. 4.4 showing the *reconstruction*. The key property of the basis functions is captured by the *orthonormalization relation*
 
 $$ \tag{4.6}
-	\braket{u_p | u_q}
-	= \frac{1}{T_1} \int\_{0}^{T_1} e^{i (\omega_p - \omega_q) t} dt
+	\frac{1}{T_1} \int\_{0}^{T_1} e^{i (\omega_p - \omega_q) t} dt
 	= \delta_{p,q}
 $$
 
@@ -692,9 +689,7 @@ $$ \tag{4.8}
 \end{aligned}
 $$
 
-Intuitively, a harmonic produces an equivalent amount of vibration regardless of the sign of its frequency.
-
-What happens when we Fourier transform a periodic function? Combining Eqn. 3.1 and 4.4,
+What happens when we Fourier transform a periodic function? By combining Eqn. 3.1 and 4.4, we obtain
 
 $$ \tag{4.9}
 \begin{aligned}
@@ -714,7 +709,7 @@ $$ \tag{4.10}
 	= \frac{1}{2 \pi} \int\_{-\infin}^{\infin} e^{i x y} dy.
 $$
 
-Since the individual harmonics are orthogonal (and, as a result, independent), analysis of a *polychromatic* field with $N$ components can be simplified by considering $N$ *monochromatic* (or *time-harmonic*)[^13] vector fields, such as
+Since the basis functions are orthogonal (and, as a result, independent), analysis of a *polychromatic* field with $N$ components can be simplified by considering $N$ *monochromatic* (or *time-harmonic*)[^13] vector fields, such as
 
 [^13]: Most authors abuse the notation by writing Eqn. 4.11 as $\mathcal{Re} \big\lbrace \bm{E}(\bm{r}) e^{-i \omega t} \big\rbrace$ or $\mathcal{Re} \big\lbrace \bm{E}(\bm{r}, \omega) e^{-i \omega t} \big\rbrace$.
 
@@ -730,7 +725,7 @@ $$ \tag{4.12}
 	= \sqrt{\frac{\pi}{2}} \bigg( \bm{E_p}(\bm{r}) \delta(\omega - \omega_p) + \big[ \bm{E_p}(\bm{r}) \big]^{\*} \delta(\omega + \omega_p) \bigg).
 $$
 
-In practice, it is not necessary to solve the Maxwell equations for the complex conjugate. We simply take $\bm{E_p}(\bm{r}) \delta(\omega - \omega_p)$ and substitute it in place of $\bm{E}(\bm{r}, \omega)$ into Eqn. 3.7. As a result, we obtain a system formally equivalent to Eqn. 3.9, with $\bm{E}(\bm{r}, \omega)$ replaced by $\bm{E_p}(\bm{r})$, and $\omega$ by $\omega_p$. After solving for $\bm{E_p}(\bm{r})$, we use Eqn. 4.8 (or 4.11) to obtain the expression of the real electric vector $\bm{E}(\bm{r}, t)$.
+In practice, it is not necessary to solve the Maxwell equations for the complex conjugate. We simply take $\bm{E_p}(\bm{r}) \delta(\omega - \omega_p)$ and substitute it in place of $\bm{E}(\bm{r}, \omega)$ into Eqn. 3.7. As a result, we obtain a system formally equivalent to Eqn. 3.9, with $\bm{E}(\bm{r}, \omega)$ replaced by $\bm{E_p}(\bm{r})$, and $\omega$ by $\omega_p$. After solving for $\bm{E_p}(\bm{r})$, we can use Eqn. 4.11 to obtain the expression of the real electric vector $\bm{E}(\bm{r}, t)$.
 
 Let us put the math to work. Assuming that the electromagnetic field is time-harmonic, Eqn. 2.22 of the Poynting vector can be written as
 
