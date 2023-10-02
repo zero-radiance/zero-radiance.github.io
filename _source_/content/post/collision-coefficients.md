@@ -127,7 +127,7 @@ over a region that is sufficiently large to contain a great number of atoms.
 
 Application of this technique allows us to transform the *microscopic* Maxwell equations in vacuum into the *macroscopic* Maxwell equations in bulk matter, and groups of discrete charges and currents -- into *continuous media*. The former set of equations is often used in theoretical physics, while the latter is prevalent in applied branches, such as [wave optics](https://en.wikipedia.org/wiki/Physical_optics).
 
-Because Eqn. 1.1.1-1.1.2 are linear differential equations that are independent of the description of matter, a linear transformation (such as the one given by Eqn. 1.8) does not alter their form, provided that we are allowed to change the order of operations (move the derivatives inside or outside the integral). On the other hand, Eqn. 1.1.3-1.1.4 are defined in terms of current and charge densities, so they must be modified.
+Because Eqn. 1.1.1-1.1.2 are linear equations expressed exclusively in terms of the electromagnetic field, a linear transformation (such as the one given by Eqn. 1.8) does not alter their form, provided that we are allowed to change the order of operations (move the derivatives inside or outside the integral). On the other hand, Eqn. 1.1.3-1.1.4 are defined in terms of current and charge densities, so they must be modified.
 
 First, we identify two types of charges - bound and free:
 
@@ -138,7 +138,7 @@ $$
 
 As the name suggests, [free charges](https://en.wikipedia.org/wiki/Charge_carrier) are able to move around the material, the classic example being the conduction current in a copper wire.
 
- The *bound* [current](https://en.wikipedia.org/wiki/Current_density#Polarization_and_magnetization_currents) and [charge densities](https://en.wikipedia.org/wiki/Charge_density#Bound_charge), $\bm{J\_b}$ and $\rho\_b$, are determined by the properties of matter at the atomic level (described by [quantum mechanics](https://en.wikipedia.org/wiki/Quantum_mechanics)), making them more difficult to reason about. A short (but unsatisfactory) explanation characterizes them in terms of [polarization of matter](https://en.wikipedia.org/wiki/Maxwell%27s_equations#Auxiliary_fields,_polarization_and_magnetization): oscillating charges constitute (electric) *polarization* currents $\bm{J\_p}$, while spinning and orbiting charges charges are attributed to *magnetization* (or magnetic polarization) currents $\bm{J\_m}$. Since, according to Eqn. 1.1.2, no magnetic monopoles exist, $\rho\_b$ is sometimes called the (electric) polarization charge density. Stated mathematically,
+The *bound* [current](https://en.wikipedia.org/wiki/Current_density#Polarization_and_magnetization_currents) and [charge densities](https://en.wikipedia.org/wiki/Charge_density#Bound_charge), $\bm{J\_b}$ and $\rho\_b$, are determined by the properties of matter at the atomic level (described by [quantum mechanics](https://en.wikipedia.org/wiki/Quantum_mechanics)), making them more difficult to reason about. A short (but unsatisfactory) explanation characterizes them in terms of [polarization of matter](https://en.wikipedia.org/wiki/Maxwell%27s_equations#Auxiliary_fields,_polarization_and_magnetization): oscillating charges constitute (electric) *polarization* currents $\bm{J\_p}$, while spinning and orbiting charges charges are attributed to *magnetization* (or magnetic polarization) currents $\bm{J\_m}$. Since, according to Eqn. 1.1.2, no magnetic monopoles exist, $\rho\_b$ is sometimes called the (electric) polarization charge density. Stated mathematically,
 
 $$ \tag{1.10}
 \begin{aligned}
@@ -150,7 +150,7 @@ $$
 
 where $\bm{P}$ is the [polarization](https://en.wikipedia.org/wiki/Polarization_density) (electric dipole moment per unit volume) and $\bm{M}$ is the [magnetization](https://en.wikipedia.org/wiki/Magnetization) (magnetic dipole moment per unit volume). We shall learn more about them in due course.
 
-Substitution of Eqn. 1.9.1, 1.10.1 into 1.1.3, and Eqn. 1.9.2, 1.10.2 into 1.1.4 yields
+Substitution of Eqn. 1.9-1.10 into 1.1.3-1.1.4 yields
 
 $$ \tag{1.11}
 \begin{aligned}
@@ -196,7 +196,7 @@ $$
 
 Eqn. 1.7 is a [continuity equation](https://en.wikipedia.org/wiki/Continuity_equation) that tells us that a reduction of the charge density is observed if the charges are carried away by a current.
 
-Now, take the divergence of Eqn. 1.14.1 and 1.14.3, and substitute Eqn. 1.7:
+Now, take the divergence of Eqn. 1.14.1 and 1.14.3, then substitute Eqn. 1.7:
 
 $$ \tag{1.18}
 \begin{aligned}
@@ -289,7 +289,7 @@ $$ \tag{2.5}
 	\int\_{V} \bm{E}(\bm{r}, t) \cdot \rho(\bm{r}, t) \bm{v}(\bm{r}, t) dV.
 $$
 
-Since the current density is just the number of moving charges per unit volume (see Eqn. 1.6),
+Since, according to Eqn. 1.6, the current density is just the number of moving charges per unit volume,
 
 $$ \tag{2.6}
 	\frac{\partial}{\partial t} \mathcal{W}(V, t) =
@@ -318,7 +318,7 @@ $$ \tag{2.9}
 	\varepsilon_0 \bm{E} \cdot \frac{\partial \bm{E}}{\partial t}.
 $$
 
-The curl of $\bm{E}$ is also given by the Maxwell equations (see Eqn. 1.1.1):
+The curl of the electric field is given by the Maxwell-Faraday equation (see Eqn. 1.1.1):
 
 $$ \tag{2.10}
 	\bm{E} \cdot \bm{J} =
@@ -399,7 +399,7 @@ $$ \tag{2.18}
 	\frac{\partial^2 \mathcal{E\_{em}}}{\partial V \partial t}.
 $$
 
-A close examination of 2.18 reveals the fact that our definitions of the energy density and the Poynting vector are not unique, since one may also express the latter as
+A close examination of Eqn. 2.18 reveals the fact that our definitions of the energy density and the Poynting vector are not unique, since one may also express the latter as
 
 $$ \tag{2.19}
 	\bm{S'}(\bm{r}, t) = \bm{S}(\bm{r}, t) + \nabla \times \bm{X}(\bm{r}, t)
