@@ -468,7 +468,7 @@ is the amount of energy per second per unit area that flows through a surface wi
 
 The Maxwell equations can be simplified by transforming the fields from the time to the frequency domain.
 
-The [Fourier transform](https://en.wikipedia.org/wiki/Fourier_transform) of the electric *vector* field $\bm{E}(\bm{r}, t)$ is defined[^1] as
+The [Fourier transform](https://en.wikipedia.org/wiki/Fourier_transform) of the *real* electric vector field $\bm{E}(\bm{r}, t)$ is defined[^1] as
 
 [^1]: The choice of the sign of the complex exponential is arbitrary; we use the modern convention. It directly determines the sign of the imaginary components of both the complex permittivity and the complex refractive index. The symmetric [choice of constants](https://en.wikipedia.org/wiki/Fourier_transform#Other_conventions) ensures that the transformation is [unitary](https://en.wikipedia.org/wiki/Unitary_transformation).
 
@@ -480,7 +480,7 @@ $$
 
 where $\omega$ is the [angular frequency](https://en.wikipedia.org/wiki/Angular_frequency). $\bm{E}(\bm{r}, \omega)$ is called the *complex* electric vector[^2].
 
-[^2]: Operations and identities of real vector algebra can be applied to any complex vector $\bm{c} = \bm{a} + i \bm{b}$ by expressing it as a combination of two real vectors $\bm{a}$ and $\bm{b}$. The magnitude of the complex vector $|\bm{c}| = \bm{c} \cdot \bm{c^{\*}} = \sqrt{\sum{|c_n|^2}}$ can be computed most efficiently by writing each component in its polar form $c_n = r_n \exp(i \theta_n)$.
+[^2]: Operations and identities of real vector algebra can be applied to any complex vector $\bm{c} = \bm{a} + i \bm{b}$ by expressing it as a combination of two real vectors $\bm{a}$ and $\bm{b}$. The magnitude of the complex vector $|\bm{c}| = \bm{c^{\*}} \cdot \bm{c} = \sqrt{\sum{|c_n|^2}}$ can be computed most efficiently by writing each component in its polar form $c_n = r_n \exp(i \theta_n)$, so that $|\bm{c}| = \sqrt{\sum{r_n^2}}$.
 
 $\bm{E}(\bm{r}, t)$, on the other hand, is real, which means its Fourier transform is [Hermitian](https://en.wikipedia.org/wiki/Hermitian_function):
 
@@ -491,12 +491,12 @@ $$
 where the star denotes the [complex conjugate](https://en.wikipedia.org/wiki/Complex_conjugate)
 
 $$ \tag{3.3}
-	z^{\*} = \big[ r e^{i \theta} \big]^{\*} = r e^{-i \theta}.
+	z^{\*} = \big[ r e^{i \theta} \big]^{\*} = r e^{-i \theta} = r \left( \cos{ \theta} + i \sin{ \theta} \right).
 $$
 
 [Insert picture of a FT of a real function here]
 
-We can return to the time domain by performing the inverse Fourier transform:
+We can return to the time domain by performing the *inverse* Fourier transform:
 
 $$ \tag{3.4}
 \begin{aligned}
@@ -533,7 +533,7 @@ $$ \tag{3.6}
 \end{aligned}
 $$
 
-It can be further simplified by applying the [Leibniz rule](https://en.wikipedia.org/wiki/Leibniz_integral_rule), taking the time derivatives, and grouping the terms:
+It can be simplified by applying the [Leibniz rule](https://en.wikipedia.org/wiki/Leibniz_integral_rule), taking the time derivatives, and grouping the terms:
 
 $$ \tag{3.7}
 \begin{aligned}
@@ -593,7 +593,7 @@ $$ \tag{3.11}
 	\rho_f(\bm{r}, \omega) = \frac{1}{i \omega} \nabla \cdot \bm{J_f}(\bm{r}, \omega).
 $$
 
-Finally, observe that we only need to find the expression of the electric field. From Eqn. 3.9.1 or 3.10.1, it follows that
+Finally, observe that we only need to find the expression of the electric field. From Eqn. 3.9.1 (or 3.10.1), it follows that
 
 $$ \tag{3.12}
 	\bm{B}(\bm{r}, \omega) = \frac{1}{i \omega} \nabla \times \bm{E}(\bm{r}, \omega).
@@ -608,7 +608,7 @@ $$
 
 ### Time-Harmonic Fields
 
-If we solve the Maxwell equations in the frequency domain, we may be interested in the spectral composition of the Poynting vector. In order to decompose it, we must express the fields using the inverse Fourier transform:
+If we decide to solve the Maxwell equations in the frequency domain, we may be interested in the spectral composition of the Poynting vector. In order to decompose it, we must express the fields using the inverse Fourier transform:
 
 $$ \tag{4.1}
 	\bm{S}(\bm{r}, t)
@@ -638,11 +638,13 @@ $$
 
 The expression is compact and simple, but not particularly useful, since the value of the complex Poynting vector for a particular frequency depends on the entire electromagnetic spectrum.
 
-We can obtain a more practical result at the cost of some generality. Specifically, we must assume that the expression of the electromagnetic field is a [periodic function](https://en.wikipedia.org/wiki/Periodic_function) of time, such that the *fundamental period* $\thinspace T\_1 = 2 \pi / \omega_1$ of both[^3] the electric and the magnetic fields is the same \[[5](#references) (vol. I, ch. 50) [6](#references) (ch. 1.3.3, 1.4.3)\]. In most cases, the limitations imposed by this condition are not particularly severe: usually, for visible light, the fundamental period is very short, and the fields can often be virtually repeated outside the time interval of interest.
+We can obtain a more practical result at the cost of some generality. Specifically, we must assume that the expression of the electromagnetic field is a [periodic function](https://en.wikipedia.org/wiki/Periodic_function) of time, such that the *fundamental period* $\thinspace T\_1 = 2 \pi / \omega_1$ of both[^3] the electric and the magnetic fields is the same \[[5](#references) (vol. I, ch. 50) [6](#references) (ch. 1.3.3, 1.4.3)\]. In most cases, the limitations imposed by this condition are not particularly severe: for visible light, the fundamental period is very short, and the fields can also be virtually repeated outside the time interval of interest.
 
-[^3]: The fact that the electric and the magnetic fields are two sides of the same coin is apparent in the relativity theory \[[17](#references) (ch. 1.23)\].
+[^3]: The fact that the electric and the magnetic fields are two sides of the same coin can be easily shown using an argument form the [theory of relativity](https://en.wikipedia.org/wiki/Theory_of_relativity) \[[17](#references) (ch. 1.23)\].
 
-One particular feature of periodic functions is the existence of a [Fourier series](https://en.wikipedia.org/wiki/Fourier_series#Complex-valued_functions) representation:
+One particular feature of periodic functions is the existence of a [Fourier series](https://en.wikipedia.org/wiki/Fourier_series#Exponential_form) representation[^8]:
+
+[^8]: The factor of 2 was added in order to replicate the formulae found in the physics literature.
 
 $$ \tag{4.4}
 	2 \bm{E}(\bm{r}, t)
@@ -650,16 +652,14 @@ $$ \tag{4.4}
 	= \sum\_{p = -\infin}^{\infin} \bm{E_p}(\bm{r}) e^{-i \omega_p t}.
 $$
 
-where we defined $\omega_p = p \thinspace \omega_1$, with the *Fourier coefficients* $\bm{E_p}$ given by the integral[^8]
-
-[^8]: The factor of 2 was added in order to obtain the same results found in the physics literature.
+where we defined $\omega_p = p \thinspace \omega_1$, with the *Fourier coefficients* $\bm{E_p}$ given by the integral
 
 $$ \tag{4.5}
 	\frac{1}{2} \bm{E_p}(\bm{r})
 	= \frac{1}{T_1} \int\_{0}^{T_1} \bm{E}(\bm{r}, t) e^{i \omega_p t} dt.
 $$
 
-Eqn. 4.5 can be interpreted as the [projection](https://en.wikipedia.org/wiki/Hilbert_space#Fourier_analysis) onto the discrete [Fourier basis](https://en.wikipedia.org/wiki/Fourier_series#Hilbert_space_interpretation), with Eqn. 4.4 showing the *reconstruction*. The key property of the basis functions is captured by the *orthonormalization relation*
+Eqn. 4.5 can be interpreted as the [projection](https://en.wikipedia.org/wiki/Hilbert_space#Fourier_analysis) onto the discrete [Fourier basis](https://en.wikipedia.org/wiki/Fourier_series#Hilbert_space_interpretation), with Eqn. 4.4 showing the *reconstruction*. The key property of the basis functions $\exp(i \omega\_p t)$ is captured by the *orthonormalization relation*
 
 $$ \tag{4.6}
 	\frac{1}{T_1} \int\_{0}^{T_1} e^{i (\omega_p - \omega_q) t} dt
@@ -725,7 +725,7 @@ $$ \tag{4.12}
 	= \sqrt{\frac{\pi}{2}} \bigg( \bm{E_p}(\bm{r}) \delta(\omega - \omega_p) + \big[ \bm{E_p}(\bm{r}) \big]^{\*} \delta(\omega + \omega_p) \bigg).
 $$
 
-In practice, it is not necessary to solve the Maxwell equations for the complex conjugate. We simply take $\bm{E_p}(\bm{r}) \delta(\omega - \omega_p)$ and substitute it in place of $\bm{E}(\bm{r}, \omega)$ into Eqn. 3.7. As a result, we obtain a system formally equivalent to Eqn. 3.9, with $\bm{E}(\bm{r}, \omega)$ replaced by $\bm{E_p}(\bm{r})$, and $\omega$ by $\omega_p$. After solving for $\bm{E_p}(\bm{r})$, we can use Eqn. 4.11 to obtain the expression of the real electric vector $\bm{E}(\bm{r}, t)$.
+In practice, it is not necessary to solve the Maxwell equations for the complex conjugate. We simply take $\bm{E_p}(\bm{r}) \delta(\omega - \omega_p)$ and substitute it in place of $\bm{E}(\bm{r}, \omega)$ into Eqn. 3.7. This yields a system formally equivalent to Eqn. 3.9, with $\bm{E}(\bm{r}, \omega)$ replaced by $\bm{E_p}(\bm{r})$, and $\omega$ by $\omega_p$. After solving for $\bm{E_p}(\bm{r})$, we can use Eqn. 4.11 to obtain the expression of the real electric vector $\bm{E}(\bm{r}, t)$.
 
 Let us put the math to work. Assuming that the electromagnetic field is time-harmonic, Eqn. 2.22 of the Poynting vector can be written as
 
@@ -756,7 +756,7 @@ $$ \tag{4.14}
 \end{aligned}
 $$
 
-First, consider the case when $T = T_1$. We can immediately apply the orthonormalization relation to obtain
+First, consider the case when $T = T_1$. We can immediately apply the orthonormalization relation (Eqn. 4.6) to obtain
 
 $$ \tag{4.15}
 \begin{aligned}
@@ -776,15 +776,13 @@ $$ \tag{4.15}
 		\Big) \cr
 	&=  \frac{1}{4} (\bm{E_0} \times \bm{H_0})
 	  + \frac{1}{2} \sum\_{p = 1}^{\infin}
-		\thinspace \mathcal{Re} \big\lbrace \bm{E_p} \times [\bm{H_p}]^{\*} \big\rbrace,
+		\thinspace \mathcal{Re} \big\lbrace \bm{E_p} \times [\bm{H_p}]^{\*} \big\rbrace.
 \end{aligned}
 $$
 
-which is a real vector, as expected.
+In the case when $T > T_1$, the total value of $\braket{\bm{S}}$ is a sum of the contribution from a number of whole periods (given by Eqn. 4.15) and the contribution from a fraction of the period. If the duration of a measurement is very long $(T \gg T_1)$, the *relative* contribution from a fraction of the period will be much smaller than the *relative* contribution from a large number of whole periods, so the formula of Eqn. 4.15 should serve as a good approximation.
 
-In the case when $T > T_1$, the total value of $\braket{\bm{S}}$ is a sum of the contribution from a number of whole periods (given by Eqn. 4.15) and the contribution from a fraction of the period. If the duration of a measurement is very large $(T \gg T_1)$, the *relative* contribution from a fraction of the period will be much smaller than the *relative* contribution from a large number of whole periods, so the formula of Eqn. 4.15 should serve as a good approximation.
-
-Eqn. 4.15 allows us to define the *time-averaged* complex Poynting vector \[[8](#references) (ch. 2.4)\]
+We may use Eqn. 4.15 to define the *time-averaged* complex Poynting vector \[[8](#references) (ch. 2.4)\]
 
 $$ \tag{4.16}
 	\braket{\bm{S_p}} = \frac{1}{2} \bm{E_p}(\bm{r}) \times \big[ \bm{H_p}(\bm{r}) \big]^{\*}
@@ -798,7 +796,7 @@ $$ \tag{4.17}
 	+ \sum\_{p = 1}^{\infin} \mathcal{Re} \big\lbrace \negthinspace \braket{\bm{S_p}} \negthinspace \big\rbrace.
 $$
 
-It produces a more compact expression of irradiance
+It produces a simple expression of irradiance
 
 $$ \tag{4.18}
 	\Epsilon(\bm{n})
@@ -821,7 +819,7 @@ $$ \tag{4.19}
 	  \big\rbrace \cos{\theta}.
 $$
 
-Having defined both irradiance and spectral irradiance, we can easily compute all other [radiometric quantities](https://en.wikipedia.org/wiki/Radiometry) using integration and differentiation techniques as discussed in the previous article \[[3](#references)\].
+Having defined both irradiance and spectral irradiance, we can easily compute all other [radiometric quantities](https://en.wikipedia.org/wiki/Radiometry) using integration and differentiation techniques as discussed in \[[3](#references)\].
 
 <!--
 
