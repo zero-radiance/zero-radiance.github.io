@@ -106,7 +106,7 @@ Eqn. 1.1.4 (bottom right) is known as [Gauss's law for electricity](https://en.w
 
 Eqn. 1.1.1 (top left) is called the [Maxwell-Faraday equation](https://en.wikipedia.org/wiki/Faraday%27s_law_of_induction). It says that a time-varying magnetic field always accompanies a circulating electric field. The final Eqn. 1.1.3 (bottom left) represents [Ampère-Maxwell law](https://en.wikipedia.org/wiki/Amp%C3%A8re%27s_circuital_law). It is somewhat more difficult to understand; essentially, it relates the circulation of a magnetic field around a closed loop to the electric current passing through the loop. Just like in Eqn. 1.1.1, the electric and the magnetic fields are not independent; however, in this case, their roles are reversed.
 
-The Maxwell equations is coupled system of [partial differential equations](https://en.wikipedia.org/wiki/Partial_differential_equation). The left-hand side of each equation is composed of derivatives of the unknowns (the fields), and the right-hand side contains the sources (the currents and the charges). Since a derivative is a linear operator, these equations form a [linear system](https://en.wikipedia.org/wiki/Linear_system). As such, the Maxwell equations obey the [superposition principle](https://en.wikipedia.org/wiki/Superposition_principle) - if we determine the values of the fields for one source, and then, *separately*, for another, and assuming that these sources are not "disturbed" by the fields, then the solution for the configuration with *both* sources is precisely the sum of the fields found for each individual source:
+The Maxwell equations form a coupled system of [partial differential equations](https://en.wikipedia.org/wiki/Partial_differential_equation). The left-hand side of each equation is composed of derivatives of the unknowns (the fields), and the right-hand side contains the sources (the currents and the charges). Since a derivative is a linear operator, these equations form a [linear system](https://en.wikipedia.org/wiki/Linear_system). As such, the Maxwell equations obey the [superposition principle](https://en.wikipedia.org/wiki/Superposition_principle) - if we determine the values of the fields for one source, and then, *separately*, for another, and assuming that these sources are not "disturbed" by the fields, then the solution for the configuration with *both* sources is precisely the sum of the fields found for each individual source:
 
 $$ \tag{1.15}
 	\bm{J} = \bm{J_1} + \bm{J_2}, \space \rho = \rho_1 + \rho_2 \implies
@@ -138,7 +138,7 @@ $$
 
 As the name suggests, [free charges](https://en.wikipedia.org/wiki/Charge_carrier) are able to move around the material, the classic example being the conduction current in a copper wire.
 
-The *bound* [current](https://en.wikipedia.org/wiki/Current_density#Polarization_and_magnetization_currents) and [charge densities](https://en.wikipedia.org/wiki/Charge_density#Bound_charge), $\bm{J\_b}$ and $\rho\_b$, are determined by the properties of matter at the atomic level (described by [quantum mechanics](https://en.wikipedia.org/wiki/Quantum_mechanics)), making them more difficult to reason about. A short (but unsatisfactory) explanation characterizes them in terms of [polarization of matter](https://en.wikipedia.org/wiki/Maxwell%27s_equations#Auxiliary_fields,_polarization_and_magnetization): oscillating charges constitute (electric) *polarization* currents $\bm{J\_p}$, while spinning and orbiting charges charges are attributed to *magnetization* (or magnetic polarization) currents $\bm{J\_m}$. Since, according to Eqn. 1.1.2, no magnetic monopoles exist, $\rho\_b$ is sometimes called the (electric) polarization charge density. Stated mathematically,
+The *bound* [current](https://en.wikipedia.org/wiki/Current_density#Polarization_and_magnetization_currents) and [charge densities](https://en.wikipedia.org/wiki/Charge_density#Bound_charge), $\bm{J\_b}$ and $\rho\_b$, are determined by the properties of matter at the atomic level (described by [quantum mechanics](https://en.wikipedia.org/wiki/Quantum_mechanics)), making them more difficult to reason about. A short (but unsatisfactory) explanation characterizes them in terms of [polarization of matter](https://en.wikipedia.org/wiki/Maxwell%27s_equations#Auxiliary_fields,_polarization_and_magnetization): oscillating charges constitute (electric) *polarization* currents $\bm{J\_p}$, while spinning and orbiting charges are attributed to *magnetization* (or magnetic polarization) currents $\bm{J\_m}$. Since, according to Eqn. 1.1.2, no magnetic monopoles exist, $\rho\_b$ is sometimes called the (electric) polarization charge density. Stated mathematically,
 
 $$ \tag{1.10}
 \begin{aligned}
@@ -217,7 +217,7 @@ $$ \tag{1.19}
 	= \frac{\partial}{\partial t} \rho_f(\bm{r}, t).
 $$
 
-The first equation tells us that the divergence of the magnetic field is does not change over time. Assuming that the sources of the field have existed for a finite amount of time, the constant of integration is zero, which is consistent with Eqn. 1.14.2. Eqn. 1.19.2 can be reduced to 1.14.4 in the same manner.
+The first equation tells us that the divergence of the magnetic field does not change over time. Assuming that the sources of the field have existed for a finite amount of time, the constant of integration is zero, which is consistent with Eqn. 1.14.2. Eqn. 1.19.2 can be reduced to 1.14.4 in the same manner.
 
 At the microscopic scale, all matter is continuous \[[28](#references) (ch. 1.4), [30](#references) (ch. I-D)\]. However, it is often convenient to introduce a macroscopic discontinuity to approximate a very rapid (yet continuous) variation of material properties. At the *optical interface*, the fields must satisfy the [boundary conditions](https://en.wikipedia.org/wiki/Interface_conditions_for_electromagnetic_fields) \[[6](#references) (ch. 1.1.3), [7](#references) (ch. 2.10), [8](#references) (ch. 2.2)\]. If $\bm{n\_{12}}$ is a unit normal vector pointing from region 1 to region 2, the normal components of the fields must be such that
 
@@ -640,7 +640,7 @@ The expression is compact and simple, but not particularly useful, since the val
 
 We can obtain a more practical result at the cost of some generality. Specifically, we must assume that the expression of the electromagnetic field is a [periodic function](https://en.wikipedia.org/wiki/Periodic_function) of time, such that the *fundamental period* $\thinspace T\_1 = 2 \pi / \omega_1$ of both[^3] the electric and the magnetic fields is the same \[[5](#references) (vol. I, ch. 50) [6](#references) (ch. 1.3.3, 1.4.3)\]. In most cases, the limitations imposed by this condition are not particularly severe: for visible light, the fundamental period is very short, and the fields can also be virtually repeated outside the time interval of interest.
 
-[^3]: The fact that the electric and the magnetic fields are two sides of the same coin can be easily shown using an argument form the [theory of relativity](https://en.wikipedia.org/wiki/Theory_of_relativity) \[[17](#references) (ch. 1.23)\].
+[^3]: The fact that the electric and the magnetic fields are two sides of the same coin can be easily shown using an argument from the [theory of relativity](https://en.wikipedia.org/wiki/Theory_of_relativity) \[[17](#references) (ch. 1.23)\].
 
 One particular feature of periodic functions is the existence of a [Fourier series](https://en.wikipedia.org/wiki/Fourier_series#Exponential_form) representation[^8]:
 
@@ -666,7 +666,7 @@ $$ \tag{4.6}
 	= \delta_{p,q}
 $$
 
-which serves as an integral representation of the [Kronecker delta](https://en.wikipedia.org/wiki/Kronecker_delta#Integral_representations) function $\delta_{p,q}$.
+that serves as an integral representation of the [Kronecker delta](https://en.wikipedia.org/wiki/Kronecker_delta#Integral_representations) function $\delta_{p,q}$.
 
 Similarly to Eqn. 3.2, if the time-domain field is real,
 
@@ -821,8 +821,6 @@ $$
 
 Having defined both irradiance and spectral irradiance, we can easily compute all other [radiometric quantities](https://en.wikipedia.org/wiki/Radiometry) using integration and differentiation techniques as discussed in \[[3](#references)\].
 
-<!--
-
 ### Constitutive Relations
 
 Considered in isolation, the macroscopic formulation of the Maxwell equations is an [undetermined system](https://en.wikipedia.org/wiki/Underdetermined_system) - it has fewer equations than unknowns. This makes it necessary to specify the way the material responds to the applied electromagnetic field. Such assumptions about the material are called the *material equations*, or the [constitutive relations](https://en.wikipedia.org/wiki/Constitutive_equation#Electromagnetism).
@@ -927,6 +925,8 @@ $$ \tag{5.8}
 $$
 
 Writing the Maxwell equations this way allows us to compare the macroscopic Eqn. 5.8 with the microscopic Eqn. 3.10. Observe that, when $\epsilon$ and $\mu$ are independent of $\bm{r}$ (or if the spatially-varying component is attributed to the current term on the right-hand side), their solutions are formally the same.
+
+<!--
 
 ### Helmholtz Equation
 
