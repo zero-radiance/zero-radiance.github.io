@@ -823,11 +823,11 @@ Having defined both irradiance and spectral irradiance, we can easily compute al
 
 ### Constitutive Relations
 
-Considered in isolation, the macroscopic formulation of the Maxwell equations is an [undetermined system](https://en.wikipedia.org/wiki/Underdetermined_system) - it has fewer equations than unknowns. This makes it necessary to specify the way the material responds to the applied electromagnetic field. Such assumptions about the material are called the *material equations*, or the [constitutive relations](https://en.wikipedia.org/wiki/Constitutive_equation#Electromagnetism).
+Considered in isolation, the macroscopic formulation of the Maxwell equations is an [underdetermined system](https://en.wikipedia.org/wiki/Underdetermined_system) - it has fewer equations than unknowns. This makes it necessary to specify the way the material responds to the applied electromagnetic field. Such assumptions about the material are called the *material equations*, or the [constitutive relations](https://en.wikipedia.org/wiki/Constitutive_equation#Electromagnetism).
 
 The simplest way is to assume that the material responds to weak electromagnetic fields in an approximately linear manner[^6]. In this case, we may express $\bm{D}$ and $\bm{H}$ as [bilinear](https://en.wikipedia.org/wiki/Bilinear_map) functions of $\bm{E}$ and $\bm{B}$ \[[11](#references) (ch. 3.2)\]:
 
-[^6]: In general, the values of the coefficients depend on the intensity of the field. We make an assumption that omitting the higher order terms in the corresponding Taylor series expansion results in a negligible error.
+[^6]: Eqn. 5.1 shows is the first term of the Taylor series expansion of $\bm{D}$ and $\bm{H}$ in terms of $\bm{E}$ and $\bm{B}$. Quadratic (and higher-order) terms play an important role in [nonlinear optics](https://en.wikipedia.org/wiki/Nonlinear_optics).
 
 $$ \tag{5.1}
 	\begin{bmatrix}
@@ -848,7 +848,7 @@ In general, media may be *dispersive* (dependent on the frequency), *lossy* (abs
 
 A radical simplification[^7] of the Maxwell equations can be achieved by assuming that the material is both *linear* and *isotropic*, which means that it can be characterized by three complex numbers:
 
-[^7]: Eqn. 5.2.1-5.2.3 make a big assumption that is not appropriate for certain types of real materials. For instance, [crystals](https://en.wikipedia.org/wiki/Crystal) have a well-defined [internal structure](https://en.wikipedia.org/wiki/Crystal_structure) which makes them inherently anisotropic \[[5](#references) (vol. II, ch. 30)\]. Since our application is primarily concerned with simple fluids, a linear, isotropic material is reasonable assumption that offers significant theoretical advantages (such as simplicity). However, this assumption is potentially not suitable for a more general application \[[6](#references) (ch. 2)\].
+[^7]: Eqn. 5.2 make a big assumption that is not appropriate for certain types of real materials. For instance, [crystals](https://en.wikipedia.org/wiki/Crystal) have a well-defined [internal structure](https://en.wikipedia.org/wiki/Crystal_structure) which makes them inherently anisotropic \[[5](#references) (vol. II, ch. 30)\]. Since our application is primarily concerned with fluids, a linear, isotropic material is a reasonable assumption that offers significant theoretical advantages (primarily, simplicity). However, this assumption is potentially not suitable for a more general application \[[6](#references) (ch. 2)\].
 
 $$ \tag{5.2}
 \begin{aligned}
@@ -860,7 +860,7 @@ $$
 
 where $\sigma$ is the [specific conductivity](https://en.wikipedia.org/wiki/Electrical_resistivity_and_conductivity), $\varepsilon$ is the [electric permittivity](https://en.wikipedia.org/wiki/Permittivity), and $\mu$ is the [magnetic permeability](https://en.wikipedia.org/wiki/Permeability_(electromagnetism)) \[[6](#references) (ch. 1.1.2), [7](#references) (ch. 2.3), [8](#references) (ch. 2.1)\]. Note that the reciprocal of the permeability is used -- it is a historical accident caused by the confusion over whether $\bm{H}$ or $\bm{B}$ is the fundamental magnetic field \[[5](#references) (ch. 36), [17](#references) (ch. 4.9)\].
 
-Care must taken when transforming Eqn. 5.2.1-5.2.3 to the time domain, since a multiplication in the frequency domain leads to a convolution in the time domain. There, Eqn. 5.2.1-5.2.3 take the form
+Care must taken when transforming Eqn. 5.2 to the time domain, since a multiplication in the frequency domain leads to a convolution in the time domain. Once transformed, Eqn. 5.2.3 takes the form
 
 $$ \tag{5.?}
 	\bm{H}(\bm{r}, t)
@@ -875,7 +875,7 @@ $$ \tag{5.3}
 	\rho_i(\bm{r}, \omega) = \frac{1}{i \omega} \nabla \cdot \bm{J_i}(\bm{r}, \omega).
 $$
 
-Eqn. 5.2.1 and 5.3 assume that the *free* charges and currents may be decomposed into the *source* and the *induced* parts[^23]:
+Eqn. 5.2.1 and 5.3 assume that the *free* charges and currents may be further decomposed into the *source* and the *induced* parts[^23]:
 
 [^23]: Sometimes, induced charges are called unbound, and source charges are called free. For a detailed discussion, see \[[28](#references) (ch. 6)\].
 
@@ -896,7 +896,7 @@ $$ \tag{5.5}
 \end{aligned}
 $$
 
-Using the definition of the [complex permittivity](https://en.wikipedia.org/wiki/Permittivity#Complex_permittivity) \[[7](#references) (ch. 2.8), [8](#references) (ch. 2.3)\]
+If we define the [complex permittivity](https://en.wikipedia.org/wiki/Permittivity#Complex_permittivity) \[[7](#references) (ch. 2.8), [8](#references) (ch. 2.3)\] as
 
 $$ \tag{5.6}
 	\epsilon(\bm{r}, \omega) = \varepsilon(\bm{r}, \omega) + i \frac{\sigma(\bm{r}, \omega)}{\omega},
@@ -924,9 +924,7 @@ $$ \tag{5.8}
 \end{aligned}
 $$
 
-Writing the Maxwell equations this way allows us to compare the macroscopic Eqn. 5.8 with the microscopic Eqn. 3.10. Observe that, when $\epsilon$ and $\mu$ are independent of $\bm{r}$ (or if the spatially-varying component is attributed to the current term on the right-hand side), their solutions are formally the same.
-
-<!--
+Writing the Maxwell equations this way allows us to compare the macroscopic Eqn. 5.8 with the microscopic Eqn. 3.10. Observe that, when $\epsilon$ and $\mu$ are independent of $\bm{r}$ (or if the spatially-varying component is attributed to the current term on the right-hand side), their solutions are formally the same (up to a constant factor).
 
 ### Helmholtz Equation
 
@@ -1070,6 +1068,8 @@ $$ \tag{6.16}
 $$
 
 That is a general solution of the Maxwell equations for a *source-free region of a linear, isotropic, homogeneous* medium.
+
+<!--
 
 ### Plane waves
 
