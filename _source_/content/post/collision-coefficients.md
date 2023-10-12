@@ -928,9 +928,7 @@ Writing the Maxwell equations this way allows us to compare the macroscopic Eqn.
 
 ### Helmholtz Equation
 
-Consider a region of space without any source charges or currents. Physically, this means that the region is *source-free*; but that does not mean it contains no energy. To find an expression of the internal field, we shall explore all general solutions of the Maxwell equations (we can find a special solution once we specify the boundary conditions), and determine how these solutions evolve over time.
-
-Setting $\bm{J\_s} = \rho\_s = 0$ in Eqn. 5.7.3-5.7.4, we obtain a coupled system of linear equations:
+Consider a *source-free* region of space devoid of source charges and currents. By setting $\bm{J\_s} = \rho\_s = 0$ in Eqn. 5.7.3-5.7.4, we obtain a coupled system of linear equations:
 
 $$ \tag{6.1}
 \begin{aligned}
@@ -941,7 +939,7 @@ $$ \tag{6.1}
 \end{aligned}
 $$
 
-Next, assume that the medium is *homogeneous* (constant in space):
+In addition, assume that the medium is *homogeneous* (constant in space):
 
 $$ \tag{6.2}
 \begin{aligned}
@@ -952,7 +950,7 @@ $$ \tag{6.2}
 \end{aligned}
 $$
 
-Let us focus on the electric field $\bm{E}$. Take the curl of Eqn. 6.2.1 and substitute $\nabla \times \bm{H}$ from Eqn. 6.2.3:
+Let us solve Eqn. 6.2 for the electric field $\bm{E}$. First, take the curl of Eqn. 6.2.1 and substitute $\nabla \times \bm{H}$ from Eqn. 6.2.3:
 
 $$ \tag{6.3}
 	\nabla \times \nabla \times \bm{E}(\bm{r}, \omega) - \omega^2 \mu(\omega) \epsilon(\omega) \bm{E}(\bm{r}, \omega) = 0.
@@ -993,7 +991,7 @@ $$ \tag{6.7}
 	\end{bmatrix}
 $$
 
-is the [gradient](https://en.wikipedia.org/wiki/Gradient) operator and
+is the [gradient](https://en.wikipedia.org/wiki/Gradient) operator, and
 
 $$ \tag{6.8}
 	\mathrm{div} \big( \mathrm{grad}(\bm{E}) \big) =
@@ -1002,22 +1000,23 @@ $$ \tag{6.8}
 	\frac{\partial^2 \bm{E}}{\partial x^2} + \frac{\partial^2 \bm{E}}{\partial y^2} + \frac{\partial^2 \bm{E}}{\partial z^2}
 $$
 
-is the *vector* [Laplace](https://en.wikipedia.org/wiki/Laplace_operator) operator (*scalar* Laplace operator applied to each vector component).
+is the *vector* [Laplace](https://en.wikipedia.org/wiki/Laplace_operator) operator (a *scalar* Laplace operator applied to each vector component).
 
-Use Eqn. 6.6 to expand Eqn. 6.5:
+Now, use Eqn. 6.6 to expand Eqn. 6.5:
 
 $$ \tag{6.9}
 	\nabla \big( \nabla \cdot \bm{E}(\bm{r}, \omega) \big) - \nabla^2 \bm{E}(\bm{r}, \omega) - k^2(\omega) \bm{E}(\bm{r}, \omega) = 0.
 $$
 
-Substitution of Eqn. 6.2.4 into 6.9 yields the vector equation of the electric field $\bm{E}$:
+Substitution of Eqn. 6.2.4 into 6.9 yields the following vector equation of the electric field $\bm{E}$:
 
 $$ \tag{6.10}
 	\nabla^2 \bm{E}(\bm{r}, \omega) + k^2(\omega) \bm{E}(\bm{r}, \omega) = 0.
 $$
 
+By considering each vector component in the Cartesian coordinate system[^34], we obtain a system of three *homogeneous* [Helmholtz equations](https://en.wikipedia.org/wiki/Helmholtz_equation):
 
-By considering each vector component in a Cartesian coordinate system, we obtain a system of three *homogeneous* [Helmholtz equations](https://en.wikipedia.org/wiki/Helmholtz_equation):
+[^34]: We shall obtain a solution in the spherical coordinate system in Sec. 18.
 
 $$ \tag{6.11}
 \begin{aligned}
@@ -1030,10 +1029,10 @@ $$
 To find a solution, let us first consider a simpler 1-dimensional Helmholtz equation
 
 $$ \tag{6.12}
-	\frac{d^2 \psi(x)}{d x^2} = -k^2 \psi(x).
+	\frac{d^2 \psi(x)}{d x^2} = -k^2 \psi(x) = (\pm i k)^2 \psi(x).
 $$
 
-If the derivative of a function is the function itself (times a constant), the function is clearly an exponential:
+If the derivative of a function is the function itself (times a constant), the function must be an exponential:
 
 $$ \tag{6.13}
 	\psi(x) =
@@ -1042,22 +1041,24 @@ $$
 
 where $\psi(0)$ is a complex constant.
 
-Extension to 3 dimensions is straightforward. If we rotate the coordinate frame so that the $x$-axis points along the unit vector $\bm{n}$,
+Extension to three dimensions is straightforward. If we rotate the coordinate frame so that the $x$-axis points along the unit vector $\bm{n}$,
 
 $$ \tag{6.14}
 	\psi(\bm{r}, \bm{n}) =
 	\psi(0, \bm{n}) e^{ \pm i k (\bm{r} \cdot \bm{n})}
 $$
 
-is a valid solution for a certain value of $\bm{n}$. To avoid clutter, we shall adhere to the modern space convention with the positive sign (the opposite of our time convention); the negative solution can be obtained by reversing the direction of $\bm{n}$.
+is a valid solution that depends on the value of $\bm{n}$. For simplicity, we shall adhere to the modern space convention with the positive sign (the opposite of our time convention); the negative solution can be obtained by reversing the direction of $\bm{n}$.
 
-How should we choose the direction of $\bm{n}$? It depends on the location of sources. Unless they are explicitly specified, we can use *any* value of $\bm{n}$. And because the Helmholtz equation is both linear and homogeneous, we can actually use *every* value of $\bm{n}$ by invoking the superposition principle. Thus, the general solution is an integral taken over the surface of the unit sphere $\mathbb{S}^2$ [measured](https://en.wikipedia.org/wiki/Lebesgue_integration#Construction) by the [solid angle](https://en.wikipedia.org/wiki/Solid_angle) $d\Omega$:
+How should we choose the value of $\bm{n}$? It depends on the location of the sources of the field. Unless they are explicitly specified, the general solution admits *any* value of $\bm{n}$. And because the Helmholtz equation is both linear and homogeneous, we can actually use *every* value of $\bm{n}$ by invoking the superposition principle. Thus, the general solution is an integral taken over the surface of the unit sphere $\mathbb{S}^2$ [measured](https://en.wikipedia.org/wiki/Lebesgue_integration#Construction) by the [solid angle](https://en.wikipedia.org/wiki/Solid_angle) $d\Omega$:
 
 $$ \tag{6.15}
 	\psi(\bm{r}) =
 	\oint\_{\mathbb{S}^2} \psi(\bm{r}, \bm{n}) d\Omega =
 	\oint\_{\mathbb{S}^2} \psi(0, \bm{n}) e^{i k (\bm{r} \cdot \bm{n})} d\Omega.
 $$
+
+It is directly related to the *two-dimensional* Fourier transform restricted to the surface of a unit sphere.
 
 Eqn. 6.15 can be used to solve Eqn. 6.10:
 
@@ -1068,8 +1069,6 @@ $$ \tag{6.16}
 $$
 
 That is a general solution of the Maxwell equations for a *source-free region of a linear, isotropic, homogeneous* medium.
-
-<!--
 
 ### Plane waves
 
@@ -1463,6 +1462,8 @@ $$ \tag{7.42}
 		\sqrt{ \frac{\epsilon}{\mu} }
 	\bigg\rbrace |\bm{E_0}|^2 e^{-\alpha (\bm{r} \cdot \bm{n})} \bm{n}.
 $$
+
+<!--
 
 ### Fresnel Equations
 
