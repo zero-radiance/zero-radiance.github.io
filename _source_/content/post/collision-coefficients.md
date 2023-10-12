@@ -1082,7 +1082,9 @@ $$ \tag{7.1}
 \end{aligned}
 $$
 
-This triple integral represents a [wave packet](https://en.wikipedia.org/wiki/Wave_packet). It is a collection of *vector* [plane waves](https://en.wikipedia.org/wiki/Plane_wave) \[[6](#references) (ch. 1.4.2), [8](#references) (ch. 3.1)\] of the form
+The resulting integral transform is three-dimensional; it is sometimes convenient to combine $\bm{n}$ and $\omega$ to explicitly represent Eqn. 7.1 by a three-dimensional inverse Fourier transform from the [momentum space](https://en.wikipedia.org/wiki/Position_and_momentum_spaces) parameterized by the *wave vectors* $\bm{k} = k \bm{n}$ \[[28](#references) (ch. 5.2)\].
+
+Physically, this triple integral represents a [wave packet](https://en.wikipedia.org/wiki/Wave_packet). It is a collection of *vector* [plane waves](https://en.wikipedia.org/wiki/Plane_wave) \[[6](#references) (ch. 1.4.2), [8](#references) (ch. 3.1)\] of the form
 
 $$ \tag{7.2}
 	\bm{E}(\bm{r}, \bm{n}, \omega) e^{-i \omega t}
