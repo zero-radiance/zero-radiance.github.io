@@ -928,7 +928,7 @@ Writing the Maxwell equations this way allows us to compare the macroscopic Eqn.
 
 ### Helmholtz Equation
 
-Consider a *source-free* region of space devoid of source charges and currents. By setting $\bm{J\_s} = \rho\_s = 0$ in Eqn. 5.7.3-5.7.4, we obtain a coupled system of linear equations:
+Consider a *source-free* region of space devoid of source charges and currents. Setting $\bm{J\_s} = \rho\_s = 0$ in Eqn. 5.7 yields
 
 $$ \tag{6.1}
 \begin{aligned}
@@ -1008,7 +1008,7 @@ $$ \tag{6.9}
 	\nabla \big( \nabla \cdot \bm{E}(\bm{r}, \omega) \big) - \nabla^2 \bm{E}(\bm{r}, \omega) - k^2(\omega) \bm{E}(\bm{r}, \omega) = 0.
 $$
 
-Substitution of Eqn. 6.2.4 into 6.9 yields the following vector equation of the electric field $\bm{E}$:
+Substitution of Eqn. 6.2.4 into 6.9 yields the following equation of the electric field vector $\bm{E}$:
 
 $$ \tag{6.10}
 	\nabla^2 \bm{E}(\bm{r}, \omega) + k^2(\omega) \bm{E}(\bm{r}, \omega) = 0.
@@ -1058,7 +1058,7 @@ $$ \tag{6.15}
 	\oint\_{\mathbb{S}^2} \psi(0, \bm{n}) e^{i k (\bm{r} \cdot \bm{n})} d\Omega.
 $$
 
-It is directly related to the *two-dimensional* Fourier transform restricted to the surface of a unit sphere.
+It takes the form of a *2-dimensional* Fourier transform restricted to the surface of a unit sphere.
 
 Eqn. 6.15 can be used to solve Eqn. 6.10:
 
@@ -1082,7 +1082,7 @@ $$ \tag{7.1}
 \end{aligned}
 $$
 
-The resulting integral transform is three-dimensional; it is sometimes convenient to combine $\bm{n}$ and $\omega$ to explicitly represent Eqn. 7.1 by a three-dimensional inverse Fourier transform from the [momentum space](https://en.wikipedia.org/wiki/Position_and_momentum_spaces) parameterized by the *wave vectors* $\bm{k} = k \bm{n}$ \[[28](#references) (ch. 5.2)\].
+It is sometimes convenient to combine $\bm{n}$ and $\omega$ to explicitly represent Eqn. 7.1 by a 3-dimensional inverse Fourier transform from the [momentum space](https://en.wikipedia.org/wiki/Position_and_momentum_spaces) parameterized by the *wave vectors* $\bm{k} = k \bm{n}$ \[[28](#references) (ch. 5.2)\].
 
 Physically, this triple integral represents a [wave packet](https://en.wikipedia.org/wiki/Wave_packet). It is a collection of *vector* [plane waves](https://en.wikipedia.org/wiki/Plane_wave) \[[6](#references) (ch. 1.4.2), [8](#references) (ch. 3.1)\] of the form
 
@@ -1100,7 +1100,7 @@ $$ \tag{7.3}
 	= E_0(\bm{n}, \omega) e^{i k(\omega) (\bm{r} \cdot \bm{n}) - i \omega t},
 $$
 
-with the optical properies of the medium encapsulated in the (complex) [angular wavenumber](https://en.wikipedia.org/wiki/Wavenumber#Complex)
+with the optical properties of the medium encapsulated within the (complex) [angular wavenumber](https://en.wikipedia.org/wiki/Wavenumber#Complex)
 
 $$ \tag{7.4}
 	k(\omega)
@@ -1108,7 +1108,7 @@ $$ \tag{7.4}
 	= \omega \sqrt{\left( \varepsilon(\omega) + i \frac{\sigma(\omega)}{\omega} \right) \mu(\omega)}.
 $$
 
-$\bm{E_0}$ is called the *polarization vector* of the plane wave (for reasons that go beyond the scope of this article).
+$\bm{E_0}$ is called the *polarization vector* of the plane wave (for reasons that go beyond the scope of this section).
 
 If we define the [relative complex permittivity](https://en.wikipedia.org/wiki/Relative_permittivity#Lossy_medium) $\epsilon\_r$ and the [relative permeability](https://en.wikipedia.org/wiki/Permeability_(electromagnetism)#Relative_permeability_and_magnetic_susceptibility) $\mu\_r$ using the vacuum as reference,
 
@@ -1125,7 +1125,7 @@ $$ \tag{7.6}
 	\frac{\omega}{c} \sqrt{\epsilon\_r(\omega) \mu\_r(\omega)}.
 $$
 
-It is convenient to use a parametrization that does not involve taking a square root. Thus, we define two positive real numbers, the [refractive index](https://en.wikipedia.org/wiki/Refractive_index) $\eta$ and the [attenuation index](https://en.wikipedia.org/wiki/Refractive_index#Complex_refractive_index) $\kappa$ \[[6](#references) (ch. 14.1), [8](#references) (ch. 3.1)\], by
+It is convenient to use a parametrization that does not involve taking a square root. Let us define two positive real numbers, the [refractive index](https://en.wikipedia.org/wiki/Refractive_index) $\eta$ and the [attenuation index](https://en.wikipedia.org/wiki/Refractive_index#Complex_refractive_index) $\kappa$ \[[6](#references) (ch. 14.1), [8](#references) (ch. 3.1)\], by
 
 $$ \tag{7.7}
 	\eta(\omega) + i \kappa(\omega) =
@@ -1153,13 +1153,13 @@ $$ \tag{7.9}
 	= \omega \bigg( \frac{1}{v_p(\omega)} + \frac{i}{v_a(\omega)} \bigg),
 $$
 
-where $v_p = c/\eta$ is the [phase velocity](https://en.wikipedia.org/wiki/Phase_velocity) and $v_a=c/\kappa$ is the *amplitude velocity*. It shows that, in a dispersive medium, waves of different frequencies propagate at different rates. Higher velocities are accomplished by reducing the wavelength
+where $v_p = c/\eta$ is the [phase velocity](https://en.wikipedia.org/wiki/Phase_velocity) and $v_a=c/\kappa$ is the *amplitude velocity*. It shows that, in a dispersive medium, waves of different frequencies propagate at different rates. The phase velocity is connected to the angular frequency by the [wavelength](https://en.wikipedia.org/wiki/Wavelength)
 
 $$ \tag{7.?}
-	\lambda = \frac{2 \pi}{\mathcal{Re} \lbrace k \rbrace } = \frac{2 \pi c}{\omega \eta}.
+	\lambda = \frac{2 \pi}{\mathcal{Re} \lbrace k \rbrace } = \frac{2 \pi}{\omega} v_p.
 $$
 
-In order to develop some intuition about the role of the refractive index \[[5](#references) (vol. II, ch. 32.4)\], consider the spatial component of a scalar plane wave
+In order to develop some intuition about the role of the refractive index \[[5](#references) (vol. II, ch. 32.4)\], take the spatial component of a scalar plane wave
 
 $$ \tag{7.10}
 \begin{aligned}
@@ -1170,7 +1170,7 @@ $$ \tag{7.10}
 \end{aligned}
 $$
 
-Multiplication by the temporal component $\exp(-i \omega t)$ yields the full expression of a scalar plane wave:
+Multiplication by the temporal component $\exp(-i \omega t)$ yields the expanded expression of a scalar plane wave:
 
 $$ \tag{7.11}
 \begin{aligned}
@@ -1207,7 +1207,7 @@ $$ \tag{7.14}
 	= |E\_0| e^{-\omega (\bm{r} \cdot \bm{n}) / v_a} \cos{\theta},
 $$
 
-where $|E|$ is the spatially-varying *peak amplitude*.
+where $|E|$ is the spatially (but not temporally) varying *peak amplitude*.
 
 If the attenuation index $\kappa = 0$, the amplitude velocity $v_a = \infin$, and Eqn. 7.14 represents an ordinary sine wave.
 
@@ -1217,9 +1217,13 @@ On the other hand, $\kappa > 0$ produces an exponential decay characteristic of 
 
 [Insert Picture Here]
 
-Eqn. 7.1 can be seen as a decomposition of the electric field into plane waves interfering with each other. By [interference](https://en.wikipedia.org/wiki/Wave_interference), we simply mean that when two waves (often assumed to be of the same frequency) are added together, the peak amplitude of the resulting wave is, in general, different from the sum of the peak amplitudes unless the waves oscillate *in-phase* (in such a way that the phase difference is zero), in which case interference is said to be *constructive*. In the worst case scenario, the peaks align with the troughs, and *destructive* interference causes the waves to completely cancel each other. A typical *out-of-phase* case falls in between these two extremes \[[5](#references) (vol. I, ch. 29)\].
+Eqn. 7.1 shows a decomposition of the electric field into plane waves interfering with each other. By [interference](https://en.wikipedia.org/wiki/Wave_interference), we simply mean that when two waves (often assumed to be of the same frequency) are added together, the peak amplitude of the resulting wave is, in general, different from the sum of the peak amplitudes unless the waves oscillate *in-phase* (in such a way that the phase difference is zero), in which case interference is said to be *constructive*. In the worst-case scenario, the peaks align with the troughs, and *destructive* interference causes the waves to completely cancel each other. A typical *out-of-phase* case falls in between these two extremes \[[5](#references) (vol. I, ch. 29)\].
 
 [Insert Picture Here]
+
+---
+
+*Properties...*
 
 It is easy to show that, under favorable conditions, the field vectors oscillate in the plane of the wave. In general, the Maxwell equations (cf. Eqn. 3.9.2, 3.9.4) tell us that
 
