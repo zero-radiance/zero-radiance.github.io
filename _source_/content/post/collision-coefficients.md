@@ -1082,7 +1082,7 @@ $$ \tag{7.1}
 \end{aligned}
 $$
 
-It is sometimes convenient to combine $\bm{n}$ and $\omega$ to explicitly represent Eqn. 7.1 by a 3-dimensional inverse Fourier transform from the [momentum space](https://en.wikipedia.org/wiki/Position_and_momentum_spaces) parameterized by the *wave vectors* $\bm{k} = k \bm{n}$ \[[28](#references) (ch. 5.2)\].
+It is sometimes convenient to combine $\bm{n}$ and $\omega$ to explicitly express Eqn. 7.1 as a 3-dimensional inverse Fourier transform from the [momentum space](https://en.wikipedia.org/wiki/Position_and_momentum_spaces) parameterized by the *wave vectors* $\bm{k} = k \bm{n}$ \[[28](#references) (ch. 5.2)\].
 
 Physically, this triple integral represents a [wave packet](https://en.wikipedia.org/wiki/Wave_packet). It is a collection of *vector* [plane waves](https://en.wikipedia.org/wiki/Plane_wave) \[[6](#references) (ch. 1.4.2), [8](#references) (ch. 3.1)\] of the form
 
@@ -1100,7 +1100,7 @@ $$ \tag{7.3}
 	= E_0(\bm{n}, \omega) e^{i k(\omega) (\bm{r} \cdot \bm{n}) - i \omega t},
 $$
 
-with the optical properties of the medium encapsulated within the (complex) [angular wavenumber](https://en.wikipedia.org/wiki/Wavenumber#Complex)
+with the optical properties of the medium encapsulated within the *complex* [angular wavenumber](https://en.wikipedia.org/wiki/Wavenumber#Complex)
 
 $$ \tag{7.4}
 	k(\omega)
@@ -1110,14 +1110,14 @@ $$
 
 $\bm{E_0}$ is called the *polarization vector* of the plane wave (for reasons that go beyond the scope of this section).
 
-If we define the [relative complex permittivity](https://en.wikipedia.org/wiki/Relative_permittivity#Lossy_medium) $\epsilon\_r$ and the [relative permeability](https://en.wikipedia.org/wiki/Permeability_(electromagnetism)#Relative_permeability_and_magnetic_susceptibility) $\mu\_r$ using the vacuum as reference,
+If we define the [relative complex permittivity](https://en.wikipedia.org/wiki/Relative_permittivity#Lossy_medium) $\epsilon\_r$ and the [relative permeability](https://en.wikipedia.org/wiki/Permeability_(electromagnetism)#Relative_permeability_and_magnetic_susceptibility) $\mu\_r$ using the vacuum as the reference,
 
 $$ \tag{7.5}
 	\epsilon\_r(\omega) = \frac{\epsilon(\omega)}{\varepsilon_0}, \quad
 	\mu\_r(\omega) = \frac{\mu(\omega)}{\mu\_0},
 $$
 
-the angular wavenumber can be redefined as
+the angular wavenumber can be correspondingly redefined as
 
 $$ \tag{7.6}
 	k(\omega) =
@@ -1125,14 +1125,14 @@ $$ \tag{7.6}
 	\frac{\omega}{c} \sqrt{\epsilon\_r(\omega) \mu\_r(\omega)}.
 $$
 
-It is convenient to use a parametrization that does not involve taking a square root. Let us define two positive real numbers, the [refractive index](https://en.wikipedia.org/wiki/Refractive_index) $\eta$ and the [attenuation index](https://en.wikipedia.org/wiki/Refractive_index#Complex_refractive_index) $\kappa$ \[[6](#references) (ch. 14.1), [8](#references) (ch. 3.1)\], by
+It is convenient to use a parametrization that does not involve taking a square root. This leads to the definitions of two positive real numbers, the [refractive index](https://en.wikipedia.org/wiki/Refractive_index) $\eta$ and the [attenuation index](https://en.wikipedia.org/wiki/Refractive_index#Complex_refractive_index) $\kappa$ \[[6](#references) (ch. 14.1), [8](#references) (ch. 3.1)\]:
 
 $$ \tag{7.7}
 	\eta(\omega) + i \kappa(\omega) =
 	\sqrt{\epsilon\_r(\omega) \mu\_r(\omega)}.
 $$
 
-This expression is sometimes called the *complex refractive index*.
+Their combination is sometimes called the *complex refractive index*.
 
 For high frequencies, such as those encountered in optics, we may perform a [Laurent series](https://en.wikipedia.org/wiki/Laurent_series) [expansion](https://www.wolframalpha.com/input/?i=series+sqrt%28a-I%2Fw*b%29) at infinity:
 
@@ -1153,7 +1153,7 @@ $$ \tag{7.9}
 	= \omega \bigg( \frac{1}{v_p(\omega)} + \frac{i}{v_a(\omega)} \bigg),
 $$
 
-where $v_p = c/\eta$ is the [phase velocity](https://en.wikipedia.org/wiki/Phase_velocity) and $v_a=c/\kappa$ is the *amplitude velocity*. It shows that, in a dispersive medium, waves of different frequencies propagate at different rates. The phase velocity is connected to the angular frequency by the [wavelength](https://en.wikipedia.org/wiki/Wavelength)
+where $v_p = c/\eta$ is the [phase velocity](https://en.wikipedia.org/wiki/Phase_velocity) and $v_a=c/\kappa$ is the *amplitude velocity*. It shows that, in a *dispersive* medium, waves of different frequencies propagate at different rates. The phase velocity is connected to the angular frequency by the [wavelength](https://en.wikipedia.org/wiki/Wavelength)
 
 $$ \tag{7.?}
 	\lambda = \frac{2 \pi}{\mathcal{Re} \lbrace k \rbrace } = \frac{2 \pi}{\omega} v_p.
@@ -1181,9 +1181,7 @@ $$
 
 As any complex number, it can be expressed in terms of the *amplitude* $|E|$ and the *phase* $\theta$, both of which are [real-valued functions](https://en.wikipedia.org/wiki/Real-valued_function).
 
-Let us perform [dimensional analysis](https://en.wikipedia.org/wiki/Dimensional_analysis) of Eqn. 7.11.
-
-First, notice that $(\bm{r} \cdot \bm{n}) / v$ has units of time. Then, take the [argument](https://en.wikipedia.org/wiki/Argument_(complex_analysis)) of the expression
+Let us perform [dimensional analysis](https://en.wikipedia.org/wiki/Dimensional_analysis) of Eqn. 7.11. First of all, $(\bm{r} \cdot \bm{n}) / v$ has units of time. Next, take the [argument](https://en.wikipedia.org/wiki/Argument_(complex_analysis)) of the expression
 
 $$ \tag{7.12}
 	\theta(\bm{r}, t)
@@ -1217,7 +1215,7 @@ On the other hand, $\kappa > 0$ produces an exponential decay characteristic of 
 
 [Insert Picture Here]
 
-Eqn. 7.1 shows a decomposition of the electric field into plane waves interfering with each other. By [interference](https://en.wikipedia.org/wiki/Wave_interference), we simply mean that when two waves (often assumed to be of the same frequency) are added together, the peak amplitude of the resulting wave is, in general, different from the sum of the peak amplitudes unless the waves oscillate *in-phase* (in such a way that the phase difference is zero), in which case interference is said to be *constructive*. In the worst-case scenario, the peaks align with the troughs, and *destructive* interference causes the waves to completely cancel each other. A typical *out-of-phase* case falls in between these two extremes \[[5](#references) (vol. I, ch. 29)\].
+Eqn. 7.1 shows a decomposition of the electric field into plane waves interfering with each other. By [interference](https://en.wikipedia.org/wiki/Wave_interference), we simply mean that when two waves (often assumed to be of the same frequency) are added together, the peak amplitude of the resulting wave is different from the sum of the peak amplitudes unless the waves oscillate *in-phase* (in such a way that the phase difference is zero), in which case interference is said to be *constructive*. In the worst-case scenario, the peaks align with the troughs, and *destructive* interference causes the waves to completely cancel each other. A typical *out-of-phase* case falls in between these two extremes \[[5](#references) (vol. I, ch. 29)\].
 
 [Insert Picture Here]
 
@@ -1262,13 +1260,13 @@ $$ \tag{7.19}
 	= 0.
 $$
 
-We can prove that the magnetic vector possesses the same property in a similar manner. According to Eqn. 3.9.1,
+We can prove that the magnetic vector possesses the same property in a similar way. According to Eqn. 3.9.1,
 
 $$ \tag{7.20}
 	\nabla \times \bm{E}(\bm{r}, \omega) = i \omega \bm{B}(\bm{r}, \omega).
 $$
 
-Substitute Eqn. 6.16 into the left-hand side and expand the expression of the curl
+First, substitute Eqn. 6.16 into the left-hand side and expand the expression of the curl
 
 $$ \tag{7.21}
 	\nabla \times \bm{E}(\bm{r}, \bm{n}, \omega)
@@ -1282,7 +1280,7 @@ $$ \tag{7.22}
 	\frac{k(\omega)}{\omega} \bm{n} \times \bm{E}(\bm{r}, \bm{n}, \omega) = \bm{B}(\bm{r}, \bm{n}, \omega).
 $$
 
-By taking the inner product of the resulting expression with $\bm{n}$, we obtain an analog of Eqn. 7.18:
+If we take the inner product of the resulting expression with $\bm{n}$, we obtain an analog of Eqn. 7.18:
 
 $$ \tag{7.23}
 	\frac{k(\omega)}{\omega} \bm{n} \cdot \big( \bm{n} \times \bm{E}(\bm{r}, \bm{n}, \omega) \big)
@@ -1290,23 +1288,23 @@ $$ \tag{7.23}
 	= 0,
 $$
 
-where the last equality follows from the property of the [scalar triple product](https://en.wikipedia.org/wiki/Triple_product#Scalar_triple_product) $\bm{n} \cdot (\bm{n} \times \bm{E}) = \bm{E} \cdot (\bm{n} \times \bm{n})$.
+where the last equality follows from the cyclical property of the [scalar triple product](https://en.wikipedia.org/wiki/Triple_product#Scalar_triple_product).
 
-Thus, the magnetic field vector is always orthogonal to the plane normal:
+Eqn. 7.23 tells us that the magnetic field vector is always orthogonal to the plane normal:
 
 $$ \tag{7.24}
 	\bm{n} \cdot \mathcal{Re} \big\lbrace \bm{B}(\bm{r}, \bm{n}, \omega) e^{-i \omega t} \big\rbrace
 	= 0.
 $$
 
-With $\bm{E}$ and $\bm{B}$ both orthogonal to $\bm{n}$, the only remaining question is regarding their mutual orientation. Using the definition of the wavenumber given by Eqn. 7.9, Eqn. 7.22 can be written as
+With $\bm{E}$ and $\bm{B}$ both orthogonal to $\bm{n}$, the only remaining question concerns their mutual orientation. Using the definition of the wavenumber given by Eqn. 7.9, Eqn. 7.22 can be expressed as
 
 $$ \tag{7.25}
 	\frac{1}{c} \big(\eta(\omega) + i \kappa(\omega) \big) \bm{n} \times \bm{E}(\bm{r}, \bm{n}, \omega)
 	= \bm{B}(\bm{r}, \bm{n}, \omega).
 $$
 
-If we multiply the both sides by $\exp(-i \omega t)$ and take the real part, the result
+If we multiply both sides by $\exp(-i \omega t)$ and take the real part, the result
 
 $$ \tag{7.26}
 	\small
@@ -1324,7 +1322,7 @@ $$
 
 [Insert Picture Here]
 
-Recall that we have seen the $\bm{E} \times \bm{B}$ expression before (cf. Eqn. 2.17). Assuming the fields are monochromatic, and the medium where we perform the measurements - non-magnetic, Eqn. 7.27 suggests that
+Recall that we have seen the $\bm{E} \times \bm{B}$ expression before (cf. Eqn. 2.17). Assuming the fields are monochromatic, and the medium where we perform the measurements -- non-magnetic, Eqn. 7.27 suggests the following the expression of the Poynting vector of a plane wave:
 
 $$ \tag{7.28}
 \begin{aligned}
@@ -1338,17 +1336,16 @@ $$ \tag{7.28}
 	&= \mu\_0^{-1}
 	\left| \mathcal{Re} \big\lbrace \bm{E}(\bm{r}, \bm{n}, \omega) e^{-i \omega t} \big\rbrace \right|
 	\left| \mathcal{Re} \big\lbrace \bm{B}(\bm{r}, \bm{n}, \omega) e^{-i \omega t} \big\rbrace \right|
-	 \bm{n}
+	 \bm{n}.
 \end{aligned}
 $$
-
-is the expression of the Poynting vector of a plane wave.
 
 If the field vectors are mutually orthogonal, Eqn. 7.26-7.27 define the ratio of wave amplitudes:
 
 $$ \tag{7.29}
-	\frac{\big| \mathcal{Re} \big\lbrace \bm{B}(\bm{r}, \bm{n}, \omega) e^{-i \omega t} \big\rbrace \big|}{\big| \mathcal{Re} \big\lbrace \bm{E}(\bm{r}, \bm{n}, \omega) e^{-i \omega t} \big\rbrace \big|}
-	= \frac{\eta(\omega)}{c}.
+	\frac{\big| \mathcal{Re} \big\lbrace \bm{E}(\bm{r}, \bm{n}, \omega) e^{-i \omega t} \big\rbrace \big|}
+	{\big| \mathcal{Re} \big\lbrace \bm{B}(\bm{r}, \bm{n}, \omega) e^{-i \omega t} \big\rbrace \big|}
+	= \frac{c}{\eta(\omega)} = v_p(\omega).
 $$
 
 This equality has two consequences. First, it says that the electric and the magnetic vectors of a plane wave are synchronized -- they oscillate in-phase. Secondly, it means we can compute the Poynting vector without explicit consideration of the magnetic field. If we align $\bm{n}$ with the $z$-axis of the Cartesian coordinate system, then
@@ -1363,9 +1360,9 @@ $$
 
 where we have utilized the expression of the wave amplitude of Eqn. 7.14.
 
-The average value of a squared cosine is $\frac{1}{2}$, so the corresponding irradiance[^11] value (cf. Eqn. 2.25) is
+Since the average value of a squared cosine is $\frac{1}{2}$, the corresponding irradiance[^11] value (cf. Eqn. 2.25) is
 
-[^11]: Since the electromagnetic fields is monochromatic, the expressions of irradiance and spectral irradiance are identical.
+[^11]: Since the electromagnetic field is monochromatic, the expressions of irradiance and spectral irradiance are identical.
 
 $$ \tag{7.32}
 	\Epsilon(\bm{n'})
@@ -1373,18 +1370,18 @@ $$ \tag{7.32}
 	= \frac{\mu\_0^{-1}}{2} \frac{\eta}{c} |\bm{E_0}|^2 \big( \bm{n} \cdot \bm{n'} \big).
 $$
 
-Without proof, we shall state an interesting fact. The time-averaged energy density (cf. Eqn. 2.23-2.24) of the field of a plane wave in a non-absorptive, non-magnetic medium is
+Without proof, we shall state an interesting fact. The time-averaged electromagnetic energy density (cf. Eqn. 2.23-2.24) of a plane wave in a non-absorptive, non-magnetic medium is
 
 $$ \tag{7.33}
 	\bigg\langle \frac{\partial \mathcal{E\_{em}}}{\partial V} \bigg\rangle
 	= \frac{\mu\_0^{-1}}{2} \frac{\eta^2}{c^2} |\bm{E_0}|^2.
 $$
 
-This implies that the amount of energy that goes through a unit area per unit time is the amount of energy per unit volume times the velocity at which the energy flows \[[5](#references) (vol. II, ch. 27)\]:
+This implies that the amount of energy that passes through a surface of unit area per unit time is the amount of energy per unit volume times the velocity at which the energy flows \[[5](#references) (vol. II, ch. 27)\]:
 
 $$ \tag{7.34}
 	\Epsilon(\bm{n'})
-	= \frac{c}{\eta} \bigg\langle \frac{\partial \mathcal{E\_{em}}}{\partial V} \bigg\rangle \big( \bm{n} \cdot \bm{n'} \big).
+	= v_p \bigg\langle \frac{\partial \mathcal{E\_{em}}}{\partial V} \bigg\rangle \big( \bm{n} \cdot \bm{n'} \big).
 $$
 
 If the medium is absorptive or magnetic, the formula of the *instantaneous* Poynting vector becomes more complicated. Nevertheless, we can easily find the *time-averaged* Poynting vector using Eqn. 4.16-4.17:
@@ -1423,7 +1420,7 @@ $$ \tag{7.38}
 	\bigg\rbrace.
 $$
 
-From the definitions of $\bm{E}$ and $k$ given by Eqn. 7.2 and 7.9, respectively, it follows that
+Firs of all, according to Eqn. 7.18, $\bm{E} \cdot \bm{n} = 0$. Secondly, from the definitions of $\bm{E}$ and $k$ given by Eqn. 7.2 and 7.9, respectively, it follows that
 
 $$ \tag{7.39}
 	\bm{E} \cdot \bm{E^{\*}}
@@ -1431,7 +1428,7 @@ $$ \tag{7.39}
 	= |\bm{E_0}|^2 e^{-(2 \kappa \omega / c) (\bm{r} \cdot \bm{n})}
 $$
 
-is a real number. The constants in the exponential may be combined, giving rise to the [absorption coefficient](https://en.wikipedia.org/wiki/Attenuation_coefficient#Absorption_and_scattering_coefficients)
+is a real number. The constants in the exponential may be grouped together, giving rise to the [absorption coefficient](https://en.wikipedia.org/wiki/Attenuation_coefficient#Absorption_and_scattering_coefficients)
 
 $$ \tag{7.40}
 	\alpha(\omega)
@@ -1441,7 +1438,7 @@ $$
 
 where $\lambda_0 = 2 \pi c / \omega$ is the vacuum wavelength.
 
-Furthermore, the original definition of the angular wavenumber given by Eqn. 7.4 suggests that
+Finally, the definition of the angular wavenumber given by Eqn. 7.4 suggests that
 
 $$ \tag{7.41}
 	\mathcal{Re} \bigg\lbrace
@@ -1460,7 +1457,7 @@ $$
 
 where $Z = \sqrt{\mu / \epsilon} = \omega \mu / k$ is called the [wave impedance](https://en.wikipedia.org/wiki/Wave_impedance) \[[17](#references) (ch. 5.6)\].
 
-Finally, according to Eqn. 7.18, $\bm{E} \cdot \bm{n} = 0$. Thus, if we combine Eqn. 7.38-7.41, we obtain the general expression of the time-averaged Poynting vector that accounts for absorption and magnetization:
+By combining Eqn. 7.38-7.41, we obtain a general expression of the time-averaged Poynting vector that accounts for absorption and magnetization:
 
 $$ \tag{7.42}
 	\braket{\bm{S}}
