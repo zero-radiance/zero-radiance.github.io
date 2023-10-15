@@ -235,6 +235,8 @@ $$
 
 where $\bm{J_n}$ is the *surface* current density.
 
+One can also utilize the boundary conditions in a more creative way by imagining a *virtual* surface (conceptually similar to the [Gaussian surface](https://en.wikipedia.org/wiki/Gaussian_surface)) that partitions the space in such a way that allows for different (typically, simpler) mathematical methods to be employed in each individual region. The boundary conditions are then used to ensure that all these local solutions are globally consistent.
+
 In addition to the boundary conditions, the law of conservation of energy imposes two additional restrictions on valid electromagnetic fields:
 
 - the *edge condition* says that the amount of electromagnetic energy stored near an edge must be finite even if the magnitude of the field (the energy density) at the edge becomes infinite;
