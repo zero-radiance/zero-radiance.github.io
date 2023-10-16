@@ -636,9 +636,9 @@ $$ \tag{4.3}
 	\bm{E}(\bm{r}, \omega') \times \bm{H}(\bm{r}, \omega - \omega') d\omega'.
 $$
 
-The expression is compact and simple, but not particularly useful, since the value of the complex Poynting vector for a particular frequency depends on the entire electromagnetic spectrum.
+The expression is compact and simple, but not particularly useful, since the value of the complex Poynting vector at a particular frequency depends on the entire electromagnetic spectrum.
 
-We can obtain a more practical result at the cost of some generality. Specifically, we must assume that the expression of the electromagnetic field is a [periodic function](https://en.wikipedia.org/wiki/Periodic_function) of time, such that the *fundamental period* $\thinspace T\_1 = 2 \pi / \omega_1$ of both[^3] the electric and the magnetic fields is the same \[[5](#references) (vol. I, ch. 50) [6](#references) (ch. 1.3.3, 1.4.3)\]. In most cases, the limitations imposed by this condition are not particularly severe: for visible light, the fundamental period is very short, and the fields can also be virtually repeated outside the time interval of interest.
+Analysis of the general form of Eqn. 4.3 can be performed using the techniques of *optical coherence* theory \[[6](#references) (ch. 10)\]. If we limit ourselves to elementary methods, we can still obtain a useful result, but it will come at the cost of some generality. Specifically, we shall assume that the expression of the electromagnetic field is a [periodic function](https://en.wikipedia.org/wiki/Periodic_function) of time, such that the *fundamental period* $\thinspace T\_1 = 2 \pi / \omega_1$ of both[^3] the electric and the magnetic fields is the same \[[5](#references) (vol. I, ch. 50) [6](#references) (ch. 1.3.3, 1.4.3)\]. In most cases, the limitations imposed by this condition are not particularly severe: for visible light, the fundamental period is very short, and the fields can also be virtually repeated outside the time interval of interest.
 
 [^3]: The fact that the electric and the magnetic fields are two sides of the same coin can be easily shown using an argument from the [theory of relativity](https://en.wikipedia.org/wiki/Theory_of_relativity) \[[17](#references) (ch. 1.23)\].
 
