@@ -106,7 +106,7 @@ Eqn. 1.1.4 (bottom right) is known as [Gauss's law for electricity](https://en.w
 
 Eqn. 1.1.1 (top left) is called the [Maxwell-Faraday equation](https://en.wikipedia.org/wiki/Faraday%27s_law_of_induction). It says that a time-varying magnetic field always accompanies a circulating electric field. The final Eqn. 1.1.3 (bottom left) represents [Ampère-Maxwell law](https://en.wikipedia.org/wiki/Amp%C3%A8re%27s_circuital_law). It is somewhat more difficult to understand; essentially, it relates the circulation of a magnetic field around a closed loop to the electric current passing through the loop. Just like in Eqn. 1.1.1, the electric and the magnetic fields are not independent; however, in this case, their roles are reversed.
 
-The Maxwell equations form a coupled system of [partial differential equations](https://en.wikipedia.org/wiki/Partial_differential_equation). The left-hand side of each equation is composed of derivatives of the unknowns (the fields), and the right-hand side contains the sources (the currents and the charges). Since a derivative is a linear operator, these equations form a [linear system](https://en.wikipedia.org/wiki/Linear_system). As such, the Maxwell equations obey the [superposition principle](https://en.wikipedia.org/wiki/Superposition_principle) - if we determine the values of the fields for one source, and then, *separately*, for another, and assuming that these sources are not “disturbed” by the fields, then the solution for the configuration with *both* sources is precisely the sum of the fields found for each individual source:
+The Maxwell equations form a *coupled* system of [partial differential equations](https://en.wikipedia.org/wiki/Partial_differential_equation). The left-hand side of each equation is composed of derivatives of the unknowns (the fields), and the right-hand side contains the sources (the currents and the charges). Since a derivative is a linear operator, these equations form a [linear system](https://en.wikipedia.org/wiki/Linear_system). As such, the Maxwell equations obey the [superposition principle](https://en.wikipedia.org/wiki/Superposition_principle) - if we determine the values of the fields for one source, and then, *separately*, for another, and assuming that these sources are not “disturbed” by the fields, then the solution for the configuration with *both* sources is precisely the sum of the fields found for each individual source:
 
 $$ \tag{1.15}
 	\bm{J} = \bm{J_1} + \bm{J_2}, \space \rho = \rho_1 + \rho_2 \implies
@@ -234,6 +234,8 @@ $$ \tag{1.17}
 $$
 
 where $\bm{J_n}$ is the *surface* current density.
+
+One can also utilize the boundary conditions in a more creative way by imagining a *virtual* surface (conceptually similar to the [Gaussian surface](https://en.wikipedia.org/wiki/Gaussian_surface)) that partitions the space in such a way that allows for different (typically, simpler) mathematical methods to be employed in each individual region. The boundary conditions are then used to ensure that all these local solutions are globally consistent.
 
 In addition to the boundary conditions, the law of conservation of energy imposes two additional restrictions on valid electromagnetic fields:
 
@@ -1000,7 +1002,7 @@ $$ \tag{6.8}
 	\frac{\partial^2 \bm{E}}{\partial x^2} + \frac{\partial^2 \bm{E}}{\partial y^2} + \frac{\partial^2 \bm{E}}{\partial z^2}
 $$
 
-is the *vector* [Laplace](https://en.wikipedia.org/wiki/Laplace_operator) operator (a *scalar* Laplace operator applied to each vector component).
+is the *vector* [Laplace operator](https://en.wikipedia.org/wiki/Laplace_operator) (a *scalar* Laplace operator applied to each vector component).
 
 Now, use Eqn. 6.6 to expand Eqn. 6.5:
 
@@ -1466,15 +1468,13 @@ $$ \tag{7.42}
 	\bigg\rbrace |\bm{E_0}|^2 e^{-\alpha (\bm{r} \cdot \bm{n})} \bm{n}.
 $$
 
-<!--
-
 ### Fresnel Equations
 
 TODO
 
 ### Electromagnetic Potential
 
-The solutions of the Maxwell equations we have found so far have a limited range of validity. The medium must be isotropic and either homogeneous (which prohibits scattering) or divided into several bounded homogeneous regions (which permits scattering only at the boundaries), and the material's response to the incident electromagnetic field may only be purely linear. Moreover, while the method of solving a system of differential equations augmented with boundary conditions (the so-called [boundary value problem](https://en.wikipedia.org/wiki/Boundary_value_problem)) is suitable for many simple cases (such as reflection and transmission of a plane wave at a planar interface, which leads to the [Fresnel equations](https://en.wikipedia.org/wiki/Fresnel_equations)), it quickly becomes unwieldy for more complex problems. Another approach tends to become more viable, where one reformulates the field in terms of the [electromagnetic potential](https://en.wikipedia.org/wiki/Electromagnetic_four-potential), as this leads to an integral (rather than a differential) solution of the Maxwell equations.
+The solutions of the Maxwell equations we have found so far have a limited range of validity. The medium must be isotropic and either entirely homogeneous (which prohibits scattering) or divided into several homogeneous regions (which permits scattering only at the boundaries), and the material's response to the incident electromagnetic field may only be purely linear. Moreover, while the method of solving a system of partial differential equations augmented with boundary conditions (the so-caled [boundary value problem](https://en.wikipedia.org/wiki/Boundary_value_problem)) is suitable for simple problems, it quickly becomes unwieldy in more complex scenarios. In such cases, a different approach gains favor, where the electromagnetic field is described in terms of the [electromagnetic potential](https://en.wikipedia.org/wiki/Electromagnetic_four-potential), which leads to an integral (rather than a differential) formulation of the Maxwell equations.
 
 Take another look at the equation of the magnetic field. Since the [divergence of curl](https://en.wikipedia.org/wiki/Vector_calculus_identities#Divergence_of_curl_is_zero) is zero, Eqn. 1.1.2 can be written as
 
@@ -1496,7 +1496,7 @@ $$ \tag{8.3}
 	\bm{E}(\bm{r}, t) + \frac{\partial}{\partial t} \bm{A}(\bm{r}, t) = -\nabla \phi(\bm{r}, t).
 $$
 
-Thus both the electric and the magnetic fields are uniquely defined by the vector and the scalar potentials[^32]:
+Thus, both the electric and the magnetic fields are uniquely defined by the vector and the scalar potentials[^32]:
 
 $$ \tag{8.4}
 \begin{aligned}
@@ -1505,9 +1505,9 @@ $$ \tag{8.4}
 \end{aligned}
 $$
 
-[^32]: Eqn. 8.4 also indicates that while E and A are *polar vectors*, the cross product makes B an [axial vector](https://en.wikipedia.org/wiki/Pseudovector).
+[^32]: Eqn. 8.4 indicates that while $\bm{E}$ and $\bm{A}$ are *polar vectors*, the cross product makes $\bm{B}$ an [axial vector](https://en.wikipedia.org/wiki/Pseudovector).
 
-The converse is not true. Since the [curl of gradient](https://en.wikipedia.org/wiki/Vector_calculus_identities#Curl_of_gradient_is_zero) is zero, the vector potential
+The converse is not true. Since the [curl of gradient](https://en.wikipedia.org/wiki/Vector_calculus_identities#Curl_of_gradient_is_zero) is zero, the transformed vector potential
 
 $$ \tag{8.5}
 	\bm{A'}(\bm{r}, t) = \bm{A}(\bm{r}, t) + \nabla \chi(\bm{r}, t)
@@ -1519,15 +1519,15 @@ $$ \tag{8.6}
 	\bm{B}(\bm{r}, t) = \nabla \times \bm{A}(\bm{r}, t) = \nabla \times \bm{A'}(\bm{r}, t).
 $$
 
-If we substitute Eqn. 8.5 into 8.3 and group the terms under the gradient sign, we obtain the expression of the transformed scalar potential:
+If we substitute Eqn. 8.5 into 8.3 and group the terms that feature the gradient operator, we obtain the expression of the transformed scalar potential:
 
 $$ \tag{8.7}
 	\phi'(\bm{r}, t) = \phi(\bm{r}, t) - \frac{\partial}{\partial t} \chi(\bm{r}, t).
 $$
 
-Since the electric and the magnetic field are independent of a particular choice of $\chi$, they are said to be *invariant* under a [gauge transformation](https://en.wikipedia.org/wiki/Gauge_theory#Classical_electromagnetism) given by Eqn. 8.5 and 8.7.
+Since the electric and the magnetic fields are independent of the particular choice of $\chi$, they are said to be *invariant* under the [gauge transformation](https://en.wikipedia.org/wiki/Gauge_theory#Classical_electromagnetism) given by Eqn. 8.5 and 8.7.
 
-What is a good choice of $\chi$? That depends on the mathematical formulation of a particular problem. Usually, we want $\bm{A}$ to have a certain desirable property that simplifies some equation.
+What is a good choice of $\chi$? That depends on the formulation of the particular problem. Usually, we want $\bm{A}$ to have some desirable property that simplifies a certain equation.
 
 In general[^33], a sufficiently smooth and rapidly decaying vector field $\bm{A}$ can be [decomposed](https://en.wikipedia.org/wiki/Helmholtz_decomposition) into a sum of a divergence-free ([solenoidal](https://en.wikipedia.org/wiki/Solenoidal_vector_field)) component $\bm{A'}$ and a curl-free ([irrotational](https://en.wikipedia.org/wiki/Conservative_vector_field#Irrotational_vector_fields)) component $\bm{A''}$:
 
@@ -1564,7 +1564,9 @@ $$ \tag{8.11}
 \end{aligned}
 $$
 
-Let us justify our choice of the gauge transformation by expressing the microscopic Maxwell equations in terms of the electromagnetic potential. Begin by substituting Eqn. 8.4 into 1.1.3-1.1.4:
+Let us justify our choice of the gauge transformation by expressing the microscopic[^35] Maxwell equations in terms of the electromagnetic potential. Begin by substituting Eqn. 8.4 into 1.1.3-1.1.4:
+
+[^35]: The Lorenz condition for the macroscopic Maxwell equations is given in Sec. 18.
 
 $$ \tag{8.12}
 \begin{aligned}
@@ -1576,7 +1578,7 @@ $$ \tag{8.12}
 \end{aligned}
 $$
 
-We can immediately use the Lorenz condition to eliminate $\bm{A}$ from Eqn. 8.12.2. The result is an inhomogeneous scalar [wave equation](https://en.wikipedia.org/wiki/Wave_equation)
+We can immediately use the Lorenz condition to eliminate $\bm{A}$ from Eqn. 8.12.2. The result is an inhomogeneous *scalar* [wave equation](https://en.wikipedia.org/wiki/Wave_equation)
 
 $$ \tag{8.13}
 	\nabla^2 \phi(\bm{r}, t) - \frac{1}{c^2} \frac{\partial^2}{\partial t^2} \phi(\bm{r}, t)
@@ -1591,25 +1593,37 @@ $$ \tag{8.14}
 	= \frac{\bm{J}(\bm{r}, t)}{\mu_0^{-1}}.
 $$
 
-Once again, we use the Lorenz condition, but this time, we do it in order to eliminate $\phi$. We obtain an inhomogeneous vector wave equation
+Once again, we utilize the Lorenz condition, but this time, we do it in order to eliminate $\phi$. We obtain an inhomogeneous *vector* wave equation
 
 $$ \tag{8.15}
 	\nabla^2 \bm{A}(\bm{r}, t) - \frac{1}{c^2} \frac{\partial^2}{\partial t^2} \bm{A}(\bm{r}, t)
 	= -\frac{\bm{J}(\bm{r}, t)}{\mu_0^{-1}}.
 $$
 
-Putting it all together, the microscopic formulation of the Maxwell equations in terms of the electromagnetic potential results in an decoupled system of partial differential equations:
+At this point, it is convenient to introduce the [d'Alembert operator](https://en.wikipedia.org/wiki/D%27Alembert_operator) (or, simply, the *wave operator*):
+
+$$ \tag{8.1?}
+	\Box = \nabla^2 - \frac{1}{c^2} \frac{\partial^2}{\partial t^2}.
+$$
+
+Note that some authors use the opposite [sign convention](https://en.wikipedia.org/wiki/Sign_convention) dictated by their choice of the [metric signature](https://en.wikipedia.org/wiki/Metric_signature) of spacetime \[[5](#references) (vol. II, ch. 25.3), [28](#references) (ch. 5.1)\].
+
+Putting it all together, the microscopic formulation of the Maxwell equations in terms of the electromagnetic potential results in a *decoupled* system of partial differential equations:
 
 $$ \tag{8.16}
 \begin{aligned}
-	&\nabla^2 \bm{A}(\bm{r}, t) - \frac{1}{c^2} \frac{\partial^2}{\partial t^2} \bm{A}(\bm{r}, t)
+	&\Box \bm{A}(\bm{r}, t)
 	= -\frac{\bm{J}(\bm{r}, t)}{\mu_0^{-1}}, &
 	&\bm{B}(\bm{r}, t) = \nabla \times \bm{A}(\bm{r}, t), \cr
-	&\nabla^2 \phi(\bm{r}, t) - \frac{1}{c^2} \frac{\partial^2}{\partial t^2} \phi(\bm{r}, t)
+	&\Box \phi(\bm{r}, t)
 	= -\frac{\rho(\bm{r}, t)}{\varepsilon_0}, &
-	&\bm{E}(\bm{r}, t) = -\frac{\partial}{\partial t} \bm{A}(\bm{r}, t) - \nabla \phi(\bm{r}, t).
+	&\bm{E}(\bm{r}, t) = -\frac{\partial}{\partial t} \bm{A}(\bm{r}, t) - \nabla \phi(\bm{r}, t)
 \end{aligned}
 $$
+
+subject to the Lorenz condition given by Eqn. 8.11.
+
+<!--
 
 ### Green Functions
 
