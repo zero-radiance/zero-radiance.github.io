@@ -1,194 +1,116 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
-  
   <url>
+    <loc>https://zero-radiance.github.io/tags/area-lighting/</loc>
+    <lastmod>2023-10-18T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://zero-radiance.github.io/tags/line-lights/</loc>
+    <lastmod>2023-10-18T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://zero-radiance.github.io/tags/linearly-transformed-cosines/</loc>
+    <lastmod>2023-10-18T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://zero-radiance.github.io/post/line-lights/</loc>
+    <lastmod>2023-10-18T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://zero-radiance.github.io/post/</loc>
+    <lastmod>2023-10-18T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://zero-radiance.github.io/tags/</loc>
+    <lastmod>2023-10-18T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://zero-radiance.github.io/</loc>
+    <lastmod>2023-10-18T00:00:00+00:00</lastmod>
+  </url><url>
     <loc>https://zero-radiance.github.io/post/particle-volume/</loc>
     <lastmod>2020-09-20T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
+    <loc>https://zero-radiance.github.io/tags/light-scattering/</loc>
+    <lastmod>2020-09-20T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://zero-radiance.github.io/tags/optics/</loc>
+    <lastmod>2020-09-20T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://zero-radiance.github.io/tags/radiative-transfer/</loc>
+    <lastmod>2020-09-20T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://zero-radiance.github.io/tags/radiometry/</loc>
+    <lastmod>2020-09-20T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://zero-radiance.github.io/tags/analysis/</loc>
+    <lastmod>2020-08-24T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://zero-radiance.github.io/categories/</loc>
+    <lastmod>2020-08-24T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://zero-radiance.github.io/categories/graphics/</loc>
+    <lastmod>2020-08-24T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://zero-radiance.github.io/categories/math/</loc>
+    <lastmod>2020-08-24T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://zero-radiance.github.io/tags/precision/</loc>
+    <lastmod>2020-08-24T00:00:00+00:00</lastmod>
+  </url><url>
     <loc>https://zero-radiance.github.io/post/z-buffer/</loc>
     <lastmod>2020-08-24T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
+    <loc>https://zero-radiance.github.io/tags/z-buffer/</loc>
+    <lastmod>2020-08-24T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://zero-radiance.github.io/tags/chapman-function/</loc>
+    <lastmod>2020-02-17T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://zero-radiance.github.io/tags/importance-sampling/</loc>
+    <lastmod>2020-02-17T00:00:00+00:00</lastmod>
+  </url><url>
     <loc>https://zero-radiance.github.io/post/analytic-media/</loc>
     <lastmod>2020-02-17T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
+    <loc>https://zero-radiance.github.io/tags/diffusion-profile/</loc>
+    <lastmod>2019-12-16T00:00:00+00:00</lastmod>
+  </url><url>
     <loc>https://zero-radiance.github.io/post/sampling-diffusion/</loc>
     <lastmod>2019-12-16T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
+    <loc>https://zero-radiance.github.io/tags/subsurface-scattering/</loc>
+    <lastmod>2019-12-16T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://zero-radiance.github.io/tags/bump-mapping/</loc>
+    <lastmod>2019-06-23T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://zero-radiance.github.io/tags/normal-mapping/</loc>
+    <lastmod>2019-06-23T00:00:00+00:00</lastmod>
+  </url><url>
     <loc>https://zero-radiance.github.io/post/surface-gradient/</loc>
     <lastmod>2019-06-23T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
+    <loc>https://zero-radiance.github.io/tags/surface-gradient/</loc>
+    <lastmod>2019-06-23T00:00:00+00:00</lastmod>
+  </url><url>
     <loc>https://zero-radiance.github.io/post/split-sum/</loc>
     <lastmod>2019-04-02T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
+    <loc>https://zero-radiance.github.io/tags/image-based-lighting/</loc>
+    <lastmod>2019-04-02T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://zero-radiance.github.io/tags/split-sum-approximation/</loc>
+    <lastmod>2019-04-02T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://zero-radiance.github.io/tags/alpha-blending/</loc>
+    <lastmod>2018-10-11T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://zero-radiance.github.io/tags/deep-compositing/</loc>
+    <lastmod>2018-10-11T00:00:00+00:00</lastmod>
+  </url><url>
     <loc>https://zero-radiance.github.io/post/deep-compositing/</loc>
     <lastmod>2018-10-11T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
+    <loc>https://zero-radiance.github.io/tags/reprojection/</loc>
+    <lastmod>2018-10-11T00:00:00+00:00</lastmod>
+  </url><url>
     <loc>https://zero-radiance.github.io/about/</loc>
     <lastmod>2018-10-10T00:00:00+00:00</lastmod>
   </url>
-  
-  <url>
-    <loc>https://zero-radiance.github.io/tags/alpha-blending/</loc>
-    <lastmod>2018-10-11T00:00:00+00:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>https://zero-radiance.github.io/tags/analysis/</loc>
-    <lastmod>2020-08-24T00:00:00+00:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>https://zero-radiance.github.io/tags/bump-mapping/</loc>
-    <lastmod>2019-06-23T00:00:00+00:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>https://zero-radiance.github.io/categories/</loc>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>https://zero-radiance.github.io/tags/chapman-function/</loc>
-    <lastmod>2020-02-17T00:00:00+00:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>https://zero-radiance.github.io/tags/deep-compositing/</loc>
-    <lastmod>2018-10-11T00:00:00+00:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>https://zero-radiance.github.io/tags/diffusion-profile/</loc>
-    <lastmod>2019-12-16T00:00:00+00:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>https://zero-radiance.github.io/categories/graphics/</loc>
-    <lastmod>2020-08-24T00:00:00+00:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>https://zero-radiance.github.io/tags/image-based-lighting/</loc>
-    <lastmod>2019-04-02T00:00:00+00:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>https://zero-radiance.github.io/tags/importance-sampling/</loc>
-    <lastmod>2020-02-17T00:00:00+00:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>https://zero-radiance.github.io/tags/light-scattering/</loc>
-    <lastmod>2020-09-20T00:00:00+00:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>https://zero-radiance.github.io/categories/math/</loc>
-    <lastmod>2020-08-24T00:00:00+00:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>https://zero-radiance.github.io/tags/normal-mapping/</loc>
-    <lastmod>2019-06-23T00:00:00+00:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>https://zero-radiance.github.io/tags/optics/</loc>
-    <lastmod>2020-09-20T00:00:00+00:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>https://zero-radiance.github.io/post/</loc>
-    <lastmod>2020-09-20T00:00:00+00:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>https://zero-radiance.github.io/tags/precision/</loc>
-    <lastmod>2020-08-24T00:00:00+00:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>https://zero-radiance.github.io/tags/radiative-transfer/</loc>
-    <lastmod>2020-09-20T00:00:00+00:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>https://zero-radiance.github.io/tags/radiometry/</loc>
-    <lastmod>2020-09-20T00:00:00+00:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>https://zero-radiance.github.io/tags/reprojection/</loc>
-    <lastmod>2018-10-11T00:00:00+00:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>https://zero-radiance.github.io/tags/split-sum-approximation/</loc>
-    <lastmod>2019-04-02T00:00:00+00:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>https://zero-radiance.github.io/tags/subsurface-scattering/</loc>
-    <lastmod>2019-12-16T00:00:00+00:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>https://zero-radiance.github.io/tags/surface-gradient/</loc>
-    <lastmod>2019-06-23T00:00:00+00:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>https://zero-radiance.github.io/tags/</loc>
-    <lastmod>2018-10-11T00:00:00+00:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>https://zero-radiance.github.io/tags/z-buffer/</loc>
-    <lastmod>2020-08-24T00:00:00+00:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>https://zero-radiance.github.io/</loc>
-    <lastmod>2020-09-20T00:00:00+00:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
 </urlset>

@@ -1,22 +1,18 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Chapman Function on Zero Radiance</title>
     <link>https://zero-radiance.github.io/tags/chapman-function/</link>
     <description>Recent content in Chapman Function on Zero Radiance</description>
     <generator>Hugo -- gohugo.io</generator>
-    <lastBuildDate>Mon, 17 Feb 2020 00:00:00 +0000</lastBuildDate>
-    
-	<atom:link href="https://zero-radiance.github.io/tags/chapman-function/index.xml" rel="self" type="application/rss+xml" />
-    
-    
+    <lastBuildDate>Mon, 17 Feb 2020 00:00:00 +0000</lastBuildDate><atom:link href="https://zero-radiance.github.io/tags/chapman-function/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Sampling Analytic Participating Media</title>
       <link>https://zero-radiance.github.io/post/analytic-media/</link>
       <pubDate>Mon, 17 Feb 2020 00:00:00 +0000</pubDate>
       
       <guid>https://zero-radiance.github.io/post/analytic-media/</guid>
-      <description>&lt;p&gt;Rendering of participating media is an important aspect of every modern renderer. When I say participating media, I am not just talking about fog, fire, and smoke. All matter is composed of &lt;a href=&#34;https://courses.lumenlearning.com/boundless-chemistry/chapter/the-structure-of-the-atom/&#34;&gt;atoms&lt;/a&gt;, which can be sparsely (e.g. in a gas) or densely (e.g. in a solid) distributed in space. Whether we consider the particle or the wave nature of &lt;a href=&#34;https://en.wikipedia.org/wiki/Light&#34;&gt;light&lt;/a&gt;, it penetrates all matter (even &lt;a href=&#34;http://webhome.phy.duke.edu/~qelectron/group/group_reading_Born_and_Wolf.pdf&#34;&gt;metals&lt;/a&gt;) to a certain degree and interacts with its atoms along the way. The nature and the degree of &amp;quot;participation&amp;quot; depend on the material in question.&lt;/p&gt;</description>
+      <description>&lt;p&gt;Rendering of participating media is an important aspect of every modern renderer. When I say participating media, I am not just talking about fog, fire, and smoke. All matter is composed of &lt;a href=&#34;https://courses.lumenlearning.com/boundless-chemistry/chapter/the-structure-of-the-atom/&#34;&gt;atoms&lt;/a&gt;, which can be sparsely (e.g. in a gas) or densely (e.g. in a solid) distributed in space. Whether we consider the particle or the wave nature of &lt;a href=&#34;https://en.wikipedia.org/wiki/Light&#34;&gt;light&lt;/a&gt;, it penetrates all matter (even &lt;a href=&#34;http://webhome.phy.duke.edu/~qelectron/group/group_reading_Born_and_Wolf.pdf&#34;&gt;metals&lt;/a&gt;) to a certain degree and interacts with its atoms along the way. The nature and the degree of &amp;ldquo;participation&amp;rdquo; depend on the material in question.&lt;/p&gt;</description>
     </item>
     
   </channel>

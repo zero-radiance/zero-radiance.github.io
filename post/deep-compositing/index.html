@@ -3,28 +3,29 @@
 <head>
     <title>Deep Compositing and Reprojection // Zero Radiance</title>
 
-        <meta charset="utf-8">
+    <meta charset="utf-8">
     <meta http-equiv="content-type" content="text/html; charset=utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
-    <meta name="description" content="">
-    <meta name="keywords" content="">
-    <meta name="author" content="">
+    
+    
+    
+
         <meta property="og:title" content="Deep Compositing and Reprojection" />
     <meta property="og:description" content="" />
     <meta property="og:type" content="website" />
-    <meta property="og:locale" content="en_US" />
+    <meta property="og:locale" content="en" />
     <meta property="og:url" content="https://zero-radiance.github.io/post/deep-compositing/" />
     
 
-    <link href="" rel="alternate" type="application/rss+xml" title="Zero Radiance" />
-    <link rel="shortcut icon" href="/favicon.png">
+    <link rel="shortcut icon" href="/favicon.ico">
 
     <link href="https://zero-radiance.github.io/webfonts/ptserif/main.css" rel='stylesheet' type='text/css'>
     <link href="https://zero-radiance.github.io/webfonts/source-code-pro/main.css" rel="stylesheet" type="text/css">
 
     <link rel="stylesheet" href="https://zero-radiance.github.io/css/style.css">
+    
 
-    <meta name="generator" content="Hugo 0.54.0" />
+    <meta name="generator" content="Hugo 0.82.1" />
 </head>
 
 
@@ -66,17 +67,11 @@
         </div>
         <div class="article-entry" itemprop="articleBody">
             <p>Most graphics programmers are familiar with the concept of <a href="http://jcgt.org/published/0004/02/03/">alpha</a>. It has two interpretations - geometrical and optical. The former corresponds to coverage, while the latter refers to opacity.</p>
-
 <p>Regular compositing assumes non-overlapping objects. Typically, the <a href="https://graphics.pixar.com/library/Compositing/">over operator</a> is used. It implies that one of the objects is in front of the other, and thereby attenuates its contribution to the image.</p>
-
 <p>This blog post will cover <a href="https://graphics.pixar.com/library/DeepCompositing/">deep compositing</a>.</p>
-
 <p>It assumes the optical interpretation of alpha, and implies that objects overlap within a certain depth interval (e.g. along the ray).</p>
-
 <p>As the name implies, the technique can be used to composite volumetric effects stored in 3D texture <a href="https://rmanwiki.pixar.com/display/REN/Arbitrary+Output+Variables">AOVs</a>, such as renders of clouds or smoke.</p>
-
 <p>Another notable application is temporal reprojection for voxel-based volumetric lighting. As detailed in my <a href="http://advances.realtimerendering.com/s2018/index.htm">Siggraph 2018 presentation</a>, one way of performing temporal integration of volumetrics is to compute ray sub-integrals (along with associated opacity), store them in a 3D texture, and then look them up during the next frame. This involves both resampling (filtering) and rescaling, and both of these operations must be linear in order to not cause artifacts such as unexpected changes in brightness during camera motion.</p>
-
 <figure>
     <img src="/img/reproj_artifact.png"
          alt="Reprojection artifact"/> <figcaption>
@@ -84,70 +79,42 @@
         </figcaption>
 </figure>
 
-
 <p>Deep compositing is a solved problem. The <a href="https://graphics.pixar.com/library/DeepCompositing/">paper by Tom Duff</a> gives a detailed description of the algorithm, the mathematics involved, as well as several applications.</p>
-
 <p>To sum it up, a deep pixel or voxel (represented as a pair of color and opacity) is assumed to be in the <strong>exp</strong> space. To ensure that filtering and compositing operations are linear, they should operate on <strong>log</strong>-transformed values.</p>
-
 <p>The transformations are given as follows:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c++" data-lang="c++">OpticalDepthFromOpacity(a) <span style="color:#f92672">=</span> <span style="color:#f92672">-</span>log(<span style="color:#ae81ff">1</span> <span style="color:#f92672">-</span> a)
+OpacityFromOpticalDepth(d) <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span> <span style="color:#f92672">-</span> exp(<span style="color:#f92672">-</span>d)
 
-<pre><code class="language-c++">OpticalDepthFromOpacity(a) = -log(1 - a)
-OpacityFromOpticalDepth(d) = 1 - exp(-d)
+log(X) <span style="color:#f92672">=</span> {OpticalDepthFromOpacity( X.a) <span style="color:#f92672">/</span>  X.a <span style="color:#f92672">*</span> X.rgb, <span style="color:#f92672">-</span>OpticalDepthFromOpacity( X.a)}
+exp(Y) <span style="color:#f92672">=</span> {OpacityFromOpticalDepth(<span style="color:#f92672">-</span>Y.a) <span style="color:#f92672">/</span> <span style="color:#f92672">-</span>Y.a <span style="color:#f92672">*</span> Y.rgb,  OpacityFromOpticalDepth(<span style="color:#f92672">-</span>Y.a)}
 
-log(X) = {OpticalDepthFromOpacity( X.a) /  X.a * X.rgb, -OpticalDepthFromOpacity( X.a)}
-exp(Y) = {OpacityFromOpticalDepth(-Y.a) / -Y.a * Y.rgb,  OpacityFromOpticalDepth(-Y.a)}
-
-blend(A, B, t) = exp(lerp(log(A), log(B), t))
-</code></pre>
-
-<p>Note that you can drop negations from the definitions of <code>log(X)</code> and <code>exp(Y)</code> for convenience.</p>
-
-<p>If you take a look at the derivation in Tom's paper, it assumes that both pixels taking part in the blend operation correspond to objects overlapping the same depth interval. This presents a problem in the context of voxel-based volumetrics, since voxels sizes can vary dramatically, making blending of voxels corresponding to different depth intervals (of different sizes) a requirement to support reprojection during camera motion.</p>
-
-<p>In my Siggraph talk, I proposed a solution, which is to linearize pixels with respect to the size of the interval, normalize them (divide by the size), and then use Tom's blending algorithm. While the idea was conceptually sound, I wasn't able to find the correct solution for linearization and normalization before the conference deadline, and ended up presenting an ad-hoc method instead.</p>
-
-<p>Turns out, the correct solution is very simple, and requires no additional transformations. Tom's log transform actually performs linearization - this is why he is able to use the linear interpolation formula. It's possible to reason about this mathematically, but I found thinking about the physical interpretation of the transformation more intuitive.</p>
-
+blend(A, B, t) <span style="color:#f92672">=</span> exp(lerp(log(A), log(B), t))
+</code></pre></div><p>Note that you can drop negations from the definitions of <code>log(X)</code> and <code>exp(Y)</code> for convenience.</p>
+<p>If you take a look at the derivation in Tom&rsquo;s paper, it assumes that both pixels taking part in the blend operation correspond to objects overlapping the same depth interval. This presents a problem in the context of voxel-based volumetrics, since voxels sizes can vary dramatically, making blending of voxels corresponding to different depth intervals (of different sizes) a requirement to support reprojection during camera motion.</p>
+<p>In my Siggraph talk, I proposed a solution, which is to linearize pixels with respect to the size of the interval, normalize them (divide by the size), and then use Tom&rsquo;s blending algorithm. While the idea was conceptually sound, I wasn&rsquo;t able to find the correct solution for linearization and normalization before the conference deadline, and ended up presenting an ad-hoc method instead.</p>
+<p>Turns out, the correct solution is very simple, and requires no additional transformations. Tom&rsquo;s log transform actually performs linearization - this is why he is able to use the linear interpolation formula. It&rsquo;s possible to reason about this mathematically, but I found thinking about the physical interpretation of the transformation more intuitive.</p>
 <p>Given a homogeneous participating medium under constant illumination, the value of the in-scattered radiance integral along the ray segment (which is identical to the weight given by <a href="https://cs.dartmouth.edu/wjarosz/publications/novak18monte.html">free-path sampling</a> in the Monte Carlo context) is proportional to:</p>
-
-<pre><code class="language-c++">L_o = c * L_i * OpacityFromOpticalDepth(k * x) / k
-</code></pre>
-
-<p>where <code>k</code> is the extinction coefficient and <code>x</code> is the length of the interval. Their product is the optical depth <code>d</code>.</p>
-
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c++" data-lang="c++">L_o <span style="color:#f92672">=</span> c <span style="color:#f92672">*</span> L_i <span style="color:#f92672">*</span> OpacityFromOpticalDepth(k <span style="color:#f92672">*</span> x) <span style="color:#f92672">/</span> k
+</code></pre></div><p>where <code>k</code> is the extinction coefficient and <code>x</code> is the length of the interval. Their product is the optical depth <code>d</code>.</p>
 <p>The full value of the pixel <code>P</code> (including its opacity) is thus:</p>
-
-<pre><code class="language-c++">P = {c * L_i * OpacityFromOpticalDepth(k * x) / k, OpacityFromOpticalDepth(k * x)}
-</code></pre>
-
-<p>Let's apply the log transform to <code>P</code> and simplify:</p>
-
-<pre><code class="language-c++">log(P) = {(k * x) / P.a * c * L_i * OpacityFromOpticalDepth(k * x) / k, -(k * x)}
-log(P) = {c * L_i * x, -k * x}
-</code></pre>
-
-<p>As we can see, <code>log(P)</code> is a linear function of <code>x</code>, as well as of the incoming radiance <code>L_i</code>.</p>
-
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c++" data-lang="c++">P <span style="color:#f92672">=</span> {c <span style="color:#f92672">*</span> L_i <span style="color:#f92672">*</span> OpacityFromOpticalDepth(k <span style="color:#f92672">*</span> x) <span style="color:#f92672">/</span> k, OpacityFromOpticalDepth(k <span style="color:#f92672">*</span> x)}
+</code></pre></div><p>Let&rsquo;s apply the log transform to <code>P</code> and simplify:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c++" data-lang="c++">log(P) <span style="color:#f92672">=</span> {(k <span style="color:#f92672">*</span> x) <span style="color:#f92672">/</span> P.a <span style="color:#f92672">*</span> c <span style="color:#f92672">*</span> L_i <span style="color:#f92672">*</span> OpacityFromOpticalDepth(k <span style="color:#f92672">*</span> x) <span style="color:#f92672">/</span> k, <span style="color:#f92672">-</span>(k <span style="color:#f92672">*</span> x)}
+log(P) <span style="color:#f92672">=</span> {c <span style="color:#f92672">*</span> L_i <span style="color:#f92672">*</span> x, <span style="color:#f92672">-</span>k <span style="color:#f92672">*</span> x}
+</code></pre></div><p>As we can see, <code>log(P)</code> is a linear function of <code>x</code>, as well as of the incoming radiance <code>L_i</code>.</p>
 <p>This makes the normalization operation trivial:</p>
-
-<pre><code class="language-c++">N = log(P) / x = {c * L_i, -k}
-</code></pre>
-
-<p>This quantity can be interpreted as density along (the unit interval of) the ray, represented as a pair of (rescaled) incoming radiance and extinction.</p>
-
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c++" data-lang="c++">N <span style="color:#f92672">=</span> log(P) <span style="color:#f92672">/</span> x <span style="color:#f92672">=</span> {c <span style="color:#f92672">*</span> L_i, <span style="color:#f92672">-</span>k}
+</code></pre></div><p>This quantity can be interpreted as density along (the unit interval of) the ray, represented as a pair of (rescaled) incoming radiance and extinction.</p>
 <p>To sum up, linear blending of two pixels <code>P_1</code> and <code>P_2</code> of two different sizes <code>x_1</code> and <code>x_2</code> should be performed as follows:</p>
-
 <ol>
 <li>Linearize: compute <code>log(P_1)</code> and <code>log(P_2)</code>.</li>
 <li>Normalize: compute <code>N_1 = log(P_1) / x_1</code> and <code>N_2 = log(P_2) / x_2</code>.</li>
 <li>Blend: compute <code>B = lerp(N_1, N_2, t)</code>.</li>
-<li>Denormalize: let's say that <code>(x_1 &lt;= x_2)</code> and we want to blend all of <code>P_1</code> with a fraction of <code>P_2</code> of size <code>x_1</code>.
+<li>Denormalize: let&rsquo;s say that <code>(x_1 &lt;= x_2)</code> and we want to blend all of <code>P_1</code> with a fraction of <code>P_2</code> of size <code>x_1</code>.
 In that case, we compute <code>B_1 = B * x_1</code>.</li>
 <li>Delinearize: convert back to color and opacity by computing <code>E_1 = exp(B_1)</code>.</li>
 </ol>
-
 <p>Despite the derivation assuming constant illumination, we apply the same technique to all light types (once per voxel, not once per light) with good results.</p>
-
 <figure>
     <img src="/img/reproj_spot.png"
          alt="Reprojection with a spot light"/> <figcaption>
@@ -155,9 +122,7 @@ In that case, we compute <code>B_1 = B * x_1</code>.</li>
         </figcaption>
 </figure>
 
-
 <h2 id="acknowledgments">Acknowledgments</h2>
-
 <p>I would like to thank Sebastien Lagarde for reviewing this blog post and offering thoughtful comments.</p>
         </div>
 
@@ -166,19 +131,17 @@ In that case, we compute <code>B_1 = B * x_1</code>.</li>
         <div class="article-toc" style="display:none;">
             <h3>Contents</h3>
             <nav id="TableOfContents">
-<ul>
-<li>
-<ul>
-<li><a href="#acknowledgments">Acknowledgments</a></li>
-</ul></li>
-</ul>
+  <ul>
+    <li><a href="#acknowledgments">Acknowledgments</a></li>
+  </ul>
 </nav>
         </div>
         
         
 
         
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.slim.min.js" integrity="sha256-/SIrNqv8h6QGKDuNoLGA4iret+kyesCkHGzVUUV0shc=" crossorigin="anonymous"></script>
+        
+        <script src="https://zero-radiance.github.io/js/jquery-3.6.0.slim.min.js"></script>
         <script>
             (function() {
                 var $toc = $('#TableOfContents');
@@ -223,17 +186,17 @@ In that case, we compute <code>B_1 = B * x_1</code>.</li>
             <ul class="article-tag-list">
                 
                 <li class="article-tag-list-item">
-                    <a class="article-tag-list-link" href="https://zero-radiance.github.io//tags/alpha-blending">Alpha Blending
+                    <a class="article-tag-list-link" href="https://zero-radiance.github.io/tags/alpha-blending">Alpha Blending
                     </a>
                 </li>
                 
                 <li class="article-tag-list-item">
-                    <a class="article-tag-list-link" href="https://zero-radiance.github.io//tags/deep-compositing">Deep Compositing
+                    <a class="article-tag-list-link" href="https://zero-radiance.github.io/tags/deep-compositing">Deep Compositing
                     </a>
                 </li>
                 
                 <li class="article-tag-list-item">
-                    <a class="article-tag-list-link" href="https://zero-radiance.github.io//tags/reprojection">Reprojection
+                    <a class="article-tag-list-link" href="https://zero-radiance.github.io/tags/reprojection">Reprojection
                     </a>
                 </li>
                 
@@ -241,7 +204,8 @@ In that case, we compute <code>B_1 = B * x_1</code>.</li>
         </footer>
         
     </div>
-    <nav id="article-nav">
+    
+<nav id="article-nav">
     
     <a href="/post/split-sum/" id="article-nav-newer" class="article-nav-link-wrap">
         <div class="article-nav-title"><span>&lt;</span>&nbsp;
@@ -256,6 +220,7 @@ In that case, we compute <code>B_1 = B * x_1</code>.</li>
     
 </nav>
 
+
 </article>
 
         
@@ -263,22 +228,32 @@ In that case, we compute <code>B_1 = B * x_1</code>.</li>
     <footer id="footer">
     <div class="outer">
         <div id="footer-info" class="inner">
-            &copy; 2021 Zero Radiance
+            &copy; 2023 Zero Radiance
             <br />
             Powered by <a href="https://gohugo.io" target="_blank">Hugo</a> with theme <a href="https://github.com/carsonip/hugo-theme-minos" target="_blank">Minos</a>
         </div>
     </div>
     
 
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.9.0/styles/ir-black.min.css" integrity="sha384-MB5b01LGSe23q61l4c3S0rizcgipTwJg3lu7sim4umVyvL7FAQ42QaupvahTDYXU" crossorigin="anonymous">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.9.0/highlight.min.js" integrity="sha256-KbfTjB0WZ8vvXngdpJGY3Yp3xKk+tttbqClO11anCIU=" crossorigin="anonymous"></script>
-    <script>hljs.initHighlightingOnLoad();</script>
+    
+    <link rel="stylesheet" href="https://zero-radiance.github.io/highlight.js/ir-black.min.css">
+    <script defer src="https://zero-radiance.github.io/highlight.js/highlight.min.js" onload="hljs.initHighlightingOnLoad();"></script>
 
     
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.10.1/dist/katex.min.css" integrity="sha384-dbVIfZGuN1Yq7/1Ocstc1lUEm+AT+/rCkibIcC/OmWo5f0EA48Vf8CytHzGrSwbQ" crossorigin="anonymous">
-    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.10.1/dist/katex.min.js" integrity="sha384-2BKqo+exmr9su6dir+qCw08N2ZKRucY4PrGQPPWU1A7FtlCGjmEGFqXCv5nyM5Ij" crossorigin="anonymous"></script>
-    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.10.1/dist/contrib/auto-render.min.js" integrity="sha384-kWPLUVMOks5AQFrykwIup5lo0m3iMkkHrD0uJ4H5cjeGihAutqP0yW0J6dpFiVkI" crossorigin="anonymous"
-    onload="renderMathInElement(document.body, {strict: false});"></script>
+    
+    <link rel="stylesheet" href="https://zero-radiance.github.io/katex/katex.min.css">
+
+    
+    <script defer src="https://zero-radiance.github.io/katex/katex.min.js"></script>
+
+    
+    <script defer src="https://zero-radiance.github.io/katex/contrib/auto-render.min.js" onload="renderMathInElement(document.body, {
+    delimiters: [
+        {left: '$$', right: '$$', display: true},
+        {left: '$', right: '$', display: false}
+    ],
+    macros: {'’' : '\'',},
+    });"></script>
     
     <script>
         document.getElementById('main-nav-toggle').addEventListener('click', function () {

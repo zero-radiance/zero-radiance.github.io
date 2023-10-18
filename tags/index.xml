@@ -1,84 +1,35 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Tags on Zero Radiance</title>
     <link>https://zero-radiance.github.io/tags/</link>
     <description>Recent content in Tags on Zero Radiance</description>
     <generator>Hugo -- gohugo.io</generator>
-    <lastBuildDate>Thu, 11 Oct 2018 00:00:00 +0000</lastBuildDate>
-    
-	<atom:link href="https://zero-radiance.github.io/tags/index.xml" rel="self" type="application/rss+xml" />
-    
-    
+    <lastBuildDate>Wed, 18 Oct 2023 00:00:00 +0000</lastBuildDate><atom:link href="https://zero-radiance.github.io/tags/index.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title>Alpha Blending</title>
-      <link>https://zero-radiance.github.io/tags/alpha-blending/</link>
-      <pubDate>Thu, 11 Oct 2018 00:00:00 +0000</pubDate>
+      <title>Area Lighting</title>
+      <link>https://zero-radiance.github.io/tags/area-lighting/</link>
+      <pubDate>Wed, 18 Oct 2023 00:00:00 +0000</pubDate>
       
-      <guid>https://zero-radiance.github.io/tags/alpha-blending/</guid>
+      <guid>https://zero-radiance.github.io/tags/area-lighting/</guid>
       <description></description>
     </item>
     
     <item>
-      <title>Analysis</title>
-      <link>https://zero-radiance.github.io/tags/analysis/</link>
-      <pubDate>Mon, 24 Aug 2020 00:00:00 +0000</pubDate>
+      <title>Line Lights</title>
+      <link>https://zero-radiance.github.io/tags/line-lights/</link>
+      <pubDate>Wed, 18 Oct 2023 00:00:00 +0000</pubDate>
       
-      <guid>https://zero-radiance.github.io/tags/analysis/</guid>
+      <guid>https://zero-radiance.github.io/tags/line-lights/</guid>
       <description></description>
     </item>
     
     <item>
-      <title>Bump Mapping</title>
-      <link>https://zero-radiance.github.io/tags/bump-mapping/</link>
-      <pubDate>Sun, 23 Jun 2019 00:00:00 +0000</pubDate>
+      <title>Linearly Transformed Cosines</title>
+      <link>https://zero-radiance.github.io/tags/linearly-transformed-cosines/</link>
+      <pubDate>Wed, 18 Oct 2023 00:00:00 +0000</pubDate>
       
-      <guid>https://zero-radiance.github.io/tags/bump-mapping/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Chapman Function</title>
-      <link>https://zero-radiance.github.io/tags/chapman-function/</link>
-      <pubDate>Mon, 17 Feb 2020 00:00:00 +0000</pubDate>
-      
-      <guid>https://zero-radiance.github.io/tags/chapman-function/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Deep Compositing</title>
-      <link>https://zero-radiance.github.io/tags/deep-compositing/</link>
-      <pubDate>Thu, 11 Oct 2018 00:00:00 +0000</pubDate>
-      
-      <guid>https://zero-radiance.github.io/tags/deep-compositing/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Diffusion Profile</title>
-      <link>https://zero-radiance.github.io/tags/diffusion-profile/</link>
-      <pubDate>Mon, 16 Dec 2019 00:00:00 +0000</pubDate>
-      
-      <guid>https://zero-radiance.github.io/tags/diffusion-profile/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Image Based Lighting</title>
-      <link>https://zero-radiance.github.io/tags/image-based-lighting/</link>
-      <pubDate>Tue, 02 Apr 2019 00:00:00 +0000</pubDate>
-      
-      <guid>https://zero-radiance.github.io/tags/image-based-lighting/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Importance Sampling</title>
-      <link>https://zero-radiance.github.io/tags/importance-sampling/</link>
-      <pubDate>Mon, 17 Feb 2020 00:00:00 +0000</pubDate>
-      
-      <guid>https://zero-radiance.github.io/tags/importance-sampling/</guid>
+      <guid>https://zero-radiance.github.io/tags/linearly-transformed-cosines/</guid>
       <description></description>
     </item>
     
@@ -92,29 +43,11 @@
     </item>
     
     <item>
-      <title>Normal Mapping</title>
-      <link>https://zero-radiance.github.io/tags/normal-mapping/</link>
-      <pubDate>Sun, 23 Jun 2019 00:00:00 +0000</pubDate>
-      
-      <guid>https://zero-radiance.github.io/tags/normal-mapping/</guid>
-      <description></description>
-    </item>
-    
-    <item>
       <title>Optics</title>
       <link>https://zero-radiance.github.io/tags/optics/</link>
       <pubDate>Sun, 20 Sep 2020 00:00:00 +0000</pubDate>
       
       <guid>https://zero-radiance.github.io/tags/optics/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Precision</title>
-      <link>https://zero-radiance.github.io/tags/precision/</link>
-      <pubDate>Mon, 24 Aug 2020 00:00:00 +0000</pubDate>
-      
-      <guid>https://zero-radiance.github.io/tags/precision/</guid>
       <description></description>
     </item>
     
@@ -137,20 +70,56 @@
     </item>
     
     <item>
-      <title>Reprojection</title>
-      <link>https://zero-radiance.github.io/tags/reprojection/</link>
-      <pubDate>Thu, 11 Oct 2018 00:00:00 +0000</pubDate>
+      <title>Analysis</title>
+      <link>https://zero-radiance.github.io/tags/analysis/</link>
+      <pubDate>Mon, 24 Aug 2020 00:00:00 +0000</pubDate>
       
-      <guid>https://zero-radiance.github.io/tags/reprojection/</guid>
+      <guid>https://zero-radiance.github.io/tags/analysis/</guid>
       <description></description>
     </item>
     
     <item>
-      <title>Split Sum Approximation</title>
-      <link>https://zero-radiance.github.io/tags/split-sum-approximation/</link>
-      <pubDate>Tue, 02 Apr 2019 00:00:00 +0000</pubDate>
+      <title>Precision</title>
+      <link>https://zero-radiance.github.io/tags/precision/</link>
+      <pubDate>Mon, 24 Aug 2020 00:00:00 +0000</pubDate>
       
-      <guid>https://zero-radiance.github.io/tags/split-sum-approximation/</guid>
+      <guid>https://zero-radiance.github.io/tags/precision/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Z-buffer</title>
+      <link>https://zero-radiance.github.io/tags/z-buffer/</link>
+      <pubDate>Mon, 24 Aug 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://zero-radiance.github.io/tags/z-buffer/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Chapman Function</title>
+      <link>https://zero-radiance.github.io/tags/chapman-function/</link>
+      <pubDate>Mon, 17 Feb 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://zero-radiance.github.io/tags/chapman-function/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Importance Sampling</title>
+      <link>https://zero-radiance.github.io/tags/importance-sampling/</link>
+      <pubDate>Mon, 17 Feb 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://zero-radiance.github.io/tags/importance-sampling/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Diffusion Profile</title>
+      <link>https://zero-radiance.github.io/tags/diffusion-profile/</link>
+      <pubDate>Mon, 16 Dec 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://zero-radiance.github.io/tags/diffusion-profile/</guid>
       <description></description>
     </item>
     
@@ -164,6 +133,24 @@
     </item>
     
     <item>
+      <title>Bump Mapping</title>
+      <link>https://zero-radiance.github.io/tags/bump-mapping/</link>
+      <pubDate>Sun, 23 Jun 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://zero-radiance.github.io/tags/bump-mapping/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Normal Mapping</title>
+      <link>https://zero-radiance.github.io/tags/normal-mapping/</link>
+      <pubDate>Sun, 23 Jun 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://zero-radiance.github.io/tags/normal-mapping/</guid>
+      <description></description>
+    </item>
+    
+    <item>
       <title>Surface Gradient</title>
       <link>https://zero-radiance.github.io/tags/surface-gradient/</link>
       <pubDate>Sun, 23 Jun 2019 00:00:00 +0000</pubDate>
@@ -173,11 +160,47 @@
     </item>
     
     <item>
-      <title>Z Buffer</title>
-      <link>https://zero-radiance.github.io/tags/z-buffer/</link>
-      <pubDate>Mon, 24 Aug 2020 00:00:00 +0000</pubDate>
+      <title>Image-Based Lighting</title>
+      <link>https://zero-radiance.github.io/tags/image-based-lighting/</link>
+      <pubDate>Tue, 02 Apr 2019 00:00:00 +0000</pubDate>
       
-      <guid>https://zero-radiance.github.io/tags/z-buffer/</guid>
+      <guid>https://zero-radiance.github.io/tags/image-based-lighting/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Split Sum Approximation</title>
+      <link>https://zero-radiance.github.io/tags/split-sum-approximation/</link>
+      <pubDate>Tue, 02 Apr 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://zero-radiance.github.io/tags/split-sum-approximation/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Alpha Blending</title>
+      <link>https://zero-radiance.github.io/tags/alpha-blending/</link>
+      <pubDate>Thu, 11 Oct 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://zero-radiance.github.io/tags/alpha-blending/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Deep Compositing</title>
+      <link>https://zero-radiance.github.io/tags/deep-compositing/</link>
+      <pubDate>Thu, 11 Oct 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://zero-radiance.github.io/tags/deep-compositing/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Reprojection</title>
+      <link>https://zero-radiance.github.io/tags/reprojection/</link>
+      <pubDate>Thu, 11 Oct 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://zero-radiance.github.io/tags/reprojection/</guid>
       <description></description>
     </item>
     

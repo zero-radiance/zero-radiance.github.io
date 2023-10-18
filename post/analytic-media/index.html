@@ -3,28 +3,29 @@
 <head>
     <title>Sampling Analytic Participating Media // Zero Radiance</title>
 
-        <meta charset="utf-8">
+    <meta charset="utf-8">
     <meta http-equiv="content-type" content="text/html; charset=utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
-    <meta name="description" content="">
-    <meta name="keywords" content="">
-    <meta name="author" content="">
+    
+    
+    
+
         <meta property="og:title" content="Sampling Analytic Participating Media" />
     <meta property="og:description" content="" />
     <meta property="og:type" content="website" />
-    <meta property="og:locale" content="en_US" />
+    <meta property="og:locale" content="en" />
     <meta property="og:url" content="https://zero-radiance.github.io/post/analytic-media/" />
     
 
-    <link href="" rel="alternate" type="application/rss+xml" title="Zero Radiance" />
-    <link rel="shortcut icon" href="/favicon.png">
+    <link rel="shortcut icon" href="/favicon.ico">
 
     <link href="https://zero-radiance.github.io/webfonts/ptserif/main.css" rel='stylesheet' type='text/css'>
     <link href="https://zero-radiance.github.io/webfonts/source-code-pro/main.css" rel="stylesheet" type="text/css">
 
     <link rel="stylesheet" href="https://zero-radiance.github.io/css/style.css">
+    
 
-    <meta name="generator" content="Hugo 0.54.0" />
+    <meta name="generator" content="Hugo 0.82.1" />
 </head>
 
 
@@ -65,413 +66,273 @@
             
         </div>
         <div class="article-entry" itemprop="articleBody">
-            <p>Rendering of participating media is an important aspect of every modern renderer. When I say participating media, I am not just talking about fog, fire, and smoke. All matter is composed of <a href="https://courses.lumenlearning.com/boundless-chemistry/chapter/the-structure-of-the-atom/">atoms</a>, which can be sparsely (e.g. in a gas) or densely (e.g. in a solid) distributed in space. Whether we consider the particle or the wave nature of <a href="https://en.wikipedia.org/wiki/Light">light</a>, it penetrates all matter (even <a href="http://webhome.phy.duke.edu/~qelectron/group/group_reading_Born_and_Wolf.pdf">metals</a>) to a certain degree and interacts with its atoms along the way. The nature and the degree of &quot;participation&quot; depend on the material in question.</p>
-
+            <p>Rendering of participating media is an important aspect of every modern renderer. When I say participating media, I am not just talking about fog, fire, and smoke. All matter is composed of <a href="https://courses.lumenlearning.com/boundless-chemistry/chapter/the-structure-of-the-atom/">atoms</a>, which can be sparsely (e.g. in a gas) or densely (e.g. in a solid) distributed in space. Whether we consider the particle or the wave nature of <a href="https://en.wikipedia.org/wiki/Light">light</a>, it penetrates all matter (even <a href="http://webhome.phy.duke.edu/~qelectron/group/group_reading_Born_and_Wolf.pdf">metals</a>) to a certain degree and interacts with its atoms along the way. The nature and the degree of &ldquo;participation&rdquo; depend on the material in question.</p>
 <p>In the <a href="https://doi.org/10.1002/qj.49707633016">radiative transfer</a> literature, light-material interaction is usually quantified in terms of absorption (conversion of electromagnetic energy of photons into kinetic energy of atoms, which manifests itself as reduction of light intensity) and <a href="http://plaza.ufl.edu/dwhahn/Rayleigh%20and%20Mie%20Light%20Scattering.pdf">scattering</a> (absorption followed by <a href="https://en.wikipedia.org/wiki/Stimulated_emission">emission</a> of electromagnetic energy on collision). Therefore, it is common to describe participating media using the <em>collision coefficients</em>: the <em>absorption coefficient</em> \(\beta_a\) and the <em>scattering coefficient</em> \(\beta_s\). These coefficients give the probability density of the corresponding event per unit distance traveled by a photon, which implies the <a href="https://en.wikipedia.org/wiki/International_System_of_Units">SI unit</a> of measurement is \(m^{-1}\).</p>
-
 <p>The <a href="https://en.wikipedia.org/wiki/Attenuation_coefficient">extinction coefficient</a> \(\beta_t\)</p>
-
 <p>$$ \tag{1} \beta_t = \beta_a + \beta_s $$</p>
-
-<p>gives the probability density of absorption or scattering (or, in other words, the collision rate) as a photon travels a unit distance through the medium<sup class="footnote-ref" id="fnref:1"><a href="#fn:1">1</a></sup>.</p>
-
+<p>gives the probability density of absorption or scattering (or, in other words, the collision rate) as a photon travels a unit distance through the medium<sup id="fnref:1"><a href="#fn:1" class="footnote-ref" role="doc-noteref">1</a></sup>.</p>
 <p>A more artist-friendly parametrization uses the <a href="https://en.wikipedia.org/wiki/Single-scattering_albedo">single-scattering albedo</a> \(\alpha_{ss}\)</p>
-
 <p>$$ \tag{2} \alpha_{ss} = \frac{\beta_s}{\beta_t}, $$</p>
-
 <p>which gives the deflection probability (or, in other words, the scattering rate), and the <a href="https://en.wikipedia.org/wiki/Mean_free_path">mean free path</a> \(d\)</p>
-
 <p>$$ \tag{3} d = \frac{1}{\beta_t}, $$</p>
-
 <p>which corresponds to the average collision-free (or free-flight) distance.</p>
-
-<p>It's worth noting that the absorption coefficient is directly related to the <a href="http://www.sfu.ca/~gchapman/e376/e376l7.pdf">absorption index</a> \(\kappa\), which is the imaginary part of the <a href="https://en.wikipedia.org/wiki/Refractive_index#Complex_refractive_index">complex refractive index</a> (IOR) \(\eta - i \kappa\):</p>
-
+<p>It&rsquo;s worth noting that the absorption coefficient is directly related to the <a href="http://www.sfu.ca/~gchapman/e376/e376l7.pdf">attenuation index</a> \(\kappa\), which is the imaginary part of the <a href="https://en.wikipedia.org/wiki/Refractive_index#Complex_refractive_index">complex refractive index</a> (IOR) \(\eta - i \kappa\):</p>
 <p>$$ \tag{4} \kappa = \frac{\lambda}{4 \pi} \beta_a. $$</p>
-
 <p>Note that, in this context, I am not talking about the IOR of an individual microscopic particle (which influences the <a href="https://en.wikipedia.org/wiki/Mie_scattering">microscopic scattering</a> process), but rather about the properties of the macroscopic medium (composed of many microscopic particles).</p>
-
 <p>The tuple \(\lbrace \eta, \kappa, \beta_s \rbrace\) \(\big(\)or, alternatively, \(\lbrace \eta, d, \alpha_{ss} \rbrace \big) \) contains sufficient information to describe both the behavior at the surface (boundary) and the (isotropic) multiple-scattering process (known as <a href="https://en.wikipedia.org/wiki/Subsurface_scattering">subsurface scattering</a>) inside the volume that ultimately gives rise to what we perceive as the surface albedo \(\alpha_{ms}\). Note that certain materials (metals, in particular) require modeling of <a href="https://en.wikipedia.org/wiki/Wave_interference">wave interference</a> to obtain expected reflectance values.</p>
-
 <p>A surface, then, is just an optical interface signified by a discontinuity of optical properties of the medium (in reality, the <a href="https://www.feynmanlectures.caltech.edu/II_33.html">transition at the boundary is continuous</a>, with a thickness of several atomic layers, but we can ignore this fact at scales relevant to computer graphics).</p>
-
 <p>Sometimes, it is convenient to specify the concentration (density) of the medium, and not its effective optical properties. For example, the extinction coefficient can be computed using the following formula:</p>
-
 <p>$$ \tag{5} \beta_t = \rho \sigma_t, $$</p>
-
-<p>where \(\rho\) is the <a href="https://en.wikipedia.org/wiki/Mass_density">mass density</a> (measured in units of \(kg/m^{3}\)) and \(\sigma_t\) is the <a href="https://en.wikipedia.org/wiki/Mass_attenuation_coefficient">mass extinction coefficient</a> (in units of \(m^{2}/kg\)) - <a href="http://www.sfu.ca/~gchapman/e376/e376l7.pdf">effective cross section</a> per unit mass<sup class="footnote-ref" id="fnref:2"><a href="#fn:2">2</a></sup>. Other coefficients have the same linear relation with density.</p>
-
+<p>where \(\rho\) is the <a href="https://en.wikipedia.org/wiki/Mass_density">mass density</a> (measured in units of \(kg/m^{3}\)) and \(\sigma_t\) is the <a href="https://en.wikipedia.org/wiki/Mass_attenuation_coefficient">mass extinction coefficient</a> (in units of \(m^{2}/kg\)) - <a href="http://www.sfu.ca/~gchapman/e376/e376l7.pdf">effective cross section</a> per unit mass<sup id="fnref:2"><a href="#fn:2" class="footnote-ref" role="doc-noteref">2</a></sup>. Other coefficients have the same linear relation with density.</p>
 <p>But what about the IOR? Often, we assume that it is independent of density. But, if you consider water and steam (which has a lower concentration of water molecules), our experience tells us that their refractive properties are not the same.</p>
-
 <p>There are several known relations between density and the IOR. One of them is given by the <a href="https://en.wikipedia.org/wiki/Clausius%E2%80%93Mossotti_relation">Lorentz–Lorenz equation</a>:</p>
-
 <p>$$ \tag{6} \frac{\eta^2 - 1}{\eta^2 + 2} = \frac{1}{3} \frac{\rho}{m} \frac{\alpha_m}{\varepsilon_0}, $$</p>
-
 <p>where \(m\) is the <a href="https://en.wikipedia.org/wiki/Molecular_mass">molecular mass</a> (in \(kg\)), \(\varepsilon_0\) is the <a href="https://en.wikipedia.org/wiki/Vacuum_permittivity">vacuum permittivity</a>, and \(\alpha_m\) is the <a href="https://en.wikipedia.org/wiki/Electric_susceptibility#Molecular_polarizability">mean molecular polarizability</a> (SI units of \(C m^{2}/V\), watch out for different <a href="https://en.wikipedia.org/wiki/Electric_susceptibility#Ambiguity_in_the_definition">conventions</a>). Since it is related to the complex IOR, polarizability is also complex. Incidentally, this equation presents a way to compute the IOR of a mixture of several substances. The corresponding <a href="https://www.sciencedirect.com/science/article/pii/S0021850208001183">Lorentz–Lorenz mixture rule</a> is based on four principles of additivity (namely, of mole, mass, volume, and molecular polarizability, with the last two assumption being rather context-dependent).</p>
-
 <p>For materials with small mass densities, the molecules are far apart, the molecular interactions are weak, and the IOR is close to 1. Therefore, for matter in the gas state, the following approximation can be made:</p>
-
 <p>$$ \begin{aligned} \tag{7}
-    \eta^2 &amp; \approx 1 + \frac{\rho}{m} \frac{\alpha_m}{\varepsilon_0} = 1 + 2 \rho \delta_c, \cr
-    \eta   &amp; \approx 1 + \frac{\rho}{2 m} \frac{\alpha_m}{\varepsilon_0} = 1 + \rho \delta_c,
+\eta^2 &amp; \approx 1 + \frac{\rho}{m} \frac{\alpha_m}{\varepsilon_0} = 1 + 2 \rho \delta_c, \cr
+\eta   &amp; \approx 1 + \frac{\rho}{2 m} \frac{\alpha_m}{\varepsilon_0} = 1 + \rho \delta_c,
 \end{aligned} $$</p>
-
 <p>where \(\delta_c\) is the <a href="https://ui.adsabs.harvard.edu/abs/1996CoSka..26...23K/abstract">light dispersion coefficient</a>. This equation implies that the <a href="https://www.sciencedirect.com/topics/chemistry/optical-refraction">relative brake power</a> \((\eta - 1)\) has an approximately linear relation with density. Similar relations can be found for <a href="https://en.wikipedia.org/wiki/Clausius%E2%80%93Mossotti_relation">temperature and and pressure</a> (in fact, all coefficients are highly <a href="http://www.sfu.ca/~gchapman/e376/e376l7.pdf">temperature-dependent</a>). Also, while the discussion above mostly concerns dielectrics, the formula for metals is <a href="https://www.feynmanlectures.caltech.edu/II_32.html#mjx-eqn-EqII3238">very similar</a>.</p>
-
-<p>Continuous variation of the IOR poses many challenges for path tracing. In piecewise-uniform media, paths are composed of straight segments joined at scattering locations. Unfortunately, due to <a href="https://en.wikipedia.org/wiki/Fermat%27s_principle">Fermat's principle</a>, continuously varying IOR forces photons to travel along paths of least time that <a href="http://www.waves.utoronto.ca/prof/svhum/ece422/notes/20a-atmospheric-refr.pdf">bend</a> towards regions of higher density according to <a href="https://en.wikipedia.org/wiki/Snell%27s_law">Snell's law</a>. This fact alone makes basic actions like visibility testing quite complicated. And since the IOR may depend on the frequency, it can cause <a href="https://en.wikipedia.org/wiki/Dispersion_(optics)">dispersion</a> not only at the interfaces, but also continuously, along the entire path. Finally, one must model losses and gains due to <a href="http://doi.org/10.4236/opj.2013.37054">continuous reflection/transmission</a>, which is mathematically challenging. So it is not too surprising that most renderers ignore this behavior (even though, physically, that doesn't make much sense). For small density gradients and small distances, it is a valid approximation that, on average, gives reasonably accurate results. On the other hand, for certain atmospheric effects, <a href="https://en.wikipedia.org/wiki/Atmospheric_refraction">atmospheric refraction</a> and reflection make a non-negligible contribution.</p>
-
+<p>Continuous variation of the IOR poses many challenges for path tracing. In piecewise-uniform media, paths are composed of straight segments joined at scattering locations. Unfortunately, due to <a href="https://en.wikipedia.org/wiki/Fermat%27s_principle">Fermat&rsquo;s principle</a>, continuously varying IOR forces photons to travel along paths of least time that <a href="http://www.waves.utoronto.ca/prof/svhum/ece422/notes/20a-atmospheric-refr.pdf">bend</a> towards regions of higher density according to <a href="https://en.wikipedia.org/wiki/Snell%27s_law">Snell&rsquo;s law</a>. This fact alone makes basic actions like visibility testing quite complicated. And since the IOR may depend on the frequency, it can cause <a href="https://en.wikipedia.org/wiki/Dispersion_(optics)">dispersion</a> not only at the interfaces, but also continuously, along the entire path. Finally, one must model losses and gains due to <a href="http://doi.org/10.4236/opj.2013.37054">continuous reflection/transmission</a>, which is mathematically challenging. So it is not too surprising that most renderers ignore this behavior (even though, physically, that doesn&rsquo;t make much sense). For small density gradients and small distances, it is a valid approximation that, on average, gives reasonably accurate results. On the other hand, for certain atmospheric effects, <a href="https://en.wikipedia.org/wiki/Atmospheric_refraction">atmospheric refraction</a> and reflection make a non-negligible contribution.</p>
 <p>For practical reasons, further discussion will use a (typical) assumption that, within volume boundaries, the IOR is invariant with respect to position. If you are interested in continuous refraction, I encourage you to check out the <a href="https://doi.org/10.1145/2557605">Refractive Radiative Transfer Equation</a> paper.</p>
-
 <h2 id="radiative-transfer-equation">Radiative Transfer Equation</h2>
-
 <p>Intelligent sampling of a function requires understanding which parts make a large contribution. Therefore, we must briefly discuss the <a href="https://en.wikipedia.org/wiki/Radiative_transfer#The_equation_of_radiative_transfer">radiative transfer equation</a> (or RTE) used to render scenes with participating media. While the full <a href="https://jo.dreggn.org/path-tracing-in-production/2019/ptp-part1.pdf">derivation</a> is outside the scope of this article, we will try to touch the important aspects.</p>
-
 <p>The integral form of the RTE is that of a recursive line integral. Intuitively, it models the process of photons traveling along the ray from sources towards the sensor, while at the same time accounting for energy losses.</p>
-
 <p>These losses are primarily expressed by the opacity term \(O\), which is defined as the fraction of photons (quantified as radiance \(L\)) lost along the ray from \(\bm{x}\) to \(\bm{y}\) due to absorption and out-scattering:</p>
-
 <p>$$ \tag{8} O(\bm{x}, \bm{y}) = \frac{L(\bm{y}, \bm{v}) - L(\bm{x}, \bm{v})}{L(\bm{y}, \bm{v})} = 1 - \frac{L(\bm{x}, \bm{v})}{L(\bm{y}, \bm{v})}, $$</p>
-
 <p>where \(\bm{v} = (\bm{x} - \bm{y})/ \vert \bm{x} - \bm{y} \vert \) is the normalized view direction. Intuitively, \(O(\bm{x}, \bm{y}) = O(\bm{y}, \bm{x})\).</p>
-
 <p>Its complement is transmittance \(T\):</p>
-
 <p>$$ \tag{9} T(\bm{x}, \bm{y}) = 1 - O(\bm{x}, \bm{y}). $$</p>
-
 <p>For a single photon, transmittance gives the <a href="https://www.feynmanlectures.caltech.edu/I_43.html#mjx-eqn-EqI438">probability of a free flight</a>.</p>
-
 <p>Volumetric transmittance is given by the <a href="https://en.wikipedia.org/wiki/Beer%E2%80%93Lambert_law">Beer–Lambert–Bouguer law</a> for <a href="https://cs.dartmouth.edu/~wjarosz/publications/bitterli18framework.html">uncorrelated</a> media in terms of <a href="https://en.wikipedia.org/wiki/Optical_depth">optical depth</a> (or optical thickness) \(\tau\), which is a line integral from \(\bm{x}\) to \(\bm{y}\):</p>
-
 <p>$$ \tag{10} \tau(\bm{x}, \bm{y})
-    = -\log{T(\bm{x}, \bm{y})}
-    = \int_{\bm{x}}^{\bm{y}} \beta_t(\bm{u}) d\beta(\bm{u})
-    = \int_{\bm{x}}^{\bm{y}} \beta_t(\bm{u}) du,
+= -\log{T(\bm{x}, \bm{y})}
+= \int_{\bm{x}}^{\bm{y}} \beta_t(\bm{u}) d\beta(\bm{u})
+= \int_{\bm{x}}^{\bm{y}} \beta_t(\bm{u}) du,
 $$</p>
-
 <p>where \(\bm{u} = \bm{x} - u \bm{v}\) is the point at the distance \(u\) along the ray, and \(du\) is the length <a href="https://en.wikipedia.org/wiki/Lebesgue_integration#Measure_theory">measure</a> associated with \(\bm{u}\). This formula implies that while transmittance is multiplicative, with values restricted to the unit interval, optical depth is additive and can take on any non-negative value. In other words, transmittance is a <a href="https://www.wikiwand.com/en/Product_integral">product integral</a>:</p>
-
 <p>$$ \tag{11} T(\bm{x}, \bm{y})
-    = e^{- \int_{\bm{x}}^{\bm{y}} \beta_t(\bm{u}) du}
-    = \prod_{\bm{x}}^{\bm{y}} \Big( 1 - \beta_t(\bm{u}) du \Big).
+= e^{- \int_{\bm{x}}^{\bm{y}} \beta_t(\bm{u}) du}
+= \prod_{\bm{x}}^{\bm{y}} \Big( 1 - \beta_t(\bm{u}) du \Big).
 $$</p>
-
 <p>Other <a href="https://cs.dartmouth.edu/~wjarosz/publications/georgiev19integral.html">integral formulations</a> of volumetric transmittance exist.</p>
-
 <p>The RTE models three types of energy sources: <a href="https://en.wikipedia.org/wiki/Spontaneous_emission">volumetric emission</a> \(L_e\), volumetric in-scattering \(L_s\), and surface in-scattering \(L_g\) (which is itself an integral that features a surface geometry term with a BSDF). The volumetric in-scattering term \(L_s\) is an integral over \(4 \pi\) steradians:</p>
-
 <p>$$ \tag{12} L_s(\bm{x}, \bm{v}) = \int_{4 \pi} \alpha_{ss}(\bm{x}) \frac{f_p(\bm{x}, \bm{v}, \bm{l})}{4 \pi} L(\bm{x}, \bm{l}) d\Omega_l, $$</p>
-
-<p>where \(f_p\) denotes the <a href="http://www.pbr-book.org/3ed-2018/Volume_Scattering/Phase_Functions.html">phase function</a> which models the angular distribution of scattered light<sup class="footnote-ref" id="fnref:5"><a href="#fn:5">3</a></sup>, and \(d\Omega_l\) is the solid angle measure associated with \(\bm{l}\).</p>
-
+<p>where \(f_p\) denotes the <a href="http://www.pbr-book.org/3ed-2018/Volume_Scattering/Phase_Functions.html">phase function</a> which models the angular distribution of scattered light<sup id="fnref:3"><a href="#fn:3" class="footnote-ref" role="doc-noteref">3</a></sup>, and \(d\Omega_l\) is the solid angle measure associated with \(\bm{l}\).</p>
 <p>Carefully putting it all together yields the <a href="https://cs.dartmouth.edu/~wjarosz/publications/novak18monte.html">volume rendering equation</a> along the ray \(\bm{u} = \bm{x} - u \bm{v}\):</p>
-
 <p>$$ \tag{13}
-    L(\bm{x}, \bm{v}) = T(\bm{x}, \bm{y}) L_g(\bm{y}, \bm{v}) +
-    \int_{\bm{x}}^{\bm{y}} T(\bm{x}, \bm{u}) \Big(
-        \beta_a(\bm{u}) L_e(\bm{u}, \bm{v}) +
-        \beta_t(\bm{u}) L_s(\bm{u}, \bm{v})
-    \Big) du
+L(\bm{x}, \bm{v}) = T(\bm{x}, \bm{y}) L_g(\bm{y}, \bm{v}) +
+\int_{\bm{x}}^{\bm{y}} T(\bm{x}, \bm{u}) \Big(
+\beta_a(\bm{u}) L_e(\bm{u}, \bm{v}) +
+\beta_t(\bm{u}) L_s(\bm{u}, \bm{v})
+\Big) du
 $$</p>
-
-<p>where \(\bm{y}\) denotes the position of the closest surface along the ray<sup class="footnote-ref" id="fnref:3"><a href="#fn:3">4</a></sup>.</p>
-
+<p>where \(\bm{y}\) denotes the position of the closest surface along the ray<sup id="fnref:4"><a href="#fn:4" class="footnote-ref" role="doc-noteref">4</a></sup>.</p>
 <p>We will leave <a href="https://doi.org/10.1111/cgf.13228">volumetric emission</a> out by setting \(L_e = 0\):</p>
-
 <p>$$ \tag{14}
-    L(\bm{x}, \bm{v}) = T(\bm{x}, \bm{y}) L_g(\bm{y}, \bm{v}) +
-    \int_{\bm{x}}^{\bm{y}} T(\bm{x}, \bm{u}) \beta_t(\bm{u}) L_s(\bm{u}, \bm{v}) du.
+L(\bm{x}, \bm{v}) = T(\bm{x}, \bm{y}) L_g(\bm{y}, \bm{v}) +
+\int_{\bm{x}}^{\bm{y}} T(\bm{x}, \bm{u}) \beta_t(\bm{u}) L_s(\bm{u}, \bm{v}) du.
 $$</p>
-
 <p>This integral can be evaluated using one of the <a href="http://www.pbr-book.org/3ed-2018/Monte_Carlo_Integration.html">Monte Carlo</a> methods. The <a href="http://www.pbr-book.org/3ed-2018/Monte_Carlo_Integration/The_Monte_Carlo_Estimator.html">Monte Carlo estimator</a> has the following form:</p>
-
 <p>$$ \tag{15} L(\bm{x}, \bm{v})
-    \approx T(\bm{x}, \bm{y}) L_g(\bm{y}, \bm{v}) + \frac{1}{N} \sum_{i=1}^{N} \frac{T(\bm{x}, \bm{u}_i) \beta_t(\bm{u}_i) L_s(\bm{u}_i, \bm{v})}{p( u_i | \lbrace \bm{x}, \bm{v} \rbrace)},
+\approx T(\bm{x}, \bm{y}) L_g(\bm{y}, \bm{v}) + \frac{1}{N} \sum_{i=1}^{N} \frac{T(\bm{x}, \bm{u}_i) \beta_t(\bm{u}_i) L_s(\bm{u}_i, \bm{v})}{p( u_i | \lbrace \bm{x}, \bm{v} \rbrace)},
 $$</p>
-
 <p>where sample locations \(\bm{u}_i\) at the distance \(u_i\) along the ray are distributed according to the <a href="https://en.wikipedia.org/wiki/Probability_density_function">PDF</a> \(p\).</p>
-
 <p>We can <a href="http://www.pbr-book.org/3ed-2018/Monte_Carlo_Integration/Importance_Sampling.html">importance sample</a> the integrand (distribute samples according to the PDF) in several ways. Ideally, we would like to make the PDF proportional to the <a href="https://cgg.mff.cuni.cz/~jaroslav/papers/2014-zerovar/">product</a> of all terms of the integrand. However, unless we use <a href="https://cgg.mff.cuni.cz/~jirka/path-guiding-in-production/2019/index.htm">path guiding</a>, that is typically not possible. We will focus on the technique called <a href="https://cs.dartmouth.edu/~wjarosz/publications/novak18monte.html">free path sampling</a> that makes the PDF proportional to the extinction-transmittance product \(T \beta_t\) (effectively, by assuming that the rest of the integrand varies slowly; in practice, this may or may not be the case - for example, for regions near light sources, <a href="http://library.imageworks.com/pdfs/imageworks-library-importance-sampling-of-area-lights-in-participating-media.pdf">equiangular sampling</a> can give vastly superior results).</p>
-
 <p>In order to turn the extinction-transmittance product into a PDF, it must be normalized over the domain of integration, \(\bm{x}\) to \(\bm{y}\). We must compute the normalization factor</p>
-
 <p>$$ \tag{16}
-      \int_{\bm{x}}^{\bm{y}} T(\bm{x}, \bm{u}) \beta_t(\bm{u}) du
-    = \int_{\bm{x}}^{\bm{y}} e^{-\tau(\bm{x}, \bm{u})} \beta_t(\bm{u}) du.
+\int_{\bm{x}}^{\bm{y}} T(\bm{x}, \bm{u}) \beta_t(\bm{u}) du
+= \int_{\bm{x}}^{\bm{y}} e^{-\tau(\bm{x}, \bm{u})} \beta_t(\bm{u}) du.
 $$</p>
-
 <p>If we use the <a href="https://en.wikipedia.org/wiki/Fundamental_theorem_of_calculus#First_part">fundamental theorem of calculus</a> to interpret the extinction coefficient as a derivative</p>
-
 <p>$$ \tag{17} \beta_t(\bm{u}) = \frac{\partial \tau}{\partial u}, $$</p>
-
 <p>we can use the one of the <a href="https://en.wikipedia.org/wiki/List_of_integrals_of_exponential_functions#Integrals_involving_only_exponential_functions">exponential identities</a> to simplify the extinction-transmittance integral:</p>
-
 <p>$$ \tag{18}
-    \int_{\bm{x}}^{\bm{y}} e^{-\tau(\bm{x}, \bm{u})} \frac{\partial \tau(\bm{x}, \bm{u})}{\partial u} du
-    = -e^{-\tau(\bm{x}, \bm{u})} \Big\vert_{\bm{x}}^{\bm{y}}
-    = 1 - T(\bm{x}, \bm{y}) = O(\bm{x}, \bm{y}).
+\int_{\bm{x}}^{\bm{y}} e^{-\tau(\bm{x}, \bm{u})} \frac{\partial \tau(\bm{x}, \bm{u})}{\partial u} du
+= -e^{-\tau(\bm{x}, \bm{u})} \Big\vert_{\bm{x}}^{\bm{y}}
+= 1 - T(\bm{x}, \bm{y}) = O(\bm{x}, \bm{y}).
 $$</p>
-
-<p>Since it's equal to opacity, the integral can be evaluated in a <a href="https://cs.dartmouth.edu/~wjarosz/publications/georgiev19integral.html">forward or backward fashion</a>.</p>
-
+<p>Since it&rsquo;s equal to opacity, the integral can be evaluated in a <a href="https://cs.dartmouth.edu/~wjarosz/publications/georgiev19integral.html">forward or backward fashion</a>.</p>
 <p>$$ \tag{19}
-    \int_{\bm{x}}^{\bm{y}} e^{-\tau(\bm{x}, \bm{u})} \beta_t(\bm{u}) du =
-    \int_{\bm{x}}^{\bm{y}} e^{-\tau(\bm{u}, \bm{y})} \beta_t(\bm{u}) du.
+\int_{\bm{x}}^{\bm{y}} e^{-\tau(\bm{x}, \bm{u})} \beta_t(\bm{u}) du =
+\int_{\bm{x}}^{\bm{y}} e^{-\tau(\bm{u}, \bm{y})} \beta_t(\bm{u}) du.
 $$</p>
-
 <p>We can now define the normalized sampling PDF:</p>
-
 <p>$$ \tag{20} p(u | \lbrace \bm{x}, \bm{v} \rbrace)
-    = \frac{T(\bm{x}, \bm{u}) \beta_t(\bm{u})}{O(\bm{x}, \bm{y})}. $$</p>
-
+= \frac{T(\bm{x}, \bm{u}) \beta_t(\bm{u})}{O(\bm{x}, \bm{y})}. $$</p>
 <p>Substitution of the PDF into Equation 15 radically simplifies the estimator:</p>
-
 <p>$$ \tag{21} L(\bm{x}, \bm{v}) \approx T(\bm{x}, \bm{y}) L_g(\bm{y}, \bm{v}) + O(\bm{x}, \bm{y}) \frac{1}{N} \sum_{i=1}^{N} L_s(\bm{u}_i, \bm{v}). $$</p>
-
 <p>This equation can be seen as a form of <a href="https://graphics.pixar.com/library/Compositing/">premultiplied alpha blending</a> (where alpha is opacity), which explains why particle cards can be so convincing. Additionally, it offers yet another way to parametrize the extinction coefficient - namely, by opacity at distance (which is similar to <a href="https://blog.selfshadow.com/publications/s2015-shading-course/burley/s2015_pbs_disney_bsdf_notes.pdf">transmittance at distance</a> used by Disney). It is the most RGB rendering friendly parametrization that I am aware of.</p>
-
 <p>In this context, total opacity along the ray serves as the probability of a collision event within the medium, and can be used to make a random choice of the type of the sample (surface or volume):</p>
-
 <p>$$ \tag{22} L(\bm{x}, \bm{v}) \approx \big(1 - O(\bm{x}, \bm{y}) \big) L_g(\bm{y}, \bm{v}) + O(\bm{x}, \bm{y}) \frac{1}{N} \sum_{i=1}^{N} L_s(\bm{u}_i, \bm{v}).
 $$</p>
-
 <p>In order to sample the integrand of Equation 14, we must be also able to <a href="http://www.pbr-book.org/3ed-2018/Monte_Carlo_Integration/Sampling_Random_Variables.html#TheInversionMethod">invert</a> the <a href="https://en.wikipedia.org/wiki/Cumulative_distribution_function">CDF</a> \(P\):</p>
-
 <p>$$ \tag{23} P(u | \lbrace \bm{x}, \bm{v} \rbrace)
-    = \int_{0}^{u} p(s | \lbrace \bm{x}, \bm{v} \rbrace) ds
-    = \frac{O(\bm{x}, \bm{u})}{O(\bm{x}, \bm{y})}.
+= \int_{0}^{u} p(s | \lbrace \bm{x}, \bm{v} \rbrace) ds
+= \frac{O(\bm{x}, \bm{u})}{O(\bm{x}, \bm{y})}.
 $$</p>
-
 <p>In practice, this means that we need to solve for the distance \(u\) given the value of optical depth \(\tau\):</p>
-
 <p>$$
 \tag{24} \tau(\bm{x}, \bm{u}) =
-    -\mathrm{log} \big( O(\bm{x}, \bm{u}) \big) =
-    -\mathrm{log} \Big( 1 - P\big(u | \lbrace \bm{x}, \bm{v} \rbrace \big) O \big( \bm{x}, \bm{y} \big) \Big).
+-\mathrm{log} \big( O(\bm{x}, \bm{u}) \big) =
+-\mathrm{log} \Big( 1 - P\big(u | \lbrace \bm{x}, \bm{v} \rbrace \big) O \big( \bm{x}, \bm{y} \big) \Big).
 $$</p>
-
 <h2 id="types-of-analytic-participating-media">Types of Analytic Participating Media</h2>
-
 <p>If your background is in real-time rendering, you may have heard of <a href="http://www.terathon.com/lengyel/Lengyel-UnifiedFog.pdf">constant, linear, and exponential fog</a>. These names refer to the way density varies in space (typically, with respect to the altitude), and can be used to model effects like height fog and atmospheric scattering.</p>
-
 <h3 id="uniform-density">Uniform Density</h3>
-
-<p>This type of medium has uniform<sup class="footnote-ref" id="fnref:4"><a href="#fn:4">5</a></sup> density across the entire volume:</p>
-
+<p>This type of medium has uniform<sup id="fnref:5"><a href="#fn:5" class="footnote-ref" role="doc-noteref">5</a></sup> density across the entire volume:</p>
 <p>$$ \tag{25} \rho = b. $$</p>
-
 <p>This formulation makes computing optical depth easy (recall Equations 5 and 10):</p>
-
 <p>$$ \tag{26} \tau(\bm{x}, \bm{u})
-    = \sigma_t \int_{\bm{x}}^{\bm{u}} \rho{(\bm{s})} ds
-    = \sigma_t \int_{\bm{x}}^{\bm{u}} b ds
-    = \sigma_t b \vert \bm{u} - \bm{x} \vert
-    = \sigma_t b u.
+= \sigma_t \int_{\bm{x}}^{\bm{u}} \rho{(\bm{s})} ds
+= \sigma_t \int_{\bm{x}}^{\bm{u}} b ds
+= \sigma_t b \vert \bm{u} - \bm{x} \vert
+= \sigma_t b u.
 $$</p>
-
-<p>The sampling &quot;recipe&quot; for the distance \(u\) is thus simply</p>
-
+<p>The sampling &ldquo;recipe&rdquo; for the distance \(u\) is thus simply</p>
 <p>$$ \tag{27} u = \frac{\tau}{\sigma_t b}, $$</p>
-
 <p>which is consistent with <a href="https://cs.dartmouth.edu/~wjarosz/publications/novak18monte.html">previous work</a>.</p>
-
 <p>The resulting sampling algorithm is very simple:</p>
-
 <ol>
 <li>compute total opacity \(O \big( \bm{x}, \bm{y} \big)\) along the ray;</li>
 <li>generate a random CDF value \(P \big(u | \lbrace \bm{x}, \bm{v} \rbrace \big)\);</li>
 <li>compute optical depth \(\tau(\bm{x}, \bm{u})\) using Equation 24;</li>
 <li>compute the distance \(u\) using Equation 27.</li>
 </ol>
-
 <h3 id="linear-variation-of-density-with-altitude-plane-parallel-atmosphere">Linear Variation of Density with Altitude (Plane-Parallel Atmosphere)</h3>
-
-<p>Without loss of generality, let's assume that density varies with the third coordinate of the position \(\bm{x}\), which we interpret as the altitude. This is your typical &quot;linear height fog on flat Earth&quot; case:</p>
-
+<p>Without loss of generality, let&rsquo;s assume that density varies with the third coordinate of the position \(\bm{x}\), which we interpret as the altitude. This is your typical &ldquo;linear height fog on flat Earth&rdquo; case:</p>
 <p>$$ \tag{28} \rho(\bm{x}) = a h(\bm{x}) + b = a x_3 + b. $$</p>
-
 <p>One can obtain homogeneous media by setting \(a = 0\).</p>
-
 <p>We would like to evaluate the optical depth integral:</p>
-
 <p>$$ \tag{29} \tau(\bm{x}, \bm{u})
-    = \sigma_t \int_{\bm{x}}^{\bm{u}} \rho{(\bm{s})} ds
-    = \sigma_t \int_{\bm{x}}^{\bm{u}} \Big( a h(\bm{s}) + b \Big) ds.
+= \sigma_t \int_{\bm{x}}^{\bm{u}} \rho{(\bm{s})} ds
+= \sigma_t \int_{\bm{x}}^{\bm{u}} \Big( a h(\bm{s}) + b \Big) ds.
 $$</p>
-
-<p>In practice, it's actually simpler to integrate with respect to the parametric coordinates of the ray:</p>
-
+<p>In practice, it&rsquo;s actually simpler to integrate with respect to the parametric coordinates of the ray:</p>
 <p>$$ \tag{30}
 \tau(\bm{x}, \bm{v}, u)
-    = \sigma_t \int_{0}^{u} \Big( a \big(x_3 - s v_3) + b \Big) ds
-    = \sigma_t \Big( (a x_3 + b) - \frac{a v_3}{2} u \Big) u,
+= \sigma_t \int_{0}^{u} \Big( a \big(x_3 - s v_3) + b \Big) ds
+= \sigma_t \Big( (a x_3 + b) - \frac{a v_3}{2} u \Big) u,
 $$</p>
-
 <p>which is the product of the average extinction coefficient and the length of the interval, as expected.</p>
-
 <p>The inversion process involves solving the quadratic equation for the distance \(u\):</p>
-
 <p>$$ \tag{31}
-    u = \frac{(a x_3 + b) \pm \sqrt{ (a x_3 + b)^2 - 2 a v_3 (\tau / \sigma_t)}}{a v_3}.
+u = \frac{(a x_3 + b) \pm \sqrt{ (a x_3 + b)^2 - 2 a v_3 (\tau / \sigma_t)}}{a v_3}.
 $$</p>
-
 <p>Physically, we are only interested in the smaller root (with the negative sign), since it gives the solution for positive density values. Note that uniform media \( \big( a v_3 = 0 \big) \) require special care.</p>
-
 <h3 id="exponential-variation-of-density-with-altitude-plane-parallel-atmosphere">Exponential Variation of Density with Altitude (Plane-Parallel Atmosphere)</h3>
-
 <p>We can replace the linear density function with an exponential:</p>
-
 <p>$$ \tag{32} \rho(\bm{x}) = b e^{-h(\bm{x}) / H} = b e^{-x_3 / H}, $$</p>
-
 <p>where \(H\) is the <a href="https://en.wikipedia.org/wiki/Scale_height">scale height</a>, measured in meters. Another way to think about it is as of the reciprocal of the falloff exponent \(n\):</p>
-
 <p>$$ \tag{33} \rho(\bm{x}) = b e^{-n x_3}. $$</p>
-
 <p>Setting \(n = 0\) results in a uniform medium.</p>
-
 <p>The expression of optical depth remains simple:</p>
-
 <p>$$ \tag{34}
 \tau(\bm{x}, \bm{v}, u)
-    = \sigma_t \int_{0}^{u} b e^{-n (x_3 - s v_3)} ds
-    = \sigma_t b e^{-n x_3} \int_{0}^{u} e^{s n v_3} ds
-    = \frac{\sigma_t b}{n v_3} e^{-n x_3} \Big( e^{n v_3 u} - 1 \Big).
+= \sigma_t \int_{0}^{u} b e^{-n (x_3 - s v_3)} ds
+= \sigma_t b e^{-n x_3} \int_{0}^{u} e^{s n v_3} ds
+= \frac{\sigma_t b}{n v_3} e^{-n x_3} \Big( e^{n v_3 u} - 1 \Big).
 $$</p>
-
 <p>Solving for the distance \(u\) is straightforward:</p>
-
 <p>$$ \tag{35} u = \frac{1}{n v_3} \log \left(1 + \frac{\tau}{\sigma_t b} n v_3 e^{n x_3} \right). $$</p>
-
 <p>Note that uniform media \( \big( n v_3 = 0 \big) \) require special care.</p>
-
 <p>Sample code is listed below.</p>
-
-<pre><code class="language-c++">// 'height' is the altitude.
-// 'cosTheta' is the Z component of the ray direction.
-// 'dist' is the distance.
-// seaLvlExt = (sigma_t * b) is the sea-level (height = 0) extinction coefficient.
-// n = (1 / H) is the falloff exponent, where 'H' is the scale height.
-spectrum OptDepthRectExpMedium(float height, float cosTheta, float dist,
-                               spectrum seaLvlExt, float n)
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c++" data-lang="c++"><span style="color:#75715e">// &#39;height&#39; is the altitude.
+</span><span style="color:#75715e">// &#39;cosTheta&#39; is the Z component of the ray direction.
+</span><span style="color:#75715e">// &#39;dist&#39; is the distance.
+</span><span style="color:#75715e">// seaLvlExt = (sigma_t * b) is the sea-level (height = 0) extinction coefficient.
+</span><span style="color:#75715e">// n = (1 / H) is the falloff exponent, where &#39;H&#39; is the scale height.
+</span><span style="color:#75715e"></span>spectrum <span style="color:#a6e22e">OptDepthRectExpMedium</span>(<span style="color:#66d9ef">float</span> height, <span style="color:#66d9ef">float</span> cosTheta, <span style="color:#66d9ef">float</span> dist,
+                               spectrum seaLvlExt, <span style="color:#66d9ef">float</span> n)
 {
-    float p = -cosTheta * n;
+    <span style="color:#66d9ef">float</span> p <span style="color:#f92672">=</span> <span style="color:#f92672">-</span>cosTheta <span style="color:#f92672">*</span> n;
 
-    // Equation 26.
-    spectrum optDepth = seaLvlExt * dist;
+    <span style="color:#75715e">// Equation 26.
+</span><span style="color:#75715e"></span>    spectrum optDepth <span style="color:#f92672">=</span> seaLvlExt <span style="color:#f92672">*</span> dist;
 
-    if (abs(p) &gt; FLT_EPS) // Uniformity check
-    {
-        // Equation 34.
-        optDepth = seaLvlExt * rcp(p) * exp(height * n) * (exp(p * dist) - 1);
+    <span style="color:#66d9ef">if</span> (abs(p) <span style="color:#f92672">&gt;</span> FLT_EPS) <span style="color:#75715e">// Uniformity check
+</span><span style="color:#75715e"></span>    {
+        <span style="color:#75715e">// Equation 34.
+</span><span style="color:#75715e"></span>        optDepth <span style="color:#f92672">=</span> seaLvlExt <span style="color:#f92672">*</span> rcp(p) <span style="color:#f92672">*</span> exp(height <span style="color:#f92672">*</span> n) <span style="color:#f92672">*</span> (exp(p <span style="color:#f92672">*</span> dist) <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>);
     }
 
-    return optDepth;
+    <span style="color:#66d9ef">return</span> optDepth;
 }
 
-// 'optDepth' is the value of optical depth.
-// 'height' is the altitude.
-// 'cosTheta' is the Z component of the ray direction.
-// seaLvlExtRcp = (1 / seaLvlExt).
-// n = (1 / H) is the falloff exponent, where 'H' is the scale height.
-float SampleRectExpMedium(float optDepth, float height, float cosTheta,
-                          float seaLvlExtRcp, float n)
+<span style="color:#75715e">// &#39;optDepth&#39; is the value of optical depth.
+</span><span style="color:#75715e">// &#39;height&#39; is the altitude.
+</span><span style="color:#75715e">// &#39;cosTheta&#39; is the Z component of the ray direction.
+</span><span style="color:#75715e">// seaLvlExtRcp = (1 / seaLvlExt).
+</span><span style="color:#75715e">// n = (1 / H) is the falloff exponent, where &#39;H&#39; is the scale height.
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">float</span> <span style="color:#a6e22e">SampleRectExpMedium</span>(<span style="color:#66d9ef">float</span> optDepth, <span style="color:#66d9ef">float</span> height, <span style="color:#66d9ef">float</span> cosTheta,
+                          <span style="color:#66d9ef">float</span> seaLvlExtRcp, <span style="color:#66d9ef">float</span> n)
 {
-    float p = -cosTheta * n;
+    <span style="color:#66d9ef">float</span> p <span style="color:#f92672">=</span> <span style="color:#f92672">-</span>cosTheta <span style="color:#f92672">*</span> n;
 
-    // Equation 27.
-    float dist = optDepth * seaLvlExtRcp;
+    <span style="color:#75715e">// Equation 27.
+</span><span style="color:#75715e"></span>    <span style="color:#66d9ef">float</span> dist <span style="color:#f92672">=</span> optDepth <span style="color:#f92672">*</span> seaLvlExtRcp;
 
-    if (abs(p) &gt; FLT_EPS) // Uniformity check
-    {
-        // Equation 35.
-        dist = rcp(p) * log(1 + dist * p * exp(height * n));
+    <span style="color:#66d9ef">if</span> (abs(p) <span style="color:#f92672">&gt;</span> FLT_EPS) <span style="color:#75715e">// Uniformity check
+</span><span style="color:#75715e"></span>    {
+        <span style="color:#75715e">// Equation 35.
+</span><span style="color:#75715e"></span>        dist <span style="color:#f92672">=</span> rcp(p) <span style="color:#f92672">*</span> log(<span style="color:#ae81ff">1</span> <span style="color:#f92672">+</span> dist <span style="color:#f92672">*</span> p <span style="color:#f92672">*</span> exp(height <span style="color:#f92672">*</span> n));
     }
 
-    return dist;
+    <span style="color:#66d9ef">return</span> dist;
 }
-</code></pre>
-
-<h3 id="exponential-variation-of-density-with-altitude-spherical-atmosphere">Exponential Variation of Density with Altitude (Spherical Atmosphere)</h3>
-
+</code></pre></div><h3 id="exponential-variation-of-density-with-altitude-spherical-atmosphere">Exponential Variation of Density with Altitude (Spherical Atmosphere)</h3>
 <p>This is where things get interesting. We would like to model an exponential density distribution on a sphere:</p>
-
 <p>$$ \tag{36} \rho(\bm{x}) = b e^{-h(\bm{x}) / H} = b e^{-(\vert \bm{x} - \bm{c} \vert - R) / H} = b e^{-n (\vert \bm{x} - \bm{c} \vert - R)}, $$</p>
-
 <p>where \(\bm{c}\) is the center of the sphere, \(R\) is its radius, \(h\) is the altitude, and \(H\) is the <a href="https://en.wikipedia.org/wiki/Scale_height">scale height</a> as before. In this context, \(b\) and \(\sigma_t b\) represent the density and the value of the extinction coefficient at the sea level, respectively. This formula gives the density of an <a href="http://www.feynmanlectures.caltech.edu/I_40.html">isothermal atmosphere</a>, which is not physically plausible.</p>
-
 <h4 id="geometric-configuration-of-a-spherical-atmosphere">Geometric Configuration of a Spherical Atmosphere</h4>
-
 <p>We can simplify the problem using its inherent spherical symmetry. Take a look at the diagram below.</p>
-
 <figure>
     <img src="/img/spherical_param.png"/> 
 </figure>
 
-
 <p>We start by recognizing the fact that every ordered pair of position and direction \(\lbrace \bm{x}, \bm{v} \rbrace\) can be reduced to a pair of radial distance and zenith angle \(\lbrace r, \theta \rbrace\), which means that our phase space is 2-dimensional.</p>
-
 <p>In order to find the parametric equation of altitude \(h\) along the ray, we can use a right triangle with sides of length \(r_0\) and \(s_0\) corresponding to the initial position \(\bm{x}\):</p>
-
 <p>$$ \tag{37} r_0 = r \sin{\theta}, \qquad s_0 = r \cos{\theta}. $$</p>
-
 <p>This allows us to easily determine the radial distance and the zenith angle at any point along the ray.</p>
-
 <p>$$ \tag{38}
 \mathcal{R}(r, \theta, s)
-    = \sqrt{r_0^2 + (s_0 + s)^2}
-    = \sqrt{(r \sin{\theta})^2 + (r \cos{\theta} + s)^2}
-    = r \sqrt{1 + \frac{s}{r} \Big( 2 \cos{\theta + \frac{s}{r}} \Big)}.
+= \sqrt{r_0^2 + (s_0 + s)^2}
+= \sqrt{(r \sin{\theta})^2 + (r \cos{\theta} + s)^2}
+= r \sqrt{1 + \frac{s}{r} \Big( 2 \cos{\theta + \frac{s}{r}} \Big)}.
 $$</p>
-
 <p>$$ \tag{39}
 \mathcal{C}(r, \theta, s)
-    = \frac{\mathrm{adjacent}}{\mathrm{hypotenuse}}
-    = \frac{s_0 + s}{\mathcal{R}(r, \theta, s)}
-    = \frac{\cos{\theta} + \frac{s}{r}}{\sqrt{1 + \frac{s}{r} \Big( 2 \cos{\theta + \frac{s}{r}} \Big)}}.
+= \frac{\mathrm{adjacent}}{\mathrm{hypotenuse}}
+= \frac{s_0 + s}{\mathcal{R}(r, \theta, s)}
+= \frac{\cos{\theta} + \frac{s}{r}}{\sqrt{1 + \frac{s}{r} \Big( 2 \cos{\theta + \frac{s}{r}} \Big)}}.
 $$</p>
-
 <p>We can now compose the optical depth integral:</p>
-
 <p>$$ \tag{40} \begin{aligned}
 \tau(r, \theta, u)
-    &amp;= \sigma_t b \int_{0}^{u} e^{-n h(s)} ds \cr
-    &amp;= \sigma_t b \int_{0}^{u} e^{-n \big( \mathcal{R}(r, \theta, s) - R \big)} ds \cr
-    &amp;= \sigma_t \frac{b}{n} e^{n (R - r)} \int_{0}^{u} e^{n \big( r - \mathcal{R}(r, \theta, s) \big)} n ds \cr
-    &amp;= \sigma_t \frac{b}{n} e^{n (R - r)} \int_{0}^{u} e^{n \big( r - \sqrt{r^2 + s (2 r \cos{\theta} + s)} \big)} n ds.
+&amp;= \sigma_t b \int_{0}^{u} e^{-n h(s)} ds \cr
+&amp;= \sigma_t b \int_{0}^{u} e^{-n \big( \mathcal{R}(r, \theta, s) - R \big)} ds \cr
+&amp;= \sigma_t \frac{b}{n} e^{n (R - r)} \int_{0}^{u} e^{n \big( r - \mathcal{R}(r, \theta, s) \big)} n ds \cr
+&amp;= \sigma_t \frac{b}{n} e^{n (R - r)} \int_{0}^{u} e^{n \big( r - \sqrt{r^2 + s (2 r \cos{\theta} + s)} \big)} n ds.
 \end{aligned} $$</p>
-
 <p>The resulting integral is very complex. If we simplify using the following change of variables</p>
-
 <p>$$ \tag{41} t = n s, \qquad z = n r, \qquad Z = n R $$</p>
-
-<p>and change the upper limit of integration to infinity, we obtain what is known in the physics community as the <a href="https://ui.adsabs.harvard.edu/abs/1931PPS....43...26C/abstract">Chapman's grazing incidence integral</a> (or the obliquity function, or the relative optical air mass) \(C\):</p>
-
+<p>and change the upper limit of integration to infinity, we obtain what is known in the physics community as the <a href="https://ui.adsabs.harvard.edu/abs/1931PPS....43...26C/abstract">Chapman&rsquo;s grazing incidence integral</a> (or the obliquity function, or the relative optical air mass) \(C\):</p>
 <p>$$ \tag{42} C(z, \theta) = \int_{0}^{\infty} e^{z - \sqrt{z^2 + t (2 z \cos{\theta} + t)}} dt. $$</p>
-
 <p>It is convenient to define the rescaled Chapman function \(C_r\)</p>
-
 <p>$$ \tag{43} C_r(z, \theta) = e^{Z - z} C(z, \theta) = \int_{0}^{\infty} e^{Z - \sqrt{z^2 + t (2 z \cos{\theta} + t)}} dt, $$</p>
-
 <p>which has a better numerical behavior, and further simplifies the expression of optical depth between \(\bm{x}\) and \(\bm{y}\):</p>
-
 <p>$$ \tag{44}
 \tau(\bm{x}, \bm{y})
-    = \sigma_t \frac{b}{n} \Bigg( C_r \Big(z(\bm{x}), \cos{\theta(\bm{x})} \Big) - C_r \Big(z(\bm{y}), \cos{\theta(\bm{y})} \Big) \Bigg).
+= \sigma_t \frac{b}{n} \Bigg( C_r \Big(z(\bm{x}), \cos{\theta(\bm{x})} \Big) - C_r \Big(z(\bm{y}), \cos{\theta(\bm{y})} \Big) \Bigg).
 $$</p>
-
-<p>What Equation 44 tells us is that we should evaluate the optical depth integral twice (in the same direction, along the entire ray, from 0 to \(\infty\)), at the start and at the end of the interval, and subtract the results to &quot;clip&quot; the ray.</p>
-
+<p>What Equation 44 tells us is that we should evaluate the optical depth integral twice (in the same direction, along the entire ray, from 0 to \(\infty\)), at the start and at the end of the interval, and subtract the results to &ldquo;clip&rdquo; the ray.</p>
 <p>It is interesting to contemplate the physical meaning of optical depth and the Chapman function. Generally speaking, the value of a line integral of density (such as given by \(\tau / \sigma_t\)) corresponds to mass. Therefore, the integral</p>
-
 <p>$$ \tag{45} \int_{h = (r - R)}^{\infty} b e^{-n s} ds = \frac{b}{n} e^{-n h} $$</p>
-
 <p>gives the mass of an infinitely tall vertical column starting at the altitude \(h\). At the sea level, its mass is \(\frac{b}{n} = kH\).</p>
-
 <p>Optical depth, then, is a <em>product</em> of the mass of the vertical column <em>and</em> the value of the obliquity function (which, intuitively, gives the absolute optical air mass along the oblique ray) <em>times</em> the mass extinction coefficient.</p>
-
 <h4 id="examining-the-chapman-function">Examining the Chapman Function</h4>
-
-<p>It is always a good idea to examine a function visually, as a graph. Let's do that.</p>
-
+<p>It is always a good idea to examine a function visually, as a graph. Let&rsquo;s do that.</p>
 <figure>
     <img src="/img/chapman_ref.png"
          alt="Plot of the Chapman function for r = 6600."/> <figcaption>
@@ -479,105 +340,88 @@ $$</p>
         </figcaption>
 </figure>
 
-
 <p>Above, I plotted values of the Chapman function (vertical axis) varying with the angle \(\theta\) (horizontal axis, in degrees) for different values of the scale height \(H\): \(1\) (blue), \(10\) (orange), \(20\) (green), \(40\) (red), \(60\) (purple), \(80\) (brown), \(100\) (light blue).
-Arguably, the first two are the most important, since they roughly correspond to scale heights of <a href="https://doi.org/10.1111/j.1467-8659.2008.01245.x">aerosols and air</a> of Earth's atmosphere. However, it is nice to be able to support larger values to model atmospheres of <a href="https://en.wikipedia.org/wiki/Scale_height#Planetary_examples">other planets</a>.</p>
-
+Arguably, the first two are the most important, since they roughly correspond to scale heights of <a href="https://doi.org/10.1111/j.1467-8659.2008.01245.x">aerosols and air</a> of Earth&rsquo;s atmosphere. However, it is nice to be able to support larger values to model atmospheres of <a href="https://en.wikipedia.org/wiki/Scale_height#Planetary_examples">other planets</a>.</p>
 <p>Being an obliquity function, \(C(z, 0) = 1\). The function varies slowly, as long as the angle is far from being horizontal (which suggests an opportunity for a <a href="https://en.wikipedia.org/wiki/Small-angle_approximation">small angle approximation</a>).</p>
-
-<p>To my knowledge, the Chapman function does not have a <a href="https://en.wikipedia.org/wiki/Closed-form_expression#Analytic_expression">closed-form</a> expression. Many <a href="https://doi.org/10.1029/2011JD016706">approximations</a> exist. Unfortunately, most of them are specific to Earth's atmosphere, and we are interested in a general solution. The most accurate approximation I have found was developed by <a href="https://doi.org/10.1016/S0022-4073(00)00107-2">David Huestis</a>. He performs an <a href="https://en.wikipedia.org/wiki/Asymptotic_expansion">asymptotic expansion</a> in \(z\), which implies that his approximation becomes more accurate as the value of \(z\) increases (or, for fixed \(r\), as the value of \(H\) decreases). Using the first two terms results in the following formula for \(\theta \leq \pi/2\):</p>
-
-<p>$$ \begin{aligned} \tag{46} C_u(z, \theta) \approx
-    &amp; \sqrt{\frac{1 - \sin{\theta}}{1 + \sin{\theta}}} \Bigg(1 - \frac{1}{2 (1 + \sin{\theta})} \Bigg) + \frac{\sqrt{\pi z}}{\sqrt{1 + \sin{\theta}}} \times \cr
-    &amp; \Bigg[ e^{z - z \sin{\theta}} \text{erfc}\left(\sqrt{z - z \sin{\theta}}\right) \Bigg] \Bigg( -\frac{1}{2} + \sin{\theta} + \frac{1}{1 + \sin{\theta}} + \frac{2 (1 + \sin{\theta}) - 1}{4 z (1 + \sin{\theta})} \Bigg).
+<p>To my knowledge, the Chapman function does not have a <a href="https://en.wikipedia.org/wiki/Closed-form_expression#Analytic_expression">closed-form</a> expression. Many <a href="https://doi.org/10.1029/2011JD016706">approximations</a> exist. Unfortunately, most of them are specific to Earth&rsquo;s atmosphere, and we are interested in a general solution. The most accurate approximation I have found was developed by <a href="https://doi.org/10.1016/S0022-4073(00)00107-2">David Huestis</a>. He performs an <a href="https://en.wikipedia.org/wiki/Asymptotic_expansion">asymptotic expansion</a> in \(z\), which implies that his approximation becomes more accurate as the value of \(z\) increases (or, for fixed \(r\), as the value of \(H\) decreases). Using the first two terms results in the following formula for \(\theta \leq \pi/2\):</p>
+<p>$$ \begin{aligned} \tag{46} C_u(z, \theta)
+&amp;\approx \sqrt{\frac{1 - \sin{\theta}}{1 + \sin{\theta}}} \Bigg(1 - \frac{1}{2 (1 + \sin{\theta})} \Bigg) + \frac{\sqrt{\pi z}}{\sqrt{1 + \sin{\theta}}} \cr
+&amp;\times \Bigg[ e^{z - z \sin{\theta}} \text{erfc}\left(\sqrt{z - z \sin{\theta}}\right) \Bigg] \Bigg( -\frac{1}{2} + \sin{\theta} + \frac{1}{1 + \sin{\theta}} + \frac{2 (1 + \sin{\theta}) - 1}{4 z (1 + \sin{\theta})} \Bigg).
 \end{aligned}$$</p>
-
-<p>The approximation itself is also not closed-form, since it contains the <a href="http://mathworld.wolfram.com/Erfc.html">complementary error function</a> \(\mathrm{erfc}\). It's also somewhat annoying that the result is given in terms of \(\sin{\theta}\) rather than \(\cos{\theta}\), but this reparametrization is actually necessarily to make the series converge quickly.</p>
-
+<p>The approximation itself is also not closed-form, since it contains the <a href="http://mathworld.wolfram.com/Erfc.html">complementary error function</a> \(\mathrm{erfc}\). It&rsquo;s also somewhat annoying that the result is given in terms of \(\sin{\theta}\) rather than \(\cos{\theta}\), but this reparametrization is actually necessarily to make the series converge quickly.</p>
 <p>For the angle of 90 degrees, the integral is given using the <a href="http://mathworld.wolfram.com/ModifiedBesselFunctionoftheSecondKind.html">modified Bessel function of the second kind</a> \(K_1\):</p>
-
 <p>$$ \tag{47} C_h(z) = C(z,\frac{\pi}{2}) = z e^z K_1(z) \approx \sqrt{\frac{\pi z}{2}} \left(1 + \frac{3}{8 z} -\frac{15}{128 z^2}\right). $$</p>
-
 <p>We use a slightly more <a href="https://doi.org/10.1016/S0022-4073(00)00107-2">accurate approximation</a> than \(C_u(z, \pi/2)\) to obtain some extra precision near 0 (we add the quadratic term).</p>
-
 <p>Beyond the 90 degree angle, the following <a href="https://doi.org/10.1016/S0022-4073(00)00107-2">identity</a> can be used:</p>
-
 <p>$$ \tag{48} C_l(z, \theta) = 2 C_h(z \sin{\theta}) e^{z - z \sin{\theta}} - C_u(z, \pi - \theta), $$</p>
-
 <p>which means that we must find a position \(\bm{p}\) (sometimes called the <a href="https://en.wikipedia.org/wiki/Apsis">periapsis</a> point, see the diagram in the previous section) along the ray where it is orthogonal to the surface normal, evaluate the horizontal Chapman function there (twice, forward and backward, to cover the entire real line), and subtract the value of the Chapman function at the original position with the reversed direction (towards the atmospheric boundary), which isolates the integral to the desired ray segment.</p>
-
 <p>Sample implementation is listed below.</p>
-
-<pre><code class="language-c++">float ChapmanUpper(float z, float absCosTheta)
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c++" data-lang="c++"><span style="color:#66d9ef">float</span> <span style="color:#a6e22e">ChapmanUpper</span>(<span style="color:#66d9ef">float</span> z, <span style="color:#66d9ef">float</span> absCosTheta)
 {
-    float sinTheta = sqrt(saturate(1 - absCosTheta * absCosTheta));
+    <span style="color:#66d9ef">float</span> sinTheta <span style="color:#f92672">=</span> sqrt(saturate(<span style="color:#ae81ff">1</span> <span style="color:#f92672">-</span> absCosTheta <span style="color:#f92672">*</span> absCosTheta));
 
-    float zm12 = rsqrt(z);           // z^(-1/2)
-    float zp12 = z * zm12;           // z^(+1/2)
+    <span style="color:#66d9ef">float</span> zm12 <span style="color:#f92672">=</span> rsqrt(z);           <span style="color:#75715e">// z^(-1/2)
+</span><span style="color:#75715e"></span>    <span style="color:#66d9ef">float</span> zp12 <span style="color:#f92672">=</span> z <span style="color:#f92672">*</span> zm12;           <span style="color:#75715e">// z^(+1/2)
+</span><span style="color:#75715e"></span>
+    <span style="color:#66d9ef">float</span> tp   <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span> <span style="color:#f92672">+</span> sinTheta;       <span style="color:#75715e">// 1 + Sin
+</span><span style="color:#75715e"></span>    <span style="color:#66d9ef">float</span> rstp <span style="color:#f92672">=</span> rsqrt(tp);          <span style="color:#75715e">// 1 / Sqrt[1 + Sin]
+</span><span style="color:#75715e"></span>    <span style="color:#66d9ef">float</span> rtp  <span style="color:#f92672">=</span> rstp <span style="color:#f92672">*</span> rstp;        <span style="color:#75715e">// 1 / (1 + Sin)
+</span><span style="color:#75715e"></span>    <span style="color:#66d9ef">float</span> stm  <span style="color:#f92672">=</span> absCosTheta <span style="color:#f92672">*</span> rstp; <span style="color:#75715e">// Sqrt[1 - Sin] = Abs[Cos] / Sqrt[1 + Sin]
+</span><span style="color:#75715e"></span>    <span style="color:#66d9ef">float</span> arg  <span style="color:#f92672">=</span> zp12 <span style="color:#f92672">*</span> stm;         <span style="color:#75715e">// Sqrt[z - z * Sin], argument of Erfc
+</span><span style="color:#75715e"></span>    <span style="color:#66d9ef">float</span> e2ec <span style="color:#f92672">=</span> Exp2Erfc(arg);      <span style="color:#75715e">// Exp[x^2] * Erfc[x]
+</span><span style="color:#75715e"></span>
+    <span style="color:#75715e">// Term 1 of Equation 46.
+</span><span style="color:#75715e"></span>    <span style="color:#66d9ef">float</span> mul1 <span style="color:#f92672">=</span> absCosTheta <span style="color:#f92672">*</span> rtp;  <span style="color:#75715e">// Sqrt[(1 - Sin) / (1 + Sin)] = Abs[Cos] / (1 + Sin)
+</span><span style="color:#75715e"></span>    <span style="color:#66d9ef">float</span> trm1 <span style="color:#f92672">=</span> mul1 <span style="color:#f92672">*</span> (<span style="color:#ae81ff">1</span> <span style="color:#f92672">-</span> <span style="color:#ae81ff">0.5</span> <span style="color:#f92672">*</span> rtp);
 
-    float tp   = 1 + sinTheta;       // 1 + Sin
-    float rstp = rsqrt(tp);          // 1 / Sqrt[1 + Sin]
-    float rtp  = rstp * rstp;        // 1 / (1 + Sin)
-    float stm  = absCosTheta * rstp; // Sqrt[1 - Sin] = Abs[Cos] / Sqrt[1 + Sin]
-    float arg  = zp12 * stm;         // Sqrt[z - z * Sin], argument of Erfc
-    float e2ec = Exp2Erfc(arg);      // Exp[x^2] * Erfc[x]
-
-    // Term 1 of Equation 46.
-    float mul1 = absCosTheta * rtp;  // Sqrt[(1 - Sin) / (1 + Sin)] = Abs[Cos] / (1 + Sin)
-    float trm1 = mul1 * (1 - 0.5 * rtp);
-
-    // Term 2 of Equation 46.
-    float mul2 = SQRT_PI * rstp * e2ec; // Sqrt[Pi / (1 + Sin)] * Exp[x^2] * Erfc[x]
-    float trm2 = mul2 * (zp12 * (-1.5 + tp + rtp) +
-                         zm12 * 0.25 * (2 * tp - 1) * rtp);
-    return trm1 + trm2;
+    <span style="color:#75715e">// Term 2 of Equation 46.
+</span><span style="color:#75715e"></span>    <span style="color:#66d9ef">float</span> mul2 <span style="color:#f92672">=</span> SQRT_PI <span style="color:#f92672">*</span> rstp <span style="color:#f92672">*</span> e2ec; <span style="color:#75715e">// Sqrt[Pi / (1 + Sin)] * Exp[x^2] * Erfc[x]
+</span><span style="color:#75715e"></span>    <span style="color:#66d9ef">float</span> trm2 <span style="color:#f92672">=</span> mul2 <span style="color:#f92672">*</span> (zp12 <span style="color:#f92672">*</span> (<span style="color:#f92672">-</span><span style="color:#ae81ff">1.5</span> <span style="color:#f92672">+</span> tp <span style="color:#f92672">+</span> rtp) <span style="color:#f92672">+</span>
+                         zm12 <span style="color:#f92672">*</span> <span style="color:#ae81ff">0.25</span> <span style="color:#f92672">*</span> (<span style="color:#ae81ff">2</span> <span style="color:#f92672">*</span> tp <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>) <span style="color:#f92672">*</span> rtp);
+    <span style="color:#66d9ef">return</span> trm1 <span style="color:#f92672">+</span> trm2;
 }
 
-float ChapmanHorizontal(float z)
+<span style="color:#66d9ef">float</span> <span style="color:#a6e22e">ChapmanHorizontal</span>(<span style="color:#66d9ef">float</span> z)
 {
-    float zm12 = rsqrt(z);           // z^(-1/2)
-    float zm32 = zm12 * zm12 * zm12; // z^(-3/2)
+    <span style="color:#66d9ef">float</span> zm12 <span style="color:#f92672">=</span> rsqrt(z);           <span style="color:#75715e">// z^(-1/2)
+</span><span style="color:#75715e"></span>    <span style="color:#66d9ef">float</span> zm32 <span style="color:#f92672">=</span> zm12 <span style="color:#f92672">*</span> zm12 <span style="color:#f92672">*</span> zm12; <span style="color:#75715e">// z^(-3/2)
+</span><span style="color:#75715e"></span>
+    <span style="color:#66d9ef">float</span> p <span style="color:#f92672">=</span> <span style="color:#f92672">-</span><span style="color:#ae81ff">0.14687275046666018</span> <span style="color:#f92672">+</span> z <span style="color:#f92672">*</span> (<span style="color:#ae81ff">0.4699928014933126</span> <span style="color:#f92672">+</span> z <span style="color:#f92672">*</span> <span style="color:#ae81ff">1.2533141373155001</span>);
 
-    float p = -0.14687275046666018 + z * (0.4699928014933126 + z * 1.2533141373155001);
-
-    // Equation 47.
-    return p * zm32;
+    <span style="color:#75715e">// Equation 47.
+</span><span style="color:#75715e"></span>    <span style="color:#66d9ef">return</span> p <span style="color:#f92672">*</span> zm32;
 }
 
-// z = (r / H), Z = (R / H).
-float RescaledChapman(float z, float Z, float cosTheta)
+<span style="color:#75715e">// z = (r / H), Z = (R / H).
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">float</span> <span style="color:#a6e22e">RescaledChapman</span>(<span style="color:#66d9ef">float</span> z, <span style="color:#66d9ef">float</span> Z, <span style="color:#66d9ef">float</span> cosTheta)
 {
-    float sinTheta = sqrt(saturate(1 - cosTheta * cosTheta));
+    <span style="color:#66d9ef">float</span> sinTheta <span style="color:#f92672">=</span> sqrt(saturate(<span style="color:#ae81ff">1</span> <span style="color:#f92672">-</span> cosTheta <span style="color:#f92672">*</span> cosTheta));
 
-    // Cos[Pi - theta] = -Cos[theta],
-    // Sin[Pi - theta] =  Sin[theta],
-    // so we can just use Abs[Cos[theta]].
-    float ch = ChapmanUpper(z, abs(cosTheta)) * exp(Z - z); // Rescaling adds 'exp'
-
-    if (cosTheta &lt; 0)
+    <span style="color:#75715e">// Cos[Pi - theta] = -Cos[theta],
+</span><span style="color:#75715e"></span>    <span style="color:#75715e">// Sin[Pi - theta] =  Sin[theta],
+</span><span style="color:#75715e"></span>    <span style="color:#75715e">// so we can just use Abs[Cos[theta]].
+</span><span style="color:#75715e"></span>    <span style="color:#66d9ef">float</span> ch <span style="color:#f92672">=</span> ChapmanUpper(z, abs(cosTheta)) <span style="color:#f92672">*</span> exp(Z <span style="color:#f92672">-</span> z); <span style="color:#75715e">// Rescaling adds &#39;exp&#39;
+</span><span style="color:#75715e"></span>
+    <span style="color:#66d9ef">if</span> (cosTheta <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">0</span>)
     {
-        // Ch[z, theta] = 2 * Exp[z - z_0] * Ch[z_0, Pi/2] - Ch[z, Pi - theta].
-        // z_0 = r_0 / H = (r / H) * Sin[theta] = z * Sin[theta].
-        float z_0 = z * sinTheta;
-        float chP = ChapmanHorizontal(z_0) * exp(Z - z_0); // Rescaling adds 'exp'
-
-        // Equation 48.
-        ch = 2 * chP - ch;
+        <span style="color:#75715e">// Ch[z, theta] = 2 * Exp[z - z_0] * Ch[z_0, Pi/2] - Ch[z, Pi - theta].
+</span><span style="color:#75715e"></span>        <span style="color:#75715e">// z_0 = r_0 / H = (r / H) * Sin[theta] = z * Sin[theta].
+</span><span style="color:#75715e"></span>        <span style="color:#66d9ef">float</span> z_0 <span style="color:#f92672">=</span> z <span style="color:#f92672">*</span> sinTheta;
+        <span style="color:#66d9ef">float</span> chP <span style="color:#f92672">=</span> ChapmanHorizontal(z_0) <span style="color:#f92672">*</span> exp(Z <span style="color:#f92672">-</span> z_0); <span style="color:#75715e">// Rescaling adds &#39;exp&#39;
+</span><span style="color:#75715e"></span>
+        <span style="color:#75715e">// Equation 48.
+</span><span style="color:#75715e"></span>        ch <span style="color:#f92672">=</span> <span style="color:#ae81ff">2</span> <span style="color:#f92672">*</span> chP <span style="color:#f92672">-</span> ch;
     }
 
-    return ch;
+    <span style="color:#66d9ef">return</span> ch;
 }
-</code></pre>
-
-<p>We can evaluate the quality of the approximation by computing the error with respect to the integral numerically evaluated in Mathematica.</p>
-
+</code></pre></div><p>We can evaluate the quality of the approximation by computing the error with respect to the integral numerically evaluated in Mathematica.</p>
 <figure>
     <img src="/img/chapman_approx_abs.png"
          alt="Absolute error plot of the approximation of the Chapman function for r = 6600."/> <figcaption>
             <p><em>Absolute error plot of the approximation of the Chapman function for r = 6600.</em></p>
         </figcaption>
 </figure>
-
 
 <figure>
     <img src="/img/chapman_approx_rel.png"
@@ -586,9 +430,7 @@ float RescaledChapman(float z, float Z, float cosTheta)
         </figcaption>
 </figure>
 
-
 <p>We can also represent the relative error as <em>precision</em> by plotting the number of digits after the decimal point. Since decimal precision of 32-bit floating numbers is between <a href="https://www.exploringbinary.com/decimal-precision-of-binary-floating-point-numbers/">6-8 digits</a>, the approximation can be considered relatively accurate (particularly so for the range of typical values).</p>
-
 <figure>
     <img src="/img/chapman_approx_dig.png"
          alt="Precision plot of the approximation of the Chapman function for r = 6600."/> <figcaption>
@@ -596,49 +438,41 @@ float RescaledChapman(float z, float Z, float cosTheta)
         </figcaption>
 </figure>
 
-
 <p>Of course, we must address the elephant in the room, \(\mathrm{erfc}\). Since it is <a href="https://www.johndcook.com/erf_and_normal_cdf.pdf">related</a> to the <a href="https://en.wikipedia.org/wiki/Normal_distribution">normal distribution</a>, it has numerous applications, and, as a result, dozens of existing approximations. Unfortunately, most of them are not particularly accurate, especially across a huge range of values (as in our case), and the accuracy of \(\mathrm{erfc}\) greatly affects the quality of our approximation.</p>
-
 <p>After performing an extensive search, I stumbled upon the approximation developed by <a href="http://www.kurims.kyoto-u.ac.jp/~ooura/gamerf.html">Takuya Ooura</a>. He provides an impressive double-precision implementation accurate to 16 decimal digits. A great thing about his approximation is that it includes the \(\exp(x^2)\) factor, which means we can replace the entire term of Equation 46 inside the square brackets. In order to obtain a single-precision version of his approximation, I retain his range reduction technique and reduce the degree of the polynomial (which I fit using <a href="http://sollya.gforge.inria.fr/sollya-7.0/help.php?name=fpminimax">Sollya</a>). In order to account for fused multiply-adds, I perform a <a href="https://stackoverflow.com/questions/26692859/best-machine-optimized-polynomial-minimax-approximation-to-arctangent-on-1-1">greedy search</a> for better coefficients (starting with single-precision coefficients found by Sollya) on the target hardware.</p>
-
 <p>The implementation of Takuya Ooura (with my modifications) is reproduced below.</p>
-
-<pre><code class="language-c++">// Computes (Exp[x^2] * Erfc[x]) for (x &gt;= 0).
-// Range of inputs:  [0, Inf].
-// Range of outputs: [0, 1].
-// Max Abs Error: 0.000000969658452.
-// Max Rel Error: 0.000001091639525.
-float Exp2Erfc(float x)
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c++" data-lang="c++"><span style="color:#75715e">// Computes (Exp[x^2] * Erfc[x]) for (x &gt;= 0).
+</span><span style="color:#75715e">// Range of inputs:  [0, Inf].
+</span><span style="color:#75715e">// Range of outputs: [0, 1].
+</span><span style="color:#75715e">// Max Abs Error: 0.000000969658452.
+</span><span style="color:#75715e">// Max Rel Error: 0.000001091639525.
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">float</span> <span style="color:#a6e22e">Exp2Erfc</span>(<span style="color:#66d9ef">float</span> x)
 {
-    float t, u, y;
+    <span style="color:#66d9ef">float</span> t, u, y;
 
-    t = 3.9788608f * rcp(x + 3.9788608f); // Reduce the range
-    u = t - 0.5f;                         // Center around 0
+    t <span style="color:#f92672">=</span> <span style="color:#ae81ff">3.9788608f</span> <span style="color:#f92672">*</span> rcp(x <span style="color:#f92672">+</span> <span style="color:#ae81ff">3.9788608f</span>); <span style="color:#75715e">// Reduce the range
+</span><span style="color:#75715e"></span>    u <span style="color:#f92672">=</span> t <span style="color:#f92672">-</span> <span style="color:#ae81ff">0.5f</span>;                         <span style="color:#75715e">// Center around 0
+</span><span style="color:#75715e"></span>
+    y <span style="color:#f92672">=</span>           <span style="color:#f92672">-</span><span style="color:#ae81ff">0.010297533124685f</span>;
+    y <span style="color:#f92672">=</span> fmaf(y, u, <span style="color:#ae81ff">0.288184314966202f</span>);
+    y <span style="color:#f92672">=</span> fmaf(y, u, <span style="color:#ae81ff">0.805188119411469f</span>);
+    y <span style="color:#f92672">=</span> fmaf(y, u, <span style="color:#ae81ff">1.203098773956299f</span>);
+    y <span style="color:#f92672">=</span> fmaf(y, u, <span style="color:#ae81ff">1.371236562728882f</span>);
+    y <span style="color:#f92672">=</span> fmaf(y, u, <span style="color:#ae81ff">1.312000870704651f</span>);
+    y <span style="color:#f92672">=</span> fmaf(y, u, <span style="color:#ae81ff">1.079175233840942f</span>);
+    y <span style="color:#f92672">=</span> fmaf(y, u, <span style="color:#ae81ff">0.774399876594543f</span>);
+    y <span style="color:#f92672">=</span> fmaf(y, u, <span style="color:#ae81ff">0.490166693925858f</span>);
+    y <span style="color:#f92672">=</span> fmaf(y, u, <span style="color:#ae81ff">0.275374621152878f</span>);
 
-    y =           -0.010297533124685f;
-    y = fmaf(y, u, 0.288184314966202f);
-    y = fmaf(y, u, 0.805188119411469f);
-    y = fmaf(y, u, 1.203098773956299f);
-    y = fmaf(y, u, 1.371236562728882f);
-    y = fmaf(y, u, 1.312000870704651f);
-    y = fmaf(y, u, 1.079175233840942f);
-    y = fmaf(y, u, 0.774399876594543f);
-    y = fmaf(y, u, 0.490166693925858f);
-    y = fmaf(y, u, 0.275374621152878f);
-
-    return y * t; // Expand the range
-}
-</code></pre>
-
-<p>The approximation performs well, as you can see from the plots of the single-precision version shown below.</p>
-
+    <span style="color:#66d9ef">return</span> y <span style="color:#f92672">*</span> t; <span style="color:#75715e">// Expand the range
+</span><span style="color:#75715e"></span>}
+</code></pre></div><p>The approximation performs well, as you can see from the plots of the single-precision version shown below.</p>
 <figure>
     <img src="/img/exp2erfc.png"
          alt="Plot of \(exp(x^2) erfc(x)\)."/> <figcaption>
             <p><em>Plot of \(exp(x^2) erfc(x)\).</em></p>
         </figcaption>
 </figure>
-
 
 <figure>
     <img src="/img/exp2erfc_abs_error.png"
@@ -647,7 +481,6 @@ float Exp2Erfc(float x)
         </figcaption>
 </figure>
 
-
 <figure>
     <img src="/img/exp2erfc_rel_error.png"
          alt="Relative error plot of the approximation of \(exp(x^2) erfc(x)\)."/> <figcaption>
@@ -655,15 +488,10 @@ float Exp2Erfc(float x)
         </figcaption>
 </figure>
 
-
 <p>Since the error of this term is lower than the error of the approximation of the Chapman function, substituting the former does not visibly affect the error of the latter (and the error plots remain unchanged).</p>
-
 <p>The proposed approximation is relatively expensive. It is particularly useful for path tracing, since the inversion process (described later) requires a certain degree of accuracy. If high accuracy is not required, you can (and probably should) use the approximation proposed by <a href="http://www.gameenginegems.net/gemsdb/article.php?id=1133">Christian Schüler</a> in his GPU Gems 3 article:</p>
-
 <p>$$ \tag{49} C_{cs}(z, \theta) \approx \frac{C_h(z)}{(C_h(z) - 1) \cos{\theta} + 1}. $$</p>
-
 <p>It models the shape of the function pretty well, especially considering the cost.</p>
-
 <figure>
     <img src="/img/chapman_chris.png"
          alt="Plot of the approximation of the Chapman function by Christian Schüler for r = 6600."/> <figcaption>
@@ -671,9 +499,7 @@ float Exp2Erfc(float x)
         </figcaption>
 </figure>
 
-
 <p>However, if you care about accuracy, and plot the relative error plot, it paints a slightly less attractive picture.</p>
-
 <figure>
     <img src="/img/chapman_chris_error.png"
          alt="Relative error plot of the approximation of the Chapman function by Christian Schüler for r = 6600."/> <figcaption>
@@ -681,573 +507,225 @@ float Exp2Erfc(float x)
         </figcaption>
 </figure>
 
-
-<p>As always, there is a compromise. If you need accuracy (for a certain algorithm or technique), you must use a more accurate implementation. If every last cycle matters, it's perfectly fine to &quot;cheat&quot; as long as the error is not very apparent.</p>
-
-<p>I should also mention that Christian references another analytic expression of the Chapman function proposed by <a href="https://ui.adsabs.harvard.edu/abs/1996CoSka..26...23K/abstract">Miroslav Kocifaj</a>. Miroslav's paper has two equations of interest: one for arbitrary altitudes (11a), and one for small altitudes (11b), with the latter referenced in the GPU Pro article. Both look very similar to the power series expansion we are using, while at the same time featuring several orders of magnitude higher error (so both are clearly <em>approximations</em>, <em>not exact</em> solutions). Additionally, his formula for arbitrary altitudes depends on the planetary radius term (which can not be removed via simplification) which is not present in the integral formulation (Equation 42), which leads me to believe that the paper contains an error.</p>
-
+<p>As always, there is a compromise. If you need accuracy (for a certain algorithm or technique), you must use a more accurate implementation. If every last cycle matters, it&rsquo;s perfectly fine to &ldquo;cheat&rdquo; as long as the error is not very apparent.</p>
+<p>I should also mention that Christian references another analytic expression of the Chapman function proposed by <a href="https://ui.adsabs.harvard.edu/abs/1996CoSka..26...23K/abstract">Miroslav Kocifaj</a>. Miroslav&rsquo;s paper has two equations of interest: one for arbitrary altitudes (11a), and one for small altitudes (11b), with the latter referenced in the GPU Pro article. Both look very similar to the power series expansion we are using, while at the same time featuring several orders of magnitude higher error (so both are clearly <em>approximations</em>, <em>not exact</em> solutions). Additionally, his formula for arbitrary altitudes depends on the planetary radius term (which can not be removed via simplification) which is not present in the integral formulation (Equation 42), which leads me to believe that the paper contains an error.</p>
 <h4 id="evaluating-optical-depth-using-the-chapman-function">Evaluating Optical Depth Using the Chapman Function</h4>
-
 <p>A numerical approximation of the Chapman function, in conjunction with Equation 44, allows us to evaluate optical depth along an arbitrary ray segment.</p>
-
 <p>However, the approximation of the Chapman function contains a branch (upper/lower hemisphere), and using the full formulation twice may be unnecessarily expensive for many use cases.</p>
-
 <p>In order to evaluate optical depth between two arbitrary points \(\bm{x}\) and \(\bm{y}\), we have to consider three distinct possibilities:</p>
-
 <p>1. \(\cos{\theta_x} \geq 0 \), which means that the ray points into the upper hemisphere with respect to the surface normal at the point \(\bm{x}\). This also means it points into the upper hemisphere at any point \(\bm{y}\) along the ray (that is fairly obvious if you sketch it). Optical depth is given by Equation 44, which we specialize by replacing \(C\) with \(C_u\), which is restricted to the upper hemisphere:</p>
-
 <p>$$ \tag{50}
 \tau_{uu}(z_x, \theta_x, z_y, \theta_y)
-    = \sigma_t \frac{b}{n} \Bigg( e^{Z - z_x} C_u(z_x, \theta_x) - e^{Z - z_y} C_u(z_y, \theta_y) \Bigg).
+= \sigma_t \frac{b}{n} \Bigg( e^{Z - z_x} C_u(z_x, \theta_x) - e^{Z - z_y} C_u(z_y, \theta_y) \Bigg).
 $$</p>
-
 <p>2. \(\cos{\theta_x} &lt; 0 \) and \(\cos{\theta_y} &lt; 0 \) occurs e.g. when looking straight down. It is also easy to handle, we just flip the direction of the ray (by taking the absolute value of the cosine), replace the segment \(\bm{xy}\) with the segment \(\bm{yx}\) and fall back to case 1.</p>
-
 <p>3. \(\cos{\theta_x} &lt; 0 \) and \(\cos{\theta_y} \geq 0 \). This is the most complicated case, since we have to evaluate the Chapman function three times, twice at \(\bm{x}\) and once at \(\bm{y}\):</p>
-
 <p>$$ \tag{51} \begin{aligned}
 \tau_{lu}(z_x, \theta_x, z_y, \theta_y)
-    &amp;= \sigma_t \frac{b}{n} \Bigg( e^{Z - z_x} C_l(z_x, \theta_x) - e^{Z - z_y} C_u(z_y, \theta_y) \Bigg).
+&amp;= \sigma_t \frac{b}{n} \Bigg( e^{Z - z_x} C_l(z_x, \theta_x) - e^{Z - z_y} C_u(z_y, \theta_y) \Bigg).
 \end{aligned} $$</p>
-
 <p>Sample code is listed below.</p>
-
-<pre><code class="language-c++">float RadAtDist(float r, float rRcp, float cosTheta, float s)
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c++" data-lang="c++"><span style="color:#66d9ef">float</span> <span style="color:#a6e22e">RadAtDist</span>(<span style="color:#66d9ef">float</span> r, <span style="color:#66d9ef">float</span> rRcp, <span style="color:#66d9ef">float</span> cosTheta, <span style="color:#66d9ef">float</span> s)
 {
-    float x2 = 1 + (s * rRcp) * ((s * rRcp) + 2 * cosTheta);
+    <span style="color:#66d9ef">float</span> x2 <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span> <span style="color:#f92672">+</span> (s <span style="color:#f92672">*</span> rRcp) <span style="color:#f92672">*</span> ((s <span style="color:#f92672">*</span> rRcp) <span style="color:#f92672">+</span> <span style="color:#ae81ff">2</span> <span style="color:#f92672">*</span> cosTheta);
 
-    // Equation 38.
-    return r * sqrt(x2);
+    <span style="color:#75715e">// Equation 38.
+</span><span style="color:#75715e"></span>    <span style="color:#66d9ef">return</span> r <span style="color:#f92672">*</span> sqrt(x2);
 }
 
-float CosAtDist(float r, float rRcp, float cosTheta, float s)
+<span style="color:#66d9ef">float</span> <span style="color:#a6e22e">CosAtDist</span>(<span style="color:#66d9ef">float</span> r, <span style="color:#66d9ef">float</span> rRcp, <span style="color:#66d9ef">float</span> cosTheta, <span style="color:#66d9ef">float</span> s)
 {
-    float x2 = 1 + (s * rRcp) * ((s * rRcp) + 2 * cosTheta);
+    <span style="color:#66d9ef">float</span> x2 <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span> <span style="color:#f92672">+</span> (s <span style="color:#f92672">*</span> rRcp) <span style="color:#f92672">*</span> ((s <span style="color:#f92672">*</span> rRcp) <span style="color:#f92672">+</span> <span style="color:#ae81ff">2</span> <span style="color:#f92672">*</span> cosTheta);
 
-    // Equation 39.
-    return ((s * rRcp) + cosTheta) * rsqrt(x2);
+    <span style="color:#75715e">// Equation 39.
+</span><span style="color:#75715e"></span>    <span style="color:#66d9ef">return</span> ((s <span style="color:#f92672">*</span> rRcp) <span style="color:#f92672">+</span> cosTheta) <span style="color:#f92672">*</span> rsqrt(x2);
 }
 
-// This variant of the function evaluates optical depth along an infinite path.
-// 'r' is the radial distance from the center of the planet.
-// 'cosTheta' is the value of the dot product of the ray direction and the surface normal.
-// seaLvlExt = (sigma_t * b) is the sea-level (height = 0) extinction coefficient.
-// 'R' is the radius of the planet.
-// n = (1 / H) is the falloff exponent, where 'H' is the scale height.
-spectrum OptDepthSpherExpMedium(float r, float cosTheta, float R,
-                                spectrum seaLvlExt, float H, float n)
+<span style="color:#75715e">// This variant of the function evaluates optical depth along an infinite path.
+</span><span style="color:#75715e">// &#39;r&#39; is the radial distance from the center of the planet.
+</span><span style="color:#75715e">// &#39;cosTheta&#39; is the value of the dot product of the ray direction and the surface normal.
+</span><span style="color:#75715e">// seaLvlExt = (sigma_t * b) is the sea-level (height = 0) extinction coefficient.
+</span><span style="color:#75715e">// &#39;R&#39; is the radius of the planet.
+</span><span style="color:#75715e">// n = (1 / H) is the falloff exponent, where &#39;H&#39; is the scale height.
+</span><span style="color:#75715e"></span>spectrum <span style="color:#a6e22e">OptDepthSpherExpMedium</span>(<span style="color:#66d9ef">float</span> r, <span style="color:#66d9ef">float</span> cosTheta, <span style="color:#66d9ef">float</span> R,
+                                spectrum seaLvlExt, <span style="color:#66d9ef">float</span> H, <span style="color:#66d9ef">float</span> n)
 {
-    float z = r * n;
-    float Z = R * n;
+    <span style="color:#66d9ef">float</span> z <span style="color:#f92672">=</span> r <span style="color:#f92672">*</span> n;
+    <span style="color:#66d9ef">float</span> Z <span style="color:#f92672">=</span> R <span style="color:#f92672">*</span> n;
 
-    float ch = RescaledChapman(z, Z, cosTheta);
+    <span style="color:#66d9ef">float</span> ch <span style="color:#f92672">=</span> RescaledChapman(z, Z, cosTheta);
 
-    return ch * H * seaLvlExt;
+    <span style="color:#66d9ef">return</span> ch <span style="color:#f92672">*</span> H <span style="color:#f92672">*</span> seaLvlExt;
 }
 
-// This variant of the function evaluates optical depth along a bounded path.
-// 'r' is the radial distance from the center of the planet.
-// rRcp = (1 / r).
-// 'cosTheta' is the value of the dot product of the ray direction and the surface normal.
-// 'dist' is the distance.
-// seaLvlExt = (sigma_t * b) is the sea-level (height = 0) extinction coefficient.
-// 'R' is the radius of the planet.
-// n = (1 / H) is the falloff exponent, where 'H' is the scale height.
-spectrum OptDepthSpherExpMedium(float r, float rRcp, float cosTheta, float dist, float R,
-                                spectrum seaLvlExt, float H, float n)
+<span style="color:#75715e">// This variant of the function evaluates optical depth along a bounded path.
+</span><span style="color:#75715e">// &#39;r&#39; is the radial distance from the center of the planet.
+</span><span style="color:#75715e">// rRcp = (1 / r).
+</span><span style="color:#75715e">// &#39;cosTheta&#39; is the value of the dot product of the ray direction and the surface normal.
+</span><span style="color:#75715e">// &#39;dist&#39; is the distance.
+</span><span style="color:#75715e">// seaLvlExt = (sigma_t * b) is the sea-level (height = 0) extinction coefficient.
+</span><span style="color:#75715e">// &#39;R&#39; is the radius of the planet.
+</span><span style="color:#75715e">// n = (1 / H) is the falloff exponent, where &#39;H&#39; is the scale height.
+</span><span style="color:#75715e"></span>spectrum <span style="color:#a6e22e">OptDepthSpherExpMedium</span>(<span style="color:#66d9ef">float</span> r, <span style="color:#66d9ef">float</span> rRcp, <span style="color:#66d9ef">float</span> cosTheta, <span style="color:#66d9ef">float</span> dist, <span style="color:#66d9ef">float</span> R,
+                                spectrum seaLvlExt, <span style="color:#66d9ef">float</span> H, <span style="color:#66d9ef">float</span> n)
 {
-    float rX        = r;
-    float rRcpX     = rRcp;
-    float cosThetaX = cosTheta;
-    float rY        = RadAtDist(rX, rRcpX, cosThetaX, dist);
-    float cosThetaY = CosAtDist(rX, rRcpX, cosThetaX, dist);
+    <span style="color:#66d9ef">float</span> rX        <span style="color:#f92672">=</span> r;
+    <span style="color:#66d9ef">float</span> rRcpX     <span style="color:#f92672">=</span> rRcp;
+    <span style="color:#66d9ef">float</span> cosThetaX <span style="color:#f92672">=</span> cosTheta;
+    <span style="color:#66d9ef">float</span> rY        <span style="color:#f92672">=</span> RadAtDist(rX, rRcpX, cosThetaX, dist);
+    <span style="color:#66d9ef">float</span> cosThetaY <span style="color:#f92672">=</span> CosAtDist(rX, rRcpX, cosThetaX, dist);
 
-    // Potentially swap X and Y.
-    // Convention: at point Y, the ray points up.
-    cosThetaX = (cosThetaY &gt;= 0) ? cosThetaX : -cosThetaX;
+    <span style="color:#75715e">// Potentially swap X and Y.
+</span><span style="color:#75715e"></span>    <span style="color:#75715e">// Convention: at point Y, the ray points up.
+</span><span style="color:#75715e"></span>    cosThetaX <span style="color:#f92672">=</span> (cosThetaY <span style="color:#f92672">&gt;=</span> <span style="color:#ae81ff">0</span>) <span style="color:#f92672">?</span> cosThetaX : <span style="color:#f92672">-</span>cosThetaX;
 
-    float zX  = rX * n;
-    float zY  = rY * n;
-    float Z   = R  * n;
+    <span style="color:#66d9ef">float</span> zX  <span style="color:#f92672">=</span> rX <span style="color:#f92672">*</span> n;
+    <span style="color:#66d9ef">float</span> zY  <span style="color:#f92672">=</span> rY <span style="color:#f92672">*</span> n;
+    <span style="color:#66d9ef">float</span> Z   <span style="color:#f92672">=</span> R  <span style="color:#f92672">*</span> n;
 
-    float chX = RescaledChapman(zX, Z, cosThetaX);
-    float chY = ChapmanUpper(zY, abs(cosThetaY)) * exp(Z - zY); // Rescaling adds 'exp'
+    <span style="color:#66d9ef">float</span> chX <span style="color:#f92672">=</span> RescaledChapman(zX, Z, cosThetaX);
+    <span style="color:#66d9ef">float</span> chY <span style="color:#f92672">=</span> ChapmanUpper(zY, abs(cosThetaY)) <span style="color:#f92672">*</span> exp(Z <span style="color:#f92672">-</span> zY); <span style="color:#75715e">// Rescaling adds &#39;exp&#39;
+</span><span style="color:#75715e"></span>
+    <span style="color:#75715e">// We may have swapped X and Y.
+</span><span style="color:#75715e"></span>    <span style="color:#66d9ef">float</span> ch <span style="color:#f92672">=</span> abs(chX <span style="color:#f92672">-</span> chY);
 
-    // We may have swapped X and Y.
-    float ch = abs(chX - chY);
-
-    return ch * H * seaLvlExt;
+    <span style="color:#66d9ef">return</span> ch <span style="color:#f92672">*</span> H <span style="color:#f92672">*</span> seaLvlExt;
 }
-</code></pre>
-
-<p>Note that using this function (rather than calling <code>OptDepthSpherExpMedium</code> twice and subtracting the results) is beneficial not only for performance but also for correctness: it avoids numerical instability near the horizon where ray directions are prone to alternate between the two hemispheres, which could cause subtraction to result in negative optical depth values. For performance (and numerical stability) reasons, it may be also worth making a special case for when the point \(\bm{y}\) is far enough to be considered outside the atmosphere (if <code>exp(Z - zY) &lt; EPS</code>, for instance). In that case, <code>chY = 0</code> is an adequate approximation.</p>
-
+</code></pre></div><p>Note that using this function (rather than calling <code>OptDepthSpherExpMedium</code> twice and subtracting the results) is beneficial not only for performance but also for correctness: it avoids numerical instability near the horizon where ray directions are prone to alternate between the two hemispheres, which could cause subtraction to result in negative optical depth values. For performance (and numerical stability) reasons, it may be also worth making a special case for when the point \(\bm{y}\) is far enough to be considered outside the atmosphere (if <code>exp(Z - zY) &lt; EPS</code>, for instance). In that case, <code>chY = 0</code> is an adequate approximation.</p>
 <h4 id="sampling-exponential-media-of-a-spherical-atmosphere">Sampling Exponential Media of a Spherical Atmosphere</h4>
-
-<p>One does not simply sample the Chapman function. There doesn't appear to be a way to invert the integral formulation (Equation 40), and attempts at solving numerical approximations for distance seem futile. Of course, we still have the option to look for a numerical fit for the tabulated inverse, or to use a look-up table directly... But we are not going to do that. And here's why.</p>
-
+<p>One does not simply sample the Chapman function. There doesn&rsquo;t appear to be a way to invert the integral formulation (Equation 40), and attempts at solving numerical approximations for distance seem futile. Of course, we still have the option to look for a numerical fit for the tabulated inverse, or to use a look-up table directly&hellip; But we are not going to do that. And here&rsquo;s why.</p>
 <p>In order to sample participating media, we must be able to solve the optical depth equation for distance. If you only have a single analytically-defined volume, sampling it is (usually) trivial. However, once you have several heterogeneous overlapping volumes, you start running into issues. While optical depth is additive, the sampled distance is not. So, what do we do?</p>
-
-<p>If we can't solve the equation analytically, we can solve it numerically, using the <a href="https://en.wikipedia.org/wiki/Newton%27s_method">Newton–Raphson method</a>. Recall that this method requires being able to make an initial guess, evaluate the function, and take its derivative. Our function is the total optical depth. We can make an initial guess by assuming that the combined medium is uniform (or, under certain assumptions, plane-parallel-exponential). And since we know that the derivative of optical depth is just the extinction coefficient \(\beta_t\) (see Equation 17), so we have all the pieces we need.</p>
-
+<p>If we can&rsquo;t solve the equation analytically, we can solve it numerically, using the <a href="https://en.wikipedia.org/wiki/Newton%27s_method">Newton–Raphson method</a>. Recall that this method requires being able to make an initial guess, evaluate the function, and take its derivative. Our function is the total optical depth. We can make an initial guess by assuming that the combined medium is uniform (or, under certain assumptions, plane-parallel-exponential). And since we know that the derivative of optical depth is just the extinction coefficient \(\beta_t\) (see Equation 17), so we have all the pieces we need.</p>
 <p>This method is very general and works for arbitrary <a href="https://mcnp.lanl.gov/pdf_files/la-ur-02-6530.pdf">continuous density distributions</a>.</p>
-
 <p>Sample code for a dual-component spherical atmosphere is listed below.</p>
-
-<pre><code class="language-c++">#define EPS_ABS  0.0001
-#define EPS_REL  0.0001
-#define MAX_ITER 4
-
-// 'optDepth' is the value to solve for.
-// 'maxOptDepth' is the maximum value along the ray, s.t. (maxOptDepth &gt;= optDepth).
-// 'maxDist' is the maximum distance along the ray.
-float SampleSpherExpMedium(float optDepth, float r, float rRcp, float cosTheta, float R,
-                           float2 seaLvlExt, float2 H, float2 n, // Air &amp; aerosols
-                           float maxOptDepth, float maxDist)
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c++" data-lang="c++"><span style="color:#75715e">#define EPS_ABS  0.0001
+</span><span style="color:#75715e">#define EPS_REL  0.0001
+</span><span style="color:#75715e">#define MAX_ITER 4
+</span><span style="color:#75715e"></span>
+<span style="color:#75715e">// &#39;optDepth&#39; is the value to solve for.
+</span><span style="color:#75715e">// &#39;maxOptDepth&#39; is the maximum value along the ray, s.t. (maxOptDepth &gt;= optDepth).
+</span><span style="color:#75715e">// &#39;maxDist&#39; is the maximum distance along the ray.
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">float</span> <span style="color:#a6e22e">SampleSpherExpMedium</span>(<span style="color:#66d9ef">float</span> optDepth, <span style="color:#66d9ef">float</span> r, <span style="color:#66d9ef">float</span> rRcp, <span style="color:#66d9ef">float</span> cosTheta, <span style="color:#66d9ef">float</span> R,
+                           float2 seaLvlExt, float2 H, float2 n, <span style="color:#75715e">// Air &amp; aerosols
+</span><span style="color:#75715e"></span>                           <span style="color:#66d9ef">float</span> maxOptDepth, <span style="color:#66d9ef">float</span> maxDist)
 {
-    const float  optDepthRcp = rcp(optDepth);
-    const float2 Z           = R * n;
+    <span style="color:#66d9ef">const</span> <span style="color:#66d9ef">float</span>  optDepthRcp <span style="color:#f92672">=</span> rcp(optDepth);
+    <span style="color:#66d9ef">const</span> float2 Z           <span style="color:#f92672">=</span> R <span style="color:#f92672">*</span> n;
 
-    // Make an initial guess (assume the medium is uniform).
-    float t = maxDist * (optDepth * rcp(maxOptDepth));
+    <span style="color:#75715e">// Make an initial guess (assume the medium is uniform).
+</span><span style="color:#75715e"></span>    <span style="color:#66d9ef">float</span> t <span style="color:#f92672">=</span> maxDist <span style="color:#f92672">*</span> (optDepth <span style="color:#f92672">*</span> rcp(maxOptDepth));
 
-    // Establish the ranges of valid distances ('tRange') and function values ('fRange').
-    float tRange[2], fRange[2];
-    tRange[0] = 0;        /* -&gt; */  fRange[0] = 0           - optDepth;
-    tRange[1] = maxDist;  /* -&gt; */  fRange[1] = maxOptDepth - optDepth;
+    <span style="color:#75715e">// Establish the ranges of valid distances (&#39;tRange&#39;) and function values (&#39;fRange&#39;).
+</span><span style="color:#75715e"></span>    <span style="color:#66d9ef">float</span> tRange[<span style="color:#ae81ff">2</span>], fRange[<span style="color:#ae81ff">2</span>];
+    tRange[<span style="color:#ae81ff">0</span>] <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;        <span style="color:#75715e">/* -&gt; */</span>  fRange[<span style="color:#ae81ff">0</span>] <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>           <span style="color:#f92672">-</span> optDepth;
+    tRange[<span style="color:#ae81ff">1</span>] <span style="color:#f92672">=</span> maxDist;  <span style="color:#75715e">/* -&gt; */</span>  fRange[<span style="color:#ae81ff">1</span>] <span style="color:#f92672">=</span> maxOptDepth <span style="color:#f92672">-</span> optDepth;
 
-    uint  iter = 0;
-    float absDiff = optDepth, relDiff = 1;
+    uint  iter <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+    <span style="color:#66d9ef">float</span> absDiff <span style="color:#f92672">=</span> optDepth, relDiff <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>;
 
-    do // Perform a Newton–Raphson iteration.
-    {
-        float radAtDist = RadAtDist(r, rRcp, cosTheta, t);
-        float cosAtDist = CosAtDist(r, rRcp, cosTheta, t);
-        // Evaluate the function and its derivatives:
-        // f  [t] = OptDepthAtDist[t] - GivenOptDepth = 0,
-        // f' [t] = ExtCoefAtDist[t],
-        // f''[t] = ExtCoefAtDist'[t] = -ExtCoefAtDist[t] * CosAtDist[t] / H.
-        float optDepthAtDist = 0, extAtDist = 0, extAtDistDeriv = 0;
-        optDepthAtDist += OptDepthSpherExpMedium(r, rRcp, cosTheta, t, R,
+    <span style="color:#66d9ef">do</span> <span style="color:#75715e">// Perform a Newton–Raphson iteration.
+</span><span style="color:#75715e"></span>    {
+        <span style="color:#66d9ef">float</span> radAtDist <span style="color:#f92672">=</span> RadAtDist(r, rRcp, cosTheta, t);
+        <span style="color:#66d9ef">float</span> cosAtDist <span style="color:#f92672">=</span> CosAtDist(r, rRcp, cosTheta, t);
+        <span style="color:#75715e">// Evaluate the function and its derivatives:
+</span><span style="color:#75715e"></span>        <span style="color:#75715e">// f  [t] = OptDepthAtDist[t] - GivenOptDepth = 0,
+</span><span style="color:#75715e"></span>        <span style="color:#75715e">// f&#39; [t] = ExtCoefAtDist[t],
+</span><span style="color:#75715e"></span>        <span style="color:#75715e">// f&#39;&#39;[t] = ExtCoefAtDist&#39;[t] = -ExtCoefAtDist[t] * CosAtDist[t] / H.
+</span><span style="color:#75715e"></span>        <span style="color:#66d9ef">float</span> optDepthAtDist <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>, extAtDist <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>, extAtDistDeriv <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+        optDepthAtDist <span style="color:#f92672">+=</span> OptDepthSpherExpMedium(r, rRcp, cosTheta, t, R,
                                                  seaLvlExt.x, H.x, n.x);
-        optDepthAtDist += OptDepthSpherExpMedium(r, rRcp, cosTheta, t, R,
+        optDepthAtDist <span style="color:#f92672">+=</span> OptDepthSpherExpMedium(r, rRcp, cosTheta, t, R,
                                                  seaLvlExt.y, H.y, n.y);
-        extAtDist      += seaLvlExt.x * exp(Z.x - radAtDist * n.x);
-        extAtDist      += seaLvlExt.y * exp(Z.y - radAtDist * n.y);
-        extAtDistDeriv -= seaLvlExt.x * exp(Z.x - radAtDist * n.x) * n.x;
-        extAtDistDeriv -= seaLvlExt.y * exp(Z.y - radAtDist * n.y) * n.y;
-        extAtDistDeriv *= cosAtDist;
+        extAtDist      <span style="color:#f92672">+=</span> seaLvlExt.x <span style="color:#f92672">*</span> exp(Z.x <span style="color:#f92672">-</span> radAtDist <span style="color:#f92672">*</span> n.x);
+        extAtDist      <span style="color:#f92672">+=</span> seaLvlExt.y <span style="color:#f92672">*</span> exp(Z.y <span style="color:#f92672">-</span> radAtDist <span style="color:#f92672">*</span> n.y);
+        extAtDistDeriv <span style="color:#f92672">-=</span> seaLvlExt.x <span style="color:#f92672">*</span> exp(Z.x <span style="color:#f92672">-</span> radAtDist <span style="color:#f92672">*</span> n.x) <span style="color:#f92672">*</span> n.x;
+        extAtDistDeriv <span style="color:#f92672">-=</span> seaLvlExt.y <span style="color:#f92672">*</span> exp(Z.y <span style="color:#f92672">-</span> radAtDist <span style="color:#f92672">*</span> n.y) <span style="color:#f92672">*</span> n.y;
+        extAtDistDeriv <span style="color:#f92672">*=</span> cosAtDist;
 
-        float   f = optDepthAtDist - optDepth;
-        float  df = extAtDist;
-        float ddf = extAtDistDeriv;
-        float  dg = df - 0.5 * f * (ddf * rcp(df));
+        <span style="color:#66d9ef">float</span>   f <span style="color:#f92672">=</span> optDepthAtDist <span style="color:#f92672">-</span> optDepth;
+        <span style="color:#66d9ef">float</span>  df <span style="color:#f92672">=</span> extAtDist;
+        <span style="color:#66d9ef">float</span> ddf <span style="color:#f92672">=</span> extAtDistDeriv;
+        <span style="color:#66d9ef">float</span>  dg <span style="color:#f92672">=</span> df <span style="color:#f92672">-</span> <span style="color:#ae81ff">0.5</span> <span style="color:#f92672">*</span> f <span style="color:#f92672">*</span> (ddf <span style="color:#f92672">*</span> rcp(df));
 
-        assert(df &gt; 0 &amp;&amp; dg &gt; 0);
+        assert(df <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">0</span> <span style="color:#f92672">&amp;&amp;</span> dg <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">0</span>);
 
-    #if 0
-        // https://en.wikipedia.org/wiki/Newton%27s_method
-        float slope = rcp(df);
-    #else
-        // https://en.wikipedia.org/wiki/Halley%27s_method
-        float slope = rcp(dg);
-    #endif
+    <span style="color:#75715e">#if 0</span><span style="color:#75715e">
+</span><span style="color:#75715e">        // https://en.wikipedia.org/wiki/Newton%27s_method
+</span><span style="color:#75715e">        float slope = rcp(df);
+</span><span style="color:#75715e"></span><span style="color:#75715e">    #else
+</span><span style="color:#75715e"></span>        <span style="color:#75715e">// https://en.wikipedia.org/wiki/Halley%27s_method
+</span><span style="color:#75715e"></span>        <span style="color:#66d9ef">float</span> slope <span style="color:#f92672">=</span> rcp(dg);
+    <span style="color:#75715e">#endif
+</span><span style="color:#75715e"></span>
+        <span style="color:#66d9ef">float</span> dt <span style="color:#f92672">=</span> <span style="color:#f92672">-</span>f <span style="color:#f92672">*</span> slope;
 
-        float dt = -f * slope;
+        <span style="color:#75715e">// Find the boundary value we are stepping towards:
+</span><span style="color:#75715e"></span>        <span style="color:#75715e">// supremum for (f &lt; 0) and infimum for (f &gt; 0).
+</span><span style="color:#75715e"></span>        uint  sgn     <span style="color:#f92672">=</span> asuint(f) <span style="color:#f92672">&gt;&gt;</span> <span style="color:#ae81ff">31</span>;
+        <span style="color:#66d9ef">float</span> tBound  <span style="color:#f92672">=</span> tRange[sgn];
+        <span style="color:#66d9ef">float</span> fBound  <span style="color:#f92672">=</span> fRange[sgn];
+        <span style="color:#66d9ef">float</span> tNewton <span style="color:#f92672">=</span> t <span style="color:#f92672">+</span> dt;
 
-        // Find the boundary value we are stepping towards:
-        // supremum for (f &lt; 0) and infimum for (f &gt; 0).
-        uint  sgn     = asuint(f) &gt;&gt; 31;
-        float tBound  = tRange[sgn];
-        float fBound  = fRange[sgn];
-        float tNewton = t + dt;
+        <span style="color:#66d9ef">bool</span> isInRange <span style="color:#f92672">=</span> tRange[<span style="color:#ae81ff">0</span>] <span style="color:#f92672">&lt;</span> tNewton <span style="color:#f92672">&amp;&amp;</span> tNewton <span style="color:#f92672">&lt;</span> tRange[<span style="color:#ae81ff">1</span>];
 
-        bool isInRange = tRange[0] &lt; tNewton &amp;&amp; tNewton &lt; tRange[1];
-
-        if (!isInRange)
+        <span style="color:#66d9ef">if</span> (<span style="color:#f92672">!</span>isInRange)
         {
-            // Newton's algorithm has effectively run out of digits of precision.
-            // While it's possible to continue improving precision (to a certain degree)
-            // via bisection, it is costly, and the convergence rate is low.
-            // It's better to recall that, for short distances, optical depth is a
-            // linear function of distance to an excellent degree of approximation.
-            slope = (tBound - t) * rcp(fBound - f);
-            dt    = -f * slope;
-            iter  = MAX_ITER;
+            <span style="color:#75715e">// Newton&#39;s algorithm has effectively run out of digits of precision.
+</span><span style="color:#75715e"></span>            <span style="color:#75715e">// While it&#39;s possible to continue improving precision (to a certain degree)
+</span><span style="color:#75715e"></span>            <span style="color:#75715e">// via bisection, it is costly, and the convergence rate is low.
+</span><span style="color:#75715e"></span>            <span style="color:#75715e">// It&#39;s better to recall that, for short distances, optical depth is a
+</span><span style="color:#75715e"></span>            <span style="color:#75715e">// linear function of distance to an excellent degree of approximation.
+</span><span style="color:#75715e"></span>            slope <span style="color:#f92672">=</span> (tBound <span style="color:#f92672">-</span> t) <span style="color:#f92672">*</span> rcp(fBound <span style="color:#f92672">-</span> f);
+            dt    <span style="color:#f92672">=</span> <span style="color:#f92672">-</span>f <span style="color:#f92672">*</span> slope;
+            iter  <span style="color:#f92672">=</span> MAX_ITER;
         }
 
-        tRange[1 - sgn] = t; // Adjust the range using the
-        fRange[1 - sgn] = f; // previous values of 't' and 'f'
+        tRange[<span style="color:#ae81ff">1</span> <span style="color:#f92672">-</span> sgn] <span style="color:#f92672">=</span> t; <span style="color:#75715e">// Adjust the range using the
+</span><span style="color:#75715e"></span>        fRange[<span style="color:#ae81ff">1</span> <span style="color:#f92672">-</span> sgn] <span style="color:#f92672">=</span> f; <span style="color:#75715e">// previous values of &#39;t&#39; and &#39;f&#39;
+</span><span style="color:#75715e"></span>
+        t <span style="color:#f92672">=</span> t <span style="color:#f92672">+</span> dt;
 
-        t = t + dt;
+        absDiff <span style="color:#f92672">=</span> abs(optDepthAtDist <span style="color:#f92672">-</span> optDepth);
+        relDiff <span style="color:#f92672">=</span> abs(optDepthAtDist <span style="color:#f92672">*</span> optDepthRcp <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>);
 
-        absDiff = abs(optDepthAtDist - optDepth);
-        relDiff = abs(optDepthAtDist * optDepthRcp - 1);
+        iter<span style="color:#f92672">++</span>;
 
-        iter++;
+        <span style="color:#75715e">// Stop when the accuracy goal has been reached.
+</span><span style="color:#75715e"></span>        <span style="color:#75715e">// Note that this uses the accuracy corresponding to the old value of &#39;t&#39;.
+</span><span style="color:#75715e"></span>        <span style="color:#75715e">// The new value of &#39;t&#39; we just computed should result in higher accuracy.
+</span><span style="color:#75715e"></span>    } <span style="color:#66d9ef">while</span> ((absDiff <span style="color:#f92672">&gt;</span> EPS_ABS) <span style="color:#f92672">&amp;&amp;</span> (relDiff <span style="color:#f92672">&gt;</span> EPS_REL) <span style="color:#f92672">&amp;&amp;</span> (iter <span style="color:#f92672">&lt;</span> MAX_ITER));
 
-        // Stop when the accuracy goal has been reached.
-        // Note that this uses the accuracy corresponding to the old value of 't'.
-        // The new value of 't' we just computed should result in higher accuracy.
-    } while ((absDiff &gt; EPS_ABS) &amp;&amp; (relDiff &gt; EPS_REL) &amp;&amp; (iter &lt; MAX_ITER));
-
-    return t;
+    <span style="color:#66d9ef">return</span> t;
 }
-</code></pre>
-
-<p>Since optical depth is a smooth monotonically increasing function of distance, this numerical procedure will converge very quickly (typically, after a couple of iterations). If desired, the cost can be fixed by using an iteration counter to terminate the loop, potentially trading accuracy for consistent performance.</p>
-
+</code></pre></div><p>Since optical depth is a smooth monotonically increasing function of distance, this numerical procedure will converge very quickly (typically, after a couple of iterations). If desired, the cost can be fixed by using an iteration counter to terminate the loop, potentially trading accuracy for consistent performance.</p>
 <p>It is worth noting that since the code internally uses a numerical approximation of the Chapman function, it may not always be possible to reach an arbitrary accuracy goal. Once the algorithm becomes numerically unstable, we refine the result by assuming that the medium is approximately uniform along short intervals.</p>
-
 <p>In fact, the curvature of the planet can be ignored for moderate distances, making the rectangular inverse a relatively efficient and accurate approximation.</p>
-
 <h2 id="conclusion">Conclusion</h2>
-
 <p>This article has presented several methods for sampling common types of analytic participating media. They are particularly useful for modeling low-frequency variations of density. While planetary atmospheres cannot be sampled analytically, the proposed numerical approach works well in practice. None of these techniques require voxelization, which allows simulation of various volumetric effects at real-time frame rates.</p>
-
 <h2 id="acknowledgments">Acknowledgments</h2>
-
 <p>I would like to thank Julian Fong and Sébastien Hillaire for their thoughtful comments and feedback.</p>
-
-<!---
-
-## Handling Spectral Coefficients
-
-While using monochromatic extinction is acceptable for certain use cases (such as modeling aerosols and fog), generally speaking, we would like to support spectrally-varying coefficients. This means that given a fixed distance, light is going to be attenuated to a different degree depending on the wavelength. This poses a problem for importance sampling, which would have to convert opacity (now a vector) into distance (a scalar).
-
-The simplest solution is to trace one path per wavelength. For instance, we could either densely sample the entire [visible spectrum](https://en.wikipedia.org/wiki/Visible_spectrum) (e.g. 380 to 780 nm with a 10 nm step size resulting in 40 paths), or pick several wavelengths stochastically (distributed either uniformly, or according to the [luminous efficiency function](https://en.wikipedia.org/wiki/Luminosity_function), or opacity spectrum, or the product of both). This brute force approach increases the rendering cost by a factor of \\(n\\) (where \\(n\\) denotes the number of wavelength samples), but it provides a good reference point for comparison.
-
-Another approach suggested during the [Production Volume Rendering](https://graphics.pixar.com/library/ProductionVolumeRendering/paper.pdf) course is to always construct paths using the average extinction coefficient across the visible spectrum. This solution is rather attractive from the performance point of view, since you only end up tracing a single path. The downside is that it assumes that the resulting radiance distribution is close to monochromatic. This may not be the case for subsurface scattering in skin, for instance, in which case red wavelengths scatter much farther than the rest (and the spectral distribution is rather compact), and using this technique may result in an excessive amount of color noise. On the other hand, using the maximum value of the extinction coefficient across the spectrum assumes that the distribution is symmetric around the peak, which may not be the case. Intuitively, using some kind of weighted average wavelength probably makes the most sense.
-
-<figure>
-    <img src="/img/skew.png"/> 
-</figure>
-
-
-Let's start with understanding the problem we are trying to solve.
-
-The tristimulus values \\(X\\), \\(Y\\) and \\(Z\\) of a pixel centered at the point \\(\bm{x}\\) on the camera sensor can be computed as an integral of incoming spectral radiance \\(L\_{\lambda}\\) over the visible spectrum \\(\Lambda\\), the pixel area \\(A\\) and the hemisphere of directions \\(\Omega\\) weighted by the [normalized color matching function](https://en.wikipedia.org/wiki/CIE_1931_color_space#Color_matching_functions) \\(\bar{c}\\) \\(\big( \bar{x}\\) for \\(X\\), \\(\bar{y}\\) for \\(Y\\), \\(\bar{z}\\) for \\(Z \big)\\) and the sensor response ([pixel filter](https://ieeexplore.ieee.org/document/4061554/)) \\(W\\):
-
-$$ \tag{58} I = C(\bm{x}) = \int\_{\Lambda} \bar{c}(\lambda) \int\_{A} \int\_{\Omega} W(\bm{r}, \bm{v}, \lambda) L\_{\lambda}(\bm{x} + \bm{r}, \bm{v}, \lambda) d\bm{v} dA(\bm{r}) d\lambda. $$
-
-Recalling that \\(L\_{\lambda}\\) is itself a nested integral, we can generalize our problem using the [path integral formulation](http://graphics.stanford.edu/papers/veach_thesis/):
-
-$$ \tag{59} I = \int\_{\Lambda} \int\_{\mathrm{P}} f(\rho, \lambda) d\sigma(\rho) d\lambda, $$
-
-where \\(\mathrm{P}\\) is the path space (a set of paths), \\(\rho\\) is a path (an ordered set of vertices), \\(\sigma(\rho)\\) is its [measure](https://en.wikipedia.org/wiki/Measure_\(mathematics\)), and \\(f\\) is the measurement contribution function. Clearly, this formulation has some redundancy - we define the domain of integration as a [Cartesian product](https://en.wikipedia.org/wiki/Cartesian_product) of all paths and all wavelengths when, in fact, certain paths are perfectly valid for many wavelengths. While their *contribution* is likely to be different, path *geometry* remains the same.
-
-The Monte Carlo formulation \\((I = E[F])\\) of the brute force single wavelength solution takes the following form:
-
-$$ \tag{60} F =
-    \frac{1}{m} \sum\_{j=1}^{m} \frac{f(\rho_j, \lambda_j)}{p(\rho_j, \lambda_j)} =
-    \frac{1}{m} \sum\_{j=1}^{m} \frac{f(\rho_j, \lambda_j)}{p(\rho_j | \lambda_j) p(\lambda_j)},
-$$
-
-where \\(\rho_j\\) is constructed using \\(\lambda_j\\), and its contribution \\(f\\) is evaluated using \\(\lambda_j\\).
-
-Our goal is to sample a path once, and use it to evaluate the contribution of an entire set of wavelengths. The [Monte Carlo Methods for Physically Based Volume Rendering](https://cs.dartmouth.edu/~wjarosz/publications/novak18monte-sig.html) course offers several compelling solutions.
-
-### Spectral Multiple Importance Sampling
-
-One way to achieve this is to use [spectral multiple importance sampling](https://jo.dreggn.org/home/2014_herowavelength.pdf).
-
-What you see below is my interpretation. I encourage the reader to compare it to the [original paper](https://jo.dreggn.org/home/2014_herowavelength.pdf).
-
-We start by defining the set of wavelengths \\(\Lambda_j\\) of size \\(n_j\\) \\( (\forall k, \lambda_j^k \in \Lambda_j) \\). These wavelengths can all be importance sampled or, alternatively, all but the first one can be distributed in a stratified manner (note that the authors of the paper insist that, theoretically, they *must be QMC stratified* rather than randomly sampled to form a discrete rather than a continuous distribution).
-
-Next, we pick one wavelength to guide our path sampling decisions - the authors refer to it as the *hero wavelength*. This wavelength is picked uniformly from the set. Therefore, the probability density of sampling (on average) the path \\(\rho_j\\) using a randomly chosen \\(\lambda_j \in \Lambda_j\\) is taken as the average across the entire set (e.i. we [marginalize](https://en.wikipedia.org/wiki/Marginal_distribution#Marginal_probability_mass_and_density_functions) the discrete PDF). In effect, we define another valid PDF that is not unlike Veach's *combined sample density*:
-
-$$ \tag{61} p(\rho_j, \lambda_j) =
-    \frac{1}{n_j} p(\rho_j) =
-    \frac{1}{n_j} \sum\_{k=1}^{n_j} p_k(\rho_j, \lambda_j^k) =
-    \frac{1}{n_j} \sum\_{k=1}^{n_j} p(\rho_j | \lambda_j^k) p(\lambda_j^k).
-$$
-
-Then, we simply evaluate the Monte Carlo estimator using \\(m\\) paths:
-
-$$ \tag{62}
-    F = \frac{1}{m} \sum\_{j=1}^{m} \frac{1}{n_j} \sum\_{i=1}^{n_j} \frac{f(\rho_j, \lambda_j^i)}{p(\rho_j, \lambda_j)}
-      = \frac{1}{m} \sum\_{j=1}^{m} \sum\_{i=1}^{n_j} \frac{f(\rho_j, \lambda_j^i)}{\sum\_{k=1}^{n_j} p_k(\rho_j, \lambda_j^k)}.
- $$
-
-Or, to simplify the notation, for \\(x \in X\\),
-
-$$ \tag{63} \begin{aligned}
-    F = \frac{1}{m} \sum\_{j=1}^{m} \sum\_{i=1}^{n_j} \frac{f(x\_{ji})}{\sum\_{k=1}^{n_j} p_k(x\_{jk})}.
- \end{aligned} $$
-
-If we fix the set size \\( (\forall j, n_j = n) \\), we can change the order of summation to obtain a formulation which corresponds to a multi-sample estimator with \\(n\\) techniques (and \\(m\\) samples per technique) combined using the [balance heuristic](http://graphics.stanford.edu/papers/veach_thesis/):
-
-$$ \tag{64} \begin{aligned}
-    F &= \frac{1}{m} \sum\_{j=1}^{m} \sum\_{i=1}^{n} \frac{f(\rho_j, \lambda_j^i)}{\sum\_{k=1}^{n} p_k(\rho_j, \lambda_j^k)} \cr
-    &= \frac{1}{m} \sum\_{i=1}^{n} \sum\_{j=1}^{m} \frac{f(\rho_j, \lambda_j^i)}{\sum\_{k=1}^{n} p_k(\rho_j, \lambda_j^k)} \cr
-    &= \frac{1}{m} \sum\_{i=1}^{n} \sum\_{j=1}^{m} f(\rho_j, \lambda_j^i) \frac{w_i(\rho_j, \lambda_j^i)}{p_i(\rho_j, \lambda_j^i)},
-\end{aligned} $$
-
-where the balance heuristic weight \\(w\\) is defined as
-
-$$ \tag{65}
-    w_i(\rho_j, \lambda_j^i)
-    = \frac{p_i(\rho_j, \lambda_j^i)}{\sum\_{k=1}^{n} p_k(\rho_j, \lambda_j^k)},
-$$
-
-from which it follows that
-
-$$ \tag{66}
-    \sum\_{i=1}^{n} w(\rho_i, \lambda_j^i) = 1.
-$$
-
-This formulation makes it easy to extend the method to support additional techniques for increased robustness.
-
-In the end, we divided some averages by some other averages. Do we get the correct result on average? Using the formalism introduced in Equation 63,
-
-$$ \tag{67} \begin{aligned}
-    E[F] &= \int\_{X} F(x) p(x) d \sigma(x) \cr
-         &= \frac{1}{m} \sum\_{j=1}^{m} \sum\_{i=1}^{n} \int\_{X} \frac{f(x)}{\sum\_{k=1}^{n} p_k(x)} p_i(x) d \sigma(x) \cr
-         &= \frac{1}{m} \sum\_{j=1}^{m} \sum\_{i=1}^{n} \int\_{X} f(x) \frac{p_i(x)}{\sum\_{k=1}^{n} p_k(x)} d \sigma(x) \cr
-         &= \frac{1}{m} \sum\_{j=1}^{m} \int\_{X} f(x) \sum\_{i=1}^{n} w_i(x) d \sigma(x) \cr
-         &= \frac{1}{m} \sum\_{j=1}^{m} \int\_{X} f(x) d \sigma(x) = I,
- \end{aligned} $$
-
-so it appears that everything works out nicely.
-
-A high-level implementation of the algorithm is listed below.
-
-```c++
-float3 SpectralMIS(float3 X, float3 V, uint numWavelengths, uint numPaths)
-{
-    float3 color = 0;
-
-    const uint n = numWavelengths;
-    const uint m = numPaths;
-
-    for (uint j = 0; j < m; j++)
-    {
-        // spectrum is a data structure with 'numWavelengths' items.
-        spectrum waves, wavePdfs;
-
-        for (uint i = 0; i < n; i++)
-        {
-            // Must take eye sensitivity and volume opacity into account.
-            // These details have been omitted for readability.
-            SampleWavelength(i, j, waves[i], wavePdfs[i]);
-        }
-
-        float heroWave = SelectUniformly(waves, n);
-
-        // Trace a single path for the chosen wavelength.
-        path  heroPath = SamplePath(X, V, heroWave);
-
-        float3 meanContribution = 0;
-        float  meanPdf          = 0;
-
-        for (uint i = 0; i < n; i++)
-        {
-            // Evaluate the path for a single wavelength.
-            float pathContribution, pathPdf;
-            EvaluatePath(heroPath, waves[i], pathContribution, pathPdf);
-
-            float3 normCMF = EvaluateNormalizedColorMatchingFunc(waves[i]);
-
-            meanContribution += pathContribution * normCMF;
-            meanPdf          += pathPdf * wavePdfs[i];
-        }
-
-        color += meanContribution * rcp(meanPdf);
-    }
-
-    color *= rcp(numPaths);
-
-    return color;
-}
-```
-
-One of the concerns with the implementation outlined above is the necessity to store the geometry of the entire path. A performance-oriented implementation of unidirectional path tracing can avoid storing the path by accumulating its contribution for several wavelengths during the path tracing step.
-
-### Spectral Tracking
-
-[Spectral tracking](https://dl.acm.org/citation.cfm?id=3073665) presents an alternative way to accelerate spectral rendering. It uses a radically different approach by incorporating [null collisions](https://hal.archives-ouvertes.fr/hal-01688110/) into the radiative transfer equation.
-
-The basic idea of the null-collision integral is add another type of collision event which has no effect on light transport. While it may seem pointless at first glance, it is a very useful mathematical trick that allows analytic sampling of heterogeneous media (by padding it with transparent forward-scattering particles) either in space or across the spectral domain (or both).
-
-The framework introduces two new types of collision coefficients: the null coefficient \\(\bm{\beta_n}\\) and the majorant \\(\bm{\bar{\beta}}\\) that satisfy
-
-$$ \tag{68} \bm{\beta_a} + \bm{\beta_s} + \bm{\beta_n} = \bm{\bar{\beta}}. $$
-
-Note that while \\(\bm{\beta_n}\\) does not have to be positive, it is usually a [good idea](https://hal.archives-ouvertes.fr/hal-01688110/) in order to keep variance low. For our use case, we compute \\(\bar{\beta}\\) by taking the [maximum of the absolute value](http://mathworld.wolfram.com/L-Infinity-Norm.html) of the extinction coefficient across the spectral domain:
-
-$$ \tag{69} \bar{\beta} = ||\beta_t(\lambda)||\_{\infty}. $$
-
-Note that it has to be a scalar since it will be used for importance sampling.
-
-Both the derivation and the proof of correctness of the null-scattering integral are rather long and complicated, so I will only present the [final result](https://dl.acm.org/citation.cfm?id=3073665), which is
-
-$$ \tag{70} \bm{L}(\bm{x}, \bm{v})
-    = \int\_{0}^{t\_{max}} \bar{\beta}(\bm{x}, \bm{v}, s) \bar{T}(\bm{x}, \bm{v}, s) \bm{L_i}(\bm{x} + s \bm{v}, \bm{v}) ds,
-$$
-
-where \\(\bar{T}\\) is transmittance evaluated using the majorant (rather than extinction) coefficient. Note that the majorant coefficient doesn't actually have to be a constant - it can be any analytic function (e.g. varying with height) serving as the upper bound for the extinction coefficient.
-
-The incoming radiance term \\(\bm{L_i}\\) is defined as
-
-$$ \tag{71} \begin{aligned}
-    \bm{L_i}(\bm{x}, \bm{v})
-    &= P_a(\bm{x}, \bm{v}, s) \bm{w_a}(\bm{x}, \bm{v}, s) \bm{L_e}(\bm{x}, \bm{v}) \cr
-    &+ P_s(\bm{x}, \bm{v}, s) \bm{w_s}(\bm{x}, \bm{v}, s) \bm{L_s}(\bm{x}, \bm{v}) \cr
-    &+ P_n(\bm{x}, \bm{v}, s) \bm{w_n}(\bm{x}, \bm{v}, s) \bm{L}(\bm{x}, \bm{v})
-\end{aligned}
-$$
-
-where \\(\bm{L_e}\\) is emission and \\(\bm{L_s}\\) is defined in the same way as in Equation 13.
-
-Each individual event has a corresponding weight:
-
-$$ \tag{72}
-\begin{aligned}
-    \bm{w_a}(\bm{x}, \bm{v}, s) &= \frac{\bm{\beta_a}(\bm{x}, \bm{v}, s)}{\bar{\beta}(\bm{x}, \bm{v}, s) P_a(\bm{x}, \bm{v}, s)} \cr
-    \bm{w_s}(\bm{x}, \bm{v}, s) &= \frac{\bm{\beta_s}(\bm{x}, \bm{v}, s)}{\bar{\beta}(\bm{x}, \bm{v}, s) P_s(\bm{x}, \bm{v}, s)} \cr
-    \bm{w_n}(\bm{x}, \bm{v}, s) &= \frac{\bm{\beta_n}(\bm{x}, \bm{v}, s)}{\bar{\beta}(\bm{x}, \bm{v}, s) P_n(\bm{x}, \bm{v}, s)}
-\end{aligned}
-$$
-
-The simplest (but [not the only](https://dl.acm.org/citation.cfm?id=3073665)) way to define the collision probabilities is as follows:
-
-$$ \tag{73} \begin{aligned}
-    P_a(\bm{x}, \bm{v}, s) &= \frac{||\beta_a(\lambda)||\_{\infty}}{||\beta_a(\lambda)||\_{\infty} + ||\beta_s(\lambda)||\_{\infty} + ||\beta_n(\lambda)||\_{\infty}}, \cr
-    P_s(\bm{x}, \bm{v}, s) &= \frac{||\beta_s(\lambda)||\_{\infty}}{||\beta_a(\lambda)||\_{\infty} + ||\beta_s(\lambda)||\_{\infty} + ||\beta_n(\lambda)||\_{\infty}}, \cr
-    P_n(\bm{x}, \bm{v}, s) &= \frac{||\beta_n(\lambda)||\_{\infty}}{||\beta_a(\lambda)||\_{\infty} + ||\beta_s(\lambda)||\_{\infty} + ||\beta_n(\lambda)||\_{\infty}},
-\end{aligned}
-$$
-
-where the position and the direction on the right-hand side are implicit for clarity.
-
-If the medium is known to not be emissive, we can redistribute the absorption probability between \\(P_s\\) and \\(P_n\\):
-
-$$ \tag{74} \begin{aligned}
-    P'\_a(\bm{x}, \bm{v}, s) &= 0, \cr
-    P'\_s(\bm{x}, \bm{v}, s) &= \frac{P_s}{P_s + P_n}, \cr
-    P'\_n(\bm{x}, \bm{v}, s) &= \frac{P_n}{P_s + P_n}.
-\end{aligned}
-$$
-
-Comparing Equations 13 and 70, we can see that they are indeed very similar (and so is the estimator). As before, the leading term is canceled out after dividing by the PDF, so the only difference is that we must handle several types of events once a collision actually occurs.
-
-A high-level implementation of the algorithm is listed below.
-
-```c++
-float3 SpectralTracking(float3 X, float3 V, uint numWavelengths, uint numPaths)
-{
-    float3 color = 0;
-
-    const uint n = numWavelengths;
-    const uint m = numPaths;
-
-    for (uint j = 0; j < m; j++)
-    {
-        // spectrum is a data structure with 'numWavelengths' items.
-        spectrum waves, wavePdfs;
-
-        waves[0] = GetMajorantWavelength();
-
-        for (uint i = 1; i < n; i++)
-        {
-            // TODO: Do these have to be stratified? Can these be importance sampled?
-            SampleWavelength(i, j, waves[i], wavePdfs[i]);
-        }
-
-        spectrum pathWeights = spectrum(1);
-
-        float3 pos = X, dir = V;
-
-        while (true) // Multiple bounces.
-        {
-            float tMax = RayTraceGeometry(pos, dir);
-
-            // Compute opacity using the majorant.
-            float maxOptDepth = EvalOptDepth(pos, dir, waves[0], tMax);
-            float maxOpacity  = OpacityFromOpticalDepth(maxOptDepth);
-
-            float opacity = Rnd(); // Sample the CDF.
-
-            if (opacity < maxOpacity) // Volume contribution cancels out the opacity term.
-            {
-                // Convert to optical depth.
-                float optDepth = -log(1 - opacity);
-                // Perform distance sampling using the majorant.
-                float t = SampleVolumes(optDepth, pos, dir, waves[0]);
-                // Step along the ray.
-                pos += t * dir;
-                // Query the coefficients at the new location.
-                spectrum absK, scaK, nulK;
-                float    majK;
-                LookUpVolumeCoefficients(pos, dir, waves, absK, scaK, nulK, majK);
-                // Compute event probabilities.
-                // Use Equation 73, or one of the alternatives from the paper.
-                float absP, scaP, nulP;
-                ComputeVolumeEventProbabilities(absP, scaP, nulP);
-
-                float u = Rnd(); // Select an event.
-
-                if (u < absP) // Absorption & emission.
-                {
-                    pathWeights *= absK / (absP * majK);
-
-                    spectrum emission = LookUpEmission(pos, dir, waves);
-
-                    for (uint i = 0; i < n; i++)
-                    {
-                        float3 normCMF = EvaluateNormalizedColorMatchingFunc(waves[i]);
-
-                        color += normCMF * pathWeights[i] * emission[i];
-                    }
-
-                    break; // Terminate the loop due to the absorption event.
-                }
-                else if (u < (absP + scaP)) // In-scattering.
-                {
-                    pathWeights *= scaK / (scaP * majK);
-
-                    // A phase function is a PDF, so it does not modify the weight.
-                    dir = SamplePhaseFunction(pos, dir);
-                    /* Next event estimation omitted for brevity. */
-                }
-                else // Null-scattering.
-                {
-                    pathWeights *= nulK / (nulP * majK);
-                }
-            }
-            else // Surface contribution cancels out the transmittance term.
-            {
-                pos += tMax * dir;
-                /* Omitted for brevity. */
-            }
-        }
-    }
-
-    color *= rcp(numPaths);
-
-    return color;
-}
-```
-
--->
-<div class="footnotes">
-
-<hr />
-
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<section class="footnotes" role="doc-endnotes">
+<hr>
 <ol>
-<li id="fn:1">According to <a href="https://en.wikipedia.org/wiki/Attenuation_coefficient">Wikipedia</a>, this is an old term, and we should refer to it as the <em>attenuation coefficient</em> instead. While it's certainly a better name, in practice, all classical publications call it extinction (this also includes related terms). We use the classical naming convention to avoid confusion.
- <a class="footnote-return" href="#fnref:1"><sup>[return]</sup></a></li>
-<li id="fn:2">Alternatively, one can use <a href="https://en.wikipedia.org/wiki/Number_density">number density</a> instead of mass density.
- <a class="footnote-return" href="#fnref:2"><sup>[return]</sup></a></li>
-<li id="fn:5">Certain <a href="https://doi.org/10.1002/qj.49707633016">authors</a> use the definition of the phase function that includes the albedo.
- <a class="footnote-return" href="#fnref:5"><sup>[return]</sup></a></li>
-<li id="fn:3">The absorption coefficient in front of the emission term is due to the <a href="https://en.wikipedia.org/wiki/Kirchhoff%27s_law_of_thermal_radiation">Kirchhoff's law</a> which states that, for an arbitrary body emitting and absorbing thermal radiation in thermodynamic equilibrium, the emissivity is equal to the absorptivity.
- <a class="footnote-return" href="#fnref:3"><sup>[return]</sup></a></li>
-<li id="fn:4">A <em>homogeneous</em> medium, by definition, contains no inhomogeneities (which cause scattering), while a medium with a <em>uniform density</em> is composed of scattering particles.
- <a class="footnote-return" href="#fnref:4"><sup>[return]</sup></a></li>
+<li id="fn:1" role="doc-endnote">
+<p>According to <a href="https://en.wikipedia.org/wiki/Attenuation_coefficient">Wikipedia</a>, this is an old term, and we should refer to it as the <em>attenuation coefficient</em> instead. While it&rsquo;s certainly a better name, in practice, all classical publications call it extinction (this also includes related terms). We use the classical naming convention to avoid confusion. <a href="#fnref:1" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
+<li id="fn:2" role="doc-endnote">
+<p>Alternatively, one can use <a href="https://en.wikipedia.org/wiki/Number_density">number density</a> instead of mass density. <a href="#fnref:2" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
+<li id="fn:3" role="doc-endnote">
+<p>Certain <a href="https://doi.org/10.1002/qj.49707633016">authors</a> use the definition of the phase function that includes the albedo. <a href="#fnref:3" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
+<li id="fn:4" role="doc-endnote">
+<p>The absorption coefficient in front of the emission term is due to the <a href="https://en.wikipedia.org/wiki/Kirchhoff%27s_law_of_thermal_radiation">Kirchhoff&rsquo;s law</a> which states that, for an arbitrary body emitting and absorbing thermal radiation in thermodynamic equilibrium, the emissivity is equal to the absorptivity. <a href="#fnref:4" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
+<li id="fn:5" role="doc-endnote">
+<p>A <em>homogeneous</em> medium, by definition, contains no inhomogeneities (which cause scattering), while a medium with a <em>uniform density</em> is composed of scattering particles. <a href="#fnref:5" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
 </ol>
-</div>
+</section>
         </div>
 
         
@@ -1255,34 +733,27 @@ float3 SpectralTracking(float3 X, float3 V, uint numWavelengths, uint numPaths)
         <div class="article-toc" style="display:none;">
             <h3>Contents</h3>
             <nav id="TableOfContents">
-<ul>
-<li>
-<ul>
-<li><a href="#radiative-transfer-equation">Radiative Transfer Equation</a></li>
-<li><a href="#types-of-analytic-participating-media">Types of Analytic Participating Media</a>
-<ul>
-<li><a href="#uniform-density">Uniform Density</a></li>
-<li><a href="#linear-variation-of-density-with-altitude-plane-parallel-atmosphere">Linear Variation of Density with Altitude (Plane-Parallel Atmosphere)</a></li>
-<li><a href="#exponential-variation-of-density-with-altitude-plane-parallel-atmosphere">Exponential Variation of Density with Altitude (Plane-Parallel Atmosphere)</a></li>
-<li><a href="#exponential-variation-of-density-with-altitude-spherical-atmosphere">Exponential Variation of Density with Altitude (Spherical Atmosphere)</a>
-<ul>
-<li><a href="#geometric-configuration-of-a-spherical-atmosphere">Geometric Configuration of a Spherical Atmosphere</a></li>
-<li><a href="#examining-the-chapman-function">Examining the Chapman Function</a></li>
-<li><a href="#evaluating-optical-depth-using-the-chapman-function">Evaluating Optical Depth Using the Chapman Function</a></li>
-<li><a href="#sampling-exponential-media-of-a-spherical-atmosphere">Sampling Exponential Media of a Spherical Atmosphere</a></li>
-</ul></li>
-</ul></li>
-<li><a href="#conclusion">Conclusion</a></li>
-<li><a href="#acknowledgments">Acknowledgments</a></li>
-</ul></li>
-</ul>
+  <ul>
+    <li><a href="#radiative-transfer-equation">Radiative Transfer Equation</a></li>
+    <li><a href="#types-of-analytic-participating-media">Types of Analytic Participating Media</a>
+      <ul>
+        <li><a href="#uniform-density">Uniform Density</a></li>
+        <li><a href="#linear-variation-of-density-with-altitude-plane-parallel-atmosphere">Linear Variation of Density with Altitude (Plane-Parallel Atmosphere)</a></li>
+        <li><a href="#exponential-variation-of-density-with-altitude-plane-parallel-atmosphere">Exponential Variation of Density with Altitude (Plane-Parallel Atmosphere)</a></li>
+        <li><a href="#exponential-variation-of-density-with-altitude-spherical-atmosphere">Exponential Variation of Density with Altitude (Spherical Atmosphere)</a></li>
+      </ul>
+    </li>
+    <li><a href="#conclusion">Conclusion</a></li>
+    <li><a href="#acknowledgments">Acknowledgments</a></li>
+  </ul>
 </nav>
         </div>
         
         
 
         
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.slim.min.js" integrity="sha256-/SIrNqv8h6QGKDuNoLGA4iret+kyesCkHGzVUUV0shc=" crossorigin="anonymous"></script>
+        
+        <script src="https://zero-radiance.github.io/js/jquery-3.6.0.slim.min.js"></script>
         <script>
             (function() {
                 var $toc = $('#TableOfContents');
@@ -1327,17 +798,17 @@ float3 SpectralTracking(float3 X, float3 V, uint numWavelengths, uint numPaths)
             <ul class="article-tag-list">
                 
                 <li class="article-tag-list-item">
-                    <a class="article-tag-list-link" href="https://zero-radiance.github.io//tags/chapman-function">Chapman Function
+                    <a class="article-tag-list-link" href="https://zero-radiance.github.io/tags/chapman-function">Chapman Function
                     </a>
                 </li>
                 
                 <li class="article-tag-list-item">
-                    <a class="article-tag-list-link" href="https://zero-radiance.github.io//tags/importance-sampling">Importance Sampling
+                    <a class="article-tag-list-link" href="https://zero-radiance.github.io/tags/importance-sampling">Importance Sampling
                     </a>
                 </li>
                 
                 <li class="article-tag-list-item">
-                    <a class="article-tag-list-link" href="https://zero-radiance.github.io//tags/radiative-transfer">Radiative Transfer
+                    <a class="article-tag-list-link" href="https://zero-radiance.github.io/tags/radiative-transfer">Radiative Transfer
                     </a>
                 </li>
                 
@@ -1345,7 +816,8 @@ float3 SpectralTracking(float3 X, float3 V, uint numWavelengths, uint numPaths)
         </footer>
         
     </div>
-    <nav id="article-nav">
+    
+<nav id="article-nav">
     
     <a href="/post/z-buffer/" id="article-nav-newer" class="article-nav-link-wrap">
         <div class="article-nav-title"><span>&lt;</span>&nbsp;
@@ -1360,6 +832,7 @@ float3 SpectralTracking(float3 X, float3 V, uint numWavelengths, uint numPaths)
     
 </nav>
 
+
 </article>
 
         
@@ -1367,22 +840,32 @@ float3 SpectralTracking(float3 X, float3 V, uint numWavelengths, uint numPaths)
     <footer id="footer">
     <div class="outer">
         <div id="footer-info" class="inner">
-            &copy; 2021 Zero Radiance
+            &copy; 2023 Zero Radiance
             <br />
             Powered by <a href="https://gohugo.io" target="_blank">Hugo</a> with theme <a href="https://github.com/carsonip/hugo-theme-minos" target="_blank">Minos</a>
         </div>
     </div>
     
 
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.9.0/styles/ir-black.min.css" integrity="sha384-MB5b01LGSe23q61l4c3S0rizcgipTwJg3lu7sim4umVyvL7FAQ42QaupvahTDYXU" crossorigin="anonymous">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.9.0/highlight.min.js" integrity="sha256-KbfTjB0WZ8vvXngdpJGY3Yp3xKk+tttbqClO11anCIU=" crossorigin="anonymous"></script>
-    <script>hljs.initHighlightingOnLoad();</script>
+    
+    <link rel="stylesheet" href="https://zero-radiance.github.io/highlight.js/ir-black.min.css">
+    <script defer src="https://zero-radiance.github.io/highlight.js/highlight.min.js" onload="hljs.initHighlightingOnLoad();"></script>
 
     
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.10.1/dist/katex.min.css" integrity="sha384-dbVIfZGuN1Yq7/1Ocstc1lUEm+AT+/rCkibIcC/OmWo5f0EA48Vf8CytHzGrSwbQ" crossorigin="anonymous">
-    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.10.1/dist/katex.min.js" integrity="sha384-2BKqo+exmr9su6dir+qCw08N2ZKRucY4PrGQPPWU1A7FtlCGjmEGFqXCv5nyM5Ij" crossorigin="anonymous"></script>
-    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.10.1/dist/contrib/auto-render.min.js" integrity="sha384-kWPLUVMOks5AQFrykwIup5lo0m3iMkkHrD0uJ4H5cjeGihAutqP0yW0J6dpFiVkI" crossorigin="anonymous"
-    onload="renderMathInElement(document.body, {strict: false});"></script>
+    
+    <link rel="stylesheet" href="https://zero-radiance.github.io/katex/katex.min.css">
+
+    
+    <script defer src="https://zero-radiance.github.io/katex/katex.min.js"></script>
+
+    
+    <script defer src="https://zero-radiance.github.io/katex/contrib/auto-render.min.js" onload="renderMathInElement(document.body, {
+    delimiters: [
+        {left: '$$', right: '$$', display: true},
+        {left: '$', right: '$', display: false}
+    ],
+    macros: {'’' : '\'',},
+    });"></script>
     
     <script>
         document.getElementById('main-nav-toggle').addEventListener('click', function () {

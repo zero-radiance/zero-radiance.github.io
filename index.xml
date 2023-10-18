@@ -1,14 +1,33 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Zero Radiance</title>
     <link>https://zero-radiance.github.io/</link>
     <description>Recent content on Zero Radiance</description>
     <generator>Hugo -- gohugo.io</generator>
-    <lastBuildDate>Sun, 20 Sep 2020 00:00:00 +0000</lastBuildDate>
-    
-	<atom:link href="https://zero-radiance.github.io/index.xml" rel="self" type="application/rss+xml" />
-    
+    <lastBuildDate>Wed, 18 Oct 2023 00:00:00 +0000</lastBuildDate><atom:link href="https://zero-radiance.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>New Implementation of LTC Line Lights</title>
+      <link>https://zero-radiance.github.io/post/line-lights/</link>
+      <pubDate>Wed, 18 Oct 2023 00:00:00 +0000</pubDate>
+      
+      <guid>https://zero-radiance.github.io/post/line-lights/</guid>
+      <description>&lt;p&gt;Recently, I had a chance to take another look at the real-time implementation of &lt;a href=&#34;https://blogs.unity3d.com/2017/04/17/linear-light-shading-with-linearly-transformed-cosines/&#34;&gt;line lights&lt;/a&gt;. As a result, I discovered three unexpected issues:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;The integral given by Eqn. 1.20 was evaluated incorrectly. In particular, Eqn. 1.23 should be replaced by&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;$$ \tag{1.23}
+F_{\bm{\omega_t}}(l) = -\frac{d}{d^2+l^2} \neq \frac{l^2}{d(d^2+l^2)}.
+$$&lt;/p&gt;
+&lt;ol start=&#34;2&#34;&gt;
+&lt;li&gt;
+&lt;p&gt;Lights leak when placed just below ground. This appears to be a fundamental limitation of LTC.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;The performance is suboptimal. It becomes apparent once the problem is approached geometrically. Then one can interpret the solution in terms of the orthogonal 2D coordinates in the plane spanned by the light and the origin. As a result, some expressions can be simplified; in particular, two arc tangents can be replaced by a single arc cosine.&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;</description>
+    </item>
     
     <item>
       <title>From Particle to Volume Scattering of Light</title>
@@ -16,7 +35,7 @@
       <pubDate>Sun, 20 Sep 2020 00:00:00 +0000</pubDate>
       
       <guid>https://zero-radiance.github.io/post/particle-volume/</guid>
-      <description>&lt;p&gt;I have &lt;a href=&#34;https://zero-radiance.github.io/post/analytic-media/&#34;&gt;previously&lt;/a&gt; covered the basics of the volume scattering process. It models the macroscopic interaction of light and matter, with the latter represented as a distribution of &lt;a href=&#34;https://doi.org/10.1002/qj.49708436025&#34;&gt;small particles&lt;/a&gt;. Fundamentally, the volume scattering process arises from the microscopic interaction of light with individual atoms, and is typically described using &lt;a href=&#34;https://doi.org/10.1364/JOSAA.35.000163&#34;&gt;Maxwell&#39;s electromagnetic theory&lt;/a&gt;. It is the domain of optics, and, in my experience, the connection with the &lt;a href=&#34;https://en.wikipedia.org/wiki/Radiative_transfer#The_equation_of_radiative_transfer&#34;&gt;radiative transfer equation&lt;/a&gt; is neither apparent nor easy to find. The purpose of this blog post is to familiarize the reader with domain-specific terms and ease the adoption of formulas found in the optics literature.&lt;/p&gt;</description>
+      <description>&lt;p&gt;I have &lt;a href=&#34;https://zero-radiance.github.io/post/analytic-media/&#34;&gt;previously&lt;/a&gt; covered the basics of the volume scattering process. It models the macroscopic interaction of light and matter, with the latter represented as a distribution of &lt;a href=&#34;https://doi.org/10.1002/qj.49708436025&#34;&gt;small particles&lt;/a&gt;. Fundamentally, the volume scattering process arises from the microscopic interaction of light with individual atoms, and is typically described using &lt;a href=&#34;https://doi.org/10.1364/JOSAA.35.000163&#34;&gt;Maxwell&amp;rsquo;s electromagnetic theory&lt;/a&gt;. It is the domain of optics, and, in my experience, the connection with the &lt;a href=&#34;https://en.wikipedia.org/wiki/Radiative_transfer#The_equation_of_radiative_transfer&#34;&gt;radiative transfer equation&lt;/a&gt; is neither apparent nor easy to find. The purpose of this blog post is to familiarize the reader with domain-specific terms and ease the adoption of formulas found in the optics literature.&lt;/p&gt;</description>
     </item>
     
     <item>
@@ -26,9 +45,7 @@
       
       <guid>https://zero-radiance.github.io/post/z-buffer/</guid>
       <description>&lt;p&gt;High Z-buffer precision is something that we take for granted these days. Since the introduction of &lt;a href=&#34;https://doi.org/10.1145/311534.311579&#34;&gt;reversed floating-point Z-buffering&lt;/a&gt; (and, assuming you use the standard tricks like &lt;a href=&#34;https://pharr.org/matt/blog/2018/03/02/rendering-in-camera-space.html&#34;&gt;camera-relative transforms&lt;/a&gt;), most depth precision issues are a thing of the past. You ask the rasterizer to throw triangles at the screen and, almost magically, and they appear at the right place and in the right order.&lt;/p&gt;
-
-&lt;p&gt;There are many existing articles concerning Z-buffer precision (&lt;a href=&#34;https://doi.org/10.1145/311534.311579&#34;&gt;1&lt;/a&gt;, &lt;a href=&#34;https://mynameismjp.wordpress.com/2010/03/22/attack-of-the-depth-buffer/&#34;&gt;2&lt;/a&gt;, &lt;a href=&#34;http://www.geometry.caltech.edu/pubs/UD12.pdf&#34;&gt;3&lt;/a&gt;, &lt;a href=&#34;http://www.humus.name/Articles/Persson_CreatingVastGameWorlds.pdf&#34;&gt;4&lt;/a&gt;, &lt;a href=&#34;https://outerra.blogspot.com/2012/11/maximizing-depth-buffer-range-and.html&#34;&gt;5&lt;/a&gt;, &lt;a href=&#34;http://dev.theomader.com/depth-precision/&#34;&gt;6&lt;/a&gt;, &lt;a href=&#34;http://www.reedbeta.com/blog/depth-precision-visualized/&#34;&gt;7&lt;/a&gt;, the last one being my favorite), as well as sections in the &lt;a href=&#34;http://www.realtimerendering.com/book.html&#34;&gt;Real-Time Rendering&lt;/a&gt; and the &lt;a href=&#34;https://foundationsofgameenginedev.com/#fged2&#34;&gt;Foundations of Game Engine Development&lt;/a&gt; books. So, why bother writing another one? While there is nothing wrong with the intuition and the results presented there, I find the numerical analysis part (specifically, its presentation) somewhat lacking. It is clear that &amp;quot;the quasi-logarithmic distribution of floating-point somewhat cancels the \(1/z\) nonlinearity&amp;quot;, but what does that mean &lt;em&gt;exactly&lt;/em&gt;? What is happening at the binary level? Is the resulting distribution of depth values linear? Logarithmic? Or is it something else entirely? Even after reading all these articles, I still had these nagging questions that made me feel that I had failed to achieve what Jim Blinn would call the &lt;a href=&#34;https://doi.org/10.1109/38.210494&#34;&gt;ultimate understanding&lt;/a&gt; of the concept.&lt;/p&gt;
-
+&lt;p&gt;There are many existing articles concerning Z-buffer precision (&lt;a href=&#34;https://doi.org/10.1145/311534.311579&#34;&gt;1&lt;/a&gt;, &lt;a href=&#34;https://mynameismjp.wordpress.com/2010/03/22/attack-of-the-depth-buffer/&#34;&gt;2&lt;/a&gt;, &lt;a href=&#34;http://www.geometry.caltech.edu/pubs/UD12.pdf&#34;&gt;3&lt;/a&gt;, &lt;a href=&#34;http://www.humus.name/Articles/Persson_CreatingVastGameWorlds.pdf&#34;&gt;4&lt;/a&gt;, &lt;a href=&#34;https://outerra.blogspot.com/2012/11/maximizing-depth-buffer-range-and.html&#34;&gt;5&lt;/a&gt;, &lt;a href=&#34;http://dev.theomader.com/depth-precision/&#34;&gt;6&lt;/a&gt;, &lt;a href=&#34;http://www.reedbeta.com/blog/depth-precision-visualized/&#34;&gt;7&lt;/a&gt;, the last one being my favorite), as well as sections in the &lt;a href=&#34;http://www.realtimerendering.com/book.html&#34;&gt;Real-Time Rendering&lt;/a&gt; and the &lt;a href=&#34;https://foundationsofgameenginedev.com/#fged2&#34;&gt;Foundations of Game Engine Development&lt;/a&gt; books. So, why bother writing another one? While there is nothing wrong with the intuition and the results presented there, I find the numerical analysis part (specifically, its presentation) somewhat lacking. It is clear that &amp;ldquo;the quasi-logarithmic distribution of floating-point somewhat cancels the \(1/z\) nonlinearity&amp;rdquo;, but what does that mean &lt;em&gt;exactly&lt;/em&gt;? What is happening at the binary level? Is the resulting distribution of depth values linear? Logarithmic? Or is it something else entirely? Even after reading all these articles, I still had these nagging questions that made me feel that I had failed to achieve what Jim Blinn would call the &lt;a href=&#34;https://doi.org/10.1109/38.210494&#34;&gt;ultimate understanding&lt;/a&gt; of the concept.&lt;/p&gt;
 &lt;p&gt;In short, we know that reversed Z-buffering &lt;em&gt;is&lt;/em&gt; good, and we know &lt;em&gt;why&lt;/em&gt; it is good; what we would like to know is &lt;em&gt;what good really means&lt;/em&gt;. This blog post is not meant to replace the existing articles but, rather, to complement them.&lt;/p&gt;</description>
     </item>
     
@@ -38,7 +55,7 @@
       <pubDate>Mon, 17 Feb 2020 00:00:00 +0000</pubDate>
       
       <guid>https://zero-radiance.github.io/post/analytic-media/</guid>
-      <description>&lt;p&gt;Rendering of participating media is an important aspect of every modern renderer. When I say participating media, I am not just talking about fog, fire, and smoke. All matter is composed of &lt;a href=&#34;https://courses.lumenlearning.com/boundless-chemistry/chapter/the-structure-of-the-atom/&#34;&gt;atoms&lt;/a&gt;, which can be sparsely (e.g. in a gas) or densely (e.g. in a solid) distributed in space. Whether we consider the particle or the wave nature of &lt;a href=&#34;https://en.wikipedia.org/wiki/Light&#34;&gt;light&lt;/a&gt;, it penetrates all matter (even &lt;a href=&#34;http://webhome.phy.duke.edu/~qelectron/group/group_reading_Born_and_Wolf.pdf&#34;&gt;metals&lt;/a&gt;) to a certain degree and interacts with its atoms along the way. The nature and the degree of &amp;quot;participation&amp;quot; depend on the material in question.&lt;/p&gt;</description>
+      <description>&lt;p&gt;Rendering of participating media is an important aspect of every modern renderer. When I say participating media, I am not just talking about fog, fire, and smoke. All matter is composed of &lt;a href=&#34;https://courses.lumenlearning.com/boundless-chemistry/chapter/the-structure-of-the-atom/&#34;&gt;atoms&lt;/a&gt;, which can be sparsely (e.g. in a gas) or densely (e.g. in a solid) distributed in space. Whether we consider the particle or the wave nature of &lt;a href=&#34;https://en.wikipedia.org/wiki/Light&#34;&gt;light&lt;/a&gt;, it penetrates all matter (even &lt;a href=&#34;http://webhome.phy.duke.edu/~qelectron/group/group_reading_Born_and_Wolf.pdf&#34;&gt;metals&lt;/a&gt;) to a certain degree and interacts with its atoms along the way. The nature and the degree of &amp;ldquo;participation&amp;rdquo; depend on the material in question.&lt;/p&gt;</description>
     </item>
     
     <item>
@@ -47,9 +64,8 @@
       <pubDate>Mon, 16 Dec 2019 00:00:00 +0000</pubDate>
       
       <guid>https://zero-radiance.github.io/post/sampling-diffusion/</guid>
-      <description>&lt;p&gt;A couple of years ago, I worked on an &lt;a href=&#34;http://advances.realtimerendering.com/s2018/Efficient%20screen%20space%20subsurface%20scattering%20Siggraph%202018.pdf&#34;&gt;implementation&lt;/a&gt; of Burley&#39;s Normalized Diffusion (a.k.a. Disney SSS). The original &lt;a href=&#34;https://graphics.pixar.com/library/ApproxBSSRDF/paper.pdf&#34;&gt;paper&lt;/a&gt; claims that the CDF is not analytically invertible. I have great respect for both authors, Brent Burley and Per Christensen, so I haven&#39;t questioned their claim for a second. Turns out, &amp;quot;&lt;a href=&#34;https://www.psychologytoday.com/us/blog/connect-creativity/201311/question-everything-everywhere-forever&#34;&gt;Question Everything&lt;/a&gt;&amp;quot; is probably a better mindset.&lt;/p&gt;
-
-&lt;p&gt;I&#39;ve been recently alerted by &lt;a href=&#34;https://twitter.com/stirners_ghost&#34;&gt;@stirners_ghost&lt;/a&gt; on Twitter (thank you!) that the CDF is, in fact, analytically invertible. Moreover, the inversion process is almost trivial, as I will demonstrate below.&lt;/p&gt;</description>
+      <description>&lt;p&gt;A couple of years ago, I worked on an &lt;a href=&#34;http://advances.realtimerendering.com/s2018/Efficient%20screen%20space%20subsurface%20scattering%20Siggraph%202018.pdf&#34;&gt;implementation&lt;/a&gt; of Burley&amp;rsquo;s Normalized Diffusion (a.k.a. Disney SSS). The original &lt;a href=&#34;https://graphics.pixar.com/library/ApproxBSSRDF/paper.pdf&#34;&gt;paper&lt;/a&gt; claims that the CDF is not analytically invertible. I have great respect for both authors, Brent Burley and Per Christensen, so I haven&amp;rsquo;t questioned their claim for a second. Turns out, &amp;ldquo;&lt;a href=&#34;https://www.psychologytoday.com/us/blog/connect-creativity/201311/question-everything-everywhere-forever&#34;&gt;Question Everything&lt;/a&gt;&amp;rdquo; is probably a better mindset.&lt;/p&gt;
+&lt;p&gt;I&amp;rsquo;ve been recently alerted by &lt;a href=&#34;https://twitter.com/stirners_ghost&#34;&gt;@stirners_ghost&lt;/a&gt; on Twitter (thank you!) that the CDF is, in fact, analytically invertible. Moreover, the inversion process is almost trivial, as I will demonstrate below.&lt;/p&gt;</description>
     </item>
     
     <item>
@@ -59,8 +75,7 @@
       
       <guid>https://zero-radiance.github.io/post/surface-gradient/</guid>
       <description>&lt;p&gt;Realistic rendering at high frame rates remains at the core of real-time computer graphics. High performance and high fidelity are often at odds, requiring clever tricks and approximations to reach the desired quality bar.&lt;/p&gt;
-
-&lt;p&gt;One of the oldest tricks in the book is &lt;a href=&#34;https://www.microsoft.com/en-us/research/publication/simulation-of-wrinkled-surfaces/&#34;&gt;bump mapping&lt;/a&gt;. Introduced in 1978 by Jim Blinn, it is a simple way to add mesoscopic detail without increasing the geometric complexity of the scene. Most modern real-time renderers support a variation of this technique called normal mapping. While it&#39;s fast and easy to use, certain operations, such as blending, are &lt;a href=&#34;https://blog.selfshadow.com/publications/blending-in-detail/&#34;&gt;not as simple as they seem&lt;/a&gt;. This is where the so-called &amp;quot;surface gradient framework&amp;quot; comes into play.&lt;/p&gt;</description>
+&lt;p&gt;One of the oldest tricks in the book is &lt;a href=&#34;https://www.microsoft.com/en-us/research/publication/simulation-of-wrinkled-surfaces/&#34;&gt;bump mapping&lt;/a&gt;. Introduced in 1978 by Jim Blinn, it is a simple way to add mesoscopic detail without increasing the geometric complexity of the scene. Most modern real-time renderers support a variation of this technique called normal mapping. While it&amp;rsquo;s fast and easy to use, certain operations, such as blending, are &lt;a href=&#34;https://blog.selfshadow.com/publications/blending-in-detail/&#34;&gt;not as simple as they seem&lt;/a&gt;. This is where the so-called &amp;ldquo;surface gradient framework&amp;rdquo; comes into play.&lt;/p&gt;</description>
     </item>
     
     <item>
@@ -69,11 +84,9 @@
       <pubDate>Tue, 02 Apr 2019 00:00:00 +0000</pubDate>
       
       <guid>https://zero-radiance.github.io/post/split-sum/</guid>
-      <description>&lt;p&gt;Pre-filtered cubemaps remain an important source of indirect illumination for those of us who still haven&#39;t purchased a Turing graphics card.&lt;/p&gt;
-
+      <description>&lt;p&gt;Pre-filtered cubemaps remain an important source of indirect illumination for those of us who still haven&amp;rsquo;t purchased a Turing graphics card.&lt;/p&gt;
 &lt;p&gt;To my knowledge, most implementations use the &lt;a href=&#34;https://cdn2.unrealengine.com/Resources/files/2013SiggraphPresentationsNotes-26915738.pdf&#34;&gt;split sum approximation&lt;/a&gt; originally introduced by Brian Karis. It is a simple technique, and generally works well given the inherent view independence limitation.&lt;/p&gt;
-
-&lt;p&gt;But why does it work so well, and is there a better way to pre-filter? Let&#39;s find out.&lt;/p&gt;</description>
+&lt;p&gt;But why does it work so well, and is there a better way to pre-filter? Let&amp;rsquo;s find out.&lt;/p&gt;</description>
     </item>
     
     <item>
@@ -83,9 +96,7 @@
       
       <guid>https://zero-radiance.github.io/post/deep-compositing/</guid>
       <description>&lt;p&gt;Most graphics programmers are familiar with the concept of &lt;a href=&#34;http://jcgt.org/published/0004/02/03/&#34;&gt;alpha&lt;/a&gt;. It has two interpretations - geometrical and optical. The former corresponds to coverage, while the latter refers to opacity.&lt;/p&gt;
-
 &lt;p&gt;Regular compositing assumes non-overlapping objects. Typically, the &lt;a href=&#34;https://graphics.pixar.com/library/Compositing/&#34;&gt;over operator&lt;/a&gt; is used. It implies that one of the objects is in front of the other, and thereby attenuates its contribution to the image.&lt;/p&gt;
-
 &lt;p&gt;This blog post will cover &lt;a href=&#34;https://graphics.pixar.com/library/DeepCompositing/&#34;&gt;deep compositing&lt;/a&gt;.&lt;/p&gt;</description>
     </item>
     

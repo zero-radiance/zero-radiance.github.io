@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Linearly Transformed Cosines on Zero Radiance</title>
+    <link>https://zero-radiance.github.io/tags/linearly-transformed-cosines/</link>
+    <description>Recent content in Linearly Transformed Cosines on Zero Radiance</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <lastBuildDate>Wed, 18 Oct 2023 00:00:00 +0000</lastBuildDate><atom:link href="https://zero-radiance.github.io/tags/linearly-transformed-cosines/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>New Implementation of LTC Line Lights</title>
+      <link>https://zero-radiance.github.io/post/line-lights/</link>
+      <pubDate>Wed, 18 Oct 2023 00:00:00 +0000</pubDate>
+      
+      <guid>https://zero-radiance.github.io/post/line-lights/</guid>
+      <description>&lt;p&gt;Recently, I had a chance to take another look at the real-time implementation of &lt;a href=&#34;https://blogs.unity3d.com/2017/04/17/linear-light-shading-with-linearly-transformed-cosines/&#34;&gt;line lights&lt;/a&gt;. As a result, I discovered three unexpected issues:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;The integral given by Eqn. 1.20 was evaluated incorrectly. In particular, Eqn. 1.23 should be replaced by&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;$$ \tag{1.23}
+F_{\bm{\omega_t}}(l) = -\frac{d}{d^2+l^2} \neq \frac{l^2}{d(d^2+l^2)}.
+$$&lt;/p&gt;
+&lt;ol start=&#34;2&#34;&gt;
+&lt;li&gt;
+&lt;p&gt;Lights leak when placed just below ground. This appears to be a fundamental limitation of LTC.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;The performance is suboptimal. It becomes apparent once the problem is approached geometrically. Then one can interpret the solution in terms of the orthogonal 2D coordinates in the plane spanned by the light and the origin. As a result, some expressions can be simplified; in particular, two arc tangents can be replaced by a single arc cosine.&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

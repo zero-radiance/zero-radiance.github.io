@@ -3,28 +3,29 @@
 <head>
     <title>Sampling Burley&#39;s Normalized Diffusion Profiles // Zero Radiance</title>
 
-        <meta charset="utf-8">
+    <meta charset="utf-8">
     <meta http-equiv="content-type" content="text/html; charset=utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
-    <meta name="description" content="">
-    <meta name="keywords" content="">
-    <meta name="author" content="">
+    
+    
+    
+
         <meta property="og:title" content="Sampling Burley&#39;s Normalized Diffusion Profiles" />
     <meta property="og:description" content="" />
     <meta property="og:type" content="website" />
-    <meta property="og:locale" content="en_US" />
+    <meta property="og:locale" content="en" />
     <meta property="og:url" content="https://zero-radiance.github.io/post/sampling-diffusion/" />
     
 
-    <link href="" rel="alternate" type="application/rss+xml" title="Zero Radiance" />
-    <link rel="shortcut icon" href="/favicon.png">
+    <link rel="shortcut icon" href="/favicon.ico">
 
     <link href="https://zero-radiance.github.io/webfonts/ptserif/main.css" rel='stylesheet' type='text/css'>
     <link href="https://zero-radiance.github.io/webfonts/source-code-pro/main.css" rel="stylesheet" type="text/css">
 
     <link rel="stylesheet" href="https://zero-radiance.github.io/css/style.css">
+    
 
-    <meta name="generator" content="Hugo 0.54.0" />
+    <meta name="generator" content="Hugo 0.82.1" />
 </head>
 
 
@@ -65,93 +66,68 @@
             
         </div>
         <div class="article-entry" itemprop="articleBody">
-            <p>A couple of years ago, I worked on an <a href="http://advances.realtimerendering.com/s2018/Efficient%20screen%20space%20subsurface%20scattering%20Siggraph%202018.pdf">implementation</a> of Burley's Normalized Diffusion (a.k.a. Disney SSS). The original <a href="https://graphics.pixar.com/library/ApproxBSSRDF/paper.pdf">paper</a> claims that the CDF is not analytically invertible. I have great respect for both authors, Brent Burley and Per Christensen, so I haven't questioned their claim for a second. Turns out, &quot;<a href="https://www.psychologytoday.com/us/blog/connect-creativity/201311/question-everything-everywhere-forever">Question Everything</a>&quot; is probably a better mindset.</p>
-
-<p>I've been recently alerted by <a href="https://twitter.com/stirners_ghost">@stirners_ghost</a> on Twitter (thank you!) that the CDF is, in fact, analytically invertible. Moreover, the inversion process is almost trivial, as I will demonstrate below.</p>
-
+            <p>A couple of years ago, I worked on an <a href="http://advances.realtimerendering.com/s2018/Efficient%20screen%20space%20subsurface%20scattering%20Siggraph%202018.pdf">implementation</a> of Burley&rsquo;s Normalized Diffusion (a.k.a. Disney SSS). The original <a href="https://graphics.pixar.com/library/ApproxBSSRDF/paper.pdf">paper</a> claims that the CDF is not analytically invertible. I have great respect for both authors, Brent Burley and Per Christensen, so I haven&rsquo;t questioned their claim for a second. Turns out, &ldquo;<a href="https://www.psychologytoday.com/us/blog/connect-creativity/201311/question-everything-everywhere-forever">Question Everything</a>&rdquo; is probably a better mindset.</p>
+<p>I&rsquo;ve been recently alerted by <a href="https://twitter.com/stirners_ghost">@stirners_ghost</a> on Twitter (thank you!) that the CDF is, in fact, analytically invertible. Moreover, the inversion process is almost trivial, as I will demonstrate below.</p>
 <p>The diffusion model is radially symmetric, and is defined as</p>
-
 <p>$$ \tag{1} R(r) = \frac{A s}{8 \pi r} \Big( e^{-s r} + e^{-s r / 3} \Big). $$</p>
-
 <p>To find the corresponding PDF, it must be normalized:</p>
-
 <p>$$ \tag{2}
-    \int_{-\infty}^{\infty} \int_{-\infty}^{\infty} \frac{R(\sqrt{x^2+y^2})}{A} dx dy =
-    \int_{0}^{2 \pi} \int_{0}^{\infty} \frac{R(r)}{A} r dr d\theta =
-    \int_{0}^{2 \pi} \int_{0}^{\infty} p_r(r, \theta) dr d\theta = 1.
+\int_{-\infty}^{\infty} \int_{-\infty}^{\infty} \frac{R(\sqrt{x^2+y^2})}{A} dx dy =
+\int_{0}^{2 \pi} \int_{0}^{\infty} \frac{R(r)}{A} r dr d\theta =
+\int_{0}^{2 \pi} \int_{0}^{\infty} p_r(r, \theta) dr d\theta = 1.
 $$</p>
-
 <p>Therefore, in polar coordinates, the PDF is given as</p>
-
 <p>$$ \tag{3} p_r(r, \theta) = \frac{R(r)}{A} r = \frac{s}{8 \pi} \Big( e^{-s r} + e^{-s r / 3} \Big). $$</p>
-
 <p>The marginal CDF is then</p>
-
 <p>$$ \tag{4} P(r) = \int_{0}^{2 \pi} \int_{0}^{r} p_r(z, \theta) dz d\theta = 1 - \frac{1}{4} e^{-s r} - \frac{3}{4} e^{-s r / 3}. $$</p>
-
 <p>Let us define \(x = s r\). If we ask <a href="https://www.wolfram.com/mathematica/">Mathematica</a> to solve \(y = P(x)\) for \(x\) in order to obtain the inverse \(x = P^{-1}(y)\), we get a somewhat terrifying (but, of course, correct) output:</p>
-
 <figure>
     <img src="/img/solve1.png"/> 
 </figure>
 
-
 <p>The trick is to solve \(P(x) = 1 - u\) instead (where \(u = 1 - P(x)\) is the <a href="https://en.wikipedia.org/wiki/Cumulative_distribution_function#Complementary_cumulative_distribution_function_(tail_distribution)">complementary CDF</a>):</p>
-
 <figure>
     <img src="/img/solve2.png"/> 
 </figure>
 
-
 <p>To get rid of the imaginary part, we can set the free constant \(c_{1} = 0\), which results in the following inverse:</p>
-
 <p>$$ \tag{5} x = s r = 3 \log{\Bigg(\frac{1 + G(u)^{-1/3} + G(u)^{1/3}}{4 u} \Bigg)}, $$</p>
-
 <p>where</p>
-
 <p>$$ \tag{6} G(u) = 1 + 4 u \Big( 2 u + \sqrt{1 + 4 u^2} \Big). $$</p>
-
 <p>We can verify that it works by feeding the complementary CDF with its inverse.</p>
-
 <figure>
     <img src="/img/solve3.png"/> 
 </figure>
 
-
 <p>For importance sampling, we can uniformly sample either the complementary or the regular CDF - it makes no difference \((\)except for reversing the order of samples, s.t. \(x(0) = \infty\) and \(x(1) = 0 )\).</p>
-
 <p>An optimized implementation is listed below.</p>
-
-<pre><code class="language-c++">// Performs sampling of a Normalized Burley diffusion profile in polar coordinates.
-// 'u' is the random number (the value of the CDF): [0, 1).
-// rcp(s) = 1 / ShapeParam = ScatteringDistance.
-// 'r' is the sampled radial distance, s.t. (u = 0 -&gt; r = 0) and (u = 1 -&gt; r = Inf).
-// rcp(Pdf) is the reciprocal of the corresponding PDF value.
-void SampleBurleyDiffusionProfile(float u, float rcpS, out float r, out float rcpPdf)
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c++" data-lang="c++"><span style="color:#75715e">// Performs sampling of a Normalized Burley diffusion profile in polar coordinates.
+</span><span style="color:#75715e">// &#39;u&#39; is the random number (the value of the CDF): [0, 1).
+</span><span style="color:#75715e">// rcp(s) = 1 / ShapeParam = ScatteringDistance.
+</span><span style="color:#75715e">// &#39;r&#39; is the sampled radial distance, s.t. (u = 0 -&gt; r = 0) and (u = 1 -&gt; r = Inf).
+</span><span style="color:#75715e">// rcp(Pdf) is the reciprocal of the corresponding PDF value.
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">void</span> <span style="color:#a6e22e">SampleBurleyDiffusionProfile</span>(<span style="color:#66d9ef">float</span> u, <span style="color:#66d9ef">float</span> rcpS, out <span style="color:#66d9ef">float</span> r, out <span style="color:#66d9ef">float</span> rcpPdf)
 {
-    u = 1 - u; // Convert CDF to CCDF; the resulting value of (u != 0)
+    u <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span> <span style="color:#f92672">-</span> u; <span style="color:#75715e">// Convert CDF to CCDF; the resulting value of (u != 0)
+</span><span style="color:#75715e"></span>
+    <span style="color:#66d9ef">float</span> g <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span> <span style="color:#f92672">+</span> (<span style="color:#ae81ff">4</span> <span style="color:#f92672">*</span> u) <span style="color:#f92672">*</span> (<span style="color:#ae81ff">2</span> <span style="color:#f92672">*</span> u <span style="color:#f92672">+</span> sqrt(<span style="color:#ae81ff">1</span> <span style="color:#f92672">+</span> (<span style="color:#ae81ff">4</span> <span style="color:#f92672">*</span> u) <span style="color:#f92672">*</span> u));
+    <span style="color:#66d9ef">float</span> n <span style="color:#f92672">=</span> exp2(log2(g) <span style="color:#f92672">*</span> (<span style="color:#f92672">-</span><span style="color:#ae81ff">1.0</span><span style="color:#f92672">/</span><span style="color:#ae81ff">3.0</span>));                    <span style="color:#75715e">// g^(-1/3)
+</span><span style="color:#75715e"></span>    <span style="color:#66d9ef">float</span> p <span style="color:#f92672">=</span> (g <span style="color:#f92672">*</span> n) <span style="color:#f92672">*</span> n;                                   <span style="color:#75715e">// g^(+1/3)
+</span><span style="color:#75715e"></span>    <span style="color:#66d9ef">float</span> c <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span> <span style="color:#f92672">+</span> p <span style="color:#f92672">+</span> n;                                     <span style="color:#75715e">// 1 + g^(+1/3) + g^(-1/3)
+</span><span style="color:#75715e"></span>    <span style="color:#66d9ef">float</span> x <span style="color:#f92672">=</span> (<span style="color:#ae81ff">3</span> <span style="color:#f92672">/</span> LOG2_E) <span style="color:#f92672">*</span> log2(c <span style="color:#f92672">*</span> rcp(<span style="color:#ae81ff">4</span> <span style="color:#f92672">*</span> u));           <span style="color:#75715e">// 3 * Log[c / (4 * u)]
+</span><span style="color:#75715e"></span>
+    <span style="color:#75715e">// x      = s * r
+</span><span style="color:#75715e"></span>    <span style="color:#75715e">// exp_13 = Exp[-x/3] = Exp[-1/3 * 3 * Log[c / (4 * u)]]
+</span><span style="color:#75715e"></span>    <span style="color:#75715e">// exp_13 = Exp[-Log[c / (4 * u)]] = (4 * u) / c
+</span><span style="color:#75715e"></span>    <span style="color:#75715e">// exp_1  = Exp[-x] = exp_13 * exp_13 * exp_13
+</span><span style="color:#75715e"></span>    <span style="color:#75715e">// expSum = exp_1 + exp_13 = exp_13 * (1 + exp_13 * exp_13)
+</span><span style="color:#75715e"></span>    <span style="color:#75715e">// rcpExp = rcp(expSum) = c^3 / ((4 * u) * (c^2 + 16 * u^2))
+</span><span style="color:#75715e"></span>    <span style="color:#66d9ef">float</span> rcpExp <span style="color:#f92672">=</span> ((c <span style="color:#f92672">*</span> c) <span style="color:#f92672">*</span> c) <span style="color:#f92672">*</span> rcp((<span style="color:#ae81ff">4</span> <span style="color:#f92672">*</span> u) <span style="color:#f92672">*</span> ((c <span style="color:#f92672">*</span> c) <span style="color:#f92672">+</span> (<span style="color:#ae81ff">4</span> <span style="color:#f92672">*</span> u) <span style="color:#f92672">*</span> (<span style="color:#ae81ff">4</span> <span style="color:#f92672">*</span> u)));
 
-    float g = 1 + (4 * u) * (2 * u + sqrt(1 + (4 * u) * u));
-    float n = exp2(log2(g) * (-1.0/3.0));                    // g^(-1/3)
-    float p = (g * n) * n;                                   // g^(+1/3)
-    float c = 1 + p + n;                                     // 1 + g^(+1/3) + g^(-1/3)
-    float x = (3 / LOG2_E) * log2(c * rcp(4 * u));           // 3 * Log[c / (4 * u)]
-
-    // x      = s * r
-    // exp_13 = Exp[-x/3] = Exp[-1/3 * 3 * Log[c / (4 * u)]]
-    // exp_13 = Exp[-Log[c / (4 * u)]] = (4 * u) / c
-    // exp_1  = Exp[-x] = exp_13 * exp_13 * exp_13
-    // expSum = exp_1 + exp_13 = exp_13 * (1 + exp_13 * exp_13)
-    // rcpExp = rcp(expSum) = c^3 / ((4 * u) * (c^2 + 16 * u^2))
-    float rcpExp = ((c * c) * c) * rcp((4 * u) * ((c * c) + (4 * u) * (4 * u)));
-
-    r      = x * rcpS;
-    rcpPdf = (8 * PI * rcpS) * rcpExp; // (8 * Pi) / s / (Exp[-s * r / 3] + Exp[-s * r])
-}
-</code></pre>
-
-<h2 id="acknowledgments">Acknowledgments</h2>
-
+    r      <span style="color:#f92672">=</span> x <span style="color:#f92672">*</span> rcpS;
+    rcpPdf <span style="color:#f92672">=</span> (<span style="color:#ae81ff">8</span> <span style="color:#f92672">*</span> PI <span style="color:#f92672">*</span> rcpS) <span style="color:#f92672">*</span> rcpExp; <span style="color:#75715e">// (8 * Pi) / s / (Exp[-s * r / 3] + Exp[-s * r])
+</span><span style="color:#75715e"></span>}
+</code></pre></div><h2 id="acknowledgments">Acknowledgments</h2>
 <p>I would like to thank <a href="https://twitter.com/stirners_ghost">@stirners_ghost</a> for informing me that the CDF is invertible, and Brent Burley for spotting a missing minus sign in the derivation.</p>
         </div>
 
@@ -160,19 +136,17 @@ void SampleBurleyDiffusionProfile(float u, float rcpS, out float r, out float rc
         <div class="article-toc" style="display:none;">
             <h3>Contents</h3>
             <nav id="TableOfContents">
-<ul>
-<li>
-<ul>
-<li><a href="#acknowledgments">Acknowledgments</a></li>
-</ul></li>
-</ul>
+  <ul>
+    <li><a href="#acknowledgments">Acknowledgments</a></li>
+  </ul>
 </nav>
         </div>
         
         
 
         
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.slim.min.js" integrity="sha256-/SIrNqv8h6QGKDuNoLGA4iret+kyesCkHGzVUUV0shc=" crossorigin="anonymous"></script>
+        
+        <script src="https://zero-radiance.github.io/js/jquery-3.6.0.slim.min.js"></script>
         <script>
             (function() {
                 var $toc = $('#TableOfContents');
@@ -217,17 +191,17 @@ void SampleBurleyDiffusionProfile(float u, float rcpS, out float r, out float rc
             <ul class="article-tag-list">
                 
                 <li class="article-tag-list-item">
-                    <a class="article-tag-list-link" href="https://zero-radiance.github.io//tags/diffusion-profile">Diffusion Profile
+                    <a class="article-tag-list-link" href="https://zero-radiance.github.io/tags/diffusion-profile">Diffusion Profile
                     </a>
                 </li>
                 
                 <li class="article-tag-list-item">
-                    <a class="article-tag-list-link" href="https://zero-radiance.github.io//tags/importance-sampling">Importance Sampling
+                    <a class="article-tag-list-link" href="https://zero-radiance.github.io/tags/importance-sampling">Importance Sampling
                     </a>
                 </li>
                 
                 <li class="article-tag-list-item">
-                    <a class="article-tag-list-link" href="https://zero-radiance.github.io//tags/subsurface-scattering">Subsurface Scattering
+                    <a class="article-tag-list-link" href="https://zero-radiance.github.io/tags/subsurface-scattering">Subsurface Scattering
                     </a>
                 </li>
                 
@@ -235,7 +209,8 @@ void SampleBurleyDiffusionProfile(float u, float rcpS, out float r, out float rc
         </footer>
         
     </div>
-    <nav id="article-nav">
+    
+<nav id="article-nav">
     
     <a href="/post/analytic-media/" id="article-nav-newer" class="article-nav-link-wrap">
         <div class="article-nav-title"><span>&lt;</span>&nbsp;
@@ -250,6 +225,7 @@ void SampleBurleyDiffusionProfile(float u, float rcpS, out float r, out float rc
     
 </nav>
 
+
 </article>
 
         
@@ -257,22 +233,32 @@ void SampleBurleyDiffusionProfile(float u, float rcpS, out float r, out float rc
     <footer id="footer">
     <div class="outer">
         <div id="footer-info" class="inner">
-            &copy; 2021 Zero Radiance
+            &copy; 2023 Zero Radiance
             <br />
             Powered by <a href="https://gohugo.io" target="_blank">Hugo</a> with theme <a href="https://github.com/carsonip/hugo-theme-minos" target="_blank">Minos</a>
         </div>
     </div>
     
 
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.9.0/styles/ir-black.min.css" integrity="sha384-MB5b01LGSe23q61l4c3S0rizcgipTwJg3lu7sim4umVyvL7FAQ42QaupvahTDYXU" crossorigin="anonymous">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.9.0/highlight.min.js" integrity="sha256-KbfTjB0WZ8vvXngdpJGY3Yp3xKk+tttbqClO11anCIU=" crossorigin="anonymous"></script>
-    <script>hljs.initHighlightingOnLoad();</script>
+    
+    <link rel="stylesheet" href="https://zero-radiance.github.io/highlight.js/ir-black.min.css">
+    <script defer src="https://zero-radiance.github.io/highlight.js/highlight.min.js" onload="hljs.initHighlightingOnLoad();"></script>
 
     
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.10.1/dist/katex.min.css" integrity="sha384-dbVIfZGuN1Yq7/1Ocstc1lUEm+AT+/rCkibIcC/OmWo5f0EA48Vf8CytHzGrSwbQ" crossorigin="anonymous">
-    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.10.1/dist/katex.min.js" integrity="sha384-2BKqo+exmr9su6dir+qCw08N2ZKRucY4PrGQPPWU1A7FtlCGjmEGFqXCv5nyM5Ij" crossorigin="anonymous"></script>
-    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.10.1/dist/contrib/auto-render.min.js" integrity="sha384-kWPLUVMOks5AQFrykwIup5lo0m3iMkkHrD0uJ4H5cjeGihAutqP0yW0J6dpFiVkI" crossorigin="anonymous"
-    onload="renderMathInElement(document.body, {strict: false});"></script>
+    
+    <link rel="stylesheet" href="https://zero-radiance.github.io/katex/katex.min.css">
+
+    
+    <script defer src="https://zero-radiance.github.io/katex/katex.min.js"></script>
+
+    
+    <script defer src="https://zero-radiance.github.io/katex/contrib/auto-render.min.js" onload="renderMathInElement(document.body, {
+    delimiters: [
+        {left: '$$', right: '$$', display: true},
+        {left: '$', right: '$', display: false}
+    ],
+    macros: {'’' : '\'',},
+    });"></script>
     
     <script>
         document.getElementById('main-nav-toggle').addEventListener('click', function () {
