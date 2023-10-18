@@ -22,7 +22,7 @@ $$
 
 <!--more-->
 
-The new implementation is given below.
+The new implementation that addresses these issues is given below.
 
 ```c++
 #define INV_PI 0.3183098861
