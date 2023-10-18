@@ -181,7 +181,7 @@ $$ \tag{1.14}
 \end{aligned}
 $$
 
-As discussed in \[[5](#references) (vol. II, ch. 32.2), [6](#references) (ch. 1.1.1)\], \\(\bm{E}\\) and \\(\bm{B}\\) are the basic fields, and \\(\bm{D}\\) and \\(\bm{H}\\) are the [auxiliary fields](https://en.wikipedia.org/wiki/Maxwell%27s_equations#Auxiliary_fields,_polarization_and_magnetization) that arise due to the influence of matter. The most fundamental description of the electromagnetic field is given by the potentials \\(\bm{A}\\) and \\(\phi\\) \[[28](#references) (ch. 1.1)\]; we shall defer their formal introduction to Sec. 8.
+We shall soon see that \\(\bm{E}\\) and \\(\bm{B}\\) are responsible for the electromagnetic force, while \\(\bm{D}\\) and \\(\bm{H}\\) are the [auxiliary fields](https://en.wikipedia.org/wiki/Maxwell%27s_equations#Auxiliary_fields,_polarization_and_magnetization) that arise due to the influence of matter \[[5](#references) (vol. II, ch. 32.2), [6](#references) (ch. 1.1.1), [17](#references) (ch. 1.7)\]. The most fundamental description of the electromagnetic field is given by the potentials \\(\bm{A}\\) and \\(\phi\\) \[[28](#references) (ch. 1.1)\]; we shall defer their formal introduction to Sec. 8.
 
 The Maxwell equations is coupled system of [partial differential equations](https://en.wikipedia.org/wiki/Partial_differential_equation). The left-hand side of each equation is composed of derivatives of the unknowns (the fields), and the right-hand side contains the sources (the currents and the charges). Since a derivative is a linear operator, these equations form a [linear system](https://en.wikipedia.org/wiki/Linear_system). As such, the Maxwell equations obey the [superposition principle](https://en.wikipedia.org/wiki/Superposition_principle) - if we determine the values of the fields for one source, and then, *separately*, for another, and assuming that these sources are not "disturbed" by the fields, then the solution for the configuration with *both* sources is precisely the sum of the fields found for each individual source:
 
@@ -463,7 +463,7 @@ $$ \tag{3.1}
 	= \frac{1}{\sqrt{2 \pi}} \int\_{-\infin}^{\infin} \bm{E}(\bm{r}, t) e^{i \omega t} dt,
 $$
 
-where \\(\omega\\) is the *angular frequency*. \\(\bm{E}(\bm{r}, \omega)\\) is the electric [phasor](https://en.wikipedia.org/wiki/Phasor) field - a field of complex (phase) vectors[^2].
+where \\(\omega\\) is the *angular frequency*. \\(\bm{E}(\bm{r}, \omega)\\) is the *complex* electric vector[^2].
 
 [^2]: Operations and identities of real vector algebra can be applied to any complex vector \\(\bm{c} = \bm{a} + i \bm{b}\\) by expressing it as a combination of two real vectors \\(\bm{a}\\) and \\(\bm{b}\\). The magnitude of the complex vector \\(|\bm{c}| = \bm{c} \cdot \bm{c^{\*}} = \sqrt{\sum{|c_n|^2}}\\) can be computed most efficiently by writing each component in its polar form \\(c_n = r_n \exp(i \theta_n)\\).
 
@@ -606,7 +606,7 @@ $$ \tag{4.1}
 	\times \mathcal{F^{-1}} \big\lbrace \bm{H}(\bm{r}, \omega) \big\rbrace \Big).
 $$
 
-The expression of the corresponding Poynting phasor is
+The expression of the corresponding *complex* Poynting vector is
 
 $$ \tag{4.2}
 	\bm{S}(\bm{r}, \omega)
@@ -617,7 +617,7 @@ $$ \tag{4.2}
 	\Big\rbrace.
 $$
 
-But that is just a [convolution](https://en.wikipedia.org/wiki/Convolution_theorem#Convolution_theorem_for_inverse_Fourier_transform) of the electric and magnetic phasors:
+But that is just a [convolution](https://en.wikipedia.org/wiki/Convolution_theorem#Convolution_theorem_for_inverse_Fourier_transform) of the complex electric and magnetic vectors:
 
 $$ \tag{4.3}
 	\bm{S}(\bm{r}, \omega)
@@ -625,11 +625,11 @@ $$ \tag{4.3}
 	\bm{E}(\bm{r}, \omega') \times \bm{H}(\bm{r}, \omega - \omega') d\omega'.
 $$
 
-The expression is compact and simple, but not particularly useful, since the value of the Poynting phasor for a particular frequency depends on the entire electromagnetic spectrum.
+The expression is compact and simple, but not particularly useful, since the value of the complex Poynting vector for a particular frequency depends on the entire electromagnetic spectrum.
 
 We can obtain a more practical result at the cost of some generality. Specifically, we must assume that the expression of the electromagnetic field is a [periodic function](https://en.wikipedia.org/wiki/Periodic_function) of time, such that the *fundamental period* \\(\thinspace T\_1 = 2 \pi / \omega_1\\) of both[^3] the electric and the magnetic fields is the same \[[5](#references) (vol. I, ch. 50) [6](#references) (ch. 1.3.3, 1.4.3)\]. In most cases, the limitations imposed by this condition are not particularly severe: usually, for visible light, the fundamental period is very short, and the fields can often be virtually repeated outside the time interval of interest.
 
-[^3]: The fact that the electric and the magnetic fields cannot exist independently can be shown by a simple relativistic argument \[[13](#references) (ch. 6.2)\].
+[^3]: The fact that the electric and the magnetic fields cannot exist independently can be shown using the theory of relativity \[[17](#references) (ch. 1.23)\].
 
 One particular feature of periodic functions is the existence of a [Fourier series](https://en.wikipedia.org/wiki/Fourier_series#Complex-valued_functions) representation:
 
@@ -712,7 +712,7 @@ $$ \tag{4.11}
 	= \mathcal{Re} \big\lbrace \bm{E_p}(\bm{r}) e^{-i \omega_p t} \big\rbrace,
 $$
 
-in isolation, with the corresponding phasor fields
+in isolation, with the corresponding complex vector fields
 
 $$ \tag{4.12}
 	\bm{E}(\bm{r}, \omega)
@@ -778,7 +778,7 @@ which is a real vector, as expected.
 
 In the case when \\(T > T_1\\), the total value of \\(\braket{\bm{S}}\\) is a sum of the contribution from a number of whole periods (given by Eqn. 4.15) and the contribution from a fraction of the period. If the duration of a measurement is very large \\((T \gg T_1)\\), the *relative* contribution from a fraction of the period will be much smaller than the *relative* contribution from a large number of whole periods, so the formula of Eqn. 4.15 should serve as a good approximation.
 
-Eqn. 4.15 allows us to define the *time-averaged* Poynting phasor \[[8](#references) (ch. 2.4)\]
+Eqn. 4.15 allows us to define the *time-averaged* complex Poynting vector \[[8](#references) (ch. 2.4)\]
 
 $$ \tag{4.16}
 	\braket{\bm{S_p}} = \frac{1}{2} \bm{E_p}(\bm{r}) \times \big[ \bm{H_p}(\bm{r}) \big]^{\*}
@@ -1100,7 +1100,7 @@ $$ \tag{7.4}
 	= \omega \sqrt{\left( \epsilon(\omega) + i \frac{\sigma(\omega)}{\omega} \right) \mu(\omega)}.
 $$
 
-\\(\bm{E_0}\\) is called the *polarization phasor* of the plane wave (for reasons that go beyond the scope of this article).
+\\(\bm{E_0}\\) is called the *polarization vector* of the plane wave (for reasons that go beyond the scope of this article).
 
 If we define the [relative complex permittivity](https://en.wikipedia.org/wiki/Relative_permittivity#Lossy_medium) \\(\varepsilon\_r\\) and the [relative permeability](https://en.wikipedia.org/wiki/Permeability_(electromagnetism)#Relative_permeability_and_magnetic_susceptibility) \\(\mu\_r\\) using the vacuum as reference,
 
@@ -1157,8 +1157,8 @@ $$ \tag{7.10}
 \begin{aligned}
 	E(\bm{r}, \bm{n}, \omega)
 	&= E\_0 e^{i k (\bm{r} \cdot \bm{n})} \cr
-	&= |E\_0| e^{i \delta} e^{i \omega (1/v_p + i/v_a) (\bm{r} \cdot \bm{n})} \cr
-	&= |E\_0| e^{-\omega (\bm{r} \cdot \bm{n}) / v_a} e^{i \delta + i \omega (\bm{r} \cdot \bm{n}) / v_p}.
+	&= |E\_0| e^{i \theta_0} e^{i \omega (1/v_p + i/v_a) (\bm{r} \cdot \bm{n})} \cr
+	&= |E\_0| e^{-\omega (\bm{r} \cdot \bm{n}) / v_a} e^{i \theta_0 + i \omega (\bm{r} \cdot \bm{n}) / v_p}.
 \end{aligned}
 $$
 
@@ -1167,7 +1167,7 @@ Multiplication by the temporal component \\(\exp(-i \omega t)\\) yields the full
 $$ \tag{7.11}
 \begin{aligned}
 	E(\bm{r}, \bm{n}, \omega) e^{-i \omega t}
-	&= |E\_0| e^{-\omega (\bm{r} \cdot \bm{n}) / v_a} e^{i \delta + i \omega (\bm{r} \cdot \bm{n}) / v_p} e^{-i \omega t}.
+	&= |E\_0| e^{-\omega (\bm{r} \cdot \bm{n}) / v_a} e^{i \theta_0 + i \omega (\bm{r} \cdot \bm{n}) / v_p} e^{-i \omega t}.
 \end{aligned}
 $$
 
@@ -1180,7 +1180,7 @@ First, notice that \\((\bm{r} \cdot \bm{n}) / v\\) has units of time. Then, take
 $$ \tag{7.12}
 	\theta(\bm{r}, t)
 	= \mathcal{Arg} \big\lbrace E(\bm{r}, \bm{n}, \omega) e^{-i \omega t} \big\rbrace
-	= \delta + \omega \big(\bm{r} \cdot \bm{n} - v_p t \big) / v_p.
+	= \theta_0 + \omega \big(\bm{r} \cdot \bm{n} - v_p t \big) / v_p.
 $$
 
 Notice that, for any \\(\Delta t\\),
@@ -1201,7 +1201,7 @@ $$
 
 where \\(|E|\\) is the spatially-varying *peak amplitude*.
 
-If the attenuation index \\(\kappa = 0\\), the amplitude velocity \\(v_a = \infin\\), and Eqn. 7.14 represents a regular sine wave.
+If the attenuation index \\(\kappa = 0\\), the amplitude velocity \\(v_a = \infin\\), and Eqn. 7.14 represents an ordinary sine wave.
 
 [Insert Picture Here]
 
@@ -1278,7 +1278,7 @@ $$ \tag{7.23}
 	= 0,
 $$
 
-where the last equality follows from the property of the [triple product](https://en.wikipedia.org/wiki/Triple_product) \\(\bm{n} \cdot (\bm{n} \times \bm{E}) = \bm{E} \cdot (\bm{n} \times \bm{n})\\).
+where the last equality follows from the property of the [scalar triple product](https://en.wikipedia.org/wiki/Triple_product#Scalar_triple_product) \\(\bm{n} \cdot (\bm{n} \times \bm{E}) = \bm{E} \cdot (\bm{n} \times \bm{n})\\).
 
 Thus, the magnetic field vector is always orthogonal to the plane normal:
 
@@ -1334,7 +1334,7 @@ $$ \tag{7.30}
 \begin{aligned}
 	\mathcal{Arg} \big\lbrace E_x(0, \bm{n}, \omega) \big\rbrace &=
 	\mathcal{Arg} \big\lbrace B_y(0, \bm{n}, \omega) \big\rbrace =
-	\delta, \cr
+	\theta_0, \cr
 	\mathcal{Arg} \big\lbrace E_y(0, \bm{n}, \omega) \big\rbrace &=
 	\mathcal{Arg} \big\lbrace B_x(0, \bm{n}, \omega) \big\rbrace =
 	\pm \frac{\pi}{2} \pm \pi n.
@@ -1445,8 +1445,10 @@ $$ \tag{7.41}
 	\bigg\rbrace
 	= \mathcal{Re} \bigg\lbrace
 		\sqrt{ \frac{\varepsilon}{\mu} }
-	\bigg\rbrace.
+	\bigg\rbrace,
 $$
+
+where \\(Z = \sqrt{\mu / \varepsilon} = \omega \mu / k\\) is called the [wave impedance](https://en.wikipedia.org/wiki/Wave_impedance) \[[17](#references) (ch. 5.6)\].
 
 Finally, according to Eqn. 7.18, \\(\bm{E} \cdot \bm{n} = 0\\). Thus, if we combine Eqn. 7.38-7.41, we obtain the general expression of the time-averaged Poynting vector that accounts for absorption and magnetization:
 
@@ -1734,7 +1736,7 @@ $$
 
 These equations have a simple optical interpretation: the first term on the right-hand side can be seen as the *incident* field (generated by primary sources), and the integral corresponds to the *scattered* field (produced by secondary sources).
 
-Let us complete the derivation by finding the expressions of the electric and the magnetic phasors. First, let us establish some context by deriving the differential equation we are planning to solve. We start with Eqn. 3.10.1 and 3.10.3,
+Let us complete the derivation by finding the expressions of the complex electric and magnetic vectors. First, let us establish some context by deriving the differential equation we are planning to solve. We start with Eqn. 3.10.1 and 3.10.3,
 
 $$ \tag{9.17}
 \begin{aligned}
@@ -2341,9 +2343,9 @@ $$ \tag{10.21}
 	\bm{p}(V_m, \omega) \approx \mathcal{\Alpha_m}(V_m, \omega) \cdot \epsilon_0 \bm{E_m}(\bm{r_0}, \omega),
 $$
 
-where \\(\bm{E_m}\\) is the phasor of the microscopic field acting on the molecule.
+where \\(\bm{E_m}\\) is the complex electric vector of the microscopic field acting on the molecule.
 
-The dyadic form of \\(\mathcal{\Alpha_m}\\) is necessary to model a molecule that lacks spherical symmetry; it acts by rotating and non-uniformly scaling the electric field phasor. If the molecule absorbs light, its polarizability is complex \[[4](#references) (ch. 6.13)\].
+The dyadic form of \\(\mathcal{\Alpha_m}\\) is necessary to model a molecule that lacks spherical symmetry; it acts by rotating and non-uniformly scaling the complex electric vector. If the molecule absorbs light, its polarizability is complex \[[4](#references) (ch. 6.13)\].
 
 If there are \\(N\\) identical electric dipoles per unit volume, we can define polarization \\(\bm{P}\\) as
 
@@ -2844,7 +2846,7 @@ $$
 
 At this point, the dyadic Green functions of Eqn. 1x.11 list their arguments in the same (conventional) order: \\(\mathcal{G}\_e(\bm{r}, \bm{r'}, k)\\) due to its symmetry, and \\(\mathcal{G}\_m(\bm{r}, \bm{r'}, k)\\) because of Eqn. 1x.10.
 
-The surface integral features two [scalar triple products](https://en.wikipedia.org/wiki/Triple_product#Scalar_triple_product) of the form \\(\bm{n} \cdot (\bm{E} \times (\mathcal{G} \cdot \bm{a}))\\). We can use its cyclical property to our advantage:
+The surface integral features two scalar triple products of the form \\(\bm{n} \cdot (\bm{E} \times (\mathcal{G} \cdot \bm{a}))\\). We can use its [cyclic property](https://en.wikipedia.org/wiki/Triple_product#Properties) to our advantage:
 
 $$ \tag{1x.12}
 	\bm{n'} \cdot (\bm{E} \times (\mathcal{G}^T \cdot \bm{a}))
@@ -2893,7 +2895,9 @@ $$ \tag{1x.15}
 	\Big) dA'.
 $$
 
-Eqn. 1x.14 and 1x.15 are called the *surface integral equations*. They give the expressions of the scattered field in the region outside the scattering object \\((\bm{r} \notin V)\\) in terms of the *tangential surface fields* \\(\bm{n'} \times \bm{E}\\) and \\(\bm{n'} \times \bm{H} = \mu^{-1}(\bm{n'} \times \bm{B})\\). According to Eqn. 1.17, the latter are continuous across the optical interface, provided the conductivity is not enormous \[[17](#references) (ch. 1.13)\]. More generally speaking, the idea that a smooth (but not necessarily physical) surface can be seen as a source of spherical *wavelets* (secondary waves) interfering with each other is known as the [Huygens-Fresnel principle](https://en.wikipedia.org/wiki/Huygens%E2%80%93Fresnel_principle) \[[4](#references) (ch. 3.1), [25](#references) (ch. 2)\].
+Eqn. 1x.14 and 1x.15 are called the *surface integral equations*. They give the expressions of the scattered field in the region outside the scattering object \\((\bm{r} \notin V)\\) in terms of the *tangential surface fields* \\(\bm{n'} \times \bm{E}\\) and \\(\bm{n'} \times \bm{H} = \mu^{-1}(\bm{n'} \times \bm{B})\\). According to Eqn. 1.17, the latter are continuous across the optical interface, provided the conductivity is finite \[[17](#references) (ch. 1.13)\]. More generally speaking, the idea that a smooth (but not necessarily physical) surface can be seen as a source of spherical *wavelets* (secondary waves) interfering with each other is known as the [Huygens-Fresnel principle](https://en.wikipedia.org/wiki/Huygens%E2%80%93Fresnel_principle) \[[4](#references) (ch. 3.1), [25](#references) (ch. 2)\].
+
+The same principle can be used to express the scattered field at an interior point in terms of the values of the fields at the enclosing surface \[[17](#references) (ch. 8.14)\].
 
 ### Dipole Radiation
 
@@ -3242,7 +3246,7 @@ $$ \tag{13.??}
 \end{aligned}
 $$
 
-are the *polarization phasors* of the spherical wave. Note that we must divide by \\(k r\\) (rather than just \\(r\\)) in order for \\(\bm{E_1}\\) and \\(\bm{B_1}\\) to have the same units as the electric and the magnetic field, respectively. This may fail to match the convention used by other authors \[[6](#references) (ch. 13.6), [8](#references) (ch. 5.1)\].
+are the *polarization vectors* of the spherical wave. Note that we must divide by \\(k r\\) (rather than just \\(r\\)) in order for \\(\bm{E_1}\\) and \\(\bm{B_1}\\) to have the same units as the electric and the magnetic field, respectively. This may fail to match the convention used by other authors \[[6](#references) (ch. 13.6), [8](#references) (ch. 5.1)\].
 
 [Picture]
 
@@ -3270,7 +3274,7 @@ $$
 
 that follow the [inverse-square law](https://en.wikipedia.org/wiki/Inverse-square_law).
 
-For completeness, we would like to point out that it is possible to support the case when the host medium is absorptive and magnetic. The absorption requirement makes \\(k\\) complex; in addition, we must replace \\(\mu\_0\\) by \\(\mu_1(\omega)\\). Since the vectors are no longer orthogonal, Eqn. 13.21-13.23 become invalid, and we must follow the Poynting phasor route given by Eqn. 4.16-4.17 instead:
+For completeness, we would like to point out that it is possible to support the case when the host medium is absorptive and magnetic. The absorption requirement makes \\(k\\) complex; in addition, we must replace \\(\mu\_0\\) by \\(\mu_1(\omega)\\). Since the vectors are no longer orthogonal, Eqn. 13.21-13.23 become invalid, and we must follow the complex Poynting vector route given by Eqn. 4.16-4.17 instead:
 
 $$ \tag{13.24}
 	\braket{\bm{S}}
@@ -3330,9 +3334,9 @@ $$
 
 where \\(\mathcal{T}\\) is the *transition dyadic*, the expression of which is yet to be determined.
 
-Recursive equations written in the integral form quickly become unwieldy. Instead, we shall convert them into the operator form by using the [bra-ket notation](https://en.wikipedia.org/wiki/Bra%E2%80%93ket_notation). Additionally, any dependence on the frequency or the wavenumber shall be kept implicit.
+Recursive equations written in the integral form quickly become unwieldy. Instead, we shall convert them into the operator form by using the [bra-ket notation](https://en.wikipedia.org/wiki/Bra%E2%80%93ket_notation) \[[30](#references), ch. II-B, [31](#references)\]. Additionally, any dependence on the frequency or the wavenumber shall be kept implicit.
 
-Our building blocks are state vectors (or *kets*), such as \\(\ket{E}\\), and linear functionals (or *bras*), such as \\(\bra{r}\\). Put together, they represent the projection (the [inner product](https://en.wikipedia.org/wiki/Inner_product)) of the two vectors:
+Our building blocks are state vectors (or *kets*), such as \\(\ket{E}\\), and linear functionals (or *bras*), such as \\(\bra{r}\\). We can picture a bra and a ket as a row and a column vector, respectively. Put together, they represent the projection (the [inner product](https://en.wikipedia.org/wiki/Inner_product)) of the two vectors:
 
 $$ \tag{14.6}
 	  \braket{r | E}
@@ -3340,10 +3344,12 @@ $$ \tag{14.6}
 	= \bm{E}(\bm{r}).
 $$
 
-In addition, we can define the *potential operator* \\(U\\), such that, in the position representation,
+In addition, we can define the scalar *potential operator* \\(U\\), such that, in the position representation,
 
 $$ \tag{14.7}
-	\bra{r} U = u(\bm{r}) \bra{r}.
+	\bra{r} U = u(\bm{r}) \bra{r}
+	\quad \text{or} \quad
+	\braket{r | U | r'} = u(\bm{r}) \delta(r - r').
 $$
 
 Similarly, we define the *Green operator* \\(G\\) and the *transition operator* \\(T\\) as
@@ -3543,7 +3549,7 @@ $$ \tag{15.3}
 \end{aligned}
 $$
 
-If we take the polarization phasor \\(\bm{E_0}\\) outside the integral, it becomes apparent that the scattered field may be related to the incident field by the *scattering dyadic* \\(\mathcal{S}\\) \[[8](#references) (ch. 5.3)\]:
+If we take the polarization vector \\(\bm{E_0}\\) outside the integral, it becomes apparent that the scattered field may be related to the incident field by the *scattering dyadic* \\(\mathcal{S}\\) \[[8](#references) (ch. 5.3)\]:
 
 $$ \tag{15.4}
 	\bm{E_s}(\bm{r}, \bm{n_i}, \omega)
@@ -3607,7 +3613,7 @@ All the expressions given above are independent of the choice of a coordinate sy
 
 First, recall that \\(r\\) in Eqn. 15.6 stands for the distance from the center of the scattering object to the observation point. This makes the center of the scatterer a suitable choice for the origin of the coordinate system.
 
-Next, assume that the direction of incidence \\(\bm{n_i}\\) is fixed; conventionally, it is aligned with the \\(z\\)-axis. That is convenient, because it allows us to describe the incident electric field vector (or phasor) using only two Cartesian components, \\(x\\) and \\(y\\), since, according to Eqn. 7.18-7.19, the component along \\(\bm{n_i}\\) is zero.
+Next, assume that the direction of incidence \\(\bm{n_i}\\) is fixed; conventionally, it is aligned with the \\(z\\)-axis. That is convenient, because it allows us to describe the incident electric field vector using only two Cartesian components, \\(x\\) and \\(y\\), since, according to Eqn. 7.18-7.19, the component along \\(\bm{n_i}\\) is zero.
 
 We must also choose the *plane of reference* that fixes the orientation of the coordinate frame \[[4](#references) (ch. 5.11)\]. The decision is somewhat arbitrary (except for the fact that the plane should contain \\(\bm{n_i}\\) for the reason outlined above). A simple choice that reduces the number of degrees of freedom is to use the *plane of observation* spanned by \\(\bm{n_i}\\) and \\(\bm{n_s}\\) \[[4](#references) (ch. 5.22)\]. In summary, the coordinate convention for the incident field is
 
@@ -3651,7 +3657,7 @@ Note that we must use the [atan2](https://en.wikipedia.org/wiki/Atan2) function 
 
 It can be seen that \\(\theta = 0\\) corresponds to *forward scattering*, and \\(\theta = \pi\\) -- to *back-scattering*.
 
-Unfortunately, the rotation of the coordinate frame causes the values of the components of the incident electric field to change \[[4](#references) (ch. 5.31)\]. If the angle of rotation of the plane is \\(\phi\\), the field vectors (and phasors) are [passively](https://en.wikipedia.org/wiki/Active_and_passive_transformation#Passive_transformation) [rotated](https://en.wikipedia.org/wiki/Rotation_matrix#Basic_rotations) by \\(-\phi\\) radians:
+Unfortunately, the rotation of the coordinate frame causes the values of the components of the incident electric field to change \[[4](#references) (ch. 5.31)\]. If the angle of rotation of the plane is \\(\phi\\), the field vectors are [passively](https://en.wikipedia.org/wiki/Active_and_passive_transformation#Passive_transformation) [rotated](https://en.wikipedia.org/wiki/Rotation_matrix#Basic_rotations) by \\(-\phi\\) radians:
 
 $$ \tag{15.11}
 \begin{bmatrix}
@@ -3677,7 +3683,7 @@ R_z(-\phi)
 \end{bmatrix}.
 $$
 
-On the other hand, this convention makes computing the coordinates of the scattered field vectors (and phasors) easy. Since \\(\bm{n_s}\\) is orthogonal to \\(\bm{e_y}\\), we can define a spherical coordinate system centered at the particle:
+On the other hand, this convention makes computing the coordinates of the scattered field vectors easy. Since \\(\bm{n_s}\\) is orthogonal to \\(\bm{e_y}\\), we can define a spherical coordinate system centered at the particle:
 
 $$ \tag{15.12}
 	\bm{e_r} = \bm{n_s},
@@ -3687,7 +3693,7 @@ $$ \tag{15.12}
 	\bm{e_{\phi}} = \bm{e_y}.
 $$
 
-As Eqn. 13.14 shows, the scattered field vectors (and phasors) are orthogonal to \\(\bm{n_s}\\). Thus, in the spherical coordinate system, only the tangential (\\(\theta\\) and \\(\phi\\)) components of \\(\bm{E_s}\\) and \\(\bm{B_s}\\) are non-zero.
+As Eqn. 13.14 shows, the scattered field vectors are orthogonal to \\(\bm{n_s}\\). Thus, in the spherical coordinate system, only the tangential (\\(\theta\\) and \\(\phi\\)) components of \\(\bm{E_s}\\) and \\(\bm{B_s}\\) are non-zero.
 
 Eqn. 15.12 represents a [rotation](https://en.wikipedia.org/wiki/Rotation_matrix#Basic_rotations) of the \\(\theta r\\)-plane about the \\(\phi\\)-axis:
 
@@ -3903,7 +3909,7 @@ $$ \tag{16.1}
 \end{aligned}
 $$
 
-where \\(\bm{E_0}\\) and \\(\bm{B_0}\\) are the polarization phasors at the origin, and \\(\bm{n_i}\\) is the direction of incidence.
+where \\(\bm{E_0}\\) and \\(\bm{B_0}\\) are the polarization vectors at the origin, and \\(\bm{n_i}\\) is the direction of incidence.
 
 According to Eqn. 7.18, 7.23 and 7.25, if the medium is non-absorptive, they satisfy the relations
 
@@ -3989,7 +3995,7 @@ $$ \tag{16.10}
 \end{aligned}
 $$
 
-where \\(\bm{E_1}\\) and \\(\bm{B_1}\\) are the polarization phasors of the spherical wave, and \\(\bm{n_s} = \bm{r}/r\\) is the direction of observation.
+where \\(\bm{E_1}\\) and \\(\bm{B_1}\\) are the polarization vectors of the spherical wave, and \\(\bm{n_s} = \bm{r}/r\\) is the direction of observation.
 
 According to Eqn. 13.14-13.17 and 13.20-13.??, if the host medium is non-absorptive, the following relations exist:
 
@@ -4132,7 +4138,7 @@ $$
 
 which are valid for both real and complex vectors.
 
-By combining Eqn. 16.2, 16.11, 16.24 and 16.25, all magnetic phasor factors can be eliminated:
+By combining Eqn. 16.2, 16.11, 16.24 and 16.25, the magnetic vector can be completely eliminated:
 
 $$ \tag{16.26}
 \begin{aligned}
@@ -4546,7 +4552,7 @@ $$
 
 In principle, one could solve a dynamic light scattering problem by choosing the initial configuration of the system (i.e. by assigning each particle a certain position, orientation, shape, size, and composition), describing the way the system evolves, and evaluating the integral given by Eqn 17.10. In practice, this (obvious, but arduous) solution is rarely used; nevertheless, it helps us build the mental model and understand its implications.
 
-First of all, since the properties of the particles vary in time, the phasors of the scattered field must become time-dependent as well. Examination of the resulting expression of the total field
+First of all, since the properties of the particles vary in time, the complex vectors of the scattered field must become time-dependent as well. Examination of the resulting expression of the total field
 
 $$ \tag{17.13}
 	\bm{E}(\bm{r}, t)
@@ -4951,8 +4957,6 @@ $$ \tag{17.49}
 $$
 
 Finally, let us show that Eqn. 17.49 is true at any distance (subject to the conditions imposed by Eqn. 17.1, 17.3 and 17.4). It is fairly difficult to prove this formally, so we will have to resort to an intuitive argument. Return to Eqn. 17.42 and 17.44, and perform a change of variables \\(u = r_j / L\\). Comparison of the integrands reveals that the first complex exponential with \\((k L u)^2\\) performs amplitude modulation of the second one containing \\(k L u\\). These expressions guarantee that oscillation happens at different rates. The combined exponential reaches it peak (unit) amplitude at \\(u = \theta = 0\\) , and then (as the value of \\(u\\) increases) begins to rapidly oscillate, owing to the fact that \\(k L \gg 1\\). Similarly to Eqn. 17.44, the primary contribution to the absolute value of \\(v(f,g)\\) comes from the central peak, the width of which is inversely proportional to \\((k L)^2\\). As it shrinks, the amount of power in the \\(\braket{\Phi_{jk}}\\) decreases accordingly.
-
----
 
 Let us summarize the results of this section. If the ergodic assumption and the single scattering approximation are applicable, and the conditions imposed by Eqn. 17.1, 17.3, and 17.4 hold, then the mean value of the Poynting vector (cf. Eqn. 17.8) in the presence a group of \\(N\\) particles is
 
@@ -5363,7 +5367,7 @@ $$ \tag{18.36}
 \end{aligned}
 $$
 
-The result is a solenoidal phasor field, which is consistent with the Maxwell equations in linear, isotropic, homogeneous, source-free media.
+The result is a solenoidal vector field, which is consistent with the Maxwell equations in linear, isotropic, homogeneous, source-free media.
 
 Similarly, the magnetic field can be determined using Eqn. 18.2.2, 18.13, 18.17, 18.19, and 18.35:
 
@@ -5554,7 +5558,7 @@ plotted below:
 
 {{< figure src="/img/legendre.svg" caption="*Figure N: Legendere polynomials of degree \\(n=0\\) (blue), \\(n=1\\) (orange), \\(n=2\\) (green), \\(n=3\\) (red).*" >}}
 
-The degree of a polynomial is also the number of zeros of the function. Coupled with the fact that \\(P_n(\cos{\theta})\\) is independent of \\(\phi\\), we can observe that the Legendre polynomial of degree \\(n\\) divides the surface of a sphere into \\(n + 1\\) zones of alternating sign. For this reason, the family of functions \\(P_n(\cos{\theta})\\) is sometimes referred to as *zonal harmonics*.
+The degree of a polynomial is also the number of zeros of the function. Coupled with the fact that \\(P_n(\cos{\theta})\\) is independent of \\(\phi\\), we can observe that the Legendre polynomial of degree \\(n\\) divides the surface of a sphere into \\(n + 1\\) zones of alternating sign. For this reason, the family of functions \\(P_n(\cos{\theta})\\) is sometimes referred to as [zonal harmonics](https://mathworld.wolfram.com/ZonalHarmonic.html).
 
 If \\(0 < m \leq n\\), we can define the associated Legendre polynomials in terms of the unassociated ones:
 
@@ -5580,7 +5584,7 @@ As can be seen from the graph below, the value of the associated Legendre polyno
 
 {{< figure src="/img/assoc_legendre.svg" caption="*Figure N: Associated Legendere polynomials of degree 3 and order \\(m=1\\) (blue), \\(m=2\\) (orange), \\(m=3\\) (green).*" >}}
 
-We are now ready to interpret the entire Eqn. 18.53. Since that function has harmonic dependence on \\(\phi\\), if we plot one of its parts (either real or imaginary), we can observe that it divides the surface of a sphere into \\(2 m \times (n - m + 1)\\) rectangular domains, or tesserae. Thus, \\(P_n^m(\cos{\theta}) \cos(m \phi)\\) and \\(P_n^m(\cos{\theta}) \sin(m \phi)\\) are called the even and odd *tesseral harmonics* (and, occasionally, *sectorial harmonics* if \\(m = n\\)).
+We are now ready to interpret the entire Eqn. 18.53. Since that function has harmonic dependence on \\(\phi\\), if we plot one of its parts (either real or imaginary), we can observe that it divides the surface of a sphere into \\(2 m \times (n - m + 1)\\) rectangular domains, or tesserae. Thus, \\(P_n^m(\cos{\theta}) \cos(m \phi)\\) and \\(P_n^m(\cos{\theta}) \sin(m \phi)\\) are called the even and odd [tesseral harmonics](https://mathworld.wolfram.com/TesseralHarmonic.html) (or [sectorial harmonics](https://mathworld.wolfram.com/SectorialHarmonic.html) if \\(m = n\\)).
 
 {{< figure src="/img/assoc_legendre_3.png" caption="*Figure N: Tesseral harmonics of degree 3 and order \\(m=1\\) (left), \\(m=2\\) (center), \\(m=3\\) (right). Warm colors correspond to positive values of the function, and cold colors - to negative values.*" >}}
 
@@ -5610,7 +5614,7 @@ where \\(\delta_{m,n}\\) is the Kronecker delta function given by Eqn. 4.6.
 
 Remarkably, by means of double integration over \\(\theta\\) and \\(\phi\\), these two facts can be combined to show that the tesseral harmonics \\(P_n^m(\cos{\theta}) \cos(m \phi)\\) and \\(P_n^m(\cos{\theta}) \sin(m \phi)\\) form a *complete orthogonal system* of basis functions on the surface of a sphere \[[18](#references) (ch. 7.5), [28](#references) (ch. 2.4)\].
 
-Tesseral harmonics are [real-valued basis functions](https://en.wikipedia.org/wiki/Spherical_harmonics#Real_form), which is sufficient for most problems. However, the theory can be trivially extended to complex values by combining the tesseral harmonics according to Eqn. 18.53. This directly leads to the definition of [scalar spherical harmonics](https://en.wikipedia.org/wiki/Spherical_harmonics)
+Tesseral harmonics are [real-valued basis functions](https://en.wikipedia.org/wiki/Spherical_harmonics#Real_form), which is sufficient for most problems. However, the theory can be trivially extended to complex values by combining the tesseral harmonics according to Eqn. 18.53. This directly leads to the definition of [scalar spherical harmonics](https://mathworld.wolfram.com/SphericalHarmonic.html)
 
 $$ \tag{18.58}
 	Y_n^m(\theta, \phi)
@@ -6219,6 +6223,8 @@ $$
 
 For our application, the partial orthogonality between \\(\bm{L_{m,n}}\\) and \\(\bm{N_{m,n}}\\) is not a real concern. According to Eqn. 18.36 and 18.37, the electric and the magnetic fields can be expressed solely in terms of \\(\bm{M_{m,n}}\\) and \\(\bm{N_{m,n}}\\), which are mutually orthogonal, as has been shown by Eqn. 18.82 and 18.92.
 
+-->
+
 Now, let us return to the scattering problem. In general, we may arrive at the solution by determining the values of the set of coefficients of the vector spherical wave series expansion given by Eqn. 18.36. In order to obtain these coefficients, we must consider three distinct types of electromagnetic fields: the incident field produced by an external source, the scattered field in the radiation zone of the particle, and the total field induced inside the sphere. The reason for this kind of decomposition will become apparent shortly.
 
 Let us begin by considering the expansion of the incident field:
@@ -6311,7 +6317,7 @@ $$ \tag{18.105}
 	\bm{r} \cdot \bm{e_z} = r \cos{\theta}.
 $$
 
-Further simplification can be achieved by recalling that an electromagnetic plane wave is transverse with respect to its direction of propagation (as shown by Eqn. 7.18 and 7.23). Therefore, in Cartesian coordinates, the polarization phasor \\(\bm{E_0}\\) of a plane wave can be completely described by two complex numbers \\(E_X\\) and \\(E_Y\\):
+Further simplification can be achieved by recalling that an electromagnetic plane wave is transverse with respect to its direction of propagation (as shown by Eqn. 7.18 and 7.23). Therefore, in Cartesian coordinates, the polarization vector \\(\bm{E_0}\\) of a plane wave can be completely described by two complex numbers \\(E_X\\) and \\(E_Y\\):
 
 $$ \tag{18.106}
 	\bm{E_0}(\bm{e_z}, \omega)
@@ -6412,11 +6418,11 @@ $$ \tag{18.120}
 \end{aligned}
 $$
 
-Eqn. 18.119 and 18.120, coupled with [Gegenbauer's representation](https://dlmf.nist.gov/10.54) of the spherical Bessel function of the first kind \[[Watson](#references) (ch. 3.32)\]
+Eqn. 18.119 and 18.120, coupled with [Gegenbauer's integral](https://dlmf.nist.gov/10.54.E2) representation of the spherical Bessel function of the first kind \[[Watson](#references) (ch. 3.32)\]
 
 $$ \tag{18.1??}
-	j_n(x) = \frac{i^{-n}}{2}
-	\int_{0}^{\pi} e^{i x \cos{\theta}} P_n(\cos{\theta}) \sin{\theta} \thinspace d\theta,
+	j_n(z) = \frac{1}{2 i^n}
+	\int_{0}^{\pi} e^{i z \cos{\theta}} P_n(\cos{\theta}) \sin{\theta} \thinspace d\theta,
 $$
 
 allow us to analytically evaluate the integral found in Eqn. 18.117:
@@ -6641,7 +6647,7 @@ $$
 
 by mirroring [Euler's formulae](https://en.wikipedia.org/wiki/Euler%27s_formula#Relationship_to_trigonometry)
 
-$$
+$$ \tag{18.13?}
 	\cos(m \phi) = \frac{1}{2} \Big( e^{i m \phi} + e^{-i m \phi} \Big),
 	\quad
 	\sin(m \phi) = \frac{1}{2 i} \Big( e^{i m \phi} - e^{-i m \phi} \Big),
@@ -6828,7 +6834,7 @@ $$ \tag{18.146}
 	\bm{e_r} \times (\bm{H_{int}} - \bm{H_{ext}}) = \bm{J_n},
 $$
 
-Assuming the conductivity of the sphere is not enormous, the surface current term \\(\bm{J_n}\\) can be neglected \[[17](#references) (ch. 1.13)\], and we may combine Eqn. 3.12, 5.2.3 and 18.146 into
+Assuming the conductivity of the sphere is finite, the surface current term \\(\bm{J_n}\\) can be neglected \[[17](#references) (ch. 1.13)\], and we may combine Eqn. 3.12, 5.2.3 and 18.146 into
 
 $$ \tag{18.147}
 	\bm{e_r} \times \bigg( \frac{1}{\mu_2} \nabla \times \bm{E_{int}} - \frac{1}{\mu_1} \nabla \times \bm{E_{ext}} \bigg) = 0.
@@ -7144,9 +7150,9 @@ $$ \tag{19.5}
 \end{aligned}
 $$
 
-In addition to the benefits described above, it allows us identify a rotation of the incident electric field \\([E_X, E_Y]^T\\) around the \\(z\\)-axis. If we refer to Eqn. 15.11 and Fig. N, we may recognize the components of the phasor \\([E\_x(\phi), E\_y(\phi)]^T\\) defined relative to the plane of observation.
+In addition to the benefits described above, it allows us identify a rotation of the incident electric field \\([E_X, E_Y]^T\\) around the \\(z\\)-axis. If we refer to Eqn. 15.11 and Fig. N, we may recognize the components of the complex vector \\([E\_x(\phi), E\_y(\phi)]^T\\) defined relative to the plane of observation.
 
-If we specify the incident field at a certain coordinate \\(z < 0\\) and substitute the resulting phasor into Eqn. 19.5, the resulting expression is a perfect match for the template of Eqn. 15.16. This allows us to isolate the expression of the scattering matrix
+If we specify the incident field at a certain coordinate \\(z < 0\\) and substitute the resulting vector into Eqn. 19.5, the resulting expression is a perfect match for the template of Eqn. 15.16. This allows us to isolate the expression of the scattering matrix
 
 $$ \tag{19.6}
 	S(\theta, \omega)
@@ -7231,7 +7237,7 @@ Now, recall that Eqn. 19.5 contains a sum of the (negated) polar functions. Evid
 
 The explicit expressions of the polar functions (and their plots) also allow us to determine the *apparent* charge configurations responsible for the first few partial waves.
 
-First, let us consider the *electric* partial waves by setting \\(a\_n = 0\\) in Eqn. 19.5. Then, according to Eqn. 15.13, the scattering matrix of the first electric partial wave (given by the first line of Eqn. 19.8) performs a *rotation* of the coordinate axes -- one that corresponds to *reinterpretation* of the components of the incident electric phasor \\([E\_x(\phi), E\_y(\phi), 0]^T\\) in spherical coordinates -- followed by a *projection* onto the tangent plane of a sphere; this results in the radial component of the phasor being discarded.
+First, let us consider the *electric* partial waves by setting \\(a\_n = 0\\) in Eqn. 19.5. Then, according to Eqn. 15.13, the scattering matrix of the first electric partial wave (given by the first line of Eqn. 19.8) performs a *rotation* of the coordinate axes -- one that corresponds to *reinterpretation* of the components of the incident electric vector \\([E\_x(\phi), E\_y(\phi), 0]^T\\) in spherical coordinates -- followed by a *projection* onto the tangent plane of a sphere; this results in the radial component of the complex vector being discarded.
 
 Another way of saying this is that the *tangential component* of the incident electric field is parallel to the electric field of the first electric partial wave. Furthermore, Eqn. 19.5 indicates that the components of the scattered field propagate as spherical waves. These are key features of the far field of an *electric dipole*, a concept we have previously encountered in Sec. 10 and 13.
 
@@ -7285,8 +7291,6 @@ $$
 
 The natural sizes \\(x_n\\) are always complex, which makes the natural frequencies \\(\omega_n\\) complex as well. This implies that, no matter what the frequency of the incident wave is, the amplitudes of the scattered and the internal fields remain finite \[[17](#references) (ch. 9.25)\]. Nevertheless, a certain combination of parameters that reduces the magnitude of the denominator to a small value may simultaneously make the numerator large, producing a spike in the plot of the expansion coefficient; this phenomenon is called [resonance](https://en.wikipedia.org/wiki/Resonance) \[[5](#references) (vol. I, ch. 23)\].
 
--->
-
 #### Limiting Cases
 
 Let us take a closer look at the expressions of the expansion coefficients of the scattered field given by Eqn. 18.156.
@@ -7314,7 +7318,7 @@ $$ \tag{19.13}
 \end{aligned}
 $$
 
-Strictly speaking, these expressions are only valid if both \\(| x | \gg n^2/2\\) and \\(| m x | \gg n^2/2\\); in practice, the approximation error remains acceptable if \\(| x | \sim n/2\\). The asymptotic expressions valid for all orders \\(n\\) have been found by Debye (1909); they are considerably more complicated, and we shall not discuss them here.
+Strictly speaking, these expressions are only valid if both \\(| x | \gg n^2/2\\) and \\(| m x | \gg n^2/2\\); in practice, the approximation error remains acceptable if \\(| x | \gtrsim n/2\\). The asymptotic expressions valid for all orders \\(n\\) have been found by Debye (1909); they are considerably more complicated, and we shall not discuss them here.
 
 We may observe that the resulting coefficients are highly cyclical: \\(a_{n+2} \simeq a\_n\\) and \\(a_{n+1} \simeq b\_n\\). Thus, for any given pair of \\(m\\) and \\(x\\), only 2 unique coefficients exist. In addition, their sum is independent of the order \\(n\\).
 
@@ -7373,6 +7377,10 @@ These expressions demonstrate that the magnitudes of the coefficients rapidly os
 {{< figure src="/img/coef_a_n.svg" caption="*Figure N: The plots of the real (solid line) and the imaginary (dashed line) parts of the expansion coefficient \\(a_1/i\\) for \\(m = 4/3\\). The horizontal axis represents the size parameter \\(x\\) of the particle.*" >}}
 
 {{< figure src="/img/coef_b_n.svg" caption="*Figure N: The plots of the real (solid line) and the imaginary (dashed line) parts of the expansion coefficient \\(b_1/i\\) for \\(m = 4/3\\). The horizontal axis represents the size parameter \\(x\\) of the particle.*" >}}
+
+{{< figure src="/img/coef_a_b_abs.svg" caption="*Figure N: The plots of the absolute value of the expansion coefficients \\(a_1/i\\) (solid line) and \\(b_1/i\\) (dashed line) for \\(m = 4/3\\). The horizontal axis represents the size parameter \\(x\\) of the particle.*" >}}
+
+{{< figure src="/img/coef_a_b_arg.svg" caption="*Figure N: The plots of the argument of the expansion coefficients \\(a_1/i\\) (solid line) and \\(b_1/i\\) (dashed line) for \\(m = 4/3\\). The horizontal axis represents the size parameter \\(x\\) of the particle.*" >}}
 
 In addition to the cyclicality, by transforming Eqn. 19.15 into a function of \\((m - 1) x\\), it can be shown that the expansion coefficients are periodic functions of \\(x\\), with the period
 
@@ -7542,7 +7550,7 @@ $$ \tag{19.25}
 	\simeq \frac{\mu\_0^{-1}}{2} \frac{\eta(\omega)}{c} \frac{1}{k^2(\omega)} \left| \bm{E_1}(\bm{n_s}, \omega) \right|^2.
 $$
 
-Eqn. 15.? allows us to replace the polarization phasor \\(\bm{E_1}\\) of the scattered field with the product the of the electric far-field scattering dyadic \\(\mathcal{S_{ef}}\\) and the polarization phasor \\(\bm{E_0}\\) of the incident field:
+Eqn. 15.? allows us to replace the polarization vector \\(\bm{E_1}\\) of the scattered field with the product the of the electric far-field scattering dyadic \\(\mathcal{S_{ef}}\\) and the polarization vector \\(\bm{E_0}\\) of the incident field:
 
 $$ \tag{19.26}
 	\Iota_s(\bm{n_s}, \omega)
@@ -7581,7 +7589,7 @@ $$ \tag{19.28}
 	\end{bmatrix},
 $$
 
-with the transformation of the components of the phasor of the incident wave from the laboratory reference frame to the scattering coordinate system given by Eqn. 15.11:
+with the transformation of the components of the incident electric vector from the laboratory reference frame to the scattering coordinate system given by Eqn. 15.11:
 
 $$ \tag{19.29}
 	\begin{bmatrix}
@@ -7951,7 +7959,7 @@ $$
 
 where \\(\mathcal{\Alpha_m}\\) is the molecular polarizability dyadic (see Eqn. 10.21).
 
-In addition to forced motion of the electron cloud, a diatomic molecule may experience vibration of the nuclei relative to the center of mass of the molecule \[[30](#references), ch. \\(\mathrm{A\_V}\\)\]. Since the nuclei are much heavier than the electrons, they oscillate at a lower frequency, effectively [modulating the amplitude](https://en.wikipedia.org/wiki/Amplitude_modulation) of the oscillation of the dipole moment by a factor of
+In addition to forced motion of the electron cloud, a diatomic molecule may experience vibration of the nuclei relative to the center of mass of the molecule \[[30](#references), ch. A-V\\)\]. Since the nuclei are much heavier than the electrons, they oscillate at a lower frequency, effectively [modulating the amplitude](https://en.wikipedia.org/wiki/Amplitude_modulation) of the oscillation of the dipole moment by a factor of
 
 $$ \tag{20.5}
 	\cos(\Omega t)
@@ -8161,7 +8169,7 @@ $$ \tag{21.17}
 	= \frac{\bm{E_0} \cdot \bm{v_n}}{1 + \left( m^2 - 1 \right) \frac{A_n}{\sum_n A_n} }.
 $$
 
-In case the ellipsoid is just a regular sphere, \\(a_1 = a_2 = a_3 = a\\), and
+In case the ellipsoid is just an ordinary sphere, \\(a_1 = a_2 = a_3 = a\\), and
 
 $$ \tag{21.18}
 	\frac{A_n}{\sum_n A_n} = \frac{1}{3}.
@@ -8226,7 +8234,7 @@ As shown on Fig. 21.1, the value of \\(A_n\\) monotonically decreases as the par
 
 #### Scattering Matrix
 
-In order to perform light scattering calculations, it is more convenient to use a reference frame that is fixed with respect to the light source rather than the particle. In the so-called laboratory reference frame (described in Sec. 15), the Cartesian components of the electric field phasor \\(\bm{E_0}\\) of the incident wave propagating along the \\(Z\\)-axis are
+In order to perform light scattering calculations, it is more convenient to use a reference frame that is fixed with respect to the light source rather than the particle. In the so-called laboratory reference frame (described in Sec. 15), the Cartesian components of the polarization vector \\(\bm{E_0}\\) of the incident wave propagating along the \\(Z\\)-axis are
 
 $$ \tag{21.24}
 	\bm{E_0} =
@@ -8666,7 +8674,7 @@ $$ \tag{21.49}
 \end{aligned}
 $$
 
-Note that the resulting expression only depends on the magnitude of the electric field phasor, while its phase is irrelevant.
+Note that the resulting expression only depends on the magnitude of the complex electric vector, while its phase is irrelevant.
 
 Next, we must consider a group of randomly oriented particles. Instead of actively rotating each particle while the source of the incident light remains fixed, we can perform a passive rotation by assuming that the incident electric field vector is equally likely to point in any direction on a unit sphere.
 
@@ -8790,7 +8798,7 @@ Unfortunately, evaluation of these integrals poses a challenge: not just because
 
 #### Rayleigh-Gans-Born Approximation
 
-Imagine a particle illuminated by [X-rays](https://en.wikipedia.org/wiki/X-ray). The frequencies (and the momenta \\(p = \hbar \omega / c\\)) of the photons are so high that it renders the particle nearly transparent \[[4](#references) (ch. 7.5)\]. Thus, the squared magnitude of the relative wavenumber is very small:
+Imagine a particle illuminated by [X-rays](https://en.wikipedia.org/wiki/X-ray). The frequencies (and the momenta \\(p = \hbar \omega / c\\)) of the photons are so high that the particle appears nearly transparent \[[4](#references) (ch. 7.5)\]. Thus, the squared magnitude of the relative wavenumber is very small:
 
 $$ \tag{22.1}
 	\left| m^2 - 1 \right|
@@ -8851,14 +8859,22 @@ $$
 
 is considerably simplified. Going forward, we shall also assume that the particle is homogeneous, with \\(m\\) independent of \\(\bm{r'}\\).
 
-Recall that the scattering angle \\(\theta = \arccos(\bm{n_i} \cdot \bm{n_s})\\) can be defined in two different ways:
+Recall that the scattering angle \\(\theta = \arccos(\bm{n_i} \cdot \bm{n_s})\\) can be defined in at least four different ways:
 
 $$ \tag{22.7}
-	\bm{n_i} \cdot \bm{n_s} = \cos(\theta),
-	\quad
+\begin{aligned}
+	| \bm{n_i} \times \bm{n_s} | &= \sin{\theta},
+	&
 	\frac{|\bm{n_i} - \bm{n_s}|}{2}
-	= \sqrt{\frac{1 - \bm{n_i} \cdot \bm{n_s}}{2}}
-	= \sin(\theta/2).
+	&= \sqrt{\frac{1 - (\bm{n_i} \cdot \bm{n_s})}{2}}
+	= \sin(\theta/2),
+	\cr
+	\bm{n_i} \cdot \bm{n_s} &= \cos{\theta},
+	&
+	\frac{|\bm{n_i} + \bm{n_s}|}{2}
+	&= \sqrt{\frac{1 + (\bm{n_i} \cdot \bm{n_s})}{2}}
+	= \cos(\theta/2).
+\end{aligned}
 $$
 
 This suggests that evaluation of the integral
@@ -8871,14 +8887,33 @@ $$
 can be performed most efficiently in an aligned coordinate system. Let us define
 
 $$ \tag{22.9}
-	\bm{w} = \frac{\bm{n_i} - \bm{n_s}}{|\bm{n_i} - \bm{n_s}|},
+	\bm{e_w} = \frac{\bm{n_i} + \bm{n_s}}{|\bm{n_i} + \bm{n_s}|},
 	\quad
-	\bm{v} = \frac{\bm{n_i} \times \bm{n_s}}{| \bm{n_i} \times \bm{n_s} |},
+	\bm{e_v} = \frac{\bm{n_i} \times \bm{n_s}}{| \bm{n_i} \times \bm{n_s} |},
 	\quad
-	\bm{u} = \bm{v} \times \bm{w},
+	\bm{e_u} = \bm{e_v} \times \bm{e_w} = -\frac{\bm{n_i} - \bm{n_s}}{|\bm{n_i} - \bm{n_s}|}.
 $$
 
 If \\(\bm{n_i}\\) and \\(\bm{n_s}\\) are collinear, a supporting vector must take the role of \\(\bm{n_s}\\) in order to fix the orientation of the coordinate frame.
+
+We may prove Eqn. 22.9.3 by expanding the expression of \\(\bm{e_u}\\) using Eqn. 7.37 and 22.7:
+
+$$ \tag{22.?}
+\begin{aligned}
+	\bm{e_u} \cdot \frac{\bm{n_i} - \bm{n_s}}{|\bm{n_i} - \bm{n_s}|} &=
+	\left( \frac{\bm{n_i} \times \bm{n_s}}{| \bm{n_i} \times \bm{n_s} |} \times
+	\frac{\bm{n_i} + \bm{n_s}}{|\bm{n_i} + \bm{n_s}|} \right) \cdot
+	\frac{\bm{n_i} - \bm{n_s}}{|\bm{n_i} - \bm{n_s}|} \cr &=
+	\frac{\big( \bm{n_s} (\bm{n_i} \cdot \bm{n_i}) -
+	\bm{n_i} (\bm{n_i} \cdot \bm{n_s}) +
+	\bm{n_s} (\bm{n_s} \cdot \bm{n_i}) -
+	\bm{n_i} (\bm{n_s} \cdot \bm{n_s}) \big) \cdot
+	(\bm{n_i} - \bm{n_s})}{\sin{\theta} \cos(\theta/2) \sin(\theta/2)} \cr &=
+	\frac{\big( (1 + \cos{\theta}) (\bm{n_s} - \bm{n_i}) \big) \cdot
+	(\bm{n_i} - \bm{n_s})}{2 \sin^2(\theta/2) \cos^2(\theta/2)} =
+	-\frac{4 \sin^2(\theta/2) (1 + \cos{\theta}) }{2 \sin^2(\theta/2) \cos^2(\theta/2)} = -1.
+\end{aligned}
+$$
 
 Using this convention, the point \\(\bm{r'}\\) in the interior of the particle has the following set of Cartesian coordinates:
 
@@ -8898,15 +8933,28 @@ For spherical or ellipsoidal particles, it is highly convenient to utilize [cyli
 $$ \tag{22.11}
 \bm{r'} =
 \begin{bmatrix}
-	\sqrt{(r\_{u}')^2 + (r\_{v}')^2} \cos{\chi} \cr
-	\sqrt{(r\_{u}')^2 + (r\_{v}')^2} \sin{\chi} \cr
+	r\_{u}' \cr
+	r\_{v}' \cr
 	r\_{w}' \cr
 \end{bmatrix} =
 \begin{bmatrix}
-	c \cos{\chi} \cr
+	r\_{u}' \cr
+	\sqrt{(r\_{v}')^2 + (r\_{w}')^2} \sin{\chi} \cr
+	\sqrt{(r\_{v}')^2 + (r\_{w}')^2} \cos{\chi} \cr
+\end{bmatrix} = a
+\begin{bmatrix}
+	b \cr
 	c \sin{\chi} \cr
-	ab \cr
-\end{bmatrix}.
+	c \cos{\chi} \cr
+\end{bmatrix},
+$$
+
+such that
+
+$$ \tag{22.??}
+	\bm{r'} \cdot (\bm{n_i} - \bm{n_s})
+	= -r\_{u}' |\bm{n_i} - \bm{n_s}|
+	= -2 \sin(\theta/2) a b.
 $$
 
 \[Add an illustration here\]
@@ -8914,29 +8962,29 @@ $$
 In particular, for a spherical particle (symmetric with respect to the azimuthal angle \\(\phi\\)), we may set
 
 $$ \tag{22.12}
-	y(\theta) = 2 \sin(\theta/2) x,
+	\tau(x, \theta) = 2 \sin(\theta/2) x,
 $$
 
 and easily calculate \[[4](#references) (ch. 7.21)\]
 
 $$ \tag{22.13}
 \begin{aligned}
-	I_{rgb}(\theta)
+	I_{rgb}(x, \theta)
 	&= \frac{3}{4 \pi a^3} \int_{-1}^{1}
-	\int_{-\pi}^{\pi} \int_{0}^{a \sqrt{1 - b^2}}
-	c \thinspace dc \thinspace d\chi \thinspace
-	e^{i y b} a \thinspace db
+	\int_{-\pi}^{\pi} \int_{0}^{\sqrt{1 - b^2}}
+	a^2 c \thinspace dc \thinspace d\chi \thinspace
+	e^{-i \tau b} a \thinspace db
 	\cr
 	&= \frac{3}{4} \int_{-1}^{1}
 	\left( 1 - b^2 \right)
-	e^{i y b} db
+	e^{-i \tau b} db
 	= \frac{3}{2} \int_{0}^{1}
 	\left( 1 - b^2 \right)
-	\cos(y b) db
+	\cos(\tau b) db
 	\cr
-	&= \frac{3 \sin(y) - 3 y \cos(y)}{y^3}
-	 = \sqrt{\frac{9 \pi}{2 y^3}} J_{3/2}(y)
-	 = \frac{3 j_1(y)}{y},
+	&= \frac{3 \sin(\tau) - 3 \tau \cos(\tau)}{\tau^3}
+	 = \sqrt{\frac{9 \pi}{2 \tau^3}} J_{3/2}(\tau)
+	 = \frac{3 j_1(\tau)}{\tau},
 \end{aligned}
 $$
 
@@ -9120,7 +9168,7 @@ $$ \tag{22.25}
 	\frac{x^6}{k^2} \int_{0}^{\pi}
 	\frac{j_1^2\negthinspace\big( 2 \sin(\theta/2) x \big)}{4 \sin^2(\theta/2) x^2}
 	\frac{\cos^2(\theta) + 1}{2}
-	\sin(\theta) \thinspace d\theta \thinspace \Epsilon_i
+	\sin{\theta} \thinspace d\theta \thinspace \Epsilon_i
 	\cr
 	&= N 2 \pi \left| m^2 - 1 \right|^2
 	\frac{J_{rgb}(x)}{k^2} \Epsilon_i.
@@ -9276,7 +9324,7 @@ It matches the Rayleigh scattering counterpart (cf. Eqn. 21.58) when \\(|m^2 - 1
 
 #### Anomalous Diffraction Approximation
 
-The Rayleigh-Gans-Born approximation admits a straightforward extension. As before, we assume that the particle is nearly transparent:
+The Rayleigh-Gans-Born approximation admits a straightforward extension. As before, we assume that, at the given frequency, the particle is nearly transparent:
 
 $$ \tag{23.1}
 	\left| m^2 - 1 \right|
@@ -9284,205 +9332,821 @@ $$ \tag{23.1}
 	2 \left| m - 1 \right| \ll 1.
 $$
 
-For large particles, this implies that surface reflection is almost completely absent, except for grazing angles.
+For large particles, this implies that surface reflection is almost entirely absent, except for grazing angles. Furthermore, the degree of deviation of light rays (due to refraction) from the initial direction is insignificant, so they propagate virtually undisturbed.
 
-However, unlike in the Rayleigh-Gans-Born approximation, we no longer assume that the phase delay and the absorption experienced by a ray of light as it passes though a (large) particle is negligible, which means that \\(\rho = 2 (m - 1) x\\) can take on arbitrary values \[[4](#references) (ch. 11.1)\].
+However, unlike in the Rayleigh-Gans-Born approximation, we no longer assume that the phase delay and the absorption experienced by a ray of light as it passes though the particle is negligible, which means that \\(\rho = 2 (m - 1) x\\) can take on arbitrary values \[[4](#references) (ch. 11.1)\].
 
-This idea is most clearly illustrated by the example of a homogeneous particle (cf. Fig 23.1).
+Consider the point \\(\bm{r'}\\) located inside the particle (cf. Fig 23.1). Let us trace a straight line along \\(\bm{n_i}\\) that passes through \\(\bm{r'}\\); by doing so, we can determine the entry and the exit points \\(\bm{r_i}\\) and \\(\bm{r_o}\\), respectively.
 
 [Add an illustration here]
 
-Consider the point \\(\bm{r}\\) located inside the particle. We trace a line along \\(\bm{n_i}\\) that passes through \\(\bm{r}\\); by doing so, we determine the entry and the exit points \\(\bm{r_i}\\) and \\(\bm{r_o}\\), respectively.
-
-The wavenumber of the plane wave outside the particle is \\(k\\); at \\(\bm{r_i}\\), it abruptly transitions to \\(m k\\), and maintains this value up until \\(\bm{r_o}\\). The expression of the internal field \\(\bm{E}\\) takes the form
+The wavenumber of the plane wave outside the particle is \\(k\\); at \\(\bm{r_i}\\), it abruptly transitions to \\(m k\\). The expression of the internal field \\(\bm{E}\\) takes the form
 
 $$ \tag{23.2}
 \begin{aligned}
-	\bm{E}(\bm{r}, \omega)
+	\bm{E}(\bm{r'}, \omega)
 	&\approx \bm{E_0}(\bm{n_i}, \omega)
 	e^{i k(\omega) (\bm{r_i} \cdot \bm{n_i})}
-	e^{i m(\omega) k(\omega) (\bm{r} - \bm{r_i}) \cdot \bm{n_i}}
+	e^{i m(\bm{r'}, \omega) k(\omega) (\bm{r'} - \bm{r_i}) \cdot \bm{n_i}}
 	\cr
-	&= \bm{E_i}(\bm{r}, \omega)
-	e^{i (m(\omega) - 1) k(\omega) (\bm{r} - \bm{r_i}) \cdot \bm{n_i}}.
+	&= \bm{E_i}(\bm{r'}, \omega)
+	e^{i (m(\bm{r'}, \omega) - 1) k(\omega) (\bm{r'} - \bm{r_i}) \cdot \bm{n_i}}.
 \end{aligned}
 $$
 
-Thus, the far-field expression of the volume integral equation can be obtained by adding a single complex exponential factor to the integrand of Eqn. 22.6:
+Thus, the far-field expression of the volume integral equation can be obtained by simply adding a complex exponential factor to the integrand of Eqn. 22.6:
 
-$$ \tag{23.3} \small
+$$ \tag{23.3}
 \begin{aligned}
 	\bm{E_s}(\bm{r}, \omega)
 	&\simeq k^2(\omega)
 	\frac{e^{i k(\omega) r}}{4 \pi r}
-	\big( \mathcal{I} - \bm{n_s} \otimes \bm{n_s} \big) \cdot \bm{E_0}(\bm{n_i}, \omega)
-	\int\_{V_p} \big( m^2(\omega) - 1 \big)
+	\big( \mathcal{I} - \bm{n_s} \otimes \bm{n_s} \big) \cdot \bm{E_0}(\bm{n_i}, \omega) \cr
+	&\times
+	\int\_{V_p} \big( m^2(\bm{r'}, \omega) - 1 \big)
 	e^{i k(\omega) \bm{r'} \cdot (\bm{n_i} - \bm{n_s})}
-	e^{i (m(\omega) - 1) k(\omega) (\bm{r'} - \bm{r_i}) \cdot \bm{n_i}} dV'.
+	e^{i (m(\bm{r'}, \omega) - 1) k(\omega) (\bm{r'} - \bm{r_i}) \cdot \bm{n_i}} dV'.
 \end{aligned}
 $$
 
-Keep in mind that \\(\bm{r_i}\\) is spatially-varying across the surface of the particle, since it depends on both \\(\bm{r'}\\) and \\(\bm{n_i}\\) (these parameters have been omitted for brevity). It also suggests that we may replace the volume integral
+Note that \\(\bm{r_i}\\) is spatially-varying across the surface of the particle, since it depends on both \\(\bm{r'}\\) and \\(\bm{n_i}\\) (in Eqn. 23.2-23.3, these parameters have been omitted for brevity). This suggests the following choice of the basis vectors (cf. Eqn. 15.8):
 
 $$ \tag{23.4}
-	I_{ada}(\theta, \phi)
-	= \frac{1}{V_p} \int\_{V_p}
-	e^{i k \bm{r'} \cdot (\bm{n_i} - \bm{n_s})}
-	e^{i (m - 1) k (\bm{r'} - \bm{r_i}) \cdot \bm{n_i}} dV'
-$$
-
-with the corresponding surface integral (cf. Eqn. 1x.14).
-
-Let us first attempt to evaluate Eqn. 23.4 directly. As before, we shall consider the case of a homogeneous spherical particle. Eqn. 22.7, 22.9-22.12 remain applicable; however, Eqn. 22.13 takes a more complicated form due to the additional complex exponential factor
-
-$$ \tag{23.4}
-	e^{i (m - 1) k (\bm{r'} - \bm{r_i}) \cdot \bm{n_i}}
-	= e^{i (m - 1) k (\bm{r'} - \bm{r_i}) \cdot \bm{n_i}}
-$$
-
----
-
-Recall that the scattering angle \\(\theta = \arccos(\bm{n_i} \cdot \bm{n_s})\\) can be defined in two different ways:
-
-$$ \tag{22.7}
-	\bm{n_i} \cdot \bm{n_s} = \cos(\theta),
-	\quad
-	\frac{|\bm{n_i} - \bm{n_s}|}{2}
-	= \sqrt{\frac{1 - \bm{n_i} \cdot \bm{n_s}}{2}}
-	= \sin(\theta/2).
-$$
-
-This suggests that evaluation of the integral
-
-$$ \tag{22.8}
-	I_{rgb}(\theta, \phi)
-	= \frac{1}{V_p} \int\_{V_p} e^{i k \bm{r'} \cdot (\bm{n_i} - \bm{n_s})} dV'
-$$
-
-can be performed most efficiently in an aligned coordinate system. Let us define
-
-$$ \tag{22.9}
-	\bm{w} = \frac{\bm{n_i} - \bm{n_s}}{|\bm{n_i} - \bm{n_s}|},
-	\quad
-	\bm{v} = \frac{\bm{n_i} \times \bm{n_s}}{| \bm{n_i} \times \bm{n_s} |},
-	\quad
-	\bm{u} = \bm{v} \times \bm{w},
-$$
-
-If \\(\bm{n_i}\\) and \\(\bm{n_s}\\) are collinear, a supporting vector must take the role of \\(\bm{n_s}\\) in order to fix the orientation of the coordinate frame.
-
-
-$$ \tag{15.9}
-	\bm{e_Z} = \bm{n_i}, \quad
-	\bm{e_Y} = \bm{n_i} \times \bm{n_p}, \quad
-	\bm{e_X} = \bm{n_p},
-$$
-
-Using this convention, the point \\(\bm{r'}\\) in the interior of the particle has the following set of Cartesian coordinates:
-
-$$ \tag{22.10}
-\bm{r'} =
-\begin{bmatrix}
-	r\_{u}' \cr
-	r\_{v}' \cr
-	r\_{w}' \cr
-\end{bmatrix},
-\quad
-	|\bm{r'}| = \sqrt{(r\_{u}')^2 + (r\_{v}')^2 + (r\_{w}')^2}.
-$$
-
-For spherical or ellipsoidal particles, it is highly convenient to utilize [cylindrical coordinates](https://en.wikipedia.org/wiki/Cylindrical_coordinate_system) \[[4](#references) (ch. 7.11)\]:
-
-$$ \tag{22.11}
-\bm{r'} =
-\begin{bmatrix}
-	\sqrt{(r\_{u}')^2 + (r\_{v}')^2} \cos{\chi} \cr
-	\sqrt{(r\_{u}')^2 + (r\_{v}')^2} \sin{\chi} \cr
-	r\_{w}' \cr
-\end{bmatrix} =
-\begin{bmatrix}
-	c \cos{\chi} \cr
-	c \sin{\chi} \cr
-	ab \cr
-\end{bmatrix}.
-$$
-
-\[Add an illustration here\]
-
-In particular, for a spherical particle (symmetric with respect to the azimuthal angle \\(\phi\\)), we may set
-
-$$ \tag{22.12}
-	y(\theta) = 2 \sin(\theta/2) x,
-$$
-
-and easily calculate \[[4](#references) (ch. 7.21)\]
-
-$$ \tag{22.13}
-\begin{aligned}
-	I_{rgb}(\theta)
-	&= \frac{3}{4 \pi a^3} \int_{-1}^{1}
-	\int_{-\pi}^{\pi} \int_{0}^{a \sqrt{1 - b^2}}
-	c \thinspace dc \thinspace d\chi \thinspace
-	e^{i y b} a \thinspace db
-	\cr
-	&= \frac{3}{4} \int_{-1}^{1}
-	\left( 1 - b^2 \right)
-	e^{i y b} db
-	= \frac{3}{2} \int_{0}^{1}
-	\left( 1 - b^2 \right)
-	\cos(y b) db
-	\cr
-	&= \frac{3 \sin(y) - 3 y \cos(y)}{y^3}
-	 = \sqrt{\frac{9 \pi}{2 y^3}} J_{3/2}(y)
-	 = \frac{3 j_1(y)}{y},
-\end{aligned}
-$$
-
-where \\(J_n\\) and \\(j_n\\) are the ordinary and the spherical Bessel functions of the first kind, respectively (cf. Eqn. 18.48).
-
-Thus, for a homogeneous spherical particle, Eqn. 22.6 can be written as
-
-$$ \tag{22.14}
-	\bm{E_s}(\bm{r}, \omega)
-	\approx \frac{e^{i k(\omega) r}}{k(\omega) r}
-	\big( m^2(\omega) - 1 \big) x^3(\omega)
-	\frac{j_1\negthinspace\big( |\bm{n_i} - \bm{n_s}| x(\omega) \big)}{|\bm{n_i} - \bm{n_s}| x(\omega)}
-	\big( \mathcal{I} - \bm{n_s} \otimes \bm{n_s} \big) \cdot
-	\bm{E_0}.
-$$
-
-
-#### Scattering Matrix
-
-The geometric formulation of the problem creates a strong dependence on the shape of the particle.
-
-$$ \tag{15.8}
 	\bm{e_z} = \bm{n_i}, \quad
-	\bm{e_y} = \frac{\bm{n_i} \times \bm{n_s}}{| \bm{n_i} \times \bm{n_s} |}, \quad
+	\bm{e_y} = \frac{\bm{n_i} \times \bm{n_s}}{| \bm{n_i} \times \bm{n_s} |} = \bm{e_v}, \quad
 	\bm{e_x} = \bm{e_y} \times \bm{e_z}.
 $$
 
 If \\(\bm{n_i}\\) and \\(\bm{n_s}\\) are collinear, a supporting vector must take the role of \\(\bm{n_s}\\) in order to fix the orientation of the coordinate frame.
 
-Imagine that the *scattering coordinate system* \\(xyz\\)
+According to Eqn. 22.7, 22.9 and 23.4, the \\(uvw\\) frame (used by the Rayleigh-Gans-Born approximation) is obtained by rotation of the \\(xyz\\) basis vectors by \\(\theta/2\\) radians around the \\(y\\)-axis:
 
-Imagine that the *scattering coordinate system* \\(xyz\\) is initially aligned with the *laboratory reference frame* \\(XYZ\\), such that
-
-$$ \tag{15.9}
-	\bm{e_Z} = \bm{n_i}, \quad
-	\bm{e_Y} = \bm{n_i} \times \bm{n_p}, \quad
-	\bm{e_X} = \bm{n_p},
+$$ \tag{23.5}
+\begin{aligned}
+	&\bm{e_w} \cdot \bm{e_z}
+	= \frac{\bm{n_i} \cdot (\bm{n_i} + \bm{n_s})}{|\bm{n_i} + \bm{n_s}|}
+	= \frac{1 + \cos{\theta}}{2 \cos(\theta/2)}
+	= \cos(\theta/2),
+	\cr
+	&\bm{e_w} \times \bm{e_z}
+	= \left| \frac{\bm{n_i} \times \bm{n_s}}{\bm{n_i} + \bm{n_s}} \right| \bm{e_y}
+	= \frac{\sin(\theta)}{2 \cos(\theta/2)} \bm{e_y}
+	= \sin(\theta/2) \bm{e_y}.
+\end{aligned}
 $$
 
-where \\(\bm{n_p}\\) is the principal axis of the particle (specifically chosen to be orthogonal to \\(\bm{n_i}\\)).
+\[Add an illustration here\]
 
-In the case of a spherical particle, its surface can be parametrized using spherical coordinates.
+The coordinates of \\(\bm{r'}\\) rotate in the opposite direction:
 
-Substitution of Eqn. 23.2 into the volume integral equation yields
+$$ \tag{23.6}
+\bm{r'} =
+\begin{bmatrix}
+	r\_{x}' \cr
+	r\_{y}' \cr
+	r\_{z}' \cr
+\end{bmatrix}
+= R_y(\theta/2)
+\begin{bmatrix}
+	r\_{u}' \cr
+	r\_{v}' \cr
+	r\_{w}' \cr
+\end{bmatrix} =
+\begin{bmatrix}
+	\phantom{-}\cos(\theta/2) & 0 & \sin(\theta/2) \cr
+	                        0 & 1 &              0 \cr
+	          -\sin(\theta/2) & 0 & \cos(\theta/2) \cr
+\end{bmatrix}
+\begin{bmatrix}
+	r\_{u}' \cr
+	r\_{v}' \cr
+	r\_{w}' \cr
+\end{bmatrix}.
+$$
 
-13.12, the far-field expression of the volume integral equation
+Let us apply the cylindrical parameterization introduced in Eqn. 22.11 to the \\(xyz\\) coordinate system:
+
+$$ \tag{23.7}
+\bm{r'} =
+\begin{bmatrix}
+	r\_{x}' \cr
+	r\_{y}' \cr
+	r\_{z}' \cr
+\end{bmatrix} =
+\begin{bmatrix}
+	\sqrt{(r\_{x}')^2 + (r\_{y}')^2} \cos{\chi} \cr
+	\sqrt{(r\_{x}')^2 + (r\_{y}')^2} \sin{\chi} \cr
+	r\_{z}' \cr
+\end{bmatrix} = a
+\begin{bmatrix}
+	c \cos{\chi} \cr
+	c \sin{\chi} \cr
+	b \cr
+\end{bmatrix}
+$$
+
+By combining Eqn. 23.6 and 23.7, we can reparametrize Eqn. 22.?? as follows:
+
+$$ \tag{23.8}
+\begin{aligned}
+	\bm{r'} \cdot (\bm{n_i} - \bm{n_s})
+	&= -r\_{u}' |\bm{n_i} - \bm{n_s}|
+	\cr
+    &= -2 \sin(\theta/2) (\cos(\theta/2) r\_{x}' - \sin(\theta/2) r\_{z}')
+	\cr
+	&= 2 a \sin(\theta/2) \big( b \sin(\theta/2) - c \cos{\chi} \cos(\theta/2) \big)
+	\cr
+	&= a b (1 -\cos{\theta}) - a c \cos{\chi} \sin{\theta}.
+\end{aligned}
+$$
+
+Let us consider the special case of a homogeneous spherical particle. From the geometry (see Fig. 23.1), it is evident that
+
+$$ \tag{23.9}
+\begin{aligned}
+	\bm{r'} \cdot \bm{n_i}
+	&= r\_{z}'
+	= a b,
+	\cr
+	-\bm{r_i} \cdot \bm{n_i}
+	&= \sqrt{a^2 - \big( r\_{x}' \big)^2 - \big( r\_{y}' \big)^2}
+	= a \sqrt{1 - c^2}.
+\end{aligned}
+$$
+
+Putting it all together, the exponential factor found in Eqn. 23.3 takes the form
+
+$$ \tag{23.10}
+	e^{i k \bm{r'} \cdot (\bm{n_i} - \bm{n_s})}
+	e^{i (m - 1) k (\bm{r'} - \bm{r_i}) \cdot \bm{n_i}}
+	=
+	e^{i \left( \tau_e b - \tau_o c \cos{\chi} \right)}
+	e^{i \frac{\rho}{2} \left(b + \sqrt{1 - c^2} \right)}.
+$$
+
+where we have introduced the shorthand notation
+
+$$ \tag{23.11}
+	\rho(x) = 2 (m - 1) x,
+	\quad
+	\tau_e(x, \theta) = x (1 - \cos{\theta}),
+	\quad
+	\tau_o(x, \theta) = x \sin{\theta}.
+$$
+
+Taking Eqn. 23.7 and 23.10 into account allows us to parametrize Eqn. 23.3 as follows:
+
+$$ \tag{23.12}
+\begin{aligned}
+	I_{ada}(x, \theta)
+	&= \frac{1}{V_p} \int\_{V_p}
+	e^{i k \bm{r'} \cdot (\bm{n_i} - \bm{n_s})}
+	e^{i (m - 1) k (\bm{r'} - \bm{r_i}) \cdot \bm{n_i}} dV'
+	\cr
+	&= \frac{3}{4 \pi a^3}
+	\int_{0}^{1}
+	\int_{-\pi}^{\pi}
+	\int_{-\sqrt{1 - c^2}}^{\sqrt{1 - c^2}}
+	e^{i \left( \tau_e b - \tau_o c \cos{\chi} \right)}
+	e^{i \frac{\rho}{2} \left(b + \sqrt{1 - c^2} \right)}
+	a \thinspace db \thinspace
+	\thinspace d\chi \thinspace
+	a^2 c \thinspace dc \thinspace
+	\cr
+	&= \frac{3}{4 \pi}
+	\int_{0}^{1}
+	\int_{-\pi}^{\pi}
+	e^{-i \tau_o c \cos{\chi}} \thinspace d\chi \thinspace
+	\int_{-\sqrt{1 - c^2}}^{\sqrt{1 - c^2}}
+	e^{i (\rho/2 + \tau_e) b}
+	\thinspace db \thinspace
+	e^{i \frac{\rho}{2} \sqrt{1 - c^2}}
+	c \thinspace dc \thinspace.
+\end{aligned}
+$$
+
+The innermost integral can be easily evaluated, since
+
+$$ \tag{23.13}
+	\int_{-\beta}^{\beta}
+	e^{i \alpha b}
+	\thinspace db \thinspace
+	= \frac{2 \sin (\alpha  \beta )}{\alpha }.
+$$
+
+Now, consider the integral
+
+$$ \tag{23.14}
+	\frac{1}{2 \pi}
+	\int_{-\pi}^{\pi}
+	e^{-i z \cos{\chi}}
+	\thinspace d\chi.
+$$
+
+The integrand is an even function of \\(\chi\\). Therefore,
+
+$$ \tag{23.15}
+	\frac{1}{2 \pi}
+	\int_{-\pi}^{\pi}
+	e^{- i z \cos{\chi}}
+	\thinspace d\chi =
+	\frac{1}{\pi}
+	\int_{0}^{\pi}
+	e^{- i z \cos{\chi}}
+	\thinspace d\chi.
+$$
+
+We may recognize the definition of the [Bessel function of the first kind](https://mathworld.wolfram.com/BesselFunctionoftheFirstKind.html)
+
+$$ \tag{23.16}
+	J_0(z) = \frac{1}{\pi} \int_{0}^{\pi}
+	e^{\pm i z \cos{\chi}} \thinspace d\chi.
+$$
+
+Thus, Eqn. 23.12 takes the form
+
+$$ \tag{23.17}
+\begin{aligned}
+	I_{ada}(x, \theta)
+	&= \frac{3}{\tau_e + \rho/2} \int_{0}^{1}
+	J_0 (\tau_o c)
+	e^{i \frac{\rho}{2} \sqrt{1 - c^2}}
+	\sin\negthinspace\left((\tau_e + \rho/2) \sqrt{1 - c^2} \right)
+	c \thinspace dc.
+\end{aligned}
+$$
+
+Its expression can be further simplified by converting the product of trigonometric functions into a sum. This can be achieved by inverting the Euler's formula (cf. Eqn. 18.13?), which yields
+
+$$ \tag{23.18}
+	e^{i \phi} \sin(\theta + \phi) =
+	\frac{e^{i (\theta + 2 \phi )} - e^{-i \theta}}{2 i}.
+$$
+
+As a result, the integral may be split in two:
+
+$$ \tag{23.19}
+	I_{ada}(x, \theta)
+	= \frac{3 i}{\tau_e + (\tau_e + \rho)} \int_{0}^{1}
+	J_0 (\tau_o c)
+	\left( e^{-i \tau_e \sqrt{1 - c^2}} - e^{i (\tau_e + \rho) \sqrt{1 - c^2}} \right)
+	c \thinspace dc.
+$$
+
+Notice that we effectively have 3 independent variables: \\(\tau_o\\), \\(\tau_e\\), and \\(\tau_e + \rho\\). The former two are always real, and the latter is potentially complex.
+
+Thus, the problem can be reduced to evaluation of the integral
+
+$$ \tag{23.20}
+	I_{exp}(\tau_c, \tau_o)
+	= \int_{0}^{1}
+	J_0 (\tau_o c)
+	\exp\negthinspace\left(\tau_c \sqrt{1 - c^2} \right)
+	c \thinspace dc,
+$$
+
+where \\(\tau_c\\) stands for either \\(-\tau_e\\) or \\(\tau_e + \rho\\).
+
+The \\(\exp(\rho \sqrt{1 - c^2})\\) factor makes the first integral more complicated. Of course, we can use Euler's formula to further decompose each complex exponential into a sum of a real cosine and an imaginary sine.
+
+---
+
+These integrals can be evaluated using the method of series expansion. In order to illustrate it, let us consider the base case of \\(\rho = 0\\). This reduces Eqn. 23.17 to the Rayleigh-Gans-Born approximation, so its closed-form expression is already known (cf. Eqn. 22.13):
+
+$$ \tag{23.20}
+\begin{aligned}
+	I_{rgb}(x, \theta)
+	&= \frac{3}{\tau_e} \int_{0}^{1}
+	J_0 (\tau_o c)
+	\sin\negthinspace\left(\tau_e \sqrt{1 - c^2} \right)
+	c \thinspace dc
+	= \frac{3 j_1(\tau)}{\tau},
+\end{aligned}
+$$
+
+where, according to Eqn. 22.12 and 23.11,
+
+$$ \tag{23.21}
+	\tau(x, \theta) = \sqrt{\tau_e^2 + \tau_o^2} = 2 x \sin(\theta/2).
+$$
+
+Due to the coordinate convention used in this chapter, this result may come as a surprise. There is an alternative proof of Eqn. 23.20; the same method is also applicable to the other terms of Eqn. 23.19.
+Due to the coordinate convention used in this chapter, this result may come as a surprise. There is an alternative proof of Eqn. 23.20; the same method can be applied the other terms of Eqn. 23.19.
+
+According to the parameterization introduced in Eqn. 23.7, \\(c \in \[0,1\]\\). Thus, we may perform a change of variables
+
+$$ \tag{23.22}
+	c = \sin{\phi},
+	\quad
+	\sqrt{1 - c^2} = \cos{\phi},
+$$
+
+which, after substitution into Eqn. 23.20 and elimination of the factor of 3, yields
+
+$$ \tag{23.23}
+	I_{sin}(\tau_e, \tau_o)
+	= \frac{1}{\tau_e} \int_{0}^{\pi/2}
+	J_0 (\tau_o \sin{\phi})
+	\sin(\tau_e \cos{\phi})
+	\cos{\phi} \sin{\phi} \thinspace d\phi.
+$$
+
+Next, let us substitute the Taylor series expansion
+
+$$ \tag{23.24}
+	\sin{z} = \sum_{n=0}^{\infin} \frac{(-1)^n}{(2 n + 1)!} z^{2 n + 1}
+$$
+
+with \\(z = \tau_e \cos{\phi}\\):
+
+$$ \tag{23.25}
+\begin{aligned}
+	I_{sin}(\tau_e, \tau_o)
+	&= \frac{1}{\tau_e}
+	\sum_{n=0}^{\infin} \frac{(-1)^n}{(2 n + 1)!}
+	\int_{0}^{\pi/2}
+	J_0 (\tau_o \sin{\phi})
+	(\tau_e \cos{\phi})^{2 n + 1}
+	\cos{\phi} \sin{\phi} \thinspace d\phi
+	\cr
+	&= \sum_{n=0}^{\infin}
+	\frac{(-1)^n \tau_e^{2 n}}{(2 n + 1)!}
+	\int_{0}^{\pi/2}
+	J_0 (\tau_o \sin{\phi})
+	\sin{\phi} (\cos{\phi})^{2 (n + 1)}
+	\thinspace d\phi.
+\end{aligned}
+$$
+
+In the expression given above, we may recognize [Sonine's integral](https://dlmf.nist.gov/10.22.E19) \[[Watson](#references) (ch. 12.11)\]:
+
+$$ \tag{23.26}
+	J_{m+l+1}(z) = \frac{z^{l+1}}{2^l \Gamma(l+1)}
+	\int_{0}^{\pi/2} J_{m}(z \sin{\phi}) (\sin{\phi})^{m+1} (\cos{\phi})^{2 l+1} \thinspace d\phi,
+$$
+
+where \\(J_n\\) is the (ordinary) Bessel function of the first kind.
+
+Suppose \\(n\\) and \\(m\\) are integral. Then \\(l = n-1/2\\) is half-integral, and
+
+$$ \tag{23.27}
+\begin{aligned}
+	J_{m+n+1/2}(z)
+	&= \frac{z^{n+1/2}}{2^{n-1/2} \Gamma(n+1/2)}
+	\int_{0}^{\pi/2} J_{m}(z \sin{\phi}) (\sin{\phi})^{m+1} (\cos{\phi})^{2 n} \thinspace d\phi
+	\cr
+	&= \sqrt{\frac{2 z}{\pi}} \frac{2^n z^{n} n!}{(2 n)!}
+	\int_{0}^{\pi/2} J_{m}(z \sin{\phi}) (\sin{\phi})^{m+1} (\cos{\phi})^{2 n} \thinspace d\phi
+	\cr
+\end{aligned}
+$$
+
+where we have expanded the [expression of the gamma function](https://en.wikipedia.org/wiki/Particular_values_of_the_gamma_function) valid for a non-negative integer \\(n\\):
+
+$$ \tag{23.28}
+	\Gamma(1/2 \pm n) =
+	\sqrt{\pi} \left( \frac{(2 n)!}{(\pm 4)^{n} n!} \right)^{\pm 1}.
+$$
+
+After taking Eqn. 18.48 into account, we obtain the following integral representation of the spherical Bessel function of the first kind:
+
+$$ \tag{23.29}
+	j_{n}(z) = \frac{2^{n} z^{n} n!}{(2 n)!}
+	\int_{0}^{\pi/2} J_{0}(z \sin{\phi}) (\cos{\phi})^{2 n} \sin{\phi} \thinspace d\phi.
+$$
+
+Substitution of Eqn. 23.29 into 23.25 yields
+
+$$ \tag{23.30}
+	I_{sin}(\tau_e, \tau_o)
+	= \sum_{n=0}^{\infin}
+	\frac{(-1)^n}{2^{n} n!}
+	\frac{\tau_e^{2 n}}{\tau_o^{n+1}}
+	j_{n+1}(\tau_o).
+$$
+
+In order to connect this infinite series to the result of Eqn. 23.20, the latter must also be expanded in a similar manner. Consider the following Taylor series
+
+$$ \tag{23.31}
+	\frac{j_1\negthinspace\left( \sqrt{w + z} \right)}{\sqrt{w + z}}
+	= \sum_{n=0}^{\infin}
+	\frac{w^n}{n!}
+	\frac{\partial^n}{\partial z^n}
+	\frac{j_1\negthinspace\left( \sqrt{z} \right)}{\sqrt{z}}
+$$
+
+as a function of \\(w\\), with \\(z\\) treated as a constant parameter.
+
+Application of the [recurrence relation](https://dlmf.nist.gov/10.51#E3)
+
+$$ \tag{23.32}
+	\left( \frac{1}{y} \frac{\partial}{\partial y} \right)^n
+	\frac{j_m(y)}{y^m} = (-1)^n \frac{j_{n+m}(y)}{y^{n+m}}
+$$
+
+combined with the chain rule results in
+
+$$ \tag{23.33}
+	\frac{\partial}{\partial z}
+	\frac{j_m\negthinspace\left( \sqrt{z} \right)}{z^{m/2}}
+	= \frac{\partial y}{\partial z}
+	\left( \frac{\partial}{\partial y}
+	\left( \frac{j_m\negthinspace\left( y \right)}{y^m} \right)
+	\right)\_{y=\sqrt{z}}
+	= -\frac{1}{2}
+	\frac{j_{m+1}(\sqrt{z})}{z^{(m+1)/2}}.
+$$
+
+Repeated differentiation yields
+
+$$ \tag{23.34}
+	\frac{\partial^n}{\partial z^n}
+	\frac{j_m\negthinspace\left( \sqrt{z} \right)}{z^{m/2}}
+	= \frac{(-1)^n}{2^n}
+	\frac{j_{m+n}(\sqrt{z})}{z^{(m+n)/2}}
+$$
+
+Thus, the Taylor series of Eqn. 23.31 takes the form
+
+$$ \tag{23.35}
+	\frac{j_1\negthinspace\left( \sqrt{w + z} \right)}{\sqrt{w + z}}
+	= \sum_{n=0}^{\infin}
+	\frac{(-1)^n}{2^n n!}
+	\frac{w^n}{z^{(n+1)/2}}
+	j_{n+1}(\sqrt{z}).
+$$
+
+Setting \\(w = \tau_e^2\\), \\(z = \tau_o^2\\) and taking Eqn. 23.21 into account produces the desired result
+
+$$ \tag{23.36}
+	\frac{j_1(\tau)}{\tau}
+	= \sum_{n=0}^{\infin}
+	\frac{(-1)^n}{2^n n!}
+	\frac{\tau_e^{2 n}}{\tau_o^{n+1}}
+	j_{n+1}(\tau_o),
+$$
+
+which, after comparison with Eqn. 23.30, completes the alternative proof of Eqn. 23.20.
+
+---
+
+In order to evaluate
+
+$$ \tag{23.3x}
+	I_{exp}(\tau_e, \tau_o)
+	= \frac{1}{\tau_e} \int_{0}^{\pi/2}
+	J_0 (\tau_o \sin{\phi})
+	\exp(i \tau_e \cos{\phi})
+	\cos{\phi} \sin{\phi} \thinspace d\phi
+$$
 
 
+found in Eqn. 23.19, we must also consider a variant of Eqn. 23.23 that features a cosine rather than a sine:
+
+$$ \tag{23.37}
+	I_{cos}(\tau_e, \tau_o)
+	= \frac{1}{\tau_e} \int_{0}^{\pi/2}
+	J_0 (\tau_o \sin{\phi})
+	\cos(\tau_e \cos{\phi})
+	\cos{\phi} \sin{\phi} \thinspace d\phi.
+$$
+
+In general, this integral is not symmetric under exchange of \\(\tau_e\\) and \\(\tau_o\\), which can be easily verified by means of a visual inspection of the plot of the function.
+
+{{< figure src="/img/even_odd.svg" caption="*Figure N: Two plots of \\(\tau\_e I\_{cos}\\): the solid plot treats \\(\tau\_e\\) as a variable while setting the value of \\(\tau\_o\\) to a small constant, and the dashed plot does the opposite.*" >}}
+
+Substitution of the [Maclaurin series](https://en.wikipedia.org/wiki/Taylor_series#Trigonometric_functions) expansion
+
+$$ \tag{23.38}
+	\cos{z} = \sum_{n=0}^{\infin} \frac{(-1)^n}{(2 n)!} z^{2 n},
+$$
+
+with \\(z = \tau_e \cos{\phi}\\) yields
+
+$$ \tag{23.39}
+	I_{cos}(\tau_e, \tau_o)
+	= \frac{1}{\tau_e}
+	\sum_{n=0}^{\infin} \frac{(-1)^n \tau_e^{2 n}}{(2 n)!}
+	\int_{0}^{\pi/2}
+	J_0 (\tau_o \sin{\phi}) \sin{\phi}
+	(\cos{\phi})^{2 n + 1}
+	\thinspace d\phi.
+$$
+
+Now, according to Sonine's integral (Eqn. 23.26) and the definition of the gamma function for an integral argument (Eqn. 19.18),
+
+$$ \tag{23.40}
+	J_{n+1}(z) = \frac{z^{n+1}}{2^n n!}
+	\int_{0}^{\pi/2} J_{0}(z \sin{\phi}) \sin{\phi} (\cos{\phi})^{2 n+1} \thinspace d\phi.
+$$
+
+By setting \\(z = \tau_o\\), we arrive at the following result:
+
+$$ \tag{23.41}
+	I_{cos}(\tau_e, \tau_o)
+	= \frac{1}{\tau_e} \sum_{n=0}^{\infin} \frac{(-1)^n 2^n n!}{(2 n)!}
+	\frac{\tau_e^{2 n}}{\tau_o^{n+1}} J_{n+1}(\tau_o).
+$$
+
+Since Eqn. 23.38 is a series expansion around \\(0\\), numerical evaluation of of Eqn. 23.41 using small number of terms yields an accurate result only for \\(\tau_e \ll 1\\). If, in addition, \\(\tau_o \ll 1\\), we may perform a [power series](https://dlmf.nist.gov/10.2#E2) expansion of the Bessel function
+
+$$ \tag{23.42}
+	J_{\nu}(z) = \sum_{k = 0}^{\infin}
+	\frac{(-1)^k (z/2)^{2 k + \nu}}{k! \Gamma(k + \nu + 1)},
+$$
+
+which, coupled with Eqn. 19.18 of the gamma function, yields the formula
+
+$$ \tag{23.43}
+\begin{aligned}
+	I_{cos}(\tau_e, \tau_o)
+	&= \frac{1}{\tau_e} \sum_{n=0}^{\infin} \frac{(-1)^n n! \tau_e^{2 n}}{(2 n)!}
+	\sum_{k = 0}^{\infin}
+	\frac{(-1)^k \tau_o^{2 k}}{2^{2 k + 1} k! (k + n + 1)!}
+	\cr
+	&= \frac{1}{\tau_e} \left( \frac{1}{2} - \frac{\tau_e^2}{8} - \frac{\tau_o^2}{16} + \frac{\tau_e^2 \tau_o^2}{96} + \mathellipsis \right)
+\end{aligned}
+$$
+
+that is particularly useful for small values of \\(\tau\\).
+
+---
+
+Close examination of Fig. N suggests the existence of a symmetric expression of \\(\tau\_e I\_{cos}\\) for small values of \\(\tau_e\\).
+
+In order to find it, instead of Eqn. 23.38, consider the [generating function](https://dlmf.nist.gov/10.12#E3)
+
+$$ \tag{23.44}
+	\cos(z \cos{\phi}) = J_{0}(z) +  2 \sum_{n=1}^{\infin} (-1)^n J_{2 n}(z) \cos(2 n \phi).
+$$
+
+After substitution into Eqn. 23.37, we obtain
+
+$$ \tag{23.45}
+\begin{aligned}
+	I_{cos}(\tau_e, \tau_o)
+	&= \frac{1}{\tau_e} \int_{0}^{\pi/2}
+	J_0 (\tau_o \sin{\phi}) \sin{\phi} J_0(\tau_e \cos{\phi})
+	\cos{\phi} \thinspace d\phi
+	\cr
+	&+ \frac{2}{\tau_e} \sum_{n=1}^{\infin} (-1)^n J_{2 n}(\tau_e)
+	\int_{0}^{\pi/2} J_0 (\tau_o \sin{\phi})
+	\sin{\phi} \cos(2 n \phi) \cos{\phi} \thinspace d\phi.
+\end{aligned}
+$$
+
+The first integral can be evaluated analytically using the [identity](https://dlmf.nist.gov/10.22#E26)
+
+$$ \tag{23.46}
+	\int_{0}^{\pi/2}
+	J_m (z \sin{\phi}) (\sin{\phi})^{m+1}
+	J_n(w \cos{\phi}) (\cos{\phi})^{n+1} \thinspace d\phi
+	= \frac{z^m w^n J_{m+n+1}\negthinspace\left( \sqrt{z^2 + w^2} \right)}{\left( z^2 + w^2 \right)^{(m+n+1)/2}},
+$$
+
+where we must set \\(m=n=0\\). This yields
+
+$$ \tag{23.47}
+\begin{aligned}
+	I_{cos}(\tau_e, \tau_o)
+	&= \frac{1}{\tau_e}
+	\frac{J_{1}\negthinspace\left( \sqrt{\tau_o^2 + \tau_e^2} \right)}{\sqrt{\tau_o^2 + \tau_e^2}}
+	\cr
+	&+ \frac{2}{\tau_e} \sum_{n=1}^{\infin} (-1)^n J_{2 n}(\tau_e)
+	\int_{0}^{\pi/2} J_0 (\tau_o \sin{\phi})
+	\sin{\phi} \cos(2 n \phi) \cos{\phi} \thinspace d\phi.
+\end{aligned}
+$$
+
+As long as \\(\tau_e \ll \tau_o\\) (why is that? can you make the criteria more specific?), we may retain the first term of the expansion and neglect the rest, yielding the compact approximation
+
+$$ \tag{23.48}
+	\tau_e I_{cos}(\tau_e, \tau_o)
+	\approx \frac{J_{1}(\tau)}{\tau}.
+$$
+
+for arbitrary values of \\(\tau\\).
+
+---
+
+In the particular case of \\(\tau \gg 1\\), we may utilize [Hankel's asymptotic expansion](https://dlmf.nist.gov/10.17#E3)
+
+$$ \tag{23.49}
+	J_{\nu}(z) \simeq \sqrt{ \frac{2}{\pi z} } \left(
+	\cos{\omega_{\nu}(z)} \sum_{k=0}^{\infin} (-1)^k \frac{a_{2 k}(\nu)}{z^{2 k}} -
+	\sin{\omega_{\nu}(z)}  \sum_{k=0}^{\infin} (-1)^k \frac{a_{2 k + 1}(\nu)}{z^{2 k + 1}}
+	\right),
+$$
+
+given in terms of the angles
+
+$$ \tag{23.50}
+	\omega_{\nu}(z) = z - \frac{\pi}{2} \nu - \frac{\pi}{4},
+$$
+
+and the coefficients
+
+$$ \tag{23.51}
+	a_n(\nu) = \frac{(1/2 - \nu)_n (1/2 + \nu)_n}{(-2)^n n!}.
+$$
+
+The latter are defined using the so-called [Pochhammer's symbol](https://dlmf.nist.gov/5.2#iii)
+
+$$ \tag{23.52}
+	(b)_0 = 1,
+	\quad
+	(b)_n = b (b+1) (b+2) ... (b+n-1).
+$$
+
+If \\(b\\) is neither zero nor a negative integer,
+
+$$ \tag{23.53}
+	(b)_n = \frac{\Gamma(b + n)}{\Gamma(b)}.
+$$
+
+In order to evaluate Eqn. 23.48, we must set \\(\nu=1\\) in Eqn. 23.51, which yields
+
+$$ \tag{23.54}
+	a_n(1)
+	= \frac{(-1/2)_n (3/2)_n}{(-2)^n n!}
+	= \frac{\Gamma(-1/2 + n) \Gamma(3/2 + n)}{\Gamma(-1/2) \Gamma(3/2) (-2)^n n!}.
+$$
+
+Gamma function with a half-integral argument can be easily evaluated using Eqn. 23.28.
+
+Retaining the first two terms of Eqn. 23.49
+
+$$ \tag{23.55}
+	J_1(z) \simeq \sqrt{ \frac{2}{\pi z} } \left(
+	\sin\negthinspace\left(z-\frac{\pi}{4} \right) +
+	\cos\negthinspace\left(z-\frac{\pi}{4} \right) \frac{3}{8 z}
+	+ \mathellipsis
+	\right),
+$$
+
+is sufficient to form an excellent asymptotic approximation to Eqn. 23.48.
+
+---
+
+A more general solution can be obtained by [expanding](https://dlmf.nist.gov/10.60#E10)
+
+$$ \tag{23.56}
+	J_0 (z \sin{\phi})
+	= \sum_{n=0}^{\infin} (4 n + 1) \frac{(2 n)!}{4^{n} (n!)^2} j_{2 n}(z) P_{2 n}(\cos{\phi}).
+$$
+
+in terms of polynomial (Legendre), rational and trigonometric (spherical Bessel) functions.
+
+Substitution into Eqn. 23.37 results in fairly simple integrals
+
+$$ \tag{23.57}
+\begin{aligned}
+	I_{cos}(\tau_e, \tau_o)
+	&= \frac{1}{\tau_e}
+	\sum_{n=0}^{\infin} (4 n + 1) \frac{(2 n)!}{4^{n} (n!)^2} j_{2 n}(\tau_o)
+	\int_{0}^{\pi/2} P_{2 n}(\cos{\phi}) \cos(\tau_e \cos{\phi})
+	\cos{\phi} \sin{\phi} \thinspace d\phi
+	\cr
+	&= \frac{1}{\tau_e}
+	\sum_{n=0}^{\infin} (4 n + 1) \frac{(2 n)!}{4^{n} (n!)^2} j_{2 n}(\tau_o)
+	\int_{0}^{1} P_{2 n}(t) \cos(\tau_e t) t \thinspace dt.
+\end{aligned}
+$$
+
+According to ET II 314(8), the integral of this type
+
+$$ \tag{23.58}
+\begin{aligned}
+	\int_{0}^{1} P_{\nu}^{\mu}(t) \cos(a t)
+	t^{\lambda-1} \left( 1-t^2\right)^{-\mu/2} \thinspace dt
+	&= \frac{\sqrt{\pi} 2^{\mu-\lambda} \Gamma(\lambda)}
+	{\Gamma\left( \frac{1+\lambda-\mu-\nu}{2} \right) \Gamma\left( 1+\frac{\lambda-\mu+\nu}{2} \right)}
+	\cr
+	&\times ~_2F_3 \left(
+	\frac{\lambda}{2}, \frac{\lambda+1}{2};
+	\frac{1}{2}, \frac{1+\lambda-\mu-\nu}{2}, 1+\frac{\lambda-\mu+\nu}{2};
+	-\frac{a^2}{4} \right),
+\end{aligned}
+$$
+
+can be expressed in terms of the [hypergeometric function](https://en.wikipedia.org/wiki/Generalized_hypergeometric_function) \\(\_2F\_3\\), provided \\(\mathcal{Re} \lbrace \lambda \rbrace > 0\\) and \\(\mathcal{Re} \lbrace \mu \rbrace < 1\\).
+
+Setting \\(\lambda=2, \mu=0, \nu=2n\\) in Eqn. 23.58 yields
+
+$$ \tag{23.59}
+	\int_{0}^{1} P_{2n}(t) \cos(a t) t \thinspace dt
+	= \frac{\sqrt{\pi} \Gamma(2)}
+	{4 \Gamma(3/2-n) \Gamma(2+n)}
+	~_2F_3 \left(
+	1, \frac{3}{2};
+	\frac{1}{2}, \frac{3}{2}-n, 2+n;
+	-\frac{a^2}{4} \right).
+$$
+
+Expressions involving the gamma function can be simplified
+
+$$ \tag{23.60}
+	\int_{0}^{1} P_{2n}(t) \cos(a t) t \thinspace dt
+	= \frac{(-1)^{n+1} (2 n)!}
+	{2^{2 n + 1} (n!)^2 (n+1) (2n-1)}
+	~_2F_3 \left(
+	1, \frac{3}{2};
+	\frac{1}{2}, \frac{3}{2}-n, 2+n;
+	-\frac{a^2}{4} \right)
+$$
+
+by applying Eqn. 19.18, 23.28, and the [recurrence relation](https://dlmf.nist.gov/5.5#E1)
+
+$$ \tag{23.61}
+	\Gamma(z + 1) =	z \Gamma(z).
+$$
+
+The hypergeometric function has a rational expression
+
+$$ \tag{23.62}
+	\int_{0}^{1} P_{2 n}(t) \cos(a t) t \thinspace dt
+	= \frac{R_{2 n}(a) + S_{2 n}(a) \cos{a} + a T_{2 n}(a) \sin{a}}{a^{2 (n + 1)}},
+$$
+
+where \\(R_{2 n}, S_{2 n}, T_{2 n}\\) are polynomials of degree \\(2 n\\).
+
+It is of some practical interest to consider the leading term of Eqn. 23.57:
+
+$$ \tag{23.63}
+	I_{cos}(\tau_e, \tau_o)
+	\approx \frac{\sin (\tau_o) (\tau_e \sin (\tau_e)+\cos (\tau_e)-1)}{\tau_e^3 \tau_o}.
+$$
+
+It offers an excellent approximation for arbitrary values of \\(\tau\\) provided \\(\tau_o \ll 1\\).
+
+---
+
+Unfortunately, this integral does not have a closed-form expression for arbitrary values of \\(x, \rho, \theta\\). In the forward direction, the parameters introduced in Eqn. 23.14
+
+$$ \tag{23.20}
+	\tau_o(x, 0) = \tau_e(x, \theta) = 0,
+$$
+
+and thus
+
+$$ \tag{23.21}
+	I_{ada}(0)
+	= \frac{6}{\rho} \int_{0}^{1}
+	\left( e^{i \rho \sqrt{1 - c^2}} -
+	1 \right)
+	c \thinspace dc
+	= \frac{6}{\rho} \int_{0}^{1}
+	e^{i \rho s} s \thinspace ds -\frac{3}{\rho}.
+$$
+
+The remaining expression can be integrated by parts. We decompose the integrand as follows:
+
+$$ \tag{23.22}
+\begin{aligned}
+	u &= s, & dv &= e^{i \rho s} \thinspace ds,
+	\cr
+	du &= ds, & v &= \frac{e^{i \rho s}}{i \rho}.
+\end{aligned}
+$$
+
+Eqn. 23.21 can then be readily integrated, which yields
+
+$$ \tag{23.23}
+\begin{aligned}
+	I_{ada}(0)
+	&= -\frac{3}{\rho} - \frac{6 i e^{i \rho}}{\rho^2} - \frac{6}{\rho} \int_{0}^{1} \frac{e^{i \rho s}}{i \rho} \thinspace ds
+	\cr
+	&= -\frac{3}{\rho} - \frac{6 i e^{i \rho}}{\rho^2} + \frac{6 \left(e^{i \rho} - 1\right)}{\rho^3}
+	= \frac{3}{\rho^3} \left( 2 e^{i \rho} (1 - i \rho) -\rho^2 - 2 \right).
+\end{aligned}
+$$
+
+Similarly, in the backward direction, Eqn. 23.14 tells us that
+
+$$ \tag{23.24}
+	\tau_o(x, \pi) = 0,
+	\quad
+	\tau_e(x, \pi) = 2 x,
+$$
+
+and thus
+
+$$ \tag{23.25}
+	I_{ada}(\pi)
+	= \frac{3 i^{-1}}{4 x + \rho} \int_{0}^{1}
+	\left( e^{i (2 x + \rho) \sqrt{1 - c^2}} -
+	e^{-2 i x \sqrt{1 - c^2}} \right)
+	c \thinspace dc.
+$$
+
+This integral can be easily evaluated by following the steps taken in Eqn. 23.21-23.23. The result is
+
+$$ \tag{23.26} \small
+	I_{ada}(\pi)
+	= - \frac{
+		4 x^2 e^{i (2 x + \rho)} (2 x + \rho + i)
+		+ e^{-2 i x} (2 x + \rho)^2 (2 x-i) + i \rho (4 x + \rho) }{4/3 x^2 (2 x + \rho)^2 (4 x + \rho)}.
+$$
 
 ---
 
@@ -9526,7 +10190,7 @@ $$
 
 obtained using the the Rayleigh-Gans-Born approximation into the volume integral equation. Unfortunately, that is not the case because, this time, we can no longer use the far-field expression of the electric dyadic \\(\mathcal{G}\_e\\).
 
-Let us begin by expanding the expression of the electric phasor using Eqn. 7.2:
+Let us begin by expanding the expression of the complex electric vector using Eqn. 7.2:
 
 $$ \tag{24.4}
 	I_{ada}(\bm{r}, \omega) = k^2(\omega) \int\_{V} \big( m^2(\bm{r'}, \omega) - 1 \big)
@@ -9611,7 +10275,6 @@ Bohren & Huffman, Larry Travis, Pharr & Jakob, Jeppe Frisvad (Mie scattering), R
 10. Pauli, W. [Pauli Lectures on Physics](https://www.worldcat.org/title/pauli-lectures-on-physics-vol-1-electrodynamics/oclc/439349741) (1973).
 11. Kong, J. A. [Electromagnetic Wave Theory](https://www.worldcat.org/title/electromagnetic-wave-theory/oclc/248547001) (2008).
 12. Tsang, L., & Kong, J. A. [Scattering of Electromagnetic Waves: Advanced Topics](https://doi.org/10.1002/0471224278) (2001).
-13. Fleisch, D. [Student's Guide to Vectors and Tensors](https://doi.org/10.1017/CBO9781139031035) (2011).
 14. Talalai, G. [Derivation of the Free-Space Green’s Function](https://www.researchgate.net/publication/324729639_Derivation_of_the_Free-Space_Green's_Function_and_Radiation_from_a_Hertzian_Dipole) (2016).
 15. Frezza, F., Mangini, F., & Tedeschi, N. [Introduction to Electromagnetic Scattering: Tutorial](https://doi.org/10.1364/JOSAA.35.000163) (2018).
 16. Nussenzveig, H. M. [Diffraction Effects in Semiclassical Scattering](https://www.cambridge.org/us/academic/subjects/physics/theoretical-physics-and-mathematical-physics/diffraction-effects-semiclassical-scattering?format=PB) (1992).
@@ -9629,6 +10292,7 @@ Bohren & Huffman, Larry Travis, Pharr & Jakob, Jeppe Frisvad (Mie scattering), R
 28. Wald, R. [Advanced Classical Electromagnetism](https://press.princeton.edu/books/hardcover/9780691220390/advanced-classical-electromagnetism) (2022).
 29. Long, D. A. [The Raman Effect: A Unified Treatment of the Theory of Raman Scattering by Molecules](https://doi.org/10.1002/0470845767) (2002).
 30. Cohen-Tannoudji, C., Diu, B., & Laloe, F. [Quantum Mechanics, Volume 1](https://www.wiley.com/en-us/Quantum+Mechanics%2C+Volume+1%3A+Basic+Concepts%2C+Tools%2C+and+Applications%2C+2nd+Edition-p-9783527822713) (2nd ed., 2020).
+31. Schueler, J. [Green’s Functions and Their Applications to Quantum Mechanics](https://sites.math.washington.edu/~morrow/336_11/papers/jeff.pdf) (2011).
 99. Hansen, J. E., & Travis, L. D. [Light Scattering in Planetary Atmospheres](https://doi.org/10.1007/BF00168069) (1974).
 
 <!--
