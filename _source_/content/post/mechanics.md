@@ -11,7 +11,7 @@ Kinetic energy (massive particle):
 $T = p^2/(2 m)$
 
 [Work-energy theorem](https://www.feynmanlectures.caltech.edu/I_13.html):
-$W = T_2 - T_1 = \int_1^2 \bm{F} \cdot d\bm{s}$
+$W = T_2 - T_1 = \int_1^2 \bm{F} \cdot d\bm{r}$
 
 [Conservation of energy](https://www.feynmanlectures.caltech.edu/I_13.html):
 $E = \sum_{i=1}^{n} E_i = \sum_{i=1}^{n} \left( T_i + \sum_{j=1}^{i-1} U_{ij} \right), \space dE/dt = 0$
@@ -28,4 +28,23 @@ $V_j(\bm{r_i}) = k_e q_j / r_{ij}, \space U_{ij} = q_i V_j = k_e q_i q_j / r_{ij
 [Gravitational potential](https://en.wikipedia.org/wiki/Gravitational_potential):
 $V_j(\bm{r_i}) = -G m_j / r_{ij}, \space U_{ij} = m_i V_j = -G m_i m_j / r_{ij}, \space \bm{F_{ij}} = m_i \bm{G_j} = -G m_i m_j \bm{\hat{r}\_{ij}} / r_{ij}^2$
 
-Friction (non-conservative): $F = -\mu N = -\mu m g \cos{\theta}$
+Friction (non-conservative):
+$F = -\mu N = -\mu m g \cos{\theta}$
+
+Parameterized curve:
+$\bm{r} = \bm{r}(s)$
+
+Line element:
+$d\bm{r} = (d\bm{r} / ds) ds = \bm{s} ds, \space d\bm{r} \cdot d\bm{r} = \bm{s}^2 ds^2$
+
+[Length element](https://en.wikipedia.org/wiki/Line_element):
+$ds = (d\bm{r} \cdot d\bm{r})^{1/2}$
+
+[Tangent vector](https://en.wikipedia.org/wiki/Tangent_vector):
+$\bm{s} = d\bm{r} / ds, \space \bm{s}^2 = 1$
+
+[Gradient](https://en.wikipedia.org/wiki/Gradient):
+$\nabla f = \partial f / \partial \bm{r}$
+
+[Directional derivative](https://en.wikipedia.org/wiki/Directional_derivative):
+$\partial f/\partial s = \partial f / \partial \bm{r} \cdot d\bm{r} / ds = \nabla f \cdot \bm{s}$
