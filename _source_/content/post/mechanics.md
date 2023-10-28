@@ -34,7 +34,7 @@ $F = -\mu N = -\mu m g \cos{\theta}$
 Parameterized curve:
 $\bm{r} = \bm{r}(s)$
 
-Line element:
+Infinitesimal displacement:
 $d\bm{r} = (d\bm{r} / ds) ds = \bm{s} ds, \space d\bm{r} \cdot d\bm{r} = \bm{s}^2 ds^2$
 
 [Length element](https://en.wikipedia.org/wiki/Line_element):
@@ -48,3 +48,9 @@ $\nabla f = \partial f / \partial \bm{r}$
 
 [Directional derivative](https://en.wikipedia.org/wiki/Directional_derivative):
 $\partial f/\partial s = \partial f / \partial \bm{r} \cdot d\bm{r} / ds = \nabla f \cdot \bm{s}$
+
+Area element:
+$?$
+
+Volume element:
+$?$
