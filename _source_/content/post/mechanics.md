@@ -19,6 +19,8 @@ $T = p^2/(2 m)$
 [Work-energy theorem](https://www.feynmanlectures.caltech.edu/I_13.html):
 $W = T_2 - T_1 = \int_1^2 \bm{F} \cdot d\bm{s}$
 
+Friction: $\bm{F} = -\mu \bm{\hat{v}} N = -\mu \bm{\hat{v}} m g \cos{\theta}$
+
 [Conservative force (field)](https://en.wikipedia.org/wiki/Conservative_force):
 $\nabla \times \bm{F} = 0 \implies \bm{F} = -\nabla U, \space W = U_1 - U_2$, energy is conserved
 
