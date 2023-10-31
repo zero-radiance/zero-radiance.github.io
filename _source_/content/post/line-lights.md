@@ -53,29 +53,29 @@ float I_diffuse_line(float3 C, float3 A, float hl)
 	float3 P0 = C - tc * T;  	// P(n, 0) = n * N
 	float  ns = dot(P0, P0); 	// |P0|^2
 
-	float nr = rsqrt(ns);   	// 1/|P0|
-	float n  = ns * nr;     	// |P0|
-	float Nz = P0.z * nr;   	// N.z = (P0/n).z
+    float nr = rsqrt(ns);       // 1/|P0|
+    float n  = ns * nr;         // |P0|
+    float Nz = P0.z * nr;       // N.z = P0.z/|P0|
 
-	// P(n, t) - C = P0 + t * T - P0 - tc * T
-	// = (t - tc) * T = h * A = (h * a) * T.
-	float t2 = tc + h2 * a;     // P2.t
-	float t1 = tc + h1 * a;		// P1.t
-	float s2 = ns + t2 * t2; 	// |P2|^2
-	float s1 = ns + t1 * t1;   	// |P1|^2
-	float mr = rsqrt(s1 * s2);  // 1/(|P1|*|P2|)
-	float r2 = s1 * (mr * mr); 	// 1/|P2|^2
-	float r1 = s2 * (mr * mr); 	// 1/|P1|^2
+    // P(n, t) - C = P0 + t * T - P0 - tc * T
+    // = (t - tc) * T = h * A = (h * a) * T.
+    float t2 = tc + h2 * a;     // P2.t
+    float t1 = tc + h1 * a;     // P1.t
+    float s2 = ns + t2 * t2;    // |P2|^2
+    float s1 = ns + t1 * t1;    // |P1|^2
+    float mr = rsqrt(s1 * s2);  // 1/(|P1|*|P2|)
+    float r2 = s1 * (mr * mr);  // 1/|P2|^2
+    float r1 = s2 * (mr * mr);  // 1/|P1|^2
 
-	// I = (i1 + i2 + i3) / Pi.
-	// i1 =  N.z * (P2.t / |P2|^2 - P1.t / |P1|^2).
-	// i2 = -T.z * (P2.n / |P2|^2 - P1.n / |P1|^2).
-	// i3 =  N.z * ArcCos[Dot[P1, P2]/(|P1|*|P2|)] / n.
-	float i12 = (Nz * t2 - (T.z * n)) * r2
-			  - (Nz * t1 - (T.z * n)) * r1;
+    // I = (i1 + i2 + i3) / Pi.
+    // i1 =  N.z * (P2.t / |P2|^2 - P1.t / |P1|^2).
+    // i2 = -T.z * (P2.n / |P2|^2 - P1.n / |P1|^2).
+    // i3 =  N.z * ArcCos[Dot[P1, P2] / (|P1| * |P2|)] / |P0|.
+    float i12 = (Nz * t2 - (T.z * n)) * r2
+              - (Nz * t1 - (T.z * n)) * r1;
     // Guard against numerical errors.
     float dt  = min(1, (ns + t1 * t2) * mr);
-    float i3  = Nz * acos(dt) * nr;
+    float i3  = acos(dt) * (Nz * nr); // angle * cos(θ) / r^2
 
     // Guard against numerical errors.
     return INV_PI * max(0, i12 + i3);

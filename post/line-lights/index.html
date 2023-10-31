@@ -110,30 +110,30 @@ $$</p>
 </span><span style="color:#75715e"></span>	float3 P0 <span style="color:#f92672">=</span> C <span style="color:#f92672">-</span> tc <span style="color:#f92672">*</span> T;  	<span style="color:#75715e">// P(n, 0) = n * N
 </span><span style="color:#75715e"></span>	<span style="color:#66d9ef">float</span>  ns <span style="color:#f92672">=</span> dot(P0, P0); 	<span style="color:#75715e">// |P0|^2
 </span><span style="color:#75715e"></span>
-	<span style="color:#66d9ef">float</span> nr <span style="color:#f92672">=</span> rsqrt(ns);   	<span style="color:#75715e">// 1/|P0|
-</span><span style="color:#75715e"></span>	<span style="color:#66d9ef">float</span> n  <span style="color:#f92672">=</span> ns <span style="color:#f92672">*</span> nr;     	<span style="color:#75715e">// |P0|
-</span><span style="color:#75715e"></span>	<span style="color:#66d9ef">float</span> Nz <span style="color:#f92672">=</span> P0.z <span style="color:#f92672">*</span> nr;   	<span style="color:#75715e">// N.z = (P0/n).z
+    <span style="color:#66d9ef">float</span> nr <span style="color:#f92672">=</span> rsqrt(ns);       <span style="color:#75715e">// 1/|P0|
+</span><span style="color:#75715e"></span>    <span style="color:#66d9ef">float</span> n  <span style="color:#f92672">=</span> ns <span style="color:#f92672">*</span> nr;         <span style="color:#75715e">// |P0|
+</span><span style="color:#75715e"></span>    <span style="color:#66d9ef">float</span> Nz <span style="color:#f92672">=</span> P0.z <span style="color:#f92672">*</span> nr;       <span style="color:#75715e">// N.z = P0.z/|P0|
 </span><span style="color:#75715e"></span>
-	<span style="color:#75715e">// P(n, t) - C = P0 + t * T - P0 - tc * T
-</span><span style="color:#75715e"></span>	<span style="color:#75715e">// = (t - tc) * T = h * A = (h * a) * T.
-</span><span style="color:#75715e"></span>	<span style="color:#66d9ef">float</span> t2 <span style="color:#f92672">=</span> tc <span style="color:#f92672">+</span> h2 <span style="color:#f92672">*</span> a;     <span style="color:#75715e">// P2.t
-</span><span style="color:#75715e"></span>	<span style="color:#66d9ef">float</span> t1 <span style="color:#f92672">=</span> tc <span style="color:#f92672">+</span> h1 <span style="color:#f92672">*</span> a;		<span style="color:#75715e">// P1.t
-</span><span style="color:#75715e"></span>	<span style="color:#66d9ef">float</span> s2 <span style="color:#f92672">=</span> ns <span style="color:#f92672">+</span> t2 <span style="color:#f92672">*</span> t2; 	<span style="color:#75715e">// |P2|^2
-</span><span style="color:#75715e"></span>	<span style="color:#66d9ef">float</span> s1 <span style="color:#f92672">=</span> ns <span style="color:#f92672">+</span> t1 <span style="color:#f92672">*</span> t1;   	<span style="color:#75715e">// |P1|^2
-</span><span style="color:#75715e"></span>	<span style="color:#66d9ef">float</span> mr <span style="color:#f92672">=</span> rsqrt(s1 <span style="color:#f92672">*</span> s2);  <span style="color:#75715e">// 1/(|P1|*|P2|)
-</span><span style="color:#75715e"></span>	<span style="color:#66d9ef">float</span> r2 <span style="color:#f92672">=</span> s1 <span style="color:#f92672">*</span> (mr <span style="color:#f92672">*</span> mr); 	<span style="color:#75715e">// 1/|P2|^2
-</span><span style="color:#75715e"></span>	<span style="color:#66d9ef">float</span> r1 <span style="color:#f92672">=</span> s2 <span style="color:#f92672">*</span> (mr <span style="color:#f92672">*</span> mr); 	<span style="color:#75715e">// 1/|P1|^2
+    <span style="color:#75715e">// P(n, t) - C = P0 + t * T - P0 - tc * T
+</span><span style="color:#75715e"></span>    <span style="color:#75715e">// = (t - tc) * T = h * A = (h * a) * T.
+</span><span style="color:#75715e"></span>    <span style="color:#66d9ef">float</span> t2 <span style="color:#f92672">=</span> tc <span style="color:#f92672">+</span> h2 <span style="color:#f92672">*</span> a;     <span style="color:#75715e">// P2.t
+</span><span style="color:#75715e"></span>    <span style="color:#66d9ef">float</span> t1 <span style="color:#f92672">=</span> tc <span style="color:#f92672">+</span> h1 <span style="color:#f92672">*</span> a;     <span style="color:#75715e">// P1.t
+</span><span style="color:#75715e"></span>    <span style="color:#66d9ef">float</span> s2 <span style="color:#f92672">=</span> ns <span style="color:#f92672">+</span> t2 <span style="color:#f92672">*</span> t2;    <span style="color:#75715e">// |P2|^2
+</span><span style="color:#75715e"></span>    <span style="color:#66d9ef">float</span> s1 <span style="color:#f92672">=</span> ns <span style="color:#f92672">+</span> t1 <span style="color:#f92672">*</span> t1;    <span style="color:#75715e">// |P1|^2
+</span><span style="color:#75715e"></span>    <span style="color:#66d9ef">float</span> mr <span style="color:#f92672">=</span> rsqrt(s1 <span style="color:#f92672">*</span> s2);  <span style="color:#75715e">// 1/(|P1|*|P2|)
+</span><span style="color:#75715e"></span>    <span style="color:#66d9ef">float</span> r2 <span style="color:#f92672">=</span> s1 <span style="color:#f92672">*</span> (mr <span style="color:#f92672">*</span> mr);  <span style="color:#75715e">// 1/|P2|^2
+</span><span style="color:#75715e"></span>    <span style="color:#66d9ef">float</span> r1 <span style="color:#f92672">=</span> s2 <span style="color:#f92672">*</span> (mr <span style="color:#f92672">*</span> mr);  <span style="color:#75715e">// 1/|P1|^2
 </span><span style="color:#75715e"></span>
-	<span style="color:#75715e">// I = (i1 + i2 + i3) / Pi.
-</span><span style="color:#75715e"></span>	<span style="color:#75715e">// i1 =  N.z * (P2.t / |P2|^2 - P1.t / |P1|^2).
-</span><span style="color:#75715e"></span>	<span style="color:#75715e">// i2 = -T.z * (P2.n / |P2|^2 - P1.n / |P1|^2).
-</span><span style="color:#75715e"></span>	<span style="color:#75715e">// i3 =  N.z * ArcCos[Dot[P1, P2]/(|P1|*|P2|)] / n.
-</span><span style="color:#75715e"></span>	<span style="color:#66d9ef">float</span> i12 <span style="color:#f92672">=</span> (Nz <span style="color:#f92672">*</span> t2 <span style="color:#f92672">-</span> (T.z <span style="color:#f92672">*</span> n)) <span style="color:#f92672">*</span> r2
-			  <span style="color:#f92672">-</span> (Nz <span style="color:#f92672">*</span> t1 <span style="color:#f92672">-</span> (T.z <span style="color:#f92672">*</span> n)) <span style="color:#f92672">*</span> r1;
+    <span style="color:#75715e">// I = (i1 + i2 + i3) / Pi.
+</span><span style="color:#75715e"></span>    <span style="color:#75715e">// i1 =  N.z * (P2.t / |P2|^2 - P1.t / |P1|^2).
+</span><span style="color:#75715e"></span>    <span style="color:#75715e">// i2 = -T.z * (P2.n / |P2|^2 - P1.n / |P1|^2).
+</span><span style="color:#75715e"></span>    <span style="color:#75715e">// i3 =  N.z * ArcCos[Dot[P1, P2] / (|P1| * |P2|)] / |P0|.
+</span><span style="color:#75715e"></span>    <span style="color:#66d9ef">float</span> i12 <span style="color:#f92672">=</span> (Nz <span style="color:#f92672">*</span> t2 <span style="color:#f92672">-</span> (T.z <span style="color:#f92672">*</span> n)) <span style="color:#f92672">*</span> r2
+              <span style="color:#f92672">-</span> (Nz <span style="color:#f92672">*</span> t1 <span style="color:#f92672">-</span> (T.z <span style="color:#f92672">*</span> n)) <span style="color:#f92672">*</span> r1;
     <span style="color:#75715e">// Guard against numerical errors.
 </span><span style="color:#75715e"></span>    <span style="color:#66d9ef">float</span> dt  <span style="color:#f92672">=</span> min(<span style="color:#ae81ff">1</span>, (ns <span style="color:#f92672">+</span> t1 <span style="color:#f92672">*</span> t2) <span style="color:#f92672">*</span> mr);
-    <span style="color:#66d9ef">float</span> i3  <span style="color:#f92672">=</span> Nz <span style="color:#f92672">*</span> acos(dt) <span style="color:#f92672">*</span> nr;
-
+    <span style="color:#66d9ef">float</span> i3  <span style="color:#f92672">=</span> acos(dt) <span style="color:#f92672">*</span> (Nz <span style="color:#f92672">*</span> nr); <span style="color:#75715e">// angle * cos(θ) / r^2
+</span><span style="color:#75715e"></span>
     <span style="color:#75715e">// Guard against numerical errors.
 </span><span style="color:#75715e"></span>    <span style="color:#66d9ef">return</span> INV_PI <span style="color:#f92672">*</span> max(<span style="color:#ae81ff">0</span>, i12 <span style="color:#f92672">+</span> i3);
 }
