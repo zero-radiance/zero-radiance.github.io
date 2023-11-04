@@ -5,28 +5,36 @@ draft: true
 ---
 
 [Newtons's 2nd & 3rd laws](https://en.wikipedia.org/wiki/Newton%27s_laws_of_motion):
-$\bm{F} = d\bm{p}/dt, \space \bm{F_{ij}} = -\bm{F_{ji}}$
+$\bar{F} = d\bar{p}/dt \text{ or } \bar{\tau} = d\bar{L}/dt = \bar{r} \times \bar{F} = r \bar{F}\_{tan}, \space \bar{F}\_{ij} = -\bar{F}\_{ji}$
 
-Kinetic energy (massive particle):
-$T = \bm{p}^2/(2 m)$
+Linear momentum (conserved): $\bar{p} = m \bar{v}$
+
+Angular momentum (conserved):
+$\bar{L} = \bar{r} \times \bar{p} = r \bar{p}\_{tan} = I \bar{\omega}$
+
+Moment of inertia:
+$I = m (\bar{r} \times \hat{\omega})^2$
+
+Kinetic energy:
+$T = p^2/(2 m) = p_{rad}^2/(2 m) + L^2/(2 I)$
 
 [Work-energy theorem](https://www.feynmanlectures.caltech.edu/I_13.html):
-$W = T_2 - T_1 = \int_1^2 \bm{F} \cdot d\bm{r}$
+$W = T_2 - T_1 = \int_1^2 d\bar{r} \cdot \bar{F} = \int_1^2 dr F_{rad} + \int_1^2 d\varphi \tau$
 
-[Conservation of energy](https://www.feynmanlectures.caltech.edu/I_13.html):
+[Total energy (conserved)](https://www.feynmanlectures.caltech.edu/I_13.html):
 $E = \sum E_i = \sum_i \left( T_i + \sum_{j<i} U_{ij} \right), \space dE/dt = 0$
 
 [Conservative force (field)](https://en.wikipedia.org/wiki/Conservative_force):
-$\nabla \times \bm{F} = 0 \implies \bm{F} = -\nabla U, \space W = U_1 - U_2$, energy is conserved
+$\nabla \times \bar{F} = 0 \implies \bar{F} = -\nabla U, \space W = U_1 - U_2$, energy is conserved
 
 [Scalar potential (field)](https://www.feynmanlectures.caltech.edu/I_14.html):
-$U = k V, \space \bm{F} = k \bm{G}, \space \bm{G} = -\nabla V$
+$U = k V, \space \bar{F} = k \bar{G}, \space \bar{G} = -\nabla V$
 
 [Electrostatic potential](https://en.wikipedia.org/wiki/Electric_potential):
-$V_j(\bm{r_i}) = k_e q_j r_{ij}^{-1}, \space U_{ij} = q_i V_j = k_e q_i q_j r_{ij}^{-1}, \space \bm{F_{ij}} = q_i \bm{E_j} = k_e q_i q_j \bm{\hat{r}\_{ij}} r_{ij}^{-2}$
+$V_j(\bar{r}\_i) = k_e q_j r_{ij}^{-1}, \space U_{ij} = q_i V_j = k_e q_i q_j r_{ij}^{-1}, \space \bar{F}\_{ij} = q_i \bar{E}\_j = k_e q_i q_j r_{ij}^{-2} \hat{r}\_{ij}$
 
 [Gravitational potential](https://en.wikipedia.org/wiki/Gravitational_potential):
-$V_j(\bm{r_i}) = -G m_j r_{ij}^{-1}, \space U_{ij} = m_i V_j = -G m_i m_j r_{ij}^{-1}, \space \bm{F_{ij}} = m_i \bm{G_j} = -G m_i m_j \bm{\hat{r}\_{ij}} r_{ij}^{-2}$
+$V_j(\bar{r}\_i) = -G m_j r_{ij}^{-1}, \space U_{ij} = m_i V_j = -G m_i m_j r_{ij}^{-1}, \space \bar{F}\_{ij} = m_i \bar{G}\_j = -G m_i m_j r_{ij}^{-2} \hat{r}\_{ij}$
 
 Earth's potential:
 $V(y) = g y, \space U = m V = m g y, \space F = -dU/dy = -m g$
@@ -38,25 +46,25 @@ Friction (non-conservative):
 $F = -\mu N = -\mu m g \cos{\theta}$
 
 [Parameterized curve](https://en.wikipedia.org/wiki/Taylor's_theorem):
-$\bm{r} = \bm{r}(s) = \bm{r}(a) + \bm{t}(a) (s - a) + \bm{n}(a) (s - a)^2/2 + ...$
+$\bar{r} = \bar{r}(s) = \bar{r}(a) + \bar{t}(a) (s - a) + \bar{n}(a) (s - a)^2/2 + ...$
 
 Infinitesimal displacement:
-$d\bm{r} = d\bm{r} / ds \cdot ds = \bm{t} ds, \space d\bm{r} \cdot d\bm{r} = \bm{t}^2 ds^2$
+$d\bar{r} = d\bar{r} / ds \cdot ds = \bar{t} ds, \space d\bar{r} \cdot d\bar{r} = t^2 ds^2$
 
 [Length element](https://en.wikipedia.org/wiki/Line_element):
-$ds = (d\bm{r} \cdot d\bm{r})^{1/2}$
+$ds = (d\bar{r} \cdot d\bar{r})^{1/2}$
 
 [Tangent vector](https://en.wikipedia.org/wiki/Tangent_vector):
-$\bm{t} = d\bm{r} / ds, \space \vert \bm{t} \vert = 1$
+$\bar{t} = d\bar{r} / ds, \space \vert \bar{t} \vert = 1$
 
 [Normal vector](https://en.wikipedia.org/wiki/Normal_(geometry)):
-$\bm{n} = d^2\bm{r} / ds^2 = d\bm{t} / ds, \space \vert \bm{n} \vert = 1/R, \space \bm{t} \cdot \bm{n} = 0$
+$\bar{n} = d^2\bar{r} / ds^2 = d\bar{t} / ds, \space \vert \bar{n} \vert = 1/R, \space \bar{t} \cdot \bar{n} = 0$
 
 [Gradient](https://en.wikipedia.org/wiki/Gradient):
-$\nabla f = \partial f / \partial \bm{r}$
+$\nabla f = \partial f / \partial \bar{r}$
 
 [Directional derivative](https://en.wikipedia.org/wiki/Directional_derivative):
-$\partial f/\partial s = \partial f / \partial \bm{r} \cdot d\bm{r} / ds = \nabla f \cdot \bm{t}$
+$\partial f/\partial s = \partial f / \partial \bar{r} \cdot d\bar{r} / ds = \nabla f \cdot \bar{t}$
 
 Area element:
 $?$
@@ -65,24 +73,26 @@ Volume element:
 $?$
 
 [Motion in polar coordinates](https://en.wikipedia.org/wiki/Mechanics_of_planar_particle_motion#Polar_coordinates_in_an_inertial_frame_of_reference):
-$\bm{r} = \bm{r}(t) = \[ x(t), y(t) \]^{\Tau} = r(t) \[ \cos{\varphi(t)}, \sin{\varphi(t)} \]^{\Tau} = r(t) \bm{\hat{r}}(t)$
+$\bar{r} = \bar{r}(t) = \[ x(t), y(t) \]^{\Tau} = r(t) \[ \cos{\varphi(t)}, \sin{\varphi(t)} \]^{\Tau} = r(t) \hat{r}(\varphi(t))$
 
-$\bm{\hat{r}} = \partial \bm{r} / \partial r = -d\bm{\hat{\varphi}} / d\varphi = \[ \cos{\varphi}, \sin{\varphi} \]^{\Tau}, \space \vert \bm{\hat{r}} \vert = 1$
+$\hat{r} = \partial \bar{r} / \partial r = -d\hat{\varphi} / d\varphi = \[ \cos{\varphi}, \sin{\varphi} \]^{\Tau}, \space \vert \hat{r} \vert = 1$
 
-$\bm{\hat{\varphi}} = d\bm{\hat{r}} / d\varphi = \[ -\sin{\varphi}, \cos{\varphi} \]^{\Tau}, \space \vert \bm{\hat{\varphi}} \vert = 1, \space \bm{\hat{r}} \cdot \bm{\hat{\varphi}} = 0$
+$\hat{\varphi} = d\hat{r} / d\varphi = \[ -\sin{\varphi}, \cos{\varphi} \]^{\Tau}, \space \vert \hat{\varphi} \vert = 1, \space \hat{r} \cdot \hat{\varphi} = 0$
 
-$d\bm{\hat{r}} / dt = d\bm{\hat{r}} / d\varphi \cdot d\varphi / dt = \dot{\varphi} \bm{\hat{\varphi}} = \omega \bm{\hat{\varphi}}$
+$d\bar{r} = \partial \bar{r} / \partial r \cdot dr + \partial \bar{r} / \partial \varphi \cdot d\varphi = \hat{r} dr + r \hat{\varphi} d\varphi$
 
-$d\bm{\hat{\varphi}} / dt = d\bm{\hat{\varphi}} / d\varphi \cdot d\varphi / dt = -\dot{\varphi} \bm{\hat{r}} = -\omega \bm{\hat{r}}$
+$d\hat{r} / dt = d\hat{r} / d\varphi \cdot d\varphi / dt = \dot{\varphi} \hat{\varphi} = \omega \hat{\varphi}$
 
-$\bm{v} = d\bm{r} / dt = \dot{r} \bm{\hat{r}} + r \omega \bm{\hat{\varphi}} = \bm{v_{rad}} + \bm{v_{tan}}$
+$d\hat{\varphi} / dt = d\hat{\varphi} / d\varphi \cdot d\varphi / dt = -\dot{\varphi} \hat{r} = -\omega \hat{r}$
 
-$\bm{a} = d\bm{v} / dt = \left( \ddot{r} \bm{\hat{r}} + \dot{r} \omega \bm{\hat{\varphi}} \right) + \left( \dot{r} \omega \bm{\hat{\varphi}} + r \dot{\omega} \bm{\hat{\varphi}} - r \omega^2 \bm{\hat{r}} \right) = \left( \ddot{r} - r \omega^2 \right) \bm{\hat{r}} + \left( 2 \dot{r} \omega + r \dot{\omega} \right) \bm{\hat{\varphi}} = \bm{a_{rad}} + \bm{a_{tan}}$
+$\bar{v} = d\bar{r} / dt = \dot{r} \hat{r} + r \omega \hat{\varphi} = \bar{v}\_{rad} + \bar{v}\_{tan}$
 
-$\bm{F} = m \bm{a} = \left( m \ddot{r} - m r \omega^2 \right) \bm{\hat{r}} + \left( 2 m \dot{r} \omega + m r \dot{\omega} \right) \bm{\hat{\varphi}}$
+$\bar{a} = d\bar{v} / dt = \left( \ddot{r} \hat{r} + \dot{r} \omega \hat{\varphi} \right) + \left( \dot{r} \omega \hat{\varphi} + r \dot{\omega} \hat{\varphi} - r \omega^2 \hat{r} \right) = \left( \ddot{r} - r \omega^2 \right) \hat{r} + \left( 2 \dot{r} \omega + r \dot{\omega} \right) \hat{\varphi} = \bar{a}\_{rad} + \bar{a}\_{tan}$
 
-$\bm{F} + m r \omega^2 \bm{\hat{r}} - 2 m \dot{r} \omega \bm{\hat{\varphi}} = m \bm{\tilde{a}} = m \ddot{r} \bm{\hat{r}} + m r \ddot{\varphi} \bm{\hat{\varphi}}$
+$\bar{F} = m \bar{a} = \left( m \ddot{r} - m r \omega^2 \right) \hat{r} + \left( 2 m \dot{r} \omega + m r \dot{\omega} \right) \hat{\varphi}$
 
-$\bm{F_{cen}} = m r \omega^2 \bm{\hat{r}}, \space \bm{F_{cor}} = - 2 m \dot{r} \omega \bm{\hat{\varphi}}$
+$\bar{F} + m r \omega^2 \hat{r} - 2 m \dot{r} \omega \hat{\varphi} = m \bar{\tilde{a}} = m \ddot{r} \hat{r} + m r \ddot{\varphi} \hat{\varphi}$
+
+$\bar{F}\_{cen} = m r \omega^2 \hat{r}, \space \bar{F}\_{cor} = - 2 m \dot{r} \omega \hat{\varphi}$
 
 
