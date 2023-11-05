@@ -5,15 +5,15 @@ draft: true
 ---
 
 [Newtons's 2nd & 3rd laws](https://en.wikipedia.org/wiki/Newton%27s_laws_of_motion):
-$\bar{F} = d\bar{p}/dt \text{ or } \bar{\tau} = d\bar{L}/dt = \bar{r} \times \bar{F} = r \bar{F}\_{tan}, \space \bar{F}\_{ij} = -\bar{F}\_{ji}$
+$\bar{F} = d\bar{p}/dt, \space \bar{F}\_{ij} = -\bar{F}\_{ji}$
 
-Linear momentum (conserved): $\bar{p} = m \bar{v}$
+Linear momentum (conserved): $\bar{p} = m \bar{v}, \space d\bar{p}/dt = \bar{F}$
 
 Angular momentum (conserved):
-$\bar{L} = \bar{r} \times \bar{p} = r \bar{p}\_{tan} = I \bar{\omega}$
+$\bar{L} = I \bar{\omega} = \bar{r} \times \bar{p} = r \bar{p}\_{tan}, \space d\bar{L}/dt = \bar{\tau} = \bar{r} \times \bar{F} = r \bar{F}\_{tan}$
 
 Moment of inertia:
-$I = m (\bar{r} \times \hat{\omega})^2$
+$I = m (\bar{r} \times \hat{\omega})^2 = m (r \sin{\theta})^2$
 
 Kinetic energy:
 $T = p^2/(2 m) = p_{rad}^2/(2 m) + L^2/(2 I)$
@@ -37,13 +37,13 @@ $V_j(\bar{r}\_i) = k_e q_j r_{ij}^{-1}, \space U_{ij} = q_i V_j = k_e q_i q_j r_
 $V_j(\bar{r}\_i) = -G m_j r_{ij}^{-1}, \space U_{ij} = m_i V_j = -G m_i m_j r_{ij}^{-1}, \space \bar{F}\_{ij} = m_i \bar{G}\_j = -G m_i m_j r_{ij}^{-2} \hat{r}\_{ij}$
 
 Earth's potential:
-$V(y) = g y, \space U = m V = m g y, \space F = -dU/dy = -m g$
+$V(y) = g y, \space U = m V = m g y, \space \bar{F} = -\nabla U = -m g \hat{y}$
 
 String's potential:
-$V(x) = x^2/2, \space U = k V = k x^2/2, \space F = -dU/dx = -k x$
+$V(x) = x^2/2, \space U = k V = k x^2/2, \space \bar{F} = -\nabla U = -k x \hat{x}$
 
 Friction (non-conservative):
-$F = -\mu N = -\mu m g \cos{\theta}$
+$\bar{F} = -\mu N \hat{v} = -\mu m g \cos{\theta} \hat{v}$
 
 [Parameterized curve](https://en.wikipedia.org/wiki/Taylor's_theorem):
 $\bar{r} = \bar{r}(s) = \bar{r}(a) + \bar{t}(a) (s - a) + \bar{n}(a) (s - a)^2/2 + ...$
@@ -79,7 +79,7 @@ $\hat{r} = \partial \bar{r} / \partial r = -d\hat{\varphi} / d\varphi = \[ \cos{
 
 $\hat{\varphi} = d\hat{r} / d\varphi = \[ -\sin{\varphi}, \cos{\varphi} \]^{\Tau}, \space \vert \hat{\varphi} \vert = 1, \space \hat{r} \cdot \hat{\varphi} = 0$
 
-$d\bar{r} = \partial \bar{r} / \partial r \cdot dr + \partial \bar{r} / \partial \varphi \cdot d\varphi = \hat{r} dr + r \hat{\varphi} d\varphi$
+$d\bar{r} = \partial \bar{r} / \partial r \cdot dr + \partial \bar{r} / \partial \varphi \cdot d\varphi = dr \hat{r} + r d\varphi \hat{\varphi}$
 
 $d\hat{r} / dt = d\hat{r} / d\varphi \cdot d\varphi / dt = \dot{\varphi} \hat{\varphi} = \omega \hat{\varphi}$
 
@@ -91,7 +91,7 @@ $\bar{a} = d\bar{v} / dt = \left( \ddot{r} \hat{r} + \dot{r} \omega \hat{\varphi
 
 $\bar{F} = m \bar{a} = \left( m \ddot{r} - m r \omega^2 \right) \hat{r} + \left( 2 m \dot{r} \omega + m r \dot{\omega} \right) \hat{\varphi}$
 
-$\bar{F} + m r \omega^2 \hat{r} - 2 m \dot{r} \omega \hat{\varphi} = m \bar{\tilde{a}} = m \ddot{r} \hat{r} + m r \ddot{\varphi} \hat{\varphi}$
+$\bar{F} + m r \omega^2 \hat{r} - 2 m \dot{r} \omega \hat{\varphi} = m \tilde{a} = m \ddot{r} \hat{r} + m r \ddot{\varphi} \hat{\varphi}$
 
 $\bar{F}\_{cen} = m r \omega^2 \hat{r}, \space \bar{F}\_{cor} = - 2 m \dot{r} \omega \hat{\varphi}$
 
