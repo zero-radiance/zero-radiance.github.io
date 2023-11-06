@@ -43,7 +43,7 @@ String's potential:
 $V(x) = x^2/2, \space U = k V = k x^2/2, \space \bar{F} = -\nabla U = -k x \hat{x}$
 
 Friction (non-conservative):
-$\bar{F} = -\mu N \hat{v} = -\mu m g \cos{\theta} \hat{v}$
+$\bar{F} = -\mu N \hat{v}, \space N \text{ is the sum of all forces directed towards the surface}$
 
 [Parameterized curve](https://en.wikipedia.org/wiki/Taylor's_theorem):
 $\bar{r} = \bar{r}(s) = \bar{r}(a) + \bar{t}(a) (s - a) + \bar{n}(a) (s - a)^2/2 + ...$
