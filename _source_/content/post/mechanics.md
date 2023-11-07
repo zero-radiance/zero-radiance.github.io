@@ -22,7 +22,7 @@ $T = p^2/(2 m) = p_{rad}^2/(2 m) + L^2/(2 I)$
 $W = T_2 - T_1 = \int_1^2 d\bar{r} \cdot \bar{F} = \int_1^2 dr F_{rad} + \int_1^2 d\varphi \tau$
 
 [Total energy (conserved)](https://www.feynmanlectures.caltech.edu/I_13.html):
-$E = \sum E_i = \sum_i \left( T_i + \sum_{j<i} U_{ij} \right), \space dE/dt = 0$
+$E = \sum E_i = \sum_i \left( T_i + \sum_{j<i} U_{ij} \right), \space dE = dW_{non} = d\bar{r} \cdot \bar{F}\_{non}$
 
 [Conservative force (field)](https://en.wikipedia.org/wiki/Conservative_force):
 $\nabla \times \bar{F} = 0 \implies \bar{F} = -\nabla U, \space W = U_1 - U_2, \space E_1 = E_2$
