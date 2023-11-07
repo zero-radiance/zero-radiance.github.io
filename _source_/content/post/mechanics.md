@@ -73,11 +73,11 @@ Volume element:
 $?$
 
 [Motion in polar coordinates](https://en.wikipedia.org/wiki/Mechanics_of_planar_particle_motion#Polar_coordinates_in_an_inertial_frame_of_reference):
-$\bar{r} = \bar{r}(t) = \[ x(t), y(t) \]^{\Tau} = r(t) \[ \cos{\varphi(t)}, \sin{\varphi(t)} \]^{\Tau} = r(t) \hat{r}(\varphi(t))$
+$\bar{r} = \bar{r}(t) = \[ x(t), y(t) \]^{\mathsf{T}} = r(t) \[ \cos{\varphi(t)}, \sin{\varphi(t)} \]^{\mathsf{T}} = r(t) \hat{r}(\varphi(t))$
 
-$\hat{r} = \partial \bar{r} / \partial r = -d\hat{\varphi} / d\varphi = \[ \cos{\varphi}, \sin{\varphi} \]^{\Tau}, \space \vert \hat{r} \vert = 1$
+$\hat{r} = \partial \bar{r} / \partial r = -d\hat{\varphi} / d\varphi = \[ \cos{\varphi}, \sin{\varphi} \]^{\mathsf{T}}, \space \vert \hat{r} \vert = 1$
 
-$\hat{\varphi} = d\hat{r} / d\varphi = \[ -\sin{\varphi}, \cos{\varphi} \]^{\Tau}, \space \vert \hat{\varphi} \vert = 1, \space \hat{r} \cdot \hat{\varphi} = 0$
+$\hat{\varphi} = d\hat{r} / d\varphi = \[ -\sin{\varphi}, \cos{\varphi} \]^{\mathsf{T}}, \space \vert \hat{\varphi} \vert = 1, \space \hat{r} \cdot \hat{\varphi} = 0$
 
 $d\bar{r} = \partial \bar{r} / \partial r \cdot dr + \partial \bar{r} / \partial \varphi \cdot d\varphi = dr \hat{r} + r d\varphi \hat{\varphi}$
 
@@ -95,4 +95,12 @@ $\bar{F} + m r \omega^2 \hat{r} - 2 m \dot{r} \omega \hat{\varphi} = m \tilde{a}
 
 $\bar{F}\_{cen} = m r \omega^2 \hat{r}, \space \bar{F}\_{cor} = - 2 m \dot{r} \omega \hat{\varphi}$
 
+[Levi-Civita symbol](https://en.wikipedia.org/wiki/Levi-Civita_symbol): $\varepsilon_{ijk} \varepsilon_{ipq} = \delta_{jp} \delta_{kq} - \delta_{jq} \delta_{kp}$
 
+[Inner product](https://en.wikipedia.org/wiki/Dot_product): $\bar{A} \cdot \bar{B} = \bar{A}^{\mathsf{T}} \bar{B} = \delta_{ij} A_i B_j = A_i B_i$
+
+[Outer product](https://en.wikipedia.org/wiki/Outer_product): $\left( \bar{B} \otimes \bar{C} \right)\_{jk} = \left( \bar{B} \bar{C}^{\mathsf{T}} \right)\_{jk} = B_j C_k$
+
+[Vector product](https://en.wikipedia.org/wiki/Cross_product): $\left( \bar{B} \times \bar{C} \right)\_i = \frac{1}{2} \varepsilon_{ijk} T_{jk} = \varepsilon_{ijk} B_j C_k, \space T_{jk} = \varepsilon_{ijk} \left( \bar{B} \times \bar{C} \right)\_i = B_j C_k - B_k C_j, \space \bar{\bar{\kern{-0.3ex}T}} = \bar{B} \otimes \bar{C} - \left( \bar{B} \otimes \bar{C} \right)^{\mathsf{T}} \text{ is an antisymmetric tensor}$
+
+[Triple product](https://en.wikipedia.org/wiki/Triple_product): $\mathrm{det}\negmedspace\left[ \bar{A} \space \bar{B} \space \bar{C} \right] = \bar{A} \cdot \left( \bar{B} \times \bar{C} \right) = \varepsilon_{ijk} A_i B_j C_k$
