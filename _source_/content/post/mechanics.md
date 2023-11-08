@@ -5,14 +5,14 @@ draft: true
 ---
 
 [Newtons's 2nd & 3rd laws](https://en.wikipedia.org/wiki/Newton%27s_laws_of_motion):
-$\bar{F} = d\bar{p}/dt, \space \bar{F}\_{ij} = -\bar{F}\_{ji}$
+$\bar{F_i} = \bar{F}\_{ext} + \sum_j \bar{F}\_{ij} = d\bar{p}_i/dt, \space \bar{F}\_{ij} = -\bar{F}\_{ji}$
 
-Linear momentum (conserved): $\bar{p} = m \bar{v}, \space d\bar{p}/dt = \bar{F}$
+Linear momentum: $\bar{p} = m \bar{v}, \space d\bar{p}/dt = \bar{F}$
 
-Angular momentum (conserved):
+Angular momentum:
 $\bar{L} = I \bar{\omega} = \bar{r} \times \bar{p} = r \bar{p}\_{tan}, \space d\bar{L}/dt = \bar{\tau} = \bar{r} \times \bar{F} = r \bar{F}\_{tan}$
 
-Moment of inertia:
+[Moment of inertia](https://www.feynmanlectures.caltech.edu/I_19.html):
 $I = m (\bar{r} \times \hat{\omega})^2 = m (r \sin{\theta})^2$
 
 Kinetic energy:
@@ -21,7 +21,13 @@ $T = p^2/(2 m) = p_{rad}^2/(2 m) + L^2/(2 I)$
 [Work-energy theorem](https://www.feynmanlectures.caltech.edu/I_13.html):
 $W = T_2 - T_1 = \int_1^2 d\bar{r} \cdot \bar{F} = \int_1^2 dr F_{rad} + \int_1^2 d\varphi \tau$
 
-[Total energy (conserved)](https://www.feynmanlectures.caltech.edu/I_13.html):
+[Center of mass](https://www.feynmanlectures.caltech.edu/I_19.html):
+$\bar{R} = \sum_i \bar{r}\_i m_i / M, \space M = \sum_i m_i$
+
+[Total momentum](https://www.feynmanlectures.caltech.edu/I_10.html):
+$\bar{P} = M d\bar{R}/dt, \space d\bar{P}/dt = \bar{F}\_{ext}$
+
+[Total energy](https://www.feynmanlectures.caltech.edu/I_13.html):
 $E = \sum E_i = \sum_i \left( T_i + \sum_{j<i} U_{ij} \right), \space dE = dW_{non} = d\bar{r} \cdot \bar{F}\_{non}$
 
 [Conservative force (field)](https://en.wikipedia.org/wiki/Conservative_force):
