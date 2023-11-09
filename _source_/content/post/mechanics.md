@@ -103,12 +103,12 @@ $\bar{F}\_{cen} = m r \omega^2 \hat{r}, \space \bar{F}\_{cor} = - 2 m \dot{r} \o
 
 [Levi-Civita symbol](https://en.wikipedia.org/wiki/Levi-Civita_symbol): $\varepsilon_{ijk} \varepsilon_{ipq} = \delta_{jp} \delta_{kq} - \delta_{jq} \delta_{kp}$
 
-[Inner product](https://en.wikipedia.org/wiki/Dot_product): $\bar{A} \cdot \bar{B} = \bar{A}^{\mathsf{T}} \bar{B} = \delta_{ij} A_i B_j = A_i B_i$
+[Inner product](https://en.wikipedia.org/wiki/Dot_product): $\bar{a} \cdot \bar{b} = \bar{a}^{\mathsf{T}} \bar{b} = \delta_{ij} a_i b_j = a_i b_i$
 
-[Outer product](https://en.wikipedia.org/wiki/Outer_product): $\left( \bar{B} \otimes \bar{C} \right)\_{jk} = \left( \bar{B} \bar{C}^{\mathsf{T}} \right)\_{jk} = B_j C_k$
+[Outer product](https://en.wikipedia.org/wiki/Outer_product): $\left( \bar{b} \otimes \bar{c} \right)\_{jk} = \left( \bar{b} \bar{c}^{\mathsf{T}} \right)\_{jk} = b_j c_k$
 
-[Vector product](https://en.wikipedia.org/wiki/Cross_product): $\left( \bar{B} \times \bar{C} \right)\_i = \frac{1}{2} \varepsilon_{ijk} T_{jk} = \varepsilon_{ijk} B_j C_k, \space T_{jk} = \varepsilon_{ijk} \left( \bar{B} \times \bar{C} \right)\_i = B_j C_k - B_k C_j, \space \bar{\bar{\kern{-0.3ex}T}} = \bar{B} \otimes \bar{C} - \left( \bar{B} \otimes \bar{C} \right)^{\mathsf{T}} \text{ is an antisymmetric tensor}$
+[Vector product](https://en.wikipedia.org/wiki/cross_product): $\left( \bar{b} \times \bar{c} \right)\_i = \frac{1}{2} \varepsilon_{ijk} T_{jk} = \varepsilon_{ijk} b_j c_k, \space T_{jk} = \varepsilon_{ijk} \left( \bar{b} \times \bar{c} \right)\_i = b_j c_k - b_k c_j, \space \bar{\bar{\kern{-0.3ex}T}} = \bar{b} \otimes \bar{c} - \left( \bar{b} \otimes \bar{c} \right)^{\mathsf{T}} \text{ is an antisymmetric tensor}$
 
-[Scalar triple product](https://en.wikipedia.org/wiki/Triple_product): $\bar{A} \cdot \left( \bar{B} \times \bar{C} \right) = \mathrm{det}\negmedspace\left[ \bar{A} \space \bar{B} \space \bar{C} \right] = \varepsilon_{ijk} A_i B_j C_k$
+[Scalar triple product](https://en.wikipedia.org/wiki/Triple_product): $\bar{a} \cdot \left( \bar{b} \times \bar{c} \right) = \mathrm{det}\negmedspace\left[ \bar{a} \space \bar{b} \space \bar{c} \right] = \varepsilon_{ijk} a_i b_j c_k$
 
-[Vector triple product](https://en.wikipedia.org/wiki/Triple_product): $\bar{A} \times \left( \bar{B} \times \bar{C} \right) = \bar{B} \left( \bar{A} \cdot \bar{C} \right) - \bar{C} \left( \bar{A} \cdot \bar{B} \right)$
+[Vector triple product](https://en.wikipedia.org/wiki/Triple_product): $\bar{a} \times \left( \bar{b} \times \bar{c} \right) = \bar{b} \left( \bar{a} \cdot \bar{c} \right) - \bar{c} \left( \bar{a} \cdot \bar{b} \right)$
