@@ -10,13 +10,13 @@ $\bar{F_i} = \bar{F}\_{ext} + \sum_j \bar{F}\_{ij} = d\bar{p}_i/dt, \space \bar{
 Linear momentum: $\bar{p} = m \bar{v}, \space d\bar{p}/dt = \bar{F}$
 
 Angular momentum:
-$\bar{L} = I \bar{\omega} = \bar{r} \times \bar{p} = r \bar{p}\_{tan}, \space d\bar{L}/dt = \bar{\tau} = \bar{r} \times \bar{F} = r \bar{F}\_{tan}$
+$\bar{L} = \bar{r} \times \bar{p} = \bar{r} \times \bar{p}\_{tan} = \bar{r} \times \left( m \bar{\omega} \times \bar{r} \right) = \bar{\bar{\kern{-0.3ex}I}} \bar{\omega}, \space d\bar{L}/dt = \bar{\tau} = \bar{r} \times \bar{F} = \bar{r} \times \bar{F}\_{tan}$
 
 [Moment of inertia](https://www.feynmanlectures.caltech.edu/I_19.html):
-$I = m (\bar{r} \times \hat{\omega})^2 = m (r \sin{\theta})^2$
+$I_{ij} = m (\delta_{ij} r_k r_k - r_i r_j) \text{ in general, } I = m r^2 \text{ if } \left( \bar{\omega} \cdot \bar{r} \right) = 0$
 
 Kinetic energy:
-$T = p^2/(2 m) = p_{rad}^2/(2 m) + L^2/(2 I)$
+$T = p^2/(2 m) = p_{rad}^2/(2 m) + L^2/(2 I) ???$
 
 [Work-energy theorem](https://www.feynmanlectures.caltech.edu/I_13.html):
 $W = T_2 - T_1 = \int_1^2 d\bar{r} \cdot \bar{F} = \int_1^2 dr F_{rad} + \int_1^2 d\varphi \tau$
@@ -109,4 +109,6 @@ $\bar{F}\_{cen} = m r \omega^2 \hat{r}, \space \bar{F}\_{cor} = - 2 m \dot{r} \o
 
 [Vector product](https://en.wikipedia.org/wiki/Cross_product): $\left( \bar{B} \times \bar{C} \right)\_i = \frac{1}{2} \varepsilon_{ijk} T_{jk} = \varepsilon_{ijk} B_j C_k, \space T_{jk} = \varepsilon_{ijk} \left( \bar{B} \times \bar{C} \right)\_i = B_j C_k - B_k C_j, \space \bar{\bar{\kern{-0.3ex}T}} = \bar{B} \otimes \bar{C} - \left( \bar{B} \otimes \bar{C} \right)^{\mathsf{T}} \text{ is an antisymmetric tensor}$
 
-[Triple product](https://en.wikipedia.org/wiki/Triple_product): $\mathrm{det}\negmedspace\left[ \bar{A} \space \bar{B} \space \bar{C} \right] = \bar{A} \cdot \left( \bar{B} \times \bar{C} \right) = \varepsilon_{ijk} A_i B_j C_k$
+[Scalar triple product](https://en.wikipedia.org/wiki/Triple_product): $\bar{A} \cdot \left( \bar{B} \times \bar{C} \right) = \mathrm{det}\negmedspace\left[ \bar{A} \space \bar{B} \space \bar{C} \right] = \varepsilon_{ijk} A_i B_j C_k$
+
+[Vector triple product](https://en.wikipedia.org/wiki/Triple_product): $\bar{A} \times \left( \bar{B} \times \bar{C} \right) = \bar{B} \left( \bar{A} \cdot \bar{C} \right) - \bar{C} \left( \bar{A} \cdot \bar{B} \right)$
