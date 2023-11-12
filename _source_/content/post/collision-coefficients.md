@@ -993,7 +993,7 @@ $$ \tag{6.7}
 	\end{bmatrix}
 $$
 
-is the [gradient](https://en.wikipedia.org/wiki/Gradient) operator, and
+is the [gradient operator](https://en.wikipedia.org/wiki/Gradient), and
 
 $$ \tag{6.8}
 	\mathrm{div} \big( \mathrm{grad}(\bm{E}) \big) =
@@ -1564,9 +1564,7 @@ $$ \tag{8.11}
 \end{aligned}
 $$
 
-Let us justify our choice of the gauge transformation by expressing the microscopic[^35] Maxwell equations in terms of the electromagnetic potential. Begin by substituting Eqn. 8.4 into 1.1.3-1.1.4:
-
-[^35]: The Lorenz condition for the macroscopic Maxwell equations is given in Sec. 18.
+Let us justify our choice of the gauge transformation by expressing the microscopic Maxwell equations in terms of the electromagnetic potential. Begin by substituting Eqn. 8.4 into 1.1.3-1.1.4:
 
 $$ \tag{8.12}
 \begin{aligned}
@@ -1623,7 +1621,90 @@ $$
 
 subject to the Lorenz condition given by Eqn. 8.11.
 
-<!--
+Since the first two Maxwell equations do not contain any terms related to matter, Eqn. 8.1-8.9 remain valid in the macroscopic domain. Unfortunately, the last two equations cannot be transformed without some prior knowledge about the response of the material of the applied electromagnetic field, and the latter is typically specified in the frequency domain. There, Eqn. 8.4 takes the following form:
+
+$$ \tag{9.19}
+\begin{aligned}
+	&\bm{E}(\bm{r}, \omega) = i \omega \bm{A}(\bm{r}, \omega) - \nabla \phi(\bm{r}, \omega), &
+	&\bm{B}(\bm{r}, \omega) = \nabla \times \bm{A}(\bm{r}, \omega).
+\end{aligned}
+$$
+
+Linear...
+
+$$ \tag{5.8}
+\begin{aligned}
+	&\nabla \times \big( \mu^{-1}(\bm{r}, \omega) \nabla \times \bm{A}(\bm{r}, \omega) \big) + i \omega \epsilon(\bm{r}, \omega) \big( i \omega \bm{A}(\bm{r}, \omega) - \nabla \phi(\bm{r}, \omega) \big) = \bm{J_s}(\bm{r}, \omega), & \cr
+	&\nabla \cdot  \big( \epsilon(\bm{r}, \omega) \big( i \omega \bm{A}(\bm{r}, \omega) - \nabla \phi(\bm{r}, \omega) \big) \big) = \rho_s(\bm{r}, \omega).
+\end{aligned}
+$$
+
+Mu homogeneous
+
+$$ \tag{5.8}
+\begin{aligned}
+	&\nabla \times \nabla \times \bm{A}(\bm{r}, \omega) - k^2(\bm{r}, \omega) \bigg( \bm{A}(\bm{r}, \omega) - \nabla \frac{\phi(\bm{r}, \omega)}{i \omega} \bigg) = \mu(\omega) \bm{J_s}(\bm{r}, \omega), & \cr
+	&\nabla \cdot \big( k^2(\bm{r}, \omega) \bigg( \bm{A}(\bm{r}, \omega) - \nabla \frac{\phi(\bm{r}, \omega)}{i \omega} \bigg) \big) = -i \omega \mu(\omega) \rho_s(\bm{r}, \omega).
+\end{aligned}
+$$
+
+Sub 7.4
+
+$$ \tag{7.4}
+	k(\omega)
+	= \omega \sqrt{\epsilon(\omega) \mu(\omega)}
+	= \omega \sqrt{\left( \varepsilon(\omega) + i \frac{\sigma(\omega)}{\omega} \right) \mu(\omega)}.
+$$
+
+Factor
+
+$$ \tag{5.8}
+\begin{aligned}
+	&\nabla \times \nabla \times \bm{A}(\bm{r}, \omega) - k^2(\bm{r}, \omega) \bigg( \bm{A}(\bm{r}, \omega) - \nabla \frac{\phi(\bm{r}, \omega)}{i \omega} \bigg) = \mu(\omega) \bm{J_s}(\bm{r}, \omega), & \cr
+	&k^2(\bm{r}, \omega) \nabla \cdot \bigg( \bm{A}(\bm{r}, \omega) - \nabla \frac{\phi(\bm{r}, \omega)}{i \omega} \bigg)
+	+ \big( \nabla k^2(\bm{r}, \omega) \big) \cdot \bigg( \bm{A}(\bm{r}, \omega) - \nabla \frac{\phi(\bm{r}, \omega)}{i \omega} \bigg) = -i \omega \mu(\omega) \rho_s(\bm{r}, \omega).
+\end{aligned}
+$$
+
+$$ \tag{5.8}
+\begin{aligned}
+	&\nabla \times \nabla \times \bm{A} - k^2 \bigg( \bm{A} - \nabla \frac{\phi}{i \omega} \bigg) = \mu(\omega) \bm{J_s}, & \cr
+	&k^2 \bigg( \nabla \cdot \bm{A} - \nabla^2 \frac{\phi}{i \omega} \bigg)
+	+ \big( \nabla k^2 \big) \cdot \bigg( \bm{A} - \nabla \frac{\phi}{i \omega} \bigg) = -i \omega \mu(\omega) \rho_s.
+\end{aligned}
+$$
+
+Take 6.6
+
+$$ \tag{5.8}
+\begin{aligned}
+	&\nabla (\nabla \cdot \bm{A}) - \nabla^2 \bm{A} - k^2 \bigg( \bm{A} - \nabla \frac{\phi}{i \omega} \bigg) = \mu(\omega) \bm{J_s}, & \cr
+	&k^2 \bigg( \nabla \cdot \bm{A} - \nabla^2 \frac{\phi}{i \omega} \bigg)
+	+ \big( \nabla k^2 \big) \cdot \bigg( \bm{A} - \nabla \frac{\phi}{i \omega} \bigg) = -i \omega \mu(\omega) \rho_s.
+\end{aligned}
+$$
+
+Sub
+
+$$ \tag{18.6}
+	\nabla \cdot \bm{A} = -\frac{k^2}{i \omega} \phi.
+$$
+
+$$ \tag{5.8}
+\begin{aligned}
+	&\nabla (-\frac{k^2}{i \omega} \phi) - \nabla^2 \bm{A} - k^2 \bigg( \bm{A} - \nabla \frac{\phi}{i \omega} \bigg) = \mu(\omega) \bm{J_s}, & \cr
+	&k^2 \bigg( -\frac{k^2}{i \omega} \phi - \nabla^2 \frac{\phi}{i \omega} \bigg)
+	+ \big( \nabla k^2 \big) \cdot \bigg( \bm{A} - \nabla \frac{\phi}{i \omega} \bigg) = -i \omega \mu(\omega) \rho_s.
+\end{aligned}
+$$
+
+$$ \tag{5.8}
+\begin{aligned}
+	&- \phi \nabla \frac{k^2}{i \omega} - \nabla^2 \bm{A} - k^2 \bm{A} = \mu(\omega) \bm{J_s}, & \cr
+	&k^2 \bigg( -\frac{k^2}{i \omega} \phi - \nabla^2 \frac{\phi}{i \omega} \bigg)
+	+ \big( \nabla k^2 \big) \cdot \bigg( \bm{A} - \nabla \frac{\phi}{i \omega} \bigg) = -i \omega \mu(\omega) \rho_s.
+\end{aligned}
+$$
 
 ### Green Functions
 
@@ -1811,6 +1892,8 @@ $$ \tag{9.21}
 	&\bm{B}(\bm{r}, \omega) = \nabla \times \bm{A}(\bm{r}, \omega).
 \end{aligned}
 $$
+
+<!--
 
 As we group the terms, we encounter a curious operator acting on $\bm{A}$:
 
