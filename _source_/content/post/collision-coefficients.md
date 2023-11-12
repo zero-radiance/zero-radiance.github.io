@@ -1487,7 +1487,7 @@ where $\bm{A}$ is called a *vector potential* \[[5](#references) (vol. II, ch. 1
 Next, substitute the definition of $\bm{A}$ into Eqn. 1.1.1 to obtain
 
 $$ \tag{8.2}
-	\nabla \times \Big( \bm{E}(\bm{r}, t) + \frac{\partial}{\partial t} \bm{A}(\bm{r}, t) \Big) = 0.
+	\nabla \times \left( \bm{E}(\bm{r}, t) + \frac{\partial}{\partial t} \bm{A}(\bm{r}, t) \right) = 0.
 $$
 
 As the [curl of gradient](https://en.wikipedia.org/wiki/Vector_calculus_identities#Curl_of_gradient_is_zero) is zero, Eqn. 8.2 can be used to define the *scalar potential* $\phi$:
@@ -1496,7 +1496,7 @@ $$ \tag{8.3}
 	\bm{E}(\bm{r}, t) + \frac{\partial}{\partial t} \bm{A}(\bm{r}, t) = -\nabla \phi(\bm{r}, t).
 $$
 
-Thus, both the electric and the magnetic fields are uniquely defined by the vector and the scalar potentials[^32]:
+Thus, both the electric and the magnetic fields can be unambiguously determined from the potentials[^32]:
 
 $$ \tag{8.4}
 \begin{aligned}
@@ -1527,13 +1527,44 @@ $$
 
 Since the electric and the magnetic fields are independent of the particular choice of $\chi$, they are said to be *invariant* under the [gauge transformation](https://en.wikipedia.org/wiki/Gauge_theory#Classical_electromagnetism) given by Eqn. 8.5 and 8.7.
 
-What is a good choice of $\chi$? That depends on the formulation of the particular problem. Usually, we want $\bm{A}$ to have some desirable property that simplifies a certain equation.
+What is a good choice of $\chi$? That depends on the formulation of a particular problem. We shall illustrate the technique by transforming the microscopic Maxwell equations (Eqn. 1.1.3-1.1.4). They can be expressed in terms of the electromagnetic potential by substitution of Eqn. 8.4:
+
+$$ \tag{8.8}
+\begin{aligned}
+	&\nabla \times \nabla \times \bm{A}(\bm{r}, t) + \frac{1}{c^2} \frac{\partial^2}{\partial t^2} \bm{A}(\bm{r}, t)
+	+ \nabla \frac{1}{c^2} \frac{\partial}{\partial t} \phi(\bm{r}, t)
+	= \frac{\bm{J}(\bm{r}, t)}{\mu_0^{-1}}, \cr
+	&-\frac{\partial}{\partial t} \nabla \cdot \bm{A}(\bm{r}, t) - \nabla^2 \phi(\bm{r}, t)
+	= \frac{\rho(\bm{r}, t)}{\varepsilon_0}.
+\end{aligned}
+$$
+
+Eqn. 8.8.1 can be further expanded using the curl of curl identity given by Eqn. 6.6:
+
+$$ \tag{8.9}
+	\nabla \big( \nabla \cdot \bm{A}(\bm{r}, t) \big) - \nabla^2 \bm{A}(\bm{r}, t) + \frac{1}{c^2} \frac{\partial^2}{\partial t^2} \bm{A}(\bm{r}, t)
+	+ \nabla \frac{1}{c^2} \frac{\partial}{\partial t} \phi(\bm{r}, t)
+	= \frac{\bm{J}(\bm{r}, t)}{\mu_0^{-1}}.
+$$
+
+After grouping the terms, we obtain the following linear system:
+
+$$ \tag{8.10}
+\begin{aligned}
+	&\nabla \left( \nabla \cdot \bm{A}(\bm{r}, t) + \frac{1}{c^2} \frac{\partial}{\partial t} \phi(\bm{r}, t) \right) - \nabla^2 \bm{A}(\bm{r}, t) + \frac{1}{c^2} \frac{\partial^2}{\partial t^2} \bm{A}(\bm{r}, t)
+	= \frac{\bm{J}(\bm{r}, t)}{\mu_0^{-1}}, \cr
+	&-\frac{\partial}{\partial t} \nabla \cdot \bm{A}(\bm{r}, t) - \nabla^2 \phi(\bm{r}, t)
+	= \frac{\rho(\bm{r}, t)}{\varepsilon_0}.
+\end{aligned}
+$$
+
+Both of these equations depend on the divergence of $\bm{A}$. Let us find out whether the gauge freedom can be used to eliminate this term.
 
 In general[^33], a sufficiently smooth and rapidly decaying vector field $\bm{A}$ can be [decomposed](https://en.wikipedia.org/wiki/Helmholtz_decomposition) into a sum of a divergence-free ([solenoidal](https://en.wikipedia.org/wiki/Solenoidal_vector_field)) component $\bm{A'}$ and a curl-free ([irrotational](https://en.wikipedia.org/wiki/Conservative_vector_field#Irrotational_vector_fields)) component $\bm{A''}$:
 
 [^33]: And in particular, every square-integrable vector field has the [following](https://en.wikipedia.org/wiki/Helmholtz_decomposition#Weak_formulation) orthogonal decomposition: $\bm{A} = \nabla \times \bm{V} + \nabla s$.
 
-$$ \tag{8.8}
+$$ \tag{8.11}
 \begin{aligned}
 	&\bm{A}(\bm{r}, t) = \bm{A'}(\bm{r}, t) + \bm{A''}(\bm{r}, t), &
 	&\nabla \cdot  \bm{A' }(\bm{r}, t) = 0, &
@@ -1543,36 +1574,28 @@ $$
 
 This indicates a way to manipulate the divergence of $\bm{A}$ without affecting its curl:
 
-$$ \tag{8.9}
+$$ \tag{8.12}
 \begin{aligned}
 	& \nabla \times \bm{A}(\bm{r}, t) = \nabla \times \bm{A'}(\bm{r}, t) = \bm{B}(\bm{r}, t), \cr
 	& \nabla \cdot \bm{A}(\bm{r}, t) = \nabla \cdot \bm{A''}(\bm{r}, t) = -\nabla^2 \chi(\bm{r}, t).
 \end{aligned}
 $$
 
+---
+
+In particular, Eqn. 8.10.1 can be dramatically simplified by
+
 We shall relate $\chi$ to $\phi$ in a rather non-obvious (but, as we shall soon see, convenient) manner:
 
-$$ \tag{8.10}
+$$ \tag{8.13}
 	\nabla^2 \chi(\bm{r}, t) = \frac{1}{c^2} \frac{\partial}{\partial t} \phi(\bm{r}, t).
 $$
 
 The combination of Eqn. 8.9.2 and 8.10 yields the [Lorenz condition](https://en.wikipedia.org/wiki/Lorenz_gauge_condition)
 
-$$ \tag{8.11}
+$$ \tag{8.14}
 \begin{aligned}
 	\nabla \cdot \bm{A}(\bm{r}, t) = -\frac{1}{c^2} \frac{\partial}{\partial t} \phi(\bm{r}, t).
-\end{aligned}
-$$
-
-Let us justify our choice of the gauge transformation by expressing the microscopic Maxwell equations in terms of the electromagnetic potential. Begin by substituting Eqn. 8.4 into 1.1.3-1.1.4:
-
-$$ \tag{8.12}
-\begin{aligned}
-	&\nabla \times \nabla \times \bm{A}(\bm{r}, t) + \frac{1}{c^2} \frac{\partial^2}{\partial t^2} \bm{A}(\bm{r}, t)
-	+ \nabla \frac{1}{c^2} \frac{\partial}{\partial t} \phi(\bm{r}, t)
-	= \frac{\bm{J}(\bm{r}, t)}{\mu_0^{-1}}, \cr
-	&-\frac{\partial}{\partial t} \nabla \cdot \bm{A}(\bm{r}, t) - \nabla^2 \phi(\bm{r}, t)
-	= \frac{\rho(\bm{r}, t)}{\varepsilon_0}.
 \end{aligned}
 $$
 
