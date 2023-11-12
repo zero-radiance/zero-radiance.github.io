@@ -13,13 +13,13 @@ Angular momentum:
 $\bar{L} = \bar{r} \times \bar{p} = \bar{r} \times \bar{p}\_{tan} = \bar{r} \times \left( m \bar{\omega} \times \bar{r} \right) = \bar{\bar{\kern{-0.3ex}I}} \bar{\omega}, \space d\bar{L}/dt = \bar{\tau} = \bar{r} \times \bar{F} = \bar{r} \times \bar{F}\_{tan}$
 
 [Moment of inertia](https://www.feynmanlectures.caltech.edu/I_19.html):
-$I_{ij} = m (\delta_{ij} r_k r_k - r_i r_j) \text{ in general, } I = m r^2 \text{ if } \left( \bar{\omega} \cdot \bar{r} \right) = 0$
+$I_{ij} = m (\delta_{ij} r_k r_k - r_i r_j) \text{ in general, or } I = m r^2 \text{ iff } \bar{\omega} \cdot \bar{L} = \bar{\omega} \cdot \bar{r} = 0$
 
 Kinetic energy:
-$T = p^2/(2 m) = p_{rad}^2/(2 m) + L^2/(2 I) ???$
+$T = p^2/(2 m) = p_{rad}^2/(2 m) + L^2/(2 m r^2)$
 
 [Work-energy theorem](https://www.feynmanlectures.caltech.edu/I_13.html):
-$W = T_2 - T_1 = \int_1^2 d\bar{r} \cdot \bar{F} = \int_1^2 dr F_{rad} + \int_1^2 d\varphi \tau$
+$W = T_1 - T_0 = \int_0^1 d\bar{r} \cdot \bar{F} = \int_0^1 dr F_{rad} + \int_0^1 d\varphi \tau$
 
 [Center of mass](https://www.feynmanlectures.caltech.edu/I_19.html):
 $\bar{R} = \sum_i \bar{r}\_i m_i / M, \space M = \sum_i m_i$
@@ -28,10 +28,10 @@ $\bar{R} = \sum_i \bar{r}\_i m_i / M, \space M = \sum_i m_i$
 $\bar{P} = M d\bar{R}/dt, \space d\bar{P}/dt = \bar{F}\_{ext}$
 
 [Total energy](https://www.feynmanlectures.caltech.edu/I_13.html):
-$E = \sum E_i = \sum_i \left( T_i + \sum_{j<i} U_{ij} \right), \space dE = dW_{non} = d\bar{r} \cdot \bar{F}\_{non}$
+$E = \sum E_i = \sum_i \left( T_i + \sum_{j<i} U_{ij} \right), \space dE = dT = dW_{non} = d\bar{r} \cdot \bar{F}\_{non}$
 
 [Conservative force (field)](https://en.wikipedia.org/wiki/Conservative_force):
-$\nabla \times \bar{F} = 0 \implies \bar{F} = -\nabla U, \space W = U_1 - U_2, \space E_1 = E_2$
+$\nabla \times \bar{F} = 0 \implies \bar{F} = -\nabla U, \space W = U_0 - U_1, \space E_0 = E_1$
 
 [Scalar potential (field)](https://www.feynmanlectures.caltech.edu/I_14.html):
 $U = k V, \space \bar{F} = k \bar{G}, \space \bar{G} = -\nabla V$
@@ -91,11 +91,11 @@ $d\hat{r} / dt = d\hat{r} / d\varphi \cdot d\varphi / dt = \dot{\varphi} \hat{\v
 
 $d\hat{\varphi} / dt = d\hat{\varphi} / d\varphi \cdot d\varphi / dt = -\dot{\varphi} \hat{r} = -\omega \hat{r}$
 
-$\bar{v} = d\bar{r} / dt = \dot{r} \hat{r} + r \omega \hat{\varphi} = \bar{v}\_{rad} + \bar{v}\_{tan}, \space \bar{L} = m r^2 \omega \hat{\varphi}$
+$\bar{v} = d\bar{r} / dt = \dot{r} \hat{r} + r \omega \hat{\varphi} = \bar{v}\_{rad} + \bar{v}\_{tan}, \space \bar{L} = m r^2 \omega \left( \hat{r} \times \hat{\varphi} \right)$
 
 $\bar{a} = d\bar{v} / dt = \left( \ddot{r} - r \omega^2 \right) \hat{r} + \left( 2 \dot{r} \omega + r \dot{\omega} \right) \hat{\varphi} = \bar{a}\_{rad} + \bar{a}\_{tan}$
 
-$\bar{F} = m \bar{a} = \left( m \ddot{r} - m r \omega^2 \right) \hat{r} + \left( 2 m \dot{r} \omega + m r \dot{\omega} \right) \hat{\varphi} = \bar{F}\_{rad} + \bar{F}\_{tan}, \space \bar{\tau} = \left( 2 m r \dot{r} \omega + m r^2 \dot{\omega} \right) \hat{\varphi}$
+$\bar{F} = m \bar{a} = \left( m \ddot{r} - m r \omega^2 \right) \hat{r} + \left( 2 m \dot{r} \omega + m r \dot{\omega} \right) \hat{\varphi} = \bar{F}\_{rad} + \bar{F}\_{tan}, \space \bar{\tau} = \left( 2 m r \dot{r} \omega + m r^2 \dot{\omega} \right) \left( \hat{r} \times \hat{\varphi} \right)$
 
 $\bar{F} + m r \omega^2 \hat{r} - 2 m \dot{r} \omega \hat{\varphi} = m \tilde{a} = m \ddot{r} \hat{r} + m r \ddot{\varphi} \hat{\varphi}$
 
