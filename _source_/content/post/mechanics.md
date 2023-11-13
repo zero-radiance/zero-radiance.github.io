@@ -13,7 +13,7 @@ Angular momentum:
 $\bar{L} = \bar{r} \times \bar{p} = \bar{r} \times \bar{p}\_{tan} = \bar{r} \times \left( m \bar{\omega} \times \bar{r} \right) = \bar{\bar{\kern{-0.3ex}I}} \bar{\omega}, \space d\bar{L}/dt = \bar{\tau} = \bar{r} \times \bar{F} = \bar{r} \times \bar{F}\_{tan}$
 
 [Moment of inertia](https://www.feynmanlectures.caltech.edu/I_19.html):
-$I_{ij} = m (\delta_{ij} r_k r_k - r_i r_j) \text{ in general, or } I = m r^2 \text{ iff } \bar{\omega} \cdot \bar{L} = \bar{\omega} \cdot \bar{r} = 0$
+$I_{ij} = m (r_k r_k \delta_{ij} - r_i r_j) \text{ in general, or } I = m r^2 \text{ iff } \bar{\omega} \cdot \bar{L} = \bar{\omega} \cdot \bar{r} = 0$
 
 Kinetic energy:
 $T = p^2/(2 m) = p_{rad}^2/(2 m) + L^2/(2 m r^2)$
