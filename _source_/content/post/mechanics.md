@@ -30,8 +30,11 @@ $W = T_1 - T_0 = \int_0^1 d\bar{r} \cdot \bar{F} = \int_0^1 dr F_{rad} + \int_0^
 [Center of mass](https://www.feynmanlectures.caltech.edu/I_19.html):
 $\bar{R} = \sum_i \bar{r}\_i m_i / M, \space M = \sum_i m_i$
 
-[Total momentum](https://www.feynmanlectures.caltech.edu/I_10.html):
+[Total linear momentum](https://www.feynmanlectures.caltech.edu/I_10.html):
 $\bar{P} = M d\bar{R}/dt, \space d\bar{P}/dt = \bar{F}\_{ext}$
+
+[Total angular momentum](https://www.feynmanlectures.caltech.edu/I_20.html):
+$\bar{L} = \sum_i \bar{r}\_i \times \bar{p}\_i, \space d\bar{L}/dt = \bar{\tau}\_{ext}$
 
 [Total energy](https://www.feynmanlectures.caltech.edu/I_13.html):
 $E = \sum E_i = \sum_i \left( T_i + \sum_{j<i} U_{ij} \right), \space dE = dT = dW_{non} = d\bar{r} \cdot \bar{F}\_{non}$
