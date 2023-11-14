@@ -13,10 +13,16 @@ Angular momentum:
 $\bar{L} = \bar{r} \times \bar{p} = \bar{r} \times \bar{p}\_{tan} = \bar{r} \times \left( m \bar{\omega} \times \bar{r} \right) = \bar{\bar{\kern{-0.3ex}I}} \bar{\omega}, \space d\bar{L}/dt = \bar{\tau} = \bar{r} \times \bar{F} = \bar{r} \times \bar{F}\_{tan}$
 
 [Moment of inertia](https://www.feynmanlectures.caltech.edu/I_19.html):
-$I_{ij} = m (r_k r_k \delta_{ij} - r_i r_j) \text{ in general, or } I = m r^2 \text{ iff } \bar{\omega} \cdot \bar{L} = \bar{\omega} \cdot \bar{r} = 0$
+$\bar{\bar{\kern{-0.3ex}I}} = m \left( (\bar{r} \cdot \bar{r}) \bar{\bar{1}} - \bar{r} \otimes \bar{r} \right) \text{ in general, or } I = m r^2 \text{ in a plane}$
 
-Kinetic energy:
+[Parallel axis theorem](https://en.wikipedia.org/wiki/Parallel_axis_theorem):
+$\bar{\bar{\kern{-0.3ex}I}} = \bar{\bar{\kern{-0.3ex}I}}\_{com} + M \left( (\bar{d} \cdot \bar{d}) \bar{\bar{1}} - \bar{d} \otimes \bar{d} \right) \text{ in general, or } I = I_{com} + M d^2 \text{ in a plane}$
+
+Kinetic energy of a particle:
 $T = p^2/(2 m) = p_{rad}^2/(2 m) + L^2/(2 m r^2)$
+
+Kinetic energy of a rigid body:
+$T = P^2/(2 M) + \left(\bar{L}\_{com} \cdot \bar{\omega} \right)/2$
 
 [Work-energy theorem](https://www.feynmanlectures.caltech.edu/I_13.html):
 $W = T_1 - T_0 = \int_0^1 d\bar{r} \cdot \bar{F} = \int_0^1 dr F_{rad} + \int_0^1 d\varphi \tau$
