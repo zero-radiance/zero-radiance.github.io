@@ -22,7 +22,7 @@ Kinetic energy of a particle:
 $T = p^2/(2 m) = p_{rad}^2/(2 m) + L^2/(2 m r^2)$
 
 [Kinetic energy of a rigid body](https://www.feynmanlectures.caltech.edu/I_20.html):
-$T = P^2/(2 M) + \left(\bar{L}\_{com} \cdot \bar{\omega} \right)/2$
+$T = T_{rad} + T_{orb} + T_{com} = P_{rad}^2/(2 M) + L_{orb}^2/(2 M R^2) + \left(\bar{L}\_{com} \cdot \bar{\omega} \right)/2$
 
 [Work-energy theorem](https://www.feynmanlectures.caltech.edu/I_13.html):
 $W = T_1 - T_0 = \int_0^1 d\bar{r} \cdot \bar{F} = \int_0^1 dr F_{rad} + \int_0^1 d\varphi \tau$
