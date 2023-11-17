@@ -21,7 +21,7 @@ $\bar{\bar{\kern{-0.3ex}I}} = \bar{\bar{\kern{-0.3ex}I}}\_{com} + M \left( (\bar
 Kinetic energy of a particle:
 $T = p^2/(2 m) = p_{rad}^2/(2 m) + L^2/(2 m r^2)$
 
-Kinetic energy of a rigid body:
+[Kinetic energy of a rigid body](https://www.feynmanlectures.caltech.edu/I_20.html):
 $T = P^2/(2 M) + \left(\bar{L}\_{com} \cdot \bar{\omega} \right)/2$
 
 [Work-energy theorem](https://www.feynmanlectures.caltech.edu/I_13.html):
@@ -30,11 +30,11 @@ $W = T_1 - T_0 = \int_0^1 d\bar{r} \cdot \bar{F} = \int_0^1 dr F_{rad} + \int_0^
 [Center of mass](https://www.feynmanlectures.caltech.edu/I_19.html):
 $\bar{R} = \sum_i \bar{r}\_i m_i / M, \space M = \sum_i m_i$
 
-[Total linear momentum](https://www.feynmanlectures.caltech.edu/I_10.html):
-$\bar{P} = M d\bar{R}/dt, \space d\bar{P}/dt = \bar{F}\_{ext}$
+Total linear momentum:
+$\bar{P} = M \bar{V} = M d\bar{R}/dt, \space d\bar{P}/dt = \bar{F}\_{ext}$
 
-[Total angular momentum](https://www.feynmanlectures.caltech.edu/I_20.html):
-$\bar{L} = \sum_i \bar{r}\_i \times \bar{p}\_i, \space d\bar{L}/dt = \bar{\tau}\_{ext}$
+[Total angular momentum](https://en.wikipedia.org/wiki/Center_of_mass#Linear_and_angular_momentum):
+$\bar{L} = \bar{L}\_{com} + \bar{L}\_{orb} = \sum_i \left( \bar{d}\_i + \bar{R} \right) \times \bar{p}\_i = \sum_i \bar{d}\_i \times \bar{p}\_i + \bar{R} \times \bar{P}, \space d\bar{L}/dt = \bar{\tau}\_{ext}$
 
 [Total energy](https://www.feynmanlectures.caltech.edu/I_13.html):
 $E = \sum E_i = \sum_i \left( T_i + \sum_{j<i} U_{ij} \right), \space dE = dT = dW_{non} = d\bar{r} \cdot \bar{F}\_{non}$
