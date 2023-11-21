@@ -34,7 +34,7 @@ Total linear momentum:
 $\bar{P} = M \bar{V} = M d\bar{R}/dt, \space d\bar{P}/dt = \bar{F}\_{ext}$
 
 [Total angular momentum](https://en.wikipedia.org/wiki/Center_of_mass#Linear_and_angular_momentum):
-$\bar{L} = \bar{L}\_{com} + \bar{L}\_{orb} = \sum_i \left( \bar{d}\_i + \bar{R} \right) \times \bar{p}\_i = \sum_i \bar{d}\_i \times \bar{p}\_i + \bar{R} \times \bar{P}, \space d\bar{L}/dt = \bar{\tau}\_{ext}$
+$\bar{L} = \bar{L}\_{orb} + \bar{L}\_{com} = \sum_i \left( \bar{R} + \bar{d}\_i \right) \times \bar{p}\_i = \bar{R} \times \bar{P} + \sum_i \bar{d}\_i \times \bar{p}\_i, \space d\bar{L}/dt = \bar{\tau}\_{ext}$
 
 [Total energy](https://www.feynmanlectures.caltech.edu/I_13.html):
 $E = \sum E_i = \sum_i \left( T_i + \sum_{j<i} U_{ij} \right), \space dE = dT = dW_{non} = d\bar{r} \cdot \bar{F}\_{non}$
