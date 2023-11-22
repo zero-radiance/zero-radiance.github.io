@@ -34,7 +34,7 @@ $\bar{P} = \sum_i m_i \bar{v}\_i = M \bar{V} = M d\bar{R}/dt, \space d\bar{P}/dt
 $\bar{L} = \bar{L}\_{orb} + \bar{L}\_{spn} = \sum_i \left( \bar{R} + \bar{d}\_i \right) \times \bar{p}\_i = \bar{R} \times \bar{P} + \sum_i \bar{d}\_i \times \bar{p}\_i, \space d\bar{L}/dt = \bar{\tau}\_{ext}$
 
 [Total energy](https://www.feynmanlectures.caltech.edu/I_13.html):
-$E = \sum E_i = \sum_i \left( T_i + \sum_{j<i} U_{ij} \right), \space dE = dT = dW_{non} = d\bar{r} \cdot \bar{F}\_{non}$
+$E = \sum E_i = \sum_i \left( T_i + \sum_{j<i} U_{ij} \right), \space dE = dW_{non} = d\bar{r} \cdot \bar{F}\_{non}$
 
 [Conservative force (field)](https://en.wikipedia.org/wiki/Conservative_force):
 $\nabla \times \bar{F} = 0 \implies \bar{F} = -\nabla U, \space W = U_0 - U_1, \space E_0 = E_1$
