@@ -4,8 +4,11 @@ date: 2023-10-27T16:15:35-07:00
 draft: true
 ---
 
-[Newtons's 2nd & 3rd laws](https://en.wikipedia.org/wiki/Newton%27s_laws_of_motion):
+Newtons's laws of motion:
 $\bar{F_i} = \bar{F}\_{ext} + \sum_j \bar{F}\_{ij} = d\bar{p}_i/dt, \space \bar{F}\_{ij} = -\bar{F}\_{ji}$
+
+Newtons's laws of motion:
+$\bar{\tau_i} = \bar{\tau}\_{ext} + \sum_j \bar{\tau}\_{ij} = d\bar{L}_i/dt, \space \bar{\tau}\_{ij} = -\bar{\tau}\_{ji}$
 
 Linear momentum: $\bar{p} = m \bar{v}, \space d\bar{p}/dt = \bar{F}$
 
@@ -18,7 +21,7 @@ $\bar{\bar{\kern{-0.3ex}I}} = m \left( (\bar{r} \cdot \bar{r}) \bar{\bar{1}} - \
 [Parallel axis theorem](https://en.wikipedia.org/wiki/Parallel_axis_theorem):
 $\bar{\bar{\kern{-0.3ex}I}} = \bar{\bar{\kern{-0.3ex}I}}\_{com} + M \left( (\bar{d} \cdot \bar{d}) \bar{\bar{1}} - \bar{d} \otimes \bar{d} \right) \text{ in general, or } I = I_{com} + M d^2 \text{ in a plane}$
 
-Kinetic energy of a particle:
+Kinetic energy:
 $T = p^2/(2 m) = p_{rad}^2/(2 m) + L^2/(2 m r^2)$
 
 [Work-energy theorem](https://www.feynmanlectures.caltech.edu/I_13.html):
@@ -30,7 +33,7 @@ $\bar{R} = \sum_i m_i \bar{r}\_i / M, \space M = \sum_i m_i$
 Total linear momentum:
 $\bar{P} = \sum_i m_i \bar{v}\_i = M d\bar{R}/dt = M \bar{V}, \space d\bar{P}/dt = \bar{F}\_{ext}$
 
-[Total angular momentum](https://en.wikipedia.org/wiki/Center_of_mass#Linear_and_angular_momentum):
+Total angular momentum:
 $\bar{L} = \bar{L}\_{orb} + \bar{L}\_{spn} = \sum_i \left( \bar{R} + \bar{d}\_i \right) \times \bar{p}\_i = \bar{R} \times \bar{P} + \sum_i \bar{d}\_i \times \bar{p}\_i, \space d\bar{L}/dt = \bar{\tau}\_{ext}$
 
 [Precession of a gyroscope](https://openstax.org/books/university-physics-volume-1/pages/11-4-precession-of-a-gyroscope):
