@@ -4,10 +4,10 @@ date: 2023-10-27T16:15:35-07:00
 draft: true
 ---
 
-Newtons's laws of motion:
+Newtons's laws of motion (linear):
 $\bar{F_i} = \bar{F}\_{i \thinspace ext} + \sum_j \bar{F}\_{ij} = d\bar{p}_i/dt, \space \bar{F}\_{ij} = -\bar{F}\_{ji}$
 
-Newtons's laws of motion:
+Newtons's laws of motion (angular):
 $\bar{\tau_i} = \bar{\tau}\_{i \thinspace ext} + \sum_j \bar{\tau}\_{ij} = d\bar{L}_i/dt, \space \bar{\tau}\_{ij} = -\bar{\tau}\_{ji}$
 
 Linear momentum: $\bar{p} = m \bar{v}, \space d\bar{p}/dt = \bar{F}$
@@ -36,11 +36,13 @@ $\bar{P} = \sum_i m_i \bar{v}\_i = M d\bar{R}/dt = M \bar{V}, \space d\bar{P}/dt
 Total angular momentum:
 $\bar{L} = \bar{L}\_{orb} + \bar{L}\_{spn} = \sum_i \left( \bar{R} + \bar{d}\_i \right) \times \bar{p}\_i = \bar{R} \times \bar{P} + \sum_i \bar{d}\_i \times \bar{p}\_i, \space d\bar{L}/dt = \bar{\tau}\_{ext}$
 
+[Precession of a gyroscope](https://openstax.org/books/university-physics-volume-1/pages/11-4-precession-of-a-gyroscope):
+$\omega_{pre} = M g l / L_{spn} = M g l / (I \omega_{spn}) = 2 g l / (R^2 \omega_{spn})$
+
 [Total force](https://en.wikipedia.org/wiki/Rigid_body_dynamics#Newton's_second_law_in_three_dimensions):
 $\bar{F}\_{ext} = \sum_i \bar{F}\_{i \thinspace ext}, \space \bar{\tau}\_{ext} = \sum_i \bar{\tau}\_{i \thinspace ext} = \bar{\tau}\_{orb} + \bar{\tau}\_{spn} = \sum_i \left( \bar{R} + \bar{d}\_i \right) \times \bar{F}\_{i \thinspace ext} = \bar{R} \times \bar{F}\_{ext} + \sum_i \bar{d}\_i \\times \bar{F}\_{i \thinspace ext}$
 
-[Precession of a gyroscope](https://openstax.org/books/university-physics-volume-1/pages/11-4-precession-of-a-gyroscope):
-$\omega_{pre} = M g l / L_{spn} = M g l / (I \omega_{spn}) = 2 g l / (R^2 \omega_{spn})$
+[Total kinetic energy](https://en.wikipedia.org/wiki/Moment_of_inertia#Motion_in_space_of_a_rigid_body,_and_the_inertia_matrix):
 
 [Total energy](https://www.feynmanlectures.caltech.edu/I_13.html):
 $E = \sum E_i = \sum_i \left( T_i + \sum_{j<i} U_{ij} \right), \space dE = dW_{non} = d\bar{r} \cdot \bar{F}\_{non}$
