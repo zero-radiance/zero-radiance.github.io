@@ -34,16 +34,16 @@ Total linear momentum:
 $\bar{P} = \sum_i m_i \bar{v}\_i = M d\bar{R}\_{com}/dt, \space d\bar{P}/dt = \bar{F}\_{ext}$
 
 Total angular momentum:
-$\bar{L} = \bar{L}\_{orb} + \bar{L}\_{spn} = \sum_i \left( \bar{R} + \bar{d}\_i \right) \times \bar{p}\_i = \bar{R} \times \bar{P} + \sum_i \bar{d}\_i \times \bar{p}\_i, \space d\bar{L}/dt = \bar{\tau}\_{ext}$
+$\bar{L} = \bar{L}\_{pre} + \bar{L}\_{spn} = \sum_i \left( \bar{R} + \bar{d}\_i \right) \times \bar{p}\_i = \bar{R} \times \bar{P} + \sum_i \bar{d}\_i \times \bar{p}\_i, \space d\bar{L}/dt = \bar{\tau}\_{ext}$
 
-[Precession of a gyroscope](https://openstax.org/books/university-physics-volume-1/pages/11-4-precession-of-a-gyroscope):
-$\omega_{pre} = M g l / L_{spn} = M g l / (I \omega_{spn}) = 2 g l / (R^2 \omega_{spn})$
+[Precession of a spinning top](https://openstax.org/books/university-physics-volume-1/pages/11-4-precession-of-a-gyroscope):
+$\omega_{pre} = m g l / L_{spn} = m g l / (I \omega_{spn}) = 2 g l / (r^2 \omega_{spn})$
 
 [Total force](https://en.wikipedia.org/wiki/Rigid_body_dynamics#Newton's_second_law_in_three_dimensions):
 $\bar{F} = \bar{F}\_{ext} = \sum_i \bar{F}\_{i \thinspace ext}$
 
 [Total torque](https://en.wikipedia.org/wiki/Rigid_body_dynamics#Newton's_second_law_in_three_dimensions):
-$\bar{\tau} = \bar{\tau}\_{ext} = \sum_i \bar{\tau}\_{i \thinspace ext} = \bar{\tau}\_{orb} + \bar{\tau}\_{spn} = \sum_i \left( \bar{R} + \bar{d}\_i \right) \times \bar{F}\_{i \thinspace ext} = \bar{R} \times \bar{F}\_{ext} + \sum_i \bar{d}\_i \\times \bar{F}\_{i \thinspace ext}$
+$\bar{\tau} = \bar{\tau}\_{ext} = \sum_i \bar{\tau}\_{i \thinspace ext} = \bar{\tau}\_{pre} + \bar{\tau}\_{spn} = \sum_i \left( \bar{R} + \bar{d}\_i \right) \times \bar{F}\_{i \thinspace ext} = \bar{R} \times \bar{F}\_{ext} + \sum_i \bar{d}\_i \\times \bar{F}\_{i \thinspace ext}$
 
 [Total kinetic energy](https://en.wikipedia.org/wiki/Moment_of_inertia#Motion_in_space_of_a_rigid_body,_and_the_inertia_matrix):
 
