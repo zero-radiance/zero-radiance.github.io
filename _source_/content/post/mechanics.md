@@ -28,10 +28,10 @@ $T = p^2/(2 m) = p_{rad}^2/(2 m) + L^2/(2 m r^2)$
 $W = T_1 - T_0 = \int_0^1 d\bar{r} \cdot \bar{F} = \int_0^1 dr F_{rad} + \int_0^1 d\varphi \tau$
 
 [Center of mass](https://www.feynmanlectures.caltech.edu/I_19.html):
-$\bar{R} = \sum_i m_i \bar{r}\_i / M, \space M = \sum_i m_i$
+$\bar{R}\_{com} = \sum_i m_i \bar{r}\_i / M, \space M = \sum_i m_i$
 
 Total linear momentum:
-$\bar{P} = \sum_i m_i \bar{v}\_i = M d\bar{R}/dt = M \bar{V}, \space d\bar{P}/dt = \bar{F}\_{ext}$
+$\bar{P} = \sum_i m_i \bar{v}\_i = M d\bar{R}\_{com}/dt, \space d\bar{P}/dt = \bar{F}\_{ext}$
 
 Total angular momentum:
 $\bar{L} = \bar{L}\_{orb} + \bar{L}\_{spn} = \sum_i \left( \bar{R} + \bar{d}\_i \right) \times \bar{p}\_i = \bar{R} \times \bar{P} + \sum_i \bar{d}\_i \times \bar{p}\_i, \space d\bar{L}/dt = \bar{\tau}\_{ext}$
@@ -40,7 +40,10 @@ $\bar{L} = \bar{L}\_{orb} + \bar{L}\_{spn} = \sum_i \left( \bar{R} + \bar{d}\_i 
 $\omega_{pre} = M g l / L_{spn} = M g l / (I \omega_{spn}) = 2 g l / (R^2 \omega_{spn})$
 
 [Total force](https://en.wikipedia.org/wiki/Rigid_body_dynamics#Newton's_second_law_in_three_dimensions):
-$\bar{F}\_{ext} = \sum_i \bar{F}\_{i \thinspace ext}, \space \bar{\tau}\_{ext} = \sum_i \bar{\tau}\_{i \thinspace ext} = \bar{\tau}\_{orb} + \bar{\tau}\_{spn} = \sum_i \left( \bar{R} + \bar{d}\_i \right) \times \bar{F}\_{i \thinspace ext} = \bar{R} \times \bar{F}\_{ext} + \sum_i \bar{d}\_i \\times \bar{F}\_{i \thinspace ext}$
+$\bar{F} = \bar{F}\_{ext} = \sum_i \bar{F}\_{i \thinspace ext}$
+
+[Total torque](https://en.wikipedia.org/wiki/Rigid_body_dynamics#Newton's_second_law_in_three_dimensions):
+$\bar{\tau} = \bar{\tau}\_{ext} = \sum_i \bar{\tau}\_{i \thinspace ext} = \bar{\tau}\_{orb} + \bar{\tau}\_{spn} = \sum_i \left( \bar{R} + \bar{d}\_i \right) \times \bar{F}\_{i \thinspace ext} = \bar{R} \times \bar{F}\_{ext} + \sum_i \bar{d}\_i \\times \bar{F}\_{i \thinspace ext}$
 
 [Total kinetic energy](https://en.wikipedia.org/wiki/Moment_of_inertia#Motion_in_space_of_a_rigid_body,_and_the_inertia_matrix):
 
