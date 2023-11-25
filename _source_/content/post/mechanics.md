@@ -10,16 +10,18 @@ $\bar{F_i} = \bar{F}\_{i \thinspace ext} + \sum_j \bar{F}\_{ij} = d\bar{p}_i/dt,
 Newtons's laws of motion (angular):
 $\bar{\tau_i} = \bar{\tau}\_{i \thinspace ext} + \sum_j \bar{\tau}\_{ij} = d\bar{L}_i/dt, \space \bar{\tau}\_{ij} = -\bar{\tau}\_{ji}$
 
-Linear momentum: $\bar{p} = m \bar{v}, \space d\bar{p}/dt = \bar{F}$
+*Without subscripts, the tensors are "absolute", e.i. relative to the origin. $\bar{d}$ is the "difference" vector.*
+
+Linear momentum: $\bar{p} = m \bar{v} = m (\bar{v}\_{rad} + \bar{v}\_{tan}) = m (\bar{v}\_{rad} + \bar{\omega} \times \bar{r}), \space d\bar{p}/dt = \bar{F}$
 
 Angular momentum:
 $\bar{L} = \bar{r} \times \bar{p} = \bar{r} \times \bar{p}\_{tan} = \bar{r} \times \left( m \bar{\omega} \times \bar{r} \right) = \bar{\bar{\kern{-0.3ex}I}} \bar{\omega}, \space d\bar{L}/dt = \bar{\tau} = \bar{r} \times \bar{F} = \bar{r} \times \bar{F}\_{tan}$
 
 [Moment of inertia](https://www.feynmanlectures.caltech.edu/I_19.html):
-$\bar{\bar{\kern{-0.3ex}I}} = m \left( (\bar{r} \cdot \bar{r}) \bar{\bar{1}} - \bar{r} \otimes \bar{r} \right) \text{ in general, or } I = m r^2 \text{ in a plane}$
+$\bar{\bar{\kern{-0.3ex}I}} = m \left( (\bar{r} \cdot \bar{r}) \bar{\bar{1}} - \bar{r} \otimes \bar{r} \right)$ in general, or $I = m r^2$ in a plane
 
 [Parallel axis theorem](https://en.wikipedia.org/wiki/Parallel_axis_theorem):
-$\bar{\bar{\kern{-0.3ex}I}} = \bar{\bar{\kern{-0.3ex}I}}\_{com} + M \left( (\bar{d} \cdot \bar{d}) \bar{\bar{1}} - \bar{d} \otimes \bar{d} \right) \text{ in general, or } I = I_{com} + M d^2 \text{ in a plane}$
+$\bar{\bar{\kern{-0.3ex}I}}\_r = \bar{\bar{\kern{-0.3ex}I}}\_{com} + M \left( (\bar{d} \cdot \bar{d}) \bar{\bar{1}} - \bar{d} \otimes \bar{d} \right)$ in general, or $I_r = I_{com} + M d^2$ in a plane, where $\bar{r} = \bar{R}\_{com} + \bar{d}$
 
 Kinetic energy:
 $T = p^2/(2 m) = p_{rad}^2/(2 m) + L^2/(2 m r^2)$
@@ -36,14 +38,17 @@ $\bar{P} = \sum_i m_i \bar{v}\_i = M d\bar{R}\_{com}/dt, \space d\bar{P}/dt = \b
 Total angular momentum:
 $\bar{L} = \bar{L}\_{pre} + \bar{L}\_{spn} = \sum_i \left( \bar{R} + \bar{d}\_i \right) \times \bar{p}\_i = \bar{R} \times \bar{P} + \sum_i \bar{d}\_i \times \bar{p}\_i, \space d\bar{L}/dt = \bar{\tau}\_{ext}$
 
-[Precession of a spinning top](https://openstax.org/books/university-physics-volume-1/pages/11-4-precession-of-a-gyroscope):
-$\omega_{pre} = m g l / L_{spn} = m g l / (I \omega_{spn}) = 2 g l / (r^2 \omega_{spn})$
-
 [Total force](https://en.wikipedia.org/wiki/Rigid_body_dynamics#Newton's_second_law_in_three_dimensions):
 $\bar{F} = \bar{F}\_{ext} = \sum_i \bar{F}\_{i \thinspace ext}$
 
 [Total torque](https://en.wikipedia.org/wiki/Rigid_body_dynamics#Newton's_second_law_in_three_dimensions):
 $\bar{\tau} = \bar{\tau}\_{ext} = \sum_i \bar{\tau}\_{i \thinspace ext} = \bar{\tau}\_{pre} + \bar{\tau}\_{spn} = \sum_i \left( \bar{R} + \bar{d}\_i \right) \times \bar{F}\_{i \thinspace ext} = \bar{R} \times \bar{F}\_{ext} + \sum_i \bar{d}\_i \\times \bar{F}\_{i \thinspace ext}$
+
+[Precession of a spinning top](https://openstax.org/books/university-physics-volume-1/pages/11-4-precession-of-a-gyroscope):
+$\omega_{pre} = M g l / L_{spn} = M g l / (I \omega_{spn}) = 2 g l / (r^2 \omega_{spn})$
+
+Rigid body:
+if $\bar{r}\_i = \bar{R}\_{com} + \bar{d}\_i$ and $\bar{u}\_i = d(\bar{d}\_i)/dt$, then $d(d_i^2)/dt = 2 \bar{d}\_i \cdot \bar{u}\_i = 0$
 
 [Total kinetic energy](https://en.wikipedia.org/wiki/Moment_of_inertia#Motion_in_space_of_a_rigid_body,_and_the_inertia_matrix):
 
@@ -69,7 +74,7 @@ String's potential:
 $V(x) = x^2/2, \space U = k V = k x^2/2, \space \bar{F} = -\nabla U = -k x \hat{x}$
 
 Friction (non-conservative):
-$\bar{F} = -\mu N \hat{v}, \space N \text{ is the sum of all forces directed towards the surface}$
+$\bar{F} = -\mu N \hat{v}$, where $N$ is the sum of all forces directed towards the surface
 
 [Parameterized curve](https://en.wikipedia.org/wiki/Taylor's_theorem):
 $\bar{r} = \bar{r}(s) = \bar{r}(a) + \bar{t}(a) (s - a) + \bar{n}(a) (s - a)^2/2 + ...$
@@ -127,7 +132,7 @@ $\bar{F}\_{cen} = m r \omega^2 \hat{r}, \space \bar{F}\_{cor} = - 2 m \dot{r} \o
 
 [Outer product](https://en.wikipedia.org/wiki/Outer_product): $\left( \bar{b} \otimes \bar{c} \right)\_{jk} = \left( \bar{b} \bar{c}^{\mathsf{T}} \right)\_{jk} = b_j c_k$
 
-[Cross product](https://en.wikipedia.org/wiki/Cross_product): $\left( \bar{b} \times \bar{c} \right)\_i = \varepsilon_{ijk} b_j c_k = \frac{1}{2} \varepsilon_{ijk} T_{jk}, \space T_{jk} = \varepsilon_{ijk} \left( \bar{b} \times \bar{c} \right)\_i = b_j c_k - b_k c_j, \space \bar{\bar{\kern{-0.3ex}T}} = \bar{b} \otimes \bar{c} - \left( \bar{b} \otimes \bar{c} \right)^{\mathsf{T}} \text{ is an antisymmetric tensor}$
+[Cross product](https://en.wikipedia.org/wiki/Cross_product): $\left( \bar{b} \times \bar{c} \right)\_i = \varepsilon_{ijk} b_j c_k = \frac{1}{2} \varepsilon_{ijk} T_{jk}, \space T_{jk} = \varepsilon_{ijk} \left( \bar{b} \times \bar{c} \right)\_i = b_j c_k - b_k c_j, \space \bar{\bar{\kern{-0.3ex}T}} = \bar{b} \otimes \bar{c} - \left( \bar{b} \otimes \bar{c} \right)^{\mathsf{T}}$ is an antisymmetric tensor
 
 [Scalar triple product](https://en.wikipedia.org/wiki/Triple_product): $\bar{a} \cdot \left( \bar{b} \times \bar{c} \right) = \mathrm{det}\negmedspace\left[ \bar{a} \space \bar{b} \space \bar{c} \right] = \varepsilon_{ijk} a_i b_j c_k$
 
