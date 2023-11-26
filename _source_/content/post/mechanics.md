@@ -15,13 +15,13 @@ $\bar{\tau_i} = \bar{\tau}\_{i \thinspace ext} + \sum_j \bar{\tau}\_{ij} = d\bar
 Linear momentum: $\bar{p} = m \bar{v} = m (\bar{v}\_{rad} + \bar{v}\_{tan}) = m (\bar{v}\_{rad} + \bar{\omega} \times \bar{r}), \space d\bar{p}/dt = \bar{F}$
 
 Angular momentum:
-$\bar{L} = \bar{r} \times \bar{p} = \bar{r} \times \bar{p}\_{tan} = \bar{r} \times \left( m \bar{\omega} \times \bar{r} \right) = \bar{\bar{\kern{-0.3ex}I}} \bar{\omega}, \space d\bar{L}/dt = \bar{\tau} = \bar{r} \times \bar{F} = \bar{r} \times \bar{F}\_{tan}$
+$\bar{L} = \bar{r} \times \bar{p} = \bar{r} \times \bar{p}\_{tan} = -m \bar{r} \times \left( \bar{r} \times \bar{\omega} \right) = \bar{\bar{\kern{-0.3ex}I}} \bar{\omega}, \space d\bar{L}/dt = \bar{\tau} = \bar{r} \times \bar{F} = \bar{r} \times \bar{F}\_{tan}$
 
 [Moment of inertia](https://www.feynmanlectures.caltech.edu/I_19.html):
-$\bar{\bar{\kern{-0.3ex}I}} = m \left( (\bar{r} \cdot \bar{r}) \bar{\bar{1}} - \bar{r} \otimes \bar{r} \right)$ in general, or $I = m r^2$ in a plane
+$\bar{\bar{\kern{-0.3ex}I}} = -m \bar{r} \times \left( \bar{r} \times \bar{\bar{1}} \right) = m \left( (\bar{r} \cdot \bar{r}) \bar{\bar{1}} - \bar{r} \otimes \bar{r} \right)$ in general, or $I = m r^2$ in a plane
 
 [Parallel axis theorem](https://en.wikipedia.org/wiki/Parallel_axis_theorem):
-$\bar{\bar{\kern{-0.3ex}I}}\_r = \bar{\bar{\kern{-0.3ex}I}}\_{com} + M \left( (\bar{d} \cdot \bar{d}) \bar{\bar{1}} - \bar{d} \otimes \bar{d} \right)$ in general, or $I_r = I_{com} + M d^2$ in a plane, where $\bar{r} = \bar{R}\_{com} + \bar{d}$
+$\bar{\bar{\kern{-0.3ex}I}}\_R = \bar{\bar{\kern{-0.3ex}I}}\_{com} + M \left( (\bar{d} \cdot \bar{d}) \bar{\bar{1}} - \bar{d} \otimes \bar{d} \right)$ in general, or $I_R = I_{com} + M d^2$ in a plane, where $\bar{R} = \bar{R}\_{com} + \bar{d}$
 
 Kinetic energy:
 $T = p^2/(2 m) = p_{rad}^2/(2 m) + L^2/(2 m r^2)$
@@ -33,7 +33,7 @@ $W = T_1 - T_0 = \int_0^1 d\bar{r} \cdot \bar{F} = \int_0^1 dr F_{rad} + \int_0^
 $\bar{R}\_{com} = \sum_i m_i \bar{r}\_i / M, \space M = \sum_i m_i$
 
 Total linear momentum:
-$\bar{P} = \sum_i m_i \bar{v}\_i = M d\bar{R}\_{com}/dt, \space d\bar{P}/dt = \bar{F}\_{ext}$
+$\bar{P} = \sum_i m_i \bar{v}\_i = M d\bar{R}\_{com}/dt = M \bar{V}\_{com}, \space d\bar{P}/dt = \bar{F}\_{ext}$
 
 Total angular momentum:
 $\bar{L} = \bar{L}\_{pre} + \bar{L}\_{spn} = \sum_i \left( \bar{R} + \bar{d}\_i \right) \times \bar{p}\_i = \bar{R} \times \bar{P} + \sum_i \bar{d}\_i \times \bar{p}\_i, \space d\bar{L}/dt = \bar{\tau}\_{ext}$
@@ -42,13 +42,19 @@ $\bar{L} = \bar{L}\_{pre} + \bar{L}\_{spn} = \sum_i \left( \bar{R} + \bar{d}\_i 
 $\bar{F} = \bar{F}\_{ext} = \sum_i \bar{F}\_{i \thinspace ext}$
 
 [Total torque](https://en.wikipedia.org/wiki/Rigid_body_dynamics#Newton's_second_law_in_three_dimensions):
-$\bar{\tau} = \bar{\tau}\_{ext} = \sum_i \bar{\tau}\_{i \thinspace ext} = \bar{\tau}\_{pre} + \bar{\tau}\_{spn} = \sum_i \left( \bar{R} + \bar{d}\_i \right) \times \bar{F}\_{i \thinspace ext} = \bar{R} \times \bar{F}\_{ext} + \sum_i \bar{d}\_i \\times \bar{F}\_{i \thinspace ext}$
+$\bar{\tau} = \bar{\tau}\_{ext} = \sum_i \bar{\tau}\_{i \thinspace ext} = \bar{\tau}\_{pre} + \bar{\tau}\_{spn} = \sum_i \left( \bar{R} + \bar{d}\_i \right) \times \bar{F}\_{i \thinspace ext} = \bar{R} \times \bar{F}\_{ext} + \sum_i \bar{d}\_i \times \bar{F}\_{i \thinspace ext}$
 
 [Precession of a spinning top](https://openstax.org/books/university-physics-volume-1/pages/11-4-precession-of-a-gyroscope):
 $\omega_{pre} = M g l / L_{spn} = M g l / (I \omega_{spn}) = 2 g l / (r^2 \omega_{spn})$
 
-Rigid body:
+Invariant of a part of a rigid body:
 if $\bar{r}\_i = \bar{R}\_{com} + \bar{d}\_i$ and $\bar{u}\_i = d(\bar{d}\_i)/dt$, then $d(d_i^2)/dt = 2 \bar{d}\_i \cdot \bar{u}\_i = 0$
+
+[Velocity of a part of a rigid body](https://en.wikipedia.org/wiki/Moment_of_inertia#Motion_in_space_of_a_rigid_body,_and_the_inertia_matrix):
+$\bar{v}\_i = \bar{V}\_{com} + \bar{u}\_i = \bar{V}\_{com} + \bar{\omega}\_{spn} \times \bar{d_i}$
+
+[Angular momentum of a rigid body](https://en.wikipedia.org/wiki/Moment_of_inertia#Motion_in_space_of_a_rigid_body,_and_the_inertia_matrix):
+$\bar{L}\_{com} = \bar{L}\_{spn} = \sum_i \bar{d}\_i \times \bar{p}\_i = \sum_i m_i \bar{d}\_i \times \bar{v}\_i = \bar{\bar{\kern{-0.3ex}I}}\_{com} \bar{\omega}\_{spn}$
 
 [Total kinetic energy](https://en.wikipedia.org/wiki/Moment_of_inertia#Motion_in_space_of_a_rigid_body,_and_the_inertia_matrix):
 
