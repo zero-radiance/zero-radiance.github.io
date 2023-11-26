@@ -4,10 +4,10 @@ date: 2023-10-27T16:15:35-07:00
 draft: true
 ---
 
-Newtons's laws of motion (linear):
+Newtons's laws of linear motion:
 $\bar{F_i} = \bar{F}\_{i \thinspace ext} + \sum_j \bar{F}\_{ij} = d\bar{p}_i/dt, \space \bar{F}\_{ij} = -\bar{F}\_{ji}$
 
-Newtons's laws of motion (angular):
+Newtons's laws of rotational motion:
 $\bar{\tau_i} = \bar{\tau}\_{i \thinspace ext} + \sum_j \bar{\tau}\_{ij} = d\bar{L}_i/dt, \space \bar{\tau}\_{ij} = -\bar{\tau}\_{ji}$
 
 *Without subscripts, the tensors are "absolute", e.i. relative to the origin. $\bar{d}$ is the "difference" vector.*
@@ -30,31 +30,38 @@ $T = p^2/(2 m) = p_{rad}^2/(2 m) + L^2/(2 m r^2)$
 $W = T_1 - T_0 = \int_0^1 d\bar{r} \cdot \bar{F} = \int_0^1 dr F_{rad} + \int_0^1 d\varphi \tau$
 
 [Center of mass](https://www.feynmanlectures.caltech.edu/I_19.html):
-$\bar{R}\_{com} = \sum_i m_i \bar{r}\_i / M, \space M = \sum_i m_i$
+$\bar{R}\_{com} = \sum_i m_i \bar{r}\_i / M, \space M = \sum_i m_i, \space \sum_i m_i \bar{d}\_i = 0$
 
 Total linear momentum:
 $\bar{P} = \sum_i m_i \bar{v}\_i = M d\bar{R}\_{com}/dt = M \bar{V}\_{com}, \space d\bar{P}/dt = \bar{F}\_{ext}$
 
 Total angular momentum:
-$\bar{L} = \bar{L}\_{pre} + \bar{L}\_{spn} = \sum_i \left( \bar{R} + \bar{d}\_i \right) \times \bar{p}\_i = \bar{R} \times \bar{P} + \sum_i \bar{d}\_i \times \bar{p}\_i, \space d\bar{L}/dt = \bar{\tau}\_{ext}$
+$\bar{L} = \bar{L}\_{orb} + \bar{L}\_{com} = \sum_i \left( \bar{R} + \bar{d}\_i \right) \times \bar{p}\_i = \bar{R} \times \bar{P} + \sum_i \bar{d}\_i \times \bar{p}\_i, \space d\bar{L}/dt = \bar{\tau}\_{ext}$
 
 [Total force](https://en.wikipedia.org/wiki/Rigid_body_dynamics#Newton's_second_law_in_three_dimensions):
 $\bar{F} = \bar{F}\_{ext} = \sum_i \bar{F}\_{i \thinspace ext}$
 
 [Total torque](https://en.wikipedia.org/wiki/Rigid_body_dynamics#Newton's_second_law_in_three_dimensions):
-$\bar{\tau} = \bar{\tau}\_{ext} = \sum_i \bar{\tau}\_{i \thinspace ext} = \bar{\tau}\_{pre} + \bar{\tau}\_{spn} = \sum_i \left( \bar{R} + \bar{d}\_i \right) \times \bar{F}\_{i \thinspace ext} = \bar{R} \times \bar{F}\_{ext} + \sum_i \bar{d}\_i \times \bar{F}\_{i \thinspace ext}$
-
-[Precession of a spinning top](https://openstax.org/books/university-physics-volume-1/pages/11-4-precession-of-a-gyroscope):
-$\omega_{pre} = M g l / L_{spn} = M g l / (I \omega_{spn}) = 2 g l / (r^2 \omega_{spn})$
+$\bar{\tau} = \bar{\tau}\_{ext} = \sum_i \bar{\tau}\_{i \thinspace ext} = \bar{\tau}\_{orb} + \bar{\tau}\_{com} = \sum_i \left( \bar{R} + \bar{d}\_i \right) \times \bar{F}\_{i \thinspace ext} = \bar{R} \times \bar{F}\_{ext} + \sum_i \bar{d}\_i \times \bar{F}\_{i \thinspace ext}$
 
 Invariant of a part of a rigid body:
 if $\bar{r}\_i = \bar{R}\_{com} + \bar{d}\_i$ and $\bar{u}\_i = d(\bar{d}\_i)/dt$, then $d(d_i^2)/dt = 2 \bar{d}\_i \cdot \bar{u}\_i = 0$
 
 [Velocity of a part of a rigid body](https://en.wikipedia.org/wiki/Moment_of_inertia#Motion_in_space_of_a_rigid_body,_and_the_inertia_matrix):
-$\bar{v}\_i = \bar{V}\_{com} + \bar{u}\_i = \bar{V}\_{com} + \bar{\omega}\_{spn} \times \bar{d_i}$
+$\bar{v}\_i = \bar{V}\_{com} + \bar{u}\_i = \bar{V}\_{com} + \bar{\omega} \times \bar{d_i}$
 
-[Angular momentum of a rigid body](https://en.wikipedia.org/wiki/Moment_of_inertia#Motion_in_space_of_a_rigid_body,_and_the_inertia_matrix):
-$\bar{L}\_{com} = \bar{L}\_{spn} = \sum_i \bar{d}\_i \times \bar{p}\_i = \sum_i m_i \bar{d}\_i \times \bar{v}\_i = \bar{\bar{\kern{-0.3ex}I}}\_{com} \bar{\omega}\_{spn}$
+[Spin angular momentum of a rigid body](https://en.wikipedia.org/wiki/Moment_of_inertia#Motion_in_space_of_a_rigid_body,_and_the_inertia_matrix):
+$\bar{L}\_{spn} = \bar{L}\_{com} = \sum_i \bar{d}\_i \times \bar{p}\_i = \sum_i m_i \bar{d}\_i \times \bar{v}\_i = \bar{\bar{\kern{-0.3ex}I}}\_{com} \bar{\omega}$
+
+Orbital angular momentum of a rigid body:
+$\bar{L}\_{orb} = \bar{R}\_{com} \times \bar{P} = -M \bar{R}\_{com} \times \left( \bar{R}\_{com} \times \bar{\Omega} \right) = \bar{\bar{\kern{-0.3ex}I}}\_{orb} \bar{\Omega}$
+
+[Precession of a spinning top](https://openstax.org/books/university-physics-volume-1/pages/11-4-precession-of-a-gyroscope):
+$\Omega = M g R_{com} / L_{spn} = M g R_{com} / (I_{com} \omega) = 2 g R_{com} / (r^2 \omega)$
+
+https://en.wikipedia.org/wiki/Rigid_body_dynamics#Newton's_second_law_in_three_dimensions
+
+https://en.wikipedia.org/wiki/Moment_of_inertia#Motion_in_space_of_a_rigid_body,_and_the_inertia_matrix
 
 [Total kinetic energy](https://en.wikipedia.org/wiki/Moment_of_inertia#Motion_in_space_of_a_rigid_body,_and_the_inertia_matrix):
 
