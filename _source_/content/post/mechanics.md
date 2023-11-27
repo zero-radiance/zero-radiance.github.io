@@ -62,10 +62,11 @@ $\bar{L}\_{orb} = \bar{R}\_{com} \times \bar{P} = -M \bar{R}\_{com} \times \left
 [Kinetic energy of a rigid body](https://en.wikipedia.org/wiki/Moment_of_inertia#Kinetic_energy_2):
 $T = P^2/(2 M) + \bar{\omega} \cdot \bar{L}\_{spn} / 2 = P_{rad}^2/(2 M) + L_{orb}^2/(2 M R^2) + \bar{\omega} \cdot \bar{L}\_{spn} / 2$
 
+[Torque on a rigid body](https://en.wikipedia.org/wiki/Moment_of_inertia#Resultant_torque):
+$\bar{\tau} = \bar{\tau}\_{orb} + \bar{\tau}\_{spn} = \bar{R}\_{com} \times \bar{F}\_{ext} + \left( \bar{\bar{\kern{-0.3ex}I}}\_{com} \bar{\alpha} + \bar{\omega} \cdot \bar{L}\_{spn} \right)$
+
 [Precession of a spinning top](https://openstax.org/books/university-physics-volume-1/pages/11-4-precession-of-a-gyroscope):
 $\Omega = M g R_{com} / L_{spn} = M g R_{com} / (I_{com} \omega) = 2 g R_{com} / (r^2 \omega)$
-
-https://en.wikipedia.org/wiki/Rigid_body_dynamics#Newton's_second_law_in_three_dimensions
 
 [Total energy](https://www.feynmanlectures.caltech.edu/I_13.html):
 $E = \sum E_i = \sum_i \left( T_i + \sum_{j<i} U_{ij} \right), \space dE = dW_{non} = d\bar{r} \cdot \bar{F}\_{non}$
