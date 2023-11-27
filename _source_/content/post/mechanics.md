@@ -50,6 +50,9 @@ if $\bar{r}\_i = \bar{R}\_{com} + \bar{d}\_i$ and $\bar{u}\_i = d(\bar{d}\_i)/dt
 [Velocity of a part of a rigid body](https://en.wikipedia.org/wiki/Moment_of_inertia#Motion_in_space_of_a_rigid_body,_and_the_inertia_matrix):
 $\bar{v}\_i = \bar{V}\_{com} + \bar{u}\_i = \bar{V}\_{com} + \bar{\omega} \times \bar{d_i}$
 
+[Acceleration of a part of a rigid body](https://en.wikipedia.org/wiki/Moment_of_inertia#Resultant_torque):
+$\bar{a}\_i = \bar{A}\_{com} + \bar{\alpha} \times \bar{d_i} + \bar{\omega} \times \bar{u_i} = \bar{A}\_{com} + \bar{\alpha} \times \bar{d_i} + \bar{\omega} \times \bar{\omega} \times \bar{d_i}$
+
 [Spin angular momentum of a rigid body](https://en.wikipedia.org/wiki/Moment_of_inertia#Angular_momentum_2):
 $\bar{L}\_{spn} = \bar{L}\_{com} = \sum_i \bar{d}\_i \times \bar{p}\_i = \sum_i m_i \bar{d}\_i \times \bar{v}\_i = \bar{\bar{\kern{-0.3ex}I}}\_{com} \bar{\omega}$
 
