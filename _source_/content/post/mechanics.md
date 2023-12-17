@@ -36,13 +36,13 @@ Total linear momentum:
 $\bar{P} = \sum_i m_i \bar{v}\_i = M d\bar{R}\_{com}/dt = M \bar{V}\_{com}, \space d\bar{P}/dt = \bar{F}\_{ext}$
 
 Total angular momentum:
-$\bar{L} = \bar{L}\_{orb} + \bar{L}\_{com} = \sum_i \left( \bar{R} + \bar{d}\_i \right) \times \bar{p}\_i = \bar{R} \times \bar{P} + \sum_i \bar{d}\_i \times \bar{p}\_i, \space d\bar{L}/dt = \bar{\tau}\_{ext}$
+$\bar{L} = \sum_i \left( \bar{R} + \bar{d}\_i \right) \times \bar{p}\_i = \bar{R} \times \bar{P} + \sum_i \bar{d}\_i \times \bar{p}\_i, \space d\bar{L}/dt = \bar{\tau}\_{ext}$
 
 [Total force](https://en.wikipedia.org/wiki/Rigid_body_dynamics#Newton's_second_law_in_three_dimensions):
 $\bar{F} = \bar{F}\_{ext} = \sum_i \bar{F}\_{i \thinspace ext}$
 
 [Total torque](https://en.wikipedia.org/wiki/Rigid_body_dynamics#Newton's_second_law_in_three_dimensions):
-$\bar{\tau} = \bar{\tau}\_{ext} = \sum_i \bar{\tau}\_{i \thinspace ext} = \bar{\tau}\_{orb} + \bar{\tau}\_{com} = \sum_i \left( \bar{R} + \bar{d}\_i \right) \times \bar{F}\_{i \thinspace ext} = \bar{R} \times \bar{F}\_{ext} + \sum_i \bar{d}\_i \times \bar{F}\_{i \thinspace ext}$
+$\bar{\tau} = \bar{\tau}\_{ext} = \sum_i \bar{\tau}\_{i \thinspace ext} = \sum_i \left( \bar{R} + \bar{d}\_i \right) \times \bar{F}\_{i \thinspace ext} = \bar{R} \times \bar{F}\_{ext} + \sum_i \bar{d}\_i \times \bar{F}\_{i \thinspace ext}$
 
 Invariant of a part of a rigid body:
 if $\bar{r}\_i = \bar{R}\_{com} + \bar{d}\_i$ and $\bar{u}\_i = d(\bar{d}\_i)/dt$, then $d(d_i^2)/dt = 2 \bar{d}\_i \cdot \bar{u}\_i = 0$
