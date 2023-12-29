@@ -23,6 +23,8 @@ $\bar{\bar{\kern{-0.3ex}I}} = -m \bar{r} \times \left( \bar{r} \times \bar{\bar{
 [Parallel axis theorem](https://en.wikipedia.org/wiki/Parallel_axis_theorem):
 $\bar{\bar{\kern{-0.3ex}I}}\_R = \bar{\bar{\kern{-0.3ex}I}}\_{com} + M \left( (\bar{d} \cdot \bar{d}) \bar{\bar{1}} - \bar{d} \otimes \bar{d} \right)$ in general, or $I_R = I_{com} + M d^2$ in a plane, where $\bar{R} = \bar{R}\_{com} + \bar{d}$
 
+*Inelastic collisions do not conserve kinetic energy. Momentum is always conserved.*
+
 Kinetic energy:
 $T = p^2/(2 m) = p_{rad}^2/(2 m) + L^2/(2 m r^2)$
 
