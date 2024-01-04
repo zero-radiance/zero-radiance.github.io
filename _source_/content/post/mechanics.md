@@ -155,3 +155,31 @@ $\bar{F}\_{cen} = m r \omega^2 \hat{r}, \space \bar{F}\_{cor} = - 2 m \dot{r} \o
 [Scalar triple product](https://en.wikipedia.org/wiki/Triple_product): $\bar{a} \cdot \left( \bar{b} \times \bar{c} \right) = \mathrm{det}\negmedspace\left[ \bar{a} \space \bar{b} \space \bar{c} \right] = \varepsilon_{ijk} a_i b_j c_k$
 
 [Vector triple product](https://en.wikipedia.org/wiki/Triple_product): $\bar{a} \times \left( \bar{b} \times \bar{c} \right) = \bar{b} \left( \bar{a} \cdot \bar{c} \right) - \bar{c} \left( \bar{a} \cdot \bar{b} \right)$
+
+3-vector: $\bar{r}$
+
+4-vector in the reference frame:
+$\bar{x} = (ct, \bar{r}) = (x_0, x_1, x_2, x_3), \bar{y}, \bar{z}$, etc.
+
+4-vector in the moving frame:
+$\bar{x}' = (ct', \bar{r}') = (x_0', x_1', x_2', x_3'), \bar{y}', \bar{z}'$, etc.
+
+Mean velocity:
+$\braket{v} = \Delta x / \Delta t$
+
+Instantaneous velocity:
+$v = \lim_{\Delta t \to 0} \Delta x / \Delta t = dx/dt$
+
+Dimensionless velocity:
+$\beta = v / c = \tanh{\theta_v}$
+
+Spacetime interval:
+$ds = (d\bar{x} \cdot d\bar{x})^{1/2} = dx_0 \sqrt{1-\beta^2} = dx_0 / \cosh{\theta_v}$
+
+Proper time:
+$d\tau = ds/c = dt / \cosh{\theta_v}, \space
+dt/d\tau = \cosh{\theta_v}$
+
+Lorentz transformation:
+$x_0' = x_0 \cosh{\theta_v} - x_1 \sinh{\theta_v}, \space
+x_1' = -x_0 \sinh{\theta_v} + x_1 \cosh{\theta_v}$
