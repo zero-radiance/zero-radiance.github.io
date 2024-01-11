@@ -164,21 +164,24 @@ $\bar{x} = (ct, \bar{r}) = (x_0, x_1, x_2, x_3), \bar{y}, \bar{z}$, etc.
 4-vector in the moving frame:
 $\bar{x}' = (ct', \bar{r}') = (x_0', x_1', x_2', x_3'), \bar{y}', \bar{z}'$, etc.
 
-Mean velocity:
+Mean 3-velocity:
 $\braket{v} = \Delta x / \Delta t$
 
-Instantaneous velocity:
+3-velocity:
 $v = \lim_{\Delta t \to 0} \Delta x / \Delta t = dx/dt$
 
-Dimensionless velocity:
+Dimensionless 3-velocity:
 $\beta = v / c = \tanh{\theta_v}$
 
 Spacetime interval:
 $ds = (d\bar{x} \cdot d\bar{x})^{1/2} = dx_0 \sqrt{1-\beta^2} = dx_0 / \cosh{\theta_v}$
 
 Proper time:
-$d\tau = ds/c = dt / \cosh{\theta_v}, \space
+$d\tau = ds/c, \space
 dt/d\tau = \cosh{\theta_v}$
+
+4-velocity:
+$\bar{u} = d\bar{x}/d\tau = (c, \bar{v}) \cosh{\theta_v}, \space \vert \bar{u} \vert = c^2$
 
 Lorentz transformation:
 $x_0' = x_0 \cosh{\theta_v} - x_1 \sinh{\theta_v}, \space
