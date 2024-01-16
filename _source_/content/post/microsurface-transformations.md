@@ -26,7 +26,7 @@ Let $\bm{m}$ denote the unit normal vector of the microsurface. Since it may cor
 
 [^5]: Not to be confused with the Gaussian (a.k.a. normal) distribution in statistics.
 
-A valid microsurface and, thus, a valid NDF, must obey the *projected area constraint*
+A valid microsurface and, thus, a valid NDF, must obey the *projected area* constraint
 
 $$ \tag{1}
 \begin{aligned}
@@ -40,7 +40,7 @@ $$ \tag{1}
 \end{aligned}
 $$
 
-for all $\bm{v} \in \mathbb{H^2}$ (e.i. the observer is assumed to be located above the macrosurface), where $A$ is conventionally normalized to 1 to make $D$ a valid probability density function. Expressed this way, it is clear that the constraint is actually vectorial (e.i. coordinate-independent, basis-independent) in nature.
+for all $\bm{v} \in \mathbb{H^2}$ (directed at the observer who is supposed to be located above the surface), where $A$ is conventionally normalized to 1 to make $D$ a valid probability density function. Expressed this way, it is clear that the constraint is actually vectorial (e.i. coordinate-independent, basis-independent) in nature.
 
 Eqn. 1 tells us several things. By substituting a constant NDF (or from its definition), we can see that $D$ is measured in units of area per solid angle. By choosing $\bm{v} = \bm{n}$, we can see that the area of the microsurface projected onto the macrosurface must be equal to $A$. In general, both projected areas must coincide in all directions.
 
@@ -53,6 +53,28 @@ One of the simplest valid microsurfaces is a box[^6] (with the flipped bottom fa
 Clearly, a microsurface does not have to be smooth; however, this introduces discontinuities in the NDF, which is typically undesirable, unless the goal is to model a flat surface.
 
 Erasing any part of the box will cause a projected area mismatch for certain angles. This may tempt you to draw a conclusion that the constraint implies that the microsurface must be continuous, but that is not the case. The issue lies in *translation invariance* of Eqn. 1: the projected area of an object is independent of its location. This property may seem innocuous at first, but coupled with linearity of Eqn. 1, it leads to a disaster: you can freely translate different parts of the microsurface in different directions without affecting the value of the integral.
+
+In addition to the ordinary projected area, we would like to calculate the *visible projected area* of the microsurface.
+
+$$ \tag{2}
+\begin{aligned}
+	&\int_{\bm{p} \in \mathbb{M^2}}
+	\mathrm{max}\big(0, \bm{v} \cdot \bm{m}(\bm{p})\big) V(\bm{p}, \bm{v}) dA(\bm{p})
+	\cr = \space
+	&\int_{\bm{m} \in \mathbb{S^2}}
+	\mathrm{max}\big(0, \bm{v} \cdot \bm{m}(\bm{p})\big) G_1(\bm{m}, \bm{v}) dA(\bm{m})
+	\cr = \space
+	&\int_{\bm{m} \in \mathbb{S^2}}
+	\mathrm{max}\big(0, \bm{v} \cdot \bm{m}(\bm{p})\big) G_1(\bm{m}, \bm{v}) D(\bm{m}) d\Omega(\bm{m}),
+\end{aligned}
+$$
+
+where $V$ is the binary *visibility function* that evaluates to 0 if $\bm{p}$ is occluded along $\bm{v}$, and 1 otherwise, and $G_1$ is the dimensionless *masking function* that ... the fraction of the unoccluded differential area $dA(\bm{m})$ of the the microsurface. max(...)
+
+Eqn. 1 and 2 are intimately related. For a valid (e.i. continuous) microsurface, if we choose $\bm{v} = \bm{n}$, the values if the integrals are the same. In general, and exemplified by a box (for a box, it fails), *the visible projected area is greater or equal to the ordinary projected area*. They coincide, provided the viewing angle is sufficiently steep, or the microgeometry -- sufficiently short, so that it is completely contained within the infinite volume spanned by sweeping the macrosuface along the viewing direction.
+
+The microsurface must be infinitesimally tall.
+
 
 *Shadowing function: remember that equality of integrands does not follow from equality of integrals.*
 
