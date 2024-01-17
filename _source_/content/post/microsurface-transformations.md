@@ -18,7 +18,7 @@ In contrast, the surface fragment overlaid onto the macrosurface is called the *
 
 [^2]: We use the superscript 2 to indicate that the surface is a two-dimensional manifold.
 
-Let $\bm{m}$ denote the unit normal vector of the microsurface. Since it may correspond to several distinct points on the microsurface, we have to define[^3] $dA(\bm{m}) / A = D(\bm{m}) d\Omega(\bm{m})$ as the fraction of the area of the microsurface perpendicular to $\bm{m}$, where $d\Omega$ is the differential solid angle centered on $\bm{m}$, and $D$ is the *microfacet normal distribution*[^4] (abbreviated as the *NDF*) associated with the microsurface. This function, along with the microfacet normals themselves, is typically restricted to the unit hemisphere $\mathbb{H^2}$ (with $\bm{n}$ serving as the zenith direction), which implies that $\mathbb{M^2}$ must be a heightfield. However, this restriction is not strictly necessary, and we shall let the microfacet normals potentially cover the entire unit sphere $\mathbb{S^2}$.
+Let $\bm{m}$ denote the unit normal vector of the microsurface. Since it may correspond to several distinct points on the microsurface, we have to define[^3] $dA(\bm{m}) / A = D(\bm{m}) d\Omega(\bm{m})$ as the fraction of the area of the microsurface(?) perpendicular to $\bm{m}$, where $d\Omega$ is the differential solid angle centered on $\bm{m}$, and $D$ is the *microfacet normal distribution*[^4] (abbreviated as the *NDF*) associated with the microsurface. This function, along with the microfacet normals themselves, is typically restricted to the unit hemisphere $\mathbb{H^2}$ (with $\bm{n}$ serving as the zenith direction), which implies that $\mathbb{M^2}$ must be a heightfield. However, this restriction is not strictly necessary, and we shall let the microfacet normals potentially cover the entire unit sphere $\mathbb{S^2}$.
 
 [^3]: If the surface is convex, one can interpret $DA$ as a Jacobian of the transformation from the surface to the unit hemisphere.
 
@@ -83,7 +83,7 @@ in terms of the dimensionless *masking function* $G_1(\bm{v}, \bm{m})$ that quan
 
 Eqn. 1 and 2 are closely related. For a valid microsurface, if we choose $\bm{v} = \bm{n}$, the values of the integrals must be the same[^6]:
 
-[^6]: This does **not** imply that $G_1(\bm{n}, \bm{m}) = 1$, since the equality of integrands does not necessarily follow from the equality of integrals.
+[^6]: Unless $\mathbb{M^2}$ is a heightfield, this does not imply that $G_1(\bm{n}, \bm{m}) = 1$, since the equality of integrands does not necessarily follow from the equality of integrals.
 
 $$ \tag{2a}
 \begin{aligned}
