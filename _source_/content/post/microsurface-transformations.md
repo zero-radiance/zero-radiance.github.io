@@ -10,7 +10,7 @@ At EGSR 2022, Atanasov, Koylazov, Dimov, and Wilkie presented a paper titled [Mi
 
 ## Microscopic Introduction
 
-Pick an object, perhaps one that sits on your desk or lives in your head. Focus on a tiny fragment of its surface located at the point $\bm{P}$. If the fragment is sufficiently small, or is sufficiently far away, it will appear effectively flat (but not necessarily smooth). Therefore, to a negligible degree of error, we may replace this fragment by a first-order approximation[^1] -- its projection onto the (averaged) tangent plane. In the literature, this projected surface fragment is referred to as the *macrosurface*. It is characterized by the area $A$ and the unit normal vector $\bm{n}$. Fixing two (not necessarily unit or orthogonal) tangent vectors $\bm{t_u}$ and $\bm{t_v}$ is sufficient to complete the parameterization of the macrosurface.
+Pick an object, perhaps one that sits on your desk or lives in your head. Focus on a tiny fragment of its surface located at the point $\bm{P}$. If the fragment is sufficiently small, or is sufficiently far away, it will appear effectively flat (but not necessarily smooth). Therefore, to a negligible degree of error, the fragment may be replaced by a first-order approximation[^1] -- its projection onto the (averaged) tangent plane. In the literature, this projected surface fragment is referred to as the *macrosurface*. It is characterized by the area $A$ and the unit normal vector $\bm{n}$. Fixing two (not necessarily unit or orthogonal) tangent vectors $\bm{t_u}$ and $\bm{t_v}$ is sufficient to complete the parameterization of the macrosurface.
 
 [^1]: In the sense of a Taylor series expansion.
 
@@ -18,7 +18,7 @@ In contrast, the surface fragment overlaid onto the macrosurface is called the *
 
 [^2]: We use the superscript 2 to indicate that the surface is a two-dimensional manifold.
 
-Let $\bm{m}$ denote the unit normal vector of the microsurface. Since it may correspond to several distinct points on the microsurface, we have to define[^3] $dA(\bm{m}) / A = D(\bm{m}) d\Omega(\bm{m})$ as the fraction of the area of the microsurface(?) perpendicular to $\bm{m}$, where $d\Omega$ is the differential solid angle centered on $\bm{m}$, and $D$ is the *microfacet normal distribution*[^4] (abbreviated as the *NDF*) associated with the microsurface. This function, along with the microfacet normals themselves, is typically restricted to the unit hemisphere $\mathbb{H^2}$ (with $\bm{n}$ serving as the zenith direction), which implies that $\mathbb{M^2}$ must be a heightfield. However, this restriction is not strictly necessary, and we shall let the microfacet normals potentially cover the entire unit sphere $\mathbb{S^2}$.
+Let $\bm{m}$ denote the unit normal vector of the microsurface. Since it may correspond to several distinct points on the microsurface, it is necessary to define[^3] $dA(\bm{m}) = D(\bm{m}) A d\Omega(\bm{m})$ as the differential area of a portion of the microsurface perpendicular to $\bm{m}$, where $d\Omega$ denotes the differential solid angle centered on $\bm{m}$, and $D$ is the *microfacet normal distribution*[^4] (abbreviated as the *NDF*) associated with the microsurface. This function, along with the microfacet normals themselves, is typically restricted to the unit hemisphere $\mathbb{H^2}$ (with $\bm{n}$ serving as the zenith direction), which implies that $\mathbb{M^2}$ must be a heightfield. However, this restriction is not strictly necessary; we shall demonstrate that by letting the microfacet normals potentially cover the entire unit sphere $\mathbb{S^2}$.
 
 [^3]: If the surface is convex, one can interpret $DA$ as a Jacobian of the transformation from the surface to the unit hemisphere.
 
@@ -44,7 +44,7 @@ $$ \tag{1b}
 	\bm{n} = \int_{\bm{m} \in \mathbb{S^2}} \bm{m} D(\bm{m}) d\Omega(\bm{m}).
 $$
 
-Eqn. 1 tells us a few things. Geometrically, it says that the projected areas of the microsurface and the macrosurface must must coincide for any given direction. Furthermore, by substituting a constant NDF (or from its definition), we can see that it is measured in units of reciprocal solid angle.
+Eqn. 1 tells us a few things. Geometrically, it says that the projected areas of the microsurface and the macrosurface must must coincide in any given direction. Furthermore, by substituting a constant NDF (or from its definition), we can see that the latter is measured in units of reciprocal solid angle.
 
 In the special case of $\bm{v} = \bm{n}$, we obtain
 
@@ -58,13 +58,13 @@ One of the simplest valid microsurfaces is a box[^5] (with the flipped bottom fa
 
 [^5]: Using the tools of calculus, we can decompose an arbitrary surface into a (possibly infinite) number of (sufficiently small) boxes.
 
-*Linearity* of Eqn. 1 allows us to consider individual elements of the microsurface separately, and then sum up the results. As we apply it to the box, observe that the signed projected areas of the opposite faces cancel each other, leaving just the top (that is, of course, equivalent to the bottom). Another consequence is that a linearly transformed box (a parallelepiped) still represents a valid combination of micro and macrosurfaces, but, of course, the projected areas (and, thus, the values of the NDF) do not remain the same.
+*Linearity* of Eqn. 1 allows us to consider individual elements of the microsurface separately, and simply sum up the results. As we apply Eqn. 1 to the box, observe that the signed projected areas of the opposite faces cancel each other, leaving just the top (that is, of course, equivalent to the bottom). Another consequence is that a linearly transformed box (a parallelepiped) still represents a valid combination of micro and macrosurfaces, but, of course, the projected areas (and, thus, the values of the NDF) do not remain the same.
 
 Clearly, a microsurface does not have to be smooth; however, this introduces discontinuities in its NDF, which is undesirable, unless the goal is to model a flat surface.
 
-Erasing any part of the box will cause a projected area mismatch for certain angles. This may tempt you to draw the conclusion that the constraint implies that the microsurface must be continuous, but that is not the case. The issue lies in *translation invariance* of Eqn. 1, which simply means that the projected area of an object is independent of its location. This property may seem innocuous at first, but coupled with linearity of Eqn. 1, it leads to a disaster: you can freely translate different parts of the microsurface in different directions without affecting the value of the integral.
+Erasing any part of the box will cause a projected area mismatch for certain angles. This may tempt you to draw a conclusion that the constraint implies that the microsurface must be continuous, but that is not the case. The issue lies in *translation invariance* of Eqn. 1, which simply means that the projected area of an object is independent of its location. This property may seem innocuous at first, but coupled with linearity of Eqn. 1, it spells disaster: you can freely translate different parts of the microsurface in different directions without affecting the value of the integral.
 
-Since the projected area alone is insufficient to describe a real surface, we may also specify the *visible projected area*
+Since the projected area alone is insufficient to describe a real surface, we may additionally specify its *visible projected area*
 
 $$ \tag{2}
 \begin{aligned}
@@ -79,11 +79,11 @@ $$ \tag{2}
 \end{aligned}
 $$
 
-in terms of the dimensionless *masking function* $G_1(\bm{v}, \bm{m})$ that quantifies the fraction of the area of the microsurface perpendicular to $\bm{m}$ that happens to be unoccluded along $\bm{v}$. It is closely related to the *visibility function* $V(\bm{v}, \bm{p})$ that outputs 0 if the point $\bm{p}$ is occluded along $\bm{v}$, and 1 otherwise. Both functions take self-masking into account: $V = G_1 = 0$ if $(\bm{v} \cdot \bm{m}) \le 0$. This is a subtle, but important point that allows us to avoid clamping the value of the inner product of $\bm{v}$ and $\bm{m}$ to 0, and thus preserve the vectorial (e.i. coordinate-independent, basis-independent) nature of Eqn. 2.
+in terms of the dimensionless *masking function* $G_1(\bm{v}, \bm{m})$ that gives the fraction of the differential area $dA(\bm{m})$ of a portion of the microsurface perpendicular to $\bm{m}$ that happens to be unoccluded along $\bm{v}$. It is closely related to the *visibility function* $V(\bm{v}, \bm{p})$ that outputs 0 if the point $\bm{p}$ is occluded along $\bm{v}$, and 1 otherwise. Both functions take *self-masking* into account: $V = G_1 = 0$ if $(\bm{v} \cdot \bm{m}) \le 0$. This subtle point allows us to preserve the vectorial (e.i. coordinate-independent, basis-independent) nature of Eqn. 2.
 
-Eqn. 1 and 2 are closely related. For a valid microsurface, if we choose $\bm{v} = \bm{n}$, the values of the integrals must be the same[^6]:
+Eqn. 1 and 2 are closely related. For a valid microsurface, the values of the integrals are the same[^6] if we choose $\bm{v} = \bm{n}$:
 
-[^6]: Unless $\mathbb{M^2}$ is a heightfield, this does not imply that $G_1(\bm{n}, \bm{m}) = 1$, since the equality of integrands does not necessarily follow from the equality of integrals.
+[^6]: This does not imply that $G_1(\bm{n}, \bm{m}) = 1$, since the equality of integrands does not follow from the equality of integrals.
 
 $$ \tag{2a}
 \begin{aligned}
@@ -95,8 +95,4 @@ $$ \tag{2a}
 \end{aligned}
 $$
 
-In general, and exemplified by a box (for a box, it fails), *the visible projected area is greater or equal to the ordinary projected area*. They coincide, provided the viewing angle is sufficiently steep, or the microgeometry -- sufficiently short, so that it is completely contained within the infinite volume spanned by sweeping the macrosuface along the viewing direction.
-
-The microsurface must be infinitesimally tall.
-
-*Shadowing function: remember that *
+As clearly demonstrated by the box, in general, *the visible projected area is greater or equal to the ordinary projected area*. This is caused by self-masking, which eliminates the (formerly negative) contribution of back-facing surfaces. The two types of projected areas coincide only if the view angle is sufficiently steep, or the microgeometry -- sufficiently short, so that the latter does not extend outside the infinite volume swept by the macrosuface along the view direction. This leads to one of the key assumptions of the microfacet theory: *the microsurface must be infinitesimally tall*. This limitation can manifest itself at grazing angles, and should be familiar to those who have some experience with bump and normal maps.
