@@ -81,6 +81,8 @@ $$
 
 in terms of the dimensionless *masking function* $G_1(\bm{v}, \bm{m})$ that gives the fraction of the differential area $dA(\bm{m})$ of a portion of the microsurface perpendicular to $\bm{m}$ that happens to be unoccluded along $\bm{v}$. It is closely related to the *visibility function* $V(\bm{v}, \bm{p})$ that outputs 0 if the point $\bm{p}$ is occluded along $\bm{v}$, and 1 otherwise. Both functions take *self-masking* into account: $V = G_1 = 0$ if $(\bm{v} \cdot \bm{m}) \le 0$. This subtle point allows us to preserve the vectorial (e.i. coordinate-independent, basis-independent) nature of Eqn. 2.
 
+**Stretch invariance...** Linear transformations...
+
 Eqn. 1 and 2 are closely related. For a valid microsurface, the values of the integrals are the same[^6] if we choose $\bm{v} = \bm{n}$:
 
 [^6]: Remember that the equality of integrands does not necessarily follow from the equality of integrals.
@@ -115,5 +117,7 @@ $$ \tag{3b}
 $$
 
 is called the *distribution of visible normals*[^7]. Similarly to $(\bm{n} \cdot \bm{m}) D(\bm{m})$, the former is a valid (view-dependent) probability density function only if $\mathbb{M^2}$ is a heightfield.
+
+**BRDF construction...**
 
 [^7]: After taking the definitions into account and comparing Eqn. 1c with 3a, it would be more natural to define $D_{vis} = G_1 D$. We stick with Eqn. 3b in order to conform to the existing body of literature.
