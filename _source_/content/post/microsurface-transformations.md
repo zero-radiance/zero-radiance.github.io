@@ -38,7 +38,7 @@ $$ \tag{1a}
 \end{aligned}
 $$
 
-for all $\bm{v}$. Expressed this way, it is clear that the constraint is vectorial (e.i. coordinate-independent, basis-independent) in nature:
+for all $\bm{v}$. Expressed this way, it is clear that the constraint is geometric (e.i. coordinate-independent, basis-independent) in nature:
 
 $$ \tag{1b}
 	\bm{n} = \int_{\bm{m} \in \mathbb{S^2}} \bm{m} D(\bm{m}) d\Omega(\bm{m}).
@@ -58,7 +58,7 @@ One of the simplest valid microsurfaces is a box[^5] (with the flipped bottom fa
 
 [^5]: Using the tools of calculus, we can decompose an arbitrary surface into a (possibly infinite) number of (sufficiently small) boxes.
 
-*Linearity* of Eqn. 1 allows us to consider individual elements of the microsurface separately, and simply sum up the results. As we apply Eqn. 1 to the box, observe that the signed projected areas of the opposite faces cancel each other, leaving just the top (that is, of course, equivalent to the bottom). Another consequence is that a linearly transformed box (a parallelepiped) still represents a valid combination of micro and macrosurfaces, but, of course, the projected areas (and, thus, the values of the NDF) do not remain the same.
+*Linearity* of Eqn. 1 allows us to consider individual elements of the microsurface separately, and simply sum up the results. As we apply Eqn. 1 to the box, observe that the signed projected areas of the opposite faces cancel each other, leaving just the top (that is, of course, equivalent to the bottom). Another consequence is that a linearly transformed surface (a parallelepiped, in the case of a box) still results in a valid combination of the microsurface and the macrosurface. We can see why that is the case by picturing Eqn. 1 geometrically and (inversely) transforming the coordinate axes rather than the surface itself. Of course, while the surface lines are unchanged, the projected areas (and, thus, the values of the NDF) do not remain the same.
 
 Clearly, a microsurface does not have to be smooth; however, this introduces discontinuities in its NDF, which is undesirable, unless the goal is to model a flat surface.
 
@@ -79,9 +79,9 @@ $$ \tag{2}
 \end{aligned}
 $$
 
-in terms of the dimensionless *masking function* $G_1(\bm{v}, \bm{m})$ that gives the fraction of the differential area $dA(\bm{m})$ of a portion of the microsurface perpendicular to $\bm{m}$ that happens to be unoccluded along $\bm{v}$. It is closely related to the *visibility function* $V(\bm{v}, \bm{p})$ that outputs 0 if the point $\bm{p}$ is occluded along $\bm{v}$, and 1 otherwise. Both functions take *self-masking* into account: $V = G_1 = 0$ if $(\bm{v} \cdot \bm{m}) \le 0$. This subtle point allows us to preserve the vectorial (e.i. coordinate-independent, basis-independent) nature of Eqn. 2.
+in terms of the dimensionless *masking function* $G_1(\bm{v}, \bm{m})$ that gives the fraction of the differential area $dA(\bm{m})$ of a portion of the microsurface perpendicular to $\bm{m}$ that happens to be unoccluded along $\bm{v}$. It is closely related to the binary *visibility function* $V(\bm{v}, \bm{p})$ that outputs 0 if the point $\bm{p}$ is occluded along $\bm{v}$, and 1 otherwise. Both functions take *self-masking* into account: $V = G_1 = 0$ if $(\bm{v} \cdot \bm{m}) \le 0$. This subtle point allows us to emphasize the geometric (e.i. coordinate-independent, basis-independent) nature of Eqn. 2.
 
-**Stretch invariance...** Linear transformations...
+The masking (and the visibility) function possesses an important property called *stretch invariance*, or, more generally, *invariance under linear transformations*. We have already seen that, in the context of the microfacet theory, a linearly transformed surface remains valid; however, unlike the NDF, the masking function is dimensionless: it only encodes visibility, and so it remains unaffected by a transformation of the coordinate axes. Of course, such a of transformation affects everything, including the view direction.
 
 Eqn. 1 and 2 are closely related. For a valid microsurface, the values of the integrals are the same[^6] if we choose $\bm{v} = \bm{n}$:
 
@@ -120,4 +120,4 @@ is called the *distribution of visible normals*[^7]. Similarly to $(\bm{n} \cdot
 
 **BRDF construction...**
 
-[^7]: After taking the definitions into account and comparing Eqn. 1c with 3a, it would be more natural to define $D_{vis} = G_1 D$. We stick with Eqn. 3b in order to conform to the existing body of literature.
+[^7]: After taking the definitions into account and comparing Eqn. 1c with 3a, it would be more natural to simply let $D_{vis} = G_1 D$. We stick with Eqn. 3b in order to conform to the existing body of literature.
