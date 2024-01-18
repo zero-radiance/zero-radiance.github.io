@@ -18,7 +18,7 @@ In contrast, the surface fragment overlaid onto the macrosurface is called the *
 
 [^2]: We use the superscript 2 to indicate that the surface is a two-dimensional manifold.
 
-Let $\bm{m}$ denote the unit normal vector of the microsurface. Since it may correspond to several distinct points on the microsurface, it is necessary to define[^3] $dA(\bm{m}) = D(\bm{m}) A d\Omega(\bm{m})$ as the differential area of a portion of the microsurface perpendicular to $\bm{m}$, where $d\Omega$ denotes the differential solid angle centered on $\bm{m}$, and $D$ is the *microfacet normal distribution*[^4] (abbreviated as the *NDF*) associated with the microsurface. This function, along with the microfacet normals themselves, is typically restricted to the unit hemisphere $\mathbb{H^2}$ (with $\bm{n}$ serving as the zenith direction), which implies that $\mathbb{M^2}$ must be a heightfield. However, this restriction is not strictly necessary; we shall demonstrate that by letting the microfacet normals potentially cover the entire unit sphere $\mathbb{S^2}$.
+Let $\bm{m}$ denote the unit normal vector of the microsurface. Since it may correspond to several distinct points on the microsurface, it is necessary to define[^3] $dA(\bm{m}) = D(\bm{m}) A d\Omega(\bm{m})$ as the differential area of a portion of the microsurface perpendicular to $\bm{m}$, where $d\Omega$ denotes the differential solid angle centered on $\bm{m}$, and $D$ is the *distribution of normals*[^4] (abbreviated as the *NDF*) associated with the microsurface. This function, along with the microfacet normals themselves, is typically restricted to the unit hemisphere $\mathbb{H^2}$ (with $\bm{n}$ serving as the zenith direction), which implies that $\mathbb{M^2}$ must be a heightfield. However, this restriction is not strictly necessary; we shall demonstrate that by letting the microfacet normals potentially cover the entire unit sphere $\mathbb{S^2}$.
 
 [^3]: If the surface is convex, one can interpret $DA$ as a Jacobian of the transformation from the surface to the unit hemisphere.
 
@@ -64,7 +64,7 @@ Clearly, a microsurface does not have to be smooth; however, this introduces dis
 
 Erasing any part of the box will cause a projected area mismatch for certain angles. This may tempt you to draw a conclusion that the constraint implies that the microsurface must be continuous, but that is not the case. The issue lies in *translation invariance* of Eqn. 1, which simply means that the projected area of an object is independent of its location. This property may seem innocuous at first, but coupled with linearity of Eqn. 1, it spells disaster: you can freely translate different parts of the microsurface in different directions without affecting the value of the integral.
 
-Since the projected area alone is insufficient to describe a real surface, we may additionally specify its *visible projected area*
+Since the projected area is insufficient to describe a real surface, we may additionally specify its *visible projected area*
 
 $$ \tag{2}
 \begin{aligned}
@@ -83,16 +83,37 @@ in terms of the dimensionless *masking function* $G_1(\bm{v}, \bm{m})$ that give
 
 Eqn. 1 and 2 are closely related. For a valid microsurface, the values of the integrals are the same[^6] if we choose $\bm{v} = \bm{n}$:
 
-[^6]: This does not imply that $G_1(\bm{n}, \bm{m}) = 1$, since the equality of integrands does not follow from the equality of integrals.
+[^6]: Remember that the equality of integrands does not necessarily follow from the equality of integrals.
 
 $$ \tag{2a}
 \begin{aligned}
 	1 =
 	&\int_{\bm{m} \in \mathbb{S^2}} (\bm{n} \cdot \bm{m}) D(\bm{m}) d\Omega(\bm{m})
-	\cr = \space
+	\cr =
 	&\int_{\bm{m} \in \mathbb{S^2}}
 	(\bm{n} \cdot \bm{m}) G_1(\bm{n}, \bm{m}) D(\bm{m}) d\Omega(\bm{m}).
 \end{aligned}
 $$
 
-As clearly demonstrated by the box, in general, *the visible projected area is greater or equal to the ordinary projected area*. This is caused by self-masking, which eliminates the (formerly negative) contribution of back-facing surfaces. The two types of projected areas coincide only if the view angle is sufficiently steep, or the microgeometry -- sufficiently short, so that the latter does not extend outside the infinite volume swept by the macrosuface along the view direction. This leads to one of the key assumptions of the microfacet theory: *the microsurface must be infinitesimally tall*. This limitation can manifest itself at grazing angles, and should be familiar to those who have some experience with bump and normal maps.
+As clearly demonstrated by the box, in general, *the visible projected area is greater or equal to the ordinary projected area*. This is caused by self-masking, which eliminates the (formerly negative) contribution of back-facing surface elements. The two types of projected areas coincide only if the view angle is sufficiently steep, or the microgeometry -- sufficiently short, so that the latter does not extend outside the infinite volume formed by sweeping the macrosuface along the view direction. This leads to one of the key assumptions of the microfacet theory: *the microsurface must be infinitesimally tall*. This limitation can manifest itself at grazing angles, and should be familiar to those who have some experience with bump and normal maps.
+
+With the assumption in place, we can combine Eqn. 1 and 2 into
+
+$$ \tag{3a}
+	1 =
+	\int_{\bm{m} \in \mathbb{S^2}}
+	\frac{(\bm{v} \cdot \thinspace \bm{m})}{(\bm{v} \cdot \thinspace \bm{n})} G_1(\bm{v}, \bm{m}) D(\bm{m}) d\Omega(\bm{m}),
+$$
+
+where
+
+$$ \tag{3b}
+\begin{aligned}
+	D_{vis}(\bm{v}, \bm{m}) =
+	\frac{(\bm{v} \cdot \thinspace \bm{m})}{(\bm{v} \cdot \thinspace \bm{n})} G_1(\bm{v}, \bm{m}) D(\bm{m})
+\end{aligned}
+$$
+
+is called the *distribution of visible normals*[^7]. Similarly to $(\bm{n} \cdot \bm{m}) D(\bm{m})$, the former is a valid (view-dependent) probability density function only if $\mathbb{M^2}$ is a heightfield.
+
+[^7]: After taking the definitions into account and comparing Eqn. 1c with 3a, it would be more natural to define $D_{vis} = G_1 D$. We stick with Eqn. 3b in order to conform to the existing body of literature.
