@@ -99,12 +99,11 @@ $$
 
 As clearly demonstrated by the box, in general, *the visible projected area is greater or equal to the ordinary projected area*. This is caused by self-masking, which eliminates the (formerly negative) contribution of back-facing surface elements. The two types of projected areas coincide only if the view angle is sufficiently steep, or the microgeometry -- sufficiently short, so that the latter does not extend outside the infinite volume formed by sweeping the macrosuface along the view direction. This leads to one of the key assumptions of the microfacet theory: *the microsurface must be infinitesimally tall*. This limitation can manifest itself at grazing angles, and should be familiar to those who have some experience with bump and normal maps.
 
-With the assumption in place, we can combine Eqn. 1 and 2 into
+With the assumption in place, we can combine Eqn. 1a and 2a into
 
 $$ \tag{3a}
 	1 =
-	\int_{\bm{m} \in \mathbb{S^2}}
-	\frac{(\bm{v} \cdot \thinspace \bm{m})}{(\bm{v} \cdot \thinspace \bm{n})} G_1(\bm{v}, \bm{m}) D(\bm{m}) d\Omega(\bm{m}),
+	\int_{\bm{m} \in \mathbb{S^2}} D_{vis}(\bm{v}, \bm{m}) d\Omega(\bm{m}),
 $$
 
 where
@@ -118,34 +117,48 @@ is called the *distribution of visible normals*[^7] (abbreviated as the *VNDF*).
 
 [^7]: After taking the definitions into account and comparing Eqn. 1c with 3a, it would be more natural to simply let $\small D_{vis} = G_1 D$. We stick with Eqn. 3b in order to conform to the existing body of literature.
 
-The VNDF can be used to construct a bidirectional scattering distribution function $\small \rho$ (also known as a *BSDF*). By definition, it is a ratio of the differential outgoing radiance to the differential incident irradiance, the latter being the product of the incident radiance and the projected differential solid angle $\small d\Omega_n(\bm{l}) = \vert \bm{n} \cdot \bm{l} \vert d\Omega(\bm{l})$:
+The VNDF can be used to construct a *bidirectional scattering distribution function* $\small f_s$ (also known as a *BSDF*). By definition, it is a ratio of the differential outgoing radiance to the differential incident irradiance, the latter being the product of the incident radiance and the projected differential solid angle $\small d\Omega_n(\bm{l}) = \vert \bm{n} \cdot \bm{l} \vert d\Omega(\bm{l})$:
 
 $$ \tag{4a}
-	\rho(\bm{v}, \bm{n}, \bm{l}) =
+	f_s(\bm{v}, \bm{n}, \bm{l}) =
 	\frac{dL_o(\bm{v})}{dE_i(\bm{n}, \bm{l})} =
 	\frac{dL_o(\bm{v})}{L_i(\bm{l}) d\Omega_n(\bm{l})}.
 $$
 
-In other words, the outgoing radiance is a linear combination of the incident radiance:
+In other words, the outgoing radiance is a weighted linear combination of the incident radiance:
 
 $$ \tag{4b}
 	L_o(\bm{v}) =
 	\int_{\bm{l} \in \mathbb{S^2}}
-	\rho(\bm{v}, \bm{n}, \bm{l}) L_i(\bm{l}) d\Omega_n(\bm{l}).
+	f_s(\bm{v}, \bm{n}, \bm{l}) L_i(\bm{l}) d\Omega_n(\bm{l}).
 $$
 
-In order for a BSDF to be physically meaningful, it must satisfy three properties:
+In order for the BSDF to be physically meaningful, it must satisfy three properties:
 
-$$ \tag{5}
+$$ \tag{4c}
 \begin{aligned}
 	\text{non-negativity: }
-	&\rho \ge 0,
+	&f_s \ge 0;
 	\cr
-	\text{reciprocity (btdf? veach?): }
-	&\rho(\bm{v}, \bm{n}, \bm{l}) = \rho(\bm{l}, \bm{n}, \bm{v}),
+	\text{reciprocity: }
+	&\frac{f_s(\bm{v}, \bm{n}, \bm{l})}{f_s(\bm{l}, \bm{n}, \bm{v})} = \frac{\eta_v^2}{\eta_l^2};
 	\cr
-	\text{energy conservation (double int?): }
-	&\iint_{\bm{l}, \bm{v} \in \mathbb{S^2}}
-	\rho(\bm{v}, \bm{n}, \bm{l}) d\Omega_n(\bm{l}) d\Omega(\bm{v}) \le 2 \pi.
+	\text{energy conservation: }
+	&\int_{\bm{v} \in \mathbb{S^2}}
+	f_s(\bm{v}, \bm{n}, \bm{l}) d\Omega_n(\bm{v}) \le 1;
 \end{aligned}
 $$
+
+where $\small \eta_l$ and $\small \eta_v$ are the refractive indices associated with the directions of incidence $\small (\bm{l})$ and exitance $\small (\bm{v})$, respectively, that may point above or below the surface.
+
+## Acknowledgements
+
+## References and Suggestions for Further Reading
+
+Veach's thesis
+
+Eric's understanding
+
+Walter's ggx
+
+Atanasov's transformations
