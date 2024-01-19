@@ -10,17 +10,17 @@ At EGSR 2022, Atanasov, Koylazov, Dimov, and Wilkie presented a paper titled [Mi
 
 ## Microscopic Introduction
 
-Pick an object, perhaps one that sits on your desk or lives in your head. Focus on a tiny fragment of its surface located at the point $\bm{P}$. If the fragment is sufficiently small, or is sufficiently far away, it will appear effectively flat (but not necessarily smooth). Therefore, to a negligible degree of error, the fragment may be replaced by a first-order approximation[^1] -- its projection onto the (averaged) tangent plane. In the literature, this projected surface fragment is referred to as the *macrosurface*. It is characterized by the area $A$ and the unit normal vector $\bm{n}$. Fixing two (not necessarily unit or orthogonal) tangent vectors $\bm{t_u}$ and $\bm{t_v}$ is sufficient to complete the parameterization of the macrosurface.
+Pick an object, perhaps one that sits on your desk or lives in your head. Focus on a tiny fragment of its surface located at the point $\small \bm{P}$. If the fragment is sufficiently small, or is sufficiently far away, it will appear effectively flat (but not necessarily smooth). Therefore, to a negligible degree of error, the fragment may be replaced by a first-order approximation[^1] -- its projection onto the (averaged) tangent plane. In the literature, this projected surface fragment is referred to as the *macrosurface*. It is characterized by the area $\small A$ and the unit normal vector $\small \bm{n}$. Fixing two (not necessarily unit or orthogonal) tangent vectors $\small \bm{t_u}$ and $\small \bm{t_v}$ is sufficient to complete the parameterization of the macrosurface.
 
 [^1]: In the sense of a Taylor series expansion.
 
-In contrast, the surface fragment overlaid onto the macrosurface is called the *microsurface* $\mathbb{M}$[^2]. In the microfacet theory, a microsurface is not modeled explicitly, but rather represented by a statistical model.
+In contrast, the surface fragment overlaid onto the macrosurface is called the *microsurface* $\small \mathbb{M}$[^2]. In the microfacet theory, a microsurface is not modeled explicitly, but rather represented by a statistical model.
 
 [^2]: We use the superscript 2 to indicate that the surface is a two-dimensional manifold.
 
-Let $\bm{m}$ denote the unit normal vector of the microsurface. Since it may correspond to several distinct points on the microsurface, it is necessary to define[^3] $dA(\bm{m}) = D(\bm{m}) A d\Omega(\bm{m})$ as the differential area of a portion of the microsurface perpendicular to $\bm{m}$, where $d\Omega$ denotes the differential solid angle centered on $\bm{m}$, and $D$ is the *distribution of normals*[^4] (abbreviated as the *NDF*) associated with the microsurface. This function, along with the microfacet normals themselves, is typically restricted to the unit hemisphere $\mathbb{H^2}$ (with $\bm{n}$ serving as the zenith direction), which implies that $\mathbb{M^2}$ must be a heightfield. However, this restriction is not strictly necessary; we shall demonstrate that by letting the microfacet normals potentially cover the entire unit sphere $\mathbb{S^2}$.
+Let $\small \bm{m}$ denote the unit normal vector of the microsurface. Since it may correspond to several distinct points on the microsurface, it is necessary to define[^3] $\small dA(\bm{m}) = D(\bm{m}) A d\Omega(\bm{m})$ as the differential area of a portion of the microsurface perpendicular to $\small \bm{m}$, where $\small d\Omega$ denotes the differential solid angle centered on $\small \bm{m}$, and $\small D$ is the *distribution of normals*[^4] (abbreviated as the *NDF*) associated with the microsurface. This function, along with the microfacet normals themselves, is typically restricted to the unit hemisphere $\small \mathbb{H^2}$ (with $\small \bm{n}$ serving as the zenith direction), which implies that $\small \mathbb{M^2}$ must be a heightfield. However, this restriction is not strictly necessary; we shall demonstrate that by letting the microfacet normals potentially cover the entire unit sphere $\small \mathbb{S^2}$.
 
-[^3]: If the surface is convex, one can interpret $DA$ as a Jacobian of the transformation from the surface to the unit hemisphere.
+[^3]: If the surface is convex, one can interpret $\small DA$ as a Jacobian of the transformation from the surface to the unit hemisphere.
 
 [^4]: Not to be confused with the Gaussian (a.k.a. normal) distribution in statistics.
 
@@ -38,21 +38,21 @@ $$ \tag{1a}
 \end{aligned}
 $$
 
-for all $\bm{v}$. Expressed this way, it is clear that the constraint is geometric (e.i. coordinate-independent, basis-independent) in nature:
+for all $\small \bm{v}$. Expressed this way, it is clear that the constraint is geometric (e.i. coordinate-independent, basis-independent) in nature:
 
 $$ \tag{1b}
 	\bm{n} = \int_{\bm{m} \in \mathbb{S^2}} \bm{m} D(\bm{m}) d\Omega(\bm{m}).
 $$
 
-Eqn. 1 tells us a few things. Geometrically, it says that the projected areas of the microsurface and the macrosurface must must coincide in any given direction. Furthermore, by substituting a constant NDF (or from its definition), we can see that the latter is measured in units of reciprocal solid angle.
+Eqn. 1 tells us a few things. Geometrically, it says that the projected areas of the microsurface and the macrosurface must must coincide in any given direction. Furthermore, by substituting a constant NDF (or from its definition), we can see that it is measured in units of reciprocal solid angle.
 
-In the special case of $\bm{v} = \bm{n}$, we obtain
+In the special case of $\small \bm{v} = \bm{n}$, we obtain
 
 $$ \tag{1c}
 	1 = \int_{\bm{m} \in \mathbb{S^2}} (\bm{n} \cdot \bm{m}) D(\bm{m}) d\Omega(\bm{m}).
 $$
 
-In order for $(\bm{n} \cdot \bm{m}) D(\bm{m})$ to be a valid probability density function, it must be non-negative for all $\bm{m}$. That is the case only if $\mathbb{M^2}$ is a heightfield.
+In order for $\small (\bm{n} \cdot \bm{m}) D(\bm{m})$ to be a valid probability density function, it must be non-negative for all $\small \bm{m}$. That is the case only if $\small \mathbb{M^2}$ is a heightfield.
 
 One of the simplest valid microsurfaces is a box[^5] (with the flipped bottom face playing the role of the macrosurface). It is instructive to analyze its two-dimensional counterpart -- a rectangle.
 
@@ -66,7 +66,7 @@ Erasing any part of the box will cause a projected area mismatch for certain ang
 
 Since the projected area is insufficient to describe a real surface, we may additionally specify its *visible projected area*
 
-$$ \tag{2}
+$$ \tag{2a}
 \begin{aligned}
 	&\bm{v} \cdot \int_{\bm{p} \in \mathbb{M^2}}
 	\bm{m}(\bm{p}) V(\bm{v}, \bm{p}) dA(\bm{p})
@@ -79,15 +79,15 @@ $$ \tag{2}
 \end{aligned}
 $$
 
-in terms of the dimensionless *masking function* $G_1(\bm{v}, \bm{m})$ that gives the fraction of the differential area $dA(\bm{m})$ of a portion of the microsurface perpendicular to $\bm{m}$ that happens to be unoccluded along $\bm{v}$. It is closely related to the binary *visibility function* $V(\bm{v}, \bm{p})$ that outputs 0 if the point $\bm{p}$ is occluded along $\bm{v}$, and 1 otherwise. Both functions take *self-masking* into account: $V = G_1 = 0$ if $(\bm{v} \cdot \bm{m}) \le 0$. This subtle point allows us to emphasize the geometric (e.i. coordinate-independent, basis-independent) nature of Eqn. 2.
+in terms of the dimensionless *masking function* $\small G_1(\bm{v}, \bm{m})$ that gives the fraction of the differential area $\small dA(\bm{m})$ of a portion of the microsurface perpendicular to $\small \bm{m}$ that happens to be unoccluded along $\small \bm{v}$. It is closely related to the binary *visibility function* $\small V(\bm{v}, \bm{p})$ that outputs 0 if the point $\small \bm{p}$ is occluded along $\small \bm{v}$, and 1 otherwise. Both functions take *self-masking* into account: $\small V = G_1 = 0$ if $\small (\bm{v} \cdot \bm{m}) \le 0$. This subtle point allows us to emphasize the geometric (e.i. coordinate-independent, basis-independent) nature of Eqn. 2.
 
 The masking (and the visibility) function possesses an important property called *stretch invariance*, or, more generally, *invariance under linear transformations*. We have already seen that, in the context of the microfacet theory, a linearly transformed surface remains valid; however, unlike the NDF, the masking function is dimensionless: it only encodes visibility, and so it remains unaffected by a transformation of the coordinate axes. Of course, such a of transformation affects everything, including the view direction.
 
-Eqn. 1 and 2 are closely related. For a valid microsurface, the values of the integrals are the same[^6] if we choose $\bm{v} = \bm{n}$:
+Eqn. 1 and 2 are closely related. For a valid microsurface, the values of the integrals are the same[^6] if we choose $\small \bm{v} = \bm{n}$:
 
 [^6]: Remember that the equality of integrands does not necessarily follow from the equality of integrals.
 
-$$ \tag{2a}
+$$ \tag{2b}
 \begin{aligned}
 	1 =
 	&\int_{\bm{m} \in \mathbb{S^2}} (\bm{n} \cdot \bm{m}) D(\bm{m}) d\Omega(\bm{m})
@@ -110,14 +110,42 @@ $$
 where
 
 $$ \tag{3b}
-\begin{aligned}
 	D_{vis}(\bm{v}, \bm{m}) =
 	\frac{(\bm{v} \cdot \thinspace \bm{m})}{(\bm{v} \cdot \thinspace \bm{n})} G_1(\bm{v}, \bm{m}) D(\bm{m})
-\end{aligned}
 $$
 
-is called the *distribution of visible normals*[^7]. Similarly to $(\bm{n} \cdot \bm{m}) D(\bm{m})$, the former is a valid (view-dependent) probability density function only if $\mathbb{M^2}$ is a heightfield.
+is called the *distribution of visible normals*[^7] (abbreviated as the *VNDF*). Similarly to $\small (\bm{n} \cdot \bm{m}) D(\bm{m})$, the former is a valid (view-dependent) probability density function only if $\small \mathbb{M^2}$ is a heightfield.
 
-**BRDF construction...**
+[^7]: After taking the definitions into account and comparing Eqn. 1c with 3a, it would be more natural to simply let $\small D_{vis} = G_1 D$. We stick with Eqn. 3b in order to conform to the existing body of literature.
 
-[^7]: After taking the definitions into account and comparing Eqn. 1c with 3a, it would be more natural to simply let $D_{vis} = G_1 D$. We stick with Eqn. 3b in order to conform to the existing body of literature.
+The VNDF can be used to construct a bidirectional scattering distribution function $\small \rho$ (also known as a *BSDF*). By definition, it is a ratio of the differential outgoing radiance to the differential incident irradiance, the latter being the product of the incident radiance and the projected differential solid angle $\small d\Omega_n(\bm{l}) = \vert \bm{n} \cdot \bm{l} \vert d\Omega(\bm{l})$:
+
+$$ \tag{4a}
+	\rho(\bm{v}, \bm{n}, \bm{l}) =
+	\frac{dL_o(\bm{v})}{dE_i(\bm{n}, \bm{l})} =
+	\frac{dL_o(\bm{v})}{L_i(\bm{l}) d\Omega_n(\bm{l})}.
+$$
+
+In other words, the outgoing radiance is a linear combination of the incident radiance:
+
+$$ \tag{4b}
+	L_o(\bm{v}) =
+	\int_{\bm{l} \in \mathbb{S^2}}
+	\rho(\bm{v}, \bm{n}, \bm{l}) L_i(\bm{l}) d\Omega_n(\bm{l}).
+$$
+
+In order for a BSDF to be physically meaningful, it must satisfy three properties:
+
+$$ \tag{5}
+\begin{aligned}
+	\text{non-negativity: }
+	&\rho \ge 0,
+	\cr
+	\text{reciprocity (btdf? veach?): }
+	&\rho(\bm{v}, \bm{n}, \bm{l}) = \rho(\bm{l}, \bm{n}, \bm{v}),
+	\cr
+	\text{energy conservation (double int?): }
+	&\iint_{\bm{l}, \bm{v} \in \mathbb{S^2}}
+	\rho(\bm{v}, \bm{n}, \bm{l}) d\Omega_n(\bm{l}) d\Omega(\bm{v}) \le 2 \pi.
+\end{aligned}
+$$
