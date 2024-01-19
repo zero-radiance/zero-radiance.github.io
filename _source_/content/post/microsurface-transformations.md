@@ -117,7 +117,7 @@ is called the *distribution of visible normals*[^7] (abbreviated as the *VNDF*).
 
 [^7]: After taking the definitions into account and comparing Eqn. 1c with 3a, it would be more natural to simply let $\small D_{vis} = G_1 D$. We stick with Eqn. 3b in order to conform to the existing body of literature.
 
-The VNDF can be used to construct a *bidirectional scattering distribution function* $\small f_s$ (also known as a *BSDF*). By definition, it is a ratio of the differential outgoing radiance to the differential incident irradiance, the latter being the product of the incident radiance and the projected differential solid angle $\small d\Omega_n(\bm{l}) = \vert \bm{n} \cdot \bm{l} \vert d\Omega(\bm{l})$:
+The VNDF can be used to construct a *bidirectional scattering distribution function* $\small f_s$ (also known as a *BSDF*). By definition, it is a ratio of the differential outgoing radiance to the differential incident irradiance, the latter being the product of the incident radiance and the projected differential solid angle $\small d\Omega_n(\bm{l}) = \vert \bm{l} \cdot \bm{n} \vert d\Omega(\bm{l})$:
 
 $$ \tag{4a}
 	f_s(\bm{v}, \bm{n}, \bm{l}) =
@@ -149,7 +149,32 @@ $$ \tag{4c}
 \end{aligned}
 $$
 
-where $\small \eta_l$ and $\small \eta_v$ are the refractive indices associated with the directions of incidence $\small (\bm{l})$ and exitance $\small (\bm{v})$, respectively, that may point above or below the surface.
+where $\small \eta_l$ and $\small \eta_v$ are the refractive indices associated with the directions of incidence $\small (\bm{l})$ and exitance $\small (\bm{v})$, respectively, that may point above or below the surface. The ratio is the consequence of Snell's law that leads to the compression of solid angles and, thus, the increase in energy density.
+
+We start with a concrete example of a perfectly smooth planar surface. Its BSDF is expressed in terms of the *Dirac delta function* $\small \delta$ defined as a solid angle measure by
+
+$$ \tag{5a}
+	\int_{\bm{v} \in \mathbb{S^2}} f(\bm{v}) \delta\big(d\Omega(\bm{v})\big) =
+	\int_{\bm{v} \in \mathbb{S^2}} f(\bm{v}) \delta_{\Omega}(\bm{v}) d\Omega(\bm{v}) = f(\bm{0}).
+$$
+
+Then, the reflection component of the BSDF is
+
+$$ \tag{5b}
+	f_r(\bm{v}, \bm{n}, \bm{l}) =
+	\delta_{\Omega}\negmedspace\left( \bm{n} - \frac{\bm{v} + \bm{l}}{\Vert \bm{v} + \bm{l} \Vert} \right) \frac{2 F_0}{(\bm{v} + \bm{l}) \cdot \bm{n}},
+$$
+
+where $\small 0 \le F_0 \le 1$ is the *Fresnel reflectance*.
+
+Similarly, the transmission component is defined as https://en.wikipedia.org/wiki/Snell%27s_law#Vector_form
+
+$$ \tag{5c}
+	f_t(\bm{v}, \bm{n}, \bm{l}) =
+	\delta_{\Omega}\negmedspace\left( \bm{n} - \frac{\bm{v} + \bm{l}}{\Vert \bm{v} + \bm{l} \Vert} \right) \frac{2 F_0}{(\bm{v} + \bm{l}) \cdot \bm{n}},
+$$
+
+
 
 ## Acknowledgements
 
