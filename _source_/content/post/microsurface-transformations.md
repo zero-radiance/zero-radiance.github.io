@@ -149,32 +149,46 @@ $$ \tag{4c}
 \end{aligned}
 $$
 
-where $\small \eta_l$ and $\small \eta_v$ are the refractive indices associated with the directions of incidence $\small (\bm{l})$ and exitance $\small (\bm{v})$, respectively, that may point above or below the surface. The ratio is the consequence of Snell's law that leads to the compression of solid angles and, thus, the increase in energy density.
+where $\small \eta_l$ and $\small \eta_v$ are the refractive indices associated with the directions of incidence $\small (\bm{l})$ and exitance $\small (\bm{v})$, respectively, that may point above or below the surface. The ratio is the consequence of Snell's law
+
+$$ \tag{5}
+	\eta_v \sin{\theta_v} = \eta_l \sin{\theta_l}
+$$
+
+that leads to the compression of solid angles and, thus, the increase in energy density.
 
 We start with a concrete example of a perfectly smooth planar surface. Its BSDF is expressed in terms of the *Dirac delta function* $\small \delta$ defined as a solid angle measure by
 
-$$ \tag{5a}
+$$ \tag{6a}
 	\int_{\bm{v} \in \mathbb{S^2}} f(\bm{v}) \delta\big(d\Omega(\bm{v})\big) =
 	\int_{\bm{v} \in \mathbb{S^2}} f(\bm{v}) \delta_{\Omega}(\bm{v}) d\Omega(\bm{v}) = f(\bm{0}).
 $$
 
 Then, the reflection component of the BSDF is
 
-$$ \tag{5b}
+$$ \tag{6b}
 	f_r(\bm{v}, \bm{n}, \bm{l}) =
-	\delta_{\Omega}\negmedspace\left( \bm{n} - \frac{\bm{v} + \bm{l}}{\Vert \bm{v} + \bm{l} \Vert} \right) \frac{2 F_0}{(\bm{v} + \bm{l}) \cdot \bm{n}},
+	\delta_{\Omega}\negmedspace\left( \bm{n} - \frac{\bm{v} + \bm{l}}{\Vert \bm{v} + \bm{l} \Vert} \right) \frac{2 F}{(\bm{v} + \bm{l}) \cdot \bm{n}},
 $$
 
-where $\small 0 \le F_0 \le 1$ is the *Fresnel reflectance*.
+where $\small 0 \le F \le 1$ is the *Fresnel reflectance*...
 
-Similarly, the transmission component is defined as https://en.wikipedia.org/wiki/Snell%27s_law#Vector_form
+(6b clearly conforms to 4c)
 
-$$ \tag{5c}
+Similarly, the transmission component is defined as
+
+$$ \tag{6c}
 	f_t(\bm{v}, \bm{n}, \bm{l}) =
-	\delta_{\Omega}\negmedspace\left( \bm{n} - \frac{\bm{v} + \bm{l}}{\Vert \bm{v} + \bm{l} \Vert} \right) \frac{2 F_0}{(\bm{v} + \bm{l}) \cdot \bm{n}},
+	\delta_{\Omega}\big( \eta_v (\bm{v} \times \bm{n}) + \eta_l (\bm{l} \times \bm{n}) \big) \frac{1 - F}{(\bm{l} \cdot \bm{n})},
 $$
 
+(Does 6c conform to 4c? Demonstrate reciprocity and conservation for dielectrics)
 
+---
+
+TODO: ACTIVE AND PASSIVE TRANSFORMATIONS
+
+---
 
 ## Acknowledgements
 
