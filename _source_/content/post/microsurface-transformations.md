@@ -4,7 +4,7 @@ date: 2024-01-11T13:38:14-08:00
 draft: true
 ---
 
-At EGSR 2022, Atanasov, Koylazov, Dimov, and Wilkie presented a paper titled [Microsurface Transformations](https://onlinelibrary.wiley.com/doi/abs/10.1111/cgf.14590), where the authors discuss linear transformations of microfacet distributions. Since I have been long interested in surface geometry, its representations, and the associated transformations (something I have previously explored in the context of [bump and normal mapping](/post/surface-gradient/)), this work immediately caught my attention. While the subject may seem obscure, the idea of parameterizing surface detail using a (spatially varying) matrix is immensely powerful. It also brings much-needed conceptual clarity, as it enables the processing of geometry at all scales using the framework of linear algebra. This is highly desirable if one wishes to model the appearance of deformed objects, with stretching and bending properly affecting fine surface detail (and, thus, its reflectance properties). Perhaps you can imagine other, less conventional applications of microsurface transformations. We shall explore one of them in this article.
+At EGSR 2022, Atanasov, Koylazov, Dimov, and Wilkie presented a paper titled [Microsurface Transformations](https://onlinelibrary.wiley.com/doi/abs/10.1111/cgf.14590), where the authors discuss linear transformations of microfacet distributions. Since I have been long interested in surface geometry, its representations, and the associated transformations (something I have previously explored in the context of [bump and normal mapping](/post/surface-gradient/)), this work immediately caught my attention. While the subject may seem obscure, the idea of parameterizing surface detail in terms of a (spatially varying) transformation matrix is immensely powerful. It also brings much-needed conceptual clarity, as it enables the processing of geometry at all scales using the framework of linear algebra. This is highly desirable if one wishes to model the appearance of deformed objects, with stretching and bending properly affecting fine surface detail (and, thus, the reflectance properties). Perhaps you can imagine other, less conventional applications of microsurface transformations. We shall explore one of them in this article.
 
 <!--more-->
 
@@ -18,7 +18,7 @@ In contrast, the surface fragment overlaid onto the macrosurface is called the *
 
 [^2]: We use the superscript 2 to indicate that the surface is a two-dimensional manifold.
 
-Let $\small \bm{m}$ denote the unit normal vector of the microsurface. Since it may correspond to several distinct points on the microsurface, it is necessary to define[^3] $\small dA(\bm{m}) = D(\bm{m}) A d\Omega(\bm{m})$ as the differential area of a portion of the microsurface perpendicular to $\small \bm{m}$, where $\small d\Omega$ denotes the differential solid angle centered on $\small \bm{m}$, and $\small D$ is the *distribution of normals*[^4] (abbreviated as the *NDF*) associated with the microsurface. This function, along with the microfacet normals themselves, is typically restricted to the unit hemisphere $\small \mathbb{H^2}$ (with $\small \bm{n}$ serving as the zenith direction), which implies that $\small \mathbb{M^2}$ must be a heightfield. However, this restriction is not strictly necessary; we shall demonstrate that by letting the microfacet normals potentially cover the entire unit sphere $\small \mathbb{S^2}$.
+Let $\small \bm{m}$ denote the unit normal vector of the microsurface. Since it may correspond to several distinct points on the microsurface, it is necessary to define[^3] $\small dA(\bm{m}) = D(\bm{m}) A d\Omega(\bm{m})$ as the differential area of a portion of the microsurface perpendicular to $\small \bm{m}$, where $\small d\Omega$ denotes the differential solid angle centered on $\small \bm{m}$, and $\small D$ is the *distribution of normals*[^4] (abbreviated as the *NDF*) associated with the microsurface. This function, along with the microfacet normals themselves, is typically restricted to the unit hemisphere $\small \mathbb{H^2}$ (with $\small \bm{n}$ serving as the zenith direction), which implies that $\small \mathbb{M^2}$ must be a height field. However, this restriction is not strictly necessary; we shall demonstrate that by letting the microfacet normals potentially cover the entire unit sphere $\small \mathbb{S^2}$.
 
 [^3]: If the surface is convex, one can interpret $\small DA$ as a Jacobian of the transformation from the surface to the unit hemisphere.
 
@@ -38,13 +38,13 @@ $$ \tag{1a}
 \end{aligned}
 $$
 
-for all $\small \bm{v}$. Expressed this way, it is clear that the constraint is geometric (e.i. coordinate-independent, basis-independent) in nature:
+for all $\small \bm{v}$. Expressed this way, it is clear that the constraint is geometric (e.i., coordinate-independent, basis-independent) in nature:
 
 $$ \tag{1b}
 	\bm{n} = \int_{\bm{m} \in \mathbb{S^2}} \bm{m} D(\bm{m}) d\Omega(\bm{m}).
 $$
 
-Eqn. 1 tells us a few things. Geometrically, it says that the projected areas of the microsurface and the macrosurface must must coincide in any given direction. Furthermore, by substituting a constant NDF (or from its definition), we can see that it is measured in units of reciprocal solid angle.
+Eqn. 1 tells us a few things. Geometrically, it says that the projected areas of the microsurface and the macrosurface must coincide in any given direction. Furthermore, by substituting a constant NDF (or from its definition), we can see that it is measured in units of reciprocal solid angle.
 
 In the special case of $\small \bm{v} = \bm{n}$, we obtain
 
@@ -52,9 +52,9 @@ $$ \tag{1c}
 	1 = \int_{\bm{m} \in \mathbb{S^2}} (\bm{n} \cdot \bm{m}) D(\bm{m}) d\Omega(\bm{m}).
 $$
 
-In order for $\small (\bm{n} \cdot \bm{m}) D(\bm{m})$ to be a valid probability density function, it must be non-negative for all $\small \bm{m}$. That is the case only if $\small \mathbb{M^2}$ is a heightfield.
+In order for $\small (\bm{n} \cdot \bm{m}) D(\bm{m})$ to be a valid probability density function, it must be non-negative for all $\small \bm{m}$. That is the case only if $\small \mathbb{M^2}$ is a height field.
 
-One of the simplest valid microsurfaces is a box[^5] (with the flipped bottom face playing the role of the macrosurface). It is instructive to analyze its two-dimensional counterpart -- a rectangle.
+One of the simplest examples of a valid microsurface is a box[^5] (with the flipped bottom face playing the role of the macrosurface). It is instructive to analyze its two-dimensional counterpart -- a rectangle.
 
 [^5]: Using the tools of calculus, we can decompose an arbitrary surface into a (possibly infinite) number of (sufficiently small) boxes.
 
@@ -62,7 +62,7 @@ One of the simplest valid microsurfaces is a box[^5] (with the flipped bottom fa
 
 Clearly, a microsurface does not have to be smooth; however, this introduces discontinuities in its NDF, which is undesirable, unless the goal is to model a flat surface.
 
-Erasing any part of the box will cause a projected area mismatch for certain angles. This may tempt you to draw a conclusion that the constraint implies that the microsurface must be continuous, but that is not the case. The issue lies in *translation invariance* of Eqn. 1, which simply means that the projected area of an object is independent of its location. This property may seem innocuous at first, but coupled with linearity of Eqn. 1, it spells disaster: you can freely translate different parts of the microsurface in different directions without affecting the value of the integral.
+Erasing any part of the box will cause a projected area mismatch for certain angles. This may tempt you to draw the conclusion that the constraint implies that the microsurface must be continuous, but that is not the case. The issue lies in the *translation invariance* of Eqn. 1, which simply means that the projected area of an object is independent of its location. This property may seem innocuous at first, but, coupled with the linearity of Eqn. 1, it spells disaster: you can freely translate different parts of the microsurface in different directions without affecting the value of the integral.
 
 Since the projected area is insufficient to describe a real surface, we may additionally specify its *visible projected area*
 
@@ -79,9 +79,9 @@ $$ \tag{2a}
 \end{aligned}
 $$
 
-in terms of the dimensionless *masking function* $\small G_1(\bm{v}, \bm{m})$ that gives the fraction of the differential area $\small dA(\bm{m})$ of a portion of the microsurface perpendicular to $\small \bm{m}$ that happens to be unoccluded along $\small \bm{v}$. It is closely related to the binary *visibility function* $\small V(\bm{v}, \bm{p})$ that outputs 0 if the point $\small \bm{p}$ is occluded along $\small \bm{v}$, and 1 otherwise. Both functions take *self-masking* into account: $\small V = G_1 = 0$ if $\small (\bm{v} \cdot \bm{m}) \le 0$. This subtle point allows us to emphasize the geometric (e.i. coordinate-independent, basis-independent) nature of Eqn. 2.
+in terms of the dimensionless *masking function* $\small G_1(\bm{v}, \bm{m})$ that gives the fraction of the differential area $\small dA(\bm{m})$ of a portion of the microsurface perpendicular to $\small \bm{m}$ that happens to be not occluded along $\small \bm{v}$. It is closely related to the binary *visibility function* $\small V(\bm{v}, \bm{p})$ that outputs 0 if the point $\small \bm{p}$ is occluded along $\small \bm{v}$, and 1 otherwise. Both functions take *self-masking* into account: $\small V = G_1 = 0$ if $\small (\bm{v} \cdot \bm{m}) \le 0$. This subtle point allows us to emphasize the geometric (e.i., coordinate-independent, basis-independent) nature of Eqn. 2.
 
-The masking (and the visibility) function possesses an important property called *stretch invariance*, or, more generally, *invariance under linear transformations*. We have already seen that, in the context of the microfacet theory, a linearly transformed surface remains valid; however, unlike the NDF, the masking function is dimensionless: it only encodes visibility, and so it remains unaffected by a transformation of the coordinate axes. Of course, such a of transformation affects everything, including the view direction.
+The masking (and the visibility) function possesses an important property called *stretch invariance*, or, more generally, *invariance under linear transformations*. We have already seen that, in the context of the microfacet theory, a linearly transformed surface remains valid; however, unlike the NDF, the masking function is dimensionless: it only encodes visibility, and so it remains unaffected by a transformation of the coordinate axes. Of course, this kind of transformation affects everything, including the view direction.
 
 Eqn. 1 and 2 are closely related. For a valid microsurface, the values of the integrals are the same[^6] if we choose $\small \bm{v} = \bm{n}$:
 
@@ -113,9 +113,9 @@ $$ \tag{3b}
 	\frac{(\bm{v} \cdot \thinspace \bm{m})}{(\bm{v} \cdot \thinspace \bm{n})} G_1(\bm{v}, \bm{m}) D(\bm{m})
 $$
 
-is called the *distribution of visible normals*[^7] (abbreviated as the *VNDF*). Similarly to $\small (\bm{n} \cdot \bm{m}) D(\bm{m})$, the former is a valid (view-dependent) probability density function only if $\small \mathbb{M^2}$ is a heightfield.
+is called the *distribution of visible normals*[^7] (abbreviated as the *VNDF*). Similarly to $\small (\bm{n} \cdot \bm{m}) D(\bm{m})$, the former is a valid (view-dependent) probability density function only if $\small \mathbb{M^2}$ is a height field.
 
-[^7]: After taking the definitions into account and comparing Eqn. 1c with 3a, it would be more natural to simply let $\small D_{vis} = G_1 D$. We stick with Eqn. 3b in order to conform to the existing body of literature.
+[^7]: After taking the definitions into account and comparing Eqn. 1c with 3a, it would be more natural to simply let $\small D_{vis} = G_1 D$. We stick with Eqn. 3b to conform to the existing body of literature.
 
 The VNDF can be used to construct a *bidirectional scattering distribution function* $\small f_s$ (also known as a *BSDF*). By definition, it is a ratio of the differential outgoing radiance to the differential incident irradiance, the latter being the product of the incident radiance and the projected differential solid angle $\small d\Omega_n(\bm{l}) = \vert \bm{l} \cdot \bm{n} \vert d\Omega(\bm{l})$:
 
@@ -155,7 +155,7 @@ $$ \tag{5}
 	\eta_v \sin{\theta_v} = \eta_l \sin{\theta_l}
 $$
 
-that leads to the compression of solid angles and, thus, the increase in energy density.
+that leads to the compression of solid angles and, thus, an increase in energy density.
 
 We start with a concrete example of a perfectly smooth planar surface. Its BSDF is expressed in terms of the *Dirac delta function* $\small \delta$ defined as a solid angle measure by
 
