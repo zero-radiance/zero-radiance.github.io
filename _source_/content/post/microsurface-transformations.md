@@ -121,16 +121,16 @@ A VNDF can be used to construct a *bidirectional scattering distribution functio
 
 $$ \tag{4a}
 	f_s(\bm{v}, \bm{n}, \bm{l}) =
-	\frac{dL_o(\bm{v})}{dE_i(\bm{n}, \bm{l})} =
-	\frac{dL_o(\bm{v})}{L_i(\bm{l}) d\Omega_n(\bm{l})}.
+	\frac{dL(\bm{v})}{dE_n(\bm{l})} =
+	\frac{dL(\bm{v})}{L(\bm{l}) d\Omega_n(\bm{l})}.
 $$
 
 In other words, the outgoing radiance is a weighted average of the incident radiance across the unit sphere:
 
 $$ \tag{4b}
-	L_o(\bm{v}) =
+	L(\bm{v}) =
 	\int_{\bm{l} \in \mathbb{S^2}}
-	f_s(\bm{v}, \bm{n}, \bm{l}) L_i(\bm{l}) d\Omega_n(\bm{l}).
+	f_s(\bm{v}, \bm{n}, \bm{l}) L(\bm{l}) d\Omega_n(\bm{l}).
 $$
 
 In order for a BSDF to be physically meaningful, it must satisfy three properties:
@@ -149,13 +149,19 @@ $$ \tag{4c}
 \end{aligned}
 $$
 
-where $\small \eta_v + i \kappa_v$ and $\small \eta_l + i \kappa_l$ are the complex indices of refraction associated with the directions of exitance $\small (\bm{v})$ and incidence $\small (\bm{l})$ which may point above or below the surface. Their ratio is the consequence of Snell's law
+where $\small \eta_v + i \kappa_v$ and $\small \eta_l + i \kappa_l$ are the complex indices of refraction associated with the directions of exitance $\small (\bm{v})$ and incidence $\small (\bm{l})$, respectively. In particular, reciprocity is a direct consequence of Snell's law
 
-$$ \tag{5}
-	\eta_v \sin{\theta_v} = \eta_l \sin{\theta_l}
+$$ \tag{5a}
+	\eta_v \Vert \bm{v} \times \bm{n} \Vert = \eta_l \Vert \bm{l} \times \bm{n} \Vert
 $$
 
-which leads to the compression of solid angles and, thus, an increase in energy density.
+which leads to the compression of projected solid angles
+
+$$ \tag{5b}
+	\eta_v^2 d\Omega_n(\bm{v}) = \eta_l^2 d\Omega_n(\bm{l})
+$$
+
+and, thus, an increase in energy density, if either $\small \bm{v}$ or $\small \bm{l}$ point below the surface.
 
 --- Cut here? ---
 
