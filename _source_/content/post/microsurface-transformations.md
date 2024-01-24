@@ -133,7 +133,9 @@ $$ \tag{4b}
 	f_s(\bm{v}, \bm{n}, \bm{l}) L(\bm{l}) d\Omega_n(\bm{l}).
 $$
 
-In order for a BSDF to be physically meaningful, it must satisfy three properties:
+In order for a BSDF to be physically meaningful[^8], it must satisfy three properties:
+
+[^8]: We shall not consider absorptive media in this article. A discussion involving the specifics of conductors (and certain dielectrics) would quickly become quite involved and take us too far afield, away from our original topic of microsurface transformations.
 
 $$ \tag{4c}
 \begin{aligned}
