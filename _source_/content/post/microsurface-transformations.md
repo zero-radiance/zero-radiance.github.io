@@ -135,7 +135,7 @@ $$
 
 In order for a BSDF to be physically meaningful[^8], it must satisfy three properties:
 
-[^8]: We shall not consider absorptive media in this article. A discussion involving the specifics of conductors (and certain dielectrics) would quickly become quite involved and take us too far afield, away from our original topic of microsurface transformations.
+[^8]: We will not consider absorptive media in this article. A discussion involving the specifics of conductors (and certain dielectrics) would quickly become quite involved and take us too far afield, away from our original topic of microsurface transformations.
 
 $$ \tag{4c}
 \begin{aligned}
@@ -143,15 +143,17 @@ $$ \tag{4c}
 	&f_s \ge 0;
 	\cr
 	\text{reciprocity: }
-	&\frac{f_s(\bm{v}, \bm{n}, \bm{l})}{f_s(\bm{l}, \bm{n}, \bm{v})} = \frac{\eta_v^2 (1 + \kappa_v^2)^{-1}}{\eta_l^2 (1 + \kappa_l^2)^{-1}};
+	&\frac{f_s(\bm{v}, \bm{n}, \bm{l})}{f_s(\bm{l}, \bm{n}, \bm{v})} = \frac{\eta_v^2}{\eta_l^2};
 	\cr
 	\text{energy conservation: }
 	&\int_{\bm{v} \in \mathbb{S^2}}
-	f_s(\bm{v}, \bm{n}, \bm{l}) d\Omega_n(\bm{v}) \le 1;
+	f_s(\bm{v}, \bm{n}, \bm{l}) d\Omega_n(\bm{v}) =
+	\int_{\bm{v} \in \mathbb{S^2}}
+	f_s(\bm{v}, \bm{n}, \bm{l}) d\Omega_n(\bm{l}) \le 1;
 \end{aligned}
 $$
 
-where $\small \eta_v + i \kappa_v$ and $\small \eta_l + i \kappa_l$ are the complex indices of refraction associated with the directions of exitance $\small (\bm{v})$ and incidence $\small (\bm{l})$, respectively. In particular, reciprocity is a direct consequence of Snell's law
+where $\small \eta_v$ and $\small \eta_l$ are the indices of refraction associated with the directions of exitance $\small (\bm{v})$ and incidence $\small (\bm{l})$, respectively. In particular, reciprocity is a direct consequence of the law of refraction (also valid for reflection)
 
 $$ \tag{5a}
 	\eta_v \Vert \bm{v} \times \bm{n} \Vert = \eta_l \Vert \bm{l} \times \bm{n} \Vert
@@ -163,34 +165,69 @@ $$ \tag{5b}
 	\eta_v^2 d\Omega_n(\bm{v}) = \eta_l^2 d\Omega_n(\bm{l})
 $$
 
-and, thus, an increase in energy density, if either $\small \bm{v}$ or $\small \bm{l}$ point below the surface.
+and, thus, an increase in energy density, provided $\small \eta_v \neq \eta_l$.
 
---- Cut here? ---
-
-We start with a concrete example of a perfectly smooth planar surface. Its BSDF is expressed in terms of the *Dirac delta function* $\small \delta$ defined as a solid angle measure by
+These properties are by no means obvious. We shall illustrate them by considering a perfectly smooth, planar surface. Its BSDF has two distinct components: reflection and transmission. Both can be expressed in terms of the *Dirac delta function* $\small \delta$ defined as a solid angle measure by the equation
 
 $$ \tag{6a}
-	\int_{\bm{v} \in \mathbb{S^2}} f(\bm{v}) \delta\big(d\Omega(\bm{v})\big) =
-	\int_{\bm{v} \in \mathbb{S^2}} f(\bm{v}) \delta_{\Omega}(\bm{v}) d\Omega(\bm{v}) = f(\bm{0}).
+	f(\bm{0}) = \int_{\bm{v} \in \mathbb{S^2}} f(\bm{v}) \delta\big(d\Omega(\bm{v})\big) =
+	\int_{\bm{v} \in \mathbb{S^2}} f(\bm{v}) \delta_{\Omega}(\bm{v}) d\Omega(\bm{v})
 $$
 
-Then, the reflection component of the BSDF is
+valid for any function $\small f$. Then, the reflection component of the BSDF is
 
 $$ \tag{6b}
 	f_r(\bm{v}, \bm{n}, \bm{l}) =
-	\delta_{\Omega}\negmedspace\left( \bm{n} - \frac{\bm{v} + \bm{l}}{\Vert \bm{v} + \bm{l} \Vert} \right) \frac{2 F}{(\bm{v} + \bm{l}) \cdot \bm{n}},
+	\delta_{\Omega}\negmedspace\left( \bm{n} - \frac{\bm{v} + \bm{l}}{\Vert \bm{v} + \bm{l} \Vert} \right) \frac{F(\bm{n}, \bm{l})}{\vert \bm{n} \cdot \bm{l} \vert},
 $$
 
-where $\small 0 \le F \le 1$ is the *Fresnel reflectance*...
+where $\small 0 \le F \le 1$ is the *Fresnel reflectance*, expressed in the trigonometric form as
 
-(6b clearly conforms to 4c)
+$$ \tag{7a}
+	F(\theta_i, \theta_t)
+	= (1 - \alpha) R_s(\theta_i, \theta_t) + \alpha R_p(\theta_i, \theta_t).
+$$
+
+$\small \theta_i$ and $\small \theta_t$ are the angles of incidence and refraction (or transmission), respectively, and $\small \alpha = 1/2$ corresponding to the natural (unpolarized) light. Its parallel $\small (s)$ and perpendicular $\small (p)$ components are
+
+$$ \tag{7b}
+\begin{aligned}
+	R_s(\theta_i, \theta_t)
+	&= \left| \frac{\cos{\theta_i} / \cos{\theta_t} - \sin{\theta_t} / \sin{\theta_i}}{\cos{\theta_i} / \cos{\theta_t} + \sin{\theta_t} / \sin{\theta_i}} \right|^2
+	= \left| \frac{\sin(2 \theta_i) - \sin(2 \theta_t)}{\sin(2 \theta_i) + \sin(2 \theta_t)} \right|^2,
+	\cr
+	R_p(\theta_i, \theta_t)
+	&= \left| \frac{\cos{\theta_t} / \cos{\theta_i} - \sin{\theta_t} / \sin{\theta_i}}{\cos{\theta_t} / \cos{\theta_i} + \sin{\theta_t} / \sin{\theta_i}} \right|^2
+	= \left| \frac{\sin(\theta_i - \theta_t)}{\sin(\theta_i + \theta_t)} \right|^2.
+\end{aligned}
+$$
+
+In the special case of mirror reflection,
+
+$$ \tag{8a}
+	\sin{\theta_i} = \Vert \bm{v} \times \bm{n} \Vert = \Vert \bm{l} \times \bm{n} \Vert,
+	\quad
+	\cos{\theta_i} = \vert \bm{n} \cdot \bm{v} \vert = \vert \bm{n} \cdot \bm{l} \vert,
+$$
+
+and, using the law of refraction,
+
+$$ \tag{8b}
+	\sin{\theta_t} = \frac{\eta_i}{\eta_t} \sin{\theta_i},
+	\quad
+	\cos{\theta_t} = \sqrt{1 - \sin^2{\theta_t} }.
+$$
+
+Clearly, we are free to exchange $\small \bm{v}$ and $\small \bm{l}$ in Eqn. 6b, which means it is reciprocal.
 
 Similarly, the transmission component is defined as
 
 $$ \tag{6c}
 	f_t(\bm{v}, \bm{n}, \bm{l}) =
-	\delta_{\Omega}\big( \eta_v (\bm{v} \times \bm{n}) + \eta_l (\bm{l} \times \bm{n}) \big) \frac{1 - F}{(\bm{l} \cdot \bm{n})},
+	\delta_{\Omega}\big( \eta_v (\bm{v} \times \bm{n}) + \eta_l (\bm{l} \times \bm{n}) \big) \frac{1 - F(\bm{n}, \bm{l})}{\vert \bm{n} \cdot \bm{l} \vert},
 $$
+
+**Try without Fresnel... Follow Veach!**
 
 (Does 6c conform to 4c? Demonstrate reciprocity and conservation for dielectrics)
 
