@@ -139,17 +139,15 @@ In order for a BSDF to be physically meaningful[^8], it must satisfy three prope
 
 $$ \tag{4c}
 \begin{aligned}
-	\text{non-negativity: }
+	\textit{non-negativity: }
 	&f_s \ge 0;
 	\cr
-	\text{reciprocity: }
+	\textit{reciprocity: }
 	&\frac{f_s(\bm{v}, \bm{n}, \bm{l})}{f_s(\bm{l}, \bm{n}, \bm{v})} = \frac{\eta_v^2}{\eta_l^2};
 	\cr
-	\text{energy conservation: }
+	\textit{energy conservation: }
 	&\int_{\bm{v} \in \mathbb{S^2}}
-	f_s(\bm{v}, \bm{n}, \bm{l}) d\Omega_n(\bm{v}) =
-	\int_{\bm{v} \in \mathbb{S^2}}
-	f_s(\bm{v}, \bm{n}, \bm{l}) d\Omega_n(\bm{l}) \le 1;
+	f_s(\bm{v}, \bm{n}, \bm{l}) d\Omega_n(\bm{v}) \le 1;
 \end{aligned}
 $$
 
@@ -165,9 +163,13 @@ $$ \tag{5b}
 	\eta_v^2 d\Omega_n(\bm{v}) = \eta_l^2 d\Omega_n(\bm{l})
 $$
 
-and, thus, an increase in energy density, provided $\small \eta_v \neq \eta_l$.
+and, thus, an increase in energy density, provided $\small \eta_v \neq \eta_l$. Keep in mind that, in general, the relationship between the ordinary solid angles is not as simple:
 
-These properties are by no means obvious. We shall illustrate them by considering a perfectly smooth, planar surface. Its BSDF has two distinct components: reflection and transmission. Both can be expressed in terms of the *Dirac delta function* $\small \delta$ defined as a solid angle measure by the equation
+$$ \tag{5c}
+	\eta_v^2 d\Omega(\bm{v}) \neq \eta_l^2 d\Omega(\bm{l}).
+$$
+
+This is a very good reason to consistently employ the projected solid angle measure. Doing things differently may result in complicated expressions and even apparent failure of reciprocity or energy conservation.
 
 $$ \tag{6a}
 	f(\bm{0}) = \int_{\bm{v} \in \mathbb{S^2}} f(\bm{v}) \delta\big(d\Omega(\bm{v})\big) =
