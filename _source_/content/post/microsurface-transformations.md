@@ -135,7 +135,7 @@ $$
 
 In order for a BSDF to be physically meaningful[^8], it must satisfy three properties:
 
-[^8]: We will not consider absorptive media in this article. A discussion involving the specifics of conductors (and certain dielectrics) would quickly become quite involved and take us too far afield, away from our original topic of microsurface transformations.
+[^8]: We will not consider absorptive or magnetic media in this article. A discussion involving the specifics of conductors (and certain dielectrics) would quickly become quite involved and take us too far afield, away from our original topic of microsurface transformations.
 
 $$ \tag{4c}
 \begin{aligned}
@@ -151,7 +151,7 @@ $$ \tag{4c}
 \end{aligned}
 $$
 
-where $\small \eta_v$ and $\small \eta_l$ are the indices of refraction associated with the directions of exitance $\small (\bm{v})$ and incidence $\small (\bm{l})$, respectively. In particular, reciprocity is a direct consequence of the law of refraction (also valid for reflection)
+where $\small \eta_v$ and $\small \eta_l$ are the indices of refraction (the *IORs*) associated with the directions of exitance $\small (\bm{v})$ and incidence $\small (\bm{l})$, respectively. In particular, reciprocity is a direct consequence of the law of refraction (also valid for reflection)
 
 $$ \tag{5a}
 	\eta_v \Vert \bm{v} \times \bm{n} \Vert = \eta_l \Vert \bm{l} \times \bm{n} \Vert
@@ -169,55 +169,111 @@ $$ \tag{5c}
 	\eta_v^2 d\Omega(\bm{v}) \neq \eta_l^2 d\Omega(\bm{l}).
 $$
 
-This is a very good reason to consistently employ the projected solid angle measure. Doing things differently may result in complicated expressions and even apparent failure of reciprocity or energy conservation.
+This is a very good reason to utilize the projected solid angle measure. Failure to consistently do so often results in complicated expressions that are both difficult to interpret and error-prone.
 
-$$ \tag{6a}
-	f(\bm{0}) = \int_{\bm{v} \in \mathbb{S^2}} f(\bm{v}) \delta\big(d\Omega(\bm{v})\big) =
-	\int_{\bm{v} \in \mathbb{S^2}} f(\bm{v}) \delta_{\Omega}(\bm{v}) d\Omega(\bm{v})
+The properties given by Eqn. 5 are by no means obvious. In particular, making a BSDF reciprocal may seem like a non-trivial task. Typically, it is done by splitting the BSDF into two components: reflection (the *BRDF*) and transmission (the *BTDF*). The reflection component is always *symmetric*: since $\small \bm{v}$ and $\small \bm{l}$ always point away from the surface, $\small \eta_v = \eta_l$, which results in $\small f_r(\bm{v}, \bm{n}, \bm{l}) = f_r(\bm{l}, \bm{n}, \bm{v})$.
+
+
+In order to make things clear, we shall illustrate these properties using a concrete example. Considering a perfectly smooth, planar surface. Its BSDF has two distinct components: reflection and transmission. Both can be expressed in terms of the *Dirac delta function* $\small \delta$ defined as a projected solid angle measure by the equation
+
+$$ \tag{6}
+	f(\bm{w}) =
+	\int_{\bm{v} \in \mathbb{S^2}} f(\bm{v}) \delta_{\Omega_n}(\bm{v} - \bm{w}) d\Omega_n(\bm{v})
 $$
 
-valid for any function $\small f$. Then, the reflection component of the BSDF is
+valid for any function $\small f: \mathbb{S^2} \to \mathbb{R}$.
 
-$$ \tag{6b}
-	f_r(\bm{v}, \bm{n}, \bm{l}) =
-	\delta_{\Omega}\negmedspace\left( \bm{n} - \frac{\bm{v} + \bm{l}}{\Vert \bm{v} + \bm{l} \Vert} \right) \frac{F(\bm{n}, \bm{l})}{\vert \bm{n} \cdot \bm{l} \vert},
-$$
-
-where $\small 0 \le F \le 1$ is the *Fresnel reflectance*, expressed in the trigonometric form as
+Now, according to the law of reflection, the angles of incidence and reflection must be the same:
 
 $$ \tag{7a}
-	F(\theta_i, \theta_t)
-	= (1 - \alpha) R_s(\theta_i, \theta_t) + \alpha R_p(\theta_i, \theta_t).
+	\sin{\theta_i} = \Vert \bm{l} \times \bm{n} \Vert = \Vert \bm{v} \times \bm{n} \Vert,
+	\quad
+	\cos{\theta_i} = \vert \bm{l} \cdot \bm{n} \vert = \vert \bm{v} \cdot \bm{n} \vert.
 $$
 
-$\small \theta_i$ and $\small \theta_t$ are the angles of incidence and refraction (or transmission), respectively, and $\small \alpha = 1/2$ corresponding to the natural (unpolarized) light. Its parallel $\small (s)$ and perpendicular $\small (p)$ components are
+Furthermore, we need to distinguish between the IORs associated with the exterior (above the surface) and the interior (below the surface):
 
 $$ \tag{7b}
+	\eta_i = \eta_l = \eta_v,
+	\quad
+	\eta_t =
+	\begin{cases}
+	   \eta_{int} &\text{if } \eta_i = \eta_{ext}, \cr
+	   \eta_{ext} &\text{otherwise}.
+	\end{cases}
+$$
+
+Using this formalism, the reflection component of the BSDF can be written as
+
+$$ \tag{7c}
+	f_r(\bm{v}, \bm{n}, \bm{l}) =
+	F(\theta_i, \eta_i/\eta_t)
+	\delta_{\Omega_n}\negmedspace\left( \bm{n} - \frac{\bm{v} + \bm{l}}{\bm{n} \cdot(\bm{v} + \bm{l})} \right),
+$$
+
+where $\small 0 \le F \le 1$ is the *Fresnel reflectance*. Clearly, the BRDF is non-negative, symmetric, and energy-conserving.
+
+The trigonometric form of the Fresnel term can be expressed as
+
+$$ \tag{8a}
+	F(\theta_i, \eta_i/\eta_t)
+	= (1 - \alpha) R_s(\theta_i, \eta_i/\eta_t) + \alpha R_p(\theta_i, \eta_i/\eta_t),
+$$
+
+where the value of $\small \alpha$ depends on the state of polarization of the incident light: $\small \alpha = 0$ corresponds to the s-polarized light, $\small \alpha = 1$ -- to the p-polarized light, and $\small \alpha = 1/2$ -- to the unpolarized (natural) light.
+
+The two mutually perpendicular components are
+
+$$ \tag{8b}
 \begin{aligned}
-	R_s(\theta_i, \theta_t)
+	R_s(\theta_i, \eta_i/\eta_t)
 	&= \left| \frac{\cos{\theta_i} / \cos{\theta_t} - \sin{\theta_t} / \sin{\theta_i}}{\cos{\theta_i} / \cos{\theta_t} + \sin{\theta_t} / \sin{\theta_i}} \right|^2
 	= \left| \frac{\sin(2 \theta_i) - \sin(2 \theta_t)}{\sin(2 \theta_i) + \sin(2 \theta_t)} \right|^2,
 	\cr
-	R_p(\theta_i, \theta_t)
+	R_p(\theta_i, \eta_i/\eta_t)
 	&= \left| \frac{\cos{\theta_t} / \cos{\theta_i} - \sin{\theta_t} / \sin{\theta_i}}{\cos{\theta_t} / \cos{\theta_i} + \sin{\theta_t} / \sin{\theta_i}} \right|^2
 	= \left| \frac{\sin(\theta_i - \theta_t)}{\sin(\theta_i + \theta_t)} \right|^2.
 \end{aligned}
 $$
 
-In the special case of mirror reflection,
+The angle of refraction (or transmission) $\small \theta_t$ can be determined from the angle of incidence $\small \theta_i$ and the relative IOR $\small \eta_i/\eta_t$ using the (already familiar) law of refraction and basic trigonometry:
 
-$$ \tag{8a}
-	\sin{\theta_i} = \Vert \bm{v} \times \bm{n} \Vert = \Vert \bm{l} \times \bm{n} \Vert,
-	\quad
-	\cos{\theta_i} = \vert \bm{n} \cdot \bm{v} \vert = \vert \bm{n} \cdot \bm{l} \vert,
-$$
-
-and, using the law of refraction,
-
-$$ \tag{8b}
+$$ \tag{8c}
 	\sin{\theta_t} = \frac{\eta_i}{\eta_t} \sin{\theta_i},
 	\quad
 	\cos{\theta_t} = \sqrt{1 - \sin^2{\theta_t} }.
+$$
+
+The definition of the transmission component of the BSDF is similar, just marginally more complicated. We let
+
+$$ \tag{9a}
+\begin{aligned}
+	\sin{\theta_i} &= \Vert \bm{l} \times \bm{n} \Vert,
+	&
+	\cos{\theta_i} &= \vert \bm{l} \cdot \bm{n} \vert,
+	\cr
+	\sin{\theta_t} &= \Vert \bm{v} \times \bm{n} \Vert,
+	&
+	\cos{\theta_t} &= \vert \bm{v} \cdot \bm{n} \vert.
+\end{aligned}
+$$
+
+Thus, we associate
+
+$$ \tag{9b}
+	\eta_i = \eta_l,
+	\quad
+	\eta_t = \eta_v.
+$$
+
+Taking reciprocity and energy conservation into account, the BTDF can then be expressed as
+
+$$ \tag{9c}
+	f_t(\bm{v}, \bm{n}, \bm{l}) =
+	\frac{\eta_v^2}{\eta_l^2} \big( 1 - F(\theta_i, \eta_i/\eta_t) \big) \delta_{\Omega_n}\big( \eta_v (\bm{v} \times \bm{n}) + \eta_l (\bm{l} \times \bm{n}) \big).
+$$
+
+Let us carefully analyze Eqn. 9c to make sure that it is indeed consistent with Eqn. 4c.
 $$
 
 Clearly, we are free to exchange $\small \bm{v}$ and $\small \bm{l}$ in Eqn. 6b, which means it is reciprocal.
