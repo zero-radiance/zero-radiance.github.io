@@ -300,6 +300,10 @@ If $\small \bm{v}$, $\small \bm{n}$, and $\small \bm{l}$ do not define a valid l
 
 *Comment: are Eqn. 17, 18, and 21 in Walter's paper correct? $\small \eta_i^2$ appears to be missing in the denominator.*
 
+BSDF integral is not 1.
+Microfacet soup?
+Microfacet salad?
+
 ---
 
 ## Acknowledgements
