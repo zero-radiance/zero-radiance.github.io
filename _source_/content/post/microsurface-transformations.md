@@ -174,11 +174,11 @@ This is a very good reason to utilize the projected solid angle measure. Failure
 The properties given by Eqn. 5 are by no means obvious. In particular, making a BSDF reciprocal may seem like a non-trivial task. Typically, it is done by splitting the BSDF into two components: reflection (the *BRDF*) and transmission (the *BTDF*). The reflection component is always *symmetric*: since $\small \bm{v}$ and $\small \bm{l}$ always point away from the surface, $\small \eta_v = \eta_l$, which results in $\small f_r(\bm{v}, \bm{n}, \bm{l}) = f_r(\bm{l}, \bm{n}, \bm{v})$.
 
 
-In order to make things clear, we shall illustrate these properties using a concrete example. Considering a perfectly smooth, planar surface. Its BSDF has two distinct components: reflection and transmission. Both can be expressed in terms of the *Dirac delta function* $\small \delta$ defined as a projected solid angle measure by the equation
+In order to make things clear, we shall illustrate these properties using a concrete example. Considering a perfectly smooth, planar surface. Its BSDF has two distinct components: reflection and transmission. Both can be expressed in terms of the *Dirac delta "function"* $\small \delta$ defined as a projected solid angle measure by the equation
 
 $$ \tag{6}
-	f(\bm{w}) =
-	\int_{\bm{v} \in \mathbb{S^2}} f(\bm{v}) \delta_{\Omega_n}(\bm{v} - \bm{w}) d\Omega_n(\bm{v})
+	f(\bm{v}) =
+	\int_{\bm{l} \in \mathbb{S^2}} f(\bm{l}) \delta_{\Omega_n}(\bm{l} - \bm{v}) d\Omega_n(\bm{l})
 $$
 
 valid for any function $\small f: \mathbb{S^2} \to \mathbb{R}$.
@@ -208,12 +208,12 @@ Using this formalism, the reflection component of the BSDF can be written as
 $$ \tag{7c}
 	f_r(\bm{v}, \bm{n}, \bm{l}) =
 	F(\theta_i, \eta_i/\eta_t)
-	\delta_{\Omega_n}\negmedspace\left( \bm{n} - \frac{\bm{v} + \bm{l}}{\bm{n} \cdot(\bm{v} + \bm{l})} \right),
+	\delta_{\Omega_n}\negmedspace\left( \bm{n} - \frac{\bm{v} + \bm{l}}{(\bm{v} + \bm{l}) \cdot \bm{n}} \right),
 $$
 
-where $\small 0 \le F \le 1$ is the *Fresnel reflectance*. Clearly, the BRDF is non-negative, symmetric, and energy-conserving.
+where $\small 0 \le F \le 1$ is the dimensionless *Fresnel reflectance*. Clearly, the BRDF is non-negative, symmetric, and energy-conserving, which can be verified by substituting Eqn. 7c into 4c.
 
-The trigonometric form of the Fresnel term can be expressed as
+The trigonometric form of the Fresnel term is
 
 $$ \tag{8a}
 	F(\theta_i, \eta_i/\eta_t)
@@ -244,7 +244,7 @@ $$ \tag{8c}
 	\cos{\theta_t} = \sqrt{1 - \sin^2{\theta_t} }.
 $$
 
-The definition of the transmission component of the BSDF is similar, just marginally more complicated. We let
+The definition of the transmission component of the BSDF of a perfectly smooth, planar surface is similar, just marginally more complicated. We let
 
 $$ \tag{9a}
 \begin{aligned}
@@ -258,7 +258,7 @@ $$ \tag{9a}
 \end{aligned}
 $$
 
-Thus, we associate
+Therefore, we associate
 
 $$ \tag{9b}
 	\eta_i = \eta_l,
@@ -273,21 +273,32 @@ $$ \tag{9c}
 	\frac{\eta_v^2}{\eta_l^2} \big( 1 - F(\theta_i, \eta_i/\eta_t) \big) \delta_{\Omega_n}\big( \eta_v (\bm{v} \times \bm{n}) + \eta_l (\bm{l} \times \bm{n}) \big).
 $$
 
-Let us carefully analyze Eqn. 9c to make sure that it is indeed consistent with Eqn. 4c.
+Let us carefully analyze Eqn. 9c to make sure that it is indeed consistent with Eqn. 4c. The Dirac term is obviously symmetric. As for the Fresnel term, it may be not immediately obvious why that is the case. This property is illustrated by Eqn. 8b, which is invariant under the exchange of $\small \theta_i$ and $\small \theta_t$. Intuitively, since the Fresnel term is dimensionless, it only depends on the path taken by light, and is unaffected by a reversal of its direction. Finally, the first term is responsible for the projected solid angle compression, which can be readily verified by placing the surface inside a white furnace (e.i. setting $\small L(\bm{l}) = 1$ for all $\small \bm{l}$) and evaluating Eqn. 4b.
+
+Is this BTDF reciprocal? Naive substitution of Eqn. 9c into 4c leads to
+
+$$ \tag{9d}
+	\frac{f_t(\bm{v}, \bm{n}, \bm{l})}{f_t(\bm{l}, \bm{n}, \bm{v})}
+	= \frac{\eta_v^4}{\eta_l^4}
+	\frac{
+		\delta_{\Omega_n}\big( \eta_v (\bm{v} \times \bm{n}) + \eta_l (\bm{l} \times \bm{n}) \big)
+	}{
+		\delta_{\Omega_n}\big( \eta_l (\bm{l} \times \bm{n}) + \eta_v (\bm{v} \times \bm{n}) \big)
+	}.
 $$
 
-Clearly, we are free to exchange $\small \bm{v}$ and $\small \bm{l}$ in Eqn. 6b, which means it is reciprocal.
+Unfortunately, Eqn. 9d fails to make it clear that these two Dirac delta "functions" are not the same. The issue lies in the fact that they are used to measure two different projected solid angles, and their ratio is precisely the same as the missing factor of $\small \eta_l^2 / \eta_v^2$.
 
-Similarly, the transmission component is defined as
+A better way to verify reciprocity is to put each BTDF in the context of the associated Lebesgue integral by combining Eqn. 4c, 5b, and 6:
 
-$$ \tag{6c}
-	f_t(\bm{v}, \bm{n}, \bm{l}) =
-	\delta_{\Omega}\big( \eta_v (\bm{v} \times \bm{n}) + \eta_l (\bm{l} \times \bm{n}) \big) \frac{1 - F(\bm{n}, \bm{l})}{\vert \bm{n} \cdot \bm{l} \vert},
+$$ \tag{10}
+	\int_{\bm{v'} \in \mathbb{S^2}} f_s(\bm{v'}, \bm{n}, \bm{l}) d\Omega_n(\bm{v'})
+	= \int_{\bm{l'} \in \mathbb{S^2}} f_s(\bm{l'}, \bm{n}, \bm{v}) d\Omega_n(\bm{l'}).
 $$
 
-**Try without Fresnel... Follow Veach!**
+If $\small \bm{v}$, $\small \bm{n}$, and $\small \bm{l}$ do not define a valid light path, both integrals vanish. Otherwise, substitution of Eqn. 9c results in identical values.
 
-(Does 6c conform to 4c? Demonstrate reciprocity and conservation for dielectrics)
+*Comment: are Eqn. 17, 18, and 21 in Walter's paper correct? $\small \eta_i^2$ appears to be missing in the denominator.*
 
 ---
 
