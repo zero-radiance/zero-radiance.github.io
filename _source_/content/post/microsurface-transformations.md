@@ -64,7 +64,7 @@ Clearly, a microsurface does not have to be smooth (continuously differentiable)
 
 Erasing any part of the box leads to a projected area mismatch for certain angles. Therefore, the constraint may seem to imply that the microsurface must be continuous, but that is not the case. The issue lies in the *translation invariance* of Eqn. 1, which simply means that the projected area of an object is independent of its location. This property may seem innocuous at first, but, coupled with the linearity of Eqn. 1, it spells disaster: you can freely translate different parts of the microsurface in different directions without affecting the combined value of the integral.
 
-Since the projected area alone is insufficient to describe a real surface, we may additionally specify its *visible projected area*
+Since the projected area alone is an insufficient description of a real surface (as opposed to a microfacet soup or a salad), we may additionally specify its *visible projected area*
 
 $$ \tag{2a}
 \begin{aligned}
@@ -133,9 +133,11 @@ $$ \tag{4b}
 	f_s(\bm{v}, \bm{n}, \bm{l}) L(\bm{l}) d\Omega_n(\bm{l}).
 $$
 
-In order for a BSDF to be physically meaningful[^8], it must satisfy three properties:
+In order for a BSDF to be physically meaningful[^8], it must satisfy three properties[^9]:
 
 [^8]: We will not consider absorptive or magnetic media in this article. A discussion involving the specifics of conductors (and certain dielectrics) would quickly become quite involved and take us too far afield, away from our original topic of microsurface transformations.
+
+[^9]: Kinetic energy is only conserved if the integral is equal to 1. Otherwise, by definition, the collision is inelastic. The total momentum and the total energy are always conserved.
 
 $$ \tag{4c}
 \begin{aligned}
@@ -177,8 +179,8 @@ The properties given by Eqn. 5 are by no means obvious. In particular, making a 
 In order to make things clear, we shall illustrate these properties using a concrete example. Considering a perfectly smooth, planar surface. Its BSDF has two distinct components: reflection and transmission. Both can be expressed in terms of the *Dirac delta "function"* $\small \delta$ defined as a projected solid angle measure by the equation
 
 $$ \tag{6}
-	f(\bm{v}) =
-	\int_{\bm{l} \in \mathbb{S^2}} f(\bm{l}) \delta_{\Omega_n}(\bm{l} - \bm{v}) d\Omega_n(\bm{l})
+	f(\bm{r}) =
+	\int_{\bm{l} \in \mathbb{S^2}} f(\bm{l}) \delta_{\Omega_n}(\bm{l} - \bm{r}) d\Omega_n(\bm{l})
 $$
 
 valid for any function $\small f: \mathbb{S^2} \to \mathbb{R}$.
@@ -211,7 +213,13 @@ $$ \tag{7c}
 	\delta_{\Omega_n}\negmedspace\left( \bm{n} - \frac{\bm{v} + \bm{l}}{(\bm{v} + \bm{l}) \cdot \bm{n}} \right),
 $$
 
-where $\small 0 \le F \le 1$ is the dimensionless *Fresnel reflectance*. Clearly, the BRDF is non-negative, symmetric, and energy-conserving, which can be verified by substituting Eqn. 7c into 4c.
+where $\small 0 \le F \le 1$ is the dimensionless *Fresnel reflectance*. Clearly, the BRDF is non-negative, symmetric, and energy-conserving, which can be verified by substituting Eqn. 7c into 4c. In particular,
+
+$$ \tag{7d}
+	\int_{\bm{v} \in \mathbb{S^2}}
+	f_r(\bm{v}, \bm{n}, \bm{l}) d\Omega_n(\bm{v}) =
+	F(\theta_i, \eta_i/\eta_t) \le 1.
+$$
 
 The trigonometric form of the Fresnel term is
 
@@ -287,22 +295,32 @@ $$ \tag{9d}
 	}.
 $$
 
-Unfortunately, Eqn. 9d fails to make it clear that these two Dirac delta "functions" are not the same. The issue lies in the fact that they are used to measure two different projected solid angles, and their ratio is precisely the same as the missing factor of $\small \eta_l^2 / \eta_v^2$.
+Unfortunately, Eqn. 9d fails to make it clear that these two Dirac delta "functions" are not the same: they are used to measure two different projected solid angles, and their ratio is precisely the same as the missing factor of $\small \eta_l^2 / \eta_v^2$. That is because Eqn. 7c and 9c are only valid in the context of Eqn. 6, which is an integral over the directions of incidence. If we use the reciprocal of a BSDF, the directions are switched, and Eqn. 6 must also be  modified accordingly.
 
-A better way to verify reciprocity is to put each BTDF in the context of the associated Lebesgue integral by combining Eqn. 4c, 5b, and 6:
+A better way to verify reciprocity is to put each BSDF in the context of the associated Lebesgue integral by combining Eqn. 4c, 5b, and 6:
 
 $$ \tag{10}
 	\int_{\bm{v'} \in \mathbb{S^2}} f_s(\bm{v'}, \bm{n}, \bm{l}) d\Omega_n(\bm{v'})
 	= \int_{\bm{l'} \in \mathbb{S^2}} f_s(\bm{l'}, \bm{n}, \bm{v}) d\Omega_n(\bm{l'}).
 $$
 
-If $\small \bm{v}$, $\small \bm{n}$, and $\small \bm{l}$ do not define a valid light path, both integrals vanish. Otherwise, substitution of Eqn. 9c results in identical values.
+If $\small \bm{v}$, $\small \bm{n}$, and $\small \bm{l}$ do not define a valid light path, both integrals vanish. Otherwise, substitution of Eqn. 9c results in identical values:
+
+$$ \tag{9e}
+\begin{aligned}
+	&\int_{\bm{v'} \in \mathbb{S^2}} f_t(\bm{v'}, \bm{n}, \bm{l}) d\Omega_n(\bm{v'}) =
+	\int_{\bm{l'} \in \mathbb{S^2}} f_t(\bm{l'}, \bm{n}, \bm{v}) d\Omega_n(\bm{l'})
+	=
+	\cr
+	&\int_{\bm{l'} \in \mathbb{S^2}} \frac{\eta_{l'}^2}{\eta_v^2} f_t(\bm{v}, \bm{n}, \bm{l'}) d\Omega_n(\bm{l'}) =
+	\big( 1 - F(\theta_i, \eta_i/\eta_t) \big) \le 1.
+\end{aligned}
+$$
+
+As we have just shown, this BSDF is energy conserving: Eqn. 7d and 9e sum up to 1.
 
 *Comment: are Eqn. 17, 18, and 21 in Walter's paper correct? $\small \eta_i^2$ appears to be missing in the denominator.*
 
-BSDF integral is not 1.
-Microfacet soup?
-Microfacet salad?
 
 ---
 
