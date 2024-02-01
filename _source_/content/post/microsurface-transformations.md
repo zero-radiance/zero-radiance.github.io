@@ -133,11 +133,9 @@ $$ \tag{4b}
 	f_s(\bm{v}, \bm{n}, \bm{l}) L(\bm{l}) d\Omega_n(\bm{l}).
 $$
 
-In order for a BSDF to be physically meaningful[^8], it must satisfy three properties[^9]:
+In order for a BSDF to be physically meaningful, it must satisfy three properties[^8]:
 
-[^8]: We will not consider absorptive or magnetic media in this article. A discussion involving the specifics of conductors (and certain dielectrics) would quickly become quite involved and take us too far afield, away from our original topic of microsurface transformations.
-
-[^9]: Kinetic energy is only conserved if the integral is equal to 1. Otherwise, by definition, the collision is inelastic. The total momentum and the total energy are always conserved.
+[^8]: Kinetic energy of the photon is only conserved if the integral is equal to 1. Otherwise, by definition, the collision is called inelastic. The momentum and the total energy of the system are always conserved.
 
 $$ \tag{4c}
 \begin{aligned}
@@ -153,7 +151,7 @@ $$ \tag{4c}
 \end{aligned}
 $$
 
-where $\small \eta_v$ and $\small \eta_l$ are the indices of refraction (the *IORs*) associated with the directions of exitance $\small (\bm{v})$ and incidence $\small (\bm{l})$, respectively. In particular, reciprocity is a direct consequence of the law of refraction (also valid for reflection)
+where $\small \eta_v$ and $\small \eta_l$ are the real[^9] indices of refraction (the *IORs*) associated with the directions of exitance $\small (\bm{v})$ and incidence $\small (\bm{l})$, respectively. In particular, reciprocity is a direct consequence of the law of refraction (also valid for reflection)
 
 $$ \tag{5a}
 	\eta_v \Vert \bm{v} \times \bm{n} \Vert = \eta_l \Vert \bm{l} \times \bm{n} \Vert
@@ -171,12 +169,14 @@ $$ \tag{5c}
 	\eta_v^2 d\Omega(\bm{v}) \neq \eta_l^2 d\Omega(\bm{l}).
 $$
 
-This is a very good reason to utilize the projected solid angle measure. Failure to consistently do so often results in complicated expressions that are both difficult to interpret and error-prone.
+[^9]: We will not consider absorptive or magnetic media in this article. A discussion involving the specifics of conductors (and certain dielectrics) would quickly become quite involved and take us too far afield, away from our original topic of microsurface transformations.
 
-The properties given by Eqn. 5 are by no means obvious. In particular, making a BSDF reciprocal may seem like a non-trivial task. Typically, it is done by splitting the BSDF into two components: reflection (the *BRDF*) and transmission (the *BTDF*). The reflection component is always *symmetric*: since $\small \bm{v}$ and $\small \bm{l}$ always point away from the surface, $\small \eta_v = \eta_l$, which results in $\small f_r(\bm{v}, \bm{n}, \bm{l}) = f_r(\bm{l}, \bm{n}, \bm{v})$.
+This is a very good reason to utilize the projected solid angle measure. Failure to consistently do so often results in complicated expressions that are difficult to interpret and error-prone.
+
+The properties given by Eqn. 5 are by no means obvious. In particular, making a BSDF reciprocal may seem like a non-trivial task. Typically, it is done by splitting the BSDF in two components: reflection (the *BRDF*) and transmission (the *BTDF*). The reflection component is always *symmetric*: since $\small \bm{v}$ and $\small \bm{l}$ always point away from the surface, $\small \eta_v = \eta_l$, which results in $\small f_r(\bm{v}, \bm{n}, \bm{l}) = f_r(\bm{l}, \bm{n}, \bm{v})$.
 
 
-In order to make things clear, we shall illustrate these properties using a concrete example. Considering a perfectly smooth, planar surface. Its BSDF has two distinct components: reflection and transmission. Both can be expressed in terms of the *Dirac delta "function"* $\small \delta$ defined as a projected solid angle measure by the equation
+In order to make things clear, we shall illustrate these properties using a concrete example. Consider a perfectly smooth, planar surface. Its BSDF can be expressed in terms of the *Dirac delta "function"* $\small \delta$ defined as a projected solid angle measure by the equation
 
 $$ \tag{6}
 	f(\bm{r}) =
@@ -230,7 +230,7 @@ $$
 
 where the value of $\small \alpha$ depends on the state of polarization of the incident light: $\small \alpha = 0$ corresponds to the s-polarized light, $\small \alpha = 1$ -- to the p-polarized light, and $\small \alpha = 1/2$ -- to the unpolarized (natural) light.
 
-The two mutually perpendicular components are
+The two mutually perpendicular components are defined as
 
 $$ \tag{8b}
 \begin{aligned}
@@ -252,7 +252,7 @@ $$ \tag{8c}
 	\cos{\theta_t} = \sqrt{1 - \sin^2{\theta_t} }.
 $$
 
-The definition of the transmission component of the BSDF of a perfectly smooth, planar surface is similar, just marginally more complicated. We let
+The definition of the transmission component of the BSDF of a perfectly smooth, planar surface is similar, just marginally more complicated. Let
 
 $$ \tag{9a}
 \begin{aligned}
@@ -266,7 +266,7 @@ $$ \tag{9a}
 \end{aligned}
 $$
 
-Therefore, we associate
+By extension, let us associate
 
 $$ \tag{9b}
 	\eta_i = \eta_l,
@@ -281,7 +281,7 @@ $$ \tag{9c}
 	\frac{\eta_v^2}{\eta_l^2} \big( 1 - F(\theta_i, \eta_i/\eta_t) \big) \delta_{\Omega_n}\big( \eta_v (\bm{v} \times \bm{n}) + \eta_l (\bm{l} \times \bm{n}) \big).
 $$
 
-Let us carefully analyze Eqn. 9c to make sure that it is indeed consistent with Eqn. 4c. The Dirac term is obviously symmetric. As for the Fresnel term, it may be not immediately obvious why that is the case. This property is illustrated by Eqn. 8b, which is invariant under the exchange of $\small \theta_i$ and $\small \theta_t$. Intuitively, since the Fresnel term is dimensionless, it only depends on the path taken by light, and is unaffected by a reversal of its direction. Finally, the first term is responsible for the projected solid angle compression, which can be readily verified by placing the surface inside a white furnace (e.i. setting $\small L(\bm{l}) = 1$ for all $\small \bm{l}$) and evaluating Eqn. 4b.
+Is Eqn. 9c consistent with Eqn. 4c? The Dirac term is clearly symmetric. Geometrically, the Fresnel term is invariant under the exchange of $\small \theta_i$ and $\small \theta_t$ according to Eqn. 8b. Intuitively, it only depends on the path taken by light, and is unaffected by a reversal of its direction. Finally, the first term is responsible for the projected solid angle compression, which can be readily verified by placing the surface inside a white furnace (e.i. setting $\small L(\bm{l}) = 1$ for all $\small \bm{l}$) and evaluating Eqn. 4b.
 
 Is this BTDF reciprocal? Naive substitution of Eqn. 9c into 4c leads to
 
@@ -295,29 +295,27 @@ $$ \tag{9d}
 	}.
 $$
 
-Unfortunately, Eqn. 9d fails to make it clear that these two Dirac delta "functions" are not the same: they are used to measure two different projected solid angles, and their ratio is precisely the same as the missing factor of $\small \eta_l^2 / \eta_v^2$. That is because Eqn. 7c and 9c are only valid in the context of Eqn. 6, which is an integral over the directions of incidence. If we use the reciprocal of a BSDF, the directions are switched, and Eqn. 6 must also be  modified accordingly.
+Unfortunately, Eqn. 9d fails to make it apparent that these two Dirac delta "functions" are not the same: they are used to measure two different projected solid angles (and their ratio is precisely the same as the missing factor of $\small \eta_l^2 / \eta_v^2$). To see why that is the case, we must recall that Eqn. 7c and 9c are only valid in the context of Eqn. 6, which is an integral over the directions of incidence. If we use the reciprocal of a BSDF, the directions are interchanged, and Eqn. 6 must also be modified accordingly.
 
-A better way to verify reciprocity is to put each BSDF in the context of the associated Lebesgue integral by combining Eqn. 4c, 5b, and 6:
+A better way to verify reciprocity is by combining Eqn. 4c, 5b, and 6:
 
 $$ \tag{10}
 	\int_{\bm{v'} \in \mathbb{S^2}} f_s(\bm{v'}, \bm{n}, \bm{l}) d\Omega_n(\bm{v'})
 	= \int_{\bm{l'} \in \mathbb{S^2}} f_s(\bm{l'}, \bm{n}, \bm{v}) d\Omega_n(\bm{l'}).
 $$
 
-If $\small \bm{v}$, $\small \bm{n}$, and $\small \bm{l}$ do not define a valid light path, both integrals vanish. Otherwise, substitution of Eqn. 9c results in identical values:
+If $\small \bm{v}$, $\small \bm{n}$, and $\small \bm{l}$ do not define a valid light path, both integrals vanish. Otherwise, substitution of Eqn. 9c results in identical values. In particular,
 
 $$ \tag{9e}
 \begin{aligned}
-	&\int_{\bm{v'} \in \mathbb{S^2}} f_t(\bm{v'}, \bm{n}, \bm{l}) d\Omega_n(\bm{v'}) =
-	\int_{\bm{l'} \in \mathbb{S^2}} f_t(\bm{l'}, \bm{n}, \bm{v}) d\Omega_n(\bm{l'})
+	\int_{\bm{l} \in \mathbb{S^2}} f_t(\bm{l}, \bm{n}, \bm{v}) d\Omega_n(\bm{l})
 	=
-	\cr
-	&\int_{\bm{l'} \in \mathbb{S^2}} \frac{\eta_{l'}^2}{\eta_v^2} f_t(\bm{v}, \bm{n}, \bm{l'}) d\Omega_n(\bm{l'}) =
+	\int_{\bm{l} \in \mathbb{S^2}} \frac{\eta_{l}^2}{\eta_v^2} f_t(\bm{v}, \bm{n}, \bm{l}) d\Omega_n(\bm{l}) =
 	\big( 1 - F(\theta_i, \eta_i/\eta_t) \big) \le 1.
 \end{aligned}
 $$
 
-As we have just shown, this BSDF is energy conserving: Eqn. 7d and 9e sum up to 1.
+Since Eqn. 7d and 9e sum up to 1, we have just shown that the entire BSDF is energy conserving.
 
 *Comment: are Eqn. 17, 18, and 21 in Walter's paper correct? $\small \eta_i^2$ appears to be missing in the denominator.*
 
