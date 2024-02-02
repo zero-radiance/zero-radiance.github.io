@@ -24,7 +24,7 @@ Let $\small \bm{m}$ denote the unit normal vector of the microsurface. Since it 
 
 [^4]: Not to be confused with the normal distribution (a.k.a. the Gaussian distribution) in probability theory.
 
-A valid microsurface and, thus, a valid NDF, must obey the *projected area* constraint
+A valid microsurface and, thus, a valid NDF, must obey the (signed) *projected area* constraint
 
 $$ \tag{1a}
 \begin{aligned}
@@ -58,13 +58,15 @@ One of the simplest examples of a valid microsurface is a box[^5] (with the flip
 
 [^5]: Using the tools of calculus, we can decompose an arbitrary surface into a (possibly infinite) number of (sufficiently small) boxes.
 
-*Linearity* of Eqn. 1 allows us to consider individual elements of the microsurface separately and to sum up their contributions. As we apply Eqn. 1 to the box, observe that the signed projected areas of the opposite faces cancel each other, leaving just the top (that is, of course, equivalent to the bottom). Another consequence is that a linearly transformed surface (a parallelepiped, in our example) still results in a valid combination of the microsurface and the macrosurface. We can see why that is the case by picturing Eqn. 1 geometrically and (passively) transforming the coordinate axes rather than (actively transforming) the surface itself. Of course, while the surface lines remain unchanged, the projected areas (and, thus, the values of the NDF) are no longer the same.
+*Linearity* of Eqn. 1 allows us to consider individual elements of the microsurface separately and to sum up their contributions. As we apply Eqn. 1 to the box, observe that the signed projected areas of the opposite faces cancel each other, leaving just the top (that is, of course, equivalent to the bottom). Another consequence is that a linearly transformed surface (a parallelepiped, in our example) still results in a valid combination of the microsurface and the macrosurface. We can see why that is the case by picturing Eqn. 1 geometrically and (passively) transforming the coordinate axes rather than (actively transforming) the surface itself [^51]. Of course, while the surface lines remain unchanged, the projected areas (and, thus, the values of the NDF) are no longer the same.
+
+[^51]: This requires the transformation to be invertible. If the transformation were nonlinear, the transformed axes would vary from point to point, forming a vector field.
 
 Clearly, a microsurface does not have to be smooth (continuously differentiable); however, this ensures the continuity of the NDF, which is desirable, unless the goal is to model a flat surface.
 
 Erasing any part of the box leads to a projected area mismatch for certain angles. Therefore, the constraint may seem to imply that the microsurface must be continuous, but that is not the case. The issue lies in the *translation invariance* of Eqn. 1, which simply means that the projected area of an object is independent of its location. This property may seem innocuous at first, but, coupled with the linearity of Eqn. 1, it spells disaster: you can freely translate different parts of the microsurface in different directions without affecting the combined value of the integral.
 
-Since the projected area alone is an insufficient description of a real surface (as opposed to a microfacet soup or a salad), we may additionally specify its *visible projected area*
+Since the projected area alone is an insufficient description of a real surface (as opposed to a microfacet soup or a salad), we may additionally specify its (signed) *visible projected area*
 
 $$ \tag{2a}
 \begin{aligned}
