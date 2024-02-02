@@ -319,6 +319,32 @@ Since Eqn. 7d and 9e sum up to 1, we have just shown that the entire BSDF is ene
 
 *Comment: are Eqn. 17, 18, and 21 in Walter's paper correct? $\small \eta_i^2$ appears to be missing in the denominator.*
 
+We can extend this simple BSDF to a microfacet model of a rough surface by assuming that the latter is locally (rather than globally) planar and smooth. In order to do this, we must recall that radiance is the amount of power traveling in a certain direction, per unit solid angle associated with this direction, per unit area perpendicular to this direction. If the light source is very small (or very far away), it will appear point-like, and the variation of the view direction across its surface can be neglected. The same cannot be said for its visible projected area, which must be properly normalized (or we will compute the intensity instead):
+
+$$ \tag{11}
+	L(\bm{v}, \mathbb{M^2}) =
+	\frac{\bm{v} \cdot \int_{\bm{p} \in \mathbb{M^2}}
+	\bm{m}(\bm{p}) V(\bm{v}, \bm{p}) L(\bm{v}, \bm{p}) dA(\bm{p})}
+	{\bm{v} \cdot \int_{\bm{p} \in \mathbb{M^2}}
+	\bm{m}(\bm{p}) V(\bm{v}, \bm{p}) dA(\bm{p})}
+$$
+
+Bla bla... microfacet theory...
+
+$$ \tag{2a}
+\begin{aligned}
+	&\bm{v} \cdot \int_{\bm{p} \in \mathbb{M^2}}
+	\bm{m}(\bm{p}) V(\bm{v}, \bm{p}) dA(\bm{p})
+	\cr = \space
+	&\bm{v} \cdot \int_{\bm{m} \in \mathbb{S^2}}
+	\bm{m} G_1(\bm{v}, \bm{m}) D(\bm{m}) A d\Omega(\bm{m})
+	\cr = \space
+	&(\bm{v} \cdot \thinspace \bm{n}) A \int_{\bm{m} \in \mathbb{S^2}}
+	D_{vis}(\bm{v}, \bm{m}) d\Omega(\bm{m})
+	\cr = \space
+	&(\bm{v} \cdot \thinspace \bm{n}) A
+\end{aligned}
+$$
 
 ---
 
