@@ -28,7 +28,7 @@ A valid microsurface and, thus, a valid NDF, must obey the (signed) *projected a
 
 $$ \tag{1a}
 \begin{aligned}
-	&\bm{v} \cdot \thinspace \bm{n} A
+	&\bm{v} \cdot \bm{n} A
 	\cr = \space
 	&\bm{v} \cdot \int_{\bm{p} \in \mathbb{M^2}} \bm{m}(\bm{p}) dA(\bm{p})
 	\cr = \space
@@ -81,7 +81,7 @@ $$ \tag{2a}
 \end{aligned}
 $$
 
-in terms of the dimensionless *masking function* $\small G_1(\bm{v}, \bm{m})$ that gives the fraction of the differential area $\small dA(\bm{m})$ of a portion of the microsurface perpendicular to $\small \bm{m}$ that happens to be not occluded along $\small \bm{v}$. The masking function is closely related to the binary *visibility function* $\small V(\bm{v}, \bm{p})$ that outputs 0 if the point $\small \bm{p}$ is occluded along $\small \bm{v}$, and 1 otherwise. Both functions take *self-occlusion* into account: $\small V = G_1 = 0$ if $\small (\bm{v} \cdot \bm{m}) \le 0$. This subtle point helps us emphasize the geometric (e.i., coordinate-independent, basis-independent) nature of Eqn. 2.
+in terms of the dimensionless *masking function* $\small G_1(\bm{v}, \bm{m})$ that gives the fraction of the differential area $\small dA(\bm{m})$ of a portion of the microsurface perpendicular to $\small \bm{m}$ that happens to be not occluded along $\small \bm{v}$. In other words, it is the *average visibility* (along $\small \bm{v}$) of the microsurface points with the normal $\small \bm{m}$. The masking function is closely related to the binary *visibility function* $\small V(\bm{v}, \bm{p})$ that outputs 0 if the point $\small \bm{p}$ is occluded along $\small \bm{v}$, and 1 otherwise. Both functions take *self-occlusion* into account: $\small V = G_1 = 0$ if $\small (\bm{v} \cdot \bm{m}) \le 0$. This subtle point helps us emphasize the geometric (e.i., coordinate-independent, basis-independent) nature of Eqn. 2.
 
 The masking (and the visibility) function possesses an important property called *stretch invariance*, or, more generally, *invariance under linear transformations*. We have already seen that, in the context of the microfacet theory, a linearly transformed surface remains valid; however, unlike the NDF, the masking function is dimensionless: it only encodes visibility, and so it remains unaffected by a transformation of the coordinate axes. Of course, this kind of transformation must be applied to everything, including the view direction.
 
@@ -112,7 +112,7 @@ where
 
 $$ \tag{3b}
 	D_{vis}(\bm{v}, \bm{m}) =
-	\frac{(\bm{v} \cdot \thinspace \bm{m})}{(\bm{v} \cdot \thinspace \bm{n})} G_1(\bm{v}, \bm{m}) D(\bm{m})
+	\frac{(\bm{v} \cdot \bm{m})}{(\bm{v} \cdot \bm{n})} G_1(\bm{v}, \bm{m}) D(\bm{m})
 $$
 
 is called the *distribution of visible normals*[^7] (abbreviated as the *VNDF*). Similarly to $\small (\bm{n} \cdot \bm{m}) D(\bm{m})$, the VNDF is a valid probability density function only if $\small \mathbb{M^2}$ is a height field.
@@ -178,7 +178,7 @@ This is a very good reason to utilize the projected solid angle measure. Failure
 The properties given by Eqn. 5 are by no means obvious. In particular, making a BSDF reciprocal may seem like a non-trivial task. Typically, it is done by splitting the BSDF in two components: reflection (the *BRDF*) and transmission (the *BTDF*). The reflection component is always *symmetric*: since $\small \bm{v}$ and $\small \bm{l}$ always point away from the surface, $\small \eta_v = \eta_l$, which results in $\small f_r(\bm{v}, \bm{n}, \bm{l}) = f_r(\bm{l}, \bm{n}, \bm{v})$.
 
 
-In order to make things clear, we shall illustrate these properties using a concrete example. Consider a perfectly smooth, planar surface. Its BSDF can be expressed in terms of the *Dirac delta "function"* $\small \delta$ defined as a projected solid angle measure by the equation
+In order to make things clear, we shall illustrate these properties using a concrete example. Consider a perfectly smooth, planar surface. Its BSDF (often referred to as the *perfect specular* BSDF) can be expressed in terms of the *Dirac delta "function"* $\small \delta$ defined as a projected solid angle measure by the equation
 
 $$ \tag{6}
 	f(\bm{r}) =
@@ -254,7 +254,7 @@ $$ \tag{8c}
 	\cos{\theta_t} = \sqrt{1 - \sin^2{\theta_t} }.
 $$
 
-The definition of the transmission component of the BSDF of a perfectly smooth, planar surface is similar, just marginally more complicated. Let
+The definition of the transmission component of the perfect specular BSDF is similar, just marginally more complicated. Let
 
 $$ \tag{9a}
 \begin{aligned}
@@ -321,19 +321,20 @@ Since Eqn. 7d and 9e sum up to 1, we have just shown that the entire BSDF is ene
 
 *Comment: are Eqn. 17, 18, and 21 in Walter's paper correct? $\small \eta_i^2$ appears to be missing in the denominator.*
 
-We can extend this simple BSDF to a microfacet model of a rough surface by assuming that the latter is locally (rather than globally) planar and smooth. In order to do this, we must recall that radiance is the amount of power traveling in a certain direction, per unit solid angle associated with this direction, per unit area perpendicular to this direction. If the light source is very small (or very far away), it will appear point-like, and the variation of the view direction across its surface can be neglected. The same cannot be said for its visible projected area, which must be properly normalized (or we will compute the intensity instead):
+We can extend this simple BSDF to a microfacet model of a rough surface by treating the latter as locally (rather than globally) planar and smooth. The amount of radiance scattered by the microsurface can then be expressed as a weighted average of the contributions of its visible surface elements (the microfacets). In order to do this, we must recall that, by definition, radiance is the amount of power moving in a certain direction, per unit solid angle associated with this direction, per unit area perpendicular to this direction. If the source of light is very small (or very far away), it will appear point-like, and the variation of the view direction across its surface can be safely neglected. The same cannot be said for the visible projected area, which must be properly normalized (otherwise, we would calculate the intensity instead of the radiance):
 
-$$ \tag{11}
-	L(\bm{v}, \mathbb{M^2}) =
+$$ \tag{11a}
+	L(\bm{v}) =
 	\frac{\bm{v} \cdot \int_{\bm{p} \in \mathbb{M^2}}
-	\bm{m}(\bm{p}) V(\bm{v}, \bm{p}) L(\bm{v}, \bm{p}) dA(\bm{p})}
+	\bm{m}(\bm{p}) L(\bm{v}, \bm{p})
+	V(\bm{v}, \bm{p}) dA(\bm{p})}
 	{\bm{v} \cdot \int_{\bm{p} \in \mathbb{M^2}}
 	\bm{m}(\bm{p}) V(\bm{v}, \bm{p}) dA(\bm{p})}
 $$
 
-Bla bla... microfacet theory...
+According to the microfacet theory (see Eqn. 1-3), the factor in the denominator -- the visible projected area of the microsurface -- is identical to the projected area of the macrosurface:
 
-$$ \tag{2a}
+$$ \tag{11b}
 \begin{aligned}
 	&\bm{v} \cdot \int_{\bm{p} \in \mathbb{M^2}}
 	\bm{m}(\bm{p}) V(\bm{v}, \bm{p}) dA(\bm{p})
@@ -341,11 +342,103 @@ $$ \tag{2a}
 	&\bm{v} \cdot \int_{\bm{m} \in \mathbb{S^2}}
 	\bm{m} G_1(\bm{v}, \bm{m}) D(\bm{m}) A d\Omega(\bm{m})
 	\cr = \space
-	&(\bm{v} \cdot \thinspace \bm{n}) A \int_{\bm{m} \in \mathbb{S^2}}
-	D_{vis}(\bm{v}, \bm{m}) d\Omega(\bm{m})
+	&\bm{v} \cdot \bm{n} \int_{\bm{m} \in \mathbb{S^2}}
+	D_{vis}(\bm{v}, \bm{m}) A d\Omega(\bm{m})
 	\cr = \space
-	&(\bm{v} \cdot \thinspace \bm{n}) A
+	&\bm{v} \cdot \bm{n} A.
 \end{aligned}
+$$
+
+The general expression of the outgoing radiance found in the numerator is given by the spatially-varying version of Eqn. 4b:
+
+$$ \tag{11c}
+	L(\bm{v}, \bm{p}) =
+	\int_{\bm{l} \in \mathbb{S^2}}
+	f_s(\bm{v}, \bm{m}(\bm{p}), \bm{l}) L(\bm{l}, \bm{p}) d\Omega_m(\bm{l}).
+$$
+
+Unfortunately, Eqn. 11c is recursive. In practice, this means that light scattered by a microfacet can be used to illuminate another in a process known as multiple scattering. For simplicity (and at the cost of correctness), when building microfacet models, this effect is usually neglected, with only the distant illumination taken into account:
+
+$$ \tag{11d}
+	L(\bm{v}, \bm{p}) \approx
+	\int_{\bm{l} \in \mathbb{S^2}}
+	f_s(\bm{v}, \bm{m}(\bm{p}), \bm{l}) L(\bm{l}) V(\bm{l}, \bm{p}) d\Omega_m(\bm{l}).
+$$
+
+Eqn. 11a can thus be approximated as
+
+$$ \tag{11e}
+	L(\bm{v}) \approx
+	\frac{\bm{v} \cdot \int_{\bm{p} \in \mathbb{M^2}}
+	\bm{m}(\bm{p}) V(\bm{v}, \bm{p}) \int_{\bm{l} \in \mathbb{S^2}}
+	f_s(\bm{v}, \bm{m}(\bm{p}), \bm{l}) L(\bm{l}) V(\bm{l}, \bm{p}) d\Omega_m(\bm{l}) dA(\bm{p})}
+	{\bm{v} \cdot \bm{n} A}.
+$$
+
+In order to simplify it further, we substitute the expressions of the perfect specular BSDF given by Eqn. 7c and 9c:
+
+$$ \tag{11f}
+	L_r(\bm{v}) =
+	\frac{\bm{v} \cdot \int_{\bm{p} \in \mathbb{M^2}}
+	\bm{m}(\bm{p})
+	F(\theta_i, \eta_i/\eta_t)
+	L(\bm{i})
+	V(\bm{i}, \bm{p})
+	V(\bm{v}, \bm{p})
+	dA(\bm{p})}
+	{\bm{v} \cdot \bm{n} A}.
+$$
+
+where
+
+$$
+	\bm{i} = \bm{R}\big(\bm{v}, \bm{m}(\bm{p})\big) = -\bm{v} + 2 (\bm{v} \cdot \bm{m}) \bm{m}
+$$
+
+is the reflected view vector pointing in the direction of the incident light, and, similarly, $\small \theta_i$ is relative to $\small \bm{m}$ rather than $\small \bm{n}$ (see Eqn. 7a).
+
+Note that the visibility terms are the only ones that explicitly depend on the position $\small \bm{p}$, while the remaining terms depend on it implicitly via microsurface normal $\small \bm{m}$. Intuitively, visibility is a global property -- it connects a point to the entire surface.
+
+Eqn. 2.a..
+
+dimensionless *shadowing-masking function* $\small G_2(\bm{l}, \bm{v}, \bm{m})$ that gives the fraction of the differential area $\small dA(\bm{m})$ of a portion of the microsurface perpendicular to $\small \bm{m}$ that happens to be not occluded along both $\small \bm{v} \text{ and } \bm{l}$. In other words, it is the *average visibility* (along both $\small \bm{v} \text{ and } \bm{l}$) of the microsurface points with the normal $\small \bm{m}$.
+
+$$ \tag{2a}
+\begin{aligned}
+	&\int_{\bm{p} \in \mathbb{M^2}}
+	\bm{m}(\bm{p}) V(\bm{l}, \bm{p}) V(\bm{v}, \bm{p}) dA(\bm{p})
+	\cr = \space
+	&\int_{\bm{m} \in \mathbb{S^2}}
+	\bm{m} G_2(\bm{l}, \bm{v}, \bm{m}) dA(\bm{m})
+\end{aligned}
+$$
+
+In general, it cannot be factored into the product of averages:
+
+$$ \tag{2a}
+	G_2(\bm{l}, \bm{v}, \bm{m}) \ne G_1(\bm{l}, \bm{m}) G_1(\bm{v}, \bm{m})
+$$
+
+Simple example: box with a skirt: 2/3 * 2/3 = 4/9 > 1/3. If box is infinitesimally tall, it works.
+
+Model statistically? When valid? When fails?
+
+$$ \tag{2a}
+\begin{aligned}
+	&\bm{v} \cdot \int_{\bm{p} \in \mathbb{M^2}}
+	\bm{m}(\bm{p}) V(\bm{v}, \bm{p}) dA(\bm{p})
+	\cr = \space
+	&\bm{v} \cdot \int_{\bm{m} \in \mathbb{S^2}}
+	\bm{m} G_1(\bm{v}, \bm{m}) dA(\bm{m})
+	\cr = \space
+	&\bm{v} \cdot \int_{\bm{m} \in \mathbb{S^2}}
+	\bm{m} G_1(\bm{v}, \bm{m}) D(\bm{m}) A d\Omega(\bm{m})
+\end{aligned}
+$$
+
+$$ \tag{9c}
+	f_t(\bm{v}, \bm{n}, \bm{l}) =
+	\frac{\eta_v^2}{\eta_l^2} \big( 1 - F(\theta_i, \eta_i/\eta_t) \big) \delta_{\Omega_n}\big( \eta_v (\bm{v} \times \bm{n}) + \eta_l (\bm{l} \times \bm{n}) \big).
 $$
 
 ---
