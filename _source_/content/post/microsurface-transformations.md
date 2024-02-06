@@ -10,21 +10,21 @@ At EGSR 2022, Atanasov, Koylazov, Dimov, and Wilkie presented a paper titled [Mi
 
 ## Microscopic Introduction
 
-Pick an object, perhaps one that sits on your desk or lives in your head. Focus on a tiny fragment of its surface located at the point $\small \bm{P}$. If the fragment is sufficiently small, or is sufficiently far away, it will appear effectively flat (but not necessarily smooth). Therefore, to a negligible degree of error, that fragment may be replaced by a first-order approximation[^1] -- its projection onto the (averaged) tangent plane. In the literature, this projected surface fragment is referred to as the *macrosurface*. It is characterized by the area $\small A$ and the unit normal vector $\small \bm{n}$. Fixing two (not necessarily unit or orthogonal) tangent vectors $\small \bm{t_1}$ and $\small \bm{t_2}$ is sufficient to complete the parameterization of the macrosurface.
+Pick an object, perhaps one that sits on your desk or lives in your head. Focus on a tiny fragment of its surface located at the point $\small \bm{P}$. If the fragment is sufficiently small, or is sufficiently far away, it will appear effectively flat (but not necessarily smooth). Therefore, to a negligible degree of error, that fragment may be replaced by a first-order approximation[^1] -- its projection onto the (averaged) tangent plane. In the literature, this projected surface fragment is referred to as the *macrosurface*. It is characterized by the area $\small A$ and the unit normal vector $\small \bm{n}$ (we shall assume that the surfaces we are dealing with are *one-sided*). Fixing two (not necessarily unit or orthogonal) tangent vectors $\small \bm{t_1}$ and $\small \bm{t_2}$ is sufficient to complete the parameterization of the macrosurface.
 
 [^1]: In the sense of a Taylor series expansion.
 
-In contrast, the surface fragment overlaid onto the macrosurface is called the *microsurface* $\small \mathbb{M}$[^2]. In the microfacet theory, a microsurface is not modeled explicitly, but rather represented by a statistical model.
+In contrast, the surface fragment overlaid onto the macrosurface is called the *microsurface* $\small \mathbb{M}$[^2]. In the microfacet theory (an infinitesimal element of a microsurface is called a *microfacet*), a microsurface is not modeled explicitly, but rather represented by a statistical model.
 
 [^2]: We use the superscript 2 to indicate that the surface is a two-dimensional manifold.
 
-Let $\small \bm{m}$ denote the unit normal vector of the microsurface. Since it may correspond to several distinct points on the microsurface, we must define[^3] $\small dA(\bm{m}) = D(\bm{m}) A d\Omega(\bm{m})$ as the differential area of a portion of the microsurface perpendicular to $\small \bm{m}$, where $\small d\Omega$ is the differential solid angle centered on $\small \bm{m}$, and $\small D$ is the *distribution of normals*[^4] (abbreviated as the *NDF*) associated with the microsurface. The domain of this function, along with the microfacet normals themselves, is typically restricted to the unit hemisphere $\small \mathbb{H^2}$ (with $\small \bm{n}$ serving as the zenith direction), which implies that $\small \mathbb{M^2}$ must be a height field. However, this restriction is not strictly necessary; we shall demonstrate that by letting the microfacet normals potentially cover the entire unit sphere $\small \mathbb{S^2}$.
+Let $\small \bm{m}$ denote the unit normal vector of the microsurface. Since it may correspond to several distinct points on the microsurface, we must define[^3] $\small dA(\bm{m}) = D(\bm{m}) A d\Omega(\bm{m})$ as the differential area of the portion of the microsurface perpendicular to $\small \bm{m}$, where $\small d\Omega$ is the differential solid angle centered on $\small \bm{m}$, and $\small D$ is the *distribution of normals*[^4] (abbreviated as the *NDF*) associated with the microsurface. The domain of this function, along with the microsurface normals themselves, is typically restricted to the unit hemisphere $\small \mathbb{H^2}$ (with $\small \bm{n}$ serving as the zenith direction), which implies that $\small \mathbb{M^2}$ must be a height field. However, this restriction is not strictly necessary; we shall demonstrate that by letting the microsurface normals potentially cover the entire unit sphere $\small \mathbb{S^2}$.
 
 [^3]: If the microsurface is convex, one can interpret $\small DA$ as a Jacobian of the transformation from the surface to the unit hemisphere.
 
 [^4]: Not to be confused with the normal distribution (a.k.a. the Gaussian distribution) in probability theory.
 
-A valid microsurface and, thus, a valid NDF, must obey the (signed) *projected area* constraint
+A valid microsurface and, thus, a valid NDF, must obey the *signed projected area* constraint
 
 $$ \tag{1a}
 \begin{aligned}
@@ -44,7 +44,7 @@ $$ \tag{1b}
 	\bm{n} = \int_{\bm{m} \in \mathbb{S^2}} \bm{m} D(\bm{m}) d\Omega(\bm{m}).
 $$
 
-Eqn. 1 tells us a few 	things. Geometrically, it says that the projected areas of the microsurface and the macrosurface must coincide in any given direction. Furthermore, by substituting a constant NDF (or from the definition), we can see that it is measured in units of reciprocal solid angle.
+Eqn. 1 tells us a few things. Geometrically, it says that the signed projected areas of the microsurface and the macrosurface must coincide in any given direction. Furthermore, by substituting a constant NDF (or from the definition), we can see that it is measured in units of reciprocal solid angle.
 
 In the special case of $\small \bm{v} = \bm{n}$, we obtain
 
@@ -52,21 +52,21 @@ $$ \tag{1c}
 	1 = \int_{\bm{m} \in \mathbb{S^2}} (\bm{n} \cdot \bm{m}) D(\bm{m}) d\Omega(\bm{m}).
 $$
 
-In order for $\small (\bm{n} \cdot \bm{m}) D(\bm{m})$ to be a valid probability density function, it must be non-negative for all $\small \bm{m}$. That is the case only if $\small \mathbb{M^2}$ is a height field.
+In order for $\small (\bm{n} \cdot \bm{m}) D(\bm{m})$ to be a valid probability density function, it must be non-negative for all $\small \bm{m}$. That is the case only if $\small \mathbb{M^2}$ is a height field, which ensures that $\small (\bm{n} \cdot \bm{m}) \ge 0$.
 
 One of the simplest examples of a valid microsurface is a box[^5] (with the flipped bottom face playing the role of the macrosurface). It is instructive to analyze its two-dimensional counterpart -- a rectangle.
 
 [^5]: Using the tools of calculus, we can decompose an arbitrary surface into a (possibly infinite) number of (sufficiently small) boxes.
 
-*Linearity* of Eqn. 1 allows us to consider individual elements of the microsurface separately and to sum up their contributions. As we apply Eqn. 1 to the box, observe that the signed projected areas of the opposite faces cancel each other, leaving just the top (that is, of course, equivalent to the bottom). Another consequence is that a linearly transformed surface (a parallelepiped, in our example) still results in a valid combination of the microsurface and the macrosurface. We can see why that is the case by picturing Eqn. 1 geometrically and (passively) transforming the coordinate axes rather than (actively transforming) the surface itself [^51]. Of course, while the surface lines remain unchanged, the projected areas (and, thus, the values of the NDF) are no longer the same.
+*Linearity* of Eqn. 1 allows us to consider the individual microfacets separately and to sum up their contributions. As we apply Eqn. 1 to the box, observe that the signed projected areas of the opposite faces cancel each other, leaving just the top (that is, of course, equivalent to the bottom). Another consequence is that a linearly transformed surface (a parallelepiped, in our example) still results in a valid combination of the microsurface and the macrosurface. We can see why that is the case by picturing Eqn. 1 geometrically and (passively) transforming the coordinate axes rather than (actively transforming) the surface itself [^51]. Of course, while the surface lines remain unchanged, the signed projected areas (and, thus, the values of the NDF) are no longer the same.
 
 [^51]: This requires the transformation to be invertible. If the transformation were nonlinear, the transformed axes would vary from point to point, forming a vector field.
 
 Clearly, a microsurface does not have to be smooth (continuously differentiable); however, this ensures the continuity of the NDF, which is desirable, unless the goal is to model a flat surface.
 
-Erasing any part of the box leads to a projected area mismatch for certain angles. Therefore, the constraint may seem to imply that the microsurface must be continuous, but that is not the case. The issue lies in the *translation invariance* of Eqn. 1, which simply means that the projected area of an object is independent of its location. This property may seem innocuous at first, but, coupled with the linearity of Eqn. 1, it spells disaster: you can freely translate different parts of the microsurface in different directions without affecting the combined value of the integral.
+Erasing any part of the box leads to a signed projected area mismatch for certain angles. Therefore, the constraint may seem to imply that the microsurface must be continuous, but that is not the case. The issue lies in the *translation invariance* of Eqn. 1, which simply means that the projected area of an object is independent of its location. This property may seem innocuous at first, but, coupled with the linearity of Eqn. 1, it spells disaster: we can freely translate different microfacets in different directions without affecting the value of the integral.
 
-Since the projected area alone is an insufficient description of a real surface (as opposed to a microfacet soup or a salad), we may additionally specify its (signed) *visible projected area*
+Since the signed projected area alone is an insufficient description of a real surface (as opposed to a microfacet soup or a salad), we may additionally specify its *visible projected area*
 
 $$ \tag{2a}
 \begin{aligned}
@@ -77,17 +77,15 @@ $$ \tag{2a}
 	\bm{m} G_1(\bm{v}, \bm{m}) dA(\bm{m})
 	\cr = \space
 	&\bm{v} \cdot \int_{\bm{m} \in \mathbb{S^2}}
-	\bm{m} G_1(\bm{v}, \bm{m}) D(\bm{m}) A d\Omega(\bm{m})
+	\bm{m} G_1(\bm{v}, \bm{m}) D(\bm{m}) A d\Omega(\bm{m}),
 \end{aligned}
 $$
 
-in terms of the dimensionless *masking function* $\small G_1(\bm{v}, \bm{m})$ that gives the fraction of the differential area $\small dA(\bm{m})$ of a portion of the microsurface perpendicular to $\small \bm{m}$ that happens to be not occluded along $\small \bm{v}$. In other words, it is the *average visibility* (along $\small \bm{v}$) of the microsurface points with the normal $\small \bm{m}$. The masking function is closely related to the binary *visibility function* $\small V(\bm{v}, \bm{p})$ that outputs 0 if the point $\small \bm{p}$ is occluded along $\small \bm{v}$, and 1 otherwise. Both functions take *self-occlusion* into account: $\small V = G_1 = 0$ if $\small (\bm{v} \cdot \bm{m}) \le 0$. This subtle point helps us emphasize the geometric (e.i., coordinate-independent, basis-independent) nature of Eqn. 2.
+which obviously depends on where the microfacets are located relative to one another. It is defined in terms of the dimensionless *masking function* $\small G_1(\bm{v}, \bm{m})$ that gives the fraction of the differential area $\small dA(\bm{m})$ of the portion of the microsurface perpendicular to $\small \bm{m}$ that happens to be not occluded along $\small \bm{v}$. In other words, it is the *average visibility* (along $\small \bm{v}$) of the microfacets with the normal $\small \bm{m}$. The masking function is closely related to the binary *visibility function* $\small V(\bm{v}, \bm{p})$ that outputs 0 if the point $\small \bm{p}$ is occluded along $\small \bm{v}$, and 1 otherwise. Both functions take *self-occlusion* into account: $\small V = G_1 = 0$ if $\small (\bm{v} \cdot \bm{m}) \le 0$. This subtle point helps us emphasize the geometric (e.i., coordinate-independent, basis-independent) nature of Eqn. 2.
 
 The masking (and the visibility) function possesses an important property called *stretch invariance*, or, more generally, *invariance under linear transformations*. We have already seen that, in the context of the microfacet theory, a linearly transformed surface remains valid; however, unlike the NDF, the masking function is dimensionless: it only encodes visibility, and so it remains unaffected by a transformation of the coordinate axes. Of course, this kind of transformation must be applied to everything, including the view direction.
 
-Eqn. 1 and 2 are closely related. For a valid microsurface, the values of the integrals are the same[^6] if we choose $\small \bm{v} = \bm{n}$:
-
-[^6]: Remember that the equality of integrands does not necessarily follow from the equality of integrals.
+Eqn. 1 and 2 are closely related. For a valid microsurface, the values of the integrals are the same if we choose $\small \bm{v} = \bm{n}$:
 
 $$ \tag{2b}
 \begin{aligned}
@@ -99,9 +97,10 @@ $$ \tag{2b}
 \end{aligned}
 $$
 
-In general, *the visible projected area is greater or equal to the ordinary projected area*. This is caused by self-occlusion, which eliminates the (formerly negative) contribution of back-facing surface elements. The two types of projected areas coincide only if the view angle is sufficiently steep, or the microgeometry -- sufficiently short, so that the latter does not extend outside the volume swept by the macrosuface as it is translated along the view direction. This leads to one of the key assumptions of the microfacet theory: *the microsurface must be infinitesimally tall*. This limitation manifests itself at grazing angles, and should be familiar to those who have practical experience with bump and normal maps.
+In general, *the visible projected area is greater or equal to the signed projected area*. This is caused by self-occlusion, which eliminates the (formerly negative) contribution of back-facing microfacets. The two types of projected areas coincide only if the view angle is sufficiently steep, or the microsurface -- sufficiently short, so that the latter does not extend outside the volume swept by the macrosuface as it is translated along the view direction. This leads to one of the key assumptions of the microfacet theory: *the microsurface must be infinitesimally tall*. This limitation manifests itself at grazing angles, and should be familiar to those who have practical experience with bump and normal mapping. Furthermore, since the signed projected areas of the microsurface and the macrosurface coincide, we can only allow the viewing angles that obey $\small (\bm{v} \cdot \bm{n}) \ge 0$. If an observer is below the macrosurface, she must must reverse the signs of both $\small \bm{n}$ and $\small \bm{m}$ (which will result in a new microsurface with different statistics).
 
-With the assumption in place, we can combine Eqn. 1a and 2a into
+
+With the assumption (that all surface areas are the same) in place, we can combine Eqn. 1a and 2a into
 
 $$ \tag{3a}
 	1 =
@@ -115,7 +114,7 @@ $$ \tag{3b}
 	\frac{(\bm{v} \cdot \bm{m})}{(\bm{v} \cdot \bm{n})} G_1(\bm{v}, \bm{m}) D(\bm{m})
 $$
 
-is called the *distribution of visible normals*[^7] (abbreviated as the *VNDF*). Similarly to $\small (\bm{n} \cdot \bm{m}) D(\bm{m})$, the VNDF is a valid probability density function only if $\small \mathbb{M^2}$ is a height field.
+is called the *distribution of visible normals*[^7] (abbreviated as the *VNDF*). Similarly to $\small (\bm{n} \cdot \bm{m}) D(\bm{m})$, the VNDF is a valid probability density function; in contrast, it is valid for all surface types but only half of the viewing angles.
 
 [^7]: After comparing Eqn. 1c with 3a and taking the definitions into account, it would be more natural to simply let $\small D_{vis} = G_1 D$. Nevertheless, we stick with Eqn. 3b to conform to the existing body of literature.
 
@@ -321,7 +320,7 @@ Since Eqn. 7d and 9e sum up to 1, we have just shown that the entire BSDF is ene
 
 *Comment: are Eqn. 17, 18, and 21 in Walter's paper correct? $\small \eta_i^2$ appears to be missing in the denominator.*
 
-We can extend this simple BSDF to a microfacet model of a rough surface by treating the latter as locally (rather than globally) planar and smooth. The amount of radiance scattered by the microsurface can then be expressed as a weighted average of the contributions of its visible surface elements (the microfacets). In order to do this, we must recall that, by definition, radiance is the amount of power moving in a certain direction, per unit solid angle associated with this direction, per unit area perpendicular to this direction. If the source of light is very small (or very far away), it will appear point-like, and the variation of the view direction across its surface can be safely neglected. The same cannot be said for the visible projected area, which must be properly normalized (otherwise, we would calculate the intensity instead of the radiance):
+We can extend this simple BSDF to a microfacet model of a rough surface by treating the latter as locally (rather than globally) planar and smooth. The amount of radiance scattered by the microsurface can then be expressed as a weighted average of the contributions of its visible microfacets. In order to do this, we must recall that, by definition, radiance is the amount of power moving in a certain direction, per unit solid angle associated with this direction, per unit area perpendicular to this direction. If the source of light is very small (or very far away), it will appear point-like, and the variation of the view direction across its surface can be safely neglected. The same cannot be said for the visible projected area, which must be properly normalized (otherwise, we would calculate the intensity instead of the radiance):
 
 $$ \tag{11a}
 	L(\bm{v}) =
@@ -332,7 +331,7 @@ $$ \tag{11a}
 	\bm{m}(\bm{p}) V(\bm{v}, \bm{p}) dA(\bm{p})}
 $$
 
-According to the microfacet theory (see Eqn. 1-3), the factor in the denominator -- the visible projected area of the microsurface -- is identical to the projected area of the macrosurface:
+According to the microfacet theory, the factor in the denominator -- the visible projected area of the microsurface -- is identical to the signed projected area of the macrosurface (see Eqn. 1-3):
 
 $$ \tag{11b}
 \begin{aligned}
@@ -397,21 +396,26 @@ $$
 
 is the reflected view vector pointing in the direction of the incident light, and, similarly, $\small \theta_i$ is relative to $\small \bm{m}$ rather than $\small \bm{n}$ (see Eqn. 7a).
 
-Note that the visibility terms are the only ones that explicitly depend on the position $\small \bm{p}$, while the remaining terms depend on it implicitly via microsurface normal $\small \bm{m}$. Intuitively, visibility is a global property -- it connects a point to the entire surface.
+Notice that the visibility terms (and the vector area $\small \bm{m} dA$) are the only ones that explicitly depend on the position $\small \bm{p}$. That is because visibility is a global property -- it connects a point to the entire surface.
 
-Eqn. 2.a..
+We can evaluate Eqn. 11f numerically by breaking the microsurface into the individual microfacets and sorting the latter by their normals. The group of microfacets with the same microsurface normal $\bm{m}$ will also share the values of $\small F$ and $\small L$. Within each group, we will have to calculate the total visible area of the microfacets.
 
-dimensionless *shadowing-masking function* $\small G_2(\bm{l}, \bm{v}, \bm{m})$ that gives the fraction of the differential area $\small dA(\bm{m})$ of a portion of the microsurface perpendicular to $\small \bm{m}$ that happens to be not occluded along both $\small \bm{v} \text{ and } \bm{l}$. In other words, it is the *average visibility* (along both $\small \bm{v} \text{ and } \bm{l}$) of the microsurface points with the normal $\small \bm{m}$.
+The statistical method of evaluation of Eqn. 11f mirrors Eqn. 2a. We must introduce the dimensionless *shadowing-masking function* $\small G_2(\bm{l}, \bm{v}, \bm{m})$ that gives the fraction of the differential area $\small dA(\bm{m})$ of the portion of the microsurface perpendicular to $\small \bm{m}$ that happens to be not occluded along both $\small \bm{v} \text{ and } \bm{l}$. In other words, it is the *average visibility* (along both $\small \bm{l} \text{ and } \bm{v}$) of the microfacets with the normal $\small \bm{m}$:
 
-$$ \tag{2a}
+$$ \tag{12a}
 \begin{aligned}
 	&\int_{\bm{p} \in \mathbb{M^2}}
 	\bm{m}(\bm{p}) V(\bm{l}, \bm{p}) V(\bm{v}, \bm{p}) dA(\bm{p})
 	\cr = \space
 	&\int_{\bm{m} \in \mathbb{S^2}}
 	\bm{m} G_2(\bm{l}, \bm{v}, \bm{m}) dA(\bm{m})
+	\cr = \space
+	&\int_{\bm{m} \in \mathbb{S^2}}
+	\bm{m} G_2(\bm{l}, \bm{v}, \bm{m}) D(\bm{m}) A d\Omega(\bm{m})
 \end{aligned}
 $$
+
+Once projected onto  $\small \bm{l} \text{ or } \bm{v}$, Eqn. 12a still represents visible projected area, except that it must be visible along both directions. We must still take self-occlusion into account: $\small G_2 = 0$ if $\small (\bm{v} \cdot \bm{m}) \le 0 \text{ or } \small (\bm{v} \cdot \bm{m}) \le 0$.
 
 In general, it cannot be factored into the product of averages:
 
