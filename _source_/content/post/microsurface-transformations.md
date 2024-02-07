@@ -99,15 +99,9 @@ $$ \tag{2b}
 \end{aligned}
 $$
 
-In general, *the visible projected area is greater or equal to the signed projected area*. This inequality is a consequence of self-occlusion, which eliminates the (formerly negative) contribution of back-facing microfacets. The two types of projected areas coincide only if the view angle is sufficiently steep, or the microsurface -- sufficiently short, so that the latter does not extend outside the volume swept by the macrosuface as it is translated along the view direction. This leads to one of the key assumptions of the microfacet theory: *a microsurface must be infinitesimally tall*. This limitation manifests itself at grazing angles, and should be familiar to those who have practical experience with bump and normal mapping. Furthermore, since the signed projected areas of the microsurface and the macrosurface also coincide, we can only allow the viewing angles that obey $\small (\bm{v} \cdot \bm{n}) \ge 0$. In other words, *a microsurface must be facing the observer*. Otherwise, she must must reverse the signs of both $\small \bm{n}$ and $\small \bm{m}$, which will give rise to a microsurface with different statistics. More specifically, while $D(-\bm{m})$ will give a correct number, the visibility will be different, which is particularly evident if you take a box and flip it upside down. For a tiling surface (such as a sawtooth), a reasonably accurate solution is found by reversing the sign of $\small \bm{v}$ so that it points in the same hemisphere as $\small \bm{n}$. This ensures that self-occlusion is properly accounted for.
+In general, *the visible projected area is greater or equal to the signed projected area*. This inequality is a consequence of self-occlusion, which eliminates the (formerly negative) contribution of back-facing microfacets. The two types of projected areas coincide only if the view angle is sufficiently steep, or the microsurface -- sufficiently short, so that the latter does not extend outside the volume swept by the macrosuface translated along the view direction. This leads to one of the key assumptions of the microfacet theory: *a microsurface must be infinitesimally tall*. This limitation manifests itself at grazing angles, and should be familiar to those who have practical experience with bump and normal mapping. In addition, since the signed projected areas of the microsurface and the macrosurface coincide, we can only allow the view angles that obey $\small (\bm{v} \cdot \bm{n}) \ge 0$. In other words, *a microsurface must be facing the observer*. Otherwise, we must must reverse the signs of both $\small \bm{n}$ and $\small \bm{m}$, which will give rise to a microsurface with different statistics. More specifically, while $D(-\bm{m})$ will give the correct number, the visibility will be different, which is particularly evident if you take a box and flip it upside down. For a tiling surface (such as a sawtooth), reversing the sign of $\small \bm{v}$, so that it points in the same hemisphere as $\small \bm{n}$, produces a reasonable approximation. This ensures that self-occlusion is properly accounted for.
 
---
-
-CONTINUE REVIEWING HERE
-
---
-
-With the assumption (that all surface areas are the same) in place, we can combine Eqn. 1a and 2a into
+With the assumption (that all projected surface areas are the same) in place, we can combine Eqn. 1a and 2a into
 
 $$ \tag{3a}
 	1 =
@@ -121,7 +115,7 @@ $$ \tag{3b}
 	\frac{(\bm{v} \cdot \bm{m})}{(\bm{v} \cdot \bm{n})} G_1(\bm{v}, \bm{m}) D(\bm{m})
 $$
 
-is called the *distribution of visible normals*[^7] (abbreviated as the *VNDF*). Similarly to $\small (\bm{n} \cdot \bm{m}) D(\bm{m})$, the VNDF is a valid probability density function; in contrast, it is valid for all surface types but only half of the viewing angles.
+is called the *distribution of visible normals*[^7] (abbreviated as the *VNDF*). Like $\small (\bm{n} \cdot \bm{m}) D(\bm{m})$, the VNDF is a valid probability density function; and because it is non-negative, it is not restricted to height fields.
 
 [^7]: After comparing Eqn. 1c with 3a and taking the definitions into account, it would be more natural to simply let $\small D_{vis} = G_1 D$. Nevertheless, we stick with Eqn. 3b to conform to the existing body of literature.
 
@@ -171,17 +165,17 @@ $$ \tag{5b}
 	\eta_v^2 d\Omega_n(\bm{v}) = \eta_l^2 d\Omega_n(\bm{l})
 $$
 
-and, thus, an increase in energy density, provided $\small \eta_v \neq \eta_l$. Keep in mind that, in general, the relationship between the ordinary solid angles is not as simple:
+and, thus, a change in energy density (provided $\small \eta_v \neq \eta_l$). Keep in mind that, in general, the relationship between the ordinary solid angles is not as simple:
 
 $$ \tag{5c}
 	\eta_v^2 d\Omega(\bm{v}) \neq \eta_l^2 d\Omega(\bm{l}).
 $$
 
-[^9]: We will not consider absorptive or magnetic media in this article. A discussion involving the specifics of conductors (and certain dielectrics) would quickly become quite involved and take us too far afield, away from our original topic of microsurface transformations.
+[^9]: We will not consider absorptive or magnetic media in this article. A discussion involving the physics of conductors (and certain dielectrics) would quickly become quite involved and take us too far afield, away from our original topic of microsurface transformations.
 
-This is a very good reason to utilize the projected solid angle measure. Failure to consistently do so often results in complicated expressions that are difficult to interpret and error-prone.
+This is a very good reason to utilize the projected solid angle measure. Failure to consistently do so often results in complicated expressions that are difficult to interpret and prone to errors.
 
-The properties given by Eqn. 5 are by no means obvious. In particular, making a BSDF reciprocal may seem like a non-trivial task. Typically, it is done by splitting the BSDF in two components: reflection (the *BRDF*) and transmission (the *BTDF*). The reflection component is always *symmetric*: since $\small \bm{v}$ and $\small \bm{l}$ always point away from the surface, $\small \eta_v = \eta_l$, which results in $\small f_r(\bm{v}, \bm{n}, \bm{l}) = f_r(\bm{l}, \bm{n}, \bm{v})$.
+The properties of a valid BSDF are by no means obvious. In particular, making it reciprocal may seem like a non-trivial task. Typically, that is done by splitting the BSDF in two components: reflection (the *BRDF*) and transmission (the *BTDF*). The reflection component is always *symmetric*: since $\small \bm{v}$ and $\small \bm{l}$ always point away from the surface, $\small \eta_v = \eta_l$, which results in $\small f_r(\bm{v}, \bm{n}, \bm{l}) = f_r(\bm{l}, \bm{n}, \bm{v})$.
 
 
 In order to make things clear, we shall illustrate these properties using a concrete example. Consider a perfectly smooth, planar surface. Its BSDF (often referred to as the *perfect specular* BSDF) can be expressed in terms of the *Dirac delta "function"* $\small \delta$ defined as a projected solid angle measure by the equation
@@ -221,7 +215,7 @@ $$ \tag{7c}
 	\delta_{\Omega_n}\negmedspace\left( \bm{n} - \frac{\bm{v} + \bm{l}}{(\bm{v} + \bm{l}) \cdot \bm{n}} \right),
 $$
 
-where $\small 0 \le F \le 1$ is the dimensionless *Fresnel reflectance*. Clearly, the BRDF is non-negative, symmetric, and energy-conserving, which can be verified by substituting Eqn. 7c into 4c. In particular,
+where $\small 0 \le F \le 1$ is the dimensionless *Fresnel reflectance*. This BRDF is non-negative, symmetric, and energy-conserving, which can be verified by substituting Eqn. 7c into 4c. In particular,
 
 $$ \tag{7d}
 	\int_{\bm{v} \in \mathbb{S^2}}
@@ -238,7 +232,7 @@ $$
 
 where the value of $\small \alpha$ depends on the state of polarization of the incident light: $\small \alpha = 0$ corresponds to the s-polarized light, $\small \alpha = 1$ -- to the p-polarized light, and $\small \alpha = 1/2$ -- to the unpolarized (natural) light.
 
-The two mutually perpendicular components are defined as
+The two mutually perpendicular components are defined as follows:
 
 $$ \tag{8b}
 \begin{aligned}
@@ -260,7 +254,7 @@ $$ \tag{8c}
 	\cos{\theta_t} = \sqrt{1 - \sin^2{\theta_t} }.
 $$
 
-The definition of the transmission component of the perfect specular BSDF is similar, just marginally more complicated. Let
+The definition of the transmission component of the perfect specular BSDF is marginally more complicated. Let
 
 $$ \tag{9a}
 \begin{aligned}
@@ -274,7 +268,7 @@ $$ \tag{9a}
 \end{aligned}
 $$
 
-By extension, let us associate
+By extension, we shall associate
 
 $$ \tag{9b}
 	\eta_i = \eta_l,
@@ -282,14 +276,14 @@ $$ \tag{9b}
 	\eta_t = \eta_v.
 $$
 
-Taking reciprocity and energy conservation into account, the BTDF can then be expressed as
+Taking reciprocity and energy conservation into account, the perfect specular BTDF can then be expressed as
 
 $$ \tag{9c}
 	f_t(\bm{v}, \bm{n}, \bm{l}) =
-	\frac{\eta_v^2}{\eta_l^2} \big( 1 - F(\theta_i, \eta_i/\eta_t) \big) \delta_{\Omega_n}\big( \eta_v (\bm{v} \times \bm{n}) + \eta_l (\bm{l} \times \bm{n}) \big).
+	\frac{\eta_t^2}{\eta_i^2} \big( 1 - F(\theta_i, \eta_i/\eta_t) \big) \delta_{\Omega_n}\big( \eta_v (\bm{v} \times \bm{n}) + \eta_l (\bm{l} \times \bm{n}) \big).
 $$
 
-Is Eqn. 9c consistent with Eqn. 4c? The Dirac term is clearly symmetric. Geometrically, the Fresnel term is invariant under the exchange of $\small \theta_i$ and $\small \theta_t$ according to Eqn. 8b. Intuitively, it only depends on the path taken by light, and is unaffected by a reversal of its direction. Finally, the first term is responsible for the projected solid angle compression, which can be readily verified by placing the surface inside a white furnace (e.i. setting $\small L(\bm{l}) = 1$ for all $\small \bm{l}$) and evaluating Eqn. 4b.
+Is Eqn. 9c consistent with Eqn. 4c? The Dirac term is clearly symmetric. Geometrically, the Fresnel term is invariant under the exchange of $\small \theta_i$ and $\small \theta_t$ according to Eqn. 8b. Intuitively, it only depends on the path taken by light, and is unaffected by a reversal of its direction. Finally, the first term is responsible for the projected solid angle compression, which can be readily verified by placing the surface inside a *white furnace* (e.i. setting $\small L(\bm{l}) = 1$ for all $\small \bm{l}$) and evaluating Eqn. 4b.
 
 Is this BTDF reciprocal? Naive substitution of Eqn. 9c into 4c leads to
 
@@ -303,7 +297,7 @@ $$ \tag{9d}
 	}.
 $$
 
-Unfortunately, Eqn. 9d fails to make it apparent that these two Dirac delta "functions" are not the same: they are used to measure two different projected solid angles (and their ratio is precisely the same as the missing factor of $\small \eta_l^2 / \eta_v^2$). To see why that is the case, we must recall that Eqn. 7c and 9c are only valid in the context of Eqn. 6, which is an integral over the directions of incidence. If we use the reciprocal of a BSDF, the directions are interchanged, and Eqn. 6 must also be modified accordingly.
+Unfortunately, Eqn. 9d fails to make it apparent that these two Dirac delta "functions" are not the same: they are used to measure two different projected solid angles, and their ratio is precisely the same as the missing factor of $\small \eta_l^2 / \eta_v^2$. To see why that is the case, we must recall that Eqn. 7c and 9c are only valid in the context of Eqn. 6, which is an integral over the domain of directions of incidence. If we use the reciprocal of a BSDF, the directions are interchanged, and Eqn. 6 must also be modified accordingly.
 
 A better way to verify reciprocity is by combining Eqn. 4c, 5b, and 6:
 
@@ -323,11 +317,11 @@ $$ \tag{9e}
 \end{aligned}
 $$
 
-Since Eqn. 7d and 9e sum up to 1, we have just shown that the entire BSDF is energy conserving.
+Since Eqn. 7d and 9e sum up to 1, this demonstrates that the entire BSDF is energy conserving.
 
 *Comment: are Eqn. 17, 18, and 21 in Walter's paper correct? $\small \eta_i^2$ appears to be missing in the denominator.*
 
-We can extend this simple BSDF to a microfacet model of a rough surface by treating the latter as locally (rather than globally) planar and smooth. The amount of radiance scattered by the microsurface can then be expressed as a weighted average of the contributions of its visible microfacets. In order to do this, we must recall that, by definition, radiance is the amount of power moving in a certain direction, per unit solid angle associated with this direction, per unit area perpendicular to this direction. If the source of light is very small (or very far away), it will appear point-like, and the variation of the view direction across its surface can be safely neglected. The same cannot be said for the visible projected area, which must be properly normalized (otherwise, we would calculate the intensity instead of the radiance):
+We can extend this plain BSDF to a microfacet model of a rough surface by treating the latter as locally (rather than globally) planar and smooth. The amount of radiance scattered by the microsurface can then be expressed as a weighted average of the contributions of its visible microfacets. In order to proceed, we must recall that, by definition, the radiance is the amount of power moving in a certain direction, per unit solid angle associated with this direction, per unit area perpendicular to this direction. If the source of light is very small (or very far away), it will appear point-like, and the variation of the view direction across its surface can be safely neglected. The same cannot be said for the visible projected area, which must be properly normalized (or we would calculate the intensity instead of the radiance):
 
 $$ \tag{11a}
 	L(\bm{v}) =
@@ -355,7 +349,7 @@ $$ \tag{11b}
 \end{aligned}
 $$
 
-The general expression of the outgoing radiance found in the numerator is given by the spatially-varying version of Eqn. 4b:
+The general expression of the outgoing radiance term in the numerator of Eqn. 11a is given by the spatially-varying version of Eqn. 4b:
 
 $$ \tag{11c}
 	L(\bm{v}, \bm{p}) =
@@ -363,7 +357,7 @@ $$ \tag{11c}
 	f_s(\bm{v}, \bm{m}(\bm{p}), \bm{l}) L(\bm{l}, \bm{p}) d\Omega_m(\bm{l}).
 $$
 
-Unfortunately, Eqn. 11c is recursive. In practice, this means that light scattered by a microfacet can be used to illuminate another in a process known as multiple scattering. For simplicity (and at the cost of correctness), when building microfacet models, this effect is usually neglected, with only the distant illumination taken into account:
+Unfortunately, Eqn. 11c is recursive. In our case, this means that light scattered by a microfacet can be used to illuminate another in a process known as multiple scattering. For simplicity (and at the cost of correctness), when building microfacet models, this effect is usually neglected, with only the distant illumination taken into account:
 
 $$ \tag{11d}
 	L(\bm{v}, \bm{p}) \approx
@@ -381,18 +375,28 @@ $$ \tag{11e}
 	{\bm{v} \cdot \bm{n} A}.
 $$
 
-In order to simplify it further, we substitute the expressions of the perfect specular BSDF given by Eqn. 7c and 9c:
+If we substitute the expressions of the perfect specular BSDF given by Eqn. 7c and 9c, the inner integral can be evaluated analytically:
 
 $$ \tag{11f}
-	L_r(\bm{v}) =
+\begin{aligned}
+	L_r(\bm{v})
+	&=
 	\frac{\bm{v} \cdot \int_{\bm{p} \in \mathbb{M^2}}
 	\bm{m}(\bm{p})
-	F(\theta_i, \eta_i/\eta_t)
-	L(\bm{i})
-	V(\bm{i}, \bm{p})
-	V(\bm{v}, \bm{p})
+	F(\theta_i, \eta_i/\eta_t) L(\bm{i})
+	V(\bm{i}, \bm{p}) V(\bm{v}, \bm{p})
 	dA(\bm{p})}
-	{\bm{v} \cdot \bm{n} A}.
+	{\bm{v} \cdot \bm{n} A},
+	\cr
+	L_t(\bm{v})
+	&=
+	\frac{\eta_t^2}{\eta_i^2}
+	\frac{\bm{v} \cdot \int_{\bm{p} \in \mathbb{M^2}}
+	\bm{m}(\bm{p})
+	\big( 1 - F(\theta_i, \eta_i/\eta_t) \big) L(\bm{t})
+	V(\bm{t}, \bm{p}) V(\bm{v}, \bm{p}) dA(\bm{p})}
+	{\bm{v} \cdot \bm{n} A},
+\end{aligned}
 $$
 
 where
@@ -401,11 +405,11 @@ $$
 	\bm{i} = \bm{R}\big(\bm{v}, \bm{m}(\bm{p})\big) = -\bm{v} + 2 (\bm{v} \cdot \bm{m}) \bm{m}
 $$
 
-is the reflected view vector pointing in the direction of the incident light, and, similarly, $\small \theta_i$ is relative to $\small \bm{m}$ rather than $\small \bm{n}$ (see Eqn. 7a).
+is the reflected view vector pointing in the direction of the incident light. The associated angle $\small \theta_i$ is similarly defined relative to $\small \bm{m}$ rather than $\small \bm{n}$ (see Eqn. 7a).
 
 Notice that the visibility terms (and the vector area $\small \bm{m} dA$) are the only ones that explicitly depend on the position $\small \bm{p}$. That is because visibility is a global property -- it connects a point to the entire surface.
 
-We can evaluate Eqn. 11f numerically by breaking the microsurface into the individual microfacets and sorting the latter by their normals. The group of microfacets with the same microsurface normal $\bm{m}$ will also share the values of $\small F$ and $\small L$. Within each group, we will have to calculate the total visible area of the microfacets.
+We can evaluate Eqn. 11f numerically by breaking the microsurface into the individual microfacets and sorting the latter by their orientation. For a fixed view direction $\small \bm{v}$, a group of microfacets with the same normal $\bm{m}$ will also share the values of $\small F$ and $\small L$. Within each group, we shall calculate the total visible area of the microfacets.
 
 The statistical method of evaluation of Eqn. 11f mirrors Eqn. 2a. We must introduce the dimensionless *shadowing-masking function* $\small G_2(\bm{l}, \bm{v}, \bm{m})$ that gives the fraction of the differential area $\small dA(\bm{m})$ of the portion of the microsurface perpendicular to $\small \bm{m}$ that happens to be visible along both $\small \bm{v} \text{ and } \bm{l}$. In other words, it is the *average visibility* (along both $\small \bm{l} \text{ and } \bm{v}$) of the microfacets with the normal $\small \bm{m}$:
 
@@ -422,35 +426,46 @@ $$ \tag{12a}
 \end{aligned}
 $$
 
-Once projected onto  $\small \bm{l} \text{ or } \bm{v}$, Eqn. 12a still represents visible projected area, except that it must be visible along both directions. We must still take self-occlusion into account: $\small G_2 = 0$ if $\small (\bm{v} \cdot \bm{m}) \le 0 \text{ or } \small (\bm{v} \cdot \bm{m}) \le 0$.
+Once projected onto $\small \bm{l} \text{ or } \bm{v}$, Eqn. 12a also represents visible projected area, except that the visibility is now bidirectional. Similarly, it takes self-occlusion into account: $\small V = G_2 = 0$ if $\small (\bm{l} \cdot \bm{m}) \le 0 \text{ or } \small (\bm{v} \cdot \bm{m}) \le 0$.
 
-In general, it cannot be factored into the product of averages:
+In general, a bidirectional average cannot be factored into a product of unidirectional averages:
 
-$$ \tag{2a}
-	G_2(\bm{l}, \bm{v}, \bm{m}) \ne G_1(\bm{l}, \bm{m}) G_1(\bm{v}, \bm{m})
+$$ \tag{12b}
+	G_2(\bm{l}, \bm{v}, \bm{m}) \ne G_1(\bm{l}, \bm{m}) G_1(\bm{v}, \bm{m}).
 $$
 
-Simple example: box with a skirt: 2/3 * 2/3 = 4/9 > 1/3. If box is infinitesimally tall, it works.
+As an example, consider a number of evenly-spaced boxes -- a square wave. For $\small \bm{m} = \bm{n}$, the unidirectional visibility will approach 50% as the view angle increases. Thus, for shallow angles, $\small G_1(\bm{l}, \bm{n}) G_1(\bm{v}, \bm{n}) \approx 1/4$, while $\small G_2(\bm{l}, \bm{v}, \bm{n}) \approx 1/2$. More generally, $\small G_1^2(\bm{v}, \bm{m}) \le G_2(\bm{v}, \bm{v}, \bm{m})$.
 
-Model statistically? When valid? When fails?
+TODO: height-correlated?
 
-$$ \tag{2a}
+Substitution of Eqn. 12a into 11f yields
+
+$$ \tag{13a}
 \begin{aligned}
-	&\bm{v} \cdot \int_{\bm{p} \in \mathbb{M^2}}
-	\bm{m}(\bm{p}) V(\bm{v}, \bm{p}) dA(\bm{p})
-	\cr = \space
-	&\bm{v} \cdot \int_{\bm{m} \in \mathbb{S^2}}
-	\bm{m} G_1(\bm{v}, \bm{m}) dA(\bm{m})
-	\cr = \space
-	&\bm{v} \cdot \int_{\bm{m} \in \mathbb{S^2}}
-	\bm{m} G_1(\bm{v}, \bm{m}) D(\bm{m}) A d\Omega(\bm{m})
+	L_r(\bm{v})
+	&=
+	\frac{\bm{v} \cdot \int_{\bm{m} \in \mathbb{S^2}}
+	\bm{m}
+	F(\theta_i, \eta_i/\eta_t) L(\bm{i})
+	G_2(\bm{i}, \bm{v}, \bm{m})
+	D(\bm{m}) d\Omega(\bm{m})}
+	{\bm{v} \cdot \bm{n}},
+	\cr
+	L_t(\bm{v})
+	&=
+	\frac{\eta_t^2}{\eta_i^2}
+	\frac{\bm{v} \cdot \int_{\bm{p} \in \mathbb{M^2}}
+	\bm{m}(\bm{p})
+	\big( 1 - F(\theta_i, \eta_i/\eta_t) \big) L(\bm{t})
+	G_2(-\bm{t}, \bm{v}, \bm{m})
+	D(\bm{m}) d\Omega(\bm{m})}
+	{\bm{v} \cdot \bm{n}}.
 \end{aligned}
 $$
 
-$$ \tag{9c}
-	f_t(\bm{v}, \bm{n}, \bm{l}) =
-	\frac{\eta_v^2}{\eta_l^2} \big( 1 - F(\theta_i, \eta_i/\eta_t) \big) \delta_{\Omega_n}\big( \eta_v (\bm{v} \times \bm{n}) + \eta_l (\bm{l} \times \bm{n}) \big).
-$$
+Note that we had to reverse the direction of the refracted light because the microsurface is one-sided; refer to the discussion below Eqn. 2b for details.
+
+TODO: change of variables?
 
 ---
 
