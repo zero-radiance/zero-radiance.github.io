@@ -68,7 +68,9 @@ Clearly, a microsurface does not have to be smooth (e.i. continuously differenti
 
 Erasing any part of the box leads to a signed projected area mismatch for certain angles. Therefore, the constraint may seem to imply that the microsurface must be continuous, but that is not the case. The issue lies in the *translation invariance*, which simply means that the projected area of an object is independent of its location. This property may seem innocuous at first, but, coupled with the linearity, it spells disaster: we may freely translate different microfacets in different directions without affecting the value of the integral.
 
-Since the signed projected area is an incomplete description of a real surface (as opposed to a microfacet soup or a salad), we may additionally specify its *visible projected area*
+Since the signed projected area is an incomplete description of a real surface (as opposed to a microfacet soup or a salad[^52]), we may additionally specify its *visible projected area*
+
+[^52]: In technical terms, the surface may have a very short auto-correlation distance.
 
 $$ \tag{2a}
 \begin{aligned}
@@ -115,13 +117,13 @@ $$ \tag{3b}
 	\frac{(\bm{v} \cdot \bm{m})}{(\bm{v} \cdot \bm{n})} G_1(\bm{v}, \bm{m}) D(\bm{m})
 $$
 
-is called the *distribution of visible normals*[^7] (abbreviated as the *VNDF*). Like $\small (\bm{n} \cdot \bm{m}) D(\bm{m})$, the VNDF is a valid probability density function; and because it is non-negative, it is not restricted to height fields.
+is called the *distribution of visible normals*[^7] (abbreviated as the *VNDF*). Its meaning becomes clear in the context of Eqn. 2a: $\small ((\bm{v} \cdot \bm{m})/(\bm{v} \cdot \bm{n}))^{-1} D_{vis}(\bm{v}, \bm{m}) d\Omega(\bm{m})$ is the differential area of the portion of the microsurface perpendicular to $\small \bm{m}$ that happens to be visible along $\small \bm{v}$. Like $\small (\bm{n} \cdot \bm{m}) D(\bm{m})$, the VNDF is a valid probability density function; and because it is always non-negative, it is not restricted to height fields.
 
 [^7]: After comparing Eqn. 1c with 3a and taking the definitions into account, it would be more natural to simply let $\small D_{vis} = G_1 D$. Nevertheless, we stick with Eqn. 3b to conform to the existing body of literature.
 
-In practice, one usually does not create (nor is provided) a microsurface, but rather specifies the statistical distributions directly. In fact, one generally goes one step further: since the NDF and the masking function are not independent (they must satisfy Eqn. 3), a reasonable course of action is to specify just one and derive the other. Which should we choose as the starting point? A quick comparison of $\small D \text{ and } G_1$ reveals that the latter contains more information about the surface, so, in theory, we could "reduce" the latter to determine the former. While that is certainly a promising idea, we are not aware of any work exploring this direction, presumably because a realistic masking function is relatively complex, which makes it hard to come up with a plausible formula.
+In practice, one usually does not create (nor is provided) a microsurface, but specifies the statistical distributions directly instead. In fact, one generally goes one step further: since the NDF and the masking function are not independent (they must satisfy Eqn. 3), a reasonable course of action is to specify just one and derive the other. Which distribution should we choose as the starting point? The answer is clear from the definitions: $\small G_1$ is built on top of $\small D$, and its role is to endow the latter with the visibility data.
 
-Instead, the common approach is "NDF first". Unfortunately, as we have already seen, such a description is incomplete. Thus, we are forced to introduce additional assumptions in the form of a *microsurface profile*. Arguably, the simplest assumption is the *normal-masking independence*:
+Thus, the common approach is "NDF first". Unfortunately, as we have already seen, such a surface description is incomplete. This forces us to introduce additional assumptions in the form of a *microsurface profile*. Arguably, the simplest assumption is the *normal-masking independence* introduced by Smith:
 
 $$ \tag{99a}
 	G_1^S(\bm{v}, \bm{m}) = \Theta(\bm{v} \cdot \bm{m}) W(\bm{v}),
@@ -137,10 +139,19 @@ $$ \tag{99b}
 	\end{cases}
 $$
 
-is the *Heaviside step function* that models self-occlusion. As the name implies, the remaining masking term $\small W$ is independent of the microsurface normal $\small \bm{m}$.
+is the *Heaviside step function* which is used to model self-occlusion. As the name implies, the remaining masking term $\small W$ is independent of the microsurface normal $\small \bm{m}$.
 
-Smith microsurface profile...
-Uncorrelated surface...
+In reality, visibility has a more complicated dependence on the surface normal. For instance, in the case of a height field, for shallow viewing angles, vertical microfacets are more likely to be occluded compared to horizonal ones. Fortunately, the issue is not very apparent unless one examines a very rough surface at a grazing angle, where, as we have already seen, the foundations of the microfacet theory itself are on a shaky ground.
+
+Substitution of Eqn. 99a into 3b and 3a yields a ratio of projected areas:
+
+$$ \tag{99c}
+	W(\bm{v})
+	= \frac{(\bm{v} \cdot \bm{n})}{\int_{\bm{m} \in \mathbb{S^2}} \mathrm{max}(0, \bm{v} \cdot \bm{m}) D(\bm{m}) d\Omega(\bm{m})}
+	= \frac{(\bm{v} \cdot \bm{n}) A}{\int_{\bm{m} \in \mathbb{S^2}} \mathrm{max}(0, \bm{v} \cdot \bm{m}) dA(\bm{m})}.
+$$
+
+Eqn. 99c confirms that that Smith's microsurface profile only models one type of occlusion -- self-occlusion, and that the connection between a microfacet and its neighborhood is entirely missing. Therefore, we may once again end up with a microfacet soup or a salad instead of a continuous surface. The only way to solve this problem is by using a more sophisticated microsurface profile.
 
 A VNDF can be used to construct a *bidirectional scattering distribution function* $\small f_s$ (also known as a *BSDF*). By definition, it is a ratio of the differential outgoing radiance to the differential incident irradiance, the latter being the product of the incident radiance and the projected differential solid angle $\small d\Omega_n(\bm{l}) = \vert \bm{n} \cdot \bm{l} \vert d\Omega(\bm{l})$:
 
