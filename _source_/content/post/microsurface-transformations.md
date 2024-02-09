@@ -101,7 +101,7 @@ $$ \tag{2b}
 \end{aligned}
 $$
 
-In general, *the visible projected area is greater or equal to the signed projected area*. This inequality is a consequence of self-occlusion, which eliminates the (formerly negative) contribution of back-facing microfacets. The two types of projected areas coincide only if the view angle is sufficiently steep, or the microsurface -- sufficiently short, so that the latter does not extend outside the volume swept by the macrosuface translated along the view direction. This leads to one of the key assumptions of the microfacet theory: *a microsurface must be infinitesimally tall*. This limitation manifests itself at grazing angles, and should be familiar to those who have practical experience with bump and normal mapping. In addition, since the signed projected areas of the microsurface and the macrosurface coincide, we can only allow the view angles that obey $\small (\bm{v} \cdot \bm{n}) \ge 0$. In other words, *a microsurface must be facing the observer*. Otherwise, we must must reverse the signs of both $\small \bm{n}$ and $\small \bm{m}$, which will give rise to a microsurface with different statistics. More specifically, while $D(-\bm{m})$ will give the correct number, the visibility will be different, which is particularly evident if you take a box and flip it upside down. For a tiling surface (such as a sawtooth), reversing the sign of $\small \bm{v}$, so that it points in the same hemisphere as $\small \bm{n}$, produces a reasonable approximation. This ensures that self-occlusion is properly accounted for.
+In general, *the visible projected area is greater or equal to the signed projected area*. This inequality is a consequence of self-occlusion, which eliminates the (formerly negative) contribution of back-facing microfacets. The two types of projected areas coincide only if the view angle is sufficiently steep, or the microsurface -- sufficiently thin, so that the latter does not extend outside the volume swept by the macrosuface translated along the view direction. This leads to one of the key assumptions of the microfacet theory: *a microsurface must be infinitesimally thick*. This limitation manifests itself at grazing angles, and should be familiar to those who have practical experience with bump and normal mapping. In addition, since the signed projected areas of the microsurface and the macrosurface coincide, we can only allow the view angles that obey $\small (\bm{v} \cdot \bm{n}) \ge 0$. In other words, *a microsurface must be facing the observer*. Otherwise, we must must reverse the signs of both $\small \bm{n}$ and $\small \bm{m}$, which will give rise to a microsurface with different statistics. More specifically, while $D(-\bm{m})$ will give the correct number, the visibility will be different, which is particularly evident if you take a box and flip it upside down. For a tiling surface (such as a sawtooth), reversing the sign of $\small \bm{v}$, so that it points in the same hemisphere as $\small \bm{n}$, produces a reasonable approximation. This ensures that self-occlusion is properly accounted for.
 
 With the assumption (that all projected surface areas are the same) in place, we can combine Eqn. 1a and 2a into
 
@@ -121,12 +121,12 @@ is called the *distribution of visible normals*[^7] (abbreviated as the *VNDF*).
 
 [^7]: After comparing Eqn. 1c with 3a and taking the definitions into account, it would be more natural to simply let $\small D_{vis} = G_1 D$. Nevertheless, we stick with Eqn. 3b to conform to the existing body of literature.
 
-In practice, one usually does not create (nor is provided) a microsurface, but specifies the statistical distributions directly instead. In fact, one generally goes one step further: since the NDF and the masking function are not independent (they must satisfy Eqn. 3), a reasonable course of action is to specify just one and derive the other. Which distribution should we choose as the starting point? The answer is clear from the definitions: $\small G_1$ is built on top of $\small D$, and its role is to endow the latter with the visibility data.
+In practice, one usually does not create (nor is provided) a microsurface, but specifies the statistical distributions directly instead. In fact, one generally goes one step further: since the NDF and the masking function are not independent (they must satisfy Eqn. 3), a reasonable course of action is to specify just one and derive the other. Which distribution should we choose as the starting point? The answer is clear from the definitions: $\small G_1$ is built on top of $\small D$, and the role of the former is to endow the latter with the visibility data.
 
 Thus, the common approach is "NDF first". Unfortunately, as we have already seen, such a surface description is incomplete. This forces us to introduce additional assumptions in the form of a *microsurface profile*. Arguably, the simplest assumption is the *normal-masking independence* introduced by Smith:
 
 $$ \tag{99a}
-	G_1^S(\bm{v}, \bm{m}) = \Theta(\bm{v} \cdot \bm{m}) W(\bm{v}),
+	G_1^S(\bm{v}, \bm{m}) = \Theta(\bm{v} \cdot \bm{m}) W_1(\bm{v}),
 $$
 
 where
@@ -139,19 +139,26 @@ $$ \tag{99b}
 	\end{cases}
 $$
 
-is the *Heaviside step function* which is used to model self-occlusion. As the name implies, the remaining masking term $\small W$ is independent of the microsurface normal $\small \bm{m}$.
+is the *Heaviside step function* which is used to model self-occlusion. As the name implies, the remaining masking term $\small W_1$ is independent of the microsurface normal $\small \bm{m}$.
 
 In reality, visibility has a more complicated dependence on the surface normal. For instance, in the case of a height field, for shallow viewing angles, vertical microfacets are more likely to be occluded compared to horizonal ones. Fortunately, the issue is not very apparent unless one examines a very rough surface at a grazing angle, where, as we have already seen, the foundations of the microfacet theory itself are on a shaky ground.
 
-Substitution of Eqn. 99a into 3b and 3a yields a ratio of projected areas:
+Substitution of Eqn. 99a into 3b and then 3a yields a ratio of projected areas:
 
 $$ \tag{99c}
-	W(\bm{v})
-	= \frac{(\bm{v} \cdot \bm{n})}{\int_{\bm{m} \in \mathbb{S^2}} \mathrm{max}(0, \bm{v} \cdot \bm{m}) D(\bm{m}) d\Omega(\bm{m})}
-	= \frac{(\bm{v} \cdot \bm{n}) A}{\int_{\bm{m} \in \mathbb{S^2}} \mathrm{max}(0, \bm{v} \cdot \bm{m}) dA(\bm{m})}.
+\begin{aligned}
+	W_1(\bm{v})
+	&= \frac{(\bm{v} \cdot \bm{n})}{\int_{\bm{m} \in \mathbb{S^2}} \mathrm{max}(0, \bm{v} \cdot \bm{m}) D(\bm{m}) d\Omega(\bm{m})}
+	\cr
+	&= \frac{(\bm{v} \cdot \bm{n}) A}{\int_{\bm{m} \in \mathbb{S^2}} \mathrm{max}(0, \bm{v} \cdot \bm{m}) dA(\bm{m})}
+	\cr
+	&= \frac{1}{1 + \Lambda(\bm{v})}.
+\end{aligned}
 $$
 
-Eqn. 99c confirms that that Smith's microsurface profile only models one type of occlusion -- self-occlusion, and that the connection between a microfacet and its neighborhood is entirely missing. Therefore, we may once again end up with a microfacet soup or a salad instead of a continuous surface. The only way to solve this problem is by using a more sophisticated microsurface profile.
+Eqn. 99c confirms that that Smith's microsurface profile only models self-occlusion, and that the connection between a microfacet and its neighborhood is missing entirely. Therefore, we may once again end up with a microfacet soup or a salad instead of a continuous surface. The only way to solve this problem is by using a more sophisticated microsurface profile.
+
+It can be shown that, for a height field, $\small 0 \le W_1 \le 1 \text{ and } \Lambda \ge 0$. Unfortunately, due to the lack of occlusion, it is possible to come up with a surface that violates this physical constraint for some viewing angles. Whether the infinitesimal thickness of the microsurface completely resolves this issue is an excellent question.
 
 A VNDF can be used to construct a *bidirectional scattering distribution function* $\small f_s$ (also known as a *BSDF*). By definition, it is a ratio of the differential outgoing radiance to the differential incident irradiance, the latter being the product of the incident radiance and the projected differential solid angle $\small d\Omega_n(\bm{l}) = \vert \bm{n} \cdot \bm{l} \vert d\Omega(\bm{l})$:
 
@@ -456,11 +463,17 @@ $$ \tag{12a}
 	\bm{m} G_2(\bm{l}, \bm{v}, \bm{m}) dA(\bm{m})
 	\cr = \space
 	&\int_{\bm{m} \in \mathbb{S^2}}
-	\bm{m} G_2(\bm{l}, \bm{v}, \bm{m}) D(\bm{m}) A d\Omega(\bm{m})
+	\bm{m} G_2(\bm{l}, \bm{v}, \bm{m}) D(\bm{m}) A d\Omega(\bm{m}).
 \end{aligned}
 $$
 
 Once projected onto $\small \bm{l} \text{ or } \bm{v}$, Eqn. 12a also represents visible projected area, except that the visibility is now bidirectional. Similarly, it takes self-occlusion into account: $\small V = G_2 = 0$ if $\small (\bm{l} \cdot \bm{m}) \le 0 \text{ or } \small (\bm{v} \cdot \bm{m}) \le 0$.
+
+Other properties:
+
+symmetry...
+height correlation...
+directional correlation...
 
 In general, a bidirectional average cannot be factored into a product of unidirectional averages:
 
