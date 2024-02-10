@@ -143,7 +143,7 @@ is the *Heaviside step function* which is used to model self-occlusion. As the n
 
 In reality, visibility has a more complicated dependence on the surface normal. Taking a height field as an example, for shallow viewing angles, vertical microfacets are more likely to be occluded compared to horizontal ones. Fortunately, the issue is not very apparent unless one examines a very rough surface at a grazing angle, where, as we have already seen, the foundations of the microfacet theory itself are on a shaky ground.
 
-Substitution of Eqn. 99a into 3b and then 3a reveals a ratio of projected areas:
+Substitution of Eqn. 99a into 3b and then 3a yields a ratio of projected areas (signed to front-facing):
 
 $$ \tag{99c}
 \begin{aligned}
@@ -159,8 +159,6 @@ $$ \tag{99c}
 $$
 
 Eqn. 99c confirms that Smith's microsurface profile only models self-occlusion, and that the connection between a microfacet and its neighborhood is missing entirely. Therefore, we may once again end up with a microfacet soup or a salad instead of a continuous surface. The only way to solve this problem is by using a more sophisticated microsurface profile.
-
-Both physics and common sense require $\small 0 \le G_1 \le 1$, and thus $\small 0 \le W_1 \le 1$. Unfortunately, due to the lack of occlusion, it is easy to come up with a surface that violates this constraint for some viewing angles. The assumption that the microsurface is infinitesimally thick minimizes, but does not completely eliminate this issue, especially if the scope is not limited to height fields.
 
 A VNDF can be used to construct a *bidirectional scattering distribution function* $\small f_s$ (also known as a *BSDF*). By definition, it is a ratio of the differential outgoing radiance to the differential incident irradiance, the latter being the product of the incident radiance and the projected differential solid angle $\small d\Omega_n(\bm{l}) = \vert \bm{n} \cdot \bm{l} \vert d\Omega(\bm{l})$:
 
