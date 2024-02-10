@@ -31,11 +31,11 @@ A valid microsurface and, thus, a valid NDF, must obey the *signed projected are
 $$ \tag{1a}
 \begin{aligned}
 	&\bm{v} \cdot \bm{n} A
-	\cr = \space
+	\cr =
 	&\bm{v} \cdot \int_{\bm{p} \in \mathbb{M^2}} \bm{m}(\bm{p}) dA(\bm{p})
-	\cr = \space
+	\cr =
 	&\bm{v} \cdot \int_{\bm{m} \in \mathbb{S^2}} \bm{m} dA(\bm{m})
-	\cr = \space
+	\cr =
 	&\bm{v} \cdot \int_{\bm{m} \in \mathbb{S^2}} \bm{m} D(\bm{m}) A d\Omega(\bm{m})
 \end{aligned}
 $$
@@ -76,10 +76,10 @@ $$ \tag{2a}
 \begin{aligned}
 	&\bm{v} \cdot \int_{\bm{p} \in \mathbb{M^2}}
 	\bm{m}(\bm{p}) V(\bm{v}, \bm{p}) dA(\bm{p})
-	\cr = \space
+	\cr =
 	&\bm{v} \cdot \int_{\bm{m} \in \mathbb{S^2}}
 	\bm{m} G_1(\bm{v}, \bm{m}) dA(\bm{m})
-	\cr = \space
+	\cr =
 	&\bm{v} \cdot \int_{\bm{m} \in \mathbb{S^2}}
 	\bm{m} G_1(\bm{v}, \bm{m}) D(\bm{m}) A d\Omega(\bm{m}),
 \end{aligned}
@@ -121,7 +121,7 @@ is called the *distribution of visible normals*[^7] (abbreviated as the *VNDF*).
 
 [^7]: After comparing Eqn. 1c with 3a and taking the definitions into account, it would be more natural to simply let $\small D_{vis} = G_1 D$. Nevertheless, we stick with Eqn. 3b to conform to the existing body of literature.
 
-In practice, one usually does not create (nor is provided) a microsurface, but specifies the statistical distributions directly instead. In fact, one generally goes one step further: since the NDF and the masking function are not independent (they must satisfy Eqn. 3), a reasonable course of action is to specify just one and derive the other. Which distribution should we choose as the starting point? The answer is clear from the definitions: $\small G_1$ is built on top of $\small D$, and the role of the former is to endow the latter with the visibility data.
+In practice, one usually does not create (nor is provided) a microsurface, but specifies the statistical distributions directly. In fact, one generally goes one step further: since the NDF and the masking function are not independent (they must satisfy Eqn. 3), a reasonable course of action is to specify just one and attempt to derive the other. Which distribution should we choose as the starting point? The answer is clear from the definitions: $\small G_1$ is built on top of $\small D$, and the role of the former is to endow the latter with the visibility data.
 
 Thus, the common approach is "NDF first". Unfortunately, as we have already seen, such a surface description is incomplete. This forces us to introduce additional assumptions in the form of a *microsurface profile*. Arguably, the simplest assumption is the *normal-masking independence* introduced by Smith:
 
@@ -141,24 +141,26 @@ $$
 
 is the *Heaviside step function* which is used to model self-occlusion. As the name implies, the remaining masking term $\small W_1$ is independent of the microsurface normal $\small \bm{m}$.
 
-In reality, visibility has a more complicated dependence on the surface normal. For instance, in the case of a height field, for shallow viewing angles, vertical microfacets are more likely to be occluded compared to horizonal ones. Fortunately, the issue is not very apparent unless one examines a very rough surface at a grazing angle, where, as we have already seen, the foundations of the microfacet theory itself are on a shaky ground.
+In reality, visibility has a more complicated dependence on the surface normal. Taking a height field as an example, for shallow viewing angles, vertical microfacets are more likely to be occluded compared to horizontal ones. Fortunately, the issue is not very apparent unless one examines a very rough surface at a grazing angle, where, as we have already seen, the foundations of the microfacet theory itself are on a shaky ground.
 
-Substitution of Eqn. 99a into 3b and then 3a yields a ratio of projected areas:
+Substitution of Eqn. 99a into 3b and then 3a reveals a ratio of projected areas:
 
 $$ \tag{99c}
 \begin{aligned}
 	W_1(\bm{v})
 	&= \frac{(\bm{v} \cdot \bm{n})}{\int_{\bm{m} \in \mathbb{S^2}} \mathrm{max}(0, \bm{v} \cdot \bm{m}) D(\bm{m}) d\Omega(\bm{m})}
 	\cr
-	&= \frac{(\bm{v} \cdot \bm{n}) A}{\int_{\bm{m} \in \mathbb{S^2}} \mathrm{max}(0, \bm{v} \cdot \bm{m}) dA(\bm{m})}
+	&= \frac{\int_{\bm{m} \in \mathbb{S^2}} (\bm{v} \cdot \bm{m}) dA(\bm{m})}{\int_{\bm{m} \in \mathbb{S^2}} \mathrm{max}(0, \bm{v} \cdot \bm{m}) dA(\bm{m})}
+	\cr
+	&= \frac{1}{1 + \int_{\bm{m} \in \mathbb{S^2}} \mathrm{max}(0, -\bm{v} \cdot \bm{m}) dA(\bm{m})}
 	\cr
 	&= \frac{1}{1 + \Lambda(\bm{v})}.
 \end{aligned}
 $$
 
-Eqn. 99c confirms that that Smith's microsurface profile only models self-occlusion, and that the connection between a microfacet and its neighborhood is missing entirely. Therefore, we may once again end up with a microfacet soup or a salad instead of a continuous surface. The only way to solve this problem is by using a more sophisticated microsurface profile.
+Eqn. 99c confirms that Smith's microsurface profile only models self-occlusion, and that the connection between a microfacet and its neighborhood is missing entirely. Therefore, we may once again end up with a microfacet soup or a salad instead of a continuous surface. The only way to solve this problem is by using a more sophisticated microsurface profile.
 
-Both physics and common sense require $\small 0 \le G_1 \le 1$, and thus $\small 0 \le W_1 \le 1$. Unfortunately, due to the lack of occlusion, it is easy to come up with a surface that violates this constraint for some viewing angles. The assumption that the microsurface is infinitesimally thick minimizes, but does not completely eliminate this issue, especially if our scope is not limited to height fields.
+Both physics and common sense require $\small 0 \le G_1 \le 1$, and thus $\small 0 \le W_1 \le 1$. Unfortunately, due to the lack of occlusion, it is easy to come up with a surface that violates this constraint for some viewing angles. The assumption that the microsurface is infinitesimally thick minimizes, but does not completely eliminate this issue, especially if the scope is not limited to height fields.
 
 A VNDF can be used to construct a *bidirectional scattering distribution function* $\small f_s$ (also known as a *BSDF*). By definition, it is a ratio of the differential outgoing radiance to the differential incident irradiance, the latter being the product of the incident radiance and the projected differential solid angle $\small d\Omega_n(\bm{l}) = \vert \bm{n} \cdot \bm{l} \vert d\Omega(\bm{l})$:
 
@@ -379,13 +381,13 @@ $$ \tag{11b}
 \begin{aligned}
 	&\bm{v} \cdot \int_{\bm{p} \in \mathbb{M^2}}
 	\bm{m}(\bm{p}) V(\bm{v}, \bm{p}) dA(\bm{p})
-	\cr = \space
+	\cr =
 	&\bm{v} \cdot \int_{\bm{m} \in \mathbb{S^2}}
 	\bm{m} G_1(\bm{v}, \bm{m}) D(\bm{m}) A d\Omega(\bm{m})
-	\cr = \space
+	\cr =
 	&\bm{v} \cdot \bm{n} \int_{\bm{m} \in \mathbb{S^2}}
 	D_{vis}(\bm{v}, \bm{m}) A d\Omega(\bm{m})
-	\cr = \space
+	\cr =
 	&\bm{v} \cdot \bm{n} A.
 \end{aligned}
 $$
@@ -458,10 +460,10 @@ $$ \tag{12a}
 \begin{aligned}
 	&\int_{\bm{p} \in \mathbb{M^2}}
 	\bm{m}(\bm{p}) V(\bm{l}, \bm{p}) V(\bm{v}, \bm{p}) dA(\bm{p})
-	\cr = \space
+	\cr =
 	&\int_{\bm{m} \in \mathbb{S^2}}
 	\bm{m} G_2(\bm{l}, \bm{v}, \bm{m}) dA(\bm{m})
-	\cr = \space
+	\cr =
 	&\int_{\bm{m} \in \mathbb{S^2}}
 	\bm{m} G_2(\bm{l}, \bm{v}, \bm{m}) D(\bm{m}) A d\Omega(\bm{m}).
 \end{aligned}
