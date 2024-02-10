@@ -125,13 +125,13 @@ In practice, one usually does not create (nor is provided) a microsurface, but s
 
 Thus, the common approach is "NDF first". Unfortunately, as we have already seen, such a surface description is incomplete. This forces us to introduce additional assumptions in the form of a *microsurface profile*. Arguably, the simplest assumption is the *normal-masking independence* introduced by Smith:
 
-$$ \tag{99a}
+$$ \tag{55a}
 	G_1^S(\bm{v}, \bm{m}) = \Theta(\bm{v} \cdot \bm{m}) W_1(\bm{v}),
 $$
 
 where
 
-$$ \tag{99b}
+$$ \tag{55b}
 	\Theta(x) =
 	\begin{cases}
 	   1 &\text{if } x \ge 0, \cr
@@ -143,22 +143,33 @@ is the *Heaviside step function* which is used to model self-occlusion. As the n
 
 In reality, visibility has a more complicated dependence on the surface normal. Taking a height field as an example, for shallow viewing angles, vertical microfacets are more likely to be occluded compared to horizontal ones. Fortunately, the issue is not very apparent unless one examines a very rough surface at a grazing angle, where, as we have already seen, the foundations of the microfacet theory itself are on a shaky ground.
 
-Substitution of Eqn. 99a into 3b and then 3a yields a ratio of projected areas (signed to front-facing):
+Substitution of Eqn. 55a into 3b and then 3a yields a ratio of projected areas (signed to front-facing):
 
-$$ \tag{99c}
+$$ \tag{55c}
 \begin{aligned}
 	W_1(\bm{v})
 	&= \frac{(\bm{v} \cdot \bm{n})}{\int_{\bm{m} \in \mathbb{S^2}} \mathrm{max}(0, \bm{v} \cdot \bm{m}) D(\bm{m}) d\Omega(\bm{m})}
 	\cr
 	&= \frac{\int_{\bm{m} \in \mathbb{S^2}} (\bm{v} \cdot \bm{m}) dA(\bm{m})}{\int_{\bm{m} \in \mathbb{S^2}} \mathrm{max}(0, \bm{v} \cdot \bm{m}) dA(\bm{m})}
 	\cr
-	&= \frac{1}{1 + \int_{\bm{m} \in \mathbb{S^2}} \mathrm{max}(0, -\bm{v} \cdot \bm{m}) dA(\bm{m})}
+	&= \frac{\int_{\bm{m} \in \mathbb{S^2}} (\bm{v} \cdot \bm{m}) dA(\bm{m})}{\int_{\bm{m} \in \mathbb{S^2}} (\bm{v} \cdot \bm{m}) dA(\bm{m}) + \int_{\bm{m} \in \mathbb{S^2}} \mathrm{max}(0, -\bm{v} \cdot \bm{m}) dA(\bm{m})}
 	\cr
-	&= \frac{1}{1 + \Lambda(\bm{v})}.
+	&= \frac{1}{1 + \Lambda(\bm{v})},
 \end{aligned}
 $$
 
-Eqn. 99c confirms that Smith's microsurface profile only models self-occlusion, and that the connection between a microfacet and its neighborhood is missing entirely. Therefore, we may once again end up with a microfacet soup or a salad instead of a continuous surface. The only way to solve this problem is by using a more sophisticated microsurface profile.
+such that
+
+$$ \tag{55d}
+\begin{aligned}
+	\Lambda(\bm{v})
+	&= \frac{\int_{\bm{m} \in \mathbb{S^2}} \mathrm{max}(0, -\bm{v} \cdot \bm{m}) dA(\bm{m})}{(\bm{v} \cdot \bm{n}) A}
+	\cr
+	&= \frac{\int_{\bm{m} \in \mathbb{S^2}} \mathrm{max}(0, -\bm{v} \cdot \bm{m}) D(\bm{m}) d\Omega(\bm{m})}{(\bm{v} \cdot \bm{n})}.
+\end{aligned}
+$$
+
+Eqn. 55c confirms that Smith's microsurface profile only models self-occlusion, and that the connection between a microfacet and its neighborhood is missing entirely. Therefore, we may once again end up with a microfacet soup or a salad instead of a continuous surface. The only way to solve this problem is by using a more sophisticated microsurface profile.
 
 A VNDF can be used to construct a *bidirectional scattering distribution function* $\small f_s$ (also known as a *BSDF*). By definition, it is a ratio of the differential outgoing radiance to the differential incident irradiance, the latter being the product of the incident radiance and the projected differential solid angle $\small d\Omega_n(\bm{l}) = \vert \bm{n} \cdot \bm{l} \vert d\Omega(\bm{l})$:
 
@@ -452,7 +463,7 @@ Notice that the visibility terms (and the vector area $\small \bm{m} dA$) are th
 
 We can evaluate Eqn. 11f numerically by breaking the microsurface into the individual microfacets and sorting the latter by their orientation. For a fixed view direction $\small \bm{v}$, a group of microfacets with the same normal $\bm{m}$ will also share the values of $\small F$ and $\small L$. Within each group, we shall calculate the total visible area of the microfacets.
 
-The statistical method of evaluation of Eqn. 11f mirrors Eqn. 2a. We must introduce the dimensionless *shadowing-masking function* $\small G_2(\bm{l}, \bm{v}, \bm{m})$ that gives the fraction of the differential area $\small dA(\bm{m})$ of the portion of the microsurface perpendicular to $\small \bm{m}$ that happens to be visible along both $\small \bm{v} \text{ and } \bm{l}$. In other words, it is the *average visibility* (along both $\small \bm{l} \text{ and } \bm{v}$) of the microfacets with the normal $\small \bm{m}$:
+The statistical method of evaluation of Eqn. 11f mirrors Eqn. 2a. We must introduce the dimensionless *shadowing-masking function* $\small G_2(\bm{v}, \bm{m}, \bm{l})$ that gives the fraction of the differential area $\small dA(\bm{m})$ of the portion of the microsurface perpendicular to $\small \bm{m}$ that happens to be visible along both $\small \bm{v} \text{ and } \bm{l}$. In other words, it is the *average visibility* (along both $\small \bm{l} \text{ and } \bm{v}$) of the microfacets with the normal $\small \bm{m}$:
 
 $$ \tag{12a}
 \begin{aligned}
@@ -460,28 +471,68 @@ $$ \tag{12a}
 	\bm{m}(\bm{p}) V(\bm{l}, \bm{p}) V(\bm{v}, \bm{p}) dA(\bm{p})
 	\cr =
 	&\int_{\bm{m} \in \mathbb{S^2}}
-	\bm{m} G_2(\bm{l}, \bm{v}, \bm{m}) dA(\bm{m})
+	\bm{m} G_2(\bm{v}, \bm{m}, \bm{l}) dA(\bm{m})
 	\cr =
 	&\int_{\bm{m} \in \mathbb{S^2}}
-	\bm{m} G_2(\bm{l}, \bm{v}, \bm{m}) D(\bm{m}) A d\Omega(\bm{m}).
+	\bm{m} G_2(\bm{v}, \bm{m}, \bm{l}) D(\bm{m}) A d\Omega(\bm{m}).
 \end{aligned}
 $$
 
-Once projected onto $\small \bm{l} \text{ or } \bm{v}$, Eqn. 12a also represents visible projected area, except that the visibility is now bidirectional. Similarly, it takes self-occlusion into account: $\small V = G_2 = 0$ if $\small (\bm{l} \cdot \bm{m}) \le 0 \text{ or } \small (\bm{v} \cdot \bm{m}) \le 0$.
+Once projected onto $\small \bm{l} \text{ or } \bm{v}$, Eqn. 12a also represents visible projected area, except that the visibility is now bidirectional. Similarly, it takes self-occlusion into account: $\small V = G_2 = 0$ if $\small (\bm{v} \cdot \bm{m}) \le 0 \text{ or } \small (\bm{l} \cdot \bm{m}) \le 0$.
 
-Other properties:
-
-symmetry...
-height correlation...
-directional correlation...
-
-In general, a bidirectional average cannot be factored into a product of unidirectional averages:
+A valid shadowing-masking function also has the following properties:
 
 $$ \tag{12b}
-	G_2(\bm{l}, \bm{v}, \bm{m}) \ne G_1(\bm{l}, \bm{m}) G_1(\bm{v}, \bm{m}).
+\begin{aligned}
+	\textit{directional symmetry: }
+	&G_2(\bm{v}, \bm{m}, \bm{l}) = G_2(\bm{l}, \bm{m}, \bm{v});
+	\cr
+	\textit{directional correlation: }
+	&G_2(\bm{v}, \bm{m}, \bm{v}) = G_1(\bm{v}, \bm{m}).
+\end{aligned}
 $$
 
-As an example, consider a number of evenly-spaced boxes -- a square wave. For $\small \bm{m} = \bm{n}$, the unidirectional visibility will approach 50% as the view angle increases. Thus, for shallow angles, $\small G_1(\bm{l}, \bm{n}) G_1(\bm{v}, \bm{n}) \approx 1/4$, while $\small G_2(\bm{l}, \bm{v}, \bm{n}) \approx 1/2$. More generally, $\small G_1^2(\bm{v}, \bm{m}) \le G_2(\bm{v}, \bm{v}, \bm{m})$.
+The latter implies that a bidirectional average cannot be factored into a product of unidirectional averages:
+
+$$ \tag{12c}
+	G_2(\bm{v}, \bm{m}, \bm{l}) \ne G_1(\bm{v}, \bm{m}) G_1(\bm{l}, \bm{m}).
+$$
+
+As an example, consider a number of evenly-spaced boxes -- a square wave. For $\small \bm{m} = \bm{n}$, the unidirectional visibility will approach 50% as the view angle increases. Thus, for shallow angles, $\small G_1(\bm{v}, \bm{n}) G_1(\bm{l}, \bm{n}) \approx 1/4$, while $\small G_2(\bm{v}, \bm{n}, \bm{l}) \approx 1/2$.
+
+*normal-masking independence* introduced by Smith:
+
+$$ \tag{66a}
+	G_2^S(\bm{v}, \bm{m}, \bm{l}) = \Theta(\bm{v} \cdot \bm{m}) \Theta(\bm{l} \cdot \bm{m}) W_2(\bm{v}, \bm{l}),
+$$
+
+If we can't take the product of fractions, we can use the ratio of the sums of the numerator and the denominator:
+
+$$ \tag{66b}
+\small
+\begin{aligned}
+	W_1(\bm{v}, \bm{l})
+	&= \frac{
+		\int_{\bm{m} \in \mathbb{S^2}} (\bm{v} \cdot \bm{m} + \bm{l} \cdot \bm{m}) dA(\bm{m})
+	}{
+		\int_{\bm{m} \in \mathbb{S^2}} \big( \mathrm{max}(0, \bm{v} \cdot \bm{m}) + \mathrm{max}(0, \bm{l} \cdot \bm{m}) \big) dA(\bm{m})
+	}
+	\cr
+	&= \frac{
+		\int_{\bm{m} \in \mathbb{S^2}} (\bm{v} \cdot \bm{m} + \bm{l} \cdot \bm{m}) dA(\bm{m})
+	}{
+		\int_{\bm{m} \in \mathbb{S^2}} (\bm{v} \cdot \bm{m} + \bm{l} \cdot \bm{m}) dA(\bm{m}) +
+		\int_{\bm{m} \in \mathbb{S^2}} \big( \mathrm{max}(0, -\bm{v} \cdot \bm{m}) + \mathrm{max}(0, -\bm{l} \cdot \bm{m}) \big) dA(\bm{m})
+	}
+	\cr
+	&= \frac{
+		(\bm{v} \cdot \bm{n}) + (\bm{l} \cdot \bm{n})
+	}{
+		( \bm{v} \cdot \bm{n} ) ( 1 + \Lambda(\bm{v}) ) +
+		( \bm{l} \cdot \bm{n} ) ( 1 + \Lambda(\bm{l}) )
+	}.
+\end{aligned}
+$$
 
 TODO: height-correlated?
 
