@@ -10,7 +10,7 @@ At EGSR 2022, Atanasov, Koylazov, Dimov, and Wilkie presented a paper titled [Mi
 
 ## Microscopic Introduction
 
-Pick an object, perhaps one that sits on your desk or lives in your head. Focus on a tiny fragment of its surface. If the fragment is sufficiently small, or is sufficiently far away, it will look effectively flat (but not necessarily smooth). Therefore, to a negligible degree of error, that fragment may be replaced by a first-order approximation[^1] -- its projection onto the (averaged) tangent plane. In the literature, this projected surface fragment is referred to as the *macrosurface*. It is characterized[^6] by the area $\small A$ and the unit normal vector $\small \bm{n}$. Fixing two (linearly independent, but not necessarily unit or orthogonal) tangent vectors $\small \bm{t_1}$ and $\small \bm{t_2}$ is sufficient to complete the parameterization of the macrosurface.
+Pick an object, perhaps one that sits on your desk or lives in your head. Focus on a tiny fragment of its surface. If the fragment is sufficiently small, or is sufficiently far away, it will look effectively flat (but not necessarily smooth). Therefore, to a negligible degree of error, that fragment may be replaced by a first-order approximation[^1] -- its projection onto the (averaged) tangent plane. In the literature, this projected surface is referred to as the *macrosurface*. It is characterized by the area $\small A$ and the unit normal[^6] vector $\small \bm{n}$. Fixing two (linearly independent, but not necessarily unit or orthogonal) tangent vectors $\small \bm{t_1}$ and $\small \bm{t_2}$ is sufficient to complete the parameterization of the macrosurface.
 
 [^1]: In the sense of a Taylor series expansion.
 
@@ -46,7 +46,7 @@ $$ \tag{1b}
 	\bm{n} = \int_{\bm{m} \in \mathbb{S^2}} \bm{m} D(\bm{m}) d\Omega(\bm{m}).
 $$
 
-Eqn. 1 tells us a few things. Geometrically, it says that the signed projected areas of the microsurface and the macrosurface must coincide in any given direction. Furthermore, by substituting a constant NDF (or from the definition), we can see that it is measured in units of reciprocal solid angle.
+Eqn. 1 tells us a few things. Geometrically, it says that the signed projected areas of the microsurface and the macrosurface must coincide in any given direction. Furthermore, by substituting a constant NDF (or from the definition), we can see that it is measured in the units of reciprocal solid angle.
 
 In the special case of $\small \bm{v} = \bm{n}$, we obtain
 
@@ -56,21 +56,21 @@ $$
 
 In order for $\small (\bm{n} \cdot \bm{m}) D(\bm{m})$ to be a valid probability density function, it must be non-negative for all $\small \bm{m}$. That is the case only if $\small \mathbb{M^2}$ is a height field, since this ensures that $\small (\bm{n} \cdot \bm{m}) \ge 0$.
 
-One of the simplest examples of a valid microsurface is a box[^5] (with the flipped bottom face playing the role of the macrosurface). It is instructive to analyze its two-dimensional counterpart -- a rectangle.
+One of the simplest examples of a valid microsurface is a box[^5], with the flipped bottom face playing the role of the macrosurface. It is instructive to analyze its two-dimensional counterpart -- a rectangle.
 
 [^5]: Using the tools of calculus, we can decompose an arbitrary surface into a (possibly infinite) number of (sufficiently small) boxes.
 
-*Linearity* of Eqn. 1 allows us to consider the individual microfacets separately and to sum up their contributions. As we apply Eqn. 1 to the box, observe that the signed projected areas of the opposite faces cancel each other, leaving just the top (that is, of course, equivalent to the bottom). Another consequence is that a linearly transformed surface (a parallelepiped, in our case) still results in a valid combination of the microsurface and the macrosurface. We can see why that is the case by picturing Eqn. 1 geometrically and (passively) transforming the coordinate axes rather than (actively transforming) the surface itself [^51]. Of course, while the surface lines remain unchanged, the signed projected areas (and, thus, the values of the NDF) are no longer the same.
+*Linearity* of Eqn. 1 allows us to consider the individual microfacets separately and to sum up their contributions. As we apply Eqn. 1 to the box, observe that the signed projected areas of the opposite faces cancel each other, leaving just the top (that is, of course, equivalent to the bottom). Another consequence is that a linearly transformed surface (a parallelepiped, in our case) still results in a valid combination of the microsurface and the macrosurface. We can see why that is the case by picturing Eqn. 1 geometrically and (passively) transforming the coordinate axes rather than (actively transforming) the surface itself[^51]. Of course, while the surface lines remain unchanged, the signed projected areas (and, thus, the values of the NDF) do not stay the same.
 
-[^51]: This requires the transformation to be invertible. If the transformation were nonlinear, the transformed axes would vary from point to point, forming a vector field.
+[^51]: This requires the transformation to be invertible. If the transformation were nonlinear, the transformed axes would vary from point to point, forming vector fields.
 
 Clearly, a microsurface does not have to be smooth (e.i. continuously differentiable); however, this ensures the continuity of the NDF, which is desirable, unless the goal is to model a flat surface.
 
-Erasing any part of the box leads to a signed projected area mismatch for certain angles. Therefore, the constraint may seem to imply that the microsurface must be continuous, but that is not the case. The issue lies in the *translation invariance*, which simply means that the projected area of an object is independent of its location. This property may seem innocuous at first, but, coupled with the linearity, it spells disaster: we may freely translate different microfacets in different directions without affecting the value of the integral.
+Erasing any part of the box leads to a signed projected area mismatch for certain angles. Therefore, the constraint may seem to imply that the microsurface must be continuous, but, unfortunately, that is not the case. The issue lies in the *translation invariance*; in our case, it means that the signed projected area of an object is independent of its location. This property may seem innocuous at first, but, coupled with the linearity, it spells disaster: we may freely translate different microfacets in different directions without affecting the value of the integral.
 
 Since the signed projected area is an incomplete description of a real surface (as opposed to a microfacet soup or a salad[^52]), we may additionally specify its *visible projected area*
 
-[^52]: In technical terms, the surface may have a very short auto-correlation distance.
+[^52]: In technical terms, the surface may have an extremely short auto-correlation distance.
 
 $$ \tag{2a}
 \begin{aligned}
@@ -85,9 +85,9 @@ $$ \tag{2a}
 \end{aligned}
 $$
 
-which obviously depends on where the microfacets are located relative to one another. It is defined in terms of the dimensionless *masking function* $\small G_1(\bm{v}, \bm{m})$ that gives the fraction of the differential area $\small dA(\bm{m})$ of the portion of the microsurface perpendicular to $\small \bm{m}$ that happens to be visible along $\small \bm{v}$. In other words, it is the *average visibility* (along $\small \bm{v}$) of the microfacets with the normal $\small \bm{m}$. The masking function is closely related to the binary *visibility function* $\small V(\bm{v}, \bm{p})$ that outputs 0 if the point $\small \bm{p}$ is occluded along $\small \bm{v}$, and 1 otherwise. Both functions take *self-occlusion* into account: $\small V = G_1 = 0$ if $\small (\bm{v} \cdot \bm{m}) \le 0$. This subtle point helps us emphasize the geometric (e.i., coordinate-independent, basis-independent) nature of Eqn. 2.
+which obviously depends on the relative location of the microfacets. It is defined in terms of the dimensionless *masking function* $\small G_1(\bm{v}, \bm{m})$ that gives the fraction of the differential area $\small dA(\bm{m})$ of the portion of the microsurface perpendicular to $\small \bm{m}$ that happens to be visible along $\small \bm{v}$. In other words, it is the *average visibility* (along $\small \bm{v}$) of the microfacets with the normal $\small \bm{m}$. The masking function is closely related to the binary *visibility function* $\small V(\bm{v}, \bm{p})$ that outputs 0 if the point $\small \bm{p}$ is occluded along $\small \bm{v}$, and 1 otherwise. Both functions take *self-occlusion* into account: $\small V = G_1 = 0$ if $\small (\bm{v} \cdot \bm{m}) \le 0$. This subtle point helps us emphasize the geometric (e.i., coordinate-independent, basis-independent) nature of Eqn. 2.
 
-The masking (and the visibility) function possesses an important property called *stretch invariance*, or, more generally, *invariance under linear transformations*. We have already seen that, in the context of the microfacet theory, a linearly transformed surface remains valid; however, unlike the NDF, the masking function is dimensionless: it only encodes visibility, and so it remains unaffected by a transformation of the coordinate axes. Of course, this kind of transformation must be applied to everything, including the view direction.
+The masking and the visibility functions possess an important property called *stretch invariance*, or, more generally, *invariance under linear transformations*. We have already seen that, in the context of the microfacet theory, a linearly transformed surface remains valid; however, unlike the NDF, the masking function is dimensionless: it only encodes visibility, and so it remains unaffected by a transformation of the coordinate axes. Of course, this means that the transformation must be applied to everything, including the view direction.
 
 Eqn. 1 and 2 are closely related. For a valid microsurface, the values of the integrals are the same for $\small \bm{v} = \bm{n}$:
 
@@ -101,37 +101,39 @@ $$ \tag{2b}
 \end{aligned}
 $$
 
-In general, *the visible projected area is greater or equal to the signed projected area*. This inequality is a consequence of self-occlusion, which eliminates the (formerly negative) contribution of back-facing microfacets. The two types of projected areas coincide only if the view angle is sufficiently steep, or the microsurface -- sufficiently thin, so that the latter does not extend outside the volume swept by the macrosuface translated along the view direction. This leads to one of the key assumptions of the microfacet theory: *a microsurface must be infinitesimally thick*. This limitation manifests itself at grazing angles, and should be familiar to those who have practical experience with bump and normal mapping. In addition, since the signed projected areas of the microsurface and the macrosurface coincide, we can only allow the view angles that obey $\small (\bm{v} \cdot \bm{n}) \ge 0$. In other words, *a microsurface must be facing the observer*. Otherwise, we must must reverse the signs of both $\small \bm{n}$ and $\small \bm{m}$, which will give rise to a microsurface with different statistics. More specifically, while $D(-\bm{m})$ will give the correct number, the visibility will be different, which is particularly evident if you take a box and flip it upside down. For a tiling surface (such as a sawtooth), reversing the sign of $\small \bm{v}$, so that it points in the same hemisphere as $\small \bm{n}$, produces a reasonable approximation. This ensures that self-occlusion is properly accounted for.
+In the special case of a height field, $\small G_1(\bm{n}, \bm{m}) = 1$.
+
+For a continuous surface, *the visible projected area is greater or equal to the signed projected area*. This inequality stems from self-occlusion, which eliminates the (formerly negative) contribution of back-facing microfacets. The two types of projected areas coincide only if the view angle is sufficiently steep, or the microsurface -- sufficiently thin, so that the latter does not extend outside the volume swept by the macrosuface translated along the view direction. This leads to one of the key assumptions of the microfacet theory: *a microsurface must be infinitesimally thick*. This limitation is particularly apparent at grazing angles, and should be familiar to those who have practical experience with bump and normal mapping. Furthermore, since the signed projected areas of the microsurface and the macrosurface coincide, we can only allow the view angles that obey $\small (\bm{v} \cdot \bm{n}) \ge 0$. In other words, *a microsurface must be facing the observer*. Otherwise, we must reverse the signs of both $\small \bm{n}$ and $\small \bm{m}$, which will give generat a microsurface with different statistics. More specifically, while $D(-\bm{m})$ will give the correct number, the visibility will be different, which is particularly evident if you take a box and flip it upside down. For a tiling surface (such as a sawtooth), reversing the sign of $\small \bm{v}$, so that it points in the same hemisphere as $\small \bm{n}$, produces a reasonable approximation. It ensures that self-occlusion is properly accounted for.
 
 With the assumption (that all projected surface areas are the same) in place, we can combine Eqn. 1a and 2a into
 
 $$ \tag{3a}
 	1 =
-	\int_{\bm{m} \in \mathbb{S^2}} D_{vis}(\bm{v}, \bm{m}) d\Omega(\bm{m}),
+	\int_{\bm{m} \in \mathbb{S^2}} D_{vis}(\bm{v}, \bm{n}, \bm{m}) d\Omega(\bm{m}),
 $$
 
 where
 
 $$ \tag{3b}
-	D_{vis}(\bm{v}, \bm{m}) =
+	D_{vis}(\bm{v}, \bm{n}, \bm{m}) =
 	\frac{(\bm{v} \cdot \bm{m})}{(\bm{v} \cdot \bm{n})} G_1(\bm{v}, \bm{m}) D(\bm{m})
 $$
 
-is called the *distribution of visible normals*[^7] (abbreviated as the *VNDF*). Its meaning becomes clear in the context of Eqn. 2a: $\small ((\bm{v} \cdot \bm{m})/(\bm{v} \cdot \bm{n}))^{-1} D_{vis}(\bm{v}, \bm{m}) d\Omega(\bm{m})$ is the differential area of the portion of the microsurface perpendicular to $\small \bm{m}$ that happens to be visible along $\small \bm{v}$. Like $\small (\bm{n} \cdot \bm{m}) D(\bm{m})$, the VNDF is a valid probability density function; and because it is always non-negative, it is not restricted to height fields.
+is called the *distribution of visible normals*[^7] (abbreviated as the *VNDF*). Its meaning becomes clear in the context of Eqn. 2a: $\small ((\bm{v} \cdot \bm{m})/(\bm{v} \cdot \bm{n}))^{-1} D_{vis}(\bm{v}, \bm{n}, \bm{m}) d\Omega(\bm{m})$ is the differential area of the portion of the microsurface perpendicular to $\small \bm{m}$ that happens to be visible along $\small \bm{v}$. Like $\small (\bm{n} \cdot \bm{m}) D(\bm{m})$, the VNDF is a valid probability density function; but because it is always non-negative, this property is not limited to height fields.
 
-[^7]: After comparing Eqn. 1c with 3a and taking the definitions into account, it would be more natural to simply let $\small D_{vis} = G_1 D$. Nevertheless, we stick with Eqn. 3b to conform to the existing body of literature.
+[^7]: After comparing Eqn. 1c with 3a and taking the definitions into account, it seems more natural to simply let $\small D_{vis} = G_1 D$. Nevertheless, we stick with Eqn. 3b to conform to the existing body of literature.
 
-In practice, one usually does not create (nor is provided) a microsurface, but specifies the statistical distributions directly. In fact, one generally goes one step further: since the NDF and the masking function are not independent (they must satisfy Eqn. 3), a reasonable course of action is to specify just one and attempt to derive the other. Which distribution should we choose as the starting point? The answer is clear from the definitions: $\small G_1$ is built on top of $\small D$, and the role of the former is to endow the latter with the visibility data.
+In practice, one usually does not create (nor is provided) a microsurface, but rather specifies the statistical distributions directly. In fact, one generally goes one step further: since the NDF and the masking function are not independent (they satisfy Eqn. 3), a reasonable course of action is to specify just one and attempt to derive the other. Which distribution should we choose as the starting point? The answer comes from the definitions: $\small G_1$ is built on top of $\small D$, and the role of the former is to endow the latter with the visibility data.
 
-Thus, the common approach is "NDF first". Unfortunately, as we have already seen, such a surface description is incomplete. This forces us to introduce additional assumptions in the form of a *microsurface profile*. Arguably, the simplest assumption is the *normal-masking independence* introduced by Smith:
+Thus, one typically starts with the NDF. Unfortunately, as we have already seen, it does not provide a complete surface description. This forces us to introduce additional assumptions in the form of a *microsurface profile*. Arguably, the simplest assumption is the *normal-masking independence* introduced by Smith:
 
-$$ \tag{55a}
+$$ \tag{3Xa}
 	G_1^S(\bm{v}, \bm{m}) = \Theta(\bm{v} \cdot \bm{m}) W_1(\bm{v}),
 $$
 
 where
 
-$$ \tag{55b}
+$$ \tag{3Xb}
 	\Theta(x) =
 	\begin{cases}
 	   1 &\text{if } x \ge 0, \cr
@@ -141,11 +143,11 @@ $$
 
 is the *Heaviside step function* which is used to model self-occlusion. As the name implies, the remaining masking term $\small W_1$ is independent of the microsurface normal $\small \bm{m}$.
 
-In reality, visibility has a more complicated dependence on the surface normal. Taking a height field as an example, for shallow viewing angles, vertical microfacets are more likely to be occluded compared to horizontal ones. Fortunately, the issue is not very apparent unless one examines a very rough surface at a grazing angle, where, as we have already seen, the foundations of the microfacet theory itself are on a shaky ground.
+In reality, the way the visibility depends on the surface normal is more complicated. Take a height field as an example: for shallow view angles, vertical microfacets are more likely to be occluded compared to horizontal ones. Fortunately, the issue is not very apparent unless one examines a rough surface at a grazing angle, where, as we have previously remarked, the foundations of the microfacet theory itself are on a shaky ground.
 
-Substitution of Eqn. 55a into 3b and then 3a yields a ratio of projected areas (signed to front-facing):
+Substitution of Eqn. 3X into 3 yields a ratio of projected areas (signed to front-facing):
 
-$$ \tag{55c}
+$$ \tag{3Xc}
 \begin{aligned}
 	W_1(\bm{v})
 	&= \frac{(\bm{v} \cdot \bm{n})}{\int_{\bm{m} \in \mathbb{S^2}} \mathrm{max}(0, \bm{v} \cdot \bm{m}) D(\bm{m}) d\Omega(\bm{m})}
@@ -158,18 +160,20 @@ $$ \tag{55c}
 \end{aligned}
 $$
 
-such that
+where
 
-$$ \tag{55d}
+$$ \tag{3Xd}
 \begin{aligned}
 	\Lambda(\bm{v})
 	&= \frac{\int_{\bm{m} \in \mathbb{S^2}} \mathrm{max}(0, -\bm{v} \cdot \bm{m}) dA(\bm{m})}{(\bm{v} \cdot \bm{n}) A}
 	\cr
-	&= \frac{\int_{\bm{m} \in \mathbb{S^2}} \mathrm{max}(0, -\bm{v} \cdot \bm{m}) D(\bm{m}) d\Omega(\bm{m})}{(\bm{v} \cdot \bm{n})}.
+	&= \frac{\int_{\bm{m} \in \mathbb{S^2}} \mathrm{max}(0, -\bm{v} \cdot \bm{m}) D(\bm{m}) d\Omega(\bm{m})}{(\bm{v} \cdot \bm{n})}
 \end{aligned}
 $$
 
-Eqn. 55c confirms that Smith's microsurface profile only models self-occlusion, and that the connection between a microfacet and its neighborhood is missing entirely. Therefore, we may once again end up with a microfacet soup or a salad instead of a continuous surface. The only way to solve this problem is by using a more sophisticated microsurface profile.
+is another ratio of projected areas (back-facing to signed).
+
+Eqn. 3Xc confirms that Smith's microsurface profile only models self-occlusion, and that the connection between a microfacet and its neighborhood is absent. This puts us at risk of ending up with a microfacet soup or a salad (instead of a continuous surface) again. The only way remedy this deficiency is by using a more sophisticated microsurface profile.
 
 A VNDF can be used to construct a *bidirectional scattering distribution function* $\small f_s$ (also known as a *BSDF*). By definition, it is a ratio of the differential outgoing radiance to the differential incident irradiance, the latter being the product of the incident radiance and the projected differential solid angle $\small d\Omega_n(\bm{l}) = \vert \bm{n} \cdot \bm{l} \vert d\Omega(\bm{l})$:
 
@@ -217,7 +221,7 @@ $$ \tag{5b}
 	\eta_v^2 d\Omega_n(\bm{v}) = \eta_l^2 d\Omega_n(\bm{l})
 $$
 
-and, thus, a change in energy density (provided $\small \eta_v \neq \eta_l$). Keep in mind that, in general, the relationship between the ordinary solid angles is not as simple:
+and, thus, a change in energy density (provided $\small \eta_v \neq \eta_l$). Note that the relationship between the ordinary solid angles is not as simple:
 
 $$ \tag{5c}
 	\eta_v^2 d\Omega(\bm{v}) \neq \eta_l^2 d\Omega(\bm{l}).
@@ -225,9 +229,9 @@ $$
 
 [^9]: We will not consider absorptive or magnetic media in this article. A discussion involving the physics of conductors (and certain dielectrics) would quickly become quite involved and take us too far afield, away from our original topic of microsurface transformations.
 
-This is a very good reason to utilize the projected solid angle measure. Failure to consistently do so often results in complicated expressions that are difficult to interpret and prone to errors.
+This is a good reason to utilize the projected solid angle measure. Failure to consistently do so often results in complicated expressions that are difficult to interpret and prone to errors.
 
-The properties of a valid BSDF are by no means obvious. In particular, making it reciprocal may seem like a non-trivial task. Typically, that is done by splitting the BSDF in two components: reflection (the *BRDF*) and transmission (the *BTDF*). The reflection component is always *symmetric*: since $\small \bm{v}$ and $\small \bm{l}$ always point away from the surface, $\small \eta_v = \eta_l$, which results in $\small f_r(\bm{v}, \bm{n}, \bm{l}) = f_r(\bm{l}, \bm{n}, \bm{v})$.
+The properties of a valid BSDF are by no means obvious. In particular, ensuring reciprocity may seem like a non-trivial task. Typically, that is done by splitting the BSDF in two components: reflection (the *BRDF*) and transmission (the *BTDF*). The reflection component is always *symmetric*: since $\small \bm{v}$ and $\small \bm{l}$ always point away from the surface, $\small \eta_v = \eta_l$, which results in $\small f_r(\bm{v}, \bm{n}, \bm{l}) = f_r(\bm{l}, \bm{n}, \bm{v})$.
 
 
 In order to make things clear, we shall illustrate these properties using a concrete example. Consider a perfectly smooth, planar surface. Its BSDF (often referred to as the *perfect specular* BSDF) can be expressed in terms of the *Dirac delta "function"* $\small \delta$ defined as a projected solid angle measure by the equation
@@ -328,7 +332,7 @@ $$ \tag{9b}
 	\eta_t = \eta_v.
 $$
 
-Taking reciprocity and energy conservation into account, the perfect specular BTDF can then be expressed as
+After taking the reciprocity and the conservation of energy into account, the perfect specular BTDF can be expressed as
 
 $$ \tag{9c}
 	f_t(\bm{v}, \bm{n}, \bm{l}) =
@@ -349,7 +353,7 @@ $$ \tag{9d}
 	}.
 $$
 
-Unfortunately, Eqn. 9d fails to make it apparent that these two Dirac delta "functions" are not the same: they are used to measure two different projected solid angles, and their ratio is precisely the same as the missing factor of $\small \eta_l^2 / \eta_v^2$. To see why that is the case, we must recall that Eqn. 7c and 9c are only valid in the context of Eqn. 6, which is an integral over the domain of directions of incidence. If we use the reciprocal of a BSDF, the directions are interchanged, and Eqn. 6 must also be modified accordingly.
+Unfortunately, Eqn. 9d fails to make it apparent that these two Dirac delta "functions" are not the same: they are used to measure two different projected solid angles, and their ratio is precisely the same as the missing factor of $\small \eta_l^2 / \eta_v^2$. To see why that is the case, we must recall that Eqn. 7c and 9c are only valid in the context of Eqn. 6, which is an integral over the domain of directions of incidence. If we use the reciprocal of a BSDF, the directions of incidence and exitance are interchanged, and Eqn. 6 must also be modified accordingly.
 
 A better way to verify reciprocity is by combining Eqn. 4c, 5b, and 6:
 
@@ -369,11 +373,11 @@ $$ \tag{9e}
 \end{aligned}
 $$
 
-Since Eqn. 7d and 9e sum up to 1, this demonstrates that the entire BSDF is energy conserving.
+Since Eqn. 7d and 9e sum up to 1, this demonstrates that the whole BSDF is energy conserving.
 
-*Comment: are Eqn. 17, 18, and 21 in Walter's paper correct? $\small \eta_i^2$ appears to be missing in the denominator.*
+*Side note: are Eqn. 17, 18, and 21 in Walter's paper correct? $\small \eta_i^2 = \eta_l^2$ appears to be missing in the denominator.*
 
-We can extend this plain BSDF to a microfacet model of a rough surface by treating the latter as locally (rather than globally) planar and smooth. The amount of radiance scattered by the microsurface can then be expressed as a weighted average of the contributions of its visible microfacets. In order to proceed, we must recall that, by definition, the radiance is the amount of power moving in a certain direction, per unit solid angle associated with this direction, per unit area perpendicular to this direction. If the source of light is very small (or very far away), it will appear point-like, and the variation of the view direction across its surface can be safely neglected. The same cannot be said for the visible projected area, which must be properly normalized (or we would calculate the intensity instead of the radiance):
+We can extend this plain BSDF to a microfacet model of a rough surface by treating the latter as locally (rather than globally) planar and smooth. The amount of radiance scattered by the microsurface can then be expressed as a weighted average of the contributions of its visible microfacets. To proceed further, we must recall that, by definition, the radiance is the amount of power moving in a certain direction, per unit solid angle associated with this direction, per unit area perpendicular to this direction. If the source of light is very small (or very far away), it will appear point-like, and the variation of the view direction across its surface can be safely neglected. The same cannot be said for the visible projected area, which must be properly normalized (or we would calculate the intensity instead of the radiance). Thus,
 
 $$ \tag{11a}
 	L(\bm{v}) =
@@ -395,7 +399,7 @@ $$ \tag{11b}
 	\bm{m} G_1(\bm{v}, \bm{m}) D(\bm{m}) A d\Omega(\bm{m})
 	\cr =
 	&\bm{v} \cdot \bm{n} \int_{\bm{m} \in \mathbb{S^2}}
-	D_{vis}(\bm{v}, \bm{m}) A d\Omega(\bm{m})
+	D_{vis}(\bm{v}, \bm{n}, \bm{m}) A d\Omega(\bm{m})
 	\cr =
 	&\bm{v} \cdot \bm{n} A.
 \end{aligned}
@@ -409,7 +413,7 @@ $$ \tag{11c}
 	f_s(\bm{v}, \bm{m}(\bm{p}), \bm{l}) L(\bm{l}, \bm{p}) d\Omega_m(\bm{l}).
 $$
 
-Unfortunately, Eqn. 11c is recursive. In our case, this means that light scattered by a microfacet can be used to illuminate another in a process known as multiple scattering. For simplicity (and at the cost of correctness), when building microfacet models, this effect is usually neglected, with only the distant illumination taken into account:
+Unfortunately, Eqn. 11c is recursive. In our case, this means that light scattered by a microfacet can be used to illuminate another in a process known as *multiple scattering*. For simplicity (and at the cost of correctness), when building microfacet models, this effect is often neglected, with only the distant illumination taken into account:
 
 $$ \tag{11d}
 	L(\bm{v}, \bm{p}) \approx
@@ -457,11 +461,11 @@ $$
 	\bm{i} = \bm{R}\big(\bm{v}, \bm{m}(\bm{p})\big) = -\bm{v} + 2 (\bm{v} \cdot \bm{m}) \bm{m}
 $$
 
-is the reflected view vector pointing in the direction of the incident light. The associated angle $\small \theta_i$ is similarly defined relative to $\small \bm{m}$ rather than $\small \bm{n}$ (see Eqn. 7a).
+is the reflected view vector pointing in the direction of the incident light. The associated angle $\small \theta_i$ is defined similarly, e.i. relative to $\small \bm{m}$ rather than $\small \bm{n}$ (see Eqn. 7a).
 
-Notice that the visibility terms (and the vector area $\small \bm{m} dA$) are the only ones that explicitly depend on the position $\small \bm{p}$. That is because visibility is a global property -- it connects a point to the entire surface.
+Notice that the visibility terms (and the vector area $\small \bm{m} dA$) are the only ones that explicitly depend on the position $\small \bm{p}$. That is because visibility is a non-local property -- it connects a point to the entire surface.
 
-We can evaluate Eqn. 11f numerically by breaking the microsurface into the individual microfacets and sorting the latter by their orientation. For a fixed view direction $\small \bm{v}$, a group of microfacets with the same normal $\bm{m}$ will also share the values of $\small F$ and $\small L$. Within each group, we shall calculate the total visible area of the microfacets.
+We can evaluate Eqn. 11f numerically by breaking the microsurface into the individual microfacets and sorting the latter by their orientation. For a fixed view direction $\small \bm{v}$, a group of microfacets with the same normal $\bm{m}$ will also share the values of $\small F$ and $\small L$. During the final step, we must calculate the total visible area of the microfacets within each group.
 
 The statistical method of evaluation of Eqn. 11f mirrors Eqn. 2a. We must introduce the dimensionless *shadowing-masking function* $\small G_2(\bm{v}, \bm{m}, \bm{l})$ that gives the fraction of the differential area $\small dA(\bm{m})$ of the portion of the microsurface perpendicular to $\small \bm{m}$ that happens to be visible along both $\small \bm{v} \text{ and } \bm{l}$. In other words, it is the *average visibility* (along both $\small \bm{l} \text{ and } \bm{v}$) of the microfacets with the normal $\small \bm{m}$:
 
@@ -488,11 +492,16 @@ $$ \tag{12b}
 	&G_2(\bm{v}, \bm{m}, \bm{l}) = G_2(\bm{l}, \bm{m}, \bm{v});
 	\cr
 	\textit{directional correlation: }
-	&G_2(\bm{v}, \bm{m}, \bm{v}) = G_1(\bm{v}, \bm{m}).
+	&G_2(\bm{v}, \bm{m}, \bm{v}) = G_1(\bm{v}, \bm{m});
+	\cr
+	\textit{height correlation: }
+	&G_2(\bm{v}, \bm{m}, \bm{n}) = G_1(\bm{v}, \bm{m})
 \end{aligned}
 $$
 
-The latter implies that a bidirectional average cannot be factored into a product of unidirectional averages:
+The last property is only applicable to height fields.
+
+The second one implies that a bidirectional average cannot be factored into the product of unidirectional averages:
 
 $$ \tag{12c}
 	G_2(\bm{v}, \bm{m}, \bm{l}) \ne G_1(\bm{v}, \bm{m}) G_1(\bm{l}, \bm{m}).
@@ -533,6 +542,10 @@ $$ \tag{66b}
 	}.
 \end{aligned}
 $$
+
+The above lacks height correlation...
+
+W_2 = Macro visible(V, L) / Micro culled (V, L)
 
 TODO: height-correlated?
 
