@@ -463,7 +463,14 @@ $$
 	\bm{i} = \bm{R}\big(\bm{v}, \bm{m}(\bm{p})\big) = -\bm{v} + 2 (\bm{v} \cdot \bm{m}) \bm{m}
 $$
 
-is the reflected view vector pointing in the direction of the incident light. The associated angle $\small \theta_i$ is defined similarly, e.i. relative to $\small \bm{m}$ rather than $\small \bm{n}$ (see Eqn. 7a).
+is the reflected view vector that points in the direction of the incident light (used to define $\small \theta_i$), and, similarly,
+
+$$
+	\bm{t} = \bm{T}\big( \bm{v}, \bm{m}(\bm{p}), \eta_i/\eta_t \big) =
+	 -\frac{\eta_i}{\eta_t}\bm{v} + \left( \frac{\eta_i}{\eta_t}(\bm{v} \cdot \bm{m}) - \mathrm{sgn} (\bm{v} \cdot \bm{m}) \sqrt{1 - \frac{\eta_i^2}{\eta_t^2} \Vert \bm{v} \times \bm{m} \Vert^2 } \right) \bm{m}
+$$
+
+is the refracted (or the transmitted) view vector. We must caution that, in certain cases, the value of the expression inside the square root is a negative number. This invalidates the refracted direction and implies that the light has been *totally internally reflected* by the surface.
 
 Notice that the visibility terms (and the vector area $\small \bm{m} dA$) are the only ones that explicitly depend on the position $\small \bm{p}$. That is because visibility is a non-local property -- it connects a point to the entire surface.
 
@@ -496,7 +503,7 @@ $$ \tag{12b}
 	\textit{directional correlation: }
 	&G_2(\bm{v}, \bm{m}, \bm{v}) = G_1(\bm{v}, \bm{m});
 	\cr
-	\textit{height correlation: }
+	\textit{height correlation (wrong?): }
 	&G_2(\bm{v}, \bm{m}, \bm{n}) = G_1(\bm{v}, \bm{m})
 \end{aligned}
 $$
