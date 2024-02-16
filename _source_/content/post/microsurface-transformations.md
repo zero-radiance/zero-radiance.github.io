@@ -141,7 +141,7 @@ $$ \tag{3Xb}
 	\end{cases}
 $$
 
-is the *Heaviside step function* which is used to model self-occlusion. As the name implies, the remaining masking term $\small W_1$ is independent of the microsurface normal $\small \bm{m}$.
+is the *Heaviside step function* which is used to model self-occlusion. As the name implies, the remaining masking term $\small W_1$ that models the average occlusion is independent of the microsurface normal $\small \bm{m}$.
 
 In reality, the way the visibility depends on the surface normal is more complicated. Take a height field as an example: for shallow view angles, vertical microfacets are more likely to be occluded compared to horizontal ones. Fortunately, the issue is not very apparent unless one examines a rough surface at a grazing angle, where, as we have previously remarked, the foundations of the microfacet theory itself are on a shaky ground.
 
@@ -173,7 +173,9 @@ $$
 
 is another ratio of projected areas (back-facing to signed).
 
-Eqn. 3Xc confirms that Smith's microsurface profile only models self-occlusion, and that the connection between a microfacet and its neighborhood is absent. This puts us at risk of ending up with a microfacet soup or a salad (instead of a continuous surface) again. The only way remedy this deficiency is by using a more sophisticated microsurface profile.
+(A good illustration is absolutely necessary here.)
+
+Eqn. 3Xc confirms that the connection between a microfacet and its neighborhood is absent. This puts us at risk of ending up with a microfacet soup or a salad (instead of a continuous surface) again. The only way remedy this deficiency is by using a more sophisticated microsurface profile.
 
 A VNDF can be used to construct a *bidirectional scattering distribution function* $\small f_s$ (also known as a *BSDF*). By definition, it is a ratio of the differential outgoing radiance to the differential incident irradiance, the latter being the product of the incident radiance and the projected differential solid angle $\small d\Omega_n(\bm{l}) = \vert \bm{n} \cdot \bm{l} \vert d\Omega(\bm{l})$:
 
