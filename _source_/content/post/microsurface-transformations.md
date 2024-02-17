@@ -125,7 +125,7 @@ is called the *distribution of visible normals*[^7] (abbreviated as the *VNDF*).
 
 In practice, one usually does not create (nor is provided) a microsurface, but rather specifies the statistical distributions directly. In fact, one generally goes one step further: since the NDF and the masking function are not independent (they satisfy Eqn. 3), a reasonable course of action is to specify just one and attempt to derive the other. Which distribution should we choose as the starting point? The answer comes from the definitions: $\small G_1$ is built on top of $\small D$, and the role of the former is to endow the latter with the visibility data.
 
-Thus, one typically starts with the NDF. Unfortunately, as we have already seen, it does not provide a complete surface description. This forces us to introduce additional assumptions in the form of a *microsurface profile*. Arguably, the simplest assumption is the *normal-masking independence* introduced by Smith:
+Thus, one typically starts with the NDF. Unfortunately, as we have already seen, it does not provide a complete surface description. This forces us to introduce additional assumptions in the form of a *microsurface profile*. Arguably, the simplest assumption is the *normal-occlusion independence* introduced by Smith:
 
 $$ \tag{3Xa}
 	G_1^S(\bm{v}, \bm{m}) = \Theta(\bm{v} \cdot \bm{m}) W_1(\bm{v}),
@@ -141,7 +141,7 @@ $$ \tag{3Xb}
 	\end{cases}
 $$
 
-is the *Heaviside step function* which is used to model self-occlusion. As the name implies, the remaining masking term $\small W_1$ that models the average occlusion is independent of the microsurface normal $\small \bm{m}$.
+is the *Heaviside step function* which is used to model self-occlusion. As the name implies, the remaining occlusion term $\small W_1$ that models the average occlusion is independent of the microsurface normal $\small \bm{m}$.
 
 In reality, the way the visibility depends on the surface normal is more complicated. Take a height field as an example: for shallow view angles, vertical microfacets are more likely to be occluded compared to horizontal ones. Fortunately, the issue is not very apparent unless one examines a rough surface at a grazing angle, where, as we have previously remarked, the foundations of the microfacet theory itself are on a shaky ground.
 
@@ -233,8 +233,7 @@ $$
 
 This is a good reason to utilize the projected solid angle measure. Failure to consistently do so often results in complicated expressions that are difficult to interpret and prone to errors.
 
-The properties of a valid BSDF are by no means obvious. In particular, ensuring reciprocity may seem like a non-trivial task. Typically, that is done by splitting the BSDF in two components: reflection (the *BRDF*) and transmission (the *BTDF*). The reflection component is always *symmetric*: since $\small \bm{v}$ and $\small \bm{l}$ always point away from the surface, $\small \eta_v = \eta_l$, which results in $\small f_r(\bm{v}, \bm{n}, \bm{l}) = f_r(\bm{l}, \bm{n}, \bm{v})$.
-
+The properties of a valid BSDF are by no means obvious. In particular, ensuring reciprocity may seem like a non-trivial task. Typically, that is done by decomposing the BSDF into a sum of two components: reflection (the *BRDF*) and transmission (the *BTDF*). The reflection component is always *symmetric*: since $\small \bm{v}$ and $\small \bm{l}$ always point away from the surface, $\small \eta_v = \eta_l$, which results in $\small f_r(\bm{v}, \bm{n}, \bm{l}) = f_r(\bm{l}, \bm{n}, \bm{v})$.
 
 In order to make things clear, we shall illustrate these properties using a concrete example. Consider a perfectly smooth, planar surface. Its BSDF (often referred to as the *perfect specular* BSDF) can be expressed in terms of the *Dirac delta "function"* $\small \delta$ defined as a projected solid angle measure by the equation
 
@@ -377,8 +376,6 @@ $$
 
 Since Eqn. 7d and 9e sum up to 1, this demonstrates that the whole BSDF is energy conserving.
 
-*Side note: are Eqn. 17, 18, and 21 in Walter's paper correct? $\small \eta_i^2 = \eta_l^2$ appears to be missing in the denominator.*
-
 We can extend this plain BSDF to a microfacet model of a rough surface by treating the latter as locally (rather than globally) planar and smooth. The amount of radiance scattered by the microsurface can then be expressed as a weighted average of the contributions of its visible microfacets. To proceed further, we must recall that, by definition, the radiance is the amount of power moving in a certain direction, per unit solid angle associated with this direction, per unit area perpendicular to this direction. If the source of light is very small (or very far away), it will appear point-like, and the variation of the view direction across its surface can be safely neglected. The same cannot be said for the visible projected area, which must be properly normalized (or we would calculate the intensity instead of the radiance). Thus,
 
 $$ \tag{11a}
@@ -508,9 +505,7 @@ $$ \tag{12b}
 \end{aligned}
 $$
 
-The last one is only applicable to height fields.
-
-The second property implies that a bidirectional average cannot be factored into the product of unidirectional averages:
+The last one is only applicable to height fields. The second property is more general; it implies that a bidirectional average cannot be factored into the product of unidirectional averages:
 
 $$ \tag{12c}
 	G_2(\bm{v}, \bm{m}, \bm{l}) \ne G_1(\bm{v}, \bm{m}) G_1(\bm{l}, \bm{m}).
@@ -518,17 +513,17 @@ $$
 
 As an example, consider a number of evenly-spaced boxes -- a square wave. For $\small \bm{m} = \bm{n}$, the unidirectional visibility will approach 50% as the view angle increases. Thus, for shallow angles, $\small G_1(\bm{v}, \bm{n}) G_1(\bm{l}, \bm{n}) \approx 1/4$, while the correct value of $\small G_2(\bm{v}, \bm{n}, \bm{l}) \approx 1/2$.
 
-*normal-masking independence* introduced by Smith:
+In order to derive the shadowing-masking function, we may once again utilize Smith's assumption of normal-visibility independence:
 
-$$ \tag{66a}
-	G_2^S(\bm{v}, \bm{m}, \bm{l}) = \Theta(\bm{v} \cdot \bm{m}) \Theta(\bm{l} \cdot \bm{m}) W_2(\bm{v}, \bm{l}),
+$$ \tag{13a}
+	G_2^S(\bm{v}, \bm{m}, \bm{l}) = \Theta(\bm{v} \cdot \bm{m}) \Theta(\bm{l} \cdot \bm{m}) W_2(\bm{v}, \bm{l}).
 $$
 
 **Geometrically, what is $\small \bm{W_2}$?**
 
-Height-correlated (but not directionally-correlated):
+The height-correlated (but not directionally-correlated) bidirectional visibility term can be constructed by adding shadowing to the denominator of its unidirectional counterpart (see Eqn. 3Xc, 3Xd):
 
-$$
+$$ \tag{13b}
 \begin{aligned}
 	W_2(\bm{v}, \bm{l})
 	&= \frac{
@@ -590,15 +585,15 @@ $$
 
 **How to derive the height-correlated function geometrically?**
 
-Directionally-correlated (but not height-correlated?):
+Similarly, we can add a symmetric correction term to account for the directional correlation:
 
-$$
+$$ \tag{13c}
 \begin{aligned}
 	W_2(\bm{v}, \bm{l})
 	&= \frac{
 		1
 	}{
-		1 + \Lambda(\bm{v}) + \Lambda(\bm{l}) - (\bm{v} \cdot \bm{l}) \sqrt{\Lambda(\bm{v}) \Lambda(\bm{l})}
+		1 + \Lambda(\bm{v}) + \Lambda(\bm{l}) - g(\bm{v} \cdot \bm{l}) \sqrt{\Lambda(\bm{v}) \Lambda(\bm{l})}
 	}
 	\cr
 \end{aligned}
@@ -628,11 +623,16 @@ $$
 \end{aligned}
 $$
 
+A valid modification must satisfy $\small g(1) = 1$.
+
+**What is a good choice of g?**
+**And is the result still height-correlated?**
+
 ---
 
 Substitution of Eqn. 12a into 11f yields
 
-$$ \tag{13a}
+$$ \tag{14a}
 \begin{aligned}
 	L_r(\bm{v})
 	&=
@@ -659,6 +659,8 @@ Note that we had to reverse the direction of the refracted light because the mic
 
 TODO: change of variables?
 
+*Side note: are Eqn. 17, 18, and 21 in Walter's paper correct? $\small \eta_i^2 = \eta_l^2$ appears to be missing in the denominator.*
+
 ---
 
 ## Acknowledgements
@@ -670,5 +672,7 @@ Veach's thesis
 Eric's understanding
 
 Walter's ggx
+
+Walter's ellipsoid
 
 Atanasov's transformations
