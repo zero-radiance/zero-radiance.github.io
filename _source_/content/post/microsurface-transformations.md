@@ -171,7 +171,7 @@ $$ \tag{3Xd}
 \end{aligned}
 $$
 
-is another ratio of projected areas (back-facing to signed).
+is another ratio of projected areas (back-facing to signed). For a height field, $\small \Lambda(\bm{n}) = 0$.
 
 (A good illustration is absolutely necessary here.)
 
@@ -459,20 +459,20 @@ $$
 
 where
 
-$$
+$$ \tag{12a}
 	\bm{i} = \bm{R}\big(\bm{v}, \bm{m}(\bm{p})\big) = -\bm{v} + 2 (\bm{v} \cdot \bm{m}) \bm{m}
 $$
 
 is the reflected view vector that points in the direction of the incident light (used to define $\small \theta_i$), and, similarly,
 
-$$
+$$ \tag{12b}
 	\bm{t} = \bm{T}\big( \bm{v}, \bm{m}(\bm{p}), \eta_i/\eta_t \big) =
 	 -\frac{\eta_i}{\eta_t}\bm{v} + \left( \frac{\eta_i}{\eta_t}(\bm{v} \cdot \bm{m}) - \mathrm{sgn} (\bm{v} \cdot \bm{m}) \sqrt{1 - \frac{\eta_i^2}{\eta_t^2} \Vert \bm{v} \times \bm{m} \Vert^2 } \right) \bm{m}
 $$
 
 is the refracted (or the transmitted) view vector. We must caution that, in certain cases, the value of the expression inside the square root is a negative number. This invalidates the refracted direction and implies that the light has been *totally internally reflected* by the surface.
 
-Notice that the visibility terms (and the vector area $\small \bm{m} dA$) are the only ones that explicitly depend on the position $\small \bm{p}$. That is because visibility is a non-local property -- it connects a point to the entire surface.
+Notice that the visibility terms (and the vector area $\small \bm{m} dA$) are the only ones that explicitly depend on the position $\small \bm{p}$. Intuitively, that is because visibility is a non-local property -- it connects a point to the entire surface.
 
 We can evaluate Eqn. 11f numerically by breaking the microsurface into the individual microfacets and sorting the latter by their orientation. For a fixed view direction $\small \bm{v}$, a group of microfacets with the same normal $\bm{m}$ will also share the values of $\small F$ and $\small L$. During the final step, we must calculate the total visible area of the microfacets within each group.
 
@@ -491,7 +491,7 @@ $$ \tag{12a}
 \end{aligned}
 $$
 
-Once projected onto $\small \bm{l} \text{ or } \bm{v}$, Eqn. 12a also represents visible projected area, except that the visibility is now bidirectional. Similarly, it takes self-occlusion into account: $\small V = G_2 = 0$ if $\small (\bm{v} \cdot \bm{m}) \le 0 \text{ or } \small (\bm{l} \cdot \bm{m}) \le 0$.
+Once projected onto $\small \bm{v} \text{ or } \bm{l}$, Eqn. 12a also represents visible projected area, except that the visibility is now bidirectional. Similarly, it takes self-occlusion into account: $\small V = G_2 = 0$ if $\small (\bm{v} \cdot \bm{m}) \le 0 \text{ or } \small (\bm{l} \cdot \bm{m}) \le 0$.
 
 A valid shadowing-masking function also has the following properties:
 
@@ -504,19 +504,19 @@ $$ \tag{12b}
 	&G_2(\bm{v}, \bm{m}, \bm{v}) = G_1(\bm{v}, \bm{m});
 	\cr
 	\textit{height correlation (wrong?): }
-	&G_2(\bm{v}, \bm{m}, \bm{n}) = G_1(\bm{v}, \bm{m})
+	&G_2(\bm{v}, \bm{m}, \bm{n}) = G_1(\bm{v}, \bm{m}).
 \end{aligned}
 $$
 
-The last property is only applicable to height fields.
+The last one is only applicable to height fields.
 
-The second one implies that a bidirectional average cannot be factored into the product of unidirectional averages:
+The second property implies that a bidirectional average cannot be factored into the product of unidirectional averages:
 
 $$ \tag{12c}
 	G_2(\bm{v}, \bm{m}, \bm{l}) \ne G_1(\bm{v}, \bm{m}) G_1(\bm{l}, \bm{m}).
 $$
 
-As an example, consider a number of evenly-spaced boxes -- a square wave. For $\small \bm{m} = \bm{n}$, the unidirectional visibility will approach 50% as the view angle increases. Thus, for shallow angles, $\small G_1(\bm{v}, \bm{n}) G_1(\bm{l}, \bm{n}) \approx 1/4$, while $\small G_2(\bm{v}, \bm{n}, \bm{l}) \approx 1/2$.
+As an example, consider a number of evenly-spaced boxes -- a square wave. For $\small \bm{m} = \bm{n}$, the unidirectional visibility will approach 50% as the view angle increases. Thus, for shallow angles, $\small G_1(\bm{v}, \bm{n}) G_1(\bm{l}, \bm{n}) \approx 1/4$, while the correct value of $\small G_2(\bm{v}, \bm{n}, \bm{l}) \approx 1/2$.
 
 *normal-masking independence* introduced by Smith:
 
@@ -524,39 +524,111 @@ $$ \tag{66a}
 	G_2^S(\bm{v}, \bm{m}, \bm{l}) = \Theta(\bm{v} \cdot \bm{m}) \Theta(\bm{l} \cdot \bm{m}) W_2(\bm{v}, \bm{l}),
 $$
 
-If we can't take the product of fractions, we can use the ratio of the sums of the numerator and the denominator:
+**Geometrically, what is $\small \bm{W_2}$?**
 
-$$ \tag{66b}
-\small
+Height-correlated (but not directionally-correlated):
+
+$$
 \begin{aligned}
-	W_1(\bm{v}, \bm{l})
+	W_2(\bm{v}, \bm{l})
 	&= \frac{
-		\int_{\bm{m} \in \mathbb{S^2}} (\bm{v} \cdot \bm{m} + \bm{l} \cdot \bm{m}) dA(\bm{m})
+		1
 	}{
-		\int_{\bm{m} \in \mathbb{S^2}} \big( \mathrm{max}(0, \bm{v} \cdot \bm{m}) + \mathrm{max}(0, \bm{l} \cdot \bm{m}) \big) dA(\bm{m})
+		1 + \Lambda(\bm{v}) + \Lambda(\bm{l})
 	}
 	\cr
 	&= \frac{
-		\int_{\bm{m} \in \mathbb{S^2}} (\bm{v} \cdot \bm{m} + \bm{l} \cdot \bm{m}) dA(\bm{m})
+		(\bm{v} \cdot \bm{n}) A
 	}{
-		\int_{\bm{m} \in \mathbb{S^2}} (\bm{v} \cdot \bm{m} + \bm{l} \cdot \bm{m}) dA(\bm{m}) +
-		\int_{\bm{m} \in \mathbb{S^2}} \big( \mathrm{max}(0, -\bm{v} \cdot \bm{m}) + \mathrm{max}(0, -\bm{l} \cdot \bm{m}) \big) dA(\bm{m})
+		(\bm{v} \cdot \bm{n}) A + (\bm{v} \cdot \bm{n}) A \Lambda(\bm{v}) + (\bm{v} \cdot \bm{n}) A \Lambda(\bm{l})
 	}
 	\cr
 	&= \frac{
-		(\bm{v} \cdot \bm{n}) + (\bm{l} \cdot \bm{n})
+		(\bm{v} \cdot \bm{n}) A
 	}{
-		( \bm{v} \cdot \bm{n} ) ( 1 + \Lambda(\bm{v}) ) +
-		( \bm{l} \cdot \bm{n} ) ( 1 + \Lambda(\bm{l}) )
-	}.
+		\int_{\bm{m} \in \mathbb{S^2}} \mathrm{max}(0, \bm{v} \cdot \bm{m}) dA(\bm{m}) + (\bm{v} \cdot \bm{n}) A \Lambda(\bm{l})
+	}
+	\cr
+	&= \frac{
+		(\bm{l} \cdot \bm{n}) (\bm{v} \cdot \bm{n}) A
+	}{
+		(\bm{l} \cdot \bm{n}) \int_{\bm{m} \in \mathbb{S^2}} \mathrm{max}(0, \bm{v} \cdot \bm{m}) dA(\bm{m}) + (\bm{v} \cdot \bm{n}) (\bm{l} \cdot \bm{n}) A \Lambda(\bm{l})
+	}
+	\cr
+	&= \frac{
+		(\bm{l} \cdot \bm{n}) A (\bm{v} \cdot \bm{n}) A
+	}{
+		(\bm{l} \cdot \bm{n}) A \int_{\bm{m} \in \mathbb{S^2}} \mathrm{max}(0, \bm{v} \cdot \bm{m}) dA(\bm{m}) + (\bm{v} \cdot \bm{n}) A \int_{\bm{m} \in \mathbb{S^2}} \mathrm{max}(0, \bm{l} \cdot \bm{m}) dA(\bm{m})
+	}
+	\cr
 \end{aligned}
 $$
 
-The above lacks height correlation...
+$$
+\begin{aligned}
+	W_2(\bm{v}, \bm{v})
+	&= \frac{
+		1
+	}{
+		1 + 2 \Lambda(\bm{v})
+	}
+	\cr
+\end{aligned}
+$$
 
-W_2 = Macro visible(V, L) / Micro culled (V, L)
+$$
+\begin{aligned}
+	W_2(\bm{v}, \bm{n})
+	&= \frac{
+		1
+	}{
+		1 + \Lambda(\bm{v})
+	}
+	\cr
+\end{aligned}
+$$
 
-TODO: height-correlated?
+**How to derive the height-correlated function geometrically?**
+
+Directionally-correlated (but not height-correlated?):
+
+$$
+\begin{aligned}
+	W_2(\bm{v}, \bm{l})
+	&= \frac{
+		1
+	}{
+		1 + \Lambda(\bm{v}) + \Lambda(\bm{l}) - (\bm{v} \cdot \bm{l}) \sqrt{\Lambda(\bm{v}) \Lambda(\bm{l})}
+	}
+	\cr
+\end{aligned}
+$$
+
+$$
+\begin{aligned}
+	W_2(\bm{v}, \bm{v})
+	&= \frac{
+		1
+	}{
+		1 + \Lambda(\bm{v})
+	}
+	\cr
+\end{aligned}
+$$
+
+$$
+\begin{aligned}
+	W_2(\bm{v}, \bm{n})
+	&= \frac{
+		1
+	}{
+		1 + \Lambda(\bm{v})
+	}
+	\cr
+\end{aligned}
+$$
+
+---
 
 Substitution of Eqn. 12a into 11f yields
 
