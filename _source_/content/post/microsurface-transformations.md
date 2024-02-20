@@ -10,7 +10,7 @@ At EGSR 2022, Atanasov, Koylazov, Dimov, and Wilkie presented a paper titled [Mi
 
 ## Microscopic Introduction
 
-Pick an object, perhaps one that sits on your desk or lives in your head. Focus on a tiny fragment of its surface. If the fragment is sufficiently small, or is sufficiently far away, it will look effectively flat (but not necessarily smooth). Therefore, to a negligible degree of error, that fragment may be replaced by a first-order approximation[^1] -- its projection onto the (averaged) tangent plane. In the literature, this projected surface is referred to as the *macrosurface*. It is characterized by the area $\small A$ and the unit normal[^6] vector $\small \bm{n}$. Fixing two (linearly independent, but not necessarily unit or orthogonal) tangent vectors $\small \bm{t_1}$ and $\small \bm{t_2}$ is sufficient to complete the parameterization of the macrosurface.
+Pick an object, perhaps one that sits on your desk or lives in your head. Focus on a tiny fragment of its surface. If the fragment is sufficiently small, or is sufficiently far away, it will look effectively flat (but not necessarily smooth). Therefore, to a negligible degree of error, that fragment may be replaced by a first-order approximation[^1] -- its projection onto the (averaged) tangent plane. In the literature, this projected surface is referred to as the *macrosurface*. It is characterized by the area $\small A$ and the unit normal[^6] vector $\small \bm{n}$. Fixing two (linearly independent, but not necessarily unit or orthogonal) tangent vectors is sufficient to complete the parameterization of the macrosurface.
 
 [^1]: In the sense of a Taylor series expansion.
 
@@ -244,22 +244,22 @@ $$
 
 valid for any function $\small f: \mathbb{S^2} \to \mathbb{R}$.
 
-Now, according to the law of reflection, the angles of incidence and reflection must be the same:
+Now, according to the law of reflection, the angles of incidence and exitance must be the same:
 
 $$ \tag{7a}
-	\sin{\theta_i} = \Vert \bm{l} \times \bm{n} \Vert = \Vert \bm{v} \times \bm{n} \Vert,
+	\sin{\theta_v} = \Vert \bm{v} \times \bm{n} \Vert = \Vert \bm{l} \times \bm{n} \Vert,
 	\quad
-	\cos{\theta_i} = \vert \bm{l} \cdot \bm{n} \vert = \vert \bm{v} \cdot \bm{n} \vert.
+	\cos{\theta_v} = \vert \bm{v} \cdot \bm{n} \vert = \vert \bm{l} \cdot \bm{n} \vert.
 $$
 
 Furthermore, we need to distinguish between the IORs associated with the exterior (above the surface) and the interior (below the surface):
 
 $$ \tag{7b}
-	\eta_i = \eta_l = \eta_v,
+	\eta_v = \eta_l,
 	\quad
 	\eta_t =
 	\begin{cases}
-	   \eta_{int} &\text{if } \eta_i = \eta_{ext}, \cr
+	   \eta_{int} &\text{if } \eta_v = \eta_{ext}, \cr
 	   \eta_{ext} &\text{otherwise}.
 	\end{cases}
 $$
@@ -268,7 +268,7 @@ Using this formalism, the reflection component of the BSDF can be written as
 
 $$ \tag{7c}
 	f_r(\bm{v}, \bm{n}, \bm{l}) =
-	F(\theta_i, \eta_i/\eta_t)
+	F(\theta_v, \eta_v/\eta_t)
 	\delta_{\Omega_n}\negmedspace\left( \bm{n} - \frac{\bm{v} + \bm{l}}{(\bm{v} + \bm{l}) \cdot \bm{n}} \right),
 $$
 
@@ -277,14 +277,14 @@ where $\small 0 \le F \le 1$ is the dimensionless *Fresnel reflectance*. This BR
 $$ \tag{7d}
 	\int_{\bm{v} \in \mathbb{S^2}}
 	f_r(\bm{v}, \bm{n}, \bm{l}) d\Omega_n(\bm{v}) =
-	F(\theta_i, \eta_i/\eta_t) \le 1.
+	F(\theta_v, \eta_v/\eta_t) \le 1.
 $$
 
 The trigonometric form of the Fresnel term is
 
 $$ \tag{8a}
-	F(\theta_i, \eta_i/\eta_t)
-	= (1 - \alpha) R_s(\theta_i, \eta_i/\eta_t) + \alpha R_p(\theta_i, \eta_i/\eta_t),
+	F(\theta_v, \eta_v/\eta_t)
+	= (1 - \alpha) R_s(\theta_v, \eta_v/\eta_t) + \alpha R_p(\theta_v, \eta_v/\eta_t),
 $$
 
 where the value of $\small \alpha$ depends on the state of polarization of the incident light: $\small \alpha = 0$ corresponds to the s-polarized light, $\small \alpha = 1$ -- to the p-polarized light, and $\small \alpha = 1/2$ -- to the unpolarized (natural) light.
@@ -293,54 +293,54 @@ The two mutually perpendicular components are defined as follows:
 
 $$ \tag{8b}
 \begin{aligned}
-	R_s(\theta_i, \eta_i/\eta_t)
-	&= \left| \frac{\cos{\theta_i} / \cos{\theta_t} - \sin{\theta_t} / \sin{\theta_i}}{\cos{\theta_i} / \cos{\theta_t} + \sin{\theta_t} / \sin{\theta_i}} \right|^2
-	= \left| \frac{\sin(2 \theta_i) - \sin(2 \theta_t)}{\sin(2 \theta_i) + \sin(2 \theta_t)} \right|^2,
+	R_s(\theta_v, \eta_v/\eta_t)
+	&= \left| \frac{\cos{\theta_v} / \cos{\theta_t} - \sin{\theta_t} / \sin{\theta_v}}{\cos{\theta_v} / \cos{\theta_t} + \sin{\theta_t} / \sin{\theta_v}} \right|^2
+	= \left| \frac{\sin(2 \theta_v) - \sin(2 \theta_t)}{\sin(2 \theta_v) + \sin(2 \theta_t)} \right|^2,
 	\cr
-	R_p(\theta_i, \eta_i/\eta_t)
-	&= \left| \frac{\cos{\theta_t} / \cos{\theta_i} - \sin{\theta_t} / \sin{\theta_i}}{\cos{\theta_t} / \cos{\theta_i} + \sin{\theta_t} / \sin{\theta_i}} \right|^2
-	= \left| \frac{\sin(\theta_i - \theta_t)}{\sin(\theta_i + \theta_t)} \right|^2.
+	R_p(\theta_v, \eta_v/\eta_t)
+	&= \left| \frac{\cos{\theta_t} / \cos{\theta_v} - \sin{\theta_t} / \sin{\theta_v}}{\cos{\theta_t} / \cos{\theta_v} + \sin{\theta_t} / \sin{\theta_v}} \right|^2
+	= \left| \frac{\sin(\theta_v - \theta_t)}{\sin(\theta_v + \theta_t)} \right|^2.
 \end{aligned}
 $$
 
-The angle of refraction (or transmission) $\small \theta_t$ can be determined from the angle of incidence $\small \theta_i$ and the relative IOR $\small \eta_i/\eta_t$ using the (already familiar) law of refraction and basic trigonometry:
+The angle of refraction (or transmission) $\small \theta_t$ can be determined from the angle of exitance $\small \theta_v$ and the relative IOR $\small \eta_v/\eta_t$ using the (already familiar) law of refraction and basic trigonometry:
 
 $$ \tag{8c}
-	\sin{\theta_t} = \frac{\eta_i}{\eta_t} \sin{\theta_i},
+	\sin{\theta_t} = \frac{\eta_v}{\eta_t} \sin{\theta_v},
 	\quad
 	\cos{\theta_t} = \sqrt{1 - \sin^2{\theta_t} }.
 $$
+
+If you have a physics background, the labeling of the angles and the indices of refraction may appear unconventional, since Eqn. 8a-8c are typically expressed in terms of the direction of incidence rather than exitance. The present notation is motivated by the definition of the BSDF given by Eqn. 4a-4b. The validity of this formulation stems from the geometric symmetry: the solution of the Fresnel equations given by Eqn. 8 is invariant under the exchange of $\small \theta_v$ and $\small \theta_t$. Intuitively, the reflectance only depends on the path taken by light, regardless of its direction.
 
 The definition of the transmission component of the perfect specular BSDF is marginally more complicated. Let
 
 $$ \tag{9a}
 \begin{aligned}
-	\sin{\theta_i} &= \Vert \bm{l} \times \bm{n} \Vert,
+	\sin{\theta_v} &= \Vert \bm{v} \times \bm{n} \Vert,
 	&
-	\cos{\theta_i} &= \vert \bm{l} \cdot \bm{n} \vert,
+	\cos{\theta_v} &= \vert \bm{v} \cdot \bm{n} \vert,
 	\cr
-	\sin{\theta_t} &= \Vert \bm{v} \times \bm{n} \Vert,
+	\sin{\theta_t} &= \Vert \bm{l} \times \bm{n} \Vert,
 	&
-	\cos{\theta_t} &= \vert \bm{v} \cdot \bm{n} \vert.
+	\cos{\theta_t} &= \vert \bm{l} \cdot \bm{n} \vert.
 \end{aligned}
 $$
 
 By extension, we shall associate
 
 $$ \tag{9b}
-	\eta_i = \eta_l,
-	\quad
-	\eta_t = \eta_v.
+	\eta_t = \eta_l.
 $$
 
 After taking the reciprocity and the conservation of energy into account, the perfect specular BTDF can be expressed as
 
 $$ \tag{9c}
 	f_t(\bm{v}, \bm{n}, \bm{l}) =
-	\frac{\eta_t^2}{\eta_i^2} \big( 1 - F(\theta_i, \eta_i/\eta_t) \big) \delta_{\Omega_n}\big( \eta_v (\bm{v} \times \bm{n}) + \eta_l (\bm{l} \times \bm{n}) \big).
+	\frac{\eta_v^2}{\eta_l^2} \big( 1 - F(\theta_v, \eta_v/\eta_t) \big) \delta_{\Omega_n}\big( \eta_v (\bm{v} \times \bm{n}) + \eta_l (\bm{l} \times \bm{n}) \big),
 $$
 
-Is Eqn. 9c consistent with Eqn. 4c? The Dirac term is clearly symmetric. Geometrically, the Fresnel term is invariant under the exchange of $\small \theta_i$ and $\small \theta_t$ according to Eqn. 8b. Intuitively, it only depends on the path taken by light, and is unaffected by a reversal of its direction. Finally, the first term is responsible for the projected solid angle compression, which can be readily verified by placing the surface inside a *white furnace* (e.i. setting $\small L(\bm{l}) = 1$ for all $\small \bm{l}$) and evaluating Eqn. 4b.
+with the first term responsible for the projected solid angle compression, which can be readily verified by placing the surface inside a *white furnace* (e.i. setting $\small L(\bm{l}) = 1$ for all $\small \bm{l}$) and evaluating Eqn. 4b.
 
 Is this BTDF reciprocal? Naive substitution of Eqn. 9c into 4c leads to
 
@@ -370,11 +370,13 @@ $$ \tag{9e}
 	\int_{\bm{l} \in \mathbb{S^2}} f_t(\bm{l}, \bm{n}, \bm{v}) d\Omega_n(\bm{l})
 	=
 	\int_{\bm{l} \in \mathbb{S^2}} \frac{\eta_{l}^2}{\eta_v^2} f_t(\bm{v}, \bm{n}, \bm{l}) d\Omega_n(\bm{l}) =
-	\big( 1 - F(\theta_i, \eta_i/\eta_t) \big) \le 1.
+	\big( 1 - F(\theta_v, \eta_v/\eta_t) \big) \le 1.
 \end{aligned}
 $$
 
 Since Eqn. 7d and 9e sum up to 1, this demonstrates that the whole BSDF is energy conserving.
+
+---
 
 We can extend this plain BSDF to a microfacet model of a rough surface by treating the latter as locally (rather than globally) planar and smooth. The amount of radiance scattered by the microsurface can then be expressed as a weighted average of the contributions of its visible microfacets. To proceed further, we must recall that, by definition, the radiance is the amount of power moving in a certain direction, per unit solid angle associated with this direction, per unit area perpendicular to this direction. If the source of light is very small (or very far away), it will appear point-like, and the variation of the view direction across its surface can be safely neglected. The same cannot be said for the visible projected area, which must be properly normalized (or we would calculate the intensity instead of the radiance). Thus,
 
