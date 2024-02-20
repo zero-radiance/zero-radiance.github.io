@@ -438,17 +438,17 @@ $$ \tag{11f}
 	&=
 	\frac{\bm{v} \cdot \int_{\bm{p} \in \mathbb{M^2}}
 	\bm{m}(\bm{p})
-	F(\theta_i, \eta_i/\eta_t) L(\bm{i})
-	V(\bm{i}, \bm{p}) V(\bm{v}, \bm{p})
+	F(\theta_v, \eta_v/\eta_t) L(\bm{r})
+	V(\bm{r}, \bm{p}) V(\bm{v}, \bm{p})
 	dA(\bm{p})}
 	{\bm{v} \cdot \bm{n} A},
 	\cr
 	L_t(\bm{v})
 	&=
-	\frac{\eta_t^2}{\eta_i^2}
+	\frac{\eta_t^2}{\eta_v^2}
 	\frac{\bm{v} \cdot \int_{\bm{p} \in \mathbb{M^2}}
 	\bm{m}(\bm{p})
-	\big( 1 - F(\theta_i, \eta_i/\eta_t) \big) L(\bm{t})
+	\big( 1 - F(\theta_v, \eta_v/\eta_t) \big) L(\bm{t})
 	V(\bm{t}, \bm{p}) V(\bm{v}, \bm{p}) dA(\bm{p})}
 	{\bm{v} \cdot \bm{n} A},
 \end{aligned}
@@ -457,14 +457,78 @@ $$
 where
 
 $$ \tag{12a}
-	\bm{i} = \bm{R}\big(\bm{v}, \bm{m}(\bm{p})\big) = -\bm{v} + 2 (\bm{v} \cdot \bm{m}) \bm{m}
+	\bm{r} = \bm{R}(\bm{v}, \bm{m}) = -\bm{v} + 2 (\bm{v} \cdot \bm{m}) \bm{m}
 $$
 
-is the reflected view vector that points in the direction of the incident light (used to define $\small \theta_i$), and, similarly,
+is the reflected view vector that points in the direction of the incident light (used to define $\small \theta_v$), and, similarly,
 
 $$ \tag{12b}
-	\bm{t} = \bm{T}\big( \bm{v}, \bm{m}(\bm{p}), \eta_i/\eta_t \big) =
-	 -\frac{\eta_i}{\eta_t}\bm{v} + \left( \frac{\eta_i}{\eta_t}(\bm{v} \cdot \bm{m}) - \mathrm{sgn} (\bm{v} \cdot \bm{m}) \sqrt{1 - \frac{\eta_i^2}{\eta_t^2} \Vert \bm{v} \times \bm{m} \Vert^2 } \right) \bm{m}
+	\bm{t} = \bm{T}(\bm{v}, \bm{m}, \eta_v/\eta_t) =
+	 -\frac{\eta_v}{\eta_t}\bm{v} + \left( \frac{\eta_v}{\eta_t}(\bm{v} \cdot \bm{m}) - \mathrm{sgn} (\bm{v} \cdot \bm{m}) \sqrt{1 - \frac{\eta_v^2}{\eta_t^2} \Vert \bm{v} \times \bm{m} \Vert^2 } \right) \bm{m}
+$$
+
+$$ \tag{15a}
+\begin{aligned}
+	\bm{m}
+	&= \frac{\bm{r} + \bm{v}}{\Vert \bm{r} + \bm{v} \Vert},
+	\cr
+\end{aligned}
+$$
+
+Eqn. 16 Walter
+
+$$
+\begin{aligned}
+	\bm{v}
+	&= \sin{\theta_v} \bm{x} + \cos{\theta_v} \bm{m}
+	\cr
+	\bm{t}
+	&= -(\sin{\theta_t} \bm{x} + \cos{\theta_t} \bm{m})
+	\cr
+\end{aligned}
+$$
+
+$$
+\begin{aligned}
+	\bm{v}
+	&= \sin{\theta_v} \bm{x} + \cos{\theta_v} \bm{m}
+	\cr
+	\frac{\sin{\theta_v}}{\sin{\theta_t}} \bm{t}
+	&= -(\sin{\theta_v} \bm{x} + \frac{\sin{\theta_v}}{\sin{\theta_t}} \cos{\theta_t} \bm{m})
+	\cr
+\end{aligned}
+$$
+
+$$
+\begin{aligned}
+	\bm{v} + \frac{\sin{\theta_v}}{\sin{\theta_t}} \bm{t}
+	&= \left( \cos{\theta_v} - \frac{\sin{\theta_v}}{\sin{\theta_t}} \cos{\theta_t} \right) \bm{m}
+	\cr
+\end{aligned}
+$$
+
+$$
+\begin{aligned}
+	\bm{v} + \frac{\eta_t}{\eta_v} \bm{t}
+	&= \left( \cos{\theta_v} - \frac{\eta_t}{\eta_v} \cos{\theta_t} \right) \bm{m}
+	\cr
+\end{aligned}
+$$
+
+$$
+\begin{aligned}
+	\eta_v \bm{v} + \eta_t \bm{t}
+	&= \eta_v \left( \cos{\theta_v} - \frac{\eta_t}{\eta_v} \cos{\theta_t} \right) \bm{m}
+	\cr
+\end{aligned}
+$$
+
+$$
+\begin{aligned}
+	\frac{-\left( \eta_v \bm{v} + \eta_t \bm{t} \right)}{\left( \eta_t \cos{\theta_t} - \eta_v \cos{\theta_v} \right)}
+	&= \bm{m}
+	\cr
+\end{aligned}
 $$
 
 is the refracted (or the transmitted) view vector. We must caution that, in certain cases, the value of the expression inside the square root is a negative number. This invalidates the refracted direction and implies that the light has been *totally internally reflected* by the surface.
@@ -628,9 +692,7 @@ A valid modification must satisfy $\small g(1) = 1$.
 **What is a good choice of g?**
 **And is the result still height-correlated?**
 
----
-
-Substitution of Eqn. 12a into 11f yields
+In order to arrive at the expression of a microfacet BSDF, we must convert Eqn. 11f into a statistical form. Substitution of Eqn. 12a yields
 
 $$ \tag{14a}
 \begin{aligned}
@@ -638,16 +700,16 @@ $$ \tag{14a}
 	&=
 	\frac{\bm{v} \cdot \int_{\bm{m} \in \mathbb{S^2}}
 	\bm{m}
-	F(\theta_i, \eta_i/\eta_t) L(\bm{i})
-	G_2(\bm{i}, \bm{v}, \bm{m})
+	F(\theta_i, \eta_i/\eta_t) L(\bm{r})
+	G_2(\bm{r}, \bm{v}, \bm{m})
 	D(\bm{m}) d\Omega(\bm{m})}
 	{\bm{v} \cdot \bm{n}},
 	\cr
 	L_t(\bm{v})
 	&=
 	\frac{\eta_t^2}{\eta_i^2}
-	\frac{\bm{v} \cdot \int_{\bm{p} \in \mathbb{M^2}}
-	\bm{m}(\bm{p})
+	\frac{\bm{v} \cdot \int_{\bm{m} \in \mathbb{S^2}}
+	\bm{m}
 	\big( 1 - F(\theta_i, \eta_i/\eta_t) \big) L(\bm{t})
 	G_2(-\bm{t}, \bm{v}, \bm{m})
 	D(\bm{m}) d\Omega(\bm{m})}
@@ -655,7 +717,42 @@ $$ \tag{14a}
 \end{aligned}
 $$
 
-Note that we had to reverse the direction of the refracted light because the microsurface is one-sided; refer to the discussion below Eqn. 2b for details.
+Note that we had to reverse the refracted light direction because the microsurface is one-sided; refer to the discussion below Eqn. 2b for details.
+
+Comparison of Eqn. 14a with 4b, which serves as a definition of a BSDF, reveals that the domain of integration is not the same. Therefore, we must perform a change of variables from the solid angle associated with the microsurface normal $\small \bm{m}$ to the one associated with the direction of incidence, $\small \bm{r} \text{ or } \bm{t}$:
+
+$$ \tag{14b}
+\begin{aligned}
+	L_r(\bm{v})
+	&=
+	\frac{\bm{v} \cdot \int_{\bm{m} \in \mathbb{S^2}}
+	\bm{m}
+	F(\theta_i, \eta_i/\eta_t) L(\bm{r})
+	G_2(\bm{r}, \bm{v}, \bm{m})
+	D(\bm{m})
+	\big\vert \partial \Omega(\bm{m}) / \partial \Omega(\bm{r}) \big\vert
+	d\Omega(\bm{r})}
+	{\bm{v} \cdot \bm{n}},
+	\cr
+	L_t(\bm{v})
+	&=
+	\frac{\eta_t^2}{\eta_i^2}
+	\frac{\bm{v} \cdot \int_{\bm{m} \in \mathbb{S^2}}
+	\bm{m}
+	\big( 1 - F(\theta_i, \eta_i/\eta_t) \big) L(\bm{t})
+	G_2(-\bm{t}, \bm{v}, \bm{m})
+	D(\bm{m})
+	\big\vert \partial \Omega(\bm{m}) / \partial \Omega(\bm{t}) \big\vert
+	d\Omega(\bm{t})}
+	{\bm{v} \cdot \bm{n}}.
+\end{aligned}
+$$
+
+The first step is to express $\small \bm{m}$ in terms of $\small \bm{r} \text{ and } \bm{t}$. A straightforward application of the laws of reflection and refraction (exemplified by Eqn. 7c and 9c) gives
+
+While this can be done algebraically, we shall adopt a geometric approach instead.
+
+Consider a
 
 TODO: change of variables?
 
