@@ -103,7 +103,7 @@ $$
 
 In the special case of a height field, $\small G_1(\bm{n}, \bm{m}) = 1$.
 
-For a continuous surface, *the visible projected area is greater or equal to the signed projected area*. This inequality stems from self-occlusion, which eliminates the (formerly negative) contribution of back-facing microfacets. The two types of projected areas coincide only if the view angle is sufficiently steep, or the microsurface -- sufficiently thin, so that the latter does not extend outside the volume swept by the macrosuface translated along the view direction. This leads to one of the key assumptions of the microfacet theory: *a microsurface must be infinitesimally thick*. This limitation is particularly apparent at grazing angles, and should be familiar to those who have practical experience with bump and normal mapping. Furthermore, since the signed projected areas of the microsurface and the macrosurface coincide, we can only allow the view angles that obey $\small (\bm{v} \cdot \bm{n}) \ge 0$. In other words, *a microsurface must be facing the observer*. Otherwise, we must reverse the signs of both $\small \bm{n}$ and $\small \bm{m}$, which will give generat a microsurface with different statistics. More specifically, while $D(-\bm{m})$ will give the correct number, the visibility will be different, which is particularly evident if you take a box and flip it upside down. For a tiling surface (such as a sawtooth), reversing the sign of $\small \bm{v}$, so that it points in the same hemisphere as $\small \bm{n}$, produces a reasonable approximation. It ensures that self-occlusion is properly accounted for.
+For a continuous surface, *the visible projected area is greater or equal to the signed projected area*. This inequality stems from self-occlusion, which eliminates the (formerly negative) contribution of back-facing microfacets. The two types of projected areas coincide only if the view angle is sufficiently steep, or the microsurface -- sufficiently thin, so that the latter does not extend outside the volume swept by the macrosuface translated along the view direction. This leads to one of the key assumptions of the microfacet theory: *a microsurface must be infinitesimally thick*. This limitation is particularly apparent at grazing angles, and should be familiar to those who have practical experience with bump and normal mapping. Furthermore, since the signed projected areas of the microsurface and the macrosurface coincide, we can only allow the view angles that obey $\small (\bm{v} \cdot \bm{n}) \ge 0$. In other words, *a microsurface must be facing the observer*. Otherwise, we must reverse the signs of both $\small \bm{n}$ and $\small \bm{m}$, which will give generat a microsurface with different statistics. More specifically, while $D(-\bm{m})$ will give the correct number, the visibility will be different, which is particularly evident if you take a box and flip it upside down. For a tiling surface (such as a sawtooth), reversing the sign of $\small \bm{v}$, so that it points in the same hemisphere as $\small \bm{n}$, produces a reasonable approximation. It guarantees that self-occlusion is properly accounted for.
 
 With the assumption (that all projected surface areas are the same) in place, we can combine Eqn. 1a and 2a into
 
@@ -376,8 +376,6 @@ $$
 
 Since Eqn. 7d and 9e sum up to 1, this demonstrates that the whole BSDF is energy conserving.
 
----
-
 We can extend this plain BSDF to a microfacet model of a rough surface by treating the latter as locally (rather than globally) planar and smooth. The amount of radiance scattered by the microsurface can then be expressed as a weighted average of the contributions of its visible microfacets. To proceed further, we must recall that, by definition, the radiance is the amount of power moving in a certain direction, per unit solid angle associated with this direction, per unit area perpendicular to this direction. If the source of light is very small (or very far away), it will appear point-like, and the variation of the view direction across its surface can be safely neglected. The same cannot be said for the visible projected area, which must be properly normalized (or we would calculate the intensity instead of the radiance). Thus,
 
 $$ \tag{11a}
@@ -432,54 +430,97 @@ $$ \tag{11e}
 	{\bm{v} \cdot \bm{n} A}.
 $$
 
-If we substitute the expressions of the perfect specular BSDF given by Eqn. 7c and 9c, the inner integral can be evaluated analytically:
+If we substitute the expressions of the perfect specular BSDF given by Eqn. 7c and 9c, the inner integral can be evaluated analytically. Starting with the reflection component,
 
-$$ \tag{11f}
-\begin{aligned}
+$$ \tag{12a}
 	L_r(\bm{v})
-	&=
+	=
 	\frac{\bm{v} \cdot \int_{\bm{p} \in \mathbb{M^2}}
 	\bm{m}(\bm{p})
 	F(\theta_v, \eta_v/\eta_t) L(\bm{r})
 	V(\bm{r}, \bm{p}) V(\bm{v}, \bm{p})
 	dA(\bm{p})}
 	{\bm{v} \cdot \bm{n} A},
-	\cr
+$$
+
+where
+
+$$ \tag{12b}
+	\bm{r} = \bm{R}(\bm{v}, \bm{m}) = -\bm{v} + 2 (\bm{v} \cdot \bm{m}) \bm{m}
+$$
+
+is the reflected view vector that points in the direction of the incident light.
+
+Now, according to the law of reflection, $\small \vert \bm{r} \cdot \bm{m} \vert = \vert \bm{v} \cdot \bm{m} \vert = \Vert \bm{r} + \bm{v} \Vert / 2$. Thus, we can solve Eqn. 12b for $\small \bm{m}$ if we recall the microfacet theory assumes that $\small (\bm{v} \cdot \bm{m}) > 0 \text{ and } (\bm{v} \cdot \bm{n}) > 0$ (see the discussion of Eqn. 2):
+
+$$ \tag{12c}
+	\bm{m} = \frac{\bm{r} + \bm{v}}{\Vert \bm{r} + \bm{v} \Vert}.
+$$
+
+The transmission component of a microfacet BSDF can be defined analogously:
+
+$$ \tag{13a}
 	L_t(\bm{v})
-	&=
+	=
 	\frac{\eta_t^2}{\eta_v^2}
 	\frac{\bm{v} \cdot \int_{\bm{p} \in \mathbb{M^2}}
 	\bm{m}(\bm{p})
 	\big( 1 - F(\theta_v, \eta_v/\eta_t) \big) L(\bm{t})
 	V(\bm{t}, \bm{p}) V(\bm{v}, \bm{p}) dA(\bm{p})}
 	{\bm{v} \cdot \bm{n} A},
-\end{aligned}
 $$
 
 where
 
-$$ \tag{12a}
-	\bm{r} = \bm{R}(\bm{v}, \bm{m}) = -\bm{v} + 2 (\bm{v} \cdot \bm{m}) \bm{m}
-$$
-
-is the reflected view vector that points in the direction of the incident light (used to define $\small \theta_v$), and, similarly,
-
-$$ \tag{12b}
+$$ \tag{13b}
 	\bm{t} = \bm{T}(\bm{v}, \bm{m}, \eta_v/\eta_t) =
-	 -\frac{\eta_v}{\eta_t}\bm{v} + \left( \frac{\eta_v}{\eta_t}(\bm{v} \cdot \bm{m}) - \mathrm{sgn} (\bm{v} \cdot \bm{m}) \sqrt{1 - \frac{\eta_v^2}{\eta_t^2} \Vert \bm{v} \times \bm{m} \Vert^2 } \right) \bm{m}
+	 -\frac{\eta_v}{\eta_t}\bm{v} + \left( \frac{\eta_v}{\eta_t}(\bm{v} \cdot \bm{m}) - \mathrm{sgn}(\bm{v} \cdot \bm{m}) \sqrt{1 - \frac{\eta_v^2}{\eta_t^2} \Vert \bm{v} \times \bm{m} \Vert^2 } \right) \bm{m}
 $$
 
-$$ \tag{15a}
+is the refracted (or the transmitted) view vector. We must caution that, in certain cases, the value of the expression inside the square root is a negative number. This invalidates the refracted direction and implies that the light has been *totally internally reflected* by the surface.
+
+Eqn. 13b can be derived as follows. Let
+
+$$ \tag{14a}
 \begin{aligned}
-	\bm{m}
-	&= \frac{\bm{r} + \bm{v}}{\Vert \bm{r} + \bm{v} \Vert},
+	\bm{x}
+	&= \frac{\bm{m} \times (\bm{v} \times \bm{m})}{\Vert \bm{m} \times (\bm{v} \times \bm{m}) \Vert}
+	= \frac{\bm{v} - (\bm{v} \cdot \bm{m}) \bm{m}}{\Vert \bm{v} \times \bm{m} \Vert},
+	\cr
+	\bm{y}
+	&= \mathrm{sgn}(\bm{v} \cdot \bm{m}) \bm{m},
+\end{aligned}
+$$
+
+such that
+
+$$ \tag{14b}
+\begin{aligned}
+	\sin{\theta_v}
+	&= \bm{v} \cdot \bm{x}
+	= \frac{1 - (\bm{v} \cdot \bm{m})^2}{\Vert \bm{v} \times \bm{m} \Vert} \ge 0,
+	\cr
+	\cos{\theta_v}
+	&= \bm{v} \cdot \bm{y} \ge 0.
+\end{aligned}
+$$
+
+In this coordinate system,
+
+$$ \tag{14c}
+\begin{aligned}
+	\bm{v}
+	&= \sin{\theta_v} \bm{x} + \cos{\theta_v} \bm{y},
+	\cr
+	\bm{t}
+	&= -(\sin{\theta_t} \bm{x} + \cos{\theta_t} \bm{y}).
 	\cr
 \end{aligned}
 $$
 
-Eqn. 16 Walter
+---
 
-$$
+$$ \tag{14a}
 \begin{aligned}
 	\bm{v}
 	&= \sin{\theta_v} \bm{x} + \cos{\theta_v} \bm{m}
@@ -532,8 +573,6 @@ $$
 	\cr
 \end{aligned}
 $$
-
-is the refracted (or the transmitted) view vector. We must caution that, in certain cases, the value of the expression inside the square root is a negative number. This invalidates the refracted direction and implies that the light has been *totally internally reflected* by the surface.
 
 Notice that the visibility terms (and the vector area $\small \bm{m} dA$) are the only ones that explicitly depend on the position $\small \bm{p}$. Intuitively, that is because visibility is a non-local property -- it connects a point to the entire surface.
 
