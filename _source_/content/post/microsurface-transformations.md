@@ -432,7 +432,7 @@ $$
 
 If we substitute the expressions of the perfect specular BSDF given by Eqn. 7c and 9c, the inner integral can be evaluated analytically. Starting with the reflection component,
 
-$$ \tag{12a}
+$$ \tag{12}
 	L_r(\bm{v})
 	=
 	\frac{\bm{v} \cdot \int_{\bm{p} \in \mathbb{M^2}}
@@ -445,21 +445,21 @@ $$
 
 where
 
-$$ \tag{12b}
+$$ \tag{13a}
 	\bm{r} = \bm{R}(\bm{v}, \bm{m}) = -\bm{v} + 2 (\bm{v} \cdot \bm{m}) \bm{m}
 $$
 
 is the reflected view vector that points in the direction of the incident light.
 
-Now, according to the law of reflection, $\small \vert \bm{r} \cdot \bm{m} \vert = \vert \bm{v} \cdot \bm{m} \vert = \Vert \bm{r} + \bm{v} \Vert / 2$. Thus, we can solve Eqn. 12b for $\small \bm{m}$ if we recall the microfacet theory assumes that $\small (\bm{v} \cdot \bm{m}) > 0 \text{ and } (\bm{v} \cdot \bm{n}) > 0$ (see the discussion of Eqn. 2):
+Now, according to the law of reflection, $\small \vert \bm{r} \cdot \bm{m} \vert = \vert \bm{v} \cdot \bm{m} \vert = \Vert \bm{r} + \bm{v} \Vert / 2$. Thus, we can solve Eqn. 13a for $\small \bm{m}$ if we recall the microfacet theory assumes that $\small (\bm{v} \cdot \bm{m}) > 0 \text{ and } (\bm{v} \cdot \bm{n}) > 0$ (see the discussion of Eqn. 2):
 
-$$ \tag{12c}
+$$ \tag{13b}
 	\bm{m} = \frac{\bm{r} + \bm{v}}{\Vert \bm{r} + \bm{v} \Vert}.
 $$
 
 The transmission component of a microfacet BSDF can be defined analogously:
 
-$$ \tag{13a}
+$$ \tag{14}
 	L_t(\bm{v})
 	=
 	\frac{\eta_t^2}{\eta_v^2}
@@ -472,16 +472,16 @@ $$
 
 where
 
-$$ \tag{13b}
+$$ \tag{15a}
 	\bm{t} = \bm{T}(\bm{v}, \bm{m}, \eta_v/\eta_t) =
 	 -\frac{\eta_v}{\eta_t}\bm{v} + \left( \frac{\eta_v}{\eta_t}(\bm{v} \cdot \bm{m}) - \mathrm{sgn}(\bm{v} \cdot \bm{m}) \sqrt{1 - \frac{\eta_v^2}{\eta_t^2} \Vert \bm{v} \times \bm{m} \Vert^2 } \right) \bm{m}
 $$
 
 is the refracted (or the transmitted) view vector. We must caution that, in certain cases, the value of the expression inside the square root is a negative number. This invalidates the refracted direction and implies that the light has been *totally internally reflected* by the surface.
 
-Eqn. 13b can be derived as follows. Let
+Eqn. 15a can be derived as follows. Let
 
-$$ \tag{14a}
+$$ \tag{15b}
 \begin{aligned}
 	\bm{x}
 	&= \frac{\bm{m} \times (\bm{v} \times \bm{m})}{\Vert \bm{m} \times (\bm{v} \times \bm{m}) \Vert}
@@ -494,85 +494,50 @@ $$
 
 such that
 
-$$ \tag{14b}
+$$ \tag{15c}
 \begin{aligned}
 	\sin{\theta_v}
 	&= \bm{v} \cdot \bm{x}
-	= \frac{1 - (\bm{v} \cdot \bm{m})^2}{\Vert \bm{v} \times \bm{m} \Vert} \ge 0,
+	= \frac{1 - (\bm{v} \cdot \bm{m})^2}{\Vert \bm{v} \times \bm{m} \Vert}
+	= \Vert \bm{v} \times \bm{m} \Vert \ge 0,
 	\cr
 	\cos{\theta_v}
-	&= \bm{v} \cdot \bm{y} \ge 0.
+	&= \bm{v} \cdot \bm{y}
+	= \vert \bm{v} \cdot \bm{m} \vert \ge 0.
 \end{aligned}
 $$
 
 In this coordinate system,
 
-$$ \tag{14c}
+$$ \tag{15d}
 \begin{aligned}
 	\bm{v}
 	&= \sin{\theta_v} \bm{x} + \cos{\theta_v} \bm{y},
 	\cr
 	\bm{t}
 	&= -(\sin{\theta_t} \bm{x} + \cos{\theta_t} \bm{y}).
-	\cr
 \end{aligned}
 $$
+
+Application of the law of refraction given by Eqn. 8c readily yields Eqn. 15a. This method has the following geometric interpretation: we reverse the direction of $\small \bm{v}$, shorten it by a factor of $\small \eta_v / \eta_t$, and stretch it along $\small \bm{m}$ until its length reaches the value of 1.
+
+Eqn. 15d can be solved for $\small \bm{m}$ provided $\small (\bm{v} \cdot \bm{m}) > 0 \text{ and } (\bm{v} \cdot \bm{n}) > 0$. Then $\small \bm{y} = \bm{m}$, and we can eliminate $\small \bm{x}$ by rescaling $\small \bm{t}$ by a factor of $\small \sin{\theta_v} / \sin{\theta_t}$:
+
+$$ \tag{15e}
+	\bm{v} + \frac{\sin{\theta_v}}{\sin{\theta_t}} \bm{t}
+	= \left( \cos{\theta_v} - \frac{\sin{\theta_v}}{\sin{\theta_t}} \cos{\theta_t} \right) \bm{m}.
+$$
+
+After applying the law of refraction once more and rearranging the terms, we obtain
+
+$$ \tag{15f}
+	\bm{m} =
+	\frac{-\left( \eta_v \bm{v} + \eta_t \bm{t} \right)}{\eta_t \cos{\theta_t} - \eta_v \cos{\theta_v}}.
+$$
+
+Note that the denominator is positive only if $\small \eta_t > \eta_v$, and this has an obvious effect on the direction of $\small \bm{m}$.
 
 ---
-
-$$ \tag{14a}
-\begin{aligned}
-	\bm{v}
-	&= \sin{\theta_v} \bm{x} + \cos{\theta_v} \bm{m}
-	\cr
-	\bm{t}
-	&= -(\sin{\theta_t} \bm{x} + \cos{\theta_t} \bm{m})
-	\cr
-\end{aligned}
-$$
-
-$$
-\begin{aligned}
-	\bm{v}
-	&= \sin{\theta_v} \bm{x} + \cos{\theta_v} \bm{m}
-	\cr
-	\frac{\sin{\theta_v}}{\sin{\theta_t}} \bm{t}
-	&= -(\sin{\theta_v} \bm{x} + \frac{\sin{\theta_v}}{\sin{\theta_t}} \cos{\theta_t} \bm{m})
-	\cr
-\end{aligned}
-$$
-
-$$
-\begin{aligned}
-	\bm{v} + \frac{\sin{\theta_v}}{\sin{\theta_t}} \bm{t}
-	&= \left( \cos{\theta_v} - \frac{\sin{\theta_v}}{\sin{\theta_t}} \cos{\theta_t} \right) \bm{m}
-	\cr
-\end{aligned}
-$$
-
-$$
-\begin{aligned}
-	\bm{v} + \frac{\eta_t}{\eta_v} \bm{t}
-	&= \left( \cos{\theta_v} - \frac{\eta_t}{\eta_v} \cos{\theta_t} \right) \bm{m}
-	\cr
-\end{aligned}
-$$
-
-$$
-\begin{aligned}
-	\eta_v \bm{v} + \eta_t \bm{t}
-	&= \eta_v \left( \cos{\theta_v} - \frac{\eta_t}{\eta_v} \cos{\theta_t} \right) \bm{m}
-	\cr
-\end{aligned}
-$$
-
-$$
-\begin{aligned}
-	\frac{-\left( \eta_v \bm{v} + \eta_t \bm{t} \right)}{\left( \eta_t \cos{\theta_t} - \eta_v \cos{\theta_v} \right)}
-	&= \bm{m}
-	\cr
-\end{aligned}
-$$
 
 Notice that the visibility terms (and the vector area $\small \bm{m} dA$) are the only ones that explicitly depend on the position $\small \bm{p}$. Intuitively, that is because visibility is a non-local property -- it connects a point to the entire surface.
 
