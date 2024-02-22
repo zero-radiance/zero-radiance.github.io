@@ -535,17 +535,15 @@ $$ \tag{15f}
 	\frac{-\left( \eta_v \bm{v} + \eta_t \bm{t} \right)}{\eta_t \cos{\theta_t} - \eta_v \cos{\theta_v}}.
 $$
 
-Note that the denominator is positive only if $\small \eta_t > \eta_v$, and this has an obvious effect on the direction of $\small \bm{m}$.
+Note that the denominator is positive only if $\small \eta_t > \eta_v$, which has an obvious effect on the direction of $\small \bm{m}$.
 
----
+Let us return to Eqn. 12 and 14. Upon close examination, the visibility terms (and the vector area $\small \bm{m} dA$) are the only ones that explicitly depend on the position $\small \bm{p}$. Intuitively, that is because visibility is a non-local property -- it connects a point to the entire surface.
 
-Notice that the visibility terms (and the vector area $\small \bm{m} dA$) are the only ones that explicitly depend on the position $\small \bm{p}$. Intuitively, that is because visibility is a non-local property -- it connects a point to the entire surface.
+We can evaluate both of these equations numerically by breaking the microsurface into the individual microfacets and sorting the latter by their orientation. For a fixed view direction $\small \bm{v}$, a group of microfacets with the same normal $\bm{m}$ will also share the values of $\small F$ and $\small L$. During the final step, we must calculate the total visible area of the microfacets within each group.
 
-We can evaluate Eqn. 11f numerically by breaking the microsurface into the individual microfacets and sorting the latter by their orientation. For a fixed view direction $\small \bm{v}$, a group of microfacets with the same normal $\bm{m}$ will also share the values of $\small F$ and $\small L$. During the final step, we must calculate the total visible area of the microfacets within each group.
+The statistical method of evaluation of Eqn. 12 and 14 mirrors Eqn. 2a. We must introduce the dimensionless *shadowing-masking function* $\small G_2(\bm{v}, \bm{m}, \bm{l})$ that gives the fraction of the differential area $\small dA(\bm{m})$ of the portion of the microsurface perpendicular to $\small \bm{m}$ that happens to be visible along both $\small \bm{v} \text{ and } \bm{l}$. In other words, it is the *average visibility* (along both $\small \bm{l} \text{ and } \bm{v}$) of the microfacets with the normal $\small \bm{m}$:
 
-The statistical method of evaluation of Eqn. 11f mirrors Eqn. 2a. We must introduce the dimensionless *shadowing-masking function* $\small G_2(\bm{v}, \bm{m}, \bm{l})$ that gives the fraction of the differential area $\small dA(\bm{m})$ of the portion of the microsurface perpendicular to $\small \bm{m}$ that happens to be visible along both $\small \bm{v} \text{ and } \bm{l}$. In other words, it is the *average visibility* (along both $\small \bm{l} \text{ and } \bm{v}$) of the microfacets with the normal $\small \bm{m}$:
-
-$$ \tag{12a}
+$$ \tag{16a}
 \begin{aligned}
 	&\int_{\bm{p} \in \mathbb{M^2}}
 	\bm{m}(\bm{p}) V(\bm{l}, \bm{p}) V(\bm{v}, \bm{p}) dA(\bm{p})
@@ -558,11 +556,11 @@ $$ \tag{12a}
 \end{aligned}
 $$
 
-Once projected onto $\small \bm{v} \text{ or } \bm{l}$, Eqn. 12a also represents visible projected area, except that the visibility is now bidirectional. Similarly, it takes self-occlusion into account: $\small V = G_2 = 0$ if $\small (\bm{v} \cdot \bm{m}) \le 0 \text{ or } \small (\bm{l} \cdot \bm{m}) \le 0$.
+Once projected onto $\small \bm{v} \text{ or } \bm{l}$, Eqn. 16a also represents visible projected area, except that the visibility is now bidirectional. Similarly, it takes self-occlusion into account: $\small V = G_2 = 0$ if $\small (\bm{v} \cdot \bm{m}) \le 0 \text{ or } \small (\bm{l} \cdot \bm{m}) \le 0$.
 
 A valid shadowing-masking function also has the following properties:
 
-$$ \tag{12b}
+$$ \tag{16b}
 \begin{aligned}
 	\textit{directional symmetry: }
 	&G_2(\bm{v}, \bm{m}, \bm{l}) = G_2(\bm{l}, \bm{m}, \bm{v});
@@ -577,15 +575,15 @@ $$
 
 The last one is only applicable to height fields. The second property is more general; it implies that a bidirectional average cannot be factored into the product of unidirectional averages:
 
-$$ \tag{12c}
+$$ \tag{16c}
 	G_2(\bm{v}, \bm{m}, \bm{l}) \ne G_1(\bm{v}, \bm{m}) G_1(\bm{l}, \bm{m}).
 $$
 
 As an example, consider a number of evenly-spaced boxes -- a square wave. For $\small \bm{m} = \bm{n}$, the unidirectional visibility will approach 50% as the view angle increases. Thus, for shallow angles, $\small G_1(\bm{v}, \bm{n}) G_1(\bm{l}, \bm{n}) \approx 1/4$, while the correct value of $\small G_2(\bm{v}, \bm{n}, \bm{l}) \approx 1/2$.
 
-In order to derive the shadowing-masking function, we may once again utilize Smith's assumption of normal-visibility independence:
+In order to derive the shadowing-masking function from the distribution of normals, we may once again utilize Smith's assumption of normal-visibility independence:
 
-$$ \tag{13a}
+$$ \tag{17a}
 	G_2^S(\bm{v}, \bm{m}, \bm{l}) = \Theta(\bm{v} \cdot \bm{m}) \Theta(\bm{l} \cdot \bm{m}) W_2(\bm{v}, \bm{l}).
 $$
 
@@ -593,7 +591,7 @@ $$
 
 The height-correlated (but not directionally-correlated) bidirectional visibility term can be constructed by adding shadowing to the denominator of its unidirectional counterpart (see Eqn. 3Xc, 3Xd):
 
-$$ \tag{13b}
+$$ \tag{17b}
 \begin{aligned}
 	W_2(\bm{v}, \bm{l})
 	&= \frac{
@@ -657,7 +655,7 @@ $$
 
 Similarly, we can add a symmetric correction term to account for the directional correlation:
 
-$$ \tag{13c}
+$$ \tag{17c}
 \begin{aligned}
 	W_2(\bm{v}, \bm{l})
 	&= \frac{
@@ -698,69 +696,69 @@ A valid modification must satisfy $\small g(1) = 1$.
 **What is a good choice of g?**
 **And is the result still height-correlated?**
 
-In order to arrive at the expression of a microfacet BSDF, we must convert Eqn. 11f into a statistical form. Substitution of Eqn. 12a yields
+In order to arrive at the expression of a microfacet BSDF, we must convert Eqn. 12 and 14 into a statistical form. Substitution of Eqn. 16a yields
 
-$$ \tag{14a}
+$$ \tag{18a}
 \begin{aligned}
 	L_r(\bm{v})
 	&=
 	\frac{\bm{v} \cdot \int_{\bm{m} \in \mathbb{S^2}}
 	\bm{m}
-	F(\theta_i, \eta_i/\eta_t) L(\bm{r})
-	G_2(\bm{r}, \bm{v}, \bm{m})
+	F(\theta_v, \eta_v/\eta_t) L(\bm{r})
+	G_2(\bm{v}, \bm{m}, \bm{r})
 	D(\bm{m}) d\Omega(\bm{m})}
 	{\bm{v} \cdot \bm{n}},
 	\cr
 	L_t(\bm{v})
 	&=
-	\frac{\eta_t^2}{\eta_i^2}
+	\frac{\eta_t^2}{\eta_v^2}
 	\frac{\bm{v} \cdot \int_{\bm{m} \in \mathbb{S^2}}
 	\bm{m}
-	\big( 1 - F(\theta_i, \eta_i/\eta_t) \big) L(\bm{t})
-	G_2(-\bm{t}, \bm{v}, \bm{m})
+	\big( 1 - F(\theta_v, \eta_v/\eta_t) \big) L(\bm{t})
+	G_2(\bm{v}, \bm{m}, -\bm{t})
 	D(\bm{m}) d\Omega(\bm{m})}
 	{\bm{v} \cdot \bm{n}}.
 \end{aligned}
 $$
 
-Note that we had to reverse the refracted light direction because the microsurface is one-sided; refer to the discussion below Eqn. 2b for details.
+Notice that, in the second equation, we had to reverse the refracted light direction because the microsurface is one-sided; refer to the discussion below Eqn. 2b for details.
 
-Comparison of Eqn. 14a with 4b, which serves as a definition of a BSDF, reveals that the domain of integration is not the same. Therefore, we must perform a change of variables from the solid angle associated with the microsurface normal $\small \bm{m}$ to the one associated with the direction of incidence, $\small \bm{r} \text{ or } \bm{t}$:
+Comparison of Eqn. 18a with 4b, which serves as a definition of a BSDF, reveals that the domain of integration is not the same. Therefore, we must perform a change of variables from the microsurface normal to the direction of incidence using the *Jacobian* of the transformation:
 
-$$ \tag{14b}
+$$ \tag{18b}
+	J(\bm{m}, \bm{r}) = \frac{\partial \Omega(\bm{m})}{\partial \Omega(\bm{r})},
+	\quad
+	J(\bm{m}, \bm{t}) = \frac{\partial \Omega(\bm{m})}{\partial \Omega(\bm{t})}.
+$$
+
+More specifically, we shall utilize its absolute value:
+
+$$ \tag{18c}
 \begin{aligned}
 	L_r(\bm{v})
 	&=
-	\frac{\bm{v} \cdot \int_{\bm{m} \in \mathbb{S^2}}
+	\frac{\bm{v} \cdot \int_{\bm{r} \in \mathbb{S^2}}
 	\bm{m}
-	F(\theta_i, \eta_i/\eta_t) L(\bm{r})
-	G_2(\bm{r}, \bm{v}, \bm{m})
-	D(\bm{m})
-	\big\vert \partial \Omega(\bm{m}) / \partial \Omega(\bm{r}) \big\vert
-	d\Omega(\bm{r})}
+	F(\theta_v, \eta_v/\eta_t) L(\bm{r})
+	G_2(\bm{v}, \bm{m}, \bm{r})
+	D(\bm{m}) \big\vert J(\bm{m}, \bm{r}) \big\vert d\Omega(\bm{r})}
 	{\bm{v} \cdot \bm{n}},
 	\cr
 	L_t(\bm{v})
 	&=
-	\frac{\eta_t^2}{\eta_i^2}
-	\frac{\bm{v} \cdot \int_{\bm{m} \in \mathbb{S^2}}
+	\frac{\eta_t^2}{\eta_v^2}
+	\frac{\bm{v} \cdot \int_{\bm{t} \in \mathbb{S^2}}
 	\bm{m}
-	\big( 1 - F(\theta_i, \eta_i/\eta_t) \big) L(\bm{t})
-	G_2(-\bm{t}, \bm{v}, \bm{m})
-	D(\bm{m})
-	\big\vert \partial \Omega(\bm{m}) / \partial \Omega(\bm{t}) \big\vert
-	d\Omega(\bm{t})}
+	\big( 1 - F(\theta_v, \eta_v/\eta_t) \big) L(\bm{t})
+	G_2(\bm{v}, \bm{m}, -\bm{t})
+	D(\bm{m}) \big\vert J(\bm{m}, \bm{t}) \big\vert d\Omega(\bm{t})}
 	{\bm{v} \cdot \bm{n}}.
 \end{aligned}
 $$
 
-The first step is to express $\small \bm{m}$ in terms of $\small \bm{r} \text{ and } \bm{t}$. A straightforward application of the laws of reflection and refraction (exemplified by Eqn. 7c and 9c) gives
+The expressions of Eqn. 18 can be determined algebraically. However, the geometric approach is far more insightful.
 
-While this can be done algebraically, we shall adopt a geometric approach instead.
-
-Consider a
-
-TODO: change of variables?
+First of all, recall the definition of the solid angle.
 
 *Side note: are Eqn. 17, 18, and 21 in Walter's paper correct? $\small \eta_i^2 = \eta_l^2$ appears to be missing in the denominator.*
 
