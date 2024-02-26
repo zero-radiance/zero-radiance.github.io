@@ -87,7 +87,7 @@ $$
 
 which obviously depends on the relative location of the microfacets. It is defined in terms of the dimensionless *masking function* $\small G_1(\bm{v}, \bm{m})$ that gives the fraction of the differential area $\small dA(\bm{m})$ of the portion of the microsurface perpendicular to $\small \bm{m}$ that happens to be visible along $\small \bm{v}$. In other words, it is the *average visibility* (along $\small \bm{v}$) of the microfacets with the normal $\small \bm{m}$. The masking function is closely related to the binary *visibility function* $\small V(\bm{v}, \bm{p})$ that outputs 0 if the point $\small \bm{p}$ is occluded along $\small \bm{v}$, and 1 otherwise. Both functions take *self-occlusion* into account: $\small V = G_1 = 0$ if $\small (\bm{v} \cdot \bm{m}) \le 0$. This subtle point helps us emphasize the geometric (e.i., coordinate-independent, basis-independent) nature of Eqn. 2.
 
-The masking and the visibility functions possess an important property called *stretch invariance*, or, more generally, *invariance under linear transformations*. We have already seen that, in the context of the microfacet theory, a linearly transformed surface remains valid; however, unlike the NDF, the masking function is dimensionless: it only encodes visibility, and so it remains unaffected by a transformation of the coordinate axes. Of course, this means that the transformation must be applied to everything, including the view direction.
+The masking and visibility functions possess an important property called *stretch invariance*, or, more generally, *invariance under linear transformations*. We have already seen that, in the context of the microfacet theory, a linearly transformed surface remains valid; however, unlike the NDF, the masking function is dimensionless: it only encodes visibility, and so it remains unaffected by a transformation of the coordinate axes. Of course, this means that the transformation must be applied to everything, including the view direction.
 
 Eqn. 1 and 2 are closely related. For a valid microsurface, the values of the integrals are the same for $\small \bm{v} = \bm{n}$:
 
@@ -173,9 +173,11 @@ $$
 
 is another ratio of projected areas (back-facing to signed). For a height field, $\small \Lambda(\bm{n}) = 0$.
 
-(A good illustration is absolutely necessary here.)
+(A good illustration is essential.)
 
 Eqn. 3Xc confirms that the connection between a microfacet and its neighborhood is absent. This puts us at risk of ending up with a microfacet soup or a salad (instead of a continuous surface) again. The only way remedy this deficiency is by using a more sophisticated microsurface profile.
+
+**Q: how accurate is Smith's masking function?**
 
 A VNDF can be used to construct a *bidirectional scattering distribution function* $\small f_s$ (also known as a *BSDF*). By definition, it is a ratio of the differential outgoing radiance to the differential incident irradiance, the latter being the product of the incident radiance and the projected differential solid angle $\small d\Omega_n(\bm{l}) = \vert \bm{n} \cdot \bm{l} \vert d\Omega(\bm{l})$:
 
@@ -341,6 +343,8 @@ $$ \tag{9c}
 $$
 
 with the first term responsible for the projected solid angle compression, which can be readily verified by placing the surface inside a *white furnace* (e.i. setting $\small L(\bm{l}) = 1$ for all $\small \bm{l}$) and evaluating Eqn. 4b.
+
+*Question: are Eqn. 18 and 21 in Walter's paper correct? An additional factor of $\small \eta_o^2 / \eta_i^2 = \eta_v^2 / \eta_l^2$ may be required.*
 
 Is this BTDF reciprocal? Naive substitution of Eqn. 9c into 4c leads to
 
@@ -532,7 +536,7 @@ After applying the law of refraction once more and rearranging the terms, we obt
 
 $$ \tag{15f}
 	\bm{m} =
-	\frac{-\left( \eta_v \bm{v} + \eta_t \bm{t} \right)}{\eta_t \cos{\theta_t} - \eta_v \cos{\theta_v}}.
+	\frac{-(\eta_v \bm{v} + \eta_t \bm{t})}{\eta_t \cos{\theta_t} - \eta_v \cos{\theta_v}}.
 $$
 
 Note that the denominator is positive only if $\small \eta_t > \eta_v$, which has an obvious effect on the direction of $\small \bm{m}$.
@@ -568,18 +572,22 @@ $$ \tag{16b}
 	\textit{directional correlation: }
 	&G_2(\bm{v}, \bm{m}, \bm{v}) = G_1(\bm{v}, \bm{m});
 	\cr
-	\textit{height correlation (wrong?): }
+	\textit{height correlation: }
 	&G_2(\bm{v}, \bm{m}, \bm{n}) = G_1(\bm{v}, \bm{m}).
 \end{aligned}
 $$
 
-The last one is only applicable to height fields. The second property is more general; it implies that a bidirectional average cannot be factored into the product of unidirectional averages:
+**Q: is the height correlation condition above correct? It simply tests whether the surface is a height field. I don't think so.**
+
+**Q: does height correlation make sense for arbitrary surfaces? I think so (e.g. consider a height field with a number of "caves"). This answers the question above.**
+
+The last one is only applicable to height fields. Essentially, it says that visibility of a microfacet depends on its altitude. The second property is more general; it implies that a bidirectional average cannot be factored into the product of unidirectional averages:
 
 $$ \tag{16c}
 	G_2(\bm{v}, \bm{m}, \bm{l}) \ne G_1(\bm{v}, \bm{m}) G_1(\bm{l}, \bm{m}).
 $$
 
-As an example, consider a number of evenly-spaced boxes -- a square wave. For $\small \bm{m} = \bm{n}$, the unidirectional visibility will approach 50% as the view angle increases. Thus, for shallow angles, $\small G_1(\bm{v}, \bm{n}) G_1(\bm{l}, \bm{n}) \approx 1/4$, while the correct value of $\small G_2(\bm{v}, \bm{n}, \bm{l}) \approx 1/2$.
+For example, consider a number of evenly-spaced boxes -- a square wave. For $\small \bm{m} = \bm{n}$, the unidirectional visibility will approach 50% as the view angle increases. Thus, for shallow angles, $\small G_1(\bm{v}, \bm{n}) G_1(\bm{l}, \bm{n}) \approx 1/4$, while the correct value of $\small G_2(\bm{v}, \bm{n}, \bm{l}) \approx 1/2$.
 
 In order to derive the shadowing-masking function from the distribution of normals, we may once again utilize Smith's assumption of normal-visibility independence:
 
@@ -587,9 +595,9 @@ $$ \tag{17a}
 	G_2^S(\bm{v}, \bm{m}, \bm{l}) = \Theta(\bm{v} \cdot \bm{m}) \Theta(\bm{l} \cdot \bm{m}) W_2(\bm{v}, \bm{l}).
 $$
 
-**Geometrically, what is $\small \bm{W_2}$?**
+**Q: geometrically, what is $\small \bm{W_2}$ supposed to be?**
 
-The height-correlated (but not directionally-correlated) bidirectional visibility term can be constructed by adding shadowing to the denominator of its unidirectional counterpart (see Eqn. 3Xc, 3Xd):
+The height-correlated bidirectional visibility term can be constructed by adding shadowing to the denominator of its unidirectional counterpart (see Eqn. 3Xc, 3Xd):
 
 $$ \tag{17b}
 \begin{aligned}
@@ -628,32 +636,34 @@ $$ \tag{17b}
 $$
 
 $$
-\begin{aligned}
-	W_2(\bm{v}, \bm{v})
-	&= \frac{
-		1
-	}{
-		1 + 2 \Lambda(\bm{v})
-	}
-	\cr
-\end{aligned}
-$$
-
-$$
-\begin{aligned}
 	W_2(\bm{v}, \bm{n})
-	&= \frac{
+	= \frac{
 		1
 	}{
 		1 + \Lambda(\bm{v})
 	}
-	\cr
-\end{aligned}
 $$
 
-**How to derive the height-correlated function geometrically?**
+The combined occlusion is always either greater than or equal to the occlusion in any given direction. In particular, when the view and light directions are aligned, the so-called "hotspot effect" is absent:
 
-Similarly, we can add a symmetric correction term to account for the directional correlation:
+$$
+	W_2(\bm{v}, \bm{v})
+	= \frac{
+		1
+	}{
+		1 + 2 \Lambda(\bm{v})
+	}
+	\le
+	\frac{
+		1
+	}{
+		1 + \Lambda(\bm{v}).
+	}
+$$
+
+**Q: how to derive the height-correlated function geometrically, for an arbitrary surface?**
+
+Similarly, we can subtract a symmetric correction term to account for the directional correlation:
 
 $$ \tag{17c}
 \begin{aligned}
@@ -693,8 +703,7 @@ $$
 
 A valid modification must satisfy $\small g(1) = 1$.
 
-**What is a good choice of g?**
-**And is the result still height-correlated?**
+**Q: what is a good choice of g? Does it depend on roughness? Is the result still height-correlated?**
 
 In order to arrive at the expression of a microfacet BSDF, we must convert Eqn. 12 and 14 into a statistical form. Substitution of Eqn. 16a yields
 
