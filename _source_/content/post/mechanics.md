@@ -118,6 +118,47 @@ $\partial f/\partial s = \partial f / \partial \bar{r} \cdot d\bar{r} / ds = \na
 Area element:
 $?$
 
+Vector area:
+
+$$
+	dA = da db \vert \sin{\gamma} \vert.
+$$
+
+$$
+	\bar{a}
+	= \frac{
+		\frac{\partial \bar{p}}{\partial a}
+	}{
+		\left\vert \frac{\partial \bar{p}}{\partial a} \right\vert
+	},
+	\quad
+	\bar{b}
+	= \frac{
+		\frac{\partial \bar{p}}{\partial b}
+	}{
+		\left\vert \frac{\partial \bar{p}}{\partial b} \right\vert
+	}
+$$
+
+$$
+	\bar{n}
+	= \frac{
+		\bar{a} \times \bar{b}
+	}{
+		\vert \bar{a} \times \bar{b} \vert
+	}
+	= \frac{
+		\bar{a} \times \bar{b}
+	}{
+		\vert \sin{\gamma} \vert
+	}
+$$
+
+
+$$
+	\bar{n} dA = (\bar{a} \times \bar{b}) da db.
+$$
+
 Volume element:
 $?$
 
