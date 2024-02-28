@@ -104,10 +104,10 @@ $d\bar{r} = d\bar{r} / ds \cdot ds = \bar{t} ds, \space d\bar{r} \cdot d\bar{r} 
 $ds = (d\bar{r} \cdot d\bar{r})^{1/2}$
 
 [Tangent vector](https://en.wikipedia.org/wiki/Tangent_vector):
-$\bar{t} = d\bar{r} / ds, \space \vert \bar{t} \vert = 1$
+$\bar{t} = d\bar{r} / ds, \space \Vert \bar{t} \Vert = 1$
 
 [Normal vector](https://en.wikipedia.org/wiki/Normal_(geometry)):
-$\bar{n} = d^2\bar{r} / ds^2 = d\bar{t} / ds, \space \vert \bar{n} \vert = 1/R, \space \bar{t} \cdot \bar{n} = 0$
+$\bar{n} = d^2\bar{r} / ds^2 = d\bar{t} / ds, \space \Vert \bar{n} \Vert = 1/R, \space \bar{t} \cdot \bar{n} = 0$
 
 [Gradient](https://en.wikipedia.org/wiki/Gradient):
 $\nabla f = \partial f / \partial \bar{r}$
@@ -118,45 +118,134 @@ $\partial f/\partial s = \partial f / \partial \bar{r} \cdot d\bar{r} / ds = \na
 Area element:
 $?$
 
-Vector area:
+Jacobian:
 
 $$
-	dA = da db \vert \sin{\gamma} \vert.
+	\bar{r}(x,y)
 $$
 
 $$
-	\bar{a}
-	= \frac{
-		\frac{\partial \bar{p}}{\partial a}
-	}{
-		\left\vert \frac{\partial \bar{p}}{\partial a} \right\vert
-	},
+	d\bar{r}
+	= \frac{\partial \bar{r}}{\partial x} dx + \frac{\partial \bar{r}}{\partial y} dy
+$$
+
+$$
+	\hat{i}
+	= \frac{\partial \bar{r}}{\partial x},
 	\quad
-	\bar{b}
-	= \frac{
-		\frac{\partial \bar{p}}{\partial b}
-	}{
-		\left\vert \frac{\partial \bar{p}}{\partial b} \right\vert
-	}
+	\hat{j}
+	= \frac{\partial \bar{r}}{\partial y},
+	\quad
+	\hat{k}
+	= \hat{i} \times \hat{j}
 $$
 
 $$
-	\bar{n}
-	= \frac{
-		\bar{a} \times \bar{b}
-	}{
-		\vert \bar{a} \times \bar{b} \vert
-	}
-	= \frac{
-		\bar{a} \times \bar{b}
-	}{
-		\vert \sin{\gamma} \vert
-	}
+	d\bar{r} = \hat{i} dx + \hat{j} dy
 $$
 
+$$
+	d\bar{A}
+	= (\hat{i} dx) \times (\hat{j} dy)
+	= (\hat{i} \times \hat{j}) dx dy
+	= \hat{k} dx dy
+$$
 
 $$
-	\bar{n} dA = (\bar{a} \times \bar{b}) da db.
+	dA
+	= \Vert d\bar{A} \Vert
+	= dx dy
+$$
+
+Change of variables
+
+$$
+	\bar{r}\big(x(s,t),y(s,t)\big)
+$$
+
+$$
+	d\bar{r} = \frac{\partial \bar{r}}{\partial s} ds + \frac{\partial \bar{r}}{\partial t} dt
+$$
+
+$$
+	\bar{i'}
+	= \frac{\partial \bar{r}}{\partial s},
+	\quad
+	\bar{j'}
+	= \frac{\partial \bar{r}}{\partial t},
+	\quad
+	\bar{k'}
+	= \bar{i'} \times \bar{j'}
+$$
+
+$$
+	d\bar{r} = \bar{i'} ds + \bar{j'} dt
+$$
+
+$$
+	d\bar{A}
+	= (\bar{i'} ds) \times (\bar{j'} dt)
+	= (\bar{i'} \times \bar{j'}) ds dt
+	= \bar{k'} ds dt
+$$
+
+$$
+	dA
+	= \Vert d\bar{A} \Vert
+	= \Vert \bar{k'} \Vert ds dt
+	= \Vert \bar{i'} \times \bar{j'} \Vert ds dt
+$$
+
+$$
+	\vert J \vert = \frac{dx dy}{ds dt} = \Vert \bar{i'} \times \bar{j'} \Vert
+$$
+
+$$
+	\bar{i'}
+	= \frac{\partial \bar{r}}{\partial s}
+	= \frac{\partial \bar{r}}{\partial x} \frac{\partial x}{\partial s}
+	+ \frac{\partial \bar{r}}{\partial y} \frac{\partial y}{\partial s}
+	= \hat{i} \frac{\partial x}{\partial s}
+	+ \hat{j} \frac{\partial y}{\partial s}
+	= \begin{bmatrix}
+		\partial x / \partial s
+		\cr
+		\partial y / \partial s
+	\end{bmatrix}
+$$
+
+$$
+	\bar{j'}
+	= \frac{\partial \bar{r}}{\partial t}
+	= \frac{\partial \bar{r}}{\partial x} \frac{\partial x}{\partial t}
+	+ \frac{\partial \bar{r}}{\partial y} \frac{\partial y}{\partial t}
+	= \hat{i} \frac{\partial x}{\partial t}
+	+ \hat{j} \frac{\partial y}{\partial t}
+	= \begin{bmatrix}
+		\partial x / \partial t
+		\cr
+		\partial y / \partial t
+	\end{bmatrix}
+$$
+
+$$
+	\vert J \vert
+	= \left\vert \det
+	\begin{bmatrix}
+		\bar{i'} \space \bar{j'}
+	\end{bmatrix}
+	\right\vert
+	= \left\vert \det
+	\begin{bmatrix}
+		\partial x / \partial s \space\space \partial x / \partial t
+		\cr
+		\partial y / \partial s \space\space \partial y / \partial t
+	\end{bmatrix}
+	\right\vert
+	= \left\vert
+	\frac{\partial x}{\partial s} \frac{\partial y}{\partial t} -
+	\frac{\partial y}{\partial s} \frac{\partial x}{\partial t}
+	\right\vert
 $$
 
 Volume element:
@@ -165,9 +254,9 @@ $?$
 [Motion in polar coordinates](https://en.wikipedia.org/wiki/Mechanics_of_planar_particle_motion#Polar_coordinates_in_an_inertial_frame_of_reference):
 $\bar{r} = \bar{r}(t) = \[ x(t), y(t) \]^{\mathsf{T}} = r(t) \[ \cos{\varphi(t)}, \sin{\varphi(t)} \]^{\mathsf{T}} = r(t) \hat{r}(\varphi(t))$
 
-$\hat{r} = \partial \bar{r} / \partial r = -d\hat{\varphi} / d\varphi = \[ \cos{\varphi}, \sin{\varphi} \]^{\mathsf{T}}, \space \vert \hat{r} \vert = 1$
+$\hat{r} = \partial \bar{r} / \partial r = -d\hat{\varphi} / d\varphi = \[ \cos{\varphi}, \sin{\varphi} \]^{\mathsf{T}}, \space \Vert \hat{r} \Vert = 1$
 
-$\hat{\varphi} = d\hat{r} / d\varphi = \[ -\sin{\varphi}, \cos{\varphi} \]^{\mathsf{T}}, \space \vert \hat{\varphi} \vert = 1, \space \hat{r} \cdot \hat{\varphi} = 0$
+$\hat{\varphi} = d\hat{r} / d\varphi = \[ -\sin{\varphi}, \cos{\varphi} \]^{\mathsf{T}}, \space \Vert \hat{\varphi} \Vert = 1, \space \hat{r} \cdot \hat{\varphi} = 0$
 
 $d\bar{r} = \partial \bar{r} / \partial r \cdot dr + \partial \bar{r} / \partial \varphi \cdot d\varphi = dr \hat{r} + r d\varphi \hat{\varphi}$
 
@@ -222,7 +311,7 @@ $d\tau = ds/c, \space
 dt/d\tau = \cosh{\theta_v}$
 
 4-velocity:
-$\bar{u} = d\bar{x}/d\tau = (c, \bar{v}) \cosh{\theta_v}, \space \vert \bar{u} \vert = c^2$
+$\bar{u} = d\bar{x}/d\tau = (c, \bar{v}) \cosh{\theta_v}, \space \Vert \bar{u} \Vert = c^2$
 
 Lorentz transformation:
 $x_0' = x_0 \cosh{\theta_v} - x_1 \sinh{\theta_v}, \space
