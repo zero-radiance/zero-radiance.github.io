@@ -541,7 +541,7 @@ $$
 
 Note that the denominator is positive only if $\small \eta_t > \eta_v$, which has an obvious effect on the direction of $\small \bm{m}$.
 
-Let us return to Eqn. 12 and 14. Upon close examination, the visibility terms (and the vector area $\small \bm{m} dA$) are the only ones that explicitly depend on the position $\small \bm{p}$. Intuitively, that is because visibility is a non-local property -- it connects a point to the entire surface.
+Let us return to Eqn. 12 and 14. Upon close examination, the visibility terms (and the vector differential area $\small \bm{m} dA$) are the only ones that explicitly depend on the position $\small \bm{p}$. Intuitively, that is because visibility is a non-local property -- it connects a point to the entire surface.
 
 We can evaluate both of these equations numerically by breaking the microsurface into the individual microfacets and sorting the latter by their orientation. For a fixed view direction $\small \bm{v}$, a group of microfacets with the same normal $\bm{m}$ will also share the values of $\small F$ and $\small L$. During the final step, we must calculate the total visible area of the microfacets within each group.
 
@@ -644,7 +644,7 @@ $$
 	}
 $$
 
-The combined occlusion is always either greater than or equal to the occlusion in any given direction. In particular, when the view and light directions are aligned, the so-called "hotspot effect" is absent:
+The combined occlusion value is always either greater than or equal to the occlusion in any given direction. In particular, when the view and light directions are aligned, overestimation leads to the loss of the so-called "hotspot effect":
 
 $$
 	W_2(\bm{v}, \bm{v})
@@ -663,7 +663,7 @@ $$
 
 **Q: how to derive the height-correlated function geometrically, for an arbitrary surface?**
 
-Similarly, we can subtract a symmetric correction term to account for the directional correlation:
+Directional correlation can be introduced by subtracting a symmetric correction term:
 
 $$ \tag{17c}
 \begin{aligned}
@@ -730,9 +730,9 @@ $$ \tag{18a}
 \end{aligned}
 $$
 
-Notice that, in the second equation, we had to reverse the refracted light direction because the microsurface is one-sided; refer to the discussion below Eqn. 2b for details.
+The second equation required a minor modification: we had to reverse the refracted light direction because the microsurface is one-sided; refer to the discussion below Eqn. 2b for details.
 
-Comparison of Eqn. 18a with 4b, which serves as a definition of a BSDF, reveals that the domain of integration is not the same. Therefore, we must perform a change of variables from the microsurface normal to the direction of incidence using the *Jacobian* of the transformation:
+Comparison of Eqn. 18a with 4b, which serves as a definition of a BSDF, reveals that the domain of integration is not the same. Therefore, we must perform a change of variables from the microsurface normal to the direction of incidence. This process involves the determinant of the transformation called the *Jacobian*:
 
 $$ \tag{18b}
 	J(\bm{m}, \bm{r}) = \frac{\partial \Omega(\bm{m})}{\partial \Omega(\bm{r})},
@@ -740,14 +740,14 @@ $$ \tag{18b}
 	J(\bm{m}, \bm{t}) = \frac{\partial \Omega(\bm{m})}{\partial \Omega(\bm{t})}.
 $$
 
-More specifically, we shall utilize its absolute value:
+Since a determinant can be negative, we shall utilize its absolute value:
 
 $$ \tag{18c}
 \begin{aligned}
 	L_r(\bm{v})
 	&=
 	\frac{\bm{v} \cdot \int_{\bm{r} \in \mathbb{S^2}}
-	\bm{m}
+	\bm{m}(\bm{v}, \bm{r})
 	F(\theta_v, \eta_v/\eta_t) L(\bm{r})
 	G_2(\bm{v}, \bm{m}, \bm{r})
 	D(\bm{m}) \big\vert J(\bm{m}, \bm{r}) \big\vert d\Omega(\bm{r})}
@@ -757,7 +757,7 @@ $$ \tag{18c}
 	&=
 	\frac{\eta_t^2}{\eta_v^2}
 	\frac{\bm{v} \cdot \int_{\bm{t} \in \mathbb{S^2}}
-	\bm{m}
+	\bm{m}(\bm{v}, \bm{t})
 	\big( 1 - F(\theta_v, \eta_v/\eta_t) \big) L(\bm{t})
 	G_2(\bm{v}, \bm{m}, -\bm{t})
 	D(\bm{m}) \big\vert J(\bm{m}, \bm{t}) \big\vert d\Omega(\bm{t})}
@@ -765,11 +765,244 @@ $$ \tag{18c}
 \end{aligned}
 $$
 
-The expressions of Eqn. 18 can be determined algebraically. However, the geometric approach is far more insightful.
+The Jacobian of Eqn. 18b describes the rate at which one solid angle changes relative to the other. The notation has been purposefully chosen to mimic the one-dimensional partial[^10] derivative $\small \partial x / \partial t$. Similarly, the one-dimensional change of variables $\small dx = (\partial x / \partial t) dt$ is completely analogous to
 
-First of all, recall the definition of the solid angle.
+[^10]: The solid angle derivative is partial because it implicitly depends on the view direction.
 
-*Side note: are Eqn. 17, 18, and 21 in Walter's paper correct? $\small \eta_i^2 = \eta_l^2$ appears to be missing in the denominator.*
+$$ \tag{18d}
+	d\Omega(\bm{m})
+	= \left\vert \frac{\partial \Omega(\bm{m})}{\partial \Omega(\bm{r})} \right\vert d\Omega(\bm{r})
+	= \big\vert J(\bm{m}, \bm{r}) \big\vert d\Omega(\bm{r}).
+$$
+
+Intuitively, the Jacobian is just a ratio of two differential solid angles, each corresponding to a projected differential area. Unfortunately, making this statement more precise requires background in vector analysis. For the reader who wishes to understand the derivation (and not just apply the results), we provide a brief introduction below.
+
+Suppose we are able to parameterize the surface using two coordinates (e.g. the Cartesian or the spherical coordinates):
+
+$$ \tag{19a}
+	\bm{p} = \bm{p}(x,y).
+$$
+
+The change in the surface position is given by the chain rule:
+
+$$ \tag{19b}
+	d\bm{p}
+	= \frac{\partial \bm{p}}{\partial x} dx + \frac{\partial \bm{p}}{\partial y} dy.
+$$
+
+Let us define a local coordinate frame:
+
+$$ \tag{19c}
+	\bm{i}
+	= \frac{\partial \bm{p}}{\partial x},
+	\quad
+	\bm{j}
+	= \frac{\partial \bm{p}}{\partial y},
+	\quad
+	\bm{k}
+	= \bm{i} \times \bm{j}.
+$$
+
+Eqn. 19b can then be expressed in terms of two linearly independent vectors:
+
+$$ \tag{19d}
+	d\bm{p} = \bm{i} dx + \bm{j} dy.
+$$
+
+They form a little parallelogram that can be represented by the vector differential area
+
+$$ \tag{19e}
+	d\bm{A}
+	= (\bm{i} dx) \times (\bm{j} dy)
+	= (\bm{i} \times \bm{j}) dx dy
+	= \bm{k} dx dy.
+$$
+
+Its magnitude is the scalar differential area
+
+$$ \tag{19f}
+	dA
+	= \Vert d\bm{A} \Vert
+	= dx dy,
+$$
+
+where we have made a simplifying assumption that the basis vectors are mutually orthogonal unit vectors.
+
+Now, let us perform a change of variables
+
+$$ \tag{20a}
+	\bm{p} = \bm{p}\big(x(s,t),y(s,t)\big).
+$$
+
+According to the chain rule,
+
+$$ \tag{20b}
+	d\bm{p} = \frac{\partial \bm{p}}{\partial s} ds + \frac{\partial \bm{p}}{\partial t} dt.
+$$
+
+The transformed basis vectors are:
+
+$$ \tag{20c}
+	\bm{i'}
+	= \frac{\partial \bm{p}}{\partial s},
+	\quad
+	\bm{j'}
+	= \frac{\partial \bm{p}}{\partial t},
+	\quad
+	\bm{k'}
+	= \bm{i'} \times \bm{j'}.
+$$
+
+Eqn. 20b can thus be shortened to
+
+$$ \tag{20d}
+	d\bm{p} = \bm{i'} ds + \bm{j'} dt.
+$$
+
+The expression of the vector differential area mirrors Eqn. 19e:
+
+$$ \tag{20e}
+	d\bm{A}
+	= (\bm{i'} ds) \times (\bm{j'} dt)
+	= (\bm{i'} \times \bm{j'}) ds dt
+	= \bm{k'} ds dt.
+$$
+
+If we do not assume that the basis is orthonormal, the expression of the scalar differential area must account for the length of the basis vectors and the angle between them:
+
+$$ \tag{20f}
+	dA
+	= \Vert d\bm{A} \Vert
+	= \Vert \bm{k'} \Vert ds dt
+	= \Vert \bm{i'} \times \bm{j'} \Vert ds dt.
+$$
+
+Now, if we want to replace Eqn. 19f with 20f in an area integral, their value must be the same[^11]. The ratio of the areas of the parallelograms formed by the basis vectors is given by the absolute value of the Jacobian
+
+[^11]: The same is true for Eqn. 19e and 20e. Intuitively, both the orientation and the size (but not the shape) of the surface elements must be independent of the choice of coordinates (the tessellation scheme).
+
+$$ \tag{21}
+	\vert J \vert = \frac{dx dy}{ds dt} = \Vert \bm{i'} \times \bm{j'} \Vert.
+$$
+
+The Jacobian is also frequently used in volume integrals, where its absolute value corresponds to the ratio of the volumes of two parallelepipeds.
+
+If the equations that relate the two sets of coordinates are available, the expression of the Jacobian can be determined algebraically. However, in our case, the geometric approach is both simpler and more insightful.
+
+---
+
+$$
+	d\bm{A}(\lambda \bm{p}) = \lambda^2 d\bm{A}(\bm{p})
+$$
+
+$$
+	d\bm{A}(\bm{p} + \bm{q}) = d\bm{A}(\bm{p})
+$$
+
+
+First of all, recall that, by definition, the solid angle subtended by an object is the surface area of its radial projection onto the unit sphere. If we consider an infinitesimal surface fragment of area $\small dA$ located at the point $\small \bm{p}$ and oriented perpendicular to the unit vector $\small \bm{m}$, then the associated differential solid angle is
+
+$$ \tag{19a}
+	d\Omega(\bm{p})
+	= \left\vert \frac{\bm{p}}{\Vert \bm{p} \Vert} \cdot \frac{d\bm{A}(\bm{p})}{\Vert \bm{p} \Vert^2} \right \vert
+$$
+
+$$ \tag{19a}
+	d\Omega(\bm{i})
+	= \left\vert \frac{\bm{o}}{\Vert \bm{o} \Vert} \cdot \frac{d\bm{A}(\bm{o})}{\Vert \bm{o} \Vert^2} \right \vert = dA(\bm{o})
+$$
+
+$$ \tag{19a}
+	d\Omega(\lambda \bm{p})
+	= \left\vert \frac{\lambda \bm{p}}{\Vert \lambda \bm{p} \Vert} \cdot \frac{d\bm{A}(\lambda \bm{p})}{\Vert \lambda \bm{p} \Vert^2} \right \vert
+	= d\Omega(\bm{p})
+$$
+
+$$ \tag{19a}
+\begin{aligned}
+	d\Omega(\bm{p} + \bm{q})
+	&= \left\vert \frac{\bm{p} + \bm{q}}{\Vert \bm{p} + \bm{q} \Vert} \cdot \frac{d\bm{A}(\bm{p} + \bm{q})}{\Vert \bm{p} + \bm{q} \Vert^2} \right \vert
+	\cr
+	&= \left\vert \frac{\bm{p} + \bm{q}}{\Vert \bm{p} + \bm{q} \Vert} \cdot \frac{d\bm{A}(\bm{p})}{\Vert \bm{p} + \bm{q} \Vert^2} \right \vert
+	\cr
+\end{aligned}
+$$
+
+$$ \tag{19a}
+\begin{aligned}
+	d\Omega(\bm{i} + \bm{o})
+	&= \left\vert \frac{\bm{i} + \bm{o}}{\Vert \bm{i} + \bm{o} \Vert} \cdot \frac{d\bm{A}(\bm{o})}{\Vert \bm{i} + \bm{o} \Vert^2} \right \vert
+	\cr
+	&= \left\vert \bm{h} \cdot \frac{\bm{o} dA(\bm{o})}{\Vert \bm{i} + \bm{o} \Vert^2} \right \vert
+	\cr
+	&= \frac{\vert \bm{h} \cdot \bm{o} \vert}{\Vert \bm{i} + \bm{o} \Vert^2} \ d\Omega(\bm{o})
+	\cr
+\end{aligned}
+$$
+
+$$ \tag{19a}
+\begin{aligned}
+	d\Omega(-\eta_i \bm{i} - \eta_o \bm{o})
+	&= \left\vert \frac{-\eta_i \bm{i} - \eta_o \bm{o}}{\Vert -\eta_i \bm{i} - \eta_o \bm{o} \Vert} \cdot \frac{d\bm{A}(-\eta_i \bm{i} - \eta_o \bm{o})}{\Vert -\eta_i \bm{i} - \eta_o \bm{o} \Vert^2} \right \vert
+	\cr
+	&= \left\vert \bm{h} \cdot \frac{\eta_o^2 \bm{o} dA(\bm{o})}{\Vert -\eta_i \bm{i} - \eta_o \bm{o} \Vert^2} \right \vert
+\end{aligned}
+$$
+
+---
+
+$$ \tag{19a}
+	d\Omega(\bm{m})
+	= \sin{\theta_m} d\theta_m d\phi_m.
+$$
+
+---
+
+Thus, Eqn. 18c is an area integral over the surface of a unit sphere. The Jacobian can then be interpreted as the ratio of two areas:
+
+$$ \tag{18b}
+	\big\vert J(\bm{m}, \bm{r}) \big\vert = \frac{\partial \Omega(\bm{m})}{\partial \Omega(\bm{r})},
+	\quad
+	\big\vert J(\bm{m}, \bm{t}) \big\vert = \frac{\partial \Omega(\bm{m})}{\partial \Omega(\bm{t})}.
+$$
+
+
+
+---
+
+$$ \tag{w1}
+	J(\bm{m}, \bm{r}) = \frac{1}{4 (\bm{m} \cdot \bm{r})} = \frac{1}{4 (\bm{m} \cdot \bm{v})}.
+$$
+
+$$ \tag{w2}
+\begin{aligned}
+	L_r(\bm{v})
+	&=
+	\frac{\int_{\bm{r} \in \mathbb{S^2}}
+	F(\theta_v, \eta_v/\eta_t) L(\bm{r})
+	G_2(\bm{v}, \bm{m}, \bm{r})
+	D(\bm{m}) d\Omega_n(\bm{r})}
+	{4 (\bm{v} \cdot \bm{n}) (\bm{r} \cdot \bm{n})},
+\end{aligned}
+$$
+
+$$ \tag{w3}
+	J(\bm{m}, \bm{t}) = \frac{\eta_t^2 (\bm{m} \cdot \bm{t})}{(\eta_v (\bm{v} \cdot \bm{m}) + \eta_t (\bm{t} \cdot \bm{m}))^2}.
+$$
+
+$$ \tag{w4}
+\begin{aligned}
+	L_t(\bm{v})
+	&=
+	\frac{\eta_t^2}{\eta_v^2}
+	\frac{\bm{v} \cdot \int_{\bm{t} \in \mathbb{S^2}}
+	\bm{m}
+	\big( 1 - F(\theta_v, \eta_v/\eta_t) \big) L(\bm{t})
+	G_2(\bm{v}, \bm{m}, -\bm{t})
+	D(\bm{m}) \big\vert \eta_t^2 (\bm{m} \cdot \bm{t}) \big\vert d\Omega(\bm{t})}
+	{(\bm{v} \cdot \bm{n})(\eta_v (\bm{v} \cdot \bm{m}) + \eta_t (\bm{t} \cdot \bm{m}))^2}.
+\end{aligned}
+$$
 
 ---
 
@@ -785,4 +1018,4 @@ Walter's ggx
 
 Walter's ellipsoid
 
-Atanasov's transformations
+Atanasov's transformations'
