@@ -10,7 +10,7 @@ At EGSR 2022, Atanasov, Koylazov, Dimov, and Wilkie presented a paper titled [Mi
 
 ## Microscopic Introduction
 
-Pick an object, perhaps one that sits on your desk or lives in your head. Focus on a tiny fragment of its surface. If the fragment is sufficiently small, or is sufficiently far away, it will look effectively flat (but not necessarily smooth). Therefore, to a negligible degree of error, that fragment may be replaced by a first-order approximation[^1] -- its projection onto the (averaged) tangent plane. In the literature, this projected surface is referred to as the *macrosurface*. It is characterized by the area $\small A$ and the unit normal[^6] vector $\small \bm{n}$. Fixing two (linearly independent, but not necessarily unit or orthogonal) tangent vectors is sufficient to complete the parameterization of the macrosurface.
+Pick an object, perhaps one that sits on your desk or lives in your head. Focus on a tiny fragment of its surface. If the fragment is sufficiently small, or is sufficiently far away, it will look effectively flat (but not necessarily smooth). Therefore, to a negligible degree of error, that fragment may be replaced by a first-order approximation[^1] -- its orthogonal projection onto the (averaged) tangent plane. In the literature, this projected surface is referred to as the *macrosurface*. It is characterized by the area $\small A$ and the unit normal[^6] vector $\small \bm{n}$. Fixing two (linearly independent, but not necessarily unit or orthogonal) tangent vectors is sufficient to complete the parameterization of the macrosurface.
 
 [^1]: In the sense of a Taylor series expansion.
 
@@ -26,7 +26,7 @@ Let $\small \bm{m}$ denote the unit normal vector of the microsurface. Since it 
 
 [^4]: Not to be confused with the normal distribution (a.k.a. the Gaussian distribution) in probability theory.
 
-A valid microsurface and, thus, a valid NDF, must obey the *signed projected area* constraint
+A valid microsurface and, thus, a valid NDF, must obey the *signed (orthogonally) projected area* constraint
 
 $$ \tag{1a}
 \begin{aligned}
@@ -66,9 +66,9 @@ One of the simplest examples of a valid microsurface is a box[^5], with the flip
 
 Clearly, a microsurface does not have to be smooth (e.i. continuously differentiable); however, this ensures the continuity of the NDF, which is desirable, unless the goal is to model a flat surface.
 
-Erasing any part of the box leads to a signed projected area mismatch for certain angles. Therefore, the constraint may seem to imply that the microsurface must be continuous, but, unfortunately, that is not the case. The issue lies in the *translation invariance*; in our case, it means that the signed projected area of an object is independent of its location. This property may seem innocuous at first, but, coupled with the linearity, it spells disaster: we may freely translate different microfacets in different directions without affecting the value of the integral.
+Erasing any part of the box leads to a signed projected area mismatch for certain angles. Therefore, the constraint may seem to imply that the microsurface must be continuous, but, unfortunately, that is not the case. The issue lies in the *translation invariance*; in our case, it means that the orthogonally projected area of an object is independent of its location. This property may seem innocuous at first, but, coupled with the linearity, it spells disaster: we may freely translate different microfacets in different directions without affecting the value of the integral.
 
-Since the signed projected area is an incomplete description of a real surface (as opposed to a microfacet soup or a salad[^52]), we may additionally specify its *visible projected area*
+Since the signed projected area is an incomplete description of a real surface (as opposed to a microfacet soup or a salad[^52]), we may additionally specify its *visible (orthogonally) projected area*
 
 [^52]: In technical terms, the surface may have an extremely short auto-correlation distance.
 
@@ -905,7 +905,7 @@ $$
 
 These properties can be readily verified by substitution into Eqn. 19e or 20e.
 
-Now, recall that, by definition, the solid angle subtended by an object is the surface area of its projection onto the unit sphere. If we consider an infinitesimal surface fragment of the vector area $\small d\bm{A}$ located at the point $\small \bm{p}$, the associated differential solid angle is
+Now, recall that, by definition, the solid angle subtended by an object is the surface area of its (radial) projection onto the unit sphere. If we consider an infinitesimal surface fragment of the vector area $\small d\bm{A}$ located at the point $\small \bm{p}$, the associated differential solid angle is
 
 $$ \tag{23a}
 	d\Omega(\bm{p})
