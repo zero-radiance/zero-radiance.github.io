@@ -732,7 +732,7 @@ $$
 
 The second equation required a minor modification: we had to reverse the refracted light direction because the microsurface is one-sided; refer to the discussion below Eqn. 2b for details.
 
-Comparison of Eqn. 18a with 4b, which serves as a definition of a BSDF, reveals that the domain of integration is not the same. Therefore, we must perform a change of variables from the microsurface normal to the direction of incidence. This process involves the determinant of the transformation called the *Jacobian*:
+Comparison of Eqn. 18a with 4b, which serves as a definition of a BSDF, reveals that the domain of integration is not the same. Therefore, we must perform a change of variables from the microsurface normal to the direction of incidence. This can be accomplished using the *Jacobian* determinant of the transformation:
 
 $$ \tag{18b}
 	J(\bm{m}, \bm{r}) = \frac{\partial \Omega(\bm{m})}{\partial \Omega(\bm{r})},
@@ -767,7 +767,7 @@ $$
 
 The Jacobian of Eqn. 18b describes the rate at which one solid angle changes relative to the other. The notation has been purposefully chosen to mimic the one-dimensional partial[^10] derivative $\small \partial x / \partial t$. Similarly, the one-dimensional change of variables $\small dx = (\partial x / \partial t) dt$ is completely analogous to
 
-[^10]: The solid angle derivative is partial because it implicitly depends on the view direction.
+[^10]: The derivative is partial because it implicitly depends on the view direction.
 
 $$ \tag{18d}
 	d\Omega(\bm{m})
@@ -803,7 +803,7 @@ $$ \tag{19c}
 	= \bm{i} \times \bm{j}.
 $$
 
-Eqn. 19b can then be expressed in terms of two linearly independent vectors:
+Clearly, Eqn. 19b is a sum of two linearly independent vectors:
 
 $$ \tag{19d}
 	d\bm{p} = \bm{i} dx + \bm{j} dy.
@@ -831,7 +831,9 @@ where we have made a simplifying assumption that the basis vectors are mutually 
 Now, let us perform a change of variables
 
 $$ \tag{20a}
-	\bm{p} = \bm{p}\big(x(s,t),y(s,t)\big).
+	x = x(s,t),
+	\quad
+	y = y(s,t).
 $$
 
 According to the chain rule,
@@ -853,7 +855,7 @@ $$ \tag{20c}
 	= \bm{i'} \times \bm{j'}.
 $$
 
-Eqn. 20b can thus be shortened to
+Eqn. 20b can thus be written as
 
 $$ \tag{20d}
 	d\bm{p} = \bm{i'} ds + \bm{j'} dt.
@@ -868,7 +870,7 @@ $$ \tag{20e}
 	= \bm{k'} ds dt.
 $$
 
-If we do not assume that the basis is orthonormal, the expression of the scalar differential area must account for the length of the basis vectors and the angle between them:
+If we do not assume that the transformed basis is orthonormal, the expression of the scalar differential area must account for the length of the basis vectors and the angle between them:
 
 $$ \tag{20f}
 	dA
@@ -885,48 +887,64 @@ $$ \tag{21}
 	\vert J \vert = \frac{dx dy}{ds dt} = \Vert \bm{i'} \times \bm{j'} \Vert.
 $$
 
-The Jacobian is also frequently used in volume integrals, where its absolute value corresponds to the ratio of the volumes of two parallelepipeds.
+The Jacobian is also frequently used in triple integrals, where its absolute value corresponds to the ratio of the volumes of two parallelepipeds.
 
-If the equations that relate the two sets of coordinates are available, the expression of the Jacobian can be determined algebraically. However, in our case, the geometric approach is both simpler and more insightful.
+Once the Eqn. 20a that relates the sets of coordinates has been specified, the expression of the Jacobian can be determined algebraically, by calculating the determinant of the matrix of partial derivatives. However, in our case, the geometric (e.i., coordinate-independent, basis-independent) approach is both simpler and more insightful.
 
----
+First, we must point out two obvious properties of the vector differential area. It remains unchanged if the surface is translated along a constant vector $\small \bm{q}$:
 
-$$
-	d\bm{A}(\lambda \bm{p}) = \lambda^2 d\bm{A}(\bm{p})
-$$
-
-$$
-	d\bm{A}(\bm{p} + \bm{q}) = d\bm{A}(\bm{p})
+$$ \tag{22a}
+	d\bm{A}(\bm{p} + \bm{q}) = d\bm{A}(\bm{p}).
 $$
 
+Furthermore, the area scales quadratically with the dimensions of the surface. For a constant $\small \lambda$,
 
-First of all, recall that, by definition, the solid angle subtended by an object is the surface area of its radial projection onto the unit sphere. If we consider an infinitesimal surface fragment of area $\small dA$ located at the point $\small \bm{p}$ and oriented perpendicular to the unit vector $\small \bm{m}$, then the associated differential solid angle is
+$$ \tag{22b}
+	d\bm{A}(\lambda \bm{p}) = \lambda^2 d\bm{A}(\bm{p}).
+$$
 
-$$ \tag{19a}
+These properties can be readily verified by substitution into Eqn. 19e or 20e.
+
+Now, recall that, by definition, the solid angle subtended by an object is the surface area of its projection onto the unit sphere. If we consider an infinitesimal surface fragment of the vector area $\small d\bm{A}$ located at the point $\small \bm{p}$, the associated differential solid angle is
+
+$$ \tag{23a}
 	d\Omega(\bm{p})
-	= \left\vert \frac{\bm{p}}{\Vert \bm{p} \Vert} \cdot \frac{d\bm{A}(\bm{p})}{\Vert \bm{p} \Vert^2} \right \vert
+	= \left\vert \frac{\bm{p}}{\Vert \bm{p} \Vert} \cdot \frac{d\bm{A}(\bm{p})}{\Vert \bm{p} \Vert^2} \right \vert.
 $$
 
-$$ \tag{19a}
-	d\Omega(\bm{i})
-	= \left\vert \frac{\bm{o}}{\Vert \bm{o} \Vert} \cdot \frac{d\bm{A}(\bm{o})}{\Vert \bm{o} \Vert^2} \right \vert = dA(\bm{o})
-$$
+As an angular quantity, it is scale-invariant:
 
-$$ \tag{19a}
+$$ \tag{23b}
 	d\Omega(\lambda \bm{p})
 	= \left\vert \frac{\lambda \bm{p}}{\Vert \lambda \bm{p} \Vert} \cdot \frac{d\bm{A}(\lambda \bm{p})}{\Vert \lambda \bm{p} \Vert^2} \right \vert
-	= d\Omega(\bm{p})
+	= d\Omega(\bm{p}).
 $$
 
-$$ \tag{19a}
+However, a radial projection is not translation-invariant:
+
+$$ \tag{23c}
 \begin{aligned}
 	d\Omega(\bm{p} + \bm{q})
 	&= \left\vert \frac{\bm{p} + \bm{q}}{\Vert \bm{p} + \bm{q} \Vert} \cdot \frac{d\bm{A}(\bm{p} + \bm{q})}{\Vert \bm{p} + \bm{q} \Vert^2} \right \vert
 	\cr
-	&= \left\vert \frac{\bm{p} + \bm{q}}{\Vert \bm{p} + \bm{q} \Vert} \cdot \frac{d\bm{A}(\bm{p})}{\Vert \bm{p} + \bm{q} \Vert^2} \right \vert
-	\cr
+	&= \left\vert \frac{\bm{p} + \bm{q}}{\Vert \bm{p} + \bm{q} \Vert} \cdot \frac{d\bm{A}(\bm{p})}{\Vert \bm{p} + \bm{q} \Vert^2} \right \vert.
 \end{aligned}
 $$
+
+We can utilize these geometric properties to find the expression of the Jacobian in Eqn. 18d. Taking $\small \bm{v}$ as a constant, substitution of Eqn. 13b into 23c yields
+
+$$ \tag{24a}
+	d\Omega(\bm{r} + \bm{v})
+	= \frac{\big\vert \bm{m} \cdot d\bm{A}(\bm{r}) \big\vert}{\Vert \bm{r} + \bm{v} \Vert^2}.
+$$
+
+Unfortunately, $\small \Vert \bm{r} + \bm{v} \Vert$ is not a constant, since it depends on $\small \bm{r}$.
+
+$$ \tag{24a}
+	d\bm{A}\big( (\bm{r} + \bm{v})/\Vert \bm{r} + \bm{v} \Vert \big)
+$$
+
+---
 
 $$ \tag{19a}
 \begin{aligned}
