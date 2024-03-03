@@ -905,6 +905,29 @@ $$
 
 These properties can be readily verified by substitution into Eqn. 19e or 20e.
 
+For a unit vector $\small \bm{m}$ and a non-constant $\small \lambda(\bm{m})$, the differential in the spherical coordinates is
+
+$$ \tag{22c}
+	d(\lambda \bm{m})
+	= \left( \frac{\partial \lambda}{\partial \theta} \bm{m} + \lambda \frac{\partial \bm{m}}{\partial \theta} \right) d\theta
+	+ \left( \frac{\partial \lambda}{\partial \phi} \bm{m} + \lambda \frac{\partial \bm{m}}{\partial \phi} \right) d\phi.
+$$
+
+All three vectors, $\small \bm{m}, \partial \bm{m} / \partial \theta, \text{and } \partial \bm{m} / \partial \phi$, are mutually orthogonal. Thus,
+
+$$ \tag{22d}
+\begin{aligned}
+	\bm{m} \cdot d\bm{A}(\lambda \bm{m})
+	&= \bm{m} \cdot \Bigg( \left( \frac{\partial \lambda}{\partial \theta} \bm{m} + \lambda \frac{\partial \bm{m}}{\partial \theta} \right)
+	\times \left( \frac{\partial \lambda}{\partial \phi} \bm{m} + \lambda \frac{\partial \bm{m}}{\partial \phi} \right) \Bigg) d\theta d\phi
+	\cr
+	&= \bm{m} \cdot \lambda^2 \left( \frac{\partial \bm{m}}{\partial \theta}
+	\times
+	\frac{\partial \bm{m}}{\partial \phi} \right) d\theta d\phi
+	= \bm{m} \cdot \lambda^2 d\bm{A}(\bm{m}).
+\end{aligned}
+$$
+
 Now, recall that, by definition, the solid angle subtended by an object is the surface area of its (radial) projection onto the unit sphere. If we consider an infinitesimal surface fragment of the vector area $\small d\bm{A}$ located at the point $\small \bm{p}$, the associated differential solid angle is
 
 $$ \tag{23a}
@@ -915,9 +938,9 @@ $$
 As an angular quantity, it is scale-invariant:
 
 $$ \tag{23b}
-	d\Omega(\lambda \bm{p})
-	= \left\vert \frac{\lambda \bm{p}}{\Vert \lambda \bm{p} \Vert} \cdot \frac{d\bm{A}(\lambda \bm{p})}{\Vert \lambda \bm{p} \Vert^2} \right \vert
-	= d\Omega(\bm{p}).
+	d\Omega(\lambda \bm{m})
+	= \left\vert \frac{\lambda \bm{m}}{\Vert \lambda \bm{m} \Vert} \cdot \frac{d\bm{A}(\lambda \bm{m})}{\Vert \lambda \bm{m} \Vert^2} \right \vert
+	= d\Omega(\bm{m}).
 $$
 
 However, a radial projection is not translation-invariant:
@@ -931,17 +954,25 @@ $$ \tag{23c}
 \end{aligned}
 $$
 
-We can utilize these geometric properties to find the expression of the Jacobian in Eqn. 18d. Taking $\small \bm{v}$ as a constant, substitution of Eqn. 13b into 23c yields
+We can utilize these geometric properties to find the expression of the Jacobian in Eqn. 18d. Taking $\small \bm{v}$ as a constant, substitution of Eqn. 13b into 23b and then 23c yields
 
 $$ \tag{24a}
-	d\Omega(\bm{r} + \bm{v})
+	d\Omega(\bm{m}) = d\Omega(\bm{r} + \bm{v})
 	= \frac{\big\vert \bm{m} \cdot d\bm{A}(\bm{r}) \big\vert}{\Vert \bm{r} + \bm{v} \Vert^2}.
 $$
 
-Unfortunately, $\small \Vert \bm{r} + \bm{v} \Vert$ is not a constant, since it depends on $\small \bm{r}$.
+Since $\small \bm{r}$ is confined to the surface of the unit sphere,
 
-$$ \tag{24a}
-	d\bm{A}\big( (\bm{r} + \bm{v})/\Vert \bm{r} + \bm{v} \Vert \big)
+$$ \tag{24b}
+	d\bm{A}(\bm{r}) = \bm{r} d\Omega(\bm{r}),
+$$
+
+and, therefore,
+
+$$ \tag{24c}
+	d\Omega(\bm{m})
+	= \big\vert J(\bm{m}, \bm{r}) \big\vert d\Omega(\bm{r})
+	= \frac{\vert \bm{m} \cdot \bm{r} \vert}{\Vert \bm{r} + \bm{v} \Vert^2} d\Omega(\bm{r}).
 $$
 
 ---
@@ -976,7 +1007,7 @@ $$
 
 ---
 
-Thus, Eqn. 18c is an area integral over the surface of a unit sphere. The Jacobian can then be interpreted as the ratio of two areas:
+Thus, Eqn. 18c is an area integral over the surface of the unit sphere. The Jacobian can then be interpreted as the ratio of two areas:
 
 $$ \tag{18b}
 	\big\vert J(\bm{m}, \bm{r}) \big\vert = \frac{\partial \Omega(\bm{m})}{\partial \Omega(\bm{r})},
