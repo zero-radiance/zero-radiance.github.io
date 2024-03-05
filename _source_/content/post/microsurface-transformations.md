@@ -20,7 +20,7 @@ In contrast, the surface fragment overlaid onto the macrosurface is called[^2] t
 
 [^2]: We use the superscript 2 to indicate that the surface is a two-dimensional manifold.
 
-Let $\small \bm{m}$ denote the unit normal vector of the microsurface. Since it may correspond to several distinct points on the microsurface, we must define[^3] $\small dA(\bm{m}) = D(\bm{m}) A d\Omega(\bm{m})$ as the differential area of the portion of the microsurface perpendicular to $\small \bm{m}$, where $\small d\Omega$ is the differential solid angle centered on $\small \bm{m}$, and $\small D$ is the *distribution of normals*[^4] (abbreviated as the *NDF*) associated with the microsurface. The domain of this function, along with the microsurface normals themselves, is typically restricted to the unit hemisphere $\small \mathbb{H^2}$ (with $\small \bm{n}$ serving as the zenith direction), which implies that $\small \mathbb{M^2}$ must be a height field. However, this restriction is not strictly necessary; we shall demonstrate that by letting the microsurface normals potentially cover the entire unit sphere $\small \mathbb{S^2}$.
+Let $\small \bm{m}$ denote the unit normal vector of the microsurface. Since it may correspond to several distinct points on the microsurface, we must define[^3] $\small dA(\bm{m}) = D(\bm{m}) A d\Omega(\bm{m})$ as the differential area of the portion of the microsurface perpendicular to $\small \bm{m}$, where $\small d\Omega$ is the differential solid angle centered on $\small \bm{m}$, and $\small D$ is the *distribution of normals*[^4] (abbreviated as the *NDF*) associated with the microsurface. The domain of this function, along with the microsurface normals themselves, is typically restricted to the unit hemisphere $\small \mathbb{H^2}$ (with $\small \bm{n}$ pointing at the zenith), which implies that $\small \mathbb{M^2}$ must be a height field. However, this restriction is not strictly necessary; we shall demonstrate that by letting the microsurface normals potentially cover the entire unit sphere $\small \mathbb{S^2}$.
 
 [^3]: If the microsurface is convex, one can interpret $\small DA$ as a Jacobian of the transformation from the surface to the unit hemisphere.
 
@@ -87,7 +87,7 @@ $$
 
 which obviously depends on the relative location of the microfacets. It is defined in terms of the dimensionless *masking function* $\small G_1(\bm{v}, \bm{m})$ that gives the fraction of the differential area $\small dA(\bm{m})$ of the portion of the microsurface perpendicular to $\small \bm{m}$ that happens to be visible along $\small \bm{v}$. In other words, it is the *average visibility* (along $\small \bm{v}$) of the microfacets with the normal $\small \bm{m}$. The masking function is closely related to the binary *visibility function* $\small V(\bm{v}, \bm{p})$ that outputs 0 if the point $\small \bm{p}$ is occluded along $\small \bm{v}$, and 1 otherwise. Both functions take *self-occlusion* into account: $\small V = G_1 = 0$ if $\small (\bm{v} \cdot \bm{m}) \le 0$. This subtle point helps us emphasize the geometric (e.i., coordinate-independent, basis-independent) nature of Eqn. 2.
 
-The masking and visibility functions possess an important property called *stretch invariance*, or, more generally, *invariance under linear transformations*. We have already seen that, in the context of the microfacet theory, a linearly transformed surface remains valid; however, unlike the NDF, the masking function is dimensionless: it only encodes visibility, and so it remains unaffected by a transformation of the coordinate axes. Of course, this means that the transformation must be applied to everything, including the view direction.
+The masking and visibility functions possess an important property called *stretch invariance*, or, more generally, *invariance under linear transformations*. We have already seen that, in the context of the microfacet theory, a linearly transformed surface remains valid; however, unlike the NDF, the masking function is dimensionless: it only encodes visibility, and so it remains unaffected by a transformation of the coordinate axes. Of course, this means that the transformation must be applied to everything, including the view vector $\small \bm{v}$.
 
 Eqn. 1 and 2 are closely related. For a valid microsurface, the values of the integrals are the same for $\small \bm{v} = \bm{n}$:
 
@@ -103,7 +103,7 @@ $$
 
 In the special case of a height field, $\small G_1(\bm{n}, \bm{m}) = 1$.
 
-For a continuous surface, *the visible projected area is greater or equal to the signed projected area*. This inequality stems from self-occlusion, which eliminates the (formerly negative) contribution of back-facing microfacets. The two types of projected areas coincide only if the view angle is sufficiently steep, or the microsurface -- sufficiently thin, so that the latter does not extend outside the volume swept by the macrosuface translated along the view direction. This leads to one of the key assumptions of the microfacet theory: *a microsurface must be infinitesimally thick*. This limitation is particularly apparent at grazing angles, and should be familiar to those who have practical experience with bump and normal mapping. Furthermore, since the signed projected areas of the microsurface and the macrosurface coincide, we can only allow the view angles that obey $\small (\bm{v} \cdot \bm{n}) \ge 0$. In other words, *a microsurface must be facing the observer*. Otherwise, we must reverse the signs of both $\small \bm{n}$ and $\small \bm{m}$, which will give generat a microsurface with different statistics. More specifically, while $D(-\bm{m})$ will give the correct number, the visibility will be different, which is particularly evident if you take a box and flip it upside down. For a tiling surface (such as a sawtooth), reversing the sign of $\small \bm{v}$, so that it points in the same hemisphere as $\small \bm{n}$, produces a reasonable approximation. It guarantees that self-occlusion is properly accounted for.
+For a continuous surface, *the visible projected area is greater or equal to the signed projected area*. This inequality stems from self-occlusion, which eliminates the (formerly negative) contribution of back-facing microfacets. The two types of projected areas coincide only if the view angle is sufficiently steep, or the microsurface -- sufficiently thin, so that the latter does not extend outside the volume swept by the macrosuface translated along the view vector. This leads to one of the key assumptions of the microfacet theory: *a microsurface must be infinitesimally thick*. This limitation is particularly apparent at grazing angles, and should be familiar to those who have practical experience with bump and normal mapping. Furthermore, since the signed projected areas of the microsurface and the macrosurface coincide, we can only allow the view angles that obey $\small (\bm{v} \cdot \bm{n}) > 0$. In other words, *a microsurface must be facing the observer*. Otherwise, we must reverse the signs of both $\small \bm{n}$ and $\small \bm{m}$, which will give generat a microsurface with different statistics. More specifically, while $D(-\bm{m})$ will give the correct number, the visibility will be different, which is particularly evident if you take a box and flip it upside down. For a tiling surface (such as a sawtooth), reversing the sign of $\small \bm{v}$, so that it points in the same hemisphere as $\small \bm{n}$, produces a reasonable approximation. It guarantees that self-occlusion is properly accounted for.
 
 With the assumption (that all projected surface areas are the same) in place, we can combine Eqn. 1a and 2a into
 
@@ -213,7 +213,7 @@ $$ \tag{4c}
 \end{aligned}
 $$
 
-where $\small \eta_v$ and $\small \eta_l$ are the real[^9] indices of refraction (the *IORs*) associated with the directions of exitance $\small (\bm{v})$ and incidence $\small (\bm{l})$, respectively. In particular, reciprocity is a direct consequence of the law of refraction (also valid for reflection)
+where $\small \eta_v$ and $\small \eta_l$ are the real[^9] indices of refraction (the *IORs*) associated with the directions of exitance (along the view vector $\small \bm{v}$) and incidence (along the light vector $\small \bm{l}$), respectively. In particular, reciprocity is a direct consequence of the law of refraction (also valid for reflection)
 
 $$ \tag{5a}
 	\eta_v \Vert \bm{v} \times \bm{n} \Vert = \eta_l \Vert \bm{l} \times \bm{n} \Vert
@@ -246,7 +246,7 @@ $$
 
 valid for any function $\small f: \mathbb{S^2} \to \mathbb{R}$.
 
-Now, according to the law of reflection, the angles of incidence and exitance must be the same:
+Now, according to the law of reflection, the view and light angles must be the same:
 
 $$ \tag{7a}
 	\sin{\theta_v} = \Vert \bm{v} \times \bm{n} \Vert = \Vert \bm{l} \times \bm{n} \Vert,
@@ -305,7 +305,7 @@ $$ \tag{8b}
 \end{aligned}
 $$
 
-The angle of refraction (or transmission) $\small \theta_t$ can be determined from the angle of exitance $\small \theta_v$ and the relative IOR $\small \eta_v/\eta_t$ using the (already familiar) law of refraction and basic trigonometry:
+The angle of refraction (or transmission) $\small \theta_t$ can be determined from the view angle $\small \theta_v$ and the relative IOR $\small \eta_v/\eta_t$ using the (already familiar) law of refraction and basic trigonometry:
 
 $$ \tag{8c}
 	\sin{\theta_t} = \frac{\eta_v}{\eta_t} \sin{\theta_v},
@@ -380,7 +380,7 @@ $$
 
 Since Eqn. 7d and 9e sum up to 1, this demonstrates that the whole BSDF is energy conserving.
 
-We can extend this plain BSDF to a microfacet model of a rough surface by treating the latter as locally (rather than globally) planar and smooth. The amount of radiance scattered by the microsurface can then be expressed as a weighted average of the contributions of its visible microfacets. To proceed further, we must recall that, by definition, the radiance is the amount of power moving in a certain direction, per unit solid angle associated with this direction, per unit area perpendicular to this direction. If the source of light is very small (or very far away), it will appear point-like, and the variation of the view direction across its surface can be safely neglected. The same cannot be said for the visible projected area, which must be properly normalized (or we would calculate the intensity instead of the radiance). Thus,
+We can extend this plain BSDF to a microfacet model of a rough surface by treating the latter as locally (rather than globally) planar and smooth. The amount of radiance scattered by the microsurface can then be expressed as a weighted average of the contributions of its visible microfacets. To proceed further, we must recall that, by definition, the radiance is the amount of power moving in a certain direction, per unit solid angle associated with this direction, per unit area perpendicular to this direction. If the source of light is very small (or very far away), it will appear point-like, and the variation of the view vector across its surface can be safely neglected. The same cannot be said for the visible projected area, which must be properly normalized (or we would calculate the intensity instead of the radiance). Thus,
 
 $$ \tag{11a}
 	L(\bm{v}) =
@@ -453,7 +453,7 @@ $$ \tag{13a}
 	\bm{r} = \bm{R}(\bm{v}, \bm{m}) = -\bm{v} + 2 (\bm{v} \cdot \bm{m}) \bm{m}
 $$
 
-is the reflected view vector that points in the direction of the incident light.
+is the reflected view vector that points along the the direction of incidence.
 
 Now, according to the law of reflection, $\small \vert \bm{r} \cdot \bm{m} \vert = \vert \bm{v} \cdot \bm{m} \vert = \Vert \bm{r} + \bm{v} \Vert / 2$. Thus, we can solve Eqn. 13a for $\small \bm{m}$ if we recall the microfacet theory assumes that $\small (\bm{v} \cdot \bm{m}) > 0 \text{ and } (\bm{v} \cdot \bm{n}) > 0$ (see the discussion of Eqn. 2):
 
@@ -557,7 +557,7 @@ Note that the denominator is positive only if $\small \eta_t > \eta_v$, which ha
 
 Let us return to Eqn. 12 and 14. Upon close examination, the visibility terms (and the vector differential area $\small \bm{m} dA$) are the only ones that explicitly depend on the position $\small \bm{p}$. Intuitively, that is because visibility is a non-local property -- it connects a point to the entire surface.
 
-We can evaluate both of these equations numerically by breaking the microsurface into the individual microfacets and sorting the latter by their orientation. For a fixed view direction $\small \bm{v}$, a group of microfacets with the same normal $\bm{m}$ will also share the values of $\small F$ and $\small L$. During the final step, we must calculate the total visible area of the microfacets within each group.
+We can evaluate both of these equations numerically by breaking the microsurface into the individual microfacets and sorting the latter by their orientation. For a fixed view vector $\small \bm{v}$, a group of microfacets with the same normal $\bm{m}$ will also share the values of $\small F$ and $\small L$. During the final step, we must calculate the total visible area of the microfacets within each group.
 
 The statistical method of evaluation of Eqn. 12 and 14 mirrors Eqn. 2a. We must introduce the dimensionless *shadowing-masking function* $\small G_2(\bm{v}, \bm{m}, \bm{l})$ that gives the fraction of the differential area $\small dA(\bm{m})$ of the portion of the microsurface perpendicular to $\small \bm{m}$ that happens to be visible along both $\small \bm{v} \text{ and } \bm{l}$. In other words, it is the *average visibility* (along both $\small \bm{l} \text{ and } \bm{v}$) of the microfacets with the normal $\small \bm{m}$:
 
@@ -658,7 +658,7 @@ $$
 	}
 $$
 
-The combined occlusion value is always either greater than or equal to the occlusion in any given direction. In particular, when the view and light directions are aligned, overestimation leads to the loss of the so-called "hotspot effect":
+The combined occlusion value is always either greater than or equal to the occlusion in any given direction. In particular, when the view and light vectors are aligned, overestimation leads to the loss of the so-called "hotspot effect":
 
 $$
 	W_2(\bm{v}, \bm{v})
@@ -744,7 +744,7 @@ $$ \tag{18a}
 \end{aligned}
 $$
 
-The second equation required a minor modification: we had to reverse the refracted light direction because the microsurface is one-sided; refer to the discussion below Eqn. 2b for details.
+The second equation required a minor modification: we had to reverse the refracted view vector $\small \bm{t}$ because the microsurface is one-sided; refer to the discussion below Eqn. 2b for details.
 
 Comparison of Eqn. 18a with 4b, which serves as a definition of a BSDF, reveals that the domain of integration is not the same. Therefore, we must perform a change of variables from the microsurface normal to the direction of incidence. This can be accomplished using the *Jacobian* determinant of the transformation:
 
@@ -781,7 +781,7 @@ $$
 
 The Jacobian of Eqn. 18b describes the rate at which one solid angle changes relative to the other. The notation has been purposefully chosen to mimic the one-dimensional partial[^10] derivative $\small \partial x / \partial t$. Similarly, the one-dimensional change of variables $\small dx = (\partial x / \partial t) dt$ is completely analogous to
 
-[^10]: The derivative is partial because it implicitly depends on the view direction.
+[^10]: The derivative is partial because it implicitly depends on the view vector.
 
 $$ \tag{18d}
 	d\Omega(\bm{m})
@@ -1042,6 +1042,16 @@ Recall that the microfacet theory requires[^12] $\small (\bm{v} \cdot \bm{n}) \g
 
 [^12]: Note that this does not imply the requirement $\small (\bm{r} \cdot \bm{n}) \ge 0$.
 
+
+---
+
+Naming convention:
+
+view vector, light vector
+
+view angle, light angle
+
+direction of incidence, direction of exitance
 
 ---
 
