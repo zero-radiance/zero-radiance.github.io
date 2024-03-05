@@ -483,7 +483,7 @@ $$
 
 is the refracted (or the transmitted) view vector. We must caution that, in certain cases, the value of the expression inside the square root is a negative number. This invalidates the refracted direction and implies that the light has been *totally internally reflected* by the surface.
 
-Eqn. 15a can be derived as follows. Let
+Eqn. 15a can be derived as follows. Let us define two unit vectors
 
 $$ \tag{15b}
 \begin{aligned}
@@ -519,9 +519,23 @@ $$ \tag{15d}
 	&= \sin{\theta_v} \bm{x} + \cos{\theta_v} \bm{y},
 	\cr
 	\bm{t}
-	&= -(\sin{\theta_t} \bm{x} + \cos{\theta_t} \bm{y}).
+	&= -(\sin{\theta_t} \bm{x} + \cos{\theta_t} \bm{y}),
 \end{aligned}
 $$
+
+where
+
+$$ \tag{15dd}
+\begin{aligned}
+	\sin{\theta_t}
+	&= \Vert \bm{t} \times \bm{m} \Vert \ge 0,
+	\cr
+	\cos{\theta_t}
+	&= \vert \bm{t} \cdot \bm{m} \vert \ge 0,
+\end{aligned}
+$$
+
+by convention.
 
 Application of the law of refraction given by Eqn. 8c readily yields Eqn. 15a. This method has the following geometric interpretation: we reverse the direction of $\small \bm{v}$, shorten it by a factor of $\small \eta_v / \eta_t$, and stretch it along $\small \bm{m}$ until its length reaches the value of 1.
 
@@ -747,7 +761,7 @@ $$ \tag{18c}
 	L_r(\bm{v})
 	&=
 	\frac{\bm{v} \cdot \int_{\bm{r} \in \mathbb{S^2}}
-	\bm{m}(\bm{v}, \bm{r})
+	\bm{m}
 	F(\theta_v, \eta_v/\eta_t) L(\bm{r})
 	G_2(\bm{v}, \bm{m}, \bm{r})
 	D(\bm{m}) \big\vert J(\bm{m}, \bm{r}) \big\vert d\Omega(\bm{r})}
@@ -757,7 +771,7 @@ $$ \tag{18c}
 	&=
 	\frac{\eta_t^2}{\eta_v^2}
 	\frac{\bm{v} \cdot \int_{\bm{t} \in \mathbb{S^2}}
-	\bm{m}(\bm{v}, \bm{t})
+	\bm{m}
 	\big( 1 - F(\theta_v, \eta_v/\eta_t) \big) L(\bm{t})
 	G_2(\bm{v}, \bm{m}, -\bm{t})
 	D(\bm{m}) \big\vert J(\bm{m}, \bm{t}) \big\vert d\Omega(\bm{t})}
@@ -903,9 +917,7 @@ $$ \tag{22b}
 	d\bm{A}(\lambda \bm{p}) = \lambda^2 d\bm{A}(\bm{p}).
 $$
 
-These properties can be readily verified by substitution into Eqn. 19e or 20e.
-
-For a unit vector $\small \bm{m}$ and a non-constant $\small \lambda(\bm{m})$, the differential in the spherical coordinates is
+For a unit vector $\small \bm{m}$ and a variable $\small \lambda(\bm{m})$, the total differential in the spherical coordinates is
 
 $$ \tag{22c}
 	d(\lambda \bm{m})
@@ -935,9 +947,15 @@ $$ \tag{23a}
 	= \left\vert \frac{\bm{p}}{\Vert \bm{p} \Vert} \cdot \frac{d\bm{A}(\bm{p})}{\Vert \bm{p} \Vert^2} \right \vert.
 $$
 
-As an angular quantity, it is scale-invariant:
+In particular, for an area element located on the surface of a unit sphere,
 
 $$ \tag{23b}
+	d\bm{A}(\bm{m}) = \bm{m} d\Omega(\bm{m}).
+$$
+
+As an angular quantity, the solid angle is is scale-invariant:
+
+$$ \tag{23c}
 	d\Omega(\lambda \bm{m})
 	= \left\vert \frac{\lambda \bm{m}}{\Vert \lambda \bm{m} \Vert} \cdot \frac{d\bm{A}(\lambda \bm{m})}{\Vert \lambda \bm{m} \Vert^2} \right \vert
 	= d\Omega(\bm{m}).
@@ -945,7 +963,7 @@ $$
 
 However, a radial projection is not translation-invariant:
 
-$$ \tag{23c}
+$$ \tag{23d}
 \begin{aligned}
 	d\Omega(\bm{p} + \bm{q})
 	&= \left\vert \frac{\bm{p} + \bm{q}}{\Vert \bm{p} + \bm{q} \Vert} \cdot \frac{d\bm{A}(\bm{p} + \bm{q})}{\Vert \bm{p} + \bm{q} \Vert^2} \right \vert
@@ -954,104 +972,76 @@ $$ \tag{23c}
 \end{aligned}
 $$
 
-We can utilize these geometric properties to find the expression of the Jacobian in Eqn. 18d. Taking $\small \bm{v}$ as a constant, substitution of Eqn. 13b into 23b and then 23c yields
+We can utilize these geometric properties to find the expression of the Jacobian in Eqn. 18d. Taking $\small \bm{v}$ as a constant, substitution of Eqn. 13b into 23a and utilization of Eqn. 23b-23d yields
 
 $$ \tag{24a}
-	d\Omega(\bm{m}) = d\Omega(\bm{r} + \bm{v})
-	= \frac{\big\vert \bm{m} \cdot d\bm{A}(\bm{r}) \big\vert}{\Vert \bm{r} + \bm{v} \Vert^2}.
-$$
-
-Since $\small \bm{r}$ is confined to the surface of the unit sphere,
-
-$$ \tag{24b}
-	d\bm{A}(\bm{r}) = \bm{r} d\Omega(\bm{r}),
-$$
-
-and, therefore,
-
-$$ \tag{24c}
 	d\Omega(\bm{m})
-	= \big\vert J(\bm{m}, \bm{r}) \big\vert d\Omega(\bm{r})
+	= d\Omega(\bm{r} + \bm{v})
+	= \frac{\big\vert \bm{m} \cdot d\bm{A}(\bm{r}) \big\vert}{\Vert \bm{r} + \bm{v} \Vert^2}
 	= \frac{\vert \bm{m} \cdot \bm{r} \vert}{\Vert \bm{r} + \bm{v} \Vert^2} d\Omega(\bm{r}).
 $$
 
----
+Thus, according to the definitions of the absolute value of the Jacobian (Eqn. 18d) and the law of reflection (Eqn. 7a),
 
-$$ \tag{19a}
-\begin{aligned}
-	d\Omega(\bm{i} + \bm{o})
-	&= \left\vert \frac{\bm{i} + \bm{o}}{\Vert \bm{i} + \bm{o} \Vert} \cdot \frac{d\bm{A}(\bm{o})}{\Vert \bm{i} + \bm{o} \Vert^2} \right \vert
-	\cr
-	&= \left\vert \bm{h} \cdot \frac{\bm{o} dA(\bm{o})}{\Vert \bm{i} + \bm{o} \Vert^2} \right \vert
-	\cr
-	&= \frac{\vert \bm{h} \cdot \bm{o} \vert}{\Vert \bm{i} + \bm{o} \Vert^2} \ d\Omega(\bm{o})
-	\cr
-\end{aligned}
+$$ \tag{24b}
+	\big\vert J(\bm{m}, \bm{r}) \big\vert
+	= \frac{\vert \bm{r} \cdot \bm{m} \vert}{\Vert \bm{r} + \bm{v} \Vert^2}
+	= \frac{1}{4 |\bm{r} \cdot \bm{m}|}.
 $$
 
-$$ \tag{19a}
-\begin{aligned}
-	d\Omega(-\eta_i \bm{i} - \eta_o \bm{o})
-	&= \left\vert \frac{-\eta_i \bm{i} - \eta_o \bm{o}}{\Vert -\eta_i \bm{i} - \eta_o \bm{o} \Vert} \cdot \frac{d\bm{A}(-\eta_i \bm{i} - \eta_o \bm{o})}{\Vert -\eta_i \bm{i} - \eta_o \bm{o} \Vert^2} \right \vert
-	\cr
-	&= \left\vert \bm{h} \cdot \frac{\eta_o^2 \bm{o} dA(\bm{o})}{\Vert -\eta_i \bm{i} - \eta_o \bm{o} \Vert^2} \right \vert
-\end{aligned}
-$$
+Similarly, we can use Eqn. 15f to show that
 
----
-
-$$ \tag{19a}
+$$ \tag{25a}
 	d\Omega(\bm{m})
-	= \sin{\theta_m} d\theta_m d\phi_m.
+	= d\Omega(\eta_v \bm{v} + \eta_t \bm{t})
+	= \frac{\big\vert \bm{m} \cdot d\bm{A}(\eta_t \bm{t}) \big\vert}{\Vert \eta_v \bm{v} + \eta_t \bm{t} \Vert^2}
+	= \frac{\eta_t^2 \vert \bm{m} \cdot \bm{t} \vert}{\Vert \eta_v \bm{v} + \eta_t \bm{t} \Vert^2} d\Omega(\bm{t}).
 $$
 
----
+Therefore, according to the law of refraction (see Eqn. 8c and 15c-15f),
 
-Thus, Eqn. 18c is an area integral over the surface of the unit sphere. The Jacobian can then be interpreted as the ratio of two areas:
-
-$$ \tag{18b}
-	\big\vert J(\bm{m}, \bm{r}) \big\vert = \frac{\partial \Omega(\bm{m})}{\partial \Omega(\bm{r})},
-	\quad
-	\big\vert J(\bm{m}, \bm{t}) \big\vert = \frac{\partial \Omega(\bm{m})}{\partial \Omega(\bm{t})}.
+$$ \tag{25b}
+\begin{aligned}
+	\big\vert J(\bm{m}, \bm{t}) \big\vert
+	&= \frac{\eta_t^2 \vert \bm{t} \cdot \bm{m} \vert}{\Vert \eta_v \bm{v} + \eta_t \bm{t} \Vert^2}
+	\cr
+	&= \frac{\eta_t^2 \vert \bm{t} \cdot \bm{m} \vert}{\Vert \eta_t \cos{\theta_t} - \eta_v \cos{\theta_v} \Vert^2}
+	\cr
+	&= \frac{\eta_t^2 \vert \bm{t} \cdot \bm{m} \vert}{\big( \eta_t (\bm{t} \cdot \bm{m}) + \eta_v (\bm{v} \cdot \bm{m}) \big)^2}
+	\cr
+	&= \frac{\eta_t^2 \vert \bm{t} \cdot \bm{m} \vert}{\left( \eta_t (\bm{t} \cdot \bm{m}) + \sqrt{\eta_v^2 - \eta_t^2 \Vert \bm{t} \times \bm{m} \Vert^2 } \right)^2}.
+\end{aligned}
 $$
 
+We have finally reached the point where we have all the parts required for assembly of a microfacet BSDF. Let us substitute Eqn. 24b and 25b into Eqn. 18c:
 
-
----
-
-$$ \tag{w1}
-	J(\bm{m}, \bm{r}) = \frac{1}{4 (\bm{m} \cdot \bm{r})} = \frac{1}{4 (\bm{m} \cdot \bm{v})}.
-$$
-
-$$ \tag{w2}
+$$ \tag{26a}
 \begin{aligned}
 	L_r(\bm{v})
 	&=
 	\frac{\int_{\bm{r} \in \mathbb{S^2}}
+	(\bm{v} \cdot \bm{m})
 	F(\theta_v, \eta_v/\eta_t) L(\bm{r})
 	G_2(\bm{v}, \bm{m}, \bm{r})
-	D(\bm{m}) d\Omega_n(\bm{r})}
-	{4 (\bm{v} \cdot \bm{n}) (\bm{r} \cdot \bm{n})},
-\end{aligned}
-$$
-
-$$ \tag{w3}
-	J(\bm{m}, \bm{t}) = \frac{\eta_t^2 (\bm{m} \cdot \bm{t})}{(\eta_v (\bm{v} \cdot \bm{m}) + \eta_t (\bm{t} \cdot \bm{m}))^2}.
-$$
-
-$$ \tag{w4}
-\begin{aligned}
+	D(\bm{m})  d\Omega(\bm{r})}
+	{4 |\bm{r} \cdot \bm{m}| (\bm{v} \cdot \bm{n})},
+	\cr
 	L_t(\bm{v})
 	&=
-	\frac{\eta_t^2}{\eta_v^2}
-	\frac{\bm{v} \cdot \int_{\bm{t} \in \mathbb{S^2}}
-	\bm{m}
+	\frac{\eta_t^4}{\eta_v^2}
+	\frac{\int_{\bm{t} \in \mathbb{S^2}}
+	(\bm{v} \cdot \bm{m})
 	\big( 1 - F(\theta_v, \eta_v/\eta_t) \big) L(\bm{t})
 	G_2(\bm{v}, \bm{m}, -\bm{t})
-	D(\bm{m}) \big\vert \eta_t^2 (\bm{m} \cdot \bm{t}) \big\vert d\Omega(\bm{t})}
-	{(\bm{v} \cdot \bm{n})(\eta_v (\bm{v} \cdot \bm{m}) + \eta_t (\bm{t} \cdot \bm{m}))^2}.
+	D(\bm{m}) |\bm{t} \cdot \bm{m}| d\Omega(\bm{t})}
+	{\big( \eta_t (\bm{t} \cdot \bm{m}) + \eta_v (\bm{v} \cdot \bm{m}) \big)^2 (\bm{v} \cdot \bm{n})}.
 \end{aligned}
 $$
+
+Recall that the microfacet theory requires[^12] $\small (\bm{v} \cdot \bm{n}) \ge 0$. In addition, due to self-occlusion, $\small (\bm{v} \cdot \bm{m}) \ge 0 \text{, } (\bm{r} \cdot \bm{m}) \ge 0, \text{ and } (\bm{t} \cdot \bm{m}) \le 0$. Furthermore, $\small \bm{r} \text{ and } \bm{v}$ must obey the law of reflection: $\small (\bm{r} \cdot \bm{m}) = (\bm{v} \cdot \bm{m})$...
+
+[^12]: Note that this does not imply the requirement $\small (\bm{r} \cdot \bm{n}) \ge 0$.
+
 
 ---
 
