@@ -746,7 +746,7 @@ $$ \tag{18a}
 \end{aligned}
 $$
 
-The second equation required a minor modification: we had to reverse the refracted view vector $\small \bm{t}$ because the microsurface is one-sided; refer to the discussion below Eqn. 2b for details.
+The second equation required a minor modification: we had to reverse the refracted view vector $\small \bm{t}$ because the microsurface is one-sided; refer to the discussion below Eqn. 2b for details. This formulation is non-reciprocal: an equivalent (proper but verbose) expression is $\small G_2(\mathrm{sgn}(\bm{n} \cdot \bm{v}) \bm{v}, \bm{m}, \mathrm{sgn}(\bm{n} \cdot \bm{t}) \bm{t})$.
 
 Comparison of Eqn. 18a with 4b, which serves as a definition of a BSDF, reveals that the domain of integration is not the same. Therefore, we must perform a change of variables from the microsurface normal to the direction of incidence. This can be accomplished using the *Jacobian* determinant of the transformation:
 
@@ -783,7 +783,7 @@ $$
 
 The Jacobian of Eqn. 18b describes the rate at which one solid angle changes relative to the other. The notation has been purposefully chosen to mimic the one-dimensional partial[^10] derivative $\small \partial x / \partial t$. Similarly, the one-dimensional change of variables $\small dx = (\partial x / \partial t) dt$ is completely analogous to
 
-[^10]: The derivative is partial because it implicitly depends on the view vector.
+[^10]: The derivative is partial because the microsurface normal implicitly depends on the view vector.
 
 $$ \tag{18d}
 	d\Omega(\bm{m})
@@ -1036,18 +1036,86 @@ $$ \tag{26a}
 	\big( 1 - F(\theta_v, \eta_v/\eta_t) \big) L(\bm{t})
 	G_2(\bm{v}, \bm{m}, -\bm{t})
 	D(\bm{m}) |\bm{t} \cdot \bm{m}| d\Omega(\bm{t})}
-	{\big( \eta_t (\bm{t} \cdot \bm{m}) + \eta_v (\bm{v} \cdot \bm{m}) \big)^2 (\bm{v} \cdot \bm{n})}.
+	{\big( \eta_v (\bm{v} \cdot \bm{m}) + \eta_t (\bm{t} \cdot \bm{m}) \big)^2 (\bm{v} \cdot \bm{n})}.
 \end{aligned}
 $$
 
-Recall that the microfacet theory requires[^12] $\small (\bm{v} \cdot \bm{n}) \ge 0$. In addition, due to self-occlusion, $\small (\bm{v} \cdot \bm{m}) \ge 0 \text{, } (\bm{r} \cdot \bm{m}) \ge 0, \text{ and } (\bm{t} \cdot \bm{m}) \le 0$. Furthermore, $\small \bm{r} \text{ and } \bm{v}$ must obey the law of reflection: $\small (\bm{r} \cdot \bm{m}) = (\bm{v} \cdot \bm{m})$...
+Recall that the microfacet theory requires $\small (\bm{v} \cdot \bm{n}) > 0$. In addition, the single scattering approximation permits us to neglect the directions of incidence that fail to satisfy either $\small (\bm{r} \cdot \bm{n}) > 0 \text{ or } (\bm{t} \cdot \bm{n}) < 0$. Finally, due to the law of reflection and self-occlusion, $\small (\bm{v} \cdot \bm{m}) = (\bm{r} \cdot \bm{m}) > 0 \text{ and } (\bm{t} \cdot \bm{m}) < 0$. We may use these properties to simplify and rearrange Eqn. 26a:
 
-[^12]: Note that this does not imply the requirement $\small (\bm{r} \cdot \bm{n}) \ge 0$.
+$$ \tag{26b}
+\begin{aligned}
+	L_r(\bm{v})
+	&=
+	\frac{\int_{\bm{r} \in \mathbb{H_{+}^2}}
+	F(\theta_v, \eta_v/\eta_t) L(\bm{r})
+	G_2(\bm{v}, \bm{m}, \bm{r})
+	D(\bm{m}) |\bm{r} \cdot \bm{n}| d\Omega(\bm{r})}
+	{4 (\bm{v} \cdot \bm{n}) (\bm{r} \cdot \bm{n})},
+	\cr
+	L_t(\bm{v})
+	&=
+	\frac{\eta_t^4}{\eta_v^2}
+	\frac{\int_{\bm{t} \in \mathbb{H_{-}^2}}
+	(\bm{v} \cdot \bm{m}) (\bm{t} \cdot \bm{m})
+	\big( 1 - F(\theta_v, \eta_v/\eta_t) \big) L(\bm{t})
+	G_2(\bm{v}, \bm{m}, -\bm{t})
+	D(\bm{m}) |\bm{t} \cdot \bm{n}| d\Omega(\bm{t})}
+	{\big( \eta_v (\bm{v} \cdot \bm{m}) + \eta_t (\bm{t} \cdot \bm{m}) \big)^2 (\bm{v} \cdot \bm{n}) (\bm{t} \cdot \bm{n})}.
+\end{aligned}
+$$
 
+To facilitate comparison with Eqn. 4b, we shall utilize the projected solid angle notation:
 
----
+$$ \tag{26c}
+\begin{aligned}
+	L_r(\bm{v})
+	&=
+	\frac{\int_{\bm{r} \in \mathbb{H_{+}^2}}
+	F(\theta_v, \eta_v/\eta_t) L(\bm{r})
+	G_2(\bm{v}, \bm{m}, \bm{r})
+	D(\bm{m}) d\Omega_n(\bm{r})}
+	{4 (\bm{v} \cdot \bm{n}) (\bm{r} \cdot \bm{n})},
+	\cr
+	L_t(\bm{v})
+	&=
+	\frac{\eta_t^4}{\eta_v^2}
+	\frac{\int_{\bm{t} \in \mathbb{H_{-}^2}}
+	(\bm{v} \cdot \bm{m}) (\bm{t} \cdot \bm{m})
+	\big( 1 - F(\theta_v, \eta_v/\eta_t) \big) L(\bm{t})
+	G_2(\bm{v}, \bm{m}, -\bm{t})
+	D(\bm{m}) d\Omega_n(\bm{t})}
+	{\big( \eta_v (\bm{v} \cdot \bm{m}) + \eta_t (\bm{t} \cdot \bm{m}) \big)^2 (\bm{v} \cdot \bm{n}) (\bm{t} \cdot \bm{n})},
+\end{aligned}
+$$
 
-Naming convention:
+which makes extracting the expressions of the BRDF and the BTDF particularly easy:
+
+$$ \tag{26d}
+\begin{aligned}
+	f_r(\bm{v}, \bm{n}, \bm{l})
+	&=
+	\frac{
+	F(\theta_v, \eta_v/\eta_t))
+	G_2(\bm{v}, \bm{m}, \bm{l})
+	D(\bm{m})}
+	{4 (\bm{v} \cdot \bm{n}) (\bm{l} \cdot \bm{n})},
+	\cr
+	f_t(\bm{v}, \bm{n}, \bm{l})
+	&=
+	\frac{\eta_l^4}{\eta_v^2}
+	\frac{(\bm{v} \cdot \bm{m}) (\bm{l} \cdot \bm{m})}
+	{\big( \eta_v (\bm{v} \cdot \bm{m}) + \eta_l (\bm{l} \cdot \bm{m}) \big)^2}
+	\frac{
+	\big( 1 - F(\theta_v, \eta_v/\eta_t) \big)
+	G_2(\bm{v}, \bm{m}, -\bm{l})
+	D(\bm{m})}
+	{ (\bm{v} \cdot \bm{n}) (\bm{l} \cdot \bm{n})}.
+\end{aligned}
+$$
+
+This concludes our derivation of the microfacet BSDF.
+
+## Naming convention:
 
 view vector, light vector
 
@@ -1055,9 +1123,9 @@ view angle, light angle
 
 direction of incidence, direction of exitance
 
----
-
 ## Acknowledgements
+
+...
 
 ## References and Suggestions for Further Reading
 
