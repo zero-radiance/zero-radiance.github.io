@@ -416,7 +416,7 @@ $$ \tag{11c}
 	f_s(\bm{v}, \bm{m}(\bm{p}), \bm{l}) L(\bm{l}, \bm{p}) d\Omega_m(\bm{l}).
 $$
 
-Unfortunately, Eqn. 11c is recursive. In our case, this means that light scattered by a microfacet can be used to illuminate another in a process known as *multiple scattering*. For simplicity (and at the cost of correctness), when building microfacet models, this effect is often neglected, with only the distant illumination taken into account:
+Unfortunately, Eqn. 11c is recursive. In our case, this means that light scattered by a microfacet can be used to illuminate another in a process known as *multiple scattering*. For simplicity (and at the cost of correctness), when building microfacet models, this effect is often neglected, with only the distant illumination (and, thus, *single scattering*) taken into account:
 
 $$ \tag{11d}
 	L(\bm{v}, \bm{p}) \approx
@@ -455,11 +455,13 @@ $$
 
 is the reflected view vector that points along the the direction of incidence.
 
-Now, according to the law of reflection, $\small \vert \bm{r} \cdot \bm{m} \vert = \vert \bm{v} \cdot \bm{m} \vert = \Vert \bm{r} + \bm{v} \Vert / 2$. Thus, we can solve Eqn. 13a for $\small \bm{m}$ if we recall the microfacet theory assumes that $\small (\bm{v} \cdot \bm{m}) > 0 \text{ and } (\bm{v} \cdot \bm{n}) > 0$ (see the discussion of Eqn. 2):
+Now, according to the law of reflection, $\small \vert \bm{r} \cdot \bm{m} \vert = \vert \bm{v} \cdot \bm{m} \vert = \Vert \bm{r} + \bm{v} \Vert / 2$. Thus, we can solve Eqn. 13a for $\small \bm{m}$ if we recall that $\small (\bm{v} \cdot \bm{m}) > 0$ due to self-occlusion:
 
 $$ \tag{13b}
 	\bm{m} = \frac{\bm{r} + \bm{v}}{\Vert \bm{r} + \bm{v} \Vert}.
 $$
+
+In the absence of multiple scattering, we only consider distant sources of illumination; those located in the lower hemisphere are guaranteed to be occluded by the microsurface, which reduces the set of potentially useful directions of incidence to those with $\small (\bm{r} \cdot \bm{n}) > 0$.
 
 The transmission component of a microfacet BSDF can be defined analogously:
 
@@ -539,7 +541,7 @@ by convention.
 
 Application of the law of refraction given by Eqn. 8c readily yields Eqn. 15a. This method has the following geometric interpretation: we reverse the direction of $\small \bm{v}$, shorten it by a factor of $\small \eta_v / \eta_t$, and stretch it along $\small \bm{m}$ until its length reaches the value of 1.
 
-Eqn. 15d can be solved for $\small \bm{m}$ provided $\small (\bm{v} \cdot \bm{m}) > 0 \text{ and } (\bm{v} \cdot \bm{n}) > 0$. Then $\small \bm{y} = \bm{m}$, and we can eliminate $\small \bm{x}$ by rescaling $\small \bm{t}$ by a factor of $\small \sin{\theta_v} / \sin{\theta_t}$:
+Eqn. 15d can be solved for $\small \bm{m}$ provided $\small (\bm{v} \cdot \bm{m}) > 0$. Then $\small \bm{y} = \bm{m}$, and we can eliminate $\small \bm{x}$ by rescaling $\small \bm{t}$ by a factor of $\small \sin{\theta_v} / \sin{\theta_t}$:
 
 $$ \tag{15e}
 	\bm{v} + \frac{\sin{\theta_v}}{\sin{\theta_t}} \bm{t}
@@ -553,7 +555,7 @@ $$ \tag{15f}
 	\frac{-(\eta_v \bm{v} + \eta_t \bm{t})}{\eta_t \cos{\theta_t} - \eta_v \cos{\theta_v}}.
 $$
 
-Note that the denominator is positive only if $\small \eta_t > \eta_v$, which has an obvious effect on the direction of $\small \bm{m}$.
+Note that the denominator is positive only if $\small \eta_t > \eta_v$, which has an obvious effect on the direction of $\small \bm{m}$. The latter is such that $\small (\bm{v} \cdot \bm{m}) > 0 \text{ while } (\bm{t} \cdot \bm{m}) < 0$. As for the direction of incidence, distant light sources are always occluded by the microsurface unless $\small (\bm{t} \cdot \bm{n}) < 0$.
 
 Let us return to Eqn. 12 and 14. Upon close examination, the visibility terms (and the vector differential area $\small \bm{m} dA$) are the only ones that explicitly depend on the position $\small \bm{p}$. Intuitively, that is because visibility is a non-local property -- it connects a point to the entire surface.
 
