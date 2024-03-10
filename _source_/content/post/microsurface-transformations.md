@@ -8,9 +8,11 @@ At EGSR 2022, Atanasov, Koylazov, Dimov, and Wilkie presented a paper titled [Mi
 
 <!--more-->
 
-## Microscopic Introduction
+## Construction of a Microfacet Specular BSDF: a Geometric Approach
 
-Pick an object, perhaps one that sits on your desk or lives in your head. Focus on a tiny fragment of its surface. If the fragment is sufficiently small, or is sufficiently far away, it will look effectively flat (but not necessarily smooth). Therefore, to a negligible degree of error, that fragment may be replaced by a first-order approximation[^1] -- its orthogonal projection onto the (averaged) tangent plane. In the literature, this projected surface is referred to as the *macrosurface*. It is characterized by the area $\small A$ and the unit normal[^6] vector $\small \bm{n}$. Fixing two (linearly independent, but not necessarily unit or orthogonal) tangent vectors is sufficient to complete the parameterization of the macrosurface.
+### Microsurface and Macrosurface
+
+Pick an object, perhaps one that sits on your desk or lives in your head. Focus on a tiny fragment of its surface. If the fragment is sufficiently small, or is sufficiently far away, it will look effectively flat (but not necessarily smooth). Therefore, to a negligible degree of error, that fragment may be replaced by a first-order approximation[^1] -- its orthogonal projection onto the (averaged) tangent plane. In the literature, this projected surface is referred to as the *macrosurface*. It is characterized by the area $\small A$ and the unit normal vector[^6] $\small \bm{n}$. Fixing two (linearly independent, but not necessarily unit or orthogonal) tangent vectors is sufficient to complete the parameterization of the macrosurface.
 
 [^1]: In the sense of a Taylor series expansion.
 
@@ -18,7 +20,9 @@ Pick an object, perhaps one that sits on your desk or lives in your head. Focus 
 
 In contrast, the surface fragment overlaid onto the macrosurface is called[^2] the *microsurface* $\small \mathbb{M^2}$. It is composed of infinitesimal elements called *microfacets*. In the *microfacet theory*, a microsurface is not modeled explicitly, but rather represented by a statistical model.
 
-[^2]: We use the superscript 2 to indicate that the surface is a two-dimensional manifold.
+[^2]: We use the superscript 2 to indicate that a surface is a two-dimensional manifold.
+
+### Distribution of Normals
 
 Let $\small \bm{m}$ denote the unit normal vector of the microsurface. Since it may correspond to several distinct points on the microsurface, we must define[^3] $\small dA(\bm{m}) = D(\bm{m}) A d\Omega(\bm{m})$ as the differential area of the portion of the microsurface perpendicular to $\small \bm{m}$, where $\small d\Omega$ is the differential solid angle centered on $\small \bm{m}$, and $\small D$ is the *distribution of normals*[^4] (abbreviated as the *NDF*) associated with the microsurface. The domain of this function, along with the microsurface normals themselves, is typically restricted to the unit hemisphere $\small \mathbb{H^2}$ (with $\small \bm{n}$ pointing at the zenith), which implies that $\small \mathbb{M^2}$ must be a height field. However, this restriction is not strictly necessary; we shall demonstrate that by letting the microsurface normals potentially cover the entire unit sphere $\small \mathbb{S^2}$.
 
@@ -68,6 +72,8 @@ Clearly, a microsurface does not have to be smooth (e.i. continuously differenti
 
 Erasing any part of the box leads to a signed projected area mismatch for certain angles. Therefore, the constraint may seem to imply that the microsurface must be continuous, but, unfortunately, that is not the case. The issue lies in the *translation invariance*; in our case, it means that the orthogonally projected area of an object is independent of its location. This property may seem innocuous at first, but, coupled with the linearity, it spells disaster: we may freely translate different microfacets in different directions without affecting the value of the integral.
 
+### Masking Function
+
 Since the signed projected area is an incomplete description of a real surface (as opposed to a microfacet soup or a salad[^52]), we may additionally specify its *visible (orthogonally) projected area*
 
 [^52]: In technical terms, the surface may have an extremely short auto-correlation distance.
@@ -88,6 +94,8 @@ $$
 which obviously depends on the relative location of the microfacets. It is defined in terms of the dimensionless *masking function* $\small G_1(\bm{v}, \bm{m})$ that gives the fraction of the differential area $\small dA(\bm{m})$ of the portion of the microsurface perpendicular to $\small \bm{m}$ that happens to be visible along $\small \bm{v}$. In other words, it is the *average visibility* (along $\small \bm{v}$) of the microfacets with the normal $\small \bm{m}$. The masking function is closely related to the binary *visibility function* $\small V(\bm{v}, \bm{p})$ that outputs 0 if the point $\small \bm{p}$ is occluded along $\small \bm{v}$, and 1 otherwise. Both functions take *self-occlusion* into account: $\small V = G_1 = 0$ if $\small (\bm{v} \cdot \bm{m}) \le 0$. This subtle point helps us emphasize the geometric (e.i., coordinate-independent, basis-independent) nature of Eqn. 2.
 
 The masking and visibility functions possess an important property called *stretch invariance*, or, more generally, *invariance under linear transformations*. We have already seen that, in the context of the microfacet theory, a linearly transformed surface remains valid; however, unlike the NDF, the masking function is dimensionless: it only encodes visibility, and so it remains unaffected by a transformation of the coordinate axes. Of course, this means that the transformation must be applied to everything, including the view vector $\small \bm{v}$.
+
+### Assumptions Underpinning the Microfacet Theory
 
 Eqn. 1 and 2 are closely related. For a valid microsurface, the values of the integrals are the same for $\small \bm{v} = \bm{n}$:
 
@@ -122,6 +130,10 @@ $$
 is called the *distribution of visible normals*[^7] (abbreviated as the *VNDF*). Its meaning becomes clear in the context of Eqn. 2a: $\small ((\bm{v} \cdot \bm{m})/(\bm{v} \cdot \bm{n}))^{-1} D_{vis}(\bm{v}, \bm{n}, \bm{m}) d\Omega(\bm{m})$ is the differential area of the portion of the microsurface perpendicular to $\small \bm{m}$ that happens to be visible along $\small \bm{v}$. Like $\small (\bm{n} \cdot \bm{m}) D(\bm{m})$, the VNDF is a valid probability density function; but because it is always non-negative, this property is not limited to height fields.
 
 [^7]: After comparing Eqn. 1c with 3a and taking the definitions into account, it seems more natural to simply let $\small D_{vis} = G_1 D$. Nevertheless, we stick with Eqn. 3b to conform to the existing body of literature.
+
+---
+
+### Smith's Approximation of the Masking Function (to be omitted)
 
 In practice, one usually does not create (nor is provided) a microsurface, but rather specifies the statistical distributions directly. In fact, one generally goes one step further: since the NDF and the masking function are not independent (they satisfy Eqn. 3), a reasonable course of action is to specify just one and attempt to derive the other. Which distribution should we choose as the starting point? The answer comes from the definitions: $\small G_1$ is built on top of $\small D$, and the role of the former is to endow the latter with the visibility data.
 
@@ -177,7 +189,11 @@ is another ratio of projected areas (back-facing to signed). For a height field,
 
 Eqn. 3Xc confirms that the connection between a microfacet and its neighborhood is absent. This puts us at risk of ending up with a microfacet soup or a salad (instead of a continuous surface) again. The only way remedy this deficiency is by using a more sophisticated microsurface profile.
 
-**Q: how accurate is Smith's masking function?**
+**Q: how accurate is Smith's approximation of the masking function?**
+
+---
+
+### BSDF: Definition and Properties
 
 A VNDF can be used to construct a *bidirectional scattering distribution function* $\small f_s$ (also known as a *BSDF*). By definition, it is a ratio of the differential outgoing radiance to the differential incident irradiance, the latter being the product of the incident radiance and the projected differential solid angle $\small d\Omega_n(\bm{l}) = \vert \bm{n} \cdot \bm{l} \vert d\Omega(\bm{l})$:
 
@@ -236,6 +252,8 @@ $$
 This is a good reason to utilize the projected solid angle measure. Failure to consistently do so often results in complicated expressions that are difficult to interpret and prone to errors.
 
 The properties of a valid BSDF are by no means obvious. In particular, ensuring reciprocity may seem like a non-trivial task. Typically, that is done by decomposing the BSDF into a sum of two components: reflection (the *BRDF*) and transmission (the *BTDF*). The reflection component is always *symmetric*: since $\small \bm{v}$ and $\small \bm{l}$ always point away from the surface, $\small \eta_v = \eta_l$, which results in $\small f_r(\bm{v}, \bm{n}, \bm{l}) = f_r(\bm{l}, \bm{n}, \bm{v})$.
+
+### Perfect Specular BSDF
 
 In order to make things clear, we shall illustrate these properties using a concrete example. Consider a perfectly smooth, planar surface. Its BSDF (often referred to as the *perfect specular* BSDF) can be expressed in terms of the *Dirac delta "function"* $\small \delta$ defined as a projected solid angle measure by the equation
 
@@ -380,7 +398,9 @@ $$
 
 Since Eqn. 7d and 9e sum up to 1, this demonstrates that the whole BSDF is energy conserving.
 
-We can extend this plain BSDF to a microfacet model of a rough surface by treating the latter as locally (rather than globally) planar and smooth. The amount of radiance scattered by the microsurface can then be expressed as a weighted average of the contributions of its visible microfacets. To proceed further, we must recall that, by definition, the radiance is the amount of power moving in a certain direction, per unit solid angle associated with this direction, per unit area perpendicular to this direction. If the source of light is very small (or very far away), it will appear point-like, and the variation of the view vector across its surface can be safely neglected. The same cannot be said for the visible projected area, which must be properly normalized (or we would calculate the intensity instead of the radiance). Thus,
+### Construction of a Rough Specular BSDF
+
+We can model a rough specular surface by treating the latter as locally (rather than globally) planar and smooth. The amount of radiance scattered by the microsurface can then be expressed as a weighted average of the contributions of its visible microfacets. To proceed further, we must recall that, by definition, the radiance is the amount of power moving in a certain direction, per unit solid angle associated with this direction, per unit area perpendicular to this direction. If the source of light is very small (or very far away), it will appear point-like, and the variation of the view vector across its surface can be safely neglected. The same cannot be said for the visible projected area, which must be properly normalized (or we would calculate the intensity instead of the radiance). Thus,
 
 $$ \tag{11a}
 	L(\bm{v}) =
@@ -389,23 +409,6 @@ $$ \tag{11a}
 	V(\bm{v}, \bm{p}) dA(\bm{p})}
 	{\bm{v} \cdot \int_{\bm{p} \in \mathbb{M^2}}
 	\bm{m}(\bm{p}) V(\bm{v}, \bm{p}) dA(\bm{p})}
-$$
-
-According to the microfacet theory, the factor in the denominator -- the visible projected area of the microsurface -- is identical to the signed projected area of the macrosurface (see Eqn. 1-3):
-
-$$ \tag{11b}
-\begin{aligned}
-	&\bm{v} \cdot \int_{\bm{p} \in \mathbb{M^2}}
-	\bm{m}(\bm{p}) V(\bm{v}, \bm{p}) dA(\bm{p})
-	\cr =
-	&\bm{v} \cdot \int_{\bm{m} \in \mathbb{S^2}}
-	\bm{m} G_1(\bm{v}, \bm{m}) D(\bm{m}) A d\Omega(\bm{m})
-	\cr =
-	&\bm{v} \cdot \bm{n} \int_{\bm{m} \in \mathbb{S^2}}
-	D_{vis}(\bm{v}, \bm{n}, \bm{m}) A d\Omega(\bm{m})
-	\cr =
-	&\bm{v} \cdot \bm{n} A.
-\end{aligned}
 $$
 
 The general expression of the outgoing radiance term in the numerator of Eqn. 11a is given by the spatially-varying version of Eqn. 4b:
@@ -431,7 +434,8 @@ $$ \tag{11e}
 	\frac{\bm{v} \cdot \int_{\bm{p} \in \mathbb{M^2}}
 	\bm{m}(\bm{p}) V(\bm{v}, \bm{p}) \int_{\bm{l} \in \mathbb{S^2}}
 	f_s(\bm{v}, \bm{m}(\bm{p}), \bm{l}) L(\bm{l}) V(\bm{l}, \bm{p}) d\Omega_m(\bm{l}) dA(\bm{p})}
-	{\bm{v} \cdot \bm{n} A}.
+	{\bm{v} \cdot \int_{\bm{p} \in \mathbb{M^2}}
+	\bm{m}(\bm{p}) V(\bm{v}, \bm{p}) dA(\bm{p})}.
 $$
 
 If we substitute the expressions of the perfect specular BSDF given by Eqn. 7c and 9c, the inner integral can be evaluated analytically. Starting with the reflection component,
@@ -444,7 +448,8 @@ $$ \tag{12}
 	F(\theta_v, \eta_v/\eta_t) L(\bm{r})
 	V(\bm{r}, \bm{p}) V(\bm{v}, \bm{p})
 	dA(\bm{p})}
-	{\bm{v} \cdot \bm{n} A},
+	{\bm{v} \cdot \int_{\bm{p} \in \mathbb{M^2}}
+	\bm{m}(\bm{p}) V(\bm{v}, \bm{p}) dA(\bm{p})},
 $$
 
 where
@@ -473,7 +478,8 @@ $$ \tag{14}
 	\bm{m}(\bm{p})
 	\big( 1 - F(\theta_v, \eta_v/\eta_t) \big) L(\bm{t})
 	V(\bm{t}, \bm{p}) V(\bm{v}, \bm{p}) dA(\bm{p})}
-	{\bm{v} \cdot \bm{n} A},
+	{\bm{v} \cdot \int_{\bm{p} \in \mathbb{M^2}}
+	\bm{m}(\bm{p}) V(\bm{v}, \bm{p}) dA(\bm{p})},
 $$
 
 where
@@ -484,6 +490,19 @@ $$ \tag{15a}
 $$
 
 is the refracted (or the transmitted) view vector. We must caution that, in certain cases, the value of the expression inside the square root is a negative number. This invalidates the refracted direction and implies that the light has been *totally internally reflected* by the surface.
+
+Eqn. 15a can be solved for $\small \bm{m}$ provided $\small (\bm{v} \cdot \bm{m}) > 0$. The derivation is provided in the Appendix; here, we simply quote the result:
+
+$$ \tag{15f}
+	\bm{m} =
+	\frac{-(\eta_v \bm{v} + \eta_t \bm{t})}{\eta_t \cos{\theta_t} - \eta_v \cos{\theta_v}}.
+$$
+
+Note that the denominator is positive only if $\small \eta_t > \eta_v$, which has an obvious effect on the direction of $\small \bm{m}$. The latter is such that $\small (\bm{v} \cdot \bm{m}) > 0 \text{ while } (\bm{t} \cdot \bm{m}) < 0$. As for the direction of incidence, distant light sources are always occluded by the microsurface unless $\small (\bm{t} \cdot \bm{n}) < 0$.
+
+---
+
+### Derivation of the Refracted View Vector (to be moved to the Appendix)
 
 Eqn. 15a can be derived as follows. Let us define two unit vectors
 
@@ -555,7 +574,9 @@ $$ \tag{15f}
 	\frac{-(\eta_v \bm{v} + \eta_t \bm{t})}{\eta_t \cos{\theta_t} - \eta_v \cos{\theta_v}}.
 $$
 
-Note that the denominator is positive only if $\small \eta_t > \eta_v$, which has an obvious effect on the direction of $\small \bm{m}$. The latter is such that $\small (\bm{v} \cdot \bm{m}) > 0 \text{ while } (\bm{t} \cdot \bm{m}) < 0$. As for the direction of incidence, distant light sources are always occluded by the microsurface unless $\small (\bm{t} \cdot \bm{n}) < 0$.
+---
+
+### Shadowing-Masking Function
 
 Let us return to Eqn. 12 and 14. Upon close examination, the visibility terms (and the vector differential area $\small \bm{m} dA$) are the only ones that explicitly depend on the position $\small \bm{p}$. Intuitively, that is because visibility is a non-local property -- it connects a point to the entire surface.
 
@@ -604,6 +625,10 @@ $$ \tag{16c}
 $$
 
 For example, consider a number of evenly-spaced boxes -- a square wave. For $\small \bm{m} = \bm{n}$, the unidirectional visibility will approach 50% as the view angle increases. Thus, for shallow angles, $\small G_1(\bm{v}, \bm{n}) G_1(\bm{l}, \bm{n}) \approx 1/4$, while the correct value of $\small G_2(\bm{v}, \bm{n}, \bm{l}) \approx 1/2$.
+
+---
+
+### Smith's Approximation of the Shadowing-Masking Function (to be omitted)
 
 In order to derive the shadowing-masking function from the distribution of normals, we may once again utilize Smith's assumption of normal-visibility independence:
 
@@ -721,7 +746,11 @@ A valid modification must satisfy $\small g(1) = 1$.
 
 **Q: what is a good choice of g? Does it depend on roughness? Is the result still height-correlated?**
 
-In order to arrive at the expression of a microfacet BSDF, we must convert Eqn. 12 and 14 into a statistical form. Substitution of Eqn. 16a yields
+---
+
+### Construction of a Microfacet Specular BSDF
+
+In order to arrive at the expression of a microfacet BSDF, we must convert Eqn. 12 and 14 into a statistical form. The numerator can rewritten in terms of the shadowing-masking function defined by Eqn. 16a. As for the denominator, according to the microfacet theory, the visible projected area of the microsurface is identical to the signed projected area of the macrosurface (see Eqn. 1-3). Therefore,
 
 $$ \tag{18a}
 \begin{aligned}
@@ -746,7 +775,7 @@ $$ \tag{18a}
 \end{aligned}
 $$
 
-The second equation required a minor modification: we had to reverse the refracted view vector $\small \bm{t}$ because the microsurface is one-sided; refer to the discussion below Eqn. 2b for details. This formulation is non-reciprocal: an equivalent (proper but verbose) expression is $\small G_2(\mathrm{sgn}(\bm{n} \cdot \bm{v}) \bm{v}, \bm{m}, \mathrm{sgn}(\bm{n} \cdot \bm{t}) \bm{t})$.
+The second equation required a minor modification: we had to reverse the refracted view vector $\small \bm{t}$ because the microsurface is one-sided; refer to the discussion below Eqn. 2b for details. This formulation is non-reciprocal: an equivalent (proper but verbose) expression uses $\small G_2(\mathrm{sgn}(\bm{n} \cdot \bm{v}) \bm{v}, \bm{m}, \mathrm{sgn}(\bm{n} \cdot \bm{t}) \bm{t})$.
 
 Comparison of Eqn. 18a with 4b, which serves as a definition of a BSDF, reveals that the domain of integration is not the same. Therefore, we must perform a change of variables from the microsurface normal to the direction of incidence. This can be accomplished using the *Jacobian* determinant of the transformation:
 
@@ -791,7 +820,11 @@ $$ \tag{18d}
 	= \big\vert J(\bm{m}, \bm{r}) \big\vert d\Omega(\bm{r}).
 $$
 
-Intuitively, the Jacobian is just a ratio of two differential solid angles, each corresponding to a projected differential area. Unfortunately, making this statement more precise requires background in vector analysis. For the reader who wishes to understand the derivation (and not just apply the results), we provide a brief introduction below.
+Intuitively, the Jacobian is just a ratio of two differential solid angles, each corresponding to a projected differential area. Unfortunately, making this statement more precise requires background in vector analysis. For the reader who wishes to understand the derivation (and not just apply the results), we provide a brief introduction to the properties of differential solid angles the Appendix.
+
+---
+
+### Geometric Properties of Differential Solid Angles (to be moved to the Appendix)
 
 Suppose we are able to parameterize the surface using two coordinates (e.g. the Cartesian or the spherical coordinates):
 
@@ -974,6 +1007,8 @@ $$ \tag{23d}
 \end{aligned}
 $$
 
+---
+
 We can utilize these geometric properties to find the expression of the Jacobian in Eqn. 18d. Taking $\small \bm{v}$ as a constant, substitution of Eqn. 13b into 23a and utilization of Eqn. 23b-23d yields
 
 $$ \tag{24a}
@@ -1113,15 +1148,7 @@ $$ \tag{26d}
 \end{aligned}
 $$
 
-This concludes our derivation of the microfacet BSDF.
-
-## Naming convention:
-
-view vector, light vector
-
-view angle, light angle
-
-direction of incidence, direction of exitance
+This concludes our derivation of a microfacet specular BSDF.
 
 ## Acknowledgements
 
@@ -1137,4 +1164,12 @@ Walter's ggx
 
 Walter's ellipsoid
 
-Atanasov's transformations'
+Atanasov's transformations
+
+## Naming convention
+
+view vector, light vector
+
+view angle, light angle
+
+direction of incidence, direction of exitance
