@@ -414,7 +414,11 @@ Since Eqn. 7d and 9e sum up to 1, we have just demonstrated that the full BSDF i
 
 ### Construction of a Rough Specular BSDF
 
-We can model a rough specular surface by treating the latter as locally (rather than globally) planar and smooth. The amount of radiance scattered by the microsurface can then be expressed as a weighted average of the contributions of its visible microfacets. To proceed further, we must recall that, by definition, the radiance is the amount of power moving in a certain direction, per unit solid angle associated with this direction, per unit area perpendicular to this direction. If the source of light is very small (or very far away), it will appear point-like, and the variation of the view vector across its surface can be safely neglected. The same cannot be said for the visible projected area, which must be properly normalized (or we would calculate the intensity instead of the radiance). Thus,
+We can model a rough specular surface by treating the latter as locally (rather than globally) planar and smooth. The amount of radiance scattered by the microsurface can then be expressed as a weighted average of the contributions of its visible microfacets. To proceed further, we must recall that, by definition, the radiance is the amount of power moving in a certain direction, per unit solid angle associated with this direction, per unit area perpendicular to this direction. If the source of light is very small (or very far away), it will appear point-like, and the variation of the view vector across its surface can be safely neglected. The same cannot be said for the visible projected area, which must be properly normalized (or we would calculate the intensity instead of the radiance; see Fig. 9 \[borrowed from Eric Heitz\] below).
+
+{{< figure src="/img/mst/fig9.png" >}}
+
+Thus,
 
 $$ \tag{11a}
 	L(\bm{v}) =
@@ -1042,6 +1046,10 @@ $$ \tag{24b}
 	= \frac{1}{4 |\bm{r} \cdot \bm{m}|}.
 $$
 
+This derivation is illustrated on Fig. 10 \[borrowed from Bruce Walter\] below.
+
+{{< figure src="/img/mst/fig10.png" >}}
+
 Similarly, we can use Eqn. 15f to show that
 
 $$ \tag{25a}
@@ -1065,6 +1073,10 @@ $$ \tag{25b}
 	&= \frac{\eta_t^2 \vert \bm{t} \cdot \bm{m} \vert}{\left( \eta_t (\bm{t} \cdot \bm{m}) + \sqrt{\eta_v^2 - \eta_t^2 \Vert \bm{t} \times \bm{m} \Vert^2 } \right)^2}.
 \end{aligned}
 $$
+
+This derivation is illustrated on Fig. 11 \[borrowed from Bruce Walter\] below.
+
+{{< figure src="/img/mst/fig11.png" >}}
 
 We have finally reached the point where we have all the parts required for assembly of a microfacet BSDF. Let us substitute Eqn. 24b and 25b into Eqn. 18c:
 
