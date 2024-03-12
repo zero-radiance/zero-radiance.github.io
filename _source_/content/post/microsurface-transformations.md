@@ -52,6 +52,8 @@ $$ \tag{1b}
 	\bm{n} = \int_{\bm{m} \in \mathbb{S^2}} \bm{m} D(\bm{m}) d\Omega(\bm{m}).
 $$
 
+Since the right-hand side of Eqn. 1b is independent of $\small A \text{ and } \bm{n}$, this integral serves as the formal definition of the macrosurface.
+
 Eqn. 1 tells us a few things. Geometrically, it says that the signed projected areas of the microsurface and the macrosurface must coincide in any given direction. Furthermore, by substituting a constant NDF (or, from the definition), we can see that it is measured in units of reciprocal solid angle.
 
 In the special case of $\small \bm{v} = \bm{n}$, we obtain
