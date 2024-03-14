@@ -1180,6 +1180,10 @@ $$
 
 This concludes our derivation of a microfacet specular BSDF.
 
+## Idea
+
+MST can be used to reduce the size of IBL LUTs.
+
 ## Acknowledgements
 
 ...
