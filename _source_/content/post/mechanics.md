@@ -94,7 +94,7 @@ $V(x) = x^2/2, \space U = k V = k x^2/2, \space \bar{F} = -\nabla U = -k x \hat{
 Friction (non-conservative):
 $\bar{F} = -\mu N \hat{v}$, where $N$ is the sum of all forces directed towards the surface
 
-[Parameterized curve](https://en.wikipedia.org/wiki/Taylor's_theorem):
+[Parameterized curve](https://en.wikipedia.org/wiki/Taylor_series#Second-order_Taylor_series_in_several_variables):
 $\bar{r} = \bar{r}(s) = \bar{r}(a) + \bar{t}(a) (s - a) + \bar{n}(a) (s - a)^2/2 + ...$
 
 Infinitesimal displacement:
