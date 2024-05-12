@@ -24,7 +24,7 @@ In contrast, the surface fragment overlaid onto the macrosurface is called[^2] t
 
 ### Distribution of Normals
 
-Let $\small \bm{m}$ denote the unit normal vector of the microsurface. Since it may correspond to several distinct points on the microsurface, we must define $\small dA(\bm{m}) = D(\bm{m}) A d\Omega(\bm{m})$ as the *differential area*[^3] of the portion of the microsurface perpendicular to $\small \bm{m}$, where $\small d\Omega$ is the *differential solid angle* centered on $\small \bm{m}$, and $\small D$ is the *distribution of normals*[^4] (abbreviated as the *NDF*) associated with the microsurface. The domain of this distribution, along with the microsurface normals themselves, is typically restricted to the *unit hemisphere* $\small \mathbb{H^2}$ (with $\small \bm{n}$ pointing at the zenith), which requires $\small \mathbb{M^2}$ to be a height field. However, this restriction is not strictly necessary; we shall demonstrate that by letting the microsurface normals potentially cover the entire *unit sphere* $\small \mathbb{S^2}$.
+Let $\small \bm{m}$ denote the unit normal vector of the microsurface. Since it may correspond to several distinct microfacets, we must define $\small dA(\bm{m}) = D(\bm{m}) A d\Omega(\bm{m})$ as the *differential area* of the portion of the microsurface perpendicular to $\small \bm{m}$, where $\small d\Omega$ is the *differential solid angle* centered on $\small \bm{m}$, and $\small D$ is the *distribution of normals*[^4] (abbreviated as the *NDF*) associated with the microsurface[^3]. The domain of this distribution, along with the microsurface normals themselves, is typically restricted to the *unit hemisphere* $\small \mathbb{H^2}$ (with $\small \bm{n}$ pointing at the zenith), which requires $\small \mathbb{M^2}$ to be a height field. However, this restriction is not strictly necessary; we shall demonstrate this by letting the microsurface normals potentially cover the entire *unit sphere* $\small \mathbb{S^2}$.
 
 [^3]: If the microsurface is convex, we can interpret $\small DA$ as a Jacobian of the transformation from the surface to the unit hemisphere.
 
@@ -50,7 +50,7 @@ $$ \tag{1b}
 	\bm{n} = \int_{\bm{m} \in \mathbb{S^2}} \bm{m} D(\bm{m}) d\Omega(\bm{m}).
 $$
 
-This expression is the definition of the macrosurface normal $\small \bm{n}$ for a given microsurface. In turn, Eqn. 1a with $\small \bm{v} = \bm{n}$ can be used to compute the macrosurface area $\small A$.
+This is the definition of the macrosurface normal $\small \bm{n}$ for a given microsurface. In turn, substitution $\small \bm{v} = \bm{n}$ in Eqn. 1a yields the macrosurface area $\small A$.
 
 Eqn. 1 tells us a few things. Geometrically, it says that the signed projected areas of the microsurface and the macrosurface must coincide in any given direction. More specifically, by substituting a constant NDF (or, from the definition), we can see that it is measured in units of reciprocal solid angle.
 
@@ -62,21 +62,21 @@ $$
 
 In order for $\small (\bm{n} \cdot \bm{m}) D(\bm{m})$ to be a valid probability density function, it must be non-negative for all $\small \bm{m}$. By definition, $D \ge 0$, while $\small (\bm{n} \cdot \bm{m}) \ge 0$ if and only if $\small \mathbb{M^2}$ is a height field.
 
-{{< figure src="/img/micro/rectangle.svg" caption="*Figure 2. Rectangular microsurface (red) and macrosurface (green).*" >}}
+{{< figure src="/img/micro/rectangle.svg" caption="*Figure 2. Rectangular microsurface (red) and its macrosurface (green).*" >}}
 
 One of the simplest examples of a valid microsurface is a box[^5], with the flipped bottom face playing the role of the macrosurface. It is instructive to analyze its two-dimensional counterpart -- a rectangle (see Fig. 2 above).
 
-[^5]: Using the tools of calculus, we can decompose an arbitrary surface into a (possibly infinite) number of (potentially infinitesimal) boxes.
+[^5]: Using the tools of calculus, we can decompose an arbitrary surface into a (possibly infinite) number of sufficiently small boxes.
 
-*Linearity* of Eqn. 1 allows us to consider the individual microfacets separately and to sum up their contributions. As we apply it to the box along some $\small \bm{v}$, observe that the signed projected areas of the opposite faces cancel each other, and only the top remains (that is, of course, equivalent to the bottom). Another consequence is that an application of a *linear transformation* (into a parallelepiped, in our case) also generates a valid combination of the microsurface and the macrosurface. We can see why that is the case by picturing Eqn. 1 geometrically and (passively) transforming the coordinate axes[^51] rather than (actively transforming) the surface itself (see Fig. 3 below). Of course, while the surface lines remain unchanged, the signed projected areas (and, thus, the values of the NDF) do not stay the same.
+This trivial example clearly demonstrates that a microsurface does not have to be smooth (e.i. continuously differentiable); however, that ensures the continuity of the NDF, which is desirable, unless the goal is to model a flat surface.
+
+*Linearity* of Eqn. 1 allows us to consider the individual microfacets separately and to sum up their contributions. As we apply it to the box along some $\small \bm{v}$, observe that the signed projected areas of the opposite faces cancel each other, while the top remains equivalent to the bottom. Another consequence is that an application of a *linear transformation* (that transforms a box into a parallelepiped, in our case) also generates a valid combination of the microsurface and the macrosurface. We can see why that is the case by picturing Eqn. 1 geometrically and (passively) transforming the coordinate axes[^51] rather than (actively transforming) the surface itself (see Fig. 3 below). Of course, while the surface lines remain unchanged, the signed projected areas (and, thus, the values of the NDF) do not stay the same.
 
 [^51]: This requires the transformation to be invertible. If the transformation was nonlinear, the transformed axes would vary from point to point, forming vector fields.
 
 {{< figure src="/img/micro/transformed.svg" caption="*Figure 3. Passive (left) vs active (right) transformation.*" >}}
 
-This trivial example clearly demonstrates that a microsurface does not have to be smooth (e.i. continuously differentiable); however, that ensures the continuity of the NDF, which is desirable, unless the goal is to model a flat surface.
-
-Erasing any part of the box leads to a signed projected area mismatch for certain angles. Therefore, the constraint may seem to imply that the microsurface must be continuous, but, unfortunately, that is not the case. The issue lies in the *translation invariance* of Eqn. 1; in our case, it means that the orthogonally projected area of an object is independent of its location. This property may seem innocuous at first, but, coupled with the linearity, it spells disaster: we may freely translate different microfacets in different directions without affecting the value of the integral.
+Erasing any part of the box leads to a signed projected area mismatch for certain angles. Therefore, the constraint may seem to imply that the microsurface must be continuous, but, unfortunately, that is not the case. The issue lies in the *translation invariance* of Eqn. 1; in particular, it means that the orthogonally projected area of an object is independent of its location. This property may seem innocuous at first, but, coupled with the linearity, it spells disaster: we may freely translate different microfacets in different directions without affecting the value of the integral.
 
 ### Masking Function
 
