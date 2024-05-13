@@ -99,13 +99,13 @@ $$
 
 which depends on the relative positions of the microfacets (see Fig. 4 below). It is defined in terms of the dimensionless *masking function* $\small G_1(\bm{v}, \bm{m})$ that gives the fraction of the differential area $\small dA(\bm{m})$ of the portion of the microsurface perpendicular to $\small \bm{m}$ that happens to be visible along $\small \bm{v}$. In other words, it is the *average visibility* (along $\small \bm{v}$) of the microfacets with the normal $\small \bm{m}$. The masking function is closely related to the binary *visibility function* $\small V(\bm{v}, \bm{p})$ that outputs 0 if the point $\small \bm{p}$ is occluded along $\small \bm{v}$, and 1 otherwise. Both functions take *self-occlusion* into account: $\small V = G_1 = 0$ if $\small (\bm{v} \cdot \bm{m}) \le 0$.
 
-{{< figure src="/img/micro/visibility.svg" caption="*Figure 4. Visible, front-facing surface elements (red) and occluded, back-facing ones (blue).*" >}}
+{{< figure src="/img/micro/visibility.svg" caption="*Figure 4. Visible, front-facing area (red) and occluded, back-facing area (blue).*" >}}
 
 The masking and visibility functions possess an important property called *stretch invariance*, or, more generally, *invariance under linear transformations*. We have already seen that, in the context of the microfacet theory, a linearly transformed surface remains valid; however, unlike the NDF, the masking function is dimensionless: it only encodes visibility, and so it remains unaffected by a transformation of the coordinate axes. Of course, this implies that the transformation has been applied to everything, including the view vector $\small \bm{v}$.
 
-### Assumptions Underpinning the Microfacet Theory
+### Inherent Assumptions
 
-Eqn. 1 and 2 are closely related. For a valid microsurface, the values of the integrals are the same for $\small \bm{v} = \bm{n}$:
+Eqn. 1 and 2 are closely related. For a valid microsurface, the values of the integrals are the same if $\small \bm{v} = \bm{n}$:
 
 $$ \tag{2b}
 \begin{aligned}
@@ -119,7 +119,7 @@ $$
 
 In the special case of a height field, $\small G_1(\bm{n}, \bm{m}) = 1$.
 
-{{< figure src="/img/mst/fig5.png" >}}
+{{< figure src="/img/micro/comparison.svg" caption="*Figure 5. Visible, front-facing area (red) and occluded, back-facing area (blue).*" >}}
 
 For a continuous surface, *the visible projected area is greater or equal to the signed projected area*. This inequality stems from self-occlusion, which eliminates the (formerly negative) contribution of back-facing microfacets. The two types of projected areas coincide only if the view angle is sufficiently steep, or the microsurface -- sufficiently thin, so that the latter does not extend outside the volume swept by the macrosuface translated along the view vector (see Fig. 5 above). The relative error can be reduced by tiling the microsurface, which also increases the macrosurface area (see Fig. 6 below).
 
