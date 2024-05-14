@@ -149,7 +149,7 @@ is called the *distribution of visible normals*[^7] (abbreviated as the *VNDF*).
 
 [^7]: After comparing Eqn. 1c with 3a and taking the definitions into account, it seems more natural to define $\small D_{vis} = G_1 D$. Nevertheless, we stick with Eqn. 3b to conform to the existing body of literature.
 
----
+<!--
 
 ### Smith's Approximation of the Masking Function (to be omitted)
 
@@ -209,11 +209,11 @@ Eqn. 3Xc confirms that the connection between a microfacet and its neighborhood 
 
 **Q: How accurate is Smith's approximation of the masking function?**
 
----
+-->
 
-### BSDF: Definition and Properties
+### General BSDF
 
-A VNDF can be used to construct a *bidirectional scattering distribution function* $\small f_s$ (also known as a *BSDF*). By definition, it is a ratio of the differential outgoing radiance to the differential incident irradiance, the latter being the product of the incident radiance and the projected differential solid angle $\small d\Omega_n(\bm{l}) = \vert \bm{n} \cdot \bm{l} \vert d\Omega(\bm{l})$:
+A VNDF can be used to construct a *bidirectional scattering distribution function* $\small f_s$. By definition, a BSDF is a ratio of the [differential outgoing radiance](/post/particle-volume/#radiometry-crash-course) to the [differential incident irradiance](/post/particle-volume/#radiometry-crash-course), the latter being the product of the incident radiance and the *projected differential solid angle* $\small d\Omega_n(\bm{l}) = \vert \bm{n} \cdot \bm{l} \vert d\Omega(\bm{l})$:
 
 $$ \tag{4a}
 	f_s(\bm{v}, \bm{n}, \bm{l}) =
@@ -221,7 +221,7 @@ $$ \tag{4a}
 	\frac{dL(\bm{v})}{L(\bm{l}) d\Omega_n(\bm{l})}.
 $$
 
-In other words, the outgoing radiance is a weighted average of the incident radiance across the unit sphere:
+In other words, the outgoing radiance is a weighted average of the incident radiance over the surface of the unit sphere (or the two-sided unit disk, if you prefer):
 
 $$ \tag{4b}
 	L(\bm{v}) =
@@ -229,9 +229,9 @@ $$ \tag{4b}
 	f_s(\bm{v}, \bm{n}, \bm{l}) L(\bm{l}) d\Omega_n(\bm{l}).
 $$
 
-In order for a BSDF to be physically meaningful, it must satisfy three properties[^8]:
+In order for a BSDF to be physically meaningful, it must satisfy three requirements[^8]:
 
-[^8]: The kinetic energy of the photon is only conserved if the integral is equal to 1. Otherwise, by definition, the collision is called inelastic. The momentum and the total energy of the system are always conserved.
+[^8]: “Energy conservation” refers to the total energy of the system. The kinetic energy of a photon is only conserved if the integral is equal to 1. Otherwise, by definition, a collision is called inelastic.
 
 $$ \tag{4c}
 \begin{aligned}
@@ -249,27 +249,27 @@ $$
 
 where $\small \eta_v$ and $\small \eta_l$ are the real[^9] indices of refraction (the *IORs*) associated with the directions of exitance (along the view vector $\small \bm{v}$) and incidence (along the light vector $\small \bm{l}$), respectively. In particular, reciprocity is a direct consequence of the law of refraction (also valid for reflection)
 
+[^9]: We will not consider absorptive or magnetic media in this article.
+
 $$ \tag{5a}
-	\eta_v \Vert \bm{v} \times \bm{n} \Vert = \eta_l \Vert \bm{l} \times \bm{n} \Vert
+	\eta_v \Vert \bm{v} \times \bm{n} \Vert = \eta_l \Vert \bm{l} \times \bm{n} \Vert,
 $$
 
 which leads to the compression of projected solid angles
 
 $$ \tag{5b}
-	\eta_v^2 d\Omega_n(\bm{v}) = \eta_l^2 d\Omega_n(\bm{l})
+	\eta_v^2 d\Omega_n(\bm{v}) = \eta_l^2 d\Omega_n(\bm{l}),
 $$
 
-and, thus, a change in energy density (provided $\small \eta_v \neq \eta_l$). Note that the relationship between the ordinary solid angles is not as simple:
+and, thus, a change in energy density (provided $\small \eta_v \neq \eta_l$). Note that the relationship between the ordinary solid angles is not quite as simple:
 
 $$ \tag{5c}
 	\eta_v^2 d\Omega(\bm{v}) \neq \eta_l^2 d\Omega(\bm{l}).
 $$
 
-[^9]: We will not consider absorptive or magnetic media in this article. A discussion involving the physics of conductors (and certain dielectrics) would quickly become quite involved and take us too far afield, away from our original topic of microsurface transformations.
+This provides a strong motivation to utilize the projected solid angle measure. Failure to do so consistently often results in complicated expressions that may be difficult to interpret and are prone to errors.
 
-This is a good reason to utilize the projected solid angle measure. Failure to consistently do so often results in complicated expressions that are difficult to interpret and prone to errors.
-
-The properties of a valid BSDF are by no means obvious. In particular, ensuring reciprocity may seem like a non-trivial task. Typically, that is done by decomposing the BSDF into a sum of two components: reflection (the *BRDF*) and transmission (the *BTDF*). The reflection component is always *symmetric*: since $\small \bm{v}$ and $\small \bm{l}$ always point away from the surface, $\small \eta_v = \eta_l$, which results in $\small f_r(\bm{v}, \bm{n}, \bm{l}) = f_r(\bm{l}, \bm{n}, \bm{v})$.
+The properties of a valid BSDF are by no means obvious. In particular, ensuring reciprocity is a non-trivial task. A typical approach represents the BSDF as a sum of two components: reflection (the *BRDF* $\small f_r$) and transmission (the *BTDF* $\small f_t$). Its principal advantage lies in the fact that the reflection component is always *symmetric*: since $\small \bm{v}$ and $\small \bm{l}$ always point away from the surface, $\small \eta_v = \eta_l$, which means that $\small f_r(\bm{v}, \bm{n}, \bm{l}) = f_r(\bm{l}, \bm{n}, \bm{v})$.
 
 ### Perfect Specular BSDF
 
