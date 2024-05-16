@@ -269,20 +269,20 @@ $$
 
 This provides a strong motivation to utilize the projected solid angle measure. Failure to do so consistently often results in complicated expressions that may be difficult to interpret and are prone to errors.
 
-The properties of a valid BSDF are by no means obvious. In particular, ensuring reciprocity is a non-trivial task. A typical approach represents the BSDF as a sum of two components: reflection (the BRDF $\small f_r$) and transmission (the BTDF $\small f_t$). Its principal advantage lies in the fact that the reflection component is always *symmetric*: since $\small \bm{v}$ and $\small \bm{l}$ always point away from the surface, $\small \eta_v = \eta_l$, which means that $\small f_r(\bm{v}, \bm{n}, \bm{l}) = f_r(\bm{l}, \bm{n}, \bm{v})$.
+The properties of a valid BSDF are by no means obvious. In particular, ensuring reciprocity is a non-trivial task. A typical approach represents the BSDF as a sum of two components: reflection (the BRDF $\small f_r$) and transmission (the BTDF $\small f_t$). Its principal advantage lies in the fact that the reflection component is always *symmetric*: since $\small \bm{v}$ and $\small \bm{l}$ always point away from the surface, $\small \eta_v = \eta_l$ and, therefore, $\small f_r(\bm{v}, \bm{n}, \bm{l}) = f_r(\bm{l}, \bm{n}, \bm{v})$.
 
 ### Perfect Specular BSDF
 
-In order to make things clear, we shall illustrate these properties using a concrete example. Consider a perfectly smooth, planar surface. Its BSDF (often referred to as the *perfect specular* BSDF) can be expressed in terms of the *Dirac delta "function"* $\small \delta$ defined as a projected solid angle measure by the equation
+In order to be perfectly clear, we shall illustrate these properties using a concrete example. Consider a perfectly smooth, planar surface. Its BSDF (often referred to as the *perfect specular* BSDF) can be expressed in terms of the *Dirac delta "function"* $\small \delta$ defined as a projected solid angle measure by the equation
 
 $$ \tag{6}
 	f(\bm{v}) =
 	\int_{\bm{l} \in \mathbb{S^2}} f(\bm{l}) \delta_{\Omega_n}(\bm{v} - \bm{l}) d\Omega_n(\bm{l})
 $$
 
-valid for any function $\small f: \mathbb{S^2} \to \mathbb{R}$.
+valid for any function $\small f: \mathbb{S^2} \to \mathbb{R}$. Note its similarity to Eqn. 4b.
 
-Now, according to the law of reflection, the view and the light angles must be the same:
+Now, according to the *law of reflection*, the view and the light angles must be the same:
 
 $$ \tag{7a}
 	\sin{\theta_v} = \Vert \bm{v} \times \bm{n} \Vert = \Vert \bm{l} \times \bm{n} \Vert,
@@ -290,7 +290,7 @@ $$ \tag{7a}
 	\cos{\theta_v} = \vert \bm{v} \cdot \bm{n} \vert = \vert \bm{l} \cdot \bm{n} \vert.
 $$
 
-On the other hand, we need to distinguish between the IORs associated with the exterior (above the surface) and the interior (below the surface):
+On the other hand, we need to distinguish between the IORs associated with the exterior (above the surface) and the interior (below the surface) of the object:
 
 $$ \tag{7b}
 	\eta_v = \eta_l,
@@ -302,7 +302,7 @@ $$ \tag{7b}
 	\end{cases}
 $$
 
-Using this formalism, the reflection component of the BSDF can be written as
+Using this formalism, the perfect specular BRDF can be expressed as
 
 $$ \tag{7c}
 	f_r(\bm{v}, \bm{n}, \bm{l}) =
@@ -349,7 +349,7 @@ $$ \tag{8c}
 	\cos{\theta_t} = \sqrt{1 - \sin^2{\theta_t} }.
 $$
 
-If you have a physics background, the labeling of the angles and the indices of refraction may appear unconventional, since Eqn. 8a-8c are typically expressed in terms of the direction of incidence rather than exitance. The present notation is motivated by the definition of the BSDF given by Eqn. 4a-4b, where the view vector is fixed. This alteration is enabled by the symmetry of the Fresnel equations, which makes Eqn. 8 invariant under the exchange of the subscripts $\small v \text{ and } t$. Intuitively, the reflectance depends only on the path taken by light, and is independent of its direction.
+If you have a physics background, the labeling of the angles and the indices of refraction may appear unconventional, since Eqn. 8a-8c are typically expressed in terms of the direction of incidence rather than exitance. The present notation is motivated by the definition of the BSDF given by Eqn. 4a-4b, where the view vector is fixed. This alteration is enabled by the symmetry of the Fresnel equations, which makes Eqn. 8 invariant under the exchange of the subscripts $\small v \text{ and } t$. Intuitively, the Fresnel reflectance (which is a ratio of two irradiance values) depends only on the path taken by light, and is unaffected by the reversal of its direction.
 
 The definition of the transmission component of the perfect specular BSDF is marginally more complicated. Let
 
@@ -392,18 +392,18 @@ $$ \tag{9d}
 	}.
 $$
 
-Unfortunately, Eqn. 9d fails to make it apparent that these two Dirac delta "functions" are not the same: their purpose is to measure two different projected solid angles (associated with the vector in the last slot), and their ratio is precisely the same as the missing factor of $\small \eta_l^2 / \eta_v^2$. To see why that is the case, we must recall that Eqn. 7c and 9c are only valid in the context of Eqn. 6, which is an integral over the domain of directions of incidence. If we use the reciprocal of a BSDF, the directions of incidence and exitance are interchanged, and Eqn. 6 must also be modified accordingly.
+Unfortunately, Eqn. 9d fails to make it apparent that these two Dirac delta "functions" are not the same: their purpose is to measure two different projected solid angles (each associated with the vector in the last slot), and their ratio is precisely the same as the missing factor of $\small \eta_l^2 / \eta_v^2$. To see why that is the case, we must recall that Eqn. 7c and 9c are only valid in the context of Eqn. 6, which is an integral over the domain of the directions of incidence. If we use the reciprocal of a BSDF, the directions of incidence and exitance are interchanged, and Eqn. 6 must also be modified accordingly.
 
 A better way to verify reciprocity is by combining Eqn. 4c, 5b, and 6:
 
-$$ \tag{10}
+$$ \tag{10a}
 	\int_{\bm{v'} \in \mathbb{S^2}} f_s(\bm{v'}, \bm{n}, \bm{l}) d\Omega_n(\bm{v'})
 	= \int_{\bm{l'} \in \mathbb{S^2}} f_s(\bm{l'}, \bm{n}, \bm{v}) d\Omega_n(\bm{l'}).
 $$
 
 If $\small \bm{v}$, $\small \bm{n}$, and $\small \bm{l}$ do not define a valid light path, both integrals vanish. Otherwise, substitution of Eqn. 9c results in identical values. In particular,
 
-$$ \tag{11}
+$$ \tag{10b}
 \begin{aligned}
 	\int_{\bm{l} \in \mathbb{S^2}} f_t(\bm{l}, \bm{n}, \bm{v}) d\Omega_n(\bm{l})
 	=
@@ -412,9 +412,9 @@ $$ \tag{11}
 \end{aligned}
 $$
 
-Since Eqn. 7d and 11 sum up to 1, we have just demonstrated that the full BSDF is energy-conserving.
+Since Eqn. 7d and 10b sum up to 1, we have just demonstrated that the full BSDF is energy-conserving.
 
-*Question: Are Eqn. 18 and 21 in Walter's paper correct? A factor of $\small \eta_o^2 / \eta_i^2 = \eta_v^2 / \eta_l^2$ appears to be missing.*
+If you find reciprocity daunting, you are not alone. For instance, Eqn. 18 and 21 in Bruce Walter's widely cited paper about microfacet models published in 2007 are missing a factor of $\small \eta_v^2 / \eta_l^2$.
 
 ### Construction of a Rough Specular BSDF
 
