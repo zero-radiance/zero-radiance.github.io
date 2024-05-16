@@ -416,7 +416,7 @@ Since Eqn. 7d and 10b sum up to 1, we have just demonstrated that the full BSDF 
 
 If you find reciprocity daunting, you are not alone. For instance, Eqn. 18 and 21 in Bruce Walter's widely cited paper about microfacet models published in 2007 are missing a factor of $\small \eta_v^2 / \eta_l^2$.
 
-### Construction of a Rough Specular BSDF
+### Rough Specular BSDF
 
 We can model a rough specular surface by treating the latter as locally (rather than globally) planar and smooth. The amount of radiance scattered by the microsurface can then be expressed as a weighted average of the contributions of its visible microfacets. To proceed further, we must recall that, by definition, the radiance is the amount of power moving in a certain direction, per unit solid angle associated with this direction, per unit area perpendicular to this direction. If the source of light is very small (or very far away), it will appear point-like, and the variation of the view vector across its surface can be safely neglected. The same cannot be said for the visible projected area, which must be properly normalized (or we would calculate the intensity instead of the radiance; see Fig. 9 \[borrowed from Eric Heitz\] below).
 
