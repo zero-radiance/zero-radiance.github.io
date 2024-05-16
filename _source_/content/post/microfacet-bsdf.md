@@ -24,7 +24,7 @@ In contrast, the surface fragment overlaid onto the macrosurface is called[^2] t
 
 ### Distribution of Normals
 
-Let $\small \bm{m}$ denote the unit normal vector of the microsurface. Since it may correspond to several distinct microfacets, we must define $\small dA(\bm{m}) = D(\bm{m}) A d\Omega(\bm{m})$ as the *differential area* of the portion of the microsurface perpendicular to $\small \bm{m}$, where $\small d\Omega$ is the *differential solid angle* centered on $\small \bm{m}$, and $\small D$ is the *distribution of normals*[^4] (abbreviated as the *NDF*) associated with the microsurface[^3]. The domain of this distribution, along with the microsurface normals themselves, is typically restricted to the *unit hemisphere* $\small \mathbb{H^2}$ (with $\small \bm{n}$ pointing at the zenith), which requires $\small \mathbb{M^2}$ to be a height field. However, this restriction is not strictly necessary; we shall demonstrate this by letting the microsurface normals potentially cover the entire *unit sphere* $\small \mathbb{S^2}$.
+Let $\small \bm{m}$ denote the unit normal vector of the microsurface. Since it may correspond to several distinct microfacets, we must define $\small dA(\bm{m}) = D(\bm{m}) A d\Omega(\bm{m})$ as the *differential area* of the portion of the microsurface perpendicular to $\small \bm{m}$, where $\small d\Omega$ is the *differential solid angle* centered on $\small \bm{m}$, and $\small D$ is the *distribution of normals*[^4] (abbreviated as the NDF) associated with the microsurface[^3]. The domain of this distribution, along with the microsurface normals themselves, is typically restricted to the *unit hemisphere* $\small \mathbb{H^2}$ (with $\small \bm{n}$ pointing at the zenith), which requires $\small \mathbb{M^2}$ to be a height field. However, this restriction is not strictly necessary; we shall demonstrate this by letting the microsurface normals potentially cover the entire *unit sphere* $\small \mathbb{S^2}$.
 
 [^3]: If the microsurface is convex, we can interpret $\small DA$ as a Jacobian of the transformation from the surface to the unit hemisphere.
 
@@ -129,7 +129,7 @@ Of course, as the view angle tends to 90 degrees, the signed projected area tend
 
 If we want to posit that Eqn. 1a and 2a are equivalent, we must also prevent the signed projected area from turning negative by restricting the view angles to the range where $\small (\bm{v} \cdot \bm{n}) > 0$. In other words, *a microsurface is always facing the observer*. If that is not the case, we must recompute the statistics for the undersurface.
 
-It is easy to see that reversing the directions of both $\small \bm{n}$ and $\small \bm{m}$ allows us to reuse the distribution of normals. As for the view direction, there are a couple of options: we can either reverse the direction of $\small \bm{v}$, or reflect it across the macrosurface. Since flipping a surface upside down alters visibility, neither method yields exact results; however, the first one is preferable, since it guarantees that self-occlusion is properly accounted for.
+It is easy to see that reversing the directions of both $\small \bm{n}$ and $\small \bm{m}$ allows us to reuse the distribution of normals. As for the view vector, there are a couple of options: we can either reverse the direction of $\small \bm{v}$, or reflect it across the macrosurface. Since flipping a surface upside down alters visibility, neither method yields exact results; however, the first one is preferable, since it guarantees that self-occlusion is properly accounted for.
 
 With the assumption (that all projected surface areas are the same) in place, we can combine Eqn. 1a and 2a into
 
@@ -145,7 +145,7 @@ $$ \tag{3b}
 	\frac{(\bm{v} \cdot \bm{m})}{(\bm{v} \cdot \bm{n})} G_1(\bm{v}, \bm{m}) D(\bm{m})
 $$
 
-is called the *distribution of visible normals*[^7] (abbreviated as the *VNDF*). Its meaning becomes clear in the context of Eqn. 2a: $\small ((\bm{v} \cdot \bm{m})/(\bm{v} \cdot \bm{n}))^{-1} D_{vis}(\bm{v}, \bm{n}, \bm{m}) A d\Omega(\bm{m})$ is the differential area of the portion of the microsurface perpendicular to $\small \bm{m}$ that happens to be visible along $\small \bm{v}$. Like $\small (\bm{n} \cdot \bm{m}) D(\bm{m})$, the VNDF is a probability density function; but because it is always non-negative, this property is not limited to height fields.
+is called the *distribution of visible normals*[^7] (abbreviated as the VNDF). Its meaning becomes clear in the context of Eqn. 2a: $\small ((\bm{v} \cdot \bm{m})/(\bm{v} \cdot \bm{n}))^{-1} D_{vis}(\bm{v}, \bm{n}, \bm{m}) A d\Omega(\bm{m})$ is the differential area of the portion of the microsurface perpendicular to $\small \bm{m}$ that happens to be visible along $\small \bm{v}$. Like $\small (\bm{n} \cdot \bm{m}) D(\bm{m})$, the VNDF is a probability density function; but because it is always non-negative, this property is not limited to height fields.
 
 [^7]: After comparing Eqn. 1c with 3a and taking the definitions into account, it seems more natural to define $\small D_{vis} = G_1 D$. Nevertheless, we stick with Eqn. 3b to conform to the existing body of literature.
 
@@ -247,7 +247,7 @@ $$ \tag{4c}
 \end{aligned}
 $$
 
-where $\small \eta_v$ and $\small \eta_l$ are the real[^9] indices of refraction (the *IORs*) associated with the directions of exitance (along the view vector $\small \bm{v}$) and incidence (along the light vector $\small \bm{l}$), respectively. In particular, reciprocity is a direct consequence of the law of refraction (also valid for reflection)
+where $\small \eta_v$ and $\small \eta_l$ are the real[^9] *indices of refraction* (abbreviated as the IOR) associated with the directions of exitance (along the view vector $\small \bm{v}$) and incidence (along the light vector $\small \bm{l}$), respectively. In particular, reciprocity is a direct consequence of the *law of refraction* (also valid for reflection)
 
 [^9]: We will not consider absorptive or magnetic media in this article.
 
@@ -255,7 +255,7 @@ $$ \tag{5a}
 	\eta_v \Vert \bm{v} \times \bm{n} \Vert = \eta_l \Vert \bm{l} \times \bm{n} \Vert,
 $$
 
-which leads to the compression of projected solid angles
+which leads to the *compression of projected solid angles*
 
 $$ \tag{5b}
 	\eta_v^2 d\Omega_n(\bm{v}) = \eta_l^2 d\Omega_n(\bm{l}),
@@ -269,15 +269,15 @@ $$
 
 This provides a strong motivation to utilize the projected solid angle measure. Failure to do so consistently often results in complicated expressions that may be difficult to interpret and are prone to errors.
 
-The properties of a valid BSDF are by no means obvious. In particular, ensuring reciprocity is a non-trivial task. A typical approach represents the BSDF as a sum of two components: reflection (the *BRDF* $\small f_r$) and transmission (the *BTDF* $\small f_t$). Its principal advantage lies in the fact that the reflection component is always *symmetric*: since $\small \bm{v}$ and $\small \bm{l}$ always point away from the surface, $\small \eta_v = \eta_l$, which means that $\small f_r(\bm{v}, \bm{n}, \bm{l}) = f_r(\bm{l}, \bm{n}, \bm{v})$.
+The properties of a valid BSDF are by no means obvious. In particular, ensuring reciprocity is a non-trivial task. A typical approach represents the BSDF as a sum of two components: reflection (the BRDF $\small f_r$) and transmission (the BTDF $\small f_t$). Its principal advantage lies in the fact that the reflection component is always *symmetric*: since $\small \bm{v}$ and $\small \bm{l}$ always point away from the surface, $\small \eta_v = \eta_l$, which means that $\small f_r(\bm{v}, \bm{n}, \bm{l}) = f_r(\bm{l}, \bm{n}, \bm{v})$.
 
 ### Perfect Specular BSDF
 
 In order to make things clear, we shall illustrate these properties using a concrete example. Consider a perfectly smooth, planar surface. Its BSDF (often referred to as the *perfect specular* BSDF) can be expressed in terms of the *Dirac delta "function"* $\small \delta$ defined as a projected solid angle measure by the equation
 
 $$ \tag{6}
-	f(\bm{r}) =
-	\int_{\bm{l} \in \mathbb{S^2}} f(\bm{l}) \delta_{\Omega_n}(\bm{l} - \bm{r}) d\Omega_n(\bm{l})
+	f(\bm{v}) =
+	\int_{\bm{l} \in \mathbb{S^2}} f(\bm{l}) \delta_{\Omega_n}(\bm{v} - \bm{l}) d\Omega_n(\bm{l})
 $$
 
 valid for any function $\small f: \mathbb{S^2} \to \mathbb{R}$.
@@ -290,7 +290,7 @@ $$ \tag{7a}
 	\cos{\theta_v} = \vert \bm{v} \cdot \bm{n} \vert = \vert \bm{l} \cdot \bm{n} \vert.
 $$
 
-Furthermore, we need to distinguish between the IORs associated with the exterior (above the surface) and the interior (below the surface):
+On the other hand, we need to distinguish between the IORs associated with the exterior (above the surface) and the interior (below the surface):
 
 $$ \tag{7b}
 	\eta_v = \eta_l,
@@ -313,8 +313,8 @@ $$
 where $\small 0 \le F \le 1$ is the dimensionless *Fresnel reflectance*. This BRDF is non-negative, symmetric, and energy-conserving, which can be verified by substituting Eqn. 7c into 4c. In particular,
 
 $$ \tag{7d}
-	\int_{\bm{v} \in \mathbb{S^2}}
-	f_r(\bm{v}, \bm{n}, \bm{l}) d\Omega_n(\bm{v}) =
+	\int_{\bm{l} \in \mathbb{S^2}}
+	f_r(\bm{v}, \bm{n}, \bm{l}) d\Omega_n(\bm{l}) =
 	F(\theta_v, \eta_v/\eta_t) \le 1.
 $$
 
@@ -325,9 +325,7 @@ $$ \tag{8a}
 	= (1 - \alpha) R_s(\theta_v, \eta_v/\eta_t) + \alpha R_p(\theta_v, \eta_v/\eta_t),
 $$
 
-where the value of $\small \alpha$ depends on the state of polarization of the incident light: $\small \alpha = 0$ corresponds to the s-polarized light, $\small \alpha = 1$ -- to the p-polarized light, and $\small \alpha = 1/2$ -- to the unpolarized (natural) light.
-
-The two mutually perpendicular components are defined as follows:
+and its mutually perpendicular components are defined as follows:
 
 $$ \tag{8b}
 \begin{aligned}
@@ -341,7 +339,9 @@ $$ \tag{8b}
 \end{aligned}
 $$
 
-The angle of refraction (or transmission) $\small \theta_t$ can be determined from the view angle $\small \theta_v$ and the relative IOR $\small \eta_v/\eta_t$ using the (already familiar) law of refraction and basic trigonometry:
+The value of $\small \alpha$ depends on the polarization state of the incident light: $\small \alpha = 0$ corresponds to the s-polarized light, $\small \alpha = 1$ -- to the p-polarized light, and $\small \alpha = 1/2$ -- to the unpolarized (natural) light.
+
+The angle of refraction (or transmission) $\small \theta_t$ can be determined from the view angle $\small \theta_v$ and the *relative IOR* $\small \eta_v/\eta_t$ using the law of refraction and basic trigonometry:
 
 $$ \tag{8c}
 	\sin{\theta_t} = \frac{\eta_v}{\eta_t} \sin{\theta_v},
@@ -349,7 +349,7 @@ $$ \tag{8c}
 	\cos{\theta_t} = \sqrt{1 - \sin^2{\theta_t} }.
 $$
 
-If you have a physics background, the labeling of the angles and the indices of refraction may appear unconventional, since Eqn. 8a-8c are typically expressed in terms of the direction of incidence rather than exitance. The present notation is motivated by the definition of the BSDF given by Eqn. 4a-4b. The validity of this formulation stems from the geometric symmetry: the solution of the Fresnel equations given by Eqn. 8 is invariant under the exchange of $\small \theta_v$ and $\small \theta_t$. Intuitively, the reflectance depends only on the path taken by light, and is independent of its direction.
+If you have a physics background, the labeling of the angles and the indices of refraction may appear unconventional, since Eqn. 8a-8c are typically expressed in terms of the direction of incidence rather than exitance. The present notation is motivated by the definition of the BSDF given by Eqn. 4a-4b, where the view vector is fixed. This alteration is enabled by the symmetry of the Fresnel equations, which makes Eqn. 8 invariant under the exchange of the subscripts $\small v \text{ and } t$. Intuitively, the reflectance depends only on the path taken by light, and is independent of its direction.
 
 The definition of the transmission component of the perfect specular BSDF is marginally more complicated. Let
 
@@ -375,12 +375,10 @@ After taking the reciprocity and the conservation of energy into account, the pe
 
 $$ \tag{9c}
 	f_t(\bm{v}, \bm{n}, \bm{l}) =
-	\frac{\eta_v^2}{\eta_l^2} \big( 1 - F(\theta_v, \eta_v/\eta_t) \big) \delta_{\Omega_n}\big( \eta_v (\bm{v} \times \bm{n}) + \eta_l (\bm{l} \times \bm{n}) \big),
+	\frac{\eta_v^2}{\eta_l^2} \big( 1 - F(\theta_v, \eta_v/\eta_t) \big) \delta_{\Omega_n}\big( \eta_v (\bm{v} \times \bm{n}) + \eta_l (\bm{l} \times \bm{n}) \big).
 $$
 
-with the first term responsible for the projected solid angle compression, which can be readily verified by placing the surface inside a *white furnace* (e.i. setting $\small L(\bm{l}) = 1$ for all $\small \bm{l}$) and evaluating Eqn. 4b.
-
-*Question: Are Eqn. 18 and 21 in Walter's paper correct? A factor of $\small \eta_o^2 / \eta_i^2 = \eta_v^2 / \eta_l^2$ appears to be missing.*
+The first term is responsible for the compression of projected solid angles, which can be readily verified by placing the surface inside a *white furnace* (e.i. setting $\small L(\bm{l}) = 1$ for all $\small \bm{l}$) and evaluating Eqn. 4b.
 
 Is this BTDF reciprocal? Naive substitution of Eqn. 9c into 4c leads to
 
@@ -394,7 +392,7 @@ $$ \tag{9d}
 	}.
 $$
 
-Unfortunately, Eqn. 9d fails to make it apparent that these two Dirac delta "functions" are not the same: their purpose is to measure two different projected solid angles, and their ratio is precisely the same as the missing factor of $\small \eta_l^2 / \eta_v^2$. To see why that is the case, we must recall that Eqn. 7c and 9c are only valid in the context of Eqn. 6, which is an integral over the domain of directions of incidence. If we use the reciprocal of a BSDF, the directions of incidence and exitance are interchanged, and Eqn. 6 must also be modified accordingly.
+Unfortunately, Eqn. 9d fails to make it apparent that these two Dirac delta "functions" are not the same: their purpose is to measure two different projected solid angles (associated with the vector in the last slot), and their ratio is precisely the same as the missing factor of $\small \eta_l^2 / \eta_v^2$. To see why that is the case, we must recall that Eqn. 7c and 9c are only valid in the context of Eqn. 6, which is an integral over the domain of directions of incidence. If we use the reciprocal of a BSDF, the directions of incidence and exitance are interchanged, and Eqn. 6 must also be modified accordingly.
 
 A better way to verify reciprocity is by combining Eqn. 4c, 5b, and 6:
 
@@ -405,7 +403,7 @@ $$
 
 If $\small \bm{v}$, $\small \bm{n}$, and $\small \bm{l}$ do not define a valid light path, both integrals vanish. Otherwise, substitution of Eqn. 9c results in identical values. In particular,
 
-$$ \tag{9e}
+$$ \tag{11}
 \begin{aligned}
 	\int_{\bm{l} \in \mathbb{S^2}} f_t(\bm{l}, \bm{n}, \bm{v}) d\Omega_n(\bm{l})
 	=
@@ -414,7 +412,9 @@ $$ \tag{9e}
 \end{aligned}
 $$
 
-Since Eqn. 7d and 9e sum up to 1, we have just demonstrated that the full BSDF is energy-conserving.
+Since Eqn. 7d and 11 sum up to 1, we have just demonstrated that the full BSDF is energy-conserving.
+
+*Question: Are Eqn. 18 and 21 in Walter's paper correct? A factor of $\small \eta_o^2 / \eta_i^2 = \eta_v^2 / \eta_l^2$ appears to be missing.*
 
 ### Construction of a Rough Specular BSDF
 
