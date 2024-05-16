@@ -271,9 +271,9 @@ This provides a strong motivation to utilize the projected solid angle measure. 
 
 The properties of a valid BSDF are by no means obvious. In particular, ensuring reciprocity is a non-trivial task. A typical approach represents the BSDF as a sum of two components: reflection (the BRDF $\small f_r$) and transmission (the BTDF $\small f_t$). Its principal advantage lies in the fact that the reflection component is always *symmetric*: since $\small \bm{v}$ and $\small \bm{l}$ always point away from the surface, $\small \eta_v = \eta_l$ and, therefore, $\small f_r(\bm{v}, \bm{n}, \bm{l}) = f_r(\bm{l}, \bm{n}, \bm{v})$.
 
-### Perfect Specular BSDF
+### Smooth Specular BSDF
 
-In order to be perfectly clear, we shall illustrate these properties using a concrete example. Consider a perfectly smooth, planar surface. Its BSDF (often referred to as the *perfect specular* BSDF) can be expressed in terms of the *Dirac delta "function"* $\small \delta$ defined as a projected solid angle measure by the equation
+In order to be perfectly clear, we shall illustrate these properties using a concrete example. Consider a perfectly smooth, planar surface. Its BSDF (sometimes referred to as the *smooth specular* BSDF) can be expressed in terms of the *Dirac delta "function"* $\small \delta$ defined as a projected solid angle measure by the equation
 
 $$ \tag{6}
 	f(\bm{v}) =
@@ -302,7 +302,7 @@ $$ \tag{7b}
 	\end{cases}
 $$
 
-Using this formalism, the perfect specular BRDF can be expressed as
+Using this formalism, the smooth specular BRDF can be expressed as
 
 $$ \tag{7c}
 	f_r(\bm{v}, \bm{n}, \bm{l}) =
@@ -351,7 +351,7 @@ $$
 
 If you have a physics background, the labeling of the angles and the indices of refraction may appear unconventional, since Eqn. 8a-8c are typically expressed in terms of the direction of incidence rather than exitance. The present notation is motivated by the definition of the BSDF given by Eqn. 4a-4b, where the view vector is fixed. This alteration is enabled by the symmetry of the Fresnel equations, which makes Eqn. 8 invariant under the exchange of the subscripts $\small v \text{ and } t$. Intuitively, the Fresnel reflectance (which is a ratio of two irradiance values) depends only on the path taken by light, and is unaffected by the reversal of its direction.
 
-The definition of the transmission component of the perfect specular BSDF is marginally more complicated. Let
+The definition of the transmission component of the smooth specular BSDF is marginally more complicated. Let
 
 $$ \tag{9a}
 \begin{aligned}
@@ -371,7 +371,7 @@ $$ \tag{9b}
 	\eta_t = \eta_l.
 $$
 
-After taking the reciprocity and the conservation of energy into account, the perfect specular BTDF can be expressed as
+After taking the reciprocity and the conservation of energy into account, the smooth specular BTDF can be expressed as
 
 $$ \tag{9c}
 	f_t(\bm{v}, \bm{n}, \bm{l}) =
@@ -460,7 +460,7 @@ $$ \tag{11e}
 	\bm{m}(\bm{p}) V(\bm{v}, \bm{p}) dA(\bm{p})}.
 $$
 
-If we substitute the expressions of the perfect specular BSDF given by Eqn. 7c and 9c, the inner integral can be evaluated analytically. Starting with the reflection component,
+If we substitute the expressions of the smooth specular BSDF given by Eqn. 7c and 9c, the inner integral can be evaluated analytically. Starting with the reflection component,
 
 $$ \tag{12}
 	L_r(\bm{v})
