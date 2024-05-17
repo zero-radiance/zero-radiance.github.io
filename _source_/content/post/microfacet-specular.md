@@ -464,7 +464,7 @@ $$
 
 ### Rough Specular BSDF
 
-If we substitute the expressions of the smooth specular BSDF given by Eqn. 7c and 9c, the inner integral can be evaluated analytically. Starting with the reflection component,
+Substitution of the definition of the smooth specular BSDF given by Eqn. 7c and 9c allows us to evaluate the inner integral of Eqn. 11e analytically. Starting with the reflection component,
 
 $$ \tag{12}
 	L_r(\bm{v})
