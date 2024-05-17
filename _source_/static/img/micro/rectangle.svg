@@ -25,9 +25,9 @@
      inkscape:document-units="mm"
      showguides="true"
      showgrid="true"
-     inkscape:zoom="90.509667"
-     inkscape:cx="151.93405"
-     inkscape:cy="234.75393"
+     inkscape:zoom="11.313708"
+     inkscape:cx="206.96132"
+     inkscape:cy="220.66151"
      inkscape:window-width="3840"
      inkscape:window-height="2066"
      inkscape:window-x="-11"
@@ -603,7 +603,7 @@
        cy="33.931023"
        r="0" />
     <path
-       style="fill:none;stroke:#44aa00;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter;stroke-dasharray:none;stroke-opacity:1"
+       style="fill:none;stroke:#008000;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter;stroke-dasharray:none;stroke-opacity:1"
        d="m 21.021452,110.37126 c 34.130829,0 68.261657,0 102.392488,0"
        id="path22"
        inkscape:path-effect="#path-effect22"

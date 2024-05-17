@@ -123,7 +123,7 @@ In the special case of a height field, $\small G_1(\bm{n}, \bm{m}) = 1$.
 
 For a continuous surface, *the visible projected area is greater or equal to the signed projected area*. This inequality stems from self-occlusion, which eliminates the (formerly negative) contribution of back-facing microfacets. The two types of projected areas coincide if and only if the view angle is sufficiently steep, or the microsurface -- sufficiently thin, so that the latter does not extend outside the volume swept by the macrosuface translated along the view vector. The difference of areas can be reduced by flattening or tiling the microsurface (see Fig. 5 above and Fig. 6 below); both methods effectively reduce its height relative to the dimensions of the macrosurface.
 
-{{< figure src="/img/micro/tiling.svg" caption="*Figure 6. Visible area (red) and occluded area (blue). The entire visible area is front-facing; a portion of the occluded area is not back-facing.*" >}}
+{{< figure src="/img/micro/tiling.svg" caption="*Figure 6. Visible area (red) and occluded area (blue). The entire visible area is front-facing; a part of the occluded area is not back-facing.*" >}}
 
 Of course, as the view angle tends to 90 degrees, the signed projected area tends to zero, while the visible projected area becomes proportional to the height of the microsurface. This leads to one of the key assumptions of the microfacet theory: *a microsurface is infinitesimally thick*. This limitation is particularly apparent at grazing angles, and should be familiar to those who have practical experience with bump and normal mapping.
 
@@ -484,11 +484,11 @@ $$ \tag{13a}
 	\bm{r} = \bm{R}(\bm{v}, \bm{m}) = -\bm{v} + 2 (\bm{v} \cdot \bm{m}) \bm{m}
 $$
 
-is the reflected view vector that points along the direction of incidence (see Fig. 8 below).
+is the reflected view vector that points along the direction of incidence (see Fig. 7 below).
 
-{{< figure src="/img/mst/fig8.png" >}}
+{{< figure src="/img/micro/scattering.svg" caption="*Figure 7. Reflected (red), refracted (or transmitted, green), and view (blue) vectors.*" >}}
 
-Now, according to the law of reflection, $\small \vert \bm{r} \cdot \bm{m} \vert = \vert \bm{v} \cdot \bm{m} \vert = \Vert \bm{r} + \bm{v} \Vert / 2$. Thus, we can solve Eqn. 13a for $\small \bm{m}$ if we recall that $\small (\bm{v} \cdot \bm{m}) > 0$ due to self-occlusion:
+According to the law of reflection, $\small \vert \bm{r} \cdot \bm{m} \vert = \vert \bm{v} \cdot \bm{m} \vert = \Vert \bm{r} + \bm{v} \Vert / 2$. If we assume that the microfacet is not self-occluded, then $\small (\bm{v} \cdot \bm{m}) > 0$, which allows us to solve Eqn. 13a for $\small \bm{m}$:
 
 $$ \tag{13b}
 	\bm{m} = \frac{\bm{r} + \bm{v}}{\Vert \bm{r} + \bm{v} \Vert}.
@@ -517,16 +517,16 @@ $$ \tag{15a}
 	 -\frac{\eta_v}{\eta_t}\bm{v} + \left( \frac{\eta_v}{\eta_t}(\bm{v} \cdot \bm{m}) - \mathrm{sgn}(\bm{v} \cdot \bm{m}) \sqrt{1 - \frac{\eta_v^2}{\eta_t^2} \Vert \bm{v} \times \bm{m} \Vert^2 } \right) \bm{m}
 $$
 
-is the refracted (or transmitted) view vector (see Fig. 8 above). We must caution that, in certain cases, the value of the expression inside the square root is a negative number. This invalidates the refracted direction and implies that the light has been *totally internally reflected* by the surface.
+is the refracted (or transmitted) view vector that points along the direction of incidence (see Fig. 7 above). We must caution that, in certain cases, the value of the expression inside the square root is a negative number. This invalidates the refracted direction and implies that the light has been *totally internally reflected* by the surface.
 
-Eqn. 15a can be solved for $\small \bm{m}$ provided $\small (\bm{v} \cdot \bm{m}) > 0$. The derivation is provided in the Appendix; here, we simply quote the result:
+Eqn. 15a can be solved for $\small \bm{m}$ provided $\small (\bm{v} \cdot \bm{m}) > 0$. The derivation is provided in Appendix A; here, we simply quote the result:
 
-$$ \tag{15f}
+$$ \tag{15b}
 	\bm{m} =
 	\frac{-(\eta_v \bm{v} + \eta_t \bm{t})}{\eta_t \cos{\theta_t} - \eta_v \cos{\theta_v}}.
 $$
 
-Note that the denominator is positive only if $\small \eta_t > \eta_v$, which has an obvious effect on the direction of $\small \bm{m}$. The latter is such that $\small (\bm{v} \cdot \bm{m}) > 0 \text{ while } (\bm{t} \cdot \bm{m}) < 0$. As for the direction of incidence, distant light sources are always occluded by the microsurface unless $\small (\bm{t} \cdot \bm{n}) < 0$.
+Note that the denominator is positive only if $\small \eta_t > \eta_v$, which has an obvious effect on the direction of $\small \bm{m}$: it satisfies $\small (\bm{v} \cdot \bm{m}) > 0 \text{ and } (\bm{t} \cdot \bm{m}) < 0$. As for the set of potentially useful directions of incidence, distant light sources are always occluded by the microsurface unless $\small (\bm{t} \cdot \bm{n}) < 0$.
 
 ---
 
@@ -1067,7 +1067,7 @@ $$ \tag{25a}
 	= \frac{\eta_t^2 \vert \bm{m} \cdot \bm{t} \vert}{\Vert \eta_v \bm{v} + \eta_t \bm{t} \Vert^2} d\Omega(\bm{t}).
 $$
 
-Therefore, according to the law of refraction (see Eqn. 8c and 15c-15f),
+Therefore, according to the law of refraction (see Eqn. 8c and 15c-15f ??? 15b ???),
 
 $$ \tag{25b}
 \begin{aligned}
