@@ -131,6 +131,8 @@ If we want to posit that Eqn. 1a and 2a are equivalent, we must also prevent the
 
 It is easy to see that reversing the directions of both $\small \bm{n}$ and $\small \bm{m}$ allows us to reuse the distribution of normals. As for the view vector, there are a couple of options: we can either reverse the direction of $\small \bm{v}$, or reflect it across the macrosurface. Since flipping a surface upside down alters visibility, neither method yields exact results; however, the first one is preferable, since it guarantees that self-occlusion is properly accounted for.
 
+### Distribution of Visible Normals
+
 With the assumption (that all projected surface areas are the same) in place, we can combine Eqn. 1a and 2a into
 
 $$ \tag{3a}
@@ -416,13 +418,11 @@ Since Eqn. 7d and 10b sum up to 1, we have just demonstrated that the full BSDF 
 
 If you find reciprocity daunting, you are not alone. For instance, Eqn. 18 and 21 in Bruce Walter's widely cited paper about microfacet models published in 2007 are missing a factor of $\small \eta_v^2 / \eta_l^2$.
 
-### Rough Specular BSDF
+### Rough Surface BSDF
 
-We can model a rough specular surface by treating the latter as locally (rather than globally) planar and smooth. The amount of radiance scattered by the microsurface can then be expressed as a weighted average of the contributions of its visible microfacets. To proceed further, we must recall that, by definition, the radiance is the amount of power moving in a certain direction, per unit solid angle associated with this direction, per unit area perpendicular to this direction. If the source of light is very small (or very far away), it will appear point-like, and the variation of the view vector across its surface can be safely neglected. The same cannot be said for the visible projected area, which must be properly normalized (or we would calculate the intensity instead of the radiance; see Fig. 9 \[borrowed from Eric Heitz\] below).
+We can model a rough microsurface by treating it as locally planar[^1]. The amount of radiance scattered by the microsurface can then be expressed as a weighted average of the contributions of its visible microfacets (see Fig. 6 above).
 
-{{< figure src="/img/mst/fig9.png" >}}
-
-Thus,
+To better understand this approach, recall that, by definition, the [radiance](/post/particle-volume/#radiometry-crash-course) is the amount of power transmitted in a certain direction, per unit solid angle associated with this direction, per unit area perpendicular to this direction. If the source of (scattered) light is very small (or very far away), it will appear point-like, and the variation of the view vector across its surface can be safely neglected. Thus,
 
 $$ \tag{11a}
 	L(\bm{v}) =
@@ -430,8 +430,10 @@ $$ \tag{11a}
 	\bm{m}(\bm{p}) L(\bm{v}, \bm{p})
 	V(\bm{v}, \bm{p}) dA(\bm{p})}
 	{\bm{v} \cdot \int_{\bm{p} \in \mathbb{M^2}}
-	\bm{m}(\bm{p}) V(\bm{v}, \bm{p}) dA(\bm{p})}
+	\bm{m}(\bm{p}) V(\bm{v}, \bm{p}) dA(\bm{p})},
 $$
+
+which is normalized with respect to the visible projected area to convert the intensity into the radiance.
 
 The general expression of the outgoing radiance term in the numerator of Eqn. 11a is given by the spatially varying version of Eqn. 4b:
 
@@ -441,7 +443,7 @@ $$ \tag{11c}
 	f_s(\bm{v}, \bm{m}(\bm{p}), \bm{l}) L(\bm{l}, \bm{p}) d\Omega_m(\bm{l}).
 $$
 
-Unfortunately, Eqn. 11c is recursive. In our case, this means that light scattered by one microfacet can be used to illuminate another in a process known as *multiple scattering*. For simplicity (and at the cost of correctness), when building microfacet models, this effect is often neglected, with only the distant illumination (and, thus, *single scattering*) taken into account:
+Unfortunately, Eqn. 11c is recursive. In our case, this means that light scattered by one microfacet can illuminate another in a process known as *multiple scattering*. For simplicity, and at the cost of correctness, this effect is often neglected, with only the distant illumination (and, thus, only *single scattering*) taken into account:
 
 $$ \tag{11d}
 	L(\bm{v}, \bm{p}) \approx
@@ -449,7 +451,7 @@ $$ \tag{11d}
 	f_s(\bm{v}, \bm{m}(\bm{p}), \bm{l}) L(\bm{l}) V(\bm{l}, \bm{p}) d\Omega_m(\bm{l}).
 $$
 
-Eqn. 11a can thus be approximated as
+These approximations allow us to rewrite Eqn. 11a as
 
 $$ \tag{11e}
 	L(\bm{v}) \approx
@@ -459,6 +461,8 @@ $$ \tag{11e}
 	{\bm{v} \cdot \int_{\bm{p} \in \mathbb{M^2}}
 	\bm{m}(\bm{p}) V(\bm{v}, \bm{p}) dA(\bm{p})}.
 $$
+
+### Rough Specular BSDF
 
 If we substitute the expressions of the smooth specular BSDF given by Eqn. 7c and 9c, the inner integral can be evaluated analytically. Starting with the reflection component,
 
