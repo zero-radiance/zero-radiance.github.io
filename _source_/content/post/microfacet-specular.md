@@ -488,13 +488,15 @@ is the reflected view vector that points along the direction of incidence (see F
 
 {{< figure src="/img/micro/scattering.svg" caption="*Figure 7. Reflected (red), refracted (or transmitted, green), and view (blue) vectors.*" >}}
 
-According to the law of reflection, $\small \vert \bm{r} \cdot \bm{m} \vert = \vert \bm{v} \cdot \bm{m} \vert = \Vert \bm{r} + \bm{v} \Vert / 2$. If we assume that the microfacet is not self-occluded, then $\small (\bm{v} \cdot \bm{m}) > 0$, which allows us to solve Eqn. 13a for $\small \bm{m}$:
+According to the law of reflection, $\small \vert \bm{r} \cdot \bm{m} \vert = \vert \bm{v} \cdot \bm{m} \vert = \Vert \bm{r} + \bm{v} \Vert / 2$. If we assume that the microfacet is front-facing (and, thus, not self-occluding), then $\small (\bm{v} \cdot \bm{m}) > 0$, which allows us to solve Eqn. 13a for $\small \bm{m}$:
 
 $$ \tag{13b}
 	\bm{m} = \frac{\bm{r} + \bm{v}}{\Vert \bm{r} + \bm{v} \Vert}.
 $$
 
-In the absence of multiple scattering, we only consider distant sources of illumination; those located in the lower hemisphere are guaranteed to be occluded by the microsurface, which reduces the set of potentially useful directions of incidence to those with $\small (\bm{r} \cdot \bm{n}) > 0$.
+In the absence of multiple scattering, we only consider distant sources of illumination; those located in the lower hemisphere are guaranteed to be occluded by the microsurface[^12], which reduces the set of potentially useful directions of incidence to those with $\small (\bm{r} \cdot \bm{n}) > 0$.
+
+[^12]: We do not care about the literal edge cases, since a microsurface is assumed to be a fragment of a larger surface.
 
 The transmission component of a microfacet BSDF can be defined analogously:
 
@@ -517,92 +519,16 @@ $$ \tag{15a}
 	 -\frac{\eta_v}{\eta_t}\bm{v} + \left( \frac{\eta_v}{\eta_t}(\bm{v} \cdot \bm{m}) - \mathrm{sgn}(\bm{v} \cdot \bm{m}) \sqrt{1 - \frac{\eta_v^2}{\eta_t^2} \Vert \bm{v} \times \bm{m} \Vert^2 } \right) \bm{m}
 $$
 
-is the refracted (or transmitted) view vector that points along the direction of incidence (see Fig. 7 above). We must caution that, in certain cases, the value of the expression inside the square root is a negative number. This invalidates the refracted direction and implies that the light has been *totally internally reflected* by the surface.
+is the refracted (or transmitted) view vector that points along the direction of incidence (see Fig. 7 above). The derivation of Eqn. 15a is provided in Appendix A. We must caution that, in certain cases, the value of the expression inside the square root is a negative number. This invalidates the refracted direction and implies that the light has been *totally internally reflected* by the surface.
 
-Eqn. 15a can be solved for $\small \bm{m}$ provided $\small (\bm{v} \cdot \bm{m}) > 0$. The derivation is provided in Appendix A; here, we simply quote the result:
-
-$$ \tag{15b}
-	\bm{m} =
-	\frac{-(\eta_v \bm{v} + \eta_t \bm{t})}{\eta_t \cos{\theta_t} - \eta_v \cos{\theta_v}}.
-$$
-
-Note that the denominator is positive only if $\small \eta_t > \eta_v$, which has an obvious effect on the direction of $\small \bm{m}$: it satisfies $\small (\bm{v} \cdot \bm{m}) > 0 \text{ and } (\bm{t} \cdot \bm{m}) < 0$. As for the set of potentially useful directions of incidence, distant light sources are always occluded by the microsurface unless $\small (\bm{t} \cdot \bm{n}) < 0$.
-
----
-
-### Derivation of the Refracted View Vector (to be moved to the Appendix)
-
-Eqn. 15a can be derived as follows. Let us define two unit vectors
+Eqn. 15a can be solved for $\small \bm{m}$ if we assume that $\small (\bm{v} \cdot \bm{m}) > 0$. The derivation is provided in Appendix A; here, we simply quote the result:
 
 $$ \tag{15b}
-\begin{aligned}
-	\bm{x}
-	&= \frac{\bm{m} \times (\bm{v} \times \bm{m})}{\Vert \bm{m} \times (\bm{v} \times \bm{m}) \Vert}
-	= \frac{\bm{v} - (\bm{v} \cdot \bm{m}) \bm{m}}{\Vert \bm{v} \times \bm{m} \Vert},
-	\cr
-	\bm{y}
-	&= \mathrm{sgn}(\bm{v} \cdot \bm{m}) \bm{m},
-\end{aligned}
+	\bm{m}
+	= \mathrm{sgn}\negmedspace\left(\frac{\eta_v}{\eta_t} + \bm{v} \cdot \bm{t}\right) \frac{(\eta_v / \eta_t) \bm{v} + \bm{t}}{\Vert (\eta_v / \eta_t) \bm{v} + \bm{t} \Vert}.
 $$
 
-such that
-
-$$ \tag{15c}
-\begin{aligned}
-	\sin{\theta_v}
-	&= \bm{v} \cdot \bm{x}
-	= \frac{1 - (\bm{v} \cdot \bm{m})^2}{\Vert \bm{v} \times \bm{m} \Vert}
-	= \Vert \bm{v} \times \bm{m} \Vert \ge 0,
-	\cr
-	\cos{\theta_v}
-	&= \bm{v} \cdot \bm{y}
-	= \vert \bm{v} \cdot \bm{m} \vert \ge 0.
-\end{aligned}
-$$
-
-In this coordinate system,
-
-$$ \tag{15d}
-\begin{aligned}
-	\bm{v}
-	&= \sin{\theta_v} \bm{x} + \cos{\theta_v} \bm{y},
-	\cr
-	\bm{t}
-	&= -(\sin{\theta_t} \bm{x} + \cos{\theta_t} \bm{y}),
-\end{aligned}
-$$
-
-where
-
-$$ \tag{15dd}
-\begin{aligned}
-	\sin{\theta_t}
-	&= \Vert \bm{t} \times \bm{m} \Vert \ge 0,
-	\cr
-	\cos{\theta_t}
-	&= \vert \bm{t} \cdot \bm{m} \vert \ge 0,
-\end{aligned}
-$$
-
-by convention.
-
-Application of the law of refraction given by Eqn. 8c readily yields Eqn. 15a. This method has the following geometric interpretation: we reverse the direction of $\small \bm{v}$, shorten it by a factor of $\small \eta_v / \eta_t$, and stretch it along $\small \bm{m}$ until its length reaches the value of 1.
-
-Eqn. 15d can be solved for $\small \bm{m}$ provided $\small (\bm{v} \cdot \bm{m}) > 0$. Then $\small \bm{y} = \bm{m}$, and we can eliminate $\small \bm{x}$ by rescaling $\small \bm{t}$ by a factor of $\small \sin{\theta_v} / \sin{\theta_t}$:
-
-$$ \tag{15e}
-	\bm{v} + \frac{\sin{\theta_v}}{\sin{\theta_t}} \bm{t}
-	= \left( \cos{\theta_v} - \frac{\sin{\theta_v}}{\sin{\theta_t}} \cos{\theta_t} \right) \bm{m}.
-$$
-
-After applying the law of refraction once more and rearranging the terms, we obtain
-
-$$ \tag{15f}
-	\bm{m} =
-	\frac{-(\eta_v \bm{v} + \eta_t \bm{t})}{\eta_t \cos{\theta_t} - \eta_v \cos{\theta_v}}.
-$$
-
----
+The sign function ensures that $\small (\bm{v} \cdot \bm{m}) > 0$. As for the set of potentially useful directions of incidence, distant light sources are always occluded by the microsurface unless $\small (\bm{t} \cdot \bm{n}) < 0$.
 
 ### Shadowing-Masking Function
 
@@ -1186,9 +1112,85 @@ $$
 
 This concludes our derivation of a microfacet specular BSDF.
 
-## Idea
+### Appendix A: Derivation of the Refracted View Vector
 
-MST can be used to reduce the size of IBL LUTs.
+Eqn. 15a can be derived as follows. Let us define two unit vectors
+
+$$ \tag{A1}
+\begin{aligned}
+	\bm{x}
+	&= \frac{\bm{m} \times (\bm{v} \times \bm{m})}{\Vert \bm{m} \times (\bm{v} \times \bm{m}) \Vert}
+	= \frac{\bm{v} - (\bm{v} \cdot \bm{m}) \bm{m}}{\Vert \bm{v} \times \bm{m} \Vert},
+	\cr
+	\bm{y}
+	&= \mathrm{sgn}(\bm{v} \cdot \bm{m}) \bm{m},
+\end{aligned}
+$$
+
+such that
+
+$$ \tag{A2}
+\begin{aligned}
+	\sin{\theta_v}
+	&= \bm{v} \cdot \bm{x}
+	= \frac{1 - (\bm{v} \cdot \bm{m})^2}{\Vert \bm{v} \times \bm{m} \Vert}
+	= \Vert \bm{v} \times \bm{m} \Vert \ge 0,
+	\cr
+	\cos{\theta_v}
+	&= \bm{v} \cdot \bm{y}
+	= \vert \bm{v} \cdot \bm{m} \vert \ge 0.
+\end{aligned}
+$$
+
+In this coordinate system (see Fig. 7 above),
+
+$$ \tag{A3}
+\begin{aligned}
+	\bm{v}
+	&= \sin{\theta_v} \bm{x} + \cos{\theta_v} \bm{y},
+	\cr
+	\bm{t}
+	&= -(\sin{\theta_t} \bm{x} + \cos{\theta_t} \bm{y}),
+\end{aligned}
+$$
+
+where
+
+$$ \tag{A4}
+\begin{aligned}
+	\sin{\theta_t}
+	&= \Vert \bm{t} \times \bm{m} \Vert \ge 0,
+	\cr
+	\cos{\theta_t}
+	&= \vert \bm{t} \cdot \bm{m} \vert \ge 0,
+\end{aligned}
+$$
+
+by convention.
+
+Expansion of Eqn. A3 via substitution and simplification using the law of refraction yields Eqn. 15a:
+
+$$ \tag{A5}
+	\bm{t}
+	= -\frac{\eta_v}{\eta_t}\bm{v} + \left( \frac{\eta_v}{\eta_t}(\bm{v} \cdot \bm{m}) - \mathrm{sgn}(\bm{v} \cdot \bm{m}) \sqrt{1 - \frac{\eta_v^2}{\eta_t^2} \Vert \bm{v} \times \bm{m} \Vert^2 } \right) \bm{m}.
+$$
+
+This expression has the following geometric interpretation: we reverse the direction of $\small \bm{v}$, shorten it by a factor of $\small \eta_v / \eta_t$, and stretch it along $\small \bm{m}$ until the resulting vector is of length 1.
+
+Eqn. A3 can be solved for $\small \bm{m}$ if we assume that $\small (\bm{v} \cdot \bm{m}) > 0$, so that $\small \bm{y} = \bm{m}$. We can subsequently eliminate $\small \bm{x}$ by rescaling $\small \bm{t}$ by a factor of $\small \sin{\theta_v} / \sin{\theta_t}$:
+
+$$ \tag{A6}
+	\bm{v} + \frac{\sin{\theta_v}}{\sin{\theta_t}} \bm{t}
+	= \left( \cos{\theta_v} - \frac{\sin{\theta_v}}{\sin{\theta_t}} \cos{\theta_t} \right) \bm{m}.
+$$
+
+After applying the law of refraction once more and performing a series of trivial algebraic manipulations, we readily obtain Eqn. 15b:
+
+$$ \tag{A7}
+	\bm{m}
+	= \frac{\eta_v \bm{v} + \eta_t \bm{t}}{\eta_v \cos{\theta_v} - \eta_t \cos{\theta_t}}
+	= \mathrm{sgn}\negmedspace\left(\frac{\eta_v}{\eta_t} + \bm{v} \cdot \bm{t}\right) \frac{(\eta_v / \eta_t) \bm{v} + \bm{t}}{\Vert (\eta_v / \eta_t) \bm{v} + \bm{t} \Vert}.
+$$
 
 ## Acknowledgements
 
