@@ -532,9 +532,9 @@ The sign function ensures that $\small (\bm{v} \cdot \bm{m}) > 0$. As for the se
 
 ### Shadowing-Masking Function
 
-Let us return to Eqn. 12 and 14. Upon close examination, the visibility terms (and the vector differential area $\small \bm{m} dA$) are the only ones that explicitly depend on the position $\small \bm{p}$. Intuitively, that is because visibility is a non-local property -- it connects a point to the entire surface.
+Upon close examination of Eqn. 12 and 14, the visibility terms (and the vector differential area $\small \bm{m} dA$) are the only ones that explicitly depend on the position $\small \bm{p}$. Intuitively, that is because visibility is a non-local property -- it connects a point to the entire surface.
 
-We can evaluate both of these equations numerically by breaking the microsurface into individual microfacets and sorting the latter by their orientation. For a fixed view vector $\small \bm{v}$, a group of microfacets with the same normal $\bm{m}$ will also share the values of $\small F$ and $\small L$. During the final step, we must calculate the total visible area of the microfacets within each group.
+We can evaluate both of these integrals numerically by breaking the microsurface down into individual microfacets and sorting them by their orientation. For a fixed view vector $\small \bm{v}$, a group of microfacets with the same normal $\bm{m}$ will also share the values of $\small F$ and $\small L$. The remaining factor is a surface integral that represents the total visible area of the microfacets within each group.
 
 The statistical method of evaluation of Eqn. 12 and 14 mirrors Eqn. 2a. We must introduce the dimensionless *shadowing-masking function* $\small G_2(\bm{v}, \bm{m}, \bm{l})$ that gives the fraction of the differential area $\small dA(\bm{m})$ of the portion of the microsurface perpendicular to $\small \bm{m}$ that happens to be visible along both $\small \bm{v} \text{ and } \bm{l}$. In other words, it is the *average visibility* (along both $\small \bm{l} \text{ and } \bm{v}$) of the microfacets with the normal $\small \bm{m}$:
 
@@ -551,7 +551,7 @@ $$ \tag{16a}
 \end{aligned}
 $$
 
-Once projected onto $\small \bm{v} \text{ or } \bm{l}$, Eqn. 16a also represents the visible projected area, except that the visibility is now bidirectional. Similarly, it takes self-occlusion into account: $\small V = G_2 = 0$ if $\small (\bm{v} \cdot \bm{m}) \le 0 \text{ or } \small (\bm{l} \cdot \bm{m}) \le 0$.
+Once projected onto $\small \bm{v} \text{ or } \bm{l}$, Eqn. 16a also represents the visible projected area, except that now the visibility is bidirectional. Similarly, it takes self-occlusion into account: $\small V = G_2 = 0$ if $\small (\bm{v} \cdot \bm{m}) \le 0 \text{ or } \small (\bm{l} \cdot \bm{m}) \le 0$.
 
 A valid shadowing-masking function also has the following properties:
 
@@ -568,19 +568,17 @@ $$ \tag{16b}
 \end{aligned}
 $$
 
-**Q: is the height correlation condition above correct? It simply tests whether the surface is a height field. I don't think so.**
+The last expression is only applicable to height fields[^13]. Essentially, it says that the visibility of a microfacet depends on its altitude. The second property is more general; it implies that a bidirectional average cannot be factored into the product of unidirectional averages:
 
-**Q: Does height correlation make sense for arbitrary surfaces? I think so (e.g. consider a height field with a number of tunnels). This answers the question above.**
-
-The last one is only applicable to height fields. Essentially, it says that the visibility of a microfacet depends on its altitude. The second property is more general; it implies that a bidirectional average cannot be factored into the product of unidirectional averages:
+[^13]: Height correlation is not limited to height fields. For arbitrary surfaces, the correlation is weaker, and it is not clear whether it is possible to express this property in a compact form.
 
 $$ \tag{16c}
 	G_2(\bm{v}, \bm{m}, \bm{l}) \ne G_1(\bm{v}, \bm{m}) G_1(\bm{l}, \bm{m}).
 $$
 
-For example, consider a number of evenly spaced boxes -- a square wave. For $\small \bm{m} = \bm{n}$, the unidirectional visibility will approach 50% as the view angle increases. Thus, for shallow angles, $\small G_1(\bm{v}, \bm{n}) G_1(\bm{l}, \bm{n}) \approx 1/4$, while the correct value of $\small G_2(\bm{v}, \bm{n}, \bm{l}) \approx 1/2$.
+As an example, consider a number of evenly spaced boxes -- a square wave. For $\small \bm{m} = \bm{n}$, the unidirectional visibility will approach 50% as the view angle increases. Thus, for shallow angles, $\small G_1(\bm{v}, \bm{n}) G_1(\bm{l}, \bm{n}) \approx 1/4$, while the correct value of $\small G_2(\bm{v}, \bm{n}, \bm{l}) \approx 1/2$.
 
----
+<!--
 
 ### Smith's Approximation of the Shadowing-Masking Function (to be omitted)
 
@@ -700,7 +698,7 @@ A valid modification must satisfy $\small g(1) = 1$.
 
 **Q: what is a good choice of g? Does it depend on roughness? Is the result still height-correlated?**
 
----
+-->
 
 ### Construction of a Microfacet Specular BSDF
 
