@@ -762,18 +762,21 @@ $$ \tag{18c}
 \end{aligned}
 $$
 
-The Jacobian of Eqn. 18b describes the rate at which one solid angle changes relative to the other. The notation has been purposefully chosen to mimic the one-dimensional partial[^10] derivative $\small \partial x / \partial t$. Similarly, the one-dimensional change of variables $\small dx = (\partial x / \partial t) dt$ is completely analogous to
+Technically, the Jacobian of Eqn. 18b describes the *rate* at which one solid angle changes relative to the other. The notation has been purposefully chosen to mimic the one-dimensional partial[^10] derivative $\small \partial x / \partial t$. Similarly,
 
 [^10]: The derivative is partial because the microsurface normal implicitly depends on the view vector.
 
 $$ \tag{18d}
 	d\Omega(\bm{m})
 	= \left\vert \frac{\partial \Omega(\bm{m})}{\partial \Omega(\bm{r})} \right\vert d\Omega(\bm{r})
-	= \big\vert J(\bm{m}, \bm{r}) \big\vert d\Omega(\bm{r}).
+	= \big\vert J(\bm{m}, \bm{r}) \big\vert d\Omega(\bm{r})
 $$
 
-Intuitively, the Jacobian is just a ratio of two differential solid angles, each corresponding to a projected differential area. Unfortunately, making sense of this statement requires a background in vector analysis. For the reader who wishes to understand the details, we provide a brief introduction to the Jacobians and differential solid angles in Appendix B.
+is completely analogous to the one-dimensional change of variables $\small dx = (\partial x / \partial t) dt$.
 
+Intuitively, the absolute value of the Jacobian is just a *ratio* of two differential solid angles, each corresponding to a projected differential area. Unfortunately, making sense of this statement (and making it more precise) requires a background in vector analysis. For those readers who are interested in the details, we provide a brief introduction to Jacobians and differential solid angles in Appendix B.
+
+---
 
 We can utilize these geometric properties to find the expression of the Jacobian in Eqn. 18d. Taking $\small \bm{v}$ as a constant, substitution of Eqn. 13b into 23a and utilization of Eqn. 23b-23d yields
 
@@ -1123,37 +1126,35 @@ $$
 
 The Jacobian is also frequently used in triple integrals, where its absolute value corresponds to the ratio of the volumes of two parallelepipeds.
 
----
-
-Once the Eqn. 20a that relates the sets of coordinates has been specified, the expression of the Jacobian can be determined algebraically, by calculating the determinant of the matrix of partial derivatives. However, in our case, the geometric (e.i., coordinate-independent, basis-independent) approach is both simpler and more insightful.
+Once Eqn. B7 that relates the sets of coordinates has been specified, the expression of the Jacobian can be determined algebraically, by calculating the determinant of the matrix of partial derivatives. However, in our case, a geometric (e.i., coordinate-independent, basis-independent) approach is both simpler and more insightful.
 
 First, we must point out two obvious properties of the vector differential area. It remains unchanged if the surface is translated along a constant vector $\small \bm{q}$:
 
-$$ \tag{22a}
+$$ \tag{B14}
 	d\bm{A}(\bm{p} + \bm{q}) = d\bm{A}(\bm{p}).
 $$
 
 Furthermore, the area scales quadratically with the dimensions of the surface. For a constant $\small \lambda$,
 
-$$ \tag{22b}
+$$ \tag{B15}
 	d\bm{A}(\lambda \bm{p}) = \lambda^2 d\bm{A}(\bm{p}).
 $$
 
-For a unit vector $\small \bm{m}$ and a variable $\small \lambda(\bm{m})$, the total differential in the spherical coordinates is
+For a unit vector $\small \bm{m}$ (which is effectively a point on the surface of a unit sphere) and a variable $\small \lambda(\bm{m})$, the total differential in the spherical coordinates is
 
-$$ \tag{22c}
+$$ \tag{B16}
 	d(\lambda \bm{m})
 	= \left( \frac{\partial \lambda}{\partial \theta} \bm{m} + \lambda \frac{\partial \bm{m}}{\partial \theta} \right) d\theta
 	+ \left( \frac{\partial \lambda}{\partial \phi} \bm{m} + \lambda \frac{\partial \bm{m}}{\partial \phi} \right) d\phi.
 $$
 
-All three vectors, $\small \bm{m}, \partial \bm{m} / \partial \theta, \text{and } \partial \bm{m} / \partial \phi$, are mutually orthogonal. Thus,
+$\small \bm{m}, \partial \bm{m} / \partial \theta, \partial \bm{m} / \partial \phi$ (often called $\small \bm{r}, \bm{\theta}, \bm{\phi}$) form an orthonormal basis on the surface of a unit sphere. Thus,
 
-$$ \tag{22d}
+$$ \tag{B17}
 \begin{aligned}
 	\bm{m} \cdot d\bm{A}(\lambda \bm{m})
-	&= \bm{m} \cdot \Bigg( \left( \frac{\partial \lambda}{\partial \theta} \bm{m} + \lambda \frac{\partial \bm{m}}{\partial \theta} \right)
-	\times \left( \frac{\partial \lambda}{\partial \phi} \bm{m} + \lambda \frac{\partial \bm{m}}{\partial \phi} \right) \Bigg) d\theta d\phi
+	&= \bm{m} \cdot \left( \frac{\partial \lambda}{\partial \theta} \bm{m} + \lambda \frac{\partial \bm{m}}{\partial \theta} \right)
+	\times \left( \frac{\partial \lambda}{\partial \phi} \bm{m} + \lambda \frac{\partial \bm{m}}{\partial \phi} \right) d\theta d\phi
 	\cr
 	&= \bm{m} \cdot \lambda^2 \left( \frac{\partial \bm{m}}{\partial \theta}
 	\times
@@ -1162,30 +1163,30 @@ $$ \tag{22d}
 \end{aligned}
 $$
 
-Now, recall that, by definition, the solid angle subtended by an object is the surface area of its (radial) projection onto the unit sphere. If we consider an infinitesimal surface fragment of the vector area $\small d\bm{A}$ located at the point $\small \bm{p}$, the associated differential solid angle is
+Now, recall that, by definition, the solid angle subtended by an object is the surface area of its projection onto the unit sphere. If we consider an infinitesimal surface element and its vector area $\small d\bm{A}$ located at the point $\small \bm{p}$, the associated differential solid angle is
 
-$$ \tag{23a}
+$$ \tag{B18}
 	d\Omega(\bm{p})
 	= \left\vert \frac{\bm{p}}{\Vert \bm{p} \Vert} \cdot \frac{d\bm{A}(\bm{p})}{\Vert \bm{p} \Vert^2} \right \vert.
 $$
 
 In particular, for an area element located on the surface of a unit sphere,
 
-$$ \tag{23b}
+$$ \tag{B19}
 	d\bm{A}(\bm{m}) = \bm{m} d\Omega(\bm{m}).
 $$
 
 As an angular quantity, the solid angle is scale-invariant:
 
-$$ \tag{23c}
+$$ \tag{B20}
 	d\Omega(\lambda \bm{m})
 	= \left\vert \frac{\lambda \bm{m}}{\Vert \lambda \bm{m} \Vert} \cdot \frac{d\bm{A}(\lambda \bm{m})}{\Vert \lambda \bm{m} \Vert^2} \right \vert
 	= d\Omega(\bm{m}).
 $$
 
-However, a radial projection is not translation-invariant:
+However, it is not translation-invariant due to the projection onto the unit sphere:
 
-$$ \tag{23d}
+$$ \tag{B21}
 \begin{aligned}
 	d\Omega(\bm{p} + \bm{q})
 	&= \left\vert \frac{\bm{p} + \bm{q}}{\Vert \bm{p} + \bm{q} \Vert} \cdot \frac{d\bm{A}(\bm{p} + \bm{q})}{\Vert \bm{p} + \bm{q} \Vert^2} \right \vert
