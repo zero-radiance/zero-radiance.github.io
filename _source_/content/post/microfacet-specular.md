@@ -1006,7 +1006,7 @@ $$
 
 ### Appendix B: Jacobians and Differential Solid Angles
 
-Consider a surface parameterized by two coordinates (e.g. the Cartesian or the spherical coordinates):
+Consider a surface parameterized by a pair of coordinates (e.g. the Cartesian or the spherical coordinates):
 
 $$ \tag{B1}
 	\bm{p} = \bm{p}(x,y).
@@ -1099,7 +1099,7 @@ $$ \tag{B11}
 	= \bm{k'} ds dt.
 $$
 
-If the transformed basis is not orthonormal, the expression of the scalar differential area must account for the length of the basis vectors and the angle between them:
+If the transformed basis is not orthonormal, the expression of the scalar differential area must account for the length of the vectors and the angle between them:
 
 $$ \tag{B12}
 	dA
@@ -1108,13 +1108,18 @@ $$ \tag{B12}
 	= \Vert \bm{i'} \times \bm{j'} \Vert ds dt.
 $$
 
-Now, if we want to replace Eqn. B6 with B12 in an area integral, they must be the same[^11]. The ratio of the areas of the parallelograms formed by the basis vectors is given by the absolute value of the Jacobian
+{{< figure src="/img/micro/jacobian.svg" caption="*Figure 8. Two surface parameterizations and the associated coordinate frames.*" >}}
 
-[^11]: The same is also true for Eqn. B5 and B11. Intuitively, both the orientation and the size (but not the shape) of the surface elements must be independent of the choice of coordinates (e.i. the tessellation scheme).
+Now, if we want to replace Eqn. B6 with B12 in an area integral, they must be the same[^11]. The ratio of the areas of the parallelograms formed by the basis vectors (see Fig. 8 above) is given by the absolute value of the Jacobian determinant
 
 $$ \tag{B13}
-	\vert J \vert = \frac{dx dy}{ds dt} = \Vert \bm{i'} \times \bm{j'} \Vert.
+	\vert J \vert
+	= \frac{dx dy}{ds dt}
+	= \frac{\Vert \bm{k'} \Vert}{\Vert \bm{k} \Vert}
+	= \Vert \bm{i'} \times \bm{j'} \Vert.
 $$
+
+[^11]: The same is also true for Eqn. B5 and B11. Intuitively, both the orientation and the size (but not the shape) of the surface elements must be independent of the choice of coordinates (the tessellation scheme).
 
 The Jacobian is also frequently used in triple integrals, where its absolute value corresponds to the ratio of the volumes of two parallelepipeds.
 
