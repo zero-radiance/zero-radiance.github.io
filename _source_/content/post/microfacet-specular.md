@@ -129,7 +129,7 @@ Of course, as the view angle tends to 90 degrees, the signed projected area tend
 
 If we want to posit that Eqn. 1a and 2a are equivalent, we must also prevent the signed projected area from turning negative by restricting the view angles to the range where $\small (\bm{v} \cdot \bm{n}) > 0$. In other words, *a microsurface is always facing the observer*. If that is not the case, we must recompute the statistics for the undersurface.
 
-It is easy to see that reversing the directions of both $\small \bm{n}$ and $\small \bm{m}$ allows us to reuse the distribution of normals. As for the view vector, there are a couple of options: we can either reverse the direction of $\small \bm{v}$, or reflect it across the macrosurface. Since flipping a surface upside down alters visibility, neither method yields exact results; however, the first one is preferable, since it guarantees that self-occlusion is properly accounted for.
+It is easy to see that reversing the directions of both $\small \bm{n}$ and $\small \bm{m}$ allows us to reuse the distribution of normals. As for the view vector, there are a couple of options: we can either reverse the direction of $\small \bm{v}$, or reflect it across the macrosurface. Since flipping a surface upside down alters visibility, neither method yields exact results; however, the first one is preferable, since it guarantees that self-occlusion is properly accounted for. In practice, the resulting approximation is applicable to complex, unstructured surfaces; you should not expect it to be accurate for a simple repeating pattern.
 
 ### Distribution of Visible Normals
 
@@ -532,7 +532,7 @@ The sign function ensures that $\small (\bm{v} \cdot \bm{m}) > 0$. As for the se
 
 ### Shadowing-Masking Function
 
-Upon close examination of Eqn. 12 and 14, the visibility terms (and the vector differential area $\small \bm{m} dA$) are the only ones that explicitly depend on the position $\small \bm{p}$. Intuitively, that is because visibility is a non-local property -- it connects a point to the entire surface.
+Upon close examination of Eqn. 12 and 14, the visibility terms are the only ones that explicitly depend on the position $\small \bm{p}$. Intuitively, that is because visibility is a non-local property -- it connects a point to the entire surface.
 
 We can evaluate both of these integrals numerically by breaking the microsurface down into individual microfacets and sorting them by their orientation. For a fixed view vector $\small \bm{v}$, a group of microfacets with the same normal $\bm{m}$ will also share the values of $\small F$ and $\small L$. The remaining factor is a surface integral that represents the total visible area of the microfacets within each group.
 
@@ -700,7 +700,7 @@ A valid modification must satisfy $\small g(1) = 1$.
 
 -->
 
-### Construction of a Microfacet Specular BSDF
+### Microfacet Specular BSDF
 
 In order to arrive at the expression of a microfacet BSDF, we must convert Eqn. 12 and 14 into a statistical form. The numerator can be rewritten in terms of the shadowing-masking function defined by Eqn. 16a. As for the denominator, according to the microfacet theory, the visible projected area of the microsurface is identical to the signed projected area of the macrosurface (see Eqn. 1-3). Therefore,
 
@@ -727,7 +727,7 @@ $$ \tag{18a}
 \end{aligned}
 $$
 
-The second equation required a minor modification: we had to reverse the refracted view vector $\small \bm{t}$ because the microsurface is one-sided; refer to the discussion below Eqn. 2b for details. This formulation is non-reciprocal: an equivalent (proper but verbose) expression uses $\small G_2(\mathrm{sgn}(\bm{n} \cdot \bm{v}) \bm{v}, \bm{m}, \mathrm{sgn}(\bm{n} \cdot \bm{t}) \bm{t})$.
+The second equation required a minor modification: we had to reverse the refracted view vector $\small \bm{t}$ because the microsurface is one-sided; refer to the section about Inherent Assumptions for details. This formulation is non-reciprocal: an equivalent (proper but verbose) expression uses $\small G_2(\mathrm{sgn}(\bm{n} \cdot \bm{v}) \bm{v}, \bm{m}, \mathrm{sgn}(\bm{n} \cdot \bm{t}) \bm{t})$.
 
 Comparison of Eqn. 18a with 4b, which serves as a definition of a BSDF, reveals that the domain of integration is not the same. Therefore, we must perform a change of variables from the microsurface normal to the direction of incidence. This can be accomplished using the *Jacobian* determinant of the transformation:
 
@@ -772,194 +772,8 @@ $$ \tag{18d}
 	= \big\vert J(\bm{m}, \bm{r}) \big\vert d\Omega(\bm{r}).
 $$
 
-Intuitively, the Jacobian is just a ratio of two differential solid angles, each corresponding to a projected differential area. Unfortunately, making this statement more precise requires a background in vector analysis. For the reader who wishes to understand the derivation (and not just apply the results), we provide a brief introduction to the properties of differential solid angles in the Appendix.
+Intuitively, the Jacobian is just a ratio of two differential solid angles, each corresponding to a projected differential area. Unfortunately, making sense of this statement requires a background in vector analysis. For the reader who wishes to understand the details, we provide a brief introduction to the Jacobians and differential solid angles in Appendix B.
 
----
-
-### Geometric Properties of Differential Solid Angles (to be moved to the Appendix)
-
-Consider a surface parameterized by two coordinates (e.g. the Cartesian or the spherical coordinates):
-
-$$ \tag{19a}
-	\bm{p} = \bm{p}(x,y).
-$$
-
-The change in the surface position is given by the chain rule:
-
-$$ \tag{19b}
-	d\bm{p}
-	= \frac{\partial \bm{p}}{\partial x} dx + \frac{\partial \bm{p}}{\partial y} dy.
-$$
-
-Let us define a local coordinate frame:
-
-$$ \tag{19c}
-	\bm{i}
-	= \frac{\partial \bm{p}}{\partial x},
-	\quad
-	\bm{j}
-	= \frac{\partial \bm{p}}{\partial y},
-	\quad
-	\bm{k}
-	= \bm{i} \times \bm{j}.
-$$
-
-Clearly, Eqn. 19b is a sum of two linearly independent vectors:
-
-$$ \tag{19d}
-	d\bm{p} = \bm{i} dx + \bm{j} dy.
-$$
-
-They form a little parallelogram that can be represented by the vector differential area
-
-$$ \tag{19e}
-	d\bm{A}
-	= (\bm{i} dx) \times (\bm{j} dy)
-	= (\bm{i} \times \bm{j}) dx dy
-	= \bm{k} dx dy.
-$$
-
-Its magnitude is the scalar differential area
-
-$$ \tag{19f}
-	dA
-	= \Vert d\bm{A} \Vert
-	= dx dy,
-$$
-
-where we have made a simplifying assumption that the basis vectors are mutually orthogonal unit vectors.
-
-Now, let us perform a change of variables
-
-$$ \tag{20a}
-	x = x(s,t),
-	\quad
-	y = y(s,t).
-$$
-
-According to the chain rule,
-
-$$ \tag{20b}
-	d\bm{p} = \frac{\partial \bm{p}}{\partial s} ds + \frac{\partial \bm{p}}{\partial t} dt.
-$$
-
-The transformed basis vectors are:
-
-$$ \tag{20c}
-	\bm{i'}
-	= \frac{\partial \bm{p}}{\partial s},
-	\quad
-	\bm{j'}
-	= \frac{\partial \bm{p}}{\partial t},
-	\quad
-	\bm{k'}
-	= \bm{i'} \times \bm{j'}.
-$$
-
-Eqn. 20b can thus be written as
-
-$$ \tag{20d}
-	d\bm{p} = \bm{i'} ds + \bm{j'} dt.
-$$
-
-The expression of the vector differential area mirrors Eqn. 19e:
-
-$$ \tag{20e}
-	d\bm{A}
-	= (\bm{i'} ds) \times (\bm{j'} dt)
-	= (\bm{i'} \times \bm{j'}) ds dt
-	= \bm{k'} ds dt.
-$$
-
-If we do not assume that the transformed basis is orthonormal, the expression of the scalar differential area must account for the length of the basis vectors and the angle between them:
-
-$$ \tag{20f}
-	dA
-	= \Vert d\bm{A} \Vert
-	= \Vert \bm{k'} \Vert ds dt
-	= \Vert \bm{i'} \times \bm{j'} \Vert ds dt.
-$$
-
-Now, if we want to replace Eqn. 19f with 20f in an area integral, their value must be the same[^11]. The ratio of the areas of the parallelograms formed by the basis vectors is given by the absolute value of the Jacobian
-
-[^11]: The same is true for Eqn. 19e and 20e. Intuitively, both the orientation and the size (but not the shape) of the surface elements must be independent of the choice of coordinates (the tessellation scheme).
-
-$$ \tag{21}
-	\vert J \vert = \frac{dx dy}{ds dt} = \Vert \bm{i'} \times \bm{j'} \Vert.
-$$
-
-The Jacobian is also frequently used in triple integrals, where its absolute value corresponds to the ratio of the volumes of two parallelepipeds.
-
-Once the Eqn. 20a that relates the sets of coordinates has been specified, the expression of the Jacobian can be determined algebraically, by calculating the determinant of the matrix of partial derivatives. However, in our case, the geometric (e.i., coordinate-independent, basis-independent) approach is both simpler and more insightful.
-
-First, we must point out two obvious properties of the vector differential area. It remains unchanged if the surface is translated along a constant vector $\small \bm{q}$:
-
-$$ \tag{22a}
-	d\bm{A}(\bm{p} + \bm{q}) = d\bm{A}(\bm{p}).
-$$
-
-Furthermore, the area scales quadratically with the dimensions of the surface. For a constant $\small \lambda$,
-
-$$ \tag{22b}
-	d\bm{A}(\lambda \bm{p}) = \lambda^2 d\bm{A}(\bm{p}).
-$$
-
-For a unit vector $\small \bm{m}$ and a variable $\small \lambda(\bm{m})$, the total differential in the spherical coordinates is
-
-$$ \tag{22c}
-	d(\lambda \bm{m})
-	= \left( \frac{\partial \lambda}{\partial \theta} \bm{m} + \lambda \frac{\partial \bm{m}}{\partial \theta} \right) d\theta
-	+ \left( \frac{\partial \lambda}{\partial \phi} \bm{m} + \lambda \frac{\partial \bm{m}}{\partial \phi} \right) d\phi.
-$$
-
-All three vectors, $\small \bm{m}, \partial \bm{m} / \partial \theta, \text{and } \partial \bm{m} / \partial \phi$, are mutually orthogonal. Thus,
-
-$$ \tag{22d}
-\begin{aligned}
-	\bm{m} \cdot d\bm{A}(\lambda \bm{m})
-	&= \bm{m} \cdot \Bigg( \left( \frac{\partial \lambda}{\partial \theta} \bm{m} + \lambda \frac{\partial \bm{m}}{\partial \theta} \right)
-	\times \left( \frac{\partial \lambda}{\partial \phi} \bm{m} + \lambda \frac{\partial \bm{m}}{\partial \phi} \right) \Bigg) d\theta d\phi
-	\cr
-	&= \bm{m} \cdot \lambda^2 \left( \frac{\partial \bm{m}}{\partial \theta}
-	\times
-	\frac{\partial \bm{m}}{\partial \phi} \right) d\theta d\phi
-	= \bm{m} \cdot \lambda^2 d\bm{A}(\bm{m}).
-\end{aligned}
-$$
-
-Now, recall that, by definition, the solid angle subtended by an object is the surface area of its (radial) projection onto the unit sphere. If we consider an infinitesimal surface fragment of the vector area $\small d\bm{A}$ located at the point $\small \bm{p}$, the associated differential solid angle is
-
-$$ \tag{23a}
-	d\Omega(\bm{p})
-	= \left\vert \frac{\bm{p}}{\Vert \bm{p} \Vert} \cdot \frac{d\bm{A}(\bm{p})}{\Vert \bm{p} \Vert^2} \right \vert.
-$$
-
-In particular, for an area element located on the surface of a unit sphere,
-
-$$ \tag{23b}
-	d\bm{A}(\bm{m}) = \bm{m} d\Omega(\bm{m}).
-$$
-
-As an angular quantity, the solid angle is scale-invariant:
-
-$$ \tag{23c}
-	d\Omega(\lambda \bm{m})
-	= \left\vert \frac{\lambda \bm{m}}{\Vert \lambda \bm{m} \Vert} \cdot \frac{d\bm{A}(\lambda \bm{m})}{\Vert \lambda \bm{m} \Vert^2} \right \vert
-	= d\Omega(\bm{m}).
-$$
-
-However, a radial projection is not translation-invariant:
-
-$$ \tag{23d}
-\begin{aligned}
-	d\Omega(\bm{p} + \bm{q})
-	&= \left\vert \frac{\bm{p} + \bm{q}}{\Vert \bm{p} + \bm{q} \Vert} \cdot \frac{d\bm{A}(\bm{p} + \bm{q})}{\Vert \bm{p} + \bm{q} \Vert^2} \right \vert
-	\cr
-	&= \left\vert \frac{\bm{p} + \bm{q}}{\Vert \bm{p} + \bm{q} \Vert} \cdot \frac{d\bm{A}(\bm{p})}{\Vert \bm{p} + \bm{q} \Vert^2} \right \vert.
-\end{aligned}
-$$
-
----
 
 We can utilize these geometric properties to find the expression of the Jacobian in Eqn. 18d. Taking $\small \bm{v}$ as a constant, substitution of Eqn. 13b into 23a and utilization of Eqn. 23b-23d yields
 
@@ -1110,7 +924,7 @@ $$
 
 This concludes our derivation of a microfacet specular BSDF.
 
-### Appendix A: Derivation of the Refracted View Vector
+### Appendix A: Derivation of Refracted View Vector
 
 Eqn. 15a can be derived as follows. Let us define two unit vectors
 
@@ -1188,6 +1002,191 @@ $$ \tag{A7}
 	\bm{m}
 	= \frac{\eta_v \bm{v} + \eta_t \bm{t}}{\eta_v \cos{\theta_v} - \eta_t \cos{\theta_t}}
 	= \mathrm{sgn}\negmedspace\left(\frac{\eta_v}{\eta_t} + \bm{v} \cdot \bm{t}\right) \frac{(\eta_v / \eta_t) \bm{v} + \bm{t}}{\Vert (\eta_v / \eta_t) \bm{v} + \bm{t} \Vert}.
+$$
+
+### Appendix B: Jacobians and Differential Solid Angles
+
+Consider a surface parameterized by two coordinates (e.g. the Cartesian or the spherical coordinates):
+
+$$ \tag{B1}
+	\bm{p} = \bm{p}(x,y).
+$$
+
+The change in the surface position is given by the chain rule:
+
+$$ \tag{B2}
+	d\bm{p}
+	= \frac{\partial \bm{p}}{\partial x} dx + \frac{\partial \bm{p}}{\partial y} dy.
+$$
+
+Let us define a local coordinate frame as follows:
+
+$$ \tag{B3}
+	\bm{i}
+	= \frac{\partial \bm{p}}{\partial x},
+	\quad
+	\bm{j}
+	= \frac{\partial \bm{p}}{\partial y},
+	\quad
+	\bm{k}
+	= \bm{i} \times \bm{j}.
+$$
+
+Clearly, Eqn. B2 is a sum of two linearly independent vectors:
+
+$$ \tag{B4}
+	d\bm{p} = \bm{i} dx + \bm{j} dy.
+$$
+
+They form a tiny parallelogram that can be represented by the *vector differential area*
+
+$$ \tag{B5}
+	d\bm{A}
+	= (\bm{i} dx) \times (\bm{j} dy)
+	= (\bm{i} \times \bm{j}) dx dy
+	= \bm{k} dx dy.
+$$
+
+Its magnitude is the scalar differential area
+
+$$ \tag{B6}
+	dA
+	= \Vert d\bm{A} \Vert
+	= dx dy,
+$$
+
+where we have made a simplifying assumption that the basis vectors are mutually orthogonal unit vectors.
+
+Now, let us perform a change of variables
+
+$$ \tag{B7}
+	x = x(s,t),
+	\quad
+	y = y(s,t).
+$$
+
+According to the chain rule,
+
+$$ \tag{B8}
+	d\bm{p} = \frac{\partial \bm{p}}{\partial s} ds + \frac{\partial \bm{p}}{\partial t} dt.
+$$
+
+The transformed basis vectors are
+
+$$ \tag{B9}
+	\bm{i'}
+	= \frac{\partial \bm{p}}{\partial s},
+	\quad
+	\bm{j'}
+	= \frac{\partial \bm{p}}{\partial t},
+	\quad
+	\bm{k'}
+	= \bm{i'} \times \bm{j'}.
+$$
+
+Eqn. B8 can thus be written as
+
+$$ \tag{B10}
+	d\bm{p} = \bm{i'} ds + \bm{j'} dt.
+$$
+
+The expression of the vector differential area mirrors Eqn. B5:
+
+$$ \tag{B11}
+	d\bm{A}
+	= (\bm{i'} ds) \times (\bm{j'} dt)
+	= (\bm{i'} \times \bm{j'}) ds dt
+	= \bm{k'} ds dt.
+$$
+
+If the transformed basis is not orthonormal, the expression of the scalar differential area must account for the length of the basis vectors and the angle between them:
+
+$$ \tag{B12}
+	dA
+	= \Vert d\bm{A} \Vert
+	= \Vert \bm{k'} \Vert ds dt
+	= \Vert \bm{i'} \times \bm{j'} \Vert ds dt.
+$$
+
+Now, if we want to replace Eqn. B6 with B12 in an area integral, they must be the same[^11]. The ratio of the areas of the parallelograms formed by the basis vectors is given by the absolute value of the Jacobian
+
+[^11]: The same is also true for Eqn. B5 and B11. Intuitively, both the orientation and the size (but not the shape) of the surface elements must be independent of the choice of coordinates (e.i. the tessellation scheme).
+
+$$ \tag{B13}
+	\vert J \vert = \frac{dx dy}{ds dt} = \Vert \bm{i'} \times \bm{j'} \Vert.
+$$
+
+The Jacobian is also frequently used in triple integrals, where its absolute value corresponds to the ratio of the volumes of two parallelepipeds.
+
+---
+
+Once the Eqn. 20a that relates the sets of coordinates has been specified, the expression of the Jacobian can be determined algebraically, by calculating the determinant of the matrix of partial derivatives. However, in our case, the geometric (e.i., coordinate-independent, basis-independent) approach is both simpler and more insightful.
+
+First, we must point out two obvious properties of the vector differential area. It remains unchanged if the surface is translated along a constant vector $\small \bm{q}$:
+
+$$ \tag{22a}
+	d\bm{A}(\bm{p} + \bm{q}) = d\bm{A}(\bm{p}).
+$$
+
+Furthermore, the area scales quadratically with the dimensions of the surface. For a constant $\small \lambda$,
+
+$$ \tag{22b}
+	d\bm{A}(\lambda \bm{p}) = \lambda^2 d\bm{A}(\bm{p}).
+$$
+
+For a unit vector $\small \bm{m}$ and a variable $\small \lambda(\bm{m})$, the total differential in the spherical coordinates is
+
+$$ \tag{22c}
+	d(\lambda \bm{m})
+	= \left( \frac{\partial \lambda}{\partial \theta} \bm{m} + \lambda \frac{\partial \bm{m}}{\partial \theta} \right) d\theta
+	+ \left( \frac{\partial \lambda}{\partial \phi} \bm{m} + \lambda \frac{\partial \bm{m}}{\partial \phi} \right) d\phi.
+$$
+
+All three vectors, $\small \bm{m}, \partial \bm{m} / \partial \theta, \text{and } \partial \bm{m} / \partial \phi$, are mutually orthogonal. Thus,
+
+$$ \tag{22d}
+\begin{aligned}
+	\bm{m} \cdot d\bm{A}(\lambda \bm{m})
+	&= \bm{m} \cdot \Bigg( \left( \frac{\partial \lambda}{\partial \theta} \bm{m} + \lambda \frac{\partial \bm{m}}{\partial \theta} \right)
+	\times \left( \frac{\partial \lambda}{\partial \phi} \bm{m} + \lambda \frac{\partial \bm{m}}{\partial \phi} \right) \Bigg) d\theta d\phi
+	\cr
+	&= \bm{m} \cdot \lambda^2 \left( \frac{\partial \bm{m}}{\partial \theta}
+	\times
+	\frac{\partial \bm{m}}{\partial \phi} \right) d\theta d\phi
+	= \bm{m} \cdot \lambda^2 d\bm{A}(\bm{m}).
+\end{aligned}
+$$
+
+Now, recall that, by definition, the solid angle subtended by an object is the surface area of its (radial) projection onto the unit sphere. If we consider an infinitesimal surface fragment of the vector area $\small d\bm{A}$ located at the point $\small \bm{p}$, the associated differential solid angle is
+
+$$ \tag{23a}
+	d\Omega(\bm{p})
+	= \left\vert \frac{\bm{p}}{\Vert \bm{p} \Vert} \cdot \frac{d\bm{A}(\bm{p})}{\Vert \bm{p} \Vert^2} \right \vert.
+$$
+
+In particular, for an area element located on the surface of a unit sphere,
+
+$$ \tag{23b}
+	d\bm{A}(\bm{m}) = \bm{m} d\Omega(\bm{m}).
+$$
+
+As an angular quantity, the solid angle is scale-invariant:
+
+$$ \tag{23c}
+	d\Omega(\lambda \bm{m})
+	= \left\vert \frac{\lambda \bm{m}}{\Vert \lambda \bm{m} \Vert} \cdot \frac{d\bm{A}(\lambda \bm{m})}{\Vert \lambda \bm{m} \Vert^2} \right \vert
+	= d\Omega(\bm{m}).
+$$
+
+However, a radial projection is not translation-invariant:
+
+$$ \tag{23d}
+\begin{aligned}
+	d\Omega(\bm{p} + \bm{q})
+	&= \left\vert \frac{\bm{p} + \bm{q}}{\Vert \bm{p} + \bm{q} \Vert} \cdot \frac{d\bm{A}(\bm{p} + \bm{q})}{\Vert \bm{p} + \bm{q} \Vert^2} \right \vert
+	\cr
+	&= \left\vert \frac{\bm{p} + \bm{q}}{\Vert \bm{p} + \bm{q} \Vert} \cdot \frac{d\bm{A}(\bm{p})}{\Vert \bm{p} + \bm{q} \Vert^2} \right \vert.
+\end{aligned}
 $$
 
 ## Acknowledgements
