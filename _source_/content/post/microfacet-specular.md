@@ -519,9 +519,9 @@ $$ \tag{15a}
 	 -\frac{\eta_v}{\eta_t}\bm{v} + \left( \frac{\eta_v}{\eta_t}(\bm{v} \cdot \bm{m}) - \mathrm{sgn}(\bm{v} \cdot \bm{m}) \sqrt{1 - \frac{\eta_v^2}{\eta_t^2} \Vert \bm{v} \times \bm{m} \Vert^2 } \right) \bm{m}
 $$
 
-is the refracted (or transmitted) view vector that points along the direction of incidence (see Fig. 7 above). The derivation of Eqn. 15a is provided in Appendix A. We must caution that, in certain cases, the value of the expression inside the square root is a negative number. This invalidates the refracted direction and implies that the light has been *totally internally reflected* by the surface.
+is the refracted (or transmitted) view vector that points along the direction of incidence (see Fig. 7 above). The derivation of Eqn. 15a is provided in [Appendix A](#appendix-a-derivation-of-refracted-view-vector). We must caution that, in certain cases, the value of the expression inside the square root is a negative number. This invalidates the refracted direction and implies that the light has been *totally internally reflected* by the surface.
 
-Eqn. 15a can be solved for $\small \bm{m}$ if we assume that $\small (\bm{v} \cdot \bm{m}) > 0$. The derivation is provided in Appendix A; here, we simply quote the result:
+Eqn. 15a can be solved for $\small \bm{m}$ if we assume that $\small (\bm{v} \cdot \bm{m}) > 0$. The derivation is provided in [Appendix A](#appendix-a-derivation-of-refracted-view-vector); here, we simply quote the result:
 
 $$ \tag{15b}
 	\bm{m}
@@ -727,7 +727,7 @@ $$ \tag{18a}
 \end{aligned}
 $$
 
-The second equation required a minor modification: we had to reverse the refracted view vector $\small \bm{t}$ because the microsurface is one-sided; refer to the section about Inherent Assumptions for details. This formulation is non-reciprocal: an equivalent (proper but verbose) expression uses $\small G_2(\mathrm{sgn}(\bm{n} \cdot \bm{v}) \bm{v}, \bm{m}, \mathrm{sgn}(\bm{n} \cdot \bm{t}) \bm{t})$.
+The second equation required a minor modification: we had to reverse the refracted view vector $\small \bm{t}$ because the microsurface is one-sided; refer to the section about [Inherent Assumptions](#inherent-assumptions) for details. This formulation is non-reciprocal: an equivalent (proper but verbose) expression uses $\small G_2(\mathrm{sgn}(\bm{n} \cdot \bm{v}) \bm{v}, \bm{m}, \mathrm{sgn}(\bm{n} \cdot \bm{t}) \bm{t})$.
 
 Comparison of Eqn. 18a with 4b, which serves as a definition of a BSDF, reveals that the domain of integration is not the same. Therefore, we must perform a change of variables from the microsurface normal to the direction of incidence. This can be accomplished using the *Jacobian* determinant of the transformation:
 
@@ -774,7 +774,7 @@ $$
 
 is completely analogous to the one-dimensional change of variables $\small dx = (\partial x / \partial t) dt$.
 
-Intuitively, the absolute value of the Jacobian is just a *ratio* of two differential solid angles, each corresponding to a projected differential area. Unfortunately, making sense of this statement (and making it more precise) requires a background in vector analysis. For the reader who wishes to understand the details, we provide a brief introduction to Jacobians and differential solid angles in Appendix B.
+Intuitively, the absolute value of the Jacobian is just a *ratio* of two differential solid angles, each corresponding to a projected differential area. Unfortunately, making sense of this statement (and making it more precise) requires a background in vector analysis. For the reader who wishes to understand the details, we provide a brief introduction to Jacobians and differential solid angles in [Appendix B](#appendix-b-jacobians-and-differential-solid-angles).
 
 ---
 
