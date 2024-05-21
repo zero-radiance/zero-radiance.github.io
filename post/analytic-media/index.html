@@ -67,60 +67,60 @@
         </div>
         <div class="article-entry" itemprop="articleBody">
             <p>Rendering of participating media is an important aspect of every modern renderer. When I say participating media, I am not just talking about fog, fire, and smoke. All matter is composed of <a href="https://courses.lumenlearning.com/boundless-chemistry/chapter/the-structure-of-the-atom/">atoms</a>, which can be sparsely (e.g. in a gas) or densely (e.g. in a solid) distributed in space. Whether we consider the particle or the wave nature of <a href="https://en.wikipedia.org/wiki/Light">light</a>, it penetrates all matter (even <a href="http://webhome.phy.duke.edu/~qelectron/group/group_reading_Born_and_Wolf.pdf">metals</a>) to a certain degree and interacts with its atoms along the way. The nature and the degree of &ldquo;participation&rdquo; depend on the material in question.</p>
-<p>In the <a href="https://doi.org/10.1002/qj.49707633016">radiative transfer</a> literature, light-material interaction is usually quantified in terms of absorption (conversion of electromagnetic energy of photons into kinetic energy of atoms, which manifests itself as reduction of light intensity) and <a href="http://plaza.ufl.edu/dwhahn/Rayleigh%20and%20Mie%20Light%20Scattering.pdf">scattering</a> (absorption followed by <a href="https://en.wikipedia.org/wiki/Stimulated_emission">emission</a> of electromagnetic energy on collision). Therefore, it is common to describe participating media using the <em>collision coefficients</em>: the <em>absorption coefficient</em> \(\beta_a\) and the <em>scattering coefficient</em> \(\beta_s\). These coefficients give the probability density of the corresponding event per unit distance traveled by a photon, which implies the <a href="https://en.wikipedia.org/wiki/International_System_of_Units">SI unit</a> of measurement is \(m^{-1}\).</p>
-<p>The <a href="https://en.wikipedia.org/wiki/Attenuation_coefficient">extinction coefficient</a> \(\beta_t\)</p>
+<p>In the <a href="https://doi.org/10.1002/qj.49707633016">radiative transfer</a> literature, light-material interaction is usually quantified in terms of absorption (conversion of electromagnetic energy of photons into kinetic energy of atoms, which manifests itself as reduction of light intensity) and <a href="http://plaza.ufl.edu/dwhahn/Rayleigh%20and%20Mie%20Light%20Scattering.pdf">scattering</a> (absorption followed by <a href="https://en.wikipedia.org/wiki/Stimulated_emission">emission</a> of electromagnetic energy on collision). Therefore, it is common to describe participating media using the <em>collision coefficients</em>: the <em>absorption coefficient</em> $\beta_a$ and the <em>scattering coefficient</em> $\beta_s$. These coefficients give the probability density of the corresponding event per unit distance traveled by a photon, which implies the <a href="https://en.wikipedia.org/wiki/International_System_of_Units">SI unit</a> of measurement is $m^{-1}$.</p>
+<p>The <a href="https://en.wikipedia.org/wiki/Attenuation_coefficient">extinction coefficient</a> $\beta_t$</p>
 <p>$$ \tag{1} \beta_t = \beta_a + \beta_s $$</p>
 <p>gives the probability density of absorption or scattering (or, in other words, the collision rate) as a photon travels a unit distance through the medium<sup id="fnref:1"><a href="#fn:1" class="footnote-ref" role="doc-noteref">1</a></sup>.</p>
-<p>A more artist-friendly parametrization uses the <a href="https://en.wikipedia.org/wiki/Single-scattering_albedo">single-scattering albedo</a> \(\alpha_{ss}\)</p>
+<p>A more artist-friendly parametrization uses the <a href="https://en.wikipedia.org/wiki/Single-scattering_albedo">single-scattering albedo</a> $\alpha_{ss}$</p>
 <p>$$ \tag{2} \alpha_{ss} = \frac{\beta_s}{\beta_t}, $$</p>
-<p>which gives the deflection probability (or, in other words, the scattering rate), and the <a href="https://en.wikipedia.org/wiki/Mean_free_path">mean free path</a> \(d\)</p>
+<p>which gives the deflection probability (or, in other words, the scattering rate), and the <a href="https://en.wikipedia.org/wiki/Mean_free_path">mean free path</a> $d$</p>
 <p>$$ \tag{3} d = \frac{1}{\beta_t}, $$</p>
 <p>which corresponds to the average collision-free (or free-flight) distance.</p>
-<p>It&rsquo;s worth noting that the absorption coefficient is directly related to the <a href="http://www.sfu.ca/~gchapman/e376/e376l7.pdf">attenuation index</a> \(\kappa\), which is the imaginary part of the <a href="https://en.wikipedia.org/wiki/Refractive_index#Complex_refractive_index">complex refractive index</a> (IOR) \(\eta - i \kappa\):</p>
+<p>It&rsquo;s worth noting that the absorption coefficient is directly related to the <a href="http://www.sfu.ca/~gchapman/e376/e376l7.pdf">attenuation index</a> $\kappa$, which is the imaginary part of the <a href="https://en.wikipedia.org/wiki/Refractive_index#Complex_refractive_index">complex refractive index</a> (IOR) $\eta - i \kappa$:</p>
 <p>$$ \tag{4} \kappa = \frac{\lambda}{4 \pi} \beta_a. $$</p>
 <p>Note that, in this context, I am not talking about the IOR of an individual microscopic particle (which influences the <a href="https://en.wikipedia.org/wiki/Mie_scattering">microscopic scattering</a> process), but rather about the properties of the macroscopic medium (composed of many microscopic particles).</p>
-<p>The tuple \(\lbrace \eta, \kappa, \beta_s \rbrace\) \(\big(\)or, alternatively, \(\lbrace \eta, d, \alpha_{ss} \rbrace \big) \) contains sufficient information to describe both the behavior at the surface (boundary) and the (isotropic) multiple-scattering process (known as <a href="https://en.wikipedia.org/wiki/Subsurface_scattering">subsurface scattering</a>) inside the volume that ultimately gives rise to what we perceive as the surface albedo \(\alpha_{ms}\). Note that certain materials (metals, in particular) require modeling of <a href="https://en.wikipedia.org/wiki/Wave_interference">wave interference</a> to obtain expected reflectance values.</p>
+<p>The tuple $\lbrace \eta, \kappa, \beta_s \rbrace$ $\big($or, alternatively, $\lbrace \eta, d, \alpha_{ss} \rbrace \big) $ contains sufficient information to describe both the behavior at the surface (boundary) and the (isotropic) multiple-scattering process (known as <a href="https://en.wikipedia.org/wiki/Subsurface_scattering">subsurface scattering</a>) inside the volume that ultimately gives rise to what we perceive as the surface albedo $\alpha_{ms}$. Note that certain materials (metals, in particular) require modeling of <a href="https://en.wikipedia.org/wiki/Wave_interference">wave interference</a> to obtain expected reflectance values.</p>
 <p>A surface, then, is just an optical interface signified by a discontinuity of optical properties of the medium (in reality, the <a href="https://www.feynmanlectures.caltech.edu/II_33.html">transition at the boundary is continuous</a>, with a thickness of several atomic layers, but we can ignore this fact at scales relevant to computer graphics).</p>
 <p>Sometimes, it is convenient to specify the concentration (density) of the medium, and not its effective optical properties. For example, the extinction coefficient can be computed using the following formula:</p>
 <p>$$ \tag{5} \beta_t = \rho \sigma_t, $$</p>
-<p>where \(\rho\) is the <a href="https://en.wikipedia.org/wiki/Mass_density">mass density</a> (measured in units of \(kg/m^{3}\)) and \(\sigma_t\) is the <a href="https://en.wikipedia.org/wiki/Mass_attenuation_coefficient">mass extinction coefficient</a> (in units of \(m^{2}/kg\)) - <a href="http://www.sfu.ca/~gchapman/e376/e376l7.pdf">effective cross section</a> per unit mass<sup id="fnref:2"><a href="#fn:2" class="footnote-ref" role="doc-noteref">2</a></sup>. Other coefficients have the same linear relation with density.</p>
+<p>where $\rho$ is the <a href="https://en.wikipedia.org/wiki/Mass_density">mass density</a> (measured in units of $kg/m^{3}$) and $\sigma_t$ is the <a href="https://en.wikipedia.org/wiki/Mass_attenuation_coefficient">mass extinction coefficient</a> (in units of $m^{2}/kg$) - <a href="http://www.sfu.ca/~gchapman/e376/e376l7.pdf">effective cross section</a> per unit mass<sup id="fnref:2"><a href="#fn:2" class="footnote-ref" role="doc-noteref">2</a></sup>. Other coefficients have the same linear relation with density.</p>
 <p>But what about the IOR? Often, we assume that it is independent of density. But, if you consider water and steam (which has a lower concentration of water molecules), our experience tells us that their refractive properties are not the same.</p>
 <p>There are several known relations between density and the IOR. One of them is given by the <a href="https://en.wikipedia.org/wiki/Clausius%E2%80%93Mossotti_relation">Lorentz–Lorenz equation</a>:</p>
 <p>$$ \tag{6} \frac{\eta^2 - 1}{\eta^2 + 2} = \frac{1}{3} \frac{\rho}{m} \frac{\alpha_m}{\varepsilon_0}, $$</p>
-<p>where \(m\) is the <a href="https://en.wikipedia.org/wiki/Molecular_mass">molecular mass</a> (in \(kg\)), \(\varepsilon_0\) is the <a href="https://en.wikipedia.org/wiki/Vacuum_permittivity">vacuum permittivity</a>, and \(\alpha_m\) is the <a href="https://en.wikipedia.org/wiki/Electric_susceptibility#Molecular_polarizability">mean molecular polarizability</a> (SI units of \(C m^{2}/V\), watch out for different <a href="https://en.wikipedia.org/wiki/Electric_susceptibility#Ambiguity_in_the_definition">conventions</a>). Since it is related to the complex IOR, polarizability is also complex. Incidentally, this equation presents a way to compute the IOR of a mixture of several substances. The corresponding <a href="https://www.sciencedirect.com/science/article/pii/S0021850208001183">Lorentz–Lorenz mixture rule</a> is based on four principles of additivity (namely, of mole, mass, volume, and molecular polarizability, with the last two assumption being rather context-dependent).</p>
+<p>where $m$ is the <a href="https://en.wikipedia.org/wiki/Molecular_mass">molecular mass</a> (in $kg$), $\varepsilon_0$ is the <a href="https://en.wikipedia.org/wiki/Vacuum_permittivity">vacuum permittivity</a>, and $\alpha_m$ is the <a href="https://en.wikipedia.org/wiki/Electric_susceptibility#Molecular_polarizability">mean molecular polarizability</a> (SI units of $C m^{2}/V$, watch out for different <a href="https://en.wikipedia.org/wiki/Electric_susceptibility#Ambiguity_in_the_definition">conventions</a>). Since it is related to the complex IOR, polarizability is also complex. Incidentally, this equation presents a way to compute the IOR of a mixture of several substances. The corresponding <a href="https://www.sciencedirect.com/science/article/pii/S0021850208001183">Lorentz–Lorenz mixture rule</a> is based on four principles of additivity (namely, of mole, mass, volume, and molecular polarizability, with the last two assumption being rather context-dependent).</p>
 <p>For materials with small mass densities, the molecules are far apart, the molecular interactions are weak, and the IOR is close to 1. Therefore, for matter in the gas state, the following approximation can be made:</p>
 <p>$$ \begin{aligned} \tag{7}
 \eta^2 &amp; \approx 1 + \frac{\rho}{m} \frac{\alpha_m}{\varepsilon_0} = 1 + 2 \rho \delta_c, \cr
 \eta   &amp; \approx 1 + \frac{\rho}{2 m} \frac{\alpha_m}{\varepsilon_0} = 1 + \rho \delta_c,
 \end{aligned} $$</p>
-<p>where \(\delta_c\) is the <a href="https://ui.adsabs.harvard.edu/abs/1996CoSka..26...23K/abstract">light dispersion coefficient</a>. This equation implies that the <a href="https://www.sciencedirect.com/topics/chemistry/optical-refraction">relative brake power</a> \((\eta - 1)\) has an approximately linear relation with density. Similar relations can be found for <a href="https://en.wikipedia.org/wiki/Clausius%E2%80%93Mossotti_relation">temperature and and pressure</a> (in fact, all coefficients are highly <a href="http://www.sfu.ca/~gchapman/e376/e376l7.pdf">temperature-dependent</a>). Also, while the discussion above mostly concerns dielectrics, the formula for metals is <a href="https://www.feynmanlectures.caltech.edu/II_32.html#mjx-eqn-EqII3238">very similar</a>.</p>
+<p>where $\delta_c$ is the <a href="https://ui.adsabs.harvard.edu/abs/1996CoSka..26...23K/abstract">light dispersion coefficient</a>. This equation implies that the <a href="https://www.sciencedirect.com/topics/chemistry/optical-refraction">relative brake power</a> $(\eta - 1)$ has an approximately linear relation with density. Similar relations can be found for <a href="https://en.wikipedia.org/wiki/Clausius%E2%80%93Mossotti_relation">temperature and and pressure</a> (in fact, all coefficients are highly <a href="http://www.sfu.ca/~gchapman/e376/e376l7.pdf">temperature-dependent</a>). Also, while the discussion above mostly concerns dielectrics, the formula for metals is <a href="https://www.feynmanlectures.caltech.edu/II_32.html#mjx-eqn-EqII3238">very similar</a>.</p>
 <p>Continuous variation of the IOR poses many challenges for path tracing. In piecewise-uniform media, paths are composed of straight segments joined at scattering locations. Unfortunately, due to <a href="https://en.wikipedia.org/wiki/Fermat%27s_principle">Fermat&rsquo;s principle</a>, continuously varying IOR forces photons to travel along paths of least time that <a href="http://www.waves.utoronto.ca/prof/svhum/ece422/notes/20a-atmospheric-refr.pdf">bend</a> towards regions of higher density according to <a href="https://en.wikipedia.org/wiki/Snell%27s_law">Snell&rsquo;s law</a>. This fact alone makes basic actions like visibility testing quite complicated. And since the IOR may depend on the frequency, it can cause <a href="https://en.wikipedia.org/wiki/Dispersion_(optics)">dispersion</a> not only at the interfaces, but also continuously, along the entire path. Finally, one must model losses and gains due to <a href="http://doi.org/10.4236/opj.2013.37054">continuous reflection/transmission</a>, which is mathematically challenging. So it is not too surprising that most renderers ignore this behavior (even though, physically, that doesn&rsquo;t make much sense). For small density gradients and small distances, it is a valid approximation that, on average, gives reasonably accurate results. On the other hand, for certain atmospheric effects, <a href="https://en.wikipedia.org/wiki/Atmospheric_refraction">atmospheric refraction</a> and reflection make a non-negligible contribution.</p>
 <p>For practical reasons, further discussion will use a (typical) assumption that, within volume boundaries, the IOR is invariant with respect to position. If you are interested in continuous refraction, I encourage you to check out the <a href="https://doi.org/10.1145/2557605">Refractive Radiative Transfer Equation</a> paper.</p>
 <h2 id="radiative-transfer-equation">Radiative Transfer Equation</h2>
 <p>Intelligent sampling of a function requires understanding which parts make a large contribution. Therefore, we must briefly discuss the <a href="https://en.wikipedia.org/wiki/Radiative_transfer#The_equation_of_radiative_transfer">radiative transfer equation</a> (or RTE) used to render scenes with participating media. While the full <a href="https://jo.dreggn.org/path-tracing-in-production/2019/ptp-part1.pdf">derivation</a> is outside the scope of this article, we will try to touch the important aspects.</p>
 <p>The integral form of the RTE is that of a recursive line integral. Intuitively, it models the process of photons traveling along the ray from sources towards the sensor, while at the same time accounting for energy losses.</p>
-<p>These losses are primarily expressed by the opacity term \(O\), which is defined as the fraction of photons (quantified as radiance \(L\)) lost along the ray from \(\bm{x}\) to \(\bm{y}\) due to absorption and out-scattering:</p>
+<p>These losses are primarily expressed by the opacity term $O$, which is defined as the fraction of photons (quantified as radiance $L$) lost along the ray from $\bm{x}$ to $\bm{y}$ due to absorption and out-scattering:</p>
 <p>$$ \tag{8} O(\bm{x}, \bm{y}) = \frac{L(\bm{y}, \bm{v}) - L(\bm{x}, \bm{v})}{L(\bm{y}, \bm{v})} = 1 - \frac{L(\bm{x}, \bm{v})}{L(\bm{y}, \bm{v})}, $$</p>
-<p>where \(\bm{v} = (\bm{x} - \bm{y})/ \vert \bm{x} - \bm{y} \vert \) is the normalized view direction. Intuitively, \(O(\bm{x}, \bm{y}) = O(\bm{y}, \bm{x})\).</p>
-<p>Its complement is transmittance \(T\):</p>
+<p>where $\bm{v} = (\bm{x} - \bm{y})/ \vert \bm{x} - \bm{y} \vert $ is the normalized view direction. Intuitively, $O(\bm{x}, \bm{y}) = O(\bm{y}, \bm{x})$.</p>
+<p>Its complement is transmittance $T$:</p>
 <p>$$ \tag{9} T(\bm{x}, \bm{y}) = 1 - O(\bm{x}, \bm{y}). $$</p>
 <p>For a single photon, transmittance gives the <a href="https://www.feynmanlectures.caltech.edu/I_43.html#mjx-eqn-EqI438">probability of a free flight</a>.</p>
-<p>Volumetric transmittance is given by the <a href="https://en.wikipedia.org/wiki/Beer%E2%80%93Lambert_law">Beer–Lambert–Bouguer law</a> for <a href="https://cs.dartmouth.edu/~wjarosz/publications/bitterli18framework.html">uncorrelated</a> media in terms of <a href="https://en.wikipedia.org/wiki/Optical_depth">optical depth</a> (or optical thickness) \(\tau\), which is a line integral from \(\bm{x}\) to \(\bm{y}\):</p>
+<p>Volumetric transmittance is given by the <a href="https://en.wikipedia.org/wiki/Beer%E2%80%93Lambert_law">Beer–Lambert–Bouguer law</a> for <a href="https://cs.dartmouth.edu/~wjarosz/publications/bitterli18framework.html">uncorrelated</a> media in terms of <a href="https://en.wikipedia.org/wiki/Optical_depth">optical depth</a> (or optical thickness) $\tau$, which is a line integral from $\bm{x}$ to $\bm{y}$:</p>
 <p>$$ \tag{10} \tau(\bm{x}, \bm{y})
 = -\log{T(\bm{x}, \bm{y})}
 = \int_{\bm{x}}^{\bm{y}} \beta_t(\bm{u}) d\beta(\bm{u})
 = \int_{\bm{x}}^{\bm{y}} \beta_t(\bm{u}) du,
 $$</p>
-<p>where \(\bm{u} = \bm{x} - u \bm{v}\) is the point at the distance \(u\) along the ray, and \(du\) is the length <a href="https://en.wikipedia.org/wiki/Lebesgue_integration#Measure_theory">measure</a> associated with \(\bm{u}\). This formula implies that while transmittance is multiplicative, with values restricted to the unit interval, optical depth is additive and can take on any non-negative value. In other words, transmittance is a <a href="https://www.wikiwand.com/en/Product_integral">product integral</a>:</p>
+<p>where $\bm{u} = \bm{x} - u \bm{v}$ is the point at the distance $u$ along the ray, and $du$ is the length <a href="https://en.wikipedia.org/wiki/Lebesgue_integration#Measure_theory">measure</a> associated with $\bm{u}$. This formula implies that while transmittance is multiplicative, with values restricted to the unit interval, optical depth is additive and can take on any non-negative value. In other words, transmittance is a <a href="https://www.wikiwand.com/en/Product_integral">product integral</a>:</p>
 <p>$$ \tag{11} T(\bm{x}, \bm{y})
 = e^{- \int_{\bm{x}}^{\bm{y}} \beta_t(\bm{u}) du}
 = \prod_{\bm{x}}^{\bm{y}} \Big( 1 - \beta_t(\bm{u}) du \Big).
 $$</p>
 <p>Other <a href="https://cs.dartmouth.edu/~wjarosz/publications/georgiev19integral.html">integral formulations</a> of volumetric transmittance exist.</p>
-<p>The RTE models three types of energy sources: <a href="https://en.wikipedia.org/wiki/Spontaneous_emission">volumetric emission</a> \(L_e\), volumetric in-scattering \(L_s\), and surface in-scattering \(L_g\) (which is itself an integral that features a surface geometry term with a BSDF). The volumetric in-scattering term \(L_s\) is an integral over \(4 \pi\) steradians:</p>
+<p>The RTE models three types of energy sources: <a href="https://en.wikipedia.org/wiki/Spontaneous_emission">volumetric emission</a> $L_e$, volumetric in-scattering $L_s$, and surface in-scattering $L_g$ (which is itself an integral that features a surface geometry term with a BSDF). The volumetric in-scattering term $L_s$ is an integral over $4 \pi$ steradians:</p>
 <p>$$ \tag{12} L_s(\bm{x}, \bm{v}) = \int_{4 \pi} \alpha_{ss}(\bm{x}) \frac{f_p(\bm{x}, \bm{v}, \bm{l})}{4 \pi} L(\bm{x}, \bm{l}) d\Omega_l, $$</p>
-<p>where \(f_p\) denotes the <a href="http://www.pbr-book.org/3ed-2018/Volume_Scattering/Phase_Functions.html">phase function</a> which models the angular distribution of scattered light<sup id="fnref:3"><a href="#fn:3" class="footnote-ref" role="doc-noteref">3</a></sup>, and \(d\Omega_l\) is the solid angle measure associated with \(\bm{l}\).</p>
-<p>Carefully putting it all together yields the <a href="https://cs.dartmouth.edu/~wjarosz/publications/novak18monte.html">volume rendering equation</a> along the ray \(\bm{u} = \bm{x} - u \bm{v}\):</p>
+<p>where $f_p$ denotes the <a href="http://www.pbr-book.org/3ed-2018/Volume_Scattering/Phase_Functions.html">phase function</a> which models the angular distribution of scattered light<sup id="fnref:3"><a href="#fn:3" class="footnote-ref" role="doc-noteref">3</a></sup>, and $d\Omega_l$ is the solid angle measure associated with $\bm{l}$.</p>
+<p>Carefully putting it all together yields the <a href="https://cs.dartmouth.edu/~wjarosz/publications/novak18monte.html">volume rendering equation</a> along the ray $\bm{u} = \bm{x} - u \bm{v}$:</p>
 <p>$$ \tag{13}
 L(\bm{x}, \bm{v}) = T(\bm{x}, \bm{y}) L_g(\bm{y}, \bm{v}) +
 \int_{\bm{x}}^{\bm{y}} T(\bm{x}, \bm{u}) \Big(
@@ -128,8 +128,8 @@ L(\bm{x}, \bm{v}) = T(\bm{x}, \bm{y}) L_g(\bm{y}, \bm{v}) +
 \beta_t(\bm{u}) L_s(\bm{u}, \bm{v})
 \Big) du
 $$</p>
-<p>where \(\bm{y}\) denotes the position of the closest surface along the ray<sup id="fnref:4"><a href="#fn:4" class="footnote-ref" role="doc-noteref">4</a></sup>.</p>
-<p>We will leave <a href="https://doi.org/10.1111/cgf.13228">volumetric emission</a> out by setting \(L_e = 0\):</p>
+<p>where $\bm{y}$ denotes the position of the closest surface along the ray<sup id="fnref:4"><a href="#fn:4" class="footnote-ref" role="doc-noteref">4</a></sup>.</p>
+<p>We will leave <a href="https://doi.org/10.1111/cgf.13228">volumetric emission</a> out by setting $L_e = 0$:</p>
 <p>$$ \tag{14}
 L(\bm{x}, \bm{v}) = T(\bm{x}, \bm{y}) L_g(\bm{y}, \bm{v}) +
 \int_{\bm{x}}^{\bm{y}} T(\bm{x}, \bm{u}) \beta_t(\bm{u}) L_s(\bm{u}, \bm{v}) du.
@@ -138,9 +138,9 @@ $$</p>
 <p>$$ \tag{15} L(\bm{x}, \bm{v})
 \approx T(\bm{x}, \bm{y}) L_g(\bm{y}, \bm{v}) + \frac{1}{N} \sum_{i=1}^{N} \frac{T(\bm{x}, \bm{u}_i) \beta_t(\bm{u}_i) L_s(\bm{u}_i, \bm{v})}{p( u_i | \lbrace \bm{x}, \bm{v} \rbrace)},
 $$</p>
-<p>where sample locations \(\bm{u}_i\) at the distance \(u_i\) along the ray are distributed according to the <a href="https://en.wikipedia.org/wiki/Probability_density_function">PDF</a> \(p\).</p>
-<p>We can <a href="http://www.pbr-book.org/3ed-2018/Monte_Carlo_Integration/Importance_Sampling.html">importance sample</a> the integrand (distribute samples according to the PDF) in several ways. Ideally, we would like to make the PDF proportional to the <a href="https://cgg.mff.cuni.cz/~jaroslav/papers/2014-zerovar/">product</a> of all terms of the integrand. However, unless we use <a href="https://cgg.mff.cuni.cz/~jirka/path-guiding-in-production/2019/index.htm">path guiding</a>, that is typically not possible. We will focus on the technique called <a href="https://cs.dartmouth.edu/~wjarosz/publications/novak18monte.html">free path sampling</a> that makes the PDF proportional to the extinction-transmittance product \(T \beta_t\) (effectively, by assuming that the rest of the integrand varies slowly; in practice, this may or may not be the case - for example, for regions near light sources, <a href="http://library.imageworks.com/pdfs/imageworks-library-importance-sampling-of-area-lights-in-participating-media.pdf">equiangular sampling</a> can give vastly superior results).</p>
-<p>In order to turn the extinction-transmittance product into a PDF, it must be normalized over the domain of integration, \(\bm{x}\) to \(\bm{y}\). We must compute the normalization factor</p>
+<p>where sample locations $\bm{u}_i$ at the distance $u_i$ along the ray are distributed according to the <a href="https://en.wikipedia.org/wiki/Probability_density_function">PDF</a> $p$.</p>
+<p>We can <a href="http://www.pbr-book.org/3ed-2018/Monte_Carlo_Integration/Importance_Sampling.html">importance sample</a> the integrand (distribute samples according to the PDF) in several ways. Ideally, we would like to make the PDF proportional to the <a href="https://cgg.mff.cuni.cz/~jaroslav/papers/2014-zerovar/">product</a> of all terms of the integrand. However, unless we use <a href="https://cgg.mff.cuni.cz/~jirka/path-guiding-in-production/2019/index.htm">path guiding</a>, that is typically not possible. We will focus on the technique called <a href="https://cs.dartmouth.edu/~wjarosz/publications/novak18monte.html">free path sampling</a> that makes the PDF proportional to the extinction-transmittance product $T \beta_t$ (effectively, by assuming that the rest of the integrand varies slowly; in practice, this may or may not be the case - for example, for regions near light sources, <a href="http://library.imageworks.com/pdfs/imageworks-library-importance-sampling-of-area-lights-in-participating-media.pdf">equiangular sampling</a> can give vastly superior results).</p>
+<p>In order to turn the extinction-transmittance product into a PDF, it must be normalized over the domain of integration, $\bm{x}$ to $\bm{y}$. We must compute the normalization factor</p>
 <p>$$ \tag{16}
 \int_{\bm{x}}^{\bm{y}} T(\bm{x}, \bm{u}) \beta_t(\bm{u}) du
 = \int_{\bm{x}}^{\bm{y}} e^{-\tau(\bm{x}, \bm{u})} \beta_t(\bm{u}) du.
@@ -167,12 +167,12 @@ $$</p>
 <p>In this context, total opacity along the ray serves as the probability of a collision event within the medium, and can be used to make a random choice of the type of the sample (surface or volume):</p>
 <p>$$ \tag{22} L(\bm{x}, \bm{v}) \approx \big(1 - O(\bm{x}, \bm{y}) \big) L_g(\bm{y}, \bm{v}) + O(\bm{x}, \bm{y}) \frac{1}{N} \sum_{i=1}^{N} L_s(\bm{u}_i, \bm{v}).
 $$</p>
-<p>In order to sample the integrand of Equation 14, we must be also able to <a href="http://www.pbr-book.org/3ed-2018/Monte_Carlo_Integration/Sampling_Random_Variables.html#TheInversionMethod">invert</a> the <a href="https://en.wikipedia.org/wiki/Cumulative_distribution_function">CDF</a> \(P\):</p>
+<p>In order to sample the integrand of Equation 14, we must be also able to <a href="http://www.pbr-book.org/3ed-2018/Monte_Carlo_Integration/Sampling_Random_Variables.html#TheInversionMethod">invert</a> the <a href="https://en.wikipedia.org/wiki/Cumulative_distribution_function">CDF</a> $P$:</p>
 <p>$$ \tag{23} P(u | \lbrace \bm{x}, \bm{v} \rbrace)
 = \int_{0}^{u} p(s | \lbrace \bm{x}, \bm{v} \rbrace) ds
 = \frac{O(\bm{x}, \bm{u})}{O(\bm{x}, \bm{y})}.
 $$</p>
-<p>In practice, this means that we need to solve for the distance \(u\) given the value of optical depth \(\tau\):</p>
+<p>In practice, this means that we need to solve for the distance $u$ given the value of optical depth $\tau$:</p>
 <p>$$
 \tag{24} \tau(\bm{x}, \bm{u}) =
 -\mathrm{log} \big( O(\bm{x}, \bm{u}) \big) =
@@ -190,20 +190,20 @@ $$</p>
 = \sigma_t b \vert \bm{u} - \bm{x} \vert
 = \sigma_t b u.
 $$</p>
-<p>The sampling &ldquo;recipe&rdquo; for the distance \(u\) is thus simply</p>
+<p>The sampling &ldquo;recipe&rdquo; for the distance $u$ is thus simply</p>
 <p>$$ \tag{27} u = \frac{\tau}{\sigma_t b}, $$</p>
 <p>which is consistent with <a href="https://cs.dartmouth.edu/~wjarosz/publications/novak18monte.html">previous work</a>.</p>
 <p>The resulting sampling algorithm is very simple:</p>
 <ol>
-<li>compute total opacity \(O \big( \bm{x}, \bm{y} \big)\) along the ray;</li>
-<li>generate a random CDF value \(P \big(u | \lbrace \bm{x}, \bm{v} \rbrace \big)\);</li>
-<li>compute optical depth \(\tau(\bm{x}, \bm{u})\) using Equation 24;</li>
-<li>compute the distance \(u\) using Equation 27.</li>
+<li>compute total opacity $O \big( \bm{x}, \bm{y} \big)$ along the ray;</li>
+<li>generate a random CDF value $P \big(u | \lbrace \bm{x}, \bm{v} \rbrace \big)$;</li>
+<li>compute optical depth $\tau(\bm{x}, \bm{u})$ using Equation 24;</li>
+<li>compute the distance $u$ using Equation 27.</li>
 </ol>
 <h3 id="linear-variation-of-density-with-altitude-plane-parallel-atmosphere">Linear Variation of Density with Altitude (Plane-Parallel Atmosphere)</h3>
-<p>Without loss of generality, let&rsquo;s assume that density varies with the third coordinate of the position \(\bm{x}\), which we interpret as the altitude. This is your typical &ldquo;linear height fog on flat Earth&rdquo; case:</p>
+<p>Without loss of generality, let&rsquo;s assume that density varies with the third coordinate of the position $\bm{x}$, which we interpret as the altitude. This is your typical &ldquo;linear height fog on flat Earth&rdquo; case:</p>
 <p>$$ \tag{28} \rho(\bm{x}) = a h(\bm{x}) + b = a x_3 + b. $$</p>
-<p>One can obtain homogeneous media by setting \(a = 0\).</p>
+<p>One can obtain homogeneous media by setting $a = 0$.</p>
 <p>We would like to evaluate the optical depth integral:</p>
 <p>$$ \tag{29} \tau(\bm{x}, \bm{u})
 = \sigma_t \int_{\bm{x}}^{\bm{u}} \rho{(\bm{s})} ds
@@ -216,17 +216,17 @@ $$</p>
 = \sigma_t \Big( (a x_3 + b) - \frac{a v_3}{2} u \Big) u,
 $$</p>
 <p>which is the product of the average extinction coefficient and the length of the interval, as expected.</p>
-<p>The inversion process involves solving the quadratic equation for the distance \(u\):</p>
+<p>The inversion process involves solving the quadratic equation for the distance $u$:</p>
 <p>$$ \tag{31}
 u = \frac{(a x_3 + b) \pm \sqrt{ (a x_3 + b)^2 - 2 a v_3 (\tau / \sigma_t)}}{a v_3}.
 $$</p>
-<p>Physically, we are only interested in the smaller root (with the negative sign), since it gives the solution for positive density values. Note that uniform media \( \big( a v_3 = 0 \big) \) require special care.</p>
+<p>Physically, we are only interested in the smaller root (with the negative sign), since it gives the solution for positive density values. Note that uniform media $ \big( a v_3 = 0 \big) $ require special care.</p>
 <h3 id="exponential-variation-of-density-with-altitude-plane-parallel-atmosphere">Exponential Variation of Density with Altitude (Plane-Parallel Atmosphere)</h3>
 <p>We can replace the linear density function with an exponential:</p>
 <p>$$ \tag{32} \rho(\bm{x}) = b e^{-h(\bm{x}) / H} = b e^{-x_3 / H}, $$</p>
-<p>where \(H\) is the <a href="https://en.wikipedia.org/wiki/Scale_height">scale height</a>, measured in meters. Another way to think about it is as of the reciprocal of the falloff exponent \(n\):</p>
+<p>where $H$ is the <a href="https://en.wikipedia.org/wiki/Scale_height">scale height</a>, measured in meters. Another way to think about it is as of the reciprocal of the falloff exponent $n$:</p>
 <p>$$ \tag{33} \rho(\bm{x}) = b e^{-n x_3}. $$</p>
-<p>Setting \(n = 0\) results in a uniform medium.</p>
+<p>Setting $n = 0$ results in a uniform medium.</p>
 <p>The expression of optical depth remains simple:</p>
 <p>$$ \tag{34}
 \tau(\bm{x}, \bm{v}, u)
@@ -234,9 +234,9 @@ $$</p>
 = \sigma_t b e^{-n x_3} \int_{0}^{u} e^{s n v_3} ds
 = \frac{\sigma_t b}{n v_3} e^{-n x_3} \Big( e^{n v_3 u} - 1 \Big).
 $$</p>
-<p>Solving for the distance \(u\) is straightforward:</p>
+<p>Solving for the distance $u$ is straightforward:</p>
 <p>$$ \tag{35} u = \frac{1}{n v_3} \log \left(1 + \frac{\tau}{\sigma_t b} n v_3 e^{n x_3} \right). $$</p>
-<p>Note that uniform media \( \big( n v_3 = 0 \big) \) require special care.</p>
+<p>Note that uniform media $ \big( n v_3 = 0 \big) $ require special care.</p>
 <p>Sample code is listed below.</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-c++" data-lang="c++"><span style="display:flex;"><span><span style="color:#75715e">// &#39;height&#39; is the altitude.
 </span></span></span><span style="display:flex;"><span><span style="color:#75715e">// &#39;cosTheta&#39; is the Z component of the ray direction.
@@ -284,14 +284,14 @@ $$</p>
 </span></span></code></pre></div><h3 id="exponential-variation-of-density-with-altitude-spherical-atmosphere">Exponential Variation of Density with Altitude (Spherical Atmosphere)</h3>
 <p>This is where things get interesting. We would like to model an exponential density distribution on a sphere:</p>
 <p>$$ \tag{36} \rho(\bm{x}) = b e^{-h(\bm{x}) / H} = b e^{-(\vert \bm{x} - \bm{c} \vert - R) / H} = b e^{-n (\vert \bm{x} - \bm{c} \vert - R)}, $$</p>
-<p>where \(\bm{c}\) is the center of the sphere, \(R\) is its radius, \(h\) is the altitude, and \(H\) is the <a href="https://en.wikipedia.org/wiki/Scale_height">scale height</a> as before. In this context, \(b\) and \(\sigma_t b\) represent the density and the value of the extinction coefficient at the sea level, respectively. This formula gives the density of an <a href="http://www.feynmanlectures.caltech.edu/I_40.html">isothermal atmosphere</a>, which is not physically plausible.</p>
+<p>where $\bm{c}$ is the center of the sphere, $R$ is its radius, $h$ is the altitude, and $H$ is the <a href="https://en.wikipedia.org/wiki/Scale_height">scale height</a> as before. In this context, $b$ and $\sigma_t b$ represent the density and the value of the extinction coefficient at the sea level, respectively. This formula gives the density of an <a href="http://www.feynmanlectures.caltech.edu/I_40.html">isothermal atmosphere</a>, which is not physically plausible.</p>
 <h4 id="geometric-configuration-of-a-spherical-atmosphere">Geometric Configuration of a Spherical Atmosphere</h4>
 <p>We can simplify the problem using its inherent spherical symmetry. Take a look at the diagram below.</p>
 <figure><img src="/img/spherical_param.png"/>
 </figure>
 
-<p>We start by recognizing the fact that every ordered pair of position and direction \(\lbrace \bm{x}, \bm{v} \rbrace\) can be reduced to a pair of radial distance and zenith angle \(\lbrace r, \theta \rbrace\), which means that our phase space is 2-dimensional.</p>
-<p>In order to find the parametric equation of altitude \(h\) along the ray, we can use a right triangle with sides of length \(r_0\) and \(s_0\) corresponding to the initial position \(\bm{x}\):</p>
+<p>We start by recognizing the fact that every ordered pair of position and direction $\lbrace \bm{x}, \bm{v} \rbrace$ can be reduced to a pair of radial distance and zenith angle $\lbrace r, \theta \rbrace$, which means that our phase space is 2-dimensional.</p>
+<p>In order to find the parametric equation of altitude $h$ along the ray, we can use a right triangle with sides of length $r_0$ and $s_0$ corresponding to the initial position $\bm{x}$:</p>
 <p>$$ \tag{37} r_0 = r \sin{\theta}, \qquad s_0 = r \cos{\theta}. $$</p>
 <p>This allows us to easily determine the radial distance and the zenith angle at any point along the ray.</p>
 <p>$$ \tag{38}
@@ -316,19 +316,19 @@ $$</p>
 \end{aligned} $$</p>
 <p>The resulting integral is very complex. If we simplify using the following change of variables</p>
 <p>$$ \tag{41} t = n s, \qquad z = n r, \qquad Z = n R $$</p>
-<p>and change the upper limit of integration to infinity, we obtain what is known in the physics community as the <a href="https://ui.adsabs.harvard.edu/abs/1931PPS....43...26C/abstract">Chapman&rsquo;s grazing incidence integral</a> (or the obliquity function, or the relative optical air mass) \(C\):</p>
+<p>and change the upper limit of integration to infinity, we obtain what is known in the physics community as the <a href="https://ui.adsabs.harvard.edu/abs/1931PPS....43...26C/abstract">Chapman&rsquo;s grazing incidence integral</a> (or the obliquity function, or the relative optical air mass) $C$:</p>
 <p>$$ \tag{42} C(z, \theta) = \int_{0}^{\infty} e^{z - \sqrt{z^2 + t (2 z \cos{\theta} + t)}} dt. $$</p>
-<p>It is convenient to define the rescaled Chapman function \(C_r\)</p>
+<p>It is convenient to define the rescaled Chapman function $C_r$</p>
 <p>$$ \tag{43} C_r(z, \theta) = e^{Z - z} C(z, \theta) = \int_{0}^{\infty} e^{Z - \sqrt{z^2 + t (2 z \cos{\theta} + t)}} dt, $$</p>
-<p>which has a better numerical behavior, and further simplifies the expression of optical depth between \(\bm{x}\) and \(\bm{y}\):</p>
+<p>which has a better numerical behavior, and further simplifies the expression of optical depth between $\bm{x}$ and $\bm{y}$:</p>
 <p>$$ \tag{44}
 \tau(\bm{x}, \bm{y})
 = \sigma_t \frac{b}{n} \Bigg( C_r \Big(z(\bm{x}), \cos{\theta(\bm{x})} \Big) - C_r \Big(z(\bm{y}), \cos{\theta(\bm{y})} \Big) \Bigg).
 $$</p>
-<p>What Equation 44 tells us is that we should evaluate the optical depth integral twice (in the same direction, along the entire ray, from 0 to \(\infty\)), at the start and at the end of the interval, and subtract the results to &ldquo;clip&rdquo; the ray.</p>
-<p>It is interesting to contemplate the physical meaning of optical depth and the Chapman function. Generally speaking, the value of a line integral of density (such as given by \(\tau / \sigma_t\)) corresponds to mass. Therefore, the integral</p>
+<p>What Equation 44 tells us is that we should evaluate the optical depth integral twice (in the same direction, along the entire ray, from 0 to $\infty$), at the start and at the end of the interval, and subtract the results to &ldquo;clip&rdquo; the ray.</p>
+<p>It is interesting to contemplate the physical meaning of optical depth and the Chapman function. Generally speaking, the value of a line integral of density (such as given by $\tau / \sigma_t$) corresponds to mass. Therefore, the integral</p>
 <p>$$ \tag{45} \int_{h = (r - R)}^{\infty} b e^{-n s} ds = \frac{b}{n} e^{-n h} $$</p>
-<p>gives the mass of an infinitely tall vertical column starting at the altitude \(h\). At the sea level, its mass is \(\frac{b}{n} = kH\).</p>
+<p>gives the mass of an infinitely tall vertical column starting at the altitude $h$. At the sea level, its mass is $\frac{b}{n} = kH$.</p>
 <p>Optical depth, then, is a <em>product</em> of the mass of the vertical column <em>and</em> the value of the obliquity function (which, intuitively, gives the absolute optical air mass along the oblique ray) <em>times</em> the mass extinction coefficient.</p>
 <h4 id="examining-the-chapman-function">Examining the Chapman Function</h4>
 <p>It is always a good idea to examine a function visually, as a graph. Let&rsquo;s do that.</p>
@@ -338,21 +338,21 @@ $$</p>
         </figcaption>
 </figure>
 
-<p>Above, I plotted values of the Chapman function (vertical axis) varying with the angle \(\theta\) (horizontal axis, in degrees) for different values of the scale height \(H\): \(1\) (blue), \(10\) (orange), \(20\) (green), \(40\) (red), \(60\) (purple), \(80\) (brown), \(100\) (light blue).
+<p>Above, I plotted values of the Chapman function (vertical axis) varying with the angle $\theta$ (horizontal axis, in degrees) for different values of the scale height $H$: $1$ (blue), $10$ (orange), $20$ (green), $40$ (red), $60$ (purple), $80$ (brown), $100$ (light blue).
 Arguably, the first two are the most important, since they roughly correspond to scale heights of <a href="https://doi.org/10.1111/j.1467-8659.2008.01245.x">aerosols and air</a> of Earth&rsquo;s atmosphere. However, it is nice to be able to support larger values to model atmospheres of <a href="https://en.wikipedia.org/wiki/Scale_height#Planetary_examples">other planets</a>.</p>
-<p>Being an obliquity function, \(C(z, 0) = 1\). The function varies slowly, as long as the angle is far from being horizontal (which suggests an opportunity for a <a href="https://en.wikipedia.org/wiki/Small-angle_approximation">small angle approximation</a>).</p>
-<p>To my knowledge, the Chapman function does not have a <a href="https://en.wikipedia.org/wiki/Closed-form_expression#Analytic_expression">closed-form</a> expression. Many <a href="https://doi.org/10.1029/2011JD016706">approximations</a> exist. Unfortunately, most of them are specific to Earth&rsquo;s atmosphere, and we are interested in a general solution. The most accurate approximation I have found was developed by <a href="https://doi.org/10.1016/S0022-4073(00)00107-2">David Huestis</a>. He performs an <a href="https://en.wikipedia.org/wiki/Asymptotic_expansion">asymptotic expansion</a> in \(z\), which implies that his approximation becomes more accurate as the value of \(z\) increases (or, for fixed \(r\), as the value of \(H\) decreases). Using the first two terms results in the following formula for \(\theta \leq \pi/2\):</p>
+<p>Being an obliquity function, $C(z, 0) = 1$. The function varies slowly, as long as the angle is far from being horizontal (which suggests an opportunity for a <a href="https://en.wikipedia.org/wiki/Small-angle_approximation">small angle approximation</a>).</p>
+<p>To my knowledge, the Chapman function does not have a <a href="https://en.wikipedia.org/wiki/Closed-form_expression#Analytic_expression">closed-form</a> expression. Many <a href="https://doi.org/10.1029/2011JD016706">approximations</a> exist. Unfortunately, most of them are specific to Earth&rsquo;s atmosphere, and we are interested in a general solution. The most accurate approximation I have found was developed by <a href="https://doi.org/10.1016/S0022-4073(00)00107-2">David Huestis</a>. He performs an <a href="https://en.wikipedia.org/wiki/Asymptotic_expansion">asymptotic expansion</a> in $z$, which implies that his approximation becomes more accurate as the value of $z$ increases (or, for fixed $r$, as the value of $H$ decreases). Using the first two terms results in the following formula for $\theta \leq \pi/2$:</p>
 <p>$$ \begin{aligned} \tag{46} C_u(z, \theta)
 &amp;\approx \sqrt{\frac{1 - \sin{\theta}}{1 + \sin{\theta}}} \Bigg(1 - \frac{1}{2 (1 + \sin{\theta})} \Bigg) + \frac{\sqrt{\pi z}}{\sqrt{1 + \sin{\theta}}} \cr
 &amp;\times \Bigg[ e^{z - z \sin{\theta}} \text{erfc}\left(\sqrt{z - z \sin{\theta}}\right) \Bigg] \Bigg( -\frac{1}{2} + \sin{\theta} + \frac{1}{1 + \sin{\theta}} + \frac{2 (1 + \sin{\theta}) - 1}{4 z (1 + \sin{\theta})} \Bigg).
 \end{aligned}$$</p>
-<p>The approximation itself is also not closed-form, since it contains the <a href="http://mathworld.wolfram.com/Erfc.html">complementary error function</a> \(\mathrm{erfc}\). It&rsquo;s also somewhat annoying that the result is given in terms of \(\sin{\theta}\) rather than \(\cos{\theta}\), but this reparametrization is actually necessarily to make the series converge quickly.</p>
-<p>For the angle of 90 degrees, the integral is given using the <a href="http://mathworld.wolfram.com/ModifiedBesselFunctionoftheSecondKind.html">modified Bessel function of the second kind</a> \(K_1\):</p>
+<p>The approximation itself is also not closed-form, since it contains the <a href="http://mathworld.wolfram.com/Erfc.html">complementary error function</a> $\mathrm{erfc}$. It&rsquo;s also somewhat annoying that the result is given in terms of $\sin{\theta}$ rather than $\cos{\theta}$, but this reparametrization is actually necessarily to make the series converge quickly.</p>
+<p>For the angle of 90 degrees, the integral is given using the <a href="http://mathworld.wolfram.com/ModifiedBesselFunctionoftheSecondKind.html">modified Bessel function of the second kind</a> $K_1$:</p>
 <p>$$ \tag{47} C_h(z) = C(z,\frac{\pi}{2}) = z e^z K_1(z) \approx \sqrt{\frac{\pi z}{2}} \left(1 + \frac{3}{8 z} -\frac{15}{128 z^2}\right). $$</p>
-<p>We use a slightly more <a href="https://doi.org/10.1016/S0022-4073(00)00107-2">accurate approximation</a> than \(C_u(z, \pi/2)\) to obtain some extra precision near 0 (we add the quadratic term).</p>
+<p>We use a slightly more <a href="https://doi.org/10.1016/S0022-4073(00)00107-2">accurate approximation</a> than $C_u(z, \pi/2)$ to obtain some extra precision near 0 (we add the quadratic term).</p>
 <p>Beyond the 90 degree angle, the following <a href="https://doi.org/10.1016/S0022-4073(00)00107-2">identity</a> can be used:</p>
 <p>$$ \tag{48} C_l(z, \theta) = 2 C_h(z \sin{\theta}) e^{z - z \sin{\theta}} - C_u(z, \pi - \theta), $$</p>
-<p>which means that we must find a position \(\bm{p}\) (sometimes called the <a href="https://en.wikipedia.org/wiki/Apsis">periapsis</a> point, see the diagram in the previous section) along the ray where it is orthogonal to the surface normal, evaluate the horizontal Chapman function there (twice, forward and backward, to cover the entire real line), and subtract the value of the Chapman function at the original position with the reversed direction (towards the atmospheric boundary), which isolates the integral to the desired ray segment.</p>
+<p>which means that we must find a position $\bm{p}$ (sometimes called the <a href="https://en.wikipedia.org/wiki/Apsis">periapsis</a> point, see the diagram in the previous section) along the ray where it is orthogonal to the surface normal, evaluate the horizontal Chapman function there (twice, forward and backward, to cover the entire real line), and subtract the value of the Chapman function at the original position with the reversed direction (towards the atmospheric boundary), which isolates the integral to the desired ray segment.</p>
 <p>Sample implementation is listed below.</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-c++" data-lang="c++"><span style="display:flex;"><span><span style="color:#66d9ef">float</span> <span style="color:#a6e22e">ChapmanUpper</span>(<span style="color:#66d9ef">float</span> z, <span style="color:#66d9ef">float</span> absCosTheta)
 </span></span><span style="display:flex;"><span>{
@@ -433,8 +433,8 @@ Arguably, the first two are the most important, since they roughly correspond to
         </figcaption>
 </figure>
 
-<p>Of course, we must address the elephant in the room, \(\mathrm{erfc}\). Since it is <a href="https://www.johndcook.com/erf_and_normal_cdf.pdf">related</a> to the <a href="https://en.wikipedia.org/wiki/Normal_distribution">normal distribution</a>, it has numerous applications, and, as a result, dozens of existing approximations. Unfortunately, most of them are not particularly accurate, especially across a huge range of values (as in our case), and the accuracy of \(\mathrm{erfc}\) greatly affects the quality of our approximation.</p>
-<p>After performing an extensive search, I stumbled upon the approximation developed by <a href="http://www.kurims.kyoto-u.ac.jp/~ooura/gamerf.html">Takuya Ooura</a>. He provides an impressive double-precision implementation accurate to 16 decimal digits. A great thing about his approximation is that it includes the \(\exp(x^2)\) factor, which means we can replace the entire term of Equation 46 inside the square brackets. In order to obtain a single-precision version of his approximation, I retain his range reduction technique and reduce the degree of the polynomial (which I fit using <a href="http://sollya.gforge.inria.fr/sollya-7.0/help.php?name=fpminimax">Sollya</a>). In order to account for fused multiply-adds, I perform a <a href="https://stackoverflow.com/questions/26692859/best-machine-optimized-polynomial-minimax-approximation-to-arctangent-on-1-1">greedy search</a> for better coefficients (starting with single-precision coefficients found by Sollya) on the target hardware.</p>
+<p>Of course, we must address the elephant in the room, $\mathrm{erfc}$. Since it is <a href="https://www.johndcook.com/erf_and_normal_cdf.pdf">related</a> to the <a href="https://en.wikipedia.org/wiki/Normal_distribution">normal distribution</a>, it has numerous applications, and, as a result, dozens of existing approximations. Unfortunately, most of them are not particularly accurate, especially across a huge range of values (as in our case), and the accuracy of $\mathrm{erfc}$ greatly affects the quality of our approximation.</p>
+<p>After performing an extensive search, I stumbled upon the approximation developed by <a href="http://www.kurims.kyoto-u.ac.jp/~ooura/gamerf.html">Takuya Ooura</a>. He provides an impressive double-precision implementation accurate to 16 decimal digits. A great thing about his approximation is that it includes the $\exp(x^2)$ factor, which means we can replace the entire term of Equation 46 inside the square brackets. In order to obtain a single-precision version of his approximation, I retain his range reduction technique and reduce the degree of the polynomial (which I fit using <a href="http://sollya.gforge.inria.fr/sollya-7.0/help.php?name=fpminimax">Sollya</a>). In order to account for fused multiply-adds, I perform a <a href="https://stackoverflow.com/questions/26692859/best-machine-optimized-polynomial-minimax-approximation-to-arctangent-on-1-1">greedy search</a> for better coefficients (starting with single-precision coefficients found by Sollya) on the target hardware.</p>
 <p>The implementation of Takuya Ooura (with my modifications) is reproduced below.</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-c++" data-lang="c++"><span style="display:flex;"><span><span style="color:#75715e">// Computes (Exp[x^2] * Erfc[x]) for (x &gt;= 0).
 </span></span></span><span style="display:flex;"><span><span style="color:#75715e">// Range of inputs:  [0, Inf].
@@ -463,20 +463,20 @@ Arguably, the first two are the most important, since they roughly correspond to
 </span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>}
 </span></span></code></pre></div><p>The approximation performs well, as you can see from the plots of the single-precision version shown below.</p>
 <figure><img src="/img/exp2erfc.png"
-         alt="Plot of \(exp(x^2) erfc(x)\)."/><figcaption>
-            <p><em>Plot of \(exp(x^2) erfc(x)\).</em></p>
+         alt="Plot of $exp(x^2) erfc(x)$."/><figcaption>
+            <p><em>Plot of $exp(x^2) erfc(x)$.</em></p>
         </figcaption>
 </figure>
 
 <figure><img src="/img/exp2erfc_abs_error.png"
-         alt="Absolute error plot of the approximation of \(exp(x^2) erfc(x)\)."/><figcaption>
-            <p><em>Absolute error plot of the approximation of \(exp(x^2) erfc(x)\).</em></p>
+         alt="Absolute error plot of the approximation of $exp(x^2) erfc(x)$."/><figcaption>
+            <p><em>Absolute error plot of the approximation of $exp(x^2) erfc(x)$.</em></p>
         </figcaption>
 </figure>
 
 <figure><img src="/img/exp2erfc_rel_error.png"
-         alt="Relative error plot of the approximation of \(exp(x^2) erfc(x)\)."/><figcaption>
-            <p><em>Relative error plot of the approximation of \(exp(x^2) erfc(x)\).</em></p>
+         alt="Relative error plot of the approximation of $exp(x^2) erfc(x)$."/><figcaption>
+            <p><em>Relative error plot of the approximation of $exp(x^2) erfc(x)$.</em></p>
         </figcaption>
 </figure>
 
@@ -502,14 +502,14 @@ Arguably, the first two are the most important, since they roughly correspond to
 <h4 id="evaluating-optical-depth-using-the-chapman-function">Evaluating Optical Depth Using the Chapman Function</h4>
 <p>A numerical approximation of the Chapman function, in conjunction with Equation 44, allows us to evaluate optical depth along an arbitrary ray segment.</p>
 <p>However, the approximation of the Chapman function contains a branch (upper/lower hemisphere), and using the full formulation twice may be unnecessarily expensive for many use cases.</p>
-<p>In order to evaluate optical depth between two arbitrary points \(\bm{x}\) and \(\bm{y}\), we have to consider three distinct possibilities:</p>
-<p>1. \(\cos{\theta_x} \geq 0 \), which means that the ray points into the upper hemisphere with respect to the surface normal at the point \(\bm{x}\). This also means it points into the upper hemisphere at any point \(\bm{y}\) along the ray (that is fairly obvious if you sketch it). Optical depth is given by Equation 44, which we specialize by replacing \(C\) with \(C_u\), which is restricted to the upper hemisphere:</p>
+<p>In order to evaluate optical depth between two arbitrary points $\bm{x}$ and $\bm{y}$, we have to consider three distinct possibilities:</p>
+<p>1. $\cos{\theta_x} \geq 0 $, which means that the ray points into the upper hemisphere with respect to the surface normal at the point $\bm{x}$. This also means it points into the upper hemisphere at any point $\bm{y}$ along the ray (that is fairly obvious if you sketch it). Optical depth is given by Equation 44, which we specialize by replacing $C$ with $C_u$, which is restricted to the upper hemisphere:</p>
 <p>$$ \tag{50}
 \tau_{uu}(z_x, \theta_x, z_y, \theta_y)
 = \sigma_t \frac{b}{n} \Bigg( e^{Z - z_x} C_u(z_x, \theta_x) - e^{Z - z_y} C_u(z_y, \theta_y) \Bigg).
 $$</p>
-<p>2. \(\cos{\theta_x} &lt; 0 \) and \(\cos{\theta_y} &lt; 0 \) occurs e.g. when looking straight down. It is also easy to handle, we just flip the direction of the ray (by taking the absolute value of the cosine), replace the segment \(\bm{xy}\) with the segment \(\bm{yx}\) and fall back to case 1.</p>
-<p>3. \(\cos{\theta_x} &lt; 0 \) and \(\cos{\theta_y} \geq 0 \). This is the most complicated case, since we have to evaluate the Chapman function three times, twice at \(\bm{x}\) and once at \(\bm{y}\):</p>
+<p>2. $\cos{\theta_x} &lt; 0 $ and $\cos{\theta_y} &lt; 0 $ occurs e.g. when looking straight down. It is also easy to handle, we just flip the direction of the ray (by taking the absolute value of the cosine), replace the segment $\bm{xy}$ with the segment $\bm{yx}$ and fall back to case 1.</p>
+<p>3. $\cos{\theta_x} &lt; 0 $ and $\cos{\theta_y} \geq 0 $. This is the most complicated case, since we have to evaluate the Chapman function three times, twice at $\bm{x}$ and once at $\bm{y}$:</p>
 <p>$$ \tag{51} \begin{aligned}
 \tau_{lu}(z_x, \theta_x, z_y, \theta_y)
 &amp;= \sigma_t \frac{b}{n} \Bigg( e^{Z - z_x} C_l(z_x, \theta_x) - e^{Z - z_y} C_u(z_y, \theta_y) \Bigg).
@@ -581,11 +581,11 @@ $$</p>
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> ch <span style="color:#f92672">*</span> H <span style="color:#f92672">*</span> seaLvlExt;
 </span></span><span style="display:flex;"><span>}
-</span></span></code></pre></div><p>Note that using this function (rather than calling <code>OptDepthSpherExpMedium</code> twice and subtracting the results) is beneficial not only for performance but also for correctness: it avoids numerical instability near the horizon where ray directions are prone to alternate between the two hemispheres, which could cause subtraction to result in negative optical depth values. For performance (and numerical stability) reasons, it may be also worth making a special case for when the point \(\bm{y}\) is far enough to be considered outside the atmosphere (if <code>exp(Z - zY) &lt; EPS</code>, for instance). In that case, <code>chY = 0</code> is an adequate approximation.</p>
+</span></span></code></pre></div><p>Note that using this function (rather than calling <code>OptDepthSpherExpMedium</code> twice and subtracting the results) is beneficial not only for performance but also for correctness: it avoids numerical instability near the horizon where ray directions are prone to alternate between the two hemispheres, which could cause subtraction to result in negative optical depth values. For performance (and numerical stability) reasons, it may be also worth making a special case for when the point $\bm{y}$ is far enough to be considered outside the atmosphere (if <code>exp(Z - zY) &lt; EPS</code>, for instance). In that case, <code>chY = 0</code> is an adequate approximation.</p>
 <h4 id="sampling-exponential-media-of-a-spherical-atmosphere">Sampling Exponential Media of a Spherical Atmosphere</h4>
 <p>One does not simply sample the Chapman function. There doesn&rsquo;t appear to be a way to invert the integral formulation (Equation 40), and attempts at solving numerical approximations for distance seem futile. Of course, we still have the option to look for a numerical fit for the tabulated inverse, or to use a look-up table directly&hellip; But we are not going to do that. And here&rsquo;s why.</p>
 <p>In order to sample participating media, we must be able to solve the optical depth equation for distance. If you only have a single analytically-defined volume, sampling it is (usually) trivial. However, once you have several heterogeneous overlapping volumes, you start running into issues. While optical depth is additive, the sampled distance is not. So, what do we do?</p>
-<p>If we can&rsquo;t solve the equation analytically, we can solve it numerically, using the <a href="https://en.wikipedia.org/wiki/Newton%27s_method">Newton–Raphson method</a>. Recall that this method requires being able to make an initial guess, evaluate the function, and take its derivative. Our function is the total optical depth. We can make an initial guess by assuming that the combined medium is uniform (or, under certain assumptions, plane-parallel-exponential). And since we know that the derivative of optical depth is just the extinction coefficient \(\beta_t\) (see Equation 17), so we have all the pieces we need.</p>
+<p>If we can&rsquo;t solve the equation analytically, we can solve it numerically, using the <a href="https://en.wikipedia.org/wiki/Newton%27s_method">Newton–Raphson method</a>. Recall that this method requires being able to make an initial guess, evaluate the function, and take its derivative. Our function is the total optical depth. We can make an initial guess by assuming that the combined medium is uniform (or, under certain assumptions, plane-parallel-exponential). And since we know that the derivative of optical depth is just the extinction coefficient $\beta_t$ (see Equation 17), so we have all the pieces we need.</p>
 <p>This method is very general and works for arbitrary <a href="https://mcnp.lanl.gov/pdf_files/la-ur-02-6530.pdf">continuous density distributions</a>.</p>
 <p>Sample code for a dual-component spherical atmosphere is listed below.</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-c++" data-lang="c++"><span style="display:flex;"><span><span style="color:#75715e">#define EPS_ABS  0.0001

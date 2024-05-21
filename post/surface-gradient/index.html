@@ -73,12 +73,12 @@
 <p>Instead, I will attempt to give a shorter derivation, assuming no prior knowledge of the topic, starting from the the first principles. As with any derivation, the results will be theoretical in nature, and it&rsquo;s important to understand the practical aspects. Your renderer probably doesn&rsquo;t implement normal mapping this way (but maybe it should), your artists are probably used to the wrong but convenient way they&rsquo;ve been doing it for decades, and your baking tool is trying to minimize the damage by reversing all of your hacks during the mesh generation step. Still, in my opinion, it&rsquo;s important to understand the right way of doing things, so that, when necessary, you can make an informed decision to do things differently (optimize) and understand the implications of doing so.</p>
 <p>Still with me? Let&rsquo;s dive in.</p>
 <h2 id="preliminaries-part-1-tangent-frame">Preliminaries, Part 1: Tangent Frame</h2>
-<p>We start with a 3D surface \(S\). Assume that it has a unique 2D parametrization, e.i. an <a href="https://en.wikipedia.org/wiki/Injective_function">injective</a> (one to one) mapping from a 2D texture coordinate to an object-space 3D coordinate:</p>
+<p>We start with a 3D surface $S$. Assume that it has a unique 2D parametrization, e.i. an <a href="https://en.wikipedia.org/wiki/Injective_function">injective</a> (one to one) mapping from a 2D texture coordinate to an object-space 3D coordinate:</p>
 <p>$$ \tag{1} S(u,v) = \begin{bmatrix} x \cr y \cr z \end{bmatrix}. $$</p>
 <p>You can think of it as a transformation from a 2D plane to a 3D surface. The injectivity requirement is differentiability in disguise, the property we will heavily lean on during the derivation.</p>
 <p>Application of an affine transformation yields a set of transformed texture coordinates, which is something that&rsquo;s often done to tile and translate the texture at runtime:</p>
 <p>$$ \tag{2} \begin{bmatrix} s \cr t \end{bmatrix} = \begin{bmatrix} au+c \cr bv+d \end{bmatrix}. $$</p>
-<p>In our notation, we will always use \([u,v]^{\mathrm{T}}\) for unique values and \([s,t]^{\mathrm{T}}\) for scaled-translated ones. Note that we don&rsquo;t care about a particular surface parametrization: we can use UV-mapping, planar mapping, or something else entirely.</p>
+<p>In our notation, we will always use $[u,v]^{\mathrm{T}}$ for unique values and $[s,t]^{\mathrm{T}}$ for scaled-translated ones. Note that we don&rsquo;t care about a particular surface parametrization: we can use UV-mapping, planar mapping, or something else entirely.</p>
 <p>Armed with the surface parametrization, we can compute two tangent vectors at the surface point:</p>
 <p>$$ \tag{3} T(u,v) = \frac{\partial S}{\partial u}, \quad B(u,v) = \frac{\partial S}{\partial v}. $$</p>
 <p>These two vectors span the <a href="http://web.mit.edu/hyperbook/Patrikalakis-Maekawa-Cho/node27.html">tangent plane</a>, and are typically neither mutually orthogonal nor of unit length. It&rsquo;s important to remember that they depend on the surface parametrization. You may be used to calling them <a href="http://www.terathon.com/code/tangent.html">&ldquo;the tangent&rdquo; and &ldquo;the bitangent&rdquo;</a>, when, strictly speaking, the tangent plane contains <a href="http://math.etsu.edu/multicalc/prealpha/Chap3/Chap3-6/part1.htm">infinitely many</a> unique tangent vectors, and, to my knowledge, the term <a href="https://en.wikipedia.org/wiki/Bitangent">bitangent</a> is only defined for curves.</p>
@@ -98,11 +98,11 @@
 &amp;= \frac{[B \times N | N \times T | T \times B]}{\langle T \times B, N \rangle} \cr
 &amp;= \Bigg[\frac{B \times N}{\langle T \times B, N \rangle} \Bigg| \frac{N \times T}{\langle T \times B, N \rangle} \Bigg| N\Bigg].
 \end{aligned} $$</p>
-<p>In the formula above, \(\mathrm{det}(M)\) is the <a href="https://en.wikipedia.org/wiki/Determinant#3_%C3%97_3_matrices">determinant</a>, and \(\mathrm{cof}(M)\) is the <a href="https://en.wikipedia.org/wiki/Minor_(linear_algebra)#Inverse_of_a_matrix">cofactor matrix</a>.</p>
-<p>It&rsquo;s important to note that, in practice, the surface parametrization used to derive the normal may be different from the texture coordinate parametrization. This means that it&rsquo;s possible to encounter a mesh with vertex normals \(N\) pointing in the direction opposite from \((T \times B)\). Of course, we always want to use the forward-facing normal \(N\). Luckily, the math is on our side, and using the full matrix inversion procedure as described above works in all cases. More details about surface re-parametrization can be found in Morten&rsquo;s <a href="http://image.diku.dk/projects/media/morten.mikkelsen.08.pdf">thesis</a> (see Section 2.4).</p>
-<p>If strict compliance with the <a href="http://mikktspace.com/">MikkT space</a> is desired (to exactly match the assumptions of the normal map baking tool, for instance), the inverse-transpose should be replaced with the unmodified \([T | B | N]\) matrix, where \(B = N \times T\) is computed either in <a href="https://medium.com/@bgolus/generating-perfect-normal-maps-for-unity-f929e673fc57#c473">the vertex or the pixel shader</a>.</p>
+<p>In the formula above, $\mathrm{det}(M)$ is the <a href="https://en.wikipedia.org/wiki/Determinant#3_%C3%97_3_matrices">determinant</a>, and $\mathrm{cof}(M)$ is the <a href="https://en.wikipedia.org/wiki/Minor_(linear_algebra)#Inverse_of_a_matrix">cofactor matrix</a>.</p>
+<p>It&rsquo;s important to note that, in practice, the surface parametrization used to derive the normal may be different from the texture coordinate parametrization. This means that it&rsquo;s possible to encounter a mesh with vertex normals $N$ pointing in the direction opposite from $(T \times B)$. Of course, we always want to use the forward-facing normal $N$. Luckily, the math is on our side, and using the full matrix inversion procedure as described above works in all cases. More details about surface re-parametrization can be found in Morten&rsquo;s <a href="http://image.diku.dk/projects/media/morten.mikkelsen.08.pdf">thesis</a> (see Section 2.4).</p>
+<p>If strict compliance with the <a href="http://mikktspace.com/">MikkT space</a> is desired (to exactly match the assumptions of the normal map baking tool, for instance), the inverse-transpose should be replaced with the unmodified $[T | B | N]$ matrix, where $B = N \times T$ is computed either in <a href="https://medium.com/@bgolus/generating-perfect-normal-maps-for-unity-f929e673fc57#c473">the vertex or the pixel shader</a>.</p>
 <h2 id="preliminaries-part-2-height-maps-and-volumes">Preliminaries, Part 2: Height Maps and Volumes</h2>
-<p>The simplest representation of a tangent-space normal (or bump) map is the height map \(z = h(s,t)\). A height map \( h(s,t) \) is a 2D subset (slice) of a 3D height volume \( h(s,t,r) \), where we use the \( r \) coordinate for the third dimension. Given a height volume, each location in space corresponds to a height (or scalar displacement) value. It&rsquo;s possible define a height volume using a <a href="https://en.wikipedia.org/wiki/Perlin_noise">noise function</a>, or by combining several height maps in a certain way (as we will see later).</p>
+<p>The simplest representation of a tangent-space normal (or bump) map is the height map $z = h(s,t)$. A height map $ h(s,t) $ is a 2D subset (slice) of a 3D height volume $ h(s,t,r) $, where we use the $ r $ coordinate for the third dimension. Given a height volume, each location in space corresponds to a height (or scalar displacement) value. It&rsquo;s possible define a height volume using a <a href="https://en.wikipedia.org/wiki/Perlin_noise">noise function</a>, or by combining several height maps in a certain way (as we will see later).</p>
 <p>A height volume is a <a href="https://en.wikipedia.org/wiki/Scalar_field">scalar field</a>. The <a href="https://en.wikipedia.org/wiki/Gradient">gradient</a> of a scalar field is a <a href="https://en.wikipedia.org/wiki/Vector_field">vector field</a>. For a height volume, the <em>volume gradient</em>  is a vector which points in the direction of the greatest height increase rate, with the magnitude corresponding to this rate:</p>
 <p>$$ \tag{7} \nabla h(s,t,r) = \frac{\partial h}{\partial s} I + \frac{\partial h}{\partial t} J + \frac{\partial h}{\partial r} K =
 \begin{bmatrix}
@@ -110,10 +110,10 @@
 \partial h / \partial t \cr
 \partial h / \partial r
 \end{bmatrix}, $$</p>
-<p>where \(\lbrace I,J,K \rbrace\) is the orthonormal set of basis vectors that form the frame of reference of the height volume.</p>
+<p>where $\lbrace I,J,K \rbrace$ is the orthonormal set of basis vectors that form the frame of reference of the height volume.</p>
 <p>There are two equivalent ways to compute the volume gradient for a height map: one is to realize that the rate at which the scalar field changes along the third axis is zero (consider extending the height map to three dimensions by infinite replication/stacking), and the other one is to project the volume gradient onto the base plane along its normal:</p>
 <p>$$ \tag{8} \gamma(s,t) = \frac{\partial h}{\partial s} I + \frac{\partial h}{\partial t} J = \nabla h - \langle \nabla h, K \rangle K. $$</p>
-<p>We will refer to \( \gamma \) as the <em>projected gradient</em>. It is the fundamental quantity which makes bump mapping with both height maps and height volumes possible. For a height map, you can also interpret it as the <em>height map gradient</em>, which means that the height map gradient can be obtained by projecting the <em>volume gradient</em> along the normal.</p>
+<p>We will refer to $ \gamma $ as the <em>projected gradient</em>. It is the fundamental quantity which makes bump mapping with both height maps and height volumes possible. For a height map, you can also interpret it as the <em>height map gradient</em>, which means that the height map gradient can be obtained by projecting the <em>volume gradient</em> along the normal.</p>
 <p>Geometrically, a height map defines an implicit surface of the form:</p>
 <p>$$ \tag{9} f(x,y,z) = z - h(x,y) = 0. $$</p>
 <p>The upward-facing direction of the height map normal is given by the <a href="https://en.wikipedia.org/wiki/Implicit_surface#Tangent_plane_and_normal_vector">gradient of the implicit surface</a>:</p>
@@ -121,7 +121,7 @@
 <p>Substitution of the height map equation readily yields the following expression:</p>
 <p>$$ \tag{11} G(s,t) = - \frac{\partial h}{\partial s} I - \frac{\partial h}{\partial t} J + K = \begin{bmatrix} -\partial h / \partial s \cr -\partial h / \partial t \cr 1 \end{bmatrix}, $$</p>
 <p>$$ \tag{12} G(s,t) = K - \gamma. $$</p>
-<p>We will refer to \(G\) as the <em>implicit gradient</em>. Note that \(\langle G, K \rangle\) is always 1.</p>
+<p>We will refer to $G$ as the <em>implicit gradient</em>. Note that $\langle G, K \rangle$ is always 1.</p>
 <figure><img src="/img/height_map.png"
          alt="Height map and its gradient."/>
 </figure>
@@ -139,7 +139,7 @@
 1
 \end{bmatrix}. $$</p>
 <p>This simply means that we need to rescale the slopes in order to adjust the displacements as we tile the texture.</p>
-<p>For completeness, we can convert a tangent-space (height map) normal \( N_{t} = [n_{t,1}, n_{t,2}, n_{t,3}]^{\mathrm{T}} \) into the slope (gradient) form in the following way:</p>
+<p>For completeness, we can convert a tangent-space (height map) normal $ N_{t} = [n_{t,1}, n_{t,2}, n_{t,3}]^{\mathrm{T}} $ into the slope (gradient) form in the following way:</p>
 <p>$$ \tag{14} G(s,t) = \begin{bmatrix} -\partial h / \partial s \cr -\partial h / \partial t \cr 1 \end{bmatrix} = \frac{N_{t}}{n_{t,3}}, $$</p>
 <p>$$ \tag{15} G(u,v) =
 \begin{bmatrix}
@@ -152,7 +152,7 @@
 -b \cdot n_{t,2} / n_{t,3} \cr
 1
 \end{bmatrix} = M_{tile} \frac{N_{t}}{n_{t,3}}. $$</p>
-<p>To perturb the surface using the height map, we need to perform a change of basis from the orthonormal tangent-space set \(\lbrace I,J,K \rbrace\) to our previously defined object-space set \(\lbrace T,B,N \rbrace\). Doing this correctly is slightly more involved than it may seem at first glance.</p>
+<p>To perturb the surface using the height map, we need to perform a change of basis from the orthonormal tangent-space set $\lbrace I,J,K \rbrace$ to our previously defined object-space set $\lbrace T,B,N \rbrace$. Doing this correctly is slightly more involved than it may seem at first glance.</p>
 <h2 id="preliminaries-part-3-wrinkled-surfaces">Preliminaries, Part 3: Wrinkled Surfaces</h2>
 <p>The <a href="https://www.microsoft.com/en-us/research/publication/simulation-of-wrinkled-surfaces/">original formulation</a> of bump mapping defines a height-mapped surface by applying a perturbation along the normal of the original surface.</p>
 <figure><img src="/img/bump_map.png"
@@ -161,7 +161,7 @@
         </figcaption>
 </figure>
 
-<p>Note that this is the right place to apply the object&rsquo;s scale matrix \( M_{scale} \), as it should affect the displacements (ultimately, by scaling the slopes):</p>
+<p>Note that this is the right place to apply the object&rsquo;s scale matrix $ M_{scale} $, as it should affect the displacements (ultimately, by scaling the slopes):</p>
 <p>$$ \tag{16} P(u, v) = M_{scale} \Big( S(u, v) + h(u, v) N(u, v) \Big). $$</p>
 <p>Just as we did before, we can take derivatives of this equation to compute the perturbed normal.</p>
 <p>$$ \tag{17} T_p(u,v) = \frac{\partial P}{\partial u}
@@ -170,7 +170,7 @@
 $$ \tag{18} B_p(u,v) = \frac{\partial P}{\partial v}
 = M_{scale}(B + \frac{\partial h}{\partial v} N + h \frac{\partial N}{\partial v})
 \approx M_{scale}(B + \frac{\partial h}{\partial v} N). $$</p>
-<p>Jim claims that for small displacements and moderately curved surfaces, partial derivatives \( \partial N / \partial u \) and \( \partial N / \partial v \) are negligibly small and can be set to 0. For those interested, Morten verifies the validity of this approximation in his <a href="http://image.diku.dk/projects/media/morten.mikkelsen.08.pdf">thesis</a> (see Section 2.6).</p>
+<p>Jim claims that for small displacements and moderately curved surfaces, partial derivatives $ \partial N / \partial u $ and $ \partial N / \partial v $ are negligibly small and can be set to 0. For those interested, Morten verifies the validity of this approximation in his <a href="http://image.diku.dk/projects/media/morten.mikkelsen.08.pdf">thesis</a> (see Section 2.6).</p>
 <p>We can compute the perturbed normal by taking the cross product. Just as before, we replace normalization in the denominator with the scalar triple product to avoid flipped normals:</p>
 <p>$$ \tag{19} N_p(u,v) = \frac{T_p \times B_p}{\langle T_p \times B_p, N \rangle}
 \approx \frac{1}{\langle T_p \times B_p, N \rangle} \Big((M_{scale}(T + \frac{\partial h}{\partial u} N)) \times
@@ -178,9 +178,9 @@ $$ \tag{18} B_p(u,v) = \frac{\partial P}{\partial v}
 <p>We can move the matrix outside of the brackets with the help of the following <a href="https://en.wikipedia.org/wiki/Cross_product#Algebraic_properties">identity</a>:</p>
 <p>$$ \tag{20} (MA) \times (MB) = (\mathrm{det}(M))(M^{-1})^{\mathrm{T}}(A \times B)
 = (\mathrm{cof}(M)) (A \times B), $$</p>
-<p>where \(\mathrm{cof}(M)\) is the <a href="https://en.wikipedia.org/wiki/Minor_(linear_algebra)#Inverse_of_a_matrix">cofactor matrix</a>.</p>
+<p>where $\mathrm{cof}(M)$ is the <a href="https://en.wikipedia.org/wiki/Minor_(linear_algebra)#Inverse_of_a_matrix">cofactor matrix</a>.</p>
 <p>$$ \tag{21} N_p(u,v) \approx \frac{\mathrm{cof}(M_{scale})}{\langle T_p \times B_p, N \rangle} \Big((T + \frac{\partial h}{\partial u} N) \times (B + \frac{\partial h}{\partial v} N)\Big). $$</p>
-<p>Alternatively, the object scale can be incorporated directly into the \([T | B | N]\) matrix (by rescaling all three basis vectors in Equations 17 and 18).</p>
+<p>Alternatively, the object scale can be incorporated directly into the $[T | B | N]$ matrix (by rescaling all three basis vectors in Equations 17 and 18).</p>
 <p>It&rsquo;s instructive to expand the cross product:</p>
 <p>$$ \tag{22} N_p(u,v) \approx \frac{\mathrm{cof}(M_{scale})}{\langle T_p \times B_p, N \rangle} \Big((T \times B) + \frac{\partial h}{\partial u} (N \times B) + \frac{\partial h}{\partial v} (T \times N) + \frac{\partial h}{\partial u} \frac{\partial h}{\partial v} (N \times N)\Big). $$</p>
 <p>The last term vanishes because the value of the cross product is a zero vector:</p>
@@ -199,16 +199,16 @@ $$ \tag{18} B_p(u,v) = \frac{\partial P}{\partial v}
 <p>$$ \tag{27} (M_{tangent})^{\mathrm{T}} N_o = \frac{(M_{tangent})^{\mathrm{T}}(M_{tangent}^{-1})^{\mathrm{T}} G}{\Vert (M_{tangent}^{-1})^{\mathrm{T}} G \Vert} = \frac{(M_{tangent}^{-1} M_{tangent})^{\mathrm{T}} G}{\Vert (M_{tangent}^{-1})^{\mathrm{T}} G \Vert} = \frac{G}{\Vert (M_{tangent}^{-1})^{\mathrm{T}} G \Vert}. $$</p>
 <p>To transform the perturbed normal into the world space, all we have to do is rotate it. Rotation can be performed inside or outside the cofactor computation. We perform it inside for consistency.</p>
 <p>$$ \tag{28} N_w(u,v) \approx \frac{\big( \mathrm{cof}(M_{rot} M_{scale}) (M_{tangent}^{-1})^{\mathrm{T}} \big) M_{tile} N_{t} / n_{t,3}}{\Vert \big( \mathrm{cof}(M_{rot} M_{scale}) (M_{tangent}^{-1})^{\mathrm{T}} \big) M_{tile} N_{t} / n_{t,3} \Vert}. $$</p>
-<p>If no further modifications of the normal are desired, the matrices can be combined into a normal-tangent-to-world matrix \(M_{ntw} = ((M_{rot} M_{scale} M_{tangent})^{-1})^{\mathrm{T}}\), and the division can be dropped due to subsequent normalization.</p>
+<p>If no further modifications of the normal are desired, the matrices can be combined into a normal-tangent-to-world matrix $M_{ntw} = ((M_{rot} M_{scale} M_{tangent})^{-1})^{\mathrm{T}}$, and the division can be dropped due to subsequent normalization.</p>
 <p>$$ \tag{29} N_w(u,v) \approx \frac{M_{ntw} M_{tile} N_{t}}{\Vert M_{ntw} M_{tile} N_{t} \Vert}. $$</p>
-<p>If your \(M_{tangent}\) transforms directly into the world space, no cofactor matrices are needed at this step. The run-time cost is thus identical to that of the traditional normal mapping.</p>
+<p>If your $M_{tangent}$ transforms directly into the world space, no cofactor matrices are needed at this step. The run-time cost is thus identical to that of the traditional normal mapping.</p>
 <p>Care must be taken when combining and interpolating these matrices, as your normal map baking tool may assume that the inverse-transpose of the tangent matrix has <a href="http://mikktspace.com/">certain properties</a>.</p>
 <h2 id="surface-gradient-framework">Surface Gradient Framework</h2>
 <p>The <a href="https://en.wikipedia.org/wiki/Surface_gradient">surface gradient</a> is defined as the orthogonal projection of the volume gradient onto the tangent plane (compare to the equation (8)):</p>
 <p>$$ \tag{30} \Gamma(u,v) = \nabla h - \langle \nabla h, N \rangle N. $$</p>
 <p>In other words, it is the projected gradient transformed from the tangent space into the object space:</p>
 <p>$$ \tag{31} \Gamma(u,v) = (M_{tangent}^{-1})^{\mathrm{T}} \gamma = \frac{[B \times N | N \times T] }{\langle T \times B, N \rangle} \gamma. $$</p>
-<p>Why are these two formulas equivalent? We can use the definition of the <a href="https://en.wikipedia.org/wiki/Directional_derivative">directional derivative</a>, which says that along any vector \(W\) with its associated scalar parameter \(w\), \(\partial h / \partial w = \langle \nabla h, W \rangle\). Therefore,</p>
+<p>Why are these two formulas equivalent? We can use the definition of the <a href="https://en.wikipedia.org/wiki/Directional_derivative">directional derivative</a>, which says that along any vector $W$ with its associated scalar parameter $w$, $\partial h / \partial w = \langle \nabla h, W \rangle$. Therefore,</p>
 <p>$$ \tag{32} \begin{aligned}
 \gamma(u,v) &amp;= (M_{tangent})^{\mathrm{T}} \Gamma \cr
 &amp;= [T | B | N]^{\mathrm{T}} (\nabla h - \langle \nabla h, N \rangle N) \cr
@@ -245,7 +245,7 @@ $$ \tag{18} B_p(u,v) = \frac{\partial P}{\partial v}
 <p>$$ \tag{36} N_p(u,v) = \frac{(\mathrm{cof}(M_{scale})) N_o}{ \Vert (\mathrm{cof}(M_{scale})) N_o \Vert }, $$</p>
 <p>$$ \tag{37} N_o(u,v) = \frac{G_o}{ \Vert G_o \Vert } = \frac{N - \Gamma}{ \Vert N - \Gamma \Vert }. $$</p>
 <p>It&rsquo;s interesting to compare the last equation with the equation (12), and to see that they indeed match (up to the normalization factor).</p>
-<p>While we can solve this equation for \(\Gamma\) by projecting the object-space normal onto the tangent plane using the equations (27) and (31), it&rsquo;s more efficient to find the solution geometrically:</p>
+<p>While we can solve this equation for $\Gamma$ by projecting the object-space normal onto the tangent plane using the equations (27) and (31), it&rsquo;s more efficient to find the solution geometrically:</p>
 <figure><img src="/img/grad_obj.png"
          alt="Surface gradient and the object-space normal."/><figcaption>
             <p><em>Surface gradient and the object-space normal.</em></p>
@@ -253,11 +253,11 @@ $$ \tag{18} B_p(u,v) = \frac{\partial P}{\partial v}
 </figure>
 
 <p>$$ \tag{38} \Gamma(u,v) = N - (N - \Gamma) = N - G_o = N -\frac{N_o}{\langle N_o, N \rangle}. $$</p>
-<p>This formula rescales the normal to obtain the corresponding implicit gradient which satisfied the condition \(\langle N,G \rangle = 1\). It produces correct results even for negative values of the dot product, as well as non-unit normals \(N_o\). In fact, normals can be in any space, as long as both \(N\) and \(N_o\) are represented with respect to the same frame of reference. Since we only deal with normals and the surface gradient, this formulation is also independent from the surface parametrization &ndash; the way we compute the texture coordinates does not matter.</p>
+<p>This formula rescales the normal to obtain the corresponding implicit gradient which satisfied the condition $\langle N,G \rangle = 1$. It produces correct results even for negative values of the dot product, as well as non-unit normals $N_o$. In fact, normals can be in any space, as long as both $N$ and $N_o$ are represented with respect to the same frame of reference. Since we only deal with normals and the surface gradient, this formulation is also independent from the surface parametrization &ndash; the way we compute the texture coordinates does not matter.</p>
 <h4 id="4-planar-mapping">4. Planar Mapping</h4>
 <p>One of the alternatives to UV-mapping is to obtain texture coordinates by projecting the surface onto a plane. Typically, the normals are stored either in the object space or in the tangent space.</p>
 <p>The solution for the already perturbed (e.g. object-space) normals is given in the previous section. In this section, let&rsquo;s find the solution for tangent-space normals.</p>
-<p>Without loss of generality, let&rsquo;s consider the X-Y plane for planar mapping. Our surface \(S\) then becomes a height map w.r.t. this plane (we assume that this is a suitable parametrization for the particular surface):</p>
+<p>Without loss of generality, let&rsquo;s consider the X-Y plane for planar mapping. Our surface $S$ then becomes a height map w.r.t. this plane (we assume that this is a suitable parametrization for the particular surface):</p>
 <p>$$ \tag{39} z = h(x, y), $$
 $$ \tag{40} \begin{bmatrix} u \cr v \end{bmatrix} = \begin{bmatrix} x \cr y \end{bmatrix}. $$</p>
 <p>Let&rsquo;s complete the tangent frame for the new surface parametrization:</p>
@@ -294,11 +294,11 @@ n_y^2+n_z^2 &amp; -n_x n_y    \cr
 <p>$$ \tag{45} \Gamma(x,y,z) = N - w(n_x,n_y) \frac{N_1}{\langle N_1, N \rangle}
 - w(n_y,n_z) \frac{N_2}{\langle N_2, N \rangle}
 - w(n_z,n_x) \frac{N_3}{\langle N_3, N \rangle}, $$</p>
-<p>where \(w\) is the weighting function, and the normals of X-Y, Y-Z and Z-X planes are labelled as \(N_1\), \(N_2\) and \(N_3\), respectively.</p>
+<p>where $w$ is the weighting function, and the normals of X-Y, Y-Z and Z-X planes are labelled as $N_1$, $N_2$ and $N_3$, respectively.</p>
 <p>To support tangent-space normal maps, we can also blend three surface gradients obtained using the math from the previous section. However, there&rsquo;s a more efficient solution presented by Morten in his <a href="http://mmikkelsen3d.blogspot.com/2013/10/volume-height-maps-and-triplanar-bump.html">blog post</a>.</p>
 <p>Imagine a height volume defined using three height maps (recall the infinite replication/stacking analogy) as follows:</p>
 <p>$$ \tag{46} h(x,y,z) = w(n_x,n_y) h_z(x,y) + w(n_y,n_z) h_x(y,z) + w(n_z,n_x) h_y(z,x), $$</p>
-<p>where \(w\) is the weighting function. Let&rsquo;s compute the volume gradient:</p>
+<p>where $w$ is the weighting function. Let&rsquo;s compute the volume gradient:</p>
 <p>$$ \tag{47} \begin{aligned}
 \nabla h(x,y,z)
 &amp;= \frac{\partial h}{\partial x} X + \frac{\partial h}{\partial y} Y + \frac{\partial h}{\partial z} K \cr
@@ -315,7 +315,7 @@ n_y^2+n_z^2 &amp; -n_x n_y    \cr
 &amp;+ Y \Big(w(n_x,n_y) \frac{\partial h_z(x,y)}{\partial y} + w(n_y,n_z) \frac{\partial h_x(y,z)}{\partial y} \Big) \cr
 &amp;+ Z \Big(w(n_y,n_z) \frac{\partial h_x(y,z)}{\partial z} + w(n_z,n_x) \frac{\partial h_y(z,x)}{\partial z} \Big).
 \end{aligned} $$</p>
-<p>To verify correctness, let&rsquo;s compare it with the equation (44) for the X-Y plane. We assume that the only non-zero weight is \(w(n_x,n_y) = 1\), and compute the surface gradient using the equation (30):</p>
+<p>To verify correctness, let&rsquo;s compare it with the equation (44) for the X-Y plane. We assume that the only non-zero weight is $w(n_x,n_y) = 1$, and compute the surface gradient using the equation (30):</p>
 <p>$$ \tag{50} \begin{aligned}
 \Gamma(x,y)
 &amp;= \nabla h - \langle \nabla h, N \rangle N \cr
@@ -330,7 +330,7 @@ n_y^2+n_z^2 &amp; -n_x n_y    \cr
 -n_x n_z    &amp; -n_y n_z
 \end{bmatrix} \begin{bmatrix} \partial h / \partial x \cr \partial h / \partial y \end{bmatrix}.
 \end{aligned} $$</p>
-<p>If we recall that our planar mapping example assumes that \( [ u,v ]^{\mathrm{T}} = [ x,y ]^{\mathrm{T}} \), we can see that the two expressions are indeed identical.</p>
+<p>If we recall that our planar mapping example assumes that $ [ u,v ]^{\mathrm{T}} = [ x,y ]^{\mathrm{T}} $, we can see that the two expressions are indeed identical.</p>
 <h2 id="conclusion">Conclusion</h2>
 <p>The surface gradient framework offers powerful tools for processing different representations of bump maps: height maps, height volumes, normal maps, in any space or frame of reference. At its core is the original bump mapping algorithm of Jim Blinn, which stands the test of time.</p>
 <p>If you want to learn more, I encourage you to check out the papers referenced in the introduction. They contain plenty of interesting details which will help you master of the intricate subject of bump mapping.</p>

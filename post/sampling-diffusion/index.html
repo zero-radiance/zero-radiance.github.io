@@ -80,15 +80,15 @@ $$</p>
 <p>$$ \tag{3} p_r(r, \theta) = \frac{R(r)}{A} r = \frac{s}{8 \pi} \Big( e^{-s r} + e^{-s r / 3} \Big). $$</p>
 <p>The marginal CDF is then</p>
 <p>$$ \tag{4} P(r) = \int_{0}^{2 \pi} \int_{0}^{r} p_r(z, \theta) dz d\theta = 1 - \frac{1}{4} e^{-s r} - \frac{3}{4} e^{-s r / 3}. $$</p>
-<p>Let us define \(x = s r\). If we ask <a href="https://www.wolfram.com/mathematica/">Mathematica</a> to solve \(y = P(x)\) for \(x\) in order to obtain the inverse \(x = P^{-1}(y)\), we get a somewhat terrifying (but, of course, correct) output:</p>
+<p>Let us define $x = s r$. If we ask <a href="https://www.wolfram.com/mathematica/">Mathematica</a> to solve $y = P(x)$ for $x$ in order to obtain the inverse $x = P^{-1}(y)$, we get a somewhat terrifying (but, of course, correct) output:</p>
 <figure><img src="/img/solve1.png"/>
 </figure>
 
-<p>The trick is to solve \(P(x) = 1 - u\) instead (where \(u = 1 - P(x)\) is the <a href="https://en.wikipedia.org/wiki/Cumulative_distribution_function#Complementary_cumulative_distribution_function_(tail_distribution)">complementary CDF</a>):</p>
+<p>The trick is to solve $P(x) = 1 - u$ instead (where $u = 1 - P(x)$ is the <a href="https://en.wikipedia.org/wiki/Cumulative_distribution_function#Complementary_cumulative_distribution_function_(tail_distribution)">complementary CDF</a>):</p>
 <figure><img src="/img/solve2.png"/>
 </figure>
 
-<p>To get rid of the imaginary part, we can set the free constant \(c_{1} = 0\), which results in the following inverse:</p>
+<p>To get rid of the imaginary part, we can set the free constant $c_{1} = 0$, which results in the following inverse:</p>
 <p>$$ \tag{5} x = s r = 3 \log{\Bigg(\frac{1 + G(u)^{-1/3} + G(u)^{1/3}}{4 u} \Bigg)}, $$</p>
 <p>where</p>
 <p>$$ \tag{6} G(u) = 1 + 4 u \Big( 2 u + \sqrt{1 + 4 u^2} \Big). $$</p>
@@ -96,7 +96,7 @@ $$</p>
 <figure><img src="/img/solve3.png"/>
 </figure>
 
-<p>For importance sampling, we can uniformly sample either the complementary or the regular CDF - it makes no difference \((\)except for reversing the order of samples, s.t. \(x(0) = \infty\) and \(x(1) = 0 )\).</p>
+<p>For importance sampling, we can uniformly sample either the complementary or the regular CDF - it makes no difference $($except for reversing the order of samples, s.t. $x(0) = \infty$ and $x(1) = 0 )$.</p>
 <p>An optimized implementation is listed below.</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-c++" data-lang="c++"><span style="display:flex;"><span><span style="color:#75715e">// Performs sampling of a Normalized Burley diffusion profile in polar coordinates.
 </span></span></span><span style="display:flex;"><span><span style="color:#75715e">// &#39;u&#39; is the random number (the value of the CDF): [0, 1).

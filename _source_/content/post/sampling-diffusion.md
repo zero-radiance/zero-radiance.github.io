@@ -34,15 +34,15 @@ The marginal CDF is then
 
 $$ \tag{4} P(r) = \int\_{0}^{2 \pi} \int_{0}^{r} p_r(z, \theta) dz d\theta = 1 - \frac{1}{4} e^{-s r} - \frac{3}{4} e^{-s r / 3}. $$
 
-Let us define \\(x = s r\\). If we ask [Mathematica](https://www.wolfram.com/mathematica/) to solve \\(y = P(x)\\) for \\(x\\) in order to obtain the inverse \\(x = P^{-1}(y)\\), we get a somewhat terrifying (but, of course, correct) output:
+Let us define $x = s r$. If we ask [Mathematica](https://www.wolfram.com/mathematica/) to solve $y = P(x)$ for $x$ in order to obtain the inverse $x = P^{-1}(y)$, we get a somewhat terrifying (but, of course, correct) output:
 
 {{< figure src="/img/solve1.png">}}
 
-The trick is to solve \\(P(x) = 1 - u\\) instead (where \\(u = 1 - P(x)\\) is the [complementary CDF](https://en.wikipedia.org/wiki/Cumulative_distribution_function#Complementary_cumulative_distribution_function_(tail_distribution))):
+The trick is to solve $P(x) = 1 - u$ instead (where $u = 1 - P(x)$ is the [complementary CDF](https://en.wikipedia.org/wiki/Cumulative_distribution_function#Complementary_cumulative_distribution_function_(tail_distribution))):
 
 {{< figure src="/img/solve2.png">}}
 
-To get rid of the imaginary part, we can set the free constant \\(c_{1} = 0\\), which results in the following inverse:
+To get rid of the imaginary part, we can set the free constant $c_{1} = 0$, which results in the following inverse:
 
 $$ \tag{5} x = s r = 3 \log{\Bigg(\frac{1 + G(u)^{-1/3} + G(u)^{1/3}}{4 u} \Bigg)}, $$
 
@@ -54,7 +54,7 @@ We can verify that it works by feeding the complementary CDF with its inverse.
 
 {{< figure src="/img/solve3.png">}}
 
-For importance sampling, we can uniformly sample either the complementary or the regular CDF - it makes no difference \\((\\)except for reversing the order of samples, s.t. \\(x(0) = \infty\\) and \\(x(1) = 0 )\\).
+For importance sampling, we can uniformly sample either the complementary or the regular CDF - it makes no difference $($except for reversing the order of samples, s.t. $x(0) = \infty$ and $x(1) = 0 )$.
 
 An optimized implementation is listed below.
 
