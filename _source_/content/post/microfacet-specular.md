@@ -1185,7 +1185,7 @@ $$
 
 ## Acknowledgements
 
-...
+Writing this article would be difficult, if not impossible, without the hard work of the authors of many excellent papers about the microfacet theory and its applications, a few of which are listed below. They contain practical details, helpful illustrations, and different approaches and perspectives, which makes the perusal of these papers a great way to expand your tool set and build a more complete mental model.
 
 ## References and Suggestions for Further Reading
 
