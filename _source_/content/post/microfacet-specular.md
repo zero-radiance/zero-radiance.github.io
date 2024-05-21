@@ -416,7 +416,7 @@ $$
 
 Since Eqn. 7d and 10b sum up to 1, we have just demonstrated that the full BSDF is energy-conserving.
 
-If you find reciprocity daunting, you are not alone. For instance, Eqn. 18 and 21 in Bruce Walter's widely cited paper about microfacet models published in 2007 are missing a factor of $\small \eta_v^2 / \eta_l^2$.
+If you find reciprocity daunting, you are not alone. For instance, Eqn. 18 and 21 in Bruce Walter's widely cited paper about microfacet models for refraction are missing a factor of $\small \eta_v^2 / \eta_l^2$.
 
 ### Rough Surface BSDF
 
@@ -1189,12 +1189,9 @@ Writing this article would be difficult, if not impossible, without the hard wor
 
 ## References and Suggestions for Further Reading
 
-Veach's thesis
+1. Veach, E. [Robust Monte Carlo Methods for Light Transport Simulation](https://graphics.stanford.edu/papers/veach_thesis/), Chapter 5 (1998).
 
-Eric's understanding
 
-Walter's ggx
+2. Walter, B., Marschner, S. R., Li, H., & Torrance, K. E. [Microfacet Models for Refraction Through Rough Surfaces](https://www.graphics.cornell.edu/~bjw/papers.html) (2007).
 
-Walter's ellipsoid
-
-Atanasov's transformations
+3. Heitz, E. [Understanding the Masking-Shadowing Function in Microfacet-Based BRDFs](https://inria.hal.science/hal-00942452/en) (2014).
