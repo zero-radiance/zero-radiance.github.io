@@ -44,7 +44,7 @@ $$ \tag{1a}
 \end{aligned}
 $$
 
-for all $\small \bm{v}$. Expressed this way, it is clear that the constraint is geometric (e.i., coordinate-independent, basis-independent) in nature:
+for all $\small \bm{v}$. Expressed this way, it is clear that the constraint is geometric (coordinate-independent, basis-independent) in nature:
 
 $$ \tag{1b}
 	\bm{n} = \int_{\bm{m} \in \mathbb{S^2}} \bm{m} D(\bm{m}) d\Omega(\bm{m}).
@@ -68,7 +68,7 @@ One of the simplest examples of a valid microsurface is a box[^5], with the flip
 
 [^5]: Using the tools of calculus, we can decompose an arbitrary surface into a (possibly infinite) number of sufficiently small boxes.
 
-This trivial example clearly demonstrates that a microsurface does not have to be smooth (e.i. continuously differentiable); however, that ensures the continuity of the NDF, which is desirable, unless the goal is to model a flat surface.
+This trivial example clearly demonstrates that a microsurface does not have to be smooth (continuously differentiable); however, that ensures the continuity of the NDF, which is desirable, unless the goal is to model a flat surface.
 
 *Linearity* of Eqn. 1 allows us to consider the individual microfacets separately and to sum up their contributions. As we apply it to the box along some $\small \bm{v}$, observe that the signed projected areas of the opposite faces cancel each other, while the top remains equivalent to the bottom. Another consequence is that an application of a *linear transformation* (that transforms a box into a parallelepiped, in our case) also generates a valid combination of the microsurface and the macrosurface. We can see why that is the case by picturing Eqn. 1 geometrically and (passively) transforming the coordinate axes[^51] rather than (actively transforming) the surface itself (see Fig. 3 below). Of course, while the surface lines remain unchanged, the signed projected areas (and, thus, the values of the NDF) do not stay the same.
 
@@ -380,7 +380,7 @@ $$ \tag{9c}
 	\frac{\eta_v^2}{\eta_l^2} \big( 1 - F(\theta_v, \eta_v/\eta_t) \big) \delta_{\Omega_n}\big( \eta_v (\bm{v} \times \bm{n}) + \eta_l (\bm{l} \times \bm{n}) \big).
 $$
 
-The first term is responsible for the compression of projected solid angles, which can be readily verified by placing the surface inside a *white furnace* (e.i. setting $\small L(\bm{l}) = 1$ for all $\small \bm{l}$) and evaluating Eqn. 4b.
+The first term is responsible for the compression of projected solid angles, which can be readily verified by placing the surface inside a *white furnace* (by setting $\small L(\bm{l}) = 1$ for all $\small \bm{l}$) and evaluating Eqn. 4b.
 
 Is this BTDF reciprocal? Naive substitution of Eqn. 9c into 4c leads to
 
@@ -519,9 +519,9 @@ $$ \tag{15a}
 	 -\frac{\eta_v}{\eta_t}\bm{v} + \left( \frac{\eta_v}{\eta_t}(\bm{v} \cdot \bm{m}) - \mathrm{sgn}(\bm{v} \cdot \bm{m}) \sqrt{1 - \frac{\eta_v^2}{\eta_t^2} \Vert \bm{v} \times \bm{m} \Vert^2 } \right) \bm{m}
 $$
 
-is the refracted (or transmitted) view vector that points along the direction of incidence (see Fig. 7 above). The derivation of Eqn. 15a is provided in Appendix A. We must caution that, in certain cases, the value of the expression inside the square root is a negative number. This invalidates the refracted direction and implies that the light has been *totally internally reflected* by the surface.
+is the refracted (or transmitted) view vector that points along the direction of incidence (see Fig. 7 above). The derivation of Eqn. 15a is provided in [Appendix A](#appendix-a-derivation-of-refracted-view-vector). We must caution that, in certain cases, the value of the expression inside the square root is a negative number. This invalidates the refracted direction and implies that the light has been *totally internally reflected* by the surface.
 
-Eqn. 15a can be solved for $\small \bm{m}$ if we assume that $\small (\bm{v} \cdot \bm{m}) > 0$. The derivation is provided in Appendix A; here, we simply quote the result:
+Eqn. 15a can be solved for $\small \bm{m}$ if we assume that $\small (\bm{v} \cdot \bm{m}) > 0$. The derivation is provided in [Appendix A](#appendix-a-derivation-of-refracted-view-vector); here, we simply quote the result:
 
 $$ \tag{15b}
 	\bm{m}
@@ -727,7 +727,7 @@ $$ \tag{18a}
 \end{aligned}
 $$
 
-The second equation required a minor modification: we had to reverse the refracted view vector $\small \bm{t}$ because the microsurface is one-sided; refer to the section about Inherent Assumptions for details. This formulation is non-reciprocal: an equivalent (proper but verbose) expression uses $\small G_2(\mathrm{sgn}(\bm{n} \cdot \bm{v}) \bm{v}, \bm{m}, \mathrm{sgn}(\bm{n} \cdot \bm{t}) \bm{t})$.
+The second equation required a minor modification: we had to reverse the refracted view vector $\small \bm{t}$ because the microsurface is one-sided; refer to the section about [Inherent Assumptions](#inherent-assumptions) for details. This formulation is non-reciprocal: an equivalent (proper but verbose) expression is $\small G_2(\mathrm{sgn}(\bm{n} \cdot \bm{v}) \bm{v}, \bm{m}, \mathrm{sgn}(\bm{n} \cdot \bm{t}) \bm{t})$.
 
 Comparison of Eqn. 18a with 4b, which serves as a definition of a BSDF, reveals that the domain of integration is not the same. Therefore, we must perform a change of variables from the microsurface normal to the direction of incidence. This can be accomplished using the *Jacobian* determinant of the transformation:
 
@@ -774,62 +774,50 @@ $$
 
 is completely analogous to the one-dimensional change of variables $\small dx = (\partial x / \partial t) dt$.
 
-Intuitively, the absolute value of the Jacobian is just a *ratio* of two differential solid angles, each corresponding to a projected differential area. Unfortunately, making sense of this statement (and making it more precise) requires a background in vector analysis. For those readers who are interested in the details, we provide a brief introduction to Jacobians and differential solid angles in Appendix B.
+Intuitively, the absolute value of the Jacobian is just a *ratio* of two differential solid angles, each corresponding to a projected differential area. Unfortunately, making sense of this statement (and making it more precise) requires a background in differential geometry. For those readers who are interested in the details, we provide a brief introduction to Jacobians and differential solid angles in [Appendix B](#appendix-b-jacobians-and-differential-solid-angles).
 
----
+We can determine the expression of the Jacobian in Eqn. 18d using the geometric properties of differential solid angles. Taking $\small \bm{v}$ as a constant, substitution of Eqn. 13b and utilization of Eqn. B18-B21 yields
 
-We can utilize these geometric properties to find the expression of the Jacobian in Eqn. 18d. Taking $\small \bm{v}$ as a constant, substitution of Eqn. 13b into 23a and utilization of Eqn. 23b-23d yields
-
-$$ \tag{24a}
+$$ \tag{19a}
 	d\Omega(\bm{m})
 	= d\Omega(\bm{r} + \bm{v})
 	= \frac{\big\vert \bm{m} \cdot d\bm{A}(\bm{r}) \big\vert}{\Vert \bm{r} + \bm{v} \Vert^2}
 	= \frac{\vert \bm{m} \cdot \bm{r} \vert}{\Vert \bm{r} + \bm{v} \Vert^2} d\Omega(\bm{r}).
 $$
 
-Thus, according to the definitions of the absolute value of the Jacobian (Eqn. 18d) and the law of reflection (Eqn. 7a),
+Thus, according to the definitions of the absolute value of the Jacobian and the law of reflection (Eqn. 7a),
 
-$$ \tag{24b}
+$$ \tag{19b}
 	\big\vert J(\bm{m}, \bm{r}) \big\vert
 	= \frac{\vert \bm{r} \cdot \bm{m} \vert}{\Vert \bm{r} + \bm{v} \Vert^2}
 	= \frac{1}{4 |\bm{r} \cdot \bm{m}|}.
 $$
 
-This derivation is illustrated on Fig. 10 \[borrowed from Bruce Walter\] below.
+Similarly, we can use Eqn. 15b to show that
 
-{{< figure src="/img/mst/fig10.png" >}}
-
-Similarly, we can use Eqn. 15f to show that
-
-$$ \tag{25a}
+$$ \tag{20a}
 	d\Omega(\bm{m})
-	= d\Omega(\eta_v \bm{v} + \eta_t \bm{t})
-	= \frac{\big\vert \bm{m} \cdot d\bm{A}(\eta_t \bm{t}) \big\vert}{\Vert \eta_v \bm{v} + \eta_t \bm{t} \Vert^2}
-	= \frac{\eta_t^2 \vert \bm{m} \cdot \bm{t} \vert}{\Vert \eta_v \bm{v} + \eta_t \bm{t} \Vert^2} d\Omega(\bm{t}).
+	= d\Omega\big( (\eta_v / \eta_t) \bm{v} + \bm{t} \big)
+	= \frac{\big\vert \bm{m} \cdot d\bm{A}(\bm{t}) \big\vert}{\Vert (\eta_v / \eta_t) \bm{v} + \bm{t} \Vert^2}
+	= \frac{\big\vert \bm{m} \cdot \bm{t} \big\vert}{\Vert (\eta_v / \eta_t) \bm{v} + \bm{t} \Vert^2} d\Omega(\bm{t}).
 $$
 
-Therefore, according to the law of refraction (see Eqn. 8c and 15c-15f ??? 15b ???),
+Therefore, according to the definitions of the absolute value of the Jacobian and the law of refraction (Eqn. 5a and A1-A4),
 
-$$ \tag{25b}
+$$ \tag{20b}
 \begin{aligned}
 	\big\vert J(\bm{m}, \bm{t}) \big\vert
-	&= \frac{\eta_t^2 \vert \bm{t} \cdot \bm{m} \vert}{\Vert \eta_v \bm{v} + \eta_t \bm{t} \Vert^2}
+	&= \frac{\big\vert \bm{t} \cdot \bm{m} \big\vert}{\Vert (\eta_v / \eta_t) \bm{v} + \bm{t} \Vert^2}
 	\cr
-	&= \frac{\eta_t^2 \vert \bm{t} \cdot \bm{m} \vert}{\Vert \eta_t \cos{\theta_t} - \eta_v \cos{\theta_v} \Vert^2}
+	&= \frac{\big\vert \bm{t} \cdot \bm{m} \big\vert}{\big( (\eta_v / \eta_t) \cos{\theta_v} - \cos{\theta_t} \big)^2}
 	\cr
-	&= \frac{\eta_t^2 \vert \bm{t} \cdot \bm{m} \vert}{\big( \eta_t (\bm{t} \cdot \bm{m}) + \eta_v (\bm{v} \cdot \bm{m}) \big)^2}
-	\cr
-	&= \frac{\eta_t^2 \vert \bm{t} \cdot \bm{m} \vert}{\left( \eta_t (\bm{t} \cdot \bm{m}) + \sqrt{\eta_v^2 - \eta_t^2 \Vert \bm{t} \times \bm{m} \Vert^2 } \right)^2}.
+	&= \frac{\big\vert \bm{t} \cdot \bm{m} \big\vert}{\big( \sqrt{(\eta_v / \eta_t)^2 - \Vert \bm{t} \times \bm{m} \Vert^2} + (\bm{t} \cdot \bm{m}) \big)^2}.
 \end{aligned}
 $$
 
-This derivation is illustrated on Fig. 11 \[borrowed from Bruce Walter\] below.
+Having finally obtained the last piece of the puzzle, we can proceed with the assembly of a microfacet BSDF. Begin by substituting Eqn. 19b and 20b into 18c:
 
-{{< figure src="/img/mst/fig11.png" >}}
-
-We have finally reached the point where we have all the parts required for assembly of a microfacet BSDF. Let us substitute Eqn. 24b and 25b into Eqn. 18c:
-
-$$ \tag{26a}
+$$ \tag{21a}
 \begin{aligned}
 	L_r(\bm{v})
 	&=
@@ -842,19 +830,19 @@ $$ \tag{26a}
 	\cr
 	L_t(\bm{v})
 	&=
-	\frac{\eta_t^4}{\eta_v^2}
+	\frac{\eta_t^2}{\eta_v^2}
 	\frac{\int_{\bm{t} \in \mathbb{S^2}}
 	(\bm{v} \cdot \bm{m})
 	\big( 1 - F(\theta_v, \eta_v/\eta_t) \big) L(\bm{t})
 	G_2(\bm{v}, \bm{m}, -\bm{t})
 	D(\bm{m}) |\bm{t} \cdot \bm{m}| d\Omega(\bm{t})}
-	{\big( \eta_v (\bm{v} \cdot \bm{m}) + \eta_t (\bm{t} \cdot \bm{m}) \big)^2 (\bm{v} \cdot \bm{n})}.
+	{\big( (\eta_v / \eta_t) \bm{v} + \bm{t} \big)^2 (\bm{v} \cdot \bm{n})}.
 \end{aligned}
 $$
 
-Recall that the microfacet theory requires $\small (\bm{v} \cdot \bm{n}) > 0$. In addition, the single scattering approximation permits us to neglect the directions of incidence that fail to satisfy either $\small (\bm{r} \cdot \bm{n}) > 0 \text{ or } (\bm{t} \cdot \bm{n}) < 0$. Finally, due to the law of reflection and self-occlusion, $\small (\bm{v} \cdot \bm{m}) = (\bm{r} \cdot \bm{m}) > 0 \text{ and } (\bm{t} \cdot \bm{m}) < 0$. We may use these properties to simplify and rearrange Eqn. 26a:
+Recall that the microfacet theory requires $\small (\bm{v} \cdot \bm{n}) > 0$. In addition, the single scattering approximation permits us to neglect the directions of incidence that fail to satisfy either $\small (\bm{r} \cdot \bm{n}) > 0 \text{ or } (\bm{t} \cdot \bm{n}) < 0$. Finally, due to the law of reflection and self-occlusion, $\small (\bm{v} \cdot \bm{m}) = (\bm{r} \cdot \bm{m}) > 0 \text{ and } (\bm{t} \cdot \bm{m}) < 0$. We may use these properties to simplify and rearrange Eqn. 21a:
 
-$$ \tag{26b}
+$$ \tag{21b}
 \begin{aligned}
 	L_r(\bm{v})
 	&=
@@ -866,19 +854,19 @@ $$ \tag{26b}
 	\cr
 	L_t(\bm{v})
 	&=
-	\frac{\eta_t^4}{\eta_v^2}
+	\frac{\eta_t^2}{\eta_v^2}
 	\frac{\int_{\bm{t} \in \mathbb{H_{-}^2}}
 	(\bm{v} \cdot \bm{m}) (\bm{t} \cdot \bm{m})
 	\big( 1 - F(\theta_v, \eta_v/\eta_t) \big) L(\bm{t})
 	G_2(\bm{v}, \bm{m}, -\bm{t})
 	D(\bm{m}) |\bm{t} \cdot \bm{n}| d\Omega(\bm{t})}
-	{\big( \eta_v (\bm{v} \cdot \bm{m}) + \eta_t (\bm{t} \cdot \bm{m}) \big)^2 (\bm{v} \cdot \bm{n}) (\bm{t} \cdot \bm{n})}.
+	{\big( (\eta_v / \eta_t) \bm{v} + \bm{t} \big)^2 (\bm{v} \cdot \bm{n}) (\bm{t} \cdot \bm{n})}.
 \end{aligned}
 $$
 
 To facilitate comparison with Eqn. 4b, we shall utilize the projected solid angle notation:
 
-$$ \tag{26c}
+$$ \tag{21c}
 \begin{aligned}
 	L_r(\bm{v})
 	&=
@@ -890,19 +878,19 @@ $$ \tag{26c}
 	\cr
 	L_t(\bm{v})
 	&=
-	\frac{\eta_t^4}{\eta_v^2}
+	\frac{\eta_t^2}{\eta_v^2}
 	\frac{\int_{\bm{t} \in \mathbb{H_{-}^2}}
 	(\bm{v} \cdot \bm{m}) (\bm{t} \cdot \bm{m})
 	\big( 1 - F(\theta_v, \eta_v/\eta_t) \big) L(\bm{t})
 	G_2(\bm{v}, \bm{m}, -\bm{t})
 	D(\bm{m}) d\Omega_n(\bm{t})}
-	{\big( \eta_v (\bm{v} \cdot \bm{m}) + \eta_t (\bm{t} \cdot \bm{m}) \big)^2 (\bm{v} \cdot \bm{n}) (\bm{t} \cdot \bm{n})},
+	{\big( (\eta_v / \eta_t) \bm{v} + \bm{t} \big)^2 (\bm{v} \cdot \bm{n}) (\bm{t} \cdot \bm{n})},
 \end{aligned}
 $$
 
 which makes extracting the expressions of the BRDF and the BTDF particularly easy:
 
-$$ \tag{26d}
+$$ \tag{21d}
 \begin{aligned}
 	f_r(\bm{v}, \bm{n}, \bm{l})
 	&=
@@ -914,9 +902,9 @@ $$ \tag{26d}
 	\cr
 	f_t(\bm{v}, \bm{n}, \bm{l})
 	&=
-	\frac{\eta_l^4}{\eta_v^2}
+	\frac{\eta_l^2}{\eta_v^2}
 	\frac{(\bm{v} \cdot \bm{m}) (\bm{l} \cdot \bm{m})}
-	{\big( \eta_v (\bm{v} \cdot \bm{m}) + \eta_l (\bm{l} \cdot \bm{m}) \big)^2}
+	{\big( (\eta_v / \eta_l) \bm{v} + \bm{l} \big)^2}
 	\frac{
 	\big( 1 - F(\theta_v, \eta_v/\eta_t) \big)
 	G_2(\bm{v}, \bm{m}, -\bm{l})
@@ -1009,7 +997,7 @@ $$
 
 ### Appendix B: Jacobians and Differential Solid Angles
 
-Consider a surface parameterized by a pair of coordinates (e.g. the Cartesian or the spherical coordinates):
+Consider a surface parameterized by a pair of coordinates (such as the Cartesian or the spherical coordinates):
 
 $$ \tag{B1}
 	\bm{p} = \bm{p}(x,y).
@@ -1126,7 +1114,7 @@ $$
 
 The Jacobian is also frequently used in triple integrals, where its absolute value corresponds to the ratio of the volumes of two parallelepipeds.
 
-Once Eqn. B7 that relates the sets of coordinates has been specified, the expression of the Jacobian can be determined algebraically, by calculating the determinant of the matrix of partial derivatives. However, in our case, a geometric (e.i., coordinate-independent, basis-independent) approach is both simpler and more insightful.
+Once Eqn. B7 that relates the sets of coordinates has been specified, the expression of the Jacobian can be determined algebraically, by calculating the determinant of the matrix of partial derivatives. However, in our case, a geometric (coordinate-independent, basis-independent) approach is both simpler and more insightful.
 
 First, we must point out two obvious properties of the vector differential area. It remains unchanged if the surface is translated along a constant vector $\small \bm{q}$:
 
@@ -1197,7 +1185,7 @@ $$
 
 ## Acknowledgements
 
-...
+Writing this article would be difficult, if not impossible, without the hard work of the authors of many excellent papers about the microfacet theory and its applications, a few of which are listed below. They contain practical details, helpful illustrations, and different approaches and perspectives, which makes the perusal of these papers a great way to expand your tool set and build a more complete mental model.
 
 ## References and Suggestions for Further Reading
 
