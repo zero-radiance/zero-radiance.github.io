@@ -1198,11 +1198,3 @@ Walter's ggx
 Walter's ellipsoid
 
 Atanasov's transformations
-
-## Naming convention
-
-view vector, light vector
-
-view angle, light angle
-
-direction of incidence, direction of exitance
