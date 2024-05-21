@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Microfacet on Zero Radiance</title>
+    <link>https://zero-radiance.github.io/tags/microfacet/</link>
+    <description>Recent content in Microfacet on Zero Radiance</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Mon, 20 May 2024 00:00:00 +0000</lastBuildDate><atom:link href="https://zero-radiance.github.io/tags/microfacet/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Construction of a Microfacet Specular BSDF: A Geometric Approach</title>
+      <link>https://zero-radiance.github.io/post/microfacet-specular/</link>
+      <pubDate>Mon, 20 May 2024 00:00:00 +0000</pubDate>
+      
+      <guid>https://zero-radiance.github.io/post/microfacet-specular/</guid>
+      <description>&lt;p&gt;The microfacet theory is a fundamental component of physically based rendering. Unfortunately, it is often perceived as being rather complicated. There are several reasons for this. The first one is that most papers only focus on a single component (such as the distribution of normals or the masking function), while glossing over the rest. The second problem is the lack of the geometrical interpretations of mathematical expressions, which inhibits understanding at the intuitive level. In the course of any serious work on the extensions or applications of the theory (such as Smith&amp;rsquo;s approximation, multiple scattering, bump roughness, microsurface transformations, or area lighting), the absence of a solid grasp of the fundamentals will manifest itself through inefficiency (or, worse yet, ineffectiveness). This article aims to address these issues by collecting the fragments from the literature and explaining how they fit together.&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

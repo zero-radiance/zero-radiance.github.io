@@ -25,7 +25,7 @@
     <link rel="stylesheet" href="https://zero-radiance.github.io/css/style.css">
     
 
-    <meta name="generator" content="Hugo 0.82.1" />
+    <meta name="generator" content="Hugo 0.115.3">
 </head>
 
 
@@ -72,9 +72,8 @@
 <p>It assumes the optical interpretation of alpha, and implies that objects overlap within a certain depth interval (e.g. along the ray).</p>
 <p>As the name implies, the technique can be used to composite volumetric effects stored in 3D texture <a href="https://rmanwiki.pixar.com/display/REN/Arbitrary+Output+Variables">AOVs</a>, such as renders of clouds or smoke.</p>
 <p>Another notable application is temporal reprojection for voxel-based volumetric lighting. As detailed in my <a href="http://advances.realtimerendering.com/s2018/index.htm">Siggraph 2018 presentation</a>, one way of performing temporal integration of volumetrics is to compute ray sub-integrals (along with associated opacity), store them in a 3D texture, and then look them up during the next frame. This involves both resampling (filtering) and rescaling, and both of these operations must be linear in order to not cause artifacts such as unexpected changes in brightness during camera motion.</p>
-<figure>
-    <img src="/img/reproj_artifact.png"
-         alt="Reprojection artifact"/> <figcaption>
+<figure><img src="/img/reproj_artifact.png"
+         alt="Reprojection artifact"/><figcaption>
             <p>Moving the camera within the infinite fog at a high speed can reveal reprojection issues. If you squint hard enough, you can see the DirectX logo.</p>
         </figcaption>
 </figure>
@@ -82,29 +81,29 @@
 <p>Deep compositing is a solved problem. The <a href="https://graphics.pixar.com/library/DeepCompositing/">paper by Tom Duff</a> gives a detailed description of the algorithm, the mathematics involved, as well as several applications.</p>
 <p>To sum it up, a deep pixel or voxel (represented as a pair of color and opacity) is assumed to be in the <strong>exp</strong> space. To ensure that filtering and compositing operations are linear, they should operate on <strong>log</strong>-transformed values.</p>
 <p>The transformations are given as follows:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c++" data-lang="c++">OpticalDepthFromOpacity(a) <span style="color:#f92672">=</span> <span style="color:#f92672">-</span>log(<span style="color:#ae81ff">1</span> <span style="color:#f92672">-</span> a)
-OpacityFromOpticalDepth(d) <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span> <span style="color:#f92672">-</span> exp(<span style="color:#f92672">-</span>d)
-
-log(X) <span style="color:#f92672">=</span> {OpticalDepthFromOpacity( X.a) <span style="color:#f92672">/</span>  X.a <span style="color:#f92672">*</span> X.rgb, <span style="color:#f92672">-</span>OpticalDepthFromOpacity( X.a)}
-exp(Y) <span style="color:#f92672">=</span> {OpacityFromOpticalDepth(<span style="color:#f92672">-</span>Y.a) <span style="color:#f92672">/</span> <span style="color:#f92672">-</span>Y.a <span style="color:#f92672">*</span> Y.rgb,  OpacityFromOpticalDepth(<span style="color:#f92672">-</span>Y.a)}
-
-blend(A, B, t) <span style="color:#f92672">=</span> exp(lerp(log(A), log(B), t))
-</code></pre></div><p>Note that you can drop negations from the definitions of <code>log(X)</code> and <code>exp(Y)</code> for convenience.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-c++" data-lang="c++"><span style="display:flex;"><span>OpticalDepthFromOpacity(a) <span style="color:#f92672">=</span> <span style="color:#f92672">-</span>log(<span style="color:#ae81ff">1</span> <span style="color:#f92672">-</span> a)
+</span></span><span style="display:flex;"><span>OpacityFromOpticalDepth(d) <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span> <span style="color:#f92672">-</span> exp(<span style="color:#f92672">-</span>d)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>log(X) <span style="color:#f92672">=</span> {OpticalDepthFromOpacity( X.a) <span style="color:#f92672">/</span>  X.a <span style="color:#f92672">*</span> X.rgb, <span style="color:#f92672">-</span>OpticalDepthFromOpacity( X.a)}
+</span></span><span style="display:flex;"><span>exp(Y) <span style="color:#f92672">=</span> {OpacityFromOpticalDepth(<span style="color:#f92672">-</span>Y.a) <span style="color:#f92672">/</span> <span style="color:#f92672">-</span>Y.a <span style="color:#f92672">*</span> Y.rgb,  OpacityFromOpticalDepth(<span style="color:#f92672">-</span>Y.a)}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>blend(A, B, t) <span style="color:#f92672">=</span> exp(lerp(log(A), log(B), t))
+</span></span></code></pre></div><p>Note that you can drop negations from the definitions of <code>log(X)</code> and <code>exp(Y)</code> for convenience.</p>
 <p>If you take a look at the derivation in Tom&rsquo;s paper, it assumes that both pixels taking part in the blend operation correspond to objects overlapping the same depth interval. This presents a problem in the context of voxel-based volumetrics, since voxels sizes can vary dramatically, making blending of voxels corresponding to different depth intervals (of different sizes) a requirement to support reprojection during camera motion.</p>
 <p>In my Siggraph talk, I proposed a solution, which is to linearize pixels with respect to the size of the interval, normalize them (divide by the size), and then use Tom&rsquo;s blending algorithm. While the idea was conceptually sound, I wasn&rsquo;t able to find the correct solution for linearization and normalization before the conference deadline, and ended up presenting an ad-hoc method instead.</p>
 <p>Turns out, the correct solution is very simple, and requires no additional transformations. Tom&rsquo;s log transform actually performs linearization - this is why he is able to use the linear interpolation formula. It&rsquo;s possible to reason about this mathematically, but I found thinking about the physical interpretation of the transformation more intuitive.</p>
 <p>Given a homogeneous participating medium under constant illumination, the value of the in-scattered radiance integral along the ray segment (which is identical to the weight given by <a href="https://cs.dartmouth.edu/wjarosz/publications/novak18monte.html">free-path sampling</a> in the Monte Carlo context) is proportional to:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c++" data-lang="c++">L_o <span style="color:#f92672">=</span> c <span style="color:#f92672">*</span> L_i <span style="color:#f92672">*</span> OpacityFromOpticalDepth(k <span style="color:#f92672">*</span> x) <span style="color:#f92672">/</span> k
-</code></pre></div><p>where <code>k</code> is the extinction coefficient and <code>x</code> is the length of the interval. Their product is the optical depth <code>d</code>.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-c++" data-lang="c++"><span style="display:flex;"><span>L_o <span style="color:#f92672">=</span> c <span style="color:#f92672">*</span> L_i <span style="color:#f92672">*</span> OpacityFromOpticalDepth(k <span style="color:#f92672">*</span> x) <span style="color:#f92672">/</span> k
+</span></span></code></pre></div><p>where <code>k</code> is the extinction coefficient and <code>x</code> is the length of the interval. Their product is the optical depth <code>d</code>.</p>
 <p>The full value of the pixel <code>P</code> (including its opacity) is thus:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c++" data-lang="c++">P <span style="color:#f92672">=</span> {c <span style="color:#f92672">*</span> L_i <span style="color:#f92672">*</span> OpacityFromOpticalDepth(k <span style="color:#f92672">*</span> x) <span style="color:#f92672">/</span> k, OpacityFromOpticalDepth(k <span style="color:#f92672">*</span> x)}
-</code></pre></div><p>Let&rsquo;s apply the log transform to <code>P</code> and simplify:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c++" data-lang="c++">log(P) <span style="color:#f92672">=</span> {(k <span style="color:#f92672">*</span> x) <span style="color:#f92672">/</span> P.a <span style="color:#f92672">*</span> c <span style="color:#f92672">*</span> L_i <span style="color:#f92672">*</span> OpacityFromOpticalDepth(k <span style="color:#f92672">*</span> x) <span style="color:#f92672">/</span> k, <span style="color:#f92672">-</span>(k <span style="color:#f92672">*</span> x)}
-log(P) <span style="color:#f92672">=</span> {c <span style="color:#f92672">*</span> L_i <span style="color:#f92672">*</span> x, <span style="color:#f92672">-</span>k <span style="color:#f92672">*</span> x}
-</code></pre></div><p>As we can see, <code>log(P)</code> is a linear function of <code>x</code>, as well as of the incoming radiance <code>L_i</code>.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-c++" data-lang="c++"><span style="display:flex;"><span>P <span style="color:#f92672">=</span> {c <span style="color:#f92672">*</span> L_i <span style="color:#f92672">*</span> OpacityFromOpticalDepth(k <span style="color:#f92672">*</span> x) <span style="color:#f92672">/</span> k, OpacityFromOpticalDepth(k <span style="color:#f92672">*</span> x)}
+</span></span></code></pre></div><p>Let&rsquo;s apply the log transform to <code>P</code> and simplify:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-c++" data-lang="c++"><span style="display:flex;"><span>log(P) <span style="color:#f92672">=</span> {(k <span style="color:#f92672">*</span> x) <span style="color:#f92672">/</span> P.a <span style="color:#f92672">*</span> c <span style="color:#f92672">*</span> L_i <span style="color:#f92672">*</span> OpacityFromOpticalDepth(k <span style="color:#f92672">*</span> x) <span style="color:#f92672">/</span> k, <span style="color:#f92672">-</span>(k <span style="color:#f92672">*</span> x)}
+</span></span><span style="display:flex;"><span>log(P) <span style="color:#f92672">=</span> {c <span style="color:#f92672">*</span> L_i <span style="color:#f92672">*</span> x, <span style="color:#f92672">-</span>k <span style="color:#f92672">*</span> x}
+</span></span></code></pre></div><p>As we can see, <code>log(P)</code> is a linear function of <code>x</code>, as well as of the incoming radiance <code>L_i</code>.</p>
 <p>This makes the normalization operation trivial:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c++" data-lang="c++">N <span style="color:#f92672">=</span> log(P) <span style="color:#f92672">/</span> x <span style="color:#f92672">=</span> {c <span style="color:#f92672">*</span> L_i, <span style="color:#f92672">-</span>k}
-</code></pre></div><p>This quantity can be interpreted as density along (the unit interval of) the ray, represented as a pair of (rescaled) incoming radiance and extinction.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-c++" data-lang="c++"><span style="display:flex;"><span>N <span style="color:#f92672">=</span> log(P) <span style="color:#f92672">/</span> x <span style="color:#f92672">=</span> {c <span style="color:#f92672">*</span> L_i, <span style="color:#f92672">-</span>k}
+</span></span></code></pre></div><p>This quantity can be interpreted as density along (the unit interval of) the ray, represented as a pair of (rescaled) incoming radiance and extinction.</p>
 <p>To sum up, linear blending of two pixels <code>P_1</code> and <code>P_2</code> of two different sizes <code>x_1</code> and <code>x_2</code> should be performed as follows:</p>
 <ol>
 <li>Linearize: compute <code>log(P_1)</code> and <code>log(P_2)</code>.</li>
@@ -115,9 +114,8 @@ In that case, we compute <code>B_1 = B * x_1</code>.</li>
 <li>Delinearize: convert back to color and opacity by computing <code>E_1 = exp(B_1)</code>.</li>
 </ol>
 <p>Despite the derivation assuming constant illumination, we apply the same technique to all light types (once per voxel, not once per light) with good results.</p>
-<figure>
-    <img src="/img/reproj_spot.png"
-         alt="Reprojection with a spot light"/> <figcaption>
+<figure><img src="/img/reproj_spot.png"
+         alt="Reprojection with a spot light"/><figcaption>
             <p>The new reprojection technique works well for directional, point and spot lights.</p>
         </figcaption>
 </figure>
@@ -228,7 +226,7 @@ In that case, we compute <code>B_1 = B * x_1</code>.</li>
     <footer id="footer">
     <div class="outer">
         <div id="footer-info" class="inner">
-            &copy; 2023 Zero Radiance
+            &copy; 2024 Zero Radiance
             <br />
             Powered by <a href="https://gohugo.io" target="_blank">Hugo</a> with theme <a href="https://github.com/carsonip/hugo-theme-minos" target="_blank">Minos</a>
         </div>
@@ -247,7 +245,13 @@ In that case, we compute <code>B_1 = B * x_1</code>.</li>
     <script defer src="https://zero-radiance.github.io/katex/katex.min.js"></script>
 
     
-    <script defer src="https://zero-radiance.github.io/katex/contrib/auto-render.min.js" onload="renderMathInElement(document.body);"></script>
+    <script defer src="https://zero-radiance.github.io/katex/contrib/auto-render.min.js" onload="renderMathInElement(document.body, {
+    delimiters: [
+        {left: '$$', right: '$$', display: true},
+        {left: '$', right: '$', display: false}
+    ],
+    macros: {'’' : '\'',},
+    });"></script>
     
     <script>
         document.getElementById('main-nav-toggle').addEventListener('click', function () {

@@ -25,7 +25,7 @@
     <link rel="stylesheet" href="https://zero-radiance.github.io/css/style.css">
     
 
-    <meta name="generator" content="Hugo 0.82.1" />
+    <meta name="generator" content="Hugo 0.115.3">
 </head>
 
 
@@ -82,121 +82,121 @@ $$</p>
 </li>
 </ol>
 <p>The new implementation that addresses these issues is given below.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c++" data-lang="c++"><span style="color:#75715e">#define INV_PI 0.3183098861
-</span><span style="color:#75715e"></span>
-<span style="color:#75715e">// This function assumes that inputs are well-behaved, e.i.
-</span><span style="color:#75715e">// that the line does not pass through the origin and
-</span><span style="color:#75715e">// that the light is (at least partially) above the surface.
-</span><span style="color:#75715e"></span><span style="color:#66d9ef">float</span> <span style="color:#a6e22e">I_diffuse_line</span>(float3 C, float3 A, <span style="color:#66d9ef">float</span> hl)
-{
-	<span style="color:#75715e">// Solve C.z + h * A.z = 0.
-</span><span style="color:#75715e"></span>	<span style="color:#66d9ef">float</span> h <span style="color:#f92672">=</span> <span style="color:#f92672">-</span>C.z <span style="color:#f92672">*</span> rcp(A.z); 	<span style="color:#75715e">// May be Inf, but never NaN
-</span><span style="color:#75715e"></span>
-	<span style="color:#75715e">// Clip the line segment against the z-plane if necessary.
-</span><span style="color:#75715e"></span>	<span style="color:#66d9ef">float</span> h2 <span style="color:#f92672">=</span> (A.z <span style="color:#f92672">&gt;=</span> <span style="color:#ae81ff">0</span>) <span style="color:#f92672">?</span> max( hl, h)
-						  <span style="color:#f92672">:</span> min( hl, h); <span style="color:#75715e">// P2 = C + h2 * A
-</span><span style="color:#75715e"></span>	<span style="color:#66d9ef">float</span> h1 <span style="color:#f92672">=</span> (A.z <span style="color:#f92672">&gt;=</span> <span style="color:#ae81ff">0</span>) <span style="color:#f92672">?</span> max(<span style="color:#f92672">-</span>hl, h)
-						  <span style="color:#f92672">:</span> min(<span style="color:#f92672">-</span>hl, h); <span style="color:#75715e">// P1 = C + h1 * A
-</span><span style="color:#75715e"></span>
-	<span style="color:#75715e">// Normalize the tangent.
-</span><span style="color:#75715e"></span>	<span style="color:#66d9ef">float</span>  as <span style="color:#f92672">=</span> dot(A, A); 		<span style="color:#75715e">// |A|^2
-</span><span style="color:#75715e"></span>	<span style="color:#66d9ef">float</span>  ar <span style="color:#f92672">=</span> rsqrt(as);  	<span style="color:#75715e">// 1/|A|
-</span><span style="color:#75715e"></span>	<span style="color:#66d9ef">float</span>  a  <span style="color:#f92672">=</span> as <span style="color:#f92672">*</span> ar;  		<span style="color:#75715e">// |A|
-</span><span style="color:#75715e"></span>	float3 T  <span style="color:#f92672">=</span> A <span style="color:#f92672">*</span> ar;	   		<span style="color:#75715e">// A/|A|
-</span><span style="color:#75715e"></span>
-	<span style="color:#75715e">// Orthogonal 2D coordinates:
-</span><span style="color:#75715e"></span>	<span style="color:#75715e">// P(n, t) = n * N + t * T.
-</span><span style="color:#75715e"></span>	<span style="color:#66d9ef">float</span>  tc <span style="color:#f92672">=</span> dot(T, C);		<span style="color:#75715e">// C = n * N + tc * T
-</span><span style="color:#75715e"></span>	float3 P0 <span style="color:#f92672">=</span> C <span style="color:#f92672">-</span> tc <span style="color:#f92672">*</span> T;  	<span style="color:#75715e">// P(n, 0) = n * N
-</span><span style="color:#75715e"></span>	<span style="color:#66d9ef">float</span>  ns <span style="color:#f92672">=</span> dot(P0, P0); 	<span style="color:#75715e">// |P0|^2
-</span><span style="color:#75715e"></span>
-    <span style="color:#66d9ef">float</span> nr <span style="color:#f92672">=</span> rsqrt(ns);       <span style="color:#75715e">// 1/|P0|
-</span><span style="color:#75715e"></span>    <span style="color:#66d9ef">float</span> n  <span style="color:#f92672">=</span> ns <span style="color:#f92672">*</span> nr;         <span style="color:#75715e">// |P0|
-</span><span style="color:#75715e"></span>    <span style="color:#66d9ef">float</span> Nz <span style="color:#f92672">=</span> P0.z <span style="color:#f92672">*</span> nr;       <span style="color:#75715e">// N.z = P0.z/|P0|
-</span><span style="color:#75715e"></span>
-    <span style="color:#75715e">// P(n, t) - C = P0 + t * T - P0 - tc * T
-</span><span style="color:#75715e"></span>    <span style="color:#75715e">// = (t - tc) * T = h * A = (h * a) * T.
-</span><span style="color:#75715e"></span>    <span style="color:#66d9ef">float</span> t2 <span style="color:#f92672">=</span> tc <span style="color:#f92672">+</span> h2 <span style="color:#f92672">*</span> a;     <span style="color:#75715e">// P2.t
-</span><span style="color:#75715e"></span>    <span style="color:#66d9ef">float</span> t1 <span style="color:#f92672">=</span> tc <span style="color:#f92672">+</span> h1 <span style="color:#f92672">*</span> a;     <span style="color:#75715e">// P1.t
-</span><span style="color:#75715e"></span>    <span style="color:#66d9ef">float</span> s2 <span style="color:#f92672">=</span> ns <span style="color:#f92672">+</span> t2 <span style="color:#f92672">*</span> t2;    <span style="color:#75715e">// |P2|^2
-</span><span style="color:#75715e"></span>    <span style="color:#66d9ef">float</span> s1 <span style="color:#f92672">=</span> ns <span style="color:#f92672">+</span> t1 <span style="color:#f92672">*</span> t1;    <span style="color:#75715e">// |P1|^2
-</span><span style="color:#75715e"></span>    <span style="color:#66d9ef">float</span> mr <span style="color:#f92672">=</span> rsqrt(s1 <span style="color:#f92672">*</span> s2);  <span style="color:#75715e">// 1/(|P1|*|P2|)
-</span><span style="color:#75715e"></span>    <span style="color:#66d9ef">float</span> r2 <span style="color:#f92672">=</span> s1 <span style="color:#f92672">*</span> (mr <span style="color:#f92672">*</span> mr);  <span style="color:#75715e">// 1/|P2|^2
-</span><span style="color:#75715e"></span>    <span style="color:#66d9ef">float</span> r1 <span style="color:#f92672">=</span> s2 <span style="color:#f92672">*</span> (mr <span style="color:#f92672">*</span> mr);  <span style="color:#75715e">// 1/|P1|^2
-</span><span style="color:#75715e"></span>
-    <span style="color:#75715e">// I = (i1 + i2 + i3) / Pi.
-</span><span style="color:#75715e"></span>    <span style="color:#75715e">// i1 =  N.z * (P2.t / |P2|^2 - P1.t / |P1|^2).
-</span><span style="color:#75715e"></span>    <span style="color:#75715e">// i2 = -T.z * (P2.n / |P2|^2 - P1.n / |P1|^2).
-</span><span style="color:#75715e"></span>    <span style="color:#75715e">// i3 =  N.z * ArcCos[Dot[P1, P2] / (|P1| * |P2|)] / |P0|.
-</span><span style="color:#75715e"></span>    <span style="color:#66d9ef">float</span> i12 <span style="color:#f92672">=</span> (Nz <span style="color:#f92672">*</span> t2 <span style="color:#f92672">-</span> (T.z <span style="color:#f92672">*</span> n)) <span style="color:#f92672">*</span> r2
-              <span style="color:#f92672">-</span> (Nz <span style="color:#f92672">*</span> t1 <span style="color:#f92672">-</span> (T.z <span style="color:#f92672">*</span> n)) <span style="color:#f92672">*</span> r1;
-    <span style="color:#75715e">// Guard against numerical errors.
-</span><span style="color:#75715e"></span>    <span style="color:#66d9ef">float</span> dt  <span style="color:#f92672">=</span> min(<span style="color:#ae81ff">1</span>, (ns <span style="color:#f92672">+</span> t1 <span style="color:#f92672">*</span> t2) <span style="color:#f92672">*</span> mr);
-    <span style="color:#66d9ef">float</span> i3  <span style="color:#f92672">=</span> acos(dt) <span style="color:#f92672">*</span> (Nz <span style="color:#f92672">*</span> nr); <span style="color:#75715e">// angle * cos(θ) / r^2
-</span><span style="color:#75715e"></span>
-    <span style="color:#75715e">// Guard against numerical errors.
-</span><span style="color:#75715e"></span>    <span style="color:#66d9ef">return</span> INV_PI <span style="color:#f92672">*</span> max(<span style="color:#ae81ff">0</span>, i12 <span style="color:#f92672">+</span> i3);
-}
-
-<span style="color:#75715e">// Computes 1 / length(mul(transpose(inverse(invM)), normalize(ortho))).
-</span><span style="color:#75715e"></span><span style="color:#66d9ef">float</span> <span style="color:#a6e22e">ComputeLineWidthFactor</span>(float3x3 invM, float3 ortho, <span style="color:#66d9ef">float</span> orthoSq)
-{
-    <span style="color:#75715e">// transpose(inverse(invM)) = 1 / determinant(invM) * cofactor(invM).
-</span><span style="color:#75715e"></span>    <span style="color:#75715e">// Take into account the sparsity of the matrix:
-</span><span style="color:#75715e"></span>    <span style="color:#75715e">// {{a,0,b},
-</span><span style="color:#75715e"></span>    <span style="color:#75715e">//  {0,c,0},
-</span><span style="color:#75715e"></span>    <span style="color:#75715e">//  {d,0,1}}
-</span><span style="color:#75715e"></span>    <span style="color:#66d9ef">float</span> a <span style="color:#f92672">=</span> invM[<span style="color:#ae81ff">0</span>][<span style="color:#ae81ff">0</span>];
-    <span style="color:#66d9ef">float</span> b <span style="color:#f92672">=</span> invM[<span style="color:#ae81ff">0</span>][<span style="color:#ae81ff">2</span>];
-    <span style="color:#66d9ef">float</span> c <span style="color:#f92672">=</span> invM[<span style="color:#ae81ff">1</span>][<span style="color:#ae81ff">1</span>];
-    <span style="color:#66d9ef">float</span> d <span style="color:#f92672">=</span> invM[<span style="color:#ae81ff">2</span>][<span style="color:#ae81ff">0</span>];
-
-    <span style="color:#66d9ef">float</span>  det <span style="color:#f92672">=</span> c <span style="color:#f92672">*</span> (a <span style="color:#f92672">-</span> b <span style="color:#f92672">*</span> d);
-    float3 X   <span style="color:#f92672">=</span> float3(c <span style="color:#f92672">*</span> (ortho.x <span style="color:#f92672">-</span> d <span style="color:#f92672">*</span> ortho.z),
-                            (ortho.y <span style="color:#f92672">*</span> (a <span style="color:#f92672">-</span> b <span style="color:#f92672">*</span> d)),
-                        c <span style="color:#f92672">*</span> (<span style="color:#f92672">-</span>b <span style="color:#f92672">*</span> ortho.x <span style="color:#f92672">+</span> a <span style="color:#f92672">*</span> ortho.z));  <span style="color:#75715e">// mul(cof, ortho)
-</span><span style="color:#75715e"></span>
-    <span style="color:#75715e">// 1 / length(1/s * X) = abs(s) / length(X).
-</span><span style="color:#75715e"></span>    <span style="color:#66d9ef">return</span> abs(det) <span style="color:#f92672">*</span> rsqrt(dot(X, X) <span style="color:#f92672">*</span> orthoSq) <span style="color:#f92672">*</span> orthoSq; <span style="color:#75715e">// rsqrt(x^2) * x^2 = x
-</span><span style="color:#75715e"></span>}
-
-<span style="color:#66d9ef">float</span> <span style="color:#a6e22e">I_ltc_line</span>(float3x3 invM, float3 center, float3 axis, <span style="color:#66d9ef">float</span> halfLength)
-{
-    float3 ortho   <span style="color:#f92672">=</span> cross(center, axis);
-    <span style="color:#66d9ef">float</span>  orthoSq <span style="color:#f92672">=</span> dot(ortho, ortho);
-
-    <span style="color:#75715e">// Check whether the line passes through the origin.
-</span><span style="color:#75715e"></span>    <span style="color:#66d9ef">bool</span> quit <span style="color:#f92672">=</span> (orthoSq <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span>);
-
-    <span style="color:#75715e">// Check whether the light is entirely below the surface.
-</span><span style="color:#75715e"></span>    <span style="color:#75715e">// We must test twice, since a linear transformation
-</span><span style="color:#75715e"></span>    <span style="color:#75715e">// may bring the light above the surface (a side-effect).
-</span><span style="color:#75715e"></span>	quit <span style="color:#f92672">=</span> quit <span style="color:#f92672">||</span> (center.z <span style="color:#f92672">+</span> halfLength <span style="color:#f92672">*</span> abs(axis.z) <span style="color:#f92672">&lt;=</span> <span style="color:#ae81ff">0</span>);
-
-    <span style="color:#75715e">// Transform into the diffuse configuration.
-</span><span style="color:#75715e"></span>    <span style="color:#75715e">// This is a sparse matrix multiplication.
-</span><span style="color:#75715e"></span>    <span style="color:#75715e">// Pay attention to the multiplication order
-</span><span style="color:#75715e"></span>    <span style="color:#75715e">// (in case your matrices are transposed).
-</span><span style="color:#75715e"></span>    float3 C <span style="color:#f92672">=</span> mul(invM, center);
-    float3 A <span style="color:#f92672">=</span> mul(invM, axis);
-
-    <span style="color:#75715e">// Check whether the light is entirely below the surface.
-</span><span style="color:#75715e"></span>    <span style="color:#75715e">// We must test twice, since a linear transformation
-</span><span style="color:#75715e"></span>    <span style="color:#75715e">// may bring the light below the surface (as expected).
-</span><span style="color:#75715e"></span>    quit <span style="color:#f92672">=</span> quit <span style="color:#f92672">||</span> (C.z <span style="color:#f92672">+</span> halfLength <span style="color:#f92672">*</span> abs(A.z) <span style="color:#f92672">&lt;=</span> <span style="color:#ae81ff">0</span>);
-
-    <span style="color:#66d9ef">float</span> result <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
-
-    <span style="color:#66d9ef">if</span> (<span style="color:#f92672">!</span>quit)
-    {
-        <span style="color:#66d9ef">float</span> w <span style="color:#f92672">=</span> ComputeLineWidthFactor(invM, ortho, orthoSq);
-
-        result <span style="color:#f92672">=</span> I_diffuse_line(C, A, halfLength) <span style="color:#f92672">*</span> w;
-    }
-
-    <span style="color:#66d9ef">return</span> result;
-}
-</code></pre></div>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-c++" data-lang="c++"><span style="display:flex;"><span><span style="color:#75715e">#define INV_PI 0.3183098861
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// This function assumes that inputs are well-behaved, e.i.
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">// that the line does not pass through the origin and
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">// that the light is (at least partially) above the surface.
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">float</span> <span style="color:#a6e22e">I_diffuse_line</span>(float3 C, float3 A, <span style="color:#66d9ef">float</span> hl)
+</span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>	<span style="color:#75715e">// Solve C.z + h * A.z = 0.
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>	<span style="color:#66d9ef">float</span> h <span style="color:#f92672">=</span> <span style="color:#f92672">-</span>C.z <span style="color:#f92672">*</span> rcp(A.z); 	<span style="color:#75715e">// May be Inf, but never NaN
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
+</span></span><span style="display:flex;"><span>	<span style="color:#75715e">// Clip the line segment against the z-plane if necessary.
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>	<span style="color:#66d9ef">float</span> h2 <span style="color:#f92672">=</span> (A.z <span style="color:#f92672">&gt;=</span> <span style="color:#ae81ff">0</span>) <span style="color:#f92672">?</span> max( hl, h)
+</span></span><span style="display:flex;"><span>						  <span style="color:#f92672">:</span> min( hl, h); <span style="color:#75715e">// P2 = C + h2 * A
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>	<span style="color:#66d9ef">float</span> h1 <span style="color:#f92672">=</span> (A.z <span style="color:#f92672">&gt;=</span> <span style="color:#ae81ff">0</span>) <span style="color:#f92672">?</span> max(<span style="color:#f92672">-</span>hl, h)
+</span></span><span style="display:flex;"><span>						  <span style="color:#f92672">:</span> min(<span style="color:#f92672">-</span>hl, h); <span style="color:#75715e">// P1 = C + h1 * A
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
+</span></span><span style="display:flex;"><span>	<span style="color:#75715e">// Normalize the tangent.
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>	<span style="color:#66d9ef">float</span>  as <span style="color:#f92672">=</span> dot(A, A); 		<span style="color:#75715e">// |A|^2
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>	<span style="color:#66d9ef">float</span>  ar <span style="color:#f92672">=</span> rsqrt(as);  	<span style="color:#75715e">// 1/|A|
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>	<span style="color:#66d9ef">float</span>  a  <span style="color:#f92672">=</span> as <span style="color:#f92672">*</span> ar;  		<span style="color:#75715e">// |A|
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>	float3 T  <span style="color:#f92672">=</span> A <span style="color:#f92672">*</span> ar;	   		<span style="color:#75715e">// A/|A|
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
+</span></span><span style="display:flex;"><span>	<span style="color:#75715e">// Orthogonal 2D coordinates:
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>	<span style="color:#75715e">// P(n, t) = n * N + t * T.
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>	<span style="color:#66d9ef">float</span>  tc <span style="color:#f92672">=</span> dot(T, C);		<span style="color:#75715e">// C = n * N + tc * T
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>	float3 P0 <span style="color:#f92672">=</span> C <span style="color:#f92672">-</span> tc <span style="color:#f92672">*</span> T;  	<span style="color:#75715e">// P(n, 0) = n * N
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>	<span style="color:#66d9ef">float</span>  ns <span style="color:#f92672">=</span> dot(P0, P0); 	<span style="color:#75715e">// |P0|^2
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">float</span> nr <span style="color:#f92672">=</span> rsqrt(ns);       <span style="color:#75715e">// 1/|P0|
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#66d9ef">float</span> n  <span style="color:#f92672">=</span> ns <span style="color:#f92672">*</span> nr;         <span style="color:#75715e">// |P0|
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#66d9ef">float</span> Nz <span style="color:#f92672">=</span> P0.z <span style="color:#f92672">*</span> nr;       <span style="color:#75715e">// N.z = P0.z/|P0|
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// P(n, t) - C = P0 + t * T - P0 - tc * T
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#75715e">// = (t - tc) * T = h * A = (h * a) * T.
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#66d9ef">float</span> t2 <span style="color:#f92672">=</span> tc <span style="color:#f92672">+</span> h2 <span style="color:#f92672">*</span> a;     <span style="color:#75715e">// P2.t
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#66d9ef">float</span> t1 <span style="color:#f92672">=</span> tc <span style="color:#f92672">+</span> h1 <span style="color:#f92672">*</span> a;     <span style="color:#75715e">// P1.t
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#66d9ef">float</span> s2 <span style="color:#f92672">=</span> ns <span style="color:#f92672">+</span> t2 <span style="color:#f92672">*</span> t2;    <span style="color:#75715e">// |P2|^2
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#66d9ef">float</span> s1 <span style="color:#f92672">=</span> ns <span style="color:#f92672">+</span> t1 <span style="color:#f92672">*</span> t1;    <span style="color:#75715e">// |P1|^2
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#66d9ef">float</span> mr <span style="color:#f92672">=</span> rsqrt(s1 <span style="color:#f92672">*</span> s2);  <span style="color:#75715e">// 1/(|P1|*|P2|)
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#66d9ef">float</span> r2 <span style="color:#f92672">=</span> s1 <span style="color:#f92672">*</span> (mr <span style="color:#f92672">*</span> mr);  <span style="color:#75715e">// 1/|P2|^2
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#66d9ef">float</span> r1 <span style="color:#f92672">=</span> s2 <span style="color:#f92672">*</span> (mr <span style="color:#f92672">*</span> mr);  <span style="color:#75715e">// 1/|P1|^2
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// I = (i1 + i2 + i3) / Pi.
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#75715e">// i1 =  N.z * (P2.t / |P2|^2 - P1.t / |P1|^2).
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#75715e">// i2 = -T.z * (P2.n / |P2|^2 - P1.n / |P1|^2).
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#75715e">// i3 =  N.z * ArcCos[Dot[P1, P2] / (|P1| * |P2|)] / |P0|.
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#66d9ef">float</span> i12 <span style="color:#f92672">=</span> (Nz <span style="color:#f92672">*</span> t2 <span style="color:#f92672">-</span> (T.z <span style="color:#f92672">*</span> n)) <span style="color:#f92672">*</span> r2
+</span></span><span style="display:flex;"><span>              <span style="color:#f92672">-</span> (Nz <span style="color:#f92672">*</span> t1 <span style="color:#f92672">-</span> (T.z <span style="color:#f92672">*</span> n)) <span style="color:#f92672">*</span> r1;
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// Guard against numerical errors.
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#66d9ef">float</span> dt  <span style="color:#f92672">=</span> min(<span style="color:#ae81ff">1</span>, (ns <span style="color:#f92672">+</span> t1 <span style="color:#f92672">*</span> t2) <span style="color:#f92672">*</span> mr);
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">float</span> i3  <span style="color:#f92672">=</span> acos(dt) <span style="color:#f92672">*</span> (Nz <span style="color:#f92672">*</span> nr); <span style="color:#75715e">// angle * cos(θ) / r^2
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// Guard against numerical errors.
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#66d9ef">return</span> INV_PI <span style="color:#f92672">*</span> max(<span style="color:#ae81ff">0</span>, i12 <span style="color:#f92672">+</span> i3);
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// Computes 1 / length(mul(transpose(inverse(invM)), normalize(ortho))).
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">float</span> <span style="color:#a6e22e">ComputeLineWidthFactor</span>(float3x3 invM, float3 ortho, <span style="color:#66d9ef">float</span> orthoSq)
+</span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// transpose(inverse(invM)) = 1 / determinant(invM) * cofactor(invM).
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#75715e">// Take into account the sparsity of the matrix:
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#75715e">// {{a,0,b},
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#75715e">//  {0,c,0},
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#75715e">//  {d,0,1}}
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#66d9ef">float</span> a <span style="color:#f92672">=</span> invM[<span style="color:#ae81ff">0</span>][<span style="color:#ae81ff">0</span>];
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">float</span> b <span style="color:#f92672">=</span> invM[<span style="color:#ae81ff">0</span>][<span style="color:#ae81ff">2</span>];
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">float</span> c <span style="color:#f92672">=</span> invM[<span style="color:#ae81ff">1</span>][<span style="color:#ae81ff">1</span>];
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">float</span> d <span style="color:#f92672">=</span> invM[<span style="color:#ae81ff">2</span>][<span style="color:#ae81ff">0</span>];
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">float</span>  det <span style="color:#f92672">=</span> c <span style="color:#f92672">*</span> (a <span style="color:#f92672">-</span> b <span style="color:#f92672">*</span> d);
+</span></span><span style="display:flex;"><span>    float3 X   <span style="color:#f92672">=</span> float3(c <span style="color:#f92672">*</span> (ortho.x <span style="color:#f92672">-</span> d <span style="color:#f92672">*</span> ortho.z),
+</span></span><span style="display:flex;"><span>                            (ortho.y <span style="color:#f92672">*</span> (a <span style="color:#f92672">-</span> b <span style="color:#f92672">*</span> d)),
+</span></span><span style="display:flex;"><span>                        c <span style="color:#f92672">*</span> (<span style="color:#f92672">-</span>b <span style="color:#f92672">*</span> ortho.x <span style="color:#f92672">+</span> a <span style="color:#f92672">*</span> ortho.z));  <span style="color:#75715e">// mul(cof, ortho)
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// 1 / length(1/s * X) = abs(s) / length(X).
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#66d9ef">return</span> abs(det) <span style="color:#f92672">*</span> rsqrt(dot(X, X) <span style="color:#f92672">*</span> orthoSq) <span style="color:#f92672">*</span> orthoSq; <span style="color:#75715e">// rsqrt(x^2) * x^2 = x
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">float</span> <span style="color:#a6e22e">I_ltc_line</span>(float3x3 invM, float3 center, float3 axis, <span style="color:#66d9ef">float</span> halfLength)
+</span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>    float3 ortho   <span style="color:#f92672">=</span> cross(center, axis);
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">float</span>  orthoSq <span style="color:#f92672">=</span> dot(ortho, ortho);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// Check whether the line passes through the origin.
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#66d9ef">bool</span> quit <span style="color:#f92672">=</span> (orthoSq <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span>);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// Check whether the light is entirely below the surface.
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#75715e">// We must test twice, since a linear transformation
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#75715e">// may bring the light above the surface (a side-effect).
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>	quit <span style="color:#f92672">=</span> quit <span style="color:#f92672">||</span> (center.z <span style="color:#f92672">+</span> halfLength <span style="color:#f92672">*</span> abs(axis.z) <span style="color:#f92672">&lt;=</span> <span style="color:#ae81ff">0</span>);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// Transform into the diffuse configuration.
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#75715e">// This is a sparse matrix multiplication.
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#75715e">// Pay attention to the multiplication order
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#75715e">// (in case your matrices are transposed).
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    float3 C <span style="color:#f92672">=</span> mul(invM, center);
+</span></span><span style="display:flex;"><span>    float3 A <span style="color:#f92672">=</span> mul(invM, axis);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// Check whether the light is entirely below the surface.
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#75715e">// We must test twice, since a linear transformation
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#75715e">// may bring the light below the surface (as expected).
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    quit <span style="color:#f92672">=</span> quit <span style="color:#f92672">||</span> (C.z <span style="color:#f92672">+</span> halfLength <span style="color:#f92672">*</span> abs(A.z) <span style="color:#f92672">&lt;=</span> <span style="color:#ae81ff">0</span>);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">float</span> result <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> (<span style="color:#f92672">!</span>quit)
+</span></span><span style="display:flex;"><span>    {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">float</span> w <span style="color:#f92672">=</span> ComputeLineWidthFactor(invM, ortho, orthoSq);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        result <span style="color:#f92672">=</span> I_diffuse_line(C, A, halfLength) <span style="color:#f92672">*</span> w;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> result;
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div>
         </div>
 
         
@@ -276,6 +276,12 @@ $$</p>
     
 <nav id="article-nav">
     
+    <a href="/post/microfacet-specular/" id="article-nav-newer" class="article-nav-link-wrap">
+        <div class="article-nav-title"><span>&lt;</span>&nbsp;
+            Construction of a Microfacet Specular BSDF: A Geometric Approach
+        </div>
+    </a>
+    
     
     <a href="/post/particle-volume/" id="article-nav-older" class="article-nav-link-wrap">
         <div class="article-nav-title">From Particle to Volume Scattering of Light&nbsp;<span>&gt;</span></div>
@@ -291,7 +297,7 @@ $$</p>
     <footer id="footer">
     <div class="outer">
         <div id="footer-info" class="inner">
-            &copy; 2023 Zero Radiance
+            &copy; 2024 Zero Radiance
             <br />
             Powered by <a href="https://gohugo.io" target="_blank">Hugo</a> with theme <a href="https://github.com/carsonip/hugo-theme-minos" target="_blank">Minos</a>
         </div>
@@ -310,7 +316,13 @@ $$</p>
     <script defer src="https://zero-radiance.github.io/katex/katex.min.js"></script>
 
     
-    <script defer src="https://zero-radiance.github.io/katex/contrib/auto-render.min.js" onload="renderMathInElement(document.body);"></script>
+    <script defer src="https://zero-radiance.github.io/katex/contrib/auto-render.min.js" onload="renderMathInElement(document.body, {
+    delimiters: [
+        {left: '$$', right: '$$', display: true},
+        {left: '$', right: '$', display: false}
+    ],
+    macros: {'’' : '\'',},
+    });"></script>
     
     <script>
         document.getElementById('main-nav-toggle').addEventListener('click', function () {

@@ -25,7 +25,7 @@
     <link rel="stylesheet" href="https://zero-radiance.github.io/css/style.css">
     
 
-    <meta name="generator" content="Hugo 0.82.1" />
+    <meta name="generator" content="Hugo 0.115.3">
 </head>
 
 
@@ -81,13 +81,11 @@ $$</p>
 <p>The marginal CDF is then</p>
 <p>$$ \tag{4} P(r) = \int_{0}^{2 \pi} \int_{0}^{r} p_r(z, \theta) dz d\theta = 1 - \frac{1}{4} e^{-s r} - \frac{3}{4} e^{-s r / 3}. $$</p>
 <p>Let us define \(x = s r\). If we ask <a href="https://www.wolfram.com/mathematica/">Mathematica</a> to solve \(y = P(x)\) for \(x\) in order to obtain the inverse \(x = P^{-1}(y)\), we get a somewhat terrifying (but, of course, correct) output:</p>
-<figure>
-    <img src="/img/solve1.png"/> 
+<figure><img src="/img/solve1.png"/>
 </figure>
 
 <p>The trick is to solve \(P(x) = 1 - u\) instead (where \(u = 1 - P(x)\) is the <a href="https://en.wikipedia.org/wiki/Cumulative_distribution_function#Complementary_cumulative_distribution_function_(tail_distribution)">complementary CDF</a>):</p>
-<figure>
-    <img src="/img/solve2.png"/> 
+<figure><img src="/img/solve2.png"/>
 </figure>
 
 <p>To get rid of the imaginary part, we can set the free constant \(c_{1} = 0\), which results in the following inverse:</p>
@@ -95,39 +93,38 @@ $$</p>
 <p>where</p>
 <p>$$ \tag{6} G(u) = 1 + 4 u \Big( 2 u + \sqrt{1 + 4 u^2} \Big). $$</p>
 <p>We can verify that it works by feeding the complementary CDF with its inverse.</p>
-<figure>
-    <img src="/img/solve3.png"/> 
+<figure><img src="/img/solve3.png"/>
 </figure>
 
 <p>For importance sampling, we can uniformly sample either the complementary or the regular CDF - it makes no difference \((\)except for reversing the order of samples, s.t. \(x(0) = \infty\) and \(x(1) = 0 )\).</p>
 <p>An optimized implementation is listed below.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c++" data-lang="c++"><span style="color:#75715e">// Performs sampling of a Normalized Burley diffusion profile in polar coordinates.
-</span><span style="color:#75715e">// &#39;u&#39; is the random number (the value of the CDF): [0, 1).
-</span><span style="color:#75715e">// rcp(s) = 1 / ShapeParam = ScatteringDistance.
-</span><span style="color:#75715e">// &#39;r&#39; is the sampled radial distance, s.t. (u = 0 -&gt; r = 0) and (u = 1 -&gt; r = Inf).
-</span><span style="color:#75715e">// rcp(Pdf) is the reciprocal of the corresponding PDF value.
-</span><span style="color:#75715e"></span><span style="color:#66d9ef">void</span> <span style="color:#a6e22e">SampleBurleyDiffusionProfile</span>(<span style="color:#66d9ef">float</span> u, <span style="color:#66d9ef">float</span> rcpS, out <span style="color:#66d9ef">float</span> r, out <span style="color:#66d9ef">float</span> rcpPdf)
-{
-    u <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span> <span style="color:#f92672">-</span> u; <span style="color:#75715e">// Convert CDF to CCDF; the resulting value of (u != 0)
-</span><span style="color:#75715e"></span>
-    <span style="color:#66d9ef">float</span> g <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span> <span style="color:#f92672">+</span> (<span style="color:#ae81ff">4</span> <span style="color:#f92672">*</span> u) <span style="color:#f92672">*</span> (<span style="color:#ae81ff">2</span> <span style="color:#f92672">*</span> u <span style="color:#f92672">+</span> sqrt(<span style="color:#ae81ff">1</span> <span style="color:#f92672">+</span> (<span style="color:#ae81ff">4</span> <span style="color:#f92672">*</span> u) <span style="color:#f92672">*</span> u));
-    <span style="color:#66d9ef">float</span> n <span style="color:#f92672">=</span> exp2(log2(g) <span style="color:#f92672">*</span> (<span style="color:#f92672">-</span><span style="color:#ae81ff">1.0</span><span style="color:#f92672">/</span><span style="color:#ae81ff">3.0</span>));                    <span style="color:#75715e">// g^(-1/3)
-</span><span style="color:#75715e"></span>    <span style="color:#66d9ef">float</span> p <span style="color:#f92672">=</span> (g <span style="color:#f92672">*</span> n) <span style="color:#f92672">*</span> n;                                   <span style="color:#75715e">// g^(+1/3)
-</span><span style="color:#75715e"></span>    <span style="color:#66d9ef">float</span> c <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span> <span style="color:#f92672">+</span> p <span style="color:#f92672">+</span> n;                                     <span style="color:#75715e">// 1 + g^(+1/3) + g^(-1/3)
-</span><span style="color:#75715e"></span>    <span style="color:#66d9ef">float</span> x <span style="color:#f92672">=</span> (<span style="color:#ae81ff">3</span> <span style="color:#f92672">/</span> LOG2_E) <span style="color:#f92672">*</span> log2(c <span style="color:#f92672">*</span> rcp(<span style="color:#ae81ff">4</span> <span style="color:#f92672">*</span> u));           <span style="color:#75715e">// 3 * Log[c / (4 * u)]
-</span><span style="color:#75715e"></span>
-    <span style="color:#75715e">// x      = s * r
-</span><span style="color:#75715e"></span>    <span style="color:#75715e">// exp_13 = Exp[-x/3] = Exp[-1/3 * 3 * Log[c / (4 * u)]]
-</span><span style="color:#75715e"></span>    <span style="color:#75715e">// exp_13 = Exp[-Log[c / (4 * u)]] = (4 * u) / c
-</span><span style="color:#75715e"></span>    <span style="color:#75715e">// exp_1  = Exp[-x] = exp_13 * exp_13 * exp_13
-</span><span style="color:#75715e"></span>    <span style="color:#75715e">// expSum = exp_1 + exp_13 = exp_13 * (1 + exp_13 * exp_13)
-</span><span style="color:#75715e"></span>    <span style="color:#75715e">// rcpExp = rcp(expSum) = c^3 / ((4 * u) * (c^2 + 16 * u^2))
-</span><span style="color:#75715e"></span>    <span style="color:#66d9ef">float</span> rcpExp <span style="color:#f92672">=</span> ((c <span style="color:#f92672">*</span> c) <span style="color:#f92672">*</span> c) <span style="color:#f92672">*</span> rcp((<span style="color:#ae81ff">4</span> <span style="color:#f92672">*</span> u) <span style="color:#f92672">*</span> ((c <span style="color:#f92672">*</span> c) <span style="color:#f92672">+</span> (<span style="color:#ae81ff">4</span> <span style="color:#f92672">*</span> u) <span style="color:#f92672">*</span> (<span style="color:#ae81ff">4</span> <span style="color:#f92672">*</span> u)));
-
-    r      <span style="color:#f92672">=</span> x <span style="color:#f92672">*</span> rcpS;
-    rcpPdf <span style="color:#f92672">=</span> (<span style="color:#ae81ff">8</span> <span style="color:#f92672">*</span> PI <span style="color:#f92672">*</span> rcpS) <span style="color:#f92672">*</span> rcpExp; <span style="color:#75715e">// (8 * Pi) / s / (Exp[-s * r / 3] + Exp[-s * r])
-</span><span style="color:#75715e"></span>}
-</code></pre></div><h2 id="acknowledgments">Acknowledgments</h2>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-c++" data-lang="c++"><span style="display:flex;"><span><span style="color:#75715e">// Performs sampling of a Normalized Burley diffusion profile in polar coordinates.
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">// &#39;u&#39; is the random number (the value of the CDF): [0, 1).
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">// rcp(s) = 1 / ShapeParam = ScatteringDistance.
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">// &#39;r&#39; is the sampled radial distance, s.t. (u = 0 -&gt; r = 0) and (u = 1 -&gt; r = Inf).
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">// rcp(Pdf) is the reciprocal of the corresponding PDF value.
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">void</span> <span style="color:#a6e22e">SampleBurleyDiffusionProfile</span>(<span style="color:#66d9ef">float</span> u, <span style="color:#66d9ef">float</span> rcpS, out <span style="color:#66d9ef">float</span> r, out <span style="color:#66d9ef">float</span> rcpPdf)
+</span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>    u <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span> <span style="color:#f92672">-</span> u; <span style="color:#75715e">// Convert CDF to CCDF; the resulting value of (u != 0)
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">float</span> g <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span> <span style="color:#f92672">+</span> (<span style="color:#ae81ff">4</span> <span style="color:#f92672">*</span> u) <span style="color:#f92672">*</span> (<span style="color:#ae81ff">2</span> <span style="color:#f92672">*</span> u <span style="color:#f92672">+</span> sqrt(<span style="color:#ae81ff">1</span> <span style="color:#f92672">+</span> (<span style="color:#ae81ff">4</span> <span style="color:#f92672">*</span> u) <span style="color:#f92672">*</span> u));
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">float</span> n <span style="color:#f92672">=</span> exp2(log2(g) <span style="color:#f92672">*</span> (<span style="color:#f92672">-</span><span style="color:#ae81ff">1.0</span><span style="color:#f92672">/</span><span style="color:#ae81ff">3.0</span>));                    <span style="color:#75715e">// g^(-1/3)
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#66d9ef">float</span> p <span style="color:#f92672">=</span> (g <span style="color:#f92672">*</span> n) <span style="color:#f92672">*</span> n;                                   <span style="color:#75715e">// g^(+1/3)
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#66d9ef">float</span> c <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span> <span style="color:#f92672">+</span> p <span style="color:#f92672">+</span> n;                                     <span style="color:#75715e">// 1 + g^(+1/3) + g^(-1/3)
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#66d9ef">float</span> x <span style="color:#f92672">=</span> (<span style="color:#ae81ff">3</span> <span style="color:#f92672">/</span> LOG2_E) <span style="color:#f92672">*</span> log2(c <span style="color:#f92672">*</span> rcp(<span style="color:#ae81ff">4</span> <span style="color:#f92672">*</span> u));           <span style="color:#75715e">// 3 * Log[c / (4 * u)]
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// x      = s * r
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#75715e">// exp_13 = Exp[-x/3] = Exp[-1/3 * 3 * Log[c / (4 * u)]]
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#75715e">// exp_13 = Exp[-Log[c / (4 * u)]] = (4 * u) / c
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#75715e">// exp_1  = Exp[-x] = exp_13 * exp_13 * exp_13
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#75715e">// expSum = exp_1 + exp_13 = exp_13 * (1 + exp_13 * exp_13)
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#75715e">// rcpExp = rcp(expSum) = c^3 / ((4 * u) * (c^2 + 16 * u^2))
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#66d9ef">float</span> rcpExp <span style="color:#f92672">=</span> ((c <span style="color:#f92672">*</span> c) <span style="color:#f92672">*</span> c) <span style="color:#f92672">*</span> rcp((<span style="color:#ae81ff">4</span> <span style="color:#f92672">*</span> u) <span style="color:#f92672">*</span> ((c <span style="color:#f92672">*</span> c) <span style="color:#f92672">+</span> (<span style="color:#ae81ff">4</span> <span style="color:#f92672">*</span> u) <span style="color:#f92672">*</span> (<span style="color:#ae81ff">4</span> <span style="color:#f92672">*</span> u)));
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    r      <span style="color:#f92672">=</span> x <span style="color:#f92672">*</span> rcpS;
+</span></span><span style="display:flex;"><span>    rcpPdf <span style="color:#f92672">=</span> (<span style="color:#ae81ff">8</span> <span style="color:#f92672">*</span> PI <span style="color:#f92672">*</span> rcpS) <span style="color:#f92672">*</span> rcpExp; <span style="color:#75715e">// (8 * Pi) / s / (Exp[-s * r / 3] + Exp[-s * r])
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>}
+</span></span></code></pre></div><h2 id="acknowledgments">Acknowledgments</h2>
 <p>I would like to thank <a href="https://twitter.com/stirners_ghost">@stirners_ghost</a> for informing me that the CDF is invertible, and Brent Burley for spotting a missing minus sign in the derivation.</p>
         </div>
 
@@ -233,7 +230,7 @@ $$</p>
     <footer id="footer">
     <div class="outer">
         <div id="footer-info" class="inner">
-            &copy; 2023 Zero Radiance
+            &copy; 2024 Zero Radiance
             <br />
             Powered by <a href="https://gohugo.io" target="_blank">Hugo</a> with theme <a href="https://github.com/carsonip/hugo-theme-minos" target="_blank">Minos</a>
         </div>
@@ -252,7 +249,13 @@ $$</p>
     <script defer src="https://zero-radiance.github.io/katex/katex.min.js"></script>
 
     
-    <script defer src="https://zero-radiance.github.io/katex/contrib/auto-render.min.js" onload="renderMathInElement(document.body);"></script>
+    <script defer src="https://zero-radiance.github.io/katex/contrib/auto-render.min.js" onload="renderMathInElement(document.body, {
+    delimiters: [
+        {left: '$$', right: '$$', display: true},
+        {left: '$', right: '$', display: false}
+    ],
+    macros: {'’' : '\'',},
+    });"></script>
     
     <script>
         document.getElementById('main-nav-toggle').addEventListener('click', function () {

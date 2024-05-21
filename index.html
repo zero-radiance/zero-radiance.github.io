@@ -25,7 +25,7 @@
     <link rel="stylesheet" href="https://zero-radiance.github.io/css/style.css">
     
 
-    <meta name="generator" content="Hugo 0.82.1" />
+    <meta name="generator" content="Hugo 0.115.3">
 </head>
 
 <body>
@@ -61,7 +61,7 @@
                 
                 <div class="article-meta">
                     <a href="/post/" class="article-date">
-                        <time datetime='2023-10-18T00:00:00.000&#43;00:00' itemprop="datePublished">2023-10-18</time>
+                        <time datetime='2024-05-20T00:00:00.000&#43;00:00' itemprop="datePublished">2024-05-20</time>
                     </a>
                     
                     
@@ -89,7 +89,7 @@
     <footer id="footer">
     <div class="outer">
         <div id="footer-info" class="inner">
-            &copy; 2023 Zero Radiance
+            &copy; 2024 Zero Radiance
             <br />
             Powered by <a href="https://gohugo.io" target="_blank">Hugo</a> with theme <a href="https://github.com/carsonip/hugo-theme-minos" target="_blank">Minos</a>
         </div>
@@ -108,7 +108,13 @@
     <script defer src="https://zero-radiance.github.io/katex/katex.min.js"></script>
 
     
-    <script defer src="https://zero-radiance.github.io/katex/contrib/auto-render.min.js" onload="renderMathInElement(document.body);"></script>
+    <script defer src="https://zero-radiance.github.io/katex/contrib/auto-render.min.js" onload="renderMathInElement(document.body, {
+    delimiters: [
+        {left: '$$', right: '$$', display: true},
+        {left: '$', right: '$', display: false}
+    ],
+    macros: {'’' : '\'',},
+    });"></script>
     
     <script>
         document.getElementById('main-nav-toggle').addEventListener('click', function () {

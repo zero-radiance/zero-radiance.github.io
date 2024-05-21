@@ -25,7 +25,7 @@
     <link rel="stylesheet" href="https://zero-radiance.github.io/css/style.css">
     
 
-    <meta name="generator" content="Hugo 0.82.1" />
+    <meta name="generator" content="Hugo 0.115.3">
 </head>
 
 
@@ -238,57 +238,56 @@ $$</p>
 <p>$$ \tag{35} u = \frac{1}{n v_3} \log \left(1 + \frac{\tau}{\sigma_t b} n v_3 e^{n x_3} \right). $$</p>
 <p>Note that uniform media \( \big( n v_3 = 0 \big) \) require special care.</p>
 <p>Sample code is listed below.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c++" data-lang="c++"><span style="color:#75715e">// &#39;height&#39; is the altitude.
-</span><span style="color:#75715e">// &#39;cosTheta&#39; is the Z component of the ray direction.
-</span><span style="color:#75715e">// &#39;dist&#39; is the distance.
-</span><span style="color:#75715e">// seaLvlExt = (sigma_t * b) is the sea-level (height = 0) extinction coefficient.
-</span><span style="color:#75715e">// n = (1 / H) is the falloff exponent, where &#39;H&#39; is the scale height.
-</span><span style="color:#75715e"></span>spectrum <span style="color:#a6e22e">OptDepthRectExpMedium</span>(<span style="color:#66d9ef">float</span> height, <span style="color:#66d9ef">float</span> cosTheta, <span style="color:#66d9ef">float</span> dist,
-                               spectrum seaLvlExt, <span style="color:#66d9ef">float</span> n)
-{
-    <span style="color:#66d9ef">float</span> p <span style="color:#f92672">=</span> <span style="color:#f92672">-</span>cosTheta <span style="color:#f92672">*</span> n;
-
-    <span style="color:#75715e">// Equation 26.
-</span><span style="color:#75715e"></span>    spectrum optDepth <span style="color:#f92672">=</span> seaLvlExt <span style="color:#f92672">*</span> dist;
-
-    <span style="color:#66d9ef">if</span> (abs(p) <span style="color:#f92672">&gt;</span> FLT_EPS) <span style="color:#75715e">// Uniformity check
-</span><span style="color:#75715e"></span>    {
-        <span style="color:#75715e">// Equation 34.
-</span><span style="color:#75715e"></span>        optDepth <span style="color:#f92672">=</span> seaLvlExt <span style="color:#f92672">*</span> rcp(p) <span style="color:#f92672">*</span> exp(height <span style="color:#f92672">*</span> n) <span style="color:#f92672">*</span> (exp(p <span style="color:#f92672">*</span> dist) <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>);
-    }
-
-    <span style="color:#66d9ef">return</span> optDepth;
-}
-
-<span style="color:#75715e">// &#39;optDepth&#39; is the value of optical depth.
-</span><span style="color:#75715e">// &#39;height&#39; is the altitude.
-</span><span style="color:#75715e">// &#39;cosTheta&#39; is the Z component of the ray direction.
-</span><span style="color:#75715e">// seaLvlExtRcp = (1 / seaLvlExt).
-</span><span style="color:#75715e">// n = (1 / H) is the falloff exponent, where &#39;H&#39; is the scale height.
-</span><span style="color:#75715e"></span><span style="color:#66d9ef">float</span> <span style="color:#a6e22e">SampleRectExpMedium</span>(<span style="color:#66d9ef">float</span> optDepth, <span style="color:#66d9ef">float</span> height, <span style="color:#66d9ef">float</span> cosTheta,
-                          <span style="color:#66d9ef">float</span> seaLvlExtRcp, <span style="color:#66d9ef">float</span> n)
-{
-    <span style="color:#66d9ef">float</span> p <span style="color:#f92672">=</span> <span style="color:#f92672">-</span>cosTheta <span style="color:#f92672">*</span> n;
-
-    <span style="color:#75715e">// Equation 27.
-</span><span style="color:#75715e"></span>    <span style="color:#66d9ef">float</span> dist <span style="color:#f92672">=</span> optDepth <span style="color:#f92672">*</span> seaLvlExtRcp;
-
-    <span style="color:#66d9ef">if</span> (abs(p) <span style="color:#f92672">&gt;</span> FLT_EPS) <span style="color:#75715e">// Uniformity check
-</span><span style="color:#75715e"></span>    {
-        <span style="color:#75715e">// Equation 35.
-</span><span style="color:#75715e"></span>        dist <span style="color:#f92672">=</span> rcp(p) <span style="color:#f92672">*</span> log(<span style="color:#ae81ff">1</span> <span style="color:#f92672">+</span> dist <span style="color:#f92672">*</span> p <span style="color:#f92672">*</span> exp(height <span style="color:#f92672">*</span> n));
-    }
-
-    <span style="color:#66d9ef">return</span> dist;
-}
-</code></pre></div><h3 id="exponential-variation-of-density-with-altitude-spherical-atmosphere">Exponential Variation of Density with Altitude (Spherical Atmosphere)</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-c++" data-lang="c++"><span style="display:flex;"><span><span style="color:#75715e">// &#39;height&#39; is the altitude.
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">// &#39;cosTheta&#39; is the Z component of the ray direction.
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">// &#39;dist&#39; is the distance.
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">// seaLvlExt = (sigma_t * b) is the sea-level (height = 0) extinction coefficient.
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">// n = (1 / H) is the falloff exponent, where &#39;H&#39; is the scale height.
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>spectrum <span style="color:#a6e22e">OptDepthRectExpMedium</span>(<span style="color:#66d9ef">float</span> height, <span style="color:#66d9ef">float</span> cosTheta, <span style="color:#66d9ef">float</span> dist,
+</span></span><span style="display:flex;"><span>                               spectrum seaLvlExt, <span style="color:#66d9ef">float</span> n)
+</span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">float</span> p <span style="color:#f92672">=</span> <span style="color:#f92672">-</span>cosTheta <span style="color:#f92672">*</span> n;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// Equation 26.
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    spectrum optDepth <span style="color:#f92672">=</span> seaLvlExt <span style="color:#f92672">*</span> dist;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> (abs(p) <span style="color:#f92672">&gt;</span> FLT_EPS) <span style="color:#75715e">// Uniformity check
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    {
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e">// Equation 34.
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>        optDepth <span style="color:#f92672">=</span> seaLvlExt <span style="color:#f92672">*</span> rcp(p) <span style="color:#f92672">*</span> exp(height <span style="color:#f92672">*</span> n) <span style="color:#f92672">*</span> (exp(p <span style="color:#f92672">*</span> dist) <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>);
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> optDepth;
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// &#39;optDepth&#39; is the value of optical depth.
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">// &#39;height&#39; is the altitude.
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">// &#39;cosTheta&#39; is the Z component of the ray direction.
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">// seaLvlExtRcp = (1 / seaLvlExt).
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">// n = (1 / H) is the falloff exponent, where &#39;H&#39; is the scale height.
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">float</span> <span style="color:#a6e22e">SampleRectExpMedium</span>(<span style="color:#66d9ef">float</span> optDepth, <span style="color:#66d9ef">float</span> height, <span style="color:#66d9ef">float</span> cosTheta,
+</span></span><span style="display:flex;"><span>                          <span style="color:#66d9ef">float</span> seaLvlExtRcp, <span style="color:#66d9ef">float</span> n)
+</span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">float</span> p <span style="color:#f92672">=</span> <span style="color:#f92672">-</span>cosTheta <span style="color:#f92672">*</span> n;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// Equation 27.
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#66d9ef">float</span> dist <span style="color:#f92672">=</span> optDepth <span style="color:#f92672">*</span> seaLvlExtRcp;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> (abs(p) <span style="color:#f92672">&gt;</span> FLT_EPS) <span style="color:#75715e">// Uniformity check
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    {
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e">// Equation 35.
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>        dist <span style="color:#f92672">=</span> rcp(p) <span style="color:#f92672">*</span> log(<span style="color:#ae81ff">1</span> <span style="color:#f92672">+</span> dist <span style="color:#f92672">*</span> p <span style="color:#f92672">*</span> exp(height <span style="color:#f92672">*</span> n));
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> dist;
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><h3 id="exponential-variation-of-density-with-altitude-spherical-atmosphere">Exponential Variation of Density with Altitude (Spherical Atmosphere)</h3>
 <p>This is where things get interesting. We would like to model an exponential density distribution on a sphere:</p>
 <p>$$ \tag{36} \rho(\bm{x}) = b e^{-h(\bm{x}) / H} = b e^{-(\vert \bm{x} - \bm{c} \vert - R) / H} = b e^{-n (\vert \bm{x} - \bm{c} \vert - R)}, $$</p>
 <p>where \(\bm{c}\) is the center of the sphere, \(R\) is its radius, \(h\) is the altitude, and \(H\) is the <a href="https://en.wikipedia.org/wiki/Scale_height">scale height</a> as before. In this context, \(b\) and \(\sigma_t b\) represent the density and the value of the extinction coefficient at the sea level, respectively. This formula gives the density of an <a href="http://www.feynmanlectures.caltech.edu/I_40.html">isothermal atmosphere</a>, which is not physically plausible.</p>
 <h4 id="geometric-configuration-of-a-spherical-atmosphere">Geometric Configuration of a Spherical Atmosphere</h4>
 <p>We can simplify the problem using its inherent spherical symmetry. Take a look at the diagram below.</p>
-<figure>
-    <img src="/img/spherical_param.png"/> 
+<figure><img src="/img/spherical_param.png"/>
 </figure>
 
 <p>We start by recognizing the fact that every ordered pair of position and direction \(\lbrace \bm{x}, \bm{v} \rbrace\) can be reduced to a pair of radial distance and zenith angle \(\lbrace r, \theta \rbrace\), which means that our phase space is 2-dimensional.</p>
@@ -333,9 +332,8 @@ $$</p>
 <p>Optical depth, then, is a <em>product</em> of the mass of the vertical column <em>and</em> the value of the obliquity function (which, intuitively, gives the absolute optical air mass along the oblique ray) <em>times</em> the mass extinction coefficient.</p>
 <h4 id="examining-the-chapman-function">Examining the Chapman Function</h4>
 <p>It is always a good idea to examine a function visually, as a graph. Let&rsquo;s do that.</p>
-<figure>
-    <img src="/img/chapman_ref.png"
-         alt="Plot of the Chapman function for r = 6600."/> <figcaption>
+<figure><img src="/img/chapman_ref.png"
+         alt="Plot of the Chapman function for r = 6600."/><figcaption>
             <p><em>Plot of the Chapman function for r = 6600.</em></p>
         </figcaption>
 </figure>
@@ -356,84 +354,81 @@ Arguably, the first two are the most important, since they roughly correspond to
 <p>$$ \tag{48} C_l(z, \theta) = 2 C_h(z \sin{\theta}) e^{z - z \sin{\theta}} - C_u(z, \pi - \theta), $$</p>
 <p>which means that we must find a position \(\bm{p}\) (sometimes called the <a href="https://en.wikipedia.org/wiki/Apsis">periapsis</a> point, see the diagram in the previous section) along the ray where it is orthogonal to the surface normal, evaluate the horizontal Chapman function there (twice, forward and backward, to cover the entire real line), and subtract the value of the Chapman function at the original position with the reversed direction (towards the atmospheric boundary), which isolates the integral to the desired ray segment.</p>
 <p>Sample implementation is listed below.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c++" data-lang="c++"><span style="color:#66d9ef">float</span> <span style="color:#a6e22e">ChapmanUpper</span>(<span style="color:#66d9ef">float</span> z, <span style="color:#66d9ef">float</span> absCosTheta)
-{
-    <span style="color:#66d9ef">float</span> sinTheta <span style="color:#f92672">=</span> sqrt(saturate(<span style="color:#ae81ff">1</span> <span style="color:#f92672">-</span> absCosTheta <span style="color:#f92672">*</span> absCosTheta));
-
-    <span style="color:#66d9ef">float</span> zm12 <span style="color:#f92672">=</span> rsqrt(z);           <span style="color:#75715e">// z^(-1/2)
-</span><span style="color:#75715e"></span>    <span style="color:#66d9ef">float</span> zp12 <span style="color:#f92672">=</span> z <span style="color:#f92672">*</span> zm12;           <span style="color:#75715e">// z^(+1/2)
-</span><span style="color:#75715e"></span>
-    <span style="color:#66d9ef">float</span> tp   <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span> <span style="color:#f92672">+</span> sinTheta;       <span style="color:#75715e">// 1 + Sin
-</span><span style="color:#75715e"></span>    <span style="color:#66d9ef">float</span> rstp <span style="color:#f92672">=</span> rsqrt(tp);          <span style="color:#75715e">// 1 / Sqrt[1 + Sin]
-</span><span style="color:#75715e"></span>    <span style="color:#66d9ef">float</span> rtp  <span style="color:#f92672">=</span> rstp <span style="color:#f92672">*</span> rstp;        <span style="color:#75715e">// 1 / (1 + Sin)
-</span><span style="color:#75715e"></span>    <span style="color:#66d9ef">float</span> stm  <span style="color:#f92672">=</span> absCosTheta <span style="color:#f92672">*</span> rstp; <span style="color:#75715e">// Sqrt[1 - Sin] = Abs[Cos] / Sqrt[1 + Sin]
-</span><span style="color:#75715e"></span>    <span style="color:#66d9ef">float</span> arg  <span style="color:#f92672">=</span> zp12 <span style="color:#f92672">*</span> stm;         <span style="color:#75715e">// Sqrt[z - z * Sin], argument of Erfc
-</span><span style="color:#75715e"></span>    <span style="color:#66d9ef">float</span> e2ec <span style="color:#f92672">=</span> Exp2Erfc(arg);      <span style="color:#75715e">// Exp[x^2] * Erfc[x]
-</span><span style="color:#75715e"></span>
-    <span style="color:#75715e">// Term 1 of Equation 46.
-</span><span style="color:#75715e"></span>    <span style="color:#66d9ef">float</span> mul1 <span style="color:#f92672">=</span> absCosTheta <span style="color:#f92672">*</span> rtp;  <span style="color:#75715e">// Sqrt[(1 - Sin) / (1 + Sin)] = Abs[Cos] / (1 + Sin)
-</span><span style="color:#75715e"></span>    <span style="color:#66d9ef">float</span> trm1 <span style="color:#f92672">=</span> mul1 <span style="color:#f92672">*</span> (<span style="color:#ae81ff">1</span> <span style="color:#f92672">-</span> <span style="color:#ae81ff">0.5</span> <span style="color:#f92672">*</span> rtp);
-
-    <span style="color:#75715e">// Term 2 of Equation 46.
-</span><span style="color:#75715e"></span>    <span style="color:#66d9ef">float</span> mul2 <span style="color:#f92672">=</span> SQRT_PI <span style="color:#f92672">*</span> rstp <span style="color:#f92672">*</span> e2ec; <span style="color:#75715e">// Sqrt[Pi / (1 + Sin)] * Exp[x^2] * Erfc[x]
-</span><span style="color:#75715e"></span>    <span style="color:#66d9ef">float</span> trm2 <span style="color:#f92672">=</span> mul2 <span style="color:#f92672">*</span> (zp12 <span style="color:#f92672">*</span> (<span style="color:#f92672">-</span><span style="color:#ae81ff">1.5</span> <span style="color:#f92672">+</span> tp <span style="color:#f92672">+</span> rtp) <span style="color:#f92672">+</span>
-                         zm12 <span style="color:#f92672">*</span> <span style="color:#ae81ff">0.25</span> <span style="color:#f92672">*</span> (<span style="color:#ae81ff">2</span> <span style="color:#f92672">*</span> tp <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>) <span style="color:#f92672">*</span> rtp);
-    <span style="color:#66d9ef">return</span> trm1 <span style="color:#f92672">+</span> trm2;
-}
-
-<span style="color:#66d9ef">float</span> <span style="color:#a6e22e">ChapmanHorizontal</span>(<span style="color:#66d9ef">float</span> z)
-{
-    <span style="color:#66d9ef">float</span> zm12 <span style="color:#f92672">=</span> rsqrt(z);           <span style="color:#75715e">// z^(-1/2)
-</span><span style="color:#75715e"></span>    <span style="color:#66d9ef">float</span> zm32 <span style="color:#f92672">=</span> zm12 <span style="color:#f92672">*</span> zm12 <span style="color:#f92672">*</span> zm12; <span style="color:#75715e">// z^(-3/2)
-</span><span style="color:#75715e"></span>
-    <span style="color:#66d9ef">float</span> p <span style="color:#f92672">=</span> <span style="color:#f92672">-</span><span style="color:#ae81ff">0.14687275046666018</span> <span style="color:#f92672">+</span> z <span style="color:#f92672">*</span> (<span style="color:#ae81ff">0.4699928014933126</span> <span style="color:#f92672">+</span> z <span style="color:#f92672">*</span> <span style="color:#ae81ff">1.2533141373155001</span>);
-
-    <span style="color:#75715e">// Equation 47.
-</span><span style="color:#75715e"></span>    <span style="color:#66d9ef">return</span> p <span style="color:#f92672">*</span> zm32;
-}
-
-<span style="color:#75715e">// z = (r / H), Z = (R / H).
-</span><span style="color:#75715e"></span><span style="color:#66d9ef">float</span> <span style="color:#a6e22e">RescaledChapman</span>(<span style="color:#66d9ef">float</span> z, <span style="color:#66d9ef">float</span> Z, <span style="color:#66d9ef">float</span> cosTheta)
-{
-    <span style="color:#66d9ef">float</span> sinTheta <span style="color:#f92672">=</span> sqrt(saturate(<span style="color:#ae81ff">1</span> <span style="color:#f92672">-</span> cosTheta <span style="color:#f92672">*</span> cosTheta));
-
-    <span style="color:#75715e">// Cos[Pi - theta] = -Cos[theta],
-</span><span style="color:#75715e"></span>    <span style="color:#75715e">// Sin[Pi - theta] =  Sin[theta],
-</span><span style="color:#75715e"></span>    <span style="color:#75715e">// so we can just use Abs[Cos[theta]].
-</span><span style="color:#75715e"></span>    <span style="color:#66d9ef">float</span> ch <span style="color:#f92672">=</span> ChapmanUpper(z, abs(cosTheta)) <span style="color:#f92672">*</span> exp(Z <span style="color:#f92672">-</span> z); <span style="color:#75715e">// Rescaling adds &#39;exp&#39;
-</span><span style="color:#75715e"></span>
-    <span style="color:#66d9ef">if</span> (cosTheta <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">0</span>)
-    {
-        <span style="color:#75715e">// Ch[z, theta] = 2 * Exp[z - z_0] * Ch[z_0, Pi/2] - Ch[z, Pi - theta].
-</span><span style="color:#75715e"></span>        <span style="color:#75715e">// z_0 = r_0 / H = (r / H) * Sin[theta] = z * Sin[theta].
-</span><span style="color:#75715e"></span>        <span style="color:#66d9ef">float</span> z_0 <span style="color:#f92672">=</span> z <span style="color:#f92672">*</span> sinTheta;
-        <span style="color:#66d9ef">float</span> chP <span style="color:#f92672">=</span> ChapmanHorizontal(z_0) <span style="color:#f92672">*</span> exp(Z <span style="color:#f92672">-</span> z_0); <span style="color:#75715e">// Rescaling adds &#39;exp&#39;
-</span><span style="color:#75715e"></span>
-        <span style="color:#75715e">// Equation 48.
-</span><span style="color:#75715e"></span>        ch <span style="color:#f92672">=</span> <span style="color:#ae81ff">2</span> <span style="color:#f92672">*</span> chP <span style="color:#f92672">-</span> ch;
-    }
-
-    <span style="color:#66d9ef">return</span> ch;
-}
-</code></pre></div><p>We can evaluate the quality of the approximation by computing the error with respect to the integral numerically evaluated in Mathematica.</p>
-<figure>
-    <img src="/img/chapman_approx_abs.png"
-         alt="Absolute error plot of the approximation of the Chapman function for r = 6600."/> <figcaption>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-c++" data-lang="c++"><span style="display:flex;"><span><span style="color:#66d9ef">float</span> <span style="color:#a6e22e">ChapmanUpper</span>(<span style="color:#66d9ef">float</span> z, <span style="color:#66d9ef">float</span> absCosTheta)
+</span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">float</span> sinTheta <span style="color:#f92672">=</span> sqrt(saturate(<span style="color:#ae81ff">1</span> <span style="color:#f92672">-</span> absCosTheta <span style="color:#f92672">*</span> absCosTheta));
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">float</span> zm12 <span style="color:#f92672">=</span> rsqrt(z);           <span style="color:#75715e">// z^(-1/2)
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#66d9ef">float</span> zp12 <span style="color:#f92672">=</span> z <span style="color:#f92672">*</span> zm12;           <span style="color:#75715e">// z^(+1/2)
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">float</span> tp   <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span> <span style="color:#f92672">+</span> sinTheta;       <span style="color:#75715e">// 1 + Sin
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#66d9ef">float</span> rstp <span style="color:#f92672">=</span> rsqrt(tp);          <span style="color:#75715e">// 1 / Sqrt[1 + Sin]
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#66d9ef">float</span> rtp  <span style="color:#f92672">=</span> rstp <span style="color:#f92672">*</span> rstp;        <span style="color:#75715e">// 1 / (1 + Sin)
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#66d9ef">float</span> stm  <span style="color:#f92672">=</span> absCosTheta <span style="color:#f92672">*</span> rstp; <span style="color:#75715e">// Sqrt[1 - Sin] = Abs[Cos] / Sqrt[1 + Sin]
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#66d9ef">float</span> arg  <span style="color:#f92672">=</span> zp12 <span style="color:#f92672">*</span> stm;         <span style="color:#75715e">// Sqrt[z - z * Sin], argument of Erfc
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#66d9ef">float</span> e2ec <span style="color:#f92672">=</span> Exp2Erfc(arg);      <span style="color:#75715e">// Exp[x^2] * Erfc[x]
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// Term 1 of Equation 46.
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#66d9ef">float</span> mul1 <span style="color:#f92672">=</span> absCosTheta <span style="color:#f92672">*</span> rtp;  <span style="color:#75715e">// Sqrt[(1 - Sin) / (1 + Sin)] = Abs[Cos] / (1 + Sin)
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#66d9ef">float</span> trm1 <span style="color:#f92672">=</span> mul1 <span style="color:#f92672">*</span> (<span style="color:#ae81ff">1</span> <span style="color:#f92672">-</span> <span style="color:#ae81ff">0.5</span> <span style="color:#f92672">*</span> rtp);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// Term 2 of Equation 46.
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#66d9ef">float</span> mul2 <span style="color:#f92672">=</span> SQRT_PI <span style="color:#f92672">*</span> rstp <span style="color:#f92672">*</span> e2ec; <span style="color:#75715e">// Sqrt[Pi / (1 + Sin)] * Exp[x^2] * Erfc[x]
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#66d9ef">float</span> trm2 <span style="color:#f92672">=</span> mul2 <span style="color:#f92672">*</span> (zp12 <span style="color:#f92672">*</span> (<span style="color:#f92672">-</span><span style="color:#ae81ff">1.5</span> <span style="color:#f92672">+</span> tp <span style="color:#f92672">+</span> rtp) <span style="color:#f92672">+</span>
+</span></span><span style="display:flex;"><span>                         zm12 <span style="color:#f92672">*</span> <span style="color:#ae81ff">0.25</span> <span style="color:#f92672">*</span> (<span style="color:#ae81ff">2</span> <span style="color:#f92672">*</span> tp <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>) <span style="color:#f92672">*</span> rtp);
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> trm1 <span style="color:#f92672">+</span> trm2;
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">float</span> <span style="color:#a6e22e">ChapmanHorizontal</span>(<span style="color:#66d9ef">float</span> z)
+</span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">float</span> zm12 <span style="color:#f92672">=</span> rsqrt(z);           <span style="color:#75715e">// z^(-1/2)
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#66d9ef">float</span> zm32 <span style="color:#f92672">=</span> zm12 <span style="color:#f92672">*</span> zm12 <span style="color:#f92672">*</span> zm12; <span style="color:#75715e">// z^(-3/2)
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">float</span> p <span style="color:#f92672">=</span> <span style="color:#f92672">-</span><span style="color:#ae81ff">0.14687275046666018</span> <span style="color:#f92672">+</span> z <span style="color:#f92672">*</span> (<span style="color:#ae81ff">0.4699928014933126</span> <span style="color:#f92672">+</span> z <span style="color:#f92672">*</span> <span style="color:#ae81ff">1.2533141373155001</span>);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// Equation 47.
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#66d9ef">return</span> p <span style="color:#f92672">*</span> zm32;
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// z = (r / H), Z = (R / H).
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">float</span> <span style="color:#a6e22e">RescaledChapman</span>(<span style="color:#66d9ef">float</span> z, <span style="color:#66d9ef">float</span> Z, <span style="color:#66d9ef">float</span> cosTheta)
+</span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">float</span> sinTheta <span style="color:#f92672">=</span> sqrt(saturate(<span style="color:#ae81ff">1</span> <span style="color:#f92672">-</span> cosTheta <span style="color:#f92672">*</span> cosTheta));
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// Cos[Pi - theta] = -Cos[theta],
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#75715e">// Sin[Pi - theta] =  Sin[theta],
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#75715e">// so we can just use Abs[Cos[theta]].
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#66d9ef">float</span> ch <span style="color:#f92672">=</span> ChapmanUpper(z, abs(cosTheta)) <span style="color:#f92672">*</span> exp(Z <span style="color:#f92672">-</span> z); <span style="color:#75715e">// Rescaling adds &#39;exp&#39;
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> (cosTheta <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">0</span>)
+</span></span><span style="display:flex;"><span>    {
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e">// Ch[z, theta] = 2 * Exp[z - z_0] * Ch[z_0, Pi/2] - Ch[z, Pi - theta].
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>        <span style="color:#75715e">// z_0 = r_0 / H = (r / H) * Sin[theta] = z * Sin[theta].
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>        <span style="color:#66d9ef">float</span> z_0 <span style="color:#f92672">=</span> z <span style="color:#f92672">*</span> sinTheta;
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">float</span> chP <span style="color:#f92672">=</span> ChapmanHorizontal(z_0) <span style="color:#f92672">*</span> exp(Z <span style="color:#f92672">-</span> z_0); <span style="color:#75715e">// Rescaling adds &#39;exp&#39;
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e">// Equation 48.
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>        ch <span style="color:#f92672">=</span> <span style="color:#ae81ff">2</span> <span style="color:#f92672">*</span> chP <span style="color:#f92672">-</span> ch;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> ch;
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>We can evaluate the quality of the approximation by computing the error with respect to the integral numerically evaluated in Mathematica.</p>
+<figure><img src="/img/chapman_approx_abs.png"
+         alt="Absolute error plot of the approximation of the Chapman function for r = 6600."/><figcaption>
             <p><em>Absolute error plot of the approximation of the Chapman function for r = 6600.</em></p>
         </figcaption>
 </figure>
 
-<figure>
-    <img src="/img/chapman_approx_rel.png"
-         alt="Relative error plot of the approximation of the Chapman function for r = 6600."/> <figcaption>
+<figure><img src="/img/chapman_approx_rel.png"
+         alt="Relative error plot of the approximation of the Chapman function for r = 6600."/><figcaption>
             <p><em>Relative error plot of the approximation of the Chapman function for r = 6600.</em></p>
         </figcaption>
 </figure>
 
 <p>We can also represent the relative error as <em>precision</em> by plotting the number of digits after the decimal point. Since decimal precision of 32-bit floating numbers is between <a href="https://www.exploringbinary.com/decimal-precision-of-binary-floating-point-numbers/">6-8 digits</a>, the approximation can be considered relatively accurate (particularly so for the range of typical values).</p>
-<figure>
-    <img src="/img/chapman_approx_dig.png"
-         alt="Precision plot of the approximation of the Chapman function for r = 6600."/> <figcaption>
+<figure><img src="/img/chapman_approx_dig.png"
+         alt="Precision plot of the approximation of the Chapman function for r = 6600."/><figcaption>
             <p><em>Precision plot of the approximation of the Chapman function for r = 6600.</em></p>
         </figcaption>
 </figure>
@@ -441,49 +436,46 @@ Arguably, the first two are the most important, since they roughly correspond to
 <p>Of course, we must address the elephant in the room, \(\mathrm{erfc}\). Since it is <a href="https://www.johndcook.com/erf_and_normal_cdf.pdf">related</a> to the <a href="https://en.wikipedia.org/wiki/Normal_distribution">normal distribution</a>, it has numerous applications, and, as a result, dozens of existing approximations. Unfortunately, most of them are not particularly accurate, especially across a huge range of values (as in our case), and the accuracy of \(\mathrm{erfc}\) greatly affects the quality of our approximation.</p>
 <p>After performing an extensive search, I stumbled upon the approximation developed by <a href="http://www.kurims.kyoto-u.ac.jp/~ooura/gamerf.html">Takuya Ooura</a>. He provides an impressive double-precision implementation accurate to 16 decimal digits. A great thing about his approximation is that it includes the \(\exp(x^2)\) factor, which means we can replace the entire term of Equation 46 inside the square brackets. In order to obtain a single-precision version of his approximation, I retain his range reduction technique and reduce the degree of the polynomial (which I fit using <a href="http://sollya.gforge.inria.fr/sollya-7.0/help.php?name=fpminimax">Sollya</a>). In order to account for fused multiply-adds, I perform a <a href="https://stackoverflow.com/questions/26692859/best-machine-optimized-polynomial-minimax-approximation-to-arctangent-on-1-1">greedy search</a> for better coefficients (starting with single-precision coefficients found by Sollya) on the target hardware.</p>
 <p>The implementation of Takuya Ooura (with my modifications) is reproduced below.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c++" data-lang="c++"><span style="color:#75715e">// Computes (Exp[x^2] * Erfc[x]) for (x &gt;= 0).
-</span><span style="color:#75715e">// Range of inputs:  [0, Inf].
-</span><span style="color:#75715e">// Range of outputs: [0, 1].
-</span><span style="color:#75715e">// Max Abs Error: 0.000000969658452.
-</span><span style="color:#75715e">// Max Rel Error: 0.000001091639525.
-</span><span style="color:#75715e"></span><span style="color:#66d9ef">float</span> <span style="color:#a6e22e">Exp2Erfc</span>(<span style="color:#66d9ef">float</span> x)
-{
-    <span style="color:#66d9ef">float</span> t, u, y;
-
-    t <span style="color:#f92672">=</span> <span style="color:#ae81ff">3.9788608f</span> <span style="color:#f92672">*</span> rcp(x <span style="color:#f92672">+</span> <span style="color:#ae81ff">3.9788608f</span>); <span style="color:#75715e">// Reduce the range
-</span><span style="color:#75715e"></span>    u <span style="color:#f92672">=</span> t <span style="color:#f92672">-</span> <span style="color:#ae81ff">0.5f</span>;                         <span style="color:#75715e">// Center around 0
-</span><span style="color:#75715e"></span>
-    y <span style="color:#f92672">=</span>           <span style="color:#f92672">-</span><span style="color:#ae81ff">0.010297533124685f</span>;
-    y <span style="color:#f92672">=</span> fmaf(y, u, <span style="color:#ae81ff">0.288184314966202f</span>);
-    y <span style="color:#f92672">=</span> fmaf(y, u, <span style="color:#ae81ff">0.805188119411469f</span>);
-    y <span style="color:#f92672">=</span> fmaf(y, u, <span style="color:#ae81ff">1.203098773956299f</span>);
-    y <span style="color:#f92672">=</span> fmaf(y, u, <span style="color:#ae81ff">1.371236562728882f</span>);
-    y <span style="color:#f92672">=</span> fmaf(y, u, <span style="color:#ae81ff">1.312000870704651f</span>);
-    y <span style="color:#f92672">=</span> fmaf(y, u, <span style="color:#ae81ff">1.079175233840942f</span>);
-    y <span style="color:#f92672">=</span> fmaf(y, u, <span style="color:#ae81ff">0.774399876594543f</span>);
-    y <span style="color:#f92672">=</span> fmaf(y, u, <span style="color:#ae81ff">0.490166693925858f</span>);
-    y <span style="color:#f92672">=</span> fmaf(y, u, <span style="color:#ae81ff">0.275374621152878f</span>);
-
-    <span style="color:#66d9ef">return</span> y <span style="color:#f92672">*</span> t; <span style="color:#75715e">// Expand the range
-</span><span style="color:#75715e"></span>}
-</code></pre></div><p>The approximation performs well, as you can see from the plots of the single-precision version shown below.</p>
-<figure>
-    <img src="/img/exp2erfc.png"
-         alt="Plot of \(exp(x^2) erfc(x)\)."/> <figcaption>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-c++" data-lang="c++"><span style="display:flex;"><span><span style="color:#75715e">// Computes (Exp[x^2] * Erfc[x]) for (x &gt;= 0).
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">// Range of inputs:  [0, Inf].
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">// Range of outputs: [0, 1].
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">// Max Abs Error: 0.000000969658452.
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">// Max Rel Error: 0.000001091639525.
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">float</span> <span style="color:#a6e22e">Exp2Erfc</span>(<span style="color:#66d9ef">float</span> x)
+</span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">float</span> t, u, y;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    t <span style="color:#f92672">=</span> <span style="color:#ae81ff">3.9788608f</span> <span style="color:#f92672">*</span> rcp(x <span style="color:#f92672">+</span> <span style="color:#ae81ff">3.9788608f</span>); <span style="color:#75715e">// Reduce the range
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    u <span style="color:#f92672">=</span> t <span style="color:#f92672">-</span> <span style="color:#ae81ff">0.5f</span>;                         <span style="color:#75715e">// Center around 0
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
+</span></span><span style="display:flex;"><span>    y <span style="color:#f92672">=</span>           <span style="color:#f92672">-</span><span style="color:#ae81ff">0.010297533124685f</span>;
+</span></span><span style="display:flex;"><span>    y <span style="color:#f92672">=</span> fmaf(y, u, <span style="color:#ae81ff">0.288184314966202f</span>);
+</span></span><span style="display:flex;"><span>    y <span style="color:#f92672">=</span> fmaf(y, u, <span style="color:#ae81ff">0.805188119411469f</span>);
+</span></span><span style="display:flex;"><span>    y <span style="color:#f92672">=</span> fmaf(y, u, <span style="color:#ae81ff">1.203098773956299f</span>);
+</span></span><span style="display:flex;"><span>    y <span style="color:#f92672">=</span> fmaf(y, u, <span style="color:#ae81ff">1.371236562728882f</span>);
+</span></span><span style="display:flex;"><span>    y <span style="color:#f92672">=</span> fmaf(y, u, <span style="color:#ae81ff">1.312000870704651f</span>);
+</span></span><span style="display:flex;"><span>    y <span style="color:#f92672">=</span> fmaf(y, u, <span style="color:#ae81ff">1.079175233840942f</span>);
+</span></span><span style="display:flex;"><span>    y <span style="color:#f92672">=</span> fmaf(y, u, <span style="color:#ae81ff">0.774399876594543f</span>);
+</span></span><span style="display:flex;"><span>    y <span style="color:#f92672">=</span> fmaf(y, u, <span style="color:#ae81ff">0.490166693925858f</span>);
+</span></span><span style="display:flex;"><span>    y <span style="color:#f92672">=</span> fmaf(y, u, <span style="color:#ae81ff">0.275374621152878f</span>);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> y <span style="color:#f92672">*</span> t; <span style="color:#75715e">// Expand the range
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>}
+</span></span></code></pre></div><p>The approximation performs well, as you can see from the plots of the single-precision version shown below.</p>
+<figure><img src="/img/exp2erfc.png"
+         alt="Plot of \(exp(x^2) erfc(x)\)."/><figcaption>
             <p><em>Plot of \(exp(x^2) erfc(x)\).</em></p>
         </figcaption>
 </figure>
 
-<figure>
-    <img src="/img/exp2erfc_abs_error.png"
-         alt="Absolute error plot of the approximation of \(exp(x^2) erfc(x)\)."/> <figcaption>
+<figure><img src="/img/exp2erfc_abs_error.png"
+         alt="Absolute error plot of the approximation of \(exp(x^2) erfc(x)\)."/><figcaption>
             <p><em>Absolute error plot of the approximation of \(exp(x^2) erfc(x)\).</em></p>
         </figcaption>
 </figure>
 
-<figure>
-    <img src="/img/exp2erfc_rel_error.png"
-         alt="Relative error plot of the approximation of \(exp(x^2) erfc(x)\)."/> <figcaption>
+<figure><img src="/img/exp2erfc_rel_error.png"
+         alt="Relative error plot of the approximation of \(exp(x^2) erfc(x)\)."/><figcaption>
             <p><em>Relative error plot of the approximation of \(exp(x^2) erfc(x)\).</em></p>
         </figcaption>
 </figure>
@@ -492,17 +484,15 @@ Arguably, the first two are the most important, since they roughly correspond to
 <p>The proposed approximation is relatively expensive. It is particularly useful for path tracing, since the inversion process (described later) requires a certain degree of accuracy. If high accuracy is not required, you can (and probably should) use the approximation proposed by <a href="http://www.gameenginegems.net/gemsdb/article.php?id=1133">Christian Schüler</a> in his GPU Gems 3 article:</p>
 <p>$$ \tag{49} C_{cs}(z, \theta) \approx \frac{C_h(z)}{(C_h(z) - 1) \cos{\theta} + 1}. $$</p>
 <p>It models the shape of the function pretty well, especially considering the cost.</p>
-<figure>
-    <img src="/img/chapman_chris.png"
-         alt="Plot of the approximation of the Chapman function by Christian Schüler for r = 6600."/> <figcaption>
+<figure><img src="/img/chapman_chris.png"
+         alt="Plot of the approximation of the Chapman function by Christian Schüler for r = 6600."/><figcaption>
             <p><em>Plot of the approximation of the Chapman function by Christian Schüler for r = 6600.</em></p>
         </figcaption>
 </figure>
 
 <p>However, if you care about accuracy, and plot the relative error plot, it paints a slightly less attractive picture.</p>
-<figure>
-    <img src="/img/chapman_chris_error.png"
-         alt="Relative error plot of the approximation of the Chapman function by Christian Schüler for r = 6600."/> <figcaption>
+<figure><img src="/img/chapman_chris_error.png"
+         alt="Relative error plot of the approximation of the Chapman function by Christian Schüler for r = 6600."/><figcaption>
             <p><em>Relative error plot of the approximation of the Chapman function by Christian Schüler for r = 6600.</em></p>
         </figcaption>
 </figure>
@@ -525,179 +515,179 @@ $$</p>
 &amp;= \sigma_t \frac{b}{n} \Bigg( e^{Z - z_x} C_l(z_x, \theta_x) - e^{Z - z_y} C_u(z_y, \theta_y) \Bigg).
 \end{aligned} $$</p>
 <p>Sample code is listed below.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c++" data-lang="c++"><span style="color:#66d9ef">float</span> <span style="color:#a6e22e">RadAtDist</span>(<span style="color:#66d9ef">float</span> r, <span style="color:#66d9ef">float</span> rRcp, <span style="color:#66d9ef">float</span> cosTheta, <span style="color:#66d9ef">float</span> s)
-{
-    <span style="color:#66d9ef">float</span> x2 <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span> <span style="color:#f92672">+</span> (s <span style="color:#f92672">*</span> rRcp) <span style="color:#f92672">*</span> ((s <span style="color:#f92672">*</span> rRcp) <span style="color:#f92672">+</span> <span style="color:#ae81ff">2</span> <span style="color:#f92672">*</span> cosTheta);
-
-    <span style="color:#75715e">// Equation 38.
-</span><span style="color:#75715e"></span>    <span style="color:#66d9ef">return</span> r <span style="color:#f92672">*</span> sqrt(x2);
-}
-
-<span style="color:#66d9ef">float</span> <span style="color:#a6e22e">CosAtDist</span>(<span style="color:#66d9ef">float</span> r, <span style="color:#66d9ef">float</span> rRcp, <span style="color:#66d9ef">float</span> cosTheta, <span style="color:#66d9ef">float</span> s)
-{
-    <span style="color:#66d9ef">float</span> x2 <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span> <span style="color:#f92672">+</span> (s <span style="color:#f92672">*</span> rRcp) <span style="color:#f92672">*</span> ((s <span style="color:#f92672">*</span> rRcp) <span style="color:#f92672">+</span> <span style="color:#ae81ff">2</span> <span style="color:#f92672">*</span> cosTheta);
-
-    <span style="color:#75715e">// Equation 39.
-</span><span style="color:#75715e"></span>    <span style="color:#66d9ef">return</span> ((s <span style="color:#f92672">*</span> rRcp) <span style="color:#f92672">+</span> cosTheta) <span style="color:#f92672">*</span> rsqrt(x2);
-}
-
-<span style="color:#75715e">// This variant of the function evaluates optical depth along an infinite path.
-</span><span style="color:#75715e">// &#39;r&#39; is the radial distance from the center of the planet.
-</span><span style="color:#75715e">// &#39;cosTheta&#39; is the value of the dot product of the ray direction and the surface normal.
-</span><span style="color:#75715e">// seaLvlExt = (sigma_t * b) is the sea-level (height = 0) extinction coefficient.
-</span><span style="color:#75715e">// &#39;R&#39; is the radius of the planet.
-</span><span style="color:#75715e">// n = (1 / H) is the falloff exponent, where &#39;H&#39; is the scale height.
-</span><span style="color:#75715e"></span>spectrum <span style="color:#a6e22e">OptDepthSpherExpMedium</span>(<span style="color:#66d9ef">float</span> r, <span style="color:#66d9ef">float</span> cosTheta, <span style="color:#66d9ef">float</span> R,
-                                spectrum seaLvlExt, <span style="color:#66d9ef">float</span> H, <span style="color:#66d9ef">float</span> n)
-{
-    <span style="color:#66d9ef">float</span> z <span style="color:#f92672">=</span> r <span style="color:#f92672">*</span> n;
-    <span style="color:#66d9ef">float</span> Z <span style="color:#f92672">=</span> R <span style="color:#f92672">*</span> n;
-
-    <span style="color:#66d9ef">float</span> ch <span style="color:#f92672">=</span> RescaledChapman(z, Z, cosTheta);
-
-    <span style="color:#66d9ef">return</span> ch <span style="color:#f92672">*</span> H <span style="color:#f92672">*</span> seaLvlExt;
-}
-
-<span style="color:#75715e">// This variant of the function evaluates optical depth along a bounded path.
-</span><span style="color:#75715e">// &#39;r&#39; is the radial distance from the center of the planet.
-</span><span style="color:#75715e">// rRcp = (1 / r).
-</span><span style="color:#75715e">// &#39;cosTheta&#39; is the value of the dot product of the ray direction and the surface normal.
-</span><span style="color:#75715e">// &#39;dist&#39; is the distance.
-</span><span style="color:#75715e">// seaLvlExt = (sigma_t * b) is the sea-level (height = 0) extinction coefficient.
-</span><span style="color:#75715e">// &#39;R&#39; is the radius of the planet.
-</span><span style="color:#75715e">// n = (1 / H) is the falloff exponent, where &#39;H&#39; is the scale height.
-</span><span style="color:#75715e"></span>spectrum <span style="color:#a6e22e">OptDepthSpherExpMedium</span>(<span style="color:#66d9ef">float</span> r, <span style="color:#66d9ef">float</span> rRcp, <span style="color:#66d9ef">float</span> cosTheta, <span style="color:#66d9ef">float</span> dist, <span style="color:#66d9ef">float</span> R,
-                                spectrum seaLvlExt, <span style="color:#66d9ef">float</span> H, <span style="color:#66d9ef">float</span> n)
-{
-    <span style="color:#66d9ef">float</span> rX        <span style="color:#f92672">=</span> r;
-    <span style="color:#66d9ef">float</span> rRcpX     <span style="color:#f92672">=</span> rRcp;
-    <span style="color:#66d9ef">float</span> cosThetaX <span style="color:#f92672">=</span> cosTheta;
-    <span style="color:#66d9ef">float</span> rY        <span style="color:#f92672">=</span> RadAtDist(rX, rRcpX, cosThetaX, dist);
-    <span style="color:#66d9ef">float</span> cosThetaY <span style="color:#f92672">=</span> CosAtDist(rX, rRcpX, cosThetaX, dist);
-
-    <span style="color:#75715e">// Potentially swap X and Y.
-</span><span style="color:#75715e"></span>    <span style="color:#75715e">// Convention: at point Y, the ray points up.
-</span><span style="color:#75715e"></span>    cosThetaX <span style="color:#f92672">=</span> (cosThetaY <span style="color:#f92672">&gt;=</span> <span style="color:#ae81ff">0</span>) <span style="color:#f92672">?</span> cosThetaX : <span style="color:#f92672">-</span>cosThetaX;
-
-    <span style="color:#66d9ef">float</span> zX  <span style="color:#f92672">=</span> rX <span style="color:#f92672">*</span> n;
-    <span style="color:#66d9ef">float</span> zY  <span style="color:#f92672">=</span> rY <span style="color:#f92672">*</span> n;
-    <span style="color:#66d9ef">float</span> Z   <span style="color:#f92672">=</span> R  <span style="color:#f92672">*</span> n;
-
-    <span style="color:#66d9ef">float</span> chX <span style="color:#f92672">=</span> RescaledChapman(zX, Z, cosThetaX);
-    <span style="color:#66d9ef">float</span> chY <span style="color:#f92672">=</span> ChapmanUpper(zY, abs(cosThetaY)) <span style="color:#f92672">*</span> exp(Z <span style="color:#f92672">-</span> zY); <span style="color:#75715e">// Rescaling adds &#39;exp&#39;
-</span><span style="color:#75715e"></span>
-    <span style="color:#75715e">// We may have swapped X and Y.
-</span><span style="color:#75715e"></span>    <span style="color:#66d9ef">float</span> ch <span style="color:#f92672">=</span> abs(chX <span style="color:#f92672">-</span> chY);
-
-    <span style="color:#66d9ef">return</span> ch <span style="color:#f92672">*</span> H <span style="color:#f92672">*</span> seaLvlExt;
-}
-</code></pre></div><p>Note that using this function (rather than calling <code>OptDepthSpherExpMedium</code> twice and subtracting the results) is beneficial not only for performance but also for correctness: it avoids numerical instability near the horizon where ray directions are prone to alternate between the two hemispheres, which could cause subtraction to result in negative optical depth values. For performance (and numerical stability) reasons, it may be also worth making a special case for when the point \(\bm{y}\) is far enough to be considered outside the atmosphere (if <code>exp(Z - zY) &lt; EPS</code>, for instance). In that case, <code>chY = 0</code> is an adequate approximation.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-c++" data-lang="c++"><span style="display:flex;"><span><span style="color:#66d9ef">float</span> <span style="color:#a6e22e">RadAtDist</span>(<span style="color:#66d9ef">float</span> r, <span style="color:#66d9ef">float</span> rRcp, <span style="color:#66d9ef">float</span> cosTheta, <span style="color:#66d9ef">float</span> s)
+</span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">float</span> x2 <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span> <span style="color:#f92672">+</span> (s <span style="color:#f92672">*</span> rRcp) <span style="color:#f92672">*</span> ((s <span style="color:#f92672">*</span> rRcp) <span style="color:#f92672">+</span> <span style="color:#ae81ff">2</span> <span style="color:#f92672">*</span> cosTheta);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// Equation 38.
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#66d9ef">return</span> r <span style="color:#f92672">*</span> sqrt(x2);
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">float</span> <span style="color:#a6e22e">CosAtDist</span>(<span style="color:#66d9ef">float</span> r, <span style="color:#66d9ef">float</span> rRcp, <span style="color:#66d9ef">float</span> cosTheta, <span style="color:#66d9ef">float</span> s)
+</span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">float</span> x2 <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span> <span style="color:#f92672">+</span> (s <span style="color:#f92672">*</span> rRcp) <span style="color:#f92672">*</span> ((s <span style="color:#f92672">*</span> rRcp) <span style="color:#f92672">+</span> <span style="color:#ae81ff">2</span> <span style="color:#f92672">*</span> cosTheta);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// Equation 39.
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#66d9ef">return</span> ((s <span style="color:#f92672">*</span> rRcp) <span style="color:#f92672">+</span> cosTheta) <span style="color:#f92672">*</span> rsqrt(x2);
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// This variant of the function evaluates optical depth along an infinite path.
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">// &#39;r&#39; is the radial distance from the center of the planet.
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">// &#39;cosTheta&#39; is the value of the dot product of the ray direction and the surface normal.
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">// seaLvlExt = (sigma_t * b) is the sea-level (height = 0) extinction coefficient.
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">// &#39;R&#39; is the radius of the planet.
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">// n = (1 / H) is the falloff exponent, where &#39;H&#39; is the scale height.
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>spectrum <span style="color:#a6e22e">OptDepthSpherExpMedium</span>(<span style="color:#66d9ef">float</span> r, <span style="color:#66d9ef">float</span> cosTheta, <span style="color:#66d9ef">float</span> R,
+</span></span><span style="display:flex;"><span>                                spectrum seaLvlExt, <span style="color:#66d9ef">float</span> H, <span style="color:#66d9ef">float</span> n)
+</span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">float</span> z <span style="color:#f92672">=</span> r <span style="color:#f92672">*</span> n;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">float</span> Z <span style="color:#f92672">=</span> R <span style="color:#f92672">*</span> n;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">float</span> ch <span style="color:#f92672">=</span> RescaledChapman(z, Z, cosTheta);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> ch <span style="color:#f92672">*</span> H <span style="color:#f92672">*</span> seaLvlExt;
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// This variant of the function evaluates optical depth along a bounded path.
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">// &#39;r&#39; is the radial distance from the center of the planet.
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">// rRcp = (1 / r).
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">// &#39;cosTheta&#39; is the value of the dot product of the ray direction and the surface normal.
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">// &#39;dist&#39; is the distance.
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">// seaLvlExt = (sigma_t * b) is the sea-level (height = 0) extinction coefficient.
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">// &#39;R&#39; is the radius of the planet.
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">// n = (1 / H) is the falloff exponent, where &#39;H&#39; is the scale height.
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>spectrum <span style="color:#a6e22e">OptDepthSpherExpMedium</span>(<span style="color:#66d9ef">float</span> r, <span style="color:#66d9ef">float</span> rRcp, <span style="color:#66d9ef">float</span> cosTheta, <span style="color:#66d9ef">float</span> dist, <span style="color:#66d9ef">float</span> R,
+</span></span><span style="display:flex;"><span>                                spectrum seaLvlExt, <span style="color:#66d9ef">float</span> H, <span style="color:#66d9ef">float</span> n)
+</span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">float</span> rX        <span style="color:#f92672">=</span> r;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">float</span> rRcpX     <span style="color:#f92672">=</span> rRcp;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">float</span> cosThetaX <span style="color:#f92672">=</span> cosTheta;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">float</span> rY        <span style="color:#f92672">=</span> RadAtDist(rX, rRcpX, cosThetaX, dist);
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">float</span> cosThetaY <span style="color:#f92672">=</span> CosAtDist(rX, rRcpX, cosThetaX, dist);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// Potentially swap X and Y.
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#75715e">// Convention: at point Y, the ray points up.
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    cosThetaX <span style="color:#f92672">=</span> (cosThetaY <span style="color:#f92672">&gt;=</span> <span style="color:#ae81ff">0</span>) <span style="color:#f92672">?</span> cosThetaX : <span style="color:#f92672">-</span>cosThetaX;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">float</span> zX  <span style="color:#f92672">=</span> rX <span style="color:#f92672">*</span> n;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">float</span> zY  <span style="color:#f92672">=</span> rY <span style="color:#f92672">*</span> n;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">float</span> Z   <span style="color:#f92672">=</span> R  <span style="color:#f92672">*</span> n;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">float</span> chX <span style="color:#f92672">=</span> RescaledChapman(zX, Z, cosThetaX);
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">float</span> chY <span style="color:#f92672">=</span> ChapmanUpper(zY, abs(cosThetaY)) <span style="color:#f92672">*</span> exp(Z <span style="color:#f92672">-</span> zY); <span style="color:#75715e">// Rescaling adds &#39;exp&#39;
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// We may have swapped X and Y.
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#66d9ef">float</span> ch <span style="color:#f92672">=</span> abs(chX <span style="color:#f92672">-</span> chY);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> ch <span style="color:#f92672">*</span> H <span style="color:#f92672">*</span> seaLvlExt;
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>Note that using this function (rather than calling <code>OptDepthSpherExpMedium</code> twice and subtracting the results) is beneficial not only for performance but also for correctness: it avoids numerical instability near the horizon where ray directions are prone to alternate between the two hemispheres, which could cause subtraction to result in negative optical depth values. For performance (and numerical stability) reasons, it may be also worth making a special case for when the point \(\bm{y}\) is far enough to be considered outside the atmosphere (if <code>exp(Z - zY) &lt; EPS</code>, for instance). In that case, <code>chY = 0</code> is an adequate approximation.</p>
 <h4 id="sampling-exponential-media-of-a-spherical-atmosphere">Sampling Exponential Media of a Spherical Atmosphere</h4>
 <p>One does not simply sample the Chapman function. There doesn&rsquo;t appear to be a way to invert the integral formulation (Equation 40), and attempts at solving numerical approximations for distance seem futile. Of course, we still have the option to look for a numerical fit for the tabulated inverse, or to use a look-up table directly&hellip; But we are not going to do that. And here&rsquo;s why.</p>
 <p>In order to sample participating media, we must be able to solve the optical depth equation for distance. If you only have a single analytically-defined volume, sampling it is (usually) trivial. However, once you have several heterogeneous overlapping volumes, you start running into issues. While optical depth is additive, the sampled distance is not. So, what do we do?</p>
 <p>If we can&rsquo;t solve the equation analytically, we can solve it numerically, using the <a href="https://en.wikipedia.org/wiki/Newton%27s_method">Newton–Raphson method</a>. Recall that this method requires being able to make an initial guess, evaluate the function, and take its derivative. Our function is the total optical depth. We can make an initial guess by assuming that the combined medium is uniform (or, under certain assumptions, plane-parallel-exponential). And since we know that the derivative of optical depth is just the extinction coefficient \(\beta_t\) (see Equation 17), so we have all the pieces we need.</p>
 <p>This method is very general and works for arbitrary <a href="https://mcnp.lanl.gov/pdf_files/la-ur-02-6530.pdf">continuous density distributions</a>.</p>
 <p>Sample code for a dual-component spherical atmosphere is listed below.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c++" data-lang="c++"><span style="color:#75715e">#define EPS_ABS  0.0001
-</span><span style="color:#75715e">#define EPS_REL  0.0001
-</span><span style="color:#75715e">#define MAX_ITER 4
-</span><span style="color:#75715e"></span>
-<span style="color:#75715e">// &#39;optDepth&#39; is the value to solve for.
-</span><span style="color:#75715e">// &#39;maxOptDepth&#39; is the maximum value along the ray, s.t. (maxOptDepth &gt;= optDepth).
-</span><span style="color:#75715e">// &#39;maxDist&#39; is the maximum distance along the ray.
-</span><span style="color:#75715e"></span><span style="color:#66d9ef">float</span> <span style="color:#a6e22e">SampleSpherExpMedium</span>(<span style="color:#66d9ef">float</span> optDepth, <span style="color:#66d9ef">float</span> r, <span style="color:#66d9ef">float</span> rRcp, <span style="color:#66d9ef">float</span> cosTheta, <span style="color:#66d9ef">float</span> R,
-                           float2 seaLvlExt, float2 H, float2 n, <span style="color:#75715e">// Air &amp; aerosols
-</span><span style="color:#75715e"></span>                           <span style="color:#66d9ef">float</span> maxOptDepth, <span style="color:#66d9ef">float</span> maxDist)
-{
-    <span style="color:#66d9ef">const</span> <span style="color:#66d9ef">float</span>  optDepthRcp <span style="color:#f92672">=</span> rcp(optDepth);
-    <span style="color:#66d9ef">const</span> float2 Z           <span style="color:#f92672">=</span> R <span style="color:#f92672">*</span> n;
-
-    <span style="color:#75715e">// Make an initial guess (assume the medium is uniform).
-</span><span style="color:#75715e"></span>    <span style="color:#66d9ef">float</span> t <span style="color:#f92672">=</span> maxDist <span style="color:#f92672">*</span> (optDepth <span style="color:#f92672">*</span> rcp(maxOptDepth));
-
-    <span style="color:#75715e">// Establish the ranges of valid distances (&#39;tRange&#39;) and function values (&#39;fRange&#39;).
-</span><span style="color:#75715e"></span>    <span style="color:#66d9ef">float</span> tRange[<span style="color:#ae81ff">2</span>], fRange[<span style="color:#ae81ff">2</span>];
-    tRange[<span style="color:#ae81ff">0</span>] <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;        <span style="color:#75715e">/* -&gt; */</span>  fRange[<span style="color:#ae81ff">0</span>] <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>           <span style="color:#f92672">-</span> optDepth;
-    tRange[<span style="color:#ae81ff">1</span>] <span style="color:#f92672">=</span> maxDist;  <span style="color:#75715e">/* -&gt; */</span>  fRange[<span style="color:#ae81ff">1</span>] <span style="color:#f92672">=</span> maxOptDepth <span style="color:#f92672">-</span> optDepth;
-
-    uint  iter <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
-    <span style="color:#66d9ef">float</span> absDiff <span style="color:#f92672">=</span> optDepth, relDiff <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>;
-
-    <span style="color:#66d9ef">do</span> <span style="color:#75715e">// Perform a Newton–Raphson iteration.
-</span><span style="color:#75715e"></span>    {
-        <span style="color:#66d9ef">float</span> radAtDist <span style="color:#f92672">=</span> RadAtDist(r, rRcp, cosTheta, t);
-        <span style="color:#66d9ef">float</span> cosAtDist <span style="color:#f92672">=</span> CosAtDist(r, rRcp, cosTheta, t);
-        <span style="color:#75715e">// Evaluate the function and its derivatives:
-</span><span style="color:#75715e"></span>        <span style="color:#75715e">// f  [t] = OptDepthAtDist[t] - GivenOptDepth = 0,
-</span><span style="color:#75715e"></span>        <span style="color:#75715e">// f&#39; [t] = ExtCoefAtDist[t],
-</span><span style="color:#75715e"></span>        <span style="color:#75715e">// f&#39;&#39;[t] = ExtCoefAtDist&#39;[t] = -ExtCoefAtDist[t] * CosAtDist[t] / H.
-</span><span style="color:#75715e"></span>        <span style="color:#66d9ef">float</span> optDepthAtDist <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>, extAtDist <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>, extAtDistDeriv <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
-        optDepthAtDist <span style="color:#f92672">+=</span> OptDepthSpherExpMedium(r, rRcp, cosTheta, t, R,
-                                                 seaLvlExt.x, H.x, n.x);
-        optDepthAtDist <span style="color:#f92672">+=</span> OptDepthSpherExpMedium(r, rRcp, cosTheta, t, R,
-                                                 seaLvlExt.y, H.y, n.y);
-        extAtDist      <span style="color:#f92672">+=</span> seaLvlExt.x <span style="color:#f92672">*</span> exp(Z.x <span style="color:#f92672">-</span> radAtDist <span style="color:#f92672">*</span> n.x);
-        extAtDist      <span style="color:#f92672">+=</span> seaLvlExt.y <span style="color:#f92672">*</span> exp(Z.y <span style="color:#f92672">-</span> radAtDist <span style="color:#f92672">*</span> n.y);
-        extAtDistDeriv <span style="color:#f92672">-=</span> seaLvlExt.x <span style="color:#f92672">*</span> exp(Z.x <span style="color:#f92672">-</span> radAtDist <span style="color:#f92672">*</span> n.x) <span style="color:#f92672">*</span> n.x;
-        extAtDistDeriv <span style="color:#f92672">-=</span> seaLvlExt.y <span style="color:#f92672">*</span> exp(Z.y <span style="color:#f92672">-</span> radAtDist <span style="color:#f92672">*</span> n.y) <span style="color:#f92672">*</span> n.y;
-        extAtDistDeriv <span style="color:#f92672">*=</span> cosAtDist;
-
-        <span style="color:#66d9ef">float</span>   f <span style="color:#f92672">=</span> optDepthAtDist <span style="color:#f92672">-</span> optDepth;
-        <span style="color:#66d9ef">float</span>  df <span style="color:#f92672">=</span> extAtDist;
-        <span style="color:#66d9ef">float</span> ddf <span style="color:#f92672">=</span> extAtDistDeriv;
-        <span style="color:#66d9ef">float</span>  dg <span style="color:#f92672">=</span> df <span style="color:#f92672">-</span> <span style="color:#ae81ff">0.5</span> <span style="color:#f92672">*</span> f <span style="color:#f92672">*</span> (ddf <span style="color:#f92672">*</span> rcp(df));
-
-        assert(df <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">0</span> <span style="color:#f92672">&amp;&amp;</span> dg <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">0</span>);
-
-    <span style="color:#75715e">#if 0</span><span style="color:#75715e">
-</span><span style="color:#75715e">        // https://en.wikipedia.org/wiki/Newton%27s_method
-</span><span style="color:#75715e">        float slope = rcp(df);
-</span><span style="color:#75715e"></span><span style="color:#75715e">    #else
-</span><span style="color:#75715e"></span>        <span style="color:#75715e">// https://en.wikipedia.org/wiki/Halley%27s_method
-</span><span style="color:#75715e"></span>        <span style="color:#66d9ef">float</span> slope <span style="color:#f92672">=</span> rcp(dg);
-    <span style="color:#75715e">#endif
-</span><span style="color:#75715e"></span>
-        <span style="color:#66d9ef">float</span> dt <span style="color:#f92672">=</span> <span style="color:#f92672">-</span>f <span style="color:#f92672">*</span> slope;
-
-        <span style="color:#75715e">// Find the boundary value we are stepping towards:
-</span><span style="color:#75715e"></span>        <span style="color:#75715e">// supremum for (f &lt; 0) and infimum for (f &gt; 0).
-</span><span style="color:#75715e"></span>        uint  sgn     <span style="color:#f92672">=</span> asuint(f) <span style="color:#f92672">&gt;&gt;</span> <span style="color:#ae81ff">31</span>;
-        <span style="color:#66d9ef">float</span> tBound  <span style="color:#f92672">=</span> tRange[sgn];
-        <span style="color:#66d9ef">float</span> fBound  <span style="color:#f92672">=</span> fRange[sgn];
-        <span style="color:#66d9ef">float</span> tNewton <span style="color:#f92672">=</span> t <span style="color:#f92672">+</span> dt;
-
-        <span style="color:#66d9ef">bool</span> isInRange <span style="color:#f92672">=</span> tRange[<span style="color:#ae81ff">0</span>] <span style="color:#f92672">&lt;</span> tNewton <span style="color:#f92672">&amp;&amp;</span> tNewton <span style="color:#f92672">&lt;</span> tRange[<span style="color:#ae81ff">1</span>];
-
-        <span style="color:#66d9ef">if</span> (<span style="color:#f92672">!</span>isInRange)
-        {
-            <span style="color:#75715e">// Newton&#39;s algorithm has effectively run out of digits of precision.
-</span><span style="color:#75715e"></span>            <span style="color:#75715e">// While it&#39;s possible to continue improving precision (to a certain degree)
-</span><span style="color:#75715e"></span>            <span style="color:#75715e">// via bisection, it is costly, and the convergence rate is low.
-</span><span style="color:#75715e"></span>            <span style="color:#75715e">// It&#39;s better to recall that, for short distances, optical depth is a
-</span><span style="color:#75715e"></span>            <span style="color:#75715e">// linear function of distance to an excellent degree of approximation.
-</span><span style="color:#75715e"></span>            slope <span style="color:#f92672">=</span> (tBound <span style="color:#f92672">-</span> t) <span style="color:#f92672">*</span> rcp(fBound <span style="color:#f92672">-</span> f);
-            dt    <span style="color:#f92672">=</span> <span style="color:#f92672">-</span>f <span style="color:#f92672">*</span> slope;
-            iter  <span style="color:#f92672">=</span> MAX_ITER;
-        }
-
-        tRange[<span style="color:#ae81ff">1</span> <span style="color:#f92672">-</span> sgn] <span style="color:#f92672">=</span> t; <span style="color:#75715e">// Adjust the range using the
-</span><span style="color:#75715e"></span>        fRange[<span style="color:#ae81ff">1</span> <span style="color:#f92672">-</span> sgn] <span style="color:#f92672">=</span> f; <span style="color:#75715e">// previous values of &#39;t&#39; and &#39;f&#39;
-</span><span style="color:#75715e"></span>
-        t <span style="color:#f92672">=</span> t <span style="color:#f92672">+</span> dt;
-
-        absDiff <span style="color:#f92672">=</span> abs(optDepthAtDist <span style="color:#f92672">-</span> optDepth);
-        relDiff <span style="color:#f92672">=</span> abs(optDepthAtDist <span style="color:#f92672">*</span> optDepthRcp <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>);
-
-        iter<span style="color:#f92672">++</span>;
-
-        <span style="color:#75715e">// Stop when the accuracy goal has been reached.
-</span><span style="color:#75715e"></span>        <span style="color:#75715e">// Note that this uses the accuracy corresponding to the old value of &#39;t&#39;.
-</span><span style="color:#75715e"></span>        <span style="color:#75715e">// The new value of &#39;t&#39; we just computed should result in higher accuracy.
-</span><span style="color:#75715e"></span>    } <span style="color:#66d9ef">while</span> ((absDiff <span style="color:#f92672">&gt;</span> EPS_ABS) <span style="color:#f92672">&amp;&amp;</span> (relDiff <span style="color:#f92672">&gt;</span> EPS_REL) <span style="color:#f92672">&amp;&amp;</span> (iter <span style="color:#f92672">&lt;</span> MAX_ITER));
-
-    <span style="color:#66d9ef">return</span> t;
-}
-</code></pre></div><p>Since optical depth is a smooth monotonically increasing function of distance, this numerical procedure will converge very quickly (typically, after a couple of iterations). If desired, the cost can be fixed by using an iteration counter to terminate the loop, potentially trading accuracy for consistent performance.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-c++" data-lang="c++"><span style="display:flex;"><span><span style="color:#75715e">#define EPS_ABS  0.0001
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">#define EPS_REL  0.0001
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">#define MAX_ITER 4
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// &#39;optDepth&#39; is the value to solve for.
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">// &#39;maxOptDepth&#39; is the maximum value along the ray, s.t. (maxOptDepth &gt;= optDepth).
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">// &#39;maxDist&#39; is the maximum distance along the ray.
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">float</span> <span style="color:#a6e22e">SampleSpherExpMedium</span>(<span style="color:#66d9ef">float</span> optDepth, <span style="color:#66d9ef">float</span> r, <span style="color:#66d9ef">float</span> rRcp, <span style="color:#66d9ef">float</span> cosTheta, <span style="color:#66d9ef">float</span> R,
+</span></span><span style="display:flex;"><span>                           float2 seaLvlExt, float2 H, float2 n, <span style="color:#75715e">// Air &amp; aerosols
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>                           <span style="color:#66d9ef">float</span> maxOptDepth, <span style="color:#66d9ef">float</span> maxDist)
+</span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">const</span> <span style="color:#66d9ef">float</span>  optDepthRcp <span style="color:#f92672">=</span> rcp(optDepth);
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">const</span> float2 Z           <span style="color:#f92672">=</span> R <span style="color:#f92672">*</span> n;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// Make an initial guess (assume the medium is uniform).
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#66d9ef">float</span> t <span style="color:#f92672">=</span> maxDist <span style="color:#f92672">*</span> (optDepth <span style="color:#f92672">*</span> rcp(maxOptDepth));
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// Establish the ranges of valid distances (&#39;tRange&#39;) and function values (&#39;fRange&#39;).
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#66d9ef">float</span> tRange[<span style="color:#ae81ff">2</span>], fRange[<span style="color:#ae81ff">2</span>];
+</span></span><span style="display:flex;"><span>    tRange[<span style="color:#ae81ff">0</span>] <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;        <span style="color:#75715e">/* -&gt; */</span>  fRange[<span style="color:#ae81ff">0</span>] <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>           <span style="color:#f92672">-</span> optDepth;
+</span></span><span style="display:flex;"><span>    tRange[<span style="color:#ae81ff">1</span>] <span style="color:#f92672">=</span> maxDist;  <span style="color:#75715e">/* -&gt; */</span>  fRange[<span style="color:#ae81ff">1</span>] <span style="color:#f92672">=</span> maxOptDepth <span style="color:#f92672">-</span> optDepth;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    uint  iter <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">float</span> absDiff <span style="color:#f92672">=</span> optDepth, relDiff <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">do</span> <span style="color:#75715e">// Perform a Newton–Raphson iteration.
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">float</span> radAtDist <span style="color:#f92672">=</span> RadAtDist(r, rRcp, cosTheta, t);
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">float</span> cosAtDist <span style="color:#f92672">=</span> CosAtDist(r, rRcp, cosTheta, t);
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e">// Evaluate the function and its derivatives:
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>        <span style="color:#75715e">// f  [t] = OptDepthAtDist[t] - GivenOptDepth = 0,
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>        <span style="color:#75715e">// f&#39; [t] = ExtCoefAtDist[t],
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>        <span style="color:#75715e">// f&#39;&#39;[t] = ExtCoefAtDist&#39;[t] = -ExtCoefAtDist[t] * CosAtDist[t] / H.
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>        <span style="color:#66d9ef">float</span> optDepthAtDist <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>, extAtDist <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>, extAtDistDeriv <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+</span></span><span style="display:flex;"><span>        optDepthAtDist <span style="color:#f92672">+=</span> OptDepthSpherExpMedium(r, rRcp, cosTheta, t, R,
+</span></span><span style="display:flex;"><span>                                                 seaLvlExt.x, H.x, n.x);
+</span></span><span style="display:flex;"><span>        optDepthAtDist <span style="color:#f92672">+=</span> OptDepthSpherExpMedium(r, rRcp, cosTheta, t, R,
+</span></span><span style="display:flex;"><span>                                                 seaLvlExt.y, H.y, n.y);
+</span></span><span style="display:flex;"><span>        extAtDist      <span style="color:#f92672">+=</span> seaLvlExt.x <span style="color:#f92672">*</span> exp(Z.x <span style="color:#f92672">-</span> radAtDist <span style="color:#f92672">*</span> n.x);
+</span></span><span style="display:flex;"><span>        extAtDist      <span style="color:#f92672">+=</span> seaLvlExt.y <span style="color:#f92672">*</span> exp(Z.y <span style="color:#f92672">-</span> radAtDist <span style="color:#f92672">*</span> n.y);
+</span></span><span style="display:flex;"><span>        extAtDistDeriv <span style="color:#f92672">-=</span> seaLvlExt.x <span style="color:#f92672">*</span> exp(Z.x <span style="color:#f92672">-</span> radAtDist <span style="color:#f92672">*</span> n.x) <span style="color:#f92672">*</span> n.x;
+</span></span><span style="display:flex;"><span>        extAtDistDeriv <span style="color:#f92672">-=</span> seaLvlExt.y <span style="color:#f92672">*</span> exp(Z.y <span style="color:#f92672">-</span> radAtDist <span style="color:#f92672">*</span> n.y) <span style="color:#f92672">*</span> n.y;
+</span></span><span style="display:flex;"><span>        extAtDistDeriv <span style="color:#f92672">*=</span> cosAtDist;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">float</span>   f <span style="color:#f92672">=</span> optDepthAtDist <span style="color:#f92672">-</span> optDepth;
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">float</span>  df <span style="color:#f92672">=</span> extAtDist;
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">float</span> ddf <span style="color:#f92672">=</span> extAtDistDeriv;
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">float</span>  dg <span style="color:#f92672">=</span> df <span style="color:#f92672">-</span> <span style="color:#ae81ff">0.5</span> <span style="color:#f92672">*</span> f <span style="color:#f92672">*</span> (ddf <span style="color:#f92672">*</span> rcp(df));
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        assert(df <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">0</span> <span style="color:#f92672">&amp;&amp;</span> dg <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">0</span>);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">#if 0</span><span style="color:#75715e">
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">        // https://en.wikipedia.org/wiki/Newton%27s_method
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">        float slope = rcp(df);
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#75715e">    #else
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>        <span style="color:#75715e">// https://en.wikipedia.org/wiki/Halley%27s_method
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>        <span style="color:#66d9ef">float</span> slope <span style="color:#f92672">=</span> rcp(dg);
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">#endif
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">float</span> dt <span style="color:#f92672">=</span> <span style="color:#f92672">-</span>f <span style="color:#f92672">*</span> slope;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e">// Find the boundary value we are stepping towards:
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>        <span style="color:#75715e">// supremum for (f &lt; 0) and infimum for (f &gt; 0).
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>        uint  sgn     <span style="color:#f92672">=</span> asuint(f) <span style="color:#f92672">&gt;&gt;</span> <span style="color:#ae81ff">31</span>;
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">float</span> tBound  <span style="color:#f92672">=</span> tRange[sgn];
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">float</span> fBound  <span style="color:#f92672">=</span> fRange[sgn];
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">float</span> tNewton <span style="color:#f92672">=</span> t <span style="color:#f92672">+</span> dt;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">bool</span> isInRange <span style="color:#f92672">=</span> tRange[<span style="color:#ae81ff">0</span>] <span style="color:#f92672">&lt;</span> tNewton <span style="color:#f92672">&amp;&amp;</span> tNewton <span style="color:#f92672">&lt;</span> tRange[<span style="color:#ae81ff">1</span>];
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">if</span> (<span style="color:#f92672">!</span>isInRange)
+</span></span><span style="display:flex;"><span>        {
+</span></span><span style="display:flex;"><span>            <span style="color:#75715e">// Newton&#39;s algorithm has effectively run out of digits of precision.
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>            <span style="color:#75715e">// While it&#39;s possible to continue improving precision (to a certain degree)
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>            <span style="color:#75715e">// via bisection, it is costly, and the convergence rate is low.
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>            <span style="color:#75715e">// It&#39;s better to recall that, for short distances, optical depth is a
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>            <span style="color:#75715e">// linear function of distance to an excellent degree of approximation.
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>            slope <span style="color:#f92672">=</span> (tBound <span style="color:#f92672">-</span> t) <span style="color:#f92672">*</span> rcp(fBound <span style="color:#f92672">-</span> f);
+</span></span><span style="display:flex;"><span>            dt    <span style="color:#f92672">=</span> <span style="color:#f92672">-</span>f <span style="color:#f92672">*</span> slope;
+</span></span><span style="display:flex;"><span>            iter  <span style="color:#f92672">=</span> MAX_ITER;
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        tRange[<span style="color:#ae81ff">1</span> <span style="color:#f92672">-</span> sgn] <span style="color:#f92672">=</span> t; <span style="color:#75715e">// Adjust the range using the
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>        fRange[<span style="color:#ae81ff">1</span> <span style="color:#f92672">-</span> sgn] <span style="color:#f92672">=</span> f; <span style="color:#75715e">// previous values of &#39;t&#39; and &#39;f&#39;
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
+</span></span><span style="display:flex;"><span>        t <span style="color:#f92672">=</span> t <span style="color:#f92672">+</span> dt;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        absDiff <span style="color:#f92672">=</span> abs(optDepthAtDist <span style="color:#f92672">-</span> optDepth);
+</span></span><span style="display:flex;"><span>        relDiff <span style="color:#f92672">=</span> abs(optDepthAtDist <span style="color:#f92672">*</span> optDepthRcp <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        iter<span style="color:#f92672">++</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e">// Stop when the accuracy goal has been reached.
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>        <span style="color:#75715e">// Note that this uses the accuracy corresponding to the old value of &#39;t&#39;.
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>        <span style="color:#75715e">// The new value of &#39;t&#39; we just computed should result in higher accuracy.
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    } <span style="color:#66d9ef">while</span> ((absDiff <span style="color:#f92672">&gt;</span> EPS_ABS) <span style="color:#f92672">&amp;&amp;</span> (relDiff <span style="color:#f92672">&gt;</span> EPS_REL) <span style="color:#f92672">&amp;&amp;</span> (iter <span style="color:#f92672">&lt;</span> MAX_ITER));
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> t;
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>Since optical depth is a smooth monotonically increasing function of distance, this numerical procedure will converge very quickly (typically, after a couple of iterations). If desired, the cost can be fixed by using an iteration counter to terminate the loop, potentially trading accuracy for consistent performance.</p>
 <p>It is worth noting that since the code internally uses a numerical approximation of the Chapman function, it may not always be possible to reach an arbitrary accuracy goal. Once the algorithm becomes numerically unstable, we refine the result by assuming that the medium is approximately uniform along short intervals.</p>
 <p>In fact, the curvature of the planet can be ignored for moderate distances, making the rectangular inverse a relatively efficient and accurate approximation.</p>
 <h2 id="conclusion">Conclusion</h2>
@@ -706,26 +696,26 @@ $$</p>
 <p>I would like to thank Julian Fong and Sébastien Hillaire for their thoughtful comments and feedback.</p>
 <!-- raw HTML omitted -->
 <!-- raw HTML omitted -->
-<section class="footnotes" role="doc-endnotes">
+<div class="footnotes" role="doc-endnotes">
 <hr>
 <ol>
-<li id="fn:1" role="doc-endnote">
-<p>According to <a href="https://en.wikipedia.org/wiki/Attenuation_coefficient">Wikipedia</a>, this is an old term, and we should refer to it as the <em>attenuation coefficient</em> instead. While it&rsquo;s certainly a better name, in practice, all classical publications call it extinction (this also includes related terms). We use the classical naming convention to avoid confusion. <a href="#fnref:1" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+<li id="fn:1">
+<p>According to <a href="https://en.wikipedia.org/wiki/Attenuation_coefficient">Wikipedia</a>, this is an old term, and we should refer to it as the <em>attenuation coefficient</em> instead. While it&rsquo;s certainly a better name, in practice, all classical publications call it extinction (this also includes related terms). We use the classical naming convention to avoid confusion.&#160;<a href="#fnref:1" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
 </li>
-<li id="fn:2" role="doc-endnote">
-<p>Alternatively, one can use <a href="https://en.wikipedia.org/wiki/Number_density">number density</a> instead of mass density. <a href="#fnref:2" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+<li id="fn:2">
+<p>Alternatively, one can use <a href="https://en.wikipedia.org/wiki/Number_density">number density</a> instead of mass density.&#160;<a href="#fnref:2" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
 </li>
-<li id="fn:3" role="doc-endnote">
-<p>Certain <a href="https://doi.org/10.1002/qj.49707633016">authors</a> use the definition of the phase function that includes the albedo. <a href="#fnref:3" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+<li id="fn:3">
+<p>Certain <a href="https://doi.org/10.1002/qj.49707633016">authors</a> use the definition of the phase function that includes the albedo.&#160;<a href="#fnref:3" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
 </li>
-<li id="fn:4" role="doc-endnote">
-<p>The absorption coefficient in front of the emission term is due to the <a href="https://en.wikipedia.org/wiki/Kirchhoff%27s_law_of_thermal_radiation">Kirchhoff&rsquo;s law</a> which states that, for an arbitrary body emitting and absorbing thermal radiation in thermodynamic equilibrium, the emissivity is equal to the absorptivity. <a href="#fnref:4" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+<li id="fn:4">
+<p>The absorption coefficient in front of the emission term is due to the <a href="https://en.wikipedia.org/wiki/Kirchhoff%27s_law_of_thermal_radiation">Kirchhoff&rsquo;s law</a> which states that, for an arbitrary body emitting and absorbing thermal radiation in thermodynamic equilibrium, the emissivity is equal to the absorptivity.&#160;<a href="#fnref:4" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
 </li>
-<li id="fn:5" role="doc-endnote">
-<p>A <em>homogeneous</em> medium, by definition, contains no inhomogeneities (which cause scattering), while a medium with a <em>uniform density</em> is composed of scattering particles. <a href="#fnref:5" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+<li id="fn:5">
+<p>A <em>homogeneous</em> medium, by definition, contains no inhomogeneities (which cause scattering), while a medium with a <em>uniform density</em> is composed of scattering particles.&#160;<a href="#fnref:5" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
 </li>
 </ol>
-</section>
+</div>
         </div>
 
         
@@ -840,7 +830,7 @@ $$</p>
     <footer id="footer">
     <div class="outer">
         <div id="footer-info" class="inner">
-            &copy; 2023 Zero Radiance
+            &copy; 2024 Zero Radiance
             <br />
             Powered by <a href="https://gohugo.io" target="_blank">Hugo</a> with theme <a href="https://github.com/carsonip/hugo-theme-minos" target="_blank">Minos</a>
         </div>
@@ -859,7 +849,13 @@ $$</p>
     <script defer src="https://zero-radiance.github.io/katex/katex.min.js"></script>
 
     
-    <script defer src="https://zero-radiance.github.io/katex/contrib/auto-render.min.js" onload="renderMathInElement(document.body);"></script>
+    <script defer src="https://zero-radiance.github.io/katex/contrib/auto-render.min.js" onload="renderMathInElement(document.body, {
+    delimiters: [
+        {left: '$$', right: '$$', display: true},
+        {left: '$', right: '$', display: false}
+    ],
+    macros: {'’' : '\'',},
+    });"></script>
     
     <script>
         document.getElementById('main-nav-toggle').addEventListener('click', function () {

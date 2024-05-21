@@ -25,7 +25,7 @@
     <link rel="stylesheet" href="https://zero-radiance.github.io/css/style.css">
     
 
-    <meta name="generator" content="Hugo 0.82.1" />
+    <meta name="generator" content="Hugo 0.115.3">
 </head>
 
 
@@ -86,9 +86,8 @@
 <p>$$ \tag{4} N(u,v) = \frac{T \times B}{\Vert T \times B \Vert}. $$</p>
 <p>This completes the tangent frame, which can be represented as a tangent-to-object-space matrix:</p>
 <p>$$ \tag{5} M_{tangent}(u,v) = [T | B | N]. $$</p>
-<figure>
-    <img src="/img/tbn.png"
-         alt="T, B and N vectors of a quadric shown in red, green and blue, respectively."/> <figcaption>
+<figure><img src="/img/tbn.png"
+         alt="T, B and N vectors of a quadric shown in red, green and blue, respectively."/><figcaption>
             <p><em>T, B and N vectors of a quadric shown in red, green and blue, respectively.</em></p>
         </figcaption>
 </figure>
@@ -123,9 +122,8 @@
 <p>$$ \tag{11} G(s,t) = - \frac{\partial h}{\partial s} I - \frac{\partial h}{\partial t} J + K = \begin{bmatrix} -\partial h / \partial s \cr -\partial h / \partial t \cr 1 \end{bmatrix}, $$</p>
 <p>$$ \tag{12} G(s,t) = K - \gamma. $$</p>
 <p>We will refer to \(G\) as the <em>implicit gradient</em>. Note that \(\langle G, K \rangle\) is always 1.</p>
-<figure>
-    <img src="/img/height_map.png"
-         alt="Height map and its gradient."/> 
+<figure><img src="/img/height_map.png"
+         alt="Height map and its gradient."/>
 </figure>
 
 <p>It&rsquo;s convenient to get the re-parametrization induced by transformed texture coordinates out of the way:</p>
@@ -157,9 +155,8 @@
 <p>To perturb the surface using the height map, we need to perform a change of basis from the orthonormal tangent-space set \(\lbrace I,J,K \rbrace\) to our previously defined object-space set \(\lbrace T,B,N \rbrace\). Doing this correctly is slightly more involved than it may seem at first glance.</p>
 <h2 id="preliminaries-part-3-wrinkled-surfaces">Preliminaries, Part 3: Wrinkled Surfaces</h2>
 <p>The <a href="https://www.microsoft.com/en-us/research/publication/simulation-of-wrinkled-surfaces/">original formulation</a> of bump mapping defines a height-mapped surface by applying a perturbation along the normal of the original surface.</p>
-<figure>
-    <img src="/img/bump_map.png"
-         alt="Bump mapping as depicted by Jim Blinn in his original paper."/> <figcaption>
+<figure><img src="/img/bump_map.png"
+         alt="Bump mapping as depicted by Jim Blinn in his original paper."/><figcaption>
             <p><em>Bump mapping as depicted by Jim Blinn in his original paper.</em></p>
         </figcaption>
 </figure>
@@ -249,9 +246,8 @@ $$ \tag{18} B_p(u,v) = \frac{\partial P}{\partial v}
 <p>$$ \tag{37} N_o(u,v) = \frac{G_o}{ \Vert G_o \Vert } = \frac{N - \Gamma}{ \Vert N - \Gamma \Vert }. $$</p>
 <p>It&rsquo;s interesting to compare the last equation with the equation (12), and to see that they indeed match (up to the normalization factor).</p>
 <p>While we can solve this equation for \(\Gamma\) by projecting the object-space normal onto the tangent plane using the equations (27) and (31), it&rsquo;s more efficient to find the solution geometrically:</p>
-<figure>
-    <img src="/img/grad_obj.png"
-         alt="Surface gradient and the object-space normal."/> <figcaption>
+<figure><img src="/img/grad_obj.png"
+         alt="Surface gradient and the object-space normal."/><figcaption>
             <p><em>Surface gradient and the object-space normal.</em></p>
         </figcaption>
 </figure>
@@ -289,9 +285,8 @@ n_y^2+n_z^2 &amp; -n_x n_y    \cr
 \end{bmatrix} \gamma. $$</p>
 <h4 id="5-tri-planar-mapping">5. Tri-Planar Mapping</h4>
 <p>Tri-planar mapping is an efficient alternative to storing already perturbed normals in a cube map, or using an octahedral or lat-long projection. Instead, the same 2D texture can be reused (up to) three times for <a href="http://www.slideshare.net/icastano/cascades-demo-secrets">X-Y, Y-Z and Z-X planes</a> (of course, nothing prevents us from using 3 different textures at the cost of a larger memory footprint). You can think of it as a cube map with all 6 faces of the cube using the same planar map.</p>
-<figure>
-    <img src="/img/triplanar.png"
-         alt="Triplanar mapping."/> 
+<figure><img src="/img/triplanar.png"
+         alt="Triplanar mapping."/>
 </figure>
 
 <p>The same normal map spaces supported by planar mapping are supported here. In fact, the math is almost exactly the same - the only difference is that we have to do it (up to) three times, and blend the results using the weighting function which depends on the direction of the surface normal.</p>
@@ -454,7 +449,7 @@ n_y^2+n_z^2 &amp; -n_x n_y    \cr
     <footer id="footer">
     <div class="outer">
         <div id="footer-info" class="inner">
-            &copy; 2023 Zero Radiance
+            &copy; 2024 Zero Radiance
             <br />
             Powered by <a href="https://gohugo.io" target="_blank">Hugo</a> with theme <a href="https://github.com/carsonip/hugo-theme-minos" target="_blank">Minos</a>
         </div>
@@ -473,7 +468,13 @@ n_y^2+n_z^2 &amp; -n_x n_y    \cr
     <script defer src="https://zero-radiance.github.io/katex/katex.min.js"></script>
 
     
-    <script defer src="https://zero-radiance.github.io/katex/contrib/auto-render.min.js" onload="renderMathInElement(document.body);"></script>
+    <script defer src="https://zero-radiance.github.io/katex/contrib/auto-render.min.js" onload="renderMathInElement(document.body, {
+    delimiters: [
+        {left: '$$', right: '$$', display: true},
+        {left: '$', right: '$', display: false}
+    ],
+    macros: {'’' : '\'',},
+    });"></script>
     
     <script>
         document.getElementById('main-nav-toggle').addEventListener('click', function () {

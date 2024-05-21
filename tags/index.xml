@@ -5,7 +5,35 @@
     <link>https://zero-radiance.github.io/tags/</link>
     <description>Recent content in Tags on Zero Radiance</description>
     <generator>Hugo -- gohugo.io</generator>
-    <lastBuildDate>Wed, 18 Oct 2023 00:00:00 +0000</lastBuildDate><atom:link href="https://zero-radiance.github.io/tags/index.xml" rel="self" type="application/rss+xml" />
+    <language>en</language>
+    <lastBuildDate>Mon, 20 May 2024 00:00:00 +0000</lastBuildDate><atom:link href="https://zero-radiance.github.io/tags/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>BSDF</title>
+      <link>https://zero-radiance.github.io/tags/bsdf/</link>
+      <pubDate>Mon, 20 May 2024 00:00:00 +0000</pubDate>
+      
+      <guid>https://zero-radiance.github.io/tags/bsdf/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Microfacet</title>
+      <link>https://zero-radiance.github.io/tags/microfacet/</link>
+      <pubDate>Mon, 20 May 2024 00:00:00 +0000</pubDate>
+      
+      <guid>https://zero-radiance.github.io/tags/microfacet/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Specular</title>
+      <link>https://zero-radiance.github.io/tags/specular/</link>
+      <pubDate>Mon, 20 May 2024 00:00:00 +0000</pubDate>
+      
+      <guid>https://zero-radiance.github.io/tags/specular/</guid>
+      <description></description>
+    </item>
+    
     <item>
       <title>Area Lighting</title>
       <link>https://zero-radiance.github.io/tags/area-lighting/</link>

@@ -25,7 +25,7 @@
     <link rel="stylesheet" href="https://zero-radiance.github.io/css/style.css">
     
 
-    <meta name="generator" content="Hugo 0.82.1" />
+    <meta name="generator" content="Hugo 0.115.3">
 </head>
 
 
@@ -101,43 +101,38 @@ p/a &amp; 0 &amp; 0        &amp; 0 \cr
 \end{bmatrix},
 $$</p>
 <p>where \(a\) is the aspect ratio of the sensor, and \(n,f,p\) are the distances to the near, far, and projection planes, respectively. This particular projection matrix is <a href="http://www.songho.ca/opengl/gl_projectionmatrix.html">symmetric</a>, and does not have an <a href="http://www.terathon.com/lengyel/Lengyel-Oblique.pdf">oblique near plane</a>; these cases are less common, and they make the analysis more complicated.</p>
-<p>The resulting vector will have 4 components: \([x',y',z',w]^{\mathrm{T}}\). We can see that the \(w\) component is equal to the third coordinate of the original view-space point (the so-called &ldquo;linear depth&rdquo;), and we shall label it this way. We can obtain the value stored in the Z-buffer value by means of perspective division: \(z=z'/w\).</p>
+<p>The resulting vector will have 4 components: \([x&rsquo;,y&rsquo;,z&rsquo;,w]^{\mathrm{T}}\). We can see that the \(w\) component is equal to the third coordinate of the original view-space point (the so-called &ldquo;linear depth&rdquo;), and we shall label it this way. We can obtain the value stored in the Z-buffer value by means of perspective division: \(z=z&rsquo;/w\).</p>
 <p>Stated more precisely,</p>
 <p>$$ \tag{2} z(w) = \frac{1}{w} \frac{f n}{f-n} - \frac{n}{f-n}. $$</p>
 <p>Since the projection is reversed, it can be shown that \(z(n)=1\) and \(z(f)=0\).</p>
 <p>Then, either by inverting the projection matrix, or solving Equation (2) for \(w\), we can recover</p>
 <p>$$ \tag{3} w(z) = \frac{f n}{n + z (f-n)}. $$</p>
 <p>We shall examine a fairly typical open-world case of \(n=0.1\) and \(f=10000\) meters. First, let us plot \(w\) against \(z\).</p>
-<figure>
-    <img src="/img/z-buffer_basics_1.png"/> 
+<figure><img src="/img/z-buffer_basics_1.png"/>
 </figure>
 
 <p>This behavior is typical for functions of \(\mathrm{O}(z^{-1})\): there is a strong peak as \(z \to 0\) and a long tail as \(z \to \infty\).</p>
 <p>Plotting the same graph on a logarithmic scale (compare the vertical axes) allows us to take a better look:</p>
-<figure>
-    <img src="/img/z-buffer_basics_2.png"/> 
+<figure><img src="/img/z-buffer_basics_2.png"/>
 </figure>
 
 <h2 id="fixed-point-z-buffer">Fixed-Point Z-Buffer</h2>
 <p>In order to become more familiar with the process of analysis, and to obtain a comparison point, let us consider a simple case of an unsigned, normalized, fixed-point Z-buffer. Assuming 24-bit binary storage \((k=24)\) that we interpret as a decimal number \(d\), we can compute the depth value it represents as follows:</p>
 <p>$$ \tag{4} \upsilon(d) = \frac{d}{2^k-1} = \frac{d}{16777215}. $$</p>
 <p>Plugging \(\upsilon\) instead of \(z\) into Equation (3) allows us to map the values stored within the Z-buffer to the original linear depth values they represent.</p>
-<figure>
-    <img src="/img/depth_fixed_1.png"/> 
+<figure><img src="/img/depth_fixed_1.png"/>
 </figure>
 
 <p>Since we obtain \(\upsilon\) by linearly transforming (scaling) \(d\), the graph looks identical to the one from the previous section. Unfortunately, it means that over 90% of the values of \(d\) are used for objects less than 1 meter away from the viewer.</p>
 <p>Since we are interested in <em>precision</em> of the Z-buffer, we should find a way to plot its <em>resolution</em>. By resolution, we mean the smallest positive linear depth difference (smaller is better) that results in a different binary value of \(z\) (some may consider this number a &ldquo;reciprocal of resolution&rdquo;; the definition and the naming are both deliberate to simplify discussion and plotting). In other words, for a certain decimal number \(d\), it is the absolute difference \(\Delta w\) between the linear depth value \(d\) corresponds to and the linear depth value of its immediate neighbor.</p>
 <p>Mathematically, for a continuous function, we can obtain the desired graph by plotting the absolute value of the derivative</p>
 <p>$$ \tag{5} \Delta w \approx \Bigg\lvert \frac{\partial w \big( \upsilon(d) \big)}{\partial d} \Bigg\rvert. $$</p>
-<figure>
-    <img src="/img/depth_fixed_2.png"/> 
+<figure><img src="/img/depth_fixed_2.png"/>
 </figure>
 
 <p>The graph looks remarkably similar to the previous one (except for the scale). But, in fact, it is not - the derivative of \(\mathrm{O}(z^{-1})\) is \(\mathrm{O}(z^{-2})\). The logarithmic scale we use for plotting can be a little misleading.</p>
 <p>We can make the resulting graph easier to read by converting the \(d\)-axis to the \(w\)-axis. Intuitively, what we want to do is to replace the horizontal axis of the current graph with the vertical axis of the previous one. We can do that by (literally) converting the graph into a large list of pairs \(\lbrace d, \Delta w \rbrace\), and then, for each one, replacing the number \(d\) with the value of \(w\) it corresponds to, and plotting these pairs as points.</p>
-<figure>
-    <img src="/img/depth_fixed_3.png"/> 
+<figure><img src="/img/depth_fixed_3.png"/>
 </figure>
 
 <p>Because of the Z-reversal, the new graph appears transposed. But now it is more clear that, for instance, the depth resolution falls below 1 meter at distances exceeding 1000 meters.</p>
@@ -153,74 +148,61 @@ t_{\phi}(d) &amp;= \sum_{i=0}^{t-1} 2^{i-t} \left(\left\lfloor 2^{-i} d \right\r
 $$</p>
 <p>are the sign, the biased exponent, and the trailing significand, respectively. The <a href="https://ieeexplore.ieee.org/document/8766229">IEEE standard</a> defines \(k=32,t=23,b=127\) as encoding parameters for 32-bit floating-point numbers. Additionally, we should keep in mind that the values of \(z\) are restricted to the unit interval, so, assuming denormal numbers are flushed to zero, \(d\) can either be zero or take on values in the range \([1 \times 2^{23}, 127 \times 2^{23}] = [8388608, 1065353216]\). That is less than a quarter of all 32-bit decimal numbers (however, it is also 63 times more values than can be stored in a 24-bit buffer). Additionally, this puts a well-defined upper bound on potential precision improvements that could result from expanding the range of values of \(z\).</p>
 <p>Plotting Equation 6 as a function of \(d\) reveals that the first billion values of \(\phi\) are very small.</p>
-<figure>
-    <img src="/img/depth_floating_1.png"/> 
+<figure><img src="/img/depth_floating_1.png"/>
 </figure>
 
 <p>The quasi-exponential nature of the function can be clearly observed if we zoom in near \(\phi = 1\).</p>
-<figure>
-    <img src="/img/depth_floating_2.png"/> 
+<figure><img src="/img/depth_floating_2.png"/>
 </figure>
 
 <p>Zooming in some more, we can see that the function we defined is, in fact, constant between subsequent values of \(d\) (one can make the case that it should be constant between midpoints, but we will ignore rounding subtleties in this analysis).</p>
-<figure>
-    <img src="/img/depth_floating_3.png"/> 
+<figure><img src="/img/depth_floating_3.png"/>
 </figure>
 
 <p>This is the limit of floating-point precision. All values that fall in-between must be rounded to machine-representable ones.</p>
 <p>Substitution of \(\phi\) for \(z\) in Equation (3) allows us to plot linear depth against \(d\).</p>
-<figure>
-    <img src="/img/depth_floating_4.png"/> 
+<figure><img src="/img/depth_floating_4.png"/>
 </figure>
 
 <p>You may find the graph surprising (<a href="https://twitter.com/zalbard/status/1179532228885237760">I certainly did</a>). We only see an exponential distribution of \(w\) appear after around 900 million values. To give you some idea of the numbers on the horizontal line, \(\phi(7 \times 10^8) \approx 8.22242 \times 10^{-14}\) and \(w \big(\phi(7 \times 10^8)\big) \approx 9999.9999\). If we consider only the last 10% of the values of \(d\), they cover 90% of the viewing range. So, in fact, the <em>actual</em> useful range of decimal values is even smaller than originally anticipated. (<em>&ldquo;It may be worth pointing out that the long horizontal segment on this graph corresponds to the &ldquo;long tail&rdquo; of exceedingly small floating-point values (e.g. 2⁻²⁰ down to 2⁻¹²⁷). Consulting Equation (3), we can see that when we have a finite far plane, then whenever z ≪ n/f in magnitude, we will have w ≈ f. Here, n/f = 10⁻⁵ so any z values from 10⁻⁶ or so on down will be crushed against the far plane and basically useless. Setting an infinite far plane alleviates this problem.&rdquo; - Nathan Reed</em>)</p>
 <p>What about precision, then? Since \({\phi}\) is constant between (and discontinuous at) subsequent decimal values, we cannot really use standard methods of real analysis such as taking the derivative. But, since we are just interested in the difference between linear depth values for successive decimal numbers, we can approximate \(\partial w / \partial d\) using <a href="https://en.wikipedia.org/wiki/Finite_difference">finite differences</a> which operate exactly that way:</p>
 <p>$$ \tag{8} \Delta w \approx \Bigg\lvert \frac{w \big( {\phi}(d+1) \big) - w \big( {\phi}(d-1) \big)}{2} \Bigg\rvert. $$</p>
-<figure>
-    <img src="/img/depth_floating_5.png"/> 
+<figure><img src="/img/depth_floating_5.png"/>
 </figure>
 
 <p>Do you recall the quasi-linear segments of \({\phi}\) we saw earlier? The derivative of a linear function is a constant, so, if you zoom in a little bit, that is exactly what you see on the left side of the graph (where \(w\) is practically constant). We have an absurdly high level of precision at the far plane \((d \to 0)\), but, most importantly, the depth resolution stays fairly high throughout the whole range.</p>
 <p>For completeness, we can zoom in near \({\phi} = 1\) again (on a linear scale to facilitate comparison).</p>
-<figure>
-    <img src="/img/depth_floating_6.png"/> 
+<figure><img src="/img/depth_floating_6.png"/>
 </figure>
 
 <p>At this point \(w\) is exponentially decreasing, so the interaction between \(1/z\) and the quasi-exponential floating-point behavior is more complex. The gaps correspond to the endpoints of subsequent quasi-linear segments of \({\phi}.\) Admittedly, they are larger than I anticipated. If you have a theory why that is the case, please feel free to share it with the rest of the community on Twitter.</p>
 <p>As before, we can swap the \(d\)-axis for the \(w\)-axis.</p>
-<figure>
-    <img src="/img/depth_floating_7.png"/> 
+<figure><img src="/img/depth_floating_7.png"/>
 </figure>
 
 <p>This really puts things into perspective (I encourage you to compare the graph of \(\Delta w(d)\) with this one). First, we have sub-millimeter resolution across the entire depth range. More interestingly, it remains approximately constant, except for the regions located next to the near and far planes, where we allocate most of the available bits. In fact, including the far plane is skewing the graph so much that, if we only consider \(n \leq w \leq 9000\) \((d &gt; 0.9 \times 10^9)\), it paints a rather different picture:</p>
-<figure>
-    <img src="/img/depth_floating_8.png"/> 
+<figure><img src="/img/depth_floating_8.png"/>
 </figure>
 
 <p>With so much precision allocated for the region near the far plane, it is natural to wonder how the distance to the far plane affects the depth resolution. Can we push it <a href="http://www.terathon.com/gdc07_lengyel.pdf">infinitely far away</a> &ldquo;for free&rdquo;?</p>
-<figure>
-    <img src="/img/depth_floating_9.png"/> 
+<figure><img src="/img/depth_floating_9.png"/>
 </figure>
 
-<figure>
-    <img src="/img/depth_floating_9.5.png"/> 
+<figure><img src="/img/depth_floating_9.5.png"/>
 </figure>
 
 <p>Turns out, if we do that, precision is barely affected for distances up to around 1000 meters. As we get farther away from the camera, precision no longer remains constant, and starts to drop in a linear fashion (to be more specific: precision decreases approximately linearly up to the distance of 1000 meters for both \(f=10000\) and \(f \to \infty\); the behavior varies past that point). We can see that if we create a plot with both axes using a logarithmic scale.</p>
-<figure>
-    <img src="/img/depth_floating_10.png"/> 
+<figure><img src="/img/depth_floating_10.png"/>
 </figure>
 
 <p>Considering the expanded viewing range, that is a perfectly reasonable trade-off.</p>
 <p>You may wonder how it compares to a 32-bit fixed-point <a href="http://tulrich.com/geekstuff/log_depth_buffer.txt">logarithmic depth</a> buffer. By <a href="https://en.m.wikipedia.org/wiki/Logarithmic_derivative">definition</a>, it has constant <em>relative</em> precision, such that \((\Delta w)/w \in \mathrm{O}(1)\). More intuitively, \(\Delta w \in \mathrm{O}(w)\), which implies that the depth resolution scales linearly with distance.</p>
 <p>Turns out, if we plot both (using \(f = 10^{37}\) to maintain the scale of the graph), they are surprisingly close.</p>
-<figure>
-    <img src="/img/depth_log_1.png"/> 
+<figure><img src="/img/depth_log_1.png"/>
 </figure>
 
 <p>The floating-point Z-buffer is slightly behind in terms of depth resolution, which can be partially explained by the fact that it only uses around a quarter of available values of \(d\).</p>
-<figure>
-    <img src="/img/depth_log_2.png"/> 
+<figure><img src="/img/depth_log_2.png"/>
 </figure>
 
 <p>Zooming in, we can confirm that (in the limit of \(f \to \infty\)) a reversed floating-point Z-buffer is an approximation of a logarithmic depth buffer. It maintains the shape of the curve, but not its continuity. Nevertheless, it has a major performance advantage, since logarithmic depth <a href="http://tulrich.com/geekstuff/log_depth_buffer.txt">cannot be linearly interpolated</a>, which makes it less useful in practice.</p>
@@ -338,7 +320,7 @@ $$</p>
     <footer id="footer">
     <div class="outer">
         <div id="footer-info" class="inner">
-            &copy; 2023 Zero Radiance
+            &copy; 2024 Zero Radiance
             <br />
             Powered by <a href="https://gohugo.io" target="_blank">Hugo</a> with theme <a href="https://github.com/carsonip/hugo-theme-minos" target="_blank">Minos</a>
         </div>
@@ -357,7 +339,13 @@ $$</p>
     <script defer src="https://zero-radiance.github.io/katex/katex.min.js"></script>
 
     
-    <script defer src="https://zero-radiance.github.io/katex/contrib/auto-render.min.js" onload="renderMathInElement(document.body);"></script>
+    <script defer src="https://zero-radiance.github.io/katex/contrib/auto-render.min.js" onload="renderMathInElement(document.body, {
+    delimiters: [
+        {left: '$$', right: '$$', display: true},
+        {left: '$', right: '$', display: false}
+    ],
+    macros: {'’' : '\'',},
+    });"></script>
     
     <script>
         document.getElementById('main-nav-toggle').addEventListener('click', function () {

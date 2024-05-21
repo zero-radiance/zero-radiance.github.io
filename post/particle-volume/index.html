@@ -25,7 +25,7 @@
     <link rel="stylesheet" href="https://zero-radiance.github.io/css/style.css">
     
 
-    <meta name="generator" content="Hugo 0.82.1" />
+    <meta name="generator" content="Hugo 0.115.3">
 </head>
 
 
@@ -83,9 +83,8 @@
 <p>It is important to understand that while both \(E_n\) and \(I_n\) are defined with respect to the surface normal \(\bm{n}\), \(L_i\) is measured across the direction \(\bm{i}\) of the incident radiation. Comparing Equations 2-4, it is clear that</p>
 <p>$$ \tag{5} dE_n = dE_i \cos{\theta} = L_i \cos{\theta} d\Omega_n. $$
 $$ \tag{6} dI_n = dI_i \cos{\theta} = L_i \cos{\theta} d\sigma_n, $$</p>
-<figure>
-    <img src="/img/radiometry.png"
-         alt="Radiance vs irradiance."/> <figcaption>
+<figure><img src="/img/radiometry.png"
+         alt="Radiance vs irradiance."/><figcaption>
             <p><em>Radiance vs irradiance.</em></p>
         </figcaption>
 </figure>
@@ -97,9 +96,9 @@ $$ \tag{6} dI_n = dI_i \cos{\theta} = L_i \cos{\theta} d\sigma_n, $$</p>
 <p>By <a href="https://en.wikipedia.org/wiki/Helmholtz_reciprocity">reciprocity</a>, if we turn the sensor into an emitter and replace \(\bm{i}\) with \(\bm{o}\), the resulting equations remain valid.</p>
 <p>For additional details, see Chapter 3 of Veach&rsquo;s <a href="http://graphics.stanford.edu/papers/veach_thesis/">Ph.D. thesis</a> and the references listed therein.</p>
 <h2 id="light-scattering-by-a-single-particle">Light Scattering by a Single Particle</h2>
-<p>The interaction of light with an individual particle is quantified by the <a href="http://glossary.ametsoc.org/wiki/Differential_(scattering)_cross_section">differential scattering cross section</a> \(\sigma_s'\). It is defined as the ratio of the spectral intensity<sup id="fnref:4"><a href="#fn:4" class="footnote-ref" role="doc-noteref">4</a></sup> \(I_o\) scattered in the given direction \(\bm{o}\) to the  spectral irradiance \(E_i\) incident from the direction \(\bm{i}\):</p>
+<p>The interaction of light with an individual particle is quantified by the <a href="http://glossary.ametsoc.org/wiki/Differential_(scattering)_cross_section">differential scattering cross section</a> \(\sigma_s&rsquo;\). It is defined as the ratio of the spectral intensity<sup id="fnref:4"><a href="#fn:4" class="footnote-ref" role="doc-noteref">4</a></sup> \(I_o\) scattered in the given direction \(\bm{o}\) to the  spectral irradiance \(E_i\) incident from the direction \(\bm{i}\):</p>
 <p>$$ \tag{8}
-\sigma_s'(\bm{i}, \bm{o}) =
+\sigma_s&rsquo;(\bm{i}, \bm{o}) =
 \frac{d \sigma_s}{d \Omega_o} =
 \frac{I_o}{E_i}.
 $$</p>
@@ -107,7 +106,7 @@ $$</p>
 <p>We can obtain the <a href="https://www.feynmanlectures.caltech.edu/I_32.html">scattering cross section</a> \(\sigma_s\) by integrating over \(4 \pi\) steradians:</p>
 <p>$$ \tag{9}
 \sigma_s(\bm{i}) =
-\int_{4 \pi} \sigma_s' d \Omega_o =
+\int_{4 \pi} \sigma_s&rsquo; d \Omega_o =
 \frac{\int_{4 \pi} I_o d \Omega_o}{E_i} =
 \frac{\Phi_o}{E_i}. $$</p>
 <p>In other words, it is just the ratio of the scattered spectral flux \(\Phi_o\) to the incident spectral irradiance \(E_i\). It has the dimensions of an area; however, it is not a geometrical area. It can be imagined as a small disk<sup id="fnref:5"><a href="#fn:5" class="footnote-ref" role="doc-noteref">5</a></sup> normal with respect to the incident beam \(\bm{i}\) (don&rsquo;t be confused by the subscript \(s\)).</p>
@@ -118,9 +117,8 @@ $$</p>
 Q_a = \frac{\sigma_a}{\sigma_g} = \frac{\Phi_a}{\Phi_i}, \qquad
 Q_s = \frac{\sigma_s}{\sigma_g} = \frac{\Phi_o}{\Phi_i}, \qquad
 Q_t = \frac{\sigma_t}{\sigma_g} = \frac{\Phi_t}{\Phi_i}. $$</p>
-<figure>
-    <img src="/img/particle_cross_section.png"
-         alt="Geometrical cross section of a particle."/> <figcaption>
+<figure><img src="/img/particle_cross_section.png"
+         alt="Geometrical cross section of a particle."/><figcaption>
             <p><em>Geometrical cross section of a particle.</em></p>
         </figcaption>
 </figure>
@@ -138,7 +136,7 @@ $$</p>
 \sigma_s(\bm{i}) f_p(\bm{i}, \bm{o}) =
 \frac{\Phi_o}{E_i} \frac{I_o}{\frac{1}{4 \pi} \Phi_o}. $$</p>
 <p>The spectral flux cancels out, and we find the connection with the differential scattering cross section:</p>
-<p>$$ \tag{14} \sigma_s'(\bm{i}, \bm{o}) = \sigma_s \frac{f_p}{4 \pi}. $$</p>
+<p>$$ \tag{14} \sigma_s&rsquo;(\bm{i}, \bm{o}) = \sigma_s \frac{f_p}{4 \pi}. $$</p>
 <p>For a more elaborate derivation based on wave optics, see Chapter XIII of Born &amp; Wolf, <a href="https://doi.org/10.1017/CBO9781139644181">Principles of optics</a>, or Chapter 2 of Mishchenko, Travis &amp; Lacis, <a href="https://www.cambridge.org/9780521782524">Scattering, Absorption, and Emission of Light by Small Particles</a>.</p>
 <h2 id="light-scattering-by-a-group-of-particles">Light Scattering by a Group of Particles</h2>
 <p>Let us see how we can extend this theory to scattering by \(N\) particles. When an atom interacts with light, it experiences a <a href="http://plaza.ufl.edu/dwhahn/Rayleigh%20and%20Mie%20Light%20Scattering.pdf">periodic perturbation of its electron cloud</a>, which turns it into a source of radiation. Assuming <a href="https://en.wikipedia.org/wiki/Elastic_scattering">elastic scattering</a> (ignoring the <a href="https://en.wikipedia.org/wiki/Raman_scattering">Raman effect</a>), this radiation will have the same frequency as the incident light. Additionally, assuming that all the particles are identical (including their orientation), they will all radiate energy in exactly the same way.</p>
@@ -164,9 +162,8 @@ and can be used to define the <a href="/post/analytic-media/">scattering coeffic
 <p>Intuitively, the &ldquo;left-over&rdquo; \(dz\) makes sense. If we increase \(dz\), the total volume increases, the density correspondingly decreases, and, since the number of particles remains constant, the amount of spectral radiance does not change.</p>
 <p>In light transport applications, we typically deal with radiance rather than irradiance. This can be achieved by substituting<sup id="fnref:6"><a href="#fn:6" class="footnote-ref" role="doc-noteref">6</a></sup> Equation 5 and introducing an integral over \(4 \pi\) steradians:</p>
 <p>$$ \tag{23} dL_o = \int_{4 \pi} \beta_s \frac{f_p}{4 \pi} L_i d \Omega_i dz. $$</p>
-<figure>
-    <img src="/img/volume_cross_section.png"
-         alt="Scattering by a volume element."/> <figcaption>
+<figure><img src="/img/volume_cross_section.png"
+         alt="Scattering by a volume element."/><figcaption>
             <p><em>Scattering by a volume element.</em></p>
         </figcaption>
 </figure>
@@ -178,32 +175,32 @@ and can be used to define the <a href="/post/analytic-media/">scattering coeffic
 <p>For a derivation from the volume scattering viewpoint, see Chapter I of Chandrasekhar, <a href="https://doi.org/10.1002/qj.49707633016">Radiative transfer</a>.</p>
 <h2 id="acknowledgments">Acknowledgments</h2>
 <p>I would like to thank Eugene d&rsquo;Eon for his thoughtful comments and feedback, and Don Grainger for his <a href="http://eodg.atm.ox.ac.uk/user/grainger/research/book/">book</a> and for reviewing this article.</p>
-<section class="footnotes" role="doc-endnotes">
+<div class="footnotes" role="doc-endnotes">
 <hr>
 <ol>
-<li id="fn:1" role="doc-endnote">
-<p>Historically, radiance is called <em>intensity</em> and spectral radiance is called <em>specific intensity</em>. Personally, I don&rsquo;t find this name to be specific enough. <a href="#fnref:1" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+<li id="fn:1">
+<p>Historically, radiance is called <em>intensity</em> and spectral radiance is called <em>specific intensity</em>. Personally, I don&rsquo;t find this name to be specific enough.&#160;<a href="#fnref:1" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
 </li>
-<li id="fn:2" role="doc-endnote">
-<p>Certain expressions can be simplified by using the <em>projected area</em> measure \(d\sigma_i = d\sigma_n \cos{\theta}\)  or the <em>projected solid angle</em> measure \(d\Omega_i = d\Omega_n \cos{\theta}\). <a href="#fnref:2" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+<li id="fn:2">
+<p>Certain expressions can be simplified by using the <em>projected area</em> measure \(d\sigma_i = d\sigma_n \cos{\theta}\)  or the <em>projected solid angle</em> measure \(d\Omega_i = d\Omega_n \cos{\theta}\).&#160;<a href="#fnref:2" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
 </li>
-<li id="fn:3" role="doc-endnote">
-<p>If the sensor is not planar, the normal \(\bm{n}\) is a function of position \(\bm{x}\). However, it is simpler to think of the sensor as a <a href="https://mathworld.wolfram.com/Manifold.html">manifold</a> composed of infinitesimal rectangles. <a href="#fnref:3" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+<li id="fn:3">
+<p>If the sensor is not planar, the normal \(\bm{n}\) is a function of position \(\bm{x}\). However, it is simpler to think of the sensor as a <a href="https://mathworld.wolfram.com/Manifold.html">manifold</a> composed of infinitesimal rectangles.&#160;<a href="#fnref:3" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
 </li>
-<li id="fn:4" role="doc-endnote">
-<p>The reason we use intensity rather than radiance is that the scatterer acts as a point charge (or a point source, if you will). While the particle does have an area, its entire volume scatters light, which means that a volume (rather than an area) energy density measure would be more appropriate. <a href="#fnref:4" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+<li id="fn:4">
+<p>The reason we use intensity rather than radiance is that the scatterer acts as a point charge (or a point source, if you will). While the particle does have an area, its entire volume scatters light, which means that a volume (rather than an area) energy density measure would be more appropriate.&#160;<a href="#fnref:4" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
 </li>
-<li id="fn:5" role="doc-endnote">
-<p>The &ldquo;small disk&rdquo; model is convenient in problems of light scattering by spherical particles since their geometrical cross section is also a disk. In the volume scattering case, the volume element is typically a rectangular cuboid, which makes the &ldquo;little square&rdquo; model more appropriate for describing the cross sections. <a href="#fnref:5" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+<li id="fn:5">
+<p>The &ldquo;small disk&rdquo; model is convenient in problems of light scattering by spherical particles since their geometrical cross section is also a disk. In the volume scattering case, the volume element is typically a rectangular cuboid, which makes the &ldquo;little square&rdquo; model more appropriate for describing the cross sections.&#160;<a href="#fnref:5" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
 </li>
-<li id="fn:6" role="doc-endnote">
-<p>The cosine factor does not appear in the calculation because the scattering cross section is, by definition, normal to the direction of incidence. <a href="#fnref:6" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+<li id="fn:6">
+<p>The cosine factor does not appear in the calculation because the scattering cross section is, by definition, normal to the direction of incidence.&#160;<a href="#fnref:6" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
 </li>
-<li id="fn:7" role="doc-endnote">
-<p>If we wish to model the <a href="https://doi.org/10.1145/2557605">refractive radiative transfer equation</a> instead, we must remember to also account for continuous reflection/transmission as well as the associated change in the solid angle. <a href="#fnref:7" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+<li id="fn:7">
+<p>If we wish to model the <a href="https://doi.org/10.1145/2557605">refractive radiative transfer equation</a> instead, we must remember to also account for continuous reflection/transmission as well as the associated change in the solid angle.&#160;<a href="#fnref:7" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
 </li>
 </ol>
-</section>
+</div>
         </div>
 
         
@@ -316,7 +313,7 @@ and can be used to define the <a href="/post/analytic-media/">scattering coeffic
     <footer id="footer">
     <div class="outer">
         <div id="footer-info" class="inner">
-            &copy; 2023 Zero Radiance
+            &copy; 2024 Zero Radiance
             <br />
             Powered by <a href="https://gohugo.io" target="_blank">Hugo</a> with theme <a href="https://github.com/carsonip/hugo-theme-minos" target="_blank">Minos</a>
         </div>
@@ -335,7 +332,13 @@ and can be used to define the <a href="/post/analytic-media/">scattering coeffic
     <script defer src="https://zero-radiance.github.io/katex/katex.min.js"></script>
 
     
-    <script defer src="https://zero-radiance.github.io/katex/contrib/auto-render.min.js" onload="renderMathInElement(document.body);"></script>
+    <script defer src="https://zero-radiance.github.io/katex/contrib/auto-render.min.js" onload="renderMathInElement(document.body, {
+    delimiters: [
+        {left: '$$', right: '$$', display: true},
+        {left: '$', right: '$', display: false}
+    ],
+    macros: {'’' : '\'',},
+    });"></script>
     
     <script>
         document.getElementById('main-nav-toggle').addEventListener('click', function () {
