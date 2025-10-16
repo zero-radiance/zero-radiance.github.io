@@ -60,7 +60,7 @@ which is defined in terms of the spectral irradiance measured across the beam (p
 
 $$ \tag{8} dE\_i = \frac{dE\_n}{\cos{\theta}} = L\_i d\Omega\_i. $$
 
-{{< figure src="/img/radiometry.png" caption="*Radiance vs irradiance.*" >}}
+{{< figure src="/img/radiometry.png" caption="*Intensity vs irradiance.*" >}}
 
 Independence from the surface orientation coupled with [invariance along the ray](https://en.wikipedia.org/wiki/Etendue#Conservation_of_basic_radiance) makes the (basic) radiance a very useful quantity for light transport applications.
 
