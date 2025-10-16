@@ -15,7 +15,9 @@ I have [previously](/post/analytic-media/) covered the basics of the volume scat
 
 ## Radiometry Crash Course
 
-Imagine a light sensor (or a [photon](https://en.wikipedia.org/wiki/Photon) detector, with each photon carrying $h \nu$ joules of [energy](https://en.wikipedia.org/wiki/Photon_energy)) with the *surface area* $\sigma\_n$. We would like to measure the amount of [radiant energy](https://en.wikipedia.org/wiki/Radiant_energy) $Q\_n$ absorbed by the sensor over the period of *time* $t$. This can be done in several different ways, depending on the parametrization of the incident radiation.
+Imagine a light sensor (or a [photon](https://en.wikipedia.org/wiki/Photon) detector, with each photon carrying $h \nu$ joules of [energy](https://en.wikipedia.org/wiki/Photon_energy)) with the *surface area* $\sigma\_n$ and the *surface normal*[^3] $\bm{n}$. We would like to measure the amount of [radiant energy](https://en.wikipedia.org/wiki/Radiant_energy) $Q\_n$ absorbed by (or passing through) the sensor during the period of *time* $t$. This can be done in several different ways, depending on the parametrization of the incident radiation.
+
+[^3]: If the sensor is not planar, the normal $\bm{n}$ is a function of position $\bm{x}$. However, it is simpler to think of the sensor as a [manifold](https://mathworld.wolfram.com/Manifold.html) composed of infinitesimal rectangles.
 
 If the [spectral flux](https://en.wikipedia.org/wiki/Radiant_flux#Spectral_flux) $\Phi\_n$ in the *frequency interval* $d\nu$ reaches the sensor,
 
@@ -23,36 +25,44 @@ $$ \tag{1} dQ\_n = \Phi\_n d\nu dt. $$
 
 The flux is a very coarse quantity in the sense that it does not tell us where the radiation is coming from and to what degree the different parts of the sensor are affected.
 
-In case the flux density on the surface of the sensor is known, it is given by the [spectral irradiance](https://en.wikipedia.org/wiki/Irradiance#Spectral_irradiance) $E\_n$:
+In case the flux density on the surface is known, it is given by the [spectral irradiance](https://en.wikipedia.org/wiki/Irradiance#Spectral_irradiance) $E\_n$:
 
 $$ \tag{2} dQ\_n = E\_n d\sigma\_n d\nu dt. $$
 
-If we can only determine the directional characteristics of the flux, it can be represented using the [spectral intensity](https://en.wikipedia.org/wiki/Radiant_intensity#Spectral_intensity) $I\_n$:
+If we can only determine the directional characteristics of the flux, it can be represented using the [spectral intensity](https://en.wikipedia.org/wiki/Radiant_intensity#Spectral_intensity) $I\_i$:
 
-$$ \tag{3} dQ\_n = I\_n d\Omega\_n d\nu dt, $$
+$$ \tag{3} dQ\_n = I\_i d\Omega\_i d\nu dt, $$
 
-where $d\Omega\_n$ is the *solid angle* [measure](https://en.wikipedia.org/wiki/Lebesgue_integration#Measure_theory) associated with the direction of the intensity. More commonly, this equation is used to describe emission (or scattering) by point sources (or scatters) which have no associated surface normal or area.
+where $d\Omega\_i$ is the *solid angle* [measure](https://en.wikipedia.org/wiki/Lebesgue_integration#Measure_theory) associated with the *incident direction* $\bm{i}$. Note that the left-hand side of the equation depends on the surface orientation; thus, so does the right-hand side.
 
-The [spectral radiance](https://en.wikipedia.org/wiki/Radiance#Spectral_radiance) $L\_i$ specifies[^1] both the spatial and the directional characteristics of the flux:
+The [spectral radiance](https://en.wikipedia.org/wiki/Radiance#Spectral_radiance) $L\_i$ specifies[^1] both the spatial and the directional densities of the flux:
 
-[^1]: Historically, radiance is called *intensity* and spectral radiance is called *specific intensity*. Personally, I don't find this name to be specific enough.
+[^1]: [Historically](https://en.wikipedia.org/wiki/Radiance), radiance was called *intensity* and spectral radiance was called *specific intensity*. Personally, I don't find this name to be sufficiently specific.
 
-$$ \tag{4} dQ\_n = L\_i \cos{\theta} d\Omega\_n d\sigma\_n d\nu dt, $$
+$$ \tag{4} dQ\_n = L\_i \cos{\theta} d\Omega\_i d\sigma\_n d\nu dt, $$
 
-where $\cos{\theta} = \bm{i} \cdot \bm{n}$ is the cosine[^2] of the angle between the *incident direction* $\bm{i}$ and the *surface normal* [^3] $\bm{n}$.
+where $\cos{\theta} = \bm{i} \cdot \bm{n}$ is the *projection factor*. It can be used to define the *projected area* measure $d\sigma\_i = d\sigma\_n \cos{\theta}$ $(d\sigma\_n$ projected along $\bm{i})$ and the *projected solid angle* measure $d\Omega\_n = d\Omega\_i \cos{\theta}$ $(d\Omega\_i$ projected along $\bm{n})$.
 
-[^2]: Certain expressions can be simplified by using the *projected area* measure $d\sigma\_i = d\sigma\_n \cos{\theta}$  or the *projected solid angle* measure $d\Omega\_i = d\Omega\_n \cos{\theta}$.
+Unlike the projected solid angle which is measured with respect to the surface, the projected area is measured across the beam of incident radiation. Thus, so is the spectral radiance:
 
-[^3]: If the sensor is not planar, the normal $\bm{n}$ is a function of position $\bm{x}$. However, it is simpler to think of the sensor as a [manifold](https://mathworld.wolfram.com/Manifold.html) composed of infinitesimal rectangles.
+$$ \tag{4*} dQ\_n = L\_i d\Omega\_i d\sigma\_i d\nu dt. $$
 
-It is important to understand that while both $E\_n$ and $I\_n$ are defined with respect to the surface normal $\bm{n}$, $L\_i$ is measured across the direction $\bm{i}$ of the incident radiation. Comparing Equations 2-4, it is clear that
+These equations show that $I\_i$ and $E\_n$ are orientation-dependent:
 
-$$ \tag{5} dE\_n = dE\_i \cos{\theta} = L\_i \cos{\theta} d\Omega\_n. $$
-$$ \tag{6} dI\_n = dI\_i \cos{\theta} = L\_i \cos{\theta} d\sigma\_n, $$
+$$ \tag{5} I\_i = \int_{\sigma\_n \cos{\theta}} L\_i d\sigma\_i, \quad
+           E\_n = \int_{\Omega} \cos{\theta} L\_i d\Omega\_i. $$
+
+We could address this issue by using the *vector irradiance* $\bm{E}$,
+
+$$ \tag{6} E\_n = \bm{n} \cdot \bm{E} = \bm{n} \cdot \int_{\Omega} \bm{i} L\_i d\Omega\_i = \bm{n} \cdot \int_{\Omega} \bm{i} dE\_i, $$
+
+which is defined in terms of the spectral irradiance measured across the beam (per beam):
+
+$$ \tag{6*} dE\_i = \frac{dE\_n}{\cos{\theta}} = L\_i d\Omega\_i. $$
 
 {{< figure src="/img/radiometry.png" caption="*Radiance vs irradiance.*" >}}
 
-Independence from the surface parametrization coupled with [invariance along the ray](https://en.wikipedia.org/wiki/Etendue#Conservation_of_basic_radiance) makes (basic) radiance a very useful quantity for light transport applications.
+Independence from the surface orientation coupled with [invariance along the ray](https://en.wikipedia.org/wiki/Etendue#Conservation_of_basic_radiance) makes the (basic) radiance a very useful quantity for light transport applications.
 
 In practice, most authors write Equation 4 this way:
 
@@ -66,7 +76,7 @@ For additional details, see Chapter 3 of Veach's [Ph.D. thesis](http://graphics.
 
 ## Light Scattering by a Single Particle
 
-The interaction of light with an individual particle is quantified by the [differential scattering cross section](http://glossary.ametsoc.org/wiki/Differential_(scattering)_cross_section) $\sigma\_s'$. It is defined as the ratio of the spectral intensity[^4] $I\_o$ scattered in the given direction $\bm{o}$ to the  spectral irradiance $E\_i$ incident from the direction $\bm{i}$:
+The interaction of light with an individual particle is quantified by the [differential scattering cross section](http://glossary.ametsoc.org/wiki/Differential_(scattering)_cross_section) $\sigma\_s'$. It is defined as the ratio of the spectral intensity[^4] $I\_o$ scattered in the given direction $\bm{o}$ to the spectral irradiance $E\_i$ incident from the direction $\bm{i}$:
 
 $$ \tag{8}
     \sigma\_s'(\bm{i}, \bm{o}) =
@@ -170,7 +180,7 @@ $$ \tag{22} \frac{dL\_o}{dz} = \beta\_s \frac{f\_p}{4 \pi} E\_i. $$
 
 Intuitively, the "left-over" $dz$ makes sense. If we increase $dz$, the total volume increases, the density correspondingly decreases, and, since the number of particles remains constant, the amount of spectral radiance does not change.
 
-In light transport applications, we typically deal with radiance rather than irradiance. This can be achieved by substituting[^6] Equation 5 and introducing an integral over $4 \pi$ steradians:
+In light transport applications, we typically deal with radiance rather than irradiance. This can be achieved by substituting[^6] Equation 6* and introducing an integral over $4 \pi$ steradians:
 
 [^6]: The cosine factor does not appear in the calculation because the scattering cross section is, by definition, normal to the direction of incidence.
 
