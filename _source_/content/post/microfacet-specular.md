@@ -8,13 +8,13 @@ tags: [
     ]
 ---
 
-The microfacet theory is a fundamental component of physically based rendering. Unfortunately, it is often perceived as being rather complicated. There are several reasons for this. The first one is that most papers only focus on a single component (such as the distribution of normals or the masking function), while glossing over the rest. The second problem is the lack of the geometrical interpretations of mathematical expressions, which inhibits understanding at the intuitive level. In the course of any serious work on the extensions or applications of the theory (such as Smith's approximation, multiple scattering, bump roughness, microsurface transformations, or area lighting), the absence of a solid grasp of the fundamentals will manifest itself through inefficiency (or, worse yet, ineffectiveness). This article aims to address these issues by collecting the fragments from the literature and explaining how they fit together.
+The microfacet theory is one of the core components of physically based rendering. Unfortunately, it is often perceived as being rather complicated, for several reasons. The first one is that most papers only focus on a single aspect (such as the distribution of normals or the masking function), while neglecting the big picture. The second problem is the lack of geometrical interpretations of the mathematical expressions, which inhibits understanding at the intuitive level. A solid grasp of the fundamentals of the theory is an essential requirement for working on its extensions or applications (such as Smith's approximation, multiple scattering, bump roughness, microsurface transformations, and so on). This article aims to address these issues by collecting the fragments from the literature and explaining how they fit together.
 
 <!--more-->
 
 ### Microsurface and Macrosurface
 
-Pick an object, perhaps one that sits on your desk or lives in your head. Focus on a tiny fragment of its surface. If this fragment is sufficiently small, or is sufficiently far away, it will look effectively flat (but not necessarily smooth). Therefore, to a negligible degree of error, the fragment may be replaced by a first-order approximation[^1] -- its orthogonal projection onto the averaged tangent plane. In the literature, this projected surface is referred to as the *macrosurface* (see Fig. 1 below). It is characterized by the *area* $\small A$ and the *unit normal vector*[^6] $\small \bm{n}$. Fixing the origin and two (linearly independent, but not necessarily unit or orthogonal) tangent vectors is sufficient to complete the parameterization of the macrosurface.
+Pick an object in front of you, and focus on a tiny fragment of its surface. If this fragment is sufficiently small, or is sufficiently far away, it will look effectively flat (but not necessarily smooth). Therefore, to a negligible degree of error, the fragment may be replaced by a first-order approximation[^1] -- its orthogonal projection onto the averaged tangent plane. In the literature, this projected surface is referred to as the *macrosurface* (see Fig. 1 below). It is characterized by the *area* $\small A$ and the *unit normal vector*[^6] $\small \bm{n}$. Fixing the origin and two (linearly independent, but not necessarily unit or orthogonal) tangent vectors is sufficient to complete the parameterization of the macrosurface.
 
 [^1]: In the sense of a Taylor series expansion.
 
@@ -22,17 +22,17 @@ Pick an object, perhaps one that sits on your desk or lives in your head. Focus 
 
 {{< figure src="/img/micro/micro_macro.svg" caption="*Figure 1. Microsurface (red) and macrosurface (green).*" >}}
 
-In contrast, the surface fragment overlaid onto the macrosurface is called[^2] the *microsurface* $\small \mathbb{M^2}$. It is composed of infinitesimal elements called *microfacets*. In the microfacet theory, a microsurface is not modeled explicitly, but rather represented by a statistical model.
+In contrast, the surface fragment overlaid onto the macrosurface is called[^2] the *microsurface* $\small \mathbb{M^2}$. It is composed of infinitesimal elements called *microfacets*. In the microfacet theory, a microsurface is typically not modeled explicitly, but represented by a statistical model.
 
 [^2]: We use the superscript 2 to indicate that a surface is a two-dimensional manifold.
 
 ### Distribution of Normals
 
-Let $\small \bm{m}$ denote the unit normal vector of the microsurface. Since it may correspond to several distinct microfacets, we must define $\small dA(\bm{m}) = D(\bm{m}) A d\Omega(\bm{m})$ as the *differential area* of the portion of the microsurface perpendicular to $\small \bm{m}$, where $\small d\Omega$ is the *differential solid angle* centered on $\small \bm{m}$, and $\small D$ is the *distribution of normals*[^4] (abbreviated as the NDF) associated with the microsurface[^3]. The domain of this distribution, along with the microsurface normals themselves, is typically restricted to the *unit hemisphere* $\small \mathbb{H^2}$ (with $\small \bm{n}$ pointing at the zenith), which requires $\small \mathbb{M^2}$ to be a height field. However, this restriction is not strictly necessary; we shall demonstrate this by letting the microsurface normals potentially cover the entire *unit sphere* $\small \mathbb{S^2}$.
+Let $\small \bm{m}$ denote a unit normal vector of the microsurface. Since it may correspond to several distinct microfacets, we must define $\small dA(\bm{m}) = D(\bm{m}) A d\Omega(\bm{m})$ as the *differential area* of the portion of the microsurface perpendicular to $\small \bm{m}$, where $\small d\Omega$ is the *differential solid angle* centered on $\small \bm{m}$, and $\small D$ is the *distribution of normals*[^4] (abbreviated as the NDF) associated with the microsurface[^3]. The domain of this distribution (the set of the microsurface normals) is typically restricted to the *unit hemisphere* $\small \mathbb{H^2}$ (with $\small \bm{n}$ pointing at the zenith), which requires $\small \mathbb{M^2}$ to be a height field. However, this restriction is not strictly necessary; we shall demonstrate this by letting the microsurface normals (potentially) cover the entire *unit sphere* $\small \mathbb{S^2}$.
 
-[^3]: If the microsurface is convex, we can interpret $\small DA$ as a Jacobian of the transformation from the surface to the unit hemisphere.
+[^3]: If the microsurface is convex, we can interpret $\small DA$ as the Jacobian of the transformation from the unit sphere to the surface area.
 
-[^4]: Not to be confused with the normal distribution (a.k.a. the Gaussian distribution) in probability theory.
+[^4]: Not to be confused with the normal (a.k.a. Gaussian) distribution in the probability theory.
 
 A valid microsurface and, thus, a valid NDF, must obey the *signed (orthogonally) projected area* constraint
 
@@ -48,45 +48,45 @@ $$ \tag{1a}
 \end{aligned}
 $$
 
-for all $\small \bm{v}$. Expressed this way, it is clear that the constraint is geometric (coordinate-independent, basis-independent) in nature:
+for every vector $\small \bm{v}$. Expressed this way, it is clear that the constraint is geometric (coordinate-independent, basis-independent) in nature:
 
 $$ \tag{1b}
 	\bm{n} = \int_{\bm{m} \in \mathbb{S^2}} \bm{m} D(\bm{m}) d\Omega(\bm{m}).
 $$
 
-This is the definition of the macrosurface normal $\small \bm{n}$ for a given microsurface. In turn, substitution $\small \bm{v} = \bm{n}$ in Eqn. 1a yields the macrosurface area $\small A$.
+This is the definition of the macrosurface normal $\small \bm{n}$ for a given microsurface. Furthermore, substitution $\small \bm{v} = \bm{n}$ in Eqn. 1a yields the macrosurface area $\small A$.
 
-Eqn. 1 tells us a few things. Geometrically, it says that the signed projected areas of the microsurface and the macrosurface must coincide in any given direction. More specifically, by substituting a constant NDF (or, from the definition), we can see that it is measured in units of reciprocal solid angle.
+Eqn. 1 tells us a few things. First, it says that the signed projected areas of the microsurface and the macrosurface must coincide in any given direction. Furthermore, by substituting a constant NDF (or, from the definition), we can see that the latter is measured in units of reciprocal solid angle.
 
-In the special case of $\small \bm{v} = \bm{n}$, we obtain
+In the special case of $\small \bm{v} = \bm{n}$, the integrand is normalized:
 
 $$ \tag{1c}
 	1 = \int_{\bm{m} \in \mathbb{S^2}} (\bm{n} \cdot \bm{m}) D(\bm{m}) d\Omega(\bm{m}).
 $$
 
-In order for $\small (\bm{n} \cdot \bm{m}) D(\bm{m})$ to be a valid probability density function, it must be non-negative for all $\small \bm{m}$. By definition, $D \ge 0$, while $\small (\bm{n} \cdot \bm{m}) \ge 0$ if and only if $\small \mathbb{M^2}$ is a height field.
+In order for $\small (\bm{n} \cdot \bm{m}) D(\bm{m})$ to be a valid probability density function, it must be non-negative for all $\small \bm{m}$. By definition, it is always the case that $D \ge 0$, while $\small (\bm{n} \cdot \bm{m}) \ge 0$ if $\small \mathbb{M^2}$ is a height field.
 
 {{< figure src="/img/micro/rectangle.svg" caption="*Figure 2. Rectangular microsurface (red) and its macrosurface (green).*" >}}
 
 One of the simplest examples of a valid microsurface is a box[^5], with the flipped bottom face playing the role of the macrosurface. It is instructive to analyze its two-dimensional counterpart -- a rectangle (see Fig. 2 above).
 
-[^5]: Using the tools of calculus, we can decompose an arbitrary surface into a (possibly infinite) number of sufficiently small boxes.
+[^5]: Using the tools of calculus, we can decompose an arbitrary surface into a (potentially infinite) number of sufficiently small boxes.
 
 This trivial example clearly demonstrates that a microsurface does not have to be smooth (continuously differentiable); however, that ensures the continuity of the NDF, which is desirable, unless the goal is to model a flat surface.
 
-*Linearity* of Eqn. 1 allows us to consider the individual microfacets separately and to sum up their contributions. As we apply it to the box along some $\small \bm{v}$, observe that the signed projected areas of the opposite faces cancel each other, while the top remains equivalent to the bottom. Another consequence is that an application of a *linear transformation* (that transforms a box into a parallelepiped, in our case) also generates a valid combination of the microsurface and the macrosurface. We can see why that is the case by picturing Eqn. 1 geometrically and (passively) transforming the coordinate axes[^51] rather than (actively transforming) the surface itself (see Fig. 3 below). Of course, while the surface lines remain unchanged, the signed projected areas (and, thus, the values of the NDF) do not stay the same.
+The *linearity* of Eqn. 1 allows us to consider the individual microfacets separately and to sum up their contributions. As we apply it to the box along some $\small \bm{v}$, observe that the signed projected areas of the sides cancel each other, while the top remains equivalent to the bottom. Another consequence is that an application of a *linear transformation* (that transforms a box into a parallelepiped, in our case) also generates a valid combination of the microsurface and the macrosurface. We can see why that is the case by picturing Eqn. 1 geometrically and (passively) transforming the coordinate axes[^51] rather than (actively transforming) the surface itself (see Fig. 3 below). Of course, while the surface lines remain unchanged, the signed projected areas (and, thus, the values of the NDF) do not stay the same.
 
 [^51]: This requires the transformation to be invertible. If the transformation was nonlinear, the transformed axes would vary from point to point, forming vector fields.
 
 {{< figure src="/img/micro/transformed.svg" caption="*Figure 3. Passive (left) vs active (right) transformation.*" >}}
 
-Erasing any part of the box leads to a signed projected area mismatch for certain angles. Therefore, the constraint may seem to imply that the microsurface must be continuous, but, unfortunately, that is not the case. The issue lies in the *translation invariance* of Eqn. 1; in particular, it means that the orthogonally projected area of an object is independent of its location. This property may seem innocuous at first, but, coupled with the linearity, it spells disaster: we may freely translate different microfacets in different directions without affecting the value of the integral.
+Erasing any part of the box leads to a signed projected area mismatch for certain angles. Therefore, the constraint may seem to imply that the microsurface must be continuous, but, unfortunately, that is not the case. The issue lies in the *translation invariance* of Eqn. 1; more specifically, it means that the orthogonally projected area of an object is independent of its location. This property may seem innocuous at first, but, coupled with the linearity, it spells disaster: we may freely translate different microfacets in different directions without affecting the value of the integral.
 
 ### Masking Function
 
 Since the signed projected area is an incomplete description of a real surface (as opposed to a microfacet soup or salad[^52]), we may additionally specify its *visible (orthogonally) projected area*
 
-[^52]: In technical terms, such a surface has an extremely short auto-correlation distance.
+[^52]: In technical terms, such a surface has a very short auto-correlation distance.
 
 $$ \tag{2a}
 \begin{aligned}
@@ -105,11 +105,11 @@ which depends on the relative positions of the microfacets (see Fig. 4 below). I
 
 {{< figure src="/img/micro/visibility.svg" caption="*Figure 4. Visible, front-facing area (red) and occluded, back-facing area (blue).*" >}}
 
-The masking and visibility functions possess an important property called *stretch invariance*, or, more generally, *invariance under linear transformations*. We have already seen that, in the context of the microfacet theory, a linearly transformed surface remains valid; however, unlike the NDF, the masking function is dimensionless: it only encodes visibility, and so it remains unaffected by a transformation of the coordinate axes. Of course, this implies that the transformation has been applied to everything, including the view vector $\small \bm{v}$.
+The masking and visibility functions possess an important property called *stretch invariance*, or, more generally, *invariance under invertible linear transformations*. We have already seen that, in the context of the microfacet theory, a linearly transformed surface remains valid; however, unlike the NDF, the masking function is dimensionless: it only encodes visibility, and so it remains unaffected by a transformation of the coordinate axes. Of course, this implies that the transformation has been applied to everything, including the  vector $\small \bm{v}$.
 
 ### Inherent Assumptions
 
-Eqn. 1 and 2 are closely related. For a valid microsurface, the values of the integrals are the same if $\small \bm{v} = \bm{n}$:
+Eqn. 1 and 2 are connected. For a valid microsurface, the values of the integrals are the same if $\small \bm{v} = \bm{n}$:
 
 $$ \tag{2b}
 \begin{aligned}
@@ -125,19 +125,19 @@ In the special case of a height field, $\small G_1(\bm{n}, \bm{m}) = 1$.
 
 {{< figure src="/img/micro/comparison.svg" caption="*Figure 5. Visible, front-facing area (red) and occluded, back-facing area (blue).*" >}}
 
-For a continuous surface, *the visible projected area is greater or equal to the signed projected area*. This inequality stems from self-occlusion, which eliminates the (formerly negative) contribution of back-facing microfacets. The two types of projected areas coincide if and only if the view angle is sufficiently steep, or the microsurface -- sufficiently thin, so that the latter does not extend outside the volume swept by the macrosuface translated along the view vector. The difference of areas can be reduced by flattening or tiling the microsurface (see Fig. 5 above and Fig. 6 below); both methods effectively reduce its height relative to the dimensions of the macrosurface.
+For a continuous surface, *the visible projected area is greater or equal to the signed projected area*. This inequality stems from self-occlusion, which eliminates the (formerly negative) contribution of back-facing microfacets. The two types of projected areas coincide if and only if the view angle is sufficiently steep, or the microsurface -- sufficiently short, so that the latter does not extend outside the volume swept by the macrosuface translated along the view vector. The difference of areas can be reduced by flattening or tiling the microsurface (see Fig. 5 above and Fig. 6 below); both methods effectively reduce its height relative to the dimensions of the macrosurface.
 
 {{< figure src="/img/micro/tiling.svg" caption="*Figure 6. Visible area (red) and occluded area (blue). The entire visible area is front-facing; a part of the occluded area is not back-facing.*" >}}
 
-Of course, as the view angle tends to 90 degrees, the signed projected area tends to zero, while the visible projected area becomes proportional to the height of the microsurface. This leads to one of the key assumptions of the microfacet theory: *a microsurface is infinitesimally thick*. This limitation is particularly apparent at grazing angles, and should be familiar to those who have practical experience with bump and normal mapping.
+Of course, as the view angle (measured w.r.t. the macrosurface normal) tends to 90 degrees, the signed projected area shrinks to zero, while the visible projected area becomes proportional to the height of the microsurface. This leads to one of the key assumptions of the microfacet theory: *a microsurface is infinitesimally tall*. This limitation is particularly apparent at grazing angles, and should be familiar to those familiar with bump and normal mapping.
 
-If we want to posit that Eqn. 1a and 2a are equivalent, we must also prevent the signed projected area from turning negative by restricting the view angles to the range where $\small (\bm{v} \cdot \bm{n}) > 0$. In other words, *a microsurface is always facing the observer*. If that is not the case, we must recompute the statistics for the undersurface.
+If we want to posit that Eqn. 1a and 2a are equivalent, we must also prevent the signed projected area from turning negative by restricting the view angles to the range where $\small (\bm{v} \cdot \bm{n}) > 0$. In other words, *the observer is located above the macrosurface*. Otherwise, we must recompute the statistics for the undersurface.
 
-It is easy to see that reversing the directions of both $\small \bm{n}$ and $\small \bm{m}$ allows us to reuse the distribution of normals. As for the view vector, there are a couple of options: we can either reverse the direction of $\small \bm{v}$, or reflect it across the macrosurface. Since flipping a surface upside down alters visibility, neither method yields exact results; however, the first one is preferable, since it guarantees that self-occlusion is properly accounted for. In practice, the resulting approximation is applicable to complex, unstructured surfaces; you should not expect it to be accurate for a simple repeating pattern.
+Typically, that is not done explicitly. For instance, it is easy to see that reversing the directions of both $\small \bm{n}$ and $\small \bm{m}$ allows us to reuse the distribution of normals. As for the view vector $\small \bm{v}$, we can either reverse its direction or reflect it across the macrosurface. Since flipping a surface upside down alters visibility, neither method yields exact results; however, the first one is preferable, since it guarantees that self-occlusion is properly accounted for. The resulting approximation is reasonable for complex unstructured surfaces; however, you should not expect it to be valid for a simple repeating pattern.
 
 ### Distribution of Visible Normals
 
-With the assumption (that all projected surface areas are the same) in place, we can combine Eqn. 1a and 2a into
+With the assumption (that the projected surface areas are the same) in place, we can combine Eqn. 1a and 2a into
 
 $$ \tag{3a}
 	1 =
@@ -151,7 +151,7 @@ $$ \tag{3b}
 	\frac{(\bm{v} \cdot \bm{m})}{(\bm{v} \cdot \bm{n})} G_1(\bm{v}, \bm{m}) D(\bm{m})
 $$
 
-is called the *distribution of visible normals*[^7] (abbreviated as the VNDF). Its meaning becomes clear in the context of Eqn. 2a: $\small ((\bm{v} \cdot \bm{m})/(\bm{v} \cdot \bm{n}))^{-1} D_{vis}(\bm{v}, \bm{n}, \bm{m}) A d\Omega(\bm{m})$ is the differential area of the portion of the microsurface perpendicular to $\small \bm{m}$ that happens to be visible along $\small \bm{v}$. Like $\small (\bm{n} \cdot \bm{m}) D(\bm{m})$, the VNDF is a probability density function; but because it is always non-negative, this property is not limited to height fields.
+is called the *distribution of visible normals*[^7] (abbreviated as the VNDF). Its meaning becomes clear in the context of Eqn. 2a: $\small ((\bm{v} \cdot \bm{m})/(\bm{v} \cdot \bm{n}))^{-1} D_{vis}(\bm{v}, \bm{n}, \bm{m}) A d\Omega(\bm{m})$ is the differential area of the portion of the microsurface perpendicular to $\small \bm{m}$ that happens to be visible along $\small \bm{v}$. Like $\small (\bm{n} \cdot \bm{m}) D(\bm{m})$, the VNDF is a probability density function; but because the VNDF is always non-negative (due to self-occlusion), this property is not limited to height fields.
 
 [^7]: After comparing Eqn. 1c with 3a and taking the definitions into account, it seems more natural to define $\small D_{vis} = G_1 D$. Nevertheless, we stick with Eqn. 3b to conform to the existing body of literature.
 
@@ -227,7 +227,7 @@ $$ \tag{4a}
 	\frac{dL(\bm{v})}{L(\bm{l}) d\Omega_n(\bm{l})}.
 $$
 
-In other words, the outgoing radiance is a weighted average of the incident radiance over the surface of the unit sphere (or the two-sided unit disk, if you prefer):
+In other words, the outgoing radiance is a weighted average of the incident radiance over the surface area of the unit sphere (or the double-sided unit disk, if you prefer):
 
 $$ \tag{4b}
 	L(\bm{v}) =
@@ -237,7 +237,7 @@ $$
 
 In order for a BSDF to be physically meaningful, it must satisfy three requirements[^8]:
 
-[^8]: “Energy conservation” refers to the total energy of the system. The kinetic energy of a photon is only conserved if the integral is equal to 1. Otherwise, by definition, a collision is called inelastic.
+[^8]: The total energy of the system (comprised of the photon and the surface) is always conserved. The kinetic energy of the photon is only conserved if the integral is equal to 1. Otherwise, by definition, the collision is called inelastic.
 
 $$ \tag{4c}
 \begin{aligned}
@@ -248,12 +248,12 @@ $$ \tag{4c}
 	&\frac{f_s(\bm{v}, \bm{n}, \bm{l})}{f_s(\bm{l}, \bm{n}, \bm{v})} = \frac{\eta_v^2}{\eta_l^2};
 	\cr
 	\textit{energy conservation: }
-	&\int_{\bm{v} \in \mathbb{S^2}}
+	&\text{for all } \boldsymbol{l} \text{,} \int_{\bm{v} \in \mathbb{S^2}}
 	f_s(\bm{v}, \bm{n}, \bm{l}) d\Omega_n(\bm{v}) \le 1;
 \end{aligned}
 $$
 
-where $\small \eta_v$ and $\small \eta_l$ are the real[^9] *indices of refraction* (abbreviated as the IOR) associated with the directions of exitance (along the view vector $\small \bm{v}$) and incidence (along the light vector $\small \bm{l}$), respectively. In particular, reciprocity is a direct consequence of the *law of refraction* (also valid for reflection)
+where $\small \eta_v$ and $\small \eta_l$ are the real[^9] *indices of refraction* (abbreviated as the IOR) associated with the directions of exitance (along the view vector $\small \bm{v}$) and incidence (along the light vector $\small \bm{l}$), respectively. In particular, reciprocity is a consequence of the *law of refraction* (also valid for reflection)
 
 [^9]: We will not consider absorptive or magnetic media in this article.
 
@@ -261,7 +261,7 @@ $$ \tag{5a}
 	\eta_v \Vert \bm{v} \times \bm{n} \Vert = \eta_l \Vert \bm{l} \times \bm{n} \Vert,
 $$
 
-which leads to the *compression of projected solid angles*
+which directly leads to the *compression of projected solid angles*
 
 $$ \tag{5b}
 	\eta_v^2 d\Omega_n(\bm{v}) = \eta_l^2 d\Omega_n(\bm{l}),
@@ -273,118 +273,118 @@ $$ \tag{5c}
 	\eta_v^2 d\Omega(\bm{v}) \neq \eta_l^2 d\Omega(\bm{l}).
 $$
 
-This provides a strong motivation to utilize the projected solid angle measure. Failure to do so consistently often results in complicated expressions that may be difficult to interpret and are prone to errors.
+It provides a strong motivation to utilize the projected solid angle measure. Failure to do so consistently often results in complicated expressions that are difficult to interpret and error-prone.
 
-The properties of a valid BSDF are by no means obvious. In particular, ensuring reciprocity is a non-trivial task. A typical approach represents the BSDF as a sum of two components: reflection (the BRDF $\small f_r$) and transmission (the BTDF $\small f_t$). Its principal advantage lies in the fact that the reflection component is always *symmetric*: since $\small \bm{v}$ and $\small \bm{l}$ always point away from the surface, $\small \eta_v = \eta_l$ and, therefore, $\small f_r(\bm{v}, \bm{n}, \bm{l}) = f_r(\bm{l}, \bm{n}, \bm{v})$.
+The properties of a valid BSDF are by no means obvious. In particular, ensuring reciprocity is a non-trivial task. A typical approach represents the BSDF as a sum of two components: reflection (the BRDF $\small f_r$) and transmission (the BTDF $\small f_t$), with the direction of exitance corresponding to either the reflection vector $\small \bm{r}$ or the refraction vector $\small \bm{t}$. The principal advantage lies in the fact that the reflection component is always *symmetric*: if $\small \bm{v}$ and $\small \bm{l}$ always point away from the surface, $\small \eta_v = \eta_l$ and, therefore, $\small f_r(\bm{v}, \bm{n}, \bm{l}) = f_r(\bm{l}, \bm{n}, \bm{v})$.
 
 ### Smooth Specular BSDF
 
-In order to be perfectly clear, we shall illustrate these properties using a concrete example. Consider a perfectly smooth, planar surface. Its BSDF (sometimes referred to as the *smooth specular* BSDF) can be expressed in terms of the *Dirac delta "function"* $\small \delta$ defined as a projected solid angle measure by the equation
+We shall illustrate these properties using a concrete example. Consider a perfectly smooth, planar surface. Its BSDF (sometimes referred to as the *smooth specular* BSDF) can be expressed in terms of the *Dirac delta "function"* $\small \delta$ defined (with respect to the projected solid angle measure) by the identity
 
 $$ \tag{6}
-	f(\bm{v}) =
-	\int_{\bm{l} \in \mathbb{S^2}} f(\bm{l}) \delta_{\Omega_n}(\bm{v} - \bm{l}) d\Omega_n(\bm{l})
+	f(\bm{k}) =
+	\int_{\bm{l} \in \mathbb{S^2}} \delta(\bm{k} - \bm{l}) f(\bm{l}) d\Omega_n(\bm{l})
 $$
 
-valid for any function $\small f: \mathbb{S^2} \to \mathbb{R}$. Note its similarity to Eqn. 4b.
+valid for any function $\small f$ continuous at $\small \bm{k}$. Note the similarity to Eqn. 4b.
 
-Now, according to the *law of reflection*, the view and the light angles must be the same:
+Reflect and refract operators (already defined below)...
+
+Now, according to the *law of reflection*, the light and reflection angles must be the same:
 
 $$ \tag{7a}
-	\sin{\theta_v} = \Vert \bm{v} \times \bm{n} \Vert = \Vert \bm{l} \times \bm{n} \Vert,
+	\sin{\theta_l} = \Vert \bm{l} \times \bm{n} \Vert = \Vert \bm{r} \times \bm{n} \Vert,
 	\quad
-	\cos{\theta_v} = \vert \bm{v} \cdot \bm{n} \vert = \vert \bm{l} \cdot \bm{n} \vert.
+	\cos{\theta_l} = \vert \bm{l} \cdot \bm{n} \vert = \vert \bm{r} \cdot \bm{n} \vert.
 $$
 
 On the other hand, we need to distinguish between the IORs associated with the exterior (above the surface) and the interior (below the surface) of the object:
 
 $$ \tag{7b}
-	\eta_v = \eta_l,
-	\quad
-	\eta_t =
+	\eta_t(\bm{l}) =
 	\begin{cases}
-	   \eta_{int} &\text{if } \eta_v = \eta_{ext}, \cr
+	   \eta_{int} &\text{if } \eta_l = \eta_{ext}, \cr
 	   \eta_{ext} &\text{otherwise}.
 	\end{cases}
 $$
 
-Using this formalism, the smooth specular BRDF can be expressed as
+Using this formalism and the law of reflection, the smooth specular BRDF can be expressed as
 
 $$ \tag{7c}
 	f_r(\bm{v}, \bm{n}, \bm{l}) =
-	F(\theta_v, \eta_v/\eta_t)
-	\delta_{\Omega_n}\negmedspace\left( \bm{n} - \frac{\bm{v} + \bm{l}}{(\bm{v} + \bm{l}) \cdot \bm{n}} \right),
+	F(\theta_l, \eta_t(\bm{l})/\eta_l)
+	\delta\big( \vert \bm{n} \cdot (\bm{v} + \bm{l}) \vert \bm{n} - (\bm{v} + \bm{l}) \big),
 $$
 
-where $\small 0 \le F \le 1$ is the dimensionless *Fresnel reflectance*. This BRDF is non-negative, symmetric, and energy-conserving, which can be verified by substituting Eqn. 7c into 4c. In particular,
-
-$$ \tag{7d}
-	\int_{\bm{l} \in \mathbb{S^2}}
-	f_r(\bm{v}, \bm{n}, \bm{l}) d\Omega_n(\bm{l}) =
-	F(\theta_v, \eta_v/\eta_t) \le 1.
-$$
-
-The trigonometric form of the Fresnel term is
+where $\small 0 \le F \le 1$ is the dimensionless *Fresnel reflectance*
 
 $$ \tag{8a}
-	F(\theta_v, \eta_v/\eta_t)
-	= (1 - \alpha) R_s(\theta_v, \eta_v/\eta_t) + \alpha R_p(\theta_v, \eta_v/\eta_t),
+	F(\theta_l, \eta_t/\eta_l)
+	= (1 - \alpha) R_s(\theta_l, \eta_t/\eta_l) + \alpha R_p(\theta_l, \eta_t/\eta_l),
 $$
 
 and its mutually perpendicular components are defined as follows:
 
 $$ \tag{8b}
 \begin{aligned}
-	R_s(\theta_v, \eta_v/\eta_t)
-	&= \left| \frac{\cos{\theta_v} / \cos{\theta_t} - \sin{\theta_t} / \sin{\theta_v}}{\cos{\theta_v} / \cos{\theta_t} + \sin{\theta_t} / \sin{\theta_v}} \right|^2
-	= \left| \frac{\sin(2 \theta_v) - \sin(2 \theta_t)}{\sin(2 \theta_v) + \sin(2 \theta_t)} \right|^2,
+	R_s(\theta_l, \eta_t/\eta_l)
+	&= \left| \frac{\cos{\theta_l} - (\eta_t / \eta_l) \cos{\theta_t}}{\cos{\theta_l} + (\eta_t / \eta_l) \cos{\theta_t}} \right|^2
+	= \left| \frac{\sin(\theta_t - \theta_l)}{\sin(\theta_t + \theta_l)} \right|^2,
 	\cr
-	R_p(\theta_v, \eta_v/\eta_t)
-	&= \left| \frac{\cos{\theta_t} / \cos{\theta_v} - \sin{\theta_t} / \sin{\theta_v}}{\cos{\theta_t} / \cos{\theta_v} + \sin{\theta_t} / \sin{\theta_v}} \right|^2
-	= \left| \frac{\sin(\theta_v - \theta_t)}{\sin(\theta_v + \theta_t)} \right|^2.
+	R_p(\theta_l, \eta_t/\eta_l)
+	&= \left| \frac{\cos{\theta_t} - (\eta_t / \eta_l) \cos{\theta_l}}{\cos{\theta_t} + (\eta_t / \eta_l) \cos{\theta_l}} \right|^2
+	= \left| \frac{\sin(2 \theta_t) - \sin(2 \theta_l)}{\sin(2 \theta_t) + \sin(2 \theta_l)} \right|^2.
 \end{aligned}
 $$
 
 The value of $\small \alpha$ depends on the polarization state of the incident light: $\small \alpha = 0$ corresponds to the s-polarized light, $\small \alpha = 1$ -- to the p-polarized light, and $\small \alpha = 1/2$ -- to the unpolarized (natural) light.
 
-The angle of refraction (or transmission) $\small \theta_t$ can be determined from the view angle $\small \theta_v$ and the *relative IOR* $\small \eta_v/\eta_t$ using the law of refraction and basic trigonometry:
+The angle of refraction $\small \theta_t$ can be determined from the light angle $\small \theta_l$ and the *relative IOR* $\small \eta_t/\eta_l$ using the law of refraction and basic trigonometry:
 
 $$ \tag{8c}
-	\sin{\theta_t} = \frac{\eta_v}{\eta_t} \sin{\theta_v},
+	\sin{\theta_t} = (\eta_t / \eta_l)^{-1} \sin{\theta_l},
 	\quad
 	\cos{\theta_t} = \sqrt{1 - \sin^2{\theta_t} }.
+$$ 
+
+The solution of the Fresnel equations is symmetric -- the value of $\small F$ is invariant under the exchange of the subscripts $\small l \text{ and } t$. Intuitively, the Fresnel reflectance (which is a ratio of two irradiance values) depends only on the path taken by light, and is unaffected by the reversal of its direction. In practice, this allows us to refract the view vector $\small \bm{v}$ (as opposed to the light vector $\small \bm{l}$), which yields an alternative formulation of the smooth specular BRDF:
+
+$$ \tag{7c}
+	f_r(\bm{v}, \bm{n}, \bm{l}) =
+	F(\theta_v, \eta_t(\bm{v})/\eta_v)
+	\delta\big( \vert \bm{n} \cdot (\bm{v} + \bm{l}) \vert \bm{n} - (\bm{v} + \bm{l}) \big).
 $$
 
-If you have a physics background, the labeling of the angles and the indices of refraction may appear unconventional, since Eqn. 8a-8c are typically expressed in terms of the direction of incidence rather than exitance. The present notation is motivated by the definition of the BSDF given by Eqn. 4a-4b, where the view vector is fixed. This alteration is enabled by the symmetry of the Fresnel equations, which makes Eqn. 8 invariant under the exchange of the subscripts $\small v \text{ and } t$. Intuitively, the Fresnel reflectance (which is a ratio of two irradiance values) depends only on the path taken by light, and is unaffected by the reversal of its direction.
+It is energy-conserving, which can be verified by substituting Eqn. 7c into 4c. In particular,
 
-The definition of the transmission component of the smooth specular BSDF is marginally more complicated. Let
-
-$$ \tag{9a}
-\begin{aligned}
-	\sin{\theta_v} &= \Vert \bm{v} \times \bm{n} \Vert,
-	&
-	\cos{\theta_v} &= \vert \bm{v} \cdot \bm{n} \vert,
-	\cr
-	\sin{\theta_t} &= \Vert \bm{l} \times \bm{n} \Vert,
-	&
-	\cos{\theta_t} &= \vert \bm{l} \cdot \bm{n} \vert.
-\end{aligned}
+$$ \tag{7d}
+	\int_{\bm{v} \in \mathbb{S^2}}
+	f_r(\bm{v}, \bm{n}, \bm{l}) d\Omega_n(\bm{v}) =
+	F(\theta_l, \eta_t(\bm{l})/\eta_l) \le 1.
 $$
 
-By extension, we shall associate
+$\small \eta_t/\eta_l \to 1$ leads to $\small F \to 0$, and the reflection disappears. The mirror BRDF is obtained in the limit $\small \eta_t/\eta_l \to \infty$ which makes $\small F \to 1$. 
 
-$$ \tag{9b}
-	\eta_t = \eta_l.
-$$
-
-After taking the reciprocity and the conservation of energy into account, the smooth specular BTDF can be expressed as
+The definition of the transmission component of the smooth specular BSDF is marginally more complicated by the fact that the the directions of incidence and exitance point into the opposite hemispheres:
 
 $$ \tag{9c}
 	f_t(\bm{v}, \bm{n}, \bm{l}) =
-	\frac{\eta_v^2}{\eta_l^2} \big( 1 - F(\theta_v, \eta_v/\eta_t) \big) \delta_{\Omega_n}\big( \eta_v (\bm{v} \times \bm{n}) + \eta_l (\bm{l} \times \bm{n}) \big).
+	\frac{\eta_v^2}{\eta_l^2} \big( 1 - F(\theta_l, \eta_t(\bm{l})/\eta_l) \big) \delta\big( \frac{\eta_v}{\eta_l} (\bm{v} \times \bm{n}) + (\bm{l} \times \bm{n}) \big).
 $$
 
-The first term is responsible for the compression of projected solid angles, which can be readily verified by placing the surface inside a *white furnace* (by setting $\small L(\bm{l}) = 1$ for all $\small \bm{l}$) and evaluating Eqn. 4b.
+The leftmost term is responsible for the compression of projected solid angles, which can be readily verified by placing the surface inside a *white furnace* (by setting $\small L(\bm{l}) = 1$ for all $\small \bm{l}$) and evaluating Eqn. 4b.
+
+$$ \tag{4b}
+	L(\bm{v}) =
+	\int_{\bm{l} \in \mathbb{S^2}}
+	f_s(\bm{v}, \bm{n}, \bm{l}) L(\bm{l}) d\Omega_n(\bm{l})
+$$
+
+$$ \tag{4b}
+	L(\bm{v}) =
+		\int_{\bm{l} \in \mathbb{S^2}}
+	\frac{\eta_v^2}{\eta_l^2} \big( 1 - F(\theta_l, \eta_t(\bm{l})/\eta_l) \big) \delta\big( \frac{\eta_v}{\eta_l} (\bm{v} \times \bm{n}) + (\bm{l} \times \bm{n}) \big) d\Omega_n(\bm{l})
+$$
 
 Is this BTDF reciprocal? Naive substitution of Eqn. 9c into 4c leads to
 
@@ -392,9 +392,9 @@ $$ \tag{9d}
 	\frac{f_t(\bm{v}, \bm{n}, \bm{l})}{f_t(\bm{l}, \bm{n}, \bm{v})}
 	= \frac{\eta_v^4}{\eta_l^4}
 	\frac{
-		\delta_{\Omega_n}\big( \eta_v (\bm{v} \times \bm{n}) + \eta_l (\bm{l} \times \bm{n}) \big)
+		\delta\big( \eta_v (\bm{v} \times \bm{n}) + \eta_l (\bm{l} \times \bm{n}) \big)
 	}{
-		\delta_{\Omega_n}\big( \eta_l (\bm{l} \times \bm{n}) + \eta_v (\bm{v} \times \bm{n}) \big)
+		\delta\big( \eta_l (\bm{l} \times \bm{n}) + \eta_v (\bm{v} \times \bm{n}) \big)
 	}.
 $$
 
@@ -424,7 +424,7 @@ If you find reciprocity daunting, you are not alone. For instance, Eqn. 18 and 2
 
 ### Rough Surface BSDF
 
-We can model a rough microsurface by treating it as locally planar[^1]. The amount of radiance scattered by the microsurface can then be expressed as a weighted average of the contributions of its visible microfacets (see Fig. 6 above).
+We can model a rough microsurface by treating it as locally planar. The amount of radiance scattered by the microsurface can then be expressed as a weighted average of the contributions of its visible microfacets (see Fig. 6 above).
 
 To better understand this approach, recall that, by definition, the [radiance](/post/particle-volume/#radiometry-crash-course) is the amount of power transmitted in a certain direction, per unit solid angle associated with this direction, per unit area perpendicular to this direction. If the source of (scattered) light is very small (or very far away), it will appear point-like, and the variation of the view vector across its surface can be safely neglected. Thus,
 
