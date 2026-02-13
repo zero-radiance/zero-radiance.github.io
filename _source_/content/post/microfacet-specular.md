@@ -8,7 +8,9 @@ tags: [
     ]
 ---
 
-The microfacet theory is one of the core components of physically based rendering. Unfortunately, it is often perceived as being rather complicated, for several reasons. The first one is that most papers only focus on a single aspect (such as the distribution of normals or the masking function), while neglecting the big picture. The second problem is the lack of geometrical interpretations of the mathematical expressions, which inhibits understanding at the intuitive level. A solid grasp of the fundamentals of the theory is an essential requirement for working on its extensions or applications (such as Smith's approximation, multiple scattering, bump roughness, microsurface transformations, and so on). This article aims to address these issues by collecting the fragments from the literature and explaining how they fit together.
+The microfacet theory is one of the core components of physically based rendering. Unfortunately, it is often perceived as being rather complicated, for two reasons. The first one is that most papers only focus on a single aspect (such as the distribution of normals or the masking function), while neglecting the big picture. The second problem is the lack of geometrical interpretations of the mathematical expressions, which inhibits understanding at the intuitive level.
+
+A solid grasp of the fundamentals of the theory is an essential requirement for working on its extensions or applications (such as Smith's approximation, multiple scattering, bump roughness, microsurface transformations, and so on). This author aims to address these issues by collecting the fragments from the literature and explaining how they fit together.
 
 <!--more-->
 
@@ -30,9 +32,9 @@ In contrast, the surface fragment overlaid onto the macrosurface is called[^2] t
 
 Let $\small \bm{m}$ denote a unit normal vector of the microsurface. Since it may correspond to several distinct microfacets, we must define $\small dA(\bm{m}) = D(\bm{m}) A d\Omega(\bm{m})$ as the *differential area* of the portion of the microsurface perpendicular to $\small \bm{m}$, where $\small d\Omega$ is the *differential solid angle* centered on $\small \bm{m}$, and $\small D$ is the *distribution of normals*[^4] (abbreviated as the NDF) associated with the microsurface[^3]. The domain of this distribution (the set of the microsurface normals) is typically restricted to the *unit hemisphere* $\small \mathbb{H^2}$ (with $\small \bm{n}$ pointing at the zenith), which requires $\small \mathbb{M^2}$ to be a height field. However, this restriction is not strictly necessary; we shall demonstrate this by letting the microsurface normals (potentially) cover the entire *unit sphere* $\small \mathbb{S^2}$.
 
-[^3]: If the microsurface is convex, we can interpret $\small DA$ as the Jacobian of the transformation from the unit sphere to the surface area.
+[^3]: If the microsurface is convex, we can interpret $\small DA = dA/d\Omega$ as the Jacobian of the transformation from the unit sphere to the surface area.
 
-[^4]: Not to be confused with the normal (a.k.a. Gaussian) distribution in the probability theory.
+[^4]: Not to be confused with the normal (a.k.a. Gaussian) distribution from the probability theory.
 
 A valid microsurface and, thus, a valid NDF, must obey the *signed (orthogonally) projected area* constraint
 
@@ -56,7 +58,7 @@ $$
 
 This is the definition of the macrosurface normal $\small \bm{n}$ for a given microsurface. Furthermore, substitution $\small \bm{v} = \bm{n}$ in Eqn. 1a yields the macrosurface area $\small A$.
 
-Eqn. 1 tells us a few things. First, it says that the signed projected areas of the microsurface and the macrosurface must coincide in any given direction. Furthermore, by substituting a constant NDF (or, from the definition), we can see that the latter is measured in units of reciprocal solid angle.
+Eqn. 1 tells us a few things. First, it says that the signed projected areas of the microsurface and the macrosurface must coincide in any given direction. Furthermore, by substituting a constant NDF (or, from the definition), we can see that an NDF is measured in units of reciprocal solid angle.
 
 In the special case of $\small \bm{v} = \bm{n}$, the integrand is normalized:
 
@@ -72,11 +74,11 @@ One of the simplest examples of a valid microsurface is a box[^5], with the flip
 
 [^5]: Using the tools of calculus, we can decompose an arbitrary surface into a (potentially infinite) number of sufficiently small boxes.
 
-This trivial example clearly demonstrates that a microsurface does not have to be smooth (continuously differentiable); however, that ensures the continuity of the NDF, which is desirable, unless the goal is to model a flat surface.
+This trivial case clearly demonstrates that a microsurface does not have to be smooth (continuously differentiable); however, that ensures the continuity of the NDF, which is desirable, unless the goal is to model a flat surface.
 
-The *linearity* of Eqn. 1 allows us to consider the individual microfacets separately and to sum up their contributions. As we apply it to the box along some $\small \bm{v}$, observe that the signed projected areas of the sides cancel each other, while the top remains equivalent to the bottom. Another consequence is that an application of a *linear transformation* (that transforms a box into a parallelepiped, in our case) also generates a valid combination of the microsurface and the macrosurface. We can see why that is the case by picturing Eqn. 1 geometrically and (passively) transforming the coordinate axes[^51] rather than (actively transforming) the surface itself (see Fig. 3 below). Of course, while the surface lines remain unchanged, the signed projected areas (and, thus, the values of the NDF) do not stay the same.
+The *linearity* of Eqn. 1 allows us to consider the individual microfacets separately and to sum up their contributions. As we apply it to the box along some $\small \bm{v}$, observe that the signed projected areas of the sides cancel each other, while the top remains equivalent to the bottom. Another consequence is that an application of a *linear transformation* (that transforms a box into a parallelepiped, in this case) also generates a valid combination of the microsurface and the macrosurface. We can see why that is the case by picturing Eqn. 1 geometrically and (passively) transforming the coordinate axes[^51] rather than (actively transforming) the surface itself (see Fig. 3 below). Of course, while the surface lines remain unchanged, the signed projected areas (and, thus, the values of the NDF) do not stay the same.
 
-[^51]: This requires the transformation to be invertible. If the transformation was nonlinear, the transformed axes would vary from point to point, forming vector fields.
+[^51]: This requires the transformation to be invertible. If the transformation were nonlinear, the transformed coordinate axes would vary from point to point, forming vector fields.
 
 {{< figure src="/img/micro/transformed.svg" caption="*Figure 3. Passive (left) vs active (right) transformation.*" >}}
 
@@ -103,9 +105,9 @@ $$
 
 which depends on the relative positions of the microfacets (see Fig. 4 below). It is defined in terms of the dimensionless *masking function* $\small G_1(\bm{v}, \bm{m})$ that gives the fraction of the differential area $\small dA(\bm{m})$ of the portion of the microsurface perpendicular to $\small \bm{m}$ that happens to be visible along $\small \bm{v}$. In other words, it is the *average visibility* (along $\small \bm{v}$) of the microfacets with the normal $\small \bm{m}$. The masking function is closely related to the binary *visibility function* $\small V(\bm{v}, \bm{p})$ that outputs 0 if the point $\small \bm{p}$ is occluded along $\small \bm{v}$, and 1 otherwise. Both functions take *self-occlusion* into account: $\small V = G_1 = 0$ if $\small (\bm{v} \cdot \bm{m}) \le 0$.
 
-{{< figure src="/img/micro/visibility.svg" caption="*Figure 4. Visible, front-facing area (red) and occluded, back-facing area (blue).*" >}}
+{{< figure src="/img/micro/visibility.svg" caption="*Figure 4. Visible, front-facing area (red) and occluded, back-facing area (blue) vs signed area (green).*" >}}
 
-The masking and visibility functions possess an important property called *stretch invariance*, or, more generally, *invariance under invertible linear transformations*. We have already seen that, in the context of the microfacet theory, a linearly transformed surface remains valid; however, unlike the NDF, the masking function is dimensionless: it only encodes visibility, and so it remains unaffected by a transformation of the coordinate axes. Of course, this implies that the transformation has been applied to everything, including the  vector $\small \bm{v}$.
+The masking and visibility functions possess an important property called *stretch invariance*, or, more generally, *invariance under linear transformations*. We have already seen that, in the context of the microfacet theory, a linearly transformed surface remains valid; however, unlike the NDF, the masking function is dimensionless: it only encodes visibility, and so it remains unaffected by a transformation of the coordinate axes. Of course, this implies that the transformation has been applied to everything, including the  vector $\small \bm{v}$.
 
 ### Inherent Assumptions
 
@@ -121,19 +123,19 @@ $$ \tag{2b}
 \end{aligned}
 $$
 
-In the special case of a height field, $\small G_1(\bm{n}, \bm{m}) = 1$.
+Eqn. 2b can be visualized as the microsurface collapsing onto the macrosurface, with the downward-facing microfacets canceling or occluding those below them. In the special case of a height field, $\small G_1(\bm{n}, \bm{m}) = 1$.
 
-{{< figure src="/img/micro/comparison.svg" caption="*Figure 5. Visible, front-facing area (red) and occluded, back-facing area (blue).*" >}}
+{{< figure src="/img/micro/comparison.svg" caption="*Figure 5. Visible, front-facing area (red) and occluded, back-facing area (blue) vs signed area (green).*" >}}
 
-For a continuous surface, *the visible projected area is greater or equal to the signed projected area*. This inequality stems from self-occlusion, which eliminates the (formerly negative) contribution of back-facing microfacets. The two types of projected areas coincide if and only if the view angle is sufficiently steep, or the microsurface -- sufficiently short, so that the latter does not extend outside the volume swept by the macrosuface translated along the view vector. The difference of areas can be reduced by flattening or tiling the microsurface (see Fig. 5 above and Fig. 6 below); both methods effectively reduce its height relative to the dimensions of the macrosurface.
+For a continuous surface, *the visible projected area is greater or equal to the signed projected area*. This inequality stems from self-occlusion, which eliminates the (otherwise negative) contribution of back-facing microfacets. The two types of projected areas coincide if and only if the view angle is sufficiently steep, or the microsurface -- sufficiently short, so that the latter does not extend outside the volume swept by the macrosuface translated along the view vector. The difference of the areas can be reduced by flattening or tiling the microsurface (see Fig. 5 above and Fig. 6 below); both methods effectively reduce its height relative to the horizontal dimensions.
 
-{{< figure src="/img/micro/tiling.svg" caption="*Figure 6. Visible area (red) and occluded area (blue). The entire visible area is front-facing; a part of the occluded area is not back-facing.*" >}}
+{{< figure src="/img/micro/tiling.svg" caption="*Figure 6. Visible area (red) and occluded area (blue) vs signed area (green). The entire visible area is front-facing; not all of the occluded area is back-facing.*" >}}
 
 Of course, as the view angle (measured w.r.t. the macrosurface normal) tends to 90 degrees, the signed projected area shrinks to zero, while the visible projected area becomes proportional to the height of the microsurface. This leads to one of the key assumptions of the microfacet theory: *a microsurface is infinitesimally tall*. This limitation is particularly apparent at grazing angles, and should be familiar to those familiar with bump and normal mapping.
 
-If we want to posit that Eqn. 1a and 2a are equivalent, we must also prevent the signed projected area from turning negative by restricting the view angles to the range where $\small (\bm{v} \cdot \bm{n}) > 0$. In other words, *the observer is located above the macrosurface*. Otherwise, we must recompute the statistics for the undersurface.
+If we want to posit that Eqn. 1a and 2a are equivalent, we must also prevent the signed projected area from turning negative by restricting the view angles to the range where $\small (\bm{v} \cdot \bm{n}) > 0$. In other words, *the observer is located above the surface*. Otherwise, we must recompute the statistics for the undersurface.
 
-Typically, that is not done explicitly. For instance, it is easy to see that reversing the directions of both $\small \bm{n}$ and $\small \bm{m}$ allows us to reuse the distribution of normals. As for the view vector $\small \bm{v}$, we can either reverse its direction or reflect it across the macrosurface. Since flipping a surface upside down alters visibility, neither method yields exact results; however, the first one is preferable, since it guarantees that self-occlusion is properly accounted for. The resulting approximation is reasonable for complex unstructured surfaces; however, you should not expect it to be valid for a simple repeating pattern.
+Typically, that is not done explicitly. For instance, it is easy to see that reversing the directions of both $\small \bm{n}$ and $\small \bm{m}$ allows us to reuse the original distribution of normals. As for the view vector $\small \bm{v}$, we can either reverse its direction or reflect it across the macrosurface. Since flipping a surface upside down alters visibility, neither method yields exact results; however, the first one is preferable, since it guarantees that self-occlusion is properly accounted for. The resulting approximation is reasonable for complex unstructured surfaces; however, you should not expect it to be valid for a simple repeating pattern.
 
 ### Distribution of Visible Normals
 
@@ -151,7 +153,7 @@ $$ \tag{3b}
 	\frac{(\bm{v} \cdot \bm{m})}{(\bm{v} \cdot \bm{n})} G_1(\bm{v}, \bm{m}) D(\bm{m})
 $$
 
-is called the *distribution of visible normals*[^7] (abbreviated as the VNDF). Its meaning becomes clear in the context of Eqn. 2a: $\small ((\bm{v} \cdot \bm{m})/(\bm{v} \cdot \bm{n}))^{-1} D_{vis}(\bm{v}, \bm{n}, \bm{m}) A d\Omega(\bm{m})$ is the differential area of the portion of the microsurface perpendicular to $\small \bm{m}$ that happens to be visible along $\small \bm{v}$. Like $\small (\bm{n} \cdot \bm{m}) D(\bm{m})$, the VNDF is a probability density function; but because the VNDF is always non-negative (due to self-occlusion), this property is not limited to height fields.
+is called the *distribution of visible normals*[^7] (abbreviated as the VNDF). Its meaning becomes clear in the context of Eqn. 2a: $\small ((\bm{v} \cdot \bm{m})/(\bm{v} \cdot \bm{n}))^{-1} D_{vis}(\bm{v}, \bm{n}, \bm{m}) A d\Omega(\bm{m})$ is the differential area of the portion of the microsurface perpendicular to $\small \bm{m}$ that happens to be visible along $\small \bm{v}$. Like $\small (\bm{n} \cdot \bm{m}) D(\bm{m})$, the VNDF is a probability density function; but, due to self-occlusion, this property is not limited to height fields.
 
 [^7]: After comparing Eqn. 1c with 3a and taking the definitions into account, it seems more natural to define $\small D_{vis} = G_1 D$. Nevertheless, we stick with Eqn. 3b to conform to the existing body of literature.
 
@@ -219,7 +221,7 @@ Eqn. 3Xc confirms that the connection between a microfacet and its neighborhood 
 
 ### General BSDF
 
-A VNDF can be used to construct a *bidirectional scattering distribution function* $\small f_s$. By definition, a BSDF is a ratio of the [differential outgoing radiance](/post/particle-volume/#radiometry-crash-course) to the [differential incident irradiance](/post/particle-volume/#radiometry-crash-course), the latter being the product of the incident radiance and the *projected differential solid angle* $\small d\Omega_n(\bm{l}) = \vert \bm{n} \cdot \bm{l} \vert d\Omega(\bm{l})$:
+A VNDF can be used to construct a *bidirectional scattering distribution function* $\small f_s$. By definition, a BSDF is a ratio of the differential [outgoing radiance](/post/particle-volume/#radiometry-crash-course) to the differential [incident irradiance](/post/particle-volume/#radiometry-crash-course), the latter being the product of the incident radiance and the *projected differential solid angle* $\small d\Omega_n(\bm{l}) = \vert \bm{n} \cdot \bm{l} \vert d\Omega(\bm{l})$:
 
 $$ \tag{4a}
 	f_s(\bm{v}, \bm{n}, \bm{l}) =
@@ -258,10 +260,10 @@ where $\small \eta_v$ and $\small \eta_l$ are the real[^9] *indices of refractio
 [^9]: We will not consider absorptive or magnetic media in this article.
 
 $$ \tag{5a}
-	\eta_v \Vert \bm{v} \times \bm{n} \Vert = \eta_l \Vert \bm{l} \times \bm{n} \Vert,
+	\eta_v \Vert \bm{v} \times \bm{n} \Vert = \eta_l \Vert \bm{l} \times \bm{n} \Vert.
 $$
 
-which directly leads to the *compression of projected solid angles*
+Differentiation of Eqn. 5a leads to the *compression of projected solid angles*
 
 $$ \tag{5b}
 	\eta_v^2 d\Omega_n(\bm{v}) = \eta_l^2 d\Omega_n(\bm{l}),
@@ -273,20 +275,36 @@ $$ \tag{5c}
 	\eta_v^2 d\Omega(\bm{v}) \neq \eta_l^2 d\Omega(\bm{l}).
 $$
 
-It provides a strong motivation to utilize the projected solid angle measure. Failure to do so consistently often results in complicated expressions that are difficult to interpret and error-prone.
+It provides a strong motivation to utilize the projected solid angle. Failure to do so consistently often results in complicated expressions or subtle errors.
 
 The properties of a valid BSDF are by no means obvious. In particular, ensuring reciprocity is a non-trivial task. A typical approach represents the BSDF as a sum of two components: reflection (the BRDF $\small f_r$) and transmission (the BTDF $\small f_t$), with the direction of exitance corresponding to either the reflection vector $\small \bm{r}$ or the refraction vector $\small \bm{t}$. The principal advantage lies in the fact that the reflection component is always *symmetric*: if $\small \bm{v}$ and $\small \bm{l}$ always point away from the surface, $\small \eta_v = \eta_l$ and, therefore, $\small f_r(\bm{v}, \bm{n}, \bm{l}) = f_r(\bm{l}, \bm{n}, \bm{v})$.
 
 ### Smooth Specular BSDF
 
-We shall illustrate these properties using a concrete example. Consider a perfectly smooth, planar surface. Its BSDF (sometimes referred to as the *smooth specular* BSDF) can be expressed in terms of the *Dirac delta "function"* $\small \delta$ defined (with respect to the projected solid angle measure) by the identity
+We shall illustrate these properties using a concrete example. Consider a perfectly smooth, planar surface. Its BSDF (sometimes referred to as the *smooth specular* BSDF) can be expressed in terms of the *Dirac delta "function"* $\small \delta\_{\mu}$ defined (with respect to the measure $\small \mu$) by the identity
 
-$$ \tag{6}
+$$ \tag{6a}
+	f(\bm{k}) =
+	\int \delta_{\mu}(\bm{k} - \bm{l}) f(\bm{l}) d{\mu}(\bm{l})
+$$
+
+valid for any function $\small f$ continuous at $\small \bm{k}$. Since we shall exclusively utilize the projected solid angle measure $\small \mu = \Omega\_n$, we may simply define
+
+$$ \tag{6b}
 	f(\bm{k}) =
 	\int_{\bm{l} \in \mathbb{S^2}} \delta(\bm{k} - \bm{l}) f(\bm{l}) d\Omega_n(\bm{l})
 $$
 
-valid for any function $\small f$ continuous at $\small \bm{k}$. Note the similarity to Eqn. 4b.
+Note the similarity to Eqn. 4b.
+
+The Dirac delta function possesses the following unsurprising property valid for a bijective function $\small \beta$:
+
+$$ \tag{6c}
+	\delta_{\mu}(\bm{k} - \bm{l}) d{\mu}(\bm{l}) =
+	\delta_{\mu \circ \beta}\big(\beta(\bm{k}) - \beta(\bm{l})\big) d(\mu \circ \beta)(\bm{l}),
+$$
+
+where $\small (\mu \circ \beta)(\bm{l}) = \mu(\beta(\bm{l}))$. What it essentially means is that you must be consistent when transforming the vectors (or the coordinate axes).
 
 Reflect and refract operators (already defined below)...
 
