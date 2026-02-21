@@ -8,7 +8,7 @@ tags: [
     ]
 ---
 
-The microfacet theory is one of the core components of physically based rendering. Unfortunately, it is often perceived as being rather complicated, for two reasons. The first one is that most papers only focus on a single aspect (such as the distribution of normals or the masking function), while neglecting the big picture. The second problem is the lack of geometrical interpretations of the mathematical expressions, which inhibits understanding at the intuitive level.
+The microfacet theory is one of the core components of physically based rendering. Unfortunately, it is often perceived as being rather complicated; primarily, for two reasons. The first one is that most papers only focus on a single aspect (such as the distribution of normals or the masking function), while neglecting the big picture. The second problem is the lack of geometrical interpretations of the mathematical expressions, which inhibits understanding at the intuitive level.
 
 A solid grasp of the fundamentals of the theory is an essential requirement for working on its extensions or applications (such as Smith's approximation, multiple scattering, bump roughness, microsurface transformations, and so on). This author aims to address these issues by collecting the fragments from the literature and explaining how they fit together.
 
@@ -16,7 +16,7 @@ A solid grasp of the fundamentals of the theory is an essential requirement for 
 
 ### Microsurface and Macrosurface
 
-Pick an object in front of you, and focus on a tiny fragment of its surface. If this fragment is sufficiently small, or is sufficiently far away, it will look effectively flat (but not necessarily smooth). Therefore, to a negligible degree of error, the fragment may be replaced by a first-order approximation[^1] -- its orthogonal projection onto the averaged tangent plane. In the literature, this projected surface is referred to as the *macrosurface* (see Fig. 1 below). It is characterized by the *area* $\small A$ and the *unit normal vector*[^6] $\small \bm{n}$. Fixing the origin and two (linearly independent, but not necessarily unit or orthogonal) tangent vectors is sufficient to complete the parameterization of the macrosurface.
+Pick an object in front of you, and focus on a tiny fragment of its surface. If this fragment is sufficiently small, or is sufficiently far away, it will look effectively flat (but not necessarily smooth). Therefore, to a negligible degree of error, the fragment may be replaced by the first-order approximation[^1] -- its orthogonal projection onto the averaged tangent plane. In the literature, this projected surface is referred to as the *macrosurface* (see Fig. 1 below). It is characterized by the *area* $\small A$ and the *unit normal vector*[^6] $\small \bm{n}$. Fixing the origin and two (linearly independent, but not necessarily unit or orthogonal) tangent vectors is sufficient to complete the parameterization of the macrosurface.
 
 [^1]: In the sense of a Taylor series expansion.
 
@@ -78,7 +78,7 @@ This trivial case clearly demonstrates that a microsurface does not have to be s
 
 The *linearity* of Eqn. 1a allows us to consider the individual microfacets separately and to sum up their contributions. As you apply it to the box along some $\small \bm{v}$, observe that the signed projected areas of the sides cancel each other, while the top remains equivalent to the bottom. Another consequence is that an application of a *linear transformation* (which transforms a box into a parallelepiped, in this case) also generates a valid combination of the microsurface and the macrosurface. We can see why that is the case by interpreting Eqn. 1a geometrically and (passively) transforming the coordinate axes[^51] rather than (actively transforming) the surface itself (see Fig. 3 below). Of course, while the surface lines remain unchanged, the signed projected areas (and, thus, the values of the NDF) do not stay the same.
 
-[^51]: This requires the transformation to be invertible. If the transformation were nonlinear, the transformed coordinate axes would vary from point to point, forming vector fields.
+[^51]: This requires the transformation to be invertible. And if the transformation were nonlinear, the transformed coordinate axes would vary from point to point, forming vector fields.
 
 {{< figure src="/img/micro/transformed.svg" caption="*Figure 3. Passive (left) vs active (right) transformation.*" >}}
 
@@ -107,7 +107,7 @@ which depends on the relative positions of the microfacets (see Fig. 4 below). I
 
 {{< figure src="/img/micro/visibility.svg" caption="*Figure 4. Visible, front-facing area (red) and occluded, back-facing area (blue) vs signed area (green).*" >}}
 
-The masking and visibility functions possess an important property called *stretch invariance*, or, more generally, *invariance under linear transformations*. We have already seen that, in the context of the microfacet theory, a linearly transformed surface remains valid; however, unlike an NDF, a masking function is dimensionless: it only encodes visibility, and so it remains unaffected by a transformation of the coordinate axes. Of course, this implies that the transformation has been applied to everything, including the  vector $\small \bm{v}$.
+The masking and visibility functions possess an important property called *stretch invariance*, or, more generally, *invariance under linear transformations*. We have already seen that, in the context of the microfacet theory, a linearly transformed surface remains valid; however, unlike an NDF, a masking function is dimensionless: it only encodes visibility, and so it remains unaffected by a transformation of the coordinate axes. Of course, a passive transformation must be applied to everything, including the vector $\small \bm{v}$.
 
 ### Inherent Assumptions
 
@@ -133,9 +133,9 @@ For a continuous surface, *the visible projected area is greater or equal to the
 
 Of course, as the view angle (measured w.r.t. the macrosurface normal) tends to 90 degrees, the signed projected area shrinks to zero, while the visible projected area becomes proportional to the height of the microsurface. This leads to one of the key assumptions of the microfacet theory: *a microsurface is infinitesimally tall*. This limitation is particularly apparent at grazing angles, and should be familiar to those familiar with bump and normal mapping.
 
-If we want to posit that Eqn. 1a and 2a are equivalent, we must also prevent the signed projected area from turning negative by restricting the view angles to the range where $\small (\bm{v} \cdot \bm{n}) > 0$. In other words, *the observer is located above the surface*. Otherwise, we have to recompute the statistics for the undersurface.
+If we want to posit that Eqn. 1a and 2a are equivalent, we must also prevent the signed projected area from turning negative by restricting the view angles to the range where $\small (\bm{v} \cdot \bm{n}) > 0$. In other words, *the observer is located above the surface*. Otherwise, we must obtain and utilize the statistics for the undersurface.
 
-Typically, that is not done explicitly. For instance, it is easy to see that reversing the directions of both $\small \bm{n}$ and $\small \bm{m}$ allows us to reuse the original distribution of normals. As for the view vector $\small \bm{v}$, we can either reverse its direction or reflect it across the macrosurface. Since flipping a surface upside down alters visibility, neither method yields exact results; however, the first one is preferable, since it guarantees that self-occlusion is properly accounted for. The resulting approximation is reasonable for complex unstructured surfaces; however, you should not expect it to be valid for a simple repeating pattern.
+We do not have to start from scratch. For instance, it is easy to see that reversing the directions of both $\small \bm{n}$ and $\small \bm{m}$ allows us to reuse the original distribution of normals. As for the view vector $\small \bm{v}$, we can either reverse its direction or reflect it across the macrosurface. Since flipping a surface upside down alters visibility, neither method yields exact results; however, the former is preferable, since it guarantees that self-occlusion is properly accounted for. The resulting approximation is reasonably convincing for complex unstructured surfaces; however, you should not expect it to be valid for a simple repeating pattern.
 
 ### Distribution of Visible Normals
 
@@ -153,7 +153,7 @@ $$ \tag{3b}
 	\frac{(\bm{v} \cdot \bm{m})}{(\bm{v} \cdot \bm{n})} G_1(\bm{v}, \bm{m}) D(\bm{m})
 $$
 
-is called the *distribution of visible normals*[^7] (abbreviated as the VNDF). Its meaning becomes clear in the context of Eqn. 2a: $\small ((\bm{v} \cdot \bm{m})/(\bm{v} \cdot \bm{n}))^{-1} D_{vis}(\bm{v}, \bm{n}, \bm{m}) A d\Omega(\bm{m})$ is the differential area of the portion of the microsurface perpendicular to $\small \bm{m}$ that happens to be visible along $\small \bm{v}$. Like $\small (\bm{n} \cdot \bm{m}) D(\bm{m})$, the VNDF is a probability density function; but, due to self-occlusion, this property is not limited to height fields.
+is called the *distribution of visible normals*[^7] (abbreviated as the VNDF). Its meaning becomes clear in the context of Eqn. 2a: $\small ((\bm{v} \cdot \bm{m})/(\bm{v} \cdot \bm{n}))^{-1} D_{vis}(\bm{v}, \bm{n}, \bm{m}) A d\Omega(\bm{m})$ is the differential area of the portion of the microsurface perpendicular to $\small \bm{m}$ that happens to be visible along $\small \bm{v}$. Like $\small (\bm{n} \cdot \bm{m}) D(\bm{m})$, the VNDF is a probability density function; but, due to self-occlusion, this property extends beyond height fields.
 
 [^7]: After comparing Eqn. 1c with 3a and taking the definitions into account, it seems more natural to define $\small D_{vis} = G_1 D$. Nevertheless, we stick with Eqn. 3b to conform to the existing body of literature.
 
